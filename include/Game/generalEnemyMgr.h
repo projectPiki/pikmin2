@@ -290,6 +290,8 @@ struct GeneralMgrIterator {
 
 	inline T* getObject() { return static_cast<T*>(mContainer->getObject(mIndex)); }
 
+	inline bool isDone() { return mContainer == nullptr; }
+
 	Container<T>* mContainer; // _00
 	void* mIndex;             // _04
 	CNode* mNode;             // _08

@@ -159,8 +159,8 @@ struct PelletInitArg : public CreatureInitArg {
 
 	bool _04;                 // _04
 	char* mTextIdentifier;    // _08
-	int _0C;                  // _0C
-	int _10;                  // _10
+	int mPelletColor;         // _0C, for number pellets
+	int mPelletIndex;         // _10
 	u16 mState;               // _14
 	u8 mPelletType;           // _16
 	u8 _17;                   // _17

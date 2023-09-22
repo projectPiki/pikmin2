@@ -114,7 +114,7 @@ void BaseGameSection::newdraw_drawAll(Viewport* vp)
 	mDrawBuffer2->get(7)->draw();
 
 	if (!_168 && (mXfbFlags & 3) == 0) {
-		mXfbImage->capture(mXfbTexture1, mXfbTexture2, GX_TF_RGB565, true, 0);
+		mXfbImage->capture(mXfbBoundsX, mXfbBoundsY, GX_TF_RGB565, true, 0);
 	}
 	mLightMgr->set(gfx);
 	mLightMgr->mFogMgr->off(gfx);

@@ -80,7 +80,7 @@ struct DispMemberZukanEnemy : public DispMemberZukanBase {
 struct DispMemberZukanItem : public DispMemberZukanBase {
 	virtual u32 getSize() { return sizeof(DispMemberZukanItem); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
-	virtual u64 getMemberID() { return MEMBER_ZUKAN_ENEMY; }      // _10 (weak)
+	virtual u64 getMemberID() { return MEMBER_ZUKAN_ITEM; }       // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_1C = og::Screen::DispMemberBase

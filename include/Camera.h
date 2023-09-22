@@ -66,7 +66,7 @@ struct Camera : public CullFrustum {
 	virtual void updatePlanes();                              // _50
 	virtual void updateScreenConstants();                     // _54
 	virtual Vector3f getLookAtPosition_();                    // _58 (weak)
-	virtual f32 getTargetDistance();                          // _5C (weak)
+	virtual f32 getTargetDistance() { return 0.0f; }          // _5C (weak)
 	virtual Vector3f* getPositionPtr();                       // _60
 	virtual Vector3f* on_getPositionPtr() { return nullptr; } // _64 (weak)
 	virtual Vector3f* getSoundPositionPtr()                   // _68 (weak)
@@ -77,9 +77,9 @@ struct Camera : public CullFrustum {
 	{
 		return &mSoundMatrix;
 	}
-	virtual bool isSpecialCamera(); // _70 (weak)
-	virtual void updateMatrix() { } // _74 (weak)
-	virtual bool doUpdate() { }     // _78 (weak)
+	virtual bool isSpecialCamera() { return false; } // _70 (weak)
+	virtual void updateMatrix() { }                  // _74 (weak)
+	virtual bool doUpdate() { }                      // _78 (weak)
 
 	f32 calcProperDistance(f32, f32);
 	f32 calcScreenSize(Sys::Sphere&);
@@ -121,11 +121,11 @@ struct Camera : public CullFrustum {
 struct LookAtCamera : public Camera {
 	LookAtCamera();
 
-	virtual ~LookAtCamera() { }            // _08 (weak)
-	virtual Vector3f getLookAtPosition_(); // _58 (weak)
-	virtual Vector3f* on_getPositionPtr(); // _64 (weak)
-	virtual void updateMatrix();           // _74
-	virtual void startVibration(int);      // _7C (weak)
+	virtual ~LookAtCamera() { }                                       // _08 (weak)
+	virtual Vector3f getLookAtPosition_() { return mLookAtPosition; } // _58 (weak)
+	virtual Vector3f* on_getPositionPtr() { return &mPosition; }      // _64 (weak)
+	virtual void updateMatrix();                                      // _74
+	virtual void startVibration(int);                                 // _7C (weak)
 
 	// Camera _00 - _144
 	Matrixf mLookMatrix;      // _144

@@ -54,16 +54,16 @@ struct SceneInfo {
 	void setStageCamera() const;
 
 	// _00 = VTBL
-	u16 mStageFlags;         // _04
-	u8 mSceneType;           // _06
-	u8 mCameras;             // _07
-	Vector3f* mCam1Position; // _08
-	Vector3f* _0C;           // _0C
-	Vector3f* mCam2Position; // _10
-	Vector3f* _14;           // _14
-	Matrixf* mCameraMtx;     // _18
-	Matrixf* _1C;            // _1C
-	JGeometry::TBox3f _20;   // _20
+	u16 mStageFlags;           // _04
+	u8 mSceneType;             // _06
+	u8 mCameras;               // _07
+	Vector3f* mCam1Position;   // _08
+	Vector3f* _0C;             // _0C
+	Vector3f* mCam2Position;   // _10
+	Vector3f* _14;             // _14
+	Matrixf* mCameraMtx;       // _18
+	Matrixf* _1C;              // _1C
+	JGeometry::TBox3f mBounds; // _20
 };
 
 /**

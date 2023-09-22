@@ -227,6 +227,12 @@ struct BaseGameSection : public BaseHIOSection {
 
 	void drawRadarmap(Graphics&);
 
+	inline void setXfbBounds(int x, int y)
+	{
+		mXfbBoundsX = x;
+		mXfbBoundsY = y;
+	}
+
 	// _00 		= VTBL
 	// _00-_48 	= BaseHIOSection
 	// should there not be another 0x4 here in USA (not demo)? ...
@@ -273,8 +279,8 @@ struct BaseGameSection : public BaseHIOSection {
 	u32 _150;                                                 // _150
 	JUTTexture* mXfbImage;                                    // _154
 	JUTTexture* mFbTexture;                                   // _158
-	int mXfbTexture1;                                         // _15C
-	int mXfbTexture2;                                         // _160
+	int mXfbBoundsX;                                          // _15C
+	int mXfbBoundsY;                                          // _160
 	u8 mXfbFlags;                                             // _164
 	JUTTexture* _168;                                         // _168
 	int mTexData1;                                            // _16C

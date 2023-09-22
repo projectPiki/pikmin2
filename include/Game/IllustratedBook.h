@@ -13,12 +13,16 @@
 #include "Vector3.h"
 
 namespace Game {
+
+namespace SingleGame {
+struct ZukanState;
+}
 namespace IllustratedBook {
 struct Camera : public LookAtCamera {
 	Camera(Controller*);
 
-	virtual ~Camera();                // _08 (weak)
-	virtual void doUpdate();          // _78
+	virtual ~Camera() { }             // _08 (weak)
+	virtual bool doUpdate();          // _78
 	virtual void startVibration(int); // _7C
 
 	void move(const Vector3f&);
@@ -31,64 +35,78 @@ struct Camera : public LookAtCamera {
 	// Unused/inlined:
 	void debugDraw(Graphics&);
 	unknown getFocus();
-	void setAtOffset(const Vector3f&) const;
+	void setAtOffset(const Vector3f&);
+
+	inline void setMinMaxHeight(f32 min, f32 max)
+	{
+		mMinHeight = min;
+		mMaxHeight = max;
+	}
+
+	inline void setViewAngleParms(f32 fov, f32 min, f32 max)
+	{
+		mViewAngle     = fov;
+		mCurrViewAngle = fov;
+		mMinViewAngle  = min;
+		mMaxViewAngle  = max;
+	}
 
 	// _00      = VTBL
 	// _00-_198 = LookAtCamera
-	Controller* _198;  // _198
-	Creature* _19C;    // _19C
-	Vector3f _1A0;     // _1A0
-	Vector3f _1AC;     // _1AC
-	Vector3f _1B8;     // _1B8
-	f32 _1C4;          // _1C4
-	f32 _1C8;          // _1C8
-	f32 _1CC;          // _1CC
-	f32 _1D0;          // _1D0
-	f32 _1D4;          // _1D4
-	Vector3f _1D8;     // _1D8
-	Vector3f _1E4;     // _1E4
-	Vector3f _1F0;     // _1F0
-	Vector3f _1FC[10]; // _1FC
-	unknown _274;      // _274
-	f32 _278;          // _278
-	f32 _27C;          // _27C
-	f32 _280;          // _280
-	f32 _284;          // _284
-	f32 _288;          // _288
-	f32 _28C;          // _28C
-	f32 _290;          // _290
-	f32 _294;          // _294
-	f32 _298;          // _298
-	f32 _29C;          // _29C
-	Vector3f _2A0;     // _2A0
-	Vector3f _2AC;     // _2AC
-	Vector3f _2B8;     // _2B8
-	Vector3f _2C4;     // _2C4
-	Vector3f _2D0;     // _2D0
-	f32 _2DC;          // _2DC
-	f32 _2E0;          // _2E0
-	f32 _2E4;          // _2E4
-	f32 _2E8;          // _2E8
-	f32 _2EC;          // _2EC
-	f32 _2F0;          // _2F0
-	f32 _2F4;          // _2F4
-	f32 _2F8;          // _2F8
-	f32 _2FC;          // _2FC
-	u8 _300[4];        // _300
-	f32 _304;          // _304
-	f32 _308;          // _308
-	f32 _30C;          // _30C
-	f32 _310;          // _310
-	f32 _314;          // _314
-	f32 _318;          // _318
-	f32 _31C;          // _31C
-	f32 _320;          // _320
+	Controller* mController;    // _198
+	Creature* mTargetObject;    // _19C
+	Vector3f _1A0;              // _1A0
+	Vector3f _1AC;              // _1AC
+	Vector3f _1B8;              // _1B8
+	f32 mHorizontalAngle;       // _1C4
+	f32 mObjectRadius;          // _1C8
+	f32 mCurrentHeight;         // _1CC
+	f32 mMinHeight;             // _1D0
+	f32 mMaxHeight;             // _1D4
+	Vector3f mGoalPosition;     // _1D8
+	Vector3f mObjectOffset;     // _1E4
+	Vector3f _1F0;              // _1F0
+	Vector3f mPositionList[10]; // _1FC
+	int mCurrentPositionIndex;  // _274
+	f32 _278;                   // _278
+	f32 _27C;                   // _27C
+	f32 _280;                   // _280
+	f32 _284;                   // _284
+	f32 mCurrViewAngle;         // _288
+	f32 mMinViewAngle;          // _28C
+	f32 mMaxViewAngle;          // _290
+	f32 _294;                   // _294
+	f32 _298;                   // _298
+	f32 _29C;                   // _29C
+	Vector3f _2A0;              // _2A0
+	Vector3f _2AC;              // _2AC
+	Vector3f _2B8;              // _2B8
+	Vector3f _2C4;              // _2C4
+	Vector3f mVibrationForce;   // _2D0
+	f32 _2DC;                   // _2DC
+	f32 _2E0;                   // _2E0
+	f32 _2E4;                   // _2E4
+	f32 _2E8;                   // _2E8
+	f32 _2EC;                   // _2EC
+	f32 _2F0;                   // _2F0
+	f32 _2F4;                   // _2F4
+	f32 _2F8;                   // _2F8
+	f32 _2FC;                   // _2FC
+	f32 _300;                   // _300
+	f32 _304;                   // _304
+	f32 _308;                   // _308
+	f32 _30C;                   // _30C
+	f32 _310;                   // _310
+	f32 _314;                   // _314
+	f32 _318;                   // _318
+	f32 _31C;                   // _31C
+	f32 _320;                   // _320
 };
 
 struct EnemyTexMgr : public IconTexture::Mgr {
 	inline EnemyTexMgr();
 
-	virtual ~EnemyTexMgr(); // _08 (weak)
+	virtual ~EnemyTexMgr() { } // _08 (weak)
 
 	IconTexture::Loader mLoader;
 
@@ -148,20 +166,24 @@ struct ColorSetting : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Color4 _18[5][2]; // _18
-	Color4 _40[5];    // _40
-	Color4 _54;       // _54
-	Color4 _58;       // _58
-	Color4 _5C;       // _5C
+	Color4 _18[5][2];     // _18
+	Color4 _40[5];        // _40
+	JUtility::TColor _54; // _54
+	JUtility::TColor _58; // _58
+	Color4 _5C;           // _5C
 };
 
 struct DebugParms : public CNode {
-	virtual ~DebugParms(); // _08 (weak)
+	DebugParms();
+
+	virtual ~DebugParms() { } // _08 (weak)
 	// potential something at _10?
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	u8 _18[0x20]; // _18, unknown
+	Color4 _18; // _18
+	f32 _1C[6];
+	BitFlag<u16> mFlags;
 };
 
 struct PositionParms : public CNode {
@@ -224,7 +246,7 @@ struct EnemyParms : public CNode {
 	// _00     = VTBL
 	// _00-_18 = CNode
 	Parms mParms;                     // _18
-	u8 _A0;                           // _A0
+	u8 mGroupID;                      // _A0
 	CameraParms mCameraParms;         // _A4
 	PositionParmsList* mPosParmsList; // _270
 };
@@ -263,7 +285,7 @@ struct ItemParms : public CNode {
 	// _00     = VTBL
 	// _00-_18 = CNode
 	Parms mParms;                     // _18
-	u8 _A0;                           // _A0
+	u8 mGroupID;                      // _A0
 	CameraParms mCameraParms;         // _A4
 	PositionParmsList* mPosParmsList; // _270
 	int mIndex;                       // _274
@@ -295,6 +317,9 @@ struct Parms : public CNode {
 	PositionParmsList mPosParmsList; // _78
 	EnemyModeParms mEnemyParms;      // _810
 	ItemModeParms mItemParms;        // _10260
+
+	static Camera* sCamera;
+	static Game::SingleGame::ZukanState* sZukanState;
 };
 } // namespace IllustratedBook
 } // namespace Game

@@ -514,46 +514,56 @@ struct ZukanState : public State {
 	/**
 	 * @real
 	 */
-	enum CMode { ZSCM_0 = 0, ZSCM_1, ZSCM_2, ZSCM_3, ZSCM_4, ZSCM_5, ZSCM_6, ZSCM_7, ZSCM_8 };
+	enum CMode {
+		ModeStartTeki = 0,
+		ModeStartPellet,
+		ModeChangeToTeki,
+		ModeTeki,
+		ModeChangeTeki,
+		ModeChangeToPellet,
+		ModePellet,
+		ModeChangePellet,
+		ModeNone,
+	};
 
 	/**
 	 * @fabricated
 	 */
-	struct Arg {
-		u8 _00;           // _00
+	struct Arg : public StateArg {
+		u8 mStartMode;    // _00
 		int mCourseIndex; // _04
 	};
 
 	ZukanState();
 
-	virtual void init(SingleGameSection*, StateArg*); // _08
-	virtual void exec(SingleGameSection*);            // _0C
-	virtual void cleanup(SingleGameSection*);         // _10
-	virtual void draw(SingleGameSection*, Graphics&); // _20
+	virtual void init(SingleGameSection* game, StateArg* arg); // _08
+	virtual void exec(SingleGameSection* game);                // _0C
+	virtual void cleanup(SingleGameSection* game);             // _10
+	virtual void draw(SingleGameSection* game, Graphics& gfx); // _20
 
 	void clearHeapB_common();
 	void clearHeapB_pellet();
 	void clearHeapB_teki();
 	unknown clearHeaps();
-	PelletList::cKind convertPelletID(int&, int);
+	static PelletList::cKind convertPelletID(int&, int);
 	void createEnemy(int);
 	void createPellet(int);
 	void createTeki(int);
-	void drawGradationEffect(SingleGameSection*, Graphics&);
-	void drawLightEffect(SingleGameSection*, Graphics&);
-	unknown dvdloadA();
+	void drawGradationEffect(SingleGameSection* game, Graphics& gfx);
+	void drawLightEffect(SingleGameSection* game, Graphics& gfx);
+	void dvdloadA();
 	void dvdloadB_pellet();
 	void dvdloadB_teki();
-	void execChangePellet(SingleGameSection*);
-	void execChangeTeki(SingleGameSection*);
-	void execModeChange(SingleGameSection*, CMode);
-	unknown execPellet(SingleGameSection*);
-	unknown execTeki(SingleGameSection*);
-	void setMode(CMode);
-	void startWipe(f32);
+	void execChangePellet(SingleGameSection* game);
+	void execChangeTeki(SingleGameSection* game);
+	void execModeChange(SingleGameSection* game, CMode mode);
+	unknown execPellet(SingleGameSection* game);
+	unknown execTeki(SingleGameSection* game);
+	void setMode(CMode mode);
+	void startWipe(f32 DemoTimers);
 
 	static int getMaxPelletID();
-	static PelletConfig* getCurrentPelletConfig(int);
+	static PelletConfig* getCurrentPelletConfig(int id);
 
 	// Unused/inlined:
 	unknown startTekiMode(bool);
@@ -562,45 +572,47 @@ struct ZukanState : public State {
 	unknown debugDraw(Graphics&);
 	void dvdloadB_common();
 
+	inline int getWindowWidth() { return mWindowBounds.p2.x - mWindowBounds.p1.x; }
+	inline int getWindowHeight() { return mWindowBounds.p2.y - mWindowBounds.p1.y; }
+
 	// _00     = VTBL
 	// _00-_10 = State
-	IDelegate* _10;                    // _10
-	IDelegate* _14;                    // _14
-	IDelegate* _18;                    // _18
-	DvdThreadCommand _1C;              // _1C
-	u8 _88;                            // _88
-	CourseInfo* _8C;                   // _8C
-	Controller* _90;                   // _90
-	BaseGameSection* _94;              // _94
-	IllustratedBook::Camera* _98;      // _98
-	CMode _9C;                         // _9C
-	int mTekiInfoIndex;                // _A0
-	Creature* _A4;                     // _A4
-	int _A8;                           // _A8
-	Creature* _AC;                     // _AC
-	JUTTexture* _B0;                   // _B0
-	Rectf _B4;                         // _B4
-	u8 _C4[4];                         // _C4
-	f32 _C8;                           // _C8
-	JUTTexture* _CC;                   // _CC
-	u8 _D0[4];                         // _D0
-	JKRExpHeap* _D4;                   // _D4
-	JKRHeap* _D8;                      // _D8
-	JKRExpHeap* _DC;                   // _DC
-	JKRHeap* _E0;                      // _E0
-	u32 _E4;                           // _E4
-	ResultTexMgr::Mgr* _E8;            // _E8
-	IllustratedBook::EnemyTexMgr* _EC; // _EC
-	JKRExpHeap* _F0;                   // _F0
-	f32 _F4;                           // _F4
-	f32 _F8;                           // _F8
-	unknown _FC;                       // _FC
-	IllustratedBook::Parms* _100;      // _100
-	IllustratedBook::DebugParms* _104; // _104
-	f32 _108;                          // _108
-	unknown _10C;                      // _10C
-	int _110;                          // _110
-	int _114;                          // _114
+	Delegate<ZukanState>* mDelegateLoadMain;    // _10
+	Delegate<ZukanState>* mDelegateLoadEnemy;   // _14
+	Delegate<ZukanState>* mDelegateLoadPellet;  // _18
+	DvdThreadCommand mDvdThread;                // _1C
+	bool mDoDraw;                               // _88
+	CourseInfo* mCourseInfo;                    // _8C
+	Controller* mController;                    // _90
+	BaseGameSection* mGameSect;                 // _94
+	IllustratedBook::Camera* mCamera;           // _98
+	CMode mCurrMode;                            // _9C
+	int mCurrentEnemyIndex;                     // _A0
+	EnemyBase* mCurrentEnemy;                   // _A4
+	int mCurrentPelletIndex;                    // _A8
+	Pellet* mCurrentPellet;                     // _AC
+	JUTTexture* mTexture;                       // _B0
+	Rectf mWindowBounds;                        // _B4
+	Vector2f mCameraAspect;                     // _C4
+	JUTTexture* mTexture2;                      // _CC
+	u8 _D0[4];                                  // _D0
+	JKRExpHeap* mParentHeap;                    // _D4
+	JKRHeap* mMainHeap;                         // _D8
+	JKRExpHeap* mCurrObjHeap;                   // _DC
+	JKRHeap* mBackupHeap;                       // _E0
+	u32 mHeapSize;                              // _E4
+	ResultTexMgr::Mgr* mResultTexture;          // _E8
+	IllustratedBook::EnemyTexMgr* mEnemyTexMgr; // _EC
+	JKRExpHeap* mExtraHeapFor2D;                // _F0
+	f32 mChangeSelTimer;                        // _F4
+	f32 mChangeSelMaxTime;                      // _F8
+	u32 mChangeSelState;                        // _FC
+	IllustratedBook::Parms* mParms;             // _100
+	IllustratedBook::DebugParms* mDebugParms;   // _104
+	f32 _108;                                   // _108
+	int mMapIndex;                              // _10C
+	u32 _110;                                   // _110
+	u32 _114;                                   // _114
 };
 } // namespace SingleGame
 } // namespace Game

@@ -56,6 +56,14 @@ struct BoundBox {
 };
 
 struct BoundBox2d {
+	inline BoundBox2d(f32 l, f32 b, f32 r, f32 t)
+	{
+		mLeft   = l;
+		mBottom = b;
+		mRight  = r;
+		mTop    = t;
+	}
+
 	f32 mLeft;   // _00
 	f32 mBottom; // _04
 	f32 mRight;  // _08
