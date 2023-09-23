@@ -1364,7 +1364,7 @@ LIBS = [
             "plugProjectHikinoU/PSSystemIF",
             "plugProjectHikinoU/PSAutoBgm",
             "plugProjectHikinoU/PSBnkMgr",
-            "plugProjectHikinoU/PSTaskBase",
+            ["plugProjectHikinoU/PSTaskBase", True],
             ["plugProjectHikinoU/PSBgmTask", True],
             ["plugProjectHikinoU/PSCreatureMgr", True],
             ["plugProjectHikinoU/PSAutoBgm_MeloArranger", True],

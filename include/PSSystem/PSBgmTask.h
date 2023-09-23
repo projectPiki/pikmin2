@@ -14,13 +14,15 @@ namespace PSSystem {
 struct FlagWaitTask : public TaskBase {
 	inline FlagWaitTask()
 	    : TaskBase()
-	    , _1C(0xFFFFFFF0)
+	    , _1C(-16)
 	{
 	}
 
 	virtual int task(JASTrack&); // _08
 
-	uint _1C; // _1C
+	// _00     = VTBL
+	// _00-_1C = TaskBase
+	u32 _1C; // _1C
 };
 
 struct IdMaskTask : public TaskBase {
@@ -36,6 +38,8 @@ struct IdMaskTask : public TaskBase {
 		return -1;
 	}
 
+	// _00     = VTBL
+	// _00-_1C = TaskBase
 	u8 mNoteMask; // _1C
 };
 
@@ -52,11 +56,16 @@ struct MuteTask : public TaskBase {
 		return -1;
 	}
 
+	// _00     = VTBL
+	// _00-_1C = TaskBase
 	u8 _1C; // _1C
 };
 
 struct PitchResetTask : public TaskBase {
 	virtual int task(JASTrack&); // _08
+
+	// _00     = VTBL
+	// _00-_1C = TaskBase
 };
 
 struct SimpleWaitTask : public TaskBase {
@@ -69,8 +78,10 @@ struct SimpleWaitTask : public TaskBase {
 
 	virtual int task(JASTrack&); // _08
 
-	uint _1C;
-	uint _20;
+	// _00     = VTBL
+	// _00-_1C = TaskBase
+	u32 _1C; // _1C
+	u32 _20; // _20
 };
 
 struct ModParamWithTableTask : public TaskBase {
@@ -87,9 +98,11 @@ struct ModParamWithTableTask : public TaskBase {
 	virtual u8 getTableIdxNum()           = 0; // _10
 	virtual int tableTask(JASTrack&, f32) = 0; // _14
 
-	f32 _1C;
-	f32 _20;
-	f32 _24;
+	// _00     = VTBL
+	// _00-_1C = TaskBase
+	f32 _1C; // _1C
+	f32 _20; // _20
+	f32 _24; // _24
 };
 
 struct TriangleTableModTask : public ModParamWithTableTask {
@@ -99,10 +112,16 @@ struct TriangleTableModTask : public ModParamWithTableTask {
 	virtual int tableTask(JASTrack&, f32) = 0; // _14
 
 	static const f32 sTable[40];
+
+	// _00     = VTBL
+	// _00-_28 = ModParamWithTableTask
 };
 
 struct PitchModTask : public TriangleTableModTask {
 	virtual int tableTask(JASTrack&, f32); // _14
+
+	// _00     = VTBL
+	// _00-_28 = ModParamWithTableTask
 };
 
 struct ModParamWithFade : public TaskBase {
@@ -120,6 +139,8 @@ struct ModParamWithFade : public TaskBase {
 	virtual f32 getPreParam(JASTrack&)    = 0; // _0C
 	virtual void timeTask(JASTrack&, f32) = 0; // _10
 
+	// _00     = VTBL
+	// _00-_1C = TaskBase
 	u32 _1C; // _1C
 	f32 _20; // _20
 	f32 _24; // _24
@@ -131,11 +152,14 @@ struct BankRandTask : public ModParamWithFade {
 	inline BankRandTask()
 	    : ModParamWithFade()
 	{
-		P2ASSERTLINE(351, BankRandPrm::sInstance != nullptr);
+		P2ASSERTLINE(351, BankRandPrm::sInstance);
 	}
 
 	virtual f32 getPreParam(JASTrack&);    // _0C (weak)
 	virtual void timeTask(JASTrack&, f32); // _10 (weak)
+
+	// _00     = VTBL
+	// _00-_30 = ModParamWithFade
 };
 
 struct OuterParamTask : public ModParamWithFade {
@@ -148,6 +172,8 @@ struct OuterParamTask : public ModParamWithFade {
 	virtual f32 getPreParam(JASTrack&);    // _0C
 	virtual void timeTask(JASTrack&, f32); // _10
 
+	// _00     = VTBL
+	// _00-_30 = ModParamWithFade
 	int _30; // _30
 };
 
@@ -160,6 +186,7 @@ struct TaskEntry_BankRandTask : public TaskEntry {
 	{
 	}
 
+	// _00-_38 = TaskEntry
 	BankRandTask mBankRandTask1; // _38
 	FlagWaitTask mFlagWaitTask;  // _68
 	BankRandTask mBankRandTask2; // _88
@@ -168,6 +195,7 @@ struct TaskEntry_BankRandTask : public TaskEntry {
 struct TaskEntry_IdMask : public TaskEntry {
 	void makeEntry(u8);
 
+	// _00-_38 = TaskEntry
 	IdMaskTask mIdMaskTask; // _38
 };
 
@@ -181,6 +209,7 @@ struct TaskEntry_MuteOnVolume : public TaskEntry {
 
 	void makeEntry(u32);
 
+	// _00-_38 = TaskEntry
 	OuterParamTask mOuterParamTask; // _38
 	MuteTask mMuteTask;             // _6C
 };
@@ -198,6 +227,7 @@ struct TaskEntry_MuteVolume : public TaskEntry {
 
 	void makeEntry(f32, u32);
 
+	// _00-_38 = TaskEntry
 	MuteTask mMuteTask1;             // _38
 	OuterParamTask mOuterParamTask1; // _58
 	FlagWaitTask mFlagWaitTask;      // _8C
@@ -214,12 +244,14 @@ struct TaskEntry_OuterParam : public TaskEntry {
 
 	void makeEntry(f32, u32);
 
+	// _00-_38 = TaskEntry
 	OuterParamTask mOuterParamTask; // _38
 };
 
 struct TaskEntry_PitMod : public TaskEntry {
 	void makeEntry(f32, f32, u32);
 
+	// _00-_38 = TaskEntry
 	PitchModTask mPitModTask;     // _38
 	SimpleWaitTask mWaitTask;     // _60
 	PitchResetTask mPitResetTask; // _84
@@ -236,6 +268,7 @@ struct TaskEntry_Tempo : public TaskEntry {
 
 	void makeEntry(f32, u32);
 
+	// _00-_38 = TaskEntry
 	OuterParamTask mOuterParamTask1; // _38
 	FlagWaitTask mFlagWaitTask;      // _6C
 	OuterParamTask mOuterParamTask2; // _8C
@@ -253,6 +286,7 @@ struct TaskEntry_Wait_Volume : public TaskEntry {
 
 	void makeEntry(f32, u32);
 
+	// _00-_38 = TaskEntry
 	MuteTask mMuteTask1;             // _38
 	OuterParamTask mOuterParamTask1; // _58
 	FlagWaitTask mFlagWaitTask;      // _8C
@@ -260,10 +294,10 @@ struct TaskEntry_Wait_Volume : public TaskEntry {
 	MuteTask mMuteTask2;             // _E0
 };
 
-struct TaskEntryMgr : MutexList<TaskEntry> {
+struct TaskEntryMgr : public MutexList<TaskEntry> {
 	inline TaskEntryMgr()
 	    : MutexList<TaskEntry>()
-	    , _24(nullptr)
+	    , mTrack(nullptr)
 	{
 	}
 	void appendEntry(TaskEntry*, DirectorBase*);
@@ -272,12 +306,15 @@ struct TaskEntryMgr : MutexList<TaskEntry> {
 	bool isUnderTask_byDirector(DirectorBase*);
 	void update();
 
-	JASTrack* _24; // _24
+	inline JASTrack& getTrack() const { return *mTrack; }
+
+	// _00-_24 = MutexList
+	JASTrack* mTrack; // _24
 };
 
 struct TaskChecker {
-	OSMutex _00;
-	u8 _18;
+	OSMutex mMutex; // _00
+	u8 _18;         // _18
 };
 
 } // namespace PSSystem

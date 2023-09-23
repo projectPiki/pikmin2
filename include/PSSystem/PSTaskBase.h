@@ -11,41 +11,43 @@
 namespace PSSystem {
 struct DirectorBase;
 
+// size: 0x1C
 struct TaskBase {
 	TaskBase();
 
 	virtual int task(JASTrack&) = 0; // _08
 
+	// _00 = VTBL
 	JSULink<TaskBase> _04;  // _04
 	u8 _14;                 // _14 - unknown
 	u8 _15;                 // _15 - unknown
 	JSULink<TaskBase>* _18; // _18 - unknown
 };
 
+// size: 0x38
 struct TaskEntry : public MutexList<TaskBase> {
 	inline TaskEntry()
-	    : _24(nullptr)
+	    : mDirector(nullptr)
 	    , _28(this)
 	{
 	}
 
 	void append(TaskBase* task);
 
-	// Unused/inlined:
+	// Inlined:
 	void remove(TaskBase* task);
 	void removeAll();
+	bool stackTask(JASTrack& track);
 
-	/**
-	 * @fabricated
-	 */
 	void setDirector(DirectorBase* director)
 	{
-		P2ASSERTLINE(80, director != nullptr);
-		_24 = director;
+		P2ASSERTLINE(80, director);
+		mDirector = director;
 	}
 
-	DirectorBase* _24;      // _24
-	JSULink<TaskEntry> _28; // _28
+	// _00-_24 = MutexList
+	DirectorBase* mDirector; // _24
+	JSULink<TaskEntry> _28;  // _28
 };
 } // namespace PSSystem
 

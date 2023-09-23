@@ -33,7 +33,7 @@ bool SeqTrackBase::update()
  * Address:	803422FC
  * Size:	000008
  */
-void SeqTrackBase::init(JASTrack* track) { mTaskEntryMgr._24 = track; }
+void SeqTrackBase::init(JASTrack* track) { mTaskEntryMgr.mTrack = track; }
 
 /*
  * --INFO--
@@ -64,10 +64,10 @@ SeqTrackRoot::SeqTrackRoot()
 void SeqTrackRoot::init(JASTrack* track)
 {
 	P2ASSERTLINE(229, track != nullptr);
-	mTaskEntryMgr._24 = track;
-	_2C               = track->_352;
-	_2E               = _2C;
-	mBeatMgr._00      = 0;
+	mTaskEntryMgr.mTrack = track;
+	_2C                  = track->_352;
+	_2E                  = _2C;
+	mBeatMgr._00         = 0;
 	initSwingRatio();
 }
 
@@ -130,7 +130,7 @@ u16 SeqTrackRoot::beatUpdate()
 	} else {
 		_2E = _2C;
 	}
-	mTaskEntryMgr._24->setTempo(_2E);
+	mTaskEntryMgr.mTrack->setTempo(_2E);
 	onBeatTop();
 	return _3E;
 }
