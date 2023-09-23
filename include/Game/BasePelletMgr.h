@@ -122,7 +122,7 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 	virtual void* getStart();                       // _90
 	virtual void* getEnd();                         // _94
 	virtual T* get(void*);                          // _C4
-	virtual ~FixedSizePelletMgr();                  // _C8
+	virtual ~FixedSizePelletMgr() { }               // _C8
 	////////// VTABLE END
 
 	void alloc(int);

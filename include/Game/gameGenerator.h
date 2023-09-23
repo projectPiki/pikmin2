@@ -203,6 +203,11 @@ struct GenItemParm {
 };
 
 struct GenPelletParm {
+	GenPelletParm(int color, int size)
+	{
+		mColor = color;
+		mSize  = size;
+	}
 	// virtual int getShapeID() { return 0; } // _08 (weak)
 	int mIndex;
 	int mColor;

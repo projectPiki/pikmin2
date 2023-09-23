@@ -469,7 +469,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	f32 mCarryPower;               // _418
 	SysShape::Animator mCarryAnim; // _41C
 	f32 mAnimSpeed;                // _438
-	u16 _43C;                      // _43C
+	u16 mPelletSizeType;           // _43C, used for number pellets
 	u16 mPelletColor;              // _43E, this reflects pellet color for Number pellets, and the color of berries
 	int mSlotIndex;                // _440
 	Sys::Sphere mLodSphere;        // _444

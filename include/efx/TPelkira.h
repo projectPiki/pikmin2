@@ -5,7 +5,10 @@
 
 namespace efx {
 struct TPelkira_ver01 : public TChasePos {
-	// possibly needs an inline ctor?
+	TPelkira_ver01(Vector3f* pos)
+	    : TChasePos(PID_SyncDefault, pos)
+	{
+	}
 
 	// vtable 1 (TBase)
 	virtual bool create(Arg*); // _08

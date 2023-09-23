@@ -15,14 +15,18 @@ namespace PelletNumber {
 #define PELLET_NUMBER_TEN    (10)
 #define PELLET_NUMBER_TWENTY (20)
 
-struct Object : public Pellet {
-	Object();
+// the maximum number pellets that can be active at once
+#define PELLET_NUMBER_MAXCOUNT    (48)
+#define PELLET_NUMBER_MAXCOLLPART (128)
 
-	virtual void constructor();               // _02C
-	virtual void do_onInit(CreatureInitArg*); // _1CC
-	virtual u8 getKind();                     // _1F4 (weak)
-	virtual void changeMaterial();            // _1F8
-	virtual void createKiraEffect(Vector3f&); // _1FC
+struct Object : public Pellet {
+	Object() { }
+
+	virtual void constructor();                     // _02C
+	virtual void do_onInit(CreatureInitArg* arg);   // _1CC
+	virtual u8 getKind() { return PELTYPE_NUMBER; } // _1F4 (weak)
+	virtual void changeMaterial();                  // _1F8
+	virtual void createKiraEffect(Vector3f& pos);   // _1FC
 
 	// _00      = VTBL
 	// _00-_458 = Pellet
@@ -32,15 +36,16 @@ struct Object : public Pellet {
 struct Mgr : public FixedSizePelletMgr<Object> {
 	Mgr();
 
-	virtual void setupResources();                                        // _44
-	virtual char* getMgrName();                                           // _58 (weak)
-	virtual u8 getMgrID();                                                // _5C (weak)
-	virtual Pellet* generatorBirth(Vector3f&, Vector3f&, GenPelletParm*); // _70
-	virtual void generatorWrite(Stream&, GenPelletParm*);                 // _74
-	virtual void generatorRead(Stream&, GenPelletParm*, u32);             // _78
-	virtual u32 generatorLocalVersion();                                  // _7C (weak)
-	virtual GenPelletParm* generatorNewPelletParm();                      // _84
-	virtual ~Mgr();                                                       // _C8 (weak)
+	virtual void setupResources();                                                       // _44
+	virtual void onCreateModel(SysShape::Model* model);                                  // _48
+	virtual char* getMgrName() { return "number"; }                                      // _58 (weak)
+	virtual u8 getMgrID() { return PELTYPE_NUMBER; }                                     // _5C (weak)
+	virtual Pellet* generatorBirth(Vector3f& pos, Vector3f& angle, GenPelletParm* parm); // _70
+	virtual void generatorWrite(Stream& stream, GenPelletParm* parm);                    // _74
+	virtual void generatorRead(Stream& stream, GenPelletParm* parm, u32 flag);           // _78
+	virtual u32 generatorLocalVersion() { return '0000'; }                               // _7C (weak)
+	virtual GenPelletParm* generatorNewPelletParm();                                     // _84
+	virtual ~Mgr() { }                                                                   // _C8 (weak)
 
 	// _00      = VTABLE
 	// _00-_A0  = FixedSizePelletMgr
