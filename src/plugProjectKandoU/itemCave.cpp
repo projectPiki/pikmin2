@@ -14,6 +14,8 @@ static const char className[] = "itemCave";
 namespace Game {
 namespace ItemCave {
 
+Mgr* mgr;
+
 /*
  * --INFO--
  * Address:	801E9FB8
@@ -21,7 +23,7 @@ namespace ItemCave {
  */
 void FSM::init(Item*)
 {
-	create(CAVESTATE_Count);
+	create(CAVESTATE_StateCount);
 	registerState(new NormalState);
 	registerState(new OpenState);
 }
@@ -137,7 +139,8 @@ void Item::onSetPosition()
 	mEfxWarpZone              = new efx::WarpZone;
 
 	if (gameSystem->mSection->getCurrentCourseInfo()) {
-		if (playData->isCaveFirstTime(gameSystem->mSection->getCurrentCourseInfo()->mCourseIndex, mCaveID)) {
+		int courseIndex = gameSystem->mSection->getCurrentCourseInfo()->mCourseIndex;
+		if (playData->isCaveFirstTime(courseIndex, mCaveID)) {
 			Radar::Mgr::entry(this, Radar::MAP_UNENTERED_CAVE, mCaveID.getID());
 		} else {
 			if (complete()) {
@@ -191,9 +194,9 @@ void Item::initDependency()
 	{
 		ItemBarrel::Item* item = static_cast<ItemBarrel::Item*>(*iterator);
 		if (item->isAlive()) {
-			Vector3f pos1 = getPosition();
-			Vector3f pos2 = item->getPosition();
-			if (pos1.distance(pos2) < 40.0f) {
+			Vector3f sep   = item->getPosition() - getPosition();
+			Vector2f sep2D = Vector2f(sep.x, sep.z);
+			if (sep2D.length() < 40.0f) {
 				mBarrel = item;
 				return;
 			}
@@ -206,233 +209,6 @@ void Item::initDependency()
 		mEfxWarpZone->create(&arg);
 	}
 	mBarrel = nullptr;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	stw      r30, 0x48(r1)
-	lwz      r4, mgr__Q24Game10ItemBarrel@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_801EA7BC
-	addi     r4, r4, 0x30
-
-lbl_801EA7BC:
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-	addi     r3, r3, "__vt__26Iterator<Q24Game8BaseItem>"@l
-	stw      r0, 0x3c(r1)
-	cmplwi   r0, 0
-	stw      r3, 0x30(r1)
-	stw      r0, 0x34(r1)
-	stw      r4, 0x38(r1)
-	bne      lbl_801EA7FC
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_801EAA00
-
-lbl_801EA7FC:
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_801EA86C
-
-lbl_801EA818:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801EAA00
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-
-lbl_801EA86C:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801EA818
-	b        lbl_801EAA00
-
-lbl_801EA88C:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r0, r3
-	mr       r30, r0
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801EA944
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r30
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x1c(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f2, 0x14(r1)
-	fsubs    f3, f1, f0
-	lfs      f1, 8(r1)
-	lfs      f0, lbl_80519A0C@sda21(r2)
-	fsubs    f1, f2, f1
-	fmuls    f2, f3, f3
-	fmadds   f1, f1, f1, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_801EA92C
-	ble      lbl_801EA930
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801EA930
-
-lbl_801EA92C:
-	fmr      f1, f0
-
-lbl_801EA930:
-	lfs      f0, lbl_80519A48@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_801EA944
-	stw      r30, 0x1f4(r31)
-	b        lbl_801EAA90
-
-lbl_801EA944:
-	lwz      r0, 0x3c(r1)
-	cmplwi   r0, 0
-	bne      lbl_801EA970
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_801EAA00
-
-lbl_801EA970:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_801EA9E4
-
-lbl_801EA990:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801EAA00
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-
-lbl_801EA9E4:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801EA990
-
-lbl_801EAA00:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x34(r1)
-	cmplw    r4, r3
-	bne      lbl_801EA88C
-	mr       r3, r31
-	bl       complete__Q34Game8ItemCave4ItemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801EAA88
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfsu     f2, "zero__10Vector3<f>"@l(r3)
-	lis      r5, __vt__Q23efx3Arg@ha
-	addi     r4, r1, 0x20
-	lfs      f1, 4(r3)
-	addi     r0, r5, __vt__Q23efx3Arg@l
-	lfs      f0, 8(r3)
-	stw      r0, 0x20(r1)
-	stfs     f2, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x28(r1)
-	lfs      f0, 0x1a4(r31)
-	stfs     f0, 0x2c(r1)
-	lwz      r3, 0x1f8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801EAA88:
-	li       r0, 0
-	stw      r0, 0x1f4(r31)
-
-lbl_801EAA90:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -464,6 +240,7 @@ void Item::changeMaterial()
 	}
 }
 
+#pragma dont_inline on
 /*
  * --INFO--
  * Address:	801EAB90
@@ -476,13 +253,13 @@ void Item::createLightEvent()
 		arg.mPosition      = &mPosition;
 		arg.mFarZ          = mFogParm.mEndZ.mValue;
 		arg.mNearZ         = mFogParm.mStartZ.mValue;
-		arg.mLightTypeFlag = 0x11;
+		arg.mLightTypeFlag = (LIGHTTYPE_Fog + LIGHTTYPE_Main);
 		arg.mFadeTime      = mFogParm.mEndTime.mValue;
 		arg.mGrowTime      = mFogParm.mStartTime.mValue;
 		arg.mRedScale      = mFogParm.mRed.mValue;
 		arg.mGreenScale    = mFogParm.mGreen.mValue;
 		arg.mBlueScale     = mFogParm.mBlue.mValue;
-		arg.mEventFlag     = 12;
+		arg.mEventFlag     = (LIGHTEVENT_Unk3 + LIGHTEVENT_Unk4);
 		arg.mRange         = mFogParm.mDistance.mValue;
 		mLightEventNode    = gameSystem->getLightMgr()->createEventLight(arg);
 	}
@@ -574,6 +351,7 @@ lbl_801EACC8:
 	blr
 	*/
 }
+#pragma dont_inline reset
 
 /*
  * --INFO--
@@ -608,20 +386,21 @@ void Item::doAI()
 		Navi* navi = naviMgr->getActiveNavi();
 		if (navi) {
 			PSPlayCaveHoleSound(mSoundObj);
-
-			f32 dist = navi->getPosition().distance(mPosition);
-			if (gameSystem->isFlag(2) && dist < mFogParm.mEnterDistance.mValue) {
+			Vector3f naviPos = navi->getPosition();
+			Vector3f sep     = naviPos - mPosition;
+			f32 dist         = sep.length();
+			if (gameSystem->isFlag(GAMESYS_IsPlaying) && dist < mFogParm.mEnterDistance.mValue) {
 				startSound(PSSE_EV_POLUTION_MIX_HOLE);
-				// createLightEvent();
+				createLightEvent();
 			} else if (dist > mFogParm.mExitDistance.mValue) {
 				if (mLightEventNode) {
-					mLightEventNode->mEventFlag |= 1;
+					mLightEventNode->setEvent(LIGHTEVENT_Unk1);
 					mLightEventNode = nullptr;
 				}
 			}
 		} else {
 			if (mLightEventNode) {
-				mLightEventNode->mEventFlag |= 1;
+				mLightEventNode->setEvent(LIGHTEVENT_Unk1);
 				mLightEventNode = nullptr;
 			}
 		}
@@ -812,62 +591,9 @@ u32 Item::getCaveOtakaraMax()
  */
 bool Item::complete()
 {
-	return (getCaveOtakaraNum() == getCaveOtakaraMax());
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x58(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r4, r3, r3
-	beq      lbl_801EB014
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r5, r30, 0x1e8
-	lwz      r4, 0x48(r4)
-	bl       getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32
-	mr       r31, r3
-	b        lbl_801EB018
-
-lbl_801EB014:
-	li       r31, -1
-
-lbl_801EB018:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r4, r3, r3
-	beq      lbl_801EB04C
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r5, r30, 0x1e8
-	lwz      r4, 0x48(r4)
-	bl       getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32
-	b        lbl_801EB050
-
-lbl_801EB04C:
-	li       r3, -1
-
-lbl_801EB050:
-	srawi    r5, r31, 0x1f
-	srwi     r4, r3, 0x1f
-	subfc    r0, r3, r31
-	adde     r3, r5, r4
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int otaNum = getCaveOtakaraNum();
+	int otaMax = getCaveOtakaraMax();
+	return (otaNum >= otaMax);
 }
 
 /*
@@ -880,16 +606,21 @@ void Item::doDirectDraw(Graphics& gfx)
 	gfx.initPrimDraw(nullptr);
 	Matrixf mtx;
 	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
+	mtx.mMatrix.structView.tx += 0.0f;
+	mtx.mMatrix.structView.ty += 10.0f;
 	GXSetLineWidth(40, GX_TO_ZERO);
 	gfx.drawAxis(50.0f, &mtx);
 	PerspPrintfInfo info;
-	gfx.initPerspPrintf(gfx.mViewport);
+	gfx.initPerspPrintf(gfx.mCurrentViewport);
 	info.mColorA.set(10, 200, 10, 255);
 	info.mColorB.set(0, 200, 0, 255);
 	info.mScale  = 1.0f;
 	Vector3f pos = getPosition();
-	Vector3f itemPos(pos.x, pos.y + 60.0f, pos.z);
-	gfx.perspPrintf(info, itemPos, "%s %d/%d", mCaveID, getCaveOtakaraNum(), getCaveOtakaraMax());
+	pos.y += 60.0f;
+
+	int otaNum = getCaveOtakaraNum();
+	int otaMax = getCaveOtakaraMax();
+	gfx.perspPrintf(info, pos, "%s %d/%d", mCaveID.getStr(), otaNum, otaMax);
 
 	/*
 	stwu     r1, -0x80(r1)

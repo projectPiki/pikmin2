@@ -346,6 +346,13 @@ struct Creature : public CellObject {
 		return false;
 	}
 
+	inline f32 getDistanceTo(Creature* target)
+	{
+		Vector3f sep   = getPosition() - target->getPosition();
+		Vector2f sep2D = Vector2f(sep.x, sep.z);
+		return sep2D.length();
+	}
+
 	inline bool isCreatureFlag(u32 flag) const { return mFlags.typeView & flag; }
 
 	inline void killInline(CreatureKillArg* arg);

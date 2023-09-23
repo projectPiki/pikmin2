@@ -19,7 +19,7 @@ struct Item;
 enum cState {
 	CAVESTATE_Normal = 0,
 	CAVESTATE_Open   = 1,
-	CAVESTATE_Count, // 2
+	CAVESTATE_StateCount, // 2
 };
 
 struct FSM : public ItemFSM<Item> {
