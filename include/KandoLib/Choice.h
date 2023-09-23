@@ -5,6 +5,12 @@
 
 namespace KandoLib {
 struct Choice {
+	Choice(int id, f32 chance)
+	{
+		mResult = id;
+		mChance = chance;
+	}
+
 	u32 mResult; // _00
 	f32 mChance; // _04, out of 1.0 (a call to getRandomChoice(choices, 2) will
 	             // have both choices set their chance to 0.5)

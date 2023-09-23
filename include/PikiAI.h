@@ -161,7 +161,7 @@ struct ApproachPosActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ApproachPosActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Vector3f mPosition; // _04
@@ -276,6 +276,10 @@ struct ActBattle : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActBoreBase : public Action, virtual SysShape::MotionListener {
+	ActBoreBase(Game::Piki* piki)
+	    : Action(piki)
+	{
+	}
 	virtual void finish()                                    = 0; // _3C
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) = 0; // _40
 
@@ -296,12 +300,11 @@ struct ActBore : public Action {
 
 	// _00     = VTBL
 	// _00-_0C = Action
-	u8 _0C;               // _0C
-	u32 _10;              // _10
-	u32 _14;              // _14
-	u8 _18;               // _18
-	ActRest* mRest;       // _1C
-	ActOneshot* mOneshot; // _20
+	u8 mRandBehaviorType;     // _0C
+	f32 _10;                  // _10
+	f32 mTimer;               // _14
+	u8 mFlag;                 // _18
+	ActBoreBase* mActions[2]; // _1C
 };
 
 struct ActBreakGateArg : public ActionArg {
@@ -668,12 +671,12 @@ struct ActFreeArg : public ActionArg {
 struct ActFree : public Action, virtual SysShape::MotionListener {
 	ActFree(Game::Piki* p);
 
-	virtual void init(PikiAI::ActionArg*);                                 // _08
-	virtual int exec();                                                    // _0C
-	virtual void cleanup();                                                // _10
-	virtual u32 getNextAIType();                                           // _20 (weak)
-	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
-	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
+	virtual void init(PikiAI::ActionArg* arg);                                // _08
+	virtual int exec();                                                       // _0C
+	virtual void cleanup();                                                   // _10
+	virtual u32 getNextAIType();                                              // _20 (weak)
+	virtual void collisionCallback(Game::Piki* piki, Game::CollEvent& event); // _28
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);                 // _3C (weak)
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -747,7 +750,7 @@ struct GotoSlotArg : public ActionArg {
 struct ActGotoSlot : public Action {
 	ActGotoSlot(Game::Piki* p);
 
-	virtual void init(ActionArg* settings);   // _08
+	virtual void init(ActionArg* arg);        // _08
 	virtual int exec();                       // _0C
 	virtual void cleanup();                   // _10
 	virtual void wallCallback(Vector3f& pos); // _34
@@ -765,14 +768,15 @@ struct ActGotoSlot : public Action {
 };
 
 struct ActOneshotArg : public ActionArg {
+	ActOneshotArg() { mAnimID = -1; }
 	// _00 = VTBL
-	int _04; // _04
+	int mAnimID; // _04
 };
 
 struct ActOneshot : public ActBoreBase {
 	ActOneshot(Game::Piki* p);
 
-	virtual void init(ActionArg* settings);                   // _08
+	virtual void init(ActionArg* arg);                        // _08
 	virtual int exec();                                       // _0C
 	virtual void cleanup();                                   // _10
 	virtual void finish();                                    // _3C
@@ -781,7 +785,7 @@ struct ActOneshot : public ActBoreBase {
 	// _00     = VTBL
 	// _00-_10 = ActBoreBase
 	ActOneshotArg mOneshotArg; // _10
-	u8 _18;                    // _18
+	u8 mFlag;                  // _18
 	                           // _1C = MotionListener
 };
 
@@ -848,34 +852,40 @@ struct ActPathMove : public Action {
 	Vector3f _B0;          // _B0
 };
 
-struct ActRescue : public Action, virtual SysShape::MotionListener {
-	ActRescue(Game::Piki* p);
+struct ActRescueArg : public ActionArg {
+	// _00 = VTBL
+	Game::Piki* mTarget; // _04
+};
 
-	virtual void init(ActionArg* settings);                                // _08
-	virtual int exec();                                                    // _0C
-	virtual void cleanup();                                                // _10
-	virtual void emotion_success();                                        // _14
-	virtual u32 getNextAIType();                                           // _20 (weak)
-	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
-	virtual void doDirectDraw(Graphics& gfx);                              // _30
-	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
+struct ActRescue : public Action, virtual SysShape::MotionListener {
+	ActRescue(Game::Piki* piki);
+
+	virtual void init(ActionArg* arg);                                        // _08
+	virtual int exec();                                                       // _0C
+	virtual void cleanup();                                                   // _10
+	virtual void emotion_success();                                           // _14
+	virtual u32 getNextAIType() { return 1; }                                 // _20 (weak)
+	virtual void collisionCallback(Game::Piki* piki, Game::CollEvent& event); // _28
+	virtual void doDirectDraw(Graphics& gfx);                                 // _30
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);                 // _3C (weak)
 
 	void initApproach();
-	void execApproach();
+	int execApproach();
 	void initGo();
-	void execGo();
+	int execGo();
 	void initThrow();
-	void execThrow();
+	int execThrow();
+	int checkPikmin();
 
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	u8 _10[0x4];                  // _10, unknown
-	u8 _14;                       // _14
+	int mState;                   // _10
+	u8 mFlag;                     // _14
 	ActApproachPos* mApproachPos; // _18
 	Game::Piki* mTargetPiki;      // _1C
 	Game::WayPoint* mWayPoint;    // _20
-	u8 _24[0x4];                  // _24, unknown
+	u8 mTimeLimit;                // _24
 	                              // _28 = MotionListener
 };
 
@@ -889,13 +899,14 @@ struct ActRest : public ActBoreBase {
 	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _40 (weak)
 
 	void sitDown();
+	void standUp();
 
 	// _00     = VTBL
 	// _00-_10 = ActBoreBase
-	u8 _10;  // _10
-	f32 _14; // _14
-	u8 _18;  // _18
-	         // _1C = MotionListener
+	u8 mState;  // _10
+	f32 mTimer; // _14
+	u8 mFlag;   // _18
+	            // _1C = MotionListener
 };
 
 struct StickAttackActionArg : public ActionArg {

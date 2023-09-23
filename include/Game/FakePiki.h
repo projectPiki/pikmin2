@@ -181,6 +181,8 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 
 	bool debugShapeDL(char*);
 
+	inline void setCurrVelocity(Vector3f& vel) { mVelocity = vel; }
+
 	// _000      = VTBL
 	// _000-_178 = Creature
 	// _178-_17C = MotionListener

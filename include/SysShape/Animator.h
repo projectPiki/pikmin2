@@ -39,6 +39,15 @@ struct Animator : public BaseAnimator {
 	void setFrameByKeyType(u32);
 	void setLastFrame();
 
+	inline int getAnimIndex()
+	{
+		if (mAnimInfo) {
+			return mAnimInfo->mId;
+		} else {
+			return -1;
+		}
+	}
+
 	MotionListener* mListener; // _04
 	f32 mTimer;                // _08
 	AnimInfo* mAnimInfo;       // _0C

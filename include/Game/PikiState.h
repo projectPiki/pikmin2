@@ -866,6 +866,7 @@ struct PikiWalkState : public PikiState {
 };
 
 struct WaterHangedStateArg : public StateArg {
+	WaterHangedStateArg(Piki* piki) { mPiki = piki; }
 	Piki* mPiki; // _00
 };
 

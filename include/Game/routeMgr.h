@@ -215,7 +215,6 @@ struct WPExcludeSpot : public Game::WPCondition {
 };
 
 struct WPFindCond : public Game::WPCondition {
-	virtual bool satisfy(Game::WayPoint*); // _08 (weak)
+	virtual bool satisfy(Game::WayPoint* wp) { return (!(wp->mFlags & Game::WPF_Water) && !(wp->mFlags & Game::WPF_Closed)); } // _08 (weak)
 };
-
 #endif

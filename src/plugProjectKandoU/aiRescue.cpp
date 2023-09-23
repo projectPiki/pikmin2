@@ -1,151 +1,23 @@
-#include "types.h"
+#include "PikiAI.h"
+#include "Game/Piki.h"
+#include "Game/PikiState.h"
+#include "Game/MapMgr.h"
+#include "Game/routeMgr.h"
 
-/*
-    Generated from dpostproc
+static const char className[] = "actRescue";
 
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483CD0
-    lbl_80483CD0:
-        .asciz "actRescue"
-        .skip 2
-    .global lbl_80483CDC
-    lbl_80483CDC:
-        .asciz "aiRescue.cpp"
-        .skip 3
-    .global lbl_80483CEC
-    lbl_80483CEC:
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "rhandjnt"
-        .skip 3
-        .asciz "ApproachPosActionArg"
-        .skip 3
-        .asciz "ActionArg"
-        .skip 2
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__10WPFindCond
-    __vt__10WPFindCond:
-        .4byte 0
-        .4byte 0
-        .4byte satisfy__10WPFindCondFPQ24Game8WayPoint
-    .global __vt__Q26PikiAI9ActRescue
-    __vt__Q26PikiAI9ActRescue:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q26PikiAI9ActRescueFPQ26PikiAI9ActionArg
-        .4byte exec__Q26PikiAI9ActRescueFv
-        .4byte cleanup__Q26PikiAI9ActRescueFv
-        .4byte emotion_success__Q26PikiAI9ActRescueFv
-        .4byte emotion_fail__Q26PikiAI6ActionFv
-        .4byte applicable__Q26PikiAI6ActionFv
-        .4byte getNextAIType__Q26PikiAI9ActRescueFv
-        .4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q26PikiAI9ActRescueFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   doDirectDraw__Q26PikiAI9ActRescueFR8Graphics .4byte
-   "wallCallback__Q26PikiAI6ActionFR10Vector3<f>" .4byte
-   getInfo__Q26PikiAI6ActionFPc .4byte
-   onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent .4byte 0 .4byte 0
-        .4byte "@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent"
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A4F0
-    lbl_8051A4F0:
-        .4byte 0x52657363
-        .4byte 0x75650000
-    .global lbl_8051A4F8
-    lbl_8051A4F8:
-        .4byte 0x41200000
-    .global lbl_8051A4FC
-    lbl_8051A4FC:
-        .4byte 0xBF800000
-    .global lbl_8051A500
-    lbl_8051A500:
-        .4byte 0x437A0000
-    .global lbl_8051A504
-    lbl_8051A504:
-        .4byte 0x40400000
-    .global lbl_8051A508
-    lbl_8051A508:
-        .4byte 0x00000000
-    .global lbl_8051A50C
-    lbl_8051A50C:
-        .float 0.5
-    .global lbl_8051A510
-    lbl_8051A510:
-        .4byte 0x42480000
-    .global lbl_8051A514
-    lbl_8051A514:
-        .4byte 0x40000000
-    .global lbl_8051A518
-    lbl_8051A518:
-        .4byte 0x43A2F983
-    .global lbl_8051A51C
-    lbl_8051A51C:
-        .4byte 0xC3A2F983
-*/
-
+namespace PikiAI {
 /*
  * --INFO--
  * Address:	80238EB0
  * Size:	0000B8
  */
-PikiAI::ActRescue::ActRescue(Game::Piki* p)
+ActRescue::ActRescue(Game::Piki* piki)
+    : Action(piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_80238EE8
-	addi     r0, r30, 0x28
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r0, 0xc(r30)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	stw      r0, 0x28(r30)
-
-lbl_80238EE8:
-	mr       r3, r30
-	mr       r4, r31
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r3, __vt__Q26PikiAI9ActRescue@ha
-	addi     r5, r30, 0x28
-	addi     r3, r3, __vt__Q26PikiAI9ActRescue@l
-	li       r4, 0
-	stw      r3, 0(r30)
-	addi     r7, r3, 0x40
-	addi     r0, r2, lbl_8051A4F0@sda21
-	li       r3, 0x28
-	lwz      r6, 0xc(r30)
-	stw      r7, 0(r6)
-	lwz      r6, 0xc(r30)
-	subf     r5, r6, r5
-	stw      r5, 4(r6)
-	stb      r4, 0x14(r30)
-	stw      r0, 8(r30)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80238F48
-	mr       r4, r31
-	bl       __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_80238F48:
-	stw      r0, 0x18(r30)
-	mr       r3, r30
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFlag        = false;
+	mName        = "Rescue";
+	mApproachPos = new ActApproachPos(piki);
 }
 
 /*
@@ -153,65 +25,22 @@ lbl_80238F48:
  * Address:	80238F68
  * Size:	0000C4
  */
-void PikiAI::ActRescue::init(PikiAI::ActionArg*)
+void ActRescue::init(ActionArg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_80238FA8
-	lis      r3, lbl_80483CDC@ha
-	lis      r5, lbl_80483CEC@ha
-	addi     r3, r3, lbl_80483CDC@l
-	li       r4, 0x2e
-	addi     r5, r5, lbl_80483CEC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(46, arg);
 
-lbl_80238FA8:
-	lwz      r3, 4(r30)
-	li       r31, 0
-	cmplwi   r3, 0
-	beq      lbl_80238FD4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80238FD4
-	li       r31, 1
+	ActRescueArg* sarg = static_cast<ActRescueArg*>(arg);
+	bool check         = false;
+	if (sarg->mTarget) {
+		if (sarg->mTarget->isPiki()) {
+			check = true;
+		}
+	}
+	P2ASSERTLINE(48, check);
 
-lbl_80238FD4:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_80238FF8
-	lis      r3, lbl_80483CDC@ha
-	lis      r5, lbl_80483CEC@ha
-	addi     r3, r3, lbl_80483CDC@l
-	li       r4, 0x30
-	addi     r5, r5, lbl_80483CEC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80238FF8:
-	lwz      r4, 4(r30)
-	li       r0, 0
-	mr       r3, r29
-	stw      r4, 0x1c(r29)
-	stw      r0, 0x20(r29)
-	bl       initApproach__Q26PikiAI9ActRescueFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mTargetPiki = sarg->mTarget;
+	mWayPoint   = nullptr;
+	initApproach();
 }
 
 /*
@@ -219,46 +48,18 @@ lbl_80238FF8:
  * Address:	8023902C
  * Size:	000060
  */
-void PikiAI::ActRescue::exec()
+int ActRescue::exec()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x10(r3)
-	cmpwi    r0, 1
-	beq      lbl_80239068
-	bge      lbl_80239054
-	cmpwi    r0, 0
-	bge      lbl_80239060
-	b        lbl_80239078
-
-lbl_80239054:
-	cmpwi    r0, 3
-	bge      lbl_80239078
-	b        lbl_80239070
-
-lbl_80239060:
-	bl       execApproach__Q26PikiAI9ActRescueFv
-	b        lbl_8023907C
-
-lbl_80239068:
-	bl       execGo__Q26PikiAI9ActRescueFv
-	b        lbl_8023907C
-
-lbl_80239070:
-	bl       execThrow__Q26PikiAI9ActRescueFv
-	b        lbl_8023907C
-
-lbl_80239078:
-	li       r3, 1
-
-lbl_8023907C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (mState) {
+	case 0:
+		return execApproach();
+	case 1:
+		return execGo();
+	case 2:
+		return execThrow();
+	default:
+		return ACTEXEC_Continue;
+	}
 }
 
 /*
@@ -266,9 +67,23 @@ lbl_8023907C:
  * Address:	........
  * Size:	0000C0
  */
-void PikiAI::ActRescue::checkPikmin()
+int ActRescue::checkPikmin()
 {
-	// UNUSED FUNCTION
+	if (!mTargetPiki->isAlive()) {
+		return ACTEXEC_Fail;
+	} else {
+		int state = mTargetPiki->getStateID();
+		if (state != Game::PIKISTATE_WaterHanged && state != Game::PIKISTATE_Drown && !mTargetPiki->inWater()) {
+			return 0;
+		} else {
+			if (state == Game::PIKISTATE_WaterHanged
+			    && static_cast<Game::PikiWaterHangedState*>(mTargetPiki->mCurrentState)->mPiki != mParent) {
+				return 0;
+			} else {
+				return 1;
+			}
+		}
+	}
 }
 
 /*
@@ -276,53 +91,12 @@ void PikiAI::ActRescue::checkPikmin()
  * Address:	8023908C
  * Size:	0000AC
  */
-void PikiAI::ActRescue::initApproach()
+void ActRescue::initApproach()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	li       r0, 0
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	stw      r0, 0x10(r3)
-	addi     r3, r1, 8
-	lwz      r4, 0x1c(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q26PikiAI9ActionArg@l
-	lfs      f4, 8(r1)
-	lfs      f3, 0xc(r1)
-	lis      r3, __vt__Q26PikiAI20ApproachPosActionArg@ha
-	lfs      f2, 0x10(r1)
-	addi     r3, r3, __vt__Q26PikiAI20ApproachPosActionArg@l
-	stw      r4, 0x14(r1)
-	addi     r4, r1, 0x14
-	lfs      f1, lbl_8051A4F8@sda21(r2)
-	lfs      f0, lbl_8051A4FC@sda21(r2)
-	stw      r3, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	stb      r0, 0x2c(r1)
-	stb      r0, 0x2d(r1)
-	lwz      r3, 0x18(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	mState       = 0;
+	Vector3f pos = mTargetPiki->getPosition();
+	ApproachPosActionArg arg(pos, 10.0f, -1.0f, 0, 0);
+	mApproachPos->init(&arg);
 }
 
 /*
@@ -330,8 +104,24 @@ void PikiAI::ActRescue::initApproach()
  * Address:	80239138
  * Size:	00013C
  */
-void PikiAI::ActRescue::execApproach()
+int ActRescue::execApproach()
 {
+	int ret = checkPikmin();
+	switch (ret) {
+	case 1:
+		Vector3f pos            = mTargetPiki->getPosition();
+		mApproachPos->mPosition = pos;
+		int state               = mApproachPos->exec();
+		if (state == 0) {
+			initGo();
+		} else if (state == 2) {
+			ret = ACTEXEC_Fail;
+		} else {
+			ret = ACTEXEC_Continue;
+		}
+		break;
+	}
+	return ret;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -436,96 +226,20 @@ lbl_8023925C:
  * Address:	80239274
  * Size:	000150
  */
-void PikiAI::ActRescue::initGo()
+void ActRescue::initGo()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r4, __vt__10WPFindCond@ha
-	stw      r0, 0x64(r1)
-	li       r0, 1
-	stw      r31, 0x5c(r1)
-	mr       r31, r3
-	lis      r3, "__vt__27Condition<Q24Game8WayPoint>"@ha
-	stw      r0, 0x10(r31)
-	addi     r0, r3, "__vt__27Condition<Q24Game8WayPoint>"@l
-	lis      r3, __vt__Q24Game11WPCondition@ha
-	stw      r0, 0xc(r1)
-	addi     r0, r3, __vt__Q24Game11WPCondition@l
-	addi     r3, r1, 0x10
-	stw      r0, 0xc(r1)
-	addi     r0, r4, __vt__10WPFindCond@l
-	stw      r0, 0xc(r1)
-	lwz      r4, 0x1c(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 0x10(r1)
-	addi     r5, r1, 0xc
-	lfs      f2, 0x14(r1)
-	li       r0, 0
-	lfs      f1, 0x18(r1)
-	addi     r4, r1, 0x38
-	lfs      f0, lbl_8051A4F8@sda21(r2)
-	stfs     f3, 0x38(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f2, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	stw      r5, 0x44(r1)
-	stb      r0, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	lwz      r3, 8(r3)
-	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
-	stw      r3, 0x20(r31)
-	lwz      r5, 0x20(r31)
-	cmplwi   r5, 0
-	beq      lbl_802393A8
-	lis      r4, __vt__Q26PikiAI9ActionArg@ha
-	lis      r3, __vt__Q26PikiAI20ApproachPosActionArg@ha
-	addi     r0, r4, __vt__Q26PikiAI9ActionArg@l
-	lfs      f1, lbl_8051A500@sda21(r2)
-	stw      r0, 0x1c(r1)
-	addi     r3, r3, __vt__Q26PikiAI20ApproachPosActionArg@l
-	lfs      f0, lbl_8051A4FC@sda21(r2)
-	li       r0, 0
-	stw      r3, 0x1c(r1)
-	addi     r4, r1, 0x1c
-	lfs      f2, 0x4c(r5)
-	stfs     f2, 0x20(r1)
-	lfs      f2, 0x50(r5)
-	stfs     f2, 0x24(r1)
-	lfs      f2, 0x54(r5)
-	stfs     f2, 0x28(r1)
-	stfs     f1, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	stb      r0, 0x34(r1)
-	stb      r0, 0x35(r1)
-	lwz      r3, 0x18(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	addi     r6, r1, 8
-	li       r5, 5
-	stw      r0, 8(r1)
-	lwz      r4, 0x1c(r31)
-	lwz      r3, 0x28c(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802393A8:
-	li       r0, 0x64
-	stb      r0, 0x24(r31)
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	mState = 1;
+	WPFindCond cond;
+	Vector3f pos = mTargetPiki->getPosition();
+	Game::WPSearchArg arg(pos, &cond, false, 10.0f);
+	mWayPoint = Game::mapMgr->mRouteMgr->getNearestWayPoint(arg);
+	if (mWayPoint) {
+		ApproachPosActionArg arg(mWayPoint->mPosition, 250.0f, -1.0f, 0, 0);
+		mApproachPos->init(&arg);
+		Game::WaterHangedStateArg statearg(mParent);
+		mTargetPiki->mFsm->transit(mTargetPiki, Game::PIKISTATE_WaterHanged, &statearg);
+	}
+	mTimeLimit = 100;
 }
 
 /*
@@ -533,8 +247,38 @@ lbl_802393A8:
  * Address:	802393C4
  * Size:	0001C0
  */
-void PikiAI::ActRescue::execGo()
+int ActRescue::execGo()
 {
+	int ret = checkPikmin();
+	switch (ret) {
+	case 1:
+		if (!mWayPoint) {
+			ret = ACTEXEC_Fail;
+		} else {
+			ret = mApproachPos->exec();
+			if (!mTimeLimit--) {
+				ret = ACTEXEC_Success;
+			}
+
+			if (ret == ACTEXEC_Success) {
+				initThrow();
+			} else if (ret == ACTEXEC_Fail) {
+				return ACTEXEC_Fail;
+			}
+
+			SysShape::Joint* jnt = mParent->mModel->getJoint("rhandjnt");
+			P2ASSERTLINE(220, jnt);
+			Vector3f mod(0.0f, 3.0f, 0.0f);
+			Matrixf* mtx = jnt->getWorldMatrix();
+			Vec pos;
+			PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&mod, &pos);
+			Vector3f newpos(pos.x, pos.y, pos.z);
+			mTargetPiki->setPosition(newpos, false);
+			ret = ACTEXEC_Continue;
+		}
+		break;
+	}
+	return ret;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -678,37 +422,11 @@ lbl_80239568:
  * Address:	80239584
  * Size:	000064
  */
-void PikiAI::ActRescue::initThrow()
+void ActRescue::initThrow()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 2
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r0, 0x10(r3)
-	mr       r6, r31
-	beq      lbl_802395AC
-	lwz      r6, 0xc(r31)
-
-lbl_802395AC:
-	lwz      r3, 4(r31)
-	li       r4, 0x21
-	li       r5, 0x21
-	li       r7, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mState = 2;
+	mParent->startMotion(Game::IPikiAnims::THROW, Game::IPikiAnims::THROW, this, nullptr);
+	mFlag = 0;
 }
 
 /*
@@ -716,8 +434,22 @@ lbl_802395AC:
  * Address:	802395E8
  * Size:	000278
  */
-void PikiAI::ActRescue::execThrow()
+int ActRescue::execThrow()
 {
+	if (!mParent->assertMotion(Game::IPikiAnims::THROW)) {
+		return ACTEXEC_Fail;
+	}
+
+	if (!(mFlag & 1) && mFlag & 2) {
+		return ACTEXEC_Success;
+	}
+
+	mTargetPiki->mBrain->start(1, nullptr);
+	mTargetPiki->mFsm->transit(mTargetPiki, Game::PIKISTATE_Flying, nullptr);
+	mState = 0;
+	mTargetPiki->getPosition();
+	// this rest of this seems to be a direct copy of Navi::throwPiki?
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -905,23 +637,13 @@ lbl_8023982C:
  * Address:	80239860
  * Size:	00002C
  */
-void PikiAI::ActRescue::onKeyEvent(SysShape::KeyEvent const&)
+void ActRescue::onKeyEvent(SysShape::KeyEvent const& event)
 {
-	/*
-	lwz      r0, 0x1c(r4)
-	cmplwi   r0, 2
-	bne      lbl_8023987C
-	lbz      r0, 0x14(r3)
-	ori      r0, r0, 1
-	stb      r0, 0x14(r3)
-	blr
-
-lbl_8023987C:
-	lbz      r0, 0x14(r3)
-	ori      r0, r0, 2
-	stb      r0, 0x14(r3)
-	blr
-	*/
+	if (event.mType == 2) {
+		mFlag |= 1;
+	} else {
+		mFlag |= 2;
+	}
 }
 
 /*
@@ -929,67 +651,27 @@ lbl_8023987C:
  * Address:	8023988C
  * Size:	000004
  */
-void PikiAI::ActRescue::emotion_success() { }
+void ActRescue::emotion_success() { }
 
 /*
  * --INFO--
  * Address:	80239890
  * Size:	000004
  */
-void PikiAI::ActRescue::doDirectDraw(Graphics&) { }
+void ActRescue::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80239894
  * Size:	000004
  */
-void PikiAI::ActRescue::cleanup() { }
+void ActRescue::cleanup() { }
 
 /*
  * --INFO--
  * Address:	80239898
  * Size:	000004
  */
-void PikiAI::ActRescue::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+void ActRescue::collisionCallback(Game::Piki* piki, Game::CollEvent& event) { }
 
-/*
- * --INFO--
- * Address:	8023989C
- * Size:	000020
- */
-void WPFindCond::satisfy(Game::WayPoint*)
-{
-	/*
-	lbz      r4, 0x34(r4)
-	li       r3, 0
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	bnelr
-	clrlwi.  r0, r4, 0x1f
-	bnelr
-	li       r3, 1
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802398BC
- * Size:	000008
- */
-u32 PikiAI::ActRescue::getNextAIType() { return 0x1; }
-
-/*
- * --INFO--
- * Address:	802398C4
- * Size:	000014
- */
-void @40 @4 @PikiAI::ActRescue::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -40
-	b        onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent
-	*/
-}
+} // namespace PikiAI
