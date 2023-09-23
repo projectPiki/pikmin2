@@ -19,8 +19,8 @@ struct Item;
 struct WeedMgr;
 
 enum cWeedType {
-	WEEDTYPE_Unk0 = 0,
-	WEEDTYPE_Unk1 = 1,
+	WEEDTYPE_Stone = 0,
+	WEEDTYPE_Grass = 1,
 };
 
 enum StateID {
@@ -181,7 +181,7 @@ struct GenWeedParm : public Game::GenItemParm {
 	inline GenWeedParm()
 	{
 		mCount    = 50;
-		mWeedType = Game::ItemWeed::WEEDTYPE_Unk0;
+		mWeedType = Game::ItemWeed::WEEDTYPE_Stone;
 	}
 
 	// _00     = VTBL

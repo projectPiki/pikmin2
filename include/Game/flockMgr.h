@@ -17,13 +17,13 @@ struct TFlock : public Vector3f {
 	{
 	}
 
-	virtual void makeMatrix() = 0; // _08
-	virtual bool isVisible();      // _0C
-	virtual bool isWeed();         // _10
-	virtual bool fear();           // _14
-	virtual f32 getRadius();       // _18
-	virtual bool damaged(f32);     // _1C
-	virtual void constructor();    // _20
+	virtual void makeMatrix() = 0;             // _08
+	virtual bool isVisible() { return true; }  // _0C
+	virtual bool isWeed() { return false; }    // _10
+	virtual bool fear() { return false; }      // _14
+	virtual f32 getRadius() { return 0.0f; }   // _18
+	virtual bool damaged(f32) { return true; } // _1C
+	virtual void constructor() { }             // _20
 
 	// _00 - _0C Vector3f
 	// _0C VTBL
@@ -45,11 +45,19 @@ struct BaseFlockMgr {
 	virtual bool isFlagAlive(int)   = 0;                       // _10
 	virtual TFlock* getFlock(int)   = 0;                       // _14
 	virtual void killFlock(TFlock*) = 0;                       // _18
-	virtual void do_update();                                  // _1C (weak)
+	virtual void do_update() { }                               // _1C (weak)
 	virtual void do_update_boundSphere() = 0;                  // _20
 	virtual void doSimpleDraw(Viewport*, J3DModelData**, int); // _24
-	virtual bool isWeed(int);                                  // _28 (weak)
-	virtual bool fear(int);                                    // _2C (weak)
+	virtual bool isWeed(int idx)                               // _28 (weak)
+	{
+		P2ASSERTBOUNDSLINE(145, 0, idx, getMaxObjects());
+		return getFlock(idx)->isWeed();
+	}
+	virtual bool fear(int idx) // _2C (weak)
+	{
+		P2ASSERTBOUNDSLINE(152, 0, idx, getMaxObjects());
+		return getFlock(idx)->fear();
+	}
 
 	void update();
 	void getNearestFlock(Vector3f&);

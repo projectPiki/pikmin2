@@ -419,9 +419,9 @@ void Item::doDirectDraw(Graphics& gfx)
 	PerspPrintfInfo printInfo;
 	gfx.initPerspPrintf(gfx.mCurrentViewport);
 
-	printInfo._14 = Color4(200, 0, 0, 255);
-	printInfo._18 = Color4(200, 200, 200, 255);
-	printInfo._10 = 1.2f;
+	printInfo.mColorA = Color4(200, 0, 0, 255);
+	printInfo.mColorB = Color4(200, 200, 200, 255);
+	printInfo.mScale  = 1.2f;
 
 	Vector3f pos = mPosition;
 	pos.y += 120.0f;

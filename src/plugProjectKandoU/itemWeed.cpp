@@ -113,7 +113,7 @@ void WeedMgr::createWeeds(cWeedType weedType)
 	for (int i = 0; i < getMaxObjects(); i++) {
 		Weed* weed = mMonoObjectMgr.birth();
 		if (weed) {
-			weed->_40 = (weedType == 1) ? 0 : (int)(randFloat() * 3.0f) + 1;
+			weed->_40 = (weedType == WEEDTYPE_Grass) ? 0 : (int)(randFloat() * 3.0f) + 1;
 			// if (weedType == 1) {
 			// 	weed->_40 = 0;
 			// } else {
@@ -175,7 +175,7 @@ Item::Item()
 	mDummyShape.mMatrix     = &mObjMatrix;
 	mCollTree->createSingleSphere(&mDummyShape, 0, mBoundingSphere, nullptr);
 	setCollisionFlick(false);
-	mWeedType = WEEDTYPE_Unk0;
+	mWeedType = WEEDTYPE_Stone;
 }
 
 /*
@@ -410,7 +410,7 @@ bool Item::interactFlockAttack(InteractFlockAttack& attack)
 	attack._14        = flockPos;
 	int res           = mFlockMgr->attackFlock(attack._08, attack._0C);
 	if (res == 1) {
-		if (attack.mCreature->isPiki() && mWeedType == 0) {
+		if (attack.mCreature->isPiki() && mWeedType == WEEDTYPE_Stone) {
 			efx::createSimpleStoneAttack(flockPos);
 		}
 
