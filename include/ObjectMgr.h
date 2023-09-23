@@ -71,7 +71,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	///////////////// VTABLE END
 
 	// _00		= VTBL
-	// _00-_18	= Container
+	// _00-_1C	= Container
+	// _1C-_20  = GenericObjectMgr
 };
 
 template <typename T>

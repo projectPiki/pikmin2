@@ -2,828 +2,31 @@
 #include "Dolphin/math.h"
 #include "Dolphin/rand.h"
 #include "Game/Entities/ItemWeed.h"
+#include "Game/Entities/ItemHoney.h"
 #include "JSystem/J3D/J3DTransform.h"
 #include "JSystem/JMath.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "types.h"
+#include "efx/TPk.h"
+#include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_itemWeed_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80481FC0
-    lbl_80481FC0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x6974656D
-        .4byte 0x57656564
-        .4byte 0x00000000
-    .global lbl_80481FD8
-    lbl_80481FD8:
-        .4byte 0x6974656D
-        .4byte 0x57656564
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_80481FE8
-    lbl_80481FE8:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80481FF4
-    lbl_80481FF4:
-        .4byte 0x835F8381
-        .4byte 0x8362834E
-        .4byte 0x0A000000
-    .global lbl_80482000
-    lbl_80482000:
-        .4byte 0x666C6F63
-        .4byte 0x6B4D6772
-        .4byte 0x2E680000
-        .4byte 0x919082C6
-        .4byte 0x8FAC90CE
-        .4byte 0x00000000
-        .4byte 0x75736572
-        .4byte 0x2F4B616E
-        .4byte 0x646F2F6F
-        .4byte 0x626A6563
-        .4byte 0x74732F77
-        .4byte 0x65656400
-        .4byte 0x77656564
-        .4byte 0x312E626D
-        .4byte 0x64000000
-        .4byte 0x73746F6E
-        .4byte 0x65312E62
-        .4byte 0x6D640000
-        .4byte 0x73746F6E
-        .4byte 0x65322E62
-        .4byte 0x6D640000
-        .4byte 0x73746F6E
-        .4byte 0x65332E62
-        .4byte 0x6D640000
-        .4byte 0x092382A4
-        .4byte 0x82B682E1
-        .4byte 0x89A49094
-        .4byte 0x0D0A0000
-        .4byte 0x092390CE
-        .4byte 0x82A99190
-        .4byte 0x82A90D0A
-        .4byte 0x00000000
-    .global lbl_80482080
-    lbl_80482080:
-        .4byte 0x4974656D
-        .4byte 0x57656564
-        .4byte 0x3A3A496E
-        .4byte 0x69744172
-        .4byte 0x67000000
-        .4byte 0x4974656D
-        .4byte 0x486F6E65
-        .4byte 0x793A3A49
-        .4byte 0x6E697441
-        .4byte 0x72670000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804BFBA0
-    lbl_804BFBA0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game8ItemWeed7InitArg
-    __vt__Q34Game8ItemWeed7InitArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q34Game8ItemWeed7InitArgFv
-    .global __vt__11GenWeedParm
-    __vt__11GenWeedParm:
-        .4byte 0
-        .4byte 0
-        .4byte getShapeID__Q24Game11GenItemParmFv
-    .global __vt__Q34Game8ItemWeed9WaitState
-    __vt__Q34Game8ItemWeed9WaitState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8ItemWeed9WaitStateFPQ34Game8ItemWeed4ItemPQ24Game8StateArg
-        .4byte exec__Q34Game8ItemWeed9WaitStateFPQ34Game8ItemWeed4Item
-        .4byte cleanup__Q34Game8ItemWeed9WaitStateFPQ34Game8ItemWeed4Item
-        .4byte
-   "resume__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "restart__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "transit__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Itemf"
-        .4byte
-   "onKeyEvent__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent"
-        .4byte
-   "onBounce__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent"
-    .global __vt__Q34Game8ItemWeed3Mgr
-    __vt__Q34Game8ItemWeed3Mgr:
-        .4byte 0
-        .4byte 0
-        .4byte doAnimation__Q24Game12TNodeItemMgrFv
-        .4byte doEntry__Q24Game12TNodeItemMgrFv
-        .4byte doSetView__Q24Game12TNodeItemMgrFi
-        .4byte doViewCalc__Q24Game12TNodeItemMgrFv
-        .4byte doSimulation__Q24Game12TNodeItemMgrFf
-        .4byte doDirectDraw__Q24Game12TNodeItemMgrFR8Graphics
-        .4byte doSimpleDraw__Q34Game8ItemWeed3MgrFP8Viewport
-        .4byte loadResources__Q24Game11BaseItemMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte initDependency__Q24Game12TNodeItemMgrFv
-        .4byte killAll__Q24Game12TNodeItemMgrFv
-        .4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
-        .4byte setupSoundViewerAndBas__Q24Game11BaseItemMgrFv
-        .4byte onLoadResources__Q34Game8ItemWeed3MgrFv
-        .4byte loadEverytime__Q24Game11BaseItemMgrFv
-        .4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
-        .4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
-        .4byte generatorGetID__Q34Game8ItemWeed3MgrFv
-        .4byte
-   "generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-        .4byte
-   generatorWrite__Q34Game8ItemWeed3MgrFR6StreamPQ24Game11GenItemParm .4byte
-   generatorRead__Q34Game8ItemWeed3MgrFR6StreamPQ24Game11GenItemParmUl .4byte
-   generatorLocalVersion__Q34Game8ItemWeed3MgrFv .4byte
-   generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm .4byte
-   generatorNewItemParm__Q34Game8ItemWeed3MgrFv .4byte 0 .4byte 0 .4byte
-   "@48@__dt__Q34Game8ItemWeed3MgrFv" .4byte getChildCount__5CNodeFv .4byte
-   "getObject__27Container<Q24Game8BaseItem>FPv" .4byte
-   "@48@getNext__Q24Game12TNodeItemMgrFPv" .4byte
-   "@48@getStart__Q24Game12TNodeItemMgrFv" .4byte
-   "@48@getEnd__Q24Game12TNodeItemMgrFv" .4byte
-   "@48@get__Q24Game12TNodeItemMgrFPv" .4byte
-   "getAt__27Container<Q24Game8BaseItem>Fi" .4byte
-   "getTo__27Container<Q24Game8BaseItem>Fv" .4byte doNew__Q34Game8ItemWeed3MgrFv
-        .4byte kill__Q24Game12TNodeItemMgrFPQ24Game8BaseItem
-        .4byte get__Q24Game12TNodeItemMgrFPv
-        .4byte getNext__Q24Game12TNodeItemMgrFPv
-        .4byte getStart__Q24Game12TNodeItemMgrFv
-        .4byte getEnd__Q24Game12TNodeItemMgrFv
-        .4byte __dt__Q34Game8ItemWeed3MgrFv
-        .4byte getCaveName__Q34Game8ItemWeed3MgrFi
-        .4byte getCaveID__Q34Game8ItemWeed3MgrFPc
-    .global __vt__Q34Game8ItemWeed4Item
-    __vt__Q34Game8ItemWeed4Item:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game8BaseItemFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game8BaseItemFv
-        .4byte onInit__Q34Game8ItemWeed4ItemFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game8BaseItemFv
-        .4byte doEntry__Q24Game8BaseItemFv
-        .4byte doSetView__Q24Game8CreatureFi
-        .4byte doViewCalc__Q24Game8CreatureFv
-        .4byte doSimulation__Q24Game8BaseItemFf
-        .4byte doDirectDraw__Q24Game8CreatureFR8Graphics
-        .4byte getBodyRadius__Q24Game8CreatureFv
-        .4byte getCellRadius__Q24Game8CreatureFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game8BaseItemFv
-        .4byte "setVelocity__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte getVelocity__Q24Game8BaseItemFv
-        .4byte "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game8BaseItemFv
-        .4byte isTeki__Q24Game8CreatureFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game8CreatureFv
-        .4byte inWater__Q24Game8CreatureFv
-        .4byte getFlockMgr__Q34Game8ItemWeed4ItemFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game8CreatureFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte
-   "bounceCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FPQ23Sys8Triangle"
-        .4byte
-   "collisionCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRQ24Game9CollEvent"
-        .4byte
-   "platCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRQ24Game9PlatEvent"
-        .4byte getJAIObject__Q24Game8BaseItemFv
-        .4byte getPSCreature__Q24Game8BaseItemFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game8BaseItemFv
-        .4byte sound_culling__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8BaseItemFUl
-        .4byte movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8BaseItemFv
-        .4byte "movieSetTranslation__Q24Game8BaseItemFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game8CreatureFv
-        .4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q34Game8ItemWeed4ItemFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game8BaseItemFRQ24Game11Interaction
-        .4byte getCreatureName__Q34Game8ItemWeed4ItemFv
-        .4byte getCreatureID__Q24Game8BaseItemFv
-        .4byte 0
-        .4byte 0
-        .4byte
-   "@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRCQ28SysShape8KeyEvent"
-        .4byte initDependency__Q24Game8BaseItemFv
-        .4byte startSound__Q24Game8BaseItemFUl
-        .4byte makeTrMatrix__Q34Game8ItemWeed4ItemFv
-        .4byte doAI__Q34Game8ItemWeed4ItemFv
-        .4byte move__Q24Game8BaseItemFf
-        .4byte changeMaterial__Q24Game8BaseItemFv
-        .4byte do_updateLOD__Q24Game8BaseItemFv
-        .4byte do_setLODParm__Q24Game8BaseItemFRQ24Game9AILODParm
-        .4byte getMapCollisionRadius__Q24Game8BaseItemFv
-        .4byte interactAttack__Q24Game8BaseItemFRQ24Game14InteractAttack
-        .4byte
-   interactBreakBridge__Q24Game8BaseItemFRQ24Game19InteractBreakBridge .4byte
-   interactEat__Q24Game8BaseItemFRQ24Game11InteractEat .4byte
-   interactFlockAttack__Q34Game8ItemWeed4ItemFRQ24Game19InteractFlockAttack
-        .4byte interactAbsorb__Q24Game8BaseItemFRQ24Game14InteractAbsorb
-        .4byte interactFue__Q24Game8BaseItemFRQ24Game11InteractFue
-        .4byte interactFarmKarero__Q24Game8BaseItemFRQ24Game18InteractFarmKarero
-        .4byte interactFarmHaero__Q24Game8BaseItemFRQ24Game17InteractFarmHaero
-        .4byte interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey
-        .4byte "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>"
-        .4byte getWorkDistance__Q24Game8BaseItemFRQ23Sys6Sphere
-        .4byte do_doAnimation__Q24Game8BaseItemFv
-        .4byte updateBoundSphere__Q34Game8ItemWeed4ItemFv
-        .4byte update__Q24Game8BaseItemFv
-        .4byte entryShape__Q24Game8BaseItemFv
-        .4byte onSetPosition__Q34Game8ItemWeed4ItemFv
-        .4byte
-   "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRCQ28SysShape8KeyEvent"
-        .4byte doSimpleDraw__Q34Game8ItemWeed4ItemFP8Viewport
-    .global __vt__Q44Game8ItemWeed4Item10DummyShape
-    __vt__Q44Game8ItemWeed4Item10DummyShape:
-        .4byte 0
-        .4byte 0
-        .4byte getMatrix__Q44Game8ItemWeed4Item10DummyShapeFi
-        .4byte isModel__Q28SysShape9MtxObjectFv
-    .global "__vt__Q24Game30ItemFSM<Q34Game8ItemWeed4Item>"
-    "__vt__Q24Game30ItemFSM<Q34Game8ItemWeed4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "start__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "transit__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-    .global "__vt__Q24Game35StateMachine<Q34Game8ItemWeed4Item>"
-    "__vt__Q24Game35StateMachine<Q34Game8ItemWeed4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "start__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "transit__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-    .global
-   "__vt__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>"
-    "__vt__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>":
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game8BaseItemFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game8BaseItemFv
-        .4byte onInit__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game8BaseItemFv
-        .4byte doEntry__Q24Game8BaseItemFv
-        .4byte doSetView__Q24Game8CreatureFi
-        .4byte doViewCalc__Q24Game8CreatureFv
-        .4byte doSimulation__Q24Game8BaseItemFf
-        .4byte doDirectDraw__Q24Game8CreatureFR8Graphics
-        .4byte getBodyRadius__Q24Game8CreatureFv
-        .4byte getCellRadius__Q24Game8CreatureFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game8BaseItemFv
-        .4byte "setVelocity__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte getVelocity__Q24Game8BaseItemFv
-        .4byte "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game8BaseItemFv
-        .4byte isTeki__Q24Game8CreatureFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game8CreatureFv
-        .4byte inWater__Q24Game8CreatureFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game8CreatureFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte
-   "bounceCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FPQ23Sys8Triangle"
-        .4byte
-   "collisionCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRQ24Game9CollEvent"
-        .4byte
-   "platCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRQ24Game9PlatEvent"
-        .4byte getJAIObject__Q24Game8BaseItemFv
-        .4byte getPSCreature__Q24Game8BaseItemFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game8BaseItemFv
-        .4byte sound_culling__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8BaseItemFUl
-        .4byte movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8BaseItemFv
-        .4byte "movieSetTranslation__Q24Game8BaseItemFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game8CreatureFv
-        .4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game8BaseItemFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game8BaseItemFv
-        .4byte getCreatureID__Q24Game8BaseItemFv
-        .4byte 0
-        .4byte 0
-        .4byte
-   "@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRCQ28SysShape8KeyEvent"
-        .4byte initDependency__Q24Game8BaseItemFv
-        .4byte startSound__Q24Game8BaseItemFUl
-        .4byte makeTrMatrix__Q24Game8BaseItemFv
-        .4byte
-   "doAI__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>Fv"
-        .4byte move__Q24Game8BaseItemFf
-        .4byte changeMaterial__Q24Game8BaseItemFv
-        .4byte do_updateLOD__Q24Game8BaseItemFv
-        .4byte do_setLODParm__Q24Game8BaseItemFRQ24Game9AILODParm
-        .4byte getMapCollisionRadius__Q24Game8BaseItemFv
-        .4byte interactAttack__Q24Game8BaseItemFRQ24Game14InteractAttack
-        .4byte
-   interactBreakBridge__Q24Game8BaseItemFRQ24Game19InteractBreakBridge .4byte
-   interactEat__Q24Game8BaseItemFRQ24Game11InteractEat .4byte
-   interactFlockAttack__Q24Game8BaseItemFRQ24Game19InteractFlockAttack .4byte
-   interactAbsorb__Q24Game8BaseItemFRQ24Game14InteractAbsorb .4byte
-   interactFue__Q24Game8BaseItemFRQ24Game11InteractFue .4byte
-   interactFarmKarero__Q24Game8BaseItemFRQ24Game18InteractFarmKarero .4byte
-   interactFarmHaero__Q24Game8BaseItemFRQ24Game17InteractFarmHaero .4byte
-   interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey .4byte
-   "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>" .4byte
-   getWorkDistance__Q24Game8BaseItemFRQ23Sys6Sphere .4byte
-   do_doAnimation__Q24Game8BaseItemFv .4byte
-   updateBoundSphere__Q24Game8BaseItemFv .4byte update__Q24Game8BaseItemFv
-        .4byte entryShape__Q24Game8BaseItemFv
-        .4byte onSetPosition__Q24Game8BaseItemFv
-        .4byte
-   "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRCQ28SysShape8KeyEvent"
-    .global __vt__Q34Game8ItemWeed5State
-    __vt__Q34Game8ItemWeed5State:
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "cleanup__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "resume__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "restart__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "transit__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Itemf"
-        .4byte
-   "onKeyEvent__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent"
-        .4byte
-   "onBounce__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent"
-    .global "__vt__Q24Game32ItemState<Q34Game8ItemWeed4Item>"
-    "__vt__Q24Game32ItemState<Q34Game8ItemWeed4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "cleanup__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "resume__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "restart__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "transit__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Itemf"
-        .4byte
-   "onKeyEvent__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent"
-        .4byte
-   "onBounce__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent"
-    .global "__vt__Q24Game31FSMState<Q34Game8ItemWeed4Item>"
-    "__vt__Q24Game31FSMState<Q34Game8ItemWeed4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "cleanup__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "resume__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "restart__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "transit__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-    .global __vt__Q34Game8ItemWeed3FSM
-    __vt__Q34Game8ItemWeed3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game8ItemWeed3FSMFPQ34Game8ItemWeed4Item
-        .4byte
-   "start__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
-        .4byte
-   "transit__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
-    .global __vt__Q34Game8ItemWeed7WeedMgr
-    __vt__Q34Game8ItemWeed7WeedMgr:
-        .4byte 0
-        .4byte 0
-        .4byte "getMaxObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "getNumObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "isFlagAlive__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "getFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi"
-        .4byte
-   "killFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPQ24Game6TFlock" .4byte
-   do_update__Q34Game8ItemWeed7WeedMgrFv .4byte
-   do_update_boundSphere__Q34Game8ItemWeed7WeedMgrFv .4byte
-   doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai .4byte
-   isWeed__Q24Game12BaseFlockMgrFi .4byte fear__Q24Game12BaseFlockMgrFi .4byte 0
-        .4byte 0
-        .4byte "@32@__dt__Q34Game8ItemWeed7WeedMgrFv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__32Container<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "@32@getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "@32@getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@32@getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@32@get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "getAt__32Container<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "getTo__32Container<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte __dt__Q34Game8ItemWeed7WeedMgrFv
-    .global "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"
-    "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__32Container<Q34Game8ItemWeed4Weed>FPv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "getAt__32Container<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "getTo__32Container<Q34Game8ItemWeed4Weed>Fv"
-        .4byte 0
-        .4byte 0
-        .4byte "@28@doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@28@doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@28@doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "@28@doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@28@doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff"
-        .4byte "@28@doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
-        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
-        .4byte loadResources__16GenericObjectMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte "doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff"
-        .4byte "doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
-    .global "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"
-    "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__32Container<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "getNext__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "getStart__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "getEnd__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "get__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "getAt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "getTo__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte 0
-        .4byte 0
-        .4byte "@28@doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@28@doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@28@doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "@28@doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@28@doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff"
-        .4byte
-   "@28@doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics" .4byte
-   doSimpleDraw__16GenericObjectMgrFP8Viewport .4byte
-   loadResources__16GenericObjectMgrFv .4byte
-   "@28@resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv" .4byte
-   pausable__16GenericObjectMgrFv .4byte frozenable__16GenericObjectMgrFv .4byte
-   getMatrixLoadType__16GenericObjectMgrFv .4byte
-   "doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv" .4byte
-   "doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv" .4byte
-   "doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi" .4byte
-   "doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv" .4byte
-   "doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff" .4byte
-   "doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics" .4byte
-   "birth__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv" .4byte
-   "resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv" .4byte
-   "clearMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv" .4byte
-   "onAlloc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv" .global
-   "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"
-    "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>":
-        .4byte 0
-        .4byte 0
-        .4byte "getMaxObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "getNumObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "isFlagAlive__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "getFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi"
-        .4byte
-   "killFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPQ24Game6TFlock" .4byte
-   do_update__Q24Game12BaseFlockMgrFv .4byte 0 .4byte
-   doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai .4byte
-   isWeed__Q24Game12BaseFlockMgrFi .4byte fear__Q24Game12BaseFlockMgrFi .4byte 0
-        .4byte 0
-        .4byte "@32@__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__32Container<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "@32@getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "@32@getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@32@getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "@32@get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "getAt__32Container<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "getTo__32Container<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-        .4byte "getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-    .global "__vt__32Container<Q34Game8ItemWeed4Weed>"
-    "__vt__32Container<Q34Game8ItemWeed4Weed>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__32Container<Q34Game8ItemWeed4Weed>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__32Container<Q34Game8ItemWeed4Weed>FPv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "getAt__32Container<Q34Game8ItemWeed4Weed>Fi"
-        .4byte "getTo__32Container<Q34Game8ItemWeed4Weed>Fv"
-    .global __vt__Q34Game8ItemWeed4Weed
-    __vt__Q34Game8ItemWeed4Weed:
-        .4byte 0
-        .4byte 0
-        .4byte makeMatrix__Q34Game8ItemWeed4WeedFv
-        .4byte isVisible__Q24Game6TFlockFv
-        .4byte isWeed__Q34Game8ItemWeed4WeedFv
-        .4byte fear__Q24Game6TFlockFv
-        .4byte getRadius__Q24Game6TFlockFv
-        .4byte damaged__Q34Game8ItemWeed4WeedFf
-        .4byte constructor__Q24Game6TFlockFv
-    .global "__vt__31Iterator<Q34Game8ItemWeed4Weed>"
-    "__vt__31Iterator<Q34Game8ItemWeed4Weed>":
-        .4byte 0
-        .4byte 0
-        .4byte "first__31Iterator<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "next__31Iterator<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "isDone__31Iterator<Q34Game8ItemWeed4Weed>Fv"
-        .4byte "__ml__31Iterator<Q34Game8ItemWeed4Weed>Fv"
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515BD8
-    lbl_80515BD8:
-        .skip 0x4
-    .global lbl_80515BDC
-    lbl_80515BDC:
-        .skip 0x4
-    .global mgr__Q24Game8ItemWeed
-    mgr__Q24Game8ItemWeed:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519EF8
-    lbl_80519EF8:
-        .4byte 0x00000000
-    .global lbl_80519EFC
-    lbl_80519EFC:
-        .float 1.0
-    .global lbl_80519F00
-    lbl_80519F00:
-        .4byte 0x47000000
-    .global lbl_80519F04
-    lbl_80519F04:
-        .4byte 0x40C90FDB
-    .global lbl_80519F08
-    lbl_80519F08:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80519F10
-    lbl_80519F10:
-        .4byte 0x42700000
-    .global lbl_80519F14
-    lbl_80519F14:
-        .4byte 0x40400000
-    .global lbl_80519F18
-    lbl_80519F18:
-        .4byte 0x43A2F983
-    .global lbl_80519F1C
-    lbl_80519F1C:
-        .4byte 0xC3A2F983
-    .global lbl_80519F20
-    lbl_80519F20:
-        .4byte 0x42960000
-    .global lbl_80519F24
-    lbl_80519F24:
-        .4byte 0x3F6B851F
-    .global lbl_80519F28
-    lbl_80519F28:
-        .4byte 0x41200000
-    .global lbl_80519F2C
-    lbl_80519F2C:
-        .4byte 0x40000000
-    .global lbl_80519F30
-    lbl_80519F30:
-        .4byte 0x40490FDB
-    .global lbl_80519F34
-    lbl_80519F34:
-        .4byte 0x41F00000
-    .global lbl_80519F38
-    lbl_80519F38:
-        .4byte 0x43480000
-    .global lbl_80519F3C
-    lbl_80519F3C:
-        .4byte 0x6172632E
-        .4byte 0x737A7300
-    .global lbl_80519F44
-    lbl_80519F44:
-        .4byte 0x77656564
-        .4byte 0x00000000
-    .global lbl_80519F4C
-    lbl_80519F4C:
-        .4byte 0x57656564
-        .4byte 0x00000000
-        .4byte 0x00000000
-*/
+#define WEED_NECTAR_CHANCE (0.08f)
 
 namespace Game {
+namespace ItemWeed {
+static const int unusedArray[]     = { 0, 0, 0 };
+static const char unusedWeedName[] = "itemWeed";
 
+Mgr* mgr;
 /*
  * --INFO--
  * Address:	8020F280
  * Size:	000038
  */
-ItemWeed::Weed::Weed()
+Weed::Weed()
     : TFlock()
 {
-	x   = 0.0f;
-	y   = 0.0f;
-	z   = 0.0f;
-	_50 = 0;
+	(Vector3f)(*this) = Vector3f(0.0f);
+	mFlockMgr         = nullptr;
 }
 
 /*
@@ -831,9 +34,11 @@ ItemWeed::Weed::Weed()
  * Address:	........
  * Size:	000038
  */
-void ItemWeed::Weed::init(ItemWeed::WeedMgr*, Vector3f&)
+void Weed::init(WeedMgr* mgr, Vector3f& vec)
 {
-	// UNUSED FUNCTION
+	mFlockMgr = mgr;
+	mScale    = Vector3f(1.0f);
+	setPosition(vec);
 }
 
 /*
@@ -841,16 +46,17 @@ void ItemWeed::Weed::init(ItemWeed::WeedMgr*, Vector3f&)
  * Address:	8020F2B8
  * Size:	000008
  */
-bool ItemWeed::Weed::damaged(float) { return true; }
+bool Weed::damaged(f32) { return true; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000044
  */
-void ItemWeed::Weed::setPosition(Vector3f&)
+void Weed::setPosition(Vector3f& vec)
 {
-	// UNUSED FUNCTION
+	(Vector3f)(*this) = vec;
+	makeMatrix();
 }
 
 /*
@@ -858,57 +64,12 @@ void ItemWeed::Weed::setPosition(Vector3f&)
  * Address:	8020F2C0
  * Size:	0000AC
  */
-void ItemWeed::Weed::makeMatrix()
+void Weed::makeMatrix()
 {
-	Vector3f v1(0.0f, randFloat() * TAU, 0.0f);
-	Vector3f v2(_44);
-	Vector3f v3(*this);
-	_10.makeSRT(v2, v1, v3);
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x34(r1)
-	addi     r3, r31, 0x10
-	lfs      f1, lbl_80519EF8@sda21(r2)
-	addi     r4, r1, 0x14
-	stw      r0, 0x30(r1)
-	addi     r5, r1, 0x20
-	lfd      f3, lbl_80519F08@sda21(r2)
-	addi     r6, r1, 8
-	lfd      f0, 0x30(r1)
-	lfs      f2, lbl_80519F00@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_80519F04@sda21(r2)
-	stfs     f1, 0x20(r1)
-	fdivs    f2, f3, f2
-	stfs     f1, 0x28(r1)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0x44(r31)
-	stfs     f0, 0x14(r1)
-	lfs      f0, 0x48(r31)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0x4c(r31)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 0(r31)
-	stfs     f0, 8(r1)
-	lfs      f0, 4(r31)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x10(r1)
-	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	Vector3f rot(0.0f, randFloat() * TAU, 0.0f);
+	Vector3f scale = mScale;
+	Vector3f translation(*this);
+	_10.makeSRT(scale, rot, translation);
 }
 
 /*
@@ -916,131 +77,30 @@ void ItemWeed::Weed::makeMatrix()
  * Address:	........
  * Size:	000004
  */
-// void ItemWeed::Weed::update()
-// {
-// 	// UNUSED FUNCTION
-// }
+void Weed::update() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E8
  */
-ItemWeed::WeedMgr::WeedMgr(int count)
+WeedMgr::WeedMgr(int count)
     : TFlockMgr()
 {
-	// UNUSED FUNCTION
 	mMonoObjectMgr.alloc(count);
 	_04 = 5;
 }
 
 /*
  * --INFO--
- * Address:	8020F36C
- * Size:	000100
- */
-// void __dt__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8020F450
-// 	lis      r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@ha
-// 	addic.   r0, r30, 0x3c
-// 	addi     r3, r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@l
-// 	stw      r3, 0(r30)
-// 	addi     r0, r3, 0x30
-// 	stw      r0, 0x20(r30)
-// 	beq      lbl_8020F40C
-// 	lis      r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
-// 	addic.   r0, r30, 0x3c
-// 	addi     r3, r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
-// 	stw      r3, 0x3c(r30)
-// 	addi     r0, r3, 0x2c
-// 	stw      r0, 0x58(r30)
-// 	beq      lbl_8020F40C
-// 	lis      r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
-// 	addic.   r0, r30, 0x3c
-// 	addi     r3, r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
-// 	stw      r3, 0x3c(r30)
-// 	addi     r0, r3, 0x2c
-// 	stw      r0, 0x58(r30)
-// 	beq      lbl_8020F40C
-// 	lis      r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
-// 	addic.   r0, r30, 0x3c
-// 	addi     r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
-// 	stw      r0, 0x3c(r30)
-// 	beq      lbl_8020F40C
-// 	lis      r4, __vt__16GenericContainer@ha
-// 	addi     r3, r30, 0x3c
-// 	addi     r0, r4, __vt__16GenericContainer@l
-// 	li       r4, 0
-// 	stw      r0, 0x3c(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_8020F40C:
-// 	addic.   r0, r30, 0x20
-// 	beq      lbl_8020F440
-// 	lis      r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
-// 	addic.   r0, r30, 0x20
-// 	addi     r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
-// 	stw      r0, 0x20(r30)
-// 	beq      lbl_8020F440
-// 	lis      r4, __vt__16GenericContainer@ha
-// 	addi     r3, r30, 0x20
-// 	addi     r0, r4, __vt__16GenericContainer@l
-// 	li       r4, 0
-// 	stw      r0, 0x20(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_8020F440:
-// 	extsh.   r0, r31
-// 	ble      lbl_8020F450
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8020F450:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8020F46C
- * Size:	0000A0
- */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::~MonoObjectMgr()
-// {
-// }
-
-/*
- * --INFO--
- * Address:	8020F50C
- * Size:	000070
- */
-// void Container<Game::ItemWeed::Weed>::~Container()
-// {
-// }
-
-/*
- * --INFO--
  * Address:	........
  * Size:	00005C
  */
-void ItemWeed::WeedMgr::init(Sys::Sphere&, Game::ItemWeed::cWeedType)
+void WeedMgr::init(Sys::Sphere& sphere, cWeedType weedType)
 {
-	// UNUSED FUNCTION
+	_0C = sphere;
+	createWeeds(weedType);
+	resolveCollision(60.0f);
 }
 
 /*
@@ -1048,37 +108,38 @@ void ItemWeed::WeedMgr::init(Sys::Sphere&, Game::ItemWeed::cWeedType)
  * Address:	........
  * Size:	00022C
  */
-void ItemWeed::WeedMgr::createWeeds(Game::ItemWeed::cWeedType)
+void WeedMgr::createWeeds(cWeedType weedType)
 {
-	// UNUSED FUNCTION
+	for (int i = 0; i < getMaxObjects(); i++) {
+		Weed* weed = mMonoObjectMgr.birth();
+		if (weed) {
+			weed->_40 = (weedType == 1) ? 0 : (int)(randFloat() * 3.0f) + 1;
+			// if (weedType == 1) {
+			// 	weed->_40 = 0;
+			// } else {
+			// 	weed->_40 = (int)(randFloat() * 3.0f) + 1;
+			// }
+			f32 randRadius   = _0C.mRadius * randFloat();
+			f32 randTheta    = randFloat() * TAU;
+			Vector3f weedPos = Vector3f(randRadius * pikmin2_sinf(randTheta), 0.0f, randRadius * pikmin2_cosf(randTheta)) + _0C.mPosition;
+			weed->init(this, weedPos);
+		}
+	}
 }
-
-// /*
-//  * --INFO--
-//  * Address:	8020F57C
-//  * Size:	000008
-//  */
-// void getMaxObjects__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-// {
-// 	/*
-// 	lwz      r3, 0x60(r3)
-// 	blr
-// 	*/
-// }
 
 /*
  * --INFO--
  * Address:	8020F584
  * Size:	000004
  */
-void ItemWeed::WeedMgr::do_update_boundSphere() { }
+void WeedMgr::do_update_boundSphere() { }
 
 /*
  * --INFO--
  * Address:	8020F588
  * Size:	000018
  */
-void ItemWeed::WeedMgr::do_update()
+void WeedMgr::do_update()
 {
 	if (mIsAgentVisible[0] != false) {
 		return;
@@ -1094,48 +155,10 @@ void ItemWeed::WeedMgr::do_update()
  * Address:	8020F5A0
  * Size:	000084
  */
-void ItemWeed::FSM::init(Game::ItemWeed::Item* item)
+void FSM::init(Item* item)
 {
-	create(1);
+	create(WEED_StateCount);
 	registerState(new WaitState());
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "create__Q24Game35StateMachine<Q34Game8ItemWeed4Item>Fi"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8020F608
-	lis      r3, "__vt__Q24Game31FSMState<Q34Game8ItemWeed4Item>"@ha
-	lis      r6, "__vt__Q24Game32ItemState<Q34Game8ItemWeed4Item>"@ha
-	addi     r0, r3, "__vt__Q24Game31FSMState<Q34Game8ItemWeed4Item>"@l
-	lis      r5, __vt__Q34Game8ItemWeed5State@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	lis      r3, __vt__Q34Game8ItemWeed9WaitState@ha
-	addi     r6, r6, "__vt__Q24Game32ItemState<Q34Game8ItemWeed4Item>"@l
-	stw      r7, 4(r4)
-	addi     r5, r5, __vt__Q34Game8ItemWeed5State@l
-	addi     r0, r3, __vt__Q34Game8ItemWeed9WaitState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_8020F608:
-	mr       r3, r31
-	bl
-"registerState__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ24Game31FSMState<Q34Game8ItemWeed4Item>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1143,17 +166,16 @@ lbl_8020F608:
  * Address:	........
  * Size:	00013C
  */
-ItemWeed::Item::Item()
+Item::Item()
     : FSMItem(OBJTYPE_Weed)
     , mDummyShape()
 {
-	// UNUSED FUNCTION
 	mCollTree               = new CollTree();
 	mBoundingSphere.mRadius = 75.0f;
 	mDummyShape.mMatrix     = &mObjMatrix;
 	mCollTree->createSingleSphere(&mDummyShape, 0, mBoundingSphere, nullptr);
 	setCollisionFlick(false);
-	_1EC = 0;
+	mWeedType = WEEDTYPE_Unk0;
 }
 
 /*
@@ -1161,167 +183,28 @@ ItemWeed::Item::Item()
  * Address:	8020F624
  * Size:	00015C
  */
-void ItemWeed::Item::onInit(Game::CreatureInitArg* initArg)
+void Item::onInit(CreatureInitArg* initArg)
 {
-	mFsm->start(this, WEEDSTATE_Wait, nullptr);
+	mFsm->start(this, WEED_Wait, nullptr);
 	setAlive(true);
 	InitArg* itemInitArg = static_cast<InitArg*>(initArg);
-	P2ASSERTLINE(194, itemInitArg != nullptr);
-	int v1    = itemInitArg->_04;
-	_1EC      = itemInitArg->_08;
-	mFlockMgr = new WeedMgr(v1);
+	P2ASSERTLINE(194, itemInitArg);
+	int count = itemInitArg->mCount;
+	mWeedType = itemInitArg->mWeedType;
+	mFlockMgr = new WeedMgr(count);
 	setCollisionFlick(false);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r29, r3
-	mr       r31, r4
-	mr       r4, r29
-	lwz      r3, 0x1d8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	li       r4, 1
-	lwz      r12, 0(r29)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r31, 0
-	bne      lbl_8020F698
-	lis      r3, lbl_80481FD8@ha
-	lis      r5, lbl_80481FE8@ha
-	addi     r3, r3, lbl_80481FD8@l
-	li       r4, 0xc2
-	addi     r5, r5, lbl_80481FE8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8020F698:
-	lwz      r30, 4(r31)
-	li       r3, 0x6c
-	lwz      r0, 8(r31)
-	stw      r0, 0x1ec(r29)
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8020F750
-	lis      r3, __vt__Q24Game12BaseFlockMgr@ha
-	mr       r27, r31
-	addi     r0, r3, __vt__Q24Game12BaseFlockMgr@l
-	li       r5, 1
-	stw      r0, 0(r31)
-	addi     r28, r27, 0x20
-	li       r4, -1
-	li       r0, 0
-	stb      r5, 0x1d(r31)
-	mr       r3, r28
-	stb      r5, 0x1c(r31)
-	stw      r4, 4(r31)
-	stw      r0, 8(r31)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__16GenericContainer@ha
-	lis      r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
-	addi     r0, r3, __vt__16GenericContainer@l
-	lis      r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@ha
-	stw      r0, 0(r28)
-	addi     r0, r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
-	addi     r4, r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@l
-	li       r5, 0
-	stw      r0, 0(r28)
-	addi     r0, r4, 0x30
-	addi     r3, r27, 0x3c
-	stb      r5, 0x18(r28)
-	stw      r4, 0(r27)
-	stw      r0, 0x20(r27)
-	bl       "__ct__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-	lis      r3, __vt__Q34Game8ItemWeed7WeedMgr@ha
-	mr       r4, r30
-	addi     r5, r3, __vt__Q34Game8ItemWeed7WeedMgr@l
-	addi     r3, r31, 0x3c
-	stw      r5, 0(r31)
-	addi     r0, r5, 0x30
-	stw      r0, 0x20(r31)
-	bl       "alloc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
-	li       r0, 5
-	stw      r0, 4(r31)
-
-lbl_8020F750:
-	stw      r31, 0x1e8(r29)
-	mr       r3, r29
-	li       r4, 0
-	lwz      r12, 0(r29)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
-
-/*
- * --INFO--
- * Address:	8020F780
- * Size:	000034
- */
-// void start__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  li        r0, 0
-// 	  stw       r0, 0x1DC(r4)
-// 	  lwz       r12, 0x0(r3)
-// 	  lwz       r12, 0x14(r12)
-// 	  mtctr     r12
-// 	  bctrl
-// 	  lwz       r0, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
 
 /*
  * --INFO--
  * Address:	8020F7B4
  * Size:	000268
  */
-void ItemWeed::Item::onSetPosition()
+void Item::onSetPosition()
 {
 	mObjMatrix.makeT(mPosition);
-	Sys::Sphere v1(mPosition, mBoundingSphere.mRadius);
-	int v2         = _1EC;
-	mFlockMgr->_0C = v1;
-	for (int i = 0; i < mFlockMgr->getMaxObjects(); i++) {
-		Weed* weed = mFlockMgr->mMonoObjectMgr.birth();
-		if (weed != nullptr) {
-			if (v2 == 1) {
-				weed->_40 = 0;
-			} else {
-				weed->_40 = (randFloat() * 3.0f) + 1;
-			}
-			float randRadius = mFlockMgr->_0C.mRadius * randFloat();
-			float randTheta  = randFloat() * TAU;
-			float randCos    = JMath::getSinCosTable()->cos(randTheta);
-			float randSin    = JMath::getSinCosTable()->sin(randTheta);
-			weed->_50        = mFlockMgr;
-			weed->_44        = Vector3f(1.0f);
-			weed->x          = (randRadius * randSin) + mFlockMgr->_0C.mPosition.x;
-			weed->y          = mFlockMgr->_0C.mPosition.y + 0.0f;
-			weed->z          = (randRadius * randCos) + mFlockMgr->_0C.mPosition.z;
-		}
-	}
-	mFlockMgr->resolveCollision(60.0f);
+	Sys::Sphere sphere(mPosition, mBoundingSphere.mRadius);
+	mFlockMgr->init(sphere, (cWeedType)mWeedType);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1501,53 +384,18 @@ lbl_8020F9CC:
  * Address:	8020FA1C
  * Size:	00003C
  */
-bool ItemWeed::Item::ignoreAtari(Game::Creature* other) { return !other->isPiki(); }
+bool Item::ignoreAtari(Creature* other) { return !other->isPiki(); }
 
 /*
  * --INFO--
  * Address:	8020FA58
  * Size:	000078
  */
-void ItemWeed::Item::updateBoundSphere()
+void Item::updateBoundSphere()
 {
 	mCollTree->mPart->mRadius = mBoundingSphere.mRadius;
 	mBoundingSphere.mPosition = mPosition;
-	JUT_ASSERTLINE(225, isCollisionFlick() == false, "ダメック\n");
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x114(r3)
-	lfs      f0, 0x1d0(r3)
-	lwz      r4, 0(r4)
-	stfs     f0, 0x1c(r4)
-	lfs      f0, 0x19c(r3)
-	stfs     f0, 0x1c4(r3)
-	lfs      f0, 0x1a0(r3)
-	stfs     f0, 0x1c8(r3)
-	lfs      f0, 0x1a4(r3)
-	stfs     f0, 0x1cc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xb0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020FAC0
-	lis      r3, lbl_80481FD8@ha
-	lis      r5, lbl_80481FF4@ha
-	addi     r3, r3, lbl_80481FD8@l
-	li       r4, 0xe1
-	addi     r5, r5, lbl_80481FF4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8020FAC0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JUT_ASSERTLINE(225, isCollisionFlick() == false, "ダメック\n"); // 'damek'
 }
 
 /*
@@ -1555,253 +403,43 @@ lbl_8020FAC0:
  * Address:	8020FAD0
  * Size:	0002E0
  */
-bool ItemWeed::Item::interactFlockAttack(Game::InteractFlockAttack&)
+bool Item::interactFlockAttack(InteractFlockAttack& attack)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stmw     r27, 0x5c(r1)
-	mr       r29, r4
-	mr       r28, r3
-	li       r30, 0
-	lwz      r27, 8(r4)
-	lwz      r31, 0x1e8(r3)
-	cmpwi    r27, 0
-	blt      lbl_8020FB1C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpw     r27, r3
-	bge      lbl_8020FB1C
-	li       r30, 1
+	TFlock* flock     = mFlockMgr->getValidFlock(attack._08);
+	Vector3f flockPos = Vector3f(*flock);
+	attack._14        = flockPos;
+	int res           = mFlockMgr->attackFlock(attack._08, attack._0C);
+	if (res == 1) {
+		if (attack.mCreature->isPiki() && mWeedType == 0) {
+			efx::createSimpleStoneAttack(flockPos);
+		}
 
-lbl_8020FB1C:
-	clrlwi.  r0, r30, 0x18
-	bne      lbl_8020FB40
-	lis      r3, lbl_80482000@ha
-	lis      r5, lbl_80481FE8@ha
-	addi     r3, r3, lbl_80482000@l
-	li       r4, 0xab
-	addi     r5, r5, lbl_80481FE8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+		if (randFloat() > (1.0f - WEED_NECTAR_CHANCE)) {
+			ItemHoney::Item* nectar = ItemHoney::mgr->birth();
+			if (nectar) {
+				ItemHoney::InitArg nectarArg(0, 0);
+				nectar->init(&nectarArg);
+				Vector3f nectarPos = flockPos;
+				nectarPos.y += 10.0f;
+				f32 angle    = 2 * (PI * randFloat());
+				Vector3f vel = Vector3f(30.0f * pikmin2_sinf(angle), 200.0f, 30.0f * pikmin2_cosf(angle));
+				nectar->setPosition(nectarPos, false);
+				nectar->setVelocity(vel);
+			}
+		}
+	}
 
-lbl_8020FB40:
-	mr       r3, r31
-	mr       r4, r27
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 4(r3)
-	lfs      f2, 8(r3)
-	lfs      f0, 0(r3)
-	stfs     f0, 0x28(r1)
-	stfs     f1, 0x2c(r1)
-	stfs     f2, 0x30(r1)
-	stfs     f0, 0x14(r29)
-	lfs      f0, 0x2c(r1)
-	stfs     f0, 0x18(r29)
-	lfs      f0, 0x30(r1)
-	stfs     f0, 0x1c(r29)
-	lwz      r3, 0x1e8(r28)
-	lwz      r4, 8(r29)
-	lfs      f1, 0xc(r29)
-	bl       attackFlock__Q24Game12BaseFlockMgrFif
-	mr       r31, r3
-	cmpwi    r31, 1
-	bne      lbl_8020FD70
-	lwz      r3, 4(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020FBD0
-	lwz      r0, 0x1ec(r28)
-	cmpwi    r0, 0
-	bne      lbl_8020FBD0
-	addi     r3, r1, 0x28
-	bl       "createSimpleStoneAttack__3efxFR10Vector3<f>"
-
-lbl_8020FBD0:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x3c(r1)
-	lfd      f3, lbl_80519F08@sda21(r2)
-	stw      r0, 0x38(r1)
-	lfs      f1, lbl_80519F00@sda21(r2)
-	lfd      f2, 0x38(r1)
-	lfs      f0, lbl_80519F24@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8020FD70
-	lwz      r3, mgr__Q24Game9ItemHoney@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	or.      r30, r3, r3
-	beq      lbl_8020FD70
-	lis      r4, __vt__Q24Game15CreatureInitArg@ha
-	li       r0, 0
-	addi     r5, r4, __vt__Q24Game15CreatureInitArg@l
-	lis      r4, __vt__Q34Game9ItemHoney7InitArg@ha
-	stw      r5, 8(r1)
-	addi     r5, r4, __vt__Q34Game9ItemHoney7InitArg@l
-	addi     r4, r1, 8
-	stw      r5, 8(r1)
-	stb      r0, 0xc(r1)
-	stb      r0, 0xd(r1)
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	lfs      f2, 0x2c(r1)
-	lfs      f0, lbl_80519F28@sda21(r2)
-	lfs      f3, 0x28(r1)
-	lfs      f1, 0x30(r1)
-	fadds    f0, f2, f0
-	stfs     f2, 0x20(r1)
-	stfs     f3, 0x1c(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x20(r1)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x3c(r1)
-	lfd      f2, lbl_80519F08@sda21(r2)
-	stw      r0, 0x38(r1)
-	lfs      f3, lbl_80519F00@sda21(r2)
-	lfd      f0, 0x38(r1)
-	lfs      f1, lbl_80519F30@sda21(r2)
-	fsubs    f4, f0, f2
-	lfs      f2, lbl_80519F2C@sda21(r2)
-	lfs      f0, lbl_80519EF8@sda21(r2)
-	fdivs    f3, f4, f3
-	fmuls    f1, f1, f3
-	fmuls    f5, f2, f1
-	fmr      f1, f5
-	fcmpo    cr0, f5, f0
-	bge      lbl_8020FCBC
-	fneg     f1, f5
-
-lbl_8020FCBC:
-	lfs      f2, lbl_80519F18@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_80519EF8@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	lfs      f3, lbl_80519F34@sda21(r2)
-	fcmpo    cr0, f5, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f4, f3, f0
-	bge      lbl_8020FD1C
-	lfs      f0, lbl_80519F1C@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x48(r1)
-	lwz      r0, 0x4c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_8020FD34
-
-lbl_8020FD1C:
-	fmuls    f0, f5, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x50(r1)
-	lwz      r0, 0x54(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-
-lbl_8020FD34:
-	fmuls    f1, f3, f0
-	lfs      f0, lbl_80519F38@sda21(r2)
-	stfs     f4, 0x18(r1)
-	mr       r3, r30
-	addi     r4, r1, 0x1c
-	li       r5, 0
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	mr       r3, r30
-	addi     r4, r1, 0x10
-	lwz      r12, 0(r30)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8020FD70:
-	neg      r0, r31
-	or       r0, r0, r31
-	srwi     r0, r0, 0x1f
-	stb      r0, 0x10(r29)
-	lwz      r3, 0x1e8(r28)
-	lwz      r4, 8(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lmw      r27, 0x5c(r1)
-	li       r3, 1
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	attack._10 = res != 0;
+	mFlockMgr->getFlock(attack._08);
+	return true;
 }
-
-/*
- * --INFO--
- * Address:	8020FDB0
- * Size:	00002C
- */
-// void getFlock__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fi()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	lwzu     r12, 0x3c(r3)
-// 	lwz      r12, 0x24(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8020FDDC
- * Size:	000010
- */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::getAt(int)
-// {
-// 	/*
-// 	mulli    r0, r4, 0x54
-// 	lwz      r3, 0x28(r3)
-// 	add      r3, r3, r0
-// 	blr
-// 	*/
-// }
 
 /*
  * --INFO--
  * Address:	8020FDEC
  * Size:	000084
  */
-void ItemWeed::Item::doAI()
+void Item::doAI()
 {
 	mFsm->exec(this);
 	updateCollTree();
@@ -1813,49 +451,20 @@ void ItemWeed::Item::doAI()
 
 /*
  * --INFO--
- * Address:	8020FE70
- * Size:	000008
- */
-// void getNumObjects__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-// {
-// }
-
-/*
- * --INFO--
  * Address:	8020FE78
  * Size:	00003C
  */
-void ItemWeed::Item::doSimpleDraw(Viewport* viewport)
-{
-	mFlockMgr->doSimpleDraw(viewport, mgr->mModelData, mgr->mModelDataMax);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1e8(r3)
-	lwz      r6, mgr__Q24Game8ItemWeed@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r5, 0x1c(r6)
-	lwz      r12, 0x24(r12)
-	lwz      r6, 0x18(r6)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Item::doSimpleDraw(Viewport* viewport) { mFlockMgr->doSimpleDraw(viewport, mgr->mModelData, mgr->mModelDataMax); }
 
 /*
  * --INFO--
  * Address:	8020FEB4
  * Size:	00013C
  */
-ItemWeed::Mgr::Mgr()
+Mgr::Mgr()
     : TNodeItemMgr()
 {
-	setName("草と小石");
+	mItemName            = "草と小石";
 	mObjectPathComponent = "user/Kando/objects/weed";
 	setModelSize(4);
 	loadArchive("arc.szs");
@@ -1869,91 +478,6 @@ ItemWeed::Mgr::Mgr()
 		modelData->simpleCalcMaterial(0, j3dDefaultMtx);
 		modelData->makeSharedDL();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	extsh.   r0, r4
-	lis      r4, lbl_80481FC0@ha
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_80481FC0@l
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	beq      lbl_8020FEEC
-	addi     r0, r28, 0x88
-	stw      r0, 4(r28)
-
-lbl_8020FEEC:
-	mr       r3, r28
-	li       r4, 0
-	bl       __ct__Q24Game12TNodeItemMgrFv
-	lis      r3, __vt__Q34Game8ItemWeed3Mgr@ha
-	addi     r5, r31, 0x4c
-	addi     r3, r3, __vt__Q34Game8ItemWeed3Mgr@l
-	addi     r0, r31, 0x58
-	stw      r3, 0(r28)
-	addi     r6, r3, 0x74
-	mr       r3, r28
-	li       r4, 4
-	stw      r6, 0x30(r28)
-	stw      r5, 8(r28)
-	stw      r0, 0x28(r28)
-	bl       setModelSize__Q24Game11BaseItemMgrFi
-	mr       r3, r28
-	addi     r4, r2, lbl_80519F3C@sda21
-	bl       loadArchive__Q24Game11BaseItemMgrFPc
-	mr       r3, r28
-	addi     r4, r31, 0x70
-	li       r5, 0
-	lis      r6, 2
-	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-	mr       r3, r28
-	addi     r4, r31, 0x7c
-	li       r5, 1
-	lis      r6, 2
-	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-	mr       r3, r28
-	addi     r4, r31, 0x88
-	li       r5, 2
-	lis      r6, 2
-	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-	mr       r3, r28
-	addi     r4, r31, 0x94
-	li       r5, 3
-	lis      r6, 2
-	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-	lis      r3, j3dDefaultMtx@ha
-	li       r30, 0
-	addi     r31, r3, j3dDefaultMtx@l
-
-lbl_8020FF90:
-	mr       r3, r28
-	mr       r4, r30
-	bl       getModelData__Q24Game11BaseItemMgrFi
-	lis      r4, 4
-	mr       r29, r3
-	bl       newSharedDisplayList__12J3DModelDataFUl
-	mr       r3, r29
-	mr       r5, r31
-	li       r4, 0
-	bl       simpleCalcMaterial__12J3DModelDataFUsPA4_f
-	mr       r3, r29
-	bl       makeSharedDL__12J3DModelDataFv
-	addi     r30, r30, 1
-	cmpwi    r30, 4
-	blt      lbl_8020FF90
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1961,161 +485,10 @@ lbl_8020FF90:
  * Address:	8020FFF0
  * Size:	000200
  */
-void ItemWeed::Mgr::doSimpleDraw(Viewport* viewport)
+void Mgr::doSimpleDraw(Viewport* viewport)
 {
-	Iterator<BaseItem> iterator(this);
-	iterator.first();
-	while (!iterator.isDone()) {
-		static_cast<Item*>(*iterator)->doSimpleDraw(viewport);
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r3, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	beq      lbl_80210010
-	addi     r3, r3, 0x30
-
-lbl_80210010:
-	li       r0, 0
-	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-	stw      r0, 0x14(r1)
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8021004C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802101BC
-
-lbl_8021004C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802100B8
-
-lbl_80210064:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802101BC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_802100B8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80210064
-	b        lbl_802101BC
-
-lbl_802100D8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x224(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8021012C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802101BC
-
-lbl_8021012C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802101A0
-
-lbl_8021014C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802101BC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_802101A0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8021014C
-
-lbl_802101BC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_802100D8
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<BaseItem> iter(this);
+	CI_LOOP(iter) { static_cast<Item*>(*iter)->doSimpleDraw(viewport); }
 }
 
 /*
@@ -2123,14 +496,14 @@ lbl_802101BC:
  * Address:	802101F0
  * Size:	000004
  */
-void ItemWeed::Mgr::onLoadResources() { }
+void Mgr::onLoadResources() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000160
  */
-ItemWeed::Item* ItemWeed::Mgr::birth()
+Item* Mgr::birth()
 {
 	// UNUSED FUNCTION
 }
@@ -2140,7 +513,7 @@ ItemWeed::Item* ItemWeed::Mgr::birth()
  * Address:	802101F4
  * Size:	000008
  */
-char* ItemWeed::Mgr::getCaveName(int)
+char* Mgr::getCaveName(int)
 {
 	return "weed";
 	/*
@@ -2154,9 +527,10 @@ char* ItemWeed::Mgr::getCaveName(int)
  * Address:	802101FC
  * Size:	00004C
  */
-int ItemWeed::Mgr::getCaveID(char* p1)
+int Mgr::getCaveID(char* p1)
 {
-	return (strncmp("weed", p1, strlen("weed")) == 0);
+	int comp = (strncmp("weed", p1, strlen("weed"))) != 0;
+	return comp;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2185,92 +559,44 @@ int ItemWeed::Mgr::getCaveID(char* p1)
  * Address:	80210248
  * Size:	000004
  */
-void ItemWeed::WaitState::init(Game::ItemWeed::Item*, Game::StateArg*) { }
+void WaitState::init(Item*, StateArg*) { }
 
 /*
  * --INFO--
  * Address:	8021024C
  * Size:	000004
  */
-void ItemWeed::WaitState::exec(Game::ItemWeed::Item*) { }
+void WaitState::exec(Item*) { }
 
 /*
  * --INFO--
  * Address:	80210250
  * Size:	000004
  */
-void ItemWeed::WaitState::cleanup(Game::ItemWeed::Item*) { }
+void WaitState::cleanup(Item*) { }
 
 /*
  * --INFO--
  * Address:	80210254
  * Size:	000054
  */
-GenItemParm* ItemWeed::Mgr::generatorNewItemParm() { return new GenWeedParm(); }
+GenItemParm* Mgr::generatorNewItemParm() { return new GenWeedParm(); }
 
 /*
  * --INFO--
  * Address:	802102A8
  * Size:	0000B0
  */
-void ItemWeed::Mgr::generatorWrite(Stream& output, Game::GenItemParm* genItemParm)
+void Mgr::generatorWrite(Stream& output, GenItemParm* genItemParm)
 {
 	GenWeedParm* genWeedParm = static_cast<GenWeedParm*>(genItemParm);
 	P2ASSERTLINE(460, genWeedParm != nullptr);
 	output.textWriteTab(output.mTabCount);
-	output.writeShort(genWeedParm->_08);
-	output.textWriteText("\t#うじゃ王数\r\n");
+	output.writeShort(genWeedParm->mCount);
+	output.textWriteText("\t#うじゃ王数\r\n"); // 'uja-o number'
 	output.textWriteTab(output.mTabCount);
-	output.writeShort(genWeedParm->_04);
-	output.textWriteText("\t#石か草か\r\n");
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, lbl_80481FC0@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r3, lbl_80481FC0@l
-	stw      r30, 0x18(r1)
-	or.      r30, r5, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bne      lbl_802102E8
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0x1cc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_802102E8:
-	lwz      r4, 0x414(r29)
-	mr       r3, r29
-	bl       textWriteTab__6StreamFi
-	lwz      r0, 8(r30)
-	mr       r3, r29
-	extsh    r4, r0
-	bl       writeShort__6StreamFs
-	mr       r3, r29
-	addi     r4, r31, 0xa0
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r29)
-	mr       r3, r29
-	bl       textWriteTab__6StreamFi
-	lha      r4, 4(r30)
-	mr       r3, r29
-	bl       writeShort__6StreamFs
-	mr       r3, r29
-	addi     r4, r31, 0xb0
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	output.writeShort(genWeedParm->mWeedType);
+	output.textWriteText("\t#石か草か\r\n"); // 'stone or grass'
 }
 
 /*
@@ -2278,55 +604,14 @@ lbl_802102E8:
  * Address:	80210358
  * Size:	00008C
  */
-void ItemWeed::Mgr::generatorRead(Stream& input, Game::GenItemParm* genItemParm, unsigned long version)
+void Mgr::generatorRead(Stream& input, GenItemParm* genItemParm, unsigned long version)
 {
 	GenWeedParm* genWeedParm = static_cast<GenWeedParm*>(genItemParm);
 	P2ASSERTLINE(474, genWeedParm != nullptr);
-	genWeedParm->_08 = input.readShort();
+	genWeedParm->mCount = input.readShort();
 	if ('0001' <= version) {
-		genWeedParm->_04 = input.readShort();
+		genWeedParm->mWeedType = input.readShort();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	or.      r30, r5, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bne      lbl_8021039C
-	lis      r3, lbl_80481FD8@ha
-	lis      r5, lbl_80481FE8@ha
-	addi     r3, r3, lbl_80481FD8@l
-	li       r4, 0x1da
-	addi     r5, r5, lbl_80481FE8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8021039C:
-	mr       r3, r29
-	bl       readShort__6StreamFv
-	lis      r4, 0x30303031@ha
-	extsh    r3, r3
-	addi     r0, r4, 0x30303031@l
-	stw      r3, 8(r30)
-	cmplw    r31, r0
-	blt      lbl_802103C8
-	mr       r3, r29
-	bl       readShort__6StreamFv
-	sth      r3, 4(r30)
-
-lbl_802103C8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -2334,163 +619,16 @@ lbl_802103C8:
  * Address:	802103E4
  * Size:	0001DC
  */
-BaseItem* ItemWeed::Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenItemParm* genItemParm)
+BaseItem* Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenItemParm* genItemParm)
 {
 	GenWeedParm* genWeedParm = static_cast<GenWeedParm*>(genItemParm);
-	P2ASSERTLINE(484, genWeedParm != nullptr);
+	P2ASSERTLINE(484, genWeedParm);
 	Item* item = new Item();
 	entry(item);
-	InitArg initArg;
-	initArg._08 = genWeedParm->_04;
-	initArg._04 = genWeedParm->_08;
+	InitArg initArg(genWeedParm->mCount, (cWeedType)genWeedParm->mWeedType);
 	item->init(&initArg);
 	item->setPosition(position, false);
 	return item;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr.       r30, r6
-	  stw       r29, 0x24(r1)
-	  mr        r29, r4
-	  stw       r28, 0x20(r1)
-	  mr        r28, r3
-	  bne-      .loc_0x48
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x1FD8
-	  li        r4, 0x1E4
-	  addi      r5, r5, 0x1FE8
-	  crclr     6, 0x6
-	  bl        -0x1E5DE8
-
-	.loc_0x48:
-	  li        r3, 0x1F0
-	  bl        -0x1EC58C
-	  mr.       r31, r3
-	  beq-      .loc_0x168
-	  li        r4, 0x412
-	  bl        -0x44458
-	  lis       r3, 0x804C
-	  li        r0, 0
-	  subi      r4, r3, 0xDC
-	  li        r3, 0x1C
-	  stw       r4, 0x0(r31)
-	  addi      r4, r4, 0x1B0
-	  stw       r4, 0x178(r31)
-	  stw       r0, 0x1D8(r31)
-	  stw       r0, 0x1DC(r31)
-	  bl        -0x1EC5C4
-	  cmplwi    r3, 0
-	  beq-      .loc_0xBC
-	  lis       r4, 0x804C
-	  lis       r5, 0x804C
-	  subi      r0, r4, 0xF4
-	  lis       r4, 0x804C
-	  stw       r0, 0x0(r3)
-	  li        r6, -0x1
-	  subi      r5, r5, 0x10C
-	  addi      r0, r4, 0x1D0
-	  stw       r6, 0x18(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0x0(r3)
-
-	.loc_0xBC:
-	  stw       r3, 0x1D8(r31)
-	  mr        r4, r31
-	  lwz       r3, 0x1D8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r3, 0x804C
-	  lis       r4, 0x804C
-	  subi      r5, r3, 0x344
-	  lis       r3, 0x804C
-	  stw       r5, 0x0(r31)
-	  addi      r5, r5, 0x1B0
-	  subi      r4, r4, 0x40DC
-	  subi      r0, r3, 0x11C
-	  stw       r5, 0x178(r31)
-	  li        r3, 0x8
-	  stw       r4, 0x1E0(r31)
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x1EC648
-	  mr.       r0, r3
-	  beq-      .loc_0x11C
-	  bl        -0xDC49C
-	  mr        r0, r3
-
-	.loc_0x11C:
-	  stw       r0, 0x114(r31)
-	  addi      r0, r31, 0x138
-	  lfs       f0, -0x4440(r2)
-	  addi      r4, r31, 0x1E0
-	  addi      r6, r31, 0x1C4
-	  li        r5, 0
-	  stfs      f0, 0x1D0(r31)
-	  li        r7, 0
-	  stw       r0, 0x1E4(r31)
-	  lwz       r3, 0x114(r31)
-	  bl        -0xDC478
-	  mr        r3, r31
-	  li        r4, 0
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xB4(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x1EC(r31)
-
-	.loc_0x168:
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        -0x42D2C
-	  lis       r3, 0x804B
-	  lha       r6, 0x4(r30)
-	  lwz       r5, 0x8(r30)
-	  subi      r0, r3, 0x5D0C
-	  lis       r4, 0x804C
-	  mr        r3, r31
-	  stw       r0, 0x8(r1)
-	  subi      r0, r4, 0x454
-	  addi      r4, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  bl        -0xD55C0
-	  mr        r3, r31
-	  mr        r4, r29
-	  li        r5, 0
-	  bl        -0xD53F0
-	  lwz       r0, 0x34(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802105C0
- * Size:	00000C
- */
-const char* ItemWeed::InitArg::getName()
-{
-	return "ItemWeed::InitArg";
-	/*
-	lis      r3, lbl_80482080@ha
-	addi     r3, r3, lbl_80482080@l
-	blr
-	*/
 }
 
 /*
@@ -2498,14 +636,14 @@ const char* ItemWeed::InitArg::getName()
  * Address:	802105CC
  * Size:	000134
  */
-ItemWeed::Mgr::~Mgr() { }
+Mgr::~Mgr() { }
 
 /*
  * --INFO--
  * Address:	80210700
  * Size:	000148
  */
-BaseItem* ItemWeed::Mgr::doNew()
+BaseItem* Mgr::doNew()
 {
 	return new Item();
 	/*
@@ -2608,21 +746,21 @@ lbl_80210830:
  * Address:	80210848
  * Size:	00000C
  */
-u32 ItemWeed::Mgr::generatorGetID() { return 'weed'; }
+u32 Mgr::generatorGetID() { return 'weed'; }
 
 /*
  * --INFO--
  * Address:	80210854
  * Size:	00000C
  */
-u32 ItemWeed::Mgr::generatorLocalVersion() { return '0001'; }
+u32 Mgr::generatorLocalVersion() { return '0001'; }
 
 /*
  * --INFO--
  * Address:	80210860
  * Size:	000008
  */
-char* ItemWeed::Item::getCreatureName()
+char* Item::getCreatureName()
 {
 	return "Weed";
 	/*
@@ -2636,28 +774,28 @@ char* ItemWeed::Item::getCreatureName()
  * Address:	80210868
  * Size:	000008
  */
-BaseFlockMgr* ItemWeed::Item::getFlockMgr() { return mFlockMgr; }
+BaseFlockMgr* Item::getFlockMgr() { return mFlockMgr; }
 
 /*
  * --INFO--
  * Address:	80210870
  * Size:	000004
  */
-void ItemWeed::Item::makeTrMatrix() { }
+void Item::makeTrMatrix() { }
 
 /*
  * --INFO--
  * Address:	80210874
  * Size:	000008
  */
-Matrixf* ItemWeed::Item::DummyShape::getMatrix(int) { return mMatrix; }
+Matrixf* Item::DummyShape::getMatrix(int) { return mMatrix; }
 
 /*
  * --INFO--
  * Address:	8021087C
  * Size:	000034
  */
-// void doAI__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> Fv()
+// void doAI__Q24Game74FSMItem<Item, FSM, State> Fv()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2682,7 +820,7 @@ Matrixf* ItemWeed::Item::DummyShape::getMatrix(int) { return mMatrix; }
  * Address:	802108B0
  * Size:	000118
  */
-ItemWeed::WeedMgr::~WeedMgr()
+WeedMgr::~WeedMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2769,7 +907,7 @@ lbl_802109AC:
  * Address:	802109C8
  * Size:	000088
  */
-// void ObjectMgr<Game::ItemWeed::Weed>::~ObjectMgr()
+// void ObjectMgr<Weed>::~ObjectMgr()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -2818,14 +956,14 @@ lbl_802109AC:
  * Address:	80210A50
  * Size:	000010
  */
-bool ItemWeed::Weed::isWeed() { return _40 == 0; }
+bool Weed::isWeed() { return _40 == 0; }
 
 /*
  * --INFO--
  * Address:	80210A60
  * Size:	00002C
  */
-// void getNext__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
+// void getNext__Q24Game32TFlockMgr<Weed> FPv()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -2847,7 +985,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210A8C
  * Size:	00002C
  */
-// void getStart__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
+// void getStart__Q24Game32TFlockMgr<Weed> Fv()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -2869,7 +1007,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210AB8
  * Size:	000024
  */
-// void killFlock__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPQ24Game6TFlock()
+// void killFlock__Q24Game32TFlockMgr<Weed> FPQ24Game6TFlock()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -2886,77 +1024,77 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210ADC
  * Size:	000004
  */
-// void onDamage__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Itemf() { }
+// void onDamage__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4Itemf() { }
 
 /*
  * --INFO--
  * Address:	80210AE0
  * Size:	000004
  */
-// void onKeyEvent__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent() { }
+// void onKeyEvent__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent() { }
 
 /*
  * --INFO--
  * Address:	80210AE4
  * Size:	000004
  */
-// void onBounce__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle() { }
+// void onBounce__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle() { }
 
 /*
  * --INFO--
  * Address:	80210AE8
  * Size:	000004
  */
-// void onPlatCollision__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent() { }
+// void onPlatCollision__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent() { }
 
 /*
  * --INFO--
  * Address:	80210AEC
  * Size:	000004
  */
-// void onCollision__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent() { }
+// void onCollision__Q24Game32ItemState<Item> FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent() { }
 
 /*
  * --INFO--
  * Address:	80210AF0
  * Size:	000004
  */
-// void init__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemPQ24Game8StateArg() { }
+// void init__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4ItemPQ24Game8StateArg() { }
 
 /*
  * --INFO--
  * Address:	80210AF4
  * Size:	000004
  */
-// void exec__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void exec__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210AF8
  * Size:	000004
  */
-// void cleanup__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void cleanup__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210AFC
  * Size:	000004
  */
-// void resume__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void resume__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210B00
  * Size:	000004
  */
-// void restart__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void restart__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210B04
  * Size:	000030
  */
-// void transit__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
+// void transit__Q24Game31FSMState<Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2980,14 +1118,14 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210B34
  * Size:	000004
  */
-// void init__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void init__Q24Game35StateMachine<Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210B38
  * Size:	000064
  */
-// void create__Q24Game35StateMachine<Game::ItemWeed::Item> Fi()
+// void create__Q24Game35StateMachine<Item> Fi()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -3023,7 +1161,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210B9C
  * Size:	000060
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::birth()
+// void MonoObjectMgr<Weed>::birth()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -3062,7 +1200,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210BFC
  * Size:	000054
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::kill(Game::ItemWeed::Weed*)
+// void MonoObjectMgr<Weed>::kill(Weed*)
 // {
 // 	/*
 // 	lwz      r0, 0x24(r3)
@@ -3098,7 +1236,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210C50
  * Size:	000040
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::getNext(void*)
+// void MonoObjectMgr<Weed>::getNext(void*)
 // {
 // 	/*
 // 	lwz      r5, 0x24(r3)
@@ -3131,7 +1269,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210C90
  * Size:	000030
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::getStart()
+// void MonoObjectMgr<Weed>::getStart()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -3154,7 +1292,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210CC0
  * Size:	000008
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::getEnd()
+// void MonoObjectMgr<Weed>::getEnd()
 // {
 // 	/*
 // 	lwz      r3, 0x24(r3)
@@ -3167,7 +1305,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210CC8
  * Size:	000008
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::getTo()
+// void MonoObjectMgr<Weed>::getTo()
 // {
 // 	/*
 // 	lwz      r3, 0x24(r3)
@@ -3180,7 +1318,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210CD0
  * Size:	000050
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::doAnimation()
+// void MonoObjectMgr<Weed>::doAnimation()
 // {
 // 	/*
 // 	lwz      r4, 0x24(r3)
@@ -3217,7 +1355,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210D20
  * Size:	000050
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::doEntry()
+// void MonoObjectMgr<Weed>::doEntry()
 // {
 // 	/*
 // 	lwz      r4, 0x24(r3)
@@ -3254,7 +1392,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210D70
  * Size:	000050
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::doSetView(int)
+// void MonoObjectMgr<Weed>::doSetView(int)
 // {
 // 	/*
 // 	lwz      r4, 0x24(r3)
@@ -3291,7 +1429,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210DC0
  * Size:	000050
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::doViewCalc()
+// void MonoObjectMgr<Weed>::doViewCalc()
 // {
 // 	/*
 // 	lwz      r4, 0x24(r3)
@@ -3328,7 +1466,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210E10
  * Size:	000050
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::doSimulation(float)
+// void MonoObjectMgr<Weed>::doSimulation(f32)
 // {
 // 	/*
 // 	lwz      r4, 0x24(r3)
@@ -3365,7 +1503,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210E60
  * Size:	000050
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::doDirectDraw(Graphics&)
+// void MonoObjectMgr<Weed>::doDirectDraw(Graphics&)
 // {
 // 	/*
 // 	lwz      r4, 0x24(r3)
@@ -3402,7 +1540,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210EB0
  * Size:	000018
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::resetMgr()
+// void MonoObjectMgr<Weed>::resetMgr()
 // {
 // 	/*
 // 	li       r0, 0
@@ -3419,7 +1557,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210EC8
  * Size:	000030
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::clearMgr()
+// void MonoObjectMgr<Weed>::clearMgr()
 // {
 // 	/*
 // 	li       r0, 0
@@ -3446,14 +1584,14 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210EF8
  * Size:	000004
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::onAlloc() { }
+// void MonoObjectMgr<Weed>::onAlloc() { }
 
 /*
  * --INFO--
  * Address:	80210EFC
  * Size:	00003C
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::getEmptyIndex()
+// void MonoObjectMgr<Weed>::getEmptyIndex()
 // {
 // 	/*
 // 	lwz      r0, 0x24(r3)
@@ -3485,7 +1623,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210F38
  * Size:	000010
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::get(void*)
+// void MonoObjectMgr<Weed>::get(void*)
 // {
 // 	/*
 // 	mulli    r0, r4, 0x54
@@ -3500,7 +1638,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210F48
  * Size:	00002C
  */
-// void Container<Game::ItemWeed::Weed>::getObject(void*)
+// void Container<Weed>::getObject(void*)
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -3522,21 +1660,21 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80210F74
  * Size:	000008
  */
-// u32 Container<Game::ItemWeed::Weed>::getAt(int) { return 0x0; }
+// u32 Container<Weed>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80210F7C
  * Size:	000008
  */
-// u32 Container<Game::ItemWeed::Weed>::getTo() { return 0x0; }
+// u32 Container<Weed>::getTo() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80210F84
  * Size:	0001D4
  */
-// void ObjectMgr<Game::ItemWeed::Weed>::doDirectDraw(Graphics&)
+// void ObjectMgr<Weed>::doDirectDraw(Graphics&)
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -3680,7 +1818,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211158
  * Size:	00004C
  */
-// void Iterator<Game::ItemWeed::Weed>::isDone()
+// void Iterator<Weed>::isDone()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -3710,7 +1848,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	802111A4
  * Size:	0001D4
  */
-// void ObjectMgr<Game::ItemWeed::Weed>::doSimulation(float)
+// void ObjectMgr<Weed>::doSimulation(f32)
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -3854,7 +1992,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211378
  * Size:	0001D4
  */
-// void ObjectMgr<Game::ItemWeed::Weed>::doViewCalc()
+// void ObjectMgr<Weed>::doViewCalc()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -3998,7 +2136,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	8021154C
  * Size:	0001D4
  */
-// void ObjectMgr<Game::ItemWeed::Weed>::doSetView(int)
+// void ObjectMgr<Weed>::doSetView(int)
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -4142,7 +2280,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211720
  * Size:	0001D4
  */
-// void ObjectMgr<Game::ItemWeed::Weed>::doEntry()
+// void ObjectMgr<Weed>::doEntry()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -4286,7 +2424,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	802118F4
  * Size:	0001D4
  */
-// void ObjectMgr<Game::ItemWeed::Weed>::doAnimation()
+// void ObjectMgr<Weed>::doAnimation()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -4430,7 +2568,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211AC8
  * Size:	000188
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::alloc(int)
+// void MonoObjectMgr<Weed>::alloc(int)
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -4551,7 +2689,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211C50
  * Size:	00009C
  */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::MonoObjectMgr()
+// void MonoObjectMgr<Weed>::MonoObjectMgr()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -4601,7 +2739,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211CEC
  * Size:	00009C
  */
-// void transit__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
+// void transit__Q24Game35StateMachine<Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4658,7 +2796,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211D88
  * Size:	000084
  */
-// void registerState__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ24Game31FSMState<Game::ItemWeed::Item>()
+// void registerState__Q24Game35StateMachine<Item> FPQ24Game31FSMState<Item>()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4709,7 +2847,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211E0C
  * Size:	000038
  */
-// void exec__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item()
+// void exec__Q24Game35StateMachine<Item> FPQ34Game8ItemWeed4Item()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4737,7 +2875,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211E44
  * Size:	000044
  */
-// void onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRCQ28SysShape8KeyEvent()
+// void onKeyEvent__Q24Game74FSMItem<Item, FSM, State> FRCQ28SysShape8KeyEvent()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4768,7 +2906,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211E88
  * Size:	000044
  */
-// void platCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRQ24Game9PlatEvent()
+// void platCallback__Q24Game74FSMItem<Item, FSM, State> FRQ24Game9PlatEvent()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4799,7 +2937,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211ECC
  * Size:	000044
  */
-// void collisionCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRQ24Game9CollEvent()
+// void collisionCallback__Q24Game74FSMItem<Item, FSM, State> FRQ24Game9CollEvent()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4830,7 +2968,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211F10
  * Size:	000044
  */
-// void bounceCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FPQ23Sys8Triangle()
+// void bounceCallback__Q24Game74FSMItem<Item, FSM, State> FPQ23Sys8Triangle()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4861,7 +2999,7 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
  * Address:	80211F54
  * Size:	000014
  */
-// void isFlagAlive__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fi()
+// void isFlagAlive__Q24Game32TFlockMgr<Weed> Fi()
 // {
 // 	/*
 // 	lwz      r3, 0x68(r3)
@@ -4872,518 +3010,5 @@ bool ItemWeed::Weed::isWeed() { return _40 == 0; }
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	80211F68
- * Size:	00002C
- */
-// void getEnd__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	lwzu     r12, 0x3c(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80211F94
- * Size:	00002C
- */
-// void get__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	lwzu     r12, 0x3c(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80211FC0
- * Size:	000038
- */
-// void Iterator<Game::ItemWeed::Weed>::operator*()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	mr       r4, r3
-// 	stw      r0, 0x14(r1)
-// 	lwz      r3, 8(r3)
-// 	lwz      r4, 4(r4)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80211FF8
- * Size:	0000E4
- */
-// void Iterator<Game::ItemWeed::Weed>::next()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	lwz      r0, 0xc(r3)
-// 	cmplwi   r0, 0
-// 	bne      lbl_80212038
-// 	lwz      r3, 8(r31)
-// 	lwz      r4, 4(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 4(r31)
-// 	b        lbl_802120C8
-
-// lbl_80212038:
-// 	lwz      r3, 8(r31)
-// 	lwz      r4, 4(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 4(r31)
-// 	b        lbl_802120AC
-
-// lbl_80212058:
-// 	lwz      r3, 8(r31)
-// 	lwz      r4, 4(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0xc(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_802120C8
-// 	lwz      r3, 8(r31)
-// 	lwz      r4, 4(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 4(r31)
-
-// lbl_802120AC:
-// 	mr       r3, r31
-// 	lwz      r12, 0(r31)
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_80212058
-
-// lbl_802120C8:
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	802120DC
- * Size:	0000DC
- */
-// void Iterator<Game::ItemWeed::Weed>::first()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	lwz      r0, 0xc(r3)
-// 	cmplwi   r0, 0
-// 	bne      lbl_80212118
-// 	lwz      r3, 8(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 4(r31)
-// 	b        lbl_802121A4
-
-// lbl_80212118:
-// 	lwz      r3, 8(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x18(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 4(r31)
-// 	b        lbl_80212188
-
-// lbl_80212134:
-// 	lwz      r3, 8(r31)
-// 	lwz      r4, 4(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x20(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r4, r3
-// 	lwz      r3, 0xc(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	bne      lbl_802121A4
-// 	lwz      r3, 8(r31)
-// 	lwz      r4, 4(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x14(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	stw      r3, 4(r31)
-
-// lbl_80212188:
-// 	mr       r3, r31
-// 	lwz      r12, 0(r31)
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	clrlwi.  r0, r3, 0x18
-// 	beq      lbl_80212134
-
-// lbl_802121A4:
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	802121B8
- * Size:	000028
- */
-// void __sinit_itemWeed_cpp()
-// {
-// 	/*
-// 	lis      r4, __float_nan@ha
-// 	li       r0, -1
-// 	lfs      f0, __float_nan@l(r4)
-// 	lis      r3, lbl_804BFBA0@ha
-// 	stw      r0, lbl_80515BD8@sda21(r13)
-// 	stfsu    f0, lbl_804BFBA0@l(r3)
-// 	stfs     f0, lbl_80515BDC@sda21(r13)
-// 	stfs     f0, 4(r3)
-// 	stfs     f0, 8(r3)
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	802121E0
- * Size:	000008
- */
-// void @32 @__dt__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-// {
-// 	/*
-// 	addi     r3, r3, -32
-// 	b        "__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	802121E8
- * Size:	000008
- */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @resetMgr()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	802121F0
- * Size:	000008
- */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doDirectDraw(Graphics&)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	802121F8
- * Size:	000008
- */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doSimulation(float)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212200
- * Size:	000008
- */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doViewCalc()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212208
- * Size:	000008
- */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doSetView(int)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212210
- * Size:	000008
- */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doEntry()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212218
- * Size:	000008
- */
-// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doAnimation()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212220
- * Size:	000008
- */
-// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doDirectDraw(Graphics&)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212228
- * Size:	000008
- */
-// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doSimulation(float)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212230
- * Size:	000008
- */
-// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doViewCalc()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212238
- * Size:	000008
- */
-// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doSetView(int)
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212240
- * Size:	000008
- */
-// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doEntry()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212248
- * Size:	000008
- */
-// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doAnimation()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        "doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212250
- * Size:	000008
- */
-// void @32 @getEnd__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-// {
-// 	/*
-// 	addi     r3, r3, -32
-// 	b        "getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212258
- * Size:	000008
- */
-// void @32 @getStart__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-// {
-// 	/*
-// 	addi     r3, r3, -32
-// 	b        "getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212260
- * Size:	000008
- */
-// void @32 @getNext__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
-// {
-// 	/*
-// 	addi     r3, r3, -32
-// 	b        "getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212268
- * Size:	000008
- */
-// void @32 @get__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
-// {
-// 	/*
-// 	addi     r3, r3, -32
-// 	b        "get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212270
- * Size:	000008
- */
-// @32 @Game::ItemWeed::WeedMgr::~WeedMgr()
-// {
-// 	/*
-// 	addi     r3, r3, -32
-// 	b        __dt__Q34Game8ItemWeed7WeedMgrFv
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212278
- * Size:	000008
- */
-// void @376 @onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRCQ28SysShape8KeyEvent()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  subi      r3, r3, 0x178
-// 	  b         -0x438
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80212280
- * Size:	000008
- */
-// @48 @Game::ItemWeed::Mgr::~Mgr()
-// {
-// 	/*
-// 	addi     r3, r3, -48
-// 	b        __dt__Q34Game8ItemWeed3MgrFv
-// 	*/
-// }
-
+} // namespace ItemWeed
 } // namespace Game

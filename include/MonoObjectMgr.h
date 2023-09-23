@@ -4,22 +4,42 @@
 #include "types.h"
 #include "ObjectMgr.h"
 
-// TODO: this needs fixing, sigh
 template <typename T>
 struct MonoObjectMgr : public ObjectMgr<T> {
 	MonoObjectMgr();
 
 	////////////////// VTABLE
-	virtual ~MonoObjectMgr() { }  // _08 (weak)
-	virtual void* getNext(void*); // _14 (weak)
-	virtual void* getStart();     // _18 (weak)
-	virtual void* getEnd();       // _1C (weak)
-	virtual T* get(void*);        // _20 (weak)
-	virtual T* getAt(int index)   // _24 (weak)
+	virtual ~MonoObjectMgr() { }     // _08 (weak)
+	virtual void* getNext(void* idx) // _14 (weak)
+	{
+		for (int i = (int)idx + 1; i < mMax; i++) {
+			if (mOpenIds[i] == 0) {
+				return (void*)i;
+			}
+		}
+
+		return (void*)mMax;
+	}
+	virtual void* getStart() // _18 (weak)
+	{
+		return getNext((void*)-1);
+	}
+	virtual void* getEnd() // _1C (weak)
+	{
+		return (void*)mMax;
+	}
+	virtual T* get(void* idx) // _20 (weak)
+	{
+		return &mArray[(int)idx];
+	}
+	virtual T* getAt(int index) // _24 (weak)
 	{
 		return &mArray[index];
 	}
-	virtual int getTo();       // _28 (weak)
+	virtual int getTo() // _28 (weak)
+	{
+		return mMax;
+	}
 	virtual void doAnimation() // _64 (weak, thunk at _34)
 	{
 		for (int i = 0; i < mMax; i++) {
@@ -52,11 +72,11 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-	virtual void doSimulation(f32 p1) // _74 (weak, thunk at _44)
+	virtual void doSimulation(f32 timeStep) // _74 (weak, thunk at _44)
 	{
 		for (int i = 0; i < mMax; i++) {
 			if (mOpenIds[i] == false) {
-				mArray[i].doSimulation(p1);
+				mArray[i].doSimulation(timeStep);
 			}
 		}
 	}
@@ -68,19 +88,8 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-	virtual T* birth() // _7C (weak)
-	{
-		int index = getEmptyIndex();
-		T* result;
-		if (index != -1) {
-			mOpenIds[index] = false;
-			result          = &mArray[index];
-			mActiveCount++;
-		} else {
-			result = nullptr;
-		}
-		return result;
-	}
+	virtual T* birth(); // _7C (weak)
+
 	virtual void resetMgr() // _80 (weak, thunk at _54)
 	{
 		mArray       = nullptr;
@@ -98,34 +107,85 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	virtual void onAlloc() { } // _88 (weak)
 	////////////////// VTABLE END
 
-	// TODO: Check if this matches
 	void kill(T* item);
-	// {
-	// 	for (int i = 0; i < mMax; i++) {
-	// 		if (&mArray[i] == item) {
-	// 			mOpenIds[i] = true;
-	// 			mActiveCount--;
-	// 			return;
-	// 		}
-	// 	}
-	// }
 
-	int getEmptyIndex()
-	{
-		for (int i = 0; i < mMax; i++) {
-			if (mOpenIds[i] == true) {
-				return i;
-			}
-		}
-		return -1;
-	}
+	int getEmptyIndex();
 
-	void alloc(int);
+	void alloc(int count);
 
+	// _00		= VTBL
+	// _00-_20  = ObjectMgr
 	int mActiveCount; // _20
 	int mMax;         // _24
 	T* mArray;        // _28
 	u8* mOpenIds;     // _2C
 };
 
+template <typename T>
+MonoObjectMgr<T>::MonoObjectMgr()
+{
+	_18          = 1;
+	mMax         = 0;
+	mActiveCount = 0;
+	mArray       = nullptr;
+	mOpenIds     = nullptr;
+}
+
+template <typename T>
+void MonoObjectMgr<T>::alloc(int count)
+{
+	mArray       = new T[count];
+	mMax         = count;
+	mActiveCount = 0;
+	mOpenIds     = new u8[count];
+
+	for (int i = 0; i < count; i++) {
+		mOpenIds[i] = true;
+	}
+
+	onAlloc();
+
+	for (int i = 0; i < count; i++) {
+		mArray[i].constructor();
+	}
+}
+
+template <typename T>
+void MonoObjectMgr<T>::kill(T* item)
+{
+	for (int i = 0; i < mMax; i++) {
+		if (&mArray[i] == item) {
+			mOpenIds[i] = true;
+			mActiveCount--;
+			return;
+		}
+	}
+}
+
+template <typename T>
+int MonoObjectMgr<T>::getEmptyIndex()
+{
+	for (int i = 0; i < mMax; i++) {
+		if (mOpenIds[i] == true) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+template <typename T>
+T* MonoObjectMgr<T>::birth()
+{ // non-matching
+	int index = getEmptyIndex();
+	T* result;
+	if (index != -1) {
+		T* array        = mArray;
+		mOpenIds[index] = false;
+		result          = &array[index];
+		mActiveCount++;
+	} else {
+		result = nullptr;
+	}
+	return result;
+}
 #endif

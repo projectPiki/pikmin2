@@ -18,16 +18,28 @@ namespace ItemWeed {
 struct Item;
 struct WeedMgr;
 
-enum cWeedType {};
+enum cWeedType {
+	WEEDTYPE_Unk0 = 0,
+	WEEDTYPE_Unk1 = 1,
+};
 
-enum cState { WEEDSTATE_Wait = 0 };
+enum StateID {
+	WEED_Wait = 0,
+	WEED_StateCount, // 1
+};
 
 struct InitArg : public CreatureInitArg {
-	virtual const char* getName(); // _08 (weak)
+	inline InitArg(int count, cWeedType type)
+	    : mCount(count)
+	    , mWeedType(type)
+	{
+	}
+
+	virtual const char* getName() { return "ItemWeed::InitArg"; } // _08 (weak)
 
 	// _00     = VTBL
-	int _04; // _04
-	int _08; // _08
+	int mCount;          // _04
+	cWeedType mWeedType; // _08
 };
 
 struct FSM : public ItemFSM<Item> {
@@ -49,7 +61,7 @@ struct State : public ItemState<Item> {
 
 struct WaitState : public State {
 	inline WaitState()
-	    : State(WEEDSTATE_Wait)
+	    : State(WEED_Wait)
 	{
 	}
 
@@ -95,7 +107,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 	// _00-_1E0 = FSMItem
 	DummyShape mDummyShape; // _1E0
 	WeedMgr* mFlockMgr;     // _1E8
-	u32 _1EC;               // _1EC
+	cWeedType mWeedType;    // _1EC
 };
 
 struct Mgr : public TNodeItemMgr {
@@ -131,7 +143,7 @@ struct Weed : public TFlock {
 	// unused/inlined:
 	void init(ItemWeed::WeedMgr*, Vector3f&);
 	void setPosition(Vector3f&);
-	void update() {};
+	void update();
 
 	inline void doAnimation() { }
 	inline void doEntry() { }
@@ -141,8 +153,8 @@ struct Weed : public TFlock {
 	inline void doDirectDraw(Graphics& gfx) { }
 
 	// _00-_44 = TFlock
-	Vector3f _44; // _44
-	WeedMgr* _50; // _50
+	Vector3f mScale;    // _44
+	WeedMgr* mFlockMgr; // _50
 };
 
 struct WeedMgr : public TFlockMgr<Weed> {
@@ -168,13 +180,13 @@ extern Mgr* mgr;
 struct GenWeedParm : public Game::GenItemParm {
 	inline GenWeedParm()
 	{
-		_08 = 50;
-		_04 = 0;
+		mCount    = 50;
+		mWeedType = Game::ItemWeed::WEEDTYPE_Unk0;
 	}
 
 	// _00     = VTBL
-	s16 _04; // _04
-	int _08; // _08
+	s16 mWeedType; // _04
+	int mCount;    // _08
 };
 
 #endif
