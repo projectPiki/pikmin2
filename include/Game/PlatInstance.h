@@ -33,7 +33,7 @@ struct PlatAddInstanceArg {
 	Platform* mPlatform; // _10
 	Matrixf* mMatrix;    // _14
 	bool _18;            // _18
-	f32 _1C;             // _1C
+	f32 mRadius;         // _1C
 };
 
 struct PlatInstance : public CellObject {

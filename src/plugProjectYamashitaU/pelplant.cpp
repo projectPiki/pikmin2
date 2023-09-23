@@ -219,13 +219,13 @@ void Obj::doDebugDraw(Graphics& gfx)
 		PerspPrintfInfo info;
 		Vector3f pos(mPosition.x, 100.0f + mPosition.y, mPosition.z);
 
-		info._14 = Color4(0xC8, 0xC8, 0xFF, 0xC8);
-		info._18 = Color4(0x64, 0x64, 0xFF, 0xC8);
+		info.mColorA = Color4(0xC8, 0xC8, 0xFF, 0xC8);
+		info.mColorB = Color4(0x64, 0x64, 0xFF, 0xC8);
 		gfx.perspPrintf(info, pos, "FARM_POW(%d) Grow%s", mFarmPow, (mFlags & PELPLANT_FLAGS_GROW) ? "on" : "off");
 
 		pos.y += 16.0f;
-		info._14 = Color4(0xFF, 0xC8, 0xFF, 0xC8);
-		info._18 = Color4(0xC8, 0x64, 0xFF, 0xC8);
+		info.mColorA = Color4(0xFF, 0xC8, 0xFF, 0xC8);
+		info.mColorB = Color4(0xC8, 0x64, 0xFF, 0xC8);
 		gfx.perspPrintf(info, pos, "%s %4.2f", mFsm->getCurrName(this), _2C0);
 	}
 }

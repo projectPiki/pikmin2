@@ -673,12 +673,12 @@ void GenObjectEnemy::render(Graphics& gfx, Game::Generator* gen)
 		}
 
 		PerspPrintfInfo info;
-		info._10 = 0.5f;
+		info.mScale = 0.5f;
 
 		gfx.initPrimDraw(nullptr);
 
-		info._14 = Color4(50, 100, 255, 255);
-		info._18 = Color4(50, 50, 150, 255);
+		info.mColorA = Color4(50, 100, 255, 255);
+		info.mColorB = Color4(50, 50, 150, 255);
 
 		gfx.initPerspPrintf(gfx.getViewport(0));
 

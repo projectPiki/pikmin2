@@ -30,9 +30,9 @@ struct PerspPrintfInfo {
 	    , _04(0)
 	    , _08(0)
 	    , _0C(0)
-	    , _10(x)
-	    , _14(Color4(0x66, 0x99, 0xFF, 0xFF))
-	    , _18(Color4(0, 0x66, 0xFF, 0xFF))
+	    , mScale(x)
+	    , mColorA(Color4(0x66, 0x99, 0xFF, 0xFF))
+	    , mColorB(Color4(0, 0x66, 0xFF, 0xFF))
 	{
 	}
 
@@ -40,9 +40,9 @@ struct PerspPrintfInfo {
 	u32 _04;               // _04
 	u32 _08;               // _08
 	int _0C;               // _0C
-	f32 _10;               // _10
-	Color4 _14;            // _14
-	Color4 _18;            // _18
+	f32 mScale;            // _10
+	Color4 mColorA;        // _14
+	Color4 mColorB;        // _18
 };
 
 struct _GraphicsParent {
