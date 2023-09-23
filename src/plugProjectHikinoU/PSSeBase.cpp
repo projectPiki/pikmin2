@@ -6,66 +6,6 @@
 #include "PSSystem/EnvSeBase.h"
 #include "PSSystem/PSSystemIF.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80490100
-    lbl_80490100:
-        .4byte 0x50535365
-        .4byte 0x42617365
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_80490110
-    lbl_80490110:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q38PSSystem9ClusterSe7Factory
-    __vt__Q38PSSystem9ClusterSe7Factory:
-        .4byte 0
-        .4byte 0
-        .4byte constructPart__Q38PSSystem9ClusterSe7FactoryFv
-        .4byte 0
-    .global __vt__Q38PSSystem9ClusterSe4Part
-    __vt__Q38PSSystem9ClusterSe4Part:
-        .4byte 0
-        .4byte 0
-        .4byte callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object
-    .global __vt__Q28PSSystem24EnvSe_PauseOffReservator
-    __vt__Q28PSSystem24EnvSe_PauseOffReservator:
-        .4byte 0
-        .4byte 0
-        .4byte reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv
-    .global __vt__Q28PSSystem9EnvSeBase
-    __vt__Q28PSSystem9EnvSeBase:
-        .4byte 0
-        .4byte 0
-        .4byte exec__Q28PSSystem9EnvSeBaseFv
-        .4byte play__Q28PSSystem9EnvSeBaseFv
-        .4byte getCastType__Q28PSSystem9EnvSeBaseFv
-        .4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051E1C0
-    lbl_8051E1C0:
-        .4byte 0x00000000
-    .global lbl_8051E1C4
-    lbl_8051E1C4:
-        .float 0.3
-    .global lbl_8051E1C8
-    lbl_8051E1C8:
-        .4byte 0x3ECCCCCD
-    .global lbl_8051E1CC
-    lbl_8051E1CC:
-        .float 1.0
-    .global lbl_8051E1D0
-    lbl_8051E1D0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
-
 namespace PSSystem {
 
 /*
@@ -73,64 +13,66 @@ namespace PSSystem {
  * Address:	80340838
  * Size:	0000A4
  */
-EnvSeBase::EnvSeBase(unsigned long soundID, f32 p2)
+EnvSeBase::EnvSeBase(u32 soundID, f32 p2)
     : JSULink(this)
-    , _14(0.0f)
-    , _18(0)
-    , _1C(2)
-    , _20(0)
+    , mMoveParam(0.0f, 0, 2, 0)
     , mSoundID((SoundID)soundID)
     , _28(p2)
     , _2C(0.0f)
     , _30(0.3f)
     , mSound(nullptr)
-    , _38(1)
-    , _39(0)
+    , mPauseFlag(1)
+    , mIsOn(false)
     , _3A(0)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	fmr      f31, f1
-	mr       r30, r3
-	mr       r31, r4
-	mr       r4, r30
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r3, __vt__Q28PSSystem9EnvSeBase@ha
-	lfs      f1, lbl_8051E1C0@sda21(r2)
-	addi     r0, r3, __vt__Q28PSSystem9EnvSeBase@l
-	li       r5, 0
-	stw      r0, 0x10(r30)
-	li       r4, 2
-	lfs      f0, lbl_8051E1C4@sda21(r2)
-	li       r0, 1
-	stfs     f1, 0x14(r30)
-	mr       r3, r30
-	stw      r5, 0x18(r30)
-	stw      r4, 0x1c(r30)
-	stb      r5, 0x20(r30)
-	stw      r31, 0x24(r30)
-	stfs     f31, 0x28(r30)
-	stfs     f1, 0x2c(r30)
-	stfs     f0, 0x30(r30)
-	stw      r5, 0x34(r30)
-	stb      r0, 0x38(r30)
-	stb      r5, 0x39(r30)
-	stb      r5, 0x3a(r30)
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000024
+ */
+void EnvSeBase::requestMoveParam(MoveParamSet param) { mMoveParam = param; }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00000CC
+ */
+void EnvSeBase::doMoveParamRequest()
+{
+	if (mMoveParam._08 == 2) {
+		return;
+	}
+	switch (mMoveParam._08) {
+	case 0:
+		mSound->setVolume(mMoveParam._00, mMoveParam._04, mMoveParam._0C);
+		break;
+	case 1:
+		mSound->setPitch(mMoveParam._00, mMoveParam._04, mMoveParam._0C);
+		break;
+
+	default:
+		P2ASSERTLINE(62, false);
+	}
+
+	mMoveParam._00 = 0.0f;
+	mMoveParam._04 = 0;
+	mMoveParam._08 = 2;
+	mMoveParam._0C = 0;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00001C
+ */
+void EnvSeBase::setPauseFlag(u8 flag)
+{
+	mPauseFlag = flag;
+	if (_3A) {
+		mPauseFlag = 0;
+	}
 }
 
 /*
@@ -140,251 +82,46 @@ EnvSeBase::EnvSeBase(unsigned long soundID, f32 p2)
  */
 void EnvSeBase::exec()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	lbz      r0, 0x39(r3)
-	cmplwi   r0, 0
-	bne      lbl_8034092C
-	lwz      r3, 0x34(r31)
-	cmplwi   r3, 0
-	beq      lbl_80340C20
-	lwz      r12, 0x10(r3)
-	li       r4, 0
-	lfs      f1, lbl_8051E1C0@sda21(r2)
-	li       r5, 5
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80340C20
+	if (!mIsOn) {
+		if (mSound) {
+			mSound->setVolume(0.0f, 0, 5);
+		}
+		return;
+	}
 
-lbl_8034092C:
-	lbz      r0, 0x38(r31)
-	cmpwi    r0, 1
-	beq      lbl_80340C20
-	bge      lbl_80340948
-	cmpwi    r0, 0
-	bge      lbl_80340954
-	b        lbl_80340C04
+	switch (mPauseFlag) {
+	case 1:
+		break;
+	case 0: {
+		JAISound* sound = play();
+		if (sound) {
+			setPanAndDolby(sound);
+			sound->setVolume(_28, 0, 0);
+			sound->setFxmix(0.4f, 0, 0);
+			sound->setVolume(1.0f, 20, 5);
+			sound->setFxmix(_30, 0, 0);
 
-lbl_80340948:
-	cmpwi    r0, 3
-	bge      lbl_80340C04
-	b        lbl_80340AAC
+			doMoveParamRequest();
+		}
+		break;
+	}
 
-lbl_80340954:
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	or.      r30, r3, r3
-	beq      lbl_80340C20
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lfs      f1, 0x28(r31)
-	lwz      r12, 0x10(r30)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lfs      f1, lbl_8051E1C8@sda21(r2)
-	lwz      r12, 0x10(r30)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lfs      f1, lbl_8051E1CC@sda21(r2)
-	lwz      r12, 0x10(r30)
-	li       r4, 0x14
-	li       r5, 5
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lfs      f1, 0x30(r31)
-	lwz      r12, 0x10(r30)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1c(r31)
-	cmpwi    r0, 2
-	beq      lbl_80340C20
-	cmpwi    r0, 1
-	beq      lbl_80340A4C
-	bge      lbl_80340A70
-	cmpwi    r0, 0
-	bge      lbl_80340A28
-	b        lbl_80340A70
+	case 2:
+		JAISound* sound = play();
+		if (sound) {
+			setPanAndDolby(sound);
+			sound->setVolume(_28, 0, 0);
+			sound->setFxmix(0.4f, 0, 0);
+			sound->setVolume(_2C, 0, 5);
+			sound->setFxmix(_30, 0, 0);
 
-lbl_80340A28:
-	lwz      r3, 0x34(r31)
-	lfs      f1, 0x14(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r4, 0x18(r31)
-	lwz      r12, 0x1c(r12)
-	lbz      r5, 0x20(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_80340A8C
-
-lbl_80340A4C:
-	lwz      r3, 0x34(r31)
-	lfs      f1, 0x14(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r4, 0x18(r31)
-	lwz      r12, 0x2c(r12)
-	lbz      r5, 0x20(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_80340A8C
-
-lbl_80340A70:
-	lis      r3, lbl_80490100@ha
-	lis      r5, lbl_80490110@ha
-	addi     r3, r3, lbl_80490100@l
-	li       r4, 0x3e
-	addi     r5, r5, lbl_80490110@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80340A8C:
-	lfs      f0, lbl_8051E1C0@sda21(r2)
-	li       r3, 0
-	li       r0, 2
-	stfs     f0, 0x14(r31)
-	stw      r3, 0x18(r31)
-	stw      r0, 0x1c(r31)
-	stb      r3, 0x20(r31)
-	b        lbl_80340C20
-
-lbl_80340AAC:
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	or.      r30, r3, r3
-	beq      lbl_80340C20
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lfs      f1, 0x28(r31)
-	lwz      r12, 0x10(r30)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lfs      f1, lbl_8051E1C8@sda21(r2)
-	lwz      r12, 0x10(r30)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lfs      f1, 0x2c(r31)
-	lwz      r12, 0x10(r30)
-	li       r4, 0
-	li       r5, 5
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lfs      f1, 0x30(r31)
-	lwz      r12, 0x10(r30)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1c(r31)
-	cmpwi    r0, 2
-	beq      lbl_80340C20
-	cmpwi    r0, 1
-	beq      lbl_80340BA4
-	bge      lbl_80340BC8
-	cmpwi    r0, 0
-	bge      lbl_80340B80
-	b        lbl_80340BC8
-
-lbl_80340B80:
-	lwz      r3, 0x34(r31)
-	lfs      f1, 0x14(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r4, 0x18(r31)
-	lwz      r12, 0x1c(r12)
-	lbz      r5, 0x20(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_80340BE4
-
-lbl_80340BA4:
-	lwz      r3, 0x34(r31)
-	lfs      f1, 0x14(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r4, 0x18(r31)
-	lwz      r12, 0x2c(r12)
-	lbz      r5, 0x20(r31)
-	mtctr    r12
-	bctrl
-	b        lbl_80340BE4
-
-lbl_80340BC8:
-	lis      r3, lbl_80490100@ha
-	lis      r5, lbl_80490110@ha
-	addi     r3, r3, lbl_80490100@l
-	li       r4, 0x3e
-	addi     r5, r5, lbl_80490110@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80340BE4:
-	lfs      f0, lbl_8051E1C0@sda21(r2)
-	li       r3, 0
-	li       r0, 2
-	stfs     f0, 0x14(r31)
-	stw      r3, 0x18(r31)
-	stw      r0, 0x1c(r31)
-	stb      r3, 0x20(r31)
-	b        lbl_80340C20
-
-lbl_80340C04:
-	lis      r3, lbl_80490100@ha
-	lis      r5, lbl_80490110@ha
-	addi     r3, r3, lbl_80490100@l
-	li       r4, 0x84
-	addi     r5, r5, lbl_80490110@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80340C20:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			doMoveParamRequest();
+		}
+		return;
+	default:
+		P2ASSERTLINE(132, false);
+		break;
+	}
 }
 
 /*
@@ -396,24 +133,6 @@ JAISound* EnvSeBase::play()
 {
 	spSysIF->playSystemSe(mSoundID, &mSound, 60);
 	return mSound;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0x3c
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r5, r31, 0x34
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	lwz      r4, 0x24(r31)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl
-	lwz      r0, 0x14(r1)
-	lwz      r3, 0x34(r31)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -421,36 +140,11 @@ JAISound* EnvSeBase::play()
  * Address:	80340C78
  * Size:	000034
  */
-void EnvSeMgr::setAllPauseFlag(unsigned char p1)
+void EnvSeMgr::setAllPauseFlag(u8 flag)
 {
-	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
-		EnvSeBase* obj = link->getObject();
-		obj->_38       = p1;
-		if (obj->_3A != 0) {
-			obj->_38 = 0;
-		}
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link; link = link->getNext()) {
+		link->getObject()->setPauseFlag(flag);
 	}
-	/*
-	lwz      r6, 0(r3)
-	li       r0, 0
-	b        lbl_80340CA0
-
-lbl_80340C84:
-	lwz      r5, 0(r6)
-	stb      r4, 0x38(r5)
-	lbz      r3, 0x3a(r5)
-	cmplwi   r3, 0
-	beq      lbl_80340C9C
-	stb      r0, 0x38(r5)
-
-lbl_80340C9C:
-	lwz      r6, 0xc(r6)
-
-lbl_80340CA0:
-	cmplwi   r6, 0
-	bne      lbl_80340C84
-	blr
-	*/
 }
 
 /*
@@ -460,24 +154,9 @@ lbl_80340CA0:
  */
 void EnvSeMgr::on()
 {
-	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
-		link->getObject()->_39 = 1;
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link; link = link->getNext()) {
+		link->getObject()->mIsOn = true;
 	}
-	/*
-	lwz      r4, 0(r3)
-	li       r0, 1
-	b        lbl_80340CC4
-
-lbl_80340CB8:
-	lwz      r3, 0(r4)
-	stb      r0, 0x39(r3)
-	lwz      r4, 0xc(r4)
-
-lbl_80340CC4:
-	cmplwi   r4, 0
-	bne      lbl_80340CB8
-	blr
-	*/
 }
 
 /*
@@ -485,11 +164,11 @@ lbl_80340CC4:
  * Address:	80340CD0
  * Size:	000050
  */
-void EnvSeMgr::on(unsigned long soundID, bool p2)
+void EnvSeMgr::on(u32 soundID, bool p2)
 {
-	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
-		if ((soundID == link->getObject()->mSoundID && p2 == true) || (soundID != link->getObject()->mSoundID && p2 == false)) {
-			link->getObject()->_39 = 1;
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link; link = link->getNext()) {
+		if ((soundID == link->getObject()->getSoundID() && p2 == true) || (soundID != link->getObject()->getSoundID() && p2 == false)) {
+			link->getObject()->mIsOn = true;
 		}
 	}
 	/*
@@ -534,23 +213,8 @@ lbl_80340D14:
 void EnvSeMgr::off()
 {
 	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
-		link->getObject()->_39 = 0;
+		link->getObject()->mIsOn = false;
 	}
-	/*
-	lwz      r4, 0(r3)
-	li       r0, 0
-	b        lbl_80340D38
-
-lbl_80340D2C:
-	lwz      r3, 0(r4)
-	stb      r0, 0x39(r3)
-	lwz      r4, 0xc(r4)
-
-lbl_80340D38:
-	cmplwi   r4, 0
-	bne      lbl_80340D2C
-	blr
-	*/
 }
 
 /*
@@ -558,8 +222,13 @@ lbl_80340D38:
  * Address:	80340D44
  * Size:	000050
  */
-void EnvSeMgr::off(unsigned long, bool)
+void EnvSeMgr::off(u32 soundID, bool p2)
 {
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link; link = link->getNext()) {
+		if ((soundID == link->getObject()->getSoundID() && p2 == true) || (soundID != link->getObject()->getSoundID() && p2 == false)) {
+			link->getObject()->mIsOn = false;
+		}
+	}
 	/*
 	lwz      r7, 0(r3)
 	clrlwi   r5, r5, 0x18
@@ -599,65 +268,21 @@ lbl_80340D88:
  * Address:	80340D94
  * Size:	00000C
  */
-void EnvSeMgr::reservePauseOff()
-{
-	// Generated from sth r0, 0x10(r3)
-	mReservator._04 = 31;
-}
+void EnvSeMgr::reservePauseOff() { mReservator._04 = 31; }
 
 /*
  * --INFO--
  * Address:	80340DA0
  * Size:	000070
  */
-void EnvSeMgr::setVolumeRequest(f32 p1, unsigned long p2, unsigned char p3)
+void EnvSeMgr::setVolumeRequest(f32 p1, u32 p2, u8 p3)
 {
-	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
-		// EnvSeBase* obj = link->getObject();
-		if (link->getObject() != nullptr) {
-			// TODO: There's almost certainly an inline here. Maybe a struct?
-			link->getObject()->_14 = p1;
-			link->getObject()->_18 = p2;
-			link->getObject()->_1C = 0;
-			link->getObject()->_20 = p3;
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link; link = link->getNext()) {
+		if (link->getObject()) {
+			MoveParamSet param(p1, p2, 0, p3);
+			link->getObject()->requestMoveParam(param);
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	lwz      r7, 0(r3)
-	li       r3, 0
-	b        lbl_80340E00
-
-lbl_80340DB0:
-	lwz      r6, 0(r7)
-	cmplwi   r6, 0
-	beq      lbl_80340DFC
-	stfs     f1, 0x18(r1)
-	lwz      r0, 0x18(r1)
-	stb      r5, 0x24(r1)
-	stw      r0, 8(r1)
-	lwz      r0, 0x24(r1)
-	lfs      f0, 8(r1)
-	stw      r0, 0x14(r1)
-	stfs     f0, 0x14(r6)
-	lbz      r0, 0x14(r1)
-	stw      r4, 0x18(r6)
-	stw      r3, 0x1c(r6)
-	stw      r4, 0x1c(r1)
-	stw      r3, 0x20(r1)
-	stw      r4, 0xc(r1)
-	stw      r3, 0x10(r1)
-	stb      r0, 0x20(r6)
-
-lbl_80340DFC:
-	lwz      r7, 0xc(r7)
-
-lbl_80340E00:
-	cmplwi   r7, 0
-	bne      lbl_80340DB0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -667,46 +292,15 @@ lbl_80340E00:
  */
 void EnvSeMgr::exec()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lhz      r3, 0x10(r3)
-	cmplwi   r3, 0
-	beq      lbl_80340E54
-	addi     r0, r3, -1
-	cmplwi   r3, 1
-	sth      r0, 0x10(r31)
-	bne      lbl_80340E54
-	addi     r3, r31, 0xc
-	lwz      r12, 0xc(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
+	if (mReservator._04) {
+		if (mReservator._04-- == 1) {
+			mReservator.reservatorTask();
+		}
+	}
 
-lbl_80340E54:
-	lwz      r31, 0(r31)
-	b        lbl_80340E74
-
-lbl_80340E5C:
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 0xc(r31)
-
-lbl_80340E74:
-	cmplwi   r31, 0
-	bne      lbl_80340E5C
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link; link = link->getNext()) {
+		link->getObject()->exec();
+	}
 }
 
 /*
@@ -714,32 +308,7 @@ lbl_80340E74:
  * Address:	80340E90
  * Size:	000038
  */
-void EnvSe_PauseOffReservator::reservatorTask()
-{
-	mMgr->setAllPauseFlag(0);
-	/*
-	lwz      r4, 8(r3)
-	li       r3, 0
-	lwz      r4, 0(r4)
-	b        lbl_80340EBC
-
-lbl_80340EA0:
-	lwz      r5, 0(r4)
-	stb      r3, 0x38(r5)
-	lbz      r0, 0x3a(r5)
-	cmplwi   r0, 0
-	beq      lbl_80340EB8
-	stb      r3, 0x38(r5)
-
-lbl_80340EB8:
-	lwz      r4, 0xc(r4)
-
-lbl_80340EBC:
-	cmplwi   r4, 0
-	bne      lbl_80340EA0
-	blr
-	*/
-}
+void EnvSe_PauseOffReservator::reservatorTask() { mMgr->setAllPauseFlag(0); }
 
 /*
  * --INFO--
@@ -752,17 +321,7 @@ ClusterSe::PartInitArg::PartInitArg()
 	_00[1]   = 0xff;
 	_00[2]   = 0xff;
 	_00[3]   = 0xff;
-	mSoundID = (SoundID)0xFFFFFFFF;
-	/*
-	li       r4, 0xff
-	li       r0, -1
-	stb      r4, 0(r3)
-	stb      r4, 1(r3)
-	stb      r4, 2(r3)
-	stb      r4, 3(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
+	mSoundID = PSSE_NULL;
 }
 
 /*
@@ -773,83 +332,30 @@ ClusterSe::PartInitArg::PartInitArg()
 ClusterSe::Part::Part()
     : mInitArg()
 {
-	/*
-	lis      r5, __vt__Q38PSSystem9ClusterSe4Part@ha
-	li       r4, 0xff
-	addi     r5, r5, __vt__Q38PSSystem9ClusterSe4Part@l
-	li       r0, -1
-	stw      r5, 0(r3)
-	stb      r4, 4(r3)
-	stb      r4, 5(r3)
-	stb      r4, 6(r3)
-	stb      r4, 7(r3)
-	stw      r0, 8(r3)
-	blr
-	*/
 }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00003C
+ */
 
 /*
  * --INFO--
  * Address:	80340F14
  * Size:	00003C
  */
-void ClusterSe::Part::callSe(JAInter::Object* obj)
-{
-	obj->startSound(mInitArg.mSoundID, 0);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r4, 8(r5)
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ClusterSe::Part::callSe(JAInter::Object* obj) { obj->startSound(mInitArg.mSoundID, 0); }
 
 /*
  * --INFO--
  * Address:	80340F50
  * Size:	000060
  */
-ClusterSe::Factory::Factory(unsigned char)
+ClusterSe::Factory::Factory(u8 p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, __vt__Q38PSSystem9ClusterSe7Factory@ha
-	stw      r0, 0x14(r1)
-	clrlwi.  r0, r4, 0x18
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r5, __vt__Q38PSSystem9ClusterSe7Factory@l
-	stw      r3, 0(r31)
-	stb      r4, 4(r31)
-	bne      lbl_80340F98
-	lis      r3, lbl_80490100@ha
-	lis      r5, lbl_80490110@ha
-	addi     r3, r3, lbl_80490100@l
-	li       r4, 0x1da
-	addi     r5, r5, lbl_80490110@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80340F98:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_04 = p1;
+	P2ASSERTLINE(474, p1);
 }
 
 /*
@@ -859,42 +365,9 @@ lbl_80340F98:
  */
 ClusterSe::Part* ClusterSe::Factory::constructPart()
 {
-	Part* parts = new Part[_04->_00[0]];
-	P2ASSERTLINE(484, parts != nullptr);
+	Part* parts = new Part[_04];
+	P2ASSERTLINE(484, parts);
 	return parts;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lbz      r31, 4(r3)
-	mulli    r3, r31, 0xc
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q38PSSystem9ClusterSe4PartFv@ha
-	mr       r7, r31
-	addi     r4, r4, __ct__Q38PSSystem9ClusterSe4PartFv@l
-	li       r5, 0
-	li       r6, 0xc
-	bl       __construct_new_array
-	or.      r31, r3, r3
-	bne      lbl_8034100C
-	lis      r3, lbl_80490100@ha
-	lis      r5, lbl_80490110@ha
-	addi     r3, r3, lbl_80490100@l
-	li       r4, 0x1e4
-	addi     r5, r5, lbl_80490110@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8034100C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -904,12 +377,11 @@ lbl_8034100C:
  */
 void ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory& factory)
 {
-	// mPart = factory.constructPart();
-	// P2ASSERTLINE(506, mPart != nullptr);
-	// for (int i = 0; i < _00[0]; i++) {
-	// 	factory.identifyPart(i);
-
-	// }
+	mPart = factory.constructPart();
+	P2ASSERTLINE(506, mPart);
+	for (int i = 0; i < _00[0]; i++) {
+		factory.identifyPart(i);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

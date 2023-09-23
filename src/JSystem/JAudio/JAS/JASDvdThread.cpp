@@ -39,7 +39,7 @@ bool JASDvd::createThread(long priority, int p2, unsigned long p3)
  * Address:	800A6A10
  * Size:	000044
  */
-void JASDvd::checkPassDvdT(unsigned long p1, unsigned long* p2, void (*p3)(unsigned long))
+void JASDvd::checkPassDvdT(unsigned long p1, unsigned long* p2, JASDvdCallback p3)
 {
 	DVDThreadCheckBackArgs args;
 	args._00 = p1;

@@ -82,8 +82,8 @@
 ### <section id="plugProjectHikinoU">plugProjectHikinoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSBnkMgr.cpp">PSBnkMgr.cpp</a> | 16595 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSystemIF.cpp">PSSystemIF.cpp</a> | 23516 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeBase.cpp">PSSeBase.cpp</a> | 25219 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSScene.cpp">PSScene.cpp</a> | 27839 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSBnkMgr.cpp">PSBnkMgr.cpp</a> | 8941 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeBase.cpp">PSSeBase.cpp</a> | 14113 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSystemIF.cpp">PSSystemIF.cpp</a> | 21216 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSScene.cpp">PSScene.cpp</a> | 27839 |
 
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |

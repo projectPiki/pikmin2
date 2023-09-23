@@ -6,16 +6,19 @@
 struct JASTaskThread;
 
 namespace JASDvd {
+
+typedef void (*JASDvdCallback)(u32);
+
 /**
  * @fabricated
  */
 struct DVDThreadCheckBackArgs {
-	u32 _00;          // _00
-	u32* _04;         // _04
-	void (*_08)(u32); // _08
+	u32 _00;            // _00
+	u32* _04;           // _04
+	JASDvdCallback _08; // _08
 };
 
-void checkPassDvdT(u32, u32*, void (*)(u32));
+void checkPassDvdT(u32, u32*, JASDvdCallback);
 bool createThread(long, int, u32);
 void dvdThreadCheckBack(void*);
 JASTaskThread* getThreadPointer();

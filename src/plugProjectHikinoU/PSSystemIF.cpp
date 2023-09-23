@@ -9,85 +9,6 @@
 #include "stream.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_PSSystemIF_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048FE28
-    lbl_8048FE28:
-        .4byte 0x50535379
-        .4byte 0x7374656D
-        .4byte 0x49462E63
-        .4byte 0x70700000
-    .global lbl_8048FE38
-    lbl_8048FE38:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_8048FE44
-    lbl_8048FE44:
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-    .global lbl_8048FE50
-    lbl_8048FE50:
-        .4byte 0x50535363
-        .4byte 0x656E652E
-        .4byte 0x68000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q28PSSystem12TextDataBase
-    __vt__Q28PSSystem12TextDataBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28PSSystem12TextDataBaseFv
-        .4byte 0
-    .global __vt__Q28PSSystem5SysIF
-    __vt__Q28PSSystem5SysIF:
-        .4byte 0
-        .4byte 0
-        .4byte makeSequence__Q28PSSystem5SysIFFv
-        .4byte makeSe__Q28PSSystem5SysIFFv
-        .4byte makeStream__Q28PSSystem5SysIFFv
-        .4byte getMapInfoFxline__8JAIBasicFUl
-        .4byte getMapInfoGround__8JAIBasicFUl
-        .4byte getMapInfoFxParameter__8JAIBasicFUl
-        .4byte setSeExtParameter__8JAIBasicFP8JAISound
-        .4byte setRegisterTrackCallback__8JAIBasicFv
-        .4byte initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg
-        .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global sDistanceParameterMoveTime__8PSSystem
-    sDistanceParameterMoveTime__8PSSystem:
-        .4byte 0x05000000
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global spSysIF__8PSSystem
-    spSysIF__8PSSystem:
-        .skip 0x4
-    .global oRandom__8PSSystem
-    oRandom__8PSSystem:
-        .skip 0x4
-    .global sMakeJAISeCallback__Q28PSSystem5SysIF
-    sMakeJAISeCallback__Q28PSSystem5SysIF:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051E150
-    lbl_8051E150:
-        .float 1.0
-    .global lbl_8051E154
-    lbl_8051E154:
-        .4byte 0x3F666666
-    .global lbl_8051E158
-    lbl_8051E158:
-        .4byte 0x4079999A
-        .4byte 0x00000000
-*/
-
 namespace PSSystem {
 
 /*
@@ -95,7 +16,7 @@ namespace PSSystem {
  * Address:	8033836C
  * Size:	000050
  */
-u32 getObject(JASTrack* track, unsigned char p2)
+u32 getObject(JASTrack* track, u8 p2)
 {
 	return track->readReg16(p2 + 1) | (track->readReg16(p2) << 0x10);
 

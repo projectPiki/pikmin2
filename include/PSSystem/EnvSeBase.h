@@ -9,8 +9,22 @@
 struct JAISound;
 
 namespace PSSystem {
+struct MoveParamSet {
+	inline MoveParamSet(f32 p1, u32 p2, int p3, u8 p4)
+	    : _00(p1)
+	    , _04(p2)
+	    , _08(p3)
+	    , _0C(p4)
+	{
+	}
 
-struct EnvSeBase : JSULink<EnvSeBase> {
+	f32 _00; // _00
+	u32 _04; // _04
+	int _08; // _08
+	u8 _0C;  // _0C
+};
+
+struct EnvSeBase : public JSULink<EnvSeBase> {
 	EnvSeBase(unsigned long, f32);
 
 	virtual void exec();                         // _08
@@ -18,20 +32,23 @@ struct EnvSeBase : JSULink<EnvSeBase> {
 	virtual u32 getCastType() { return 'base'; } // _10 (weak)
 	virtual void setPanAndDolby(JAISound*) { }   // _14 (weak)
 
-	// _00 - _10: JSULink
-	// VTBL _10
-	f32 _14;          // _14
-	u32 _18;          // _18
-	int _1C;          // _1C
-	u8 _20;           // _20
-	SoundID mSoundID; // _24
-	f32 _28;          // _28
-	f32 _2C;          // _2C
-	f32 _30;          // _30
-	JAISound* mSound; // _34
-	u8 _38;           // _38
-	u8 _39;           // _39
-	u8 _3A;           // _3A
+	void requestMoveParam(MoveParamSet);
+	void doMoveParamRequest();
+	void setPauseFlag(u8);
+
+	inline SoundID getSoundID() const { return mSoundID; }
+
+	// _00-_10 = JSULink
+	// _10     = VTBL
+	MoveParamSet mMoveParam; // _14
+	SoundID mSoundID;        // _24
+	f32 _28;                 // _28
+	f32 _2C;                 // _2C
+	f32 _30;                 // _30
+	JAISound* mSound;        // _34
+	u8 mPauseFlag;           // _38
+	bool mIsOn;              // _39
+	u8 _3A;                  // _3A
 };
 
 struct EnvSeMgr {

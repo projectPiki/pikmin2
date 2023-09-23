@@ -15,7 +15,7 @@ struct Reservator {
 	virtual void reservatorTask() = 0; // _08
 
 	// VTBL _00
-	short _04; // _04
+	u16 _04; // _04
 };
 
 struct SeqPlayReservator : public Reservator {

@@ -38,7 +38,7 @@ struct Factory {
 	virtual Part* constructPart();     // _08
 	virtual void identifyPart(u8) = 0; // _0C
 
-	struct Mgr* _04; // _04 - unknown
+	u8 _04; // _04
 };
 
 /**
