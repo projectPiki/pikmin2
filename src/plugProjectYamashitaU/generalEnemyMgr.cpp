@@ -983,14 +983,18 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 	if (mEnemyMgrNode.getChildCount() != 0) {
 		int i = 0;
 		while (i < 10) {
-			int randIdx              = randFloat() * mEnemyMgrNode.getChildCount();
+			int randIdx = randFloat() * mEnemyMgrNode.getChildCount();
+
 			EnemyMgrNode* startNode  = static_cast<EnemyMgrNode*>(mEnemyMgrNode.getChildAt(randIdx));
 			EnemyMgrNode* randomNode = startNode;
+			EnemyMgrBase* mgr;
+			EnemyBase* enemy;
 			do {
-				EnemyTypeID::EEnemyTypeID randomID = randomNode->mEnemyID;
+
 				EnemyInfo* randomInfo              = EnemyInfoFunc::getEnemyInfo(randomNode->mEnemyID, 0xFFFF);
+				EnemyTypeID::EEnemyTypeID randomID = randomNode->mEnemyID;
 				EnemyMgrNode* childNode            = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
-				EnemyMgrBase* mgr                  = nullptr;
+				mgr                                = nullptr;
 
 				for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 					if (childNode->mEnemyID == randomID) {
@@ -1012,9 +1016,9 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 						birthArg.mFaceDir = TAU * randFloat();
 
-						int searchID     = randomNode->mEnemyID;
-						EnemyBase* enemy = nullptr;
-						int mgrID        = getEnemyMgrID(searchID);
+						int searchID = randomNode->mEnemyID;
+						enemy        = nullptr;
+						int mgrID    = getEnemyMgrID(searchID);
 
 						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 						EnemyMgrBase* anotherMgr  = nullptr;
@@ -1037,14 +1041,15 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						}
 
 						i += 10;
-						break;
+						goto noadd;
+						// break;
 					} else if (infoFlags & 0x40) {
 						f32 randAngle     = TAU * randFloat();
 						birthArg.mFaceDir = _angXZ(sphere.mPosition.x, sphere.mPosition.z, birthArg.mPosition.x, birthArg.mPosition.z);
 
-						int searchID     = randomNode->mEnemyID;
-						EnemyBase* enemy = nullptr;
-						int mgrID        = getEnemyMgrID(searchID);
+						int searchID = randomNode->mEnemyID;
+						enemy        = nullptr;
+						int mgrID    = getEnemyMgrID(searchID);
 
 						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 						EnemyMgrBase* anotherMgr  = nullptr;
@@ -1067,10 +1072,8 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 								radDiff = 0.0f;
 							}
 
-							f32 cosTheta = pikmin2_cosf(randAngle);
-							f32 sinTheta = pikmin2_sinf(randAngle);
-
-							Vector3f pos(radDiff * sinTheta + sphere.mPosition.x, 0.0f, radDiff * cosTheta + sphere.mPosition.z);
+							Vector3f pos(radDiff * pikmin2_sinf(randAngle) + sphere.mPosition.x, 0.0f,
+							             radDiff * pikmin2_cosf(randAngle) + sphere.mPosition.z);
 							pos.y = mapMgr->getMinY(pos);
 							enemy->setPosition(pos, false);
 							enemy->mHomePosition = pos;
@@ -1082,10 +1085,10 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						}
 
 						i += 5;
-						break;
+						goto noadd;
 					} else if (infoFlags & 0x80) {
 						int maxObj    = mgr->getMaxObjects();
-						int randLimit = (int)(7.0f * randFloat()) + 7;
+						int randLimit = (int)(7.0f * randFloat()) + 2;
 
 						if (maxObj > randLimit) {
 							maxObj = randLimit;
@@ -1098,7 +1101,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							rand();
 							birthArg.mFaceDir = _angXZ(sphere.mPosition.x, sphere.mPosition.z, birthArg.mPosition.x, birthArg.mPosition.z);
 							int searchID      = randomNode->mEnemyID;
-							EnemyBase* enemy  = nullptr;
+							enemy             = nullptr;
 							int mgrID         = getEnemyMgrID(searchID);
 
 							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
@@ -1122,13 +1125,10 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 									radDiff = 0.0f;
 								}
 
-								f32 halfRad   = radDiff / 2;
-								f32 randomRad = halfRad * randFloat() + halfRad;
+								f32 randomRad = (0.5f * radDiff) * randFloat() + (0.5f * radDiff);
 
-								f32 cosTheta = pikmin2_cosf(randAngle);
-								f32 sinTheta = pikmin2_sinf(randAngle);
-
-								Vector3f pos(randomRad * sinTheta + sphere.mPosition.x, 0.0f, randomRad * cosTheta + sphere.mPosition.z);
+								Vector3f pos(randomRad * pikmin2_sinf(randAngle) + sphere.mPosition.x, 0.0f,
+								             randomRad * pikmin2_cosf(randAngle) + sphere.mPosition.z);
 								pos.y = mapMgr->getMinY(pos);
 								enemy->setPosition(pos, false);
 								enemy->mHomePosition = pos;
@@ -1142,7 +1142,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						}
 
 						i += 3;
-						break;
+						goto noadd;
 					} else {
 						int maxObj    = mgr->getMaxObjects();
 						int randLimit = (int)(7.0f * randFloat()) + 7;
@@ -1159,9 +1159,9 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 							birthArg.mFaceDir = _angXZ(sphere.mPosition.x, sphere.mPosition.z, birthArg.mPosition.x, birthArg.mPosition.z);
 
-							int searchID     = randomNode->mEnemyID;
-							EnemyBase* enemy = nullptr;
-							int mgrID        = getEnemyMgrID(searchID);
+							int searchID = randomNode->mEnemyID;
+							enemy        = nullptr;
+							int mgrID    = getEnemyMgrID(searchID);
 
 							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 							EnemyMgrBase* anotherMgr  = nullptr;
@@ -1184,13 +1184,10 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 									radDiff = 0.0f;
 								}
 
-								f32 halfRad   = radDiff / 2;
-								f32 randomRad = halfRad * randFloat() + halfRad;
+								f32 randomRad = (0.5f * radDiff) * randFloat() + (0.5f * radDiff);
 
-								f32 cosTheta = pikmin2_cosf(randAngle);
-								f32 sinTheta = pikmin2_sinf(randAngle);
-
-								Vector3f pos(randomRad * sinTheta + sphere.mPosition.x, 0.0f, randomRad * cosTheta + sphere.mPosition.z);
+								Vector3f pos(randomRad * pikmin2_sinf(randAngle) + sphere.mPosition.x, 0.0f,
+								             randomRad * pikmin2_cosf(randAngle) + sphere.mPosition.z);
 								pos.y = mapMgr->getMinY(pos);
 								enemy->setPosition(pos, false);
 								enemy->mHomePosition = pos;
@@ -1205,7 +1202,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						}
 
 						i += 1;
-						break;
+						goto noadd;
 					}
 				} else {
 					randomNode = static_cast<EnemyMgrNode*>(randomNode->mNext);
@@ -1215,6 +1212,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 				}
 			} while (randomNode != startNode);
 			i += 10;
+		noadd:;
 		}
 	}
 	/*
@@ -2154,5 +2152,27 @@ lbl_8010F104:
 	addi     r1, r1, 0x170
 	blr
 	*/
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00005C
+ */
+void GeneralEnemyMgr::setParmsDebugNameAndID()
+{
+	// more than this but this is the essential bit for weak function ordering
+	mEnemyMgrNode.setDebugParm(0);
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000050
+ */
+void GeneralEnemyMgr::resetParmsDebugNameAndID()
+{
+	// more than this but this is the essential bit for weak function ordering
+	mEnemyMgrNode.resetDebugParm(0);
 }
 } // namespace Game
