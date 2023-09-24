@@ -25,43 +25,43 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	PikiMgr();
 
 	// vtable 1
-	virtual ~PikiMgr(); // _08 (weak)
+	virtual ~PikiMgr() { } // _08 (weak)
 	// vtable 2
-	virtual void doAnimation();           // _64 (weak)
-	virtual void doEntry();               // _68 (weak)
-	virtual Piki* birth();                // _7C
-	virtual void resetMgr();              // _80 (weak)
-	virtual void onAlloc();               // _88
-	virtual void doSimpleDraw(Viewport*); // _8C (weak)
-	virtual u32 getMatrixLoadType();      // _90 (weak)
-	virtual char* getMgrName();           // _94 (weak)
-	virtual void loadResources();         // _98 (weak)
-	virtual void loadResources(int);      // _9C
+	virtual void doAnimation();                      // _64 (weak)
+	virtual void doEntry();                          // _68 (weak)
+	virtual Piki* birth();                           // _7C
+	virtual void resetMgr();                         // _80 (weak)
+	virtual void onAlloc();                          // _88
+	virtual void doSimpleDraw(Viewport* vp);         // _8C (weak)
+	virtual u32 getMatrixLoadType() { return 1; }    // _90 (weak)
+	virtual char* getMgrName() { return "PikiMgr"; } // _94 (weak)
+	virtual void loadResources() { }                 // _98 (weak)
+	virtual void loadResources(int modelFlag);       // _9C
 
 	void init();
-	void setupPiki(Piki*);
-	void load(int);
-	void loadBmd(int, char*);
-	void createModelCallback(SysShape::Model*);
-	SysShape::Model* createModel(int, int);
-	SysShape::Model* createLeafModel(int, int);
-	void setMovieDraw(bool);
-	void debugShapeDL(char*);
-	void setVsXlu(int, bool);
+	void setupPiki(Piki* piki);
+	void load(int modelFlag);
+	void loadBmd(int id, char* name);
+	void createModelCallback(SysShape::Model* model);
+	SysShape::Model* createModel(int id, int num);
+	SysShape::Model* createLeafModel(int id, int num);
+	void setMovieDraw(bool drawOn);
+	void debugShapeDL(char* text);
+	void setVsXlu(int p1, bool p2);
 	void setupSoundViewerAndBas();
-	int getColorTransportScale(int);
+	int getColorTransportScale(int color);
 	void allocStorePikmins();
 	void clearStorePikmins();
-	void saveStorePikmins(Condition<Piki>*);
+	void saveStorePikmins(Condition<Piki>* cond);
 	void getStorePikmin(int, int);
-	void moveAllPikmins(Vector3f&, f32, Condition<Piki>*);
-	void forceEnterPikmins(u8);
-	void killDayEndPikmins(PikiContainer&);
+	void moveAllPikmins(Vector3f& pos, f32 radius, Condition<Piki>* cond);
+	void forceEnterPikmins(u8 check);
+	void killDayEndPikmins(PikiContainer& container);
 	void killAllPikmins();
-	void caveSaveFormationPikmins(bool);
-	void caveSaveAllPikmins(bool, bool);
-	void saveFormationPikmins(PikiContainer&);
-	void saveAllPikmins(PikiContainer&);
+	void caveSaveFormationPikmins(bool doKill);
+	void caveSaveAllPikmins(bool check1, bool check2);
+	void saveFormationPikmins(PikiContainer& container);
+	void saveAllPikmins(PikiContainer& container);
 
 	static int mBirthMode;
 	static bool throwPikiDebug;

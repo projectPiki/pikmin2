@@ -323,6 +323,13 @@ struct TPkEffect {
 		killKourin_();
 	}
 
+	inline void setMovieDraw()
+	{
+		doKillDoping();
+		doDoping();
+		// needs a lot more
+	}
+
 	BitFlag<u32> mFlags;       // _00
 	BitFlag<u32> mBackupFlags; // _04
 	int mPikiColor;            // _08, kourin color?
