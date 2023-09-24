@@ -31,9 +31,9 @@ struct Caster : public CNode {
 	Sys::Sphere _18; // _18
 	u32 _28;         // _28
 	Vector3f* _2C;   // _2C
-	u32 _30;         // _30
-	u32 _34;         // _34
-	u32 _38;         // _38
+	u8* _30;         // _30
+	int _34;         // _34
+	f32** _38;       // _38, array of floats of size _28 * 6
 	u8 _3C;          // _3C
 	f32 _40;         // _40
 	f32 _44;         // _44

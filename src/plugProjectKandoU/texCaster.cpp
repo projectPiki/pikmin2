@@ -2,6 +2,7 @@
 #include "System.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "Dolphin/gx.h"
+#include "Game/MapMgr.h"
 
 namespace TexCaster {
 
@@ -94,7 +95,24 @@ void Caster::makeDL()
  */
 void Caster::update()
 {
-	// UNUSED FUNCTION
+	switch (_3C) {
+	case 1:
+		break;
+	case 2:
+		_40 += _44 * sys->mDeltaTime;
+		if (_40 >= 1.0f) {
+			_40 = 1.0f;
+			_3C = 1;
+		}
+		break;
+	case 3:
+		_40 -= _44 * sys->mDeltaTime;
+		if (_40 <= 0.0f) {
+			_40 = 0.0f;
+			_3C = 0;
+		}
+		break;
+	}
 }
 
 /*
@@ -104,28 +122,19 @@ void Caster::update()
  */
 void Caster::draw(Graphics& gfx)
 {
-	Caster* child = static_cast<Caster*>(mChild);
-	for (child; child; child = static_cast<Caster*>(child->mNext)) {
-		switch (child->_3C) {
-		case 2:
-			child->_40 += child->_44 * sys->mDeltaTime;
-			if (child->_40 >= 1.0f) {
-				child->_40 = 1.0f;
-				child->_3C = 1;
-			}
-			break;
-		case 3:
-			child->_40 -= child->_44 * sys->mDeltaTime;
-			if (child->_40 <= 0.0f) {
-				child->_40 = 0.0f;
-				child->_3C = 0;
-			}
-			break;
-		}
+	update();
+	int v = 255.0f * _40;
+	GXColor color;
+	color.a = v;
+	color.b = v;
+	color.g = v;
+	color.r = v;
+	GXSetTevColor(GX_TEVREG0, color);
 
-		// GXSetTevColor(GX_TEVREG0, )
-	}
-	// UNUSED FUNCTION
+	Mgr::sInstance->getTexture(0);
+	GXSetArray(GX_VA_POS, _2C, sizeof(Vector3f));
+	GXSetArray(GX_VA_TEX0, _38, 8);
+	GXCallDisplayList((void*)_30, _34);
 }
 
 /*
@@ -203,7 +212,46 @@ void Mgr::loadResource()
  */
 Caster* Mgr::create(Sys::Sphere& sphere, f32 p1)
 {
+	Sys::CreateTriangleArg triArg;
+	triArg.mBoundingSphere = sphere;
+	triArg._10             = 0.22f;
+	triArg._14             = 0.5f;
+	Game::mapMgr->createTriangles(triArg);
 
+	if (triArg.mCount == 0) {
+		triArg.mCount    = 2;
+		triArg.mVertices = new Vector3f[6];
+		// float math
+	}
+
+	Caster* caster = new Caster;
+	caster->_18    = sphere;
+	caster->_2C    = triArg.mVertices;
+	caster->_28    = triArg.mCount;
+	caster->_38    = new f32*[caster->_28 * 6];
+
+	for (int i = 0; i < caster->_28; i++) {
+		for (int j = 0; j < 3; j++) {
+			// float math
+		}
+	}
+
+	caster->_34 = (caster->_28 * 12 + 34) & ~0x1F;
+	caster->_30 = new (0x20) u8[caster->_34];
+
+	// this is wrong
+	caster->_30[0] = 0x90;
+	caster->_30[1] = (caster->_28 * 3) * 16;
+	caster->_30[2] = (caster->_28 * 3);
+
+	// this is wrong
+	for (int i = 0; i < caster->_34; i++) {
+		caster->_30[i] = i * 2;
+	}
+
+	DCFlushRange(caster->_30, caster->_34);
+	mCaster.add(caster);
+	return caster;
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -575,9 +623,10 @@ lbl_8023D104:
  * Address:	........
  * Size:	00007C
  */
-void Mgr::getTexture(int)
+void Mgr::getTexture(int idx)
 {
-	// UNUSED FUNCTION
+	P2ASSERTLINE(410, mTextureCount > 0);
+	mTextures[idx]->load(GX_TEXMAP0);
 }
 
 /*
@@ -585,9 +634,22 @@ void Mgr::getTexture(int)
  * Address:	........
  * Size:	000118
  */
-void Mgr::drawInit(Graphics&)
+void Mgr::drawInit(Graphics& gfx)
 {
-	// UNUSED FUNCTION
+	GXSetCullMode(GX_CULL_NONE);
+	GXClearVtxDesc();
+	GXSetNumTexGens(1);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_TEXC, GX_CC_C0, GX_CC_ZERO);
+	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_DIVIDE_2, GX_TRUE, GX_TEVPREV);
+	GXSetTevAlphaIn(GX_TEVSTAGE0, GX_ZERO, GX_CA_A0, GX_CA_TEXA, GX_ZERO);
+	GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+	GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
+	GXSetVtxDesc(GX_VA_TEX0, GX_INDEX16);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+	GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
 }
 
 /*
@@ -597,193 +659,12 @@ void Mgr::drawInit(Graphics&)
  */
 void Mgr::draw(Graphics& gfx)
 {
-	GXSetCullMode(GX_CULL_NONE);
-	GXClearVtxDesc();
-	GXSetNumTexGens(1);
-	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_TEXC, GX_CC_C0, GX_CC_ZERO);
-	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_DIVIDE_2, GX_TRUE, GX_TEVPREV);
-	GXSetTevAlphaIn(GX_TEVSTAGE0, GX_ZERO, GX_CA_A0, GX_CA_TEXA, GX_ZERO);
+	drawInit(gfx);
 
-	mCaster.draw(gfx);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	li       r3, 0
-	bl       GXSetCullMode
-	bl       GXClearVtxDesc
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 0
-	li       r4, 0xf
-	li       r5, 8
-	li       r6, 2
-	li       r7, 0xf
-	bl       GXSetTevColorIn
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 3
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevColorOp
-	li       r3, 0
-	li       r4, 7
-	li       r5, 1
-	li       r6, 4
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	li       r3, 9
-	li       r4, 3
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 3
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	bl       GXSetBlendMode
-	li       r3, 1
-	li       r4, 3
-	li       r5, 0
-	bl       GXSetZMode
-	lwz      r30, 0x18(r30)
-	lfs      f31, lbl_8051A5E0@sda21(r2)
-	b        lbl_8023D3F4
-
-lbl_8023D2BC:
-	lbz      r0, 0x3c(r30)
-	cmpwi    r0, 2
-	beq      lbl_8023D2DC
-	bge      lbl_8023D2D0
-	b        lbl_8023D350
-
-lbl_8023D2D0:
-	cmpwi    r0, 4
-	bge      lbl_8023D350
-	b        lbl_8023D318
-
-lbl_8023D2DC:
-	lwz      r3, sys@sda21(r13)
-	lfs      f3, 0x44(r30)
-	lfs      f2, 0x54(r3)
-	lfs      f1, 0x40(r30)
-	lfs      f0, lbl_8051A5DC@sda21(r2)
-	fmadds   f1, f3, f2, f1
-	stfs     f1, 0x40(r30)
-	lfs      f1, 0x40(r30)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8023D350
-	stfs     f0, 0x40(r30)
-	li       r0, 1
-	stb      r0, 0x3c(r30)
-	b        lbl_8023D350
-
-lbl_8023D318:
-	lwz      r3, sys@sda21(r13)
-	lfs      f3, 0x44(r30)
-	lfs      f2, 0x54(r3)
-	lfs      f1, 0x40(r30)
-	lfs      f0, lbl_8051A5D8@sda21(r2)
-	fnmsubs  f1, f3, f2, f1
-	stfs     f1, 0x40(r30)
-	lfs      f1, 0x40(r30)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8023D350
-	stfs     f0, 0x40(r30)
-	li       r0, 0
-	stb      r0, 0x3c(r30)
-
-lbl_8023D350:
-	lfs      f0, 0x40(r30)
-	addi     r4, r1, 0xc
-	li       r3, 1
-	fmuls    f0, f31, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	stb      r0, 0xb(r1)
-	stb      r0, 0xa(r1)
-	stb      r0, 9(r1)
-	stb      r0, 8(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetTevColor
-	lwz      r31, sInstance__Q29TexCaster3Mgr@sda21(r13)
-	lwz      r0, 0(r31)
-	cmpwi    r0, 0
-	bgt      lbl_8023D3B4
-	lis      r3, lbl_80483EAC@ha
-	lis      r5, lbl_80483EBC@ha
-	addi     r3, r3, lbl_80483EAC@l
-	li       r4, 0x19a
-	addi     r5, r5, lbl_80483EBC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8023D3B4:
-	lwz      r3, 4(r31)
-	li       r4, 0
-	lwz      r3, 0(r3)
-	bl       load__10JUTTextureF11_GXTexMapID
-	lwz      r4, 0x2c(r30)
-	li       r3, 9
-	li       r5, 0xc
-	bl       GXSetArray
-	lwz      r4, 0x38(r30)
-	li       r3, 0xd
-	li       r5, 8
-	bl       GXSetArray
-	lwz      r3, 0x30(r30)
-	lwz      r4, 0x34(r30)
-	bl       GXCallDisplayList
-	lwz      r30, 4(r30)
-
-lbl_8023D3F4:
-	cmplwi   r30, 0
-	bne      lbl_8023D2BC
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Caster* child = static_cast<Caster*>(mCaster.mChild);
+	for (child; child; child = static_cast<Caster*>(child->mNext)) {
+		child->draw(gfx);
+	}
 }
 
 } // namespace TexCaster
