@@ -280,10 +280,10 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	virtual void resetMgr();           // _80 (weak, thunk at _54)
 
 	// vtable 3 (JKRDisposer + self, _30)
-	virtual void killAll();       // _98
-	virtual char* getMgrName();   // _9C (weak)
-	virtual bool frozenable();    // _A0 (weak, thunk at _5C in vt 2)
-	virtual void loadResources(); // _A4 (weak, thunk at _50 in vt 2)
+	virtual void killAll();                          // _98
+	virtual char* getMgrName() { return "NaviMgr"; } // _9C (weak)
+	virtual bool frozenable() { return false; }      // _A0 (weak, thunk at _5C in vt 2)
+	virtual void loadResources();                    // _A4 (weak, thunk at _50 in vt 2)
 
 	void clearDeadCount();
 	SysShape::Model* createModel(int);
@@ -307,20 +307,20 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	static SysShape::AnimMgr* animMgr;
 
 	// VT 3 pointer is at _30
-	unknown _48;                    // _48
-	PSM::DirectorUpdator* _4C;      // _4C
-	int mNaviCount;                 // _50
-	int naviIndexArray[2];          // _54
-	u8 _5C;                         // _5C
-	Sys::MatTevRegAnimation _60[2]; // _60
-	Sys::MatTevRegAnimation _88[2]; // _88
-	J3DModelData* _B0;              // _B0
-	J3DModelData* _B4;              // _B4
-	J3DModelData* _B8;              // _B8
-	u8 _BC[8];                      // _BC
-	J3DModelData* _C4;              // _C4
-	NaviParms* mNaviParms;          // _C8
-	CollPartFactory* _CC;           // _CC
+	PSM::DirectorUpdator* _48;               // _48 (appears to be completely unused)
+	PSM::DirectorUpdator* mPSMMgr;           // _4C (used for damage taking bgm mix)
+	int mDeadNavis;                          // _50
+	int mNaviDeadFlags[2];                   // _54 (seems to translate the order of killed captains to their ids?)
+	u8 mFlags;                               // _5C
+	Sys::MatTevRegAnimation mCursorAnims[2]; // _60
+	Sys::MatTevRegAnimation mMarkerAnims[2]; // _88
+	J3DModelData* mOlimarModel;              // _B0
+	J3DModelData* mLouieModel;               // _B4 (also president model)
+	J3DModelData* mCursorModelData;          // _B8
+	u8 _BC[8];                               // _BC
+	J3DModelData* mMarkerModelData;          // _C4
+	NaviParms* mNaviParms;                   // _C8
+	CollPartFactory* mCollData;              // _CC
 };
 
 extern NaviMgr* naviMgr;

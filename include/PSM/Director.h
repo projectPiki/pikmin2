@@ -287,9 +287,7 @@ struct ActorDirector_Kehai : public ActorDirector_Enemy {
  * @size{0x10}
  */
 struct DirectorUpdator {
-	struct Type {
-		u32 mType; // _00, I guess?
-	};
+	enum Type { TYPE_0 };
 
 	DirectorUpdator(PSSystem::DirectorBase*, u8, Type);
 

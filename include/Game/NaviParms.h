@@ -149,7 +149,12 @@ struct NaviParms : public FakePikiParms {
 		mCreatureProps.mProps.mAccel.mValue         = 0.1f;
 	}
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream)
+	{
+		CreatureParms::read(stream);
+		mFakePikiParms.read(stream);
+		mNaviParms.read(stream);
+	} // _08 (weak)
 
 	// _00-_D8  = CreatureParms
 	// _D8 		  = VTBL
