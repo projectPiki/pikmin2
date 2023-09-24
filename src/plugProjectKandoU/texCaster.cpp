@@ -1,76 +1,29 @@
-#include "types.h"
+#include "TexCaster.h"
+#include "System.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "Dolphin/gx.h"
 
-/*
-    Generated from dpostproc
+namespace TexCaster {
 
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483EA0
-    lbl_80483EA0:
-        .asciz "texCaster"
-        .skip 2
-    .global lbl_80483EAC
-    lbl_80483EAC:
-        .asciz "texCaster.cpp"
-        .skip 2
-    .global lbl_80483EBC
-    lbl_80483EBC:
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "user/Kando/texCaster/arc.szs"
-        .skip 3
+static const char unusedName[] = "texCaster";
 
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q29TexCaster6Caster
-    __vt__Q29TexCaster6Caster:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q29TexCaster6CasterFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sInstance__Q29TexCaster3Mgr
-    sInstance__Q29TexCaster3Mgr:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A5D8
-    lbl_8051A5D8:
-        .4byte 0x00000000
-    .global lbl_8051A5DC
-    lbl_8051A5DC:
-        .float 1.0
-    .global lbl_8051A5E0
-    lbl_8051A5E0:
-        .4byte 0x437F0000
-    .global lbl_8051A5E4
-    lbl_8051A5E4:
-        .4byte 0x7465782E
-        .4byte 0x62746900
-    .global lbl_8051A5EC
-    lbl_8051A5EC:
-        .float 0.1
-    .global lbl_8051A5F0
-    lbl_8051A5F0:
-        .float 0.5
-    .global lbl_8051A5F4
-    lbl_8051A5F4:
-        .4byte 0x3E6147AE
-    .global lbl_8051A5F8
-    lbl_8051A5F8:
-        .4byte 0x3D000000
-    .global lbl_8051A5FC
-    lbl_8051A5FC:
-        .4byte 0x41F00000
-*/
+Mgr* Mgr::sInstance;
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000064
  */
-TexCaster::Caster::Caster()
+Caster::Caster()
 {
-	// UNUSED FUNCTION
+	_28 = 0;
+	_2C = nullptr;
+	_30 = 0;
+	_34 = 0;
+	_38 = 0;
+	_3C = 0;
+	_40 = 0.0f;
+	_44 = 0.0f;
 }
 
 /*
@@ -78,44 +31,14 @@ TexCaster::Caster::Caster()
  * Address:	8023C95C
  * Size:	000060
  */
-TexCaster::Caster::~Caster()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8023C9A0
-	lis      r5, __vt__Q29TexCaster6Caster@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q29TexCaster6Caster@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8023C9A0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8023C9A0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Caster::~Caster() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000014
  */
-void TexCaster::Caster::show()
+void Caster::show()
 {
 	// UNUSED FUNCTION
 }
@@ -125,15 +48,10 @@ void TexCaster::Caster::show()
  * Address:	8023C9BC
  * Size:	000014
  */
-void TexCaster::Caster::hide()
+void Caster::hide()
 {
-	/*
-	lfs      f0, lbl_8051A5D8@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0x40(r3)
-	stb      r0, 0x3c(r3)
-	blr
-	*/
+	_40 = 0.0f;
+	_3C = 0;
 }
 
 /*
@@ -141,44 +59,12 @@ void TexCaster::Caster::hide()
  * Address:	8023C9D0
  * Size:	000080
  */
-void TexCaster::Caster::fadein(float)
+void Caster::fadein(f32 p1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	fmr      f31, f1
-	lfs      f0, lbl_8051A5D8@sda21(r2)
-	mr       r31, r3
-	fcmpo    cr0, f31, f0
-	bgt      lbl_8023CA18
-	lis      r3, lbl_80483EAC@ha
-	lis      r5, lbl_80483EBC@ha
-	addi     r3, r3, lbl_80483EAC@l
-	li       r4, 0x3b
-	addi     r5, r5, lbl_80483EBC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8023CA18:
-	lfs      f1, lbl_8051A5DC@sda21(r2)
-	li       r0, 2
-	lfs      f0, lbl_8051A5D8@sda21(r2)
-	fdivs    f1, f1, f31
-	stfs     f1, 0x44(r31)
-	stfs     f0, 0x40(r31)
-	stb      r0, 0x3c(r31)
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	P2ASSERTLINE(59, p1 > 0.0f);
+	_44 = 1.0f / p1;
+	_40 = 0.0f;
+	_3C = 2;
 }
 
 /*
@@ -186,7 +72,7 @@ lbl_8023CA18:
  * Address:	........
  * Size:	00007C
  */
-void TexCaster::Caster::fadeout(float)
+void Caster::fadeout(f32)
 {
 	// UNUSED FUNCTION
 }
@@ -196,7 +82,7 @@ void TexCaster::Caster::fadeout(float)
  * Address:	........
  * Size:	000150
  */
-void TexCaster::Caster::makeDL()
+void Caster::makeDL()
 {
 	// UNUSED FUNCTION
 }
@@ -206,7 +92,7 @@ void TexCaster::Caster::makeDL()
  * Address:	........
  * Size:	000094
  */
-void TexCaster::Caster::update()
+void Caster::update()
 {
 	// UNUSED FUNCTION
 }
@@ -216,8 +102,29 @@ void TexCaster::Caster::update()
  * Address:	........
  * Size:	000138
  */
-void TexCaster::Caster::draw(Graphics&)
+void Caster::draw(Graphics& gfx)
 {
+	Caster* child = static_cast<Caster*>(mChild);
+	for (child; child; child = static_cast<Caster*>(child->mNext)) {
+		switch (child->_3C) {
+		case 2:
+			child->_40 += child->_44 * sys->mDeltaTime;
+			if (child->_40 >= 1.0f) {
+				child->_40 = 1.0f;
+				child->_3C = 1;
+			}
+			break;
+		case 3:
+			child->_40 -= child->_44 * sys->mDeltaTime;
+			if (child->_40 <= 0.0f) {
+				child->_40 = 0.0f;
+				child->_3C = 0;
+			}
+			break;
+		}
+
+		// GXSetTevColor(GX_TEVREG0, )
+	}
 	// UNUSED FUNCTION
 }
 
@@ -226,19 +133,18 @@ void TexCaster::Caster::draw(Graphics&)
  * Address:	........
  * Size:	000004
  */
-void TexCaster::Caster::drawLine(Graphics&)
-{
-	// UNUSED FUNCTION
-}
+void Caster::drawLine(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000080
  */
-TexCaster::Mgr::Mgr()
+Mgr::Mgr()
+    : mTextureCount(0)
+    , mTextures(nullptr)
+    , mCaster()
 {
-	// UNUSED FUNCTION
 }
 
 /*
@@ -246,64 +152,19 @@ TexCaster::Mgr::Mgr()
  * Address:	........
  * Size:	000074
  */
-TexCaster::Mgr::~Mgr()
-{
-	// UNUSED FUNCTION
-}
+Mgr::~Mgr() { sInstance = nullptr; }
 
 /*
  * --INFO--
  * Address:	8023CA50
  * Size:	0000A0
  */
-void TexCaster::Mgr::globalInstance()
+void Mgr::globalInstance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lwz      r0, sInstance__Q29TexCaster3Mgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8023CAD8
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8023CACC
-	li       r0, 0
-	addi     r30, r31, 8
-	stw      r0, 0(r31)
-	mr       r3, r30
-	stw      r0, 4(r31)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q29TexCaster6Caster@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q29TexCaster6Caster@l
-	lfs      f0, lbl_8051A5D8@sda21(r2)
-	stw      r3, 0(r30)
-	stw      r0, 0x28(r30)
-	stw      r0, 0x2c(r30)
-	stw      r0, 0x30(r30)
-	stw      r0, 0x34(r30)
-	stw      r0, 0x38(r30)
-	stb      r0, 0x3c(r30)
-	stfs     f0, 0x40(r30)
-	stfs     f0, 0x44(r30)
-
-lbl_8023CACC:
-	stw      r31, sInstance__Q29TexCaster3Mgr@sda21(r13)
-	mr       r3, r31
-	bl       loadResource__Q29TexCaster3MgrFv
-
-lbl_8023CAD8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!sInstance) {
+		sInstance = new Mgr();
+		sInstance->loadResource();
+	}
 }
 
 /*
@@ -311,43 +172,12 @@ lbl_8023CAD8:
  * Address:	8023CAF0
  * Size:	00006C
  */
-void TexCaster::Mgr::deleteInstance()
+void Mgr::deleteInstance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, sInstance__Q29TexCaster3Mgr@sda21(r13)
-	cmplwi   r31, 0
-	beq      lbl_8023CB48
-	beq      lbl_8023CB40
-	li       r3, 0
-	addic.   r0, r31, 8
-	stw      r3, sInstance__Q29TexCaster3Mgr@sda21(r13)
-	beq      lbl_8023CB38
-	lis      r4, __vt__Q29TexCaster6Caster@ha
-	addi     r3, r31, 8
-	addi     r0, r4, __vt__Q29TexCaster6Caster@l
-	li       r4, 0
-	stw      r0, 8(r31)
-	bl       __dt__5CNodeFv
-
-lbl_8023CB38:
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8023CB40:
-	li       r0, 0
-	stw      r0, sInstance__Q29TexCaster3Mgr@sda21(r13)
-
-lbl_8023CB48:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sInstance) {
+		delete sInstance;
+		sInstance = nullptr;
+	}
 }
 
 /*
@@ -355,75 +185,15 @@ lbl_8023CB48:
  * Address:	8023CB5C
  * Size:	0000E8
  */
-void TexCaster::Mgr::loadResource()
+void Mgr::loadResource()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_80483EA0@ha
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	li       r6, 1
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_80483EA0@l
-	li       r4, 1
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	addi     r3, r31, 0x28
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	cmplwi   r3, 0
-	bne      lbl_8023CBB0
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x120
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8023CBB0:
-	li       r0, 1
-	stw      r0, 0(r29)
-	lwz      r0, 0(r29)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r29)
-	addi     r3, r2, lbl_8051A5E4@sda21
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	or.      r30, r3, r3
-	bne      lbl_8023CBF0
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x125
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8023CBF0:
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8023CC20
-	li       r0, 0
-	mr       r4, r30
-	stw      r0, 0x28(r31)
-	li       r5, 0
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r31)
-
-lbl_8023CC20:
-	lwz      r3, 4(r29)
-	stw      r31, 0(r3)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JKRArchive* textArc = JKRArchive::mount("user/Kando/texCaster/arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	P2ASSERTLINE(288, textArc);
+	mTextureCount = 1;
+	mTextures     = new JUTTexture*[mTextureCount];
+	ResTIMG* res  = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("tex.bti", nullptr));
+	P2ASSERTLINE(293, res);
+	mTextures[0] = new JUTTexture(res);
 }
 
 /*
@@ -431,8 +201,9 @@ lbl_8023CC20:
  * Address:	8023CC44
  * Size:	000550
  */
-void TexCaster::Mgr::create(Sys::Sphere&, float)
+Caster* Mgr::create(Sys::Sphere& sphere, f32 p1)
 {
+
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -804,7 +575,7 @@ lbl_8023D104:
  * Address:	........
  * Size:	00007C
  */
-void TexCaster::Mgr::getTexture(int)
+void Mgr::getTexture(int)
 {
 	// UNUSED FUNCTION
 }
@@ -814,7 +585,7 @@ void TexCaster::Mgr::getTexture(int)
  * Address:	........
  * Size:	000118
  */
-void TexCaster::Mgr::drawInit(Graphics&)
+void Mgr::drawInit(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -824,8 +595,17 @@ void TexCaster::Mgr::drawInit(Graphics&)
  * Address:	8023D194
  * Size:	000288
  */
-void TexCaster::Mgr::draw(Graphics&)
+void Mgr::draw(Graphics& gfx)
 {
+	GXSetCullMode(GX_CULL_NONE);
+	GXClearVtxDesc();
+	GXSetNumTexGens(1);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_TEXC, GX_CC_C0, GX_CC_ZERO);
+	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_DIVIDE_2, GX_TRUE, GX_TEVPREV);
+	GXSetTevAlphaIn(GX_TEVSTAGE0, GX_ZERO, GX_CA_A0, GX_CA_TEXA, GX_ZERO);
+
+	mCaster.draw(gfx);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1005,3 +785,5 @@ lbl_8023D3F4:
 	blr
 	*/
 }
+
+} // namespace TexCaster
