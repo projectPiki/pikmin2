@@ -536,6 +536,8 @@ struct TMgr : Screen::TMemoryCard {
 	void showInfo(long, long, long, long);
 	int getStateID();
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+
 	TMgr();
 	~TMgr();
 

@@ -23,7 +23,12 @@ struct FSM;
 /**
  * @fabricated
  */
-enum StateID { Hole_Normal = 0, Hole_Appear, Hole_Close, HOLE_STATE_COUNT };
+enum StateID {
+	Hole_Normal = 0,
+	Hole_Appear = 1,
+	Hole_Close  = 2,
+	HOLE_StateCount, // 3
+};
 
 struct InitArg : public CreatureInitArg {
 	virtual const char* getName() // _00
@@ -47,10 +52,10 @@ struct Item : public CFSMItem {
 	// vtable 1
 	virtual void onInit(CreatureInitArg* settings);                     // _30
 	virtual void doDirectDraw(Graphics& gfx);                           // _50
-	virtual f32 getFaceDir();                                           // _64 (weak)
+	virtual f32 getFaceDir() { return mFaceDir; }                       // _64 (weak)
 	virtual bool sound_culling();                                       // _104
 	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
-	virtual char* getCreatureName();                                    // _1A8 (weak)
+	virtual char* getCreatureName() { return "Hole"; }                  // _1A8 (weak)
 
 	// vtable 2
 	virtual void initDependency();                // _1BC
@@ -66,12 +71,12 @@ struct Item : public CFSMItem {
 
 	// _00      = VTBL
 	// _00-_1E0 = CFSMItem
-	efx::WarpZone* _1E0;       // _1E0
-	ItemBarrel::Item* mBarrel; // _1E4
-	f32 mFaceDirection;        // _1E8
-	f32 _1EC;                  // _1EC
-	PlatInstance* _1F0;        // _1F0
-	PlatInstance* _1F4;        // _1F4
+	efx::WarpZone* mEfxWarpZone;     // _1E0
+	ItemBarrel::Item* mBarrel;       // _1E4
+	f32 mFaceDir;                    // _1E8
+	f32 mBuryDepth;                  // _1EC
+	PlatInstance* mCapPlatInstance;  // _1F0
+	PlatInstance* mSidePlatInstance; // _1F4
 };
 
 /**
@@ -83,15 +88,14 @@ struct Mgr : public TNodeItemMgr {
 	// vtable 1
 	virtual void setup(BaseItem*);                                        // _40
 	virtual void onLoadResources();                                       // _48
-	virtual u32 generatorGetID();                                         // _58 (weak)
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
 
 	// vtable 2
-	virtual BaseItem* doNew(); // _A0 (weak)
-	virtual ~Mgr();            // _B8 (weak)
+	virtual BaseItem* doNew() { return new Item(OBJTYPE_Hole); } // _A0 (weak)
+	virtual u32 generatorGetID() { return 'hole'; }              // _58 (weak)
 
-	Platform* _88; // _88
-	Platform* _8C; // _8C
+	Platform* mCapPlatform;  // _88
+	Platform* mSidePlatform; // _8C
 };
 
 /**
@@ -172,6 +176,30 @@ struct CloseState : State {
 
 extern Mgr* mgr;
 } // namespace ItemHole
+
+template <>
+void StateMachine<CFSMItem>::start(CFSMItem* obj, int stateID, StateArg* stateArg)
+{
+	obj->setCurrState(nullptr);
+	transit(obj, stateID, stateArg);
+}
+
+// template <>
+// void StateMachine<CFSMItem>::transit(CFSMItem* obj, int stateID, StateArg* stateArg)
+// {
+// 	int index           = mIdToIndexArray[stateID];
+// 	CFSMItem::StateType* state = obj->getCurrState();
+// 	if (state) {
+// 		state->cleanup(obj);
+// 		mCurrentID = state->mId;
+// 	}
+
+// 	ASSERT_HANG(index < mLimit);
+
+// 	state              = static_cast<CFSMItem::StateType*>(mStates[index]);
+// 	obj->setCurrState(state);
+// 	state->init(obj, stateArg);
+// }
 } // namespace Game
 
 #endif

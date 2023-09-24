@@ -118,10 +118,12 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 };
 
 struct CFSMItem : public BaseItem {
+	typedef FSMState<CFSMItem> StateType;
+
 	inline CFSMItem(int objTypeID)
 	    : BaseItem(objTypeID)
 	    , mStateMachine(nullptr)
-	    , mCurrState(nullptr)
+	    , mCurrentState(nullptr)
 	{
 	}
 
@@ -143,8 +145,8 @@ struct CFSMItem : public BaseItem {
 
 	// _000      = VTBL
 	// _000-_1D8 = BaseItem
-	CItemFSM* mStateMachine;        // _1D8
-	FSMState<CFSMItem>* mCurrState; // _1DC
+	CItemFSM* mStateMachine;           // _1D8
+	FSMState<CFSMItem>* mCurrentState; // _1DC
 };
 
 struct CItemFSM : public StateMachine<CFSMItem> {
@@ -213,6 +215,8 @@ struct FSMItem : public BaseItem {
 		}
 	}
 	int getStateID();
+
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
 
 	// _000      = VTBL
 	// _000-_1D8 = BaseItem

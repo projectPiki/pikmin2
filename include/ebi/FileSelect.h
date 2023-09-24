@@ -166,6 +166,8 @@ struct TMgr : public JKRDisposer {
 	void goEnd_(enumEnd);
 	int getStateID();
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+
 	static void onDvdErrorOccured();
 	static void onDvdErrorRecovered();
 

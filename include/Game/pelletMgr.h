@@ -421,6 +421,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 
 	inline f32 getStickRadius() { return mConfig->mParams.mRadius.mData; }
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?

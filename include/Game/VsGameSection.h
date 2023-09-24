@@ -88,6 +88,8 @@ struct VsGameSection : public BaseGameSection {
 	bool updateCaveMenus();
 	void useCard();
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+
 	Pellet* createCardPellet();
 
 	static int mRedWinCount;

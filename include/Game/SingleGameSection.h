@@ -80,6 +80,8 @@ struct SingleGameSection : public BaseGameSection {
 	void drawCaveScreen();
 	void drawMainMapScreen();
 
+	inline void setCurrState(StateType* state) { mCurrentState = state; }
+
 	f32 mTimer;                                    // _174
 	bool mTimerEnabled;                            // _178
 	u32 mTimerType;                                // _17C
