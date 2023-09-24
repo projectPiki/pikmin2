@@ -236,7 +236,7 @@ void Item::doAI()
 		mPellet->updateCapture(mtx);
 
 		if (mTotalLife >= mPellet->getBuryDepthMax()) {
-			mPellet->mLod.mFlags &= ~(AILOD_FLAG_NEED_SHADOW | AILOD_FLAG_VISIBLE_VP0 | AILOD_FLAG_VISIBLE_VP1);
+			mPellet->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
 		}
 		mPellet->mDepth = mTotalLife;
 	}

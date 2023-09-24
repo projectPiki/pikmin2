@@ -775,7 +775,7 @@ void BaseItem::entryShape()
 	if (mModel == nullptr) {
 		return;
 	}
-	if ((mLod.mFlags & AILOD_FLAG_NEED_SHADOW) != 0) {
+	if (mLod.isFlag(AILOD_IsVisible)) {
 		mModel->show();
 	} else {
 		if (BaseHIOParms::sEntryOpt) {
@@ -861,7 +861,7 @@ void BaseItem::do_updateLOD()
 	do_setLODParm(parm);
 	updateLOD(parm);
 	if (isMovieActor()) {
-		mLod.mFlags |= AILOD_FLAG_VISIBLE_VP0 | AILOD_FLAG_VISIBLE_VP1 | AILOD_FLAG_NEED_SHADOW;
+		mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
 	}
 }
 

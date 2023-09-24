@@ -318,7 +318,7 @@ void Obj::setupLodParms()
  * Address:	8026DE20
  * Size:	00002C
  */
-void Obj::updateEfxLod() { mEfxGas->setRateLOD(mLod.mFlags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR)); }
+void Obj::updateEfxLod() { mEfxGas->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar)); }
 
 /*
  * --INFO--

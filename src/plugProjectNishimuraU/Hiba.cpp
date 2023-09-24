@@ -197,7 +197,7 @@ void Obj::setupLodParms()
  * Address:	8026C4A0
  * Size:	00002C
  */
-void Obj::updateEfxLod() { mEfxFire->setRateLOD(mLod.mFlags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR)); }
+void Obj::updateEfxLod() { mEfxFire->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar)); }
 
 /*
  * --INFO--

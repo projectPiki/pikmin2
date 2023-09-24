@@ -891,7 +891,7 @@ void Onyon::do_updateLOD()
 	}
 	updateLOD(lod);
 	if (isMovieActor()) {
-		mLod.mFlags |= (AILOD_FLAG_VISIBLE_VP0 + AILOD_FLAG_VISIBLE_VP1 + AILOD_FLAG_NEED_SHADOW);
+		mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
 	}
 }
 
@@ -1523,7 +1523,7 @@ void Onyon::efxPafuPafu()
 void Onyon::efxPafuKira()
 {
 	SysShape::Joint* joint = mModel->getJoint("flow");
-	if (joint && mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+	if (joint && mLod.isFlag(AILOD_IsVisible)) {
 		Matrixf* mtx = joint->getWorldMatrix();
 		Vector3f position;
 		mtx->getTranslation(position);

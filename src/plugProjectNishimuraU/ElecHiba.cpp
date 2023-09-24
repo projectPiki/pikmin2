@@ -807,7 +807,7 @@ void Obj::setupLodParms()
 void Obj::updateEfxLod()
 {
 	if (mEfxDenkiHibaMgr) {
-		mEfxDenkiHibaMgr->setRateLOD(mLod.mFlags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR));
+		mEfxDenkiHibaMgr->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar));
 	}
 }
 

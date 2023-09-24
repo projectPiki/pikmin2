@@ -129,10 +129,7 @@ void ItemHole::CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
  * Size:	000014
  * exec__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem
  */
-void ItemHole::CloseState::exec(Game::CFSMItem* item)
-{
-	item->mLod.mFlags &= ~(AILOD_FLAG_NEED_SHADOW | AILOD_FLAG_VISIBLE_VP0 | AILOD_FLAG_VISIBLE_VP1);
-}
+void ItemHole::CloseState::exec(Game::CFSMItem* item) { item->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1); }
 
 /*
  * --INFO--
@@ -344,7 +341,7 @@ bool ItemHole::Item::sound_culling() { return false; }
  */
 void ItemHole::Item::doAI()
 {
-	mEfxWarpZone->setRateLOD(mLod.mFlags & (AILOD_FLAG_IS_FAR | AILOD_FLAG_IS_MID), true);
+	mEfxWarpZone->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar), true);
 	CFSMItem::doAI();
 	if (mBarrel) {
 		if (!mBarrel->isAlive()) {

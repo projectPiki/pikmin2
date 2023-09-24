@@ -285,7 +285,7 @@ void Obj::updateMaterialAnimation()
  * Address:	8028FE54
  * Size:	00002C
  */
-void Obj::updateEfxLod() { mEfxBody->setRateLOD(mLod.mFlags & (AILOD_FLAG_IS_MID + AILOD_FLAG_IS_FAR)); }
+void Obj::updateEfxLod() { mEfxBody->setRateLOD(mLod.isFlag(AILOD_IsMid | AILOD_IsFar)); }
 
 /*
  * --INFO--

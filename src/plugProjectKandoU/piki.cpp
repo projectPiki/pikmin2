@@ -1325,7 +1325,7 @@ void Piki::doColorChange()
 	SysShape::Joint* happa1 = mHappaJoint1;
 	Matrixf* worldMat       = mLeafStemJoint->getWorldMatrix();
 
-	if (IS_FLAG(mLod.mFlags, AILOD_FLAG_NEED_SHADOW) == false) {
+	if (!mLod.isFlag(AILOD_IsVisible)) {
 		mLeafStemOffset   = getPosition();
 		mLeafStemPosition = mLeafStemOffset;
 		return;

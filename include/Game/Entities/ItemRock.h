@@ -6,10 +6,18 @@
 #include "Game/itemMgr.h"
 #include "Game/PlatInstance.h"
 #include "Game/Farm.h"
+#include "efx/TKouhai.h"
 
 namespace Game {
 namespace ItemRock {
 struct Item;
+
+enum StateID {
+	ITEMROCK_Normal = 0,
+	ITEMROCK_Down   = 1,
+	ITEMROCK_Up     = 2,
+	ITEMROCK_StateCount, // 3
+};
 
 struct FSM : public ItemFSM<Item> {
 	virtual void init(Item*); // _08
@@ -28,10 +36,16 @@ struct State : public ItemState<Item> {
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
+	u32 _0C; // _0C, unknown - probably was mName
+	u8 _10;  // _10
+	u8 _11;  // _11
 };
 
 struct NormalState : public State {
-	// needs an inline ctor probably
+	inline NormalState()
+	    : State(ITEMROCK_Normal)
+	{
+	}
 
 	virtual void init(Item*, StateArg*);                       // _08
 	virtual void exec(Item*);                                  // _0C
@@ -44,7 +58,10 @@ struct NormalState : public State {
 };
 
 struct DownState : public State {
-	// needs an inline ctor probably
+	inline DownState()
+	    : State(ITEMROCK_Down)
+	{
+	}
 
 	virtual void init(Item*, StateArg*);                       // _08
 	virtual void exec(Item*);                                  // _0C
@@ -57,7 +74,10 @@ struct DownState : public State {
 };
 
 struct UpState : public State {
-	// needs an inline ctor probably
+	inline UpState()
+	    : State(ITEMROCK_Up)
+	{
+	}
 
 	virtual void init(Item*, StateArg*);                       // _08
 	virtual void exec(Item*);                                  // _0C
@@ -92,14 +112,11 @@ struct RockParms : public CreatureParms {
 
 	// _00-_D8 = CreatureParms
 	// _D8		 = VTBL
-	Parms mRockParms;
+	Parms mRockParms; // _DC
 };
 
 struct Item : public WorkItem<Item, FSM, State> {
-	inline Item(int objType)
-	    : WorkItem(objType)
-	{ // probably needs things in here, just an initial guess
-	}
+	Item();
 
 	virtual void constructor();                               // _2C
 	virtual void onInit(CreatureInitArg*);                    // _30
@@ -125,19 +142,27 @@ struct Item : public WorkItem<Item, FSM, State> {
 	void startDownMotion();
 	void startUpMotion();
 	void createRock(int);
-	void getWorkRadius();
+	f32 getWorkRadius();
+
+	// unused/inlined:
+	void emitDamageEffect();
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	Farm::Obstacle* mObstacle; // _1EC
-	u8 _1F0[0xC];              // _1F0, unknown
-	u8 _1FC;                   // _1FC
-	u8 _1FD[0x3];              // _1FD, unknown/padding
-	u8 _200[0x14];             // _200, unknown
-	f32 _214;                  // _214
-	u8 _218[0x4];              // _218, unknown
-	u32 _21C;                  // _21C
-	u32 _220;                  // _220
+	Farm::Obstacle* mObstacle;  // _1EC
+	efx::TKouhai1* mEfxKouhai1; // _1F0
+	efx::TKouhai2* mEfxKouhai2; // _1F4
+	efx::TKouhai3* mEfxKouhai3; // _1F8
+	u8 _1FC;                    // _1FC
+	f32 _200;                   // _200
+	u8 _204[0x4];               // _204, unknown
+	f32* _208;                  // _208
+	f32* _20C;                  // _20C
+	f32* _210;                  // _210, might be Vector3f*?
+	f32 _214;                   // _214
+	f32 _218;                   // _218
+	int _21C;                   // _21C
+	int _220;                   // _220
 };
 
 struct Mgr : public TNodeItemMgr {

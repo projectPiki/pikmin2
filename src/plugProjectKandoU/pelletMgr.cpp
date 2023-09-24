@@ -125,7 +125,7 @@ void Pellet::getShadowParam(ShadowParam& shadow)
  */
 bool Pellet::needShadow()
 {
-	return (!pelletMgr->mMovieDrawDisabled || (pelletMgr->mMovieDrawDisabled && isMovieActor() && (mLod.mFlags & AILOD_FLAG_NEED_SHADOW)));
+	return (!pelletMgr->mMovieDrawDisabled || (pelletMgr->mMovieDrawDisabled && isMovieActor() && mLod.isFlag(AILOD_IsVisible)));
 }
 
 /*
@@ -194,7 +194,7 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 		newPellet->_324 = 1;
 		newPellet->setOrientation(*viewArg->mMatrix);
 		newPellet->mScale = viewArg->_18;
-		newPellet->mLod.mFlags |= (AILOD_FLAG_VISIBLE_VP0 + AILOD_FLAG_VISIBLE_VP1 + AILOD_FLAG_NEED_SHADOW);
+		newPellet->mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
 
 		viewStartPreCarryMotion();
 
@@ -2431,7 +2431,7 @@ void Pellet::update()
 		AILODParm parm2;
 		updateLOD(parm2);
 		if (isMovieActor()) {
-			mLod.mFlags |= (AILOD_FLAG_NEED_SHADOW + AILOD_FLAG_VISIBLE_VP0 + AILOD_FLAG_VISIBLE_VP1);
+			mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
 		}
 	} else {
 		if (mCaptureMatrix != nullptr) {
@@ -2442,7 +2442,7 @@ void Pellet::update()
 		AILODParm parm4;
 		updateLOD(parm4);
 		if (isMovieActor()) {
-			mLod.mFlags |= (AILOD_FLAG_NEED_SHADOW + AILOD_FLAG_VISIBLE_VP0 + AILOD_FLAG_VISIBLE_VP1);
+			mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
 		}
 		bool check;
 		int type = 2;
@@ -2450,13 +2450,13 @@ void Pellet::update()
 			check = true;
 		} else if (_364 == 2) {
 			check = false;
-		} else if ((mLod.mFlags & (AILOD_FLAG_IS_MID + AILOD_FLAG_IS_FAR)) >= 2) {
+		} else if ((mLod.isFlag(AILOD_IsMid | AILOD_IsFar)) >= 2) {
 			check = false;
 		} else {
 			check = true;
 		}
 
-		if (!(mLod.mFlags & AILOD_FLAG_NEED_SHADOW) || ((mLod.mFlags & (AILOD_FLAG_IS_MID + AILOD_FLAG_IS_FAR)) >= 1)) {
+		if (!(mLod.isFlag(AILOD_IsVisible)) || ((mLod.isFlag(AILOD_IsMid | AILOD_IsFar)) >= 1)) {
 			type = 1;
 		}
 		_39C = check;
@@ -3970,7 +3970,7 @@ void Pellet::doEntry()
 {
 	if (!pelletMgr->mMovieDrawDisabled || isMovieActor()) {
 		if (mPelletView == nullptr) {
-			if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+			if (mLod.isFlag(AILOD_IsVisible)) {
 				mModel->show();
 				changeMaterial();
 			} else if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
@@ -4014,7 +4014,7 @@ void Pellet::doViewCalc() { Creature::doViewCalc(); }
 void Pellet::theEntry()
 {
 	if (mModel) {
-		if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+		if (mLod.isFlag(AILOD_IsVisible)) {
 			mModel->show();
 		} else if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
 			return;

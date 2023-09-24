@@ -1477,7 +1477,7 @@ void EnemyBase::doUpdateCommon()
 	scaleDamageAnim();
 	resetCollEvent();
 
-	if ((mLod.mFlags & AILOD_FLAG_NEED_SHADOW) && isAlive()) {
+	if ((mLod.isFlag(AILOD_IsVisible)) && isAlive()) {
 		updateEffects();
 	}
 }
@@ -1602,7 +1602,7 @@ void EnemyBase::hide()
  */
 void EnemyBase::doEntryCarcass()
 {
-	if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+	if (mLod.isFlag(AILOD_IsVisible)) {
 		show();
 		changeMaterial();
 	} else {
@@ -1621,7 +1621,7 @@ void EnemyBase::doEntryCarcass()
  */
 void EnemyBase::doEntryLiving()
 {
-	if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+	if (mLod.isFlag(AILOD_IsVisible)) {
 		show();
 		changeMaterial();
 	} else {
@@ -1663,8 +1663,7 @@ bool EnemyBase::isCullingOff()
 		return true;
 	}
 
-	return !isEvent(0, EB_Cullable) || mLod.mFlags & AILOD_FLAG_NEED_SHADOW || mLod.mFlags & AILOD_FLAG_UNKNOWN4
-	    || isEvent(1, EB2_Dropping);
+	return !isEvent(0, EB_Cullable) || mLod.isFlag(AILOD_IsVisible) || mLod.isFlag(AILOD_Unk4) || isEvent(1, EB2_Dropping);
 }
 
 /*
@@ -2551,7 +2550,7 @@ void EnemyBase::getLifeGaugeParam(LifeGaugeParam& param)
 	if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
 		param.mIsGaugeShown = false;
 	} else {
-		param.mIsGaugeShown = isEvent(0, EB_LifegaugeVisible) && mLod.mFlags & AILOD_FLAG_NEED_SHADOW;
+		param.mIsGaugeShown = isEvent(0, EB_LifegaugeVisible) && mLod.isFlag(AILOD_IsVisible);
 	}
 
 	if (param.mIsGaugeShown) {
@@ -3153,8 +3152,8 @@ bool EnemyBase::needShadow()
 		return isMovieActor() || mMgr->isAlwaysMovieActor();
 	}
 
-	// If enemy needs shadow or the model isn't hidden, then we need a shadow
-	return mLod.mFlags & AILOD_FLAG_NEED_SHADOW && isEvent(0, EB_ModelHidden) == false;
+	// If enemy is visible and the model isn't hidden, then we need a shadow
+	return mLod.isFlag(AILOD_IsVisible) && isEvent(0, EB_ModelHidden) == false;
 }
 
 /*

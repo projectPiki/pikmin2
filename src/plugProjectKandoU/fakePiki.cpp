@@ -2127,7 +2127,7 @@ void FakePiki::doEntry()
 {
 	doColorChange();
 
-	if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+	if (mLod.isFlag(AILOD_IsVisible)) {
 		mModel->show();
 
 	} else {

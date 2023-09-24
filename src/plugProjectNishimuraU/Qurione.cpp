@@ -282,7 +282,7 @@ bool Obj::isAppear()
  */
 bool Obj::isFlyKill()
 {
-	if (!(mLod.mFlags & AILOD_FLAG_NEED_SHADOW) || mUtilityTimer > C_PROPERPARMS.mFp05.mValue) {
+	if (!(mLod.isFlag(AILOD_IsVisible)) || mUtilityTimer > C_PROPERPARMS.mFp05.mValue) {
 		return true;
 	}
 

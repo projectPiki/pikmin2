@@ -147,7 +147,7 @@ void Mgr::draw(Viewport* viewport)
 		Obj* obj = (Obj*)mObj.mChild;
 		if (obj) {
 			for (obj; obj; obj = (Obj*)obj->mNext) {
-				if (obj->mEnemy->mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+				if (obj->mEnemy->mLod.isFlag(AILOD_IsVisible)) {
 					DrawInfo* baseInfo = static_cast<DrawInfo*>(&obj->mNodeArray[i]);
 
 					FOREACH_NODE(DrawInfo, static_cast<DrawInfo*>(baseInfo->mChild), drawInfo)

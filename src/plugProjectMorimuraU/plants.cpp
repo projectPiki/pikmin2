@@ -119,7 +119,7 @@ void Plants::Obj::doAnimationCullingOff()
 	if (_2BC) {
 		mCurAnim->mIsPlaying = false;
 		doAnimationUpdateAnimator();
-		if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+		if (mLod.isFlag(AILOD_IsVisible)) {
 			mObjMatrix.makeSRT(mScale, mRotation, mPosition);
 			PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 			mModel->mJ3dModel->calc();
@@ -141,7 +141,7 @@ void Plants::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Plants::Obj::collisionCallback(CollEvent& collEvent)
 {
-	if (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) {
+	if (mLod.isFlag(AILOD_IsVisible)) {
 		setCollEvent(collEvent);
 		Creature* creature = collEvent.mCollidingCreature;
 		if (creature) {

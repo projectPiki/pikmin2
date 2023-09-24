@@ -87,7 +87,7 @@ void CloseState::init(Item* item, StateArg* arg)
  * Address:	801EC498
  * Size:	000014
  */
-void CloseState::exec(Item* item) { item->mLod.mFlags &= ~(AILOD_FLAG_NEED_SHADOW | AILOD_FLAG_VISIBLE_VP0 | AILOD_FLAG_VISIBLE_VP1); }
+void CloseState::exec(Item* item) { item->mLod.resetFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1); }
 
 /*
  * --INFO--
@@ -427,7 +427,7 @@ void Item::doDirectDraw(Graphics& gfx)
 	pos.y += 120.0f;
 	const char* status = (isAlive()) ? "alv" : "ded";
 
-	gfx.perspPrintf(printInfo, pos, "%s %s", (mLod.mFlags & AILOD_FLAG_NEED_SHADOW) ? "vis" : "x", status);
+	gfx.perspPrintf(printInfo, pos, "%s %s", mLod.isFlag(AILOD_IsVisible) ? "vis" : "x", status);
 }
 
 /*

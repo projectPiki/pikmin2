@@ -214,7 +214,7 @@ void Creature::getShadowParam(ShadowParam& param)
  * Address:	8013B4F8
  * Size:	00000C
  */
-bool Creature::needShadow() { return mLod.mFlags & AILOD_FLAG_NEED_SHADOW; }
+bool Creature::needShadow() { return mLod.isFlag(AILOD_IsVisible); }
 
 /*
  * --INFO--
@@ -387,7 +387,7 @@ bool Creature::isPellet() { return mObjectTypeID == OBJTYPE_Pellet; }
  * Address:	8013BA30
  * Size:	000020
  */
-bool Creature::sound_culling() { return !((mLod.mFlags & AILOD_FLAG_UNKNOWN4) || (mLod.mFlags & AILOD_FLAG_NEED_SHADOW)); }
+bool Creature::sound_culling() { return !(mLod.isFlag(AILOD_Unk4) || mLod.isFlag(AILOD_IsVisible)); }
 
 /*
  * --INFO--

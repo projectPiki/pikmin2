@@ -126,6 +126,11 @@ struct EnemyKillArg : public CreatureKillArg {
 struct EnemyBase : public Creature, public SysShape::MotionListener, virtual public Game::PelletView {
 	EnemyBase();
 
+	// these are up here so they can be used in virtuals.
+	inline void enableEvent(int i, u32 flag) { mEvents.mFlags[i].typeView |= flag; }
+	inline void disableEvent(int i, u32 flag) { mEvents.mFlags[i].typeView &= ~flag; }
+	inline bool isEvent(int i, u32 flag) { return mEvents.mFlags[i].typeView & flag; }
+
 	// vtable 1 (Creature)
 	virtual Vector3f getPosition() // _08 (weak)
 	{
@@ -308,8 +313,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual bool sound_culling() // _104 (weak)
 	{
 		bool culling = false;
-		if (mEvents.mFlags[0].typeView & 0x2000) {
-			if (!(mLod.mFlags & AILOD_FLAG_NEED_SHADOW) && !(mLod.mFlags & AILOD_FLAG_UNKNOWN4)) {
+		if (isEvent(0, EB_14)) {
+			if (!mLod.isFlag(AILOD_IsVisible) && !mLod.isFlag(AILOD_Unk4)) {
 				culling = true;
 			}
 		}
@@ -474,12 +479,6 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	void updateEffects();
 
 	inline void setCreatureID(u8 idx) { mCreatureID = idx; }
-
-	inline void enableEvent(int i, u32 flag) { mEvents.mFlags[i].typeView |= flag; }
-
-	inline void disableEvent(int i, u32 flag) { mEvents.mFlags[i].typeView &= ~flag; }
-
-	inline bool isEvent(int i, u32 flag) { return mEvents.mFlags[i].typeView & flag; }
 
 	inline bool isDead() { return mHealth <= 0.0f; }
 
