@@ -10,7 +10,7 @@ GX_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/gx/GXBump.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXTev.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXPixel.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXDisplayList.o\
+	$(BUILD_DIR)/src/Dolphin/gx/GXDisplayList.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXTransform.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXPerf.o\
 

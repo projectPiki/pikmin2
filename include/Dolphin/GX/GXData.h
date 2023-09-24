@@ -52,7 +52,10 @@ typedef union _ControlRegister {
 // size: 0x5B0
 // Wish we could steal names from SMG1 decomp, but GXData is bigger there.
 typedef struct _GXData {
-	u16 _000[2];                     // _000
+	union {
+		s16 s[2];
+		u32 w;
+	} _000;                          // _000
 	u8 _004[4];                      // _004
 	ControlRegister controlRegister; // _008
 	u32 _00C;                        // _00C, probably CPStatus
@@ -204,7 +207,7 @@ static inline void GXSetWasteFlags()
 {
 	GXData* data = __GXData;
 	data->_5AC |= 0x3;
-	data->_000[1] = 0;
+	data->_000.s[1] = 0;
 }
 
 ////////////////////////////////////////////

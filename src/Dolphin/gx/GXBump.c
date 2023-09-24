@@ -24,9 +24,9 @@ void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexF
 	GX_BITFIELD_SET(field, 11, 1, addPrev);
 	GX_BITFIELD_SET(field, 0, 8, stage);
 
-	GXWGFifo.u8       = 0x61;
-	GXWGFifo.s32      = field;
-	__GXData->_000[1] = 0;
+	GXWGFifo.u8         = 0x61;
+	GXWGFifo.s32        = field;
+	__GXData->_000.s[1] = 0;
 }
 
 /*
@@ -89,7 +89,7 @@ void GXSetIndTexMtx(GXIndTexMtxID id, const Mtx23 mtx, s8 scale_exp)
 	GXWGFifo.u8  = 0x61;
 	GXWGFifo.s32 = field;
 
-	__GXData->_000[1] = 0;
+	__GXData->_000.s[1] = 0;
 }
 
 /*
@@ -136,7 +136,7 @@ void GXSetIndTexCoordScale(GXIndTexStageID stage, GXIndTexScale scaleS, GXIndTex
 		break;
 	}
 
-	__GXData->_000[1] = 0;
+	__GXData->_000.s[1] = 0;
 }
 
 /*
@@ -237,9 +237,9 @@ void __GXSetIndirectMask(u32 mask)
 {
 	GXData* data = __GXData;
 	GX_BITFIELD_SET(data->_124, 24, 8, mask);
-	GXWGFifo.u8   = 0x61;
-	GXWGFifo.s32  = data->_124;
-	data->_000[1] = 0;
+	GXWGFifo.u8     = 0x61;
+	GXWGFifo.s32    = data->_124;
+	data->_000.s[1] = 0;
 }
 
 /*
@@ -249,7 +249,7 @@ void __GXSetIndirectMask(u32 mask)
  */
 void __GXFlushTextureState()
 {
-	GXWGFifo.u8       = 0x61;
-	GXWGFifo.s32      = __GXData->_124;
-	__GXData->_000[1] = 0;
+	GXWGFifo.u8         = 0x61;
+	GXWGFifo.s32        = __GXData->_124;
+	__GXData->_000.s[1] = 0;
 }
