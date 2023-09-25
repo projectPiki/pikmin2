@@ -3,125 +3,22 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/ResTIMG.h"
+#include "Graphics.h"
 #include "System.h"
 #include "types.h"
 #include "TParticle2dMgr.h"
 #include "nans.h"
 
+static const char idk[] = "\0\0\0\0\0\0\0\0\0";
+TParticle2dMgr* particle2dMgr;
+TParticle2dMgr* TParticle2dMgr::_instance;
+
 /*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_particle2dMgr_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80495A70
-    lbl_80495A70:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x70617274
-        .4byte 0x69636C65
-        .4byte 0x32644D67
-        .4byte 0x72000000
-    .global lbl_80495A8C
-    lbl_80495A8C:
-        .4byte 0x54506172
-        .4byte 0x7469636C
-        .4byte 0x6532644D
-        .4byte 0x67720000
-        .4byte 0x54506172
-        .4byte 0x7469636C
-        .4byte 0x6532644D
-        .4byte 0x67723A3A
-        .4byte 0x63726561
-        .4byte 0x74654865
-        .4byte 0x61700000
-    .global lbl_80495AB8
-    lbl_80495AB8:
-        .4byte 0x70617274
-        .4byte 0x69636C65
-        .4byte 0x32644D67
-        .4byte 0x722E6370
-        .4byte 0x70000000
-    .global lbl_80495ACC
-    lbl_80495ACC:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x65666665
-        .4byte 0x63742068
-        .4byte 0x65617020
-        .4byte 0x6E6F7420
-        .4byte 0x616C6C6F
-        .4byte 0x63617465
-        .4byte 0x6420210A
-        .4byte 0x00000000
-        .4byte 0x54506172
-        .4byte 0x7469636C
-        .4byte 0x6532644D
-        .4byte 0x67723A3A
-        .4byte 0x63726561
-        .4byte 0x74654D67
-        .4byte 0x72000000
-        .4byte 0x50617274
-        .4byte 0x69636C65
-        .4byte 0x5265736F
-        .4byte 0x75726365
-        .4byte 0x20282573
-        .4byte 0x29206E6F
-        .4byte 0x7420666F
-        .4byte 0x756E640A
-        .4byte 0x00000000
-        .4byte 0x4950325F
-        .4byte 0x64756D6D
-        .4byte 0x79000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E7368
-    lbl_804E7368:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__14TParticle2dMgr
-    __vt__14TParticle2dMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__14TParticle2dMgrFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__14TParticle2dMgrFv"
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516080
-    lbl_80516080:
-        .skip 0x4
-    .global lbl_80516084
-    lbl_80516084:
-        .skip 0x4
-    .global particle2dMgr
-    particle2dMgr:
-        .skip 0x4
-    .global _instance__14TParticle2dMgr
-    _instance__14TParticle2dMgr:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051F6C0
-    lbl_8051F6C0:
-        .4byte 0x00000000
-    .global lbl_8051F6C4
-    lbl_8051F6C4:
-        .float 0.5
-    .global lbl_8051F6C8
-    lbl_8051F6C8:
-        .4byte 0xBF000000
-        .4byte 0x00000000
-    .global lbl_8051F6D0
-    lbl_8051F6D0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
+ * --INFO--
+ * Address:	........
+ * Size:	0000E4
+ */
+void _Print(char* name, ...) { OSReport("particle2dMgr"); }
 
 /*
  * --INFO--
@@ -132,43 +29,6 @@ TParticle2dMgr::~TParticle2dMgr()
 {
 	_instance     = nullptr;
 	particle2dMgr = nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B90CC
-	lis      r3, __vt__14TParticle2dMgr@ha
-	li       r0, 0
-	addi     r4, r3, __vt__14TParticle2dMgr@l
-	addi     r3, r30, 0x18
-	stw      r4, 0(r30)
-	addi     r5, r4, 0x10
-	li       r4, 0
-	stw      r5, 0x18(r30)
-	stw      r0, _instance__14TParticle2dMgr@sda21(r13)
-	stw      r0, particle2dMgr@sda21(r13)
-	bl       __dt__11JKRDisposerFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_803B90CC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B90CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -176,21 +36,7 @@ lbl_803B90CC:
  * Address:	803B90E8
  * Size:	000024
  */
-void TParticle2dMgr::globalInstance()
-{
-	particle2dMgr = Instance();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       Instance__14TParticle2dMgrFv
-	stw      r3, particle2dMgr@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TParticle2dMgr::globalInstance() { particle2dMgr = Instance(); }
 
 /*
  * --INFO--
@@ -203,30 +49,6 @@ TParticle2dMgr* TParticle2dMgr::Instance()
 		_instance = new TParticle2dMgr();
 	}
 	return _instance;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, _instance__14TParticle2dMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B9140
-	li       r3, 0x44
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803B913C
-	bl       __ct__14TParticle2dMgrFv
-	mr       r0, r3
-
-lbl_803B913C:
-	stw      r0, _instance__14TParticle2dMgr@sda21(r13)
-
-lbl_803B9140:
-	lwz      r0, 0x14(r1)
-	lwz      r3, _instance__14TParticle2dMgr@sda21(r13)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -236,37 +58,11 @@ lbl_803B9140:
  */
 void TParticle2dMgr::deleteInstance()
 {
-	if (_instance != nullptr) {
+	if (_instance) {
 		delete _instance;
 		_instance = nullptr;
 	}
 	particle2dMgr = nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, _instance__14TParticle2dMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803B918C
-	beq      lbl_803B9184
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803B9184:
-	li       r0, 0
-	stw      r0, _instance__14TParticle2dMgr@sda21(r13)
-
-lbl_803B918C:
-	li       r0, 0
-	stw      r0, particle2dMgr@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -281,43 +77,7 @@ TParticle2dMgr::TParticle2dMgr()
 {
 	_30              = nullptr;
 	mResourceManager = nullptr;
-	_3C              = nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__5CNode@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__5CNode@l
-	li       r4, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, lbl_80495A8C@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, lbl_80495A8C@l
-	addi     r3, r31, 0x18
-	stw      r4, 0x10(r31)
-	stw      r4, 0xc(r31)
-	stw      r4, 8(r31)
-	stw      r4, 4(r31)
-	stw      r0, 0x14(r31)
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__14TParticle2dMgr@ha
-	li       r0, 0
-	addi     r4, r3, __vt__14TParticle2dMgr@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	addi     r4, r4, 0x10
-	stw      r4, 0x18(r31)
-	stw      r0, 0x38(r31)
-	stw      r0, 0x30(r31)
-	stw      r0, 0x34(r31)
-	stw      r0, 0x3c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEmitterManager  = nullptr;
 }
 
 /*
@@ -325,54 +85,12 @@ TParticle2dMgr::TParticle2dMgr()
  * Address:	803B922C
  * Size:	000094
  */
-void TParticle2dMgr::createHeap(unsigned long p1)
+void TParticle2dMgr::createHeap(u32 p1)
 {
 	sys->heapStatusStart("TParticle2dMgr::createHeap", nullptr);
 	P2ASSERTLINE(73, mSolidHeap == nullptr);
 	mSolidHeap = JKRSolidHeap::create(p1, JKRHeap::sCurrentHeap, true);
 	sys->heapStatusEnd("TParticle2dMgr::createHeap");
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_80495A70@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r5, lbl_80495A70@l
-	li       r5, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	addi     r4, r31, 0x2c
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r0, 0x38(r29)
-	cmplwi   r0, 0
-	beq      lbl_803B9284
-	addi     r3, r31, 0x48
-	addi     r5, r31, 0x5c
-	li       r4, 0x49
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B9284:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	mr       r3, r30
-	li       r5, 1
-	bl       create__12JKRSolidHeapFUlP7JKRHeapb
-	stw      r3, 0x38(r29)
-	addi     r4, r31, 0x2c
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -380,7 +98,7 @@ lbl_803B9284:
  * Address:	803B92C0
  * Size:	000154
  */
-void TParticle2dMgr::createMgr(char*, unsigned long, unsigned long, unsigned long)
+void TParticle2dMgr::createMgr(char* a, u32 u1, u32 u2, u32 u3)
 {
 	/*
 	.loc_0x0:
@@ -507,62 +225,13 @@ void TParticle2dMgr::destroyHeap()
  */
 void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager* emitterManager, JPAResourceManager* resourceManager)
 {
-	P2ASSERTLINE(132, _3C == nullptr);
-	_3C = _30;
-	_30 = emitterManager;
+	P2ASSERTLINE(132, mEmitterManager == nullptr);
+	mEmitterManager = _30;
+	_30             = emitterManager;
 	_30->clearResourceManager(0);
 	_30->entryResourceManager(mResourceManager, 0);
 	_30->clearResourceManager(1);
 	_30->entryResourceManager(resourceManager, 1);
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, 0x3C(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5AB8
-	  li        r4, 0x84
-	  addi      r5, r5, 0x5ACC
-	  crclr     6, 0x6
-	  bl        -0x38EE1C
-
-	.loc_0x4C:
-	  lwz       r0, 0x30(r29)
-	  li        r4, 0
-	  stw       r0, 0x3C(r29)
-	  stw       r30, 0x30(r29)
-	  lwz       r3, 0x30(r29)
-	  bl        -0x3286F8
-	  lwz       r3, 0x30(r29)
-	  li        r5, 0
-	  lwz       r4, 0x34(r29)
-	  bl        -0x328718
-	  lwz       r3, 0x30(r29)
-	  li        r4, 0x1
-	  bl        -0x328714
-	  lwz       r3, 0x30(r29)
-	  mr        r4, r31
-	  li        r5, 0x1
-	  bl        -0x328734
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -574,43 +243,9 @@ void TParticle2dMgr::clearSceneEmitterAndResourceManager()
 {
 	_30->clearResourceManager(1);
 	_30->clearResourceManager(0);
-	P2ASSERTLINE(149, _3C != nullptr);
-	_30 = _3C;
-	_3C = nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x30(r3)
-	bl       clearResourceManager__17JPAEmitterManagerFUc
-	lwz      r3, 0x30(r31)
-	li       r4, 0
-	bl       clearResourceManager__17JPAEmitterManagerFUc
-	lwz      r0, 0x3c(r31)
-	cmplwi   r0, 0
-	bne      lbl_803B9514
-	lis      r3, lbl_80495AB8@ha
-	lis      r5, lbl_80495ACC@ha
-	addi     r3, r3, lbl_80495AB8@l
-	li       r4, 0x95
-	addi     r5, r5, lbl_80495ACC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B9514:
-	lwz      r3, 0x3c(r31)
-	li       r0, 0
-	stw      r3, 0x30(r31)
-	stw      r0, 0x3c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(149, mEmitterManager);
+	_30             = mEmitterManager;
+	mEmitterManager = nullptr;
 }
 
 /*
@@ -622,28 +257,6 @@ void TParticle2dMgr::setSceneResourceManager(JPAResourceManager* resourceManager
 {
 	_30->clearResourceManager(1);
 	_30->entryResourceManager(resourceManager, 1);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x30(r3)
-	bl       clearResourceManager__17JPAEmitterManagerFUc
-	lwz      r3, 0x30(r30)
-	mr       r4, r31
-	li       r5, 1
-	bl       entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -651,51 +264,40 @@ void TParticle2dMgr::setSceneResourceManager(JPAResourceManager* resourceManager
  * Address:	803B9588
  * Size:	000028
  */
-void TParticle2dMgr::clearSceneResourceManager()
-{
-	_30->clearResourceManager(1);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x30(r3)
-	bl       clearResourceManager__17JPAEmitterManagerFUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TParticle2dMgr::clearSceneResourceManager() { _30->clearResourceManager(1); }
 
 /*
  * --INFO--
  * Address:	803B95B0
  * Size:	000024
  */
-void TParticle2dMgr::update()
-{
-	_30->calc();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x30(r3)
-	bl       calc__17JPAEmitterManagerFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TParticle2dMgr::update() { _30->calc(); }
 
 /*
  * --INFO--
  * Address:	803B95D4
  * Size:	000148
  */
-void TParticle2dMgr::draw(unsigned char, unsigned short)
+void TParticle2dMgr::draw(u8 a, u16 flag)
 {
+	if (flag == 1) {
+		JPADrawInfo info;
+		PSMTXIdentity(info.mtx1);
+		u16 width  = System::getRenderModeObj()->fbWidth;
+		u16 height = System::getRenderModeObj()->efbHeight;
+		PSMTXCopy(info.mtx1, info.mtx2);
+		C_MTXLightOrtho(0.0f, height, 0.0f, width, 0.5f, 0.5f, 0.5f, 0.5f, info.mtx2);
+		mEmitterManager->draw(&info, a);
+	} else {
+		Graphics* gfx = sys->mGfx;
+		JPADrawInfo info;
+		u16 height = System::getRenderModeObj()->efbHeight;
+		u16 width  = System::getRenderModeObj()->fbWidth;
+		f32 fov    = gfx->mPerspGraph.mFovY;
+		PSMTXCopy(gfx->mPerspGraph.mPosMtx, info.mtx2);
+		C_MTXLightPerspective(fov, (f32)width / (f32)height, 0.5f, -0.5f, 0.5f, 0.5f, info.mtx2);
+		mEmitterManager->draw(&info, a);
+	}
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0
@@ -801,32 +403,10 @@ void TParticle2dMgr::setXfb(const ResTIMG*)
  * Address:	803B971C
  * Size:	00004C
  */
-JPABaseEmitter* TParticle2dMgr::create(unsigned short p1, Vector2<f32>& p2, unsigned char p3, unsigned char p4)
+JPABaseEmitter* TParticle2dMgr::create(u16 p1, Vector2<f32>& p2, u8 p3, u8 p4)
 {
 	JGeometry::TVec3f vec(p2.x, p2.y, 0.0f);
 	return _30->createSimpleEmitterID(vec, p1, p3, p4, nullptr, nullptr);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfs       f0, 0x1360(r2)
-	  li        r8, 0
-	  stw       r0, 0x24(r1)
-	  li        r9, 0
-	  lfs       f2, 0x4(r5)
-	  lfs       f1, 0x0(r5)
-	  mr        r5, r4
-	  addi      r4, r1, 0x8
-	  stfs      f1, 0x8(r1)
-	  stfs      f2, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  lwz       r3, 0x30(r3)
-	  bl        -0x328E98
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -836,24 +416,9 @@ JPABaseEmitter* TParticle2dMgr::create(unsigned short p1, Vector2<f32>& p2, unsi
  */
 void TParticle2dMgr::kill(JPABaseEmitter* emitter)
 {
-	if (emitter != nullptr) {
+	if (emitter) {
 		_30->forceDeleteEmitter(emitter);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	beq      lbl_803B9784
-	lwz      r3, 0x30(r3)
-	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
-
-lbl_803B9784:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -863,20 +428,10 @@ lbl_803B9784:
  */
 void TParticle2dMgr::fade(JPABaseEmitter* emitter)
 {
-	if (emitter != nullptr) {
+	if (emitter) {
 		emitter->mFlags |= 1;
 		emitter->_24 = 1;
 	}
-	/*
-	cmplwi   r4, 0
-	beqlr
-	lwz      r3, 0xf4(r4)
-	li       r0, 1
-	ori      r3, r3, 1
-	stw      r3, 0xf4(r4)
-	stw      r0, 0x24(r4)
-	blr
-	*/
 }
 
 /*
@@ -884,43 +439,14 @@ void TParticle2dMgr::fade(JPABaseEmitter* emitter)
  * Address:	803B97B4
  * Size:	000024
  */
-void TParticle2dMgr::killAll()
-{
-	_30->forceDeleteAllEmitter();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x30(r3)
-	bl       forceDeleteAllEmitter__17JPAEmitterManagerFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TParticle2dMgr::killAll() { _30->forceDeleteAllEmitter(); }
 
 /*
  * --INFO--
  * Address:	803B97D8
  * Size:	000028
  */
-void TParticle2dMgr::killGroup(unsigned char p1)
-{
-	_30->forceDeleteGroupEmitter(p1);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	clrlwi   r4, r4, 0x18
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x30(r3)
-	bl       forceDeleteGroupEmitter__17JPAEmitterManagerFUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TParticle2dMgr::killGroup(u8 p1) { _30->forceDeleteGroupEmitter((int)p1); }
 
 /*
  * --INFO--
@@ -931,37 +457,3 @@ void TParticle2dMgr::showInfo(long, long, long, long)
 {
 	// UNUSED FUNCTION
 }
-
-/*
- * --INFO--
- * Address:	803B9800
- * Size:	000028
- */
-// void __sinit_particle2dMgr_cpp()
-// {
-// 	/*
-// 	lis      r4, __float_nan@ha
-// 	li       r0, -1
-// 	lfs      f0, __float_nan@l(r4)
-// 	lis      r3, lbl_804E7368@ha
-// 	stw      r0, lbl_80516080@sda21(r13)
-// 	stfsu    f0, lbl_804E7368@l(r3)
-// 	stfs     f0, lbl_80516084@sda21(r13)
-// 	stfs     f0, 4(r3)
-// 	stfs     f0, 8(r3)
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	803B9828
- * Size:	000008
- */
-// void TParticle2dMgr::@24 @__dt()
-// {
-// 	/*
-// 	addi     r3, r3, -24
-// 	b        __dt__14TParticle2dMgrFv
-// 	*/
-// }

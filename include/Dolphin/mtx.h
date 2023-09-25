@@ -45,6 +45,7 @@ void C_MTXPerspective(f32, f32, f32, f32, Mtx);
 void C_MTXOrtho(Mtx44, f32, f32, f32, f32, f32, f32);
 void C_MTXLookAt(Mtx, const Vec*, const Vec*, const Vec*);
 void C_MTXLightPerspective(f32, f32, f32, f32, f32, f32, Mtx);
+void C_MTXLightOrtho(f32, f32, f32, f32, f32, f32, f32, f32, Mtx);
 
 #ifdef __cplusplus
 }
