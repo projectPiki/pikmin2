@@ -207,9 +207,10 @@ struct ArgKchYodare : public Arg {
 };
 
 struct ArgKouhai : public Arg {
-	ArgKouhai(Vector3f position)
+	ArgKouhai(Vector3f position, int type)
 	    : Arg(position)
 	{
+		_10 = type;
 	}
 
 	virtual const char* getName() // _08 (weak)
