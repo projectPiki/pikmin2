@@ -15,7 +15,7 @@ struct PlayerFileInfo {
 
 	Player* getPlayer(int idx);
 
-	u8 isBrokenFile(int idx);
+	bool isBrokenFile(int idx);
 	bool isNewFile(int idx);
 
 	Player mPlayers[3]; // _00

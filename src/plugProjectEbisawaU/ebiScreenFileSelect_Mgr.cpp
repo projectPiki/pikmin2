@@ -70,21 +70,17 @@ void FSMState_SelectYesNo::do_init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_SelectYesNo::do_exec(TMgr* mgr)
 {
 	if (_21) {
-		if (!_20) {
-			_20 = true;
-			do_decide(mgr);
-			mgr->mMainScreen.closeMSG();
-		}
+		goto twenty;
 	}
 
-	if (mgr->mController->isMoveDown()) {
+	if (mgr->mController->isMoveUp()) {
 		if (!mYesNoState) {
 			mgr->mMainScreen.setYesNo(true);
 			mYesNoState = true;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		}
-	} else if (mgr->mController->isMoveUp()) {
-		if (mYesNoState) {
+	} else if (mgr->mController->isMoveDown()) {
+		if (mYesNoState == true) {
 			mgr->mMainScreen.setYesNo(false);
 			mYesNoState = false;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
@@ -96,8 +92,15 @@ void FSMState_SelectYesNo::do_exec(TMgr* mgr)
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 	} else if (input & Controller::PRESS_B) {
 		mYesNoState = false;
-		_21         = false;
+		_21         = true;
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
+	} else {
+	twenty:
+		if (!_20) {
+			_20 = true;
+			do_decide(mgr);
+			mgr->mMainScreen.closeMSG();
+		}
 	}
 
 	if (mgr->mMainScreen.isFinishCloseMSG() && _21 && _20) {
@@ -475,7 +478,7 @@ void FSMState_CardTask::init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_CardTask::exec(TMgr* mgr)
 {
-	if (sys->mCardMgr->isSaveValid() && sys->mCardMgr->isCardReady()) {
+	if (sys->mCardMgr->isSaveInvalid() && sys->mCardMgr->isCardReady()) {
 		mCardStat = 0;
 		mStatus   = 3;
 		mgr->mMainScreen.closeMSG();
@@ -483,13 +486,13 @@ void FSMState_CardTask::exec(TMgr* mgr)
 
 	switch (mStatus) {
 	case 0:
-		if (sys->mCardMgr->isSaveValid()) {
+		if (sys->mCardMgr->isSaveInvalid()) {
 			P2ASSERTLINE(305, do_cardRequest(mgr));
 			mStatus = 1;
 		}
 		break;
 	case 1:
-		if (sys->mCardMgr->isSaveValid()) {
+		if (sys->mCardMgr->isSaveInvalid()) {
 			mCardStat = sys->mCardMgr->getCardStatus();
 			sys->mCardMgr->getCardStatus();
 			mStatus = 2;
@@ -1377,10 +1380,8 @@ void TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo& info)
 {
 	for (int i = 0; i < 3; i++) {
 		Game::MemoryCard::Player* player          = info.getPlayer(i);
-		u8 broken                                 = info.isBrokenFile(i);
+		bool broken                               = info.isBrokenFile(i);
 		u32 time                                  = player->mPlayTime;
-		u32 hour                                  = time / 60;
-		u32 minute                                = time % 60;
 		u32 floor                                 = player->mCaveFloor;
 		u32 cave                                  = player->mCaveID;
 		u32 treasure                              = player->mTreasures;
@@ -1391,8 +1392,7 @@ void TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo& info)
 		u32 unk4                                  = player->_0C;
 		u32 unk5                                  = player->_10;
 		u32 unk6                                  = player->_08;
-		u8 isnew                                  = info.isNewFile(i);
-		mMainScreen.mFileData[i].mIsNewFile       = isnew;
+		mMainScreen.mFileData[i].mIsNewFile       = info.isNewFile(i);
 		mMainScreen.mFileData[i]._04              = unk6;
 		mMainScreen.mFileData[i]._08              = unk5;
 		mMainScreen.mFileData[i]._0C              = unk4;
@@ -1403,8 +1403,8 @@ void TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo& info)
 		mMainScreen.mFileData[i].mTreasure        = treasure;
 		mMainScreen.mFileData[i].mCaveID          = cave;
 		mMainScreen.mFileData[i].mCaveFloor       = floor;
-		mMainScreen.mFileData[i].mPlayTimeHours   = hour;
-		mMainScreen.mFileData[i].mPlayTimeMinutes = minute;
+		mMainScreen.mFileData[i].mPlayTimeHours   = time / 60;
+		mMainScreen.mFileData[i].mPlayTimeMinutes = time % 60;
 		mMainScreen.mFileData[i].mIsBrokenFile    = broken;
 
 		char buffer[16];
@@ -1558,7 +1558,7 @@ void TMgr::goEnd_(enumEnd id)
 void TMgr::checkAndTransitNoCard_()
 {
 	if (mInSeq) {
-		if (sys->mCardMgr->isSaveValid() && sys->mCardMgr->isCardReady()) {
+		if (sys->mCardMgr->isSaveInvalid() && sys->mCardMgr->isCardReady()) {
 			goEnd_(END_1);
 		}
 	}

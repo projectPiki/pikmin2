@@ -60,7 +60,7 @@ Player* PlayerFileInfo::getPlayer(int idx)
  * Address:	804429A0
  * Size:	000080
  */
-u8 PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->_00 != 0; }
+bool PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->_00 != 0; }
 
 /*
  * --INFO--
