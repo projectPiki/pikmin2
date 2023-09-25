@@ -40,6 +40,13 @@ struct JUTTexture : public GXTexObj {
 		mFlags &= TEXFLAG_Unk2;
 	}
 
+	inline JUTTexture(const ResTIMG* timg, u8 p2)
+	{
+		mEmbPalette = nullptr;
+		storeTIMG(timg, p2);
+		setCaptureFlag(false);
+	}
+
 	~JUTTexture();
 
 	void attachPalette(JUTPalette*);
@@ -65,7 +72,17 @@ struct JUTTexture : public GXTexObj {
 	u8 getEmbPaletteDelFlag() const { return mFlags & TEXFLAG_Unk2; }
 	u8 getTlutName() const { return mTlut; }
 
+	int getTransparency() { return mTexInfo->mTransparency; }
+
 	void setTlutName(u8 tlut) { mTlut = tlut; }
+
+	bool operator==(const JUTTexture& other)
+	{
+		return mTexInfo == other.mTexInfo && mActivePalette == other.mActivePalette && mWrapS == other.mWrapS && mWrapT == other.mWrapT
+		    && mMinFilter == other.mMinFilter && mMagFilter == other.mMagFilter && mMinLOD == other.mMinLOD && mMinLOD == other.mMinLOD
+		    && mLODBias == other.mLODBias;
+	}
+	bool operator!=(const JUTTexture& other) { return !operator==(other); }
 
 	ResTIMG* mTexInfo;          // _20
 	void* mTexData;             // _24
