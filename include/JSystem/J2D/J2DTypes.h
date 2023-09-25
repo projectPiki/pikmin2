@@ -40,22 +40,6 @@ struct J2DAlphaComp {
 };
 
 struct J2DBlendInfo {
-	J2DBlendInfo() { }
-
-	J2DBlendInfo(u8 type, u8 srcFactor, u8 destFactor)
-	{
-		mType       = type;
-		mSrcFactor  = srcFactor;
-		mDestFactor = destFactor;
-	}
-
-	void operator=(J2DBlendInfo const& other)
-	{
-		mType       = other.mType;
-		mSrcFactor  = other.mSrcFactor;
-		mDestFactor = other.mDestFactor;
-	}
-
 	u8 mType;       // _00
 	u8 mSrcFactor;  // _01
 	u8 mDestFactor; // _02
@@ -67,9 +51,11 @@ struct J2DBlend {
 	J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
 
 	J2DBlend(u8 type, u8 srcFactor, u8 destFactor, u8 op)
-	    : mBlendInfo(type, srcFactor, destFactor)
-	    , mOp(op)
 	{
+		mBlendInfo.mType       = type;
+		mBlendInfo.mSrcFactor  = srcFactor;
+		mBlendInfo.mDestFactor = destFactor;
+		mOp                    = op;
 	}
 
 	void operator=(J2DBlend const& other)

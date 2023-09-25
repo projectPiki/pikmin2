@@ -143,21 +143,33 @@ void J2DGrafContext::setColor(JUtility::TColor colorTL, JUtility::TColor colorTR
 	mColorBR = colorBR;
 	mColorBL = colorBL;
 
-	_B0       = J2DBlendInfo(1, 4, 5);
-	mLinePart = J2DBlendInfo(1, 4, 5);
-	mBoxPart  = J2DBlendInfo(1, 4, 5);
+	_B0.mType       = 1;
+	_B0.mSrcFactor  = 4;
+	_B0.mDestFactor = 5;
+
+	mLinePart.mType       = 1;
+	mLinePart.mSrcFactor  = 4;
+	mLinePart.mDestFactor = 5;
+
+	mBoxPart.mType       = 1;
+	mBoxPart.mSrcFactor  = 4;
+	mBoxPart.mDestFactor = 5;
 
 	if ((u8)u32(mColorTL) != 0xFF) {
 		return;
 	}
 
-	_B0 = J2DBlendInfo(0, 1, 0);
+	_B0.mType       = 0;
+	_B0.mSrcFactor  = 1;
+	_B0.mDestFactor = 0;
 
 	if ((u8)u32(mColorBR) != 0xFF) {
 		return;
 	}
 
-	mLinePart = J2DBlendInfo(0, 1, 0);
+	mLinePart.mType       = 0;
+	mLinePart.mSrcFactor  = 1;
+	mLinePart.mDestFactor = 0;
 
 	if ((u8)u32(mColorTR) != 0xFF) {
 		return;
@@ -166,7 +178,9 @@ void J2DGrafContext::setColor(JUtility::TColor colorTL, JUtility::TColor colorTR
 		return;
 	}
 
-	mBoxPart = J2DBlendInfo(0, 1, 0);
+	mBoxPart.mType       = 0;
+	mBoxPart.mSrcFactor  = 1;
+	mBoxPart.mDestFactor = 0;
 }
 
 /*
