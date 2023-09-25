@@ -136,6 +136,7 @@ struct FSMState_WorldMapInfoWindow : public FSMState {
 };
 
 struct TMgr {
+	typedef FSMState StateType;
 	TMgr();
 
 	~TMgr();
@@ -157,7 +158,7 @@ struct TMgr {
 	Controller* mController;       // _F1C
 	bool mIsFinished;              // _F20
 	FSMStateMachine mStateMachine; // _F24
-	u8 _F3C;                       // _F3C
+	FSMState* mCurrentState;       // _F3C
 };
 } // namespace Option
 } // namespace ebi

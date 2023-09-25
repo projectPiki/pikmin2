@@ -86,6 +86,7 @@ struct FSMState_SelectGame : public FSMState {
 };
 
 struct TMgr {
+	typedef FSMState StateType;
 	TMgr();
 
 	void draw();

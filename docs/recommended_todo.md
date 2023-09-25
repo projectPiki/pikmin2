@@ -70,7 +70,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebi2DGraph.cpp">ebi2DGraph.cpp</a> | 4210 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenOmakeCardE.cpp">ebiScreenOmakeCardE.cpp</a> | 5774 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiOmakeMgr.cpp">ebiOmakeMgr.cpp</a> | 7786 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiCardEReader.cpp">ebiCardEReader.cpp</a> | 9521 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiOmakeMgr.cpp">ebiOmakeMgr.cpp</a> | 7786 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiCardEReader.cpp">ebiCardEReader.cpp</a> | 9524 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebi2DCallBack.cpp">ebi2DCallBack.cpp</a> | 10813 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenSaveMenu.cpp">ebiScreenSaveMenu.cpp</a> | 11850 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenTitleMenu.cpp">ebiScreenTitleMenu.cpp</a> | 11996 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenOmakeGame.cpp">ebiScreenOmakeGame.cpp</a> | 12403 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiMainTitleMgr.cpp">ebiMainTitleMgr.cpp</a> | 12858 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleUnit.cpp">ebiP2TitleUnit.cpp</a> | 13380 |
