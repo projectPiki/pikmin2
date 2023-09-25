@@ -7,6 +7,7 @@
 static const char name[] = "ebiCardEReader";
 
 namespace ebi {
+CardEReader::TMgr* gCardEMgr;
 namespace CardEReader {
 static char cInitialCode[4] = { 'P', 'S', 'A', 'J' };
 } // namespace CardEReader
@@ -61,10 +62,8 @@ bool CardEReader::CardE_uploadToGBA(long portIndex, u8* data, u32 size)
 {
 	// u8 flags1[4];
 	u8 flags2[4];
-	u8 flags3[4];
 	u32 sizeStore;
-	u32 val2;
-	u32 val1;
+	u8 val1;
 
 	if (GBAReset(portIndex, (u8*)&val1)) {
 		return false;
@@ -75,20 +74,13 @@ bool CardEReader::CardE_uploadToGBA(long portIndex, u8* data, u32 size)
 	if (val1 != 0x28) {
 		return false;
 	}
-	if (GBARead(portIndex, flags2, (u8*)&val1)) {
+	if (GBARead(portIndex, (u8*)flags2, (u8*)&val1)) {
 		return false;
 	}
-	if (flags2[0] != cInitialCode[0]) {
-		return false;
-	}
-	if (flags2[1] != cInitialCode[1]) {
-		return false;
-	}
-	if (flags2[2] != cInitialCode[2]) {
-		return false;
-	}
-	if (flags2[3] != cInitialCode[3]) {
-		return false;
+	for (int i = 0; i < 4; i++) {
+		if (flags2[i] != (u8)cInitialCode[i]) {
+			return false;
+		}
 	}
 	if (GBAGetStatus(portIndex, (u8*)&val1)) {
 		return false;
@@ -96,7 +88,7 @@ bool CardEReader::CardE_uploadToGBA(long portIndex, u8* data, u32 size)
 	if (val1 != 0x20) {
 		return false;
 	}
-	if (GBAWrite(portIndex, flags2, (u8*)&val1)) {
+	if (GBAWrite(portIndex, (u8*)flags2, (u8*)&val1)) {
 		return false;
 	}
 	if (GBAGetStatus(portIndex, (u8*)&val1)) {
@@ -110,10 +102,10 @@ bool CardEReader::CardE_uploadToGBA(long portIndex, u8* data, u32 size)
 	if (GBAWrite(portIndex, (u8*)&sizeStore, (u8*)&val1)) {
 		return false;
 	}
-	if (GBARead(portIndex, flags3, (u8*)&val1)) {
+	if (GBARead(portIndex, (u8*)flags2, (u8*)&val1)) {
 		return false;
 	}
-	if (size != flags3[0]) {
+	if (size != flags2[0]) {
 		return false;
 	}
 
@@ -129,7 +121,7 @@ bool CardEReader::CardE_uploadToGBA(long portIndex, u8* data, u32 size)
 				return false;
 			}
 		}
-		if (GBAWrite(portIndex, data + i, flags4)) {
+		if (GBAWrite(portIndex, &data[i], flags4)) {
 			return false;
 		}
 	}

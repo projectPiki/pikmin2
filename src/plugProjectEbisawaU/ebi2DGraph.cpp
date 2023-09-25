@@ -115,9 +115,7 @@ Vector2f E2DPane_getGlbCenter(J2DPane* pane)
 	P2ASSERTLINE(115, pane);
 	Vector3f vtx0 = pane->getGlbVtx(0);
 	Vector3f vtx3 = pane->getGlbVtx(3);
-
-	Vector2f diff = Vector2f(vtx0.x + vtx3.x, vtx0.y + vtx3.y);
-	diff *= 0.5f;
+	Vector2f diff((vtx0.x + vtx3.x) / 2, (vtx0.y + vtx3.y) / 2);
 
 	return diff;
 
