@@ -14,7 +14,7 @@ struct J3DTextureSRTInfo;
 struct J3DMatColorAnm {
 	J3DMatColorAnm();
 
-	~J3DMatColorAnm();
+	~J3DMatColorAnm() { }
 
 	void operator=(J3DMatColorAnm const& other)
 	{
@@ -25,7 +25,9 @@ struct J3DMatColorAnm {
 
 	void setAnmFlag(bool flag) { mAnmFlag = flag; }
 	bool getAnmFlag() const { return mAnmFlag; }
-	void calc(_GXColor* pColor) const { mAnm->getColor(mIndex, pColor); }
+	void calc(GXColor* pColor) const { mAnm->getColor(mIndex, pColor); }
+
+	u16 getIndex() const { return mIndex; }
 
 	u16 mIndex;        // _00
 	u16 mAnmFlag;      // _02
@@ -35,23 +37,23 @@ struct J3DMatColorAnm {
 struct J3DTexNoAnm {
 	J3DTexNoAnm();
 
-	virtual void calc(u16*) const; // _08 (weak)
+	virtual void calc(u16* data) const { mAnm->getTexNo(mIndex, data); } // _08 (weak)
 
 	void operator=(J3DTexNoAnm const& other)
 	{
 		mAnm     = other.mAnm;
-		_04      = other._04;
+		mIndex   = other.mIndex;
 		mAnmFlag = other.mAnmFlag;
 	}
 
-	~J3DTexNoAnm();
+	~J3DTexNoAnm() { }
 
 	void setAnmFlag(bool flag) { mAnmFlag = flag; }
 	bool getAnmFlag() const { return mAnmFlag; }
 	J3DAnmTexPattern* getAnmTexPattern() { return mAnm; }
 
 	// _00 = VTBL
-	u16 _04;                // _04
+	u16 mIndex;             // _04
 	u16 mAnmFlag;           // _06
 	J3DAnmTexPattern* mAnm; // _08
 };
@@ -59,7 +61,7 @@ struct J3DTexNoAnm {
 struct J3DTexMtxAnm {
 	J3DTexMtxAnm();
 
-	~J3DTexMtxAnm();
+	~J3DTexMtxAnm() { }
 
 	void operator=(J3DTexMtxAnm const& other)
 	{
@@ -80,7 +82,7 @@ struct J3DTexMtxAnm {
 struct J3DTevColorAnm {
 	J3DTevColorAnm();
 
-	~J3DTevColorAnm();
+	~J3DTevColorAnm() { }
 
 	void operator=(J3DTevColorAnm const& other)
 	{
@@ -101,7 +103,7 @@ struct J3DTevColorAnm {
 struct J3DTevKColorAnm {
 	J3DTevKColorAnm();
 
-	~J3DTevKColorAnm();
+	~J3DTevKColorAnm() { }
 
 	void operator=(J3DTevKColorAnm const& other)
 	{

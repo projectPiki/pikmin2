@@ -680,7 +680,7 @@ LIBS = [
         "host": False,
         "objects": [
             "Dolphin/exi/EXIBios",
-            "Dolphin/exi/EXIUart",
+            ["Dolphin/exi/EXIUart", True],
         ],
     },
     {

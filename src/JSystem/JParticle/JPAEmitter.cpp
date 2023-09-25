@@ -4,57 +4,11 @@
 #include "JSystem/JParticle/JPAResource.h"
 
 /*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516BA0
-    lbl_80516BA0:
-        .4byte 0x42000000
-    .global lbl_80516BA4
-    lbl_80516BA4:
-        .4byte 0x00000000
-    .global lbl_80516BA8
-    lbl_80516BA8:
-        .float 0.5
-    .global lbl_80516BAC
-    lbl_80516BAC:
-        .4byte 0x40400000
-    .global lbl_80516BB0
-    lbl_80516BB0:
-        .float 1.0
-        .4byte 0x00000000
-*/
-
-/*
  * --INFO--
  * Address:	8008FC9C
  * Size:	000048
  */
-JPAEmitterCallBack::~JPAEmitterCallBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8008FCCC
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	stw      r0, 0(r31)
-	ble      lbl_8008FCCC
-	bl       __dl__FPv
-
-lbl_8008FCCC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JPAEmitterCallBack::~JPAEmitterCallBack() { }
 
 /*
  * --INFO--
@@ -65,7 +19,7 @@ void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 {
 	mManager  = manager;
 	mResource = resource;
-	mResource->_2C->mData;
+	mResource->mDynamicsBlock->mData;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -606,10 +560,10 @@ lbl_800903BC:
  */
 bool JPABaseEmitter::processTillStartFrame()
 {
-	if (_104 >= mResource->_2C->castData()->_70) {
+	if (_104 >= mResource->mDynamicsBlock->castData()->_70) {
 		return true;
 	}
-	if ((_F4 & 2) == 0) {
+	if ((mFlags & 2) == 0) {
 		_104++;
 	}
 	return false;
@@ -706,10 +660,10 @@ void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3<float>* p1) cons
 {
 	Mtx mtx;
 	PSMTXScale(mtx, _98.x, _98.y, _98.z);
-	PSMTXConcat(_68, mtx, mtx);
-	mtx[0][3] = _A4.x;
-	mtx[1][3] = _A4.y;
-	mtx[2][3] = _A4.z;
+	PSMTXConcat(mMatrix, mtx, mtx);
+	mtx[0][3] = mPosition.x;
+	mtx[1][3] = mPosition.y;
+	mtx[2][3] = mPosition.z;
 	PSMTXMultVec(mtx, (Vec*)&_0C, (Vec*)p1);
 }
 

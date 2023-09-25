@@ -2,11 +2,8 @@
 #include "Dolphin/gx.h"
 #include "JSystem/J3D/J3DShape.h"
 #include "JSystem/JSupport/JSU.h"
+#include "Dolphin/os.h"
 #include "types.h"
-
-/*
-    Generated from dpostproc
-*/
 
 /*
  * --INFO--
@@ -17,11 +14,11 @@ J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock& block)
     : mInitData(JSUConvertOffsetToPtr<J3DShapeInitData>(&block, block._0C))
     , mInitDataIndices(JSUConvertOffsetToPtr<u16>(&block, block._10))
     , mVtxDescLists(JSUConvertOffsetToPtr<_GXVtxDescList>(&block, block._18))
-    , _0C(JSUConvertOffsetToPtr<u16>(&block, block._1C))
-    , _10(JSUConvertOffsetToPtr<u8>(&block, block._20))
+    , mMtxTable(JSUConvertOffsetToPtr<u16>(&block, block._1C))
+    , mDisplayListData(JSUConvertOffsetToPtr<u8>(&block, block._20))
     , mMtxInitData(JSUConvertOffsetToPtr<J3DShapeMtxInitData>(&block, block._24))
     , mDrawInitData(JSUConvertOffsetToPtr<J3DShapeDrawInitData>(&block, block._28))
-    , _1C(nullptr)
+    , mVcdVatCmdBuffer(nullptr)
 {
 }
 
@@ -30,149 +27,79 @@ J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock& block)
  * Address:	80071DC0
  * Size:	0001B4
  */
-J3DShape* J3DShapeFactory::create(int id, unsigned long flags, _GXVtxDescList* vtxDescList)
+J3DShape* J3DShapeFactory::create(int id, u32 flags, GXVtxDescList* vtxDescList)
 {
-	J3DShape* shape = new J3DShape();
-	shape->_0A      = mInitData[mInitDataIndices[id]]._02;
-	shape->_10      = mInitData[mInitDataIndices[id]]._0C;
-	shape->_30      = mVtxDescLists + mInitData[mInitDataIndices[id]].mVtxDescListIndex;
-	shape->_38      = new J3DShapeMtx*[shape->_0A];
-	shape->_3C      = new J3DShapeDraw*[shape->_0A];
-	shape->_14      = mInitData[mInitDataIndices[id]]._10;
-	shape->_20      = mInitData[mInitDataIndices[id]]._1C;
-	shape->_2C      = _1C + id;
-	for (int i = 0; i < shape->_0A; i++) {
-		shape->_38[i] = newShapeMtx(flags, id, i);
-		shape->_3C[i] = newShapeDraw(id, i);
+	J3DShape* shape     = new J3DShape();
+	shape->mMtxGroupNum = getMtxGroupNum(id);
+	shape->mRadius      = getRadius(id);
+	shape->mVtxDesc     = getVtxDescList(id);
+	shape->mShapeMtx    = new J3DShapeMtx*[shape->mMtxGroupNum];
+	shape->mShapeDraw   = new J3DShapeDraw*[shape->mMtxGroupNum];
+	shape->mMin         = getMin(id);
+	shape->mMax         = getMax(id);
+	shape->mVcdVatCmd   = mVcdVatCmdBuffer + id * 0xC0;
+
+	for (int i = 0; i < shape->mMtxGroupNum; i++) {
+		shape->mShapeMtx[i]  = newShapeMtx(flags, id, i);
+		shape->mShapeDraw[i] = newShapeDraw(id, i);
 	}
+
 	shape->mId = id;
 	return shape;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r25, r3
-	mr       r26, r4
-	mr       r27, r5
-	li       r3, 0x68
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80071E14
-	lis      r4, __vt__8J3DShape@ha
-	lis      r5, 0x3CF3CF00@ha
-	addi     r0, r4, __vt__8J3DShape@l
-	lis      r4, 0x00F3CF3C@ha
-	stw      r0, 0(r31)
-	addi     r5, r5, 0x3CF3CF00@l
-	addi     r0, r4, 0x00F3CF3C@l
-	stw      r5, 0x40(r31)
-	stw      r0, 0x44(r31)
-	bl       initialize__8J3DShapeFv
-
-lbl_80071E14:
-	lwz      r3, 4(r25)
-	slwi     r29, r26, 1
-	lwz      r4, 0(r25)
-	lhzx     r0, r3, r29
-	mulli    r0, r0, 0x28
-	add      r3, r4, r0
-	lhz      r0, 2(r3)
-	sth      r0, 0xa(r31)
-	lwz      r3, 4(r25)
-	lwz      r4, 0(r25)
-	lhzx     r0, r3, r29
-	mulli    r0, r0, 0x28
-	add      r3, r4, r0
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0x10(r31)
-	lwz      r3, 4(r25)
-	lwz      r4, 0(r25)
-	lhzx     r0, r3, r29
-	lwz      r5, 8(r25)
-	mulli    r0, r0, 0x28
-	add      r3, r4, r0
-	lhz      r0, 4(r3)
-	add      r0, r5, r0
-	stw      r0, 0x30(r31)
-	lhz      r0, 0xa(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x38(r31)
-	lhz      r0, 0xa(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x3c(r31)
-	mulli    r0, r26, 0xc0
-	li       r28, 0
-	lwz      r3, 4(r25)
-	li       r30, 0
-	lwz      r4, 0(r25)
-	lhzx     r3, r3, r29
-	mulli    r3, r3, 0x28
-	addi     r3, r3, 0x10
-	add      r3, r4, r3
-	lfs      f0, 0(r3)
-	stfs     f0, 0x14(r31)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x18(r31)
-	lfs      f0, 8(r3)
-	stfs     f0, 0x1c(r31)
-	lwz      r3, 4(r25)
-	lwz      r4, 0(r25)
-	lhzx     r3, r3, r29
-	mulli    r3, r3, 0x28
-	addi     r3, r3, 0x1c
-	add      r3, r4, r3
-	lfs      f0, 0(r3)
-	stfs     f0, 0x20(r31)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 8(r3)
-	stfs     f0, 0x28(r31)
-	lwz      r3, 0x1c(r25)
-	add      r0, r3, r0
-	stw      r0, 0x2c(r31)
-	b        lbl_80071F4C
-
-lbl_80071F10:
-	mr       r3, r25
-	mr       r4, r27
-	mr       r5, r26
-	mr       r6, r28
-	bl       newShapeMtx__15J3DShapeFactoryCFUlii
-	lwz      r6, 0x38(r31)
-	mr       r4, r26
-	mr       r5, r28
-	stwx     r3, r6, r30
-	mr       r3, r25
-	bl       newShapeDraw__15J3DShapeFactoryCFii
-	lwz      r4, 0x3c(r31)
-	addi     r28, r28, 1
-	stwx     r3, r4, r30
-	addi     r30, r30, 4
-
-lbl_80071F4C:
-	lhz      r0, 0xa(r31)
-	cmpw     r28, r0
-	blt      lbl_80071F10
-	sth      r26, 8(r31)
-	mr       r3, r31
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
+
+static inline u32 getMdlDataFlag_MtxLoadType(u32 flag) { return flag & 0x10; }
+
+enum {
+	J3DMdlDataFlag_ConcatView = 0x10,
+};
 
 /*
  * --INFO--
  * Address:	80071F74
  * Size:	00024C
  */
-J3DShapeMtx* J3DShapeFactory::newShapeMtx(unsigned long flags, int shapeID, int mtxIndex) const
+J3DShapeMtx* J3DShapeFactory::newShapeMtx(u32 flags, int shapeID, int mtxIndex) const
 {
+	J3DShapeMtx* ret                       = nullptr;
+	const J3DShapeInitData& shapeInitData  = mInitData[mInitDataIndices[shapeID]];
+	const J3DShapeMtxInitData& mtxInitData = (&mMtxInitData[shapeInitData.mShapeMtxInitDataIndex])[mtxIndex];
+
+	switch (getMdlDataFlag_MtxLoadType(0x10)) {
+	case J3DMdlDataFlag_ConcatView:
+		switch (shapeInitData.mShapeMtxType) {
+		case J3DShapeMtx_Base:
+			ret = new J3DShapeMtxConcatView(mtxInitData.mUseMtxIndex);
+			break;
+		case J3DShapeMtx_BBoard:
+			ret = new J3DShapeMtxBBoardConcatView(mtxInitData.mUseMtxIndex);
+			break;
+		case J3DShapeMtx_Y_BBoard:
+			ret = new J3DShapeMtxYBBoardConcatView(mtxInitData.mUseMtxIndex);
+			break;
+		case J3DShapeMtx_Multi:
+			ret = new J3DShapeMtxMultiConcatView(mtxInitData.mUseMtxIndex, mtxInitData.mUseMtxCount,
+			                                     &mMtxTable[mtxInitData.mFirstUseMtxIndex]);
+			break;
+		}
+		break;
+
+	case 0:
+	default:
+		switch (shapeInitData.mShapeMtxType) {
+		case J3DShapeMtx_Base:
+		case J3DShapeMtx_BBoard:
+		case J3DShapeMtx_Y_BBoard:
+			ret = new J3DShapeMtx(mtxInitData.mUseMtxIndex);
+			break;
+		case J3DShapeMtx_Multi:
+			ret = new J3DShapeMtxMulti(mtxInitData.mUseMtxIndex, mtxInitData.mUseMtxCount, &mMtxTable[mtxInitData.mFirstUseMtxIndex]);
+			break;
+		}
+		break;
+	}
+
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -346,75 +273,6 @@ lbl_800721A8:
 
 /*
  * --INFO--
- * Address:	800721C0
- * Size:	00005C
- */
-// J3DShapeMtxConcatView::~J3DShapeMtxConcatView()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	or.      r31, r3, r3
-// 	beq      lbl_80072204
-// 	lis      r3, __vt__21J3DShapeMtxConcatView@ha
-// 	addi     r0, r3, __vt__21J3DShapeMtxConcatView@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_800721F4
-// 	lis      r3, __vt__11J3DShapeMtx@ha
-// 	addi     r0, r3, __vt__11J3DShapeMtx@l
-// 	stw      r0, 0(r31)
-
-// lbl_800721F4:
-// 	extsh.   r0, r4
-// 	ble      lbl_80072204
-// 	mr       r3, r31
-// 	bl       __dl__FPv
-
-// lbl_80072204:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r31
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8007221C
- * Size:	000048
- */
-// J3DShapeMtx::~J3DShapeMtx()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	or.      r31, r3, r3
-// 	beq      lbl_8007224C
-// 	lis      r5, __vt__11J3DShapeMtx@ha
-// 	extsh.   r0, r4
-// 	addi     r0, r5, __vt__11J3DShapeMtx@l
-// 	stw      r0, 0(r31)
-// 	ble      lbl_8007224C
-// 	bl       __dl__FPv
-
-// lbl_8007224C:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r31
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
  * Address:	80072264
  * Size:	00008C
  */
@@ -422,7 +280,8 @@ J3DShapeDraw* J3DShapeFactory::newShapeDraw(int shapeID, int drawIndex) const
 {
 	J3DShapeDrawInitData* drawInitData = mDrawInitData;
 	u16 drawInitDataIndex              = mInitData[mInitDataIndices[shapeID]].mShapeDrawInitDataIndex;
-	return new J3DShapeDraw(_10 + drawInitData[drawIndex + drawInitDataIndex]._04, drawInitData[drawIndex + drawInitDataIndex]._00);
+	return new J3DShapeDraw(mDisplayListData + drawInitData[drawIndex + drawInitDataIndex].mDisplayListIndex,
+	                        drawInitData[drawIndex + drawInitDataIndex].mDisplayListSize);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

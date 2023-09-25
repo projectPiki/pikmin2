@@ -6,8 +6,16 @@
 #include "JSystem/J3D/J3DShape.h"
 #include "types.h"
 
-struct J3DShapeMtxInitData;
-struct J3DShapeDrawInitData;
+struct J3DShapeMtxInitData {
+	u16 mUseMtxIndex;      // _00
+	u16 mUseMtxCount;      // _02
+	u32 mFirstUseMtxIndex; // _04
+};
+
+struct J3DShapeDrawInitData {
+	u32 mDisplayListSize;  // _00
+	u32 mDisplayListIndex; // _04
+};
 
 struct J3DShapeFactory {
 	J3DShapeFactory(const J3DShapeBlock&);

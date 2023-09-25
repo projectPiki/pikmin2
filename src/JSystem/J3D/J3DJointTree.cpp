@@ -5,64 +5,24 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804A2F70
-    lbl_804A2F70:
-        .4byte lbl_8008839C
-        .4byte lbl_8008836C
-        .4byte lbl_80088390
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883F0
-        .4byte lbl_800883A0
-        .4byte lbl_800883BC
-        .4byte lbl_800883D8
-    .global __vt__12J3DJointTree
-    __vt__12J3DJointTree:
-        .4byte 0
-        .4byte 0
-        .4byte calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf
-        .4byte __dt__12J3DJointTreeFv
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516AF0
-    lbl_80516AF0:
-        .4byte 0xBDCCCCCD
-        .4byte 0x00000000
-*/
-
-/*
  * --INFO--
  * Address:	8008828C
  * Size:	000084
  */
 J3DJointTree::J3DJointTree()
     : mHierarchy(nullptr)
-    , m_08(0)
     , mFlags(0)
-    , _10(nullptr)
+    , mModelDataType(0)
+    , mRootNode(nullptr)
     , mTransformCalc(nullptr)
     , mJoints(nullptr)
     , mJointCnt(0)
     , mEnvelopeCnt(0)
-    , _20(nullptr)
-    , mMaxBillBoardCnt(0)
-    , _28(nullptr)
-    , _2C(nullptr)
-    , _30(nullptr)
+    , mEnvelopeMixCnt(nullptr)
+    , mEnvelopeMixIdx(0)
+    , mEnvelopeMixWeight(nullptr)
+    , mInvJointMtx(nullptr)
+    , mEnvelopeImptIdx(nullptr)
     , mMtxData()
     , _40(0)
     , mNametab(nullptr)
@@ -87,166 +47,61 @@ void J3DJointTree::clear()
 void J3DJointTree::makeHierarchy(J3DJoint* joint, const J3DModelHierarchy** hierarchies, J3DMaterialTable* matTable,
                                  J3DShapeTable* shapeTable)
 {
-	J3DMaterial* selectedMaterial;
-	J3DShape* selectedShape;
-	J3DJoint* rootJointMaybe = joint;
+
+	J3DJoint* curJoint = joint;
+
 	while (true) {
-		while (true) {
-			const J3DModelHierarchy* currentHierarchy = *hierarchies;
-			J3DJoint* selectedJoint                   = nullptr;
-			selectedMaterial                          = nullptr;
-			selectedShape                             = nullptr;
-			if (true) {
-				switch (currentHierarchy->_00) {
-				case 0:
-					return;
-				case 1:
-					hierarchies++;
-					makeHierarchy(rootJointMaybe, hierarchies, matTable, shapeTable);
-					break;
-				case 2:
-					hierarchies++;
-					return;
-				case 0x10:
-					hierarchies++;
-					selectedJoint = mJoints[currentHierarchy->_02];
-					break;
-				case 0x11:
-					hierarchies++;
-					selectedMaterial = matTable->mMaterials1[currentHierarchy->_02];
-					break;
-				case 0x12:
-					hierarchies++;
-					selectedShape = shapeTable->mItems[currentHierarchy->_02];
-				}
-			}
-			if (selectedJoint == nullptr) {
-				break;
-			}
-			rootJointMaybe = selectedJoint;
-			if (joint == nullptr) {
-				_10 = selectedJoint;
-			} else {
-				joint->appendChild(selectedJoint);
-			}
+		J3DJoint* newJoint           = nullptr;
+		J3DMaterial* newMaterial     = nullptr;
+		J3DShape* newShape           = nullptr;
+		const J3DModelHierarchy* inf = *hierarchies;
+		u16 val;
+
+		switch (inf->mType) {
+		case 1:
+			*hierarchies = inf + 1;
+			makeHierarchy(curJoint, hierarchies, matTable, shapeTable);
+			break;
+		case 2:
+			*hierarchies = inf + 1;
+			return;
+		case 0:
+			return;
+		case 0x10: {
+			J3DJoint** jointNodePointer = mJoints;
+			*hierarchies                = inf + 1;
+			newJoint                    = jointNodePointer[inf->mValue];
+		} break;
+		case 0x11:
+			*hierarchies = inf + 1;
+			val          = inf->mValue;
+			newMaterial  = matTable->getMaterialNodePointer(val);
+			break;
+		case 0x12:
+			*hierarchies = inf + 1;
+			val          = inf->mValue;
+			newShape     = shapeTable->getItem(val);
+			break;
 		}
-		if (selectedMaterial) {
-			if (joint->mMaterial) {
-				selectedMaterial->_04 = joint->mMaterial;
+
+		if (newJoint) {
+			curJoint = newJoint;
+			if (!joint) {
+				mRootNode = newJoint;
+			} else {
+				joint->appendChild(newJoint);
 			}
-			joint->mMaterial         = selectedMaterial;
-			selectedMaterial->mJoint = joint;
-		} else {
-			if (selectedShape) {
-				joint->mMaterial->mShape = selectedShape;
-				selectedShape->_04       = joint->mMaterial;
-			}
+		} else if (newMaterial) {
+			if (joint->getMesh())
+				newMaterial->mNext = joint->getMesh();
+			joint->mMaterial    = newMaterial;
+			newMaterial->mJoint = joint;
+		} else if (newShape) {
+			newMaterial         = joint->getMesh();
+			newMaterial->mShape = newShape;
+			newShape->mMaterial = newMaterial;
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r23, 0xC(r1)
-	  mr        r24, r4
-	  mr        r23, r3
-	  mr        r25, r5
-	  mr        r26, r6
-	  mr        r27, r7
-	  mr        r31, r24
-
-	.loc_0x28:
-	  lwz       r4, 0x0(r25)
-	  li        r30, 0
-	  li        r29, 0
-	  li        r28, 0
-	  lhz       r0, 0x0(r4)
-	  cmplwi    r0, 0x12
-	  bgt-      .loc_0xE0
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  addi      r3, r3, 0x2F70
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  addi      r0, r4, 0x4
-	  mr        r3, r23
-	  stw       r0, 0x0(r25)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r26
-	  mr        r7, r27
-	  bl        .loc_0x0
-	  b         .loc_0xE0
-	  addi      r0, r4, 0x4
-	  stw       r0, 0x0(r25)
-	  b         .loc_0x148
-	  b         .loc_0x148
-	  lwz       r3, 0x18(r23)
-	  addi      r0, r4, 0x4
-	  stw       r0, 0x0(r25)
-	  lhz       r0, 0x2(r4)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r30, r3, r0
-	  b         .loc_0xE0
-	  addi      r0, r4, 0x4
-	  stw       r0, 0x0(r25)
-	  lhz       r0, 0x2(r4)
-	  lwz       r3, 0x8(r26)
-	  rlwinm    r0,r0,2,14,29
-	  lwzx      r29, r3, r0
-	  b         .loc_0xE0
-	  addi      r0, r4, 0x4
-	  stw       r0, 0x0(r25)
-	  lhz       r0, 0x2(r4)
-	  lwz       r3, 0x8(r27)
-	  rlwinm    r0,r0,2,14,29
-	  lwzx      r28, r3, r0
-
-	.loc_0xE0:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x10C
-	  cmplwi    r24, 0
-	  mr        r31, r30
-	  bne-      .loc_0xFC
-	  stw       r30, 0x10(r23)
-	  b         .loc_0x28
-
-	.loc_0xFC:
-	  mr        r3, r24
-	  mr        r4, r30
-	  bl        -0x1CB8C
-	  b         .loc_0x28
-
-	.loc_0x10C:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x130
-	  lwz       r0, 0x58(r24)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x124
-	  stw       r0, 0x4(r29)
-
-	.loc_0x124:
-	  stw       r29, 0x58(r24)
-	  stw       r24, 0xC(r29)
-	  b         .loc_0x28
-
-	.loc_0x130:
-	  cmplwi    r28, 0
-	  beq+      .loc_0x28
-	  lwz       r3, 0x58(r24)
-	  stw       r28, 0x8(r3)
-	  stw       r3, 0x4(r28)
-	  b         .loc_0x28
-
-	.loc_0x148:
-	  lmw       r23, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /*
@@ -256,19 +111,33 @@ void J3DJointTree::makeHierarchy(J3DJoint* joint, const J3DModelHierarchy** hier
  */
 void J3DJointTree::findImportantMtxIndex()
 {
-	for (int i = 0; i < mMtxData._02; i++) {
-		_30[i] = mMtxData._08[i];
-	}
-	for (int i = 0; i < mEnvelopeCnt; i++) {
-		u16 v1    = 0;
-		float max = -0.1f;
-		for (u8 j = _20[i]; j != 0; j--) {
-			if (max < _28[j]) {
-				max = _28[j];
-				v1  = mMaxBillBoardCnt[j];
+	const int wEvlpMtxNum       = getWEvlpMtxNum();
+	u32 tableIdx                = 0;
+	const u16 drawFullWgtMtxNum = getDrawFullWgtMtxNum();
+	const u16* wEvlpMixIndex    = getWEvlpMixIndex();
+	const f32* wEvlpMixWeight   = getWEvlpMixWeight();
+	u16* wEvlpImportantMtxIdx   = getWEvlpImportantMtxIndex();
+
+	// Rigid matrices are easy.
+	for (u16 i = 0; i < (u16)drawFullWgtMtxNum; i++)
+		wEvlpImportantMtxIdx[i] = mMtxData.mDrawMtxIdx[i];
+
+	// For envelope matrices, we need to find the matrix with the most contribution.
+	for (int i = 0; i < wEvlpMtxNum; i++) {
+		int mixNum     = getWEvlpMixMtxNum(i);
+		u16 bestIdx    = 0;
+		f32 bestWeight = -0.1f;
+
+		for (int j = 0; j < mixNum; j++) {
+			if (bestWeight < wEvlpMixWeight[tableIdx]) {
+				bestWeight = wEvlpMixWeight[tableIdx];
+				bestIdx    = wEvlpMixIndex[tableIdx];
 			}
+
+			tableIdx++;
 		}
-		_30[i + mMtxData._02] = v1;
+
+		wEvlpImportantMtxIdx[i + mMtxData.mDrawMtxCount] = bestIdx;
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -402,9 +271,10 @@ void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const float (&mtx)
 
 	mTransformCalc->init(vec, mtx);
 	J3DMtxCalc::setMtxBuffer(buffer);
-	if (_10 != nullptr) {
+	J3DJoint* root = mRootNode;
+	if (root != nullptr) {
 		J3DJoint::mCurrentMtxCalc = mTransformCalc;
-		_10->recursiveCalc();
+		root->recursiveCalc();
 	}
 	/*
 	stwu     r1, -0x10(r1)

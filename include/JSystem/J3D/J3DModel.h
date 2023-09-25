@@ -231,8 +231,8 @@ struct J3DModel {
 };
 
 struct J3DModelHierarchy {
-	u16 _00;
-	u16 _02;
+	u16 mType;  // _00
+	u16 mValue; // _02
 };
 
 #endif

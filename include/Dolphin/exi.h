@@ -8,6 +8,9 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+#define EXI_TX    0x800400u
+#define EXI_MAGIC 0xa5ff005a
+
 void EXIInit();
 
 BOOL EXIImm(s32 channel, void* buffer, s32 length, u32 type, EXICallback callback);
