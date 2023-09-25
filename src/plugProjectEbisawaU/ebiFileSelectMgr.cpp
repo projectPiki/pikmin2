@@ -340,7 +340,7 @@ void FSMState_ScreenFileSelect::do_init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_ScreenFileSelect::do_exec(TMgr* mgr)
 {
 	if (mgr->mMgrFS.isFinish()) {
-		switch (mgr->mMgrFS._C38) {
+		switch (mgr->mMgrFS.mEndStat) {
 		case 1:
 		case 2:
 			transit(mgr, FSSTATE_MountCheck, nullptr);

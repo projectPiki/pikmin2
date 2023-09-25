@@ -13,7 +13,7 @@ namespace FileSelect {
 struct TMainScreen : public TScreenBase {
 	TMainScreen();
 
-	~TMainScreen();
+	~TMainScreen() { }
 
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
@@ -31,8 +31,8 @@ struct TMainScreen : public TScreenBase {
 	void outDataBall(s32);
 	void decideDataBall(s32);
 	void createFiledecide(s32);
-	void isFinishOutDataBall(s32);
-	void isFinishDecideDataBall(s32);
+	bool isFinishOutDataBall(s32);
+	bool isFinishDecideDataBall(s32);
 	void createCopyCursor(s32);
 	void fadeCopyCursor();
 	void moveLeftCopyCursor();
@@ -44,10 +44,10 @@ struct TMainScreen : public TScreenBase {
 	void openDataWindow(s32);
 	void closeDataWindow();
 	void decideDataWindow();
-	void isFinishCloseDataWindow();
+	bool isFinishCloseDataWindow();
 	void openMSG(s32);
 	void closeMSG();
-	void isFinishCloseMSG();
+	bool isFinishCloseMSG();
 	void setYesNo(bool);
 	void updateMsg_();
 	void setMsgID_(u64, u64, u64);
@@ -139,7 +139,7 @@ struct TMainScreen : public TScreenBase {
 	u8 _AFA;                                  // _AFA
 	u8 _AFB;                                  // _AFB
 	JUtility::TColor _AFC;                    // _AFC
-	TFileData _B00[3];                        // _B00
+	TFileData mFileData[3];                   // _B00
 	int _B9C;                                 // _B9C
 	P2DScreen::Mgr* _BA0;                     // _BA0
 	u8 _BA4;                                  // _BA4

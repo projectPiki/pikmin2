@@ -39,7 +39,7 @@ struct T2DFilecopy : public T2DFilecopyBase {
 		_04 = 1;
 	}
 
-	virtual ~T2DFilecopy(); // _34 (weak)
+	virtual ~T2DFilecopy() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = T2DFilecopyBase
@@ -52,7 +52,7 @@ struct T2DFilecopyM : public T2DFilecopyBase {
 		_04 = 1;
 	}
 
-	virtual ~T2DFilecopyM(); // _34 (weak)
+	virtual ~T2DFilecopyM() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = T2DFilecopyBase
@@ -91,7 +91,7 @@ struct T2DFiledeleting : public TForever {
 		_04 = 1;
 	}
 
-	virtual ~T2DFiledeleting(); // _34 (weak)
+	virtual ~T2DFiledeleting() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TForever
@@ -104,7 +104,7 @@ struct T2DFiledeletingM : public TForever {
 		_04 = 1;
 	}
 
-	virtual ~T2DFiledeletingM(); // _34 (weak)
+	virtual ~T2DFiledeletingM() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TForever
