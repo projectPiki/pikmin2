@@ -91,6 +91,9 @@ void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* timeDate);
 #define OSCachedToUncached(caddr)    ((void*)((u8*)(caddr) + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 #define OSUncachedToCached(ucaddr)   ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 
+// Other useful addresses.
+vu16 __OSDeviceCode AT_ADDRESS(OS_BASE_CACHED | 0x30E6);
+
 //////////////////////////////////
 
 #ifdef __cplusplus
