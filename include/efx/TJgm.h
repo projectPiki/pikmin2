@@ -22,7 +22,7 @@ struct TJgmAttackW : public TChasePosYRot3 {
 
 struct TJgmBack : public TChasePos {
 	virtual bool create(Arg*); // _08
-	virtual ~TJgmBack();       // _48 (weak)
+	virtual ~TJgmBack() { }    // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos

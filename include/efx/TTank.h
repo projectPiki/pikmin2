@@ -97,8 +97,12 @@ struct TTankFire : public TBase {
 	}
 
 	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade()        // _10 (weak)
+	virtual void forceKill()
+	{
+		mEfxABC.forceKill();
+		mEfxIND.forceKill();
+	}                   // _0C (weak)
+	virtual void fade() // _10 (weak)
 	{
 		mEfxABC.fade();
 		mEfxIND.fade();
@@ -163,8 +167,14 @@ struct TTankWat : public TChaseMtx4 {
 	}
 
 	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade()        // _10 (weak)
+	virtual void forceKill()
+	{
+		TSyncGroup4::forceKill();
+		if (mParticleCallBack.mEfxHit != nullptr) {
+			mParticleCallBack.mEfxHit->forceKill();
+		}
+	}                   // _0C (weak)
+	virtual void fade() // _10 (weak)
 	{
 		TChaseMtx4::fade();
 		if (mParticleCallBack.mEfxHit) {

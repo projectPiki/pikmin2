@@ -96,6 +96,8 @@ struct ArgChou : public Arg {
 	{
 		return "ArgChou";
 	}
+
+	int mType; // _10
 };
 
 struct ArgCursor : public Arg {
@@ -191,6 +193,8 @@ struct ArgImoEat : public Arg {
 	{
 		return "ArgImoEat";
 	}
+
+	int mType; // _10
 };
 
 struct ArgKchYodare : public Arg {

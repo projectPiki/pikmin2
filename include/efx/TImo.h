@@ -12,7 +12,7 @@ struct TImoEat : public TChaseMtx {
 	}
 
 	virtual bool create(Arg*); // _08
-	virtual ~TImoEat();        // _48 (weak)
+	virtual ~TImoEat() { }     // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
@@ -25,7 +25,7 @@ struct TImoSmoke : public TChasePos {
 	}
 
 	virtual bool create(Arg*); // _08
-	virtual ~TImoSmoke();      // _48 (weak)
+	virtual ~TImoSmoke() { }   // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos

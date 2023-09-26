@@ -22,603 +22,34 @@
 #include "efx/TUmi.h"
 #include "efx/TUjinko.h"
 #include "efx/TYaki.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80495898
-    lbl_80495898:
-        .4byte 0x65667845
-        .4byte 0x6E656D79
-        .4byte 0x2E637070
-        .4byte 0x00000000
-        .4byte 0x41726753
-        .4byte 0x63616C65
-        .4byte 0x00000000
-    .global lbl_804958B4
-    lbl_804958B4:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x41726749
-        .4byte 0x6D6F4561
-        .4byte 0x74000000
-    .global lbl_804958CC
-    lbl_804958CC:
-        .4byte 0x3E4CCCCD
-        .4byte 0x3E4CCCCD
-        .4byte 0x3E4CCCCD
-        .float 1.0
-        .float 1.0
-        .float 1.0
-        .4byte 0x3DA7EF9E
-        .float 0.05
-        .4byte 0x00000000
-        .4byte 0x40133333
-        .4byte 0x3FD9999A
-        .4byte 0x00000000
-    .global lbl_804958FC
-    lbl_804958FC:
-        .4byte 0x3F59999A
-        .float 0.5
-        .4byte 0x3EB33333
-        .float 0.3
-        .4byte 0x3E4CCCCD
-        .4byte 0x00000000
-        .float 0.25
-        .float 0.25
-        .4byte 0x3E4CCCCD
-        .float 0.25
-        .float 0.15
-        .4byte 0x00000000
-        .4byte 0x41726747
-        .4byte 0x61737548
-        .4byte 0x69626100
-    .global lbl_80495938
-    lbl_80495938:
-        .float 0.5
-        .4byte 0x3ECCCCCD
-        .float 0.25
-        .4byte 0x3EB33333
-        .4byte 0x3E4CCCCD
-        .float 0.1
-        .4byte 0x41726744
-        .4byte 0x656E6B69
-        .4byte 0x48696261
-        .4byte 0x00000000
-    .global lbl_80495960
-    lbl_80495960:
-        .float 1.0
-        .float 1.0
-        .float 1.0
-        .float 1.0
-        .float 1.0
-        .float 1.0
-        .float 0.15
-        .float 0.07
-        .float 0.02
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23efx13TDenkiHibaMgr
-    __vt__Q23efx13TDenkiHibaMgr:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx13TDenkiHibaMgrFPQ23efx3Arg
-        .4byte forceKill__Q23efx13TDenkiHibaMgrFv
-        .4byte fade__Q23efx13TDenkiHibaMgrFv
-    .global __vt__Q23efx10TDenkiHiba
-    __vt__Q23efx10TDenkiHiba:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx10TDenkiHibaFPQ23efx3Arg
-        .4byte "forceKill__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-        .4byte "fade__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-        .4byte "startDemoDrawOff__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-        .4byte "endDemoDrawOn__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-    .global __vt__Q23efx9TGasuHiba
-    __vt__Q23efx9TGasuHiba:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx9TGasuHibaFPQ23efx3Arg
-        .4byte "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-        .4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-        .4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-        .4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-    .global __vt__Q23efx14TDnkmsThunderB
-    __vt__Q23efx14TDnkmsThunderB:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx14TDnkmsThunderBFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte
-   doExecuteEmitterOperation__Q23efx14TDnkmsThunderBFP14JPABaseEmitter .4byte
-   doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter .4byte
-   startDemoDrawOff__Q23efx5TSyncFv .4byte endDemoDrawOn__Q23efx5TSyncFv .4byte
-   __dt__Q23efx14TDnkmsThunderBFv .global __vt__Q23efx14TDnkmsThunderA
-    __vt__Q23efx14TDnkmsThunderA:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx14TDnkmsThunderAFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte
-   doExecuteEmitterOperation__Q23efx14TDnkmsThunderAFP14JPABaseEmitter .4byte
-   doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter .4byte
-   startDemoDrawOff__Q23efx5TSyncFv .4byte endDemoDrawOn__Q23efx5TSyncFv .4byte
-   __dt__Q23efx14TDnkmsThunderAFv .global __vt__Q23efx8TTankWat
-    __vt__Q23efx8TTankWat:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TTankWatFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TTankWatFv
-        .4byte fade__Q23efx8TTankWatFv
-        .4byte startDemoDrawOff__Q23efx8TTankWatFv
-        .4byte endDemoDrawOn__Q23efx8TTankWatFv
-    .global __vt__Q23efx9TTankFire
-    __vt__Q23efx9TTankFire:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx9TTankFireFPQ23efx3Arg
-        .4byte forceKill__Q23efx9TTankFireFv
-        .4byte fade__Q23efx9TTankFireFv
-    .global __vt__Q23efx12TTankFireIND
-    __vt__Q23efx12TTankFireIND:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx12TTankFireINDFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx12TTankFireINDFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx12TTankFireINDFv
-    .global __vt__Q23efx12TTankFireABC
-    __vt__Q23efx12TTankFireABC:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx12TTankFireABCFPQ23efx3Arg
-        .4byte forceKill__Q23efx12TTankFireABCFv
-        .4byte fade__Q23efx12TTankFireABCFv
-        .4byte startDemoDrawOff__Q23efx12TTankFireABCFv
-        .4byte endDemoDrawOn__Q23efx12TTankFireABCFv
-    .global __vt__Q23efx26TParticleCallBack_TankFire
-    __vt__Q23efx26TParticleCallBack_TankFire:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23efx26TParticleCallBack_TankFireFv
-        .4byte
-   execute__Q23efx26TParticleCallBack_TankFireFP14JPABaseEmitterP15JPABaseParticle
-        .4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
-        .4byte
-   init__Q23efx26TParticleCallBack_TankFireFP14JPABaseEmitterP15JPABaseParticle
-    .global __vt__Q23efx11TKoganeDive
-    __vt__Q23efx11TKoganeDive:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TKoganeDiveFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx10TKoganeHit
-    __vt__Q23efx10TKoganeHit:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx10TKoganeHitFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx7TBabaHe
-    __vt__Q23efx7TBabaHe:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx7TBabaHeFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx14TBabaFly_ver01
-    __vt__Q23efx14TBabaFly_ver01:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx14TBabaFly_ver01FPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx14TBabaFly_ver01Fv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx14TBabaFly_ver01Fv
-    .global __vt__Q23efx9TPanSmoke
-    __vt__Q23efx9TPanSmoke:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx9TPanSmokeFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx9TPanSmokeFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx9TPanSmokeFv
-    .global __vt__Q23efx8TPanHide
-    __vt__Q23efx8TPanHide:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TPanHideFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx8TPanHideFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx8TPanHideFv
-    .global __vt__Q23efx7TPanApp
-    __vt__Q23efx7TPanApp:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx7TPanAppFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx14THebiAphd_base
-    __vt__Q23efx14THebiAphd_base:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx14THebiAphd_baseFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple4Fv
-        .4byte fade__Q23efx8TSimple4Fv
-    .global __vt__Q23efx12TOtaPartsoff
-    __vt__Q23efx12TOtaPartsoff:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx12TOtaPartsoffFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx9TImoSmoke
-    __vt__Q23efx9TImoSmoke:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx9TImoSmokeFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx9TImoSmokeFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx9TImoSmokeFv
-    .global __vt__Q23efx13TUjinkoAp_Imo
-    __vt__Q23efx13TUjinkoAp_Imo:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx13TUjinkoAp_ImoFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx13TUjinkoHd_Imo
-    __vt__Q23efx13TUjinkoHd_Imo:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx13TUjinkoHd_ImoFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx7TImoEat
-    __vt__Q23efx7TImoEat:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx7TImoEatFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx7TImoEatFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx7TImoEatFv
-    .global __vt__Q23efx9TJgmBackW
-    __vt__Q23efx9TJgmBackW:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx9TJgmBackWFPQ23efx3Arg
-        .4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-    .global __vt__Q23efx8TJgmBack
-    __vt__Q23efx8TJgmBack:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TJgmBackFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx8TJgmBackFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx8TJgmBackFv
-    .global __vt__Q23efx11TJgmAttackW
-    __vt__Q23efx11TJgmAttackW:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TJgmAttackWFPQ23efx3Arg
-        .4byte "forceKill__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-        .4byte "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-        .4byte "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-        .4byte "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-    .global __vt__Q23efx10TJgmAttack
-    __vt__Q23efx10TJgmAttack:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx10TJgmAttackFPQ23efx3Arg
-        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-    .global __vt__Q23efx12TUmiDeadmelt
-    __vt__Q23efx12TUmiDeadmelt:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx12TUmiDeadmeltFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx10TUmiAttack
-    __vt__Q23efx10TUmiAttack:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx10TUmiAttackFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx9TUmiFlick
-    __vt__Q23efx9TUmiFlick:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx9TUmiFlickFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple3Fv
-        .4byte fade__Q23efx8TSimple3Fv
-    .global __vt__Q23efx9TChouDown
-    __vt__Q23efx9TChouDown:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx9TChouDownFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx9TChouDownFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx9TChouDownFv
-    .global __vt__Q23efx9TChibiHit
-    __vt__Q23efx9TChibiHit:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx9TChibiHitFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple4Fv
-        .4byte fade__Q23efx8TSimple4Fv
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051F620
-    lbl_8051F620:
-        .4byte 0x41726743
-        .4byte 0x686F7500
-    .global lbl_8051F628
-    lbl_8051F628:
-        .4byte 0x3FA66666
-    .global lbl_8051F62C
-    lbl_8051F62C:
-        .4byte 0x41726752
-        .4byte 0x6F745900
-    .global lbl_8051F634
-    lbl_8051F634:
-        .4byte 0xC20C0000
-    .global lbl_8051F638
-    lbl_8051F638:
-        .4byte 0x00000000
-    .global lbl_8051F63C
-    lbl_8051F63C:
-        .float 0.5
-    .global lbl_8051F640
-    lbl_8051F640:
-        .4byte 0x40400000
-    .global lbl_8051F644
-    lbl_8051F644:
-        .4byte 0x447A0000
-    .global lbl_8051F648
-    lbl_8051F648:
-        .4byte 0x42F00000
-    .global lbl_8051F64C
-    lbl_8051F64C:
-        .float 1.0
-*/
+#include "JSystem/JParticle/JPAMath.h"
 
 namespace efx {
+
+static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 /*
  * --INFO--
  * Address:	803B2D84
  * Size:	000124
  */
-bool TChibiHit::create(efx::Arg* arg)
+bool TChibiHit::create(Arg* arg)
 {
-	P2ASSERTLINE(23, strcmp("ArgScale", arg->getName()) == 0);
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(23, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSimple4::create(arg)) {
-		for (int i = 0; i < 4; i++) {
-			JPABaseEmitter* emitter = mEmitters[i];
-			emitter->_98.x          = scale;
-			emitter->_98.y          = scale;
-			emitter->_98.z          = scale;
-			emitter->_B0            = scale;
-			emitter->_B4            = scale;
-		}
+		volatile f32 test[3];
+		test[0] = scale;
+		mEmitters[0]->setScale(scale);
+		test[1] = scale;
+		mEmitters[1]->setScale(scale);
+		test[2] = scale;
+		mEmitters[2]->setScale(scale);
+		mEmitters[3]->setScale(scale);
 		return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B2DF4
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x17
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B2DF4:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx8TSimple4FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B2E80
-	lwz      r4, 0xc(r29)
-	li       r3, 1
-	stfs     f31, 8(r1)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x10(r29)
-	stfs     f31, 0xc(r1)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x14(r29)
-	stfs     f31, 0x10(r1)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x18(r29)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B2E84
-
-lbl_803B2E80:
-	li       r3, 0
-
-lbl_803B2E84:
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -626,78 +57,24 @@ lbl_803B2E84:
  * Address:	803B2EA8
  * Size:	0000E0
  */
-bool TChouDown::create(efx::Arg*)
+bool TChouDown::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r2, lbl_8051F620@sda21
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B2F0C
-	lis      r3, lbl_80495898@ha
-	lis      r5, lbl_804958B4@ha
-	addi     r3, r3, lbl_80495898@l
-	li       r4, 0x2b
-	addi     r5, r5, lbl_804958B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	bool nameCheck = strcmp("ArgChou", arg->getName()) == 0;
+	P2ASSERTLINE(43, nameCheck);
+	int type = static_cast<ArgChou*>(arg)->mType;
 
-lbl_803B2F0C:
-	lwz      r0, 0x10(r31)
-	cmpwi    r0, 1
-	beq      lbl_803B2F40
-	bge      lbl_803B2F28
-	cmpwi    r0, 0
-	bge      lbl_803B2F34
-	b        lbl_803B2F54
-
-lbl_803B2F28:
-	cmpwi    r0, 3
-	bge      lbl_803B2F54
-	b        lbl_803B2F4C
-
-lbl_803B2F34:
-	li       r0, 0x17
-	sth      r0, 0xc(r30)
-	b        lbl_803B2F54
-
-lbl_803B2F40:
-	li       r0, 0x16
-	sth      r0, 0xc(r30)
-	b        lbl_803B2F54
-
-lbl_803B2F4C:
-	li       r0, 0x15
-	sth      r0, 0xc(r30)
-
-lbl_803B2F54:
-	mr       r3, r30
-	mr       r4, r31
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	clrlwi   r3, r3, 0x18
-	lwz      r31, 0xc(r1)
-	neg      r0, r3
-	lwz      r30, 8(r1)
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (type) {
+	case 0:
+		mEffectID = PID_ChouDown_3;
+		break;
+	case 1:
+		mEffectID = PID_ChouDown_2;
+		break;
+	case 2:
+		mEffectID = PID_ChouDown_1;
+		break;
+	}
+	return (u8)TSync::create(arg);
 }
 
 /*
@@ -708,36 +85,10 @@ lbl_803B2F54:
 void TUmiHamon::setGlobalScale(f32 scale)
 {
 	for (int i = 0; i < 2; i++) {
-		if (mItems[i].mEmitter != nullptr) {
-			JPABaseEmitter* emitter = mItems[i].mEmitter;
-			emitter->_98.x          = scale;
-			emitter->_98.y          = scale;
-			emitter->_98.z          = scale;
-			emitter->_B0            = scale;
-			emitter->_B4            = scale;
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->setScale(scale);
 		}
 	}
-	/*
-	lwz      r4, 0xc(r3)
-	cmplwi   r4, 0
-	beq      lbl_803B2FA8
-	stfs     f1, 0x98(r4)
-	stfs     f1, 0x9c(r4)
-	stfs     f1, 0xa0(r4)
-	stfs     f1, 0xb0(r4)
-	stfs     f1, 0xb4(r4)
-
-lbl_803B2FA8:
-	lwz      r4, 0x20(r3)
-	cmplwi   r4, 0
-	beqlr
-	stfs     f1, 0x98(r4)
-	stfs     f1, 0x9c(r4)
-	stfs     f1, 0xa0(r4)
-	stfs     f1, 0xb0(r4)
-	stfs     f1, 0xb4(r4)
-	blr
-	*/
 }
 
 /*
@@ -745,80 +96,18 @@ lbl_803B2FA8:
  * Address:	803B2FCC
  * Size:	000100
  */
-bool TUmiFlick::create(efx::Arg*)
+bool TUmiFlick::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B303C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x50
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B303C:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx8TSimple3FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B30A4
-	lwz      r4, 0xc(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x10(r29)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x14(r29)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B30A8
-
-lbl_803B30A4:
-	li       r3, 0
-
-lbl_803B30A8:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(80, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSimple3::create(arg)) {
+		for (int i = 0; i < 3; i++) {
+			mEmitters[i]->setScale(scale);
+		}
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -826,8 +115,16 @@ lbl_803B30A8:
  * Address:	803B30CC
  * Size:	0000D0
  */
-bool TUmiAttack::create(efx::Arg*)
+bool TUmiAttack::create(Arg* arg)
 {
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(97, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSimple1::create(arg)) { // supposed to inherit TSimpleMtx1?
+		mEmitters[0]->setScale(scale);
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -898,24 +195,8 @@ lbl_803B3178:
 void TUmiEat::setGlobalScale(f32 scale)
 {
 	if (mEmitter) {
-		JPABaseEmitter* emitter = mEmitter;
-		emitter->_98.x          = scale;
-		emitter->_98.y          = scale;
-		emitter->_98.z          = scale;
-		emitter->_B0            = scale;
-		emitter->_B4            = scale;
+		mEmitter->setScale(scale);
 	}
-	/*
-	lwz      r3, 8(r3)
-	cmplwi   r3, 0
-	beqlr
-	stfs     f1, 0x98(r3)
-	stfs     f1, 0x9c(r3)
-	stfs     f1, 0xa0(r3)
-	stfs     f1, 0xb0(r3)
-	stfs     f1, 0xb4(r3)
-	blr
-	*/
 }
 
 /*
@@ -926,24 +207,8 @@ void TUmiEat::setGlobalScale(f32 scale)
 void TUmiDeadawa::setGlobalScale(f32 scale)
 {
 	if (mEmitter) {
-		JPABaseEmitter* emitter = mEmitter;
-		emitter->_98.x          = scale;
-		emitter->_98.y          = scale;
-		emitter->_98.z          = scale;
-		emitter->_B0            = scale;
-		emitter->_B4            = scale;
+		mEmitter->setScale(scale);
 	}
-	/*
-	lwz      r3, 8(r3)
-	cmplwi   r3, 0
-	beqlr
-	stfs     f1, 0x98(r3)
-	stfs     f1, 0x9c(r3)
-	stfs     f1, 0xa0(r3)
-	stfs     f1, 0xb0(r3)
-	stfs     f1, 0xb4(r3)
-	blr
-	*/
 }
 
 /*
@@ -951,68 +216,16 @@ void TUmiDeadawa::setGlobalScale(f32 scale)
  * Address:	803B31E4
  * Size:	0000D0
  */
-bool TUmiDeadmelt::create(efx::Arg*)
+bool TUmiDeadmelt::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B3254
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x86
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B3254:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B328C
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3290
-
-lbl_803B328C:
-	li       r3, 0
-
-lbl_803B3290:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(134, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSimple1::create(arg)) {
+		mEmitters[0]->setScale(scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1020,74 +233,18 @@ lbl_803B3290:
  * Address:	803B32B4
  * Size:	0000E8
  */
-bool TJgmAttack::create(efx::Arg*)
+bool TJgmAttack::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B3324
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x99
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B3324:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3374
-	lwz      r4, 0xc(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x20(r29)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3378
-
-lbl_803B3374:
-	li       r3, 0
-
-lbl_803B3378:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(153, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSyncGroup2<TChasePos>::create(arg)) {
+		for (int i = 0; i < 2; i++) {
+			mItems[i].mEmitter->setScale(scale);
+		}
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1095,80 +252,18 @@ lbl_803B3378:
  * Address:	803B339C
  * Size:	000100
  */
-bool TJgmAttackW::create(efx::Arg*)
+bool TJgmAttackW::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B340C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0xa9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B340C:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3474
-	lwz      r4, 0xc(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x24(r29)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x3c(r29)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3478
-
-lbl_803B3474:
-	li       r3, 0
-
-lbl_803B3478:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(169, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSyncGroup3<TChasePosYRot>::create(arg)) {
+		for (int i = 0; i < 3; i++) {
+			mItems[i].mEmitter->setScale(scale);
+		}
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1176,68 +271,16 @@ lbl_803B3478:
  * Address:	803B349C
  * Size:	0000D0
  */
-bool TJgmBack::create(efx::Arg*)
+bool TJgmBack::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B350C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0xb9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B350C:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3544
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3548
-
-lbl_803B3544:
-	li       r3, 0
-
-lbl_803B3548:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(185, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSync::create(arg)) {
+		mEmitter->setScale(scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1245,74 +288,18 @@ lbl_803B3548:
  * Address:	803B356C
  * Size:	0000E8
  */
-bool TJgmBackW::create(efx::Arg*)
+bool TJgmBackW::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B35DC
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B35DC:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B362C
-	lwz      r4, 0xc(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x24(r29)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3630
-
-lbl_803B362C:
-	li       r3, 0
-
-lbl_803B3630:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(199, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSyncGroup2<TChasePosYRot>::create(arg)) {
+		for (int i = 0; i < 2; i++) {
+			mItems[i].mEmitter->setScale(scale);
+		}
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1320,66 +307,21 @@ lbl_803B3630:
  * Address:	803B3654
  * Size:	0000C0
  */
-bool TImoEat::create(efx::Arg*)
+bool TImoEat::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lis      r4, lbl_80495898@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x28
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B36BC
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0xd9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	bool nameCheck = strcmp("ArgImoEat", arg->getName()) == 0;
+	P2ASSERTLINE(217, nameCheck);
+	ArgImoEat* sarg = static_cast<ArgImoEat*>(arg);
 
-lbl_803B36BC:
-	lwz      r0, 0x10(r30)
-	mr       r4, r30
-	cmpwi    r0, 1
-	beq      lbl_803B36E8
-	bge      lbl_803B36F0
-	cmpwi    r0, 0
-	bge      lbl_803B36DC
-	b        lbl_803B36F0
-
-lbl_803B36DC:
-	li       r0, 0xb7
-	sth      r0, 0xc(r29)
-	b        lbl_803B36F0
-
-lbl_803B36E8:
-	li       r0, 0xb6
-	sth      r0, 0xc(r29)
-
-lbl_803B36F0:
-	mr       r3, r29
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	switch (sarg->mType) {
+	case 0:
+		mEffectID = PID_ImoEat_2;
+		break;
+	case 1:
+		mEffectID = PID_ImoEat_1;
+		break;
+	}
+	return TSync::create(sarg);
 }
 
 /*
@@ -1387,44 +329,15 @@ lbl_803B36F0:
  * Address:	803B3714
  * Size:	000074
  */
-bool TUjinkoHd_Imo::create(efx::Arg* arg)
+bool TUjinkoHd_Imo::create(Arg* arg)
 {
-	// if (TSimpleMtx2::create(arg)) { }
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3770
-	lwz      r4, 8(r31)
-	li       r3, 1
-	lfs      f0, lbl_8051F628@sda21(r2)
-	stfs     f0, 0x98(r4)
-	stfs     f0, 0x9c(r4)
-	stfs     f0, 0xa0(r4)
-	stfs     f0, 0xb0(r4)
-	stfs     f0, 0xb4(r4)
-	lwz      r4, 0xc(r31)
-	stfs     f0, 0x98(r4)
-	stfs     f0, 0x9c(r4)
-	stfs     f0, 0xa0(r4)
-	stfs     f0, 0xb0(r4)
-	stfs     f0, 0xb4(r4)
-	b        lbl_803B3774
-
-lbl_803B3770:
-	li       r3, 0
-
-lbl_803B3774:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (TSimpleMtx2::create(arg)) {
+		for (int i = 0; i < 2; i++) {
+			mEmitters[i]->setScale(1.3f);
+		}
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1432,43 +345,15 @@ lbl_803B3774:
  * Address:	803B3788
  * Size:	000074
  */
-bool TUjinkoAp_Imo::create(efx::Arg*)
+bool TUjinkoAp_Imo::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B37E4
-	lwz      r4, 8(r31)
-	li       r3, 1
-	lfs      f0, lbl_8051F628@sda21(r2)
-	stfs     f0, 0x98(r4)
-	stfs     f0, 0x9c(r4)
-	stfs     f0, 0xa0(r4)
-	stfs     f0, 0xb0(r4)
-	stfs     f0, 0xb4(r4)
-	lwz      r4, 0xc(r31)
-	stfs     f0, 0x98(r4)
-	stfs     f0, 0x9c(r4)
-	stfs     f0, 0xa0(r4)
-	stfs     f0, 0xb0(r4)
-	stfs     f0, 0xb4(r4)
-	b        lbl_803B37E8
-
-lbl_803B37E4:
-	li       r3, 0
-
-lbl_803B37E8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (TSimpleMtx2::create(arg)) {
+		for (int i = 0; i < 2; i++) {
+			mEmitters[i]->setScale(1.3f);
+		}
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1476,68 +361,16 @@ lbl_803B37E8:
  * Address:	803B37FC
  * Size:	0000D0
  */
-bool TImoSmoke::create(efx::Arg*)
+bool TImoSmoke::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B386C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x107
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B386C:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B38A4
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B38A8
-
-lbl_803B38A4:
-	li       r3, 0
-
-lbl_803B38A8:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(263, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSync::create(arg)) {
+		mEmitter->setScale(scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1545,68 +378,16 @@ lbl_803B38A8:
  * Address:	803B38CC
  * Size:	0000D0
  */
-bool TOtaPartsoff::create(efx::Arg*)
+bool TOtaPartsoff::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B393C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x117
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B393C:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3974
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3978
-
-lbl_803B3974:
-	li       r3, 0
-
-lbl_803B3978:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(279, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSimple1::create(arg)) {
+		mEmitters[0]->setScale(scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1614,28 +395,15 @@ lbl_803B3978:
  * Address:	803B399C
  * Size:	000040
  */
-void efx::TNewkurageSui::setGlobalTranslation(Vector3f& translation)
+void TNewkurageSui::setGlobalTranslation(Vector3f& pos)
 {
-	/*
-	lwz      r5, 0xc(r3)
-	lfs      f0, 0(r4)
-	cmplwi   r5, 0
-	lfs      f1, 4(r4)
-	lfs      f2, 8(r4)
-	beq      lbl_803B39C0
-	stfs     f0, 0xa4(r5)
-	stfs     f1, 0xa8(r5)
-	stfs     f2, 0xac(r5)
-
-lbl_803B39C0:
-	lwz      r5, 0x1c(r3)
-	cmplwi   r5, 0
-	beqlr
-	stfs     f0, 0xa4(r5)
-	stfs     f1, 0xa8(r5)
-	stfs     f2, 0xac(r5)
-	blr
-	*/
+	f32 x = pos.x;
+	f32 y = pos.y;
+	f32 z = pos.z;
+	for (int i = 0; i < 2; i++) {
+		if (mItems[i].mEmitter)
+			mItems[i].mEmitter->setTranslation(x, y, z);
+	}
 }
 
 /*
@@ -1643,27 +411,12 @@ lbl_803B39C0:
  * Address:	803B39DC
  * Size:	000034
  */
-void TNewkurageHire::setLifeTime(short)
+void TNewkurageHire::setLifeTime(s16 time)
 {
-	/*
-	lwz      r5, 0xc(r3)
-	cmplwi   r5, 0
-	beq      lbl_803B39EC
-	sth      r4, 0x52(r5)
-
-lbl_803B39EC:
-	lwz      r5, 0x20(r3)
-	cmplwi   r5, 0
-	beq      lbl_803B39FC
-	sth      r4, 0x52(r5)
-
-lbl_803B39FC:
-	lwz      r5, 0x34(r3)
-	cmplwi   r5, 0
-	beqlr
-	sth      r4, 0x52(r5)
-	blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		if (mItems[i].mEmitter)
+			mItems[i].mEmitter->mLifeTime = time;
+	}
 }
 
 /*
@@ -1671,28 +424,15 @@ lbl_803B39FC:
  * Address:	803B3A10
  * Size:	000040
  */
-void TKurageSui::setGlobalTranslation(Vector3f& translation)
+void TKurageSui::setGlobalTranslation(Vector3f& pos)
 {
-	/*
-	lwz      r5, 0xc(r3)
-	lfs      f0, 0(r4)
-	cmplwi   r5, 0
-	lfs      f1, 4(r4)
-	lfs      f2, 8(r4)
-	beq      lbl_803B3A34
-	stfs     f0, 0xa4(r5)
-	stfs     f1, 0xa8(r5)
-	stfs     f2, 0xac(r5)
-
-lbl_803B3A34:
-	lwz      r5, 0x1c(r3)
-	cmplwi   r5, 0
-	beqlr
-	stfs     f0, 0xa4(r5)
-	stfs     f1, 0xa8(r5)
-	stfs     f2, 0xac(r5)
-	blr
-	*/
+	f32 x = pos.x;
+	f32 y = pos.y;
+	f32 z = pos.z;
+	for (int i = 0; i < 2; i++) {
+		if (mItems[i].mEmitter)
+			mItems[i].mEmitter->setTranslation(x, y, z);
+	}
 }
 
 /*
@@ -1700,27 +440,12 @@ lbl_803B3A34:
  * Address:	803B3A50
  * Size:	000034
  */
-void TKurageHire::setLifeTime(short)
+void TKurageHire::setLifeTime(s16 time)
 {
-	/*
-	lwz      r5, 0xc(r3)
-	cmplwi   r5, 0
-	beq      lbl_803B3A60
-	sth      r4, 0x52(r5)
-
-lbl_803B3A60:
-	lwz      r5, 0x20(r3)
-	cmplwi   r5, 0
-	beq      lbl_803B3A70
-	sth      r4, 0x52(r5)
-
-lbl_803B3A70:
-	lwz      r5, 0x34(r3)
-	cmplwi   r5, 0
-	beqlr
-	sth      r4, 0x52(r5)
-	blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		if (mItems[i].mEmitter)
+			mItems[i].mEmitter->mLifeTime = time;
+	}
 }
 
 /*
@@ -1730,17 +455,9 @@ lbl_803B3A70:
  */
 void TQuriGlow::setGlobalScale(f32 scale)
 {
-	/*
-	lwz      r3, 8(r3)
-	cmplwi   r3, 0
-	beqlr
-	stfs     f1, 0x98(r3)
-	stfs     f1, 0x9c(r3)
-	stfs     f1, 0xa0(r3)
-	stfs     f1, 0xb0(r3)
-	stfs     f1, 0xb4(r3)
-	blr
-	*/
+	if (mEmitter) {
+		mEmitter->setScale(scale);
+	}
 }
 
 /*
@@ -1748,7 +465,7 @@ void TQuriGlow::setGlobalScale(f32 scale)
  * Address:	803B3AA8
  * Size:	0000A4
  */
-bool THebiAphd_base::create(efx::Arg* arg)
+bool THebiAphd_base::create(Arg* arg)
 {
 	P2ASSERTLINE(358, arg != nullptr);
 	if (TSimple4::create(arg)) {
@@ -1758,55 +475,6 @@ bool THebiAphd_base::create(efx::Arg* arg)
 		return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B3AE4
-	lis      r3, lbl_80495898@ha
-	lis      r5, lbl_804958B4@ha
-	addi     r3, r3, lbl_80495898@l
-	li       r4, 0x166
-	addi     r5, r5, lbl_804958B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B3AE4:
-	mr       r3, r30
-	mr       r4, r31
-	bl       create__Q23efx8TSimple4FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3B30
-	lwz      r0, 0x1c(r30)
-	li       r3, 1
-	lwz      r4, 0xc(r30)
-	stw      r0, 0x24(r4)
-	lwz      r0, 0x1c(r30)
-	lwz      r4, 0x10(r30)
-	stw      r0, 0x24(r4)
-	lwz      r0, 0x1c(r30)
-	lwz      r4, 0x14(r30)
-	stw      r0, 0x24(r4)
-	lwz      r0, 0x1c(r30)
-	lwz      r4, 0x18(r30)
-	stw      r0, 0x24(r4)
-	b        lbl_803B3B34
-
-lbl_803B3B30:
-	li       r3, 0
-
-lbl_803B3B34:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1814,33 +482,13 @@ lbl_803B3B34:
  * Address:	803B3B4C
  * Size:	000034
  */
-void TKechappyTest::setGlobalAlpha(unsigned char alpha)
+void TKechappyTest::setGlobalAlpha(u8 alpha)
 {
 	for (int i = 0; i < 3; i++) {
-		JPABaseEmitter* emitter = mItems[i].mEmitter;
-		if (emitter != nullptr) {
-			emitter->mColor1.a = alpha;
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->mColor1.a = alpha;
 		}
 	}
-	/*
-	lwz      r5, 0xc(r3)
-	cmplwi   r5, 0
-	beq      lbl_803B3B5C
-	stb      r4, 0xbb(r5)
-
-lbl_803B3B5C:
-	lwz      r5, 0x20(r3)
-	cmplwi   r5, 0
-	beq      lbl_803B3B6C
-	stb      r4, 0xbb(r5)
-
-lbl_803B3B6C:
-	lwz      r5, 0x34(r3)
-	cmplwi   r5, 0
-	beqlr
-	stb      r4, 0xbb(r5)
-	blr
-	*/
 }
 
 /*
@@ -1851,24 +499,10 @@ lbl_803B3B6C:
 void TKechappyTest::setGlobalParticleScale(f32 scale)
 {
 	for (int i = 1; i < 3; i++) {
-		JPABaseEmitter* emitter = mItems[i].mEmitter;
-		if (emitter != nullptr) {
-			emitter->_B4 = scale;
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->_B4 = scale;
 		}
 	}
-	/*
-	lwz      r4, 0x20(r3)
-	cmplwi   r4, 0
-	beq      lbl_803B3B90
-	stfs     f1, 0xb4(r4)
-
-lbl_803B3B90:
-	lwz      r4, 0x34(r3)
-	cmplwi   r4, 0
-	beqlr
-	stfs     f1, 0xb4(r4)
-	blr
-	*/
 }
 
 /*
@@ -1879,24 +513,10 @@ lbl_803B3B90:
 void TKechappyTest::setAwayFromCenterSpeed(f32 speed)
 {
 	for (int i = 1; i < 3; i++) {
-		JPABaseEmitter* emitter = mItems[i].mEmitter;
-		if (emitter != nullptr) {
-			emitter->_34 = speed;
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->_34 = speed;
 		}
 	}
-	/*
-	lwz      r4, 0x20(r3)
-	cmplwi   r4, 0
-	beq      lbl_803B3BB4
-	stfs     f1, 0x34(r4)
-
-lbl_803B3BB4:
-	lwz      r4, 0x34(r3)
-	cmplwi   r4, 0
-	beqlr
-	stfs     f1, 0x34(r4)
-	blr
-	*/
 }
 
 /*
@@ -1907,78 +527,45 @@ lbl_803B3BB4:
 void TKechappyTest::setSpread(f32 spread)
 {
 	for (int i = 1; i < 3; i++) {
-		JPABaseEmitter* emitter = mItems[i].mEmitter;
-		if (emitter != nullptr) {
-			emitter->_40 = spread;
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->_40 = spread;
 		}
 	}
-	/*
-	lwz      r4, 0x20(r3)
-	cmplwi   r4, 0
-	beq      lbl_803B3BD8
-	stfs     f1, 0x40(r4)
-
-lbl_803B3BD8:
-	lwz      r4, 0x34(r3)
-	cmplwi   r4, 0
-	beqlr
-	stfs     f1, 0x40(r4)
-	blr
-	*/
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803B3BEC
  * Size:	00004C
  */
-void efx::TKechappyTest::setGlobalDynamicsScale(Vector3f& scale)
+void TKechappyTest::setGlobalDynamicsScale(Vector3f& scale)
 {
 	for (int i = 1; i < 3; i++) {
-		JPABaseEmitter* emitter = mItems[i].mEmitter;
-		if (emitter != nullptr) {
-			emitter->_98.x = scale.x;
-			emitter->_98.y = scale.y;
-			emitter->_98.z = scale.z;
+		if (mItems[i].mEmitter) {
+			mItems[i].mEmitter->setScaleOnly(scale);
 		}
 	}
-
-	/*
-	lwz      r5, 0x20(r3)
-	cmplwi   r5, 0
-	beq      lbl_803B3C10
-	lfs      f0, 0(r4)
-	stfs     f0, 0x98(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x9c(r5)
-	lfs      f0, 8(r4)
-	stfs     f0, 0xa0(r5)
-
-lbl_803B3C10:
-	lwz      r5, 0x34(r3)
-	cmplwi   r5, 0
-	beqlr
-	lfs      f0, 0(r4)
-	stfs     f0, 0x98(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x9c(r5)
-	lfs      f0, 8(r4)
-	stfs     f0, 0xa0(r5)
-	blr
-	*/
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B3C38
  * Size:	0000DC
  */
-void TYakiBody::setRateLOD(int)
+void TYakiBody::setRateLOD(int id)
 {
+	JPABaseEmitter* emit;
+	f32 lods[4][3] = {
+		{ 0.2f, 0.2f, 0.2f },
+		{ 1.0f, 1.0f, 1.0f },
+		{ 0.082f, 0.05f, 0.0f },
+		{ 2.3f, 1.7f, 0.0f },
+	};
+
+	for (int i = 0; i < 4; i++) {
+		if (mItems[i].mEmitter)
+			mItems[i].mEmitter->_28 = lods[i][id];
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	lis      r5, lbl_804958CC@ha
@@ -2051,68 +638,16 @@ lbl_803B3D08:
  * Address:	803B3D14
  * Size:	0000D0
  */
-bool TPanApp::create(efx::Arg*)
+bool TPanApp::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B3D84
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x1c8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B3D84:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3DBC
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3DC0
-
-lbl_803B3DBC:
-	li       r3, 0
-
-lbl_803B3DC0:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(456, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSimple1::create(arg)) {
+		mEmitters[0]->setScale(scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2120,68 +655,16 @@ lbl_803B3DC0:
  * Address:	803B3DE4
  * Size:	0000D0
  */
-bool TPanHide::create(efx::Arg*)
+bool TPanHide::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B3E54
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x1d9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B3E54:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3E8C
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3E90
-
-lbl_803B3E8C:
-	li       r3, 0
-
-lbl_803B3E90:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(473, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSync::create(arg)) {
+		mEmitter->setScale(scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2189,68 +672,16 @@ lbl_803B3E90:
  * Address:	803B3EB4
  * Size:	0000D0
  */
-bool TPanSmoke::create(efx::Arg*)
+bool TPanSmoke::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B3F24
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x1e9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B3F24:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3F5C
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3F60
-
-lbl_803B3F5C:
-	li       r3, 0
-
-lbl_803B3F60:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(489, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSync::create(arg)) {
+		mEmitter->setScale(scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2258,68 +689,16 @@ lbl_803B3F60:
  * Address:	803B3F84
  * Size:	0000D0
  */
-bool TBabaFly_ver01::create(efx::Arg*)
+bool TBabaFly_ver01::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B3FF4
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x1fa
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B3FF4:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B402C
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B4030
-
-lbl_803B402C:
-	li       r3, 0
-
-lbl_803B4030:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(506, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSync::create(arg)) {
+		mEmitter->setScale(scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2327,8 +706,30 @@ lbl_803B4030:
  * Address:	803B4054
  * Size:	000184
  */
-bool TBabaHe::create(efx::Arg*)
+bool TBabaHe::create(Arg* arg)
 {
+	bool nameCheck = strcmp("ArgRotY", arg->getName()) == 0;
+	P2ASSERTLINE(521, nameCheck);
+	ArgRotY* sarg = static_cast<ArgRotY*>(arg);
+	Mtx mtx;
+	f32 x = arg->mPosition.x;
+	f32 y = arg->mPosition.y;
+	f32 z = arg->mPosition.z;
+	PSMTXRotRad(mtx, 'y', sarg->mFaceDir);
+	mtx[0][3] = x;
+	mtx[1][3] = y;
+	mtx[2][3] = z;
+
+	if (TSimple2::create(arg)) {
+		for (int i = 0; i < 2; i++) {
+			JPASetRMtxTVecfromMtx(mtx, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
+		}
+		mEmitters[0]->mPosition.x = (mtx[0][2] * -35.0f) + x;
+		mEmitters[0]->mPosition.y = (mtx[1][2] * -35.0f) + y;
+		mEmitters[0]->mPosition.z = (mtx[2][2] * -35.0f) + z;
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -2443,74 +844,18 @@ lbl_803B41A4:
  * Address:	803B41D8
  * Size:	0000E8
  */
-bool TKoganeHit::create(efx::Arg*)
+bool TKoganeHit::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B4248
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x222
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B4248:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B4298
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0xc(r29)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B429C
-
-lbl_803B4298:
-	li       r3, 0
-
-lbl_803B429C:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(546, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSimple2::create(arg)) {
+		for (int i = 0; i < 2; i++) {
+			mEmitters[i]->setScale(scale);
+		}
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2518,74 +863,18 @@ lbl_803B429C:
  * Address:	803B42C0
  * Size:	0000E8
  */
-bool TKoganeDive::create(efx::Arg*)
+bool TKoganeDive::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B4330
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x232
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B4330:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B4380
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0xc(r29)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B4384
-
-lbl_803B4380:
-	li       r3, 0
-
-lbl_803B4384:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(562, nameCheck);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSimple2::create(arg)) {
+		for (int i = 0; i < 2; i++) {
+			mEmitters[i]->setScale(scale);
+		}
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2600,8 +889,24 @@ void TParticleCallBack_TankFire::init(JPABaseEmitter*, JPABaseParticle*) { }
  * Address:	803B43AC
  * Size:	000144
  */
-void TParticleCallBack_TankFire::execute(JPABaseEmitter*, JPABaseParticle*)
+void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* particle)
 {
+	f32 z = particle->getCalcCurrentPositionZ(emit);
+	f32 y = particle->getCalcCurrentPositionY(emit);
+	f32 x = particle->getCalcCurrentPositionX(emit);
+	Vector3f tgt(x, y, z);
+	if (tgt.distance(emit->mPosition) < _04) {
+		particle->mFlags |= 2;
+
+		TTankFireHit* hit = mEfxHit;
+		if (hit && hit->_14 < hit->_18) {
+			Vector3f* pos = &hit->_10[hit->_14];
+			pos->x        = x;
+			pos->y        = y;
+			pos->z        = z;
+			hit->_14++;
+		}
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2698,48 +1003,17 @@ lbl_803B44C4:
  * Address:	803B44F0
  * Size:	000090
  */
-bool TTankFireABC::create(efx::Arg*)
+bool TTankFireABC::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r0, r30, 0x4c
-	stw      r0, 0x48(r3)
-	lwz      r3, 0x48(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051F644@sda21(r2)
-	mr       r3, r30
-	mr       r4, r31
-	stfs     f0, 0x44(r30)
-	bl       "create__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>FPQ23efx3Arg"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B4564
-	lwz      r3, 0xc(r30)
-	addi     r0, r30, 0x40
-	stw      r0, 0xf0(r3)
-	lwz      r3, 0x20(r30)
-	stw      r0, 0xf0(r3)
-	lwz      r3, 0x34(r30)
-	stw      r0, 0xf0(r3)
-
-lbl_803B4564:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mParticleCallBack.mEfxHit = &mEfxFireHit;
+	mParticleCallBack.mEfxHit->create(nullptr);
+	mParticleCallBack._04 = 1000.0f;
+	if (TSyncGroup3<TChaseMtx>::create(arg)) {
+		for (int i = 0; i < 3; i++) {
+			mItems[i].mEmitter->mParticleCallback = &mParticleCallBack;
+		}
+	}
+	return true;
 }
 
 /*
@@ -2747,33 +1021,12 @@ lbl_803B4564:
  * Address:	803B4580
  * Size:	000044
  */
-bool TTankFireIND::create(efx::Arg* arg)
+bool TTankFireIND::create(Arg* arg)
 {
 	if (TSync::create(arg)) {
 		mEmitter->mParticleCallback = &mParticleCallBack;
 	}
 	return true;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B45AC
-	lwz      r3, 8(r31)
-	addi     r0, r31, 0x14
-	stw      r0, 0xf0(r3)
-
-lbl_803B45AC:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2781,45 +1034,13 @@ lbl_803B45AC:
  * Address:	803B45C4
  * Size:	000084
  */
-bool TTankFire::create(efx::Arg*)
+bool TTankFire::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	addi     r3, r29, 4
-	lwz      r12, 4(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B4628
-	addi     r3, r29, 0x6c
-	mr       r4, r30
-	lwz      r12, 0x6c(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B4628
-	li       r31, 1
-
-lbl_803B4628:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	bool ret = false;
+	if (mEfxABC.create(arg) && mEfxIND.create(arg)) {
+		ret = true;
+	}
+	return ret;
 }
 
 /*
@@ -2827,8 +1048,17 @@ lbl_803B4628:
  * Address:	803B4648
  * Size:	000098
  */
-bool TTankWat::create(efx::Arg*)
+bool TTankWat::create(Arg* arg)
 {
+	// mParticleCallBack.mEfxHit = &mEfxHit; // something sus here
+	mParticleCallBack.mEfxHit->create(nullptr);
+	mParticleCallBack._04 = 1000.0f;
+	if (TSyncGroup4<TChaseMtx>::create(arg)) {
+		for (int i = 0; i < 4; i++) {
+			mItems[i].mEmitter->mParticleCallback = &mParticleCallBack;
+		}
+	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2878,7 +1108,7 @@ lbl_803B46C4:
  * Address:	803B46E0
  * Size:	000168
  */
-void TDnkmsThunderA::doExecuteEmitterOperation(JPABaseEmitter*)
+void TDnkmsThunderA::doExecuteEmitterOperation(JPABaseEmitter* emit)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -3096,8 +1326,19 @@ lbl_803B4968:
  * Address:	803B49B0
  * Size:	0000DC
  */
-void THibaFire::setRateLOD(int)
+void THibaFire::setRateLOD(int id)
 {
+	f32 lods[4][3] = {
+		{ 0.2f, 0.2f, 0.2f },
+		{ 1.0f, 1.0f, 1.0f },
+		{ 0.082f, 0.05f, 0.0f },
+		{ 2.3f, 1.7f, 0.0f },
+	};
+
+	for (int i = 0; i < 4; i++) {
+		if (mItems[i].mEmitter)
+			mItems[i].mEmitter->_28 = lods[i][id];
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	lis      r5, lbl_804958FC@ha
@@ -3170,8 +1411,20 @@ lbl_803B4A80:
  * Address:	803B4A8C
  * Size:	0000C0
  */
-bool TGasuHiba::create(efx::Arg* arg)
+bool TGasuHiba::create(Arg* arg)
 {
+	bool nameCheck = strcmp("ArgGasuHiba", arg->getName()) == 0;
+	P2ASSERTLINE(714, nameCheck);
+
+	if (static_cast<ArgGasuHiba*>(arg)->mIsUnderground) {
+		mItems[0].mEffectID = PID_GasuHiba_3;
+		mItems[1].mEffectID = PID_GasuHiba_4;
+	} else {
+		mItems[0].mEffectID = PID_GasuHiba_1;
+		mItems[1].mEffectID = PID_GasuHiba_2;
+	}
+
+	return TSyncGroup2<TForever>::create(arg);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3235,8 +1488,17 @@ lbl_803B4B28:
  * Address:	803B4B4C
  * Size:	000078
  */
-void TGasuHiba::setRateLOD(int)
+void TGasuHiba::setRateLOD(int id)
 {
+	f32 lods[2][3] = {
+		{ 0.5f, 0.4f, 0.25f },
+		{ 0.35f, 0.2f, 0.1f },
+	};
+
+	for (int i = 0; i < 2; i++) {
+		if (mItems[i].mEmitter)
+			mItems[i].mEmitter->_28 = lods[i][id];
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r5, lbl_80495938@ha
@@ -3280,7 +1542,7 @@ lbl_803B4BBC:
  * Address:	803B4BC4
  * Size:	000218
  */
-bool TDenkiHiba::create(efx::Arg*)
+bool TDenkiHiba::create(Arg*)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -3451,7 +1713,7 @@ void TDenkiHiba::setRateLOD(int)
  * Address:	803B4DDC
  * Size:	000128
  */
-bool TDenkiHibaMgr::create(efx::Arg*)
+bool TDenkiHibaMgr::create(Arg*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3660,43 +1922,6 @@ void TDenkiHibaMgr::forceKill()
 	mPoles[1].forceKill();
 	mPolesigns[0].forceKill();
 	mPolesigns[1].forceKill();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 4
-	lwz      r12, 4(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x38
-	lwz      r12, 0x38(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x5c
-	lwz      r12, 0x5c(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x80
-	lwz      r12, 0x80(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x90
-	lwz      r12, 0x90(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3711,43 +1936,6 @@ void TDenkiHibaMgr::fade()
 	mPoles[1].fade();
 	mPolesigns[0].fade();
 	mPolesigns[1].fade();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 4
-	lwz      r12, 4(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x38
-	lwz      r12, 0x38(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x5c
-	lwz      r12, 0x5c(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x80
-	lwz      r12, 0x80(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x90
-	lwz      r12, 0x90(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3812,610 +2000,4 @@ lbl_803B5238:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B5248
- * Size:	000048
- */
-void TTankWat::forceKill()
-{
-	TSyncGroup4::forceKill();
-	if (mParticleCallBack.mEfxHit != nullptr) {
-		mParticleCallBack.mEfxHit->forceKill();
-	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "forceKill__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
-	lwz      r3, 0x5c(r31)
-	cmplwi   r3, 0
-	beq      lbl_803B527C
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803B527C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B5290
- * Size:	000050
- */
-void TTankFire::forceKill()
-{
-	mEfxABC.forceKill();
-	mEfxIND.forceKill();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 4
-	lwz      r12, 4(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x6c
-	lwz      r12, 0x6c(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B52E0
- * Size:	000048
- */
-// void TTankFireABC::forceKill()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	bl       "forceKill__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
-// 	lwz      r3, 0x48(r31)
-// 	cmplwi   r3, 0
-// 	beq      lbl_803B5314
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0xc(r12)
-// 	mtctr    r12
-// 	bctrl
-
-// lbl_803B5314:
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	803B5328
- * Size:	00009C
- */
-TBabaFly_ver01::~TBabaFly_ver01()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B53A8
-	lis      r3, __vt__Q23efx14TBabaFly_ver01@ha
-	addi     r3, r3, __vt__Q23efx14TBabaFly_ver01@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B5398
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B5398
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803B5398:
-	extsh.   r0, r31
-	ble      lbl_803B53A8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B53A8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B53C4
- * Size:	00009C
- */
-TPanSmoke::~TPanSmoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B5444
-	lis      r3, __vt__Q23efx9TPanSmoke@ha
-	addi     r3, r3, __vt__Q23efx9TPanSmoke@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B5434
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B5434
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803B5434:
-	extsh.   r0, r31
-	ble      lbl_803B5444
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B5444:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B5460
- * Size:	00009C
- */
-TPanHide::~TPanHide()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B54E0
-	lis      r3, __vt__Q23efx8TPanHide@ha
-	addi     r3, r3, __vt__Q23efx8TPanHide@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B54D0
-	lis      r3, __vt__Q23efx8TForever@ha
-	addi     r3, r3, __vt__Q23efx8TForever@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B54D0
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803B54D0:
-	extsh.   r0, r31
-	ble      lbl_803B54E0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B54E0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B54FC
- * Size:	00009C
- */
-TImoSmoke::~TImoSmoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B557C
-	lis      r3, __vt__Q23efx9TImoSmoke@ha
-	addi     r3, r3, __vt__Q23efx9TImoSmoke@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B556C
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B556C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803B556C:
-	extsh.   r0, r31
-	ble      lbl_803B557C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B557C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B5598
- * Size:	00009C
- */
-TImoEat::~TImoEat()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B5618
-	lis      r3, __vt__Q23efx7TImoEat@ha
-	addi     r3, r3, __vt__Q23efx7TImoEat@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B5608
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B5608
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803B5608:
-	extsh.   r0, r31
-	ble      lbl_803B5618
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B5618:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B5634
- * Size:	00009C
- */
-TJgmBack::~TJgmBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B56B4
-	lis      r3, __vt__Q23efx8TJgmBack@ha
-	addi     r3, r3, __vt__Q23efx8TJgmBack@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B56A4
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B56A4
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803B56A4:
-	extsh.   r0, r31
-	ble      lbl_803B56B4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B56B4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B56D0
- * Size:	00009C
- */
-TChouDown::~TChouDown()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B5750
-	lis      r3, __vt__Q23efx9TChouDown@ha
-	addi     r3, r3, __vt__Q23efx9TChouDown@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B5740
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B5740
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803B5740:
-	extsh.   r0, r31
-	ble      lbl_803B5750
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B5750:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-// /*
-//  * --INFO--
-//  * Address:	803B576C
-//  * Size:	000008
-//  */
-// @4 @efx::TChouDown::~TChouDown()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx9TChouDownFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	803B5774
-//  * Size:	000008
-//  */
-// @4 @efx::TJgmBack::~TJgmBack()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx8TJgmBackFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	803B577C
-//  * Size:	000008
-//  */
-// @4 @efx::TImoEat::~TImoEat()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx7TImoEatFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	803B5784
-//  * Size:	000008
-//  */
-// @4 @efx::TImoSmoke::~TImoSmoke()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx9TImoSmokeFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	803B578C
-//  * Size:	000008
-//  */
-// @4 @efx::TPanHide::~TPanHide()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx8TPanHideFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	803B5794
-//  * Size:	000008
-//  */
-// @4 @efx::TPanSmoke::~TPanSmoke()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx9TPanSmokeFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	803B579C
-//  * Size:	000008
-//  */
-// @4 @efx::TBabaFly_ver01::~TBabaFly_ver01()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx14TBabaFly_ver01Fv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	803B57A4
-//  * Size:	000008
-//  */
-// @4 @efx::TTankFireIND::~TTankFireIND()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx12TTankFireINDFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	803B57AC
-//  * Size:	000008
-//  */
-// @4 @efx::TDnkmsThunderA::~TDnkmsThunderA()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx14TDnkmsThunderAFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	803B57B4
-//  * Size:	000008
-//  */
-// @4 @efx::TDnkmsThunderB::~TDnkmsThunderB()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q23efx14TDnkmsThunderBFv
-// 	*/
-// }
 } // namespace efx

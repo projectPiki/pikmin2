@@ -11,8 +11,8 @@ struct TBabaFly_ver01 : public TChasePos {
 	{
 	}
 
-	virtual bool create(Arg*); // _08
-	virtual ~TBabaFly_ver01(); // _48 (weak)
+	virtual bool create(Arg*);    // _08
+	virtual ~TBabaFly_ver01() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos

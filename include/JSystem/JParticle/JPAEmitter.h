@@ -66,7 +66,7 @@ struct JPABaseParticle {
 	f32 _70;                     // _70
 	f32 _74;                     // _74
 	unknown _78;                 // _78
-	uint _7C;                    // _7C
+	uint mFlags;                 // _7C
 	s16 _80;                     // _80
 	u16 _82;                     // _82
 	f32 _84;                     // _84
@@ -122,6 +122,13 @@ struct JPABaseEmitter {
 		_98 = JGeometry::TVec3f(scaleXY, scaleXY, scaleZ);
 		_B0 = scaleXY;
 		_B4 = scaleXY;
+	}
+
+	inline void setScaleOnly(Vector3f& scale)
+	{
+		_98.x = scale.x;
+		_98.y = scale.y;
+		_98.z = scale.z;
 	}
 
 	inline void setScaleOnly(f32 scale) { _98 = JGeometry::TVec3f(scale); }
@@ -222,6 +229,13 @@ struct JPABaseEmitter {
 		mColor1.a = color.a;
 	}
 
+	inline void setTranslation(f32 x, f32 y, f32 z)
+	{
+		mPosition.x = x;
+		mPosition.y = y;
+		mPosition.z = z;
+	}
+
 	Vector3f mScale;             // _00
 	JGeometry::TVec3f _0C;       // _0C
 	JGeometry::TVec3f _18;       // _18
@@ -237,7 +251,7 @@ struct JPABaseEmitter {
 	s16 _4C;                     // _4C
 	s16 _4E;                     // _4E
 	s16 _50;                     // _50
-	u16 _52;                     // _52
+	s16 mLifeTime;               // _52
 	u16 _54;                     // _54
 	JSUPtrLink _58;              // _58
 	Mtx mMatrix;                 // _68

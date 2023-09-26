@@ -25,7 +25,7 @@ struct TPanHide : public TForever {
 	}
 
 	virtual bool create(Arg*); // _08
-	virtual ~TPanHide();       // _48 (weak)
+	virtual ~TPanHide() { }    // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = TForever
@@ -38,7 +38,7 @@ struct TPanSmoke : public TChasePos {
 	}
 
 	virtual bool create(Arg*); // _08
-	virtual ~TPanSmoke();      // _48 (weak)
+	virtual ~TPanSmoke() { }   // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChasePos
