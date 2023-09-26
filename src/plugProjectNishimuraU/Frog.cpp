@@ -380,79 +380,23 @@ lbl_80258B50:
  * Address:	80258B84
  * Size:	000104
  */
-void Obj::collisionCallback(CollEvent&)
+void Obj::collisionCallback(CollEvent& event)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lwz      r31, 0(r4)
-	cmplwi   r31, 0
-	beq      lbl_80258C54
-	lwz      r0, 0x1e0(r29)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_80258C54
-	lbz      r0, 0x2d9(r29)
-	cmplwi   r0, 0
-	beq      lbl_80258C54
-	lwz      r0, 0xc8(r31)
-	cmplwi   r0, 0
-	beq      lbl_80258C54
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80258C0C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80258C54
+	if (Creature* creature = event.mCollidingCreature) {
+		if (!isEvent(0, EB_Bittered)) {
 
-lbl_80258C0C:
-	lwz      r5, 0xc0(r29)
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game13InteractPress@ha
-	li       r0, 0
-	lfs      f0, 0x604(r5)
-	addi     r5, r4, __vt__Q24Game11Interaction@l
-	addi     r3, r3, __vt__Q24Game13InteractPress@l
-	addi     r4, r1, 8
-	stw      r5, 8(r1)
-	stw      r29, 0xc(r1)
-	stw      r3, 8(r1)
-	stfs     f0, 0x10(r1)
-	stw      r0, 0x14(r1)
-	lwz      r3, 0(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
+			if (mIsFalling) {
+				if (creature->mBounceTriangle) {
+					if (creature->isNavi() || creature->isPiki()) {
+						InteractPress press(this, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
+						event.mCollidingCreature->stimulate(press);
+					}
+				}
+			}
+		}
+	}
 
-lbl_80258C54:
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	lwz      r12, 0x240(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	setCollEvent(event);
 }
 
 /*
