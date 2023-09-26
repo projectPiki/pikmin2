@@ -13,6 +13,20 @@ namespace FileSelect {
 struct TMainScreen : public TScreenBase {
 	TMainScreen();
 
+	enum MsgOpenType {
+		MessageType_SelectAFile    = 0,
+		MessageType_FileCorrupted  = 1,
+		MessageType_ErasingFile    = 2,
+		MessageType_DoYouErase     = 3,
+		MessageType_CopyWhere      = 4,
+		MessageType_FileDeleteFail = 5,
+		MessageType_FileDeleted    = 6,
+		MessageType_DoYouOverwrite = 7,
+		MessageType_FileCopyFail   = 8,
+		MessageType_CopyingFile    = 9,
+		MessageType_FileCopied     = 10,
+	};
+
 	~TMainScreen() { }
 
 	virtual void doSetArchive(JKRArchive*); // _24

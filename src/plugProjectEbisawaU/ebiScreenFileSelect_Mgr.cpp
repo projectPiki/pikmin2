@@ -58,8 +58,8 @@ void FSMState_SelectYesNo::do_init(TMgr* mgr, Game::StateArg* arg)
 	mgr->mMainScreen.openMSG(mMsgType);
 	mgr->mMainScreen.outCopyErase();
 	mgr->mMainScreen.setYesNo(mYesNoState);
-	_21 = false;
-	_20 = false;
+	mIsSelected = false;
+	mClosedMsg  = false;
 }
 
 /*
@@ -69,7 +69,7 @@ void FSMState_SelectYesNo::do_init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_SelectYesNo::do_exec(TMgr* mgr)
 {
-	if (_21) {
+	if (mIsSelected) {
 		goto twenty;
 	}
 
@@ -88,26 +88,26 @@ void FSMState_SelectYesNo::do_exec(TMgr* mgr)
 	}
 	u32 input = mgr->mController->getButtonDown();
 	if (input & Controller::PRESS_A) {
-		_21 = true;
+		mIsSelected = true;
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 	} else if (input & Controller::PRESS_B) {
 		mYesNoState = false;
-		_21         = true;
+		mIsSelected = true;
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 	} else {
 	twenty:
-		if (!_20) {
-			_20 = true;
+		if (!mClosedMsg) {
+			mClosedMsg = true;
 			do_decide(mgr);
 			mgr->mMainScreen.closeMSG();
 		}
 	}
 
-	if (mgr->mMainScreen.isFinishCloseMSG() && _21 && _20) {
+	if (mgr->mMainScreen.isFinishCloseMSG() && mIsSelected && mClosedMsg) {
 		if (mYesNoState) {
-			transit(mgr, _18, nullptr);
+			transit(mgr, mNextStateYes, nullptr);
 		} else {
-			transit(mgr, _1C, nullptr);
+			transit(mgr, mNextStateNo, nullptr);
 		}
 	}
 
@@ -277,10 +277,10 @@ lbl_803DEB24:
  */
 void FSMState01_DataBroken::do_set(TMgr* mgr, Game::StateArg*)
 {
-	mMsgType    = 1;
-	mYesNoState = false;
-	_18         = 6;
-	_1C         = 4;
+	mMsgType      = Screen::FileSelect::TMainScreen::MessageType_FileCorrupted;
+	mYesNoState   = false;
+	mNextStateYes = FSSTATE_NowDelete;
+	mNextStateNo  = FSSTATE_SelectData;
 	mgr->mMainScreen.setDataBallBroken(mgr->mCurrSelection);
 	mgr->mMainScreen.openDataWindow(mgr->mCurrSelection);
 }
@@ -292,10 +292,10 @@ void FSMState01_DataBroken::do_set(TMgr* mgr, Game::StateArg*)
  */
 void FSMState03_DoYouDelete::do_set(TMgr* mgr, Game::StateArg*)
 {
-	mMsgType    = 3;
-	mYesNoState = false;
-	_18         = 6;
-	_1C         = 4;
+	mMsgType      = Screen::FileSelect::TMainScreen::MessageType_DoYouErase;
+	mYesNoState   = false;
+	mNextStateYes = FSSTATE_NowDelete;
+	mNextStateNo  = FSSTATE_SelectData;
 }
 
 /*
@@ -312,10 +312,10 @@ void FSMState03_DoYouDelete::do_decide(TMgr* mgr) { mgr->mMainScreen.closeDataWi
  */
 void FSMState07_DoYouOverwrite::do_set(TMgr* mgr, Game::StateArg*)
 {
-	mMsgType    = 7;
-	mYesNoState = false;
-	_18         = 13;
-	_1C         = 4;
+	mMsgType      = Screen::FileSelect::TMainScreen::MessageType_DoYouOverwrite;
+	mYesNoState   = false;
+	mNextStateYes = FSSTATE_NowCopy;
+	mNextStateNo  = FSSTATE_SelectData;
 }
 
 /*
@@ -327,22 +327,6 @@ void FSMState07_DoYouOverwrite::do_decide(TMgr* mgr)
 {
 	mgr->mMainScreen.fadeCopyCursor();
 	mgr->mMainScreen.closeDataWindow();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
-	mr       r3, r31
-	bl       closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -353,11 +337,11 @@ void FSMState07_DoYouOverwrite::do_decide(TMgr* mgr)
 void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 {
 	do_open(mgr);
-	_11         = false;
-	_10         = false;
-	u32 time    = 3.0f / sys->mDeltaTime;
-	mCounter    = time;
-	mCounterMax = time;
+	mCounterFinished = false;
+	mForceFinish     = false;
+	u32 time         = 3.0f / sys->mDeltaTime;
+	mCounter         = time;
+	mCounterMax      = time;
 }
 
 /*
@@ -371,17 +355,17 @@ void FSMState_Warning::do_exec(TMgr* mgr)
 		mCounter--;
 	}
 
-	if (!_11) {
+	if (!mCounterFinished) {
 		if (!mCounter) {
 			mgr->mMainScreen.closeMSG();
-			_11 = true;
+			mCounterFinished = true;
 		}
-	} else if (!_10) {
-		_10 = true;
+	} else if (!mForceFinish) {
+		mForceFinish = true;
 		mgr->mMainScreen.closeMSG();
 	}
 
-	if (mgr->mMainScreen.isFinishCloseMSG() && _11) {
+	if (mgr->mMainScreen.isFinishCloseMSG() && mForceFinish) {
 		do_transit(mgr);
 	}
 }
@@ -391,7 +375,7 @@ void FSMState_Warning::do_exec(TMgr* mgr)
  * Address:	803DED64
  * Size:	000028
  */
-void FSMState05_FailToDelete::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(5); }
+void FSMState05_FailToDelete::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileDeleteFail); }
 
 /*
  * --INFO--
@@ -401,7 +385,7 @@ void FSMState05_FailToDelete::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(5); 
 void FSMState05_FailToDelete::do_transit(TMgr* mgr)
 {
 	if (!mgr->mInSeq) {
-		mgr->goEnd_(TMgr::END_1);
+		mgr->goEnd_(TMgr::END_StartNoCard);
 	} else {
 		mgr->goEnd_(TMgr::END_2);
 	}
@@ -412,21 +396,21 @@ void FSMState05_FailToDelete::do_transit(TMgr* mgr)
  * Address:	803DEDD0
  * Size:	000028
  */
-void FSMState06_FinishDelete::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(6); }
+void FSMState06_FinishDelete::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileDeleted); }
 
 /*
  * --INFO--
  * Address:	803DEDF8
  * Size:	000034
  */
-void FSMState06_FinishDelete::do_transit(TMgr* mgr) { transit(mgr, 4, nullptr); }
+void FSMState06_FinishDelete::do_transit(TMgr* mgr) { transit(mgr, FSSTATE_SelectData, nullptr); }
 
 /*
  * --INFO--
  * Address:	803DEE2C
  * Size:	000028
  */
-void FSMState08_FailToCopy::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(8); }
+void FSMState08_FailToCopy::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileCopyFail); }
 
 /*
  * --INFO--
@@ -436,7 +420,7 @@ void FSMState08_FailToCopy::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(8); }
 void FSMState08_FailToCopy::do_transit(TMgr* mgr)
 {
 	if (!mgr->mInSeq) {
-		mgr->goEnd_(TMgr::END_1);
+		mgr->goEnd_(TMgr::END_StartNoCard);
 	} else {
 		mgr->goEnd_(TMgr::END_2);
 	}
@@ -447,14 +431,14 @@ void FSMState08_FailToCopy::do_transit(TMgr* mgr)
  * Address:	803DEE98
  * Size:	000028
  */
-void FSMState10_FinishCopy::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(10); }
+void FSMState10_FinishCopy::do_open(TMgr* mgr) { mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_FileCopied); }
 
 /*
  * --INFO--
  * Address:	803DEEC0
  * Size:	000034
  */
-void FSMState10_FinishCopy::do_transit(TMgr* mgr) { transit(mgr, 4, nullptr); }
+void FSMState10_FinishCopy::do_transit(TMgr* mgr) { transit(mgr, FSSTATE_SelectData, nullptr); }
 
 /*
  * --INFO--
@@ -467,7 +451,7 @@ void FSMState_CardTask::init(TMgr* mgr, Game::StateArg* arg)
 	u32 time         = 3.0f / sys->mDeltaTime;
 	mgr->mCounter    = time;
 	mgr->mCounterMax = time;
-	mStatus          = 0;
+	mStatus          = CardTaskState_doRequest;
 	mgr->mInSeq      = false;
 }
 
@@ -479,33 +463,33 @@ void FSMState_CardTask::init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_CardTask::exec(TMgr* mgr)
 {
 	if (sys->mCardMgr->isSaveInvalid() && sys->mCardMgr->isCardReady()) {
-		mCardStat = 0;
-		mStatus   = 3;
+		mCardStat = Game::MemoryCard::Mgr::MCS_Ready;
+		mStatus   = CardTaskState_finish;
 		mgr->mMainScreen.closeMSG();
 	}
 
 	switch (mStatus) {
-	case 0:
+	case CardTaskState_doRequest:
 		if (sys->mCardMgr->isSaveInvalid()) {
 			P2ASSERTLINE(305, do_cardRequest(mgr));
-			mStatus = 1;
+			mStatus = CardTaskState_getStatus;
 		}
 		break;
-	case 1:
+	case CardTaskState_getStatus:
 		if (sys->mCardMgr->isSaveInvalid()) {
 			mCardStat = sys->mCardMgr->getCardStatus();
 			sys->mCardMgr->getCardStatus();
-			mStatus = 2;
+			mStatus = CardTaskState_waitCloseMsg;
 		}
 		break;
-	case 2:
+	case CardTaskState_waitCloseMsg:
 		if (!mgr->mCounter) {
 			mgr->mMainScreen.closeMSG();
-			mStatus = 3;
+			mStatus = CardTaskState_finish;
 			do_close(mgr);
 		}
 		break;
-	case 3:
+	case CardTaskState_finish:
 		if (mgr->mMainScreen.isFinishCloseMSG()) {
 			if (mCardStat != Game::MemoryCard::Mgr::MCS_IOError) {
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
@@ -754,7 +738,7 @@ lbl_803DF204:
  * Address:	803DF220
  * Size:	000034
  */
-void FSMState_CardTask::do_transitCardPlayerDataBroken(TMgr* mgr) { transit(mgr, 5, nullptr); }
+void FSMState_CardTask::do_transitCardPlayerDataBroken(TMgr* mgr) { transit(mgr, FSSTATE_DataBroken, nullptr); }
 
 /*
  * --INFO--
@@ -763,7 +747,7 @@ void FSMState_CardTask::do_transitCardPlayerDataBroken(TMgr* mgr) { transit(mgr,
  */
 void FSMState02_NowDelete::do_init(TMgr* mgr, Game::StateArg*)
 {
-	mgr->mMainScreen.openMSG(2);
+	mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_ErasingFile);
 	mgr->mMainScreen.createFiledeletingEffect(mgr->mCurrSelection);
 }
 
@@ -789,7 +773,7 @@ bool FSMState02_NowDelete::do_cardRequest(TMgr* mgr) { return sys->mCardMgr->del
 void FSMState02_NowDelete::do_transitCardReady(TMgr* mgr)
 {
 	mgr->mMainScreen.setDataBallNew(mgr->mCurrSelection);
-	transit(mgr, 10, nullptr);
+	transit(mgr, FSSTATE_FinishDelete, nullptr);
 }
 
 /*
@@ -797,14 +781,14 @@ void FSMState02_NowDelete::do_transitCardReady(TMgr* mgr)
  * Address:	803DF344
  * Size:	000034
  */
-void FSMState02_NowDelete::do_transitCardNoCard(TMgr* mgr) { transit(mgr, 9, nullptr); }
+void FSMState02_NowDelete::do_transitCardNoCard(TMgr* mgr) { transit(mgr, FSSTATE_FailToDelete, nullptr); }
 
 /*
  * --INFO--
  * Address:	803DF378
  * Size:	000034
  */
-void FSMState02_NowDelete::do_transitCardIOError(TMgr* mgr) { transit(mgr, 9, nullptr); }
+void FSMState02_NowDelete::do_transitCardIOError(TMgr* mgr) { transit(mgr, FSSTATE_FailToDelete, nullptr); }
 
 /*
  * --INFO--
@@ -820,7 +804,7 @@ void FSMState02_NowDelete::cleanup(TMgr* mgr) { mgr->mMainScreen.fadeFiledeletin
  */
 void FSMState09_NowCopy::do_init(TMgr* mgr, Game::StateArg*)
 {
-	mgr->mMainScreen.openMSG(9);
+	mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_CopyingFile);
 	mgr->mMainScreen.createFilecopyEffect(mgr->mCurrSelection, mgr->mCopySelection);
 }
 
@@ -846,7 +830,7 @@ bool FSMState09_NowCopy::do_cardRequest(TMgr* mgr) { return sys->mCardMgr->copyP
 void FSMState09_NowCopy::do_transitCardReady(TMgr* mgr)
 {
 	mgr->mMainScreen.setDataBallCopyResult(mgr->mCurrSelection, mgr->mCopySelection);
-	transit(mgr, 14, nullptr);
+	transit(mgr, FSSTATE_FinishCopy, nullptr);
 }
 
 /*
@@ -854,14 +838,14 @@ void FSMState09_NowCopy::do_transitCardReady(TMgr* mgr)
  * Address:	803DF4D0
  * Size:	000034
  */
-void FSMState09_NowCopy::do_transitCardNoCard(TMgr* mgr) { transit(mgr, 12, nullptr); }
+void FSMState09_NowCopy::do_transitCardNoCard(TMgr* mgr) { transit(mgr, FSSTATE_FailToCopy, nullptr); }
 
 /*
  * --INFO--
  * Address:	803DF504
  * Size:	000034
  */
-void FSMState09_NowCopy::do_transitCardIOError(TMgr* mgr) { transit(mgr, 12, nullptr); }
+void FSMState09_NowCopy::do_transitCardIOError(TMgr* mgr) { transit(mgr, FSSTATE_FailToCopy, nullptr); }
 
 /*
  * --INFO--
@@ -879,7 +863,7 @@ void FSMState00a_OpenScene::do_init(TMgr* mgr, Game::StateArg*)
 {
 	mgr->mMainScreen.openScreen(nullptr);
 	mgr->mCurrSelection = 0;
-	mgr->mEndStat       = 0;
+	mgr->mEndStat       = TMgr::END_0;
 }
 
 /*
@@ -889,8 +873,9 @@ void FSMState00a_OpenScene::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState00a_OpenScene::do_exec(TMgr* mgr)
 {
+	// go to selecting state once intro animation finishes
 	if (mgr->mMainScreen.isWaitScreen()) {
-		transit(mgr, 4, nullptr);
+		transit(mgr, FSSTATE_SelectData, nullptr);
 	}
 }
 
@@ -903,17 +888,17 @@ void FSMState00_SelectData::do_init(TMgr* mgr, Game::StateArg*)
 {
 	mgr->mMainScreen.inDataBall(mgr->mCurrSelection);
 	mgr->mMainScreen.openDataWindow(mgr->mCurrSelection);
-	mgr->mMainScreen.openMSG(0);
+	mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_SelectAFile);
 
 	Screen::FileSelect::TFileData* data = &mgr->mMainScreen.mFileData[mgr->mCurrSelection];
 	if (!data->mIsNewFile || data->mIsBrokenFile) {
 		mgr->mMainScreen.inCopyErase();
 	}
 
-	_10         = false;
-	u32 time    = 0.5f / sys->mDeltaTime;
-	mCounter    = time;
-	mCounterMax = time;
+	mIsChangeSel = false;
+	u32 time     = 0.5f / sys->mDeltaTime;
+	mCounter     = time;
+	mCounterMax  = time;
 }
 
 /*
@@ -936,6 +921,7 @@ void FSMState00_SelectData::do_exec(TMgr* mgr)
 		if (data->mIsNewFile && !data->mIsBrokenFile) {
 			save = false;
 		}
+
 		if (mgr->mCurrSelection != prev) {
 			mgr->mMainScreen.outDataBall(prev);
 			mgr->mMainScreen.closeDataWindow();
@@ -945,29 +931,29 @@ void FSMState00_SelectData::do_exec(TMgr* mgr)
 			} else {
 				mgr->mMainScreen.outCopyErase();
 			}
-			_10 = true;
+			mIsChangeSel = true;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		}
 
-		if (mgr->mMainScreen.isFinishCloseDataWindow() && _10) {
-			_10 = false;
+		if (mgr->mMainScreen.isFinishCloseDataWindow() && mIsChangeSel) {
+			mIsChangeSel = false;
 			mgr->mMainScreen.openDataWindow(mgr->mCurrSelection);
 		}
 
 		if (!mCounter) {
 			u32 input = control->getButtonDown();
 			if (input & Controller::PRESS_A) {
-				transit(mgr, 2, nullptr);
+				transit(mgr, FSSTATE_CheckData, nullptr);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 			} else if (input & Controller::PRESS_Y) {
 				if (save) {
-					transit(mgr, 8, nullptr);
+					transit(mgr, FSSTATE_WhichDataDoYouCopyTo, nullptr);
 					mgr->mMainScreen.closeDataWindow();
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 				}
 			} else if (input & Controller::PRESS_X) {
 				if (save) {
-					transit(mgr, 7, nullptr);
+					transit(mgr, FSSTATE_DoYouDelete, nullptr);
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 				}
 			} else if (input & Controller::PRESS_B) {
@@ -978,7 +964,7 @@ void FSMState00_SelectData::do_exec(TMgr* mgr)
 	}
 
 	if (mgr->mMainScreen.isFinishScreen()) {
-		mgr->goEnd_(TMgr::END_5);
+		mgr->goEnd_(TMgr::END_Cancel);
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -1167,7 +1153,7 @@ void FSMState00b_CheckData::do_init(TMgr* mgr, Game::StateArg*)
 	mgr->mMainScreen.outDataBall(mgr->mCurrSelection);
 	mgr->mMainScreen.createFiledecide(mgr->mCurrSelection);
 
-	mStatus = 0;
+	mStatus = CheckDataState_DoLoad;
 }
 
 /*
@@ -1178,31 +1164,31 @@ void FSMState00b_CheckData::do_init(TMgr* mgr, Game::StateArg*)
 void FSMState00b_CheckData::do_exec(TMgr* mgr)
 {
 	switch (mStatus) {
-	case 0:
+	case CheckDataState_DoLoad:
 		if (sys->mCardMgr->isSaveValid()) {
 			P2ASSERTLINE(625, sys->mCardMgr->loadPlayer(mgr->mCurrSelection));
-			mStatus = 1;
+			mStatus = CheckDataState_GetStatus;
 		}
 		break;
-	case 1:
+	case CheckDataState_GetStatus:
 		if (sys->mCardMgr->isSaveValid()) {
 			mCardState = sys->mCardMgr->getCardStatus();
-			mStatus    = 2;
+			mStatus    = CheckDataState_Finish;
 		}
 		break;
-	case 2:
+	case CheckDataState_Finish:
 		if (mgr->mMainScreen.isFinishCloseMSG() && mgr->mMainScreen.isFinishOutDataBall(mgr->mCurrSelection)) {
 			switch (mCardState) {
 			case Game::MemoryCard::Mgr::MCS_IOError:
-				transit(mgr, 3, nullptr);
+				transit(mgr, FSState_DecideData, nullptr);
 				break;
 			case Game::MemoryCard::Mgr::MCS_13:
 				mgr->mMainScreen.inDataBall(mgr->mCurrSelection);
-				transit(mgr, 5, nullptr);
+				transit(mgr, FSSTATE_DataBroken, nullptr);
 				break;
 			default:
 				mgr->mMainScreen.inDataBall(mgr->mCurrSelection);
-				transit(mgr, 5, nullptr);
+				transit(mgr, FSSTATE_DataBroken, nullptr);
 				break;
 			}
 		}
@@ -1217,6 +1203,7 @@ void FSMState00b_CheckData::do_exec(TMgr* mgr)
  */
 void FSMState00c_DecideData::do_init(TMgr* mgr, Game::StateArg*)
 {
+	// make effect for selected save file
 	mgr->mMainScreen.decideDataBall(mgr->mCurrSelection);
 	mgr->mMainScreen.decideDataWindow();
 }
@@ -1237,9 +1224,9 @@ void FSMState00c_DecideData::do_exec(TMgr* mgr)
 	if (mgr->mMainScreen.isFinishScreen()) {
 		Screen::FileSelect::TFileData* data = &mgr->mMainScreen.mFileData[mgr->mCurrSelection];
 		if (data->mIsNewFile) {
-			mgr->goEnd_(TMgr::END_4);
+			mgr->goEnd_(TMgr::END_StartNewFile);
 		} else {
-			mgr->goEnd_(TMgr::END_3);
+			mgr->goEnd_(TMgr::END_OpenSaveFile);
 		}
 	}
 }
@@ -1252,7 +1239,7 @@ void FSMState00c_DecideData::do_exec(TMgr* mgr)
 void FSMState04_WhichDataDoYouCopyTo::do_init(TMgr* mgr, Game::StateArg*)
 {
 	mgr->mMainScreen.createCopyCursor(mgr->mCurrSelection);
-	mgr->mMainScreen.openMSG(4);
+	mgr->mMainScreen.openMSG(Screen::FileSelect::TMainScreen::MessageType_CopyWhere);
 	mgr->mMainScreen.outCopyErase();
 
 	// select default file to copy to
@@ -1268,9 +1255,9 @@ void FSMState04_WhichDataDoYouCopyTo::do_init(TMgr* mgr, Game::StateArg*)
 		break;
 	}
 
-	mStatus    = 0;
-	mExitState = false;
-	mSelected  = true;
+	mStatus     = CopyToState_Decide;
+	mExitState  = false;
+	mIsChanging = true;
 }
 
 /*
@@ -1281,7 +1268,9 @@ void FSMState04_WhichDataDoYouCopyTo::do_init(TMgr* mgr, Game::StateArg*)
 void FSMState04_WhichDataDoYouCopyTo::do_exec(TMgr* mgr)
 {
 	switch (mStatus) {
-	case 0:
+	case CopyToState_Decide:
+		// check if need to change current file selection
+		// store value before changes to see if a change happened
 		int prev = mgr->mCopySelection;
 		if (mgr->mController->isMoveRight()) {
 			mgr->mMainScreen.moveRightCopyCursor();
@@ -1300,10 +1289,10 @@ void FSMState04_WhichDataDoYouCopyTo::do_exec(TMgr* mgr)
 			mgr->mMainScreen.moveLeftCopyCursor();
 			switch (mgr->mCurrSelection) {
 			case 0:
-				mgr->mCopySelection = 0;
+				mgr->mCopySelection = 1;
 				break;
 			case 1:
-				mgr->mCopySelection = 1;
+				mgr->mCopySelection = 0;
 				break;
 			case 2:
 				mgr->mCopySelection = 0;
@@ -1311,35 +1300,43 @@ void FSMState04_WhichDataDoYouCopyTo::do_exec(TMgr* mgr)
 			}
 		}
 
-		if (prev != mgr->mCopySelection) {
+		// If selection has changed, close current save info
+		if (prev != (int)mgr->mCopySelection) {
 			mgr->mMainScreen.closeDataWindow();
-			mSelected = true;
+			mIsChanging = true;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		}
-		if (mgr->mMainScreen.isFinishCloseDataWindow() && mSelected) {
-			mSelected = false;
+
+		// once save info is done closing, open the new save info
+		if (mgr->mMainScreen.isFinishCloseDataWindow() && mIsChanging) {
+			mIsChanging = false;
 			mgr->mMainScreen.openDataWindow(mgr->mCopySelection);
 		}
+
+		// End state if pressing A or B
 		if (mgr->mController->getButtonDown() & Controller::PRESS_A) {
 			mgr->mMainScreen.closeMSG();
-			mStatus    = 1;
+			mStatus    = CopyToState_Finish;
 			mExitState = false;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 		} else if (mgr->mController->getButtonDown() & Controller::PRESS_B) {
 			mgr->mMainScreen.closeMSG();
 			mgr->mMainScreen.fadeCopyCursor();
-			mStatus    = 1;
+			mStatus    = CopyToState_Finish;
 			mExitState = true;
 			mgr->mMainScreen.closeDataWindow();
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 		}
 		break;
-	case 1:
+	case CopyToState_Finish:
+		// Wait for message to finish closing before exiting state
 		if (mgr->mMainScreen.isFinishCloseMSG()) {
+			// If press B, return to standard selecting state
+			// if press A, choose a file to overwrite
 			if (mExitState) {
-				transit(mgr, 4, nullptr);
+				transit(mgr, FSSTATE_SelectData, nullptr);
 			} else {
-				transit(mgr, 11, nullptr);
+				transit(mgr, FSSTATE_DoYouOverwrite, nullptr);
 			}
 		}
 		break;
@@ -1386,19 +1383,19 @@ void TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo& info)
 		u32 cave                                  = player->mCaveID;
 		u32 treasure                              = player->mTreasures;
 		u32 poko                                  = player->mPokos;
-		u32 unk1                                  = player->_18;
-		u32 unk2                                  = player->_1C;
-		u32 unk3                                  = player->_14;
-		u32 unk4                                  = player->_0C;
-		u32 unk5                                  = player->_10;
-		u32 unk6                                  = player->_08;
+		u32 white                                 = player->mWhitePikis;
+		u32 purple                                = player->mPurplePikis;
+		u32 yellow                                = player->mYellowPikis;
+		u32 red                                   = player->mRedPikis;
+		u32 blue                                  = player->mBluePikis;
+		u32 day                                   = player->mDay;
 		mMainScreen.mFileData[i].mIsNewFile       = info.isNewFile(i);
-		mMainScreen.mFileData[i]._04              = unk6;
-		mMainScreen.mFileData[i]._08              = unk5;
-		mMainScreen.mFileData[i]._0C              = unk4;
-		mMainScreen.mFileData[i]._10              = unk3;
-		mMainScreen.mFileData[i]._18              = unk2;
-		mMainScreen.mFileData[i]._14              = unk1;
+		mMainScreen.mFileData[i].mCurrentDay      = day;
+		mMainScreen.mFileData[i].mBluePikis       = blue;
+		mMainScreen.mFileData[i].mRedPikis        = red;
+		mMainScreen.mFileData[i].mYellowPikis     = yellow;
+		mMainScreen.mFileData[i].mPurplePikis     = purple;
+		mMainScreen.mFileData[i].mWhitePikis      = white;
 		mMainScreen.mFileData[i].mPokos           = player->mPokos;
 		mMainScreen.mFileData[i].mTreasure        = treasure;
 		mMainScreen.mFileData[i].mCaveID          = cave;
@@ -1487,7 +1484,7 @@ lbl_803E009C:
 void TMgr::update()
 {
 	mStateMachine.exec(this);
-	if (getStateID() != 0) {
+	if (getStateID() != FSSTATE_Standby) {
 		sys->mCardMgr->update();
 		checkAndTransitNoCard_();
 		mMainScreen.update();
@@ -1504,7 +1501,7 @@ void TMgr::update()
  */
 void TMgr::draw()
 {
-	if (getStateID() != 0) {
+	if (getStateID() != FSSTATE_Standby) {
 		mMainScreen.draw();
 	}
 }
@@ -1517,7 +1514,7 @@ void TMgr::draw()
 void TMgr::startSeq()
 {
 	mInSeq = true;
-	mStateMachine.transit(this, 1, nullptr);
+	mStateMachine.transit(this, FSSTATE_OpenScene, nullptr);
 }
 
 /*
@@ -1528,7 +1525,7 @@ void TMgr::startSeq()
 void TMgr::forceQuitSeq()
 {
 	mMainScreen.killScreen();
-	mStateMachine.transit(this, 0, nullptr);
+	mStateMachine.transit(this, FSSTATE_Standby, nullptr);
 }
 
 /*
@@ -1536,7 +1533,7 @@ void TMgr::forceQuitSeq()
  * Address:	803E02F0
  * Size:	000028
  */
-bool TMgr::isFinish() { return u8(getStateID() == 0); }
+bool TMgr::isFinish() { return u8(getStateID() == FSSTATE_Standby); }
 
 /*
  * --INFO--
@@ -1546,7 +1543,7 @@ bool TMgr::isFinish() { return u8(getStateID() == 0); }
 void TMgr::goEnd_(enumEnd id)
 {
 	mEndStat = id;
-	mStateMachine.transit(this, 0, nullptr);
+	mStateMachine.transit(this, FSSTATE_Standby, nullptr);
 	mMainScreen.killScreen();
 }
 
@@ -1559,7 +1556,7 @@ void TMgr::checkAndTransitNoCard_()
 {
 	if (mInSeq) {
 		if (sys->mCardMgr->isSaveInvalid() && sys->mCardMgr->isCardReady()) {
-			goEnd_(END_1);
+			goEnd_(END_StartNoCard);
 		}
 	}
 	/*

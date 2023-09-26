@@ -11,12 +11,12 @@ struct TFileData {
 
 	bool mIsBrokenFile;   // _00
 	bool mIsNewFile;      // _01
-	u32 _04;              // _04
-	u32 _08;              // _08
-	u32 _0C;              // _0C
-	u32 _10;              // _10
-	u32 _14;              // _14
-	u32 _18;              // _18
+	u32 mCurrentDay;      // _04
+	u32 mBluePikis;       // _08
+	u32 mRedPikis;        // _0C
+	u32 mYellowPikis;     // _10
+	u32 mWhitePikis;      // _14
+	u32 mPurplePikis;     // _18
 	int mPokos;           // _1C
 	u32 mTreasure;        // _20
 	u32 mCaveID;          // _24

@@ -68,6 +68,13 @@ struct FSMState_CardTask : public FSMState {
 	{
 	}
 
+	enum State {
+		CardTaskState_doRequest    = 0,
+		CardTaskState_getStatus    = 1,
+		CardTaskState_waitCloseMsg = 2,
+		CardTaskState_finish       = 3,
+	};
+
 	virtual void init(TMgr* mgr, Game::StateArg*);          // _08 (weak)
 	virtual void exec(TMgr* mgr);                           // _0C
 	virtual void do_init(TMgr* mgr, Game::StateArg*) { }    // _20 (weak)
@@ -81,7 +88,7 @@ struct FSMState_CardTask : public FSMState {
 	// _00     = VTBL
 	// _00-_0C = FSMState
 	int mCardStat;
-	int mStatus; // _14
+	State mStatus; // _14
 };
 
 struct FSMState_SelectYesNo : public FSMState {
@@ -97,12 +104,12 @@ struct FSMState_SelectYesNo : public FSMState {
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	bool mYesNoState;
-	int mMsgType;
-	int _18;
-	int _1C;
-	bool _20;
-	bool _21;
+	bool mYesNoState;  // _10
+	int mMsgType;      // _14
+	int mNextStateYes; // _18
+	int mNextStateNo;  // _1C
+	bool mClosedMsg;   // _20
+	bool mIsSelected;  // _21
 };
 
 struct FSMState_Warning : public FSMState {
@@ -120,10 +127,10 @@ struct FSMState_Warning : public FSMState {
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	bool _10;        // _10
-	bool _11;        // _11
-	u32 mCounter;    // _14
-	u32 mCounterMax; // _18
+	bool mForceFinish;     // _10
+	bool mCounterFinished; // _11
+	u32 mCounter;          // _14
+	u32 mCounterMax;       // _18
 };
 
 struct FSMState00_SelectData : public FSMState {
@@ -139,7 +146,7 @@ struct FSMState00_SelectData : public FSMState {
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	bool _10;
+	bool mIsChangeSel;
 	u32 mCounter;
 	u32 mCounterMax;
 };
@@ -163,12 +170,18 @@ struct FSMState00b_CheckData : public FSMState {
 	{
 	}
 
+	enum State {
+		CheckDataState_DoLoad    = 0,
+		CheckDataState_GetStatus = 1,
+		CheckDataState_Finish    = 2,
+	};
+
 	virtual void do_init(TMgr* mgr, Game::StateArg*); // _20
 	virtual void do_exec(TMgr* mgr);                  // _24
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	int mStatus;
+	State mStatus;
 	int mCardState;
 };
 
@@ -234,14 +247,19 @@ struct FSMState04_WhichDataDoYouCopyTo : public FSMState {
 	{
 	}
 
+	enum State {
+		CopyToState_Decide = 0,
+		CopyToState_Finish = 1,
+	};
+
 	virtual void do_init(TMgr* mgr, Game::StateArg*); // _20
 	virtual void do_exec(TMgr* mgr);                  // _24
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
-	bool mExitState;
-	bool mSelected;
-	int mStatus;
+	bool mExitState;  // _10 (true if exiting via pressing B, false if by A)
+	bool mIsChanging; // _11 (if true, re-open save data info after its done closing)
+	State mStatus;    // _14
 };
 
 struct FSMState05_FailToDelete : public FSMState_Warning {
@@ -329,7 +347,7 @@ struct FSMState10_FinishCopy : public FSMState_Warning {
 
 struct TMgr {
 	typedef FSMState StateType;
-	enum enumEnd { END_0, END_1, END_2, END_3, END_4, END_5 };
+	enum enumEnd { END_0, END_StartNoCard, END_2, END_OpenSaveFile, END_StartNewFile, END_Cancel };
 
 	TMgr();
 
@@ -352,8 +370,8 @@ struct TMgr {
 	u32 mCounterMax;                             // _BFC
 	Controller* mController;                     // _C00
 	EUTPadInterface_countNum mCountNumInterface; // _C04
-	s32 mCurrSelection;                          // _C30
-	u32 mCopySelection;                          // _C34
+	s32 mCurrSelection;                          // _C30 (Current actively selected save file)
+	u32 mCopySelection;                          // _C34 (Selected save file to copy to)
 	int mEndStat;                                // _C38
 	bool mInSeq;                                 // _C3C
 	FSMStateMachine mStateMachine;               // _C40
