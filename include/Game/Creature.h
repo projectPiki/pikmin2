@@ -403,9 +403,9 @@ struct Creature : public CellObject {
 	void save(Stream& output, u8 flags);
 	void setPosition(Vector3f& position, bool skipPostProc);
 	void startCapture(Matrixf*);
-	void startStick(Creature*, CollPart*);
-	void startStick(Creature*, s16);
-	void startStickMouth(Creature*, CollPart*);
+	bool startStick(Creature*, CollPart*);
+	bool startStick(Creature*, s16);
+	bool startStickMouth(Creature*, CollPart*);
 	void updateCapture(Matrixf&);
 	void updateCell();
 	void updateLOD(AILODParm&);
@@ -432,7 +432,7 @@ struct Creature : public CellObject {
 	Creature* mCaptured;            // _0FC
 	Creature* mCapture;             // _100
 	Vector3f mClimbingPosition;     // _104
-	s16 mHasStick;                  // _110
+	s16 mStickSlot;                 // _110
 	CollTree* mCollTree;            // _114
 	f32 mMass;                      // _118
 	Vector3f mAcceleration;         // _11C
