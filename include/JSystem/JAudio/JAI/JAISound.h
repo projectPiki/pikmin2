@@ -13,7 +13,6 @@
 namespace JAInter {
 struct Actor;
 struct MoveParaSet;
-struct SoundInfo;
 } // namespace JAInter
 
 /**

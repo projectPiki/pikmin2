@@ -446,7 +446,7 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	init.setDefault("s11_dopebin_first_r", 0xc0011008);
 
 	if (!streq("s01_dayend", init.mName)) {
-		bool is_key = demoArg.mPelletName && streq(demoArg.mPelletName, "key");
+		bool is_key = demoArg.mName && streq(demoArg.mName, "key");
 
 		init.setDefault("s17_suck_equipment", demoArg.mBgmID, !is_key);
 		init.setDefault("s17_suck_equipment", 0xc0011007, is_key);
@@ -601,7 +601,7 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	} else if (streq("x20_blackman", init.mName) || streq("x03_find_red_onyon", init.mName)) {
 		mDoStartWithAudio = false;
 	} else if (streq("s01_dayend", init.mName)) {
-		switch ((u32)demoArg.mPelletName) {
+		switch ((u32)demoArg.mName) {
 		case 1:
 			mSoundID = PSSE_PL_DAYEND_KAISAN_LUI;
 			break;

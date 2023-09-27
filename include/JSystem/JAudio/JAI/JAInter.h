@@ -18,7 +18,19 @@ namespace JAInter {
 struct Actor;
 struct DummyVec;
 struct SeqUpdateData;
-struct SoundInfo;
+struct SoundInfo {
+	int unk1; // _00
+	union count_t {
+		unsigned long v1;
+		unsigned char v2[4];
+		unsigned short v3[2];
+	} count;   // _04
+	f32 pitch; // _08
+	union volume_t {
+		unsigned long v1;
+		unsigned char v2[2];
+	} volume; // _0C
+};
 
 namespace SequenceMgr {
 struct CustomHeapInfo {
@@ -282,20 +294,6 @@ struct SeqParameter : MoveParaSet {
 	SeqUpdateData* _2C0;       // _2C0
 	JASTrack mTrack;           // _2C4
 	JASOuterParam mOuterParam; // _62C
-};
-
-struct SoundInfo {
-	int unk1; // _00
-	union count_t {
-		unsigned long v1;
-		unsigned char v2[4];
-		unsigned short v3[2];
-	} count;   // _04
-	f32 pitch; // _08
-	union volume_t {
-		unsigned long v1;
-		unsigned char v2[2];
-	} volume; // _0C
 };
 
 namespace SoundTable {

@@ -13,7 +13,6 @@ struct Actor;
 struct LinkSound;
 struct MoveParaSet;
 struct SeqUpdateData;
-struct SoundInfo;
 
 namespace SeMgr {
 /** @fabricatedName */
