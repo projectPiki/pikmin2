@@ -606,6 +606,7 @@ static void EXTIntrruptHandler(__OSInterrupt interrupt, OSContext* context)
  */
 void EXIInit(void)
 {
+	u32 id;
 	while (((EXIREG(0, 3) & 0x1) == 1) || ((EXIREG(1, 3) & 0x1) == 1) || ((EXIREG(2, 3) & 0x1) == 1)) {
 		continue;
 	}
@@ -630,140 +631,18 @@ void EXIInit(void)
 
 	EXIGetID(0, 2, &IDSerialPort1);
 
-	if ((OSGetConsoleType() & 0x10000000) != 0) {
+	if (__OSInIPL) {
 		__EXIProbeStartTime[0] = __EXIProbeStartTime[1] = 0;
 		Ecb[0].idTime = Ecb[1].idTime = 0;
 		__EXIProbe(0);
 		__EXIProbe(1);
+	} else if (EXIGetID(0, 0, &id) && id == 0x07010000) {
+		__OSEnableBarnacle(1, 0);
+	} else if (EXIGetID(1, 0, &id) && id == 0x07010000) {
+		__OSEnableBarnacle(0, 2);
 	}
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lis       r3, 0xCC00
-	  addi      r3, r3, 0x6800
 
-	.loc_0x24:
-	  lwz       r0, 0xC(r3)
-	  rlwinm    r0,r0,0,31,31
-	  cmplwi    r0, 0x1
-	  beq+      .loc_0x24
-	  lwz       r0, 0x20(r3)
-	  rlwinm    r0,r0,0,31,31
-	  cmplwi    r0, 0x1
-	  beq+      .loc_0x24
-	  lwz       r0, 0x34(r3)
-	  rlwinm    r0,r0,0,31,31
-	  cmplwi    r0, 0x1
-	  beq+      .loc_0x24
-	  lis       r3, 0x80
-	  subi      r3, r3, 0x8000
-	  bl        0xE208
-	  li        r31, 0
-	  lis       r4, 0xCC00
-	  stw       r31, 0x6800(r4)
-	  stw       r31, 0x6814(r4)
-	  stw       r31, 0x6828(r4)
-	  li        r0, 0x2000
-	  stw       r0, 0x6800(r4)
-	  li        r3, 0x9
-	  lis       r4, 0x800E
-	  addi      r28, r4, 0x9EC
-	  addi      r4, r28, 0
-	  bl        0xDE5C
-	  li        r3, 0xA
-	  lis       r4, 0x800E
-	  addi      r29, r4, 0xAB4
-	  addi      r4, r29, 0
-	  bl        0xDE48
-	  li        r3, 0xB
-	  lis       r4, 0x800E
-	  addi      r30, r4, 0xCCC
-	  addi      r4, r30, 0
-	  bl        0xDE34
-	  li        r3, 0xC
-	  addi      r4, r28, 0
-	  bl        0xDE28
-	  li        r3, 0xD
-	  addi      r4, r29, 0
-	  bl        0xDE1C
-	  li        r3, 0xE
-	  addi      r4, r30, 0
-	  bl        0xDE10
-	  li        r3, 0xF
-	  addi      r4, r28, 0
-	  bl        0xDE04
-	  li        r3, 0x10
-	  addi      r4, r29, 0
-	  bl        0xDDF8
-	  li        r3, 0
-	  li        r4, 0x2
-	  subi      r5, r13, 0x7170
-	  bl        0x2E4
-	  lwz       r0, -0x70C0(r13)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x140
-	  lis       r4, 0x8000
-	  stw       r31, 0x30C4(r4)
-	  stw       r31, 0x30C0(r4)
-	  lis       r3, 0x804F
-	  addi      r3, r3, 0x5F28
-	  stw       r31, 0x60(r3)
-	  stw       r31, 0x20(r3)
-	  li        r3, 0
-	  bl        -0xB8C
-	  li        r3, 0x1
-	  bl        -0xB94
-	  b         .loc_0x1AC
-
-	.loc_0x140:
-	  li        r3, 0
-	  li        r4, 0
-	  addi      r5, r1, 0x8
-	  bl        0x298
-	  cmpwi     r3, 0
-	  beq-      .loc_0x178
-	  lwz       r3, 0x8(r1)
-	  subis     r0, r3, 0x701
-	  cmplwi    r0, 0
-	  bne-      .loc_0x178
-	  li        r3, 0x1
-	  li        r4, 0
-	  bl        0x7B0
-	  b         .loc_0x1AC
-
-	.loc_0x178:
-	  li        r3, 0x1
-	  li        r4, 0
-	  addi      r5, r1, 0x8
-	  bl        0x260
-	  cmpwi     r3, 0
-	  beq-      .loc_0x1AC
-	  lwz       r3, 0x8(r1)
-	  subis     r0, r3, 0x701
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1AC
-	  li        r3, 0
-	  li        r4, 0x2
-	  bl        0x778
-
-	.loc_0x1AC:
-	  lwz       r3, -0x7D20(r13)
-	  bl        0xAB3C
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	OSRegisterVersion(__EXIVersion);
 }
 
 /*
@@ -869,6 +748,12 @@ s32 EXIGetID(s32 chan, u32 dev, u32* id)
 	u32 cmd;
 	s32 startTime;
 	BOOL enabled;
+	BOOL interrupt;
+
+	if (chan == 0 && dev == 2 && IDSerialPort1) {
+		*id = IDSerialPort1;
+		return 1;
+	}
 
 	if (chan < 2 && dev == 0) {
 		if (!__EXIProbe(chan)) {
@@ -883,11 +768,11 @@ s32 EXIGetID(s32 chan, u32 dev, u32* id)
 		if (!__EXIAttach(chan, NULL)) {
 			return 0;
 		}
-
 		startTime = __EXIProbeStartTime[chan];
 	}
 
-	err = !EXILock(chan, dev, (chan < 2 && dev == 0) ? UnlockedHandler : NULL);
+	interrupt = OSDisableInterrupts();
+	err       = !EXILock(chan, dev, (chan < 2 && dev == 0) ? UnlockedHandler : NULL);
 	if (!err) {
 		err = !EXISelect(chan, dev, EXI_FREQ_1M);
 		if (!err) {
@@ -900,6 +785,7 @@ s32 EXIGetID(s32 chan, u32 dev, u32* id)
 		}
 		EXIUnlock(chan);
 	}
+	OSRestoreInterrupts(interrupt);
 
 	if (chan < 2 && dev == 0) {
 		EXIDetach(chan);
@@ -915,293 +801,6 @@ s32 EXIGetID(s32 chan, u32 dev, u32* id)
 	}
 
 	return err ? 0 : !0;
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x48(r1)
-	  stmw      r23, 0x24(r1)
-	  mr.       r25, r3
-	  addi      r26, r4, 0
-	  addi      r27, r5, 0
-	  rlwinm    r4,r3,6,0,25
-	  lis       r3, 0x804F
-	  addi      r0, r3, 0x5F28
-	  add       r31, r0, r4
-	  bne-      .loc_0x50
-	  cmplwi    r26, 0x2
-	  bne-      .loc_0x50
-	  lwz       r0, -0x7170(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x50
-	  stw       r0, 0x0(r27)
-	  li        r3, 0x1
-	  b         .loc_0x39C
-
-	.loc_0x50:
-	  cmpwi     r25, 0x2
-	  bge-      .loc_0x134
-	  cmplwi    r26, 0
-	  bne-      .loc_0x134
-	  mr        r3, r25
-	  bl        -0xEA4
-	  cmpwi     r3, 0
-	  bne-      .loc_0x78
-	  li        r3, 0
-	  b         .loc_0x39C
-
-	.loc_0x78:
-	  lwz       r4, 0x20(r31)
-	  rlwinm    r0,r25,2,0,29
-	  lis       r3, 0x8000
-	  addi      r30, r3, 0x30C0
-	  add       r30, r30, r0
-	  lwz       r0, 0x0(r30)
-	  cmpw      r4, r0
-	  bne-      .loc_0xA8
-	  lwz       r0, 0x1C(r31)
-	  stw       r0, 0x0(r27)
-	  lwz       r3, 0x20(r31)
-	  b         .loc_0x39C
-
-	.loc_0xA8:
-	  bl        0xDA10
-	  mr        r28, r3
-	  lwz       r0, 0xC(r31)
-	  rlwinm.   r0,r0,0,28,28
-	  bne-      .loc_0xCC
-	  mr        r3, r25
-	  bl        -0xF00
-	  cmpwi     r3, 0
-	  bne-      .loc_0xDC
-
-	.loc_0xCC:
-	  mr        r3, r28
-	  bl        0xDA10
-	  li        r0, 0
-	  b         .loc_0x120
-
-	.loc_0xDC:
-	  addi      r3, r25, 0
-	  li        r4, 0x1
-	  li        r5, 0
-	  li        r6, 0
-	  bl        -0xFF0
-	  li        r0, 0
-	  stw       r0, 0x8(r31)
-	  lis       r3, 0x10
-	  mulli     r0, r25, 0x3
-	  srw       r3, r3, r0
-	  bl        0xDE04
-	  lwz       r0, 0xC(r31)
-	  ori       r0, r0, 0x8
-	  stw       r0, 0xC(r31)
-	  mr        r3, r28
-	  bl        0xD9C8
-	  li        r0, 0x1
-
-	.loc_0x120:
-	  cmpwi     r0, 0
-	  bne-      .loc_0x130
-	  li        r3, 0
-	  b         .loc_0x39C
-
-	.loc_0x130:
-	  lwz       r29, 0x0(r30)
-
-	.loc_0x134:
-	  bl        0xD984
-	  addi      r28, r3, 0
-	  li        r0, 0
-	  cmpwi     r25, 0x2
-	  bge-      .loc_0x154
-	  cmplwi    r26, 0
-	  bne-      .loc_0x154
-	  li        r0, 0x1
-
-	.loc_0x154:
-	  cmpwi     r0, 0
-	  beq-      .loc_0x168
-	  lis       r3, 0x800E
-	  addi      r5, r3, 0x1158
-	  b         .loc_0x16C
-
-	.loc_0x168:
-	  li        r5, 0
-
-	.loc_0x16C:
-	  addi      r3, r25, 0
-	  addi      r4, r26, 0
-	  bl        -0x384
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  mr.       r30, r0
-	  bne-      .loc_0x2B8
-	  addi      r3, r25, 0
-	  addi      r4, r26, 0
-	  li        r5, 0
-	  bl        -0xB64
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  mr.       r30, r0
-	  bne-      .loc_0x234
-	  li        r0, 0
-	  stw       r0, 0x1C(r1)
-	  addi      r3, r25, 0
-	  addi      r4, r1, 0x1C
-	  li        r5, 0x2
-	  li        r6, 0x1
-	  li        r7, 0
-	  bl        -0x16FC
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r30, r30, r0
-	  addi      r3, r25, 0
-	  bl        -0x1328
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r30, r30, r0
-	  addi      r3, r25, 0
-	  addi      r4, r27, 0
-	  li        r5, 0x4
-	  li        r6, 0
-	  li        r7, 0
-	  bl        -0x1734
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r30, r30, r0
-	  addi      r3, r25, 0
-	  bl        -0x1360
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r30, r30, r0
-	  addi      r3, r25, 0
-	  bl        -0xAC8
-	  cntlzw    r0, r3
-	  rlwinm    r0,r0,27,5,31
-	  or        r30, r30, r0
-
-	.loc_0x234:
-	  bl        0xD884
-	  mr        r23, r3
-	  lwz       r0, 0xC(r31)
-	  rlwinm.   r0,r0,0,27,27
-	  bne-      .loc_0x254
-	  mr        r3, r23
-	  bl        0xD894
-	  b         .loc_0x2B8
-
-	.loc_0x254:
-	  lwz       r0, 0xC(r31)
-	  rlwinm    r0,r0,0,28,26
-	  stw       r0, 0xC(r31)
-	  addi      r3, r25, 0
-	  addi      r4, r31, 0
-	  bl        -0x1894
-	  lwz       r3, 0x24(r31)
-	  cmpwi     r3, 0
-	  ble-      .loc_0x2B0
-	  lwz       r24, 0x2C(r31)
-	  subic.    r0, r3, 0x1
-	  stw       r0, 0x24(r31)
-	  ble-      .loc_0x29C
-	  addi      r3, r31, 0x28
-	  addi      r4, r31, 0x30
-	  lwz       r0, 0x24(r31)
-	  rlwinm    r5,r0,3,0,28
-	  bl        -0x1A38C
-
-	.loc_0x29C:
-	  addi      r3, r25, 0
-	  li        r4, 0
-	  addi      r12, r24, 0
-	  mtlr      r12
-	  blrl
-
-	.loc_0x2B0:
-	  mr        r3, r23
-	  bl        0xD82C
-
-	.loc_0x2B8:
-	  mr        r3, r28
-	  bl        0xD824
-	  cmpwi     r25, 0x2
-	  bge-      .loc_0x388
-	  cmplwi    r26, 0
-	  bne-      .loc_0x388
-	  bl        0xD7E8
-	  mr        r23, r3
-	  lwz       r0, 0xC(r31)
-	  rlwinm.   r0,r0,0,28,28
-	  bne-      .loc_0x2F0
-	  mr        r3, r23
-	  bl        0xD7F8
-	  b         .loc_0x338
-
-	.loc_0x2F0:
-	  lwz       r0, 0xC(r31)
-	  rlwinm.   r0,r0,0,27,27
-	  beq-      .loc_0x314
-	  lwz       r0, 0x18(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x314
-	  mr        r3, r23
-	  bl        0xD7D4
-	  b         .loc_0x338
-
-	.loc_0x314:
-	  lwz       r0, 0xC(r31)
-	  rlwinm    r0,r0,0,29,27
-	  stw       r0, 0xC(r31)
-	  lis       r3, 0x50
-	  mulli     r0, r25, 0x3
-	  srw       r3, r3, r0
-	  bl        0xDB54
-	  mr        r3, r23
-	  bl        0xD7AC
-
-	.loc_0x338:
-	  bl        0xD780
-	  rlwinm    r0,r25,2,0,29
-	  lis       r4, 0x8000
-	  addi      r4, r4, 0x30C0
-	  lwzx      r0, r4, r0
-	  sub       r4, r0, r29
-	  subic     r0, r4, 0x1
-	  subfe     r0, r0, r4
-	  or.       r30, r30, r0
-	  bne-      .loc_0x36C
-	  lwz       r0, 0x0(r27)
-	  stw       r0, 0x1C(r31)
-	  stw       r29, 0x20(r31)
-
-	.loc_0x36C:
-	  bl        0xD774
-	  cmpwi     r30, 0
-	  beq-      .loc_0x380
-	  li        r3, 0
-	  b         .loc_0x39C
-
-	.loc_0x380:
-	  lwz       r3, 0x20(r31)
-	  b         .loc_0x39C
-
-	.loc_0x388:
-	  cmpwi     r30, 0
-	  beq-      .loc_0x398
-	  li        r3, 0
-	  b         .loc_0x39C
-
-	.loc_0x398:
-	  li        r3, 0x1
-
-	.loc_0x39C:
-	  lwz       r0, 0x4C(r1)
-	  lmw       r23, 0x24(r1)
-	  addi      r1, r1, 0x48
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*

@@ -198,6 +198,7 @@ u16 OSGetGbsMode();
 extern OSThreadQueue __DVDThreadQueue;
 extern u8 _stack_addr[];
 extern u8 _stack_end[];
+extern BOOL __OSInIPL;
 
 //////////////////////////////////
 

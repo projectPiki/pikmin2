@@ -20,6 +20,7 @@ s32 EXIGetType(s32 channel, u32 dev, u32* type);
 char* EXIGetTypeString(u32 type);
 
 u32 __OSGetDIConfig(void);
+void __OSEnableBarnacle(int chan, u32 dev);
 
 //////////////////////////////////
 

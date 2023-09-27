@@ -1,5 +1,5 @@
 EXI_FILES:=\
-	$(BUILD_DIR)/asm/Dolphin/exi/EXIBios.o\
+	$(BUILD_DIR)/src/Dolphin/exi/EXIBios.o\
 	$(BUILD_DIR)/src/Dolphin/exi/EXIUart.o\
 
 $(EXI_FILES): CFLAGS += -common off

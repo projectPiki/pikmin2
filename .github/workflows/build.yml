@@ -28,7 +28,7 @@ jobs:
       env:
         PROGRESS_API_KEY: ${{secrets.PROGRESS_API_KEY}}
       run: |
-        python tools/upload-progress.py -b https://progress.deco.mp/ -p pikmin2 -v ${{matrix.version}} \
+        python tools/upload-progress.py -b https://progress.decomp.club/ -p pikmin2 -v ${{matrix.version}} \
           build/pikmin2.${{matrix.version}}/main.dol.progress
     - name: Upload map
       uses: actions/upload-artifact@v3
