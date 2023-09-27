@@ -10,7 +10,7 @@ struct Container : public TForever {
 	{
 	}
 	virtual bool create(Arg*); // _08
-	virtual ~Container();      // _48 (weak)
+	virtual ~Container() { }   // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_10  = TForever

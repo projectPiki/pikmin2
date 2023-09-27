@@ -362,13 +362,29 @@ bool FileSelect::T2DFilecopyBase::create(Arg* arg)
 	bool nameCheck = strcmp("ArgFilecopy", arg->getName()) == 0;
 	P2ASSERTLINE(160, nameCheck);
 	ArgFilecopy* args = static_cast<ArgFilecopy*>(arg);
+	f32 dist          = args->mAltPosition.distance(*args);
+	f32 scale         = dist /= 200.0f;
 
-	f32 scale            = 200.0f; // yeah nope
+	Vector3f test(args->mAltPosition.x - args->x, args->mAltPosition.y - args->y, 0.0f);
+	test.normalise();
 	JUtility::TColor col = args->mColor;
-	Matrixf mtx;
+
+	Mtx mtx;
+	mtx[0][0] = test.x;
+	mtx[0][1] = test.x;
+	mtx[0][2] = 0.0f;
+	mtx[0][3] = test.y;
+	mtx[1][0] = test.y;
+	mtx[1][1] = test.x;
+	mtx[1][2] = 0.0f;
+	mtx[1][3] = test.y;
+	mtx[2][0] = test.z;
+	mtx[2][1] = 0.0f;
+	mtx[2][2] = 1.0f;
+	mtx[2][3] = 0.0f;
 	if (TForever::create(arg)) {
 		mEmitter->setColorRGB(col);
-		JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitter->mMatrix);
+		JPASetRMtxfromMtx(mtx, mEmitter->mMatrix);
 		mEmitter->setScaleOnly(scale);
 		return true;
 	}
@@ -663,40 +679,5 @@ void WorldMap::T2DRocketB::setGlobalParticleScale(f32 scale)
 	test = test * scale;
 	mEmitter->setScaleMain(test.x, test.y, test.z);
 }
-
-/*
- * --INFO--
- * Address:	803BAC6C
- * Size:	00009C
- */
-// WorldMap::T2DRocketB::~T2DRocketB() { }
-
-/*
- * --INFO--
- * Address:	803BAD08
- * Size:	00009C
- */
-// WorldMap::T2DOnyonKira::~T2DOnyonKira() { }
-
-/*
- * --INFO--
- * Address:	803BADA4
- * Size:	000084
- */
-FileSelect::T2DFilecopyBase::~T2DFilecopyBase() { }
-
-/*
- * --INFO--
- * Address:	803BAE28
- * Size:	000084
- */
-// T2DCountKira::~T2DCountKira() { }
-
-/*
- * --INFO--
- * Address:	803BAEAC
- * Size:	00009C
- */
-// T2DCursor::~T2DCursor() { }
 
 } // namespace efx2d

@@ -1617,7 +1617,7 @@ void TPkEffectTane::init()
 {
 	mPikiColor = -1;
 	mPos       = nullptr;
-	mPos2      = nullptr;
+	_0C        = nullptr;
 	_08        = nullptr;
 	_10        = nullptr;
 }

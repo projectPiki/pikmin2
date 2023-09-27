@@ -25,13 +25,12 @@ bool TOtakaraDive::create(Arg* arg)
 	scale     = scale / 35.0f;
 
 	if (TSimple3::create(arg)) {
-		mEmitters[0]->setScale(scale);
-		mEmitters[1]->setScale(scale);
-		mEmitters[2]->setScale(scale);
+		for (int i = 0; i < 3; i++) {
+			mEmitters[i]->setScale(scale);
+		}
 		return true;
-	} else {
-		return false;
 	}
+	return false;
 }
 
 /*
@@ -51,9 +50,8 @@ bool TTsuyuGrow0::create(Arg* arg)
 	if (TSimple1::create(arg)) {
 		JPASetRMtxTVecfromMtx(mtxRot.mMatrix.mtxView, mEmitters[0]->mMatrix, &mEmitters[0]->mPosition);
 		return true;
-	} else {
-		return false;
 	}
+	return false;
 }
 
 /*
@@ -69,13 +67,12 @@ bool TOtakaraApL::create(Arg* arg)
 	f32 scale          = argScale->mScale;
 
 	if (TSimple3::create(argScale)) {
-		mEmitters[0]->setScale(scale);
-		mEmitters[1]->setScale(scale);
-		mEmitters[2]->setScale(scale);
+		for (int i = 0; i < 3; i++) {
+			mEmitters[i]->setScale(scale);
+		}
 		return true;
-	} else {
-		return false;
 	}
+	return false;
 }
 
 /*
@@ -91,12 +88,12 @@ bool TOtakaraApS::create(Arg* arg)
 	f32 scale          = argScale->mScale;
 
 	if (TSimple2::create(argScale)) {
-		mEmitters[0]->setScale(scale);
-		mEmitters[1]->setScale(scale);
+		for (int i = 0; i < 2; i++) {
+			mEmitters[i]->setScale(scale);
+		}
 		return true;
-	} else {
-		return false;
 	}
+	return false;
 }
 
 /*
@@ -161,12 +158,10 @@ bool TKouhaiDamage::create(Arg* arg)
 	P2ASSERTLINE(249, argCheck);
 
 	ArgKouhai* argKouhai = static_cast<ArgKouhai*>(arg);
-	int p1               = argKouhai->_10;
+	int p1               = argKouhai->mSize;
 
 	if (TSimple1::create(argKouhai)) {
 		Vector2f scale;
-		f32 scaleXY;
-		f32 scaleZ;
 		switch (p1) {
 		case 0:
 			scale = Vector2f(0.35f, 0.35f);
@@ -182,9 +177,9 @@ bool TKouhaiDamage::create(Arg* arg)
 		mEmitters[0]->setScale(scale.x, scale.y);
 
 		return true;
-	} else {
-		return false;
 	}
+	return false;
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -304,81 +299,7 @@ bool TPelkira_ver01::create(Arg* arg)
 		mEffectID = PID_PelKira_3;
 		break;
 	}
-	return TSync::create(arg);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lis      r4, lbl_80495988@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_80495988@l
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x34
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B6178
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x113
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B6178:
-	lwz      r0, 0x10(r30)
-	mr       r4, r30
-	cmpwi    r0, 2
-	beq      lbl_803B61C0
-	bge      lbl_803B619C
-	cmpwi    r0, 0
-	beq      lbl_803B61A8
-	bge      lbl_803B61B4
-	b        lbl_803B61D4
-
-lbl_803B619C:
-	cmpwi    r0, 4
-	bge      lbl_803B61D4
-	b        lbl_803B61CC
-
-lbl_803B61A8:
-	li       r0, 0x142
-	sth      r0, 0xc(r29)
-	b        lbl_803B61D4
-
-lbl_803B61B4:
-	li       r0, 0x145
-	sth      r0, 0xc(r29)
-	b        lbl_803B61D4
-
-lbl_803B61C0:
-	li       r0, 0x143
-	sth      r0, 0xc(r29)
-	b        lbl_803B61D4
-
-lbl_803B61CC:
-	li       r0, 0x144
-	sth      r0, 0xc(r29)
-
-lbl_803B61D4:
-	mr       r3, r29
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return TSync::create(argpel);
 }
 
 /*
@@ -393,7 +314,7 @@ bool Container::create(efx::Arg* arg)
 
 	ArgType* argtype = static_cast<ArgType*>(arg);
 
-	switch (argtype->mOnyonType) {
+	switch (argtype->mType) {
 	case ONYON_TYPE_BLUE:
 		mEffectID = PID_Container_Blue;
 		break;
@@ -404,73 +325,7 @@ bool Container::create(efx::Arg* arg)
 		mEffectID = PID_Container_Yellow;
 		break;
 	}
-	return TSync::create(arg);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r2, lbl_8051F668@sda21
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B625C
-	lis      r3, lbl_80495988@ha
-	lis      r5, lbl_804959A4@ha
-	addi     r3, r3, lbl_80495988@l
-	li       r4, 0x12d
-	addi     r5, r5, lbl_804959A4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B625C:
-	lhz      r0, 0x10(r31)
-	mr       r4, r31
-	cmpwi    r0, 1
-	beq      lbl_803B6294
-	bge      lbl_803B627C
-	cmpwi    r0, 0
-	bge      lbl_803B6288
-	b        lbl_803B62A8
-
-lbl_803B627C:
-	cmpwi    r0, 3
-	bge      lbl_803B62A8
-	b        lbl_803B62A0
-
-lbl_803B6288:
-	li       r0, 0x105
-	sth      r0, 0xc(r30)
-	b        lbl_803B62A8
-
-lbl_803B6294:
-	li       r0, 0x106
-	sth      r0, 0xc(r30)
-	b        lbl_803B62A8
-
-lbl_803B62A0:
-	li       r0, 0x107
-	sth      r0, 0xc(r30)
-
-lbl_803B62A8:
-	mr       r3, r30
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return TSync::create(argtype);
 }
 
 /*
@@ -485,7 +340,7 @@ bool ContainerAct::create(efx::Arg* arg)
 
 	ArgType* argtype = static_cast<ArgType*>(arg);
 
-	switch (argtype->mOnyonType) {
+	switch (argtype->mType) {
 	case ONYON_TYPE_BLUE:
 		mItems[0].mEffectID = PID_ContainerAct_Blue_1;
 		mItems[1].mEffectID = PID_ContainerAct_Blue_2;
@@ -499,79 +354,7 @@ bool ContainerAct::create(efx::Arg* arg)
 		mItems[1].mEffectID = PID_ContainerAct_Yellow_2;
 		break;
 	}
-	return TSyncGroup2<TForever>::create(arg);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r2, lbl_8051F668@sda21
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B632C
-	lis      r3, lbl_80495988@ha
-	lis      r5, lbl_804959A4@ha
-	addi     r3, r3, lbl_80495988@l
-	li       r4, 0x142
-	addi     r5, r5, lbl_804959A4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B632C:
-	lhz      r0, 0x10(r31)
-	mr       r4, r31
-	cmpwi    r0, 1
-	beq      lbl_803B636C
-	bge      lbl_803B634C
-	cmpwi    r0, 0
-	bge      lbl_803B6358
-	b        lbl_803B6390
-
-lbl_803B634C:
-	cmpwi    r0, 3
-	bge      lbl_803B6390
-	b        lbl_803B6380
-
-lbl_803B6358:
-	li       r3, 0xf8
-	li       r0, 0xf9
-	sth      r3, 0x10(r30)
-	sth      r0, 0x20(r30)
-	b        lbl_803B6390
-
-lbl_803B636C:
-	li       r3, 0xfa
-	li       r0, 0xfb
-	sth      r3, 0x10(r30)
-	sth      r0, 0x20(r30)
-	b        lbl_803B6390
-
-lbl_803B6380:
-	li       r3, 0xfc
-	li       r0, 0xfd
-	sth      r3, 0x10(r30)
-	sth      r0, 0x20(r30)
-
-lbl_803B6390:
-	mr       r3, r30
-	bl       "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return TSyncGroup2<TForever>::create(argtype);
 }
 
 /*
@@ -579,44 +362,30 @@ lbl_803B6390:
  * Address:	803B63B0
  * Size:	0001B0
  */
-void WarpZone::setRateLOD(int offs, bool flag)
+void WarpZone::setRateLOD(int id, bool flag)
 {
-	JPABaseEmitter* emit;
-	if (flag) {
-		emit         = mItems[0].mEmitter;
-		f32 data[12] = { 0.3f, 0.25f, 0.15f, 0.06f, 0.05f, 0.04f, 0.0f, 0.0f, 0.0f, 0.1f, 0.08f, 0.06f };
-		if (emit) {
-			emit->_28 = data[offs];
-		}
-		emit = mItems[1].mEmitter;
-		if (emit) {
-			emit->_28 = data[offs + 3];
-		}
-		emit = mItems[2].mEmitter;
-		if (emit) {
-			emit->_28 = data[offs + 6];
-		}
-		emit = mItems[3].mEmitter;
-		if (emit) {
-			emit->_28 = data[offs + 9];
+	if (!flag) {
+		f32 lods[4][3] = {
+			{ 0.3f, 0.25f, 0.15f },
+			{ 0.06f, 0.05f, 0.04f },
+			{ 0.225f, 0.2f, 0.15f },
+			{ 0.1f, 0.08f, 0.06f },
+		};
+		for (int i = 0; i < 4; i++) {
+			if (mItems[i].mEmitter)
+				mItems[i].mEmitter->_28 = lods[i][id];
 		}
 	} else {
-		emit         = mItems[0].mEmitter;
-		f32 data[12] = { 0.3f, 0.25f, 0.15f, 0.06f, 0.05f, 0.04f, 0.225f, 0.2f, 0.15f, 0.1f, 0.08f, 0.06f };
-		if (emit) {
-			emit->_28 = data[offs];
-		}
-		emit = mItems[1].mEmitter;
-		if (emit) {
-			emit->_28 = data[offs + 3];
-		}
-		emit = mItems[2].mEmitter;
-		if (emit) {
-			emit->_28 = data[offs + 6];
-		}
-		emit = mItems[3].mEmitter;
-		if (emit) {
-			emit->_28 = data[offs + 9];
+		f32 lods[4][3] = {
+			{ 0.3f, 0.25f, 0.15f },
+			{ 0.06f, 0.05f, 0.04f },
+			{ 0.0f, 0.0f, 0.0f },
+			{ 0.1f, 0.08f, 0.06f },
+		};
+
+		for (int i = 0; i < 4; i++) {
+			if (mItems[i].mEmitter)
+				mItems[i].mEmitter->_28 = lods[i][id];
 		}
 	}
 	/*
@@ -746,127 +515,5 @@ lbl_803B6554:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	803B6560
- * Size:	00009C
- */
-Container::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B65E0
-	lis      r3, __vt__Q23efx9Container@ha
-	addi     r3, r3, __vt__Q23efx9Container@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B65D0
-	lis      r3, __vt__Q23efx8TForever@ha
-	addi     r3, r3, __vt__Q23efx8TForever@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B65D0
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803B65D0:
-	extsh.   r0, r31
-	ble      lbl_803B65E0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B65E0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B65FC
- * Size:	00009C
- */
-TPelkira_ver01::~TPelkira_ver01()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803B667C
-	lis      r3, __vt__Q23efx14TPelkira_ver01@ha
-	addi     r3, r3, __vt__Q23efx14TPelkira_ver01@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B666C
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803B666C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803B666C:
-	extsh.   r0, r31
-	ble      lbl_803B667C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803B667C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803B6698
- * Size:	000004
- */
-void TOtakaraAp::forceKill() { }
-
-/*
- * --INFO--
- * Address:	803B669C
- * Size:	000004
- */
-void TOtakaraAp::fade() { }
 
 } // namespace efx

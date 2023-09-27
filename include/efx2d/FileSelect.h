@@ -13,8 +13,7 @@ struct ArgFilecopy : public Arg {
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
-	int _0C;
-	int _10;
+	Vector2f mAltPosition;
 	JUtility::TColor mColor; // _14
 };
 

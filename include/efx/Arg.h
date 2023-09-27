@@ -214,7 +214,7 @@ struct ArgKouhai : public Arg {
 	ArgKouhai(Vector3f position, int type)
 	    : Arg(position)
 	{
-		_10 = type;
+		mSize = type;
 	}
 
 	virtual const char* getName() // _08 (weak)
@@ -224,7 +224,7 @@ struct ArgKouhai : public Arg {
 
 	// _00     = VTBL
 	// _00-_10 = Arg
-	int _10; // _10
+	int mSize; // _10
 };
 
 struct ArgPelType : public Arg {

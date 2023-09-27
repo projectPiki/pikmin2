@@ -1,22 +1,15 @@
 #include "JSystem/JGeometry.h"
-#include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAMath.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "ParticleMgr.h"
 #include "efx/Arg.h"
 #include "efx/Context.h"
-#include "efx/TBase.h"
 #include "efx/TCallBack_StaticClipping.h"
 #include "efx/TChaseMtx.h"
 #include "efx/TChasePos.h"
 #include "efx/TForever.h"
 #include "efx/TOneEmitter.h"
-#include "efx/TSimple.h"
 #include "efx/TSimpleMtx.h"
 #include "efx/TSyncGroup.h"
-#include "sysMath.h"
-#include "types.h"
-#include "Vector3.h"
 
 efx::TCallBack_StaticClipping efx::TBase::mCallBack_StaticClipping;
 
@@ -725,8 +718,10 @@ void TChasePosPosLocalZScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	Vector3f vec1 = *_10;
 	Vector3f vec2 = *_14;
 	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
+	f32 dist = _distanceBetween(vec2, vec1);
 	JPASetRMtxTVecfromMtx(mtxZ, emitter->mMatrix, &emitter->mPosition);
-	// needs some extra math here
+	emitter->mScale.z = dist / _18;
+
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -836,8 +831,9 @@ void TChasePosPosLocalYScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	Vector3f vec1 = *_10;
 	Vector3f vec2 = *_14;
 	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
+	f32 dist = _distanceBetween(vec2, vec1);
 	JPASetRMtxTVecfromMtx(mtxZ, emitter->mMatrix, &emitter->mPosition);
-	// needs some extra math here
+	emitter->mScale.y = dist / _18;
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2960,36 +2956,6 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  */
 // void endDemoDrawOn__Q23efx28TSyncGroup2<efx::TForever> Fv()
 // {
-// }
-
-/*
- * --INFO--
- * Address:	803B2CD0
- * Size:	00004C
- */
-// void __sinit_efxBase_cpp()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	lis      r4, __vt__18JPAEmitterCallBack@ha
-// 	lis      r3, __vt__Q23efx24TCallBack_StaticClipping@ha
-// 	stw      r0, 0x14(r1)
-// 	addi     r0, r4, __vt__18JPAEmitterCallBack@l
-// 	lis      r4, __dt__Q23efx24TCallBack_StaticClippingFv@ha
-// 	stw      r0, mCallBack_StaticClipping__Q23efx5TBase@sda21(r13)
-// 	addi     r0, r3, __vt__Q23efx24TCallBack_StaticClipping@l
-// 	lis      r3, lbl_804F7C10@ha
-// 	addi     r4, r4, __dt__Q23efx24TCallBack_StaticClippingFv@l
-// 	stw      r0, mCallBack_StaticClipping__Q23efx5TBase@sda21(r13)
-// 	addi     r5, r3, lbl_804F7C10@l
-// 	addi     r3, r13, mCallBack_StaticClipping__Q23efx5TBase@sda21
-// 	bl       __register_global_object
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
 // }
 
 } // namespace efx

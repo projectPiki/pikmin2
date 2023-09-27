@@ -33,9 +33,9 @@ struct TOtakaraAp : public TBase {
 	    : TBase()
 	{
 	}
-	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual bool create(Arg*);   // _08
+	virtual void forceKill() { } // _0C (weak)
+	virtual void fade() { }      // _10 (weak)
 
 	// _00 VTBL
 };
