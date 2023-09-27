@@ -126,6 +126,7 @@ void __OSSystemCallVectorEnd();
 void OSFillFPUContext(OSContext*);
 extern u32 __OSFpscrEnableBits; /** TODO: find a wrapper for this. Symbol is defined in OSError.c. */
 
+u16 __OSWirelessPadFixMode AT_ADDRESS(OS_BASE_CACHED | 0x30E0);
 u8 GameChoice AT_ADDRESS(OS_BASE_CACHED | 0x30E3);
 
 volatile int __OSTVMode AT_ADDRESS(OS_BASE_CACHED | 0xCC);

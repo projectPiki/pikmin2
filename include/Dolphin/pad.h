@@ -9,16 +9,16 @@ extern "C" {
 #include "Dolphin/os.h"
 
 typedef struct PADStatus {
-	u16 button;      // Or-ed PAD_BUTTON_* bits
-	s8 stickX;       // -128 <= stickX       <= 127
-	s8 stickY;       // -128 <= stickY       <= 127
-	s8 substickX;    // -128 <= substickX    <= 127
-	s8 substickY;    // -128 <= substickY    <= 127
-	u8 triggerLeft;  //    0 <= triggerLeft  <= 255
-	u8 triggerRight; //    0 <= triggerRight <= 255
-	u8 analogA;      //    0 <= analogA      <= 255
-	u8 analogB;      //    0 <= analogB      <= 255
-	s8 err;          // one of PAD_ERR_* number
+	u16 button;      // _00, Or-ed PAD_BUTTON_* bits
+	s8 stickX;       // _02, -128 <= stickX       <= 127
+	s8 stickY;       // _03, -128 <= stickY       <= 127
+	s8 substickX;    // _04, -128 <= substickX    <= 127
+	s8 substickY;    // _05, -128 <= substickY    <= 127
+	u8 triggerLeft;  // _06,   0 <= triggerLeft  <= 255
+	u8 triggerRight; // _07,   0 <= triggerRight <= 255
+	u8 analogA;      // _08,   0 <= analogA      <= 255
+	u8 analogB;      // _09,   0 <= analogB      <= 255
+	s8 err;          // _0A, one of PAD_ERR_* number
 } PADStatus;
 
 #define PAD_MAX_CONTROLLERS 4
@@ -36,6 +36,17 @@ typedef struct PADStatus {
 #define PAD_BUTTON_Y     0x0800
 #define PAD_BUTTON_MENU  0x1000
 #define PAD_BUTTON_START 0x1000
+
+#define PAD_ALL                                                                                                                          \
+	(PAD_BUTTON_LEFT | PAD_BUTTON_RIGHT | PAD_BUTTON_DOWN | PAD_BUTTON_UP | PAD_TRIGGER_Z | PAD_TRIGGER_R | PAD_TRIGGER_L | PAD_BUTTON_A \
+	 | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_BUTTON_MENU | 0x2000 | 0x0080)
+
+#define PAD_SPEC_0 0
+#define PAD_SPEC_1 1
+#define PAD_SPEC_2 2
+#define PAD_SPEC_3 3
+#define PAD_SPEC_4 4
+#define PAD_SPEC_5 5
 
 #define PAD_CHAN0   0
 #define PAD_CHAN1   1

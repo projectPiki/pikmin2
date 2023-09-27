@@ -30,6 +30,7 @@
     "thpaudio.h": "c",
     "ai.h": "c",
     "gx.h": "c",
-    "gxenum.h": "c"
+    "gxenum.h": "c",
+    "pad.h": "c"
   }
 }

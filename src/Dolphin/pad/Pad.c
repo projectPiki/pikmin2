@@ -1,13 +1,66 @@
+#include "Dolphin/pad.h"
+#include "Dolphin/si.h"
 
+const char* __PADVersion = "<< Dolphin SDK - PAD\trelease build: Aug  6 2003 04:30:02 (0x2301) >>";
+
+// forward declarations of static functions.
+static void SPEC0_MakeStatus(int chan, PADStatus* status, u32 data[2]);
+static void SPEC1_MakeStatus(int chan, PADStatus* status, u32 data[2]);
+static void SPEC2_MakeStatus(int chan, PADStatus* status, u32 data[2]);
+static void PADTypeAndStatusCallback(int chan, u32 type);
+static BOOL OnReset(BOOL final);
+
+// static symbols.
+static u32 Type[SI_MAX_CHAN];
+static PADStatus Origin[SI_MAX_CHAN];
+static u32 CmdProbeDevice[SI_MAX_CHAN];
+
+static s32 ResettingChan                           = 32;
+static u32 XPatchBits                              = PAD_CHAN0_BIT | PAD_CHAN1_BIT | PAD_CHAN2_BIT | PAD_CHAN3_BIT;
+static u32 AnalogMode                              = 0x00000300u;
+static u32 Spec                                    = 5;
+static void (*MakeStatus)(int, PADStatus*, u32[2]) = SPEC2_MakeStatus;
+
+static u32 CmdReadOrigin = 0x41 << 24;
+static u32 CmdCalibrate  = 0x42 << 24;
+
+static OSResetFunctionInfo ResetFunctionInfo = { OnReset, 127 };
+
+static BOOL Initialized;
+
+static u32 EnabledBits;
+static u32 ResettingBits;
+static u32 RecalibrateBits;
+static u32 WaitingBits;
+static u32 CheckingBits;
+static u32 PendingBits;
+static u32 BarrelBits;
+
+static void (*SamplingCallback)(void);
+
+// global symbols
+u32 __PADSpec;
+
+// useful macros
+#define offsetof(type, memb) ((u32) & ((type*)0)->memb)
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000060
  */
-void PADEnable(void)
+static void PADEnable(int chan)
 {
-	// UNUSED FUNCTION
+	u32 cmd;
+	u32 chanBit;
+	u32 data[2];
+
+	chanBit = PAD_CHAN0_BIT >> chan;
+	EnabledBits |= chanBit;
+	SIGetResponse(chan, data);
+	cmd = (0x40 << 16) | AnalogMode;
+	SISetCommand(chan, cmd);
+	SIEnablePolling(EnabledBits);
 }
 
 /*
@@ -15,9 +68,23 @@ void PADEnable(void)
  * Address:	........
  * Size:	0000A4
  */
-void PADDisable(void)
+static void PADDisable(int chan)
 {
-	// UNUSED FUNCTION
+	BOOL enabled;
+	u32 chanBit;
+
+	enabled = OSDisableInterrupts();
+
+	chanBit = PAD_CHAN0_BIT >> chan;
+	SIDisablePolling(chanBit);
+	EnabledBits &= ~chanBit;
+	WaitingBits &= ~chanBit;
+	CheckingBits &= ~chanBit;
+	PendingBits &= ~chanBit;
+	BarrelBits &= ~chanBit;
+	OSSetWirelessID(chan, 0);
+
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -25,9 +92,20 @@ void PADDisable(void)
  * Address:	........
  * Size:	000070
  */
-void DoReset(void)
+static void DoReset(void)
 {
-	// UNUSED FUNCTION
+	u32 chanBit;
+
+	ResettingChan = __cntlzw(ResettingBits);
+	if (ResettingChan == 32) {
+		return;
+	}
+
+	chanBit = PAD_CHAN0_BIT >> ResettingChan;
+	ResettingBits &= ~chanBit;
+
+	memset(&Origin[ResettingChan], 0, sizeof(PADStatus));
+	SIGetTypeAsync(ResettingChan, PADTypeAndStatusCallback);
 }
 
 /*
@@ -35,132 +113,50 @@ void DoReset(void)
  * Address:	800F3540
  * Size:	0001A4
  */
-void UpdateOrigin(void)
+static void UpdateOrigin(int chan)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r5, 0x804F
-	  stw       r0, 0x4(r1)
-	  mulli     r6, r3, 0xC
-	  stwu      r1, -0x18(r1)
-	  addi      r5, r5, 0x7140
-	  stw       r31, 0x14(r1)
-	  add       r31, r5, r6
-	  lwz       r0, -0x7C74(r13)
-	  rlwinm    r4,r0,0,21,23
-	  cmpwi     r4, 0x400
-	  lis       r0, 0x8000
-	  srw       r0, r0, r3
-	  beq-      .loc_0x128
-	  bge-      .loc_0x6C
-	  cmpwi     r4, 0x200
-	  beq-      .loc_0xF8
-	  bge-      .loc_0x60
-	  cmpwi     r4, 0x100
-	  beq-      .loc_0xC4
-	  bge-      .loc_0x128
-	  cmpwi     r4, 0
-	  beq-      .loc_0x90
-	  b         .loc_0x128
+	PADStatus* origin;
+	u32 chanBit = PAD_CHAN0_BIT >> chan;
 
-	.loc_0x60:
-	  cmpwi     r4, 0x300
-	  beq-      .loc_0x128
-	  b         .loc_0x128
+	origin = &Origin[chan];
+	switch (AnalogMode & 0x00000700u) {
+	case 0x00000000u:
+	case 0x00000500u:
+	case 0x00000600u:
+	case 0x00000700u:
+		origin->triggerLeft &= ~15;
+		origin->triggerRight &= ~15;
+		origin->analogA &= ~15;
+		origin->analogB &= ~15;
+		break;
+	case 0x00000100u:
+		origin->substickX &= ~15;
+		origin->substickY &= ~15;
+		origin->analogA &= ~15;
+		origin->analogB &= ~15;
+		break;
+	case 0x00000200u:
+		origin->substickX &= ~15;
+		origin->substickY &= ~15;
+		origin->triggerLeft &= ~15;
+		origin->triggerRight &= ~15;
+		break;
+	case 0x00000300u:
+		break;
+	case 0x00000400u:
+		break;
+	}
 
-	.loc_0x6C:
-	  cmpwi     r4, 0x600
-	  beq-      .loc_0x90
-	  bge-      .loc_0x84
-	  cmpwi     r4, 0x500
-	  beq-      .loc_0x90
-	  b         .loc_0x128
+	origin->stickX -= 128;
+	origin->stickY -= 128;
+	origin->substickX -= 128;
+	origin->substickY -= 128;
 
-	.loc_0x84:
-	  cmpwi     r4, 0x700
-	  beq-      .loc_0x90
-	  b         .loc_0x128
-
-	.loc_0x90:
-	  lbz       r4, 0x6(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x6(r31)
-	  lbz       r4, 0x7(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x7(r31)
-	  lbz       r4, 0x8(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x8(r31)
-	  lbz       r4, 0x9(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x9(r31)
-	  b         .loc_0x128
-
-	.loc_0xC4:
-	  lbz       r4, 0x4(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x4(r31)
-	  lbz       r4, 0x5(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x5(r31)
-	  lbz       r4, 0x8(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x8(r31)
-	  lbz       r4, 0x9(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x9(r31)
-	  b         .loc_0x128
-
-	.loc_0xF8:
-	  lbz       r4, 0x4(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x4(r31)
-	  lbz       r4, 0x5(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x5(r31)
-	  lbz       r4, 0x6(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x6(r31)
-	  lbz       r4, 0x7(r31)
-	  rlwinm    r4,r4,0,0,27
-	  stb       r4, 0x7(r31)
-
-	.loc_0x128:
-	  lbz       r4, 0x2(r31)
-	  subi      r4, r4, 0x80
-	  stb       r4, 0x2(r31)
-	  lbz       r4, 0x3(r31)
-	  subi      r4, r4, 0x80
-	  stb       r4, 0x3(r31)
-	  lbz       r4, 0x4(r31)
-	  subi      r4, r4, 0x80
-	  stb       r4, 0x4(r31)
-	  lbz       r4, 0x5(r31)
-	  subi      r4, r4, 0x80
-	  stb       r4, 0x5(r31)
-	  lwz       r4, -0x7C78(r13)
-	  and.      r0, r4, r0
-	  beq-      .loc_0x190
-	  lbz       r0, 0x2(r31)
-	  extsb     r0, r0
-	  cmpwi     r0, 0x40
-	  ble-      .loc_0x190
-	  bl        0x2C38
-	  rlwinm    r3,r3,0,0,15
-	  subis     r0, r3, 0x900
-	  cmplwi    r0, 0
-	  bne-      .loc_0x190
-	  li        r0, 0
-	  stb       r0, 0x2(r31)
-
-	.loc_0x190:
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	if (XPatchBits & chanBit) {
+		if (64 < origin->stickX && (SIGetType(chan) & 0xffff0000) == SI_GC_CONTROLLER) {
+			origin->stickX = 0;
+		}
+	}
 }
 
 /*
@@ -168,64 +164,13 @@ void UpdateOrigin(void)
  * Address:	800F36E4
  * Size:	0000C4
  */
-void PADOriginCallback(void)
+static void PADOriginCallback(int chan, u32 error, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  rlwinm.   r0,r4,0,28,31
-	  stwu      r1, -0x30(r1)
-	  stw       r31, 0x2C(r1)
-	  bne-      .loc_0x5C
-	  lwz       r3, -0x7C7C(r13)
-	  bl        -0x1C0
-	  lwz       r31, -0x7C7C(r13)
-	  lis       r0, 0x8000
-	  lwz       r3, -0x700C(r13)
-	  addi      r4, r1, 0x1C
-	  srw       r0, r0, r31
-	  or        r0, r3, r0
-	  stw       r0, -0x700C(r13)
-	  mr        r3, r31
-	  bl        0x2674
-	  lwz       r0, -0x7C74(r13)
-	  addi      r3, r31, 0
-	  oris      r4, r0, 0x40
-	  bl        0x23F8
-	  lwz       r3, -0x700C(r13)
-	  bl        0x2480
-
-	.loc_0x5C:
-	  lwz       r5, -0x7008(r13)
-	  cntlzw    r0, r5
-	  stw       r0, -0x7C7C(r13)
-	  lwz       r4, -0x7C7C(r13)
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xB0
-	  lis       r0, 0x8000
-	  srw       r0, r0, r4
-	  andc      r0, r5, r0
-	  mulli     r4, r4, 0xC
-	  stw       r0, -0x7008(r13)
-	  lis       r3, 0x804F
-	  addi      r0, r3, 0x7140
-	  add       r3, r0, r4
-	  li        r4, 0
-	  li        r5, 0xC
-	  bl        -0xEE6CC
-	  lis       r4, 0x800F
-	  lwz       r3, -0x7C7C(r13)
-	  addi      r4, r4, 0x394C
-	  bl        0x2D20
-
-	.loc_0xB0:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  addi      r1, r1, 0x30
-	  mtlr      r0
-	  blr
-	*/
+	if (!(error & (SI_ERROR_UNDER_RUN | SI_ERROR_OVER_RUN | SI_ERROR_NO_RESPONSE | SI_ERROR_COLLISION))) {
+		UpdateOrigin(ResettingChan);
+		PADEnable(ResettingChan);
+	}
+	DoReset();
 }
 
 /*
@@ -233,66 +178,20 @@ void PADOriginCallback(void)
  * Address:	800F37A8
  * Size:	0000CC
  */
-void PADOriginUpdateCallback(void)
+static void PADOriginUpdateCallback(int chan, u32 error, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  lis       r0, 0x8000
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  addi      r31, r4, 0
-	  stw       r30, 0x20(r1)
-	  stw       r29, 0x1C(r1)
-	  mr        r29, r3
-	  srw       r30, r0, r29
-	  lwz       r3, -0x700C(r13)
-	  and.      r0, r3, r30
-	  beq-      .loc_0xB0
-	  rlwinm.   r0,r31,0,28,31
-	  bne-      .loc_0x44
-	  mr        r3, r29
-	  bl        -0x2A8
 
-	.loc_0x44:
-	  rlwinm.   r0,r31,0,28,28
-	  beq-      .loc_0xB0
-	  bl        -0x4BBC
-	  addi      r31, r3, 0
-	  addi      r3, r30, 0
-	  bl        0x2458
-	  lwz       r0, -0x700C(r13)
-	  not       r9, r30
-	  lwz       r6, -0x7000(r13)
-	  mr        r3, r29
-	  lwz       r5, -0x6FFC(r13)
-	  lwz       r4, -0x6FF8(r13)
-	  and       r8, r0, r9
-	  lwz       r0, -0x6FF4(r13)
-	  and       r7, r6, r9
-	  and       r6, r5, r9
-	  and       r5, r4, r9
-	  stw       r8, -0x700C(r13)
-	  and       r0, r0, r9
-	  stw       r7, -0x7000(r13)
-	  li        r4, 0
-	  stw       r6, -0x6FFC(r13)
-	  stw       r5, -0x6FF8(r13)
-	  stw       r0, -0x6FF4(r13)
-	  bl        -0x224C
-	  mr        r3, r31
-	  bl        -0x4BF4
+	if (!(EnabledBits & (PAD_CHAN0_BIT >> chan))) {
+		return;
+	}
 
-	.loc_0xB0:
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	if (!(error & (SI_ERROR_UNDER_RUN | SI_ERROR_OVER_RUN | SI_ERROR_NO_RESPONSE | SI_ERROR_COLLISION))) {
+		UpdateOrigin(chan);
+	}
+
+	if (error & SI_ERROR_NO_RESPONSE) {
+		PADDisable(chan);
+	}
 }
 
 /*
@@ -300,69 +199,13 @@ void PADOriginUpdateCallback(void)
  * Address:	800F3874
  * Size:	0000D8
  */
-void PADProbeCallback(void)
+static void PADProbeCallback(int chan, u32 error, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  rlwinm.   r0,r4,0,28,31
-	  stwu      r1, -0x30(r1)
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  bne-      .loc_0x6C
-	  lwz       r30, -0x7C7C(r13)
-	  lis       r31, 0x8000
-	  lwz       r3, -0x700C(r13)
-	  addi      r4, r1, 0x1C
-	  srw       r0, r31, r30
-	  or        r0, r3, r0
-	  stw       r0, -0x700C(r13)
-	  mr        r3, r30
-	  bl        0x24E8
-	  lwz       r0, -0x7C74(r13)
-	  addi      r3, r30, 0
-	  oris      r4, r0, 0x40
-	  bl        0x226C
-	  lwz       r3, -0x700C(r13)
-	  bl        0x22F4
-	  lwz       r0, -0x7C7C(r13)
-	  lwz       r3, -0x7000(r13)
-	  srw       r0, r31, r0
-	  or        r0, r3, r0
-	  stw       r0, -0x7000(r13)
-
-	.loc_0x6C:
-	  lwz       r5, -0x7008(r13)
-	  cntlzw    r0, r5
-	  stw       r0, -0x7C7C(r13)
-	  lwz       r4, -0x7C7C(r13)
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xC0
-	  lis       r0, 0x8000
-	  srw       r0, r0, r4
-	  andc      r0, r5, r0
-	  mulli     r4, r4, 0xC
-	  stw       r0, -0x7008(r13)
-	  lis       r3, 0x804F
-	  addi      r0, r3, 0x7140
-	  add       r3, r0, r4
-	  li        r4, 0
-	  li        r5, 0xC
-	  bl        -0xEE86C
-	  lis       r4, 0x800F
-	  lwz       r3, -0x7C7C(r13)
-	  addi      r4, r4, 0x394C
-	  bl        0x2B80
-
-	.loc_0xC0:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  addi      r1, r1, 0x30
-	  mtlr      r0
-	  blr
-	*/
+	if (!(error & (SI_ERROR_UNDER_RUN | SI_ERROR_OVER_RUN | SI_ERROR_NO_RESPONSE | SI_ERROR_COLLISION))) {
+		PADEnable(ResettingChan);
+		WaitingBits |= PAD_CHAN0_BIT >> ResettingChan;
+	}
+	DoReset();
 }
 
 /*
@@ -370,234 +213,55 @@ void PADProbeCallback(void)
  * Address:	800F394C
  * Size:	00032C
  */
-void PADTypeAndStatusCallback(void)
+static void PADTypeAndStatusCallback(int chan, u32 type)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r6, 0x804F
-	  stw       r0, 0x4(r1)
-	  rlwinm.   r0,r4,0,28,31
-	  stwu      r1, -0x40(r1)
-	  stw       r31, 0x3C(r1)
-	  lis       r31, 0x8000
-	  stw       r30, 0x38(r1)
-	  addi      r30, r6, 0x7130
-	  stw       r29, 0x34(r1)
-	  stw       r28, 0x30(r1)
-	  lwz       r29, -0x7C7C(r13)
-	  lwz       r5, -0x7004(r13)
-	  srw       r28, r31, r29
-	  andc      r3, r5, r28
-	  stw       r3, -0x7004(r13)
-	  and       r5, r5, r28
-	  li        r3, 0x1
-	  beq-      .loc_0x9C
-	  lwz       r4, -0x7008(r13)
-	  cntlzw    r0, r4
-	  stw       r0, -0x7C7C(r13)
-	  lwz       r3, -0x7C7C(r13)
-	  cmpwi     r3, 0x20
-	  beq-      .loc_0x30C
-	  mulli     r0, r3, 0xC
-	  srw       r3, r31, r3
-	  andc      r4, r4, r3
-	  add       r3, r30, r0
-	  stw       r4, -0x7008(r13)
-	  li        r4, 0
-	  li        r5, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0xEE91C
-	  lis       r4, 0x800F
-	  lwz       r3, -0x7C7C(r13)
-	  addi      r4, r4, 0x394C
-	  bl        0x2AD0
-	  b         .loc_0x30C
+	u32 chanBit;
+	u32 recalibrate;
+	BOOL rc = TRUE;
+	u32 error;
+	chanBit     = PAD_CHAN0_BIT >> ResettingChan;
+	error       = type & 0xFF;
+	recalibrate = RecalibrateBits & chanBit;
+	RecalibrateBits &= ~chanBit;
 
-	.loc_0x9C:
-	  rlwinm    r6,r4,0,0,23
-	  rlwinm    r4,r4,0,3,4
-	  subis     r0, r4, 0x800
-	  rlwinm    r4,r29,2,0,29
-	  cmplwi    r0, 0
-	  stwx      r6, r30, r4
-	  bne-      .loc_0xC0
-	  rlwinm.   r0,r6,0,7,7
-	  bne-      .loc_0x114
+	if (error & (SI_ERROR_UNDER_RUN | SI_ERROR_OVER_RUN | SI_ERROR_NO_RESPONSE | SI_ERROR_COLLISION)) {
+		DoReset();
+		return;
+	}
 
-	.loc_0xC0:
-	  lwz       r5, -0x7008(r13)
-	  cntlzw    r0, r5
-	  stw       r0, -0x7C7C(r13)
-	  lwz       r4, -0x7C7C(r13)
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0x30C
-	  lis       r3, 0x8000
-	  mulli     r0, r4, 0xC
-	  srw       r3, r3, r4
-	  andc      r4, r5, r3
-	  add       r3, r30, r0
-	  stw       r4, -0x7008(r13)
-	  li        r4, 0
-	  li        r5, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0xEE994
-	  lis       r4, 0x800F
-	  lwz       r3, -0x7C7C(r13)
-	  addi      r4, r4, 0x394C
-	  bl        0x2A58
-	  b         .loc_0x30C
+	type &= ~0xFF;
 
-	.loc_0x114:
-	  lwz       r0, -0x7C70(r13)
-	  cmplwi    r0, 0x2
-	  bge-      .loc_0x1A0
-	  lwz       r0, -0x700C(r13)
-	  addi      r3, r29, 0
-	  addi      r4, r1, 0x1C
-	  or        r0, r0, r28
-	  stw       r0, -0x700C(r13)
-	  bl        0x2318
-	  lwz       r0, -0x7C74(r13)
-	  addi      r3, r29, 0
-	  oris      r4, r0, 0x40
-	  bl        0x209C
-	  lwz       r3, -0x700C(r13)
-	  bl        0x2124
-	  lwz       r4, -0x7008(r13)
-	  cntlzw    r0, r4
-	  stw       r0, -0x7C7C(r13)
-	  lwz       r3, -0x7C7C(r13)
-	  cmpwi     r3, 0x20
-	  beq-      .loc_0x30C
-	  mulli     r0, r3, 0xC
-	  srw       r3, r31, r3
-	  andc      r4, r4, r3
-	  add       r3, r30, r0
-	  stw       r4, -0x7008(r13)
-	  li        r4, 0
-	  li        r5, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0xEEA20
-	  lis       r4, 0x800F
-	  lwz       r3, -0x7C7C(r13)
-	  addi      r4, r4, 0x394C
-	  bl        0x29CC
-	  b         .loc_0x30C
+	Type[ResettingChan] = type;
 
-	.loc_0x1A0:
-	  rlwinm.   r0,r6,0,0,0
-	  beq-      .loc_0x1B0
-	  rlwinm.   r0,r6,0,5,5
-	  beq-      .loc_0x220
+	if ((type & SI_TYPE_MASK) != SI_TYPE_GC || !(type & SI_GC_STANDARD)) {
+		DoReset();
+		return;
+	}
 
-	.loc_0x1B0:
-	  cmplwi    r5, 0
-	  beq-      .loc_0x1EC
-	  mulli     r0, r29, 0xC
-	  lis       r3, 0x800F
-	  add       r6, r30, r0
-	  addi      r8, r3, 0x36E4
-	  addi      r3, r29, 0
-	  subi      r4, r13, 0x7C64
-	  li        r5, 0x3
-	  li        r7, 0xA
-	  li        r10, 0
-	  li        r9, 0
-	  addi      r6, r6, 0x10
-	  bl        0x23B8
-	  b         .loc_0x2A8
+	if (Spec < PAD_SPEC_2) {
+		PADEnable(ResettingChan);
+		DoReset();
+		return;
+	}
 
-	.loc_0x1EC:
-	  mulli     r0, r29, 0xC
-	  lis       r3, 0x800F
-	  add       r6, r30, r0
-	  addi      r8, r3, 0x36E4
-	  addi      r3, r29, 0
-	  subi      r4, r13, 0x7C68
-	  li        r5, 0x1
-	  li        r7, 0xA
-	  li        r10, 0
-	  li        r9, 0
-	  addi      r6, r6, 0x10
-	  bl        0x2384
-	  b         .loc_0x2A8
-
-	.loc_0x220:
-	  rlwinm.   r0,r6,0,11,11
-	  beq-      .loc_0x2A8
-	  rlwinm.   r0,r6,0,12,12
-	  bne-      .loc_0x2A8
-	  rlwinm.   r0,r6,0,13,13
-	  bne-      .loc_0x2A8
-	  rlwinm.   r0,r6,0,1,1
-	  beq-      .loc_0x274
-	  mulli     r0, r29, 0xC
-	  lis       r3, 0x800F
-	  add       r6, r30, r0
-	  addi      r8, r3, 0x36E4
-	  addi      r3, r29, 0
-	  subi      r4, r13, 0x7C68
-	  li        r5, 0x1
-	  li        r7, 0xA
-	  li        r10, 0
-	  li        r9, 0
-	  addi      r6, r6, 0x10
-	  bl        0x2330
-	  b         .loc_0x2A8
-
-	.loc_0x274:
-	  mulli     r0, r29, 0xC
-	  lis       r3, 0x800F
-	  add       r4, r30, r4
-	  add       r6, r30, r0
-	  addi      r8, r3, 0x3874
-	  addi      r3, r29, 0
-	  li        r5, 0x3
-	  li        r7, 0x8
-	  li        r10, 0
-	  li        r9, 0
-	  addi      r4, r4, 0x40
-	  addi      r6, r6, 0x10
-	  bl        0x22F8
-
-	.loc_0x2A8:
-	  cmpwi     r3, 0
-	  bne-      .loc_0x30C
-	  lwz       r5, -0x7008(r13)
-	  lwz       r3, -0x6FF8(r13)
-	  cntlzw    r0, r5
-	  stw       r0, -0x7C7C(r13)
-	  or        r0, r3, r28
-	  lwz       r4, -0x7C7C(r13)
-	  stw       r0, -0x6FF8(r13)
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0x30C
-	  lis       r3, 0x8000
-	  mulli     r0, r4, 0xC
-	  srw       r3, r3, r4
-	  andc      r4, r5, r3
-	  add       r3, r30, r0
-	  stw       r4, -0x7008(r13)
-	  li        r4, 0
-	  li        r5, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0xEEB90
-	  lis       r4, 0x800F
-	  lwz       r3, -0x7C7C(r13)
-	  addi      r4, r4, 0x394C
-	  bl        0x285C
-
-	.loc_0x30C:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  addi      r1, r1, 0x40
-	  mtlr      r0
-	  blr
-	*/
+	if (!(type & SI_GC_WIRELESS) || (type & SI_WIRELESS_IR)) {
+		if (recalibrate) {
+			rc = SITransfer(ResettingChan, &CmdCalibrate, 3, &Origin[ResettingChan], 10, PADOriginCallback, 0);
+		} else {
+			rc = SITransfer(ResettingChan, &CmdReadOrigin, 1, &Origin[ResettingChan], 10, PADOriginCallback, 0);
+		}
+	} else if ((type & SI_WIRELESS_FIX_ID) && (type & SI_WIRELESS_CONT_MASK) == SI_WIRELESS_CONT && !(type & SI_WIRELESS_LITE)) {
+		if (type & SI_WIRELESS_RECEIVED) {
+			rc = SITransfer(ResettingChan, &CmdReadOrigin, 1, &Origin[ResettingChan], 10, PADOriginCallback, 0);
+		} else {
+			rc = SITransfer(ResettingChan, &CmdProbeDevice[ResettingChan], 3, &Origin[ResettingChan], 8, PADProbeCallback, 0);
+		}
+	}
+	if (!rc) {
+		PendingBits |= chanBit;
+		DoReset();
+		return;
+	}
 }
 
 /*
@@ -605,95 +269,29 @@ void PADTypeAndStatusCallback(void)
  * Address:	800F3C78
  * Size:	000140
  */
-void PADReceiveCheckCallback(void)
+static void PADReceiveCheckCallback(int chan, u32 type)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lis       r3, 0x8000
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  srw       r29, r3, r31
-	  lwz       r0, -0x700C(r13)
-	  and.      r0, r0, r29
-	  beq-      .loc_0x124
-	  lwz       r5, -0x7000(r13)
-	  not       r6, r29
-	  lwz       r3, -0x6FFC(r13)
-	  rlwinm.   r0,r4,0,28,31
-	  and       r5, r5, r6
-	  and       r3, r3, r6
-	  stw       r5, -0x7000(r13)
-	  stw       r3, -0x6FFC(r13)
-	  rlwinm    r3,r4,0,0,23
-	  bne-      .loc_0xC0
-	  rlwinm.   r0,r3,0,0,0
-	  beq-      .loc_0xC0
-	  rlwinm.   r0,r3,0,11,11
-	  beq-      .loc_0xC0
-	  rlwinm.   r0,r3,0,1,1
-	  beq-      .loc_0xC0
-	  rlwinm.   r0,r3,0,5,5
-	  bne-      .loc_0xC0
-	  rlwinm.   r0,r3,0,12,12
-	  bne-      .loc_0xC0
-	  rlwinm.   r0,r3,0,13,13
-	  bne-      .loc_0xC0
-	  mulli     r4, r31, 0xC
-	  lis       r3, 0x804F
-	  addi      r0, r3, 0x7140
-	  lis       r3, 0x800F
-	  add       r6, r0, r4
-	  addi      r8, r3, 0x37A8
-	  addi      r3, r31, 0
-	  subi      r4, r13, 0x7C68
-	  li        r5, 0x1
-	  li        r7, 0xA
-	  li        r10, 0
-	  li        r9, 0
-	  bl        0x21B8
-	  b         .loc_0x124
+	u32 error;
+	u32 chanBit;
 
-	.loc_0xC0:
-	  bl        -0x5100
-	  addi      r30, r3, 0
-	  addi      r3, r29, 0
-	  bl        0x1F14
-	  lwz       r0, -0x700C(r13)
-	  not       r9, r29
-	  lwz       r6, -0x7000(r13)
-	  mr        r3, r31
-	  lwz       r5, -0x6FFC(r13)
-	  lwz       r4, -0x6FF8(r13)
-	  and       r8, r0, r9
-	  lwz       r0, -0x6FF4(r13)
-	  and       r7, r6, r9
-	  and       r6, r5, r9
-	  and       r5, r4, r9
-	  stw       r8, -0x700C(r13)
-	  and       r0, r0, r9
-	  stw       r7, -0x7000(r13)
-	  li        r4, 0
-	  stw       r6, -0x6FFC(r13)
-	  stw       r5, -0x6FF8(r13)
-	  stw       r0, -0x6FF4(r13)
-	  bl        -0x2790
-	  mr        r3, r30
-	  bl        -0x5138
+	chanBit = PAD_CHAN0_BIT >> chan;
+	if (!(EnabledBits & chanBit)) {
+		return;
+	}
 
-	.loc_0x124:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	error = type & 0xFF;
+	type &= ~0xFF;
+
+	WaitingBits &= ~chanBit;
+	CheckingBits &= ~chanBit;
+
+	if (!(error & (SI_ERROR_UNDER_RUN | SI_ERROR_OVER_RUN | SI_ERROR_NO_RESPONSE | SI_ERROR_COLLISION)) && (type & SI_GC_WIRELESS)
+	    && (type & SI_WIRELESS_FIX_ID) && (type & SI_WIRELESS_RECEIVED) && !(type & SI_WIRELESS_IR)
+	    && (type & SI_WIRELESS_CONT_MASK) == SI_WIRELESS_CONT && !(type & SI_WIRELESS_LITE)) {
+		SITransfer(chan, &CmdReadOrigin, 1, &Origin[chan], 10, PADOriginUpdateCallback, 0);
+	} else {
+		PADDisable(chan);
+	}
 }
 
 /*
@@ -701,83 +299,32 @@ void PADReceiveCheckCallback(void)
  * Address:	800F3DB8
  * Size:	000110
  */
-void PADReset(void)
+BOOL PADReset(u32 mask)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  bl        -0x5198
-	  lwz       r4, -0x6FF8(r13)
-	  li        r8, 0
-	  lwz       r5, -0x7000(r13)
-	  mr        r31, r3
-	  lwz       r0, -0x6FFC(r13)
-	  or        r30, r30, r4
-	  lwz       r4, -0x7008(r13)
-	  or        r5, r5, r0
-	  lwz       r0, -0x7C70(r13)
-	  andc      r30, r30, r5
-	  lwz       r6, -0x700C(r13)
-	  or        r5, r4, r30
-	  lwz       r4, -0x6FF4(r13)
-	  not       r7, r30
-	  stw       r5, -0x7008(r13)
-	  and       r5, r6, r7
-	  and       r4, r4, r7
-	  lwz       r7, -0x7008(r13)
-	  cmplwi    r0, 0x4
-	  stw       r8, -0x6FF8(r13)
-	  and       r3, r7, r6
-	  stw       r5, -0x700C(r13)
-	  stw       r4, -0x6FF4(r13)
-	  bne-      .loc_0x88
-	  lwz       r0, -0x7004(r13)
-	  or        r0, r0, r30
-	  stw       r0, -0x7004(r13)
+	BOOL enabled;
+	u32 diableBits;
 
-	.loc_0x88:
-	  bl        0x1E18
-	  lwz       r0, -0x7C7C(r13)
-	  cmpwi     r0, 0x20
-	  bne-      .loc_0xEC
-	  lwz       r5, -0x7008(r13)
-	  cntlzw    r0, r5
-	  stw       r0, -0x7C7C(r13)
-	  lwz       r4, -0x7C7C(r13)
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xEC
-	  lis       r0, 0x8000
-	  srw       r0, r0, r4
-	  andc      r0, r5, r0
-	  mulli     r4, r4, 0xC
-	  stw       r0, -0x7008(r13)
-	  lis       r3, 0x804F
-	  addi      r0, r3, 0x7140
-	  add       r3, r0, r4
-	  li        r4, 0
-	  li        r5, 0xC
-	  bl        -0xEEDDC
-	  lis       r4, 0x800F
-	  lwz       r3, -0x7C7C(r13)
-	  addi      r4, r4, 0x394C
-	  bl        0x2610
+	enabled = OSDisableInterrupts();
 
-	.loc_0xEC:
-	  mr        r3, r31
-	  bl        -0x5248
-	  lwz       r0, 0x1C(r1)
-	  li        r3, 0x1
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	mask |= PendingBits;
+	PendingBits = 0;
+	mask &= ~(WaitingBits | CheckingBits);
+	ResettingBits |= mask;
+	diableBits = ResettingBits & EnabledBits;
+	EnabledBits &= ~mask;
+	BarrelBits &= ~mask;
+
+	if (Spec == PAD_SPEC_4) {
+		RecalibrateBits |= mask;
+	}
+
+	SIDisablePolling(diableBits);
+
+	if (ResettingChan == 32) {
+		DoReset();
+	}
+	OSRestoreInterrupts(enabled);
+	return TRUE;
 }
 
 /*
@@ -785,84 +332,31 @@ void PADReset(void)
  * Address:	800F3EC8
  * Size:	000114
  */
-void PADRecalibrate(void)
+BOOL PADRecalibrate(u32 mask)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  bl        -0x52A8
-	  lwz       r5, -0x6FF8(r13)
-	  li        r8, 0
-	  lwz       r6, -0x7000(r13)
-	  lis       r4, 0x8000
-	  lwz       r0, -0x6FFC(r13)
-	  or        r30, r30, r5
-	  lwz       r5, -0x7008(r13)
-	  or        r6, r6, r0
-	  lbz       r0, 0x30E3(r4)
-	  andc      r30, r30, r6
-	  lwz       r6, -0x700C(r13)
-	  or        r5, r5, r30
-	  lwz       r4, -0x6FF4(r13)
-	  stw       r5, -0x7008(r13)
-	  not       r9, r30
-	  and       r5, r6, r9
-	  and       r4, r4, r9
-	  lwz       r7, -0x7008(r13)
-	  mr        r31, r3
-	  stw       r8, -0x6FF8(r13)
-	  rlwinm.   r0,r0,0,25,25
-	  stw       r5, -0x700C(r13)
-	  and       r3, r7, r6
-	  stw       r4, -0x6FF4(r13)
-	  bne-      .loc_0x8C
-	  lwz       r0, -0x7004(r13)
-	  or        r0, r0, r30
-	  stw       r0, -0x7004(r13)
+	BOOL enabled;
+	u32 disableBits;
 
-	.loc_0x8C:
-	  bl        0x1D04
-	  lwz       r0, -0x7C7C(r13)
-	  cmpwi     r0, 0x20
-	  bne-      .loc_0xF0
-	  lwz       r5, -0x7008(r13)
-	  cntlzw    r0, r5
-	  stw       r0, -0x7C7C(r13)
-	  lwz       r4, -0x7C7C(r13)
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xF0
-	  lis       r0, 0x8000
-	  srw       r0, r0, r4
-	  andc      r0, r5, r0
-	  mulli     r4, r4, 0xC
-	  stw       r0, -0x7008(r13)
-	  lis       r3, 0x804F
-	  addi      r0, r3, 0x7140
-	  add       r3, r0, r4
-	  li        r4, 0
-	  li        r5, 0xC
-	  bl        -0xEEEF0
-	  lis       r4, 0x800F
-	  lwz       r3, -0x7C7C(r13)
-	  addi      r4, r4, 0x394C
-	  bl        0x24FC
+	enabled = OSDisableInterrupts();
 
-	.loc_0xF0:
-	  mr        r3, r31
-	  bl        -0x535C
-	  lwz       r0, 0x1C(r1)
-	  li        r3, 0x1
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	mask |= PendingBits;
+	PendingBits = 0;
+	mask &= ~(WaitingBits | CheckingBits);
+	ResettingBits |= mask;
+	disableBits = ResettingBits & EnabledBits;
+	EnabledBits &= ~mask;
+	BarrelBits &= ~mask;
+
+	if (!(GameChoice & 0x40)) {
+		RecalibrateBits |= mask;
+	}
+
+	SIDisablePolling(disableBits);
+	if (ResettingChan == 32) {
+		DoReset();
+	}
+	OSRestoreInterrupts(enabled);
+	return TRUE;
 }
 
 /*
@@ -870,103 +364,36 @@ void PADRecalibrate(void)
  * Address:	800F3FDC
  * Size:	000150
  */
-void PADInit(void)
+BOOL PADInit(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x38(r1)
-	  stmw      r25, 0x1C(r1)
-	  addi      r31, r3, 0x7130
-	  lwz       r0, -0x7010(r13)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x2C
-	  li        r3, 0x1
-	  b         .loc_0x13C
+	s32 chan;
+	if (Initialized) {
+		return TRUE;
+	}
 
-	.loc_0x2C:
-	  lwz       r3, -0x7C80(r13)
-	  bl        -0x8584
-	  lwz       r3, -0x6FE8(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x44
-	  bl        0x4C8
+	OSRegisterVersion(__PADVersion);
 
-	.loc_0x44:
-	  lwz       r0, -0x6FD8(r13)
-	  li        r3, 0x1
-	  stw       r3, -0x7010(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xE0
-	  bl        -0x14A4
-	  addi      r25, r4, 0
-	  addi      r26, r3, 0
-	  li        r5, 0x10
-	  bl        -0x31F10
-	  lis       r5, 0x1
-	  subi      r27, r5, 0x1
-	  li        r28, 0
-	  and       r6, r4, r27
-	  and       r4, r25, r27
-	  and       r5, r3, r28
-	  and       r0, r26, r28
-	  addc      r29, r4, r6
-	  addi      r3, r26, 0
-	  addi      r4, r25, 0
-	  adde      r30, r0, r5
-	  li        r5, 0x20
-	  bl        -0x31F44
-	  and       r4, r4, r27
-	  and       r0, r3, r28
-	  addc      r29, r4, r29
-	  addi      r3, r26, 0
-	  addi      r4, r25, 0
-	  adde      r30, r0, r30
-	  li        r5, 0x30
-	  bl        -0x31F64
-	  and       r0, r4, r27
-	  addc      r5, r0, r29
-	  lis       r0, 0xF000
-	  li        r4, 0x3FFF
-	  stw       r0, -0x7004(r13)
-	  and       r0, r5, r4
-	  lis       r3, 0x8000
-	  sth       r0, 0x30E0(r3)
+	if (__PADSpec) {
+		PADSetSpec(__PADSpec);
+	}
 
-	.loc_0xE0:
-	  lis       r3, 0x8000
-	  lhz       r0, 0x30E0(r3)
-	  rlwinm    r0,r0,8,10,23
-	  oris      r0, r0, 0x4D00
-	  stw       r0, 0x40(r31)
-	  lhz       r0, 0x30E0(r3)
-	  rlwinm    r0,r0,8,10,23
-	  oris      r0, r0, 0x4D40
-	  stw       r0, 0x44(r31)
-	  lhz       r0, 0x30E0(r3)
-	  rlwinm    r0,r0,8,10,23
-	  oris      r0, r0, 0x4D80
-	  stw       r0, 0x48(r31)
-	  lhz       r0, 0x30E0(r3)
-	  rlwinm    r0,r0,8,10,23
-	  oris      r0, r0, 0x4DC0
-	  stw       r0, 0x4C(r31)
-	  bl        0x2740
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x6158
-	  bl        -0x3E68
-	  lis       r3, 0xF000
-	  bl        -0x35C
+	Initialized = TRUE;
 
-	.loc_0x13C:
-	  lmw       r25, 0x1C(r1)
-	  lwz       r0, 0x3C(r1)
-	  addi      r1, r1, 0x38
-	  mtlr      r0
-	  blr
-	*/
+	if (__PADFixBits != 0) {
+		OSTime time = OSGetTime();
+		__OSWirelessPadFixMode
+		    = (u16)((((time)&0xffff) + ((time >> 16) & 0xffff) + ((time >> 32) & 0xffff) + ((time >> 48) & 0xffff)) & 0x3fffu);
+		RecalibrateBits = PAD_CHAN0_BIT | PAD_CHAN1_BIT | PAD_CHAN2_BIT | PAD_CHAN3_BIT;
+	}
+
+	for (chan = 0; chan < SI_MAX_CHAN; ++chan) {
+		CmdProbeDevice[chan] = (0x4D << 24) | (chan << 22) | ((__OSWirelessPadFixMode & 0x3fffu) << 8);
+	}
+
+	SIRefreshSamplingRate();
+	OSRegisterResetFunction(&ResetFunctionInfo);
+
+	return PADReset(PAD_CHAN0_BIT | PAD_CHAN1_BIT | PAD_CHAN2_BIT | PAD_CHAN3_BIT);
 }
 
 /*
@@ -974,239 +401,108 @@ void PADInit(void)
  * Address:	800F412C
  * Size:	000300
  */
-void PADRead(void)
+u32 PADRead(PADStatus* status)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x40(r1)
-	  stmw      r22, 0x18(r1)
-	  mr        r23, r3
-	  bl        -0x5508
-	  li        r25, 0
-	  mulli     r5, r25, 0xC
-	  lis       r4, 0x804F
-	  addi      r0, r4, 0x7140
-	  add       r28, r0, r5
-	  lis       r4, 0x800F
-	  lis       r5, 0x800F
-	  addi      r26, r3, 0
-	  addi      r22, r4, 0x37A8
-	  addi      r31, r5, 0x3C78
-	  li        r24, 0
-	  lis       r30, 0x8000
+	BOOL enabled;
+	s32 chan;
+	u32 data[2];
+	u32 chanBit;
+	u32 sr;
+	int chanShift;
+	u32 motor;
 
-	.loc_0x48:
-	  lwz       r0, -0x6FF8(r13)
-	  srw       r27, r30, r25
-	  and.      r0, r0, r27
-	  beq-      .loc_0x7C
-	  li        r3, 0
-	  bl        -0x3D0
-	  li        r0, -0x2
-	  stb       r0, 0xA(r23)
-	  addi      r3, r23, 0
-	  li        r4, 0
-	  li        r5, 0xA
-	  bl        -0xEF0EC
-	  b         .loc_0x2CC
+	enabled = OSDisableInterrupts();
 
-	.loc_0x7C:
-	  lwz       r0, -0x7008(r13)
-	  and.      r0, r0, r27
-	  bne-      .loc_0x94
-	  lwz       r0, -0x7C7C(r13)
-	  cmpw      r0, r25
-	  bne-      .loc_0xB0
+	motor = 0;
+	for (chan = 0; chan < SI_MAX_CHAN; chan++, status++) {
+		chanBit   = PAD_CHAN0_BIT >> chan;
+		chanShift = 8 * (SI_MAX_CHAN - 1 - chan);
 
-	.loc_0x94:
-	  li        r0, -0x2
-	  stb       r0, 0xA(r23)
-	  addi      r3, r23, 0
-	  li        r4, 0
-	  li        r5, 0xA
-	  bl        -0xEF120
-	  b         .loc_0x2CC
+		if (PendingBits & chanBit) {
+			PADReset(0);
+			status->err = PAD_ERR_NOT_READY;
+			memset(status, 0, offsetof(PADStatus, err));
+			continue;
+		}
 
-	.loc_0xB0:
-	  lwz       r0, -0x700C(r13)
-	  and.      r0, r0, r27
-	  bne-      .loc_0xD8
-	  li        r0, -0x1
-	  stb       r0, 0xA(r23)
-	  addi      r3, r23, 0
-	  li        r4, 0
-	  li        r5, 0xA
-	  bl        -0xEF148
-	  b         .loc_0x2CC
+		if ((ResettingBits & chanBit) || ResettingChan == chan) {
+			status->err = PAD_ERR_NOT_READY;
+			memset(status, 0, offsetof(PADStatus, err));
+			continue;
+		}
 
-	.loc_0xD8:
-	  mr        r3, r25
-	  bl        0xD14
-	  cmpwi     r3, 0
-	  beq-      .loc_0x104
-	  li        r0, -0x3
-	  stb       r0, 0xA(r23)
-	  addi      r3, r23, 0
-	  li        r4, 0
-	  li        r5, 0xA
-	  bl        -0xEF174
-	  b         .loc_0x2CC
+		if (!(EnabledBits & chanBit)) {
+			status->err = (s8)PAD_ERR_NO_CONTROLLER;
+			memset(status, 0, offsetof(PADStatus, err));
+			continue;
+		}
 
-	.loc_0x104:
-	  mr        r3, r25
-	  bl        0x187C
-	  rlwinm.   r0,r3,0,28,28
-	  beq-      .loc_0x1E8
-	  addi      r3, r25, 0
-	  addi      r4, r1, 0x10
-	  bl        0x1B50
-	  lwz       r0, -0x7000(r13)
-	  and.      r0, r0, r27
-	  beq-      .loc_0x168
-	  li        r0, 0
-	  stb       r0, 0xA(r23)
-	  addi      r3, r23, 0
-	  li        r4, 0
-	  li        r5, 0xA
-	  bl        -0xEF1B8
-	  lwz       r3, -0x6FFC(r13)
-	  and.      r0, r3, r27
-	  bne-      .loc_0x2CC
-	  or        r0, r3, r27
-	  stw       r0, -0x6FFC(r13)
-	  addi      r3, r25, 0
-	  addi      r4, r31, 0
-	  bl        0x2224
-	  b         .loc_0x2CC
+		if (SIIsChanBusy(chan)) {
+			status->err = PAD_ERR_TRANSFER;
+			memset(status, 0, offsetof(PADStatus, err));
+			continue;
+		}
 
-	.loc_0x168:
-	  bl        -0x565C
-	  addi      r29, r3, 0
-	  addi      r3, r27, 0
-	  bl        0x19B8
-	  lwz       r0, -0x700C(r13)
-	  not       r9, r27
-	  lwz       r6, -0x7000(r13)
-	  mr        r3, r25
-	  lwz       r5, -0x6FFC(r13)
-	  lwz       r4, -0x6FF8(r13)
-	  and       r8, r0, r9
-	  lwz       r0, -0x6FF4(r13)
-	  and       r7, r6, r9
-	  and       r6, r5, r9
-	  and       r5, r4, r9
-	  stw       r8, -0x700C(r13)
-	  and       r0, r0, r9
-	  stw       r7, -0x7000(r13)
-	  li        r4, 0
-	  stw       r6, -0x6FFC(r13)
-	  stw       r5, -0x6FF8(r13)
-	  stw       r0, -0x6FF4(r13)
-	  bl        -0x2CEC
-	  mr        r3, r29
-	  bl        -0x5694
-	  li        r0, -0x1
-	  stb       r0, 0xA(r23)
-	  addi      r3, r23, 0
-	  li        r4, 0
-	  li        r5, 0xA
-	  bl        -0xEF258
-	  b         .loc_0x2CC
+		sr = SIGetStatus(chan);
+		if (sr & SI_ERROR_NO_RESPONSE) {
+			SIGetResponse(chan, data);
 
-	.loc_0x1E8:
-	  mr        r3, r25
-	  bl        0x1FD4
-	  rlwinm.   r0,r3,0,2,2
-	  bne-      .loc_0x1FC
-	  or        r24, r24, r27
+			if (WaitingBits & chanBit) {
+				status->err = (s8)PAD_ERR_NONE;
+				memset(status, 0, offsetof(PADStatus, err));
 
-	.loc_0x1FC:
-	  addi      r3, r25, 0
-	  addi      r4, r1, 0x10
-	  bl        0x1A68
-	  cmpwi     r3, 0
-	  bne-      .loc_0x22C
-	  li        r0, -0x3
-	  stb       r0, 0xA(r23)
-	  addi      r3, r23, 0
-	  li        r4, 0
-	  li        r5, 0xA
-	  bl        -0xEF29C
-	  b         .loc_0x2CC
+				if (!(CheckingBits & chanBit)) {
+					CheckingBits |= chanBit;
+					SIGetTypeAsync(chan, PADReceiveCheckCallback);
+				}
+				continue;
+			}
 
-	.loc_0x22C:
-	  lwz       r0, 0x10(r1)
-	  rlwinm.   r0,r0,0,0,0
-	  beq-      .loc_0x254
-	  li        r0, -0x3
-	  stb       r0, 0xA(r23)
-	  addi      r3, r23, 0
-	  li        r4, 0
-	  li        r5, 0xA
-	  bl        -0xEF2C4
-	  b         .loc_0x2CC
+			PADDisable(chan);
 
-	.loc_0x254:
-	  lwz       r12, -0x7C6C(r13)
-	  addi      r3, r25, 0
-	  addi      r4, r23, 0
-	  mtlr      r12
-	  addi      r5, r1, 0x10
-	  blrl
-	  lhz       r0, 0x0(r23)
-	  rlwinm.   r0,r0,0,18,18
-	  beq-      .loc_0x2B8
-	  li        r0, -0x3
-	  stb       r0, 0xA(r23)
-	  addi      r3, r23, 0
-	  li        r4, 0
-	  li        r5, 0xA
-	  bl        -0xEF304
-	  addi      r3, r25, 0
-	  addi      r6, r28, 0
-	  addi      r8, r22, 0
-	  subi      r4, r13, 0x7C68
-	  li        r5, 0x1
-	  li        r7, 0xA
-	  li        r10, 0
-	  li        r9, 0
-	  bl        0x1B0C
-	  b         .loc_0x2CC
+			status->err = (s8)PAD_ERR_NO_CONTROLLER;
+			memset(status, 0, offsetof(PADStatus, err));
+			continue;
+		}
 
-	.loc_0x2B8:
-	  li        r0, 0
-	  stb       r0, 0xA(r23)
-	  lhz       r0, 0x0(r23)
-	  rlwinm    r0,r0,0,25,23
-	  sth       r0, 0x0(r23)
+		if (!(SIGetType(chan) & SI_GC_NOMOTOR)) {
+			motor |= chanBit;
+		}
 
-	.loc_0x2CC:
-	  addi      r25, r25, 0x1
-	  cmpwi     r25, 0x4
-	  addi      r28, r28, 0xC
-	  addi      r23, r23, 0xC
-	  blt+      .loc_0x48
-	  mr        r3, r26
-	  bl        -0x57B0
-	  mr        r3, r24
-	  lmw       r22, 0x18(r1)
-	  lwz       r0, 0x44(r1)
-	  addi      r1, r1, 0x40
-	  mtlr      r0
-	  blr
-	*/
-}
+		if (!SIGetResponse(chan, data)) {
+			status->err = PAD_ERR_TRANSFER;
+			memset(status, 0, offsetof(PADStatus, err));
+			continue;
+		}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void PADSetSamplingRate(void)
-{
-	// UNUSED FUNCTION
+		if (data[0] & 0x80000000) {
+			status->err = PAD_ERR_TRANSFER;
+			memset(status, 0, offsetof(PADStatus, err));
+			continue;
+		}
+
+		MakeStatus(chan, status, data);
+
+		// Check and clear PAD_ORIGIN bit
+		if (status->button & 0x2000) {
+			status->err = PAD_ERR_TRANSFER;
+			memset(status, 0, offsetof(PADStatus, err));
+
+			// Get origin. It is okay if the following transfer fails
+			// since the PAD_ORIGIN bit remains until the read origin
+			// command complete.
+			SITransfer(chan, &CmdReadOrigin, 1, &Origin[chan], 10, PADOriginUpdateCallback, 0);
+			continue;
+		}
+
+		status->err = PAD_ERR_NONE;
+
+		// Clear PAD_INTERFERE bit
+		status->button &= ~0x0080;
+	}
+
+	OSRestoreInterrupts(enabled);
+	return motor;
 }
 
 /*
@@ -1214,9 +510,32 @@ void PADSetSamplingRate(void)
  * Address:	........
  * Size:	0000CC
  */
-void PADControlAllMotors(void)
+void PADControlAllMotors(u32* commandArray)
 {
-	// UNUSED FUNCTION
+	BOOL enabled;
+	int chan;
+	u32 command;
+	BOOL commit;
+	u32 chanBit;
+
+	enabled = OSDisableInterrupts();
+	commit  = FALSE;
+	for (chan = 0; chan < SI_MAX_CHAN; chan++, commandArray++) {
+		chanBit = PAD_CHAN0_BIT >> chan;
+		if ((EnabledBits & chanBit) && !(SIGetType(chan) & SI_GC_NOMOTOR)) {
+			command = *commandArray;
+			if (Spec < PAD_SPEC_2 && command == PAD_MOTOR_STOP_HARD) {
+				command = PAD_MOTOR_STOP;
+			}
+
+			SISetCommand(chan, (0x40 << 16) | AnalogMode | (command & (0x00000001 | 0x00000002)));
+			commit = TRUE;
+		}
+	}
+	if (commit) {
+		SITransferCommands();
+	}
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -1224,63 +543,25 @@ void PADControlAllMotors(void)
  * Address:	800F442C
  * Size:	0000B8
  */
-void PADControlMotor(void)
+void PADControlMotor(int chan, u32 command)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  stw       r30, 0x20(r1)
-	  addi      r30, r4, 0
-	  stw       r29, 0x1C(r1)
-	  addi      r29, r3, 0
-	  bl        -0x5814
-	  lis       r0, 0x8000
-	  lwz       r4, -0x700C(r13)
-	  srw       r0, r0, r29
-	  and.      r0, r4, r0
-	  addi      r31, r3, 0
-	  beq-      .loc_0x94
-	  mr        r3, r29
-	  bl        0x1E80
-	  rlwinm.   r0,r3,0,2,2
-	  bne-      .loc_0x94
-	  lwz       r0, -0x7C70(r13)
-	  cmplwi    r0, 0x2
-	  bge-      .loc_0x64
-	  cmplwi    r30, 0x2
-	  bne-      .loc_0x64
-	  li        r30, 0
+	BOOL enabled;
+	u32 chanBit;
 
-	.loc_0x64:
-	  lis       r3, 0x8000
-	  lbz       r0, 0x30E3(r3)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x78
-	  li        r30, 0
+	enabled = OSDisableInterrupts();
+	chanBit = PAD_CHAN0_BIT >> chan;
+	if ((EnabledBits & chanBit) && !(SIGetType(chan) & SI_GC_NOMOTOR)) {
+		if (Spec < PAD_SPEC_2 && command == PAD_MOTOR_STOP_HARD) {
+			command = PAD_MOTOR_STOP;
+		}
+		if (GameChoice & 0x20) {
+			command = PAD_MOTOR_STOP;
+		}
 
-	.loc_0x78:
-	  lwz       r4, -0x7C74(r13)
-	  rlwinm    r0,r30,0,30,31
-	  addi      r3, r29, 0
-	  oris      r4, r4, 0x40
-	  or        r4, r4, r0
-	  bl        0x1674
-	  bl        0x1684
-
-	.loc_0x94:
-	  mr        r3, r31
-	  bl        -0x5864
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+		SISetCommand(chan, (0x40 << 16) | AnalogMode | (command & (0x00000001 | 0x00000002)));
+		SITransferCommands();
+	}
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -1288,45 +569,24 @@ void PADControlMotor(void)
  * Address:	800F44E4
  * Size:	000060
  */
-void PADSetSpec(void)
+void PADSetSpec(u32 spec)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  cmpwi     r3, 0x1
-	  stw       r0, -0x6FE8(r13)
-	  beq-      .loc_0x3C
-	  bge-      .loc_0x20
-	  cmpwi     r3, 0
-	  bge-      .loc_0x2C
-	  b         .loc_0x58
-
-	.loc_0x20:
-	  cmpwi     r3, 0x6
-	  bge-      .loc_0x58
-	  b         .loc_0x4C
-
-	.loc_0x2C:
-	  lis       r4, 0x800F
-	  addi      r0, r4, 0x4544
-	  stw       r0, -0x7C6C(r13)
-	  b         .loc_0x58
-
-	.loc_0x3C:
-	  lis       r4, 0x800F
-	  addi      r0, r4, 0x46B8
-	  stw       r0, -0x7C6C(r13)
-	  b         .loc_0x58
-
-	.loc_0x4C:
-	  lis       r4, 0x800F
-	  addi      r0, r4, 0x482C
-	  stw       r0, -0x7C6C(r13)
-
-	.loc_0x58:
-	  stw       r3, -0x7C70(r13)
-	  blr
-	*/
+	__PADSpec = 0;
+	switch (spec) {
+	case PAD_SPEC_0:
+		MakeStatus = SPEC0_MakeStatus;
+		break;
+	case PAD_SPEC_1:
+		MakeStatus = SPEC1_MakeStatus;
+		break;
+	case PAD_SPEC_2:
+	case PAD_SPEC_3:
+	case PAD_SPEC_4:
+	case PAD_SPEC_5:
+		MakeStatus = SPEC2_MakeStatus;
+		break;
+	}
+	Spec = spec;
 }
 
 /*
@@ -1334,136 +594,39 @@ void PADSetSpec(void)
  * Address:	........
  * Size:	000008
  */
-void PADGetSpec(void)
-{
-	// UNUSED FUNCTION
-}
+u32 PADGetSpec(void) { return Spec; }
 
 /*
  * --INFO--
  * Address:	800F4544
  * Size:	000174
  */
-void SPEC0_MakeStatus(void)
+static void SPEC0_MakeStatus(int chan, PADStatus* status, u32 data[2])
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  sth       r3, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,28,28
-	  beq-      .loc_0x18
-	  li        r3, 0x100
-
-	.loc_0x18:
-	  lhz       r0, 0x0(r4)
-	  or        r0, r0, r3
-	  sth       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,26,26
-	  beq-      .loc_0x38
-	  li        r3, 0x200
-	  b         .loc_0x3C
-
-	.loc_0x38:
-	  li        r3, 0
-
-	.loc_0x3C:
-	  lhz       r0, 0x0(r4)
-	  or        r0, r0, r3
-	  sth       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,23,23
-	  beq-      .loc_0x5C
-	  li        r3, 0x400
-	  b         .loc_0x60
-
-	.loc_0x5C:
-	  li        r3, 0
-
-	.loc_0x60:
-	  lhz       r0, 0x0(r4)
-	  or        r0, r0, r3
-	  sth       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,31,31
-	  beq-      .loc_0x80
-	  li        r3, 0x800
-	  b         .loc_0x84
-
-	.loc_0x80:
-	  li        r3, 0
-
-	.loc_0x84:
-	  lhz       r0, 0x0(r4)
-	  or        r0, r0, r3
-	  sth       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,27,27
-	  beq-      .loc_0xA4
-	  li        r6, 0x1000
-	  b         .loc_0xA8
-
-	.loc_0xA4:
-	  li        r6, 0
-
-	.loc_0xA8:
-	  lhz       r3, 0x0(r4)
-	  li        r0, 0
-	  or        r3, r3, r6
-	  sth       r3, 0x0(r4)
-	  lwz       r3, 0x4(r5)
-	  rlwinm    r3,r3,16,16,31
-	  extsb     r3, r3
-	  stb       r3, 0x2(r4)
-	  lwz       r3, 0x4(r5)
-	  rlwinm    r3,r3,8,24,31
-	  extsb     r3, r3
-	  stb       r3, 0x3(r4)
-	  lwz       r3, 0x4(r5)
-	  extsb     r3, r3
-	  stb       r3, 0x4(r4)
-	  lwz       r3, 0x4(r5)
-	  rlwinm    r3,r3,24,8,31
-	  extsb     r3, r3
-	  stb       r3, 0x5(r4)
-	  lwz       r3, 0x0(r5)
-	  rlwinm    r3,r3,24,24,31
-	  stb       r3, 0x6(r4)
-	  lwz       r3, 0x0(r5)
-	  stb       r3, 0x7(r4)
-	  stb       r0, 0x8(r4)
-	  stb       r0, 0x9(r4)
-	  lbz       r0, 0x6(r4)
-	  cmplwi    r0, 0xAA
-	  blt-      .loc_0x128
-	  lhz       r0, 0x0(r4)
-	  ori       r0, r0, 0x40
-	  sth       r0, 0x0(r4)
-
-	.loc_0x128:
-	  lbz       r0, 0x7(r4)
-	  cmplwi    r0, 0xAA
-	  blt-      .loc_0x140
-	  lhz       r0, 0x0(r4)
-	  ori       r0, r0, 0x20
-	  sth       r0, 0x0(r4)
-
-	.loc_0x140:
-	  lbz       r3, 0x2(r4)
-	  subi      r0, r3, 0x80
-	  stb       r0, 0x2(r4)
-	  lbz       r3, 0x3(r4)
-	  subi      r0, r3, 0x80
-	  stb       r0, 0x3(r4)
-	  lbz       r3, 0x4(r4)
-	  subi      r0, r3, 0x80
-	  stb       r0, 0x4(r4)
-	  lbz       r3, 0x5(r4)
-	  subi      r0, r3, 0x80
-	  stb       r0, 0x5(r4)
-	  blr
-	*/
+	status->button = 0;
+	status->button |= ((data[0] >> 16) & 0x0008) ? PAD_BUTTON_A : 0;
+	status->button |= ((data[0] >> 16) & 0x0020) ? PAD_BUTTON_B : 0;
+	status->button |= ((data[0] >> 16) & 0x0100) ? PAD_BUTTON_X : 0;
+	status->button |= ((data[0] >> 16) & 0x0001) ? PAD_BUTTON_Y : 0;
+	status->button |= ((data[0] >> 16) & 0x0010) ? PAD_BUTTON_START : 0;
+	status->stickX       = (s8)(data[1] >> 16);
+	status->stickY       = (s8)(data[1] >> 24);
+	status->substickX    = (s8)(data[1]);
+	status->substickY    = (s8)(data[1] >> 8);
+	status->triggerLeft  = (u8)(data[0] >> 8);
+	status->triggerRight = (u8)data[0];
+	status->analogA      = 0;
+	status->analogB      = 0;
+	if (170 <= status->triggerLeft) {
+		status->button |= PAD_TRIGGER_L;
+	}
+	if (170 <= status->triggerRight) {
+		status->button |= PAD_TRIGGER_R;
+	}
+	status->stickX -= 128;
+	status->stickY -= 128;
+	status->substickX -= 128;
+	status->substickY -= 128;
 }
 
 /*
@@ -1471,126 +634,37 @@ void SPEC0_MakeStatus(void)
  * Address:	800F46B8
  * Size:	000174
  */
-void SPEC1_MakeStatus(void)
+static void SPEC1_MakeStatus(int chan, PADStatus* status, u32 data[2])
 {
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  sth       r3, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,24,24
-	  beq-      .loc_0x18
-	  li        r3, 0x100
+	status->button = 0;
+	status->button |= ((data[0] >> 16) & 0x0080) ? PAD_BUTTON_A : 0;
+	status->button |= ((data[0] >> 16) & 0x0100) ? PAD_BUTTON_B : 0;
+	status->button |= ((data[0] >> 16) & 0x0020) ? PAD_BUTTON_X : 0;
+	status->button |= ((data[0] >> 16) & 0x0010) ? PAD_BUTTON_Y : 0;
+	status->button |= ((data[0] >> 16) & 0x0200) ? PAD_BUTTON_START : 0;
 
-	.loc_0x18:
-	  lhz       r0, 0x0(r4)
-	  or        r0, r0, r3
-	  sth       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,23,23
-	  beq-      .loc_0x38
-	  li        r3, 0x200
-	  b         .loc_0x3C
+	status->stickX    = (s8)(data[1] >> 16);
+	status->stickY    = (s8)(data[1] >> 24);
+	status->substickX = (s8)(data[1]);
+	status->substickY = (s8)(data[1] >> 8);
 
-	.loc_0x38:
-	  li        r3, 0
+	status->triggerLeft  = (u8)(data[0] >> 8);
+	status->triggerRight = (u8)data[0];
 
-	.loc_0x3C:
-	  lhz       r0, 0x0(r4)
-	  or        r0, r0, r3
-	  sth       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,26,26
-	  beq-      .loc_0x5C
-	  li        r3, 0x400
-	  b         .loc_0x60
+	status->analogA = 0;
+	status->analogB = 0;
 
-	.loc_0x5C:
-	  li        r3, 0
+	if (170 <= status->triggerLeft) {
+		status->button |= PAD_TRIGGER_L;
+	}
+	if (170 <= status->triggerRight) {
+		status->button |= PAD_TRIGGER_R;
+	}
 
-	.loc_0x60:
-	  lhz       r0, 0x0(r4)
-	  or        r0, r0, r3
-	  sth       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,27,27
-	  beq-      .loc_0x80
-	  li        r3, 0x800
-	  b         .loc_0x84
-
-	.loc_0x80:
-	  li        r3, 0
-
-	.loc_0x84:
-	  lhz       r0, 0x0(r4)
-	  or        r0, r0, r3
-	  sth       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm.   r0,r0,16,22,22
-	  beq-      .loc_0xA4
-	  li        r6, 0x1000
-	  b         .loc_0xA8
-
-	.loc_0xA4:
-	  li        r6, 0
-
-	.loc_0xA8:
-	  lhz       r3, 0x0(r4)
-	  li        r0, 0
-	  or        r3, r3, r6
-	  sth       r3, 0x0(r4)
-	  lwz       r3, 0x4(r5)
-	  rlwinm    r3,r3,16,16,31
-	  extsb     r3, r3
-	  stb       r3, 0x2(r4)
-	  lwz       r3, 0x4(r5)
-	  rlwinm    r3,r3,8,24,31
-	  extsb     r3, r3
-	  stb       r3, 0x3(r4)
-	  lwz       r3, 0x4(r5)
-	  extsb     r3, r3
-	  stb       r3, 0x4(r4)
-	  lwz       r3, 0x4(r5)
-	  rlwinm    r3,r3,24,8,31
-	  extsb     r3, r3
-	  stb       r3, 0x5(r4)
-	  lwz       r3, 0x0(r5)
-	  rlwinm    r3,r3,24,24,31
-	  stb       r3, 0x6(r4)
-	  lwz       r3, 0x0(r5)
-	  stb       r3, 0x7(r4)
-	  stb       r0, 0x8(r4)
-	  stb       r0, 0x9(r4)
-	  lbz       r0, 0x6(r4)
-	  cmplwi    r0, 0xAA
-	  blt-      .loc_0x128
-	  lhz       r0, 0x0(r4)
-	  ori       r0, r0, 0x40
-	  sth       r0, 0x0(r4)
-
-	.loc_0x128:
-	  lbz       r0, 0x7(r4)
-	  cmplwi    r0, 0xAA
-	  blt-      .loc_0x140
-	  lhz       r0, 0x0(r4)
-	  ori       r0, r0, 0x20
-	  sth       r0, 0x0(r4)
-
-	.loc_0x140:
-	  lbz       r3, 0x2(r4)
-	  subi      r0, r3, 0x80
-	  stb       r0, 0x2(r4)
-	  lbz       r3, 0x3(r4)
-	  subi      r0, r3, 0x80
-	  stb       r0, 0x3(r4)
-	  lbz       r3, 0x4(r4)
-	  subi      r0, r3, 0x80
-	  stb       r0, 0x4(r4)
-	  lbz       r3, 0x5(r4)
-	  subi      r0, r3, 0x80
-	  stb       r0, 0x5(r4)
-	  blr
-	*/
+	status->stickX -= 128;
+	status->stickY -= 128;
+	status->substickX -= 128;
+	status->substickY -= 128;
 }
 
 /*
@@ -1598,9 +672,20 @@ void SPEC1_MakeStatus(void)
  * Address:	........
  * Size:	000054
  */
-void ClampS8(void)
+static s8 ClampS8(s8 var, s8 org)
 {
-	// UNUSED FUNCTION
+	if (0 < org) {
+		s8 min = (s8)(-128 + org);
+		if (var < min) {
+			var = min;
+		}
+	} else if (org < 0) {
+		s8 max = (s8)(127 + org);
+		if (max < var) {
+			var = max;
+		}
+	}
+	return var -= org;
 }
 
 /*
@@ -1608,9 +693,12 @@ void ClampS8(void)
  * Address:	........
  * Size:	00001C
  */
-void ClampU8(void)
+static u8 ClampU8(u8 var, u8 org)
 {
-	// UNUSED FUNCTION
+	if (var < org) {
+		var = org;
+	}
+	return var -= org;
 }
 
 /*
@@ -1618,8 +706,87 @@ void ClampU8(void)
  * Address:	800F482C
  * Size:	000470
  */
-void SPEC2_MakeStatus(void)
+static void SPEC2_MakeStatus(int chan, PADStatus* status, u32 data[2])
 {
+	PADStatus* origin;
+	u32 type;
+
+	status->button = (u16)((data[0] >> 16) & PAD_ALL);
+	status->stickX = (s8)(data[0] >> 8);
+	status->stickY = (s8)(data[0]);
+
+	switch (AnalogMode & 0x00000700) {
+	case 0x00000000:
+	case 0x00000500:
+	case 0x00000600:
+	case 0x00000700:
+		status->substickX    = (s8)(data[1] >> 24);
+		status->substickY    = (s8)(data[1] >> 16);
+		status->triggerLeft  = (u8)(((data[1] >> 12) & 0x0f) << 4);
+		status->triggerRight = (u8)(((data[1] >> 8) & 0x0f) << 4);
+		status->analogA      = (u8)(((data[1] >> 4) & 0x0f) << 4);
+		status->analogB      = (u8)(((data[1] >> 0) & 0x0f) << 4);
+		break;
+	case 0x00000100:
+		status->substickX    = (s8)(((data[1] >> 28) & 0x0f) << 4);
+		status->substickY    = (s8)(((data[1] >> 24) & 0x0f) << 4);
+		status->triggerLeft  = (u8)(data[1] >> 16);
+		status->triggerRight = (u8)(data[1] >> 8);
+		status->analogA      = (u8)(((data[1] >> 4) & 0x0f) << 4);
+		status->analogB      = (u8)(((data[1] >> 0) & 0x0f) << 4);
+		break;
+	case 0x00000200:
+		status->substickX    = (s8)(((data[1] >> 28) & 0x0f) << 4);
+		status->substickY    = (s8)(((data[1] >> 24) & 0x0f) << 4);
+		status->triggerLeft  = (u8)(((data[1] >> 20) & 0x0f) << 4);
+		status->triggerRight = (u8)(((data[1] >> 16) & 0x0f) << 4);
+		status->analogA      = (u8)(data[1] >> 8);
+		status->analogB      = (u8)(data[1] >> 0);
+		break;
+	case 0x00000300:
+		status->substickX    = (s8)(data[1] >> 24);
+		status->substickY    = (s8)(data[1] >> 16);
+		status->triggerLeft  = (u8)(data[1] >> 8);
+		status->triggerRight = (u8)(data[1] >> 0);
+		status->analogA      = 0;
+		status->analogB      = 0;
+		break;
+	case 0x00000400:
+		status->substickX    = (s8)(data[1] >> 24);
+		status->substickY    = (s8)(data[1] >> 16);
+		status->triggerLeft  = 0;
+		status->triggerRight = 0;
+		status->analogA      = (u8)(data[1] >> 8);
+		status->analogB      = (u8)(data[1] >> 0);
+		break;
+	}
+
+	status->stickX -= 128;
+	status->stickY -= 128;
+	status->substickX -= 128;
+	status->substickY -= 128;
+
+	type = Type[chan];
+
+	// needs more checks here
+	if (type) {
+		BarrelBits        = 0x80000000; // this is wrong
+		status->stickX    = 0;
+		status->stickY    = 0;
+		status->substickX = 0;
+		status->substickY = 0;
+		return;
+	}
+
+	BarrelBits = 0x80000000; // this is wrong
+
+	origin               = &Origin[chan];
+	status->stickX       = ClampS8(status->stickX, origin->stickX);
+	status->stickY       = ClampS8(status->stickY, origin->stickY);
+	status->substickX    = ClampS8(status->substickX, origin->substickX);
+	status->substickY    = ClampS8(status->substickY, origin->substickY);
+	status->triggerLeft  = ClampU8(status->triggerLeft, origin->triggerLeft);
+	status->triggerRight = ClampU8(status->triggerRight, origin->triggerRight);
 	/*
 	.loc_0x0:
 	  lwz       r0, 0x0(r5)
@@ -1954,9 +1121,16 @@ void SPEC2_MakeStatus(void)
  * Address:	........
  * Size:	000074
  */
-void PADGetType(void)
+BOOL PADGetType(int chan, u32* type)
 {
-	// UNUSED FUNCTION
+	u32 chanBit;
+
+	*type   = SIGetType(chan);
+	chanBit = PAD_CHAN0_BIT >> chan;
+	if ((ResettingBits & chanBit) || ResettingChan == chan || !(EnabledBits & chanBit)) {
+		return FALSE;
+	}
+	return TRUE;
 }
 
 /*
@@ -1964,50 +1138,28 @@ void PADGetType(void)
  * Address:	........
  * Size:	000064
  */
-void PADSync(void)
-{
-	// UNUSED FUNCTION
-}
+BOOL PADSync(void) { return ResettingBits == 0 && ResettingChan == 32 && !SIBusy(); }
 
 /*
  * --INFO--
  * Address:	800F4C9C
  * Size:	000074
  */
-void PADSetAnalogMode(void)
+void PADSetAnalogMode(u32 mode)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  mr        r31, r3
-	  bl        -0x6078
-	  lwz       r5, -0x700C(r13)
-	  rlwinm    r6,r31,8,0,23
-	  lwz       r4, -0x7000(r13)
-	  mr        r31, r3
-	  addi      r8, r5, 0
-	  not       r7, r8
-	  lwz       r0, -0x6FFC(r13)
-	  andc      r5, r5, r5
-	  stw       r6, -0x7C74(r13)
-	  and       r4, r4, r7
-	  and       r0, r0, r7
-	  stw       r5, -0x700C(r13)
-	  mr        r3, r8
-	  stw       r4, -0x7000(r13)
-	  stw       r0, -0x6FFC(r13)
-	  bl        0xF68
-	  mr        r3, r31
-	  bl        -0x6098
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	BOOL enabled;
+	u32 mask;
+
+	enabled    = OSDisableInterrupts();
+	AnalogMode = mode << 8;
+	mask       = EnabledBits;
+
+	EnabledBits &= ~mask;
+	WaitingBits &= ~mask;
+	CheckingBits &= ~mask;
+
+	SIDisablePolling(mask);
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -2015,8 +1167,27 @@ void PADSetAnalogMode(void)
  * Address:	800F4D10
  * Size:	0000BC
  */
-void OnReset(void)
+static BOOL OnReset(BOOL f)
 {
+	static BOOL recalibrated = FALSE;
+	BOOL sync;
+
+	if (SamplingCallback) {
+		PADSetSamplingCallback(NULL);
+	}
+
+	if (!f) {
+		sync = PADSync();
+		if (!recalibrated && sync) {
+			recalibrated = PADRecalibrate(PAD_CHAN0_BIT | PAD_CHAN1_BIT | PAD_CHAN2_BIT | PAD_CHAN3_BIT);
+			return FALSE;
+		}
+		return sync;
+	} else {
+		recalibrated = FALSE;
+	}
+
+	return TRUE;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -2086,47 +1257,24 @@ void OnReset(void)
  * Address:	........
  * Size:	00000C
  */
-void __PADDisableXPatch(void)
-{
-	// UNUSED FUNCTION
-}
+void __PADDisableXPatch(void) { XPatchBits = 0; }
 
 /*
  * --INFO--
  * Address:	800F4DCC
  * Size:	000060
  */
-void SamplingHandler(void)
+static void SamplingHandler(__OSInterrupt interrupt, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x2E0(r1)
-	  stw       r31, 0x2DC(r1)
-	  addi      r31, r4, 0
-	  lwz       r0, -0x6FF0(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  addi      r3, r1, 0x10
-	  bl        -0x7C84
-	  addi      r3, r1, 0x10
-	  bl        -0x7E54
-	  lwz       r12, -0x6FF0(r13)
-	  mtlr      r12
-	  blrl
-	  addi      r3, r1, 0x10
-	  bl        -0x7CA0
-	  mr        r3, r31
-	  bl        -0x7E70
+	OSContext exceptionContext;
 
-	.loc_0x4C:
-	  lwz       r0, 0x2E4(r1)
-	  lwz       r31, 0x2DC(r1)
-	  addi      r1, r1, 0x2E0
-	  mtlr      r0
-	  blr
-	*/
+	if (SamplingCallback) {
+		OSClearContext(&exceptionContext);
+		OSSetCurrentContext(&exceptionContext);
+		SamplingCallback();
+		OSClearContext(&exceptionContext);
+		OSSetCurrentContext(context);
+	}
 }
 
 /*
@@ -2134,36 +1282,18 @@ void SamplingHandler(void)
  * Address:	800F4E2C
  * Size:	000054
  */
-void PADSetSamplingCallback(void)
+PADSamplingCallback PADSetSamplingCallback(PADSamplingCallback callback)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  cmplwi    r3, 0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  lwz       r31, -0x6FF0(r13)
-	  stw       r3, -0x6FF0(r13)
-	  beq-      .loc_0x30
-	  lis       r3, 0x800F
-	  addi      r3, r3, 0x4DCC
-	  bl        0x7DC
-	  b         .loc_0x3C
+	PADSamplingCallback prev;
 
-	.loc_0x30:
-	  lis       r3, 0x800F
-	  addi      r3, r3, 0x4DCC
-	  bl        0x898
-
-	.loc_0x3C:
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	prev             = SamplingCallback;
+	SamplingCallback = callback;
+	if (callback) {
+		SIRegisterPollingHandler(SamplingHandler);
+	} else {
+		SIUnregisterPollingHandler(SamplingHandler);
+	}
+	return prev;
 }
 
 /*
@@ -2171,66 +1301,17 @@ void PADSetSamplingCallback(void)
  * Address:	800F4E80
  * Size:	00007C
  */
-void __PADDisableRecalibration(void)
+BOOL __PADDisableRecalibration(BOOL disable)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  bl        -0x6260
-	  lis       r4, 0x8000
-	  lbz       r0, 0x30E3(r4)
-	  rlwinm.   r0,r0,0,25,25
-	  beq-      .loc_0x34
-	  li        r31, 0x1
-	  b         .loc_0x38
+	BOOL enabled;
+	BOOL prev;
 
-	.loc_0x34:
-	  li        r31, 0
-
-	.loc_0x38:
-	  lis       r4, 0x8000
-	  lbz       r0, 0x30E3(r4)
-	  cmpwi     r30, 0
-	  rlwinm    r0,r0,0,26,24
-	  stb       r0, 0x30E3(r4)
-	  beq-      .loc_0x5C
-	  lbz       r0, 0x30E3(r4)
-	  ori       r0, r0, 0x40
-	  stb       r0, 0x30E3(r4)
-
-	.loc_0x5C:
-	  bl        -0x627C
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void __PADDisableRumble(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void PADIsBarrel(void)
-{
-	// UNUSED FUNCTION
+	enabled = OSDisableInterrupts();
+	prev    = (GameChoice & 0x40) ? TRUE : FALSE;
+	GameChoice &= ~0x40;
+	if (disable) {
+		GameChoice |= 0x40;
+	}
+	OSRestoreInterrupts(enabled);
+	return prev;
 }
