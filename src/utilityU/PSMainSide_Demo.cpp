@@ -17,15 +17,15 @@ static inline bool streq(const char* a, const char* b)
 
 namespace PSM {
 
-inline DemoInitiator::DemoInitiator(u8* pByte, const char* pName, u32& rAST_ID, char* pBuffer)
-    : mAST_ID(rAST_ID)
+inline DemoInitiator::DemoInitiator(u8* byte, const char* name, u32& astID, char* buf)
+    : mASTid(astID)
 {
-	P2ASSERTLINE(256, pName);
+	P2ASSERTLINE(256, name);
 
-	mName   = pName;
-	mAST_ID = rAST_ID;
-	b2      = pBuffer;
-	mByte   = pByte;
+	mName   = name;
+	mASTid  = astID;
+	mBuffer = buf;
+	mByte   = byte;
 
 	mSongChosen = false;
 }
@@ -34,8 +34,8 @@ inline void DemoInitiator::setDefaultValues()
 {
 	P2ASSERTLINE(41, isInitialized());
 
-	mAST_ID = -1;
-	strcpy(b2, "");
+	mASTid = -1;
+	strcpy(mBuffer, "");
 	*mByte = -1;
 }
 
@@ -65,7 +65,7 @@ void DemoInitiator::equalSetStream(const char* buffer, u32 AST_ID, u8 byte)
 	}
 	P2ASSERTLINE(41, check);
 
-	mAST_ID = AST_ID;
+	mASTid = AST_ID;
 	strcpy((char*)buffer, "");
 	*mByte = byte;
 }
@@ -120,7 +120,7 @@ inline void DemoInitiator::setDefault(const char* comp, u32 id, bool extraCondit
 {
 	if (extraCondition && !mSongChosen && strcmp(mName, comp) == 0) {
 		mSongChosen = true;
-		mAST_ID     = id;
+		mASTid      = id;
 		*mByte      = -1;
 		// OSReport("demo_arg is value: %lu\n", demo_arg);
 	}
@@ -446,7 +446,7 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	init.setDefault("s11_dopebin_first_r", 0xc0011008);
 
 	if (!streq("s01_dayend", init.mName)) {
-		bool is_key = demoArg.mName && streq(demoArg.mName, "key");
+		bool is_key = demoArg.mCameraName && streq(demoArg.mCameraName, "key");
 
 		init.setDefault("s17_suck_equipment", demoArg.mBgmID, !is_key);
 		init.setDefault("s17_suck_equipment", 0xc0011007, is_key);
@@ -577,7 +577,7 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	init.setDefault("x03_find_red_onyon", 0xc001103c);
 
 	if (streq("s02_dayend_result", init.mName)) {
-		audio_info.volume.v2 -= 0xf;
+		audio_info.mVolume.c -= 0xf;
 	}
 	// clang-format off
   if (streq("s10_suck_treasure",        init.mName) || 
@@ -601,7 +601,7 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	} else if (streq("x20_blackman", init.mName) || streq("x03_find_red_onyon", init.mName)) {
 		mDoStartWithAudio = false;
 	} else if (streq("s01_dayend", init.mName)) {
-		switch ((u32)demoArg.mName) {
+		switch ((u32)demoArg.mCameraName) {
 		case 1:
 			mSoundID = PSSE_PL_DAYEND_KAISAN_LUI;
 			break;

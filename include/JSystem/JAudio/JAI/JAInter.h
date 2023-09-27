@@ -19,17 +19,13 @@ struct Actor;
 struct DummyVec;
 struct SeqUpdateData;
 struct SoundInfo {
-	int unk1; // _00
-	union count_t {
-		unsigned long v1;
-		unsigned char v2[4];
-		unsigned short v3[2];
-	} count;   // _04
-	f32 pitch; // _08
+	int _00;    // _00
+	u32 mCount; // _04
+	u32 mPitch; // _08
 	union volume_t {
-		unsigned long v1;
-		unsigned char v2[2];
-	} volume; // _0C
+		u32 w;
+		u8 c;
+	} mVolume; // _0C
 };
 
 namespace SequenceMgr {

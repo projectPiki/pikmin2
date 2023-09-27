@@ -8,7 +8,7 @@
 
 namespace PSM {
 struct DemoInitiator {
-	inline DemoInitiator(u8* pByte, const char* pName, u32& rAST_ID, char* pBuffer);
+	inline DemoInitiator(u8* byte, const char* name, u32& astID, char* buf);
 
 	inline void setDefaultValues();
 	inline bool isInitialized();
@@ -23,8 +23,8 @@ struct DemoInitiator {
 	u8* mByte;         // _00
 	const char* mName; // _04
 	bool mSongChosen;  // _08
-	u32& mAST_ID;      // _0C
-	char* b2;
+	u32& mASTid;       // _0C
+	char* mBuffer;     // _10
 };
 
 struct DemoArg {
