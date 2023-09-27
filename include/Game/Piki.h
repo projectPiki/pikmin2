@@ -116,6 +116,7 @@ struct PikiFSM : public StateMachine<Piki> {
 };
 
 struct Piki : public FakePiki {
+	typedef PikiState StateType;
 	struct InvokeAIFreeArg {
 		InvokeAIFreeArg(u8 a, u8 b)
 		    : _00(a)
