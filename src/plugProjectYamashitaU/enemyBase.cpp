@@ -1663,7 +1663,7 @@ bool EnemyBase::isCullingOff()
 		return true;
 	}
 
-	return !isEvent(0, EB_Cullable) || mLod.isFlag(AILOD_IsVisible) || mLod.isFlag(AILOD_Unk4) || isEvent(1, EB2_Dropping);
+	return !isEvent(0, EB_Cullable) || mLod.isFlag(AILOD_IsVisible) || mLod.isFlag(AILOD_PikiInCell) || isEvent(1, EB2_Dropping);
 }
 
 /*

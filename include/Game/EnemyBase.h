@@ -314,7 +314,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		bool culling = false;
 		if (isEvent(0, EB_14)) {
-			if (!mLod.isFlag(AILOD_IsVisible) && !mLod.isFlag(AILOD_Unk4)) {
+			if (!mLod.isFlag(AILOD_IsVisible) && !mLod.isFlag(AILOD_PikiInCell)) {
 				culling = true;
 			}
 		}

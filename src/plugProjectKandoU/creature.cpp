@@ -387,7 +387,7 @@ bool Creature::isPellet() { return mObjectTypeID == OBJTYPE_Pellet; }
  * Address:	8013BA30
  * Size:	000020
  */
-bool Creature::sound_culling() { return !(mLod.isFlag(AILOD_Unk4) || mLod.isFlag(AILOD_IsVisible)); }
+bool Creature::sound_culling() { return !(mLod.isFlag(AILOD_PikiInCell) || mLod.isFlag(AILOD_IsVisible)); }
 
 /*
  * --INFO--

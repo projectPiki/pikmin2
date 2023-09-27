@@ -1,99 +1,10 @@
-#include "Camera.h"
 #include "Game/AILOD.h"
-#include "Game/AILODParm.h"
 #include "Game/Creature.h"
 #include "Game/GameSystem.h"
-#include "Graphics.h"
-#include "JSystem/JFramework/JFWSystem.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "Sys/Sphere.h"
-#include "types.h"
-#include "System.h"
 #include "Sys/Cylinder.h"
 #include "Viewport.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_creatureLOD_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804807C8
-    lbl_804807C8:
-        .asciz "creatureLOD.cpp"
-    .global lbl_804807D8
-    lbl_804807D8:
-        .asciz "P2Assert"
-        .skip 3
-    lbl_804807E4:
-        .4byte lbl_80519758
-        .4byte lbl_80519760
-        .4byte lbl_80519764
-    .global lbl_804807F0
-    lbl_804807F0:
-        .asciz "[%s%s %s %s]"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804B8610
-    lbl_804B8610:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515AD8
-    lbl_80515AD8:
-        .skip 0x4
-    .global lbl_80515ADC
-    lbl_80515ADC:
-        .skip 0x4
-    .global drawInfo__Q24Game5AILOD
-    drawInfo__Q24Game5AILOD:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519750
-    lbl_80519750:
-        .float 0.07
-    .global lbl_80519754
-    lbl_80519754:
-        .float 0.02
-    .global lbl_80519758
-    lbl_80519758:
-        .asciz "near"
-        .skip 3
-    .global lbl_80519760
-    lbl_80519760:
-        .asciz "mid"
-    .global lbl_80519764
-    lbl_80519764:
-        .asciz "far"
-    .global lbl_80519768
-    lbl_80519768:
-        .float 1.0
-    .global lbl_8051976C
-    lbl_8051976C:
-        .4byte 0x70000000
-    .global lbl_80519770
-    lbl_80519770:
-        .4byte 0x5F000000
-    .global lbl_80519774
-    lbl_80519774:
-        .4byte 0x76000000
-    .global lbl_80519778
-    lbl_80519778:
-        .4byte 0x78000000
-    .global lbl_8051977C
-    lbl_8051977C:
-        .4byte 0x41700000
-    .global lbl_80519780
-    lbl_80519780:
-        .4byte 0x3C25663E
-        .4byte 0x00000000
-*/
+#include "nans.h"
 
 namespace Game {
 
@@ -107,15 +18,6 @@ AILODParm::AILODParm()
     , mClose(0.02f)
     , mIsCylinder(false)
 {
-	/*
-	lfs      f1, lbl_80519750@sda21(r2)
-	li       r0, 0
-	lfs      f0, lbl_80519754@sda21(r2)
-	stfs     f1, 0(r3)
-	stfs     f0, 4(r3)
-	stb      r0, 8(r3)
-	blr
-	*/
 }
 
 /*
@@ -124,18 +26,10 @@ AILODParm::AILODParm()
  * Size:	000018
  */
 AILOD::AILOD()
-    : mFlags(FLAG_NONE)
+    : mFlags(AILOD_NULL)
     , mSndVpId(0)
 {
-	mFlags = VisibleOnViewport0;
-	/*
-	li       r4, 0
-	li       r0, 0x10
-	stb      r4, 0(r3)
-	stb      r4, 1(r3)
-	stb      r0, 0(r3)
-	blr
-	*/
+	mFlags = AILOD_IsVisVP0;
 }
 
 /*
@@ -151,13 +45,15 @@ void Creature::updateLOD(Game::AILODParm& parm)
 	if (parm.mIsCylinder) {
 		getLODCylinder(lodCylinder);
 	}
+	mLod.mFlags = AILOD_NULL;
 	int iStack[2];
 	int* pi           = iStack;
 	bool shouldCull   = true; // set to false if visible on any viewport
 	int v11           = 2;
-	int viewportCount = sys->mGfx->mViewportCount;
+	Graphics* gfx     = sys->mGfx;
+	int viewportCount = gfx->mViewportCount;
 	for (int i = 0; i < viewportCount; i++) {
-		Viewport* vp = sys->mGfx->getViewport(i);
+		Viewport* vp = gfx->getViewport(i);
 		if (!vp->viewable()) {
 			*pi = 2;
 		} else {
@@ -165,23 +61,24 @@ void Creature::updateLOD(Game::AILODParm& parm)
 			if (parm.mIsCylinder) {
 				if (camera->isCylinderVisible(lodCylinder)) {
 					shouldCull = false;
-					mLod.mFlags |= (AILOD::VisibleOnViewport0 << i);
+					mLod.mFlags |= (AILOD_IsVisVP0 << i);
 				}
 			} else {
 				if (camera->isVisible(lodSphere)) {
 					shouldCull = false;
-					mLod.mFlags |= (AILOD::VisibleOnViewport0 << i);
+					mLod.mFlags |= (AILOD_IsVisVP0 << i);
 				}
 			}
 			float screenSize = camera->calcScreenSize(lodSphere);
-			if (screenSize <= parm.mFar) {
-				if (screenSize <= parm.mClose) {
-					*pi = 2;
-				} else {
-					*pi = 1;
-				}
-			} else {
+			if (screenSize > parm.mFar) {
+
 				*pi = 0;
+			} else {
+				if (screenSize > parm.mClose) {
+					*pi = 1;
+				} else {
+					*pi = 2;
+				}
 			}
 			if (*pi < v11) {
 				v11 = *pi;
@@ -189,57 +86,41 @@ void Creature::updateLOD(Game::AILODParm& parm)
 		}
 		pi++;
 	}
-	// TODO: This smells of inlining.
-	bool isMultiplayer = gameSystem->isMultiplayerMode();
-	if (!(isMultiplayer && (2 <= viewportCount))) {
+
+	if (!(gameSystem->isMultiplayerMode() && (2 <= viewportCount))) {
 		mLod.mSndVpId = 0;
 	} else {
-		Viewport* vp0 = sys->mGfx->getViewport(0);
-		Viewport* vp1 = sys->mGfx->getViewport(1);
+		Viewport* vp0 = gfx->getViewport(0);
+		Viewport* vp1 = gfx->getViewport(1);
 		if (!vp0->viewable()) {
 			mLod.mSndVpId = 1;
 		} else {
 			if (!vp1->viewable()) {
 				mLod.mSndVpId = 0;
 			} else {
-				P2ASSERTLINE(175, (vp0->mCamera != nullptr));
-				P2ASSERTLINE(176, (vp1->mCamera != nullptr));
-				Vector3f* pos0 = vp0->mCamera->getSoundPositionPtr();
-				Vector3f* pos1 = vp1->mCamera->getSoundPositionPtr();
-				// TODO: Possible inlining?
-				float y0 = pos0->y - lodSphere.mPosition.y;
-				float y1 = pos1->y - lodSphere.mPosition.y;
-				float x0 = pos0->x - lodSphere.mPosition.x;
-				float x1 = pos1->x - lodSphere.mPosition.x;
-				float z0 = pos0->z - lodSphere.mPosition.z;
-				float z1 = pos1->z - lodSphere.mPosition.z;
-				if (SQUARE(z1) + SQUARE(x1) + SQUARE(y1)
-				    // (SQUARE(pos1->x - lodSphere.mPosition.x)
-				    // + SQUARE(pos1->y - lodSphere.mPosition.y)
-				    // + SQUARE(pos1->z - lodSphere.mPosition.z))
-				    <= SQUARE(z0) + SQUARE(x0) + SQUARE(y0)
-				    // (SQUARE(pos0->x - lodSphere.mPosition.x)
-				    // + SQUARE(pos0->y - lodSphere.mPosition.y)
-				    // + SQUARE(pos0->z - lodSphere.mPosition.z))
-				) {
-					mLod.mSndVpId = 1;
-				} else {
+				P2ASSERTLINE(175, vp0->mCamera);
+				P2ASSERTLINE(176, vp1->mCamera);
+				Vector3f pos0 = *vp0->mCamera->getSoundPositionPtr();
+				Vector3f pos1 = *vp1->mCamera->getSoundPositionPtr();
+				if (sqrDistance(pos1, lodSphere.mPosition) < sqrDistance(pos0, lodSphere.mPosition)) {
 					mLod.mSndVpId = 0;
+				} else {
+					mLod.mSndVpId = 1;
 				}
 			}
 		}
 	}
 	for (int i = 0; i < viewportCount; i++) {
-		sys->mGfx->getViewport(i)->viewable();
+		gfx->getViewport(i)->viewable();
 	}
 	mLod.mFlags |= (u8)v11;
 	if (!shouldCull) {
-		mLod.mFlags |= AILOD::FLAG_NEED_SHADOW;
+		mLod.mFlags |= AILOD_IsVisible;
 	} else {
-		mLod.mFlags = AILOD::IsFar;
+		mLod.mFlags = AILOD_IsFar;
 	}
 	if (0 < getCellPikiCount()) {
-		mLod.mFlags |= AILOD::FLAG_UNKNOWN4;
+		mLod.mFlags |= AILOD_PikiInCell;
 	}
 	/*
 	stwu     r1, -0xa0(r1)
@@ -538,70 +419,34 @@ void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 {
 	if (AILOD::drawInfo) {
 		PerspPrintfInfo info;
-		info.mFont = JFWSystem::systemFont;
-		info._04   = 0;
-		info._08   = 0;
-		info._0C   = 0;
-		info._10   = 1.0f;
-		info._14.r = 0x66;
-		info._14.g = 0x99;
-		info._14.b = 0xFF;
-		info._14.a = 0xFF;
-		info._18.r = 0x00;
-		info._18.g = 0x66;
-		info._18.b = 0xFF;
-		info._18.a = 0xFF;
-		gfx.initPerspPrintf(gfx._25C);
+		gfx.initPerspPrintf(gfx.mCurrentViewport);
 		const char* nearnessLabels[] = { "near", "mid", "far" };
-		// nearnessLabels[0] = "near";
-		// nearnessLabels[1] = "mid";
-		// nearnessLabels[2] = "far";
 
-		u8 nearness = mLod.mFlags & (AILOD::IsMid | AILOD::IsFar);
+		u8 nearness = mLod.mFlags & (AILOD_IsMid | AILOD_IsFar);
 		switch (nearness) {
-		case AILOD::FLAG_NONE:
-			if (true) {
-				info._14.r = 0x00;
-				info._14.g = 0x0A;
-				info._14.b = 0xFF;
-				info._14.a = 0xFF;
-				info._18.r = 0xC8;
-				info._18.g = 0xC8;
-				info._18.b = 0xC8;
-				info._18.a = 0xFF;
-			}
+		case AILOD_NULL:
+			info.mColorA.set(0, 10, 255, 255);
+			info.mColorB.set(200, 200, 200, 255);
 			break;
-		case AILOD::IsMid:
-			info._14.r = 0xC8;
-			info._14.g = 0xC8;
-			info._14.b = 0x00;
-			info._14.a = 0xFF;
-			info._18.r = 0xC8;
-			info._18.g = 0xC8;
-			info._18.b = 0xC8;
-			info._18.a = 0xFF;
+		case AILOD_IsMid:
+			info.mColorA.set(200, 200, 0, 255);
+			info.mColorB.set(200, 200, 200, 255);
 			break;
-		case AILOD::IsFar:
-			info._14.r = 0xFF;
-			info._14.g = 0x0A;
-			info._14.b = 0x00;
-			info._14.a = 0xFF;
-			info._18.r = 0xC8;
-			info._18.g = 0xC8;
-			info._18.b = 0xC8;
-			info._18.a = 0xFF;
+		case AILOD_IsFar:
+			info.mColorA.set(255, 10, 0, 255);
+			info.mColorB.set(200, 200, 200, 255);
 			break;
 		}
 		const char* flag4Text = "_";
-		if (mLod.mFlags & AILOD::FLAG_UNKNOWN4) {
+		if (mLod.mFlags & AILOD_IsVisible) {
 			flag4Text = "p";
 		}
 		const char* vp1VisibilityText = "x";
-		if (mLod.mFlags & AILOD::VisibleOnViewport1) {
+		if (mLod.mFlags & AILOD_IsVisVP1) {
 			vp1VisibilityText = "v";
 		}
 		const char* vp0VisibilityText = "x";
-		if (mLod.mFlags & AILOD::VisibleOnViewport0) {
+		if (mLod.mFlags & AILOD_IsVisVP0) {
 			vp0VisibilityText = "v";
 		}
 		gfx.perspPrintf(info, position, "[%s%s %s %s]", vp0VisibilityText, vp1VisibilityText, flag4Text, nearnessLabels[nearness]);
@@ -787,24 +632,3 @@ lbl_801D7E1C:
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	801D7E3C
- * Size:	000028
- */
-void __sinit_creatureLOD_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B8610@ha
-	stw      r0, lbl_80515AD8@sda21(r13)
-	stfsu    f0, lbl_804B8610@l(r3)
-	stfs     f0, lbl_80515ADC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
