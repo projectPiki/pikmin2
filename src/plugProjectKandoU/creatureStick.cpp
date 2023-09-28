@@ -5,6 +5,12 @@ static const char className[] = "creatureStick";
 
 namespace Game {
 
+int Stickers::numBuffer     = 0;
+bool Stickers::mutex        = false;
+Creature** Stickers::buffer = nullptr;
+
+int Stickers::maxBuffer = 110;
+
 /*
  * --INFO--
  * Address:	8019EE94
@@ -40,11 +46,10 @@ void Creature::releaseAllStickers()
 bool Creature::startStick(Creature* obj, CollPart* part)
 {
 	if (isStickTo()) {
-		if (!isStickToMouth()) {
-			if (part->isMouth()) {
-				return false;
-			}
+		if (!isStickToMouth() && part->isMouth()) {
 			endStick();
+		} else {
+			return false;
 		}
 	}
 	mSticker       = obj;
@@ -53,7 +58,7 @@ bool Creature::startStick(Creature* obj, CollPart* part)
 		static_cast<MouthCollPart*>(mStuckCollPart)->mStuckCreature = this;
 	}
 
-	Creature* stick = mSticked;
+	Creature* stick = obj->mSticked;
 	if (!stick) {
 		obj->mSticked = this;
 		mCapture      = nullptr;
@@ -74,115 +79,6 @@ bool Creature::startStick(Creature* obj, CollPart* part)
 	onStickStartSelf(mSticker);
 
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r5
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019EF64
-	mr       r3, r29
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8019EF5C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019EF5C
-	mr       r3, r29
-	bl       endStick__Q24Game8CreatureFv
-	b        lbl_8019EF64
-
-lbl_8019EF5C:
-	li       r3, 0
-	b        lbl_8019F04C
-
-lbl_8019EF64:
-	stw      r30, 0xf4(r29)
-	stw      r31, 0xf8(r29)
-	lwz      r3, 0xf8(r29)
-	cmplwi   r3, 0
-	beq      lbl_8019EF98
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019EF98
-	lwz      r3, 0xf8(r29)
-	stw      r29, 0x64(r3)
-
-lbl_8019EF98:
-	lwz      r3, 0xf0(r30)
-	cmplwi   r3, 0
-	bne      lbl_8019EFB8
-	stw      r29, 0xf0(r30)
-	li       r0, 0
-	stw      r0, 0x100(r29)
-	stw      r0, 0xfc(r29)
-	b        lbl_8019EFCC
-
-lbl_8019EFB8:
-	stw      r29, 0xf0(r30)
-	li       r0, 0
-	stw      r0, 0x100(r29)
-	stw      r3, 0xfc(r29)
-	stw      r29, 0x100(r3)
-
-lbl_8019EFCC:
-	lwz      r0, 0xf8(r29)
-	cmplwi   r0, 0
-	beq      lbl_8019F018
-	mr       r4, r29
-	addi     r3, r1, 8
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r4, r1, 0x14
-	lfs      f1, 0xc(r1)
-	addi     r5, r29, 0x104
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 0xf8(r29)
-	bl       "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
-
-lbl_8019F018:
-	lwz      r3, 0xf4(r29)
-	mr       r4, r29
-	lwz      r12, 0(r3)
-	lwz      r12, 0x158(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	lwz      r4, 0xf4(r29)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x160(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-
-lbl_8019F04C:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -193,169 +89,7 @@ lbl_8019F04C:
 bool Creature::startStickMouth(Creature* obj, CollPart* part)
 {
 	P2ASSERTLINE(202, part->isMouth());
-
-	if (isStickTo()) {
-		if (!isStickToMouth()) {
-			if (part->isMouth()) {
-				return false;
-			}
-			endStick();
-		}
-	}
-	mSticker       = obj;
-	mStuckCollPart = part;
-	if (mStuckCollPart && mStuckCollPart->isMouth()) {
-		static_cast<MouthCollPart*>(mStuckCollPart)->mStuckCreature = this;
-	}
-
-	Creature* stick = mSticked;
-	if (!stick) {
-		obj->mSticked = this;
-		mCapture      = nullptr;
-		mCaptured     = nullptr;
-	} else {
-		obj->mSticked   = this;
-		mCapture        = nullptr;
-		mCaptured       = stick;
-		stick->mCapture = this;
-	}
-
-	if (mStuckCollPart) {
-		Vector3f pos = getPosition();
-		mStuckCollPart->calcStickLocal(pos, mClimbingPosition);
-	}
-
-	mSticker->onStickStart(this);
-	onStickStartSelf(mSticker);
-
-	return true;
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	mr       r3, r30
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8019F0C4
-	lis      r3, lbl_8047F228@ha
-	lis      r5, lbl_8047F23C@ha
-	addi     r3, r3, lbl_8047F228@l
-	li       r4, 0xca
-	addi     r5, r5, lbl_8047F23C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8019F0C4:
-	mr       r3, r31
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F114
-	mr       r3, r31
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8019F10C
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F10C
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
-	b        lbl_8019F114
-
-lbl_8019F10C:
-	li       r3, 0
-	b        lbl_8019F1FC
-
-lbl_8019F114:
-	stw      r29, 0xf4(r31)
-	stw      r30, 0xf8(r31)
-	lwz      r3, 0xf8(r31)
-	cmplwi   r3, 0
-	beq      lbl_8019F148
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F148
-	lwz      r3, 0xf8(r31)
-	stw      r31, 0x64(r3)
-
-lbl_8019F148:
-	lwz      r3, 0xf0(r29)
-	cmplwi   r3, 0
-	bne      lbl_8019F168
-	stw      r31, 0xf0(r29)
-	li       r0, 0
-	stw      r0, 0x100(r31)
-	stw      r0, 0xfc(r31)
-	b        lbl_8019F17C
-
-lbl_8019F168:
-	stw      r31, 0xf0(r29)
-	li       r0, 0
-	stw      r0, 0x100(r31)
-	stw      r3, 0xfc(r31)
-	stw      r31, 0x100(r3)
-
-lbl_8019F17C:
-	lwz      r0, 0xf8(r31)
-	cmplwi   r0, 0
-	beq      lbl_8019F1C8
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r4, r1, 8
-	lfs      f1, 0x18(r1)
-	addi     r5, r31, 0x104
-	lfs      f0, 0x1c(r1)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r3, 0xf8(r31)
-	bl       "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
-
-lbl_8019F1C8:
-	lwz      r3, 0xf4(r31)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x158(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r4, 0xf4(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x160(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-
-lbl_8019F1FC:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	return startStick(obj, part);
 }
 
 /*
@@ -369,43 +103,7 @@ bool Creature::startStick(Creature* obj, s16 id)
 		return false;
 	}
 
-	if (isStickTo()) {
-		if (!isStickToMouth()) {
-			MouthCollPart* part = nullptr; // HUH???
-			if (part->isMouth()) {
-				endStick();
-				return false;
-			}
-		}
-	}
-
-	mSticker       = obj;
-	mStuckCollPart = nullptr;
-	if (mStuckCollPart && mStuckCollPart->isMouth()) {
-		static_cast<MouthCollPart*>(mStuckCollPart)->mStuckCreature = this;
-	}
-
-	Creature* stick = mSticked;
-	if (!stick) {
-		obj->mSticked = this;
-		mCapture      = nullptr;
-		mCaptured     = nullptr;
-	} else {
-		obj->mSticked   = this;
-		mCapture        = nullptr;
-		mCaptured       = stick;
-		stick->mCapture = this;
-	}
-
-	if (mStuckCollPart) {
-		Vector3f pos = getPosition();
-		mStuckCollPart->calcStickLocal(pos, mClimbingPosition);
-	}
-	mSticker->onStickStart(this);
-	onStickStartSelf(mSticker);
-
-	bool ret = true;
-	if (ret) {
+	if (startStick(obj, (CollPart*)nullptr)) { // sure.
 		if (obj->isSlotFree(id)) {
 			obj->onSlotStickStart(this, id);
 			mStickSlot = id;
@@ -413,165 +111,10 @@ bool Creature::startStick(Creature* obj, s16 id)
 			return true;
 		} else {
 			endStick();
+			return false;
 		}
 	}
 	return false;
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r5
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F250
-	li       r3, 0
-	b        lbl_8019F408
-
-lbl_8019F250:
-	mr       r3, r29
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F2A0
-	mr       r3, r29
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8019F298
-	li       r3, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F298
-	mr       r3, r29
-	bl       endStick__Q24Game8CreatureFv
-	b        lbl_8019F2A0
-
-lbl_8019F298:
-	li       r0, 0
-	b        lbl_8019F38C
-
-lbl_8019F2A0:
-	stw      r30, 0xf4(r29)
-	li       r0, 0
-	stw      r0, 0xf8(r29)
-	lwz      r3, 0xf8(r29)
-	cmplwi   r3, 0
-	beq      lbl_8019F2D8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F2D8
-	lwz      r3, 0xf8(r29)
-	stw      r29, 0x64(r3)
-
-lbl_8019F2D8:
-	lwz      r3, 0xf0(r30)
-	cmplwi   r3, 0
-	bne      lbl_8019F2F8
-	stw      r29, 0xf0(r30)
-	li       r0, 0
-	stw      r0, 0x100(r29)
-	stw      r0, 0xfc(r29)
-	b        lbl_8019F30C
-
-lbl_8019F2F8:
-	stw      r29, 0xf0(r30)
-	li       r0, 0
-	stw      r0, 0x100(r29)
-	stw      r3, 0xfc(r29)
-	stw      r29, 0x100(r3)
-
-lbl_8019F30C:
-	lwz      r0, 0xf8(r29)
-	cmplwi   r0, 0
-	beq      lbl_8019F358
-	mr       r4, r29
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r4, r1, 8
-	lfs      f1, 0x18(r1)
-	addi     r5, r29, 0x104
-	lfs      f0, 0x1c(r1)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r3, 0xf8(r29)
-	bl       "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
-
-lbl_8019F358:
-	lwz      r3, 0xf4(r29)
-	mr       r4, r29
-	lwz      r12, 0(r3)
-	lwz      r12, 0x158(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	lwz      r4, 0xf4(r29)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x160(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-
-lbl_8019F38C:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8019F404
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x168(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F3F4
-	mr       r3, r30
-	mr       r4, r29
-	lwz      r12, 0(r30)
-	mr       r5, r31
-	lwz      r12, 0x178(r12)
-	mtctr    r12
-	bctrl
-	sth      r31, 0x110(r29)
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	lwz      r12, 0x160(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_8019F408
-
-lbl_8019F3F4:
-	mr       r3, r29
-	bl       endStick__Q24Game8CreatureFv
-	li       r3, 0
-	b        lbl_8019F408
-
-lbl_8019F404:
-	li       r3, 0
-
-lbl_8019F408:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -659,11 +202,11 @@ void Creature::updateStick(Vector3f& pos)
 	setVelocity(Vector3f::zero);
 
 	if (mStuckCollPart && mStuckCollPart->isMouth()) {
-		MouthCollPart* part = static_cast<MouthCollPart*>(mStuckCollPart);
+		// MouthCollPart* part = static_cast<MouthCollPart*>(mStuckCollPart);
 		Matrixf mtx, mtx2;
-		part->copyMatrixTo(mtx);
+		static_cast<MouthCollPart*>(mStuckCollPart)->copyMatrixTo(mtx);
 		f32 scale = 1.0f;
-		if (part->mStuckCreature) {
+		if (static_cast<MouthCollPart*>(mStuckCollPart)->_6C) {
 			if (isNavi()) {
 				if (getCreatureID() == 0) {
 					scale = 1.3f;
@@ -676,7 +219,7 @@ void Creature::updateStick(Vector3f& pos)
 			mtx2.makeSRT(scalevec, rotate, mStuckCollPart->mOffset);
 		} else {
 			Vector3f scalevec(scale);
-			Vector3f rotate(0.0f);
+			Vector3f rotate(0.0f, 0.0f, HALF_PI);
 			mtx2.makeSR(scalevec, rotate);
 		}
 		PSMTXConcat(mtx.mMatrix.mtxView, mtx2.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
@@ -685,21 +228,43 @@ void Creature::updateStick(Vector3f& pos)
 		pos.y = mObjMatrix.mMatrix.structView.ty;
 		pos.z = mObjMatrix.mMatrix.structView.tz;
 
-		setPosition(pos, false);
+		setPosition(pos, true);
 	} else {
 		if (mStuckCollPart) {
 			Vector3f pos = getPosition();
 			mStuckCollPart->calcStickGlobal(mClimbingPosition, pos);
 			if (mStuckCollPart->mPartType == COLLTYPE_TUBETREE) {
-				Vector3f rotate(mClimbingPosition.x, getFaceDir(), mClimbingPosition.z);
+				Vector3f rotate;
+				rotate.x = getFaceDir();
+				rotate.y = mClimbingPosition.y;
 				mStuckCollPart->calcPoseMatrix(rotate, mObjMatrix);
-				if (isNavi()) {
-					scaleMatrix(&mObjMatrix, mScale.x);
+				if (isPiki()) {
+					mObjMatrix.mMatrix.structView.xx *= mScale.x;
+					mObjMatrix.mMatrix.structView.xy *= mScale.x;
+					mObjMatrix.mMatrix.structView.xz *= mScale.x;
+
+					mObjMatrix.mMatrix.structView.yx *= mScale.y;
+					mObjMatrix.mMatrix.structView.yy *= mScale.y;
+					mObjMatrix.mMatrix.structView.yz *= mScale.y;
+
+					mObjMatrix.mMatrix.structView.zx *= mScale.z;
+					mObjMatrix.mMatrix.structView.zy *= mScale.z;
+					mObjMatrix.mMatrix.structView.zz *= mScale.z;
 				}
 			} else {
 				mStuckCollPart->calcPoseMatrix(pos, mObjMatrix);
-				if (isNavi()) {
-					scaleMatrix(&mObjMatrix, mScale.x);
+				if (isPiki()) {
+					mObjMatrix.mMatrix.structView.xx *= mScale.x;
+					mObjMatrix.mMatrix.structView.xy *= mScale.x;
+					mObjMatrix.mMatrix.structView.xz *= mScale.x;
+
+					mObjMatrix.mMatrix.structView.yx *= mScale.y;
+					mObjMatrix.mMatrix.structView.yy *= mScale.y;
+					mObjMatrix.mMatrix.structView.yz *= mScale.y;
+
+					mObjMatrix.mMatrix.structView.zx *= mScale.z;
+					mObjMatrix.mMatrix.structView.zy *= mScale.z;
+					mObjMatrix.mMatrix.structView.zz *= mScale.z;
 				}
 			}
 			setPosition(pos, true);
@@ -710,351 +275,16 @@ void Creature::updateStick(Vector3f& pos)
 			if (mStickSlot != -1) {
 				Vector3f slotpos;
 				mSticker->calcStickSlotGlobal(mStickSlot, slotpos);
-				Vector3f pos = mSticker->getPosition();
-				f32 x        = pos.x - slotpos.x;
-				f32 z        = pos.z - slotpos.z;
-				f32 dist     = pos.distance(slotpos);
-				if (dist > 0.0f) {
-					x *= (1.0f / dist);
-					z *= (1.0f / dist);
-				}
-				f32 dir = JMath::atanTable_.atan2_(x, z);
+				Vector3f pos  = mSticker->getPosition();
+				Vector3f diff = pos - slotpos;
+				_normaliseXZ(diff);
+				f32 dir = JMath::atanTable_.atan2_(diff.x, diff.z);
 				setPosition(slotpos, true);
 				Vector3f rotate(0.0f, dir, 0.0f);
 				mObjMatrix.makeTR(slotpos, rotate);
 			}
 		}
 	}
-
-	/*
-	stwu     r1, -0x110(r1)
-	mflr     r0
-	stw      r0, 0x114(r1)
-	stfd     f31, 0x100(r1)
-	psq_st   f31, 264(r1), 0, qr0
-	stw      r31, 0xfc(r1)
-	mr       r31, r3
-	lwz      r0, 0xf4(r3)
-	cmplwi   r0, 0
-	bne      lbl_8019F62C
-	lis      r3, lbl_8047F228@ha
-	lis      r5, lbl_8047F23C@ha
-	addi     r3, r3, lbl_8047F228@l
-	li       r4, 0x127
-	addi     r5, r5, lbl_8047F23C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8019F62C:
-	lwz      r12, 0(r31)
-	lis      r4, "zero__10Vector3<f>"@ha
-	mr       r3, r31
-	lwz      r12, 0x68(r12)
-	addi     r4, r4, "zero__10Vector3<f>"@l
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xf8(r31)
-	cmplwi   r3, 0
-	beq      lbl_8019F774
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F774
-	lwz      r3, 0xf8(r31)
-	addi     r4, r1, 0xbc
-	bl       copyMatrixTo__13MouthCollPartFR7Matrixf
-	lwz      r3, 0xf8(r31)
-	lfs      f31, lbl_80519040@sda21(r2)
-	lbz      r0, 0x6c(r3)
-	cmplwi   r0, 0
-	beq      lbl_8019F708
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F6D0
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1ac(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_8019F6CC
-	lfs      f31, lbl_80519044@sda21(r2)
-	b        lbl_8019F6D0
-
-lbl_8019F6CC:
-	lfs      f31, lbl_80519048@sda21(r2)
-
-lbl_8019F6D0:
-	lfs      f0, lbl_8051904C@sda21(r2)
-	addi     r3, r1, 0x8c
-	stfs     f31, 0x80(r1)
-	addi     r4, r1, 0x80
-	addi     r5, r1, 0x74
-	stfs     f31, 0x84(r1)
-	stfs     f31, 0x88(r1)
-	stfs     f0, 0x74(r1)
-	stfs     f0, 0x78(r1)
-	stfs     f0, 0x7c(r1)
-	lwz      r6, 0xf8(r31)
-	addi     r6, r6, 0x20
-	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-	b        lbl_8019F738
-
-lbl_8019F708:
-	lfs      f1, lbl_8051904C@sda21(r2)
-	addi     r3, r1, 0x8c
-	lfs      f0, lbl_80519050@sda21(r2)
-	addi     r4, r1, 0x68
-	stfs     f31, 0x68(r1)
-	addi     r5, r1, 0x5c
-	stfs     f31, 0x6c(r1)
-	stfs     f31, 0x70(r1)
-	stfs     f1, 0x5c(r1)
-	stfs     f1, 0x60(r1)
-	stfs     f0, 0x64(r1)
-	bl       "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-
-lbl_8019F738:
-	addi     r3, r1, 0xbc
-	addi     r4, r1, 0x8c
-	addi     r5, r31, 0x138
-	bl       PSMTXConcat
-	lfs      f0, 0x144(r31)
-	mr       r3, r31
-	addi     r4, r1, 0x50
-	li       r5, 1
-	stfs     f0, 0x50(r1)
-	lfs      f0, 0x154(r31)
-	stfs     f0, 0x54(r1)
-	lfs      f0, 0x164(r31)
-	stfs     f0, 0x58(r1)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	b        lbl_8019FA80
-
-lbl_8019F774:
-	lwz      r0, 0xf8(r31)
-	cmplwi   r0, 0
-	beq      lbl_8019F994
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r4, r31, 0x104
-	lfs      f1, 0x18(r1)
-	addi     r5, r1, 0x44
-	lfs      f0, 0x1c(r1)
-	stfs     f2, 0x44(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	lwz      r3, 0xf8(r31)
-	bl       "calcStickGlobal__8CollPartFR10Vector3<f>R10Vector3<f>"
-	lwz      r3, 0xf8(r31)
-	lbz      r0, 0x58(r3)
-	cmplwi   r0, 2
-	bne      lbl_8019F8B0
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x38(r1)
-	addi     r4, r1, 0x38
-	addi     r5, r31, 0x138
-	lfs      f0, 0x108(r31)
-	stfs     f0, 0x3c(r1)
-	lwz      r3, 0xf8(r31)
-	bl       "calcPoseMatrix__8CollPartFR10Vector3<f>R7Matrixf"
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F968
-	lfs      f1, 0x138(r31)
-	lfs      f0, 0x168(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x138(r31)
-	lfs      f1, 0x148(r31)
-	lfs      f0, 0x168(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x148(r31)
-	lfs      f1, 0x158(r31)
-	lfs      f0, 0x168(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x158(r31)
-	lfs      f1, 0x13c(r31)
-	lfs      f0, 0x16c(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x13c(r31)
-	lfs      f1, 0x14c(r31)
-	lfs      f0, 0x16c(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x14c(r31)
-	lfs      f1, 0x15c(r31)
-	lfs      f0, 0x16c(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x15c(r31)
-	lfs      f1, 0x140(r31)
-	lfs      f0, 0x170(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x140(r31)
-	lfs      f1, 0x150(r31)
-	lfs      f0, 0x170(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x150(r31)
-	lfs      f1, 0x160(r31)
-	lfs      f0, 0x170(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x160(r31)
-	b        lbl_8019F968
-
-lbl_8019F8B0:
-	addi     r4, r1, 0x44
-	addi     r5, r31, 0x138
-	bl       "calcPoseMatrix__8CollPartFR10Vector3<f>R7Matrixf"
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019F968
-	lfs      f1, 0x138(r31)
-	lfs      f0, 0x168(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x138(r31)
-	lfs      f1, 0x148(r31)
-	lfs      f0, 0x168(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x148(r31)
-	lfs      f1, 0x158(r31)
-	lfs      f0, 0x168(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x158(r31)
-	lfs      f1, 0x13c(r31)
-	lfs      f0, 0x16c(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x13c(r31)
-	lfs      f1, 0x14c(r31)
-	lfs      f0, 0x16c(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x14c(r31)
-	lfs      f1, 0x15c(r31)
-	lfs      f0, 0x16c(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x15c(r31)
-	lfs      f1, 0x140(r31)
-	lfs      f0, 0x170(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x140(r31)
-	lfs      f1, 0x150(r31)
-	lfs      f0, 0x170(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x150(r31)
-	lfs      f1, 0x160(r31)
-	lfs      f0, 0x170(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x160(r31)
-
-lbl_8019F968:
-	mr       r3, r31
-	addi     r4, r1, 0x44
-	li       r5, 1
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lfs      f0, 0x44(r1)
-	stfs     f0, 0x144(r31)
-	lfs      f0, 0x48(r1)
-	stfs     f0, 0x154(r31)
-	lfs      f0, 0x4c(r1)
-	stfs     f0, 0x164(r31)
-	b        lbl_8019FA80
-
-lbl_8019F994:
-	lha      r4, 0x110(r31)
-	cmpwi    r4, -1
-	beq      lbl_8019FA80
-	lwz      r3, 0xf4(r31)
-	addi     r5, r1, 0x2c
-	lwz      r12, 0(r3)
-	lwz      r12, 0x180(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xf4(r31)
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x30(r1)
-	lfs      f2, 0x10(r1)
-	fsubs    f3, f1, f0
-	lfs      f0, 0x34(r1)
-	lfs      f1, 8(r1)
-	fsubs    f2, f2, f0
-	lfs      f0, 0x2c(r1)
-	fmuls    f3, f3, f3
-	fsubs    f1, f1, f0
-	lfs      f0, lbl_8051904C@sda21(r2)
-	fmuls    f4, f2, f2
-	fmadds   f3, f1, f1, f3
-	fadds    f3, f4, f3
-	fcmpo    cr0, f3, f0
-	ble      lbl_8019FA20
-	ble      lbl_8019FA24
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_8019FA24
-
-lbl_8019FA20:
-	fmr      f3, f0
-
-lbl_8019FA24:
-	lfs      f0, lbl_8051904C@sda21(r2)
-	fcmpo    cr0, f3, f0
-	ble      lbl_8019FA40
-	lfs      f0, lbl_80519040@sda21(r2)
-	fdivs    f0, f0, f3
-	fmuls    f1, f1, f0
-	fmuls    f2, f2, f0
-
-lbl_8019FA40:
-	lis      r3, atanTable___5JMath@ha
-	addi     r3, r3, atanTable___5JMath@l
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	fmr      f31, f1
-	mr       r3, r31
-	addi     r4, r1, 0x2c
-	li       r5, 1
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lfs      f0, lbl_8051904C@sda21(r2)
-	addi     r3, r31, 0x138
-	stfs     f31, 0x24(r1)
-	addi     r4, r1, 0x2c
-	addi     r5, r1, 0x20
-	stfs     f0, 0x20(r1)
-	stfs     f0, 0x28(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-
-lbl_8019FA80:
-	psq_l    f31, 264(r1), 0, qr0
-	lwz      r0, 0x114(r1)
-	lfd      f31, 0x100(r1)
-	lwz      r31, 0xfc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x110
-	blr
-	*/
 }
 
 /*
