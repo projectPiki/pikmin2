@@ -4,6 +4,10 @@
 #include "JSystem/JMath.h"
 #include "Dolphin/math.h"
 
+template <typename T>
+struct Vector3;
+
+Vector3<f32> CRSplineTangent(f32 t, Vector3<f32>* controls);
 f32 pikmin2_sinf(f32 x);
 f32 pikmin2_cosf(f32 x);
 f32 pikmin2_atan2f(f32 x, f32 y);

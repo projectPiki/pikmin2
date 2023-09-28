@@ -26,4 +26,14 @@ struct Platform : CNode {
 	Sys::OBBTree* mTriDivider; // _18
 };
 
+// this is stripped, but needed to generate weak dtors in collinfo.cpp
+struct AgePlatform : public Platform {
+	AgePlatform();
+
+	virtual ~AgePlatform() { }
+
+	// _00     = VTBL
+	// _00-_18 = Platform
+};
+
 #endif
