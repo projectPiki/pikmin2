@@ -9,7 +9,7 @@ namespace Game {
 struct SeaMgr : public NodeObjectMgr<WaterBox> {
 	SeaMgr();
 
-	virtual ~SeaMgr(); // _08 (weak)
+	virtual ~SeaMgr() { } // _08 (weak)
 
 	void addSeaMgr(SeaMgr*, Matrixf&);
 	void addWaterBox(WaterBox*);
@@ -21,7 +21,7 @@ struct SeaMgr : public NodeObjectMgr<WaterBox> {
 	// Unused/inlined:
 	void directDraw(Graphics&);
 
-	int _3C;                           // _3C
+	int mModelCount;                   // _3C
 	J3DModelData** mModelData;         // _40
 	Sys::MatTexAnimation* mAnimations; // _44
 };
