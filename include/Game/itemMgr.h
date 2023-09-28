@@ -7,6 +7,7 @@
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
+#include "PSM/ObjMgr.h"
 #include "ObjectMgr.h"
 #include "stream.h"
 #include "types.h"
@@ -189,24 +190,45 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	{
 	}
 
-	virtual void doAnimation();                                        // _08 (weak)
-	virtual void doEntry();                                            // _0C (weak)
-	virtual void doSetView(int viewportNumber);                        // _10 (weak)
-	virtual void doViewCalc();                                         // _14 (weak)
-	virtual void doSimulation(f32 rate);                               // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx);                          // _1C (weak)
-	virtual void initDependency();                                     // _38 (weak)
-	virtual void killAll();                                            // _3C (weak)
-	virtual u32 generatorGetID()                                  = 0; // _58
-	virtual T* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _5C
-	virtual void onCreateModel(SysShape::Model*);                      // _A0
-	virtual T* birth();                                                // _A4
-	virtual void kill(T*);                                             // _A8 (weak)
-	virtual T* get(void*);                                             // _AC (weak, thunk at _94)
-	virtual void* getNext(void*);                                      // _B0 (weak, thunk at _88)
-	virtual void* getStart();                                          // _B4 (weak, thunk at _8C)
-	virtual void* getEnd();                                            // _B8 (weak, thunk at _90)
-	virtual ~FixedSizeItemMgr<T>() { }                                 // _BC (weak, thunk at _7C)
+	virtual void doAnimation() { mMonoObjectMgr.doAnimation(); }                             // _08 (weak)
+	virtual void doEntry() { mMonoObjectMgr.doEntry(); }                                     // _0C (weak)
+	virtual void doSetView(int viewportNumber) { mMonoObjectMgr.doSetView(viewportNumber); } // _10 (weak)
+	virtual void doViewCalc() { mMonoObjectMgr.doViewCalc(); }                               // _14 (weak)
+	virtual void doSimulation(f32 rate) { mMonoObjectMgr.doSimulation(rate); }               // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { mMonoObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
+	virtual void initDependency()                                                            // _38 (weak)
+	{
+		Iterator<T> iter(&mMonoObjectMgr);
+		CI_LOOP(iter) { (*iter)->initDependency(); }
+	}
+	virtual void killAll() // _3C (weak)
+	{
+		for (int i = 0; i < mMonoObjectMgr.mMax; i++) {
+			T* item = mMonoObjectMgr.getAt(i);
+			CreatureKillArg killArg(1);
+			if (item->isAlive()) {
+				item->kill(&killArg);
+			}
+
+			if (item->getPSCreature()) {
+				PSM::ObjMgr* inst = PSSystem::SingletonBase<PSM::ObjMgr>::sInstance;
+				if (inst) {
+					PSM::Creature* soundObj = item->getPSCreature();
+					inst->remove(soundObj);
+				}
+			}
+		}
+	}
+	virtual u32 generatorGetID()                                  = 0;       // _58
+	virtual T* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0;       // _5C
+	virtual void onCreateModel(SysShape::Model*) { }                         // _A0
+	virtual T* birth() { return mMonoObjectMgr.birth(); }                    // _A4
+	virtual void kill(T* item) { mMonoObjectMgr.kill(item); }                // _A8 (weak)
+	virtual T* get(void* idx) { return mMonoObjectMgr.get(idx); }            // _AC (weak, thunk at _94)
+	virtual void* getNext(void* idx) { return mMonoObjectMgr.getNext(idx); } // _B0 (weak, thunk at _88)
+	virtual void* getStart() { return mMonoObjectMgr.getStart(); }           // _B4 (weak, thunk at _8C)
+	virtual void* getEnd() { return mMonoObjectMgr.getEnd(); }               // _B8 (weak, thunk at _90)
+	// virtual ~FixedSizeItemMgr<T>() { }                                 // _BC (weak, thunk at _7C)
 
 	SysShape::Model* createModel(T*);
 	void createModelCallback(SysShape::Model*);
@@ -218,7 +240,37 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	// _30     = VTBL (Container)
 	// _30-_4C = Container
 	MonoObjectMgr<T> mMonoObjectMgr; // _4C
+	SysShape::ModelMgr* mModelMgr;   // _7C
 };
+
+template <typename T>
+SysShape::Model* FixedSizeItemMgr<T>::createModel(T* item)
+{
+	mModelMgr->createModel(item->_188, item->_184);
+}
+
+template <typename T>
+void FixedSizeItemMgr<T>::createModelCallback(SysShape::Model* model)
+{
+	onCreateModel(model);
+}
+
+template <typename T>
+void FixedSizeItemMgr<T>::createMgr(int count, u32 p2)
+{
+	mMonoObjectMgr.alloc(count);
+	onAlloc();
+	mModelMgr = new SysShape::ModelMgr(mModelDataMax, mModelData, count, p2, 2,
+	                                   new Delegate1<FixedSizeItemMgr<T>, SysShape::Model*>(this, createModelCallback));
+}
+
+template <typename T>
+void FixedSizeItemMgr<T>::onAlloc()
+{
+	for (int i = 0; i < mMonoObjectMgr.mMax; i++) {
+		mMonoObjectMgr.getAt(i)->_184 = i;
+	}
+}
 
 extern ItemMgr* itemMgr;
 

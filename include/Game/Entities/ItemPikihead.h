@@ -237,7 +237,6 @@ struct Mgr : public FixedSizeItemMgr<Item> {
 
 	// _00     = VTBL
 	// _00-_7C = FixedSizeItemMgr
-	u8 _7C[0x4]; // _7C, unknown
 };
 
 extern Mgr* mgr;

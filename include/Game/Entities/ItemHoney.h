@@ -13,30 +13,30 @@
 
 namespace Game {
 
+// Type of nectar drop (honey).
 enum HoneyKind {
-	// type of the honey
-	HONEY_Y, // yellow nectar
-	HONEY_R, // red nectar (spicy)
-	HONEY_B  // black nectar (bitter)
+	HONEY_Y = 0, // yellow nectar
+	HONEY_R = 1, // red nectar (spicy)
+	HONEY_B = 2, // black nectar (bitter)
 };
 
 namespace ItemHoney {
 
-enum cState {
-	HONEYSTATE_Fall = 0,
-	HONEYSTATE_Bounce,
-	HONEYSTATE_Wait,
-	HONEYSTATE_Shrink,
-	HONEYSTATE_Touch,
-	HONEYSTATE_Demo,
-	HONEYSTATE_COUNT
+enum StateID {
+	HONEY_Fall   = 0,
+	HONEY_Bounce = 1,
+	HONEY_Wait   = 2,
+	HONEY_Shrink = 3,
+	HONEY_Touch  = 4,
+	HONEY_Demo   = 5,
+	HONEY_StateCount, // 6
 };
 
 struct InitArg : public CreatureInitArg {
-	inline InitArg(u8 a, u8 b)
+	inline InitArg(u8 type, bool isDemo)
 	{
-		_04 = a;
-		_05 = b;
+		mHoneyType = type;
+		mIsDemo    = isDemo;
 	}
 
 	virtual const char* getName() // _08 (weak)
@@ -45,8 +45,8 @@ struct InitArg : public CreatureInitArg {
 	}
 
 	// _00 = VTBL
-	u8 _04; // _04
-	u8 _05; // _05
+	u8 mHoneyType; // _04
+	bool mIsDemo;  // _05
 };
 
 struct Item : public CFSMItem {
@@ -61,7 +61,7 @@ struct Item : public CFSMItem {
 	virtual void onEndCapture();                          // _9C
 	virtual void collisionCallback(CollEvent& collEvent); // _EC
 	virtual void on_movie_end(bool shouldResetAnims);     // _114
-	virtual char* getCreatureName();                      // _1A8 (weak)
+	virtual char* getCreatureName() { return "Honey"; }   // _1A8 (weak)
 
 	// vtable 2 (MotionListener + BaseItem + self)
 	virtual void makeTrMatrix();                              // _1C4
@@ -85,7 +85,7 @@ struct Mgr : public FixedSizeItemMgr<Item> {
 	Mgr();
 
 	virtual void onLoadResources();                                                   // _48
-	virtual u32 generatorGetID();                                                     // _58 (weak)
+	virtual u32 generatorGetID() { return 'mitu'; }                                   // _58 (weak)
 	virtual Item* generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm); // _5C
 	virtual void onCreateModel(SysShape::Model* model);                               // _A0
 	virtual Item* birth();                                                            // _A4
@@ -93,9 +93,6 @@ struct Mgr : public FixedSizeItemMgr<Item> {
 	virtual void* getNext(void*);                                                     // _B0 (weak, thunk at _88)
 	virtual void* getStart();                                                         // _B4 (weak, thunk at _8C)
 	virtual void* getEnd();                                                           // _B8 (weak, thunk at _90)
-	virtual ~Mgr();                                                                   // _BC (weak)
-
-	u8 _7C[0x4]; // _7C - unknown
 };
 
 struct FSM : public CItemFSM {
@@ -111,18 +108,19 @@ struct State : public CItemState {
 	{
 	}
 
-	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent); // _24 (weak)
-	virtual void collisionCallback(CFSMItem* item, CollEvent& collEvent);        // _34 (weak)
-	virtual bool interactAbsorb(CFSMItem* item, InteractAbsorb& interaction);    // _38 (weak)
-	virtual bool absorbable();                                                   // _3C (weak)
+	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent) { }            // _24 (weak)
+	virtual void collisionCallback(CFSMItem* item, CollEvent& collEvent) { }                   // _34 (weak)
+	virtual bool interactAbsorb(CFSMItem* item, InteractAbsorb& interaction) { return false; } // _38 (weak)
+	virtual bool absorbable() { return false; }                                                // _3C (weak)
 
 	// _00     = VTBL
 	// _00-_0C = CItemState
+	char* mName; // _0C, unused but educated guess
 };
 
 struct BounceState : public State {
 	inline BounceState()
-	    : State(HONEYSTATE_Bounce)
+	    : State(HONEY_Bounce)
 	{
 	}
 
@@ -132,13 +130,12 @@ struct BounceState : public State {
 	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 struct DemoState : public State {
 	inline DemoState()
-	    : State(HONEYSTATE_Demo)
+	    : State(HONEY_Demo)
 	{
 	}
 
@@ -148,13 +145,12 @@ struct DemoState : public State {
 	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 struct FallState : public State {
 	inline FallState()
-	    : State(HONEYSTATE_Fall)
+	    : State(HONEY_Fall)
 	{
 	}
 
@@ -164,31 +160,29 @@ struct FallState : public State {
 	virtual void onBounce(CFSMItem* item, Sys::Triangle* tri); // _28
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 struct ShrinkState : public State {
 	inline ShrinkState()
-	    : State(HONEYSTATE_Shrink)
+	    : State(HONEY_Shrink)
 	{
 	}
 
-	virtual void init(CFSMItem* item, StateArg* arg);                            // _08
-	virtual void exec(CFSMItem* item);                                           // _0C
-	virtual void cleanup(CFSMItem* item);                                        // _10
-	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent); // _24
-	virtual bool interactAbsorb(CFSMItem* item, InteractAbsorb& interaction);    // _38 (weak)
-	virtual bool absorbable();                                                   // _3C (weak)
+	virtual void init(CFSMItem* item, StateArg* arg);                                         // _08
+	virtual void exec(CFSMItem* item);                                                        // _0C
+	virtual void cleanup(CFSMItem* item);                                                     // _10
+	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent);              // _24
+	virtual bool interactAbsorb(CFSMItem* item, InteractAbsorb& interaction) { return true; } // _38 (weak)
+	virtual bool absorbable() { return true; }                                                // _3C (weak)
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 struct TouchState : public State {
 	inline TouchState()
-	    : State(HONEYSTATE_Touch)
+	    : State(HONEY_Touch)
 	{
 	}
 
@@ -198,17 +192,16 @@ struct TouchState : public State {
 	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent); // _24
 	virtual void collisionCallback(CFSMItem* item, CollEvent& collEvent);        // _34
 	virtual bool interactAbsorb(CFSMItem* item, InteractAbsorb& interaction);    // _38
-	virtual bool absorbable();                                                   // _3C (weak)
+	virtual bool absorbable() { return true; }                                   // _3C (weak)
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
-	u8 _10;  // _10
+	// _00-_10 = State
+	bool mIsJiggling; // _10, has been touched by navi
 };
 
 struct WaitState : public State {
 	inline WaitState()
-	    : State(HONEYSTATE_Wait)
+	    : State(HONEY_Wait)
 	{
 	}
 
@@ -217,11 +210,10 @@ struct WaitState : public State {
 	virtual void cleanup(CFSMItem* item);                                     // _10
 	virtual void collisionCallback(CFSMItem* item, CollEvent& collEvent);     // _34
 	virtual bool interactAbsorb(CFSMItem* item, InteractAbsorb& interaction); // _38
-	virtual bool absorbable();                                                // _3C (weak)
+	virtual bool absorbable() { return true; }                                // _3C (weak)
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 extern Mgr* mgr;

@@ -1077,8 +1077,8 @@ void CFSMItem::constructor()
  */
 void CFSMItem::initFSM()
 {
-	mStateMachine = createFSM();
-	mStateMachine->init(this);
+	mFsm = createFSM();
+	mFsm->init(this);
 }
 
 /*
@@ -1095,7 +1095,7 @@ void CFSMItem::initFSM()
  * Address:	801CC9F8
  * Size:	000034
  */
-void CFSMItem::doAI() { mStateMachine->exec(this); }
+void CFSMItem::doAI() { mFsm->exec(this); }
 
 /*
  * --INFO--
@@ -1105,7 +1105,7 @@ void CFSMItem::doAI() { mStateMachine->exec(this); }
 void CFSMItem::setCurrState(FSMState<CFSMItem>* state)
 {
 	// Generated from stw r4, 0x1DC(r3)
-	mCurrState = state;
+	mCurrentState = state;
 }
 
 /*
@@ -1113,7 +1113,7 @@ void CFSMItem::setCurrState(FSMState<CFSMItem>* state)
  * Address:	801CCA34
  * Size:	000008
  */
-FSMState<CFSMItem>* CFSMItem::getCurrState() { return mCurrState; }
+FSMState<CFSMItem>* CFSMItem::getCurrState() { return mCurrentState; }
 
 /*
  * --INFO--
@@ -1122,8 +1122,8 @@ FSMState<CFSMItem>* CFSMItem::getCurrState() { return mCurrState; }
  */
 int CFSMItem::getStateID()
 {
-	if (mCurrState) {
-		return mCurrState->mId;
+	if (mCurrentState) {
+		return mCurrentState->mId;
 	}
 	return -1;
 }
@@ -1135,8 +1135,8 @@ int CFSMItem::getStateID()
  */
 void CFSMItem::bounceCallback(Sys::Triangle* tri)
 {
-	if (mCurrState) {
-		static_cast<CItemState*>(mCurrState)->onBounce(this, tri);
+	if (mCurrentState) {
+		static_cast<CItemState*>(mCurrentState)->onBounce(this, tri);
 	}
 }
 
@@ -1155,8 +1155,8 @@ void CFSMItem::bounceCallback(Sys::Triangle* tri)
  */
 void CFSMItem::collisionCallback(Game::CollEvent& event)
 {
-	if (mCurrState) {
-		static_cast<CItemState*>(mCurrState)->onCollision(this, event);
+	if (mCurrentState) {
+		static_cast<CItemState*>(mCurrentState)->onCollision(this, event);
 	}
 }
 
@@ -1175,8 +1175,8 @@ void CFSMItem::collisionCallback(Game::CollEvent& event)
  */
 void CFSMItem::platCallback(Game::PlatEvent& event)
 {
-	if (mCurrState) {
-		static_cast<CItemState*>(mCurrState)->onPlatCollision(this, event);
+	if (mCurrentState) {
+		static_cast<CItemState*>(mCurrentState)->onPlatCollision(this, event);
 	}
 }
 
@@ -1195,8 +1195,8 @@ void CFSMItem::platCallback(Game::PlatEvent& event)
  */
 void CFSMItem::onKeyEvent(const SysShape::KeyEvent& event)
 {
-	if (mCurrState) {
-		static_cast<CItemState*>(mCurrState)->onKeyEvent(this, event);
+	if (mCurrentState) {
+		static_cast<CItemState*>(mCurrentState)->onKeyEvent(this, event);
 	}
 }
 

@@ -164,7 +164,7 @@ void ItemHole::Item::movieUserCommand(u32 command, MoviePlayer* player)
 			iterator.next();
 		}
 		if (!player->isFlag(MVP_IsFinished)) {
-			mStateMachine->transit(this, Hole_Appear, nullptr);
+			mFsm->transit(this, Hole_Appear, nullptr);
 
 		} else {
 			if (mBuryDepth != 0.0f) {
@@ -173,7 +173,7 @@ void ItemHole::Item::movieUserCommand(u32 command, MoviePlayer* player)
 			efx::Arg arg(Vector3f::zero);
 			arg.mPosition = mPosition;
 			mEfxWarpZone->create(&arg);
-			mStateMachine->transit(this, Hole_Normal, nullptr);
+			mFsm->transit(this, Hole_Normal, nullptr);
 		}
 	}
 }
@@ -208,9 +208,9 @@ void ItemHole::Item::onInit(Game::CreatureInitArg* arg)
 	mNodeItemMgr->setup(this);
 	setAlive(true);
 	if (arg) {
-		mStateMachine->start(this, static_cast<InitArg*>(arg)->mInitialState, nullptr);
+		mFsm->start(this, static_cast<InitArg*>(arg)->mInitialState, nullptr);
 	} else {
-		mStateMachine->start(this, Hole_Normal, nullptr);
+		mFsm->start(this, Hole_Normal, nullptr);
 	}
 	mBarrel  = nullptr;
 	mFaceDir = 0.0f;

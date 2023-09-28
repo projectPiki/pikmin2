@@ -122,7 +122,7 @@ struct CFSMItem : public BaseItem {
 
 	inline CFSMItem(int objTypeID)
 	    : BaseItem(objTypeID)
-	    , mStateMachine(nullptr)
+	    , mFsm(nullptr)
 	    , mCurrentState(nullptr)
 	{
 	}
@@ -145,7 +145,7 @@ struct CFSMItem : public BaseItem {
 
 	// _000      = VTBL
 	// _000-_1D8 = BaseItem
-	CItemFSM* mStateMachine;           // _1D8
+	CItemFSM* mFsm;                    // _1D8
 	FSMState<CFSMItem>* mCurrentState; // _1DC
 };
 
