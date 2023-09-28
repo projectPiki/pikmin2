@@ -1450,7 +1450,7 @@ LIBS = [
         "host": True,
         "objects": [
             "plugProjectEbisawaU/efxBase",
-            "plugProjectEbisawaU/efxEnemy",
+            ["plugProjectEbisawaU/efxEnemy", False, {"cflags" : "$cflags_pikmin"}],
             "plugProjectEbisawaU/efxObject",
             "plugProjectEbisawaU/efxPikmin",
             "plugProjectEbisawaU/particle2dMgr",

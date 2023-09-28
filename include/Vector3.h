@@ -389,14 +389,28 @@ inline f32 Vector3f::distance(Vector3f& them)
 	return Vector3f(diffX, diffY, diffZ).length();
 }
 
+// this is wacky and shows up in efxEnemy.cpp
 template <>
 inline f32 Vector3f::distance(JGeometry::TVec3f& them)
 {
-	f32 diffX = this->x - them.x;
-	f32 diffY = this->y - them.y;
-	f32 diffZ = this->z - them.z;
+	f32 diffX = them.x - this->x;
+	f32 diffY = them.y - this->y;
+	f32 diffZ = them.z - this->z;
 
-	return Vector3f(diffX, diffY, diffZ).length();
+	f32 X = diffX * diffX;
+	f32 Y = diffY * diffY;
+	f32 Z = diffZ * diffZ;
+
+	f32 mag = X + Y + Z;
+	if (mag <= 0.0f) {
+		return mag;
+	}
+
+	f32 root = __frsqrte(mag);
+	f32 v1   = root * root;
+	f32 v2   = 0.5f * root;
+	f32 v3   = v2 * (3.0f - mag * v1);
+	return mag * v3;
 }
 
 inline f32 _normaliseDistance(Vector3f& vec1, Vector3f& vec2)

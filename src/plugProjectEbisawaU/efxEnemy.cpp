@@ -35,7 +35,7 @@ static void _Print(char* format, ...) { OSReport(format, __FILE__); }
  */
 bool TChibiHit::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(23, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSimple4::create(arg)) {
@@ -59,7 +59,7 @@ bool TChibiHit::create(Arg* arg)
  */
 bool TChouDown::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgChou", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgChou", static_cast<ArgChou*>(arg)->getName()) == 0;
 	P2ASSERTLINE(43, nameCheck);
 	int type = static_cast<ArgChou*>(arg)->mType;
 
@@ -98,7 +98,7 @@ void TUmiHamon::setGlobalScale(f32 scale)
  */
 bool TUmiFlick::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(80, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSimple3::create(arg)) {
@@ -117,74 +117,14 @@ bool TUmiFlick::create(Arg* arg)
  */
 bool TUmiAttack::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(97, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
-	if (TSimple1::create(arg)) { // supposed to inherit TSimpleMtx1?
+	if (TSimpleMtx1::create(arg)) { // supposed to inherit TSimpleMtx1?
 		mEmitters[0]->setScale(scale);
 		return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495898@ha
-	lwz      r12, 0(r30)
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x10
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B313C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x61
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B313C:
-	lfs      f31, 0x10(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx11TSimpleMtx1FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B3174
-	lwz      r4, 8(r29)
-	li       r3, 1
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803B3178
-
-lbl_803B3174:
-	li       r3, 0
-
-lbl_803B3178:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -218,7 +158,7 @@ void TUmiDeadawa::setGlobalScale(f32 scale)
  */
 bool TUmiDeadmelt::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(134, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSimple1::create(arg)) {
@@ -235,7 +175,7 @@ bool TUmiDeadmelt::create(Arg* arg)
  */
 bool TJgmAttack::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(153, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSyncGroup2<TChasePos>::create(arg)) {
@@ -254,7 +194,7 @@ bool TJgmAttack::create(Arg* arg)
  */
 bool TJgmAttackW::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(169, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSyncGroup3<TChasePosYRot>::create(arg)) {
@@ -273,7 +213,7 @@ bool TJgmAttackW::create(Arg* arg)
  */
 bool TJgmBack::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(185, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSync::create(arg)) {
@@ -290,7 +230,7 @@ bool TJgmBack::create(Arg* arg)
  */
 bool TJgmBackW::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(199, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSyncGroup2<TChasePosYRot>::create(arg)) {
@@ -309,7 +249,7 @@ bool TJgmBackW::create(Arg* arg)
  */
 bool TImoEat::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgImoEat", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgImoEat", static_cast<ArgImoEat*>(arg)->getName()) == 0;
 	P2ASSERTLINE(217, nameCheck);
 	ArgImoEat* sarg = static_cast<ArgImoEat*>(arg);
 
@@ -363,7 +303,7 @@ bool TUjinkoAp_Imo::create(Arg* arg)
  */
 bool TImoSmoke::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(263, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSync::create(arg)) {
@@ -380,7 +320,7 @@ bool TImoSmoke::create(Arg* arg)
  */
 bool TOtaPartsoff::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(279, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSimple1::create(arg)) {
@@ -554,7 +494,6 @@ void TKechappyTest::setGlobalDynamicsScale(Vector3f& scale)
  */
 void TYakiBody::setRateLOD(int id)
 {
-	JPABaseEmitter* emit;
 	f32 lods[4][3] = {
 		{ 0.2f, 0.2f, 0.2f },
 		{ 1.0f, 1.0f, 1.0f },
@@ -640,7 +579,7 @@ lbl_803B3D08:
  */
 bool TPanApp::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(456, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSimple1::create(arg)) {
@@ -657,7 +596,7 @@ bool TPanApp::create(Arg* arg)
  */
 bool TPanHide::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(473, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSync::create(arg)) {
@@ -674,7 +613,7 @@ bool TPanHide::create(Arg* arg)
  */
 bool TPanSmoke::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(489, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSync::create(arg)) {
@@ -691,7 +630,7 @@ bool TPanSmoke::create(Arg* arg)
  */
 bool TBabaFly_ver01::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(506, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSync::create(arg)) {
@@ -708,25 +647,20 @@ bool TBabaFly_ver01::create(Arg* arg)
  */
 bool TBabaHe::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgRotY", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgRotY", static_cast<ArgRotY*>(arg)->getName()) == 0;
 	P2ASSERTLINE(521, nameCheck);
 	ArgRotY* sarg = static_cast<ArgRotY*>(arg);
-	Mtx mtx;
-	f32 x = arg->mPosition.x;
-	f32 y = arg->mPosition.y;
-	f32 z = arg->mPosition.z;
-	PSMTXRotRad(mtx, 'y', sarg->mFaceDir);
-	mtx[0][3] = x;
-	mtx[1][3] = y;
-	mtx[2][3] = z;
+	Matrixf mtx;
+	Vector3f pos = arg->mPosition;
+	PSMTXRotRad(mtx.mMatrix.mtxView, 'y', sarg->mFaceDir);
+	mtx.setTranslation(pos);
 
 	if (TSimple2::create(arg)) {
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
 		}
-		mEmitters[0]->mPosition.x = (mtx[0][2] * -35.0f) + x;
-		mEmitters[0]->mPosition.y = (mtx[1][2] * -35.0f) + y;
-		mEmitters[0]->mPosition.z = (mtx[2][2] * -35.0f) + z;
+		Vector3f zVec = mtx.getBasis(2);
+		((zVec * -35.0f) + pos).setTVec(mEmitters[0]->mPosition);
 		return true;
 	}
 	return false;
@@ -846,7 +780,7 @@ lbl_803B41A4:
  */
 bool TKoganeHit::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(546, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSimple2::create(arg)) {
@@ -865,7 +799,7 @@ bool TKoganeHit::create(Arg* arg)
  */
 bool TKoganeDive::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgScale", static_cast<ArgScale*>(arg)->getName()) == 0;
 	P2ASSERTLINE(562, nameCheck);
 	f32 scale = static_cast<ArgScale*>(arg)->mScale;
 	if (TSimple2::create(arg)) {
@@ -895,7 +829,8 @@ void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* 
 	f32 y = particle->getCalcCurrentPositionY(emit);
 	f32 x = particle->getCalcCurrentPositionX(emit);
 	Vector3f tgt(x, y, z);
-	if (tgt.distance(emit->mPosition) < _04) {
+
+	if (tgt.distance(emit->mPosition) > _04) {
 		particle->mFlags |= 2;
 
 		TTankFireHit* hit = mEfxHit;
@@ -1050,7 +985,7 @@ bool TTankFire::create(Arg* arg)
  */
 bool TTankWat::create(Arg* arg)
 {
-	// mParticleCallBack.mEfxHit = &mEfxHit; // something sus here
+	mParticleCallBack.mEfxHit = (TTankFireHit*)&mEfxHit; // something sus here
 	mParticleCallBack.mEfxHit->create(nullptr);
 	mParticleCallBack._04 = 1000.0f;
 	if (TSyncGroup4<TChaseMtx>::create(arg)) {
@@ -1059,48 +994,6 @@ bool TTankWat::create(Arg* arg)
 		}
 	}
 	return true;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r0, r30, 0x60
-	stw      r0, 0x5c(r3)
-	lwz      r3, 0x5c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051F644@sda21(r2)
-	mr       r3, r30
-	mr       r4, r31
-	stfs     f0, 0x58(r30)
-	bl       "create__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>FPQ23efx3Arg"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B46C4
-	lwz      r3, 0xc(r30)
-	addi     r0, r30, 0x54
-	stw      r0, 0xf0(r3)
-	lwz      r3, 0x20(r30)
-	stw      r0, 0xf0(r3)
-	lwz      r3, 0x34(r30)
-	stw      r0, 0xf0(r3)
-	lwz      r3, 0x48(r30)
-	stw      r0, 0xf0(r3)
-
-lbl_803B46C4:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

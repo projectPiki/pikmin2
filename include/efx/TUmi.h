@@ -1,14 +1,14 @@
 #ifndef _EFX_TUMI_H
 #define _EFX_TUMI_H
 
-#include "efx/TSimple.h"
+#include "efx/TSimpleMtx.h"
 #include "efx/TChasePos.h"
 #include "efx/TChaseMtx.h"
 
 namespace efx {
-struct TUmiAttack : public TSimple1 {
+struct TUmiAttack : public TSimpleMtx1 {
 	inline TUmiAttack()
-	    : TSimple1(PID_UmiAttack)
+	    : TSimpleMtx1(nullptr, PID_UmiAttack)
 	{
 	}
 
