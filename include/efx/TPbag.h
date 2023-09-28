@@ -5,8 +5,8 @@
 
 namespace efx {
 struct TPbagDown : public TSimpleMtx3 {
-	inline TPbagDown()
-	    : TSimpleMtx3(nullptr, PID_PbagDown_1, PID_PbagDown_2, PID_PbagDown_3)
+	inline TPbagDown(Matrixf* mtx)
+	    : TSimpleMtx3(mtx, PID_PbagDown_1, PID_PbagDown_2, PID_PbagDown_3)
 	{
 	}
 
@@ -15,8 +15,8 @@ struct TPbagDown : public TSimpleMtx3 {
 };
 
 struct TPbagOn : public TSimpleMtx2 {
-	inline TPbagOn()
-	    : TSimpleMtx2(nullptr, PID_PbagOn_1, PID_PbagOn_2)
+	inline TPbagOn(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_PbagOn_1, PID_PbagOn_2)
 	{
 	}
 

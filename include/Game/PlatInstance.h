@@ -120,7 +120,7 @@ struct PlatEvent {
 	f32 _04;                 // _04
 	f32 _08;                 // _08
 	f32 _0C;                 // _0C
-	BaseItem* mItem;         // _10
+	Creature* mObj;          // _10
 };
 
 extern PlatMgr* platMgr;

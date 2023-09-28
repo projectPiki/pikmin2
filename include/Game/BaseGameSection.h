@@ -61,6 +61,8 @@ enum DemoTimers {
 	DEMOTIMER_Unk3                  = 3,
 	DEMOTIMER_Meet_Red_Pikmin       = 4,
 	DEMOTIMER_Reds_Purples_Tutorial = 5,
+	DEMOTIMER_Unk6                  = 6,
+	DEMOTIMER_CrushBag              = 7,
 };
 
 struct BaseGameSection : public BaseHIOSection {

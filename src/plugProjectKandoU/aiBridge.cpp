@@ -177,7 +177,7 @@ void ActBridge::cleanup()
 void ActBridge::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
 	Game::PlatInstance* instance = platEvent.mInstance;
-	if (platEvent.mItem == mBridge) {
+	if (platEvent.mObj == mBridge) {
 		if (instance->mId.getID() == 'brbk') {
 			_30 |= 0x1;
 		} else if (instance->mId.getID() == 'br__') {
