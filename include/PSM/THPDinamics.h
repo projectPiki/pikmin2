@@ -17,21 +17,29 @@ enum THP_ID {
 	PLAY_5                = 9,
 	PLAY_6                = 10,
 	CRIME                 = 11,
+	THP_COUNT             = 12,
 };
 
 struct THPDemoDinamics {
+	f32 _00;
+	f32 _04;
+	f32 _08;
+	bool mEnableDyn;
+	char* mName;
 };
 
 struct THPDinamicsProc {
 	THPDinamicsProc(); // inlined/unused
 
-	void setSetting(THP_ID);
-	void setSetting(THPDemoDinamics*);
-	f32 dinamics(f32);
+	void setSetting(THP_ID id);
+	void setSetting(THPDemoDinamics* dyn);
+	f32 dinamics(f32 input);
 
 	void complessor(f32);
 
 	inline f32 doAudioDinamics(u16 vol, int val) { return 32768.0f * dinamics((vol * val >> 15) / 32768.0f); }
+
+	THPDemoDinamics* mDemoInfo; // _00
 };
 
 extern THPDinamicsProc sTHPDinamicsProc;

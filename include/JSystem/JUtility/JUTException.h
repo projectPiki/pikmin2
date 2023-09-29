@@ -165,6 +165,14 @@ struct JUTException : public JKRThread {
 	}                                                                           \
 	P2ASSERTLINE(line, check##line)
 
+// Used in PSMainSide_CreaturePrm
+#define P2ASSERTBOUNDSLINE2(line, lowerLimitExclusive, var, upperLimitInclusive) \
+	bool check##line = false;                                                    \
+	if (var > lowerLimitExclusive && var <= upperLimitInclusive) {               \
+		check##line = true;                                                      \
+	}                                                                            \
+	P2ASSERTLINE(line, check##line)
+
 #define P2ASSERTBOUNDSINCLUSIVELINE(line, lowerLimitInclusive, var, upperLimitInclusive) \
 	bool check##line = false;                                                            \
 	if (lowerLimitInclusive <= var && var <= upperLimitInclusive) {                      \
