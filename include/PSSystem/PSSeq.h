@@ -31,6 +31,34 @@ struct DirectorBase : public JADHioNode {
 	void directOffInner();
 	void powerOn();
 
+	inline void setupTracks(int startID, int maxID, SeqTrackBase** tracks)
+	{
+		for (u8 i = 0; i < maxID; i++) {
+			int id = i + startID;
+			P2ASSERTLINE(419, id < 16);
+			setTrack(i, tracks[id]);
+		}
+	}
+	// there should only be a single inline judging by the line number, but i have no clue how to handle this condition check
+	inline void setupTracks(int startID, int maxID, SeqTrackBase** tracks, u8* cond)
+	{
+		for (int i = 0; i < maxID; i++) {
+			int id = i + startID;
+			if (cond[i]) {
+				P2ASSERTLINE(419, id < 16);
+			}
+			setTrack(i, tracks[id]);
+		}
+	}
+
+	// this is supposed to be a function for BgmSeq or DirectedBGM, but those are in a different header,
+	// but the panic has to be in this file AAAAAAAAAAAAAAA
+	inline void isBgmTrackValid()
+	{
+		bool check = true; // _B4 && _70
+		P2ASSERTLINE(415, check);
+	}
+
 	static u8 sToolMode;
 
 	// _00 = VTBL
@@ -67,7 +95,7 @@ struct SwitcherDirector : public DirectorBase {
 	{
 	}
 
-	virtual ~SwitcherDirector();                    // _08 (weak)
+	virtual ~SwitcherDirector() { }                 // _08 (weak)
 	virtual void directOnTrack(SeqTrackBase&)  = 0; // _20
 	virtual void directOffTrack(SeqTrackBase&) = 0; // _24
 	virtual void doUpdateRequest();                 // _28
@@ -90,15 +118,15 @@ struct DirectorCopyActor : public DirectorActorBase {
 	virtual void onUpdateFromSlaveD();  // _10 (weak)
 
 	// _00 = VTBL
-	DirectorBase* _04; // _04
-	DirectorBase* _08; // _08
+	DirectorBase* mDirectorChild;  // _04
+	DirectorBase* mDirectorParent; // _08
 };
 
 struct DirectorMgrBase : public JADHioNode {
 	DirectorMgrBase(u8);
 
-	virtual ~DirectorMgrBase();                     // _08 (weak)
-	virtual void newDirector(u8, DirectedBgm&) = 0; // _0C
+	virtual ~DirectorMgrBase() { }                           // _08 (weak)
+	virtual DirectorBase* newDirector(u8, DirectedBgm&) = 0; // _0C
 
 	void initAndAdaptToBgm(DirectedBgm&);
 	void playInit(JASTrack*);

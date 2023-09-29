@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "PSSystem/PSScene.h"
-#include "PSSystem/Director.h"
+#include "PSSystem/PSSeq.h"
 #include "PSSystem/PSBgm.h"
 #include "PSGame/SceneInfo.h"
 #include "JSystem/JAudio/JAI/JAInter.h"
@@ -43,7 +43,7 @@ struct PikSceneMgr : public PSSystem::SceneMgr {
 	virtual void newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, SceneInfo&,
 	                        PSSystem::DirectorMgrBase*)
 	    = 0;                                       // _1C
-	virtual void curSceneIsBigBossFloor();         // _20 (weak)
+	virtual bool curSceneIsBigBossFloor();         // _20 (weak)
 	virtual void newGameScene(u8, SceneInfo*) = 0; // _24
 
 	PSSystem::BgmSeq* newBgmSeq(const char*, JAInter::SoundInfo&);

@@ -23,6 +23,28 @@ struct BgmTrackMap {
 		strcpy(mFileName, "");
 	};
 
+	inline int getPikNum()
+	{
+		int num = 0;
+		for (int i = 0; i < 16; i++) {
+			if (mPikNum[i]) {
+				num++;
+			}
+		}
+		return num;
+	}
+
+	inline int getPikMaskNum()
+	{
+		int num = 0;
+		for (int i = 0; i < 8; i++) {
+			if (mPikMask[i]) {
+				num++;
+			}
+		}
+		return num;
+	}
+
 	char mFileName[32];    // _00
 	u8 mBasicTrackCount;   // _20
 	u8 mEventTrackCount;   // _21
@@ -34,13 +56,13 @@ struct BgmTrackMap {
 	u8 mPikMask[8];        // _36
 };
 
-struct BgmTrackMapFile : public PSSystem::TextDataBase, public PSSystem::SingletonBase<BgmTrackMapFile> {
+struct BgmTrackMapFile : public ::PSSystem::TextDataBase, public ::PSSystem::SingletonBase<BgmTrackMapFile> {
 	BgmTrackMapFile(bool flag);
 
 	virtual ~BgmTrackMapFile() { }    // _08 (weak)
 	virtual bool read(Stream& input); // _0C
 
-	void readTrackMap(const char*);
+	BgmTrackMap readTrackMap(const char*);
 
 	// _00     = VTBL 1
 	// _1C     = VTBL 2

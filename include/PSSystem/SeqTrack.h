@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "PSSystem/PSBgmTask.h"
-#include "PSSystem/Director.h"
+#include "PSSystem/PSSeq.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "JSystem/JAudio/JAD/JADDataMgr.h"
 

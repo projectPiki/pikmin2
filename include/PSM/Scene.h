@@ -52,7 +52,7 @@ struct SceneMgr : public PSGame::PikSceneMgr {
 	virtual void newDirectedBgm(const char*, JAInter::SoundInfo&); // _18
 	virtual void newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, PSGame::SceneInfo&,
 	                        PSSystem::DirectorMgrBase*); // _1C
-	virtual void curSceneIsBigBossFloor();               // _20
+	virtual bool curSceneIsBigBossFloor();               // _20
 	virtual void newGameScene(u8, PSGame::SceneInfo*);   // _24
 
 	void initEnvironmentSe(Scene_Game*);

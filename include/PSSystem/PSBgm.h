@@ -34,6 +34,14 @@ struct BgmSeq : public SeqBase {
  * @size = 0xB8
  */
 struct DirectedBgm : public BgmSeq {
+
+	enum CastType {
+		BgmType_NULL     = 0,
+		BgmType_Battle   = 2,
+		BgmType_Cave     = 3,
+		BgmType_2PBattle = 8,
+	};
+
 	DirectedBgm(const char* bmsFileName, const JAInter::SoundInfo& info, DirectorMgrBase* directorMgr);
 
 	virtual ~DirectedBgm();                           // _08 (weak)
@@ -55,10 +63,10 @@ struct DirectedBgm : public BgmSeq {
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	// _14-_6C  = BgmSeq
-	DirectorMgrBase* mDirectorMgr; // _6C
-	SeqTrackRoot* _70;             // _70
-	SeqTrackChild* _74[16];        // _74
-	u8 _B4;                        // _B4 - unknown
+	DirectorMgrBase* mDirectorMgr;   // _6C
+	SeqTrackRoot* mRootTrack;        // _70
+	SeqTrackChild* mChildTracks[16]; // _74
+	u8 _B4;                          // _B4 - unknown
 };
 
 /**

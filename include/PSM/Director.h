@@ -2,7 +2,7 @@
 #define _PSM_DIRECTOR_H
 
 #include "Dolphin/os.h"
-#include "PSSystem/Director.h"
+#include "PSSystem/PSSeq.h"
 
 struct JASTrack;
 
@@ -18,9 +18,9 @@ struct SeqTrackBase;
 } // namespace PSSystem
 
 namespace PSM {
-struct OneShotDirector : public PSSystem::OneShotDirector {
+struct OneShotDirector : public ::PSSystem::OneShotDirector {
 	inline OneShotDirector()
-	    : PSSystem::OneShotDirector()
+	    : ::PSSystem::OneShotDirector()
 	    , mActor(nullptr)
 	{
 	}
@@ -29,7 +29,7 @@ struct OneShotDirector : public PSSystem::OneShotDirector {
 
 	// _00     = VTBL
 	// _00-_48 = PSSystem::OneShotDirector
-	PSSystem::DirectorCopyActor* mActor; // _48
+	::PSSystem::DirectorCopyActor* mActor; // _48
 };
 
 /**
@@ -38,9 +38,9 @@ struct OneShotDirector : public PSSystem::OneShotDirector {
 struct DamageDirector : public OneShotDirector {
 	DamageDirector();
 
-	virtual ~DamageDirector();                           // _08 (weak)
-	virtual void execInner();                            // _1C
-	virtual void directOnTrack(PSSystem::SeqTrackBase&); // _20
+	virtual ~DamageDirector();                             // _08 (weak)
+	virtual void execInner();                              // _1C
+	virtual void directOnTrack(::PSSystem::SeqTrackBase&); // _20
 
 	// _00     = VTBL
 	// _00-_48 = OneShotDirector
@@ -49,48 +49,48 @@ struct DamageDirector : public OneShotDirector {
 	u32 _54; // _54
 };
 
-struct SwitcherDirector : public PSSystem::SwitcherDirector {
+struct SwitcherDirector : public ::PSSystem::SwitcherDirector {
 	inline SwitcherDirector(int p1, const char* p2)
-	    : PSSystem::SwitcherDirector(p1, p2)
+	    : ::PSSystem::SwitcherDirector(p1, p2)
 	{
 	}
 
-	virtual ~SwitcherDirector(); // _08 (weak)
+	virtual ~SwitcherDirector() { } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_48 = PSSystem::SwitcherDirector
 };
 
 struct PikminNumberDirector : public SwitcherDirector {
-	PikminNumberDirector(int, u8, PSSystem::DirectedBgm&);
+	PikminNumberDirector(int, u8, ::PSSystem::DirectedBgm&);
 
-	virtual ~PikminNumberDirector();                      // _08 (weak)
-	virtual void execInner();                             // _1C
-	virtual void directOnTrack(PSSystem::SeqTrackBase&);  // _20
-	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
+	virtual ~PikminNumberDirector();                        // _08 (weak)
+	virtual void execInner();                               // _1C
+	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
+	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
-	PSSystem::DirectorCopyActor* mActor; // _48
-	u8 _4C;                              // _4C
+	::PSSystem::DirectorCopyActor* mActor; // _48
+	u8 _4C;                                // _4C
 };
 
 /**
  * @size{0x54}
  */
 struct PikminNumberDirector_AutoBgm : public PikminNumberDirector {
-	PikminNumberDirector_AutoBgm(int, u8, PSSystem::DirectedBgm&);
+	PikminNumberDirector_AutoBgm(int, u8, ::PSSystem::DirectedBgm&);
 
-	virtual ~PikminNumberDirector_AutoBgm();              // _08 (weak)
-	virtual void directOnTrack(PSSystem::SeqTrackBase&);  // _20
-	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
+	virtual ~PikminNumberDirector_AutoBgm();                // _08 (weak)
+	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
+	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
 
-	void getTrack(PSSystem::SeqTrackBase&);
+	void getTrack(::PSSystem::SeqTrackBase&);
 
 	// _00     = VTBL
 	// _00-_4C = PikminNumberDirector
-	u8 _4C;                              // _4C
-	PSSystem::DirectedBgm* mDirectedBgm; // _50
+	u8 _4C;                                // _4C
+	::PSSystem::DirectedBgm* mDirectedBgm; // _50
 };
 
 struct TempoChangeDirectorBase : public SwitcherDirector {
@@ -101,15 +101,15 @@ struct TempoChangeDirectorBase : public SwitcherDirector {
 	    , mActor(nullptr)
 	{
 	}
-	virtual ~TempoChangeDirectorBase();                   // _08 (weak)
-	virtual void directOnTrack(PSSystem::SeqTrackBase&);  // _20
-	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
+	virtual ~TempoChangeDirectorBase();                     // _08 (weak)
+	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
+	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
 	f32 _48;
 	u32 _4C;
-	PSSystem::DirectorCopyActor* mActor;
+	::PSSystem::DirectorCopyActor* mActor;
 };
 
 /**
@@ -129,10 +129,10 @@ struct ActorDirector_TempoChange : public TempoChangeDirectorBase {
 struct TrackOnDirectorBase : public SwitcherDirector {
 	TrackOnDirectorBase(int, const char*, long, long);
 
-	virtual ~TrackOnDirectorBase();                       // _08 (weak)
-	virtual void directOnTrack(PSSystem::SeqTrackBase&);  // _20
-	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
-	virtual void onPlayInit(JASTrack*);                   // _2C
+	virtual ~TrackOnDirectorBase() { }                      // _08 (weak)
+	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
+	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
+	virtual void onPlayInit(JASTrack*);                     // _2C
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
@@ -147,7 +147,7 @@ struct TrackOnDirectorBase : public SwitcherDirector {
 struct PikAttackDirector : public TrackOnDirectorBase {
 	PikAttackDirector(int);
 
-	virtual ~PikAttackDirector(); // _08 (weak)
+	virtual ~PikAttackDirector() { } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
@@ -170,19 +170,23 @@ struct TrackOnDirector_Scaled : public TrackOnDirectorBase {
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
-	f32 _54;                             // _54
-	f32 _58;                             // _58
-	f32 _5C;                             // _5C
-	u32 _60;                             // _60
-	PSSystem::DirectorCopyActor* mActor; // _64
+	f32 _54;                               // _54
+	f32 _58;                               // _58
+	f32 _5C;                               // _5C
+	u32 _60;                               // _60
+	::PSSystem::DirectorCopyActor* mActor; // _64
 };
 
 /**
  * @size{0x58}
  */
 struct TrackOnDirector_Voting : public TrackOnDirectorBase {
-	virtual ~TrackOnDirector_Voting(); // _08 (weak)
-	virtual void execInner();          // _1C
+	TrackOnDirector_Voting(int track, const char* name, int p1, int p2)
+	    : TrackOnDirectorBase(track, name, p1, p2)
+	{
+	}
+	virtual ~TrackOnDirector_Voting() { } // _08 (weak)
+	virtual void execInner();             // _1C
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
@@ -195,7 +199,7 @@ struct TrackOnDirector_Voting : public TrackOnDirectorBase {
 struct ExiteDirector : public TrackOnDirectorBase {
 	ExiteDirector(int);
 
-	virtual ~ExiteDirector(); // _08 (weak)
+	virtual ~ExiteDirector() { } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
@@ -207,21 +211,26 @@ struct ExiteDirector : public TrackOnDirectorBase {
 struct ActorDirector_TrackOn : public TrackOnDirectorBase {
 	ActorDirector_TrackOn(const char*, int, long, long);
 
-	virtual ~ActorDirector_TrackOn(); // _08 (weak)
-	virtual void execInner();         // _1C
+	virtual ~ActorDirector_TrackOn() { } // _08 (weak)
+	virtual void execInner();            // _1C
 
 	// _00     = VTBL
 	// _00-_54 = TrackOnDirectorBase
-	PSSystem::DirectorCopyActor* mActor; // _54
+	::PSSystem::DirectorCopyActor* mActor; // _54
 };
 
 /**
  * @size{0x58}
  */
 struct GroundDirector_Cave : public ActorDirector_TrackOn {
-	virtual ~GroundDirector_Cave(); // _08 (weak)
-	virtual void directOn();        // _10 (weak)
-	virtual void directOff();       // _14 (weak)
+	GroundDirector_Cave(const char* name, int tracks, long a1, long a2)
+	    : ActorDirector_TrackOn(name, tracks, a1, a2)
+	{
+	}
+
+	virtual ~GroundDirector_Cave() { } // _08 (weak)
+	virtual void directOn() { }        // _10 (weak)
+	virtual void directOff() { }       // _14 (weak)
 
 	// _00     = VTBL
 	// _00-_58 = ActorDirector_TrackOn
@@ -263,6 +272,11 @@ struct ActorDirector_Enemy : public ActorDirector_Scaled {
  * @size{0x6C}
  */
 struct ActorDirector_Battle : public ActorDirector_Enemy {
+	ActorDirector_Battle(const char* name, int tracks, long a1, long a2, u32 a3)
+	    : ActorDirector_Enemy(name, tracks, a1, a2, a3)
+	{
+	}
+
 	virtual ~ActorDirector_Battle();              // _08 (weak)
 	virtual f64 getVolZeroDist(Game::EnemyBase*); // _40
 	virtual f64 getVolMaxDist(Game::EnemyBase*);  // _44
@@ -275,6 +289,11 @@ struct ActorDirector_Battle : public ActorDirector_Enemy {
  * @size{0x6C}
  */
 struct ActorDirector_Kehai : public ActorDirector_Enemy {
+	ActorDirector_Kehai(const char* name, int tracks, long a1, long a2, u32 a3)
+	    : ActorDirector_Enemy(name, tracks, a1, a2, a3)
+	{
+	}
+
 	virtual ~ActorDirector_Kehai();               // _08 (weak)
 	virtual f64 getVolZeroDist(Game::EnemyBase*); // _40
 	virtual f64 getVolMaxDist(Game::EnemyBase*);  // _44
@@ -289,24 +308,29 @@ struct ActorDirector_Kehai : public ActorDirector_Enemy {
 struct DirectorUpdator {
 	enum Type { TYPE_0 };
 
-	DirectorUpdator(PSSystem::DirectorBase*, u8, Type);
+	DirectorUpdator(::PSSystem::DirectorBase*, u8, Type);
 
 	void directOn(u8);
 	void directOff(u8);
 	void frameEndWork();
 
-	u8 _00;                            // _00
-	Type mType;                        // _04
-	u8 _08;                            // _08
-	u8 _09;                            // _09
-	PSSystem::DirectorBase* mDirector; // _0C
+	u8 _00;                              // _00
+	Type mType;                          // _04
+	u8 _08;                              // _08
+	u8 _09;                              // _09
+	::PSSystem::DirectorBase* mDirector; // _0C
 };
 
-struct ListDirectorActor : public PSSystem::DirectorCopyActor {
+struct ListDirectorActor : public ::PSSystem::DirectorCopyActor {
+	ListDirectorActor()
+	    : ::PSSystem::DirectorCopyActor(nullptr, nullptr)
+	{
+	}
 	virtual void onUpdateFromMasterD(); // _0C
 
 	// _00     = VTBL
 	// _00-_0C = PSSystem::DirectorCopyActor
+	JSUPtrList mPtrList; // _0C
 };
 } // namespace PSM
 

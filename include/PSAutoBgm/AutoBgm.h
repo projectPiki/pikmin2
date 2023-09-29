@@ -4,10 +4,7 @@
 #include "PSSystem/SeqTrack.h"
 #include "types.h"
 #include "PSSystem/PSBgm.h"
-#include "PSSystem/Seq.h"
 #include "PSSystem/PSBgmTask.h"
-#include "JSystem/JAudio/JAI/JAInter.h"
-#include "JSystem/JAudio/JAD/JADUtility.h"
 #include "PSAutoBgm/Conductor.h"
 #include "PSAutoBgm/MeloArr.h"
 
@@ -30,16 +27,27 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 	void loadConductor(PSSystem::TaskChecker*);
 	void loadedCallback(u32, u32);
 
+	void setPikiMaskNum(u8* cond)
+	{
+		int num = 0;
+		for (int i = 0; i < 16; i++) {
+			if (cond[i]) {
+				num++;
+			}
+		}
+		mPikiMaskNum = num;
+	}
+
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	// _14-_B8  = DirectedBgm
 	ConductorMgr _B8;            // _B8
 	u8 _328[0x8];                // _328 - unknown
-	char* _330;                  // _330 - cnd file name?
+	char* mConductorFilePath;    // _330 (.cnd)
 	PSSystem::TaskChecker* _334; // _334
 	u8* _338;                    // _338 - str?
 	MeloArrMgr _33C;             // _33C
-	u16 _34C;                    // _34C - unknown
+	u16 mPikiMaskNum;            // _34C - unknown
 	u8 _34E;                     // _34E - unknown
 	u8 _34F;                     // _34F - might be padding
 };
