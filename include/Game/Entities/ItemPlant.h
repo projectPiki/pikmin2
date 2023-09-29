@@ -10,6 +10,14 @@ namespace ItemPlant {
 struct Item;
 struct Plant;
 
+enum StateID {
+	ITEMPLANT_Normal  = 0,
+	ITEMPLANT_Damaged = 1,
+	ITEMPLANT_GrowUp  = 2,
+	ITEMPLANT_Kareru  = 3,
+	ITEMPLANT_StateCount, // 4
+};
+
 struct FSM : public ItemFSM<Item> {
 	virtual void init(Item*); // _08
 
@@ -28,10 +36,14 @@ struct State : public ItemState<Item> {
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
+	char* mName; // _0C, unused but educated guess
 };
 
 struct NormalState : public State {
-	// needs an inline ctor probably
+	inline NormalState()
+	    : State(ITEMPLANT_Normal)
+	{
+	}
 
 	virtual void init(Item*, StateArg*); // _08
 	virtual void exec(Item*);            // _0C
@@ -40,11 +52,14 @@ struct NormalState : public State {
 	virtual void eventKarero(Item*);     // _34
 
 	// _00     = VTBL
-	// _00-_0C = State
+	// _00-_10 = State
 };
 
 struct DamagedState : public State {
-	// needs an inline ctor probably
+	inline DamagedState()
+	    : State(ITEMPLANT_Damaged)
+	{
+	}
 
 	virtual void init(Item*, StateArg*);                       // _08
 	virtual void exec(Item*);                                  // _0C
@@ -54,13 +69,15 @@ struct DamagedState : public State {
 	virtual void eventKarero(Item*);                           // _34
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
-	u8 _10;  // _10
+	// _00-_10 = State
+	bool _10; // _10
 };
 
 struct GrowUpState : public State {
-	// needs an inline ctor probably
+	inline GrowUpState()
+	    : State(ITEMPLANT_GrowUp)
+	{
+	}
 
 	virtual void init(Item*, StateArg*);                       // _08
 	virtual void exec(Item*);                                  // _0C
@@ -70,13 +87,15 @@ struct GrowUpState : public State {
 	virtual void eventKarero(Item*);                           // _34
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
-	u8 _10;  // _10
+	// _00-_10 = State
+	bool _10; // _10
 };
 
 struct KareruState : public State {
-	// needs an inline ctor probably
+	inline KareruState()
+	    : State(ITEMPLANT_Kareru)
+	{
+	}
 
 	virtual void init(Item*, StateArg*);                       // _08
 	virtual void exec(Item*);                                  // _0C
@@ -86,7 +105,9 @@ struct KareruState : public State {
 	virtual void eventHaero(Item*);                            // _34
 
 	// _00     = VTBL
-	// _00-_0C = State
+	// _00-_10 = State
+	u16 _10; // _10
+	u8 _12;  // _12
 };
 
 struct PlantParms : public CreatureParms {
@@ -107,7 +128,7 @@ struct PlantParms : public CreatureParms {
 
 	// _00-_D8 = CreatureParms
 	// _D8		 = VTBL
-	Parms mPlantParms;
+	Parms mPlantParms; // _DC
 };
 
 struct ProcAnimator {
@@ -142,13 +163,13 @@ struct Item : public FSMItem<Item, FSM, State> {
 	virtual bool hasFruits();                             // _224 (weak)
 	virtual int getFruitsNum();                           // _228 (weak)
 	virtual Pellet* getNearestFruit(Vector3f&);           // _22C (weak)
-	virtual void bearFruits();                            // _230 (weak)
-	virtual void killFruits();                            // _234 (weak)
+	virtual void bearFruits() { }                         // _230 (weak)
+	virtual void killFruits() { }                         // _234 (weak)
 	virtual void dropFruit(int);                          // _238 (weak)
 	virtual void setColor(f32);                           // _23C (weak)
 	virtual void startColorMotion(int);                   // _240
 	virtual void updateColorMotion(f32);                  // _244
-	virtual void startMotion(int);                        // _248 (weak)
+	virtual void startMotion(int) { }                     // _248 (weak)
 
 	void addDamage(f32);
 
@@ -156,13 +177,13 @@ struct Item : public FSMItem<Item, FSM, State> {
 	// _00-_1E0 = FSMItem
 	u16 mPlantType;                         // _1E0
 	f32 _1E4;                               // _1E4, timer?
-	s16 mColorMotionState;                  // _1E8
-	u32 _1EC;                               // _1EC
+	u16 mColorMotionState;                  // _1E8
+	int _1EC;                               // _1EC
 	f32 mDamage;                            // _1F0
 	int _1F4;                               // _1F4, state ID?
 	f32 _1F8;                               // _1F8, state timer?
 	f32 _1FC;                               // _1FC
-	f32 _200;                               // _200
+	f32 mFaceDir;                           // _200
 	SysShape::BlendAnimator mBlendAnimator; // _204
 	u8 _254;                                // _254
 	f32 _258;                               // _258
