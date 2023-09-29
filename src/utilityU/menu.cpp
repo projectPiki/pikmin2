@@ -1,165 +1,51 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049CD78
-    lbl_8049CD78:
-        .4byte 0x6D656E75
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_8049CD84
-    lbl_8049CD84:
-        .4byte 0x4D656E75
-        .4byte 0x4C697374
-        .4byte 0x20697320
-        .4byte 0x77726F6E
-        .4byte 0x672E0A00
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EDCC8
-    lbl_804EDCC8:
-        .4byte lbl_80456ACC
-        .4byte lbl_80456954
-        .4byte lbl_80456970
-        .4byte lbl_80456ACC
-        .4byte lbl_8045698C
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_804569BC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_804569F4
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_80456ACC
-        .4byte lbl_804569BC
-        .4byte 0x00000000
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520BE8
-    lbl_80520BE8:
-        .4byte 0x726F6F74
-        .4byte 0x00000000
-    .global lbl_80520BF0
-    lbl_80520BF0:
-        .4byte 0x00000000
-    .global lbl_80520BF4
-    lbl_80520BF4:
-        .float 1.0
-    .global lbl_80520BF8
-    lbl_80520BF8:
-        .4byte 0x40E00000
-    .global lbl_80520BFC
-    lbl_80520BFC:
-        .4byte 0x41000000
-*/
+#include "Controller.h"
+#include "System.h"
+#include "menu.h"
+#include "PSSystem/PSSystemIF.h"
+#include "SoundID.h"
 
 /*
  * --INFO--
  * Address:	80456184
  * Size:	00012C
  */
-Menu::Menu(JUTGamePad*, JUTFont*, bool)
+Menu::Menu(JUTGamePad* control, JUTFont* font, bool flag)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r6
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	addi     r3, r28, 0x18
-	bl       initiate__10JSUPtrListFv
-	stw      r29, 0(r28)
-	lis      r4, 0xc00
-	li       r5, 0xf
-	li       r6, 3
-	lwz      r3, 0(r28)
-	bl       setButtonRepeat__10JUTGamePadFUlUlUl
-	stw      r30, 4(r28)
-	li       r0, 0
-	li       r3, 0x30
-	stb      r31, 8(r28)
-	stw      r0, 0xc(r28)
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80456204
-	li       r4, 0
-	li       r5, 0
-	addi     r6, r2, lbl_80520BE8@sda21
-	bl       __ct__Q24Menu8MenuItemFQ34Menu8MenuItem9cTypeFlagiPc
-	mr       r4, r3
+	mControl = control;
+	mControl->setButtonRepeat(0xc000000, 15, 3);
+	mFont = font;
+	mFlag = flag;
+	_0C   = 0;
 
-lbl_80456204:
-	li       r0, 0
-	addi     r3, r28, 0x18
-	stb      r0, 4(r4)
-	addi     r4, r4, 0x20
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	li       r8, 0
-	li       r7, 0xbe
-	stw      r8, 0x2c(r28)
-	li       r6, 0xdc
-	li       r5, 0x104
-	li       r4, 1
-	stw      r8, 0x30(r28)
-	li       r0, 0x100
-	lfs      f0, lbl_80520BF0@sda21(r2)
-	mr       r3, r28
-	stw      r8, 0x28(r28)
-	stw      r8, 0x24(r28)
-	stw      r8, 0x14(r28)
-	stw      r8, 0x10(r28)
-	stw      r8, 0x4c(r28)
-	stw      r8, 0x50(r28)
-	stw      r8, 0x54(r28)
-	stw      r7, 0x40(r28)
-	stw      r6, 0x44(r28)
-	stw      r5, 0x48(r28)
-	stb      r4, 0x58(r28)
-	stb      r4, 0x59(r28)
-	stw      r8, 0x34(r28)
-	stfs     f0, 0x38(r28)
-	stfs     f0, 0x3c(r28)
-	stw      r7, 8(r1)
-	stw      r6, 0xc(r1)
-	stw      r7, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r0, 0x5c(r28)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	MenuItem* rootItem = new MenuItem(MenuItem::UNK0, 0, "root");
+	rootItem->_04      = false;
+	mItemList.append(&rootItem->mLink);
+
+	_2C          = 0;
+	mItemCount   = 0;
+	mLastItem    = nullptr;
+	mCurrentItem = nullptr;
+	mSelf2       = nullptr;
+	mSelf        = nullptr;
+	_4C          = 0;
+	_50          = 0;
+	_54          = 0;
+	_40          = 190;
+	_44          = 220;
+	_48          = 260;
+	_58          = true;
+	_59          = true;
+	mState       = 0;
+	mTimer       = 0.0f;
+	mTimer2      = 0.0f;
+
+	volatile int idk1, idk2, idk3, idk4;
+	idk4 = 190;
+	idk3 = 220;
+	idk2 = 190;
+	idk1 = 220;
+
+	_5C = 256;
 }
 
 /*
@@ -167,64 +53,20 @@ lbl_80456204:
  * Address:	804562B0
  * Size:	0000C0
  */
-void Menu::addOption(int, char*, IDelegate1<Menu&>*, bool)
+void Menu::addOption(int index, char* name, IDelegate1<Menu&>* delegate, bool flag)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	mr       r30, r6
-	mr       r31, r7
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804562F8
-	mr       r5, r28
-	mr       r6, r29
-	li       r4, 1
-	bl       __ct__Q24Menu8MenuItemFQ34Menu8MenuItem9cTypeFlagiPc
-	mr       r0, r3
+	mLastItem      = new MenuItem(MenuItem::UNK1, index, name);
+	mLastItem->_04 = flag;
+	mItemList.append(&mLastItem->mLink);
+	if (delegate) {
+		addKeyEvent(KeyEvent::UNK0, _5C, delegate);
+	}
 
-lbl_804562F8:
-	stw      r0, 0x28(r27)
-	addi     r3, r27, 0x18
-	lwz      r4, 0x28(r27)
-	stb      r31, 4(r4)
-	lwz      r4, 0x28(r27)
-	addi     r4, r4, 0x20
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	cmplwi   r30, 0
-	beq      lbl_80456330
-	lwz      r5, 0x5c(r27)
-	mr       r3, r27
-	mr       r6, r30
-	li       r4, 0x10
-	bl "addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>"
+	if (!mCurrentItem && mLastItem->_04) {
+		mCurrentItem = mLastItem;
+	}
 
-lbl_80456330:
-	lwz      r0, 0x24(r27)
-	cmplwi   r0, 0
-	bne      lbl_80456350
-	lwz      r3, 0x28(r27)
-	lbz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_80456350
-	stw      r3, 0x24(r27)
-
-lbl_80456350:
-	lwz      r3, 0x30(r27)
-	addi     r0, r3, 1
-	stw      r0, 0x30(r27)
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mItemCount++;
 }
 
 /*
@@ -232,69 +74,20 @@ lbl_80456350:
  * Address:	80456370
  * Size:	0000C8
  */
-void Menu::addKeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long, IDelegate1<Menu&>*)
+void Menu::addKeyEvent(KeyEvent::cTypeFlag type, u32 a1, IDelegate1<Menu&>* delegate)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  li        r3, 0x1C
-	  bl        -0x4324FC
-	  mr.       r4, r3
-	  beq-      .loc_0x50
-	  mr        r4, r29
-	  mr        r5, r30
-	  mr        r6, r31
-	  bl        0x420
-	  mr        r4, r3
+	KeyEvent* key = new KeyEvent(type, a1, delegate);
 
-	.loc_0x50:
-	  lwz       r3, 0x28(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  addi      r3, r3, 0x14
-	  addi      r4, r4, 0xC
-	  bl        -0x42FAF0
-	  b         .loc_0xA8
-
-	.loc_0x6C:
-	  lwz       r3, 0x18(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x8C
-	  lwz       r3, 0x0(r3)
-	  addi      r4, r4, 0xC
-	  addi      r3, r3, 0x14
-	  bl        -0x42FB10
-	  b         .loc_0xA8
-
-	.loc_0x8C:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3288
-	  li        r4, 0xB7
-	  subi      r5, r5, 0x327C
-	  crclr     6, 0x6
-	  bl        -0x42BDD4
-
-	.loc_0xA8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	if (mLastItem) {
+		mLastItem->mList.append(&key->mLink);
+	} else {
+		JSUPtrLink* list = mItemList.mHead;
+		if (list) {
+			((MenuItem*)list->mValue)->mList.append(&key->mLink);
+		} else {
+			JUT_PANICLINE(183, "MenuList is wrong.\n");
+		}
+	}
 }
 
 /*
@@ -302,8 +95,70 @@ void Menu::addKeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long, IDelegate1<Menu
  * Address:	80456438
  * Size:	0003A0
  */
-void Menu::doUpdate(bool)
+void Menu::doUpdate(bool flag)
 {
+	mSelf = this;
+	mTimer2 += sys->mDeltaTime * 7.0f;
+	switch (mState) {
+	case 1:
+		mTimer += sys->mDeltaTime * 8.0f;
+		if (mTimer > 1.0f) {
+			mTimer = 1.0f;
+			mState = 0;
+		}
+		break;
+	case 3:
+		mTimer = -(sys->mDeltaTime * 8.0f - mTimer);
+		if (mTimer < 0.0f) {
+			mTimer = 0.0f;
+			mState = 0;
+		}
+		break;
+	case 2:
+		if (flag) {
+			_59 = true;
+		}
+		u32 input = mControl->getButtonDown();
+		if (input & Controller::PRESS_DOWN) {
+			mCurrentItem->checkEvents(this, 2);
+			mCurrentItem = mCurrentItem->getNext();
+			if (!mCurrentItem) {
+				mCurrentItem = (MenuItem*)mItemList.mHead->mValue;
+			}
+			MenuItem* item;
+			while (item = mCurrentItem, !item->mName || !item->_04) {
+				item         = mCurrentItem->getNext();
+				mCurrentItem = item;
+				if (!mCurrentItem) {
+					mCurrentItem = (MenuItem*)mItemList.mHead->mValue;
+				}
+			}
+			_59 = true;
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+		} else if (input & Controller::PRESS_UP) {
+			mCurrentItem->checkEvents(this, 2);
+			mCurrentItem = mCurrentItem->getPrev();
+			if (!mCurrentItem) {
+				mCurrentItem = (MenuItem*)mItemList.mHead->mValue;
+			}
+			MenuItem* item;
+			while (item = mCurrentItem, !item->mName || !item->_04) {
+				item         = mCurrentItem->getPrev();
+				mCurrentItem = item;
+				if (!mCurrentItem) {
+					mCurrentItem = (MenuItem*)mItemList.mHead->mValue;
+				}
+			}
+			_59 = true;
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+		}
+		if (_58) {
+			_58 = false;
+			_59 = true;
+		}
+		break;
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -589,37 +444,12 @@ lbl_804567B8:
  * Address:	804567D8
  * Size:	000068
  */
-Menu::KeyEvent::KeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long, IDelegate1<Menu&>*)
+Menu::KeyEvent::KeyEvent(cTypeFlag type, u32 a1, IDelegate1<Menu&>* delegate)
+    : mLink(this)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r4, r28
-	  addi      r3, r28, 0xC
-	  bl        -0x430054
-	  stw       r29, 0x0(r28)
-	  mr        r3, r28
-	  stw       r30, 0x4(r28)
-	  stw       r31, 0x8(r28)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	mType   = type;
+	_04     = a1;
+	mAction = delegate;
 }
 
 /*
@@ -627,42 +457,14 @@ Menu::KeyEvent::KeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long, IDelegate1<Me
  * Address:	80456840
  * Size:	000080
  */
-Menu::MenuItem::MenuItem(Menu::MenuItem::cTypeFlag, int, char*)
+Menu::MenuItem::MenuItem(cTypeFlag type, int a1, char* name)
+    : mLink(this)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	addi     r3, r28, 0x14
-	bl       initiate__10JSUPtrListFv
-	mr       r4, r28
-	addi     r3, r28, 0x20
-	bl       __ct__10JSUPtrLinkFPv
-	li       r3, 1
-	li       r0, 0
-	stb      r3, 4(r28)
-	mr       r3, r28
-	stw      r31, 8(r28)
-	stw      r30, 0xc(r28)
-	stw      r29, 0x10(r28)
-	stw      r0, 0(r28)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_04   = 1;
+	mName = name;
+	_0C   = a1;
+	mType = type;
+	_00   = 0;
 }
 
 /*
@@ -670,19 +472,13 @@ Menu::MenuItem::MenuItem(Menu::MenuItem::cTypeFlag, int, char*)
  * Address:	804568C0
  * Size:	00001C
  */
-void Menu::MenuItem::getNext()
+Menu::MenuItem* Menu::MenuItem::getNext()
 {
-	/*
-	lwz      r3, 0x2c(r3)
-	cmplwi   r3, 0
-	beq      lbl_804568D4
-	lwz      r3, 0(r3)
-	blr
-
-lbl_804568D4:
-	li       r3, 0
-	blr
-	*/
+	JSUPtrLink* link = mLink.mNext;
+	if (link) {
+		return (Menu::MenuItem*)link->mValue;
+	}
+	return nullptr;
 }
 
 /*
@@ -690,19 +486,13 @@ lbl_804568D4:
  * Address:	804568DC
  * Size:	00001C
  */
-void Menu::MenuItem::getPrev()
+Menu::MenuItem* Menu::MenuItem::getPrev()
 {
-	/*
-	lwz      r3, 0x28(r3)
-	cmplwi   r3, 0
-	beq      lbl_804568F0
-	lwz      r3, 0(r3)
-	blr
-
-lbl_804568F0:
-	li       r3, 0
-	blr
-	*/
+	JSUPtrLink* link = mLink.mPrev;
+	if (link) {
+		return (Menu::MenuItem*)link->mValue;
+	}
+	return nullptr;
 }
 
 /*

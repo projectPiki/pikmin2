@@ -8,23 +8,39 @@
 struct JUTGamePad;
 struct JUTFont;
 
-struct MenuItem {
-	int _00;
-	int _04;
-	int _08;
-	int _0C;
-	JSUPtrLink mLink;
-	JSUPtrList mList;
-};
-
 struct Menu {
 	struct KeyEvent {
 		enum cTypeFlag { UNK0 = 16, UNK1 = 32 };
+
+		KeyEvent(cTypeFlag, u32, IDelegate1<Menu&>*);
+
+		int mType; // _00
+		int _04;
+		IDelegate1<Menu&>* mAction;
+		JSUPtrLink mLink;
+	};
+
+	struct MenuItem {
+		enum cTypeFlag { UNK0 = 0, UNK1 = 1 };
+
+		MenuItem(cTypeFlag, int, char*);
+
+		MenuItem* getNext();
+		MenuItem* getPrev();
+		void checkEvents(Menu*, int);
+
+		int _00;     // _00
+		bool _04;    // _04
+		char* mName; // _08
+		int _0C;     // _0C
+		int mType;
+		JSUPtrList mList; // _14
+		JSUPtrLink mLink; // _20
 	};
 
 	Menu(JUTGamePad*, JUTFont*, bool);
 	void addKeyEvent(KeyEvent::cTypeFlag, u32, IDelegate1<Menu&>*);
-	void addOption(int i, char* name, void*, bool);
+	void addOption(int i, char* name, IDelegate1<Menu&>*, bool);
 	void doUpdate(bool);
 
 	inline void setPosition(int x, int y)
@@ -39,12 +55,12 @@ struct Menu {
 	int _0C;                // _0C
 	Menu* mSelf;            // _10
 	Menu* mSelf2;           // _14
-	JSUPtrList mPtrList;    // _18
+	JSUPtrList mItemList;   // _18
 	MenuItem* mCurrentItem; // _24
 	MenuItem* mLastItem;    // _28
 	int _2C;                // _2C
 	int mItemCount;         // _30
-	int mSelect;            // _34
+	int mState;             // _34
 	f32 mTimer;             // _38
 	f32 mTimer2;            // _3C
 	int _40;                // _40
