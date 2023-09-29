@@ -30,6 +30,10 @@ struct DirectorMgr_Scene : public ::PSSystem::DirectorMgrBase, public JKRDispose
 	void initTrackMap(::PSSystem::DirectedBgm&);
 	void adaptDirectorActor(::PSSystem::DirectorBase*, u8);
 
+	inline ::PSSystem::DirectorCopyActor* getCopyActorList(int i) { return mCopyActorList[i]; }
+
+	inline void setCopyActorList(int i, ::PSSystem::DirectorCopyActor* list) { mCopyActorList[i] = list; }
+
 	// _00     = VTBL 1 (DirectorMgrBase)
 	// _0C     = VTBL 2 (JKRDisposer + Self)
 	// _00-_0C = PSSystem::DirectorMgrBase

@@ -89,7 +89,6 @@ struct PikminNumberDirector_AutoBgm : public PikminNumberDirector {
 
 	// _00     = VTBL
 	// _00-_4C = PikminNumberDirector
-	u8 _4C;                                // _4C
 	::PSSystem::DirectedBgm* mDirectedBgm; // _50
 };
 
@@ -321,7 +320,7 @@ struct DirectorUpdator {
 	::PSSystem::DirectorBase* mDirector; // _0C
 };
 
-struct ListDirectorActor : public ::PSSystem::DirectorCopyActor {
+struct ListDirectorActor : public ::PSSystem::DirectorCopyActor, public JSUPtrList {
 	ListDirectorActor()
 	    : ::PSSystem::DirectorCopyActor(nullptr, nullptr)
 	{
@@ -330,7 +329,7 @@ struct ListDirectorActor : public ::PSSystem::DirectorCopyActor {
 
 	// _00     = VTBL
 	// _00-_0C = PSSystem::DirectorCopyActor
-	JSUPtrList mPtrList; // _0C
+	// _0C-_18 = JSUPtrList
 };
 } // namespace PSM
 

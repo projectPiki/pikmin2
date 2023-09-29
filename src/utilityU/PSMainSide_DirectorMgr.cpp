@@ -39,234 +39,10 @@ DirectorMgr_Scene::DirectorMgr_Scene(DirectorMgr_Scene* owner, u8 type)
 		}
 	} else {
 		for (u8 i = 0; i < 8; i++) {
-			mCopyActorList[i] = mOwner->mCopyActorList[i];
+			setCopyActorList(i, mOwner->getCopyActorList(i));
 			P2ASSERTLINE(69, mCopyActorList[i]);
 		}
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	mr       r4, r5
-	bl       __ct__Q28PSSystem15DirectorMgrBaseFUc
-	addi     r3, r30, 0xc
-	bl       __ct__11JKRDisposerFv
-	lis      r4, __vt__Q23PSM17DirectorMgr_Scene@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23PSM17DirectorMgr_Scene@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0xc(r30)
-	stw      r28, 0x44(r30)
-	stb      r3, 0x68(r30)
-	stb      r3, 0x69(r30)
-	stb      r3, 0x6a(r30)
-	stb      r3, 0x6b(r30)
-	stb      r3, 0x6c(r30)
-	stb      r3, 0x6d(r30)
-	b        lbl_8046F3AC
-
-lbl_8046F328:
-	clrlwi   r4, r3, 0x18
-	addi     r0, r3, 1
-	addi     r5, r4, 0x6e
-	li       r6, 0
-	clrlwi   r4, r0, 0x18
-	stbx     r6, r30, r5
-	addi     r5, r4, 0x6e
-	addi     r0, r3, 2
-	clrlwi   r4, r0, 0x18
-	stbx     r6, r30, r5
-	addi     r5, r4, 0x6e
-	addi     r0, r3, 3
-	clrlwi   r4, r0, 0x18
-	stbx     r6, r30, r5
-	addi     r5, r4, 0x6e
-	addi     r0, r3, 4
-	clrlwi   r4, r0, 0x18
-	stbx     r6, r30, r5
-	addi     r5, r4, 0x6e
-	addi     r0, r3, 5
-	clrlwi   r4, r0, 0x18
-	stbx     r6, r30, r5
-	addi     r5, r4, 0x6e
-	addi     r0, r3, 6
-	clrlwi   r4, r0, 0x18
-	stbx     r6, r30, r5
-	addi     r0, r3, 7
-	addi     r3, r3, 8
-	addi     r5, r4, 0x6e
-	clrlwi   r4, r0, 0x18
-	stbx     r6, r30, r5
-	addi     r0, r4, 0x6e
-	stbx     r6, r30, r0
-
-lbl_8046F3AC:
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 0x10
-	blt      lbl_8046F328
-	li       r0, 0
-	addi     r3, r30, 0x48
-	stb      r0, 0x7e(r30)
-	addi     r4, r2, lbl_80520D60@sda21
-	stb      r0, 0x7f(r30)
-	stb      r0, 0x80(r30)
-	stb      r0, 0x81(r30)
-	stb      r0, 0x82(r30)
-	stb      r0, 0x83(r30)
-	stb      r0, 0x84(r30)
-	stb      r0, 0x85(r30)
-	bl       strcpy
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8046F514
-	li       r31, 0
-	b        lbl_8046F504
-
-lbl_8046F40C:
-	clrlwi   r0, r31, 0x18
-	cmpwi    r0, 4
-	beq      lbl_8046F474
-	bge      lbl_8046F428
-	cmpwi    r0, 0
-	bge      lbl_8046F434
-	b        lbl_8046F4E4
-
-lbl_8046F428:
-	cmpwi    r0, 8
-	bge      lbl_8046F4E4
-	b        lbl_8046F4B4
-
-lbl_8046F434:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8046F464
-	li       r4, 0
-	li       r5, 0
-	bl
-__ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem12DirectorBase
-	addi     r3, r29, 0xc
-	bl       initiate__10JSUPtrListFv
-	lis      r3, __vt__Q23PSM17ListDirectorActor@ha
-	addi     r0, r3, __vt__Q23PSM17ListDirectorActor@l
-	stw      r0, 0(r29)
-
-lbl_8046F464:
-	rlwinm   r3, r31, 2, 0x16, 0x1d
-	addi     r0, r3, 0x24
-	stwx     r29, r30, r0
-	b        lbl_8046F500
-
-lbl_8046F474:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8046F4A4
-	li       r4, 0
-	li       r5, 0
-	bl
-__ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem12DirectorBase
-	addi     r3, r29, 0xc
-	bl       initiate__10JSUPtrListFv
-	lis      r3, __vt__Q23PSM17ListDirectorActor@ha
-	addi     r0, r3, __vt__Q23PSM17ListDirectorActor@l
-	stw      r0, 0(r29)
-
-lbl_8046F4A4:
-	rlwinm   r3, r31, 2, 0x16, 0x1d
-	addi     r0, r3, 0x24
-	stwx     r29, r30, r0
-	b        lbl_8046F500
-
-lbl_8046F4B4:
-	li       r3, 0xc
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8046F4D4
-	li       r4, 0
-	li       r5, 0
-	bl
-__ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem12DirectorBase
-	mr       r4, r3
-
-lbl_8046F4D4:
-	rlwinm   r3, r31, 2, 0x16, 0x1d
-	addi     r0, r3, 0x24
-	stwx     r4, r30, r0
-	b        lbl_8046F500
-
-lbl_8046F4E4:
-	lis      r3, lbl_8049DA80@ha
-	lis      r5, lbl_8049DA9C@ha
-	addi     r3, r3, lbl_8049DA80@l
-	li       r4, 0x3c
-	addi     r5, r5, lbl_8049DA9C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046F500:
-	addi     r31, r31, 1
-
-lbl_8046F504:
-	clrlwi   r0, r31, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8046F40C
-	b        lbl_8046F570
-
-lbl_8046F514:
-	lis      r4, lbl_8049DA80@ha
-	lis      r3, lbl_8049DA9C@ha
-	addi     r29, r4, lbl_8049DA80@l
-	li       r28, 0
-	addi     r31, r3, lbl_8049DA9C@l
-	b        lbl_8046F564
-
-lbl_8046F52C:
-	rlwinm   r4, r28, 2, 0x16, 0x1d
-	lwz      r3, 0x44(r30)
-	addi     r0, r4, 0x24
-	lwzx     r3, r3, r0
-	stwx     r3, r30, r0
-	lwzx     r0, r30, r0
-	cmplwi   r0, 0
-	bne      lbl_8046F560
-	mr       r3, r29
-	mr       r5, r31
-	li       r4, 0x45
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046F560:
-	addi     r28, r28, 1
-
-lbl_8046F564:
-	clrlwi   r0, r28, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8046F52C
-
-lbl_8046F570:
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -317,60 +93,61 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
  */
 ::PSSystem::DirectorBase* DirectorMgr_Scene::newDirector(u8 type, ::PSSystem::DirectedBgm& bgm)
 {
-	JUT_ASSERTLINE(161, mBgmTrackMap.mBasicTrackCount, "track map is\nnot initialized\n");
+	PSM::BgmTrackMap& trackMap = mBgmTrackMap;
+
+	JUT_ASSERTLINE(161, trackMap.mBasicTrackCount, "track map is\nnot initialized\n");
 	::PSSystem::DirectorBase* actor = nullptr;
 	DamageDirector* damage          = nullptr;
 	switch (type) {
 	case Director_Working: {
-		actor = new ActorDirector_Scaled("eventD", mBgmTrackMap.mEventTrackCount, 200.0, 1500.0, 100, 100, 100);
+		actor = new ActorDirector_Scaled("eventD", trackMap.mEventTrackCount, 200.0, 1500.0, 100, 100, 100);
 		P2ASSERTLINE(173, actor);
-		actor->setupTracks(mBgmTrackMap.mBasicTrackCount, mBgmTrackMap.mEventTrackCount, (::PSSystem::SeqTrackBase**)bgm.mChildTracks);
+		actor->setupTracks(trackMap.mBasicTrackCount, trackMap.mEventTrackCount, (::PSSystem::SeqTrackBase**)bgm.mChildTracks);
 		break;
 	}
 	case Director_EnemyNear: {
-		actor = new ActorDirector_Kehai("kehaiD   ", mBgmTrackMap.mKehaiTrackCount, 100, 100, 100);
+		actor = new ActorDirector_Kehai("kehaiD   ", trackMap.mKehaiTrackCount, 100, 100, 100);
 		P2ASSERTLINE(188, actor);
-		actor->setupTracks(mBgmTrackMap.mBasicTrackCount + mBgmTrackMap.mEventTrackCount + mBgmTrackMap.mOtakaraTrackCount,
-		                   mBgmTrackMap.mKehaiTrackCount, (::PSSystem::SeqTrackBase**)bgm.mChildTracks);
+		actor->setupTracks(trackMap.mBasicTrackCount + trackMap.mEventTrackCount + trackMap.mOtakaraTrackCount, trackMap.mKehaiTrackCount,
+		                   (::PSSystem::SeqTrackBase**)bgm.mChildTracks);
 		break;
 	}
 	case Director_Battle: {
-		actor = new ActorDirector_Battle("battleD  ", mBgmTrackMap.mBattleTrackCount, 100, 100, 100);
+		actor = new ActorDirector_Battle("battleD  ", trackMap.mBattleTrackCount, 100, 100, 100);
 		P2ASSERTLINE(188, actor);
-		actor->setupTracks(mBgmTrackMap.mBasicTrackCount + mBgmTrackMap.mEventTrackCount + mBgmTrackMap.mOtakaraTrackCount
-		                       + mBgmTrackMap.mKehaiTrackCount,
-		                   mBgmTrackMap.mBattleTrackCount, (::PSSystem::SeqTrackBase**)bgm.mChildTracks);
+		actor->setupTracks(trackMap.mBasicTrackCount + trackMap.mEventTrackCount + trackMap.mOtakaraTrackCount + trackMap.mKehaiTrackCount,
+		                   trackMap.mBattleTrackCount, (::PSSystem::SeqTrackBase**)bgm.mChildTracks);
 		break;
 	}
 	case Director_Treasure: {
-		actor = new ActorDirector_TrackOn("OtakaraD", mBgmTrackMap.mOtakaraTrackCount, 100, 100);
+		actor = new ActorDirector_TrackOn("OtakaraD", trackMap.mOtakaraTrackCount, 100, 100);
 		P2ASSERTLINE(219, actor);
-		actor->setupTracks(mBgmTrackMap.mBasicTrackCount + mBgmTrackMap.mEventTrackCount, mBgmTrackMap.mOtakaraTrackCount,
+		actor->setupTracks(trackMap.mBasicTrackCount + trackMap.mEventTrackCount, trackMap.mOtakaraTrackCount,
 		                   (::PSSystem::SeqTrackBase**)bgm.mChildTracks);
 		break;
 	}
 	case Director_Ground: {
 		actor;
 		if (bgm.getCastType() == ::PSSystem::DirectedBgm::BgmType_Cave) {
-			actor = new GroundDirector_Cave("GroundD  ", mBgmTrackMap.mGroundTrackCount, 100, 100);
+			actor = new GroundDirector_Cave("GroundD  ", trackMap.mGroundTrackCount, 100, 100);
 		} else {
-			actor = new ActorDirector_Scaled("GroundD  ", mBgmTrackMap.mGroundTrackCount, 300.0f, 600.0f, 200, 200, 10);
+			actor = new ActorDirector_Scaled("GroundD  ", trackMap.mGroundTrackCount, 300.0f, 600.0f, 200, 200, 10);
 		}
 		P2ASSERTLINE(275, actor);
 
-		actor->setupTracks(mBgmTrackMap.mBasicTrackCount + mBgmTrackMap.mEventTrackCount + mBgmTrackMap.mOtakaraTrackCount
-		                       + mBgmTrackMap.mKehaiTrackCount + mBgmTrackMap.mBattleTrackCount,
-		                   mBgmTrackMap.mBattleTrackCount, (::PSSystem::SeqTrackBase**)bgm.mChildTracks);
+		actor->setupTracks(trackMap.mBasicTrackCount + trackMap.mEventTrackCount + trackMap.mOtakaraTrackCount + trackMap.mKehaiTrackCount
+		                       + trackMap.mBattleTrackCount,
+		                   trackMap.mBattleTrackCount, (::PSSystem::SeqTrackBase**)bgm.mChildTracks);
 		break;
 	}
 	case Director_Pikmin: {
-		int pikNum = mBgmTrackMap.getPikNum();
-		int mask   = mBgmTrackMap.getPikMaskNum();
+		int pikNum = trackMap.getPikNum();
+		int mask   = trackMap.getPikMaskNum();
 		actor      = newPikminNumberDirector(pikNum, mask, bgm);
 		P2ASSERTLINE(290, actor);
-		actor->setupTracks(0, 16, (::PSSystem::SeqTrackBase**)bgm.mChildTracks, mBgmTrackMap.mPikNum);
+		actor->setupTracks(0, 16, (::PSSystem::SeqTrackBase**)bgm.mChildTracks, trackMap.mPikNum);
 		if (bgm.getCastType() == 3) {
-			static_cast<PSAutoBgm::AutoBgm*>(&bgm)->setPikiMaskNum(mBgmTrackMap.mPikNum);
+			static_cast<PSAutoBgm::AutoBgm*>(&bgm)->setPikiMaskNum(trackMap.mPikNum);
 		}
 		break;
 	}
@@ -1062,52 +839,9 @@ PikminNumberDirector* DirectorMgr_Scene::newPikminNumberDirector(int pikNum, u8 
  */
 PikminNumberDirector* DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(int pikNum, u8 pikMask, ::PSSystem::DirectedBgm& bgm)
 {
-	PikminNumberDirector_AutoBgm* director = new PikminNumberDirector_AutoBgm(pikNum, pikMask, bgm);
+	PikminNumberDirector* director = new PikminNumberDirector_AutoBgm(pikNum, pikMask, bgm);
 	P2ASSERTLINE(425, director);
 	return director;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r3, 0x54
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  bl        -0x44C2E4
-	  mr.       r0, r3
-	  beq-      .loc_0x48
-	  mr        r4, r29
-	  mr        r5, r30
-	  mr        r6, r31
-	  bl        -0x191DC
-	  mr        r0, r3
-
-	.loc_0x48:
-	  cmplwi    r0, 0
-	  mr        r31, r0
-	  bne-      .loc_0x70
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x2580
-	  li        r4, 0x1A9
-	  subi      r5, r5, 0x2564
-	  crclr     6, 0x6
-	  bl        -0x445B8C
-
-	.loc_0x70:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
