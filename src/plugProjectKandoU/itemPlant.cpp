@@ -13,12 +13,24 @@ namespace ItemPlant {
 
 static const char unusedName[] = "itemPlant";
 
+/// @brief Global ItemPlant mgr instance.
 Mgr* mgr;
 
-/*
- * --INFO--
- * Address:	801DCE28
- * Size:	00018C
+/***************************************
+ * ITEMPLANT STATE MACHINE DEFINITIONS *
+ ***************************************/
+
+/**
+ * Initializes all (4) ItemPlant states, namely
+ * Normal (default),
+ * Damaged (when being attacked by Pikmin),
+ * GrowUp (when maturing), and
+ * Kareru (when covered by mold/ItemRock).
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DCE28
+ * @note Size: 0x18C
  */
 void FSM::init(Item* item)
 {
@@ -29,286 +41,394 @@ void FSM::init(Item* item)
 	registerState(new KareruState);
 }
 
-/*
- * --INFO--
- * Address:	801DCFB4
- * Size:	000034
+/**
+ * Starts Normal (default) state. Plays normal animation (based on current growth size).
+ *
+ * @param item Item acted on by state machine.
+ * @param stateArg Unused.
+ *
+ * @note Address: 801DCFB4
+ * @note Size: 0x34
  */
-void NormalState::init(Item* item, StateArg* stateArg) { static_cast<Item*>(item)->startMotion(0); }
+void NormalState::init(Item* item, StateArg* stateArg) { item->startMotion(PLANTMOTION_Normal); }
 
-/*
- * --INFO--
- * Address:	801DCFEC
- * Size:	000128
+/**
+ * Normal (default) state loop. Advances grow timer and executes behaviour based on current growth size.
+ * Will transition to GrowUp from small or medium size if growth timer hits threshold.
+ * Will bear fruit and reset timer if large and growth timer hits threshold.
+ * Will lock timer to 0 if under mold.
+ *
+ * @param item Item acted on by state machine.
+ *
+ * @note Address: 801DCFEC
+ * @note Size: 0x128
  */
 void NormalState::exec(Item* item)
 {
-	Item* plant = static_cast<Item*>(item);
-	plant->mGrowTimer += sys->mDeltaTime;
-	switch (plant->mGrowState) {
+	item->mGrowTimer += sys->mDeltaTime;
+	switch (item->mGrowState) {
 	case PLANTGROW_Small:
-		if (plant->mGrowTimer > plant->mRandGrowTimeOffset + mgr->mParms->mPlantParms.mGrowTimeToMedium.mValue) {
-			transit(plant, ITEMPLANT_GrowUp, nullptr);
+		if (item->mGrowTimer > item->mRandGrowTimeOffset + mgr->mParms->mPlantParms.mGrowTimeToMedium.mValue) {
+			transit(item, ITEMPLANT_GrowUp, nullptr);
 		}
 		break;
+
 	case PLANTGROW_Medium:
-		if (plant->mGrowTimer > plant->mRandGrowTimeOffset + mgr->mParms->mPlantParms.mGrowTimeToLarge.mValue) {
-			transit(plant, ITEMPLANT_GrowUp, nullptr);
+		if (item->mGrowTimer > item->mRandGrowTimeOffset + mgr->mParms->mPlantParms.mGrowTimeToLarge.mValue) {
+			transit(item, ITEMPLANT_GrowUp, nullptr);
 		}
 		break;
-	case PLANTGROW_Full:
-		if (plant->mGrowTimer > plant->mRandGrowTimeOffset + mgr->mParms->mPlantParms.mBearFruitTime.mValue) {
-			plant->bearFruits();
-			plant->mGrowTimer = 0.0f;
+
+	case PLANTGROW_Large:
+		if (item->mGrowTimer > item->mRandGrowTimeOffset + mgr->mParms->mPlantParms.mBearFruitTime.mValue) {
+			item->bearFruits();
+			item->mGrowTimer = 0.0f;
 		}
 		break;
-	case PLANTGROW_Unk3:
-		plant->mGrowTimer = 0.0f;
+
+	case PLANTGROW_Mold:
+		item->mGrowTimer = 0.0f;
 		break;
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DD148
- * Size:	000004
+/**
+ * Post-default state. Trivial.
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DD148
+ * @note Size: 0x4
  */
-void NormalState::cleanup(Item*) { }
+void NormalState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801DD14C
- * Size:	000034
+/**
+ * Triggered on mold growth. Transitions to Kareru (under mold) state (without waiting).
+ *
+ * @param item Item acted on by state machine.
+ *
+ * @note Address: 801DD14C
+ * @note Size: 0x34
  */
 void NormalState::eventKarero(Item* item) { transit(item, ITEMPLANT_Kareru, nullptr); }
 
-/*
- * --INFO--
- * Address:	801DD180
- * Size:	00005C
+/**
+ * Triggered on damage. Adds damage and transitions to Damaged state.
+ *
+ * @param item Item acted on by state machine.
+ * @param damage Damage to add.
+ *
+ * @note Address: 801DD180
+ * @note Size: 0x5C
  */
 void NormalState::onDamage(Item* item, f32 damage)
 {
-	static_cast<Item*>(item)->addDamage(damage);
+	item->addDamage(damage);
 	transit(item, ITEMPLANT_Damaged, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801DD1DC
- * Size:	000048
+/**
+ * Starts Damaged state. Plays damage animation based on growth size and resets mold state trigger.
+ *
+ * @param item Item acted on by state machine.
+ * @param stateArg Unused.
+ *
+ * @note Address: 801DD1DC
+ * @note Size: 0x48
  */
 void DamagedState::init(Item* item, StateArg* stateArg)
 {
-	static_cast<Item*>(item)->startMotion(4);
-	_10 = false;
+	item->startMotion(PLANTMOTION_Damage);
+	mHasMold = false;
 }
 
-/*
- * --INFO--
- * Address:	801DD224
- * Size:	000004
+/**
+ * Damaged state loop. Trivial.
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DD224
+ * @note Size: 0x4
  */
-void DamagedState::exec(Item*) { }
+void DamagedState::exec(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801DD228
- * Size:	000004
+/**
+ * Post-Damaged state. Trivial.
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DD228
+ * @note Size: 0x4
  */
-void DamagedState::cleanup(Item*) { }
+void DamagedState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801DD22C
- * Size:	00000C
+/**
+ * Triggered on mold growth. Sets trigger for mold state transition.
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DD22C
+ * @note Size: 0xC
  */
-void DamagedState::eventKarero(Item*) { _10 = true; }
+void DamagedState::eventKarero(Item* item) { mHasMold = true; }
 
-/*
- * --INFO--
- * Address:	801DD238
- * Size:	00005C
+/**
+ * On animation trigger. Transitions to Kareru (under mold) state if trigger is primed.
+ * Transitions to Normal (default) state if not.
+ *
+ * @param item Item acted on by state machine.
+ * @param event Key event (triggered by animation).
+ *
+ * @note Address: 801DD238
+ * @note Size: 0x5C
  */
 void DamagedState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
-	if (_10) {
+	if (mHasMold) {
 		transit(item, ITEMPLANT_Kareru, nullptr);
 	} else {
 		transit(item, ITEMPLANT_Normal, nullptr);
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DD294
- * Size:	000024
+/**
+ * Triggered on damage. Adds damage.
+ *
+ * @param item Item acted on by state machine.
+ * @param damage Damage to add.
+ *
+ *
+ * @note Address: 801DD294
+ * @note Size: 0x24
  */
-void DamagedState::onDamage(Item* item, f32 damage) { static_cast<Item*>(item)->addDamage(damage); }
+void DamagedState::onDamage(Item* item, f32 damage) { item->addDamage(damage); }
 
-/*
- * --INFO--
- * Address:	801DD2B8
- * Size:	000074
+/**
+ * Starts GrowUp state. Plays growing animation and efx based on growth size.
+ * Resets growth timer and mold state trigger, and plays growth sound.
+ *
+ * @param item Item acted on by state machine.
+ * @param stateArg Unused.
+ *
+ * @note Address: 801DD2B8
+ * @note Size: 0x74
  */
 void GrowUpState::init(Item* item, StateArg* stateArg)
 {
-	Item* plant = static_cast<Item*>(item);
-	plant->startMotion(1);
-	plant->mGrowTimer = 0.0f;
-	_10               = false;
-	plant->startSound(PSSE_EV_TSUYUKUSA_GROW);
+	item->startMotion(PLANTMOTION_Grow);
+	item->mGrowTimer = 0.0f;
+	mHasMold         = false;
+	item->startSound(PSSE_EV_TSUYUKUSA_GROW);
 }
 
-/*
- * --INFO--
- * Address:	801DD32C
- * Size:	000004
+/**
+ * GrowUp state loop. Trivial.
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DD32C
+ * @note Size: 0x4
  */
-void GrowUpState::exec(Item*) { }
+void GrowUpState::exec(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801DD330
- * Size:	000004
+/**
+ * Post-GrowUp state. Trivial.
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DD330
+ * @note Size: 0x4
  */
-void GrowUpState::cleanup(Item*) { }
+void GrowUpState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801DD334
- * Size:	00000C
+/**
+ * Triggered on mold growth. Sets trigger for mold state transition.
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DD334
+ * @note Size: 0xC
  */
-void GrowUpState::eventKarero(Item*) { _10 = true; }
+void GrowUpState::eventKarero(Item*) { mHasMold = true; }
 
-/*
- * --INFO--
- * Address:	801DD340
- * Size:	000120
+/**
+ * On animation trigger. Advance growth state.
+ * If now largest size, recalc model and update ProcAnimator.
+ * If mold state trigger is primed, transition to Kareru (under mold) state.
+ * If now largest size (and no mold), grow berries.
+ * Transition back to normal state.
+ *
+ * @param item Item acted on by state machine. Need to be castable to `Plant`.
+ * @param event Key event (triggered by animation).
+ *
+ * @throws Panic if growth state ends up more than 'large' (2).
+ *
+ * @note Address: 801DD340
+ * @note Size: 0x120
  */
 void GrowUpState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
 	Plant* plant = static_cast<Plant*>(item);
 	plant->mGrowState++;
 
-	if (plant->mGrowState == PLANTGROW_Full) {
+	if (plant->mGrowState == PLANTGROW_Large) {
 		PSMTXCopy(plant->mObjMatrix.mMatrix.mtxView, plant->mModel->mJ3dModel->mPosMtx);
 		plant->mModel->mJ3dModel->calc();
 		plant->mProcAnimator.update(plant->mFaceDir, 0.0f);
 	}
 
-	P2ASSERTLINE(381, plant->mGrowState <= PLANTGROW_Full);
+	P2ASSERTLINE(381, plant->mGrowState <= PLANTGROW_Large);
 
-	if (_10) {
+	if (mHasMold) {
 		transit(plant, ITEMPLANT_Kareru, nullptr);
 		return;
 	}
 
-	if (plant->mGrowState == PLANTGROW_Full) {
+	if (plant->mGrowState == PLANTGROW_Large) {
 		plant->bearFruits();
 	}
 
 	transit(plant, ITEMPLANT_Normal, nullptr);
 }
 
-/*
- * --INFO--
- * Address:	801DD460
- * Size:	000024
+/**
+ * Triggered on damage. Adds damage.
+ *
+ * @param item Item acted on by state machine.
+ * @param damage Damage to add.
+ *
+ * @note Address: 801DD460
+ * @note Size: 0x24
  */
-void GrowUpState::onDamage(Item* item, f32 damage) { static_cast<Item*>(item)->addDamage(damage); }
+void GrowUpState::onDamage(Item* item, f32 damage) { item->addDamage(damage); }
 
-/*
- * --INFO--
- * Address:	801DD484
- * Size:	00007C
+/**
+ * Starts Kareru (under mold) state. Plays (blended) withering animation and withering sound effect.
+ * Resets damage, destroys any berries, and resets mold state and escape trigger.
+ *
+ * @param item Item acted on by state machine.
+ * @param stateArg Unused.
+ *
+ * @note Address: 801DD484
+ * @note Size: 0x7C
  */
 void KareruState::init(Item* item, StateArg* stateArg)
 {
-	Item* plant = static_cast<Item*>(item);
-	plant->startMotion(2);
-	plant->mDamage    = 0.0f;
-	plant->mGrowState = PLANTGROW_Unk3;
-	plant->killFruits();
-	_10 = 0;
-	_12 = 0;
+	item->startMotion(PLANTMOTION_Disappear);
+	item->mDamage    = 0.0f;
+	item->mGrowState = PLANTGROW_Mold;
+	item->killFruits();
+	mMoldState = KARERU_Begin;
+	mIsFreed   = false;
 }
 
-/*
- * --INFO--
- * Address:	801DD504
- * Size:	00008C
+/**
+ * Kareru (under mold) state loop. If in waiting state and escape trigger is primed, set plant as alive, play regrowth animation and trigger
+ * end of state.
+ *
+ * @param item Item acted on by state machine.
+ *
+ * @note Address: 801DD504
+ * @note Size: 0x8C
  */
 void KareruState::exec(Item* item)
 {
-	if (_10 == 1 && _12) {
+	if (mMoldState == KARERU_Wait && mIsFreed) {
 		item->setAlive(true);
-		static_cast<Item*>(item)->startMotion(3);
-		_12 = 0;
-		_10 = 2;
+		item->startMotion(PLANTMOTION_Reappear);
+		mIsFreed   = false;
+		mMoldState = KARERU_End;
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DD590
- * Size:	000004
+/**
+ * Post-Kareru (under mold) state. Trivial.
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DD590
+ * @note Size: 0x4
  */
-void KareruState::cleanup(Item*) { }
+void KareruState::cleanup(Item* item) { }
 
-/*
- * --INFO--
- * Address:	801DD594
- * Size:	000018
+/**
+ * Triggered on mold destruction. If not already proceeding to end of state, prime escape trigger.
+ *
+ * @param item Unused.
+ *
+ * @note Address: 801DD594
+ * @note Size: 0x18
  */
-void KareruState::eventHaero(Item*)
+void KareruState::eventHaero(Item* item)
 {
-	if (_10 != 2) {
-		_12 = 1;
+	if (mMoldState != KARERU_End) {
+		mIsFreed = true;
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DD5AC
- * Size:	0000A4
+/**
+ * On animation trigger. Only proceed if animation is complete.
+ * If starting mold state, proceed to wait substate and set plant as dead.
+ * Loop on waiting substate.
+ * If end of state is triggered, set growth size as small and transition to Normal (default) state.
+ *
+ * @param item Item acted on by state machine.
+ * @param event Key event (triggered by animation).
+ *
+ * @note Address: 801DD5AC
+ * @note Size: 0xA4
  */
 void KareruState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
 	if (event.mType == KEYEVENT_END || event.mType == KEYEVENT_END_BLEND) {
-		switch (_10) {
-		case 0:
-			_10 = 1;
+		switch (mMoldState) {
+		case KARERU_Begin:
+			mMoldState = KARERU_Wait;
 			item->setAlive(false);
 			break;
-		case 1:
+
+		case KARERU_Wait:
 			break;
-		case 2:
-			static_cast<Item*>(item)->mGrowState = 0;
+
+		case KARERU_End:
+			item->mGrowState = PLANTGROW_Small;
 			transit(item, ITEMPLANT_Normal, nullptr);
 			break;
 		}
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DD650
- * Size:	000004
+/**
+ * Triggered on damage. Trivial.
+ *
+ * @param item Item acted on by state machine.
+ * @param damage Unused.
+ *
+ * @note Address: 801DD650
+ * @note Size: 0x4
  */
-void KareruState::onDamage(Item*, f32) { }
+void KareruState::onDamage(Item* item, f32 damage) { }
 
-/*
- * --INFO--
- * Address:	801DD654
- * Size:	000048
+/*********************************
+ * BASE CLASS (ITEM) DEFINITIONS *
+ *********************************/
+
+/**
+ * Sets up (dedicated) sound object.
+ *
+ * @note Address: 801DD654
+ * @note Size: 0x48
  */
 void Item::constructor() { mSoundObj = new PSM::Tsuyukusa(this); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
+/**
+ * Constructor for base Item class. Resets growth timer and damage, and starts as small size.
+ * Unused outside this file, but auto-inlined in other functions.
+ *
+ * @param objType Object type ID (as per `ObjTypes` enum) - should be `OBJTYPE_Plant`.
+ *
+ * @note Address:	........
+ * @note Size: 0xD0 (should be 0xD4 but inlines correctly).
  */
 Item::Item(int objType)
     : FSMItem(objType)
@@ -318,10 +438,14 @@ Item::Item(int objType)
 	mGrowState = PLANTGROW_Small;
 }
 
-/*
- * --INFO--
- * Address:	801DD69C
- * Size:	000058
+/**
+ * Initializes base Item class. Sets to alive, resets growth timer, damage, face direction and sticker count.
+ * Starts as small size.
+ *
+ * @param initArg Unused.
+ *
+ * @note Address: 801DD69C
+ * @note Size: 0x58
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
@@ -330,13 +454,16 @@ void Item::onInit(CreatureInitArg* initArg)
 	mDamage     = 0.0f;
 	mFaceDir    = 0.0f;
 	mStuckCount = 0;
-	mGrowState  = 0;
+	mGrowState  = PLANTGROW_Small;
 }
 
-/*
- * --INFO--
- * Address:	801DD6F4
- * Size:	000028
+/**
+ * If a creature is stuck to a spherical collision part (i.e. berry spawn part), increment sticker counter.
+ *
+ * @param stuck Creature now stuck to item.
+ *
+ * @note Address: 801DD6F4
+ * @note Size: 0x28
  */
 void Item::onStickStart(Creature* stuck)
 {
@@ -345,10 +472,14 @@ void Item::onStickStart(Creature* stuck)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DD71C
- * Size:	00003C
+/**
+ * If a creature is no longer stuck to a spherical collision part (i.e. berry spawn part), decrement sticker counter.
+ * Makes sure counter doesn't go below 0.
+ *
+ * @param stuck Creature (formerly) stuck to item.
+ *
+ * @note Address: 801DD71C
+ * @note Size: 0x3C
  */
 void Item::onStickEnd(Creature* stuck)
 {
@@ -360,15 +491,17 @@ void Item::onStickEnd(Creature* stuck)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DD758
- * Size:	000028
+/**
+ * Adds item to global farm manager.
+ *
+ * @note Address: 801DD758
+ * @note Size: 0x28
  */
 void Item::onSetPosition() { Farm::farmMgr->addPlant(this); }
 
-/*
- * --INFO--
+/**
+ * Reconstructs main object matrix using current position and face direction (about Y axis).
+ *
  * Address:	801DD780
  * Size:	000044
  */
@@ -378,61 +511,77 @@ void Item::updateTrMatrix()
 	mObjMatrix.makeTR(mPosition, rot);
 }
 
-/*
- * --INFO--
- * Address:	801DD7C4
- * Size:	000028
+/**
+ * Sets color motion state and 'resets' blend ratios (1 if disappearing, 0 if reappearing).
+ * Seems like these should be set opposite based on `updateColorMotion()` though.
+ * Color motion machinery seems unused however, so this doesn't really do anything.
+ *
+ * @param state Color motion state to set (as per `MotionStateID` enum).
+ *
+ * @note Address: 801DD7C4
+ * @note Size: 0x28
  */
 void Item::startColorMotion(int state)
 {
 	mColorMotionState = state;
-	if (mColorMotionState == PLANTCOLOR_Unk0) {
+	if (mColorMotionState == PLANTCOLOR_Disappear) {
 		mColorBlendRatio = 1.0f;
 	} else {
 		mColorBlendRatio = 0.0f;
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DD7EC
- * Size:	000090
+/**
+ * Adjusts color blend ratios linearly over time and caps at 1 or 0.
+ * Seems unused, only non-stripped because it's virtual.
+ *
+ * @param rate Rate at which to increment/decrement color blend ratio per frame.
+ *
+ * @note Address: 801DD7EC
+ * @note Size: 0x90
  */
 void Item::updateColorMotion(f32 rate)
 {
 	switch (mColorMotionState) {
-	case PLANTCOLOR_Unk0: {
+	case PLANTCOLOR_Disappear: {
 		rate *= sys->mDeltaTime;
 		mColorBlendRatio += rate;
 		if (mColorBlendRatio >= 1.0f) {
 			mColorBlendRatio  = 1.0f;
-			mColorMotionState = PLANTCOLOR_Unk2;
+			mColorMotionState = PLANTCOLOR_NoBlend;
 		}
 		break;
 	}
-	case PLANTCOLOR_Unk1: {
+
+	case PLANTCOLOR_Reappear: {
 		rate *= sys->mDeltaTime;
 		mColorBlendRatio -= rate;
 		if (mColorBlendRatio <= 0.0f) {
 			mColorBlendRatio  = 0.0f;
-			mColorMotionState = PLANTCOLOR_Unk2;
+			mColorMotionState = PLANTCOLOR_NoBlend;
 		}
 		break;
 	}
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DD87C
- * Size:	000034
+/**
+ * Item AI call. Executes current state machine loop.
+ *
+ * @note Address: 801DD87C
+ * @note Size: 0x34
  */
 void Item::doAI() { mFsm->exec(this); }
 
-/*
- * --INFO--
- * Address:	801DD8B0
- * Size:	000044
+/**
+ * Passes damage from attack to current state machine state damage handler function.
+ *
+ * @param attack Attack interaction.
+ *
+ * @returns True always.
+ *
+ * @note Address: 801DD8B0
+ * @note Size: 0x44
  */
 bool Item::interactAttack(InteractAttack& attack)
 {
@@ -440,10 +589,15 @@ bool Item::interactAttack(InteractAttack& attack)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801DD8F8
- * Size:	000038
+/**
+ * Triggers current state machine state Karero (start mold) event.
+ *
+ * @param karero Mold creation interaction.
+ *
+ * @returns True always.
+ *
+ * @note Address: 801DD8F8
+ * @note Size: 0x38
  */
 bool Item::interactFarmKarero(InteractFarmKarero& karero)
 {
@@ -451,10 +605,15 @@ bool Item::interactFarmKarero(InteractFarmKarero& karero)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801DD934
- * Size:	000038
+/**
+ * Triggers current state machine state Haero (free from mold) event.
+ *
+ * @param haero Mold destruction interaction.
+ *
+ * @returns True always.
+ *
+ * @note Address: 801DD934
+ * @note Size: 0x38
  */
 bool Item::interactFarmHaero(InteractFarmHaero& haero)
 {
@@ -462,10 +621,13 @@ bool Item::interactFarmHaero(InteractFarmHaero& haero)
 	return true;
 }
 
-/*
- * --INFO--
- * Address:	801DD970
- * Size:	000120
+/**
+ * Displays debug information above plant. Debug information to display is current state machine state ID.
+ *
+ * @param gfx Graphics handler.
+ *
+ * @note Address: 801DD970
+ * @note Size: 0x120
  */
 void Item::doDirectDraw(Graphics& gfx)
 {
@@ -480,10 +642,14 @@ void Item::doDirectDraw(Graphics& gfx)
 	gfx.perspPrintf(printInfo, pos, "%d", getStateID());
 }
 
-/*
- * --INFO--
- * Address:	801DDA90
- * Size:	000294
+/**
+ * Adds damage. If damage hits threshold to drop a berry, reset damage and drop one berry.
+ * Also drops all enemies stuck to plant (namely whiskerpillars) on damage application.
+ *
+ * @param damage Damage to apply.
+ *
+ * @note Address: 801DDA90
+ * @note Size: 0x294
  */
 void Item::addDamage(f32 damage)
 {
@@ -506,32 +672,42 @@ void Item::addDamage(f32 damage)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
+/*****************************
+ * PROC ANIMATOR DEFINITIONS *
+ *****************************/
+
+/**
+ * Constructor for ProcAnimator. Stripped, but auto-inlined in `Plant` constructor.
+ * Resets main used values.
+ *
+ * @note Address:	........
+ * @note Size: 0x1C
  */
 ProcAnimator::ProcAnimator()
 {
-	_20 = 0;
-	_0C = nullptr;
-	_24 = 0.0f;
-	_28 = 0.0f;
+	mMaxCount = 0;
+	_0C       = nullptr;
+	_24       = 0.0f;
+	_28       = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
+/**
+ * Sets up ProcAnimator. Creates arrays of size `count` and initializes values to 0.
+ * Stripped but used in `Plant::onInit()`.
+ *
+ * @param count Array sizes to create.
+ *
+ * @note Address:	........
+ * @note Size: 0xD8
  */
 void ProcAnimator::create(int count)
 {
-	_20 = count;
-	_0C = new Matrixf*[count];
-	_10 = new Matrixf[count];
-	_14 = new f32[count];
-	_18 = new f32[count];
-	_1C = new f32[count];
+	mMaxCount = count;
+	_0C       = new Matrixf*[count];
+	_10       = new Matrixf[count];
+	_14       = new f32[count];
+	_18       = new f32[count];
+	_1C       = new f32[count];
 
 	for (int i = 0; i < count; i++) {
 		_0C[i] = nullptr;
@@ -542,14 +718,20 @@ void ProcAnimator::create(int count)
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * Sets matrix (ptr) of given index. Stripped but used in `Plant::onInit()` based on assert line numbering.
+ *
+ * @param idx Index of matrix to set, between 0 and (`mMaxCount` - 1).
+ * @param mtx Matrix (ptr) to set.
+ *
+ * @throws Panics if index provided is >= `mMaxCount` (outside array size).
+ *
+ * @note Address: ........
+ * @note Size: 0x88
  */
 void ProcAnimator::setMatrix(int idx, Matrixf* mtx)
 {
-	P2ASSERTLINE(663, _20 > idx);
+	P2ASSERTLINE(663, mMaxCount > idx);
 	_0C[idx] = mtx;
 }
 
@@ -578,7 +760,7 @@ void ProcAnimator::calcAngles()
 	_0C[0]->getTranslation(lastPos);
 	_00 = lastPos;
 
-	for (int i = 1; i < _20; i++) {
+	for (int i = 1; i < mMaxCount; i++) {
 		Matrixf* currMat = _0C[i];
 		Vector3f pos1;
 		currMat->getTranslation(pos1);
@@ -632,7 +814,7 @@ void ProcAnimator::calcDists()
 	pos.y         = mat0->mMatrix.structView.ty;
 	pos.z         = mat0->mMatrix.structView.tz;
 
-	for (int i = 1; i < _20; i++) {
+	for (int i = 1; i < mMaxCount; i++) {
 		Matrixf* mat = _0C[i];
 		Vector3f newPos;
 		newPos.x     = mat->mMatrix.structView.tx;
@@ -676,7 +858,7 @@ void ProcAnimator::update(f32 p1, f32 p2)
 	calcDists();
 
 	Vector3f pos = _00;
-	for (int i = 1; i < _20; i++) {
+	for (int i = 1; i < mMaxCount; i++) {
 		Matrixf* currMat = _0C[i];
 		f32 val          = (i == 1) ? 0.1f : (i == 2) ? 0.5f : 1.0f;
 
@@ -1168,11 +1350,13 @@ void Plant::onInit(CreatureInitArg* initArg)
 
 	mgr->mAnimMgr->mModel = mModel;
 	mBlendAnimator.setAnimMgr(mgr->mAnimMgr);
-	mBlendAnimator.mAnimators[0].startAnim(randFloat() * 3.0f, nullptr);
 
-	mBlendAnimator.mAnimators[1].startAnim(5, nullptr);
+	// initially, blend from (random) default/grown animation to a withering animation
+	mBlendAnimator.mAnimators[0].startAnim(randFloat() * 3.0f, nullptr); // 0 = NormalSmall, 1 = NormalMedium, 2 = NormalLarge
+	mBlendAnimator.mAnimators[1].startAnim(PLANTANIM_Wither, nullptr);   // 5 = wither
 	mBlendAnimator.endBlend();
-	mAnimSpeed     = 30.0f;
+	mAnimSpeed = 30.0f;
+
 	mGrowTimer     = 10.0f;
 	_254           = 0;
 	mBlendStepTime = 0.0f;
@@ -1207,7 +1391,7 @@ void Plant::onInit(CreatureInitArg* initArg)
 	}
 
 	data->mMaterialTable.entryMatColorAnimator(mgr->mAnmColor);
-	startColorMotion(PLANTCOLOR_Unk1);
+	startColorMotion(PLANTCOLOR_Reappear);
 	mFsm->start(this, ITEMPLANT_Normal, nullptr);
 	/*
 	stwu     r1, -0x80(r1)
@@ -1745,10 +1929,13 @@ lbl_801DEE98:
 void Plant::doAI()
 {
 	mFsm->exec(this);
-	if (gameSystem->isFlag(GAMESYS_IsPlaying) && gameSystem->isFlag(GAMESYS_Unk1)) {
-		if (mGrowState != PLANTGROW_Unk3) {
+
+	if (gameSystem->isFlag(GAMESYS_IsPlaying) && gameSystem->isFlag(GAMESYS_IsSoundFXActive)) {
+		if (mGrowState != PLANTGROW_Mold) {
+			// if no mold, add "near spiderwort" sound mix
 			static_cast<PSM::Tsuyukusa*>(mSoundObj)->noukouFrameWork(true);
 		} else {
+			// if mold, remove "near spiderwort" sound mix
 			static_cast<PSM::Tsuyukusa*>(mSoundObj)->noukouFrameWork(false);
 		}
 	}
@@ -1759,49 +1946,58 @@ void Plant::doAI()
  * Address:	801DEFC0
  * Size:	000370
  */
-void Plant::startMotion(int animIdx)
+void Plant::startMotion(int motionState)
 {
 	mBlendAnimator.endBlend();
 	mRandGrowTimeOffset = randFloat() * 3.0f;
 
-	switch (animIdx) {
-	case 0:
-		mBlendAnimator.mAnimators[0].startAnim(mGrowState, nullptr);
+	switch (motionState) {
+	case PLANTMOTION_Normal:                                         // normal animation based on growth state
+		mBlendAnimator.mAnimators[0].startAnim(mGrowState, nullptr); // 0 = NormalSmall, 1 = NormalMedium, 2 = NormalLarge
 		break;
 
-	case 1:
+	case PLANTMOTION_Grow: // animation to grow between stages (small->med and med->large)
+		// this shouldn't trigger if plant is fully grown or under mold
 		P2ASSERTLINE(1084, mGrowState <= PLANTGROW_Medium);
-		mBlendAnimator.mAnimators[0].startAnim(mGrowState + 3, this);
-		if (mGrowState == PLANTGROW_Small) {
+		mBlendAnimator.mAnimators[0].startAnim(mGrowState + 3, this); // 3 = GrowSmallMed, 4 = GrowMedLarge
+
+		// trigger correct growth efx based on stage size
+		if (mGrowState == PLANTGROW_Small) { // small -> medium
 			efx::TTsuyuGrow1 grow1(&mObjMatrix);
 			grow1.create(nullptr);
-		} else if (mGrowState == PLANTGROW_Medium) {
+
+		} else if (mGrowState == PLANTGROW_Medium) { // medium -> large
 			efx::TTsuyuGrow2 grow2(&mObjMatrix);
 			grow2.create(nullptr);
 		}
 		break;
 
-	case 4:
-		mBlendAnimator.mAnimators[0].startAnim(mGrowState + 6, this);
+	case PLANTMOTION_Damage:                                          // animation while being 'damaged' - includes Pikmin falling off
+		mBlendAnimator.mAnimators[0].startAnim(mGrowState + 6, this); // 6 = DamageSmall, 7 = DamageMedium, 8 = DamageLarge
 		break;
 
-	case 2:
-		mBlendAnimator.mAnimators[0].startAnim(mGrowState, this);
-		mBlendAnimator.mAnimators[1].startAnim(5, nullptr);
+	case PLANTMOTION_Disappear:                                            // blend animation as plant withers under mold
+		mBlendAnimator.mAnimators[0].startAnim(mGrowState, this);          // 0 = NormalSmall, 1 = NormalMedium, 2 = NormalLarge
+		mBlendAnimator.mAnimators[1].startAnim(PLANTANIM_Wither, nullptr); // blend to 5 = wither
+
 		SysShape::BlendQuadraticFunc quadFunc;
 		mBlendAnimator.startBlend(&quadFunc, 30.0f, this);
-		mBlendStepTime = 30.0f;
-		startColorMotion(PLANTCOLOR_Unk0);
+		mBlendStepTime = 30.0f; // in frames
 
-		if (gameSystem->isFlag(GAMESYS_Unk1)) {
+		startColorMotion(PLANTCOLOR_Disappear);
+
+		if (gameSystem->isFlag(GAMESYS_IsSoundFXActive)) {
 			mSoundObj->startSound(PSSE_EV_TSUYUKUSA_WITHER, 0);
 		}
 		break;
 
-	case 3:
+	case PLANTMOTION_Reappear: // animation on respawn after mold
 		setAlive(true);
-		mBlendAnimator.mAnimators[0].startAnim(12, this);
-		startColorMotion(PLANTCOLOR_Unk1);
+		mBlendAnimator.mAnimators[0].startAnim(PLANTANIM_Reappear, this); // 12 = reappear
+
+		startColorMotion(PLANTCOLOR_Reappear);
+
+		// trigger regrowth efx
 		efx::ArgRotY fxArg(mPosition, mFaceDir);
 		efx::TTsuyuGrow0 grow0;
 		grow0.create(&fxArg);
@@ -1850,7 +2046,7 @@ void Plant::doAnimation()
 		ratios *= TORADIANS(35.0f);
 
 		if (mLod.isFlag(AILOD_IsVisible)) {
-			if (mGrowState == PLANTGROW_Full) {
+			if (mGrowState == PLANTGROW_Large) {
 				mProcAnimator.setMatrix(0, mModel->getJoint("kuki_jnt1")->getWorldMatrix());
 				mProcAnimator.setMatrix(1, mModel->getJoint("kuki_jnt2")->getWorldMatrix());
 				mProcAnimator.setMatrix(2, mModel->getJoint("kuki_jnt3")->getWorldMatrix());

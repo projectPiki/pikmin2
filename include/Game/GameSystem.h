@@ -22,7 +22,7 @@ enum GameSystemMode {
 };
 
 enum GameSystemFlags {
-	GAMESYS_Unk1              = 0x1,
+	GAMESYS_IsSoundFXActive   = 0x1,
 	GAMESYS_IsPlaying         = 0x2,
 	GAMESYS_Unk3              = 0x4,
 	GAMESYS_Unk4              = 0x8,
