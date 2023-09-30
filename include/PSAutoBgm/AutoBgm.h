@@ -41,12 +41,12 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	// _14-_B8  = DirectedBgm
-	ConductorMgr _B8;            // _B8
+	ConductorMgr mConductorMgr;  // _B8
 	u8 _328[0x8];                // _328 - unknown
 	char* mConductorFilePath;    // _330 (.cnd)
 	PSSystem::TaskChecker* _334; // _334
 	u8* _338;                    // _338 - str?
-	MeloArrMgr _33C;             // _33C
+	MeloArrMgr mMeloArr;         // _33C
 	u16 mPikiMaskNum;            // _34C - unknown
 	u8 _34E;                     // _34E - unknown
 	u8 _34F;                     // _34F - might be padding

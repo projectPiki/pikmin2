@@ -17,6 +17,10 @@ struct DirectorCopyActor;
 struct SeqTrackBase;
 } // namespace PSSystem
 
+namespace PSAutoBgm {
+struct Track;
+} // namespace PSAutoBgm
+
 namespace PSM {
 struct OneShotDirector : public ::PSSystem::OneShotDirector {
 	inline OneShotDirector()
@@ -25,7 +29,7 @@ struct OneShotDirector : public ::PSSystem::OneShotDirector {
 	{
 	}
 
-	virtual ~OneShotDirector(); // _08 (weak)
+	virtual ~OneShotDirector() { } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_48 = PSSystem::OneShotDirector
@@ -38,7 +42,7 @@ struct OneShotDirector : public ::PSSystem::OneShotDirector {
 struct DamageDirector : public OneShotDirector {
 	DamageDirector();
 
-	virtual ~DamageDirector();                             // _08 (weak)
+	virtual ~DamageDirector() { }                          // _08 (weak)
 	virtual void execInner();                              // _1C
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&); // _20
 
@@ -64,7 +68,7 @@ struct SwitcherDirector : public ::PSSystem::SwitcherDirector {
 struct PikminNumberDirector : public SwitcherDirector {
 	PikminNumberDirector(int, u8, ::PSSystem::DirectedBgm&);
 
-	virtual ~PikminNumberDirector();                        // _08 (weak)
+	virtual ~PikminNumberDirector() { }                     // _08 (weak)
 	virtual void execInner();                               // _1C
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
@@ -81,11 +85,11 @@ struct PikminNumberDirector : public SwitcherDirector {
 struct PikminNumberDirector_AutoBgm : public PikminNumberDirector {
 	PikminNumberDirector_AutoBgm(int, u8, ::PSSystem::DirectedBgm&);
 
-	virtual ~PikminNumberDirector_AutoBgm();                // _08 (weak)
+	virtual ~PikminNumberDirector_AutoBgm() { }             // _08 (weak)
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
 
-	void getTrack(::PSSystem::SeqTrackBase&);
+	PSAutoBgm::Track* getTrack(::PSSystem::SeqTrackBase&);
 
 	// _00     = VTBL
 	// _00-_4C = PikminNumberDirector
@@ -100,7 +104,7 @@ struct TempoChangeDirectorBase : public SwitcherDirector {
 	    , mActor(nullptr)
 	{
 	}
-	virtual ~TempoChangeDirectorBase();                     // _08 (weak)
+	virtual ~TempoChangeDirectorBase() { }                  // _08 (weak)
 	virtual void directOnTrack(::PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(::PSSystem::SeqTrackBase&); // _24
 
@@ -117,8 +121,8 @@ struct TempoChangeDirectorBase : public SwitcherDirector {
 struct ActorDirector_TempoChange : public TempoChangeDirectorBase {
 	ActorDirector_TempoChange();
 
-	virtual ~ActorDirector_TempoChange(); // _08 (weak)
-	virtual void execInner();             // _1C
+	virtual ~ActorDirector_TempoChange() { } // _08 (weak)
+	virtual void execInner();                // _1C
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
@@ -163,7 +167,7 @@ struct TrackOnDirector_Scaled : public TrackOnDirectorBase {
 		_50    = 1;
 		mActor = nullptr;
 	}
-	virtual ~TrackOnDirector_Scaled();    // _08 (weak)
+	virtual ~TrackOnDirector_Scaled() { } // _08 (weak)
 	virtual void underDirection();        // _18
 	virtual f64 getNearestDistance() = 0; // _38
 
@@ -241,10 +245,10 @@ struct GroundDirector_Cave : public ActorDirector_TrackOn {
 struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
 	ActorDirector_Scaled(const char*, int, f32, f32, long, long, u32);
 
-	virtual ~ActorDirector_Scaled();               // _08 (weak)
-	virtual void execInner();                      // _1C
-	virtual f64 getNearestDistance();              // _38
-	virtual void onSetMinDistObj(Game::Creature*); // _3C (weak)
+	virtual ~ActorDirector_Scaled() { }               // _08 (weak)
+	virtual void execInner();                         // _1C
+	virtual f64 getNearestDistance();                 // _38
+	virtual void onSetMinDistObj(Game::Creature*) { } // _3C (weak)
 
 	// _00     = VTBL
 	// _00-_68 = TrackOnDirector_Scaled
@@ -256,7 +260,7 @@ struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
 struct ActorDirector_Enemy : public ActorDirector_Scaled {
 	ActorDirector_Enemy(const char*, int, long, long, unsigned long);
 
-	virtual ~ActorDirector_Enemy();                   // _08 (weak)
+	virtual ~ActorDirector_Enemy() { }                // _08 (weak)
 	virtual void underDirection();                    // _18
 	virtual void onSetMinDistObj(Game::Creature*);    // _3C
 	virtual f64 getVolZeroDist(Game::EnemyBase*) = 0; // _40
@@ -264,7 +268,7 @@ struct ActorDirector_Enemy : public ActorDirector_Scaled {
 
 	// _00     = VTBL
 	// _00-_68 = ActorDirector_Scaled
-	Game::Creature* _68; // _68
+	Game::Creature* mGameObject; // _68
 };
 
 /**
@@ -276,7 +280,7 @@ struct ActorDirector_Battle : public ActorDirector_Enemy {
 	{
 	}
 
-	virtual ~ActorDirector_Battle();              // _08 (weak)
+	virtual ~ActorDirector_Battle() { }           // _08 (weak)
 	virtual f64 getVolZeroDist(Game::EnemyBase*); // _40
 	virtual f64 getVolMaxDist(Game::EnemyBase*);  // _44
 
@@ -293,7 +297,7 @@ struct ActorDirector_Kehai : public ActorDirector_Enemy {
 	{
 	}
 
-	virtual ~ActorDirector_Kehai();               // _08 (weak)
+	virtual ~ActorDirector_Kehai() { }            // _08 (weak)
 	virtual f64 getVolZeroDist(Game::EnemyBase*); // _40
 	virtual f64 getVolMaxDist(Game::EnemyBase*);  // _44
 

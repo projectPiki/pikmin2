@@ -12,6 +12,7 @@
 #include "JSystem/JAudio/JAI/JAISe.h"
 #include "Game/EnemyBase.h"
 #include "SoundID.h"
+#include "PSM/Director.h"
 
 // namespace PSM {
 // 	struct DirectorBase;

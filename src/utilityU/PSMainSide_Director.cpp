@@ -1,17 +1,12 @@
-#include "JSystem/JUtility/JUTException.h"
-#include "PSGame/Global.h"
-#include "PSM/CreaturePrm.h"
-#include "PSM/Director.h"
-#include "PSM/EventLink.h"
-#include "PSM/ObjCalc.h"
-#include "PSM/Scene.h"
-#include "PSSystem/PSBgm.h"
-#include "PSSystem/PSGame.h"
-#include "PSSystem/Seq.h"
-#include "types.h"
-#include "PSSystem/Director.h"
 #include "PSSystem/SeqTrack.h"
-#include "Game/EnemyBase.h"
+#include "PSSystem/PSGame.h"
+#include "PSM/ObjCalc.h"
+#include "PSM/Otakara.h"
+#include "PSGame/Global.h"
+#include "PSAutoBgm/AutoBgm.h"
+#include "JSystem/JAudio/JALCalc.h"
+#include "PSM/CreaturePrm.h"
+#include "utilityU.h"
 
 /*
     Generated from dpostproc
@@ -393,87 +388,6 @@ DamageDirector::DamageDirector()
     , _50(5.0f)
     , _54(225)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	addi     r5, r4, lbl_8049CD98@l
-	li       r4, 1
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
-	lis      r3, __vt__Q28PSSystem15OneShotDirector@ha
-	lis      r4, __vt__Q23PSM15OneShotDirector@ha
-	addi     r0, r3, __vt__Q28PSSystem15OneShotDirector@l
-	lis      r3, __vt__Q23PSM14DamageDirector@ha
-	stw      r0, 0(r31)
-	addi     r0, r4, __vt__Q23PSM15OneShotDirector@l
-	li       r5, 0
-	addi     r4, r3, __vt__Q23PSM14DamageDirector@l
-	stw      r0, 0(r31)
-	li       r0, 0xe1
-	lfs      f1, lbl_80520C00@sda21(r2)
-	mr       r3, r31
-	stw      r5, 0x48(r31)
-	lfs      f0, lbl_80520C04@sda21(r2)
-	stw      r4, 0(r31)
-	stfs     f1, 0x4c(r31)
-	stfs     f0, 0x50(r31)
-	stw      r0, 0x54(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80456B78
- * Size:	000080
- */
-OneShotDirector::~OneShotDirector()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80456BDC
-	lis      r4, __vt__Q23PSM15OneShotDirector@ha
-	addi     r0, r4, __vt__Q23PSM15OneShotDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80456BCC
-	lis      r4, __vt__Q28PSSystem15OneShotDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem15OneShotDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80456BCC
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80456BCC:
-	extsh.   r0, r31
-	ble      lbl_80456BDC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80456BDC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -484,21 +398,6 @@ lbl_80456BDC:
 void DamageDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).pitchModulation(_4C, _50, _54, this);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	lfs      f1, 0x4c(r3)
-	mr       r3, r4
-	lfs      f2, 0x50(r5)
-	lwz      r4, 0x54(r5)
-	bl pitchModulation__Q28PSSystem12SeqTrackRootFffUlPQ28PSSystem12DirectorBase
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -508,75 +407,9 @@ void DamageDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
  */
 void DamageDirector::execInner()
 {
-	if (mActor != nullptr) {
+	if (mActor) {
 		mActor->exec(this);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x48(r3)
-	cmplwi   r3, 0
-	beq      lbl_80456C58
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80456C58:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80456C68
- * Size:	000080
- */
-SwitcherDirector::~SwitcherDirector()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80456CCC
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80456CBC
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80456CBC
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80456CBC:
-	extsh.   r0, r31
-	ble      lbl_80456CCC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80456CCC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -587,17 +420,6 @@ lbl_80456CCC:
 void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(_48, _4C, this);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	lfs      f1, 0x48(r3)
-	mr       r3, r4
-	lwz      r4, 0x4c(r5)
-	bl tempoChange__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase lwz
-	r0, 0x14(r1) mtlr     r0 addi     r1, r1, 0x10 blr
-	*/
 }
 
 /*
@@ -608,17 +430,6 @@ void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(1.0f, _4C, this);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	lfs      f1, lbl_80520C08@sda21(r2)
-	stw      r0, 0x14(r1)
-	mr       r3, r4
-	lwz      r4, 0x4c(r5)
-	bl tempoChange__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase lwz
-	r0, 0x14(r1) mtlr     r0 addi     r1, r1, 0x10 blr
-	*/
 }
 
 /*
@@ -626,96 +437,7 @@ void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
  * Address:	80456D48
  * Size:	000084
  */
-ActorDirector_TempoChange::ActorDirector_TempoChange()
-    : TempoChangeDirectorBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8049CDA4@ha
-	stw      r0, 0x14(r1)
-	addi     r5, r4, lbl_8049CDA4@l
-	li       r4, 1
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	lis      r3, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	lis      r4, __vt__Q23PSM23TempoChangeDirectorBase@ha
-	stw      r0, 0(r31)
-	addi     r5, r3, __vt__Q23PSM16SwitcherDirector@l
-	lis      r3, __vt__Q23PSM25ActorDirector_TempoChange@ha
-	addi     r0, r4, __vt__Q23PSM23TempoChangeDirectorBase@l
-	stw      r5, 0(r31)
-	li       r5, 0x64
-	lfs      f0, lbl_80520C0C@sda21(r2)
-	li       r4, 0
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q23PSM25ActorDirector_TempoChange@l
-	mr       r3, r31
-	stfs     f0, 0x48(r31)
-	stw      r5, 0x4c(r31)
-	stw      r4, 0x50(r31)
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80456DCC
- * Size:	000090
- */
-TempoChangeDirectorBase::~TempoChangeDirectorBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80456E40
-	lis      r4, __vt__Q23PSM23TempoChangeDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM23TempoChangeDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_80456E30
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80456E30
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80456E30
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80456E30:
-	extsh.   r0, r31
-	ble      lbl_80456E40
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80456E40:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ActorDirector_TempoChange::ActorDirector_TempoChange() { }
 
 /*
  * --INFO--
@@ -724,28 +446,9 @@ lbl_80456E40:
  */
 void ActorDirector_TempoChange::execInner()
 {
-	if (mActor != nullptr) {
+	if (mActor) {
 		mActor->exec(this);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x50(r3)
-	cmplwi   r3, 0
-	beq      lbl_80456E88
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80456E88:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -753,44 +456,10 @@ lbl_80456E88:
  * Address:	80456E98
  * Size:	000078
  */
-PikminNumberDirector::PikminNumberDirector(int p1, unsigned char p2, PSSystem::DirectedBgm& bgm)
+PikminNumberDirector::PikminNumberDirector(int p1, u8 p2, PSSystem::DirectedBgm& bgm)
     : SwitcherDirector(p1, "pikminD  ")
-    , mActor(nullptr)
     , _4C(p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r6, 0x804A
-	  stw       r0, 0x14(r1)
-	  subi      r0, r6, 0x3250
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  mr        r5, r0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x11400C
-	  lis       r3, 0x804E
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0x5030
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r30)
-	  subi      r5, r4, 0x1F50
-	  li        r4, 0
-	  subi      r0, r3, 0x1FF8
-	  stw       r5, 0x0(r30)
-	  mr        r3, r30
-	  stw       r4, 0x48(r30)
-	  stw       r0, 0x0(r30)
-	  stb       r31, 0x4C(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -802,27 +471,6 @@ void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	seqTrack.getTaskEntryList();
 	static_cast<PSSystem::SeqTrackChild&>(seqTrack).setIdMask(_4C, this);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       getTaskEntryList__Q28PSSystem12SeqTrackBaseFv
-	lbz      r4, 0x4c(r30)
-	mr       r3, r31
-	mr       r5, r30
-	bl       setIdMask__Q28PSSystem13SeqTrackChildFUcPQ28PSSystem12DirectorBase
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -833,19 +481,6 @@ void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 void PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackChild&>(seqTrack).setIdMask(0, this);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r4, 0
-	bl       setIdMask__Q28PSSystem13SeqTrackChildFUcPQ28PSSystem12DirectorBase
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -855,28 +490,9 @@ void PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
  */
 void PikminNumberDirector::execInner()
 {
-	if (mActor != nullptr) {
+	if (mActor) {
 		mActor->exec(this);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x48(r3)
-	cmplwi   r3, 0
-	beq      lbl_80456FB4
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80456FB4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -884,7 +500,7 @@ lbl_80456FB4:
  * Address:	80456FC4
  * Size:	000094
  */
-PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(int p1, unsigned char p2, PSSystem::DirectedBgm& bgm)
+PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(int p1, u8 p2, PSSystem::DirectedBgm& bgm)
     : PikminNumberDirector(p1, p2, bgm)
     , mDirectedBgm(&bgm)
 {
@@ -932,62 +548,21 @@ PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(int p1, unsigned char
 
 /*
  * --INFO--
- * Address:	80457058
- * Size:	000090
- */
-PikminNumberDirector::~PikminNumberDirector()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_804570CC
-	lis      r4, __vt__Q23PSM20PikminNumberDirector@ha
-	addi     r0, r4, __vt__Q23PSM20PikminNumberDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804570BC
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804570BC
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804570BC
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_804570BC:
-	extsh.   r0, r31
-	ble      lbl_804570CC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_804570CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	804570E8
  * Size:	000088
  */
-void PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase&)
+void PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase& track)
 {
+	PSAutoBgm::Track* subtrack = getTrack(track);
+	PSAutoBgm::AutoBgm* bgm    = static_cast<PSAutoBgm::AutoBgm*>(mDirectedBgm);
+	bgm->_34E                  = true;
+	FOREACH_NODE(PSAutoBgm::MeloArrBase, bgm->mMeloArr.mList.mHead, melo)
+	{
+		bool valid = melo->_18 == 1;
+		if (valid) {
+			melo->directOn(subtrack);
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1037,8 +612,18 @@ lbl_80457150:
  * Address:	80457170
  * Size:	000088
  */
-void PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase&)
+void PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase& track)
 {
+	PSAutoBgm::Track* subtrack = getTrack(track);
+	PSAutoBgm::AutoBgm* bgm    = static_cast<PSAutoBgm::AutoBgm*>(mDirectedBgm);
+	bgm->_34E                  = false;
+	FOREACH_NODE(PSAutoBgm::MeloArrBase, bgm->mMeloArr.mList.mHead, melo)
+	{
+		bool valid = melo->_18 == 1;
+		if (valid) {
+			melo->directOn(subtrack);
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1088,8 +673,11 @@ lbl_804571D8:
  * Address:	804571F8
  * Size:	0000B8
  */
-void PikminNumberDirector_AutoBgm::getTrack(PSSystem::SeqTrackBase&)
+PSAutoBgm::Track* PikminNumberDirector_AutoBgm::getTrack(PSSystem::SeqTrackBase& parent)
 {
+	PSSystem::TaskEntryMgr* mgr = parent.getTaskEntryList();
+	u32 flag                    = mgr->mTrack->_348 & 0xf;
+	// P2ASSERTLINE(194, (JADUtility::PrmSetRc<PSAutoBgm::Track>*)(mDirectedBgm)->getchild <= flag);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1155,39 +743,6 @@ TrackOnDirectorBase::TrackOnDirectorBase(int p1, const char* p2, long p3, long p
     , _4C(p4)
     , _50(0)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r7
-	stw      r30, 0x18(r1)
-	mr       r30, r6
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
-	lis      r3, __vt__Q28PSSystem16SwitcherDirector@ha
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r3, __vt__Q28PSSystem16SwitcherDirector@l
-	lis      r3, __vt__Q23PSM19TrackOnDirectorBase@ha
-	stw      r0, 0(r29)
-	addi     r5, r4, __vt__Q23PSM16SwitcherDirector@l
-	addi     r4, r3, __vt__Q23PSM19TrackOnDirectorBase@l
-	li       r0, 0
-	stw      r5, 0(r29)
-	mr       r3, r29
-	stw      r4, 0(r29)
-	stw      r30, 0x48(r29)
-	stw      r31, 0x4c(r29)
-	stb      r0, 0x50(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1199,21 +754,6 @@ void TrackOnDirectorBase::onPlayInit(JASTrack* track)
 {
 	track->_358 |= 0x60;
 	track->muteTrack(true);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x358(r3)
-	ori      r0, r0, 0x60
-	stb      r0, 0x358(r3)
-	bl       muteTrack__8JASTrackFb
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1228,34 +768,6 @@ void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 	} else {
 		static_cast<PSSystem::SeqTrackChild&>(seqTrack).muteOffAndFadeIn(1.0f, _48, this);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x50(r3)
-	cmplwi   r0, 0
-	beq      lbl_80457390
-	lfs      f1, lbl_80520C10@sda21(r2)
-	mr       r3, r4
-	li       r4, 0
-	bl
-muteOffAndFadeIn__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase b
-lbl_804573A0
-
-lbl_80457390:
-	mr       r3, r4
-	lfs      f1, lbl_80520C08@sda21(r2)
-	lwz      r4, 0x48(r5)
-	bl
-muteOffAndFadeIn__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase
-
-lbl_804573A0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1266,19 +778,6 @@ lbl_804573A0:
 void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	static_cast<PSSystem::SeqTrackChild&>(seqTrack).fadeoutAndMute(_4C, this);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x4c(r5)
-	bl fadeoutAndMute__Q28PSSystem13SeqTrackChildFUlPQ28PSSystem12DirectorBase
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1294,99 +793,6 @@ void TrackOnDirector_Voting::execInner()
 		directOn();
 	}
 	_54 = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x54(r3)
-	cmplwi   r0, 0
-	bne      lbl_80457420
-	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80457420
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80457450
-
-lbl_80457420:
-	lbz      r0, 0x54(r31)
-	cmplwi   r0, 0
-	beq      lbl_80457450
-	mr       r3, r31
-	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80457450
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80457450:
-	li       r0, 0
-	stb      r0, 0x54(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8045746C
- * Size:	000090
- */
-TrackOnDirectorBase::~TrackOnDirectorBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_804574E0
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_804574D0
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804574D0
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804574D0
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_804574D0:
-	extsh.   r0, r31
-	ble      lbl_804574E0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_804574E0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1396,6 +802,17 @@ lbl_804574E0:
  */
 void TrackOnDirector_Scaled::underDirection()
 {
+	f32 rate = 1.0f;
+	if (!PSSystem::DirectorBase::sToolMode) {
+		rate = getNearestDistance();
+		_5C  = rate;
+		rate = JALCalc::linearTransform(_5C, _58, _54, 0.0f, 1.0f, false);
+	}
+
+	for (u8 i = 0; i < _41; i++) {
+		P2ASSERTLINE(51, i < _41); // "PSDirector.h" :moe:
+		static_cast<PSSystem::SeqTrackChild*>(mTracks[i])->fade(rate, _60, nullptr);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1478,47 +895,11 @@ lbl_804575C0:
  */
 void ListDirectorActor::onUpdateFromMasterD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80457640
-	lwz      r3, 4(r31)
-	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80457640
-	lwz      r3, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80457670
-
-lbl_80457640:
-	lwz      r0, 0xc(r31)
-	cmplwi   r0, 0
-	beq      lbl_80457670
-	lwz      r3, 4(r31)
-	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80457670
-	lwz      r3, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80457670:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!mHead && mDirectorChild->isUnderDirection()) {
+		mDirectorChild->directOff();
+	} else if (mHead && !mDirectorChild->isUnderDirection()) {
+		mDirectorChild->directOn();
+	}
 }
 
 /*
@@ -1579,28 +960,9 @@ ActorDirector_TrackOn::ActorDirector_TrackOn(const char* p1, int p2, long p3, lo
  */
 void ActorDirector_TrackOn::execInner()
 {
-	if (mActor != nullptr) {
+	if (mActor) {
 		mActor->exec(this);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x54(r3)
-	cmplwi   r3, 0
-	beq      lbl_80457748
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80457748:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1608,128 +970,9 @@ lbl_80457748:
  * Address:	80457758
  * Size:	0000F4
  */
-ActorDirector_Scaled::ActorDirector_Scaled(const char* name, int p2, float p3, float p4, long p5, long p6, unsigned long p7)
+ActorDirector_Scaled::ActorDirector_Scaled(const char* name, int p2, f32 p3, f32 p4, long p5, long p6, u32 p7)
     : TrackOnDirector_Scaled(name, p2, p3, p4, p5, p6, p7)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  fmr       f30, f1
-	  mr        r0, r4
-	  fmr       f31, f2
-	  mr        r4, r5
-	  mr        r28, r3
-	  mr        r29, r6
-	  mr        r30, r7
-	  mr        r31, r8
-	  mr        r5, r0
-	  bl        -0x1148F4
-	  lis       r4, 0x804E
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x5030
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r28)
-	  subi      r0, r3, 0x1F50
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r28)
-	  subi      r0, r5, 0x2068
-	  li        r6, 0
-	  subi      r5, r4, 0x20DC
-	  stw       r0, 0x0(r28)
-	  li        r4, 0x1
-	  lfs       f0, 0x28B4(r2)
-	  subi      r0, r3, 0x2168
-	  stw       r29, 0x48(r28)
-	  mr        r3, r28
-	  stw       r30, 0x4C(r28)
-	  stb       r6, 0x50(r28)
-	  stw       r5, 0x0(r28)
-	  stfs      f30, 0x54(r28)
-	  stfs      f31, 0x58(r28)
-	  stfs      f0, 0x5C(r28)
-	  stw       r31, 0x60(r28)
-	  stb       r4, 0x50(r28)
-	  stw       r6, 0x64(r28)
-	  stw       r0, 0x0(r28)
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8045784C
- * Size:	0000A0
- */
-TrackOnDirector_Scaled::~TrackOnDirector_Scaled()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_804578D0
-	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
-	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
-	stw      r0, 0(r30)
-	beq      lbl_804578C0
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_804578C0
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804578C0
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804578C0
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_804578C0:
-	extsh.   r0, r31
-	ble      lbl_804578D0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_804578D0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1739,28 +982,9 @@ lbl_804578D0:
  */
 void ActorDirector_Scaled::execInner()
 {
-	if (mActor != nullptr) {
+	if (mActor) {
 		mActor->exec(this);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x64(r3)
-	cmplwi   r3, 0
-	beq      lbl_80457918
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80457918:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2190,129 +1414,10 @@ lbl_80457ED8:
  * Address:	80457F3C
  * Size:	0000E4
  */
-ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int p2, long p3, long p4, unsigned long p5)
+ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int p2, long p3, long p4, u32 p5)
     : ActorDirector_Scaled(name, p2, 1.0f, 0.0f, p3, p4, p5)
-    , _68(nullptr)
+    , mGameObject(nullptr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  mr        r0, r4
-	  mr        r4, r5
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  mr        r5, r0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r8
-	  stw       r29, 0x14(r1)
-	  mr        r29, r7
-	  stw       r28, 0x10(r1)
-	  mr        r28, r6
-	  bl        -0x1150C0
-	  lis       r3, 0x804E
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0x5030
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r31)
-	  subi      r0, r4, 0x1F50
-	  lis       r5, 0x804F
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x2068
-	  lis       r3, 0x804F
-	  li        r7, 0
-	  stw       r0, 0x0(r31)
-	  subi      r6, r5, 0x20DC
-	  lfs       f2, 0x28A8(r2)
-	  li        r5, 0x1
-	  stw       r28, 0x48(r31)
-	  subi      r4, r4, 0x2168
-	  lfs       f1, 0x28B0(r2)
-	  subi      r0, r3, 0x21B0
-	  stw       r29, 0x4C(r31)
-	  mr        r3, r31
-	  lfs       f0, 0x28B4(r2)
-	  stb       r7, 0x50(r31)
-	  stw       r6, 0x0(r31)
-	  stfs      f2, 0x54(r31)
-	  stfs      f1, 0x58(r31)
-	  stfs      f0, 0x5C(r31)
-	  stw       r30, 0x60(r31)
-	  stb       r5, 0x50(r31)
-	  stw       r7, 0x64(r31)
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x0(r31)
-	  stw       r7, 0x68(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80458020
- * Size:	0000B0
- */
-ActorDirector_Scaled::~ActorDirector_Scaled()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_804580B4
-	lis      r4, __vt__Q23PSM20ActorDirector_Scaled@ha
-	addi     r0, r4, __vt__Q23PSM20ActorDirector_Scaled@l
-	stw      r0, 0(r30)
-	beq      lbl_804580A4
-	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
-	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
-	stw      r0, 0(r30)
-	beq      lbl_804580A4
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_804580A4
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804580A4
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804580A4
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_804580A4:
-	extsh.   r0, r31
-	ble      lbl_804580B4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_804580B4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2320,11 +1425,7 @@ lbl_804580B4:
  * Address:	804580D0
  * Size:	000008
  */
-void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* a1)
-{
-	// Generated from stw r4, 0x68(r3)
-	_68 = a1;
-}
+void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* obj) { mGameObject = obj; }
 
 /*
  * --INFO--
@@ -2333,6 +1434,7 @@ void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* a1)
  */
 void ActorDirector_Enemy::underDirection()
 {
+	mGameObject = nullptr;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2595,39 +1697,6 @@ f64 ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase* enemy)
 PikAttackDirector::PikAttackDirector(int p1)
     : TrackOnDirectorBase(p1, "pikatkD  ", 100, 100)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_8049CE50@ha
-	stw      r0, 0x14(r1)
-	addi     r5, r5, lbl_8049CE50@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	lis      r3, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q23PSM16SwitcherDirector@l
-	lis      r3, __vt__Q23PSM17PikAttackDirector@ha
-	addi     r6, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r31)
-	li       r5, 0x64
-	li       r4, 0
-	addi     r0, r3, __vt__Q23PSM17PikAttackDirector@l
-	stw      r6, 0(r31)
-	mr       r3, r31
-	stw      r5, 0x48(r31)
-	stw      r5, 0x4c(r31)
-	stb      r4, 0x50(r31)
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2638,39 +1707,6 @@ PikAttackDirector::PikAttackDirector(int p1)
 ExiteDirector::ExiteDirector(int p1)
     : TrackOnDirectorBase(p1, "tentionD ", 100, 100)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_8049CE5C@ha
-	stw      r0, 0x14(r1)
-	addi     r5, r5, lbl_8049CE5C@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	lis      r3, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q23PSM16SwitcherDirector@l
-	lis      r3, __vt__Q23PSM13ExiteDirector@ha
-	addi     r6, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r31)
-	li       r5, 0x64
-	li       r4, 0
-	addi     r0, r3, __vt__Q23PSM13ExiteDirector@l
-	stw      r6, 0(r31)
-	mr       r3, r31
-	stw      r5, 0x48(r31)
-	stw      r5, 0x4c(r31)
-	stb      r4, 0x50(r31)
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2686,37 +1722,6 @@ DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, unsigned char
     , mDirector(director)
 {
 	P2ASSERTLINE(698, p2 != 0);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm.   r0,r5,0,24,31
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stb       r5, 0x0(r3)
-	  li        r3, 0
-	  stw       r6, 0x4(r31)
-	  stb       r3, 0x8(r31)
-	  stb       r3, 0x9(r31)
-	  stw       r4, 0xC(r31)
-	  bne-      .loc_0x50
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3244
-	  li        r4, 0x2BA
-	  subi      r5, r5, 0x322C
-	  crclr     6, 0x6
-	  bl        -0x42DEBC
-
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -2724,8 +1729,12 @@ DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, unsigned char
  * Address:	80458518
  * Size:	000034
  */
-void DirectorUpdator::directOn(unsigned char)
+void DirectorUpdator::directOn(u8 id)
 {
+	if (id != _09 & 1) { }
+	id = 1 << id;
+	_08 |= id;
+	_09 |= id;
 	/*
 	clrlwi   r0, r4, 0x18
 	li       r4, 1
@@ -2748,8 +1757,12 @@ void DirectorUpdator::directOn(unsigned char)
  * Address:	8045854C
  * Size:	000034
  */
-void DirectorUpdator::directOff(unsigned char)
+void DirectorUpdator::directOff(u8 id)
 {
+	if (id != _09 & 1) { }
+	id = 1 << id;
+	_08 &= ~id;
+	_09 |= id;
 	/*
 	clrlwi   r0, r4, 0x18
 	li       r4, 1
@@ -2884,7 +1897,7 @@ lbl_80458698:
  * Address:	804586AC
  * Size:	000148
  */
-void PSMGetBattleDirector(unsigned char)
+PSSystem::DirectorBase* PSMGetBattleDirector(u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2997,7 +2010,7 @@ lbl_804587D4:
  * Address:	804587F4
  * Size:	000108
  */
-void PSMGetKehaiD()
+PSM::ActorDirector_Kehai* PSMGetKehaiD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3090,7 +2103,7 @@ lbl_804588E4:
  * Address:	804588FC
  * Size:	000108
  */
-void PSMGetBattleD()
+PSM::ActorDirector_Battle* PSMGetBattleD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3183,7 +2196,7 @@ lbl_804589EC:
  * Address:	80458A04
  * Size:	000108
  */
-void PSMGetEventD()
+PSM::ActorDirector_Scaled* PSMGetEventD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3276,7 +2289,7 @@ lbl_80458AF4:
  * Address:	80458B0C
  * Size:	0000F0
  */
-PSSystem::DirectorBase* PSMGetOtakaraEventD()
+PSM::ActorDirector_TrackOn* PSMGetOtakaraEventD()
 {
 	PSM::SceneMgr* mgr = static_cast<PSM::SceneMgr*>(PSSystem::getSceneMgr());
 	PSSystem::checkSceneMgr(mgr);
@@ -3288,7 +2301,7 @@ PSSystem::DirectorBase* PSMGetOtakaraEventD()
 	if (bgm == nullptr) {
 		return nullptr;
 	}
-	return bgm->getDirectorP(1);
+	return (PSM::ActorDirector_TrackOn*)bgm->getDirectorP(1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3372,7 +2385,7 @@ lbl_80458BE4:
  * Address:	80458BFC
  * Size:	000194
  */
-void PSMGetGroundD()
+PSM::ActorDirector_Scaled* PSMGetGroundD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3506,7 +2519,7 @@ lbl_80458D78:
  * Address:	80458D90
  * Size:	0000F0
  */
-void PSMGetPikminNumD()
+PSM::PikminNumberDirector* PSMGetPikminNumD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3591,7 +2604,7 @@ lbl_80458E68:
  * Address:	80458E80
  * Size:	0000F0
  */
-void PSMGetDamageD()
+PSM::DamageDirector* PSMGetDamageD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3676,7 +2689,7 @@ lbl_80458F58:
  * Address:	80458F70
  * Size:	0000F0
  */
-void PSMGetLifeD()
+PSM::ActorDirector_TempoChange* PSMGetLifeD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3761,7 +2774,7 @@ lbl_80459048:
  * Address:	80459060
  * Size:	0000F0
  */
-void PSMGetBeedamaForOrimerD()
+PSM::ActorDirector_TrackOn* PSMGetBeedamaForOrimerD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3846,7 +2859,7 @@ lbl_80459138:
  * Address:	80459150
  * Size:	0000F0
  */
-void PSMGetBeedamaForLugieD()
+PSM::ActorDirector_TrackOn* PSMGetBeedamaForLugieD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3931,7 +2944,7 @@ lbl_80459228:
  * Address:	80459240
  * Size:	0000F0
  */
-void PSMGetIchouForOrimerD()
+PSM::ActorDirector_TrackOn* PSMGetIchouForOrimerD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4016,7 +3029,7 @@ lbl_80459318:
  * Address:	80459330
  * Size:	0000F0
  */
-void PSMGetIchouForLugieD()
+PSM::ActorDirector_TrackOn* PSMGetIchouForLugieD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4101,7 +3114,7 @@ lbl_80459408:
  * Address:	80459420
  * Size:	0000F0
  */
-void PSMGetPikiBattleD()
+PSM::TrackOnDirector_Voting* PSMGetPikiBattleD()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4180,605 +3193,3 @@ lbl_804594F8:
 	blr
 	*/
 }
-
-namespace PSM {
-
-/*
- * --INFO--
- * Address:	80459510
- * Size:	0000A0
- */
-ExiteDirector::~ExiteDirector()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80459594
-	lis      r4, __vt__Q23PSM13ExiteDirector@ha
-	addi     r0, r4, __vt__Q23PSM13ExiteDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459584
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_80459584
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459584
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459584
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80459584:
-	extsh.   r0, r31
-	ble      lbl_80459594
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80459594:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	804595B0
- * Size:	000004
- */
-void ActorDirector_Scaled::onSetMinDistObj(Game::Creature*) { }
-
-/*
- * --INFO--
- * Address:	804595B4
- * Size:	000008
- */
-bool ObjCalcBase::is1PGame() { return true; }
-
-/*
- * --INFO--
- * Address:	804595BC
- * Size:	000008
- */
-bool OtakaraEventLink::is2PBattle() { return false; }
-
-/*
- * --INFO--
- * Address:	804595C4
- * Size:	0000A0
- */
-PikAttackDirector::~PikAttackDirector()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80459648
-	lis      r4, __vt__Q23PSM17PikAttackDirector@ha
-	addi     r0, r4, __vt__Q23PSM17PikAttackDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459638
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_80459638
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459638
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459638
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80459638:
-	extsh.   r0, r31
-	ble      lbl_80459648
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80459648:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80459664
- * Size:	0000D0
- */
-ActorDirector_Kehai::~ActorDirector_Kehai()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	beq      lbl_80459718
-	lis      r4, __vt__Q23PSM19ActorDirector_Kehai@ha
-	addi     r0, r4, __vt__Q23PSM19ActorDirector_Kehai@l
-	stw      r0, 0(r31)
-	beq      lbl_80459708
-	lis      r4, __vt__Q23PSM19ActorDirector_Enemy@ha
-	addi     r0, r4, __vt__Q23PSM19ActorDirector_Enemy@l
-	stw      r0, 0(r31)
-	beq      lbl_80459708
-	lis      r4, __vt__Q23PSM20ActorDirector_Scaled@ha
-	addi     r0, r4, __vt__Q23PSM20ActorDirector_Scaled@l
-	stw      r0, 0(r31)
-	beq      lbl_80459708
-	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
-	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
-	stw      r0, 0(r31)
-	beq      lbl_80459708
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r31)
-	beq      lbl_80459708
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r31)
-	beq      lbl_80459708
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r31)
-	beq      lbl_80459708
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r31)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80459708:
-	extsh.   r0, r30
-	ble      lbl_80459718
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80459718:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80459734
- * Size:	0000D0
- */
-ActorDirector_Battle::~ActorDirector_Battle()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	beq      lbl_804597E8
-	lis      r4, __vt__Q23PSM20ActorDirector_Battle@ha
-	addi     r0, r4, __vt__Q23PSM20ActorDirector_Battle@l
-	stw      r0, 0(r31)
-	beq      lbl_804597D8
-	lis      r4, __vt__Q23PSM19ActorDirector_Enemy@ha
-	addi     r0, r4, __vt__Q23PSM19ActorDirector_Enemy@l
-	stw      r0, 0(r31)
-	beq      lbl_804597D8
-	lis      r4, __vt__Q23PSM20ActorDirector_Scaled@ha
-	addi     r0, r4, __vt__Q23PSM20ActorDirector_Scaled@l
-	stw      r0, 0(r31)
-	beq      lbl_804597D8
-	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
-	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
-	stw      r0, 0(r31)
-	beq      lbl_804597D8
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r31)
-	beq      lbl_804597D8
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r31)
-	beq      lbl_804597D8
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r31)
-	beq      lbl_804597D8
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r31)
-	bl       __dt__10JADHioNodeFv
-
-lbl_804597D8:
-	extsh.   r0, r30
-	ble      lbl_804597E8
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_804597E8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80459804
- * Size:	0000C0
- */
-ActorDirector_Enemy::~ActorDirector_Enemy()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_804598A8
-	lis      r4, __vt__Q23PSM19ActorDirector_Enemy@ha
-	addi     r0, r4, __vt__Q23PSM19ActorDirector_Enemy@l
-	stw      r0, 0(r30)
-	beq      lbl_80459898
-	lis      r4, __vt__Q23PSM20ActorDirector_Scaled@ha
-	addi     r0, r4, __vt__Q23PSM20ActorDirector_Scaled@l
-	stw      r0, 0(r30)
-	beq      lbl_80459898
-	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
-	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
-	stw      r0, 0(r30)
-	beq      lbl_80459898
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_80459898
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459898
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459898
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80459898:
-	extsh.   r0, r31
-	ble      lbl_804598A8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_804598A8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	804598C4
- * Size:	0000A0
- */
-ActorDirector_TrackOn::~ActorDirector_TrackOn()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80459948
-	lis      r4, __vt__Q23PSM21ActorDirector_TrackOn@ha
-	addi     r0, r4, __vt__Q23PSM21ActorDirector_TrackOn@l
-	stw      r0, 0(r30)
-	beq      lbl_80459938
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_80459938
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459938
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459938
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80459938:
-	extsh.   r0, r31
-	ble      lbl_80459948
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80459948:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80459964
- * Size:	0000A0
- */
-TrackOnDirector_Voting::~TrackOnDirector_Voting()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_804599E8
-	lis      r4, __vt__Q23PSM22TrackOnDirector_Voting@ha
-	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Voting@l
-	stw      r0, 0(r30)
-	beq      lbl_804599D8
-	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_804599D8
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804599D8
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_804599D8
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_804599D8:
-	extsh.   r0, r31
-	ble      lbl_804599E8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_804599E8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80459A04
- * Size:	0000A0
- */
-PikminNumberDirector_AutoBgm::~PikminNumberDirector_AutoBgm()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80459A88
-	lis      r4, __vt__Q23PSM28PikminNumberDirector_AutoBgm@ha
-	addi     r0, r4, __vt__Q23PSM28PikminNumberDirector_AutoBgm@l
-	stw      r0, 0(r30)
-	beq      lbl_80459A78
-	lis      r4, __vt__Q23PSM20PikminNumberDirector@ha
-	addi     r0, r4, __vt__Q23PSM20PikminNumberDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459A78
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459A78
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459A78
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80459A78:
-	extsh.   r0, r31
-	ble      lbl_80459A88
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80459A88:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80459AA4
- * Size:	0000A0
- */
-ActorDirector_TempoChange::~ActorDirector_TempoChange()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80459B28
-	lis      r4, __vt__Q23PSM25ActorDirector_TempoChange@ha
-	addi     r0, r4, __vt__Q23PSM25ActorDirector_TempoChange@l
-	stw      r0, 0(r30)
-	beq      lbl_80459B18
-	lis      r4, __vt__Q23PSM23TempoChangeDirectorBase@ha
-	addi     r0, r4, __vt__Q23PSM23TempoChangeDirectorBase@l
-	stw      r0, 0(r30)
-	beq      lbl_80459B18
-	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459B18
-	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459B18
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80459B18:
-	extsh.   r0, r31
-	ble      lbl_80459B28
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80459B28:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80459B44
- * Size:	000090
- */
-DamageDirector::~DamageDirector()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80459BB8
-	lis      r4, __vt__Q23PSM14DamageDirector@ha
-	addi     r0, r4, __vt__Q23PSM14DamageDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459BA8
-	lis      r4, __vt__Q23PSM15OneShotDirector@ha
-	addi     r0, r4, __vt__Q23PSM15OneShotDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459BA8
-	lis      r4, __vt__Q28PSSystem15OneShotDirector@ha
-	addi     r0, r4, __vt__Q28PSSystem15OneShotDirector@l
-	stw      r0, 0(r30)
-	beq      lbl_80459BA8
-	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__10JADHioNodeFv
-
-lbl_80459BA8:
-	extsh.   r0, r31
-	ble      lbl_80459BB8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80459BB8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-} // namespace PSM

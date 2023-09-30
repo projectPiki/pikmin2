@@ -24,9 +24,9 @@ struct OtakaraEventLink : public EventLink {
 	{
 	}
 
-	virtual void getListDirectorActor(); // _08
-	virtual void eventFinish();          // _18
-	virtual bool is2PBattle();           // _1C (weak)
+	virtual void getListDirectorActor();        // _08
+	virtual void eventFinish();                 // _18
+	virtual bool is2PBattle() { return false; } // _1C (weak)
 
 	// _00-_10  = JSUPtrLink
 	// _10      = VTABLE
