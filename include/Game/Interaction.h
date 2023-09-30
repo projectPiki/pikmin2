@@ -157,9 +157,9 @@ struct InteractEarthquake : public Interaction {
 };
 
 struct InteractEat : public Interaction {
-	inline InteractEat(Creature* parent, f32 p1)
+	inline InteractEat(Creature* parent, int color)
 	    : Interaction(parent)
-	    , _08(p1)
+	    , mBerryColor(color)
 	{
 	}
 
@@ -168,7 +168,7 @@ struct InteractEat : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	int _08; // _08
+	int mBerryColor; // _08, 0 = spicy/red, 1 = bitter/purple, 2 = not a berry.
 };
 
 struct InteractFallMeck : public Interaction {

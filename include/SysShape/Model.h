@@ -38,7 +38,7 @@ struct Model : public MtxObject {
 	Vector3f& getRoughCenter();
 	void initJoints();
 	void initJointsRec(int, Joint*);
-	s16 getJointIndex(char*);
+	u16 getJointIndex(char*);
 	Joint* getJoint(char*);
 	void setViewCalcModeImm();
 	static void setViewCalcModeInd();

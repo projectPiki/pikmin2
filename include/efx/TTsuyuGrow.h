@@ -23,6 +23,11 @@ struct TTsuyuGrow1 : public TSimpleMtx2 {
 	{
 	}
 
+	inline TTsuyuGrow1(Matrixf* mat)
+	    : TSimpleMtx2(mat, PID_TsuyuGrow1_1, PID_TsuyuGrow1_2)
+	{
+	}
+
 	// _00     = VTBL
 	// _00-_14 = TSimpleMtx2
 };
@@ -30,6 +35,11 @@ struct TTsuyuGrow1 : public TSimpleMtx2 {
 struct TTsuyuGrow2 : public TSimpleMtx2 {
 	inline TTsuyuGrow2()
 	    : TSimpleMtx2(nullptr, PID_TsuyuGrow2_1, PID_TsuyuGrow2_2)
+	{
+	}
+
+	inline TTsuyuGrow2(Matrixf* mat)
+	    : TSimpleMtx2(mat, PID_TsuyuGrow2_1, PID_TsuyuGrow2_2)
 	{
 	}
 

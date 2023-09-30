@@ -35,6 +35,9 @@
 #define PELCOLOR_YELLOW (2)
 #define PELCOLOR_RANDOM (3)
 
+#define PELCOLOR_SPICY  (0)
+#define PELCOLOR_BITTER (1)
+
 // pellet types
 // for use with Pellet:mPelletType and getKind()
 #define PELTYPE_NUMBER   (0)
@@ -488,16 +491,16 @@ struct PelletFSM : public StateMachine<Pellet> {
 };
 
 enum StateID {
-	PELSTATE_Normal,
-	PELSTATE_Goal,
-	PELSTATE_Bury,
-	PELSTATE_Up,
-	PELSTATE_Appear,
-	PELSTATE_ScaleAppear,
-	PELSTATE_Zukan,
-	PELSTATE_GoalWait,
-	PELSTATE_Return,
-	PELLET_STATE_COUNT
+	PELSTATE_Normal      = 0,
+	PELSTATE_Goal        = 1,
+	PELSTATE_Bury        = 2,
+	PELSTATE_Up          = 3,
+	PELSTATE_Appear      = 4,
+	PELSTATE_ScaleAppear = 5,
+	PELSTATE_Zukan       = 6,
+	PELSTATE_GoalWait    = 7,
+	PELSTATE_Return      = 8,
+	PELLET_STATE_COUNT, // 9
 };
 
 struct PelletGoalStateArg : public StateArg {

@@ -2,11 +2,11 @@
 #define _SYSSHAPE_ANIMATOR_H
 
 #include "SysShape/AnimInfo.h"
+#include "SysShape/Model.h"
 
 struct J3DMtxCalc;
 
 namespace SysShape {
-struct Model;
 struct MotionListener;
 
 struct BaseAnimator {
@@ -91,6 +91,8 @@ struct BlendAnimator : public BaseAnimator {
 
 	// unused/inlined:
 	void setWeight(f32);
+
+	void setModelCalc(SysShape::Model* model) { model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = getCalc(); }
 
 	Animator mAnimators[2];          // _04
 	f32 _3C;                         // _3C

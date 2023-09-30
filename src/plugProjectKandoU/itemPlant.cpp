@@ -1,6 +1,12 @@
 #include "Game/Entities/ItemPlant.h"
 #include "Game/Farm.h"
+#include "Game/Stickers.h"
+#include "efx/TTsuyuGrow.h"
+#include "efx/TFruitsDown.h"
+#include "PSM/EventBase.h"
 #include "PSM/Tsuyukusa.h"
+#include "JSystem/J3D/J3DAnmLoader.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
 namespace ItemPlant {
@@ -38,26 +44,26 @@ void NormalState::init(Item* item, StateArg* stateArg) { static_cast<Item*>(item
 void NormalState::exec(Item* item)
 {
 	Item* plant = static_cast<Item*>(item);
-	plant->_1F8 += sys->mDeltaTime;
-	switch (plant->_1F4) {
-	case 0:
-		if (plant->_1F8 > plant->_1FC + mgr->mParms->mPlantParms.mP000.mValue) {
+	plant->mGrowTimer += sys->mDeltaTime;
+	switch (plant->mGrowState) {
+	case PLANTGROW_Small:
+		if (plant->mGrowTimer > plant->mRandGrowTimeOffset + mgr->mParms->mPlantParms.mGrowTimeToMedium.mValue) {
 			transit(plant, ITEMPLANT_GrowUp, nullptr);
 		}
 		break;
-	case 1:
-		if (plant->_1F8 > plant->_1FC + mgr->mParms->mPlantParms.mP001.mValue) {
+	case PLANTGROW_Medium:
+		if (plant->mGrowTimer > plant->mRandGrowTimeOffset + mgr->mParms->mPlantParms.mGrowTimeToLarge.mValue) {
 			transit(plant, ITEMPLANT_GrowUp, nullptr);
 		}
 		break;
-	case 2:
-		if (plant->_1F8 > plant->_1FC + mgr->mParms->mPlantParms.mP003.mValue) {
+	case PLANTGROW_Full:
+		if (plant->mGrowTimer > plant->mRandGrowTimeOffset + mgr->mParms->mPlantParms.mBearFruitTime.mValue) {
 			plant->bearFruits();
-			plant->_1F8 = 0.0f;
+			plant->mGrowTimer = 0.0f;
 		}
 		break;
-	case 3:
-		plant->_1F8 = 0.0f;
+	case PLANTGROW_Unk3:
+		plant->mGrowTimer = 0.0f;
 		break;
 	}
 }
@@ -149,8 +155,8 @@ void GrowUpState::init(Item* item, StateArg* stateArg)
 {
 	Item* plant = static_cast<Item*>(item);
 	plant->startMotion(1);
-	plant->_1F8 = 0.0f;
-	_10         = false;
+	plant->mGrowTimer = 0.0f;
+	_10               = false;
 	plant->startSound(PSSE_EV_TSUYUKUSA_GROW);
 }
 
@@ -182,23 +188,23 @@ void GrowUpState::eventKarero(Item*) { _10 = true; }
  */
 void GrowUpState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 {
-	Item* plant = static_cast<Item*>(item);
-	plant->_1F4++;
+	Plant* plant = static_cast<Plant*>(item);
+	plant->mGrowState++;
 
-	if (plant->_1F4 == 2) {
+	if (plant->mGrowState == PLANTGROW_Full) {
 		PSMTXCopy(plant->mObjMatrix.mMatrix.mtxView, plant->mModel->mJ3dModel->mPosMtx);
 		plant->mModel->mJ3dModel->calc();
 		plant->mProcAnimator.update(plant->mFaceDir, 0.0f);
 	}
 
-	P2ASSERTLINE(381, plant->_1F4 <= 2);
+	P2ASSERTLINE(381, plant->mGrowState <= PLANTGROW_Full);
 
 	if (_10) {
 		transit(plant, ITEMPLANT_Kareru, nullptr);
 		return;
 	}
 
-	if (plant->_1F4 == 2) {
+	if (plant->mGrowState == PLANTGROW_Full) {
 		plant->bearFruits();
 	}
 
@@ -221,8 +227,8 @@ void KareruState::init(Item* item, StateArg* stateArg)
 {
 	Item* plant = static_cast<Item*>(item);
 	plant->startMotion(2);
-	plant->mDamage = 0.0f;
-	plant->_1F4    = 3;
+	plant->mDamage    = 0.0f;
+	plant->mGrowState = PLANTGROW_Unk3;
 	plant->killFruits();
 	_10 = 0;
 	_12 = 0;
@@ -278,7 +284,7 @@ void KareruState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 		case 1:
 			break;
 		case 2:
-			static_cast<Item*>(item)->_1F4 = 0;
+			static_cast<Item*>(item)->mGrowState = 0;
 			transit(item, ITEMPLANT_Normal, nullptr);
 			break;
 		}
@@ -301,17 +307,30 @@ void Item::constructor() { mSoundObj = new PSM::Tsuyukusa(this); }
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0000D4
+ */
+Item::Item(int objType)
+    : FSMItem(objType)
+{
+	mGrowTimer = 0.0f;
+	mDamage    = 0.0f;
+	mGrowState = PLANTGROW_Small;
+}
+
+/*
+ * --INFO--
  * Address:	801DD69C
  * Size:	000058
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
 	setAlive(true);
-	_1F8     = 0.0f;
-	mDamage  = 0.0f;
-	mFaceDir = 0.0f;
-	_1EC     = 0;
-	_1F4     = 0;
+	mGrowTimer  = 0.0f;
+	mDamage     = 0.0f;
+	mFaceDir    = 0.0f;
+	mStuckCount = 0;
+	mGrowState  = 0;
 }
 
 /*
@@ -322,7 +341,7 @@ void Item::onInit(CreatureInitArg* initArg)
 void Item::onStickStart(Creature* stuck)
 {
 	if (stuck && stuck->mStuckCollPart->mPartType == COLLTYPE_SPHERE) {
-		_1EC++;
+		mStuckCount++;
 	}
 }
 
@@ -334,9 +353,9 @@ void Item::onStickStart(Creature* stuck)
 void Item::onStickEnd(Creature* stuck)
 {
 	if (stuck && stuck->mStuckCollPart->mPartType == COLLTYPE_SPHERE) {
-		_1EC--;
-		if (_1EC < 0) {
-			_1EC = 0;
+		mStuckCount--;
+		if (mStuckCount < 0) {
+			mStuckCount = 0;
 		}
 	}
 }
@@ -367,10 +386,10 @@ void Item::updateTrMatrix()
 void Item::startColorMotion(int state)
 {
 	mColorMotionState = state;
-	if (mColorMotionState == 0) {
-		_1E4 = 1.0f;
+	if (mColorMotionState == PLANTCOLOR_Unk0) {
+		mColorBlendRatio = 1.0f;
 	} else {
-		_1E4 = 0.0f;
+		mColorBlendRatio = 0.0f;
 	}
 }
 
@@ -379,48 +398,28 @@ void Item::startColorMotion(int state)
  * Address:	801DD7EC
  * Size:	000090
  */
-void Item::updateColorMotion(f32)
+void Item::updateColorMotion(f32 rate)
 {
-	/*
-	lhz      r0, 0x1e8(r3)
-	cmpwi    r0, 1
-	beq      lbl_801DD840
-	bgelr
-	cmpwi    r0, 0
-	bltlr
-	lwz      r4, sys@sda21(r13)
-	lfs      f2, 0x1e4(r3)
-	lfs      f3, 0x54(r4)
-	lfs      f0, lbl_80519804@sda21(r2)
-	fmuls    f1, f1, f3
-	fadds    f1, f2, f1
-	stfs     f1, 0x1e4(r3)
-	lfs      f1, 0x1e4(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bnelr
-	stfs     f0, 0x1e4(r3)
-	li       r0, 2
-	sth      r0, 0x1e8(r3)
-	blr
-
-lbl_801DD840:
-	lwz      r4, sys@sda21(r13)
-	lfs      f2, 0x1e4(r3)
-	lfs      f3, 0x54(r4)
-	lfs      f0, lbl_80519800@sda21(r2)
-	fmuls    f1, f1, f3
-	fsubs    f1, f2, f1
-	stfs     f1, 0x1e4(r3)
-	lfs      f1, 0x1e4(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bnelr
-	stfs     f0, 0x1e4(r3)
-	li       r0, 2
-	sth      r0, 0x1e8(r3)
-	blr
-	*/
+	switch (mColorMotionState) {
+	case PLANTCOLOR_Unk0: {
+		rate *= sys->mDeltaTime;
+		mColorBlendRatio += rate;
+		if (mColorBlendRatio >= 1.0f) {
+			mColorBlendRatio  = 1.0f;
+			mColorMotionState = PLANTCOLOR_Unk2;
+		}
+		break;
+	}
+	case PLANTCOLOR_Unk1: {
+		rate *= sys->mDeltaTime;
+		mColorBlendRatio -= rate;
+		if (mColorBlendRatio <= 0.0f) {
+			mColorBlendRatio  = 0.0f;
+			mColorMotionState = PLANTCOLOR_Unk2;
+		}
+		break;
+	}
+	}
 }
 
 /*
@@ -428,206 +427,57 @@ lbl_801DD840:
  * Address:	801DD87C
  * Size:	000034
  */
-void Item::doAI()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1d8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Item::doAI() { mFsm->exec(this); }
 
 /*
  * --INFO--
  * Address:	801DD8B0
  * Size:	000044
  */
-bool Item::interactAttack(InteractAttack&)
+bool Item::interactAttack(InteractAttack& attack)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	mr       r4, r6
-	lwz      r3, 0x1dc(r3)
-	lfs      f1, 8(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCurrentState->onDamage(this, attack.mDamage);
+	return true;
 }
-
-/*
- * --INFO--
- * Address:	801DD8F4
- * Size:	000004
- */
-// void ItemState<Item>::onDamage(Item*, f32) { }
 
 /*
  * --INFO--
  * Address:	801DD8F8
  * Size:	000038
  */
-bool Item::interactFarmKarero(InteractFarmKarero&)
+bool Item::interactFarmKarero(InteractFarmKarero& karero)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1dc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCurrentState->eventKarero(this);
+	return true;
 }
-
-/*
- * --INFO--
- * Address:	801DD930
- * Size:	000004
- */
-void State::eventKarero(Item*) { }
 
 /*
  * --INFO--
  * Address:	801DD934
  * Size:	000038
  */
-bool Item::interactFarmHaero(InteractFarmHaero&)
+bool Item::interactFarmHaero(InteractFarmHaero& haero)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1dc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCurrentState->eventHaero(this);
+	return true;
 }
-
-/*
- * --INFO--
- * Address:	801DD96C
- * Size:	000004
- */
-void State::eventHaero(Item*) { }
 
 /*
  * --INFO--
  * Address:	801DD970
  * Size:	000120
  */
-void Item::doDirectDraw(Graphics&)
+void Item::doDirectDraw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	lfs      f0, lbl_80519804@sda21(r2)
-	li       r7, 0
-	stw      r0, 0x54(r1)
-	li       r0, 0xff
-	li       r6, 0x66
-	li       r5, 0x99
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r8, systemFont__9JFWSystem@sda21(r13)
-	stw      r7, 0x24(r1)
-	stw      r8, 0x20(r1)
-	stw      r7, 0x28(r1)
-	stw      r7, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	stb      r6, 0x34(r1)
-	stb      r5, 0x35(r1)
-	stb      r0, 0x36(r1)
-	stb      r0, 0x37(r1)
-	stb      r7, 0x38(r1)
-	stb      r6, 0x39(r1)
-	stb      r0, 0x3a(r1)
-	stb      r0, 0x3b(r1)
-	lwz      r4, 0x25c(r4)
-	bl       initPerspPrintf__8GraphicsFP8Viewport
-	lfs      f0, lbl_80519808@sda21(r2)
-	li       r6, 0xc8
-	li       r5, 0
-	li       r0, 0xff
-	stb      r6, 0x34(r1)
-	mr       r4, r30
-	addi     r3, r1, 8
-	stb      r5, 0x35(r1)
-	stb      r5, 0x36(r1)
-	stb      r0, 0x37(r1)
-	stb      r6, 0x38(r1)
-	stb      r6, 0x39(r1)
-	stb      r6, 0x3a(r1)
-	stb      r0, 0x3b(r1)
-	stfs     f0, 0x30(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0xc(r1)
-	mr       r3, r30
-	lfs      f0, lbl_8051980C@sda21(r2)
-	lfs      f3, 8(r1)
-	lfs      f1, 0x10(r1)
-	fadds    f0, f2, f0
-	stfs     f2, 0x18(r1)
-	stfs     f3, 0x14(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x18(r1)
-	bl
-	"getStateID__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>Fv"
-	mr       r7, r3
-	mr       r3, r31
-	addi     r4, r1, 0x20
-	addi     r5, r1, 0x14
-	addi     r6, r2, lbl_80519810@sda21
-	crclr    6
-	bl       "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	PerspPrintfInfo printInfo;
+	gfx.initPerspPrintf(gfx.mCurrentViewport);
+	printInfo.mColorA = Color4(200, 0, 0, 255);
+	printInfo.mColorB = Color4(200, 200, 200, 255);
+	printInfo.mScale  = 1.5f;
+
+	Vector3f pos = getPosition();
+	pos.y += 110.0f;
+	gfx.perspPrintf(printInfo, pos, "%d", getStateID());
 }
 
 /*
@@ -635,203 +485,87 @@ void Item::doDirectDraw(Graphics&)
  * Address:	801DDA90
  * Size:	000294
  */
-void Item::addDamage(f32)
+void Item::addDamage(f32 damage)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	stw      r30, 0x48(r1)
-	lfs      f0, 0x1f0(r3)
-	fadds    f0, f0, f1
-	stfs     f0, 0x1f0(r3)
-	lwz      r4, mgr__Q24Game9ItemPlant@sda21(r13)
-	lfs      f1, 0x1f0(r3)
-	lwz      r4, 0x8c(r4)
-	lfs      f0, 0x150(r4)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801DDAE8
-	lfs      f0, lbl_80519800@sda21(r2)
-	li       r4, 1
-	stfs     f0, 0x1f0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x238(r12)
-	mtctr    r12
-	bctrl
+	mDamage += damage;
+	if (mDamage > mgr->mParms->mPlantParms.mDamageToDrop.mValue) {
+		mDamage = 0.0f;
+		dropFruit(1);
+	}
 
-lbl_801DDAE8:
-	mr       r4, r31
-	addi     r3, r1, 0x20
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x20
-	cmplwi   r0, 0
-	stw      r4, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x14(r1)
-	stw      r3, 0x18(r1)
-	bne      lbl_801DDB34
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_801DDCE0
-
-lbl_801DDB34:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_801DDBA0
-
-lbl_801DDB4C:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DDCE0
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_801DDBA0:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DDB4C
-	b        lbl_801DDCE0
-
-lbl_801DDBC0:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DDC24
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game12InteractDrop@ha
-	addi     r4, r4, __vt__Q24Game11Interaction@l
-	stw      r31, 0xc(r1)
-	addi     r0, r3, __vt__Q24Game12InteractDrop@l
-	mr       r3, r30
-	stw      r4, 8(r1)
-	addi     r4, r1, 8
-	stw      r0, 8(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DDC24:
-	lwz      r0, 0x1c(r1)
-	cmplwi   r0, 0
-	bne      lbl_801DDC50
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_801DDCE0
-
-lbl_801DDC50:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_801DDCC4
-
-lbl_801DDC70:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DDCE0
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_801DDCC4:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DDC70
-
-lbl_801DDCE0:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x14(r1)
-	cmplw    r4, r3
-	bne      lbl_801DDBC0
-	addi     r3, r1, 0x20
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	// when damaged, drop all whiskerpillars
+	Stickers stickers(this);
+	Iterator<Creature> iter(&stickers);
+	CI_LOOP(iter)
+	{
+		Creature* stuck = *iter;
+		if (stuck->isTeki()) {
+			InteractDrop drop(this);
+			stuck->stimulate(drop);
+		}
+	}
 }
 
 /*
  * --INFO--
- * Address:	801DDD24
- * Size:	000004
+ * Address:	........
+ * Size:	00001C
  */
-void Item::dropFruit(int) { }
+ProcAnimator::ProcAnimator()
+{
+	_20 = 0;
+	_0C = nullptr;
+	_24 = 0.0f;
+	_28 = 0.0f;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000D8
+ */
+void ProcAnimator::create(int count)
+{
+	_20 = count;
+	_0C = new Matrixf*[count];
+	_10 = new Matrixf[count];
+	_14 = new f32[count];
+	_18 = new f32[count];
+	_1C = new f32[count];
+
+	for (int i = 0; i < count; i++) {
+		_0C[i] = nullptr;
+		_14[i] = 0.0f;
+		_18[i] = 0.0f;
+		_1C[i] = 0.0f;
+		PSMTXIdentity(_10[i].mMatrix.mtxView);
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000088
+ */
+void ProcAnimator::setMatrix(int idx, Matrixf* mtx)
+{
+	P2ASSERTLINE(663, _20 > idx);
+	_0C[idx] = mtx;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000088
+ */
+void ProcAnimator::setAngle(int, f32) { }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00007C
+ */
+f32 ProcAnimator::getAngle(int) { }
 
 /*
  * --INFO--
@@ -840,255 +574,122 @@ void Item::dropFruit(int) { }
  */
 void ProcAnimator::calcAngles()
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stfd     f27, 0x30(r1)
-	psq_st   f27, 56(r1), 0, qr0
-	stfd     f26, 0x20(r1)
-	psq_st   f26, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r29, r3
-	lwz      r3, 0xc(r3)
-	lfs      f29, lbl_80519800@sda21(r2)
-	li       r30, 1
-	lwz      r3, 0(r3)
-	li       r31, 4
-	lfs      f30, lbl_80519814@sda21(r2)
-	lfs      f28, 0xc(r3)
-	lfs      f27, 0x1c(r3)
-	lfs      f26, 0x2c(r3)
-	lfs      f31, lbl_80519804@sda21(r2)
-	stfs     f28, 0(r29)
-	stfs     f27, 4(r29)
-	stfs     f26, 8(r29)
-	b        lbl_801DDFD8
+	Vector3f lastPos;
+	_0C[0]->getTranslation(lastPos);
+	_00 = lastPos;
 
-lbl_801DDDB0:
-	lwz      r3, 0xc(r29)
-	lwzx     r28, r3, r31
-	lfs      f3, 0x1c(r28)
-	lfs      f2, 0xc(r28)
-	fsubs    f5, f3, f27
-	lfs      f4, 0x2c(r28)
-	fsubs    f0, f2, f28
-	fsubs    f1, f4, f26
-	fmuls    f6, f5, f5
-	fmuls    f1, f1, f1
-	fmadds   f0, f0, f0, f6
-	fadds    f1, f1, f0
-	fcmpo    cr0, f1, f29
-	ble      lbl_801DDDF8
-	ble      lbl_801DDDFC
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801DDDFC
+	for (int i = 1; i < _20; i++) {
+		Matrixf* currMat = _0C[i];
+		Vector3f pos1;
+		currMat->getTranslation(pos1);
+		Vector3f sep = pos1 - lastPos;
+		f32 dist     = sep.length();
+		if (dist > 0.0f) {
+			sep.y *= 1.0f / dist;
+		}
 
-lbl_801DDDF8:
-	fmr      f1, f29
+		lastPos = pos1;
 
-lbl_801DDDFC:
-	fcmpo    cr0, f1, f29
-	ble      lbl_801DDE10
-	lfs      f0, lbl_80519804@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f5, f5, f0
+		if (sep.y < -1.0f) {
+			sep.y = -1.0f;
+		} else if (sep.y > 1.0f) {
+			sep.y = 1.0f;
+		}
 
-lbl_801DDE10:
-	fmr      f28, f2
-	fmr      f27, f3
-	fmr      f26, f4
-	fcmpo    cr0, f5, f30
-	bge      lbl_801DDE2C
-	fmr      f5, f30
-	b        lbl_801DDE3C
+		f32 aCosY = pikmin2_acos(sep.y);
+		_14[i]    = aCosY;
+		_18[i]    = aCosY;
 
-lbl_801DDE2C:
-	lfs      f0, lbl_80519804@sda21(r2)
-	fcmpo    cr0, f5, f0
-	ble      lbl_801DDE3C
-	fmr      f5, f0
+		Vector3f posX = currMat->getBasis(0);
+		f32 xLen      = posX.length();
+		if (xLen > 0.0f) {
+			posX.y *= 1.0f / xLen;
+		}
 
-lbl_801DDE3C:
-	fcmpo    cr0, f5, f31
-	cror     2, 1, 2
-	bne      lbl_801DDE50
-	lfs      f0, lbl_80519800@sda21(r2)
-	b        lbl_801DDEC4
+		if (posX.y < -1.0f) {
+			posX.y = -1.0f;
+		} else if (posX.y > 1.0f) {
+			posX.y = 1.0f;
+		}
 
-lbl_801DDE50:
-	lfs      f0, lbl_80519814@sda21(r2)
-	fcmpo    cr0, f5, f0
-	cror     2, 0, 2
-	bne      lbl_801DDE68
-	lfs      f0, lbl_80519818@sda21(r2)
-	b        lbl_801DDEC4
+		f32 aCosX = pikmin2_acos(posX.y);
+		_14[i]    = aCosX;
+	}
 
-lbl_801DDE68:
-	lfs      f0, lbl_80519800@sda21(r2)
-	fcmpo    cr0, f5, f0
-	bge      lbl_801DDEA0
-	fneg     f0, f5
-	lfs      f1, lbl_8051981C@sda21(r2)
-	fmuls    f1, f1, f0
-	bl       __cvt_fp2unsigned
-	lis      r4, asinAcosTable___5JMath@ha
-	slwi     r0, r3, 2
-	addi     r3, r4, asinAcosTable___5JMath@l
-	lfs      f0, lbl_80519820@sda21(r2)
-	lfsx     f1, r3, r0
-	fadds    f0, f1, f0
-	b        lbl_801DDEC4
-
-lbl_801DDEA0:
-	lfs      f0, lbl_8051981C@sda21(r2)
-	fmuls    f1, f0, f5
-	bl       __cvt_fp2unsigned
-	lis      r4, asinAcosTable___5JMath@ha
-	slwi     r0, r3, 2
-	addi     r3, r4, asinAcosTable___5JMath@l
-	lfs      f0, lbl_80519820@sda21(r2)
-	lfsx     f1, r3, r0
-	fsubs    f0, f0, f1
-
-lbl_801DDEC4:
-	lwz      r3, 0x14(r29)
-	stfsx    f0, r3, r31
-	lwz      r3, 0x18(r29)
-	stfsx    f0, r3, r31
-	lfs      f2, 0x10(r28)
-	lfs      f1, 0x20(r28)
-	fmuls    f3, f2, f2
-	lfs      f0, 0(r28)
-	fmuls    f1, f1, f1
-	fmadds   f0, f0, f0, f3
-	fadds    f1, f1, f0
-	fcmpo    cr0, f1, f29
-	ble      lbl_801DDF08
-	ble      lbl_801DDF0C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801DDF0C
-
-lbl_801DDF08:
-	fmr      f1, f29
-
-lbl_801DDF0C:
-	fcmpo    cr0, f1, f29
-	ble      lbl_801DDF20
-	lfs      f0, lbl_80519804@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f2, f2, f0
-
-lbl_801DDF20:
-	fcmpo    cr0, f2, f30
-	bge      lbl_801DDF30
-	fmr      f2, f30
-	b        lbl_801DDF40
-
-lbl_801DDF30:
-	lfs      f0, lbl_80519804@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_801DDF40
-	fmr      f2, f0
-
-lbl_801DDF40:
-	fcmpo    cr0, f2, f31
-	cror     2, 1, 2
-	bne      lbl_801DDF54
-	lfs      f0, lbl_80519800@sda21(r2)
-	b        lbl_801DDFC8
-
-lbl_801DDF54:
-	lfs      f0, lbl_80519814@sda21(r2)
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_801DDF6C
-	lfs      f0, lbl_80519818@sda21(r2)
-	b        lbl_801DDFC8
-
-lbl_801DDF6C:
-	lfs      f0, lbl_80519800@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_801DDFA4
-	fneg     f0, f2
-	lfs      f1, lbl_8051981C@sda21(r2)
-	fmuls    f1, f1, f0
-	bl       __cvt_fp2unsigned
-	lis      r4, asinAcosTable___5JMath@ha
-	slwi     r0, r3, 2
-	addi     r3, r4, asinAcosTable___5JMath@l
-	lfs      f0, lbl_80519820@sda21(r2)
-	lfsx     f1, r3, r0
-	fadds    f0, f1, f0
-	b        lbl_801DDFC8
-
-lbl_801DDFA4:
-	lfs      f0, lbl_8051981C@sda21(r2)
-	fmuls    f1, f0, f2
-	bl       __cvt_fp2unsigned
-	lis      r4, asinAcosTable___5JMath@ha
-	slwi     r0, r3, 2
-	addi     r3, r4, asinAcosTable___5JMath@l
-	lfs      f0, lbl_80519820@sda21(r2)
-	lfsx     f1, r3, r0
-	fsubs    f0, f0, f1
-
-lbl_801DDFC8:
-	lwz      r3, 0x14(r29)
-	addi     r30, r30, 1
-	stfsx    f0, r3, r31
-	addi     r31, r31, 4
-
-lbl_801DDFD8:
-	lwz      r0, 0x20(r29)
-	cmpw     r30, r0
-	blt      lbl_801DDDB0
-	lfs      f0, lbl_80519800@sda21(r2)
-	lwz      r3, 0x14(r29)
-	stfs     f0, 0(r3)
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	psq_l    f27, 56(r1), 0, qr0
-	lfd      f27, 0x30(r1)
-	psq_l    f26, 40(r1), 0, qr0
-	lfd      f26, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	_14[0] = 0.0f;
 }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00009C
+ */
+void ProcAnimator::calcDists()
+{
+	Vector3f pos;
+	Matrixf* mat0 = _0C[0];
+	pos.x         = mat0->mMatrix.structView.tx;
+	pos.y         = mat0->mMatrix.structView.ty;
+	pos.z         = mat0->mMatrix.structView.tz;
+
+	for (int i = 1; i < _20; i++) {
+		Matrixf* mat = _0C[i];
+		Vector3f newPos;
+		newPos.x     = mat->mMatrix.structView.tx;
+		newPos.y     = mat->mMatrix.structView.ty;
+		newPos.z     = mat->mMatrix.structView.tz;
+		Vector3f sep = pos - newPos;
+		pos          = newPos;
+		_1C[i]       = sep.length();
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000030
+ */
+void ProcAnimator::force(f32) { }
 
 /*
  * --INFO--
  * Address:	801DE040
  * Size:	0004E4
  */
-void ProcAnimator::update(f32, f32)
+void ProcAnimator::update(f32 p1, f32 p2)
 {
+	f32 frameRate = sys->mDeltaTime;
+	_28 += ((_24 * -80.0f - _28 * 1.6f) + p2 * 80.0f) * frameRate;
+	_24 += _28 * frameRate;
+
+	if (_24 > TORADIANS(40.0f)) {
+		_24 = TORADIANS(40.0f);
+	} else if (_24 < TORADIANS(-30.0f)) {
+		_24 = TORADIANS(-30.0f);
+	}
+
+	Matrixf mat;
+	Vector3f rot(0.0f, p1, 0.0f);
+	mat.makeTR(Vector3f::zero, rot);
+
+	calcAngles();
+	calcDists();
+
+	Vector3f pos = _00;
+	for (int i = 1; i < _20; i++) {
+		Matrixf* currMat = _0C[i];
+		f32 val          = (i == 1) ? 0.1f : (i == 2) ? 0.5f : 1.0f;
+
+		f32 val2 = val * _24;
+		Matrixf mat;
+		Vector3f vec(0.0f, _1C[i], 0.0f);
+		Vector3f rot(val2 + _18[i], p1, 0.0f);
+		mat.makeTR(pos, rot);
+
+		vec = mat.mtxMult(vec);
+
+		// yikes.
+	}
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -1446,55 +1047,42 @@ lbl_801DE4E4:
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00007C
+ */
+void ProcAnimator::draw(Graphics& gfx) { }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00010C
+ */
+Plant::Plant()
+    : Item(OBJTYPE_Plant)
+{
+	mMass = 0.0f;
+}
+
+/*
+ * --INFO--
  * Address:	801DE524
  * Size:	000034
  */
-void Plant::onKill(CreatureKillArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, mgr__Q24Game9ItemPlant@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Plant::onKill(CreatureKillArg* killArg) { mgr->kill(this); }
 
 /*
  * --INFO--
  * Address:	801DE558
  * Size:	000038
  */
-Pellet* Plant::getNearestFruit(Vector3f&)
+Pellet* Plant::getNearestFruit(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x288(r3)
-	bl       "getFruit__Q34Game9ItemPlant6FruitsFR10Vector3<f>"
-	cmplwi   r3, 0
-	beq      lbl_801DE57C
-	lwz      r3, 0x18(r3)
-	b        lbl_801DE580
+	FruitSlot* slot = mFruits->getFruit(pos);
+	if (slot) {
+		return slot->mFruit;
+	}
 
-lbl_801DE57C:
-	li       r3, 0
-
-lbl_801DE580:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -1504,17 +1092,8 @@ lbl_801DE580:
  */
 void Plant::updateBoundSphere()
 {
-	/*
-	lfs      f1, 0x19c(r3)
-	lfs      f0, lbl_80519848@sda21(r2)
-	stfs     f1, 0x1c4(r3)
-	lfs      f1, 0x1a0(r3)
-	stfs     f1, 0x1c8(r3)
-	lfs      f1, 0x1a4(r3)
-	stfs     f1, 0x1cc(r3)
-	stfs     f0, 0x1d0(r3)
-	blr
-	*/
+	mBoundingSphere.mPosition = mPosition;
+	mBoundingSphere.mRadius   = 400.0f;
 }
 
 /*
@@ -1522,130 +1101,21 @@ void Plant::updateBoundSphere()
  * Address:	801DE5B4
  * Size:	0001E0
  */
-void Plant::doDirectDraw(Graphics&)
+void Plant::doDirectDraw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	lwz      r8, systemFont__9JFWSystem@sda21(r13)
-	li       r7, 0
-	li       r0, 0xff
-	li       r6, 0x66
-	lfs      f0, lbl_80519804@sda21(r2)
-	li       r5, 0x99
-	stw      r8, 0x20(r1)
-	mr       r31, r4
-	mr       r30, r3
-	stw      r7, 0x24(r1)
-	mr       r3, r31
-	stw      r7, 0x28(r1)
-	stw      r7, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	stb      r6, 0x34(r1)
-	stb      r5, 0x35(r1)
-	stb      r0, 0x36(r1)
-	stb      r0, 0x37(r1)
-	stb      r7, 0x38(r1)
-	stb      r6, 0x39(r1)
-	stb      r0, 0x3a(r1)
-	stb      r0, 0x3b(r1)
-	lwz      r4, 0x25c(r4)
-	bl       initPerspPrintf__8GraphicsFP8Viewport
-	lfs      f0, lbl_80519808@sda21(r2)
-	li       r6, 0xc8
-	li       r5, 0
-	li       r0, 0xff
-	stb      r6, 0x34(r1)
-	mr       r4, r30
-	addi     r3, r1, 8
-	stb      r5, 0x35(r1)
-	stb      r5, 0x36(r1)
-	stb      r0, 0x37(r1)
-	stb      r6, 0x38(r1)
-	stb      r6, 0x39(r1)
-	stb      r6, 0x3a(r1)
-	stb      r0, 0x3b(r1)
-	stfs     f0, 0x30(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0xc(r1)
-	mr       r3, r30
-	lfs      f0, lbl_8051980C@sda21(r2)
-	lfs      f3, 8(r1)
-	lfs      f1, 0x10(r1)
-	fadds    f0, f2, f0
-	stfs     f2, 0x18(r1)
-	stfs     f3, 0x14(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x18(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x228(r12)
-	mtctr    r12
-	bctrl
-	lwz      r29, 0x1ec(r30)
-	xoris    r5, r3, 0x8000
-	lis      r4, 0x4330
-	mr       r3, r30
-	xoris    r0, r29, 0x8000
-	lwz      r12, 0(r30)
-	stw      r5, 0x44(r1)
-	lfd      f4, lbl_80519858@sda21(r2)
-	stw      r4, 0x40(r1)
-	lfs      f2, lbl_80519844@sda21(r2)
-	lfd      f0, 0x40(r1)
-	stw      r0, 0x4c(r1)
-	fsubs    f3, f0, f4
-	lfs      f0, lbl_8051984C@sda21(r2)
-	stw      r4, 0x48(r1)
-	lwz      r12, 0x228(r12)
-	lfd      f1, 0x48(r1)
-	fdivs    f2, f3, f2
-	fsubs    f1, f1, f4
-	fdivs    f0, f1, f0
-	fadds    f31, f0, f2
-	mtctr    r12
-	bctrl
-	fmr      f1, f31
-	lis      r4, lbl_80480918@ha
-	mr       r7, r3
-	mr       r3, r31
-	addi     r6, r4, lbl_80480918@l
-	mr       r8, r29
-	addi     r4, r1, 0x20
-	addi     r5, r1, 0x14
-	crset    6
-	bl       "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
-	lfs      f1, 0x18(r1)
-	lis      r3, lbl_80480928@ha
-	lfs      f0, lbl_80519850@sda21(r2)
-	addi     r6, r3, lbl_80480928@l
-	mr       r3, r31
-	addi     r4, r1, 0x20
-	fadds    f0, f1, f0
-	addi     r5, r1, 0x14
-	stfs     f0, 0x18(r1)
-	lfs      f1, 0x280(r30)
-	lfs      f2, 0x284(r30)
-	crset    6
-	bl       "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
-	psq_l    f31, 104(r1), 0, qr0
-	lwz      r0, 0x74(r1)
-	lfd      f31, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	PerspPrintfInfo printInfo;
+	gfx.initPerspPrintf(gfx.mCurrentViewport);
+	printInfo.mColorA = Color4(200, 0, 0, 255);
+	printInfo.mColorB = Color4(200, 200, 200, 255);
+	printInfo.mScale  = 1.5f;
+
+	Vector3f pos = getPosition();
+	pos.y += 110.0f;
+
+	f32 ratios = ((f32)mStuckCount / 10.0f) + ((f32)getFruitsNum() / 20.0f);
+	gfx.perspPrintf(printInfo, pos, "m %.1f (%d/%d)", ratios, getFruitsNum(), mStuckCount);
+	pos.y += 30.0f;
+	gfx.perspPrintf(printInfo, pos, "%.1f %.1f", mProcAnimator._24, mProcAnimator._28);
 }
 
 /*
@@ -1653,8 +1123,92 @@ void Plant::doDirectDraw(Graphics&)
  * Address:	801DE794
  * Size:	000778
  */
-void Plant::onInit(CreatureInitArg*)
+void Plant::onInit(CreatureInitArg* initArg)
 {
+	Item::onInit(initArg);
+	mModel = new SysShape::Model(mgr->getModelData(0), 0, 2);
+	setAlive(true);
+
+	CollPart* root    = new CollPart(mModel); // r29
+	root->mJointIndex = 0;
+	root->mRadius     = 160.0f;
+
+	CollPart* part1    = new CollPart(mModel); // r28
+	part1->mJointIndex = mModel->getJointIndex("kuki_jnt1");
+	part1->mRadius     = 12.0f;
+
+	CollPart* part2    = new CollPart(mModel); // r27
+	part2->mJointIndex = mModel->getJointIndex("kuki_jnt2");
+	part2->mRadius     = 12.0f;
+
+	CollPart* part3    = new CollPart(mModel); // r26
+	part3->mJointIndex = mModel->getJointIndex("kuki_jnt3");
+	part3->mRadius     = 12.0f;
+
+	CollPart* part4    = new CollPart(mModel); // r25
+	part4->mJointIndex = mModel->getJointIndex("kuki_jnt4");
+	part4->mRadius     = 12.0f;
+
+	CollPart* tops    = new CollPart(mModel); // r24
+	tops->mJointIndex = mModel->getJointIndex("kuki_jnt4");
+	tops->mOffset     = Vector3f(24.0f, 0.0f, 0.0f);
+	tops->mRadius     = 8.0f;
+	tops->mCurrentID.setID('tops');
+
+	mCollTree->mPart = root;
+	root->add(part1);
+	root->add(tops);
+	part1->add(part2);
+	part2->add(part3);
+	part3->add(part4);
+
+	part1->makeTubeTree();
+
+	P2ASSERTLINE(982, part1->isTubeLike());
+
+	mgr->mAnimMgr->mModel = mModel;
+	mBlendAnimator.setAnimMgr(mgr->mAnimMgr);
+	mBlendAnimator.mAnimators[0].startAnim(randFloat() * 3.0f, nullptr);
+
+	mBlendAnimator.mAnimators[1].startAnim(5, nullptr);
+	mBlendAnimator.endBlend();
+	mAnimSpeed     = 30.0f;
+	mGrowTimer     = 10.0f;
+	_254           = 0;
+	mBlendStepTime = 0.0f;
+
+	mBlendAnimator.setModelCalc(mModel);
+
+	Matrixf mtx;
+	PSMTXIdentity(mtx.mMatrix.mtxView);
+	PSMTXCopy(mtx.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	mModel->mJ3dModel->calc();
+
+	mFruits = new Fruits(this);
+
+	mFruits->init(5, mModel->getJoint("kuki_jnt4")->getWorldMatrix());
+	mProcAnimator.create(4);
+	mProcAnimator.setMatrix(0, mModel->getJoint("kuki_jnt1")->getWorldMatrix());
+	mProcAnimator.setMatrix(1, mModel->getJoint("kuki_jnt2")->getWorldMatrix());
+	mProcAnimator.setMatrix(2, mModel->getJoint("kuki_jnt3")->getWorldMatrix());
+	mProcAnimator.setMatrix(3, mModel->getJoint("kuki_jnt4")->getWorldMatrix());
+
+	mProcAnimator.calcAngles();
+	mProcAnimator.calcDists(); // regswaps in this inline :(
+
+	J3DModelData* data = mModel->mJ3dModel->mModelData;
+	mgr->mAnmColor->searchUpdateMaterialID(data);
+
+	for (u16 i = 0; i < data->getMaterialNum(); i++) {
+		J3DMaterialAnm* anm = new J3DMaterialAnm();
+		J3DMaterial* mat    = data->getMaterialNodePointer(i);
+		mat->change();
+		mat->mAnm = anm;
+	}
+
+	data->mMaterialTable.entryMatColorAnimator(mgr->mAnmColor);
+	startColorMotion(PLANTCOLOR_Unk1);
+	mFsm->start(this, ITEMPLANT_Normal, nullptr);
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -2185,74 +1739,19 @@ lbl_801DEE98:
 
 /*
  * --INFO--
- * Address:	801DEF0C
- * Size:	000034
- */
-// void StateMachine<Item>::start(Item*, int, StateArg*)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  li        r0, 0
-// 	  stw       r0, 0x1DC(r4)
-// 	  lwz       r12, 0x0(r3)
-// 	  lwz       r12, 0x14(r12)
-// 	  mtctr     r12
-// 	  bctrl
-// 	  lwz       r0, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
-
-/*
- * --INFO--
  * Address:	801DEF40
  * Size:	000080
  */
 void Plant::doAI()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	lwz      r3, 0x1d8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r3, 0x3c(r3)
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	beq      lbl_801DEFAC
-	clrlwi.  r0, r3, 0x1f
-	beq      lbl_801DEFAC
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 3
-	beq      lbl_801DEFA0
-	lwz      r3, 0x17c(r31)
-	li       r4, 1
-	bl       noukouFrameWork__Q23PSM9TsuyukusaFb
-	b        lbl_801DEFAC
-
-lbl_801DEFA0:
-	lwz      r3, 0x17c(r31)
-	li       r4, 0
-	bl       noukouFrameWork__Q23PSM9TsuyukusaFb
-
-lbl_801DEFAC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFsm->exec(this);
+	if (gameSystem->isFlag(GAMESYS_IsPlaying) && gameSystem->isFlag(GAMESYS_Unk1)) {
+		if (mGrowState != PLANTGROW_Unk3) {
+			static_cast<PSM::Tsuyukusa*>(mSoundObj)->noukouFrameWork(true);
+		} else {
+			static_cast<PSM::Tsuyukusa*>(mSoundObj)->noukouFrameWork(false);
+		}
+	}
 }
 
 /*
@@ -2260,259 +1759,54 @@ lbl_801DEFAC:
  * Address:	801DEFC0
  * Size:	000370
  */
-void Plant::startMotion(int)
+void Plant::startMotion(int animIdx)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x204
-	stw      r30, 0x68(r1)
-	mr       r30, r4
-	bl       endBlend__Q28SysShape13BlendAnimatorFv
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x5c(r1)
-	cmpwi    r30, 2
-	lfd      f3, lbl_80519858@sda21(r2)
-	stw      r0, 0x58(r1)
-	lfs      f1, lbl_80519870@sda21(r2)
-	lfd      f2, 0x58(r1)
-	lfs      f0, lbl_80519874@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	stfs     f0, 0x1fc(r31)
-	beq      lbl_801DF1A0
-	bge      lbl_801DF034
-	cmpwi    r30, 0
-	beq      lbl_801DF044
-	bge      lbl_801DF058
-	b        lbl_801DF318
+	mBlendAnimator.endBlend();
+	mRandGrowTimeOffset = randFloat() * 3.0f;
 
-lbl_801DF034:
-	cmpwi    r30, 4
-	beq      lbl_801DF17C
-	bge      lbl_801DF318
-	b        lbl_801DF254
+	switch (animIdx) {
+	case 0:
+		mBlendAnimator.mAnimators[0].startAnim(mGrowState, nullptr);
+		break;
 
-lbl_801DF044:
-	lwz      r4, 0x1f4(r31)
-	addi     r3, r31, 0x208
-	li       r5, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_801DF318
+	case 1:
+		P2ASSERTLINE(1084, mGrowState <= PLANTGROW_Medium);
+		mBlendAnimator.mAnimators[0].startAnim(mGrowState + 3, this);
+		if (mGrowState == PLANTGROW_Small) {
+			efx::TTsuyuGrow1 grow1(&mObjMatrix);
+			grow1.create(nullptr);
+		} else if (mGrowState == PLANTGROW_Medium) {
+			efx::TTsuyuGrow2 grow2(&mObjMatrix);
+			grow2.create(nullptr);
+		}
+		break;
 
-lbl_801DF058:
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 1
-	ble      lbl_801DF080
-	lis      r3, lbl_804808FC@ha
-	lis      r5, lbl_8048090C@ha
-	addi     r3, r3, lbl_804808FC@l
-	li       r4, 0x43c
-	addi     r5, r5, lbl_8048090C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	case 4:
+		mBlendAnimator.mAnimators[0].startAnim(mGrowState + 6, this);
+		break;
 
-lbl_801DF080:
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_801DF090
-	addi     r5, r31, 0x178
+	case 2:
+		mBlendAnimator.mAnimators[0].startAnim(mGrowState, this);
+		mBlendAnimator.mAnimators[1].startAnim(5, nullptr);
+		SysShape::BlendQuadraticFunc quadFunc;
+		mBlendAnimator.startBlend(&quadFunc, 30.0f, this);
+		mBlendStepTime = 30.0f;
+		startColorMotion(PLANTCOLOR_Unk0);
 
-lbl_801DF090:
-	lwz      r4, 0x1f4(r31)
-	addi     r3, r31, 0x208
-	addi     r4, r4, 3
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 0
-	bne      lbl_801DF110
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x40(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple2@l
-	lis      r4, __vt__Q23efx11TSimpleMtx2@ha
-	lis      r3, __vt__Q23efx11TTsuyuGrow1@ha
-	stw      r0, 0x40(r1)
-	addi     r0, r4, __vt__Q23efx11TSimpleMtx2@l
-	addi     r5, r31, 0x138
-	li       r4, 0x1bd
-	stw      r0, 0x40(r1)
-	addi     r0, r3, __vt__Q23efx11TTsuyuGrow1@l
-	li       r7, 0x1be
-	addi     r3, r1, 0x40
-	sth      r4, 0x44(r1)
-	li       r4, 0
-	sth      r7, 0x46(r1)
-	stw      r6, 0x48(r1)
-	stw      r6, 0x4c(r1)
-	stw      r5, 0x50(r1)
-	stw      r0, 0x40(r1)
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-	b        lbl_801DF318
+		if (gameSystem->isFlag(GAMESYS_Unk1)) {
+			mSoundObj->startSound(PSSE_EV_TSUYUKUSA_WITHER, 0);
+		}
+		break;
 
-lbl_801DF110:
-	cmpwi    r0, 1
-	bne      lbl_801DF318
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x2c(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple2@l
-	lis      r4, __vt__Q23efx11TSimpleMtx2@ha
-	lis      r3, __vt__Q23efx11TTsuyuGrow2@ha
-	stw      r0, 0x2c(r1)
-	addi     r0, r4, __vt__Q23efx11TSimpleMtx2@l
-	addi     r5, r31, 0x138
-	li       r4, 0x1bf
-	stw      r0, 0x2c(r1)
-	addi     r0, r3, __vt__Q23efx11TTsuyuGrow2@l
-	li       r7, 0x1c0
-	addi     r3, r1, 0x2c
-	sth      r4, 0x30(r1)
-	li       r4, 0
-	sth      r7, 0x32(r1)
-	stw      r6, 0x34(r1)
-	stw      r6, 0x38(r1)
-	stw      r5, 0x3c(r1)
-	stw      r0, 0x2c(r1)
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-	b        lbl_801DF318
-
-lbl_801DF17C:
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_801DF18C
-	addi     r5, r31, 0x178
-
-lbl_801DF18C:
-	lwz      r4, 0x1f4(r31)
-	addi     r3, r31, 0x208
-	addi     r4, r4, 6
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_801DF318
-
-lbl_801DF1A0:
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_801DF1B0
-	addi     r5, r31, 0x178
-
-lbl_801DF1B0:
-	lwz      r4, 0x1f4(r31)
-	addi     r3, r31, 0x208
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	addi     r3, r31, 0x224
-	li       r4, 5
-	li       r5, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lis      r4, __vt__Q28SysShape13BlendFunction@ha
-	lis      r3, __vt__Q28SysShape18BlendQuadraticFunc@ha
-	addi     r0, r4, __vt__Q28SysShape13BlendFunction@l
-	cmplwi   r31, 0
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q28SysShape18BlendQuadraticFunc@l
-	mr       r5, r31
-	stw      r0, 8(r1)
-	beq      lbl_801DF1F4
-	addi     r5, r31, 0x178
-
-lbl_801DF1F4:
-	lfs      f1, lbl_80519850@sda21(r2)
-	addi     r3, r31, 0x204
-	addi     r4, r1, 8
-	bl
-startBlend__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener
-	lfs      f0, lbl_80519850@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	stfs     f0, 0x258(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x240(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_801DF318
-	lwz      r3, 0x17c(r31)
-	li       r4, 0x3841
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801DF318
-
-lbl_801DF254:
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_801DF27C
-	addi     r5, r31, 0x178
-
-lbl_801DF27C:
-	addi     r3, r31, 0x208
-	li       r4, 0xc
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0x240(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, __vt__Q23efx3Arg@ha
-	lfs      f1, 0x200(r31)
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	lis      r5, __vt__Q23efx5TBase@ha
-	stw      r0, 0x18(r1)
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	lis      r6, __vt__Q23efx7ArgRotY@ha
-	lis      r3, __vt__Q23efx11TTsuyuGrow0@ha
-	lfs      f0, 0x19c(r31)
-	addi     r8, r5, __vt__Q23efx5TBase@l
-	addi     r7, r4, __vt__Q23efx8TSimple1@l
-	addi     r9, r6, __vt__Q23efx7ArgRotY@l
-	stfs     f0, 0x1c(r1)
-	addi     r0, r3, __vt__Q23efx11TTsuyuGrow0@l
-	li       r6, 0x1bc
-	li       r5, 0
-	lfs      f0, 0x1a0(r31)
-	addi     r3, r1, 0xc
-	addi     r4, r1, 0x18
-	stfs     f0, 0x20(r1)
-	lfs      f0, 0x1a4(r31)
-	stw      r8, 0xc(r1)
-	stw      r7, 0xc(r1)
-	stfs     f0, 0x24(r1)
-	stw      r9, 0x18(r1)
-	stfs     f1, 0x28(r1)
-	sth      r6, 0x10(r1)
-	stw      r5, 0x14(r1)
-	stw      r0, 0xc(r1)
-	bl       create__Q23efx11TTsuyuGrow0FPQ23efx3Arg
-
-lbl_801DF318:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	case 3:
+		setAlive(true);
+		mBlendAnimator.mAnimators[0].startAnim(12, this);
+		startColorMotion(PLANTCOLOR_Unk1);
+		efx::ArgRotY fxArg(mPosition, mFaceDir);
+		efx::TTsuyuGrow0 grow0;
+		grow0.create(&fxArg);
+		break;
+	}
 }
 
 /*
@@ -2520,16 +1814,11 @@ lbl_801DF318:
  * Address:	801DF330
  * Size:	000018
  */
-void Plant::setColor(f32)
+void Plant::setColor(f32 frame)
 {
-	/*
-	lwz      r3, mgr__Q24Game9ItemPlant@sda21(r13)
-	cmplwi   r3, 0
-	beqlr
-	lwz      r3, 0x88(r3)
-	stfs     f1, 8(r3)
-	blr
-	*/
+	if (mgr) {
+		mgr->mAnmColor->mCurrentFrame = frame;
+	}
 }
 
 /*
@@ -2537,19 +1826,7 @@ void Plant::setColor(f32)
  * Address:	801DF348
  * Size:	000020
  */
-void Plant::do_updateLOD()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       do_updateLOD__Q24Game8BaseItemFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Plant::do_updateLOD() { BaseItem::do_updateLOD(); }
 
 /*
  * --INFO--
@@ -2558,194 +1835,35 @@ void Plant::do_updateLOD()
  */
 void Plant::doAnimation()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r30, r3
-	lis      r4, lbl_804808F0@ha
-	lwz      r3, 0x288(r3)
-	addi     r31, r4, lbl_804808F0@l
-	bl       update__Q34Game9ItemPlant6FruitsFv
-	lis      r4, __vt__Q28SysShape13BlendFunction@ha
-	lis      r3, __vt__Q28SysShape18BlendQuadraticFunc@ha
-	addi     r0, r4, __vt__Q28SysShape13BlendFunction@l
-	lwz      r5, sys@sda21(r13)
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q28SysShape18BlendQuadraticFunc@l
-	lfs      f1, lbl_80519850@sda21(r2)
-	addi     r3, r30, 0x204
-	stw      r0, 8(r1)
-	addi     r4, r1, 8
-	lfs      f3, 0x54(r5)
-	lfs      f2, 0x1d4(r30)
-	lfs      f0, 0x258(r30)
-	fmuls    f1, f1, f3
-	fmuls    f2, f2, f3
-	fmuls    f3, f0, f3
-	bl       animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff
-	addi     r3, r30, 0x204
-	lwz      r29, 0x174(r30)
-	lwz      r12, 0x204(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 8(r29)
-	lwz      r4, 4(r4)
-	lwz      r4, 0x28(r4)
-	lwz      r4, 0(r4)
-	stw      r3, 0x54(r4)
-	lwz      r3, 0x174(r30)
-	cmplwi   r3, 0
-	beq      lbl_801DF5D8
-	lwz      r4, 8(r3)
-	addi     r3, r30, 0x138
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 0x174(r30)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x228(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1ec(r30)
-	lis      r4, 0x4330
-	xoris    r3, r3, 0x8000
-	stw      r4, 0x10(r1)
-	xoris    r0, r0, 0x8000
-	lfd      f5, lbl_80519858@sda21(r2)
-	stw      r3, 0x14(r1)
-	lfs      f3, lbl_80519844@sda21(r2)
-	lfd      f0, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	fsubs    f4, f0, f5
-	lfs      f1, lbl_8051984C@sda21(r2)
-	stw      r4, 0x18(r1)
-	lfs      f0, lbl_80519804@sda21(r2)
-	lfd      f2, 0x18(r1)
-	fdivs    f3, f4, f3
-	fsubs    f2, f2, f5
-	fdivs    f1, f2, f1
-	fadds    f31, f1, f3
-	fcmpo    cr0, f31, f0
-	ble      lbl_801DF4AC
-	fmr      f31, f0
+	mFruits->update();
+	SysShape::BlendQuadraticFunc quadFunc;
+	mBlendAnimator.animate(&quadFunc, 30.0f * sys->mDeltaTime, mAnimSpeed * sys->mDeltaTime, mBlendStepTime * sys->mDeltaTime);
+	mBlendAnimator.setModelCalc(mModel);
 
-lbl_801DF4AC:
-	lbz      r0, 0xd8(r30)
-	lfs      f0, lbl_80519878@sda21(r2)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	fmuls    f31, f31, f0
-	beq      lbl_801DF5D8
-	lwz      r0, 0x1f4(r30)
-	cmpwi    r0, 2
-	bne      lbl_801DF5CC
-	lwz      r3, 0x174(r30)
-	addi     r4, r31, 0x44
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r0, 0x27c(r30)
-	mr       r29, r3
-	cmpwi    r0, 0
-	bgt      lbl_801DF500
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x297
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (mModel) {
+		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->calc();
+		f32 ratios = ((f32)mStuckCount / 10.0f) + ((f32)getFruitsNum() / 20.0f);
+		if (ratios > 1.0f) {
+			ratios = 1.0f;
+		}
+		ratios *= TORADIANS(35.0f);
 
-lbl_801DF500:
-	lwz      r3, 0x268(r30)
-	addi     r4, r31, 0x50
-	stw      r29, 0(r3)
-	lwz      r3, 0x174(r30)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r0, 0x27c(r30)
-	mr       r29, r3
-	cmpwi    r0, 1
-	bgt      lbl_801DF53C
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x297
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+		if (mLod.isFlag(AILOD_IsVisible)) {
+			if (mGrowState == PLANTGROW_Full) {
+				mProcAnimator.setMatrix(0, mModel->getJoint("kuki_jnt1")->getWorldMatrix());
+				mProcAnimator.setMatrix(1, mModel->getJoint("kuki_jnt2")->getWorldMatrix());
+				mProcAnimator.setMatrix(2, mModel->getJoint("kuki_jnt3")->getWorldMatrix());
+				mProcAnimator.setMatrix(3, mModel->getJoint("kuki_jnt4")->getWorldMatrix());
+				mProcAnimator.update(mFaceDir, ratios);
+			}
 
-lbl_801DF53C:
-	lwz      r3, 0x268(r30)
-	addi     r4, r31, 0x5c
-	stw      r29, 4(r3)
-	lwz      r3, 0x174(r30)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r0, 0x27c(r30)
-	mr       r29, r3
-	cmpwi    r0, 2
-	bgt      lbl_801DF578
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x297
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+			mModel->mJ3dModel->calcWeightEnvelopeMtx();
+		}
+	}
 
-lbl_801DF578:
-	lwz      r3, 0x268(r30)
-	addi     r4, r31, 0x68
-	stw      r29, 8(r3)
-	lwz      r3, 0x174(r30)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r0, 0x27c(r30)
-	mr       r29, r3
-	cmpwi    r0, 3
-	bgt      lbl_801DF5B4
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x297
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801DF5B4:
-	lwz      r4, 0x268(r30)
-	fmr      f2, f31
-	addi     r3, r30, 0x25c
-	stw      r29, 0xc(r4)
-	lfs      f1, 0x200(r30)
-	bl       update__Q34Game9ItemPlant12ProcAnimatorFff
-
-lbl_801DF5CC:
-	lwz      r3, 0x174(r30)
-	lwz      r3, 8(r3)
-	bl       calcWeightEnvelopeMtx__8J3DModelFv
-
-lbl_801DF5D8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x214(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	bl       updateCollTree__Q24Game8BaseItemFv
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	update();
+	updateCollTree();
 }
 
 /*
@@ -2753,92 +1871,30 @@ lbl_801DF5D8:
  * Address:	801DF618
  * Size:	00002C
  */
-void Plant::bearFruits()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x288(r3)
-	lhz      r4, 0x1e0(r4)
-	bl       bearAll__Q34Game9ItemPlant6FruitsFUs
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Plant::bearFruits() { mFruits->bearAll(mPlantType); }
 
 /*
  * --INFO--
  * Address:	801DF644
  * Size:	000024
  */
-void Plant::killFruits()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x288(r3)
-	bl       killAll__Q34Game9ItemPlant6FruitsFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Plant::killFruits() { mFruits->killAll(); }
 
 /*
  * --INFO--
  * Address:	801DF668
  * Size:	000080
  */
-void Plant::dropFruit(int)
+void Plant::dropFruit(int num)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "zero__10Vector3<f>"@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r5, "zero__10Vector3<f>"@l
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_801DF6C0
-
-lbl_801DF69C:
-	lwz      r3, 0x288(r28)
-	mr       r4, r31
-	bl       "getFruit__Q34Game9ItemPlant6FruitsFR10Vector3<f>"
-	cmplwi   r3, 0
-	beq      lbl_801DF6C8
-	bl       dropFruit__Q34Game9ItemPlant9FruitSlotFv
-	b        lbl_801DF6BC
-	b        lbl_801DF6C8
-
-lbl_801DF6BC:
-	addi     r30, r30, 1
-
-lbl_801DF6C0:
-	cmpw     r30, r29
-	blt      lbl_801DF69C
-
-lbl_801DF6C8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < num; i++) {
+		FruitSlot* slot = mFruits->getFruit(Vector3f::zero);
+		if (slot) {
+			slot->dropFruit();
+			continue;
+		}
+		return;
+	}
 }
 
 /*
@@ -2846,178 +1902,50 @@ lbl_801DF6C8:
  * Address:	801DF6E8
  * Size:	000024
  */
-bool Plant::hasFruits()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x288(r3)
-	bl       hasFruits__Q34Game9ItemPlant6FruitsFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Plant::hasFruits() { return mFruits->hasFruits(); }
 
 /*
  * --INFO--
  * Address:	801DF70C
  * Size:	000024
  */
-int Plant::getFruitsNum()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x288(r3)
-	bl       countFruits__Q34Game9ItemPlant6FruitsFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+int Plant::getFruitsNum() { return mFruits->countFruits(); }
 
 /*
  * --INFO--
  * Address:	801DF730
  * Size:	0001D0
  */
-bool Plant::interactEat(InteractEat&)
+bool Plant::interactEat(InteractEat& eat)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	mr       r30, r3
-	addi     r3, r1, 0x14
-	stw      r29, 0x64(r1)
-	mr       r29, r4
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r4, r1, 0x50
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	stfs     f2, 0x50(r1)
-	stfs     f1, 0x54(r1)
-	stfs     f0, 0x58(r1)
-	lwz      r3, 0x288(r30)
-	bl       "getFruit__Q34Game9ItemPlant6FruitsFR10Vector3<f>"
-	or.      r31, r3, r3
-	beq      lbl_801DF8E0
-	lwz      r30, 0x18(r31)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 2
-	bne      lbl_801DF8C8
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	lis      r3, __vt__Q23efx3Arg@ha
-	lfs      f1, 0xc(r1)
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	lfs      f0, 0x10(r1)
-	stw      r0, 0x40(r1)
-	stfs     f2, 0x44(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	lhz      r0, 0x43e(r30)
-	cmplwi   r0, 0
-	bne      lbl_801DF854
-	li       r7, 0
-	lis      r3, __vt__Q23efx5TBase@ha
-	stw      r7, 8(r29)
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx8TSimple2@ha
-	lis      r3, __vt__Q23efx12TFruitsDownR@ha
-	stw      r0, 0x30(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple2@l
-	li       r6, 0x65
-	li       r5, 0x66
-	stw      r0, 0x30(r1)
-	addi     r0, r3, __vt__Q23efx12TFruitsDownR@l
-	addi     r3, r1, 0x30
-	addi     r4, r1, 0x40
-	sth      r6, 0x34(r1)
-	sth      r5, 0x36(r1)
-	stw      r7, 0x38(r1)
-	stw      r7, 0x3c(r1)
-	stw      r0, 0x30(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	b        lbl_801DF8A8
+	Vector3f creaturePos = eat.mCreature->getPosition();
+	FruitSlot* slot      = mFruits->getFruit(creaturePos);
 
-lbl_801DF854:
-	li       r0, 1
-	lis      r3, __vt__Q23efx5TBase@ha
-	stw      r0, 8(r29)
-	li       r5, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x20(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple2@l
-	lis      r3, __vt__Q23efx12TFruitsDownP@ha
-	li       r4, 0x63
-	stw      r0, 0x20(r1)
-	addi     r0, r3, __vt__Q23efx12TFruitsDownP@l
-	li       r6, 0x64
-	addi     r3, r1, 0x20
-	sth      r4, 0x24(r1)
-	addi     r4, r1, 0x40
-	sth      r6, 0x26(r1)
-	stw      r5, 0x28(r1)
-	stw      r5, 0x2c(r1)
-	stw      r0, 0x20(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	if (slot) {
+		Pellet* fruit = slot->mFruit;
+		if (fruit->getKind() == PELTYPE_BERRY) {
+			Vector3f fruitPos = fruit->getPosition();
+			efx::Arg fxArg(fruitPos);
+			if (fruit->mPelletColor == PELCOLOR_SPICY) {
+				eat.mBerryColor = PELCOLOR_SPICY;
+				efx::TFruitsDownR downSpicy;
+				downSpicy.create(&fxArg);
+			} else {
+				eat.mBerryColor = PELCOLOR_BITTER;
+				efx::TFruitsDownP downBitter;
+				downBitter.create(&fxArg);
+			}
+			fruit->mSoundMgr->startSound(PSSE_EV_FRUIT_POP, 0);
 
-lbl_801DF8A8:
-	lwz      r3, 0x330(r30)
-	li       r4, 0x3842
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801DF8D0
+		} else {
+			eat.mBerryColor = 2;
+		}
 
-lbl_801DF8C8:
-	li       r0, 2
-	stw      r0, 8(r29)
+		slot->killFruit();
+		return true;
+	}
 
-lbl_801DF8D0:
-	mr       r3, r31
-	bl       killFruit__Q34Game9ItemPlant9FruitSlotFv
-	li       r3, 1
-	b        lbl_801DF8E4
-
-lbl_801DF8E0:
-	li       r3, 0
-
-lbl_801DF8E4:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -3027,318 +1955,18 @@ lbl_801DF8E4:
  */
 Mgr::Mgr()
 {
-	/*
-	stwu     r1, -0x440(r1)
-	mflr     r0
-	stw      r0, 0x444(r1)
-	extsh.   r0, r4
-	stw      r31, 0x43c(r1)
-	mr       r31, r3
-	stw      r30, 0x438(r1)
-	beq      lbl_801DF928
-	addi     r0, r31, 0x90
-	stw      r0, 4(r31)
-
-lbl_801DF928:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game12TNodeItemMgrFv
-	lis      r3, __vt__Q34Game9ItemPlant3Mgr@ha
-	addi     r0, r2, lbl_8051987C@sda21
-	addi     r4, r3, __vt__Q34Game9ItemPlant3Mgr@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x74
-	li       r4, 1
-	stw      r5, 0x30(r31)
-	stw      r0, 8(r31)
-	bl       setModelSize__Q24Game11BaseItemMgrFi
-	lis      r4, lbl_80480964@ha
-	li       r3, 0x1dc
-	addi     r0, r4, lbl_80480964@l
-	stw      r0, 0x28(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801DF980
-	bl       __ct__Q34Game9ItemPlant10PlantParmsFv
-	mr       r0, r3
-
-lbl_801DF980:
-	stw      r0, 0x8c(r31)
-	li       r0, 0
-	lis      r3, lbl_80480980@ha
-	li       r4, 0
-	stw      r0, 8(r1)
-	addi     r3, r3, lbl_80480980@l
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 2
-	li       r9, 0
-	li       r10, 0
-	bl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	or.      r30, r3, r3
-	beq      lbl_801DFA04
-	mr       r4, r30
-	addi     r3, r1, 0x10
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x1c(r1)
-	bne      lbl_801DF9E4
-	li       r0, 0
-	stw      r0, 0x424(r1)
-
-lbl_801DF9E4:
-	lwz      r3, 0x8c(r31)
-	addi     r4, r1, 0x10
-	lwz      r12, 0xd8(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	bl       __dla__FPv
-
-lbl_801DFA04:
-	lwz      r0, 0x444(r1)
-	mr       r3, r31
-	lwz      r31, 0x43c(r1)
-	lwz      r30, 0x438(r1)
-	mtlr     r0
-	addi     r1, r1, 0x440
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801DFA20
- * Size:	000024
- */
-void PlantParms::read(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xdc
-	stw      r0, 0x14(r1)
-	bl       read__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801DFA44
- * Size:	000318
- */
-PlantParms::PlantParms()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, 0x73303030@ha
-	lis      r4, __vt__Q24Game13CreatureParms@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q24Game13CreatureParms@l
-	addi     r5, r5, 0x73303030@l
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, lbl_804808F0@ha
-	stw      r0, 0xd8(r30)
-	addi     r31, r3, lbl_804808F0@l
-	addi     r0, r30, 0xd4
-	li       r3, 0
-	stw      r0, 0(r30)
-	addi     r0, r31, 0xb0
-	mr       r4, r30
-	addi     r6, r31, 0xc4
-	stw      r3, 4(r30)
-	addi     r3, r30, 0xc
-	stw      r0, 8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303031@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519838@sda21(r2)
-	stw      r0, 0xc(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80519800@sda21(r2)
-	addi     r3, r30, 0x34
-	stfs     f0, 0x24(r30)
-	addi     r5, r5, 0x73303031@l
-	lfs      f0, lbl_80519804@sda21(r2)
-	addi     r6, r31, 0xd8
-	stfs     f1, 0x2c(r30)
-	stfs     f0, 0x30(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303032@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519838@sda21(r2)
-	stw      r0, 0x34(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80519800@sda21(r2)
-	addi     r3, r30, 0x5c
-	stfs     f0, 0x4c(r30)
-	addi     r5, r5, 0x73303032@l
-	lfs      f0, lbl_80519804@sda21(r2)
-	addi     r6, r31, 0xe8
-	stfs     f1, 0x54(r30)
-	stfs     f0, 0x58(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303033@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519884@sda21(r2)
-	stw      r0, 0x5c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80519800@sda21(r2)
-	addi     r3, r30, 0x84
-	stfs     f0, 0x74(r30)
-	addi     r5, r5, 0x73303033@l
-	lfs      f0, lbl_80519804@sda21(r2)
-	addi     r6, r2, lbl_80519888@sda21
-	stfs     f1, 0x7c(r30)
-	stfs     f0, 0x80(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303034@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519834@sda21(r2)
-	stw      r0, 0x84(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80519890@sda21(r2)
-	addi     r3, r30, 0xac
-	stfs     f0, 0x9c(r30)
-	addi     r5, r5, 0x73303034@l
-	lfs      f0, lbl_80519894@sda21(r2)
-	addi     r6, r31, 0xf8
-	stfs     f1, 0xa4(r30)
-	stfs     f0, 0xa8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r4, "__vt__7Parm<f>"@ha
-	lis      r3, __vt__Q34Game9ItemPlant10PlantParms@ha
-	addi     r0, r4, "__vt__7Parm<f>"@l
-	lis      r5, 0x70303030@ha
-	stw      r0, 0xac(r30)
-	addi     r9, r3, __vt__Q34Game9ItemPlant10PlantParms@l
-	lfs      f0, lbl_80519898@sda21(r2)
-	addi     r8, r30, 0x1d8
-	lfs      f1, lbl_80519890@sda21(r2)
-	li       r7, 0
-	stfs     f0, 0xc4(r30)
-	addi     r0, r31, 0x108
-	lfs      f0, lbl_80519894@sda21(r2)
-	addi     r3, r30, 0xe8
-	stfs     f1, 0xcc(r30)
-	addi     r4, r30, 0xdc
-	addi     r5, r5, 0x70303030@l
-	addi     r6, r31, 0x118
-	stfs     f0, 0xd0(r30)
-	stw      r9, 0xd8(r30)
-	stw      r8, 0xdc(r30)
-	stw      r7, 0xe0(r30)
-	stw      r0, 0xe4(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x70303031@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051984C@sda21(r2)
-	stw      r0, 0xe8(r30)
-	addi     r3, r30, 0x110
-	lfs      f1, lbl_80519800@sda21(r2)
-	addi     r4, r30, 0xdc
-	stfs     f0, 0x100(r30)
-	addi     r5, r5, 0x70303031@l
-	lfs      f0, lbl_8051989C@sda21(r2)
-	addi     r6, r31, 0x12c
-	stfs     f1, 0x108(r30)
-	stfs     f0, 0x10c(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x70303032@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051984C@sda21(r2)
-	stw      r0, 0x110(r30)
-	addi     r3, r30, 0x138
-	lfs      f1, lbl_80519800@sda21(r2)
-	addi     r4, r30, 0xdc
-	stfs     f0, 0x128(r30)
-	addi     r5, r5, 0x70303032@l
-	lfs      f0, lbl_8051989C@sda21(r2)
-	addi     r6, r31, 0x140
-	stfs     f1, 0x130(r30)
-	stfs     f0, 0x134(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x70303033@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805198A0@sda21(r2)
-	stw      r0, 0x138(r30)
-	addi     r3, r30, 0x160
-	lfs      f1, lbl_80519800@sda21(r2)
-	addi     r4, r30, 0xdc
-	stfs     f0, 0x150(r30)
-	addi     r5, r5, 0x70303033@l
-	lfs      f0, lbl_805198A4@sda21(r2)
-	addi     r6, r31, 0x158
-	stfs     f1, 0x158(r30)
-	stfs     f0, 0x15c(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x70303034@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051984C@sda21(r2)
-	stw      r0, 0x160(r30)
-	addi     r3, r30, 0x188
-	lfs      f1, lbl_80519800@sda21(r2)
-	addi     r4, r30, 0xdc
-	stfs     f0, 0x178(r30)
-	addi     r5, r5, 0x70303034@l
-	lfs      f0, lbl_8051989C@sda21(r2)
-	addi     r6, r31, 0x170
-	stfs     f1, 0x180(r30)
-	stfs     f0, 0x184(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x70303035@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519844@sda21(r2)
-	stw      r0, 0x188(r30)
-	addi     r3, r30, 0x1b0
-	lfs      f1, lbl_80519800@sda21(r2)
-	addi     r4, r30, 0xdc
-	stfs     f0, 0x1a0(r30)
-	addi     r5, r5, 0x70303035@l
-	lfs      f0, lbl_8051989C@sda21(r2)
-	addi     r6, r31, 0x17c
-	stfs     f1, 0x1a8(r30)
-	stfs     f0, 0x1ac(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lfs      f2, lbl_805198A8@sda21(r2)
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_80519800@sda21(r2)
-	stw      r0, 0x1b0(r30)
-	mr       r3, r30
-	lfs      f0, lbl_805198AC@sda21(r2)
-	stfs     f2, 0x1c8(r30)
-	stfs     f1, 0x1d0(r30)
-	stfs     f0, 0x1d4(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mItemName = "Plant";
+	setModelSize(1);
+	mObjectPathComponent = "user/Kando/objects/plants";
+	mParms               = new PlantParms();
+	void* data = JKRDvdRipper::loadToMainRAM("user/Abe/item/plantParms.txt", nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM,
+	                                         0, nullptr, nullptr);
+	if (data != nullptr) {
+		RamStream input(data, -1);
+		input.resetPosition(true, 1);
+		mParms->read(input);
+		delete[] data;
+	}
 }
 
 /*
@@ -3348,90 +1976,9 @@ PlantParms::PlantParms()
  */
 BaseItem* Mgr::birth()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x28c
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_801DFE64
-	li       r4, 0x408
-	bl       __ct__Q24Game8BaseItemFi
-	lis      r3,
-"__vt__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>"@ha
-	li       r0, 0
-	addi     r4, r3,
-"__vt__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>"@l
-	li       r3, 0x1c
-	stw      r4, 0(r31)
-	addi     r4, r4, 0x1b0
-	stw      r4, 0x178(r31)
-	stw      r0, 0x1d8(r31)
-	stw      r0, 0x1dc(r31)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_801DFDE8
-	lis      r4, "__vt__Q24Game36StateMachine<Q34Game9ItemPlant4Item>"@ha
-	lis      r5, "__vt__Q24Game31ItemFSM<Q34Game9ItemPlant4Item>"@ha
-	addi     r0, r4, "__vt__Q24Game36StateMachine<Q34Game9ItemPlant4Item>"@l
-	lis      r4, __vt__Q34Game9ItemPlant3FSM@ha
-	stw      r0, 0(r3)
-	li       r6, -1
-	addi     r5, r5, "__vt__Q24Game31ItemFSM<Q34Game9ItemPlant4Item>"@l
-	addi     r0, r4, __vt__Q34Game9ItemPlant3FSM@l
-	stw      r6, 0x18(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-
-lbl_801DFDE8:
-	stw      r3, 0x1d8(r31)
-	mr       r4, r31
-	lwz      r3, 0x1d8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q34Game9ItemPlant4Item@ha
-	lis      r3, __vt__Q34Game9ItemPlant5Plant@ha
-	addi     r4, r4, __vt__Q34Game9ItemPlant4Item@l
-	lfs      f0, lbl_80519800@sda21(r2)
-	stw      r4, 0(r31)
-	addi     r0, r4, 0x1b0
-	addi     r4, r3, __vt__Q34Game9ItemPlant5Plant@l
-	li       r5, 0
-	stw      r0, 0x178(r31)
-	addi     r0, r4, 0x1b0
-	addi     r3, r31, 0x204
-	stfs     f0, 0x1f8(r31)
-	stfs     f0, 0x1f0(r31)
-	stw      r5, 0x1f4(r31)
-	stw      r4, 0(r31)
-	stw      r0, 0x178(r31)
-	bl       __ct__Q28SysShape13BlendAnimatorFv
-	li       r0, 0
-	lfs      f0, lbl_80519800@sda21(r2)
-	stw      r0, 0x27c(r31)
-	stw      r0, 0x268(r31)
-	stfs     f0, 0x280(r31)
-	stfs     f0, 0x284(r31)
-	stfs     f0, 0x118(r31)
-
-lbl_801DFE64:
-	mr       r3, r30
-	mr       r4, r31
-	bl       entry__Q24Game12TNodeItemMgrFPQ24Game8BaseItem
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Plant* plant = new Plant;
+	entry(plant);
+	return plant;
 }
 
 /*
@@ -3441,55 +1988,14 @@ lbl_801DFE64:
  */
 void Mgr::onLoadResources()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_804808F0@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_804808F0@l
-	addi     r4, r2, lbl_805198B0@sda21
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       loadArchive__Q24Game11BaseItemMgrFPc
-	mr       r3, r29
-	addi     r4, r31, 0x18c
-	li       r5, 0
-	lis      r6, 0x2002
-	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-	addi     r3, r31, 0x198
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	bl       load__20J3DAnmLoaderDataBaseFPCv
-	stw      r3, 0x88(r29)
-	mr       r3, r29
-	addi     r4, r31, 0x1a4
-	bl       openTextArc__Q24Game11BaseItemMgrFPc
-	or.      r30, r3, r3
-	bne      lbl_801DFF08
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x531
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	loadArchive("arc.szs");
+	loadBmd("model.bmd", 0, 0x20020000);
+	mAnmColor = static_cast<J3DAnmColor*>(J3DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("model.bpk", nullptr)));
 
-lbl_801DFF08:
-	mr       r3, r29
-	mr       r4, r30
-	addi     r5, r31, 0x1b0
-	bl       loadAnimMgr__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-	mr       r3, r29
-	mr       r4, r30
-	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JKRArchive* textArc = openTextArc("texts.szs");
+	P2ASSERTLINE(1329, textArc);
+	loadAnimMgr(textArc, "plantAnimMgr.txt");
+	closeTextArc(textArc);
 }
 
 /*
@@ -3497,78 +2003,21 @@ lbl_801DFF08:
  * Address:	801DFF40
  * Size:	00004C
  */
-GenItemParm* Mgr::generatorNewItemParm()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 8
-	stw      r0, 0x14(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_801DFF7C
-	lis      r5, __vt__Q24Game11GenItemParm@ha
-	lis      r4, __vt__12GenPlantParm@ha
-	addi     r5, r5, __vt__Q24Game11GenItemParm@l
-	li       r0, 2
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__12GenPlantParm@l
-	stw      r4, 0(r3)
-	sth      r0, 4(r3)
-
-lbl_801DFF7C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+GenItemParm* Mgr::generatorNewItemParm() { return new GenPlantParm(); }
 
 /*
  * --INFO--
  * Address:	801DFF8C
  * Size:	000088
  */
-void Mgr::generatorWrite(Stream&, GenItemParm*)
+void Mgr::generatorWrite(Stream& input, GenItemParm* genParm)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, lbl_804808F0@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r3, lbl_804808F0@l
-	stw      r30, 0x18(r1)
-	or.      r30, r5, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bne      lbl_801DFFCC
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x5a8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	GenPlantParm* plantParm = static_cast<GenPlantParm*>(genParm);
+	P2ASSERTLINE(1448, plantParm);
 
-lbl_801DFFCC:
-	lwz      r4, 0x414(r29)
-	mr       r3, r29
-	bl       textWriteTab__6StreamFi
-	lhz      r0, 4(r30)
-	mr       r3, r29
-	extsh    r4, r0
-	bl       writeShort__6StreamFs
-	mr       r3, r29
-	addi     r4, r31, 0x1c4
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	input.textWriteTab(input.mTabCount);
+	input.writeShort(plantParm->mPlantType);
+	input.textWriteText("\t#é¿É^ÉCÉv\r\n"); // '#actual type'
 }
 
 /*
@@ -3576,50 +2025,16 @@ lbl_801DFFCC:
  * Address:	801E0014
  * Size:	000088
  */
-void Mgr::generatorRead(Stream&, GenItemParm*, unsigned long)
+void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	or.      r30, r5, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bne      lbl_801E0058
-	lis      r3, lbl_804808FC@ha
-	lis      r5, lbl_8048090C@ha
-	addi     r3, r3, lbl_804808FC@l
-	li       r4, 0x5b2
-	addi     r5, r5, lbl_8048090C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	GenPlantParm* plantParm = static_cast<GenPlantParm*>(genParm);
+	P2ASSERTLINE(1458, plantParm);
 
-lbl_801E0058:
-	lis      r3, 0x30303031@ha
-	addi     r0, r3, 0x30303031@l
-	cmplw    r31, r0
-	blt      lbl_801E0078
-	mr       r3, r29
-	bl       readShort__6StreamFv
-	sth      r3, 4(r30)
-	b        lbl_801E0080
-
-lbl_801E0078:
-	li       r0, 0
-	sth      r0, 4(r30)
-
-lbl_801E0080:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (version >= '0001') {
+		plantParm->mPlantType = input.readShort();
+	} else {
+		plantParm->mPlantType = 0;
+	}
 }
 
 /*
@@ -3627,57 +2042,17 @@ lbl_801E0080:
  * Address:	801E009C
  * Size:	0000B4
  */
-BaseItem* Mgr::generatorBirth(Vector3f&, Vector3f&, GenItemParm*)
+BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	or.      r31, r6, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bne      lbl_801E00E8
-	lis      r3, lbl_804808FC@ha
-	lis      r5, lbl_8048090C@ha
-	addi     r3, r3, lbl_804808FC@l
-	li       r4, 0x5bd
-	addi     r5, r5, lbl_8048090C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	GenPlantParm* plantParm = static_cast<GenPlantParm*>(genParm);
+	P2ASSERTLINE(1469, plantParm);
 
-lbl_801E00E8:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	lhz      r0, 4(r31)
-	mr       r31, r3
-	li       r4, 0
-	sth      r0, 0x1e0(r3)
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	lfs      f1, 4(r30)
-	bl       roundAng__Ff
-	stfs     f1, 0x200(r31)
-	mr       r3, r31
-	mr       r4, r29
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Plant* plant      = static_cast<Plant*>(birth());
+	plant->mPlantType = plantParm->mPlantType;
+	plant->init(nullptr);
+	plant->mFaceDir = roundAng(rot.y);
+	plant->setPosition(pos, false);
+	return plant;
 }
 
 /*
@@ -3685,76 +2060,11 @@ lbl_801E00E8:
  * Address:	801E0150
  * Size:	000074
  */
-void Fruits::init(int, Matrixf*)
+void Fruits::init(int count, Matrixf* mtx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mulli    r3, r31, 0x4c
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q34Game9ItemPlant9FruitSlotFv@ha
-	lis      r5, __dt__Q34Game9ItemPlant9FruitSlotFv@ha
-	addi     r4, r4, __ct__Q34Game9ItemPlant9FruitSlotFv@l
-	mr       r7, r31
-	addi     r5, r5, __dt__Q34Game9ItemPlant9FruitSlotFv@l
-	li       r6, 0x4c
-	bl       __construct_new_array
-	stw      r3, 0(r29)
-	stw      r31, 4(r29)
-	stw      r30, 8(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801E01C4
- * Size:	000060
- */
-FruitSlot::~FruitSlot()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801E0208
-	lis      r5, __vt__Q34Game9ItemPlant9FruitSlot@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game9ItemPlant9FruitSlot@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801E0208
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801E0208:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mSlots     = new FruitSlot[count];
+	mSlotCount = count;
+	mMatrix    = mtx;
 }
 
 /*
@@ -3764,37 +2074,9 @@ lbl_801E0208:
  */
 void Fruits::update()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_801E0260
-
-lbl_801E024C:
-	lwz      r0, 0(r29)
-	add      r3, r0, r31
-	bl       update__Q34Game9ItemPlant9FruitSlotFv
-	addi     r31, r31, 0x4c
-	addi     r30, r30, 1
-
-lbl_801E0260:
-	lwz      r0, 4(r29)
-	cmpw     r30, r0
-	blt      lbl_801E024C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < mSlotCount; i++) {
+		mSlots[i].update();
+	}
 }
 
 /*
@@ -3802,8 +2084,55 @@ lbl_801E0260:
  * Address:	801E0288
  * Size:	0002B4
  */
-void Fruits::bearAll(unsigned short)
+void Fruits::bearAll(u16 plantType)
 {
+	for (int i = 0; i < mSlotCount; i++) {
+		FruitSlot* slot = &mSlots[i];
+		Pellet* fruit   = slot->mFruit;
+		if (!fruit) {
+			PelletInitArg pelletArg;
+			pelletArg.mTextIdentifier = "fruit";
+			switch (plantType) {
+			case PLANTTYPE_Spicy:
+				pelletArg.mPelletColor = PELCOLOR_SPICY;
+				break;
+
+			case PLANTTYPE_Bitter:
+				pelletArg.mPelletColor = PELCOLOR_BITTER;
+				break;
+
+			case PLANTTYPE_Random:
+				if (randFloat() > 0.9f) {
+					pelletArg.mPelletColor = PELCOLOR_BITTER;
+				} else {
+					pelletArg.mPelletColor = PELCOLOR_SPICY;
+				}
+				break;
+			}
+
+			pelletArg.mPelletIndex = 0;
+			pelletArg.mState       = PELSTATE_Goal;
+			pelletArg.mPelletType  = PELTYPE_BERRY;
+
+			Pellet* pellet = pelletMgr->birth(&pelletArg);
+			if (!pellet) {
+				return;
+			}
+
+			Matrixf mtx;
+			PSMTXIdentity(mtx.mMatrix.mtxView);
+
+			f32 positions[5][3] = {
+				{ 33.965f, 0.0f, 0.0f },   { 25.463f, 8.0f, -8.0f }, { 25.463f, 8.0f, 8.0f },
+				{ 25.463f, -8.0f, -8.0f }, { 25.463f, -8.0f, 8.0f },
+			};
+
+			Vector3f pos = ((Vector3f*)positions)[i];
+			mtx.makeT(pos);
+
+			slot->setFruit(pellet, mMatrix, mtx);
+		}
+	}
 	/*
 	stwu     r1, -0x140(r1)
 	mflr     r0
@@ -4008,30 +2337,12 @@ lbl_801E0520:
  */
 bool Fruits::hasFruits()
 {
-	/*
-	lwz      r0, 4(r3)
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_801E0574
-
-lbl_801E0550:
-	lwz      r4, 0(r3)
-	addi     r0, r5, 0x18
-	lwzx     r0, r4, r0
-	cmplwi   r0, 0
-	beq      lbl_801E056C
-	li       r3, 1
-	blr
-
-lbl_801E056C:
-	addi     r5, r5, 0x4c
-	bdnz     lbl_801E0550
-
-lbl_801E0574:
-	li       r3, 0
-	blr
-	*/
+	for (int i = 0; i < mSlotCount; i++) {
+		if (mSlots[i].mFruit) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -4041,30 +2352,14 @@ lbl_801E0574:
  */
 int Fruits::countFruits()
 {
-	/*
-	lwz      r0, 4(r3)
-	li       r6, 0
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_801E05B4
+	int count = 0;
+	for (int i = 0; i < mSlotCount; i++) {
+		if (mSlots[i].mFruit) {
+			count++;
+		}
+	}
 
-lbl_801E0594:
-	lwz      r4, 0(r3)
-	addi     r0, r5, 0x18
-	lwzx     r0, r4, r0
-	cmplwi   r0, 0
-	beq      lbl_801E05AC
-	addi     r6, r6, 1
-
-lbl_801E05AC:
-	addi     r5, r5, 0x4c
-	bdnz     lbl_801E0594
-
-lbl_801E05B4:
-	mr       r3, r6
-	blr
-	*/
+	return count;
 }
 
 /*
@@ -4074,37 +2369,9 @@ lbl_801E05B4:
  */
 void Fruits::killAll()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_801E05F8
-
-lbl_801E05E4:
-	lwz      r0, 0(r29)
-	add      r3, r0, r31
-	bl       killFruit__Q34Game9ItemPlant9FruitSlotFv
-	addi     r31, r31, 0x4c
-	addi     r30, r30, 1
-
-lbl_801E05F8:
-	lwz      r0, 4(r29)
-	cmpw     r30, r0
-	blt      lbl_801E05E4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < mSlotCount; i++) {
+		mSlots[i].killFruit();
+	}
 }
 
 /*
@@ -4112,91 +2379,27 @@ lbl_801E05F8:
  * Address:	801E0620
  * Size:	00010C
  */
-FruitSlot* Fruits::getFruit(Vector3f&)
+FruitSlot* Fruits::getFruit(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stmw     r27, 0x1c(r1)
-	lfs      f31, lbl_805198C4@sda21(r2)
-	mr       r27, r3
-	mr       r28, r4
-	li       r30, -1
-	li       r29, 0
-	li       r31, 0
-	b        lbl_801E06E8
+	f32 minDist = 128000.0;
+	int slotIdx = -1;
+	for (int i = 0; i < mSlotCount; i++) {
+		Pellet* fruit = mSlots[i].mFruit;
+		if (fruit) {
+			Vector3f fruitPos = fruit->getPosition();
+			f32 fruitDist     = fruitPos.distance(pos);
+			if (fruitDist < minDist) {
+				minDist = fruitDist;
+				slotIdx = i;
+			}
+		}
+	}
 
-lbl_801E0654:
-	lwz      r3, 0(r27)
-	addi     r0, r31, 0x18
-	lwzx     r4, r3, r0
-	cmplwi   r4, 0
-	beq      lbl_801E06E0
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	lfs      f0, 4(r28)
-	lfs      f3, 8(r1)
-	fsubs    f4, f1, f0
-	lfs      f2, 0(r28)
-	lfs      f1, 0x10(r1)
-	lfs      f0, 8(r28)
-	fsubs    f3, f3, f2
-	fmuls    f4, f4, f4
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_80519800@sda21(r2)
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801E06CC
-	ble      lbl_801E06D0
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801E06D0
+	if (slotIdx != -1) {
+		return &mSlots[slotIdx];
+	}
 
-lbl_801E06CC:
-	fmr      f1, f0
-
-lbl_801E06D0:
-	fcmpo    cr0, f1, f31
-	bge      lbl_801E06E0
-	fmr      f31, f1
-	mr       r30, r29
-
-lbl_801E06E0:
-	addi     r31, r31, 0x4c
-	addi     r29, r29, 1
-
-lbl_801E06E8:
-	lwz      r0, 4(r27)
-	cmpw     r29, r0
-	blt      lbl_801E0654
-	cmpwi    r30, -1
-	beq      lbl_801E070C
-	mulli    r0, r30, 0x4c
-	lwz      r3, 0(r27)
-	add      r3, r3, r0
-	b        lbl_801E0710
-
-lbl_801E070C:
-	li       r3, 0
-
-lbl_801E0710:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -4206,27 +2409,8 @@ lbl_801E0710:
  */
 FruitSlot::FruitSlot()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q34Game9ItemPlant9FruitSlot@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q34Game9ItemPlant9FruitSlot@l
-	addi     r3, r31, 0x1c
-	stw      r4, 0(r31)
-	stw      r0, 0x18(r31)
-	bl       PSMTXIdentity
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFruit = nullptr;
+	PSMTXIdentity(mFruitMatrix.mMatrix.mtxView);
 }
 
 /*
@@ -4234,30 +2418,11 @@ FruitSlot::FruitSlot()
  * Address:	801E0778
  * Size:	000050
  */
-void FruitSlot::setFruit(Pellet*, Matrixf*, Matrixf&)
+void FruitSlot::setFruit(Pellet* pellet, Matrixf* captureMatrix, Matrixf& fruitMatrix)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r4
-	addi     r4, r3, 0x1c
-	stw      r30, 0x18(r3)
-	mr       r3, r6
-	bl       PSMTXCopy
-	mr       r3, r30
-	mr       r4, r31
-	bl       startCapture__Q24Game8CreatureFP7Matrixf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFruit = pellet;
+	PSMTXCopy(fruitMatrix.mMatrix.mtxView, mFruitMatrix.mMatrix.mtxView);
+	pellet->startCapture(captureMatrix);
 }
 
 /*
@@ -4267,26 +2432,10 @@ void FruitSlot::setFruit(Pellet*, Matrixf*, Matrixf&)
  */
 void FruitSlot::dropFruit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x18(r3)
-	cmplwi   r3, 0
-	beq      lbl_801E07F4
-	bl       endCapture__Q24Game8CreatureFv
-	li       r0, 0
-	stw      r0, 0x18(r31)
-
-lbl_801E07F4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mFruit) {
+		mFruit->endCapture();
+		mFruit = nullptr;
+	}
 }
 
 /*
@@ -4296,27 +2445,10 @@ lbl_801E07F4:
  */
 void FruitSlot::killFruit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x18(r3)
-	cmplwi   r3, 0
-	beq      lbl_801E0838
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	li       r0, 0
-	stw      r0, 0x18(r31)
-
-lbl_801E0838:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mFruit) {
+		mFruit->kill(nullptr);
+		mFruit = nullptr;
+	}
 }
 
 /*
@@ -4326,286 +2458,10 @@ lbl_801E0838:
  */
 void FruitSlot::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x18(r3)
-	cmplwi   r3, 0
-	beq      lbl_801E0870
-	addi     r4, r4, 0x1c
-	bl       updateCapture__Q24Game8CreatureFR7Matrixf
-
-lbl_801E0870:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mFruit) {
+		mFruit->updateCapture(mFruitMatrix);
+	}
 }
-
-/*
- * --INFO--
- * Address:	801E0880
- * Size:	000134
- */
-Mgr::~Mgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801E0998
-	lis      r3, __vt__Q34Game9ItemPlant3Mgr@ha
-	addi     r3, r3, __vt__Q34Game9ItemPlant3Mgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x74
-	stw      r0, 0x30(r30)
-	beq      lbl_801E0988
-	lis      r3, __vt__Q24Game12TNodeItemMgr@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, __vt__Q24Game12TNodeItemMgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x74
-	stw      r0, 0x30(r30)
-	beq      lbl_801E0954
-	lis      r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
-	addic.   r3, r30, 0x6c
-	addi     r4, r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
-	stw      r4, 0x4c(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_801E0904
-	lis      r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
-	addi     r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
-	stw      r0, 0x6c(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_801E0904:
-	addic.   r0, r30, 0x4c
-	beq      lbl_801E0954
-	lis      r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
-	stw      r3, 0x4c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_801E0954
-	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-	stw      r0, 0x4c(r30)
-	beq      lbl_801E0954
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x4c
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x4c(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801E0954:
-	addic.   r0, r30, 0x30
-	beq      lbl_801E0988
-	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-	addic.   r0, r30, 0x30
-	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-	stw      r0, 0x30(r30)
-	beq      lbl_801E0988
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x30(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801E0988:
-	extsh.   r0, r31
-	ble      lbl_801E0998
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801E0998:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801E09B4
- * Size:	000118
- */
-BaseItem* Mgr::doNew()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0x28c
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_801E0AB4
-	li       r4, 0x408
-	bl       __ct__Q24Game8BaseItemFi
-	lis      r3,
-"__vt__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>"@ha
-	li       r0, 0
-	addi     r4, r3,
-"__vt__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>"@l
-	li       r3, 0x1c
-	stw      r4, 0(r31)
-	addi     r4, r4, 0x1b0
-	stw      r4, 0x178(r31)
-	stw      r0, 0x1d8(r31)
-	stw      r0, 0x1dc(r31)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_801E0A38
-	lis      r4, "__vt__Q24Game36StateMachine<Q34Game9ItemPlant4Item>"@ha
-	lis      r5, "__vt__Q24Game31ItemFSM<Q34Game9ItemPlant4Item>"@ha
-	addi     r0, r4, "__vt__Q24Game36StateMachine<Q34Game9ItemPlant4Item>"@l
-	lis      r4, __vt__Q34Game9ItemPlant3FSM@ha
-	stw      r0, 0(r3)
-	li       r6, -1
-	addi     r5, r5, "__vt__Q24Game31ItemFSM<Q34Game9ItemPlant4Item>"@l
-	addi     r0, r4, __vt__Q34Game9ItemPlant3FSM@l
-	stw      r6, 0x18(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-
-lbl_801E0A38:
-	stw      r3, 0x1d8(r31)
-	mr       r4, r31
-	lwz      r3, 0x1d8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q34Game9ItemPlant4Item@ha
-	lis      r3, __vt__Q34Game9ItemPlant5Plant@ha
-	addi     r4, r4, __vt__Q34Game9ItemPlant4Item@l
-	lfs      f0, lbl_80519800@sda21(r2)
-	stw      r4, 0(r31)
-	addi     r0, r4, 0x1b0
-	addi     r4, r3, __vt__Q34Game9ItemPlant5Plant@l
-	li       r5, 0
-	stw      r0, 0x178(r31)
-	addi     r0, r4, 0x1b0
-	addi     r3, r31, 0x204
-	stfs     f0, 0x1f8(r31)
-	stfs     f0, 0x1f0(r31)
-	stw      r5, 0x1f4(r31)
-	stw      r4, 0(r31)
-	stw      r0, 0x178(r31)
-	bl       __ct__Q28SysShape13BlendAnimatorFv
-	li       r0, 0
-	lfs      f0, lbl_80519800@sda21(r2)
-	stw      r0, 0x27c(r31)
-	stw      r0, 0x268(r31)
-	stfs     f0, 0x280(r31)
-	stfs     f0, 0x284(r31)
-	stfs     f0, 0x118(r31)
-
-lbl_801E0AB4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801E0ACC
- * Size:	00000C
- */
-u32 Mgr::generatorGetID()
-{
-	/*
-	lis      r3, 0x706C6E74@ha
-	addi     r3, r3, 0x706C6E74@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801E0AD8
- * Size:	00000C
- */
-u32 Mgr::generatorLocalVersion()
-{
-	/*
-	lis      r3, 0x30303031@ha
-	addi     r3, r3, 0x30303031@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801E0AE4
- * Size:	000030
- */
-void Item::changeMaterial()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lfs      f1, 0x1e4(r3)
-	lwz      r12, 0x23c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801E0B14
- * Size:	000004
- */
-void Item::setColor(f32) { }
-
-/*
- * --INFO--
- * Address:	801E0B18
- * Size:	000008
- */
-bool Item::hasFruits() { return false; }
-
-/*
- * --INFO--
- * Address:	801E0B20
- * Size:	000008
- */
-int Item::getFruitsNum() { return 0; }
-
-/*
- * --INFO--
- * Address:	801E0B28
- * Size:	000008
- */
-Pellet* Item::getNearestFruit(Vector3f&) { return 0x0; }
 
 } // namespace ItemPlant
 } // namespace Game
