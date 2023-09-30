@@ -16,7 +16,7 @@ struct IPikiAnims {
 	enum PikiAnims {
 		NULLANIM   = -1,
 		AKUBI      = 0, // yawn
-		ASIBUMI    = 1, // stepped on
+		ASIBUMI    = 1, // stepping
 		ATTACK1    = 2,
 		CHATTING   = 3,
 		DAMAGE     = 4,
@@ -196,11 +196,11 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	f32 mNeckTheta;                         // _198
 	f32 mNeckPhi;                           // _19C
 	Vector3f* mLookAtPosition;              // _1A0
-	u8 _1A4;                                // _1A4
+	u8 mLookAtTimer;                        // _1A4
 	Creature* mLookAtTargetCreature;        // _1A8
 	PikiAnimator mAnimator;                 // _1AC
 	Vector3f mVelocity;                     // _1E4
-	Vector3f _1F0;                          // _1F0
+	Vector3f mSimPosition;                  // _1F0, unused
 	f32 mFaceDir;                           // _1FC
 	Vector3f mSimVelocity;                  // _200
 	Vector3f mPosition;                     // _20C
@@ -209,7 +209,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	int _22C;                               // _22C, anim id of some description?
 	int _230;                               // _230, anim id of some description?
 	f32 mAnimSpeed;                         // _234
-	Vector3f _238;                          // _238
+	Vector3f mPositionBeforeMovie;          // _238
 	f32 mFaceDirOffset;                     // _244
 	Sys::Triangle* mFakePikiBounceTriangle; // _248
 	u32 _24C;                               // _24C, unknown
@@ -219,31 +219,34 @@ struct FakePikiParms : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "FakePiki::Parms")
-		    , _0E8(this, 'fp01', "ASIBUMI 開始スピード", 5.0f, 0.0f, 500.0f)        // 'ASIBUMI start speed' (stepping?)
-		    , _110(this, 'fp02', "WALK 開始スピード", 8.0f, 0.0f, 500.0f)           // 'WALK start speed'
-		    , _138(this, 'fp03', "RUN 開始スピード", 20.0f, 0.0f, 500.0f)           // 'RUN start speed'
-		    , _160(this, 'fp04', "ESCAPE 開始スピード", 95.0f, 0.0f, 500.0f)        // 'ESCAPE start speed'
-		    , _188(this, 'fp04', "WALK 再生フレーム数(min)", 60.0f, 0.0f, 300.0f)   // 'WALK playback frame count (min)'
-		    , _1B0(this, 'fp05', "WALK 再生フレーム数(max)", 90.0f, 0.0f, 300.0f)   // 'WALK  playback frame count (max)'
-		    , _1D8(this, 'fp06', "RUN 再生フレーム数(min)", 40.0f, 0.0f, 300.0f)    // 'RUN playback frame count (min)'
-		    , _200(this, 'fp07', "RUN 再生フレーム数(max)", 60.0f, 0.0f, 300.0f)    // 'RUN playback frame count (max)'
-		    , _228(this, 'fp08', "ESCAPE 再生フレーム数(min)", 60.0f, 0.0f, 300.0f) // 'ESCAPE playback frame count (min)'
-		    , _250(this, 'fp09', "ESCAPE 再生フレーム数(max)", 90.0f, 0.0f, 300.0f) // 'ESCAPE playback frame count (max)'
+		    , mStepStartSpeed(this, 'fp01', "ASIBUMI 開始スピード", 5.0f, 0.0f, 500.0f)                 // 'ASIBUMI start speed' (stepping?)
+		    , mWalkStartSpeed(this, 'fp02', "WALK 開始スピード", 8.0f, 0.0f, 500.0f)                    // 'WALK start speed'
+		    , mRunStartSpeed(this, 'fp03', "RUN 開始スピード", 20.0f, 0.0f, 500.0f)                     // 'RUN start speed'
+		    , mEscapeStartSpeed(this, 'fp04', "ESCAPE 開始スピード", 95.0f, 0.0f, 500.0f)               // 'ESCAPE start speed'
+		    , mWalkPlaybackFrameCountMin(this, 'fp04', "WALK 再生フレーム数(min)", 60.0f, 0.0f, 300.0f) // 'WALK playback frame count (min)'
+		    , mWalkPlaybackFrameCountMax(this, 'fp05', "WALK 再生フレーム数(max)", 90.0f, 0.0f,
+		                                 300.0f)                                                      // 'WALK  playback frame count (max)'
+		    , mRunPlaybackFrameCountMin(this, 'fp06', "RUN 再生フレーム数(min)", 40.0f, 0.0f, 300.0f) // 'RUN playback frame count (min)'
+		    , mRunPlaybackFrameCountMax(this, 'fp07', "RUN 再生フレーム数(max)", 60.0f, 0.0f, 300.0f) // 'RUN playback frame count (max)'
+		    , mEscapePlaybackFrameCountMin(this, 'fp08', "ESCAPE 再生フレーム数(min)", 60.0f, 0.0f,
+		                                   300.0f) // 'ESCAPE playback frame count (min)'
+		    , mEscapePlaybackFrameCountMax(this, 'fp09', "ESCAPE 再生フレーム数(max)", 90.0f, 0.0f,
+		                                   300.0f) // 'ESCAPE playback frame count (max)'
 		{
 		}
 
 		// _DC-_E8 = Parameters
-		Parm<f32> _0E8; // _0E8
-		Parm<f32> _110; // _110
-		Parm<f32> _138; // _138
-		Parm<f32> _160; // _160
-		Parm<f32> _188; // _188
-		Parm<f32> _1B0; // _1B0
-		Parm<f32> _1D8; // _1D8
-		Parm<f32> _200; // _200
-		Parm<f32> _228; // _228
-		Parm<f32> _250; // _250
-		                // _278 = IParameters ptr
+		Parm<f32> mStepStartSpeed;              // _0E8
+		Parm<f32> mWalkStartSpeed;              // _110
+		Parm<f32> mRunStartSpeed;               // _138
+		Parm<f32> mEscapeStartSpeed;            // _160
+		Parm<f32> mWalkPlaybackFrameCountMin;   // _188
+		Parm<f32> mWalkPlaybackFrameCountMax;   // _1B0
+		Parm<f32> mRunPlaybackFrameCountMin;    // _1D8
+		Parm<f32> mRunPlaybackFrameCountMax;    // _200
+		Parm<f32> mEscapePlaybackFrameCountMin; // _228
+		Parm<f32> mEscapePlaybackFrameCountMax; // _250
+		                                        // _278 = IParameters ptr
 	};
 
 	FakePikiParms()

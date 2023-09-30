@@ -16,7 +16,7 @@ namespace PikiAI {
 void ActAttack::getInfo(char* dest)
 {
 	char* actions[] = { "SA", "AJ", "JA", "JP", "LT" };
-	sprintf(dest, "attack %s", actions[_18]);
+	sprintf(dest, "attack %s", actions[mAttackID]);
 }
 
 /*
@@ -83,7 +83,7 @@ void ActAttack::initStickAttack()
 	f32 damage = mParent->getAttackDamage();
 	StickAttackActionArg stickArg(damage, mCreature, 2, 0);
 	mStickAttack->init(&stickArg);
-	_18 = 0;
+	mAttackID = 0;
 }
 
 /*
@@ -97,7 +97,7 @@ void ActAttack::initAdjust()
 	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, -1.0f, 0, 0);
 	approachArg._18 = 1;
 	approachArg._19 = 1;
-	_18             = 1;
+	mAttackID       = 1;
 	mApproachPos->init(&approachArg);
 	/*
 	stwu     r1, -0x30(r1)
@@ -156,7 +156,7 @@ void ActAttack::initJumpAdjust()
 	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, -1.0f, 0, 0);
 	approachArg._18 = 1;
 	approachArg._19 = 1;
-	_18             = 2;
+	mAttackID       = 2;
 	mApproachPos->init(&approachArg);
 	/*
 	stwu     r1, -0x30(r1)

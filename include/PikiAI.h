@@ -144,7 +144,10 @@ struct Action {
 	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event) { }      // _2C (weak)
 	virtual void doDirectDraw(Graphics& gfx) { }                              // _30 (weak)
 	virtual void wallCallback(Vector3f& pos) { }                              // _34 (weak)
-	virtual void getInfo(char*);                                              // _38
+
+	/// @brief Gets information about the action (usually name)
+	/// @param Destination string
+	virtual void getInfo(char* dest); // _38,
 
 	// _00 = VTBL
 	Game::Piki* mParent; // _04
@@ -221,7 +224,7 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 	// _0C-_10 = MotionListener*
 	Game::Creature* mCreature;    // _10
 	CollPart* mCollPart;          // _14
-	u16 _18;                      // _18
+	u16 mAttackID;                // _18
 	ActStickAttack* mStickAttack; // _1C
 	ActApproachPos* mApproachPos; // _20
 	Sys::Sphere mAttackSphere;    // _24

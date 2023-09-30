@@ -31,7 +31,7 @@ FakePiki::FakePiki()
 	mPosition               = Vector3f(0.0f);
 	mSimVelocity            = Vector3f(0.0f);
 	mVelocity               = Vector3f(0.0f);
-	_1F0                    = Vector3f(0.0f);
+	mSimPosition            = Vector3f(0.0f);
 	mBoundAnimIdx           = IPikiAnims::NULLANIM;
 	mAnimSpeed              = 30.0f;
 	mCollTree               = new CollTree;
@@ -55,7 +55,7 @@ void FakePiki::initFakePiki()
 	mFaceDir                = 0.0f;
 	mPosition               = Vector3f(0.0f);
 	mVelocity               = Vector3f(0.0f);
-	_1F0                    = Vector3f(0.0f);
+	mSimPosition            = Vector3f(0.0f);
 	mSimVelocity            = Vector3f(0.0f);
 	mFakePikiBounceTriangle = nullptr;
 
@@ -200,7 +200,7 @@ void FakePiki::clearDoAnimCallback() { mDoAnimCallback = nullptr; }
  */
 void FakePiki::updateWalkAnimation()
 {
-	Vector3f sep   = Vector3f(mPosition.x - _238.x, 0.0f, mPosition.z - _238.z);
+	Vector3f sep   = Vector3f(mPosition.x - mPositionBeforeMovie.x, 0.0f, mPosition.z - mPositionBeforeMovie.z);
 	f32 updateTime = sys->mDeltaTime;
 	f32 animSpeed  = _lenVec(sep) / updateTime;
 
@@ -234,7 +234,7 @@ void FakePiki::updateWalkAnimation()
 	FakePiki* otherListener = nullptr;
 	f32 faceDir             = FABS(mFaceDir - mFaceDirOffset);
 	FakePikiParms* parms    = static_cast<FakePikiParms*>(mParms);
-	if (animSpeed < parms->mFakePikiParms._0E8.mValue) {
+	if (animSpeed < parms->mFakePikiParms.mStepStartSpeed.mValue) {
 		otherIdx  = IPikiAnims::WAIT;
 		animSpeed = 30.0f;
 		if (faceDir > 0.01f) {
@@ -242,30 +242,32 @@ void FakePiki::updateWalkAnimation()
 			otherIdx  = IPikiAnims::ASIBUMI;
 		}
 
-	} else if (animSpeed < parms->mFakePikiParms._110.mValue) {
+	} else if (animSpeed < parms->mFakePikiParms.mWalkStartSpeed.mValue) {
 		animSpeed = 30.0f;
 		otherIdx  = IPikiAnims::ASIBUMI;
 
-	} else if (animSpeed < parms->mFakePikiParms._138.mValue) {
-		f32 val       = animSpeed - parms->mFakePikiParms._110.mValue;
-		f32 diff      = parms->mFakePikiParms._138.mValue - parms->mFakePikiParms._110.mValue;
+	} else if (animSpeed < parms->mFakePikiParms.mRunStartSpeed.mValue) {
+		f32 val       = animSpeed - parms->mFakePikiParms.mWalkStartSpeed.mValue;
+		f32 diff      = parms->mFakePikiParms.mRunStartSpeed.mValue - parms->mFakePikiParms.mWalkStartSpeed.mValue;
 		otherListener = this;
 		otherIdx      = IPikiAnims::WALK;
 
-		animSpeed
-		    = (val / diff) * (parms->mFakePikiParms._188.mValue - parms->mFakePikiParms._1B0.mValue) + parms->mFakePikiParms._1B0.mValue;
+		animSpeed = (val / diff)
+		              * (parms->mFakePikiParms.mWalkPlaybackFrameCountMin.mValue - parms->mFakePikiParms.mWalkPlaybackFrameCountMax.mValue)
+		          + parms->mFakePikiParms.mWalkPlaybackFrameCountMax.mValue;
 
-	} else if (animSpeed < parms->mFakePikiParms._160.mValue) {
-		f32 val       = animSpeed - parms->mFakePikiParms._138.mValue;
-		f32 diff      = parms->mFakePikiParms._160.mValue - parms->mFakePikiParms._138.mValue;
+	} else if (animSpeed < parms->mFakePikiParms.mEscapeStartSpeed.mValue) {
+		f32 val       = animSpeed - parms->mFakePikiParms.mRunStartSpeed.mValue;
+		f32 diff      = parms->mFakePikiParms.mEscapeStartSpeed.mValue - parms->mFakePikiParms.mRunStartSpeed.mValue;
 		otherListener = this;
 		otherIdx      = IPikiAnims::RUN2;
 
-		animSpeed
-		    = (val / diff) * (parms->mFakePikiParms._200.mValue - parms->mFakePikiParms._1D8.mValue) + parms->mFakePikiParms._200.mValue;
+		animSpeed = (val / diff)
+		              * (parms->mFakePikiParms.mRunPlaybackFrameCountMax.mValue - parms->mFakePikiParms.mRunPlaybackFrameCountMin.mValue)
+		          + parms->mFakePikiParms.mRunPlaybackFrameCountMax.mValue;
 
 	} else {
-		animSpeed     = parms->mFakePikiParms._228.mValue;
+		animSpeed     = parms->mFakePikiParms.mEscapePlaybackFrameCountMin.mValue;
 		otherListener = this;
 		otherIdx      = IPikiAnims::NIGERU;
 	}
@@ -816,7 +818,7 @@ void FakePiki::startLookCreature(Creature* creature)
 			if (randPart) {
 				mLookAtTargetCreature = creature;
 				mLookAtPosition       = &randPart->mPosition;
-				_1A4                  = 0;
+				mLookAtTimer          = 0;
 				return;
 			}
 		}
@@ -857,7 +859,7 @@ void FakePiki::do_updateLookCreature() { }
 void FakePiki::finishLook()
 {
 	mLookAtPosition       = nullptr;
-	_1A4                  = 10;
+	mLookAtTimer          = 10;
 	mLookAtTargetCreature = nullptr;
 }
 
@@ -885,7 +887,7 @@ void FakePiki::updateLook()
 			mLookAtPosition = nullptr;
 			mNeckPhi        = 0.0f;
 			mNeckTheta      = 0.0f;
-			_1A4            = 0;
+			mLookAtTimer    = 0;
 		}
 		return;
 	}
@@ -950,13 +952,13 @@ void FakePiki::updateLook()
 		mNeckPhi = 5.0f * PI / 3.0f;
 	}
 
-	if (_1A4) {
-		_1A4--;
-		if (!_1A4) {
+	if (mLookAtTimer) {
+		mLookAtTimer--;
+		if (!mLookAtTimer) {
 			mLookAtPosition = nullptr;
 			mNeckPhi        = 0.0f;
 			mNeckTheta      = 0.0f;
-			_1A4            = 0;
+			mLookAtTimer    = 0;
 		}
 	}
 	/*
@@ -1293,7 +1295,7 @@ void FakePiki::moveVelocity()
 		}
 	}
 
-	Vector3f vec3 = (oldVelocity + _1F0) - mSimVelocity;
+	Vector3f vec3 = (oldVelocity + mSimPosition) - mSimVelocity;
 
 	_length2(vec3); // something's gotten commented out involving this
 

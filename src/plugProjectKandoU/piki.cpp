@@ -370,10 +370,10 @@ void Piki::movieStartDemoAnimation(SysShape::AnimInfo* animInfo)
  */
 void Piki::movieSetTranslation(Vector3f& position, f32 faceDir)
 {
-	mSimVelocity  = Vector3f(0.0f);
-	mVelocity     = Vector3f(0.0f);
-	mAcceleration = Vector3f(0.0f);
-	_238          = mPosition;
+	mSimVelocity         = Vector3f(0.0f);
+	mVelocity            = Vector3f(0.0f);
+	mAcceleration        = Vector3f(0.0f);
+	mPositionBeforeMovie = mPosition;
 	setPosition(position, false);
 	mFaceDir = faceDir;
 }
@@ -1482,7 +1482,7 @@ void Piki::do_updateLookCreature()
 		mLookAtPosition = nullptr;
 		mNeckPhi        = 0.0f;
 		mNeckTheta      = 0.0f;
-		_1A4            = 0;
+		mLookAtTimer    = 0;
 		return;
 	}
 

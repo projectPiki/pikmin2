@@ -74,7 +74,7 @@ static const char followFieldArgName[] = "FollowVectorFieldActionArg"; // delete
 void ActBreakGate::initStickAttack()
 {
 	u8 type = 1;
-	if (mGate->_27C == 1) {
+	if (mGate->mColor == 1) {
 		type = 2;
 	} else if (mGate->mIsElectric) {
 		type = 3;
