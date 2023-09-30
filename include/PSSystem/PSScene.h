@@ -92,6 +92,12 @@ inline Scene* checkChildScene(Scene* scene)
 	return scene->mChild;
 }
 
+inline void stopChildSeq(Scene* scene, int flag)
+{
+	P2ASSERTLINE(91, scene->mChild);
+	scene->mChild->stopAllSound(flag);
+}
+
 extern SceneMgr* spSceneMgr;
 } // namespace PSSystem
 

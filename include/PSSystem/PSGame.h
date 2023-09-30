@@ -6,6 +6,7 @@
 #include "PSSystem/PSScene.h"
 #include "PSSystem/Seq.h"
 #include "PSGame/SeMgr.h"
+#include "PSGame/SoundTable.h"
 
 // idk what else goes in this file (if anything? maybe this is in the PSGame folder??)
 // but these use the file name in the exception check so :shrug:
@@ -41,6 +42,13 @@ inline SeqBase* getSeqFromScene(Scene* scene, u32 id)
 	P2ASSERTLINE(487, seq);
 	return seq;
 }
+
+inline PSGame::SoundTable::SePerspInfo* getSoundCategoryInfo(PSGame::SoundTable::CategoryMgr* mgr, int id)
+{
+	P2ASSERTLINE(93, mgr->mPerspInfo[id]);
+	return mgr->mPerspInfo[id];
+}
+
 }; // namespace PSSystem
 
 #endif

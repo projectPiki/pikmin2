@@ -4,6 +4,8 @@
 #include "PSM/Scene.h"
 #include "PSSystem/PSGame.h"
 #include "PSM/ObjCalc.h"
+#include "PSSystem/PSMainSide_Scene.h"
+#include "PSSystem/PSSystemIF.h"
 
 static inline bool streq(const char* a, const char* b)
 {
@@ -135,8 +137,8 @@ Demo::Demo()
 {
 	_18               = 0;
 	mDoStartWithAudio = 1;
-	mSoundID          = (SoundID)-1;
-	mSystemSE         = (SoundID)-1;
+	mMovieStartSE     = (SoundID)-1;
+	mMovieEndSE       = (SoundID)-1;
 	mFuncptr          = nullptr;
 };
 
@@ -145,8 +147,39 @@ Demo::Demo()
  * Address:	80464044
  * Size:	00020C
  */
-void Demo::init(Vec*, Vec*, Mtx, PSM::DemoArg)
+void Demo::init(Vec* cam1pos, Vec* cam2pos, Mtx mtx, DemoArg arg)
 {
+	PSGame::SceneInfo* info = new PSGame::SceneInfo;
+	info->setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk1, PSGame::SceneInfo::SFBS_2);
+	info->mCameras      = 1;
+	info->mCam1Position = (Vector3f*)cam1pos;
+	info->mCam2Position = (Vector3f*)cam2pos;
+	info->mCameraMtx    = (Matrixf*)mtx;
+	info->mSceneType    = 255;
+
+	DemoArg demoarg       = arg;
+	u8 unk                = 255;
+	PSSystem::BgmSeq* seq = initiate(demoarg, &unk);
+	mCurrentDemoName      = new char[strlen(demoarg.mName) + 1];
+	strcpy(mCurrentDemoName, demoarg.mName);
+
+	Scene_Demo* scene = new Scene_Demo(unk, info);
+	P2ASSERTLINE(199, scene);
+
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene2 = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene2->adaptChildScene(scene);
+	P2ASSERTLINE(203, scene);
+
+	if (seq) {
+		scene->appendSeq(seq);
+	}
+
+	initDemoScene(arg, scene);
+	_18 = 1;
+	demo1stLoadSync();
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -308,77 +341,11 @@ lbl_80464210:
  */
 void Demo::demo1stLoadSync()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049D080@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049D080@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046428C
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046428C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_804642AC
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804642AC:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804642CC
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804642CC:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_804642F0
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804642F0:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80464310
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x5b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80464310:
-	lwz      r3, 4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	PSSystem::checkChildScene(scene);
+	scene->mChild->scene1stLoadSync();
 }
 
 /*
@@ -386,36 +353,12 @@ lbl_80464310:
  * Address:	8046433C
  * Size:	000048
  */
-void Demo::initDemoScene(PSM::DemoArg&, PSM::Scene_Demo*)
+void Demo::initDemoScene(PSM::DemoArg& arg, PSM::Scene_Demo* scene)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r6, lbl_8049D0DC@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	lwz      r3, 4(r4)
-	addi     r4, r6, lbl_8049D0DC@l
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80464370
-	li       r0, 1
-	stb      r0, 0x28(r31)
-
-lbl_80464370:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!strcmp(arg.mName, "s21_dayend_takeoff")) {
+		scene->mGate = 1; // offset is messed up?
+	}
 }
-
-const char* filler3 = "PSGame.h";
-const char* filler4 = "PSScene.h";
-const char* filler5 = "get sound scene at\ninvalid timming\n";
-const char* filler6 = "s21_dayend_takeoff";
 
 /*
  * --INFO--
@@ -592,10 +535,10 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	// clang-format on
 	{
 		mDoStartWithAudio = false;
-		mSoundID          = PSSE_EV_HOME_PELLET_BACUUM;
+		mMovieStartSE     = PSSE_EV_HOME_PELLET_BACUUM;
 	} else if (streq("g2F_appear_hole", init.mName)) { // change BGM in challenge mode when hole/fountain appear
-		mSoundID = PSSE_SY_WORK_FINISH;
-		mFuncptr = PSChangeBgm_ChallengeGame;
+		mMovieStartSE = PSSE_SY_WORK_FINISH;
+		mFuncptr      = PSChangeBgm_ChallengeGame;
 	} else if (streq("g30_appear_fountain", init.mName)) {
 		mFuncptr = PSChangeBgm_ChallengeGame;
 	} else if (streq("x20_blackman", init.mName) || streq("x03_find_red_onyon", init.mName)) {
@@ -603,20 +546,20 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	} else if (streq("s01_dayend", init.mName)) {
 		switch ((u32)demoArg.mCameraName) {
 		case 1:
-			mSoundID = PSSE_PL_DAYEND_KAISAN_LUI;
+			mMovieStartSE = PSSE_PL_DAYEND_KAISAN_LUI;
 			break;
 		case 2:
-			mSoundID = PSSE_PL_DAYEND_KAISAN_SHA;
+			mMovieStartSE = PSSE_PL_DAYEND_KAISAN_SHA;
 			break;
 		default:
 		case 0:
-			mSoundID = PSSE_PL_DAYEND_KAISAN_ORI;
+			mMovieStartSE = PSSE_PL_DAYEND_KAISAN_ORI;
 			break;
 		}
 	}
 
 	if (streq("x20_blackman", init.mName)) {
-		mSoundID = PSSE_EN_TIRE_FALL;
+		mMovieStartSE = PSSE_EN_TIRE_FALL;
 	}
 
 	if (AST_ID != -1) {
@@ -642,6 +585,22 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
  */
 Demo::~Demo()
 {
+	becomeSceneCamera();
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	PSSystem::checkChildScene(scene);
+
+	mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	mgr->deleteScene(scene);
+
+	delete mCurrentDemoName;
+
+	if (scene) {
+		scene->~Scene_Game();
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -768,6 +727,79 @@ lbl_80466294:
  */
 void Demo::onDemoTop()
 {
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	PSSystem::checkChildScene(scene);
+	scene->becomeSceneCamera();
+
+	ObjCalcBase* objcalc = PSSystem::SingletonBase<ObjCalcBase>::getInstance();
+	objcalc->setMode(ObjCalcBase::OBJCALC_1);
+
+	mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene->pauseOn_Demo();
+
+	mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	scene                     = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	PSSystem::EnvSeMgr* envse = scene->getEnvSe();
+	if (envse) {
+		envse->mReservator.mState = 0;
+	}
+
+	mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	PSSystem::checkGameScene(scene);
+	char* name = mCurrentDemoName;
+	envse      = scene->getEnvSe();
+	if (envse) {
+		if (!strcmp(name, "s01_dayend") || !strcmp(name, "s02_dayend_result") || !strcmp(name, "s04_dayend_orimadown")
+		    || !strcmp(name, "s05_pikminzero") || !strcmp(name, "s06_dayend_pikminzero") || !strcmp(name, "s09_holein")
+		    || !strcmp(name, "s0C_cv_escape") || !strcmp(name, "s12_cv_giveup") || !strcmp(name, "s21_dayend_takeoff")) {
+			envse->off();
+			if (scene->isCave() && !scene->isPollutUp()) {
+				envse->on(PSSE_EV_POLUTION_MIX01, true);
+				envse->on(PSSE_EV_POLUTION_MIX02, true);
+			}
+			envse->off(PSSE_MP_BIRD_NIGHT01_MIX, true);
+			envse->off(PSSE_MP_BIRD_NIGHT02_MIX, true);
+		} else {
+			scene->mSeqMgr.pauseOnAllSeq(PSSystem::SeqBase::MODE1);
+			if (envse) {
+				envse->setAllPauseFlag(2);
+			}
+		}
+	}
+
+	if (!strcmp(name, "x19_vs_bedama")) {
+		scene->mSeqMgr.stopAllSound(15);
+	} else if (!strcmp(name, "x06_join")) {
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(scene, 1);
+		P2ASSERTLINE(838, seq);
+		seq->stopSeq(5);
+	} else if (!strcmp(name, "x01_gamestart")) {
+		PSGame::SoundTable::CategoryMgr* cat              = PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::getInstance();
+		PSSystem::getSoundCategoryInfo(cat, 5)->mDisabled = true;
+		PSSystem::getSoundCategoryInfo(cat, 2)->mDisabled = true;
+	}
+
+	if (mMovieStartSE != 0xffffffff) {
+		PSSystem::spSysIF->playSystemSe(mMovieStartSE, 0);
+	}
+
+	PSSystem::checkChildScene(scene);
+	PSSystem::SeqBase* seq = scene->mChild->mSeqMgr.getFirstSeq();
+	if (seq && mDoStartWithAudio) {
+		PSSystem::checkChildScene(scene);
+		scene->mChild->startMainSeq();
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1289,6 +1321,13 @@ lbl_80466958:
  */
 void Demo::becomeSceneCamera()
 {
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene->becomeSceneCamera();
+
+	ObjCalcBase* objcalc = PSSystem::SingletonBase<ObjCalcBase>::getInstance();
+	objcalc->setMode(ObjCalcBase::OBJCALC_1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1369,83 +1408,12 @@ lbl_80466A40:
  * Address:	80466A70
  * Size:	0000FC
  */
-void Demo::onDemoFadeoutStart(unsigned long)
+void Demo::onDemoFadeoutStart(u32 flag)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, lbl_8049D080@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r3, lbl_8049D080@l
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80466AB4
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466AB4:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80466AD4
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466AD4:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80466AF4
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466AF4:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80466B18
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466B18:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80466B38
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x5b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466B38:
-	lwz      r3, 4(r30)
-	addi     r4, r29, -2
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	PSSystem::stopChildSeq(scene, flag - 2);
 }
 
 /*
@@ -1455,6 +1423,64 @@ lbl_80466B38:
  */
 void Demo::onDemoEnd()
 {
+	becomeSceneCamera();
+
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene->pauseOff_Demo();
+
+	mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	PSSystem::checkGameScene(scene);
+	char* name                = mCurrentDemoName;
+	PSSystem::EnvSeMgr* envse = scene->getEnvSe();
+	if (envse) {
+		if (!strcmp(name, "s01_dayend") || !strcmp(name, "s02_dayend_result") || !strcmp(name, "s04_dayend_orimadown")
+		    || !strcmp(name, "s05_pikminzero") || !strcmp(name, "s06_dayend_pikminzero") || !strcmp(name, "s09_holein")
+		    || !strcmp(name, "s0C_cv_escape") || !strcmp(name, "s12_cv_giveup") || !strcmp(name, "s21_dayend_takeoff")) {
+			envse->off();
+			if (scene->isCave() && !scene->isPollutUp()) {
+				envse->on(PSSE_EV_POLUTION_MIX01, true);
+				envse->on(PSSE_EV_POLUTION_MIX02, true);
+			}
+			envse->setAllPauseFlag(false);
+		} else {
+			envse->reservePauseOff();
+		}
+	}
+
+	if (!strcmp(name, "x06_join")) {
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		scene->startMainSeq();
+	} else if (!strcmp(name, "g03_meet_redpikmin")) {
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(scene, 1);
+		P2ASSERTLINE(839, seq);
+		seq->startSeq();
+	} else if (!strcmp(name, "x20_blackman")) {
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(scene, 1);
+		P2ASSERTLINE(838, seq);
+		seq->startSeq();
+	}
+	scene->mSeqMgr.reservePauseOffAllSeq();
+
+	if (mFuncptr) {
+		mFuncptr();
+	}
+
+	if (mMovieEndSE != 0xffffffff) {
+		PSSystem::spSysIF->playSystemSe(mMovieEndSE, 0);
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1947,196 +1973,28 @@ lbl_804671BC:
  * Address:	804671D0
  * Size:	000268
  */
-void Demo::onMessageEnd(int)
+void Demo::onMessageEnd(int id)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r30, 0x28(r3)
-	lis      r3, lbl_8049D080@ha
-	addi     r31, r3, lbl_8049D080@l
-	mr       r3, r30
-	addi     r4, r31, 0x580
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80467348
-	lwz      r0,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046722C
-	addi     r3, r31, 0x86c
-	addi     r5, r31, 0x14
-	li       r4, 0x89
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	char* name = mCurrentDemoName;
+	if (!strcmp(name, "x01_gamestart")) {
+		// Unmute enemies and pikmin after first text box of opening cutscene
+		PSGame::SoundTable::CategoryMgr* cat              = PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::getInstance();
+		PSSystem::getSoundCategoryInfo(cat, 5)->mDisabled = false;
+		PSSystem::getSoundCategoryInfo(cat, 2)->mDisabled = false;
 
-lbl_8046722C:
-	lwz      r30,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-	lwz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	bne      lbl_80467250
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x5d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80467250:
-	lwz      r3, 0x18(r30)
-	li       r0, 0
-	stb      r0, 0x15(r3)
-	lwz      r0, 0xc(r30)
-	cmplwi   r0, 0
-	bne      lbl_8046727C
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x5d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046727C:
-	lwz      r3, 0xc(r30)
-	li       r0, 0
-	stb      r0, 0x15(r3)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_804672A8
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804672A8:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_804672C8
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804672C8:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804672E8
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804672E8:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_8046730C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046730C:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_8046732C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x5a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046732C:
-	lwz      r3, 4(r30)
-	li       r4, 5
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046741C
-
-lbl_80467348:
-	mr       r3, r30
-	addi     r4, r31, 0x810
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8046741C
-	cmpwi    r29, 0
-	bne      lbl_8046741C
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80467384
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80467384:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_804673A4
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804673A4:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804673C4
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804673C4:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_804673E8
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804673E8:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80467408
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x5a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80467408:
-	lwz      r3, 4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046741C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		PSSystem::checkChildScene(scene);
+		scene->mChild->stopMainSeq(5);
+	} else if (!strcmp(name, "x03_find_red_onyon") && id == 0) {
+		// After the first text box of find red onion cutscene, let the music start playing
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		PSSystem::checkChildScene(scene);
+		scene->mChild->startMainSeq();
+	}
 }
 
 } // namespace PSM
@@ -2148,75 +2006,14 @@ lbl_8046741C:
  */
 void PSMCancelToPauseOffMainBgm()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049D080@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049D080@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80467474
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80467474:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80467494
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80467494:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804674B4
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804674B4:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_804674D8
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804674D8:
-	addi     r3, r30, 0x10
-	bl       cancelPauseOffAllSeq__Q28PSSystem6SeqMgrFv
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_80467504
-	li       r0, 0
-	sth      r0, 0x10(r3)
-
-lbl_80467504:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene->mSeqMgr.cancelPauseOffAllSeq();
+	PSSystem::EnvSeMgr* se = scene->getEnvSe();
+	if (se) {
+		se->mReservator.mState = 0;
+	}
 }
 
 /*
@@ -2226,107 +2023,9 @@ lbl_80467504:
  */
 PSM::Scene_Game* PSMGetGameSceneA()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049D080@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049D080@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80467558
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80467558:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80467578
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80467578:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80467598
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80467598:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_804675BC
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804675BC:
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_804675EC
-	addi     r3, r31, 0x858
-	addi     r5, r31, 0x14
-	li       r4, 0x177
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804675EC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	PSSystem::checkGameScene(scene);
+	return scene;
 }
-
-/*
- * --INFO--
- * Address:	80467608
- * Size:	000018
- */
-bool PSM::Scene_Cave::isPollutUp()
-{
-	return (mPollutUpTimer != -1);
-	/*
-	lwz      r4, 0x64(r3)
-	subfic   r3, r4, -1
-	addi     r0, r4, 1
-	or       r0, r3, r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80467620
- * Size:	000008
- */
-PSSystem::EnvSeBase* PSM::SceneBase::getEnvSe() { return nullptr; }
-
-/*
- * --INFO--
- * Address:	80467628
- * Size:	000008
- */
-void PSM::ObjCalcBase::setMode(PSM::ObjCalcBase::Mode mode) { mMode = mode; }

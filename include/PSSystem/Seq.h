@@ -93,7 +93,7 @@ struct SeqMgr : JSULink<SeqBase> {
 	void scene1st(TaskChecker*);
 	void findSeq(JASTrack*);
 	void getPlayingSeq(JASTrack*);
-	void getFirstSeq();
+	SeqBase* getFirstSeq();
 	void getFirstSeqA();
 	SeqBase* getSeq(u32);
 

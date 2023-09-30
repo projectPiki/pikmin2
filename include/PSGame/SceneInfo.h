@@ -19,6 +19,7 @@ struct SceneInfo {
 	enum FlagBitShift {
 		SFBS_0 = 0,
 		SFBS_1 = 1,
+		SFBS_2 = 2,
 	};
 
 	enum GameType {

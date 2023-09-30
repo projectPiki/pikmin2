@@ -11,11 +11,11 @@ struct ObjCalcBase : public PSSystem::SingletonBase<ObjCalcBase> {
 
 	enum Mode { OBJCALC_1, OBJCALC_2, OBJCALC_3 };
 
-	virtual ~ObjCalcBase() { }             // _08 (weak)
-	virtual u8 getPlayerNo(Creature*) = 0; // _0C
-	virtual u8 getPlayerNo(Vec&)      = 0; // _10
-	virtual void setMode(Mode);            // _14 (weak)
-	virtual bool is1PGame();               // _18 (weak)
+	virtual ~ObjCalcBase() { }                        // _08 (weak)
+	virtual u8 getPlayerNo(Creature*) = 0;            // _0C
+	virtual u8 getPlayerNo(Vec&)      = 0;            // _10
+	virtual void setMode(Mode mode) { mMode = mode; } // _14 (weak)
+	virtual bool is1PGame();                          // _18 (weak)
 
 	// _00 = VTBL
 	Mode mMode; // _04

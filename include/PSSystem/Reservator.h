@@ -8,14 +8,14 @@ struct SeqBase;
 
 struct Reservator {
 	inline Reservator()
-	    : _04(0)
+	    : mState(0)
 	{
 	}
 
 	virtual void reservatorTask() = 0; // _08
 
 	// VTBL _00
-	u16 _04; // _04
+	u16 mState; // _04
 };
 
 struct SeqPlayReservator : public Reservator {

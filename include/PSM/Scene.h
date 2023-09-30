@@ -24,18 +24,18 @@ struct ObjMgr;
 struct SceneBase : public PSGame::PikScene {
 	SceneBase(u8, PSGame::SceneInfo*);
 
-	virtual ~SceneBase();                        // _0C (weak)
-	virtual f32 getCamDistVol(u8) = 0;           // _28
-	virtual PSSystem::EnvSeBase* getEnvSe();     // _2C (weak)
-	virtual f32 getSceneFx();                    // _30
-	virtual bool isDemoScene();                  // _34 (weak)
-	virtual bool getSeSceneGate(ObjBase*, u32);  // _38 (weak)
-	virtual void becomeSceneCamera();            // _3C
-	virtual bool isGameScene() { return false; } // _40 (weak)
-	virtual void pauseOn_2D(u8, u8);             // _44
-	virtual void pauseOff_2D();                  // _48
-	virtual void pauseOn_Demo();                 // _4C
-	virtual void pauseOff_Demo();                // _50
+	virtual ~SceneBase();                                      // _0C (weak)
+	virtual f32 getCamDistVol(u8) = 0;                         // _28
+	virtual PSSystem::EnvSeMgr* getEnvSe() { return nullptr; } // _2C (weak)
+	virtual f32 getSceneFx();                                  // _30
+	virtual bool isDemoScene();                                // _34 (weak)
+	virtual bool getSeSceneGate(ObjBase*, u32);                // _38 (weak)
+	virtual void becomeSceneCamera();                          // _3C
+	virtual bool isGameScene() { return false; }               // _40 (weak)
+	virtual void pauseOn_2D(u8, u8);                           // _44
+	virtual void pauseOff_2D();                                // _48
+	virtual void pauseOn_Demo();                               // _4C
+	virtual void pauseOff_Demo();                              // _50
 
 	PSGame::SceneInfo* getSceneInfoA();
 
@@ -131,7 +131,7 @@ struct Scene_Game : public Scene_Objects {
 	virtual void startMainSeq();              // _1C
 	virtual void stopMainSeq(u32);            // _20
 	virtual void stopAllSound(u32);           // _24
-	virtual PSSystem::EnvSeBase* getEnvSe();  // _2C
+	virtual PSSystem::EnvSeMgr* getEnvSe();   // _2C
 	virtual bool isDemoScene();               // _34 (weak)
 	virtual bool isGameScene();               // _40 (weak)
 	virtual void pauseOn_2D(u8, u8);          // _44
@@ -193,18 +193,18 @@ struct Scene_Ground : public Scene_Game {
 struct Scene_Cave : public Scene_Game {
 	Scene_Cave(u8, PSGame::SceneInfo*);
 
-	virtual void init();                      // _08
-	virtual ~Scene_Cave();                    // _0C (weak)
-	virtual void exec();                      // _18
-	virtual void startMainSeq();              // _1C
-	virtual f32 getSceneFx();                 // _30
-	virtual bool isCave();                    // _58 (weak)
-	virtual void bossAppear(EnemyBoss*, u16); // _5C
-	virtual void bossKilled(EnemyBoss*);      // _60
-	virtual bool isBossFloor();               // _64
-	virtual bool akubiOK();                   // _68
-	virtual bool isPollutUp();                // _6C (weak)
-	virtual s32 getPollutUpTimer() const;     // _70 (weak)
+	virtual void init();                                         // _08
+	virtual ~Scene_Cave();                                       // _0C (weak)
+	virtual void exec();                                         // _18
+	virtual void startMainSeq();                                 // _1C
+	virtual f32 getSceneFx();                                    // _30
+	virtual bool isCave();                                       // _58 (weak)
+	virtual void bossAppear(EnemyBoss*, u16);                    // _5C
+	virtual void bossKilled(EnemyBoss*);                         // _60
+	virtual bool isBossFloor();                                  // _64
+	virtual bool akubiOK();                                      // _68
+	virtual bool isPollutUp() { return (mPollutUpTimer != -1); } // _6C (weak)
+	virtual s32 getPollutUpTimer() const;                        // _70 (weak)
 
 	void stopPollutionSe();
 	void startPollutUpSe();
@@ -273,8 +273,7 @@ struct Scene_Demo : public SceneBase {
 
 	// _00      = VTBL
 	// _00-_28  = SceneBase
-	u8 _28;      // _28, unknown
-	u8 _29[0x3]; // _29, unknown - possibly padding?
+	u8 mGate; // _28, unknown
 };
 
 } // namespace PSM
