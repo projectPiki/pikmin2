@@ -65,8 +65,11 @@ namespace Sys {
  * Address:	8041CEBC
  * Size:	000170
  */
-OBBTree* OBBTree::clone(Matrixf&)
+OBBTree* OBBTree::clone(Matrixf& mat)
 {
+	OBBTree* tree        = new OBBTree();
+	tree->mTriangleTable = mTriangleTable;
+	tree->mVertexTable   = new Sys::VertexTable();
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

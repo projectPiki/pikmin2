@@ -2,6 +2,7 @@
 #include "Sys/OBB.h"
 #include "Sys/OBBTree.h"
 #include "types.h"
+#include "Game/MapMgr.h"
 
 /*
     Generated from dpostproc
@@ -19,130 +20,57 @@ namespace Sys {
  * --INFO--
  * Address:	8041FFA8
  * Size:	0001C0
+ * TODO
  */
-void OBBTree::traceMove_new(Matrixf& p1, Matrixf& p2, Game::MoveInfo& moveInfo, float p4)
+void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::MoveInfo& moveInfo, float deltaTime)
 {
-	/*
-	stwu     r1, -0x130(r1)
-	mflr     r0
-	stw      r0, 0x134(r1)
-	stfd     f31, 0x120(r1)
-	psq_st   f31, 296(r1), 0, qr0
-	stmw     r27, 0x10c(r1)
-	li       r7, 0
-	lbz      r0, mTraceMoveOptLevel__Q24Game6MapMgr@sda21(r13)
-	stw      r7, 0x10(r1)
-	mr       r30, r6
-	cmplwi   r0, 2
-	mr       r27, r3
-	lwz      r31, 0(r6)
-	mr       r28, r4
-	mr       r29, r5
-	lfs      f31, 0xc(r31)
-	blt      lbl_80420060
-	lfs      f5, 0x120(r27)
-	addi     r3, r1, 0x58
-	addi     r4, r1, 0x48
-	stfs     f5, 0x58(r1)
-	lfs      f4, 0x124(r27)
-	stfs     f4, 0x5c(r1)
-	lfs      f3, 0x128(r27)
-	stfs     f3, 0x60(r1)
-	lfs      f0, 0x12c(r27)
-	stfs     f0, 0x64(r1)
-	lfs      f0, 0(r31)
-	stfs     f0, 0x48(r1)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x4c(r1)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x50(r1)
-	stfs     f31, 0x54(r1)
-	lfs      f2, 0x2c(r28)
-	lfs      f1, 0x1c(r28)
-	lfs      f0, 0xc(r28)
-	fadds    f2, f3, f2
-	fadds    f1, f4, f1
-	fadds    f0, f5, f0
-	stfs     f2, 0x60(r1)
-	stfs     f0, 0x58(r1)
-	stfs     f1, 0x5c(r1)
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8042014C
+	const float traceRadius = moveInfo.mTraceRadius;
 
-lbl_80420060:
-	mr       r3, r29
-	mr       r4, r31
-	addi     r5, r1, 0x2c
-	bl       PSMTXMultVec
-	lfs      f1, 0x30(r1)
-	lfs      f2, 0x34(r1)
-	lfs      f0, 0x2c(r1)
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f2, 8(r31)
-	lfs      f0, 0(r31)
-	lbz      r0, mTraceMoveOptLevel__Q24Game6MapMgr@sda21(r13)
-	stfs     f0, 0x38(r1)
-	cmplwi   r0, 2
-	lfs      f0, 4(r31)
-	stfs     f0, 0x3c(r1)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x40(r1)
-	stfs     f31, 0x44(r1)
-	bge      lbl_804200F0
-	addi     r3, r27, 0x120
-	addi     r4, r1, 0x38
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_804200F0
-	mr       r3, r28
-	mr       r4, r31
-	addi     r5, r1, 0x20
-	bl       PSMTXMultVec
-	lfs      f1, 0x24(r1)
-	lfs      f2, 0x28(r1)
-	lfs      f0, 0x20(r1)
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f2, 8(r31)
-	b        lbl_8042014C
+	// Check if advanced trace optimization is enabled
+	if (Game::MapMgr::mTraceMoveOptLevel >= 2) {
+		// Create a sphere representing the trace movement
+		Sphere traceSphere  = *moveInfo.mVelocity;
+		traceSphere.mRadius = traceRadius;
 
-lbl_804200F0:
-	addi     r3, r1, 0x68
-	addi     r0, r1, 0xa8
-	stw      r3, 8(r1)
-	mr       r4, r30
-	mr       r7, r28
-	mr       r8, r29
-	stw      r0, 0xc(r1)
-	addi     r3, r27, 0x20
-	addi     r9, r1, 0x10
-	addi     r10, r1, 0x88
-	lwz      r5, 0x18(r27)
-	lwz      r6, 0x1c(r27)
-	bl
-"traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
-	mr       r3, r28
-	mr       r4, r31
-	addi     r5, r1, 0x14
-	bl       PSMTXMultVec
-	lfs      f1, 0x18(r1)
-	lfs      f2, 0x1c(r1)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f2, 8(r31)
+		Vector3f pos = mRoot.mSphere.mPosition + startMatrix.getPosition();
 
-lbl_8042014C:
-	psq_l    f31, 296(r1), 0, qr0
-	lfd      f31, 0x120(r1)
-	lmw      r27, 0x10c(r1)
-	lwz      r0, 0x134(r1)
-	mtlr     r0
-	addi     r1, r1, 0x130
-	blr
-	*/
+		// Create a sphere representing the root sphere in the transformed space
+		Sphere rootSphere(pos, mRoot.mSphere.mRadius);
+
+		// If there's no intersection between the two spheres, return early
+		if (!rootSphere.intersect(traceSphere)) {
+			return;
+		}
+	}
+
+	// Create a sphere representing the hit sphere
+	Sphere hitSphere(*moveInfo.mVelocity, traceRadius);
+
+	// Check if advanced trace optimization is enabled or if there's an intersection with the root sphere
+	if (Game::MapMgr::mTraceMoveOptLevel >= 2u || mRoot.mSphere.intersect(hitSphere)) {
+		int hitCount = 0;
+		Sys::Triangle* resultTriangle;
+		float hitDistance;
+		Vector3f hitPosition;
+
+		// Perform the trace movement using the root node
+		mRoot.traceMove_new(moveInfo, *mVertexTable, *mTriangleTable, startMatrix, endMatrix, hitCount, &resultTriangle, &hitDistance,
+		                    &hitPosition);
+
+		// Transform the velocity vector using the view matrix of the start matrix
+		Vector3f transformedVelocity;
+		PSMTXMultVec(startMatrix.mMatrix.mtxView, (Vec*)moveInfo.mVelocity, (Vec*)&transformedVelocity);
+
+		// Update the velocity with the transformed value
+		*moveInfo.mVelocity = transformedVelocity;
+	} else {
+		// Transform the velocity vector using the view matrix of the start matrix
+		Vector3f transformedVelocity;
+		PSMTXMultVec(startMatrix.mMatrix.mtxView, (Vec*)moveInfo.mVelocity, (Vec*)&transformedVelocity);
+
+		// Update the velocity with the transformed value
+		*moveInfo.mVelocity = transformedVelocity;
+	}
 }
 
 /*

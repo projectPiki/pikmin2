@@ -35,6 +35,7 @@ struct MapMgr : virtual public GenericObjectMgr {
 	};
 
 	static bool traceMoveDebug;
+	static u8 mTraceMoveOptLevel;
 
 	MapMgr();
 

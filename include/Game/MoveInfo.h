@@ -20,7 +20,7 @@ struct MoveInfo {
 	inline MoveInfo(Sys::Sphere* sphere, Vector3f* vec, f32 a)
 	    : _00(sphere)
 	    , mVelocity(vec)
-	    , _08(a)
+	    , mTraceRadius(a)
 	{
 		_0C             = 0.0f;
 		_10             = nullptr;
@@ -41,7 +41,7 @@ struct MoveInfo {
 
 	Sys::Sphere* _00;                                  // _00
 	Vector3f* mVelocity;                               // _04
-	f32 _08;                                           // _08
+	f32 mTraceRadius;                                  // _08
 	f32 _0C;                                           // _0C
 	Delegate2<DynCreature, Vector3f&, Vector3f&>* _10; // _10
 	Creature* mInfoOrigin;                             // _14
