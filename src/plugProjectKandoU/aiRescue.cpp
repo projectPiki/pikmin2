@@ -67,23 +67,19 @@ int ActRescue::exec()
  * Address:	........
  * Size:	0000C0
  */
-int ActRescue::checkPikmin()
+ActionExitCode ActRescue::checkPikmin()
 {
 	if (!mTargetPiki->isAlive()) {
 		return ACTEXEC_Fail;
-	} else {
-		int state = mTargetPiki->getStateID();
-		if (state != Game::PIKISTATE_WaterHanged && state != Game::PIKISTATE_Drown && !mTargetPiki->inWater()) {
-			return 0;
-		} else {
-			if (state == Game::PIKISTATE_WaterHanged
-			    && static_cast<Game::PikiWaterHangedState*>(mTargetPiki->mCurrentState)->mPiki != mParent) {
-				return 0;
-			} else {
-				return 1;
-			}
-		}
 	}
+	int state = mTargetPiki->getStateID();
+	if (state != Game::PIKISTATE_WaterHanged && state != Game::PIKISTATE_Drown && !mTargetPiki->inWater()) {
+		return ACTEXEC_Success;
+	}
+	if (state == Game::PIKISTATE_WaterHanged && static_cast<Game::PikiWaterHangedState*>(mTargetPiki->mCurrentState)->mPiki != mParent) {
+		return ACTEXEC_Success;
+	}
+	return ACTEXEC_Continue;
 }
 
 /*
@@ -106,119 +102,22 @@ void ActRescue::initApproach()
  */
 int ActRescue::execApproach()
 {
-	int ret = checkPikmin();
+	ActionExitCode ret = checkPikmin();
 	switch (ret) {
-	case 1:
+	case ACTEXEC_Continue: {
 		Vector3f pos            = mTargetPiki->getPosition();
 		mApproachPos->mPosition = pos;
-		int state               = mApproachPos->exec();
-		if (state == 0) {
+		ret                     = static_cast<ActionExitCode>(mApproachPos->exec());
+		if (ret == ACTEXEC_Success) {
 			initGo();
-		} else if (state == 2) {
-			ret = ACTEXEC_Fail;
-		} else {
-			ret = ACTEXEC_Continue;
+		} else if (ret == ACTEXEC_Fail) {
+			return ACTEXEC_Fail;
 		}
-		break;
+		return ACTEXEC_Continue;
 	}
-	return ret;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r3, 0x1c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80239174
-	li       r3, 2
-	b        lbl_802391E0
-
-lbl_80239174:
-	lwz      r3, 0x1c(r30)
-	bl       getStateID__Q24Game4PikiFv
-	mr       r31, r3
-	cmpwi    r31, 5
-	beq      lbl_802391B4
-	cmpwi    r31, 0xa
-	beq      lbl_802391B4
-	lwz      r3, 0x1c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802391B4
-	li       r3, 0
-	b        lbl_802391E0
-
-lbl_802391B4:
-	cmpwi    r31, 5
-	bne      lbl_802391DC
-	lwz      r3, 0x1c(r30)
-	lwz      r0, 4(r30)
-	lwz      r3, 0x290(r3)
-	lwz      r3, 0x14(r3)
-	cmplw    r3, r0
-	beq      lbl_802391DC
-	li       r3, 0
-	b        lbl_802391E0
-
-lbl_802391DC:
-	li       r3, 1
-
-lbl_802391E0:
-	cmpwi    r3, 1
-	beq      lbl_802391EC
-	b        lbl_8023925C
-
-lbl_802391EC:
-	lwz      r4, 0x1c(r30)
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	lfs      f2, 0x10(r1)
-	lwz      r3, 0x18(r30)
-	lfs      f0, 8(r1)
-	stfs     f0, 0x10(r3)
-	stfs     f1, 0x14(r3)
-	stfs     f2, 0x18(r3)
-	lwz      r3, 0x18(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_80239248
-	mr       r3, r30
-	bl       initGo__Q26PikiAI9ActRescueFv
-	b        lbl_80239258
-
-lbl_80239248:
-	cmpwi    r3, 2
-	bne      lbl_80239258
-	li       r3, 2
-	b        lbl_8023925C
-
-lbl_80239258:
-	li       r3, 1
-
-lbl_8023925C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	default:
+		return ret;
+	}
 }
 
 /*
@@ -249,14 +148,14 @@ void ActRescue::initGo()
  */
 int ActRescue::execGo()
 {
-	int ret = checkPikmin();
+	ActionExitCode ret = checkPikmin();
 	switch (ret) {
-	case 1:
+	case ACTEXEC_Continue:
 		if (!mWayPoint) {
 			ret = ACTEXEC_Fail;
 		} else {
-			ret = mApproachPos->exec();
-			if (!mTimeLimit--) {
+			ret = static_cast<ActionExitCode>(mApproachPos->exec());
+			if (!--mTimeLimit) {
 				ret = ACTEXEC_Success;
 			}
 
@@ -268,153 +167,17 @@ int ActRescue::execGo()
 
 			SysShape::Joint* jnt = mParent->mModel->getJoint("rhandjnt");
 			P2ASSERTLINE(220, jnt);
-			Vector3f mod(0.0f, 3.0f, 0.0f);
+			Vector3f mod(3.0f, 0.0f, 0.0f);
 			Matrixf* mtx = jnt->getWorldMatrix();
 			Vec pos;
 			PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&mod, &pos);
-			Vector3f newpos(pos.x, pos.y, pos.z);
-			mTargetPiki->setPosition(newpos, false);
+			mod = pos;
+			mTargetPiki->setPosition(mod, false);
 			ret = ACTEXEC_Continue;
 		}
 		break;
 	}
 	return ret;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, lbl_80483CD0@ha
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r4, lbl_80483CD0@l
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	stw      r29, 0x24(r1)
-	lwz      r3, 0x1c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8023940C
-	li       r3, 2
-	b        lbl_80239478
-
-lbl_8023940C:
-	lwz      r3, 0x1c(r30)
-	bl       getStateID__Q24Game4PikiFv
-	mr       r29, r3
-	cmpwi    r29, 5
-	beq      lbl_8023944C
-	cmpwi    r29, 0xa
-	beq      lbl_8023944C
-	lwz      r3, 0x1c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8023944C
-	li       r3, 0
-	b        lbl_80239478
-
-lbl_8023944C:
-	cmpwi    r29, 5
-	bne      lbl_80239474
-	lwz      r3, 0x1c(r30)
-	lwz      r0, 4(r30)
-	lwz      r3, 0x290(r3)
-	lwz      r3, 0x14(r3)
-	cmplw    r3, r0
-	beq      lbl_80239474
-	li       r3, 0
-	b        lbl_80239478
-
-lbl_80239474:
-	li       r3, 1
-
-lbl_80239478:
-	cmpwi    r3, 1
-	beq      lbl_80239484
-	b        lbl_80239568
-
-lbl_80239484:
-	lwz      r0, 0x20(r30)
-	cmplwi   r0, 0
-	bne      lbl_80239498
-	li       r3, 2
-	b        lbl_80239568
-
-lbl_80239498:
-	lwz      r3, 0x18(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lbz      r4, 0x24(r30)
-	addi     r4, r4, -1
-	clrlwi.  r0, r4, 0x18
-	stb      r4, 0x24(r30)
-	bne      lbl_802394C4
-	li       r3, 0
-
-lbl_802394C4:
-	cmpwi    r3, 0
-	bne      lbl_802394D8
-	mr       r3, r30
-	bl       initThrow__Q26PikiAI9ActRescueFv
-	b        lbl_802394E8
-
-lbl_802394D8:
-	cmpwi    r3, 2
-	bne      lbl_802394E8
-	li       r3, 2
-	b        lbl_80239568
-
-lbl_802394E8:
-	lwz      r3, 4(r30)
-	addi     r4, r31, 0x28
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	or.      r29, r3, r3
-	bne      lbl_80239514
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0xdc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80239514:
-	lfs      f0, lbl_8051A508@sda21(r2)
-	mr       r3, r29
-	lfs      f1, lbl_8051A504@sda21(r2)
-	stfs     f0, 0x18(r1)
-	stfs     f1, 0x14(r1)
-	stfs     f0, 0x1c(r1)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	addi     r4, r1, 0x14
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f2, 8(r1)
-	addi     r4, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r5, 0
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 0x1c(r30)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	li       r3, 1
-
-lbl_80239568:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
