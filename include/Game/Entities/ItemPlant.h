@@ -195,7 +195,7 @@ struct ProcAnimator {
 	ProcAnimator();
 
 	void calcAngles();
-	void update(f32, f32);
+	void update(f32 faceDir, f32 p2);
 
 	// unused/inlined
 	void create(int count);
@@ -206,15 +206,15 @@ struct ProcAnimator {
 	void force(f32);
 	void draw(Graphics& gfx);
 
-	Vector3f _00;  // _00
-	Matrixf** _0C; // _0C, array of mMaxCount Matrixf ptrs
-	Matrixf* _10;  // _10, array of mMaxCount Matrixfs
-	f32* _14;      // _14, array of size mMaxCount
-	f32* _18;      // _18, array of size mMaxCount
-	f32* _1C;      // _1C, array of size mMaxCount
-	int mMaxCount; // _20, set to 4
-	f32 _24;       // _24
-	f32 _28;       // _28
+	Vector3f mPosition;  // _00, translation of mMatrices[0]
+	Matrixf** mMatrices; // _0C, array of mMaxCount Matrixf ptrs
+	Matrixf* _10;        // _10, array of mMaxCount Matrixfs
+	f32* mAngle;         // _14, array of size mMaxCount
+	f32* mXRot;          // _18, array of size mMaxCount
+	f32* mYDist;         // _1C, array of size mMaxCount
+	int mMaxCount;       // _20, set to 4
+	f32 _24;             // _24
+	f32 _28;             // _28
 };
 
 struct Item : public FSMItem<Item, FSM, State> {

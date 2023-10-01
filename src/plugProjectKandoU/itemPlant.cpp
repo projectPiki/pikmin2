@@ -1,11 +1,15 @@
 #include "Game/Entities/ItemPlant.h"
 #include "Game/Farm.h"
 #include "Game/Stickers.h"
+
 #include "efx/TTsuyuGrow.h"
 #include "efx/TFruitsDown.h"
+
 #include "PSM/EventBase.h"
 #include "PSM/Tsuyukusa.h"
+
 #include "JSystem/J3D/J3DAnmLoader.h"
+
 #include "Dolphin/rand.h"
 
 namespace Game {
@@ -55,7 +59,7 @@ void NormalState::init(Item* item, StateArg* stateArg) { item->startMotion(PLANT
 /**
  * Normal (default) state loop. Advances grow timer and executes behaviour based on current growth size.
  * Will transition to GrowUp from small or medium size if growth timer hits threshold.
- * Will bear fruit and reset timer if large and growth timer hits threshold.
+ * Will restock berries and reset timer if large and growth timer hits restock threshold.
  * Will lock timer to 0 if under mold.
  *
  * @param item Item acted on by state machine.
@@ -686,7 +690,7 @@ void Item::addDamage(f32 damage)
 ProcAnimator::ProcAnimator()
 {
 	mMaxCount = 0;
-	_0C       = nullptr;
+	mMatrices = nullptr;
 	_24       = 0.0f;
 	_28       = 0.0f;
 }
@@ -703,17 +707,17 @@ ProcAnimator::ProcAnimator()
 void ProcAnimator::create(int count)
 {
 	mMaxCount = count;
-	_0C       = new Matrixf*[count];
+	mMatrices = new Matrixf*[count];
 	_10       = new Matrixf[count];
-	_14       = new f32[count];
-	_18       = new f32[count];
-	_1C       = new f32[count];
+	mAngle    = new f32[count];
+	mXRot     = new f32[count];
+	mYDist    = new f32[count];
 
 	for (int i = 0; i < count; i++) {
-		_0C[i] = nullptr;
-		_14[i] = 0.0f;
-		_18[i] = 0.0f;
-		_1C[i] = 0.0f;
+		mMatrices[i] = nullptr;
+		mAngle[i]    = 0.0f;
+		mXRot[i]     = 0.0f;
+		mYDist[i]    = 0.0f;
 		PSMTXIdentity(_10[i].mMatrix.mtxView);
 	}
 }
@@ -727,50 +731,77 @@ void ProcAnimator::create(int count)
  * @throws Panics if index provided is >= `mMaxCount` (outside array size).
  *
  * @note Address: ........
- * @note Size: 0x88
+ * @note Size: 0x74 (should be 0x88 but matches when inlined)
  */
 void ProcAnimator::setMatrix(int idx, Matrixf* mtx)
 {
 	P2ASSERTLINE(663, mMaxCount > idx);
-	_0C[idx] = mtx;
+	mMatrices[idx] = mtx;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
+/**
+ * Educated guess based on `setMatrix` - unused.
+ *
+ * @param idx Index of angle to set, between 0 and (`mMaxCount` - 1).
+ * @param angle Angle value to set.
+ *
+ * @throws Panics if index provided is >= `mMaxCount` (outside array size).
+ *
+ * @note UNUSED
+ * @note Address: ........
+ * @note Size: 0x74 (should be 0x88)
  */
-void ProcAnimator::setAngle(int, f32) { }
+void ProcAnimator::setAngle(int idx, f32 angle)
+{
+	P2ASSERTLINE(670, mMaxCount > idx); // line number is a guess
+	mAngle[idx] = angle;
+}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * Educated guess based on `setAngle` - unused.
+ *
+ * @param idx Index of angle to get, between 0 and (`mMaxCount` - 1).
+ *
+ * @returns Angle of given index.
+ *
+ * @throws Panics if index provided is >= `mMaxCount` (outside array size).
+ *
+ * @note UNUSED
+ * @note Address: ........
+ * @note Size: 0x68 (should be 0x7C)
  */
-f32 ProcAnimator::getAngle(int) { }
+f32 ProcAnimator::getAngle(int idx)
+{
+	P2ASSERTLINE(680, mMaxCount > idx);
+	return mAngle[idx];
+}
 
-/*
- * --INFO--
- * Address:	801DDD28
- * Size:	000318
+/**
+ * Calcs each x-rotation and angle based on current matrices.
+ * Also sets `mPosition` to translation of base matrix (index 0).
+ * `mAngle` is calculated based on vertical separation from current index to next.
+ * `mXRot` is calculated based on y-component of x-rotation basis vector (possibly needs better name).
+ *
+ * @note Address: 801DDD28
+ * @note Size: 0x318
  */
 void ProcAnimator::calcAngles()
 {
 	Vector3f lastPos;
-	_0C[0]->getTranslation(lastPos);
-	_00 = lastPos;
+	mMatrices[0]->getTranslation(lastPos);
+	mPosition = lastPos;
 
 	for (int i = 1; i < mMaxCount; i++) {
-		Matrixf* currMat = _0C[i];
-		Vector3f pos1;
-		currMat->getTranslation(pos1);
-		Vector3f sep = pos1 - lastPos;
+		Matrixf* currMat = mMatrices[i];
+		Vector3f thisPos;
+		currMat->getTranslation(thisPos);
+		Vector3f sep = thisPos - lastPos;
 		f32 dist     = sep.length();
 		if (dist > 0.0f) {
 			sep.y *= 1.0f / dist;
 		}
 
-		lastPos = pos1;
+		lastPos = thisPos;
 
 		if (sep.y < -1.0f) {
 			sep.y = -1.0f;
@@ -779,8 +810,8 @@ void ProcAnimator::calcAngles()
 		}
 
 		f32 aCosY = pikmin2_acos(sep.y);
-		_14[i]    = aCosY;
-		_18[i]    = aCosY;
+		mAngle[i] = aCosY;
+		mXRot[i]  = aCosY;
 
 		Vector3f posX = currMat->getBasis(0);
 		f32 xLen      = posX.length();
@@ -794,55 +825,70 @@ void ProcAnimator::calcAngles()
 			posX.y = 1.0f;
 		}
 
-		f32 aCosX = pikmin2_acos(posX.y);
-		_14[i]    = aCosX;
+		mAngle[i] = pikmin2_acos(posX.y);
 	}
 
-	_14[0] = 0.0f;
+	mAngle[0] = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
+/**
+ * Updates `mYDist` based on current matrices (probably needs better name).
+ * Stripped, but educated guess says it's used in `update` and `Plant::onInit`.
+ * Has regswaps currently.
+ *
+ * @note NON-MATCHING
+ * @note Address: ........
+ * @note Size: 0x9C
  */
 void ProcAnimator::calcDists()
 {
-	Vector3f pos;
-	Matrixf* mat0 = _0C[0];
-	pos.x         = mat0->mMatrix.structView.tx;
-	pos.y         = mat0->mMatrix.structView.ty;
-	pos.z         = mat0->mMatrix.structView.tz;
+	Vector3f lastPos;
+	Matrixf* mat0 = mMatrices[0];
+	lastPos.x     = mat0->mMatrix.structView.tx;
+	lastPos.y     = mat0->mMatrix.structView.ty;
+	lastPos.z     = mat0->mMatrix.structView.tz;
 
 	for (int i = 1; i < mMaxCount; i++) {
-		Matrixf* mat = _0C[i];
+		Matrixf* mat = mMatrices[i];
 		Vector3f newPos;
-		newPos.x     = mat->mMatrix.structView.tx;
-		newPos.y     = mat->mMatrix.structView.ty;
-		newPos.z     = mat->mMatrix.structView.tz;
-		Vector3f sep = pos - newPos;
-		pos          = newPos;
-		_1C[i]       = sep.length();
+		newPos.x = mat->mMatrix.structView.tx;
+		newPos.y = mat->mMatrix.structView.ty;
+		newPos.z = mat->mMatrix.structView.tz;
+
+		Vector3f sep = newPos - lastPos;
+		lastPos      = newPos;
+		mYDist[i]    = sep.length();
 	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
+/**
+ * Stripped. Unknown if used or not.
+ *
+ * @note Address: ........
+ * @note Size: 0x30
  */
 void ProcAnimator::force(f32) { }
 
-/*
- * --INFO--
- * Address:	801DE040
- * Size:	0004E4
+/**
+ * Updates angle variables (`_24` and `_28`) and each matrix (aside from base matrix at index 0).
+ * Matrices are reconstructed based on current angle and some calculated offset.
+ *
+ * @param faceDir Direction parent plant is facing.
+ * @param p2 Unknown, seems to increase rate at which angles advance.
+ *
+ * @note NON-MATCHING
+ * @note Address: 801DE040
+ * @note Size: 0x4E4
  */
-void ProcAnimator::update(f32 p1, f32 p2)
+void ProcAnimator::update(f32 faceDir, f32 p2)
 {
+	f32 x         = 80.0f;
+	f32 factor    = 1.0f * x; // this has gotta be part of an inline to actually multiply by 1.0f
+	factor        = -factor;
+	f32 p3        = x * p2;
 	f32 frameRate = sys->mDeltaTime;
-	_28 += ((_24 * -80.0f - _28 * 1.6f) + p2 * 80.0f) * frameRate;
-	_24 += _28 * frameRate;
+	_28 += ((_24 * factor - _28 * 1.6f) + p3) * frameRate;
+	_24 += frameRate * _28;
 
 	if (_24 > TORADIANS(40.0f)) {
 		_24 = TORADIANS(40.0f);
@@ -850,27 +896,61 @@ void ProcAnimator::update(f32 p1, f32 p2)
 		_24 = TORADIANS(-30.0f);
 	}
 
-	Matrixf mat;
-	Vector3f rot(0.0f, p1, 0.0f);
-	mat.makeTR(Vector3f::zero, rot);
+	Matrixf originMat;                  // 0xBC
+	Vector3f rot1(0.0f, faceDir, 0.0f); // 0x80
+	originMat.makeTR(Vector3f::zero, rot1);
 
 	calcAngles();
-	calcDists();
+	calcDists(); // regswaps here
 
-	Vector3f pos = _00;
+	Vector3f pos = mPosition; // 0x74
+
 	for (int i = 1; i < mMaxCount; i++) {
-		Matrixf* currMat = _0C[i];
-		f32 val          = (i == 1) ? 0.1f : (i == 2) ? 0.5f : 1.0f;
+		Matrixf* currMat = mMatrices[i];
+		f32 angleFactor;
+		if (i == 1) {
+			angleFactor = 0.1f;
+		} else if (i == 2) {
+			angleFactor = 0.5f;
+		} else {
+			angleFactor = 1.0f;
+		}
+		f32 angleOffset = _24 * angleFactor;
 
-		f32 val2 = val * _24;
-		Matrixf mat;
-		Vector3f vec(0.0f, _1C[i], 0.0f);
-		Vector3f rot(val2 + _18[i], p1, 0.0f);
-		mat.makeTR(pos, rot);
+		Matrixf mat;                         // 0x8C
+		f32 theta = mAngle[i] + angleOffset; // f29
 
-		vec = mat.mtxMult(vec);
+		Vector3f newPos; // 0x68
+		newPos.x = 0.0f;
+		newPos.y = mYDist[i];
+		newPos.z = 0.0f;
 
-		// yikes.
+		Vector3f rot; // 0x5C
+		rot.x = mXRot[i] + angleOffset;
+		rot.y = faceDir;
+		rot.z = 0.0f;
+
+		mat.makeTR(pos, rot); // 0x8C, 0x74, 0x5C
+
+		newPos = mat.mtxMult(newPos); // 0x8C, 0x68, (0x2C) -> 0x68
+		pos    = newPos;              // 0x68 -> 0x74
+
+		currMat->setTranslation(newPos); // 0x68 -> 0x74
+
+		Vector3f posX = currMat->getBasis(0);
+		f32 scale     = posX.length(); // f2
+
+		Vector3f xVec = Vector3f(0.0f, scale * pikmin2_cosf(theta), scale * pikmin2_sinf(theta));  // 0x50
+		Vector3f yVec = Vector3f(0.0f, scale * -pikmin2_sinf(theta), scale * pikmin2_cosf(theta)); // 0x44
+		Vector3f zVec = Vector3f(scale, 0.0f, 0.0f);                                               // 0x38
+
+		xVec = originMat.mtxMult(xVec); // 0xBC, 0x50, (0x20) -> (0x50)
+		yVec = originMat.mtxMult(yVec); // 0xBC, 0x44, (0x14) -> (0x44)
+		zVec = originMat.mtxMult(zVec); // 0xBC, 0x38, (0x8)  -> (0x38)
+
+		currMat->setBasis(0, xVec); // 0x50
+		currMat->setBasis(1, yVec); // 0x44
+		currMat->setBasis(2, zVec); // 0x38
 	}
 	/*
 	stwu     r1, -0x180(r1)
@@ -1227,17 +1307,28 @@ lbl_801DE4E4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
+/**
+ * Unused. Needed to put 20.0f into sdata2 in the right spot though.
+ *
+ * @note UNUSED
+ * @note Address:	........
+ * @note Size:	0xC (should be 0x7C)
  */
-void ProcAnimator::draw(Graphics& gfx) { }
+void ProcAnimator::draw(Graphics& gfx)
+{
+	_24 = 20.0f; // need to use this float value somewhere before updateBoundSphere
+}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
+/****************************
+ * PLANT OBJECT DEFINITIONS *
+ ****************************/
+
+/**
+ * Constructor for (actual) Plant class. Instantiates base class and sets mass to 0.
+ * Stripped, but used later in file.
+ *
+ * @note Address: ........
+ * @note Size: 0x10C
  */
 Plant::Plant()
     : Item(OBJTYPE_Plant)
@@ -1245,17 +1336,25 @@ Plant::Plant()
 	mMass = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	801DE524
- * Size:	000034
+/**
+ * Kill handler. Also kills instance in global manager.
+ *
+ * @param killArg Unused.
+ *
+ * @note Address: 801DE524
+ * @note Size: 0x34
  */
 void Plant::onKill(CreatureKillArg* killArg) { mgr->kill(this); }
 
-/*
- * --INFO--
- * Address:	801DE558
- * Size:	000038
+/**
+ * Finds fruit (pellet) nearest given position.
+ *
+ * @param pos Position to find fruit closest to.
+ *
+ * @returns Pellet of nearest fruit if found, or nullptr if not.
+ *
+ * @note Address: 801DE558
+ * @note Size: 0x38
  */
 Pellet* Plant::getNearestFruit(Vector3f& pos)
 {
@@ -1267,10 +1366,11 @@ Pellet* Plant::getNearestFruit(Vector3f& pos)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801DE590
- * Size:	000024
+/**
+ * Updates bounding sphere. Sets center of sphere to current position, and radius to 400.
+ *
+ * @note Address: 801DE590
+ * @note Size: 0x24
  */
 void Plant::updateBoundSphere()
 {
@@ -1278,8 +1378,10 @@ void Plant::updateBoundSphere()
 	mBoundingSphere.mRadius   = 400.0f;
 }
 
-/*
- * --INFO--
+/**
+ * Displays debug information above plant. Debug information to display is the ratio used in updating ProcAnimator,
+ * which combines stuck Pikmin count and number of berries. Also displays angle-updating values of ProcAnimator.
+ *
  * Address:	801DE5B4
  * Size:	0001E0
  */
@@ -1300,10 +1402,18 @@ void Plant::doDirectDraw(Graphics& gfx)
 	gfx.perspPrintf(printInfo, pos, "%.1f %.1f", mProcAnimator._24, mProcAnimator._28);
 }
 
-/*
- * --INFO--
- * Address:	801DE794
- * Size:	000778
+/**
+ * Initializes actual Plant class. Sets to alive, resets growth timer, damage, face direction and sticker count.
+ * Starts as small size. Sets up model and collision tube tree. Sets up blend animations, initially from random
+ * growth stage to wither. Also sets up the ProcAnimator and berries, and starts in Normal (default) state.
+ *
+ * @param initArg Unused.
+ *
+ * @throws Panics if first non-root collision part is not tube-like (tube or tube tree).
+ *
+ * @note NON-MATCHING
+ * @note Address: 801DE794
+ * @note Size: 0x778
  */
 void Plant::onInit(CreatureInitArg* initArg)
 {
@@ -1921,10 +2031,11 @@ lbl_801DEE98:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801DEF40
- * Size:	000080
+/**
+ * Plant AI call. Executes current state machine loop and sets up "near spiderwort" sound mix if there's no mold.
+ *
+ * @note Address: 801DEF40
+ * @note Size: 0x80
  */
 void Plant::doAI()
 {
@@ -1941,10 +2052,21 @@ void Plant::doAI()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DEFC0
- * Size:	000370
+/**
+ * Coordinates animations and efx based on current `MotionStateID`.
+ * If normal, do normal animation based on growth size.
+ * If growing, do growth animation and efx based on size.
+ * If being damaged, do damage animation based on growth size.
+ * If mold appears, blend to wither and play withering sound.
+ * If mold removed, set to alive and do reappear animation and efx.
+ * Also sets random grow time offset between 0s and 3s.
+ *
+ * @param motionState Current `MotionStateID` to trigger efx for.
+ *
+ * @throws Panics if trying to do grow efx from a size that isn't 'Small' or 'Medium'.
+ *
+ * @note Address: 801DEFC0
+ * @note Size: 0x370
  */
 void Plant::startMotion(int motionState)
 {
@@ -2005,10 +2127,13 @@ void Plant::startMotion(int motionState)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DF330
- * Size:	000018
+/**
+ * Sets global manager color animation frame.
+ *
+ * @param frame Frame to force color animation to.
+ *
+ * @note Address: 801DF330
+ * @note Size: 0x18
  */
 void Plant::setColor(f32 frame)
 {
@@ -2017,17 +2142,20 @@ void Plant::setColor(f32 frame)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DF348
- * Size:	000020
+/**
+ * Updates culling. Just calls BaseItem method.
+ *
+ * @note Address: 801DF348
+ * @note Size: 0x20
  */
 void Plant::do_updateLOD() { BaseItem::do_updateLOD(); }
 
-/*
- * --INFO--
- * Address:	801DF368
- * Size:	0002B0
+/**
+ * Updates visible (blend) animations and model calcs. If Plant is visible and at max size, also
+ * recalc and update ProcAnimator. Also updates berries, Plant, and Plant collision tree.
+ *
+ * @note Address: 801DF368
+ * @note Size:	0x2B0
  */
 void Plant::doAnimation()
 {
@@ -2062,24 +2190,30 @@ void Plant::doAnimation()
 	updateCollTree();
 }
 
-/*
- * --INFO--
- * Address:	801DF618
- * Size:	00002C
+/**
+ * Restocks all berries based on plant type (spicy, bitter, random).
+ *
+ * @note Address: 801DF618
+ * @note Size:	0x2C
  */
 void Plant::bearFruits() { mFruits->bearAll(mPlantType); }
 
-/*
- * --INFO--
- * Address:	801DF644
- * Size:	000024
+/**
+ * Kills all berries.
+ *
+ * @note Address: 801DF644
+ * @note Size: 0x24
  */
 void Plant::killFruits() { mFruits->killAll(); }
 
-/*
- * --INFO--
- * Address:	801DF668
- * Size:	000080
+/**
+ * Drops `num` amount of berries, starting at one closest to origin of map.
+ * If a berry is null, will stop looking and return.
+ *
+ * @param num Number of berries to drop.
+ *
+ * @note Address: 801DF668
+ * @note Size: 0x80
  */
 void Plant::dropFruit(int num)
 {
@@ -2093,24 +2227,37 @@ void Plant::dropFruit(int num)
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DF6E8
- * Size:	000024
+/**
+ * Checks if Plant has any berries.
+ *
+ * @returns True if any berries are found on Plant, false if none found.
+ *
+ * @note Address: 801DF6E8
+ * @note Size: 0x24
  */
 bool Plant::hasFruits() { return mFruits->hasFruits(); }
 
-/*
- * --INFO--
- * Address:	801DF70C
- * Size:	000024
+/**
+ * Checks how many berries Plant has.
+ *
+ * @returns Number of berries currently on Plant.
+ *
+ * @note Address: 801DF70C
+ * @note Size: 0x24
  */
 int Plant::getFruitsNum() { return mFruits->countFruits(); }
 
-/*
- * --INFO--
- * Address:	801DF730
- * Size:	0001D0
+/**
+ * Bursts closest berry to enemy (whiskerpillar) when 'eaten'.
+ * Also triggers correct efx based on berry type (spicy or bitter), and sound effect.
+ * Updates berry color in `eat` with what was eaten. Also kills berry.
+ *
+ * @param eat Eat interaction triggered by enemy.
+ *
+ * @returns True if berry to burst is found, false if not.
+ *
+ * @note Address: 801DF730
+ * @note Size: 0x1D0
  */
 bool Plant::interactEat(InteractEat& eat)
 {
@@ -2144,10 +2291,15 @@ bool Plant::interactEat(InteractEat& eat)
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801DF900
- * Size:	000120
+/*********************************
+ * ITEMPLANT MANAGER DEFINITIONS *
+ *********************************/
+
+/**
+ * Constructor for Plant manager. Sets up component paths and reads in Plant parameters from file.
+ *
+ * @note Address: 801DF900
+ * @note Size: 0x120
  */
 Mgr::Mgr()
 {
@@ -2165,10 +2317,13 @@ Mgr::Mgr()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801DFD5C
- * Size:	000130
+/**
+ * Creates new plant and adds it to list of plants that exist.
+ *
+ * @returns New Plant.
+ *
+ * @note Address: 801DFD5C
+ * @note Size: 0x130
  */
 BaseItem* Mgr::birth()
 {
@@ -2177,16 +2332,19 @@ BaseItem* Mgr::birth()
 	return plant;
 }
 
-/*
- * --INFO--
- * Address:	801DFE8C
- * Size:	0000B4
+/**
+ * Loads model, color animation, and animation manager from file.
+ *
+ * @throws Panics if `texts.szs` archive doesn't load/exist.
+ *
+ * @note Address: 801DFE8C
+ * @note Size: 0xB4
  */
 void Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
 	loadBmd("model.bmd", 0, 0x20020000);
-	mAnmColor = static_cast<J3DAnmColor*>(J3DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("model.bpk", nullptr)));
+	mAnmColor = static_cast<J3DAnmColor*>(J3DAnmLoaderDataBase ::load(JKRFileLoader::getGlbResource("model.bpk", nullptr)));
 
 	JKRArchive* textArc = openTextArc("texts.szs");
 	P2ASSERTLINE(1329, textArc);
@@ -2194,17 +2352,26 @@ void Mgr::onLoadResources()
 	closeTextArc(textArc);
 }
 
-/*
- * --INFO--
- * Address:	801DFF40
- * Size:	00004C
+/**
+ * Creates new Plant generator parameter.
+ *
+ * @returns New (default) GenPlantParm.
+ *
+ * @note Address: 801DFF40
+ * @note Size: 0x4C
  */
 GenItemParm* Mgr::generatorNewItemParm() { return new GenPlantParm(); }
 
-/*
- * --INFO--
- * Address:	801DFF8C
- * Size:	000088
+/**
+ * Writes current generator parameter to stream. Writes plant type and comment.
+ *
+ * @param input Stream to write to.
+ * @param genParm Generator parameter to write, needs to be castable to GenPlantParm.
+ *
+ * @throws Panics if `genParm` is null or uncastable to genPlantParm.
+ *
+ * @note Address: 801DFF8C
+ * @note Size: 0x88
  */
 void Mgr::generatorWrite(Stream& input, GenItemParm* genParm)
 {
@@ -2216,10 +2383,18 @@ void Mgr::generatorWrite(Stream& input, GenItemParm* genParm)
 	input.textWriteText("\t#ŽÀƒ^ƒCƒv\r\n"); // '#actual type'
 }
 
-/*
- * --INFO--
- * Address:	801E0014
- * Size:	000088
+/**
+ * Reads generator parameter from stream, based on version.
+ * Sets plant type from stream if latest version (0001), otherwise spicy.
+ *
+ * @param input Stream to write from.
+ * @param genParm Generator parameter to read into, needs to be castable to GenPlantParm.
+ * @param version Version of code.
+ *
+ * @throws Panics if `genParm` is null or uncastable to genPlantParm.
+ *
+ * @note Address: 801E0014
+ * @note Size: 0x88
  */
 void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 {
@@ -2229,14 +2404,25 @@ void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 	if (version >= '0001') {
 		plantParm->mPlantType = input.readShort();
 	} else {
-		plantParm->mPlantType = 0;
+		plantParm->mPlantType = PLANTTYPE_Spicy;
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E009C
- * Size:	0000B4
+/**
+ * Creates new Plant and initializes parameters based on inputs.
+ * Sets plant type from generator parameter. Sets face direction from input y-rotation.
+ * Sets position from input position vector.
+ *
+ * @param pos Position vector to generate Plant at.
+ * @param rot Rotation vector of angles - y-rotation = new face direction.
+ * @param genParm Generator parameter to set plant type - needs to be castable to GenPlantParm.
+ *
+ * @returns New (initialized) Plant.
+ *
+ * @throws Panics if `genParm` is null or uncastable to genPlantParm.
+ *
+ * @note Address: 801E009C
+ * @note Size: 0xB4
  */
 BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {
@@ -2251,10 +2437,18 @@ BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm
 	return plant;
 }
 
-/*
- * --INFO--
- * Address:	801E0150
- * Size:	000074
+/**********************************
+ * FRUITS SLOT HOLDER DEFINITIONS *
+ **********************************/
+
+/**
+ * Initializes Fruits class to handle berries.
+ *
+ * @param count Number of berry slots to set up.
+ * @param mtx Matrix for berry holder.
+ *
+ * @note Address: 801E0150
+ * @note Size: 0x74
  */
 void Fruits::init(int count, Matrixf* mtx)
 {
@@ -2263,10 +2457,11 @@ void Fruits::init(int count, Matrixf* mtx)
 	mMatrix    = mtx;
 }
 
-/*
- * --INFO--
- * Address:	801E0224
- * Size:	000064
+/**
+ * Updates each berry slot.
+ *
+ * @note Address: 801E0224
+ * @note Size: 0x64
  */
 void Fruits::update()
 {
@@ -2275,10 +2470,16 @@ void Fruits::update()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E0288
- * Size:	0002B4
+/**
+ * Generates any missing berries based on plant type (spicy, bitter, random).
+ * If a berry slot isn't filled, create a berry and set it up.
+ * If plant type is random, 90% chance berry is spicy, 10% chance berry is bitter.
+ *
+ * @param plantType Type of Plant to make berries for, either spicy, bitter, or random.
+ *
+ * @note NON-MATCHING
+ * @note Address: 801E0288
+ * @note Size: 0x2B4
  */
 void Fruits::bearAll(u16 plantType)
 {
@@ -2526,10 +2727,13 @@ lbl_801E0520:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801E053C
- * Size:	000040
+/**
+ * Checks if any slots have berries.
+ *
+ * @returns True if any slots have berries, false otherwise.
+ *
+ * @note Address: 801E053C
+ * @note Size: 0x40
  */
 bool Fruits::hasFruits()
 {
@@ -2541,10 +2745,13 @@ bool Fruits::hasFruits()
 	return false;
 }
 
-/*
- * --INFO--
- * Address:	801E057C
- * Size:	000040
+/**
+ * Counts number of slots with berries.
+ *
+ * @returns Number of slots currently containing berries.
+ *
+ * @note Address: 801E057C
+ * @note Size: 0x40
  */
 int Fruits::countFruits()
 {
@@ -2558,10 +2765,11 @@ int Fruits::countFruits()
 	return count;
 }
 
-/*
- * --INFO--
- * Address:	801E05BC
- * Size:	000064
+/**
+ * Kills all berries in any slot.
+ *
+ * @note Address: 801E05BC
+ * @note Size: 0x64
  */
 void Fruits::killAll()
 {
@@ -2570,10 +2778,15 @@ void Fruits::killAll()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E0620
- * Size:	00010C
+/**
+ * Finds nearest berry-containing slot to input position.
+ *
+ * @param pos Position from which to find nearest berry.
+ *
+ * @returns Slot nearest to `pos` containing a berry, or nullptr if no berry-containing slot found.
+ *
+ * @note Address: 801E0620
+ * @note Size: 0x10C
  */
 FruitSlot* Fruits::getFruit(Vector3f& pos)
 {
@@ -2598,10 +2811,15 @@ FruitSlot* Fruits::getFruit(Vector3f& pos)
 	return nullptr;
 }
 
-/*
- * --INFO--
- * Address:	801E072C
- * Size:	00004C
+/*************************
+ * FRUITSLOT DEFINITIONS *
+ *************************/
+
+/**
+ * Constructor for berry-holding slot class. Sets berry pellet to null and sets matrix to the identity.
+ *
+ * @note Address: 801E072C
+ * @note Size: 0x4C
  */
 FruitSlot::FruitSlot()
 {
@@ -2609,10 +2827,15 @@ FruitSlot::FruitSlot()
 	PSMTXIdentity(mFruitMatrix.mMatrix.mtxView);
 }
 
-/*
- * --INFO--
- * Address:	801E0778
- * Size:	000050
+/**
+ * Sets up berry-holding slot with a berry pellet and orientation matrix, and sets berry pellet's capture matrix.
+ *
+ * @param pellet Berry pellet to put in slot.
+ * @param captureMatrix Capture matrix for berry pellet.
+ * @param fruitMatrix Orientation matrix for slot.
+ *
+ * @note Address: 801E0778
+ * @note Size: 0x50
  */
 void FruitSlot::setFruit(Pellet* pellet, Matrixf* captureMatrix, Matrixf& fruitMatrix)
 {
@@ -2621,10 +2844,11 @@ void FruitSlot::setFruit(Pellet* pellet, Matrixf* captureMatrix, Matrixf& fruitM
 	pellet->startCapture(captureMatrix);
 }
 
-/*
- * --INFO--
- * Address:	801E07C8
- * Size:	000040
+/**
+ * Drops berry from slot if berry exists. Ends capture and sets slot berry to nullptr.
+ *
+ * @note Address: 801E07C8
+ * @note Size: 0x40
  */
 void FruitSlot::dropFruit()
 {
@@ -2634,10 +2858,11 @@ void FruitSlot::dropFruit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E0808
- * Size:	000044
+/**
+ * If berry is in slot, kill berry and set berry to null.
+ *
+ * @note Address: 801E0808
+ * @note Size: 0x44
  */
 void FruitSlot::killFruit()
 {
@@ -2647,10 +2872,11 @@ void FruitSlot::killFruit()
 	}
 }
 
-/*
- * --INFO--
- * Address:	801E084C
- * Size:	000034
+/**
+ * If berry is in slot, update berry's capture using the slot's orientation matrix.
+ *
+ * @note Address: 801E084C
+ * @note Size: 0x34
  */
 void FruitSlot::update()
 {
