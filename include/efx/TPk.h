@@ -21,10 +21,16 @@ void createSimpleChinka(Vector3f&);
 void createSimpleWaterOff(Vector3f&);
 void createSimpleGedoku(Vector3f&);
 void createSimpleBlackDrop(Vector3f&);
+void createSimpleDig(Vector3f&);
 void createSimpleDive(Vector3f&);
 void createSimpleChiru(Vector3f&, long);
+void createSimpleInattack(Vector3f&);
 void createSimpleInstick(Vector3f&);
 void createSimpleDead(Vector3f&, long);
+void createSimpleBridgeAttack(Vector3f&);
+void createSimpleGate1Attack(Vector3f&);
+void createSimpleGate2Attack(Vector3f&);
+void createSimpleGate3Attack(Vector3f&);
 void createSimpleStoneAttack(Vector3f& pos);
 
 struct TPkAp : public TSimple2 {
@@ -148,8 +154,7 @@ struct TPkNageBlur : public TChaseMtx {
 };
 
 // Needed for dtor
-struct PtrlistContext : public JSUPtrList {
-};
+struct PtrlistContext : public JSUPtrList { };
 
 struct TPkOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	// vtable 1 (TBase)

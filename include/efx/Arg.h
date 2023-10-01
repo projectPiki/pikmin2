@@ -228,7 +228,7 @@ struct ArgKouhai : public Arg {
 };
 
 struct ArgPelType : public Arg {
-	ArgPelType(int type, Vector3f position)
+	ArgPelType(int type, Vector3f& position)
 	    : Arg(position)
 	{
 		mType = type;

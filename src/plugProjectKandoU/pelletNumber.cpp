@@ -34,35 +34,6 @@ void Object::createKiraEffect(Vector3f& pos)
 {
 	efx::ArgPelType arg(mPelletSizeType, pos);
 	mPelkira->create(&arg);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, __vt__Q23efx3Arg@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r5, __vt__Q23efx3Arg@l
-	lis      r5, __vt__Q23efx10ArgPelType@ha
-	lhz      r6, 0x43c(r3)
-	stw      r0, 8(r1)
-	addi     r0, r5, __vt__Q23efx10ArgPelType@l
-	lfs      f0, 0(r4)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 8(r4)
-	addi     r4, r1, 8
-	stfs     f0, 0x14(r1)
-	stw      r0, 8(r1)
-	stw      r6, 0x18(r1)
-	lwz      r3, 0x458(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*

@@ -430,7 +430,7 @@ PelletCarcass::Mgr::Mgr()
  * Address:	801FB97C
  * Size:	00019C
  */
-FixedSizePelletMgr<Game::PelletCarcass::Object>::~FixedSizePelletMgr() { }
+// FixedSizePelletMgr<Game::PelletCarcass::Object>::~FixedSizePelletMgr() { }
 
 /*
  * --INFO--
@@ -506,97 +506,98 @@ u8 PelletCarcass::Mgr::getMgrID() { return 0x1; }
  * Address:	801FBEE0
  * Size:	00009C
  */
-void FixedSizePelletMgr<Game::PelletCarcass::Object>::resetMgrAndResources()
-{
-	resetMgr();
-	for (int i = 0; i < mEntries; i++) {
-		mModelData[i] = nullptr;
-		mAnimMgr[i]   = nullptr;
-		mCollParts[i] = nullptr;
-		_4C[i]        = false;
-	}
+// void FixedSizePelletMgr<Game::PelletCarcass::Object>::resetMgrAndResources()
+// {
+// 	resetMgr();
+// 	for (int i = 0; i < mEntries; i++) {
+// 		mModelData[i] = nullptr;
+// 		mAnimMgr[i]   = nullptr;
+// 		mCollParts[i] = nullptr;
+// 		_4C[i]        = false;
+// 	}
 
-	if (mModelMgr) {
-		mModelMgr = nullptr;
-	}
-}
+// 	if (mModelMgr) {
+// 		mModelMgr = nullptr;
+// 	}
+// }
 
 /*
  * --INFO--
  * Address:	801FBF7C
  * Size:	000004
  */
-void FixedSizePelletMgr<Game::PelletCarcass::Object>::onCreateModel(SysShape::Model*) { }
+// void FixedSizePelletMgr<Game::PelletCarcass::Object>::onCreateModel(SysShape::Model*) { }
 
 /*
  * --INFO--
  * Address:	801FBF80
  * Size:	00002C
  */
-Pellet* FixedSizePelletMgr<Game::PelletCarcass::Object>::birth() { return mMonoObjectMgr.birth(); }
+// Pellet* FixedSizePelletMgr<Game::PelletCarcass::Object>::birth() { return mMonoObjectMgr.birth(); }
 
 /*
  * --INFO--
  * Address:	801FBFAC
  * Size:	00002C
  */
-void FixedSizePelletMgr<Game::PelletCarcass::Object>::doAnimation() { mMonoObjectMgr.doAnimation(); }
+// void FixedSizePelletMgr<Game::PelletCarcass::Object>::doAnimation() { mMonoObjectMgr.doAnimation(); }
 
 /*
  * --INFO--
  * Address:	801FBFD8
  * Size:	00002C
  */
-void FixedSizePelletMgr<Game::PelletCarcass::Object>::doEntry() { mMonoObjectMgr.doEntry(); }
+// void FixedSizePelletMgr<Game::PelletCarcass::Object>::doEntry() { mMonoObjectMgr.doEntry(); }
 
 /*
  * --INFO--
  * Address:	801FC004
  * Size:	00002C
  */
-void FixedSizePelletMgr<Game::PelletCarcass::Object>::doSetView(int id) { mMonoObjectMgr.doSetView(id); }
+// void FixedSizePelletMgr<Game::PelletCarcass::Object>::doSetView(int id) { mMonoObjectMgr.doSetView(id); }
 
 /*
  * --INFO--
  * Address:	801FC030
  * Size:	00002C
  */
-void FixedSizePelletMgr<Game::PelletCarcass::Object>::doViewCalc() { mMonoObjectMgr.doViewCalc(); }
+// void FixedSizePelletMgr<Game::PelletCarcass::Object>::doViewCalc() { mMonoObjectMgr.doViewCalc(); }
 
 /*
  * --INFO--
  * Address:	801FC05C
  * Size:	00002C
  */
-void FixedSizePelletMgr<Game::PelletCarcass::Object>::doSimulation(f32 rate) { mMonoObjectMgr.doSimulation(rate); }
+// void FixedSizePelletMgr<Game::PelletCarcass::Object>::doSimulation(f32 rate) { mMonoObjectMgr.doSimulation(rate); }
 
 /*
  * --INFO--
  * Address:	801FC088
  * Size:	00002C
  */
-void FixedSizePelletMgr<Game::PelletCarcass::Object>::doDirectDraw(Graphics& gfx) { mMonoObjectMgr.doDirectDraw(gfx); }
+// void FixedSizePelletMgr<Game::PelletCarcass::Object>::doDirectDraw(Graphics& gfx) { mMonoObjectMgr.doDirectDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	801FC0B4
  * Size:	000024
  */
-void FixedSizePelletMgr<Game::PelletCarcass::Object>::kill(Pellet* pelt) { mMonoObjectMgr.kill(static_cast<PelletCarcass::Object*>(pelt)); }
+// void FixedSizePelletMgr<Game::PelletCarcass::Object>::kill(Pellet* pelt) {
+// mMonoObjectMgr.kill(static_cast<PelletCarcass::Object*>(pelt)); }
 
 /*
  * --INFO--
  * Address:	801FC0D8
  * Size:	00002C
  */
-void* FixedSizePelletMgr<Game::PelletCarcass::Object>::getNext(void* data) { return mMonoObjectMgr.getNext(data); }
+// void* FixedSizePelletMgr<Game::PelletCarcass::Object>::getNext(void* data) { return mMonoObjectMgr.getNext(data); }
 
 /*
  * --INFO--
  * Address:	801FC104
  * Size:	00002C
  */
-void* FixedSizePelletMgr<Game::PelletCarcass::Object>::getStart() { return mMonoObjectMgr.getStart(); }
+// void* FixedSizePelletMgr<Game::PelletCarcass::Object>::getStart() { return mMonoObjectMgr.getStart(); }
 
 /*
  * --INFO--
@@ -621,17 +622,17 @@ void* FixedSizePelletMgr<Game::PelletCarcass::Object>::getStart() { return mMono
  * Address:	801FC1E4
  * Size:	000040
  */
-void* MonoObjectMgr<Game::PelletCarcass::Object>::getNext(void* id)
-{
-	int ret = mMax;
-	for (int i = (int)id + 1; i < ret; i++) {
-		if (!mOpenIds[i]) {
-			return (void*)i;
-		}
-	}
-	return (void*)ret;
-	// is the data type really void* ?
-}
+// void* MonoObjectMgr<Game::PelletCarcass::Object>::getNext(void* id)
+// {
+// 	int ret = mMax;
+// 	for (int i = (int)id + 1; i < ret; i++) {
+// 		if (!mOpenIds[i]) {
+// 			return (void*)i;
+// 		}
+// 	}
+// 	return (void*)ret;
+// 	// is the data type really void* ?
+// }
 
 /*
  * --INFO--
