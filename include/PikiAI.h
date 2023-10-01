@@ -878,7 +878,7 @@ struct ActRescue : public Action, virtual SysShape::MotionListener {
 	int execGo();
 	void initThrow();
 	int execThrow();
-	int checkPikmin();
+	ActionExitCode checkPikmin();
 
 	// _00     = VTBL
 	// _00-_0C = Action
