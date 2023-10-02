@@ -1,128 +1,38 @@
-#include "types.h"
-#include "Graphics.h"
+#include "Splitter.h"
 #include "Viewport.h"
+#include "Graphics.h"
+#include "Camera.h"
+#include "JSystem/J3D/J3DSys.h"
+#include "IDelegate.h"
 #include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_graphics_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80499C38
-    lbl_80499C38:
-        .asciz "initPrimDraw"
-        .skip 3
-    .global lbl_80499C48
-    lbl_80499C48:
-        .asciz "draw axis"
-        .skip 6
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EBD98
-    lbl_804EBD98:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__17HorizonalSplitter
-    __vt__17HorizonalSplitter:
-        .4byte 0
-        .4byte 0
-        .4byte split2__17HorizonalSplitterFf
-        .4byte split4__8SplitterFff
-    .global __vt__8Splitter
-    __vt__8Splitter:
-        .4byte 0
-        .4byte 0
-        .4byte split2__8SplitterFf
-        .4byte split4__8SplitterFff
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516190
-    lbl_80516190:
-        .skip 0x4
-    .global lbl_80516194
-    lbl_80516194:
-        .skip 0x4
-    .global gScissorOffset
-    gScissorOffset:
-        .skip 0x4
-    .global lastTokenName__8Graphics
-    lastTokenName__8Graphics:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805204B8
-    lbl_805204B8:
-        .4byte 0x00000000
-    .global lbl_805204BC
-    lbl_805204BC:
-        .float 0.5
-    .global lbl_805204C0
-    lbl_805204C0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_805204C8
-    lbl_805204C8:
-        .float 1.0
-    .global lbl_805204CC
-    lbl_805204CC:
-        .4byte 0xBF800000
-    .global lbl_805204D0
-    lbl_805204D0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_805204D8
-    lbl_805204D8:
-        .4byte 0x3EC90FDB
-    .global lbl_805204DC
-    lbl_805204DC:
-        .4byte 0x43A2F983
-    .global lbl_805204E0
-    lbl_805204E0:
-        .4byte 0xC3A2F983
-    .global lbl_805204E4
-    lbl_805204E4:
-        .4byte 0x40490FDB
-    .global lbl_805204E8
-    lbl_805204E8:
-        .4byte 0xBF7FBE77
-    .global lbl_805204EC
-    lbl_805204EC:
-        .4byte 0x3BB60B61
-    .global lbl_805204F0
-    lbl_805204F0:
-        .4byte 0x33D6BF95
-    .global lbl_805204F4
-    lbl_805204F4:
-        .4byte 0x40C90FDB
-    .global lbl_805204F8
-    lbl_805204F8:
-        .4byte 0xC4800000
-    .global lbl_805204FC
-    lbl_805204FC:
-        .4byte 0x44800000
-    .global lbl_80520500
-    lbl_80520500:
-        .4byte 0x41F00000
-    .global lbl_80520504
-    lbl_80520504:
-        .4byte 0x41200000
-    .global lbl_80520508
-    lbl_80520508:
-        .4byte 0x461C4000
-        .4byte 0x00000000
-*/
+u32 gScissorOffset;
 
 /*
  * --INFO--
  * Address:	80424E90
  * Size:	000150
  */
-HorizonalSplitter::HorizonalSplitter(Graphics*)
+HorizonalSplitter::HorizonalSplitter(Graphics* gfx)
 {
+	mGraphics = gfx;
+
+	u16 y      = sys->getRenderModeObj()->efbHeight;
+	u16 x      = sys->getRenderModeObj()->fbWidth;
+	mBounds.p1 = 0.0f;
+	mBounds.p2 = Vector2f(x, y);
+
+	gfx->allocateViewports(2);
+	Viewport* vp1 = new Viewport;
+	Viewport* vp2 = new Viewport;
+
+	Rectf bounds1(0.0f, 0.0f, mBounds.p2.x, mBounds.p2.y * 0.5f);
+	Rectf bounds2(0.0f, mBounds.p2.y * 0.5f, mBounds.p2.x, mBounds.p2.y);
+
+	vp1->setRect(bounds1);
+	vp2->setRect(bounds2);
+	gfx->addViewport(vp1);
+	gfx->addViewport(vp2);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -220,57 +130,17 @@ lbl_80424F58:
  * Address:	80424FE0
  * Size:	0000BC
  */
-void HorizonalSplitter::split2(f32)
+void HorizonalSplitter::split2(f32 split)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	fmr      f31, f1
-	lwz      r3, 0x14(r3)
-	li       r4, 0
-	bl       getViewport__8GraphicsFi
-	mr       r0, r3
-	lwz      r3, 0x14(r29)
-	mr       r31, r0
-	li       r4, 1
-	bl       getViewport__8GraphicsFi
-	lfs      f0, lbl_805204C8@sda21(r2)
-	mr       r30, r3
-	lfs      f3, lbl_805204BC@sda21(r2)
-	mr       r3, r31
-	fsubs    f0, f0, f31
-	fdivs    f1, f31, f3
-	fdivs    f0, f0, f3
-	stfs     f1, 0x54(r31)
-	stfs     f0, 0x54(r30)
-	lfs      f0, 0x10(r29)
-	lfs      f2, 0x28(r31)
-	lfs      f1, 0x20(r31)
-	fmuls    f0, f3, f0
-	lfs      f3, 0x54(r31)
-	fsubs    f1, f2, f1
-	fmsubs   f0, f3, f1, f0
-	stfs     f0, 0x4c(r30)
-	bl       refresh__8ViewportFv
-	mr       r3, r30
-	bl       refresh__8ViewportFv
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Viewport* vp1 = mGraphics->getViewport(0);
+	Viewport* vp2 = mGraphics->getViewport(1);
+
+	vp1->mVpScaleX = split / 0.5f;
+	vp2->mVpScaleX = (1.0f - split) / 0.5f;
+	vp2->mVpScaleY = vp1->mVpScaleX * (vp1->mBounds.getHeight()) - mBounds.p2.y * 0.5f;
+
+	vp1->refresh();
+	vp2->refresh();
 }
 
 /*
@@ -320,56 +190,19 @@ void FourSplitter::split4(f32, f32)
  */
 Viewport::Viewport()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__8Viewport@ha
-	li       r0, 0
-	addi     r3, r3, __vt__8Viewport@l
-	stw      r3, 0(r30)
-	sth      r0, 0x18(r30)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r31, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r3, 4(r3)
-	lis      r4, 0x4330
-	lfs      f4, lbl_805204B8@sda21(r2)
-	li       r0, 0
-	stw      r3, 0xc(r1)
-	mr       r3, r30
-	lfd      f3, lbl_805204C0@sda21(r2)
-	stw      r4, 8(r1)
-	lfs      f0, lbl_805204C8@sda21(r2)
-	lfd      f1, 8(r1)
-	stfs     f4, 0x1c(r30)
-	fsubs    f2, f1, f3
-	stfs     f4, 0x20(r30)
-	stw      r31, 0x14(r1)
-	stw      r4, 0x10(r1)
-	lfd      f1, 0x10(r1)
-	stfs     f2, 0x24(r30)
-	fsubs    f1, f1, f3
-	stfs     f1, 0x28(r30)
-	stb      r0, 0x3c(r30)
-	stw      r0, 0x44(r30)
-	stfs     f4, 0x48(r30)
-	stfs     f4, 0x4c(r30)
-	stfs     f0, 0x50(r30)
-	stfs     f0, 0x54(r30)
-	bl       refresh__8ViewportFv
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mVpId = 0;
+
+	u16 y      = sys->getRenderModeObj()->efbHeight;
+	u16 x      = sys->getRenderModeObj()->fbWidth;
+	mBounds.p1 = 0.0f;
+	mBounds.p2 = Vector2f(x, y);
+	mFlags     = 0;
+	mCamera    = nullptr;
+	_48        = 0.0f;
+	mVpScaleY  = 0.0f;
+	port       = 1.0f;
+	mVpScaleX  = 1.0f;
+	refresh();
 }
 
 /*
@@ -377,31 +210,13 @@ Viewport::Viewport()
  * Address:	8042515C
  * Size:	000044
  */
-Matrixf* Viewport::getMatrix(bool)
+Matrixf* Viewport::getMatrix(bool flag)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x44(r3)
-	cmplwi   r0, 0
-	beq      lbl_8042518C
-	mr       r3, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80425190
-
-lbl_8042518C:
-	lwz      r3, 0x40(r3)
-
-lbl_80425190:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mCamera) {
+		return mCamera->getViewMatrix(flag);
+	} else {
+		return mViewMat;
+	}
 }
 
 /*
@@ -411,21 +226,9 @@ lbl_80425190:
  */
 void Viewport::setProjection()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x44(r3)
-	cmplwi   r3, 0
-	beq      lbl_804251BC
-	bl       setProjection__6CameraFv
-
-lbl_804251BC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mCamera) {
+		mCamera->setProjection();
+	}
 }
 
 /*
@@ -435,43 +238,13 @@ lbl_804251BC:
  */
 int Graphics::getNumActiveViewports()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_80425214
-
-lbl_804251F4:
-	mr       r3, r29
-	mr       r4, r30
-	bl       getViewport__8GraphicsFi
-	bl       viewable__8ViewportFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80425210
-	addi     r31, r31, 1
-
-lbl_80425210:
-	addi     r30, r30, 1
-
-lbl_80425214:
-	lwz      r0, 0x264(r29)
-	cmpw     r30, r0
-	blt      lbl_804251F4
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int ret = 0;
+	for (int i = 0; i < mActiveViewports; i++) {
+		if (getViewport(i)->viewable()) {
+			ret++;
+		}
+	}
+	return ret;
 }
 
 /*
@@ -491,34 +264,14 @@ void Viewport::getAspect()
  */
 bool Viewport::viewable()
 {
-	/*
-	lbz      r0, 0x3c(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80425254
-	li       r3, 0
-	blr
+	if (mFlags & 1) {
+		return false;
+	}
+	if (mBounds2.getWidth() < 1.0f || mBounds2.getHeight() < 1.0f) {
+		return false;
+	}
 
-lbl_80425254:
-	lfs      f1, 0x34(r3)
-	lfs      f0, 0x2c(r3)
-	lfs      f2, lbl_805204C8@sda21(r2)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f2
-	blt      lbl_80425280
-	lfs      f1, 0x38(r3)
-	lfs      f0, 0x30(r3)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f2
-	bge      lbl_80425288
-
-lbl_80425280:
-	li       r3, 0
-	blr
-
-lbl_80425288:
-	li       r3, 1
-	blr
-	*/
+	return true;
 }
 
 /*
@@ -528,33 +281,19 @@ lbl_80425288:
  */
 void Viewport::updateCameraAspect()
 {
-	/*
-	lwz      r4, 0x44(r3)
-	cmplwi   r4, 0
-	beqlr
-	lfs      f3, 0x38(r3)
-	lfs      f0, 0x30(r3)
-	lfs      f2, 0x34(r3)
-	lfs      f1, 0x2c(r3)
-	fsubs    f3, f3, f0
-	lfs      f0, lbl_805204B8@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpu    cr0, f0, f3
-	beq      lbl_804252C8
-	fcmpu    cr0, f0, f1
-	bne      lbl_804252D0
+	if (!mCamera) {
+		return;
+	}
 
-lbl_804252C8:
-	lfs      f0, lbl_805204C8@sda21(r2)
-	b        lbl_804252D4
-
-lbl_804252D0:
-	fdivs    f0, f1, f3
-
-lbl_804252D4:
-	stfs     f0, 0x2c(r4)
-	blr
-	*/
+	f32 y = mBounds2.getHeight();
+	f32 x = mBounds2.getWidth();
+	f32 aspect;
+	if (y == 0.0f || x == 0.0f) {
+		aspect = 1.0f;
+	} else {
+		aspect = x / y;
+	}
+	mCamera->mAspectRatio = aspect;
 }
 
 /*
@@ -564,6 +303,10 @@ lbl_804252D4:
  */
 void Viewport::refresh()
 {
+	mBounds2.p1.x = mBounds.p1.x + _48;
+	mBounds2.p1.y = mBounds.p1.y + mVpScaleY;
+	mBounds2.p2   = (mBounds2.p1.x + port * mBounds.getWidth(), mBounds2.p1.y + mVpScaleX * mBounds.getHeight());
+	updateCameraAspect();
 	/*
 	lfs      f4, 0x1c(r3)
 	lfs      f0, 0x48(r3)
@@ -620,8 +363,10 @@ lbl_80425378:
  * Address:	80425380
  * Size:	0000C4
  */
-void Viewport::setRect(Rectf&)
+void Viewport::setRect(Rectf& rect)
 {
+	mBounds = rect;
+	refresh();
 	/*
 	lfs      f0, 0(r4)
 	stfs     f0, 0x1c(r3)
@@ -688,61 +433,11 @@ lbl_8042543C:
  */
 void Viewport::setViewport()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	lfs      f2, 0x30(r3)
-	mr       r28, r3
-	lfs      f0, 0x38(r3)
-	lfs      f1, 0x2c(r3)
-	lfs      f3, 0x34(r3)
-	fsubs    f4, f0, f2
-	lfs      f5, lbl_805204B8@sda21(r2)
-	fsubs    f3, f3, f1
-	lfs      f6, lbl_805204C8@sda21(r2)
-	bl       GXSetViewport
-	lfs      f31, 0x30(r28)
-	lfs      f0, 0x38(r28)
-	lfs      f30, 0x2c(r28)
-	fsubs    f1, f0, f31
-	bl       __cvt_fp2unsigned
-	lfs      f0, 0x34(r28)
-	mr       r28, r3
-	lwz      r29, gScissorOffset@sda21(r13)
-	fsubs    f1, f0, f30
-	bl       __cvt_fp2unsigned
-	fmr      f1, f31
-	mr       r30, r3
-	bl       __cvt_fp2unsigned
-	fmr      f1, f30
-	mr       r31, r3
-	bl       __cvt_fp2unsigned
-	mr       r4, r31
-	mr       r5, r30
-	add      r6, r29, r28
-	bl       GXSetScissor
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	GXSetViewport(mBounds2.p1.x, mBounds2.p1.y, mBounds2.getWidth(), mBounds2.getHeight(), 0.0f, 1.0f);
+
+	u32 x = mBounds2.getWidth();
+	u32 y = mBounds2.getHeight();
+	GXSetScissor(mBounds2.p1.x, mBounds2.p1.y, x, gScissorOffset + y);
 }
 
 /*
@@ -760,34 +455,10 @@ void Viewport::setOrthoGraph2d(J2DOrthoGraph&)
  * Address:	80425518
  * Size:	000050
  */
-SysShape::Model* Viewport::setJ3DViewMtx(bool)
+SysShape::Model* Viewport::setJ3DViewMtx(bool flag)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x44(r3)
-	cmplwi   r0, 0
-	beq      lbl_80425548
-	mr       r3, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8042554C
-
-lbl_80425548:
-	lwz      r3, 0x40(r3)
-
-lbl_8042554C:
-	lis      r4, j3dSys@ha
-	addi     r4, r4, j3dSys@l
-	bl       PSMTXCopy
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Matrixf* mtx = getMatrix(flag);
+	PSMTXCopy(mtx->mMatrix.mtxView, j3dSys.mViewMtx);
 }
 
 /*
@@ -805,27 +476,11 @@ void Viewport::draw2dframe(J2DGrafContext&)
  * Address:	80425568
  * Size:	000044
  */
-void Graphics::allocateViewports(int)
+void Graphics::allocateViewports(int vpNum)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x260(r3)
-	lwz      r0, 0x260(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x268(r31)
-	li       r0, 0
-	stw      r0, 0x264(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mMaxViewports    = vpNum;
+	mViewports       = new Viewport*[mMaxViewports];
+	mActiveViewports = 0;
 }
 
 /*
@@ -835,13 +490,9 @@ void Graphics::allocateViewports(int)
  */
 void Graphics::deleteViewports()
 {
-	/*
-	li       r0, 0
-	stw      r0, 0x260(r3)
-	stw      r0, 0x264(r3)
-	stw      r0, 0x268(r3)
-	blr
-	*/
+	mMaxViewports    = 0;
+	mActiveViewports = 0;
+	mViewports       = nullptr;
 }
 
 /*
@@ -849,22 +500,13 @@ void Graphics::deleteViewports()
  * Address:	804255C0
  * Size:	000030
  */
-void Graphics::addViewport(Viewport*)
+void Graphics::addViewport(Viewport* vp)
 {
-	/*
-	lwz      r0, 0x260(r3)
-	lwz      r5, 0x264(r3)
-	cmpw     r0, r5
-	blelr
-	sth      r5, 0x18(r4)
-	lwz      r6, 0x264(r3)
-	lwz      r7, 0x268(r3)
-	addi     r5, r6, 1
-	slwi     r0, r6, 2
-	stw      r5, 0x264(r3)
-	stwx     r4, r7, r0
-	blr
-	*/
+	if (mMaxViewports <= mActiveViewports) {
+		return;
+	}
+	vp->mVpId                      = mActiveViewports;
+	mViewports[mActiveViewports++] = vp;
 }
 
 /*
@@ -872,95 +514,22 @@ void Graphics::addViewport(Viewport*)
  * Address:	804255F0
  * Size:	000010
  */
-Viewport* Graphics::getViewport(int)
-{
-	/*
-	lwz      r3, 0x268(r3)
-	slwi     r0, r4, 2
-	lwzx     r3, r3, r0
-	blr
-	*/
-}
+Viewport* Graphics::getViewport(int id) { return mViewports[id]; }
 
 /*
  * --INFO--
  * Address:	80425600
  * Size:	0000E0
  */
-void Graphics::mapViewport(IDelegate1<Viewport*>*)
+void Graphics::mapViewport(IDelegate1<Viewport*>* delegate)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_804256B4
-
-lbl_80425630:
-	lwz      r3, 0x268(r28)
-	lwzx     r3, r3, r31
-	lbz      r0, 0x3c(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8042564C
-	li       r0, 0
-	b        lbl_80425684
-
-lbl_8042564C:
-	lfs      f1, 0x34(r3)
-	lfs      f0, 0x2c(r3)
-	lfs      f2, lbl_805204C8@sda21(r2)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f2
-	blt      lbl_80425678
-	lfs      f1, 0x38(r3)
-	lfs      f0, 0x30(r3)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f2
-	bge      lbl_80425680
-
-lbl_80425678:
-	li       r0, 0
-	b        lbl_80425684
-
-lbl_80425680:
-	li       r0, 1
-
-lbl_80425684:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_804256AC
-	stw      r3, 0x25c(r28)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r4, 0x268(r28)
-	lwz      r12, 8(r12)
-	lwzx     r4, r4, r31
-	mtctr    r12
-	bctrl
-
-lbl_804256AC:
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_804256B4:
-	lwz      r0, 0x264(r28)
-	cmpw     r30, r0
-	blt      lbl_80425630
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < mActiveViewports; i++) {
+		Viewport* vp = getViewport(i);
+		if (vp->viewable()) {
+			mCurrentViewport = vp;
+			delegate->invoke(mViewports[i]);
+		}
+	}
 }
 
 /*
@@ -998,67 +567,25 @@ void Graphics::updateJ3D()
  * Address:	804256E0
  * Size:	000030
  */
-void graphicsTokenCallback(u16)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, sys@sda21(r13)
-	lwz      r3, 0x24(r5)
-	bl       getTokenName__8GraphicsFUs
-	stw      r3, lastTokenName__8Graphics@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void graphicsTokenCallback(u16 id) { Graphics::lastTokenName = sys->mGfx->getTokenName(id); }
 
 /*
  * --INFO--
  * Address:	80425710
  * Size:	000078
  */
-void Graphics::setToken(char*)
+void Graphics::setToken(char* tok)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       findTokenIndex__8GraphicsFPc
-	cmpwi    r3, -1
-	bne      lbl_80425768
-	lhz      r0, 0(r30)
-	cmplwi   r0, 0x20
-	bge      lbl_80425770
-	rlwinm   r0, r0, 2, 0xe, 0x1d
-	add      r3, r30, r0
-	stw      r31, 4(r3)
-	lhz      r3, 0(r30)
-	bl       GXSetDrawSync
-	lhz      r3, 0(r30)
-	addi     r0, r3, 1
-	sth      r0, 0(r30)
-	b        lbl_80425770
-
-lbl_80425768:
-	clrlwi   r3, r3, 0x10
-	bl       GXSetDrawSync
-
-lbl_80425770:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int id = findTokenIndex(tok);
+	if (id == -1) {
+		if (mActiveTokens < GRAPHICS_TOKEN_MAX) {
+			mTokens[mActiveTokens] = tok;
+			GXSetDrawSync(mActiveTokens);
+			mActiveTokens++;
+		}
+	} else {
+		GXSetDrawSync(id);
+	}
 }
 
 /*
@@ -1066,15 +593,7 @@ lbl_80425770:
  * Address:	80425788
  * Size:	000010
  */
-char* Graphics::getTokenName(unsigned short)
-{
-	/*
-	rlwinm   r0, r4, 2, 0xe, 0x1d
-	add      r3, r3, r0
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
+char* Graphics::getTokenName(u16 id) { return mTokens[id]; }
 
 /*
  * --INFO--
@@ -1091,51 +610,14 @@ u16 Graphics::getToken()
  * Address:	80425798
  * Size:	000084
  */
-int Graphics::findTokenIndex(char*)
+int Graphics::findTokenIndex(char* tok)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r31, r28
-	b        lbl_804257EC
-
-lbl_804257C8:
-	lwz      r3, 4(r31)
-	mr       r4, r29
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_804257E4
-	mr       r3, r30
-	b        lbl_804257FC
-
-lbl_804257E4:
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_804257EC:
-	lhz      r0, 0(r28)
-	cmpw     r30, r0
-	blt      lbl_804257C8
-	li       r3, -1
-
-lbl_804257FC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < mActiveTokens; i++) {
+		if (!strcmp(mTokens[i], tok)) {
+			return i;
+		}
+	}
+	return -1;
 }
 
 /*
@@ -1143,129 +625,29 @@ lbl_804257FC:
  * Address:	8042581C
  * Size:	0001CC
  */
-void Graphics::initPrimDraw(Matrixf*)
+void Graphics::initPrimDraw(Matrixf* mtx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	lis      r3, lbl_80499C38@ha
-	mr       r28, r4
-	li       r30, 0
-	mr       r29, r27
-	addi     r31, r3, lbl_80499C38@l
-	b        lbl_80425868
-
-lbl_80425848:
-	lwz      r3, 4(r29)
-	mr       r4, r31
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80425860
-	b        lbl_80425878
-
-lbl_80425860:
-	addi     r29, r29, 4
-	addi     r30, r30, 1
-
-lbl_80425868:
-	lhz      r0, 0(r27)
-	cmpw     r30, r0
-	blt      lbl_80425848
-	li       r30, -1
-
-lbl_80425878:
-	cmpwi    r30, -1
-	bne      lbl_804258B8
-	lhz      r0, 0(r27)
-	cmplwi   r0, 0x20
-	bge      lbl_804258C0
-	rlwinm   r0, r0, 2, 0xe, 0x1d
-	lis      r3, lbl_80499C38@ha
-	addi     r4, r3, lbl_80499C38@l
-	add      r3, r27, r0
-	stw      r4, 4(r3)
-	lhz      r3, 0(r27)
-	bl       GXSetDrawSync
-	lhz      r3, 0(r27)
-	addi     r0, r3, 1
-	sth      r0, 0(r27)
-	b        lbl_804258C0
-
-lbl_804258B8:
-	clrlwi   r3, r30, 0x10
-	bl       GXSetDrawSync
-
-lbl_804258C0:
-	bl       initGX__8GraphicsFv
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r3, 4
-	li       r4, 1
-	li       r5, 1
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	mr       r3, r27
-	bl       disableLight__8GraphicsFv
-	mr       r3, r27
-	bl       clearVtxDesc__8GraphicsFv
-	mr       r3, r27
-	li       r4, 9
-	li       r5, 1
-	bl       setVtxDesc__8GraphicsF7_GXAttr11_GXAttrType
-	mr       r3, r27
-	li       r4, 0xb
-	li       r5, 1
-	bl       setVtxDesc__8GraphicsF7_GXAttr11_GXAttrType
-	mr       r3, r27
-	li       r4, 0
-	li       r5, 9
-	li       r6, 1
-	li       r7, 4
-	li       r8, 0
-	bl setVtxAttrFmt__8GraphicsF9_GXVtxFmt7_GXAttr10_GXCompCnt11_GXCompTypeUc mr
-r3, r27 li       r4, 0 li       r5, 0xb li       r6, 1 li       r7, 5 li r8, 0
-	bl setVtxAttrFmt__8GraphicsF9_GXVtxFmt7_GXAttr10_GXCompCnt11_GXCompTypeUc li
-r3, 0 bl       GXSetCullMode cmplwi   r28, 0 beq      lbl_80425998 mr       r3,
-r28 addi     r4, r27, 0x8c bl       PSMTXCopy
-
-lbl_80425998:
-	li       r3, 6
-	li       r4, 0
-	bl       GXSetLineWidth
-	li       r3, 0
-	li       r4, 1
-	li       r5, 1
-	li       r6, 0
-	bl       GXSetBlendMode
-	li       r3, 1
-	li       r4, 1
-	li       r5, 1
-	bl       GXSetZMode
-	addi     r3, r27, 0x8c
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	setToken("initPrimDraw");
+	initGX();
+	GXSetNumTevStages(1);
+	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GXSetNumChans(1);
+	GXSetChanCtrl(GX_COLOR0A0, GX_TRUE, GX_SRC_VTX, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+	disableLight();
+	clearVtxDesc();
+	setVtxDesc(GX_VA_POS, GX_DIRECT);
+	setVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	setVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	setVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
+	GXSetCullMode(GX_CULL_NONE);
+	if (mtx) {
+		PSMTXCopy(mtx->mMatrix.mtxView, mMatrix.mMatrix.mtxView);
+	}
+	GXSetLineWidth(6, GX_TO_ZERO);
+	GXSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ONE, GX_LO_CLEAR);
+	GXSetZMode(GX_TRUE, GX_LESS, GX_TRUE);
+	GXLoadPosMtxImm(mMatrix.mMatrix.mtxView, 0);
 }
 
 /*
@@ -1293,8 +675,10 @@ void Graphics::drawPoint(Vector3f*, u16)
  * Address:	804259E8
  * Size:	0000C4
  */
-void Graphics::drawLine(Vector3f&, Vector3f&)
+void Graphics::drawLine(Vector3f& start, Vector3f& end)
 {
+	GXBegin(GX_LINES, GX_VTXFMT0, 2);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2468,20 +1852,7 @@ void Graphics::drawRect(Rectf&, JUTTexture*)
  * Address:	804268C4
  * Size:	000024
  */
-void Graphics::clearZBuffer(Rectf&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_805204E8@sda21(r2)
-	stw      r0, 0x14(r1)
-	bl       "fillZBuffer__8GraphicsFR7Rect<f>f"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Graphics::clearZBuffer(Rectf& bounds) { fillZBuffer(bounds, -0.999f); }
 
 /*
  * --INFO--
@@ -3262,6 +2633,14 @@ lbl_80427350:
  */
 Graphics::Graphics()
 {
+	deleteViewports();
+	_084.set(255, 255, 255, 255);
+	_088.set(255, 255, 255, 255);
+	mActiveTokens = 0;
+	// GXSetDrawSyncCallback(graphicsTokenCallback);
+	mCurrentViewport = nullptr;
+	setupJ2DOrthoGraphDefault();
+	setupJ2DPerspGraphDefault();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3516,64 +2895,23 @@ void Graphics::setupJ2DPerspGraphDefault()
  * Address:	804276F0
  * Size:	000020
  */
-void Graphics::clearVtxDesc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       GXClearVtxDesc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Graphics::clearVtxDesc() { GXClearVtxDesc(); }
 
 /*
  * --INFO--
  * Address:	80427710
  * Size:	000028
  */
-void Graphics::setVtxDesc(_GXAttr, _GXAttrType)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	mr       r4, r5
-	stw      r0, 0x14(r1)
-	bl       GXSetVtxDesc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Graphics::setVtxDesc(_GXAttr attr, _GXAttrType type) { GXSetVtxDesc(attr, type); }
 
 /*
  * --INFO--
  * Address:	80427738
  * Size:	000034
  */
-void Graphics::setVtxAttrFmt(_GXVtxFmt, _GXAttr, _GXCompCnt, _GXCompType, unsigned char)
+void Graphics::setVtxAttrFmt(_GXVtxFmt fmt, _GXAttr attr, _GXCompCnt comp, _GXCompType type, u8 a1)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  mr        r4, r5
-	  stw       r0, 0x14(r1)
-	  mr        r5, r6
-	  mr        r6, r7
-	  mr        r7, r8
-	  bl        -0x343050
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	GXSetVtxAttrFmt(fmt, attr, comp, type, a1);
 }
 
 /*
@@ -3591,26 +2929,7 @@ void Graphics::drawRectangle(Rectf&, bool)
  * Address:	8042776C
  * Size:	00003C
  */
-void Graphics::disableLight()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 4
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	li       r5, 1
-	li       r6, 1
-	li       r7, 1
-	li       r8, 2
-	li       r9, 2
-	bl       GXSetChanCtrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Graphics::disableLight() { GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, 1, GX_DF_CLAMP, GX_AF_NONE); }
 
 /*
  * --INFO--
@@ -3629,72 +2948,20 @@ void Graphics::disableTexture()
  */
 void Graphics::setTextureGX()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 4
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	li       r5, 1
-	li       r6, 1
-	li       r7, 1
-	li       r8, 2
-	li       r9, 2
-	bl       GXSetChanCtrl
-	bl       GXClearVtxDesc
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 0
-	li       r4, 0
-	bl       GXSetTevOp
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 1
-	li       r5, 4
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 1
-	li       r7, 4
-	bl       GXSetVtxAttrFmt
-	li       r3, 2
-	bl       GXSetCullMode
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0
-	bl       GXSetBlendMode
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, 1, GX_DF_CLAMP, GX_AF_NONE);
+	GXClearVtxDesc();
+	GXSetNumTevStages(1);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
+	GXSetNumTexGens(1);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S8, 4);
+	GXSetCullMode(GX_CULL_BACK);
+	GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
 }
 
 /*
@@ -3712,171 +2979,15 @@ void Graphics::drawTexture(JUTTexture*, f32, f32, f32, f32)
  * Address:	804278A8
  * Size:	000234
  */
-void Graphics::initPerspPrintf(Viewport*)
+void Graphics::initPerspPrintf(Viewport* vp)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stmw     r26, 0x38(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lwz      r3, 0x44(r4)
-	cmplwi   r3, 0
-	beq      lbl_804278E4
-	lwz      r12, 0(r3)
-	li       r4, 0
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_804278E8
+	initPrimDraw(vp->getMatrix(false));
 
-lbl_804278E4:
-	lwz      r3, 0x40(r31)
-
-lbl_804278E8:
-	lis      r4, lbl_80499C38@ha
-	mr       r28, r3
-	mr       r26, r30
-	li       r27, 0
-	addi     r29, r4, lbl_80499C38@l
-	b        lbl_80427920
-
-lbl_80427900:
-	lwz      r3, 4(r26)
-	mr       r4, r29
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80427918
-	b        lbl_80427930
-
-lbl_80427918:
-	addi     r26, r26, 4
-	addi     r27, r27, 1
-
-lbl_80427920:
-	lhz      r0, 0(r30)
-	cmpw     r27, r0
-	blt      lbl_80427900
-	li       r27, -1
-
-lbl_80427930:
-	cmpwi    r27, -1
-	bne      lbl_80427970
-	lhz      r0, 0(r30)
-	cmplwi   r0, 0x20
-	bge      lbl_80427978
-	rlwinm   r0, r0, 2, 0xe, 0x1d
-	lis      r3, lbl_80499C38@ha
-	addi     r4, r3, lbl_80499C38@l
-	add      r3, r30, r0
-	stw      r4, 4(r3)
-	lhz      r3, 0(r30)
-	bl       GXSetDrawSync
-	lhz      r3, 0(r30)
-	addi     r0, r3, 1
-	sth      r0, 0(r30)
-	b        lbl_80427978
-
-lbl_80427970:
-	clrlwi   r3, r27, 0x10
-	bl       GXSetDrawSync
-
-lbl_80427978:
-	bl       initGX__8GraphicsFv
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r3, 4
-	li       r4, 1
-	li       r5, 1
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 4
-	li       r4, 0
-	li       r5, 1
-	li       r6, 1
-	li       r7, 1
-	li       r8, 2
-	li       r9, 2
-	bl       GXSetChanCtrl
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xb
-	li       r5, 1
-	li       r6, 5
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	bl       GXSetCullMode
-	cmplwi   r28, 0
-	beq      lbl_80427A54
-	mr       r3, r28
-	addi     r4, r30, 0x8c
-	bl       PSMTXCopy
-
-lbl_80427A54:
-	li       r3, 6
-	li       r4, 0
-	bl       GXSetLineWidth
-	li       r3, 0
-	li       r4, 1
-	li       r5, 1
-	li       r6, 0
-	bl       GXSetBlendMode
-	li       r3, 1
-	li       r4, 1
-	li       r5, 1
-	bl       GXSetZMode
-	addi     r3, r30, 0x8c
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	addi     r3, r1, 8
-	bl       PSMTXIdentity
-	addi     r3, r1, 8
-	li       r4, 0x1e
-	li       r5, 0
-	bl       GXLoadTexMtxImm
-	li       r3, 1
-	li       r4, 1
-	li       r5, 0
-	bl       GXSetZMode
-	lwz      r3, 0x44(r31)
-	cmplwi   r3, 0
-	beq      lbl_80427AC8
-	bl       setProjection__6CameraFv
-
-lbl_80427AC8:
-	lmw      r26, 0x38(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	Mtx mtx;
+	PSMTXIdentity(mtx);
+	GXLoadTexMtxImm(mtx, 0x1e, GX_MTX3x4);
+	GXSetZMode(GX_TRUE, GX_LESS, GX_FALSE);
+	vp->setProjection();
 }
 
 /*
@@ -4164,32 +3275,15 @@ lbl_80427E74:
  */
 void Graphics::initGX()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       GXClearVtxDesc
-	bl       GXInvalidateVtxCache
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	li       r3, 0
-	bl       GXSetNumChans
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 3
-	bl       GXSetTevOp
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r3, 0
-	bl       GXSetTevDirect
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXClearVtxDesc();
+	GXInvalidateVtxCache();
+	GXSetCurrentMtx(0);
+	GXSetNumChans(0);
+	GXSetNumTevStages(1);
+	GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);
+	GXSetNumTexGens(1);
+	GXSetNumIndStages(0);
+	GXSetTevDirect(GX_TEVSTAGE0);
 }
 
 /*
@@ -4204,60 +3298,4 @@ void Graphics::dirtyInitGX() { }
  * Address:	80427F04
  * Size:	000060
  */
-void Graphics::clearInitGX()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       GXClearVtxDesc
-	bl       GXInvalidateVtxCache
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	li       r3, 0
-	bl       GXSetNumChans
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 3
-	bl       GXSetTevOp
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r3, 0
-	bl       GXSetTevDirect
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80427F64
- * Size:	000004
- */
-void Splitter::split4(f32, f32) { }
-
-/*
- * --INFO--
- * Address:	80427F68
- * Size:	000028
- */
-void __sinit_graphics_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EBD98@ha
-	stw      r0, lbl_80516190@sda21(r13)
-	stfsu    f0, lbl_804EBD98@l(r3)
-	stfs     f0, lbl_80516194@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+void Graphics::clearInitGX() { initGX(); }

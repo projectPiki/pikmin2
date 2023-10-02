@@ -2,6 +2,8 @@
 #define _SPLITTER_H
 
 #include "types.h"
+#include "System.h"
+#include "Rect.h"
 
 inline Vector2<u16> getScreenSize()
 {
@@ -11,8 +13,8 @@ inline Vector2<u16> getScreenSize()
 struct Graphics;
 
 struct Splitter {
-	virtual void split2(f32);      // _08 (weak)
-	virtual void split4(f32, f32); // _0C (weak)
+	virtual void split2(f32) { }      // _08 (weak)
+	virtual void split4(f32, f32) { } // _0C (weak)
 
 	// _00 VTBL
 };
@@ -23,11 +25,26 @@ struct HorizonalSplitter : public Splitter {
 	virtual void split2(f32); // _08
 
 	// _00 VTBL
-	f32 mX1;             // _04, name from PikDecomp
-	f32 mX2;             // _08, name from PikDecomp
-	f32 mY1;             // _0C, name from PikDecomp
-	f32 mY2;             // _10, name from PikDecomp
+	Rectf mBounds;
 	Graphics* mGraphics; // _14
+};
+
+// Unused struct (vertical splitscreen?)
+struct VerticalSplitter : public Splitter {
+	VerticalSplitter(Graphics*);
+
+	virtual void split2(f32); // _08
+
+	// _00 VTBL
+};
+
+// Unused struct (4 player pikmin 2 real?)
+struct FourSplitter : public Splitter {
+	FourSplitter(Graphics*);
+
+	virtual void split4(f32, f32); // _08
+
+	// _00 VTBL
 };
 
 #endif

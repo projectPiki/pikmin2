@@ -34,16 +34,8 @@ struct Viewport : CNode {
 	bool viewable();
 
 	u16 mVpId;             // _18
-	u8 _1A;                // _1A
-	u8 _1B;                // _1B
-	f32 mVpX1;             // _1C
-	f32 mVpY1;             // _20
-	f32 mVpX2;             // _24
-	f32 mVpY2;             // _28
-	f32 mX1;               // _2C
-	f32 mY1;               // _30
-	f32 mX2;               // _34
-	f32 mY2;               // _38
+	Rectf mBounds;         // _1C
+	Rectf mBounds2;        // _2C
 	s8 mFlags;             // _3C
 	Matrixf* mViewMat;     // _40
 	LookAtCamera* mCamera; // _44
