@@ -76,11 +76,7 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	J3DModelData* mWtePikiModel;   // _4C, white
 	J3DModelData* mBlbPikiModel;   // _50, bulbmin
 	J3DModelData* mCrtPikiModel;   // _54, carrot
-	J3DModelData* mLeafModel;      // _58
-	J3DModelData* mBudModel;       // _5C
-	J3DModelData* mFlowerModel;    // _60
-	J3DModelData* mRedBudModel;    // _64
-	J3DModelData* mRedFlowerModel; // _68
+	J3DModelData* mHappaModel[5];  // _58, indexed by EPikiHappa (leaf, bud, flower, red bud, red flower)
 	PikiParms* mParms;             // _6C
 	SysShape::ModelMgr* mModelMgr; // _70
 	UpdateMgr* mUpdateMgr;         // _74

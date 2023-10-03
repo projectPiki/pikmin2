@@ -205,11 +205,11 @@ void PikiMgr::load(int modelFlag)
 	loadBmd(Bulbmin, "piki_kochappy");
 	loadBmd(Carrot, "piki_ninjin");
 
-	mLeafModel      = J3DModelLoaderDataBase::load(arc->getResource("happa_model/leaf.bmd"), 0x20000000);
-	mBudModel       = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud.bmd"), 0x240000);
-	mFlowerModel    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower.bmd"), 0x240000);
-	mRedBudModel    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud_red.bmd"), 0x240000);
-	mRedFlowerModel = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower_red.bmd"), 0x240000);
+	mHappaModel[0] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/leaf.bmd"), 0x20000000);
+	mHappaModel[1] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud.bmd"), 0x240000);
+	mHappaModel[2] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower.bmd"), 0x240000);
+	mHappaModel[3] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud_red.bmd"), 0x240000);
+	mHappaModel[4] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower_red.bmd"), 0x240000);
 
 	sys->heapStatusStart("pikmin-ModelMgr", nullptr);
 	mModelMgr = new SysShape::ModelMgr(PikiColorCount, &mBluPikiModel, 100, 0x20000, modelFlag,
@@ -217,7 +217,7 @@ void PikiMgr::load(int modelFlag)
 	sys->heapStatusEnd("pikmin-ModelMgr");
 
 	for (int i = 0; i < 5; i++) {
-		J3DModelData* model = (&mLeafModel)[i];
+		J3DModelData* model = mHappaModel[i];
 		model->newSharedDisplayList(0x40000);
 		model->simpleCalcMaterial(0, j3dDefaultMtx);
 		model->makeSharedDL();
@@ -681,7 +681,7 @@ void PikiMgr::doSimpleDraw(Viewport* vp)
 {
 	for (int i = 0; i < 5; i++) {
 		j3dSys; // no clue
-		J3DMaterial* mat = (&mLeafModel)[i]->mJointTree.mRootNode->mMaterial;
+		J3DMaterial* mat = mHappaModel[i]->mJointTree.mRootNode->mMaterial;
 		for (mat; mat != nullptr; mat = mat->mNext) {
 			mat->loadSharedDL();
 			mat->mShape->loadPreDrawSetting();

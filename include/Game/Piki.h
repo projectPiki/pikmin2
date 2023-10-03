@@ -49,7 +49,7 @@ typedef enum EPikiKind {
 	AllPikmin           = 5,
 	Bulbmin             = 5,
 	Carrot              = 6,
-	PikiColorCount,
+	PikiColorCount, // 7
 } EPikiKind;
 
 typedef enum EPikiHappa {
@@ -60,7 +60,8 @@ typedef enum EPikiHappa {
 
 	Bud_Red    = 3,
 	Flower_Red = 4,
-} EPikiHappa; // Aka headtype
+	PikiHappaCount, // 5
+} EPikiHappa;       // Aka headtype
 
 typedef enum EMovieUserCommands {
 	ForceOnionPikis = 100, // Calls enterAllPikis and forceEnterPikis based on moviePlayer flags

@@ -192,14 +192,14 @@ struct Item : public FSMItem<Item, FSM, State> {
 	virtual void onKill(CreatureKillArg* settings);              // _34
 	virtual void doSimulation(f32);                              // _4C
 	virtual void getLODSphere(Sys::Sphere& lodSphere);           // _140
-	virtual char* getCreatureName();                             // _1A8 (weak)
+	virtual char* getCreatureName() { return "Pikihead"; }       // _1A8 (weak)
 	virtual void makeTrMatrix();                                 // _1C4
 	virtual void doAI();                                         // _1C8
 	virtual void changeMaterial();                               // _1D0
 	virtual bool interactFue(InteractFue&);                      // _1F4
 	virtual void updateBoundSphere();                            // _210
 	virtual void onSetPosition();                                // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent); // _220 (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent); // _220
 
 	bool needSave();
 	void cacheSave(Stream& output);
@@ -220,7 +220,7 @@ struct Mgr : public FixedSizeItemMgr<Item> {
 
 	virtual void doSimpleDraw(Viewport*);                                             // _20
 	virtual void onLoadResources();                                                   // _48
-	virtual u32 generatorGetID();                                                     // _58 (weak)
+	virtual u32 generatorGetID() { return 'pkhd'; }                                   // _58 (weak)
 	virtual Item* generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm); // _5C
 	virtual void onCreateModel(SysShape::Model* model);                               // _A0
 	virtual Item* birth();                                                            // _A4
@@ -228,7 +228,6 @@ struct Mgr : public FixedSizeItemMgr<Item> {
 	virtual void* getNext(void*);                                                     // _B0 (weak, thunk at _88)
 	virtual void* getStart();                                                         // _B4 (weak, thunk at _8C)
 	virtual void* getEnd();                                                           // _B8 (weak, thunk at _90)
-	virtual ~Mgr();                                                                   // _BC (weak)
 
 	// _00     = VTBL
 	// _00-_7C = FixedSizeItemMgr
