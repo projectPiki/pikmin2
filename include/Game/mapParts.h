@@ -47,7 +47,7 @@ struct DoorLink : public CNode {
 		mTekiFlags = 1;
 	}
 
-	virtual ~DoorLink(); // _08 (weak)
+	virtual ~DoorLink() { } // _08 (weak)
 
 	void read(Stream&);
 	void write(Stream&);
@@ -103,13 +103,13 @@ struct RoomLink : public CNode {
 struct MapUnit {
 	MapUnit();
 
-	virtual void constructor();                 // _08 (weak)
-	virtual void doAnimation();                 // _0C (weak)
-	virtual void doEntry();                     // _10 (weak)
-	virtual void doSetView(int viewportNumber); // _14 (weak)
-	virtual void doViewCalc();                  // _18 (weak)
-	virtual void doSimulation(f32);             // _1C (weak)
-	virtual void doDirectDraw(Graphics& gfx);   // _20 (weak)
+	virtual void constructor() { }                 // _08 (weak)
+	virtual void doAnimation() { }                 // _0C (weak)
+	virtual void doEntry() { }                     // _10 (weak)
+	virtual void doSetView(int viewportNumber) { } // _14 (weak)
+	virtual void doViewCalc() { }                  // _18 (weak)
+	virtual void doSimulation(f32) { }             // _1C (weak)
+	virtual void doDirectDraw(Graphics& gfx) { }   // _20 (weak)
 
 	void load(Stream&);
 	void save(Stream&);
@@ -237,7 +237,8 @@ struct MapRoom : public CellObject {
 	RoomLink* mLink;                       // _180
 	s16 _184;                              // _184
 	u16 mUnitKind;                         // _186
-	u8 _188[2];                            // _188
+	u8 _188;                               // _188
+	u8 _189;                               // _189
 	int* mWpIndices;                       // _18C
 	Sys::Sphere _190;                      // _190
 };
@@ -245,27 +246,27 @@ struct MapRoom : public CellObject {
 struct RoomMapMgr : public MapMgr {
 	RoomMapMgr(Cave::CaveInfo*);
 
-	virtual bool hasHiddenCollision();                        // _08
-	virtual void constraintBoundBox(Sys::Sphere&);            // _0C
-	virtual void getStartPosition(Vector3f&, int);            // _10 (weak)
-	virtual Matrixf* getDemoMatrix();                         // _14 (weak)
-	virtual void getBoundBox2d(BoundBox2d&);                  // _18
-	virtual void getBoundBox(BoundBox&);                      // _1C
-	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20
-	virtual void traceMove(MoveInfo&, f32);                   // _24
-	virtual f32 getMinY(Vector3f&);                           // _28
-	virtual void getCurrTri(CurrTriInfo&);                    // _2C
-	virtual void createTriangles(Sys::CreateTriangleArg&);    // _30
-	virtual void setupJUTTextures();                          // _34
-	virtual void drawCollision(Graphics&, Sys::Sphere&);      // _44
-	virtual void doSimulation(f32);                           // _48 (weak)
-	virtual void doDirectDraw(Graphics&);                     // _4C (weak)
-	virtual void doAnimation();                               // _50 (weak)
-	virtual void doEntry();                                   // _54 (weak)
-	virtual void doSetView(int viewportNumber);               // _58 (weak)
-	virtual void doViewCalc();                                // _5C (weak)
-	virtual void traceMove_new(MoveInfo&, f32);               // _60
-	virtual void traceMove_original(MoveInfo&, f32);          // _64
+	virtual bool hasHiddenCollision();                       // _08
+	virtual void constraintBoundBox(Sys::Sphere&);           // _0C
+	virtual void getStartPosition(Vector3f&, int);           // _10 (weak)
+	virtual Matrixf* getDemoMatrix();                        // _14 (weak)
+	virtual void getBoundBox2d(BoundBox2d&);                 // _18
+	virtual void getBoundBox(BoundBox&);                     // _1C
+	virtual u32 findRayIntersection(Sys::RayIntersectInfo&); // _20
+	virtual void traceMove(MoveInfo&, f32);                  // _24
+	virtual f32 getMinY(Vector3f&);                          // _28
+	virtual void getCurrTri(CurrTriInfo&);                   // _2C
+	virtual void createTriangles(Sys::CreateTriangleArg&);   // _30
+	virtual void setupJUTTextures();                         // _34
+	virtual void drawCollision(Graphics&, Sys::Sphere&);     // _44
+	virtual void doSimulation(f32);                          // _48 (weak)
+	virtual void doDirectDraw(Graphics&);                    // _4C (weak)
+	virtual void doAnimation();                              // _50 (weak)
+	virtual void doEntry();                                  // _54 (weak)
+	virtual void doSetView(int viewportNumber);              // _58 (weak)
+	virtual void doViewCalc();                               // _5C (weak)
+	virtual void traceMove_new(MoveInfo&, f32);              // _60
+	virtual void traceMove_original(MoveInfo&, f32);         // _64
 
 	void getMapRoom(s16);
 	void createRandomMap(int, Cave::EditMapUnit*);
@@ -284,6 +285,9 @@ struct RoomMapMgr : public MapMgr {
 	void nishimuraCreateRandomMap(MapUnitInterface*, int, Cave::FloorInfo*, bool, Cave::EditMapUnit*);
 	void nishimuraPlaceRooms();
 	void nishimuraSetTexture();
+
+	static int numRoomCulled;
+	static bool mUseCylinderViewCulling;
 
 	// _00     = GenericObjectMgr
 	// _04     = VTBL
