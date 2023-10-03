@@ -1,8 +1,6 @@
-#include "CNode.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "Screen/screenObj.h"
 #include "og/Screen/ogScreen.h"
-#include "types.h"
+#include "JSystem/J2D/J2DPrint.h"
 
 /*
     Generated from dpostproc
@@ -77,8 +75,8 @@ namespace Screen {
 ObjBase::ObjBase()
     : IObjBase()
 {
-	_30    = 0;
-	mOwner = nullptr;
+	mObjState = ObjState_Inactive;
+	mOwner    = nullptr;
 }
 
 /*
@@ -93,78 +91,26 @@ void ObjBase::create(JKRArchive* archive) { doCreate(archive); }
  * Address:	80453BA4
  * Size:	0000AC
  */
-bool ObjBase::start(Screen::StartSceneArg const* arg)
+bool ObjBase::start(StartSceneArg const* arg)
 {
-	switch (_30) {
-	case 0:
+	bool ret = false;
+	switch (mObjState) {
+	case ObjState_Inactive:
 		if (doStart(arg)) {
-			_30 = 1;
-			return true;
+			mObjState = ObjState_Fadein;
+			ret       = true;
 		}
-		return false;
-	case 1:
-		return true;
-	case 2:
-	case 3:
-		return false;
+		break;
+	case ObjState_Fadein:
+		ret = true;
+		break;
+	case ObjState_Standard:
+	case ObjState_Fadeout:
+		break;
 	default:
 		JUT_PANICLINE(97, "P2Assert");
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x30(r3)
-	cmpwi    r0, 1
-	beq      lbl_80453C10
-	bge      lbl_80453BDC
-	cmpwi    r0, 0
-	bge      lbl_80453BE8
-	b        lbl_80453C18
-
-lbl_80453BDC:
-	cmpwi    r0, 4
-	bge      lbl_80453C18
-	b        lbl_80453C34
-
-lbl_80453BE8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80453C34
-	li       r0, 1
-	li       r31, 1
-	stw      r0, 0x30(r30)
-	b        lbl_80453C34
-
-lbl_80453C10:
-	li       r31, 1
-	b        lbl_80453C34
-
-lbl_80453C18:
-	lis      r3, lbl_8049BA58@ha
-	lis      r5, lbl_8049BA68@ha
-	addi     r3, r3, lbl_8049BA58@l
-	li       r4, 0x61
-	addi     r5, r5, lbl_8049BA68@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80453C34:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return ret;
 }
 
 /*
@@ -172,106 +118,38 @@ lbl_80453C34:
  * Address:	80453C50
  * Size:	000138
  */
-bool ObjBase::end(Screen::EndSceneArg const*)
+bool ObjBase::end(EndSceneArg const* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x30(r3)
-	cmpwi    r0, 2
-	beq      lbl_80453CA0
-	bge      lbl_80453C94
-	cmpwi    r0, 0
-	beq      lbl_80453D10
-	bge      lbl_80453D68
-	b        lbl_80453D4C
-
-lbl_80453C94:
-	cmpwi    r0, 4
-	bge      lbl_80453D4C
-	b        lbl_80453D18
-
-lbl_80453CA0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80453D68
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r30, 0
-	beq      lbl_80453D00
-	lbz      r0, 4(r30)
-	cmplwi   r0, 0
-	beq      lbl_80453D00
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x30(r29)
-	b        lbl_80453D08
-
-lbl_80453D00:
-	li       r0, 3
-	stw      r0, 0x30(r29)
-
-lbl_80453D08:
-	li       r31, 1
-	b        lbl_80453D68
-
-lbl_80453D10:
-	li       r31, 1
-	b        lbl_80453D68
-
-lbl_80453D18:
-	cmplwi   r30, 0
-	beq      lbl_80453D44
-	lbz      r0, 4(r30)
-	cmplwi   r0, 0
-	beq      lbl_80453D44
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x30(r29)
-
-lbl_80453D44:
-	li       r31, 1
-	b        lbl_80453D68
-
-lbl_80453D4C:
-	lis      r3, lbl_8049BA58@ha
-	lis      r5, lbl_8049BA68@ha
-	addi     r3, r3, lbl_8049BA58@l
-	li       r4, 0x91
-	addi     r5, r5, lbl_8049BA68@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80453D68:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	bool ret = false;
+	switch (mObjState) {
+	case 2:
+		if (doEnd(arg)) {
+			doUpdateFinish();
+			if (arg && arg->_04) {
+				doUpdateFadeoutFinish();
+				mObjState = ObjState_Inactive;
+			} else {
+				mObjState = ObjState_Fadeout;
+			}
+			ret = true;
+		}
+		break;
+	case ObjState_Inactive:
+		ret = true;
+		break;
+	case ObjState_Fadein:
+		break;
+	case ObjState_Fadeout:
+		if (arg && arg->_04) {
+			doUpdateFadeoutFinish();
+			mObjState = ObjState_Inactive;
+		}
+		ret = true;
+		break;
+	default:
+		JUT_PANICLINE(145, "P2Assert");
+	}
+	return ret;
 }
 
 /*
@@ -281,88 +159,31 @@ lbl_80453D68:
  */
 bool ObjBase::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x30(r3)
-	cmpwi    r0, 2
-	beq      lbl_80453E10
-	bge      lbl_80453DC4
-	cmpwi    r0, 0
-	beq      lbl_80453DD0
-	bge      lbl_80453DD8
-	b        lbl_80453E7C
-
-lbl_80453DC4:
-	cmpwi    r0, 4
-	bge      lbl_80453E7C
-	b        lbl_80453E48
-
-lbl_80453DD0:
-	li       r31, 1
-	b        lbl_80453E7C
-
-lbl_80453DD8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80453E7C
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 2
-	stw      r0, 0x30(r30)
-	b        lbl_80453E7C
-
-lbl_80453E10:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80453E7C
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 3
-	stw      r0, 0x30(r30)
-	b        lbl_80453E7C
-
-lbl_80453E48:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80453E7C
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x30(r30)
-
-lbl_80453E7C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool ret = false;
+	switch (mObjState) {
+	case ObjState_Inactive:
+		ret = true;
+		break;
+	case ObjState_Fadein:
+		if (doUpdateFadein()) {
+			doUpdateFadeinFinish();
+			mObjState = ObjState_Standard;
+		}
+		break;
+	case ObjState_Standard:
+		if (doUpdate()) {
+			doUpdateFinish();
+			mObjState = ObjState_Fadeout;
+		}
+		break;
+	case ObjState_Fadeout:
+		if (doUpdateFadeout()) {
+			doUpdateFadeoutFinish();
+			mObjState = ObjState_Inactive;
+		}
+		break;
+	}
+	return ret;
 }
 
 /*
@@ -372,7 +193,7 @@ lbl_80453E7C:
  */
 void ObjBase::draw(Graphics& gfx)
 {
-	if (_30 != 0) {
+	if (mObjState != ObjState_Inactive) {
 		doDraw(gfx);
 	}
 }
@@ -384,17 +205,13 @@ void ObjBase::draw(Graphics& gfx)
  */
 void ObjBase::doDraw(Graphics& gfx)
 {
-	// J2DPrint print(JFWSystem::systemFont, 0.0f);
-	// print.initiate();
-	// print._40.r = 0xFF;
-	// print._40.g = 0xFF;
-	// print._40.b = 0xFF;
-	// print._40.a = 0xFF;
-	// print._44.r = 0xFF;
-	// print._44.g = 0xFF;
-	// print._44.b = 0xFF;
-	// print._44.a = 0xFF;
-	// print.print(100.0f, mName); // TODO: What's the other double param?
+	J2DPrint print(JFWSystem::systemFont, 0.0f);
+	print.initiate();
+	JUtility::TColor color(255, 255, 255, 255);
+	print.mCharColor     = color;
+	print.mGradientColor = color;
+	print.print(100.0f, 100.0f, mName);
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -465,21 +282,21 @@ og::Screen::DispMemberBase* ObjBase::getDispMember() { return mOwner->mDispMembe
  * Address:	80453FB4
  * Size:	00002C
  */
-bool ObjBase::confirmSetScene(Screen::SetSceneArg& arg) { return doConfirmSetScene(arg); }
+bool ObjBase::confirmSetScene(SetSceneArg& arg) { return doConfirmSetScene(arg); }
 
 /*
  * --INFO--
  * Address:	80453FE0
  * Size:	00002C
  */
-bool ObjBase::confirmStartScene(Screen::StartSceneArg* arg) { return doConfirmStartScene(arg); }
+bool ObjBase::confirmStartScene(StartSceneArg* arg) { return doConfirmStartScene(arg); }
 
 /*
  * --INFO--
  * Address:	8045400C
  * Size:	000034
  */
-bool ObjBase::confirmEndScene(Screen::EndSceneArg* arg) { return doConfirmEndScene(arg); }
+bool ObjBase::confirmEndScene(EndSceneArg* arg) { return doConfirmEndScene(arg); }
 
 /*
  * --INFO--
@@ -494,9 +311,9 @@ Controller* ObjBase::getGamePad() const { return getOwner()->getGamePad(); }
  * Size:	000044
  */
 ObjMgrBase::ObjMgrBase()
-    : _00()
+    : mNode()
 {
-	_00.clearRelations();
+	mNode.clearRelations();
 }
 
 /*
@@ -504,10 +321,10 @@ ObjMgrBase::ObjMgrBase()
  * Address:	804540B4
  * Size:	000058
  */
-void ObjMgrBase::registObj(Screen::IObjBase* obj, Screen::SceneBase* scene)
+void ObjMgrBase::registObj(IObjBase* obj, SceneBase* scene)
 {
 	obj->setOwner(scene);
-	_00.add(obj);
+	mNode.add(obj);
 }
 
 /*
@@ -519,7 +336,8 @@ void ObjMgrBase::registObj(Screen::IObjBase* obj, Screen::SceneBase* scene)
 bool ObjMgrBase::update()
 {
 	bool result = true;
-	for (IObjBase* obj = (IObjBase*)_00.mChild; obj != nullptr; obj = (IObjBase*)obj->mNext) {
+	FOREACH_NODE(IObjBase, mNode.mChild, obj)
+	{
 		if (!obj->update()) {
 			result = false;
 		}
@@ -535,7 +353,7 @@ bool ObjMgrBase::update()
 	lwz      r3, 0x10(r3)
 	b        lbl_80454150
 
-lbl_8045412C:
+	lbl_8045412C:
 	lwz      r12, 0(r3)
 	lwz      r30, 4(r3)
 	lwz      r12, 0x1c(r12)
@@ -545,10 +363,10 @@ lbl_8045412C:
 	bne      lbl_8045414C
 	li       r31, 0
 
-lbl_8045414C:
+	lbl_8045414C:
 	mr       r3, r30
 
-lbl_80454150:
+	lbl_80454150:
 	cmplwi   r3, 0
 	bne      lbl_8045412C
 	lwz      r0, 0x14(r1)
@@ -569,9 +387,7 @@ lbl_80454150:
  */
 void ObjMgrBase::draw(Graphics& gfx)
 {
-	for (IObjBase* obj = (IObjBase*)_00.mChild; obj != nullptr; obj = (IObjBase*)obj->mNext) {
-		obj->draw(gfx);
-	}
+	FOREACH_NODE(IObjBase, mNode.mChild, obj) { obj->draw(gfx); }
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -608,8 +424,15 @@ lbl_804541B0:
  * Address:	804541D0
  * Size:	000098
  */
-IObjBase* ObjMgrBase::search(Screen::SceneBase*, char*)
+IObjBase* ObjMgrBase::search(SceneBase* scene, char* name)
 {
+	FOREACH_NODE(IObjBase, mNode.mChild, obj)
+	{
+		if (obj->getOwner() == scene && !strcmp(obj->mName, name)) {
+			return obj;
+		}
+	}
+	return nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -665,8 +488,16 @@ lbl_80454248:
  * Address:	80454268
  * Size:	000078
  */
-bool ObjMgrBase::start(Screen::StartSceneArg*)
+bool ObjMgrBase::start(StartSceneArg* arg)
 {
+	bool result = true;
+	FOREACH_NODE(IObjBase, mNode.mChild, obj)
+	{
+		if (!obj->start(arg)) {
+			result = false;
+		}
+	}
+	return result;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -712,8 +543,16 @@ lbl_804542B8:
  * Address:	804542E0
  * Size:	000078
  */
-bool ObjMgrBase::end(Screen::EndSceneArg*)
+bool ObjMgrBase::end(EndSceneArg* arg)
 {
+	bool result = true;
+	FOREACH_NODE(IObjBase, mNode.mChild, obj)
+	{
+		if (!obj->end(arg)) {
+			result = false;
+		}
+	}
+	return result;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -759,8 +598,16 @@ lbl_80454330:
  * Address:	80454358
  * Size:	00007C
  */
-bool ObjMgrBase::confirmSetScene(Screen::SetSceneArg&)
+bool ObjMgrBase::confirmSetScene(SetSceneArg& arg)
 {
+	bool result = true;
+	FOREACH_NODE(IObjBase, mNode.mChild, obj)
+	{
+		if (!obj->confirmSetScene(arg)) {
+			result = false;
+		}
+	}
+	return result;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -809,8 +656,16 @@ lbl_804543B4:
  * Address:	804543D4
  * Size:	00007C
  */
-bool ObjMgrBase::confirmStartScene(Screen::StartSceneArg*)
+bool ObjMgrBase::confirmStartScene(StartSceneArg* arg)
 {
+	bool result = true;
+	FOREACH_NODE(IObjBase, mNode.mChild, obj)
+	{
+		if (!obj->confirmStartScene(arg)) {
+			result = false;
+		}
+	}
+	return result;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -859,8 +714,16 @@ lbl_80454430:
  * Address:	80454450
  * Size:	00007C
  */
-bool ObjMgrBase::confirmEndScene(Screen::EndSceneArg*)
+bool ObjMgrBase::confirmEndScene(EndSceneArg* arg)
 {
+	bool result = true;
+	FOREACH_NODE(IObjBase, mNode.mChild, obj)
+	{
+		if (!obj->confirmEndScene(arg)) {
+			result = false;
+		}
+	}
+	return result;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -904,16 +767,4 @@ lbl_804544AC:
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	804544CC
-//  * Size:	000008
-//  */
-// @24 @Screen::ObjBase::~ObjBase()
-// {
-// 	/*
-// 	addi     r3, r3, -24
-// 	b        __dt__Q26Screen7ObjBaseFv
-// 	*/
-// }
 } // namespace Screen

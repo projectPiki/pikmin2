@@ -63,8 +63,8 @@ void SceneBase::destroy()
 void SceneBase::create()
 {
 	if (mCommand._30 == -1) {
-		mSomeTime    = sys->getTime();
-		mCommand._B0 = &_10C;
+		mSomeTime              = sys->getTime();
+		mCommand.mUserCallback = &_10C;
 		if (getResName()[0] != '\0') {
 			og::newScreen::makeLanguageResName(mName, getResName());
 			gResMgr2D->loadResource(&mCommand, mName, true);

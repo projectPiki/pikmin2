@@ -1,92 +1,21 @@
 #include "ARAM.h"
-#include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "Resource.h"
-#include "types.h"
+#include "System.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049A640
-    lbl_8049A640:
-        .4byte 0x7265736F
-        .4byte 0x75726365
-        .4byte 0x4D67722E
-        .4byte 0x63707000
-    .global lbl_8049A650
-    lbl_8049A650:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_8049A65C
-    lbl_8049A65C:
-        .4byte 0x974C82E8
-        .4byte 0x82A682C8
-        .4byte 0x82A28FF3
-        .4byte 0x91D482C5
-        .4byte 0x82B282B4
-        .4byte 0x82A282DC
-        .4byte 0x82B7200A
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EC3D8
-    lbl_804EC3D8:
-        .4byte 0x00000000
-        .4byte 0x0000001C
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000020
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000024
-        .4byte 0x00000000
-    .global __vt__Q28Resource3Mgr
-    __vt__Q28Resource3Mgr:
-        .4byte 0
-        .4byte 0
-        .4byte drawDump__Q28Resource3MgrFR8Graphicsii
-    .global __vt__Q28Resource10MgrCommand
-    __vt__Q28Resource10MgrCommand:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28Resource10MgrCommandFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q28Resource10MgrCommandFv"
-        .4byte memoryCallBackFunc__Q28Resource10MgrCommandFv
-        .4byte dvdLoadCallBackFunc__Q28Resource10MgrCommandFv
-        .4byte aramLoadCallBackFunc__Q28Resource10MgrCommandFv
-    .global "__vt__33Delegate<Q28Resource10MgrCommand>"
-    "__vt__33Delegate<Q28Resource10MgrCommand>":
-        .4byte 0
-        .4byte 0
-        .4byte "invoke__33Delegate<Q28Resource10MgrCommand>Fv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q28Resource4Node
-    __vt__Q28Resource4Node:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28Resource4NodeFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q28Resource4NodeFv"
-        .4byte 0
-*/
+namespace Resource {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00007C
  */
-Resource::Node::Node(char const*)
+Node::Node(char const* name)
+    : CNode(const_cast<char*>(name))
 {
+	mHeap        = nullptr;
+	mHeapGroupID = 0;
+	mResource    = nullptr;
+
 	// UNUSED FUNCTION
 }
 
@@ -95,75 +24,12 @@ Resource::Node::Node(char const*)
  * Address:	804330D8
  * Size:	0000DC
  */
-Resource::Node::~Node()
+Node::~Node()
 {
-	P2ASSERTLINE(99, mMgrCommand != nullptr);
-	P2ASSERTLINE(101, mMgrCommand->_38 == this);
+	P2ASSERTLINE(99, mMgrCommand);
+	P2ASSERTLINE(101, mMgrCommand->mNode1 == this);
 	mMgrCommand->setModeInvalid();
 	del();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80433198
-	lis      r3, __vt__Q28Resource4Node@ha
-	addi     r3, r3, __vt__Q28Resource4Node@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x10
-	stw      r0, 0x18(r30)
-	lwz      r0, 0x3c(r30)
-	cmplwi   r0, 0
-	bne      lbl_80433134
-	lis      r3, lbl_8049A640@ha
-	lis      r5, lbl_8049A650@ha
-	addi     r3, r3, lbl_8049A640@l
-	li       r4, 0x63
-	addi     r5, r5, lbl_8049A650@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80433134:
-	lwz      r3, 0x3c(r30)
-	lwz      r0, 0x38(r3)
-	cmplw    r0, r30
-	beq      lbl_80433160
-	lis      r3, lbl_8049A640@ha
-	lis      r5, lbl_8049A650@ha
-	addi     r3, r3, lbl_8049A640@l
-	li       r4, 0x65
-	addi     r5, r5, lbl_8049A650@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80433160:
-	lwz      r3, 0x3c(r30)
-	bl       setModeInvalid__Q28Resource10MgrCommandFv
-	mr       r3, r30
-	bl       del__5CNodeFv
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80433198
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80433198:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -171,7 +37,7 @@ lbl_80433198:
  * Address:	........
  * Size:	000040
  */
-void Resource::Node::dump()
+void Node::dump()
 {
 	// UNUSED FUNCTION
 }
@@ -181,7 +47,7 @@ void Resource::Node::dump()
  * Address:	........
  * Size:	0001CC
  */
-void Resource::Node::drawDump(Graphics&, int&, int&)
+void Node::drawDump(Graphics&, int&, int&)
 {
 	// UNUSED FUNCTION
 }
@@ -191,11 +57,11 @@ void Resource::Node::drawDump(Graphics&, int&, int&)
  * Address:	........
  * Size:	00003C
  */
-void Resource::Node::becomeCurrentHeap()
+void Node::becomeCurrentHeap()
 {
 	// UNUSED FUNCTION
-	_30->becomeCurrentHeap();
-	_30->changeGroupID(mGroupIDMaybe);
+	mHeap->becomeCurrentHeap();
+	mHeap->changeGroupID(mHeapGroupID);
 }
 
 /*
@@ -204,11 +70,11 @@ void Resource::Node::becomeCurrentHeap()
  * Address:	........
  * Size:	000030
  */
-void Resource::Node::destroy(Resource::Node* node)
+void Node::destroy(Node* node)
 {
 	// UNUSED FUNCTION
 	if (node) {
-		((JKRExpHeap*)node->_30)->freeGroup(node->mGroupIDMaybe);
+		((JKRExpHeap*)node->mHeap)->freeGroup(node->mHeapGroupID);
 	}
 }
 
@@ -217,15 +83,13 @@ void Resource::Node::destroy(Resource::Node* node)
  * Address:	804331B4
  * Size:	000138
  */
-Resource::MgrCommand::MgrCommand(char* name)
+MgrCommand::MgrCommand(char* name)
     : CNode(name)
-    , JKRDisposer()
-    , _3C()
-    , _AC(nullptr)
-    , _B0(nullptr)
-    , _B4(this, &MgrCommand::memoryCallBackFunc)
-    , _C8(this, &MgrCommand::dvdLoadCallBackFunc)
-    , _DC(this, &MgrCommand::aramLoadCallBackFunc)
+    , mActiveHeap(nullptr)
+    , mUserCallback(nullptr)
+    , mDelegateMemory(this, &MgrCommand::memoryCallBackFunc)
+    , mDelegateDvdLoad(this, &MgrCommand::dvdLoadCallBackFunc)
+    , mDelegateAramLoad(this, &MgrCommand::aramLoadCallBackFunc)
 {
 	setModeInvalid();
 }
@@ -246,8 +110,10 @@ Resource::MgrCommand::MgrCommand(char* name)
  * Address:	804332EC
  * Size:	0000B8
  */
-Resource::MgrCommand::~MgrCommand()
+MgrCommand::~MgrCommand()
 {
+	Node::destroy(mNode1);
+	del();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -310,11 +176,11 @@ lbl_80433388:
  * Address:	804333A4
  * Size:	000070
  */
-void Resource::MgrCommand::becomeCurrentHeap()
+void MgrCommand::becomeCurrentHeap()
 {
 	P2ASSERTLINE(187, _30 != -1);
-	_AC = JKRHeap::sCurrentHeap;
-	_38->becomeCurrentHeap();
+	mActiveHeap = JKRHeap::sCurrentHeap;
+	mNode1->becomeCurrentHeap();
 }
 
 /*
@@ -322,12 +188,12 @@ void Resource::MgrCommand::becomeCurrentHeap()
  * Address:	80433414
  * Size:	000088
  */
-void Resource::MgrCommand::releaseCurrentHeap()
+void MgrCommand::releaseCurrentHeap()
 {
 	P2ASSERTLINE(199, _30 != -1);
-	P2ASSERTLINE(201, _AC != nullptr);
-	_AC->becomeCurrentHeap();
-	_AC = nullptr;
+	P2ASSERTLINE(201, mActiveHeap);
+	mActiveHeap->becomeCurrentHeap();
+	mActiveHeap = nullptr;
 }
 
 /*
@@ -335,7 +201,7 @@ void Resource::MgrCommand::releaseCurrentHeap()
  * Address:	........
  * Size:	0000E8
  */
-bool Resource::MgrCommand::isFinish()
+bool MgrCommand::isFinish()
 {
 	// UNUSED FUNCTION
 }
@@ -345,22 +211,14 @@ bool Resource::MgrCommand::isFinish()
  * Address:	8043349C
  * Size:	00000C
  */
-void* Resource::MgrCommand::getResource()
-{
-	return _38->mResource;
-	/*
-	lwz      r3, 0x38(r3)
-	lwz      r3, 0x38(r3)
-	blr
-	*/
-}
+void* MgrCommand::getResource() { return mNode1->mResource; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000040
  */
-void Resource::MgrCommand::setModeMemory(Resource::Node*)
+void MgrCommand::setModeMemory(Node*)
 {
 	// UNUSED FUNCTION
 }
@@ -370,7 +228,7 @@ void Resource::MgrCommand::setModeMemory(Resource::Node*)
  * Address:	........
  * Size:	000040
  */
-void Resource::MgrCommand::setModeAram(Resource::Node*, ARAM::Node*)
+void MgrCommand::setModeAram(Node*, ARAM::Node*)
 {
 	// UNUSED FUNCTION
 }
@@ -380,7 +238,7 @@ void Resource::MgrCommand::setModeAram(Resource::Node*, ARAM::Node*)
  * Address:	........
  * Size:	000040
  */
-void Resource::MgrCommand::setModeDvd(Resource::Node*)
+void MgrCommand::setModeDvd(Node*)
 {
 	// UNUSED FUNCTION
 }
@@ -390,12 +248,12 @@ void Resource::MgrCommand::setModeDvd(Resource::Node*)
  * Address:	804334A8
  * Size:	00001C
  */
-void Resource::MgrCommand::setModeInvalid()
+void MgrCommand::setModeInvalid()
 {
-	_30 = -1;
-	_38 = nullptr;
-	_34 = 0;
-	_B0 = nullptr;
+	_30           = -1;
+	mNode1        = nullptr;
+	_34           = 0;
+	mUserCallback = nullptr;
 }
 
 /*
@@ -403,10 +261,10 @@ void Resource::MgrCommand::setModeInvalid()
  * Address:	804334C4
  * Size:	000048
  */
-void Resource::MgrCommand::memoryCallBackFunc()
+void MgrCommand::memoryCallBackFunc()
 {
-	_38->_30->changeGroupID(_38->mGroupIDMaybe);
-	JUT_PANICLINE(343, "æœ‰ã‚Šãˆãªï¿½?çŠ¶æ…‹ã§ã”ã–ï¿½?ã¾ï¿½? \n");
+	mNode1->mHeap->changeGroupID(mNode1->mHeapGroupID);
+	JUT_PANICLINE(343, "—L‚è‚¦‚È‚¢ó‘Ô‚Å‚²‚´‚¢‚Ü‚· \n"); // This is an impossible situation.
 }
 
 /*
@@ -414,12 +272,13 @@ void Resource::MgrCommand::memoryCallBackFunc()
  * Address:	8043350C
  * Size:	000094
  */
-void Resource::MgrCommand::aramLoadCallBackFunc()
+void MgrCommand::aramLoadCallBackFunc()
 {
-	_38->_30->changeGroupID(_38->mGroupIDMaybe);
-	void* resource = gAramMgr->aramToMainRam(_A8->mName, nullptr, 0, 0, Switch_1, 0, _38->_30, JKRDvdRipper::ALLOC_DIR_TOP, -1, nullptr);
+	mNode1->mHeap->changeGroupID(mNode1->mHeapGroupID);
+	void* resource
+	    = gAramMgr->aramToMainRam(mNode2->mName, nullptr, 0, 0, Switch_1, 0, mNode1->mHeap, JKRDvdRipper::ALLOC_DIR_TOP, -1, nullptr);
 	if (resource) {
-		_38->mResource = resource;
+		mNode1->mResource = resource;
 		userCallBackInvoke();
 	}
 }
@@ -429,64 +288,25 @@ void Resource::MgrCommand::aramLoadCallBackFunc()
  * Address:	804335A0
  * Size:	0000BC
  */
-void Resource::MgrCommand::dvdLoadCallBackFunc()
+void MgrCommand::dvdLoadCallBackFunc()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	li       r30, 1
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lwz      r4, 0x38(r3)
-	lwz      r31, 0x14(r4)
-	lwz      r3, 0x30(r4)
-	lbz      r4, 0x34(r4)
-	bl       changeGroupID__7JKRHeapFUc
-	lbz      r0, 0(r31)
-	extsb.   r0, r0
-	beq      lbl_80433630
-	addi     r0, r1, 0x10
-	mr       r3, r31
-	stw      r0, 8(r1)
-	li       r4, 0
-	li       r5, 1
-	li       r6, 0
-	lwz      r7, 0x38(r29)
-	li       r8, 1
-	li       r9, 0
-	li       r10, 0
-	lwz      r7, 0x30(r7)
-	bl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	or.      r31, r3, r3
-	beq      lbl_8043362C
-	lwz      r4, 0x10(r1)
-	bl       DCFlushRange
-	lwz      r3, 0x38(r29)
-	stw      r31, 0x38(r3)
-	b        lbl_80433630
+	bool loaded      = true;
+	const char* path = mNode1->mName;
+	mNode1->mHeap->changeGroupID(mNode1->mHeapGroupID);
+	if (path[0]) {
+		u32 size;
+		void* file = JKRDvdRipper::loadToMainRAM(path, nullptr, Switch_1, 0, mNode1->mHeap, JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, &size);
+		if (file) {
+			DCFlushRange(file, size);
+			mNode1->mResource = file;
+		} else {
+			loaded = false;
+		}
+	}
 
-lbl_8043362C:
-	li       r30, 0
-
-lbl_80433630:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_80433640
-	mr       r3, r29
-	bl       userCallBackInvoke__Q28Resource10MgrCommandFv
-
-lbl_80433640:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (loaded) {
+		userCallBackInvoke();
+	}
 }
 
 /*
@@ -494,13 +314,13 @@ lbl_80433640:
  * Address:	8043365C
  * Size:	000074
  */
-void Resource::MgrCommand::userCallBackInvoke()
+void MgrCommand::userCallBackInvoke()
 {
-	if (_B0) {
+	if (mUserCallback) {
 		JKRHeap* existingCurrentHeap = JKRHeap::sCurrentHeap;
-		_38->_30->becomeCurrentHeap();
-		_B0->invoke(this);
-		_B0 = nullptr;
+		mNode1->mHeap->becomeCurrentHeap();
+		mUserCallback->invoke(this);
+		mUserCallback = nullptr;
 		existingCurrentHeap->becomeCurrentHeap();
 	}
 }
@@ -510,18 +330,18 @@ void Resource::MgrCommand::userCallBackInvoke()
  * Address:	........
  * Size:	000070
  */
-bool Resource::MgrCommand::destroy()
+bool MgrCommand::destroy()
 {
 	// UNUSED FUNCTION
 	bool result = false;
 	if (_30 != -1) {
-		if (_38) {
-			Node::destroy(_38);
-			_30    = -1;
-			result = true;
-			_38    = nullptr;
-			_34    = 0;
-			_B0    = nullptr;
+		if (mNode1) {
+			Node::destroy(mNode1);
+			_30           = -1;
+			result        = true;
+			mNode1        = nullptr;
+			_34           = 0;
+			mUserCallback = nullptr;
 		}
 	}
 	return result;
@@ -533,105 +353,24 @@ bool Resource::MgrCommand::destroy()
  * Address:	804336D0
  * Size:	00010C
  */
-Resource::Mgr::Mgr(JKRHeap* parentHeap, u32 size)
+Mgr::Mgr(JKRHeap* parentHeap, u32 size)
     : mHeap(nullptr)
     , _08(0)
     , _0C(0)
-    , _10()
-    , _28()
+    , mNodes()
+    , mLoadingNodes()
 {
-	_40.bytesView[0]             = 0;
-	_40.bytesView[1]             = 0;
-	_40.bytesView[2]             = 0;
-	_40.bytesView[3]             = 0;
-	JKRHeap* existingCurrentHeap = JKRHeap::sCurrentHeap;
-	if (parentHeap == nullptr) {
-		parentHeap = JKRHeap::sCurrentHeap;
+	JKRHeap* existingCurrentHeap = JKRGetCurrentHeap();
+	if (!parentHeap) {
+		parentHeap = JKRGetCurrentHeap();
 	}
 	mHeap = JKRExpHeap::create(size, parentHeap, true);
 	P2ASSERTLINE(487, mHeap != nullptr);
-	_08              = size;
-	_0C              = _08;
-	_40.bytesView[0] = 0;
-	_40.bytesView[1] = 0;
-	_40.bytesView[2] = 0;
-	_40.bytesView[3] = 0;
-	_40.dwordView &= -2;
+	_08 = size;
+	_0C = _08;
+	mFlags.clear();
+	mFlags.typeView &= -2;
 	existingCurrentHeap->becomeCurrentHeap();
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r6, __vt__Q28Resource3Mgr@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	addi     r3, r6, __vt__Q28Resource3Mgr@l
-	stw      r3, 0(r28)
-	addi     r3, r28, 0x10
-	stw      r0, 4(r28)
-	stw      r0, 8(r28)
-	stw      r0, 0xc(r28)
-	bl       __ct__5CNodeFv
-	addi     r3, r28, 0x28
-	bl       __ct__5CNodeFv
-	li       r0, 0
-	cmplwi   r29, 0
-	stb      r0, 0x40(r28)
-	stb      r0, 0x41(r28)
-	stb      r0, 0x42(r28)
-	stb      r0, 0x43(r28)
-	lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
-	bne      lbl_80433748
-	mr       r29, r31
-
-lbl_80433748:
-	mr       r3, r30
-	mr       r4, r29
-	li       r5, 1
-	bl       create__10JKRExpHeapFUlP7JKRHeapb
-	stw      r3, 4(r28)
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_80433784
-	lis      r3, lbl_8049A640@ha
-	lis      r5, lbl_8049A650@ha
-	addi     r3, r3, lbl_8049A640@l
-	li       r4, 0x1e7
-	addi     r5, r5, lbl_8049A650@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80433784:
-	stw      r30, 8(r28)
-	li       r0, 0
-	mr       r3, r31
-	lwz      r4, 8(r28)
-	stw      r4, 0xc(r28)
-	stb      r0, 0x40(r28)
-	stb      r0, 0x41(r28)
-	stb      r0, 0x42(r28)
-	stb      r0, 0x43(r28)
-	lwz      r0, 0x40(r28)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x40(r28)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -639,7 +378,7 @@ lbl_80433784:
  * Address:	........
  * Size:	00006C
  */
-void Resource::Mgr::search(char const*)
+void Mgr::search(char const*)
 {
 	// UNUSED FUNCTION
 }
@@ -649,7 +388,7 @@ void Resource::Mgr::search(char const*)
  * Address:	........
  * Size:	000064
  */
-void Resource::Mgr::dump()
+void Mgr::dump()
 {
 	// UNUSED FUNCTION
 }
@@ -659,15 +398,47 @@ void Resource::Mgr::dump()
  * Address:	804337DC
  * Size:	000004
  */
-void Resource::Mgr::drawDump(Graphics&, int, int) { }
+void Mgr::drawDump(Graphics&, int, int) { }
 
 /*
  * --INFO--
  * Address:	804337E0
  * Size:	0001B4
  */
-void Resource::Mgr::createNewNode(char const*)
+Node* Mgr::createNewNode(char const* path)
 {
+	u8 id = mHeap->getCurrentGroupId();
+
+	u32 useList[64]; // is this meant to be char array?
+	for (int i = 0; i < 64; i++) {
+		useList[i] = 0;
+	}
+
+	int i = 0;
+	FOREACH_NODE(Node, mNodes.mChild, node)
+	{
+		if (useList[node->mHeapGroupID] == 0) {
+			useList[node->mHeapGroupID] = 1;
+		} else {
+			JUT_PANICLINE(623, "P2Assert");
+		}
+		i++;
+	}
+	P2ASSERTLINE(629, i < 255);
+
+	while (useList[id] == 1) {
+		id--;
+		if (id == 0) {
+			id = 255;
+		}
+	}
+	mHeap->changeGroupID(id);
+
+	Node* node         = new Node(path);
+	node->mHeapGroupID = id;
+	node->mHeap        = mHeap;
+	mNodes.add(node);
+	return node;
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0
@@ -804,8 +575,52 @@ lbl_80433964:
  * Address:	80433994
  * Size:	000188
  */
-void Resource::Mgr::loadResource(Resource::MgrCommand*, char const*, bool)
+void Mgr::loadResource(MgrCommand* command, char const* path, bool)
 {
+	if (command->_30 == -1) {
+		delFinishCommand();
+		P2ASSERTLINE(674, searchCommand(command));
+
+		Node* node;
+		FOREACH_NODE(Node, mNodes.mChild, cnode)
+		{
+			if (!strcmp(path, cnode->mName)) {
+				node = cnode;
+			}
+		}
+
+		if (node) {
+			command->_30    = 0;
+			command->mNode1 = nullptr;
+			command->_34    = true;
+			sys->dvdLoadUseCallBack(&command->mDvdThread, &command->mDelegateMemory);
+			mLoadingNodes.add(command);
+		} else {
+			ARAM::Node* aram = gAramMgr->search(path);
+			if (aram) {
+				node            = createNewNode(path);
+				command->_30    = 1;
+				command->mNode1 = node;
+				command->_34    = 1;
+				command->mNode2 = node;
+				sys->dvdLoadUseCallBack(&command->mDvdThread, &command->mDelegateMemory);
+				mLoadingNodes.add(command);
+			}
+		}
+
+		if (!node) {
+			node            = createNewNode(path);
+			command->_30    = 0;
+			command->mNode1 = nullptr;
+			command->_34    = true;
+			sys->dvdLoadUseCallBack(&command->mDvdThread, &command->mDelegateMemory);
+			mLoadingNodes.add(command);
+		}
+
+		if (node) {
+			node->mMgrCommand = command;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -930,21 +745,16 @@ lbl_80433B08:
  * Address:	80433B1C
  * Size:	000070
  */
-bool Resource::Mgr::destroy(Resource::MgrCommand* command) { return command->destroy(); }
+bool Mgr::destroy(MgrCommand* command) { return command->destroy(); }
 
 /*
  * --INFO--
  * Address:	80433B8C
  * Size:	000064
  */
-void Resource::Mgr::destroyAll()
+void Mgr::destroyAll()
 {
-	Node* parent;
-	Node* child = (Node*)_10.mChild;
-	while (parent = child, parent) {
-		child = (Node*)parent->mNext;
-		Node::destroy(parent);
-	}
+	FOREACH_NODE(Node, mNodes.mChild, node) { Node::destroy(node); }
 	mHeap->freeAll();
 	/*
 	stwu     r1, -0x10(r1)
@@ -986,7 +796,7 @@ lbl_80433BC8:
  * Address:	80433BF0
  * Size:	0001E0
  */
-bool Resource::Mgr::sync(Resource::MgrCommand*, bool)
+bool Mgr::sync(MgrCommand*, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1159,7 +969,7 @@ lbl_80433DB4:
  * Address:	........
  * Size:	00013C
  */
-void Resource::Mgr::syncAll(bool)
+void Mgr::syncAll(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -1169,7 +979,7 @@ void Resource::Mgr::syncAll(bool)
  * Address:	80433DD0
  * Size:	000130
  */
-void Resource::Mgr::delFinishCommand()
+void Mgr::delFinishCommand()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1282,8 +1092,15 @@ lbl_80433EDC:
  * Address:	80433F00
  * Size:	000030
  */
-void Resource::Mgr::searchCommand(Resource::MgrCommand*)
+bool Mgr::searchCommand(MgrCommand* command)
 {
+	FOREACH_NODE(MgrCommand, mLoadingNodes.mChild, node)
+	{
+		if (node == command) {
+			return true;
+		}
+	}
+	return false;
 	/*
 	lwz      r5, 0x38(r3)
 	li       r3, 0
@@ -1311,57 +1128,9 @@ lbl_80433F24:
  * Address:	........
  * Size:	000004
  */
-void Resource::Mgr::watchHeap()
+void Mgr::watchHeap()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * Generated?
- * --INFO--
- * Address:	80433F30
- * Size:	000030
- */
-// void Delegate<Resource::MgrCommand>::invoke()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	mr       r4, r3
-// 	stw      r0, 0x14(r1)
-// 	addi     r12, r4, 8
-// 	lwz      r3, 4(r3)
-// 	bl       __ptmf_scall
-// 	nop
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	80433F60
-//  * Size:	000008
-//  */
-// @24 @Resource::Node::~Node()
-// {
-// 	/*
-// 	addi     r3, r3, -24
-// 	b        __dt__Q28Resource4NodeFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	80433F68
-//  * Size:	000008
-//  */
-// @24 @Resource::MgrCommand::~MgrCommand()
-// {
-// 	/*
-// 	addi     r3, r3, -24
-// 	b        __dt__Q28Resource10MgrCommandFv
-// 	*/
-// }
+} // namespace Resource

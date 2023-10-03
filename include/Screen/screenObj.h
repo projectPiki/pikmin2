@@ -173,17 +173,17 @@ struct IObjBase : public CNode, public JKRDisposer {
 	}
 
 	// vtable 2
-	virtual ~IObjBase() { CNode::del(); }               // _08 (weak)
-	virtual bool update()                          = 0; // _1C
-	virtual void draw(Graphics&)                   = 0; // _20
-	virtual bool start(const StartSceneArg*)       = 0; // _24
-	virtual bool end(const EndSceneArg*)           = 0; // _28
-	virtual void setOwner(SceneBase*)              = 0; // _2C
-	virtual SceneBase* getOwner() const            = 0; // _30
-	virtual void create(JKRArchive*)               = 0; // _34
-	virtual bool confirmSetScene(SetSceneArg&)     = 0; // _38
-	virtual bool confirmStartScene(StartSceneArg*) = 0; // _3C
-	virtual bool confirmEndScene(EndSceneArg*)     = 0; // _40
+	virtual ~IObjBase() { CNode::del(); }                   // _08 (weak)
+	virtual bool update()                              = 0; // _1C
+	virtual void draw(Graphics& gfx)                   = 0; // _20
+	virtual bool start(const StartSceneArg* arg)       = 0; // _24
+	virtual bool end(const EndSceneArg* arg)           = 0; // _28
+	virtual void setOwner(SceneBase* owner)            = 0; // _2C
+	virtual SceneBase* getOwner() const                = 0; // _30
+	virtual void create(JKRArchive* arc)               = 0; // _34
+	virtual bool confirmSetScene(SetSceneArg& arg)     = 0; // _38
+	virtual bool confirmStartScene(StartSceneArg* arg) = 0; // _3C
+	virtual bool confirmEndScene(EndSceneArg* arg)     = 0; // _40
 
 	// _00     = VTBL1
 	// _18     = VTBL2
@@ -194,35 +194,37 @@ struct IObjBase : public CNode, public JKRDisposer {
 struct ObjBase : public IObjBase {
 	ObjBase();
 
+	enum ObjState { ObjState_Inactive, ObjState_Fadein, ObjState_Standard, ObjState_Fadeout };
+
 	// vtable 2
-	virtual ~ObjBase() { }                     // _08 (weak)
-	virtual bool update();                     // _1C
-	virtual void draw(Graphics&);              // _20
-	virtual bool start(const StartSceneArg*);  // _24
-	virtual bool end(const EndSceneArg*);      // _28
-	virtual void setOwner(SceneBase* newOwner) // _2C (weak)
+	virtual ~ObjBase() { }                        // _08 (weak)
+	virtual bool update();                        // _1C
+	virtual void draw(Graphics& gfx);             // _20
+	virtual bool start(const StartSceneArg* arg); // _24
+	virtual bool end(const EndSceneArg* arg);     // _28
+	virtual void setOwner(SceneBase* newOwner)    // _2C (weak)
 	{
 		P2ASSERTLINE(129, !mOwner);
 		mOwner = newOwner;
 	}
-	virtual SceneBase* getOwner() const { return mOwner; }            // _30 (weak)
-	virtual void create(JKRArchive*);                                 // _34
-	virtual bool confirmSetScene(SetSceneArg&);                       // _38
-	virtual bool confirmStartScene(StartSceneArg*);                   // _3C
-	virtual bool confirmEndScene(EndSceneArg*);                       // _40
-	virtual bool doStart(const StartSceneArg*) { return true; }       // _44 (weak)
-	virtual bool doEnd(const EndSceneArg*) { return true; }           // _48 (weak)
-	virtual void doCreate(JKRArchive*) { }                            // _4C (weak)
-	virtual bool doUpdateFadein() { return true; }                    // _50 (weak)
-	virtual void doUpdateFadeinFinish() { }                           // _54 (weak)
-	virtual bool doUpdate() { return false; }                         // _58 (weak)
-	virtual void doUpdateFinish() { }                                 // _5C (weak)
-	virtual bool doUpdateFadeout() { return true; }                   // _60 (weak)
-	virtual void doUpdateFadeoutFinish() { }                          // _64 (weak)
-	virtual void doDraw(Graphics& gfx);                               // _68
-	virtual bool doConfirmSetScene(SetSceneArg&) { return true; }     // _6C (weak)
-	virtual bool doConfirmStartScene(StartSceneArg*) { return true; } // _70 (weak)
-	virtual bool doConfirmEndScene(EndSceneArg*&) { return true; }    // _74 (weak)
+	virtual SceneBase* getOwner() const { return mOwner; }                // _30 (weak)
+	virtual void create(JKRArchive* arc);                                 // _34
+	virtual bool confirmSetScene(SetSceneArg& arg);                       // _38
+	virtual bool confirmStartScene(StartSceneArg* arg);                   // _3C
+	virtual bool confirmEndScene(EndSceneArg* arg);                       // _40
+	virtual bool doStart(const StartSceneArg* arg) { return true; }       // _44 (weak)
+	virtual bool doEnd(const EndSceneArg* arg) { return true; }           // _48 (weak)
+	virtual void doCreate(JKRArchive* arc) { }                            // _4C (weak)
+	virtual bool doUpdateFadein() { return true; }                        // _50 (weak)
+	virtual void doUpdateFadeinFinish() { }                               // _54 (weak)
+	virtual bool doUpdate() { return false; }                             // _58 (weak)
+	virtual void doUpdateFinish() { }                                     // _5C (weak)
+	virtual bool doUpdateFadeout() { return true; }                       // _60 (weak)
+	virtual void doUpdateFadeoutFinish() { }                              // _64 (weak)
+	virtual void doDraw(Graphics& gfx);                                   // _68
+	virtual bool doConfirmSetScene(SetSceneArg& arg) { return true; }     // _6C (weak)
+	virtual bool doConfirmStartScene(StartSceneArg* arg) { return true; } // _70 (weak)
+	virtual bool doConfirmEndScene(EndSceneArg*& arg) { return true; }    // _74 (weak)
 
 	og::Screen::DispMemberBase* getDispMember();
 	Controller* getGamePad() const;
@@ -230,25 +232,25 @@ struct ObjBase : public IObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_30 = IObjBase
-	int _30;           // _30
+	int mObjState;     // _30
 	SceneBase* mOwner; // _34
 };
 
 struct ObjMgrBase {
 	ObjMgrBase();
 
-	bool confirmSetScene(SetSceneArg&);
-	bool confirmStartScene(StartSceneArg*);
-	bool confirmEndScene(EndSceneArg*);
-	void draw(Graphics&);
-	void registObj(IObjBase*, SceneBase*);
-	IObjBase* search(SceneBase*, char*);
+	bool confirmSetScene(SetSceneArg& arg);
+	bool confirmStartScene(StartSceneArg* arg);
+	bool confirmEndScene(EndSceneArg* arg);
+	void draw(Graphics& gfx);
+	void registObj(IObjBase* obj, SceneBase* scene);
+	IObjBase* search(SceneBase* scene, char* name);
 
-	bool start(StartSceneArg*);
+	bool start(StartSceneArg* arg);
 	bool update();
-	bool end(EndSceneArg*);
+	bool end(EndSceneArg* arg);
 
-	CNode _00; // _00
+	CNode mNode; // _00
 };
 } // namespace Screen
 
