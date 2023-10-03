@@ -67,7 +67,7 @@ struct ToeKourin {
 	void create(Vector3f*, long);
 	void kill();
 
-	ContextChasePos mContext;
+	ContextChasePos mContext[1];
 	long mPikiKind;
 };
 
@@ -100,7 +100,7 @@ struct ToeTanekira {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos mContext;
+	ContextChasePos mContext[1];
 };
 
 struct ToeWater {

@@ -32,6 +32,7 @@ void createSimpleGate1Attack(Vector3f&);
 void createSimpleGate2Attack(Vector3f&);
 void createSimpleGate3Attack(Vector3f&);
 void createSimpleStoneAttack(Vector3f& pos);
+void createSimpleGlow2(Vector3f& pos);
 
 struct TPkAp : public TSimple2 {
 	inline TPkAp()
@@ -195,6 +196,15 @@ struct TPkOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 };
 
 struct TPkEffectTane {
+	TPkEffectTane()
+	    : mPikiColor(-1)
+	    , mPos(nullptr)
+	    , _08(nullptr)
+	    , _0C(nullptr)
+	    , _10(nullptr)
+	{
+	}
+
 	void init();
 	void createTanekira_(Vector3f*);
 	void killTanekira_();

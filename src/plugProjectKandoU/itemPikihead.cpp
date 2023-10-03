@@ -4,960 +4,21 @@
 #include "Game/gameStat.h"
 #include "Game/Piki.h"
 #include "Game/PikiMgr.h"
+#include "Game/PikiState.h"
+#include "Game/Navi.h"
+#include "Game/MoviePlayer.h"
+#include "efx/TEnemyDive.h"
 #include "nans.h"
 #include "Radar.h"
 #include "SoundID.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_itemPikihead_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80480800
-    lbl_80480800:
-        .skip 0xC
-        .4byte 0x6974656D
-        .4byte 0x50696B69
-        .4byte 0x68656164
-        .4byte 0x00000000
-    .global lbl_8048081C
-    lbl_8048081C:
-        .4byte 0x68617070
-        .4byte 0x616A6E74
-        .4byte 0x33000000
-    .global lbl_80480828
-    lbl_80480828:
-        .4byte 0x6974656D
-        .4byte 0x50696B69
-        .4byte 0x68656164
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_8048083C
-    lbl_8048083C:
-        .4byte 0x65786974
-        .4byte 0x20666169
-        .4byte 0x6C656420
-        .4byte 0x21210A00
-    .global lbl_8048084C
-    lbl_8048084C:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80480858
-    lbl_80480858:
-        .4byte 0x50696B69
-        .4byte 0x48656164
-        .4byte 0x00000000
-    .global lbl_80480864
-    lbl_80480864:
-        .4byte 0x75736572
-        .4byte 0x2F4B616E
-        .4byte 0x646F2F6F
-        .4byte 0x626A6563
-        .4byte 0x74732F70
-        .4byte 0x696B6968
-        .4byte 0x65616400
-        .4byte 0x70696B69
-        .4byte 0x68656164
-        .4byte 0x2E626D64
-        .4byte 0x00000000
-        .4byte 0x74657874
-        .4byte 0x732E737A
-        .4byte 0x73000000
-        .4byte 0x70696B69
-        .4byte 0x68656164
-        .4byte 0x416E696D
-        .4byte 0x4D67722E
-        .4byte 0x74787400
-    .global lbl_804808B0
-    lbl_804808B0:
-        .4byte 0x82B182EA
-        .4byte 0x82CD82A0
-        .4byte 0x82E882A6
-        .4byte 0x82C882A2
-        .4byte 0x82E60A00
-    .global lbl_804808C4
-    lbl_804808C4:
-        .4byte 0x50696B69
-        .4byte 0x68656164
-        .4byte 0x00000000
-        .4byte 0x41726753
-        .4byte 0x63616C65
-        .4byte 0x00000000
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804B8668
-    lbl_804B8668:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game12ItemPikihead3Mgr
-    __vt__Q34Game12ItemPikihead3Mgr:
-        .4byte 0
-        .4byte 0
-        .4byte
-   "doAnimation__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "doEntry__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "doSetView__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fi" .4byte
-   "doViewCalc__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "doSimulation__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Ff"
-        .4byte
-   "doDirectDraw__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FR8Graphics"
-        .4byte doSimpleDraw__Q34Game12ItemPikihead3MgrFP8Viewport
-        .4byte loadResources__Q24Game11BaseItemMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte
-   "initDependency__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte
-   "killAll__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem .4byte
-   setupSoundViewerAndBas__Q24Game11BaseItemMgrFv .4byte
-   onLoadResources__Q34Game12ItemPikihead3MgrFv .4byte
-   loadEverytime__Q24Game11BaseItemMgrFv .4byte
-   updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi .4byte
-   onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi .4byte
-   generatorGetID__Q34Game12ItemPikihead3MgrFv .4byte
-   "generatorBirth__Q34Game12ItemPikihead3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-        .4byte
-   generatorWrite__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParm .4byte
-   generatorRead__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParmUl .4byte
-   generatorLocalVersion__Q24Game11BaseItemMgrFv .4byte
-   generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm .4byte
-   generatorNewItemParm__Q24Game11BaseItemMgrFv .4byte 0 .4byte 0 .4byte
-   "@48@__dt__Q34Game12ItemPikihead3MgrFv" .4byte getChildCount__5CNodeFv .4byte
-   "getObject__37Container<Q34Game12ItemPikihead4Item>FPv" .4byte
-   "@48@getNext__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv"
-        .4byte
-   "@48@getStart__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte
-   "@48@getEnd__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "@48@get__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv" .4byte
-   "getAt__37Container<Q34Game12ItemPikihead4Item>Fi" .4byte
-   "getTo__37Container<Q34Game12ItemPikihead4Item>Fv" .4byte
-   onCreateModel__Q34Game12ItemPikihead3MgrFPQ28SysShape5Model .4byte
-   birth__Q34Game12ItemPikihead3MgrFv .4byte
-   "kill__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte "get__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv"
-        .4byte
-   "getNext__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv" .4byte
-   "getStart__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "getEnd__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   __dt__Q34Game12ItemPikihead3MgrFv .global
-   "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"
-    "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__37Container<Q34Game12ItemPikihead4Item>FPv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "getAt__37Container<Q34Game12ItemPikihead4Item>Fi"
-        .4byte "getTo__37Container<Q34Game12ItemPikihead4Item>Fv"
-        .4byte 0
-        .4byte 0
-        .4byte "@28@doAnimation__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "@28@doEntry__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "@28@doSetView__37ObjectMgr<Q34Game12ItemPikihead4Item>Fi"
-        .4byte "@28@doViewCalc__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "@28@doSimulation__37ObjectMgr<Q34Game12ItemPikihead4Item>Ff"
-        .4byte
-   "@28@doDirectDraw__37ObjectMgr<Q34Game12ItemPikihead4Item>FR8Graphics" .4byte
-   doSimpleDraw__16GenericObjectMgrFP8Viewport .4byte
-   loadResources__16GenericObjectMgrFv .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte "doAnimation__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "doEntry__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "doSetView__37ObjectMgr<Q34Game12ItemPikihead4Item>Fi"
-        .4byte "doViewCalc__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "doSimulation__37ObjectMgr<Q34Game12ItemPikihead4Item>Ff"
-        .4byte
-   "doDirectDraw__37ObjectMgr<Q34Game12ItemPikihead4Item>FR8Graphics" .global
-   "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>"
-    "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__37Container<Q34Game12ItemPikihead4Item>FPv"
-        .4byte "getNext__41MonoObjectMgr<Q34Game12ItemPikihead4Item>FPv"
-        .4byte "getStart__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "getEnd__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "get__41MonoObjectMgr<Q34Game12ItemPikihead4Item>FPv"
-        .4byte "getAt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fi"
-        .4byte "getTo__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte 0
-        .4byte 0
-        .4byte "@28@doAnimation__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "@28@doEntry__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "@28@doSetView__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fi"
-        .4byte "@28@doViewCalc__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "@28@doSimulation__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Ff"
-        .4byte
-   "@28@doDirectDraw__41MonoObjectMgr<Q34Game12ItemPikihead4Item>FR8Graphics"
-        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
-        .4byte loadResources__16GenericObjectMgrFv
-        .4byte "@28@resetMgr__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte "doAnimation__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "doEntry__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "doSetView__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fi"
-        .4byte "doViewCalc__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte "doSimulation__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Ff"
-        .4byte
-   "doDirectDraw__41MonoObjectMgr<Q34Game12ItemPikihead4Item>FR8Graphics" .4byte
-   "birth__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "resetMgr__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "clearMgr__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "onAlloc__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv" .global
-   "__vt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>"
-    "__vt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "doAnimation__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "doEntry__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "doSetView__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fi" .4byte
-   "doViewCalc__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "doSimulation__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Ff"
-        .4byte
-   "doDirectDraw__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FR8Graphics"
-        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
-        .4byte loadResources__Q24Game11BaseItemMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte
-   "initDependency__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte
-   "killAll__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem .4byte
-   setupSoundViewerAndBas__Q24Game11BaseItemMgrFv .4byte
-   onLoadResources__Q24Game11BaseItemMgrFv .4byte
-   loadEverytime__Q24Game11BaseItemMgrFv .4byte
-   updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi .4byte
-   onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi .4byte 0 .4byte
-   0 .4byte generatorWrite__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParm
-        .4byte
-   generatorRead__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParmUl .4byte
-   generatorLocalVersion__Q24Game11BaseItemMgrFv .4byte
-   generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm .4byte
-   generatorNewItemParm__Q24Game11BaseItemMgrFv .4byte 0 .4byte 0 .4byte
-   "@48@__dt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   getChildCount__5CNodeFv .4byte
-   "getObject__37Container<Q34Game12ItemPikihead4Item>FPv" .4byte
-   "@48@getNext__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv"
-        .4byte
-   "@48@getStart__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte
-   "@48@getEnd__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "@48@get__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv" .4byte
-   "getAt__37Container<Q34Game12ItemPikihead4Item>Fi" .4byte
-   "getTo__37Container<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "onCreateModel__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPQ28SysShape5Model"
-        .4byte "birth__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
-        .4byte
-   "kill__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte "get__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv"
-        .4byte
-   "getNext__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv" .4byte
-   "getStart__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "getEnd__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .4byte
-   "__dt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv" .global
-   "__vt__37Container<Q34Game12ItemPikihead4Item>"
-    "__vt__37Container<Q34Game12ItemPikihead4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__37Container<Q34Game12ItemPikihead4Item>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__37Container<Q34Game12ItemPikihead4Item>FPv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "getAt__37Container<Q34Game12ItemPikihead4Item>Fi"
-        .4byte "getTo__37Container<Q34Game12ItemPikihead4Item>Fv"
-    .global __vt__Q34Game12ItemPikihead4Item
-    __vt__Q34Game12ItemPikihead4Item:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game8BaseItemFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game8BaseItemFv
-        .4byte onInit__Q34Game12ItemPikihead4ItemFPQ24Game15CreatureInitArg
-        .4byte onKill__Q34Game12ItemPikihead4ItemFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game8BaseItemFv
-        .4byte doEntry__Q24Game8BaseItemFv
-        .4byte doSetView__Q24Game8CreatureFi
-        .4byte doViewCalc__Q24Game8CreatureFv
-        .4byte doSimulation__Q34Game12ItemPikihead4ItemFf
-        .4byte doDirectDraw__Q24Game8CreatureFR8Graphics
-        .4byte getBodyRadius__Q24Game8CreatureFv
-        .4byte getCellRadius__Q24Game8CreatureFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game8BaseItemFv
-        .4byte "setVelocity__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte getVelocity__Q24Game8BaseItemFv
-        .4byte "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game8BaseItemFv
-        .4byte isTeki__Q24Game8CreatureFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game8CreatureFv
-        .4byte inWater__Q24Game8CreatureFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game8CreatureFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte
-   "bounceCallback__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>FPQ23Sys8Triangle"
-        .4byte
-   "collisionCallback__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>FRQ24Game9CollEvent"
-        .4byte
-   "platCallback__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>FRQ24Game9PlatEvent"
-        .4byte getJAIObject__Q24Game8BaseItemFv
-        .4byte getPSCreature__Q24Game8BaseItemFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game8BaseItemFv
-        .4byte sound_culling__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8BaseItemFUl
-        .4byte movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8BaseItemFv
-        .4byte "movieSetTranslation__Q24Game8BaseItemFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game8CreatureFv
-        .4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q34Game12ItemPikihead4ItemFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game8BaseItemFRQ24Game11Interaction
-        .4byte getCreatureName__Q34Game12ItemPikihead4ItemFv
-        .4byte getCreatureID__Q24Game8BaseItemFv
-        .4byte 0
-        .4byte 0
-        .4byte
-   "@376@onKeyEvent__Q34Game12ItemPikihead4ItemFRCQ28SysShape8KeyEvent" .4byte
-   initDependency__Q24Game8BaseItemFv .4byte startSound__Q24Game8BaseItemFUl
-        .4byte makeTrMatrix__Q34Game12ItemPikihead4ItemFv
-        .4byte doAI__Q34Game12ItemPikihead4ItemFv
-        .4byte move__Q24Game8BaseItemFf
-        .4byte changeMaterial__Q34Game12ItemPikihead4ItemFv
-        .4byte do_updateLOD__Q24Game8BaseItemFv
-        .4byte do_setLODParm__Q24Game8BaseItemFRQ24Game9AILODParm
-        .4byte getMapCollisionRadius__Q24Game8BaseItemFv
-        .4byte interactAttack__Q24Game8BaseItemFRQ24Game14InteractAttack
-        .4byte
-   interactBreakBridge__Q24Game8BaseItemFRQ24Game19InteractBreakBridge .4byte
-   interactEat__Q24Game8BaseItemFRQ24Game11InteractEat .4byte
-   interactFlockAttack__Q24Game8BaseItemFRQ24Game19InteractFlockAttack .4byte
-   interactAbsorb__Q24Game8BaseItemFRQ24Game14InteractAbsorb .4byte
-   interactFue__Q34Game12ItemPikihead4ItemFRQ24Game11InteractFue .4byte
-   interactFarmKarero__Q24Game8BaseItemFRQ24Game18InteractFarmKarero .4byte
-   interactFarmHaero__Q24Game8BaseItemFRQ24Game17InteractFarmHaero .4byte
-   interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey .4byte
-   "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>" .4byte
-   getWorkDistance__Q24Game8BaseItemFRQ23Sys6Sphere .4byte
-   do_doAnimation__Q24Game8BaseItemFv .4byte
-   updateBoundSphere__Q34Game12ItemPikihead4ItemFv .4byte
-   update__Q24Game8BaseItemFv .4byte entryShape__Q24Game8BaseItemFv .4byte
-   onSetPosition__Q34Game12ItemPikihead4ItemFv .4byte
-   onKeyEvent__Q34Game12ItemPikihead4ItemFRCQ28SysShape8KeyEvent .global
-   __vt__Q23efx8TPkGlow1
-    __vt__Q23efx8TPkGlow1:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx8TPkGlow1Fv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx8TPkGlow1Fv
-    .global "__vt__Q24Game35ItemFSM<Q34Game12ItemPikihead4Item>"
-    "__vt__Q24Game35ItemFSM<Q34Game12ItemPikihead4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "start__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-    .global "__vt__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>"
-    "__vt__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "start__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-    .global
-   "__vt__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>"
-    "__vt__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>":
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game8BaseItemFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game8BaseItemFv
-        .4byte onInit__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game8BaseItemFv
-        .4byte doEntry__Q24Game8BaseItemFv
-        .4byte doSetView__Q24Game8CreatureFi
-        .4byte doViewCalc__Q24Game8CreatureFv
-        .4byte doSimulation__Q24Game8BaseItemFf
-        .4byte doDirectDraw__Q24Game8CreatureFR8Graphics
-        .4byte getBodyRadius__Q24Game8CreatureFv
-        .4byte getCellRadius__Q24Game8CreatureFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game8BaseItemFv
-        .4byte "setVelocity__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte getVelocity__Q24Game8BaseItemFv
-        .4byte "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game8BaseItemFv
-        .4byte isTeki__Q24Game8CreatureFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game8CreatureFv
-        .4byte inWater__Q24Game8CreatureFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game8CreatureFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte
-   "bounceCallback__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>FPQ23Sys8Triangle"
-        .4byte
-   "collisionCallback__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>FRQ24Game9CollEvent"
-        .4byte
-   "platCallback__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>FRQ24Game9PlatEvent"
-        .4byte getJAIObject__Q24Game8BaseItemFv
-        .4byte getPSCreature__Q24Game8BaseItemFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game8BaseItemFv
-        .4byte sound_culling__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8BaseItemFUl
-        .4byte movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8BaseItemFv
-        .4byte "movieSetTranslation__Q24Game8BaseItemFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game8CreatureFv
-        .4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game8BaseItemFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game8BaseItemFv
-        .4byte getCreatureID__Q24Game8BaseItemFv
-        .4byte 0
-        .4byte 0
-        .4byte
-   "@376@onKeyEvent__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>FRCQ28SysShape8KeyEvent"
-        .4byte initDependency__Q24Game8BaseItemFv
-        .4byte startSound__Q24Game8BaseItemFUl
-        .4byte makeTrMatrix__Q24Game8BaseItemFv
-        .4byte
-   "doAI__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>Fv"
-        .4byte move__Q24Game8BaseItemFf
-        .4byte changeMaterial__Q24Game8BaseItemFv
-        .4byte do_updateLOD__Q24Game8BaseItemFv
-        .4byte do_setLODParm__Q24Game8BaseItemFRQ24Game9AILODParm
-        .4byte getMapCollisionRadius__Q24Game8BaseItemFv
-        .4byte interactAttack__Q24Game8BaseItemFRQ24Game14InteractAttack
-        .4byte
-   interactBreakBridge__Q24Game8BaseItemFRQ24Game19InteractBreakBridge .4byte
-   interactEat__Q24Game8BaseItemFRQ24Game11InteractEat .4byte
-   interactFlockAttack__Q24Game8BaseItemFRQ24Game19InteractFlockAttack .4byte
-   interactAbsorb__Q24Game8BaseItemFRQ24Game14InteractAbsorb .4byte
-   interactFue__Q24Game8BaseItemFRQ24Game11InteractFue .4byte
-   interactFarmKarero__Q24Game8BaseItemFRQ24Game18InteractFarmKarero .4byte
-   interactFarmHaero__Q24Game8BaseItemFRQ24Game17InteractFarmHaero .4byte
-   interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey .4byte
-   "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>" .4byte
-   getWorkDistance__Q24Game8BaseItemFRQ23Sys6Sphere .4byte
-   do_doAnimation__Q24Game8BaseItemFv .4byte
-   updateBoundSphere__Q24Game8BaseItemFv .4byte update__Q24Game8BaseItemFv
-        .4byte entryShape__Q24Game8BaseItemFv
-        .4byte onSetPosition__Q24Game8BaseItemFv
-        .4byte
-   "onKeyEvent__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>FRCQ28SysShape8KeyEvent"
-    .global __vt__Q34Game12ItemPikihead10SioreState
-    __vt__Q34Game12ItemPikihead10SioreState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg
-        .4byte
-   exec__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4Item .4byte
-   cleanup__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4Item .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-        .4byte
-   onKeyEvent__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent
-        .4byte
-   "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-    .global __vt__Q34Game12ItemPikihead9GrowState
-    __vt__Q34Game12ItemPikihead9GrowState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg
-        .4byte exec__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4Item
-        .4byte
-   cleanup__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4Item .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-        .4byte
-   onKeyEvent__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent
-        .4byte
-   "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-    .global __vt__Q34Game12ItemPikihead9WaitState
-    __vt__Q34Game12ItemPikihead9WaitState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg
-        .4byte exec__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item
-        .4byte
-   cleanup__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-        .4byte
-   onKeyEvent__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent
-        .4byte
-   "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-    .global __vt__Q34Game12ItemPikihead11HatugaState
-    __vt__Q34Game12ItemPikihead11HatugaState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg
-        .4byte
-   exec__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4Item .4byte
-   cleanup__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4Item
-        .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-        .4byte
-   onKeyEvent__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent
-        .4byte
-   "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-    .global __vt__Q34Game12ItemPikihead9TaneState
-    __vt__Q34Game12ItemPikihead9TaneState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg
-        .4byte exec__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4Item
-        .4byte
-   cleanup__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4Item .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-        .4byte
-   onKeyEvent__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent
-        .4byte
-   "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-    .global __vt__Q34Game12ItemPikihead9BuryState
-    __vt__Q34Game12ItemPikihead9BuryState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg
-        .4byte exec__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4Item
-        .4byte
-   cleanup__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4Item .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-        .4byte
-   onKeyEvent__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent
-        .4byte
-   "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-    .global __vt__Q34Game12ItemPikihead9FallState
-    __vt__Q34Game12ItemPikihead9FallState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg
-        .4byte exec__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4Item
-        .4byte
-   cleanup__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4Item .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-        .4byte
-   onKeyEvent__Q34Game12ItemPikihead5StateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent
-        .4byte
-   onBounce__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle
-        .4byte
-   onPlatCollision__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent
-        .4byte
-   "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-    .global __vt__Q34Game12ItemPikihead5State
-    __vt__Q34Game12ItemPikihead5State:
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "cleanup__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-        .4byte
-   onKeyEvent__Q34Game12ItemPikihead5StateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent
-        .4byte
-   "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-    .global "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"
-    "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "cleanup__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-        .4byte
-   "onKeyEvent__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent"
-        .4byte
-   "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
-        .4byte
-   "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
-        .4byte
-   "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-    .global "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"
-    "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "cleanup__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-    .global __vt__Q34Game12ItemPikihead3FSM
-    __vt__Q34Game12ItemPikihead3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game12ItemPikihead3FSMFPQ34Game12ItemPikihead4Item
-        .4byte
-   "start__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-        .4byte
-   "transit__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-    .global lbl_804B8FF8
-    lbl_804B8FF8:
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte
-   "createModelCallback__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPQ28SysShape5Model"
-    .global
-   "__vt__83Delegate1<Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>,PQ28SysShape5Model>"
-    "__vt__83Delegate1<Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>,PQ28SysShape5Model>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "invoke__83Delegate1<Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>,PQ28SysShape5Model>FPQ28SysShape5Model"
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515AE8
-    lbl_80515AE8:
-        .skip 0x4
-    .global lbl_80515AEC
-    lbl_80515AEC:
-        .skip 0x4
-    .global mgr__Q24Game12ItemPikihead
-    mgr__Q24Game12ItemPikihead:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805197B0
-    lbl_805197B0:
-        .4byte 0x47000000
-    .global lbl_805197B4
-    lbl_805197B4:
-        .4byte 0x41200000
-    .global lbl_805197B8
-    lbl_805197B8:
-        .float 0.5
-    .global lbl_805197BC
-    lbl_805197BC:
-        .4byte 0x3E4CCCCD
-    .global lbl_805197C0
-    lbl_805197C0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_805197C8
-    lbl_805197C8:
-        .4byte 0x42C80000
-    .global lbl_805197CC
-    lbl_805197CC:
-        .4byte 0x00000000
-    .global lbl_805197D0
-    lbl_805197D0:
-        .4byte 0x3F99999A
-    .global lbl_805197D4
-    lbl_805197D4:
-        .4byte 0x40000000
-    .global lbl_805197D8
-    lbl_805197D8:
-        .4byte 0x41F00000
-    .global lbl_805197DC
-    lbl_805197DC:
-        .4byte 0x40A00000
-    .global lbl_805197E0
-    lbl_805197E0:
-        .4byte 0xBF800000
-    .global lbl_805197E4
-    lbl_805197E4:
-        .float 1.0
-    .global lbl_805197E8
-    lbl_805197E8:
-        .4byte 0x40800000
-    .global lbl_805197EC
-    lbl_805197EC:
-        .4byte 0x41A00000
-    .global lbl_805197F0
-    lbl_805197F0:
-        .4byte 0x6172632E
-        .4byte 0x737A7300
-    .global lbl_805197F8
-    lbl_805197F8:
-        .4byte 0x40400000
-        .4byte 0x00000000
-*/
-
 namespace Game {
 namespace ItemPikihead {
+
+static const int unusedArray[] = { 0, 0, 0 };
+static const char unusedName[] = "itemPikihead";
+
+Mgr* mgr;
 
 /*
  * --INFO--
@@ -966,7 +27,7 @@ namespace ItemPikihead {
  */
 void FSM::init(Item*)
 {
-	create(PIKIHEADSTATE_COUNT);
+	create(PIKIHEAD_StateCount);
 	registerState(new FallState());
 	registerState(new BuryState());
 	registerState(new WaitState());
@@ -974,194 +35,6 @@ void FSM::init(Item*)
 	registerState(new HatugaState());
 	registerState(new GrowState());
 	registerState(new SioreState());
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 7
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "create__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>Fi"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D8B24
-	lis      r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@ha
-	lis      r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@l
-	lis      r5, __vt__Q34Game12ItemPikihead5State@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	lis      r3, __vt__Q34Game12ItemPikihead9FallState@ha
-	addi     r6, r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@l
-	stw      r7, 4(r4)
-	addi     r5, r5, __vt__Q34Game12ItemPikihead5State@l
-	addi     r0, r3, __vt__Q34Game12ItemPikihead9FallState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D8B24:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ24Game36FSMState<Q34Game12ItemPikihead4Item>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D8B7C
-	lis      r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@ha
-	lis      r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@l
-	lis      r5, __vt__Q34Game12ItemPikihead5State@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	lis      r3, __vt__Q34Game12ItemPikihead9BuryState@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@l
-	addi     r5, r5, __vt__Q34Game12ItemPikihead5State@l
-	addi     r0, r3, __vt__Q34Game12ItemPikihead9BuryState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D8B7C:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ24Game36FSMState<Q34Game12ItemPikihead4Item>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D8BD4
-	lis      r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@ha
-	lis      r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@l
-	lis      r5, __vt__Q34Game12ItemPikihead5State@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	lis      r3, __vt__Q34Game12ItemPikihead9WaitState@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@l
-	addi     r5, r5, __vt__Q34Game12ItemPikihead5State@l
-	addi     r0, r3, __vt__Q34Game12ItemPikihead9WaitState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D8BD4:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ24Game36FSMState<Q34Game12ItemPikihead4Item>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D8C2C
-	lis      r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@ha
-	lis      r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@l
-	lis      r5, __vt__Q34Game12ItemPikihead5State@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	lis      r3, __vt__Q34Game12ItemPikihead9TaneState@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@l
-	addi     r5, r5, __vt__Q34Game12ItemPikihead5State@l
-	addi     r0, r3, __vt__Q34Game12ItemPikihead9TaneState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D8C2C:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ24Game36FSMState<Q34Game12ItemPikihead4Item>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D8C84
-	lis      r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@ha
-	lis      r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@l
-	lis      r5, __vt__Q34Game12ItemPikihead5State@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	lis      r3, __vt__Q34Game12ItemPikihead11HatugaState@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@l
-	addi     r5, r5, __vt__Q34Game12ItemPikihead5State@l
-	addi     r0, r3, __vt__Q34Game12ItemPikihead11HatugaState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D8C84:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ24Game36FSMState<Q34Game12ItemPikihead4Item>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D8CDC
-	lis      r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@ha
-	lis      r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@l
-	lis      r5, __vt__Q34Game12ItemPikihead5State@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	lis      r3, __vt__Q34Game12ItemPikihead9GrowState@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@l
-	addi     r5, r5, __vt__Q34Game12ItemPikihead5State@l
-	addi     r0, r3, __vt__Q34Game12ItemPikihead9GrowState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D8CDC:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ24Game36FSMState<Q34Game12ItemPikihead4Item>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D8D34
-	lis      r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@ha
-	lis      r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q34Game12ItemPikihead4Item>"@l
-	lis      r5, __vt__Q34Game12ItemPikihead5State@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	lis      r3, __vt__Q34Game12ItemPikihead10SioreState@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, "__vt__Q24Game37ItemState<Q34Game12ItemPikihead4Item>"@l
-	addi     r5, r5, __vt__Q34Game12ItemPikihead5State@l
-	addi     r0, r3, __vt__Q34Game12ItemPikihead10SioreState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D8D34:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>FPQ24Game36FSMState<Q34Game12ItemPikihead4Item>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1169,52 +42,12 @@ lbl_801D8D34:
  * Address:	801D8D50
  * Size:	000098
  */
-void FallState::init(Item* item, Game::StateArg* arg)
+void FallState::init(Item* item, StateArg* arg)
 {
-	_14 = randFloat() * 0.5f - 10.0f;
-	_10 = _14 * 0.2f;
+	_14 = 10.0f - randFloat() * 0.5f; // 9.5-10.5
+	_10 = _14 * 0.2f;                 // 1.9-2.1
 	item->mEfxTane->createTanekira_(item->mEfxTane->mPos);
 	item->mAnimator.startAnim(4, nullptr);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f1, lbl_805197C0@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f3, lbl_805197B0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f2, lbl_805197B8@sda21(r2)
-	fsubs    f4, f0, f1
-	lfs      f0, lbl_805197B4@sda21(r2)
-	lfs      f1, lbl_805197BC@sda21(r2)
-	fdivs    f3, f4, f3
-	fnmsubs  f0, f2, f3, f0
-	stfs     f0, 0x14(r30)
-	lfs      f0, 0x14(r30)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x10(r30)
-	lwz      r3, 0x1e0(r31)
-	lwz      r4, 4(r3)
-	bl       "createTanekira___Q23efx13TPkEffectTaneFP10Vector3<f>"
-	addi     r3, r31, 0x1a8
-	li       r4, 4
-	li       r5, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1236,251 +69,59 @@ void FallState::cleanup(Item* item) { item->mEfxTane->killTanekira_(); }
  * Address:	801D8E44
  * Size:	000028
  */
-void FallState::onPlatCollision(Item* item, Game::PlatEvent& event) { item->kill(nullptr); }
+void FallState::onPlatCollision(Item* item, PlatEvent& event) { item->kill(nullptr); }
 
 /*
  * --INFO--
  * Address:	801D8E6C
  * Size:	0002F0
  */
-void FallState::onBounce(Item*, Sys::Triangle*)
+void FallState::onBounce(Item* item, Sys::Triangle* tri)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x100(r1)
-	  mflr      r0
-	  stw       r0, 0x104(r1)
-	  stw       r31, 0xFC(r1)
-	  mr        r31, r4
-	  stw       r30, 0xF8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  stw       r29, 0xF4(r1)
-	  mr        r29, r5
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2D4
-	  mr        r4, r31
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x20(r1)
-	  cmplwi    r29, 0
-	  lfs       f1, 0x24(r1)
-	  lfs       f0, 0x28(r1)
-	  stfs      f2, 0x5C(r1)
-	  stfs      f1, 0x60(r1)
-	  stfs      f0, 0x64(r1)
-	  beq-      .loc_0x98
-	  addi      r3, r29, 0x5C
-	  bl        0x243564
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x98
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x9DE0C
-	  b         .loc_0x2D4
+	if (item->isAlive()) {
+		Vector3f pos = item->getPosition();
 
-	.loc_0x98:
-	  lfs       f3, 0x5C(r1)
-	  addi      r3, r1, 0x7C
-	  lfs       f2, 0x60(r1)
-	  addi      r4, r1, 0x4C
-	  lfs       f1, 0x64(r1)
-	  lfs       f0, -0x4B98(r2)
-	  stfs      f3, 0x4C(r1)
-	  stfs      f2, 0x50(r1)
-	  stfs      f1, 0x54(r1)
-	  stfs      f0, 0x58(r1)
-	  bl        0x55474
-	  addi      r3, r1, 0x9C
-	  addi      r4, r1, 0x7C
-	  bl        0x554A8
-	  addi      r3, r1, 0x9C
-	  bl        0x5551C
-	  b         .loc_0x194
+		// can't plant in bald triangle
+		if (tri && tri->mCode.isBald()) {
+			item->kill(nullptr);
+			return;
+		}
 
-	.loc_0xDC:
-	  addi      r3, r1, 0x9C
-	  bl        0x555F8
-	  lhz       r0, 0x128(r3)
-	  cmplwi    r0, 0x40A
-	  beq-      .loc_0x100
-	  cmplwi    r0, 0x40C
-	  beq-      .loc_0x100
-	  cmplwi    r0, 0x405
-	  bne-      .loc_0x18C
+		// sprout can't plant within 100 units of a hole or fountain
+		Sys::Sphere searchSphere(pos, 100.0f);
+		CellIteratorArg iterArg(searchSphere);
+		CellIterator iter(iterArg);
+		CI_LOOP(iter)
+		{
+			Creature* creature = static_cast<Creature*>(*iter);
+			if (creature->mObjectTypeID == OBJTYPE_Cave || creature->mObjectTypeID == OBJTYPE_BigFountain
+			    || creature->mObjectTypeID == OBJTYPE_Hole) {
+				Vector3f objPos = creature->getPosition();
+				if (objPos.distance(pos) <= 100.0f) {
+					item->kill(nullptr);
+					return;
+				}
+			}
+		}
 
-	.loc_0x100:
-	  mr        r4, r3
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x18(r1)
-	  lfs       f0, 0x60(r1)
-	  lfs       f3, 0x14(r1)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x5C(r1)
-	  lfs       f1, 0x1C(r1)
-	  lfs       f0, 0x64(r1)
-	  fsubs     f3, f3, f2
-	  fmuls     f4, f4, f4
-	  fsubs     f2, f1, f0
-	  lfs       f0, -0x4B94(r2)
-	  fmadds    f1, f3, f3, f4
-	  fmuls     f2, f2, f2
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x168
-	  ble-      .loc_0x16C
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x16C
+		// if within 10 units of water, make water effect and sound
+		Sys::Sphere waterSearchSphere(pos, 10.0f);
+		if (item->checkWater(nullptr, waterSearchSphere)) {
+			efx::TEnemyDive diveFX;
+			efx::ArgScale fxArg(pos, 1.2f);
+			diveFX.create(&fxArg);
+			item->startSound(PSSE_EV_ITEM_LAND_WATER1_S);
 
-	.loc_0x168:
-	  fmr       f1, f0
+			// if not, make land effect and sound
+		} else {
+			efx::createSimplePkAp(pos);
+			item->startSound(PSSE_PK_SE_ONY_SEED_GROUND);
+		}
 
-	.loc_0x16C:
-	  lfs       f0, -0x4B98(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x18C
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x9DF00
-	  b         .loc_0x2D4
-
-	.loc_0x18C:
-	  addi      r3, r1, 0x9C
-	  bl        0x55504
-
-	.loc_0x194:
-	  addi      r3, r1, 0x9C
-	  bl        0x55530
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xDC
-	  lfs       f3, 0x5C(r1)
-	  mr        r3, r31
-	  lfs       f2, 0x60(r1)
-	  addi      r5, r1, 0x3C
-	  lfs       f1, 0x64(r1)
-	  li        r4, 0
-	  lfs       f0, -0x4BAC(r2)
-	  stfs      f3, 0x3C(r1)
-	  stfs      f2, 0x40(r1)
-	  stfs      f1, 0x44(r1)
-	  stfs      f0, 0x48(r1)
-	  bl        -0x9D500
-	  cmplwi    r3, 0
-	  beq-      .loc_0x294
-	  lwz       r3, 0x5C(r1)
-	  lis       r5, 0x804B
-	  lwz       r4, 0x60(r1)
-	  subi      r10, r5, 0x5808
-	  lwz       r0, 0x64(r1)
-	  lis       r6, 0x804E
-	  stw       r3, 0x8(r1)
-	  lis       r3, 0x804B
-	  subi      r5, r3, 0x5814
-	  lfs       f0, -0x4B90(r2)
-	  li        r7, 0
-	  stw       r4, 0xC(r1)
-	  lfs       f3, 0x8(r1)
-	  lis       r4, 0x804F
-	  stw       r0, 0x10(r1)
-	  lis       r3, 0x804B
-	  lfs       f2, 0xC(r1)
-	  li        r9, 0x159
-	  lfs       f1, 0x10(r1)
-	  li        r8, 0x15A
-	  stw       r10, 0x2C(r1)
-	  addi      r10, r6, 0x6A64
-	  subi      r6, r4, 0x7A18
-	  subi      r0, r3, 0x5D24
-	  stw       r10, 0x2C(r1)
-	  addi      r3, r1, 0x2C
-	  addi      r4, r1, 0x68
-	  stw       r5, 0x68(r1)
-	  sth       r9, 0x30(r1)
-	  sth       r8, 0x32(r1)
-	  stw       r7, 0x34(r1)
-	  stw       r7, 0x38(r1)
-	  stw       r6, 0x2C(r1)
-	  stfs      f3, 0x6C(r1)
-	  stfs      f2, 0x70(r1)
-	  stfs      f1, 0x74(r1)
-	  stw       r0, 0x68(r1)
-	  stfs      f0, 0x78(r1)
-	  bl        0x1EF7F8
-	  mr        r3, r31
-	  li        r4, 0x380B
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2B4
-
-	.loc_0x294:
-	  addi      r3, r1, 0x5C
-	  bl        0x1DE6A8
-	  mr        r3, r31
-	  li        r4, 0x2817
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x2B4:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x2D4:
-	  lwz       r0, 0x104(r1)
-	  lwz       r31, 0xFC(r1)
-	  lwz       r30, 0xF8(r1)
-	  lwz       r29, 0xF4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x100
-	  blr
-	*/
+		// become buried.
+		transit(item, PIKIHEAD_Bury, nullptr);
+	}
 }
-
-/*
- * --INFO--
- * Address:	801D915C
- * Size:	000030
- */
-// void FSMState<Item>::transit(Item*, int, Game::StateArg*)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  lwz       r3, 0x8(r3)
-// 	  lwz       r12, 0x0(r3)
-// 	  lwz       r12, 0x14(r12)
-// 	  mtctr     r12
-// 	  bctrl
-// 	  lwz       r0, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
 
 /*
  * --INFO--
@@ -1492,45 +133,6 @@ void BuryState::init(Item* item, StateArg* arg)
 	item->mAnimator.startAnim(3, item);
 	mAnimDone = false;
 	mTimer    = randFloat() * 2.0f + pikiMgr->mParms->mPikiParms.mBuriedSeedWaitTime.mValue;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	mr       r5, r4
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	beq      lbl_801D91B0
-	addi     r5, r5, 0x178
-
-lbl_801D91B0:
-	addi     r3, r4, 0x1a8
-	li       r4, 3
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	li       r0, 0
-	stb      r0, 0x10(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	stw      r0, 8(r1)
-	lfd      f1, lbl_805197C0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f2, lbl_805197B0@sda21(r2)
-	fsubs    f3, f0, f1
-	lwz      r3, 0x6c(r3)
-	lfs      f1, lbl_805197D4@sda21(r2)
-	lfs      f0, 0xbd8(r3)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x14(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1540,10 +142,11 @@ lbl_801D91B0:
  */
 void BuryState::exec(Item* item)
 {
+	// timer only starts counting down after animation finishes
 	if (mAnimDone) {
 		mTimer -= sys->getFrameLength();
 		if (mTimer <= 0.0f) {
-			transit(item, PIKIHEADSTATE_Hatuga, nullptr);
+			transit(item, PIKIHEAD_Hatuga, nullptr);
 		}
 	}
 }
@@ -1572,46 +175,6 @@ void TaneState::init(Item* item, StateArg* arg)
 	item->mAnimator.startAnim(5, item);
 	mAnimDone = false;
 	mTimer    = randFloat() * 2.0f + pikiMgr->mParms->mPikiParms.mUnpluckableTime.mValue;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	mr       r5, r4
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	beq      lbl_801D92B4
-	addi     r5, r5, 0x178
-
-lbl_801D92B4:
-	addi     r3, r4, 0x1a8
-	li       r4, 5
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	li       r0, 0
-	stb      r0, 0x10(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	stw      r0, 8(r1)
-	lfd      f1, lbl_805197C0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f2, lbl_805197B0@sda21(r2)
-	fsubs    f3, f0, f1
-	lwz      r3, 0x6c(r3)
-	lfs      f1, lbl_805197D4@sda21(r2)
-	lfs      f0, 0xc00(r3)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x14(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1621,10 +184,11 @@ lbl_801D92B4:
  */
 void TaneState::exec(Item* item)
 {
+	// timer only starts counting down after animation finishes
 	if (mAnimDone) {
 		mTimer -= sys->getFrameLength();
 		if (mTimer <= 0.0f) {
-			transit(item, PIKIHEADSTATE_Hatuga, nullptr);
+			transit(item, PIKIHEAD_Hatuga, nullptr);
 		}
 	}
 }
@@ -1673,7 +237,7 @@ void HatugaState::cleanup(Item* item) { }
  * Address:	801D93F4
  * Size:	000034
  */
-void HatugaState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { transit(item, PIKIHEADSTATE_Wait, nullptr); }
+void HatugaState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { transit(item, PIKIHEAD_Wait, nullptr); }
 
 /*
  * --INFO--
@@ -1682,73 +246,13 @@ void HatugaState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { t
  */
 void WaitState::init(Item* item, StateArg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r3, 0x1e0(r4)
-	lwz      r4, 4(r3)
-	bl       "createKourin___Q23efx13TPkEffectTaneFP10Vector3<f>"
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_801D9460
-	addi     r5, r31, 0x178
-
-lbl_801D9460:
-	addi     r3, r31, 0x1a8
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lhz      r0, 0x1f6(r31)
-	cmplwi   r0, 2
-	bne      lbl_801D94BC
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	stw      r0, 8(r1)
-	lfd      f1, lbl_805197C0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f2, lbl_805197B0@sda21(r2)
-	fsubs    f3, f0, f1
-	lwz      r3, 0x6c(r3)
-	lfs      f1, lbl_805197D4@sda21(r2)
-	lfs      f0, 0xc50(r3)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x10(r30)
-	b        lbl_801D94FC
-
-lbl_801D94BC:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	stw      r0, 8(r1)
-	lfd      f1, lbl_805197C0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f2, lbl_805197B0@sda21(r2)
-	fsubs    f3, f0, f1
-	lwz      r3, 0x6c(r3)
-	lfs      f1, lbl_805197D4@sda21(r2)
-	lfs      f0, 0xc28(r3)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x10(r30)
-
-lbl_801D94FC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	item->mEfxTane->createKourin_(item->mEfxTane->mPos);
+	item->mAnimator.startAnim(0, item);
+	if (item->mHeadType == Flower) {
+		mTimer = 2.0f * randFloat() + pikiMgr->mParms->mPikiParms.mWitherFromFlowerTime.mValue;
+	} else {
+		mTimer = 2.0f * randFloat() + pikiMgr->mParms->mPikiParms.mGrowUpToFlowerTime.mValue;
+	}
 }
 
 /*
@@ -1758,55 +262,17 @@ lbl_801D94FC:
  */
 void WaitState::exec(Item* item)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_801D9538
-	lwz      r0, 0x18(r5)
-	cmpwi    r0, 0
-	bne      lbl_801D954C
+	if (!moviePlayer || moviePlayer->mDemoState == MoviePlayer::MOVIEPLAY_SUCCESS) {
+		mTimer -= sys->mDeltaTime;
+	}
 
-lbl_801D9538:
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x10(r3)
-	lfs      f0, 0x54(r5)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x10(r3)
-
-lbl_801D954C:
-	lfs      f1, 0x10(r3)
-	lfs      f0, lbl_805197CC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_801D95A0
-	lhz      r0, 0x1f6(r4)
-	cmplwi   r0, 2
-	bne      lbl_801D9588
-	lwz      r12, 0(r3)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801D95A0
-
-lbl_801D9588:
-	lwz      r12, 0(r3)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801D95A0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mTimer <= 0.0f) {
+		if (item->mHeadType == Flower) {
+			transit(item, PIKIHEAD_Siore, nullptr);
+		} else {
+			transit(item, PIKIHEAD_Grow, nullptr);
+		}
+	}
 }
 
 /*
@@ -1814,48 +280,14 @@ lbl_801D95A0:
  * Address:	801D95B0
  * Size:	000024
  */
-void WaitState::cleanup(Item* item)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1e0(r4)
-	bl       killKourin___Q23efx13TPkEffectTaneFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void WaitState::cleanup(Item* item) { item->mEfxTane->killKourin_(); }
 
 /*
  * --INFO--
  * Address:	801D95D4
  * Size:	000038
  */
-void WaitState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0x1C
-	  addi      r5, r5, 0x178
-
-	.loc_0x1C:
-	  addi      r3, r4, 0x1A8
-	  li        r4, 0
-	  bl        0x24F690
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void WaitState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { item->mAnimator.startAnim(0, item); }
 
 /*
  * --INFO--
@@ -1889,77 +321,17 @@ void GrowState::cleanup(Item* item) { }
  */
 void GrowState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 {
-	if (keyEvent.mType == 2) {
+	if (keyEvent.mType == KEYEVENT_2) {
 		item->mHeadType = (item->mHeadType + 1) % 3;
-		// efx::createSimpleGlow2(item->mEfxTane->mPos); // TODO: not declared yet
+		efx::createSimpleGlow2(*item->mEfxTane->mPos); // TODO: not declared yet
 		if (item->mHeadType == Bud) {
 			item->startSound(PSSE_PK_SE_ONY_TSUBOMI);
 		} else if (item->mHeadType == Flower) {
 			item->startSound(PSSE_PK_SE_ONY_SAKU);
 		}
 	} else {
-		transit(item, PIKIHEADSTATE_Wait, nullptr);
+		transit(item, PIKIHEAD_Wait, nullptr);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x1C(r5)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xA0
-	  lhz       r4, 0x1F6(r31)
-	  lis       r3, 0x5555
-	  addi      r0, r3, 0x5556
-	  addi      r4, r4, 0x1
-	  mulhw     r3, r0, r4
-	  rlwinm    r0,r3,1,31,31
-	  add       r0, r3, r0
-	  mulli     r0, r0, 0x3
-	  sub       r0, r4, r0
-	  sth       r0, 0x1F6(r31)
-	  lwz       r3, 0x1E0(r31)
-	  lwz       r3, 0x4(r3)
-	  bl        0x1DE51C
-	  lhz       r0, 0x1F6(r31)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x7C
-	  mr        r3, r31
-	  li        r4, 0x281A
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xB8
-
-	.loc_0x7C:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xB8
-	  mr        r3, r31
-	  li        r4, 0x281B
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xB8
-
-	.loc_0xA0:
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0xB8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1973,53 +345,6 @@ void SioreState::init(Item* item, StateArg* arg)
 	mAnimDone = false;
 	mTimer    = randFloat() * 2.0f + pikiMgr->mParms->mPikiParms.mWitheredHideTime.mValue;
 	item->startSound(PSSE_PK_SE_ONY_KARERU);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	or.      r31, r4, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r5, r31
-	beq      lbl_801D9754
-	addi     r5, r5, 0x178
-
-lbl_801D9754:
-	addi     r3, r31, 0x1a8
-	li       r4, 2
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	li       r0, 0
-	stb      r0, 0x14(r30)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	mr       r3, r31
-	lwz      r5, pikiMgr__4Game@sda21(r13)
-	li       r4, 0x281c
-	stw      r0, 8(r1)
-	lfd      f1, lbl_805197C0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f2, lbl_805197B0@sda21(r2)
-	fsubs    f3, f0, f1
-	lwz      r5, 0x6c(r5)
-	lfs      f1, lbl_805197D4@sda21(r2)
-	lfs      f0, 0xc78(r5)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x10(r30)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -2032,7 +357,7 @@ void SioreState::exec(Item* item)
 	if (mAnimDone) {
 		mTimer -= sys->getFrameLength();
 		if (mTimer <= 0.0f) {
-			transit(item, PIKIHEADSTATE_Bury, nullptr);
+			transit(item, PIKIHEAD_Bury, nullptr);
 		}
 	}
 }
@@ -2066,193 +391,14 @@ Item::Item()
 {
 	mAnimSpeed = 30.0f;
 	mCollTree->createSingleSphere(mModel, 0, mBoundingSphere, nullptr);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r4, 0x407
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	bl       __ct__Q24Game8BaseItemFi
-	lis      r3,
-"__vt__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>"@ha
-	li       r0, 0
-	addi     r4, r3,
-"__vt__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>"@l
-	li       r3, 0x1c
-	stw      r4, 0(r30)
-	addi     r4, r4, 0x1b0
-	stw      r4, 0x178(r30)
-	stw      r0, 0x1d8(r30)
-	stw      r0, 0x1dc(r30)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_801D98D8
-	lis      r4, "__vt__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>"@ha
-	lis      r5, "__vt__Q24Game35ItemFSM<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r4, "__vt__Q24Game40StateMachine<Q34Game12ItemPikihead4Item>"@l
-	lis      r4, __vt__Q34Game12ItemPikihead3FSM@ha
-	stw      r0, 0(r3)
-	li       r6, -1
-	addi     r5, r5, "__vt__Q24Game35ItemFSM<Q34Game12ItemPikihead4Item>"@l
-	addi     r0, r4, __vt__Q34Game12ItemPikihead3FSM@l
-	stw      r6, 0x18(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-
-lbl_801D98D8:
-	stw      r3, 0x1d8(r30)
-	mr       r4, r30
-	lwz      r3, 0x1d8(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q34Game12ItemPikihead4Item@ha
-	li       r3, 0x64
-	addi     r4, r4, __vt__Q34Game12ItemPikihead4Item@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x1b0
-	stw      r0, 0x178(r30)
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_801D99E4
-	li       r0, -1
-	lis      r5, __vt__Q23efx5TBase@ha
-	stw      r0, 0(r31)
-	li       r29, 0
-	lis      r7, __vt__18JPAEmitterCallBack@ha
-	lis      r3, __vt__Q23efx5TSync@ha
-	stw      r29, 4(r31)
-	addi     r6, r3, __vt__Q23efx5TSync@l
-	addi     r0, r7, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	stw      r29, 8(r31)
-	addi     r11, r3, __vt__Q23efx9TChasePos@l
-	lis      r3, __vt__Q23efx8TPkGlow1@ha
-	lis      r4, __ct__Q23efx15ContextChasePosFv@ha
-	stw      r29, 0xc(r31)
-	addi     r8, r3, __vt__Q23efx8TPkGlow1@l
-	addi     r9, r5, __vt__Q23efx5TBase@l
-	lis      r3, __dt__Q23efx15ContextChasePosFv@ha
-	stw      r29, 0x10(r31)
-	addi     r5, r3, __dt__Q23efx15ContextChasePosFv@l
-	addi     r7, r6, 0x14
-	li       r12, 0x2b2
-	stw      r9, 0x14(r31)
-	addi     r10, r11, 0x14
-	li       r9, 0x15e
-	addi     r4, r4, __ct__Q23efx15ContextChasePosFv@l
-	stw      r0, 0x18(r31)
-	addi     r0, r8, 0x14
-	addi     r3, r31, 0x28
-	stw      r6, 0x14(r31)
-	li       r6, 0x1c
-	stw      r7, 0x18(r31)
-	li       r7, 1
-	stw      r29, 0x1c(r31)
-	sth      r12, 0x20(r31)
-	stb      r29, 0x22(r31)
-	stw      r11, 0x14(r31)
-	stw      r10, 0x18(r31)
-	stw      r29, 0x24(r31)
-	sth      r9, 0x20(r31)
-	stw      r8, 0x14(r31)
-	stw      r0, 0x18(r31)
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0x44
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 1
-	bl       __construct_array
-
-lbl_801D99E4:
-	stw      r31, 0x1e0(r30)
-	addi     r6, r30, 0x1c4
-	lfs      f0, lbl_805197D8@sda21(r2)
-	li       r5, 0
-	li       r7, 0
-	stfs     f0, 0x1d4(r30)
-	lwz      r3, 0x114(r30)
-	lwz      r4, 0x174(r30)
-	bl
-createSingleSphere__8CollTreeFPQ28SysShape9MtxObjectiRQ23Sys6SphereP11CollPartMgr
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
-
-/*
- * --INFO--
- * Address:	801D9A28
- * Size:	00009C
- */
-// TPkGlow1::~TPkGlow1()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_801D9AA8
-// 	lis      r3, __vt__Q23efx8TPkGlow1@ha
-// 	addi     r3, r3, __vt__Q23efx8TPkGlow1@l
-// 	stw      r3, 0(r30)
-// 	addi     r0, r3, 0x14
-// 	stw      r0, 4(r30)
-// 	beq      lbl_801D9A98
-// 	lis      r3, __vt__Q23efx9TChasePos@ha
-// 	addi     r3, r3, __vt__Q23efx9TChasePos@l
-// 	stw      r3, 0(r30)
-// 	addi     r0, r3, 0x14
-// 	stw      r0, 4(r30)
-// 	beq      lbl_801D9A98
-// 	lis      r4, __vt__Q23efx5TSync@ha
-// 	addi     r3, r30, 4
-// 	addi     r5, r4, __vt__Q23efx5TSync@l
-// 	li       r4, 0
-// 	stw      r5, 0(r30)
-// 	addi     r0, r5, 0x14
-// 	stw      r0, 4(r30)
-// 	bl       __dt__18JPAEmitterCallBackFv
-
-// lbl_801D9A98:
-// 	extsh.   r0, r31
-// 	ble      lbl_801D9AA8
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_801D9AA8:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
 
 /*
  * --INFO--
  * Address:	801D9AC4
  * Size:	00021C
  */
-void Item::onInit(Game::CreatureInitArg* settings)
+void Item::onInit(CreatureInitArg* settings)
 {
 	mModel             = mgr->createModel(this);
 	mAnimator.mAnimMgr = mgr->mAnimMgr;
@@ -2260,13 +406,13 @@ void Item::onInit(Game::CreatureInitArg* settings)
 	mCollTree->attachModel(mModel);
 	setAtari(false);
 	InitArg* itemInitArg = static_cast<InitArg*>(settings);
-	if (itemInitArg != nullptr) {
+	if (itemInitArg) {
 		mColor = itemInitArg->mPikminType;
 		if (itemInitArg->mPikminType == -1) {
 			mColor = Blue;
 		}
-		mVelocity = itemInitArg->_08;
-		mHeadType = itemInitArg->_18;
+		mVelocity = itemInitArg->mVelocity;
+		mHeadType = itemInitArg->mHeadType;
 		_1E4      = itemInitArg->_1C;
 	} else {
 		mColor    = randFloat() * 5.0f;
@@ -2276,309 +422,45 @@ void Item::onInit(Game::CreatureInitArg* settings)
 	mEfxTane->init();
 	mEfxTane->mPikiColor = mColor;
 	mEfxTane->_08        = &mPosition;
-	mEfxTane->mPos       = &_1E8;
+	mEfxTane->mPos       = &mEfxPosition;
 	mEfxTane->_10        = &mObjMatrix;
 	mEfxTane->_0C        = mModel->getJoint("happajnt3")->getWorldMatrix();
-	if (itemInitArg != nullptr && itemInitArg->_14 != 0) {
-		mFsm->start(this, PIKIHEADSTATE_Hatuga, nullptr);
+	if (itemInitArg && itemInitArg->mIsAlreadyBuried) {
+		mFsm->start(this, PIKIHEAD_Hatuga, nullptr);
 	} else {
-		mFsm->start(this, PIKIHEADSTATE_Fall, nullptr);
+		mFsm->start(this, PIKIHEAD_Fall, nullptr);
 	}
+
 	setAlive(true);
-	if (itemInitArg != nullptr && itemInitArg->mPikminType != -1) {
+	if (itemInitArg && itemInitArg->mPikminType != -1) {
 		GameStat::mePikis.inc(mColor);
 	}
 	Radar::Mgr::entry(this, Radar::MAP_BURIED_PIKMIN, 0);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r4, r30
-	lwz      r3, mgr__Q24Game12ItemPikihead@sda21(r13)
-	bl
-"createModel__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-	stw      r3, 0x174(r30)
-	addi     r3, r30, 0x1a8
-	li       r4, 0
-	li       r5, 0
-	lwz      r6, mgr__Q24Game12ItemPikihead@sda21(r13)
-	lwz      r0, 0x20(r6)
-	stw      r0, 0x1b8(r30)
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lwz      r3, 0x114(r30)
-	lwz      r4, 0x174(r30)
-	bl       attachModel__8CollTreeFPQ28SysShape9MtxObject
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r31, 0
-	beq      lbl_801D9B80
-	lwz      r0, 4(r31)
-	sth      r0, 0x1f4(r30)
-	lwz      r0, 4(r31)
-	cmpwi    r0, -1
-	bne      lbl_801D9B54
-	li       r0, 0
-	sth      r0, 0x1f4(r30)
-
-lbl_801D9B54:
-	lfs      f0, 8(r31)
-	stfs     f0, 0x190(r30)
-	lfs      f0, 0xc(r31)
-	stfs     f0, 0x194(r30)
-	lfs      f0, 0x10(r31)
-	stfs     f0, 0x198(r30)
-	lwz      r0, 0x18(r31)
-	sth      r0, 0x1f6(r30)
-	lfs      f0, 0x1c(r31)
-	stfs     f0, 0x1e4(r30)
-	b        lbl_801D9BD0
-
-lbl_801D9B80:
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r3, 0x4330
-	stw      r0, 0xc(r1)
-	li       r0, 0
-	lfd      f3, lbl_805197C0@sda21(r2)
-	stw      r3, 8(r1)
-	lfs      f2, lbl_805197B0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_805197DC@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_805197E0@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f1, f1, f2
-	fctiwz   f1, f1
-	stfd     f1, 0x10(r1)
-	lwz      r3, 0x14(r1)
-	sth      r3, 0x1f4(r30)
-	sth      r0, 0x1f6(r30)
-	stfs     f0, 0x1e4(r30)
-
-lbl_801D9BD0:
-	lwz      r3, 0x1e0(r30)
-	bl       init__Q23efx13TPkEffectTaneFv
-	lhz      r0, 0x1f4(r30)
-	lis      r3, lbl_8048081C@ha
-	lwz      r7, 0x1e0(r30)
-	addi     r4, r3, lbl_8048081C@l
-	addi     r6, r30, 0x19c
-	addi     r5, r30, 0x1e8
-	stw      r0, 0(r7)
-	addi     r0, r30, 0x138
-	lwz      r3, 0x1e0(r30)
-	stw      r6, 8(r3)
-	lwz      r3, 0x1e0(r30)
-	stw      r5, 4(r3)
-	lwz      r3, 0x1e0(r30)
-	stw      r0, 0x10(r3)
-	lwz      r3, 0x174(r30)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r4, 0x1e0(r30)
-	cmplwi   r31, 0
-	stw      r3, 0xc(r4)
-	beq      lbl_801D9C5C
-	lbz      r0, 0x14(r31)
-	cmplwi   r0, 0
-	beq      lbl_801D9C5C
-	lwz      r3, 0x1d8(r30)
-	mr       r4, r30
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801D9C7C
-
-lbl_801D9C5C:
-	lwz      r3, 0x1d8(r30)
-	mr       r4, r30
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801D9C7C:
-	mr       r3, r30
-	li       r4, 1
-	lwz      r12, 0(r30)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r31, 0
-	beq      lbl_801D9CB8
-	lwz      r0, 4(r31)
-	cmpwi    r0, -1
-	beq      lbl_801D9CB8
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	lhz      r4, 0x1f4(r30)
-	addi     r3, r3, mePikis__Q24Game8GameStat@l
-	bl       inc__Q34Game8GameStat11PikiCounterFi
-
-lbl_801D9CB8:
-	mr       r3, r30
-	li       r4, 9
-	li       r5, 0
-	bl       entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
-
-/*
- * --INFO--
- * Address:	801D9CE0
- * Size:	000034
- */
-// void StateMachine<Item>::start(Item*, int, Game::StateArg*)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  li        r0, 0
-// 	  stw       r0, 0x1DC(r4)
-// 	  lwz       r12, 0x0(r3)
-// 	  lwz       r12, 0x14(r12)
-// 	  mtctr     r12
-// 	  bctrl
-// 	  lwz       r0, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
 
 /*
  * --INFO--
  * Address:	801D9D14
  * Size:	000094
  */
-void Item::onKill(Game::CreatureKillArg* settings)
+void Item::onKill(CreatureKillArg* settings)
 {
 	Radar::Mgr::exit(this);
-	if (mCurrentState != nullptr) {
+	if (mCurrentState) {
 		mCurrentState->cleanup(this);
 	}
 	mgr->kill(this);
-	if (settings == nullptr || !settings->isFlag(CKILL_Unk1)) {
+	if (!settings || !settings->isFlag(CKILL_Unk1)) {
 		GameStat::mePikis.dec(mColor);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       exit__Q25Radar3MgrFPQ24Game15TPositionObject
-	lwz      r3, 0x1dc(r30)
-	cmplwi   r3, 0
-	beq      lbl_801D9D54
-	lwz      r12, 0(r3)
-	mr       r4, r30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801D9D54:
-	lwz      r3, mgr__Q24Game12ItemPikihead@sda21(r13)
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r31, 0
-	beq      lbl_801D9D80
-	lwz      r0, 4(r31)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_801D9D90
-
-lbl_801D9D80:
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	lhz      r4, 0x1f4(r30)
-	addi     r3, r3, mePikis__Q24Game8GameStat@l
-	bl       dec__Q34Game8GameStat11PikiCounterFi
-
-lbl_801D9D90:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
-
-/*
- * --INFO--
- * Address:	801D9DA8
- * Size:	000024
- */
-// void FixedSizeItemMgr<Item>::kill(Item*)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	addi     r3, r3, 0x4c
-// 	stw      r0, 0x14(r1)
-// 	bl
-// 	"kill__41MonoObjectMgr<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	801D9DCC
- * Size:	000004
- */
-// void FSMState<Item>::cleanup(Item* item) { }
 
 /*
  * --INFO--
  * Address:	801D9DD0
  * Size:	00002C
  */
-bool Item::needSave()
-{
-	return getStateID() != PIKIHEADSTATE_Fall;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl
-	"getStateID__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>Fv"
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Item::needSave() { return getStateID() != PIKIHEAD_Fall; }
 
 /*
  * --INFO--
@@ -2602,7 +484,7 @@ void Item::cacheLoad(Stream& input)
 	mColor               = status & 0xF;
 	mHeadType            = status >> 4;
 	mEfxTane->mPikiColor = mColor;
-	mFsm->start(this, PIKIHEADSTATE_Wait, nullptr);
+	mFsm->start(this, PIKIHEAD_Wait, nullptr);
 	mPosition.read(input);
 	setPosition(mPosition, false);
 	GameStat::mePikis.inc(mColor);
@@ -2615,6 +497,27 @@ void Item::cacheLoad(Stream& input)
  */
 void Item::makeTrMatrix()
 {
+	if (getStateID() == PIKIHEAD_Fall) {
+		if (mVelocity.length() > 0.0f) {
+			Vector3f xVec = mVelocity;
+			xVec.normalise();
+			xVec *= -1.0f;
+			Vector3f zAxis(0.0f, 0.0f, 1.0f);
+			Vector3f yVec = cross(xVec, zAxis);
+			yVec.normalise();
+
+			Vector3f xAxis(1.0f, 0.0f, 0.0f);
+			Vector3f zVec = cross(yVec, xAxis);
+			zVec.normalise();
+
+			mObjMatrix.setBasis(0, xVec);
+			mObjMatrix.setBasis(1, yVec);
+			mObjMatrix.setBasis(2, zVec);
+			mObjMatrix.setTranslation(mPosition);
+		}
+	} else {
+		BaseItem::makeTrMatrix();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2781,92 +684,28 @@ lbl_801DA0E8:
  */
 void Item::doAI()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r4, r30
-	lwz      r3, 0x1d8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x1e4(r30)
-	lfs      f1, lbl_805197CC@sda21(r2)
-	fcmpo    cr0, f2, f1
-	ble      lbl_801DA224
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x1e4(r30)
-	lfs      f0, 0x1e4(r30)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_801DA224
-	li       r0, 1
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	stw      r0, mBirthMode__Q24Game7PikiMgr@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	or.      r31, r3, r3
-	stw      r0, mBirthMode__Q24Game7PikiMgr@sda21(r13)
-	beq      lbl_801DA208
-	li       r4, 0
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	lhz      r4, 0x1f4(r30)
-	mr       r3, r31
-	bl       changeShape__Q24Game4PikiFi
-	lhz      r4, 0x1f6(r30)
-	mr       r3, r31
-	bl       changeHappa__Q24Game4PikiFi
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	addi     r4, r30, 0x19c
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lwz      r3, 0x28c(r31)
-	mr       r4, r31
-	li       r5, 0x11
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801DA224
+	mFsm->exec(this);
+	if (_1E4 > 0.0f) {
+		_1E4 -= sys->mDeltaTime;
+		if (_1E4 <= 0.0f) {
+			PikiMgr::mBirthMode = 1;
+			Piki* piki          = pikiMgr->birth();
+			PikiMgr::mBirthMode = 0;
+			if (piki) {
+				piki->init(nullptr);
+				piki->changeShape(mColor);
+				piki->changeHappa(mHeadType);
+				piki->mNavi = nullptr;
+				piki->setPosition(mPosition, false);
+				piki->mFsm->transit(piki, PIKISTATE_AutoNuki, nullptr);
 
-lbl_801DA208:
-	lis      r3, lbl_80480828@ha
-	lis      r5, lbl_8048083C@ha
-	addi     r3, r3, lbl_80480828@l
-	li       r4, 0x25b
-	addi     r5, r5, lbl_8048083C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801DA224:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+				kill(nullptr);
+				setAlive(false);
+			} else {
+				JUT_PANICLINE(603, "exit failed !!\n");
+			}
+		}
+	}
 }
 
 /*
@@ -2876,6 +715,23 @@ lbl_801DA224:
  */
 void Item::changeMaterial()
 {
+	J3DMaterial* mat = mModel->mJ3dModel->mModelData->getMaterialNodePointer(0);
+	if (mat) {
+		Color4 pikiColor = Piki::pikiColors[mColor];
+		J2DGXColorS10 color(pikiColor.r, pikiColor.g, pikiColor.b, pikiColor.a);
+		mat->mTevBlock->setTevColor(0, color);
+	}
+
+	mModel->mJ3dModel->calcMaterial();
+
+	for (u16 i = 0; i < mModel->mJ3dModel->getModelData()->getMaterialNum(); i++) {
+		J3DMatPacket* packet = &mModel->mJ3dModel->mMatPackets[i];
+		if (packet->mInitShapePacket->mDisplayList) {
+			packet->beginDiff();
+			mModel->mJ3dModel->getModelData()->getMaterialNodePointer(i)->mTevBlock->diff(0x1000000);
+			packet->endDiff();
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2978,7 +834,7 @@ lbl_801DA34C:
  */
 void Item::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 {
-	if (mCurrentState != nullptr) {
+	if (mCurrentState) {
 		mCurrentState->onKeyEvent(this, keyEvent);
 	}
 }
@@ -2999,17 +855,6 @@ void Item::updateBoundSphere()
 {
 	mBoundingSphere.mPosition = mPosition;
 	mBoundingSphere.mRadius   = 4.0f;
-	/*
-	lfs      f1, 0x19c(r3)
-	lfs      f0, lbl_805197E8@sda21(r2)
-	stfs     f1, 0x1c4(r3)
-	lfs      f1, 0x1a0(r3)
-	stfs     f1, 0x1c8(r3)
-	lfs      f1, 0x1a4(r3)
-	stfs     f1, 0x1cc(r3)
-	stfs     f0, 0x1d0(r3)
-	blr
-	*/
 }
 
 /*
@@ -3021,17 +866,6 @@ void Item::getLODSphere(Sys::Sphere& lodSphere)
 {
 	lodSphere.mPosition = mPosition;
 	lodSphere.mRadius   = 20.0f;
-	/*
-	lfs      f1, 0x19c(r3)
-	lfs      f0, lbl_805197EC@sda21(r2)
-	stfs     f1, 0(r4)
-	lfs      f1, 0x1a0(r3)
-	stfs     f1, 4(r4)
-	lfs      f1, 0x1a4(r3)
-	stfs     f1, 8(r4)
-	stfs     f0, 0xc(r4)
-	blr
-	*/
 }
 
 /*
@@ -3046,46 +880,12 @@ void Item::onSetPosition() { }
  * Address:	801DA41C
  * Size:	000074
  */
-void Item::doSimulation(float p1)
+void Item::doSimulation(f32 rate)
 {
-	if (getStateID() == PIKIHEADSTATE_Fall) {
-		mVelocity.y -= (p1 * _aiConstants->mGravity.mData);
-		move(p1);
+	if (getStateID() == PIKIHEAD_Fall) {
+		mVelocity.y -= (rate * _aiConstants->mGravity.mData);
+		move(rate);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	fmr      f31, f1
-	bl
-"getStateID__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>Fv"
-	cmpwi    r3, 0
-	bne      lbl_801DA474
-	lwz      r4, _aiConstants__4Game@sda21(r13)
-	mr       r3, r31
-	lfs      f0, 0x194(r31)
-	fmr      f1, f31
-	lfs      f2, 0x28(r4)
-	fnmsubs  f0, f31, f2, f0
-	stfs     f0, 0x194(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1cc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DA474:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -3095,20 +895,7 @@ lbl_801DA474:
  */
 bool Item::canPullout()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl
-	"getStateID__Q24Game89FSMItem<Q34Game12ItemPikihead4Item,Q34Game12ItemPikihead3FSM,Q34Game12ItemPikihead5State>Fv"
-	subfic   r0, r3, 2
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return (s8)(getStateID() == PIKIHEAD_Wait); // why is this cast necessary smh
 }
 
 /*
@@ -3116,8 +903,39 @@ bool Item::canPullout()
  * Address:	801DA4BC
  * Size:	0001AC
  */
-bool Item::interactFue(Game::InteractFue&)
+bool Item::interactFue(InteractFue& whistle)
 {
+	if (canPullout() && isAlive()) {
+		Navi* navi = static_cast<Navi*>(whistle.mCreature);
+		if (!navi->getOlimarData()->hasItem(OlimarData::ODII_ProfessionalNoisemaker)) {
+			return false;
+		}
+
+		if (gameSystem->mMode == GSM_VERSUS_MODE) {
+			if (mColor == navi->mNaviIndex) {
+				return false;
+			}
+		}
+
+		PikiMgr::mBirthMode = 1;
+		Piki* piki          = pikiMgr->birth();
+		PikiMgr::mBirthMode = 0;
+
+		if (piki) {
+			P2ASSERTLINE(701, whistle.mCreature->isNavi());
+			piki->init(nullptr);
+			piki->changeShape(mColor);
+			piki->changeHappa(mHeadType);
+			piki->mNavi = navi;
+			piki->setPosition(mPosition, false);
+			piki->mFsm->transit(piki, PIKISTATE_AutoNuki, nullptr);
+			kill(nullptr);
+			setAlive(false);
+			return true;
+		}
+	}
+
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3251,90 +1069,7 @@ Mgr::Mgr()
 	mItemName = "PikiHead";
 	setModelSize(1);
 	mObjectPathComponent = "user/Kando/objects/pikihead";
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_801DA690
-	addi     r0, r30, 0x80
-	stw      r0, 4(r30)
-
-lbl_801DA690:
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 1
-	bl       __ct__Q24Game11BaseItemMgrFi
-	addi     r31, r30, 0x30
-	mr       r3, r31
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__16GenericContainer@ha
-	lis      r4, "__vt__37Container<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r3, __vt__16GenericContainer@l
-	lis      r3,
-"__vt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>"@ha stw      r0,
-0(r31) addi     r0, r4, "__vt__37Container<Q34Game12ItemPikihead4Item>"@l addi
-r4, r3, "__vt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>"@l li r5, 0
-	stw      r0, 0(r31)
-	addi     r0, r4, 0x74
-	addi     r3, r30, 0x4c
-	stb      r5, 0x18(r31)
-	stw      r4, 0(r30)
-	stw      r0, 0x30(r30)
-	bl       "__ct__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-	lis      r3, __vt__Q34Game12ItemPikihead3Mgr@ha
-	lis      r4, lbl_80480858@ha
-	addi     r5, r3, __vt__Q34Game12ItemPikihead3Mgr@l
-	mr       r3, r30
-	stw      r5, 0(r30)
-	addi     r5, r5, 0x74
-	addi     r0, r4, lbl_80480858@l
-	li       r4, 1
-	stw      r5, 0x30(r30)
-	stw      r0, 8(r30)
-	bl       setModelSize__Q24Game11BaseItemMgrFi
-	lis      r4, lbl_80480864@ha
-	mr       r3, r30
-	addi     r0, r4, lbl_80480864@l
-	stw      r0, 0x28(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
-
-/*
- * --INFO--
- * Address:	801DA73C
- * Size:	000100
- */
-// void FixedSizeItemMgr<Item>::~FixedSizeItemMgr()
-// {
-// }
-
-/*
- * --INFO--
- * Address:	801DA83C
- * Size:	0000A0
- */
-// void MonoObjectMgr<Item>::~MonoObjectMgr()
-// {
-// }
-
-/*
- * --INFO--
- * Address:	801DA8DC
- * Size:	000070
- */
-// void Container<Item>::~Container()
-// {
-// }
 
 /*
  * --INFO--
@@ -3350,51 +1085,6 @@ void Mgr::onLoadResources()
 	loadAnimMgr(arc, "pikiheadAnimMgr.txt");
 	closeTextArc(arc);
 	createMgr(100, 0x80000);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_80480800@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_80480800@l
-	addi     r4, r2, lbl_805197F0@sda21
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       loadArchive__Q24Game11BaseItemMgrFPc
-	mr       r3, r29
-	addi     r4, r31, 0x80
-	li       r5, 0
-	lis      r6, 2
-	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-	lwz      r3, 0x1c(r29)
-	lis      r4, 4
-	lwz      r3, 0(r3)
-	bl       newSharedDisplayList__12J3DModelDataFUl
-	mr       r3, r29
-	addi     r4, r31, 0x90
-	bl       openTextArc__Q24Game11BaseItemMgrFPc
-	mr       r0, r3
-	mr       r3, r29
-	mr       r30, r0
-	addi     r5, r31, 0x9c
-	mr       r4, r30
-	bl       loadAnimMgr__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-	mr       r3, r29
-	mr       r4, r30
-	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-	mr       r3, r29
-	li       r4, 0x64
-	lis      r5, 8
-	bl "createMgr__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FiUl"
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -3402,8 +1092,9 @@ void Mgr::onLoadResources()
  * Address:	801DA9F8
  * Size:	000378
  */
-void Mgr::doSimpleDraw(Viewport*)
+void Mgr::doSimpleDraw(Viewport* vp)
 {
+
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -3742,7 +1433,7 @@ lbl_801DAE68:
  * Address:	801DAE7C
  * Size:	000060
  */
-Item* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, Game::GenItemParm* genParm)
+Item* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {
 	Item* item = birth();
 	item->init(nullptr);
@@ -3889,7 +1580,7 @@ char* Item::getCreatureName()
  * Address:	801DB0C0
  * Size:	000034
  */
-// void Game::FSMItem<Item, FSM, State>::doAI()
+// void FSMItem<Item, FSM, State>::doAI()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4009,7 +1700,7 @@ char* Item::getCreatureName()
  * Address:	801DB1A8
  * Size:	00002C
  */
-// void FixedSizeItemMgr<Item>::doSimulation(float)
+// void FixedSizeItemMgr<Item>::doSimulation(f32)
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -4270,7 +1961,7 @@ char* Item::getCreatureName()
  * Address:	801DB470
  * Size:	000044
  */
-// void Game::FSMItem<Item, FSM, State>::onKeyEvent(const SysShape::KeyEvent&)
+// void FSMItem<Item, FSM, State>::onKeyEvent(const SysShape::KeyEvent&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4301,7 +1992,7 @@ char* Item::getCreatureName()
  * Address:	801DB4B4
  * Size:	000004
  */
-// void ItemState<Item>::onDamage(Item*, float) { }
+// void ItemState<Item>::onDamage(Item*, f32) { }
 
 /*
  * --INFO--
@@ -4322,21 +2013,21 @@ char* Item::getCreatureName()
  * Address:	801DB4C0
  * Size:	000004
  */
-// void ItemState<Item>::onPlatCollision(Item*, Game::PlatEvent&) { }
+// void ItemState<Item>::onPlatCollision(Item*, PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	801DB4C4
  * Size:	000004
  */
-// void ItemState<Item>::onCollision(Item*, Game::CollEvent&) { }
+// void ItemState<Item>::onCollision(Item*, CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801DB4C8
  * Size:	000004
  */
-// void FSMState<Item>::init(Item*, Game::StateArg*) { }
+// void FSMState<Item>::init(Item*, StateArg*) { }
 
 /*
  * --INFO--
@@ -4636,7 +2327,7 @@ char* Item::getCreatureName()
  * Address:	801DB8CC
  * Size:	000090
  */
-// void MonoObjectMgr<Item>::doSimulation(float)
+// void MonoObjectMgr<Item>::doSimulation(f32)
 // {
 // }
 
@@ -5322,7 +3013,7 @@ char* Item::getCreatureName()
  * Address:	801DC224
  * Size:	0001F4
  */
-// void ObjectMgr<Item>::doSimulation(float)
+// void ObjectMgr<Item>::doSimulation(f32)
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -5699,7 +3390,7 @@ char* Item::getCreatureName()
  * Address:	801DC6E4
  * Size:	00009C
  */
-// void StateMachine<Item>::transit(Item*, int, Game::StateArg*)
+// void StateMachine<Item>::transit(Item*, int, StateArg*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5756,7 +3447,7 @@ char* Item::getCreatureName()
  * Address:	801DC780
  * Size:	000084
  */
-// void StateMachine<Game::ItemPikihead::Item>::registerState(Game::FSMState<Game::ItemPikihead::Item>*)
+// void StateMachine<ItemPikihead::Item>::registerState(FSMState<ItemPikihead::Item>*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5807,7 +3498,7 @@ char* Item::getCreatureName()
  * Address:	801DC804
  * Size:	00001C
  */
-// void Game::FSMItem<Item, FSM, State>::getStateID()
+// void FSMItem<Item, FSM, State>::getStateID()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5828,7 +3519,7 @@ char* Item::getCreatureName()
  * Address:	801DC820
  * Size:	000044
  */
-// void Game::FSMItem<Item, FSM, State>::platCallback(Game::PlatEvent&)
+// void FSMItem<Item, FSM, State>::platCallback(PlatEvent&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5859,7 +3550,7 @@ char* Item::getCreatureName()
  * Address:	801DC864
  * Size:	000044
  */
-// void Game::FSMItem<Item, FSM, State>::collisionCallback(Game::CollEvent&)
+// void FSMItem<Item, FSM, State>::collisionCallback(CollEvent&)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5890,7 +3581,7 @@ char* Item::getCreatureName()
  * Address:	801DC8A8
  * Size:	000044
  */
-// void Game::FSMItem<Item, FSM, State>::bounceCallback(Sys::Triangle*)
+// void FSMItem<Item, FSM, State>::bounceCallback(Sys::Triangle*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -6292,7 +3983,7 @@ char* Item::getCreatureName()
  * Address:	801DCD20
  * Size:	000030
  */
-// void Delegate1<Game::FixedSizeItemMgr<Item>, Model*>::invoke(SysShape::Model*)
+// void Delegate1<FixedSizeItemMgr<Item>, Model*>::invoke(SysShape::Model*)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -6325,7 +4016,7 @@ char* Item::getCreatureName()
  * Address:	801DCD78
  * Size:	000008
  */
-// void Game::FSMItem<Item, FSM, State>::@376
+// void FSMItem<Item, FSM, State>::@376
 //     @onKeyEvent(const SysShape::KeyEvent&)
 // {
 // }
@@ -6380,7 +4071,7 @@ char* Item::getCreatureName()
  * Address:	801DCDA8
  * Size:	000008
  */
-// void MonoObjectMgr<Item>::@28 @doSimulation(float)
+// void MonoObjectMgr<Item>::@28 @doSimulation(f32)
 // {
 // }
 
@@ -6434,7 +4125,7 @@ char* Item::getCreatureName()
  * Address:	801DCDD8
  * Size:	000008
  */
-// void ObjectMgr<Item>::@28 @doSimulation(float)
+// void ObjectMgr<Item>::@28 @doSimulation(f32)
 // {
 // }
 

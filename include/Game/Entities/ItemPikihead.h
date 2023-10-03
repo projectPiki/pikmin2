@@ -10,43 +10,43 @@ namespace Game {
 namespace ItemPikihead {
 struct Item;
 
-enum cState {
-	PIKIHEADSTATE_Fall = 0,
-	PIKIHEADSTATE_Bury,
-	PIKIHEADSTATE_Wait,
-	PIKIHEADSTATE_Tane,
-	PIKIHEADSTATE_Hatuga,
-	PIKIHEADSTATE_Grow,
-	PIKIHEADSTATE_Siore,
-	PIKIHEADSTATE_COUNT
+enum StateID {
+	PIKIHEAD_Fall   = 0,
+	PIKIHEAD_Bury   = 1,
+	PIKIHEAD_Wait   = 2,
+	PIKIHEAD_Tane   = 3,
+	PIKIHEAD_Hatuga = 4,
+	PIKIHEAD_Grow   = 5,
+	PIKIHEAD_Siore  = 6,
+	PIKIHEAD_StateCount, // 7
 };
 
 struct InitArg : public ItemInitArg {
-	inline InitArg(EPikiKind pikiKind, Vector3f& vec)
+	inline InitArg(EPikiKind pikiKind, Vector3f& vel)
 	{
-		mPikminType = pikiKind;
-		_08         = vec;
-		_14         = 0;
-		_18         = 0;
-		_1C         = -1.0f;
+		mPikminType      = pikiKind;
+		mVelocity        = vel;
+		mIsAlreadyBuried = false;
+		mHeadType        = Leaf;
+		_1C              = -1.0f;
 	}
 
-	inline InitArg(EPikiKind pikiKind, Vector3f& vec, u8 p3, int p4, f32 p5)
+	inline InitArg(EPikiKind pikiKind, Vector3f& vel, bool isAlreadyBuried, int headType, f32 p5)
 	{
-		mPikminType = pikiKind;
-		_08         = vec;
-		_14         = p3;
-		_18         = p4;
-		_1C         = -1.0f;
+		mPikminType      = pikiKind;
+		mVelocity        = vel;
+		mIsAlreadyBuried = isAlreadyBuried;
+		mHeadType        = headType;
+		_1C              = -1.0f;
 	}
 
 	virtual const char* getName() { return "ItemPikiHead::InitArg"; } // _08 (weak)
 
 	// _00     = VTBL
-	EPikiKind mPikminType; // _04, enum?
-	Vector3f _08;          // _08
-	u8 _14;                // _14
-	int _18;               // _18
+	EPikiKind mPikminType; // _04
+	Vector3f mVelocity;    // _08
+	bool mIsAlreadyBuried; // _14
+	int mHeadType;         // _18
 	f32 _1C;               // _1C
 };
 
@@ -67,11 +67,12 @@ struct State : public ItemState<Item> {
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
+	char* mName; // _0C, unused but educated guess
 };
 
 struct BuryState : public State {
 	inline BuryState()
-	    : State(PIKIHEADSTATE_Bury)
+	    : State(PIKIHEAD_Bury)
 	{
 	}
 
@@ -81,15 +82,14 @@ struct BuryState : public State {
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C;        // _0C
+	// _00-_10 = State
 	bool mAnimDone; // _10
 	f32 mTimer;     // _14
 };
 
 struct FallState : public State {
 	inline FallState()
-	    : State(PIKIHEADSTATE_Fall)
+	    : State(PIKIHEAD_Fall)
 	{
 	}
 
@@ -100,15 +100,14 @@ struct FallState : public State {
 	virtual void onPlatCollision(Item* item, PlatEvent& platEvent); // _2C
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 	f32 _10; // _10
 	f32 _14; // _14
 };
 
 struct GrowState : public State {
 	inline GrowState()
-	    : State(PIKIHEADSTATE_Grow)
+	    : State(PIKIHEAD_Grow)
 	{
 	}
 
@@ -118,13 +117,12 @@ struct GrowState : public State {
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 struct HatugaState : public State {
 	inline HatugaState()
-	    : State(PIKIHEADSTATE_Hatuga)
+	    : State(PIKIHEAD_Hatuga)
 	{
 	}
 
@@ -134,13 +132,12 @@ struct HatugaState : public State {
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C; // _0C
+	// _00-_10 = State
 };
 
 struct SioreState : public State {
 	inline SioreState()
-	    : State(PIKIHEADSTATE_Siore)
+	    : State(PIKIHEAD_Siore)
 	{
 	}
 
@@ -150,15 +147,14 @@ struct SioreState : public State {
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C;        // _0C
+	// _00-_10 = State
 	f32 mTimer;     // _10
 	bool mAnimDone; // _14
 };
 
 struct TaneState : public State {
 	inline TaneState()
-	    : State(PIKIHEADSTATE_Tane)
+	    : State(PIKIHEAD_Tane)
 	{
 	}
 
@@ -168,15 +164,14 @@ struct TaneState : public State {
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
-	// _00-_0C = State
-	u32 _0C;        // _0C
+	// _00-_10 = State
 	bool mAnimDone; // _10
 	f32 mTimer;     // _14
 };
 
 struct WaitState : public State {
 	inline WaitState()
-	    : State(PIKIHEADSTATE_Wait)
+	    : State(PIKIHEAD_Wait)
 	{
 	}
 
@@ -187,7 +182,7 @@ struct WaitState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
-	u32 _0C[2]; // _0C
+	f32 mTimer; // _10
 };
 
 struct Item : public FSMItem<Item, FSM, State> {
@@ -215,7 +210,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 	// _00-_1E0 = FSMItem
 	efx::TPkEffectTane* mEfxTane; // _1E0
 	f32 _1E4;                     // _1E4
-	Vector3f _1E8;                // _1E8
+	Vector3f mEfxPosition;        // _1E8
 	u16 mColor;                   // _1F4
 	u16 mHeadType;                // _1F6
 };
