@@ -40,8 +40,8 @@ struct GateState : public ItemState<ItemGate> {
 	{
 	}
 
-	virtual void onDamage(ItemGate*, f32);                         // _20 (weak)
-	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&); // _24 (weak)
+	virtual void onDamage(ItemGate*, f32) { }                         // _20 (weak)
+	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&) { } // _24 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = ItemState

@@ -20,6 +20,7 @@ static const char unusedItemGateName[] = "itemGate";
 
 ItemGateMgr* itemGateMgr;
 ItemDengekiGate::Mgr* ItemDengekiGate::mgr;
+
 /*
  * --INFO--
  * Address:	801C7604
@@ -81,7 +82,7 @@ void ItemGate::onInit(CreatureInitArg* arg)
 		ItemGateInitArg* gateArg = static_cast<ItemGateInitArg*>(arg);
 		mFaceDir                 = gateArg->mFaceDir;
 	} else {
-		mFaceDir = TAU * randFloat();
+		mFaceDir = randFloat() * TAU;
 	}
 
 	if (mIsElectric) {
@@ -93,17 +94,6 @@ void ItemGate::onInit(CreatureInitArg* arg)
 		mMatAnimator = new Sys::MatLoopAnimator;
 		mMatAnimator->start(&itemGateMgr->mMatTevRegAnim);
 	}
-}
-
-/*
- * --INFO--
- * Address:	801C79C8
- * Size:	000034
- */
-void StateMachine<Game::ItemGate>::start(Game::ItemGate* gate, int stateID, Game::StateArg* args)
-{
-	gate->mCurrentState = nullptr;
-	transit(gate, stateID, args);
 }
 
 /*
@@ -236,13 +226,6 @@ void ItemGate::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 
 /*
  * --INFO--
- * Address:	801C7F20
- * Size:	000004
- */
-void GateState::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&) { }
-
-/*
- * --INFO--
  * Address:	801C7F24
  * Size:	00011C
  */
@@ -263,13 +246,6 @@ bool ItemGate::interactAttack(Game::InteractAttack& attack)
 	}
 	return true;
 }
-
-/*
- * --INFO--
- * Address:	801C8040
- * Size:	000004
- */
-void GateState::onDamage(Game::ItemGate*, float) { }
 
 /*
  * --INFO--
@@ -454,6 +430,36 @@ lbl_801C8454:
  */
 void ItemGate::initPlanes()
 {
+	_270 = getDirection(mFaceDir);
+	_264 = getPerpDirection(mFaceDir);
+
+	Vector3f pos = getPosition();
+
+	Vector3f plane0vec = pos + (_270 * 20.0f);
+	mPlanes[0].a       = _270.x;
+	mPlanes[0].b       = _270.y;
+	mPlanes[0].c       = _270.z;
+	mPlanes[0].d       = _270.dot(plane0vec);
+
+	Vector3f vec2      = (-_270.x, -_270.y, _270.z);
+	Vector3f plane1vec = pos + (vec2 * 20.0f);
+	mPlanes[1].a       = vec2.x;
+	mPlanes[1].b       = vec2.y;
+	mPlanes[1].c       = vec2.z;
+	mPlanes[1].d       = vec2.dot(plane1vec);
+
+	Vector3f plane2vec = pos + (_264 * 76.5f);
+	mPlanes[2].a       = _264.x;
+	mPlanes[2].b       = _264.y;
+	mPlanes[2].c       = _264.z;
+	mPlanes[2].d       = _264.dot(plane2vec);
+
+	Vector3f vec3      = (-_264.x, -_264.y, _264.z);
+	Vector3f plane3vec = pos + (vec3 * 76.5f);
+	mPlanes[3].a       = vec3.x;
+	mPlanes[3].b       = vec3.y;
+	mPlanes[3].c       = vec3.z;
+	mPlanes[3].d       = vec3.dot(plane3vec);
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
