@@ -6674,9 +6674,9 @@ void TCallbackScrollMsg::reset()
 		P2JME::TRenderingProcessor* proc = static_cast<P2JME::Window::TRenderingProcessor*>(mControl->mTextRenderProc);
 		proc->setTextBoxInfo(mPane);
 		f32 space              = TZukanBase::mLineSpace;
-		proc->_8C[13]          = space;
-		proc->_8C[15]          = space;
-		proc->_8C[45]          = TZukanBase::mWarpRadius;
+		proc->_C0              = space;
+		proc->_C8              = space;
+		proc->_140             = TZukanBase::mWarpRadius; // ??? the struct needs to be correct
 		mControl->_6C          = TZukanBase::mScrollValueCoe;
 		mControl->mScrollSpeed = TZukanBase::mScrollSpeedCoe;
 	}

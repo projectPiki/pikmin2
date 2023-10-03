@@ -156,6 +156,8 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	f32 _104;             // _104
 	f32 _108;             // _108
 	u32 _10C;             // _10C
+	unknown _110[12];     // _110
+	f32 _140;             // _140
 
 	static u32 cPageInfoBufferNum;
 };
