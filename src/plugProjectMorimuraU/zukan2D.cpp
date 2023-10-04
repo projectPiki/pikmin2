@@ -130,7 +130,7 @@ int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 
 // these represent the highest index (index that the hoard shows you in-game) of each sets treasures
 // for example the first set is ids 1 through 7
-static int mCategoryArray[TREASUREHOARD_CATEGORY_NUM]
+int TItemZukan::mCategoryArray[TREASUREHOARD_CATEGORY_NUM]
     = { 7, 16, 22, 27, 42, 51, 57, 63, 71, 79, 86, 94, 103, 109, 120, 126, 146, 156, 160, 166, 168, 176, 183, 196, 201 };
 
 /*
@@ -342,9 +342,9 @@ void TZukanBase::doCreate(JKRArchive*)
 	mIndexGroup          = new TIndexGroup;
 	mIndexGroup->mHeight = diff;
 	TIndexGroup* group   = mIndexGroup;
-	group->_00           = mScrollParm._00;
+	group->mMaxRollSpeed = mScrollParm._00;
 	group->_04           = mScrollParm._04;
-	group->_08           = mScrollParm._08;
+	group->mRollSpeedMod = mScrollParm._08;
 	group->_0C           = mScrollParm._0C;
 	group->_10           = mScrollParm._10;
 
@@ -489,7 +489,7 @@ bool TZukanBase::doUpdate()
 			}
 		}
 
-		if (!mIndexGroup->_20 && !isHorizontalScroll) {
+		if (!mIndexGroup->mStateID && !isHorizontalScroll) {
 			Controller* pad = mController;
 			u32 input       = pad->mButton.mButton;
 			if (input & Controller::PRESS_X) {
@@ -680,13 +680,13 @@ bool TZukanBase::doUpdate()
 	doUpdateOut();
 
 	if (mForceResetParm) {
-		mForceResetParm    = false;
-		TIndexGroup* group = mIndexGroup;
-		group->_00         = mScrollParm._00;
-		group->_04         = mScrollParm._04;
-		group->_08         = mScrollParm._08;
-		group->_0C         = mScrollParm._0C;
-		group->_10         = mScrollParm._10;
+		mForceResetParm      = false;
+		TIndexGroup* group   = mIndexGroup;
+		group->mMaxRollSpeed = mScrollParm._00;
+		group->_04           = mScrollParm._04;
+		group->mRollSpeedMod = mScrollParm._08;
+		group->_0C           = mScrollParm._0C;
+		group->_10           = mScrollParm._10;
 	}
 
 	if (getDispDataZukan()->mPrevSelection && mCanInput) {
@@ -786,7 +786,7 @@ void TZukanBase::doDraw(Graphics& gfx)
 			if (idpane->mSizeType == 0) {
 				for (int j = 0; j < 3; j++) {
 					int id = mIndexPaneList[i]->getListIndex() + j;
-					if (mIndexPaneList[i]->mIconInfos[j]->_18 && isNewSupply(id, false)) {
+					if (mIndexPaneList[i]->mIconInfos[j]->mParentIndex && isNewSupply(id, false)) {
 						mPaneNew1->mGlobalMtx[0][3] = mNewOffset.x + mIndexPaneList[i]->mIconInfos[j]->mPane->mGlobalMtx[0][3];
 						mPaneNew1->mGlobalMtx[1][3] = mNewOffset.y + mIndexPaneList[i]->mIconInfos[j]->mPane->mGlobalMtx[1][3];
 						mMessageNew->draw(gfx, *graf);
@@ -994,11 +994,11 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 		mIndexPaneList[i] = new TIndexPane(this, static_cast<P2DScreen::Mgr_tuning*>(screen), tags[i]);
 		mIndexPaneList[i]->createIconInfo(3, getIdMax());
 		for (int j = 0; j < 3; j++) {
-			TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
-			J2DPane* pane1  = screen->search(panetags[i * 12] + 9 + j);
-			J2DPane* pane2  = screen->search(panetags[i * 12] + 6 + j);
-			TScaleUpCounter* counter
-			    = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i * 12] + j, panetags[i * 12] + 3 + j, &icon->_18, 3, mArchive);
+			TIconInfo* icon          = mIndexPaneList[i]->mIconInfos[j];
+			J2DPane* pane1           = screen->search(panetags[i * 12] + 9 + j);
+			J2DPane* pane2           = screen->search(panetags[i * 12] + 6 + j);
+			TScaleUpCounter* counter = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i * 12] + j, panetags[i * 12] + 3 + j,
+			                                              &icon->mParentIndex, 3, mArchive);
 			icon->init(counter, pane1, pane2);
 			if (mCanComplete) {
 				J2DPictureEx* pic
@@ -1624,7 +1624,7 @@ void TZukanBase::doUpdateOut()
 			for (int j = 0; j < 3; j++) {
 				TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
 				J2DPane* pane   = icon->mPic;
-				if (icon->_18 && icon->mPane->isVisible()) {
+				if (icon->mParentIndex && icon->mPane->isVisible()) {
 					pane->show();
 					if (mIndexPaneList[i]->mSizeType == 0) {
 						pane->updateScale(mCategoryScale.x, mCategoryScale.y);
@@ -1733,7 +1733,7 @@ void TZukanBase::setShortenIndex(int paneID, int index, bool)
 					info->setInfo(mViewablePanelIDList[index], timg);
 				}
 			} else {
-				pane->mIconInfos[1]->_18 = mViewablePanelIDList[index] + 1;
+				pane->mIconInfos[1]->mParentIndex = mViewablePanelIDList[index] + 1;
 			}
 		} else {
 			int test = 0;
@@ -2384,7 +2384,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 		updateIndex(false);
 		TIndexGroup* grp = mIndexGroup;
 		grp->_14         = xoffs;
-		grp->_20         = 0.0f;
+		grp->mStateID    = 0;
 		changePaneInfo();
 	}
 
@@ -2466,7 +2466,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 				updateIndex(true);
 				TIndexGroup* grp = mIndexGroup;
 				grp->_14         = xoffs;
-				grp->_20         = 0;
+				grp->mStateID    = 0;
 				// mRightOffset = backupindex - max2;
 				// if (mRightOffset < 0 || mRightOffset > 2) {
 				//	JUT_PANICLINE(2431, "P2ASSERT");
@@ -2717,11 +2717,11 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 		mIndexPaneList[i] = new TIndexPane(this, static_cast<P2DScreen::Mgr_tuning*>(screen), tags[i]);
 		mIndexPaneList[i]->createIconInfo(3, getIdMax());
 		for (int j = 0; j < 3; j++) {
-			TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
-			J2DPane* pane1  = screen->search(panetags[i * 12] + 9 + j);
-			J2DPane* pane2  = screen->search(panetags[i * 12] + 6 + j);
-			TScaleUpCounter* counter
-			    = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i * 12] + j, panetags[i * 12] + 3 + j, &icon->_18, 3, mArchive);
+			TIconInfo* icon          = mIndexPaneList[i]->mIconInfos[j];
+			J2DPane* pane1           = screen->search(panetags[i * 12] + 9 + j);
+			J2DPane* pane2           = screen->search(panetags[i * 12] + 6 + j);
+			TScaleUpCounter* counter = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i * 12] + j, panetags[i * 12] + 3 + j,
+			                                              &icon->mParentIndex, 3, mArchive);
 			icon->init(counter, pane1, pane2);
 			if (mCanComplete) {
 				J2DPictureEx* pic
@@ -4618,40 +4618,40 @@ void TItemZukan::setShortenIndex(int paneID, int index, bool flag)
 		int id2 = -1;
 		for (; id != 0; id--) {
 			TIconInfo* icon = pane->mIconInfos[id];
-			if (icon->_18) {
+			if (icon->mParentIndex) {
 				id2 = icon->mCategoryID;
 			}
 		}
 		if (id2 >= 0) {
 			if (flag) {
 				TIconInfo* icon = mIndexPaneList[paneID]->mIconInfos[0];
-				if (id2 == icon->mCategoryID && icon->_18) {
+				if (id2 == icon->mCategoryID && icon->mParentIndex) {
 					active                              = true;
 					mCategoryColorID[icon->mCategoryID] = 1 - mCategoryColorID[id2];
 				}
 				icon = mIndexPaneList[paneID]->mIconInfos[1];
-				if (id2 == icon->mCategoryID && icon->_18) {
+				if (id2 == icon->mCategoryID && icon->mParentIndex) {
 					active                              = true;
 					mCategoryColorID[icon->mCategoryID] = 1 - mCategoryColorID[id2];
 				}
 				icon = mIndexPaneList[paneID]->mIconInfos[2];
-				if (id2 == icon->mCategoryID && icon->_18) {
+				if (id2 == icon->mCategoryID && icon->mParentIndex) {
 					active                              = true;
 					mCategoryColorID[icon->mCategoryID] = 1 - mCategoryColorID[id2];
 				}
 			} else {
 				TIconInfo* icon = mIndexPaneList[paneID]->mIconInfos[2];
-				if (id2 == icon->mCategoryID && icon->_18) {
+				if (id2 == icon->mCategoryID && icon->mParentIndex) {
 					active                              = true;
 					mCategoryColorID[icon->mCategoryID] = 1 - mCategoryColorID[id2];
 				}
 				icon = mIndexPaneList[paneID]->mIconInfos[1];
-				if (id2 == icon->mCategoryID && icon->_18) {
+				if (id2 == icon->mCategoryID && icon->mParentIndex) {
 					active                              = true;
 					mCategoryColorID[icon->mCategoryID] = 1 - mCategoryColorID[id2];
 				}
 				icon = mIndexPaneList[paneID]->mIconInfos[0];
-				if (id2 == icon->mCategoryID && icon->_18) {
+				if (id2 == icon->mCategoryID && icon->mParentIndex) {
 					active                              = true;
 					mCategoryColorID[icon->mCategoryID] = 1 - mCategoryColorID[id2];
 				}
@@ -5700,7 +5700,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 		updateIndex(false);
 		TIndexGroup* grp = mIndexGroup;
 		grp->_14         = xoffs;
-		grp->_20         = 0.0f;
+		grp->mStateID    = 0;
 		changePaneInfo();
 	}
 
@@ -5748,7 +5748,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 				updateIndex(true);
 				TIndexGroup* grp = mIndexGroup;
 				grp->_14         = xoffs;
-				grp->_20         = 0.0f;
+				grp->mStateID    = 0;
 				changePaneInfo();
 			}
 		} else {
@@ -5846,7 +5846,7 @@ void TItemZukan::doDemoDraw(Graphics& gfx)
 			if (mIndexPaneList[i]->mPane->isVisible()) {
 				for (int j = 0; j < 3; j++) {
 					TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
-					if (mSelection == icon->mCategoryID && icon->_18) {
+					if (mSelection == icon->mCategoryID && icon->mParentIndex) {
 						mPaneNew1->mGlobalMtx[0][3] = mNewOffset.x + mIndexPaneList[i]->mIconInfos[j]->mPane->mOffset.x;
 						mPaneNew1->mGlobalMtx[1][3] = mNewOffset.y + mIndexPaneList[i]->mIconInfos[j]->mPane->mOffset.y;
 						mMessageNew->draw(gfx, *graf);

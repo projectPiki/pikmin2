@@ -557,6 +557,8 @@ struct TItemZukan : public TZukanBase {
 	int mDemoScrollTargetRow;                            // _3B0
 	int _3B4;                                            // _3B4
 	f32 mDemoStateButtonAlpha;                           // _3B8
+
+	static int mCategoryArray[];
 };
 
 } // namespace Morimura

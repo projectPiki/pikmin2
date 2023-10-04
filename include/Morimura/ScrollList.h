@@ -5,72 +5,89 @@
 
 namespace Morimura {
 struct TScaleUpCounter;
+struct TZukanBase;
 
 struct TIndexGroup {
 	TIndexGroup();
 
-	void downIndex();
-	void upIndex();
+	bool downIndex();
+	bool upIndex();
 
-	f32 _00;     // _00
-	f32 _04;     // _04
-	f32 _08;     // _08
-	f32 _0C;     // _0C
-	f32 _10;     // _10
-	f32 _14;     // _14
-	f32 mHeight; // _18
-	f32 _1C;     // _1C
-	int _20;     // _20, unknown
-	u8 _24;      // _24
-	f32 _28;     // _28
-	u8 _2C[0x4]; // _2C, unknown
+	// unused/inlined
+	void speedUpdate(bool);
+	void offsetUpdate(f32);
+	void rollSpUp();
+
+	inline void reset()
+	{
+		_14      = 0.0f;
+		mStateID = 0;
+	}
+
+	f32 mMaxRollSpeed; // _00
+	f32 _04;           // _04
+	f32 mRollSpeedMod; // _08
+	f32 _0C;           // _0C
+	f32 _10;           // _10
+	f32 _14;           // _14
+	f32 mHeight;       // _18
+	f32 mRollSpeed;    // _1C
+	int mStateID;      // _20
+	u8 _24;            // _24
+	f32 mMoveTimer;    // _28
+	u8 _2C[0x4];       // _2C, unknown
 };
 
 struct TIconInfo {
-	void startScaleUp(f32);
-	void setInfo(int, const ResTIMG*);
-	void init(TScaleUpCounter*, J2DPane*, J2DPane*);
+	TIconInfo();
 
-	int mCategoryID;                  // _00
-	J2DPictureEx* mPic;               // _04
-	TScaleUpCounter* mScaleUpCounter; // _08
-	J2DPane* mPane2;                  // _0C
-	J2DPane* mPane;                   // _10
-	og::Screen::ScaleMgr* mScaleMgr;  // _14
-	u32 _18;                          // _18
+	void startScaleUp(f32 scale);
+	void setInfo(int id, const ResTIMG* timg);
+	void init(TScaleUpCounter* counter, J2DPane* pane1, J2DPane* pane2);
+	void update(f32 base);
+
+	int mCategoryID;                 // _00
+	J2DPictureEx* mPic;              // _04
+	TScaleUpCounter* mCounter;       // _08
+	J2DPane* mPane2;                 // _0C
+	J2DPane* mPane;                  // _10
+	og::Screen::ScaleMgr* mScaleMgr; // _14
+	u32 mParentIndex;                // _18
 };
 
 struct TIndexPane {
-	TIndexPane(TTestBase* owner, P2DScreen::Mgr_tuning* scrn, u64 tag)
+	TIndexPane(TZukanBase* owner, P2DScreen::Mgr_tuning* scrn, u64 tag)
 	{
 		J2DPane* pane = scrn->search(tag);
 		mIndex        = 0;
 		mPane         = pane;
 		mPane2        = nullptr;
 		mSizeType     = 0;
-		_10           = 0;
+		mIconCount    = 0;
 		_18           = 0.0f;
 		mIconInfos    = nullptr;
 		mOwner        = owner;
 		_1C           = mPane->mOffset.y;
 	}
 
-	void setIndex(int);
+	void setIndex(int index);
 	int getIndex();
 	int getListIndex();
-	void createIconInfo(int, int);
+	void createIconInfo(int num, int entries);
 	void update();
+
+	void doIconOffsetY();
 
 	int mIndex;             // _00
 	J2DPane* mPane;         // _04
 	J2DPane* mPane2;        // _08
 	int mSizeType;          // _0C
-	int _10;                // _10
-	int _14;                // _14
+	int mIconCount;         // _10, number of entries, per row, 3 in piklopedias case
+	int mMaxTextureId;      // _14
 	f32 _18;                // _18
 	f32 _1C;                // _1C
 	TIconInfo** mIconInfos; // _20
-	TTestBase* mOwner;      // _24
+	TZukanBase* mOwner;     // _24
 };
 
 struct TListScreen : public TScreenBase {
@@ -78,14 +95,14 @@ struct TListScreen : public TScreenBase {
 	    : TScreenBase(arc, id)
 	{
 	}
-	virtual void create(const char*, u32); // _08
+	virtual void create(const char* filename, u32 flag); // _08
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
 };
 
 struct TScrollList : public TTestBase {
-	TScrollList(char*);
+	TScrollList(char* name);
 
 	virtual ~TScrollList() { }                       // _08 (weak)
 	virtual bool isListShow(int) { return true; }    // _7C (weak)
@@ -93,7 +110,7 @@ struct TScrollList : public TTestBase {
 	virtual void changePaneInfo() = 0;               // _84
 	virtual int getIdMax()        = 0;               // _88
 	virtual u64 getNameID(int)    = 0;               // _8C
-	virtual void getUpdateIndex(int&, bool);         // _90
+	virtual void getUpdateIndex(int& id, bool flag); // _90
 	virtual void setShortenIndex(int, int, bool) { } // _94 (weak)
 	virtual void doUpdateIn() { }                    // _98 (weak)
 	virtual void doUpdateOut() { }                   // _9C (weak)
@@ -111,7 +128,7 @@ struct TScrollList : public TTestBase {
 	TScreenBase* mMainScreen;    // _7C
 	Controller* mController;     // _80
 	TIndexGroup* mIndexGroup;    // _84
-	TIndexPane** mIndexPaneList; // _88, array of ptrs?
+	TIndexPane** mIndexPaneList; // _88
 	bool mDoEnableBigIcon;       // _8C
 	s16 mMaxSelect;              // _8E
 	int _90;                     // _90
@@ -126,6 +143,7 @@ struct TScrollList : public TTestBase {
 
 	static int mRightOffset;
 	static bool mForceResetParm;
+	static bool mWideWindow;
 };
 } // namespace Morimura
 
