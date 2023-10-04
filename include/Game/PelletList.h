@@ -29,6 +29,8 @@ struct Mgr {
 	static int getDictionaryNum();
 	static void globalInstance();
 
+	inline PelletConfigList* getConfig(int idx) { return &mConfigList[idx]; }
+
 	static Mgr* mInstance;
 
 	// _00 = VTBL

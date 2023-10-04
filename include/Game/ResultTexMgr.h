@@ -8,6 +8,13 @@
 
 namespace Game {
 namespace ResultTexMgr {
+enum ResultRegionID {
+	REGIONID_Null = -1,
+	REGIONID_JPN  = 0,
+	REGIONID_US   = 1,
+	REGIONID_PAL  = 2,
+};
+
 struct Arg {
 	inline Arg()
 	{

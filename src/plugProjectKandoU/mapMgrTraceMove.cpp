@@ -1,48 +1,12 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_mapMgrTraceMove_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804BEF00
-    lbl_804BEF00:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global mTraceMoveOptLevel__Q24Game6MapMgr
-    mTraceMoveOptLevel__Q24Game6MapMgr:
-        .4byte 0x01000000
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515BB0
-    lbl_80515BB0:
-        .skip 0x4
-    .global lbl_80515BB4
-    lbl_80515BB4:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519D60
-    lbl_80519D60:
-        .4byte 0x00000000
-    .global lbl_80519D64
-    lbl_80519D64:
-        .float 0.5
-    .global lbl_80519D68
-    lbl_80519D68:
-        .float 1.0
-        .4byte 0x00000000
-*/
-
 #include "Game/MapMgr.h"
+#include "Sys/TriangleTable.h"
+#include "Sys/Cylinder.h"
+#include "Game/TDispTriangle.h"
+#include "nans.h"
 
 namespace Game {
+
+u8 MapMgr::mTraceMoveOptLevel = 1;
 
 /*
  * --INFO--
@@ -50,22 +14,26 @@ namespace Game {
  * Size:	000114
  * TODO: 57%
  */
-void ShapeMapMgr::traceMove(Game::MoveInfo& info, float stepLength)
+void ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
 {
 	_14++;
+	f32 len    = stepLength;
+	int steps  = 1;
+	f32 radius = info._00->mRadius;
+	f32 length = info.mVelocity->length();
 
-	s32 steps  = 1;
-	f32 length = _sqrtf(info.mVelocity->sqrMagnitude());
-
-	for (; steps <= 8;) {
-		if (stepLength * length > info._00->mRadius) {
+	do {
+		if (len * length > radius) {
 			steps *= 2;
-			stepLength *= 0.5f;
+			len *= 0.5f;
+			continue;
 		}
-	}
+
+		break;
+	} while (steps <= 8);
 
 	for (int i = 0; i < steps; i++) {
-		MapMgr::traceMove(info.mMapCollision, info, stepLength);
+		MapMgr::traceMove(_38, info, len);
 	}
 
 	_18 += steps;
@@ -76,14 +44,14 @@ void ShapeMapMgr::traceMove(Game::MoveInfo& info, float stepLength)
  * Address:	802051A0
  * Size:	000020
  */
-void MapMgr::traceMove(MapCollision& c, Game::MoveInfo& m, float sl) { traceMove_test1203_cylinder(c, m, sl); }
+void MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f32 p1) { traceMove_test1203_cylinder(coll, info, p1); }
 
 // /*
 //  * --INFO--
 //  * Address:	........
 //  * Size:	00030C
 //  */
-// void MapMgr::traceMove_test1030_1(MapCollision&, Game::MoveInfo&, float)
+// void MapMgr::traceMove_test1030_1(MapCollision&, Game::MoveInfo&, f32)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -93,12 +61,76 @@ void MapMgr::traceMove(MapCollision& c, Game::MoveInfo& m, float sl) { traceMove
  * Address:	802051C0
  * Size:	0003BC
  */
-void MapMgr::traceMove_test1203_cylinder(MapCollision& a2, Game::MoveInfo& a3, float a4)
+Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game::MoveInfo& info, f32 p1)
 {
+	Sys::Sphere* sphere         = info._00;                    // r26
+	Vector3f* vel               = info.mVelocity;              // r25
+	Sys::VertexTable* vertTable = coll.mDivider->mVertexTable; // r24
 	if (MapMgr::traceMoveDebug) {
-		Vector3f v;
-		getMinY(v);
+		getMinY(sphere->mPosition);
 	}
+
+	Vector3f spherePos = sphere->mPosition;
+	sphere->mPosition += (*vel) * p1;
+	Sys::TriIndexList* triList   = coll.mDivider->findTriLists(*sphere); // r23
+	Sys::TriangleTable* triTable = coll.mDivider->mTriangleTable;        // r19
+
+	Vector3f v1;
+	Vector3f v2;
+
+	for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
+		_1C += triList->mCount;
+
+		for (int i = 0; i < triList->mCount; i++) {
+			int idx            = triList->mObjects[i];     // r21
+			Sys::Triangle* tri = &triTable->mObjects[idx]; // r29
+			if (mTraceMoveOptLevel >= 1) {
+				if (!tri->fastIntersect(*sphere)) {
+					_20++;
+					continue;
+				}
+			}
+
+			if (traceMoveDebug) {
+				Sys::Triangle::debug = true;
+			}
+
+			Sys::Triangle::SphereSweep sweep;
+			sweep._00 = spherePos;
+			sweep._1C = 0;
+			if (info._19) {
+				sweep._1C = 1;
+			}
+
+			bool intersectCheck;
+			if (info._1A != 0) {
+				Sys::Cylinder cylinder(sphere->mPosition, info._1C, info._28, sphere->mRadius);
+				f32 overlap;
+				intersectCheck = cylinder.intersect(*tri, overlap);
+			} else {
+				intersectCheck = tri->intersect(*vertTable, sweep);
+			}
+
+			if (intersectCheck) {
+				if (info._94) {
+					info._94->store(*tri, *vertTable, idx);
+				}
+				if (info._10) {
+					info._10->invoke(v1, v2);
+				}
+				if (v1.y >= info._30) {
+					info.mBounceTriangle = tri;
+					info.mPosition       = v1;
+				} else if (FABS(v1.y) <= info._2C) {
+					info.mWallTriangle    = tri;
+					info.mReflectPosition = v1;
+				}
+			}
+			Sys::Triangle::debug = false;
+		}
+	}
+
+	return triList;
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -380,7 +412,7 @@ lbl_8020553C:
 //  * Address:	........
 //  * Size:	000464
 //  */
-// void MapMgr::traceMove_test(MapCollision&, Game::MoveInfo&, float)
+// void MapMgr::traceMove_test(MapCollision&, Game::MoveInfo&, f32)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -390,30 +422,9 @@ lbl_8020553C:
 //  * Address:	........
 //  * Size:	000464
 //  */
-// void MapMgr::traceMove_original(MapCollision&, Game::MoveInfo&, float)
+// void MapMgr::traceMove_original(MapCollision&, Game::MoveInfo&, f32)
 // {
 // 	// UNUSED FUNCTION
 // }
 
 } // namespace Game
-
-// /*
-//  * --INFO--
-//  * Address:	8020557C
-//  * Size:	000028
-//  */
-// void __sinit_mapMgrTraceMove_cpp()
-// {
-// 	/*
-// 	lis      r4, __float_nan@ha
-// 	li       r0, -1
-// 	lfs      f0, __float_nan@l(r4)
-// 	lis      r3, lbl_804BEF00@ha
-// 	stw      r0, lbl_80515BB0@sda21(r13)
-// 	stfsu    f0, lbl_804BEF00@l(r3)
-// 	stfs     f0, lbl_80515BB4@sda21(r13)
-// 	stfs     f0, 4(r3)
-// 	stfs     f0, 8(r3)
-// 	blr
-// 	*/
-// }

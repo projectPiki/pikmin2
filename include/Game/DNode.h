@@ -16,9 +16,9 @@ struct DNode : public JKRDisposer {
 	void del();
 
 	// Unused/inlined:
-	unknown addHead(DNode*);
-	unknown calcNextCount();
-	unknown concat(DNode*);
+	void addHead(DNode*);
+	void calcNextCount();
+	void concat(DNode*);
 	DNode* getChildAt(int);
 
 	/**

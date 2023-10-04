@@ -60,7 +60,7 @@ struct BaseFlockMgr {
 	}
 
 	void update();
-	void getNearestFlock(Vector3f&);
+	int getNearestFlock(Vector3f& pos);
 	int attackFlock(int, f32);
 	void resolveCollision(f32);
 

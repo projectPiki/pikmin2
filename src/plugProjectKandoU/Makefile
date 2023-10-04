@@ -100,7 +100,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Movie.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/navi_demoCheck.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Zukan.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameResultTexMgr.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameResultTexMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePelletList.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Title.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Game.o\

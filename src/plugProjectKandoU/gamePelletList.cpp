@@ -13,8 +13,6 @@ namespace Game {
 
 PelletList::Mgr* PelletList::Mgr::mInstance;
 
-static int gLoadedPelletData;
-
 /*
  * --INFO--
  * Address:	80227D5C
@@ -78,11 +76,11 @@ PelletList::Mgr::~Mgr()
 	mConfigList = nullptr;
 }
 
-// /*
-//  * --INFO--
-//  * Address:	80227F70
-//  * Size:	0001D8
-//  */
+/*
+ * --INFO--
+ * Address:	80227F70
+ * Size:	0001D8
+ */
 void PelletList::Mgr::loadResource()
 {
 	JKRArchive* archive;

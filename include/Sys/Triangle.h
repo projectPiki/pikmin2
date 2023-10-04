@@ -50,6 +50,8 @@ struct Triangle {
 	bool intersect(Edge&, Vector3f&);
 	bool intersectOptimistic(Sphere&, Vector3f&);
 
+	static bool debug;
+
 	Vector3i mVertices;   // _00, _04, _08 	- addresses of each vertex in vertex table
 	Plane mTrianglePlane; // _0C				- ax + by + cz + d form of plane triangle lies in
 	Plane mEdgePlanes[3]; // _1C, _2C, _3C 	- plane through each side of triangle (?)

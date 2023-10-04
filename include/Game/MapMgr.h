@@ -68,7 +68,7 @@ struct MapMgr : virtual public GenericObjectMgr {
 	void checkBeamCollision(BeamCollisionArg&);
 	void clearPerfMonitor();
 	void traceMove(MapCollision&, Game::MoveInfo&, f32);
-	void traceMove_test1203_cylinder(MapCollision&, Game::MoveInfo&, f32);
+	Sys::TriIndexList* traceMove_test1203_cylinder(MapCollision&, Game::MoveInfo&, f32);
 
 	// unused/inlined:
 	void draw2d(Graphics&);
