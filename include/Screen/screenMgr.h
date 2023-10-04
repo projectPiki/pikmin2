@@ -11,11 +11,15 @@ namespace Screen {
 } // namespace kh
 
 namespace Screen {
+
+void getSceneOwnerName(SceneBase* scene);
+void getSceneMemberName(SceneBase* scene);
+
 struct MgrBase : public JKRDisposer {
-	virtual ~MgrBase() { }                       // _08
-	virtual bool setScene(SetSceneArg&)     = 0; // _0C
-	virtual bool startScene(StartSceneArg*) = 0; // _10
-	virtual void endScene(EndSceneArg*)     = 0; // _14
+	virtual ~MgrBase() { }                           // _08
+	virtual bool setScene(SetSceneArg& arg)     = 0; // _0C
+	virtual bool startScene(StartSceneArg* arg) = 0; // _10
+	virtual bool endScene(EndSceneArg* arg)     = 0; // _14
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
@@ -27,7 +31,7 @@ struct Mgr : public MgrBase {
 	virtual ~Mgr() { sScreenMgr = nullptr; }           // _08 (weak)
 	virtual bool setScene(SetSceneArg&);               // _0C
 	virtual bool startScene(StartSceneArg*);           // _10
-	virtual void endScene(EndSceneArg*);               // _14
+	virtual bool endScene(EndSceneArg*);               // _14
 	virtual bool reset();                              // _18
 	virtual void setColorBG(JUtility::TColor&) { }     // _1C (weak)
 	virtual void setBGMode(int) { }                    // _20 (weak)
@@ -36,23 +40,29 @@ struct Mgr : public MgrBase {
 	virtual void drawWipe(Graphics&) { }               // _2C (weak)
 
 	void init();
-	void getCurrentCommand();
-	void getNewCommand();
-	void releaseCommand(Screen::MgrCommand*);
+	MgrCommand* getCurrentCommand();
+	MgrCommand* getNewCommand();
+	void releaseCommand(Screen::MgrCommand* command);
 	void update();
-	void draw(Graphics&);
+	void draw(Graphics& gfx);
 	void clearBackupSceneInfo();
 	void changeScene(Screen::SetSceneArg&, u8*);
-	void isCurrentSceneLoading();
+	bool isCurrentSceneLoading();
 	void copyDispMember(u8*, u8*);
-	bool setDispMember(og::Screen::DispMemberBase*);
+	bool setDispMember(og::Screen::DispMemberBase* disp);
 	og::Screen::DispMemberBase* getDispMember();
 	SceneType getSceneType();
 	bool isSceneFinish();
 	int getSceneFinishState();
-	void setGamePad(Controller*);
+	void setGamePad(Controller* control);
 	bool setBackupScene();
 	bool isAnyReservation() const;
+
+	// unused/inline
+	void create();
+	void updateCurrentScene();
+	SceneBase* getSceneBase(long);
+	void createNewBackupSceneInfo(SceneBase* scene);
 
 	inline void checkController()
 	{
@@ -62,16 +72,13 @@ struct Mgr : public MgrBase {
 
 	// _00     = VTBL
 	// _00-_18 = MgrBase
-	u8 _18;                    // _18
-	u8 _19;                    // _19
-	u8 _1A;                    // _1A
-	u8 _1B;                    // _1B
+	BitFlag<u32> mFlags;       // _18
 	SceneBase* mBackupScene;   // _1C
 	Controller* mController;   // _20
 	u8 _24[8];                 // _24
-	CNode _2C;                 // _2C
-	CNode _44;                 // _44
-	JKRSolidHeap* _5C;         // _5C
+	CNode mAvailableCommands;  // _2C
+	CNode mCommandList;        // _44
+	JKRSolidHeap* mCurrHeap;   // _5C
 	CNode _60;                 // _60
 	CNode mSceneInfoList;      // _78, treat as SceneInfoList
 	u8 _90;                    // _90
@@ -79,7 +86,7 @@ struct Mgr : public MgrBase {
 	bool mInDemo;              // _92
 	u32 _94;                   // _94
 	u32 _98;                   // _98
-	JUtility::TColor mBgColor; // _9C
+	JUtility::TColor mBgColor; // _9C, I think the type of these are wrong as its messing up the ctor
 	JUtility::TColor mColor2;  // _A0
 	int mBgMode;               // _A4
 
@@ -87,6 +94,10 @@ struct Mgr : public MgrBase {
 };
 
 inline void checkSceneList(SceneInfoList* list) { P2ASSERTLINE(329, list); }
+
+struct DispMemberCpy {
+	DispMemberCpy(u8*, og::Screen::DispMemberBase*);
+};
 
 } // namespace Screen
 

@@ -30,12 +30,30 @@ struct IObjBase;
 struct ObjBase;
 struct ObjMgrBase;
 struct Mgr;
+struct SceneArgBase;
+struct SetSceneArg;
 
 struct MgrCommand : public CNode {
-	virtual ~MgrCommand(); // _08 (weak)
+	MgrCommand();
+
+	virtual ~MgrCommand() { del(); } // _08 (weak)
+
+	// literally all of these are unused/inline
+	void clearArgBuf();
+	void clearDispMemberBuf();
+	void setArg(SceneArgBase*);
+	void setDispMember(og::Screen::DispMemberBase*);
+	void setTypeSetScene(SetSceneArg&);
+	void setTypeStartScene(SceneArgBase*);
+	void setTypeEndScene(SceneArgBase*);
+	void setTypeInvalid();
 
 	// _00     = VTBL
 	// _00-_18 = CNode
+	int _18;        // _18
+	int _1C;        // _1C
+	int _20[0x111]; // _20 ???
+	OSMutex mMutex; // _464
 };
 
 struct SceneArgBase {

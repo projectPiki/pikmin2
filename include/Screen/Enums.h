@@ -4,6 +4,7 @@
 #include "types.h"
 
 enum SceneType {
+	SCENE_DUMMY  = 0,
 	SCENE_GROUND = 10000,
 	SCENE_CAVE,
 	SCENE_VS,

@@ -1,7 +1,10 @@
 #include "Screen/Game2DMgr.h"
 #include "Screen/SceneInfoList.h"
-#include "types.h"
+#include "og/Screen/ogScreen.h"
+#include "Game/MoviePlayer.h"
 #include "nans.h"
+
+static const u32 padding[3] = { 0, 0, 0 };
 
 /*
     Generated from dpostproc
@@ -179,7 +182,7 @@ namespace Screen {
  * Address:	........
  * Size:	000060
  */
-void DispMemberCpy(unsigned char*, og::Screen::DispMemberBase*)
+void DispMemberCpy(u8*, og::Screen::DispMemberBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -189,7 +192,7 @@ void DispMemberCpy(unsigned char*, og::Screen::DispMemberBase*)
  * Address:	........
  * Size:	000048
  */
-void getSceneOwnerName(Screen::SceneBase*)
+void getSceneOwnerName(SceneBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -199,7 +202,7 @@ void getSceneOwnerName(Screen::SceneBase*)
  * Address:	........
  * Size:	000040
  */
-void getSceneMemberName(Screen::SceneBase*)
+void getSceneMemberName(SceneBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -211,29 +214,8 @@ void getSceneMemberName(Screen::SceneBase*)
  */
 SceneInfoList::SceneInfoList()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q26Screen13SceneInfoList@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q26Screen13SceneInfoList@l
-	addi     r3, r31, 0x1c
-	stw      r4, 0(r31)
-	li       r4, 0xcd
-	li       r5, 0x400
-	stw      r0, 0x18(r31)
-	bl       memset
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mSceneType = SCENE_DUMMY;
+	memset(mDispMemberBuffer, 205, 0x400);
 }
 
 /*
@@ -252,8 +234,14 @@ void SceneInfoList::set(long, og::Screen::DispMemberBase*)
  * Size:	000088
  */
 MgrCommand::MgrCommand()
+    : CNode("")
 {
-	// UNUSED FUNCTION
+	_18     = -1;
+	_1C     = 0;
+	_20[16] = 0; // no idea
+	OSInitMutex(&mMutex);
+	OSLockMutex(&mMutex);
+	OSUnlockMutex(&mMutex);
 }
 
 /*
@@ -281,7 +269,7 @@ void MgrCommand::clearDispMemberBuf()
  * Address:	........
  * Size:	0000E8
  */
-void MgrCommand::setArg(Screen::SceneArgBase*)
+void MgrCommand::setArg(SceneArgBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -301,7 +289,7 @@ void MgrCommand::setDispMember(og::Screen::DispMemberBase*)
  * Address:	........
  * Size:	0001BC
  */
-void MgrCommand::setTypeSetScene(Screen::SetSceneArg&)
+void MgrCommand::setTypeSetScene(SetSceneArg&)
 {
 	// UNUSED FUNCTION
 }
@@ -311,7 +299,7 @@ void MgrCommand::setTypeSetScene(Screen::SetSceneArg&)
  * Address:	........
  * Size:	000110
  */
-void MgrCommand::setTypeStartScene(Screen::SceneArgBase*)
+void MgrCommand::setTypeStartScene(SceneArgBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -321,7 +309,7 @@ void MgrCommand::setTypeStartScene(Screen::SceneArgBase*)
  * Address:	........
  * Size:	000110
  */
-void MgrCommand::setTypeEndScene(Screen::SceneArgBase*)
+void MgrCommand::setTypeEndScene(SceneArgBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -342,130 +330,22 @@ void MgrCommand::setTypeInvalid()
  * Size:	0001CC
  */
 Mgr::Mgr()
+    : mBackupScene(nullptr)
+    , mController(nullptr)
+    , mCurrHeap(nullptr)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	mr       r0, r31
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r0
-	bl       __ct__11JKRDisposerFv
-	lis      r4, __vt__Q26Screen7MgrBase@ha
-	lis      r3, __vt__Q26Screen3Mgr@ha
-	addi     r4, r4, __vt__Q26Screen7MgrBase@l
-	li       r0, 0
-	stw      r4, 0(r29)
-	addi     r4, r3, __vt__Q26Screen3Mgr@l
-	addi     r3, r31, 0x2c
-	stw      r4, 0(r31)
-	stb      r0, 0x18(r31)
-	stb      r0, 0x19(r31)
-	stb      r0, 0x1a(r31)
-	stb      r0, 0x1b(r31)
-	stw      r0, 0x1c(r31)
-	stw      r0, 0x20(r31)
-	bl       __ct__5CNodeFv
-	addi     r3, r31, 0x44
-	bl       __ct__5CNodeFv
-	li       r0, 0
-	addi     r3, r31, 0x60
-	stw      r0, 0x5c(r31)
-	bl       __ct__5CNodeFv
-	addi     r3, r31, 0x78
-	bl       __ct__5CNodeFv
-	li       r0, 0
-	li       r29, 0
-	stb      r0, 0x18(r31)
-	stb      r0, 0x19(r31)
-	stb      r0, 0x1a(r31)
-	stb      r0, 0x1b(r31)
-	stw      r0, 0x3c(r31)
-	stw      r0, 0x38(r31)
-	stw      r0, 0x34(r31)
-	stw      r0, 0x30(r31)
-	stw      r0, 0x54(r31)
-	stw      r0, 0x50(r31)
-	stw      r0, 0x4c(r31)
-	stw      r0, 0x48(r31)
-
-lbl_80452410:
-	li       r3, 0x47c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8045247C
-	lis      r3, __vt__5CNode@ha
-	li       r6, 0
-	addi     r0, r3, __vt__5CNode@l
-	addi     r5, r2, lbl_80520B80@sda21
-	stw      r0, 0(r30)
-	lis      r3, __vt__Q26Screen10MgrCommand@ha
-	addi     r4, r3, __vt__Q26Screen10MgrCommand@l
-	li       r0, -1
-	stw      r6, 0x10(r30)
-	addi     r3, r30, 0x464
-	stw      r6, 0xc(r30)
-	stw      r6, 8(r30)
-	stw      r6, 4(r30)
-	stw      r5, 0x14(r30)
-	stw      r4, 0(r30)
-	stw      r0, 0x18(r30)
-	stw      r6, 0x1c(r30)
-	stw      r6, 0x60(r30)
-	bl       OSInitMutex
-	addi     r3, r30, 0x464
-	bl       OSLockMutex
-	addi     r3, r30, 0x464
-	bl       OSUnlockMutex
-
-lbl_8045247C:
-	mr       r4, r30
-	addi     r3, r31, 0x44
-	bl       add__5CNodeFP5CNode
-	addi     r29, r29, 1
-	cmplwi   r29, 0xa
-	blt      lbl_80452410
-	li       r0, 0
-	li       r3, 0xc64
-	stw      r0, 0x70(r31)
-	stw      r0, 0x6c(r31)
-	stw      r0, 0x68(r31)
-	stw      r0, 0x64(r31)
-	stw      r0, 0x88(r31)
-	stw      r0, 0x84(r31)
-	stw      r0, 0x80(r31)
-	stw      r0, 0x7c(r31)
-	bl       __nwa__FUl
-	lis      r4, __ct__Q26Screen13SceneInfoListFv@ha
-	lis      r5, __dt__Q26Screen13SceneInfoListFv@ha
-	addi     r4, r4, __ct__Q26Screen13SceneInfoListFv@l
-	li       r6, 0x41c
-	addi     r5, r5, __dt__Q26Screen13SceneInfoListFv@l
-	li       r7, 3
-	bl       __construct_new_array
-	li       r29, 0
-	mr       r30, r3
-
-lbl_804524E4:
-	mr       r4, r30
-	addi     r3, r31, 0x78
-	bl       add__5CNodeFP5CNode
-	addi     r29, r29, 1
-	addi     r30, r30, 0x41c
-	cmplwi   r29, 3
-	blt      lbl_804524E4
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mFlags.clear();
+	mAvailableCommands.clearRelations();
+	mCommandList.clearRelations();
+	for (u32 i = 0; i < 10; i++) {
+		mCommandList.add(new MgrCommand);
+	}
+	_60.clearRelations();
+	mSceneInfoList.clearRelations();
+	SceneInfoList* info = new SceneInfoList[3];
+	for (u32 i = 0; i < 3; i++) {
+		mSceneInfoList.add(&info[i]);
+	}
 }
 
 /*
@@ -473,37 +353,7 @@ lbl_804524E4:
  * Address:	80452520
  * Size:	000060
  */
-SceneInfoList::~SceneInfoList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80452564
-	lis      r5, __vt__Q26Screen13SceneInfoList@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q26Screen13SceneInfoList@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80452564
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80452564:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+SceneInfoList::~SceneInfoList() { }
 
 /*
  * --INFO--
@@ -512,38 +362,10 @@ lbl_80452564:
  */
 void Mgr::init()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x5c(r3)
-	cmplwi   r0, 0
-	bne      lbl_804525DC
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x880
-	li       r5, 1
-	bl       create__12JKRSolidHeapFUlP7JKRHeapb
-	stw      r3, 0x5c(r31)
-	lwz      r0, 0x5c(r31)
-	cmplwi   r0, 0
-	bne      lbl_804525DC
-	lis      r3, lbl_8049B8D4@ha
-	lis      r5, lbl_8049B8E4@ha
-	addi     r3, r3, lbl_8049B8D4@l
-	li       r4, 0x195
-	addi     r5, r5, lbl_8049B8E4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804525DC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!mCurrHeap) {
+		mCurrHeap = JKRSolidHeap::create(0x880, JKRGetCurrentHeap(), true);
+		P2ASSERTLINE(405, mCurrHeap);
+	}
 }
 
 /*
@@ -551,81 +373,30 @@ lbl_804525DC:
  * Address:	804525F0
  * Size:	0000FC
  */
-void Mgr::reset()
+bool Mgr::reset()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	li       r31, 0
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	bl       isCurrentSceneLoading__Q26Screen3MgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80452680
-	lwz      r3, 0x1c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r5, r1, 0x14
-	li       r3, 0
-	bl       TagToName__Q22og6ScreenFUxPc
-	lwz      r3, 0x1c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r5, r1, 8
-	bl       TagToName__Q22og6ScreenFUxPc
-	lis      r3, lbl_8049B8D4@ha
-	lis      r4, lbl_8049B93C@ha
-	addi     r5, r4, lbl_8049B93C@l
-	addi     r6, r1, 0x14
-	addi     r3, r3, lbl_8049B8D4@l
-	addi     r7, r1, 8
-	li       r4, 0x1ab
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_804526D0
-
-lbl_80452680:
-	lwz      r3, gResMgr2D@sda21(r13)
-	bl       destroyAll__Q28Resource3MgrFv
-	li       r0, 0
-	stb      r0, 0x18(r30)
-	stb      r0, 0x19(r30)
-	stb      r0, 0x1a(r30)
-	stb      r0, 0x1b(r30)
-	stw      r0, 0x1c(r30)
-	b        lbl_804526AC
-
-lbl_804526A4:
-	mr       r3, r30
-	bl       releaseCommand__Q26Screen3MgrFPQ26Screen10MgrCommand
-
-lbl_804526AC:
-	mr       r3, r30
-	bl       getCurrentCommand__Q26Screen3MgrFv
-	or.      r4, r3, r3
-	bne      lbl_804526A4
-	mr       r3, r30
-	bl       clearBackupSceneInfo__Q26Screen3MgrFv
-	lwz      r3, 0x5c(r30)
-	bl       freeAll__7JKRHeapFv
-	li       r31, 1
-
-lbl_804526D0:
-	lwz      r0, 0x34(r1)
-	mr       r3, r31
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	bool ret = false;
+	if (isCurrentSceneLoading()) {
+		u32 owner = mBackupScene->getOwnerID();
+		char buf[12];
+		og::Screen::TagToName(owner, buf);
+		ScreenMemberID member = mBackupScene->getMemberID();
+		char buf2[12];
+		og::Screen::TagToName(member, buf2);
+		// This is the "lockout skip crash" that can happen randomly when you lockout skip
+		JUT_PANICLINE(427, "can\'t reset. owner[%s]  member[%s]\n", buf, buf2);
+	} else {
+		gResMgr2D->destroyAll();
+		mFlags.clear();
+		mBackupScene = nullptr;
+		while (MgrCommand* command = getCurrentCommand()) {
+			releaseCommand(command);
+		}
+		clearBackupSceneInfo();
+		mCurrHeap->freeAll();
+		ret = true;
+	}
+	return ret;
 }
 
 /*
@@ -643,8 +414,21 @@ void Mgr::create()
  * Address:	804526EC
  * Size:	0001E8
  */
-bool Mgr::startScene(Screen::StartSceneArg*)
+bool Mgr::startScene(StartSceneArg* arg)
 {
+	bool ret = false;
+	if (mBackupScene && mBackupScene->confirmStartScene(arg)) {
+		ret = true;
+	} else {
+		u32 owner = mBackupScene->getOwnerID();
+		char buf[12];
+		og::Screen::TagToName(owner, buf);
+		ScreenMemberID member = mBackupScene->getMemberID();
+		char buf2[12];
+		og::Screen::TagToName(member, buf2);
+		JUT_PANICLINE(427, "can\'t startScene.\n owner[%s] member[%s]\n", buf, buf2);
+	}
+	return ret;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -798,8 +582,14 @@ lbl_804528BC:
  * Address:	804528D4
  * Size:	00018C
  */
-void Mgr::endScene(Screen::EndSceneArg*)
+bool Mgr::endScene(Screen::EndSceneArg* arg)
 {
+	bool ret = true;
+	if (mBackupScene && mBackupScene->confirmEndScene(arg)) {
+	} else {
+		ret = false;
+	}
+	return ret;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -930,21 +720,29 @@ lbl_80452A48:
  * Address:	80452A60
  * Size:	000008
  */
-void Mgr::getCurrentCommand()
-{
-	/*
-	lwz      r3, 0x3c(r3)
-	blr
-	*/
-}
+MgrCommand* Mgr::getCurrentCommand() { return (MgrCommand*)mAvailableCommands.mChild; }
 
 /*
  * --INFO--
  * Address:	80452A68
  * Size:	0000A8
  */
-void Mgr::getNewCommand()
+MgrCommand* Mgr::getNewCommand()
 {
+	MgrCommand* command = (MgrCommand*)mCommandList.mChild;
+	if (!command) {
+		JUT_PANICLINE(615, "screen command buffer is empty.\n");
+		if (command)
+			return;
+	} else {
+		OSLockMutex(&command->mMutex);
+		command->del();
+		mAvailableCommands.add(command);
+		OSUnlockMutex(&command->mMutex);
+		return;
+	}
+	JUT_PANICLINE(626, "【エラー】コマンドバッファが足りません\n"); // "[Error] Not enough command buffer"
+	return command;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1002,32 +800,12 @@ lbl_80452AF0:
  * Address:	80452B10
  * Size:	000058
  */
-void Mgr::releaseCommand(Screen::MgrCommand*)
+void Mgr::releaseCommand(MgrCommand* command)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r31, 0x464
-	bl       OSLockMutex
-	mr       r3, r31
-	bl       del__5CNodeFv
-	mr       r4, r31
-	addi     r3, r30, 0x44
-	bl       add__5CNodeFP5CNode
-	addi     r3, r31, 0x464
-	bl       OSUnlockMutex
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OSLockMutex(&command->mMutex);
+	command->del();
+	mCommandList.add(command);
+	OSUnlockMutex(&command->mMutex);
 }
 
 /*
@@ -1270,83 +1048,37 @@ lbl_80452E20:
  * Address:	80452E40
  * Size:	0000B4
  */
-void Mgr::draw(Graphics&)
+void Mgr::draw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_80452E98
-	lwz      r0, 0x1f0(r5)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80452E98
-	lwz      r3, 0x1c(r30)
-	cmplwi   r3, 0
-	beq      lbl_80452EDC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80452EDC
+	if (Game::moviePlayer && Game::moviePlayer->isFlag(1)) {
+		if (!mBackupScene)
+			return;
+		if (!mBackupScene->isDrawInDemo()) {
+			return;
+		}
+	}
 
-lbl_80452E98:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x1c(r30)
-	cmplwi   r3, 0
-	beq      lbl_80452EC4
-	mr       r4, r31
-	bl       draw__Q26Screen9SceneBaseFR8Graphics
+	drawBG(gfx);
+	if (mBackupScene) {
+		mBackupScene->draw(gfx);
+	}
 
-lbl_80452EC4:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80452EDC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	drawWipe(gfx);
 }
-
-/*
- * --INFO--
- * Address:	80452EF4
- * Size:	000004
- */
-void Mgr::drawBG(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80452EF8
  * Size:	000008
  */
-u32 Mgr::doGetSceneBase(long) { return 0x0; }
+SceneBase* Mgr::doGetSceneBase(long) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A0
  */
-void Mgr::getSceneBase(long)
+SceneBase* Mgr::getSceneBase(long)
 {
 	// UNUSED FUNCTION
 }
@@ -1356,7 +1088,7 @@ void Mgr::getSceneBase(long)
  * Address:	........
  * Size:	0000E4
  */
-void Mgr::createNewBackupSceneInfo(Screen::SceneBase*)
+void Mgr::createNewBackupSceneInfo(SceneBase*)
 {
 	// UNUSED FUNCTION
 }
@@ -1368,6 +1100,12 @@ void Mgr::createNewBackupSceneInfo(Screen::SceneBase*)
  */
 void Mgr::clearBackupSceneInfo()
 {
+	FOREACH_NODE(SceneInfoList, _60.mChild, info)
+	{
+		info->del();
+		mSceneInfoList.add(info);
+	}
+	_60.clearRelations();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1411,7 +1149,7 @@ lbl_80452F40:
  * Address:	80452F78
  * Size:	00024C
  */
-void Mgr::changeScene(Screen::SetSceneArg&, unsigned char*)
+void Mgr::changeScene(SetSceneArg&, u8*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1591,8 +1329,9 @@ lbl_804531B0:
  * Address:	804531C4
  * Size:	000598
  */
-bool Mgr::setScene(Screen::SetSceneArg&)
+bool Mgr::setScene(SetSceneArg&)
 {
+	getNewCommand();
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2024,8 +1763,12 @@ lbl_80453744:
  * Address:	8045375C
  * Size:	000024
  */
-void Mgr::isCurrentSceneLoading()
+bool Mgr::isCurrentSceneLoading()
 {
+	if (!mBackupScene || mBackupScene->mStateID != 1) {
+		return false;
+	}
+	return true;
 	/*
 	lwz      r4, 0x1c(r3)
 	li       r3, 0
@@ -2044,7 +1787,7 @@ void Mgr::isCurrentSceneLoading()
  * Address:	80453780
  * Size:	000160
  */
-void Mgr::copyDispMember(unsigned char*, unsigned char*)
+void Mgr::copyDispMember(u8*, u8*)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2149,27 +1892,12 @@ lbl_804538CC:
  * Address:	804538E0
  * Size:	000034
  */
-void Mgr::setDispMember(og::Screen::DispMemberBase*)
+bool Mgr::setDispMember(og::Screen::DispMemberBase* disp)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_80453900
-	bl       setDispMember__Q26Screen9SceneBaseFPQ32og6Screen14DispMemberBase
-	b        lbl_80453904
-
-lbl_80453900:
-	li       r3, 0
-
-lbl_80453904:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mBackupScene) {
+		return mBackupScene->setDispMember(disp);
+	}
+	return nullptr;
 }
 
 /*
@@ -2177,19 +1905,12 @@ lbl_80453904:
  * Address:	80453914
  * Size:	00001C
  */
-void Mgr::getDispMember()
+og::Screen::DispMemberBase* Mgr::getDispMember()
 {
-	/*
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_80453928
-	lwz      r3, 0x21c(r3)
-	blr
-
-lbl_80453928:
-	li       r3, 0
-	blr
-	*/
+	if (mBackupScene) {
+		return mBackupScene->mDispMember;
+	}
+	return nullptr;
 }
 
 /*
@@ -2197,30 +1918,12 @@ lbl_80453928:
  * Address:	80453930
  * Size:	000040
  */
-void Mgr::getSceneType()
+SceneType Mgr::getSceneType()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_8045395C
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80453960
-
-lbl_8045395C:
-	li       r3, 0
-
-lbl_80453960:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mBackupScene) {
+		return mBackupScene->getSceneType();
+	}
+	return SCENE_DUMMY;
 }
 
 /*
@@ -2230,20 +1933,10 @@ lbl_80453960:
  */
 bool Mgr::isSceneFinish()
 {
-	/*
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_80453990
-	lwz      r0, 0x120(r3)
-	subfic   r0, r0, 4
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-
-lbl_80453990:
-	li       r3, 1
-	blr
-	*/
+	if (mBackupScene) {
+		return mBackupScene->mStateID == 4;
+	}
+	return true;
 }
 
 /*
@@ -2251,26 +1944,13 @@ lbl_80453990:
  * Address:	80453998
  * Size:	000038
  */
-void Mgr::getSceneFinishState()
+int Mgr::getSceneFinishState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_804539BC
-	bl       getFinishState__Q26Screen9SceneBaseFv
-	mr       r0, r3
-
-lbl_804539BC:
-	mr       r3, r0
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int ret = -1;
+	if (mBackupScene) {
+		ret = mBackupScene->getFinishState();
+	}
+	return ret;
 }
 
 /*
@@ -2278,17 +1958,12 @@ lbl_804539BC:
  * Address:	804539D0
  * Size:	00001C
  */
-void Mgr::setGamePad(Controller*)
+void Mgr::setGamePad(Controller* control)
 {
-	/*
-	stw      r4, 0x20(r3)
-	lwz      r4, 0x1c(r3)
-	cmplwi   r4, 0
-	beqlr
-	lwz      r0, 0x20(r3)
-	stw      r0, 0x104(r4)
-	blr
-	*/
+	mController = control;
+	if (mBackupScene) {
+		mBackupScene->mController = mController;
+	}
 }
 
 /*
@@ -2296,27 +1971,12 @@ void Mgr::setGamePad(Controller*)
  * Address:	804539EC
  * Size:	000034
  */
-void Mgr::setBackupScene()
+bool Mgr::setBackupScene()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_80453A0C
-	bl       setBackupScene__Q26Screen9SceneBaseFv
-	b        lbl_80453A10
-
-lbl_80453A0C:
-	li       r3, 0
-
-lbl_80453A10:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mBackupScene) {
+		return mBackupScene->setBackupScene();
+	}
+	return false;
 }
 
 /*
@@ -2352,64 +2012,4 @@ lbl_80453A48:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80453A58
- * Size:	000068
- */
-MgrCommand::~MgrCommand()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80453AA4
-	lis      r4, __vt__Q26Screen10MgrCommand@ha
-	addi     r0, r4, __vt__Q26Screen10MgrCommand@l
-	stw      r0, 0(r30)
-	bl       del__5CNodeFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80453AA4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80453AA4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
 } // namespace Screen
-
-/*
- * --INFO--
- * Address:	80453AC0
- * Size:	000028
- */
-void __sinit_screenMgr_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804ED6F8@ha
-	stw      r0, lbl_805162E0@sda21(r13)
-	stfsu    f0, lbl_804ED6F8@l(r3)
-	stfs     f0, lbl_805162E4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

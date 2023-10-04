@@ -4,6 +4,12 @@
 #include "CNode.h"
 #include "Screen/Enums.h"
 
+namespace og {
+namespace Screen {
+struct DispMemberBase;
+}
+} // namespace og
+
 namespace Screen {
 /**
  * @size{0x41C}
@@ -14,6 +20,8 @@ struct SceneInfoList : public CNode {
 	virtual ~SceneInfoList(); // _00
 
 	// virtual void _08() = 0;       // _08
+
+	void set(long, og::Screen::DispMemberBase*);
 
 	SceneType mSceneType;        // _18
 	u8 mDispMemberBuffer[0x400]; // _1C
