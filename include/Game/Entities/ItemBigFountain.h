@@ -27,7 +27,7 @@ enum StateID {
 };
 
 struct InitArg : public CreatureInitArg {
-	virtual const char* getName(); // _08 (weak)
+	virtual const char* getName() { return "ItemBigFountain::InitArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	int mInitState; // _04

@@ -188,7 +188,7 @@ struct MapUnitMgr : public NodeObjectMgr<MapUnit> {
 	void findMapUnit(char*);
 	void load(char*);
 	void loadShape(char*);
-	static void makeUnit(MapUnit*, char*);
+	void makeUnit(MapUnit*, char*);
 	void testConstruct();
 };
 
@@ -196,18 +196,18 @@ struct MapUnitMgr : public NodeObjectMgr<MapUnit> {
 struct MapRoom : public CellObject {
 	MapRoom();
 
-	virtual Vector3f getPosition();               // _08 (weak)
-	virtual void getBoundingSphere(Sys::Sphere&); // _10 (weak)
-	virtual bool collisionUpdatable();            // _14 (weak)
-	virtual char* getTypeName();                  // _24 (weak)
-	virtual u16 getObjType();                     // _28 (weak)
-	virtual void constructor();                   // _2C (weak)
-	virtual void doAnimation();                   // _30
-	virtual void doEntry();                       // _34
-	virtual void doSetView(int viewportNumber);   // _38
-	virtual void doViewCalc();                    // _3C
-	virtual void doSimulation(f32);               // _40
-	virtual void doDirectDraw(Graphics&);         // _44
+	virtual Vector3f getPosition() { return mBoundingSphere.mPosition; }              // _08 (weak)
+	virtual void getBoundingSphere(Sys::Sphere& sphere) { sphere = mBoundingSphere; } // _10 (weak)
+	virtual bool collisionUpdatable() { return false; }                               // _14 (weak)
+	virtual char* getTypeName() { return "room"; }                                    // _24 (weak)
+	virtual u16 getObjType() { return 0xAAAA; }                                       // _28 (weak)
+	virtual void constructor() { }                                                    // _2C (weak)
+	virtual void doAnimation();                                                       // _30
+	virtual void doEntry();                                                           // _34
+	virtual void doSetView(int viewportNumber);                                       // _38
+	virtual void doViewCalc();                                                        // _3C
+	virtual void doSimulation(f32);                                                   // _40
+	virtual void doDirectDraw(Graphics&);                                             // _44
 
 	void placeObjects(Cave::FloorInfo*, bool);
 	void countItems();
@@ -217,13 +217,15 @@ struct MapRoom : public CellObject {
 	RoomDoorInfo* createDoorInfo(MapUnitInterface*);
 	void createGlobalCollision();
 
+	void getCenterPosition(Vector3f&);
+
 	// _00     = VTBL
 	// _00-_B8 = CellObject
 	MapCollision* mCollision;              // _0B8
 	u8 _0BC;                               // _0BC
 	MapUnitInterface* mInterface;          // _0C0
 	Cave::ObjectLayout* mObjectLayoutInfo; // _0C4
-	u8 _0C8[4];                            // _0C8
+	int _0C8;                              // _0C8
 	Sys::MatLoopAnimator* mAnimators;      // _0CC
 	int mDoorNum;                          // _0D0
 	RoomDoorInfo* mDoorInfos;              // _0D4

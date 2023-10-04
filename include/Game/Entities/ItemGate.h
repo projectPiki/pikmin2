@@ -21,7 +21,7 @@ namespace Game {
 struct ItemGate;
 
 struct ItemGateInitArg : public CreatureInitArg {
-	virtual const char* getName(); // _08 (weak)
+	virtual const char* getName() { return "ItemGateInitArg"; } // _08 (weak)
 
 	// _00     = VTBL
 	f32 mFaceDir; // _04

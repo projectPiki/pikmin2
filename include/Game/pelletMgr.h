@@ -178,8 +178,6 @@ struct PelletInitArg : public CreatureInitArg {
 
 struct PelletIndexInitArg : public PelletInitArg {
 	PelletIndexInitArg(int);
-
-	u8 _28[0x8]; // _28, unknown
 };
 
 struct PelletNumberInitArg : public PelletInitArg {
