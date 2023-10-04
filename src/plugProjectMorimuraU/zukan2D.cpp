@@ -6697,12 +6697,12 @@ void TCallbackScrollMsg::reset()
 		P2JME::convertU64ToMessageID(mPane->mMessageID, &mMessageIDAs2UL[0], &mMessageIDAs2UL[1]);
 		mControl->setMessageID(mMessageIDAs2UL[0], mMessageIDAs2UL[1]);
 
-		P2JME::TRenderingProcessor* proc = static_cast<P2JME::Window::TRenderingProcessor*>(mControl->mTextRenderProc);
+		P2JME::Window::TRenderingProcessor* proc = static_cast<P2JME::Window::TRenderingProcessor*>(mControl->mTextRenderProc);
 		proc->setTextBoxInfo(mPane);
 		f32 space              = TZukanBase::mLineSpace;
 		proc->_C0              = space;
 		proc->_C8              = space;
-		proc->_140             = TZukanBase::mWarpRadius; // ??? the struct needs to be correct
+		proc->mSpeed           = TZukanBase::mWarpRadius;
 		mControl->_6C          = TZukanBase::mScrollValueCoe;
 		mControl->mScrollSpeed = TZukanBase::mScrollSpeedCoe;
 	}
