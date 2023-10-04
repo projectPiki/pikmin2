@@ -16,7 +16,33 @@
 #include "efx2d/T2DChangesmoke.h"
 
 namespace Morimura {
-
+s16 TZukanBase::mRequestTimerMax    = 10;
+bool TZukanBase::mIconMove          = true;
+f32 TZukanBase::mLineSpace          = 48.0f; // [vertical spacing between lines of text in message box]
+f32 TZukanBase::mWarpRadius         = 15.0f;
+f32 TZukanBase::mScrollValueCoe     = 3.5f;  // 3.5f  [max scroll speed]
+f32 TZukanBase::mScrollSpeedCoe     = 0.08f; // 0.08f [acceleration]
+f32 TZukanBase::mNewScale           = 0.7f;
+f32 TZukanBase::mPodIconOffsetX     = 480.0f; // 480.0f
+f32 TZukanBase::mLargeCategoryScale = 2.0f;
+f32 TZukanBase::mCategoryAlphaRate  = 0.6f;
+u8 TZukanBase::mDrawLineType        = 2;
+bool TZukanBase::mShowAllObjects;
+bool TZukanBase::mAllNewSupply;
+bool TZukanBase::mZukanShortenTest;
+bool TZukanBase::mZukanCategoryTest;
+f32 TZukanBase::mRandShowRate;
+JGeometry::TVec2f TZukanBase::mNewOffset;
+JGeometry::TVec2f TZukanBase::mLargeNewOffset;
+JUtility::TColor TZukanBase::mNewColor0;
+JUtility::TColor TZukanBase::mNewColor1;
+JGeometry::TVec2f TZukanBase::mCategoryScale;
+JUtility::TColor TZukanBase::mCategoryColor0w;
+JUtility::TColor TZukanBase::mCategoryColor0b;
+JUtility::TColor TZukanBase::mCategoryColor1w;
+JUtility::TColor TZukanBase::mCategoryColor1b;
+JKRHeap* TZukanBase::mDebugHeapParent;
+JKRExpHeap* TZukanBase::mDebugHeap;
 // this table connects piklopedia order to the actual game enemy id order
 int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 	{ TEnemyZukan::Zukan_Chappy, Game::EnemyTypeID::EnemyID_Chappy },
