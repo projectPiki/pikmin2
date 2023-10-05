@@ -80,10 +80,12 @@ struct SeqHeap {
 /**
  * @size 0x18
  */
-struct SeqMgr : JSULink<SeqBase> {
+struct SeqMgr : JSULink<SeqBase> { // SUPPOSED TO BE JSUList, BUT BREAKING MATCH, PSScene.cpp is broken in the meantime
+	// SeqMgr(Scene* scene) { mScene = scene; }
+
 	virtual ~SeqMgr(); // _08
 
-	void isPlaying();
+	bool isPlaying();
 	void pauseOnAllSeq(SeqBase::PauseMode);
 	void pauseOffAllSeq();
 	void reservePauseOffAllSeq();
@@ -91,15 +93,15 @@ struct SeqMgr : JSULink<SeqBase> {
 	void exec();
 	void stopAllSound(u32);
 	void scene1st(TaskChecker*);
-	void findSeq(JASTrack*);
-	void getPlayingSeq(JASTrack*);
+	SeqBase* findSeq(JASTrack*);
+	SeqBase* getPlayingSeq(JASTrack*);
 	SeqBase* getFirstSeq();
 	void getFirstSeqA();
 	SeqBase* getSeq(u32);
 
-	// _00-_10  = JSULink<SeqBase>
-	// _10      = VTABLE
-	Scene* mScene; // _14
+	// _00-_0C  = JSUList<SeqBase>
+	// _0C      = VTABLE
+	Scene* mScene; // _10
 };
 
 /**

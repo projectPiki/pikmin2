@@ -9,7 +9,8 @@ namespace PSSystem {
 
 struct WaveScene : public JKRDisposer {
 	enum AreaArg {
-
+		AREA_0,
+		AREA_1,
 	};
 
 	struct WaveArea {
@@ -29,13 +30,13 @@ struct WaveScene : public JKRDisposer {
 		int _10;               // _10
 	};
 
-	virtual ~WaveScene(); // _08 (weak)
+	virtual ~WaveScene() { } // _08 (weak)
 
-	void load(u16, u16, WaveScene::AreaArg, TaskChecker*);
+	void load(u16, u16, AreaArg, TaskChecker*);
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	WaveScene::WaveArea _18[2]; // _18
+	WaveArea _18[2]; // _18
 };
 
 // temp - used in WaveArea::loadWave, need to determine what this actually is
@@ -53,12 +54,15 @@ struct WaveAreaLoader {
 };
 
 struct WaveLoader {
-	virtual void loadWave(TaskChecker*, WaveScene::AreaArg); // _08
+	WaveLoader(u8 id1, u8 id2)
+	{
+		mWaveSceneID[0] = id1;
+		mWaveSceneID[1] = id2;
+	}
+	virtual void loadWave(TaskChecker* task, WaveScene::AreaArg arg); // _08
 
 	// _00 = VTBL
-	u8 _04;               // _04
-	u8 _05;               // _05
-	u8 _06[0x2];          // _06 - unknown, could be padding
+	u8 mWaveSceneID[2];   // _04
 	WaveScene mWaveScene; // _08
 };
 

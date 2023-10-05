@@ -14,7 +14,7 @@ namespace PSSystem {
  * @size = 0x24
  */
 struct Scene {
-	Scene(u8);
+	Scene(u8 id);
 
 	virtual void init();                 // _08 (weak)
 	virtual ~Scene();                    // _0C
@@ -25,16 +25,16 @@ struct Scene {
 	virtual void stopMainSeq(u32);       // _20
 	virtual void stopAllSound(u32);      // _24
 
-	void adaptChildScene(Scene*);
-	void adaptTo(Scene**);
+	void adaptChildScene(Scene* scene);
+	void adaptTo(Scene** scene);
 	void detach();
-	void appendSeq(SeqBase*);
-	void getSeqMgr();
-	void getChildScene();
+	void appendSeq(SeqBase* seq);
+	SeqMgr* getSeqMgr();
+	Scene* getChildScene();
 
 	Scene* mChild;           // _04
 	WaveLoader* mWaveLoader; // _08
-	Scene** _0C;             // _0C
+	Scene** mAdaptScene;     // _0C
 	SeqMgr mSeqMgr;          // _10
 };
 
@@ -45,9 +45,9 @@ struct SceneMgr {
 	virtual void exec(); // _08 (weak)
 
 	void refreshCurEndScene();
-	void findSeq(JASTrack*);
-	void getPlayingSeq(JASTrack*);
-	void deleteScene(Scene*);
+	SeqBase* findSeq(JASTrack* track);
+	SeqBase* getPlayingSeq(JASTrack* track);
+	void deleteScene(Scene* scene);
 	void deleteCurrentScene();
 
 	// inline/unused
@@ -82,8 +82,8 @@ struct SceneMgr {
 	}
 
 	// _00	= VTBL
-	Scene* mScenes; // _04
-	Scene* mEndScene;
+	Scene* mScenes;   // _04
+	Scene* mEndScene; // _08
 };
 
 inline Scene* checkChildScene(Scene* scene)
