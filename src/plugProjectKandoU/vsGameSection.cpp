@@ -382,7 +382,7 @@ void VsGameSection::onSetupFloatMemory()
 
 		JUT_ASSERTLINE(904, pelletConfig, "zannenn\n"); // 'disappointing'
 
-		initArg._10             = pelletConfig->mParams.mIndex;
+		initArg.mPelletIndex    = pelletConfig->mParams.mIndex;
 		initArg.mTextIdentifier = pelletConfig->mParams.mName.mData;
 		initArg.mPelletType     = cKind;
 		pelletMgr->setUse(&initArg);
@@ -1066,7 +1066,7 @@ void VsGameSection::initCardPellets()
 
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
 	JUT_ASSERTLINE(1796, config, "zannenn\n"); // 'disappointing'
-	arg._10             = config->mParams.mIndex;
+	arg.mPelletIndex    = config->mParams.mIndex;
 	arg.mTextIdentifier = config->mParams.mName.mData;
 	arg.mPelletType     = kind;
 	arg.mMinCarriers    = 1;
@@ -1214,7 +1214,7 @@ Pellet* VsGameSection::createCardPellet()
 
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
 	JUT_ASSERTLINE(1759, config, "zannenn\n");
-	pelletArg._10             = config->mParams.mIndex;
+	pelletArg.mPelletIndex    = config->mParams.mIndex;
 	pelletArg.mTextIdentifier = config->mParams.mName.mData;
 	pelletArg.mPelletType     = kind;
 	pelletArg._1C             = 1;
@@ -1286,7 +1286,7 @@ void VsGameSection::createYellowBedamas(int bedamas)
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
 	JUT_ASSERTLINE(2154, config, "zannenn\n"); // 'disappointing'
 
-	pelletArg._10 = config->mParams.mIndex;
+	pelletArg.mPelletIndex = config->mParams.mIndex;
 
 	pelletArg.mTextIdentifier = config->mParams.mName.mData;
 	pelletArg.mPelletType     = kind;
@@ -1314,7 +1314,7 @@ void VsGameSection::createRedBlueBedamas(Vector3f& pos)
 		char* name           = const_cast<char*>(marbles[i]);
 		PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
 		JUT_ASSERTLINE(2211, config, "zannenn\n"); // 'disappointing'
-		pelletArg._10             = config->mParams.mIndex;
+		pelletArg.mPelletIndex    = config->mParams.mIndex;
 		pelletArg.mTextIdentifier = config->mParams.mName.mData;
 		pelletArg.mPelletType     = kind;
 		pelletArg.mMinCarriers    = 1;

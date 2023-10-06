@@ -1409,8 +1409,8 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Address:	80016E50
  * Size:	000010
  */
-void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendMaya>, J3DMtxCalcJ3DSysInitMaya>::setWeight(
-    u8, f32)
+void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendMaya>, J3DMtxCalcJ3DSysInitMaya>::setWeight(u8,
+                                                                                                                                       f32)
 {
 	/*
 	.loc_0x0:
@@ -1831,8 +1831,9 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Address:	80017168
  * Size:	000010
  */
-void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendBasic>, J3DMtxCalcJ3DSysInitBasic>::setWeight(
-    u8, f32)
+void
+    J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendBasic>, J3DMtxCalcJ3DSysInitBasic>::setWeight(u8,
+                                                                                                                                        f32)
 {
 	/*
 	.loc_0x0:

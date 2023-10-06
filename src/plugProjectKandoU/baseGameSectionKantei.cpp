@@ -923,7 +923,7 @@ lbl_8023BEBC:
  * Address:	8023BEF4
  * Size:	000164
  */
-void BaseGameSection::ZoomCamera::doUpdate()
+bool BaseGameSection::ZoomCamera::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
