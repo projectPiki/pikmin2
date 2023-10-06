@@ -2,16 +2,6 @@
 #include "JSystem/J3DU/J3DUMtxCache.h"
 
 /*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805164C8
-    lbl_805164C8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
-
-/*
  * --INFO--
  * Address:	800177EC
  * Size:	00005C

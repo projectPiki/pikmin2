@@ -1,171 +1,14 @@
 #include "JSystem/J3D/J3DAnmTransform.h"
+#include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global
-   "__vt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-    "__vt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-        .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-        .4byte
-   "setAnmTransform__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FUcP15J3DAnmTransform"
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-        .4byte
-   "setWeight__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FUcf"
-        .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-        .4byte
-   "init__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
-        .4byte
-   "calc__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-    .global
-   "__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-    "__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-        .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-        .4byte
-   "setAnmTransform__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FUcP15J3DAnmTransform"
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-        .4byte
-   "setWeight__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FUcf"
-        .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-        .4byte
-   "init__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
-        .4byte
-   "calc__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-    .global
-   "__vt__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
-    "__vt__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-        .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-        .4byte
-   "setAnmTransform__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FUcP15J3DAnmTransform"
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-        .4byte
-   "setWeight__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FUcf"
-        .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-        .4byte
-   "init__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
-        .4byte
-   "calc__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-    .global
-   "__vt__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
-    "__vt__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-        .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-        .4byte
-   "setAnmTransform__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FUcP15J3DAnmTransform"
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-        .4byte
-   "setWeight__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FUcf"
-        .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-        .4byte
-   "init__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
-        .4byte
-   "calc__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-    .global
-   "__vt__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>"
-    "__vt__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-        .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-        .4byte
-   "setAnmTransform__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FUcP15J3DAnmTransform"
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-        .4byte
-   "setWeight__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FUcf"
-        .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-        .4byte
-   "init__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
-        .4byte
-   "calc__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-    .global
-   "__vt__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>"
-    "__vt__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "__dt__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-        .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-        .4byte
-   "setAnmTransform__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FUcP15J3DAnmTransform"
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-        .4byte
-   "setWeight__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FUcf"
-        .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-        .4byte
-   "init__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
-        .4byte
-   "calc__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-    .global __vt__22J3DMtxCalcBlendAnmBase
-    __vt__22J3DMtxCalcBlendAnmBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__22J3DMtxCalcBlendAnmBaseFv
-        .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-        .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFUcP15J3DAnmTransform
-        .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-        .4byte setWeight__22J3DMtxCalcBlendAnmBaseFUcf
-        .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-        .4byte 0
-        .4byte 0
-    .global __vt__10J3DMtxCalc
-    __vt__10J3DMtxCalc:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__10J3DMtxCalcFv
-        .4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
-        .4byte getAnmTransform__10J3DMtxCalcFv
-        .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
-        .4byte getAnmTransform__10J3DMtxCalcFUc
-        .4byte setWeight__10J3DMtxCalcFUcf
-        .4byte getWeight__10J3DMtxCalcCFUc
-        .4byte 0
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805164B8
-    lbl_805164B8:
-        .4byte 0x00000000
-    .global lbl_805164BC
-    lbl_805164BC:
-        .float 1.0
-    .global lbl_805164C0
-    lbl_805164C0:
-        .4byte 0x3BA3D70A
-        .4byte 0x00000000
-*/
 
 /*
  * --INFO--
  * Address:	80015DF0
  * Size:	000590
  */
-J3DMtxCalc* J3DUNewMtxCalcAnm(unsigned long, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DMtxCalcFlag)
+J3DMtxCalc* J3DUNewMtxCalcAnm(u32, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DMtxCalcFlag)
 {
 	/*
 	.loc_0x0:
@@ -573,14 +416,14 @@ J3DMtxCalc* J3DUNewMtxCalcAnm(unsigned long, J3DAnmTransform*, J3DAnmTransform*,
  * Address:	80016380
  * Size:	000004
  */
-void J3DMtxCalc::setWeight(unsigned char, float) { }
+void J3DMtxCalc::setWeight(u8, f32) { }
 
 /*
  * --INFO--
  * Address:	80016384
  * Size:	000004
  */
-void J3DMtxCalc::setAnmTransform(unsigned char, J3DAnmTransform*) { }
+void J3DMtxCalc::setAnmTransform(u8, J3DAnmTransform*) { }
 
 /*
  * --INFO--
@@ -656,7 +499,7 @@ lbl_800163CC:
  * Address:	8001642C
  * Size:	000348
  */
-void J3DMtxCalcBlend::calcBlend(Vec*, Vec*, J3DAnmTransform**, float*)
+void J3DMtxCalcBlend::calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -899,7 +742,7 @@ lbl_80016750:
  * Address:	80016774
  * Size:	000390
  */
-void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec*, Vec*, J3DAnmTransform**, float*)
+void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*)
 {
 	/*
 	.loc_0x0:
@@ -1291,7 +1134,7 @@ void J3DMtxCalcBlendAnmBase::setAnmTransform(J3DAnmTransform* a1)
  * Address:	80016CA4
  * Size:	000010
  */
-J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform(unsigned char)
+J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform(u8)
 {
 	/*
 	rlwinm   r0, r4, 2, 0x16, 0x1d
@@ -1319,7 +1162,7 @@ J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform()
  * Address:	80016CBC
  * Size:	000010
  */
-void J3DMtxCalcBlendAnmBase::getWeight(unsigned char) const
+void J3DMtxCalcBlendAnmBase::getWeight(u8) const
 {
 	/*
 	rlwinm   r0, r4, 2, 0x16, 0x1d
@@ -1334,7 +1177,7 @@ void J3DMtxCalcBlendAnmBase::getWeight(unsigned char) const
  * Address:	80016CCC
  * Size:	000010
  */
-void J3DMtxCalcBlendAnmBase::setAnmTransform(unsigned char, J3DAnmTransform*)
+void J3DMtxCalcBlendAnmBase::setAnmTransform(u8, J3DAnmTransform*)
 {
 	/*
 	rlwinm   r0, r4, 2, 0x16, 0x1d
@@ -1349,7 +1192,7 @@ void J3DMtxCalcBlendAnmBase::setAnmTransform(unsigned char, J3DAnmTransform*)
  * Address:	80016CDC
  * Size:	000010
  */
-void J3DMtxCalcBlendAnmBase::setWeight(unsigned char, float)
+void J3DMtxCalcBlendAnmBase::setWeight(u8, f32)
 {
 	/*
 	rlwinm   r0, r4, 2, 0x16, 0x1d
@@ -1371,7 +1214,7 @@ void J3DMtxCalc::setAnmTransform(J3DAnmTransform*) { }
  * Address:	80016CF0
  * Size:	000008
  */
-J3DAnmTransform* J3DMtxCalc::getAnmTransform(unsigned char) { return nullptr; }
+J3DAnmTransform* J3DMtxCalc::getAnmTransform(u8) { return nullptr; }
 
 /*
  * --INFO--
@@ -1385,7 +1228,7 @@ J3DAnmTransform* J3DMtxCalc::getAnmTransform() { return nullptr; }
  * Address:	80016D00
  * Size:	000008
  */
-void J3DMtxCalc::getWeight(unsigned char) const
+void J3DMtxCalc::getWeight(u8) const
 {
 	/*
 	lfs      f1, lbl_805164B8@sda21(r2)
@@ -1443,7 +1286,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotio
  * Size:	000028
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendMaya>,
-                        J3DMtxCalcJ3DSysInitMaya>::init(const Vec&, const float (&)[3][4])
+                        J3DMtxCalcJ3DSysInitMaya>::init(const Vec&, const f32 (&)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -1466,7 +1309,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotio
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendMaya>,
-                        J3DMtxCalcJ3DSysInitMaya>::setWeight(unsigned char, float)
+                        J3DMtxCalcJ3DSysInitMaya>::setWeight(u8, f32)
 {
 	/*
 	.loc_0x0:
@@ -1483,7 +1326,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotio
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendMaya>,
-                        J3DMtxCalcJ3DSysInitMaya>::setAnmTransform(unsigned char, J3DAnmTransform*)
+                        J3DMtxCalcJ3DSysInitMaya>::setAnmTransform(u8, J3DAnmTransform*)
 {
 	/*
 	.loc_0x0:
@@ -1544,7 +1387,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Size:	000028
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendMaya>, J3DMtxCalcJ3DSysInitMaya>::init(
-    const Vec&, const float (&)[3][4])
+    const Vec&, const f32 (&)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -1567,7 +1410,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendMaya>, J3DMtxCalcJ3DSysInitMaya>::setWeight(
-    unsigned char, float)
+    u8, f32)
 {
 	/*
 	.loc_0x0:
@@ -1584,7 +1427,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendMaya>,
-                        J3DMtxCalcJ3DSysInitMaya>::setAnmTransform(unsigned char, J3DAnmTransform*)
+                        J3DMtxCalcJ3DSysInitMaya>::setAnmTransform(u8, J3DAnmTransform*)
 {
 	/*
 	.loc_0x0:
@@ -1645,7 +1488,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotio
  * Size:	00004C
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendSoftimage>,
-                        J3DMtxCalcJ3DSysInitSoftimage>::init(const Vec&, const float (&)[3][4])
+                        J3DMtxCalcJ3DSysInitSoftimage>::init(const Vec&, const f32 (&)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -1677,7 +1520,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotio
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendSoftimage>,
-                        J3DMtxCalcJ3DSysInitSoftimage>::setWeight(unsigned char, float)
+                        J3DMtxCalcJ3DSysInitSoftimage>::setWeight(u8, f32)
 {
 	/*
 	.loc_0x0:
@@ -1694,7 +1537,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotio
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendSoftimage>,
-                        J3DMtxCalcJ3DSysInitSoftimage>::setAnmTransform(unsigned char, J3DAnmTransform*)
+                        J3DMtxCalcJ3DSysInitSoftimage>::setAnmTransform(u8, J3DAnmTransform*)
 {
 	/*
 	.loc_0x0:
@@ -1755,7 +1598,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Size:	00004C
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>::init(
-    const Vec&, const float (&)[3][4])
+    const Vec&, const f32 (&)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -1787,7 +1630,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendSoftimage>,
-                        J3DMtxCalcJ3DSysInitSoftimage>::setWeight(unsigned char, float)
+                        J3DMtxCalcJ3DSysInitSoftimage>::setWeight(u8, f32)
 {
 	/*
 	.loc_0x0:
@@ -1804,7 +1647,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendSoftimage>,
-                        J3DMtxCalcJ3DSysInitSoftimage>::setAnmTransform(unsigned char, J3DAnmTransform*)
+                        J3DMtxCalcJ3DSysInitSoftimage>::setAnmTransform(u8, J3DAnmTransform*)
 {
 	/*
 	.loc_0x0:
@@ -1865,7 +1708,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotio
  * Size:	000028
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendBasic>,
-                        J3DMtxCalcJ3DSysInitBasic>::init(const Vec&, const float (&)[3][4])
+                        J3DMtxCalcJ3DSysInitBasic>::init(const Vec&, const f32 (&)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -1888,7 +1731,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotio
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendBasic>,
-                        J3DMtxCalcJ3DSysInitBasic>::setWeight(unsigned char, float)
+                        J3DMtxCalcJ3DSysInitBasic>::setWeight(u8, f32)
 {
 	/*
 	.loc_0x0:
@@ -1905,7 +1748,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotio
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlendSharedMotionT, J3DMtxCalcScaleBlendBasic>,
-                        J3DMtxCalcJ3DSysInitBasic>::setAnmTransform(unsigned char, J3DAnmTransform*)
+                        J3DMtxCalcJ3DSysInitBasic>::setAnmTransform(u8, J3DAnmTransform*)
 {
 	/*
 	.loc_0x0:
@@ -1966,7 +1809,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Size:	000028
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendBasic>, J3DMtxCalcJ3DSysInitBasic>::init(
-    const Vec&, const float (&)[3][4])
+    const Vec&, const f32 (&)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -1989,7 +1832,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendBasic>, J3DMtxCalcJ3DSysInitBasic>::setWeight(
-    unsigned char, float)
+    u8, f32)
 {
 	/*
 	.loc_0x0:
@@ -2006,7 +1849,7 @@ void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCal
  * Size:	000010
  */
 void J3DMtxCalcBlendAnm<J3DMtxCalcBlendAdaptorDefault<J3DMtxCalcBlend, J3DMtxCalcScaleBlendBasic>,
-                        J3DMtxCalcJ3DSysInitBasic>::setAnmTransform(unsigned char, J3DAnmTransform*)
+                        J3DMtxCalcJ3DSysInitBasic>::setAnmTransform(u8, J3DAnmTransform*)
 {
 	/*
 	.loc_0x0:
