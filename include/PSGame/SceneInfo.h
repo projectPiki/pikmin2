@@ -55,16 +55,13 @@ struct SceneInfo {
 	void setStageCamera() const;
 
 	// _00 = VTBL
-	u16 mStageFlags;           // _04
-	u8 mSceneType;             // _06
-	u8 mCameras;               // _07
-	Vector3f* mCam1Position;   // _08
-	Vector3f* _0C;             // _0C
-	Vector3f* mCam2Position;   // _10
-	Vector3f* _14;             // _14
-	Matrixf* mCameraMtx;       // _18
-	Matrixf* _1C;              // _1C
-	JGeometry::TBox3f mBounds; // _20
+	u16 mStageFlags;            // _04
+	u8 mSceneType;              // _06
+	u8 mCameras;                // _07
+	Vector3f* mCam1Position[2]; // _08
+	Vector3f* mCam2Position[2]; // _10
+	Matrixf* mCameraMtx[2];     // _18
+	JGeometry::TBox3f mBounds;  // _20
 };
 
 /**
@@ -76,41 +73,26 @@ struct CaveFloorInfo : public SceneInfo {
 		mAlphaType             = 0;
 		mBetaType              = 0;
 		mFloorNum              = 0;
-		mCaveID                = 0xFFFF;
+		mCaveID.fullView       = 0xFFFF;
 		_48                    = 0xFF;
 		mChallengeModeStageNum = 0xFF;
 	}
 
 	virtual bool isCaveFloor() { return true; } // _08 (weak)
 	virtual bool isBossFloor();                 // _0C (weak)
-	// {
-	// 	/*
-	// 	lwz      r0, 0x3c(r3)
-	// 	subfic   r0, r0, 1
-	// 	cntlzw   r0, r0
-	// 	srwi     r3, r0, 5
-	// 	blr
-	// 	*/
-	// }
-	virtual bool isRelaxFloor(); // _10 (weak)
-	// {
-	// 	/*
-	// 	lwz      r0, 0x3c(r3)
-	// 	subfic   r0, r0, 2
-	// 	cntlzw   r0, r0
-	// 	srwi     r3, r0, 5
-	// 	blr
-	// 	*/
-	// }
+	virtual bool isRelaxFloor();                // _10 (weak)
 
 	u32 getCaveNoFromID();
 
 	// _00     = VTBL
 	// _00-_38 = SceneInfo
-	uint mAlphaType;           // _38
-	uint mBetaType;            // _3C
-	u8 mFloorNum;              // _40
-	u32 mCaveID;               // _44
+	uint mAlphaType; // _38
+	uint mBetaType;  // _3C
+	u8 mFloorNum;    // _40
+	union {
+		u32 fullView;
+		u8 byteView[4];
+	} mCaveID;                 // _44
 	u8 _48;                    // _48
 	u8 mChallengeModeStageNum; // _49
 };

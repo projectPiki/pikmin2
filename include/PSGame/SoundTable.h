@@ -31,14 +31,25 @@ struct SePerspInfo {
 };
 
 struct CategoryMgr : PSSystem::SingletonBase<CategoryMgr> {
+
+	enum SoundCategory {
+		SoundCat0_Navi,
+		SoundCat1_System,
+		SoundCat2_Piki,
+		SoundCat3_Item,
+		SoundCat4_Env,
+		SoundCat5_Enemy,
+		SoundCat_COUNT,
+	};
+
 	CategoryMgr();
 
-	virtual ~CategoryMgr(); // _08 (weak)
+	virtual ~CategoryMgr() { } // _08 (weak)
 
 	void initiate(u8);
 
 	// _00 = VTBL
-	SePerspInfo* mPerspInfo[6]; // _04, array of pointers, type unknown
+	SePerspInfo* mPerspInfo[SoundCat_COUNT]; // _04
 };
 } // namespace SoundTable
 } // namespace PSGame

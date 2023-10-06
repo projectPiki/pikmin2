@@ -16,7 +16,7 @@ namespace PSSystem {
 struct Scene {
 	Scene(u8 id);
 
-	virtual void init();                 // _08 (weak)
+	virtual void init() { }              // _08 (weak)
 	virtual ~Scene();                    // _0C
 	virtual void scene1st(TaskChecker*); // _10
 	virtual void scene1stLoadSync();     // _14
@@ -42,7 +42,12 @@ struct Scene {
  * @size{0x4}
  */
 struct SceneMgr {
-	virtual void exec(); // _08 (weak)
+	virtual void exec()
+	{
+		if (mScenes) {
+			mScenes->exec();
+		}
+	} // _08 (weak)
 
 	void refreshCurEndScene();
 	SeqBase* findSeq(JASTrack* track);

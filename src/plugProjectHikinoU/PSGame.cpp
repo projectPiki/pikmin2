@@ -1,7 +1,5 @@
 #include "PSGame/BASARC.h"
-#include "PSSystem/PSCommon.h"
 #include "PSSystem/PSSystemIF.h"
-#include "types.h"
 #include "PSAutoBgm/AutoBgm.h"
 #include "PSGame/CameraMgr.h"
 #include "PSGame/EnvSe.h"
@@ -12,6 +10,8 @@
 #include "PSGame/SysFactory.h"
 #include "PSM/BossSeq.h"
 #include "PSSystem/ConductorList.h"
+#include "PSGame/SeMgr.h"
+#include "PSSystem/PSStream.h"
 
 /*
     Generated from dpostproc
@@ -568,6 +568,8 @@
 
 namespace PSGame {
 
+char newSeqName[32];
+
 /*
  * --INFO--
  * Address:	80334268
@@ -575,20 +577,10 @@ namespace PSGame {
  */
 u32 CaveFloorInfo::getCaveNoFromID()
 {
-	/*
-	lwz      r4, 0x44(r3)
-	addis    r0, r4, 0x8b9b
-	cmplwi   r0, 0x7374
-	bne      lbl_80334280
-	li       r3, 0
-	blr
-
-lbl_80334280:
-	lbz      r3, 0x47(r3)
-	addi     r0, r3, -49
-	clrlwi   r3, r0, 0x18
-	blr
-	*/
+	if (mCaveID.fullView == 'test') {
+		return 0;
+	}
+	return (u8)(mCaveID.byteView[3] - '1');
 }
 
 /*
@@ -598,6 +590,8 @@ lbl_80334280:
  */
 ConductorList::ConductorList()
 {
+	mCaveInfos = nullptr;
+	mCaveCount = 255;
 	// UNUSED FUNCTION
 }
 
@@ -608,6 +602,12 @@ ConductorList::ConductorList()
  */
 ConductorList::~ConductorList()
 {
+	for (u8 i = 0; i < mCaveCount; i++) {
+		delete[] mCaveInfos;
+	}
+
+	delete[] mCaveInfos;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -681,8 +681,27 @@ lbl_80334344:
  * Address:	80334364
  * Size:	0001AC
  */
-void ConductorList::read(Stream& input)
+bool ConductorList::read(Stream& input)
 {
+	mCaveCount = input.readByte();
+	P2ASSERTLINE(140, !mCaveInfos);
+	mCaveInfos = new (JKRGetCurrentHeap(), 0xffffffe0) CaveInfo[mCaveCount];
+	P2ASSERTLINE(144, mCaveInfos);
+
+	for (u8 i = 0; i < mCaveCount; i++) {
+		u8 floors                    = input.readByte();
+		mCaveInfos[i].mFileNameCount = floors;
+		mCaveInfos[i].mFileNames     = new (JKRGetCurrentHeap(), 0xffffffe0) char*[floors];
+		for (u8 j = 0; j < floors; j++) {
+			char* str = mCaveInfos[i].mFileNames[j];
+			input.readString(str, 0x20);
+			P2ASSERTLINE(156, strcmp(str, "endoffile"));
+			P2ASSERTBOUNDSLINE(158, '0', str[0], '9');
+		}
+	}
+
+	return true;
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -816,26 +835,10 @@ lbl_803344E8:
 
 /*
  * --INFO--
- * Address:	80334510
- * Size:	000014
- */
-ConductorList::CaveInfo::CaveInfo()
-{
-	/*
-	li       r4, 0xff
-	li       r0, 0
-	stb      r4, 0(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	........
  * Size:	0000F4
  */
-void ConductorList::getInfo(unsigned char, unsigned char)
+void ConductorList::getInfo(u8, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -845,7 +848,7 @@ void ConductorList::getInfo(unsigned char, unsigned char)
  * Address:	........
  * Size:	00012C
  */
-void ConductorList::getAutoBgmInfo(unsigned char, unsigned char)
+void ConductorList::getAutoBgmInfo(u8, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -855,8 +858,73 @@ void ConductorList::getAutoBgmInfo(unsigned char, unsigned char)
  * Address:	80334524
  * Size:	0003D4
  */
-void ConductorList::getSeqAndWaveFromConductor(char const*, unsigned char*, char**)
+void ConductorList::getSeqAndWaveFromConductor(char const* cndName, u8* wScene, char** bmsName)
 {
+	if (!strncmp("cavesoil", cndName, strlen("cavesoil"))) {
+		*bmsName = "cavesoil.bms";
+		int len  = strlen("cavesoil_");
+		if (!strncmp(cndName + len, "00", 2)) {
+			*wScene = PSSystem::WaveScene::WSCENE22_CaveSoil_00;
+		} else if (!strncmp(cndName + len, "05", 2)) {
+			*wScene = PSSystem::WaveScene::WSCENE33_CaveSoil_05;
+		} else {
+			*wScene = PSSystem::WaveScene::WSCENE34_CaveSoil_10;
+		}
+	} else if (!strncmp("cavemetal", cndName, strlen("cavemetal"))) {
+		*bmsName = "cavemetal.bms";
+		int len  = strlen("cavemetal_");
+		if (!strncmp(cndName + len, "00", 2)) {
+			*wScene = PSSystem::WaveScene::WSCENE10_CaveMetal_00;
+		} else if (!strncmp(cndName + len, "05", 2)) {
+			*wScene = PSSystem::WaveScene::WSCENE29_CaveMetal_05;
+		} else {
+			*wScene = PSSystem::WaveScene::WSCENE30_CaveMetal_10;
+		}
+	} else if (!strncmp("caveconc", cndName, strlen("caveconc"))) {
+		*bmsName = "caveconc.bms";
+		int len  = strlen("caveconc_");
+		if (!strncmp(cndName + len, "00", 2)) {
+			*wScene = PSSystem::WaveScene::WSCENE26_CaveConc_00;
+		} else if (!strncmp(cndName + len, "05", 2)) {
+			*wScene = PSSystem::WaveScene::WSCENE31_CaveConc_05;
+		} else {
+			*wScene = PSSystem::WaveScene::WSCENE32_CaveConc_10;
+		}
+	} else if (!strncmp("new", cndName, strlen("new"))) {
+		strcpy(newSeqName, cndName);
+		strcpy(&newSeqName[6], ".bms");
+		*bmsName = newSeqName;
+		u8 id1, id2;
+		if (newSeqName[5] >= '0' && newSeqName[5] <= '9') {
+			id1 = newSeqName[5] - '0';
+		} else {
+			id1 = 255;
+		}
+		P2ASSERTLINE(258, id1 != 0xffff);
+
+		if (newSeqName[4] >= '0' && newSeqName[4] <= '9') {
+			id2 = newSeqName[4] - '0';
+		} else {
+			id2 = 255;
+		}
+		P2ASSERTLINE(260, id2 != 0xffff);
+
+		*wScene = PSSystem::WaveScene::WSCENE37_EmergenceCave + u8(id1 + (id2 * 10));
+	} else if (!strncmp("cavetile", cndName, strlen("cavetile"))) {
+		*bmsName = "cavetile.bms";
+		*wScene  = PSSystem::WaveScene::WSCENE24_CaveTile;
+	} else if (!strncmp("caveglass", cndName, strlen("caveglass"))) {
+		*bmsName = "caveglass.bms";
+		*wScene  = PSSystem::WaveScene::WSCENE23_CaveOutside;
+	} else if (!strncmp("cavetsumiki", cndName, strlen("cavetsumiki"))) {
+		*bmsName = "cavetsumiki.bms";
+		*wScene  = PSSystem::WaveScene::WSCENE25_CaveToy;
+	} else if (!strncmp("caverelax", cndName, strlen("caverelax"))) {
+		*bmsName = "caverelax.bms";
+		*wScene  = PSSystem::WaveScene::WSCENE28_CaveRestFloor;
+	} else {
+		JUT_PANICLINE(289, cndName);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1156,6 +1224,12 @@ void ConductorList::getSeqAndWaveFromConductor(char const*, unsigned char*, char
  */
 SoundTable::CategoryMgr::CategoryMgr()
 {
+	sInstance = this;
+	for (u8 i = 0; i < SoundCat_COUNT; i++) {
+		mPerspInfo[i] = new SePerspInfo;
+		P2ASSERTLINE(312, mPerspInfo[i]);
+		initiate(i);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1228,123 +1302,32 @@ lbl_803349B0:
  * Address:	803349D8
  * Size:	000174
  */
-void SoundTable::CategoryMgr::initiate(unsigned char)
+void SoundTable::CategoryMgr::initiate(u8 id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	rlwinm   r0, r4, 2, 0x16, 0x1d
-	stw      r31, 0xc(r1)
-	add      r31, r3, r0
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r0, 4(r31)
-	cmplwi   r0, 0
-	bne      lbl_80334A20
-	lis      r3, lbl_8048F918@ha
-	lis      r5, lbl_8048F924@ha
-	addi     r3, r3, lbl_8048F918@l
-	li       r4, 0x13f
-	addi     r5, r5, lbl_8048F924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(319, mPerspInfo[id]);
 
-lbl_80334A20:
-	clrlwi   r0, r30, 0x18
-	cmpwi    r0, 3
-	beq      lbl_80334AB8
-	bge      lbl_80334A48
-	cmpwi    r0, 1
-	beq      lbl_80334A78
-	bge      lbl_80334A98
-	cmpwi    r0, 0
-	bge      lbl_80334A58
-	b        lbl_80334B18
-
-lbl_80334A48:
-	cmpwi    r0, 5
-	beq      lbl_80334AF8
-	bge      lbl_80334B18
-	b        lbl_80334AD8
-
-lbl_80334A58:
-	lwz      r3, 4(r31)
-	lfs      f1, lbl_8051E0D4@sda21(r2)
-	lfs      f2, lbl_8051E0DC@sda21(r2)
-	lfs      f3, lbl_8051E0E0@sda21(r2)
-	lfs      f4, lbl_8051E0E4@sda21(r2)
-	lfs      f5, lbl_8051E0E8@sda21(r2)
-	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
-	b        lbl_80334B34
-
-lbl_80334A78:
-	lwz      r3, 4(r31)
-	lfs      f1, lbl_8051E0D4@sda21(r2)
-	lfs      f2, lbl_8051E0DC@sda21(r2)
-	lfs      f3, lbl_8051E0E0@sda21(r2)
-	lfs      f4, lbl_8051E0E4@sda21(r2)
-	lfs      f5, lbl_8051E0E8@sda21(r2)
-	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
-	b        lbl_80334B34
-
-lbl_80334A98:
-	lwz      r3, 4(r31)
-	lfs      f1, lbl_8051E0D4@sda21(r2)
-	lfs      f2, lbl_8051E0DC@sda21(r2)
-	lfs      f3, lbl_8051E0E0@sda21(r2)
-	lfs      f4, lbl_8051E0E4@sda21(r2)
-	lfs      f5, lbl_8051E0E8@sda21(r2)
-	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
-	b        lbl_80334B34
-
-lbl_80334AB8:
-	lwz      r3, 4(r31)
-	lfs      f1, lbl_8051E0D4@sda21(r2)
-	lfs      f2, lbl_8051E0DC@sda21(r2)
-	lfs      f3, lbl_8051E0E0@sda21(r2)
-	lfs      f4, lbl_8051E0E4@sda21(r2)
-	lfs      f5, lbl_8051E0E8@sda21(r2)
-	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
-	b        lbl_80334B34
-
-lbl_80334AD8:
-	lwz      r3, 4(r31)
-	lfs      f1, lbl_8051E0D4@sda21(r2)
-	lfs      f2, lbl_8051E0EC@sda21(r2)
-	lfs      f3, lbl_8051E0F0@sda21(r2)
-	lfs      f4, lbl_8051E0F4@sda21(r2)
-	lfs      f5, lbl_8051E0E8@sda21(r2)
-	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
-	b        lbl_80334B34
-
-lbl_80334AF8:
-	lwz      r3, 4(r31)
-	lfs      f1, lbl_8051E0D4@sda21(r2)
-	lfs      f2, lbl_8051E0DC@sda21(r2)
-	lfs      f3, lbl_8051E0E0@sda21(r2)
-	lfs      f4, lbl_8051E0E4@sda21(r2)
-	lfs      f5, lbl_8051E0E8@sda21(r2)
-	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
-	b        lbl_80334B34
-
-lbl_80334B18:
-	lis      r3, lbl_8048F918@ha
-	lis      r5, lbl_8048F924@ha
-	addi     r3, r3, lbl_8048F918@l
-	li       r4, 0x155
-	addi     r5, r5, lbl_8048F924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80334B34:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (id) {
+	case SoundCat0_Navi:
+		mPerspInfo[id]->set(1.0f, 700.0f, 0.18f, 2600.0f, 200.0f);
+		break;
+	case SoundCat1_System:
+		mPerspInfo[id]->set(1.0f, 700.0f, 0.18f, 2600.0f, 200.0f);
+		break;
+	case SoundCat2_Piki:
+		mPerspInfo[id]->set(1.0f, 700.0f, 0.18f, 2600.0f, 200.0f);
+		break;
+	case SoundCat3_Item:
+		mPerspInfo[id]->set(1.0f, 700.0f, 0.18f, 2600.0f, 200.0f);
+		break;
+	case SoundCat4_Env:
+		mPerspInfo[id]->set(1.0f, 684.0f, 0.197f, 4012.5f, 200.0f);
+		break;
+	case SoundCat5_Enemy:
+		mPerspInfo[id]->set(1.0f, 700.0f, 0.18f, 2600.0f, 200.0f);
+		break;
+	default:
+		JUT_PANICLINE(341, "P2Assert");
+	}
 }
 
 /*
@@ -1352,16 +1335,13 @@ lbl_80334B34:
  * Address:	80334B4C
  * Size:	000018
  */
-void SoundTable::SePerspInfo::set(f32, f32, f32, f32, f32)
+void SoundTable::SePerspInfo::set(f32 a1, f32 a2, f32 a3, f32 a4, f32 a5)
 {
-	/*
-	stfs     f1, 0(r3)
-	stfs     f2, 4(r3)
-	stfs     f3, 8(r3)
-	stfs     f4, 0xc(r3)
-	stfs     f5, 0x10(r3)
-	blr
-	*/
+	_00 = a1;
+	_04 = a2;
+	_08 = a3;
+	_0C = a4;
+	_10 = a5;
 }
 
 /*
@@ -1369,7 +1349,7 @@ void SoundTable::SePerspInfo::set(f32, f32, f32, f32, f32)
  * Address:	80334B64
  * Size:	000164
  */
-f32 SoundTable::SePerspInfo::getDistVol(f32, unsigned char)
+f32 SoundTable::SePerspInfo::getDistVol(f32, u8)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1497,50 +1477,21 @@ lbl_80334CA4:
  */
 CameraMgr::CameraMgr()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q26PSGame9CameraMgr@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q26PSGame9CameraMgr@l
-	lfs      f3, lbl_8051E108@sda21(r2)
-	stw      r3, 0(r31)
-	mr       r3, r31
-	lfs      f2, lbl_8051E10C@sda21(r2)
-	stb      r0, 0x4c(r31)
-	lfs      f1, lbl_8051E110@sda21(r2)
-	stb      r0, 0x4d(r31)
-	lfs      f0, lbl_8051E114@sda21(r2)
-	stfs     f3, 0x18(r31)
-	lfs      f4, lbl_8051E0D4@sda21(r2)
-	stfs     f2, 0x1c(r31)
-	lfs      f3, lbl_8051E118@sda21(r2)
-	stfs     f1, 0x20(r31)
-	lfs      f2, lbl_8051E11C@sda21(r2)
-	stfs     f0, 0x24(r31)
-	lfs      f1, lbl_8051E120@sda21(r2)
-	stfs     f4, 0x28(r31)
-	lfs      f0, lbl_8051E124@sda21(r2)
-	stfs     f3, 0x2c(r31)
-	stfs     f2, 0x30(r31)
-	stfs     f1, 0x34(r31)
-	stfs     f0, 0x38(r31)
-	lfs      f0, 0x1c(r31)
-	stfs     f0, 0x3c(r31)
-	lfs      f0, 0x1c(r31)
-	stfs     f0, 0x40(r31)
-	stfs     f4, 0x44(r31)
-	stfs     f4, 0x48(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mIsSpecial[0]        = false;
+	mIsSpecial[1]        = false;
+	_18                  = 61.66f;
+	_1C                  = 131.25f;
+	_20                  = 215.04f;
+	_24                  = 330.18f;
+	_28                  = 1.0f;
+	_2C                  = 0.8f;
+	_30                  = 0.71f;
+	_34                  = 0.62f;
+	mZoomCamVolumeMod    = 0.45f;
+	mCamDistVolume[0]    = _1C;
+	mCamDistVolume[1]    = _1C;
+	mDistVolumeFactor[0] = 1.0f;
+	mDistVolumeFactor[1] = 1.0f;
 }
 
 /*
@@ -1548,58 +1499,19 @@ CameraMgr::CameraMgr()
  * Address:	80334D70
  * Size:	000060
  */
-CameraMgr::~CameraMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80334DB4
-	lis      r5, __vt__Q26PSGame9CameraMgr@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q26PSGame9CameraMgr@l
-	stw      r0, 0(r30)
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_80334DB4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80334DB4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+CameraMgr::~CameraMgr() { }
 
 /*
  * --INFO--
  * Address:	80334DD0
  * Size:	000024
  */
-void CameraMgr::getBgmCamVol(unsigned char)
+f32 CameraMgr::getBgmCamVol(u8 id)
 {
-	/*
-	clrlwi   r0, r4, 0x18
-	add      r4, r3, r0
-	lbz      r0, 0x4c(r4)
-	cmplwi   r0, 0
-	beq      lbl_80334DEC
-	lfs      f1, 0x38(r3)
-	blr
-
-lbl_80334DEC:
-	lfs      f1, lbl_8051E0D4@sda21(r2)
-	blr
-	*/
+	if (mIsSpecial[id]) {
+		return mZoomCamVolumeMod;
+	}
+	return 1.0f;
 }
 
 /*
@@ -1607,29 +1519,11 @@ lbl_80334DEC:
  * Address:	80334DF4
  * Size:	00004C
  */
-void CameraMgr::update(unsigned char, f32)
+void CameraMgr::update(u8 id, f32 base)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       getVol_DistBetweenCamAndLookat__Q26PSGame9CameraMgrFf
-	rlwinm   r0, r31, 2, 0x16, 0x1d
-	lfs      f0, lbl_8051E0D4@sda21(r2)
-	add      r3, r30, r0
-	stfs     f1, 0x3c(r3)
-	stfs     f0, 0x44(r3)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	f32 dist              = getVol_DistBetweenCamAndLookat(base);
+	mCamDistVolume[id]    = dist;
+	mDistVolumeFactor[id] = 1.0f;
 }
 
 /*
@@ -1637,22 +1531,14 @@ void CameraMgr::update(unsigned char, f32)
  * Address:	80334E40
  * Size:	000010
  */
-f32 CameraMgr::getCurrentCamDistVol(unsigned char)
-{
-	/*
-	rlwinm   r0, r4, 2, 0x16, 0x1d
-	add      r3, r3, r0
-	lfs      f1, 0x3c(r3)
-	blr
-	*/
-}
+f32 CameraMgr::getCurrentCamDistVol(u8 id) { return mCamDistVolume[id]; }
 
 /*
  * --INFO--
  * Address:	80334E50
  * Size:	000088
  */
-void CameraMgr::getVol_DistBetweenCamAndLookat(f32)
+f32 CameraMgr::getVol_DistBetweenCamAndLookat(f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1705,21 +1591,12 @@ lbl_80334EC8:
  */
 SysFactory::SysFactory()
 {
-	/*
-	lis      r5, __vt__Q26PSGame10SysFactory@ha
-	lis      r4, 0x00151800@ha
-	addi     r0, r5, __vt__Q26PSGame10SysFactory@l
-	li       r5, 0
-	stw      r0, 0x10(r3)
-	addi     r0, r4, 0x00151800@l
-	stw      r5, 0(r3)
-	stw      r5, 4(r3)
-	stw      r5, 8(r3)
-	stw      r5, 0xc(r3)
-	stw      r0, 0x14(r3)
-	stw      r5, 0x18(r3)
-	blr
-	*/
+	mHeap          = nullptr;
+	mHeapSize      = 0;
+	mAafFile       = nullptr;
+	mMakeSeFunc    = nullptr;
+	mSolidHeapSize = 0x151800;
+	mSolidHeap     = nullptr;
 }
 
 /*
@@ -1729,6 +1606,54 @@ SysFactory::SysFactory()
  */
 void SysFactory::newSoundSystem()
 {
+	P2ASSERTLINE(715, mHeap);
+	P2ASSERTLINE(716, mHeapSize);
+	P2ASSERTLINE(717, mAafFile);
+	preInitJAI();
+
+	JKRHeap* backupheap = JKRGetCurrentHeap();
+	mHeap->becomeCurrentHeap();
+
+	JKRSolidHeap* newheap = JKRSolidHeap::create(mHeap->getFreeSize(), mHeap, false);
+	P2ASSERTLINE(741, newheap);
+	newheap->becomeCurrentHeap();
+	PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::newInstance();
+	P2ASSERTLINE(748, mSolidHeapSize < newheap->getFreeSize());
+
+	mSolidHeap = JKRSolidHeap::create(mSolidHeapSize, newheap, false);
+	P2ASSERTLINE(754, mSolidHeap);
+
+	PSSystem::SetupArg arg;
+	arg._08 = 231;
+	// arg._0C       = seqCpuSync;
+	arg.mPath     = "/SeqTest/";
+	arg.mHeap     = mSolidHeap;
+	arg.mHeapSize = mSolidHeapSize;
+	arg.mAafFile  = mAafFile;
+	P2ASSERTLINE(769, !PSSystem::spSysIF);
+	PSSystem::SysIF::sMakeJAISeCallback = mMakeSeFunc;
+	PSSystem::SysIF* sysif              = new PSSystem::SysIF(arg);
+	P2ASSERTLINE(773, sysif);
+
+	PSSystem::spSceneMgr = (PSSystem::SceneMgr*)newSceneMgr();
+	P2ASSERTLINE(776, PSSystem::spSceneMgr);
+
+	postInitJAI();
+
+	PSAutoBgm::ConductorArcMgr::createInstance();
+	PSSystem::ArcMgr<PSGame::BASARC>::createInstance();
+
+	PSSystem::SingletonBase<PSGame::SeMgr>::newInstance();
+
+	backupheap->becomeCurrentHeap();
+	newheap->adjustSize();
+	OSLockMutex(&sysif->mMutex);
+	sysif->_40 = true;
+	OSUnlockMutex(&sysif->mMutex);
+	OSDisableInterrupts();
+	PSSystem::spSysIF = sysif;
+	OSEnableInterrupts();
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2032,40 +1957,17 @@ lbl_803352C8:
  */
 void SysFactory::preInitJAI()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8048FA9C@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, lbl_8048FA9C@l
-	bl       setParamInitDataFileName__18JAIGlobalParameterFPc
-	addi     r3, r2, lbl_8051E128@sda21
-	bl       setParamSequenceArchivesFileName__18JAIGlobalParameterFPc
-	li       r3, 2
-	bl       setParamAudioCameraMax__18JAIGlobalParameterFUl
-	li       r3, 0xe7
-	bl       setParamSystemTrackMax__18JAIGlobalParameterFl
-	li       r3, 5
-	bl       setParamSeqPlayTrackMax__18JAIGlobalParameterFUl
-	li       r3, 0xa
-	bl       setParamSeqControlBufferMax__18JAIGlobalParameterFUl
-	li       r3, 0xa
-	bl       setParamSystemRootTrackMax__18JAIGlobalParameterFl
-	lis      r3, 0x0000F000@ha
-	addi     r3, r3, 0x0000F000@l
-	bl       setParamStayHeapSize__18JAIGlobalParameterFUl
-	li       r3, 3
-	bl       setParamAutoHeapMax__18JAIGlobalParameterFUl
-	lis      r3, 0x0000A2FF@ha
-	addi     r3, r3, 0x0000A2FF@l
-	bl       setParamAutoHeapRoomSize__18JAIGlobalParameterFUl
-	li       r3, 1
-	bl       setParamStayHeapMax__18JAIGlobalParameterFUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JAIGlobalParameter::setParamInitDataFileName("PSGame.aaf");
+	JAIGlobalParameter::setParamSequenceArchivesFileName("Seq.arc");
+	JAIGlobalParameter::setParamAudioCameraMax(2);
+	JAIGlobalParameter::setParamSystemTrackMax(0xe7);
+	JAIGlobalParameter::setParamSeqPlayTrackMax(5);
+	JAIGlobalParameter::setParamSeqControlBufferMax(10);
+	JAIGlobalParameter::setParamSystemRootTrackMax(10);
+	JAIGlobalParameter::setParamStayHeapSize(0xf000);
+	JAIGlobalParameter::setParamAutoHeapMax(3);
+	JAIGlobalParameter::setParamAutoHeapRoomSize(0xa2ff);
+	JAIGlobalParameter::setParamStayHeapMax(1);
 }
 
 /*
@@ -2075,6 +1977,13 @@ void SysFactory::preInitJAI()
  */
 void SysFactory::postInitJAI()
 {
+	for (int i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
+		JAInter::SoundTable::getSoundMax(i);
+	}
+
+	JAIGlobalParameter::setParamDistanceMax(1.0f);
+	JAIGlobalParameter::setParamMinDistanceVolume(0.0f);
+	JAIGlobalParameter::setParamMaxVolumeDistance(120.0f);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2172,22 +2081,14 @@ lbl_80335460:
  */
 SceneInfo::SceneInfo()
 {
-	/*
-	lis      r4, __vt__Q26PSGame9SceneInfo@ha
-	li       r0, 0
-	addi     r4, r4, __vt__Q26PSGame9SceneInfo@l
-	stw      r4, 0(r3)
-	sth      r0, 4(r3)
-	stb      r0, 6(r3)
-	stb      r0, 7(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x1c(r3)
-	blr
-	*/
+	mStageFlags = 0;
+	mSceneType  = 0;
+	mCameras    = 0;
+	for (int i = 0; i < 2; i++) {
+		mCam1Position[i] = nullptr;
+		mCam2Position[i] = nullptr;
+		mCameraMtx[i]    = nullptr;
+	}
 }
 
 /*
@@ -2195,47 +2096,15 @@ SceneInfo::SceneInfo()
  * Address:	803354E8
  * Size:	000078
  */
-void SceneInfo::setStageFlag(PSGame::SceneInfo::FlagDef, PSGame::SceneInfo::FlagBitShift)
+void SceneInfo::setStageFlag(SceneInfo::FlagDef flag, SceneInfo::FlagBitShift shift)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0
-	  stw       r0, 0x14(r1)
-	  bne-      .loc_0x2C
-	  li        r0, 0x1
-	  lhz       r4, 0x4(r3)
-	  slw       r0, r0, r5
-	  andc      r0, r4, r0
-	  sth       r0, 0x4(r3)
-	  b         .loc_0x68
-
-	.loc_0x2C:
-	  cmpwi     r4, 0x1
-	  bne-      .loc_0x4C
-	  li        r0, 0x1
-	  lhz       r4, 0x4(r3)
-	  slw       r0, r0, r5
-	  or        r0, r4, r0
-	  sth       r0, 0x4(r3)
-	  b         .loc_0x68
-
-	.loc_0x4C:
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x6E8
-	  li        r4, 0x38A
-	  subi      r5, r5, 0x54C
-	  crclr     6, 0x6
-	  bl        -0x30AF0C
-
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (flag == 0) {
+		mStageFlags &= ~(1 << shift);
+	} else if (flag == 1) {
+		mStageFlags |= (1 << shift);
+	} else {
+		JUT_PANICLINE(906, "flagは0 or1です");
+	}
 }
 
 /*
@@ -2243,15 +2112,7 @@ void SceneInfo::setStageFlag(PSGame::SceneInfo::FlagDef, PSGame::SceneInfo::Flag
  * Address:	80335560
  * Size:	000010
  */
-PSGame::SceneInfo::FlagDef SceneInfo::getFlag(PSGame::SceneInfo::FlagBitShift) const
-{
-	/*
-	lhz      r0, 4(r3)
-	sraw     r0, r0, r4
-	clrlwi   r3, r0, 0x1f
-	blr
-	*/
-}
+SceneInfo::FlagDef SceneInfo::getFlag(SceneInfo::FlagBitShift shift) const { return (SceneInfo::FlagDef)(mStageFlags >> shift & 1); }
 
 /*
  * --INFO--
@@ -2260,41 +2121,9 @@ PSGame::SceneInfo::FlagDef SceneInfo::getFlag(PSGame::SceneInfo::FlagBitShift) c
  */
 void SceneInfo::setStageCamera() const
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	lbz      r31, 7(r3)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_803355BC
-
-lbl_80335598:
-	rlwinm   r0, r30, 2, 0x16, 0x1d
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	add      r6, r29, r0
-	clrlwi   r7, r30, 0x18
-	lwz      r4, 8(r6)
-	lwz      r5, 0x10(r6)
-	lwz      r6, 0x18(r6)
-	bl       setCameraInfo__8JAIBasicFP3VecP3VecPA4_fUl
-	addi     r30, r30, 1
-
-lbl_803355BC:
-	clrlwi   r0, r30, 0x18
-	cmplw    r0, r31
-	blt      lbl_80335598
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u8 i = 0; i < mCameras; i++) {
+		JAIBasic::msBasic->setCameraInfo((Vec*)mCam1Position[i], (Vec*)mCam2Position[i], mCameraMtx[i]->mMatrix.mtxView, i);
+	}
 }
 
 /*
@@ -2302,25 +2131,9 @@ lbl_803355BC:
  * Address:	803355E4
  * Size:	00003C
  */
-PikScene::PikScene(unsigned char)
+PikScene::PikScene(u8 id)
+    : PSSystem::Scene(id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28PSSystem5SceneFUc
-	lis      r4, __vt__Q26PSGame8PikScene@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__Q26PSGame8PikScene@l
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2328,37 +2141,7 @@ PikScene::PikScene(unsigned char)
  * Address:	80335620
  * Size:	000060
  */
-PikScene::~PikScene()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80335664
-	lis      r5, __vt__Q26PSGame8PikScene@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q26PSGame8PikScene@l
-	stw      r0, 0(r30)
-	bl       __dt__Q28PSSystem5SceneFv
-	extsh.   r0, r31
-	ble      lbl_80335664
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80335664:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+PikScene::~PikScene() { }
 
 /*
  * --INFO--
@@ -2367,58 +2150,17 @@ lbl_80335664:
  */
 PSM::MiddleBossSeq* PikScene::getMiddleBossBgm()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 1
-	addi     r3, r3, 0x10
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	bl       getSeq__Q28PSSystem6SeqMgrFUl
-	or.      r30, r3, r3
-	bne      lbl_803356B0
-	li       r3, 0
-	b        lbl_80335710
+	char* name;
+	PSM::MiddleBossSeq* seq = static_cast<PSM::MiddleBossSeq*>(mSeqMgr.getSeq(1));
+	if (!seq) {
+		return nullptr;
+	}
 
-lbl_803356B0:
-	lwz      r31, 0x14(r30)
-	lis      r3, lbl_8048FAC4@ha
-	addi     r4, r3, lbl_8048FAC4@l
-	mr       r3, r31
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_803356E4
-	lis      r4, lbl_8048FAD0@ha
-	mr       r3, r31
-	addi     r4, r4, lbl_8048FAD0@l
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8033570C
-
-lbl_803356E4:
-	mr       r3, r30
-	lwz      r12, 0x10(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_8033570C
-	mr       r3, r30
-	b        lbl_80335710
-
-lbl_8033570C:
-	li       r3, 0
-
-lbl_80335710:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	name = seq->mBmsFileName;
+	if ((!strcmp(name, "m_boss.bms") || !strcmp(name, "l_boss.bms")) && seq->getCastType() == 4) {
+		return seq;
+	}
+	return nullptr;
 }
 
 /*
@@ -2436,8 +2178,43 @@ void PikScene::getJumpMainBgm()
  * Address:	80335728
  * Size:	000378
  */
-void PikSceneMgr::newAndSetGlobalScene()
+PSSystem::Scene* PikSceneMgr::newAndSetGlobalScene()
 {
+	JUT_ASSERTLINE(1002, !mScenes, "2重にグローバルシーンを作成しようとした");
+	SceneInfo info;
+	mScenes = newGameScene(0, &info);
+	P2ASSERTLINE(1015, mScenes);
+	mScenes->adaptTo(&mScenes);
+	mEndScene = mScenes;
+
+	PSSystem::SingletonBase<PSSystem::StreamDataList>::newInstance();
+	P2ASSERTLINE(1024, PSSystem::SingletonBase<PSSystem::StreamDataList>::sInstance->onlyLoad("/user/Totaka/StreamList.txt",
+	                                                                                          JKRDvdRipper::ALLOC_DIR_TOP));
+	PSSystem::SingletonBase<PSSystem::SeqDataList>::newInstance();
+	P2ASSERTLINE(
+	    1028, PSSystem::SingletonBase<PSSystem::SeqDataList>::sInstance->onlyLoad("/user/Totaka/BgmList.txt", JKRDvdRipper::ALLOC_DIR_TOP));
+
+	JAInter::SoundInfo sound;
+	sound._00            = 0x1f00;
+	sound.mCount         = 0xff000000;
+	sound.mPitch         = 1.0f;
+	sound.mVolume.w      = 0x7f000000;
+	PSSystem::SeSeq* seq = new PSSystem::SeSeq("se.bms", sound);
+	P2ASSERTLINE(1043, seq);
+	seq->init();
+	mScenes->appendSeq(seq);
+
+	JAInter::SoundInfo sound2;
+	sound2._00             = 0;
+	sound2.mCount          = 0x7f010000;
+	sound2.mPitch          = 1.0f;
+	sound2.mVolume.w       = 0x32000000;
+	PSSystem::BgmSeq* seq2 = newStreamBgm(0xc0011011, sound2);
+	P2ASSERTLINE(1061, seq2);
+	seq2->init();
+	mScenes->appendSeq(seq2);
+	return mScenes;
+
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2717,8 +2494,67 @@ lbl_80335A60:
  * Address:	80335AA0
  * Size:	0004AC
  */
-void PikSceneMgr::newAndSetCurrentScene(PSGame::SceneInfo&)
+PSSystem::Scene* PikSceneMgr::newAndSetCurrentScene(SceneInfo& info)
 {
+	P2ASSERTLINE(1093, info.mSceneType != SceneInfo::SCENE_NULL);
+	JUT_ASSERTLINE(1094, info.mSceneType <= SceneInfo::COURSE_TUTORIALDAY1, "scene noが不正");
+
+	checkScene();
+
+	JUT_ASSERTLINE(1095, !mScenes->mChild, "前回のmCurrentSceneの後処理が不正");
+
+	info.setStageCamera();
+
+	P2ASSERTLINE(1105, mScenes);
+	P2ASSERTLINE(1096, !mScenes->mChild);
+
+	u8 wScene                      = 255;
+	PSAutoBgm::ConductorMgr::sHeap = JKRGetCurrentHeap();
+	PSSystem::BgmSeq* seq          = initMainBgm(info, &wScene);
+	P2ASSERTLINE(1132, seq);
+
+	bool needboss = false;
+	if (info.mSceneType == SceneInfo::CHALLENGE_MODE || info.mSceneType == SceneInfo::TWO_PLAYER_BATTLE || (info.mSceneType - 1) < 4
+	    || info.isCaveFloor()) {
+		needboss = true;
+	}
+
+	PSSystem::SeqBase* bossSeq = nullptr;
+	CaveFloorInfo& cinfo       = static_cast<CaveFloorInfo&>(info);
+	// Check for submerged castle theme
+	if (info.isCaveFloor() && info.mSceneType == SceneInfo::COURSE_YAKUSHIMA) {
+		if (cinfo.getCaveNoFromID() == 3 && !cinfo.isBossFloor()) {
+			needboss = false;
+		}
+	}
+
+	if (needboss) {
+		bossSeq = initBossBgm(info, &wScene);
+		P2ASSERTLINE(1163, bossSeq);
+	}
+
+	SceneInfo* newinfo;
+	if (info.isCaveFloor()) {
+		newinfo = new CaveFloorInfo;
+		// newinfo            = cinfo;
+	} else {
+		newinfo = new SceneInfo;
+	}
+
+	PSSystem::Scene* newscene = newGameScene(wScene, newinfo);
+	P2ASSERTLINE(1185, seq);
+	newscene->appendSeq(seq);
+
+	if (needboss) {
+		P2ASSERTLINE(1191, bossSeq);
+		newscene->appendSeq(bossSeq);
+	}
+
+	initAdditionalBgm(info, newscene);
+	P2ASSERTLINE(1214, newscene);
+	mScenes->adaptChildScene(newscene);
+	return newscene;
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3074,52 +2910,12 @@ lbl_80335F28:
  * Address:	80335F4C
  * Size:	000098
  */
-void PikSceneMgr::newBgmSeq(char const*, JAInter::SoundInfo&)
+PSSystem::BgmSeq* PikSceneMgr::newBgmSeq(char const* name, JAInter::SoundInfo& info)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r3, 0x6c
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80335F8C
-	mr       r4, r29
-	mr       r5, r30
-	bl       __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo
-	mr       r31, r3
-
-lbl_80335F8C:
-	cmplwi   r31, 0
-	bne      lbl_80335FB0
-	lis      r3, lbl_8048F918@ha
-	lis      r5, lbl_8048F924@ha
-	addi     r3, r3, lbl_8048F918@l
-	li       r4, 0x4c7
-	addi     r5, r5, lbl_8048F924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80335FB0:
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	PSSystem::BgmSeq* seq = new PSSystem::BgmSeq(name, info);
+	P2ASSERTLINE(1223, seq);
+	seq->init();
+	return seq;
 }
 
 /*
@@ -3127,8 +2923,12 @@ lbl_80335FB0:
  * Address:	80335FE4
  * Size:	000088
  */
-PSSystem::BgmSeq* PikSceneMgr::newStreamBgm(unsigned long, JAInter::SoundInfo&)
+PSSystem::BgmSeq* PikSceneMgr::newStreamBgm(u32 id, JAInter::SoundInfo& info)
 {
+	info._00                 = 0;
+	PSSystem::StreamBgm* seq = new PSSystem::StreamBgm(id, info);
+	P2ASSERTLINE(1234, seq);
+	return seq;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3176,8 +2976,29 @@ lbl_80336050:
  * Address:	8033606C
  * Size:	000150
  */
-void PikSceneMgr::initBossBgm(PSGame::SceneInfo&, unsigned char*)
+PSSystem::BgmSeq* PikSceneMgr::initBossBgm(SceneInfo& info, u8* wScene)
 {
+	JAInter::SoundInfo sound;
+	sound._00       = 0;
+	sound.mCount    = 0x7f010000;
+	sound.mPitch    = 1.0f;
+	sound.mVolume.w = 0x32000000;
+
+	PSSystem::DirectedBgm* seq;
+	if (curSceneIsBigBossFloor()) {
+		seq     = (PSSystem::DirectedBgm*)newDirectedBgm("l_boss.bms", sound);
+		*wScene = PSSystem::WaveScene::WSCENE35_TitanDweevil;
+	} else {
+		seq = (PSSystem::DirectedBgm*)newDirectedBgm("m_boss.bms", sound);
+	}
+
+	P2ASSERTLINE(1264, seq);
+
+	// some panic in SESeq.h that doesnt exist
+
+	seq->mRootTrack->_3E = 60;
+	P2ASSERTLINE(1267, sound._00 < 0x80);
+	return seq;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3283,8 +3104,56 @@ lbl_8033619C:
  * Address:	803361BC
  * Size:	000400
  */
-void PikSceneMgr::initAdditionalBgm(PSGame::SceneInfo&, PSSystem::Scene*)
+void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 {
+	JAInter::SoundInfo sound;
+	sound._00       = 0;
+	sound.mCount    = 0x7f010000;
+	sound.mPitch    = 1.0f;
+	sound.mVolume.w = 0x32000000;
+	PSSystem::BgmSeq* seq;
+	switch (info.mSceneType) {
+	case SceneInfo::TITLE_SCREEN:
+		seq = newStreamBgm(0xc0011011, sound);
+		P2ASSERTLINE(1290, seq);
+		scene->appendSeq(seq);
+
+		seq = newBgmSeq("hiscore.bms", sound);
+		P2ASSERTLINE(1296, seq);
+		scene->appendSeq(seq);
+
+		seq = newStreamBgm(0xc0011010, sound);
+		P2ASSERTLINE(1302, seq);
+		scene->appendSeq(seq);
+		break;
+	case SceneInfo::COURSE_TUTORIALDAY1:
+		seq = newBgmSeq("n_tutorial_1stday.bms", sound);
+		P2ASSERTLINE(1318, seq);
+		scene->appendSeq(seq);
+		break;
+	case SceneInfo::CHALLENGE_MODE:
+		sound.mCount                  = 0x7f040000;
+		sound.mVolume.w               = 0x23000000;
+		sound._00                     = 0x1f00;
+		JADUtility::AccessMode flag   = mAccessMode;
+		PSSystem::DirectedBgm* seqold = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeq();
+		seq                           = newAutoBgm("cavekeyget.cnd", "cavekeyget.bms", sound, flag, info, seqold->mDirectorMgr);
+		scene->appendSeq(seq);
+		P2ASSERTLINE(1318, scene->mWaveLoader);
+		scene->mWaveLoader->mWaveSceneID[1] = PSSystem::WaveScene::WSCENE5_Challenge_KeyGet;
+		P2ASSERTLINE(1342, seq == scene->mSeqMgr.getSeq(2));
+		break;
+	}
+
+	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
+	// Check for submerged castle theme
+	if (info.isCaveFloor() && info.mSceneType == SceneInfo::COURSE_YAKUSHIMA) {
+		if (cinfo.getCaveNoFromID() == 3 && !cinfo.isBossFloor()) {
+			seq = newBgmSeq("kuro_post.bms", sound);
+			P2ASSERTLINE(1353, seq);
+			scene->appendSeq(seq);
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3598,7 +3467,7 @@ lbl_803365A8:
  * Address:	803365BC
  * Size:	000D24
  */
-void PikSceneMgr::initMainBgm(PSGame::SceneInfo&, unsigned char*)
+PSSystem::BgmSeq* PikSceneMgr::initMainBgm(PSGame::SceneInfo&, u8*)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -4650,7 +4519,7 @@ lbl_803372C8:
  * Address:	........
  * Size:	0001A8
  */
-void ConductorSelector::getConductorFile(char const*, PSGame::CaveFloorInfo&, unsigned char*, char*)
+void ConductorSelector::getConductorFile(char const*, CaveFloorInfo&, u8*, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -4660,7 +4529,7 @@ void ConductorSelector::getConductorFile(char const*, PSGame::CaveFloorInfo&, un
  * Address:	803372E0
  * Size:	00094C
  */
-void seqCpuSync(JASTrack*, unsigned short)
+void seqCpuSync(JASTrack*, u16)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -5826,320 +5695,4 @@ lbl_80338090:
 void PSSetBgmSelectAsToolMode()
 {
 	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	803380AC
- * Size:	000050
- */
-PSSystem::SingletonBase<PSGame::ConductorList>::~SingletonBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_803380E4
-	lis      r5, "__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"@ha
-	extsh.   r0, r4
-	addi     r4, r5,
-"__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"@l li       r0, 0
-	stw      r4, 0(r31)
-	stw      r0,
-"sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"@sda21(r13) ble
-lbl_803380E4 bl       __dl__FPv
-
-lbl_803380E4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803380FC
- * Size:	000050
- */
-PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::~SingletonBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80338134
-	lis      r5,
-"__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@ha extsh.
-r0, r4 addi     r4, r5,
-"__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@l li r0,
-0 stw      r4, 0(r31) stw      r0,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-	ble      lbl_80338134
-	bl       __dl__FPv
-
-lbl_80338134:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033814C
- * Size:	000098
- */
-PSGame::SoundTable::CategoryMgr* PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::newInstance()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x6E3C(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x34
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x570
-	  li        r4, 0x76
-	  subi      r5, r5, 0x6DC
-	  crclr     6, 0x6
-	  bl        -0x30DB3C
-
-	.loc_0x34:
-	  lwz       r0, -0x6E3C(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C
-	  li        r3, 0x1C
-	  bl        -0x3142EC
-	  mr.       r0, r3
-	  beq-      .loc_0x58
-	  bl        -0x38A4
-	  mr        r0, r3
-
-	.loc_0x58:
-	  stw       r0, -0x6E3C(r13)
-
-	.loc_0x5C:
-	  lwz       r0, -0x6E3C(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x570
-	  li        r4, 0x79
-	  subi      r5, r5, 0x6DC
-	  crclr     6, 0x6
-	  bl        -0x30DB8C
-
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  lwz       r3, -0x6E3C(r13)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803381E4
- * Size:	000008
- */
-// @28 @PSGame::ConductorList::~ConductorList()
-// {
-// 	/*
-// 	addi     r3, r3, -28
-// 	b        __dt__Q26PSGame13ConductorListFv
-// 	*/
-// }
-
-namespace PSGame {
-
-/*
- * --INFO--
- * Address:	803381EC
- * Size:	000008
- */
-// bool SceneInfo::isCaveFloor() { return false; }
-
-/*
- * --INFO--
- * Address:	803381F4
- * Size:	000008
- */
-// u32 PikSceneMgr::curSceneIsBigBossFloor() { return 0x0; }
-
-} // namespace PSGame
-
-namespace PSSystem {
-
-/*
- * --INFO--
- * Address:	803381FC
- * Size:	000038
- */
-void SceneMgr::exec()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	beq      lbl_80338224
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80338224:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80338234
- * Size:	000004
- */
-void Scene::init() { }
-
-/*
- * --INFO--
- * Address:	80338238
- * Size:	000050
- */
-PSAutoBgm::ConductorArcMgr::~ConductorArcMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80338270
-	lis      r5, __vt__Q29PSAutoBgm15ConductorArcMgr@ha
-	extsh.   r0, r4
-	addi     r4, r5, __vt__Q29PSAutoBgm15ConductorArcMgr@l
-	li       r0, 0
-	stw      r4, 0(r31)
-	stw      r0, sInstance__Q29PSAutoBgm15ConductorArcMgr@sda21(r13)
-	ble      lbl_80338270
-	bl       __dl__FPv
-
-lbl_80338270:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace PSGame {
-
-/*
- * --INFO--
- * Address:	80338288
- * Size:	000064
- */
-SoundTable::CategoryMgr::~CategoryMgr()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-or.      r31, r3, r3
-beq      lbl_803382D4
-lis      r3, __vt__Q36PSGame10SoundTable11CategoryMgr@ha
-addi     r0, r3, __vt__Q36PSGame10SoundTable11CategoryMgr@l
-stw      r0, 0(r31)
-beq      lbl_803382C4
-lis      r3,
-"__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@ha li r0,
-0 addi     r3, r3,
-"__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@l stw r3,
-0(r31) stw      r0,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-
-lbl_803382C4:
-extsh.   r0, r4
-ble      lbl_803382D4
-mr       r3, r31
-bl       __dl__FPv
-
-lbl_803382D4:
-lwz      r0, 0x14(r1)
-mr       r3, r31
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-} // namespace PSGame
-
-} // namespace PSSystem
-
-/*
- * --INFO--
- * Address:	803382EC
- * Size:	000080
- */
-PSSystem::ArcMgr<PSGame::BASARC>::~ArcMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80338350
-	lis      r4, "__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"@ha
-	lis      r3, lbl_8048FA6C@ha
-	addi     r0, r4, "__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"@l
-	lis      r4, lbl_8048F924@ha
-	stw      r0, 0(r30)
-	addi     r5, r4, lbl_8048F924@l
-	addi     r3, r3, lbl_8048FA6C@l
-	li       r4, 0x4d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_80338350
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80338350:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }

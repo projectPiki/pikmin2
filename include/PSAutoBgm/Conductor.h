@@ -39,9 +39,25 @@ struct Conductor : JADUtility::PrmSetRc<PSAutoBgm::Track> {
  * @size = 0x8
  */
 struct ConductorArcMgr {
-	virtual ~ConductorArcMgr(); // _08 (weak)
+	ConductorArcMgr()
+	{
+		mArchive = nullptr;
+		mArchive = JKRArchive::mount("/AudioRes/Conductor.arc", JKRArchive::EMM_Dvd, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
+		P2ASSERTLINE(746, mArchive); // this file needs to be PSAutoBgm.h
+	}
+
+	static void createInstance()
+	{
+		P2ASSERTLINE(726, !sInstance);
+		sInstance = new ConductorArcMgr;
+		P2ASSERTLINE(728, sInstance);
+	}
+
+	virtual ~ConductorArcMgr() { sInstance = nullptr; } // _08 (weak)
 
 	JKRArchive* mArchive; // _04
+
+	static ConductorArcMgr* sInstance;
 };
 
 /**

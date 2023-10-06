@@ -11,10 +11,15 @@
 #include "PSGame/BASARC.h"
 
 namespace PSSystem {
-struct SetupArg;
-}
+struct SetupArg {
+	JKRSolidHeap* mHeap; // _00
+	int mHeapSize;       // _04
+	int _08;             // _08
+	void* _0C;           // _0C
+	void* mAafFile;      // _10
+	char* mPath;         // _14
+};
 
-namespace PSSystem {
 // Size: 0x4C
 struct SysIF : public JAIBasic {
 	SysIF(const SetupArg&);
@@ -38,11 +43,27 @@ struct SysIF : public JAIBasic {
 	int _40;        // _40
 	FxMgr mFxMgr;   // _44
 	u32 _48;        // _48
+
+	static void* sMakeJAISeCallback;
 };
 
 template <typename T>
 struct ArcMgr : public JKRDisposer {
+	ArcMgr()
+	{
+		mArchive = nullptr;
+		mArchive = JKRArchive::mount("/AudioRes/Key.arc", JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
+		P2ASSERTLINE(92, mArchive);
+	}
+
 	virtual ~ArcMgr(); // _08
+
+	static void createInstance()
+	{
+		P2ASSERTLINE(71, !sInstance);
+		// sInstance = new ArcMgr<T>;
+		P2ASSERTLINE(92, sInstance);
+	}
 
 	static T* sInstance;
 

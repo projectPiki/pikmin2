@@ -108,6 +108,10 @@ struct SeqMgr : JSULink<SeqBase> { // SUPPOSED TO BE JSUList, BUT BREAKING MATCH
  * @size 0x18
  */
 struct SeSeq : public SeqBase {
+	SeSeq(const char* bmsFileName, const JAInter::SoundInfo& info)
+	    : SeqBase(bmsFileName, info)
+	{
+	}
 	virtual ~SeSeq();               // _08
 	virtual void stopSeq(u32);      // _18
 	virtual u8 getCastType();       // _24 (weak)
