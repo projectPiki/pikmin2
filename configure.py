@@ -1622,7 +1622,7 @@ LIBS = [
             "sysGCU/captionMessage",
             ["sysGCU/screenScene", True],
             "sysGCU/screenMgr",
-            "sysGCU/screenObj",
+            ["sysGCU/screenObj", True],
             "sysGCU/JSTObjectParticleActor",
             ["sysGCU/moviePlayerAudio", True],
             "sysGCU/illustratedBookMessage",

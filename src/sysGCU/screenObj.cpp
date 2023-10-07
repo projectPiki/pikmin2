@@ -2,69 +2,6 @@
 #include "og/Screen/ogScreen.h"
 #include "JSystem/J2D/J2DPrint.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049BA58
-    lbl_8049BA58:
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6370
-        .4byte 0x70000000
-    .global lbl_8049BA68
-    lbl_8049BA68:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x00000000
-
-    .section .data, "wa"	# 0x8049E220 - 0x804EFC20
-    .global __vt__Q26Screen7ObjBase
-    __vt__Q26Screen7ObjBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q26Screen7ObjBaseFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q26Screen7ObjBaseFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte doUpdateFadein__Q26Screen7ObjBaseFv
-        .4byte doUpdateFadeinFinish__Q26Screen7ObjBaseFv
-        .4byte doUpdate__Q26Screen7ObjBaseFv
-        .4byte doUpdateFinish__Q26Screen7ObjBaseFv
-        .4byte doUpdateFadeout__Q26Screen7ObjBaseFv
-        .4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
-        .4byte doDraw__Q26Screen7ObjBaseFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520B88
-    lbl_80520B88:
-        .4byte 0x4E6F204E
-        .4byte 0x616D6500
-    .global lbl_80520B90
-    lbl_80520B90:
-        .4byte 0x00000000
-    .global lbl_80520B94
-    lbl_80520B94:
-        .4byte 0x42C80000
-*/
-
 namespace Screen {
 
 /*
@@ -108,7 +45,7 @@ bool ObjBase::start(StartSceneArg const* arg)
 	case ObjState_Fadeout:
 		break;
 	default:
-		JUT_PANICLINE(97, "P2Assert");
+		P2ASSERTLINE(97, false);
 	}
 	return ret;
 }
@@ -207,67 +144,10 @@ void ObjBase::doDraw(Graphics& gfx)
 {
 	J2DPrint print(JFWSystem::systemFont, 0.0f);
 	print.initiate();
-	JUtility::TColor color(255, 255, 255, 255);
-	print.mCharColor     = color;
-	print.mGradientColor = color;
-	print.print(100.0f, 100.0f, mName);
 
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	lfs      f1, lbl_80520B90@sda21(r2)
-	stw      r0, 0x84(r1)
-	stw      r31, 0x7c(r1)
-	mr       r31, r3
-	addi     r3, r1, 0x18
-	lwz      r4, systemFont__9JFWSystem@sda21(r13)
-	bl       __ct__8J2DPrintFP7JUTFontf
-	addi     r3, r1, 0x18
-	bl       initiate__8J2DPrintFv
-	li       r5, 0xff
-	lfs      f1, lbl_80520B94@sda21(r2)
-	stb      r5, 0x10(r1)
-	addi     r3, r1, 0x18
-	fmr      f2, f1
-	stb      r5, 0x11(r1)
-	stb      r5, 0x12(r1)
-	stb      r5, 0x13(r1)
-	lwz      r0, 0x10(r1)
-	stb      r5, 8(r1)
-	stw      r0, 0x14(r1)
-	lbz      r4, 0x14(r1)
-	lbz      r9, 0x15(r1)
-	lbz      r8, 0x16(r1)
-	lbz      r7, 0x17(r1)
-	stb      r5, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r5, 0xb(r1)
-	lwz      r0, 8(r1)
-	stb      r4, 0x58(r1)
-	stw      r0, 0xc(r1)
-	lbz      r6, 0xc(r1)
-	lbz      r5, 0xd(r1)
-	lbz      r4, 0xe(r1)
-	lbz      r0, 0xf(r1)
-	stb      r9, 0x59(r1)
-	stb      r8, 0x5a(r1)
-	stb      r7, 0x5b(r1)
-	stb      r6, 0x5c(r1)
-	stb      r5, 0x5d(r1)
-	stb      r4, 0x5e(r1)
-	stb      r0, 0x5f(r1)
-	lwz      r4, 0x14(r31)
-	crset    6
-	bl       print__8J2DPrintFffPCce
-	addi     r3, r1, 0x18
-	li       r4, -1
-	bl       __dt__8J2DPrintFv
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x7c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	print.mCharColor.set(JUtility::TColor(255, 255, 255, 255));
+	print.mGradientColor.set(JUtility::TColor(255, 255, 255, 255));
+	print.print(100.0f, 100.0f, mName);
 }
 
 /*
@@ -335,48 +215,16 @@ void ObjMgrBase::registObj(IObjBase* obj, SceneBase* scene)
  */
 bool ObjMgrBase::update()
 {
-	bool result = true;
-	FOREACH_NODE(IObjBase, mNode.mChild, obj)
-	{
+	bool result   = true;
+	IObjBase* obj = static_cast<IObjBase*>(mNode.mChild);
+	while (obj) {
+		IObjBase* next = static_cast<IObjBase*>(obj->mNext);
 		if (!obj->update()) {
 			result = false;
 		}
+		obj = next;
 	}
 	return result;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 1
-	stw      r30, 8(r1)
-	lwz      r3, 0x10(r3)
-	b        lbl_80454150
-
-	lbl_8045412C:
-	lwz      r12, 0(r3)
-	lwz      r30, 4(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8045414C
-	li       r31, 0
-
-	lbl_8045414C:
-	mr       r3, r30
-
-	lbl_80454150:
-	cmplwi   r3, 0
-	bne      lbl_8045412C
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -387,36 +235,12 @@ bool ObjMgrBase::update()
  */
 void ObjMgrBase::draw(Graphics& gfx)
 {
-	FOREACH_NODE(IObjBase, mNode.mChild, obj) { obj->draw(gfx); }
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r3, 0x10(r3)
-	b        lbl_804541B0
-
-lbl_80454194:
-	lwz      r12, 0(r3)
-	mr       r4, r30
-	lwz      r31, 4(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-
-lbl_804541B0:
-	cmplwi   r3, 0
-	bne      lbl_80454194
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	IObjBase* obj = static_cast<IObjBase*>(mNode.mChild);
+	while (obj) {
+		IObjBase* next = static_cast<IObjBase*>(obj->mNext);
+		obj->draw(gfx);
+		obj = next;
+	}
 }
 
 /*
@@ -426,61 +250,15 @@ lbl_804541B0:
  */
 IObjBase* ObjMgrBase::search(SceneBase* scene, char* name)
 {
-	FOREACH_NODE(IObjBase, mNode.mChild, obj)
-	{
+	IObjBase* obj = static_cast<IObjBase*>(mNode.mChild);
+	while (obj) {
+		IObjBase* next = static_cast<IObjBase*>(obj->mNext);
 		if (obj->getOwner() == scene && !strcmp(obj->mName, name)) {
 			return obj;
 		}
+		obj = next;
 	}
 	return nullptr;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	lwz      r31, 0x10(r3)
-	b        lbl_8045423C
-
-lbl_804541FC:
-	mr       r3, r31
-	lwz      r30, 4(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	cmplw    r3, r28
-	bne      lbl_80454238
-	lwz      r3, 0x14(r31)
-	mr       r4, r29
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80454238
-	mr       r3, r31
-	b        lbl_80454248
-
-lbl_80454238:
-	mr       r31, r30
-
-lbl_8045423C:
-	cmplwi   r31, 0
-	bne      lbl_804541FC
-	li       r3, 0
-
-lbl_80454248:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -490,52 +268,16 @@ lbl_80454248:
  */
 bool ObjMgrBase::start(StartSceneArg* arg)
 {
-	bool result = true;
-	FOREACH_NODE(IObjBase, mNode.mChild, obj)
-	{
+	bool result   = true;
+	IObjBase* obj = static_cast<IObjBase*>(mNode.mChild);
+	while (obj) {
+		IObjBase* next = static_cast<IObjBase*>(obj->mNext);
 		if (!obj->start(arg)) {
 			result = false;
 		}
+		obj = next;
 	}
 	return result;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 1
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r3, 0x10(r3)
-	b        lbl_804542B8
-
-lbl_80454290:
-	lwz      r12, 0(r3)
-	mr       r4, r29
-	lwz      r30, 4(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_804542B4
-	li       r31, 0
-
-lbl_804542B4:
-	mr       r3, r30
-
-lbl_804542B8:
-	cmplwi   r3, 0
-	bne      lbl_80454290
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -545,52 +287,16 @@ lbl_804542B8:
  */
 bool ObjMgrBase::end(EndSceneArg* arg)
 {
-	bool result = true;
-	FOREACH_NODE(IObjBase, mNode.mChild, obj)
-	{
+	bool result   = true;
+	IObjBase* obj = static_cast<IObjBase*>(mNode.mChild);
+	while (obj) {
+		IObjBase* next = static_cast<IObjBase*>(obj->mNext);
 		if (!obj->end(arg)) {
 			result = false;
 		}
+		obj = next;
 	}
 	return result;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 1
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r3, 0x10(r3)
-	b        lbl_80454330
-
-lbl_80454308:
-	lwz      r12, 0(r3)
-	mr       r4, r29
-	lwz      r30, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8045432C
-	li       r31, 0
-
-lbl_8045432C:
-	mr       r3, r30
-
-lbl_80454330:
-	cmplwi   r3, 0
-	bne      lbl_80454308
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -600,55 +306,17 @@ lbl_80454330:
  */
 bool ObjMgrBase::confirmSetScene(SetSceneArg& arg)
 {
-	bool result = true;
-	FOREACH_NODE(IObjBase, mNode.mChild, obj)
-	{
+	bool result   = true;
+	IObjBase* obj = static_cast<IObjBase*>(mNode.mChild);
+	while (obj) {
+		IObjBase* next = static_cast<IObjBase*>(obj->mNext);
 		if (!obj->confirmSetScene(arg)) {
 			result = false;
+			break;
 		}
+		obj = next;
 	}
 	return result;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 1
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r3, 0x10(r3)
-	b        lbl_804543AC
-
-lbl_80454380:
-	lwz      r12, 0(r3)
-	mr       r4, r29
-	lwz      r30, 4(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_804543A8
-	li       r31, 0
-	b        lbl_804543B4
-
-lbl_804543A8:
-	mr       r3, r30
-
-lbl_804543AC:
-	cmplwi   r3, 0
-	bne      lbl_80454380
-
-lbl_804543B4:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -658,55 +326,17 @@ lbl_804543B4:
  */
 bool ObjMgrBase::confirmStartScene(StartSceneArg* arg)
 {
-	bool result = true;
-	FOREACH_NODE(IObjBase, mNode.mChild, obj)
-	{
+	bool result   = true;
+	IObjBase* obj = static_cast<IObjBase*>(mNode.mChild);
+	while (obj) {
+		IObjBase* next = static_cast<IObjBase*>(obj->mNext);
 		if (!obj->confirmStartScene(arg)) {
 			result = false;
+			break;
 		}
+		obj = next;
 	}
 	return result;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 1
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r3, 0x10(r3)
-	b        lbl_80454428
-
-lbl_804543FC:
-	lwz      r12, 0(r3)
-	mr       r4, r29
-	lwz      r30, 4(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80454424
-	li       r31, 0
-	b        lbl_80454430
-
-lbl_80454424:
-	mr       r3, r30
-
-lbl_80454428:
-	cmplwi   r3, 0
-	bne      lbl_804543FC
-
-lbl_80454430:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -716,55 +346,17 @@ lbl_80454430:
  */
 bool ObjMgrBase::confirmEndScene(EndSceneArg* arg)
 {
-	bool result = true;
-	FOREACH_NODE(IObjBase, mNode.mChild, obj)
-	{
+	bool result   = true;
+	IObjBase* obj = static_cast<IObjBase*>(mNode.mChild);
+	while (obj) {
+		IObjBase* next = static_cast<IObjBase*>(obj->mNext);
 		if (!obj->confirmEndScene(arg)) {
 			result = false;
+			break;
 		}
+		obj = next;
 	}
 	return result;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 1
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r3, 0x10(r3)
-	b        lbl_804544A4
-
-lbl_80454478:
-	lwz      r12, 0(r3)
-	mr       r4, r29
-	lwz      r30, 4(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_804544A0
-	li       r31, 0
-	b        lbl_804544AC
-
-lbl_804544A0:
-	mr       r3, r30
-
-lbl_804544A4:
-	cmplwi   r3, 0
-	bne      lbl_80454478
-
-lbl_804544AC:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 } // namespace Screen
