@@ -12,6 +12,10 @@
 #include "PSSystem/ConductorList.h"
 #include "PSGame/SeMgr.h"
 #include "PSSystem/PSStream.h"
+#include "PSGame/Global.h"
+#include "PSSystem/PSGame.h"
+#include "JSystem/JAudio/JALCalc.h"
+#include "JSystem/JAudio/JAI/JAInter/SeMgr.h"
 
 /*
     Generated from dpostproc
@@ -592,7 +596,6 @@ ConductorList::ConductorList()
 {
 	mCaveInfos = nullptr;
 	mCaveCount = 255;
-	// UNUSED FUNCTION
 }
 
 /*
@@ -838,9 +841,15 @@ lbl_803344E8:
  * Address:	........
  * Size:	0000F4
  */
-void ConductorList::getInfo(u8, u8)
+char* ConductorList::getInfo(u8 caves, u8 floor)
 {
-	// UNUSED FUNCTION
+	if (sToolMode && caves < mCaveCount && mCaveInfos[caves].mFileNameCount < floor) {
+		return mCaveInfos[0].mFileNames[0];
+	} else {
+		P2ASSERTLINE(175, caves < mCaveCount);
+		P2ASSERTLINE(176, mCaveInfos[caves].mFileNameCount < floor);
+		return mCaveInfos[caves].mFileNames[floor];
+	}
 }
 
 /*
@@ -1337,11 +1346,11 @@ void SoundTable::CategoryMgr::initiate(u8 id)
  */
 void SoundTable::SePerspInfo::set(f32 a1, f32 a2, f32 a3, f32 a4, f32 a5)
 {
-	_00 = a1;
-	_04 = a2;
-	_08 = a3;
-	_0C = a4;
-	_10 = a5;
+	mDefaultDistance = a1;
+	mBaseDistance    = a2;
+	_08              = a3;
+	_0C              = a4;
+	mForcedDistance  = a5;
 }
 
 /*
@@ -1349,125 +1358,45 @@ void SoundTable::SePerspInfo::set(f32 a1, f32 a2, f32 a3, f32 a4, f32 a5)
  * Address:	80334B64
  * Size:	000164
  */
-f32 SoundTable::SePerspInfo::getDistVol(f32, u8)
+f32 SoundTable::SePerspInfo::getDistVol(f32 factor, u8 flag)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stfd     f30, 0x10(r1)
-	psq_st   f30, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	fmr      f30, f1
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 0
-	beq      lbl_80334BA0
-	lfs      f1, lbl_8051E0D8@sda21(r2)
-	b        lbl_80334CA4
+	if (mDisabled) {
+		return 0.0f;
+	} else {
+		f32 mult = mBaseDistance;
+		switch (flag) {
+		case 0:
+		case 1:
+		case 2:
+			break;
+		case 3:
+			mult *= 2.0f;
+			break;
+		case 4:
+			mult *= 0.0f;
+			break;
+		case 5:
+			mult *= 0.5f;
+			break;
+		case 6:
+			mult *= 0.25f;
+			break;
+		case 7:
+			mult = mForcedDistance;
+			break;
+		default:
+			JUT_PANICLINE(403, "P2Assert");
+		}
 
-lbl_80334BA0:
-	clrlwi   r0, r4, 0x18
-	lfs      f31, 4(r31)
-	cmpwi    r0, 5
-	beq      lbl_80334BF4
-	bge      lbl_80334BCC
-	cmpwi    r0, 3
-	beq      lbl_80334BDC
-	bge      lbl_80334BE8
-	cmpwi    r0, 0
-	bge      lbl_80334C30
-	b        lbl_80334C14
-
-lbl_80334BCC:
-	cmpwi    r0, 7
-	beq      lbl_80334C0C
-	bge      lbl_80334C14
-	b        lbl_80334C00
-
-lbl_80334BDC:
-	lfs      f0, lbl_8051E0F8@sda21(r2)
-	fmuls    f31, f31, f0
-	b        lbl_80334C30
-
-lbl_80334BE8:
-	lfs      f0, lbl_8051E0D8@sda21(r2)
-	fmuls    f31, f31, f0
-	b        lbl_80334C30
-
-lbl_80334BF4:
-	lfs      f0, lbl_8051E0FC@sda21(r2)
-	fmuls    f31, f31, f0
-	b        lbl_80334C30
-
-lbl_80334C00:
-	lfs      f0, lbl_8051E100@sda21(r2)
-	fmuls    f31, f31, f0
-	b        lbl_80334C30
-
-lbl_80334C0C:
-	lfs      f31, 0x10(r31)
-	b        lbl_80334C30
-
-lbl_80334C14:
-	lis      r3, lbl_8048F918@ha
-	lis      r5, lbl_8048F924@ha
-	addi     r3, r3, lbl_8048F918@l
-	li       r4, 0x193
-	addi     r5, r5, lbl_8048F924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80334C30:
-	bl       getParamMaxVolumeDistance__18JAIGlobalParameterFv
-	fcmpo    cr0, f30, f1
-	bge      lbl_80334C44
-	lfs      f1, 0(r31)
-	b        lbl_80334CA4
-
-lbl_80334C44:
-	fcmpo    cr0, f30, f31
-	bge      lbl_80334C70
-	bl       getParamMaxVolumeDistance__18JAIGlobalParameterFv
-	fmr      f2, f1
-	lfs      f4, 0(r31)
-	fmr      f1, f30
-	lfs      f5, 8(r31)
-	fmr      f3, f31
-	li       r3, 0
-	bl       linearTransform__7JALCalcFfffffb
-	b        lbl_80334CA4
-
-lbl_80334C70:
-	lfs      f0, 0xc(r31)
-	fcmpo    cr0, f30, f0
-	bge      lbl_80334CA0
-	bl       getParamMinDistanceVolume__18JAIGlobalParameterFv
-	fmr      f5, f1
-	lfs      f3, 0xc(r31)
-	fmr      f1, f30
-	lfs      f4, 8(r31)
-	fmr      f2, f31
-	li       r3, 0
-	bl       linearTransform__7JALCalcFfffffb
-	b        lbl_80334CA4
-
-lbl_80334CA0:
-	lfs      f1, lbl_8051E0D8@sda21(r2)
-
-lbl_80334CA4:
-	psq_l    f31, 40(r1), 0, qr0
-	lfd      f31, 0x20(r1)
-	psq_l    f30, 24(r1), 0, qr0
-	lfd      f30, 0x10(r1)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		if (factor < JAIGlobalParameter::getParamMaxVolumeDistance()) {
+			return mDefaultDistance;
+		} else if (factor < mult) {
+			return JALCalc::linearTransform(factor, JAIGlobalParameter::getParamMaxVolumeDistance(), mult, mDefaultDistance, _08, false);
+		} else if (factor < _0C) {
+			return JALCalc::linearTransform(factor, mult, _0C, _08, JAIGlobalParameter::getParamMinDistanceVolume(), false);
+		}
+		return 0.0f;
+	}
 }
 
 /*
@@ -1479,17 +1408,17 @@ CameraMgr::CameraMgr()
 {
 	mIsSpecial[0]        = false;
 	mIsSpecial[1]        = false;
-	_18                  = 61.66f;
-	_1C                  = 131.25f;
-	_20                  = 215.04f;
-	_24                  = 330.18f;
+	mDistanceNear        = 61.66f;
+	mDistanceMiddle      = 131.25f;
+	mDistanceFar         = 215.04f;
+	mDistanceFarthest    = 330.18f;
 	_28                  = 1.0f;
 	_2C                  = 0.8f;
 	_30                  = 0.71f;
 	_34                  = 0.62f;
 	mZoomCamVolumeMod    = 0.45f;
-	mCamDistVolume[0]    = _1C;
-	mCamDistVolume[1]    = _1C;
+	mCamDistVolume[0]    = mDistanceMiddle;
+	mCamDistVolume[1]    = mDistanceMiddle;
 	mDistVolumeFactor[0] = 1.0f;
 	mDistVolumeFactor[1] = 1.0f;
 }
@@ -1538,50 +1467,15 @@ f32 CameraMgr::getCurrentCamDistVol(u8 id) { return mCamDistVolume[id]; }
  * Address:	80334E50
  * Size:	000088
  */
-f32 CameraMgr::getVol_DistBetweenCamAndLookat(f32)
+f32 CameraMgr::getVol_DistBetweenCamAndLookat(f32 dist)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lfs      f3, 0x1c(r3)
-	fcmpo    cr0, f1, f3
-	cror     2, 0, 2
-	bne      lbl_80334E84
-	lfs      f2, 0x18(r3)
-	lfs      f4, 0x28(r3)
-	lfs      f5, 0x2c(r3)
-	li       r3, 0
-	bl       linearTransform__7JALCalcFfffffb
-	b        lbl_80334EC8
-
-lbl_80334E84:
-	lfs      f0, 0x20(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80334EB0
-	fmr      f2, f3
-	lfs      f4, 0x2c(r3)
-	lfs      f5, 0x30(r3)
-	fmr      f3, f0
-	li       r3, 0
-	bl       linearTransform__7JALCalcFfffffb
-	b        lbl_80334EC8
-
-lbl_80334EB0:
-	fmr      f2, f0
-	lfs      f3, 0x24(r3)
-	lfs      f4, 0x30(r3)
-	lfs      f5, 0x34(r3)
-	li       r3, 0
-	bl       linearTransform__7JALCalcFfffffb
-
-lbl_80334EC8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (dist <= mDistanceMiddle) {
+		return JALCalc::linearTransform(dist, mDistanceNear, mDistanceMiddle, _28, _2C, false);
+	} else if (dist <= mDistanceFar) {
+		return JALCalc::linearTransform(dist, mDistanceMiddle, mDistanceFar, _2C, _30, false);
+	} else {
+		return JALCalc::linearTransform(dist, mDistanceFar, mDistanceFarthest, _30, _34, false);
+	}
 }
 
 /*
@@ -1977,11 +1871,19 @@ void SysFactory::preInitJAI()
  */
 void SysFactory::postInitJAI()
 {
-	for (int i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
-		JAInter::SoundTable::getSoundMax(i);
+	f32 max = 0.0f;
+	for (u8 i = 0; i < (u8)JAIGlobalParameter::getParamSeCategoryMax(); i++) {
+		if (JAInter::SoundTable::getSoundMax(i)) {
+			f32 calc = getSoundCategoryInfo(PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::sInstance, i)->_0C;
+			if (max < calc) {
+				max = calc;
+			}
+			JAInter::SeMgr::seCategoryVolume[i]
+			    = getSoundCategoryInfo(PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::sInstance, i)->mDefaultDistance;
+		}
 	}
 
-	JAIGlobalParameter::setParamDistanceMax(1.0f);
+	JAIGlobalParameter::setParamDistanceMax(max);
 	JAIGlobalParameter::setParamMinDistanceVolume(0.0f);
 	JAIGlobalParameter::setParamMaxVolumeDistance(120.0f);
 	/*
@@ -3467,8 +3369,162 @@ lbl_803365A8:
  * Address:	803365BC
  * Size:	000D24
  */
-PSSystem::BgmSeq* PikSceneMgr::initMainBgm(PSGame::SceneInfo&, u8*)
+PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 {
+	P2ASSERTLINE(1378, wScene);
+	PSSystem::BgmSeq* bgm = nullptr;
+
+	JAInter::SoundInfo sound;
+	sound._00            = 0x1f00;
+	sound.mCount         = 0x7f010000;
+	sound.mPitch         = 1.0f;
+	sound.mVolume.w      = 0x32000000;
+	CaveFloorInfo& cinfo = static_cast<CaveFloorInfo&>(info);
+	P2ASSERTLINE(1393, wScene);
+	if (info.isCaveFloor()) {
+
+		switch (info.mSceneType) {
+		case SceneInfo::CHALLENGE_MODE:
+			PSSystem::SingletonBase<PSGame::ConductorList>::newInstance();
+			ConductorList* list = PSSystem::SingletonBase<PSGame::ConductorList>::getInstance();
+			bool loaded         = list->load("/user/Totaka/ChallengeBgmList.txt", JKRDvdRipper::ALLOC_DIR_BOTTOM);
+			P2ASSERTLINE(1472, loaded);
+			char* name = list->getInfo(cinfo.mFloorNum, cinfo.mChallengeModeStageNum);
+			u8 wScene2;
+			char* bmsName;
+			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
+			bgm = newAutoBgm(name, bmsName, sound, mAccessMode, info, nullptr);
+			delete list;
+			break;
+		case SceneInfo::TWO_PLAYER_BATTLE:
+			bgm     = newBgmSeq("battle_t.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE6_2P_Battle;
+			break;
+		}
+
+		if (!bgm) {
+			switch (cinfo.mBetaType) {
+			case 1: // Floor without music for bosses, apparently it loads caveconc_00 by default
+				bgm = newAutoBgm("caveconc_00_0.cnd", "caveconc.bms", sound, mAccessMode, info, nullptr);
+				break;
+			case 2:
+				bgm     = newAutoBgm("caverelax.cnd", "caverelax.bms", sound, mAccessMode, info, nullptr);
+				*wScene = PSSystem::WaveScene::WSCENE28_CaveRestFloor;
+				break;
+			}
+		}
+
+		// Check for submerged castle theme
+		if (info.isCaveFloor() && info.mSceneType == SceneInfo::COURSE_YAKUSHIMA) {
+			if (cinfo.getCaveNoFromID() == 3 && !cinfo.isBossFloor()) {
+				bgm = newBgmSeq("kuro_pre.bms", sound);
+				P2ASSERTLINE(1353, bgm);
+				*wScene = PSSystem::WaveScene::WSCENE48_SubmergedCastle;
+			}
+		}
+
+		// story mode cave bgm settings
+		if (!bgm) {
+			P2ASSERTLINE(1574, !cinfo.mBetaType);
+			char* txtpath = nullptr;
+			switch (info.mSceneType) {
+			case SceneInfo::COURSE_TUTORIAL:
+			case SceneInfo::COURSE_TUTORIALDAY1:
+				txtpath = "/user/Totaka/BgmList_Tutorial.txt";
+				break;
+			case SceneInfo::COURSE_FOREST:
+				txtpath = "/user/Totaka/BgmList_Forest.txt";
+				break;
+			case SceneInfo::COURSE_YAKUSHIMA:
+				txtpath = "/user/Totaka/BgmList_Yakushima.txt";
+				break;
+			case SceneInfo::COURSE_LAST:
+				txtpath = "/user/Totaka/BgmList_Last.txt";
+				break;
+			case SceneInfo::COURSE_TEST:
+				txtpath = "/user/Totaka/BgmList_BgmTest.txt";
+				break;
+			}
+			PSSystem::SingletonBase<PSGame::ConductorList>::newInstance();
+			ConductorList* list = PSSystem::SingletonBase<PSGame::ConductorList>::getInstance();
+			bool loaded         = list->load(txtpath, JKRDvdRipper::ALLOC_DIR_BOTTOM);
+			P2ASSERTLINE(1601, loaded);
+			OSReport("caveID==%d\n", cinfo.getCaveNoFromID());
+			char* name = list->getInfo(cinfo.mFloorNum, cinfo.getCaveNoFromID());
+			u8 wScene2;
+			char* bmsName;
+			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
+			bgm = newAutoBgm(name, bmsName, sound, mAccessMode, info, nullptr);
+			delete list;
+		}
+	} else {
+		switch (info.mSceneType) {
+		case SceneInfo::COURSE_TUTORIAL:
+		case SceneInfo::COURSE_TUTORIALDAY1:
+			bgm     = newBgmSeq("n_tutorial.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE15_Valley_of_Repose;
+			break;
+		case SceneInfo::COURSE_FOREST:
+			bgm     = newBgmSeq("forest.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE2_Awakening_Wood;
+			break;
+		case SceneInfo::COURSE_YAKUSHIMA:
+			bgm     = newBgmSeq("yakushima.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE3_Perplexing_Pool;
+			break;
+		case SceneInfo::COURSE_LAST:
+			bgm     = newBgmSeq("last.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE4_Wistful_Wild;
+			break;
+		case SceneInfo::TITLE_SCREEN:
+			bgm     = newStreamBgm(0xc0011000, sound);
+			*wScene = PSSystem::WaveScene::WSCENE21_HighScores;
+			break;
+		case SceneInfo::CAVE_RESULTS:
+			bgm = newStreamBgm(0xc0011013, sound);
+			break;
+		case SceneInfo::FILE_SELECT:
+			bgm = newStreamBgm(0xc001101e, sound);
+			break;
+		case SceneInfo::WORLD_MAP_NORMAL:
+			bgm     = newBgmSeq("worldmap.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE16_WorldMap;
+			break;
+		case SceneInfo::WORLD_MAP_NEWLEVEL:
+			bgm     = newBgmSeq("worldmap_intro.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE16_WorldMap;
+			break;
+		case SceneInfo::PIKLOPEDIA:
+			bgm     = newBgmSeq("book.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE36_Piklopedia;
+			break;
+		case SceneInfo::ENDING_COMPLETE:
+			bgm     = newBgmSeq("comp_result.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE19_Final_Result;
+			break;
+		case SceneInfo::ENDING_DEBTRESULT:
+			bgm     = newBgmSeq("f_result.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE19_Final_Result;
+			break;
+		case SceneInfo::CHALLENGE_RESULTS:
+			bgm = newStreamBgm(0xc0011014, sound);
+			break;
+		case SceneInfo::CHALLENGE_MENU:
+			bgm     = newBgmSeq("c_menu.bms", sound);
+			*wScene = PSSystem::WaveScene::WSCENE20_ChallengeSelect;
+			break;
+		case SceneInfo::VERSUS_MENU:
+			bgm = newStreamBgm(0xc001100f, sound);
+			break;
+		default:
+			JUT_PANICLINE(1745, "P2Assert");
+		}
+	}
+
+	P2ASSERTLINE(1749, bgm);
+	P2ASSERTLINE(1750, sound._00 < 80);
+
+	return bgm;
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -4529,8 +4585,13 @@ void ConductorSelector::getConductorFile(char const*, CaveFloorInfo&, u8*, char*
  * Address:	803372E0
  * Size:	00094C
  */
-void seqCpuSync(JASTrack*, u16)
+void seqCpuSync(JASTrack* track, u16 command)
 {
+	switch (command) {
+	case 1:
+		JAIBasic::setParameterSeqSync(track, 1);
+		break;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -5306,45 +5367,11 @@ lbl_80337C18:
  */
 void PSPlayerChangeToOrimer()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	bl       PSGetDirectedMainBgm__Fv
-	or.      r31, r3, r3
-	beq      lbl_80337C94
-	lbz      r0, 0xb4(r31)
-	li       r3, 0
-	cmplwi   r0, 1
-	bne      lbl_80337C68
-	lwz      r0, 0x70(r31)
-	cmplwi   r0, 0
-	beq      lbl_80337C68
-	li       r3, 1
-
-lbl_80337C68:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80337C88
-	lis      r4, lbl_8048F924@ha
-	addi     r3, r2, lbl_8051E13C@sda21
-	addi     r5, r4, lbl_8048F924@l
-	li       r4, 0x19f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337C88:
-	lwz      r3, 0x70(r31)
-	li       r0, 0
-	stw      r0, 0x38(r3)
-
-lbl_80337C94:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+	if (bgm) {
+		bgm->assertLoaded();
+		bgm->mRootTrack->mSwingState = 0;
+	}
 }
 
 /*
@@ -5352,97 +5379,21 @@ lbl_80337C94:
  * Address:	80337CA8
  * Size:	000124
  */
-void PSGetDirectedMainBgm()
+PSSystem::DirectedBgm* PSGetDirectedMainBgm()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8048F918@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8048F918@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80337CE4
-	addi     r3, r31, 0x190
-	addi     r5, r31, 0xc
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	mgr->checkScene();
+	PSSystem::Scene* scene = mgr->mScenes->mChild;
+	if (!scene) {
+		return nullptr;
+	}
 
-lbl_80337CE4:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80337D04
-	addi     r3, r31, 0x190
-	addi     r5, r31, 0xc
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337D04:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80337D24
-	addi     r3, r31, 0x254
-	addi     r5, r31, 0xc
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337D24:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_80337D3C
-	li       r3, 0
-	b        lbl_80337DB4
-
-lbl_80337D3C:
-	addi     r3, r3, 0x10
-	bl       getFirstSeq__Q28PSSystem6SeqMgrFv
-	or.      r30, r3, r3
-	beq      lbl_80337DB0
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 2
-	beq      lbl_80337DA8
-	mr       r3, r30
-	lwz      r12, 0x10(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	beq      lbl_80337DA8
-	mr       r3, r30
-	lwz      r12, 0x10(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_80337DB0
-
-lbl_80337DA8:
-	mr       r3, r30
-	b        lbl_80337DB4
-
-lbl_80337DB0:
-	li       r3, 0
-
-lbl_80337DB4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::DirectedBgm* seq = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeq();
+	if (!seq || seq->getCastType() == 2 || seq->getCastType() == 3 || seq->getCastType() == 4) {
+		return nullptr;
+	}
+	return seq;
 }
 
 /*
@@ -5452,118 +5403,11 @@ lbl_80337DB4:
  */
 void PSPlayerChangeToLugie()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8048F918@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8048F918@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80337E08
-	addi     r3, r31, 0x190
-	addi     r5, r31, 0xc
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337E08:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80337E28
-	addi     r3, r31, 0x190
-	addi     r5, r31, 0xc
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337E28:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80337E48
-	addi     r3, r31, 0x254
-	addi     r5, r31, 0xc
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337E48:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	bne      lbl_80337E60
-	li       r30, 0
-	b        lbl_80337ED4
-
-lbl_80337E60:
-	addi     r3, r3, 0x10
-	bl       getFirstSeq__Q28PSSystem6SeqMgrFv
-	or.      r30, r3, r3
-	beq      lbl_80337ED0
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 2
-	beq      lbl_80337ED4
-	mr       r3, r30
-	lwz      r12, 0x10(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	beq      lbl_80337ED4
-	mr       r3, r30
-	lwz      r12, 0x10(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_80337ED0
-	b        lbl_80337ED4
-
-lbl_80337ED0:
-	li       r30, 0
-
-lbl_80337ED4:
-	cmplwi   r30, 0
-	beq      lbl_80337F24
-	lbz      r0, 0xb4(r30)
-	li       r3, 0
-	cmplwi   r0, 1
-	bne      lbl_80337EFC
-	lwz      r0, 0x70(r30)
-	cmplwi   r0, 0
-	beq      lbl_80337EFC
-	li       r3, 1
-
-lbl_80337EFC:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80337F18
-	addi     r5, r31, 0xc
-	addi     r3, r2, lbl_8051E13C@sda21
-	li       r4, 0x19f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80337F18:
-	lwz      r3, 0x70(r30)
-	li       r0, 1
-	stw      r0, 0x38(r3)
-
-lbl_80337F24:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+	if (bgm) {
+		bgm->assertLoaded();
+		bgm->mRootTrack->mSwingState = 1;
+	}
 }
 
 /*
@@ -5571,8 +5415,23 @@ lbl_80337F24:
  * Address:	80337F3C
  * Size:	000170
  */
-void PSGetDirectedMainBgmA()
+PSSystem::DirectedBgm* PSGetDirectedMainBgmA()
 {
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSSystem::Scene* scene     = mgr->getChildScene();
+	PSSystem::DirectedBgm* seq = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeqA();
+	if (seq) {
+		bool valid = false;
+		if (seq->getCastType() == 2 || seq->getCastType() == 3 || seq->getCastType() == 4) {
+			valid = true;
+		}
+		P2ASSERTLINE(2241, valid);
+		return seq;
+	} else {
+		JUT_PANICLINE(2244, "P2Assert");
+		return nullptr;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

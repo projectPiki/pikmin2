@@ -28,12 +28,14 @@ struct ConductorList : public PSSystem::TextDataBase, PSSystem::SingletonBase<Co
 	void getSeqAndWaveFromConductor(const char*, u8*, char**);
 
 	// unused/inlined:
-	void getInfo(u8, u8);
+	char* getInfo(u8, u8);
 	void getAutoBgmInfo(u8, u8);
 
 	// _00 = VTBL
 	u8 mCaveCount;        // _20
 	CaveInfo* mCaveInfos; // _24
+
+	static bool sToolMode;
 };
 
 struct ConductorSelector {

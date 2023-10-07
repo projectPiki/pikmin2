@@ -96,7 +96,7 @@ struct SeqMgr : JSULink<SeqBase> { // SUPPOSED TO BE JSUList, BUT BREAKING MATCH
 	SeqBase* findSeq(JASTrack*);
 	SeqBase* getPlayingSeq(JASTrack*);
 	SeqBase* getFirstSeq();
-	void getFirstSeqA();
+	SeqBase* getFirstSeqA();
 	SeqBase* getSeq(u32);
 
 	// _00-_0C  = JSUList<SeqBase>

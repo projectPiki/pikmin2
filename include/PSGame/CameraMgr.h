@@ -18,10 +18,10 @@ struct CameraMgr : public JKRDisposer {
 
 	// _00      = VTBL
 	// _00-_18  = JKRDisposer
-	f32 _18;                  // _18
-	f32 _1C;                  // _1C
-	f32 _20;                  // _20
-	f32 _24;                  // _24
+	f32 mDistanceNear;        // _18
+	f32 mDistanceMiddle;      // _1C
+	f32 mDistanceFar;         // _20
+	f32 mDistanceFarthest;    // _24
 	f32 _28;                  // _28
 	f32 _2C;                  // _2C
 	f32 _30;                  // _30

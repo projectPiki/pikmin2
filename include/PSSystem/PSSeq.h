@@ -51,14 +51,6 @@ struct DirectorBase : public JADHioNode {
 		}
 	}
 
-	// this is supposed to be a function for BgmSeq or DirectedBGM, but those are in a different header,
-	// but the panic has to be in this file AAAAAAAAAAAAAAA
-	inline void isBgmTrackValid()
-	{
-		bool check = true; // _B4 && _70
-		P2ASSERTLINE(415, check);
-	}
-
 	static u8 sToolMode;
 
 	// _00 = VTBL

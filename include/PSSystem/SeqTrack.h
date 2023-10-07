@@ -63,7 +63,7 @@ struct SeqTrackRoot : public SeqTrackBase {
 	u16 _30;                       // _30
 	u16 _32;                       // _32
 	f32 _34;                       // _34
-	int _38;                       // _38 - unknown
+	int mSwingState;               // _38, 0 = olimar, 1 = louie
 	BeatMgr mBeatMgr;              // _3C
 	u8 _3D;                        // _3D - possibly padding or part of BeatMgr
 	u16 _3E;                       // _3E

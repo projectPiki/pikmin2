@@ -8,11 +8,11 @@ namespace PSGame {
 namespace SoundTable {
 struct SePerspInfo {
 	inline SePerspInfo()
-	    : _00(1.0f)
-	    , _04(0.0f)
+	    : mDefaultDistance(1.0f)
+	    , mBaseDistance(0.0f)
 	    , _08(0.0f)
 	    , _0C(0.0f)
-	    , _10(0.0f)
+	    , mForcedDistance(0.0f)
 	    , mIsSpecialSound(false)
 	    , mDisabled(false)
 	{
@@ -21,11 +21,11 @@ struct SePerspInfo {
 	void set(f32, f32, f32, f32, f32);
 	f32 getDistVol(f32, u8);
 
-	f32 _00;              // _00
-	f32 _04;              // _04
+	f32 mDefaultDistance; // _00
+	f32 mBaseDistance;    // _04
 	f32 _08;              // _08
 	f32 _0C;              // _0C
-	f32 _10;              // _10
+	f32 mForcedDistance;  // _10 used for distance in type 7
 	bool mIsSpecialSound; // _14
 	bool mDisabled;       // _15
 };

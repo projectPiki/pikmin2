@@ -3,10 +3,15 @@
 
 #include "types.h"
 
+namespace PSSystem {
+struct DirectedBgm;
+}
+
 // TODO: sort out return types
 void PSPlayerChangeToOrimer();
-void* PSGetDirectedMainBgm();
+PSSystem::DirectedBgm* PSGetDirectedMainBgm();
 void PSPlayerChangeToLugie();
-void* PSGetDirectedMainBgmA();
+PSSystem::DirectedBgm* PSGetDirectedMainBgmA();
+void PSSetBgmSelectAsToolMode();
 
 #endif

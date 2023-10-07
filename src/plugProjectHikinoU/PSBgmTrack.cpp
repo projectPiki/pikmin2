@@ -50,7 +50,7 @@ TaskEntryMgr* SeqTrackBase::getTaskEntryList() { return &mTaskEntryMgr; }
  */
 SeqTrackRoot::SeqTrackRoot()
     : _34(2.0f)
-    , _38(0)
+    , mSwingState(0)
     , _3E(0x3C)
     , _100(2)
 {
@@ -121,7 +121,7 @@ void SeqTrackRoot::onStopSeq() { mTaskEntryMgr.removeAllEntry(); }
 u16 SeqTrackRoot::beatUpdate()
 {
 	mBeatMgr._00 = (mBeatMgr._00 & 1 ^ 1) & 0x00FF | 0x80;
-	if (_38 == 1) {
+	if (mSwingState == 1) {
 		if (mBeatMgr._00 & 1) {
 			_2E = _30;
 		} else {

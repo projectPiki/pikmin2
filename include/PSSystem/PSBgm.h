@@ -60,6 +60,13 @@ struct DirectedBgm : public BgmSeq {
 	// unused/inlined:
 	void getDirector(u8);
 
+	inline void assertLoaded()
+	{
+		// This is supposed to be in PSSeq.h !!!
+		bool check = _B4 == 1 && mRootTrack; // _B4 && _70
+		P2ASSERTLINE(415, check);
+	}
+
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	// _14-_6C  = BgmSeq
