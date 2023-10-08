@@ -82,7 +82,7 @@ struct WaveScene : public JKRDisposer {
 		int _10;               // _10
 	};
 
-	virtual ~WaveScene() { } // _08 (weak)
+	// virtual ~WaveScene() { } // _08 (weak)
 
 	void load(u16, u16, AreaArg, TaskChecker*);
 
@@ -106,11 +106,8 @@ struct WaveAreaLoader {
 };
 
 struct WaveLoader {
-	WaveLoader(u8 id1, u8 id2)
-	{
-		mWaveSceneID[0] = id1;
-		mWaveSceneID[1] = id2;
-	}
+	WaveLoader(u8 id1, u8 id2);
+
 	virtual void loadWave(TaskChecker* task, WaveScene::AreaArg arg); // _08
 
 	// _00 = VTBL

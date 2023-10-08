@@ -80,8 +80,8 @@ struct SeqHeap {
 /**
  * @size 0x18
  */
-struct SeqMgr : JSULink<SeqBase> { // SUPPOSED TO BE JSUList, BUT BREAKING MATCH, PSScene.cpp is broken in the meantime
-	// SeqMgr(Scene* scene) { mScene = scene; }
+struct SeqMgr : public JSUList<SeqBase> { // SUPPOSED TO BE JSUList, BUT BREAKING MATCH, PSScene.cpp is broken in the meantime
+	SeqMgr(Scene* scene) { mScene = scene; }
 
 	virtual ~SeqMgr(); // _08
 
@@ -102,6 +102,7 @@ struct SeqMgr : JSULink<SeqBase> { // SUPPOSED TO BE JSUList, BUT BREAKING MATCH
 	// _00-_0C  = JSUList<SeqBase>
 	// _0C      = VTABLE
 	Scene* mScene; // _10
+	u32 _14;       // _14, unknown
 };
 
 /**

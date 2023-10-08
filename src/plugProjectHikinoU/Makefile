@@ -10,7 +10,7 @@ HIKINO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSAutoBgm_MeloArranger.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSe.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeBase.o\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSScene.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSScene.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSBgmTrack.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o\
 

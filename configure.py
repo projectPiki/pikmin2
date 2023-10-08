@@ -1370,7 +1370,7 @@ LIBS = [
             ["plugProjectHikinoU/PSAutoBgm_MeloArranger", True],
             "plugProjectHikinoU/PSSe",
             "plugProjectHikinoU/PSSeBase",
-            "plugProjectHikinoU/PSScene",
+            ["plugProjectHikinoU/PSScene", True],
             ["plugProjectHikinoU/PSBgmTrack", True],
             "plugProjectHikinoU/PSDirector",
         ],

@@ -29,8 +29,8 @@ struct Scene {
 	void adaptTo(Scene** scene);
 	void detach();
 	void appendSeq(SeqBase* seq);
-	SeqMgr* getSeqMgr();
-	Scene* getChildScene();
+	SeqMgr* getSeqMgr() { return &mSeqMgr; }
+	Scene* getChildScene() { return mChild; }
 
 	Scene* mChild;           // _04
 	WaveLoader* mWaveLoader; // _08

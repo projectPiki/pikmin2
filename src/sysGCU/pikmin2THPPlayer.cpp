@@ -281,7 +281,7 @@ bool THPPlayer::play()
 	PSStop2DStream();
 	if (mState == STATE_Play) {
 		THPPlayerPlay();
-		f32 vol = 127.0f * PSSystem::getSysIF()->_24;
+		f32 vol = 127.0f * PSGetSystemIFA()->_24;
 		if (vol > 127.0f) {
 			vol = 127.0f;
 		}
