@@ -14,7 +14,13 @@ namespace Game {
 struct CPlate : public Container<Creature> {
 	// @size{0x20}
 	struct Slot {
-		Slot();
+		Slot()
+		{
+			mCreature = nullptr;
+			_1C       = 0;
+			_00       = Vector3f(0.0f);
+			_0C       = Vector3f(0.0f);
+		}
 
 		Vector3f _00;        // _00
 		Vector3f _0C;        // _0C
@@ -26,9 +32,9 @@ struct CPlate : public Container<Creature> {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Navi::Parms")
-		    , p000(this, 'p000', "蜈磯?ｭ繧ｪ繝輔そ繝?繝?", 17.5f, 0.0f, 100.0f)
-		    , p001(this, 'p001', "髟ｷ縺輔Μ繝溘ャ繝?", 130.0f, 10.0f, 1000.0f)
-		    , p002(this, 'p002', "繝昴ず繧ｷ繝ｧ繝ｳ縺ｮ螟ｧ縺阪＆(譛螟ｧ)", 6.0f, 1.0f, 50.0f)
+		    , p000(this, 'p000', "先頭オフセット", 17.5f, 0.0f, 100.0f)
+		    , p001(this, 'p001', "長さリミット", 130.0f, 10.0f, 1000.0f)
+		    , p002(this, 'p002', "ポジションの大きさ(最大)", 6.0f, 1.0f, 50.0f)
 		{
 		}
 		Parm<f32> p000; // _0C
@@ -38,7 +44,7 @@ struct CPlate : public Container<Creature> {
 
 	CPlate(int);
 
-	virtual ~CPlate();            // _08 (weak)
+	virtual ~CPlate() { }         // _08 (weak)
 	virtual void* getNext(void*); // _14
 	virtual void* getStart();     // _18
 	virtual void* getEnd();       // _1C
