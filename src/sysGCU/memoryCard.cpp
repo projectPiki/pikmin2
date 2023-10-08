@@ -1505,8 +1505,50 @@ bool MemoryCardMgr::checkCardStat(MemoryCardMgr::ECardSlot cardSlot, CARDFileInf
  * Address:	80441D64
  * Size:	000280
  */
-bool MemoryCardMgr::read(MemoryCardMgr::ECardSlot, const char*, u8*, s32, s32)
+bool MemoryCardMgr::read(MemoryCardMgr::ECardSlot cardSlot, const char* fileName, u8* param_3, s32 param_4, s32 param_5)
 {
+	CARDFileInfo fileInfo;
+	CARDStat cardStat;
+	bool result = false;
+	char someChar = '\0';
+	checkSlot(cardSlot);
+	if (checkStatus() == 2) {
+		switch(CARDOpen(cardSlot, (char*)fileName, &fileInfo)) {
+			case CARD_RESULT_READY:
+				setInsideStatusFlag(INSIDESTATUS_Unk1);
+				result = true;
+				break;
+			case CARD_RESULT_NOCARD:
+				setInsideStatusFlag(INSIDESTATUS_Unk);
+				break;
+			default:
+				setInsideStatusFlag(INSIDESTATUS_Unk3);
+				break;
+		}
+		if (result) {
+			result = false;
+			setInsideStatusFlag(INSIDESTATUS_Unk11);
+			if (!CARDGetStatus(cardSlot, fileInfo.fileNo, &cardStat)) {
+				if (doCheckCardStat(&cardStat)) {
+					setInsideStatusFlag(INSIDESTATUS_Unk1);
+				} else {
+					setInsideStatusFlag(INSIDESTATUS_Unk1);
+				}
+			} else {
+				setInsideStatusFlag(INSIDESTATUS_Unk10);
+			}
+			_D0 = someChar;
+			setInsideStatusFlag(INSIDESTATUS_Unk11);
+			if (!CARDRead(&fileInfo, param_3, param_4, param_5) == 0) {
+				setInsideStatusFlag(INSIDESTATUS_Unk10);
+			} else {
+				setInsideStatusFlag(INSIDESTATUS_Unk1);
+				result = true;
+			}
+			CARDClose(&fileInfo);
+		}
+		return result;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xB0(r1)
@@ -1957,13 +1999,13 @@ s32 MemoryCardMgr::checkSpace(MemoryCardMgr::ECardSlot cardSlot, int requiredSpa
 	cardRes = CARDFreeBlocks(cardSlot, &freeBytes, &freeFiles);
 	P2ASSERTLINE(1011, cardRes != -1);
 	switch (cardRes) {
-	case -0x80:
+	case CARD_RESULT_FATAL_ERROR:
 		setInsideStatusFlag(INSIDESTATUS_Unk10);
 		break;
-	case -3:
+	case CARD_RESULT_NOCARD:
 		setInsideStatusFlag(INSIDESTATUS_Unk);
 		break;
-	case -6:
+	case CARD_RESULT_BROKEN:
 		setInsideStatusFlag(INSIDESTATUS_Unk5);
 		break;
 	}
