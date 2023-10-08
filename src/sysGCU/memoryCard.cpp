@@ -106,7 +106,7 @@ bool MemoryCardMgr::setCommand(MemoryCardMgrCommandBase* command)
 			if (!dumbPtr[1]) {
 				memcpy((void*)(&dumbPtr[1]), (void*)command, 0x20);
 				mIsCard++;
-				P2ASSERTLINE(254, mIsCard <= 5);
+				P2ASSERTLINE(254, (u32)mIsCard <= 5);
 				break;
 			}
 			j++;
@@ -1027,13 +1027,57 @@ lbl_80441820:
 	*/
 }
 
+inline void checkSlot(MemoryCardMgr::ECardSlot cardSlot) {
+	bool check = (cardSlot == 0 || cardSlot == 1);
+	P2ASSERTLINE(536, check);
+}
+
 /*
  * --INFO--
  * Address:	80441848
  * Size:	000254
  */
-void MemoryCardMgr::writeCardStatus(MemoryCardMgr::ECardSlot, const char*)
+bool MemoryCardMgr::writeCardStatus(MemoryCardMgr::ECardSlot cardSlot, const char* fileName)
 {
+	CARDFileInfo fileInfo;
+	CARDStat cardStat;
+	bool result = 0;
+	bool result2;
+	checkSlot(cardSlot);
+	result2 = false;
+	if (checkStatus() == 2) {
+		u32 cardRes = CARDOpen(cardSlot, (char*)fileName, &fileInfo);
+		switch(cardRes) {
+			case CARD_RESULT_READY:
+				setInsideStatusFlag(INSIDESTATUS_Unk1);
+				result = true;
+				break;
+			case CARD_RESULT_NOCARD:
+				setInsideStatusFlag(INSIDESTATUS_Unk);
+				break;
+			default:
+				setInsideStatusFlag(INSIDESTATUS_Unk3);
+				break;
+		}
+		if (result) {
+			if (!CARDGetStatus(cardSlot, fileInfo.fileNo, &cardStat)) {
+				if (!doCheckCardStat(&cardStat)) {
+					doSetCardStat(&cardStat);
+					setInsideStatusFlag(INSIDESTATUS_Unk11);
+					if (CARDSetStatus(cardSlot, fileInfo.fileNo, &cardStat)) {
+						setInsideStatusFlag(INSIDESTATUS_Unk10);
+					} else {
+						setInsideStatusFlag(INSIDESTATUS_Unk1);
+						result2 = true;
+					}
+				}
+			} else {
+				setInsideStatusFlag(INSIDESTATUS_Unk10);
+			}
+		}
+		CARDClose(&fileInfo);
+		return result2;
+	}
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -1243,38 +1287,34 @@ lbl_80441A7C:
 bool MemoryCardMgr::write(MemoryCardMgr::ECardSlot cardSlot, const char* fileName, u8* buffer, s32 length, s32 offset)
 {
 	CARDFileInfo fileInfo;
+	checkSlot(cardSlot);
 	bool result = false;
-	bool result2;
-	if (cardSlot == 0) {
-		P2ASSERTLINE(536, false);
-	} else {
-		if (checkStatus() == 2) {
-			u32 cardRes = CARDOpen(cardSlot, (char*)fileName, &fileInfo);
-			switch (cardRes) {
-			case 0:
-				setInsideStatusFlag(INSIDESTATUS_Unk1);
-				result = true;
-				break;
-			case -3:
-				setInsideStatusFlag(INSIDESTATUS_Unk);
-				break;
-			default:
-				setInsideStatusFlag(INSIDESTATUS_Unk3);
-				break;
-			}
+	if (checkStatus() == 2) {
+		u32 cardRes = CARDOpen(cardSlot, (char*)fileName, &fileInfo);
+		switch (cardRes) {
+		case 0:
+			setInsideStatusFlag(INSIDESTATUS_Unk1);
+			result = true;
+			break;
+		case -3:
+			setInsideStatusFlag(INSIDESTATUS_Unk);
+			break;
+		default:
+			setInsideStatusFlag(INSIDESTATUS_Unk3);
+			break;
 		}
-		if (result) {
-			setInsideStatusFlag(INSIDESTATUS_Unk11);
-			if (CARDWrite(&fileInfo, buffer, length, offset)) {
-				setInsideStatusFlag(INSIDESTATUS_Unk10);
-			} else {
-				setInsideStatusFlag(INSIDESTATUS_Unk1);
-				result = true;
-			}
-			CARDClose(&fileInfo);
-		}
-		return result;
 	}
+	if (result) {
+		setInsideStatusFlag(INSIDESTATUS_Unk11);
+		if (CARDWrite(&fileInfo, buffer, length, offset)) {
+			setInsideStatusFlag(INSIDESTATUS_Unk10);
+		} else {
+			setInsideStatusFlag(INSIDESTATUS_Unk1);
+			result = true;
+		}
+		CARDClose(&fileInfo);
+	}
+	return result;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -1722,28 +1762,68 @@ bool MemoryCardMgr::mount(MemoryCardMgr::ECardSlot cardSlot)
 	bool result;
 	CARDMount(cardSlot, &sCardWorkArea, nullptr);
 	switch (cardSlot) {
-	case -5:
-		setInsideStatusFlag(INSIDESTATUS_Unk10);
-		return false;
-	case -128:
-		setInsideStatusFlag(INSIDESTATUS_Unk4);
-		return false;
-	case -13:
-		setInsideStatusFlag(INSIDESTATUS_Unk4);
-		return false;
-	case -6:
-		P2ASSERTLINE(989, false);
-		break;
-	case 0:
-		switch (CARDCheck(cardSlot)) {
-		case -5:
-		case -128:
+		case CARD_RESULT_FATAL_ERROR:
+		case CARD_RESULT_IOERROR:
 			setInsideStatusFlag(INSIDESTATUS_Unk10);
-			return false;
+			result = false;
+			break;
+		case CARD_RESULT_NOCARD:
+			setInsideStatusFlag(INSIDESTATUS_Unk);
+			result = false;
+			break;
+		case CARD_RESULT_BROKEN:
+		case CARD_RESULT_READY:
+			switch (CARDCheck(cardSlot)) {
+				case CARD_RESULT_READY:
+					result = true;
+					break;
+				case CARD_RESULT_IOERROR:
+					setInsideStatusFlag(INSIDESTATUS_Unk10);
+					result = false;
+					break;
+				case CARD_RESULT_FATAL_ERROR:
+					setInsideStatusFlag(INSIDESTATUS_Unk5);
+					if (result == false) {
+						CARDUnmount(cardSlot);
+					}
+					break;
+			}
+			break;
+		case CARD_RESULT_ENCODING:
+			setInsideStatusFlag(INSIDESTATUS_Unk4);
+			result = false;
+			break;
 		default:
 			P2ASSERTLINE(989, false);
-		}
 	}
+	return result;
+	/*switch (cardSlot) {
+	case CARD_RESULT_IOERROR:
+		setInsideStatusFlag(INSIDESTATUS_Unk10);
+		return false;
+	case CARD_RESULT_FATAL_ERROR:
+		setInsideStatusFlag(INSIDESTATUS_Unk4);
+		return false;
+	case CARD_RESULT_READY:
+		switch (CARDCheck(cardSlot)) {
+			case CARD_RESULT_IOERROR:
+			case CARD_RESULT_FATAL_ERROR:
+				setInsideStatusFlag(INSIDESTATUS_Unk10);
+				return false;
+			case CARD_RESULT_READY:
+				setInsideStatusFlag(INSIDESTATUS_Unk5);
+			default:
+				P2ASSERTLINE(989, false);
+		}
+	case CARD_RESULT_ENCODING:
+		setInsideStatusFlag(INSIDESTATUS_Unk4);
+		return false;
+	case CARD_RESULT_BROKEN:
+		P2ASSERTLINE(989, false);
+		break;
+	}
+	CARDUnmount(cardSlot);
+	*/
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

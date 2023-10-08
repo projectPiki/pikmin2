@@ -79,7 +79,7 @@ struct MemoryCardMgr {
 	bool cardMount();
 	bool fileOpen(CARDFileInfo*, ECardSlot, const char*);
 	bool writeHeader(ECardSlot, const char*);
-	void writeCardStatus(ECardSlot, const char*);
+	bool writeCardStatus(ECardSlot, const char*);
 	void setTmpHeap(JKRHeap*);
 	void init();
 	u32 checkStatus();
