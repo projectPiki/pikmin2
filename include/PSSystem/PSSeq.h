@@ -5,6 +5,7 @@
 #include "JSystem/JAudio/JAD/JADHioNode.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "PSSystem/PSBgm.h"
+//#include "PSSystem/SeqTrack.h"
 
 namespace PSSystem {
 struct SeqTrackBase;
@@ -16,20 +17,22 @@ struct DirectorBase : public JADHioNode {
 	virtual void exec();                            // _0C
 	virtual void directOn();                        // _10
 	virtual void directOff();                       // _14
-	virtual void underDirection();                  // _18 (weak)
-	virtual void execInner();                       // _1C (weak)
+	virtual void underDirection() { }               // _18 (weak)
+	virtual void execInner() { }                    // _1C (weak)
 	virtual void directOnTrack(SeqTrackBase&)  = 0; // _20
 	virtual void directOffTrack(SeqTrackBase&) = 0; // _24
 	virtual void doUpdateRequest();                 // _28
-	virtual void onPlayInit(JASTrack*);             // _2C (weak)
-	virtual void onDirectOn();                      // _30 (weak)
-	virtual void onDirectOff();                     // _34 (weak)
+	virtual void onPlayInit(JASTrack*) { }          // _2C (weak)
+	virtual void onDirectOn() { }                   // _30 (weak)
+	virtual void onDirectOff() { }                  // _34 (weak)
 
 	bool isUnderDirection();
 	void setTrack(u8, SeqTrackBase*);
 	void directOnInner();
 	void directOffInner();
 	void powerOn();
+
+	void checkTracks();
 
 	inline void setupTracks(int startID, int maxID, SeqTrackBase** tracks)
 	{
@@ -51,19 +54,63 @@ struct DirectorBase : public JADHioNode {
 		}
 	}
 
+	inline bool needDirection()
+	{
+		for (u8 i = 0; i < mTrackNum; i++) {
+			if (mTracks[i]->getTaskEntryList()->isUnderTask_byDirector(this)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	inline void stop()
+	{
+		OSLockMutex(&mMutex1);
+		mEnabled = false;
+		for (u8 i = 0; i < mTrackNum; i++) {
+			mTrackFlagList[i] = 0;
+		}
+		OSUnlockMutex(&mMutex1);
+	}
+
+	inline void playInit(JASTrack* track)
+	{
+		for (u8 i = 0; i < mTrackNum; i++) {
+			P2ASSERTLINE(51, i < mTrackNum);
+			if (mTracks[i]->getTaskEntryList()->mTrack == track) {
+				onPlayInit(track);
+				OSLockMutex(&mMutex1);
+				for (u8 j = 0; j < mTrackNum; j++) {
+					if (mTracks[j]->getTaskEntryList()->mTrack == track) {
+						mTrackFlagList[j] = true;
+					}
+					if (mTrackFlagList[j]) {
+						OSUnlockMutex(&mMutex1);
+						return;
+					}
+				}
+				OSUnlockMutex(&mMutex1);
+				OSLockMutex(&mMutex2);
+				mIsBegin = true;
+				OSUnlockMutex(&mMutex2);
+			}
+		}
+	}
+
 	static u8 sToolMode;
 
 	// _00 = VTBL
 	SeqTrackBase** mTracks; // _04
-	int _08;                // _08
-	OSMutex _0C;            // _0C
-	OSMutex _24;            // _24
-	u8 _3C;                 // _3C
+	int mState;             // _08
+	OSMutex mMutex1;        // _0C
+	OSMutex mMutex2;        // _24
+	bool mIsBegin;          // _3C
 	u8 _3D[0x3];            // _3D - padding?
-	u8 _40;                 // _40
-	u8 _41;                 // _41
+	bool mEnabled;          // _40 (only enabled for interactive music)
+	u8 mTrackNum;           // _41
 	u8 _42[0x2];            // _42 - padding?
-	u8 _44[4];              // _44
+	u8* mTrackFlagList;     // _44
 };
 
 struct OneShotDirector : public DirectorBase {
@@ -75,7 +122,7 @@ struct OneShotDirector : public DirectorBase {
 	virtual ~OneShotDirector() { }                 // _08 (weak)
 	virtual void exec();                           // _0C
 	virtual void directOnTrack(SeqTrackBase&) = 0; // _20
-	virtual void directOffTrack(SeqTrackBase&);    // _24 (weak)
+	virtual void directOffTrack(SeqTrackBase&) { } // _24 (weak)
 
 	// _00     = VTBL
 	// _00-_48 = DirectorBase
@@ -105,9 +152,9 @@ struct DirectorActorBase {
 struct DirectorCopyActor : public DirectorActorBase {
 	DirectorCopyActor(DirectorBase*, DirectorBase*);
 
-	virtual void exec(DirectorBase*);   // _08
-	virtual void onUpdateFromMasterD(); // _0C (weak)
-	virtual void onUpdateFromSlaveD();  // _10 (weak)
+	virtual void exec(DirectorBase*);      // _08
+	virtual void onUpdateFromMasterD() { } // _0C (weak)
+	virtual void onUpdateFromSlaveD() { }  // _10 (weak)
 
 	// _00 = VTBL
 	DirectorBase* mDirectorChild;  // _04
@@ -126,8 +173,8 @@ struct DirectorMgrBase : public JADHioNode {
 	void off(DirectedBgm*);
 
 	// _00 = VTBL
-	DirectorBase** _04; // _04
-	u8 _08;             // _08
+	DirectorBase** mDirectors; // _04
+	u8 mDirectorCount;         // _08
 };
 
 } // namespace PSSystem

@@ -7,6 +7,7 @@
 #include "JSystem/JAudio/JAI/JAISound.h"
 #include "Dolphin/os.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
+#include "PSSystem/SeqTrack.h"
 
 namespace PSSystem {
 struct DirectorMgrBase;
@@ -65,6 +66,16 @@ struct DirectedBgm : public BgmSeq {
 		// This is supposed to be in PSSeq.h !!!
 		bool check = _B4 == 1 && mRootTrack; // _B4 && _70
 		P2ASSERTLINE(415, check);
+	}
+
+	inline void removeAllChildren()
+	{
+		for (u8 i = 0; i < 16; i++) {
+			P2ASSERTLINE(419, i < 16);
+			if (mChildTracks[i]) {
+				mChildTracks[i]->getTaskEntryList()->removeAllEntry();
+			}
+		}
 	}
 
 	// _00-_10  = JSULink<SeqBase>
