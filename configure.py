@@ -930,7 +930,7 @@ LIBS = [
             "plugProjectKandoU/pikiAI",
             ["plugProjectKandoU/pelletConfig", True],
             ["plugProjectKandoU/gameFootmark", True],
-            "plugProjectKandoU/gameSystem",
+            ["plugProjectKandoU/gameSystem", True],
             ["plugProjectKandoU/aiConstants", True],
             "plugProjectKandoU/gameMapParts",
             "plugProjectKandoU/vsGameSection",

@@ -197,6 +197,8 @@ struct MoviePlayer : public JKRDisposer {
 #define MOVIEPLAYER_HEAP_SIZE     0x60400
 #define MOVIEPLAYER_CONTEXT_COUNT 8 // (max number of cutscenes that can be queued at once)
 
+	enum PlayStatus { MOVIEPLAY_SUCCESS, MOVIEPLAY_NOCONFIG, MOVIEPLAY_INQUEUE, MOVIEPLAY_QUEUEFAIL };
+
 	MoviePlayer();
 
 	virtual ~MoviePlayer() { mArchive = nullptr; } // _08
@@ -215,7 +217,7 @@ struct MoviePlayer : public JKRDisposer {
 	bool isPlaying(char*);
 	void loadResource();
 	bool parse(bool);
-	enum PlayStatus { MOVIEPLAY_SUCCESS, MOVIEPLAY_NOCONFIG, MOVIEPLAY_INQUEUE, MOVIEPLAY_QUEUEFAIL };
+
 	u8 play(MoviePlayArg&);
 	u8 play(MovieConfig*, MoviePlayArg&, bool);
 	void reset();

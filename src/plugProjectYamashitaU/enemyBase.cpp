@@ -1287,7 +1287,7 @@ void EnemyBase::setZukanVisible(bool updateStats)
 		return;
 	}
 
-	if ((gameSystem->mFlags & GAMESYS_Unk5) == FALSE) {
+	if ((gameSystem->isFlag(GAMESYS_Unk5)) == FALSE) {
 		EnemyInfo* enemyInfo = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 		if ((enemyInfo->mFlags & 0x200) == FALSE) {
 			TekiStat::Info* tekiInfo = playData->mTekiStatMgr.getTekiInfo(getEnemyTypeID());

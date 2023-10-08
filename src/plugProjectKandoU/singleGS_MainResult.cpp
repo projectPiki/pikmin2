@@ -39,7 +39,7 @@ MainResultState::MainResultState()
  */
 void MainResultState::init(SingleGameSection* game, StateArg* arg)
 {
-	gameSystem->mFlags |= GAMESYS_Unk3;
+	gameSystem->setFlag(GAMESYS_Unk3);
 	mGameSect = game;
 	game->startFadeblack();
 

@@ -44,7 +44,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameFootmark.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameSystem.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiConstants.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameMapParts.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsGameSection.o\

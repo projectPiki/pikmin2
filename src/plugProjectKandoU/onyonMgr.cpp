@@ -956,7 +956,7 @@ void Onyon::do_doAnimation()
 	update_pmotions();
 
 	u16 onyonType = mOnyonType;
-	if (gameSystem->mFlags & 2) {
+	if (gameSystem->isFlag(GAMESYS_IsPlaying)) {
 		if (onyonType == ONYON_TYPE_SHIP) {
 			SoundID soundid = PSSE_EV_UFO_PISTON;
 
@@ -1219,7 +1219,7 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 							doEmit(obj, false);
 
 						} else { // returned pikihead is null, 100 pikmin limit must be reached
-							if (gameSystem->mFlags & 0x20 && !playData->isDemoFlag(DEMO_Max_Pikmin_On_Field)) {
+							if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_Max_Pikmin_On_Field)) {
 								playData->setDemoFlag(DEMO_Max_Pikmin_On_Field);
 
 								// if wild pikmin exist, play 95 pikmin CS, otherwise play 100 pikmin CS
@@ -1444,7 +1444,7 @@ void Onyon::setSpotEffect(bool flag)
  */
 void Onyon::setSpotEffectActive(bool flag)
 {
-	if (flag && gameSystem && !(gameSystem->mFlags & 0x20)) {
+	if (flag && gameSystem && !(gameSystem->isFlag(GAMESYS_IsGameWorldActive))) {
 		flag = false;
 	}
 
@@ -1595,7 +1595,7 @@ void Onyon::exitPikis(int add, int color)
  */
 Creature* Onyon::exitPiki()
 {
-	if (!(gameSystem->mFlags & 0x20)) {
+	if (!(gameSystem->isFlag(GAMESYS_IsGameWorldActive))) {
 		return nullptr;
 	}
 

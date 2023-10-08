@@ -311,7 +311,7 @@ bool InteractBomb::actPiki(Game::Piki* piki)
 	if (piki->mCurrentState->invincible(piki)) {
 		return false;
 	}
-	if (!(gameSystem->mFlags & 0x20)) {
+	if (!(gameSystem->isFlag(GAMESYS_IsGameWorldActive))) {
 		return false;
 	}
 	if (piki->mCurrentState->dead()) {
@@ -588,7 +588,7 @@ bool InteractBattle::actPiki(Game::Piki* piki)
  */
 bool InteractPress::actPiki(Game::Piki* piki)
 {
-	if (!(gameSystem->mFlags & 0x20) && gameSystem->mIsInCave) {
+	if (!(gameSystem->isFlag(GAMESYS_IsGameWorldActive)) && gameSystem->mIsInCave) {
 		return false;
 	}
 	if (piki->mCurrentState->invincible(piki)) {

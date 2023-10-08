@@ -26,13 +26,12 @@ OptimiseController* OptimiseController::mInstance;
  */
 GameSystem::GameSystem(BaseGameSection* section)
 {
-	mFlags      = 0;
 	mSection    = section;
 	mMode       = GSM_STORY_MODE;
 	mXfbTexture = nullptr;
 	DynamicsParms::globalInstance();
 	CellMgrParms::globalInstance();
-	mFlags = 0;
+	mFlags.clear();
 	OptimiseController::globalInstance();
 	mIsMoviePause = false;
 }
@@ -52,14 +51,18 @@ GameSystem::~GameSystem() { OptimiseController::deleteInstance(); }
 void GameSystem::init()
 {
 	mIsMoviePause = false;
-	mFlags        = 0;
-	mFrameTimer   = 0;
+	mFlags.clear();
+	mFrameTimer = 0;
+
 	sys->heapStatusStart("DynParticle", nullptr);
 	dynParticleMgr = new DynParticleMgr(512);
 	sys->heapStatusEnd("DynParticle");
+
 	_aiConstants = new AIConstants;
+
 	Stickers::initialise();
 	GameStat::clear();
+
 	mIsFrozen     = false;
 	_49           = 0;
 	mIsPaused     = 0;
@@ -75,13 +78,13 @@ void GameSystem::init()
  * Address:	801B4D58
  * Size:	000020
  */
-s32 GameSystem::calcFrameDist(int time)
+int GameSystem::calcFrameDist(int time)
 {
-	int test = (FRAMECOUNT_MAX - time);
+	int timeFromEnd = (FRAMECOUNT_MAX - time);
 	if ((int)mFrameTimer >= time) {
 		return mFrameTimer - time;
 	}
-	return test + mFrameTimer;
+	return timeFromEnd + mFrameTimer;
 }
 
 /*
@@ -94,14 +97,16 @@ void GameSystem::startFrame()
 	if (mIsPaused) {
 		mIsPaused--;
 	}
+
 	mFrameTimer++;
 	if ((int)mFrameTimer > FRAMECOUNT_MAX) {
 		mFrameTimer = 0;
 	}
+
 	cellMgr->initFrame();
 	collisionUpdateMgr->update();
 
-	if (!paused() && !mIsFrozen && !(mFlags & 8) && !paused_soft() && (!moviePlayer || moviePlayer->mDemoState == 0)
+	if (!paused() && !mIsFrozen && !isFlag(GAMESYS_Unk4) && !paused_soft() && (!moviePlayer || moviePlayer->mDemoState == 0)
 	    && (int)gameSystem->mTimeMgr->mDayCount != 0) {
 		mTimeMgr->update();
 	}
@@ -114,8 +119,9 @@ void GameSystem::startFrame()
  */
 void GameSystem::endFrame()
 {
-	if (mIsPaused)
+	if (mIsPaused) {
 		mIsPaused--;
+	}
 }
 
 /*
@@ -183,21 +189,21 @@ void GameSystem::startFadewhite()
  * Address:	801B4F84
  * Size:	000008
  */
-void GameSystem::setMoviePause(bool flag, char*) { mIsMoviePause = flag; }
+void GameSystem::setMoviePause(bool isMoviePause, char*) { mIsMoviePause = isMoviePause; }
 
 /*
  * --INFO--
  * Address:	801B4F8C
  * Size:	000008
  */
-void GameSystem::setFrozen(bool flag, char*) { mIsFrozen = flag; }
+void GameSystem::setFrozen(bool isFrozen, char*) { mIsFrozen = isFrozen; }
 
 /*
  * --INFO--
  * Address:	801B4F94
  * Size:	00002C
  */
-u32 GameSystem::setPause(bool toggle, char* str, int id) { startPause(toggle, id, str); }
+u32 GameSystem::setPause(bool isPausedSoft, char* str, int pauseID) { startPause(isPausedSoft, pauseID, str); }
 
 /*
  * --INFO--
@@ -224,16 +230,16 @@ bool GameSystem::paused()
  * Address:	801B4FF0
  * Size:	000050
  */
-int GameSystem::startPause(bool toggle, int id, char* str)
+int GameSystem::startPause(bool isPausedSoft, int pauseID, char* str)
 {
-	if (toggle) {
+	if (isPausedSoft) {
 		if (paused()) {
 			return 1;
 		}
 	}
-	mIsPaused     = id;
+	mIsPaused     = pauseID;
 	int prev      = mIsPausedSoft;
-	mIsPausedSoft = toggle;
+	mIsPausedSoft = isPausedSoft;
 	return prev;
 }
 
@@ -247,21 +253,6 @@ void GameSystem::setDrawBuffer(int id)
 	if (mSection) {
 		mSection->setDrawBuffer(id);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x58(r3)
-	cmplwi   r3, 0
-	beq      lbl_801B505C
-	bl       setDrawBuffer__Q24Game15BaseGameSectionFi
-
-lbl_801B505C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -283,195 +274,18 @@ void GameSystem::doAnimation()
 	{
 		GenericObjectMgr* obj = *it;
 
-		if ((!paused() || !obj->pausable()) && (!mIsFrozen || !obj->frozenable())) {
-			obj->doAnimation();
+		if (paused()) {
+			if (obj->pausable()) {
+				continue;
+			}
+		} else if (mIsFrozen) {
+			if (obj->frozenable()) {
+				continue;
+			}
 		}
+
+		obj->doAnimation();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	cmplwi   r0, 0
-	stw      r30, 0x18(r1)
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r31, 0x10(r1)
-	bne      lbl_801B50CC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B52B4
-
-lbl_801B50CC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B5138
-
-lbl_801B50E4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B52B4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801B5138:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B50E4
-	b        lbl_801B52B4
-
-lbl_801B5158:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x4b(r31)
-	mr       r30, r3
-	cmplwi   r0, 0
-	bne      lbl_801B5190
-	lbz      r0, 0x4c(r31)
-	cmplwi   r0, 0
-	beq      lbl_801B5190
-	li       r0, 1
-	b        lbl_801B5194
-
-lbl_801B5190:
-	li       r0, 0
-
-lbl_801B5194:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_801B51BC
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B51F8
-	b        lbl_801B51E4
-
-lbl_801B51BC:
-	lbz      r0, 0x4a(r31)
-	cmplwi   r0, 0
-	beq      lbl_801B51E4
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B51F8
-
-lbl_801B51E4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801B51F8:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801B5224
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B52B4
-
-lbl_801B5224:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B5298
-
-lbl_801B5244:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B52B4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801B5298:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B5244
-
-lbl_801B52B4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801B5158
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -543,199 +357,18 @@ void GameSystem::doSimulation(f32 speed)
 	{
 		GenericObjectMgr* obj = *it;
 
-		if ((!paused() || !obj->pausable()) && (!mIsFrozen || !obj->frozenable())) {
-			obj->doSimulation(speed);
+		if (paused()) {
+			if (obj->pausable()) {
+				continue;
+			}
+		} else if (mIsFrozen) {
+			if (obj->frozenable()) {
+				continue;
+			}
 		}
+
+		obj->doSimulation(speed);
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
-	stfd     f31, 0x28(r1)
-	fmr      f31, f1
-	cmplwi   r0, 0
-	stw      r31, 0x24(r1)
-	mr       r31, r3
-	stw      r30, 0x20(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r31, 0x10(r1)
-	bne      lbl_801B5B24
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B5D10
-
-lbl_801B5B24:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B5B90
-
-lbl_801B5B3C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B5D10
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801B5B90:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B5B3C
-	b        lbl_801B5D10
-
-lbl_801B5BB0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x4b(r31)
-	mr       r30, r3
-	cmplwi   r0, 0
-	bne      lbl_801B5BE8
-	lbz      r0, 0x4c(r31)
-	cmplwi   r0, 0
-	beq      lbl_801B5BE8
-	li       r0, 1
-	b        lbl_801B5BEC
-
-lbl_801B5BE8:
-	li       r0, 0
-
-lbl_801B5BEC:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_801B5C14
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B5C54
-	b        lbl_801B5C3C
-
-lbl_801B5C14:
-	lbz      r0, 0x4a(r31)
-	cmplwi   r0, 0
-	beq      lbl_801B5C3C
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B5C54
-
-lbl_801B5C3C:
-	mr       r3, r30
-	fmr      f1, f31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801B5C54:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801B5C80
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B5D10
-
-lbl_801B5C80:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B5CF4
-
-lbl_801B5CA0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B5D10
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801B5CF4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B5CA0
-
-lbl_801B5D10:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801B5BB0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x28(r1)
-	lwz      r31, 0x24(r1)
-	lwz      r30, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -825,19 +458,19 @@ TObjectNode<GenericObjectMgr>* GameSystem::detachObjectMgr_reuse(GenericObjectMg
  * Address:	........
  * Size:	0000FC
  */
-// OptimiseController::OptimiseController()
-//{
-// UNUSED FUNCTION
-//}
+OptimiseController::OptimiseController()
+    : Parameters(nullptr, "Dynamics")
+    , mC000(this, 'c000', "ピクミン首", true, false, true)              // 'pikmin neck'
+    , mC001(this, 'c001', "コリジョンバッファ有効", false, false, true) // 'collision buffer enabled'
+{
+}
 
 /*
  * --INFO--
  * Address:	801B6050
  * Size:	000068
  */
-// OptimiseController::~OptimiseController()
-//{
-//}
+OptimiseController::~OptimiseController() { mInstance = nullptr; }
 
 /*
  * --INFO--
@@ -864,19 +497,3 @@ void OptimiseController::deleteInstance()
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	801B620C
- * Size:	000044
- */
-void NodeObjectMgr<GenericObjectMgr>::delNode(GenericObjectMgr* obj)
-{
-	FOREACH_NODE(TObjectNode<GenericObjectMgr>, mNode.mChild, node)
-	{
-		if (node->mContents == obj) {
-			node->del();
-			return;
-		}
-	}
-}

@@ -484,7 +484,7 @@ void SingleGame::CaveState::check_SMenu(SingleGameSection* game)
 		return;
 	case -1:
 		// Conditions to open pause menu
-		if (!(gameSystem->mFlags & GAMESYS_Unk4) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
+		if (!(gameSystem->isFlag(GAMESYS_Unk4)) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
 		    && game->mControllerP1->mButton.mButtonDown & Controller::PRESS_START) {
 			og::Screen::DispMemberSMenuAll disp;
 			game->setDispMemberSMenu(disp);

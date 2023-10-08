@@ -485,7 +485,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
  */
 void Creature::updateCell()
 {
-	if (gameSystem && gameSystem->mFlags & 4) {
+	if (gameSystem && gameSystem->isFlag(GAMESYS_Unk3)) {
 		return;
 	}
 

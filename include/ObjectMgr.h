@@ -81,6 +81,8 @@ struct TObjectNode : public CNode {
 
 	TObjectNode<T>* getNext() { return static_cast<TObjectNode<T>*>(mNext); }
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	T* mContents; // _18
 };
 
@@ -119,33 +121,23 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 		mNode.mNext   = nullptr;
 	}
 
-	void delNode(T* contents);
-	// needs to not be inlined in ItemMgr::killAllExceptOnyonMgr();
-	/*
-	{
-	    // for (TObjectNode<T>* node = (TObjectNode<T>*)mNode.mChild; node != nullptr; node =
-	(TObjectNode<T>*)node->mNext) {
-	    // 	if (node->mContents == contents) {
-	    // 		node->del();
-	    // 		return;
-	    // 	}
-	    // }
-	    TObjectNode<T>* node = (TObjectNode<T>*)mNode.mChild;
-	    while (true) {
-	        if (node == nullptr) {
-	            return;
-	        }
-	        if (node->mContents == contents) {
-	            break;
-	        }
-	        node = (TObjectNode<T>*)node->mNext;
-	    }
-	    node->del();
-	    return;
-	}
-	*/
+	void delNode(T* obj);
 
+	// _00     = VTBL
+	// _00-_20 = ObjectMgr
 	TObjectNode<T> mNode; // _20
 };
+
+template <typename T>
+void NodeObjectMgr<T>::delNode(T* obj)
+{
+	FOREACH_NODE(TObjectNode<GenericObjectMgr>, mNode.mChild, node)
+	{
+		if (node->mContents == obj) {
+			node->del();
+			return;
+		}
+	}
+}
 
 #endif
