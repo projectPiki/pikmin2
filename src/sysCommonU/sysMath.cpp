@@ -887,7 +887,7 @@ void Quat::conjugate()
  * Address:	80412798
  * Size:	0000B4
  */
-void Quat::inverse()
+Quat Quat::inverse()
 {
 	/*
 	.loc_0x0:

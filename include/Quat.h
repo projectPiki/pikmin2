@@ -8,28 +8,10 @@
 
 // Quat(ernion)
 struct Quat {
-	f32 w, x, y, z;
 	Quat();
-	// {
-	// w = 0.0f;
-	// x = 0.0f;
-	// y = 0.0f;
-	// z = 0.0f;
-	// };
 	Quat(Quat& arg0);
-	// {
-	//     w = arg0.w;
-	//     x = arg0.x;
-	//     y = arg0.y;
-	//     z = arg0.z;
-	// };
 	Quat(f32 _w, Vector3f vec);
-	// {
-	// w = _w;
-	// x = vec.x;
-	// y = vec.y;
-	// z = vec.z;
-	// };
+
 	void set(Vector3f& vec);
 	void set(f32 a, f32 b, f32 c, f32 d);
 	void set(f32, Vector3f& vec);
@@ -37,11 +19,30 @@ struct Quat {
 	void conjugate();
 	void rotate(Quat&, Vector3f&);
 	Quat operator*(Quat& q2);
-	void inverse();
+	Quat inverse();
 	void normalise();
 	void slerp(Quat& q1, f32 f, Quat& q2);
 	void toMatrix(Matrix3f& arg0);
 	void fromMatrixf(Matrixf& arg0);
+
+	inline Quat& operator=(const Quat& other)
+	{
+		w = other.w;
+		x = other.x;
+		y = other.y;
+		z = other.z;
+		return *this;
+	}
+
+	inline void operator=(Quat& other)
+	{
+		w = other.w;
+		x = other.x;
+		y = other.y;
+		z = other.z;
+	}
+
+	f32 w, x, y, z;
 };
 
 #endif

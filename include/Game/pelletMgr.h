@@ -287,7 +287,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void getCarryInfoParam(CarryInfoParam& infoParam) // _200 (weak, thunk at _1C8)
 	{
 		infoParam.mUseType    = 0;
-		infoParam.mPosition   = mRigid.mConfigs[0]._00;
+		infoParam.mPosition   = mRigid.mConfigs[0].mPosition;
 		infoParam.mYOffsetMax = 30.0f + mConfig->mParams.mHeight.mData;
 		infoParam._14         = 1;
 		infoParam.mIsTopFirst = 1;

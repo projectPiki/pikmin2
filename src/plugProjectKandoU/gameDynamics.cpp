@@ -1,125 +1,7 @@
-#include "types.h"
+#include "DynamicsParms.h"
+#include "Game/Rigid.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047C648
-    lbl_8047C648:
-        .4byte 0x44796E61
-        .4byte 0x6D696373
-        .4byte 0x00000000
-        .4byte 0x90568374
-        .4byte 0x838A834E
-        .4byte 0x83568387
-        .4byte 0x83930000
-        .4byte 0x5374612D
-        .4byte 0x5061726D
-        .4byte 0x00000000
-        .4byte 0x6D696372
-        .4byte 0x6F20636F
-        .4byte 0x6C6C6973
-        .4byte 0x696F6E00
-        .4byte 0x5265736F
-        .4byte 0x6C76658E
-        .4byte 0x9E82CC96
-        .4byte 0x808E4300
-        .4byte 0x656C6173
-        .4byte 0x74696369
-        .4byte 0x74790000
-        .4byte 0x96808E43
-        .4byte 0x3A74616E
-        .4byte 0x76656C00
-        .4byte 0x8CC592E8
-        .4byte 0x96808E43
-        .4byte 0x00000000
-        .4byte 0x8CC592E8
-        .4byte 0x96808E43
-        .4byte 0x926C0000
-        .4byte 0x89F1935D
-        .4byte 0x89658BBF
-        .4byte 0x82C882B5
-        .4byte 0x82C982B7
-        .4byte 0x82E90000
-        .4byte 0x89F1935D
-        .4byte 0x8382815B
-        .4byte 0x83818393
-        .4byte 0x83672044
-        .4byte 0x616D7000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__13DynamicsParms
-    __vt__13DynamicsParms:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "@12@__dt__13DynamicsParmsFv"
-        .4byte __dt__13DynamicsParmsFv
-    .global "__vt__7Parm<b>"
-    "__vt__7Parm<b>":
-        .4byte 0
-        .4byte 0
-        .4byte "size__7Parm<b>Fv"
-        .4byte "write__7Parm<b>FR6Stream"
-        .4byte "read__7Parm<b>FR6Stream"
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mInstance__13DynamicsParms
-    mInstance__13DynamicsParms:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80518238
-    lbl_80518238:
-        .4byte 0x430C0000
-    .global lbl_8051823C
-    lbl_8051823C:
-        .4byte 0x00000000
-    .global lbl_80518240
-    lbl_80518240:
-        .4byte 0x459C4000
-    .global lbl_80518244
-    lbl_80518244:
-        .4byte 0x53746174
-        .4byte 0x69630000
-    .global lbl_8051824C
-    lbl_8051824C:
-        .4byte 0x41200000
-    .global lbl_80518250
-    lbl_80518250:
-        .4byte 0x3C75C28F
-    .global lbl_80518254
-    lbl_80518254:
-        .float 0.3
-    .global lbl_80518258
-    lbl_80518258:
-        .float 1.0
-    .global lbl_8051825C
-    lbl_8051825C:
-        .4byte 0x96808E43
-        .4byte 0x00000000
-    .global lbl_80518264
-    lbl_80518264:
-        .4byte 0x42C80000
-    .global lbl_80518268
-    lbl_80518268:
-        .4byte 0x461C4000
-    .global lbl_8051826C
-    lbl_8051826C:
-        .float 0.05
-    .global lbl_80518270
-    lbl_80518270:
-        .float 0.5
-    .global lbl_80518274
-    lbl_80518274:
-        .4byte 0x447A0000
-    .global lbl_80518278
-    lbl_80518278:
-        .4byte 0x448C0000
-        .4byte 0x00000000
-*/
+DynamicsParms* DynamicsParms::mInstance;
 
 /*
  * --INFO--
@@ -127,216 +9,21 @@
  * Size:	000334
  */
 DynamicsParms::DynamicsParms()
+    : Parameters(nullptr, "Dynamics")
+    , _24(this, 'd009', "êVÉtÉäÉNÉVÉáÉì", true, false, true) // 'new friction'
+    , _40(this, 'd011', "Sta-Parm", 140.0f, 0.0f, 5000.0f)
+    , _68(this, 'd010', "Static", 10.0f, 0.0f, 5000.0f)
+    , _90(this, 'd000', "micro collision", 0.015f, 0.0f, 10.0f)
+    , _B8(this, 'd001', "ResolveéûÇÃñÄéC", false, false, true) // 'friction during Resolve'
+    , _D4(this, 'd002', "elasticity", 0.3f, 0.0f, 1.0f)
+    , _FC(this, 'd003', "ñÄéC", true, false, true)                 // 'friction'
+    , _118(this, 'd004', "ñÄéC:tanvel", true, false, true)         // 'friction:tanvel' - tangent velocity?
+    , _134(this, 'd005', "å≈íËñÄéC", true, false, true)            // 'fixed friction'
+    , _150(this, 'd006', "å≈íËñÄéCíl", 100.0f, 0.0f, 10000.0f)     // 'fixed friction value'
+    , _178(this, 'd007', "âÒì]âeãøÇ»ÇµÇ…Ç∑ÇÈ", true, false, true)  // 'no rotation effect'
+    , _194(this, 'd008', "âÒì]ÉÇÅ[ÉÅÉìÉg Damp", 0.05f, 0.0f, 1.0f) // 'rotating moment Damp'
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	lis      r4, lbl_8047C648@ha
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_8047C648@l
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_80139C90
-	addi     r0, r30, 0x1c0
-	stw      r0, 0(r30)
-
-lbl_80139C90:
-	li       r3, 0
-	addi     r0, r31, 0
-	stw      r3, 4(r30)
-	addi     r3, r30, 0xc
-	stw      r0, 8(r30)
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__13DynamicsParms@ha
-	lis      r5, 0x64303039@ha
-	addi     r3, r3, __vt__13DynamicsParms@l
-	mr       r4, r30
-	stw      r3, 0x1bc(r30)
-	addi     r0, r3, 8
-	addi     r3, r30, 0x24
-	addi     r5, r5, 0x64303039@l
-	stw      r0, 0xc(r30)
-	addi     r6, r31, 0xc
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<b>"@ha
-	lis      r5, 0x64303131@ha
-	addi     r0, r3, "__vt__7Parm<b>"@l
-	li       r7, 1
-	stw      r0, 0x24(r30)
-	li       r0, 0
-	mr       r4, r30
-	addi     r3, r30, 0x40
-	stb      r7, 0x3c(r30)
-	addi     r5, r5, 0x64303131@l
-	addi     r6, r31, 0x1c
-	stb      r0, 0x3e(r30)
-	stb      r7, 0x3f(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x64303130@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80518238@sda21(r2)
-	stw      r0, 0x40(r30)
-	mr       r4, r30
-	lfs      f1, lbl_8051823C@sda21(r2)
-	addi     r3, r30, 0x68
-	stfs     f0, 0x58(r30)
-	addi     r5, r5, 0x64303130@l
-	lfs      f0, lbl_80518240@sda21(r2)
-	addi     r6, r2, lbl_80518244@sda21
-	stfs     f1, 0x60(r30)
-	stfs     f0, 0x64(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x64303030@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051824C@sda21(r2)
-	stw      r0, 0x68(r30)
-	mr       r4, r30
-	lfs      f1, lbl_8051823C@sda21(r2)
-	addi     r3, r30, 0x90
-	stfs     f0, 0x80(r30)
-	addi     r5, r5, 0x64303030@l
-	lfs      f0, lbl_80518240@sda21(r2)
-	addi     r6, r31, 0x28
-	stfs     f1, 0x88(r30)
-	stfs     f0, 0x8c(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x64303031@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80518250@sda21(r2)
-	stw      r0, 0x90(r30)
-	mr       r4, r30
-	lfs      f1, lbl_8051823C@sda21(r2)
-	addi     r3, r30, 0xb8
-	stfs     f0, 0xa8(r30)
-	addi     r5, r5, 0x64303031@l
-	lfs      f0, lbl_8051824C@sda21(r2)
-	addi     r6, r31, 0x38
-	stfs     f1, 0xb0(r30)
-	stfs     f0, 0xb4(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<b>"@ha
-	lis      r5, 0x64303032@ha
-	addi     r0, r3, "__vt__7Parm<b>"@l
-	li       r7, 0
-	stw      r0, 0xb8(r30)
-	li       r0, 1
-	mr       r4, r30
-	addi     r3, r30, 0xd4
-	stb      r7, 0xd0(r30)
-	addi     r5, r5, 0x64303032@l
-	addi     r6, r31, 0x48
-	stb      r7, 0xd2(r30)
-	stb      r0, 0xd3(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x64303033@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80518254@sda21(r2)
-	stw      r0, 0xd4(r30)
-	mr       r4, r30
-	lfs      f1, lbl_8051823C@sda21(r2)
-	addi     r3, r30, 0xfc
-	stfs     f0, 0xec(r30)
-	addi     r5, r5, 0x64303033@l
-	lfs      f0, lbl_80518258@sda21(r2)
-	addi     r6, r2, lbl_8051825C@sda21
-	stfs     f1, 0xf4(r30)
-	stfs     f0, 0xf8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<b>"@ha
-	lis      r5, 0x64303034@ha
-	addi     r0, r3, "__vt__7Parm<b>"@l
-	li       r7, 1
-	stw      r0, 0xfc(r30)
-	li       r0, 0
-	mr       r4, r30
-	addi     r3, r30, 0x118
-	stb      r7, 0x114(r30)
-	addi     r5, r5, 0x64303034@l
-	addi     r6, r31, 0x54
-	stb      r0, 0x116(r30)
-	stb      r7, 0x117(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<b>"@ha
-	lis      r5, 0x64303035@ha
-	addi     r0, r3, "__vt__7Parm<b>"@l
-	li       r7, 1
-	stw      r0, 0x118(r30)
-	li       r0, 0
-	mr       r4, r30
-	addi     r3, r30, 0x134
-	stb      r7, 0x130(r30)
-	addi     r5, r5, 0x64303035@l
-	addi     r6, r31, 0x60
-	stb      r0, 0x132(r30)
-	stb      r7, 0x133(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<b>"@ha
-	lis      r5, 0x64303036@ha
-	addi     r0, r3, "__vt__7Parm<b>"@l
-	li       r7, 1
-	stw      r0, 0x134(r30)
-	li       r0, 0
-	mr       r4, r30
-	addi     r3, r30, 0x150
-	stb      r7, 0x14c(r30)
-	addi     r5, r5, 0x64303036@l
-	addi     r6, r31, 0x6c
-	stb      r0, 0x14e(r30)
-	stb      r7, 0x14f(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x64303037@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80518264@sda21(r2)
-	stw      r0, 0x150(r30)
-	mr       r4, r30
-	lfs      f1, lbl_8051823C@sda21(r2)
-	addi     r3, r30, 0x178
-	stfs     f0, 0x168(r30)
-	addi     r5, r5, 0x64303037@l
-	lfs      f0, lbl_80518268@sda21(r2)
-	addi     r6, r31, 0x78
-	stfs     f1, 0x170(r30)
-	stfs     f0, 0x174(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<b>"@ha
-	lis      r5, 0x64303038@ha
-	addi     r0, r3, "__vt__7Parm<b>"@l
-	li       r7, 1
-	stw      r0, 0x178(r30)
-	li       r0, 0
-	mr       r4, r30
-	addi     r3, r30, 0x194
-	stb      r7, 0x190(r30)
-	addi     r5, r5, 0x64303038@l
-	addi     r6, r31, 0x8c
-	stb      r0, 0x192(r30)
-	stb      r7, 0x193(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lfs      f2, lbl_8051826C@sda21(r2)
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_8051823C@sda21(r2)
-	stw      r0, 0x194(r30)
-	mr       r3, r30
-	lfs      f0, lbl_80518258@sda21(r2)
-	stfs     f2, 0x1ac(r30)
-	stfs     f1, 0x1b4(r30)
-	stfs     f0, 0x1b8(r30)
-	stw      r30, mInstance__13DynamicsParms@sda21(r13)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mInstance = this;
 }
 
 /*
@@ -344,42 +31,7 @@ lbl_80139C90:
  * Address:	80139F94
  * Size:	000074
  */
-DynamicsParms::~DynamicsParms()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80139FEC
-	lis      r3, __vt__13DynamicsParms@ha
-	li       r0, 0
-	addi     r4, r3, __vt__13DynamicsParms@l
-	addi     r3, r30, 0xc
-	stw      r4, 0x1bc(r30)
-	addi     r5, r4, 8
-	li       r4, 0
-	stw      r5, 0xc(r30)
-	stw      r0, mInstance__13DynamicsParms@sda21(r13)
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_80139FEC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80139FEC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+DynamicsParms::~DynamicsParms() { mInstance = nullptr; }
 
 /*
  * --INFO--
@@ -388,134 +40,32 @@ lbl_80139FEC:
  */
 void DynamicsParms::globalInstance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, mInstance__13DynamicsParms@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8013A040
-	li       r3, 0x1c4
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8013A03C
-	li       r4, 1
-	bl       __ct__13DynamicsParmsFv
-	mr       r0, r3
-
-lbl_8013A03C:
-	stw      r0, mInstance__13DynamicsParms@sda21(r13)
-
-lbl_8013A040:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!mInstance) {
+		mInstance = new DynamicsParms;
+	}
 }
-
-namespace Game {
 
 /*
  * --INFO--
  * Address:	8013A050
  * Size:	000054
  */
-Rigid::Rigid()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __ct__Q24Game11RigidConfigFv@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r4, r4, __ct__Q24Game11RigidConfigFv@l
-	li       r6, 0x88
-	li       r7, 2
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x34
-	bl       __construct_array
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x175(r31)
-	stb      r0, 0x175(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8013A0A4
- * Size:	000034
- */
-RigidConfig::RigidConfig()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x48
-	bl       __ct__4QuatFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Game::Rigid::Rigid() { _175.clear(); }
 
 /*
  * --INFO--
  * Address:	8013A0D8
  * Size:	00008C
  */
-void Rigid::initPosition(Vector3f&, Vector3f&)
+void Game::Rigid::initPosition(Vector3f& posVec, Vector3f& quatVec)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	li       r5, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	mr       r6, r31
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       "initPositionIndex__Q24Game5RigidFR10Vector3<f>iR10Vector3<f>"
-	mr       r3, r29
-	mr       r4, r30
-	mr       r6, r31
-	li       r5, 1
-	bl       "initPositionIndex__Q24Game5RigidFR10Vector3<f>iR10Vector3<f>"
-	addi     r3, r29, 0x8c
-	bl       PSMTXIdentity
-	addi     r3, r29, 0x114
-	bl       PSMTXIdentity
-	addi     r3, r29, 0x144
-	bl       PSMTXIdentity
-	lfs      f0, lbl_80518258@sda21(r2)
-	mr       r3, r29
-	li       r4, 0
-	stfs     f0, 0(r29)
-	bl       updateMatrix__Q24Game5RigidFi
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	initPositionIndex(posVec, 0, quatVec);
+	initPositionIndex(posVec, 1, quatVec);
+	PSMTXIdentity(mConfigs[0]._58.mMatrix.mtxView);
+	PSMTXIdentity(mConfigs[1]._58.mMatrix.mtxView);
+	PSMTXIdentity(_144.mMatrix.mtxView);
+	_00 = 1.0f;
+	updateMatrix(0);
 }
 
 /*
@@ -523,45 +73,16 @@ void Rigid::initPosition(Vector3f&, Vector3f&)
  * Address:	8013A164
  * Size:	00008C
  */
-void Rigid::initPositionIndex(Vector3f&, int, Vector3f&)
+void Game::Rigid::initPositionIndex(Vector3f& posVec, int configIdx, Vector3f& quatVec)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mulli    r5, r5, 0x88
-	lfs      f0, lbl_8051823C@sda21(r2)
-	stw      r0, 0x14(r1)
-	addi     r5, r5, 0x34
-	lfs      f1, 0(r4)
-	add      r5, r3, r5
-	stfs     f1, 0(r5)
-	addi     r3, r5, 0x48
-	lfs      f1, 4(r4)
-	stfs     f1, 4(r5)
-	lfs      f1, 8(r4)
-	mr       r4, r6
-	stfs     f1, 8(r5)
-	stfs     f0, 0x18(r5)
-	stfs     f0, 0x1c(r5)
-	stfs     f0, 0x20(r5)
-	stfs     f0, 0xc(r5)
-	stfs     f0, 0x10(r5)
-	stfs     f0, 0x14(r5)
-	stfs     f0, 0x24(r5)
-	stfs     f0, 0x28(r5)
-	stfs     f0, 0x2c(r5)
-	stfs     f0, 0x30(r5)
-	stfs     f0, 0x34(r5)
-	stfs     f0, 0x38(r5)
-	stfs     f0, 0x3c(r5)
-	stfs     f0, 0x40(r5)
-	stfs     f0, 0x44(r5)
-	bl       "set__4QuatFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	RigidConfig* config = &mConfigs[configIdx];
+	config->mPosition   = posVec;
+	config->_18         = Vector3f(0.0f);
+	config->mVelocity   = Vector3f(0.0f);
+	config->_24         = Vector3f(0.0f);
+	config->_30         = Vector3f(0.0f);
+	config->_3C         = Vector3f(0.0f);
+	config->_48.set(quatVec);
 }
 
 /*
@@ -569,24 +90,10 @@ void Rigid::initPositionIndex(Vector3f&, int, Vector3f&)
  * Address:	8013A1F0
  * Size:	000038
  */
-void Rigid::updateMatrix(int)
+void Game::Rigid::updateMatrix(int configIdx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mulli    r4, r4, 0x88
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	addi     r3, r5, 4
-	addi     r4, r4, 0x34
-	add      r4, r5, r4
-	addi     r5, r4, 0x48
-	bl       "makeTQ__7MatrixfFR10Vector3<f>R4Quat"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	RigidConfig* config = &mConfigs[configIdx];
+	_04.makeTQ(config->mPosition, config->_48);
 }
 
 /*
@@ -594,215 +101,223 @@ void Rigid::updateMatrix(int)
  * Address:	8013A228
  * Size:	00006C
  */
-void Rigid::computeForces(int)
+void Game::Rigid::computeForces(int configIdx)
 {
-	/*
-	mulli    r4, r4, 0x88
-	lfs      f0, lbl_8051823C@sda21(r2)
-	addi     r4, r4, 0x34
-	add      r4, r3, r4
-	stfs     f0, 0x18(r4)
-	stfs     f0, 0x1c(r4)
-	stfs     f0, 0x20(r4)
-	stfs     f0, 0x3c(r4)
-	stfs     f0, 0x40(r4)
-	stfs     f0, 0x44(r4)
-	lwz      r3, mInstance__13DynamicsParms@sda21(r13)
-	lfs      f3, 0x1ac(r3)
-	fcmpo    cr0, f3, f0
-	blelr
-	lfs      f2, 0x30(r4)
-	lfs      f5, 0x34(r4)
-	fmuls    f0, f2, f3
-	lfs      f4, 0x38(r4)
-	fmuls    f1, f5, f3
-	fmuls    f3, f4, f3
-	fsubs    f2, f2, f0
-	fsubs    f1, f5, f1
-	fsubs    f0, f4, f3
-	stfs     f2, 0x30(r4)
-	stfs     f1, 0x34(r4)
-	stfs     f0, 0x38(r4)
-	blr
-	*/
-}
+	RigidConfig* config = &mConfigs[configIdx];
+	config->_18         = Vector3f(0.0f);
+	config->_3C         = Vector3f(0.0f);
 
-} // namespace Game
+	f32 dampVal = DynamicsParms::mInstance->_194.mValue;
+	if (dampVal > 0.0f) {
+		config->_30 = config->_30 - config->_30 * dampVal;
+	}
+}
 
 /*
  * --INFO--
  * Address:	8013A294
  * Size:	000268
  */
-void getYDegree(Quat&, Vector3f&)
+void getYDegree(Quat& quat, Vector3f& vec)
 {
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	lfs      f1, lbl_8051823C@sda21(r2)
-	stw      r0, 0xc4(r1)
-	lfs      f0, lbl_80518258@sda21(r2)
-	stw      r31, 0xbc(r1)
-	mr       r31, r4
-	addi     r4, r1, 0x70
-	stfs     f1, 0xac(r1)
-	stfs     f0, 0xb0(r1)
-	lwz      r6, 0xac(r1)
-	stw      r30, 0xb8(r1)
-	mr       r30, r3
-	lwz      r5, 0xb0(r1)
-	addi     r3, r1, 0x9c
-	stfs     f1, 0xb4(r1)
-	lwz      r0, 0xb4(r1)
-	stw      r6, 0x70(r1)
-	stw      r5, 0x74(r1)
-	stw      r0, 0x78(r1)
-	bl       "__ct__4QuatFf10Vector3<f>"
-	addi     r3, r1, 0x8c
-	bl       __ct__4QuatFv
-	addi     r3, r1, 0x7c
-	bl       __ct__4QuatFv
-	mr       r4, r30
-	addi     r3, r1, 0x60
-	bl       inverse__4QuatFv
-	lfs      f3, 0x60(r1)
-	addi     r3, r1, 0x24
-	lfs      f2, 0x64(r1)
-	lfs      f1, 0x68(r1)
-	lfs      f0, 0x6c(r1)
-	stfs     f3, 0x7c(r1)
-	stfs     f2, 0x80(r1)
-	stfs     f1, 0x84(r1)
-	stfs     f0, 0x88(r1)
-	bl       __ct__4QuatFv
-	lfs      f9, 0xc(r30)
-	addi     r3, r1, 0x50
-	lfs      f13, 0xa4(r1)
-	addi     r4, r1, 0x34
-	lfs      f7, 8(r30)
-	lfs      f3, 0xa0(r1)
-	fmuls    f1, f9, f13
-	lfs      f12, 0xa8(r1)
-	fmuls    f2, f7, f13
-	lfs      f8, 4(r30)
-	fmuls    f0, f7, f3
-	fmsubs   f6, f7, f12, f1
-	fmuls    f1, f8, f12
-	lfs      f10, 0(r30)
-	fmadds   f2, f8, f3, f2
-	lfs      f11, 0x9c(r1)
-	fmuls    f5, f3, f10
-	fmsubs   f4, f9, f3, f1
-	fmadds   f1, f9, f12, f2
-	fmsubs   f2, f8, f13, f0
-	fmuls    f0, f12, f10
-	fmuls    f3, f13, f10
-	fmuls    f9, f9, f11
-	fadds    f0, f2, f0
-	fadds    f2, f4, f3
-	fmuls    f7, f7, f11
-	fadds    f0, f0, f9
-	fmuls    f4, f8, f11
-	fadds    f2, f2, f7
-	stfs     f0, 0x30(r1)
-	fadds    f3, f6, f5
-	fmsubs   f1, f10, f11, f1
-	stfs     f2, 0x2c(r1)
-	fadds    f0, f3, f4
-	lwz      r0, 0x30(r1)
-	lwz      r5, 0x2c(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	lwz      r6, 0x28(r1)
-	stw      r5, 0x38(r1)
-	stw      r6, 0x34(r1)
-	stw      r0, 0x3c(r1)
-	bl       "__ct__4QuatFf10Vector3<f>"
-	lfs      f3, 0x50(r1)
-	addi     r3, r1, 8
-	lfs      f2, 0x54(r1)
-	lfs      f1, 0x58(r1)
-	lfs      f0, 0x5c(r1)
-	stfs     f3, 0x8c(r1)
-	stfs     f2, 0x90(r1)
-	stfs     f1, 0x94(r1)
-	stfs     f0, 0x98(r1)
-	bl       __ct__4QuatFv
-	lfs      f8, 0x98(r1)
-	addi     r3, r1, 0x40
-	lfs      f13, 0x84(r1)
-	addi     r4, r1, 0x18
-	lfs      f9, 0x94(r1)
-	lfs      f3, 0x80(r1)
-	fmuls    f1, f8, f13
-	lfs      f12, 0x88(r1)
-	fmuls    f2, f9, f13
-	lfs      f10, 0x90(r1)
-	fmuls    f0, f9, f3
-	fmsubs   f6, f9, f12, f1
-	fmuls    f1, f10, f12
-	lfs      f11, 0x8c(r1)
-	fmadds   f2, f10, f3, f2
-	lfs      f7, 0x7c(r1)
-	fmuls    f5, f3, f11
-	fmsubs   f4, f8, f3, f1
-	fmadds   f1, f8, f12, f2
-	fmuls    f3, f13, f11
-	fmsubs   f2, f10, f13, f0
-	fmuls    f0, f12, f11
-	fadds    f6, f6, f5
-	fmuls    f5, f10, f7
-	fadds    f4, f4, f3
-	fmuls    f3, f9, f7
-	fadds    f2, f2, f0
-	fmuls    f0, f8, f7
-	fadds    f5, f6, f5
-	fadds    f3, f4, f3
-	fadds    f0, f2, f0
-	stfs     f5, 0xc(r1)
-	fmsubs   f1, f11, f7, f1
-	stfs     f3, 0x10(r1)
-	lwz      r6, 0xc(r1)
-	stfs     f0, 0x14(r1)
-	lwz      r5, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	stfs     f1, 8(r1)
-	stw      r6, 0x18(r1)
-	stw      r5, 0x1c(r1)
-	stw      r0, 0x20(r1)
-	bl       "__ct__4QuatFf10Vector3<f>"
-	lfs      f3, 0x40(r1)
-	lfs      f2, 0x44(r1)
-	lfs      f1, 0x48(r1)
-	lfs      f0, 0x4c(r1)
-	stfs     f3, 0x8c(r1)
-	stfs     f2, 0x90(r1)
-	stfs     f1, 0x94(r1)
-	stfs     f0, 0x98(r1)
-	stfs     f2, 0(r31)
-	lfs      f0, 0x94(r1)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x98(r1)
-	stfs     f0, 8(r31)
-	lfs      f1, 0x94(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r30, 0xb8(r1)
-	lwz      r0, 0xc4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
-}
+	Quat q1(0.0f, Vector3f(0.0f, 1.0f, 0.0f)); // 0x9c
+	Quat q2;                                   // 0x8c
+	Quat q3;                                   // 0x7c
+	q3 = quat.inverse();                       // 0x60
 
-namespace Game {
+	Quat q4; // 0x24
+	         /*
+	         stwu     r1, -0xc0(r1)
+	         mflr     r0
+	         lfs      f1, lbl_8051823C@sda21(r2)
+	         stw      r0, 0xc4(r1)
+	         lfs      f0, lbl_80518258@sda21(r2)
+	         stw      r31, 0xbc(r1)
+	         mr       r31, r4
+	         addi     r4, r1, 0x70
+	         stfs     f1, 0xac(r1)
+	         stfs     f0, 0xb0(r1)
+	         lwz      r6, 0xac(r1)
+	         stw      r30, 0xb8(r1)
+	         mr       r30, r3
+	         lwz      r5, 0xb0(r1)
+	         addi     r3, r1, 0x9c
+	         stfs     f1, 0xb4(r1)
+	         lwz      r0, 0xb4(r1)
+	         stw      r6, 0x70(r1)
+	         stw      r5, 0x74(r1)
+	         stw      r0, 0x78(r1)
+	         bl       "__ct__4QuatFf10Vector3<f>"
+	         addi     r3, r1, 0x8c
+	         bl       __ct__4QuatFv
+	         addi     r3, r1, 0x7c
+	         bl       __ct__4QuatFv
+	         mr       r4, r30
+	         addi     r3, r1, 0x60
+	         bl       inverse__4QuatFv
+	         lfs      f3, 0x60(r1)
+	         addi     r3, r1, 0x24
+	         lfs      f2, 0x64(r1)
+	         lfs      f1, 0x68(r1)
+	         lfs      f0, 0x6c(r1)
+	         stfs     f3, 0x7c(r1)
+	         stfs     f2, 0x80(r1)
+	         stfs     f1, 0x84(r1)
+	         stfs     f0, 0x88(r1)
+	         bl       __ct__4QuatFv
+	         lfs      f9, 0xc(r30)
+	         addi     r3, r1, 0x50
+	         lfs      f13, 0xa4(r1)
+	         addi     r4, r1, 0x34
+	         lfs      f7, 8(r30)
+	         lfs      f3, 0xa0(r1)
+	         fmuls    f1, f9, f13
+	         lfs      f12, 0xa8(r1)
+	         fmuls    f2, f7, f13
+	         lfs      f8, 4(r30)
+	         fmuls    f0, f7, f3
+	         fmsubs   f6, f7, f12, f1
+	         fmuls    f1, f8, f12
+	         lfs      f10, 0(r30)
+	         fmadds   f2, f8, f3, f2
+	         lfs      f11, 0x9c(r1)
+	         fmuls    f5, f3, f10
+	         fmsubs   f4, f9, f3, f1
+	         fmadds   f1, f9, f12, f2
+	         fmsubs   f2, f8, f13, f0
+	         fmuls    f0, f12, f10
+	         fmuls    f3, f13, f10
+	         fmuls    f9, f9, f11
+	         fadds    f0, f2, f0
+	         fadds    f2, f4, f3
+	         fmuls    f7, f7, f11
+	         fadds    f0, f0, f9
+	         fmuls    f4, f8, f11
+	         fadds    f2, f2, f7
+	         stfs     f0, 0x30(r1)
+	         fadds    f3, f6, f5
+	         fmsubs   f1, f10, f11, f1
+	         stfs     f2, 0x2c(r1)
+	         fadds    f0, f3, f4
+	         lwz      r0, 0x30(r1)
+	         lwz      r5, 0x2c(r1)
+	         stfs     f1, 0x24(r1)
+	         stfs     f0, 0x28(r1)
+	         lwz      r6, 0x28(r1)
+	         stw      r5, 0x38(r1)
+	         stw      r6, 0x34(r1)
+	         stw      r0, 0x3c(r1)
+	         bl       "__ct__4QuatFf10Vector3<f>"
+	         lfs      f3, 0x50(r1)
+	         addi     r3, r1, 8
+	         lfs      f2, 0x54(r1)
+	         lfs      f1, 0x58(r1)
+	         lfs      f0, 0x5c(r1)
+	         stfs     f3, 0x8c(r1)
+	         stfs     f2, 0x90(r1)
+	         stfs     f1, 0x94(r1)
+	         stfs     f0, 0x98(r1)
+	         bl       __ct__4QuatFv
+	         lfs      f8, 0x98(r1)
+	         addi     r3, r1, 0x40
+	         lfs      f13, 0x84(r1)
+	         addi     r4, r1, 0x18
+	         lfs      f9, 0x94(r1)
+	         lfs      f3, 0x80(r1)
+	         fmuls    f1, f8, f13
+	         lfs      f12, 0x88(r1)
+	         fmuls    f2, f9, f13
+	         lfs      f10, 0x90(r1)
+	         fmuls    f0, f9, f3
+	         fmsubs   f6, f9, f12, f1
+	         fmuls    f1, f10, f12
+	         lfs      f11, 0x8c(r1)
+	         fmadds   f2, f10, f3, f2
+	         lfs      f7, 0x7c(r1)
+	         fmuls    f5, f3, f11
+	         fmsubs   f4, f8, f3, f1
+	         fmadds   f1, f8, f12, f2
+	         fmuls    f3, f13, f11
+	         fmsubs   f2, f10, f13, f0
+	         fmuls    f0, f12, f11
+	         fadds    f6, f6, f5
+	         fmuls    f5, f10, f7
+	         fadds    f4, f4, f3
+	         fmuls    f3, f9, f7
+	         fadds    f2, f2, f0
+	         fmuls    f0, f8, f7
+	         fadds    f5, f6, f5
+	         fadds    f3, f4, f3
+	         fadds    f0, f2, f0
+	         stfs     f5, 0xc(r1)
+	         fmsubs   f1, f11, f7, f1
+	         stfs     f3, 0x10(r1)
+	         lwz      r6, 0xc(r1)
+	         stfs     f0, 0x14(r1)
+	         lwz      r5, 0x10(r1)
+	         lwz      r0, 0x14(r1)
+	         stfs     f1, 8(r1)
+	         stw      r6, 0x18(r1)
+	         stw      r5, 0x1c(r1)
+	         stw      r0, 0x20(r1)
+	         bl       "__ct__4QuatFf10Vector3<f>"
+	         lfs      f3, 0x40(r1)
+	         lfs      f2, 0x44(r1)
+	         lfs      f1, 0x48(r1)
+	         lfs      f0, 0x4c(r1)
+	         stfs     f3, 0x8c(r1)
+	         stfs     f2, 0x90(r1)
+	         stfs     f1, 0x94(r1)
+	         stfs     f0, 0x98(r1)
+	         stfs     f2, 0(r31)
+	         lfs      f0, 0x94(r1)
+	         stfs     f0, 4(r31)
+	         lfs      f0, 0x98(r1)
+	         stfs     f0, 8(r31)
+	         lfs      f1, 0x94(r1)
+	         lwz      r31, 0xbc(r1)
+	         lwz      r30, 0xb8(r1)
+	         lwz      r0, 0xc4(r1)
+	         mtlr     r0
+	         addi     r1, r1, 0xc0
+	         blr
+	         */
+}
 
 /*
  * --INFO--
  * Address:	8013A4FC
  * Size:	000678
  */
-void Rigid::integrate(float, int)
+void Game::Rigid::integrate(f32 p1, int configIdx)
 {
+	RigidConfig* thisConfig  = &mConfigs[configIdx]; // r31
+	RigidConfig* otherConfig = &mConfigs[1 - configIdx];
+
+	otherConfig->mPosition = thisConfig->mPosition;
+	otherConfig->_48       = thisConfig->_48;
+	Matrixf matQ; // 0x1d0
+	Matrixf matC; // 0x1a0
+	Matrixf matT; // 0x170
+
+	matQ.makeQ(thisConfig->_48);
+	PSMTXTranspose(matQ.mMatrix.mtxView, matT.mMatrix.mtxView);
+	PSMTXConcat(matQ.mMatrix.mtxView, _144.mMatrix.mtxView, matC.mMatrix.mtxView);
+	PSMTXConcat(matC.mMatrix.mtxView, matT.mMatrix.mtxView, thisConfig->_58.mMatrix.mtxView);
+
+	thisConfig->mPosition += thisConfig->mVelocity * p1;
+	thisConfig->_30 += thisConfig->_3C * p1;
+	thisConfig->mVelocity += thisConfig->_18 * (p1 * _00);
+
+	thisConfig->_24 = thisConfig->_58.mtxMult(thisConfig->_30);
+
+	Quat q1;                        // 0x160
+	Quat q2(0.0f, thisConfig->_24); // 0x150
+
+	// quat math
+
+	thisConfig->_48.normalise();
+	_04.makeTQ(thisConfig->mPosition, thisConfig->_48);
 	/*
 	stwu     r1, -0x240(r1)
 	mflr     r0
@@ -1234,8 +749,11 @@ lbl_8013AB2C:
  * Address:	8013AB74
  * Size:	000300
  */
-void Rigid::resolveCollision(int, Vector3f&, Vector3f&, float)
+bool Game::Rigid::resolveCollision(int, Vector3f&, Vector3f&, f32)
 {
+	if (DynamicsParms::mInstance->_90.mValue == 1120.0f) {
+		;
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1435,27 +953,5 @@ lbl_8013AE30:
 	mtlr     r0
 	addi     r1, r1, 0x90
 	blr
-	*/
-}
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8013AE74
- * Size:	000008
- */
-u32 Parm<bool>::size() { return 0x1; }
-
-/*
- * --INFO--
- * Address:	8013AE7C
- * Size:	000008
- */
-void DynamicsParms::@12 @__dt()
-{
-	/*
-	addi     r3, r3, -12
-	b        __dt__13DynamicsParmsFv
 	*/
 }
