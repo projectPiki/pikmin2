@@ -2,7 +2,7 @@
 #define _PSSYSTEM_PSSTREAM_H
 
 #include "types.h"
-#include "PSSystem/PSBgm.h"
+#include "PSSystem/PSSeq.h"
 #include "PSSystem/SeqData.h"
 #include "PSSystem/SeqSound.h"
 #include "PSSystem/PSBgmTask.h"

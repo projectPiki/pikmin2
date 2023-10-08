@@ -2,7 +2,7 @@
 #define _PSM_DIRECTOR_H
 
 #include "Dolphin/os.h"
-#include "PSSystem/PSSeq.h"
+#include "PSSystem/PSDirector.h"
 
 struct JASTrack;
 

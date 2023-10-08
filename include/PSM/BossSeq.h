@@ -1,7 +1,7 @@
 #ifndef _PSM_BOSSSEQ_H
 #define _PSM_BOSSSEQ_H
 
-#include "PSSystem/PSBgm.h"
+#include "PSSystem/PSSeq.h"
 
 namespace PSM {
 struct MiddleBossSeq : public PSSystem::JumpBgmSeq {

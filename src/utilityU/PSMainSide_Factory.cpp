@@ -5,7 +5,7 @@
 #include "PSM/Scene.h"
 #include "PSM/Se.h"
 #include "PSSystem/EnvSeBase.h"
-#include "PSSystem/PSBgm.h"
+#include "PSSystem/PSSeq.h"
 #include "types.h"
 
 /*

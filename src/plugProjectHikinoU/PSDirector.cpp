@@ -2,6 +2,8 @@
 
 namespace PSSystem {
 
+u8 DirectorBase::sToolMode;
+
 /*
  * --INFO--
  * Address:	80342EB4
@@ -46,8 +48,12 @@ void DirectorBase::setTrack(u8 id, SeqTrackBase* track)
 	mTracks[id] = track;
 }
 
-// fabricated, goes here based on line number and this being the file
-void DirectorBase::checkTracks()
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000094
+ */
+void DirectorBase::initCheck()
 {
 	for (u8 i = 0; i < mTrackNum; i++) {
 		P2ASSERTLINE(73, mTracks[i]);
@@ -83,6 +89,30 @@ void DirectorBase::exec()
 			underDirection();
 		}
 	}
+}
+
+/*
+ * --INFO--
+ * Address:	803432C8
+ * Size:	000074
+ */
+void DirectorBase::playInit(JASTrack* track)
+{
+	onPlayInit(track);
+	OSLockMutex(&mMutex1);
+	for (u8 k = 0; k < mTrackNum; k++) {
+		if (mTracks[k]->getTaskEntryList()->mTrack == track) {
+			mTrackFlagList[k] = true;
+		}
+		if (!mTrackFlagList[k]) {
+			OSUnlockMutex(&mMutex1);
+			return;
+		}
+	}
+	OSUnlockMutex(&mMutex1);
+	OSLockMutex(&mMutex2);
+	mIsBegin = true;
+	OSUnlockMutex(&mMutex2);
 }
 
 /*
@@ -129,56 +159,13 @@ void DirectorBase::directOff()
 {
 	if (sToolMode != 1) {
 		JUT_ASSERTLINE(219, OSGetThreadPriority(OSGetCurrentThread()) == 0x10, "\nNot Called From Main Thread\n");
-		switch (mState) {
-		case 1:
-			break; // weirdness here
-		case 2:
-			break;
-		case 0:
-			directOffInner();
-			break;
+
+		if (mState == 1 || mState == 2) {
+			return;
 		}
+
+		directOffInner();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, sToolMode__Q28PSSystem12DirectorBase@sda21(r13)
-	cmplwi   r0, 1
-	beq      lbl_80343458
-	bl       OSGetCurrentThread
-	bl       OSGetThreadPriority
-	cmpwi    r3, 0x10
-	beq      lbl_80343438
-	lis      r3, lbl_80490180@ha
-	lis      r5, lbl_8049019C@ha
-	addi     r3, r3, lbl_80490180@l
-	li       r4, 0xdb
-	addi     r5, r5, lbl_8049019C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80343438:
-	lwz      r0, 8(r31)
-	cmpwi    r0, 1
-	beq      lbl_80343458
-	cmpwi    r0, 2
-	bne      lbl_80343450
-	b        lbl_80343458
-
-lbl_80343450:
-	mr       r3, r31
-	bl       directOffInner__Q28PSSystem12DirectorBaseFv
-
-lbl_80343458:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -219,6 +206,21 @@ void DirectorBase::powerOn()
 {
 	OSLockMutex(&mMutex1);
 	mEnabled = true;
+	OSUnlockMutex(&mMutex1);
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000068
+ */
+void DirectorBase::powerOff()
+{
+	OSLockMutex(&mMutex1);
+	mEnabled = false;
+	for (u8 i = 0; i < mTrackNum; i++) {
+		mTrackFlagList[i] = 0;
+	}
 	OSUnlockMutex(&mMutex1);
 }
 
@@ -294,7 +296,7 @@ void DirectorMgrBase::initAndAdaptToBgm(DirectedBgm& bgm)
 	P2ASSERTLINE(403, mDirectors);
 	for (u8 i = 0; i < mDirectorCount; i++) {
 		mDirectors[i] = newDirector(i, bgm);
-		mDirectors[i]->checkTracks();
+		mDirectors[i]->initCheck();
 	}
 }
 
@@ -306,119 +308,14 @@ void DirectorMgrBase::initAndAdaptToBgm(DirectedBgm& bgm)
 void DirectorMgrBase::playInit(JASTrack* track)
 {
 	for (u8 i = 0; i < mDirectorCount; i++) {
-		mDirectors[i]->playInit(track);
+		for (u8 j = 0; j < mDirectors[i]->getTrackCount(); j++) {
+			DirectorBase* director = mDirectors[i];
+			director->checkTrackNum(j);
+			if (director->mTracks[j]->getTaskEntryList()->mTrack == track) {
+				mDirectors[i]->playInit(track);
+			}
+		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r23, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	li       r30, 0
-	b        lbl_80343B3C
-
-lbl_80343A1C:
-	rlwinm   r31, r30, 2, 0x16, 0x1d
-	li       r29, 0
-	b        lbl_80343B20
-
-lbl_80343A28:
-	lbz      r0, 0x41(r24)
-	clrlwi   r3, r29, 0x18
-	cmplw    r3, r0
-	blt      lbl_80343A54
-	lis      r3, lbl_804901D4@ha
-	lis      r5, lbl_80490190@ha
-	addi     r3, r3, lbl_804901D4@l
-	li       r4, 0x33
-	addi     r5, r5, lbl_80490190@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80343A54:
-	lwz      r3, 4(r24)
-	rlwinm   r0, r29, 2, 0x16, 0x1d
-	lwzx     r3, r3, r0
-	bl       getTaskEntryList__Q28PSSystem12SeqTrackBaseFv
-	lwz      r0, 0x24(r3)
-	cmplw    r0, r28
-	bne      lbl_80343B1C
-	lwz      r0, 4(r27)
-	mr       r4, r28
-	lwzx     r24, r31, r0
-	mr       r3, r24
-	lwz      r12, 0(r24)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r24, 0xc
-	bl       OSLockMutex
-	li       r25, 0
-	li       r26, 1
-	b        lbl_80343AEC
-
-lbl_80343AA4:
-	lwz      r3, 4(r24)
-	rlwinm   r0, r25, 2, 0x16, 0x1d
-	clrlwi   r23, r25, 0x18
-	lwzx     r3, r3, r0
-	bl       getTaskEntryList__Q28PSSystem12SeqTrackBaseFv
-	lwz      r0, 0x24(r3)
-	cmplw    r0, r28
-	bne      lbl_80343ACC
-	lwz      r3, 0x44(r24)
-	stbx     r26, r3, r23
-
-lbl_80343ACC:
-	lwz      r3, 0x44(r24)
-	lbzx     r0, r3, r23
-	cmplwi   r0, 0
-	bne      lbl_80343AE8
-	addi     r3, r24, 0xc
-	bl       OSUnlockMutex
-	b        lbl_80343B1C
-
-lbl_80343AE8:
-	addi     r25, r25, 1
-
-lbl_80343AEC:
-	lbz      r0, 0x41(r24)
-	clrlwi   r3, r25, 0x18
-	cmplw    r3, r0
-	blt      lbl_80343AA4
-	addi     r3, r24, 0xc
-	bl       OSUnlockMutex
-	addi     r3, r24, 0x24
-	bl       OSLockMutex
-	li       r0, 1
-	addi     r3, r24, 0x24
-	stb      r0, 0x3c(r24)
-	bl       OSUnlockMutex
-
-lbl_80343B1C:
-	addi     r29, r29, 1
-
-lbl_80343B20:
-	lwz      r3, 4(r27)
-	clrlwi   r0, r29, 0x18
-	lwzx     r24, r31, r3
-	lbz      r3, 0x41(r24)
-	cmplw    r0, r3
-	blt      lbl_80343A28
-	addi     r30, r30, 1
-
-lbl_80343B3C:
-	lbz      r0, 8(r27)
-	clrlwi   r3, r30, 0x18
-	cmplw    r3, r0
-	blt      lbl_80343A1C
-	lmw      r23, 0xc(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -435,26 +332,42 @@ void DirectorMgrBase::exec()
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+void DirectorMgrBase::lock()
+{
+	for (u8 i = 0; i < mDirectorCount; i++) {
+		OSLockMutex(&mDirectors[i]->mMutex1);
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+void DirectorMgrBase::unlock()
+{
+	for (u8 i = 0; i < mDirectorCount; i++) {
+		OSUnlockMutex(&mDirectors[i]->mMutex1);
+	}
+}
+
+/*
+ * --INFO--
  * Address:	80343BC8
  * Size:	0001BC
  */
 void DirectorMgrBase::off(DirectedBgm* bgm)
 {
 	P2ASSERTLINE(458, bgm);
-	for (u8 i = 0; i < mDirectorCount; i++) {
-		OSLockMutex(&mDirectors[i]->mMutex1);
-	}
-	bgm->assertLoaded();
 
-	bgm->mRootTrack->getTaskEntryList()->removeAllEntry();
+	lock();
 	bgm->removeAllChildren();
-	for (u8 i = 0; i > mDirectorCount; i++) {
-		mDirectors[i]->stop();
-	}
+	powerOff();
+	unlock();
 
-	for (u8 i = 0; i < mDirectorCount; i++) {
-		OSUnlockMutex(&mDirectors[i]->mMutex1);
-	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

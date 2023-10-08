@@ -2,7 +2,7 @@
 #define _PSM_DIRECTORMGR_H
 
 #include "types.h"
-#include "PSSystem/PSSeq.h"
+#include "PSSystem/PSDirector.h"
 #include "PSM/Director.h"
 #include "PSM/BgmTrackMap.h"
 

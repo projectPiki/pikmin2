@@ -3,7 +3,7 @@
 
 #include "PSSystem/SeqTrack.h"
 #include "types.h"
-#include "PSSystem/PSBgm.h"
+#include "PSSystem/PSSeq.h"
 #include "PSSystem/PSBgmTask.h"
 #include "PSAutoBgm/Conductor.h"
 #include "PSAutoBgm/MeloArr.h"

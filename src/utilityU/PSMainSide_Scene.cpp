@@ -12,7 +12,7 @@
 #include "PSM/WorldMapRocket.h"
 #include "PSSystem/Director.h"
 #include "PSSystem/EnvSeBase.h"
-#include "PSSystem/PSBgm.h"
+#include "PSSystem/PSSeq.h"
 #include "PSSystem/PSCommon.h"
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSScene.h"

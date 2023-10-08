@@ -4,7 +4,7 @@
 #include "PSAutoBgm/Conductor.h"
 #include "PSAutoBgm/Cycle.h"
 #include "PSAutoBgm/PrmLink.h"
-#include "PSSystem/PSBgm.h"
+#include "PSSystem/PSSeq.h"
 #include "types.h"
 #include "stl/string.h"
 

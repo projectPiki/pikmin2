@@ -3,8 +3,8 @@
 
 #include "types.h"
 #include "PSSystem/PSScene.h"
+#include "PSSystem/PSDirector.h"
 #include "PSSystem/PSSeq.h"
-#include "PSSystem/PSBgm.h"
 #include "PSGame/SceneInfo.h"
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JAudio/JAD/JADUtility.h"
