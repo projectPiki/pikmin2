@@ -60,7 +60,7 @@ struct StrEditBox : public StrPrm {
 		strcpy(mValue, "\0");
 	}
 
-	virtual ~StrEditBox(); // _08 (weak)
+	virtual ~StrEditBox() { } // _08 (weak)
 };
 
 } // namespace JADUtility

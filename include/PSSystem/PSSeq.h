@@ -45,14 +45,14 @@ struct DirectedBgm : public BgmSeq {
 
 	DirectedBgm(const char* bmsFileName, const JAInter::SoundInfo& info, DirectorMgrBase* directorMgr);
 
-	virtual ~DirectedBgm();                           // _08 (weak)
-	virtual void init();                              // _0C
-	virtual void startSeq();                          // _14
-	virtual void stopSeq(u32);                        // _18
-	virtual u8 getCastType();                         // _24 (weak)
-	virtual void onPlayingFrame();                    // _30
-	virtual void newSeqTrackRoot();                   // _44
-	virtual void newSeqTrackChild(u8, SeqTrackRoot&); // _48
+	virtual ~DirectedBgm() { }                         // _08 (weak)
+	virtual void init();                               // _0C
+	virtual void startSeq();                           // _14
+	virtual void stopSeq(u32);                         // _18
+	virtual u8 getCastType();                          // _24 (weak)
+	virtual void onPlayingFrame();                     // _30
+	virtual PSSystem::SeqTrackRoot* newSeqTrackRoot(); // _44
+	virtual void newSeqTrackChild(u8, SeqTrackRoot&);  // _48
 
 	void initRootTrack_onPlaying(JASTrack*);
 	void initChildTrack_onPlaying(JASTrack*, u8);
@@ -90,17 +90,17 @@ struct DirectedBgm : public BgmSeq {
 struct JumpBgmSeq : public DirectedBgm {
 	JumpBgmSeq(const char* bmsFileName, const JAInter::SoundInfo& info, DirectorMgrBase* directorMgr);
 
-	virtual ~JumpBgmSeq();                     // _08 (weak)
-	virtual void startSeq();                   // _14
-	virtual u8 getCastType();                  // _24 (weak)
-	virtual void onPlayingFrame();             // _30
-	virtual void newSeqTrackRoot();            // _44
-	virtual void getSeqStartPoint();           // _4C
-	virtual void requestJumpBgmQuickly(u16);   // _50
-	virtual void requestJumpBgmOnBeat(u16);    // _54
-	virtual void requestJumpBgmEveryBeat(u16); // _58
-	virtual void outputJumpRequest();          // _5C
-	virtual void onJump(u16);                  // _60 (weak)
+	virtual ~JumpBgmSeq();                             // _08 (weak)
+	virtual void startSeq();                           // _14
+	virtual u8 getCastType();                          // _24 (weak)
+	virtual void onPlayingFrame();                     // _30
+	virtual PSSystem::SeqTrackRoot* newSeqTrackRoot(); // _44
+	virtual void getSeqStartPoint();                   // _4C
+	virtual void requestJumpBgmQuickly(u16);           // _50
+	virtual void requestJumpBgmOnBeat(u16);            // _54
+	virtual void requestJumpBgmEveryBeat(u16);         // _58
+	virtual void outputJumpRequest();                  // _5C
+	virtual void onJump(u16);                          // _60 (weak)
 
 	void startSeq(u16);
 	void setAvoidJumpTimer_Checked(u32);

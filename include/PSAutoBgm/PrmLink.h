@@ -4,8 +4,15 @@
 namespace PSAutoBgm {
 
 template <typename T>
-struct PrmLink {
-	~PrmLink();
+struct PrmLink : public JSUPtrLink {
+	PrmLink()
+	    : JSUPtrLink(_10)
+	{
+	}
+
+	~PrmLink() { }
+
+	int _10;
 };
 } // namespace PSAutoBgm
 

@@ -16,15 +16,15 @@ struct Module;
  * @size = 0x40
  */
 struct CycleBase {
-	virtual void play(JASTrack*); // _08
-	virtual u32 getCycleType();   // _0C (weak)
-	virtual u32 avoidCheck();     // _10 (weak)
+	virtual void play(JASTrack*);            // _08
+	virtual u32 getCycleType() { return 1; } // _0C (weak)
+	virtual u32 avoidCheck() { return 0; }   // _10 (weak)
 
 	u32 cycleTop(JASTrack*);
 	u32 checkCloser(JASTrack*);
 
 	// _00  = VTABLE
-	Module* _04;                       // _04
+	Module* mModule;                   // _04
 	u8 _08;                            // _08
 	JADUtility::PrmSlider<u8> mSlider; // _0C
 	u8 _3C;                            // _3C
@@ -36,9 +36,9 @@ struct CycleBase {
 struct OnCycle : public CycleBase {
 	OnCycle(Module*);
 
-	virtual void play(JASTrack*); // _08
-	virtual u32 getCycleType();   // _0C (weak)
-	virtual u32 avoidCheck();     // _10
+	virtual void play(JASTrack*);            // _08
+	virtual u32 getCycleType() { return 0; } // _0C (weak)
+	virtual u32 avoidCheck();                // _10
 
 	void setTip(JASTrack*);
 	void historiesAreSameAll();

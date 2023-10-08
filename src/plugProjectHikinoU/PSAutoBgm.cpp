@@ -5,7 +5,7 @@
 #include "PSAutoBgm/Cycle.h"
 #include "PSAutoBgm/PrmLink.h"
 #include "PSSystem/PSSeq.h"
-#include "types.h"
+#include "JSystem/JAudio/JAS/JASResArcLoader.h"
 #include "stl/string.h"
 
 /*
@@ -311,236 +311,13 @@
         .4byte 0x00000000
 */
 
-/*
- * --INFO--
- * Address:	80338DB4
- * Size:	0000A8
- */
-// JADUtility::PrmRadioButton<unsigned char>::~PrmRadioButton()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_80338E40
-// 	lis      r3, "__vt__Q210JADUtility18PrmRadioButton<Uc>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility18PrmRadioButton<Uc>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338E30
-// 	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338E30
-// 	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338E30
-// 	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-// 	addic.   r0, r30, 0x1c
-// 	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338E24
-// 	addi     r3, r30, 0x1c
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrLinkFv
-
-// lbl_80338E24:
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	bl       __dt__11JKRDisposerFv
-
-// lbl_80338E30:
-// 	extsh.   r0, r31
-// 	ble      lbl_80338E40
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_80338E40:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80338E5C
- * Size:	0000A8
- */
-// JADUtility::PrmSlider<unsigned char>::~PrmSlider()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_80338EE8
-// 	lis      r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility13PrmSlider<Uc>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338ED8
-// 	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338ED8
-// 	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338ED8
-// 	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-// 	addic.   r0, r30, 0x1c
-// 	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338ECC
-// 	addi     r3, r30, 0x1c
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrLinkFv
-
-// lbl_80338ECC:
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	bl       __dt__11JKRDisposerFv
-
-// lbl_80338ED8:
-// 	extsh.   r0, r31
-// 	ble      lbl_80338EE8
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_80338EE8:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80338F04
- * Size:	000098
- */
-// JADUtility::PrmHio<unsigned char>::~PrmHio()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_80338F80
-// 	lis      r3, "__vt__Q210JADUtility10PrmHio<Uc>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Uc>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338F70
-// 	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338F70
-// 	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-// 	addic.   r0, r30, 0x1c
-// 	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338F64
-// 	addi     r3, r30, 0x1c
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrLinkFv
-
-// lbl_80338F64:
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	bl       __dt__11JKRDisposerFv
-
-// lbl_80338F70:
-// 	extsh.   r0, r31
-// 	ble      lbl_80338F80
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_80338F80:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80338F9C
- * Size:	000088
- */
-// JADUtility::Prm<unsigned char>::~Prm()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_80339008
-// 	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338FF8
-// 	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-// 	addic.   r0, r30, 0x1c
-// 	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_80338FEC
-// 	addi     r3, r30, 0x1c
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrLinkFv
-
-// lbl_80338FEC:
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	bl       __dt__11JKRDisposerFv
-
-// lbl_80338FF8:
-// 	extsh.   r0, r31
-// 	ble      lbl_80339008
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_80339008:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
+namespace PSAutoBgm {
 /*
  * --INFO--
  * Address:	80339024
  * Size:	000290
  */
-PSAutoBgm::Conductor::~Conductor()
+Conductor::~Conductor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -751,7 +528,7 @@ lbl_80339298:
  * Address:	803392B4
  * Size:	000034
  */
-void PSAutoBgm::Conductor::removeCallback(unsigned char p1, void* p2)
+void Conductor::removeCallback(u8 p1, void* p2)
 {
 	// Conductor* conductor = static_cast<Conductor*>(p2);
 	// conductor->_B4
@@ -777,7 +554,7 @@ void PSAutoBgm::Conductor::removeCallback(unsigned char p1, void* p2)
  * Address:	803392E8
  * Size:	00011C
  */
-void PSAutoBgm::Conductor::seqCpuSync_AutoBgm(JASTrack*, unsigned short, unsigned long, JASTrack*)
+void Conductor::seqCpuSync_AutoBgm(JASTrack*, u16, u32, JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -876,7 +653,7 @@ void PSAutoBgm::Conductor::seqCpuSync_AutoBgm(JASTrack*, unsigned short, unsigne
  * Address:	80339404
  * Size:	0000F4
  */
-void PSAutoBgm::Conductor::createTables(JASTrack* track)
+void Conductor::createTables(JASTrack* track)
 {
 	u16 v1[2];
 	track->readPortAppDirect(2, &v1[0]);
@@ -961,8 +738,8 @@ lbl_803394E0:
  * Address:	803394F8
  * Size:	0002A4
  */
-PSAutoBgm::Track::Track()
-    : JADUtility::PrmSetRc<PSAutoBgm::Module>()
+Track::Track()
+    : JADUtility::PrmSetRc<Module>()
     , _A0()
     , _D0()
     , _100()
@@ -1158,7 +935,7 @@ PSAutoBgm::Track::Track()
  * Address:	8033979C
  * Size:	00003C
  */
-void PSAutoBgm::Track::afterGetFromFree()
+void Track::afterGetFromFree()
 {
 	_99        = 0xFF;
 	_A0.mValue = 0;
@@ -1188,7 +965,7 @@ void PSAutoBgm::Track::afterGetFromFree()
  * Address:	803397D8
  * Size:	0003DC
  */
-PSAutoBgm::Track::~Track()
+Track::~Track()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1492,7 +1269,7 @@ lbl_80339B98:
  * Address:	80339BB4
  * Size:	00003C
  */
-void PSAutoBgm::Track::removeCallback(unsigned char, void*)
+void Track::removeCallback(u8, void*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1518,8 +1295,10 @@ void PSAutoBgm::Track::removeCallback(unsigned char, void*)
  * Address:	80339BF0
  * Size:	0001B8
  */
-void PSAutoBgm::Track::seqCpuSync_AutoBgm_Track(JASTrack*, unsigned short, unsigned long, JASTrack*)
+void Track::seqCpuSync_AutoBgm_Track(JASTrack*, u16, u32, JASTrack*)
 {
+	//"Unison master track must be a lower numbered track than Unison track"
+	JUT_PANICLINE(416, "ユニゾンマスタートラックはユニゾントラックより若い番号のトラックである必要があります");
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1666,7 +1445,7 @@ void PSAutoBgm::Track::seqCpuSync_AutoBgm_Track(JASTrack*, unsigned short, unsig
  * Address:	80339DA8
  * Size:	000060
  */
-void PSAutoBgm::Track::incCurModule()
+void Track::incCurModule()
 {
 	if (_99 == 0xFF) {
 		_99 = 0;
@@ -1710,7 +1489,7 @@ lbl_80339DF4:
  * Address:	80339E08
  * Size:	000054
  */
-void PSAutoBgm::Module::afterGetFromFree()
+void Module::afterGetFromFree()
 {
 	_94.mValue  = 0x40;
 	_154.mValue = 0;
@@ -1759,7 +1538,7 @@ void PSAutoBgm::Module::afterGetFromFree()
  * Address:	80339E5C
  * Size:	000554
  */
-PSAutoBgm::Module::Module()
+Module::Module()
     : PrmSetBase(true)
     , _64()
     , _94()
@@ -2155,7 +1934,7 @@ lbl_8033A2C4:
  * Address:	8033A3B0
  * Size:	00072C
  */
-PSAutoBgm::Module::~Module()
+Module::~Module()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2697,7 +2476,7 @@ lbl_8033AABC:
  * Address:	8033AADC
  * Size:	000044
  */
-void PSAutoBgm::Module::removeCallback(unsigned char, void*)
+void Module::removeCallback(u8, void*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2725,7 +2504,7 @@ void PSAutoBgm::Module::removeCallback(unsigned char, void*)
  * Address:	8033AB20
  * Size:	000218
  */
-void PSAutoBgm::Module::seqCpuSync_AutoBgm_Module(JASTrack*, unsigned short, unsigned long, JASTrack*)
+void Module::seqCpuSync_AutoBgm_Module(JASTrack*, u16, u32, JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -2897,7 +2676,7 @@ void PSAutoBgm::Module::seqCpuSync_AutoBgm_Module(JASTrack*, unsigned short, uns
  * Address:	8033AD38
  * Size:	0001BC
  */
-void PSAutoBgm::Module::setTableAddress(JASTrack*)
+void Module::setTableAddress(JASTrack*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3031,7 +2810,7 @@ lbl_8033AEC4:
  * Address:	8033AEF4
  * Size:	000154
  */
-void PSAutoBgm::Module::cycleLoop(JASTrack*)
+void Module::cycleLoop(JASTrack*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3145,7 +2924,7 @@ lbl_8033B030:
  * Address:	8033B048
  * Size:	000010
  */
-u32 PSAutoBgm::CycleBase::cycleTop(JASTrack* track)
+u32 CycleBase::cycleTop(JASTrack* track)
 {
 	_3C = 0;
 	return 0;
@@ -3162,7 +2941,7 @@ u32 PSAutoBgm::CycleBase::cycleTop(JASTrack* track)
  * Address:	8033B058
  * Size:	0001BC
  */
-void PSAutoBgm::CycleBase::play(JASTrack* track)
+void CycleBase::play(JASTrack* track)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3298,9 +3077,9 @@ lbl_8033B1F8:
  * Address:	8033B214
  * Size:	000078
  */
-u32 PSAutoBgm::CycleBase::checkCloser(JASTrack*)
+u32 CycleBase::checkCloser(JASTrack*)
 {
-	if (_04->_F4.mValue == 1 && _3C != _04->_2B4) {
+	if (mModule->_F4.mValue == 1 && _3C != mModule->_2B4) {
 		return 0;
 	}
 	if (_08 == mSlider.mValue && getCycleType() == 0) {
@@ -3352,7 +3131,7 @@ lbl_8033B27C:
  * Address:	8033B28C
  * Size:	000184
  */
-PSAutoBgm::OnCycle::OnCycle(PSAutoBgm::Module*)
+OnCycle::OnCycle(Module*)
     : CycleBase()
 {
 	/*
@@ -3464,47 +3243,10 @@ lbl_8033B3CC:
 
 /*
  * --INFO--
- * Address:	8033B410
- * Size:	000058
- */
-PSAutoBgm::PrmLink<unsigned short>::~PrmLink()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8033B44C
-	beq      lbl_8033B43C
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8033B43C:
-	extsh.   r0, r31
-	ble      lbl_8033B44C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033B44C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8033B468
  * Size:	000360
  */
-void PSAutoBgm::OnCycle::play(JASTrack*)
+void OnCycle::play(JASTrack*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3763,7 +3505,7 @@ lbl_8033B7AC:
  * Address:	8033B7C8
  * Size:	000274
  */
-void PSAutoBgm::OnCycle::setTip(JASTrack*)
+void OnCycle::setTip(JASTrack*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3949,7 +3691,7 @@ lbl_8033B9D4:
  * Address:	8033BA3C
  * Size:	00005C
  */
-void PSAutoBgm::OnCycle::historiesAreSameAll()
+void OnCycle::historiesAreSameAll()
 {
 	/*
 	lwz      r4, 0x58(r3)
@@ -3991,7 +3733,7 @@ lbl_8033BA8C:
  * Address:	8033BA98
  * Size:	0000BC
  */
-u32 PSAutoBgm::OnCycle::avoidCheck()
+u32 OnCycle::avoidCheck()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4055,8 +3797,10 @@ lbl_8033BB38:
  * Address:	8033BB54
  * Size:	0000B0
  */
-PSAutoBgm::OffCycle::OffCycle(PSAutoBgm::Module*)
+OffCycle::OffCycle(Module* module)
 {
+	mModule = module;
+	_3C     = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4110,18 +3854,16 @@ PSAutoBgm::OffCycle::OffCycle(PSAutoBgm::Module*)
  * Address:	8033BC04
  * Size:	00015C
  */
-PSAutoBgm::AutoBgm::AutoBgm(const char* cndFileName, const char* bmsFileName, const JAInter::SoundInfo& soundInfo,
-                            JADUtility::AccessMode accessMode, PSSystem::DirectorMgrBase* directorMgr)
+AutoBgm::AutoBgm(const char* cndFileName, const char* bmsFileName, const JAInter::SoundInfo& soundInfo, JADUtility::AccessMode accessMode,
+                 PSSystem::DirectorMgrBase* directorMgr)
     : PSSystem::DirectedBgm(bmsFileName, soundInfo, directorMgr)
-    , _B8()
-    , _338(nullptr)
-    , _33C()
-    , _34C(0)
-    , _34E(0)
+    , mConductorMgr()
+    , mHeap(nullptr)
+    , mMeloArr()
 {
-	// This is probably done in a used or unused function that includes the assert that follows it.
-	// Then the second happens here because you can never be too sure.
-	_330 = new char[strlen(cndFileName)];
+	mConductorFilePath = new char[strlen(cndFileName) + 1];
+	strcpy(mConductorFilePath, cndFileName);
+	P2ASSERTLINE(1143, ConductorArcMgr::getInstance());
 
 	/*
 	.loc_0x0:
@@ -4221,261 +3963,16 @@ PSAutoBgm::AutoBgm::AutoBgm(const char* cndFileName, const char* bmsFileName, co
 
 /*
  * --INFO--
- * Address:	8033BD60
- * Size:	000078
- */
-PSAutoBgm::MeloArrMgr::~MeloArrMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8033BDBC
-	lis      r3, __vt__Q29PSAutoBgm10MeloArrMgr@ha
-	addic.   r0, r30, 4
-	addi     r0, r3, __vt__Q29PSAutoBgm10MeloArrMgr@l
-	stw      r0, 0(r30)
-	beq      lbl_8033BDA0
-	addi     r3, r30, 4
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_8033BDA0:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JADHioNodeFv
-	extsh.   r0, r31
-	ble      lbl_8033BDBC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033BDBC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033BDD8
- * Size:	000154
- */
-PSAutoBgm::ConductorMgr::~ConductorMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8033BF10
-	lis      r3, __vt__Q29PSAutoBgm12ConductorMgr@ha
-	addi     r4, r30, 0x258
-	addi     r3, r3, __vt__Q29PSAutoBgm12ConductorMgr@l
-	stw      r3, 4(r30)
-	addi     r0, r3, 0x30
-	lwz      r3, 0(r30)
-	stw      r0, 0(r3)
-	lwz      r3, 0(r30)
-	subf     r0, r3, r4
-	stw      r0, 0x1c(r3)
-	beq      lbl_8033BEEC
-	lis      r3,
-"__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>"@ha
-	addi     r3, r3,
-"__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>"@l
-	stw      r3, 4(r30)
-	addi     r0, r3, 0x2c
-	lwz      r3, 0(r30)
-	stw      r0, 0(r3)
-	lwz      r3, 0(r30)
-	subf     r0, r3, r4
-	stw      r0, 0x1c(r3)
-	beq      lbl_8033BEEC
-	lis      r4, __vt__Q210JADUtility11DataMgrNode@ha
-	addi     r3, r30, 0x250
-	addi     r4, r4, __vt__Q210JADUtility11DataMgrNode@l
-	addic.   r0, r30, 0x214
-	stw      r4, 4(r30)
-	addi     r0, r4, 0x2c
-	lwz      r4, 0(r30)
-	stw      r0, 0(r4)
-	lwz      r4, 0(r30)
-	subf     r0, r4, r3
-	stw      r0, 0x1c(r4)
-	beq      lbl_8033BEE0
-	lis      r3, __vt__Q210JADUtility6StrPrm@ha
-	addic.   r0, r30, 0x214
-	addi     r0, r3, __vt__Q210JADUtility6StrPrm@l
-	stw      r0, 0x214(r30)
-	beq      lbl_8033BEE0
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
-	addic.   r0, r30, 0x214
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
-	stw      r0, 0x214(r30)
-	beq      lbl_8033BEE0
-	lis      r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
-	addic.   r0, r30, 0x214
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
-	stw      r0, 0x214(r30)
-	beq      lbl_8033BEE0
-	lis      r4, __vt__Q210JADUtility7PrmBase@ha
-	addic.   r3, r30, 0x230
-	addi     r0, r4, __vt__Q210JADUtility7PrmBase@l
-	stw      r0, 0x214(r30)
-	beq      lbl_8033BED4
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8033BED4:
-	addi     r3, r30, 0x214
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-
-lbl_8033BEE0:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__Q210JADUtility15DataLoadMgrNodeFv
-
-lbl_8033BEEC:
-	extsh.   r0, r31
-	beq      lbl_8033BF00
-	addi     r3, r30, 0x258
-	li       r4, 0
-	bl       __dt__Q210JADUtility11DataMgrBaseFv
-
-lbl_8033BF00:
-	extsh.   r0, r31
-	ble      lbl_8033BF10
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033BF10:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033BF2C
- * Size:	00012C
- */
-JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::~PrmDataMgrNode()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x110
-	  lis       r3, 0x804E
-	  addi      r0, r30, 0x258
-	  subi      r3, r3, 0x5474
-	  stw       r3, 0x4(r30)
-	  addi      r4, r3, 0x2C
-	  lwz       r3, 0x0(r30)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x0(r30)
-	  sub       r0, r0, r3
-	  stw       r0, 0x1C(r3)
-	  beq-      .loc_0xEC
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x250
-	  addi      r4, r4, 0x6788
-	  addic.    r0, r30, 0x214
-	  stw       r4, 0x4(r30)
-	  addi      r0, r4, 0x2C
-	  lwz       r4, 0x0(r30)
-	  stw       r0, 0x0(r4)
-	  lwz       r4, 0x0(r30)
-	  sub       r0, r3, r4
-	  stw       r0, 0x1C(r4)
-	  beq-      .loc_0xE0
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x214
-	  addi      r0, r3, 0x6738
-	  stw       r0, 0x214(r30)
-	  beq-      .loc_0xE0
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x214
-	  addi      r0, r3, 0x674C
-	  stw       r0, 0x214(r30)
-	  beq-      .loc_0xE0
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x214
-	  addi      r0, r3, 0x6760
-	  stw       r0, 0x214(r30)
-	  beq-      .loc_0xE0
-	  lis       r4, 0x804A
-	  addic.    r3, r30, 0x230
-	  addi      r0, r4, 0x6774
-	  stw       r0, 0x214(r30)
-	  beq-      .loc_0xD4
-	  li        r4, 0
-	  bl        -0x31582C
-
-	.loc_0xD4:
-	  addi      r3, r30, 0x214
-	  li        r4, 0
-	  bl        -0x31EFD4
-
-	.loc_0xE0:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x281760
-
-	.loc_0xEC:
-	  extsh.    r0, r31
-	  beq-      .loc_0x100
-	  addi      r3, r30, 0x258
-	  li        r4, 0
-	  bl        -0x2817EC
-
-	.loc_0x100:
-	  extsh.    r0, r31
-	  ble-      .loc_0x110
-	  mr        r3, r30
-	  bl        -0x317F84
-
-	.loc_0x110:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8033C058
  * Size:	000150
  */
-void PSAutoBgm::AutoBgm::startSeq()
+void AutoBgm::startSeq()
 {
+	DirectedBgm::startSeq();
+	if (getHandleP()) {
+		JAISound* sound = getHandleP();
+		mRootTrack;
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -4581,27 +4078,10 @@ lbl_8033C170:
  * Address:	8033C1A8
  * Size:	000044
  */
-void PSAutoBgm::AutoBgm::scene1st(PSSystem::TaskChecker*)
+void AutoBgm::scene1st(PSSystem::TaskChecker* task)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
-	mr       r3, r30
-	mr       r4, r31
-	bl       loadConductor__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	SeqBase::scene1st(task);
+	loadConductor(task);
 }
 
 /*
@@ -4609,8 +4089,29 @@ void PSAutoBgm::AutoBgm::scene1st(PSSystem::TaskChecker*)
  * Address:	8033C1EC
  * Size:	000180
  */
-void PSAutoBgm::AutoBgm::loadConductor(PSSystem::TaskChecker*)
+void AutoBgm::loadConductor(PSSystem::TaskChecker* task)
 {
+	JKRArchive* arc = ConductorArcMgr::getInstance()->mArchive;
+	P2ASSERTLINE(1192, arc);
+	// struct for bms file?
+	int* file = (int*)arc->findNameResource(mBmsFileName);
+	int size  = file[3];
+	JUT_ASSERTLINE(1195, file, "not find(%s)", mBmsFileName);
+	P2ASSERTLINE(1205, !mHeap);
+	mHeap = (JKRHeap*)JKRHeap::alloc(size, -0x20, nullptr);
+	P2ASSERTLINE(1207, mHeap);
+	if (task) {
+		OSLockMutex(&task->mMutex);
+		task->_18++;
+		OSUnlockMutex(&task->mMutex);
+	}
+
+	// JASResArcLoader::loadResourceAsync(arc, file, mHeap, size, loadedCallback, task);
+	if (task) {
+		OSLockMutex(&task->mMutex);
+		task->_18--;
+		OSUnlockMutex(&task->mMutex);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -4732,8 +4233,17 @@ lbl_8033C358:
  * Address:	8033C36C
  * Size:	000074
  */
-void PSAutoBgm::AutoBgm::loadedCallback(unsigned long, unsigned long)
+void AutoBgm::loadedCallback(u32, u32)
 {
+	// JADUtility::DataLoadMgrNode::initInstanceExt();
+	mHeap->free(nullptr);
+	mHeap          = nullptr;
+	OSMutex* mutex = &mMutex;
+	if (mutex) {
+		OSLockMutex(mutex);
+		mutex->count--;
+		OSUnlockMutex(mutex);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4774,8 +4284,49 @@ lbl_8033C3CC:
  * Address:	8033C3E0
  * Size:	000168
  */
-void PSAutoBgm::AutoBgm::pauseOn(PSSystem::SeqBase::PauseMode)
+void AutoBgm::pauseOn(SeqBase::PauseMode pause)
 {
+	if (mPauseMode != SeqBase::MODE4) {
+		return;
+	}
+
+	mPauseMode = pause;
+	P2ASSERTLINE(1310, getHandleP());
+
+	JAISound* sound = getHandleP();
+	bool noSound    = false;
+	switch (pause) {
+	case SeqBase::MODE0:
+		mPauseMode = SeqBase::MODE1;
+		break;
+	case SeqBase::MODE1:
+		if (sound) {
+			sound->setPauseMode(true, 0);
+		} else {
+			noSound = true;
+		}
+		break;
+	case SeqBase::MODE2:
+		if (sound) {
+			sound->setPauseMode(true, _48);
+		} else {
+			noSound = true;
+		}
+		break;
+	case SeqBase::MODE3:
+		if (sound) {
+			stopSeq(0);
+		} else {
+			noSound = true;
+		}
+		break;
+	default:
+		JUT_PANICLINE(1352, "P2Assert");
+	}
+
+	if (noSound == true)
+		mPauseMode = SeqBase::MODE4;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -4899,1700 +4450,6 @@ lbl_8033C52C:
  * Address:	8033C548
  * Size:	000020
  */
-void PSAutoBgm::AutoBgm::pauseOff()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       pauseOff__Q28PSSystem7SeqBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void AutoBgm::pauseOff() { SeqBase::pauseOff(); }
 
-/*
- * --INFO--
- * Address:	8033C568
- * Size:	000190
- */
-JADUtility::PrmSetRc<PSAutoBgm::Track>::~PrmSetRc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8033C6DC
-	lis      r3, "__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>"@ha
-	addi     r0, r3, "__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>"@l
-	stw      r0, 0(r30)
-	b        lbl_8033C5B8
-
-lbl_8033C598:
-	cmplwi   r4, 0
-	beq      lbl_8033C5A4
-	addi     r4, r4, -12
-
-lbl_8033C5A4:
-	cmplwi   r4, 0
-	beq      lbl_8033C5B0
-	addi     r4, r4, 0xc
-
-lbl_8033C5B0:
-	addi     r3, r30, 0x2c
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-
-lbl_8033C5B8:
-	lwz      r4, 0x2c(r30)
-	cmplwi   r4, 0
-	mr       r0, r4
-	beq      lbl_8033C5CC
-	addi     r0, r4, -12
-
-lbl_8033C5CC:
-	cmplwi   r0, 0
-	bne      lbl_8033C598
-	lis      r4, __dt__Q29PSAutoBgm5TrackFv@ha
-	lwz      r3, 0x64(r30)
-	addi     r4, r4, __dt__Q29PSAutoBgm5TrackFv@l
-	bl       __destroy_new_array
-	addic.   r0, r30, 0x68
-	beq      lbl_8033C628
-	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-	addic.   r0, r30, 0x68
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-	stw      r0, 0x68(r30)
-	beq      lbl_8033C628
-	lis      r4, __vt__Q210JADUtility7PrmBase@ha
-	addic.   r3, r30, 0x84
-	addi     r0, r4, __vt__Q210JADUtility7PrmBase@l
-	stw      r0, 0x68(r30)
-	beq      lbl_8033C61C
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8033C61C:
-	addi     r3, r30, 0x68
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-
-lbl_8033C628:
-	cmplwi   r30, 0
-	beq      lbl_8033C6CC
-	lis      r3, __vt__Q210JADUtility10PrmSetBase@ha
-	addi     r0, r3, __vt__Q210JADUtility10PrmSetBase@l
-	stw      r0, 0(r30)
-	b        lbl_8033C648
-
-lbl_8033C640:
-	addi     r3, r30, 0x1c
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-
-lbl_8033C648:
-	lwz      r4, 0x1c(r30)
-	cmplwi   r4, 0
-	bne      lbl_8033C640
-	addic.   r0, r30, 0x2c
-	beq      lbl_8033C6AC
-	lis      r3, __vt__Q210JADUtility10PrmSetTree@ha
-	addic.   r0, r30, 0x2c
-	addi     r0, r3, __vt__Q210JADUtility10PrmSetTree@l
-	stw      r0, 0x48(r30)
-	beq      lbl_8033C6AC
-	lis      r3, "__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"@ha
-	addic.   r0, r30, 0x2c
-	addi     r0, r3,
-"__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"@l stw      r0,
-0x48(r30) beq      lbl_8033C6AC addic.   r0, r30, 0x38 beq      lbl_8033C698
-	addi     r3, r30, 0x38
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8033C698:
-	addic.   r0, r30, 0x2c
-	beq      lbl_8033C6AC
-	addi     r3, r30, 0x2c
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_8033C6AC:
-	addic.   r0, r30, 0x1c
-	beq      lbl_8033C6C0
-	addi     r3, r30, 0x1c
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_8033C6C0:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-
-lbl_8033C6CC:
-	extsh.   r0, r31
-	ble      lbl_8033C6DC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033C6DC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033C6F8
- * Size:	0000C4
- */
-JADUtility::StrEditBox::~StrEditBox()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8033C7A0
-	lis      r3, __vt__Q210JADUtility10StrEditBox@ha
-	addi     r0, r3, __vt__Q210JADUtility10StrEditBox@l
-	stw      r0, 0(r30)
-	lwz      r3, 0x2c(r30)
-	bl       __dla__FPv
-	cmplwi   r30, 0
-	beq      lbl_8033C790
-	lis      r3, __vt__Q210JADUtility6StrPrm@ha
-	addi     r0, r3, __vt__Q210JADUtility6StrPrm@l
-	stw      r0, 0(r30)
-	beq      lbl_8033C790
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8033C790
-	lis      r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8033C790
-	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-	addic.   r0, r30, 0x1c
-	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
-	stw      r0, 0(r30)
-	beq      lbl_8033C784
-	addi     r3, r30, 0x1c
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8033C784:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-
-lbl_8033C790:
-	extsh.   r0, r31
-	ble      lbl_8033C7A0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033C7A0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033C7BC
- * Size:	0000A8
- */
-// JADUtility::PrmSlider<short>::~PrmSlider()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8033C848
-// 	lis      r3, "__vt__Q210JADUtility12PrmSlider<s>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility12PrmSlider<s>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8033C838
-// 	lis      r3, "__vt__Q210JADUtility9PrmHio<s>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility9PrmHio<s>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8033C838
-// 	lis      r3, "__vt__Q210JADUtility6Prm<s>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility6Prm<s>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8033C838
-// 	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-// 	addic.   r0, r30, 0x1c
-// 	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8033C82C
-// 	addi     r3, r30, 0x1c
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrLinkFv
-
-// lbl_8033C82C:
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	bl       __dt__11JKRDisposerFv
-
-// lbl_8033C838:
-// 	extsh.   r0, r31
-// 	ble      lbl_8033C848
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8033C848:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033C864
- * Size:	000098
- */
-// JADUtility::PrmHio<short>::~PrmHio()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8033C8E0
-// 	lis      r3, "__vt__Q210JADUtility9PrmHio<s>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility9PrmHio<s>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8033C8D0
-// 	lis      r3, "__vt__Q210JADUtility6Prm<s>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility6Prm<s>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8033C8D0
-// 	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-// 	addic.   r0, r30, 0x1c
-// 	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8033C8C4
-// 	addi     r3, r30, 0x1c
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrLinkFv
-
-// lbl_8033C8C4:
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	bl       __dt__11JKRDisposerFv
-
-// lbl_8033C8D0:
-// 	extsh.   r0, r31
-// 	ble      lbl_8033C8E0
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8033C8E0:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033C8FC
- * Size:	000088
- */
-// JADUtility::Prm<short>::~Prm()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8033C968
-// 	lis      r3, "__vt__Q210JADUtility6Prm<s>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility6Prm<s>"@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8033C958
-// 	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-// 	addic.   r0, r30, 0x1c
-// 	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
-// 	stw      r0, 0(r30)
-// 	beq      lbl_8033C94C
-// 	addi     r3, r30, 0x1c
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrLinkFv
-
-// lbl_8033C94C:
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	bl       __dt__11JKRDisposerFv
-
-// lbl_8033C958:
-// 	extsh.   r0, r31
-// 	ble      lbl_8033C968
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8033C968:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033C984
- * Size:	000190
- */
-// JADUtility::PrmSetRc<PSAutoBgm::Module>::~PrmSetRc()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8033CAF8
-// 	lis      r3, "__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>"@ha
-// 	addi     r0, r3, "__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>"@l
-// 	stw      r0, 0(r30)
-// 	b        lbl_8033C9D4
-
-// lbl_8033C9B4:
-// 	cmplwi   r4, 0
-// 	beq      lbl_8033C9C0
-// 	addi     r4, r4, -12
-
-// lbl_8033C9C0:
-// 	cmplwi   r4, 0
-// 	beq      lbl_8033C9CC
-// 	addi     r4, r4, 0xc
-
-// lbl_8033C9CC:
-// 	addi     r3, r30, 0x2c
-// 	bl       remove__10JSUPtrListFP10JSUPtrLink
-
-// lbl_8033C9D4:
-// 	lwz      r4, 0x2c(r30)
-// 	cmplwi   r4, 0
-// 	mr       r0, r4
-// 	beq      lbl_8033C9E8
-// 	addi     r0, r4, -12
-
-// lbl_8033C9E8:
-// 	cmplwi   r0, 0
-// 	bne      lbl_8033C9B4
-// 	lis      r4, __dt__Q29PSAutoBgm6ModuleFv@ha
-// 	lwz      r3, 0x64(r30)
-// 	addi     r4, r4, __dt__Q29PSAutoBgm6ModuleFv@l
-// 	bl       __destroy_new_array
-// 	addic.   r0, r30, 0x68
-// 	beq      lbl_8033CA44
-// 	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-// 	addic.   r0, r30, 0x68
-// 	addi     r0, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-// 	stw      r0, 0x68(r30)
-// 	beq      lbl_8033CA44
-// 	lis      r4, __vt__Q210JADUtility7PrmBase@ha
-// 	addic.   r3, r30, 0x84
-// 	addi     r0, r4, __vt__Q210JADUtility7PrmBase@l
-// 	stw      r0, 0x68(r30)
-// 	beq      lbl_8033CA38
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrLinkFv
-
-// lbl_8033CA38:
-// 	addi     r3, r30, 0x68
-// 	li       r4, 0
-// 	bl       __dt__11JKRDisposerFv
-
-// lbl_8033CA44:
-// 	cmplwi   r30, 0
-// 	beq      lbl_8033CAE8
-// 	lis      r3, __vt__Q210JADUtility10PrmSetBase@ha
-// 	addi     r0, r3, __vt__Q210JADUtility10PrmSetBase@l
-// 	stw      r0, 0(r30)
-// 	b        lbl_8033CA64
-
-// lbl_8033CA5C:
-// 	addi     r3, r30, 0x1c
-// 	bl       remove__10JSUPtrListFP10JSUPtrLink
-
-// lbl_8033CA64:
-// 	lwz      r4, 0x1c(r30)
-// 	cmplwi   r4, 0
-// 	bne      lbl_8033CA5C
-// 	addic.   r0, r30, 0x2c
-// 	beq      lbl_8033CAC8
-// 	lis      r3, __vt__Q210JADUtility10PrmSetTree@ha
-// 	addic.   r0, r30, 0x2c
-// 	addi     r0, r3, __vt__Q210JADUtility10PrmSetTree@l
-// 	stw      r0, 0x48(r30)
-// 	beq      lbl_8033CAC8
-// 	lis      r3, "__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"@ha
-// 	addic.   r0, r30, 0x2c
-// 	addi     r0, r3,
-// "__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"@l stw      r0,
-// 0x48(r30) beq      lbl_8033CAC8 addic.   r0, r30, 0x38 beq      lbl_8033CAB4
-// 	addi     r3, r30, 0x38
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrLinkFv
-
-// lbl_8033CAB4:
-// 	addic.   r0, r30, 0x2c
-// 	beq      lbl_8033CAC8
-// 	addi     r3, r30, 0x2c
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrListFv
-
-// lbl_8033CAC8:
-// 	addic.   r0, r30, 0x1c
-// 	beq      lbl_8033CADC
-// 	addi     r3, r30, 0x1c
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrListFv
-
-// lbl_8033CADC:
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	bl       __dt__11JKRDisposerFv
-
-// lbl_8033CAE8:
-// 	extsh.   r0, r31
-// 	ble      lbl_8033CAF8
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8033CAF8:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033CB14
- * Size:	000008
- */
-// int JADUtility::PrmSetRc<PSAutoBgm::Track>::getChildNum()
-// {
-// 	/*
-// 	lbz      r3, 0x94(r3)
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033CB1C
- * Size:	000008
- */
-// void* JADUtility::PrmSetRc<PSAutoBgm::Track>::getPrmObjHeap() { return nullptr; }
-
-/*
- * --INFO--
- * Address:	8033CB24
- * Size:	000008
- */
-//  JADUtility::PrmSetRc<PSAutoBgm::Module>::getChildNum()
-// {
-// 	/*
-// 	lbz      r3, 0x94(r3)
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033CB2C
- * Size:	000008
- */
-// void* JADUtility::PrmSetRc<PSAutoBgm::Module>::getPrmObjHeap() { return nullptr; }
-
-/*
- * --INFO--
- * Address:	8033CB34
- * Size:	000090
- */
-void JADUtility::Prm<short>::save(JSUMemoryOutputStream&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 2
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	addi     r4, r1, 0xa
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lha      r0, 0x2c(r3)
-	mr       r3, r29
-	sth      r0, 0xa(r1)
-	bl       write__15JSUOutputStreamFPCvl
-	li       r30, 0
-	mr       r31, r30
-	b        lbl_8033CB94
-
-lbl_8033CB7C:
-	stb      r31, 8(r1)
-	mr       r3, r29
-	addi     r4, r1, 8
-	li       r5, 1
-	bl       write__15JSUOutputStreamFPCvl
-	addi     r30, r30, 1
-
-lbl_8033CB94:
-	lbz      r0, 0x18(r28)
-	clrlwi   r3, r30, 0x18
-	cmplw    r3, r0
-	blt      lbl_8033CB7C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033CBC4
- * Size:	000064
- */
-void JADUtility::Prm<short>::load(JSUMemoryInputStream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 2
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	addi     r4, r30, 0x2c
-	bl       read__14JSUInputStreamFPvl
-	lbz      r4, 0x18(r30)
-	cmplwi   r4, 0
-	beq      lbl_8033CC10
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8033CC10:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033CC28
- * Size:	000090
- */
-void JADUtility::Prm<unsigned char>::save(JSUMemoryOutputStream&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 1
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	addi     r4, r1, 9
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lbz      r0, 0x2c(r3)
-	mr       r3, r29
-	stb      r0, 9(r1)
-	bl       write__15JSUOutputStreamFPCvl
-	li       r30, 0
-	mr       r31, r30
-	b        lbl_8033CC88
-
-lbl_8033CC70:
-	stb      r31, 8(r1)
-	mr       r3, r29
-	addi     r4, r1, 8
-	li       r5, 1
-	bl       write__15JSUOutputStreamFPCvl
-	addi     r30, r30, 1
-
-lbl_8033CC88:
-	lbz      r0, 0x18(r28)
-	clrlwi   r3, r30, 0x18
-	cmplw    r3, r0
-	blt      lbl_8033CC70
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033CCB8
- * Size:	000064
- */
-void JADUtility::Prm<unsigned char>::load(JSUMemoryInputStream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	addi     r4, r30, 0x2c
-	bl       read__14JSUInputStreamFPvl
-	lbz      r4, 0x18(r30)
-	cmplwi   r4, 0
-	beq      lbl_8033CD04
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8033CD04:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033CD1C
- * Size:	00003C
- */
-PSAutoBgm::Module* JADUtility::PrmSetRc<PSAutoBgm::Module>::getChild(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x2c
-	clrlwi   r4, r4, 0x18
-	stw      r0, 0x14(r1)
-	bl       getNthLink__10JSUPtrListCFUl
-	cmplwi   r3, 0
-	beq      lbl_8033CD44
-	lwz      r3, 0(r3)
-	b        lbl_8033CD48
-
-lbl_8033CD44:
-	li       r3, 0
-
-lbl_8033CD48:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033CD58
- * Size:	000114
- */
-void JADUtility::PrmSetRc<PSAutoBgm::Module>::load(JSUMemoryInputStream&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r30, r3
-	mr       r31, r4
-	bl       load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream
-	lbz      r0, 0x94(r30)
-	cmplwi   r0, 0
-	beq      lbl_8033CE58
-	mr       r3, r30
-	lwz      r28, sCurrentHeap__7JKRHeap@sda21(r13)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_8033CDB8
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	bl       becomeCurrentHeap__7JKRHeapFv
-
-lbl_8033CDB8:
-	lbz      r29, 0x94(r30)
-	mulli    r3, r29, 0x2c4
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q29PSAutoBgm6ModuleFv@ha
-	lis      r5, __dt__Q29PSAutoBgm6ModuleFv@ha
-	addi     r4, r4, __ct__Q29PSAutoBgm6ModuleFv@l
-	mr       r7, r29
-	addi     r5, r5, __dt__Q29PSAutoBgm6ModuleFv@l
-	li       r6, 0x2c4
-	bl       __construct_new_array
-	mr       r29, r3
-	li       r26, 0
-	b        lbl_8033CE40
-
-lbl_8033CDF0:
-	clrlwi   r0, r26, 0x18
-	mulli    r0, r0, 0x2c4
-	add      r27, r29, r0
-	addic.   r4, r27, 0x2c
-	beq      lbl_8033CE08
-	addi     r4, r4, 0xc
-
-lbl_8033CE08:
-	addi     r3, r30, 0x2c
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r27
-	mr       r4, r31
-	lwz      r12, 0(r27)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r26, r26, 1
-
-lbl_8033CE40:
-	lbz      r0, 0x94(r30)
-	clrlwi   r3, r26, 0x18
-	cmplw    r3, r0
-	blt      lbl_8033CDF0
-	mr       r3, r28
-	bl       becomeCurrentHeap__7JKRHeapFv
-
-lbl_8033CE58:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033CE6C
- * Size:	000090
- */
-// JADUtility::PrmSetRc<PSAutoBgm::Module>::PrmSetRc()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	li       r4, 1
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	stw      r30, 8(r1)
-// 	bl       __ct__Q210JADUtility10PrmSetBaseFb
-// 	lis      r3, "__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>"@ha
-// 	li       r0, 0
-// 	addi     r3, r3, "__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>"@l
-// 	addi     r30, r31, 0x68
-// 	stw      r3, 0(r31)
-// 	mr       r3, r30
-// 	stw      r0, 0x64(r31)
-// 	bl       __ct__11JKRDisposerFv
-// 	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-// 	li       r0, 0
-// 	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-// 	mr       r4, r30
-// 	stw      r3, 0(r30)
-// 	addi     r3, r30, 0x1c
-// 	stb      r0, 0x18(r30)
-// 	bl       __ct__10JSUPtrLinkFPv
-// 	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-// 	li       r0, 0
-// 	addi     r4, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-// 	mr       r3, r31
-// 	stw      r4, 0(r30)
-// 	stb      r0, 0x2c(r30)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033CEFC
- * Size:	00003C
- */
-// void JADUtility::PrmSetRc<PSAutoBgm::Track>::getChild(unsigned char)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	addi     r3, r3, 0x2c
-// 	clrlwi   r4, r4, 0x18
-// 	stw      r0, 0x14(r1)
-// 	bl       getNthLink__10JSUPtrListCFUl
-// 	cmplwi   r3, 0
-// 	beq      lbl_8033CF24
-// 	lwz      r3, 0(r3)
-// 	b        lbl_8033CF28
-
-// lbl_8033CF24:
-// 	li       r3, 0
-
-// lbl_8033CF28:
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033CF38
- * Size:	000114
- */
-// void JADUtility::PrmSetRc<PSAutoBgm::Track>::load(JSUMemoryInputStream&)
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	stw      r0, 0x24(r1)
-// 	stmw     r26, 8(r1)
-// 	mr       r30, r3
-// 	mr       r31, r4
-// 	bl       load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream
-// 	lbz      r0, 0x94(r30)
-// 	cmplwi   r0, 0
-// 	beq      lbl_8033D038
-// 	mr       r3, r30
-// 	lwz      r28, sCurrentHeap__7JKRHeap@sda21(r13)
-// 	lwz      r12, 0(r30)
-// 	lwz      r12, 0x24(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	cmplwi   r3, 0
-// 	beq      lbl_8033CF98
-// 	mr       r3, r30
-// 	lwz      r12, 0(r30)
-// 	lwz      r12, 0x24(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	bl       becomeCurrentHeap__7JKRHeapFv
-
-// lbl_8033CF98:
-// 	lbz      r29, 0x94(r30)
-// 	mulli    r3, r29, 0x1a0
-// 	addi     r3, r3, 0x10
-// 	bl       __nwa__FUl
-// 	lis      r4, __ct__Q29PSAutoBgm5TrackFv@ha
-// 	lis      r5, __dt__Q29PSAutoBgm5TrackFv@ha
-// 	addi     r4, r4, __ct__Q29PSAutoBgm5TrackFv@l
-// 	mr       r7, r29
-// 	addi     r5, r5, __dt__Q29PSAutoBgm5TrackFv@l
-// 	li       r6, 0x1a0
-// 	bl       __construct_new_array
-// 	mr       r29, r3
-// 	li       r26, 0
-// 	b        lbl_8033D020
-
-// lbl_8033CFD0:
-// 	clrlwi   r0, r26, 0x18
-// 	mulli    r0, r0, 0x1a0
-// 	add      r27, r29, r0
-// 	addic.   r4, r27, 0x2c
-// 	beq      lbl_8033CFE8
-// 	addi     r4, r4, 0xc
-
-// lbl_8033CFE8:
-// 	addi     r3, r30, 0x2c
-// 	bl       append__10JSUPtrListFP10JSUPtrLink
-// 	mr       r3, r27
-// 	lwz      r12, 0(r27)
-// 	lwz      r12, 0xc(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r3, r27
-// 	mr       r4, r31
-// 	lwz      r12, 0(r27)
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	addi     r26, r26, 1
-
-// lbl_8033D020:
-// 	lbz      r0, 0x94(r30)
-// 	clrlwi   r3, r26, 0x18
-// 	cmplw    r3, r0
-// 	blt      lbl_8033CFD0
-// 	mr       r3, r28
-// 	bl       becomeCurrentHeap__7JKRHeapFv
-
-// lbl_8033D038:
-// 	lmw      r26, 8(r1)
-// 	lwz      r0, 0x24(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033D04C
- * Size:	000090
- */
-// JADUtility::PrmSetRc<PSAutoBgm::Track>::PrmSetRc()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	li       r4, 1
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	stw      r30, 8(r1)
-// 	bl       __ct__Q210JADUtility10PrmSetBaseFb
-// 	lis      r3, "__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>"@ha
-// 	li       r0, 0
-// 	addi     r3, r3, "__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>"@l
-// 	addi     r30, r31, 0x68
-// 	stw      r3, 0(r31)
-// 	mr       r3, r30
-// 	stw      r0, 0x64(r31)
-// 	bl       __ct__11JKRDisposerFv
-// 	lis      r3, __vt__Q210JADUtility7PrmBase@ha
-// 	li       r0, 0
-// 	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
-// 	mr       r4, r30
-// 	stw      r3, 0(r30)
-// 	addi     r3, r30, 0x1c
-// 	stb      r0, 0x18(r30)
-// 	bl       __ct__10JSUPtrLinkFPv
-// 	lis      r3, "__vt__Q210JADUtility7Prm<Uc>"@ha
-// 	li       r0, 0
-// 	addi     r4, r3, "__vt__Q210JADUtility7Prm<Uc>"@l
-// 	mr       r3, r31
-// 	stw      r4, 0(r30)
-// 	stb      r0, 0x2c(r30)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033D0DC
- * Size:	000008
- */
-u32 PSAutoBgm::CycleBase::avoidCheck() { return 0x0; }
-
-/*
- * --INFO--
- * Address:	8033D0E4
- * Size:	000008
- */
-u32 PSAutoBgm::CycleBase::getCycleType() { return 0x1; }
-
-/*
- * --INFO--
- * Address:	8033D0EC
- * Size:	000034
- */
-// PSAutoBgm::PrmLink<unsigned short>::PrmLink()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	addi     r4, r31, 0x10
-// 	bl       __ct__10JSUPtrLinkFPv
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r31
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033D120
- * Size:	0001C4
- */
-PSAutoBgm::AutoBgm::~AutoBgm()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	or.      r30, r3, r3
-	stw      r29, 0x14(r1)
-	beq      lbl_8033D2C4
-	lis      r3, __vt__Q29PSAutoBgm7AutoBgm@ha
-	li       r4, 0
-	addi     r0, r3, __vt__Q29PSAutoBgm7AutoBgm@l
-	stw      r0, 0x10(r30)
-	lwz      r3, 0x338(r30)
-	bl       free__7JKRHeapFPvP7JKRHeap
-	addic.   r0, r30, 0x33c
-	beq      lbl_8033D18C
-	lis      r4, __vt__Q29PSAutoBgm10MeloArrMgr@ha
-	addic.   r3, r30, 0x340
-	addi     r0, r4, __vt__Q29PSAutoBgm10MeloArrMgr@l
-	stw      r0, 0x33c(r30)
-	beq      lbl_8033D180
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_8033D180:
-	addi     r3, r30, 0x33c
-	li       r4, 0
-	bl       __dt__10JADHioNodeFv
-
-lbl_8033D18C:
-	addic.   r0, r30, 0xb8
-	beq      lbl_8033D294
-	lis      r3, __vt__Q29PSAutoBgm12ConductorMgr@ha
-	addi     r4, r30, 0x310
-	addi     r3, r3, __vt__Q29PSAutoBgm12ConductorMgr@l
-	addic.   r0, r30, 0xb8
-	stw      r3, 0xbc(r30)
-	addi     r0, r3, 0x30
-	lwz      r3, 0xb8(r30)
-	stw      r0, 0(r3)
-	lwz      r3, 0xb8(r30)
-	subf     r0, r3, r4
-	stw      r0, 0x1c(r3)
-	beq      lbl_8033D288
-	lis      r3,
-"__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>"@ha
-	addic.   r0, r30, 0xb8
-	addi     r3, r3,
-"__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>"@l
-	stw      r3, 0xbc(r30)
-	addi     r0, r3, 0x2c
-	lwz      r3, 0xb8(r30)
-	stw      r0, 0(r3)
-	lwz      r3, 0xb8(r30)
-	subf     r0, r3, r4
-	stw      r0, 0x1c(r3)
-	beq      lbl_8033D288
-	lis      r3, __vt__Q210JADUtility11DataMgrNode@ha
-	addi     r0, r30, 0x308
-	addi     r3, r3, __vt__Q210JADUtility11DataMgrNode@l
-	addic.   r29, r30, 0x2cc
-	stw      r3, 0xbc(r30)
-	addi     r4, r3, 0x2c
-	lwz      r3, 0xb8(r30)
-	stw      r4, 0(r3)
-	lwz      r3, 0xb8(r30)
-	subf     r0, r3, r0
-	stw      r0, 0x1c(r3)
-	beq      lbl_8033D27C
-	lis      r3, __vt__Q210JADUtility6StrPrm@ha
-	cmplwi   r29, 0
-	addi     r0, r3, __vt__Q210JADUtility6StrPrm@l
-	stw      r0, 0x2cc(r30)
-	beq      lbl_8033D27C
-	lis      r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
-	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
-	stw      r0, 0x2cc(r30)
-	beq      lbl_8033D27C
-	lis      r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
-	addi     r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
-	stw      r0, 0x2cc(r30)
-	beq      lbl_8033D27C
-	lis      r4, __vt__Q210JADUtility7PrmBase@ha
-	addic.   r3, r29, 0x1c
-	addi     r0, r4, __vt__Q210JADUtility7PrmBase@l
-	stw      r0, 0x2cc(r30)
-	beq      lbl_8033D270
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8033D270:
-	mr       r3, r29
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-
-lbl_8033D27C:
-	addi     r3, r30, 0xb8
-	li       r4, 0
-	bl       __dt__Q210JADUtility15DataLoadMgrNodeFv
-
-lbl_8033D288:
-	addi     r3, r30, 0x310
-	li       r4, 0
-	bl       __dt__Q210JADUtility11DataMgrBaseFv
-
-lbl_8033D294:
-	cmplwi   r30, 0
-	beq      lbl_8033D2B4
-	lis      r4, __vt__Q28PSSystem11DirectedBgm@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__Q28PSSystem11DirectedBgm@l
-	li       r4, 0
-	stw      r0, 0x10(r30)
-	bl       __dt__Q28PSSystem6BgmSeqFv
-
-lbl_8033D2B4:
-	extsh.   r0, r31
-	ble      lbl_8033D2C4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033D2C4:
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033D2E4
- * Size:	000008
- */
-u8 PSAutoBgm::AutoBgm::getCastType() { return 0x3; }
-
-/*
- * --INFO--
- * Address:	8033D2EC
- * Size:	000088
- */
-void PSAutoBgm::AutoBgm::newSeqTrackRoot()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x2c8
-	stw      r30, 8(r1)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8033D358
-	mr       r30, r0
-	bl       __ct__Q28PSSystem12SeqTrackRootFv
-	lis      r4, __vt__Q29PSAutoBgm19AutoBgmSeqTrackRoot@ha
-	addi     r3, r31, 0xb8
-	addi     r4, r4, __vt__Q29PSAutoBgm19AutoBgmSeqTrackRoot@l
-	addic.   r0, r31, 0xb8
-	stw      r4, 0(r30)
-	stw      r3, 0x2c4(r30)
-	bne      lbl_8033D354
-	lis      r3, lbl_8048FED4@ha
-	lis      r5, lbl_8048FE70@ha
-	addi     r3, r3, lbl_8048FED4@l
-	li       r4, 0x2f3
-	addi     r5, r5, lbl_8048FE70@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033D354:
-	mr       r0, r30
-
-lbl_8033D358:
-	mr       r3, r0
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033D374
- * Size:	0000D0
- */
-u16 PSAutoBgm::AutoBgmSeqTrackRoot::beatUpdate()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	bl       beatUpdate__Q28PSSystem12SeqTrackRootFv
-	lwz      r3, 0x2c4(r31)
-	lwz      r30, 0x250(r3)
-	cmplwi   r30, 0
-	bne      lbl_8033D3BC
-	lis      r3, lbl_8048FED4@ha
-	lis      r5, lbl_8048FE70@ha
-	addi     r3, r3, lbl_8048FED4@l
-	li       r4, 0x2f8
-	addi     r5, r5, lbl_8048FE70@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033D3BC:
-	lbz      r0, 0x3c(r31)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8033D428
-	lwz      r3, 0xb0(r30)
-	li       r31, 0
-	addi     r0, r3, 1
-	stw      r0, 0xb0(r30)
-	b        lbl_8033D408
-
-lbl_8033D3DC:
-	mr       r3, r30
-	mr       r4, r31
-	bl       "getChild__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FUc"
-	lbz      r4, 0x99(r3)
-	cmplwi   r4, 0xff
-	beq      lbl_8033D404
-	bl       "getChild__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FUc"
-	lhz      r4, 0x2a4(r3)
-	addi     r0, r4, 1
-	sth      r0, 0x2a4(r3)
-
-lbl_8033D404:
-	addi     r31, r31, 1
-
-lbl_8033D408:
-	mr       r3, r30
-	bl       "getChildNum__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
-	clrlwi   r3, r3, 0x18
-	clrlwi   r0, r31, 0x18
-	cmplw    r0, r3
-	blt      lbl_8033D3DC
-	lbz      r3, 0x114(r30)
-	b        lbl_8033D42C
-
-lbl_8033D428:
-	lbz      r3, 0x114(r30)
-
-lbl_8033D42C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033D444
- * Size:	000008
- */
-JKRHeap* PSAutoBgm::ConductorMgr::getSaveTempHeap()
-{
-	return sHeap;
-	/*
-	lwz      r3, sHeap__Q29PSAutoBgm12ConductorMgr@sda21(r13)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033D44C
- * Size:	000008
- */
-JKRHeap* PSAutoBgm::ConductorMgr::getObjHeap()
-{
-	return sHeap;
-	/*
-	lwz      r3, sHeap__Q29PSAutoBgm12ConductorMgr@sda21(r13)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033D454
- * Size:	000008
- */
-JKRHeap* PSAutoBgm::ConductorMgr::getDataHeap()
-{
-	return sHeap;
-	/*
-	lwz      r3, sHeap__Q29PSAutoBgm12ConductorMgr@sda21(r13)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033D45C
- * Size:	000008
- */
-u32 PSAutoBgm::OnCycle::getCycleType() { return 0x0; }
-
-/*
- * --INFO--
- * Address:	8033D464
- * Size:	000008
- */
-void* PSAutoBgm::Conductor::getEraseLink()
-{
-	return &_98;
-	/*
-	addi     r3, r3, 0x98
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033D46C
- * Size:	000004
- */
-// void SeqTrackRoot::onBeatTop() { }
-
-/*
- * --INFO--
- * Address:	8033D470
- * Size:	0001A4
- */
-// void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::initInstance()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x20(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x24(r1)
-// 	  stw       r31, 0x1C(r1)
-// 	  stw       r30, 0x18(r1)
-// 	  mr        r30, r3
-// 	  stw       r29, 0x14(r1)
-// 	  stw       r28, 0x10(r1)
-// 	  lwz       r0, 0x250(r3)
-// 	  cmplwi    r0, 0
-// 	  bne-      .loc_0x180
-// 	  lwz       r12, 0x4(r3)
-// 	  lwz       r12, 0x14(r12)
-// 	  mtctr     r12
-// 	  bctrl
-// 	  mr        r4, r3
-// 	  li        r3, 0x11C
-// 	  li        r5, 0
-// 	  bl        -0x319578
-// 	  mr.       r31, r3
-// 	  beq-      .loc_0x174
-// 	  lwz       r29, 0x254(r30)
-// 	  bl        -0x47C
-// 	  lis       r3, 0x804E
-// 	  mr        r4, r31
-// 	  subi      r0, r3, 0x5338
-// 	  addi      r3, r31, 0x98
-// 	  stw       r0, 0x0(r31)
-// 	  bl        -0x316D28
-// 	  li        r0, 0
-// 	  addi      r28, r31, 0xB8
-// 	  stw       r0, 0xA8(r31)
-// 	  mr        r3, r28
-// 	  stw       r0, 0xAC(r31)
-// 	  stw       r0, 0xB0(r31)
-// 	  stw       r29, 0xB4(r31)
-// 	  bl        -0x320534
-// 	  lis       r3, 0x804A
-// 	  li        r0, 0
-// 	  addi      r3, r3, 0x6774
-// 	  mr        r4, r28
-// 	  stw       r3, 0x0(r28)
-// 	  addi      r3, r28, 0x1C
-// 	  stb       r0, 0x18(r28)
-// 	  bl        -0x316D68
-// 	  lis       r3, 0x804E
-// 	  addi      r29, r31, 0xE8
-// 	  subi      r0, r3, 0x52AC
-// 	  lis       r3, 0x804E
-// 	  stw       r0, 0x0(r28)
-// 	  subi      r0, r3, 0x52C0
-// 	  lis       r3, 0x804E
-// 	  stw       r0, 0x0(r28)
-// 	  subi      r0, r3, 0x52D4
-// 	  stw       r0, 0x0(r28)
-// 	  mr        r3, r29
-// 	  bl        -0x320584
-// 	  lis       r3, 0x804A
-// 	  li        r0, 0
-// 	  addi      r3, r3, 0x6774
-// 	  mr        r4, r29
-// 	  stw       r3, 0x0(r29)
-// 	  addi      r3, r29, 0x1C
-// 	  stb       r0, 0x18(r29)
-// 	  bl        -0x316DB8
-// 	  lis       r3, 0x804E
-// 	  lis       r4, 0x804E
-// 	  subi      r0, r3, 0x52AC
-// 	  stw       r0, 0x0(r29)
-// 	  subi      r0, r4, 0x52C0
-// 	  lis       r3, 0x804E
-// 	  addi      r4, r31, 0x104
-// 	  stw       r0, 0x0(r29)
-// 	  subi      r5, r3, 0x52E8
-// 	  li        r0, 0x64
-// 	  addi      r3, r31, 0x1C
-// 	  stw       r5, 0x0(r29)
-// 	  stb       r0, 0x118(r31)
-// 	  bl        -0x316CC4
-// 	  addi      r4, r31, 0xD4
-// 	  addi      r3, r31, 0x1C
-// 	  bl        -0x316CD0
-// 	  addi      r4, r31, 0x84
-// 	  addi      r3, r31, 0x1C
-// 	  bl        -0x316CDC
-// 	  li        r0, 0x11
-// 	  lis       r3, 0x8034
-// 	  stb       r0, 0x19(r31)
-// 	  subi      r0, r3, 0x6D4C
-// 	  lbz       r3, 0xE4(r31)
-// 	  stb       r3, 0x118(r31)
-// 	  stw       r0, 0x5C(r31)
-// 	  stw       r31, 0x60(r31)
-
-// 	.loc_0x174:
-// 	  stw       r31, 0x250(r30)
-// 	  li        r3, 0x1
-// 	  b         .loc_0x184
-
-// 	.loc_0x180:
-// 	  li        r3, 0
-
-// 	.loc_0x184:
-// 	  lwz       r0, 0x24(r1)
-// 	  lwz       r31, 0x1C(r1)
-// 	  lwz       r30, 0x18(r1)
-// 	  lwz       r29, 0x14(r1)
-// 	  lwz       r28, 0x10(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x20
-// 	  blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033D614
- * Size:	0000E8
- */
-bool JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::initInstance(void*, long)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x28(r1)
-	  mr        r30, r4
-	  stw       r29, 0x24(r1)
-	  mr        r29, r3
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  addi      r0, r4, 0x30
-	  li        r6, 0
-	  lis       r4, 0x804A
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x64
-	  addi      r5, r5, 0x40
-	  stw       r0, 0x8(r1)
-	  lis       r4, 0x804A
-	  addi      r0, r4, 0x80
-	  addi      r3, r1, 0x8
-	  stw       r5, 0x8(r1)
-	  mr        r4, r30
-	  mr        r5, r31
-	  stb       r6, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x316938
-	  lwz       r3, 0x250(r29)
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  addi      r0, r3, 0x80
-	  addi      r3, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x40
-	  li        r4, 0
-	  stw       r0, 0x8(r1)
-	  bl        -0x317358
-	  li        r3, 0x1
-	  b         .loc_0xCC
-
-	.loc_0xC8:
-	  li        r3, 0
-
-	.loc_0xCC:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033D6FC
- * Size:	000014
- */
-// void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::@600 @28 @__dt()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  li        r11, 0x1C
-// 	  lwzx      r11, r3, r11
-// 	  add       r3, r3, r11
-// 	  subi      r3, r3, 0x258
-// 	  b         -0x17E0
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033D710
- * Size:	000014
- */
-// void JADUtility::DataMgrNode::@600 @28 @init()
-// {
-// 	/*
-// 	li       r11, 0x1c
-// 	lwzx     r11, r3, r11
-// 	add      r3, r3, r11
-// 	addi     r3, r3, -600
-// 	b        init__Q210JADUtility11DataMgrNodeFv
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8033D724
- * Size:	000014
- */
-// PSAutoBgm::ConductorMgr::@600 @28 @~ConductorMgr()
-// {
-// 	/*
-// 	li       r11, 0x1c
-// 	lwzx     r11, r3, r11
-// 	add      r3, r3, r11
-// 	addi     r3, r3, -600
-// 	b        __dt__Q29PSAutoBgm12ConductorMgrFv
-// 	*/
-// }
+} // namespace PSAutoBgm

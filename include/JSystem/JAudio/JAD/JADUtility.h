@@ -140,12 +140,12 @@ struct Prm : public PrmBase {
 	virtual ~Prm() { } // _08 (weak)
 	virtual void save(JSUMemoryOutputStream& output)
 	{
-		output.write(mValue, sizeof(T));
+		output.write((void*)mValue, sizeof(T));
 		PrmBase::save(output);
 	} // _0C (weak)
 	virtual void load(JSUMemoryInputStream& input)
 	{
-		input.read(mValue, sizeof(T));
+		input.read((void*)mValue, sizeof(T));
 		PrmBase::load(input);
 	} // _10 (weak)
 
@@ -184,7 +184,7 @@ struct PrmSetRc : public PrmSetBase {
 
 	u8 getChildNum() { return _68.mValue; }
 
-	virtual ~PrmSetRc(); // _08 (weak)
+	virtual ~PrmSetRc() { } // _08 (weak)
 	virtual void load(JSUMemoryInputStream& input)
 	{
 		PrmSetBase::load(input);
@@ -202,8 +202,8 @@ struct PrmSetRc : public PrmSetBase {
 			}
 		}
 		currentHeap->becomeCurrentHeap();
-	}                                 // _10 (weak)
-	virtual JKRHeap* getPrmObjHeap(); // _24 (weak)
+	}                                                    // _10 (weak)
+	virtual JKRHeap* getPrmObjHeap() { return nullptr; } // _24 (weak)
 
 	T* getChild(u8 n)
 	{

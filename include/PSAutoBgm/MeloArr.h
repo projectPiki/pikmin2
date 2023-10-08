@@ -50,7 +50,7 @@ struct MeloArrMgr : public JADHioNode {
 	{
 	}
 
-	virtual ~MeloArrMgr(); // _08 (weak)
+	virtual ~MeloArrMgr() { } // _08 (weak)
 
 	bool isToAvoid(MeloArrArg&);
 

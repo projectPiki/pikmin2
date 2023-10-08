@@ -16,8 +16,8 @@ struct AutoBgm;
  * @size = 0x11C
  */
 struct Conductor : JADUtility::PrmSetRc<PSAutoBgm::Track> {
-	virtual ~Conductor();         // _08
-	virtual void* getEraseLink(); // _1C (weak)
+	virtual ~Conductor();                         // _08
+	virtual void* getEraseLink() { return &_98; } // _1C (weak)
 
 	void removeCallback(u8, void*);
 	void seqCpuSync_AutoBgm(JASTrack*, u16, u32, JASTrack*);
@@ -53,6 +53,12 @@ struct ConductorArcMgr {
 		P2ASSERTLINE(728, sInstance);
 	}
 
+	static ConductorArcMgr* getInstance()
+	{
+		P2ASSERTLINE(734, sInstance);
+		return sInstance;
+	}
+
 	virtual ~ConductorArcMgr() { sInstance = nullptr; } // _08 (weak)
 
 	JKRArchive* mArchive; // _04
@@ -64,10 +70,10 @@ struct ConductorArcMgr {
  * @size = 0x270
  */
 struct ConductorMgr : JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm> {
-	virtual ~ConductorMgr();            // _08 (weak)
-	virtual JKRHeap* getObjHeap();      // _14 (weak)
-	virtual JKRHeap* getDataHeap();     // _18 (weak)
-	virtual JKRHeap* getSaveTempHeap(); // _2C (weak)
+	virtual ~ConductorMgr() { }                          // _08 (weak)
+	virtual JKRHeap* getObjHeap() { return sHeap; }      // _14 (weak)
+	virtual JKRHeap* getDataHeap() { return sHeap; }     // _18 (weak)
+	virtual JKRHeap* getSaveTempHeap() { return sHeap; } // _2C (weak)
 
 	// virtual void _30() = 0;         // _30 - possibly
 	// virtual void _34() = 0;         // _34 - possibly

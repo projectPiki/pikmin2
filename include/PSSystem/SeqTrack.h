@@ -57,20 +57,20 @@ struct SeqTrackRoot : public SeqTrackBase {
 
 	// _00      = VTABLE
 	// _04-_2C  = SeqBase
-	u16 _2C;                       // _2C
-	u16 _2E;                       // _2E
-	u16 _30;                       // _30
-	u16 _32;                       // _32
-	f32 _34;                       // _34
-	int mSwingState;               // _38, 0 = olimar, 1 = louie
-	BeatMgr mBeatMgr;              // _3C
-	u8 _3D;                        // _3D - possibly padding or part of BeatMgr
-	u16 _3E;                       // _3E
-	TaskEntry_Tempo _40;           // _40
-	TaskEntry_OuterParam _100;     // _100
-	TaskEntry_PitMod _16C;         // _16C
-	TaskEntry_BankRandTask _20C;   // _20C
-	JADUtility::DataMgrNode* _2C4; // _2C4
+	u16 _2C;                           // _2C
+	u16 _2E;                           // _2E
+	u16 _30;                           // _30
+	u16 _32;                           // _32
+	f32 _34;                           // _34
+	int mSwingState;                   // _38, 0 = olimar, 1 = louie
+	BeatMgr mBeatMgr;                  // _3C
+	u8 _3D;                            // _3D - possibly padding or part of BeatMgr
+	u16 _3E;                           // _3E
+	TaskEntry_Tempo _40;               // _40
+	TaskEntry_OuterParam _100;         // _100
+	TaskEntry_PitMod _16C;             // _16C
+	TaskEntry_BankRandTask _20C;       // _20C
+	JADUtility::DataMgrNode* mDataMgr; // _2C4
 };
 
 struct SeqTrackRoot_JumpBgm : public SeqTrackRoot {
