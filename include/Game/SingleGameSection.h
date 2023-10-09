@@ -111,6 +111,9 @@ struct SingleGameSection : public BaseGameSection {
 	KindCounter mOtakaraCounter;                   // _264
 	KindCounter mItemCounter;                      // _26C
 	u8 _274;                                       // _274
+#if BUILDTARGET == USADEMO1
+	u8 _DemoPadding2[0x4];
+#endif
 };
 } // namespace Game
 
