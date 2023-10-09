@@ -1,8 +1,8 @@
 PAD_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/pad/Padclamp.o\
-	$(BUILD_DIR)/asm/Dolphin/pad/Pad.o\
+	$(BUILD_DIR)/src/Dolphin/pad/Pad.o\
 
-$(PAD_FILES): CFLAGS += -common off -fp_contract off
+$(PAD_FILES): CFLAGS += -common off -fp_contract off -str noreadonly
 $(PAD_FILES): MWCC_VERSION := 1.2.5n
 
 DEPENDS += $(PAD_FILES:.o=.d)

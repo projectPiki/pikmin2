@@ -851,7 +851,7 @@ void NaviWalkState::initAI_animation(Navi* navi)
 	mAIState = WALKAI_Animation;
 
 	KandoLib::Choice choiceListIdle[4]    = { KandoLib::Choice(IPikiAnims::AKUBI, 0.25f), KandoLib::Choice(IPikiAnims::FURIMUKU, 0.25f),
-		                                      KandoLib::Choice(IPikiAnims::SAGASU2, 0.25f), KandoLib::Choice(IPikiAnims::JUMP, 0.25f) };
+                                           KandoLib::Choice(IPikiAnims::SAGASU2, 0.25f), KandoLib::Choice(IPikiAnims::JUMP, 0.25f) };
 	KandoLib::Choice choiceListControl[4] = { KandoLib::Choice(IPikiAnims::AKUBI, 0.25f), KandoLib::Choice(IPikiAnims::FURIMUKU, 0.25f),
 		                                      KandoLib::Choice(IPikiAnims::SAGASU2, 0.25f), KandoLib::Choice(IPikiAnims::GATTU, 0.25f) };
 

@@ -93,7 +93,7 @@ void PADSetSamplingRate(u32 msec);
 void PADClamp(PADStatus* status);
 void PADClampCircle(PADStatus* status);
 void PADControlAllMotors(u32* command);
-void PADControlMotor(int chan, u32 command);
+void PADControlMotor(s32 chan, u32 command);
 BOOL PADRecalibrate(u32 mask);
 BOOL PADSync(void);
 void PADSetAnalogMode(u32 mode);

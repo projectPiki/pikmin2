@@ -775,7 +775,7 @@ LIBS = [
         "host": False,
         "objects": [
             ["Dolphin/pad/Padclamp", True],
-            "Dolphin/pad/Pad",
+            ["Dolphin/pad/Pad", True],
         ],
     },
     {
