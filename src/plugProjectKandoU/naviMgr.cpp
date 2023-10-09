@@ -18,7 +18,7 @@ SysShape::AnimMgr* NaviMgr::animMgr;
  * Size:	0000CC
  */
 NaviMgr::NaviMgr()
-    : mFlags(0)
+    : mFlags()
 {
 	mName      = "naviMgr";
 	mNaviParms = new NaviParms;
@@ -75,7 +75,7 @@ void NaviMgr::createPSMDirectorUpdator()
  */
 void NaviMgr::resetMgr()
 {
-	resetMgr(); // should be MonoObjectMgr::resetMgr
+	MonoObjectMgr::resetMgr(); // should be MonoObjectMgr::resetMgr
 	if (_48) {
 		delete _48;
 		_48 = nullptr;
@@ -196,9 +196,9 @@ void NaviMgr::loadResources()
  */
 void NaviMgr::load()
 {
-	JKRGetCurrentHeap()->getTotalFreeSize();
+	P2DEBUG("Before mount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 	JKRArchive* texts = JKRArchive::mount("/user/Kando/piki/texts.szs", JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Tail);
-	JKRGetCurrentHeap()->getTotalFreeSize();
+	P2DEBUG("After mount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 	sys->heapStatusStart("NaviMgr::Archive", nullptr);
 	JKRArchive* arc = JKRArchive::mount("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
 	sys->heapStatusEnd("NaviMgr::Archive");
@@ -225,9 +225,9 @@ void NaviMgr::load()
 	mMarkerAnims[0].attachResource(arc->getResource("cursor/arrow_orima.brk"), mCursorModelData);
 	mMarkerAnims[1].attachResource(arc->getResource("cursor/arrow_luji.brk"), mCursorModelData);
 
-	JKRGetCurrentHeap()->getTotalFreeSize();
+	P2DEBUG("Before unmount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 	texts->unmount();
-	JKRGetCurrentHeap()->getTotalFreeSize();
+	P2DEBUG("After unmount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -509,11 +509,13 @@ Navi* NaviMgr::getAliveOrima(int type)
 	if (mDeadNavis == 2) {
 		return nullptr;
 	} else if (mDeadNavis == 1) {
-		if (type) {
-			return getAt(1 - mNaviDeadFlags[0]);
-		} else {
-			return nullptr;
-		}
+		int index = 1 - mNaviDeadFlags[0];
+		return (type == 0) ? getAt(index) : nullptr;
+		// if (type == 0) {
+		// 	return getAt(1 - mNaviDeadFlags[0]);
+		// } else {
+		// 	return nullptr;
+		// }
 	} else if (mDeadNavis == 0) {
 		Navi* navi1 = getAt(0);
 		Navi* navi2 = getAt(1);
@@ -614,9 +616,9 @@ lbl_8015B3A0:
 void NaviMgr::setMovieDraw(bool drawOn)
 {
 	if (!drawOn) {
-		mFlags |= 1;
+		mFlags.set(0x01);
 	} else {
-		mFlags &= ~1;
+		mFlags.unset(0x01);
 	}
 
 	for (int i = 0; i < mMax; i++) {
@@ -633,9 +635,9 @@ void NaviMgr::setMovieDraw(bool drawOn)
  */
 void NaviMgr::doAnimation()
 {
-	u8 flag = mFlags;
+	u32 flag = mFlags.typeView;
 	for (int i = 0; i < mMax; i++) {
-		if (!mOpenIds[i] && (!(flag & 1) || mArray[i].isMovieActor())) {
+		if (mOpenIds[i] == 0 && ((flag & 1) == 0 || mArray[i].isMovieActor())) {
 			mArray[i].mFaceDirOffset = mArray[i].mFaceDir;
 			mArray[i].update();
 			mArray[i].doAnimation();
@@ -716,22 +718,27 @@ lbl_8015B514:
  */
 void NaviMgr::doEntry()
 {
-	u8 flag = mFlags;
-	u8 vs   = gameSystem->mMode == GSM_VERSUS_MODE;
+	bool vs = false;
+	if (gameSystem->isVersusMode()) {
+		vs = true;
+	}
+	u32 flag = mFlags.typeView;
 	for (int i = 0; i < mMax; i++) {
-		if (!mOpenIds[i] && (!(flag & 1) || mArray[i].isMovieActor())) {
+		if (mOpenIds[i] != 0) {
+			continue;
+		}
+		if ((flag & 1) != 0 && !mArray[i].isMovieActor()) {
+			mArray[i].mLod.resetFlag(0x34);
+		} else if (mArray[i].isMovieActor()) {
 			mArray[i].mLod.setFlag(0x34);
-		} else {
-			if (mArray[i].isMovieActor())
-				mArray[i].mLod.resetFlag(0x34);
 		}
 
 		if (vs) {
 			Navi* navi = &mArray[i];
 			if ((int)navi->mNaviIndex == 1 && pikiMgr->mFlags[0] & 1) {
-				navi->mLod.mFlags &= ~0x10;
+				navi->mLod.resetFlag(0x10);
 			} else if ((int)navi->mNaviIndex == 0 && pikiMgr->mFlags[0] & 2) {
-				navi->mLod.mFlags &= ~0x10;
+				navi->mLod.resetFlag(0x20);
 			}
 		}
 		mArray[i].doEntry();

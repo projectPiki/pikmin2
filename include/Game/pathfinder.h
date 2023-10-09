@@ -39,8 +39,10 @@ struct PathNode {
 	PathNode* mNext;  // _0C
 	PathNode* _10;    // _10
 	PathNode* _14;    // _14
-	u8 _18[8];        // _18
-	short mWpIndex;   // _20
+	PathNode* _18;    // _18
+	PathNode* _1C;    // _1C
+	s16 mWpIndex;     // _20
+	u8 _22;           // _22
 };
 
 struct AStarContext {
@@ -52,18 +54,21 @@ struct AStarContext {
 		PathfindContext::routeMgr = nullptr;
 		mStatus                   = 0;
 	}
+
 	void init(RouteMgr*, int);
-	void getNode(short);
 	int makepath(PathNode*, PathNode**);
+
+	// unused/inlined:
+	PathNode* getNode(short wpID);
 
 	s16 mStartWPID;  // _00
 	s16 mEndWPID;    // _02
 	u8 mRequestFlag; // _04
-	int _08[18];
-	s16 _50;
+	PathNode _08[2]; // _08
+	s16 mUsedNodeCount;
 	s16 mWpNum;
 	u8 mCheckHandle;
-	int* _58;
+	PathNode* _58;   // _58, guess
 	PathNode* mNode; // _5C
 	u32 mStatus;     // _60
 };

@@ -146,6 +146,13 @@ struct JUTException : public JKRThread {
 #define P2ASSERT_BROKEN(cond) JUT_ASSERT(cond, nullptr)
 #define P2ASSERT(cond)        JUT_ASSERT(cond, "P2Assert")
 
+#if DEBUG
+// TODO: Reasonable definition of a debug print function
+#define P2DEBUG(...) __VA_ARGS__
+#else
+#define P2DEBUG(...) __VA_ARGS__
+#endif
+
 #ifndef MATCHING
 #define JUT_PANICLINE(line, ...) JUT_PANIC(__VA_ARGS__)
 #else

@@ -1,4 +1,12 @@
-#include "types.h"
+#include "Dolphin/rand.h"
+#include "Game/Entities/ItemOnyon.h"
+#include "Game/PikiMgr.h"
+#include "Game/Stickers.h"
+#include "Game/gameStat.h"
+#include "Game/pelletMgr.h"
+#include "Game/Piki.h"
+#include "Game/PikiState.h"
+#include "PikiAI.h"
 
 /*
     Generated from dpostproc
@@ -119,40 +127,17 @@
         .float 11.0
 */
 
+char* unused = "actTransport";
+
 /*
  * --INFO--
  * Address:	801A1914
  * Size:	000064
  */
-void PikiAI::ActTransport::getInfo(char*)
+void PikiAI::ActTransport::getInfo(char* infoStringBuffer)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_8047F348@ha
-	stw      r0, 0x24(r1)
-	addi     r6, r5, lbl_8047F348@l
-	lwz      r5, 0(r6)
-	lhz      r0, 0x18(r3)
-	lis      r3, lbl_8047F354@ha
-	lwz      r8, 4(r6)
-	lwz      r7, 8(r6)
-	slwi     r0, r0, 2
-	stw      r5, 8(r1)
-	addi     r6, r3, lbl_8047F354@l
-	mr       r3, r4
-	addi     r5, r1, 8
-	stw      r8, 0xc(r1)
-	mr       r4, r6
-	stw      r7, 0x10(r1)
-	lwzx     r5, r5, r0
-	crclr    6
-	bl       sprintf
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	char* v1[3] = { "SLOT", "LIFT", "MOVE" };
+	sprintf(infoStringBuffer, "CARRY %s", v1[_18]);
 }
 
 /*
@@ -160,68 +145,12 @@ void PikiAI::ActTransport::getInfo(char*)
  * Address:	801A1978
  * Size:	0000D0
  */
-PikiAI::ActTransport::ActTransport(Game::Piki* p)
+PikiAI::ActTransport::ActTransport(Game::Piki* parent)
+    : Action(parent)
+    , mGotoSlot(new ActGotoSlot(parent))
+    , mPathMove(new ActPathMove(parent))
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r5
-	beq      lbl_801A19B0
-	addi     r0, r31, 0x3c
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r0, 0xc(r31)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	stw      r0, 0x3c(r31)
-
-lbl_801A19B0:
-	mr       r3, r31
-	mr       r4, r30
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r3, __vt__Q26PikiAI12ActTransport@ha
-	addi     r0, r31, 0x3c
-	addi     r4, r3, __vt__Q26PikiAI12ActTransport@l
-	li       r3, 0x20
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x40
-	lwz      r4, 0xc(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0xc(r31)
-	subf     r0, r4, r0
-	stw      r0, 4(r4)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801A1A00
-	mr       r4, r30
-	bl       __ct__Q26PikiAI11ActGotoSlotFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_801A1A00:
-	stw      r0, 0x2c(r31)
-	li       r3, 0xbc
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801A1A20
-	mr       r4, r30
-	bl       __ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_801A1A20:
-	stw      r0, 0x30(r31)
-	addi     r0, r2, lbl_805190E8@sda21
-	mr       r3, r31
-	stw      r0, 8(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mName = "Carry";
 }
 
 /*
@@ -229,8 +158,26 @@ lbl_801A1A20:
  * Address:	801A1A48
  * Size:	00017C
  */
-void PikiAI::ActTransport::init(PikiAI::ActionArg*)
+void PikiAI::ActTransport::init(PikiAI::ActionArg* settings)
 {
+	Game::GameStat::workPikis.inc(mParent);
+
+	P2ASSERTLINE(175, checkArg(settings, "ActTransportArg"));
+	ActTransportArg* arg = static_cast<ActTransportArg*>(settings);
+
+	mPellet = arg->mPellet;
+	_14     = arg->_08;
+	_1C     = arg->_0C;
+	_28     = arg->_18;
+	mParent->startMotion(Game::IPikiAnims::WAIT, Game::IPikiAnims::WAIT, nullptr, nullptr);
+	mParent->mVelocity = 0.0f;
+	_18                = 0;
+	GotoSlotArg gotoSlotArg(mPellet, 1);
+	mGotoSlot->init(&gotoSlotArg);
+	_34 = 0;
+	_38 = 0;
+	_39 = 0;
+	_3A = true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -341,25 +288,8 @@ lbl_801A1ADC:
  */
 void PikiAI::ActTransport::emotion_success()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0x13
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	addi     r6, r1, 8
-	sth      r0, 8(r1)
-	lwz      r4, 4(r3)
-	lwz      r3, 0x28c(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Game::EmotionStateArg emotionArg(1);
+	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, &emotionArg);
 }
 
 /*
@@ -374,8 +304,107 @@ void PikiAI::ActTransport::emotion_fail() { }
  * Address:	801A1C0C
  * Size:	0003E8
  */
-void PikiAI::ActTransport::exec()
+int PikiAI::ActTransport::exec()
 {
+	if (mPellet != nullptr && !mPellet->isAlive()) {
+		P2DEBUG("dead pellet: %d", mParent->getCreatureID());
+		return ACTEXEC_Success;
+	}
+	bool v1;
+	if (mPellet != nullptr && mPellet->mCaptureMatrix != nullptr) {
+		v1 = true;
+	} else {
+		v1 = false;
+	}
+	switch (_18) {
+	case 0: {
+		if (v1) {
+			_3A = v1;
+			return ACTEXEC_Fail;
+		}
+		int gotoSlotResult = mGotoSlot->exec();
+		if (gotoSlotResult == ACTEXEC_Success) {
+			initLift();
+		} else if (gotoSlotResult == ACTEXEC_Fail) {
+			_3A = v1;
+			return ACTEXEC_Fail;
+		}
+	} break;
+	case 1: {
+		if (!v1) {
+			_3A = v1;
+			return execLift();
+		}
+		_3A = v1;
+		return ACTEXEC_Continue;
+	} break;
+	case 2: {
+		if (v1) {
+			if (!mParent->isStickTo()) {
+				if (_38 != 0) {
+					mPathMove->cleanup();
+					_38 = 0;
+				}
+				mParent->finishMotion();
+				_3A = v1;
+				return ACTEXEC_Success;
+			}
+			_3A = v1;
+			return ACTEXEC_Continue;
+		}
+		if (_3A && _39 != 0) {
+			mPathMove->cleanup();
+			_39 = 0;
+		}
+		Game::Pellet* pellet = mPellet;
+		int carryingCount    = pellet->getTotalCarryPikmins();
+		int requiredCount    = pellet->getPelletConfigMin();
+		if (carryingCount < requiredCount) {
+			mPellet->endPick(false);
+			mPellet->setVelocity(Vector3f::zero);
+			_3A = v1;
+			return ACTEXEC_Fail;
+		}
+		if (isStickLeader()) {
+			if (_39 == 0) {
+				P2DEBUG("%s %d", mPellet->getCreatureName(), mPellet->getCreatureID());
+				PathMoveArg pathMoveArg(mPellet, _1C, _28, 0);
+				// pathMoveArg._14     = _28;
+				// pathMoveArg.mPellet = mPellet;
+				// pathMoveArg._08     = _1C;
+				// pathMoveArg._18     = 0;
+				mPathMove->init(&pathMoveArg);
+				_39 = 1;
+			}
+			int pathMoveResult = mPathMove->exec();
+			_38                = 1;
+			if (pathMoveResult == ACTEXEC_Success) {
+				_14 = mPathMove->mOnyon;
+				mPellet->endPick(true);
+				Game::InteractSuck interaction(_14);
+				mPellet->stimulate(interaction);
+				_3A = v1;
+				return ACTEXEC_Success;
+			}
+		} else {
+			if (!mParent->isStickTo()) {
+				if (_38 != 0) {
+					mPathMove->cleanup();
+					_38 = 0;
+				}
+				mParent->finishMotion();
+				_3A = v1;
+				return ACTEXEC_Success;
+			}
+			if (_39 != 0) {
+				mPathMove->cleanup();
+				_39 = 0;
+			}
+		}
+	} break;
+	}
+	_3A = v1;
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -679,40 +708,13 @@ lbl_801A1FD4:
  */
 void PikiAI::ActTransport::cleanup()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lbz      r0, 0x39(r3)
-	cmplwi   r0, 0
-	beq      lbl_801A2028
-	lwz      r3, 0x30(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801A2028:
-	lis      r3, workPikis__Q24Game8GameStat@ha
-	lwz      r4, 4(r31)
-	addi     r3, r3, workPikis__Q24Game8GameStat@l
-	bl       dec__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Piki
-	lwz      r3, 4(r31)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r4, 4(r31)
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (_39 != 0) {
+		mPathMove->cleanup();
+	}
+	Game::GameStat::workPikis.dec(mParent);
+	mParent->endStick();
+	Vector3f position = mParent->getPosition();
+	P2DEBUG("ActTransport stopped at {%d, %d, %d}!", position.x, position.y, position.z);
 }
 
 /*
@@ -720,95 +722,40 @@ lbl_801A2028:
  * Address:	801A206C
  * Size:	00011C
  */
-void PikiAI::ActTransport::onKeyEvent(SysShape::KeyEvent const&)
+void PikiAI::ActTransport::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 4(r3)
-	lwz      r3, 0x1b8(r3)
-	cmplwi   r3, 0
-	beq      lbl_801A209C
-	lha      r5, 0x20(r3)
-
-lbl_801A209C:
-	lwz      r0, 0x1c(r4)
-	cmpwi    r0, 2
-	beq      lbl_801A20C4
-	bge      lbl_801A20B8
-	cmpwi    r0, 1
-	bge      lbl_801A20DC
-	b        lbl_801A2170
-
-lbl_801A20B8:
-	cmpwi    r0, 0x3e8
-	beq      lbl_801A215C
-	b        lbl_801A2170
-
-lbl_801A20C4:
-	extsh    r0, r5
-	cmpwi    r0, 0x28
-	bne      lbl_801A2170
-	li       r0, 1
-	stb      r0, 0x34(r30)
-	b        lbl_801A2170
-
-lbl_801A20DC:
-	lwz      r31, 0x10(r30)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A2110
-	lwz      r3, 4(r30)
-	mr       r4, r31
-	li       r5, 0x282e
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-
-lbl_801A2110:
-	lhz      r0, 0x18(r30)
-	cmplwi   r0, 1
-	bne      lbl_801A2170
-	lwz      r3, 0x10(r30)
-	bl       getTotalCarryPikmins__Q24Game6PelletFv
-	mr       r31, r3
-	lwz      r3, 0x10(r30)
-	bl       getPelletConfigMin__Q24Game6PelletFv
-	cmpw     r31, r3
-	bge      lbl_801A2170
-	lha      r3, 0x36(r30)
-	addi     r0, r3, -1
-	sth      r0, 0x36(r30)
-	lha      r0, 0x36(r30)
-	cmpwi    r0, 0
-	bge      lbl_801A2170
-	lwz      r3, 4(r30)
-	bl       finishMotion__Q24Game8FakePikiFv
-	b        lbl_801A2170
-
-lbl_801A215C:
-	lhz      r0, 0x18(r30)
-	cmplwi   r0, 1
-	bne      lbl_801A2170
-	mr       r3, r30
-	bl       initLift__Q26PikiAI12ActTransportFv
-
-lbl_801A2170:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	s16 animID = 0;
+	if (mParent->mAnimator.mSelfAnimator.mAnimInfo != nullptr) {
+		animID = mParent->mAnimator.mSelfAnimator.mAnimInfo->mId;
+	}
+	switch (keyEvent.mType) {
+	case 2:
+		if (animID == Game::IPikiAnims::PICKLOOP) {
+			_34 = 1;
+		}
+		break;
+	case 1: {
+		Game::Pellet* pellet = mPellet;
+		if (pellet->isPicked()) {
+			mParent->startSound(pellet, PSSE_PK_VC_LIFT_MOVE, PSGame::SeMgr::SETSE_PikiCarry);
+		}
+		if (_18 == 1) {
+			int carryingCount = mPellet->getTotalCarryPikmins();
+			int requiredCount = mPellet->getPelletConfigMin();
+			if (carryingCount < requiredCount) {
+				--_36;
+				if (_36 < 0) {
+					mParent->finishMotion();
+				}
+			}
+		}
+	} break;
+	case 1000:
+		if (_18 == 1) {
+			initLift();
+		}
+		break;
+	}
 }
 
 /*
@@ -816,7 +763,7 @@ lbl_801A2170:
  * Address:	........
  * Size:	000068
  */
-void PikiAI::ActTransport::getNumStickers()
+int PikiAI::ActTransport::getNumStickers()
 {
 	// UNUSED FUNCTION
 }
@@ -826,61 +773,14 @@ void PikiAI::ActTransport::getNumStickers()
  * Address:	801A2188
  * Size:	00009C
  */
-void PikiAI::ActTransport::isStickLeader()
+bool PikiAI::ActTransport::isStickLeader()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 4(r3)
-	lwz      r3, 0xf4(r3)
-	cmplwi   r3, 0
-	beq      lbl_801A2204
-	lwz      r30, 0xf0(r3)
-	li       r31, 0
-	b        lbl_801A21E8
-
-lbl_801A21C0:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A21E4
-	mr       r31, r30
-	b        lbl_801A21F0
-
-lbl_801A21E4:
-	lwz      r30, 0xfc(r30)
-
-lbl_801A21E8:
-	cmplwi   r30, 0
-	bne      lbl_801A21C0
-
-lbl_801A21F0:
-	lwz      r0, 4(r29)
-	cmplw    r31, r0
-	bne      lbl_801A2204
-	li       r3, 1
-	b        lbl_801A2208
-
-lbl_801A2204:
-	li       r3, 0
-
-lbl_801A2208:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mParent->mSticker != nullptr) {
+		if (mParent->mSticker->getStickLeader() == mParent) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -890,57 +790,11 @@ lbl_801A2208:
  */
 void PikiAI::ActTransport::initLift()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 1
-	stw      r31, 0x1c(r1)
-	or.      r31, r3, r3
-	sth      r0, 0x18(r3)
-	mr       r6, r31
-	beq      lbl_801A224C
-	lwz      r6, 0xc(r31)
-
-lbl_801A224C:
-	lwz      r3, 4(r31)
-	li       r4, 0x28
-	li       r5, 0x28
-	li       r7, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x34(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	li       r5, 0x282c
-	lfd      f3, lbl_80519100@sda21(r2)
-	li       r6, 1
-	stw      r0, 8(r1)
-	lfs      f2, lbl_805190F4@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_805190FC@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_805190F8@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	sth      r0, 0x36(r31)
-	lwz      r3, 4(r31)
-	lwz      r4, 0x10(r31)
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_18 = 1;
+	mParent->startMotion(Game::IPikiAnims::PICKLOOP, Game::IPikiAnims::PICKLOOP, this, nullptr);
+	_34 = 0;
+	_36 = randFloat() * 3.0f + 5.0f;
+	mParent->startSound(mPellet, PSSE_PK_VC_LIFT_TRY, PSGame::SeMgr::SETSE_PikiCarry);
 }
 
 /*
@@ -948,8 +802,43 @@ lbl_801A224C:
  * Address:	801A22E0
  * Size:	000414
  */
-void PikiAI::ActTransport::execLift()
+int PikiAI::ActTransport::execLift()
 {
+	if (!mParent->assertMotion(Game::IPikiAnims::PICKLOOP)) {
+		return ACTEXEC_Fail;
+	}
+	int scale = 0;
+	Game::Stickers stickers(mPellet);
+	Iterator<Game::Creature> iCreature(&stickers, 0, nullptr);
+	CI_LOOP(iCreature)
+	{
+		Game::Creature* creature = *iCreature;
+		if (creature->isPiki()) {
+			Game::Piki* piki = static_cast<Game::Piki*>(creature);
+			if (piki->getCurrActionID() == ACT_Transport && static_cast<ActTransport*>(piki->getCurrAction())->_34 != 0) {
+				scale += Game::pikiMgr->getColorTransportScale(piki->mPikiKind);
+			}
+		}
+	}
+
+	Game::Pellet* pellet = mPellet;
+	if (_34 != 0 && scale >= pellet->getPelletConfigMin()) {
+		mParent->startMotion(Game::IPikiAnims::PICK_PUT, Game::IPikiAnims::PICK_PUT, this, nullptr);
+		mParent->enableMotionBlend();
+		mParent->mAnimator.mSelfAnimator.setCurrFrame(11.0f);
+		mParent->mAnimator.mBoundAnimator.setCurrFrame(11.0f);
+		_18 = 2;
+		if (isStickLeader()) {
+			if (!mPellet->isPicked()) {
+				mParent->startSound(mPellet, PSSE_PK_VC_LIFT_SUCCESS, false);
+			}
+			mPellet->startPick();
+			PathMoveArg pathMoveArg(mPellet, _1C, _28, 0);
+			mPathMove->init(&pathMoveArg);
+			_39 = 1;
+		}
+	}
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1260,41 +1149,32 @@ lbl_801A26D8:
  * Address:	801A26F4
  * Size:	00000C
  */
-void PikiAI::PathMoveArg::getName()
-{
-	/*
-	lis      r3, lbl_8047F3A4@ha
-	addi     r3, r3, lbl_8047F3A4@l
-	blr
-	*/
-}
+// char* PikiAI::PathMoveArg::getName()
+// {
+// 	/*
+// 	lis      r3, lbl_8047F3A4@ha
+// 	addi     r3, r3, lbl_8047F3A4@l
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801A2700
  * Size:	00000C
  */
-void PikiAI::GotoSlotArg::getName()
-{
-	/*
-	lis      r3, lbl_8047F3B0@ha
-	addi     r3, r3, lbl_8047F3B0@l
-	blr
-	*/
-}
+// char* PikiAI::GotoSlotArg::getName()
+// {
+// 	/*
+// 	lis      r3, lbl_8047F3B0@ha
+// 	addi     r3, r3, lbl_8047F3B0@l
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801A270C
  * Size:	000014
  */
-void @60 @4 @PikiAI::ActTransport::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -60
-	b        onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent
-	*/
-}
+// void @60 @4 @PikiAI::ActTransport::onKeyEvent(SysShape::KeyEvent const&) { }

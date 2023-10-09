@@ -261,8 +261,7 @@ bool InteractFue::actNavi(Game::Navi* navi)
 	}
 
 	if (navi->getStateID() != NSID_Follow) {
-		NaviFollowArg followArg;
-		followArg._00 = _09;
+		NaviFollowArg followArg(_09);
 		navi->transit(NSID_Follow, &followArg);
 
 		Navi* otherNavi = naviMgr->getAt(1 - navi->mNaviIndex);

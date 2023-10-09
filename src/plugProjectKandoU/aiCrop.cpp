@@ -1,3 +1,7 @@
+#include "Dolphin/rand.h"
+#include "Game/Piki.h"
+#include "Game/gameStat.h"
+#include "PikiAI.h"
 #include "types.h"
 
 /*
@@ -120,69 +124,12 @@
  * Address:	801E3E50
  * Size:	0000D4
  */
-PikiAI::ActCrop::ActCrop(Game::Piki* p)
+PikiAI::ActCrop::ActCrop(Game::Piki* parent)
+    : Action(parent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r5
-	beq      lbl_801E3E88
-	addi     r0, r31, 0x40
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r0, 0xc(r31)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	stw      r0, 0x40(r31)
-
-lbl_801E3E88:
-	mr       r3, r31
-	mr       r4, r30
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r3, __vt__Q26PikiAI7ActCrop@ha
-	addi     r0, r31, 0x40
-	addi     r4, r3, __vt__Q26PikiAI7ActCrop@l
-	li       r3, 0x2c
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x40
-	lwz      r4, 0xc(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0xc(r31)
-	subf     r0, r4, r0
-	stw      r0, 4(r4)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801E3EDC
-	mr       r5, r30
-	li       r4, 1
-	bl       __ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_801E3EDC:
-	stw      r0, 0x2c(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801E3EFC
-	mr       r4, r30
-	bl       __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_801E3EFC:
-	stw      r0, 0x30(r31)
-	addi     r0, r2, lbl_80519940@sda21
-	mr       r3, r31
-	stw      r0, 8(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mStickAttack = new ActStickAttack(parent);
+	mGotoPos     = new ActGotoPos(parent);
+	mName        = "Crop";
 }
 
 /*
@@ -488,6 +435,12 @@ lbl_801E42D8:
  */
 void PikiAI::ActCrop::initGoto()
 {
+	Vector3f creaturePosition = mCreature->getPosition();
+	GotoPosActionArg gotoPosArg;
+	gotoPosArg.mPosition = creaturePosition;
+	gotoPosArg._10       = 20.0f;
+	mGotoPos->init(&gotoPosArg);
+	_28 = 0;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -537,6 +490,16 @@ void PikiAI::ActCrop::initGoto()
  */
 void PikiAI::ActCrop::initAttack()
 {
+	CollPart* part = mCreature->mCollTree->getCollPart('tops');
+	if (part != nullptr) {
+		mParent->endStick();
+		_38 = randFloat() * TAU;
+		mParent->startStick(mCreature, part);
+	}
+	StickAttackActionArg stickAttackArg(mParent->getAttackDamage(), mCreature, -1, 0);
+	mStickAttack->init(&stickAttackArg);
+	_28 = 2;
+	_3C = 1;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -611,7 +574,7 @@ lbl_801E440C:
  * Address:	801E4488
  * Size:	0006AC
  */
-void PikiAI::ActCrop::exec()
+int PikiAI::ActCrop::exec()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -1097,24 +1060,8 @@ lbl_801E4AF4:
  */
 void PikiAI::ActCrop::cleanup()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, workPikis__Q24Game8GameStat@ha
-	lwz      r4, 4(r31)
-	addi     r3, r3, workPikis__Q24Game8GameStat@l
-	bl       dec__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Piki
-	lwz      r3, 4(r31)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Game::GameStat::workPikis.dec(mParent);
+	mParent->endStick();
 }
 
 /*
@@ -1143,13 +1090,4 @@ u32 PikiAI::ActCrop::getNextAIType() { return 0x1; }
  * Address:	801E4B84
  * Size:	000014
  */
-void PikiAI::ActCrop::@64 @4 @onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -64
-	b        onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent
-	*/
-}
+// void PikiAI::ActCrop::@64 @4 @onKeyEvent(const SysShape::KeyEvent&) { }

@@ -125,8 +125,8 @@ struct Piki : public FakePiki {
 		{
 		}
 
-		u8 _00;
-		u8 _01;
+		bool _00;
+		bool _01;
 	};
 
 	Piki();
@@ -179,7 +179,7 @@ struct Piki : public FakePiki {
 	bool canVsBattle();
 	void changeHappa(int);
 	void changeShape(int);
-	void checkInvokeAI(bool);
+	bool checkInvokeAI(bool);
 	void clearCurrAction();
 	void clearDope();
 	bool doped();
@@ -207,7 +207,7 @@ struct Piki : public FakePiki {
 	bool isTekiFollowAI();
 	bool isThrowable();
 	bool might_bury();
-	void setActTransportArg(PikiAI::ActTransportArg&);
+	bool setActTransportArg(PikiAI::ActTransportArg&);
 	void setDopeEffect(bool);
 	void setFreeLightEffect(bool);
 	void setGasInvincible(u8);

@@ -4,6 +4,7 @@
 #include "CNode.h"
 #include "Graphics.h"
 #include "IDelegate.h"
+#include "Sys/Sphere.h"
 #include "id32.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "MonoObjectMgr.h"
@@ -107,7 +108,7 @@ struct CollPartMgr : public MonoObjectMgr<CollPart> {
 
 struct FindCollPartArg {
 	Condition<CollPart>* mCondition; // _00
-	Vector3f mPosition;              // _04
+	Sys::Sphere mPosition;           // _04
 };
 
 struct MouthCollPart : public CollPart {

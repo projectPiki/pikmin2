@@ -680,8 +680,12 @@ void PikiMgr::debugShapeDL(char* text)
 void PikiMgr::doSimpleDraw(Viewport* vp)
 {
 	for (int i = 0; i < 5; i++) {
-		j3dSys; // no clue
-		J3DMaterial* mat = mHappaModel[i]->mJointTree.mRootNode->mMaterial;
+		J3DModelData& modelData = *mHappaModel[i];
+		J3DMaterial* mat        = modelData.mJointTree.mRootNode->mMaterial;
+		j3dSys.mVtxPos          = modelData.getVertexData()->getVtxPosArray();
+		j3dSys.mVtxNorm         = modelData.getVertexData()->getVtxNrmArray();
+		j3dSys.mVtxColor        = modelData.getVertexData()->getVtxColorArray(0);
+		J3DShape::sOldVcdVatCmd = nullptr;
 		for (mat; mat != nullptr; mat = mat->mNext) {
 			mat->loadSharedDL();
 			mat->mShape->loadPreDrawSetting();

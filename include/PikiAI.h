@@ -5,7 +5,8 @@
 #include "Vector3.h"
 #include "SysShape/MotionListener.h"
 #include "Condition.h"
-#include "Collinfo.h"
+#include "CollInfo.h"
+#include "Game/pelletMgr.h"
 #include "Game/SlotChangeListener.h"
 #include "Sys/Sphere.h"
 
@@ -106,6 +107,8 @@ enum ActionExitCode {
 };
 
 struct ActionArg {
+	inline ActionArg() { }
+
 	virtual char* getName() // _08 (weak)
 	{
 		return "ActionArg";
@@ -149,15 +152,22 @@ struct Action {
 	/// @param Destination string
 	virtual void getInfo(char* dest); // _38,
 
+	inline bool checkArg(ActionArg* settings, const char* typeName)
+	{
+		return (settings != nullptr && (strcmp(typeName, settings->getName()) == 0));
+	}
+
+	inline bool checkName(ActionArg* settings, const char* typeName) { return strcmp(typeName, settings->getName()) != 0; }
+
 	// _00 = VTBL
 	Game::Piki* mParent; // _04
 	char* mName;         // _08
 };
 
 struct ApproachPosActionArg : public ActionArg {
-	inline ApproachPosActionArg(Vector3f& pos, f32 a, f32 b, u8 c, u8 d)
+	inline ApproachPosActionArg(Vector3f& pos, f32 radius, f32 b, u8 c, u8 d)
 	    : mPosition(pos)
-	    , _10(a)
+	    , mRadius(radius)
 	    , _14(b)
 	    , _18(c)
 	    , _19(d)
@@ -168,7 +178,7 @@ struct ApproachPosActionArg : public ActionArg {
 
 	// _00 = VTBL
 	Vector3f mPosition; // _04
-	f32 _10;            // _10
+	f32 mRadius;        // _10
 	f32 _14;            // _14
 	u8 _18;             // _18
 	u8 _19;             // _19
@@ -180,6 +190,15 @@ struct ActApproachPos : public Action {
 	virtual void init(ActionArg* settings); // _08
 	virtual int exec();                     // _0C
 	virtual void cleanup();                 // _10
+
+	// ApproachPosActionArg* checkArg(ActionArg* settings)
+	// {
+	// 	ApproachPosActionArg* approachArg = static_cast<ApproachPosActionArg*>(settings);
+	// 	if (approachArg != nullptr && (strcmp("ApproachPosActionArg", approachArg->getName()) == 0)) {
+	// 		return approachArg;
+	// 	}
+	// 	return nullptr;
+	// }
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -283,6 +302,7 @@ struct ActBoreBase : public Action, virtual SysShape::MotionListener {
 	    : Action(piki)
 	{
 	}
+
 	virtual void finish()                                    = 0; // _3C
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) = 0; // _40
 
@@ -422,7 +442,14 @@ struct ActBridge : public Action, virtual SysShape::MotionListener {
 };
 
 struct ClimbActionArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	inline ClimbActionArg(CollPart* collPart, f32 p2, u8 p3)
+	    : mCollPart(collPart)
+	    , _08(p2)
+	    , _0C(p3)
+	{
+	}
+
+	virtual char* getName() { return "ClimbActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	CollPart* mCollPart; // _04
@@ -453,7 +480,7 @@ struct ActCropArg : public ActionArg {
 };
 
 struct ActCrop : public Action, virtual SysShape::MotionListener {
-	ActCrop(Game::Piki* p);
+	ActCrop(Game::Piki* parent);
 
 	virtual void init(ActionArg* settings);                                // _08
 	virtual int exec();                                                    // _0C
@@ -476,7 +503,8 @@ struct ActCrop : public Action, virtual SysShape::MotionListener {
 	s16 _28;                      // _28
 	ActStickAttack* mStickAttack; // _2C
 	ActGotoPos* mGotoPos;         // _30
-	u8 _34[0x8];                  // _34, unknown
+	u32 _34;                      // _34, unknown
+	f32 _38;                      // _38
 	u8 _3C;                       // _3C
 	                              // _40 = MotionListener
 };
@@ -490,14 +518,14 @@ struct ActEnter : public Action, virtual SysShape::MotionListener {
 	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _3C (weak)
 
 	void initStay();
-	void execStay();
+	int execStay();
 	void initSuck();
-	void execSuck();
+	int execSuck();
 
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	s16 _10;              // _10
+	u16 _10;              // _10
 	ActGotoPos* mGotoPos; // _14
 	ActClimb* mClimb;     // _18
 	CollPart* mOnyonLeg;  // _1C
@@ -515,7 +543,7 @@ struct ActEnter : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActExit : public Action {
-	ActExit(Game::Piki* p);
+	ActExit(Game::Piki* parent);
 
 	virtual void init(ActionArg* settings); // _08
 	virtual int exec();                     // _0C
@@ -529,18 +557,42 @@ struct ActExit : public Action {
 	f32 mBaseScale;            // _18
 };
 
-struct FlockAttackActionArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+/**
+ * @fabricated.
+ * Attempting to resolve StickAttackActionArg init issues in aiBreakGate.
+ */
+struct Attack {
+	inline Attack(f32 damage, Game::Creature* target)
+	    : mDamage(damage)
+	    , mTarget(target)
+	{
+	}
 
-	// _00 = VTBL
-	f32 _04; // _04
-	u32 _08; // _08, unknown
-	int _0C; // _0C
-	int _10; // _10
+	f32 mDamage;             // _00
+	Game::Creature* mTarget; // _04
+};
+
+struct FlockAttackActionArg : public ActionArg {
+	inline FlockAttackActionArg(f32 damage, int type, Game::BaseItem* target, int flockIndex)
+	    : ActionArg()
+	    , mDamage(damage)
+	    , mTarget(target)
+	    , mFlockIndex(flockIndex)
+	    , mType(type)
+	{
+	}
+
+	virtual char* getName() { return "FlockAttackActionArg"; } // _08 (weak)
+
+	// _00-_04 = ActionArg
+	f32 mDamage;             // _04
+	Game::BaseItem* mTarget; // _08
+	int mFlockIndex;         // _0C
+	int mType;               // _10
 };
 
 struct ActFlockAttack : public Action, virtual SysShape::MotionListener {
-	ActFlockAttack(Game::Piki* p);
+	ActFlockAttack(Game::Piki* parent);
 
 	virtual void init(ActionArg* settings);                   // _08
 	virtual int exec();                                       // _0C
@@ -550,14 +602,15 @@ struct ActFlockAttack : public Action, virtual SysShape::MotionListener {
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	u8 _10;      // _10
-	u8 _11[0x3]; // _11, unknown/probably padding
-	u8 _14[0x4]; // _14, unknown
-	f32 _18;     // _18
-	u8 _1C;      // _1C
-	int _20;     // _20
-	u8 _24[0x4]; // _24, unknown
-	             // _28 = MotionListener
+	u8 _10;                  // _10
+	u8 _11[0x3];             // _11, unknown/probably padding
+	Game::Creature* mTarget; // _14, unknown
+	f32 mDamage;             // _18
+	BitFlag<u8> _1C;         // _1C
+	int mAnimIdx;            // _20
+	u32 mFlockIndex;         // _24, unknown
+
+	// _28 = MotionListener
 };
 
 struct FollowVectorFieldActionArg : public ActionArg {
@@ -722,7 +775,7 @@ struct ActGather : public Action {
 };
 
 struct GotoPosActionArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "GotoPosActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Vector3f mPosition; // _04
@@ -743,7 +796,14 @@ struct ActGotoPos : public Action {
 };
 
 struct GotoSlotArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	inline GotoSlotArg(Game::Pellet* pellet, u8 p2)
+	    : ActionArg()
+	    , mPellet(pellet)
+	    , _08(p2)
+	{
+	}
+
+	virtual char* getName() { return "GotoSlotArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
@@ -789,11 +849,21 @@ struct ActOneshot : public ActBoreBase {
 	// _00-_10 = ActBoreBase
 	ActOneshotArg mOneshotArg; // _10
 	u8 mFlag;                  // _18
-	                           // _1C = MotionListener
+
+	// _1C = MotionListener
 };
 
 struct PathMoveArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	inline PathMoveArg(Game::Pellet* pellet, Vector3f& p2, s16 p3, u32 p4)
+	    : ActionArg()
+	    , mPellet(pellet)
+	    , _08(p2)
+	    , _14(p3)
+	    , _18(p4)
+	{
+	}
+
+	virtual char* getName() { return "PathMoveArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
@@ -810,13 +880,13 @@ struct ActPathMove : public Action {
 	virtual void cleanup();                 // _10
 
 	void initPathfinding(bool);
-	void decideGoal();
-	void execPathfinding();
-	void execMoveGoal();
-	void isAllBlue();
+	Game::Onyon* decideGoal();
+	int execPathfinding();
+	int execMoveGoal();
+	bool isAllBlue();
 	void carry(Vector3f&);
-	void execMove();
-	void execMoveGuru();
+	int execMove();
+	int execMoveGuru();
 	void getWayPoint(int);
 	Vector3f crGetPoint(int);
 	void contextCheck(int);
@@ -838,7 +908,7 @@ struct ActPathMove : public Action {
 	f32 _38;               // _38
 	u8 _3C;                // _3C
 	u8 _3D;                // _3D
-	u8 _3E[6];             // _3E
+	int _40;               // _40
 	Game::PathNode* _44;   // _44
 	Game::PathNode* _48;   // _48
 	int _4C;               // _4C
@@ -848,7 +918,7 @@ struct ActPathMove : public Action {
 	Vector3f _58;          // _58
 	Game::WayPoint* _64;   // _64
 	f32 _68;               // _68
-	u32 _6C;               // _6C
+	u8 _6C;                // _6C
 	int _70;               // _70
 	Vector3f _74[4];       // _74
 	Vector3f _A4;          // _A4
@@ -909,7 +979,8 @@ struct ActRest : public ActBoreBase {
 	u8 mState;  // _10
 	f32 mTimer; // _14
 	u8 mFlag;   // _18
-	            // _1C = MotionListener
+
+	// _1C = MotionListener
 };
 
 struct StickAttackActionArg : public ActionArg {
@@ -921,7 +992,7 @@ struct StickAttackActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName(); /*{ return "StickAttackActionArg"; }*/ // _08 (weak)
 
 	// _00 = VTBL
 	f32 mAttackDamage;         // _04
@@ -952,7 +1023,8 @@ struct ActStickAttack : public Action, virtual SysShape::MotionListener {
 	u8 _1C;                    // _1C
 	u8 _1D;                    // _1D
 	int mStateID;              // _20
-	                           // _24 = MotionListener
+
+	// _24 = MotionListener
 };
 
 struct ActTeki : public Action, virtual SysShape::MotionListener {
@@ -995,32 +1067,37 @@ struct ActTransportArg : public ActionArg {
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
-	u32 _08;               // _08, unknown
+	Game::Onyon* _08;      // _08
 	Vector3f _0C;          // _0C
 	s16 _18;               // _18, slot maybe?
 };
 
 struct ActTransport : public Action, virtual SysShape::MotionListener {
-	ActTransport(Game::Piki* p);
+	ActTransport(Game::Piki* parent);
 
 	virtual void init(ActionArg* settings);                   // _08
 	virtual int exec();                                       // _0C
 	virtual void cleanup();                                   // _10
 	virtual void emotion_success();                           // _14
 	virtual void emotion_fail();                              // _18
-	virtual void getInfo(char*);                              // _38
+	virtual void getInfo(char* infoStringBuffer);             // _38
 	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _3C (weak)
 
-	void isStickLeader();
+	bool isStickLeader();
 	void initLift();
-	void execLift();
+	int execLift();
+
+	// unused/inlined:
+	int getNumStickers();
+
+	inline bool isPelletSatisfied(int pikiCount) { return (pikiCount >= mPellet->getPelletConfigMin()); }
 
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
 	Game::Pellet* mPellet;  // _10
-	u32 _14;                // _14, unknown
-	s16 _18;                // _18
+	Game::Onyon* _14;       // _14
+	u16 _18;                // _18
 	Vector3f _1C;           // _1C
 	s16 _28;                // _28
 	ActGotoSlot* mGotoSlot; // _2C
@@ -1041,17 +1118,20 @@ struct ActWeedArg : public ActionArg {
 };
 
 struct ActWeed : public Action {
-	ActWeed(Game::Piki* p);
+	ActWeed(Game::Piki* parent);
 
 	virtual void init(ActionArg* settings);                                // _08
 	virtual int exec();                                                    // _0C
 	virtual void cleanup();                                                // _10
 	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
-	virtual void getInfo(char*);                                           // _38
+	virtual void getInfo(char* infoStringBuffer);                          // _38
 
 	void decideTarget();
 	void initAdjust();
 	void calcAttackPos();
+
+	// unused/inlined:
+	void initStickAttack();
 
 	// _00     = VTBL
 	// _00-_0C = Action

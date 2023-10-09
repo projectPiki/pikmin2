@@ -34,6 +34,18 @@ struct BitFlag {
 		}
 	}
 
+	/** @fabricated */
+	inline bool isSet(T value) { return (typeView & value) != 0; }
+
+	/** @fabricated */
+	// inline bool isUnset(T value) { return (typeView & value) == 0; }
+
+	/** @fabricated */
+	inline void set(T value) { typeView |= value; }
+
+	/** @fabricated */
+	inline void unset(T value) { typeView &= ~value; }
+
 	union {
 		u8 byteView[sizeof(T)];
 		T typeView;

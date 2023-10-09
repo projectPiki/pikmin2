@@ -1,8 +1,10 @@
+#include "Game/EnemyBase.h"
 #include "types.h"
 #include "PikiAI.h"
 #include "Game/Piki.h"
 #include "Game/PikiState.h"
 #include "Dolphin/rand.h"
+#include "utilityU.h"
 
 static const char aiAttackName[] = "aiAttack";
 
@@ -238,6 +240,24 @@ void ActAttack::initJump()
  */
 void ActAttack::calcAttackPos()
 {
+	// TODO: The isTeki check probably is part of isLongLegs... but then where does isLongLegs live?
+	if (mCreature->isTeki() && static_cast<Game::EnemyBase*>(mCreature)->isLongLegs()) {
+		FindCollPartArg findArg;
+		FindCondition condition;
+		findArg.mCondition = &condition;
+		mParent->getBoundingSphere(findArg.mPosition);
+		CollPart* part = mCreature->mCollTree->findCollPart(findArg);
+		if (part != nullptr) {
+			mAttackSphere.mPosition = part->mPosition;
+			mAttackSphere.mRadius   = part->mRadius;
+		} else {
+			mAttackSphere.mPosition = mCreature->getPosition();
+			mAttackSphere.mRadius   = mCreature->getBodyRadius();
+		}
+	} else {
+		mAttackSphere.mPosition = mCreature->getPosition();
+		mAttackSphere.mRadius   = mCreature->getBodyRadius();
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -372,6 +392,67 @@ lbl_801A0B7C:
  */
 int ActAttack::exec()
 {
+	if (!mCreature->isAlive()) {
+		return ACTEXEC_Success;
+	}
+	if (mAttackID != 4 && !mParent->isStickTo() && (mCreature->isFlying() || mCreature->isUnderground())) {
+		mAttackID = 4;
+		if (randFloat() > 0.5f) {
+			_34 = Game::IPikiAnims::SAGASU2;
+		} else {
+			_34 = Game::IPikiAnims::SAGASU;
+		}
+		mParent->startMotion(_34, _34, this, nullptr);
+		_36 = 0;
+	}
+	if (Game::gameSystem->isVersusMode() && mCreature != nullptr && mCreature->isNavi()) {
+		PSMGetPikiBattleD()->_54++;
+	}
+	switch (mAttackID) {
+	case 0: {
+		int stickResult = mStickAttack->exec();
+		if (stickResult == ACTEXEC_Success) {
+			return ACTEXEC_Success;
+		}
+		if (stickResult == ACTEXEC_Fail && !mParent->isStickTo()) {
+			initJumpAdjust();
+		}
+	} break;
+	case 1:
+	case 2: {
+		calcAttackPos();
+		mApproachPos->mPosition = mAttackSphere.mPosition;
+		int approachResult      = mApproachPos->exec();
+		if (approachResult == ACTEXEC_Success) {
+			if (mAttackID == 1) {
+				initStickAttack();
+			} else {
+				mAttackID = 3;
+				// TODO: I have no idea what inline to use here. Please help!
+				Vector3f v1 = mAttackSphere.mPosition - mParent->getPosition();
+				_normaliseXZ(v1);
+				mParent->mSimVelocity = Vector3f(v1.x * 100.0f, 200.0f, v1.z * 100.0f);
+			}
+		} else if (approachResult == ACTEXEC_Fail) {
+			return ACTEXEC_Fail;
+		}
+	} break;
+	case 3:
+		if (mParent->mBounceTriangle != nullptr) {
+			initAdjust();
+		}
+		break;
+	case 4:
+		if (!mParent->assertMotion(_34)) {
+			_36 = 1;
+		}
+		mParent->mVelocity = 0.0f;
+		if (_36 != 0) {
+			return ACTEXEC_Fail;
+		}
+		break;
+	}
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -1050,6 +1131,14 @@ lbl_801A14C8:
  */
 void ActAttack::cleanup()
 {
+	mParent->mVelocity = 0.0f;
+	switch (mAttackID) {
+	case 0:
+		mStickAttack->cleanup();
+		break;
+	default:
+		break;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1084,8 +1173,14 @@ lbl_801A1528:
  * Address:	801A1538
  * Size:	0000E0
  */
-void ActAttack::collisionCallback(Game::Piki*, Game::CollEvent&)
+void ActAttack::collisionCallback(Game::Piki* piki, Game::CollEvent& collEvent)
 {
+	if (collEvent.mCollidingCreature == mCreature && mAttackID == 3) {
+		if (collEvent.mCollisionObj != nullptr && collEvent.mCollisionObj->isStickable()) {
+			piki->startStick(collEvent.mCollidingCreature, collEvent.mCollisionObj);
+			initStickAttack();
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1155,6 +1250,9 @@ lbl_801A15FC:
  */
 void ActAttack::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
+	if (mAttackID == 3) {
+		initAdjust();
+	}
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1323,19 +1421,15 @@ lbl_801A1848:
  * Address:	801A1864
  * Size:	000024
  */
-void ActAttack::onKeyEvent(SysShape::KeyEvent const&)
+void ActAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
-	/*
-	lwz      r0, 0x1c(r4)
-	cmplwi   r0, 0x3e8
-	bnelr
-	lhz      r0, 0x18(r3)
-	cmplwi   r0, 4
-	bnelr
-	li       r0, 1
-	stb      r0, 0x36(r3)
-	blr
-	*/
+	if (keyEvent.mType != 1000) {
+		return;
+	}
+	if (mAttackID != 4) {
+		return;
+	}
+	_36 = 1;
 }
 
 } // namespace PikiAI

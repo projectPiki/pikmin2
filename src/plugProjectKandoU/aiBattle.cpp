@@ -256,15 +256,50 @@ void ActBattle::collisionCallback(Game::Piki*, Game::CollEvent&) { }
  */
 void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 {
-	switch (mState) {
-	case PIKIAI_ACTBATTLE_BATTLE: {
+	if (mState == PIKIAI_ACTBATTLE_BATTLE) {
 		switch (event.mType) {
-		case KEYEVENT_END:
+		case KEYEVENT_2: {
+			PikiAI::ActBattle* battle;
+			if (mOther && mOther->getCurrActionID() == PikiAI::ACT_Battle) {
+				battle = static_cast<ActBattle*>(mOther->getCurrAction());
+			} else {
+				battle = nullptr;
+			}
+
+			if (battle) {
+				if (battle->mState != PIKIAI_ACTBATTLE_DAMAGE) {
+					if (randFloat() > 0.5f) {
+						if (battle->mOther && randFloat() > 0.9f) {
+							battle->initApproach();
+
+							Game::InteractFlick flick(battle->mOther, 60.0f, 0.0f, -1000.0f);
+							battle->mParent->stimulate(flick);
+						} else {
+							battle->initApproach();
+						}
+					}
+				}
+			}
+
+			if (mParent->doped()) {
+				efx::TPkAttackDP dp;
+				efx::Arg arg;
+				arg.mPosition = mParent->mLeafStemOffset;
+				dp.create(&arg);
+			} else {
+				efx::PikiDamage pd;
+				efx::Arg arg;
+				arg.mPosition = mParent->mLeafStemOffset;
+				pd.create(&arg);
+			}
+			mParent->startSound(mOther, PSSE_PK_SE_ATTACKHIT, true);
+		} break;
+		case KEYEVENT_END: {
 			initApproach();
 
-			u8 old        = ++_1D;
 			f32 rngChance = randFloat() * 2.2f;
-			if (old >= rngChance + 6) {
+			u8 old        = ++_1D;
+			if (old >= (int)rngChance + 6) {
 				if (mOther && mOther->getVsBattlePiki() == mParent) {
 					f32 oh = 0.5f * mOther->mHappaKind + 1.0f;
 					f32 ph = 0.5f * mParent->mHappaKind + 1.0f;
@@ -288,52 +323,11 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 					RESET_FLAG(_1C, 2);
 				}
 				return;
-			case KEYEVENT_2: {
-				PikiAI::ActBattle* battle;
-				if (mOther && mOther->getCurrActionID() == PikiAI::ACT_Battle) {
-					battle = static_cast<ActBattle*>(mOther->getCurrAction());
-				} else {
-					battle = nullptr;
-				}
-
-				if (battle) {
-					if (battle->mState == PIKIAI_ACTBATTLE_DAMAGE) {
-						if (randFloat() > 0.5f) {
-							if (battle->mOther && randFloat() > 0.9f) {
-								battle->initApproach();
-
-								Game::InteractFlick flick(battle->mOther, 60.0f, 0.0f, -1000.0f);
-								battle->mParent->stimulate(flick);
-							} else {
-								battle->initApproach();
-							}
-						}
-					}
-				}
-
-				if (mParent->doped()) {
-					efx::TPkAttackDP dp;
-					efx::Arg arg(mParent->getPosition());
-					dp.create(&arg);
-				} else {
-					efx::PikiDamage pd;
-					efx::Arg arg(mParent->getPosition());
-					pd.create(&arg);
-				}
-
-				return;
 			}
-			}
-			break;
+		} break;
 		}
-		break;
-	}
-	case PIKIAI_ACTBATTLE_DAMAGE: {
+	} else if (mState == PIKIAI_ACTBATTLE_DAMAGE) {
 		initApproach();
-		break;
-	}
-	default:
-		break;
 	}
 
 	/*

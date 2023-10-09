@@ -59,6 +59,25 @@ struct BaseFlockMgr {
 		return getFlock(idx)->fear();
 	}
 
+	/**
+	 * @fabricated but likely existed based on asserts
+	 * Worth noting that this function is supposed to only be one line long.
+	 * @todo make this function one line long... somehow
+	 */
+	inline Vector3f getPosition(int idx)
+	{
+		P2ASSERTBOUNDSLINE(171, 0, idx, getMaxObjects());
+		return *getFlock(idx);
+	}
+	/**
+	 * @fabricated but likely existed based on asserts
+	 */
+	inline f32 getRadius(int idx)
+	{
+		P2ASSERTBOUNDSLINE(172, 0, idx, getMaxObjects());
+		return getFlock(idx)->getRadius();
+	}
+
 	void update();
 	int getNearestFlock(Vector3f& pos);
 	int attackFlock(int, f32);

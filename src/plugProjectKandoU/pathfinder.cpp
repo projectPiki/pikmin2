@@ -50,6 +50,9 @@
 
 namespace Game {
 
+Pathfinder* testPathfinder;
+Game::RouteMgr* Game::PathfindContext::routeMgr;
+
 /*
  * --INFO--
  * Address:	801A35EC
@@ -62,34 +65,6 @@ Pathfinder::Pathfinder()
 	mClientCount       = 0;
 	mAStarContexts     = nullptr;
 	mCounter           = 1;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 4
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801A3618
-	bl       __ct__Q24Game15AStarPathfinderFv
-	mr       r0, r3
-
-lbl_801A3618:
-	stw      r0, 0x10(r31)
-	li       r4, 0
-	li       r0, 1
-	mr       r3, r31
-	stw      r4, 8(r31)
-	stw      r4, 4(r31)
-	stw      r4, 0xc(r31)
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -108,61 +83,6 @@ void Pathfinder::create(int contextCount, Game::RouteMgr* routeMgr)
 	}
 	mCounter = 1;
 	sys->heapStatusEnd("pathfinder");
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r6, lbl_8047F400@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r6, lbl_8047F400@l
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	mr       r4, r0
-	li       r5, 0
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r0, 0
-	stw      r0, 4(r27)
-	mulli    r3, r28, 0x64
-	stw      r28, 8(r27)
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q24Game12AStarContextFv@ha
-	mr       r7, r28
-	addi     r4, r4, __ct__Q24Game12AStarContextFv@l
-	li       r5, 0
-	li       r6, 0x64
-	bl       __construct_new_array
-	stw      r3, 0xc(r27)
-	li       r30, 0
-	li       r31, 0
-	b        lbl_801A36DC
-
-lbl_801A36C0:
-	lwz      r0, 0xc(r27)
-	mr       r4, r29
-	li       r5, 0
-	add      r3, r0, r31
-	bl       init__Q24Game12AStarContextFPQ24Game8RouteMgri
-	addi     r31, r31, 0x64
-	addi     r30, r30, 1
-
-lbl_801A36DC:
-	cmpw     r30, r28
-	blt      lbl_801A36C0
-	li       r0, 1
-	lis      r3, lbl_8047F400@ha
-	stw      r0, 0(r27)
-	addi     r4, r3, lbl_8047F400@l
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -170,24 +90,7 @@ lbl_801A36DC:
  * Address:	801A3710
  * Size:	000020
  */
-// AStarContext::AStarContext()
-//{
-//	_04                             = 0;
-//	_00                             = -1;
-//	_02                             = -1;
-//	Game::PathfindContext::routeMgr = nullptr;
-//	_60                             = 0;
-/*
-li       r4, 0
-li       r0, -1
-stb      r4, 4(r3)
-sth      r0, 2(r3)
-sth      r0, 0(r3)
-stw      r4, routeMgr__Q24Game15PathfindContext@sda21(r13)
-stw      r4, 0x60(r3)
-blr
-*/
-//}
+// AStarContext::AStarContext() { }
 
 /*
  * --INFO--
@@ -329,17 +232,12 @@ void Pathfinder::getFreeContext()
  */
 AStarContext* Pathfinder::getContext(u32 id)
 {
-	AStarContext* context = 0;
-	if (mAStarContextCount > 0) {
-		for (int i = 0; i < mAStarContextCount; i++) {
-			if (mAStarContexts[i].mStatus == id) {
-				context = &mAStarContexts[i];
-				break;
-			}
+	for (int i = 0; i < mAStarContextCount; i++) {
+		if (mAStarContexts[i].mStatus == id) {
+			return mAStarContexts + i;
 		}
-		context = nullptr;
 	}
-	return context;
+	return nullptr;
 }
 /*
  * --INFO--
@@ -370,107 +268,6 @@ int Pathfinder::start(PathfindRequest& request)
 		mAStarPathfinder->initsearch(context);
 		return wpNum;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_8047F400@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	addi     r4, r5, lbl_8047F400@l
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r28, 0x10(r1)
-	lwz      r3, 4(r3)
-	lwz      r0, 8(r29)
-	cmpw     r3, r0
-	blt      lbl_801A38AC
-	addi     r3, r4, 0xc
-	addi     r5, r4, 0x1c
-	li       r4, 0xfa
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 0
-	b        lbl_801A3980
-
-lbl_801A38AC:
-	lwz      r3, 0(r29)
-	addi     r0, r3, 1
-	mr       r31, r3
-	stw      r0, 0(r29)
-	lwz      r0, 0(r29)
-	cmplwi   r0, 0x4e20
-	blt      lbl_801A38D0
-	li       r0, 1
-	stw      r0, 0(r29)
-
-lbl_801A38D0:
-	lwz      r0, 8(r29)
-	li       r3, 0
-	mr       r5, r3
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_801A3914
-
-lbl_801A38E8:
-	lwz      r6, 0xc(r29)
-	addi     r0, r5, 0x60
-	lwzx     r0, r6, r0
-	cmplwi   r0, 0
-	bne      lbl_801A3908
-	mulli    r0, r3, 0x64
-	add      r28, r6, r0
-	b        lbl_801A3918
-
-lbl_801A3908:
-	addi     r5, r5, 0x64
-	addi     r3, r3, 1
-	bdnz     lbl_801A38E8
-
-lbl_801A3914:
-	li       r28, 0
-
-lbl_801A3918:
-	cmplwi   r28, 0
-	bne      lbl_801A3938
-	lwz      r6, 4(r29)
-	addi     r3, r4, 0xc
-	addi     r5, r4, 0x28
-	li       r4, 0x102
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801A3938:
-	lwz      r5, 4(r29)
-	li       r3, 0
-	li       r0, 2
-	mr       r4, r28
-	addi     r5, r5, 1
-	stw      r5, 4(r29)
-	stw      r3, 0x60(r28)
-	stb      r0, 0x54(r28)
-	stw      r31, 0x60(r28)
-	lha      r0, 0(r30)
-	sth      r0, 0(r28)
-	lha      r0, 2(r30)
-	sth      r0, 2(r28)
-	lbz      r0, 4(r30)
-	stb      r0, 4(r28)
-	lwz      r3, 0x10(r29)
-	bl       initsearch__Q24Game15AStarPathfinderFPQ24Game12AStarContext
-	mr       r3, r31
-
-lbl_801A3980:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -489,74 +286,8 @@ int Pathfinder::makepath(u32 id, Game::PathNode** path)
 		JUT_PANICLINE(290, "context state is %d\n", context->mCheckHandle);
 	} else {
 		JUT_PANICLINE(293, "no such handle %d\n", id);
-		return 0;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r6, lbl_8047F400@ha
-	li       r8, 0
-	stw      r0, 0x14(r1)
-	addi     r7, r6, lbl_8047F400@l
-	mr       r6, r8
-	lwz      r0, 8(r3)
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_801A39F8
-
-lbl_801A39CC:
-	lwz      r9, 0xc(r3)
-	addi     r0, r6, 0x60
-	lwzx     r0, r9, r0
-	cmplw    r4, r0
-	bne      lbl_801A39EC
-	mulli    r0, r8, 0x64
-	add      r3, r9, r0
-	b        lbl_801A39FC
-
-lbl_801A39EC:
-	addi     r6, r6, 0x64
-	addi     r8, r8, 1
-	bdnz     lbl_801A39CC
-
-lbl_801A39F8:
-	li       r3, 0
-
-lbl_801A39FC:
-	cmplwi   r3, 0
-	beq      lbl_801A3A34
-	lbz      r6, 0x54(r3)
-	cmplwi   r6, 0
-	bne      lbl_801A3A1C
-	lwz      r4, 0x5c(r3)
-	bl       makepath__Q24Game12AStarContextFPQ24Game8PathNodePPQ24Game8PathNode
-	b        lbl_801A3A50
-
-lbl_801A3A1C:
-	addi     r3, r7, 0xc
-	addi     r5, r7, 0x50
-	li       r4, 0x122
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_801A3A4C
-
-lbl_801A3A34:
-	mr       r6, r4
-	addi     r3, r7, 0xc
-	addi     r5, r7, 0x68
-	li       r4, 0x125
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801A3A4C:
-	li       r3, 0
-
-lbl_801A3A50:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return 0;
 }
 
 /*
@@ -582,44 +313,6 @@ void Pathfinder::release(u32 id)
 		context->mStatus      = 0;
 		context->mCheckHandle = 2;
 	}
-	/*
-	lwz      r0, 8(r3)
-	li       r5, 0
-	mr       r6, r5
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_801A3AA4
-
-lbl_801A3A78:
-	lwz      r7, 0xc(r3)
-	addi     r0, r6, 0x60
-	lwzx     r0, r7, r0
-	cmplw    r4, r0
-	bne      lbl_801A3A98
-	mulli    r0, r5, 0x64
-	add      r6, r7, r0
-	b        lbl_801A3AA8
-
-lbl_801A3A98:
-	addi     r6, r6, 0x64
-	addi     r5, r5, 1
-	bdnz     lbl_801A3A78
-
-lbl_801A3AA4:
-	li       r6, 0
-
-lbl_801A3AA8:
-	cmplwi   r6, 0
-	beqlr
-	lwz      r5, 4(r3)
-	li       r4, 0
-	li       r0, 2
-	addi     r5, r5, -1
-	stw      r5, 4(r3)
-	stw      r4, 0x60(r6)
-	stb      r0, 0x54(r6)
-	blr
-	*/
 }
 
 /*
@@ -632,62 +325,9 @@ int Pathfinder::check(u32 id)
 	AStarContext* context = getContext(id);
 	if (context) {
 		return context->mCheckHandle;
-	} else {
-		JUT_PANICLINE(332, " no handle ! %d\n", id);
-		return 3;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	mr       r6, r5
-	lwz      r0, 8(r3)
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_801A3B20
-
-lbl_801A3AF4:
-	lwz      r7, 0xc(r3)
-	addi     r0, r6, 0x60
-	lwzx     r0, r7, r0
-	cmplw    r4, r0
-	bne      lbl_801A3B14
-	mulli    r0, r5, 0x64
-	add      r3, r7, r0
-	b        lbl_801A3B24
-
-lbl_801A3B14:
-	addi     r6, r6, 0x64
-	addi     r5, r5, 1
-	bdnz     lbl_801A3AF4
-
-lbl_801A3B20:
-	li       r3, 0
-
-lbl_801A3B24:
-	cmplwi   r3, 0
-	beq      lbl_801A3B34
-	lbz      r3, 0x54(r3)
-	b        lbl_801A3B58
-
-lbl_801A3B34:
-	lis      r3, lbl_8047F40C@ha
-	lis      r5, lbl_8047F47C@ha
-	mr       r6, r4
-	li       r4, 0x14c
-	addi     r3, r3, lbl_8047F40C@l
-	addi     r5, r5, lbl_8047F47C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 3
-
-lbl_801A3B58:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JUT_PANICLINE(332, " no handle ! %d\n", id);
+	return 3;
 }
 
 /*
@@ -698,6 +338,12 @@ lbl_801A3B58:
 void PathNode::initNode()
 {
 	// UNUSED FUNCTION
+	_18    = nullptr;
+	_14    = nullptr;
+	_1C    = nullptr;
+	_10    = nullptr;
+	mChild = nullptr;
+	mNext  = nullptr;
 }
 
 /*
@@ -705,9 +351,19 @@ void PathNode::initNode()
  * Address:	........
  * Size:	000038
  */
-void PathNode::add(Game::PathNode*)
+void PathNode::add(Game::PathNode* newNode)
 {
 	// UNUSED FUNCTION
+	if (_1C != nullptr) {
+		PathNode* node;
+		for (node = _14; node->_14 != nullptr;) {
+			node = node->_14;
+		}
+		node->_14    = newNode;
+		newNode->_18 = node;
+	} else {
+		_1C = newNode;
+	}
 }
 
 /*
@@ -759,54 +415,16 @@ void AStarContext::init(RouteMgr* mgr, int wpNum)
 {
 	if (mgr) {
 		PathfindContext::routeMgr = mgr;
-		_50                       = 0;
+		mUsedNodeCount            = 0;
 		if (wpNum <= 0) {
 			mWpNum = PathfindContext::routeMgr->mCount;
 		} else {
 			mWpNum = wpNum;
 		}
-		_58          = new int[mWpNum]; // not sure what this type is
+		_58          = new PathNode[mWpNum]; // not sure what this type is
 		mStatus      = 0;
 		mCheckHandle = 2;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_801A3BCC
-	stw      r4, routeMgr__Q24Game15PathfindContext@sda21(r13)
-	li       r0, 0
-	cmpwi    r5, 0
-	sth      r0, 0x50(r31)
-	bgt      lbl_801A3BA8
-	lwz      r3, routeMgr__Q24Game15PathfindContext@sda21(r13)
-	lhz      r0, 0x1c(r3)
-	sth      r0, 0x52(r31)
-	b        lbl_801A3BAC
-
-lbl_801A3BA8:
-	sth      r5, 0x52(r31)
-
-lbl_801A3BAC:
-	lha      r0, 0x52(r31)
-	mulli    r3, r0, 0x24
-	bl       __nwa__FUl
-	stw      r3, 0x58(r31)
-	li       r3, 0
-	li       r0, 2
-	stw      r3, 0x60(r31)
-	stb      r0, 0x54(r31)
-
-lbl_801A3BCC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -828,9 +446,23 @@ void AStarPathfinder::setContext(AStarContext* context) { mContext = context; }
  * Address:	........
  * Size:	0000A0
  */
-void AStarContext::getNode(short)
+PathNode* AStarContext::getNode(short wpID)
 {
 	// UNUSED FUNCTION
+	PathNode* node;
+	for (int i = 0; i < mUsedNodeCount; i++) {
+		if (wpID == _58[i].mWpIndex) {
+			return _58 + i;
+		}
+	}
+	if (mUsedNodeCount < mWpNum) {
+		node = _58 + mUsedNodeCount++;
+		node->initNode();
+		node->mWpIndex = wpID;
+		node->_22      = 2;
+		return node;
+	}
+	return nullptr;
 }
 
 /*
@@ -858,8 +490,22 @@ void AStarPathfinder::search(Game::AStarContext*, short, short, short*, int, int
  * Address:	801A3BF4
  * Size:	00017C
  */
-void AStarPathfinder::initsearch(Game::AStarContext*)
+void AStarPathfinder::initsearch(Game::AStarContext* context)
 {
+	s16 startID = context->mStartWPID;
+	s16 endID   = context->mEndWPID;
+	setContext(context);
+	mContext->_08[0].initNode();
+	mContext->_08[1].initNode();
+	mContext->mUsedNodeCount = 0;
+	PathNode* node           = mContext->getNode(startID);
+	node->mWpIndex           = startID;
+	node->_00                = 0.0f;
+	node->_04                = estimate(startID, endID);
+	node->mChild             = nullptr;
+	node->_22                = 0;
+	mContext->_08[0].add(node);
+	node->_10 = mContext->_08 + 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1411,7 +1057,7 @@ f32 AStarPathfinder::estimate(s16 wpID1, s16 wpID2)
 int AStarContext::makepath(PathNode* newNode, PathNode** nodePtr)
 {
 	int i = 1;
-	FOREACH_NODE(PathNode, newNode->mChild, node)
+	FOREACH_NODE_CHILD(PathNode, newNode->mChild, node)
 	{
 		i++;
 		node->mNext = newNode;
@@ -1422,25 +1068,6 @@ int AStarContext::makepath(PathNode* newNode, PathNode** nodePtr)
 		*nodePtr = newNode;
 	}
 	return i;
-	/*
-	lwz      r6, 8(r4)
-	li       r3, 1
-	b        lbl_801A42F8
-
-lbl_801A42E8:
-	stw      r4, 0xc(r6)
-	mr       r4, r6
-	addi     r3, r3, 1
-	lwz      r6, 8(r6)
-
-lbl_801A42F8:
-	cmplwi   r6, 0
-	bne      lbl_801A42E8
-	cmplwi   r5, 0
-	beqlr
-	stw      r4, 0(r5)
-	blr
-	*/
 }
 
 /*

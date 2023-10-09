@@ -1,14 +1,18 @@
 #include "Game/NaviState.h"
+#include "Game/CameraMgr.h"
+#include "Game/MapMgr.h"
 #include "Game/NaviParms.h"
 #include "Game/Stickers.h"
 #include "Game/MoviePlayer.h"
 #include "Game/AIConstants.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Dolphin/rand.h"
+#include "Game/rumble.h"
 #include "PSM/Navi.h"
 #include "PSSystem/PSSystemIF.h"
 #include "KandoLib/Choice.h"
 #include "nans.h"
+#include "utilityU.h"
 
 int unusedNaviStateArray[] = { 1, 2, 3, 0 }; // ?
 
@@ -846,10 +850,10 @@ void NaviWalkState::initAI_animation(Navi* navi)
 {
 	mAIState = WALKAI_Animation;
 
-	KandoLib::Choice choiceListIdle[4]
-	    = { { IPikiAnims::AKUBI, 0.25f }, { IPikiAnims::FURIMUKU, 0.25f }, { IPikiAnims::SAGASU2, 0.25f }, { IPikiAnims::JUMP, 0.25f } };
-	KandoLib::Choice choiceListControl[4]
-	    = { { IPikiAnims::AKUBI, 0.25f }, { IPikiAnims::FURIMUKU, 0.25f }, { IPikiAnims::SAGASU2, 0.25f }, { IPikiAnims::GATTU, 0.25f } };
+	KandoLib::Choice choiceListIdle[4]    = { KandoLib::Choice(IPikiAnims::AKUBI, 0.25f), KandoLib::Choice(IPikiAnims::FURIMUKU, 0.25f),
+		                                      KandoLib::Choice(IPikiAnims::SAGASU2, 0.25f), KandoLib::Choice(IPikiAnims::JUMP, 0.25f) };
+	KandoLib::Choice choiceListControl[4] = { KandoLib::Choice(IPikiAnims::AKUBI, 0.25f), KandoLib::Choice(IPikiAnims::FURIMUKU, 0.25f),
+		                                      KandoLib::Choice(IPikiAnims::SAGASU2, 0.25f), KandoLib::Choice(IPikiAnims::GATTU, 0.25f) };
 
 	int animIdx;
 	if (navi->mController1) {
@@ -2228,7 +2232,7 @@ void NaviFollowState::cleanup(Navi* navi) { }
 NaviPunchState::NaviPunchState()
     : NaviState(NSID_Punch)
     , _24(0)
-    , _28(0)
+    , mNextStateID(0)
 {
 }
 
@@ -2241,11 +2245,11 @@ void NaviPunchState::init(Navi* navi, StateArg* stateArg)
 {
 	NaviPunchArg* punchArg = static_cast<NaviPunchArg*>(stateArg);
 	if (punchArg) {
-		_24 = punchArg->_00;
-		_28 = punchArg->_04;
+		_24          = punchArg->_00;
+		mNextStateID = punchArg->_04;
 	} else {
-		_24 = 0;
-		_28 = 0;
+		_24          = 0;
+		mNextStateID = 0;
 	}
 
 	navi->startMotion(IPikiAnims::PUNCH, IPikiAnims::PUNCH, navi, nullptr);
@@ -2632,112 +2636,23 @@ void NaviPunchState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
  */
 void NaviPunchState::exec(Navi* navi)
 {
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r5, 0x20(r3)
-	cmplwi   r5, 0
-	beq      lbl_80181654
-	addi     r5, r5, -1
-	clrlwi.  r0, r5, 0x18
-	stb      r5, 0x20(r30)
-	bne      lbl_801815F4
-	lwz      r12, 0(r3)
-	li       r6, 0
-	lwz      r5, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80181704
-
-lbl_801815F4:
-	mr       r3, r31
-	li       r4, 0x40
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80181704
-	mr       r3, r31
-	li       r4, 0x41
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80181704
-	mr       r3, r31
-	li       r4, 0x42
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80181704
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80181704
-
-lbl_80181654:
-	lbz      r0, 0x24(r30)
-	cmplwi   r0, 0
-	bne      lbl_80181698
-	lwz      r3, 0x278(r31)
-	cmplwi   r3, 0
-	beq      lbl_80181698
-	lwz      r0, 0x1c(r3)
-	rlwinm.  r0, r0, 0, 0x17, 0x17
-	beq      lbl_80181698
-	lbz      r0, 0x1d(r30)
-	cmplwi   r0, 0
-	bne      lbl_80181698
-	lbz      r0, 0x1e(r30)
-	cmplwi   r0, 2
-	bge      lbl_80181698
-	li       r0, 1
-	stb      r0, 0x1d(r30)
-
-lbl_80181698:
-	mr       r3, r31
-	bl       control__Q24Game4NaviFv
-	mr       r3, r31
-	bl       findNextThrowPiki__Q24Game4NaviFv
-	mr       r3, r31
-	li       r4, 0x40
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80181704
-	mr       r3, r31
-	li       r4, 0x41
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80181704
-	mr       r3, r31
-	li       r4, 0x42
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80181704
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80181704:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_20) {
+		if (0 == --_20) {
+			transit(navi, mNextStateID, nullptr);
+		} else if (!navi->assertMotion(IPikiAnims::PUNCH) && !navi->assertMotion(IPikiAnims::PUNCH2)
+		           && !navi->assertMotion(IPikiAnims::PUNCH3)) {
+			transit(navi, mNextStateID, nullptr);
+		}
+	} else {
+		if (_24 == 0 && navi->mController1 != nullptr && navi->mController1->isButtonDown(JUTGamePad::PRESS_A) && _1D == 0 && _1E < 2) {
+			_1D = 1;
+		}
+		navi->control();
+		navi->findNextThrowPiki();
+		if (!navi->assertMotion(IPikiAnims::PUNCH) && !navi->assertMotion(IPikiAnims::PUNCH2) && !navi->assertMotion(IPikiAnims::PUNCH3)) {
+			transit(navi, mNextStateID, nullptr);
+		}
+	}
 }
 
 /*
@@ -2754,52 +2669,18 @@ void NaviPunchState::cleanup(Navi* navi) { }
  */
 void NaviPathMoveState::init(Navi* navi, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r0, 0x14(r3)
-	beq      lbl_8018177C
-	lfs      f0, 0(r5)
-	stfs     f0, 0x18(r29)
-	lfs      f0, 4(r5)
-	stfs     f0, 0x1c(r29)
-	lfs      f0, 8(r5)
-	stfs     f0, 0x20(r29)
-	bl       initPathfinding__Q24Game17NaviPathMoveStateFPQ24Game4Navi
-	cmpwi    r3, 1
-	bne      lbl_8018177C
-	li       r31, 1
-
-lbl_8018177C:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_801817A4
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801817A4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	bool dontStartWalking = false;
+	mPathfinderContextID  = 0;
+	if (stateArg) {
+		mPosition = static_cast<NaviPathMoveStateArg*>(stateArg)->mPosition;
+		if (initPathfinding(navi) == 1) {
+			dontStartWalking = true;
+		}
+	}
+	if (dontStartWalking) {
+		return;
+	}
+	transit(navi, NSID_Walk, nullptr);
 }
 
 /*
@@ -2809,76 +2690,30 @@ lbl_801817A4:
  */
 void NaviPathMoveState::exec(Navi* navi)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lhz      r0, 0x10(r3)
-	cmpwi    r0, 1
-	beq      lbl_80181820
-	bge      lbl_80181800
-	cmpwi    r0, 0
-	bge      lbl_8018180C
-	b        lbl_80181854
-
-lbl_80181800:
-	cmpwi    r0, 3
-	bge      lbl_80181854
-	b        lbl_80181844
-
-lbl_8018180C:
-	bl       execPathfinding__Q24Game17NaviPathMoveStateFPQ24Game4Navi
-	cmpwi    r3, 2
-	bne      lbl_80181854
-	li       r31, 1
-	b        lbl_80181854
-
-lbl_80181820:
-	bl       execMove__Q24Game17NaviPathMoveStateFPQ24Game4Navi
-	cmpwi    r3, 2
-	bne      lbl_80181834
-	li       r31, 1
-	b        lbl_80181854
-
-lbl_80181834:
-	cmpwi    r3, 1
-	bne      lbl_80181854
-	li       r31, 1
-	b        lbl_80181854
-
-lbl_80181844:
-	bl       execMoveGoal__Q24Game17NaviPathMoveStateFPQ24Game4Navi
-	cmpwi    r3, 2
-	bne      lbl_80181854
-	li       r31, 1
-
-lbl_80181854:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8018187C
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8018187C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	bool startWalking = false;
+	switch (_10) {
+	case 0:
+		if (execPathfinding(navi) == 2) {
+			startWalking = true;
+		}
+		break;
+	case 1: {
+		int moveResult = execMove(navi);
+		if (moveResult == 2) {
+			startWalking = true;
+		} else if (moveResult == 1) {
+			startWalking = true;
+		}
+	} break;
+	case 2:
+		if (execMoveGoal(navi) == 2) {
+			startWalking = true;
+		}
+		break;
+	}
+	if (startWalking) {
+		transit(navi, NSID_Walk, nullptr);
+	}
 }
 
 /*
@@ -2886,38 +2721,41 @@ lbl_8018187C:
  * Address:	80181898
  * Size:	000044
  */
-void NaviPathMoveState::cleanup(Navi* navi)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 0x14(r3)
-	cmplwi   r4, 0
-	beq      lbl_801818C8
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	bl       release__Q24Game10PathfinderFUl
-	li       r0, 0
-	stw      r0, 0x14(r31)
-
-lbl_801818C8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void NaviPathMoveState::cleanup(Navi* navi) { releasePathfinder(); }
 
 /*
  * --INFO--
  * Address:	801818DC
  * Size:	0001BC
  */
-void NaviPathMoveState::initPathfinding(Navi* navi)
+int NaviPathMoveState::initPathfinding(Navi* navi)
 {
+	WayPoint* wp;
+	Vector3f naviPosition = navi->getPosition();
+	WPEdgeSearchArg edgeSearchArg(naviPosition);
+	edgeSearchArg.mRoomID = navi->mRoomIndex;
+	if (navi->inWater()) {
+		edgeSearchArg.mInWater = true;
+	}
+	if (mapMgr->mRouteMgr->getNearestEdge(edgeSearchArg)) {
+		wp = !edgeSearchArg.mWp1->mFlags.isSet(WPF_Closed) ? edgeSearchArg.mWp1 : edgeSearchArg.mWp2;
+	} else {
+		if (mapMgr->mRouteMgr->getNearestEdge(edgeSearchArg)) {
+			wp = edgeSearchArg.mWp1->mFlags.isSet(WPF_Closed) ? edgeSearchArg.mWp2 : edgeSearchArg.mWp1;
+		} else {
+			return 2;
+		}
+	}
+	releasePathfinder();
+	WPSearchArg wpSearchArg(mPosition, nullptr, 0, 10.0f);
+	WayPoint* searchResult = mapMgr->mRouteMgr->getNearestWayPoint(wpSearchArg);
+	if (searchResult == nullptr) {
+		return 2;
+	}
+	PathfindRequest request(wp->mIndex, searchResult->mIndex, 1);
+	mPathfinderContextID = testPathfinder->start(request);
+	_10                  = 0;
+	return 1;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -3056,56 +2894,21 @@ lbl_80181A80:
  * Address:	80181A98
  * Size:	000090
  */
-void NaviPathMoveState::execPathfinding(Navi* navi)
+int NaviPathMoveState::execPathfinding(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 0x14(r3)
-	cmplwi   r4, 0
-	bne      lbl_80181AC0
-	li       r3, 2
-	b        lbl_80181B14
-
-lbl_80181AC0:
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	bl       check__Q24Game10PathfinderFUl
-	cmpwi    r3, 1
-	beq      lbl_80181B08
-	bge      lbl_80181B10
-	cmpwi    r3, 0
-	bge      lbl_80181AE0
-	b        lbl_80181B10
-
-lbl_80181AE0:
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	addi     r5, r31, 0x24
-	lwz      r4, 0x14(r31)
-	bl       makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode
-	stw      r3, 0x2c(r31)
-	li       r0, 1
-	lwz      r3, 0x24(r31)
-	stw      r3, 0x28(r31)
-	sth      r0, 0x10(r31)
-	b        lbl_80181B10
-
-lbl_80181B08:
-	li       r3, 2
-	b        lbl_80181B14
-
-lbl_80181B10:
-	li       r3, 0
-
-lbl_80181B14:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mPathfinderContextID == 0) {
+		return 2;
+	}
+	switch (testPathfinder->check(mPathfinderContextID)) {
+	case 0:
+		_2C    = testPathfinder->makepath(mPathfinderContextID, _24);
+		_24[1] = _24[0];
+		_10    = 1;
+		break;
+	case 1:
+		return 2;
+	}
+	return 0;
 }
 
 /*
@@ -3113,7 +2916,7 @@ lbl_80181B14:
  * Address:	80181B28
  * Size:	00015C
  */
-void NaviPathMoveState::execMove(Navi* navi)
+int NaviPathMoveState::execMove(Navi* navi)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -3223,7 +3026,7 @@ lbl_80181C54:
  * Address:	80181C84
  * Size:	000008
  */
-bool NaviPathMoveState::execMoveGoal(Navi* navi) { return false; }
+int NaviPathMoveState::execMoveGoal(Navi* navi) { return 0; }
 
 // /*
 //  * --INFO--
@@ -3242,75 +3045,24 @@ bool NaviPathMoveState::execMoveGoal(Navi* navi) { return false; }
  */
 void NaviNukuState::init(Navi* navi, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_80181CBC
-	lbz      r0, 0(r5)
-	stb      r0, 0x18(r30)
-	b        lbl_80181CC4
-
-lbl_80181CBC:
-	li       r0, 0
-	stb      r0, 0x18(r30)
-
-lbl_80181CC4:
-	lbz      r0, 0x26a(r31)
-	cmplwi   r0, 0
-	beq      lbl_80181CDC
-	li       r0, 0x2b
-	sth      r0, 0x16(r30)
-	b        lbl_80181CE4
-
-lbl_80181CDC:
-	li       r0, 0x2a
-	sth      r0, 0x16(r30)
-
-lbl_80181CE4:
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_80181CF4
-	addi     r6, r31, 0x178
-
-lbl_80181CF4:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lha      r4, 0x16(r30)
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mr       r5, r4
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc0(r31)
-	li       r4, 0x803
-	li       r5, 0
-	lwz      r0, 0x688(r3)
-	sth      r0, 0x10(r30)
-	lwz      r3, 0x26c(r31)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	stb      r0, 0x12(r30)
-	stb      r0, 0x14(r30)
-	stb      r0, 0x13(r30)
-	stb      r0, 0x15(r30)
-	stfs     f0, 0x118(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (stateArg != nullptr) {
+		_18 = static_cast<NaviNukuArg*>(stateArg)->_00;
+	} else {
+		_18 = 0;
+	}
+	if (navi->_26A != 0) {
+		mAnimID = IPikiAnims::NUKU3;
+	} else {
+		mAnimID = IPikiAnims::NUKU;
+	}
+	navi->startMotion(mAnimID, mAnimID, navi, nullptr);
+	_10 = static_cast<NaviParms*>(navi->mParms)->mNaviParms.mP042;
+	navi->mSoundObj->startSound(PSSE_PL_PULLING_PIKI, 0);
+	_12         = 0;
+	_14         = 0;
+	_13         = 0;
+	_15         = 0;
+	navi->mMass = 0.0f;
 }
 
 /*
@@ -3320,121 +3072,36 @@ lbl_80181CF4:
  */
 void NaviNukuState::exec(Navi* navi)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_80181DF0
-	lwz      r0, 0x18(r5)
-	cmpwi    r0, 0
-	beq      lbl_80181DF0
-	lbz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	beq      lbl_80181DD4
-	li       r0, 0
-	addi     r6, r1, 0xc
-	stb      r0, 0xc(r1)
-	li       r5, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80181EE4
-
-lbl_80181DD4:
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80181EE4
-
-lbl_80181DF0:
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-	lha      r4, 0x16(r30)
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80181E84
-	lbz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	beq      lbl_80181E58
-	li       r0, 0
-	mr       r3, r30
-	stb      r0, 8(r1)
-	mr       r4, r31
-	addi     r6, r1, 8
-	li       r5, 1
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80181E78
-
-lbl_80181E58:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80181E78:
-	li       r0, 0
-	stb      r0, 0x26a(r31)
-	b        lbl_80181EE4
-
-lbl_80181E84:
-	lbz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	bne      lbl_80181EE4
-	lbz      r0, 0x13(r30)
-	cmplwi   r0, 0
-	bne      lbl_80181EB4
-	lwz      r3, 0x278(r31)
-	lwz      r0, 0x18(r3)
-	rlwinm.  r0, r0, 0, 0x17, 0x17
-	beq      lbl_80181EB4
-	li       r0, 1
-	stb      r0, 0x13(r30)
-
-lbl_80181EB4:
-	lbz      r0, 0x13(r30)
-	cmplwi   r0, 0
-	beq      lbl_80181EE4
-	lwz      r3, 0x278(r31)
-	lwz      r0, 0x18(r3)
-	rlwinm.  r0, r0, 0, 0x17, 0x17
-	bne      lbl_80181EE4
-	li       r0, 1
-	stb      r0, 0x14(r30)
-	lbz      r3, 0x26a(r31)
-	addi     r0, r3, 1
-	stb      r0, 0x26a(r31)
-
-lbl_80181EE4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (moviePlayer != nullptr && moviePlayer->mDemoState != 0) {
+		if (_18 != 0) {
+			NaviFollowArg followArg(false);
+			transit(navi, NSID_Follow, &followArg);
+			return;
+		}
+		transit(navi, NSID_Walk, nullptr);
+		return;
+	}
+	navi->mSimVelocity = 0.0f;
+	navi->mVelocity    = 0.0f;
+	if (!navi->assertMotion(mAnimID)) {
+		if (_18 != 0) {
+			NaviFollowArg followArg(false);
+			transit(navi, NSID_Follow, &followArg);
+		} else {
+			transit(navi, NSID_Walk, nullptr);
+		}
+		navi->_26A = 0;
+	} else {
+		if (_18 == 0) {
+			if (_13 == 0 && navi->mController1->isButton(JUTGamePad::PRESS_A)) {
+				_13 = 1;
+			}
+			if (_13 != 0 && !navi->mController1->isButton(JUTGamePad::PRESS_A)) {
+				_14 = 1;
+				navi->_26A++;
+			}
+		}
+	}
 }
 
 /*
@@ -3444,19 +3111,8 @@ lbl_80181EE4:
  */
 void NaviNukuState::cleanup(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_80518C48@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	stfs     f0, 0x118(r4)
-	bl       startThrowDisable__Q24Game4NaviFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	navi->mMass = 1.0f;
+	navi->startThrowDisable();
 }
 
 /*
@@ -3765,39 +3421,13 @@ void NaviNukuAdjustState::wallCallback(Navi* navi, Vector3f&)
  * Address:	801822F0
  * Size:	000064
  */
-bool NaviNukuAdjustState::ignoreAtari(Creature*)
+bool NaviNukuAdjustState::ignoreAtari(Creature* creature)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r4
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80182334
-	lhz      r0, 0x128(r30)
-	cmplwi   r0, 0x402
-	bne      lbl_80182338
-
-lbl_80182334:
-	li       r31, 1
-
-lbl_80182338:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool result = false;
+	if (creature->isNavi() || creature->mObjectTypeID == OBJTYPE_Onyon) {
+		result = true;
+	}
+	return result;
 }
 
 /*
@@ -3805,7 +3435,7 @@ lbl_80182338:
  * Address:	80182354
  * Size:	0000C4
  */
-void NaviNukuAdjustState::collisionCallback(Navi* navi, CollEvent&)
+void NaviNukuAdjustState::collisionCallback(Navi* navi, CollEvent& collEvent)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4898,52 +4528,12 @@ lbl_80183188:
  */
 void NaviDopeState::exec(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       control__Q24Game4NaviFv
-	lbz      r0, 0x14(r30)
-	cmplwi   r0, 0
-	bne      lbl_8018322C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80183260
-
-lbl_8018322C:
-	mr       r3, r31
-	li       r4, 0x13
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80183260
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80183260:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	navi->control();
+	if (_14 == 0) {
+		transit(navi, NSID_Walk, nullptr);
+	} else if (!navi->assertMotion(IPikiAnims::GROWUP2)) {
+		transit(navi, NSID_Walk, nullptr);
+	}
 }
 
 /*
@@ -4958,31 +4548,11 @@ void NaviDopeState::cleanup(Navi* navi) { }
  * Address:	8018327C
  * Size:	00004C
  */
-void NaviDopeState::onKeyEvent(Navi* navi, SysShape::KeyEvent const&)
+void NaviDopeState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	beq      lbl_801832B8
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_801832B8
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801832B8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_14 != 0 && keyEvent.mType == 1000) {
+		transit(navi, NSID_Walk, nullptr);
+	}
 }
 
 /*
@@ -5331,20 +4901,7 @@ lbl_80183700:
  * Address:	80183720
  * Size:	000024
  */
-void NaviClimbState::cleanup(Navi* navi)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void NaviClimbState::cleanup(Navi* navi) { navi->endStick(); }
 
 /*
  * --INFO--
@@ -5353,6 +4910,21 @@ void NaviClimbState::cleanup(Navi* navi)
  */
 void NaviFallMeckState::init(Navi* navi, StateArg* stateArg)
 {
+	if (stateArg == nullptr) {
+		_10 = 0.0f;
+	} else {
+		_10 = static_cast<NaviFallMeckArg*>(stateArg)->_00;
+	}
+	navi->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
+	navi->endStick();
+	_14 = 0;
+	if (_10 > 0.0f) {
+		navi->mSimVelocity.y = -400.0f;
+		navi->mVelocity.y    = navi->mSimVelocity.y;
+	} else {
+		navi->mSimVelocity.y = -100.0f;
+		navi->mVelocity.y    = navi->mSimVelocity.y;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5418,51 +4990,13 @@ lbl_801837E4:
  */
 void NaviFallMeckState::exec(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x14(r3)
-	cmpwi    r0, 0
-	beq      lbl_80183840
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-
-lbl_80183840:
-	lwz      r0, 0x14(r30)
-	cmpwi    r0, 0
-	bne      lbl_80183880
-	mr       r3, r31
-	li       r4, 9
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80183880
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80183880:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_14 != 0) {
+		navi->mVelocity    = 0.0f;
+		navi->mSimVelocity = 0.0f;
+	}
+	if (_14 == 0 && !navi->assertMotion(IPikiAnims::FALL)) {
+		transit(navi, NSID_Walk, nullptr);
+	}
 }
 
 /*
@@ -5477,8 +5011,16 @@ void NaviFallMeckState::cleanup(Navi* navi) { }
  * Address:	8018389C
  * Size:	00009C
  */
-void NaviFallMeckState::onKeyEvent(Navi* navi, SysShape::KeyEvent const&)
+void NaviFallMeckState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 {
+	if (keyEvent.mType != 1000) {
+		return;
+	}
+	if (_14 == 1) {
+		navi->startMotion(IPikiAnims::GETUP, IPikiAnims::GETUP, navi, nullptr);
+	} else if (_14 == 2) {
+		transit(navi, NSID_Walk, nullptr);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5708,6 +5250,25 @@ lbl_80183B88:
  */
 void NaviFlickState::init(Navi* navi, StateArg* stateArg)
 {
+	NaviFlickArg* flickArg;
+	if (stateArg == nullptr) {
+		JUT_PANICLINE(3284, "flick needs NaviFlickInitArg !\n");
+	} else {
+		flickArg   = static_cast<NaviFlickArg*>(stateArg);
+		mDamage    = flickArg->mDamage;
+		mDirection = flickArg->mDirection;
+		mFlicker   = flickArg->mCreature;
+	}
+	navi->startMotion(IPikiAnims::JHIT, IPikiAnims::JHIT, navi, nullptr);
+	_10                  = 0;
+	navi->mSimVelocity.y = 0.0f;
+	navi->mFaceDir       = roundAng(JMath::atanTable_.atan2_(mDirection.x, mDirection.z) + PI);
+	navi->mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
+	navi->mEffectsObj->createOrimadamage_(navi->mEffectsObj->mHeadMtx->mMatrix.mtxView);
+	PSM::DamageDirector* director = PSMGetDamageD();
+	if (director != nullptr) {
+		director->directOn();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5802,6 +5363,24 @@ lbl_80183CB4:
  */
 void NaviFlickState::exec(Navi* navi)
 {
+	switch (_10) {
+	case 0:
+		navi->mSimVelocity.x = mDirection.x;
+		navi->mSimVelocity.z = mDirection.z;
+		if (!navi->assertMotion(IPikiAnims::JHIT)) {
+			NaviKokeDamageInitArg kokeDamageArg(1.0f, 0, mFlicker, mDamage);
+			transit(navi, NSID_KokeDamage, &kokeDamageArg);
+		}
+		break;
+	case 1:
+		navi->mSimVelocity.x *= 0.9f;
+		navi->mSimVelocity.z *= 0.9f;
+		if (navi->mFakePikiBounceTriangle != nullptr) {
+			NaviKokeDamageInitArg kokeDamageArg(1.0f, 0, mFlicker, mDamage);
+			transit(navi, NSID_KokeDamage, &kokeDamageArg);
+		}
+		break;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -5894,37 +5473,12 @@ void NaviFlickState::cleanup(Navi* navi) { }
  * Address:	80183DE8
  * Size:	000064
  */
-void NaviFlickState::onKeyEvent(Navi* navi, SysShape::KeyEvent const&)
+void NaviFlickState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1c(r5)
-	mr       r5, r4
-	cmplwi   r0, 0x3e8
-	bne      lbl_80183E3C
-	lwz      r0, 0x10(r3)
-	cmpwi    r0, 0
-	bne      lbl_80183E3C
-	li       r0, 1
-	li       r4, 0x17
-	stw      r0, 0x10(r3)
-	mr       r3, r5
-	li       r5, 0x17
-	li       r6, 0
-	lwz      r12, 0(r3)
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80183E3C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (keyEvent.mType == 1000 && _10 == 0) {
+		_10 = 1;
+		navi->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, nullptr, nullptr);
+	}
 }
 
 /*
@@ -5934,36 +5488,9 @@ lbl_80183E3C:
  */
 void NaviFlickState::bounceCallback(Navi* navi, Sys::Triangle*)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_80518C48@sda21(r2)
-	li       r5, 0x10
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r6, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	lfs      f1, 0x24(r3)
-	stw      r0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	stb      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	NaviKokeDamageInitArg kokeDamageArg(1.0f, 0, nullptr, mDamage);
+	transit(navi, NSID_KokeDamage, &kokeDamageArg);
+	navi->inWater();
 }
 
 /*
@@ -6258,35 +5785,10 @@ lbl_80184214:
  */
 void NaviSaraiState::init(Navi* navi, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 9
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	li       r7, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 9
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x10(r30)
-	sth      r0, 0x14(r30)
-	bl       releasePikis__Q24Game4NaviFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	navi->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
+	_10 = 0;
+	_14 = 0;
+	navi->releasePikis();
 }
 
 /*
@@ -6557,6 +6059,7 @@ lbl_801845DC:
  */
 void NaviSaraiState::cleanup(Navi* navi)
 {
+	navi->mAnimSpeed = 30.0f;
 	/*
 	lfs      f0, lbl_80518C64@sda21(r2)
 	stfs     f0, 0x234(r4)
@@ -6571,35 +6074,9 @@ void NaviSaraiState::cleanup(Navi* navi)
  */
 void NaviSaraiExitState::init(Navi* navi, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
-	mr       r3, r31
-	li       r4, 9
-	lwz      r12, 0(r31)
-	li       r5, 9
-	li       r6, 0
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	navi->endStick();
+	navi->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
+	navi->setAtari(false);
 }
 
 /*
@@ -6609,31 +6086,9 @@ void NaviSaraiExitState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviSaraiExitState::exec(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x248(r4)
-	cmplwi   r0, 0
-	bne      lbl_801846AC
-	lwz      r0, 0xc8(r4)
-	cmplwi   r0, 0
-	beq      lbl_801846C4
-
-lbl_801846AC:
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801846C4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (navi->mFakePikiBounceTriangle != nullptr || navi->mBounceTriangle != nullptr) {
+		transit(navi, NSID_Walk, nullptr);
+	}
 }
 
 /*
@@ -6641,48 +6096,14 @@ lbl_801846C4:
  * Address:	801846D4
  * Size:	000034
  */
-void NaviSaraiExitState::cleanup(Navi* navi)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void NaviSaraiExitState::cleanup(Navi* navi) { navi->setAtari(true); }
 
 /*
  * --INFO--
  * Address:	80184708
  * Size:	000034
  */
-void NaviSaraiExitState::bounceCallback(Navi* navi, Sys::Triangle*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void NaviSaraiExitState::bounceCallback(Navi* navi, Sys::Triangle*) { transit(navi, NSID_Walk, nullptr); }
 
 /*
  * --INFO--
@@ -7537,6 +6958,8 @@ lbl_8018522C:
  */
 void NaviContainerState::cleanup(Navi* navi)
 {
+	gameSystem->setFrozen(false, "open-cont");
+	gameSystem->setMoviePause(false, "open-cont");
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -7565,6 +6988,18 @@ void NaviContainerState::cleanup(Navi* navi)
  */
 void NaviAbsorbState::init(Navi* navi, StateArg* stateArg)
 {
+	NaviAbsorbArg* absorbArg = static_cast<NaviAbsorbArg*>(stateArg);
+	P2ASSERTLINE(3915, absorbArg != nullptr);
+	mDrop = absorbArg->mDrop;
+	P2ASSERTLINE(3917, mDrop != nullptr);
+	navi->startMotion(IPikiAnims::MIZUNOMI, IPikiAnims::MIZUNOMI, navi, nullptr);
+	navi->mSoundObj->startSound(PSSE_PL_DRINK, 0);
+	_10                   = 0;
+	_18                   = 0;
+	Vector3f dropPosition = mDrop->getPosition();
+	navi->turnTo(dropPosition);
+	cameraMgr->controllerLock(navi->mNaviIndex);
+	cameraMgr->startDemoCamera(navi->mNaviIndex, 0);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -7859,24 +7294,8 @@ lbl_80185614:
  */
 void NaviAbsorbState::cleanup(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	lhz      r4, 0x2dc(r4)
-	bl       controllerUnLock__Q24Game9CameraMgrFi
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	lhz      r4, 0x2dc(r31)
-	bl       finishDemoCamera__Q24Game9CameraMgrFi
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	cameraMgr->controllerUnLock(navi->mNaviIndex);
+	cameraMgr->finishDemoCamera(navi->mNaviIndex);
 }
 
 /*
@@ -7886,6 +7305,9 @@ void NaviAbsorbState::cleanup(Navi* navi)
  */
 void NaviDamagedState::init(Navi* navi, StateArg* stateArg)
 {
+	P2ASSERTLINE(4002, stateArg != nullptr);
+	navi->startMotion(IPikiAnims::DAMAGE, IPikiAnims::DAMAGE, navi, nullptr);
+	navi->enableMotionBlend();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -7934,6 +7356,10 @@ lbl_801856B8:
  */
 void NaviDamagedState::exec(Navi* navi)
 {
+	// if (navi->assertMotion(IPikiAnims::DAMAGE)) {
+	// 	return;
+	// }
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -7985,21 +7411,7 @@ lbl_80185774:
  * Address:	8018578C
  * Size:	000028
  */
-void NaviDamagedState::cleanup(Navi* navi)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 0x3c
-	stw      r0, 0x14(r1)
-	bl       setInvincibleTimer__Q24Game4NaviFUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void NaviDamagedState::cleanup(Navi* navi) { navi->setInvincibleTimer(60); }
 
 /*
  * --INFO--
@@ -8049,31 +7461,8 @@ lbl_8018580C:
  */
 void NaviDeadState::init(Navi* navi, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lhz      r4, 0x2dc(r4)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xd0(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	gameSystem->getSection()->gmOrimaDown(navi->mNaviIndex);
+	navi->setAlive(false);
 }
 
 /*
@@ -8083,16 +7472,8 @@ void NaviDeadState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviDeadState::exec(Navi* navi)
 {
-	/*
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	stfs     f0, 0x1e4(r4)
-	stfs     f0, 0x1e8(r4)
-	stfs     f0, 0x1ec(r4)
-	stfs     f0, 0x200(r4)
-	stfs     f0, 0x204(r4)
-	stfs     f0, 0x208(r4)
-	blr
-	*/
+	navi->mVelocity    = 0.0f;
+	navi->mSimVelocity = 0.0f;
 }
 
 /*
@@ -8107,28 +7488,11 @@ void NaviDeadState::cleanup(Navi* navi) { }
  * Address:	8018589C
  * Size:	000040
  */
-void NaviDeadState::onKeyEvent(Navi* navi, SysShape::KeyEvent const&)
+void NaviDeadState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& keyEvent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_801858CC
-	mr       r3, r4
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801858CC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (keyEvent.mType == 1000) {
+		navi->setAlive(false);
+	}
 }
 
 // /*
@@ -8319,34 +7683,13 @@ lbl_80185AE8:
  */
 void NaviGatherState::cleanup(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_80185B30
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	li       r4, 3
-	lhz      r5, 0x2dc(r31)
-	bl       stopRumble__Q24Game9RumbleMgrFii
-
-lbl_80185B30:
-	lwz      r31, 0x2d0(r31)
-	mr       r3, r31
-	bl       killCursor___Q23efx11TNaviEffectFv
-	mr       r3, r31
-	bl       killLightAct___Q23efx11TNaviEffectFv
-	mr       r3, r31
-	bl       killFueact___Q23efx11TNaviEffectFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_10 == 0) {
+		rumbleMgr->stopRumble(3, navi->mNaviIndex);
+	}
+	efx::TNaviEffect* effectsObj = navi->mEffectsObj;
+	effectsObj->killCursor_();
+	effectsObj->killLightAct_();
+	effectsObj->killFueact_();
 }
 
 /*
@@ -8372,46 +7715,14 @@ void NaviThrowWaitState::draw2d(J2DGrafContext&, int&) { }
  * Address:	80185C58
  * Size:	00002C
  */
-void NaviThrowWaitState::resume(Navi* navi)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void NaviThrowWaitState::resume(Navi* navi) { cleanup(navi); }
 
 /*
  * --INFO--
  * Address:	80185C84
  * Size:	000034
  */
-void NaviThrowWaitState::restart(Navi* navi)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void NaviThrowWaitState::restart(Navi* navi) { transit(navi, NSID_Walk, nullptr); }
 
 /*
  * --INFO--
@@ -10103,34 +9414,9 @@ lbl_8018730C:
  */
 void NaviThrowWaitState::cleanup(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0x286b
-	lwz      r3, 0x26c(r31)
-	lwzu     r12, 0x30(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x26c(r31)
-	li       r4, 0x2802
-	lwzu     r12, 0x30(r3)
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       clearDoAnimCallback__Q24Game8FakePikiFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	navi->mSoundObj->stopSound(PSSE_PK_HAPPA_THROW_WAIT, 0);
+	navi->mSoundObj->stopSound(PSSE_PK_VC_THROW_WAIT, 0);
+	navi->clearDoAnimCallback();
 }
 
 /*
@@ -10140,6 +9426,16 @@ void NaviThrowWaitState::cleanup(Navi* navi)
  */
 void NaviThrowState::init(Navi* navi, StateArg* stateArg)
 {
+	navi->mAnimSpeed = 30.0f;
+	navi->startMotion(IPikiAnims::THROW, IPikiAnims::THROW, this, nullptr);
+	navi->enableMotionBlend();
+	_14   = 0;
+	_15   = 0;
+	mNavi = navi;
+	mPiki = static_cast<NaviThrowInitArg*>(stateArg)->mPiki;
+	if (!navi->assertMotion(IPikiAnims::THROW)) {
+		transit(navi, NSID_Walk, nullptr);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -10909,42 +10205,13 @@ lbl_80187D04:
  */
 void NaviPelletState::cleanup(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r3, 0x250(r4)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	beq      lbl_80187D48
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_80187D48:
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518BE0@sda21(r2)
-	stfs     f0, 0x11c(r31)
-	stfs     f0, 0x120(r31)
-	stfs     f0, 0x124(r31)
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (navi->mPellet != nullptr) {
+		navi->mPellet->kill(nullptr);
+	}
+	navi->setAtari(true);
+	navi->mAcceleration = 0.0f;
+	navi->mSimVelocity  = 0.0f;
+	navi->mVelocity     = 0.0f;
 }
 
 /*
@@ -12393,39 +11660,9 @@ lbl_80188F7C:
  */
 void NaviPressedState::cleanup(Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1e0(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x14(r30)
-	stfs     f0, 0x168(r31)
-	lfs      f0, 0x18(r30)
-	stfs     f0, 0x16c(r31)
-	lfs      f0, 0x1c(r30)
-	stfs     f0, 0x170(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	navi->setAtari(true);
+	navi->setUpdateTrMatrix(true);
+	navi->mScale = _14;
 }
 
 /*
@@ -12615,165 +11852,61 @@ bool NaviStuckState::vsUsableY() { return false; }
  * Address:	801891BC
  * Size:	000004
  */
-void FSMState<Navi>::resume(Navi* navi) { }
+// void FSMState<Navi>::resume(Navi* navi) { }
 
 /*
  * --INFO--
  * Address:	801891C0
  * Size:	000004
  */
-void FSMState<Navi>::restart(Navi* navi) { }
+// void FSMState<Navi>::restart(Navi* navi) { }
 
 /*
  * --INFO--
  * Address:	801891C4
  * Size:	000064
  */
-void StateMachine<Navi>::create(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void StateMachine<Navi>::create(int) { }
 
 /*
  * --INFO--
  * Address:	80189228
  * Size:	000030
  */
-void Delegate1<NaviPunchState, CollPart*>::invoke(CollPart*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r5, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Delegate1<NaviPunchState, CollPart*>::invoke(CollPart*) { }
 
 /*
  * --INFO--
  * Address:	80189258
  * Size:	000030
  */
-void Delegate<NaviThrowWaitState>::invoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r4, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Delegate<NaviThrowWaitState>::invoke() { }
 
 /*
  * --INFO--
  * Address:	80189288
  * Size:	00001C
  */
-int StateMachine<Navi>::getCurrID(Navi* navi)
-{
-	/*
-	lwz      r3, 0x274(r4)
-	cmplwi   r3, 0
-	beq      lbl_8018929C
-	lwz      r3, 4(r3)
-	blr
+// int StateMachine<Navi>::getCurrID(Navi* navi)
+// {
+// 	/*
+// 	lwz      r3, 0x274(r4)
+// 	cmplwi   r3, 0
+// 	beq      lbl_8018929C
+// 	lwz      r3, 4(r3)
+// 	blr
 
-lbl_8018929C:
-	li       r3, -1
-	blr
-	*/
-}
+// lbl_8018929C:
+// 	li       r3, -1
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801892A4
  * Size:	000084
  */
-void StateMachine<Navi>::registerState(FSMState<Navi>*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+// void StateMachine<Navi>::registerState(FSMState<Navi>*) { }
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
-
-	.loc_0x3C:
-	  li        r0, 0x1
-
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
-}
 } // namespace Game

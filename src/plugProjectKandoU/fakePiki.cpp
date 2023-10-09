@@ -5,6 +5,7 @@
 #include "Game/AIConstants.h"
 #include "Game/MapMgr.h"
 #include "CollInfo.h"
+#include "JSystem/JMath.h"
 #include "trig.h"
 #include "nans.h"
 
@@ -2157,6 +2158,67 @@ void FakePiki::doColorChange() { }
  */
 void FakePiki::doAnimation()
 {
+	sys->mTimers->_start("doa1", true);
+	AILODParm lodParm;
+	lodParm.mFar   = 0.01f;
+	lodParm.mClose = 0.009f;
+	updateCell();
+	updateLOD(lodParm);
+	sys->mTimers->_stop("doa1");
+	if (isMovieMotion()) {
+		mAnimSpeed = 30.0f;
+	}
+	if (isPiki()) {
+		static_cast<Piki*>(this)->doped();
+	}
+	if (gameSystem->mIsFrozen == false) {
+		mAnimator.mSelfAnimator.animate(sys->getFrameLength());
+	} else {
+		mAnimator.mBoundAnimator.animate(sys->getFrameLength());
+	}
+	if (isPiki() && mLod.isFlag(3)) {
+		JUT_ASSERTLINE(1694, mModel != nullptr, "zama--------n\n", getCreatureID());
+		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(0)->setMtxCalc(nullptr);
+		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(4)->setMtxCalc(nullptr);
+	} else {
+		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(0)->setMtxCalc(mAnimator.mBoundAnimator.getCalc());
+		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(4)->setMtxCalc(mAnimator.mSelfAnimator.getCalc());
+	}
+	SysShape::Animator::verbose = 0;
+	mPositionBeforeMovie        = mPosition;
+	if ((isMovieExtra() || !isMovieActor()) && mFakePikiBounceTriangle != nullptr) {
+		if (useMoveVelocity() || mBounceTriangle == nullptr) {
+			moveVelocity();
+		}
+		if (useMoveRotation()) {
+			if (1.0f < SQUARE(mVelocity.z) + SQUARE(mVelocity.x)) {
+				mFaceDir
+				    = (sys->getFrameLength() * (angDist(JMAAtan2Radian(mVelocity.z, mVelocity.x), mFaceDir) * 0.8f)) * 10.0f + mFaceDir;
+				mFaceDir = roundAng(mFaceDir);
+			}
+		}
+	}
+	Sys::Sphere boundingSphere;
+	getBoundingSphere(boundingSphere);
+	mWaterBox = checkWater(mWaterBox, boundingSphere);
+	if (mapMgr != nullptr) {
+		mSimVelocity.y = -(sys->getFrameLength() * _aiConstants->mGravity.mData - mSimVelocity.y);
+	}
+	updateTrMatrix();
+	if (isNavi()) {
+		static_cast<Navi*>(this)->viewMakeMatrix(mObjMatrix);
+		mPosition = mObjMatrix.getPosition();
+		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->getJ3DModel()->mPosMtx);
+		sCurrNeckTheta = mNeckTheta;
+		sCurrNeckPhi   = mNeckPhi;
+		sys->mTimers->_start("calc-coll", true);
+		mModel->getJ3DModel()->calc();
+		mCollTree->update();
+		sys->mTimers->_stop("calc-coll");
+		if (mDoAnimCallback != nullptr) {
+			mDoAnimCallback->invoke();
+		}
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

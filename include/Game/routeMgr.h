@@ -1,6 +1,7 @@
 #ifndef _GAME_ROUTEMGR_H
 #define _GAME_ROUTEMGR_H
 
+#include "BitFlag.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "Vector3.h"
 #include "types.h"
@@ -65,7 +66,7 @@ struct WayPoint : public JKRDisposer {
 	inline Vector3f getPosition() { return mPosition; }
 
 	RoomList mRoomList; // _18
-	u8 mFlags;          // _34
+	BitFlag<u8> mFlags; // _34
 	s16 mIndex;         // _36
 	s16 mNumFromLinks;  // _38
 	s16 mFromLinks[8];  // _3A
@@ -134,8 +135,7 @@ struct WPEdgeSearchArg {
 };
 
 struct RouteMgr : public Container<WayPoint> {
-	struct SonarArg {
-	};
+	struct SonarArg { };
 
 	RouteMgr();
 
@@ -215,6 +215,9 @@ struct WPExcludeSpot : public Game::WPCondition {
 };
 
 struct WPFindCond : public Game::WPCondition {
-	virtual bool satisfy(Game::WayPoint* wp) { return (!(wp->mFlags & Game::WPF_Water) && !(wp->mFlags & Game::WPF_Closed)); } // _08 (weak)
+	virtual bool satisfy(Game::WayPoint* wp)
+	{
+		return (!wp->mFlags.isSet(Game::WPF_Water) && !wp->mFlags.isSet(Game::WPF_Closed));
+	} // _08 (weak)
 };
 #endif

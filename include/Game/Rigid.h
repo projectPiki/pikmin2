@@ -26,9 +26,9 @@ struct RigidConfig {
 struct Rigid {
 	Rigid();
 	void initPosition(Vector3f&, Vector3f&);
-	void initPositionIndex(Vector3f&, int, Vector3f&);
-	void updateMatrix(int);
-	void computeForces(int);
+	void initPositionIndex(Vector3f&, int index, Vector3f&);
+	void updateMatrix(int index);
+	void computeForces(int index);
 	void integrate(f32, int);
 	bool resolveCollision(int, Vector3f&, Vector3f&, f32);
 

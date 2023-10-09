@@ -8,12 +8,12 @@
 #include "PSM/Scene.h"
 
 // idk how this is supposed to work
-const KandoLib::Choice test[4] = {
-	KandoLib::Choice(Game::IPikiAnims::AKUBI, 0.05f),
-	KandoLib::Choice(Game::IPikiAnims::CHATTING, 0.35f),
-	KandoLib::Choice(Game::IPikiAnims::SAGASU2, 0.4f),
-	KandoLib::Choice(Game::IPikiAnims::IRAIRA, 0.1f),
-};
+// const KandoLib::Choice test[4] = {
+// 	KandoLib::Choice(Game::IPikiAnims::AKUBI, 0.05f),
+// 	KandoLib::Choice(Game::IPikiAnims::CHATTING, 0.35f),
+// 	KandoLib::Choice(Game::IPikiAnims::SAGASU2, 0.4f),
+// 	KandoLib::Choice(Game::IPikiAnims::IRAIRA, 0.1f),
+// };
 
 namespace PikiAI {
 /*
@@ -40,40 +40,6 @@ void ActBore::init(ActionArg* arg)
 	mTimer            = 0.0f;
 	startCurrAction();
 	mFlag = 0;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	mr       r3, r31
-	lfd      f3, lbl_8051A380@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_8051A370@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051A374@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051A378@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f1, f1, f2
-	fctiwz   f1, f1
-	stfd     f1, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	stb      r0, 0xc(r31)
-	stfs     f0, 0x14(r31)
-	bl       startCurrAction__Q26PikiAI7ActBoreFv
-	li       r0, 0
-	stb      r0, 0x18(r31)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -92,11 +58,12 @@ void ActBore::startCurrAction()
 	case 0:
 		mActions[mRandBehaviorType]->init(nullptr);
 		break;
-
 	case 1:
 		ActOneshotArg arg;
-		KandoLib::Choice choice[4] = { test[0], test[1], test[2], test[3] };
-		arg.mAnimID                = KandoLib::getRandomChoice(choice, 4);
+		KandoLib::Choice choice[4]
+		    = { KandoLib::Choice(Game::IPikiAnims::AKUBI, 0.05f), KandoLib::Choice(Game::IPikiAnims::CHATTING, 0.35f),
+			    KandoLib::Choice(Game::IPikiAnims::SAGASU2, 0.4f), KandoLib::Choice(Game::IPikiAnims::IRAIRA, 0.1f) };
+		arg.mAnimID = KandoLib::getRandomChoice(choice, 4);
 		mActions[mRandBehaviorType]->init(&arg);
 		break;
 	}
@@ -1031,8 +998,8 @@ lbl_80231F9C:
  */
 ActOneshot::ActOneshot(Game::Piki* piki)
     : ActBoreBase(piki)
+    , mFlag(0)
 {
-	mFlag = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1148,23 +1115,17 @@ void ActOneshot::cleanup() { }
  */
 void ActOneshot::onKeyEvent(SysShape::KeyEvent const& event)
 {
-	switch (event.mType) {
-	case 1000:
+	if (event.mType == 1000) {
 		mFlag |= 1;
-		break;
-	case 200:
-		if (mOneshotArg.mAnimID == 0) {
-			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
-			PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-			if (!scene->isGameScene()) {
-				scene = nullptr; // masterful gambit, sir
-			}
-			if (scene->akubiOK()) {
-				mParent->mSoundObj->startFreePikiSound(PSSE_PK_VC_AKUBI, 90, 0);
-			}
-		}
-		break;
+	}
+	if (event.mType != 200 || mOneshotArg.mAnimID != 0) {
+		return;
+	}
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(mgr->getChildScene());
+	if (scene->isGameScene() && static_cast<PSM::Scene_Game*>(scene)->akubiOK()) {
+		mParent->mSoundObj->startFreePikiSound(PSSE_PK_VC_AKUBI, 90, 0);
 	}
 	/*
 	stwu     r1, -0x20(r1)

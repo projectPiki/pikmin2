@@ -749,11 +749,17 @@ lbl_8013AB2C:
  * Address:	8013AB74
  * Size:	000300
  */
-bool Game::Rigid::resolveCollision(int, Vector3f&, Vector3f&, f32)
+bool Game::Rigid::resolveCollision(int index, Vector3f& p2, Vector3f& p3, f32 p4)
 {
 	if (DynamicsParms::mInstance->_90.mValue == 1120.0f) {
 		;
 	}
+	RigidConfig& config = mConfigs[index];
+	Vector3f v1         = p2 - config.mPosition;
+	Vector3f v2         = (config.mVelocity + cross(v1, config._24));
+	v2.negate();
+	v2     = v2 * p3;
+	f32 v3 = v2.x + v2.y + v2.z;
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0

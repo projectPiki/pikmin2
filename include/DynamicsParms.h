@@ -1,6 +1,7 @@
 #ifndef _DYNAMICSPARMS_H
 #define _DYNAMICSPARMS_H
 
+#include "BaseParm.h"
 #include "types.h"
 #include "Parameters.h"
 #include "BaseParm.h"

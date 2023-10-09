@@ -320,7 +320,7 @@ bool Navi::procActionButton()
 
 	// if sprout found, pluck it.
 	if (targetSprout) {
-		NaviNukuAdjustStateArg nukuAdjustArg;
+		NaviNukuAdjustArg nukuAdjustArg;
 		setupNukuAdjustArg(targetSprout, nukuAdjustArg);
 		mFsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg);
 
@@ -353,7 +353,7 @@ bool Navi::procActionButton()
 
 			// if sprout found, pluck it.
 			if (otherTargetSprout) {
-				NaviNukuAdjustStateArg nukuAdjustArg2;
+				NaviNukuAdjustArg nukuAdjustArg2;
 				setupNukuAdjustArg(otherTargetSprout, nukuAdjustArg2);
 				nukuAdjustArg2._18 = 1;
 				otherNavi->mFsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg2);
@@ -879,7 +879,7 @@ namespace Game {
  * Address:	80140CF4
  * Size:	000138
  */
-void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item* item, Game::NaviNukuAdjustStateArg& arg)
+void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item* item, Game::NaviNukuAdjustArg& arg)
 {
 	Vector3f direction = item->getPosition() - getPosition();
 	arg._00            = angDist(roundAng(pikmin2_atan2f(direction.x, direction.z)), mFaceDir) / 10.0f;

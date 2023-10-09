@@ -184,7 +184,7 @@ void NaviWhistle::updatePosition()
 	}
 
 	if (platMgr) {
-		info.mMaxY = FLOAT_DIST_MIN;
+		info.mMinY = FLOAT_DIST_MIN;
 		platMgr->getCurrTri(info);
 		if (info.mMinY > y) {
 			mNormal = info.mNormalVec;
@@ -193,7 +193,7 @@ void NaviWhistle::updatePosition()
 	}
 
 	mPosition.y = y;
-	mPosition += info.mNormalVec;
+	mPosition   = mPosition + mNormal;
 
 	/*
 	stwu     r1, -0x60(r1)

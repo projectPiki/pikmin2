@@ -1,6 +1,7 @@
 #ifndef _GAME_NAVI_H
 #define _GAME_NAVI_H
 
+#include "BitFlag.h"
 #include "Game/FakePiki.h"
 #include "Game/PelletView.h"
 #include "Game/StateMachine.h"
@@ -39,7 +40,7 @@ struct Navi;
 
 namespace Game {
 struct CPlate;
-struct NaviNukuAdjustStateArg;
+struct NaviNukuAdjustArg;
 struct NaviState;
 struct NaviParms;
 
@@ -95,6 +96,7 @@ struct NaviWhistle {
 #define NAVI_THROWTIMER_LENGTH (10)
 
 struct Navi : public FakePiki, virtual public PelletView {
+	typedef NaviState StateType;
 	Navi();
 
 	// vtable 1 (Creature)
@@ -190,7 +192,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void setDeadLaydown();
 	void setInvincibleTimer(u8);
 	void setLifeMax();
-	void setupNukuAdjustArg(ItemPikihead::Item*, NaviNukuAdjustStateArg&);
+	void setupNukuAdjustArg(ItemPikihead::Item*, NaviNukuAdjustArg&);
 	void startDamage(f32);
 	void startThrowDisable();
 	bool throwable();
@@ -311,7 +313,7 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	PSM::DirectorUpdator* mPSMMgr;           // _4C (used for damage taking bgm mix)
 	int mDeadNavis;                          // _50
 	int mNaviDeadFlags[2];                   // _54 (seems to translate the order of killed captains to their ids?)
-	u8 mFlags;                               // _5C
+	BitFlag<u8> mFlags;                      // _5C
 	Sys::MatTevRegAnimation mCursorAnims[2]; // _60
 	Sys::MatTevRegAnimation mMarkerAnims[2]; // _88
 	J3DModelData* mOlimarModel;              // _B0

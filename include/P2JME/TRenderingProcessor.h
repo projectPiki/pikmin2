@@ -15,7 +15,7 @@ struct J2DPane;
 namespace P2JME {
 
 struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
-	TRenderingProcessorBase(const JMessage::TReference*);
+	TRenderingProcessorBase(const JMessage::TReference* ref);
 
 	virtual ~TRenderingProcessorBase() { }           // _08 (weak)
 	virtual void do_character(int);                  // _10 (weak)
@@ -34,7 +34,7 @@ struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 };
 
 struct TRenderingProcessor : public TRenderingProcessorBase {
-	TRenderingProcessor(JMessage::TReference const*);
+	TRenderingProcessor(JMessage::TReference const* ref);
 
 	virtual ~TRenderingProcessor() { }                         // _08 (weak)
 	virtual void do_character(int);                            // _10

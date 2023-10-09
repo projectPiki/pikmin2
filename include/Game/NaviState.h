@@ -4,6 +4,7 @@
 #include "Game/StateMachine.h"
 #include "Game/Navi.h"
 #include "Game/Entities/ItemHoney.h"
+#include "Game/pathfinder.h"
 #include "SysShape/KeyEvent.h"
 
 namespace Game {
@@ -88,7 +89,9 @@ struct NaviAbsorbState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0xC]; // _10, unknown
+	u8 _10;                 // _10
+	ItemHoney::Item* mDrop; // _14
+	u8 _18;                 // _18
 };
 
 struct NaviCarryBombArg : public StateArg {
@@ -281,13 +284,14 @@ struct NaviDopeState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x8]; // _10, unknown
+	u8 _10[0x4]; // _10, unknown
+	u8 _14;      // _14
 };
 
 struct NaviFallMeckArg : public StateArg {
-	NaviFallMeckArg(f32 a1) { _04 = a1; }
+	NaviFallMeckArg(f32 a1) { _00 = a1; }
 
-	f32 _04; // _04
+	f32 _00; // _00
 };
 
 struct NaviFallMeckState : public NaviState {
@@ -305,7 +309,8 @@ struct NaviFallMeckState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x8]; // _10, unknown
+	f32 _10; // _10
+	int _14; // _14
 };
 
 struct NaviFlickArg : public StateArg {
@@ -337,13 +342,18 @@ struct NaviFlickState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u32 _10;             // _10
+	s32 _10;             // _10
 	Creature* mFlicker;  // _14
 	Vector3f mDirection; // _18
 	f32 mDamage;         // _24
 };
 
 struct NaviFollowArg : public StateArg {
+	inline NaviFollowArg(bool p1)
+	    : _00(p1)
+	{
+	}
+
 	bool _00; // _00
 	bool _01; // _01
 };
@@ -389,6 +399,21 @@ struct NaviGatherState : public NaviState {
 	u32 _14; // _14, unknown
 };
 
+struct NaviKokeDamageInitArg : public StateArg {
+	inline NaviKokeDamageInitArg(f32 p1, u8 p2, Creature* p3, f32 damage)
+	    : mCreature(p3)
+	    , mDamage(damage)
+	    , _08(p1)
+	    , _0C(p2)
+	{
+	}
+
+	Creature* mCreature; // _00
+	f32 mDamage;         // _04
+	f32 _08;             // _08
+	u8 _0C;              // _0C
+};
+
 // WTF is Koke Damage? Heart Attack?
 struct NaviKokeDamageState : public NaviState {
 	inline NaviKokeDamageState()
@@ -412,8 +437,8 @@ struct NaviKokeDamageState : public NaviState {
 	u8 _20;              // _20
 };
 
-struct NaviNukuAdjustStateArg : public StateArg {
-	inline NaviNukuAdjustStateArg()
+struct NaviNukuAdjustArg : public StateArg {
+	inline NaviNukuAdjustArg()
 	    : _18(0)
 	{
 	}
@@ -447,6 +472,10 @@ struct NaviNukuAdjustState : public NaviState {
 	u8 _4C[0x14]; // _3C, unknown
 };
 
+struct NaviNukuArg : public StateArg {
+	u8 _00; // _00
+};
+
 struct NaviNukuState : public NaviState {
 	inline NaviNukuState()
 	    : NaviState(NSID_Nuku)
@@ -461,7 +490,18 @@ struct NaviNukuState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0xC]; // _10, unknown
+	u16 _10;     // _10, unknown
+	u8 _12;      // _12
+	u8 _13;      // _13
+	u8 _14;      // _14
+	u8 _15;      // _15
+	s16 mAnimID; // _16
+	u8 _18;      // _18
+};
+
+/** @fabricated */
+struct NaviPathMoveStateArg : StateArg {
+	Vector3f mPosition; // _00
 };
 
 struct NaviPathMoveState : public NaviState {
@@ -474,14 +514,27 @@ struct NaviPathMoveState : public NaviState {
 	virtual void exec(Navi*);            // _0C
 	virtual void cleanup(Navi*);         // _10
 
-	void initPathfinding(Navi*);
-	void execPathfinding(Navi*);
-	void execMove(Navi*);
-	bool execMoveGoal(Navi*);
+	int initPathfinding(Navi*);
+	int execPathfinding(Navi*);
+	int execMove(Navi*);
+	int execMoveGoal(Navi*);
+
+	/** @fabricated */
+	inline void releasePathfinder()
+	{
+		if (mPathfinderContextID != 0) {
+			testPathfinder->release(mPathfinderContextID);
+			mPathfinderContextID = 0;
+		}
+	}
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x20]; // _10, unknown
+	u16 _10;                  // _10
+	u32 mPathfinderContextID; // _14
+	Vector3f mPosition;       // _18
+	PathNode* _24[2];         // _24
+	int _2C;                  // _2C
 };
 
 struct NaviPelletState : public NaviState {
@@ -516,7 +569,9 @@ struct NaviPressedState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x14]; // _10, unknown
+	u8 mTimer;    // _10
+	Vector3f _14; // _14
+	u32 _18;      // _18
 };
 
 struct NaviPunchArg : public StateArg {
@@ -546,7 +601,7 @@ struct NaviPunchState : public NaviState {
 	u8 _20;            // _20
 	u8 _21[0x3];       // _21, unknown/padding
 	u8 _24;            // _24
-	u32 _28;           // _28
+	u32 mNextStateID;  // _28
 };
 
 struct NaviSaraiExitState : public NaviState {
@@ -578,7 +633,8 @@ struct NaviSaraiState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x8]; // _10, unknown
+	u32 _10; // _10
+	u16 _14; // _14
 };
 
 struct NaviStuckState : public NaviState {
@@ -599,6 +655,10 @@ struct NaviStuckState : public NaviState {
 	int mWiggleCounter;           // _20
 };
 
+struct NaviThrowInitArg : public StateArg {
+	Piki* mPiki; // _00
+};
+
 struct NaviThrowState : public NaviState, virtual public SysShape::MotionListener {
 	inline NaviThrowState()
 	    : NaviState(NSID_Throw)
@@ -613,8 +673,13 @@ struct NaviThrowState : public NaviState, virtual public SysShape::MotionListene
 	// _00     = VTBL
 	// _00-_10 = NaviState
 	// _10-_14 = MotionListener VTBL
-	u8 _14[0xC]; // _14, unknown
-	             // _20 = MotionListener
+
+	u8 _14;      // _14
+	u8 _15;      // _15
+	Piki* mPiki; // _18
+	Navi* mNavi; // _1C
+
+	// _20 = MotionListener
 };
 
 struct NaviThrowWaitState : public NaviState, virtual public SysShape::MotionListener {

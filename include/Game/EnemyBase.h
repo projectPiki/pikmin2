@@ -105,8 +105,7 @@ enum DropGroup {
 };
 
 // Interface for specific overrides (e.g. PelplantInitialParams)
-struct EnemyInitialParamBase {
-};
+struct EnemyInitialParamBase { };
 
 struct EnemyKillArg : public CreatureKillArg {
 	inline EnemyKillArg(int flag)
@@ -697,6 +696,12 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline Vector3f getTargetVelocity() { return mTargetVelocity; }
 	inline void setTargetVelocity(const Vector3f& ref) { mTargetVelocity = ref; }
+
+	inline bool isLongLegs()
+	{
+		return getEnemyTypeID() == EnemyTypeID::EnemyID_Damagumo || getEnemyTypeID() == EnemyTypeID::EnemyID_BigFoot
+		    || getEnemyTypeID() == EnemyTypeID::EnemyID_Houdai;
+	}
 
 #pragma region Events
 	inline void resetEvents()

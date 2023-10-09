@@ -213,6 +213,9 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	f32 mFaceDirOffset;                     // _244
 	Sys::Triangle* mFakePikiBounceTriangle; // _248
 	u32 _24C;                               // _24C, unknown
+
+	static f32 sCurrNeckTheta;
+	static f32 sCurrNeckPhi;
 };
 
 struct FakePikiParms : public CreatureParms {

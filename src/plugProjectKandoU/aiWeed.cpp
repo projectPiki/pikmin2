@@ -1,4 +1,11 @@
-#include "types.h"
+#include "efx/PikiDamage.h"
+#include "efx/TPk.h"
+#include "efx/TWeedPull.h"
+#include "Game/Entities/ItemWeed.h"
+#include "Game/Piki.h"
+#include "nans.h"
+#include "PikiAI.h"
+#include "string.h"
 
 /*
     Generated from dpostproc
@@ -159,34 +166,17 @@
         .4byte 0x00000000
 */
 
+namespace PikiAI {
+
 /*
  * --INFO--
  * Address:	8020D784
  * Size:	00004C
  */
-void PikiAI::ActWeed::getInfo(char*)
+void ActWeed::getInfo(char* infoStringBuffer)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	addi     r5, r1, 8
-	lwz      r7, lbl_80519EC0@sda21(r2)
-	lhz      r0, 0x14(r3)
-	mr       r3, r4
-	lwz      r6, lbl_80519EC4@sda21(r2)
-	addi     r4, r2, lbl_80519EC8@sda21
-	stw      r7, 8(r1)
-	slwi     r0, r0, 2
-	stw      r6, 0xc(r1)
-	lwzx     r5, r5, r0
-	crclr    6
-	bl       sprintf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	const char* weedTypes[2] = { "SA", "AJ" };
+	sprintf(infoStringBuffer, "Weed %s", weedTypes[_14]);
 }
 
 /*
@@ -194,51 +184,12 @@ void PikiAI::ActWeed::getInfo(char*)
  * Address:	8020D7D0
  * Size:	000094
  */
-PikiAI::ActWeed::ActWeed(Game::Piki* p)
+ActWeed::ActWeed(Game::Piki* parent)
+    : Action(parent)
+    , mFlockAttack(new ActFlockAttack(parent))
+    , mApproachPos(new ActApproachPos(parent))
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r4, __vt__Q26PikiAI7ActWeed@ha
-	li       r3, 0x30
-	addi     r0, r4, __vt__Q26PikiAI7ActWeed@l
-	stw      r0, 0(r30)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8020D81C
-	mr       r5, r31
-	li       r4, 1
-	bl       __ct__Q26PikiAI14ActFlockAttackFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_8020D81C:
-	stw      r0, 0x18(r30)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8020D83C
-	mr       r4, r31
-	bl       __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_8020D83C:
-	stw      r0, 0x1c(r30)
-	addi     r0, r2, lbl_80519ED0@sda21
-	mr       r3, r30
-	stw      r0, 8(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mName = "Weed";
 }
 
 /*
@@ -246,7 +197,7 @@ lbl_8020D83C:
  * Address:	8020D864
  * Size:	000170
  */
-void PikiAI::ActWeed::init(PikiAI::ActionArg*)
+void ActWeed::init(ActionArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -365,36 +316,10 @@ lbl_8020D9A4:
  * Address:	8020D9D4
  * Size:	000068
  */
-void PikiAI::ActWeed::decideTarget()
+void ActWeed::decideTarget()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r4, r1, 0x14
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 0x10(r31)
-	bl       "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
-	stw      r3, 0x24(r31)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Vector3f parentPos = mParent->getPosition();
+	_24                = mFlockMgr->getNearestFlock(parentPos);
 }
 
 /*
@@ -402,7 +327,7 @@ void PikiAI::ActWeed::decideTarget()
  * Address:	........
  * Size:	0000B0
  */
-void PikiAI::ActWeed::initStickAttack()
+void ActWeed::initStickAttack()
 {
 	// UNUSED FUNCTION
 }
@@ -412,8 +337,20 @@ void PikiAI::ActWeed::initStickAttack()
  * Address:	8020DA3C
  * Size:	000188
  */
-void PikiAI::ActWeed::initAdjust()
+void ActWeed::initAdjust()
 {
+	if (_24 != -1) {
+		calcAttackPos();
+		f32 radius   = mFlockMgr->getRadius(_24);
+		f32 modifier = 10.0f;
+		if (mFlockMgr->isWeed(_24)) {
+			modifier = 4.0f;
+		}
+		ApproachPosActionArg approachPosActionArg(mAttackPosition, radius + modifier, -1.0f, 0, 0);
+		_14 = 1;
+		mApproachPos->init(&approachPosActionArg);
+	}
+
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -529,8 +466,11 @@ lbl_8020DB94:
  * Address:	8020DBC4
  * Size:	0000D0
  */
-void PikiAI::ActWeed::calcAttackPos()
+void ActWeed::calcAttackPos()
 {
+	if (_24 != -1) {
+		mAttackPosition = mFlockMgr->getPosition(_24);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -598,8 +538,49 @@ lbl_8020DC74:
  * Address:	8020DC94
  * Size:	000840
  */
-void PikiAI::ActWeed::exec()
+int ActWeed::exec()
 {
+	if (_20 == 0) {
+		return ACTEXEC_Fail;
+	}
+	if (mWeed == nullptr) {
+		return ACTEXEC_Fail;
+	}
+	switch (_14) {
+	case 0: {
+		int flockAttackResult = mFlockAttack->exec();
+		if (flockAttackResult == ACTEXEC_Success) {
+			if (!mWeed->isAlive()) {
+				return ACTEXEC_Success;
+			}
+			decideTarget();
+			initAdjust();
+		} else if (flockAttackResult == ACTEXEC_Fail) {
+			decideTarget();
+			initAdjust();
+		}
+	} break;
+	case 1: {
+		if (_24 == -1) {
+			decideTarget();
+			initAdjust();
+		}
+		if (!mWeed->isAlive()) {
+			return ACTEXEC_Success;
+		}
+		calcAttackPos();
+		mApproachPos->mPosition = mAttackPosition;
+		int approachResult      = mApproachPos->exec();
+		if (approachResult == ACTEXEC_Success && _14 == 1) {
+			bool isWeed = -mFlockMgr->isWeed(_24);
+			f32 damage  = mParent->getAttackDamage();
+			FlockAttackActionArg flockAttackActionArg(damage, isWeed, mWeed, _24);
+			mFlockAttack->init(&flockAttackActionArg);
+			_14 = 0;
+		}
+	} break;
+	}
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -1199,8 +1180,14 @@ lbl_8020E4A4:
  * Address:	8020E4D4
  * Size:	000068
  */
-void PikiAI::ActWeed::cleanup()
+void ActWeed::cleanup()
 {
+	if (_14 == 0) {
+		mFlockAttack->cleanup();
+	}
+	if (_20 != 0) {
+		mFlockMgr->_08--;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1242,53 +1229,19 @@ lbl_8020E528:
  * Address:	8020E53C
  * Size:	000004
  */
-void PikiAI::ActWeed::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+void ActWeed::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	8020E540
  * Size:	000088
  */
-PikiAI::ActFlockAttack::ActFlockAttack(Game::Piki* p)
+ActFlockAttack::ActFlockAttack(Game::Piki* parent)
+    : Action(parent)
+    , MotionListener()
+    , _1C()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_8020E570
-	addi     r0, r31, 0x28
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r0, 0xc(r31)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	stw      r0, 0x28(r31)
-
-lbl_8020E570:
-	mr       r3, r31
-	mr       r4, r5
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r3, __vt__Q26PikiAI14ActFlockAttack@ha
-	addi     r4, r31, 0x28
-	addi     r3, r3, __vt__Q26PikiAI14ActFlockAttack@l
-	li       r0, 0
-	stw      r3, 0(r31)
-	addi     r6, r3, 0x40
-	mr       r3, r31
-	lwz      r5, 0xc(r31)
-	stw      r6, 0(r5)
-	lwz      r5, 0xc(r31)
-	subf     r4, r5, r4
-	stw      r4, 4(r5)
-	stb      r0, 0x1c(r31)
-	stw      r0, 0x14(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mTarget = 0;
 }
 
 /*
@@ -1296,8 +1249,25 @@ lbl_8020E570:
  * Address:	8020E5C8
  * Size:	000138
  */
-void PikiAI::ActFlockAttack::init(PikiAI::ActionArg*)
+void ActFlockAttack::init(ActionArg* settings)
 {
+	P2ASSERTBOOLLINE(276, settings && !checkName3(settings, "FlockAttackActionArg"));
+	FlockAttackActionArg* arg = static_cast<FlockAttackActionArg*>(settings);
+
+	mTarget     = 0;
+	mTarget     = arg->mTarget;
+	mDamage     = arg->mDamage;
+	mFlockIndex = arg->mFlockIndex;
+	if (arg->mType == 1) {
+		_10      = 1;
+		mAnimIdx = 42;
+	} else {
+		mAnimIdx = 2;
+		_10      = 0;
+	}
+	mParent->startMotion(mAnimIdx, mAnimIdx, this, nullptr);
+	_1C.clear();
+	mParent->mVelocity = 0.0f;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1395,8 +1365,51 @@ lbl_8020E6A4:
  * Address:	8020E700
  * Size:	000324
  */
-void PikiAI::ActFlockAttack::exec()
+int ActFlockAttack::exec()
 {
+	if (mTarget == nullptr) {
+		return ACTEXEC_Success;
+	}
+	if (!mTarget->isAlive()) {
+		return ACTEXEC_Success;
+	}
+	if (_1C.isSet(0x04)) {
+		int result = ACTEXEC_Fail;
+		if (_1C.isSet(0x10)) {
+			result = ACTEXEC_Success;
+		}
+		return result;
+	}
+	if (!mParent->assertMotion(mAnimIdx)) {
+		return ACTEXEC_Fail;
+	}
+	if (_1C.isSet(0x01) && !_1C.isSet(0x08)) {
+		Game::InteractFlockAttack interaction(mParent, mFlockIndex, mDamage, 0);
+		if (mTarget->stimulate(interaction)) {
+			if (_10 == 0) {
+				mParent->startSound(mTarget, PSSE_PK_SE_HIT_STONE, true);
+				if (mParent->doped()) {
+					efx::TPkAttackDP dp;
+					efx::Arg arg(mParent->mLeafStemOffset);
+					dp.create(&arg);
+				} else {
+					efx::PikiDamage pd;
+					efx::Arg arg(mParent->mLeafStemOffset);
+					pd.create(&arg);
+				}
+			} else {
+				efx::Arg arg(interaction._14);
+				efx::TWeedPull wp;
+				wp.create(&arg);
+				mParent->startSound(mTarget, PSSE_PK_SE_PULL_GRASS, true);
+			}
+			if (interaction._10 != 0) {
+				_1C.set(0x10);
+			}
+			_1C.set(0x08);
+		}
+	}
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1627,43 +1640,22 @@ lbl_8020EA10:
  * Address:	8020EA24
  * Size:	000064
  */
-void PikiAI::ActFlockAttack::onKeyEvent(SysShape::KeyEvent const&)
+void ActFlockAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
-	/*
-	lwz      r0, 0x1c(r4)
-	cmpwi    r0, 3
-	beq      lbl_8020EA5C
-	bge      lbl_8020EA40
-	cmpwi    r0, 2
-	bge      lbl_8020EA4C
-	blr
-
-lbl_8020EA40:
-	cmpwi    r0, 0x3e8
-	beq      lbl_8020EA78
-	blr
-
-lbl_8020EA4C:
-	lbz      r0, 0x1c(r3)
-	ori      r0, r0, 1
-	stb      r0, 0x1c(r3)
-	blr
-
-lbl_8020EA5C:
-	lbz      r0, 0x1c(r3)
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x1c(r3)
-	lbz      r0, 0x1c(r3)
-	rlwinm   r0, r0, 0, 0x1d, 0x1b
-	stb      r0, 0x1c(r3)
-	blr
-
-lbl_8020EA78:
-	lbz      r0, 0x1c(r3)
-	ori      r0, r0, 4
-	stb      r0, 0x1c(r3)
-	blr
-	*/
+	switch (keyEvent.mType) {
+	case KEYEVENT_2:
+		_1C.set(1);
+		break;
+	case KEYEVENT_3:
+		_1C.unset(1);
+		_1C.unset(8);
+		break;
+	case KEYEVENT_END:
+		_1C.set(4);
+		break;
+	default:
+		break;
+	}
 }
 
 /*
@@ -1671,10 +1663,10 @@ lbl_8020EA78:
  * Address:	8020EA88
  * Size:	00000C
  */
-void PikiAI::ActFlockAttack::cleanup()
+void ActFlockAttack::cleanup()
 {
 	// Generated from stw r0, 0x14(r3)
-	_14 = 0;
+	mTarget = 0;
 }
 
 /*
@@ -1682,48 +1674,50 @@ void PikiAI::ActFlockAttack::cleanup()
  * Address:	8020EA94
  * Size:	00000C
  */
-void PikiAI::FlockAttackActionArg::getName()
-{
-	/*
-	lis      r3, lbl_80481F70@ha
-	addi     r3, r3, lbl_80481F70@l
-	blr
-	*/
-}
+// char* FlockAttackActionArg::getName()
+// {
+// 	/*
+// 	lis      r3, lbl_80481F70@ha
+// 	addi     r3, r3, lbl_80481F70@l
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020EAA0
  * Size:	000028
  */
-void __sinit_aiWeed_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804BFAA8@ha
-	stw      r0, lbl_80515BC8@sda21(r13)
-	stfsu    f0, lbl_804BFAA8@l(r3)
-	stfs     f0, lbl_80515BCC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_aiWeed_cpp()
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804BFAA8@ha
+// 	stw      r0, lbl_80515BC8@sda21(r13)
+// 	stfsu    f0, lbl_804BFAA8@l(r3)
+// 	stfs     f0, lbl_80515BCC@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020EAC8
  * Size:	000014
  */
-void @40 @4 @PikiAI::ActFlockAttack::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -40
-	b        onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent
-	*/
-}
+// void @40 @4 @ActFlockAttack::onKeyEvent(SysShape::KeyEvent const&)
+// {
+// 	/*
+// 	li       r11, 4
+// 	lwzx     r11, r3, r11
+// 	add      r3, r3, r11
+// 	addi     r3, r3, -40
+// 	b        onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent
+// 	*/
+// }
+
+} // namespace PikiAI
