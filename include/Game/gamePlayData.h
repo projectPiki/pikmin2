@@ -429,6 +429,7 @@ struct PlayData : public CNode {
 	u8 mLoadType;                           // _19, see SaveFlags enum
 	void* mBeforeSaveDelegate;              // _1C
 	u8 mDeadNaviID;                         // _20
+	u8 mDeadNaviID2;                        // _21
 	f32 mNaviLifeMax[2];                    // _24
 	u8 mHasContainerFlags;                  // _2C
 	u8 mHasBootContainerFlags;              // _2D

@@ -395,7 +395,7 @@ void SingleGame::GameState::init(Game::SingleGameSection* section, Game::StateAr
 {
 	DeathMgr::mSoundDeathCount = 0;
 	moviePlayer->reset();
-	gameSystem->mFlags |= GAMESYS_Unk6;
+	gameSystem->setFlag(GAMESYS_IsGameWorldActive);
 	_10 = 0;
 	_19 = 0;
 	_20 = 0;
@@ -506,7 +506,7 @@ void SingleGame::GameState::init(Game::SingleGameSection* section, Game::StateAr
 	_14 = 6.0f;
 	section->clearCaveMenus();
 	_18 = 0;
-	gameSystem->mFlags &= ~GAMESYS_IsPlaying;
+	gameSystem->resetFlag(GAMESYS_IsPlaying);
 	Screen::gGame2DMgr->initInCourse();
 	section->_23D = 0;
 	Vector3f v2;
@@ -1192,7 +1192,7 @@ bool SingleGame::GameState::check_DemoInout(Game::SingleGameSection* section)
 		return true;
 	}
 
-	if (((gameSystem->mFlags & GAMESYS_Unk6) != 0)
+	if (((gameSystem->isFlag(GAMESYS_IsGameWorldActive)) != 0)
 	    && (!playData->isDemoFlag(DEMO_Whites_In_Ship) && (0 < playData->mPikiContainer.getColorSum(White)))) {
 		playData->setDemoFlag(DEMO_Whites_In_Ship);
 		MoviePlayArg moviePlayArg("g29_inout_white", const_cast<char*>(section->mCurrentCourseInfo->mName), section->mMovieFinishCallback,
@@ -1204,7 +1204,7 @@ bool SingleGame::GameState::check_DemoInout(Game::SingleGameSection* section)
 		return true;
 	}
 
-	if (((gameSystem->mFlags & GAMESYS_Unk6) != 0)
+	if (((gameSystem->isFlag(GAMESYS_IsGameWorldActive)) != 0)
 	    && (!playData->isDemoFlag(DEMO_Reds_In_Onion) && (0 < playData->mPikiContainer.getColorSum(Red)))) {
 		playData->setDemoFlag(DEMO_Reds_In_Onion);
 		MoviePlayArg moviePlayArg("g2C_inout_red", const_cast<char*>(section->mCurrentCourseInfo->mName), section->mMovieFinishCallback, 0);
@@ -5289,7 +5289,7 @@ lbl_8021751C:
  */
 void SingleGame::GameState::cleanup(Game::SingleGameSection* section)
 {
-	gameSystem->mFlags &= ~GAMESYS_IsPlaying;
+	gameSystem->resetFlag(GAMESYS_IsPlaying);
 	gameSystem->setMoviePause(false, "gamestate::cleanup");
 	if (section->mTheExpHeap != nullptr) {
 		PSMCancelToPauseOffMainBgm();

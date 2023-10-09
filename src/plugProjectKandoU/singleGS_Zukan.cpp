@@ -4509,8 +4509,8 @@ void ZukanState::dvdloadA()
 	mParms->loadFile(arc);
 	mGameSect->addGenNode(mParms);
 	PSSystem::SingletonBase<PSM::ObjMgr>::newInstance();
-	mWindowBounds = Rectf(0.0f, 0.0f, sys->getRenderModeObj()->fbWidth * 0.6f * 0.75f * 0.25f + 0.5f,
-	                      sys->getRenderModeObj()->efbHeight * 0.75f * 0.25f + 0.5f);
+	// mWindowBounds = Rectf(0.0f, 0.0f, sys->getRenderModeObj()->fbWidth * 0.6f * 0.75f * 0.25f + 0.5f,
+	//                       sys->getRenderModeObj()->efbHeight * 0.75f * 0.25f + 0.5f);
 	mCameraAspect = 0.0f;
 
 	mTexture2             = new JUTTexture(getWindowWidth(), getWindowHeight(), GX_TF_RGB565);
@@ -4563,16 +4563,16 @@ void ZukanState::dvdloadA()
 	}
 
 	PSGame::SceneInfo info;
-	info.mCameras      = 1;
-	info.mCam1Position = mCamera->getSoundPositionPtr();
-	info.mCam2Position = mCamera->getSoundPositionPtr();
-	info.mCameraMtx    = mCamera->getSoundMatrixPtr();
-	info.mBounds.minX  = -1000.0f;
-	info.mBounds.minY  = -1000.0f;
-	info.mBounds.minZ  = -1000.0f;
-	info.mBounds.maxX  = 1000.0f;
-	info.mBounds.maxY  = 1000.0f;
-	info.mBounds.maxZ  = 1000.0f;
+	info.mCameras         = 1;
+	info.mCam1Position[0] = mCamera->getSoundPositionPtr();
+	info.mCam2Position[0] = mCamera->getSoundPositionPtr();
+	info.mCameraMtx[0]    = mCamera->getSoundMatrixPtr();
+	info.mBounds.minX     = -1000.0f;
+	info.mBounds.minY     = -1000.0f;
+	info.mBounds.minZ     = -1000.0f;
+	info.mBounds.maxX     = 1000.0f;
+	info.mBounds.maxY     = 1000.0f;
+	info.mBounds.maxZ     = 1000.0f;
 	info.setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk0, PSGame::SceneInfo::SFBS_1);
 	info.mSceneType = PSGame::SceneInfo::PIKLOPEDIA;
 

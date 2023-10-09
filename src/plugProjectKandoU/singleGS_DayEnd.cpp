@@ -35,8 +35,8 @@ namespace SingleGame {
  */
 void DayEndState::init(SingleGameSection* game, StateArg* arg)
 {
-	gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
-	gameSystem->mFlags |= GAMESYS_Unk5;
+	gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
+	gameSystem->setFlag(GAMESYS_Unk5);
 	moviePlayer->reset();
 	moviePlayer->clearSuspendedDemo();
 	DayEndArg* castedArg = static_cast<DayEndArg*>(arg);
@@ -158,7 +158,7 @@ void DayEndState::exec(SingleGameSection* game)
 			gameSystem->mTimeMgr->setStartTime();
 			gameSystem->detachObjectMgr(generalEnemyMgr);
 			gameSystem->detachObjectMgr(mapMgr);
-			gameSystem->mFlags |= 4;
+			gameSystem->setFlag(GAMESYS_Unk3);
 			transit(game, SGS_MainResult, nullptr);
 			return;
 		}
@@ -954,7 +954,7 @@ void DayEndState::onMovieDone(SingleGameSection* section, MovieConfig* cfg, u32 
 		pikiMgr->forceEnterPikmins(0);
 	}
 	if (cfg->is("s21_dayend_takeoff")) {
-		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		pikiMgr->killAllPikmins();
 	} else {
 		MoviePlayArg moviePlayArg("s21_dayend_takeoff", const_cast<char*>(section->mCurrentCourseInfo->mName),
@@ -1298,7 +1298,7 @@ void DayEndState::cleanup(SingleGameSection* game)
 	int alivePikis = GameStat::alivePikis;
 	int mePikis    = GameStat::mePikis;
 	gameSystem->setPause(false, "dayend;cln", 3);
-	gameSystem->mFlags &= ~GAMESYS_Unk5;
+	gameSystem->resetFlag(GAMESYS_Unk5);
 }
 
 } // namespace SingleGame

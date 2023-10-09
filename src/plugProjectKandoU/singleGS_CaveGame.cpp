@@ -47,16 +47,17 @@ void SingleGame::CaveState::init(SingleGameSection* game, StateArg* arg)
 	game->setupCaveGames();
 	game->_194 = false;
 	sys->heapStatusDump(true);
-	gameSystem->mTimeMgr->mFlags |= TIMEMGR_FLAG_STOPPED;
-	gameSystem->mFlags |= GAMESYS_IsGameWorldActive;
+	gameSystem->mTimeMgr->setFlag(TIMEFLAG_Stopped);
+	gameSystem->setFlag(GAMESYS_IsGameWorldActive);
 	Screen::gGame2DMgr->mScreenMgr->mInCave = true;
 	gameSystem->mIsInCave                   = true;
 	game->setFixNearFar(true, 1.0f, 12800.0f);
 
 	// I assume this is meant to check if the 'active' navi is dead and if so, swap to the other navi
 	// but good lord this is weird
-	int naviID = playData->mCaveSaveData.mActiveNaviID;
-	if ((1 << naviID * 8) & playData->mDeadNaviID[naviID]) {
+	int naviID     = playData->mCaveSaveData.mActiveNaviID;
+	u8* deadNaviID = &playData->mDeadNaviID;
+	if ((1 << naviID * 8) & deadNaviID[naviID]) {
 		naviID = 1 - naviID;
 	}
 
@@ -87,11 +88,11 @@ void SingleGame::CaveState::init(SingleGameSection* game, StateArg* arg)
 	Screen::gGame2DMgr->startCount_Floor();
 	game->clearCaveMenus();
 	mFadeout = false;
-	gameSystem->mFlags &= ~GAMESYS_IsPlaying;
+	gameSystem->resetFlag(GAMESYS_IsPlaying);
 
 	game->_23D = false;
 	Vector3f temp1;
-	float temp2;
+	f32 temp2;
 	if (!Radar::mgr->calcNearestTreasure(Vector3f::zero, FLOAT_DIST_MAX, temp1, temp2)) {
 		game->mNeedTreasureCalc = true;
 	} else {
@@ -323,7 +324,7 @@ void SingleGame::CaveState::gameStart(SingleGameSection* game)
 		Screen::gGame2DMgr->open_GameCave(disp, 2);
 	} else {
 		Screen::gGame2DMgr->open_GameCave(disp, 0);
-		gameSystem->mFlags |= GAMESYS_IsPlaying;
+		gameSystem->setFlag(GAMESYS_IsPlaying);
 		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 		mgr->checkScene();
 		mgr->mScenes->mChild->startMainSeq();
@@ -383,7 +384,7 @@ void SingleGame::CaveState::exec(SingleGameSection* game)
 		// check pikmin extinction cutscene
 		if (!(moviePlayer->isFlag(MVP_IsActive))) {
 			if (GameStat::getMapPikmins(-1) == 0) {
-				gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+				gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 				MoviePlayArg moviearg("s05_pikminzero", nullptr, game->mMovieFinishCallback, 0);
 				Navi* navi = naviMgr->getActiveNavi();
 				if (!navi) {
@@ -453,7 +454,7 @@ void SingleGame::CaveState::check_SMenu(SingleGameSection* game)
 		gameSystem->setMoviePause(false, "sm-canc");
 		return;
 	case 4:
-		gameSystem->mFlags &= 0x20;
+		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		gameSystem->setMoviePause(false, "sm-giveup");
 		if (moviePlayer->mDemoState != 0)
 			return;
@@ -839,7 +840,7 @@ lbl_80218250:
  */
 void SingleGame::CaveState::cleanup(SingleGameSection* game)
 {
-	gameSystem->mFlags &= ~GAMESYS_IsPlaying;
+	gameSystem->resetFlag(GAMESYS_IsPlaying);
 	gameSystem->setMoviePause(false, "cavestate:cleanup");
 	game->setDraw2DCreature(nullptr);
 	if (game->mTheExpHeap) {
@@ -962,7 +963,7 @@ lbl_80218380:
  */
 void SingleGame::CaveState::onFountainReturn(SingleGameSection* game, ItemBigFountain::Item* fountain)
 {
-	gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+	gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 	game->loadMainMapSituation();
 
 	MoviePlayArg arg("s0C_cave_escape", nullptr, game->mMovieFinishCallback, 0);
@@ -1058,7 +1059,7 @@ void SingleGame::CaveState::onNextFloor(SingleGameSection* game, ItemHole::Item*
 			playData->mCaveSaveData.mIsWaterwraithAlive = false;
 		}
 	}
-	gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+	gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 
 	MoviePlayArg arg("s0C_cave_escape", nullptr, game->mMovieFinishCallback, 0);
 
@@ -1164,7 +1165,10 @@ void SingleGame::CaveState::onNextFloor(SingleGameSection* game, ItemHole::Item*
  */
 void SingleGame::CaveState::onMovieCommand(SingleGameSection* game, int command)
 {
-	if (command != 0 || mLosePellets || (moviePlayer->isPlaying("s03_orimadown") && !naviMgr->mNaviCount)) {
+	if (command != 0 || mLosePellets
+	    || (moviePlayer->isPlaying("s03_orimadown")
+	        // && !naviMgr->mNaviCount
+	        )) {
 		return;
 	}
 
@@ -1741,7 +1745,7 @@ void SingleGame::CaveState::onMovieStart(SingleGameSection* game, MovieConfig* c
 	}
 
 	if (config->is("s09_holein")) {
-		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		playData->setCurrentCaveFloor(game->getCurrFloor() + 1);
 
 		int id;
@@ -1769,7 +1773,7 @@ void SingleGame::CaveState::onMovieStart(SingleGameSection* game, MovieConfig* c
 	}
 
 	if (config->is("s0C_cv_escape")) {
-		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		Vector3f geyserpos = game->mFountain->getPosition();
 		game->prepareFountainOn(geyserpos);
 	}
@@ -2176,7 +2180,7 @@ void SingleGame::CaveState::onMovieDone(Game::SingleGameSection* game, Game::Mov
 	} else if (config->is("s03_orimadown")) {
 		Screen::gGame2DMgr->close_GameOver();
 		naviMgr->getAt(naviID)->setDeadLaydown();
-		if (naviMgr->mNaviCount != 2) {
+		if (naviMgr->mDeadNavis != 2) {
 			if ((int)naviID == 0) {
 				gameSystem->mSection->setPlayerMode(1);
 			} else {
@@ -2204,21 +2208,21 @@ void SingleGame::CaveState::onMovieDone(Game::SingleGameSection* game, Game::Mov
 				PikiKillArg killarg(true);
 				pikilist[i]->kill(&killarg);
 			}
-			gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			CaveResultArg statearg;
 			statearg._00 = 2;
 			transit(game, SGS_CaveResult, &statearg);
 		}
 		return;
 	} else if (config->is("s05_pikminzero")) {
-		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		Screen::gGame2DMgr->close_GameOver();
 		CaveResultArg statearg;
 		statearg._00 = 3;
 		transit(game, SGS_CaveResult, &statearg);
 	} else if (config->is("s12_cv_giveup")) {
 		moviePlayer->clearSuspendedDemo();
-		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 
 		Iterator<ItemPikihead::Item> it(ItemPikihead::mgr);
 		int pikis = 0;

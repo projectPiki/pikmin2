@@ -105,15 +105,15 @@ void CaveResultState::loadResource()
 	_70->create(arg);
 
 	JUTTexture* texture = new JUTTexture(System::getRenderModeObj()->fbWidth, System::getRenderModeObj()->efbHeight, GX_TF_RGB565);
-	texture->_32        = 0;
-	texture->_33        = 0;
+	texture->mMinFilter = 0;
+	texture->mMagFilter = 0;
 	mSection->_168      = texture;
 
 	createResultNodes();
 
 	PSGame::SceneInfo sceneInfo;
-	sceneInfo.mGameType = 9;
-	sceneInfo._07       = 0;
+	sceneInfo.mSceneType = PSGame::SceneInfo::CAVE_RESULTS;
+	sceneInfo.mCameras   = 0;
 
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(sceneInfo);
 
@@ -326,9 +326,9 @@ void CaveResultState::exec(SingleGameSection* section)
 		section->mDisplayWiper = section->mWipeInFader;
 		section->mWipeInFader->start(_18);
 		playData->clearCurrentCave();
-		PlayData* data = playData;
-		data->_19      = 2;
-		data->_1C      = 0;
+		PlayData* data            = playData;
+		data->mLoadType           = STORYSAVE_Overworld;
+		data->mBeforeSaveDelegate = nullptr;
 
 		CourseInfo* courseInfo = section->getCurrentCourseInfo();
 		P2ASSERTLINE(381, courseInfo != nullptr);
@@ -624,7 +624,7 @@ void CaveResultState::createResultNodes()
 	PelletCropMemory* cropMem = playData->mCaveCropMemory->createClone();
 	if (static_cast<SingleGameSection*>(mSection)->_274) {
 		PelletCarcass::Mgr* carcassMgr = PelletCarcass::mgr;
-		KindCounter* counter           = &playData->mCaveCropMemory->_14;
+		KindCounter* counter           = &playData->mCaveCropMemory->mCarcass;
 		for (int i = 0; i < counter->mNumKinds; i++) {
 			u8* count = (*counter)(i);
 		}

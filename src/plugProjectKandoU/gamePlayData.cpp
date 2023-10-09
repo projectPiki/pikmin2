@@ -611,7 +611,7 @@ PlayData::PlayData()
 	mDebtProgressFlags[0] = 0;
 	mDebtProgressFlags[1] = 0;
 
-	_1C = 0;
+	mBeforeSaveDelegate = nullptr;
 
 	int stageCount             = stageList->mCourseCount;
 	mBitfieldPerCourse         = new u8[stageCount];
