@@ -21,19 +21,19 @@ char* cFileName = "Pikmin2_SaveData";
  * Size:	00003C
  */
 Player::Player()
-    : _00(0)
+    : mFlag(0)
     , _04(0)
-    , _08(0)
-    , _0C(0)
-    , _10(0)
-    , _14(0)
-    , _18(0)
-    , _1C(0)
-    , _20(0)
-    , _24(0)
-    , _28(0)
-    , _2C(0)
-    , _30(0)
+    , mDay(0)
+    , mRedPikis(0)
+    , mBluePikis(0)
+    , mYellowPikis(0)
+    , mWhitePikis(0)
+    , mPurplePikis(0)
+    , mPokos(0)
+    , mTreasures(0)
+    , mCaveID(0)
+    , mCaveFloor(0)
+    , mPlayTime(0)
 {
 }
 
@@ -60,7 +60,7 @@ Player* PlayerFileInfo::getPlayer(int idx)
  * Address:	804429A0
  * Size:	000080
  */
-bool PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->_00 != 0; }
+bool PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->mFlag != 0; }
 
 /*
  * --INFO--
@@ -70,7 +70,7 @@ bool PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->_00 != 0; }
 bool PlayerFileInfo::isNewFile(int idx)
 {
 	Player* curPlayer = getPlayer(idx);
-	return !curPlayer->_00 && !curPlayer->_04;
+	return !curPlayer->mFlag && !curPlayer->_04;
 }
 
 /*
@@ -491,24 +491,24 @@ bool Mgr::commandUpdatePlayerHeader(PlayerFileInfo* playerInfo)
 			} else if (isErrorOccured()) {
 				break;
 			} else if (infoHeader._00 == 'PlIn') {
-				bool tagCheck  = (infoHeader._00 != 'PlIn');
-				Player* player = playerInfo->getPlayer(i);
-				player->_00    = tagCheck;
-				player->_01    = 0;
-				player->_02    = 0;
-				player->_04    = 0;
-				player->_08    = 0;
-				player->_0C    = 0;
-				player->_10    = 0;
-				player->_14    = 0;
-				player->_18    = 0;
-				player->_1C    = 0;
-				player->_20    = 10000;
-				player->_28    = 0;
-				player->_2C    = 0;
-				player->_30    = 0;
+				bool tagCheck           = (infoHeader._00 != 'PlIn');
+				Player* player          = playerInfo->getPlayer(i);
+				player->mFlag           = tagCheck;
+				player->_01             = 0;
+				player->_02             = 0;
+				player->_04             = 0;
+				player->mDay            = 0;
+				player->mRedPikis       = 0;
+				player->mBluePikis      = 0;
+				player->mYellowPikis    = 0;
+				player->mWhitePikis     = 0;
+				player->mPurplePikis    = 0;
+				player->mPokos          = 10000;
+				player->mCaveID         = 0;
+				player->mCaveFloor      = 0;
+				player->mPlayTime       = 0;
 			} else {
-				infoHeader.mPlayer._00    = 1;
+				infoHeader.mPlayer.mFlag   = 1;
 				*playerInfo->getPlayer(i) = infoHeader.mPlayer;
 			}
 		}
