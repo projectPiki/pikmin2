@@ -33,7 +33,8 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 	Matrixf mtx;
 	Window::DrawInfo* info = mDrawInfo.searchDrawInfo(_40);
 	if (!info) {
-		doGetDrawInfo(mDrawInfo.getDrawInfo(_40));
+		info = mDrawInfo.getDrawInfo(_40);
+		doGetDrawInfo(info);
 	}
 
 	if (info) {
@@ -46,7 +47,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 	}
 
 	if (mtx2) {
-		PSMTXCopy(mtx.mMatrix.mtxView, mtx1->mMatrix.mtxView);
+		PSMTXCopy(mtx.mMatrix.mtxView, mtx2->mMatrix.mtxView);
 		// offset for shadow
 		// f32 shadowX                 = 10.0f;
 		// f32 shadowY                 = 5.0f;
@@ -56,6 +57,7 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 		// (*mtx2)(1, 3) += 5.0f;
 		// Vector2f v1(10.0f, 5.0f);
 		// mtx2->translateXY(v1);
+		// mtx2->translateXY(10.0f, 5.0f);
 		// Vector3f translation;
 		// mtx2->getTranslation(translation);
 		// translation.x += 10.0f;
@@ -74,11 +76,6 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 		// y += 5.0f;
 
 		// Vector3f vec((*mtx2)(0, 3), (*mtx2)(1, 3), (*mtx2)(2,3));
-		// Vector3f translation;
-		// mtx2->getTranslation(translation);
-		// translation += Vector3f(10.0f, 6.0f, 0.0f);
-		// mtx2->setTranslation(translation);
-
 		Vector2f translation;
 		mtx2->getTranslationXY(translation);
 		translation += Vector2f(10.0f, 6.0f);
@@ -95,12 +92,8 @@ BOOL TRenderingProcessor::doDrawCommon(f32 x, f32 y, Matrixf* mtx1, Matrixf* mtx
 	} else {
 		GXLoadPosMtxImm(mtx.mMatrix.mtxView, 0);
 	}
-	if (ret >= 0.0f) {
-		ret = ret + 0.5f;
-	} else {
-		ret = ret - 0.5f;
-	}
-	return (u8)ret;
+
+	return (u8)((ret >= 0.0f) ? ret + 0.5f : ret - 0.5f);
 }
 
 /*
