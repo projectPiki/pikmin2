@@ -1949,12 +1949,9 @@ if __name__ == "__main__":
     build_asm_path = build_path / "asm"
     build_lib_path = build_path / "lib"
 
-    build_asm_path.mkdir(parents=True, exist_ok=True)
-    build_src_path.mkdir(parents=True, exist_ok=True)
     objdiff_config = {
+        "min_version": "0.4.3",
         "custom_make": "ninja",
-        "target_dir": str(build_asm_path),
-        "base_dir": str(build_src_path),
         "build_target": True,
         "watch_patterns": [
             "*.c",
@@ -1980,7 +1977,7 @@ if __name__ == "__main__":
             n.comment("Loose files")
 
         for object in lib["objects"]:
-            completed = None
+            completed = False
             options = {
                 "add_to_all": True,
                 "mw_version": None,
@@ -1996,6 +1993,12 @@ if __name__ == "__main__":
             cflags = options["cflags"] or lib["cflags"]
             mw_version = options["mw_version"] or lib["mw_version"]
             used_compiler_versions.add(mw_version)
+
+            # objdiff config
+            unit_config = {
+                "name": object,
+                "complete": completed,
+            }
 
             c_file = None
             if os.path.exists(src_path / f"{object}.cpp"):
@@ -2032,13 +2035,7 @@ if __name__ == "__main__":
                         host_source_inputs.append(build_host_path / f"{object}.o")
                 if options["add_to_all"]:
                     source_inputs.append(build_src_path / f"{object}.o")
-                objdiff_config["units"].append(
-                    {
-                        "name": object,
-                        "path": f"{object}.o",
-                        "reverse_fn_order": "deferred" in cflags,
-                    }
-                )
+                unit_config["base_path"] = str(build_src_path / f"{object}.o")
             if os.path.exists(asm_path / f"{object}.s"):
                 n.build(
                     outputs=path(build_asm_path / f"{object}.o"),
@@ -2046,6 +2043,8 @@ if __name__ == "__main__":
                     inputs=path(asm_path / f"{object}.s"),
                     implicit=path(dtk),
                 )
+                unit_config["target_path"] = str(build_asm_path / f"{object}.o")
+            objdiff_config["units"].append(unit_config)
             if completed:
                 inputs.append(build_src_path / f"{object}.o")
             else:
