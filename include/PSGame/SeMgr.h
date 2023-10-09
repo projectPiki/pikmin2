@@ -58,6 +58,13 @@ struct SeMgr : public PSSystem::SingletonBase<SeMgr> {
 	void playMessageVoice(u32, bool);
 	void stopMessageVoice();
 
+	inline void execAllSe()
+	{
+		for (u8 i = 0; i < 8; i++) {
+			mSetSeList[i]->exec();
+		}
+	}
+
 	// _00 VTBL
 	SetSe* mSetSeList[8]; // _04
 	RandId mRandid;       // _24

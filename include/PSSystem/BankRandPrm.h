@@ -8,6 +8,12 @@ namespace PSSystem {
 struct BankRandPrm {
 	BankRandPrm();
 
+	inline static void createInstance()
+	{
+		if (!sInstance)
+			sInstance = new BankRandPrm;
+	}
+
 	JASInstRand mInst;
 
 	static BankRandPrm* sInstance;

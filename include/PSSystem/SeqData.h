@@ -24,7 +24,7 @@ struct TextDataBase : public JKRDisposer {
 
 	// _00      = VTABLE
 	// _04-_1C  = JKRDisposer
-	void* _18; // _18
+	void* mFile; // _18
 };
 
 /**

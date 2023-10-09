@@ -6,7 +6,7 @@
 #include "PSSystem/SeqData.h"
 #include "PSSystem/SeqSound.h"
 #include "PSSystem/PSBgmTask.h"
-#include "JSystem/JAudio/JAI/JAISound.h"
+#include "JSystem/JAudio/JAI/JAIStream.h"
 
 namespace PSSystem {
 
@@ -52,7 +52,7 @@ struct StreamDataList : public SeqDataList {
 /**
  * @size = 0x20
  */
-struct StreamSound : public SeqSoundBase {
+struct StreamSound : public JAIStream, public SeqSoundBase {
 	StreamSound();
 
 	// vtable 1 (JAISequence) (no changes) 	- _08-_D0

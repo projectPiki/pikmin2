@@ -9,11 +9,16 @@
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "PSGame/BASARC.h"
+#include "JSystem/JMath.h"
 
 namespace PSSystem {
+
+extern u8 sDistanceParameterMoveTime;
+// static JMath::TRandom_fast_ oRandom(0);
+
 struct SetupArg {
 	JKRSolidHeap* mHeap; // _00
-	int mHeapSize;       // _04
+	u32 mHeapSize;       // _04
 	int _08;             // _08
 	void* _0C;           // _0C
 	void* mAafFile;      // _10
@@ -37,8 +42,8 @@ struct SysIF : public JAIBasic {
 	void setConfigVol_Bgm(f32);
 	void start1stSeq();
 
-	f32 _20;        // _20
-	f32 _24;        // _24
+	f32 mSfxVolume; // _20
+	f32 mBgmVolume; // _24
 	OSMutex mMutex; // _28
 	int _40;        // _40
 	FxMgr mFxMgr;   // _44

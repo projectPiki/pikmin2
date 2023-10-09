@@ -32,7 +32,7 @@ namespace SequenceMgr {
 struct CustomHeapInfo {
 };
 
-typedef JAInter::SequenceMgr::CustomHeapInfo (*CustomHeapCallback)(unsigned long, unsigned short, JAISequence*);
+typedef JAInter::SequenceMgr::CustomHeapInfo (*CustomHeapCallback)(u32, u16, JAISequence*);
 
 void init();
 void getArchiveName(char*);

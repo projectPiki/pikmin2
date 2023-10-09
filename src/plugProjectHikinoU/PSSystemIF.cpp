@@ -1,4 +1,3 @@
-#include "Dolphin/OS/OSMutex.h"
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "PSGame/SeMgr.h"
@@ -7,9 +6,13 @@
 #include "PSSystem/SeqData.h"
 #include "PSSystem/SeqSound.h"
 #include "stream.h"
-#include "types.h"
+#include "PSSystem/BankMgr.h"
+#include "JSystem/JAudio/JAi/JAInter/SeMgr.h"
+#include "PSSystem/PSGame.h"
+#include "JSystem/JAudio/JAS/JASDriver.h"
 
 namespace PSSystem {
+u8 sDistanceParameterMoveTime;
 
 /*
  * --INFO--
@@ -18,7 +21,7 @@ namespace PSSystem {
  */
 u32 getObject(JASTrack* track, u8 p2)
 {
-	return track->readReg16(p2 + 1) | (track->readReg16(p2) << 0x10);
+	return track->readReg16(p2 + 1) | track->readReg16(p2);
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -49,10 +52,10 @@ u32 getObject(JASTrack* track, u8 p2)
  * Address:	803383BC
  * Size:	000060
  */
-void setObject(JASTrack* track, void* p2, unsigned char p3)
+void setObject(JASTrack* track, void* p2, u8 p3)
 {
 	track->writeRegDirect(p3, reinterpret_cast<u32>(p2) >> 0x10);
-	track->writeRegDirect(p3 + 1, reinterpret_cast<u32>(p2));
+	track->writeRegDirect(p3 + 1, (u8)(p2));
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -86,11 +89,25 @@ void setObject(JASTrack* track, void* p2, unsigned char p3)
  * Address:	8033841C
  * Size:	000134
  */
-SysIF::SysIF(const PSSystem::SetupArg&)
+SysIF::SysIF(const SetupArg& arg)
     : JAIBasic()
 {
 	OSInitMutex(&mMutex);
-	_40 = 0;
+
+	_48 = 0;
+	P2ASSERTLINE(141, arg.mHeap);
+	P2ASSERTLINE(142, arg.mHeapSize != 0);
+	setInitFileLoadSwitch(2);
+	JAIGlobalParameter::setParamInitDataPointer(arg.mAafFile);
+	JAIGlobalParameter::setParamStreamInsideBufferCut(true);
+	JAIGlobalParameter::setParamDistanceParameterMoveTime(sDistanceParameterMoveTime);
+	BankMgr::createInstance()->preInit();
+	// JAInter::SeMgr::setSeSequenceStartCallback(SysIF::start1stSeq);
+	initDriver(arg.mHeap, arg.mHeapSize, 1);
+	initInterface(1);
+	initIF(arg);
+	mSfxVolume = 0.0f;
+	mBgmVolume = 0.0f;
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -184,74 +201,15 @@ lbl_803384B8:
  */
 void SysIF::stopSoundSystem()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8048FE28@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8048FE28@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8033858C
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x10
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033858C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_803385AC
-	addi     r3, r31, 0x1c
-	addi     r5, r31, 0x10
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803385AC:
-	lwz      r30, 4(r30)
-	cmplwi   r30, 0
-	bne      lbl_803385CC
-	addi     r3, r31, 0
-	addi     r5, r31, 0x10
-	li       r4, 0xb7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803385CC:
-	mr       r3, r30
-	li       r4, 5
-	lwz      r12, 0(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80338600
-
-lbl_803385E8:
-	lwz      r12, 0(r3)
-	li       r4, 5
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r30, 4(r30)
-
-lbl_80338600:
-	lwz      r3, 4(r30)
-	cmplwi   r3, 0
-	bne      lbl_803385E8
-	li       r3, 0xa
-	li       r4, 1
-	bl       stopAudio__8JAIBasicFUlb
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	SceneMgr* mgr = getSceneMgr();
+	checkSceneMgr(mgr);
+	Scene* scene = mgr->mScenes;
+	P2ASSERTLINE(183, scene);
+	scene->stopAllSound(5);
+	for (; scene->getChildScene(); scene = scene->getChildScene()) {
+		scene->getChildScene()->stopAllSound(5);
+	}
+	stopAudio(10, true);
 }
 
 /*
@@ -259,27 +217,11 @@ lbl_80338600:
  * Address:	80338630
  * Size:	000040
  */
-JAISe* SysIF::playSystemSe(unsigned long, unsigned long)
+JAISe* SysIF::playSystemSe(u32 soundID, u32 flag)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r7, r5
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	addi     r4, r1, 8
-	li       r6, 0
-	stw      r0, 8(r1)
-	li       r8, 4
-	bl
-	"startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc"
-	lwz      r0, 0x14(r1)
-	lwz      r3, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JAISe* se = nullptr;
+	startSoundActorReturnHandleT(&se, soundID, nullptr, flag, 4);
+	return se;
 }
 
 /*
@@ -287,9 +229,9 @@ JAISe* SysIF::playSystemSe(unsigned long, unsigned long)
  * Address:	80338670
  * Size:	00002C
  */
-void SysIF::playSystemSe(unsigned long soundID, JAISound** handles, unsigned long p3)
+void SysIF::playSystemSe(u32 soundID, JAISound** handles, u32 flag)
 {
-	startSoundActorT(soundID, handles, nullptr, p3, 4);
+	startSoundActorT(soundID, handles, nullptr, flag, 4);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -311,8 +253,14 @@ void SysIF::playSystemSe(unsigned long soundID, JAISound** handles, unsigned lon
  * Address:	8033869C
  * Size:	000078
  */
-void SysIF::initIF(const PSSystem::SetupArg&)
+void SysIF::initIF(const SetupArg& arg)
 {
+	initHeap();
+	// JAInter::SequenceMgr::setCustomHeapCallback((JAInter::SequenceMgr::CustomHeapCallback)SeqHeap::requestCallback);
+	JASDriver::setLevel(0.9f, 0.9f, 3.9f);
+	JASTrack::registerSeqCallback((JASTrack::SeqCallback)arg._0C);
+	BankRandPrm::createInstance();
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -359,6 +307,11 @@ lbl_80338700:
  */
 JAISe* SysIF::makeSe()
 {
+	if (sMakeJAISeCallback) {
+		// sMakeJAISeCallback();
+	} else {
+		return JAIBasic::makeSe();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -388,68 +341,11 @@ lbl_8033873C:
  */
 void SysIF::mainLoop()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x40(r3)
-	cmpwi    r0, 1
-	bne      lbl_8033880C
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8033879C
-	lis      r3, lbl_8048FE44@ha
-	lis      r5, lbl_8048FE38@ha
-	addi     r3, r3, lbl_8048FE44@l
-	li       r4, 0x1d3
-	addi     r5, r5, lbl_8048FE38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033879C:
-	lwz      r3, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_803387D8 lis      r3, lbl_8048FE44@ha lis      r5,
-lbl_8048FE38@ha addi     r3, r3, lbl_8048FE44@l li       r4, 0x237 addi     r5,
-r5, lbl_8048FE38@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803387D8:
-	lwz      r30,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) li r31, 0 b
-lbl_803387F8
-
-lbl_803387E4:
-	rlwinm   r3, r31, 2, 0x16, 0x1d
-	addi     r0, r3, 4
-	lwzx     r3, r30, r0
-	bl       exec__Q26PSGame5SetSeFv
-	addi     r31, r31, 1
-
-lbl_803387F8:
-	clrlwi   r0, r31, 0x18
-	cmplwi   r0, 8
-	blt      lbl_803387E4
-	mr       r3, r29
-	bl       processFrameWork__8JAIBasicFv
-
-lbl_8033880C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (_40 == 1) {
+		getSceneMgr()->exec();
+		getSeMgrInstance()->execAllSe();
+		processFrameWork();
+	}
 }
 
 /*
@@ -457,8 +353,18 @@ lbl_8033880C:
  * Address:	80338828
  * Size:	00008C
  */
-void SysIF::setConfigVol_Se(f32)
+void SysIF::setConfigVol_Se(f32 volume)
 {
+	mSfxVolume = volume;
+	if (spSceneMgr && spSceneMgr->mScenes) {
+		SeqBase* seq = spSceneMgr->mScenes->mSeqMgr.getFirstSeq();
+		if (seq) {
+			JAISound* se = seq->getHandleP();
+			if (se) {
+				se->setVolume(volume, 3, 8);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -505,8 +411,22 @@ lbl_803388A0:
  * Address:	803388B4
  * Size:	0000C8
  */
-void SysIF::setConfigVol_Bgm(f32)
+void SysIF::setConfigVol_Bgm(f32 volume)
 {
+	mBgmVolume         = volume;
+	SceneMgr* scenemgr = spSceneMgr;
+	if (scenemgr) {
+		scenemgr->checkScene();
+		Scene* scene = scenemgr->mScenes;
+		if (scene) {
+			for (SeqBase* mgr = (SeqBase*)scene->mSeqMgr.getFirst(); mgr; mgr = (SeqBase*)mgr->getNext()) {
+				JAISound* se = mgr->getHandleP();
+				if (se) {
+					se->setVolume(volume, 3, 8);
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -584,27 +504,8 @@ FxMgr::FxMgr() { }
  * Size:	000044
  */
 TextDataBase::TextDataBase()
-    : _18(nullptr)
+    : mFile(nullptr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q28PSSystem12TextDataBase@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q28PSSystem12TextDataBase@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stw      r0, 0x18(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -614,6 +515,7 @@ TextDataBase::TextDataBase()
  */
 TextDataBase::~TextDataBase()
 {
+	// JKRHeap::free(mFile);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -656,51 +558,12 @@ lbl_80338A18:
 bool TextDataBase::load(const char* path, JKRDvdRipper::EAllocDirection direction)
 {
 	onlyLoad(path, direction);
-	if (_18 != nullptr) {
-		RamStream stream(_18, -1);
+	if (mFile) {
+		RamStream stream(mFile, -1);
 		stream.resetPosition(true, 1);
 		return read(stream);
 	}
 	return false;
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	stw      r0, 0x434(r1)
-	stw      r31, 0x42c(r1)
-	mr       r31, r3
-	bl onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection
-	lwz      r4, 0x18(r31)
-	cmplwi   r4, 0
-	beq      lbl_80338A98
-	addi     r3, r1, 8
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x14(r1)
-	bne      lbl_80338A7C
-	li       r0, 0
-	stw      r0, 0x41c(r1)
-
-lbl_80338A7C:
-	mr       r3, r31
-	addi     r4, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80338A9C
-
-lbl_80338A98:
-	li       r3, 0
-
-lbl_80338A9C:
-	lwz      r0, 0x434(r1)
-	lwz      r31, 0x42c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
 }
 
 /*
@@ -710,37 +573,8 @@ lbl_80338A9C:
  */
 bool TextDataBase::onlyLoad(const char* path, JKRDvdRipper::EAllocDirection direction)
 {
-	_18 = JKRDvdRipper::loadToMainRAM(path, nullptr, Switch_0, 0, nullptr, direction, 0, nullptr, nullptr);
-	return !!_18;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r8, r5
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	li       r6, 0
-	li       r7, 0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	mr       r3, r4
-	li       r4, 0
-	stw      r0, 8(r1)
-	li       r9, 0
-	li       r10, 0
-	bl
-	loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	stw      r3, 0x18(r31)
-	lwz      r3, 0x18(r31)
-	lwz      r31, 0x1c(r1)
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mFile = JKRDvdRipper::loadToMainRAM(path, nullptr, Switch_0, 0, nullptr, direction, 0, nullptr, nullptr);
+	return !!mFile; // ???
 }
 
 /*
@@ -748,15 +582,7 @@ bool TextDataBase::onlyLoad(const char* path, JKRDvdRipper::EAllocDirection dire
  * Address:	80338B18
  * Size:	00000C
  */
-void SysIF::start1stSeq()
-{
-	PSGame::SeMgr::seHandle = nullptr;
-	/*
-	li       r0, 0
-	stw      r0, seHandle__Q27JAInter5SeMgr@sda21(r13)
-	blr
-	*/
-}
+void SysIF::start1stSeq() { JAInter::SeMgr::seHandle = nullptr; }
 
 /*
  * --INFO--
@@ -765,44 +591,11 @@ void SysIF::start1stSeq()
  */
 JAISequence* SysIF::makeSequence()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 8(r3)
-	cmplwi   r4, 0
-	beq      lbl_80338B60
-	li       r3, 0x6a8
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	or.      r0, r3, r3
-	beq      lbl_80338B58
-	bl       __ct__Q28PSSystem8SeqSoundFv
-	mr       r0, r3
-
-lbl_80338B58:
-	mr       r3, r0
-	b        lbl_80338B84
-
-lbl_80338B60:
-	lwz      r4, JASDram@sda21(r13)
-	li       r3, 0x6a8
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	or.      r0, r3, r3
-	beq      lbl_80338B80
-	bl       __ct__Q28PSSystem8SeqSoundFv
-	mr       r0, r3
-
-lbl_80338B80:
-	mr       r3, r0
-
-lbl_80338B84:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mHeap) {
+		return new (mHeap, 0) SeqSound;
+	} else {
+		return new (JASDram, 0) SeqSound;
+	}
 }
 
 /*
@@ -810,35 +603,7 @@ lbl_80338B84:
  * Address:	80338B94
  * Size:	000058
  */
-SeqSound::SeqSound()
-    : JAISequence()
-    , SeqSoundBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JAISequenceFv
-	lis      r4, __vt__Q28PSSystem12SeqSoundBase@ha
-	lis      r3, __vt__Q28PSSystem8SeqSound@ha
-	addi     r0, r4, __vt__Q28PSSystem12SeqSoundBase@l
-	li       r5, 0
-	stw      r0, 0x6a0(r31)
-	addi     r4, r3, __vt__Q28PSSystem8SeqSound@l
-	addi     r0, r4, 0xd4
-	mr       r3, r31
-	stw      r5, 0x6a4(r31)
-	stw      r4, 0x10(r31)
-	stw      r0, 0x6a0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+SeqSound::SeqSound() { }
 
 /*
  * --INFO--
@@ -847,44 +612,12 @@ SeqSound::SeqSound()
  */
 JAIStream* SysIF::makeStream()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 8(r3)
-	cmplwi   r4, 0
-	beq      lbl_80338C28
-	li       r3, 0x1e0
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	or.      r0, r3, r3
-	beq      lbl_80338C20
-	bl       __ct__Q28PSSystem11StreamSoundFv
-	mr       r0, r3
-
-lbl_80338C20:
-	mr       r3, r0
-	b        lbl_80338C4C
-
-lbl_80338C28:
-	lwz      r4, JASDram@sda21(r13)
-	li       r3, 0x1e0
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	or.      r0, r3, r3
-	beq      lbl_80338C48
-	bl       __ct__Q28PSSystem11StreamSoundFv
-	mr       r0, r3
-
-lbl_80338C48:
-	mr       r3, r0
-
-lbl_80338C4C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// broken until StreamSound inherits JAIStream
+	if (mHeap) {
+		//	return new (mHeap, 0) StreamSound;
+	} else {
+		//	return new (JASDram, 0) StreamSound;
+	}
 }
 
 /*
@@ -894,137 +627,7 @@ lbl_80338C4C:
  */
 StreamSound::StreamSound()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__9JAIStreamFv
-	lis      r4, __vt__Q28PSSystem12SeqSoundBase@ha
-	lis      r3, __vt__Q28PSSystem11StreamSound@ha
-	addi     r0, r4, __vt__Q28PSSystem12SeqSoundBase@l
-	li       r5, 0
-	stw      r0, 0x1d8(r31)
-	addi     r4, r3, __vt__Q28PSSystem11StreamSound@l
-	addi     r0, r4, 0xd4
-	mr       r3, r31
-	stw      r5, 0x1dc(r31)
-	stw      r4, 0x10(r31)
-	stw      r0, 0x1d8(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// broken until StreamSound inherits public JAIStream
 }
 
 } // namespace PSSystem
-
-/*
- * --INFO--
- * Address:	80338CB4
- * Size:	000070
- */
-// void JAIBasic::startSoundActorReturnHandleT<JAISe>(JAISe**, unsigned long, JAInter::Actor*, unsigned long, unsigned char)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x20(r1)
-// 	  mflr      r0
-// 	  li        r9, 0
-// 	  stw       r0, 0x24(r1)
-// 	  rlwinm.   r0,r5,0,0,1
-// 	  stw       r31, 0x1C(r1)
-// 	  mr        r31, r4
-// 	  stw       r9, 0x8(r1)
-// 	  bne-      .loc_0x2C
-// 	  li        r0, 0x1
-// 	  stw       r0, 0x8(r1)
-
-// 	.loc_0x2C:
-// 	  mr        r4, r5
-// 	  addi      r5, r1, 0x8
-// 	  bl        .loc_0x70
-// 	  lwz       r0, 0x8(r1)
-// 	  stw       r0, 0x0(r31)
-// 	  lwz       r3, 0x8(r1)
-// 	  cmplwi    r3, 0
-// 	  beq-      .loc_0x5C
-// 	  lwz       r12, 0x10(r3)
-// 	  lwz       r12, 0x18(r12)
-// 	  mtctr     r12
-// 	  bctrl
-
-// 	.loc_0x5C:
-// 	  lwz       r0, 0x24(r1)
-// 	  lwz       r31, 0x1C(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x20
-// 	  blr
-
-// 	.loc_0x70:
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	80338D24
-//  * Size:	000068
-//  */
-// void JAIBasic::startSoundActorT<JAISe>(unsigned long, JAISe**, JAInter::Actor*, unsigned long, unsigned char)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x20(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x24(r1)
-// 	  stmw      r26, 0x8(r1)
-// 	  mr        r27, r4
-// 	  mr        r26, r3
-// 	  mr        r28, r5
-// 	  mr        r29, r6
-// 	  mr        r30, r7
-// 	  mr        r31, r8
-// 	  mr        r3, r27
-// 	  bl        -0x281838
-// 	  mr.       r9, r3
-// 	  beq-      .loc_0x54
-// 	  mr        r3, r26
-// 	  mr        r4, r27
-// 	  mr        r5, r28
-// 	  mr        r6, r29
-// 	  mr        r7, r30
-// 	  mr        r8, r31
-// 	  bl        -0x28C510
-
-// 	.loc_0x54:
-// 	  lmw       r26, 0x8(r1)
-// 	  lwz       r0, 0x24(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x20
-// 	  blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	80338D8C
-//  * Size:	000028
-//  */
-// void __sinit_PSSystemIF_cpp()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	addi     r3, r13, oRandom__8PSSystem@sda21
-// 	li       r4, 0
-// 	stw      r0, 0x14(r1)
-// 	bl       __ct__Q25JMath13TRandom_fast_FUl
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }

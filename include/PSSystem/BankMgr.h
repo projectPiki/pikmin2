@@ -16,7 +16,7 @@ struct BankMgr : public JKRDisposer {
 		}
 	}
 
-	BankMgr* createInstance();
+	static BankMgr* createInstance();
 	void preInit();
 	void init();
 	void setBankData(u32* data);
