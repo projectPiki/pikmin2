@@ -13,6 +13,9 @@
 
 namespace PSSystem {
 
+u32 getObject(JASTrack* track, u8 p2);
+void setObject(JASTrack* track, void* p2, u8 p3);
+
 extern u8 sDistanceParameterMoveTime;
 // static JMath::TRandom_fast_ oRandom(0);
 

@@ -4,12 +4,14 @@
 #include "JSystem/JAudio/JAI/JAISequence.h"
 
 namespace PSSystem {
+struct SeqBase;
+
 /**
  * @size{0x8}
  */
 struct SeqSoundBase {
 	SeqSoundBase()
-	    : _04(nullptr)
+	    : mSeq(nullptr)
 	{
 	}
 
@@ -17,7 +19,7 @@ struct SeqSoundBase {
 	virtual void stopInner(u32) = 0; // _0C
 
 	// VTBL _00
-	void* _04; // _04 - unknown pointer
+	SeqBase* mSeq; // _04
 };
 
 /**

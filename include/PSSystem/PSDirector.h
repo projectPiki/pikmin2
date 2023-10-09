@@ -154,6 +154,12 @@ struct DirectorMgrBase : public JADHioNode {
 		}
 	}
 
+	inline DirectorBase* getDirector(u8 id)
+	{
+		P2ASSERTLINE(181, id < mDirectorCount);
+		return mDirectors[id];
+	}
+
 	// _00 = VTBL
 	DirectorBase** mDirectors; // _04
 	u8 mDirectorCount;         // _08

@@ -74,6 +74,7 @@ struct SeqTrackRoot : public SeqTrackBase {
 };
 
 struct SeqTrackRoot_JumpBgm : public SeqTrackRoot {
+	SeqTrackRoot_JumpBgm() { }
 	virtual void onBeatTop(); // _18
 };
 
