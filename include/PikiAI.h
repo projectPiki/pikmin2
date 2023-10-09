@@ -51,7 +51,15 @@ struct Item;
 struct Graphics;
 
 struct FindCondition : public Condition<CollPart> {
-	virtual bool satisfy(CollPart*); // _08 (weak)
+	virtual bool satisfy(CollPart* part) // _08 (weak)
+	{
+		bool result = false;
+		if (part->mChild == nullptr && part->mCurrentID.match('****', '*')) {
+			result = true;
+		}
+
+		return result;
+	}
 };
 
 namespace PikiAI {
@@ -165,23 +173,22 @@ struct Action {
 };
 
 struct ApproachPosActionArg : public ActionArg {
-	inline ApproachPosActionArg(Vector3f& pos, f32 radius, f32 b, u8 c, u8 d)
-	    : mPosition(pos)
-	    , mRadius(radius)
+	// why is this ctor so annoying
+	inline ApproachPosActionArg(Vector3f& pos, f32 radius, f32 b)
+	    : mSphere(pos, radius)
 	    , _14(b)
-	    , _18(c)
-	    , _19(d)
+	    , _18(0)
+	    , _19(0)
 	{
 	}
 
 	virtual char* getName() { return "ApproachPosActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
-	Vector3f mPosition; // _04
-	f32 mRadius;        // _10
-	f32 _14;            // _14
-	u8 _18;             // _18
-	u8 _19;             // _19
+	Sys::Sphere mSphere; // _04
+	f32 _14;             // _14
+	u8 _18;              // _18
+	u8 _19;              // _19
 };
 
 struct ActApproachPos : public Action {
@@ -226,7 +233,7 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 	virtual void cleanup();                                                // _10
 	virtual void emotion_success();                                        // _14
 	virtual bool applicable();                                             // _1C
-	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual u32 getNextAIType() { return ACT_Free; }                       // _20 (weak)
 	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24
 	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
 	virtual void getInfo(char*);                                           // _38
@@ -385,7 +392,8 @@ struct ActBreakRock : public Action, public virtual SysShape::MotionListener {
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) { }           // _3C
 
 	void initFollow();
-	inline void initStickAttack();
+	void initStickAttack();
+	void initGoto();
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -422,9 +430,9 @@ struct ActBridge : public Action, virtual SysShape::MotionListener {
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) { }           // _3C (weak)
 
 	void initFollow();
-	inline void initGoto();
-	inline void initStickAttack();
-	inline void calcAttackPos();
+	void initGoto();
+	void initStickAttack();
+	void calcAttackPos();
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -619,10 +627,10 @@ struct FollowVectorFieldActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName(); // _08 (weak) uncomment this when linking aiBreakGate.cpp
-	// {
-	// 	return "FollowVectorFieldActionArg";
-	// }
+	virtual char* getName() // _08 (weak) uncomment this when linking aiBreakGate.cpp
+	{
+		return "FollowVectorFieldActionArg";
+	}
 
 	// _00 = VTBL
 	Game::BaseItem* mItem; // _04
@@ -992,7 +1000,7 @@ struct StickAttackActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName(); /*{ return "StickAttackActionArg"; }*/ // _08 (weak)
+	virtual char* getName() { return "StickAttackActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	f32 mAttackDamage;         // _04

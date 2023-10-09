@@ -6,7 +6,7 @@
 #include "Dolphin/rand.h"
 #include "utilityU.h"
 
-static const char aiAttackName[] = "aiAttack";
+static const char aiAttackName[] = "actAttack";
 
 namespace PikiAI {
 
@@ -96,55 +96,12 @@ void ActAttack::initStickAttack()
 void ActAttack::initAdjust()
 {
 	calcAttackPos();
-	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, -1.0f, 0, 0);
+	// WORK DAMN YOU
+	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, -1.0f);
 	approachArg._18 = 1;
 	approachArg._19 = 1;
 	mAttackID       = 1;
 	mApproachPos->init(&approachArg);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	bl       calcAttackPos__Q26PikiAI9ActAttackFv
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	lfs      f1, 0x30(r31)
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	lis      r3, __vt__Q26PikiAI20ApproachPosActionArg@ha
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q26PikiAI20ApproachPosActionArg@l
-	lfs      f0, lbl_805190A8@sda21(r2)
-	li       r3, 0
-	stw      r0, 8(r1)
-	li       r0, 1
-	fadds    f1, f0, f1
-	lfs      f0, lbl_805190AC@sda21(r2)
-	lfs      f2, 0x24(r31)
-	addi     r4, r1, 8
-	stfs     f2, 0xc(r1)
-	lfs      f2, 0x28(r31)
-	stfs     f2, 0x10(r1)
-	lfs      f2, 0x2c(r31)
-	stb      r3, 0x20(r1)
-	stb      r3, 0x21(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	stb      r0, 0x20(r1)
-	stb      r0, 0x21(r1)
-	sth      r0, 0x18(r31)
-	lwz      r3, 0x20(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -155,56 +112,12 @@ void ActAttack::initAdjust()
 void ActAttack::initJumpAdjust()
 {
 	calcAttackPos();
-	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, -1.0f, 0, 0);
+	// WORK DAMN YOU
+	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, 2.0f);
 	approachArg._18 = 1;
 	approachArg._19 = 1;
 	mAttackID       = 2;
 	mApproachPos->init(&approachArg);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	bl       calcAttackPos__Q26PikiAI9ActAttackFv
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	lfs      f1, 0x30(r31)
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	lis      r3, __vt__Q26PikiAI20ApproachPosActionArg@ha
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q26PikiAI20ApproachPosActionArg@l
-	lfs      f0, lbl_805190A8@sda21(r2)
-	li       r5, 0
-	stw      r0, 8(r1)
-	li       r3, 1
-	fadds    f1, f0, f1
-	lfs      f0, lbl_805190B0@sda21(r2)
-	lfs      f2, 0x24(r31)
-	li       r0, 2
-	addi     r4, r1, 8
-	stfs     f2, 0xc(r1)
-	lfs      f2, 0x28(r31)
-	stfs     f2, 0x10(r1)
-	lfs      f2, 0x2c(r31)
-	stb      r5, 0x20(r1)
-	stb      r5, 0x21(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	stb      r3, 0x20(r1)
-	stb      r3, 0x21(r1)
-	sth      r0, 0x18(r31)
-	lwz      r3, 0x20(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -230,7 +143,10 @@ bool ActAttack::applicable()
  */
 void ActAttack::initJump()
 {
-	// UNUSED FUNCTION
+	mAttackID    = 3;
+	Vector3f sep = mAttackSphere.mPosition - mParent->getPosition();
+	sep.normalise();
+	mParent->mSimVelocity = Vector3f(sep.x * 100.0f, 200.0f, sep.z * 100.0f);
 }
 
 /*
@@ -240,8 +156,16 @@ void ActAttack::initJump()
  */
 void ActAttack::calcAttackPos()
 {
-	// TODO: The isTeki check probably is part of isLongLegs... but then where does isLongLegs live?
-	if (mCreature->isTeki() && static_cast<Game::EnemyBase*>(mCreature)->isLongLegs()) {
+	bool isLongLegs = false;
+	if (mCreature->isTeki()) {
+		Game::EnemyBase* enemy = static_cast<Game::EnemyBase*>(mCreature);
+		if (enemy->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_Damagumo || enemy->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_BigFoot
+		    || enemy->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_Houdai) {
+			isLongLegs = true;
+		}
+	}
+
+	if (isLongLegs) {
 		FindCollPartArg findArg;
 		FindCondition condition;
 		findArg.mCondition = &condition;
@@ -258,131 +182,6 @@ void ActAttack::calcAttackPos()
 		mAttackSphere.mPosition = mCreature->getPosition();
 		mAttackSphere.mRadius   = mCreature->getBodyRadius();
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	li       r31, 0
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	mr       r29, r3
-	lwz      r3, 0x10(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0A6C
-	lwz      r30, 0x10(r29)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x38
-	beq      lbl_801A0A68
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x45
-	beq      lbl_801A0A68
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x42
-	bne      lbl_801A0A6C
-
-lbl_801A0A68:
-	li       r31, 1
-
-lbl_801A0A6C:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_801A0B34
-	lis      r4, "__vt__20Condition<8CollPart>"@ha
-	lis      r3, __vt__13FindCondition@ha
-	addi     r4, r4, "__vt__20Condition<8CollPart>"@l
-	addi     r0, r1, 8
-	stw      r4, 8(r1)
-	addi     r3, r3, __vt__13FindCondition@l
-	addi     r4, r1, 0x28
-	stw      r3, 8(r1)
-	stw      r0, 0x24(r1)
-	lwz      r3, 4(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x10(r29)
-	addi     r4, r1, 0x24
-	lwz      r3, 0x114(r3)
-	bl       findCollPart__8CollTreeFR15FindCollPartArg
-	cmplwi   r3, 0
-	beq      lbl_801A0AE8
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x24(r29)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0x28(r29)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0x2c(r29)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0x30(r29)
-	b        lbl_801A0B7C
-
-lbl_801A0AE8:
-	lwz      r4, 0x10(r29)
-	addi     r3, r1, 0x18
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x24(r29)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x28(r29)
-	lfs      f0, 0x20(r1)
-	stfs     f0, 0x2c(r29)
-	lwz      r3, 0x10(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r29)
-	b        lbl_801A0B7C
-
-lbl_801A0B34:
-	lwz      r4, 0x10(r29)
-	addi     r3, r1, 0xc
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x24(r29)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x28(r29)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0x2c(r29)
-	lwz      r3, 0x10(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r29)
-
-lbl_801A0B7C:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -415,6 +214,7 @@ int ActAttack::exec()
 			return ACTEXEC_Success;
 		}
 		if (stickResult == ACTEXEC_Fail && !mParent->isStickTo()) {
+			// WORK DAMN YOU
 			initJumpAdjust();
 		}
 	} break;
@@ -427,11 +227,7 @@ int ActAttack::exec()
 			if (mAttackID == 1) {
 				initStickAttack();
 			} else {
-				mAttackID = 3;
-				// TODO: I have no idea what inline to use here. Please help!
-				Vector3f v1 = mAttackSphere.mPosition - mParent->getPosition();
-				_normaliseXZ(v1);
-				mParent->mSimVelocity = Vector3f(v1.x * 100.0f, 200.0f, v1.z * 100.0f);
+				initJump();
 			}
 		} else if (approachResult == ACTEXEC_Fail) {
 			return ACTEXEC_Fail;
@@ -439,6 +235,7 @@ int ActAttack::exec()
 	} break;
 	case 3:
 		if (mParent->mBounceTriangle != nullptr) {
+			// WORK DAMN YOU
 			initAdjust();
 		}
 		break;
@@ -1139,33 +936,6 @@ void ActAttack::cleanup()
 	default:
 		break;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_805190B8@sda21(r2)
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	stfs     f0, 0x1e4(r4)
-	stfs     f0, 0x1e8(r4)
-	stfs     f0, 0x1ec(r4)
-	lhz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	beq      lbl_801A1514
-	b        lbl_801A1528
-
-lbl_801A1514:
-	lwz      r3, 0x1c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801A1528:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1181,66 +951,6 @@ void ActAttack::collisionCallback(Game::Piki* piki, Game::CollEvent& collEvent)
 			initStickAttack();
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r5
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lwz      r3, 0(r5)
-	lwz      r0, 0x10(r29)
-	cmplw    r3, r0
-	bne      lbl_801A15FC
-	lhz      r0, 0x18(r29)
-	cmplwi   r0, 3
-	bne      lbl_801A15FC
-	lwz      r3, 4(r31)
-	cmplwi   r3, 0
-	beq      lbl_801A15FC
-	bl       isStickable__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A15FC
-	lwz      r4, 0(r31)
-	mr       r3, r30
-	lwz      r5, 4(r31)
-	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-	lwz      r3, 4(r29)
-	bl       getAttackDamage__Q24Game4PikiFv
-	lwz      r5, 0x10(r29)
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	lis      r3, __vt__Q26PikiAI20StickAttackActionArg@ha
-	stw      r0, 8(r1)
-	addi     r4, r3, __vt__Q26PikiAI20StickAttackActionArg@l
-	li       r3, 2
-	li       r0, 0
-	stw      r4, 8(r1)
-	addi     r4, r1, 8
-	stfs     f1, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r3, 0x14(r1)
-	stb      r0, 0x18(r1)
-	lwz      r3, 0x1c(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	sth      r0, 0x18(r29)
-
-lbl_801A15FC:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*

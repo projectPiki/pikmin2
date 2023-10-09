@@ -59,9 +59,17 @@ void ActBreakRock::initFollow()
 	mState = 1;
 }
 
-static const char stickAttackArgName[] = "StickAttackActionArg";
-static const char gotoPosArgName[]     = "GotoPosActionArg";
-static const char followFieldArgName[] = "FollowVectorFieldActionArg";
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00009C
+ */
+void ActBreakRock::initGoto()
+{
+	GotoPosActionArg gotoArg;
+	mGotoPos->init(&gotoArg);
+	mState = 1;
+}
 
 /*
  * --INFO--

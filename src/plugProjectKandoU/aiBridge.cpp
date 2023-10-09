@@ -55,10 +55,6 @@ void ActBridge::init(ActionArg* actionArg)
 	initFollow();
 }
 
-static const char stickAttackArgName[] = "StickAttackActionArg";
-static const char gotoPosArgName[]     = "GotoPosActionArg";
-static const char followFieldArgName[] = "FollowVectorFieldActionArg";
-
 /*
  * --INFO--
  * Address:	8021244C
@@ -68,6 +64,18 @@ void ActBridge::initFollow()
 {
 	FollowVectorFieldActionArg followArg(mBridge);
 	mFollowField->init(&followArg);
+	mState = 1;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00009C
+ */
+void ActBridge::initGoto()
+{
+	GotoPosActionArg gotoArg;
+	mGotoPos->init(&gotoArg);
 	mState = 1;
 }
 
