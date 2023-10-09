@@ -1505,7 +1505,7 @@ bool MemoryCardMgr::checkCardStat(MemoryCardMgr::ECardSlot cardSlot, CARDFileInf
  * Address:	80441D64
  * Size:	000280
  */
-bool MemoryCardMgr::read(MemoryCardMgr::ECardSlot cardSlot, const char* fileName, u8* param_3, s32 param_4, s32 param_5)
+bool MemoryCardMgr::read(MemoryCardMgr::ECardSlot cardSlot, const char* fileName, u8* buffer, s32 length, s32 offset)
 {
 	CARDFileInfo fileInfo;
 	CARDStat cardStat;
@@ -1539,7 +1539,7 @@ bool MemoryCardMgr::read(MemoryCardMgr::ECardSlot cardSlot, const char* fileName
 			}
 			_D0 = someChar;
 			setInsideStatusFlag(INSIDESTATUS_Unk11);
-			if (!CARDRead(&fileInfo, param_3, param_4, param_5) == 0) {
+			if (!CARDRead(&fileInfo, buffer, length, offset) == 0) {
 				setInsideStatusFlag(INSIDESTATUS_Unk10);
 			} else {
 				setInsideStatusFlag(INSIDESTATUS_Unk1);
