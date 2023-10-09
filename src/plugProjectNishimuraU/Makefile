@@ -77,7 +77,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TankAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TankMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tank.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Tank.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/CatfishMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Catfish.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleState.o\

@@ -351,28 +351,27 @@ void StateRolling::exec(EnemyBase* enemy)
 			initAngle = -HALF_PI;
 		}
 
-		f32 theta = initAngle + queen->getFaceDir();
-		f32 cos   = pikmin2_cosf(theta);
-		f32 sin   = pikmin2_sinf(theta);
+		f32 theta    = initAngle + queen->getFaceDir();
+		Vector3f dir = getDirection(theta);
 
 		Vector3f position = queen->getPosition();
 		Vector3f sep      = position - queen->mHomePosition;
+		sep.y             = 0.0f;
+		f32 dotProd       = sep.dot(dir);
 
-		Parms* parms      = static_cast<Parms*>(queen->mParms);
-		f32 territory     = parms->mGeneral.mTerritoryRadius.mValue;
-		Vector3f otherVec = Vector3f(cos, 0.0f, sin);
-		f32 dotProd       = sep.z * otherVec.z + sep.x * otherVec.x + 0.0f;
-
-		if (dotProd > territory) {
-			queen->mTargetVelocity = Vector3f(otherVec.y);
+		if (dotProd > *CG_PARMS(queen)->mGeneral.mTerritoryRadius()) {
+			queen->mTargetVelocity = Vector3f(0.0f);
 		} else { // mismatch lives here
-			f32 increasedRad     = 10.0f + territory;
-			Vector3f weightedSep = otherVec * increasedRad + (queen->mHomePosition - position);
-			weightedSep.normalise();
+			f32 increasedRad = 10.0f + *CG_PARMS(queen)->mGeneral.mTerritoryRadius();
+			dir *= increasedRad;
+			Vector3f newSep = queen->mHomePosition - position;
 
-			f32 speed = parms->mGeneral.mMoveSpeed.mValue;
-			weightVecXZ(weightedSep, speed);
-			queen->mTargetVelocity = weightedSep;
+			newSep   = dir + newSep;
+			newSep.y = 0.0f;
+			newSep.normalise();
+			newSep.x *= *CG_PARMS(queen)->mGeneral.mMoveSpeed();
+			newSep.z *= *CG_PARMS(queen)->mGeneral.mMoveSpeed();
+			queen->mTargetVelocity = newSep;
 		}
 
 		queen->flickPikmin(-1000.0f);
@@ -405,12 +404,11 @@ void StateRolling::exec(EnemyBase* enemy)
 				initAngle = -HALF_PI;
 			}
 
-			f32 theta = initAngle + queen->getFaceDir();
-			f32 cos   = pikmin2_cosf(theta);
-			f32 sin   = pikmin2_sinf(theta);
-
+			f32 theta    = initAngle + queen->getFaceDir();
+			Vector3f dir = getDirection(theta);
 			Vector3f sep = queen->getPosition() - queen->mHomePosition;
-			f32 dotProd  = sep.z * cos + sep.x * sin + sep.y * 0.0f;
+			sep.y        = 0.0f;
+			f32 dotProd  = sep.dot(dir);
 
 			Parms* parms  = static_cast<Parms*>(queen->mParms);
 			f32 territory = parms->mGeneral.mTerritoryRadius.mValue - 50.0f;
