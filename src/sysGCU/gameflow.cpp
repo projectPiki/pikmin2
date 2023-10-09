@@ -30,27 +30,27 @@ static SectionInfo sSectionInfo[] = {
 	{ "Nishimura2", 0x0D010000 },
 	{ "Morimura", 0x0E010000 },
 	{ "2D Debug", 0x1A010100 },
-	{ "Fujino", 0x1A010100 },
+	{ "Fujino", 0x1B010000 },
 	{ "Ebisawa", 0x0F010000 },
-	{ "Cave Editor", 0x06010000 },
-	{ "JStudio CameraEditor", 0x07010000 },
-	{ "Movie Test", 0x06010000 },
-	{ "JStudio Kando Test", 0x07010000 },
-	{ "Pellet Test", 0x06010000 },
+	{ "Cave Editor", 0x10010000 },
+	{ "JStudio CameraEditor", 0x11010000 },
+	{ "Movie Test", 0x12010000 },
+	{ "JStudio Kando Test", 0x13010000 },
+	{ "Pellet Test", 0x14010000 },
 	{ "Boot", 0x15000000 },
-	{ "Main Title", 0x07010000 },
+	{ "Main Title", 0x16010000 },
 	{ "Demo", 0x17010000 },
-	{ "Message Previewer", 0x06010000 },
-	{ "Ebi Main Title", 0x07010000 },
-	{ "E3 Thanks Section", 0x06010000 },
+	{ "Message Previewer", 0x18010100 },
+	{ "Ebi Main Title", 0x19010000 },
+	{ "E3 Thanks Section", 0x1D010000 },
 	{ "VS Game", 0x1E010000 },
-	{ "Ebimun Effect", 0x07010000 },
-	{ "2D Debug2", 0x07010000 },
+	{ "Ebimun Effect", 0x1F010000 },
+	{ "2D Debug2", 0x20010100 },
 	{ "EXP_C", 0x21000000 },
 	{ "EXP_S", 0x22000000 },
 };
 } // namespace
-u32 GameFlow::mActiveSectionFlag = ObjectEditor;
+u32 GameFlow::mActiveSectionFlag = Boot;
 
 /*
  * --INFO--
@@ -79,80 +79,8 @@ GameFlow::~GameFlow() { }
 void GameFlow::run()
 {
 	while (true) {
-		JKRHeap* parentHeap = JKRGetCurrentHeap();
-
-		JKRHeap::TState state(parentHeap);
-		JKRHeap::sCurrentHeap->state_register(&state, -1);
-		JKRExpHeap* heap = JKRExpHeap::create(parentHeap->getFreeSize(), parentHeap, true);
-
-		setSection();
-		mSection->init();
-		mSection->run();
-		mSection->exit();
-
-		heap->destroy();
-		parentHeap->becomeCurrentHeap();
+		runGame();
 	}
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r3
-
-lbl_804241EC:
-	lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r0, 0
-	stw      r0, 8(r1)
-	cmplwi   r31, 0
-	stw      r0, 0xc(r1)
-	li       r7, -1
-	li       r6, 1
-	li       r0, 0
-	stw      r31, 0x18(r1)
-	mr       r3, r31
-	addi     r4, r1, 8
-	stw      r7, 0x1c(r1)
-	li       r5, -1
-	stb      r6, 0x20(r1)
-	stw      r0, 0x24(r1)
-	stw      r7, 0x28(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       getFreeSize__7JKRHeapFv
-	mr       r4, r31
-	li       r5, 1
-	bl       create__10JKRExpHeapFUlP7JKRHeapb
-	mr       r30, r3
-	mr       r3, r29
-	bl       setSection__8GameFlowFv
-	lwz      r3, 4(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 4(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 4(r29)
-	bl       exit__7SectionFv
-	mr       r3, r30
-	bl       destroy__7JKRHeapFv
-	mr       r3, r31
-	bl       becomeCurrentHeap__7JKRHeapFv
-	addi     r3, r1, 8
-	li       r4, -1
-	bl       __dt__Q27JKRHeap6TStateFv
-	b        lbl_804241EC
-	*/
 }
 
 /*
@@ -232,10 +160,3 @@ ISection* GameFlow::createSection(JKRHeap* heap)
 	mActiveSectionFlag = MainTitle;
 	return section;
 }
-
-/*
- * --INFO--
- * Address:	80424564
- * Size:	000040
- */
-ISection* GameFlow::getCurrentSection() { return (mSection) ? mSection->getCurrentSection() : nullptr; }

@@ -90,6 +90,7 @@ struct Section : public Game::BaseHIOSection {
 	JKRArchive* mHiScoreTex;            // _2F40
 	bool mDoCheckShortCut;              // _2F44
 	u32 mLanguageID;                    // _2F48
+	u8 _2F4C[32];                       // _2F4C, unknown
 };
 } // namespace Title
 

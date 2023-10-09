@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "Section.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 struct ISection;
 struct Section;
@@ -12,8 +13,8 @@ struct SectionInfo {
 	char* mName; // _00
 
 	union {
-		u8 mSectionId, b, c, d;
 		u32 abcd;
+		u8 mSectionId, b, c, d;
 	} id; // _04
 };
 
@@ -58,10 +59,24 @@ struct GameFlow : public ISectionMgr {
 	};
 
 	GameFlow();
-	~GameFlow(); // unused and not virtual
+	~GameFlow();          // unused and not virtual
+	inline void runGame() // might be a (non-static) member function of GameFlow?
+	{
+		JKRExpHeap* expHeap;
+		JKRHeap* parentHeap;
+		JKRHeap::TState state(parentHeap = JKRHeap::sCurrentHeap);
+		parentHeap->state_register(&state, -1);
+		expHeap = makeExpHeap(parentHeap->getFreeSize(), parentHeap, true);
+		setSection();
+		mSection->init();
+		mSection->run();
+		mSection->exit();
+		expHeap->destroy();
+		parentHeap->becomeCurrentHeap();
+	}
 
-	virtual void run();                    // _08
-	virtual ISection* getCurrentSection(); // _0C (weak)
+	virtual void run();                                                                                    // _08
+	virtual ISection* getCurrentSection() { return (mSection) ? mSection->getCurrentSection() : nullptr; } // _0C (weak)
 
 	void setSection();
 

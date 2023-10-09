@@ -1561,7 +1561,7 @@ LIBS = [
         "objects": [
             "sysGCU/system",
             "sysGCU/section",
-            "sysGCU/gameflow",
+            ["sysGCU/gameflow", True],
             ["sysGCU/menuSection", True],
             "sysGCU/dvdThread",
             ["sysGCU/appThread", True],
