@@ -1,118 +1,16 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_shadowMgr_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483FF8
-    lbl_80483FF8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x3234362D
-        .4byte 0x53686164
-        .4byte 0x6F774D67
-        .4byte 0x72000000
-    .global lbl_80484014
-    lbl_80484014:
-        .4byte 0x53686164
-        .4byte 0x6F774D67
-        .4byte 0x72000000
-        .4byte 0x53686164
-        .4byte 0x6F775061
-        .4byte 0x726D7300
-        .4byte 0x4C4F4420
-        .4byte 0x4E656172
-        .4byte 0x81460000
-        .4byte 0x4C4F4420
-        .4byte 0x46617281
-        .4byte 0x46000000
-        .4byte 0x2F757365
-        .4byte 0x722F4E69
-        .4byte 0x7368696D
-        .4byte 0x7572612F
-        .4byte 0x53686164
-        .4byte 0x6F772F73
-        .4byte 0x6861646F
-        .4byte 0x77506172
-        .4byte 0x6D732E74
-        .4byte 0x78740000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C19E8
-    lbl_804C19E8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q24Game9ShadowMgr
-    __vt__Q24Game9ShadowMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game9ShadowMgrFv
-        .4byte getChildCount__5CNodeFv
-        .4byte getSize__Q24Game9ShadowMgrFv
-        .4byte getMax__Q24Game9ShadowMgrFv
-        .4byte getCreature__Q24Game9ShadowMgrFi
-        .4byte getFirst__Q24Game9ShadowMgrFv
-        .4byte getNext__Q24Game9ShadowMgrFi
-        .4byte isDone__Q24Game9ShadowMgrFi
-        .4byte write__Q24Game9ShadowMgrFR6Stream
-        .4byte read__Q24Game9ShadowMgrFR6Stream
-    .global __vt__Q24Game10ShadowNode
-    __vt__Q24Game10ShadowNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game10ShadowNodeFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q24Game15JointShadowNode
-    __vt__Q24Game15JointShadowNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game15JointShadowNodeFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q24Game19JointShadowRootNode
-    __vt__Q24Game19JointShadowRootNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game19JointShadowRootNodeFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515CF8
-    lbl_80515CF8:
-        .skip 0x4
-    .global lbl_80515CFC
-    lbl_80515CFC:
-        .skip 0x4
-    .global shadowMgr__4Game
-    shadowMgr__4Game:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A6C0
-    lbl_8051A6C0:
-        .float 0.1
-    .global lbl_8051A6C4
-    lbl_8051A6C4:
-        .4byte 0x00000000
-    .global lbl_8051A6C8
-    lbl_8051A6C8:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051A6CC
-    lbl_8051A6CC:
-        .4byte 0x3CA3D70A
-    .global lbl_8051A6D0
-    lbl_8051A6D0:
-        .4byte 0x73686164
-        .4byte 0x6F770000
-*/
+#include "Game/shadowMgr.h"
+#include "Game/Creature.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "Viewport.h"
+#include "Camera.h"
+#include "nans.h"
 
 namespace Game {
+
+static const int unusedArray[] = { 0, 0, 0 };
+static const char unusedName[] = "246-ShadowMgr";
+
+ShadowMgr* shadowMgr;
 
 /*
  * --INFO--
@@ -121,7 +19,8 @@ namespace Game {
  */
 JointShadowRootNode::JointShadowRootNode()
 {
-	// UNUSED FUNCTION
+	mCreature = nullptr;
+	_1C       = 0;
 }
 
 /*
@@ -129,34 +28,11 @@ JointShadowRootNode::JointShadowRootNode()
  * Address:	8024127C
  * Size:	000060
  */
-JointShadowRootNode::JointShadowRootNode(Game::Creature*)
+JointShadowRootNode::JointShadowRootNode(Creature* owner)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game19JointShadowRootNode@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q24Game19JointShadowRootNode@l
-	mr       r4, r30
-	stw      r3, 0(r30)
-	stw      r31, 0x18(r30)
-	stb      r0, 0x1c(r30)
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	bl setJointShadowRootNode__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNode
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCreature = owner;
+	_1C       = 0;
+	shadowMgr->setJointShadowRootNode(this);
 }
 
 /*
@@ -164,9 +40,10 @@ JointShadowRootNode::JointShadowRootNode(Game::Creature*)
  * Address:	........
  * Size:	000058
  */
-void JointShadowRootNode::init(int)
+void JointShadowRootNode::init(int count)
 {
-	// UNUSED FUNCTION
+	_1C = 0;
+	FOREACH_NODE(JointShadowNode, mChild, childNode) { childNode->init(count); }
 }
 
 /*
@@ -184,39 +61,12 @@ JointShadowNode::JointShadowNode()
  * Address:	802412DC
  * Size:	000074
  */
-JointShadowNode::JointShadowNode(int)
+JointShadowNode::JointShadowNode(int mtxCount)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game15JointShadowNode@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q24Game15JointShadowNode@l
-	li       r3, 0x30
-	stw      r4, 0(r30)
-	stw      r0, 0x18(r30)
-	bl       __nw__FUl
-	stw      r3, 0x1c(r30)
-	mulli    r3, r31, 0x30
-	bl       __nwa__FUl
-	stw      r3, 0x20(r30)
-	mr       r3, r30
-	mr       r4, r31
-	bl       init__Q24Game15JointShadowNodeFi
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_18 = 0;
+	_1C = new Matrixf;
+	_20 = new Matrixf[mtxCount];
+	init(mtxCount);
 }
 
 /*
@@ -224,43 +74,12 @@ JointShadowNode::JointShadowNode(int)
  * Address:	80241350
  * Size:	000074
  */
-void JointShadowNode::init(int)
+void JointShadowNode::init(int count)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 0x1c(r3)
-	bl       PSMTXIdentity
-	li       r30, 0
-	li       r31, 0
-	b        lbl_8024139C
-
-lbl_80241388:
-	lwz      r0, 0x20(r28)
-	add      r3, r0, r31
-	bl       PSMTXIdentity
-	addi     r31, r31, 0x30
-	addi     r30, r30, 1
-
-lbl_8024139C:
-	cmpw     r30, r29
-	blt      lbl_80241388
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	PSMTXIdentity(_1C->mMatrix.mtxView);
+	for (int i = 0; i < count; i++) {
+		PSMTXIdentity(_20[i].mMatrix.mtxView);
+	}
 }
 
 /*
@@ -270,7 +89,9 @@ lbl_8024139C:
  */
 ShadowNode::ShadowNode()
 {
-	// UNUSED FUNCTION
+	mCreature = nullptr;
+	mMatrices = nullptr;
+	mFlags    = 0;
 }
 
 /*
@@ -278,9 +99,14 @@ ShadowNode::ShadowNode()
  * Address:	........
  * Size:	000070
  */
-ShadowNode::ShadowNode(Game::Creature*, int)
+ShadowNode::ShadowNode(Creature* owner, int count)
 {
-	// UNUSED FUNCTION
+	mCreature = owner;
+	mMatrices = new Matrixf[count];
+	mFlags    = 0;
+	for (int i = 0; i < count; i++) {
+		PSMTXIdentity(mMatrices[i].mMatrix.mtxView);
+	}
 }
 
 /*
@@ -288,9 +114,12 @@ ShadowNode::ShadowNode(Game::Creature*, int)
  * Address:	........
  * Size:	000070
  */
-void ShadowNode::init(int)
+void ShadowNode::init(int count)
 {
-	// UNUSED FUNCTION
+	mFlags = 0;
+	for (int i = 0; i < count; i++) {
+		PSMTXIdentity(mMatrices[i].mMatrix.mtxView);
+	}
 }
 
 /*
@@ -298,42 +127,16 @@ void ShadowNode::init(int)
  * Address:	802413C4
  * Size:	000080
  */
-ShadowMgr::ShadowMgr(int)
+ShadowMgr::ShadowMgr(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game9ShadowMgr@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q24Game9ShadowMgr@l
-	mr       r3, r30
-	stw      r4, 0(r30)
-	stw      r31, 0x18(r30)
-	stw      r0, 0x1c(r30)
-	bl       loadResource__Q24Game9ShadowMgrFv
-	li       r5, 1
-	lis      r3, lbl_80484014@ha
-	stb      r5, 0x3c(r30)
-	li       r4, 0
-	addi     r0, r3, lbl_80484014@l
-	mr       r3, r30
-	stb      r5, 0x3d(r30)
-	stw      r4, 0x40(r30)
-	stw      r4, 0x44(r30)
-	stw      r0, 0x14(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_18 = count;
+	_1C = 0;
+	loadResource();
+	_3C   = 1;
+	_3D   = 1;
+	_40   = 0;
+	_44   = 0;
+	mName = "ShadowMgr";
 }
 
 /*
@@ -343,154 +146,15 @@ ShadowMgr::ShadowMgr(int)
  */
 void ShadowMgr::loadResource()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_80483FF8@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_80483FF8@l
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	li       r3, 0x60
-	stw      r29, 0x14(r1)
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_80241508
-	addi     r0, r29, 0x5c
-	lis      r5, 0x6C6F646E@ha
-	stw      r0, 0(r29)
-	li       r3, 0
-	addi     r0, r31, 0x28
-	mr       r4, r29
-	stw      r3, 4(r29)
-	addi     r3, r29, 0xc
-	addi     r5, r5, 0x6C6F646E@l
-	addi     r6, r31, 0x34
-	stw      r0, 8(r29)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x6C6F6466@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051A6C0@sda21(r2)
-	stw      r0, 0xc(r29)
-	mr       r4, r29
-	lfs      f1, lbl_8051A6C4@sda21(r2)
-	addi     r3, r29, 0x34
-	stfs     f0, 0x24(r29)
-	addi     r5, r5, 0x6C6F6466@l
-	lfs      f0, lbl_8051A6C8@sda21(r2)
-	addi     r6, r31, 0x40
-	stfs     f1, 0x2c(r29)
-	stfs     f0, 0x30(r29)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lfs      f2, lbl_8051A6CC@sda21(r2)
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_8051A6C4@sda21(r2)
-	stw      r0, 0x34(r29)
-	lfs      f0, lbl_8051A6C8@sda21(r2)
-	stfs     f2, 0x4c(r29)
-	stfs     f1, 0x54(r29)
-	stfs     f0, 0x58(r29)
-
-lbl_80241508:
-	stw      r29, 0x4c(r30)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8024153C
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game10ShadowNode@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q24Game10ShadowNode@l
-	stw      r3, 0(r29)
-	stw      r0, 0x18(r29)
-	stw      r0, 0x1c(r29)
-	stw      r0, 0x20(r29)
-
-lbl_8024153C:
-	stw      r29, 0x20(r30)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_80241570
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game10ShadowNode@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q24Game10ShadowNode@l
-	stw      r3, 0(r29)
-	stw      r0, 0x18(r29)
-	stw      r0, 0x1c(r29)
-	stw      r0, 0x20(r29)
-
-lbl_80241570:
-	stw      r29, 0x24(r30)
-	li       r3, 0x64
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80241594
-	lwz      r4, 0x4c(r30)
-	addi     r5, r30, 0x48
-	bl       __ct__Q24Game15ShadowCylinder2FPQ24Game11ShadowParmsP6Color4
-	mr       r0, r3
-
-lbl_80241594:
-	stw      r0, 0x28(r30)
-	li       r3, 0x58
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_802415B8
-	lwz      r4, 0x4c(r30)
-	addi     r5, r30, 0x48
-	bl       __ct__Q24Game15ShadowCylinder3FPQ24Game11ShadowParmsP6Color4
-	mr       r0, r3
-
-lbl_802415B8:
-	stw      r0, 0x2c(r30)
-	lwz      r0, 0x18(r30)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x30(r30)
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_802415F8
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game19JointShadowRootNode@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q24Game19JointShadowRootNode@l
-	stw      r3, 0(r29)
-	stw      r0, 0x18(r29)
-	stb      r0, 0x1c(r29)
-
-lbl_802415F8:
-	stw      r29, 0x34(r30)
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_80241628
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game19JointShadowRootNode@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q24Game19JointShadowRootNode@l
-	stw      r3, 0(r29)
-	stw      r0, 0x18(r29)
-	stb      r0, 0x1c(r29)
-
-lbl_80241628:
-	stw      r29, 0x38(r30)
-	mr       r3, r30
-	addi     r4, r31, 0x4c
-	bl       readShadowParms__Q24Game9ShadowMgrFPc
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mParms     = new ShadowParms;
+	_20        = new ShadowNode;
+	_24        = new ShadowNode;
+	_28[0]     = new ShadowCylinder2(mParms, &mColor);
+	_28[1]     = new ShadowCylinder3(mParms, &mColor);
+	mViewports = new Viewport*[_18];
+	_34        = new JointShadowRootNode;
+	_38        = new JointShadowRootNode;
+	readShadowParms("/user/Nishimura/Shadow/shadowParms.txt");
 }
 
 /*
@@ -505,43 +169,17 @@ void ShadowMgr::init() { }
  * Address:	80241658
  * Size:	000010
  */
-void ShadowMgr::setViewport(Viewport*, int)
-{
-	/*
-	lwz      r3, 0x30(r3)
-	slwi     r0, r5, 2
-	stwx     r4, r3, r0
-	blr
-	*/
-}
+void ShadowMgr::setViewport(Viewport* vp, int idx) { mViewports[idx] = vp; }
 
 /*
  * --INFO--
  * Address:	80241668
  * Size:	000048
  */
-void ShadowMgr::setShadowColor(Color4*)
+void ShadowMgr::setShadowColor(Color4* color)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x28(r3)
-	bl       setColor__Q24Game12CylinderBaseFP6Color4
-	lwz      r3, 0x2c(r30)
-	mr       r4, r31
-	bl       setColor__Q24Game12CylinderBaseFP6Color4
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_28[0]->setColor(color);
+	_28[1]->setColor(color);
 }
 
 /*
@@ -581,6 +219,54 @@ void ShadowMgr::drawShadowOff()
  */
 void ShadowMgr::update()
 {
+	if (_3C) {
+		for (int i = 0; i < getCount(); i++) {
+			_28[_40]->setCameraParms(mViewports[i]->mCamera, i);
+		}
+
+		FOREACH_NODE(ShadowNode, _20->mChild, node)
+		{
+			if (node->mCreature->needShadow()) {
+				Matrixf mat;
+				ShadowParam param;
+				node->mCreature->getShadowParam(param);
+				node->mFlags &= ~0x0FFFFFFF;
+				_28[_40]->makeSRT(mat, param);
+
+				for (int i = 0; i < getCount(); i++) {
+					if (mViewports[i]->viewable()) {
+						Matrixf* nodeMat = &node->mMatrices[i];
+						Matrixf* viewMat = mViewports[i]->mCamera->getViewMatrix(false);
+						PSMTXConcat(viewMat->mMatrix.mtxView, mat.mMatrix.mtxView, nodeMat->mMatrix.mtxView);
+
+						int cylType = 0;
+						if (_3D) {
+							cylType = _28[_40]->getCylinderType(param, i);
+						}
+
+						node->mFlags |= getShadowMaskType(cylType, i);
+					}
+				}
+			}
+		}
+
+		FOREACH_NODE(JointShadowRootNode, _34->mChild, node)
+		{
+			if (node->mCreature->needShadow()) {
+				FOREACH_NODE(JointShadowNode, node->mChild, childNode)
+				{
+					for (int i = 0; i < getCount(); i++) {
+						if (mViewports[i]->viewable()) {
+							Matrixf* dest    = &childNode->_20[i];
+							Matrixf* nodeMat = childNode->_1C;
+							Matrixf* viewMat = mViewports[i]->mCamera->getViewMatrix(false);
+							PSMTXConcat(viewMat->mMatrix.mtxView, nodeMat->mMatrix.mtxView, dest->mMatrix.mtxView);
+						}
+					}
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -788,160 +474,37 @@ void ShadowMgr::draw(Graphics&)
  * Address:	80241910
  * Size:	000210
  */
-void ShadowMgr::draw(Graphics&, int)
+void ShadowMgr::draw(Graphics& gfx, int idx)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	addi     r4, r2, lbl_8051A6D0@sda21
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r30, r5
-	mr       r29, r3
-	li       r5, 1
-	lwz      r6, sys@sda21(r13)
-	lwz      r3, 0x28(r6)
-	bl       _start__9SysTimersFPcb
-	lbz      r0, 0x3c(r29)
-	cmplwi   r0, 0
-	beq      lbl_80241AFC
-	lwz      r3, 0x30(r29)
-	slwi     r31, r30, 2
-	lwzx     r3, r3, r31
-	bl       viewable__8ViewportFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80241AFC
-	lwz      r3, 0x30(r29)
-	addi     r4, r1, 8
-	lwzx     r3, r3, r31
-	lfs      f0, 0x2c(r3)
-	stfs     f0, 8(r1)
-	lfs      f0, 0x30(r3)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x34(r3)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x38(r3)
-	stfs     f0, 0x14(r1)
-	lwz      r0, 0x40(r29)
-	slwi     r0, r0, 2
-	add      r3, r29, r0
-	lwz      r3, 0x28(r3)
-	bl       "setShadowRect__Q24Game12CylinderBaseFR7Rect<f>"
-	lwz      r0, 0x40(r29)
-	mr       r4, r30
-	slwi     r0, r0, 2
-	add      r3, r29, r0
-	lwz      r3, 0x28(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x40(r29)
-	slwi     r0, r0, 2
-	add      r3, r29, r0
-	lwz      r3, 0x28(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x30(r29)
-	lwzx     r3, r3, r31
-	bl       setProjection__8ViewportFv
-	lwz      r3, 0x30(r29)
-	lwzx     r3, r3, r31
-	bl       setViewport__8ViewportFv
-	lwz      r3, 0x20(r29)
-	mulli    r31, r30, 0x30
-	lwz      r28, 0x10(r3)
-	b        lbl_80241A64
+	sys->mTimers->_start("shadow", true);
+	if (_3C && mViewports[idx]->viewable()) {
+		Rectf box = mViewports[idx]->mBounds2;
+		_28[_40]->setShadowRect(box);
+		_28[_40]->setFilterTextureID(idx);
+		_28[_40]->drawInit();
 
-lbl_80241A0C:
-	mr       r3, r29
-	mr       r4, r28
-	mr       r5, r30
-	bl       isDrawNormalShadow__Q24Game9ShadowMgrFPQ24Game10ShadowNodei
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80241A60
-	lwz      r4, 0x20(r28)
-	mr       r3, r29
-	mr       r5, r30
-	bl       getShadowType__Q24Game9ShadowMgrFii
-	lwz      r4, 0x40(r29)
-	mr       r5, r3
-	lwz      r0, 0x1c(r28)
-	slwi     r4, r4, 2
-	addi     r4, r4, 0x28
-	lwzx     r3, r29, r4
-	add      r4, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
+		mViewports[idx]->setProjection();
+		mViewports[idx]->setViewport();
 
-lbl_80241A60:
-	lwz      r28, 4(r28)
+		FOREACH_NODE(ShadowNode, _20->mChild, node)
+		{
+			if (isDrawNormalShadow(node, idx)) {
+				int type = getShadowType(node->mFlags, idx);
+				_28[_40]->drawCylinder(node->mMatrices[idx], type);
+			}
+		}
 
-lbl_80241A64:
-	cmplwi   r28, 0
-	bne      lbl_80241A0C
-	lwz      r3, 0x34(r29)
-	lwz      r28, 0x10(r3)
-	b        lbl_80241AD4
+		FOREACH_NODE(JointShadowRootNode, _34->mChild, node)
+		{
+			if (isDrawJointShadow(node, idx)) {
+				FOREACH_NODE(JointShadowNode, node->mChild, childNode) { _28[_40]->drawCylinder(childNode->_20[idx], childNode->_18); }
+			}
+		}
 
-lbl_80241A78:
-	mr       r3, r29
-	mr       r4, r28
-	mr       r5, r30
-	bl       isDrawJointShadow__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNodei
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80241AD0
-	lwz      r27, 0x10(r28)
-	b        lbl_80241AC8
+		_28[_40]->drawFinish();
+	}
 
-lbl_80241A98:
-	lwz      r3, 0x40(r29)
-	lwz      r0, 0x20(r27)
-	slwi     r3, r3, 2
-	lwz      r5, 0x18(r27)
-	addi     r3, r3, 0x28
-	add      r4, r0, r31
-	lwzx     r3, r29, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r27, 4(r27)
-
-lbl_80241AC8:
-	cmplwi   r27, 0
-	bne      lbl_80241A98
-
-lbl_80241AD0:
-	lwz      r28, 4(r28)
-
-lbl_80241AD4:
-	cmplwi   r28, 0
-	bne      lbl_80241A78
-	lwz      r0, 0x40(r29)
-	slwi     r0, r0, 2
-	add      r3, r29, r0
-	lwz      r3, 0x28(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80241AFC:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_8051A6D0@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	sys->mTimers->_stop("shadow");
 }
 
 /*
@@ -949,86 +512,24 @@ lbl_80241AFC:
  * Address:	80241B20
  * Size:	0000F0
  */
-void ShadowMgr::createShadow(Game::Creature*)
+void ShadowMgr::createShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r31, r3
-	mr       r28, r4
-	lwz      r3, 0x24(r3)
-	lwz      r3, 0x10(r3)
-	b        lbl_80241B54
+	FOREACH_NODE(ShadowNode, _24->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			return;
+		}
+	}
 
-lbl_80241B44:
-	lwz      r0, 0x18(r3)
-	cmplw    r28, r0
-	beq      lbl_80241BFC
-	lwz      r3, 4(r3)
+	FOREACH_NODE(ShadowNode, _20->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			return;
+		}
+	}
 
-lbl_80241B54:
-	cmplwi   r3, 0
-	bne      lbl_80241B44
-	lwz      r3, 0x20(r31)
-	lwz      r3, 0x10(r3)
-	b        lbl_80241B78
-
-lbl_80241B68:
-	lwz      r0, 0x18(r3)
-	cmplw    r28, r0
-	beq      lbl_80241BFC
-	lwz      r3, 4(r3)
-
-lbl_80241B78:
-	cmplwi   r3, 0
-	bne      lbl_80241B68
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80241BE8
-	lwz      r30, 0x18(r31)
-	mr       r27, r4
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game10ShadowNode@ha
-	addi     r0, r3, __vt__Q24Game10ShadowNode@l
-	stw      r0, 0(r27)
-	mulli    r3, r30, 0x30
-	stw      r28, 0x18(r27)
-	bl       __nwa__FUl
-	stw      r3, 0x1c(r27)
-	li       r29, 0
-	mr       r28, r29
-	stw      r29, 0x20(r27)
-	b        lbl_80241BDC
-
-lbl_80241BC8:
-	lwz      r0, 0x1c(r27)
-	add      r3, r0, r28
-	bl       PSMTXIdentity
-	addi     r28, r28, 0x30
-	addi     r29, r29, 1
-
-lbl_80241BDC:
-	cmpw     r29, r30
-	blt      lbl_80241BC8
-	mr       r4, r27
-
-lbl_80241BE8:
-	lwz      r3, 0x24(r31)
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x1c(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x1c(r31)
-
-lbl_80241BFC:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_24->add(new ShadowNode(owner, getCount()));
+	_1C++;
 }
 
 /*
@@ -1038,30 +539,10 @@ lbl_80241BFC:
  */
 void ShadowMgr::killAll()
 {
-	/*
-	lwz      r4, 0x34(r3)
-	li       r0, 0
-	stw      r0, 0x10(r4)
-	stw      r0, 0xc(r4)
-	stw      r0, 8(r4)
-	stw      r0, 4(r4)
-	lwz      r4, 0x38(r3)
-	stw      r0, 0x10(r4)
-	stw      r0, 0xc(r4)
-	stw      r0, 8(r4)
-	stw      r0, 4(r4)
-	lwz      r4, 0x20(r3)
-	stw      r0, 0x10(r4)
-	stw      r0, 0xc(r4)
-	stw      r0, 8(r4)
-	stw      r0, 4(r4)
-	lwz      r3, 0x24(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 8(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
+	_34->clearRelations();
+	_38->clearRelations();
+	_20->clearRelations();
+	_24->clearRelations();
 }
 
 /*
@@ -1069,27 +550,10 @@ void ShadowMgr::killAll()
  * Address:	80241C68
  * Size:	000044
  */
-void ShadowMgr::killShadow(Game::Creature*)
+void ShadowMgr::killShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       killJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	mr       r3, r30
-	mr       r4, r31
-	bl       killNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	killJointShadow(owner);
+	killNormalShadow(owner);
 }
 
 /*
@@ -1097,27 +561,10 @@ void ShadowMgr::killShadow(Game::Creature*)
  * Address:	80241CAC
  * Size:	000044
  */
-void ShadowMgr::addShadow(Game::Creature*)
+void ShadowMgr::addShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	mr       r3, r30
-	mr       r4, r31
-	bl       addNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	addJointShadow(owner);
+	addNormalShadow(owner);
 }
 
 /*
@@ -1125,7 +572,7 @@ void ShadowMgr::addShadow(Game::Creature*)
  * Address:	........
  * Size:	000044
  */
-void ShadowMgr::addHeadShadow(Game::Creature*)
+void ShadowMgr::addHeadShadow(Creature*)
 {
 	// UNUSED FUNCTION
 }
@@ -1135,27 +582,10 @@ void ShadowMgr::addHeadShadow(Game::Creature*)
  * Address:	80241CF0
  * Size:	000044
  */
-void ShadowMgr::delShadow(Game::Creature*)
+void ShadowMgr::delShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       delJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	mr       r3, r30
-	mr       r4, r31
-	bl       delNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delJointShadow(owner);
+	delNormalShadow(owner);
 }
 
 /*
@@ -1163,65 +593,17 @@ void ShadowMgr::delShadow(Game::Creature*)
  * Address:	80241D34
  * Size:	0000AC
  */
-void ShadowMgr::addNormalShadow(Game::Creature*)
+void ShadowMgr::addNormalShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r28, 0x10(r1)
-	lwz      r3, 0x24(r3)
-	lwz      r28, 0x10(r3)
-	b        lbl_80241DB8
-
-lbl_80241D60:
-	lwz      r0, 0x18(r28)
-	cmplw    r4, r0
-	bne      lbl_80241DB4
-	mr       r3, r28
-	bl       del__5CNodeFv
-	lwz      r3, 0x20(r29)
-	mr       r4, r28
-	bl       add__5CNodeFP5CNode
-	lwz      r30, 0x18(r29)
-	li       r31, 0
-	mr       r29, r31
-	stw      r31, 0x20(r28)
-	b        lbl_80241DA8
-
-lbl_80241D94:
-	lwz      r0, 0x1c(r28)
-	add      r3, r0, r29
-	bl       PSMTXIdentity
-	addi     r29, r29, 0x30
-	addi     r31, r31, 1
-
-lbl_80241DA8:
-	cmpw     r31, r30
-	blt      lbl_80241D94
-	b        lbl_80241DC0
-
-lbl_80241DB4:
-	lwz      r28, 4(r28)
-
-lbl_80241DB8:
-	cmplwi   r28, 0
-	bne      lbl_80241D60
-
-lbl_80241DC0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	FOREACH_NODE(ShadowNode, _24->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			node->del();
+			_20->add(node);
+			node->init(getCount());
+			return;
+		}
+	}
 }
 
 /*
@@ -1229,70 +611,18 @@ lbl_80241DC0:
  * Address:	80241DE0
  * Size:	0000B8
  */
-void ShadowMgr::addJointShadow(Game::Creature*)
+void ShadowMgr::addJointShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r25, r3
-	mr       r26, r4
-	lwz      r3, 0x38(r3)
-	lwz      r28, 0x10(r3)
-	b        lbl_80241E7C
-
-lbl_80241E04:
-	lwz      r0, 0x18(r28)
-	lwz      r27, 4(r28)
-	cmplw    r26, r0
-	bne      lbl_80241E78
-	mr       r3, r28
-	bl       del__5CNodeFv
-	lwz      r3, 0x34(r25)
-	mr       r4, r28
-	bl       add__5CNodeFP5CNode
-	lwz      r30, 0x18(r25)
-	li       r0, 0
-	stb      r0, 0x1c(r28)
-	lwz      r31, 0x10(r28)
-	b        lbl_80241E70
-
-lbl_80241E3C:
-	lwz      r3, 0x1c(r31)
-	bl       PSMTXIdentity
-	li       r29, 0
-	mr       r28, r29
-	b        lbl_80241E64
-
-lbl_80241E50:
-	lwz      r0, 0x20(r31)
-	add      r3, r0, r28
-	bl       PSMTXIdentity
-	addi     r28, r28, 0x30
-	addi     r29, r29, 1
-
-lbl_80241E64:
-	cmpw     r29, r30
-	blt      lbl_80241E50
-	lwz      r31, 4(r31)
-
-lbl_80241E70:
-	cmplwi   r31, 0
-	bne      lbl_80241E3C
-
-lbl_80241E78:
-	mr       r28, r27
-
-lbl_80241E7C:
-	cmplwi   r28, 0
-	bne      lbl_80241E04
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	JointShadowRootNode* node = static_cast<JointShadowRootNode*>(_38->mChild);
+	while (node) {
+		JointShadowRootNode* nextNode = static_cast<JointShadowRootNode*>(node->mNext);
+		if (owner == node->mCreature) {
+			node->del();
+			_34->add(node);
+			node->init(_18);
+		}
+		node = nextNode;
+	}
 }
 
 /*
@@ -1300,7 +630,7 @@ lbl_80241E7C:
  * Address:	........
  * Size:	0000AC
  */
-void ShadowMgr::addHeadNormalShadow(Game::Creature*)
+void ShadowMgr::addHeadNormalShadow(Creature*)
 {
 	// UNUSED FUNCTION
 }
@@ -1310,7 +640,7 @@ void ShadowMgr::addHeadNormalShadow(Game::Creature*)
  * Address:	........
  * Size:	0000B8
  */
-void ShadowMgr::addHeadJointShadow(Game::Creature*)
+void ShadowMgr::addHeadJointShadow(Creature*)
 {
 	// UNUSED FUNCTION
 }
@@ -1320,45 +650,16 @@ void ShadowMgr::addHeadJointShadow(Game::Creature*)
  * Address:	80241E98
  * Size:	00006C
  */
-void ShadowMgr::delNormalShadow(Game::Creature*)
+void ShadowMgr::delNormalShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x20(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_80241EE4
-
-lbl_80241EBC:
-	lwz      r0, 0x18(r31)
-	cmplw    r4, r0
-	bne      lbl_80241EE0
-	mr       r3, r31
-	bl       del__5CNodeFv
-	lwz      r3, 0x24(r30)
-	mr       r4, r31
-	bl       add__5CNodeFP5CNode
-	b        lbl_80241EEC
-
-lbl_80241EE0:
-	lwz      r31, 4(r31)
-
-lbl_80241EE4:
-	cmplwi   r31, 0
-	bne      lbl_80241EBC
-
-lbl_80241EEC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(ShadowNode, _20->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			node->del();
+			_24->add(node);
+			return;
+		}
+	}
 }
 
 /*
@@ -1366,48 +667,18 @@ lbl_80241EEC:
  * Address:	80241F04
  * Size:	000080
  */
-void ShadowMgr::delJointShadow(Game::Creature*)
+void ShadowMgr::delJointShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 0x34(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_80241F5C
-
-lbl_80241F34:
-	lwz      r0, 0x18(r30)
-	lwz      r31, 4(r30)
-	cmplw    r29, r0
-	bne      lbl_80241F58
-	mr       r3, r30
-	bl       del__5CNodeFv
-	lwz      r3, 0x38(r28)
-	mr       r4, r30
-	bl       add__5CNodeFP5CNode
-
-lbl_80241F58:
-	mr       r30, r31
-
-lbl_80241F5C:
-	cmplwi   r30, 0
-	bne      lbl_80241F34
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JointShadowRootNode* nextNode;
+	JointShadowRootNode* node = static_cast<JointShadowRootNode*>(_34->mChild);
+	while (node) {
+		nextNode = static_cast<JointShadowRootNode*>(node->mNext);
+		if (owner == node->mCreature) {
+			node->del();
+			_38->add(node);
+		}
+		node = nextNode;
+	}
 }
 
 /*
@@ -1415,65 +686,23 @@ lbl_80241F5C:
  * Address:	80241F84
  * Size:	0000AC
  */
-void ShadowMgr::killNormalShadow(Game::Creature*)
+void ShadowMgr::killNormalShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 0x20(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_80241FD4
+	FOREACH_NODE(ShadowNode, _20->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			node->mCreature = nullptr;
+			node->del();
+		}
+	}
 
-lbl_80241FB8:
-	lwz      r0, 0x18(r30)
-	cmplw    r29, r0
-	bne      lbl_80241FD0
-	stw      r31, 0x18(r30)
-	mr       r3, r30
-	bl       del__5CNodeFv
-
-lbl_80241FD0:
-	lwz      r30, 4(r30)
-
-lbl_80241FD4:
-	cmplwi   r30, 0
-	bne      lbl_80241FB8
-	lwz      r3, 0x24(r28)
-	li       r31, 0
-	lwz      r30, 0x10(r3)
-	b        lbl_80242008
-
-lbl_80241FEC:
-	lwz      r0, 0x18(r30)
-	cmplw    r29, r0
-	bne      lbl_80242004
-	stw      r31, 0x18(r30)
-	mr       r3, r30
-	bl       del__5CNodeFv
-
-lbl_80242004:
-	lwz      r30, 4(r30)
-
-lbl_80242008:
-	cmplwi   r30, 0
-	bne      lbl_80241FEC
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	FOREACH_NODE(ShadowNode, _24->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			node->mCreature = nullptr;
+			node->del();
+		}
+	}
 }
 
 /*
@@ -1481,65 +710,28 @@ lbl_80242008:
  * Address:	80242030
  * Size:	0000AC
  */
-void ShadowMgr::killJointShadow(Game::Creature*)
+void ShadowMgr::killJointShadow(Creature* owner)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 0x34(r3)
-	lwz      r3, 0x10(r3)
-	b        lbl_80242080
+	JointShadowRootNode* nextNode;
+	JointShadowRootNode* node = static_cast<JointShadowRootNode*>(_34->mChild);
+	while (node) {
+		nextNode = static_cast<JointShadowRootNode*>(node->mNext);
+		if (owner == node->mCreature) {
+			node->mCreature = nullptr;
+			node->del();
+		}
+		node = nextNode;
+	}
 
-lbl_80242064:
-	lwz      r0, 0x18(r3)
-	lwz      r30, 4(r3)
-	cmplw    r29, r0
-	bne      lbl_8024207C
-	stw      r31, 0x18(r3)
-	bl       del__5CNodeFv
-
-lbl_8024207C:
-	mr       r3, r30
-
-lbl_80242080:
-	cmplwi   r3, 0
-	bne      lbl_80242064
-	lwz      r3, 0x38(r28)
-	li       r31, 0
-	lwz      r3, 0x10(r3)
-	b        lbl_802420B4
-
-lbl_80242098:
-	lwz      r0, 0x18(r3)
-	lwz      r30, 4(r3)
-	cmplw    r29, r0
-	bne      lbl_802420B0
-	stw      r31, 0x18(r3)
-	bl       del__5CNodeFv
-
-lbl_802420B0:
-	mr       r3, r30
-
-lbl_802420B4:
-	cmplwi   r3, 0
-	bne      lbl_80242098
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	node = static_cast<JointShadowRootNode*>(_38->mChild);
+	while (node) {
+		nextNode = static_cast<JointShadowRootNode*>(node->mNext);
+		if (owner == node->mCreature) {
+			node->mCreature = nullptr;
+			node->del();
+		}
+		node = nextNode;
+	}
 }
 
 /*
@@ -1547,122 +739,54 @@ lbl_802420B4:
  * Address:	802420DC
  * Size:	000024
  */
-void ShadowMgr::setJointShadowRootNode(Game::JointShadowRootNode*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x38(r3)
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ShadowMgr::setJointShadowRootNode(JointShadowRootNode* node) { _38->add(node); }
 
 /*
  * --INFO--
  * Address:	80242100
  * Size:	0000F0
  */
-void ShadowMgr::setForceVisible(Game::Creature*, bool)
+void ShadowMgr::setForceVisible(Creature* owner, bool isVisible)
 {
-	/*
-	lwz      r6, 0x20(r3)
-	lwz      r6, 0x10(r6)
-	b        lbl_80242144
+	FOREACH_NODE(ShadowNode, _20->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			if (isVisible) {
+				node->mFlags |= 0x10000000;
+				break;
+			} else {
+				node->mFlags &= ~0xF0000000;
+				break;
+			}
+		}
+	}
 
-lbl_8024210C:
-	lwz      r0, 0x18(r6)
-	cmplw    r4, r0
-	bne      lbl_80242140
-	clrlwi.  r0, r5, 0x18
-	beq      lbl_80242130
-	lwz      r0, 0x20(r6)
-	oris     r0, r0, 0x1000
-	stw      r0, 0x20(r6)
-	b        lbl_8024214C
+	FOREACH_NODE(ShadowNode, _24->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			if (isVisible) {
+				node->mFlags |= 0x10000000;
+				break;
+			} else {
+				node->mFlags &= ~0xF0000000;
+				break;
+			}
+		}
+	}
 
-lbl_80242130:
-	lwz      r0, 0x20(r6)
-	clrlwi   r0, r0, 4
-	stw      r0, 0x20(r6)
-	b        lbl_8024214C
+	FOREACH_NODE(JointShadowRootNode, _34->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			node->_1C = isVisible;
+		}
+	}
 
-lbl_80242140:
-	lwz      r6, 4(r6)
-
-lbl_80242144:
-	cmplwi   r6, 0
-	bne      lbl_8024210C
-
-lbl_8024214C:
-	lwz      r6, 0x24(r3)
-	lwz      r6, 0x10(r6)
-	b        lbl_80242190
-
-lbl_80242158:
-	lwz      r0, 0x18(r6)
-	cmplw    r4, r0
-	bne      lbl_8024218C
-	clrlwi.  r0, r5, 0x18
-	beq      lbl_8024217C
-	lwz      r0, 0x20(r6)
-	oris     r0, r0, 0x1000
-	stw      r0, 0x20(r6)
-	b        lbl_80242198
-
-lbl_8024217C:
-	lwz      r0, 0x20(r6)
-	clrlwi   r0, r0, 4
-	stw      r0, 0x20(r6)
-	b        lbl_80242198
-
-lbl_8024218C:
-	lwz      r6, 4(r6)
-
-lbl_80242190:
-	cmplwi   r6, 0
-	bne      lbl_80242158
-
-lbl_80242198:
-	lwz      r6, 0x34(r3)
-	clrlwi   r5, r5, 0x18
-	lwz      r6, 0x10(r6)
-	b        lbl_802421BC
-
-lbl_802421A8:
-	lwz      r0, 0x18(r6)
-	cmplw    r4, r0
-	bne      lbl_802421B8
-	stb      r5, 0x1c(r6)
-
-lbl_802421B8:
-	lwz      r6, 4(r6)
-
-lbl_802421BC:
-	cmplwi   r6, 0
-	bne      lbl_802421A8
-	lwz      r3, 0x38(r3)
-	lwz      r3, 0x10(r3)
-	b        lbl_802421E4
-
-lbl_802421D0:
-	lwz      r0, 0x18(r3)
-	cmplw    r4, r0
-	bne      lbl_802421E0
-	stb      r5, 0x1c(r3)
-
-lbl_802421E0:
-	lwz      r3, 4(r3)
-
-lbl_802421E4:
-	cmplwi   r3, 0
-	bne      lbl_802421D0
-	blr
-	*/
+	FOREACH_NODE(JointShadowRootNode, _38->mChild, node)
+	{
+		if (owner == node->mCreature) {
+			node->_1C = isVisible;
+		}
+	}
 }
 
 /*
@@ -1670,64 +794,28 @@ lbl_802421E4:
  * Address:	802421F0
  * Size:	000030
  */
-void ShadowMgr::getSize()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+int ShadowMgr::getSize() { return _20->getChildCount(); }
 
 /*
  * --INFO--
  * Address:	80242220
  * Size:	000008
  */
-void ShadowMgr::getMax()
-{
-	/*
-	lwz      r3, 0x1c(r3)
-	blr
-	*/
-}
+int ShadowMgr::getMax() { return _1C; }
 
 /*
  * --INFO--
  * Address:	80242228
  * Size:	000038
  */
-void ShadowMgr::getCreature(int)
+Creature* ShadowMgr::getCreature(int idx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	bl       getChildAt__5CNodeFi
-	cmplwi   r3, 0
-	beq      lbl_8024224C
-	lwz      r3, 0x18(r3)
-	b        lbl_80242250
+	ShadowNode* node = static_cast<ShadowNode*>(_20->getChildAt(idx));
+	if (node) {
+		return node->mCreature;
+	}
 
-lbl_8024224C:
-	li       r3, 0
-
-lbl_80242250:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -1735,85 +823,46 @@ lbl_80242250:
  * Address:	80242260
  * Size:	000008
  */
-u32 ShadowMgr::getFirst() { return 0x0; }
+int ShadowMgr::getFirst() { return 0; }
 
 /*
  * --INFO--
  * Address:	80242268
  * Size:	000008
  */
-void ShadowMgr::getNext(int)
-{
-	/*
-	addi     r3, r4, 1
-	blr
-	*/
-}
+int ShadowMgr::getNext(int idx) { return idx + 1; }
 
 /*
  * --INFO--
  * Address:	80242270
  * Size:	00004C
  */
-void ShadowMgr::isDone(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	srawi    r5, r31, 0x1f
-	srwi     r4, r3, 0x1f
-	subfc    r0, r3, r31
-	lwz      r31, 0xc(r1)
-	adde     r0, r5, r4
-	clrlwi   r3, r0, 0x18
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool ShadowMgr::isDone(int idx) { return (u8)(idx >= getSize()); }
 
 /*
  * --INFO--
  * Address:	802422BC
  * Size:	00004C
  */
-void ShadowMgr::getShadowMaskType(int, int)
+u32 ShadowMgr::getShadowMaskType(int p1, int p2)
 {
-	/*
-	cmpwi    r5, 0
-	bne      lbl_802422CC
-	mr       r3, r4
-	blr
+	if (p2 == 0) {
+		return p1;
+	}
 
-lbl_802422CC:
-	cmpwi    r5, 1
-	bne      lbl_802422DC
-	rlwinm   r3, r4, 4, 0x18, 0x1b
-	blr
+	if (p2 == 1) {
+		return (p1 << 4) & 0xF0;
+	}
 
-lbl_802422DC:
-	cmpwi    r5, 2
-	bne      lbl_802422EC
-	rlwinm   r3, r4, 8, 0x14, 0x17
-	blr
+	if (p2 == 2) {
+		return (p1 << 8) & 0xF00;
+	}
 
-lbl_802422EC:
-	addi     r3, r5, -3
-	subfic   r0, r5, 3
-	nor      r3, r3, r0
-	rlwinm   r0, r4, 0xc, 0x10, 0x13
-	srawi    r3, r3, 0x1f
-	and      r3, r0, r3
-	blr
-	*/
+	if (p2 == 3) {
+		return (p1 << 12) & 0xF000;
+	}
+
+	return 0;
 }
 
 /*
@@ -1821,35 +870,25 @@ lbl_802422EC:
  * Address:	80242308
  * Size:	00004C
  */
-void ShadowMgr::getShadowType(int, int)
+u32 ShadowMgr::getShadowType(int p1, int p2)
 {
-	/*
-	cmpwi    r5, 0
-	bne      lbl_80242318
-	clrlwi   r3, r4, 0x1c
-	blr
+	if (p2 == 0) {
+		return p1 & 0xF;
+	}
 
-lbl_80242318:
-	cmpwi    r5, 1
-	bne      lbl_80242328
-	rlwinm   r3, r4, 0x1c, 0x1c, 0x1f
-	blr
+	if (p2 == 1) {
+		return (p1 >> 4) & 0xF;
+	}
 
-lbl_80242328:
-	cmpwi    r5, 2
-	bne      lbl_80242338
-	rlwinm   r3, r4, 0x18, 0x1c, 0x1f
-	blr
+	if (p2 == 2) {
+		return (p1 >> 8) & 0xF;
+	}
 
-lbl_80242338:
-	addi     r3, r5, -3
-	subfic   r0, r5, 3
-	nor      r3, r3, r0
-	rlwinm   r0, r4, 0x14, 0x1c, 0x1f
-	srawi    r3, r3, 0x1f
-	and      r3, r0, r3
-	blr
-	*/
+	if (p2 == 3) {
+		return (p1 >> 12) & 0xF;
+	}
+
+	return 0;
 }
 
 /*
@@ -1857,48 +896,13 @@ lbl_80242338:
  * Address:	80242354
  * Size:	000080
  */
-void ShadowMgr::isDrawNormalShadow(Game::ShadowNode*, int)
+bool ShadowMgr::isDrawNormalShadow(ShadowNode* node, int vpNum)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r3, 0x18(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x138(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802423B8
-	lwz      r0, 0x20(r30)
-	rlwinm.  r0, r0, 0, 0, 3
-	bne      lbl_802423B0
-	lwz      r3, 0x18(r30)
-	li       r0, 0x10
-	slw      r0, r0, r31
-	lbz      r3, 0xd8(r3)
-	and.     r0, r3, r0
-	beq      lbl_802423B8
+	if (node->mCreature->needShadow() && (node->mFlags & 0xF0000000 || node->mCreature->mLod.isFlag(AILOD_IsVisVP0 << vpNum))) {
+		return true;
+	}
 
-lbl_802423B0:
-	li       r3, 1
-	b        lbl_802423BC
-
-lbl_802423B8:
-	li       r3, 0
-
-lbl_802423BC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1906,48 +910,13 @@ lbl_802423BC:
  * Address:	802423D4
  * Size:	000080
  */
-void ShadowMgr::isDrawJointShadow(Game::JointShadowRootNode*, int)
+bool ShadowMgr::isDrawJointShadow(JointShadowRootNode* node, int vpNum)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r3, 0x18(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x138(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80242438
-	lbz      r0, 0x1c(r30)
-	cmplwi   r0, 0
-	bne      lbl_80242430
-	lwz      r3, 0x18(r30)
-	li       r0, 0x10
-	slw      r0, r0, r31
-	lbz      r3, 0xd8(r3)
-	and.     r0, r3, r0
-	beq      lbl_80242438
+	if (node->mCreature->needShadow() && (node->_1C || node->mCreature->mLod.isFlag(AILOD_IsVisVP0 << vpNum))) {
+		return true;
+	}
 
-lbl_80242430:
-	li       r3, 1
-	b        lbl_8024243C
-
-lbl_80242438:
-	li       r3, 0
-
-lbl_8024243C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1955,58 +924,16 @@ lbl_8024243C:
  * Address:	80242454
  * Size:	0000AC
  */
-void ShadowMgr::readShadowParms(char*)
+void ShadowMgr::readShadowParms(char* fileName)
 {
-	/*
-	stwu     r1, -0x440(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x444(r1)
-	li       r0, 0
-	li       r7, 0
-	li       r8, 2
-	stw      r31, 0x43c(r1)
-	li       r9, 0
-	li       r10, 0
-	stw      r30, 0x438(r1)
-	mr       r30, r3
-	mr       r3, r4
-	li       r4, 0
-	stw      r0, 8(r1)
-	bl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	or.      r31, r3, r3
-	beq      lbl_802424E8
-	mr       r4, r31
-	addi     r3, r1, 0x10
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x1c(r1)
-	bne      lbl_802424C8
-	li       r0, 0
-	stw      r0, 0x424(r1)
+	void* data = JKRDvdRipper::loadToMainRAM(fileName, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 
-lbl_802424C8:
-	mr       r3, r30
-	addi     r4, r1, 0x10
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       __dla__FPv
-
-lbl_802424E8:
-	lwz      r0, 0x444(r1)
-	lwz      r31, 0x43c(r1)
-	lwz      r30, 0x438(r1)
-	mtlr     r0
-	addi     r1, r1, 0x440
-	blr
-	*/
+	if (data) {
+		RamStream input(data, -1);
+		input.resetPosition(true, 1);
+		read(input);
+		delete[] data;
+	}
 }
 
 /*
@@ -2014,43 +941,14 @@ lbl_802424E8:
  * Address:	80242500
  * Size:	000084
  */
-void ShadowMgr::write(Stream&)
+void ShadowMgr::write(Stream& output)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x3c(r3)
-	mr       r3, r31
-	extsh    r4, r0
-	bl       writeShort__6StreamFs
-	lbz      r0, 0x3d(r30)
-	mr       r3, r31
-	extsh    r4, r0
-	bl       writeShort__6StreamFs
-	lwz      r4, 0x40(r30)
-	mr       r3, r31
-	bl       writeInt__6StreamFi
-	lwz      r4, 0x44(r30)
-	mr       r3, r31
-	bl       writeInt__6StreamFi
-	mr       r4, r31
-	addi     r3, r30, 0x48
-	bl       write__6Color4FR6Stream
-	lwz      r3, 0x4c(r30)
-	mr       r4, r31
-	bl       write__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	output.writeShort((u16)_3C);
+	output.writeShort((u16)_3D);
+	output.writeInt(_40);
+	output.writeInt(_44);
+	mColor.write(output);
+	mParms->write(output);
 }
 
 /*
@@ -2058,210 +956,14 @@ void ShadowMgr::write(Stream&)
  * Address:	80242584
  * Size:	00007C
  */
-void ShadowMgr::read(Stream&)
+void ShadowMgr::read(Stream& input)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       readShort__6StreamFv
-	stb      r3, 0x3c(r30)
-	mr       r3, r31
-	bl       readShort__6StreamFv
-	stb      r3, 0x3d(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x40(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x44(r30)
-	mr       r4, r31
-	addi     r3, r30, 0x48
-	bl       read__6Color4FR6Stream
-	lwz      r3, 0x4c(r30)
-	mr       r4, r31
-	bl       read__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80242600
- * Size:	000060
- */
-ShadowMgr::~ShadowMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80242644
-	lis      r5, __vt__Q24Game9ShadowMgr@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game9ShadowMgr@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80242644
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80242644:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80242660
- * Size:	000060
- */
-ShadowNode::~ShadowNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802426A4
-	lis      r5, __vt__Q24Game10ShadowNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game10ShadowNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_802426A4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802426A4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802426C0
- * Size:	000060
- */
-JointShadowNode::~JointShadowNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80242704
-	lis      r5, __vt__Q24Game15JointShadowNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80242704
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80242704:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80242720
- * Size:	000060
- */
-JointShadowRootNode::~JointShadowRootNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80242764
-	lis      r5, __vt__Q24Game19JointShadowRootNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game19JointShadowRootNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80242764
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80242764:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_3C = input.readShort();
+	_3D = input.readShort();
+	_40 = input.readInt();
+	_44 = input.readInt();
+	mColor.read(input);
+	mParms->read(input);
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80242780
- * Size:	000028
- */
-void __sinit_shadowMgr_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C19E8@ha
-	stw      r0, lbl_80515CF8@sda21(r13)
-	stfsu    f0, lbl_804C19E8@l(r3)
-	stfs     f0, lbl_80515CFC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

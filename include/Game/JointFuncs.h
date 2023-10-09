@@ -25,6 +25,7 @@ struct JointShadowParm {
 };
 
 struct JointShadowNode : public CNode {
+	JointShadowNode();
 	JointShadowNode(int);
 
 	virtual ~JointShadowNode() { } // _08 (weak)
@@ -39,9 +40,12 @@ struct JointShadowNode : public CNode {
 };
 
 struct JointShadowRootNode : public CNode {
+	JointShadowRootNode();
 	JointShadowRootNode(Creature*);
 
 	virtual ~JointShadowRootNode() { } // _08 (weak)
+
+	void init(int);
 
 	Creature* mCreature; // _18
 	u8 _1C;              // _1C

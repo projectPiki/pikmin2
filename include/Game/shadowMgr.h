@@ -31,18 +31,29 @@ struct ShadowParam {
 
 // Size: 0x60
 struct ShadowParms : public Parameters {
+	ShadowParms()
+	    : Parameters(nullptr, "ShadowParms")
+	    , mLodNear(this, 'lodn', "LOD NearÅF", 0.1f, 0.0f, 0.2f)
+	    , mLodFar(this, 'lodf', "LOD FarÅF", 0.02f, 0.0f, 0.2f)
+	{
+	}
+
 	Parm<f32> mLodNear; // _0C
 	Parm<f32> mLodFar;  // _34
-	void* mEnd;         // _5C
 };
 
 // Size: 0x24
 struct ShadowNode : public CNode {
-	virtual ~ShadowNode(); // _08 (weak)
+	ShadowNode();
+	ShadowNode(Creature*, int);
+
+	// virtual ~ShadowNode(); // _08 (weak)
+
+	void init(int);
 
 	Creature* mCreature; // _18
-	u32 _1C;             // _1C
-	u32 _20;             // _20 /* bitfield */
+	Matrixf* mMatrices;  // _1C
+	u32 mFlags;          // _20 /* bitfield */
 };
 
 struct CylinderBase {
@@ -57,7 +68,7 @@ struct CylinderBase {
 	void setShadowRect(Rectf&);
 	void setCameraParms(Camera*, int);
 	void makeSRT(Matrixf&, ShadowParam&);
-	void getCylinderType(ShadowParam&, int);
+	int getCylinderType(ShadowParam&, int);
 	void setupFillGX();
 	void setupDrawCylinderGX();
 	void setupFilterGX();
@@ -172,7 +183,7 @@ struct SphereShadowNode : public JointShadowNode {
 struct ShadowMgr : public CNode {
 	ShadowMgr(int);
 
-	virtual ~ShadowMgr();               // _08 (weak)
+	// virtual ~ShadowMgr();               // _08 (weak)
 	virtual int getSize();              // _10
 	virtual int getMax();               // _14
 	virtual Creature* getCreature(int); // _18
@@ -225,14 +236,15 @@ struct ShadowMgr : public CNode {
 
 	void setForceVisible(Creature*, bool);
 
+	inline int getCount() { return _18; }
+
 	// CNode _00
 	int _18;                  // _18
 	int _1C;                  // _1C /* Sodium called this max? Unsure why. */
 	ShadowNode* _20;          // _20
 	ShadowNode* _24;          // _24
-	ShadowCylinder2* _28;     // _28
-	ShadowCylinder3* _2C;     // _2C
-	Viewport** mViewports;    // _30
+	CylinderBase* _28[2];     // _28, 0 = ShadowCylinder2, 1 = ShadowCylinder3
+	Viewport** mViewports;    // _30, array of size _18
 	JointShadowRootNode* _34; // _34
 	JointShadowRootNode* _38; // _38
 	u8 _3C;                   // _3C
