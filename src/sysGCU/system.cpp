@@ -892,11 +892,11 @@ void System::initialize()
 
 	// renderMode = getRenderModeObj();
 	JFWSystem::init();
-	JUTException::sErrorManager->_84      = -1;
+	JUTException::sErrorManager->mGamePad = nullptr;
 	JUTException::sErrorManager->mPadPort = JUTGamePad::PORT_INVALID;
 	// JUTException::setPreUserCallback(preUserCallback);
-	JUTException::sErrorManager->_90 = 0;
-	JUTException::sErrorManager->_8C = 0;
+	JUTException::sErrorManager->mPrintWaitTime1 = 0;
+	JUTException::sErrorManager->mPrintWaitTime0 = 0;
 	JKRHeap::setErrorHandler(Pikmin2DefaultMemoryErrorRoutine);
 	JKRHeap::sRootHeap->becomeCurrentHeap();
 	// JUTException::appendMapFile(cMapFileName);
@@ -1641,7 +1641,7 @@ void System::setFrameRate(int newFactor)
 	mFpsFactor                   = (f32)newFactor;
 	mDeltaTime                   = mFpsFactor / 60.0f;
 	display->mSecondsPer60Frames = newFactor;
-	display->_20                 = 0;
+	display->mTickRate           = 0;
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1722,7 +1722,7 @@ bool System::dvdLoadSyncNoBlock(DvdThreadCommand* command)
 	}
 
 	if (check) {
-		check = mDvdStatus->isErrorOccured();
+		check = !mDvdStatus->isErrorOccured();
 	}
 	return check;
 	/*

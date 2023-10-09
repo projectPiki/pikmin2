@@ -699,16 +699,3 @@ void HeapInfo::getUsedSize(bool)
 {
 	// UNUSED FUNCTION
 }
-
-/*
- * --INFO--
- * Address:	8042B464
- * Size:	000008
- */
-void HeapInfo::@36 @__dt()
-{
-	/*
-	addi     r3, r3, -36
-	b        __dt__8HeapInfoFv
-	*/
-}

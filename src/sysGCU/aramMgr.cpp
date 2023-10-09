@@ -1,43 +1,4 @@
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049A628
-    lbl_8049A628:
-        .4byte 0x6172616D
-        .4byte 0x4D67722E
-        .4byte 0x63707000
-    .global lbl_8049A634
-    lbl_8049A634:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24ARAM4Node
-    __vt__Q24ARAM4Node:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24ARAM4NodeFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global gAramMgr
-    gAramMgr:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520770
-    lbl_80520770:
-        .4byte 0x00000000
-    .global lbl_80520774
-    lbl_80520774:
-        .4byte 0x726F6F74
-        .4byte 0x00000000
-        .4byte 0x00000000
-*/
-
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
@@ -46,8 +7,9 @@
 #include "CNode.h"
 #include "string.h"
 #include "ARAM.h"
-
 ARAM::Mgr* gAramMgr;
+
+static const char* sdata2_placeholder = ""; // how in the hell are we going to get the sdata2 ordered correctly?
 
 namespace ARAM {
 /*
@@ -69,7 +31,7 @@ inline Node::Node()
 inline u32 Node::dvdToAram(char const* name, bool useNull)
 {
 	P2ASSERTLINE(105, name);
-	mName = (char*)name;
+	mName = const_cast<char*>(name);
 
 	if (!mStatus) {
 		if (useNull) {
@@ -79,7 +41,7 @@ inline u32 Node::dvdToAram(char const* name, bool useNull)
 		}
 	}
 
-	return (u32)mStatus;
+	return reinterpret_cast<u32>(mStatus);
 }
 
 /*
@@ -107,7 +69,7 @@ void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expa
 	if (mStatus) {
 		addr = JKRAram::aramToMainRam(mStatus, buf, address, offset, expandSwitch, maxExpandSize, heap, id, byteCnt);
 		DCFlushRange(addr, *byteCnt);
-		if ((s32)allocDir == JKRDvdRipper::ALLOC_DIR_BOTTOM) {
+		if (allocDir == JKRDvdRipper::ALLOC_DIR_BOTTOM) {
 			char* newAddr = new (heap, -0x20) char[*byteCnt];
 			memcpy(newAddr, addr, *byteCnt);
 			delete addr;
@@ -160,7 +122,7 @@ u32 Mgr::dvdToAram(char const* name, bool a2)
 		Node* newNode     = new (sysHeap1, 0) Node;
 
 		JKRHeap* sysHeap2 = JKRHeap::sSystemHeap;
-		size_t length     = strlen((char*)name) + 1;
+		size_t length     = strlen(const_cast<char*>(name)) + 1;
 		char* newName     = new (sysHeap2, 0) char[length];
 		strcpy(newName, name);
 
@@ -247,7 +209,7 @@ Node* ARAM::Mgr::search(char const* str)
 	CNode* node  = mNode.mChild;
 	while (node) {
 		if (strcmp(str, node->mName) == 0) {
-			result = (Node*)node;
+			result = static_cast<Node*>(node);
 			break;
 		}
 		node = node->mNext;
