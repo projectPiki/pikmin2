@@ -80,7 +80,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tank.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/CatfishMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Catfish.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/TadpoleState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Tadpole.o\

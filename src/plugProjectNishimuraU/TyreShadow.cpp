@@ -11,10 +11,10 @@ namespace Game {
 void TyreTubeShadowNode::makeShadowSRT(JointShadowParm& shadowParm, Matrixf* mat)
 {
 	Vector3f matVecs[4];
-	mat->getBasis(0, matVecs[0]);
-	mat->getBasis(3, matVecs[3]);
+	matVecs[0] = Vector3f(mat->getBasis(0));
+	matVecs[3] = mat->getBasis(3);
 
-	Vector3f xVec = Vector3f(matVecs[0]);
+	Vector3f xVec = Vector3f(mat->getBasis(0));
 	xVec.normalise();
 	xVec       = xVec * shadowParm._18;
 	matVecs[0] = xVec;
@@ -219,9 +219,9 @@ namespace Tyre {
  */
 TyreShadowMgr::TyreShadowMgr(Obj* obj)
 {
-	mObj      = obj;
-	_00       = 1.0f;
-	mRootNode = new JointShadowRootNode(obj);
+	mObj         = obj;
+	mGlobalScale = 1.0f;
+	mRootNode    = new JointShadowRootNode(obj);
 
 	mFrontShadow      = new TyreTubeShadowNode;
 	mFrontShadow->_18 = 2;
@@ -255,8 +255,8 @@ void TyreShadowMgr::update()
 	parm.mPosition = mObj->getPosition();
 	parm._0C       = Vector3f(0.0f, 1.0f, 0.0f);
 
-	f32 scale1 = 31.5f * _00;
-	f32 scale2 = 17.5f * _00;
+	f32 scale1 = 31.5f * mGlobalScale;
+	f32 scale2 = 17.5f * mGlobalScale;
 
 	parm.mShadowScale = 0.0f;
 	parm._24          = -17.5f;

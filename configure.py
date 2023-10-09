@@ -1109,7 +1109,7 @@ LIBS = [
             "plugProjectNishimuraU/Tank",
             ["plugProjectNishimuraU/CatfishMgr", True],
             ["plugProjectNishimuraU/Catfish", True],
-            "plugProjectNishimuraU/TadpoleState",
+            ["plugProjectNishimuraU/TadpoleState", True],
             ["plugProjectNishimuraU/TadpoleAnimator", True],
             ["plugProjectNishimuraU/TadpoleMgr", True],
             ["plugProjectNishimuraU/Tadpole", True],
