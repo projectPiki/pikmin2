@@ -135,7 +135,8 @@ struct WPEdgeSearchArg {
 };
 
 struct RouteMgr : public Container<WayPoint> {
-	struct SonarArg { };
+	struct SonarArg {
+	};
 
 	RouteMgr();
 
