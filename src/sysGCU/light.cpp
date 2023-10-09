@@ -113,17 +113,17 @@ LightObj::LightObj(char* name, _GXLightID lightID, ELightTypeFlag typeFlag, JUti
 	mLightID  = lightID;
 	mTypeFlag = typeFlag;
 
-	mPosition      = Vector3f(0.0f, 1000.0f, 0.0f);
-	mElevation     = Vector3f(0.0f, -1.0f, 0.0f);
-	mColor         = color.toUInt32();
-	mIntensity     = 1.0f;
+	mPosition  = Vector3f(0.0f, 1000.0f, 0.0f);
+	mElevation = Vector3f(0.0f, -1.0f, 0.0f);
+	// mColor         = color.toUInt32();
+	mBrightness    = 1.0f;
 	mRefDistance   = 1000.0f;
 	mRefBrightness = 1.0f;
 	mCutoffAngle   = 60.0f;
 
 	mDistAttnFn   = GX_DA_GENTLE;
 	mSpotFn       = GX_SP_COS2;
-	_4C           = 16.0f;
+	mKScale       = 16.0f;
 	mSphereRadius = 30.0f;
 	_54           = 0;
 
@@ -137,27 +137,27 @@ LightObj::LightObj(char* name, _GXLightID lightID, ELightTypeFlag typeFlag, JUti
  */
 void LightObj::set(Matrixf& mtx)
 {
-	u_color color = (u32)-1;
+	u_color color = Color4(0xff, 0xff, 0xff, 0xff);
 
-	f32 rCol = mColor.GXColorView.r * mIntensity;
+	f32 rCol = mColor.toGXColor().r * mBrightness;
 	if (rCol > 255.0f) {
 		rCol = 255.0f;
 	}
 	color.GXColorView.r = (u8)rCol;
 
-	f32 gCol = mColor.GXColorView.g * mIntensity;
+	f32 gCol = mColor.toGXColor().g * mBrightness;
 	if (gCol > 255.0f) {
 		gCol = 255.0f;
 	}
 	color.GXColorView.g = gCol;
 
-	f32 bCol = mColor.GXColorView.b * mIntensity;
+	f32 bCol = mColor.toGXColor().b * mBrightness;
 	if (bCol > 255.0f) {
 		bCol = 255.0f;
 	}
 	color.GXColorView.b = bCol;
 
-	f32 aCol = mColor.GXColorView.a * mIntensity;
+	f32 aCol = mColor.toGXColor().a * mBrightness;
 	if (aCol > 255.0f) {
 		aCol = 255.0f;
 	}
@@ -179,7 +179,7 @@ void LightObj::set(Matrixf& mtx)
 		PSMTXMultVec(m2, (Vec*)&mElevation, &r1);
 
 		GXInitSpecularDir(&lightObj, r1.x, r1.y, r1.z);
-		GXInitLightAttn(&lightObj, 0.0f, 0.0f, 1.0f, _4C * 0.5f, 0.0f, _4C * 0.5f);
+		GXInitLightAttn(&lightObj, 0.0f, 0.0f, 1.0f, mKScale * 0.5f, 0.0f, mKScale * 0.5f);
 		break;
 	default:
 		PSMTXMultVec(mtx.mMatrix.mtxView, (Vec*)&mElevation, &r1);
@@ -190,12 +190,12 @@ void LightObj::set(Matrixf& mtx)
 		PSMTXMultVec(m2, (Vec*)&mElevation, &r2);
 
 		GXInitLightDir(&lightObj, r2.x, r2.y, r2.z);
-		GXInitLightSpot(&lightObj, mCutoffAngle, mSpotFn);
-		GXInitLightDistAttn(&lightObj, mRefDistance, mRefBrightness, mDistAttnFn);
+		GXInitLightSpot(&lightObj, mCutoffAngle, static_cast<GXSpotFn>(mSpotFn));
+		GXInitLightDistAttn(&lightObj, mRefDistance, mRefBrightness, static_cast<GXDistAttnFn>(mDistAttnFn));
 		break;
 	}
 
-	GXLoadLightObjImm(&lightObj, mLightID);
+	GXLoadLightObjImm(&lightObj, static_cast<GXLightID>(mLightID));
 	/*
 	stwu     r1, -0x140(r1)
 	mflr     r0
