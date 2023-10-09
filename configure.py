@@ -921,7 +921,7 @@ LIBS = [
             "plugProjectKandoU/pathfinder",
             "plugProjectKandoU/pelletState",
             "plugProjectKandoU/dynCreature",
-            "plugProjectKandoU/gameGenerator",
+            ["plugProjectKandoU/gameGenerator", True],
             ["plugProjectKandoU/genPiki", True],
             ["plugProjectKandoU/genNavi", True],
             ["plugProjectKandoU/genItem", True],

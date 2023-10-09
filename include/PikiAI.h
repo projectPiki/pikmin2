@@ -357,7 +357,9 @@ struct ActBreakGate : public Action, virtual SysShape::MotionListener {
 	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C
 
 	void initFollow();
-	inline void initStickAttack();
+	void initStickAttack();
+	void initGoto();
+	void calcAttackPos();
 
 	// _00     = VTBL
 	// _00-_0C = Action

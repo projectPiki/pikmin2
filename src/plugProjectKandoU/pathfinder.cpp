@@ -1,52 +1,7 @@
 #include "Game/pathfinder.h"
 #include "System.h"
 #include "Game/routeMgr.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047F400
-    lbl_8047F400:
-        .asciz "pathfinder"
-        .skip 1
-    .global lbl_8047F40C
-    lbl_8047F40C:
-        .asciz "pathfinder.cpp"
-        .skip 1
-        .asciz "Oh! no!\n"
-        .skip 3
-        .asciz "no context is available (clients=%d)!\n"
-        .skip 1
-        .asciz "context state is %d\n"
-        .skip 3
-        .asciz "no such handle %d\n"
-        .skip 1
-    .global lbl_8047F47C
-    lbl_8047F47C:
-        .asciz " no handle ! %d\n"
-        .skip 3
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global testPathfinder__4Game
-    testPathfinder__4Game:
-        .skip 0x4
-    .global routeMgr__Q24Game15PathfindContext
-    routeMgr__Q24Game15PathfindContext:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519178
-    lbl_80519178:
-        .asciz "path"
-        .skip 3
-    .global lbl_80519180
-    lbl_80519180:
-        .float 1280000.0
-    .global lbl_80519184
-    lbl_80519184:
-        .float 0.0
-*/
+#include "Game/cellPyramid.h"
 
 namespace Game {
 
@@ -103,116 +58,20 @@ void Pathfinder::update()
 
 	int counts = 0;
 	for (int i = 0; i < mAStarContextCount; i++) {
-		bool check = mAStarContexts[i].mStatus && mAStarContexts[i].mCheckHandle == 2;
-		if (check) {
+		if (mAStarContexts[i].checkContext()) {
 			counts++;
 		}
 	}
 
 	if (counts > 0) {
 		for (int i = 0; i < mAStarContextCount; i++) {
-			AStarContext* context = &mAStarContexts[i];
-			bool check            = context->mStatus && context->mCheckHandle == 2;
-			if (check) {
-				mAStarContexts[i].mCheckHandle = mAStarPathfinder->search(context, 1, &context->mNode);
+			if (mAStarContexts[i].checkContext()) {
+				mAStarContexts[i].mCheckHandle = mAStarPathfinder->search(&mAStarContexts[i], 1, &mAStarContexts[i].mNode);
 			}
 		}
 	}
 
 	sys->mTimers->_stop("path");
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	addi     r4, r2, lbl_80519178@sda21
-	li       r5, 1
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	lwz      r6, sys@sda21(r13)
-	lwz      r3, 0x28(r6)
-	bl       _start__9SysTimersFPcb
-	lwz      r0, 8(r31)
-	li       r6, 0
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_801A37B4
-
-lbl_801A3778:
-	lwz      r0, 0xc(r31)
-	li       r3, 0
-	add      r4, r0, r5
-	lwz      r0, 0x60(r4)
-	cmplwi   r0, 0
-	beq      lbl_801A37A0
-	lbz      r0, 0x54(r4)
-	cmplwi   r0, 2
-	bne      lbl_801A37A0
-	li       r3, 1
-
-lbl_801A37A0:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A37AC
-	addi     r6, r6, 1
-
-lbl_801A37AC:
-	addi     r5, r5, 0x64
-	bdnz     lbl_801A3778
-
-lbl_801A37B4:
-	cmpwi    r6, 0
-	ble      lbl_801A3828
-	li       r29, 0
-	li       r30, 0
-	b        lbl_801A381C
-
-lbl_801A37C8:
-	lwz      r0, 0xc(r31)
-	li       r3, 0
-	add      r4, r0, r30
-	lwz      r0, 0x60(r4)
-	cmplwi   r0, 0
-	beq      lbl_801A37F0
-	lbz      r0, 0x54(r4)
-	cmplwi   r0, 2
-	bne      lbl_801A37F0
-	li       r3, 1
-
-lbl_801A37F0:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A3814
-	lwz      r3, 0x10(r31)
-	addi     r6, r4, 0x5c
-	li       r5, 1
-	bl
-search__Q24Game15AStarPathfinderFPQ24Game12AStarContextiPPQ24Game8PathNode lwz
-r4, 0xc(r31) addi     r0, r30, 0x54 stbx     r3, r4, r0
-
-lbl_801A3814:
-	addi     r30, r30, 0x64
-	addi     r29, r29, 1
-
-lbl_801A381C:
-	lwz      r0, 8(r31)
-	cmpw     r29, r0
-	blt      lbl_801A37C8
-
-lbl_801A3828:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_80519178@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -628,8 +487,81 @@ lbl_801A3D54:
  * Address:	801A3D70
  * Size:	0004B8
  */
-int AStarPathfinder::search(Game::AStarContext*, int, Game::PathNode**)
+int AStarPathfinder::search(Game::AStarContext* context, int p1, Game::PathNode** outNode)
 {
+	mContext   = context;
+	s16 endIdx = context->mEndWPID;
+	for (int i = p1; mContext->_08[0]._1C && i > 0; i--) {
+		f32 minDist          = 1280000.0f;
+		PathNode* targetNode = nullptr;
+		for (PathNode* node = mContext->_08[0]._1C; node; node = node->_14) {
+			f32 dist = node->_00 + node->_04;
+			if (dist < minDist) {
+				minDist    = dist;
+				targetNode = node;
+			}
+		}
+
+		if (targetNode) {
+			PathNode* child = targetNode->_10;
+			if (child) {
+				PathNode* node     = child->_1C;
+				PathNode* prevNode = nullptr;
+				while (node) {
+					if (node == targetNode) {
+						if (prevNode) {
+							prevNode->_14 = node->_14;
+							if (node->_14) {
+								node->_14->_18 = prevNode;
+							}
+
+							targetNode->_18 = nullptr;
+							targetNode->_14 = nullptr;
+							targetNode->_10 = nullptr;
+						} else {
+							child->_1C = node->_14;
+							if (node->_14) {
+								node->_14->_18 = nullptr;
+							}
+
+							targetNode->_18 = nullptr;
+							targetNode->_14 = nullptr;
+							targetNode->_10 = nullptr;
+						}
+						break;
+					}
+
+					prevNode = node;
+					node     = node->_14;
+				}
+
+				if (targetNode->mWpIndex == endIdx) {
+					outNode[0] = targetNode;
+					return 0;
+				}
+
+				WayPoint* wp = PathfindContext::routeMgr->getWayPoint(targetNode->mWpIndex);
+
+				WayPointIterator iter(wp, mContext->mRequestFlag & 0x80);
+
+				CI_LOOP(iter) { s16 idx = *iter; }
+
+				CI_LOOP(iter)
+				{
+					s16 idx          = *iter;
+					WayPoint* currWp = PathfindContext::routeMgr->getWayPoint(idx);
+				}
+
+				targetNode->_22 = 1;
+			}
+		}
+	}
+
+	if (!mContext->_08[0]._1C) {
+		return 1;
+	}
+
+	return 2;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

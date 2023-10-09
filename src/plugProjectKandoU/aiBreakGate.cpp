@@ -60,9 +60,17 @@ void ActBreakGate::initFollow()
 	mState = 1;
 }
 
-static const char stickAttackArgName[] = "StickAttackActionArg";
-static const char gotoPosArgName[]     = "GotoPosActionArg";
-static const char followFieldArgName[] = "FollowVectorFieldActionArg"; // delete this when linking aiBreakGate.cpp
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00009C
+ */
+void ActBreakGate::initGoto()
+{
+	GotoPosActionArg gotoArg;
+	mGotoPos->init(&gotoArg);
+	mState = 1;
+}
 
 /*
  * --INFO--
@@ -70,7 +78,6 @@ static const char followFieldArgName[] = "FollowVectorFieldActionArg"; // delete
  * Size:	000114
  * --INLINE--
  */
-// StickAttackActionArg is generating slightly wrong
 void ActBreakGate::initStickAttack()
 {
 	u8 type = 1;

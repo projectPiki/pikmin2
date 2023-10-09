@@ -856,7 +856,7 @@ void GeneratorCache::endSave()
  */
 void GeneratorCache::saveGenerator(Game::Generator* generator)
 {
-	if (generator->mDayLimitMaybe == -1 || gameSystem->mTimeMgr->mDayCount < generator->mDayLimitMaybe) {
+	if (generator->mDayLimit == -1 || gameSystem->mTimeMgr->mDayCount < generator->mDayLimit) {
 		if (generator->need_saveCreature()) {
 			RamStream output(mHeapBuffer + mFreeOffset, mFreeSize);
 			generator->mGeneratorIndexMaybe = _78->mGeneratorCount;

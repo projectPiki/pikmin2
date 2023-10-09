@@ -61,16 +61,18 @@ struct AStarContext {
 	// unused/inlined:
 	PathNode* getNode(short wpID);
 
-	s16 mStartWPID;  // _00
-	s16 mEndWPID;    // _02
-	u8 mRequestFlag; // _04
-	PathNode _08[2]; // _08
-	s16 mUsedNodeCount;
-	s16 mWpNum;
-	u8 mCheckHandle;
-	PathNode* _58;   // _58, guess
-	PathNode* mNode; // _5C
-	u32 mStatus;     // _60
+	bool checkContext() { return mStatus && mCheckHandle == 2; }
+
+	s16 mStartWPID;     // _00
+	s16 mEndWPID;       // _02
+	u8 mRequestFlag;    // _04
+	PathNode _08[2];    // _08
+	s16 mUsedNodeCount; // 50
+	s16 mWpNum;         // _52
+	u8 mCheckHandle;    // _54
+	PathNode* _58;      // _58, guess
+	PathNode* mNode;    // _5C
+	u32 mStatus;        // _60
 };
 
 struct AStarPathfinder {

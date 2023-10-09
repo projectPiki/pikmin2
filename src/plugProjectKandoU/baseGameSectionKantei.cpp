@@ -1,154 +1,5 @@
 #include "Camera.h"
 #include "Controller.h"
-#include "Game/BaseGameSection.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_baseGameSectionKantei_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C1688
-    lbl_804C1688:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game15BaseGameSection10ZoomCamera
-    __vt__Q34Game15BaseGameSection10ZoomCamera:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15BaseGameSection10ZoomCameraFv
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__17Container<5Plane>FPv"
-        .4byte "getNext__22ArrayContainer<5Plane>FPv"
-        .4byte "getStart__22ArrayContainer<5Plane>Fv"
-        .4byte "getEnd__22ArrayContainer<5Plane>Fv"
-        .4byte "get__22ArrayContainer<5Plane>FPv"
-        .4byte "getAt__22ArrayContainer<5Plane>Fi"
-        .4byte "getTo__22ArrayContainer<5Plane>Fv"
-        .4byte writeObject__9CullPlaneFR6StreamR5Plane
-        .4byte readObject__9CullPlaneFR6StreamR5Plane
-        .4byte "write__22ArrayContainer<5Plane>FR6Stream"
-        .4byte "read__22ArrayContainer<5Plane>FR6Stream"
-        .4byte "alloc__22ArrayContainer<5Plane>Fi"
-        .4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
-        .4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
-        .4byte getViewMatrix__6CameraFb
-        .4byte getPosition__6CameraFv
-        .4byte updatePlanes__6CameraFv
-        .4byte updateScreenConstants__6CameraFv
-        .4byte getLookAtPosition___12LookAtCameraFv
-        .4byte getTargetDistance__6CameraFv
-        .4byte getPositionPtr__6CameraFv
-        .4byte on_getPositionPtr__12LookAtCameraFv
-        .4byte getSoundPositionPtr__6CameraFv
-        .4byte getSoundMatrixPtr__6CameraFv
-        .4byte isSpecialCamera__6CameraFv
-        .4byte updateMatrix__12LookAtCameraFv
-        .4byte doUpdate__Q34Game15BaseGameSection10ZoomCameraFv
-        .4byte startVibration__12LookAtCameraFi
-    .global __vt__Q32og6Screen21DispMemberSpecialItem
-    __vt__Q32og6Screen21DispMemberSpecialItem:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen21DispMemberSpecialItemFv
-        .4byte getOwnerID__Q32og6Screen21DispMemberSpecialItemFv
-        .4byte getMemberID__Q32og6Screen21DispMemberSpecialItemFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32og6Screen16DispMemberKantei
-    __vt__Q32og6Screen16DispMemberKantei:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen16DispMemberKanteiFv
-        .4byte getOwnerID__Q32og6Screen16DispMemberKanteiFv
-        .4byte getMemberID__Q32og6Screen16DispMemberKanteiFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-        .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global asArrayOtakara__4Game
-    asArrayOtakara__4Game:
-        .4byte 0xFFFFFFFF
-        .float 1.0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515CC8
-    lbl_80515CC8:
-        .skip 0x4
-    .global lbl_80515CCC
-    lbl_80515CCC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A578
-    lbl_8051A578:
-        .4byte 0x00000000
-    .global lbl_8051A57C
-    lbl_8051A57C:
-        .4byte 0x3FC00000
-    .global lbl_8051A580
-    lbl_8051A580:
-        .4byte 0x41A00000
-    .global lbl_8051A584
-    lbl_8051A584:
-        .float 0.5
-    .global lbl_8051A588
-    lbl_8051A588:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051A590
-    lbl_8051A590:
-        .4byte 0x3FC90FDB
-    .global lbl_8051A594
-    lbl_8051A594:
-        .float 1.0
-    .global lbl_8051A598
-    lbl_8051A598:
-        .4byte 0xBF800000
-    .global lbl_8051A59C
-    lbl_8051A59C:
-        .4byte 0xBFC90FDB
-    .global lbl_8051A5A0
-    lbl_8051A5A0:
-        .4byte 0x447FE000
-    .global lbl_8051A5A4
-    lbl_8051A5A4:
-        .4byte 0x3F400000
-    .global lbl_8051A5A8
-    lbl_8051A5A8:
-        .4byte 0xC3A2F983
-    .global lbl_8051A5AC
-    lbl_8051A5AC:
-        .4byte 0x43A2F983
-    .global lbl_8051A5B0
-    lbl_8051A5B0:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051A5B4
-    lbl_8051A5B4:
-        .4byte 0x3E00ADFD
-    .global lbl_8051A5B8
-    lbl_8051A5B8:
-        .4byte 0x40C90FDB
-    .global lbl_8051A5BC
-    lbl_8051A5BC:
-        .4byte 0x3D80ADFD
-    .global lbl_8051A5C0
-    lbl_8051A5C0:
-        .4byte 0x3F08B8DD
-    .global lbl_8051A5C4
-    lbl_8051A5C4:
-        .4byte 0x40000000
-    .global lbl_8051A5C8
-    lbl_8051A5C8:
-        .4byte 0x40C00000
-    .global lbl_8051A5CC
-    lbl_8051A5CC:
-        .4byte 0x41200000
-*/
-
-#include "Game/BaseGameSection.h"
 #include "Game/pelletMgr.h"
 
 #include "JSystem/J3D/J3DSys.h"
@@ -207,26 +58,22 @@ void BaseGameSection::startZoomWindow()
 
 	SysShape::Model* model = mDraw2DCreature->mModel;
 	f32 modelRadius        = model->getRoughBoundingRadius();
-	Vector3f& center       = model->getRoughCenter();
+	Vector3f center        = model->getRoughCenter();
+	Vector3f* vecPtr       = &center;
 
 	if (mDraw2DCreature->getObjType() == OBJTYPE_Honey) {
 		modelRadius *= 1.5F;
 	}
 
 	if (mDraw2DCreature->getObjType() == OBJTYPE_Pellet) {
-		modelRadius *= 1.5F;
 		Pellet* p = (Pellet*)mDraw2DCreature;
 		if (p->getKind() == PELTYPE_TREASURE) {
-			// WTF?
 			int configIdx = p->getConfigIndex();
-			int i         = 0;
-			for (OtakaraArray* c = &asArrayOtakara[i]; c->a != -1; c++) {
-				if (configIdx == c->a) {
+			for (int i = 0; asArrayOtakara[i].a != -1; i++) {
+				if (configIdx == asArrayOtakara[i].a) {
 					modelRadius /= asArrayOtakara[i].b;
 					break;
 				}
-
-				i++;
 			}
 		} else {
 			p->getKind();
@@ -234,9 +81,9 @@ void BaseGameSection::startZoomWindow()
 	}
 
 	f32 properDist  = mTreasureZoomCamera->calcProperDistance(20.0f, modelRadius);
-	f32 l           = _lenVec(center);
+	f32 l           = vecPtr->length();
 	Vector3f length = Vector3f(0.0f, l, 0.0f);
-	mTreasureZoomCamera->init(properDist, JMath::sincosTable_.mTable[256].second, length, nullptr);
+	mTreasureZoomCamera->init(properDist, properDist * JMath::sincosTable_.mTable[256].first, length, mControllerP1);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

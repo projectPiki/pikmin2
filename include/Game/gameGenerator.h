@@ -47,6 +47,13 @@ struct Generator : public CNode {
 
 	void informDeath(Creature*);
 
+	inline void readName(Stream& input)
+	{
+		for (int i = 0; i < 32; i++) {
+			mGenObjName[i] = input.readByte();
+		}
+	}
+
 	GenObject* _18;            // _18
 	u32 _1C;                   // _1C /* Initialized to '____' */
 	char mGenObjName[32];      // _20 /* shift-jis name given in generator files */
@@ -63,7 +70,7 @@ struct Generator : public CNode {
 	u32 _78;                   // _78
 	u32 _7C;                   // _7C
 	u8 _80[4];                 // _80
-	int mDayLimitMaybe;        // _84
+	int mDayLimit;             // _84
 	u8 _88[12];                // _88
 	Vector3f mPosition;        // _94
 	Vector3f mOffset;          // _A0
@@ -78,7 +85,7 @@ struct Generator : public CNode {
 struct GeneratorMgr : public CNode {
 	GeneratorMgr();
 
-	virtual ~GeneratorMgr();                    // _08
+	// virtual ~GeneratorMgr();                    // _08
 	virtual void doAnimation();                 // _10
 	virtual void doEntry();                     // _14
 	virtual void doSetView(int viewportNumber); // _18
@@ -86,8 +93,8 @@ struct GeneratorMgr : public CNode {
 
 	void addMgr(GeneratorMgr*);
 	void generate();
-	GeneratorMgr* getNext();
-	GeneratorMgr* getChild();
+	GeneratorMgr* getNext() { return mNextMgr; }
+	GeneratorMgr* getChild() { return mChildMgr; }
 	bool isRootMgr();
 	void read(Stream&, bool);
 	void write(Stream&);
@@ -102,7 +109,7 @@ struct GeneratorMgr : public CNode {
 	GeneratorMgr* mChildMgr;  // _1C
 	GeneratorMgr* mParentMgr; // _20
 	Vector3f mCursorPosition; // _24
-	Generator* mGenerator;    // _28
+	Generator* mGenerator;    // _30
 	ID32 _34;                 // _34
 	ID32 mVersionID;          // _40
 	int mGeneratorCount;      // _4C
@@ -130,15 +137,15 @@ struct GenArg : public CreatureInitArg {
 struct GenBase : public Parameters {
 	GenBase(u32, char*, char*);
 
-	virtual void doWrite(Stream&);              // _08 (weak)
-	virtual void ramSaveParameters(Stream&);    // _0C
-	virtual void ramLoadParameters(Stream&);    // _10
-	virtual void doEvent(u32) { }               // _14 (weak)
-	virtual void doRead(Stream&);               // _18 (weak)
-	virtual void update(Generator*);            // _1C (weak)
-	virtual void render(Graphics&, Generator*); // _20 (weak)
-	virtual u32 getLatestVersion();             // _24 (weak)
-	virtual J3DModelData* getShape();           // _28 (weak)
+	virtual void doWrite(Stream&) { }                    // _08 (weak)
+	virtual void ramSaveParameters(Stream&);             // _0C
+	virtual void ramLoadParameters(Stream&);             // _10
+	virtual void doEvent(u32) { }                        // _14 (weak)
+	virtual void doRead(Stream&) { }                     // _18 (weak)
+	virtual void update(Generator*) { }                  // _1C (weak)
+	virtual void render(Graphics&, Generator*) { }       // _20 (weak)
+	virtual u32 getLatestVersion() { return 'udef'; }    // _24 (weak)
+	virtual J3DModelData* getShape() { return nullptr; } // _28 (weak)
 
 	void readVersion(Stream&);
 	void read(Stream&);
@@ -147,11 +154,11 @@ struct GenBase : public Parameters {
 
 	// _00 - _0C: Parameters
 	// _0C: vtable
-	u32 mTypeID;        // _10
-	u32 mRawID;         // _14
-	char* mLabelData;   // _18
-	char* mObjTypeName; // _1C
-	u32 _20;            // _20
+	u32 mTypeID;             // _10
+	u32 mRawID;              // _14
+	char* mLabelData;        // _18
+	char* mObjTypeName;      // _1C
+	SysShape::Model* mModel; // _20
 };
 
 struct EnemyGeneratorBase : public CNode {
@@ -180,10 +187,10 @@ struct GenObject : public GenBase {
 	}
 
 	virtual void update(Game::Generator*) { }                                // _1C (weak)
-	virtual void render(Graphics&, Generator*);                              // _20 (weak)
+	virtual void render(Graphics&, Generator*) { }                           // _20 (weak)
 	virtual u32 getLatestVersion();                                          // _24
-	virtual void updateUseList(Generator*, int);                             // _2C
-	virtual Creature* generate(Generator*);                                  // _30 (weak)
+	virtual void updateUseList(Generator*, int) { }                          // _2C
+	virtual Creature* generate(Generator*) { return nullptr; }               // _30 (weak)
 	virtual Creature* birth(GenArg*) = 0;                                    // _34
 	virtual void generatorMakeMatrix(Matrixf& genMatrix, Vector3f& position) // _38 (weak)
 	{
@@ -358,6 +365,27 @@ struct GenObjectFactoryFactory {
 		mFactories = new GenObjectFactory[12];
 		mLimit     = 12;
 		mCount     = 0;
+	}
+
+	inline u32 checkVersion(u32 version)
+	{
+		for (int i = 0; i < mCount; i++) {
+			if (version == mFactories[i].mTypeID) {
+				return mFactories[i].mVersion;
+			}
+		}
+		return version;
+	}
+
+	inline GenObject* make(u32 id)
+	{
+		for (int i = 0; i < mCount; i++) {
+			if (id == mFactories[i].mTypeID) {
+				return mFactories[i].mMakeFunction();
+			}
+		}
+
+		return nullptr;
 	}
 
 	int mCount;                   // _00
