@@ -217,8 +217,8 @@ void TinyPikmin::draw()
 		f32 yoffs       = _0C + mPosY;
 		J2DPicture* pic = sTinyPikminMgr->sPikminTex[mColor];
 		pic->updateScale(x, y);
-		pic->rotate(pic->getWidth() * 0.5f, pic->getHeight() * 0.5f, J2DROTATE_Y, mAngle);
-		pic->draw(pic->getWidth() * 0.5f - xoffs, yoffs - (pic->getHeight() * 0.5f), false, false, false);
+		pic->rotate(pic->getWidth() / 2, pic->getHeight() / 2, J2DROTATE_Y, mAngle);
+		pic->draw(pic->getWidth() / 2 - xoffs, yoffs - (pic->getHeight() / 2), false, false, false);
 	}
 }
 
@@ -1474,16 +1474,17 @@ void BootSection::updateLoadResourceFirst()
 	if (!sys->dvdLoadSyncAllNoBlock()) {
 		if (Game::gGameConfig.mParms.mNintendoVersion.mData) {
 			sys->mPlayData->mRumble = false;
-		}
-		if (!Game::gGameConfig.mParms.mE3version.mData) {
+		} else if (!Game::gGameConfig.mParms.mE3version.mData) {
 			sys->mCardMgr->loadGameOption();
 		}
 		// THIS IS ALL FOR DEMO 1
-		// PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		// PSSystem::checkSceneMgr(mgr);
-		// PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
-		// P2ASSERTLINE(1723, scene);
-		// scene->startGlobalStream(0xc001101f);
+#if BUILDTARGET == USADEMO1
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
+		P2ASSERTLINE(1723, scene);
+		scene->startGlobalStream(0xc001101f);
+#endif
 		setMode(SID_LOAD_MEMORY_CARD);
 	}
 }
@@ -1500,7 +1501,7 @@ void BootSection::updateLoadMemoryCard()
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
 	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
-	P2ASSERTLINE(1723, scene);
+	P2ASSERTLINE(1748, scene);
 	JAISound* handle = scene->getGlobalStream()->getHandleP();
 
 	if (sys->mCardMgr->isSaveValid() && !handle) {
@@ -1709,9 +1710,11 @@ void BootSection::setMode(int id)
 {
 	if (mStateID != id) {
 		mStateID = (StateID)id;
-		if (mStateID == 4) {
+		switch (mStateID) {
+		case SID_NINTENDO_LOGO:
 			mDisplay->mFader->startFadeIn(0.5f / sys->mDeltaTime);
 			mFadeTimer = 0.0f;
+			break;
 		}
 	}
 }
@@ -1731,13 +1734,4 @@ void BootSection::getModeEpilepsy()
  * Address:	80449F54
  * Size:	000088
  */
-void BootSection::setModeEpilepsy()
-{
-	if (mStateID != 2) {
-		mStateID = SID_INIT_NINTENDO_LOGO;
-		if (mStateID == 4) {
-			mDisplay->mFader->startFadeIn(0.5f / sys->mDeltaTime);
-			mFadeTimer = 0.0f;
-		}
-	}
-}
+void BootSection::setModeEpilepsy() { setMode(SID_INIT_NINTENDO_LOGO); }

@@ -184,7 +184,7 @@ Generator::Generator()
 	mDayLimit             = -1;
 	_74                   = 0;
 	_78                   = 0;
-	mDaysTillRessurection = 0;
+	mDaysTillResurrection = 0;
 }
 
 /*
@@ -325,7 +325,7 @@ void Generator::generate()
 		}
 		mCreature = nullptr;
 		if (_18) {
-			if (ramMode != 0 && (mReservedNum & 4) != 0 && (int)gameSystem->mTimeMgr->mDayCount >= (int)(_78 + mDaysTillRessurection)) {
+			if (ramMode != 0 && (mReservedNum & 4) != 0 && (int)gameSystem->mTimeMgr->mDayCount >= (int)(_78 + mDaysTillResurrection)) {
 				_78 = gameSystem->mTimeMgr->mDayCount;
 				_74 = 0;
 			}
@@ -386,12 +386,12 @@ void Generator::read(Stream& input)
 		mReservedNum = input.readInt();
 	}
 	if (mVersion.getID() >= 'v0.3') {
-		mDaysTillRessurection = input.readShort();
+		mDaysTillResurrection = input.readShort();
 	} else {
 		if (mVersion.getID() >= 'v0.1') {
-			mDaysTillRessurection = input.readInt();
+			mDaysTillResurrection = input.readInt();
 		} else {
-			mDaysTillRessurection = 0;
+			mDaysTillResurrection = 0;
 		}
 	}
 	if (ramMode == 0) {
@@ -462,7 +462,7 @@ void Generator::write(Stream& output)
 	output.textWriteText("\t# reserved\r\n");
 
 	output.textWriteTab(output.mTabCount);
-	output.writeShort(mDaysTillRessurection);
+	output.writeShort(mDaysTillResurrection);
 	output.textWriteText("\t# •œŠˆ“ú”\r\n"); // 'resurrection days'
 
 	if (ramMode == 0) {

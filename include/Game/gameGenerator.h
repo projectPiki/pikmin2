@@ -65,7 +65,7 @@ struct Generator : public CNode {
 	Generator* _64;            // _64 /* mNext */
 	GeneratorMgr* mMgr;        // _68
 	Creature* mCreature;       // _6C
-	int mDaysTillRessurection; // _70
+	int mDaysTillResurrection; // _70
 	u32 _74;                   // _74
 	u32 _78;                   // _78
 	u32 _7C;                   // _7C
