@@ -10,7 +10,7 @@ struct JKRHeap;
 struct JUTFader;
 
 struct ISection : public JKRDisposer {
-	virtual ~ISection();              // _08 (weak)
+	virtual ~ISection() { }           // _08 (weak)
 	virtual void run()           = 0; // _0C
 	virtual bool update()        = 0; // _10
 	virtual void draw(Graphics&) = 0; // _14

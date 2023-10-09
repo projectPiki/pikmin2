@@ -105,7 +105,7 @@ struct SingleGameSection : public BaseGameSection {
 	efx::TChasePos* _244;                          // _244
 	int mCurrentFloor;                             // _248
 	Game::SingleGame::FSM* mFsm;                   // _24C
-	Game::SingleGame::GameState* mCurrentState;    // 250
+	Game::SingleGame::GameState* mCurrentState;    // _250
 	KindCounter _254;                              // _254
 	KindCounter _25C;                              // _25C
 	KindCounter mOtakaraCounter;                   // _264

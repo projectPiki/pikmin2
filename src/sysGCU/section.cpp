@@ -73,13 +73,6 @@ Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 
 /*
  * --INFO--
- * Address:	80423944
- * Size:	000060
- */
-ISection::~ISection() { }
-
-/*
- * --INFO--
  * Address:	804239A4
  * Size:	000120
  */
