@@ -6,6 +6,17 @@ namespace Caption {
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000044
+ */
+TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
+    : Window::TRenderingProcessor(ref)
+{
+	_144 = 1.0f;
+}
+
+/*
+ * --INFO--
  * Address:	80450FC0
  * Size:	00000C
  */
