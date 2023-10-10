@@ -3,6 +3,9 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "wipe.h"
+#if BUILDTARGET == USADEMO1
+#include "Controller.h"
+#endif
 
 struct Graphics;
 struct JFWDisplay;
@@ -72,6 +75,12 @@ struct Section : public ISection {
 	u8 _36;                  // _36
 	bool mIsLoadingDVD;      // _37
 	u8 _38;                  // _38
+#if BUILDTARGET == USADEMO1
+	OSTime mOsTime;             // _40
+	JUTGamePad* mDemoController1;      // _48
+	JUTGamePad* mDemoController2;      // _4C
+	f32 mTimer;					// _50
+#endif
 };
 
 #endif
