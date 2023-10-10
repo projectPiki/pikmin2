@@ -144,59 +144,11 @@ Vector3f Obj::getOffsetForMapCollision()
 		return Vector3f(Vector3f::zero);
 	}
 
-	Matrixf* mtx  = mModel->getJoint("ago")->getWorldMatrix();
-	Vector3f pos  = mtx->getBasis(3);
-	Vector3f diff = pos - mPosition;
-	diff.y        = 0.0f;
-	return diff;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80299AC0
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfsu     f0, "zero__10Vector3<f>"@l(r3)
-	stfs     f0, 0(r30)
-	lfs      f0, 4(r3)
-	stfs     f0, 4(r30)
-	lfs      f0, 8(r3)
-	stfs     f0, 8(r30)
-	b        lbl_80299AF8
-
-lbl_80299AC0:
-	lwz      r3, 0x174(r31)
-	addi     r4, r2, lbl_8051BB6C@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f2, 0xc(r3)
-	lfs      f0, 0x18c(r31)
-	lfs      f3, 0x2c(r3)
-	lfs      f1, 0x194(r31)
-	fsubs    f2, f2, f0
-	lfs      f0, lbl_8051BB68@sda21(r2)
-	fsubs    f3, f3, f1
-	stfs     f2, 0(r30)
-	stfs     f0, 4(r30)
-	stfs     f3, 8(r30)
-
-lbl_80299AF8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Matrixf* mtx = mModel->getJoint("ago")->getWorldMatrix();
+	Vector3f pos = mtx->getBasis(3);
+	pos -= mPosition;
+	pos.y = 0.0f;
+	return pos;
 }
 
 /*
@@ -375,7 +327,7 @@ void Obj::setLinkWayPoint()
 			s16 id = *it;
 			if ((int)id != wpID) {
 				WayPoint* wp = mapMgr->mRouteMgr->getWayPoint(id);
-				if (wp && !(wp->mFlags & WPF_Closed)) {
+				if (wp && !(wp->isFlag(WPF_Closed))) {
 					wpList[wpNum] = wp;
 					wpNum++;
 				}
@@ -394,7 +346,7 @@ void Obj::setLinkWayPoint()
 		// no children at current waypoint, backtrack to previous point
 		if (wpID >= 0) {
 			WayPoint* wp = mapMgr->mRouteMgr->getWayPoint(wpID);
-			if (wp && !(wp->mFlags & WPF_Closed)) {
+			if (wp && !(wp->isFlag(WPF_Closed))) {
 				mPrevWP    = mCurrWP;
 				mCurrWP    = wp;
 				mTargetPos = Vector3f(mCurrWP->mPosition);
@@ -456,8 +408,9 @@ void Obj::updateTargetDistance()
  */
 void Obj::updateHomePosition()
 {
-	mHomePosition = Vector3f(pikmin2_sinf(mFaceDir) * C_PARMS->mGeneral.mHomeRadius.mValue + mPosition.x, mPosition.y,
-	                         pikmin2_cosf(mFaceDir) * C_PARMS->mGeneral.mHomeRadius.mValue + mPosition.z);
+
+	mHomePosition = Vector3f(C_PARMS->mGeneral.mHomeRadius.mValue * pikmin2_sinf(mFaceDir) + mPosition.x, mPosition.y,
+	                         C_PARMS->mGeneral.mHomeRadius.mValue * pikmin2_cosf(mFaceDir) + mPosition.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lfs      f0, lbl_8051BB68@sda21(r2)

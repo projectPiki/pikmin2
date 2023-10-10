@@ -491,24 +491,24 @@ bool Mgr::commandUpdatePlayerHeader(PlayerFileInfo* playerInfo)
 			} else if (isErrorOccured()) {
 				break;
 			} else if (infoHeader._00 == 'PlIn') {
-				bool tagCheck           = (infoHeader._00 != 'PlIn');
-				Player* player          = playerInfo->getPlayer(i);
-				player->mFlag           = tagCheck;
-				player->_01             = 0;
-				player->_02             = 0;
-				player->_04             = 0;
-				player->mDay            = 0;
-				player->mRedPikis       = 0;
-				player->mBluePikis      = 0;
-				player->mYellowPikis    = 0;
-				player->mWhitePikis     = 0;
-				player->mPurplePikis    = 0;
-				player->mPokos          = 10000;
-				player->mCaveID         = 0;
-				player->mCaveFloor      = 0;
-				player->mPlayTime       = 0;
+				bool tagCheck        = (infoHeader._00 != 'PlIn');
+				Player* player       = playerInfo->getPlayer(i);
+				player->mFlag        = tagCheck;
+				player->_01          = 0;
+				player->_02          = 0;
+				player->_04          = 0;
+				player->mDay         = 0;
+				player->mRedPikis    = 0;
+				player->mBluePikis   = 0;
+				player->mYellowPikis = 0;
+				player->mWhitePikis  = 0;
+				player->mPurplePikis = 0;
+				player->mPokos       = 10000;
+				player->mCaveID      = 0;
+				player->mCaveFloor   = 0;
+				player->mPlayTime    = 0;
 			} else {
-				infoHeader.mPlayer.mFlag   = 1;
+				infoHeader.mPlayer.mFlag  = 1;
 				*playerInfo->getPlayer(i) = infoHeader.mPlayer;
 			}
 		}

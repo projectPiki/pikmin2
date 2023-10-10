@@ -1,23 +1,6 @@
-#include "Vector3.h"
+#include "Game/shadowMgr.h"
+#include "Game/JointFuncs.h"
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D170
-    lbl_8051D170:
-        .float 0.5
-    .global lbl_8051D174
-    lbl_8051D174:
-        .4byte 0x00000000
-    .global lbl_8051D178
-    lbl_8051D178:
-        .float 1.0
-    .global lbl_8051D17C
-    lbl_8051D17C:
-        .4byte 0x42C80000
-*/
 
 /*
  * --INFO--

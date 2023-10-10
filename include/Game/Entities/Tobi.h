@@ -136,9 +136,9 @@ struct Parms : public EnemyParmsBase {
 		{
 		}
 
-		Parm<f32> mTakeOffHealthRatio; // _804
-		Parm<f32> mLandHealthRatio;    // _82C
-		Parm<f32> mFlightHeight;       // _854
+		Parm<f32> mTakeOffHealthRatio; // _804, fp01
+		Parm<f32> mLandHealthRatio;    // _82C, fp02
+		Parm<f32> mFlightHeight;       // _854, fp03
 		Parm<f32> mPoisonDamage;       // _87C, fp11
 		Parm<f32> mBridgeDamage;       // _8A4, fp12
 	};

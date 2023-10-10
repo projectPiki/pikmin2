@@ -89,6 +89,14 @@ struct CylinderBase {
 	f32 _50;               // _50
 };
 
+// stripped struct
+struct CylinderList {
+	CylinderList(int);
+
+	void createCylinder(int, f32);
+	void draw();
+};
+
 struct ShadowCylinder2 : public CylinderBase {
 	ShadowCylinder2(ShadowParms*, Color4*);
 

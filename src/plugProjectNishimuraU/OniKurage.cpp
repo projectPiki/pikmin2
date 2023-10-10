@@ -491,7 +491,7 @@ Creature* Obj::getSearchedTarget(f32 offset)
 
 		Sys::Sphere sphere(mPosition, *C_PARMS->mGeneral.mTerritoryRadius());
 		CellIteratorArg iterArg(sphere);
-		iterArg.mIgnoreOverlap = true;
+		iterArg.mIsSphereCollisionDisabled = true;
 		CellIterator iter(iterArg);
 
 		CI_LOOP(iter)
@@ -775,7 +775,7 @@ bool Obj::isSuck(f32 offset, Creature* target)
 	} else {
 		Sys::Sphere sphere(mPosition, *C_PARMS->mGeneral.mMaxAttackRange());
 		CellIteratorArg iterArg(sphere);
-		iterArg.mIgnoreOverlap = true;
+		iterArg.mIsSphereCollisionDisabled = true;
 		CellIterator iter(iterArg);
 
 		CI_LOOP(iter)
@@ -869,7 +869,7 @@ bool Obj::suckNavi(f32 offset)
 						zVec.normalise();
 
 						Vector3f sep = naviPos - partPos;
-						InteractSarai suck(this, 100.0f, nullptr, 0);
+						InteractSarai suck(this, 100.0f, nullptr);
 						slot->mOffset = Vector3f(dot(xVec, sep), dot(yVec, sep), dot(zVec, sep));
 
 						if (currNavi->stimulate(suck)) {
@@ -1839,96 +1839,25 @@ lbl_802D6638:
  */
 void Obj::escapeCheckNavi()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	li       r30, 0
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	mr       r31, r29
-	b        lbl_802D6760
-
-lbl_802D6680:
-	mr       r4, r30
-	addi     r3, r29, 0x2e4
-	bl       getSlot__10MouthSlotsFi
-	lwz      r3, 0x64(r3)
-	cmplwi   r3, 0
-	beq      lbl_802D66AC
-	lwz      r0, 0x2ec(r31)
-	cmplwi   r0, 0
-	bne      lbl_802D6758
-	stw      r3, 0x2ec(r31)
-	b        lbl_802D6758
-
-lbl_802D66AC:
-	lwz      r0, 0x2ec(r31)
-	cmplwi   r0, 0
-	beq      lbl_802D6758
-	lwz      r0, 0x1e0(r29)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_802D66D0
-	lfs      f0, lbl_8051C9A0@sda21(r2)
-	stfs     f0, 0x200(r29)
-	b        lbl_802D6750
-
-lbl_802D66D0:
-	mr       r3, r29
-	bl       createFlickNaviEffect__Q34Game9OniKurage3ObjFv
-	mr       r4, r29
-	addi     r3, r1, 8
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xa
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r3, 0x2ec(r31)
-	li       r4, 0x816
-	li       r5, 0
-	lwz      r3, 0x26c(r3)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802D6750:
-	li       r0, 0
-	stw      r0, 0x2ec(r31)
-
-lbl_802D6758:
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_802D6760:
-	lwz      r0, 0x2e4(r29)
-	cmpw     r30, r0
-	blt      lbl_802D6680
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	for (int i = 0; i < mMouthSlots.getMax(); i++) {
+		MouthCollPart* slot = mMouthSlots.getSlot(i);
+		if (slot->mStuckCreature) {
+			if (!mSuckedNavis[i]) {
+				mSuckedNavis[i] = static_cast<Navi*>(slot->mStuckCreature);
+			}
+		} else if (mSuckedNavis[i]) {
+			if (isEvent(0, EB_Bittered)) {
+				mHealth = 0.0f;
+			} else {
+				createFlickNaviEffect();
+				Vector3f pos = getPosition();
+				cameraMgr->startVibration(0, pos, 2);
+				rumbleMgr->startRumble(10, pos, 2);
+				mSuckedNavis[i]->mSoundObj->startSound(PSSE_EN_ONIKURAGE_VOMIT, 0);
+			}
+			mSuckedNavis[i] = nullptr;
+		}
+	}
 }
 
 /*

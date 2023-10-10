@@ -63,6 +63,10 @@ struct WayPoint : public JKRDisposer {
 	void write(Stream&);
 	void createOffPlane(Plane&, WayPoint*);
 
+	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
+	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
+
 	inline Vector3f getPosition() { return mPosition; }
 
 	RoomList mRoomList; // _18

@@ -882,7 +882,7 @@ void StateFly::exec(EnemyBase* enemy)
 	EnemyFunc::walkToTarget(tobi, targetPos, CG_PARMS(tobi)->mGeneral.mMoveSpeed.mValue, CG_PARMS(tobi)->mGeneral.mRotationalAccel.mValue,
 	                        CG_PARMS(tobi)->mGeneral.mRotationalSpeed.mValue);
 
-	if (tobi->mHealth / CG_PARMS(tobi)->mGeneral.mHealth.mValue > CG_PROPERPARMS(tobi).mFp02.mValue) {
+	if (tobi->mHealth / CG_PARMS(tobi)->mGeneral.mHealth.mValue > CG_PROPERPARMS(tobi).mLandHealthRatio.mValue) {
 		tobi->disableEvent(0, EB_Untargetable);
 		tobi->finishMotion();
 

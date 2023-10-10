@@ -1,66 +1,16 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80489968
-    lbl_80489968:
-        .float 0.4
-        .float 0.3
-        .float 0.2
-        .float 0.1
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global gIKSystemMgr__4Game
-    gIKSystemMgr__4Game:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051BF70
-    lbl_8051BF70:
-        .4byte 0x42C80000
-    .global lbl_8051BF74
-    lbl_8051BF74:
-        .4byte 0x00000000
-    .global lbl_8051BF78
-    lbl_8051BF78:
-        .float 1.0
-    .global lbl_8051BF7C
-    lbl_8051BF7C:
-        .4byte 0x40A00000
-    .global lbl_8051BF80
-    lbl_8051BF80:
-        .4byte 0x40490FDB
-    .global lbl_8051BF84
-    lbl_8051BF84:
-        .4byte 0x3BB60B61
-    .global lbl_8051BF88
-    lbl_8051BF88:
-        .4byte 0x43A2F983
-    .global lbl_8051BF8C
-    lbl_8051BF8C:
-        .4byte 0xC3A2F983
-    .global lbl_8051BF90
-    lbl_8051BF90:
-        .float 0.5
-    .global lbl_8051BF94
-    lbl_8051BF94:
-        .4byte 0x40C90FDB
-    .global lbl_8051BF98
-    lbl_8051BF98:
-        .float 0.25
-        .4byte 0x00000000
-*/
+#include "Game/IKSystemBase.h"
+#include "JSystem/J3D/J3DJoint.h"
 
 namespace Game {
+
+static IKSystemMgr* gIKSystemMgr;
 
 /*
  * --INFO--
  * Address:	802A8A80
  * Size:	000038
  */
-void IKJointCallBack(J3DJoint*, int)
+static void IKJointCallBack(J3DJoint*, int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -598,7 +548,7 @@ lbl_802A9028:
  * Address:	802A9060
  * Size:	000070
  */
-void IKSystemMgr::isFinishIKMotion()
+bool IKSystemMgr::isFinishIKMotion()
 {
 	/*
 	lbz      r0, 1(r3)
@@ -754,7 +704,7 @@ lbl_802A9184:
  * Address:	802A91BC
  * Size:	000038
  */
-void IKSystemMgr::getCollisionCentre(int)
+Vector3f IKSystemMgr::getCollisionCentre(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -779,7 +729,7 @@ void IKSystemMgr::getCollisionCentre(int)
  * Address:	802A91F4
  * Size:	00010C
  */
-void IKSystemMgr::isCollisionCheck(CollPart*)
+bool IKSystemMgr::isCollisionCheck(CollPart*)
 {
 	/*
 	stwu     r1, -0x20(r1)

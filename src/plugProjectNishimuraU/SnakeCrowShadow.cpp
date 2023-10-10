@@ -1,115 +1,19 @@
-#include "types.h"
+#include "Game/Entities/SnakeCrow.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global
-   "cSphereShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@"
-    "cSphereShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@":
-        .float 17.5
-        .float 17.5
-        .float 15.0
-        .float 12.0
-        .float 10.0
-        .float 7.5
-        .float 6.5
-        .float 17.5
-    .global
-   "cTubeShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@"
-    "cTubeShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@":
-        .float 17.5
-        .float 16.5
-        .float 13.5
-        .float 11.0
-        .float 9.0
-        .float 7.0
-        .float 6.0
-        .float 7.5
-    .global lbl_8048D280
-    lbl_8048D280:
-        .asciz "bodyjnt2"
-        .skip 3
-    .global lbl_8048D28C
-    lbl_8048D28C:
-        .asciz "bodyjnt3"
-        .skip 3
-    .global lbl_8048D298
-    lbl_8048D298:
-        .asciz "bodyjnt4"
-        .skip 3
-    .global lbl_8048D2A4
-    lbl_8048D2A4:
-        .asciz "bodyjnt5"
-        .skip 3
-    .global lbl_8048D2B0
-    lbl_8048D2B0:
-        .asciz "bodyjnt6"
-        .skip 3
-    .global lbl_8048D2BC
-    lbl_8048D2BC:
-        .asciz "bodyjnt7"
-        .skip 3
-    .global lbl_8048D2C8
-    lbl_8048D2C8:
-        .asciz "bodyjnt8"
-        .skip 3
-    .global lbl_8048D2D4
-    lbl_8048D2D4:
-        .asciz "kutijnt1"
-        .skip 3
-    .global lbl_8048D2E0
-    lbl_8048D2E0:
-        .4byte lbl_8048D280
-        .4byte lbl_8048D28C
-        .4byte lbl_8048D298
-        .4byte lbl_8048D2A4
-        .4byte lbl_8048D2B0
-        .4byte lbl_8048D2BC
-        .4byte lbl_8048D2C8
-        .4byte lbl_8048D2D4
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game25SnakeCrowSphereShadowNode
-    __vt__Q24Game25SnakeCrowSphereShadowNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game25SnakeCrowSphereShadowNodeFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q24Game23SnakeCrowTubeShadowNode
-    __vt__Q24Game23SnakeCrowTubeShadowNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game23SnakeCrowTubeShadowNodeFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D2C0
-    lbl_8051D2C0:
-        .float 0.5
-    .global lbl_8051D2C4
-    lbl_8051D2C4:
-        .4byte 0x00000000
-    .global lbl_8051D2C8
-    lbl_8051D2C8:
-        .float 1.0
-    .global lbl_8051D2CC
-    lbl_8051D2CC:
-        .4byte 0x40200000
-    .global lbl_8051D2D0
-    lbl_8051D2D0:
-        .4byte 0x42480000
-    .global lbl_8051D2D4
-    lbl_8051D2D4:
-        .4byte 0x42A00000
-*/
+namespace Game {
+namespace SnakeCrow {
+namespace {
+const f32 cSphereShadowRadius[8] = { 17.5f, 17.5f, 15.0f, 12.0f, 10.0f, 7.5f, 6.5f, 17.5f };
+const f32 cTubeShadowRadius[8]   = { 17.5f, 16.5f, 13.5f, 11.0f, 9.0f, 7.0f, 6.0f, 7.5f };
+} // namespace
+} // namespace SnakeCrow
 
 /*
  * --INFO--
  * Address:	802F8090
  * Size:	00022C
  */
-void makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<float> R10Vector3f()
+void SnakeCrowTubeShadowNode::makeShadowSRT(JointShadowParm&, Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -268,7 +172,7 @@ void makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR1
  * Address:	802F82BC
  * Size:	00012C
  */
-void makeShadowSRT__Q24Game25SnakeCrowSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<float>()
+void SnakeCrowSphereShadowNode::makeShadowSRT(JointShadowParm&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -351,8 +255,6 @@ void makeShadowSRT__Q24Game25SnakeCrowSphereShadowNodeFRQ24Game15JointShadowParm
 	  blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--

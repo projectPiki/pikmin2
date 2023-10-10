@@ -1,95 +1,25 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@"
-    "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@":
-        .float 0.0
-        .float 0.2
-        .float 0.4
-        .float 0.6
-        .float 0.8
-        .float 1.0
-    .global lbl_8048BCD8
-    lbl_8048BCD8:
-        .asciz "bodyjnt3"
-        .skip 3
-    .global lbl_8048BCE4
-    lbl_8048BCE4:
-        .asciz "bodyjnt4"
-        .skip 3
-    .global lbl_8048BCF0
-    lbl_8048BCF0:
-        .asciz "bodyjnt5"
-        .skip 3
-    .global lbl_8048BCFC
-    lbl_8048BCFC:
-        .asciz "bodyjnt6"
-        .skip 3
-    .global lbl_8048BD08
-    lbl_8048BD08:
-        .asciz "bodyjnt7"
-        .skip 3
-    .global lbl_8048BD14
-    lbl_8048BD14:
-        .asciz "bodyjnt8"
-        .skip 3
-    .global lbl_8048BD20
-    lbl_8048BD20:
-        .4byte lbl_8048BCD8
-        .4byte lbl_8048BCE4
-        .4byte lbl_8048BCF0
-        .4byte lbl_8048BCFC
-        .4byte lbl_8048BD08
-        .4byte lbl_8048BD14
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sSnakeJointMgr__4Game
-    sSnakeJointMgr__4Game:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051C8D8
-    lbl_8051C8D8:
-        .4byte 0x00000000
-    .global lbl_8051C8DC
-    lbl_8051C8DC:
-        .float 1.0
-    .global lbl_8051C8E0
-    lbl_8051C8E0:
-        .4byte 0x41F00000
-        .4byte 0x00000000
-*/
+#include "Game/SnakeJointMgr.h"
 
 namespace Game {
+
+namespace {
+const f32 cJointModRatio[6] = { 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f };
+}; // namespace
+
+static SnakeJointMgr* sSnakeJointMgr;
 
 /*
  * --INFO--
  * Address:	802D1634
  * Size:	000038
  */
-void SnakeJointCallBack(J3DJoint*, int)
+static bool SnakeJointCallBack(J3DJoint* joint, int idx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_802D1658
-	lwz      r3, sSnakeJointMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_802D1658
-	bl       makeMatrix__Q24Game13SnakeJointMgrFv
+	if (idx == 0 && sSnakeJointMgr) {
+		sSnakeJointMgr->makeMatrix();
+	}
 
-lbl_802D1658:
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -97,25 +27,20 @@ lbl_802D1658:
  * Address:	802D166C
  * Size:	00003C
  */
-SnakeJointMgr::SnakeJointMgr(Game::EnemyBase*)
+SnakeJointMgr::SnakeJointMgr(EnemyBase* enemy)
 {
-	/*
-	li       r0, 0
-	lfs      f0, lbl_8051C8D8@sda21(r2)
-	stw      r0, sSnakeJointMgr__4Game@sda21(r13)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	stfs     f0, 0x20(r3)
-	stfs     f0, 0x28(r3)
-	stfs     f0, 0x24(r3)
-	blr
-	*/
+	sSnakeJointMgr = nullptr;
+	mObj           = enemy;
+	_04            = 0;
+	_08            = 0;
+	_0C            = 0;
+	_10            = 0;
+	_14            = 0;
+	_18            = 0;
+	_1C            = 0;
+	_20            = 0.0f;
+	_28            = 0.0f;
+	_24            = 0.0f;
 }
 
 /*

@@ -76,6 +76,8 @@ struct Obj : public EnemyBase {
 	void updateTargetDistance();
 	void updateHomePosition();
 
+	inline f32 getHomeRadius() { return static_cast<EnemyParmsBase*>(mParms)->mGeneral.mHomeRadius.mValue; }
+
 	// _00 		= VTBL
 	// _00-_2B8	= EnemyBase
 	FSM* mFsm;                          // _2BC

@@ -1,249 +1,10 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_ShadowCylinder_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483F58
-    lbl_80483F58:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x3234362D
-        .4byte 0x53686164
-        .4byte 0x6F774379
-        .4byte 0x6C696E64
-        .4byte 0x65720000
-    .global lbl_80483F78
-    lbl_80483F78:
-        .4byte 0x53686164
-        .4byte 0x6F774379
-        .4byte 0x6C696E64
-        .4byte 0x65722E63
-        .4byte 0x70700000
-    .global lbl_80483F8C
-    lbl_80483F8C:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x00000000
-        .float 1.0
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .float 1.0
-    .global lbl_80483FBC
-    lbl_80483FBC:
-        .4byte 0x53686164
-        .4byte 0x6F772054
-        .4byte 0x65787475
-        .4byte 0x72650000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C1780
-    lbl_804C1780:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global sHighCylinderDL__4Game
-    sHighCylinderDL__4Game:
-        .4byte 0xA0000C00
-        .4byte 0x00000100
-        .4byte 0x02000300
-        .4byte 0x04000500
-        .4byte 0x06000700
-        .4byte 0x08000900
-        .4byte 0x0A000BA0
-        .4byte 0x000C0017
-        .4byte 0x00160015
-        .4byte 0x00140013
-        .4byte 0x00120011
-        .4byte 0x0010000F
-        .4byte 0x000E000D
-        .4byte 0x000C9800
-        .4byte 0x1A000000
-        .4byte 0x0C000100
-        .4byte 0x0D000200
-        .4byte 0x0E000300
-        .4byte 0x0F000400
-        .4byte 0x10000500
-        .4byte 0x11000600
-        .4byte 0x12000700
-        .4byte 0x13000800
-        .4byte 0x14000900
-        .4byte 0x15000A00
-        .4byte 0x16000B00
-        .4byte 0x17000000
-        .4byte 0x0C000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global sMidCylinderDL__4Game
-    sMidCylinderDL__4Game:
-        .4byte 0xA0000800
-        .4byte 0x18001900
-        .4byte 0x1A001B00
-        .4byte 0x1C001D00
-        .4byte 0x1E001FA0
-        .4byte 0x00080027
-        .4byte 0x00260025
-        .4byte 0x00240023
-        .4byte 0x00220021
-        .4byte 0x00209800
-        .4byte 0x12001800
-        .4byte 0x20001900
-        .4byte 0x21001A00
-        .4byte 0x22001B00
-        .4byte 0x23001C00
-        .4byte 0x24001D00
-        .4byte 0x25001E00
-        .4byte 0x26001F00
-        .4byte 0x27001800
-        .4byte 0x20000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global sLowCylinderDL__4Game
-    sLowCylinderDL__4Game:
-        .4byte 0xA0000400
-        .4byte 0x28002900
-        .4byte 0x2A002BA0
-        .4byte 0x0004002F
-        .4byte 0x002E002D
-        .4byte 0x002C9800
-        .4byte 0x0A002800
-        .4byte 0x2C002900
-        .4byte 0x2D002A00
-        .4byte 0x2E002B00
-        .4byte 0x2F002800
-        .4byte 0x2C000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q24Game15ShadowCylinder3
-    __vt__Q24Game15ShadowCylinder3:
-        .4byte 0
-        .4byte 0
-        .4byte setFilterTextureID__Q24Game15ShadowCylinder3Fi
-        .4byte drawInit__Q24Game15ShadowCylinder3Fv
-        .4byte drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi
-        .4byte drawFinish__Q24Game15ShadowCylinder3Fv
-    .global __vt__Q24Game15ShadowCylinder2
-    __vt__Q24Game15ShadowCylinder2:
-        .4byte 0
-        .4byte 0
-        .4byte setFilterTextureID__Q24Game15ShadowCylinder2Fi
-        .4byte drawInit__Q24Game15ShadowCylinder2Fv
-        .4byte drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi
-        .4byte drawFinish__Q24Game15ShadowCylinder2Fv
-    .global __vt__Q24Game12CylinderBase
-    __vt__Q24Game12CylinderBase:
-        .4byte 0
-        .4byte 0
-        .4byte setFilterTextureID__Q24Game12CylinderBaseFi
-        .4byte drawInit__Q24Game12CylinderBaseFv
-        .4byte drawCylinder__Q24Game12CylinderBaseFR7Matrixfi
-        .4byte drawFinish__Q24Game12CylinderBaseFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515CE8
-    lbl_80515CE8:
-        .skip 0x4
-    .global lbl_80515CEC
-    lbl_80515CEC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A618
-    lbl_8051A618:
-        .4byte 0x40C90FDB
-    .global lbl_8051A61C
-    lbl_8051A61C:
-        .float 0.5
-    .global lbl_8051A620
-    lbl_8051A620:
-        .4byte 0x00000000
-    .global lbl_8051A624
-    lbl_8051A624:
-        .4byte 0x43A2F983
-    .global lbl_8051A628
-    lbl_8051A628:
-        .4byte 0xC3A2F983
-    .global lbl_8051A62C
-    lbl_8051A62C:
-        .4byte 0xBF800000
-    .global lbl_8051A630
-    lbl_8051A630:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051A638
-    lbl_8051A638:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051A640
-    lbl_8051A640:
-        .float 1.0
-    .global lbl_8051A644
-    lbl_8051A644:
-        .4byte 0x3F866666
-    .global lbl_8051A648
-    lbl_8051A648:
-        .4byte 0x3FACCCCD
-    .global lbl_8051A64C
-    lbl_8051A64C:
-        .4byte 0x46480000
-    .global lbl_8051A650
-    lbl_8051A650:
-        .4byte 0x40000000
-    .global lbl_8051A654
-    lbl_8051A654:
-        .4byte 0xFFFFFF04
-    .global lbl_8051A658
-    lbl_8051A658:
-        .4byte 0xFFFFFF7F
-        .4byte 0x00000000
-
-    .section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
-    .global lbl_80520E88
-    lbl_80520E88:
-        .skip 0x8
-*/
+#include "Game/shadowMgr.h"
+#include "nans.h"
 
 namespace Game {
+
+static const int unusedArray[] = { 0, 0, 0 };
+static const char unusedName[] = "246-ShadowCylinder";
 
 /*
  * --INFO--
@@ -650,20 +411,14 @@ lbl_8023DE0C:
  * Address:	8023DF0C
  * Size:	000008
  */
-void CylinderBase::setColor(Color4* a1)
-{
-	// Generated from stw r4, 0x8(r3)
-	_08 = a1;
-}
-
-} // namespace Game
+void CylinderBase::setColor(Color4* color) { mColor = color; }
 
 /*
  * --INFO--
  * Address:	8023DF14
  * Size:	000024
  */
-void setShadowRect__Q24Game12CylinderBaseFR7Rect<float>()
+void CylinderBase::setShadowRect(Rectf&)
 {
 	/*
 	lfs      f0, 0(r4)
@@ -677,8 +432,6 @@ void setShadowRect__Q24Game12CylinderBaseFR7Rect<float>()
 	blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -807,7 +560,7 @@ lbl_8023E05C:
  * Address:	8023E0B8
  * Size:	0000A4
  */
-void CylinderBase::getCylinderType(Game::ShadowParam&, int)
+int CylinderBase::getCylinderType(Game::ShadowParam&, int)
 {
 	/*
 	mulli    r6, r5, 0xc

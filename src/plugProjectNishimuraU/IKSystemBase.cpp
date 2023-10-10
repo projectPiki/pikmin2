@@ -168,9 +168,9 @@ void IKSystemBase::startProgramedIK()
 
 	// TODO!
 
-	mTargetPosition.x = _50.mMatrix.mtxView[0][1];
-	mTargetPosition.y = _50.mMatrix.mtxView[1][1];
-	mTargetPosition.z = _50.mMatrix.mtxView[2][1];
+	mTargetPosition.x = _50->mMatrix.mtxView[0][1];
+	mTargetPosition.y = _50->mMatrix.mtxView[1][1];
+	mTargetPosition.z = _50->mMatrix.mtxView[2][1];
 
 	// mDistance1 = distance(mLegJointMatrices[0].mMatrix.flippedVectorView.z, mTargetPosition);
 	// mDistance2 = distance(mTargetPosition, _50.mMatrix.flippedVectorView.z);
@@ -570,7 +570,7 @@ lbl_802AA30C:
  * Address:	802AA354
  * Size:	000008
  */
-void IKSystemBase::onGround()
+bool IKSystemBase::onGround()
 {
 	/*
 	lbz      r3, 2(r3)
@@ -583,7 +583,7 @@ void IKSystemBase::onGround()
  * Address:	802AA35C
  * Size:	00001C
  */
-void IKSystemBase::getBottomJointPosition()
+Vector3f IKSystemBase::getBottomJointPosition()
 {
 	/*
 	lfs      f0, 0x1c(r4)
@@ -601,7 +601,7 @@ void IKSystemBase::getBottomJointPosition()
  * Address:	802AA378
  * Size:	00004C
  */
-void IKSystemBase::getCollisionCentre()
+Vector3f IKSystemBase::getCollisionCentre()
 {
 	/*
 	lwz      r5, 0x54(r4)
@@ -631,7 +631,7 @@ void IKSystemBase::getCollisionCentre()
  * Address:	802AA3C4
  * Size:	000008
  */
-void IKSystemBase::getMoveRatio()
+f32 IKSystemBase::getMoveRatio()
 {
 	/*
 	lfs      f1, 0xc(r3)
@@ -644,7 +644,7 @@ void IKSystemBase::getMoveRatio()
  * Address:	802AA3CC
  * Size:	000280
  */
-void IKSystemBase::onGroundPosition()
+bool IKSystemBase::onGroundPosition()
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -889,7 +889,7 @@ lbl_802AA6C4:
  * Address:	802AA6D0
  * Size:	00009C
  */
-void IKSystemBase::getMiddleDirection(Vector3f&)
+Vector3f IKSystemBase::getMiddleDirection(Vector3f&)
 {
 	/*
 	lbz      r0, 1(r4)

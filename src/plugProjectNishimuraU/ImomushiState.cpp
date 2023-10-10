@@ -423,11 +423,11 @@ void StateGoHome::exec(EnemyBase* enemy)
 		imomushi->mTargetVelocity = Vector3f(0.0f);
 
 	} else {
-
-		Vector3f pos     = imomushi->getPosition();
+		Vector3f pos     = imomushi->getPosition() - imomushi->mHomePosition;
+		f32 sqrMagXZ     = pos.x * pos.x + pos.z * pos.z;
 		Vector3f homePos = imomushi->mHomePosition;
 		// the mismatch is from sqrDistanceXZ
-		if (sqrDistanceXZ(pos, homePos) < imomushi->getSqrHomeRadius()) {
+		if (sqrMagXZ < SQUARE(CG_PARMS(imomushi)->mGeneral.mHomeRadius.mValue)) {
 			imomushi->mNextState = IMOMUSHI_Dive;
 			imomushi->finishMotion();
 		}

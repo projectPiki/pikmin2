@@ -90,7 +90,7 @@ bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
 	if (baseGen) {
 		FOREACH_NODE(ItemNode, mapNode->mItemNode->mChild, node)
 		{
-			if (node->mGenerator == baseGen) {
+			if (node->mSpawn == baseGen) {
 				return true;
 			}
 		}

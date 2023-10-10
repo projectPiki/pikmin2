@@ -110,6 +110,8 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 
+	void shotGunDoDebugDraw(Graphics&);
+
 	// _00 		= VTBL
 	// _00-_2B8	= EnemyBase
 	FSM* mFsm;                           // _2BC
@@ -185,9 +187,18 @@ struct ProperAnimator : public EnemyAnimatorBase {
 };
 
 struct MiniHoudaiShotGunNode : public CNode {
+	MiniHoudaiShotGunNode(Obj*);
+
 	virtual ~MiniHoudaiShotGunNode(); // _08 (weak)
 
 	void update();
+	void create();
+	void setPosition(Vector3f&);
+	void setVelocity(Vector3f&);
+	void startShotGun(bool);
+	void effectDrawOn();
+	void effectDrawOff();
+	void doDebugDraw(Graphics&);
 
 	// _00		= VTBL
 	// _00-_18 	= CNode
@@ -220,6 +231,7 @@ struct MiniHoudaiShotGunMgr {
 	void rotateVertical(J3DJoint*);
 	void effectDrawOn();
 	void effectDrawOff();
+	void doDebugDraw(Graphics&);
 
 	Obj* mOwner;                // _00
 	u8 _04[0xC];                // _04, unknown

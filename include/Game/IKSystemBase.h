@@ -75,8 +75,17 @@ struct IKSystemBase {
 	void update();
 
 	void makeBendRatio();
+	Vector3f getBottomJointPosition();
+	Vector3f getCollisionCentre();
+	Vector3f getMiddleDirection(Vector3f&);
+	f32 getMoveRatio();
 	void moveBottomJointPosition();
+	void setTopJointRotation(Vector3f&, Vector3f&);
+	void setMiddleJointRotation(Vector3f&, Vector3f&);
 	bool onGroundPosition();
+	void makeMatrix();
+	void makeBottomMatrix(Vector3f&);
+	bool onGround();
 
 	bool mEnabled;               // _00
 	bool mBlendMotion;           // _01
@@ -91,8 +100,8 @@ struct IKSystemBase {
 	Vector3f mTargetPosition;    // _1C
 	Vector3f mIkPositions[3];    // _28
 	Matrixf** mLegJointMatrices; // _4C
-	Matrixf _50;                 // _50
-	Matrixf mBottomMtx;          // _54
+	Matrixf* _50;                // _50
+	Matrixf* mBottomMtx;         // _54
 	IKSystemParms* mParameters;  // _58
 };
 
