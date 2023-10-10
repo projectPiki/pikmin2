@@ -10,6 +10,9 @@
 #include "System.h"
 #include "Graphics.h"
 #include "nans.h"
+#if BUILDTARGET == USADEMO1
+#include "Game/GameConfig.h"
+#endif
 
 static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
 
@@ -69,6 +72,12 @@ Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 
 	mGraphics = new Graphics();
 	sys->mGfx = mGraphics;
+#if BUILDTARGET == USADEMO1
+	mOsTime = 0;
+	mDemoController1 = new JUTGamePad(JUTGamePad::PORT_0);
+	mDemoController2 = new JUTGamePad(JUTGamePad::PORT_1);
+	mTimer = 0.0f;
+#endif
 }
 
 /*
@@ -169,7 +178,13 @@ void Section::fadeIn()
  */
 void Section::main()
 {
+#if BUILDTARGET == USADEMO1
+	mOsTime = OSGetTime();
 	drawInit(*mGraphics, Section::One);
+	Game::GameConfig* config = &Game::gGameConfig;
+#else
+	drawInit(*mGraphics, Section::One);
+#endif
 	do {
 		sys->mTimers->newFrame();
 
@@ -185,6 +200,22 @@ void Section::main()
 		update();
 		sys->mTimers->_stop("update");
 		endFrame();
+#if BUILDTARGET == USADEMO1
+		// TODO: This case has to be something around the lines of the below, running into inlining issues with Section::run()
+		/*if (!config->mParms.mE3version.mData || !config->mParms.mNintendoVersion.mData && !forceReset()) {
+			if (!mDemoController1->mButton.mButton || !mDemoController2->mButton.mButton) {
+				mTimer = 0.0f;
+			}
+			mTimer += sys->mDeltaTime;
+			if (mTimer > 180.0f)
+				sys->resetOn(false);
+		}*/
+		if (!config->mParms.mE3version.mData) {
+				mTimer += sys->mDeltaTime;
+				if (mTimer > 180.0f)
+					sys->resetOn(false);
+		}
+#endif
 	} while (!mIsLoadingDVD && mIsMainActive);
 	// Don't draw or render while loading from DVD
 
