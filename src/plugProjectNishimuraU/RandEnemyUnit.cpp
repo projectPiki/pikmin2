@@ -952,119 +952,41 @@ void RandEnemyUnit::makeSetEnemyTypeC(MapNode*, int, EnemyUnit*)
  */
 void RandEnemyUnit::setVersusEnemyTypeF()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r25, 0x24(r1)
-	mr       r29, r3
-	li       r31, 0
-	lwz      r3, 0(r3)
-	lwz      r3, 0x14(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_80249A20
+	int count = 0;
+	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
+	{
+		TekiInfo* info = currEnemy->getTekiInfo();
+		if (info && info->mType == BaseGen::TekiF__Special) {
+			count += info->mWeight / 10;
+			if (count > mTypeCount[TEKITYPE_F]) {
+				int altNum     = (count - mTypeCount[TEKITYPE_F]) % 2;
+				int roundedMax = ((count - mTypeCount[TEKITYPE_F]) / 2) * 2;
 
-lbl_802498E8:
-	lwz      r3, 0x18(r30)
-	lwz      r4, 0(r3)
-	cmplwi   r4, 0
-	beq      lbl_80249A1C
-	lwz      r0, 0x20(r4)
-	cmpwi    r0, 8
-	bne      lbl_80249A1C
-	lis      r3, 0x66666667@ha
-	lwz      r0, 0x1c(r4)
-	addi     r3, r3, 0x66666667@l
-	lwz      r4, 0x1c(r29)
-	mulhw    r0, r3, r0
-	srawi    r0, r0, 2
-	srwi     r3, r0, 0x1f
-	add      r0, r0, r3
-	add      r31, r31, r0
-	cmpw     r31, r4
-	ble      lbl_80249A1C
-	subf     r0, r4, r31
-	srwi     r4, r0, 0x1f
-	clrlwi   r3, r0, 0x1f
-	add      r0, r4, r0
-	xor      r3, r3, r4
-	srawi    r0, r0, 1
-	subf     r28, r4, r3
-	slwi     r27, r0, 1
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	li       r25, 0
-	lfd      f3, lbl_8051A790@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_8051A788@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_8051A798@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r26, 0x14(r1)
-	b        lbl_802499D4
+				int randIdx = 2.0f * randFloat();
+				for (int i = 0; i < roundedMax; i++, randIdx ^= 1) {
+					int slot = -1;
+					setSlotEnemyTypeF(randIdx);
 
-lbl_80249994:
-	mr       r3, r29
-	mr       r4, r26
-	bl       setSlotEnemyTypeF__Q34Game4Cave13RandEnemyUnitFi
-	lwz      r4, 0x30(r29)
-	cmplwi   r4, 0
-	beq      lbl_80249A28
-	lwz      r5, 0x34(r29)
-	cmplwi   r5, 0
-	beq      lbl_80249A28
-	lwz      r6, 0x18(r30)
-	mr       r3, r29
-	bl
-makeSetEnemyTypeF__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit
-	b        lbl_802499CC
-	b        lbl_80249A28
+					if (mMapTile && mSpawn) {
+						makeSetEnemyTypeF(mMapTile, mSpawn, currEnemy->mEnemyUnit);
+						continue;
+					}
+					return;
+				}
 
-lbl_802499CC:
-	xori     r26, r26, 1
-	addi     r25, r25, 1
+				if (altNum) {
+					int slot = -1;
+					setSlotEnemyTypeF(slot);
 
-lbl_802499D4:
-	cmpw     r25, r27
-	blt      lbl_80249994
-	cmpwi    r28, 0
-	beq      lbl_80249A1C
-	mr       r3, r29
-	li       r4, -1
-	bl       setSlotEnemyTypeF__Q34Game4Cave13RandEnemyUnitFi
-	lwz      r4, 0x30(r29)
-	cmplwi   r4, 0
-	beq      lbl_80249A28
-	lwz      r5, 0x34(r29)
-	cmplwi   r5, 0
-	beq      lbl_80249A28
-	lwz      r6, 0x18(r30)
-	mr       r3, r29
-	bl
-makeSetEnemyTypeF__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit
-	b        lbl_80249A1C
-	b        lbl_80249A28
-
-lbl_80249A1C:
-	lwz      r30, 4(r30)
-
-lbl_80249A20:
-	cmplwi   r30, 0
-	bne      lbl_802498E8
-
-lbl_80249A28:
-	lmw      r25, 0x24(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+					if (mMapTile && mSpawn) {
+						makeSetEnemyTypeF(mMapTile, mSpawn, currEnemy->mEnemyUnit);
+						continue;
+					}
+					return;
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -1525,119 +1447,40 @@ void RandEnemyUnit::makeSetEnemyTypeF(MapNode*, BaseGen*, EnemyUnit*)
  */
 void RandEnemyUnit::setVersusEnemyTypeB()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r25, 0x24(r1)
-	mr       r29, r3
-	li       r31, 0
-	lwz      r3, 0(r3)
-	lwz      r3, 0x14(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_8024A1A4
+	int count = 0;
+	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
+	{
+		TekiInfo* info = currEnemy->getTekiInfo();
+		if (info && info->mType == BaseGen::TekiB__Hard) {
+			count += info->mWeight / 10;
+			if (count > mTypeCount[TEKITYPE_B]) {
+				int altNum     = (count - mTypeCount[TEKITYPE_B]) % 2;
+				int roundedMax = ((count - mTypeCount[TEKITYPE_B]) / 2) * 2;
 
-lbl_8024A06C:
-	lwz      r3, 0x18(r30)
-	lwz      r4, 0(r3)
-	cmplwi   r4, 0
-	beq      lbl_8024A1A0
-	lwz      r0, 0x20(r4)
-	cmpwi    r0, 1
-	bne      lbl_8024A1A0
-	lis      r3, 0x66666667@ha
-	lwz      r0, 0x1c(r4)
-	addi     r3, r3, 0x66666667@l
-	lwz      r4, 0x14(r29)
-	mulhw    r0, r3, r0
-	srawi    r0, r0, 2
-	srwi     r3, r0, 0x1f
-	add      r0, r0, r3
-	add      r31, r31, r0
-	cmpw     r31, r4
-	ble      lbl_8024A1A0
-	subf     r0, r4, r31
-	srwi     r4, r0, 0x1f
-	clrlwi   r3, r0, 0x1f
-	add      r0, r4, r0
-	xor      r3, r3, r4
-	srawi    r0, r0, 1
-	subf     r28, r4, r3
-	slwi     r27, r0, 1
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	li       r25, 0
-	lfd      f3, lbl_8051A790@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_8051A788@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_8051A798@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r26, 0x14(r1)
-	b        lbl_8024A158
+				int randIdx = 2.0f * randFloat();
+				for (int i = 0; i < roundedMax; i++, randIdx ^= 1) {
+					setSlotEnemyTypeB(randIdx);
 
-lbl_8024A118:
-	mr       r3, r29
-	mr       r4, r26
-	bl       setSlotEnemyTypeB__Q34Game4Cave13RandEnemyUnitFi
-	lwz      r4, 0x30(r29)
-	cmplwi   r4, 0
-	beq      lbl_8024A1AC
-	lwz      r5, 0x34(r29)
-	cmplwi   r5, 0
-	beq      lbl_8024A1AC
-	lwz      r6, 0x18(r30)
-	mr       r3, r29
-	bl
-makeSetEnemyTypeB__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit
-	b        lbl_8024A150
-	b        lbl_8024A1AC
+					if (mMapTile && mSpawn) {
+						makeSetEnemyTypeB(mMapTile, mSpawn, currEnemy->mEnemyUnit);
+						continue;
+					}
+					return;
+				}
 
-lbl_8024A150:
-	xori     r26, r26, 1
-	addi     r25, r25, 1
+				if (altNum) {
+					int slot = -1;
+					setSlotEnemyTypeB(slot);
 
-lbl_8024A158:
-	cmpw     r25, r27
-	blt      lbl_8024A118
-	cmpwi    r28, 0
-	beq      lbl_8024A1A0
-	mr       r3, r29
-	li       r4, -1
-	bl       setSlotEnemyTypeB__Q34Game4Cave13RandEnemyUnitFi
-	lwz      r4, 0x30(r29)
-	cmplwi   r4, 0
-	beq      lbl_8024A1AC
-	lwz      r5, 0x34(r29)
-	cmplwi   r5, 0
-	beq      lbl_8024A1AC
-	lwz      r6, 0x18(r30)
-	mr       r3, r29
-	bl
-makeSetEnemyTypeB__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit
-	b        lbl_8024A1A0
-	b        lbl_8024A1AC
-
-lbl_8024A1A0:
-	lwz      r30, 4(r30)
-
-lbl_8024A1A4:
-	cmplwi   r30, 0
-	bne      lbl_8024A06C
-
-lbl_8024A1AC:
-	lmw      r25, 0x24(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+					if (mMapTile && mSpawn) {
+						makeSetEnemyTypeB(mMapTile, mSpawn, currEnemy->mEnemyUnit);
+						continue;
+					}
+					return;
+				}
+			}
+		}
+	}
 }
 
 /*
