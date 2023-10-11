@@ -33,15 +33,9 @@ struct BaseHIOSection : public Section {
 	void createScreenRootNode();
 	void setDisplay(JFWDisplay*, int);
 
-#if BUILDTARGET == USADEMO1
-	u8 _DemoPadding1[0x1C];
-#endif
 	HIORootNode* mRootNode; // _3C
 	u8 _40[4];              // _40
 	Controller* _44;        // _44
-#if BUILDTARGET == USADEMO1
-	u8 _DemoPadding2[0x4];
-#endif
 };
 
 /**
