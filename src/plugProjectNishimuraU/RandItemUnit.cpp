@@ -271,9 +271,8 @@ MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 		}
 	}
 
-	// regswaps here
 	if (totalScore) {
-		int randScore    = totalScore * randFloat();
+		int randScore    = randInt(totalScore);
 		int scoreCounter = 0;
 		for (int i = 0; i < counter; i++) {
 			scoreCounter += nodeScoreList[i];
@@ -285,295 +284,6 @@ MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 	}
 
 	return nullptr;
-	/*
-	stwu     r1, -0x1850(r1)
-	mflr     r0
-	stw      r0, 0x1854(r1)
-	stmw     r21, 0x1824(r1)
-	mr       r22, r3
-	mr       r23, r4
-	li       r27, 0
-	li       r21, 0
-	li       r26, 0
-	lwz      r3, 8(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r25, 0x10(r3)
-	b        lbl_8024ECC0
-
-lbl_8024EA2C:
-	lwz      r3, 0x18(r25)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_8024EBB8
-	mr       r3, r22
-	mr       r4, r25
-	bl       getItemSlotNum__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode
-	or.      r31, r3, r3
-	beq      lbl_8024ECBC
-	lwz      r3, 0x18(r25)
-	bl       getBaseGen__Q34Game4Cave8UnitInfoFv
-	cmplwi   r3, 0
-	beq      lbl_8024ECBC
-	addi     r30, r1, 0x1008
-	addi     r29, r1, 0x808
-	addi     r28, r1, 8
-	lwz      r24, 0x10(r3)
-	add      r30, r30, r21
-	add      r29, r29, r21
-	add      r28, r28, r21
-	b        lbl_8024EBAC
-
-lbl_8024EA80:
-	lwz      r0, 0x18(r24)
-	cmpwi    r0, 2
-	bne      lbl_8024EBA8
-	cmplwi   r24, 0
-	beq      lbl_8024EAC4
-	lwz      r3, 0x24(r25)
-	lwz      r3, 0x10(r3)
-	b        lbl_8024EAB8
-
-lbl_8024EAA0:
-	lwz      r0, 0x1c(r3)
-	cmplw    r0, r24
-	bne      lbl_8024EAB4
-	li       r0, 1
-	b        lbl_8024EB68
-
-lbl_8024EAB4:
-	lwz      r3, 4(r3)
-
-lbl_8024EAB8:
-	cmplwi   r3, 0
-	bne      lbl_8024EAA0
-	b        lbl_8024EB64
-
-lbl_8024EAC4:
-	lwz      r3, 0xc(r22)
-	li       r4, 1
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r25, r3
-	bne      lbl_8024EAE0
-	li       r0, 1
-	b        lbl_8024EB68
-
-lbl_8024EAE0:
-	lwz      r3, 0xc(r22)
-	li       r4, 2
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r25, r3
-	bne      lbl_8024EAFC
-	li       r0, 1
-	b        lbl_8024EB68
-
-lbl_8024EAFC:
-	lwz      r3, 0x24(r25)
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_8024EB14
-	li       r0, 1
-	b        lbl_8024EB68
-
-lbl_8024EB14:
-	lwz      r3, 0x1c(r25)
-	lwz      r4, 0x10(r3)
-	b        lbl_8024EB5C
-
-lbl_8024EB20:
-	lwz      r3, 0x18(r4)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_8024EB58
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	bne      lbl_8024EB58
-	lwz      r0, 0x20(r3)
-	cmpwi    r0, 5
-	beq      lbl_8024EB58
-	cmpwi    r0, 6
-	beq      lbl_8024EB58
-	li       r0, 1
-	b        lbl_8024EB68
-
-lbl_8024EB58:
-	lwz      r4, 4(r4)
-
-lbl_8024EB5C:
-	cmplwi   r4, 0
-	bne      lbl_8024EB20
-
-lbl_8024EB64:
-	li       r0, 0
-
-lbl_8024EB68:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8024EBA8
-	stw      r25, 0(r30)
-	mr       r3, r25
-	stw      r24, 0(r29)
-	bl       getNodeScore__Q34Game4Cave7MapNodeFv
-	divw     r3, r3, r31
-	addi     r30, r30, 4
-	addi     r29, r29, 4
-	addi     r27, r27, 1
-	addi     r21, r21, 4
-	addi     r0, r3, 1
-	stw      r0, 0(r28)
-	lwz      r0, 0(r28)
-	addi     r28, r28, 4
-	add      r26, r26, r0
-
-lbl_8024EBA8:
-	lwz      r24, 4(r24)
-
-lbl_8024EBAC:
-	cmplwi   r24, 0
-	bne      lbl_8024EA80
-	b        lbl_8024ECBC
-
-lbl_8024EBB8:
-	mr       r3, r25
-	bl       getUnitName__Q34Game4Cave7MapNodeFv
-	addi     r4, r2, lbl_8051A850@sda21
-	li       r5, 4
-	bl       strncmp
-	cmpwi    r3, 0
-	bne      lbl_8024ECBC
-	lwz      r3, 0xc(r22)
-	li       r4, 1
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r25, r3
-	bne      lbl_8024EBF0
-	li       r0, 1
-	b        lbl_8024EC78
-
-lbl_8024EBF0:
-	lwz      r3, 0xc(r22)
-	li       r4, 2
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r25, r3
-	bne      lbl_8024EC0C
-	li       r0, 1
-	b        lbl_8024EC78
-
-lbl_8024EC0C:
-	lwz      r3, 0x24(r25)
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_8024EC24
-	li       r0, 1
-	b        lbl_8024EC78
-
-lbl_8024EC24:
-	lwz      r3, 0x1c(r25)
-	lwz      r4, 0x10(r3)
-	b        lbl_8024EC6C
-
-lbl_8024EC30:
-	lwz      r3, 0x18(r4)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_8024EC68
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	bne      lbl_8024EC68
-	lwz      r0, 0x20(r3)
-	cmpwi    r0, 5
-	beq      lbl_8024EC68
-	cmpwi    r0, 6
-	beq      lbl_8024EC68
-	li       r0, 1
-	b        lbl_8024EC78
-
-lbl_8024EC68:
-	lwz      r4, 4(r4)
-
-lbl_8024EC6C:
-	cmplwi   r4, 0
-	bne      lbl_8024EC30
-	li       r0, 0
-
-lbl_8024EC78:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8024ECBC
-	addi     r3, r1, 0x1008
-	addi     r4, r1, 0x808
-	li       r0, 0
-	stwx     r25, r3, r21
-	mr       r3, r25
-	stwx     r0, r4, r21
-	bl       getNodeScore__Q34Game4Cave7MapNodeFv
-	mulli    r3, r3, 0xa
-	addi     r4, r1, 8
-	addi     r27, r27, 1
-	addi     r0, r3, 1
-	stwx     r0, r4, r21
-	lwzx     r0, r4, r21
-	addi     r21, r21, 4
-	add      r26, r26, r0
-
-lbl_8024ECBC:
-	lwz      r25, 4(r25)
-
-lbl_8024ECC0:
-	cmplwi   r25, 0
-	bne      lbl_8024EA2C
-	cmpwi    r26, 0
-	beq      lbl_8024ED6C
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x180c(r1)
-	xoris    r0, r26, 0x8000
-	lfd      f2, lbl_8051A848@sda21(r2)
-	addi     r5, r1, 8
-	stw      r4, 0x1808(r1)
-	li       r6, 0
-	lfs      f0, lbl_8051A858@sda21(r2)
-	li       r7, 0
-	lfd      f1, 0x1808(r1)
-	stw      r0, 0x1814(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x1810(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x1810(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x1818(r1)
-	lwz      r3, 0x181c(r1)
-	mtctr    r27
-	cmpwi    r27, 0
-	ble      lbl_8024ED6C
-
-lbl_8024ED34:
-	lwz      r0, 0(r5)
-	add      r6, r6, r0
-	cmpw     r6, r3
-	ble      lbl_8024ED60
-	slwi     r4, r7, 2
-	addi     r3, r1, 0x808
-	lwzx     r0, r3, r4
-	addi     r3, r1, 0x1008
-	lwzx     r3, r3, r4
-	stw      r0, 0(r23)
-	b        lbl_8024ED70
-
-lbl_8024ED60:
-	addi     r5, r5, 4
-	addi     r7, r7, 1
-	bdnz     lbl_8024ED34
-
-lbl_8024ED6C:
-	li       r3, 0
-
-lbl_8024ED70:
-	lmw      r21, 0x1824(r1)
-	lwz      r0, 0x1854(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1850
-	blr
-	*/
 }
 
 /*
@@ -632,7 +342,7 @@ MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 	}
 
 	if (counter) {
-		int randIndex = counter * randFloat();
+		int randIndex = randInt(counter);
 		outGens[0]    = baseGenList[randIndex];
 		return mapNodeList[randIndex];
 	}
@@ -675,7 +385,7 @@ ItemUnit* RandItemUnit::getItemUnit()
 	}
 
 	if (tally) {
-		int randLimit = tally * randFloat();
+		int randLimit = randInt(tally);
 		int newTally  = 0;
 		for (int i = 0; i < counter; i++) {
 			newTally += weightList[i];
@@ -931,11 +641,11 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode* node, int score)
 		}
 
 		if (counter2) {
-			int randIdx      = counter2 * randFloat();
+			int randIdx      = randInt(counter2);
 			Vector3f* outVec = &positions[randIdx];
 			return *outVec;
 		} else {
-			int randIdx = counter * randFloat();
+			int randIdx = randInt(counter);
 			return node->getBaseGenGlobalPosition(genList[randIdx]);
 		}
 	} else {
