@@ -599,7 +599,7 @@ lbl_8043E71C:
  * Address:	8043E730
  * Size:	000174
  */
-Vector3f& Model::getRoughCenter()
+Vector3f Model::getRoughCenter()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -733,7 +733,7 @@ bool Model::isVisible(Sys::Sphere& sphere)
 {
 	int i = 0;
 	while (true) {
-		if (sys->mGfx->mViewportCount <= i) {
+		if (sys->mGfx->mActiveViewports <= i) {
 			mIsVisible = false;
 			return false;
 		}
@@ -1402,7 +1402,7 @@ namespace SysShape {
  * Address:	8043EFB4
  * Size:	000030
  */
-s16 Model::getJointIndex(char*)
+u16 Model::getJointIndex(char*)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -1,4 +1,4 @@
-#include "types.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -96,50 +96,50 @@ HeapStatus::HeapStatus()
  * Address:	........
  * Size:	00008C
  */
-Node::~Node()
-{
-	// UNUSED FUNCTION
-}
+// Node::~Node()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00007C
  */
-CoreNode::~CoreNode()
-{
-	// UNUSED FUNCTION
-}
+// CoreNode::~CoreNode()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000074
  */
-void JSUTree<CoreNode>::~JSUTree()
-{
-	// UNUSED FUNCTION
-}
+// void JSUTree<CoreNode>::~JSUTree()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void JSULink<CoreNode>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
+// void JSULink<CoreNode>::~JSULink()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void JSUList<CoreNode>::~JSUList()
-{
-	// UNUSED FUNCTION
-}
+// void JSUList<CoreNode>::~JSUList()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -363,121 +363,121 @@ void HeapInfo::dump(int, bool)
  * Address:	8042B214
  * Size:	000014
  */
-void JSUTree<CoreNode>::getNextChild() const
-{
-	/*
-	lwz      r3, 0x18(r3)
-	cmplwi   r3, 0
-	beqlr
-	addi     r3, r3, -12
-	blr
-	*/
-}
+// void JSUTree<CoreNode>::getNextChild() const
+// {
+// 	/*
+// 	lwz      r3, 0x18(r3)
+// 	cmplwi   r3, 0
+// 	beqlr
+// 	addi     r3, r3, -12
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8042B228
  * Size:	000018
  */
-void JSUTreeIterator<CoreNode>::operator!=(const JSUTree<CoreNode>*) const
-{
-	/*
-	lwz      r0, 0(r3)
-	subf     r3, r0, r4
-	subf     r0, r4, r0
-	or       r0, r3, r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+// void JSUTreeIterator<CoreNode>::operator!=(const JSUTree<CoreNode>*) const
+// {
+// 	/*
+// 	lwz      r0, 0(r3)
+// 	subf     r3, r0, r4
+// 	subf     r0, r4, r0
+// 	or       r0, r3, r0
+// 	srwi     r3, r0, 0x1f
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8042B240
  * Size:	000008
  */
-u32 JSUTree<CoreNode>::getEndChild() const { return 0x0; }
+// u32 JSUTree<CoreNode>::getEndChild() const { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8042B248
  * Size:	00001C
  */
-void JSUTreeIterator<CoreNode>::operator++()
-{
-	/*
-	lwz      r4, 0(r3)
-	lwz      r4, 0x18(r4)
-	cmplwi   r4, 0
-	beq      lbl_8042B25C
-	addi     r4, r4, -12
+// void JSUTreeIterator<CoreNode>::operator++()
+// {
+// 	/*
+// 	lwz      r4, 0(r3)
+// 	lwz      r4, 0x18(r4)
+// 	cmplwi   r4, 0
+// 	beq      lbl_8042B25C
+// 	addi     r4, r4, -12
 
-lbl_8042B25C:
-	stw      r4, 0(r3)
-	blr
-	*/
-}
+// lbl_8042B25C:
+// 	stw      r4, 0(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8042B264
  * Size:	00000C
  */
-void JSUTreeIterator<CoreNode>::getObject() const
-{
-	/*
-	lwz      r3, 0(r3)
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+// void JSUTreeIterator<CoreNode>::getObject() const
+// {
+// 	/*
+// 	lwz      r3, 0(r3)
+// 	lwz      r3, 0xc(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8042B270
  * Size:	000008
  */
-void JSUTreeIterator<CoreNode>::JSUTreeIterator(JSUTree<CoreNode>* a1)
-{
-	// Generated from stw r4, 0x0(r3)
-	_00 = a1;
-}
+// void JSUTreeIterator<CoreNode>::JSUTreeIterator(JSUTree<CoreNode>* a1)
+// {
+// 	// Generated from stw r4, 0x0(r3)
+// 	_00 = a1;
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void JSUTree<CoreNode>::getObject() const
-{
-	// UNUSED FUNCTION
-}
+// void JSUTree<CoreNode>::getObject() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8042B278
  * Size:	000014
  */
-void JSUTree<CoreNode>::getFirstChild() const
-{
-	/*
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beqlr
-	addi     r3, r3, -12
-	blr
-	*/
-}
+// void JSUTree<CoreNode>::getFirstChild() const
+// {
+// 	/*
+// 	lwz      r3, 0(r3)
+// 	cmplwi   r3, 0
+// 	beqlr
+// 	addi     r3, r3, -12
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000270
  */
-void HeapInfo::dumpNode(int)
-{
-	// UNUSED FUNCTION
-}
+// void HeapInfo::dumpNode(int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -685,10 +685,10 @@ void HeapInfo::isValidUsedSize()
  * Address:	........
  * Size:	000008
  */
-void CoreNode::getName() const
-{
-	// UNUSED FUNCTION
-}
+// void CoreNode::getName() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--

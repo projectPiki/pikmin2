@@ -89,7 +89,7 @@ void TParse_TParagraph_data::getData(TParse_TParagraph_data::TData* data) const
 		set3 = *set2++;
 	}
 	data->_08       = set3;
-	data->fileCount = set2;
+	data->fileCount = (char*)set2;
 
 	if (!(set & 7))
 		return;

@@ -171,7 +171,7 @@ void Section::menuCancel(Menu&) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_C
  */
 void Section::menuSelect(Menu& menu)
 {
-	if (menu.mSelect == 2 || menu.mSelect == 1) {
+	if (menu.mState == 2 || menu.mState == 1) {
 		mIsMainActive                = false;
 		GameFlow::mActiveSectionFlag = menu.mCurrentItem->_0C;
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
@@ -262,7 +262,7 @@ void Section::doUpdateMainTitle()
 	mGoToDemoTimer += sys->mDeltaTime;
 	if (mDoCheckShortCut) {
 		mMenu->doUpdate(false);
-		if (mMenu->mSelect == 2 || mMenu->mSelect == 1) {
+		if (mMenu->mState == 2 || mMenu->mState == 1) {
 			if (mController1->mButton.mButtonDown & Controller::PRESS_DPAD_UP && Game::gGameConfig.mParms.mShortCutUp.mData >= 0) {
 				GameFlow::mActiveSectionFlag = Game::gGameConfig.mParms.mShortCutUp.mData;
 				mIsMainActive                = false;
@@ -298,7 +298,7 @@ void Section::doUpdateMainTitle()
 		PSSystem::checkSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
-		f32 rate               = ebi::TMainTitleMgr::kFadeoutTime / sys->mDeltaTime;
+		f32 rate               = ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime;
 		if (rate >= 0.0f)
 			rate += 0.5f;
 		else

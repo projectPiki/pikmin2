@@ -31,7 +31,7 @@ struct TParse_TParagraph_data {
 		u8 status;    //_00
 		int dataSize; //_04
 		int _08;
-		u8* fileCount;
+		char* fileCount;
 		u8* _10;
 	};
 

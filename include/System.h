@@ -26,6 +26,14 @@ struct HeapInfo : public Node, public JKRDisposer {
 
 	void search(HeapInfo*);
 
+	void dump(int, bool);
+	void getTotalUsedSize();
+	void dumpNode(int);
+	void search(char*, bool);
+	void isInvalidUsedSize();
+	void isValidUsedSize();
+	void getUsedSize(bool);
+
 	// _00-_24 = Node
 	// _20     = VTBL (Node)
 	// _24-_3C = JKRDisposer
@@ -38,6 +46,14 @@ struct HeapInfo : public Node, public JKRDisposer {
 
 struct HeapStatus {
 	HeapStatus();
+
+	void start(char*, JKRHeap*);
+	void end(char*);
+	void setCurrentHeapInfoParent();
+	void searchHeapInfo(char*);
+	void searchHeapInfo(HeapInfo*);
+	void dump(bool);
+	void dumpNode();
 
 	HeapInfo mHeapInfo; // _00
 	u8 _50;             // _50, unknown

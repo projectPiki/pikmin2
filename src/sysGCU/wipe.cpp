@@ -4,6 +4,7 @@
 #include "System.h"
 #include "types.h"
 #include "wipe.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -213,10 +214,10 @@ bool WipeInFader::isBlack() { return _18 < 0.5f; }
 WipeInFader::WipeInFader()
     : WipeBase()
 {
-	_24.channels.r = 0;
-	_24.channels.g = 0;
-	_24.channels.b = 0;
-	_24.channels.a = 0;
+	_24.r = 0;
+	_24.g = 0;
+	_24.b = 0;
+	_24.a = 0;
 }
 
 /*
@@ -326,10 +327,10 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
 WipeOutFader::WipeOutFader()
     : WipeBase()
 {
-	_24.channels.r = 0;
-	_24.channels.g = 0;
-	_24.channels.b = 0;
-	_24.channels.a = 0;
+	_24.r = 0;
+	_24.g = 0;
+	_24.b = 0;
+	_24.a = 0;
 }
 
 /*
@@ -507,11 +508,11 @@ void WipeOutInFader::do_draw(float)
 BlackFader::BlackFader()
     : WipeBase()
 {
-	_24.channels.r = 0;
-	_24.channels.g = 0;
-	_24.channels.b = 0;
-	_24.channels.a = 0;
-	_28            = true;
+	_24.r = 0;
+	_24.g = 0;
+	_24.b = 0;
+	_24.a = 0;
+	_28   = true;
 }
 
 /*
@@ -545,13 +546,13 @@ void BlackFader::do_draw(float)
 	// JUtility::TColor c4;
 	Graphics* gfx = sys->mGfx;
 	gfx->mOrthoGraph.setPort();
-	JUtility::TColor color(_24.channels.r, _24.channels.g, _24.channels.b, 0xFF);
+	JUtility::TColor color(_24.r, _24.g, _24.b, 0xFF);
 	J2DOrthoGraph* orthoGraph = &gfx->mOrthoGraph;
 	if (!_28) {
-		color.channels.r = _24.channels.r;
-		color.channels.g = _24.channels.g;
-		color.channels.b = _24.channels.b;
-		color.channels.a = 0x00;
+		color.r = _24.r;
+		color.g = _24.g;
+		color.b = _24.b;
+		color.a = 0x00;
 	}
 	// JUtility::TColor* c0 = &color;
 	// JUtility::TColor* c1 = &color;
@@ -795,57 +796,4 @@ void BallFader::birth()
 BallFader::~BallFader()
 {
 	// UNUSED FUNCTION
-}
-
-// /*
-//  * --INFO--
-//  * Address:	8042C578
-//  * Size:	000008
-//  */
-// bool WipeBase::isWhite() { return false; }
-
-// /*
-//  * --INFO--
-//  * Address:	8042C580
-//  * Size:	000008
-//  */
-// bool WipeBase::isBlack() { return false; }
-
-// /*
-//  * __dt__10BlackFaderFv
-//  * --INFO--
-//  * Address:	8042C588
-//  * Size:	000070
-//  */
-// BlackFader::~BlackFader() { }
-
-// /*
-//  * __dt__14WipeOutInFaderFv
-//  * --INFO--
-//  * Address:	8042C5F8
-//  * Size:	0000E0
-//  */
-// WipeOutInFader::~WipeOutInFader()
-// {
-// }
-
-/*
- * --INFO--
- * Address:	8042C6D8
- * Size:	000028
- */
-void __sinit_wipe_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EBED8@ha
-	stw      r0, lbl_805161C0@sda21(r13)
-	stfsu    f0, lbl_804EBED8@l(r3)
-	stfs     f0, lbl_805161C4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
 }
