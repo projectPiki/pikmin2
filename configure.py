@@ -1045,7 +1045,7 @@ LIBS = [
             ["plugProjectNishimuraU/MapCreator", True],
             "plugProjectNishimuraU/RandMapScore",
             ["plugProjectNishimuraU/ItemUnit", True],
-            "plugProjectNishimuraU/RandItemUnit",
+            ["plugProjectNishimuraU/RandItemUnit", True],
             ["plugProjectNishimuraU/GateUnit", True],
             ["plugProjectNishimuraU/RandGateUnit", True],
             ["plugProjectNishimuraU/ObjectLayout", True],

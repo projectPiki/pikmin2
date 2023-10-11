@@ -364,14 +364,14 @@ ItemUnit* RandItemUnit::getItemUnit()
 	int tally   = 0;
 	FOREACH_NODE(ItemNode, mGenerator->mItemNode->mChild, currItem)
 	{
-		ItemUnit* unit = currItem->mUnit;
-		if (unit->mInfo) {
-			int weight = unit->mInfo->mWeight % 10;
-			int val    = unit->mInfo->mWeight / 10;
+		if (currItem->mUnit->mInfo) {
+			int weight = currItem->mUnit->mInfo->mWeight % 10;
+			int val    = currItem->mUnit->mInfo->mWeight / 10;
+
 			if (weight) {
+				unitList[counter]   = currItem->mUnit;
 				weightList[counter] = weight;
 				tally += weightList[counter];
-				unitList[counter] = unit;
 				counter++;
 			}
 
@@ -396,120 +396,6 @@ ItemUnit* RandItemUnit::getItemUnit()
 	}
 
 	return nullptr;
-	/*
-	stwu     r1, -0x1030(r1)
-	mflr     r0
-	li       r10, 0
-	stw      r0, 0x1034(r1)
-	addi     r6, r1, 0x808
-	stw      r31, 0x102c(r1)
-	addi     r31, r1, 8
-	mr       r7, r31
-	stw      r30, 0x1028(r1)
-	li       r30, 0
-	stw      r29, 0x1024(r1)
-	li       r29, 0
-	lwz      r4, 8(r3)
-	lwz      r4, 0x24(r4)
-	lwz      r11, 0x10(r4)
-	b        lbl_8024F188
-
-lbl_8024F104:
-	lwz      r9, 0x18(r11)
-	lwz      r5, 0(r9)
-	cmplwi   r5, 0
-	beq      lbl_8024F184
-	lis      r4, 0x66666667@ha
-	lwz      r8, 0x1c(r5)
-	addi     r0, r4, 0x66666667@l
-	mulhw    r0, r0, r8
-	srawi    r4, r0, 2
-	srwi     r5, r4, 0x1f
-	srawi    r0, r0, 2
-	add      r4, r4, r5
-	mulli    r5, r4, 0xa
-	srwi     r4, r0, 0x1f
-	add      r4, r0, r4
-	subf.    r0, r5, r8
-	beq      lbl_8024F164
-	stw      r0, 0(r7)
-	addi     r30, r30, 1
-	lwz      r0, 0(r7)
-	addi     r7, r7, 4
-	stw      r9, 0(r6)
-	addi     r6, r6, 4
-	add      r29, r29, r0
-
-lbl_8024F164:
-	cmpwi    r4, 0
-	beq      lbl_8024F184
-	lwz      r0, 0(r3)
-	add      r10, r10, r4
-	cmpw     r0, r10
-	bge      lbl_8024F184
-	lwz      r3, 0x18(r11)
-	b        lbl_8024F228
-
-lbl_8024F184:
-	lwz      r11, 4(r11)
-
-lbl_8024F188:
-	cmplwi   r11, 0
-	bne      lbl_8024F104
-	cmpwi    r29, 0
-	beq      lbl_8024F224
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x100c(r1)
-	xoris    r0, r29, 0x8000
-	lfd      f2, lbl_8051A848@sda21(r2)
-	li       r5, 0
-	stw      r4, 0x1008(r1)
-	li       r6, 0
-	lfs      f0, lbl_8051A858@sda21(r2)
-	lfd      f1, 0x1008(r1)
-	stw      r0, 0x1014(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x1010(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x1010(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x1018(r1)
-	lwz      r3, 0x101c(r1)
-	mtctr    r30
-	cmpwi    r30, 0
-	ble      lbl_8024F224
-
-lbl_8024F1F8:
-	lwz      r0, 0(r31)
-	add      r5, r5, r0
-	cmpw     r5, r3
-	ble      lbl_8024F218
-	slwi     r0, r6, 2
-	addi     r3, r1, 0x808
-	lwzx     r3, r3, r0
-	b        lbl_8024F228
-
-lbl_8024F218:
-	addi     r31, r31, 4
-	addi     r6, r6, 1
-	bdnz     lbl_8024F1F8
-
-lbl_8024F224:
-	li       r3, 0
-
-lbl_8024F228:
-	lwz      r0, 0x1034(r1)
-	lwz      r31, 0x102c(r1)
-	lwz      r30, 0x1028(r1)
-	lwz      r29, 0x1024(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1030
-	blr
-	*/
 }
 
 /*
