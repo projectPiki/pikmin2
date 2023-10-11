@@ -2154,7 +2154,7 @@ lbl_80220B34:
  */
 FakePiki* Navi::checkDemoNaviAndPiki(Sys::Sphere& bounds)
 {
-	if (!(gameSystem->mFlags & GAMESYS_IsGameWorldActive)) {
+	if (!(gameSystem->isFlag(GAMESYS_IsGameWorldActive))) {
 		return nullptr;
 	}
 

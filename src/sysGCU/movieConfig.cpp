@@ -16,22 +16,18 @@ static const char movieConfigName[]       = "movieConfig";
  */
 MovieConfig::MovieConfig()
 {
-	mDrawFlags.bytesView[0] = 0;
-	mDrawFlags.bytesView[1] = 0;
-	mPositionFlag           = 2;
-	mMovieNameBuffer1[0]    = 0;
-	mMovieNameBuffer2[0]    = 0;
-	mOrigin                 = Vector3f(0.0f);
-	mAngle                  = 0.0f;
-	mDrawFlags.bytesView[0] = 0;
-	mDrawFlags.bytesView[1] = 0;
-	mFlags                  = 1;
-	mDrawFlags.bytesView[0] = 0;
-	mDrawFlags.bytesView[1] = 0;
-	mDrawType               = 3;
-	mName                   = mMovieNameBuffer1;
-	mCourseIndex            = -1;
-	mMapName                = "nomap";
+	mPositionFlag        = 2;
+	mMovieNameBuffer1[0] = 0;
+	mMovieNameBuffer2[0] = 0;
+	mOrigin              = Vector3f(0.0f);
+	mAngle               = 0.0f;
+	mDrawFlags.clear();
+	mFlags = 1;
+	mDrawFlags.clear();
+	mDrawType    = 3;
+	mName        = mMovieNameBuffer1;
+	mCourseIndex = -1;
+	mMapName     = "nomap";
 	mId.setID('v0.5');
 	mMsgPauseNum = 0;
 }
@@ -101,18 +97,16 @@ void MovieConfig::read(Stream& data)
 	mFlags = data.readShort();
 
 	if (id.getID() > 'v0.0') {
-		mDrawFlags.bytesView[0] = 0;
-		mDrawFlags.bytesView[1] = 0;
+		mDrawFlags.clear();
 		if (id.getID() < 'v0.4') {
 			data.readShort();
 			data.readShort();
-			mDrawFlags.bytesView[0] = 0;
-			mDrawFlags.bytesView[1] = 0;
+			mDrawFlags.clear();
 			if (id.getID() >= 'v0.3') {
 				mDrawType = data.readShort();
 			}
 		} else {
-			mDrawFlags.shortView |= (u16)data.readShort();
+			setDrawFlag((u16)data.readShort());
 			mDrawType = data.readShort();
 		}
 	}

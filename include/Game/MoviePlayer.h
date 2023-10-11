@@ -86,6 +86,10 @@ struct MovieConfig : public CNode {
 	bool is(char*);
 	void read(Stream&);
 
+	inline void setDrawFlag(u32 flag) { mDrawFlags.typeView |= flag; }
+	inline void resetDrawFlag(u32 flag) { mDrawFlags.typeView &= ~flag; }
+	inline bool isDrawFlag(u32 flag) const { return mDrawFlags.typeView & flag; }
+
 	// _00     = VTBL
 	// _00-_18 = CNode
 	ID32 mId;                   // _18
@@ -98,13 +102,10 @@ struct MovieConfig : public CNode {
 	int mCourseIndex;           // _B4
 	char* mMapName;             // _B8
 	u16 mFlags;                 // _BC
-	union {
-		u8 bytesView[2];
-		u16 shortView;
-	} mDrawFlags;     // _BE
-	u16 mDrawType;    // _C0
-	s16 mFadeType;    // _C2
-	int mMsgPauseNum; // _C4
+	BitFlag<u16> mDrawFlags;    // _BE
+	u16 mDrawType;              // _C0
+	s16 mFadeType;              // _C2
+	int mMsgPauseNum;           // _C4
 };
 
 struct MoviePlayArg {

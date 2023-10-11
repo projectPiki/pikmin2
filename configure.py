@@ -1591,7 +1591,7 @@ LIBS = [
             "sysGCU/sysMaterialAnim",
             "sysGCU/P2DScreen",
             "sysGCU/movieMessage",
-            "sysGCU/moviePlayerPauseAndDraw",
+            ["sysGCU/moviePlayerPauseAndDraw", True],
             ["sysGCU/JSTObjectSpecialActor", True],
             ["sysGCU/messageSequence", True],
             "sysGCU/messageMgr",
