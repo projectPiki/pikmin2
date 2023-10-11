@@ -343,67 +343,13 @@ void RandMapScore::setStartMapNodeScore(MapNode* mapNode)
 	setMapNodeScore(mapNode, 0);
 	for (int i = 0; i < mapNode->getNumDoors(); i++) {
 		if (!mapNode->isDoorScoreSetDone(i)) {
-			int score = mapNode->getGateScore(i);
-
+			int score     = mapNode->getGateScore(i);
 			int nodeScore = mapNode->getNodeScore();
-			score++;
-			score += nodeScore;
-			mapNode->setDoorScore(i, score);
-			setMapNodeScore(mapNode->mAdjustInfo[i].mMapTile, score);
+			int doorScore = nodeScore + score + 1;
+			mapNode->setDoorScore(i, doorScore);
+			setMapNodeScore(mapNode->mAdjustInfo[i].mMapTile, doorScore);
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	bl       setMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodei
-	li       r29, 0
-	li       r30, 0
-	b        lbl_8024CF64
-
-lbl_8024CF04:
-	mr       r3, r28
-	mr       r4, r29
-	bl       isDoorScoreSetDone__Q34Game4Cave7MapNodeFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8024CF5C
-	mr       r3, r28
-	mr       r4, r29
-	bl       getGateScore__Q34Game4Cave7MapNodeFi
-	mr       r31, r3
-	mr       r3, r28
-	bl       getNodeScore__Q34Game4Cave7MapNodeFv
-	addi     r31, r31, 1
-	mr       r4, r29
-	add      r31, r3, r31
-	mr       r3, r28
-	mr       r5, r31
-	bl       setDoorScore__Q34Game4Cave7MapNodeFii
-	lwz      r4, 0x28(r28)
-	mr       r3, r27
-	mr       r5, r31
-	lwzx     r4, r4, r30
-	bl       setMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodei
-
-lbl_8024CF5C:
-	addi     r30, r30, 0xc
-	addi     r29, r29, 1
-
-lbl_8024CF64:
-	mr       r3, r28
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	cmpw     r29, r3
-	blt      lbl_8024CF04
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
