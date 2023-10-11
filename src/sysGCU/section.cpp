@@ -73,10 +73,10 @@ Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 	mGraphics = new Graphics();
 	sys->mGfx = mGraphics;
 #if BUILDTARGET == USADEMO1
-	mOsTime = 0;
+	mOsTime          = 0;
 	mDemoController1 = new JUTGamePad(JUTGamePad::PORT_0);
 	mDemoController2 = new JUTGamePad(JUTGamePad::PORT_1);
-	mTimer = 0.0f;
+	mTimer           = 0.0f;
 #endif
 }
 
@@ -203,17 +203,17 @@ void Section::main()
 #if BUILDTARGET == USADEMO1
 		// TODO: This case has to be something around the lines of the below, running into inlining issues with Section::run()
 		/*if (!config->mParms.mE3version.mData || !config->mParms.mNintendoVersion.mData && !forceReset()) {
-			if (!mDemoController1->mButton.mButton || !mDemoController2->mButton.mButton) {
-				mTimer = 0.0f;
-			}
+		    if (!mDemoController1->mButton.mButton || !mDemoController2->mButton.mButton) {
+		        mTimer = 0.0f;
+		    }
+		    mTimer += sys->mDeltaTime;
+		    if (mTimer > 180.0f)
+		        sys->resetOn(false);
+		}*/
+		if (!config->mParms.mE3version.mData) {
 			mTimer += sys->mDeltaTime;
 			if (mTimer > 180.0f)
 				sys->resetOn(false);
-		}*/
-		if (!config->mParms.mE3version.mData) {
-				mTimer += sys->mDeltaTime;
-				if (mTimer > 180.0f)
-					sys->resetOn(false);
 		}
 #endif
 	} while (!mIsLoadingDVD && mIsMainActive);

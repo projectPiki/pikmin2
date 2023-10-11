@@ -73,14 +73,18 @@ struct TDayEndCount : public TTestBase {
 	f32 mOffsetY;                                   // _D0
 
 	static u8 mCountDownType;
-	static JUtility::TColor mColor;
-	static JUtility::TColor mNumberColor;
+	static GXColor mColor;
+	static GXColor mNumberColor;
 	static bool mTestChangeColor;
+	static bool mColorTest;
 	static f32 m2pScale;
 	static f32 m2pOffsetY;
 	static u8 mAlphaMax;
 	static f32 mWaitScale;
 	static u8 mWaitAlpha;
+	static f32 mWaitTime;
+	static f32 mStopScale;
+	static f32 mScaleMax;
 };
 
 struct TChallengeEndCount : public TDayEndCount {

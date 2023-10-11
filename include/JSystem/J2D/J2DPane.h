@@ -558,6 +558,8 @@ struct J2DPicture : public J2DPane {
 
 	inline ResTIMG* getTIMG(u8 i); // defined in JUTTexture.h to avoid include loops
 
+	inline JGeometry::TVec2<s16>* getShort(int i) { return &_112[i]; }
+
 	// _000      = VTBL
 	// _000-_100 = J2DPane
 	JUTTexture* mTextures[4];      // _100

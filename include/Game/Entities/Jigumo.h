@@ -19,7 +19,6 @@
 
 namespace Game {
 namespace Jigumo {
-bool mouthScaleCallBack(J3DJoint*, int);
 
 struct FSM;
 
@@ -171,6 +170,8 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                     // _388
 	                               // _38C = PelletView
 };
+
+extern Obj* curJ;
 
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);

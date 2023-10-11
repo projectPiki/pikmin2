@@ -14,6 +14,58 @@ struct Vs2D_TitleInfo;
 } // namespace Game
 
 namespace Morimura {
+struct TVsPiki {
+	struct posInfo {
+		posInfo();
+
+		int _00; // _00
+		f32 _04; // _04
+		f32 _08; // _08
+		f32 _0C; // _0C
+	};
+
+	TVsPiki(J2DPane*, J2DPane*, J2DPane*);
+
+	void init(int);
+	void update(int);
+	void draw();
+	void setAlpha(u8);
+
+	J2DPicture* _00;       // _00
+	J2DPicture* _04;       // _04
+	J2DPicture* _08;       // _08
+	posInfo mPosInfos[10]; // _0C
+	Vector2f _AC[2];       // _AC
+};
+
+struct TVsSelectOnyon {
+
+	void reset();
+	void posUpdate(f32);
+	void getAngDist();
+	void draw();
+
+	u8 _00[0x8];  // _00, unknown
+	J2DPane* _08; // _08
+	f32 _0C;      // _0C
+	f32 _10;      // _10
+	f32 _14;      // _14
+	f32 _18;      // _18
+	f32 _1C;      // _1C
+	f32 _20;      // _20
+	f32 _24;      // _24
+	f32 _28;      // _28
+	f32 _2C;      // _2C
+	u8 _30[0x4];  // _30, unknown
+	f32 _34;      // _34
+	int _38;      // _38
+	u8 _3C[0x4];  // _3C, unknown
+};
+
+struct TVsSelectSlotIndex {
+	void getIndexInfo(int);
+};
+
 struct DispMemberVsSelect : public og::Screen::DispMemberBase {
 	DispMemberVsSelect()
 	{
@@ -52,6 +104,8 @@ struct DispMemberVsSelect : public og::Screen::DispMemberBase {
 };
 
 struct TVsSelectCBWinNum : public og::Screen::CallBack_CounterDay {
+	TVsSelectCBWinNum(char**, u16, JKRArchive*);
+
 	virtual ~TVsSelectCBWinNum();      // _08 (weak)
 	virtual void update();             // _10
 	virtual void setValue(bool, bool); // _28
@@ -128,8 +182,8 @@ struct TVsSelect : public TScrollList {
 	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)
 	virtual void paneInit();                                 // _80
 	virtual void changePaneInfo();                           // _84
-	virtual void getIdMax();                                 // _88 (weak)
-	virtual void getNameID(int);                             // _8C
+	virtual int getIdMax();                                  // _88 (weak)
+	virtual u64 getNameID(int);                              // _8C
 	virtual void setShortenIndex(int, int, bool);            // _94
 
 	void getCourseID(int);
@@ -145,6 +199,10 @@ struct TVsSelect : public TScrollList {
 	void changeOrimaTexture(int);
 	void changeLouieTexture(int);
 	void changeSlotPage();
+
+	// unused/inlined
+	void setDebugHeapParent(JKRHeap*);
+	void reset();
 
 	// _00     = VTBL1
 	// _18     = VTBL2

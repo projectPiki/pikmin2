@@ -140,6 +140,9 @@ struct Obj : public EnemyBase {
 	void fadePulledSmokeEffect();
 	void throwUpEatItem();
 
+	// unused/inlined
+	void clearCarryVelocity();
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	Vector3f mNextWayPointPosition;     // _2BC

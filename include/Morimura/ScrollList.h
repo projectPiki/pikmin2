@@ -5,7 +5,7 @@
 
 namespace Morimura {
 struct TScaleUpCounter;
-struct TZukanBase;
+struct TScrollList;
 
 struct TIndexGroup {
 	TIndexGroup();
@@ -56,7 +56,7 @@ struct TIconInfo {
 };
 
 struct TIndexPane {
-	TIndexPane(TZukanBase* owner, P2DScreen::Mgr_tuning* scrn, u64 tag)
+	TIndexPane(TScrollList* owner, P2DScreen::Mgr_tuning* scrn, u64 tag)
 	{
 		J2DPane* pane = scrn->search(tag);
 		mIndex        = 0;
@@ -87,7 +87,7 @@ struct TIndexPane {
 	f32 _18;                // _18
 	f32 _1C;                // _1C
 	TIconInfo** mIconInfos; // _20
-	TZukanBase* mOwner;     // _24
+	TScrollList* mOwner;    // _24
 };
 
 struct TListScreen : public TScreenBase {

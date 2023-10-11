@@ -15,6 +15,8 @@
 #include "P2JME/P2JME.h"
 #include "efx2d/T2DChangesmoke.h"
 
+static const int unusedArray[] = { 0, 0, 0 };
+
 namespace Morimura {
 s16 TZukanBase::mRequestTimerMax    = 10;
 bool TZukanBase::mIconMove          = true;
@@ -231,7 +233,8 @@ TZukanBase::TZukanBase(char* name)
  */
 void TZukanBase::setDebugHeapParent(JKRHeap* heap)
 {
-	P2ASSERTLINE(69, 1); // this is here for strings to line up
+	mDebugHeapParent = heap;
+	P2ASSERTLINE(69, mDebugHeapParent);
 }
 
 /*
@@ -905,8 +908,7 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 	mCurrentSelect = 4;
 	_98            = mMaxSelect - 1;
 
-	u64 tags[12] = { 'Tmenu12', 'Tmenu13', 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03',
-		             'Tmenu04', 'Tmenu05', 'Tmenu06', 'Tmenu07', 'Tmenu08', 'Tmenu09' };
+	u64 tags[10] = { 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04', 'Tmenu05', 'Tmenu07', 'Tmenu06', 'Tmenu08', 'Tmenu09' };
 
 	J2DPane* pane = screen->search(tags[_90]);
 	P2ASSERTLINE(1083, pane);

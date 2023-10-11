@@ -1456,8 +1456,8 @@ bool TChallengeResult::doUpdate()
 					if (!mIsSaveOpen) {
 						mIsSaveOpen = true;
 						mSaveMgr->setControllers(getGamePad());
-						mSaveMgr->_470      = 1;
-						mSaveMgr->mSaveType = 1;
+						mSaveMgr->mIsStoryGameSave = 1;
+						mSaveMgr->mSaveType        = 1;
 						mSaveMgr->start();
 						mSaveMgr->update();
 						if (mComplete) {

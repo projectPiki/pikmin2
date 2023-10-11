@@ -76,10 +76,10 @@ struct Section : public ISection {
 	bool mIsLoadingDVD;      // _37
 	u8 _38;                  // _38
 #if BUILDTARGET == USADEMO1
-	OSTime mOsTime;             // _40
-	JUTGamePad* mDemoController1;      // _48
-	JUTGamePad* mDemoController2;      // _4C
-	f32 mTimer;					// _50
+	OSTime mOsTime;               // _40
+	JUTGamePad* mDemoController1; // _48
+	JUTGamePad* mDemoController2; // _4C
+	f32 mTimer;                   // _50
 #endif
 };
 

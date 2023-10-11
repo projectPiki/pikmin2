@@ -1,4 +1,4 @@
-#include "types.h"
+#include "Morimura/VsSelect.h"
 
 /*
     Generated from dpostproc
@@ -1008,6 +1008,8 @@
         .4byte 0x41000000
         .4byte 0x00000000
 */
+
+static const char unusedName[] = "vsSelect2D";
 
 /*
  * --INFO--
@@ -2178,7 +2180,8 @@ lbl_8039A698:
  * Address:	........
  * Size:	000064
  */
-Morimura::TVsSelectCBWinNum::TVsSelectCBWinNum(char**, unsigned short, JKRArchive*)
+Morimura::TVsSelectCBWinNum::TVsSelectCBWinNum(char** p1, u16 p2, JKRArchive* arc)
+    : og::Screen::CallBack_CounterDay(p1, p2, arc)
 {
 	// UNUSED FUNCTION
 }
@@ -2273,6 +2276,7 @@ void Morimura::TVsSelectSlotIndex::getIndexInfo(int)
  * Size:	0003A0
  */
 Morimura::TVsSelect::TVsSelect()
+    : TScrollList("vsSelect")
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2508,90 +2512,6 @@ lbl_8039A968:
 	stb      r0, mCanCancel__Q28Morimura9TVsSelect@sda21(r13)
 	lwz      r31, 0xc(r1)
 	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8039AB60
- * Size:	00010C
- */
-Morimura::TVsSelect::~TVsSelect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8039AC50
-	lis      r3, __vt__Q28Morimura9TVsSelect@ha
-	addi     r3, r3, __vt__Q28Morimura9TVsSelect@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x10
-	stw      r0, 0x18(r30)
-	lwz      r0, mDebugHeap__Q28Morimura9TVsSelect@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8039ABB4
-	lwz      r3, 0x1f8(r30)
-	lwz      r3, 0xc(r3)
-	bl       freeAll__7JKRHeapFv
-	lwz      r3, mDebugHeap__Q28Morimura9TVsSelect@sda21(r13)
-	bl       destroy__7JKRHeapFv
-
-lbl_8039ABB4:
-	li       r0, 0
-	cmplwi   r30, 0
-	stw      r0, mDebugHeap__Q28Morimura9TVsSelect@sda21(r13)
-	beq      lbl_8039AC40
-	lis      r3, __vt__Q28Morimura11TScrollList@ha
-	addi     r3, r3, __vt__Q28Morimura11TScrollList@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_8039AC40
-	lis      r3, __vt__Q28Morimura9TTestBase@ha
-	addi     r3, r3, __vt__Q28Morimura9TTestBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_8039AC40
-	lis      r3, __vt__Q26Screen7ObjBase@ha
-	addi     r3, r3, __vt__Q26Screen7ObjBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_8039AC40
-	lis      r4, __vt__Q26Screen8IObjBase@ha
-	mr       r3, r30
-	addi     r4, r4, __vt__Q26Screen8IObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	bl       del__5CNodeFv
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_8039AC40:
-	extsh.   r0, r31
-	ble      lbl_8039AC50
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8039AC50:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
@@ -5275,7 +5195,7 @@ void Morimura::TVsSelectListScreen::create(char const*, unsigned long)
  * Address:	8039D1E0
  * Size:	001244
  */
-void Morimura::TVsSelect::doUpdate()
+bool Morimura::TVsSelect::doUpdate()
 {
 	/*
 	stwu     r1, -0x100(r1)
@@ -7494,162 +7414,158 @@ void J2DPicture::operator=(const J2DPicture&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8039F118
- * Size:	00021C
- */
-void J2DPane::operator=(const J2DPane&)
-{
-	/*
-	lhz      r5, 4(r4)
-	lwz      r0, 8(r4)
-	sth      r5, 4(r3)
-	lwz      r5, 0x14(r4)
-	stw      r0, 8(r3)
-	lwz      r0, 0x10(r4)
-	stw      r5, 0x14(r3)
-	lwz      r5, 0x1c(r4)
-	stw      r0, 0x10(r3)
-	lwz      r0, 0x18(r4)
-	stw      r5, 0x1c(r3)
-	lwz      r5, 0x20(r4)
-	stw      r0, 0x18(r3)
-	lwz      r0, 0x24(r4)
-	stw      r5, 0x20(r3)
-	lwz      r5, 0x28(r4)
-	stw      r0, 0x24(r3)
-	lwz      r0, 0x2c(r4)
-	stw      r5, 0x28(r3)
-	lwz      r5, 0x30(r4)
-	stw      r0, 0x2c(r3)
-	lwz      r0, 0x34(r4)
-	stw      r5, 0x30(r3)
-	lwz      r5, 0x38(r4)
-	stw      r0, 0x34(r3)
-	lwz      r0, 0x3c(r4)
-	stw      r5, 0x38(r3)
-	lwz      r5, 0x40(r4)
-	stw      r0, 0x3c(r3)
-	lwz      r0, 0x44(r4)
-	stw      r5, 0x40(r3)
-	lwz      r5, 0x48(r4)
-	stw      r0, 0x44(r3)
-	lwz      r0, 0x4c(r4)
-	stw      r5, 0x48(r3)
-	lwz      r5, 0x50(r4)
-	stw      r0, 0x4c(r3)
-	lwz      r0, 0x54(r4)
-	stw      r5, 0x50(r3)
-	lwz      r5, 0x58(r4)
-	stw      r0, 0x54(r3)
-	lwz      r0, 0x5c(r4)
-	stw      r5, 0x58(r3)
-	lwz      r5, 0x60(r4)
-	stw      r0, 0x5c(r3)
-	lwz      r0, 0x64(r4)
-	stw      r5, 0x60(r3)
-	lwz      r5, 0x68(r4)
-	stw      r0, 0x64(r3)
-	lwz      r0, 0x6c(r4)
-	stw      r5, 0x68(r3)
-	lwz      r5, 0x70(r4)
-	stw      r0, 0x6c(r3)
-	lwz      r0, 0x74(r4)
-	stw      r5, 0x70(r3)
-	lwz      r5, 0x78(r4)
-	stw      r0, 0x74(r3)
-	lwz      r0, 0x7c(r4)
-	stw      r5, 0x78(r3)
-	lwz      r5, 0x80(r4)
-	stw      r0, 0x7c(r3)
-	lwz      r0, 0x84(r4)
-	stw      r5, 0x80(r3)
-	lwz      r5, 0x88(r4)
-	stw      r0, 0x84(r3)
-	lwz      r0, 0x8c(r4)
-	stw      r5, 0x88(r3)
-	lwz      r5, 0x90(r4)
-	stw      r0, 0x8c(r3)
-	lwz      r0, 0x94(r4)
-	stw      r5, 0x90(r3)
-	lwz      r5, 0x98(r4)
-	stw      r0, 0x94(r3)
-	lwz      r0, 0x9c(r4)
-	stw      r5, 0x98(r3)
-	lwz      r5, 0xa0(r4)
-	stw      r0, 0x9c(r3)
-	lwz      r0, 0xa4(r4)
-	stw      r5, 0xa0(r3)
-	lwz      r5, 0xa8(r4)
-	stw      r0, 0xa4(r3)
-	lwz      r0, 0xac(r4)
-	stw      r5, 0xa8(r3)
-	lbz      r5, 0xb0(r4)
-	stw      r0, 0xac(r3)
-	lbz      r0, 0xb1(r4)
-	stb      r5, 0xb0(r3)
-	lbz      r5, 0xb2(r4)
-	stb      r0, 0xb1(r3)
-	lbz      r0, 0xb3(r4)
-	stb      r5, 0xb2(r3)
-	lbz      r5, 0xb4(r4)
-	stb      r0, 0xb3(r3)
-	lbz      r0, 0xb5(r4)
-	stb      r5, 0xb4(r3)
-	lbz      r5, 0xb6(r4)
-	stb      r0, 0xb5(r3)
-	lbz      r0, 0xb7(r4)
-	stb      r5, 0xb6(r3)
-	lfs      f0, 0xb8(r4)
-	stb      r0, 0xb7(r3)
-	stfs     f0, 0xb8(r3)
-	lfs      f1, 0xbc(r4)
-	lfs      f0, 0xc0(r4)
-	stfs     f1, 0xbc(r3)
-	lfs      f1, 0xc4(r4)
-	stfs     f0, 0xc0(r3)
-	lfs      f0, 0xc8(r4)
-	stfs     f1, 0xc4(r3)
-	lfs      f1, 0xcc(r4)
-	stfs     f0, 0xc8(r3)
-	lfs      f0, 0xd0(r4)
-	stfs     f1, 0xcc(r3)
-	lfs      f1, 0xd4(r4)
-	stfs     f0, 0xd0(r3)
-	lfs      f0, 0xd8(r4)
-	stfs     f1, 0xd4(r3)
-	lwz      r5, 0xdc(r4)
-	stfs     f0, 0xd8(r3)
-	lwz      r0, 0xe0(r4)
-	stw      r5, 0xdc(r3)
-	lwz      r5, 0xe4(r4)
-	stw      r0, 0xe0(r3)
-	lwz      r0, 0xe8(r4)
-	stw      r5, 0xe4(r3)
-	lwz      r5, 0xec(r4)
-	stw      r0, 0xe8(r3)
-	lwz      r0, 0xf0(r4)
-	stw      r5, 0xec(r3)
-	lwz      r5, 0xf4(r4)
-	stw      r0, 0xf0(r3)
-	lwz      r0, 0xf8(r4)
-	stw      r5, 0xf4(r3)
-	stw      r0, 0xf8(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8039F118
+//  * Size:	00021C
+//  */
+// J2DPane& J2DPane::operator=(const J2DPane&)
+// {
+// 	/*
+// 	lhz      r5, 4(r4)
+// 	lwz      r0, 8(r4)
+// 	sth      r5, 4(r3)
+// 	lwz      r5, 0x14(r4)
+// 	stw      r0, 8(r3)
+// 	lwz      r0, 0x10(r4)
+// 	stw      r5, 0x14(r3)
+// 	lwz      r5, 0x1c(r4)
+// 	stw      r0, 0x10(r3)
+// 	lwz      r0, 0x18(r4)
+// 	stw      r5, 0x1c(r3)
+// 	lwz      r5, 0x20(r4)
+// 	stw      r0, 0x18(r3)
+// 	lwz      r0, 0x24(r4)
+// 	stw      r5, 0x20(r3)
+// 	lwz      r5, 0x28(r4)
+// 	stw      r0, 0x24(r3)
+// 	lwz      r0, 0x2c(r4)
+// 	stw      r5, 0x28(r3)
+// 	lwz      r5, 0x30(r4)
+// 	stw      r0, 0x2c(r3)
+// 	lwz      r0, 0x34(r4)
+// 	stw      r5, 0x30(r3)
+// 	lwz      r5, 0x38(r4)
+// 	stw      r0, 0x34(r3)
+// 	lwz      r0, 0x3c(r4)
+// 	stw      r5, 0x38(r3)
+// 	lwz      r5, 0x40(r4)
+// 	stw      r0, 0x3c(r3)
+// 	lwz      r0, 0x44(r4)
+// 	stw      r5, 0x40(r3)
+// 	lwz      r5, 0x48(r4)
+// 	stw      r0, 0x44(r3)
+// 	lwz      r0, 0x4c(r4)
+// 	stw      r5, 0x48(r3)
+// 	lwz      r5, 0x50(r4)
+// 	stw      r0, 0x4c(r3)
+// 	lwz      r0, 0x54(r4)
+// 	stw      r5, 0x50(r3)
+// 	lwz      r5, 0x58(r4)
+// 	stw      r0, 0x54(r3)
+// 	lwz      r0, 0x5c(r4)
+// 	stw      r5, 0x58(r3)
+// 	lwz      r5, 0x60(r4)
+// 	stw      r0, 0x5c(r3)
+// 	lwz      r0, 0x64(r4)
+// 	stw      r5, 0x60(r3)
+// 	lwz      r5, 0x68(r4)
+// 	stw      r0, 0x64(r3)
+// 	lwz      r0, 0x6c(r4)
+// 	stw      r5, 0x68(r3)
+// 	lwz      r5, 0x70(r4)
+// 	stw      r0, 0x6c(r3)
+// 	lwz      r0, 0x74(r4)
+// 	stw      r5, 0x70(r3)
+// 	lwz      r5, 0x78(r4)
+// 	stw      r0, 0x74(r3)
+// 	lwz      r0, 0x7c(r4)
+// 	stw      r5, 0x78(r3)
+// 	lwz      r5, 0x80(r4)
+// 	stw      r0, 0x7c(r3)
+// 	lwz      r0, 0x84(r4)
+// 	stw      r5, 0x80(r3)
+// 	lwz      r5, 0x88(r4)
+// 	stw      r0, 0x84(r3)
+// 	lwz      r0, 0x8c(r4)
+// 	stw      r5, 0x88(r3)
+// 	lwz      r5, 0x90(r4)
+// 	stw      r0, 0x8c(r3)
+// 	lwz      r0, 0x94(r4)
+// 	stw      r5, 0x90(r3)
+// 	lwz      r5, 0x98(r4)
+// 	stw      r0, 0x94(r3)
+// 	lwz      r0, 0x9c(r4)
+// 	stw      r5, 0x98(r3)
+// 	lwz      r5, 0xa0(r4)
+// 	stw      r0, 0x9c(r3)
+// 	lwz      r0, 0xa4(r4)
+// 	stw      r5, 0xa0(r3)
+// 	lwz      r5, 0xa8(r4)
+// 	stw      r0, 0xa4(r3)
+// 	lwz      r0, 0xac(r4)
+// 	stw      r5, 0xa8(r3)
+// 	lbz      r5, 0xb0(r4)
+// 	stw      r0, 0xac(r3)
+// 	lbz      r0, 0xb1(r4)
+// 	stb      r5, 0xb0(r3)
+// 	lbz      r5, 0xb2(r4)
+// 	stb      r0, 0xb1(r3)
+// 	lbz      r0, 0xb3(r4)
+// 	stb      r5, 0xb2(r3)
+// 	lbz      r5, 0xb4(r4)
+// 	stb      r0, 0xb3(r3)
+// 	lbz      r0, 0xb5(r4)
+// 	stb      r5, 0xb4(r3)
+// 	lbz      r5, 0xb6(r4)
+// 	stb      r0, 0xb5(r3)
+// 	lbz      r0, 0xb7(r4)
+// 	stb      r5, 0xb6(r3)
+// 	lfs      f0, 0xb8(r4)
+// 	stb      r0, 0xb7(r3)
+// 	stfs     f0, 0xb8(r3)
+// 	lfs      f1, 0xbc(r4)
+// 	lfs      f0, 0xc0(r4)
+// 	stfs     f1, 0xbc(r3)
+// 	lfs      f1, 0xc4(r4)
+// 	stfs     f0, 0xc0(r3)
+// 	lfs      f0, 0xc8(r4)
+// 	stfs     f1, 0xc4(r3)
+// 	lfs      f1, 0xcc(r4)
+// 	stfs     f0, 0xc8(r3)
+// 	lfs      f0, 0xd0(r4)
+// 	stfs     f1, 0xcc(r3)
+// 	lfs      f1, 0xd4(r4)
+// 	stfs     f0, 0xd0(r3)
+// 	lfs      f0, 0xd8(r4)
+// 	stfs     f1, 0xd4(r3)
+// 	lwz      r5, 0xdc(r4)
+// 	stfs     f0, 0xd8(r3)
+// 	lwz      r0, 0xe0(r4)
+// 	stw      r5, 0xdc(r3)
+// 	lwz      r5, 0xe4(r4)
+// 	stw      r0, 0xe0(r3)
+// 	lwz      r0, 0xe8(r4)
+// 	stw      r5, 0xe4(r3)
+// 	lwz      r5, 0xec(r4)
+// 	stw      r0, 0xe8(r3)
+// 	lwz      r0, 0xf0(r4)
+// 	stw      r5, 0xec(r3)
+// 	lwz      r5, 0xf4(r4)
+// 	stw      r0, 0xf0(r3)
+// 	lwz      r0, 0xf8(r4)
+// 	stw      r5, 0xf4(r3)
+// 	stw      r0, 0xf8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8039F334
  * Size:	00000C
  */
-void Morimura::TVsSelect::doUpdateFadeinFinish()
-{
-	// Generated from stb r0, 0x45(r3)
-	_45 = 1;
-}
+void Morimura::TVsSelect::doUpdateFadeinFinish() { mCanInput = true; }
 
 /*
  * --INFO--
@@ -8165,7 +8081,7 @@ lbl_8039F9C8:
  * Address:	8039F9F8
  * Size:	000084
  */
-void Morimura::TVsSelect::getNameID(int)
+u64 Morimura::TVsSelect::getNameID(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8211,7 +8127,7 @@ lbl_8039FA48:
  * Address:	8039FA7C
  * Size:	000008
  */
-void Morimura::TVsSelect::getIdMax()
+int Morimura::TVsSelect::getIdMax()
 {
 	/*
 	lwz      r3, 0x248(r3)
@@ -9819,7 +9735,7 @@ lbl_803A0E04:
  * Address:	803A0E34
  * Size:	000034
  */
-void Morimura::TVsSelectScene::doStart(Screen::StartSceneArg*)
+bool Morimura::TVsSelectScene::doStart(Screen::StartSceneArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9840,61 +9756,10 @@ void Morimura::TVsSelectScene::doStart(Screen::StartSceneArg*)
 
 /*
  * --INFO--
- * Address:	803A0E68
- * Size:	00000C
- */
-void Morimura::TVsSelectScene::getResName() const
-{
-	/*
-	lis      r3, lbl_804951D4@ha
-	addi     r3, r3, lbl_804951D4@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803A0E74
- * Size:	000008
- */
-u32 Morimura::TVsSelectScene::getSceneType() { return 0x2739; }
-
-/*
- * --INFO--
- * Address:	803A0E7C
- * Size:	00000C
- */
-void Morimura::TVsSelectScene::getOwnerID()
-{
-	/*
-	lis      r3, 0x4D524D52@ha
-	addi     r3, r3, 0x4D524D52@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803A0E88
- * Size:	000014
- */
-void Morimura::TVsSelectScene::getMemberID()
-{
-	/*
-	lis      r4, 0x4C454354@ha
-	lis      r3, 0x56535345@ha
-	addi     r4, r4, 0x4C454354@l
-	addi     r3, r3, 0x56535345@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	803A0E9C
  * Size:	000034
  */
-void Morimura::TVsSelect::getDispMemberBase()
+og::Screen::DispMemberBase* Morimura::TVsSelect::getDispMemberBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10040,18 +9905,5 @@ void __sinit_vsSelect2D_cpp()
 	stfs     f1, 0xc(r3)
 	stfs     f0, 0x10(r3)
 	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803A1024
- * Size:	000008
- */
-@24 @Morimura::TVsSelect::~TVsSelect()
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q28Morimura9TVsSelectFv
 	*/
 }

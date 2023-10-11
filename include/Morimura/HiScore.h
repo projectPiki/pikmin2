@@ -138,6 +138,9 @@ struct THiScore : public TScrollList {
 	static bool mForceClear2;
 	static bool mLoopDrum;
 	static ResTIMG* mPicTexture[16];
+	static f32 mPictureOffsetY;
+	static f32 mListOffsetY;
+	static f32 mClearListHeightRate;
 
 	static struct StaticValues {
 		// WARNING: the actual THiScore constructor overwrites these

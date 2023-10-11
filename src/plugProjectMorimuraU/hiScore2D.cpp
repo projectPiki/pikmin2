@@ -10,8 +10,14 @@ static const char name[] = "hiScore2D";
 
 namespace Morimura {
 
-const f32 mListOffsetY    = 25.0f;
-const f32 mPictureOffsetY = -8.0f;
+bool THiScore::mForceClear  = false;
+bool THiScore::mForceClear2 = false;
+bool THiScore::mLoopDrum    = false;
+
+f32 THiScore::mPictureOffsetY      = -8.0f;
+bool THiScore::mChangeAlpha        = true;
+f32 THiScore::mListOffsetY         = 25.0f;
+f32 THiScore::mClearListHeightRate = 1.55f;
 
 /*
  * --INFO--
@@ -713,12 +719,12 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndexPaneList[0]->mPane->show();
 	mIndexGroup = new TIndexGroup;
 	updateLayout();
-	TIndexGroup* group = mIndexGroup;
-	group->_00         = mScrollParm._00;
-	group->_04         = mScrollParm._04;
-	group->_08         = mScrollParm._08;
-	group->_0C         = mScrollParm._0C;
-	group->_10         = mScrollParm._10;
+	TIndexGroup* group   = mIndexGroup;
+	group->mMaxRollSpeed = mScrollParm._00;
+	group->_04           = mScrollParm._04;
+	group->mRollSpeedMod = mScrollParm._08;
+	group->_0C           = mScrollParm._0C;
+	group->_10           = mScrollParm._10;
 
 	J2DPane* total = mMainScreen->mScreenObj->search('Tot3rds');
 	P2ASSERTLINE(469, total);
@@ -769,7 +775,7 @@ void THiScore::doCreate(JKRArchive* arc)
 		updateIndex(0);
 		TIndexGroup* grp = mIndexGroup;
 		grp->_14         = 0.0f;
-		grp->_20         = 0;
+		grp->mStateID    = 0;
 		changePaneInfo();
 	}
 
@@ -1944,7 +1950,7 @@ bool THiScore::doUpdate()
 				}
 				mIndexGroup->upIndex();
 			} else {
-				if (!mIndexGroup->_20 && mErrorSoundCounter == 0) {
+				if (!mIndexGroup->mStateID && mErrorSoundCounter == 0) {
 					mErrorSoundCounter = 1;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
 				}
@@ -1956,7 +1962,7 @@ bool THiScore::doUpdate()
 				}
 				mIndexGroup->downIndex();
 			} else {
-				if (!mIndexGroup->_20 && mErrorSoundCounter == 0) {
+				if (!mIndexGroup->mStateID && mErrorSoundCounter == 0) {
 					mErrorSoundCounter = 1;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
 				}
@@ -2004,7 +2010,7 @@ bool THiScore::doUpdate()
 		mScaleCounter3[i]->getMotherPane()->setAlpha(test * 255.0f);
 	}
 
-	if (!mIndexGroup->_20) {
+	if (!mIndexGroup->mStateID) {
 		mAlphaTimer += 0.04f;
 		if (mAlphaTimer > 1.0f) {
 			mAlphaTimer = 1.0f;
@@ -2044,13 +2050,13 @@ bool THiScore::doUpdate()
 	}
 
 	if (mForceResetParm) {
-		mForceResetParm  = false;
-		TIndexGroup* grp = mIndexGroup;
-		grp->_00         = mScrollParm._00;
-		grp->_04         = mScrollParm._04;
-		grp->_08         = mScrollParm._08;
-		grp->_0C         = mScrollParm._0C;
-		grp->_10         = mScrollParm._10;
+		mForceResetParm    = false;
+		TIndexGroup* grp   = mIndexGroup;
+		grp->mMaxRollSpeed = mScrollParm._00;
+		grp->_04           = mScrollParm._04;
+		grp->mRollSpeedMod = mScrollParm._08;
+		grp->_0C           = mScrollParm._0C;
+		grp->_10           = mScrollParm._10;
 	}
 
 	mHighScorePic->addOffsetY(mPictureOffsetY);

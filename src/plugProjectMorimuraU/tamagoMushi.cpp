@@ -1,328 +1,8 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804924E8
-    lbl_804924E8:
-        .4byte 0x74616D61
-        .4byte 0x676F4D75
-        .4byte 0x73686900
-    .global lbl_804924F4
-    lbl_804924F4:
-        .4byte 0x74616D61
-        .4byte 0x676F4D75
-        .4byte 0x7368692E
-        .4byte 0x63707000
-    .global lbl_80492504
-    lbl_80492504:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x6B6F7368
-        .4byte 0x696A6E74
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23efx9TTamagoAp
-    __vt__Q23efx9TTamagoAp:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q34Game11TamagoMushi3Obj
-    __vt__Q34Game11TamagoMushi3Obj:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game9EnemyBaseFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game9EnemyBaseFv
-        .4byte onInit__Q34Game11TamagoMushi3ObjFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game9EnemyBaseFv
-        .4byte doEntry__Q24Game9EnemyBaseFv
-        .4byte doSetView__Q24Game9EnemyBaseFi
-        .4byte doViewCalc__Q24Game9EnemyBaseFv
-        .4byte doSimulation__Q24Game9EnemyBaseFf
-        .4byte doDirectDraw__Q34Game11TamagoMushi3ObjFR8Graphics
-        .4byte getBodyRadius__Q24Game9EnemyBaseFv
-        .4byte getCellRadius__Q24Game9EnemyBaseFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game9EnemyBaseFv
-        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getVelocity__Q24Game9EnemyBaseFv
-        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
-        .4byte isTeki__Q24Game9EnemyBaseFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game9EnemyBaseFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game9EnemyBaseFv
-        .4byte inWater__Q24Game9EnemyBaseFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game9EnemyBaseFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q34Game11TamagoMushi3ObjFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q34Game11TamagoMushi3ObjFPQ23Sys8Triangle
-        .4byte collisionCallback__Q34Game11TamagoMushi3ObjFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game9EnemyBaseFv
-        .4byte getPSCreature__Q24Game9EnemyBaseFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
-        .4byte sound_culling__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8CreatureFUl
-        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
-        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q34Game11TamagoMushi3ObjFRQ24Game11ShadowParam
-        .4byte needShadow__Q34Game11TamagoMushi3ObjFv
-        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game9EnemyBaseFv
-        .4byte getCreatureID__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
-        .4byte __dt__Q34Game11TamagoMushi3ObjFv
-        .4byte "birth__Q34Game11TamagoMushi3ObjFR10Vector3<f>f"
-        .4byte
-   setInitialSetting__Q34Game11TamagoMushi3ObjFPQ24Game21EnemyInitialParamBase
-        .4byte update__Q24Game9EnemyBaseFv
-        .4byte doUpdate__Q34Game11TamagoMushi3ObjFv
-        .4byte doUpdateCommon__Q24Game9EnemyBaseFv
-        .4byte doUpdateCarcass__Q24Game9EnemyBaseFv
-        .4byte doAnimationUpdateAnimator__Q24Game9EnemyBaseFv
-        .4byte doAnimationCullingOff__Q34Game11TamagoMushi3ObjFv
-        .4byte doAnimationCullingOn__Q24Game9EnemyBaseFv
-        .4byte doAnimationStick__Q24Game9EnemyBaseFv
-        .4byte doSimulationCarcass__Q24Game9EnemyBaseFf
-        .4byte doDebugDraw__Q34Game11TamagoMushi3ObjFR8Graphics
-        .4byte doSimpleDraw__Q24Game9EnemyBaseFP8Viewport
-        .4byte doSimulationGround__Q24Game9EnemyBaseFf
-        .4byte doSimulationFlying__Q24Game9EnemyBaseFf
-        .4byte doSimulationStick__Q24Game9EnemyBaseFf
-        .4byte changeMaterial__Q24Game9EnemyBaseFv
-        .4byte "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getFitEffectPos__Q24Game9EnemyBaseFv
-        .4byte viewGetShape__Q24Game9EnemyBaseFv
-        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
-        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
-        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
-        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
-        .4byte setParameters__Q34Game11TamagoMushi3ObjFv
-        .4byte initMouthSlots__Q24Game9EnemyBaseFv
-        .4byte initWalkSmokeEffect__Q24Game9EnemyBaseFv
-        .4byte getWalkSmokeEffectMgr__Q24Game9EnemyBaseFv
-        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
-        .4byte injure__Q24Game9EnemyBaseFv
-        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
-        .4byte updateEfxHamon__Q24Game9EnemyBaseFv
-        .4byte createEfxHamon__Q24Game9EnemyBaseFv
-        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
-        .4byte getEnemyTypeID__Q34Game11TamagoMushi3ObjFv
-        .4byte getMouthSlots__Q24Game9EnemyBaseFv
-        .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte throwupItem__Q24Game9EnemyBaseFv
-        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
-        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte
-   damageCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart .4byte
-   pressCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart .4byte
-   flyCollisionCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   hipdropCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart .4byte
-   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
-   earthquakeCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8Creaturef .4byte
-   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   "bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3<f>f"
-        .4byte eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef
-        .4byte dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei
-        .4byte doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei
-        .4byte doStartStoneState__Q24Game9EnemyBaseFv
-        .4byte doFinishStoneState__Q24Game9EnemyBaseFv
-        .4byte getDamageCoeStoneState__Q24Game9EnemyBaseFv
-        .4byte doStartEarthquakeState__Q24Game9EnemyBaseFf
-        .4byte doFinishEarthquakeState__Q24Game9EnemyBaseFv
-        .4byte doStartEarthquakeFitState__Q24Game9EnemyBaseFv
-        .4byte doFinishEarthquakeFitState__Q24Game9EnemyBaseFv
-        .4byte lifeRecover__Q24Game9EnemyBaseFv
-        .4byte startCarcassMotion__Q34Game11TamagoMushi3ObjFv
-        .4byte setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg
-        .4byte getCarcassArgHeight__Q24Game9EnemyBaseFv
-        .4byte doBecomeCarcass__Q24Game9EnemyBaseFv
-        .4byte startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-        .4byte finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-        .4byte isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-        .4byte doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-        .4byte doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-        .4byte wallCallback__Q24Game9EnemyBaseFRCQ24Game8MoveInfo
-        .4byte getDownSmokeScale__Q34Game11TamagoMushi3ObjFv
-        .4byte doStartMovie__Q24Game9EnemyBaseFv
-        .4byte doEndMovie__Q24Game9EnemyBaseFv
-        .4byte setFSM__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3FSM
-        .4byte 0
-        .4byte 0
-        .4byte viewGetBaseScale__Q24Game10PelletViewFv
-        .4byte "@780@12@viewGetShape__Q24Game9EnemyBaseFv"
-        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
-        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
-        .4byte "@780@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@780@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@780@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@780@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@780@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051EAB0
-    lbl_8051EAB0:
-        .4byte 0x47000000
-    .global lbl_8051EAB4
-    lbl_8051EAB4:
-        .4byte 0x3F4CCCCD
-    .global lbl_8051EAB8
-    lbl_8051EAB8:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051EABC
-    lbl_8051EABC:
-        .float 0.7
-    .global lbl_8051EAC0
-    lbl_8051EAC0:
-        .float 0.3
-    .global lbl_8051EAC4
-    lbl_8051EAC4:
-        .4byte 0x00000000
-    .global lbl_8051EAC8
-    lbl_8051EAC8:
-        .4byte 0x43A2F983
-    .global lbl_8051EACC
-    lbl_8051EACC:
-        .4byte 0xC3A2F983
-    .global lbl_8051EAD0
-    lbl_8051EAD0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051EAD8
-    lbl_8051EAD8:
-        .4byte 0x41200000
-    .global lbl_8051EADC
-    lbl_8051EADC:
-        .4byte 0x40000000
-    .global lbl_8051EAE0
-    lbl_8051EAE0:
-        .float 1.0
-    .global lbl_8051EAE4
-    lbl_8051EAE4:
-        .4byte 0x41700000
-    .global lbl_8051EAE8
-    lbl_8051EAE8:
-        .4byte 0x41400000
-    .global lbl_8051EAEC
-    lbl_8051EAEC:
-        .4byte 0x42480000
-    .global lbl_8051EAF0
-    lbl_8051EAF0:
-        .4byte 0x43480000
-    .global lbl_8051EAF4
-    lbl_8051EAF4:
-        .4byte 0x3F666666
-    .global lbl_8051EAF8
-    lbl_8051EAF8:
-        .4byte 0x43B40000
-    .global lbl_8051EAFC
-    lbl_8051EAFC:
-        .4byte 0x40490FDB
-    .global lbl_8051EB00
-    lbl_8051EB00:
-        .4byte 0x3BB60B61
-    .global lbl_8051EB04
-    lbl_8051EB04:
-        .float 0.1
-    .global lbl_8051EB08
-    lbl_8051EB08:
-        .float 0.5
-    .global lbl_8051EB0C
-    lbl_8051EB0C:
-        .4byte 0x40C90FDB
-    .global lbl_8051EB10
-    lbl_8051EB10:
-        .4byte 0x43340000
-    .global lbl_8051EB14
-    lbl_8051EB14:
-        .4byte 0x3F733333
-    .global lbl_8051EB18
-    lbl_8051EB18:
-        .4byte 0x3EB33333
-        .4byte 0x00000000
-*/
+#include "Game/Entities/TamagoMushi.h"
 
 namespace Game {
+
+static const char unusedName[] = "tamagoMushi";
 
 /*
  * --INFO--
@@ -343,14 +23,12 @@ void TamagoMushi::Obj::setParameters()
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8036EBC8
  * Size:	000020
  */
-void birth__Q34Game11TamagoMushi3ObjFR10Vector3f f()
+void TamagoMushi::Obj::birth(Vector3f&, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -363,8 +41,6 @@ void birth__Q34Game11TamagoMushi3ObjFR10Vector3f f()
 	blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -886,7 +562,7 @@ void TamagoMushi::Obj::doDebugDraw(Graphics&)
  * Address:	8036F25C
  * Size:	0000DC
  */
-void TamagoMushi::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool TamagoMushi::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -960,7 +636,7 @@ lbl_8036F324:
  * Address:	8036F338
  * Size:	0000BC
  */
-void bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3f f()
+bool TamagoMushi::Obj::bombCallBack(Creature*, Vector3f&, f32)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1022,7 +698,7 @@ lbl_8036F3D0:
  * Address:	8036F3F4
  * Size:	000134
  */
-void TamagoMushi::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool TamagoMushi::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1306,7 +982,7 @@ lbl_8036F77C:
  * Address:	8036F798
  * Size:	00002C
  */
-void TamagoMushi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool TamagoMushi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1328,7 +1004,7 @@ void TamagoMushi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	8036F7C4
  * Size:	000030
  */
-void TamagoMushi::Obj::earthquakeCallBack(Game::Creature*, float)
+bool TamagoMushi::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1408,7 +1084,7 @@ lbl_8036F860:
  * Address:	8036F89C
  * Size:	000030
  */
-void TamagoMushi::Obj::needShadow()
+bool TamagoMushi::Obj::needShadow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1915,14 +1591,12 @@ lbl_8036FEFC:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8036FF4C
  * Size:	0000B8
  */
-void setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3f()
+void TamagoMushi::Obj::setGoalDirect(Vector3f&)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1974,14 +1648,12 @@ void setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3f()
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	80370004
  * Size:	00015C
  */
-void TamagoMushi::Obj::turnFunc()
+bool TamagoMushi::Obj::turnFunc()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2087,7 +1759,7 @@ lbl_80370134:
  * Address:	80370160
  * Size:	000034
  */
-void TamagoMushi::Obj::isReachToGoal(float)
+bool TamagoMushi::Obj::isReachToGoal(f32)
 {
 	/*
 	fmuls    f0, f1, f1
@@ -2467,7 +2139,7 @@ lbl_8037059C:
  * Address:	803705D8
  * Size:	0003BC
  */
-void TamagoMushi::Obj::isFound()
+bool TamagoMushi::Obj::isFound()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2772,29 +2444,12 @@ lbl_80370974:
 	*/
 }
 
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	80370994
- * Size:	000008
- */
-void Parm<float>::operator()()
-{
-	/*
-	addi     r3, r3, 0x18
-	blr
-	*/
-}
-
-namespace Game {
-
 /*
  * --INFO--
  * Address:	8037099C
  * Size:	000014
  */
-void GameSystem::isZukanMode()
+bool GameSystem::isZukanMode()
 {
 	/*
 	lwz      r0, 0x44(r3)
@@ -3002,7 +2657,7 @@ void TamagoMushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	80370BE4
  * Size:	000014
  */
-void TamagoMushi::Obj::isLivingThing()
+bool TamagoMushi::Obj::isLivingThing()
 {
 	/*
 	lwz      r3, 0xc0(r3)
@@ -3018,7 +2673,7 @@ void TamagoMushi::Obj::isLivingThing()
  * Address:	80370BF8
  * Size:	000008
  */
-void TamagoMushi::Obj::getDownSmokeScale()
+f32 TamagoMushi::Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051EB18@sda21(r2)
@@ -3031,5 +2686,5 @@ void TamagoMushi::Obj::getDownSmokeScale()
  * Address:	80370C00
  * Size:	000008
  */
-u32 TamagoMushi::Obj::getEnemyTypeID() { return 0x44; }
+EnemyTypeID::EEnemyTypeID TamagoMushi::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_TamagoMushi; }
 } // namespace Game

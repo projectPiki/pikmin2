@@ -119,12 +119,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mLFootJointIndex = mModel->getJointIndex("asiL");
 	joint            = modelData->mJointTree.mJoints[mLFootJointIndex];
 	P2ASSERTLINE(127, joint);
-	joint->mFunction = (J3DJointCallBack*)&lFootCallBack;
+	joint->mFunction = &lFootCallBack;
 
 	mRFootJointIndex = mModel->getJointIndex("asiR");
 	J3DJoint* joint2 = modelData->mJointTree.mJoints[mRFootJointIndex];
 	P2ASSERTLINE(132, joint2);
-	joint2->mFunction = (J3DJointCallBack*)&rFootCallBack;
+	joint2->mFunction = &rFootCallBack;
 
 	_320 = 0.0f;
 	_334 = 0.0f;
@@ -1650,7 +1650,7 @@ lbl_8035FE94:
  * Address:	8035FEE8
  * Size:	000040
  */
-void Obj::isOutOfTerritory(f32)
+bool Obj::isOutOfTerritory(f32)
 {
 	/*
 	lfs      f2, 0x1a0(r3)
@@ -1786,7 +1786,7 @@ lbl_80360134:
  * Address:	80360160
  * Size:	0001AC
  */
-void Obj::turnFunc(float)
+f32 Obj::turnFunc(float)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1912,7 +1912,7 @@ lbl_803602A4:
  * Address:	8036030C
  * Size:	000034
  */
-void Obj::isReachToGoal(f32)
+bool Obj::isReachToGoal(f32)
 {
 	/*
 	fmuls    f0, f1, f1
