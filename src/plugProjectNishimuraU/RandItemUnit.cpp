@@ -231,10 +231,10 @@ void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floor
  */
 MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 {
-	int counter = 0;
 	MapNode* mapNodeList[512];
 	BaseGen* baseGenList[512];
 	int nodeScoreList[512];
+	int counter    = 0;
 	int totalScore = 0;
 
 	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currMapNode)
@@ -583,9 +583,9 @@ lbl_8024ED70:
  */
 MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 {
-	int counter = 0;
 	MapNode* mapNodeList[512];
 	BaseGen* baseGenList[512];
+	int counter    = 0;
 	int totalScore = -1;
 
 	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currMapNode)
@@ -675,7 +675,6 @@ ItemUnit* RandItemUnit::getItemUnit()
 	}
 
 	if (tally) {
-
 		int randLimit = tally * randFloat();
 		int newTally  = 0;
 		for (int i = 0; i < counter; i++) {
@@ -864,9 +863,9 @@ void RandItemUnit::getItemDropMapNode(MapNode* testNode, MapNode** outNode, int 
 		}
 	} else if (unitKind == UNITKIND_Corridor) {
 		if (testNode->getNumDoors() == 2) {
-			// something funky going on here
-			int sum = (testNode->getDoorDirect(0) + testNode->getDoorDirect(1)) & 1;
-			if (absVal(sum) == 0) {
+			// make sure doors are parallel- north/south are even, east/west are odd
+			int doorDir = (testNode->getDoorDirect(0) + testNode->getDoorDirect(1)) % 2;
+			if (doorDir == 0) {
 				check = true;
 			}
 		} else {
@@ -882,103 +881,6 @@ void RandItemUnit::getItemDropMapNode(MapNode* testNode, MapNode** outNode, int 
 			outScore = absScore;
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r26, 0x18(r1)
-	  mr        r29, r4
-	  mr        r30, r5
-	  mr        r26, r6
-	  mr        r31, r7
-	  li        r27, 0
-	  lwz       r3, 0x18(r4)
-	  bl        -0xC7B0
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0x3C
-	  li        r27, 0x1
-	  b         .loc_0xC0
-
-	.loc_0x3C:
-	  cmpwi     r3, 0
-	  bne-      .loc_0x68
-	  mr        r3, r29
-	  bl        -0xB984
-	  subi      r4, r2, 0x3B10
-	  li        r5, 0x4
-	  bl        -0x184CD4
-	  cmpwi     r3, 0
-	  bne-      .loc_0xC0
-	  li        r27, 0x1
-	  b         .loc_0xC0
-
-	.loc_0x68:
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0xC0
-	  mr        r3, r29
-	  bl        -0xB314
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0xBC
-	  mr        r3, r29
-	  li        r4, 0x1
-	  bl        -0xC360
-	  mr        r28, r3
-	  mr        r3, r29
-	  li        r4, 0
-	  bl        -0xC370
-	  add       r0, r3, r28
-	  rlwinm    r3,r0,1,31,31
-	  rlwinm    r0,r0,0,31,31
-	  xor       r0, r0, r3
-	  sub.      r0, r0, r3
-	  bne-      .loc_0xC0
-	  li        r27, 0x1
-	  b         .loc_0xC0
-
-	.loc_0xBC:
-	  li        r27, 0x1
-
-	.loc_0xC0:
-	  rlwinm.   r0,r27,0,24,31
-	  beq-      .loc_0x134
-	  mr        r3, r29
-	  bl        -0xBA10
-	  sub       r0, r3, r26
-	  lwz       r4, 0x0(r31)
-	  srawi     r3, r0, 0x1F
-	  xor       r0, r3, r0
-	  sub       r28, r0, r3
-	  cmpw      r28, r4
-	  blt-      .loc_0x12C
-	  bne-      .loc_0x134
-	  bl        -0x185E50
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x3B18(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x3B20(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x3B08(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, -0x3B04(r2)
-	  fmuls     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x134
-
-	.loc_0x12C:
-	  stw       r29, 0x0(r30)
-	  stw       r28, 0x0(r31)
-
-	.loc_0x134:
-	  lmw       r26, 0x18(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /*
@@ -1069,8 +971,9 @@ void RandItemUnit::getItemDropList(MapNode* testNode, MapNode** nodeList, BaseGe
 		}
 	} else if (unitKind == UNITKIND_Corridor) {
 		if (testNode->getNumDoors() == 2) {
-			// same funkiness as function earlier
-			if (absVal(testNode->getDoorDirect(0) + testNode->getDoorDirect(1)) == 0) {
+			// make sure doors are parallel- north/south are even, east/west are odd
+			int doorDir = (testNode->getDoorDirect(0) + testNode->getDoorDirect(1)) % 2;
+			if (doorDir == 0) {
 				nodeList[idx] = testNode;
 				outGen[idx]   = nullptr;
 				idx++;
@@ -1081,122 +984,6 @@ void RandItemUnit::getItemDropList(MapNode* testNode, MapNode** nodeList, BaseGe
 			idx++;
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  mr        r31, r7
-	  lwz       r3, 0x18(r4)
-	  bl        -0xCC08
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0x88
-	  lwz       r3, 0x18(r28)
-	  bl        -0xCBD0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x178
-	  lwz       r4, 0x10(r3)
-	  b         .loc_0x7C
-
-	.loc_0x48:
-	  lwz       r0, 0x18(r4)
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x78
-	  lwz       r0, 0x0(r31)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r28, r29, r0
-	  lwz       r0, 0x0(r31)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r4, r30, r0
-	  lwz       r3, 0x0(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r31)
-
-	.loc_0x78:
-	  lwz       r4, 0x4(r4)
-
-	.loc_0x7C:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x48
-	  b         .loc_0x178
-
-	.loc_0x88:
-	  cmpwi     r3, 0
-	  bne-      .loc_0xD8
-	  mr        r3, r28
-	  bl        -0xBE2C
-	  subi      r4, r2, 0x3B10
-	  li        r5, 0x4
-	  bl        -0x18517C
-	  cmpwi     r3, 0
-	  bne-      .loc_0x178
-	  lwz       r0, 0x0(r31)
-	  li        r3, 0
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r28, r29, r0
-	  lwz       r0, 0x0(r31)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r3, r30, r0
-	  lwz       r3, 0x0(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r31)
-	  b         .loc_0x178
-
-	.loc_0xD8:
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0x178
-	  mr        r3, r28
-	  bl        -0xB7E0
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0x150
-	  mr        r3, r28
-	  li        r4, 0x1
-	  bl        -0xC82C
-	  mr        r27, r3
-	  mr        r3, r28
-	  li        r4, 0
-	  bl        -0xC83C
-	  add       r0, r3, r27
-	  rlwinm    r3,r0,1,31,31
-	  rlwinm    r0,r0,0,31,31
-	  xor       r0, r0, r3
-	  sub.      r0, r0, r3
-	  bne-      .loc_0x178
-	  lwz       r0, 0x0(r31)
-	  li        r3, 0
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r28, r29, r0
-	  lwz       r0, 0x0(r31)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r3, r30, r0
-	  lwz       r3, 0x0(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r31)
-	  b         .loc_0x178
-
-	.loc_0x150:
-	  lwz       r0, 0x0(r31)
-	  li        r3, 0
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r28, r29, r0
-	  lwz       r0, 0x0(r31)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r3, r30, r0
-	  lwz       r3, 0x0(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r31)
-
-	.loc_0x178:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
