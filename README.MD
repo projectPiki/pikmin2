@@ -36,7 +36,7 @@ This repository builds the following DOLs:
 
 1. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
 
-2. Download [GC_WII_COMPILERS.zip](https://cdn.discordapp.com/attachments/727918646525165659/1129759991696457728/GC_WII_COMPILERS.zip) and extract the contents of the GC folder to `tools/mwcc_compiler/`. For example, your directory structure should look like `pikmin2/tools/mwcc_compiler/2.6/` (along with the other versions).
+2. Download [GC_WII_COMPILERS.zip](https://files.decomp.dev/compilers_20230715.zip) and extract the contents of the GC folder to `tools/mwcc_compiler/`. For example, your directory structure should look like `pikmin2/tools/mwcc_compiler/2.6/` (along with the other versions).
 
 3. Run `make -j` in a command prompt or terminal.
 	- -j Allows `make` to use multiple threads, speeding up the process.
