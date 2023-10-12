@@ -6,8 +6,6 @@
 #include "Game/GameSystem.h"
 #include "Game/TimeMgr.h"
 #include "Game/gameStages.h"
-#include "JSystem/JUtility/JUTException.h"
-#include "types.h"
 
 /*
  * --INFO--
@@ -41,6 +39,7 @@ void PlayData::prepareSave()
 void PlayData::write(Stream& output)
 {
 	int startPosition = output.mPosition;
+	int courseCount;
 
 	output.textBeginGroup("* Version *");
 	ID32 IStack312(PlayData::mVersion);
@@ -123,7 +122,7 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 
 	output.textBeginGroup("* コース情報 *"); // 'course information'
-	int courseCount = stageList->mCourseCount;
+	courseCount = stageList->getCourseCount();
 	output.textWriteTab(output.mTabCount);
 	output.writeInt(courseCount);
 	output.textWriteText("\t# コース数\r\n"); // 'number of courses'
@@ -143,8 +142,8 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 
 	output.textBeginGroup("* LimitGen *");
-	int stageCourseCount = stageList->getCourseCount();
-	for (int i = 0; i < stageCourseCount; i++) {
+	courseCount = stageList->getCourseCount();
+	for (int i = 0; i < courseCount; i++) {
 		mLimitGen[i].write(output);
 	}
 	output.textEndGroup();
@@ -181,9 +180,9 @@ void PlayData::write(Stream& output)
 	output.textWriteText("\r\n");
 	output.textEndGroup();
 
-	int stageCourseCount2 = stageList->getCourseCount();
+	courseCount = stageList->mCourseCount;
 	output.textBeginGroup("* WorldMap 演出用 *"); //  'WorldMap for performance' [staging?]
-	for (int i = 0; i < stageCourseCount2; i++) {
+	for (int i = 0; i < courseCount; i++) {
 		output.writeByte(mGroundOtakaraCollectedOld[i]);
 	}
 	output.writeInt(mPokoCountOld);
@@ -203,7 +202,7 @@ void PlayData::write(Stream& output)
 	generatorCache->write(output);
 	output.textEndGroup();
 
-	_1C                         = 0;
+	mBeforeSaveDelegate         = nullptr;
 	PlayData::sCurrPlayDataSize = dataSize;
 	if (PlayData::sMaxPlayDataSize < dataSize) {
 		PlayData::sMaxPlayDataSize = dataSize;
@@ -712,8 +711,9 @@ void PlayData::read(Stream& input)
 	mOsTime           = OSGetTime();
 	ID32 version;
 	version.read(input);
-	u32 versionID = version.getID();
-	if (mVersion != versionID) {
+	int id        = version.getID();
+	u32 versionID = id;
+	if (mVersion != id) {
 		ID32 unusedVersion(mVersion);
 	}
 

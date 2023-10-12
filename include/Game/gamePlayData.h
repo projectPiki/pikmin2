@@ -244,7 +244,7 @@ struct PlayData : public CNode {
 			int caves = info->getCaveNum();
 			if (caves > 0) {
 				mCaveCount        = caves;
-				mOtakaraCountsOld = new char[caves];
+				mOtakaraCountsOld = new u8[caves];
 				_08               = new int[caves];
 				if (mCaveCount > 0) {
 					for (int j = 0; j < mCaveCount; j++) {
@@ -270,7 +270,7 @@ struct PlayData : public CNode {
 		// Pointer to array indexed by cave index.
 		// This is also returned by getOtakaraNum_Course_CaveID,
 		// so I guess it's both for some reason.
-		char* mOtakaraCountsOld; // _04
+		u8* mOtakaraCountsOld; // _04
 
 		// Pointer to array indexed by cave index.
 		int* _08; // _08
@@ -281,6 +281,12 @@ struct PlayData : public CNode {
 
 		void write(Stream&);
 		void read(Stream&);
+
+		inline void init()
+		{
+			mNonLoops.reset();
+			mLoops.reset();
+		}
 
 		BitFlags mNonLoops; // _00
 		BitFlags mLoops;    // _08
