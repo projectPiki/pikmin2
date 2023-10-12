@@ -48,30 +48,41 @@ struct J2DBlendInfo {
 extern J2DBlendInfo j2dDefaultBlendInfo;
 
 struct J2DBlend {
-	J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
+	J2DBlend()
+	{
+		mType       = j2dDefaultBlendInfo.mType;
+		mSrcFactor  = j2dDefaultBlendInfo.mSrcFactor;
+		mDestFactor = j2dDefaultBlendInfo.mDestFactor;
+	}
 
 	J2DBlend(u8 type, u8 srcFactor, u8 destFactor, u8 op)
 	{
-		mBlendInfo.mType       = type;
-		mBlendInfo.mSrcFactor  = srcFactor;
-		mBlendInfo.mDestFactor = destFactor;
-		mOp                    = op;
+		mType       = type;
+		mSrcFactor  = srcFactor;
+		mDestFactor = destFactor;
+		mOp         = op;
 	}
 
 	void operator=(J2DBlend const& other)
 	{
-		mBlendInfo = other.mBlendInfo;
-		mOp        = other.mOp;
+		mType       = other.mType;
+		mSrcFactor  = other.mSrcFactor;
+		mDestFactor = other.mDestFactor;
+		mOp         = other.mOp;
 	}
 
 	inline void set(J2DBlend blend)
 	{
-		mBlendInfo = blend.mBlendInfo;
-		mOp        = blend.mOp;
+		mType       = blend.mType;
+		mSrcFactor  = blend.mSrcFactor;
+		mDestFactor = blend.mDestFactor;
+		mOp         = blend.mOp;
 	}
 
-	J2DBlendInfo mBlendInfo; // _00
-	u8 mOp;                  // _03
+	u8 mType;       // _00
+	u8 mSrcFactor;  // _01
+	u8 mDestFactor; // _02
+	u8 mOp;         // _03
 };
 
 struct J2DColorChanInfo {
