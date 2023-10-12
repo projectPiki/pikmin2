@@ -2,14 +2,7 @@
 #include "JSystem/JAudio/JAS/JASHeap.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sDspChannels__13JASDSPChannel
-    sDspChannels__13JASDSPChannel:
-        .skip 0x8
-*/
+JASDSPChannel* JASDSPChannel::sDspChannels;
 
 /*
  * --INFO--
@@ -482,48 +475,13 @@ lbl_800A5118:
  */
 void JASDSPChannel::updateAll()
 {
-	for (int i = 0; i < 0x40; i++) {
+	for (u32 i = 0; i < 0x40; i++) {
 		if ((i & 0xF) == 0 && i != 0) {
 			JASDsp::releaseHalt((i - 1) >> 4);
 		}
 		sDspChannels[i].updateProc();
 	}
 	JASDsp::releaseHalt(3);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	li       r30, 0
-
-lbl_800A5148:
-	clrlwi.  r0, r30, 0x1c
-	bne      lbl_800A5164
-	cmplwi   r30, 0
-	beq      lbl_800A5164
-	addi     r0, r30, -1
-	srwi     r3, r0, 4
-	bl       releaseHalt__6JASDspFUl
-
-lbl_800A5164:
-	lwz      r0, sDspChannels__13JASDSPChannel@sda21(r13)
-	add      r3, r0, r31
-	bl       updateProc__13JASDSPChannelFv
-	addi     r30, r30, 1
-	addi     r31, r31, 0x1c
-	cmplwi   r30, 0x40
-	blt      lbl_800A5148
-	li       r3, 3
-	bl       releaseHalt__6JASDspFUl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
