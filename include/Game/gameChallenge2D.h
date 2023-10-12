@@ -4,7 +4,6 @@
 #include "types.h"
 #include "Game/PikiContainer.h"
 #include "Game/Highscore.h"
-#include "JSystem/JUtility/JUTException.h"
 
 namespace Game {
 enum Challenge2D_ResultFlags {

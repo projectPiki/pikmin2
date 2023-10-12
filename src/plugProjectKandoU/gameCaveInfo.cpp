@@ -7,7 +7,7 @@
 #include "Game/generalEnemyMgr.h"
 #include "Game/pelletMgr.h"
 #include "Game/Entities/ItemGate.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "types.h"
 
 static const char caveInfoName[] = "caveInfo";

@@ -1,7 +1,7 @@
 #ifndef _PSSYSTEM_PSMAINSIDE_SCENE_H
 #define _PSSYSTEM_PSMAINSIDE_SCENE_H
 
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSSystem/PSScene.h"
 #include "PSM/Scene.h"
 

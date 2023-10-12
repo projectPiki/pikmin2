@@ -2,10 +2,9 @@
 #include "Game/GameConfig.h"
 #include "Game/PelletList.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "System.h"
 #include "stream.h"
-#include "types.h"
 
 static const char unusedPelletListName[] = "gamePelletList";
 

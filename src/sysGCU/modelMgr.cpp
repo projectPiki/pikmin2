@@ -1,10 +1,9 @@
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "SysShape/Model.h"
 #include "SysShape/ModelMgr.h"
 #include "System.h"
-#include "types.h"
 
 /*
     Generated from dpostproc

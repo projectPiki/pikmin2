@@ -5,7 +5,7 @@
 #include "Game/routeMgr.h"
 #include "Iterator.h"
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "Sys/Sphere.h"
 #include "types.h"
 #include "Vector3.h"

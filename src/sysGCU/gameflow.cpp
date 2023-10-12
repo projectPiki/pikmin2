@@ -5,7 +5,7 @@
 #include "Game/SingleGameSection.h"
 #include "Game/VsGameSection.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "RootMenuSection.h"
 #include "Title.h"
 #include "nans.h"

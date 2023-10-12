@@ -1,8 +1,7 @@
 #include "LoadResource.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JUtility/JUTException.h"
-#include "types.h"
+#include "P2Macros.h"
 
 /*
     Generated from dpostproc

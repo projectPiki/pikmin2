@@ -2,7 +2,7 @@
 #define _STREAM_H
 
 #include "types.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "stl/string.h"
 #include "stl/stdio.h"
 

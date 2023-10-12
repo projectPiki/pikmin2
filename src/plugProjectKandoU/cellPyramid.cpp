@@ -1,13 +1,12 @@
 #include "sysMath.h"
-#include "types.h"
 #include "Dolphin/math.h"
 #include "Game/cellPyramid.h"
 #include "BaseParm.h"
 #include "CellMgrParms.h"
 #include "Dolphin/math.h"
 #include "fdlibm.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "P2Macros.h"
 
 namespace Game {
 

@@ -1,6 +1,6 @@
 #include "CNode.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "SysShape/AnimMgr.h"
 #include "SysShape/Animator.h"
 #include "SysShape/AnimInfo.h"
@@ -8,7 +8,6 @@
 #include "SysShape/KeyEvent.h"
 #include "SysShape/Model.h"
 #include "SysShape/MtxObject.h"
-#include "types.h"
 #include "nans.h"
 
 /*

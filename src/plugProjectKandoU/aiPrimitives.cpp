@@ -3,7 +3,7 @@
 #include "efx/PikiDamage.h"
 #include "efx/TPk.h"
 #include "types.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "Vector3.h"
 #include "PikiAI.h"
 #include "Game/pelletMgr.h"

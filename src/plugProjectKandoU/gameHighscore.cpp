@@ -1,7 +1,6 @@
 #include "stream.h"
-#include "types.h"
 #include "Game/Highscore.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 
 namespace Game {
 

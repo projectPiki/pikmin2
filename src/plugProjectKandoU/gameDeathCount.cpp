@@ -2,7 +2,7 @@
 #include "Game/DeathMgr.h"
 #include "Game/GameSystem.h"
 #include "Game/Piki.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "types.h"
 
 // sinit

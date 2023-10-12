@@ -1,8 +1,7 @@
 #include "Dolphin/os.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSSystem/PSTaskBase.h"
-#include "types.h"
 #include "PSSystem/PSBgmTask.h"
 
 namespace PSSystem {

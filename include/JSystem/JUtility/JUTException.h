@@ -143,16 +143,6 @@ struct JUTException : public JKRThread {
 	if (!(cond))                     \
 	JUT_PANIC(string_ref)
 
-#define P2ASSERT_BROKEN(cond) JUT_ASSERT(cond, nullptr)
-#define P2ASSERT(cond)        JUT_ASSERT(cond, "P2Assert")
-
-#if DEBUG
-// TODO: Reasonable definition of a debug print function
-#define P2DEBUG(...) __VA_ARGS__
-#else
-#define P2DEBUG(...) __VA_ARGS__
-#endif
-
 #ifndef MATCHING
 #define JUT_PANICLINE(line, ...) JUT_PANIC(__VA_ARGS__)
 #else
@@ -162,30 +152,6 @@ struct JUTException : public JKRThread {
 #define JUT_ASSERTLINE(line, cond, ...) \
 	if (!(cond))                        \
 	JUT_PANICLINE(line, __VA_ARGS__)
-
-#define P2ASSERTLINE(line, cond) JUT_ASSERTLINE(line, cond, "P2Assert")
-
-#define P2ASSERTBOUNDSLINE(line, lowerLimitInclusive, var, upperLimitExclusive) \
-	bool check##line = false;                                                   \
-	if (lowerLimitInclusive <= var && var < upperLimitExclusive) {              \
-		check##line = true;                                                     \
-	}                                                                           \
-	P2ASSERTLINE(line, check##line)
-
-// Used in PSMainSide_CreaturePrm
-#define P2ASSERTBOUNDSLINE2(line, lowerLimitExclusive, var, upperLimitInclusive) \
-	bool check##line = false;                                                    \
-	if (var > lowerLimitExclusive && var <= upperLimitInclusive) {               \
-		check##line = true;                                                      \
-	}                                                                            \
-	P2ASSERTLINE(line, check##line)
-
-#define P2ASSERTBOUNDSINCLUSIVELINE(line, lowerLimitInclusive, var, upperLimitInclusive) \
-	bool check##line = false;                                                            \
-	if (lowerLimitInclusive <= var && var <= upperLimitInclusive) {                      \
-		check##line = true;                                                              \
-	}                                                                                    \
-	P2ASSERTLINE(line, check##line)
 
 #define JUTASSERTBOUNDSLINE(line, lowerLimitInclusive, var, upperLimitExclusive, ...) \
 	bool check##line = false;                                                         \
@@ -200,12 +166,5 @@ struct JUTException : public JKRThread {
 		check##line = true;                                                                    \
 	}                                                                                          \
 	JUT_ASSERTLINE(line, check##line, __VA_ARGS__, var)
-
-#define P2ASSERTBOOLLINE(line, var) \
-	bool check##line = false;       \
-	if (var) {                      \
-		check##line = true;         \
-	}                               \
-	P2ASSERTLINE(line, check##line)
 
 #endif

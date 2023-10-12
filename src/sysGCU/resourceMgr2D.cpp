@@ -1,4 +1,4 @@
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "Resource.h"
 
 Resource::Mgr2D* gResMgr2D;

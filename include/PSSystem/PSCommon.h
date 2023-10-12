@@ -1,7 +1,7 @@
 #ifndef _PSSYSTEM_PSCOMMON_H
 #define _PSSYSTEM_PSCOMMON_H
 
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 
 namespace PSSystem {
 

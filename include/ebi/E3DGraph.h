@@ -7,7 +7,7 @@
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "System.h"
 
 namespace ebi {

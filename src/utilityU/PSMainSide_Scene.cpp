@@ -1,5 +1,5 @@
 #include "JSystem/JAudio/JALCalc.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSGame/CameraMgr.h"
 #include "PSGame/PikScene.h"
 #include "PSGame/SceneInfo.h"
@@ -20,7 +20,6 @@
 #include "PSSystem/Reservator.h"
 #include "PSSystem/Seq.h"
 #include "PSSystem/PSCommon.h"
-#include "types.h"
 #include "nans.h"
 #include "utilityU.h"
 

@@ -1,7 +1,6 @@
-#include "types.h"
+#include "P2Macros.h"
 #include "PSM/BgmTrackMap.h"
 #include "stream.h"
-#include "JSystem/JUtility/JUTException.h"
 
 /*
     Generated from dpostproc

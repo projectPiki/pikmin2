@@ -10,7 +10,7 @@
 #include "Game/Entities/ItemPikihead.h"
 #include "Game/AIConstants.h"
 #include "JSystem/J3D/J3DJoint.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSM/Navi.h"
 #include "SysShape/Model.h"
 #include "CollInfo.h"
@@ -130,7 +130,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	mCollTree->createFromFactory(mModel, naviMgr->_CC, nullptr);
 	JUT_ASSERTLINE(838, ((int)mCollTree->mPart) >= 0x80000000,
-	               "ƒUƒ“[[iE„tEj??ƒlƒ“\n"); // 'disappointttttt D: ?? ment' (lol)
+	               "ã‚¶ãƒ³ãƒ¼ãƒ¼ï¼ˆãƒ»Ð´ãƒ»ï¼‰??ãƒãƒ³\n"); // 'disappointttttt D: ?? ment' (lol)
 	mCollTree->attachModel(mModel);
 
 	mFsm->start(this, NSID_Walk, nullptr);

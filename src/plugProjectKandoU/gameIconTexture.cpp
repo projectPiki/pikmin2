@@ -2,10 +2,9 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/ResTIMG.h"
 #include "LoadResource.h"
-#include "types.h"
+#include "P2Macros.h"
 
 /*
     Generated from dpostproc

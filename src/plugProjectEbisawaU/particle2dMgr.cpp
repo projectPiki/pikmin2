@@ -1,11 +1,10 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JParticle/JPAEmitter.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/ResTIMG.h"
 #include "Graphics.h"
+#include "P2Macros.h"
 #include "System.h"
-#include "types.h"
 #include "TParticle2dMgr.h"
 #include "nans.h"
 

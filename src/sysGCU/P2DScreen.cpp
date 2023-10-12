@@ -1,8 +1,7 @@
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "P2DScreen.h"
 #include "System.h"
-#include "types.h"
 
 /*
     Generated from dpostproc

@@ -1,8 +1,8 @@
 #include "types.h"
 #include "P2JME/TSequenceProcessor.h"
 #include "P2JME/P2JME.h"
+#include "P2Macros.h"
 #include "System.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "PSSystem/PSSystemIF.h"
 
 /*

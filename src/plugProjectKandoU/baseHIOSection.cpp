@@ -4,12 +4,11 @@
 #include "Dolphin/os.h"
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "nans.h"
+#include "P2Macros.h"
 #include "System.h"
-#include "types.h"
 
 namespace Game {
 
@@ -64,7 +63,7 @@ void BaseHIOSection::setDisplay(JFWDisplay* display, int secondsPer60Frames)
 	// Assign the new display and create a new JUTFader object for it
 	mDisplay = display;
 	mFader   = new JUTFader(0, 0, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight,
-                          JUtility::TColor(0, 0, 0, 0));
+	                        JUtility::TColor(0, 0, 0, 0));
 
 	// Assign the new fader to the display's mFader member
 	mDisplay->mFader = mFader;

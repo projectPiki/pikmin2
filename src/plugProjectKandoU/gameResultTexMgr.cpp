@@ -3,10 +3,10 @@
 #include "Game/Result.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/ResTIMG.h"
 #include "LoadResource.h"
 #include "Morimura/mrUtil.h"
+#include "P2Macros.h"
 #include "System.h"
 
 namespace Game {

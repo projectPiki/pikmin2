@@ -16,9 +16,9 @@
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "LoadResource.h"
 #include "ObjectMgr.h"
+#include "P2Macros.h"
 #include "PSM/CreatureObj.h"
 #include "PSM/ObjMgr.h"
 #include "PSSystem/PSCommon.h"
@@ -28,7 +28,6 @@
 #include "SysShape/Model.h"
 #include "System.h"
 #include "stream.h"
-#include "types.h"
 #include "Vector3.h"
 
 /*

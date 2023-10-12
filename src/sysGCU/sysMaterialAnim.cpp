@@ -1,11 +1,10 @@
 #include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DAnmTevRegKey.h"
 #include "JSystem/J3D/J3DAnmTextureSRTKey.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
 #include "System.h"
-#include "types.h"
 
 /*
     Generated from dpostproc

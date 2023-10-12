@@ -6,7 +6,7 @@
 #include "Game/Navi.h"
 #include "JSystem/JAudio/JAI/JAInter/Object.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSM/BattleLink.h"
 #include "PSM/Cluster.h"
 #include "PSM/CreatureAnime.h"

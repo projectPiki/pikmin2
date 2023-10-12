@@ -2,8 +2,7 @@
 #include "Game/CPlate.h"
 #include "Game/Piki.h"
 #include "Game/Navi.h"
-#include "JSystem/JUtility/JUTException.h"
-#include "types.h"
+#include "P2Macros.h"
 
 namespace Game {
 

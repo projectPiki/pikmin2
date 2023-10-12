@@ -1,7 +1,7 @@
 #include "IDelegate.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/TColor.h"
+#include "P2Macros.h"
 #include "Screen/Enums.h"
 #include "Screen/SceneInfoList.h"
 #include "og/Screen/DispMember.h"
@@ -11,7 +11,6 @@
 #include "Screen/screenMgr.h"
 #include "System.h"
 #include "stl/mem.h"
-#include "types.h"
 
 namespace Screen {
 

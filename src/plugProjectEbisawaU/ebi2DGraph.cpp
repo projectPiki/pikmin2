@@ -1,11 +1,10 @@
 #include "ebi/E2DGraph.h"
 #include "ebi/Utility.h"
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "P2DScreen.h"
 #include "og/Screen/callbackNodes.h"
 #include "Vector3.h"
-#include "types.h"
 
 // necessary for weak function generation unfortunately
 inline u64 J2DPane::getTagName() const { return mTag; }

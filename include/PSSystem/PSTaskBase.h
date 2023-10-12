@@ -3,7 +3,7 @@
 
 #include "Dolphin/os.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSSystem/BankRandPrm.h"
 #include "PSSystem/MutexList.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"

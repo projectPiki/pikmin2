@@ -1,6 +1,6 @@
+#include "P2Macros.h"
 #include "PSM/Creature.h"
 #include "PSM/ObjMgr.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "PSGame/SoundTable.h"
 #include "PSM/Se.h"
 #include "PSSystem/PSCommon.h"

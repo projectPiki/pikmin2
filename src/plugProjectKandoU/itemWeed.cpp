@@ -5,8 +5,8 @@
 #include "Game/Entities/ItemHoney.h"
 #include "JSystem/J3D/J3DTransform.h"
 #include "JSystem/JMath.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "efx/TPk.h"
+#include "P2Macros.h"
 #include "nans.h"
 
 #define WEED_NECTAR_CHANCE (0.08f)

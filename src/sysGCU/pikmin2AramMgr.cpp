@@ -1,9 +1,8 @@
-#include "types.h"
 #include "Pikmin2ARAM.h"
 #include "ARAM.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "og/newScreen/ogUtil.h"
+#include "P2Macros.h"
 #include "stream.h"
 
 Pikmin2ARAM::Mgr* gPikmin2AramMgr;

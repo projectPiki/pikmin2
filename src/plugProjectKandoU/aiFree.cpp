@@ -1,14 +1,13 @@
 #include "Dolphin/rand.h"
 #include "string.h"
 
-#include "JSystem/JUtility/JUTException.h"
-
 #include "Game/Navi.h"
 #include "Game/Piki.h"
 #include "Game/rumble.h"
 #include "Game/CollEvent.h"
 #include "Game/Interaction.h"
 
+#include "P2Macros.h"
 #include "PikiAI.h"
 
 namespace PikiAI {

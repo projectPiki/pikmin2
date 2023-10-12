@@ -1,7 +1,7 @@
 #include "efx2d/TChasePos.h"
 #include "efx2d/TForever.h"
 #include "efx2d/TSimple.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "TParticle2dMgr.h"
 
 namespace efx2d {

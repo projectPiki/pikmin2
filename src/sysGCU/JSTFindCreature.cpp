@@ -1,11 +1,10 @@
-#include "types.h"
 #include "nans.h"
 #include "Game/P2JST/ObjectSystem.h"
 #include "Game/Navi.h"
 #include "Game/MoviePlayer.h"
 #include "Game/gamePlayData.h"
 #include "Game/Entities/ItemOnyon.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 
 static const u32 filler[] = { 0, 0, 0 };
 const char filename[]     = "JSTFindCreature";

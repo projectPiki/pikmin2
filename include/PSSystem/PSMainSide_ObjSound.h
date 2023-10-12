@@ -1,7 +1,7 @@
 #ifndef _PSSYSTEM_PSMAINSIDE_OBJSOUND_H
 #define _PSSYSTEM_PSMAINSIDE_OBJSOUND_H
 
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSM/EnemyBase.h"
 #include "PSM/EnemyBoss.h"
 

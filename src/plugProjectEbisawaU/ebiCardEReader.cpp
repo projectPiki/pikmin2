@@ -1,8 +1,8 @@
 #include "ebi/CardEReader.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "Dolphin/gba.h"
 #include "JSystem/JKernel/JKRFile.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "P2Macros.h"
 
 static const char name[] = "ebiCardEReader";
 

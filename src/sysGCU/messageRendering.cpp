@@ -1,8 +1,7 @@
 #include "JSystem/JMessage/TProcessor.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include "P2JME/TRenderingProcessor.h"
-#include "types.h"
+#include "P2Macros.h"
 
 /*
     Generated from dpostproc

@@ -11,7 +11,7 @@
 #include "Game/NaviParms.h"
 #include "Game/PikiMgr.h"
 #include "Game/SingleGame.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSGame/PikScene.h"
 #include "PSM/Scene.h"
 #include "PSSystem/PSGame.h"

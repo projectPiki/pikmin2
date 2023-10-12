@@ -8,7 +8,7 @@
 #include "efx/TBarrel.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSM/ObjBase.h"
 #include "PSM/WorkItem.h"
 #include "PSSystem/PSSystemIF.h"
@@ -389,7 +389,7 @@ Mgr::Mgr()
 	mObjectPathComponent = "user/Kando/objects/barrel";
 	mParms               = new BarrelParms();
 	void* resource       = JKRDvdRipper::loadToMainRAM("user/Abe/item/barrelParms.txt", nullptr, Switch_0, 0, nullptr,
-                                                 JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	                                                   JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.resetPosition(true, true);

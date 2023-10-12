@@ -5,8 +5,7 @@
 #include "DvdThreadCommand.h"
 #include "IDelegate.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JUtility/JUTException.h"
-#include "types.h"
+#include "P2Macros.h"
 
 /*
     Generated from dpostproc

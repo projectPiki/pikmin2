@@ -7,7 +7,7 @@
 #include "PSSystem/FxMgr.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "P2Macros.h"
 #include "PSGame/BASARC.h"
 #include "JSystem/JMath.h"
 
