@@ -7,7 +7,7 @@
 #include "ctype.h"
 #include "math.h"
 #include "mem.h"
-#include "limits.h"
+#include "stl/limits.h"
 
 #define TARGET_FLOAT_BITS           64
 #define TARGET_FLOAT_BYTES          (TARGET_FLOAT_BITS / 8)

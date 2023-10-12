@@ -1,21 +1,15 @@
 #ifndef _STD_ITERATOR_H
 #define _STD_ITERATOR_H
 
-#include "types.h"
-
+#ifdef __cplusplus
 namespace std {
 typedef long ptrdiff_t;
 
-struct input_iterator_tag {
-};
-struct output_iterator_tag {
-};
-struct forward_iterator_tag : public input_iterator_tag {
-};
-struct bidirectional_iterator_tag : public forward_iterator_tag {
-};
-struct randomAccess_iterator_tag : public bidirectional_iterator_tag {
-};
+struct input_iterator_tag { };
+struct output_iterator_tag { };
+struct forward_iterator_tag : public input_iterator_tag { };
+struct bidirectional_iterator_tag : public forward_iterator_tag { };
+struct randomAccess_iterator_tag : public bidirectional_iterator_tag { };
 
 template <typename Iterator>
 struct iterator_traits {
@@ -36,5 +30,6 @@ struct iterator {
 	typedef Reference reference;
 };
 } // namespace std
+#endif
 
 #endif

@@ -2,7 +2,7 @@
 #include "JSystem/JSupport.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "limits"
+#include "stl/limits.h"
 #include "types.h"
 
 /*

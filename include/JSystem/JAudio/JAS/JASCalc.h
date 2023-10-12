@@ -1,7 +1,7 @@
 #ifndef _JSYSTEM_JAS_JASCALC_H
 #define _JSYSTEM_JAS_JASCALC_H
 
-#include "stl/limits"
+#include "stl/limits.h"
 #include "types.h"
 
 namespace JASCalc {
