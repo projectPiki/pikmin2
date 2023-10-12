@@ -31,16 +31,13 @@ SnakeJointMgr::SnakeJointMgr(EnemyBase* enemy)
 {
 	sSnakeJointMgr = nullptr;
 	mObj           = enemy;
-	_04            = 0;
-	_08            = 0;
-	_0C            = 0;
-	_10            = 0;
-	_14            = 0;
-	_18            = 0;
-	_1C            = 0;
-	_20            = 0.0f;
-	_28            = 0.0f;
-	_24            = 0.0f;
+	for (int i = 0; i < 6; i++) {
+		mJointMatrices[i] = nullptr;
+	}
+	mState = SNAKEJOINT_Finish;
+	_20    = 0.0f;
+	_28    = 0.0f;
+	_24    = 0.0f;
 }
 
 /*
@@ -50,58 +47,17 @@ SnakeJointMgr::SnakeJointMgr(EnemyBase* enemy)
  */
 void SnakeJointMgr::setupCallBackJoint()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, lbl_8048BD20@ha
-	stw      r0, 0x44(r1)
-	addi     r10, r4, lbl_8048BD20@l
-	lis      r4, SnakeJointCallBack__4GameFP8J3DJointi@ha
-	stmw     r26, 0x28(r1)
-	mr       r27, r3
-	addi     r28, r1, 8
-	addi     r31, r4, SnakeJointCallBack__4GameFP8J3DJointi@l
-	li       r26, 0
-	lwz      r5, 0(r3)
-	lwz      r9, 0(r10)
-	lwz      r8, 4(r10)
-	lwz      r7, 8(r10)
-	lwz      r6, 0xc(r10)
-	lwz      r3, 0x10(r10)
-	lwz      r0, 0x14(r10)
-	stw      r9, 8(r1)
-	lwz      r29, 0x174(r5)
-	stw      r8, 0xc(r1)
-	stw      r7, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r3, 0x18(r1)
-	stw      r0, 0x1c(r1)
-
-lbl_802D170C:
-	lwz      r4, 0(r28)
-	mr       r3, r29
-	bl       getJoint__Q28SysShape5ModelFPc
-	or.      r30, r3, r3
-	beq      lbl_802D1738
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	cmpwi    r26, 5
-	stw      r3, 4(r27)
-	bne      lbl_802D1738
-	lwz      r3, 0x18(r30)
-	stw      r31, 4(r3)
-
-lbl_802D1738:
-	addi     r26, r26, 1
-	addi     r27, r27, 4
-	cmpwi    r26, 6
-	addi     r28, r28, 4
-	blt      lbl_802D170C
-	lmw      r26, 0x28(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	char* joints[6]        = { "bodyjnt3", "bodyjnt4", "bodyjnt5", "bodyjnt6", "bodyjnt7", "bodyjnt8" };
+	SysShape::Model* model = getModel();
+	for (int i = 0; i < 6; i++) {
+		SysShape::Joint* joint = model->getJoint(joints[i]);
+		if (joint) {
+			mJointMatrices[i] = joint->getWorldMatrix();
+			if (i == 5) {
+				joint->mJ3d->mFunction = &SnakeJointCallBack;
+			}
+		}
+	}
 }
 
 /*
@@ -109,18 +65,13 @@ lbl_802D1738:
  * Address:	802D1760
  * Size:	000020
  */
-void SnakeJointMgr::startModify(float, float)
+void SnakeJointMgr::startModify(f32 p1, f32 p2)
 {
-	/*
-	li       r0, 1
-	lfs      f0, lbl_8051C8D8@sda21(r2)
-	stw      r0, 0x1c(r3)
-	stfs     f1, 0x20(r3)
-	stfs     f2, 0x28(r3)
-	stfs     f2, 0x24(r3)
-	stfs     f0, 0x2c(r3)
-	blr
-	*/
+	mState = SNAKEJOINT_Modify;
+	_20    = p1;
+	_28    = p2;
+	_24    = p2;
+	_2C    = 0.0f;
 }
 
 /*
@@ -128,17 +79,12 @@ void SnakeJointMgr::startModify(float, float)
  * Address:	802D1780
  * Size:	00001C
  */
-void SnakeJointMgr::returnModify(float)
+void SnakeJointMgr::returnModify(f32 p1)
 {
-	/*
-	li       r0, 2
-	lfs      f0, lbl_8051C8DC@sda21(r2)
-	stw      r0, 0x1c(r3)
-	stfs     f1, 0x28(r3)
-	stfs     f1, 0x24(r3)
-	stfs     f0, 0x2c(r3)
-	blr
-	*/
+	mState = SNAKEJOINT_ReturnModify;
+	_28    = p1;
+	_24    = p1;
+	_2C    = 1.0f;
 }
 
 /*
@@ -146,11 +92,7 @@ void SnakeJointMgr::returnModify(float)
  * Address:	802D179C
  * Size:	00000C
  */
-void SnakeJointMgr::finishModify()
-{
-	// Generated from stw r0, 0x1C(r3)
-	_1C = 0;
-}
+void SnakeJointMgr::finishModify() { mState = SNAKEJOINT_Finish; }
 
 /*
  * --INFO--
@@ -159,44 +101,24 @@ void SnakeJointMgr::finishModify()
  */
 void SnakeJointMgr::doAnimation()
 {
-	/*
-	stw      r3, sSnakeJointMgr__4Game@sda21(r13)
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 0
-	beqlr
-	lwz      r4, sys@sda21(r13)
-	lfs      f3, lbl_8051C8E0@sda21(r2)
-	lfs      f2, 0x54(r4)
-	lfs      f1, 0x28(r3)
-	lfs      f0, lbl_8051C8D8@sda21(r2)
-	fnmsubs  f1, f3, f2, f1
-	stfs     f1, 0x28(r3)
-	lfs      f1, 0x28(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802D17E4
-	stfs     f0, 0x28(r3)
+	sSnakeJointMgr = this;
+	if (mState == SNAKEJOINT_Finish) {
+		return;
+	}
 
-lbl_802D17E4:
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 1
-	bne      lbl_802D180C
-	lfs      f1, 0x28(r3)
-	lfs      f0, 0x24(r3)
-	lfs      f2, lbl_8051C8DC@sda21(r2)
-	fdivs    f0, f1, f0
-	fsubs    f0, f2, f0
-	stfs     f0, 0x2c(r3)
-	blr
+	_28 -= 30.0f * sys->mDeltaTime;
+	if (_28 < 0.0f) {
+		_28 = 0.0f;
+	}
 
-lbl_802D180C:
-	cmpwi    r0, 2
-	bnelr
-	lfs      f1, 0x28(r3)
-	lfs      f0, 0x24(r3)
-	fdivs    f0, f1, f0
-	stfs     f0, 0x2c(r3)
-	blr
-	*/
+	if (mState == SNAKEJOINT_Modify) {
+		_2C = 1.0f - (_28 / _24);
+		return;
+	}
+
+	if (mState == SNAKEJOINT_ReturnModify) {
+		_2C = _28 / _24;
+	}
 }
 
 /*
@@ -204,14 +126,7 @@ lbl_802D180C:
  * Address:	802D1828
  * Size:	00000C
  */
-void SnakeJointMgr::finishAnimation()
-{
-	/*
-	li       r0, 0
-	stw      r0, sSnakeJointMgr__4Game@sda21(r13)
-	blr
-	*/
-}
+void SnakeJointMgr::finishAnimation() { sSnakeJointMgr = nullptr; }
 
 /*
  * --INFO--
@@ -220,6 +135,45 @@ void SnakeJointMgr::finishAnimation()
  */
 void SnakeJointMgr::makeMatrix()
 {
+	if (mState == SNAKEJOINT_Finish) {
+		return;
+	}
+
+	f32 dists[5];
+
+	for (int i = 0; i < 6; i++) {
+		Vector3f pos;
+		mJointMatrices[i]->getTranslation(pos);
+
+		if (i < 5) {
+			Vector3f newPos;
+			mJointMatrices[i + 1]->getTranslation(newPos);
+			Vector3f sep = pos - newPos;
+			dists[i]     = sep.length();
+		}
+
+		f32 modRatio = (cJointModRatio[i] * _20);
+		Vector3f newPos(pos.x, _2C * modRatio + pos.y, pos.z);
+		mJointMatrices[i]->setBasis(3, newPos);
+	}
+
+	for (int i = 0; i < 5; i++) {
+		Vector3f xVec  = mJointMatrices[i + 1]->getBasis(3) - mJointMatrices[i]->getBasis(3); // f0, f1, f2
+		Vector3f nextZ = mJointMatrices[i + 1]->getBasis(2);
+		Vector3f yVec  = cross(xVec, nextZ);
+		Vector3f zVec  = cross(xVec, yVec);
+		f32 len        = xVec.normalise();
+		yVec.normalise();
+		zVec.normalise();
+
+		f32 factor = len / dists[i];
+		xVec *= factor;
+		mJointMatrices[i]->setBasis(0, xVec);
+		mJointMatrices[i]->setBasis(1, yVec);
+		mJointMatrices[i]->setBasis(2, zVec);
+	}
+
+	PSMTXCopy(mJointMatrices[5]->mMatrix.mtxView, J3DSys::mCurrentMtx);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

@@ -6,6 +6,12 @@
 
 namespace Game {
 struct SnakeJointMgr {
+	enum StateID {
+		SNAKEJOINT_Finish       = 0,
+		SNAKEJOINT_Modify       = 1,
+		SNAKEJOINT_ReturnModify = 2,
+	};
+
 	SnakeJointMgr(EnemyBase* enemy);
 
 	void setupCallBackJoint();
@@ -19,18 +25,15 @@ struct SnakeJointMgr {
 	// unused/inlined
 	void init();
 
-	EnemyBase* mObj; // _00, SnakeCrow obj or SnakeWhole obj
-	u32 _04;         // _04, unknown
-	u32 _08;         // _08, unknown
-	u32 _0C;         // _0C, unknown
-	u32 _10;         // _10, unknown
-	u32 _14;         // _14, unknown
-	u32 _18;         // _18, unknown
-	u32 _1C;         // _1C, unknown
-	f32 _20;         // _20
-	f32 _24;         // _24
-	f32 _28;         // _28
-	u8 _2C[0x4];     // _2C, unknown
+	inline SysShape::Model* getModel() { return mObj->mModel; }
+
+	EnemyBase* mObj;            // _00, SnakeCrow obj or SnakeWhole obj
+	Matrixf* mJointMatrices[6]; // _04
+	int mState;                 // _1C
+	f32 _20;                    // _20
+	f32 _24;                    // _24
+	f32 _28;                    // _28
+	f32 _2C;                    // _2C
 };
 } // namespace Game
 

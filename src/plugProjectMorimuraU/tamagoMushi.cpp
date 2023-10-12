@@ -1,7 +1,10 @@
 #include "Game/Entities/TamagoMushi.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/PikiState.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
-
+namespace TamagoMushi {
 static const char unusedName[] = "tamagoMushi";
 
 /*
@@ -9,240 +12,51 @@ static const char unusedName[] = "tamagoMushi";
  * Address:	8036EBA8
  * Size:	000020
  */
-void TamagoMushi::Obj::setParameters()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       setParameters__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::setParameters() { EnemyBase::setParameters(); }
 
 /*
  * --INFO--
  * Address:	8036EBC8
  * Size:	000020
  */
-void TamagoMushi::Obj::birth(Vector3f&, f32)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::birth(Vector3f& pos, f32 faceDir) { EnemyBase::birth(pos, faceDir); }
 
 /*
  * --INFO--
  * Address:	8036EBE8
  * Size:	0002D0
  */
-void TamagoMushi::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* initArg)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	lis      r5, lbl_804924E8@ha
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	addi     r31, r5, lbl_804924E8@l
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r3, 0x1e0(r30)
-	li       r0, 0
-	rlwinm   r3, r3, 0, 0x19, 0x17
-	stw      r3, 0x1e0(r30)
-	lwz      r3, 0x1e0(r30)
-	rlwinm   r3, r3, 0, 0x1d, 0x1b
-	stw      r3, 0x1e0(r30)
-	lwz      r3, 0x1e0(r30)
-	rlwinm   r3, r3, 0, 0x18, 0x16
-	stw      r3, 0x1e0(r30)
-	stw      r0, 0x2bc(r30)
-	stb      r0, 0x2f0(r30)
-	stw      r0, 0x2f4(r30)
-	stw      r0, 0x304(r30)
-	lfs      f0, 0x18c(r30)
-	stfs     f0, 0x2e0(r30)
-	lfs      f0, 0x190(r30)
-	stfs     f0, 0x2e4(r30)
-	lfs      f0, 0x194(r30)
-	stfs     f0, 0x2e8(r30)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lwz      r3, 0xc0(r30)
-	stw      r0, 0x18(r1)
-	lfd      f1, lbl_8051EAD0@sda21(r2)
-	lfd      f0, 0x18(r1)
-	lfs      f3, lbl_8051EAB0@sda21(r2)
-	fsubs    f4, f0, f1
-	lfs      f1, lbl_8051EAB8@sda21(r2)
-	lfs      f0, lbl_8051EAB4@sda21(r2)
-	lfs      f2, 0x81c(r3)
-	fdivs    f3, f4, f3
-	fmadds   f0, f1, f3, f0
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	stw      r0, 0x2c0(r30)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8036ECD0
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_8036ECD0
-	lwz      r0, 0x2c0(r30)
-	mulli    r0, r0, 5
-	stw      r0, 0x2c0(r30)
+	EnemyBase::onInit(initArg);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DamageAnimEnabled);
+	disableEvent(0, EB_DeathEffectEnabled);
+	_2BC          = 0;
+	_2F0          = 0;
+	mLeader       = nullptr;
+	_304          = 0;
+	mGoalPosition = mPosition;
+	_2C0          = (0.8f + 0.2f * randFloat()) * C_PROPERPARMS.mFp01.mValue;
+	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+		_2C0 *= 5;
+	}
 
-lbl_8036ECD0:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x24(r1)
-	lfd      f3, lbl_8051EAD0@sda21(r2)
-	stw      r0, 0x20(r1)
-	lfs      f2, lbl_8051EAB0@sda21(r2)
-	lfd      f0, 0x20(r1)
-	lfs      f1, lbl_8051EAC0@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051EABC@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x2c4(r30)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lfd      f3, lbl_8051EAD0@sda21(r2)
-	stw      r0, 0x18(r1)
-	lfs      f2, lbl_8051EAB0@sda21(r2)
-	lfd      f0, 0x18(r1)
-	lfs      f1, lbl_8051EAC0@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051EABC@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x2c8(r30)
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r3, 0x4330
-	stw      r0, 0x2c(r1)
-	li       r0, 0
-	lfd      f1, lbl_8051EAD0@sda21(r2)
-	stw      r3, 0x28(r1)
-	lfs      f3, lbl_8051EAB0@sda21(r2)
-	lfd      f0, 0x28(r1)
-	lfs      f2, lbl_8051EABC@sda21(r2)
-	fsubs    f4, f0, f1
-	lfs      f1, lbl_8051EAC0@sda21(r2)
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	fdivs    f3, f4, f3
-	fmadds   f1, f2, f3, f1
-	stfs     f1, 0x2cc(r30)
-	stfs     f0, 0x2fc(r30)
-	stb      r0, 0x300(r30)
-	lfs      f4, 0x1fc(r30)
-	fmr      f1, f4
-	fcmpo    cr0, f4, f0
-	bge      lbl_8036ED9C
-	fneg     f1, f4
+	_2C4 = 0.7f + 0.3f * randFloat();
+	_2C8 = 0.7f + 0.3f * randFloat();
+	_2CC = 0.3f + 0.7f * randFloat();
+	_2FC = 0.0f;
+	_300 = 0;
 
-lbl_8036ED9C:
-	lfs      f2, lbl_8051EAC8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f4, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f3, 4(r3)
-	bge      lbl_8036EDF4
-	lfs      f0, lbl_8051EACC@sda21(r2)
-	fmuls    f0, f4, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f1, f0
-	b        lbl_8036EE0C
+	Vector3f dir = Vector3f(pikmin2_sinf(mFaceDir), 0.0f, pikmin2_cosf(mFaceDir));
+	setGoalDirect(dir);
+	mInPiklopedia = 0;
 
-lbl_8036EDF4:
-	fmuls    f0, f4, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r4, r0
+	P2ASSERTLINE(81, mModel);
+	_2F8 = mModel->getJoint("koshijnt");
+	P2ASSERTLINE(84, _2F8);
 
-lbl_8036EE0C:
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	mr       r3, r30
-	stfs     f1, 8(r1)
-	addi     r4, r1, 8
-	stfs     f0, 0xc(r1)
-	stfs     f3, 0x10(r1)
-	bl       "setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3<f>"
-	li       r0, 0
-	stb      r0, 0x1f3(r30)
-	lwz      r0, 0x174(r30)
-	cmplwi   r0, 0
-	bne      lbl_8036EE50
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x51
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8036EE50:
-	lwz      r3, 0x174(r30)
-	addi     r4, r31, 0x28
-	bl       getJoint__Q28SysShape5ModelFPc
-	stw      r3, 0x2f8(r30)
-	lwz      r0, 0x2f8(r30)
-	cmplwi   r0, 0
-	bne      lbl_8036EE80
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x1c
-	li       r4, 0x54
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8036EE80:
-	lwz      r3, 0x308(r30)
-	mr       r4, r30
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	mFsm->start(this, TAMAGOMUSHI_Appear, nullptr);
 }
 
 /*
@@ -250,125 +64,12 @@ lbl_8036EE80:
  * Address:	8036EEB8
  * Size:	00013C
  */
-TamagoMushi::Obj::Obj()
+Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_8036EEF8
-	addi     r0, r31, 0x30c
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x30c(r31)
-	stw      r0, 0x310(r31)
-	stw      r0, 0x314(r31)
-
-lbl_8036EEF8:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game11TamagoMushi3Obj@ha
-	addi     r4, r31, 0x30c
-	addi     r3, r3, __vt__Q34Game11TamagoMushi3Obj@l
-	li       r0, 0
-	stw      r3, 0(r31)
-	addi     r5, r3, 0x1b0
-	addi     r6, r3, 0x2fc
-	li       r3, 0x2c
-	stw      r5, 0x178(r31)
-	lwz      r5, 0x17c(r31)
-	stw      r6, 0(r5)
-	lwz      r5, 0x17c(r31)
-	subf     r4, r5, r4
-	stw      r4, 0xc(r5)
-	stw      r0, 0x2f8(r31)
-	stw      r0, 0x308(r31)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8036EF90
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game11TamagoMushi14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game11TamagoMushi14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_8036EF90:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8036EFC4
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game11TamagoMushi3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game11TamagoMushi3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_8036EFC4:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036EFF4
- * Size:	00004C
- */
-void TamagoMushi::Obj::setFSM(Game::TamagoMushi::FSM*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x308(r3)
-	mr       r4, r31
-	lwz      r3, 0x308(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_2F8      = nullptr;
+	mFsm      = nullptr;
+	mAnimator = new ProperAnimator;
+	setFSM(new FSM);
 }
 
 /*
@@ -376,54 +77,18 @@ void TamagoMushi::Obj::setFSM(Game::TamagoMushi::FSM*)
  * Address:	8036F040
  * Size:	0000A0
  */
-void TamagoMushi::Obj::doUpdate()
+void Obj::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x1e0(r3)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_8036F0CC
-	lwz      r3, 0x308(r31)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	beq      lbl_8036F090
-	cmpwi    r3, 1
-	bne      lbl_8036F0CC
-
-lbl_8036F090:
-	lwz      r3, 0x2bc(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x2bc(r31)
-	lwz      r3, 0x2bc(r31)
-	lwz      r0, 0x2c0(r31)
-	cmpw     r3, r0
-	ble      lbl_8036F0CC
-	lwz      r3, 0x308(r31)
-	mr       r4, r31
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036F0CC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!isEvent(0, EB_Bittered)) {
+		mFsm->exec(this);
+		int stateID = getStateID();
+		if (stateID == TAMAGOMUSHI_Walk || stateID == TAMAGOMUSHI_Turn) {
+			_2BC++;
+			if (_2BC > _2C0) {
+				mFsm->transit(this, TAMAGOMUSHI_Hide, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -431,104 +96,36 @@ lbl_8036F0CC:
  * Address:	8036F0E0
  * Size:	000158
  */
-void TamagoMushi::Obj::doAnimationCullingOff()
+void Obj::doAnimationCullingOff()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	li       r0, 0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lwz      r4, 0x188(r3)
-	stb      r0, 0x24(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1d8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x17c(r30)
-	lwz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036F19C
-	addi     r4, r30, 0x138
-	bl       viewMakeMatrix__Q24Game10PelletViewFR7Matrixf
-	lfs      f1, 0x168(r30)
-	addi     r3, r1, 0x14
-	lfs      f2, 0x16c(r30)
-	lfs      f3, 0x170(r30)
-	bl       PSMTXScale
-	addi     r3, r30, 0x138
-	addi     r4, r1, 0x14
-	mr       r5, r3
-	bl       PSMTXConcat
-	lfs      f0, 0x144(r30)
-	mr       r3, r30
-	addi     r4, r1, 8
-	stfs     f0, 8(r1)
-	lfs      f0, 0x154(r30)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x164(r30)
-	stfs     f0, 0x10(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	addi     r4, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036F1AC
+	mCurAnim->mIsPlaying = false;
+	doAnimationUpdateAnimator();
 
-lbl_8036F19C:
-	addi     r3, r30, 0x138
-	addi     r4, r30, 0x18c
-	addi     r5, r30, 0x1a4
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+	if (mPellet) {
+		viewMakeMatrix(mObjMatrix);
+		Matrixf mtx;
+		PSMTXScale(mtx.mMatrix.mtxView, mScale.x, mScale.y, mScale.z);
+		PSMTXConcat(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
 
-lbl_8036F1AC:
-	lwz      r4, 0x174(r30)
-	addi     r3, r30, 0x138
-	lwz      r4, 8(r4)
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 0xc0(r30)
-	lbz      r0, 0x923(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036F200
-	mr       r3, r30
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	cmpwi    r3, 2
-	bne      lbl_8036F200
-	lwz      r4, 0x174(r30)
-	mr       r3, r30
-	lwz      r31, 8(r4)
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lwz      r3, 0x180(r30)
-	mr       r4, r31
-	bl       fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf
-	b        lbl_8036F218
+		Vector3f pos;
+		mObjMatrix.getTranslation(pos);
+		onSetPosition(pos);
+		onSetPositionPost(pos);
+	} else {
+		mObjMatrix.makeTR(mPosition, mRotation);
+	}
 
-lbl_8036F200:
-	lwz      r3, 0x174(r30)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
+	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 
-lbl_8036F218:
-	lwz      r3, 0x114(r30)
-	bl       update__8CollTreeFv
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (C_PARMS->_923 && getCurrAnimIndex() == 2) {
+		J3DModel* model = mModel->getJ3DModel();
+		C_MGR->fetch(model, getMotionFrame());
+
+	} else {
+		mModel->mJ3dModel->calc();
+	}
+
+	mCollTree->update();
 }
 
 /*
@@ -536,99 +133,42 @@ lbl_8036F218:
  * Address:	8036F238
  * Size:	000004
  */
-void TamagoMushi::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8036F23C
  * Size:	000020
  */
-void TamagoMushi::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	8036F25C
  * Size:	0000DC
  */
-bool TamagoMushi::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_8036F320
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8036F320
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_8036F2D4
-	lwz      r3, 0x24c(r31)
-	lbz      r0, 0x50(r3)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_8036F2CC
-	mr       r3, r31
-	bl       genItem__Q34Game11TamagoMushi3ObjFv
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	li       r3, 1
-	b        lbl_8036F324
+	if (creature && creature->isPiki()) {
+		if (isEvent(0, EB_Bittered)) {
+			if (mEnemyStoneObj->isFlag(EnemyStone::STONE_HasViewedDemo)) {
+				genItem();
+				kill(nullptr);
+				return true;
+			} else {
+				return false;
+			}
+		}
 
-lbl_8036F2CC:
-	li       r3, 0
-	b        lbl_8036F324
+		if (getStateID() != TAMAGOMUSHI_Dead) {
+			mFsm->transit(this, TAMAGOMUSHI_Dead, nullptr);
+			enableEvent(0, EB_LifegaugeVisible);
+			mHealth = 0.0f;
+			return true;
+		}
+	}
 
-lbl_8036F2D4:
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	beq      lbl_8036F320
-	lwz      r3, 0x308(r31)
-	mr       r4, r31
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r31)
-	li       r3, 1
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	ori      r0, r0, 0x800
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x200(r31)
-	b        lbl_8036F324
-
-lbl_8036F320:
-	li       r3, 0
-
-lbl_8036F324:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -636,61 +176,18 @@ lbl_8036F324:
  * Address:	8036F338
  * Size:	0000BC
  */
-bool TamagoMushi::Obj::bombCallBack(Creature*, Vector3f&, f32)
+bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 p1)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	fmr      f31, f1
-	mr       r29, r3
-	mr       r30, r4
-	mr       r31, r5
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	beq      lbl_8036F3CC
-	fmr      f1, f31
-	mr       r3, r29
-	mr       r4, r30
-	mr       r5, r31
-	bl       "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8036F3CC
-	lwz      r3, 0x308(r29)
-	mr       r4, r29
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r29)
-	li       r3, 1
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	ori      r0, r0, 0x800
-	stw      r0, 0x1e0(r29)
-	stfs     f0, 0x200(r29)
-	b        lbl_8036F3D0
+	if (getStateID() != TAMAGOMUSHI_Dead) {
+		if (EnemyBase::bombCallBack(creature, vec, p1)) {
+			mFsm->transit(this, TAMAGOMUSHI_Dead, nullptr);
+			enableEvent(0, EB_LifegaugeVisible);
+			mHealth = 0.0f;
+			return true;
+		}
+	}
 
-lbl_8036F3CC:
-	li       r3, 0
-
-lbl_8036F3D0:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -698,95 +195,32 @@ lbl_8036F3D0:
  * Address:	8036F3F4
  * Size:	000134
  */
-bool TamagoMushi::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r28)
-	mr       r31, r3
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_8036F464
-	lwz      r3, 0x304(r28)
-	addi     r0, r3, 1
-	stw      r0, 0x304(r28)
-	lwz      r0, 0x304(r28)
-	cmpwi    r0, 4
-	ble      lbl_8036F45C
-	mr       r3, r28
-	bl       genItem__Q34Game11TamagoMushi3ObjFv
-	mr       r3, r28
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+	int stateID = getStateID();
+	if (isEvent(0, EB_Bittered)) {
+		_304++;
+		if (_304 > 4) {
+			genItem();
+			kill(nullptr);
+		}
 
-lbl_8036F45C:
-	li       r3, 1
-	b        lbl_8036F508
+		return true;
+	}
 
-lbl_8036F464:
-	lfs      f1, lbl_8051EAC4@sda21(r2)
-	mr       r3, r28
-	mr       r4, r29
-	mr       r5, r30
-	bl       damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-	cmpwi    r31, 2
-	beq      lbl_8036F504
-	cmpwi    r31, 4
-	beq      lbl_8036F504
-	cmplwi   r29, 0
-	beq      lbl_8036F504
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8036F504
-	mr       r3, r29
-	bl       getStateID__Q24Game4PikiFv
-	cmpwi    r3, 0x15
-	beq      lbl_8036F504
-	cmpwi    r3, 6
-	beq      lbl_8036F504
-	lwz      r6, 0xc0(r28)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game16InteractAstonish@ha
-	mr       r3, r29
-	lfs      f0, 0x944(r6)
-	addi     r5, r5, __vt__Q24Game11Interaction@l
-	addi     r0, r4, __vt__Q24Game16InteractAstonish@l
-	addi     r4, r1, 8
-	stw      r5, 8(r1)
-	stw      r28, 0xc(r1)
-	stw      r0, 8(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
+	EnemyBase::damageCallBack(creature, 0.0f, part);
 
-lbl_8036F504:
-	li       r3, 0
+	if (stateID != TAMAGOMUSHI_Appear && stateID != TAMAGOMUSHI_Dead) {
+		if (creature && creature->isPiki()) {
+			int pikiStateID = static_cast<Piki*>(creature)->getStateID();
+			if (pikiStateID != PIKISTATE_Panic && pikiStateID != PIKISTATE_Flying) {
+				InteractAstonish astonish(this, C_PARMS->_944);
+				creature->stimulate(astonish);
+			}
+		}
+	}
 
-lbl_8036F508:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -794,7 +228,7 @@ lbl_8036F508:
  * Address:	8036F528
  * Size:	0000F8
  */
-void TamagoMushi::Obj::collisionCallback(Game::CollEvent&)
+void Obj::collisionCallback(CollEvent& event)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -869,7 +303,7 @@ lbl_8036F604:
  * Address:	8036F620
  * Size:	000178
  */
-void TamagoMushi::Obj::bounceCallback(Sys::Triangle*)
+void Obj::bounceCallback(Sys::Triangle*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -982,52 +416,21 @@ lbl_8036F77C:
  * Address:	8036F798
  * Size:	00002C
  */
-bool TamagoMushi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x27c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { return pressCallBack(creature, damage, part); }
 
 /*
  * --INFO--
  * Address:	8036F7C4
  * Size:	000030
  */
-bool TamagoMushi::Obj::earthquakeCallBack(Game::Creature*, float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x27c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Obj::earthquakeCallBack(Creature* creature, f32 damage) { return pressCallBack(creature, damage, nullptr); }
 
 /*
  * --INFO--
  * Address:	8036F7F4
  * Size:	0000A8
  */
-void TamagoMushi::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1084,22 +487,9 @@ lbl_8036F860:
  * Address:	8036F89C
  * Size:	000030
  */
-bool TamagoMushi::Obj::needShadow()
+bool Obj::needShadow()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       needShadow__Q24Game9EnemyBaseFv
-	clrlwi   r3, r3, 0x18
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return EnemyBase::needShadow() > 0; // WHY MAN.
 }
 
 /*
@@ -1107,7 +497,7 @@ bool TamagoMushi::Obj::needShadow()
  * Address:	8036F8CC
  * Size:	000208
  */
-void TamagoMushi::Obj::genItem()
+void Obj::genItem()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1262,7 +652,7 @@ lbl_8036FABC:
  * Address:	8036FAD4
  * Size:	000310
  */
-void TamagoMushi::Obj::walkFunc()
+void Obj::walkFunc()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1489,7 +879,7 @@ lbl_8036FD80:
  * Address:	8036FDE4
  * Size:	000168
  */
-void TamagoMushi::Obj::setGoalRandom()
+void Obj::setGoalRandom()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1596,7 +986,7 @@ lbl_8036FEFC:
  * Address:	8036FF4C
  * Size:	0000B8
  */
-void TamagoMushi::Obj::setGoalDirect(Vector3f&)
+void Obj::setGoalDirect(Vector3f&)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1653,7 +1043,7 @@ void TamagoMushi::Obj::setGoalDirect(Vector3f&)
  * Address:	80370004
  * Size:	00015C
  */
-bool TamagoMushi::Obj::turnFunc()
+bool Obj::turnFunc()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1759,7 +1149,7 @@ lbl_80370134:
  * Address:	80370160
  * Size:	000034
  */
-bool TamagoMushi::Obj::isReachToGoal(f32)
+bool Obj::isReachToGoal(f32)
 {
 	/*
 	fmuls    f0, f1, f1
@@ -1783,7 +1173,7 @@ bool TamagoMushi::Obj::isReachToGoal(f32)
  * Address:	80370194
  * Size:	00002C
  */
-void TamagoMushi::Obj::resetWalkParm()
+void Obj::resetWalkParm()
 {
 	/*
 	lfs      f0, lbl_8051EAC4@sda21(r2)
@@ -1805,7 +1195,7 @@ void TamagoMushi::Obj::resetWalkParm()
  * Address:	803701C0
  * Size:	000028
  */
-void TamagoMushi::Obj::startCarcassMotion()
+void Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1826,7 +1216,7 @@ void TamagoMushi::Obj::startCarcassMotion()
  * Address:	803701E8
  * Size:	000058
  */
-void TamagoMushi::Obj::setLeader(Game::TamagoMushi::Obj*)
+void Obj::setLeader(Obj*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1863,7 +1253,7 @@ lbl_8037022C:
  * Address:	80370240
  * Size:	000054
  */
-void TamagoMushi::Obj::setTypeBall()
+void Obj::setTypeBall()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1895,7 +1285,7 @@ void TamagoMushi::Obj::setTypeBall()
  * Address:	80370294
  * Size:	000344
  */
-void TamagoMushi::Obj::appearPanic()
+void Obj::appearPanic()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2139,7 +1529,7 @@ lbl_8037059C:
  * Address:	803705D8
  * Size:	0003BC
  */
-bool TamagoMushi::Obj::isFound()
+bool Obj::isFound()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2465,7 +1855,7 @@ bool GameSystem::isZukanMode()
  * Address:	803709B0
  * Size:	000044
  */
-void TamagoMushi::Obj::createFellow()
+void Obj::createFellow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2497,7 +1887,7 @@ lbl_803709E4:
  * Address:	803709F4
  * Size:	00009C
  */
-void TamagoMushi::Obj::ballMove()
+void Obj::ballMove()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2544,7 +1934,7 @@ f0, 0x1a4(r31) lfs      f1, lbl_8051EB14@sda21(r2) fmuls    f0, f0, f1 stfs f0,
  * Address:	80370A90
  * Size:	0000A8
  */
-void TamagoMushi::Obj::createHideEffect()
+void Obj::createHideEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2597,7 +1987,7 @@ void TamagoMushi::Obj::createHideEffect()
  * Address:	80370B38
  * Size:	0000A8
  */
-void TamagoMushi::Obj::createAppearEffect()
+void Obj::createAppearEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2650,14 +2040,14 @@ void TamagoMushi::Obj::createAppearEffect()
  * Address:	80370BE0
  * Size:	000004
  */
-void TamagoMushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	80370BE4
  * Size:	000014
  */
-bool TamagoMushi::Obj::isLivingThing()
+bool Obj::isLivingThing()
 {
 	/*
 	lwz      r3, 0xc0(r3)
@@ -2673,7 +2063,7 @@ bool TamagoMushi::Obj::isLivingThing()
  * Address:	80370BF8
  * Size:	000008
  */
-f32 TamagoMushi::Obj::getDownSmokeScale()
+f32 Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051EB18@sda21(r2)
@@ -2686,5 +2076,6 @@ f32 TamagoMushi::Obj::getDownSmokeScale()
  * Address:	80370C00
  * Size:	000008
  */
-EnemyTypeID::EEnemyTypeID TamagoMushi::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_TamagoMushi; }
+EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_TamagoMushi; }
+} // namespace TamagoMushi
 } // namespace Game

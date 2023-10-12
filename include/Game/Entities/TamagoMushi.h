@@ -15,7 +15,12 @@
 
 namespace Game {
 namespace TamagoMushi {
-struct FSM;
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
 
 struct Obj : public EnemyBase {
 	Obj();
@@ -43,7 +48,12 @@ struct Obj : public EnemyBase {
 	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294
 	virtual void startCarcassMotion();                                          // _2C4
 	virtual f32 getDownSmokeScale();                                            // _2EC (weak)
-	virtual void setFSM(FSM* fsm);                                              // _2F8 (weak)
+	virtual void setFSM(FSM* fsm)                                               // _2F8 (weak)
+	{
+		mFsm = fsm;
+		mFsm->init(this);
+		mCurrentLifecycleState = nullptr;
+	}
 	//////////////// VTABLE END
 
 	void genItem();
@@ -64,7 +74,8 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x8];           // _2BC, unknown
+	int _2BC;               // _2BC
+	int _2C0;               // _2C0
 	f32 _2C4;               // _2C4
 	f32 _2C8;               // _2C8
 	f32 _2CC;               // _2CC
@@ -76,8 +87,7 @@ struct Obj : public EnemyBase {
 	SysShape::Joint* _2F8;  // _2F8
 	f32 _2FC;               // _2FC
 	u8 _300;                // _300, unknown
-	u8 _301[0x3];           // _301, unknown/padding
-	u8 _304[0x4];           // _304, unknown
+	int _304;               // _304, unknown
 	FSM* mFsm;              // _308
 	                        // _30C = PelletView
 };
@@ -138,13 +148,13 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "生存時間", 300.0f, 0.0, 2000.0f)
-		    , mFp02(this, 'fp02', "出現範囲", 80.0f, 0.0f, 200.0f)
-		    , mFp03(this, 'fp03', "蜜レート", 1.0f, 0.0f, 1.0f)
-		    , mIp01(this, 'ip01', "歩き時間最小", 60, 0, 300)
-		    , mIp02(this, 'ip02', "歩き時間最大", 100, 0, 600)
-		    , mIp03(this, 'ip03', "出現時間最小", 10, 0, 100)
-		    , mIp04(this, 'ip04', "出現時間最大", 50, 0, 200)
+		    , mFp01(this, 'fp01', "生存時間", 300.0f, 0.0, 2000.0f) // 'survival time'
+		    , mFp02(this, 'fp02', "出現範囲", 80.0f, 0.0f, 200.0f)  // 'appearance range'
+		    , mFp03(this, 'fp03', "蜜レート", 1.0f, 0.0f, 1.0f)     // 'honey rate'
+		    , mIp01(this, 'ip01', "歩き時間最小", 60, 0, 300)       // 'minimum walking time'
+		    , mIp02(this, 'ip02', "歩き時間最大", 100, 0, 600)      // 'maximum walking time'
+		    , mIp03(this, 'ip03', "出現時間最小", 10, 0, 100)       // 'minimum appearance time'
+		    , mIp04(this, 'ip04', "出現時間最大", 50, 0, 200)       // 'maximum appearance time'
 		{
 		}
 
@@ -221,13 +231,6 @@ enum StateID {
 	TAMAGOMUSHI_Dead   = 4,
 	TAMAGOMUSHI_Wait   = 5,
 	TAMAGOMUSHI_Count,
-};
-
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
-
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
 };
 
 struct State : public EnemyFSMState {
