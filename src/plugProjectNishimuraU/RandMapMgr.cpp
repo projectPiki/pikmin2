@@ -221,14 +221,14 @@ void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 p1, f32
 	MapNode* nodeList[16];
 	BaseGen* genList[16];
 
-	int randVal  = 2.0f * randFloat();
-	int absCount = ((count < 0) ? -count : count) - 1; // ?? what even is this
+	int randVal   = 2.0f * randFloat();
+	int countEven = count % 2;
 	mRandItemUnit->setItemDropPositionList(nodeList, genList);
 
 	for (int i = 0; i < count; i++) {
 		f32 val = avg;
-		if (((i < 0) ? -i : i) != absCount) { // ?? again, what
-			if (i == randVal) {
+		if (i != countEven) {
+			if (i % 2 == randVal) {
 				val = avg + randWeightFloat(weight);
 			} else {
 				val = avg - randWeightFloat(weight);
