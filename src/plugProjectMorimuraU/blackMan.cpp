@@ -992,7 +992,7 @@ void BlackMan::Obj::doAnimationCullingOff()
 
 	curB = nullptr;
 
-	if (!gameSystem || !gameSystem->isPiklopedia()) {
+	if (!gameSystem || !gameSystem->isZukanMode()) {
 		PSM::EnemyMidBoss* midBossSound = static_cast<PSM::EnemyMidBoss*>(mSoundObj);
 		PSM::checkMidBoss(midBossSound);
 

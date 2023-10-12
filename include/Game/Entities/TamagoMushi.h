@@ -22,128 +22,6 @@ struct FSM : public EnemyStateMachine {
 	// _00-_1C	= EnemyStateMachine
 };
 
-struct Obj : public EnemyBase {
-	Obj();
-
-	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                             // _30
-	virtual void doDirectDraw(Graphics& gfx);                                   // _50
-	virtual bool isLivingThing();                                               // _D4 (weak)
-	virtual void bounceCallback(Sys::Triangle* tri);                            // _E8
-	virtual void collisionCallback(CollEvent& event);                           // _EC
-	virtual void getShadowParam(ShadowParam& settings);                         // _134
-	virtual bool needShadow();                                                  // _138
-	virtual ~Obj() { }                                                          // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                                         // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase* params);              // _1C4 (weak)
-	virtual void doUpdate();                                                    // _1CC
-	virtual void doAnimationCullingOff();                                       // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
-	virtual void setParameters();                                               // _228
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                         // _258 (weak)
-	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
-	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
-	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);        // _28C
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294
-	virtual void startCarcassMotion();                                          // _2C4
-	virtual f32 getDownSmokeScale();                                            // _2EC (weak)
-	virtual void setFSM(FSM* fsm)                                               // _2F8 (weak)
-	{
-		mFsm = fsm;
-		mFsm->init(this);
-		mCurrentLifecycleState = nullptr;
-	}
-	//////////////// VTABLE END
-
-	void genItem();
-	void walkFunc();
-	void setGoalRandom();
-	void setGoalDirect(Vector3f&);
-	bool turnFunc();
-	bool isReachToGoal(f32);
-	void resetWalkParm();
-	void setLeader(Obj*);
-	void setTypeBall();
-	void appearPanic();
-	bool isFound();
-	void createFellow();
-	void ballMove();
-	void createHideEffect();
-	void createAppearEffect();
-
-	// _00 		= VTBL
-	// _00-_2BC	= EnemyBase
-	int _2BC;               // _2BC
-	int _2C0;               // _2C0
-	f32 _2C4;               // _2C4
-	f32 _2C8;               // _2C8
-	f32 _2CC;               // _2CC
-	u8 _2D0[0x10];          // _2D0, unknown
-	Vector3f mGoalPosition; // _2E0
-	u8 _2EC[0x4];           // _2EC, unknown
-	u8 _2F0;                // _2F0
-	Obj* mLeader;           // _2F4
-	SysShape::Joint* _2F8;  // _2F8
-	f32 _2FC;               // _2FC
-	u8 _300;                // _300, unknown
-	int _304;               // _304, unknown
-	FSM* mFsm;              // _308
-	                        // _30C = PelletView
-};
-
-struct Mgr : public EnemyMgrBase {
-	Mgr(int objLimit, u8 modelType);
-
-	//////////////// VTABLE
-	// virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void doAlloc();                   // _A8
-	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
-	{
-		return &mObj[index];
-	}
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
-	{
-		return EnemyTypeID::EnemyID_TamagoMushi;
-	}
-	virtual void createObj(int count) // _A0 (weak)
-	{
-		mObj = new Obj[count];
-	}
-	//////////////// VTABLE END
-
-	void fetch(J3DModel*, f32);
-	Obj* createGroup(EnemyBirthArg&, int, Vector3f&);
-	Obj* createGroupByBigFoot(EnemyBirthArg&, int, Vector3f&, f32);
-	void createGroup(Obj*, int, bool);
-	void createGroupByBigFoot(Obj*, int, bool, f32);
-
-	inline int getFreeNum();
-
-	inline J3DModel* getModel()
-	{
-		Obj* tamagomushi = static_cast<Obj*>(getEnemy(0));
-		return tamagomushi->mModel->mJ3dModel;
-	}
-
-	inline J3DAnmTransform* getTransform()
-	{
-		SysShape::AnimInfo* animInfo = static_cast<SysShape::AnimInfo*>(mAnimMgr->mAnimInfo.mChild)->getInfoByID(2);
-		return animInfo->mAnm;
-	}
-
-	inline J3DUMtxAnmCacheTable* getCacheTable(J3DModel* model, J3DAnmTransform* transform)
-	{
-		return new J3DUMtxAnmCacheTable(model, transform);
-	}
-
-	// _00 		= VTBL
-	// _00-_44	= EnemyMgrBase
-	J3DUMtxCacheRef<J3DUMtxAnmCacheTable>* mMtxCacheRef; // _44
-	Obj* mObj;                                           // _48, likely an array of Objs
-};
-
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
@@ -208,6 +86,131 @@ struct Parms : public EnemyParmsBase {
 	f32 _940;                 // _940
 	f32 _944;                 // _944
 	f32 _948;                 // _948
+};
+
+struct Obj : public EnemyBase {
+	Obj();
+
+	//////////////// VTABLE
+	virtual void onInit(CreatureInitArg* settings);                                                 // _30
+	virtual void doDirectDraw(Graphics& gfx);                                                       // _50
+	virtual bool isLivingThing() { return !C_PARMS->_922; }                                         // _D4 (weak)
+	virtual void bounceCallback(Sys::Triangle* tri);                                                // _E8
+	virtual void collisionCallback(CollEvent& event);                                               // _EC
+	virtual void getShadowParam(ShadowParam& settings);                                             // _134
+	virtual bool needShadow();                                                                      // _138
+	virtual ~Obj() { }                                                                              // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                                             // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase* params) { }                               // _1C4 (weak)
+	virtual void doUpdate();                                                                        // _1CC
+	virtual void doAnimationCullingOff();                                                           // _1DC
+	virtual void doDebugDraw(Graphics& gfx);                                                        // _1EC
+	virtual void setParameters();                                                                   // _228
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_TamagoMushi; } // _258 (weak)
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);                      // _278
+	virtual bool pressCallBack(Creature*, f32, CollPart*);                                          // _27C
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part);                     // _284
+	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);                            // _28C
+	virtual bool bombCallBack(Creature*, Vector3f&, f32);                                           // _294
+	virtual void startCarcassMotion();                                                              // _2C4
+	virtual f32 getDownSmokeScale() { return 0.35f; }                                               // _2EC (weak)
+	virtual void setFSM(FSM* fsm)                                                                   // _2F8 (weak)
+	{
+		mFsm = fsm;
+		mFsm->init(this);
+		mCurrentLifecycleState = nullptr;
+	}
+	//////////////// VTABLE END
+
+	void genItem();
+	void walkFunc();
+	void setGoalRandom();
+	void setGoalDirect(Vector3f&);
+	bool turnFunc();
+	bool isReachToGoal(f32);
+	void resetWalkParm();
+	void setLeader(Obj*);
+	void setTypeBall();
+	void appearPanic();
+	bool isFound();
+	void createFellow();
+	void ballMove();
+	void createHideEffect();
+	void createAppearEffect();
+
+	// _00 		= VTBL
+	// _00-_2BC	= EnemyBase
+	int _2BC;                     // _2BC
+	int _2C0;                     // _2C0
+	f32 _2C4;                     // _2C4
+	f32 _2C8;                     // _2C8
+	f32 _2CC;                     // _2CC
+	f32 _2D0;                     // _2D0
+	f32 _2D4;                     // _2D4
+	f32 _2D8;                     // _2D8
+	u8 _2DC;                      // _2DC, possibly bool
+	Vector3f mGoalPosition;       // _2E0
+	f32 _2EC;                     // _2EC
+	bool _2F0;                    // _2F0
+	Obj* mLeader;                 // _2F4
+	SysShape::Joint* mKoshiJoint; // _2F8
+	f32 _2FC;                     // _2FC
+	bool _300;                    // _300
+	int _304;                     // _304, unknown
+	FSM* mFsm;                    // _308
+	                              // _30C = PelletView
+};
+
+struct Mgr : public EnemyMgrBase {
+	Mgr(int objLimit, u8 modelType);
+
+	//////////////// VTABLE
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&); // _70
+	virtual void doAlloc();                   // _A8
+	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
+	{
+		return &mObj[index];
+	}
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_TamagoMushi;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		mObj = new Obj[count];
+	}
+	//////////////// VTABLE END
+
+	void fetch(J3DModel*, f32);
+	Obj* createGroup(EnemyBirthArg&, int, Vector3f&);
+	Obj* createGroupByBigFoot(EnemyBirthArg&, int, Vector3f&, f32);
+	void createGroup(Obj*, int, bool);
+	void createGroupByBigFoot(Obj*, int, bool, f32);
+
+	inline int getFreeNum();
+
+	inline J3DModel* getModel()
+	{
+		Obj* tamagomushi = static_cast<Obj*>(getEnemy(0));
+		return tamagomushi->mModel->mJ3dModel;
+	}
+
+	inline J3DAnmTransform* getTransform()
+	{
+		SysShape::AnimInfo* animInfo = static_cast<SysShape::AnimInfo*>(mAnimMgr->mAnimInfo.mChild)->getInfoByID(2);
+		return animInfo->mAnm;
+	}
+
+	inline J3DUMtxAnmCacheTable* getCacheTable(J3DModel* model, J3DAnmTransform* transform)
+	{
+		return new J3DUMtxAnmCacheTable(model, transform);
+	}
+
+	// _00 		= VTBL
+	// _00-_44	= EnemyMgrBase
+	J3DUMtxCacheRef<J3DUMtxAnmCacheTable>* mMtxCacheRef; // _44
+	Obj* mObj;                                           // _48, likely an array of Objs
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

@@ -5,8 +5,8 @@
 
 namespace efx {
 struct TTamagoAp : public TSimpleMtx2 {
-	inline TTamagoAp()
-	    : TSimpleMtx2(nullptr, PID_TamagoAp_1, PID_TamagoAp_2)
+	inline TTamagoAp(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_TamagoAp_1, PID_TamagoAp_2)
 	{
 	}
 

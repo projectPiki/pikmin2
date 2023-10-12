@@ -327,7 +327,7 @@ bool CameraMgr::isChangePlayer()
  */
 void CameraMgr::setZukanCamera(LookAtCamera* cam)
 {
-	if (gameSystem && gameSystem->isPiklopedia()) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		mZukanCamera = cam;
 	} else {
 		JUT_PANICLINE(463, "not zukan mode\n");
