@@ -134,7 +134,7 @@
  */
 J2DPicture::J2DPicture()
     : J2DPane()
-    , _112()
+    , mTexCoords()
     , mPalette(nullptr)
     , mWhite(0xFFFFFFFF)
     , mBlack(0xFFFFFFFF)
@@ -190,7 +190,7 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, JKRArchive*
  */
 J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* materials)
     : J2DPane()
-    , _112()
+    , mTexCoords()
     , mPalette(nullptr)
     , mWhite(0xFFFFFFFF)
     , mBlack(0xFFFFFFFF)
@@ -212,7 +212,7 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	input->read(&trailer, sizeof(J2DPictureBlockTrailer));
 	u16 v1 = trailer._04;
 	for (int i = 0; i < 4; i++) {
-		_112[i] = trailer._10[i];
+		mTexCoords[i] = trailer._10[i];
 		mCornerColors[i].set(trailer._20[i]);
 	}
 	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
@@ -704,7 +704,7 @@ lbl_8003A14C:
  */
 J2DPicture::J2DPicture(const ResTIMG* img)
     : J2DPane()
-    , _112()
+    , mTexCoords()
     , mWhite(0xFFFFFFFF)
     , mBlack(0xFFFFFFFF)
     , mCornerColors()
@@ -747,7 +747,7 @@ bool J2DPicture::insert(const ResTIMG* resource, u8 textureCount, float p3) { re
  */
 J2DPicture::J2DPicture(const char* p1)
     : J2DPane()
-    , _112()
+    , mTexCoords()
     , mWhite(0xFFFFFFFF)
     , mBlack(0xFFFFFFFF)
     , mCornerColors()
@@ -790,7 +790,7 @@ bool J2DPicture::insert(const char* p1, u8 p2, float p3) { return insert(p1, nul
  */
 J2DPicture::J2DPicture(JUTTexture* texture)
     : J2DPane()
-    , _112()
+    , mTexCoords()
     , mWhite(0xFFFFFFFF)
     , mBlack(0xFFFFFFFF)
     , mCornerColors()
@@ -825,7 +825,7 @@ bool J2DPicture::append(JUTTexture* texture, float p2) { return insert(texture, 
  */
 J2DPicture::J2DPicture(u64 id, const JGeometry::TBox2f& bounds)
     : J2DPane(id, bounds)
-    , _112()
+    , mTexCoords()
     , mPalette(nullptr)
     , mWhite(0xFFFFFFFF)
     , mBlack(0xFFFFFFFF)
@@ -2190,8 +2190,8 @@ void J2DPicture::drawSelf(float p1, float p2, float (*mtx)[3][4])
 void J2DPicture::drawFullSet(float p1, float p2, float width, float height, float (*mtx)[3][4])
 {
 	if (mTextures[0] != nullptr && mTextureCount != 0) {
-		drawTexCoord(mBounds.i.x, mBounds.i.y, width, height, _112[0].x, _112[0].y, _112[1].x, _112[1].y, _112[2].x, _112[2].y, _112[3].x,
-		             _112[3].y, mtx);
+		drawTexCoord(mBounds.i.x, mBounds.i.y, width, height, mTexCoords[0].x, mTexCoords[0].y, mTexCoords[1].x, mTexCoords[1].y,
+		             mTexCoords[2].x, mTexCoords[2].y, mTexCoords[3].x, mTexCoords[3].y, mtx);
 	}
 }
 
@@ -3480,8 +3480,8 @@ void J2DPicture::getNewColor(JUtility::TColor* newColor)
 void J2DPicture::setTexCoord(const JGeometry::TVec2<short>* coords)
 {
 	for (int i = 0; i < 4; i++) {
-		_112[i].x = coords[i].x;
-		_112[i].y = coords[i].y;
+		mTexCoords[i].x = coords[i].x;
+		mTexCoords[i].y = coords[i].y;
 	}
 }
 
@@ -3493,7 +3493,7 @@ void J2DPicture::setTexCoord(const JGeometry::TVec2<short>* coords)
  */
 void J2DPicture::setTexCoord(const JUTTexture* texture, J2DBinding binding, J2DMirror mirror, bool p4)
 {
-	setTexCoord(_112, texture, binding, mirror, p4);
+	setTexCoord(mTexCoords, texture, binding, mirror, p4);
 }
 
 /*

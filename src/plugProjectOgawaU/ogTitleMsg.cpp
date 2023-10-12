@@ -231,49 +231,6 @@ TitleMessageAnalyzer::TitleMessageAnalyzer(const JMessage::TReference* ref)
 
 /*
  * --INFO--
- * Address:	8032EA58
- * Size:	000070
- */
-//::P2JME::Analyzer::~Analyzer()
-//{
-/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8032EAAC
-lis      r4, __vt__Q25P2JME8Analyzer@ha
-addi     r0, r4, __vt__Q25P2JME8Analyzer@l
-stw      r0, 0(r30)
-beq      lbl_8032EA9C
-lis      r5, __vt__Q25P2JME23TRenderingProcessorBase@ha
-li       r4, 0
-addi     r0, r5, __vt__Q25P2JME23TRenderingProcessorBase@l
-stw      r0, 0(r30)
-bl       __dt__Q28JMessage19TRenderingProcessorFv
-
-lbl_8032EA9C:
-extsh.   r0, r31
-ble      lbl_8032EAAC
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8032EAAC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-*/
-//}
-
-/*
- * --INFO--
  * Address:	........
  * Size:	000018
  */
@@ -734,53 +691,6 @@ lbl_8032EF48:
 
 /*
  * --INFO--
- * Address:	8032EF7C
- * Size:	000080
- */
-TitleMessageAnalyzer::~TitleMessageAnalyzer()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8032EFE0
-	lis      r4, __vt__Q32og9newScreen20TitleMessageAnalyzer@ha
-	addi     r0, r4, __vt__Q32og9newScreen20TitleMessageAnalyzer@l
-	stw      r0, 0(r30)
-	beq      lbl_8032EFD0
-	lis      r4, __vt__Q25P2JME8Analyzer@ha
-	addi     r0, r4, __vt__Q25P2JME8Analyzer@l
-	stw      r0, 0(r30)
-	beq      lbl_8032EFD0
-	lis      r5, __vt__Q25P2JME23TRenderingProcessorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q25P2JME23TRenderingProcessorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__Q28JMessage19TRenderingProcessorFv
-
-lbl_8032EFD0:
-	extsh.   r0, r31
-	ble      lbl_8032EFE0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8032EFE0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8032EFFC
  * Size:	000154
  */
@@ -891,7 +801,7 @@ void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
  * Address:	8032F150
  * Size:	000164
  */
-void TitleMsg::setCentering(og::newScreen::TitleMsg::EnumCentering center)
+void TitleMsg::setCentering(EnumCentering center)
 {
 	f32 temp   = 1.0f;
 	mCentering = center;
@@ -1142,26 +1052,6 @@ lbl_8032F444:
 	addi     r1, r1, 0x20
 	blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	8032F474
- * Size:	00003C
- */
-TitleMsgDrop::Motion::~Motion() { }
-
-/*
- * --INFO--
- * Address:	8032F4B0
- * Size:	00001C
- */
-TitleMsgDrop::Motion::Motion()
-{
-	mYOffset  = 100.0f;
-	mRandTime = 0.0f;
-	mPos.y    = 0.0f;
-	mTimer    = 0.0f;
 }
 
 /*
@@ -2062,13 +1952,6 @@ void TitleMsgClash::init()
 {
 	mScaleMod  = 0.0f;
 	mCurrScale = 50.0f;
-	/*
-	lfs      f1, lbl_8051E008@sda21(r2)
-	lfs      f0, lbl_8051E068@sda21(r2)
-	stfs     f1, 0x7e4(r3)
-	stfs     f0, 0x7e8(r3)
-	blr
-	*/
 }
 
 /*
@@ -2258,129 +2141,6 @@ void TitleMsgClash::end()
 	}
 }
 
-/*
- * --INFO--
- * Address:	803301BC
- * Size:	000004
- */
-void TitleMsg::start() { }
-
-/*
- * --INFO--
- * Address:	803301C0
- * Size:	000084
- */
-efx2d::T2DCvnameChal::~T2DCvnameChal()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80330228
-	lis      r3, __vt__Q25efx2d13T2DCvnameChal@ha
-	addi     r3, r3, __vt__Q25efx2d13T2DCvnameChal@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_80330218
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_80330218:
-	extsh.   r0, r31
-	ble      lbl_80330228
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80330228:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
 } // namespace newScreen
 
-/*
- * --INFO--
- * Address:	80330244
- * Size:	000008
- */
-bool ::P2JME::Analyzer::tagColor(void const*, u32) { return true; }
-
-/*
- * --INFO--
- * Address:	8033024C
- * Size:	000008
- */
-bool ::P2JME::Analyzer::tagSize(void const*, u32) { return true; }
-
-/*
- * --INFO--
- * Address:	80330254
- * Size:	000008
- */
-bool ::P2JME::Analyzer::tagRuby(void const*, u32) { return true; }
-
-/*
- * --INFO--
- * Address:	8033025C
- * Size:	000008
- */
-bool ::P2JME::Analyzer::tagFont(void const*, u32) { return true; }
-
-/*
- * --INFO--
- * Address:	80330264
- * Size:	000008
- */
-bool ::P2JME::Analyzer::tagImage(u16, const void*, u32) { return true; }
-
-/*
- * --INFO--
- * Address:	8033026C
- * Size:	000008
- */
-bool ::P2JME::Analyzer::tagColorEX(u16, const void*, u32) { return true; }
-
-/*
- * --INFO--
- * Address:	80330274
- * Size:	000008
- */
-bool ::P2JME::Analyzer::tagControl(u16, const void*, u32) { return true; }
-
-/*
- * --INFO--
- * Address:	8033027C
- * Size:	000008
- */
-bool ::P2JME::Analyzer::tagPosition(u16, const void*, u32) { return true; }
-
-/*
- * --INFO--
- * Address:	80330284
- * Size:	000008
- */
-//@8 @efx2d::T2DCvnameChal::~T2DCvnameChal()
-//{
-/*
-addi     r3, r3, -8
-b        __dt__Q25efx2d13T2DCvnameChalFv
-*/
-//}
 } // namespace og

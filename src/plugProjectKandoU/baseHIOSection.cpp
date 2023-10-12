@@ -63,7 +63,7 @@ void BaseHIOSection::setDisplay(JFWDisplay* display, int secondsPer60Frames)
 	// Assign the new display and create a new JUTFader object for it
 	mDisplay = display;
 	mFader   = new JUTFader(0, 0, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight,
-	                        JUtility::TColor(0, 0, 0, 0));
+                          JUtility::TColor(0, 0, 0, 0));
 
 	// Assign the new fader to the display's mFader member
 	mDisplay->mFader = mFader;

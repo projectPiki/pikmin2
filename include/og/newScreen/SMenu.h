@@ -381,7 +381,7 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	virtual void wait();                                  // _80
 	virtual void out_L();                                 // _84
 	virtual void out_R();                                 // _88
-	virtual void doUpdateCancelAction();                  // _90 (weak)
+	virtual void doUpdateCancelAction() { }               // _90 (weak)
 	virtual void doUpdateRAction();                       // _94
 	virtual void doUpdateLAction();                       // _98
 	virtual void commonUpdate();                          // _A4
@@ -445,6 +445,31 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	int mCaveLabelCount;                                // _154
 
 	static struct StaticValues {
+		inline StaticValues()
+		    : _00(0.5f)
+		    , mAnimSpeed(8.0f)
+		    , _08(255)
+		    , _09(255)
+		    , _0A(255)
+		    , mMapTexColorWhite(210, 220, 255, 255)
+		    , mMapTexColorBlack(0, 0, 50, 0)
+		    , mItemPelletWhiteColor(255, 132, 0, 255)
+		    , mItemPelletBlackColor(255, 0, 0, 0)
+		    , _1B(220)
+		    , mMapMoveRate(5.5f)
+		    , mMapMoveRate2(2.0f)
+		    , mMapIconScaleBase(0.7f)
+		    , mMapNaviArrowScaleMod(1.5f)
+		    , mGroundZoom(1.8f)
+		    , mCaveZoom(1.8f)
+		    // , mMapTexOffset(22.0f, 12.0f)
+		    , mMapMoveInputReduction(1.8f)
+		    , mMapScreenScale(1.0f, 0.92f)
+		    , mTempPikiColorWhite(0, 128, 255, 255)
+		    , mTempPikiColorBlack(0, 255, 255, 0)
+		{
+		}
+
 		f32 _00;                                // _00
 		f32 mAnimSpeed;                         // _04
 		u8 _08;                                 // _08

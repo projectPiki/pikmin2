@@ -227,13 +227,13 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 	u64 mesg2 = MojiToNum(tag3, 2);
 
 	for (int i = 0; i < options; i++) {
-		u64 cMesg     = mesg0 + i;
+		u64 cMesg     = mesg0 + (i / 10 * 0x100) + i % 10;
 		mPaneList1[i] = screen->search(cMesg);
 
-		cMesg         = mesg1 + i;
+		cMesg         = mesg1 + (i / 10 * 0x100) + i % 10;
 		mPaneList2[i] = screen->search(cMesg);
 
-		cMesg         = mesg2 + i;
+		cMesg         = mesg2 + (i / 10 * 0x100) + i % 10;
 		mPaneList3[i] = screen->search(cMesg);
 	}
 
@@ -257,7 +257,7 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 		mPaneList4[i] = og::Screen::TagSearch(screen, cMesg);
 
 		cMesg = mesg2 + (i / 10 * 0x100) + i % 10;
-		;
+
 		mPaneList5[i] = og::Screen::TagSearch(screen, cMesg);
 
 		mPaneList4[i]->hide();
@@ -649,7 +649,7 @@ void MenuMgr::calcCenter(J2DPane* pane, Vector2f* pos)
 // regswaps in here
 void MenuMgr::calcPoint(Vector2f& vec1, Vector2f& vec2, f32 scale, Vector2f* outVec)
 {
-	Vector2f compVec = Vector2f(vec2.x * (1.0f - scale), vec2.y * (1.0f - scale));
+	Vector2f compVec = Vector2f(vec2 * (1.0f - scale));
 	*outVec          = Vector2f(vec1.x * scale + compVec.x, vec1.y * scale + compVec.y);
 }
 

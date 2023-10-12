@@ -23,7 +23,7 @@ struct T2DCvnameChal : public TForever {
 	    : TForever(PID_2DCvnameChal)
 	{
 	}
-	virtual ~T2DCvnameChal(); // _34 (weak)
+	virtual ~T2DCvnameChal() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TForever

@@ -8,6 +8,7 @@
 #include "Game/CameraMgr.h"
 #include "Game/Cave/RandMapMgr.h"
 #include "Radar.h"
+#include "nans.h"
 
 namespace og {
 
@@ -3989,130 +3990,8 @@ void ObjSMenuMap::out_R()
 	ogSound->setSMenuLR();
 }
 
-} // namespace newScreen
-
-} // namespace og
-
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	80312AB0
- * Size:	000008
- */
-int SetSceneArg::getClassSize() { return 0x10; }
-
-/*
- * --INFO--
- * Address:	80312AB8
- * Size:	000008
- */
-SceneType SetSceneArg::getSceneType() const { return mSceneType; }
-
-/*
- * --INFO--
- * Address:	80312AC0
- * Size:	000008
- */
-SceneType SceneArgBase::getSceneType() const { return (SceneType)0; }
-
-} // namespace Screen
-namespace og {
-
-namespace newScreen {
-
-/*
- * --INFO--
- * Address:	80312AC8
- * Size:	000004
- */
-void ObjSMenuMap::doUpdateCancelAction() { }
+ObjSMenuMap::StaticValues ObjSMenuMap::msVal;
 
 } // namespace newScreen
 
 } // namespace og
-
-/*
- * --INFO--
- * Address:	80312ACC
- * Size:	000128
- */
-void __sinit_ogObjSMenuMap_cpp()
-{
-	/*
-	lis      r3, msVal__Q32og9newScreen11ObjSMenuMap@ha
-	lis      r4, __float_nan@ha
-	li       r11, -1
-	lfs      f11, __float_nan@l(r4)
-	addi     r9, r3, msVal__Q32og9newScreen11ObjSMenuMap@l
-	lfs      f8, lbl_8051D808@sda21(r2)
-	li       r8, 0xff
-	li       r5, 0
-	stw      r11, 0x4c(r9)
-	li       r6, 0xdc
-	lis      r3, lbl_804D8398@ha
-	lfs      f10, lbl_8051D804@sda21(r2)
-	addi     r10, r3, lbl_804D8398@l
-	stw      r11, 0x48(r9)
-	lfs      f9, lbl_8051D7DC@sda21(r2)
-	li       r7, 0xd2
-	lfs      f7, lbl_8051D760@sda21(r2)
-	li       r4, 0x32
-	lfs      f6, lbl_8051D80C@sda21(r2)
-	li       r3, 0x84
-	lfs      f5, lbl_8051D810@sda21(r2)
-	li       r0, 0x80
-	lfs      f4, lbl_8051D814@sda21(r2)
-	lfs      f3, lbl_8051D818@sda21(r2)
-	lfs      f2, lbl_8051D81C@sda21(r2)
-	lfs      f1, lbl_8051D744@sda21(r2)
-	lfs      f0, lbl_8051D820@sda21(r2)
-	stw      r11, lbl_80515E48@sda21(r13)
-	stfs     f11, lbl_80515E4C@sda21(r13)
-	stfs     f11, 0(r10)
-	stfs     f11, 4(r10)
-	stfs     f11, 8(r10)
-	stb      r8, 8(r9)
-	stb      r8, 9(r9)
-	stb      r8, 0xa(r9)
-	stb      r7, 0xb(r9)
-	stb      r6, 0xc(r9)
-	stb      r8, 0xd(r9)
-	stb      r8, 0xe(r9)
-	stb      r5, 0xf(r9)
-	stb      r5, 0x10(r9)
-	stb      r4, 0x11(r9)
-	stb      r5, 0x12(r9)
-	stb      r8, 0x13(r9)
-	stb      r3, 0x14(r9)
-	stb      r5, 0x15(r9)
-	stb      r8, 0x16(r9)
-	stb      r8, 0x17(r9)
-	stb      r5, 0x18(r9)
-	stb      r5, 0x19(r9)
-	stb      r5, 0x1a(r9)
-	stfs     f10, 0x1c(r9)
-	stfs     f9, 0x20(r9)
-	stfs     f8, 0x3c(r9)
-	stb      r6, 0x1b(r9)
-	stfs     f7, 0(r9)
-	stfs     f6, 4(r9)
-	stfs     f5, 0x24(r9)
-	stfs     f4, 0x28(r9)
-	stfs     f8, 0x2c(r9)
-	stfs     f8, 0x30(r9)
-	stfs     f3, 0x34(r9)
-	stfs     f2, 0x38(r9)
-	stfs     f1, 0x40(r9)
-	stfs     f0, 0x44(r9)
-	stb      r5, 0x48(r9)
-	stb      r0, 0x49(r9)
-	stb      r8, 0x4a(r9)
-	stb      r8, 0x4b(r9)
-	stb      r5, 0x4c(r9)
-	stb      r8, 0x4d(r9)
-	stb      r8, 0x4e(r9)
-	stb      r5, 0x4f(r9)
-	blr
-	*/
-}

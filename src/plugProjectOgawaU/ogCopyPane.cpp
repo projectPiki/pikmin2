@@ -39,7 +39,7 @@ J2DPictureEx* CopyPicture(J2DPictureEx* pic, u64 tag)
 		JGeometry::TVec2<s16> pos[4];
 
 		for (int i = 0; i < 4; i++) {
-			pos[i] = pic->_112[i];
+			pos[i] = *pic->getTexCoord(i);
 		}
 
 		copy->setTexCoord(pos);
@@ -249,7 +249,7 @@ blr
  * Address:	8030EC50
  * Size:	000338
  */
-J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, float x, float y, u64 tag)
+J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, f32 x, f32 y, u64 tag)
 {
 	ResTIMG* timg          = pic->getTIMG(0);
 	JUtility::TColor white = pic->getWhite();
@@ -282,10 +282,9 @@ J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, float x, float
 		copy->setAlpha(alpha);
 
 		JGeometry::TVec2<s16> pos[4];
-		pos[0] = pic->_112[0];
-		pos[1] = pic->_112[1];
-		pos[2] = pic->_112[2];
-		pos[3] = pic->_112[3];
+		for (int i = 0; i < 4; i++) {
+			pos[i] = *pic->getTexCoord(i);
+		}
 
 		copy->setTexCoord(pos);
 	}

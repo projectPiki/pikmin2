@@ -28,8 +28,8 @@ struct CaveTitleMsgEntry {
 struct TitleMessageAnalyzer : public ::P2JME::Analyzer {
 	TitleMessageAnalyzer(const JMessage::TReference* ref);
 
-	virtual ~TitleMessageAnalyzer(); // _08 (weak)
-	virtual void do_character(int);  // _10
+	virtual ~TitleMessageAnalyzer() { } // _08 (weak)
+	virtual void do_character(int);     // _10
 
 	// unused/inline
 	void set2ByteString(char*, int);
@@ -48,7 +48,7 @@ struct TitleMsg {
 
 	virtual void init() { }   // _08 (weak)
 	virtual void update() { } // _0C (weak)
-	virtual void start();     // _10 (weak)
+	virtual void start() { }  // _10 (weak)
 	virtual void end() { }    // _14 (weak)
 
 	void setFontPane(J2DPictureEx*, int);
@@ -91,8 +91,15 @@ struct TitleMsgClash : public TitleMsg {
 
 struct TitleMsgDrop : public TitleMsg {
 	struct Motion {
-		Motion();
-		~Motion();
+		Motion()
+		{
+			mYOffset  = 100.0f;
+			mRandTime = 0.0f;
+			mPos.y    = 0.0f;
+			mTimer    = 0.0f;
+		}
+		~Motion() { }
+
 		f32 mYOffset;  // _00
 		f32 mRandTime; // _04
 		Vector2f mPos; // _08

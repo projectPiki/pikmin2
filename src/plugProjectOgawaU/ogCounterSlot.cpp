@@ -221,9 +221,7 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 	mPic1->setOffset(xVal, mPanePosition.y);
 	mPic1->calcMtx();
 
-	f32 ang                = mPic1->mAngleX;
-	f32 newx               = mPic1->mAngleY;
-	f32 newy               = mPic1->mAngleZ;
+	Vector3f angle(mPic1->mAngleX, mPic1->mAngleY, mPic1->mAngleZ);
 	JUtility::TColor white = mPic1->getWhite();
 	JUtility::TColor black = mPic1->getBlack();
 	JGeometry::TBox2f* box = mPic1->getBounds();
@@ -248,9 +246,9 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 				cPane->updateScale(temp, mPaneScale.y);
 			}
 
-			cPane->mAngleX = newx;
-			cPane->mAngleY = newy;
-			cPane->mAngleZ = ang;
+			cPane->mAngleX = angle.x;
+			cPane->mAngleY = angle.y;
+			cPane->mAngleZ = angle.z;
 			cPane->calcMtx();
 			cPane->setWhite(white);
 			cPane->setBlack(black);

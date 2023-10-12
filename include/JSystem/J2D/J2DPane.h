@@ -540,10 +540,10 @@ struct J2DPicture : public J2DPane {
 	void setBlendKonstColor();
 	void setBlendKonstAlpha();
 	void getNewColor(JUtility::TColor*);
-	void setTexCoord(const JGeometry::TVec2<short>*);
+	void setTexCoord(const JGeometry::TVec2<s16>*);
 	void setTexCoord(const JUTTexture*, J2DBinding, J2DMirror, bool);
-	void setTexCoord(JGeometry::TVec2<short>*, const JUTTexture*, J2DBinding, J2DMirror, bool);
-	u8 getTlutID(const ResTIMG*, unsigned char);
+	void setTexCoord(JGeometry::TVec2<s16>*, const JUTTexture*, J2DBinding, J2DMirror, bool);
+	u8 getTlutID(const ResTIMG*, u8);
 	void operator=(const J2DPicture&);
 
 	inline void setCornerColor(TCornerColor colors)
@@ -558,23 +558,22 @@ struct J2DPicture : public J2DPane {
 
 	inline ResTIMG* getTIMG(u8 i); // defined in JUTTexture.h to avoid include loops
 
-	inline JGeometry::TVec2<s16>* getShort(int i) { return &_112[i]; }
-
+	inline JGeometry::TVec2<s16>* getTexCoord(int i) { return &mTexCoords[i]; }
 	// _000      = VTBL
 	// _000-_100 = J2DPane
-	JUTTexture* mTextures[4];      // _100
-	u8 mTextureCount;              // _110
-	u8 _111;                       // _111
-	JGeometry::TVec2<s16> _112[4]; // _112 /* TODO: Does using TVec2<short>[4] here mess with alignment? */
-	u8 _122[2];                    // _122
-	f32 _124[4];                   // _124
-	f32 _134[4];                   // _134
-	JUTPalette* mPalette;          // _144
-	JUtility::TColor mWhite;       // _148
-	JUtility::TColor mBlack;       // _14C
-	TCornerColor mCornerColors;    // _150
-	u32 _160;                      // _160, TColor?
-	u32 _164;                      // _164, TColor?
+	JUTTexture* mTextures[4];            // _100
+	u8 mTextureCount;                    // _110
+	u8 _111;                             // _111
+	JGeometry::TVec2<s16> mTexCoords[4]; // _112
+	u8 _122[2];                          // _122
+	f32 _124[4];                         // _124
+	f32 _134[4];                         // _134
+	JUTPalette* mPalette;                // _144
+	JUtility::TColor mWhite;             // _148
+	JUtility::TColor mBlack;             // _14C
+	TCornerColor mCornerColors;          // _150
+	u32 _160;                            // _160, TColor?
+	u32 _164;                            // _164, TColor?
 };
 
 // Size: 0x1A8

@@ -57,8 +57,8 @@ struct MgrCommand : public CNode {
 };
 
 struct SceneArgBase {
-	virtual SceneType getSceneType() const; // _08 (weak)
-	virtual int getClassSize() = 0;         // _0C
+	virtual SceneType getSceneType() const { return SCENE_DUMMY; } // _08 (weak)
+	virtual int getClassSize() = 0;                                // _0C
 
 	// _00 = VTBL
 };
@@ -94,8 +94,8 @@ struct SetSceneArg : public SceneArgBase {
 		// _09 = p4;
 	}
 
-	virtual SceneType getSceneType() const; // _08
-	virtual int getClassSize();             // _0C
+	virtual SceneType getSceneType() const { return mSceneType; } // _08
+	virtual int getClassSize() { return sizeof(SetSceneArg); }    // _0C
 
 	// _00 = VTBL
 	SceneType mSceneType;                    // _04

@@ -1,5 +1,3 @@
-#include "types.h"
-
 #include "og/Screen/AngleMgr.h"
 #include "Dolphin/math.h"
 

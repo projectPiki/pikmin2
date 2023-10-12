@@ -78,6 +78,8 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	virtual void setValue(bool, bool); // _28
 	virtual void setValue();           // _2C (weak)
 
+	inline int getMaxCounter() { return (mCurrCounters >= mCounterLimit) ? mCounterLimit : mCurrCounters; }
+
 	J2DPane* getMotherPane();
 	void setBlind(bool);
 	void setCenteringMode(EnumCenteringMode);

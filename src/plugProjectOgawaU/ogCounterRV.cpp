@@ -13,7 +13,7 @@ namespace Screen {
  * Address:	8030B524
  * Size:	0001E0
  */
-CallBack_CounterRV::CallBack_CounterRV(char** characterTexturePaths, unsigned short ketaCount, unsigned short p3, JKRArchive* archive)
+CallBack_CounterRV::CallBack_CounterRV(char** characterTexturePaths, u16 ketaCount, u16 p3, JKRArchive* archive)
     : P2DScreen::CallBackNode()
 {
 	mCharacterTexturePaths = characterTexturePaths;
@@ -154,7 +154,7 @@ void CallBack_CounterRV::setZeroAlpha(unsigned char a1) { mZeroAlpha = a1; }
  * Address:	8030B7F8
  * Size:	0000E4
  */
-void CallBack_CounterRV::startPuyoUp(float p1)
+void CallBack_CounterRV::startPuyoUp(f32 p1)
 {
 	mIsPuyoAnim = true;
 	int max     = (mCurrCounters >= mCounterLimit) ? mCounterLimit : mCurrCounters;
@@ -667,7 +667,7 @@ void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
 {
 	for (int i = 0; i < mCounterLimit; i++) {
 		u32 temp = pow(10.0f, i);
-		temp     = (mInitialDisplayValue / temp) % 10;
+		temp     = u16((mInitialDisplayValue / temp) % 10);
 		if (mIsBlind) {
 			mCounters[i]->setSuji(mImgResources, 10);
 		} else {
@@ -681,7 +681,7 @@ void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
 		if (i < count) {
 			mCounters[i]->mPicture->show();
 			u8 alpha = mPaneAlpha;
-			if (mCurrCounters > i + 1 && !mIsBlind) {
+			if (i + 1 > mCurrCounters && !mIsBlind) {
 				alpha = mZeroAlpha;
 			}
 			mCounters[i]->mPicture->setAlpha(alpha);
@@ -699,164 +699,6 @@ void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
 				pane->hide();
 		}
 	}
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-stfd     f31, 0x40(r1)
-psq_st   f31, 72(r1), 0, qr0
-stmw     r24, 0x20(r1)
-lis      r7, 0xCCCCCCCD@ha
-lfd      f31, lbl_8051D6A8@sda21(r2)
-mr       r24, r3
-mr       r25, r4
-mr       r26, r5
-mr       r27, r6
-addi     r31, r7, 0xCCCCCCCD@l
-li       r28, 0
-li       r29, 0
-lis      r30, 0x4330
-b        lbl_8030BFAC
-
-lbl_8030BDF8:
-xoris    r0, r28, 0x8000
-stw      r30, 8(r1)
-lfd      f1, lbl_8051D6B8@sda21(r2)
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsub     f2, f0, f31
-bl       pow
-bl       __cvt_fp2unsigned
-lwz      r4, 0x24(r24)
-lbz      r0, 0x86(r24)
-divwu    r3, r4, r3
-cmplwi   r0, 0
-mulhwu   r0, r31, r3
-srwi     r0, r0, 3
-mulli    r0, r0, 0xa
-subf     r0, r0, r3
-clrlwi   r5, r0, 0x10
-beq      lbl_8030BE58
-lwz      r3, 0x7c(r24)
-li       r5, 0xa
-lwz      r4, 0x80(r24)
-lwzx     r3, r3, r29
-bl       setSuji__Q32og6Screen11CounterKetaFPP7ResTIMGUl
-b        lbl_8030BEC8
-
-lbl_8030BE58:
-lbz      r0, 0x89(r24)
-cmplwi   r0, 0
-beq      lbl_8030BEB8
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0xc(r1)
-lwz      r3, 0x7c(r24)
-stw      r0, 8(r1)
-lfd      f2, lbl_8051D6A8@sda21(r2)
-lfd      f0, 8(r1)
-lfs      f1, lbl_8051D6C0@sda21(r2)
-fsubs    f2, f0, f2
-lfs      f0, lbl_8051D6C4@sda21(r2)
-lwzx     r3, r3, r29
-lwz      r4, 0x80(r24)
-fdivs    f1, f2, f1
-fmuls    f0, f0, f1
-fctiwz   f0, f0
-stfd     f0, 0x10(r1)
-lwz      r0, 0x14(r1)
-clrlwi   r5, r0, 0x10
-bl       setSuji__Q32og6Screen11CounterKetaFPP7ResTIMGUl
-b        lbl_8030BEC8
-
-lbl_8030BEB8:
-lwz      r3, 0x7c(r24)
-lwz      r4, 0x80(r24)
-lwzx     r3, r3, r29
-bl       setSuji__Q32og6Screen11CounterKetaFPP7ResTIMGUl
-
-lbl_8030BEC8:
-cmpw     r28, r25
-bge      lbl_8030BF88
-lwz      r4, 0x7c(r24)
-li       r0, 1
-addi     r3, r28, 1
-lwzx     r4, r4, r29
-lwz      r4, 0(r4)
-stb      r0, 0xb0(r4)
-lhz      r0, 0x2c(r24)
-lbz      r4, 0x64(r24)
-cmpw     r3, r0
-ble      lbl_8030BF08
-lbz      r0, 0x86(r24)
-cmplwi   r0, 0
-bne      lbl_8030BF08
-lbz      r4, 0x90(r24)
-
-lbl_8030BF08:
-lwz      r3, 0x7c(r24)
-lwzx     r3, r3, r29
-lwz      r3, 0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lhz      r0, 0x2c(r24)
-addi     r3, r28, 1
-cmpw     r3, r0
-bgt      lbl_8030BF4C
-mr       r3, r24
-mr       r4, r28
-mr       r5, r26
-mr       r6, r27
-bl       setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb
-b        lbl_8030BF78
-
-lbl_8030BF4C:
-lbz      r0, 0x86(r24)
-cmplwi   r0, 0
-bne      lbl_8030BF78
-lbz      r0, 0x85(r24)
-cmplwi   r0, 0
-beq      lbl_8030BF78
-mr       r3, r24
-mr       r4, r28
-mr       r5, r26
-mr       r6, r27
-bl       setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb
-
-lbl_8030BF78:
-lwz      r3, 0x7c(r24)
-lwzx     r3, r3, r29
-bl       calcScale__Q32og6Screen11CounterKetaFv
-b        lbl_8030BFA4
-
-lbl_8030BF88:
-lwz      r3, 0x7c(r24)
-lwzx     r3, r3, r29
-lwz      r3, 0(r3)
-cmplwi   r3, 0
-beq      lbl_8030BFA4
-li       r0, 0
-stb      r0, 0xb0(r3)
-
-lbl_8030BFA4:
-addi     r29, r29, 4
-addi     r28, r28, 1
-
-lbl_8030BFAC:
-lhz      r0, 0x2e(r24)
-cmpw     r28, r0
-blt      lbl_8030BDF8
-psq_l    f31, 72(r1), 0, qr0
-lfd      f31, 0x40(r1)
-lmw      r24, 0x20(r1)
-lwz      r0, 0x54(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
 }
 
 /*
@@ -869,67 +711,17 @@ void CallBack_CounterRV::setCounterUpDown(int i, bool isUp, bool flag2)
 	ScaleMgr* scale = mCounters[i]->mScaleMgr;
 	if (isUp) {
 		scale->up(msVal._00, msVal._04, msVal._08, 0.025f * i);
-		if ((u32)mScaleUpSoundID) {
-			ogSound->setSE(mScaleUpSoundID);
+		u32 id = mScaleUpSoundID;
+		if (id) {
+			ogSound->setSE(id);
 		}
-	} else {
-		if (flag2) {
-			scale->down();
-			if ((u32)mScaleDownSoundID) {
-				ogSound->setSE(mScaleDownSoundID);
-			}
+	} else if (flag2) {
+		scale->down();
+		u32 id = mScaleDownSoundID;
+		if (id) {
+			ogSound->setSE(id);
 		}
 	}
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-clrlwi.  r0, r5, 0x18
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lwz      r5, 0x7c(r3)
-slwi     r3, r4, 2
-lwzx     r3, r5, r3
-lwz      r3, 8(r3)
-beq      lbl_8030C050
-xoris    r4, r4, 0x8000
-lis      r0, 0x4330
-stw      r4, 0xc(r1)
-lis      r4, msVal__Q32og6Screen18CallBack_CounterRV@ha
-lfsu     f1, msVal__Q32og6Screen18CallBack_CounterRV@l(r4)
-stw      r0, 8(r1)
-lfd      f2, lbl_8051D6A8@sda21(r2)
-lfd      f0, 8(r1)
-lfs      f4, lbl_8051D6A4@sda21(r2)
-fsubs    f0, f0, f2
-lfs      f2, 4(r4)
-lfs      f3, 8(r4)
-fmuls    f4, f4, f0
-bl       up__Q32og6Screen8ScaleMgrFffff
-lwz      r4, 0x94(r31)
-cmplwi   r4, 0
-beq      lbl_8030C070
-lwz      r3, ogSound__2og@sda21(r13)
-bl       setSE__Q22og5SoundFUl
-b        lbl_8030C070
-
-lbl_8030C050:
-clrlwi.  r0, r6, 0x18
-beq      lbl_8030C070
-bl       down__Q32og6Screen8ScaleMgrFv
-lwz      r4, 0x98(r31)
-cmplwi   r4, 0
-beq      lbl_8030C070
-lwz      r3, ogSound__2og@sda21(r13)
-bl       setSE__Q22og5SoundFUl
-
-lbl_8030C070:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
 }
 
 /*

@@ -566,8 +566,8 @@ void J2DPictureEx::drawSelf(float p1, float p2, float (*mtx)[3][4])
  */
 void J2DPictureEx::drawFullSet(float p1, float p2, float p3, float p4, float (*mtx)[3][4])
 {
-	drawTexCoord(mBounds.i.x, mBounds.i.y, p3, p4, _112[0].x, _112[0].y, _112[1].x, _112[1].y, _112[2].x, _112[2].y, _112[3].x, _112[3].y,
-	             mtx);
+	drawTexCoord(mBounds.i.x, mBounds.i.y, p3, p4, mTexCoords[0].x, mTexCoords[0].y, mTexCoords[1].x, mTexCoords[1].y, mTexCoords[2].x,
+	             mTexCoords[2].y, mTexCoords[3].x, mTexCoords[3].y, mtx);
 }
 
 /*
