@@ -402,28 +402,28 @@ void TPkEffectMgr::createS_Walkwater(Vector3f& position)
 void ToeKourin::create(Vector3f* chasePos, long pikiKind)
 {
 	P2ASSERTLINE(320, chasePos);
-	mPikiKind          = pikiKind;
-	mContext.mPosition = chasePos;
+	mPikiKind             = pikiKind;
+	mContext[0].mPosition = chasePos;
 
 	switch (mPikiKind) {
 	case Game::Blue:
-		pkEffectMgr->mTOneEmitters.mToeKourinBlue->add(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinBlue->add(&mContext[0]);
 		break;
 	case Game::Red:
-		pkEffectMgr->mTOneEmitters.mToeKourinRed->add(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinRed->add(&mContext[0]);
 		break;
 	case Game::Yellow:
-		pkEffectMgr->mTOneEmitters.mToeKourinYellow->add(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinYellow->add(&mContext[0]);
 		break;
 	case Game::Purple:
-		pkEffectMgr->mTOneEmitters.mToeKourinPurple->add(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinPurple->add(&mContext[0]);
 		break;
 	case Game::White:
-		pkEffectMgr->mTOneEmitters.mToeKourinWhite->add(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinWhite->add(&mContext[0]);
 		break;
 	case Game::Bulbmin:
 	case Game::Carrot:
-		pkEffectMgr->mTOneEmitters.mToeKourinGreen->add(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinGreen->add(&mContext[0]);
 		break;
 	default:
 		JUT_PANICLINE(348, "illegal kourin color %d\n", pikiKind);
@@ -442,23 +442,23 @@ void ToeKourin::kill()
 {
 	switch (mPikiKind) {
 	case Game::Blue:
-		pkEffectMgr->mTOneEmitters.mToeKourinBlue->del(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinBlue->del(&mContext[0]);
 		break;
 	case Game::Red:
-		pkEffectMgr->mTOneEmitters.mToeKourinRed->del(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinRed->del(&mContext[0]);
 		break;
 	case Game::Yellow:
-		pkEffectMgr->mTOneEmitters.mToeKourinYellow->del(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinYellow->del(&mContext[0]);
 		break;
 	case Game::Purple:
-		pkEffectMgr->mTOneEmitters.mToeKourinPurple->del(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinPurple->del(&mContext[0]);
 		break;
 	case Game::White:
-		pkEffectMgr->mTOneEmitters.mToeKourinWhite->del(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinWhite->del(&mContext[0]);
 		break;
 	case Game::Bulbmin:
 	case Game::Carrot:
-		pkEffectMgr->mTOneEmitters.mToeKourinGreen->del(&mContext);
+		pkEffectMgr->mTOneEmitters.mToeKourinGreen->del(&mContext[0]);
 		break;
 	default:
 		break;
@@ -645,8 +645,8 @@ void ToeMoeSmoke::kill() { pkEffectMgr->mTOneEmitters.mToeMoeSmoke->del(&mContex
 void ToeTanekira::create(Vector3f* chasePos)
 {
 	P2ASSERTLINE(508, chasePos);
-	mContext.mPosition = chasePos;
-	pkEffectMgr->mTOneEmitters.mToeTaneKira->add(&mContext);
+	mContext[0].mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeTaneKira->add(&mContext[0]);
 }
 
 /*
@@ -654,6 +654,6 @@ void ToeTanekira::create(Vector3f* chasePos)
  * Address:	803C77B4
  * Size:	00002C
  */
-void ToeTanekira::kill() { pkEffectMgr->mTOneEmitters.mToeTaneKira->del(&mContext); }
+void ToeTanekira::kill() { pkEffectMgr->mTOneEmitters.mToeTaneKira->del(&mContext[0]); }
 
 } // namespace efx

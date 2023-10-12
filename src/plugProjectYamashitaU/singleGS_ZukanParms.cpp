@@ -787,7 +787,7 @@ EnemyParms::EnemyParms()
  */
 void EnemyParms::read(Stream& stream)
 {
-	_A0 = stream.readByte();
+	mGroupID = stream.readByte();
 	mParms.read(stream);
 	mCameraParms.read(stream);
 }
@@ -839,7 +839,7 @@ ItemParms::ItemParms()
  */
 void ItemParms::read(Stream& stream)
 {
-	_A0 = stream.readByte();
+	mGroupID = stream.readByte();
 	mParms.read(stream);
 	mCameraParms.read(stream);
 }

@@ -755,7 +755,7 @@ void ParticleMgr::clearDemoResourceManager()
  */
 void ParticleMgr::setViewport(Graphics& gfx)
 {
-	int max    = gfx.mViewportCount;
+	int max    = gfx.mActiveViewports;
 	bool check = (max >= 0 && max < 4);
 	P2ASSERTLINE(504, check);
 
@@ -979,7 +979,7 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 	} else {
 		bound.mRadius = mClipRadiusS;
 	}
-	bound.mPosition = emit->mPosition;
+	bound.mPosition = (Vector3f)emit->mPosition;
 
 	bool ret = false;
 	for (int i = 0; i < mActiveViewportCount; i++) {

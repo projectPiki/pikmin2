@@ -1463,7 +1463,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebiP2TitleCamera", True],
             ["plugProjectEbisawaU/ebiP2TitleLight", True],
             "plugProjectEbisawaU/ebiScreenMemoryCard",
-            "plugProjectEbisawaU/efxTPkEffectMgr",
+            ["plugProjectEbisawaU/efxTPkEffectMgr", True, {"cflags" : "$cflags_pikmin"}],
             ["plugProjectEbisawaU/efxEnemyGeneral", True],
             ["plugProjectEbisawaU/ebi3DGraph", True],
             ["plugProjectEbisawaU/ebiGeometry", True],

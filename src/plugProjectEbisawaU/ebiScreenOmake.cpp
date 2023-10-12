@@ -1213,8 +1213,8 @@ void TOmake::doInitWaitState()
 	E2DCallBack_BlinkFontColor* font = &mFonts[mCurrSel];
 	font->mIsEnabled                 = true;
 	font->mSpeed                     = sys->mDeltaTime * 3.333333f;
-	font->_40                        = 0.0f;
-	font->_48                        = true;
+	font->mColor1Weight              = 0.0f;
+	font->mIsTowardColor1            = true;
 	font->_49                        = false;
 	mState2                          = 0;
 	/*
@@ -2003,72 +2003,7 @@ addi     r1, r1, 0x10
 blr
 	*/
 }
-} // namespace Screen
 
-/*
- * --INFO--
- * Address:	803EEB24
- * Size:	0000BC
- */
-E2DCallBack_BlinkFontColor::E2DCallBack_BlinkFontColor()
-{
-	_40        = 0.0f;
-	mSpeed     = 0.03333;
-	_48        = true;
-	_49        = false;
-	mIsEnabled = false;
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-stw      r30, 8(r1)
-mr       r30, r3
-mr       r31, r30
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r6, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r31)
-li       r0, 0
-lis      r3, __ct__Q23ebi16E2DFullFontColorFv@ha
-li       r7, 1
-stw      r0, 0x18(r31)
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-addi     r4, r3, __ct__Q23ebi16E2DFullFontColorFv@l
-addi     r3, r6, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r31)
-lis      r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@ha
-addi     r0, r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@l
-li       r6, 0x10
-stw      r3, 0(r31)
-addi     r3, r30, 0x20
-li       r5, 0
-stb      r7, 0x1c(r31)
-li       r7, 2
-stw      r0, 0(r30)
-bl       __construct_array
-lfs      f1, lbl_8051FE64@sda21(r2)
-li       r4, 1
-lfs      f0, lbl_8051FE68@sda21(r2)
-li       r0, 0
-stfs     f1, 0x40(r30)
-mr       r3, r30
-stfs     f0, 0x44(r30)
-stb      r4, 0x48(r30)
-stb      r0, 0x49(r30)
-stb      r0, 0x1c(r30)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-namespace Screen {
 /*
  * --INFO--
  * Address:	803EEBE0

@@ -2449,7 +2449,7 @@ blr
  * Address:	8040ED08
  * Size:	0002E4
  */
-TotalResultData** SceneFinalResult::createDispMember(const int*, const int*, Game::Highscore** scores)
+TotalResultData* SceneFinalResult::createDispMember(const int*, const int*, Game::Highscore** scores)
 {
 	TotalResultData** data = new TotalResultData*;
 	if (data) {
@@ -2478,7 +2478,7 @@ TotalResultData** SceneFinalResult::createDispMember(const int*, const int*, Gam
 			data[i] = resdata;
 		}
 	}
-	return data;
+	return data[0];
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x130(r1)

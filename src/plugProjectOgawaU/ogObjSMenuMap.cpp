@@ -1827,7 +1827,7 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 	mMapAngle    = 0.0f;
 	if (mDisp->mActiveNavi) {
 		Game::Navi* navi = Game::naviMgr->getActiveNavi();
-		Vector3f vec     = Game::cameraMgr->_24[navi->mNaviIndex]->getViewVector();
+		Vector3f vec     = Game::cameraMgr->mCameraObjList[navi->mNaviIndex]->getViewVector();
 		mMapAngle        = pikmin2_atan2f(vec.x, vec.z);
 	}
 	initMapIcon(arc);

@@ -685,20 +685,6 @@ void DrawInfo::reset()
 	mFsm.start(this, STONESTATE_BaseState0, nullptr);
 }
 
-} // namespace EnemyStone
-
-/*
- * --INFO--
- * Address:	801295A0
- * Size:	000034
- */
-void StateMachine<EnemyStone::DrawInfo>::start(EnemyStone::DrawInfo* drawInfo, int stateID, StateArg* stateArg)
-{
-	drawInfo->mCurrentState = nullptr;
-	transit(drawInfo, stateID, stateArg);
-}
-
-namespace EnemyStone {
 /*
  * --INFO--
  * Address:	801295D4

@@ -2957,7 +2957,7 @@ blr
  * Address:	803D78A8
  * Size:	000030
  */
-void FileSelect::TMainScreen::isFinishOutDataBall(s32)
+bool FileSelect::TMainScreen::isFinishOutDataBall(s32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2980,7 +2980,7 @@ blr
  * Address:	803D78D8
  * Size:	000030
  */
-void FileSelect::TMainScreen::isFinishDecideDataBall(s32)
+bool FileSelect::TMainScreen::isFinishDecideDataBall(s32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -3753,7 +3753,7 @@ blr
  * Address:	803D8204
  * Size:	000024
  */
-void FileSelect::TMainScreen::isFinishCloseDataWindow()
+bool FileSelect::TMainScreen::isFinishCloseDataWindow()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4024,7 +4024,7 @@ blr
  * Address:	803D8528
  * Size:	000028
  */
-void FileSelect::TMainScreen::isFinishCloseMSG()
+bool FileSelect::TMainScreen::isFinishCloseMSG()
 {
 	/*
 lwz      r0, 0xafc(r3)
@@ -5538,210 +5538,6 @@ mr       r3, r30
 bl       __dl__FPv
 
 lbl_803D9808:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D9824
- * Size:	000084
- */
-efx2d::FileSelect::T2DFiledeletingM::~T2DFiledeletingM()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803D988C
-lis      r3, __vt__Q35efx2d10FileSelect16T2DFiledeletingM@ha
-addi     r3, r3, __vt__Q35efx2d10FileSelect16T2DFiledeletingM@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x18
-stw      r0, 8(r30)
-beq      lbl_803D987C
-lis      r4, __vt__Q25efx2d8TForever@ha
-addi     r3, r30, 8
-addi     r5, r4, __vt__Q25efx2d8TForever@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x18
-stw      r0, 8(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803D987C:
-extsh.   r0, r31
-ble      lbl_803D988C
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803D988C:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D98A8
- * Size:	000084
- */
-efx2d::FileSelect::T2DFiledeleting::~T2DFiledeleting()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803D9910
-lis      r3, __vt__Q35efx2d10FileSelect15T2DFiledeleting@ha
-addi     r3, r3, __vt__Q35efx2d10FileSelect15T2DFiledeleting@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x18
-stw      r0, 8(r30)
-beq      lbl_803D9900
-lis      r4, __vt__Q25efx2d8TForever@ha
-addi     r3, r30, 8
-addi     r5, r4, __vt__Q25efx2d8TForever@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x18
-stw      r0, 8(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803D9900:
-extsh.   r0, r31
-ble      lbl_803D9910
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803D9910:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D992C
- * Size:	00009C
- */
-efx2d::FileSelect::T2DFilecopyM::~T2DFilecopyM()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803D99AC
-lis      r3, __vt__Q35efx2d10FileSelect12T2DFilecopyM@ha
-addi     r3, r3, __vt__Q35efx2d10FileSelect12T2DFilecopyM@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x18
-stw      r0, 8(r30)
-beq      lbl_803D999C
-lis      r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@ha
-addi     r3, r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x18
-stw      r0, 8(r30)
-beq      lbl_803D999C
-lis      r4, __vt__Q25efx2d8TForever@ha
-addi     r3, r30, 8
-addi     r5, r4, __vt__Q25efx2d8TForever@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x18
-stw      r0, 8(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803D999C:
-extsh.   r0, r31
-ble      lbl_803D99AC
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803D99AC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D99C8
- * Size:	00009C
- */
-efx2d::FileSelect::T2DFilecopy::~T2DFilecopy()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803D9A48
-lis      r3, __vt__Q35efx2d10FileSelect11T2DFilecopy@ha
-addi     r3, r3, __vt__Q35efx2d10FileSelect11T2DFilecopy@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x18
-stw      r0, 8(r30)
-beq      lbl_803D9A38
-lis      r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@ha
-addi     r3, r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x18
-stw      r0, 8(r30)
-beq      lbl_803D9A38
-lis      r4, __vt__Q25efx2d8TForever@ha
-addi     r3, r30, 8
-addi     r5, r4, __vt__Q25efx2d8TForever@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x18
-stw      r0, 8(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803D9A38:
-extsh.   r0, r31
-ble      lbl_803D9A48
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803D9A48:
 lwz      r0, 0x14(r1)
 mr       r3, r30
 lwz      r31, 0xc(r1)

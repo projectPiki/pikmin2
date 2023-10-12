@@ -245,25 +245,25 @@ void TMemoryCard::setArchive(JKRArchive* arc)
 	mPane_il01->setAlpha(0);
 	mPane_ir01->setAlpha(0);
 
-	mScreenMain->addCallBackPane(mScreenMain, &mAnims[0]);
-	mScreenMain->addCallBackPane(mPaneMsg3, &mAnims[1]);
-	mScreenMain->addCallBackPane(mPaneMsg4, &mAnims[2]);
-	mScreenMain->addCallBackPane(mPaneMsg1, &mAnims[3]);
-	mScreenMain->addCallBackPane(mPaneMsg2, &mAnims[4]);
+	mScreenMain->addCallBackPane(mScreenMain, &mAnim1);
+	mScreenMain->addCallBackPane(mPaneMsg3, &mAnim2);
+	mScreenMain->addCallBackPane(mPaneMsg4, &mAnim3);
+	mScreenMain->addCallBackPane(mPaneMsg1, &mAnim4);
+	mScreenMain->addCallBackPane(mPaneMsg2, &mAnim5);
 	mScreenMain->addCallBackPane(mScreenMain, &mCalcAnim);
 
-	mAnims[0].loadAnm("memory_card.bck", arc, 0, 99999);
-	mAnims[1].loadAnm("memory_card_pattern1.bck", arc, 0, 99999);
-	mAnims[2].loadAnm("memory_card_pattern2.bck", arc, 0, 99999);
-	mAnims[3].loadAnm("memory_card_yes.bck", arc, 0, 99999);
-	mAnims[4].loadAnm("memory_card_no.bck", arc, 0, 99999);
-	mAnims[0].play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)2, true);
+	mAnim1.loadAnm("memory_card.bck", arc, 0, 99999);
+	mAnim2.loadAnm("memory_card_pattern1.bck", arc, 0, 99999);
+	mAnim3.loadAnm("memory_card_pattern2.bck", arc, 0, 99999);
+	mAnim4.loadAnm("memory_card_yes.bck", arc, 0, 99999);
+	mAnim5.loadAnm("memory_card_no.bck", arc, 0, 99999);
+	mAnim1.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)2, true);
 
-	mBlinkFont[0].set(mPaneMsg2, temp);
-	mBlinkFont[1].set(mPaneMsg2, temp);
+	mBlinkFont1.set(mPaneMsg2, temp);
+	mBlinkFont2.set(mPaneMsg2, temp);
 
-	mScreenMain->addCallBackPane(mPaneMsg1, &mBlinkFont[0]);
-	mScreenMain->addCallBackPane(mPaneMsg2, &mBlinkFont[1]);
+	mScreenMain->addCallBackPane(mPaneMsg1, &mBlinkFont1);
+	mScreenMain->addCallBackPane(mPaneMsg2, &mBlinkFont2);
 
 	mCursor1.setPanes(mPane_il00, mPane_il01);
 	mCursor2.setPanes(mPane_ir00, mPane_ir01);
@@ -1136,12 +1136,12 @@ void TMemoryCard::startState(enumState state)
 	mState = state;
 	switch (mState) {
 	case MEMCARD_Disabled:
-		mCursor1.kill();
-		mCursor2.kill();
+		mCursor1.mCursor.kill();
+		mCursor2.mCursor.kill();
 		break;
 	case MEMCARD_Selection:
-		mCursor1.kill();
-		mCursor2.kill();
+		mCursor1.mCursor.kill();
+		mCursor2.mCursor.kill();
 		mPaneMsg3->hide();
 		mPaneMsg4->show();
 		mPaneMsg4->setAlpha(255);
@@ -1150,45 +1150,45 @@ void TMemoryCard::startState(enumState state)
 		mPaneMsg2->show();
 		mPaneMsg2->setAlpha(255);
 		if (mCurrSel == 1) {
-			mBlinkFont[0].mIsEnabled = true;
-			mBlinkFont[0].mSpeed     = sys->mDeltaTime * 3.333333f;
-			mBlinkFont[0]._40        = 0.0f;
-			mBlinkFont[0]._48        = true;
-			mBlinkFont[0]._49        = false;
+			mBlinkFont1.mIsEnabled      = true;
+			mBlinkFont1.mSpeed          = sys->mDeltaTime * 3.333333f;
+			mBlinkFont1.mColor1Weight   = 0.0f;
+			mBlinkFont1.mIsTowardColor1 = true;
+			mBlinkFont1._49             = false;
 
-			mBlinkFont[1].setPaneColors();
+			mBlinkFont2.setPaneColors();
 			mCursor1.mTimer    = 1.0f;
 			mCursor1.mSelected = true;
 			mCursor2.mTimer    = 1.0f;
 			mCursor2.mSelected = true;
 		} else {
-			mBlinkFont[0].setPaneColors();
+			mBlinkFont1.setPaneColors();
 
-			mBlinkFont[1].mIsEnabled = true;
-			mBlinkFont[1].mSpeed     = sys->mDeltaTime * 3.333333f;
-			mBlinkFont[1]._40        = 0.0f;
-			mBlinkFont[1]._48        = true;
-			mBlinkFont[1]._49        = false;
+			mBlinkFont2.mIsEnabled      = true;
+			mBlinkFont2.mSpeed          = sys->mDeltaTime * 3.333333f;
+			mBlinkFont2.mColor1Weight   = 0.0f;
+			mBlinkFont2.mIsTowardColor1 = true;
+			mBlinkFont2._49             = false;
 
 			mCursor1.mTimer    = 0.0f;
 			mCursor1.mSelected = false;
 			mCursor2.mTimer    = 0.0f;
 			mCursor2.mSelected = false;
 		}
-		mCursor1.create(nullptr);
-		mCursor2.create(nullptr);
+		mCursor1.mCursor.create(nullptr);
+		mCursor2.mCursor.create(nullptr);
 		mInputDelay = 20;
 		_0C         = 20;
-		mAnims[1].play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnims[2].play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnims[3].play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnims[4].play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim2.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim3.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim4.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim5.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
 		mScreenMain->animation();
 		break;
 
 	case MEMCARD_Message:
-		mCursor1.kill();
-		mCursor2.kill();
+		// mCursor1.kill();
+		// mCursor2.kill();
 		mPaneMsg4->hide();
 		mPaneMsg1->hide();
 		mPaneMsg2->hide();
@@ -1196,10 +1196,10 @@ void TMemoryCard::startState(enumState state)
 		mPaneMsg3->setAlpha(255);
 		mInputDelay = 20;
 		_0C         = 20;
-		mAnims[1].play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnims[2].play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnims[3].play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
-		mAnims[4].play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim2.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim3.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim4.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
+		mAnim5.play(sys->mDeltaTime * 60.0f, (J3DAnmAttr)0, true);
 		mScreenMain->animation();
 		break;
 	case MEMCARD_Finish:
@@ -1561,70 +1561,70 @@ void TMemoryCard::update()
 		if (!mInputDelay && mCanExit) {
 			if (mController->mButton.mButtonDown & Controller::PRESS_DPAD_RIGHT || mController->mButton.mAnalogL > 0.5f) {
 				if (mCurrSel == 1) {
-					mCurrSel                 = 0;
-					mBlinkFont[0]._48        = false;
-					mBlinkFont[0]._49        = true;
-					mBlinkFont[1].mIsEnabled = true;
-					mBlinkFont[1].mSpeed     = sys->mDeltaTime * 3.333333f;
-					mBlinkFont[1]._40        = 0.0f;
-					mBlinkFont[1]._48        = true;
-					mBlinkFont[1]._49        = false;
-					mCursor1.mSelected       = false;
-					mCursor2.mSelected       = false;
+					mCurrSel                    = 0;
+					mBlinkFont1.mIsTowardColor1 = false;
+					mBlinkFont1._49             = true;
+					mBlinkFont2.mIsEnabled      = true;
+					mBlinkFont2.mSpeed          = sys->mDeltaTime * 3.333333f;
+					mBlinkFont2.mColor1Weight   = 0.0f;
+					mBlinkFont2.mIsTowardColor1 = true;
+					mBlinkFont2._49             = false;
+					mCursor1.mSelected          = false;
+					mCursor2.mSelected          = false;
 				}
 			} else if (mController->mButton.mButtonDown & Controller::PRESS_DPAD_RIGHT || mController->mButton.mAnalogL > 0.5f) {
 				if (mCurrSel == 0) {
-					mCurrSel                 = 1;
-					mBlinkFont[0].mIsEnabled = true;
-					mBlinkFont[0].mSpeed     = sys->mDeltaTime * 3.333333f;
-					mBlinkFont[0]._40        = 0.0f;
-					mBlinkFont[0]._48        = true;
-					mBlinkFont[0]._49        = false;
-					mBlinkFont[1]._48        = false;
-					mBlinkFont[1]._49        = true;
-					mCursor1.mSelected       = true;
-					mCursor2.mSelected       = true;
+					mCurrSel                    = 1;
+					mBlinkFont1.mIsEnabled      = true;
+					mBlinkFont1.mSpeed          = sys->mDeltaTime * 3.333333f;
+					mBlinkFont1.mColor1Weight   = 0.0f;
+					mBlinkFont1.mIsTowardColor1 = true;
+					mBlinkFont1._49             = false;
+					mBlinkFont2.mIsTowardColor1 = false;
+					mBlinkFont2._49             = true;
+					mCursor1.mSelected          = true;
+					mCursor2.mSelected          = true;
 				}
 			} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
 				if (mCurrSel) {
-					mBlinkFont[0].mIsEnabled = false;
-					J2DTextBox* pane         = static_cast<J2DTextBox*>(mBlinkFont[0].mPane);
+					mBlinkFont1.mIsEnabled = false;
+					J2DTextBox* pane       = static_cast<J2DTextBox*>(mBlinkFont1.mPane);
 					if (pane) {
-						pane->mCharColor     = mBlinkFont[0].mFonts[0].mCol1;
-						pane->mGradientColor = mBlinkFont[0].mFonts[0].mCol2;
-						pane->setWhite(mBlinkFont[0].mFonts[0].mWhite);
-						pane->setBlack(mBlinkFont[0].mFonts[0].mBlack);
+						pane->mCharColor     = mBlinkFont1.mFonts[0].mCol1;
+						pane->mGradientColor = mBlinkFont1.mFonts[0].mCol2;
+						pane->setWhite(mBlinkFont1.mFonts[0].mWhite);
+						pane->setBlack(mBlinkFont1.mFonts[0].mBlack);
 					}
 
-					mBlinkFont[1].mIsEnabled = false;
-					pane                     = static_cast<J2DTextBox*>(mBlinkFont[1].mPane);
+					mBlinkFont2.mIsEnabled = false;
+					pane                   = static_cast<J2DTextBox*>(mBlinkFont2.mPane);
 					if (pane) {
-						pane->mCharColor     = mBlinkFont[1].mFonts[0].mCol1;
-						pane->mGradientColor = mBlinkFont[1].mFonts[0].mCol2;
-						pane->setWhite(mBlinkFont[1].mFonts[0].mWhite);
-						pane->setBlack(mBlinkFont[1].mFonts[0].mBlack);
+						pane->mCharColor     = mBlinkFont2.mFonts[0].mCol1;
+						pane->mGradientColor = mBlinkFont2.mFonts[0].mCol2;
+						pane->setWhite(mBlinkFont2.mFonts[0].mWhite);
+						pane->setBlack(mBlinkFont2.mFonts[0].mBlack);
 					}
 					mCursor1.mTimer    = 1.0f;
 					mCursor1.mSelected = true;
 					mCursor2.mTimer    = 1.0f;
 					mCursor2.mSelected = true;
 				} else {
-					mBlinkFont[0].mIsEnabled = false;
-					J2DTextBox* pane         = static_cast<J2DTextBox*>(mBlinkFont[0].mPane);
+					mBlinkFont1.mIsEnabled = false;
+					J2DTextBox* pane       = static_cast<J2DTextBox*>(mBlinkFont1.mPane);
 					if (pane) {
-						pane->mCharColor     = mBlinkFont[0].mFonts[0].mCol1;
-						pane->mGradientColor = mBlinkFont[0].mFonts[0].mCol2;
-						pane->setWhite(mBlinkFont[0].mFonts[0].mWhite);
-						pane->setBlack(mBlinkFont[0].mFonts[0].mBlack);
+						pane->mCharColor     = mBlinkFont1.mFonts[0].mCol1;
+						pane->mGradientColor = mBlinkFont1.mFonts[0].mCol2;
+						pane->setWhite(mBlinkFont1.mFonts[0].mWhite);
+						pane->setBlack(mBlinkFont1.mFonts[0].mBlack);
 					}
 
-					mBlinkFont[1].mIsEnabled = false;
-					pane                     = static_cast<J2DTextBox*>(mBlinkFont[1].mPane);
+					mBlinkFont2.mIsEnabled = false;
+					pane                   = static_cast<J2DTextBox*>(mBlinkFont2.mPane);
 					if (pane) {
-						pane->mCharColor     = mBlinkFont[1].mFonts[0].mCol1;
-						pane->mGradientColor = mBlinkFont[1].mFonts[0].mCol2;
-						pane->setWhite(mBlinkFont[1].mFonts[0].mWhite);
-						pane->setBlack(mBlinkFont[1].mFonts[0].mBlack);
+						pane->mCharColor     = mBlinkFont2.mFonts[0].mCol1;
+						pane->mGradientColor = mBlinkFont2.mFonts[0].mCol2;
+						pane->setWhite(mBlinkFont2.mFonts[0].mWhite);
+						pane->setBlack(mBlinkFont2.mFonts[0].mBlack);
 					}
 					mCursor1.mTimer    = 0.0f;
 					mCursor1.mSelected = false;
@@ -1637,22 +1637,22 @@ void TMemoryCard::update()
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 				return;
 			} else if (mController->mButton.mButtonDown & Controller::PRESS_B) {
-				mBlinkFont[0].mIsEnabled = false;
-				J2DTextBox* pane         = static_cast<J2DTextBox*>(mBlinkFont[0].mPane);
+				mBlinkFont1.mIsEnabled = false;
+				J2DTextBox* pane       = static_cast<J2DTextBox*>(mBlinkFont1.mPane);
 				if (pane) {
-					pane->mCharColor     = mBlinkFont[0].mFonts[0].mCol1;
-					pane->mGradientColor = mBlinkFont[0].mFonts[0].mCol2;
-					pane->setWhite(mBlinkFont[0].mFonts[0].mWhite);
-					pane->setBlack(mBlinkFont[0].mFonts[0].mBlack);
+					pane->mCharColor     = mBlinkFont1.mFonts[0].mCol1;
+					pane->mGradientColor = mBlinkFont1.mFonts[0].mCol2;
+					pane->setWhite(mBlinkFont1.mFonts[0].mWhite);
+					pane->setBlack(mBlinkFont1.mFonts[0].mBlack);
 				}
 
-				mBlinkFont[1].mIsEnabled = false;
-				pane                     = static_cast<J2DTextBox*>(mBlinkFont[1].mPane);
+				mBlinkFont2.mIsEnabled = false;
+				pane                   = static_cast<J2DTextBox*>(mBlinkFont2.mPane);
 				if (pane) {
-					pane->mCharColor     = mBlinkFont[1].mFonts[1].mCol1;
-					pane->mGradientColor = mBlinkFont[1].mFonts[1].mCol2;
-					pane->setWhite(mBlinkFont[1].mFonts[1].mWhite);
-					pane->setBlack(mBlinkFont[1].mFonts[1].mBlack);
+					pane->mCharColor     = mBlinkFont2.mFonts[1].mCol1;
+					pane->mGradientColor = mBlinkFont2.mFonts[1].mCol2;
+					pane->setWhite(mBlinkFont2.mFonts[1].mWhite);
+					pane->setBlack(mBlinkFont2.mFonts[1].mBlack);
 				}
 				mCursor1.mTimer    = 0.0f;
 				mCursor1.mSelected = false;
@@ -1706,8 +1706,8 @@ void TMemoryCard::update()
 		}
 
 		if (mod < 0.7f) {
-			mCursor1.fade();
-			mCursor2.fade();
+			mCursor1.mCursor.fade();
+			mCursor2.mCursor.fade();
 
 			f32 mod;
 			int temp = mAlphaMod;

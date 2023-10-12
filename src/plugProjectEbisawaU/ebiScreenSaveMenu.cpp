@@ -96,8 +96,8 @@ void TSaveMenu::doKillScreen()
 {
 	startMsgState_(MSG_Kill);
 	mDrawState = 0;
-	mCursor1.kill();
-	mCursor2.kill();
+	mCursor1.mCursor.kill();
+	mCursor2.mCursor.kill();
 	for (int i = 0; i < 3; i++) {
 		mAnimScreen[i]->stop();
 	}
@@ -289,12 +289,12 @@ void TSaveMenu::startMsgState_(enumMsgState state)
 	mStateID = state;
 	switch (mStateID) {
 	case MSG_Kill:
-		mCursor1.kill();
-		mCursor2.kill();
+		mCursor1.mCursor.kill();
+		mCursor2.mCursor.kill();
 		break;
 	case MSG_Open:
-		mCursor1.kill();
-		mCursor2.kill();
+		mCursor1.mCursor.kill();
+		mCursor2.mCursor.kill();
 		// yes this isnt a switch
 		if (mMesgState == MESSAGE_SaveOption) {
 			mPressedA       = false;
@@ -311,8 +311,8 @@ void TSaveMenu::startMsgState_(enumMsgState state)
 			mCursor1.mSelected = true;
 			mCursor2.mTimer    = 1.0f;
 			mCursor2.mSelected = true;
-			mCursor1.create(nullptr);
-			mCursor2.create(nullptr);
+			mCursor1.mCursor.create(nullptr);
+			mCursor2.mCursor.create(nullptr);
 		} else if (mMesgState == MESSAGE_NoSaveOption) {
 			mPressedA       = false;
 			mSelectedOption = true;
@@ -328,8 +328,8 @@ void TSaveMenu::startMsgState_(enumMsgState state)
 			mCursor1.mSelected = true;
 			mCursor2.mTimer    = 1.0f;
 			mCursor2.mSelected = true;
-			mCursor1.create(nullptr);
-			mCursor2.create(nullptr);
+			mCursor1.mCursor.create(nullptr);
+			mCursor2.mCursor.create(nullptr);
 		} else if (mMesgState == MESSAGE_Saving) {
 			mAnimScreen[2]->setText('8372_00'); // "Saving... Do not touch the Memory Card in Slot A or the POWER Button."
 			mAnimScreen[2]->open(0.0f);
@@ -348,8 +348,8 @@ void TSaveMenu::startMsgState_(enumMsgState state)
 		case MESSAGE_NoSaveOption:
 			mAnimScreen[0]->close();
 			mAnimScreen[1]->close();
-			mCursor1.fade();
-			mCursor2.fade();
+			mCursor1.mCursor.fade();
+			mCursor2.mCursor.fade();
 			break;
 		case MESSAGE_Saving:
 		case MESSAGE_SaveSuccess:
@@ -429,8 +429,8 @@ void TSaveMenu::updateMsg_()
 		} else if (mController->mButton.mButtonDown & Controller::PRESS_B) {
 			mSelectState = 2;
 			mPressedA    = true;
-			mCursor1.kill();
-			mCursor2.kill();
+			mCursor1.mCursor.kill();
+			mCursor2.mCursor.kill();
 			startMsgState_(MSG_Close);
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 		} else

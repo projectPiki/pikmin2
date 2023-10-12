@@ -769,8 +769,8 @@ void TMgr::showInfo()
  */
 int TMgr::getStateID()
 {
-	P2ASSERTLINE(824, mCurrState);
-	return mCurrState->mId;
+	P2ASSERTLINE(824, mCurrentState);
+	return mCurrentState->mId;
 }
 
 } // namespace Save

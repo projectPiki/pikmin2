@@ -326,8 +326,8 @@ bool TOmakeGame::doUpdateStateWait()
 			mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
 			mCursor.mPane = mPaneGameSel[mSelection];
 
-			mBlinkFont[oldsel]._48 = false;
-			mBlinkFont[oldsel]._49 = true;
+			mBlinkFont[oldsel].mIsTowardColor1 = false;
+			mBlinkFont[oldsel]._49             = true;
 
 			mBlinkFont[mSelection].enable();
 			openMsg(GameDesc);

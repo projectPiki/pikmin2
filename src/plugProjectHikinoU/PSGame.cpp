@@ -5369,7 +5369,7 @@ void PSPlayerChangeToOrimer()
 {
 	PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 	if (bgm) {
-		bgm->assertLoaded();
+		// bgm->assertLoaded();
 		bgm->mRootTrack->mSwingState = 0;
 	}
 }
@@ -5405,7 +5405,7 @@ void PSPlayerChangeToLugie()
 {
 	PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
 	if (bgm) {
-		bgm->assertLoaded();
+		// bgm->assertLoaded();
 		bgm->mRootTrack->mSwingState = 1;
 	}
 }

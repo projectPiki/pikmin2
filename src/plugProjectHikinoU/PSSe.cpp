@@ -12,8 +12,8 @@ namespace PSGame {
  * Size:	000210
  */
 SeMgr::SeMgr()
-    : PSSystem::SingletonBase<SeMgr>(this)
-    , mRandid()
+    // : PSSystem::SingletonBase<SeMgr>(this)
+    : mRandid()
     , mSound(nullptr)
 {
 	for (int i = 0; i < 8; i++) {

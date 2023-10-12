@@ -5,7 +5,8 @@
 
 namespace PSM {
 struct SceneMgr;
-}
+struct SeSound;
+} // namespace PSM
 
 namespace PSGame {
 struct SysFactory {

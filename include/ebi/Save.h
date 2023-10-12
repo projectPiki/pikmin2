@@ -199,6 +199,8 @@ struct FSMState_MountCheck : public FSMState_CardRequest {
 };
 
 struct TMgr : public JKRDisposer {
+	typedef FSMState StateType;
+
 	enum enumEnd { End_0 = 0, End_1 = 1, End_2 = 2, End_3 = 3, End_4 = 4 };
 
 	TMgr();
@@ -250,7 +252,7 @@ struct TMgr : public JKRDisposer {
 	u8 _47A;                                          // _47A
 	bool mDVDErrorSuspended;                          // _47B
 	FSMStateMachine mStateMachine;                    // _47C
-	FSMState* mCurrState;                             // _498
+	FSMState* mCurrentState;                          // _498
 };
 } // namespace Save
 } // namespace ebi

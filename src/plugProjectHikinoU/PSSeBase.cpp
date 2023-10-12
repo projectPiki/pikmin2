@@ -268,7 +268,7 @@ lbl_80340D88:
  * Address:	80340D94
  * Size:	00000C
  */
-void EnvSeMgr::reservePauseOff() { mReservator._04 = 31; }
+void EnvSeMgr::reservePauseOff() { mReservator.mState = 31; }
 
 /*
  * --INFO--
@@ -292,8 +292,8 @@ void EnvSeMgr::setVolumeRequest(f32 p1, u32 p2, u8 p3)
  */
 void EnvSeMgr::exec()
 {
-	if (mReservator._04) {
-		if (mReservator._04-- == 1) {
+	if (mReservator.mState) {
+		if (mReservator.mState-- == 1) {
 			mReservator.reservatorTask();
 		}
 	}
