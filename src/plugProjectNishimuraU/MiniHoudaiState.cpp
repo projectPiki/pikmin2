@@ -153,7 +153,7 @@ void StateRebirth::exec(EnemyBase* enemy)
 				return;
 			}
 
-			Vector3f pathPos = mini->_2E4;
+			Vector3f pathPos = mini->mWalkTargetPosition;
 			Vector3f pos     = mini->getPosition();
 
 			f32 angle = angXZ(pathPos.x, pathPos.z, pos);
@@ -506,7 +506,7 @@ void StateLost::exec(EnemyBase* enemy)
 		}
 
 		if (homeDist < SQUARE(CG_PARMS(mini)->mGeneral.mHomeRadius.mValue)) {
-			Vector3f pathPos = mini->_2E4;
+			Vector3f pathPos = mini->mWalkTargetPosition;
 			Vector3f pos     = mini->getPosition();
 
 			f32 angle = angXZ(pathPos.x, pathPos.z, pos);

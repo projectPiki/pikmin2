@@ -45,38 +45,38 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                            // _30
-	virtual void onKill(CreatureKillArg* settings);                            // _34
-	virtual void doDirectDraw(Graphics& gfx);                                  // _50
-	virtual void getShadowParam(ShadowParam& settings);                        // _134
-	virtual ~Obj() { }                                                         // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
-	virtual void doUpdate();                                                   // _1CC
-	virtual void doUpdateCommon();                                             // _1D0
-	virtual void doUpdateCarcass();                                            // _1D4
-	virtual void doAnimationCullingOff();                                      // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
-	virtual void initWalkSmokeEffect();                                        // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                     // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                        // _258 (weak)
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                         // _260
-	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
-	virtual void doStartStoneState();                                          // _2A4
-	virtual void doFinishStoneState();                                         // _2A8
-	virtual void doStartEarthquakeFitState();                                  // _2B8
-	virtual void doFinishEarthquakeFitState();                                 // _2BC
-	virtual void startCarcassMotion();                                         // _2C4
-	virtual bool doBecomeCarcass();                                            // _2D0
-	virtual void doStartWaitingBirthTypeDrop();                                // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();                               // _2E4
-	virtual f32 getDownSmokeScale();                                           // _2EC (weak)
-	virtual void doStartMovie();                                               // _2F0
-	virtual void doEndMovie();                                                 // _2F4
-	virtual void setFSM(FSM* fsm);                                             // _2F8
+	virtual void onInit(CreatureInitArg* settings);                                                // _30
+	virtual void onKill(CreatureKillArg* settings);                                                // _34
+	virtual void doDirectDraw(Graphics& gfx);                                                      // _50
+	virtual void getShadowParam(ShadowParam& settings);                                            // _134
+	virtual ~Obj() { }                                                                             // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params);                                 // _1C4
+	virtual void doUpdate();                                                                       // _1CC
+	virtual void doUpdateCommon();                                                                 // _1D0
+	virtual void doUpdateCarcass();                                                                // _1D4
+	virtual void doAnimationCullingOff();                                                          // _1DC
+	virtual void doDebugDraw(Graphics& gfx);                                                       // _1EC
+	virtual void initWalkSmokeEffect();                                                            // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                                         // _234
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_MiniHoudai; } // _258 (weak)
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                                             // _260
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);                     // _278
+	virtual void doStartStoneState();                                                              // _2A4
+	virtual void doFinishStoneState();                                                             // _2A8
+	virtual void doStartEarthquakeFitState();                                                      // _2B8
+	virtual void doFinishEarthquakeFitState();                                                     // _2BC
+	virtual void startCarcassMotion();                                                             // _2C4
+	virtual bool doBecomeCarcass();                                                                // _2D0
+	virtual void doStartWaitingBirthTypeDrop();                                                    // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();                                                   // _2E4
+	virtual f32 getDownSmokeScale() { return 0.9f; }                                               // _2EC (weak)
+	virtual void doStartMovie();                                                                   // _2F0
+	virtual void doEndMovie();                                                                     // _2F4
+	virtual void setFSM(FSM* fsm);                                                                 // _2F8
 	////////// VTABLE END
 
 	void updateCaution();
-	void getViewAngle();
+	f32 getViewAngle();
 	void resetWayPoint();
 	void setNearestWayPoint();
 	void setLinkWayPoint();
@@ -111,6 +111,7 @@ struct Obj : public EnemyBase {
 	void effectDrawOff();
 
 	void shotGunDoDebugDraw(Graphics&);
+	void setShotGunTarget(Vector3f&);
 
 	// _00 		= VTBL
 	// _00-_2B8	= EnemyBase
@@ -121,7 +122,7 @@ struct Obj : public EnemyBase {
 	f32 _2D0;                            // _2D0
 	StateID mNextState;                  // _2D4
 	Vector3f mTargetPosition;            // _2D8
-	Vector3f _2E4;                       // _2E4, shotgun target distance maybe?
+	Vector3f mWalkTargetPosition;        // _2E4, next point to walk to, either waypoint or home position
 	WayPoint* _2F0;                      // _2F0
 	WayPoint* _2F4;                      // _2F4
 	MiniHoudaiShotGunMgr* mShotgunMgr;   // _2F8
@@ -189,9 +190,9 @@ struct ProperAnimator : public EnemyAnimatorBase {
 struct MiniHoudaiShotGunNode : public CNode {
 	MiniHoudaiShotGunNode(Obj*);
 
-	virtual ~MiniHoudaiShotGunNode(); // _08 (weak)
+	virtual ~MiniHoudaiShotGunNode() { } // _08 (weak)
 
-	void update();
+	bool update();
 	void create();
 	void setPosition(Vector3f&);
 	void setVelocity(Vector3f&);
@@ -226,15 +227,19 @@ struct MiniHoudaiShotGunMgr {
 	void doUpdateCommon();
 	void forceFinishShotGun();
 	Vector3f getShotGunPosition();
-	void searchShotGunRotation();
-	void returnShotGunRotation();
+	bool searchShotGunRotation();
+	bool returnShotGunRotation();
 	void rotateVertical(J3DJoint*);
 	void effectDrawOn();
 	void effectDrawOff();
 	void doDebugDraw(Graphics&);
 
 	Obj* mOwner;                // _00
-	u8 _04[0xC];                // _04, unknown
+	bool mIsShotGunRotation;    // _04
+	bool mIsShotGunLockedOn;    // _05
+	bool mIsShotGunFinished;    // _06
+	f32 _08;                    // _08
+	f32 _0C;                    // _0C
 	Matrixf* _10;               // _10
 	Vector3f mTargetPosition;   // _14
 	u8 _20[0xC];                // _20, unknown

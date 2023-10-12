@@ -8,25 +8,45 @@
 
 namespace efx {
 struct TChibiCharge : public TChaseMtx {
-	virtual ~TChibiCharge(); // _48 (weak)
+	TChibiCharge()
+	    : TChaseMtx(PID_ChibiCharge, nullptr)
+	{
+	}
+
+	virtual ~TChibiCharge() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
 };
 
 struct TChibiDeadLight : public TChaseMtx {
-	virtual ~TChibiDeadLight(); // _48 (weak)
+	TChibiDeadLight()
+	    : TChaseMtx(PID_ChibiDeadLight, nullptr)
+	{
+	}
+
+	virtual ~TChibiDeadLight() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
 };
 
 struct TChibiDeadMouth : public TSimpleMtx1 {
+	inline TChibiDeadMouth(Matrixf* mat)
+	    : TSimpleMtx1(mat, PID_ChibiDeadMouth)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_10  = TSimpleMtx1
 };
 
 struct TChibiDeadSe : public TSimpleMtx2 {
+	inline TChibiDeadSe(Matrixf* mat)
+	    : TSimpleMtx2(mat, PID_ChibiDeadSe_1, PID_ChibiDeadSe_2)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_14  = TSimpleMtx2
 };
@@ -39,23 +59,43 @@ struct TChibiHit : public TSimple4 {
 };
 
 struct TChibiShell : public TChasePos {
-	virtual ~TChibiShell(); // _48 (weak)
+	TChibiShell()
+	    : TChasePos(PID_ChibiShell)
+	{
+	}
+
+	virtual ~TChibiShell() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos
 };
 
 struct TChibiShoot : public TSimpleMtx3 {
+	inline TChibiShoot(Matrixf* mat)
+	    : TSimpleMtx3(mat, PID_ChibiShoot_1, PID_ChibiShoot_2, PID_ChibiShoot_3)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_1C  = TSimpleMtx3
 };
 
 struct TChibiSmokeL : public TSimpleMtx1 {
+	inline TChibiSmokeL(Matrixf* mat)
+	    : TSimpleMtx1(mat, PID_ChibiSmokeL)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_10  = TSimpleMtx1
 };
 
 struct TChibiSmokeS : public TSimpleMtx1 {
+	inline TChibiSmokeS(Matrixf* mat)
+	    : TSimpleMtx1(mat, PID_ChibiSmokeS)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_10  = TSimpleMtx1
 };
