@@ -1388,7 +1388,7 @@ LIBS = [
             ["plugProjectMorimuraU/bombState", True],
             ["plugProjectMorimuraU/bombAnimator", True],
             ["plugProjectMorimuraU/bombMgr", True],
-            "plugProjectMorimuraU/bomb",
+            ["plugProjectMorimuraU/bomb", True],
             ["plugProjectMorimuraU/eggState", True],
             ["plugProjectMorimuraU/eggAnimator", True],
             ["plugProjectMorimuraU/eggMgr", True],

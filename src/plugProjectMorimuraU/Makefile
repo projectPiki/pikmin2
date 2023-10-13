@@ -6,7 +6,7 @@ MORIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/bombState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/bombAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/bombMgr.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/bomb.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/bomb.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/eggState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/eggAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/eggMgr.o\
