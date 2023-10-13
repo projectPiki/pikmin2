@@ -177,11 +177,7 @@ bool Obj::isAttackStart()
 	f32 contAtkAngle = PI * (DEG2RAD * (C_PROPERPARMS.mFp03.mValue));
 
 	if (mTargetCreature) {
-		Vector3f targetPos = mTargetCreature->getPosition();
-		Vector3f pos       = getPosition();
-
-		f32 angleDist = angDist(angXZ(targetPos.x, targetPos.z, pos), getFaceDir());
-		if (FABS(angleDist) <= contAtkAngle) {
+		if (FABS(getAngDist(mTargetCreature)) <= contAtkAngle) {
 			Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
 			Vector3f targetPos = Vector3f(mTargetCreature->getPosition().x, 0.0f, mTargetCreature->getPosition().z);
 
@@ -197,17 +193,9 @@ bool Obj::isAttackStart()
 	CI_LOOP(iter)
 	{
 		Piki* piki = *iter;
-		bool check = false;
-		if (piki->isPikmin() && piki->isAlive() && !piki->isStickToMouth()) {
-			check = true;
-		}
 
-		if (check) {
-			Vector3f pikiPos = piki->getPosition();
-			Vector3f pos     = getPosition();
-
-			f32 angleDist = angDist(angXZ(pikiPos.x, pikiPos.z, pos), getFaceDir());
-			if (FABS(angleDist) <= contAtkAngle) {
+		if (piki->isSearchable()) {
+			if (FABS(getAngDist(piki)) <= contAtkAngle) {
 				Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
 				Vector3f targetPos = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
 
@@ -614,17 +602,13 @@ bool Obj::isFindTarget()
 	CI_LOOP(iter)
 	{
 		Piki* piki = *iter;
-		bool check = false;
-		if (piki->isPikmin() && piki->isAlive() && !piki->isStickToMouth()) {
-			check = true;
-		}
 
-		if (check && !piki->isStickTo()) {
-			Vector3f pikiPos = piki->getPosition();
-			Vector3f pos     = getPosition();
+		if (piki->isSearchable() && !piki->isStickTo()) {
+			// Vector3f pikiPos = piki->getPosition();
+			// Vector3f pos     = getPosition();
 
-			f32 angleDist = angDist(angXZ(pikiPos.x, pikiPos.z, pos), getFaceDir());
-			if (FABS(angleDist) <= searchAngle) {
+			// f32 angleDist = angDist(angXZ(pikiPos.x, pikiPos.z, pos), getFaceDir());
+			if (FABS(getAngDist(piki)) <= searchAngle) {
 				Vector3f pos       = Vector3f(mPosition.x, 0.0f, mPosition.z);
 				Vector3f targetPos = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
 
@@ -1057,28 +1041,16 @@ void Obj::walkFunc()
 	f32 dashSpeedMultiplier = 1.0f;
 	f32 dashAnimScale       = 1.0f;
 
-	if (mTargetCreature) {
-		Vector3f targetPos = mTargetCreature->getPosition();
-		Vector3f pos       = getPosition();
-
-		f32 angleDist = angDist(angXZ(targetPos.x, targetPos.z, pos), getFaceDir());
-
-		if (FABS(angleDist) < PI * (DEG2RAD * C_PROPERPARMS.mFp07.mValue)) {
-			dashSpeedMultiplier = C_PROPERPARMS.mFp04.mValue;
-			dashAnimScale       = C_PROPERPARMS.mFp05.mValue;
-			setEmotionExcitement();
-		}
+	if (mTargetCreature && FABS(getAngDist(mTargetCreature)) < PI * (DEG2RAD * C_PROPERPARMS.mFp07.mValue)) {
+		dashSpeedMultiplier = C_PROPERPARMS.mFp04.mValue;
+		dashAnimScale       = C_PROPERPARMS.mFp05.mValue;
+		setEmotionExcitement();
 	} else {
 		setEmotionCaution();
 	}
 
-	f32 dashSpeed = dashSpeedMultiplier * C_PARMS->mGeneral.mMoveSpeed.mValue;
+	setTargetVelocity(dashSpeedMultiplier);
 
-	f32 x = (f32)sin(getFaceDir());
-	f32 y = getTargetVelocity().y;
-	f32 z = (f32)cos(getFaceDir());
-
-	mTargetVelocity = Vector3f(dashSpeed * x, y, dashSpeed * z);
 	setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * dashAnimScale);
 
 	_2E0++;
@@ -1274,127 +1246,9 @@ f32 Obj::turnFunc(f32 factor)
 		targetPos = mTargetCreature->getPosition();
 	}
 
-	f32 turnSpeed  = factor * C_PARMS->mGeneral.mRotationalSpeed.mValue;
-	f32 turnFactor = factor * C_PARMS->mGeneral.mRotationalAccel.mValue;
-
-	Vector3f pos = getPosition();
-
-	f32 angleDist = angDist(_angXZ(targetPos.x, targetPos.z, pos.x, pos.z), getFaceDir());
-
-	f32 turnDist  = angleDist * turnFactor;
-	f32 turnLimit = PI * (DEG2RAD * turnSpeed);
-
-	if (FABS(turnDist) > turnLimit) {
-		turnDist = (turnDist > 0.0f) ? turnLimit : -turnLimit;
-	}
-
-	mFaceDir    = roundAng(turnDist + getFaceDir());
-	mRotation.y = mFaceDir;
+	f32 angleDist = turnToTarget2(targetPos, factor * C_PARMS->mGeneral.mRotationalAccel(), factor * C_PARMS->mGeneral.mRotationalSpeed());
 
 	return FABS(angleDist);
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stfd     f28, 0x30(r1)
-	psq_st   f28, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	fmr      f30, f1
-	lwz      r4, 0x230(r3)
-	lfs      f31, 0x2bc(r3)
-	cmplwi   r4, 0
-	lfs      f28, 0x2c4(r3)
-	beq      lbl_803657E4
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0x14
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 0x14(r1)
-	lfs      f28, 0x1c(r1)
-
-lbl_803657E4:
-	lwz      r5, 0xc0(r31)
-	mr       r4, r31
-	lwz      r12, 0(r31)
-	addi     r3, r1, 8
-	lfs      f1, 0x334(r5)
-	lfs      f0, 0x30c(r5)
-	lwz      r12, 8(r12)
-	fmuls    f29, f30, f1
-	fmuls    f30, f30, f0
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x10(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	fsubs    f1, f31, f1
-	fsubs    f2, f28, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	fmr      f31, f1
-	lfs      f0, lbl_8051E830@sda21(r2)
-	lfs      f1, lbl_8051E82C@sda21(r2)
-	fmuls    f0, f0, f29
-	fmuls    f29, f31, f30
-	fmuls    f1, f1, f0
-	fabs     f0, f29
-	frsp     f0, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80365894
-	lfs      f0, lbl_8051E818@sda21(r2)
-	fcmpo    cr0, f29, f0
-	ble      lbl_80365890
-	fmr      f29, f1
-	b        lbl_80365894
-
-lbl_80365890:
-	fneg     f29, f1
-
-lbl_80365894:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f29, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	fabs     f1, f31
-	lfs      f0, 0x1fc(r31)
-	frsp     f1, f1
-	stfs     f0, 0x1a8(r31)
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	psq_l    f28, 56(r1), 0, qr0
-	lfd      f28, 0x30(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -1415,6 +1269,14 @@ bool Obj::isReachToGoal(f32 radius)
 	return false;
 }
 
+// sigh
+static void fixData(f32& p1, f32& p2, f32& p3)
+{
+	p1 = RAND_MAX;
+	p2 = -325.9493f;
+	p3 = 325.9493f;
+}
+
 /*
  * --INFO--
  * Address:	80365948
@@ -1430,111 +1292,9 @@ void Obj::setNextGoal()
 	f32 radius    = C_PARMS->mGeneral.mTerritoryRadius.mValue;
 	mGoalPosition = mHomePosition;
 
-	// this TAU needs to load in after the consts in the sin/cos functions ._.
-	// some vector-generating inline maybe? who knows.
 	f32 angle = TAU * randFloat();
-
 	mGoalPosition.x += radius * pikmin2_sinf(angle);
 	mGoalPosition.z += radius * pikmin2_cosf(angle);
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lbz      r0, 0x2e4(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036598C
-	lfs      f0, 0x198(r31)
-	stfs     f0, 0x2bc(r31)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x2c4(r31)
-	b        lbl_80365A88
-
-lbl_8036598C:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x198(r31)
-	lfs      f31, 0x35c(r3)
-	stfs     f0, 0x2bc(r31)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x2c4(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051E858@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_8051E844@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051E850@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051E818@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f3, f1, f2
-	fcmpo    cr0, f3, f0
-	bge      lbl_80365A14
-	lfs      f0, lbl_8051E848@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f2, f0
-	b        lbl_80365A38
-
-lbl_80365A14:
-	lfs      f0, lbl_8051E84C@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r3, r0
-
-lbl_80365A38:
-	lfs      f1, 0x2bc(r31)
-	lfs      f0, lbl_8051E818@sda21(r2)
-	fmadds   f1, f31, f2, f1
-	fcmpo    cr0, f3, f0
-	stfs     f1, 0x2bc(r31)
-	bge      lbl_80365A54
-	fneg     f3, f3
-
-lbl_80365A54:
-	lfs      f1, lbl_8051E84C@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	lfs      f0, 0x2c4(r31)
-	fmuls    f1, f3, f1
-	fctiwz   f1, f1
-	stfd     f1, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	fmadds   f0, f31, f1, f0
-	stfs     f0, 0x2c4(r31)
-
-lbl_80365A88:
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*

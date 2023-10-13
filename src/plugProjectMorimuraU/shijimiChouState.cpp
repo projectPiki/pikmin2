@@ -126,9 +126,9 @@ void StateFly::exec(EnemyBase* enemy)
 		mFlyTimer++;
 	}
 
-	f32 flyMax = CG_PROPERPARMS(OBJ(enemy)).mFp01.mValue;
+	f32 flyMax = CG_PROPERPARMS(OBJ(enemy)).mMaxFlyTime.mValue;
 	if (OBJ(enemy)->mSpawnSource == SHIJIMISOURCE_Plants) {
-		flyMax = CG_PROPERPARMS(OBJ(enemy)).mFp08.mValue;
+		flyMax = CG_PROPERPARMS(OBJ(enemy)).mMaxFlyTimePlant.mValue;
 	}
 	if (OBJ(enemy)->mSpawnSource == SHIJIMISOURCE_Enemy) {
 		flyMax = 60.0f;
@@ -162,14 +162,14 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->hardConstraintOff();
 	enemy->disableEvent(0, EB_Untargetable);
 
-	if (CG_PARMS(OBJ(enemy))->_94C) {
+	if (CG_PARMS(OBJ(enemy))->mCanFall) {
 		f32 x = enemy->getTargetVelocity().x;
 		f32 y = -20.0f;
 		f32 z = enemy->getTargetVelocity().z;
 		enemy->setTargetVelocity(Vector3f(x, y, z));
 	}
 
-	OBJ(enemy)->_2CC = enemy->getPosition();
+	OBJ(enemy)->mFallStartPosition = enemy->getPosition();
 	enemy->mSoundObj->startSound(PSSE_EN_BUTTERFLY_HIT, 0);
 	mFallTimer = 0;
 }
@@ -181,7 +181,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (CG_PARMS(OBJ(enemy))->_94C) {
+	if (CG_PARMS(OBJ(enemy))->mCanFall) {
 		OBJ(enemy)->fallBehavior();
 	}
 
@@ -287,12 +287,12 @@ StateRest::StateRest(int stateID)
  */
 void StateRest::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	_1C = true;
-	_10 = 0;
-	_18 = 30.0f + 100.0f * randFloat();
-	_1D = false;
-	_14 = 0;
-	_1E = false;
+	_1C        = true;
+	mRestTimer = 0;
+	_18        = 30.0f + 100.0f * randFloat();
+	_1D        = false;
+	_14        = 0;
+	_1E        = false;
 
 	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
 		enemy->disableEvent(0, EB_Cullable);
@@ -312,7 +312,7 @@ void StateRest::exec(EnemyBase* enemy)
 		}
 	}
 
-	_10++;
+	mRestTimer++;
 
 	if (_1D) {
 		_14 = 0;
@@ -321,10 +321,10 @@ void StateRest::exec(EnemyBase* enemy)
 		}
 
 		if (_1C) {
-			_10 = 0;
-			_18 = 50.0f * randFloat() + 50.0f;
-			_1C = false;
-			_1E = false;
+			mRestTimer = 0;
+			_18        = 50.0f * randFloat() + 50.0f;
+			_1C        = false;
+			_1E        = false;
 			enemy->finishMotion();
 
 		} else if (enemy->isFinishMotion() && enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
@@ -334,8 +334,8 @@ void StateRest::exec(EnemyBase* enemy)
 
 		OBJ(enemy)->resetRestPos();
 
-		if (_10 >= _18) {
-			if (_10 == _18) {
+		if (mRestTimer >= _18) {
+			if (mRestTimer == _18) {
 				enemy->startMotion(2, nullptr);
 				_1E = false;
 			}
@@ -355,17 +355,17 @@ void StateRest::exec(EnemyBase* enemy)
 				landPos.y += (chouPos.y - landPos.y);
 				landPos.z += (chouPos.z - landPos.z);
 
-				OBJ(enemy)->_304 = landPos;
+				OBJ(enemy)->mGoalPosition = landPos;
 
-				_10 = 0;
-				_18 = 600.0f + 400.0f * randFloat();
+				mRestTimer = 0;
+				_18        = 600.0f + 400.0f * randFloat();
 				enemy->startMotion(2, nullptr);
 			}
 		}
 
 	} else {
-		if (_10 > _18) {
-			OBJ(enemy)->_304 = Vector3f(OBJ(enemy)->mSpawningEnemy->getPosition());
+		if (mRestTimer > _18) {
+			OBJ(enemy)->mGoalPosition = Vector3f(OBJ(enemy)->mSpawningEnemy->getPosition());
 		}
 
 		_14++;

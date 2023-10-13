@@ -86,10 +86,17 @@ struct ArgScale : public Arg {
 	f32 mScale; // _10
 };
 
+enum ChouType {
+	CHOU_Yellow = 0,
+	CHOU_Red    = 1,
+	CHOU_Purple = 2,
+};
+
 struct ArgChou : public Arg {
-	ArgChou(Vector3f position)
-	    : Arg(position)
+	ArgChou()
+	    : Arg()
 	{
+		mType = CHOU_Yellow;
 	}
 
 	virtual const char* getName() // _08 (weak)
@@ -97,7 +104,7 @@ struct ArgChou : public Arg {
 		return "ArgChou";
 	}
 
-	int mType; // _10
+	ChouType mType; // _10
 };
 
 struct ArgCursor : public Arg {

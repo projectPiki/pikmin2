@@ -698,6 +698,19 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline Vector3f getTargetVelocity() { return mTargetVelocity; }
 	inline void setTargetVelocity(const Vector3f& ref) { mTargetVelocity = ref; }
 
+	inline f32 getMoveSpeed(f32 speedFactor) { return speedFactor * static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed(); }
+
+	inline void setTargetVelocity(f32 speedFactor)
+	{
+		f32 x, y, z;
+		f32 speed = getMoveSpeed(speedFactor);
+		x         = (f32)sin(getFaceDir());
+		y         = getTargetVelocity().y;
+		z         = (f32)cos(getFaceDir());
+
+		mTargetVelocity = Vector3f(speed * x, y, speed * z);
+	}
+
 	inline bool isLongLegs()
 	{
 		return getEnemyTypeID() == EnemyTypeID::EnemyID_Damagumo || getEnemyTypeID() == EnemyTypeID::EnemyID_BigFoot

@@ -38,41 +38,73 @@ enum SpectralidSpawnSource {
 	SHIJIMISOURCE_Enemy         = 3,
 };
 
-struct FSM;
+enum StateID {
+	SHIJIMICHOU_Wait  = 0,
+	SHIJIMICHOU_Fly   = 1,
+	SHIJIMICHOU_Fall  = 2,
+	SHIJIMICHOU_Dead  = 3,
+	SHIJIMICHOU_Leave = 4,
+	SHIJIMICHOU_Rest  = 5,
+	SHIJIMICHOU_StateCount,
+};
+
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
 
 struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                             // _30
-	virtual void onKill(CreatureKillArg* settings);                             // _34
-	virtual void doAnimation();                                                 // _3C
-	virtual void doEntry();                                                     // _40
-	virtual void doSimulation(f32);                                             // _4C
-	virtual void doDirectDraw(Graphics& gfx);                                   // _50
-	virtual void collisionCallback(CollEvent& event);                           // _EC
-	virtual void getShadowParam(ShadowParam& settings);                         // _134
-	virtual bool ignoreAtari(Creature* toIgnore);                               // _190 (weak)
-	virtual ~Obj() { }                                                          // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                                         // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase* params);              // _1C4 (weak)
-	virtual void doUpdate();                                                    // _1CC
-	virtual void doAnimationCullingOff();                                       // _1DC
-	virtual void doAnimationCullingOn();                                        // _1E0
-	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
-	virtual void changeMaterial();                                              // _200
-	virtual void setParameters();                                               // _228
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                         // _258 (weak)
-	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C (weak)
-	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284 (weak)
-	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);        // _28C (weak)
-	virtual void doStartStoneState();                                           // _2A4
-	virtual void startCarcassMotion();                                          // _2C4
-	virtual void wallCallback(const MoveInfo& info);                            // _2E8
-	virtual void doStartMovie();                                                // _2F0
-	virtual void doEndMovie();                                                  // _2F4
-	virtual void setFSM(FSM* fsm);                                              // _2F8 (weak)
+	virtual void onInit(CreatureInitArg* settings);                            // _30
+	virtual void onKill(CreatureKillArg* settings);                            // _34
+	virtual void doAnimation();                                                // _3C
+	virtual void doEntry();                                                    // _40
+	virtual void doSimulation(f32);                                            // _4C
+	virtual void doDirectDraw(Graphics& gfx);                                  // _50
+	virtual void collisionCallback(CollEvent& event);                          // _EC
+	virtual void getShadowParam(ShadowParam& settings);                        // _134
+	virtual ~Obj() { }                                                         // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                        // _1C0
+	virtual void doUpdate();                                                   // _1CC
+	virtual void doAnimationCullingOff();                                      // _1DC
+	virtual void doAnimationCullingOn();                                       // _1E0
+	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
+	virtual void changeMaterial();                                             // _200
+	virtual void setParameters();                                              // _228
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
+	virtual void doStartStoneState();                                          // _2A4
+	virtual void startCarcassMotion();                                         // _2C4
+	virtual void wallCallback(const MoveInfo& info);                           // _2E8
+	virtual void doStartMovie();                                               // _2F0
+	virtual void doEndMovie();                                                 // _2F4
+	virtual void setFSM(FSM* fsm)                                              // _2F8 (weak)
+	{
+		mFsm = fsm;
+		mFsm->init(this);
+		mCurrentLifecycleState = nullptr;
+	}
+	virtual void setInitialSetting(EnemyInitialParamBase* params) { } // _1C4 (weak)
+	virtual bool ignoreAtari(Creature* toIgnore)                      // _190 (weak)
+	{
+		if (getStateID() == SHIJIMICHOU_Rest) {
+			return false;
+		}
+
+		// these brackets are in the wrong spot morimura.
+		if ((toIgnore && toIgnore->isTeki()) || toIgnore->isNavi()) {
+			return true;
+		}
+
+		return false;
+	}
+	virtual bool pressCallBack(Creature*, f32, CollPart*) { return false; }                         // _27C (weak)
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part) { return false; }    // _284 (weak)
+	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor) { return false; }           // _28C (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_ShijimiChou; } // _258 (weak)
 	//////////////// VTABLE END
 
 	void genItem();
@@ -91,7 +123,7 @@ struct Obj : public EnemyBase {
 	void deadEffect();
 	void fallBehavior();
 	void updateCluster();
-	u32 getFlyType();
+	int getFlyType();
 	void leaderInit();
 	void createAppearEffect();
 	void fadeAppearEffect();
@@ -102,24 +134,24 @@ struct Obj : public EnemyBase {
 	SpectralidSpawnSource mSpawnSource; // _2C0
 	int mFlyTime;                       // _2C4
 	EnemyBase* mSpawningEnemy;          // _2C8
-	Vector3f _2CC;                      // _2CC
+	Vector3f mFallStartPosition;        // _2CC
 	FSM* mFsm;                          // _2D8
 	UpdateContext mUpdateContext;       // _2DC
 	Obj* mGroupLeader;                  // _2E8
-	u8 _2EC[0x4];                       // _2EC, unknown
-	f32 _2F0;                           // _2F0
-	f32 _2F4;                           // _2F4
-	f32 _2F8;                           // _2F8
-	u8 _2FC[0x8];                       // _2FC, unknown
-	Vector3f _304;                      // _304
-	Sys::Sphere _310;                   // _310
-	u8 _320;                            // _320
-	u8 _321;                            // _321
-	u8 _322[0x2];                       // _322, unknown/padding maybe
-	u8 _324[0x4];                       // _324, unknown
+	J3DMaterial* mMaterial;             // _2EC
+	f32 mPitchRate;                     // _2F0
+	f32 mPitchAmp;                      // _2F4
+	f32 mYawRate;                       // _2F8
+	f32 mTargetFaceDir;                 // _2FC
+	f32 mMapMinY;                       // _300, height of surface that spec is flying above
+	Vector3f mGoalPosition;             // _304
+	Sys::Sphere mRestEnemyCollSphere;   // _310
+	bool mIsStuckToPiki;                // _320
+	bool mIsFallVertical;               // _321
+	f32 mFallDir;                       // _324
 	int mGroupCount;                    // _328
-	u32 mFlyType;                       // _32C
-	u8 _330[0x4];                       // _330, unknown
+	int mFlyType;                       // _32C
+	f32 mZukanGoalHeight;               // _330, goal height post-bitter in piklopedia
 	efx::TChouDown* mEfxDown;           // _334
 	PSM::Cluster* mSoundCluster;        // _338
 	                                    // _33C = PelletView
@@ -184,44 +216,44 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "飛行期間", 300.0f, 0.0f, 1000.0f)               // 'flight duration'
-		    , mFp08(this, 'fp08', "プランツからの飛行期間", 100.0f, 0.0f, 1000.0f) // 'flight duration from plants'
-		    , mFp02(this, 'fp02', "蜜レート", 1.0f, 0.0f, 1.0f)                    // 'honey rate'
-		    , mFp03(this, 'fp03', "飛行高さ", 100.0f, 0.0f, 200.0f)                // 'flight height'
-		    , mFp04(this, 'fp04', "飛行レート", 0.05f, 0.0f, 1.0f)                 // 'flight rate'
-		    , mFp05(this, 'fp05', "飛行高低", 1.0f, 0.0f, 10.0f)                   // 'flight altitude'
-		    , mFp06(this, 'fp06', "赤蝶率", 0.1f, 0.0f, 1.0f)                      // 'red butterfly rate
-		    , mFp07(this, 'fp07', "黒蝶率", 0.1f, 0.0f, 1.0f)                      // 'black butterfly rate'
+		    , mMaxFlyTime(this, 'fp01', "飛行期間", 300.0f, 0.0f, 1000.0f)                    // 'flight duration'
+		    , mMaxFlyTimePlant(this, 'fp08', "プランツからの飛行期間", 100.0f, 0.0f, 1000.0f) // 'flight duration from plants'
+		    , mNectarRate(this, 'fp02', "蜜レート", 1.0f, 0.0f, 1.0f)                         // 'honey rate'
+		    , mFlightHeight(this, 'fp03', "飛行高さ", 100.0f, 0.0f, 200.0f)                   // 'flight height'
+		    , mPitchRate(this, 'fp04', "飛行レート", 0.05f, 0.0f, 1.0f)                       // 'flight rate'
+		    , mPitchAmpRate(this, 'fp05', "飛行高低", 1.0f, 0.0f, 10.0f)                      // 'flight altitude'
+		    , mRedSpawnChance(this, 'fp06', "赤蝶率", 0.1f, 0.0f, 1.0f)                       // 'red butterfly rate
+		    , mPurpleSpawnChance(this, 'fp07', "黒蝶率", 0.1f, 0.0f, 1.0f)                    // 'black butterfly rate'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp08; // _82C
-		Parm<f32> mFp02; // _854
-		Parm<f32> mFp03; // _87C
-		Parm<f32> mFp04; // _8A4
-		Parm<f32> mFp05; // _8CC
-		Parm<f32> mFp06; // _8F4
-		Parm<f32> mFp07; // _91C
+		Parm<f32> mMaxFlyTime;        // _804, fp01
+		Parm<f32> mMaxFlyTimePlant;   // _82C, fp08
+		Parm<f32> mNectarRate;        // _854, fp02, drop rate for nectar or sprays
+		Parm<f32> mFlightHeight;      // _87C, fp03
+		Parm<f32> mPitchRate;         // _8A4, fp04
+		Parm<f32> mPitchAmpRate;      // _8CC, fp05
+		Parm<f32> mRedSpawnChance;    // _8F4, fp06
+		Parm<f32> mPurpleSpawnChance; // _91C, fp07
 	};
 
 	Parms()
 	{
-		mFlyType    = 0;
-		_949        = 0;
-		_94A        = 0;
-		mGroupCount = 25;
-		_94C        = 1;
-		_94D        = 0;
-		_950        = 4.0f;
-		_954        = 0.8f;
-		_958        = 20.0f;
-		_95C        = 0.4f;
-		_960        = 1.0f;
-		_964        = 1.0f;
-		_968        = 0.3f;
-		_96C        = 70.0f;
-		_970        = 5.0f;
+		mFlyType              = 0;
+		mDoUpdateAnimation    = false;
+		mDoManualFlight       = false;
+		mGroupCount           = 25;
+		mCanFall              = true;
+		mUseParmFlyType       = false;
+		mTraceGoalWeight      = 4.0f;
+		mLeaveInitSpeedFactor = 0.8f;
+		mRotateFaceDirFactor  = 20.0f;
+		mYawRate              = 0.4f;
+		mMaxScale             = 1.0f;
+		mMinScale             = 1.0f;
+		mFallRotateRate       = 0.3f;
+		mMaxFallSpeed         = 70.0f;
+		mHorizFallScatter     = 5.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -232,22 +264,22 @@ struct Parms : public EnemyParmsBase {
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms; // _7F8
-	u8 mFlyType;              // _948
-	u8 _949;                  // _949, unknown
-	u8 _94A;                  // _94A, unknown
-	u8 mGroupCount;           // _94B
-	u8 _94C;                  // _94C, unknown
-	u8 _94D;                  // _94D, unknown
-	f32 _950;                 // _950
-	f32 _954;                 // _954
-	f32 _958;                 // _958
-	f32 _95C;                 // _95C
-	f32 _960;                 // _960
-	f32 _964;                 // _964
-	f32 _968;                 // _968
-	f32 _96C;                 // _96C
-	f32 _970;                 // _970
+	ProperParms mProperParms;  // _7F8
+	u8 mFlyType;               // _948
+	bool mDoUpdateAnimation;   // _949
+	bool mDoManualFlight;      // _94A, use custom flight code (true) or EnemyFunc::walkToTarget (false)
+	u8 mGroupCount;            // _94B
+	bool mCanFall;             // _94C, do fall behavior
+	bool mUseParmFlyType;      // _94D, ignore obj fly type and use parm type instead
+	f32 mTraceGoalWeight;      // _950
+	f32 mLeaveInitSpeedFactor; // _954
+	f32 mRotateFaceDirFactor;  // _958
+	f32 mYawRate;              // _95C
+	f32 mMaxScale;             // _960
+	f32 mMinScale;             // _964
+	f32 mFallRotateRate;       // _968
+	f32 mMaxFallSpeed;         // _96C
+	f32 mHorizFallScatter;     // _970
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
@@ -263,23 +295,6 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-enum StateID {
-	SHIJIMICHOU_Wait  = 0,
-	SHIJIMICHOU_Fly   = 1,
-	SHIJIMICHOU_Fall  = 2,
-	SHIJIMICHOU_Dead  = 3,
-	SHIJIMICHOU_Leave = 4,
-	SHIJIMICHOU_Rest  = 5,
-	SHIJIMICHOU_StateCount,
-};
-
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
-
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
-};
-
 struct State : public EnemyFSMState {
 	inline State(int stateID)
 	    : EnemyFSMState(stateID)
@@ -340,12 +355,12 @@ struct StateRest : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10;  // _10
-	int _14;  // _14
-	int _18;  // _18
-	bool _1C; // _1C
-	bool _1D; // _1D
-	bool _1E; // _1E
+	int mRestTimer; // _10
+	int _14;        // _14
+	int _18;        // _18
+	bool _1C;       // _1C
+	bool _1D;       // _1D
+	bool _1E;       // _1E
 };
 
 struct StateWait : public State {

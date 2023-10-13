@@ -79,7 +79,7 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 	Obj* enemy = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
 	if (enemy) {
 		Obj* leader = static_cast<Obj*>(enemy);
-		birthArg.mPosition.y += CG_PROPERPARMS(leader).mFp03.mValue;
+		birthArg.mPosition.y += CG_PROPERPARMS(leader).mFlightHeight.mValue;
 
 		leader->mHomePosition = birthArg.mPosition;
 		leader->onSetPosition(birthArg.mPosition);
@@ -105,7 +105,7 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 void Mgr::doAnimation()
 {
 	EnemyMgrBase::doAnimation();
-	if (mGroupLeader && CG_PARMS(mGroupLeader)->_949) {
+	if (mGroupLeader && CG_PARMS(mGroupLeader)->mDoUpdateAnimation) {
 		mUpdateMgr->update();
 	}
 }
@@ -170,8 +170,8 @@ void Mgr::createGroup(Obj* leader, int count)
 		}
 		birthArg.mPosition.y += 50.0f * randFloat() - 25.0f;
 
-		f32 redCheck    = CG_PROPERPARMS(leader).mFp06.mValue;
-		f32 purpleCheck = redCheck + CG_PROPERPARMS(leader).mFp07.mValue;
+		f32 redCheck    = CG_PROPERPARMS(leader).mRedSpawnChance.mValue;
+		f32 purpleCheck = redCheck + CG_PROPERPARMS(leader).mPurpleSpawnChance.mValue;
 
 		EnemyBase* enemy = EnemyMgrBase::birth(birthArg);
 		if (enemy) {

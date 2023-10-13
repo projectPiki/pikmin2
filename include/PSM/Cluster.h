@@ -35,4 +35,6 @@ struct ClusterFactory : public PSSystem::ClusterSe::Factory {
 };
 } // namespace PSM
 
+PSM::Cluster* newPSCluster_SijimiChou(Game::Creature*);
+
 #endif
