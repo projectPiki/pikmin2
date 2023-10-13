@@ -79,7 +79,7 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                          // _2BC
 	MouthSlots mMouthSlots;             // _2C0
 	SysShape::Joint* mShadowJoint;      // _2C8
-	f32 _2CC;                           // _2CC
+	f32 mAlertTime;                     // _2CC
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2D0
 	                                    // _2D4 = PelletView
 };
@@ -207,7 +207,7 @@ struct StateFlick : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10
+	int mNextState; // _10
 };
 
 struct StateGoHome : public State {
@@ -219,7 +219,7 @@ struct StateGoHome : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10
+	int mNextState; // _10
 };
 
 struct StatePress : public State {
@@ -241,7 +241,7 @@ struct StateTurn : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10
+	int mNextState; // _10
 };
 
 struct StateTurnToHome : public State {
@@ -256,7 +256,7 @@ struct StateTurnToHome : public State {
 };
 
 struct WaitArg : public StateArg {
-	u32 _00; // _00
+	u32 mID; // _00
 };
 
 struct StateWait : public State {
@@ -279,7 +279,7 @@ struct StateWalk : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10
+	int mNextState; // _10
 };
 /////////////////////////////////////////////////////////////////
 

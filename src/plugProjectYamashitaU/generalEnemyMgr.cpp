@@ -646,7 +646,7 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 
 	P2ASSERTLINE(1844, currentHeap->getHeapType() == 'EXPH');
 
-	LoadResource::ArgAramOnly arg("enemy/parm/enemyParms.szs");
+	LoadResource::ArgAramOnly arg("/enemy/parm/enemyParms.szs");
 	arg.mHeap = currentHeap;
 	arg._1C   = 2;
 

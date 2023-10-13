@@ -711,6 +711,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		mTargetVelocity = Vector3f(speed * x, y, speed * z);
 	}
 
+	inline bool isAlertLife() { return bool(mHealth < static_cast<EnemyParmsBase*>(mParms)->mGeneral.mLifeBeforeAlert); }
+
 	inline bool isLongLegs()
 	{
 		return getEnemyTypeID() == EnemyTypeID::EnemyID_Damagumo || getEnemyTypeID() == EnemyTypeID::EnemyID_BigFoot

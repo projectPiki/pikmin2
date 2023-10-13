@@ -27,7 +27,7 @@ void Obj::birth(Vector3f& position, f32 p1)
 	EnemyBase::birth(position, p1);
 	mFsm->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
 	mShadowJoint = mModel->getJoint("ago");
-	_2CC         = 0.0f;
+	mAlertTime   = 0.0f;
 }
 
 /*
@@ -46,7 +46,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	mShadowJoint = mModel->getJoint("ago");
-	_2CC         = 0.0f;
+	mAlertTime   = 0.0f;
 	mFsm->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
 }
 

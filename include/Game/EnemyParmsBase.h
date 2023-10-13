@@ -102,51 +102,51 @@ struct EnemyParmsBase : public CreatureParms {
 		{
 		}
 
-		Parm<f32> mHealth;                 // _0EC
-		Parm<f32> mLifeMeterHeight;        // _114
-		Parm<f32> mRegenerationRate;       // _13C
-		Parm<f32> mLifeBeforeAlert;        // _164, 'vigilant life'
-		Parm<f32> mHeightOffsetFromFloor;  // _18C, 'match with the map'
-		Parm<f32> mCellRadius;             // _1B4
-		Parm<f32> mPikminDamageRadius;     // _1DC
-		Parm<f32> mOffCameraRadius;        // _204
-		Parm<f32> mHorizontalDamageScale;  // _22C
-		Parm<f32> mVerticalDamageScale;    // _254
-		Parm<f32> mDamageScaleDuration;    // _27C
-		Parm<f32> mMass;                   // _2A4, 'mass'
-		Parm<f32> mMoveSpeed;              // _2CC
-		Parm<f32> mRotationalAccel;        // _2F4
-		Parm<f32> mRotationalSpeed;        // _31C
-		Parm<f32> mTerritoryRadius;        // _344
-		Parm<f32> mHomeRadius;             // _36C
-		Parm<f32> mPrivateRadius;          // _394
-		Parm<f32> mSightRadius;            // _3BC
-		Parm<f32> mFov;                    // _3E4, 'visibility height'
-		Parm<f32> mViewAngle;              // _40C
-		Parm<f32> mSearchDistance;         // _434, 'search distance'
-		Parm<f32> mSearchHeight;           // _45C, 'search height'
-		Parm<f32> mSearchAngle;            // _484, 'search angle'
-		Parm<f32> mShakeKnockback;         // _4AC
-		Parm<f32> mShakeDamage;            // _4D4
-		Parm<f32> mShakeRange;             // _4FC
-		Parm<f32> mShakeRateMaybe;         // _524
-		Parm<f32> mMaxAttackRange;         // _54C, 'attack range'
-		Parm<f32> mMinAttackRange;         // _574, 'possibly attack angle'
-		Parm<f32> mAttackRadius;           // _59C, 'attack hit range'
-		Parm<f32> mAttackHitAngle;         // _5C4, 'attack hit angle'
-		Parm<f32> mAttackDamage;           // _5EC
-		Parm<f32> mAlertDuration;          // _614, 'alert time'
-		Parm<f32> mBitterDuration;         // _63C
-		Parm<f32> mPurplePikiStunDamage;   // _664
-		Parm<f32> mPurplePikiStunChance;   // _68C
-		Parm<f32> mPurplePikiStunDuration; // _6B4
-		Parm<int> mIp01;                   // _6DC, 'shake off blow A'
-		Parm<int> mIp02;                   // _704, 'shake off sticking 1'
-		Parm<int> mIp03;                   // _72C, 'shake off blow B'
-		Parm<int> mIp04;                   // _754, 'shake off sticking 2'
-		Parm<int> mIp05;                   // _77C, 'shake off blow C'
-		Parm<int> mIp06;                   // _7A4, 'shake off sticking 3'
-		Parm<int> mIp07;                   // _7CC, 'shake off blow D'
+		Parm<f32> mHealth;                 // _0EC, fp00
+		Parm<f32> mLifeMeterHeight;        // _114, fp27
+		Parm<f32> mRegenerationRate;       // _13C, fp31
+		Parm<f32> mLifeBeforeAlert;        // _164, fp30 'vigilant life'
+		Parm<f32> mHeightOffsetFromFloor;  // _18C, fp01 'match with the map'
+		Parm<f32> mCellRadius;             // _1B4, fp33
+		Parm<f32> mPikminDamageRadius;     // _1DC, fp34
+		Parm<f32> mOffCameraRadius;        // _204, fp32
+		Parm<f32> mHorizontalDamageScale;  // _22C, fp02
+		Parm<f32> mVerticalDamageScale;    // _254, fp03
+		Parm<f32> mDamageScaleDuration;    // _27C, fp04
+		Parm<f32> mMass;                   // _2A4, fp05 'mass'
+		Parm<f32> mMoveSpeed;              // _2CC, fp06
+		Parm<f32> mRotationalAccel;        // _2F4, fp08
+		Parm<f32> mRotationalSpeed;        // _31C, fp28
+		Parm<f32> mTerritoryRadius;        // _344, fp09
+		Parm<f32> mHomeRadius;             // _36C, fp10
+		Parm<f32> mPrivateRadius;          // _394, fp11
+		Parm<f32> mSightRadius;            // _3BC, fp12
+		Parm<f32> mFov;                    // _3E4, fp25 'visibility height'
+		Parm<f32> mViewAngle;              // _40C, fp13
+		Parm<f32> mSearchDistance;         // _434, fp14 'search distance'
+		Parm<f32> mSearchHeight;           // _45C, fp26 'search height'
+		Parm<f32> mSearchAngle;            // _484, fp15 'search angle'
+		Parm<f32> mShakeKnockback;         // _4AC, fp17
+		Parm<f32> mShakeDamage;            // _4D4, fp18
+		Parm<f32> mShakeRange;             // _4FC, fp19
+		Parm<f32> mShakeRateMaybe;         // _524, fp16
+		Parm<f32> mMaxAttackRange;         // _54C, fp20 'attack range'
+		Parm<f32> mMinAttackRange;         // _574, fp21 'possibly attack angle'
+		Parm<f32> mAttackRadius;           // _59C, fp22 'attack hit range'
+		Parm<f32> mAttackHitAngle;         // _5C4, fp23 'attack hit angle'
+		Parm<f32> mAttackDamage;           // _5EC, fp24
+		Parm<f32> mAlertDuration;          // _614, fp29 'alert time'
+		Parm<f32> mBitterDuration;         // _63C, fp35
+		Parm<f32> mPurplePikiStunDamage;   // _664, fp36
+		Parm<f32> mPurplePikiStunChance;   // _68C, fp37
+		Parm<f32> mPurplePikiStunDuration; // _6B4, fp38
+		Parm<int> mIp01;                   // _6DC, ip01 'shake off blow A'
+		Parm<int> mIp02;                   // _704, ip02 'shake off sticking 1'
+		Parm<int> mIp03;                   // _72C, ip03 'shake off blow B'
+		Parm<int> mIp04;                   // _754, ip04 'shake off sticking 2'
+		Parm<int> mIp05;                   // _77C, ip05 'shake off blow C'
+		Parm<int> mIp06;                   // _7A4, ip06 'shake off sticking 3'
+		Parm<int> mIp07;                   // _7CC, ip07 'shake off blow D'
 	};
 
 	EnemyParmsBase()
