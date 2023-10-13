@@ -305,7 +305,7 @@ void Item::setTreasure(Pellet* pelt)
 	if (mPellet) {
 		mPellet->startCapture(&mMatrix);
 		mTotalLife = mPellet->getBuryDepth();
-		if (gameSystem->mMode == GSM_VERSUS_MODE && mPellet->mPelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
+		if (gameSystem->isVersusMode() && mPellet->mPelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
 			mTotalLife = VsOtakaraName::cBedamaYellowDepth;
 		}
 		mPellet->mDepth = mTotalLife;

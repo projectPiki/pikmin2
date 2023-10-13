@@ -193,7 +193,7 @@ void StateMachine<Piki>::start(Piki* piki, int stateID, StateArg* stateArg)
  */
 void Piki::onKill(CreatureKillArg* killArg)
 {
-	if (gameSystem->mMode == GSM_VERSUS_MODE && killArg && killArg->isFlag(CKILL_Unk32)) {
+	if (gameSystem->isVersusMode() && killArg && killArg->isFlag(CKILL_Unk32)) {
 		Onyon* onyon = ItemOnyon::mgr->getOnyon(mPikiKind);
 		if (onyon) {
 			onyon->vsChargePikmin();
@@ -921,7 +921,7 @@ f32 Piki::getAttackDamage()
 		return pikiMgr->mParms->mPikiParms.mDopeAttackDamage.mValue;
 	}
 
-	if (gameSystem && gameSystem->mMode == GSM_VERSUS_MODE) {
+	if (gameSystem && gameSystem->isVersusMode()) {
 		return pikiMgr->mParms->mPikiParms.mRedAttackDamage.mValue;
 	}
 

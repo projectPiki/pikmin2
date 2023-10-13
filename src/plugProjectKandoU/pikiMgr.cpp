@@ -904,7 +904,7 @@ void PikiMgr::setVsXlu(int p1, bool p2)
  */
 void PikiMgr::doEntry()
 {
-	if (gameSystem->mMode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		u8 flag = mFlags[1];
 		for (int i = 0; i < mMax; i++) {
 			if (!mOpenIds[i]) {

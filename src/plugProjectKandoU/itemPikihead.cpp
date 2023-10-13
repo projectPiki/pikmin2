@@ -911,7 +911,7 @@ bool Item::interactFue(InteractFue& whistle)
 			return false;
 		}
 
-		if (gameSystem->mMode == GSM_VERSUS_MODE) {
+		if (gameSystem->isVersusMode()) {
 			if (mColor == navi->mNaviIndex) {
 				return false;
 			}

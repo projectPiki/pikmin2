@@ -136,7 +136,7 @@ void PelletGoalState::init(Pellet* pellet, StateArg* arg)
 	if (gameSystem->mMode == GSM_STORY_MODE || gameSystem->isChallengeMode()) {
 		flag = checkMovie(pellet);
 
-	} else if (gameSystem->mMode == GSM_VERSUS_MODE) {
+	} else if (gameSystem->isVersusMode()) {
 		int type = pellet->mPelletFlag;
 		if ((u32)type == Pellet::FLAG_VS_BEDAMA_RED) {
 			pellet->movie_begin(false);

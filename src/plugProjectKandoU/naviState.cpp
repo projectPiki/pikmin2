@@ -523,8 +523,8 @@ void NaviWalkState::collisionCallback(Navi* navi, CollEvent& event)
 		}
 	}
 
-	if (moviePlayer->mDemoState == 0 && gameSystem->mMode == GSM_VERSUS_MODE && collider->isTeki() && !collider->mCaptureMatrix
-	    && collider->isAlive() && static_cast<EnemyBase*>(collider)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb && navi->mController1) {
+	if (moviePlayer->mDemoState == 0 && gameSystem->isVersusMode() && collider->isTeki() && !collider->mCaptureMatrix && collider->isAlive()
+	    && static_cast<EnemyBase*>(collider)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb && navi->mController1) {
 
 		f32 x = -navi->mController1->getMainStickX(); // idk why this is negative lol.
 		f32 y = navi->mController1->getMainStickY();

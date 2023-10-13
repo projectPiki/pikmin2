@@ -404,7 +404,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		if ((mCaptureMatrix == nullptr) && (PelletMgr::mDebug == false) && (mConfig->mParams.mDepth.mData > 0.0f) && (_3C4 == 0)) {
 			check = true;
 		}
-		if ((gameSystem->mMode == GSM_VERSUS_MODE) && (mCaptureMatrix == nullptr) && (_3C4 == 0)) {
+		if (gameSystem->isVersusMode() && (mCaptureMatrix == nullptr) && (_3C4 == 0)) {
 			u8 test = mPelletFlag;
 			if (test == FLAG_VS_BEDAMA_RED) {
 				check = false;

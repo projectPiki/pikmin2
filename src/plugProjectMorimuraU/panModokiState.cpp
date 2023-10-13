@@ -211,7 +211,7 @@ void StateBack::exec(EnemyBase* enemy)
 			Pellet* target = OBJ(enemy)->getCarryTarget();
 			if (target) {
 				bool check = false;
-				if ((gameSystem && gameSystem->mMode == GSM_VERSUS_MODE && !enemy->isStickTo() && !target->mCaptureMatrix)
+				if ((gameSystem && gameSystem->isVersusMode() && !enemy->isStickTo() && !target->mCaptureMatrix)
 				    || (target->getKind() == PELTYPE_CARCASS && !target->isAlive())
 				    || FABS(target->getPosition().y - enemy->getPosition().y) > 50.0f) {
 
@@ -309,7 +309,7 @@ void StatePulled::exec(EnemyBase* enemy)
 
 			} else {
 				bool check = false;
-				if ((gameSystem && gameSystem->mMode == GSM_VERSUS_MODE && !enemy->isStickTo() && !target->mCaptureMatrix)
+				if ((gameSystem && gameSystem->isVersusMode() && !enemy->isStickTo() && !target->mCaptureMatrix)
 				    || (target->getKind() == PELTYPE_CARCASS && !target->isAlive())
 				    || FABS(target->getPosition().y - enemy->getPosition().y) > 50.0f) {
 
