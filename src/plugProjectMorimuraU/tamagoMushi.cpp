@@ -351,224 +351,64 @@ void Obj::genItem()
  */
 void Obj::walkFunc()
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stfd     f28, 0x50(r1)
-	psq_st   f28, 88(r1), 0, qr0
-	stfd     f27, 0x40(r1)
-	psq_st   f27, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lfs      f2, lbl_8051EAF4@sda21(r2)
-	lfs      f1, 0x1a4(r3)
-	lfs      f0, lbl_8051EAF8@sda21(r2)
-	fmuls    f1, f1, f2
-	stfs     f1, 0x1a4(r3)
-	lfs      f1, 0x1ac(r3)
-	fmuls    f1, f1, f2
-	stfs     f1, 0x1ac(r3)
-	lwz      r3, 0xc0(r3)
-	lfs      f2, 0x2fc(r31)
-	lfs      f1, 0x928(r3)
-	lfs      f3, 0x2c8(r31)
-	fadds    f1, f2, f1
-	lfs      f2, 0x2e4(r3)
-	lfs      f5, 0x924(r3)
-	lfs      f4, 0x2cc(r31)
-	fmuls    f29, f3, f2
-	lfs      f3, 0x2c4(r31)
-	lfs      f2, 0x334(r3)
-	fmuls    f27, f5, f4
-	stfs     f1, 0x2fc(r31)
-	fmuls    f28, f3, f2
-	lfs      f1, 0x2fc(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8036FB7C
-	fsubs    f0, f1, f0
-	stfs     f0, 0x2fc(r31)
+	mRotation.x *= 0.9f;
+	mRotation.z *= 0.9f;
 
-lbl_8036FB7C:
-	lfs      f1, 0x2fc(r31)
-	bl       sin
-	lwz      r3, 0xc0(r31)
-	frsp     f0, f1
-	lbz      r0, 0x920(r3)
-	fmuls    f2, f27, f0
-	cmplwi   r0, 0
-	beq      lbl_8036FBA0
-	lfs      f2, lbl_8051EAC4@sda21(r2)
+	f32 x, y, z;
+	f32 faceDirOffset;
+	f32 targetSpeed    = _2C8 * C_PARMS->mGeneral.mMoveSpeed();
+	f32 offsetFactor   = C_PARMS->_924 * _2CC;
+	f32 dirChangeLimit = _2C4 * C_PARMS->mGeneral.mRotationalSpeed();
 
-lbl_8036FBA0:
-	lfs      f1, 0x2d0(r31)
-	lfs      f0, lbl_8051EB04@sda21(r2)
-	fmuls    f2, f2, f1
-	lfs      f3, lbl_8051EB00@sda21(r2)
-	fadds    f1, f1, f0
-	lfs      f4, lbl_8051EAFC@sda21(r2)
-	lfs      f0, lbl_8051EAE0@sda21(r2)
-	fmuls    f2, f3, f2
-	stfs     f1, 0x2d0(r31)
-	lfs      f1, 0x2d0(r31)
-	fmuls    f30, f4, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_8036FBD8
-	stfs     f0, 0x2d0(r31)
+	_2FC += C_PARMS->_928;
+	if (_2FC > 360.0f) {
+		_2FC -= 360.0f;
+	}
 
-lbl_8036FBD8:
-	lwz      r3, 0xc0(r31)
-	lbz      r0, 0x921(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036FC90
-	lfs      f1, 0x2d4(r31)
-	lfs      f0, lbl_8051EAE0@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2d4(r31)
-	lfs      f1, 0x2d4(r31)
-	lfs      f0, 0x2d8(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8036FC58
-	lbz      r0, 0x2dc(r31)
-	cntlzw   r0, r0
-	srwi     r0, r0, 5
-	stb      r0, 0x2dc(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lwz      r3, 0xc0(r31)
-	stw      r0, 0x18(r1)
-	lfd      f1, lbl_8051EAD0@sda21(r2)
-	lfd      f0, 0x18(r1)
-	lfs      f2, lbl_8051EAB0@sda21(r2)
-	fsubs    f3, f0, f1
-	lfs      f1, 0x92c(r3)
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f1, f1, f2
-	stfs     f1, 0x2d8(r31)
-	stfs     f0, 0x2d4(r31)
+	f32 sinVal = offsetFactor * (f32)sin(_2FC);
+	if (C_PARMS->_920) {
+		sinVal = 0.0f;
+	}
 
-lbl_8036FC58:
-	lbz      r0, 0x2dc(r31)
-	cmplwi   r0, 0
-	beq      lbl_8036FC90
-	lfs      f1, 0x2d4(r31)
-	lfs      f0, 0x2d8(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8036FC90
-	fdivs    f0, f1, f0
-	lfs      f1, lbl_8051EAE0@sda21(r2)
-	lwz      r3, 0xc0(r31)
-	lfs      f2, 0x930(r3)
-	fsubs    f0, f1, f0
-	fmuls    f0, f2, f0
-	fmuls    f29, f29, f0
+	f32 val       = sinVal * _2D0;
+	faceDirOffset = TORADIANS(val);
 
-lbl_8036FC90:
-	lfs      f1, 0x2ec(r31)
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	stfs     f1, 0x1fc(r31)
-	lfs      f4, 0x1fc(r31)
-	fadds    f3, f4, f30
-	fcmpo    cr0, f3, f0
-	bge      lbl_8036FCD8
-	lfs      f0, lbl_8051EACC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f2, f0
-	b        lbl_8036FCFC
+	_2D0 += 0.1f;
+	if (_2D0 > 1.0f) {
+		_2D0 = 1.0f;
+	}
 
-lbl_8036FCD8:
-	lfs      f0, lbl_8051EAC8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r3, r0
+	if (C_PARMS->_921) {
+		_2D4 += 1.0f;
+		if (_2D4 > _2D8) {
+			_2DC = !_2DC;
+			_2D8 = C_PARMS->_92C * randFloat();
+			_2D4 = 0.0f;
+		}
 
-lbl_8036FCFC:
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	fmuls    f31, f29, f2
-	lfs      f1, 0x1d4(r31)
-	lfs      f27, 0x1d8(r31)
-	fcmpo    cr0, f3, f0
-	lfs      f0, 0x1dc(r31)
-	stfs     f1, 8(r1)
-	stfs     f27, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bge      lbl_8036FD28
-	fneg     f3, f3
+		if (_2DC && _2D4 < _2D8) {
+			targetSpeed *= (C_PARMS->_930 * (1.0f - (_2D4 / _2D8)));
+		}
+	}
 
-lbl_8036FD28:
-	lfs      f0, lbl_8051EAC8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	fabs     f2, f30
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f1, f3, f0
-	frsp     f0, f2
-	fctiwz   f1, f1
-	fcmpo    cr0, f0, f28
-	stfd     f1, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r3, r0
-	lfs      f0, 4(r3)
-	fmuls    f29, f29, f0
-	stfs     f4, 0x2ec(r31)
-	ble      lbl_8036FD80
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	fcmpo    cr0, f30, f0
-	ble      lbl_8036FD7C
-	fmr      f30, f28
-	b        lbl_8036FD80
+	mFaceDir = _2EC;
 
-lbl_8036FD7C:
-	fneg     f30, f28
+	f32 angle = mFaceDir + faceDirOffset;
+	x         = targetSpeed * pikmin2_sinf(angle);
+	y         = getTargetVelocity().y;
+	z         = targetSpeed * pikmin2_cosf(angle);
+	_2EC      = mFaceDir;
+	if (absF(faceDirOffset) > dirChangeLimit) {
+		if (faceDirOffset > 0.0f) {
+			faceDirOffset = dirChangeLimit;
+		} else {
+			faceDirOffset = -dirChangeLimit;
+		}
+	}
 
-lbl_8036FD80:
-	fmr      f1, f30
-	bl       roundAng__Ff
-	lfs      f0, 0x1fc(r31)
-	fadds    f0, f0, f1
-	stfs     f0, 0x1fc(r31)
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x1a8(r31)
-	stfs     f31, 0x1d4(r31)
-	stfs     f27, 0x1d8(r31)
-	stfs     f29, 0x1dc(r31)
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	psq_l    f28, 88(r1), 0, qr0
-	lfd      f28, 0x50(r1)
-	psq_l    f27, 72(r1), 0, qr0
-	lfd      f27, 0x40(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	updateFaceDir(mFaceDir + roundAng(faceDirOffset));
+
+	mTargetVelocity = Vector3f(x, y, z);
 }
 
 /*
@@ -578,104 +418,15 @@ lbl_8036FD80:
  */
 void Obj::setGoalRandom()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lwz      r3, 0xc0(r3)
-	lfs      f31, 0x35c(r3)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f0, 0x198(r31)
-	stw      r0, 8(r1)
-	lfd      f3, lbl_8051EAD0@sda21(r2)
-	lfd      f1, 8(r1)
-	lfs      f2, lbl_8051EAB0@sda21(r2)
-	fsubs    f3, f1, f3
-	stfs     f0, 0x2e0(r31)
-	lfs      f1, lbl_8051EB08@sda21(r2)
-	lfs      f0, 0x19c(r31)
-	fdivs    f2, f3, f2
-	stfs     f0, 0x2e4(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x2e8(r31)
-	fmadds   f0, f1, f2, f1
-	fmuls    f31, f31, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_8051EAD0@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f2, lbl_8051EAB0@sda21(r2)
-	lfd      f0, 0x10(r1)
-	lfs      f1, lbl_8051EB0C@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f3, f1, f2
-	fcmpo    cr0, f3, f0
-	bge      lbl_8036FEBC
-	lfs      f0, lbl_8051EACC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f2, f0
-	b        lbl_8036FEE0
+	f32 val     = C_PARMS->mGeneral.mTerritoryRadius();
+	f32 randVal = 0.5f * randFloat() + 0.5f;
+	val *= randVal;
+	mGoalPosition = mHomePosition;
 
-lbl_8036FEBC:
-	lfs      f0, lbl_8051EAC8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r3, r0
+	f32 randAngle = TAU * randFloat();
 
-lbl_8036FEE0:
-	lfs      f1, 0x2e0(r31)
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	fmadds   f1, f31, f2, f1
-	fcmpo    cr0, f3, f0
-	stfs     f1, 0x2e0(r31)
-	bge      lbl_8036FEFC
-	fneg     f3, f3
-
-lbl_8036FEFC:
-	lfs      f1, lbl_8051EAC8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	lfs      f0, 0x2e8(r31)
-	fmuls    f1, f3, f1
-	fctiwz   f1, f1
-	stfd     f1, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	fmadds   f0, f31, f1, f0
-	stfs     f0, 0x2e8(r31)
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	mGoalPosition.x += val * pikmin2_sinf(randAngle);
+	mGoalPosition.z += val * pikmin2_cosf(randAngle);
 }
 
 /*
@@ -683,56 +434,15 @@ lbl_8036FEFC:
  * Address:	8036FF4C
  * Size:	0000B8
  */
-void Obj::setGoalDirect(Vector3f&)
+void Obj::setGoalDirect(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lwz      r3, 0xc0(r3)
-	lfs      f31, 0x93c(r3)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f0, 0x18c(r30)
-	stw      r0, 8(r1)
-	lfd      f3, lbl_8051EAD0@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f1, lbl_8051EAB0@sda21(r2)
-	fsubs    f3, f2, f3
-	stfs     f0, 0x2e0(r30)
-	lfs      f2, lbl_8051EB08@sda21(r2)
-	lfs      f0, 0x190(r30)
-	fdivs    f3, f3, f1
-	stfs     f0, 0x2e4(r30)
-	lfs      f0, 0x194(r30)
-	stfs     f0, 0x2e8(r30)
-	lfs      f1, 0(r31)
-	lfs      f0, 0x2e0(r30)
-	fmadds   f2, f2, f3, f2
-	fmuls    f31, f31, f2
-	fmadds   f0, f31, f1, f0
-	stfs     f0, 0x2e0(r30)
-	lfs      f1, 8(r31)
-	lfs      f0, 0x2e8(r30)
-	fmadds   f0, f31, f1, f0
-	stfs     f0, 0x2e8(r30)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	f32 val     = C_PARMS->_93C;
+	f32 randVal = 0.5f * randFloat() + 0.5f;
+	val *= randVal;
+	mGoalPosition = mPosition;
+
+	mGoalPosition.x += val * pos.x;
+	mGoalPosition.z += val * pos.z;
 }
 
 /*
@@ -742,103 +452,12 @@ void Obj::setGoalDirect(Vector3f&)
  */
 bool Obj::turnFunc()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	lwz      r5, 0xc0(r31)
-	mr       r4, r31
-	lwz      r12, 0(r31)
-	lfs      f2, 0x2c4(r31)
-	lfs      f1, 0x334(r5)
-	lfs      f0, 0x30c(r5)
-	lwz      r12, 8(r12)
-	fmuls    f29, f2, f1
-	fmuls    f30, f2, f0
-	mtctr    r12
-	bctrl
-	lfs      f3, 0x2e0(r31)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f1, 8(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f2, 0x2e8(r31)
-	lfs      f0, 0x10(r1)
-	fsubs    f1, f3, f1
-	fsubs    f2, f2, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	fmr      f31, f1
-	lfs      f0, lbl_8051EB00@sda21(r2)
-	lfs      f1, lbl_8051EAFC@sda21(r2)
-	fmuls    f0, f0, f29
-	fmuls    f29, f31, f30
-	fmuls    f1, f1, f0
-	fabs     f0, f29
-	frsp     f0, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_803700EC
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	fcmpo    cr0, f29, f0
-	ble      lbl_803700E8
-	fmr      f29, f1
-	b        lbl_803700EC
+	f32 angle = turnToTarget2(mGoalPosition, _2C4 * C_PARMS->mGeneral.mRotationalAccel(), _2C4 * C_PARMS->mGeneral.mRotationalSpeed());
+	if (absF(angle) < 0.1f) {
+		return true;
+	}
 
-lbl_803700E8:
-	fneg     f29, f1
-
-lbl_803700EC:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f29, f1
-	bl       roundAng__Ff
-	fabs     f3, f31
-	stfs     f1, 0x1fc(r31)
-	lfs      f0, lbl_8051EB04@sda21(r2)
-	lfs      f2, 0x1fc(r31)
-	frsp     f1, f3
-	stfs     f2, 0x1a8(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80370130
-	li       r3, 1
-	b        lbl_80370134
-
-lbl_80370130:
-	li       r3, 0
-
-lbl_80370134:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -876,7 +495,7 @@ void Obj::resetWalkParm()
 	_2D0 = 0.0f;
 	_2D4 = 0.0f;
 	_2D8 = C_PARMS->_92C;
-	_2DC = 0;
+	_2DC = false;
 	_2EC = mFaceDir;
 }
 
