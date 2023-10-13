@@ -125,7 +125,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->disableEvent(0, EB_Cullable);
 	fuefuki->mTargetVelocity = Vector3f(0.0f);
 
-	if (randWeightFloat(1.0f) < *CG_PROPERPARMS(fuefuki).mFp31()) {
+	if (randWeightFloat(1.0f) < CG_PROPERPARMS(fuefuki).mFp31()) {
 		fuefuki->startMotion(1, nullptr);
 	} else {
 		fuefuki->startMotion(2, nullptr);

@@ -224,7 +224,7 @@ void Obj::moveFaceDir()
 	addPitchRatio();
 
 	mCurrentVelocity.y
-	    = 2.5f * ((minY + (*C_PROPERPARMS.mPitchAmp() * pikmin2_sinf(mPitchRatio) + C_PROPERPARMS.mFlightHeight.mValue)) - mPosition.y);
+	    = 2.5f * ((minY + (C_PROPERPARMS.mPitchAmp() * pikmin2_sinf(mPitchRatio) + C_PROPERPARMS.mFlightHeight.mValue)) - mPosition.y);
 }
 
 /*

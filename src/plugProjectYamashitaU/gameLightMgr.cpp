@@ -2904,12 +2904,12 @@ void GameLightMgr::updatePosition(Viewport* viewport)
 		mMainLight->mSpotFn = GX_SP_OFF;
 		mSubLight->mSpotFn  = GX_SP_OFF;
 
-		f32 maxAngle = *mSettings.mSunLight.mMoveParms.mSunsetAngle() - *mSettings.mSunLight.mMoveParms.mSunriseAngle();
-		f32 angle    = (180.0f - (maxAngle * mTimeMgr->getSunGaugeRatio() + *mSettings.mSunLight.mMoveParms.mSunriseAngle()));
+		f32 maxAngle = mSettings.mSunLight.mMoveParms.mSunsetAngle() - mSettings.mSunLight.mMoveParms.mSunriseAngle();
+		f32 angle    = (180.0f - (maxAngle * mTimeMgr->getSunGaugeRatio() + mSettings.mSunLight.mMoveParms.mSunriseAngle()));
 		angle        = PI * (DEG2RAD * angle);
 
-		lightPos.x = pikmin2_cosf(angle) * *mSettings.mSunLight.mMoveParms.mDistance();
-		lightPos.y = pikmin2_sinf(angle) * *mSettings.mSunLight.mMoveParms.mDistance();
+		lightPos.x = pikmin2_cosf(angle) * mSettings.mSunLight.mMoveParms.mDistance();
+		lightPos.y = pikmin2_sinf(angle) * mSettings.mSunLight.mMoveParms.mDistance();
 		lightPos.z = 0.0f;
 
 		if (gameSystem->mMode == GSM_PIKLOPEDIA) {

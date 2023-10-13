@@ -234,7 +234,7 @@ bool Obj::isAppear()
  */
 bool Obj::isDisappear()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mHomeRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mHomeRadius())) {
 		if (!getSearchedTarget()) {
 			return true;
 		}
@@ -276,7 +276,7 @@ void Obj::setNextMoveInfo()
  */
 void Obj::updateMoveState()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
 		mTargetPosition = mHomePosition;
 	}
 

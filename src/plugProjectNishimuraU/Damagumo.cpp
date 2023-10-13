@@ -309,7 +309,7 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
  */
 void Obj::getTargetPosition()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
 		ConditionNotStickClient condition(this);
 		Piki* piki = EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
 		                                         &condition);

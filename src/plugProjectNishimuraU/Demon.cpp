@@ -21,9 +21,9 @@ FakePiki* Obj::getAttackableTarget()
 	if (mAttackTimer > 3.0f) {
 		Vector3f pos = getPosition();
 
-		if (sqrDistanceXZ(pos, mHomePosition) < SQUARE(*static_cast<Sarai::Parms*>(mParms)->mGeneral.mTerritoryRadius())) {
-			f32 fov = PI * (DEG2RAD * *static_cast<Sarai::Parms*>(mParms)->mGeneral.mViewAngle());
-			f32 max = SQUARE(*static_cast<Sarai::Parms*>(mParms)->mGeneral.mSightRadius());
+		if (sqrDistanceXZ(pos, mHomePosition) < SQUARE(static_cast<Sarai::Parms*>(mParms)->mGeneral.mTerritoryRadius())) {
+			f32 fov = PI * (DEG2RAD * static_cast<Sarai::Parms*>(mParms)->mGeneral.mViewAngle());
+			f32 max = SQUARE(static_cast<Sarai::Parms*>(mParms)->mGeneral.mSightRadius());
 
 			Iterator<Navi> iter(naviMgr);
 			Navi* navi;

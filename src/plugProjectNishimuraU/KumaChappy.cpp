@@ -216,7 +216,7 @@ void Obj::doUpdateCarcass()
 			}
 		} else {
 			if (mHealth < mMaxHealth) {
-				mHealth += (mMaxHealth / *C_PARMS->mProperParms.mFp12()) * sys->getFrameLength();
+				mHealth += (mMaxHealth / C_PARMS->mProperParms.mFp12()) * sys->getFrameLength();
 				if (mHealth >= mMaxHealth) {
 					mPellet->kill(nullptr);
 					f32 x = mObjMatrix.mMatrix.structView.zx;

@@ -264,8 +264,8 @@ void StateMove::exec(EnemyBase* enemy)
 		uji->mTargetCreature = target;
 		// Creature* target = uji->mTargetCreature;
 		// if (target && target->isAlive()) {
-		f32 rotSpeed = *CG_PARMS(uji)->mGeneral.mRotationalSpeed();
-		f32 rotAccel = *CG_PARMS(uji)->mGeneral.mRotationalAccel();
+		f32 rotSpeed = CG_PARMS(uji)->mGeneral.mRotationalSpeed();
+		f32 rotAccel = CG_PARMS(uji)->mGeneral.mRotationalAccel();
 
 		Vector3f ujiPos    = uji->getPosition();
 		Vector3f targetPos = target->getPosition();
@@ -291,9 +291,9 @@ void StateMove::exec(EnemyBase* enemy)
 
 		uji->mTargetVelocity = Vector3f(speed * sinTheta, y, speed * cosTheta);
 
-		f32 sightRad  = *CG_PARMS(uji)->mGeneral.mSightRadius(); // f30
-		f32 fov       = *CG_PARMS(uji)->mGeneral.mFov();         // f25
-		f32 viewAngle = *CG_PARMS(uji)->mGeneral.mViewAngle();   // f26
+		f32 sightRad  = CG_PARMS(uji)->mGeneral.mSightRadius(); // f30
+		f32 fov       = CG_PARMS(uji)->mGeneral.mFov();         // f25
+		f32 viewAngle = CG_PARMS(uji)->mGeneral.mViewAngle();   // f26
 
 		f32 xDiff = target->getPosition().x - uji->getPosition().x;
 		f32 yDiff = target->getPosition().y - uji->getPosition().y;
@@ -327,7 +327,7 @@ void StateMove::exec(EnemyBase* enemy)
 		} else {
 			Vector3f diff = uji->getPosition() - uji->mHomePosition;
 			f32 len       = diff.length();
-			if (len > *CG_PARMS(uji)->mGeneral.mTerritoryRadius()) {
+			if (len > CG_PARMS(uji)->mGeneral.mTerritoryRadius()) {
 				uji->mTargetCreature = nullptr;
 			}
 		}

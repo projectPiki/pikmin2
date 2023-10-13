@@ -29,7 +29,7 @@ struct Parm : public BaseParm {
 
 	inline operator T() { return mValue; }
 	inline void operator=(const T& rhs) { mValue = rhs; }
-	inline T* operator()() { return &mValue; }
+	inline T& operator()() { return mValue; }
 
 	virtual int size() { return sizeof(T); }
 	virtual void write(Stream&);

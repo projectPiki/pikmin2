@@ -1,7 +1,9 @@
 #include "Game/Entities/TamagoMushi.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
+#include "Game/PikiMgr.h"
 #include "Game/PikiState.h"
+#include "Game/Entities/ItemHoney.h"
 #include "efx/TUjinko.h"
 #include "efx/TTamagoAp.h"
 #include "Dolphin/rand.h"
@@ -254,112 +256,22 @@ void Obj::collisionCallback(CollEvent& event)
  * Address:	8036F620
  * Size:	000178
  */
-void Obj::bounceCallback(Sys::Triangle*)
+void Obj::bounceCallback(Sys::Triangle* tri)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lbz      r0, 0x300(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036F77C
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lfs      f5, 0x1fc(r31)
-	stw      r0, 0x18(r1)
-	lfd      f1, lbl_8051EAD0@sda21(r2)
-	fmr      f4, f5
-	lfd      f0, 0x18(r1)
-	lfs      f2, lbl_8051EAB0@sda21(r2)
-	fsubs    f3, f0, f1
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	lwz      r4, 0xc0(r31)
-	lfs      f1, lbl_8051EAC0@sda21(r2)
-	fcmpo    cr0, f5, f0
-	fdivs    f2, f3, f2
-	lfs      f0, lbl_8051EABC@sda21(r2)
-	lfs      f7, 0x938(r4)
-	fmadds   f6, f1, f2, f0
-	bge      lbl_8036F694
-	fneg     f4, f5
+	if (_300) {
+		f32 velY     = 0.7f + 0.3f * randFloat();
+		f32 speed    = C_PARMS->_938;
+		Vector3f vel = Vector3f(pikmin2_sinf(mFaceDir) * speed, C_PARMS->_934 * velY, pikmin2_cosf(mFaceDir) * speed);
+		setVelocity(vel);
+		mTargetVelocity = vel;
+		mPosition.y += 10.0f;
+		_2F0        = false;
+		mRotation.z = 0.0f;
+		mRotation.x = 0.0f;
+		appearPanic();
+	}
 
-lbl_8036F694:
-	lfs      f3, lbl_8051EAC8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f1, 0x934(r4)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f4, f3
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	fmuls    f1, f1, f6
-	fcmpo    cr0, f5, f0
-	fctiwz   f0, f2
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f2, f7, f0
-	bge      lbl_8036F6F8
-	lfs      f0, lbl_8051EACC@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_8036F710
-
-lbl_8036F6F8:
-	fmuls    f0, f5, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-
-lbl_8036F710:
-	fmuls    f0, f7, f0
-	stfs     f1, 0xc(r1)
-	mr       r3, r31
-	addi     r4, r1, 8
-	stfs     f2, 0x10(r1)
-	stfs     f0, 8(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	li       r0, 0
-	lfs      f1, lbl_8051EAD8@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x1d4(r31)
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	lfs      f2, 0xc(r1)
-	stfs     f2, 0x1d8(r31)
-	lfs      f2, 0x10(r1)
-	stfs     f2, 0x1dc(r31)
-	lfs      f2, 0x190(r31)
-	fadds    f1, f2, f1
-	stfs     f1, 0x190(r31)
-	stb      r0, 0x2f0(r31)
-	stfs     f0, 0x1ac(r31)
-	stfs     f0, 0x1a4(r31)
-	bl       appearPanic__Q34Game11TamagoMushi3ObjFv
-
-lbl_8036F77C:
-	li       r0, 0
-	stb      r0, 0x300(r31)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	_300 = false;
 }
 
 /*
@@ -383,10 +295,7 @@ bool Obj::earthquakeCallBack(Creature* creature, f32 damage) { return pressCallB
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	Matrixf* worldMatrix = mKoshiJoint->getWorldMatrix();
-
-	shadowParam.mPosition
-	    = Vector3f(worldMatrix->mMatrix.mtxView[0][3], worldMatrix->mMatrix.mtxView[1][3], worldMatrix->mMatrix.mtxView[2][3]);
+	shadowParam.mPosition = mKoshiJoint->getWorldMatrix()->getBasis(3);
 
 	if (mPellet || getStateID() == TAMAGOMUSHI_Dead) {
 		shadowParam.mPosition.y = mPosition.y + 2.0f;
@@ -413,152 +322,26 @@ bool Obj::needShadow()
  */
 void Obj::genItem()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	stw      r30, 0x48(r1)
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_8036F8FC
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 4
-	beq      lbl_8036FABC
+	if (!gameSystem || gameSystem->mMode != GSM_PIKLOPEDIA) {
+		mInPiklopedia = 1;
 
-lbl_8036F8FC:
-	li       r0, 1
-	stb      r0, 0x1f3(r31)
-	lwz      r30, 0xc0(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x24(r1)
-	lfd      f3, lbl_8051EAD0@sda21(r2)
-	stw      r0, 0x20(r1)
-	lfs      f1, lbl_8051EAB0@sda21(r2)
-	lfd      f2, 0x20(r1)
-	lfs      f0, 0x86c(r30)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bgt      lbl_8036FABC
-	lfs      f3, 0x1fc(r31)
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	lfs      f2, lbl_8051EAEC@sda21(r2)
-	fcmpo    cr0, f3, f0
-	bge      lbl_8036F97C
-	lfs      f0, lbl_8051EACC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f1, f0
-	b        lbl_8036F9A0
+		if (!(randFloat() > C_PROPERPARMS.mFp03())) {
+			Vector3f nectarVel
+			    = Vector3f(pikmin2_sinf(mFaceDir) * 50.0f, 200.0f, pikmin2_sinf(mFaceDir) * 50.0f); // why are these both sines smh
+			Vector3f nectarPos = mPosition;
+			nectarPos.y += 2.0f;
 
-lbl_8036F97C:
-	lfs      f0, lbl_8051EAC8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r3, r0
-
-lbl_8036F9A0:
-	lfs      f0, lbl_8051EAC4@sda21(r2)
-	fmuls    f2, f2, f1
-	lfs      f1, lbl_8051EAEC@sda21(r2)
-	fcmpo    cr0, f3, f0
-	bge      lbl_8036F9E0
-	lfs      f0, lbl_8051EACC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_8036FA04
-
-lbl_8036F9E0:
-	lfs      f0, lbl_8051EAC8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_8036FA04:
-	fmuls    f1, f1, f0
-	lfs      f0, lbl_8051EAF0@sda21(r2)
-	lwz      r0, mgr__Q24Game9ItemHoney@sda21(r13)
-	stfs     f0, 0x18(r1)
-	lfs      f0, lbl_8051EADC@sda21(r2)
-	cmplwi   r0, 0
-	stfs     f1, 0x14(r1)
-	stfs     f2, 0x1c(r1)
-	lfs      f1, 0x18c(r31)
-	stfs     f1, 8(r1)
-	lfs      f1, 0x190(r31)
-	stfs     f1, 0xc(r1)
-	fadds    f0, f1, f0
-	lfs      f1, 0x194(r31)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0xc(r1)
-	bne      lbl_8036FA64
-	lis      r3, lbl_804924F4@ha
-	lis      r5, lbl_80492504@ha
-	addi     r3, r3, lbl_804924F4@l
-	li       r4, 0x1b5
-	addi     r5, r5, lbl_80492504@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8036FA64:
-	lwz      r3, mgr__Q24Game9ItemHoney@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	or.      r0, r3, r3
-	beq      lbl_8036FABC
-	mr       r30, r0
-	li       r4, 0
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	li       r0, 0
-	mr       r3, r30
-	stb      r0, 0x1e0(r30)
-	addi     r4, r1, 8
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	mr       r3, r30
-	addi     r4, r1, 0x14
-	lwz      r12, 0(r30)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036FABC:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+			P2ASSERTLINE(437, ItemHoney::mgr);
+			BaseItem* item = ItemHoney::mgr->birth();
+			if (item) {
+				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(item);
+				nectar->init(nullptr);
+				nectar->mHoneyType = HONEY_Y;
+				nectar->setPosition(nectarPos, false);
+				nectar->setVelocity(nectarVel);
+			}
+		}
+	}
 }
 
 /*
@@ -1142,241 +925,22 @@ void Obj::setTypeBall()
  */
 void Obj::appearPanic()
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stfd     f28, 0x50(r1)
-	psq_st   f28, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	mr       r31, r3
-	lwz      r0, 0x2f4(r3)
-	cmplwi   r0, 0
-	beq      lbl_803702E4
-	cmplw    r0, r31
-	bne      lbl_8037059C
-
-lbl_803702E4:
-	lwz      r5, 0xc0(r31)
-	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
-	li       r0, 0
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lfs      f0, 0x948(r5)
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
-	cmplwi   r0, 0
-	fmuls    f28, f0, f0
-	stw      r4, 0x2c(r1)
-	stw      r0, 0x38(r1)
-	stw      r0, 0x30(r1)
-	stw      r3, 0x34(r1)
-	bne      lbl_80370330
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x30(r1)
-	b        lbl_8037057C
-
-lbl_80370330:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x30(r1)
-	b        lbl_8037039C
-
-lbl_80370348:
-	lwz      r3, 0x34(r1)
-	lwz      r4, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8037057C
-	lwz      r3, 0x34(r1)
-	lwz      r4, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x30(r1)
-
-lbl_8037039C:
-	lwz      r12, 0x2c(r1)
-	addi     r3, r1, 0x2c
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80370348
-	b        lbl_8037057C
-
-lbl_803703BC:
-	lwz      r3, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r29, r3
-	li       r30, 0
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80370420
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80370420
-	mr       r3, r29
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80370420
-	li       r30, 1
-
-lbl_80370420:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_803704C0
-	mr       r4, r29
-	addi     r3, r1, 8
-	lwz      r12, 0(r29)
-	lfs      f29, 0x194(r31)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x18c(r31)
-	mtctr    r12
-	bctrl
-	mr       r4, r29
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r29)
-	lfs      f31, 0x10(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	fsubs    f0, f31, f29
-	lfs      f1, 0x14(r1)
-	fsubs    f1, f1, f30
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f28
-	bge      lbl_803704C0
-	lwz      r6, 0xc0(r31)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game16InteractAstonish@ha
-	mr       r3, r29
-	lfs      f0, 0x944(r6)
-	addi     r5, r5, __vt__Q24Game11Interaction@l
-	addi     r0, r4, __vt__Q24Game16InteractAstonish@l
-	addi     r4, r1, 0x20
-	stw      r5, 0x20(r1)
-	stw      r31, 0x24(r1)
-	stw      r0, 0x20(r1)
-	stfs     f0, 0x28(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803704C0:
-	lwz      r0, 0x38(r1)
-	cmplwi   r0, 0
-	bne      lbl_803704EC
-	lwz      r3, 0x34(r1)
-	lwz      r4, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x30(r1)
-	b        lbl_8037057C
-
-lbl_803704EC:
-	lwz      r3, 0x34(r1)
-	lwz      r4, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x30(r1)
-	b        lbl_80370560
-
-lbl_8037050C:
-	lwz      r3, 0x34(r1)
-	lwz      r4, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8037057C
-	lwz      r3, 0x34(r1)
-	lwz      r4, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x30(r1)
-
-lbl_80370560:
-	lwz      r12, 0x2c(r1)
-	addi     r3, r1, 0x2c
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8037050C
-
-lbl_8037057C:
-	lwz      r3, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x30(r1)
-	cmplw    r4, r3
-	bne      lbl_803703BC
-
-lbl_8037059C:
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	psq_l    f28, 88(r1), 0, qr0
-	lfd      f28, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	if (!mLeader || mLeader == this) {
+		f32 rad = SQUARE(C_PARMS->_948);
+		Iterator<Piki> iter(pikiMgr);
+		CI_LOOP(iter)
+		{
+			Piki* piki = *iter;
+			if (piki->isSearchable()) {
+				// probably should be an inline?
+				Vector2f sep = Vector2f(piki->getPosition().x, piki->getPosition().z) - Vector2f(mPosition.x, mPosition.z);
+				if (sep.sqrMagnitude() < rad) {
+					InteractAstonish astonish(this, C_PARMS->_944);
+					piki->stimulate(astonish);
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -1386,308 +950,24 @@ lbl_8037059C:
  */
 bool Obj::isFound()
 {
-	// return gameSystem->isZukanMode(); // this gets used in here somewhere
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r31, 0x2f4(r3)
-	cmplwi   r31, 0
-	beq      lbl_80370900
-	cmplw    r31, r30
-	beq      lbl_80370900
-	lwz      r30, 0x2f4(r31)
-	cmplwi   r30, 0
-	beq      lbl_80370880
-	cmplw    r30, r31
-	beq      lbl_80370880
-	lwz      r31, 0x2f4(r30)
-	cmplwi   r31, 0
-	beq      lbl_80370800
-	cmplw    r31, r30
-	beq      lbl_80370800
-	lwz      r30, 0x2f4(r31)
-	cmplwi   r30, 0
-	beq      lbl_80370780
-	cmplw    r30, r31
-	beq      lbl_80370780
-	lwz      r31, 0x2f4(r30)
-	cmplwi   r31, 0
-	beq      lbl_80370700
-	cmplw    r31, r30
-	beq      lbl_80370700
-	lwz      r3, 0x2f4(r31)
-	cmplwi   r3, 0
-	beq      lbl_80370678
-	cmplw    r3, r31
-	beq      lbl_80370678
-	bl       isFound__Q34Game11TamagoMushi3ObjFv
-	b        lbl_80370974
+	if (mLeader && mLeader != this) {
+		return mLeader->isFound();
+	}
 
-lbl_80370678:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80370698
-	bl       isZukanMode__Q24Game10GameSystemFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80370698
-	li       r3, 1
-	b        lbl_80370974
+	if (gameSystem && gameSystem->isZukanMode()) {
+		return true;
+	}
 
-lbl_80370698:
-	lwz      r3, 0xc0(r31)
-	addi     r3, r3, 0x82c
-	bl       "__cl__7Parm<f>Fv"
-	lfs      f31, 0(r3)
-	mr       r3, r31
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	li       r4, 0
-	fmr      f2, f31
-	li       r5, 0
-	bl
-"getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_803706D0
-	li       r3, 1
-	b        lbl_80370974
+	f32 searchRad = C_PROPERPARMS.mFp02();
+	if (EnemyFunc::getNearestPikmin(this, 180.0f, searchRad, nullptr, nullptr)) {
+		return true;
+	}
 
-lbl_803706D0:
-	fmr      f2, f31
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl
-"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
-	cmplwi   r3, 0
-	beq      lbl_803706F8
-	li       r3, 1
-	b        lbl_80370974
+	if (EnemyFunc::getNearestNavi(this, 180.0f, searchRad, nullptr, nullptr)) {
+		return true;
+	}
 
-lbl_803706F8:
-	li       r3, 0
-	b        lbl_80370974
-
-lbl_80370700:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80370720
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_80370720
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_80370720:
-	lwz      r5, 0xc0(r30)
-	mr       r3, r30
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	li       r4, 0
-	lfs      f31, 0x844(r5)
-	li       r5, 0
-	fmr      f2, f31
-	bl
-"getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_80370750
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_80370750:
-	fmr      f2, f31
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl
-"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
-	cmplwi   r3, 0
-	beq      lbl_80370778
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_80370778:
-	li       r3, 0
-	b        lbl_80370974
-
-lbl_80370780:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803707A0
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_803707A0
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_803707A0:
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	li       r4, 0
-	lfs      f31, 0x844(r5)
-	li       r5, 0
-	fmr      f2, f31
-	bl
-"getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_803707D0
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_803707D0:
-	fmr      f2, f31
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl
-"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
-	cmplwi   r3, 0
-	beq      lbl_803707F8
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_803707F8:
-	li       r3, 0
-	b        lbl_80370974
-
-lbl_80370800:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80370820
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_80370820
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_80370820:
-	lwz      r5, 0xc0(r30)
-	mr       r3, r30
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	li       r4, 0
-	lfs      f31, 0x844(r5)
-	li       r5, 0
-	fmr      f2, f31
-	bl
-"getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_80370850
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_80370850:
-	fmr      f2, f31
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl
-"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
-	cmplwi   r3, 0
-	beq      lbl_80370878
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_80370878:
-	li       r3, 0
-	b        lbl_80370974
-
-lbl_80370880:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803708A0
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_803708A0
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_803708A0:
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	li       r4, 0
-	lfs      f31, 0x844(r5)
-	li       r5, 0
-	fmr      f2, f31
-	bl
-"getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_803708D0
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_803708D0:
-	fmr      f2, f31
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl
-"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
-	cmplwi   r3, 0
-	beq      lbl_803708F8
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_803708F8:
-	li       r3, 0
-	b        lbl_80370974
-
-lbl_80370900:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80370920
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_80370920
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_80370920:
-	lwz      r5, 0xc0(r30)
-	mr       r3, r30
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	li       r4, 0
-	lfs      f31, 0x844(r5)
-	li       r5, 0
-	fmr      f2, f31
-	bl
-"getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_80370950
-	li       r3, 1
-	b        lbl_80370974
-
-lbl_80370950:
-	fmr      f2, f31
-	lfs      f1, lbl_8051EB10@sda21(r2)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl
-"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-
-lbl_80370974:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1726,7 +1006,7 @@ void Obj::ballMove()
  */
 void Obj::createHideEffect()
 {
-	efx::Arg arg = mPosition;
+	efx::Arg arg(mPosition);
 	efx::TUjinkoHd effect(mModel->mJoints->getWorldMatrix());
 	effect.create(&arg);
 }
@@ -1738,7 +1018,7 @@ void Obj::createHideEffect()
  */
 void Obj::createAppearEffect()
 {
-	efx::Arg arg = mPosition;
+	efx::Arg arg(mPosition);
 	efx::TTamagoAp effect(mModel->mJoints->getWorldMatrix());
 	effect.create(&arg);
 }

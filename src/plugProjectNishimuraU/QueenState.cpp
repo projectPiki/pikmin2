@@ -359,18 +359,18 @@ void StateRolling::exec(EnemyBase* enemy)
 		sep.y             = 0.0f;
 		f32 dotProd       = sep.dot(dir);
 
-		if (dotProd > *CG_PARMS(queen)->mGeneral.mTerritoryRadius()) {
+		if (dotProd > CG_PARMS(queen)->mGeneral.mTerritoryRadius()) {
 			queen->mTargetVelocity = Vector3f(0.0f);
 		} else { // mismatch lives here
-			f32 increasedRad = 10.0f + *CG_PARMS(queen)->mGeneral.mTerritoryRadius();
+			f32 increasedRad = 10.0f + CG_PARMS(queen)->mGeneral.mTerritoryRadius();
 			dir *= increasedRad;
 			Vector3f newSep = queen->mHomePosition - position;
 
 			newSep   = dir + newSep;
 			newSep.y = 0.0f;
 			newSep.normalise();
-			newSep.x *= *CG_PARMS(queen)->mGeneral.mMoveSpeed();
-			newSep.z *= *CG_PARMS(queen)->mGeneral.mMoveSpeed();
+			newSep.x *= CG_PARMS(queen)->mGeneral.mMoveSpeed();
+			newSep.z *= CG_PARMS(queen)->mGeneral.mMoveSpeed();
 			queen->mTargetVelocity = newSep;
 		}
 

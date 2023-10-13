@@ -1549,7 +1549,7 @@ bool Obj::nextTargetTurnCheck()
 	}
 
 	// SHOULD match when turnFunc matches, but turnFunc might need tweaking to make sure this matches.
-	if (turnFunc(0.1f) < PI * (DEG2RAD * *C_PROPERPARMS.mFp06())) {
+	if (turnFunc(0.1f) < PI * (DEG2RAD * C_PROPERPARMS.mFp06())) {
 		return false;
 	}
 

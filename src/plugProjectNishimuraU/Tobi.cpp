@@ -224,9 +224,9 @@ void Obj::initMouthSlots()
 void Obj::lifeRecover()
 {
 	if (isFlying()) {
-		mHealth += 0.001f * *C_PARMS->mGeneral.mHealth();
-		if (mHealth > *C_PARMS->mGeneral.mHealth()) {
-			mHealth = *C_PARMS->mGeneral.mHealth();
+		mHealth += 0.001f * C_PARMS->mGeneral.mHealth();
+		if (mHealth > C_PARMS->mGeneral.mHealth()) {
+			mHealth = C_PARMS->mGeneral.mHealth();
 		}
 	} else {
 		EnemyBase::lifeRecover();

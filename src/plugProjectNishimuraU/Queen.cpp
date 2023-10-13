@@ -290,8 +290,8 @@ void Obj::rollingAttack()
 {
 	Vector3f pos     = getPosition();
 	const f32 angle  = getFaceDir();
-	f32 attackRadius = *C_PARMS->mGeneral.mAttackRadius();
-	f32 attackAngle  = *C_PARMS->mGeneral.mAttackHitAngle();
+	f32 attackRadius = C_PARMS->mGeneral.mAttackRadius();
+	f32 attackAngle  = C_PARMS->mGeneral.mAttackHitAngle();
 
 	Vector3f forward = getDirection(angle);
 	Vector3f back(-forward.z, 0.0f, forward.x);
@@ -634,8 +634,8 @@ void Obj::createBabyChappy()
 		if (baby) {
 			f32 angle           = birthArg.mFaceDir;
 			Queen::Parms* parms = C_PARMS;
-			Vector3f vel        = Vector3f(*parms->mGeneral.mSearchDistance() * pikmin2_sinf(angle), 0.0f,
-                                    *parms->mGeneral.mSearchDistance() * pikmin2_cosf(angle));
+			Vector3f vel        = Vector3f(parms->mGeneral.mSearchDistance() * pikmin2_sinf(angle), 0.0f,
+                                    parms->mGeneral.mSearchDistance() * pikmin2_cosf(angle));
 			baby->init(nullptr);
 			baby->setVelocity(vel);
 			baby->mTargetVelocity = vel;

@@ -412,7 +412,7 @@ Pellet* OtakaraBase::Obj::getNearestTreasure()
 		Pellet* pellet = (Pellet*)(*iterator);
 		if (pellet->isAlive() && (pellet->mCaptureMatrix == nullptr && pellet->isPickable())) {
 			Vector3f position = pellet->getPosition();
-			if (sqrDistanceXZ(position, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
+			if (sqrDistanceXZ(position, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
 				Vector3f sep2 = mPosition;
 				sep2 -= position;
 				f32 dist2D = SQUARE(sep2.x) + SQUARE(sep2.z);

@@ -1749,8 +1749,8 @@ void StateWalkPath::exec(EnemyBase* enemy)
 
 	Creature* target = kuma->getSearchedTarget();
 	if (target) {
-		f32 minRange = *CG_PARMS(kuma)->mGeneral.mMinAttackRange();
-		f32 maxRange = *CG_PARMS(kuma)->mGeneral.mMaxAttackRange();
+		f32 minRange = CG_PARMS(kuma)->mGeneral.mMinAttackRange();
+		f32 maxRange = CG_PARMS(kuma)->mGeneral.mMaxAttackRange();
 		f32 dist     = kuma->getAngDist(target);
 		if (kuma->checkDistAndAngle(target, dist, minRange, maxRange)) {
 			kuma->mNextState = KUMAKOCHAPPY_Attack;
@@ -1769,8 +1769,8 @@ void StateWalkPath::exec(EnemyBase* enemy)
 				kuma->mNextState = KUMAKOCHAPPY_Wait;
 				kuma->finishMotion();
 			} else {
-				f32 dist = kuma->turnToTarget(*parentPos, *CG_PARMS(kuma)->mGeneral.mRotationalAccel(),
-				                              *CG_PARMS(kuma)->mGeneral.mRotationalSpeed());
+				f32 dist = kuma->turnToTarget(*parentPos, CG_PARMS(kuma)->mGeneral.mRotationalAccel(),
+				                              CG_PARMS(kuma)->mGeneral.mRotationalSpeed());
 			}
 		} else {
 			kuma->mNextState = KUMAKOCHAPPY_Wait;

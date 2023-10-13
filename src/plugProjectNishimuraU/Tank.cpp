@@ -302,9 +302,9 @@ bool Obj::isAttackable(bool check)
 			Vector3f diff = creaturePos - targetPos;
 			Parms* parms  = C_PARMS;
 			f32 absY      = absVal(diff.y);
-			if (absY < *parms->mGeneral.mAttackRadius()) {
+			if (absY < parms->mGeneral.mAttackRadius()) {
 				Vector3f angle(cosTheta, 0.0f, sinTheta);
-				if (absVal(dot(angle, diff)) < *parms->mGeneral.mAttackRadius()) {
+				if (absVal(dot(angle, diff)) < parms->mGeneral.mAttackRadius()) {
 					f32 dotProd = dot(dir, diff);
 					if (dotProd < ratio && dotProd > 0.0f) {
 						if (check) {

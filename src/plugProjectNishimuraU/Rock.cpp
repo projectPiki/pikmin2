@@ -368,7 +368,7 @@ void Obj::initMoveVelocity()
 	f32 sinTheta = pikmin2_sinf(theta);
 
 	Vector3f vel(sinTheta, 0.0f, cosTheta);
-	vel *= *C_PARMS->mGeneral.mMoveSpeed();
+	vel *= C_PARMS->mGeneral.mMoveSpeed();
 	mTargetVelocity = vel;
 	setVelocity(vel);
 	/*

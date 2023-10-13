@@ -356,9 +356,9 @@ int Obj::getStickPikminNum() { return mStuckPikminCount - getCatchTargetNum(); }
 FakePiki* Obj::getAttackableTarget()
 {
 
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
-		f32 maxAngle = PI * (DEG2RAD * *C_PARMS->mGeneral.mViewAngle());
-		f32 maxDist  = SQUARE(*C_PARMS->mGeneral.mSightRadius());
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+		f32 maxAngle = PI * (DEG2RAD * C_PARMS->mGeneral.mViewAngle());
+		f32 maxDist  = SQUARE(C_PARMS->mGeneral.mSightRadius());
 
 		Iterator<Piki> iterator(pikiMgr);
 		iterator.first();

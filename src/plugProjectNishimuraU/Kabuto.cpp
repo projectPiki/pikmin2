@@ -247,7 +247,7 @@ bool Obj::isAttackableTarget()
 			if (check) {
 				Vector3f creaturePos = creature->getPosition();
 				Vector3f diff        = creaturePos - mPosition;
-				if (absVal(diff.x) < *C_PARMS->mGeneral.mFov()) {
+				if (absVal(diff.x) < C_PARMS->mGeneral.mFov()) {
 					f32 dotProd = absVal(dot(diff, angles));
 					if (dotProd < 15.0f) {
 						f32 secondDotProd = dot(diff, angles);
@@ -534,8 +534,8 @@ void Obj::lifeIncrement()
 	mInstantDamage = 0.0f;
 	disableEvent(0, EB_TakingDamage);
 	mHealth += 1.0f;
-	if (mHealth > *C_PARMS->mGeneral.mHealth()) {
-		mHealth = *C_PARMS->mGeneral.mHealth();
+	if (mHealth > C_PARMS->mGeneral.mHealth()) {
+		mHealth = C_PARMS->mGeneral.mHealth();
 	}
 }
 

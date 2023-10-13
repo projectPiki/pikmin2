@@ -311,8 +311,8 @@ void Obj::getThrowupItemVelocity(Vector3f* velocity)
  */
 void Obj::resetFlickWalkTimeMax()
 {
-	f32 travelTime = *C_PROPERPARMS.mNormalTravelTime();
-	f32 halfTime   = *C_PROPERPARMS.mNormalTravelTime() * 0.5f;
+	f32 travelTime = C_PROPERPARMS.mNormalTravelTime();
+	f32 halfTime   = C_PROPERPARMS.mNormalTravelTime() * 0.5f;
 
 	mFlickWalkTimeMax = halfTime + randWeightFloat(travelTime);
 }
@@ -324,8 +324,8 @@ void Obj::resetFlickWalkTimeMax()
  */
 void Obj::setFlickWalkTimeMax()
 {
-	f32 travelTime = *C_PROPERPARMS.mPostShakeTravelTime();
-	f32 halfTime   = *C_PROPERPARMS.mPostShakeTravelTime() * 0.5f;
+	f32 travelTime = C_PROPERPARMS.mPostShakeTravelTime();
+	f32 halfTime   = C_PROPERPARMS.mPostShakeTravelTime() * 0.5f;
 
 	mFlickWalkTimeMax = halfTime + randWeightFloat(travelTime);
 }
@@ -337,14 +337,14 @@ void Obj::setFlickWalkTimeMax()
  */
 void Obj::getTargetPosition()
 {
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
 		if (mIsEnraged) {
 			f32 adjustAngle = (randWeightFloat(2.0f * mIkSystemParms->_34) - mIkSystemParms->_34) * DEG2RAD * PI;
 			f32 randAngle   = mFaceDir + adjustAngle;
 			// different stomping behavior if enraged
-			mTargetPosition.x = *C_PROPERPARMS.mMovementOffset() * pikmin2_sinf(randAngle) + mPosition.x;
+			mTargetPosition.x = C_PROPERPARMS.mMovementOffset() * pikmin2_sinf(randAngle) + mPosition.x;
 			mTargetPosition.y = mPosition.y;
-			mTargetPosition.z = *C_PROPERPARMS.mMovementOffset() * pikmin2_cosf(randAngle) + mPosition.z;
+			mTargetPosition.z = C_PROPERPARMS.mMovementOffset() * pikmin2_cosf(randAngle) + mPosition.z;
 
 		} else {
 			ConditionNotStickClient condition(this);

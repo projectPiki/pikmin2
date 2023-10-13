@@ -482,14 +482,14 @@ Creature* Obj::getSearchedTarget(f32 offset)
 {
 	Creature* target = nullptr;
 
-	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
 		f32 currY       = mPosition.y;
 		f32 minY        = currY - offset - 50.0f;
-		f32 fovAng      = PI * (DEG2RAD * *C_PARMS->mGeneral.mViewAngle());
-		f32 maxDist     = SQUARE(*C_PARMS->mGeneral.mSightRadius());
-		f32 attackRange = SQUARE(*C_PARMS->mGeneral.mMaxAttackRange());
+		f32 fovAng      = PI * (DEG2RAD * C_PARMS->mGeneral.mViewAngle());
+		f32 maxDist     = SQUARE(C_PARMS->mGeneral.mSightRadius());
+		f32 attackRange = SQUARE(C_PARMS->mGeneral.mMaxAttackRange());
 
-		Sys::Sphere sphere(mPosition, *C_PARMS->mGeneral.mTerritoryRadius());
+		Sys::Sphere sphere(mPosition, C_PARMS->mGeneral.mTerritoryRadius());
 		CellIteratorArg iterArg(sphere);
 		iterArg.mIsSphereCollisionDisabled = true;
 		CellIterator iter(iterArg);
@@ -763,7 +763,7 @@ bool Obj::isSuck(f32 offset, Creature* target)
 {
 	f32 currY    = mPosition.y;            // f30
 	f32 minY     = currY - offset - 50.0f; // f29
-	f32 maxRange = SQUARE(*C_PARMS->mGeneral.mMaxAttackRange());
+	f32 maxRange = SQUARE(C_PARMS->mGeneral.mMaxAttackRange());
 
 	if (target) {
 		Vector3f targetPos = target->getPosition();
@@ -773,7 +773,7 @@ bool Obj::isSuck(f32 offset, Creature* target)
 			}
 		}
 	} else {
-		Sys::Sphere sphere(mPosition, *C_PARMS->mGeneral.mMaxAttackRange());
+		Sys::Sphere sphere(mPosition, C_PARMS->mGeneral.mMaxAttackRange());
 		CellIteratorArg iterArg(sphere);
 		iterArg.mIsSphereCollisionDisabled = true;
 		CellIterator iter(iterArg);
@@ -808,7 +808,7 @@ bool Obj::suckPikmin(f32 offset)
 {
 	f32 currY    = mPosition.y;
 	f32 minY     = currY - offset - 50.0f;
-	f32 maxRange = SQUARE(*C_PARMS->mGeneral.mAttackRadius());
+	f32 maxRange = SQUARE(C_PARMS->mGeneral.mAttackRadius());
 
 	CollPart* part   = mCollTree->getCollPart('suck');
 	Vector3f partPos = part->mPosition;
@@ -818,7 +818,7 @@ bool Obj::suckPikmin(f32 offset)
 	{
 		Piki* currPiki = *iter;
 		if (currPiki->isAlive() && currPiki->isPikmin() && currPiki->mSticker != this) {
-			if (mSuckedPiki < *C_PROPERPARMS.mMaxSuckPiki() && randWeightFloat(1.0f) < *C_PROPERPARMS.mSuckChance()) {
+			if (mSuckedPiki < C_PROPERPARMS.mMaxSuckPiki() && randWeightFloat(1.0f) < C_PROPERPARMS.mSuckChance()) {
 				Vector3f pikiPos = currPiki->getPosition();
 				if (pikiPos.y > minY && pikiPos.y < currY && sqrDistanceXZ(mPosition, pikiPos) < maxRange) {
 					Vector3f suckVec = partPos - pikiPos;
@@ -844,7 +844,7 @@ bool Obj::suckNavi(f32 offset)
 {
 	f32 currY    = mPosition.y;
 	f32 minY     = currY - offset - 50.0f;
-	f32 maxRange = SQUARE(*C_PARMS->mGeneral.mAttackRadius());
+	f32 maxRange = SQUARE(C_PARMS->mGeneral.mAttackRadius());
 
 	CollPart* part   = mCollTree->getCollPart('suck');
 	Vector3f partPos = part->mPosition;

@@ -114,14 +114,14 @@ void Obj::doAnimationStick()
 			f32 absX = absVal(xDiff);
 			f32 absZ = absVal(zDiff);
 
-			if (absX > *C_PROPERPARMS.mFp90()) {
+			if (absX > C_PROPERPARMS.mFp90()) {
 				check = true;
-				pos.x = (xDiff / absX) * *C_PROPERPARMS.mFp90() + _300;
+				pos.x = (xDiff / absX) * C_PROPERPARMS.mFp90() + _300;
 			}
 
-			if (absZ > *C_PROPERPARMS.mFp90()) {
+			if (absZ > C_PROPERPARMS.mFp90()) {
 				check = true;
-				pos.z = (zDiff / absZ) * *C_PROPERPARMS.mFp90() + _304;
+				pos.z = (zDiff / absZ) * C_PROPERPARMS.mFp90() + _304;
 			}
 			_2C1 = check;
 
@@ -1294,7 +1294,7 @@ lbl_802BD178:
 void Obj::moveStickTube()
 {
 	Vector3f pos = _2CC;
-	pos *= *C_PROPERPARMS.mFp01();
+	pos *= C_PROPERPARMS.mFp01();
 	mTargetVelocity = pos;
 }
 

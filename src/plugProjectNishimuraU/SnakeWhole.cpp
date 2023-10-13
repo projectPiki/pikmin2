@@ -242,7 +242,7 @@ void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutij
  */
 bool Obj::isOutTerritory()
 {
-	return (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(*C_PARMS->mGeneral.mTerritoryRadius()));
+	return (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius()));
 	/*
 	lfs      f1, 0x194(r3)
 	lfs      f0, 0x1a0(r3)
@@ -269,7 +269,7 @@ bool Obj::isOutTerritory()
  */
 bool Obj::isInHomeRange()
 {
-	return (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mHomeRadius()));
+	return (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mHomeRadius()));
 
 	/*
 	lfs      f1, 0x194(r3)
@@ -1885,8 +1885,8 @@ void Obj::lifeIncrement()
 	disableEvent(0, EB_TakingDamage);
 	mHealth += 10.0f;
 
-	if (mHealth > *C_PARMS->mGeneral.mHealth()) {
-		mHealth = *C_PARMS->mGeneral.mHealth();
+	if (mHealth > C_PARMS->mGeneral.mHealth()) {
+		mHealth = C_PARMS->mGeneral.mHealth();
 	}
 }
 

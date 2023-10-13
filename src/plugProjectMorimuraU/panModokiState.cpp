@@ -974,7 +974,7 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 			}
 
 		} else {
-			enemy->turnToTarget(_10, *CG_PARMS(enemy)->mGeneral.mRotationalAccel(), *CG_PARMS(enemy)->mGeneral.mRotationalSpeed());
+			enemy->turnToTarget(_10, CG_PARMS(enemy)->mGeneral.mRotationalAccel(), CG_PARMS(enemy)->mGeneral.mRotationalSpeed());
 			diff *= 0.05f;
 			enemy->forceMovePosition(diff);
 		}

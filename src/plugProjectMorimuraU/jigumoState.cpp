@@ -331,7 +331,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		FakePiki* target = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mSearchAngle.mValue,
 		                                                    CG_PARMS(enemy)->mGeneral.mSearchDistance.mValue);
 		if (target) {
-			enemy->turnToTarget(target, *CG_PARMS(enemy)->mGeneral.mRotationalAccel(), *CG_PARMS(enemy)->mGeneral.mRotationalSpeed());
+			enemy->turnToTarget(target, CG_PARMS(enemy)->mGeneral.mRotationalAccel(), CG_PARMS(enemy)->mGeneral.mRotationalSpeed());
 			OBJ(enemy)->mGoalPosition = Vector3f(target->getPosition());
 		}
 	}

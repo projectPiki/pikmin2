@@ -210,11 +210,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void viewOnPelletKilled();                                   // _220
 	virtual f32 getCellRadius()                                          // _58 (weak)
 	{
-		return *static_cast<EnemyParmsBase*>(mParms)->mGeneral.mCellRadius();
+		return static_cast<EnemyParmsBase*>(mParms)->mGeneral.mCellRadius();
 	}
 	virtual f32 getBodyRadius() // _54 (weak)
 	{
-		return *static_cast<EnemyParmsBase*>(mParms)->mGeneral.mPikminDamageRadius();
+		return static_cast<EnemyParmsBase*>(mParms)->mGeneral.mPikminDamageRadius();
 	}
 	virtual f32 getFaceDir() // _64 (weak)
 	{
@@ -598,8 +598,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		f32 z;
 
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		rotSpeed              = *parms->mGeneral.mRotationalSpeed();
-		rotAccel              = *parms->mGeneral.mRotationalAccel();
+		rotSpeed              = parms->mGeneral.mRotationalSpeed();
+		rotAccel              = parms->mGeneral.mRotationalAccel();
 
 		Vector3f pos = getPosition();
 		x            = XYZ.x;

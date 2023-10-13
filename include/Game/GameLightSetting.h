@@ -34,10 +34,10 @@ struct GameLightSettingBase {
 
 	inline void getColor(Color4& color)
 	{
-		color.r = *mSettings.mRed();
-		color.g = *mSettings.mGreen();
-		color.b = *mSettings.mBlue();
-		color.a = *mSettings.mAlpha();
+		color.r = mSettings.mRed();
+		color.g = mSettings.mGreen();
+		color.b = mSettings.mBlue();
+		color.a = mSettings.mAlpha();
 	}
 };
 
@@ -101,10 +101,10 @@ struct GameFogSetting {
 
 	inline void getColor(Color4& color)
 	{
-		color.r = *mSettings.mRed();
-		color.g = *mSettings.mGreen();
-		color.b = *mSettings.mBlue();
-		color.a = *mSettings.mAlpha();
+		color.r = mSettings.mRed();
+		color.g = mSettings.mGreen();
+		color.b = mSettings.mBlue();
+		color.a = mSettings.mAlpha();
 	}
 };
 
@@ -155,10 +155,10 @@ struct GameShadowSetting {
 
 	inline void getColor(Color4& color)
 	{
-		color.r = *mSettings.mRed();
-		color.g = *mSettings.mGreen();
-		color.b = *mSettings.mBlue();
-		color.a = *mSettings.mAlpha();
+		color.r = mSettings.mRed();
+		color.g = mSettings.mGreen();
+		color.b = mSettings.mBlue();
+		color.a = mSettings.mAlpha();
 	}
 };
 

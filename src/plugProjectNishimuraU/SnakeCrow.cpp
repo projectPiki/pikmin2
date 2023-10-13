@@ -305,7 +305,7 @@ void Obj::appearNearByTarget(Creature* target)
 	newPos *= 120.0f;
 	newPos += targetPos;
 
-	if (sqrDistanceXZ(mHomePosition, newPos) > SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
+	if (sqrDistanceXZ(mHomePosition, newPos) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
 		f32 angleDist = JMAAtan2Radian(targetPos.x - mHomePosition.x, targetPos.z - mHomePosition.z);
 
 		faceDir = angleDist + (randWeightFloat(PI) - HALF_PI);
@@ -1462,8 +1462,8 @@ void Obj::lifeIncrement()
 	disableEvent(0, EB_TakingDamage);
 	mHealth += 10.0f;
 
-	if (mHealth > *C_PARMS->mGeneral.mHealth()) {
-		mHealth = *C_PARMS->mGeneral.mHealth();
+	if (mHealth > C_PARMS->mGeneral.mHealth()) {
+		mHealth = C_PARMS->mGeneral.mHealth();
 	}
 }
 

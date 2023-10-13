@@ -112,8 +112,8 @@ void StateWait::exec(EnemyBase* enemy)
 
 			f32 angdist = frog->getCreatureViewAngle(target);
 
-			if (frog->checkDistAndAngle(target, angdist, *CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
-			                            *CG_PARMS(frog)->mGeneral.mMinAttackRange())) {
+			if (frog->checkDistAndAngle(target, angdist, CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
+			                            CG_PARMS(frog)->mGeneral.mMinAttackRange())) {
 				Vector3f targetPos2   = target->getPosition();
 				frog->mTargetPosition = targetPos2;
 				frog->attackNaviPosition();
@@ -461,8 +461,8 @@ void StateTurn::exec(EnemyBase* enemy)
 		f32 angdist = frog->turnToTarget(target, CG_PARMS(frog)->mGeneral.mRotationalAccel.mValue,
 		                                 CG_PARMS(frog)->mGeneral.mRotationalSpeed.mValue);
 
-		if (frog->checkDistAndAngle(target, angdist, *CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
-		                            *CG_PARMS(frog)->mGeneral.mMinAttackRange())) {
+		if (frog->checkDistAndAngle(target, angdist, CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
+		                            CG_PARMS(frog)->mGeneral.mMinAttackRange())) {
 			frog->mTargetCreature = target;
 			frog->mNextState      = FROG_Jump;
 			frog->finishMotion();
@@ -1048,7 +1048,7 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 {
 	Obj* frog        = OBJ(enemy);
 	Vector3f homePos = frog->mHomePosition;
-	f32 maxAngle     = *CG_PARMS(frog)->mGeneral.mMinAttackRange();
+	f32 maxAngle     = CG_PARMS(frog)->mGeneral.mMinAttackRange();
 	f32 angdist
 	    = frog->turnToTarget(homePos, CG_PARMS(frog)->mGeneral.mRotationalAccel.mValue, CG_PARMS(frog)->mGeneral.mRotationalSpeed.mValue);
 
@@ -1267,7 +1267,7 @@ void StateGoHome::exec(EnemyBase* enemy)
 		EnemyFunc::walkToTarget(frog, homePos, CG_PARMS(frog)->mGeneral.mMoveSpeed.mValue, CG_PARMS(frog)->mGeneral.mRotationalAccel.mValue,
 		                        CG_PARMS(frog)->mGeneral.mRotationalSpeed.mValue);
 
-		if (sqrDistanceXZ(pos, homePos) < SQUARE(*CG_PARMS(frog)->mGeneral.mHomeRadius())) {
+		if (sqrDistanceXZ(pos, homePos) < SQUARE(CG_PARMS(frog)->mGeneral.mHomeRadius())) {
 			frog->mNextState = FROG_Wait;
 			frog->finishMotion();
 		} else if (frog->mAirTimer > 7.5f) {

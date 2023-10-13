@@ -130,7 +130,7 @@ void StateTurn::exec(EnemyBase* enemy)
 
 	// f32 dist = bug->changeFaceDir(targetPos);
 
-	f32 dist = bug->turnToTarget(targetPos, *CG_PARMS(bug)->mGeneral.mRotationalAccel(), *CG_PARMS(bug)->mGeneral.mRotationalSpeed());
+	f32 dist = bug->turnToTarget(targetPos, CG_PARMS(bug)->mGeneral.mRotationalAccel(), CG_PARMS(bug)->mGeneral.mRotationalSpeed());
 	f64 abs  = fabs(dist);
 	if ((f32)(abs) <= PI / 6.0f) {
 		bug->finishMotion();
@@ -263,7 +263,7 @@ void StateCharge::exec(EnemyBase* enemy)
 		Vector3f partnerPos = partner->getPosition();
 		Vector3f pos        = bugPos - partnerPos;
 		pos += bugPos;
-		partner->turnToTarget(pos, 0.15f, *CG_PARMS(bug)->mGeneral.mRotationalSpeed());
+		partner->turnToTarget(pos, 0.15f, CG_PARMS(bug)->mGeneral.mRotationalSpeed());
 	}
 	if (bug->mStateTimer > 3.0f) {
 		if (bug->mPartner) {
@@ -384,7 +384,7 @@ void StateChildCharge::exec(EnemyBase* enemy)
 		Vector3f partnerPos = partner->getPosition();
 		Vector3f pos        = bugPos - partnerPos;
 		pos += bugPos;
-		partner->turnToTarget(pos, 0.15f, *CG_PARMS(bug)->mGeneral.mRotationalSpeed());
+		partner->turnToTarget(pos, 0.15f, CG_PARMS(bug)->mGeneral.mRotationalSpeed());
 	}
 	if (bug->mStateTimer > 3.0f) {
 		if (partner) {

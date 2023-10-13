@@ -283,9 +283,9 @@ bool Kogane::Obj::koganeScaleUp()
 	if (mScaleTimer < C_PARMS->mProperParms.mScale.mValue) {
 		mScaleTimer += sys->mDeltaTime * 10.0f;
 
-		if (mScaleTimer >= *C_PARMS->mProperParms.mScale()) {
+		if (mScaleTimer >= C_PARMS->mProperParms.mScale()) {
 			check       = true;
-			mScaleTimer = *C_PARMS->mProperParms.mScale();
+			mScaleTimer = C_PARMS->mProperParms.mScale();
 			disableEvent(0, EB_NoInterrupt);
 		}
 		f32 scale      = mScaleTimer;

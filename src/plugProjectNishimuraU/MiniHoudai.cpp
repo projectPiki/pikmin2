@@ -363,7 +363,7 @@ void Obj::updateCaution()
  * Address:	802EC958
  * Size:	000024
  */
-f32 Obj::getViewAngle() { return (_2C8 < *C_PARMS->mGeneral.mAlertDuration()) ? 180.0f : *C_PARMS->mGeneral.mViewAngle(); }
+f32 Obj::getViewAngle() { return (_2C8 < C_PARMS->mGeneral.mAlertDuration()) ? 180.0f : C_PARMS->mGeneral.mViewAngle(); }
 
 /*
  * --INFO--
@@ -450,7 +450,7 @@ void Obj::setLinkWayPoint()
 Creature* Obj::getSearchedTarget()
 {
 	f32 viewAngle    = getViewAngle();
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, *C_PARMS->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, C_PARMS->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
 
 	if (target) {
 		_2C8 = 0.0f;
