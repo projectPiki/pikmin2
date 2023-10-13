@@ -7,7 +7,7 @@
 struct Graphics;
 
 struct InfoMgrBase {
-	virtual ~InfoMgrBase();           // _08
+	virtual ~InfoMgrBase() { }        // _08
 	virtual void loadResource()  = 0; // _0C
 	virtual void update()        = 0; // _10
 	virtual void draw(Graphics&) = 0; // _14
@@ -28,35 +28,29 @@ struct InfoListBase : public JKRDisposer {
 		_1C = nullptr;
 		_18 = nullptr;
 	}
-	virtual void init() {};          // _0C
-	virtual void update() {};        // _10
-	virtual void draw(Graphics&) {}; // _14
+	virtual void init() { }          // _0C
+	virtual void update() { }        // _10
+	virtual void draw(Graphics&) { } // _14
 	virtual bool isFinish() = 0;     // _18
 
 	// TODO: These may be just List*?
-	InfoListBase<Owner, List>* _18; // _18
-	InfoListBase<Owner, List>* _1C; // _1C
-	Owner* mOwner;                  // _20
+	List* _18;     // _18
+	List* _1C;     // _1C
+	Owner* mOwner; // _20
 };
 
 template <typename Owner, typename List>
 struct InfoMgr : public InfoMgrBase {
 	// TODO: ctor
-	InfoMgr(int);
+	InfoMgr(int) { }
 
 	// TODO: dtor
-	virtual ~InfoMgr();              // _08
+	virtual ~InfoMgr() { }           // _08
 	virtual void loadResource() = 0; // _0C
 	virtual void update()            // _10
 	{
-		// InfoListBase<Owner, List>* next;
-		// for (
-		// 	InfoListBase<Owner, List>* current = ((InfoListBase<Owner,List>)mList)._1C;
-		// 	current != nullptr;
-		// 	current = next
-		// ) {
-		InfoListBase<Owner, List>* next = ((InfoListBase<Owner, List>)mActiveList)._1C;
-		InfoListBase<Owner, List>* current;
+		List* next = (mActiveList)._1C;
+		List* current;
 		while (current = next, current) {
 			next = current->_1C;
 			current->update();
@@ -65,25 +59,27 @@ struct InfoMgr : public InfoMgrBase {
 			}
 		}
 	}
+
 	virtual void draw(Graphics& gfx) // _14
 	{
-		InfoListBase<Owner, List>* list = ((InfoListBase<Owner, List>)mActiveList)._1C;
+		List* list = (mActiveList)._1C;
 		if (list) {
 			for (; list != nullptr; list = list->_1C) {
 				list->draw(gfx);
 			}
 		}
 	}
+
 	virtual List* regist(Owner* owner) // _18
 	{
-		InfoListBase<Owner, List>* list;
-		for (list = ((InfoListBase<Owner, List>)mActiveList)._1C; list != nullptr; list = list->_1C) {
+		List* list;
+		for (list = (mActiveList)._1C; list != nullptr; list = list->_1C) {
 			if (list->mOwner == owner) {
 				break;
 			}
 		}
 		if (list == nullptr) {
-			list = ((InfoListBase<Owner, List>)mActiveList)._1C;
+			list = (mActiveList)._1C;
 		}
 		if (list) {
 			list->mOwner = owner;
@@ -91,7 +87,13 @@ struct InfoMgr : public InfoMgrBase {
 		}
 		return list;
 	}
-	virtual List* scratch(Owner* owner); // _1C
+	virtual void scratch(Owner* owner)
+	{
+		List* list = search(mActiveList._1C, owner); // search(&mActiveList, owner); // this I cant get to work
+		if (list) {
+			addInactiveList(list);
+		}
+	}
 
 	List* search(List* list, Owner* owner)
 	{
@@ -106,8 +108,18 @@ struct InfoMgr : public InfoMgrBase {
 		}
 	}
 
-	void addActiveList(List*);
-	void addInactiveList(List*);
+	void addActiveList(List* list)
+	{
+		if (list->_18) {
+			list->_18->_1C = list->_1C;
+		}
+	}
+	void addInactiveList(List* list)
+	{
+		if (list->_18) {
+			list->_18->_1C = list->_1C;
+		}
+	}
 
 	List mActiveList;   // _04 when List is CarryInfoList
 	List mInactiveList; // _5C when List is CarryInfoList

@@ -55,12 +55,19 @@ struct CarryInfoOwner {
  * @size{0x34}
  */
 struct PokoInfoOwner : public CarryInfoOwner, public CNode {
-	PokoInfoOwner();
+	PokoInfoOwner()
+	    : CNode("")
+	{
+		mTimer    = 0.0f;
+		mList     = nullptr;
+		mPosition = Vector3f::zero;
+		mValue    = 0;
+	}
 
 	// vtable 1 (CarryInfoOwner)
 	virtual void getCarryInfoParam(CarryInfoParam&); // _08
 	// vtable 2 (CNode)
-	virtual ~PokoInfoOwner(); // _1C (thunked at _14) (weak)
+	virtual ~PokoInfoOwner() { } // _1C (thunked at _14) (weak)
 
 	f32 mTimer;           // _1C
 	CarryInfoList* mList; // _20
@@ -72,11 +79,11 @@ struct PokoInfoOwner : public CarryInfoOwner, public CNode {
  * @size(0x58)
  */
 struct CarryInfoList : public InfoListBase<CarryInfoOwner, CarryInfoList> {
-	virtual ~CarryInfoList();     // _08 (weak)
-	virtual void init();          // _0C
-	virtual void update();        // _10
-	virtual void draw(Graphics&); // _14
-	virtual bool isFinish();      // _18 (weak)
+	virtual ~CarryInfoList() { }                                                    // _08 (weak)
+	virtual void init();                                                            // _0C
+	virtual void update();                                                          // _10
+	virtual void draw(Graphics&);                                                   // _14
+	virtual bool isFinish() { return (mParam.mCarryInfo.mHidden == CINFO_Hidden); } // _18 (weak)
 
 	CarryInfoParam mParam; // _24
 };
@@ -87,12 +94,12 @@ struct CarryInfoList : public InfoListBase<CarryInfoOwner, CarryInfoList> {
 struct CarryInfoMgr : public InfoMgr<CarryInfoOwner, CarryInfoList> {
 	CarryInfoMgr(int);
 
-	virtual ~CarryInfoMgr();                         // _08
-	virtual void loadResource();                     // _0C
-	virtual void update();                           // _10
-	virtual void draw(Graphics&);                    // _14
-	virtual CarryInfoList* regist(CarryInfoOwner*);  // _18 (weak)
-	virtual CarryInfoList* scratch(CarryInfoOwner*); // _1C (weak)
+	virtual ~CarryInfoMgr();                                                                                        // _08
+	virtual void loadResource();                                                                                    // _0C
+	virtual void update();                                                                                          // _10
+	virtual void draw(Graphics&);                                                                                   // _14
+	virtual CarryInfoList* regist(CarryInfoOwner* owner) { InfoMgr<CarryInfoOwner, CarryInfoList>::regist(owner); } // _18 (weak)
+	virtual void scratch(CarryInfoOwner* owner) { InfoMgr<CarryInfoOwner, CarryInfoList>::scratch(owner); }         // _1C (weak)
 
 	CarryInfoList* appear(CarryInfoOwner*);
 	void appearPoko(const Vector3f&, int);
