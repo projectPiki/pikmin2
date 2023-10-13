@@ -61,6 +61,7 @@ struct ShadowParam;
 struct WaterBox;
 
 struct LifeGaugeParam {
+	LifeGaugeParam() { mIsGaugeShown = false; }
 	Vector3f mPosition;       // _00
 	f32 mCurHealthPercentage; // _0C
 	f32 mRadius;              // _10
