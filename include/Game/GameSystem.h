@@ -68,6 +68,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	u32 setPause(bool, char*, int);
 	int startPause(bool, int, char*);
 
+	inline bool isStoryMode() { return mMode == GSM_STORY_MODE; }
 	inline bool isVersusMode() { return mMode == GSM_VERSUS_MODE; }
 	inline bool isMultiplayerMode() { return (mMode == GSM_VERSUS_MODE || mMode == GSM_TWO_PLAYER_CHALLENGE); }
 	inline bool isChallengeMode() { return (mMode == GSM_ONE_PLAYER_CHALLENGE || mMode == GSM_TWO_PLAYER_CHALLENGE); }

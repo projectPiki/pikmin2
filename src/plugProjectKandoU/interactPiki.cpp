@@ -67,7 +67,7 @@ inline bool vsFlute(Piki* p, Navi* n)
 
 bool InteractFue::actPiki(Game::Piki* piki)
 {
-	if (gameSystem->mMode == GSM_STORY_MODE && gameSystem->mTimeMgr->mDayCount == 0 && !playData->isDemoFlag(DEMO_Reunite_Captains)) {
+	if (gameSystem->isStoryMode() && gameSystem->mTimeMgr->mDayCount == 0 && !playData->isDemoFlag(DEMO_Reunite_Captains)) {
 		// the check for if it is day 1 and the captains are separated
 		if (mCreature->isNavi()) {
 			Navi* navi = static_cast<Navi*>(mCreature);

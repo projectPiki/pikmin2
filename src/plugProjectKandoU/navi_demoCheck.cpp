@@ -41,7 +41,7 @@ namespace Game {
  */
 bool Navi::demoCheck()
 {
-	if (gameSystem->mMode != GSM_STORY_MODE || cameraMgr->isChangePlayer()) {
+	if (!gameSystem->isStoryMode() || cameraMgr->isChangePlayer()) {
 		return false;
 	}
 

@@ -1604,7 +1604,7 @@ inline void PikiPanicState::checkDemo(Piki* piki)
 		flag = DEMO_Pikmin_In_Danger_Poison;
 	}
 
-	if (flag != 0 && !playData->isDemoFlag(flag) && gameSystem->mMode == GSM_STORY_MODE && gameSystem->mFlags & 0x20) {
+	if (flag != 0 && !playData->isDemoFlag(flag) && gameSystem->isStoryMode() && gameSystem->mFlags & 0x20) {
 		_28 -= sys->mDeltaTime;
 		if (_28 <= 0.0f) {
 			playData->setDemoFlag(flag);

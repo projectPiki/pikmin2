@@ -327,7 +327,7 @@ void MapUnitGenerator::createItemList()
 void MapUnitGenerator::createCaveLevel()
 {
 	mRandItemType = 0;
-	if (gameSystem && gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem && gameSystem->isStoryMode()) {
 		mRandItemType = 4;
 	}
 }

@@ -309,7 +309,7 @@ void Item::onInit(CreatureInitArg* initArg)
  */
 void Item::initDependency()
 {
-	if (gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem->isStoryMode()) {
 		mHealth = 0.0f;
 		mFsm->start(this, BIGFOUNTAIN_Out, nullptr);
 	}

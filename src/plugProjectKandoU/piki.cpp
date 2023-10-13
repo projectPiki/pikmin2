@@ -219,7 +219,7 @@ void Piki::onKill(CreatureKillArg* killArg)
 				DeathMgr::inc(DeathCounter::COD_All);
 			}
 
-			if (mTekiKillID != -1 && gameSystem->mMode == GSM_STORY_MODE) {
+			if (mTekiKillID != -1 && gameSystem->isStoryMode()) {
 				playData->mTekiStatMgr.getTekiInfo(mTekiKillID)->incKillPikmin();
 			}
 		}

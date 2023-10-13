@@ -115,7 +115,7 @@ void Obj::onKill(CreatureKillArg* killArg)
 void Obj::setParameters()
 {
 	// if we're in Hole of Heroes, change territory radius
-	if (gameSystem && gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem && gameSystem->mIsInCave && gameSystem->isStoryMode()) {
 		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 		if (section && section->getCaveID() == 'l_02') {
 			C_PARMS->mGeneral.mTerritoryRadius.mValue = C_PROPERPARMS.mFp20.mValue;
@@ -312,7 +312,7 @@ void Obj::setTargetPattern()
 	mTargetNearest = true;
 
 	// if we're in Hole of Heroes, change target pattern to target party pikmin specifically (25% chance)
-	if (gameSystem && gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem && gameSystem->mIsInCave && gameSystem->isStoryMode()) {
 		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 		if (section && section->getCaveID() == 'l_02') {
 			// if below 0.5f, target nearest navi's nearest piki (i.e. party)

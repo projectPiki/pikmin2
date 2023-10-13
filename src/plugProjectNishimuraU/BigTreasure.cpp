@@ -2168,7 +2168,7 @@ void Obj::subShadowScale()
  */
 bool Obj::startBigTreasureBootUpDemo()
 {
-	if (gameSystem && gameSystem->mMode == GSM_STORY_MODE && moviePlayer && !playData->isDemoFlag(DEMO_Find_Titan_Dweevil)) {
+	if (gameSystem && gameSystem->isStoryMode() && moviePlayer && !playData->isDemoFlag(DEMO_Find_Titan_Dweevil)) {
 		playData->setDemoFlag(DEMO_Find_Titan_Dweevil);
 
 		MoviePlayArg movieArg("g36_find_louie", nullptr, nullptr, 0);

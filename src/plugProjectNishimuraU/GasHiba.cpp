@@ -213,7 +213,7 @@ void Obj::setInitLivingThing()
 		mBridge       = nullptr;
 		mGate         = nullptr;
 
-		if (gameSystem != nullptr && !gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {
+		if (gameSystem != nullptr && !gameSystem->mIsInCave && gameSystem->isStoryMode()) {
 			if (ItemBridge::mgr != nullptr) {
 				Iterator<BaseItem> bridgeIter(ItemBridge::mgr);
 

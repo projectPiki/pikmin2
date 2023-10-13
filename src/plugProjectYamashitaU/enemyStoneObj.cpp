@@ -153,7 +153,7 @@ void Obj::update()
 	} else if (!isFlag(STONE_HasViewedDemo)) {
 		if (checkDrawInfoState(4)) {
 			setFlag(STONE_HasViewedDemo);
-			if (gameSystem->mMode == GSM_STORY_MODE && gameSystem->isFlag(GAMESYS_IsGameWorldActive)
+			if (gameSystem->isStoryMode() && gameSystem->isFlag(GAMESYS_IsGameWorldActive)
 			    && !playData->isDemoFlag(DEMO_First_Bitter_Use)) {
 				if (moviePlayer) {
 					MoviePlayArg playArg("g1B_black_doping", nullptr, nullptr, 0);

@@ -94,7 +94,7 @@ void Obj::setParameters()
 		if (gameSystem->isZukanMode()) {
 			mCanCreateLarva = false;
 
-		} else if (gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {
+		} else if (gameSystem->mIsInCave && gameSystem->isStoryMode()) {
 			SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 			if (section && section->getCaveID() == 'f_01') { // if in Hole of Beasts
 				mCanCreateLarva                  = false;
@@ -388,7 +388,7 @@ bool Obj::isRollingAttackLeft()
  */
 void Obj::createCrashFallRock()
 {
-	if (gameSystem && gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem && gameSystem->mIsInCave && gameSystem->isStoryMode()) {
 		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 		if (section && section->getCaveID() == 'l_02') {
 			// only cause falling rocks in Hole of Heroes (not HoB or FC)

@@ -62,8 +62,7 @@ void NormalState::cleanup(Item*) { }
  */
 void NormalState::onDamage(Item* item, f32 damage)
 {
-	if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && gameSystem->mMode == GSM_STORY_MODE
-	    && !playData->isDemoFlag(DEMO_Whites_Digging)) {
+	if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && gameSystem->isStoryMode() && !playData->isDemoFlag(DEMO_Whites_Digging)) {
 		f32 depth = item->mPellet->getBuryDepth();
 		f32 max   = item->mPellet->getBuryDepthMax();
 

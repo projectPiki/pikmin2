@@ -16,7 +16,7 @@ Mgr* mgr;
  */
 void Object::do_onInit(CreatureInitArg* initArg)
 {
-	if (gameSystem->mMode == GSM_STORY_MODE && gameSystem->mSection->getCurrentCourseInfo()) {
+	if (gameSystem->isStoryMode() && gameSystem->mSection->getCurrentCourseInfo()) {
 		mBurstTimer = ItemPlant::mgr->mParms->mPlantParms.mBurstTime.mValue;
 	} else {
 		mBurstTimer = 100.0f;

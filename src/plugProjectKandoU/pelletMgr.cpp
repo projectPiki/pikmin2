@@ -2373,7 +2373,7 @@ void Pellet::update()
 
 	if (mSoundMgr != nullptr) {
 		mSoundMgr->exec();
-		if ((gameSystem->mMode == GSM_STORY_MODE) && !(moviePlayer->isFlag(MVP_IsActive)) && (!isPicked())
+		if ((gameSystem->isStoryMode()) && !(moviePlayer->isFlag(MVP_IsActive)) && (!isPicked())
 		    && (getKind() == PELTYPE_TREASURE || getKind() == PELTYPE_UPGRADE)) {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 			PSSystem::checkSceneMgr(mgr);
@@ -4492,7 +4492,7 @@ Onyon* Pellet::getPelletGoal()
 
 		int type  = onyonType[idx];
 		goalOnyon = ItemOnyon::mgr->getOnyon(type);
-		if ((gameSystem->mMode == GSM_STORY_MODE) && (!playData->hasBootContainer(type))) {
+		if ((gameSystem->isStoryMode()) && (!playData->hasBootContainer(type))) {
 			goalOnyon = nullptr;
 		}
 
@@ -4993,7 +4993,7 @@ void Pellet::updateDiscoverDisable()
  */
 bool Pellet::discoverDisabled()
 {
-	if (gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem->isStoryMode()) {
 		return mDiscoverDisable > 0;
 	}
 	return false;
@@ -6196,7 +6196,7 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 	P2ASSERTLINE(5396, mgr != nullptr);
 
 	PelletConfig* config;
-	if (!gameSystem->isZukanMode() && gameSystem->mMode != GSM_VERSUS_MODE && !PelletMgr::mDebug && !arg->_17) {
+	if (!gameSystem->isZukanMode() && !gameSystem->isVersusMode() && !PelletMgr::mDebug && !arg->_17) {
 		config = mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 			int unk = arg->_10;

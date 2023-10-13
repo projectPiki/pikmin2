@@ -123,7 +123,7 @@ void PelletGoalState::init(Pellet* pellet, StateArg* arg)
 	pellet->clearClaim();
 
 	// check if a new upgrade is acquired
-	if (pellet->getKind() == PELTYPE_UPGRADE && gameSystem->mMode == GSM_STORY_MODE) {
+	if (pellet->getKind() == PELTYPE_UPGRADE && gameSystem->isStoryMode()) {
 		int id = pellet->getConfigIndex();
 		if (id >= 0 && id < 12) {
 			playData->mOlimarData->getItem(id);
@@ -133,7 +133,7 @@ void PelletGoalState::init(Pellet* pellet, StateArg* arg)
 	bool flag                = false;
 	PelletGoalStateArg* sarg = static_cast<PelletGoalStateArg*>(arg);
 	mOnyon                   = sarg->mCreature;
-	if (gameSystem->mMode == GSM_STORY_MODE || gameSystem->isChallengeMode()) {
+	if (gameSystem->isStoryMode() || gameSystem->isChallengeMode()) {
 		flag = checkMovie(pellet);
 
 	} else if (gameSystem->isVersusMode()) {
@@ -226,7 +226,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 	// For treasure, upgrades, and corpses, only check for a cutscene if the pellet was collected for the first time. (only berries and
 	// number pellets dont check) This leads to a bug where the first corpse cutscene wont play for enemies youve already collected at an
 	// onion above ground
-	if (gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem->isStoryMode()) {
 		isGot = playData->firstCarryPellet(pelt);
 	}
 	if (pelt->getKind() == PELTYPE_BERRY) {

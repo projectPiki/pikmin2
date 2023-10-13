@@ -98,7 +98,7 @@ void Obj::onKill(CreatureKillArg* killArg)
  */
 void Obj::setParameters()
 {
-	if (gameSystem && gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem && gameSystem->mIsInCave && gameSystem->isStoryMode()) {
 		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 		if (section && section->getCaveID() == 'f_02') { // White Flower Garden snagret has its own health value
 			C_PARMS->mGeneral.mHealth.mValue = C_PROPERPARMS.mWFGHealth.mValue;

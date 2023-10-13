@@ -492,7 +492,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		}
 	}
 
-	if (gameSystem->mMode != GSM_VERSUS_MODE) {
+	if (!gameSystem->isVersusMode()) {
 		int money = pellet->getPokoValue();
 
 		if (gameSystem->mIsInCave) {
@@ -664,7 +664,7 @@ void Onyon::onSetPosition()
 		efx::OnyonSpotArg spotarg(mPosition, mOnyonType);
 		mSpotbeamModel = particleMgr->createModelEffect(&spotarg);
 		setSpotState(SPOTSTATE_Closed);
-		if (gameSystem->mMode == GSM_STORY_MODE) {
+		if (gameSystem->isStoryMode()) {
 			if (!playData->hasBootContainer(mOnyonType)) {
 				setSpotState(SPOTSTATE_Opened);
 				startWaitMotion();
@@ -1271,7 +1271,7 @@ void Onyon::doEmit(Creature* seed, bool isSetAngle)
 	layFX.create(&arg);
 	seed->setPosition(onyonpos, false);
 
-	if (gameSystem->mMode == GSM_STORY_MODE && moviePlayer->mFlags.typeView & 1 && moviePlayer->isPlaying("x18_exp_pellet")) {
+	if (gameSystem->isStoryMode() && moviePlayer->mFlags.typeView & 1 && moviePlayer->isPlaying("x18_exp_pellet")) {
 		seed->movie_begin(0);
 	}
 
@@ -2016,7 +2016,7 @@ void Onyon::on_movie_end(bool)
 		}
 	} else {
 		bool checkboot = false;
-		if (mOnyonType <= ONYON_TYPE_YELLOW && gameSystem->mMode == GSM_STORY_MODE) {
+		if (mOnyonType <= ONYON_TYPE_YELLOW && gameSystem->isStoryMode()) {
 			checkboot = true;
 		}
 		if (checkboot) {
@@ -2068,7 +2068,7 @@ Onyon* ItemOnyon::Mgr::birth(int objtype, int onyontype)
 		playData->hasBootContainer(onyontype);
 
 		// play boot animation if the onion isnt booted (glitched onion)
-		if (gameSystem->mMode == GSM_STORY_MODE && !playData->hasBootContainer(onyontype)) {
+		if (gameSystem->isStoryMode() && !playData->hasBootContainer(onyontype)) {
 			onyon->mAnimator.startAnim(4, nullptr);
 			onyon->mAnimSpeed = 0.0f;
 		}
@@ -2179,7 +2179,7 @@ void ItemOnyon::Mgr::load()
 	mModelData[0] = J3DModelLoaderDataBase::load(file, 0x240000);
 
 	JKRArchive* podarc = nullptr;
-	if ((gameSystem->isChallengeMode() || gameSystem->mIsInCave) && gameSystem->mMode != GSM_VERSUS_MODE) {
+	if ((gameSystem->isChallengeMode() || gameSystem->mIsInCave) && !gameSystem->isVersusMode()) {
 		LoadResource::Arg loadpodarg(playData->isStoryFlag(STORY_DebtPaid) ? "user/Kando/pod_gold/arc.szs" : "user/Kando/pod/arc.szs");
 		loadpodarg.mHeap = JKRGetCurrentHeap();
 		node             = gLoadResourceMgr->mountArchive(loadpodarg);
@@ -2221,7 +2221,7 @@ void ItemOnyon::Mgr::load()
 	mCollFactories[ONYON_OBJECT_ONYON] = CollPartFactory::load(onyontextarc, "onyonColl.txt");
 	closeTextArc(onyontextarc);
 
-	if ((gameSystem->isChallengeMode() || gameSystem->mIsInCave) && gameSystem->mMode != GSM_VERSUS_MODE) {
+	if ((gameSystem->isChallengeMode() || gameSystem->mIsInCave) && !gameSystem->isVersusMode()) {
 		if (playData->mStoryFlags & STORY_DebtPaid) {
 			mObjectPathComponent = "user/Kando/pod_gold";
 		} else {

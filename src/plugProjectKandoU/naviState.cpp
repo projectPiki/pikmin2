@@ -445,7 +445,7 @@ void NaviWalkState::exec(Navi* navi)
 
 					if (mDismissTimer > 35) {
 						mDismissTimer = 0;
-						if (playData->mOlimarData->hasItem(OlimarData::ODII_FiveManNapsack) || gameSystem->mMode != GSM_STORY_MODE) {
+						if (playData->mOlimarData->hasItem(OlimarData::ODII_FiveManNapsack) || !gameSystem->isStoryMode()) {
 							transit(navi, NSID_Pellet, nullptr);
 							return;
 						}
@@ -871,7 +871,7 @@ void NaviWalkState::initAI_animation(Navi* navi)
 	}
 
 	int naviIdx = navi->mNaviIndex;
-	if (naviIdx == 1 && gameSystem->mMode == GSM_STORY_MODE && playData->isStoryFlag(STORY_DebtPaid)) {
+	if (naviIdx == 1 && gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
 		naviIdx++;
 	}
 

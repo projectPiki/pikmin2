@@ -1504,7 +1504,7 @@ void BaseGameSection::onMovieCommand(int cmd)
 		}
 		break;
 	case 3:
-		if (gameSystem->mMode == GSM_STORY_MODE && gameSystem->mTimeMgr->mDayCount == 0) {
+		if (gameSystem->isStoryMode() && gameSystem->mTimeMgr->mDayCount == 0) {
 			pikiMgr->forceEnterPikmins(false);
 		}
 		break;
@@ -2213,7 +2213,7 @@ namespace Game {
 void BaseGameSection::onCameraBlendFinished(CameraArg* arg)
 {
 	setCamController();
-	if (gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem->isStoryMode()) {
 		if (!playData->isDemoFlag(DEMO_First_Use_Louie) && playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
 			Navi* louie = naviMgr->getAt(1);
 			JUT_ASSERTLINE(3088, louie, "louie null");
@@ -2299,7 +2299,7 @@ void BaseGameSection::setCamController()
 
 		moviePlayer->mTargetNavi   = navis[0];
 		moviePlayer->mActingCamera = mOlimarCamera;
-		if (gameSystem->mMode == GSM_STORY_MODE) {
+		if (gameSystem->isStoryMode()) {
 			PSSetCurCameraNo(0);
 		}
 		break;

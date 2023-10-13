@@ -130,7 +130,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	mCollTree->createFromFactory(mModel, naviMgr->_CC, nullptr);
 	JUT_ASSERTLINE(838, ((int)mCollTree->mPart) >= 0x80000000,
-	               "ザンーー（・д・）??ネン\n"); // 'disappointttttt D: ?? ment' (lol)
+	               "ザンーー?���?�д・?�???ネン\n"); // 'disappointttttt D: ?? ment' (lol)
 	mCollTree->attachModel(mModel);
 
 	mFsm->start(this, NSID_Walk, nullptr);
@@ -3974,7 +3974,7 @@ void Navi::control()
 		return;
 	}
 
-	if (gameSystem->mMode == GSM_STORY_MODE) {
+	if (gameSystem->isStoryMode()) {
 		Navi* active = naviMgr->getActiveNavi();
 		if (active != this) {
 			return;

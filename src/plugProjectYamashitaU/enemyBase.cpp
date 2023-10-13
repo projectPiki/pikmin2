@@ -2456,7 +2456,7 @@ void EnemyBase::throwupItem()
 		// should the treasure they emit have their carry weight
 		// adapted to the squads amount?
 		// (Allows squads that have been annihilated to recover treasures)
-		if (IS_ENEMY_BOSS(id) && gameSystem && gameSystem->mMode == GSM_STORY_MODE && gameSystem->mIsInCave && Cave::randMapMgr
+		if (IS_ENEMY_BOSS(id) && gameSystem && gameSystem->isStoryMode() && gameSystem->mIsInCave && Cave::randMapMgr
 		    && Cave::randMapMgr->isLastFloor()) {
 			pelletInitArg.mAdjustWeightForSquad = true;
 		}
