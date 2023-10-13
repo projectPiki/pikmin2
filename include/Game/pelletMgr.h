@@ -280,34 +280,16 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 			mAnimSpeed = 0.0f;
 		}
 	}
-	virtual u8 getKind() = 0;                                 // _1F4
-	virtual void changeMaterial() { }                         // _1F8 (weak)
-	virtual void createKiraEffect(Vector3f&) { }              // _1FC (weak)
-	virtual void getCarryInfoParam(CarryInfoParam& infoParam) // _200 (weak, thunk at _1C8)
-	{
-		infoParam.mUseType    = 0;
-		infoParam.mPosition   = mRigid.mConfigs[0].mPosition;
-		infoParam.mYOffsetMax = 30.0f + mConfig->mParams.mHeight.mData;
-		infoParam._14         = 1;
-		infoParam.mIsTopFirst = 1;
-		infoParam.mValue2     = getTotalCarryPikmins();
-
-		int minVal;
-		if (mMinCarriers > 0) {
-			minVal = mMinCarriers;
-		} else {
-			minVal = mConfig->mParams.mMin.mData;
-		}
-		infoParam.mValue1 = minVal;
-
-		infoParam.mColor = mCarryColor;
-	}
-	virtual bool isCarried();                    // _204
-	virtual bool isPicked() { return _3D0 & 1; } // _208 (weak)
-	virtual void sound_otakaraEventStart() { }   // _20C (weak)
-	virtual void sound_otakaraEventRestart() { } // _210 (weak)
-	virtual void sound_otakaraEventStop() { }    // _214 (weak)
-	virtual void sound_otakaraEventFinish() { }  // _218 (weak)
+	virtual u8 getKind() = 0;                                  // _1F4
+	virtual void changeMaterial() { }                          // _1F8 (weak)
+	virtual void createKiraEffect(Vector3f&) { }               // _1FC (weak)
+	virtual void getCarryInfoParam(CarryInfoParam& infoParam); // _200 (not weak, thunk at _1C8)
+	virtual bool isCarried();                                  // _204
+	virtual bool isPicked() { return _3D0 & 1; }               // _208 (weak)
+	virtual void sound_otakaraEventStart() { }                 // _20C (weak)
+	virtual void sound_otakaraEventRestart() { }               // _210 (weak)
+	virtual void sound_otakaraEventStop() { }                  // _214 (weak)
+	virtual void sound_otakaraEventFinish() { }                // _218 (weak)
 
 	u8 getWallTimer();
 	void clearClaim();
