@@ -96,7 +96,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	mFsm->start(this, DAMAGUMO_Stay, nullptr);
 
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		mFsm->transit(this, DAMAGUMO_Land, nullptr);
 	} else {
 		doAnimationCullingOff();

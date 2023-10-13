@@ -180,7 +180,7 @@ WalkSmokeEffect::Mgr* KumaKochappy::Obj::getWalkSmokeEffectMgr() { return &mWalk
  */
 void KumaKochappy::Obj::resetZukanAnimationFrame()
 {
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		setMotionFrame(randWeightFloat(50.0f));
 	}
 }

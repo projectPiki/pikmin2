@@ -91,7 +91,7 @@ void Obj::setParameters()
 	mDoEasyRoll     = false;
 
 	if (gameSystem) {
-		if (gameSystem->mMode == GSM_PIKLOPEDIA) {
+		if (gameSystem->isZukanMode()) {
 			mCanCreateLarva = false;
 
 		} else if (gameSystem->mIsInCave && gameSystem->mMode == GSM_STORY_MODE) {

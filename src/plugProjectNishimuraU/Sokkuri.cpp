@@ -205,7 +205,7 @@ Vector3f Obj::getOffsetForMapCollision()
  */
 Creature* Obj::getSearchedTarget()
 {
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		return EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
 		                                   nullptr);
 	}

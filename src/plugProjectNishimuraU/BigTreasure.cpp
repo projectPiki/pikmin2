@@ -94,7 +94,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	mFsm->start(this, BIGTREASURE_Stay, nullptr);
 
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		mFsm->transit(this, BIGTREASURE_Land, nullptr);
 	} else {
 		doAnimationCullingOff();

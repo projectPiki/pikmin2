@@ -1284,7 +1284,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 		stop_carrymotion();
 		init_pmotions();
 		start_pmotions();
-		if ((gameSystem->mMode == GSM_PIKLOPEDIA) && (mPelletFlag == FLAG_LOOZY)) {
+		if ((gameSystem->isZukanMode()) && (mPelletFlag == FLAG_LOOZY)) {
 			mAnimSpeed = 30.0f;
 		}
 	}
@@ -2173,7 +2173,7 @@ void Pellet::allocateTexCaster()
  */
 void Pellet::onSetPosition()
 {
-	if (gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (!gameSystem->isZukanMode()) {
 		// this probably needs a better name
 		if (isTreasurePosition()) {
 			ItemTreasure::Item* item = (ItemTreasure::Item*)ItemTreasure::mgr->birth();
@@ -6196,7 +6196,7 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 	P2ASSERTLINE(5396, mgr != nullptr);
 
 	PelletConfig* config;
-	if (gameSystem->mMode != GSM_PIKLOPEDIA && gameSystem->mMode != GSM_VERSUS_MODE && !PelletMgr::mDebug && !arg->_17) {
+	if (!gameSystem->isZukanMode() && gameSystem->mMode != GSM_VERSUS_MODE && !PelletMgr::mDebug && !arg->_17) {
 		config = mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 			int unk = arg->_10;
@@ -6255,7 +6255,7 @@ bool PelletMgr::setUse(PelletInitArg* arg)
 	P2ASSERTLINE(5533, mgr != nullptr);
 
 	PelletConfig* config;
-	if (gameSystem->mMode != GSM_PIKLOPEDIA && !arg->_17) {
+	if (!gameSystem->isZukanMode() && !arg->_17) {
 		config = mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 			int unk = arg->_10;

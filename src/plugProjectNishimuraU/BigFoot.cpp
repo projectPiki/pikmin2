@@ -81,7 +81,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	shadowMgr->delShadow(this);
 	startMaterialAnimation();
 	mFsm->start(this, BIGFOOT_Stay, nullptr);
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		mFsm->transit(this, BIGFOOT_Land, nullptr); // land immediately if in piklopedia mode
 	} else {
 		doAnimationCullingOff();

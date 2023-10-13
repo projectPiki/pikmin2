@@ -210,7 +210,7 @@ void StateWait::exec(EnemyBase* enemy)
 		case 1000:
 		case 1:
 			float growth;
-			if (gameSystem->mMode == GSM_PIKLOPEDIA) {
+			if (gameSystem->isZukanMode()) {
 				growth = 5.0f * randFloat();
 			} else if (mPelSize == 0) {
 				growth = CG_PARMS(enemy)->mPelplantParms.mSmallToMedGrowth.mValue;

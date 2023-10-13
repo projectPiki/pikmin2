@@ -48,7 +48,7 @@ void Kogane::Obj::onInit(Game::CreatureInitArg* arg)
 	mScaleTimer = 0.0001f;
 	resetFartTimer();
 	mFsm->start(this, KOGANE_Appear, nullptr);
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		mAppearTimer = -12800.0f;
 		mFsm->transit(this, KOGANE_Move, nullptr);
 	} else {

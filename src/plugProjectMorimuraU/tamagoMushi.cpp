@@ -43,7 +43,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_304          = 0;
 	mGoalPosition = mPosition;
 	_2C0          = (0.8f + 0.2f * randFloat()) * C_PROPERPARMS.mFp01.mValue;
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		_2C0 *= 5;
 	}
 
@@ -322,7 +322,7 @@ bool Obj::needShadow()
  */
 void Obj::genItem()
 {
-	if (!gameSystem || gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (!gameSystem || !gameSystem->isZukanMode()) {
 		mInPiklopedia = 1;
 
 		if (!(randFloat() > C_PROPERPARMS.mFp03())) {

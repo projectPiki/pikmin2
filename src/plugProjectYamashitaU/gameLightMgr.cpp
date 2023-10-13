@@ -2912,7 +2912,7 @@ void GameLightMgr::updatePosition(Viewport* viewport)
 		lightPos.y = pikmin2_sinf(angle) * mSettings.mSunLight.mMoveParms.mDistance();
 		lightPos.z = 0.0f;
 
-		if (gameSystem->mMode == GSM_PIKLOPEDIA) {
+		if (gameSystem->isZukanMode()) {
 			Mtx mtx;
 			PSMTXRotRad(mtx, 'x', 0.872664630413f); // 50 degrees in radians
 			PSMTXMultVec(mtx, (Vec*)&lightPos, (Vec*)&lightPos);

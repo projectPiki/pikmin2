@@ -1015,7 +1015,7 @@ void EnemyBase::onInitPost(CreatureInitArg* arg)
 		break;
 	}
 
-	if (gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem->isZukanMode()) {
 		doAnimationCullingOff();
 
 		Sys::Sphere waterSphere;

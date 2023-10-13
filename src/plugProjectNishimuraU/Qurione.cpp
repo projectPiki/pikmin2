@@ -247,7 +247,7 @@ void Obj::addPitchRatio()
  */
 void Obj::resetUtilityTimer()
 {
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		// utility timer between -1 and 1 in Piklopedia
 		mUtilityTimer = 1.0f - randWeightFloat(2.0f);
 	} else {
@@ -263,7 +263,7 @@ void Obj::resetUtilityTimer()
  */
 bool Obj::isAppear()
 {
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		return true;
 	}
 

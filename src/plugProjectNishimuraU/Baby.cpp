@@ -42,7 +42,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	setupEffect();
 	resetRandTargetPosition();
 
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		mFsm->start(this, BABY_Move, nullptr);
 		resetZukanAnimationFrame();
 	} else {
@@ -260,7 +260,7 @@ void Obj::resetZukanAnimationFrame()
  */
 void Obj::moveNoTarget()
 {
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		if (sqrDistanceXZ(mPosition, mTargetPos) < 500.0f) {
 			f32 randomAngle = randWeightFloat(100.0f) + 50.0f;
 			f32 angleToHome = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);

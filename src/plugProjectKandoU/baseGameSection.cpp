@@ -2747,7 +2747,7 @@ void BaseGameSection::doSimpleDraw(Viewport* vp) { gameSystem->doSimpleDraw(vp);
 void BaseGameSection::doAnimation()
 {
 	Navi* olimar = naviMgr->getAt(0);
-	if (gameSystem->mMode != GSM_PIKLOPEDIA && generatorMgr) {
+	if (!gameSystem->isZukanMode() && generatorMgr) {
 		Vector3f olimarPos = olimar->getPosition();
 		generatorMgr->updateCursorPos(olimarPos);
 		onceGeneratorMgr->updateCursorPos(olimarPos);
@@ -2768,7 +2768,7 @@ void BaseGameSection::doAnimation()
 		particleMgr->doAnimation();
 	}
 
-	if (gameSystem->mMode != GSM_PIKLOPEDIA && generatorMgr) {
+	if (!gameSystem->isZukanMode() && generatorMgr) {
 		generatorMgr->doAnimation();
 		onceGeneratorMgr->doAnimation();
 		limitGeneratorMgr->doAnimation();
@@ -2776,7 +2776,7 @@ void BaseGameSection::doAnimation()
 		dayGeneratorMgr->doAnimation();
 	}
 
-	if (gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (!gameSystem->isZukanMode()) {
 		updateSplitter();
 	}
 }
@@ -2820,7 +2820,7 @@ void BaseGameSection::doSetView(int viewportNumber)
 	if (particleMgr) {
 		particleMgr->doSetView(viewportNumber);
 	}
-	if (gameSystem->mMode != GSM_PIKLOPEDIA && generatorMgr) {
+	if (!gameSystem->isZukanMode() && generatorMgr) {
 		generatorMgr->doSetView(viewportNumber);
 		onceGeneratorMgr->doSetView(viewportNumber);
 		limitGeneratorMgr->doSetView(viewportNumber);
@@ -2840,7 +2840,7 @@ void BaseGameSection::doViewCalc()
 	if (particleMgr) {
 		particleMgr->doViewCalc();
 	}
-	if (gameSystem->mMode != GSM_PIKLOPEDIA && generatorMgr) {
+	if (!gameSystem->isZukanMode() && generatorMgr) {
 		generatorMgr->doViewCalc();
 		onceGeneratorMgr->doViewCalc();
 		limitGeneratorMgr->doViewCalc();

@@ -183,7 +183,7 @@ void Obj::doAnimation() { EnemyBase::doAnimation(); }
 void Obj::doEntry()
 {
 	if (mGroupLeader == this) {
-		if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+		if (gameSystem && gameSystem->isZukanMode()) {
 			EnemyBase::doEntry();
 		}
 	} else {
@@ -313,7 +313,7 @@ void Obj::doSimulation(f32 simSpeed)
 
 	EnemyBase::doSimulation(simSpeed);
 	if (isEvent(0, EB_Bittered) && (mPosition.y < mMapMinY + 2.0f || mBounceTriangle)) {
-		if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+		if (gameSystem && gameSystem->isZukanMode()) {
 			mGoalPosition.y = mZukanGoalHeight;
 		} else {
 			genItem();
@@ -391,7 +391,7 @@ bool Obj::damageCallBack(Creature*, f32, CollPart*) { return false; }
  */
 void Obj::wallCallback(const MoveInfo& moveInfo)
 {
-	if (!gameSystem || gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (!gameSystem || !gameSystem->isZukanMode()) {
 		if (getStateID() == SHIJIMICHOU_Fall) {
 			mIsFallVertical = true;
 		} else {
@@ -505,7 +505,7 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 void Obj::genItem()
 {
-	if (!gameSystem || gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (!gameSystem || !gameSystem->isZukanMode()) {
 		mInPiklopedia = 1;
 
 		if (mSpawnSource == SHIJIMISOURCE_Plants || !(randFloat() > C_PROPERPARMS.mNectarRate())) {
@@ -542,7 +542,7 @@ void Obj::genItem()
  */
 bool Obj::checkFlyStart()
 {
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA && mSpawnSource != SHIJIMISOURCE_Enemy) {
+	if (gameSystem && gameSystem->isZukanMode() && mSpawnSource != SHIJIMISOURCE_Enemy) {
 		return false;
 	}
 
@@ -564,7 +564,7 @@ bool Obj::checkFlyStart()
  */
 void Obj::fly()
 {
-	if (mGroupLeader != this && (!gameSystem || gameSystem->mMode != GSM_PIKLOPEDIA)) {
+	if (mGroupLeader != this && (!gameSystem || !gameSystem->isZukanMode())) {
 		enableEvent(0, EB_Cullable);
 	}
 
@@ -935,7 +935,7 @@ void Obj::restCheck()
 		mFsm->transit(this, SHIJIMICHOU_Fly, nullptr);
 		mRotation.x = 0.0f;
 		hardConstraintOff();
-		if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+		if (gameSystem && gameSystem->isZukanMode()) {
 			enableEvent(0, EB_Cullable);
 		}
 	}
@@ -1865,7 +1865,7 @@ int Obj::getFlyType()
 void Obj::leaderInit()
 {
 	setAtari(false);
-	if (gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (gameSystem && !gameSystem->isZukanMode()) {
 		enableEvent(0, EB_BitterImmune);
 	}
 

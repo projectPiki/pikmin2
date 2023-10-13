@@ -70,7 +70,7 @@ void RumbleMgr::init()
 		mNavis[i] = nullptr;
 	}
 
-	if (gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (gameSystem && !gameSystem->isZukanMode()) {
 		for (int i = 0; i < 2; i++) {
 			mNavis[i] = naviMgr->getAt(i);
 		}
@@ -233,7 +233,7 @@ bool RumbleMgr::isRumbleUpdateOn()
  */
 void RumbleMgr::setZukanRumble(Controller* controller, Vector3f* zukanPos)
 {
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		mController    = controller;
 		mZukanPosition = zukanPos;
 	} else {

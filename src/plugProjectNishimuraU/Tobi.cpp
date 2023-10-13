@@ -448,7 +448,7 @@ void Obj::setInWaterDamage()
  */
 void Obj::resetAppearCheck()
 {
-	if (Game::gameSystem && Game::gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (Game::gameSystem && Game::gameSystem->isZukanMode()) {
 		int weight = (rand() / RAND_MAX) * 30.0f; // does not match with inline
 		SET_APPCHECK_MAX(mAppearCheck, weight + 5 * getCreatureID());
 

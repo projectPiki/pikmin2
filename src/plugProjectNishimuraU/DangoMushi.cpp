@@ -57,7 +57,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	resetBossAppearBGM();
 	setupEffect();
 	shadowMgr->delShadow(this);
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		mFsm->start(this, DANGOMUSHI_Appear, nullptr);
 	} else {
 		mFsm->start(this, DANGOMUSHI_Stay, nullptr);

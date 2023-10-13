@@ -152,7 +152,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	disableEvent(0, EB_DeathEffectEnabled);
 	_2E0 = C_PARMS->_A10;
 
-	if (gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_01' && gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_01' && gameSystem && !gameSystem->isZukanMode()) {
 		mFSM->start(this, WRAITH_Walk, nullptr);
 		_2E0 = 2;
 	} else {
@@ -260,7 +260,7 @@ void Obj::onInit(CreatureInitArg* arg)
 
 	_37C = modelData->mMaterialTable.mMaterials[kageMatIdx];
 
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		_33C = 0.0f;
 	}
 
@@ -356,7 +356,7 @@ void BlackMan::Obj::doUpdate()
 		} else {
 			f32 someTimer = C_PARMS->_A58;
 			if (!_3A9 && _33C < someTimer) {
-				if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+				if (gameSystem && gameSystem->isZukanMode()) {
 					_3A9                   = true;
 					mTyre->mIsShadowActive = true;
 				}
@@ -389,7 +389,7 @@ void BlackMan::Obj::doUpdate()
 	}
 
 	if (mTyre && mTyre->isEvent(0, EB_HardConstrained) && _33C < 0.0f) {
-		if (gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
+		if (gameSystem && !gameSystem->isZukanMode() && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 			PSSystem::checkSceneMgr(mgr);
 			PSM::Scene_Game* scene     = static_cast<PSM::Scene_Game*>(mgr->getChildScene());

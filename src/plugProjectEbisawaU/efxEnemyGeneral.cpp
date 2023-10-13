@@ -578,7 +578,7 @@ bool TEnemyDead::create(efx::Arg* arg)
 		docreate = false;
 		return docreate;
 
-	case Game::EnemyTypeID::EnemyID_ShijimiChou:
+	case Game::EnemyTypeID::EnemyID_ShijimiChou: // unused due to bug in Game::ShijimiChou::StateDead::exec; UjiA is used instead
 		scale = 0.55f;
 		break;
 

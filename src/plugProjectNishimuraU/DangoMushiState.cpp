@@ -196,7 +196,7 @@ void StateAppear::exec(EnemyBase* enemy)
 
 		} else if (crab->mCurAnim->mType == KEYEVENT_END) {
 			Creature* target = crab->getSearchedTarget();
-			if (target && gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+			if (target && gameSystem && !gameSystem->isZukanMode()) {
 				f32 maxAttackRange, minAttackRange;
 				minAttackRange = CG_PARMS(crab)->mGeneral.mMinAttackRange();
 				maxAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackRange();
@@ -539,7 +539,7 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 
 	Creature* target = crab->getSearchedTarget();
-	if (target && gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (target && gameSystem && !gameSystem->isZukanMode()) {
 		f32 maxAttackRange, minAttackRange;
 		minAttackRange = CG_PARMS(crab)->mGeneral.mMinAttackRange();
 		maxAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackRange();
@@ -840,7 +840,7 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 
 	Creature* target = crab->getSearchedTarget();
-	if (target && gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+	if (target && gameSystem && !gameSystem->isZukanMode()) {
 		f32 viewAngle = crab->getCreatureViewAngle(target);
 
 		if (crab->checkDistAndAngle(target, viewAngle, CG_PARMS(crab)->mGeneral.mMaxAttackRange(),

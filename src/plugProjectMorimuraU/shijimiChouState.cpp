@@ -294,7 +294,7 @@ void StateRest::init(EnemyBase* enemy, StateArg* stateArg)
 	_14        = 0;
 	_1E        = false;
 
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		enemy->disableEvent(0, EB_Cullable);
 	}
 }

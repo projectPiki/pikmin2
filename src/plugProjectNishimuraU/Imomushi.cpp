@@ -41,7 +41,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	resetStickDiff();
 	setupEffect();
 
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+	if (gameSystem && gameSystem->isZukanMode()) {
 		mFsm->start(this, IMOMUSHI_ZukanStay, nullptr);
 	} else {
 		mFsm->start(this, IMOMUSHI_Stay, nullptr);
