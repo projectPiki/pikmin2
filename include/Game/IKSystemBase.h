@@ -5,13 +5,18 @@
 #include "Matrixf.h"
 #include "Dolphin/mtx.h"
 
+#define IK_LEG_COUNT (4)
+
 struct CollPart;
+struct J3DJoint;
 
 namespace SysShape {
 struct Model;
 } // namespace SysShape
 
 namespace Game {
+static bool IKJointCallBack(J3DJoint* joint, int arg);
+
 struct EnemyBase;
 struct JointGroundCallBack;
 
@@ -133,30 +138,32 @@ struct IKSystemMgr {
 	void calcCentrePosition();
 	void calcTraceCentrePosition();
 
-	u8 _00;                                    // _00, unknown
-	u8 _01;                                    // _01
-	u8 _02;                                    // _02
+	inline bool checkLegStates(int id)
+	{
+		bool ret = true;
+		for (int i = 0; i < IK_LEG_COUNT; i++) {
+			if (mLegStates[i] != id)
+				ret = false;
+		}
+		return ret;
+	}
+
+	bool mIsIKActive;                          // _00
+	bool mInMotion;                            // _01
+	bool mOnGround;                            // _02
 	f32 mFaceDir;                              // _04
-	f32 _08;                                   // _08
-	f32 _0C;                                   // _0C
-	f32 _10;                                   // _10
-	f32 _14;                                   // _14
-	f32 _18;                                   // _18
-	u32 _1C;                                   // _1C
-	u32 _20;                                   // _20
-	u32 _24;                                   // _24
-	u32 _28;                                   // _28
+	f32 mIKDistanceOffset;                     // _08, distance between object position and IK root position?
+	f32 mLegHeight[IK_LEG_COUNT];              // _0C
+	int mLegStates[IK_LEG_COUNT];              // _1C
 	Vector3f mTargetPosition;                  // _2C
-	Vector3f _38;                              // _38, position of something
+	Vector3f mCenterPosition;                  // _38, position applied to actual game object
 	Vector3f mTraceCentrePosition;             // _44
-	f32 _50;                                   // _50
-	f32 _54;                                   // _54
-	f32 _58;                                   // _58
-	u8 _5C[0x30];                              // _5C, unknown
-	IKSystemBase* mSystemBase;                 // _8C
+	Vector3f _50;                              // _50
+	Vector3f mLegTargetPosition[IK_LEG_COUNT]; // _5C
+	IKSystemBase* mIKSystems;                  // _8C, list of 4
 	EnemyBase* mOwner;                         // _90
 	JointGroundCallBack* mJointGroundCallBack; // _94
-	u32 _98;                                   // _98, unknown
+	IKSystemParms* mParams;                    // _98
 };
 
 } // namespace Game

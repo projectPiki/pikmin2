@@ -1,5 +1,7 @@
 #include "Game/IKSystemBase.h"
 #include "JSystem/J3D/J3DJoint.h"
+#include "Game/EnemyBase.h"
+#include "Game/MapMgr.h"
 
 namespace Game {
 
@@ -10,26 +12,12 @@ static IKSystemMgr* gIKSystemMgr;
  * Address:	802A8A80
  * Size:	000038
  */
-static void IKJointCallBack(J3DJoint*, int)
+static bool IKJointCallBack(J3DJoint* joint, int arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 1
-	stw      r0, 0x14(r1)
-	bne      lbl_802A8AA4
-	lwz      r3, gIKSystemMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_802A8AA4
-	bl       makeMatrix__Q24Game11IKSystemMgrFv
-
-lbl_802A8AA4:
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (arg == 1 && gIKSystemMgr) {
+		gIKSystemMgr->makeMatrix();
+	}
+	return false;
 }
 
 /*
@@ -39,39 +27,9 @@ lbl_802A8AA4:
  */
 IKSystemMgr::IKSystemMgr()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, "__ct__10Vector3<f>Fv"@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-	li       r6, 0xc
-	li       r7, 4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x5c
-	bl       __construct_array
-	li       r0, 0
-	li       r3, 0x180
-	stw      r0, gIKSystemMgr__4Game@sda21(r13)
-	bl       __nwa__FUl
-	lis      r4, __ct__Q24Game12IKSystemBaseFv@ha
-	li       r5, 0
-	addi     r4, r4, __ct__Q24Game12IKSystemBaseFv@l
-	li       r6, 0x5c
-	li       r7, 4
-	bl       __construct_new_array
-	stw      r3, 0x8c(r31)
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x94(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	gIKSystemMgr         = nullptr;
+	mIKSystems           = new IKSystemBase[IK_LEG_COUNT];
+	mJointGroundCallBack = nullptr;
 }
 
 /*
@@ -79,93 +37,31 @@ IKSystemMgr::IKSystemMgr()
  * Address:	802A8B34
  * Size:	000144
  */
-void IKSystemMgr::init(Game::EnemyBase*, Game::JointGroundCallBack*)
+void IKSystemMgr::init(EnemyBase* obj, JointGroundCallBack* callback)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r29, r5
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	stw      r4, 0x90(r3)
-	stb      r0, 0(r3)
-	stb      r0, 1(r3)
-	stb      r0, 2(r3)
-	lwz      r3, 0x90(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 4(r28)
-	li       r0, 0
-	lfs      f1, lbl_8051BF70@sda21(r2)
-	addi     r3, r1, 0x14
-	lfs      f0, lbl_8051BF74@sda21(r2)
-	stfs     f1, 8(r28)
-	stfs     f0, 0xc(r28)
-	stw      r0, 0x1c(r28)
-	stfs     f0, 0x10(r28)
-	stw      r0, 0x20(r28)
-	stfs     f0, 0x14(r28)
-	stw      r0, 0x24(r28)
-	stfs     f0, 0x18(r28)
-	stw      r0, 0x28(r28)
-	stfs     f0, 0x34(r28)
-	stfs     f0, 0x30(r28)
-	stfs     f0, 0x2c(r28)
-	lwz      r4, 0x90(r28)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x14(r1)
-	addi     r3, r1, 8
-	stfs     f0, 0x38(r28)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x3c(r28)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x40(r28)
-	lwz      r4, 0x90(r28)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	li       r30, 0
-	lfs      f0, lbl_8051BF74@sda21(r2)
-	li       r31, 0
-	stfs     f1, 0x44(r28)
-	lfs      f1, 0xc(r1)
-	stfs     f1, 0x48(r28)
-	lfs      f1, 0x10(r1)
-	stfs     f1, 0x4c(r28)
-	stfs     f0, 0x58(r28)
-	stfs     f0, 0x54(r28)
-	stfs     f0, 0x50(r28)
+	mOwner            = obj;
+	mIsIKActive       = false;
+	mInMotion         = false;
+	mOnGround         = false;
+	mFaceDir          = mOwner->getFaceDir();
+	mIKDistanceOffset = 100.0f;
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mLegHeight[i] = 0.0f;
+		mLegStates[i] = 0;
+	}
+	mTargetPosition.z    = 0.0f;
+	mTargetPosition.y    = 0.0f;
+	mTargetPosition.x    = 0.0f;
+	mCenterPosition      = mOwner->getPosition();
+	mTraceCentrePosition = mOwner->getPosition();
 
-lbl_802A8C38:
-	lwz      r0, 0x8c(r28)
-	add      r3, r0, r31
-	bl       init__Q24Game12IKSystemBaseFv
-	addi     r30, r30, 1
-	addi     r31, r31, 0x5c
-	cmpwi    r30, 4
-	blt      lbl_802A8C38
-	stw      r29, 0x94(r28)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	_50.z = 0.0f;
+	_50.y = 0.0f;
+	_50.x = 0.0f;
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mIKSystems[i].init();
+	}
+	mJointGroundCallBack = callback;
 }
 
 /*
@@ -173,39 +69,11 @@ lbl_802A8C38:
  * Address:	802A8C78
  * Size:	00006C
  */
-void IKSystemMgr::setupJoint(SysShape::Model*, int, char**)
+void IKSystemMgr::setupJoint(SysShape::Model* model, int id, char** names)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mulli    r30, r5, 0x5c
-	mr       r27, r3
-	mr       r28, r4
-	mr       r31, r6
-	li       r29, 0
-
-lbl_802A8C9C:
-	lwz      r4, 0(r31)
-	mr       r3, r28
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r0, 0x8c(r27)
-	mr       r5, r3
-	mr       r4, r29
-	add      r3, r0, r30
-	bl       setLegJointMatrix__Q24Game12IKSystemBaseFiP7Matrixf
-	addi     r29, r29, 1
-	addi     r31, r31, 4
-	cmpwi    r29, 3
-	blt      lbl_802A8C9C
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		mIKSystems[id].setLegJointMatrix(i, model->getJoint(names[i])->getWorldMatrix());
+	}
 }
 
 /*
@@ -213,24 +81,10 @@ lbl_802A8C9C:
  * Address:	802A8CE4
  * Size:	000038
  */
-void IKSystemMgr::setupCallBack(SysShape::Model*, char*)
+void IKSystemMgr::setupCallBack(SysShape::Model* model, char* name)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	mr       r4, r5
-	stw      r0, 0x14(r1)
-	bl       getJoint__Q28SysShape5ModelFPc
-	lis      r4, IKJointCallBack__4GameFP8J3DJointi@ha
-	lwz      r3, 0x18(r3)
-	addi     r0, r4, IKJointCallBack__4GameFP8J3DJointi@l
-	stw      r0, 4(r3)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J3DJoint* jnt = model->getJoint(name)->mJ3d;
+	jnt->setCallBack(IKJointCallBack);
 }
 
 /*
@@ -238,37 +92,12 @@ void IKSystemMgr::setupCallBack(SysShape::Model*, char*)
  * Address:	802A8D1C
  * Size:	000064
  */
-void IKSystemMgr::setParameters(Game::IKSystemParms*)
+void IKSystemMgr::setParameters(IKSystemParms* parm)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r4, 0x98(r3)
-
-lbl_802A8D44:
-	lwz      r0, 0x8c(r29)
-	lwz      r4, 0x98(r29)
-	add      r3, r0, r31
-	bl       setParameters__Q24Game12IKSystemBaseFPQ24Game13IKSystemParms
-	addi     r30, r30, 1
-	addi     r31, r31, 0x5c
-	cmpwi    r30, 4
-	blt      lbl_802A8D44
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mParams = parm;
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mIKSystems[i].setParameters(mParams);
+	}
 }
 
 /*
@@ -278,114 +107,23 @@ lbl_802A8D44:
  */
 void IKSystemMgr::startProgramedIK()
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stmw     r27, 0x3c(r1)
-	mr       r27, r3
-	li       r0, 1
-	stb      r0, 0(r3)
-	li       r31, 0
-	mr       r30, r27
-	li       r28, 0
-	stb      r31, 1(r3)
-	mr       r29, r31
-	stb      r31, 2(r3)
+	mIsIKActive = true;
+	mInMotion   = false;
+	mOnGround   = false;
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mLegStates[i] = 0;
+		mIKSystems[i].startProgramedIK();
+	}
 
-lbl_802A8DCC:
-	stw      r31, 0x1c(r30)
-	lwz      r0, 0x8c(r27)
-	add      r3, r0, r29
-	bl       startProgramedIK__Q24Game12IKSystemBaseFv
-	addi     r28, r28, 1
-	addi     r29, r29, 0x5c
-	cmpwi    r28, 4
-	addi     r30, r30, 4
-	blt      lbl_802A8DCC
-	lwz      r4, 0x90(r27)
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f29, 0x20(r1)
-	addi     r3, r1, 0x14
-	lfs      f30, 0x24(r1)
-	lfs      f31, 0x28(r1)
-	lwz      r4, 0x8c(r27)
-	bl       getBottomJointPosition__Q24Game12IKSystemBaseFv
-	lfs      f0, 0x18(r1)
-	lfs      f2, 0x14(r1)
-	fsubs    f3, f30, f0
-	lfs      f1, 0x1c(r1)
-	fsubs    f2, f29, f2
-	lfs      f0, lbl_8051BF74@sda21(r2)
-	fsubs    f1, f31, f1
-	fmuls    f3, f3, f3
-	fmuls    f4, f1, f1
-	fmadds   f1, f2, f2, f3
-	fadds    f1, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_802A8E64
-	ble      lbl_802A8E68
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_802A8E68
-
-lbl_802A8E64:
-	fmr      f1, f0
-
-lbl_802A8E68:
-	lis      r3, atanTable___5JMath@ha
-	stfs     f1, 8(r27)
-	mr       r30, r27
-	li       r28, 0
-	addi     r31, r3, atanTable___5JMath@l
-	li       r29, 0
-
-lbl_802A8E80:
-	lwz      r0, 0x8c(r27)
-	addi     r3, r1, 8
-	add      r4, r0, r29
-	bl       getBottomJointPosition__Q24Game12IKSystemBaseFv
-	lfs      f1, 8(r1)
-	mr       r3, r31
-	lfs      f0, 0x10(r1)
-	fsubs    f1, f1, f29
-	fsubs    f2, f0, f31
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	lwz      r3, 0x90(r27)
-	fmr      f30, f1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fsubs    f0, f30, f1
-	addi     r28, r28, 1
-	cmpwi    r28, 4
-	addi     r29, r29, 0x5c
-	stfs     f0, 0xc(r30)
-	addi     r30, r30, 4
-	blt      lbl_802A8E80
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	lmw      r27, 0x3c(r1)
-	lwz      r0, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	Vector3f objpos, ikpos;
+	objpos            = mOwner->getPosition();
+	ikpos             = mIKSystems->getBottomJointPosition();
+	mIKDistanceOffset = objpos.distance(ikpos);
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		ikpos         = mIKSystems[i].getBottomJointPosition();
+		f32 diff      = JMath::atanTable_.atan2_(ikpos.x - objpos.x, ikpos.z - objpos.z);
+		mLegHeight[i] = diff - mOwner->getFaceDir();
+	}
 }
 
 /*
@@ -395,17 +133,11 @@ lbl_802A8E80:
  */
 void IKSystemMgr::startIKMotion()
 {
-	/*
-	li       r4, 1
-	li       r0, 0
-	stb      r4, 1(r3)
-	stb      r0, 2(r3)
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x28(r3)
-	blr
-	*/
+	mInMotion = true;
+	mOnGround = false;
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mLegStates[i] = 0;
+	}
 }
 
 /*
@@ -413,11 +145,7 @@ void IKSystemMgr::startIKMotion()
  * Address:	802A8F2C
  * Size:	00000C
  */
-void IKSystemMgr::finishIKMotion()
-{
-	// Generated from stb r0, 0x1(r3)
-	_01 = 0;
-}
+void IKSystemMgr::finishIKMotion() { mInMotion = false; }
 
 /*
  * --INFO--
@@ -426,13 +154,8 @@ void IKSystemMgr::finishIKMotion()
  */
 void IKSystemMgr::forceFinishIKMotion()
 {
-	/*
-	li       r4, 0
-	li       r0, 1
-	stb      r4, 1(r3)
-	stb      r0, 2(r3)
-	blr
-	*/
+	finishIKMotion();
+	mOnGround = true;
 }
 
 /*
@@ -442,33 +165,9 @@ void IKSystemMgr::forceFinishIKMotion()
  */
 void IKSystemMgr::startBlendMotion()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-
-lbl_802A8F70:
-	lwz      r0, 0x8c(r29)
-	add      r3, r0, r31
-	bl       startBlendMotion__Q24Game12IKSystemBaseFv
-	addi     r30, r30, 1
-	addi     r31, r31, 0x5c
-	cmpwi    r30, 4
-	blt      lbl_802A8F70
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mIKSystems[i].startBlendMotion();
+	}
 }
 
 /*
@@ -478,33 +177,9 @@ lbl_802A8F70:
  */
 void IKSystemMgr::finishBlendMotion()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-
-lbl_802A8FCC:
-	lwz      r0, 0x8c(r29)
-	add      r3, r0, r31
-	bl       finishBlendMotion__Q24Game12IKSystemBaseFv
-	addi     r30, r30, 1
-	addi     r31, r31, 0x5c
-	cmpwi    r30, 4
-	blt      lbl_802A8FCC
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mIKSystems[i].finishBlendMotion();
+	}
 }
 
 /*
@@ -514,33 +189,9 @@ lbl_802A8FCC:
  */
 void IKSystemMgr::checkJointScaleOn()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-
-lbl_802A9028:
-	lwz      r0, 0x8c(r29)
-	add      r3, r0, r31
-	bl       checkJointScaleOn__Q24Game12IKSystemBaseFv
-	addi     r30, r30, 1
-	addi     r31, r31, 0x5c
-	cmpwi    r30, 4
-	blt      lbl_802A9028
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mIKSystems[i].checkJointScaleOn();
+	}
 }
 
 /*
@@ -550,46 +201,15 @@ lbl_802A9028:
  */
 bool IKSystemMgr::isFinishIKMotion()
 {
-	/*
-	lbz      r0, 1(r3)
-	cmplwi   r0, 0
-	bne      lbl_802A90C8
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 3
-	beq      lbl_802A9080
-	li       r3, 0
-	blr
-
-lbl_802A9080:
-	lwz      r0, 0x20(r3)
-	cmpwi    r0, 3
-	beq      lbl_802A9094
-	li       r3, 0
-	blr
-
-lbl_802A9094:
-	addi     r3, r3, 8
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 3
-	beq      lbl_802A90AC
-	li       r3, 0
-	blr
-
-lbl_802A90AC:
-	lwz      r0, 0x20(r3)
-	cmpwi    r0, 3
-	beq      lbl_802A90C0
-	li       r3, 0
-	blr
-
-lbl_802A90C0:
-	li       r3, 1
-	blr
-
-lbl_802A90C8:
-	li       r3, 0
-	blr
-	*/
+	if (!mInMotion) {
+		for (int i = 0; i < IK_LEG_COUNT; i++) {
+			if (mLegStates[i] != 3) {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -597,27 +217,14 @@ lbl_802A90C8:
  * Address:	802A90D0
  * Size:	00000C
  */
-void IKSystemMgr::resetAnimationCallBack()
-{
-	/*
-	li       r0, 0
-	stw      r0, gIKSystemMgr__4Game@sda21(r13)
-	blr
-	*/
-}
+void IKSystemMgr::resetAnimationCallBack() { gIKSystemMgr = nullptr; }
 
 /*
  * --INFO--
  * Address:	802A90DC
  * Size:	000008
  */
-void IKSystemMgr::setAnimationCallBack()
-{
-	/*
-	stw      r3, gIKSystemMgr__4Game@sda21(r13)
-	blr
-	*/
-}
+void IKSystemMgr::setAnimationCallBack() { gIKSystemMgr = this; }
 
 /*
  * --INFO--
@@ -626,41 +233,13 @@ void IKSystemMgr::setAnimationCallBack()
  */
 void IKSystemMgr::doUpdate()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-
-lbl_802A9108:
-	lwz      r0, 0x8c(r29)
-	add      r3, r0, r31
-	bl       update__Q24Game12IKSystemBaseFv
-	addi     r30, r30, 1
-	addi     r31, r31, 0x5c
-	cmpwi    r30, 4
-	blt      lbl_802A9108
-	mr       r3, r29
-	bl       updateController__Q24Game11IKSystemMgrFv
-	mr       r3, r29
-	bl       calcFaceDir__Q24Game11IKSystemMgrFv
-	mr       r3, r29
-	bl       calcCentrePosition__Q24Game11IKSystemMgrFv
-	mr       r3, r29
-	bl       calcTraceCentrePosition__Q24Game11IKSystemMgrFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mIKSystems[i].update();
+	}
+	updateController();
+	calcFaceDir();
+	calcCentrePosition();
+	calcTraceCentrePosition();
 }
 
 /*
@@ -670,33 +249,9 @@ lbl_802A9108:
  */
 void IKSystemMgr::makeMatrix()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-
-lbl_802A9184:
-	lwz      r0, 0x8c(r29)
-	add      r3, r0, r31
-	bl       makeMatrix__Q24Game12IKSystemBaseFv
-	addi     r30, r30, 1
-	addi     r31, r31, 0x5c
-	cmpwi    r30, 4
-	blt      lbl_802A9184
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		mIKSystems[i].makeMatrix();
+	}
 }
 
 /*
@@ -704,116 +259,31 @@ lbl_802A9184:
  * Address:	802A91BC
  * Size:	000038
  */
-Vector3f IKSystemMgr::getCollisionCentre(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mulli    r0, r5, 0x5c
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 0x8c(r4)
-	add      r4, r4, r0
-	bl       getCollisionCentre__Q24Game12IKSystemBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Vector3f IKSystemMgr::getCollisionCentre(int i) { return mIKSystems[i].getCollisionCentre(); }
 
 /*
  * --INFO--
  * Address:	802A91F4
  * Size:	00010C
  */
-bool IKSystemMgr::isCollisionCheck(CollPart*)
+bool IKSystemMgr::isCollisionCheck(CollPart* part)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	beq      lbl_802A92E0
-	lis      r4, 0x6C667370@ha
-	addi     r3, r30, 0x30
-	addi     r4, r4, 0x6C667370@l
-	li       r31, -1
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A923C
-	li       r31, 3
-	b        lbl_802A9298
-
-lbl_802A923C:
-	lis      r4, 0x6C687370@ha
-	addi     r3, r30, 0x30
-	addi     r4, r4, 0x6C687370@l
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A925C
-	li       r31, 1
-	b        lbl_802A9298
-
-lbl_802A925C:
-	lis      r4, 0x72667370@ha
-	addi     r3, r30, 0x30
-	addi     r4, r4, 0x72667370@l
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A927C
-	li       r31, 2
-	b        lbl_802A9298
-
-lbl_802A927C:
-	lis      r4, 0x72687370@ha
-	addi     r3, r30, 0x30
-	addi     r4, r4, 0x72687370@l
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A9298
-	li       r31, 0
-
-lbl_802A9298:
-	cmpwi    r31, 0
-	blt      lbl_802A92E0
-	slwi     r0, r31, 2
-	add      r3, r29, r0
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 1
-	beq      lbl_802A92BC
-	cmpwi    r0, 2
-	bne      lbl_802A92E0
-
-lbl_802A92BC:
-	mulli    r0, r31, 0x5c
-	lwz      r3, 0x8c(r29)
-	add      r3, r3, r0
-	bl       getMoveRatio__Q24Game12IKSystemBaseFv
-	lfs      f0, lbl_8051BF78@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802A92E0
-	li       r3, 1
-	b        lbl_802A92E4
-
-lbl_802A92E0:
-	li       r3, 0
-
-lbl_802A92E4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (part) {
+		int id = -1;
+		if (part->mCurrentID == 'lfsp') {
+			id = 3;
+		} else if (part->mCurrentID == 'lhsp') {
+			id = 1;
+		} else if (part->mCurrentID == 'rfsp') {
+			id = 2;
+		} else if (part->mCurrentID == 'rhsp') {
+			id = 0;
+		}
+		if (id >= 0 && (mLegStates[id] == 1 || mLegStates[id] == 2) && mIKSystems[id].getMoveRatio() > 1.0f) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -823,6 +293,62 @@ lbl_802A92E4:
  */
 void IKSystemMgr::updateController()
 {
+	if (mInMotion) {
+		if (checkLegStates(3)) {
+			mLegStates[0] = 0;
+			mLegStates[1] = 0;
+			mLegStates[2] = 0;
+			mLegStates[3] = 0;
+		}
+
+		if (checkLegStates(0)) {
+			setNextCentrePosition();
+			mIKSystems[0].startMovePosition(mLegTargetPosition[0]);
+			mLegStates[0] = 1;
+			if (mJointGroundCallBack) {
+				Vector3f pos = mIKSystems[0].getBottomJointPosition();
+				Sys::Sphere bounds(pos, 5.0f);
+				Game::WaterBox* water = mapMgr->findWater(bounds);
+				mJointGroundCallBack->invokeOffGround(0, water);
+			}
+		}
+	}
+
+	for (int i = 0; i < IK_LEG_COUNT; i++) {
+		if (mLegStates[i] == 1) {
+			if (mIKSystems[i].onGround()) {
+				mLegStates[i] = 2;
+			}
+		} else if (mLegStates[i] == 2) {
+			mLegStates[i] = 3;
+			_50.y += mParams->_44;
+			if (mJointGroundCallBack) {
+				Vector3f pos = mIKSystems[i].getBottomJointPosition();
+				Sys::Sphere bounds(pos, 5.0f);
+				Game::WaterBox* water = mapMgr->findWater(bounds);
+				mJointGroundCallBack->invokeOnGround(i, water);
+			}
+			int newid;
+			if (i + 1 < 4) {
+				newid = i + 5;
+			} else {
+				newid = i + 1;
+				if (newid > 3) {
+					newid = i - 3;
+				}
+			}
+			if (newid > 3 && !mOnGround) {
+				mIKSystems[newid].startMovePosition(mLegTargetPosition[newid]);
+				mLegStates[newid] = 1;
+				if (mJointGroundCallBack) {
+					Vector3f pos = mIKSystems[newid].getBottomJointPosition();
+					Sys::Sphere bounds(pos, 5.0f);
+					Game::WaterBox* water = mapMgr->findWater(bounds);
+					mJointGroundCallBack->invokeOffGround(newid, water);
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1350,79 +876,20 @@ lbl_802A9988:
  */
 void IKSystemMgr::calcFaceDir()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lbz      r0, 0(r3)
-	cmplwi   r0, 0
-	beq      lbl_802A9AA4
-	lwz      r4, 0x8c(r31)
-	addi     r3, r1, 0x14
-	bl       getBottomJointPosition__Q24Game12IKSystemBaseFv
-	lwz      r4, 0x8c(r31)
-	addi     r3, r1, 8
-	lfs      f31, 0x14(r1)
-	lfs      f30, 0x1c(r1)
-	addi     r4, r4, 0x5c
-	bl       getBottomJointPosition__Q24Game12IKSystemBaseFv
-	lfs      f1, 8(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x10(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	fadds    f4, f31, f1
-	lfs      f3, lbl_8051BF90@sda21(r2)
-	fadds    f2, f30, f0
-	lfs      f1, 0x38(r31)
-	lfs      f0, 0x40(r31)
-	fmsubs   f1, f4, f3, f1
-	fmsubs   f2, f2, f3, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	stfs     f1, 4(r31)
-	lfs      f0, lbl_8051BF74@sda21(r2)
-	lfs      f1, 4(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802A9A88
-	lfs      f0, lbl_8051BF94@sda21(r2)
-	fadds    f1, f0, f1
-	b        lbl_802A9A9C
+	if (mIsIKActive) {
+		Vector3f pos0, pos1;
+		pos0 = mIKSystems[0].getBottomJointPosition();
+		pos1 = mIKSystems[1].getBottomJointPosition();
+		// this feels wrong
+		f32 angle = JMath::atanTable_.atan2_((pos0.x + pos1.x) / 2 - mCenterPosition.x, (pos0.z + pos1.z) / 2 - mCenterPosition.z);
+		mFaceDir  = angle;
+		angle     = mFaceDir;
+		clampAngle(angle);
+		mFaceDir = angle;
 
-lbl_802A9A88:
-	lfs      f0, lbl_8051BF94@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_802A9A9C
-	fsubs    f1, f1, f0
-
-lbl_802A9A9C:
-	stfs     f1, 4(r31)
-	b        lbl_802A9ABC
-
-lbl_802A9AA4:
-	lwz      r3, 0x90(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 4(r31)
-
-lbl_802A9ABC:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	} else {
+		mFaceDir = mOwner->getFaceDir();
+	}
 }
 
 /*
@@ -1432,6 +899,11 @@ lbl_802A9ABC:
  */
 void IKSystemMgr::calcCentrePosition()
 {
+	if (mIsIKActive) {
+
+	} else {
+		mCenterPosition = mOwner->getPosition();
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -1621,6 +1093,13 @@ lbl_802A9D64:
  */
 void IKSystemMgr::calcTraceCentrePosition()
 {
+	if (mIsIKActive) {
+		_50 += (mCenterPosition - mTraceCentrePosition) * mParams->_3C;
+		mTraceCentrePosition += _50;
+		_50 *= mParams->_40;
+		return;
+	}
+	mTraceCentrePosition = mCenterPosition;
 	/*
 	lbz      r0, 0(r3)
 	cmplwi   r0, 0

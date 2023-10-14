@@ -457,7 +457,7 @@ void Obj::setIKSystemTargetPosition(Vector3f& targetpos) { mIkSystemMgr->mTarget
 void Obj::updateIKSystem()
 {
 	mIkSystemMgr->doUpdate();
-	mPosition   = Vector3f(mIkSystemMgr->_38);
+	mPosition   = Vector3f(mIkSystemMgr->mCenterPosition);
 	mFaceDir    = mIkSystemMgr->mFaceDir;
 	mRotation.y = mFaceDir;
 }

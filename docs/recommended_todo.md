@@ -138,10 +138,10 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecHiba.cpp">ElecHiba.cpp</a> | 21834 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MiniHoudai.cpp">MiniHoudai.cpp</a> | 22367 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QueenState.cpp">QueenState.cpp</a> | 22700 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujia.cpp">Ujia.cpp</a> | 22963 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujib.cpp">Ujib.cpp</a> | 23599 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Queen.cpp">Queen.cpp</a> | 23604 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBug.cpp">ElecBug.cpp</a> | 24348 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 24912 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SaraiState.cpp">SaraiState.cpp</a> | 25007 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiState.cpp">TobiState.cpp</a> | 25154 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibState.cpp">UjibState.cpp</a> | 25669 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 25788 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tobi.cpp">Tobi.cpp</a> | 25931 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBug.cpp">ElecBug.cpp</a> | 24348 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/IKSystemMgr.cpp">IKSystemMgr.cpp</a> | 24804 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 24912 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SaraiState.cpp">SaraiState.cpp</a> | 25007 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiState.cpp">TobiState.cpp</a> | 25154 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibState.cpp">UjibState.cpp</a> | 25669 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 25788 |
 
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
