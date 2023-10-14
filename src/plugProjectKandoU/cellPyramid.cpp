@@ -170,10 +170,10 @@ void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, u32 passID)
  */
 void Cell::resolveCollision()
 {
-	if (*CellMgrParms::getInstance()->mCellParms.mP000()) {
+	if (CellMgrParms::getInstance()->mCellParms.mP000()) {
 		resolveCollision_3();
 	} else {
-		(*CellMgrParms::getInstance()->mCellParms.mP001()) ? resolveCollision_1() : resolveCollision_2();
+		(CellMgrParms::getInstance()->mCellParms.mP001()) ? resolveCollision_1() : resolveCollision_2();
 	}
 }
 
@@ -2062,7 +2062,7 @@ void Cell::resolveCollision_3()
 		} else {
 			for (CellLeg* legB = legA->mNext; legB != nullptr; legB = legB->mNext) {
 				if (legA->mObject != legB->mObject) {
-					if (*CellMgrParms::getInstance()->mCellParms.mP001()) {
+					if (CellMgrParms::getInstance()->mCellParms.mP001()) {
 						if (legB->mObject != (CellObject*)legA->mObject->mPassID) {
 							legA->mObject->mPassID = (u32)legB->mObject;
 							legA->mObject->checkCollision(legB->mObject);
@@ -2077,7 +2077,7 @@ void Cell::resolveCollision_3()
 			for (Cell* cell = mHeadCell; cell != nullptr; cell = cell->mHeadCell) {
 				for (CellLeg* legB = cell->mLeg; legB != nullptr; legB = legB->mNext) {
 					if (legA->mObject != legB->mObject) {
-						if (*CellMgrParms::getInstance()->mCellParms.mP001()) {
+						if (CellMgrParms::getInstance()->mCellParms.mP001()) {
 							if ((CellObject*)legA->mObject->mPassID != legB->mObject) {
 								legA->mObject->mPassID = (u32)legB->mObject;
 								legA->mObject->checkCollision(legB->mObject);

@@ -962,8 +962,8 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
 	_168                = nullptr;
 	mFbTexture          = nullptr;
 	mXfbImage           = nullptr;
-	mXfbTexture1        = 0;
-	mXfbTexture2        = 0;
+	mXfbBoundsX         = 0;
+	mXfbBoundsY         = 0;
 	_170                = 0;
 	mTexData1           = 0;
 	_E0                 = 0;
@@ -1284,8 +1284,8 @@ void BaseGameSection::init()
 	Screen::Game2DMgr::create();
 	Screen::gGame2DMgr->mScreenMgr->_90 = 1;
 	System::assert_fragmentation("BaseGameSection::Game2DMgr");
-	mXfbTexture2 = 0;
-	mXfbTexture1 = 0;
+	mXfbBoundsY = 0;
+	mXfbBoundsX = 0;
 	onInit();
 	sys->heapStatusEnd("baseGameSection::init");
 	mTreasureGetState = false;
@@ -1356,7 +1356,7 @@ bool BaseGameSection::doUpdate()
 		mLightMgr->update();
 	}
 	SysShape::Model::setViewCalcModeInd();
-	for (int vpIdx = 0; vpIdx < sys->mGfx->mViewportCount; vpIdx++) {
+	for (int vpIdx = 0; vpIdx < sys->mGfx->mActiveViewports; vpIdx++) {
 		Viewport* viewport = sys->mGfx->getViewport(vpIdx);
 		if (viewport && viewport->viewable()) {
 			j3dSetView(viewport, false);
@@ -1375,7 +1375,7 @@ bool BaseGameSection::doUpdate()
 	if (!gameSystem->paused()) {
 		float frameRate = 1.0f / sys->mDeltaTime;
 		sys->mTimers->_start("coll", true);
-		if (!(gameSystem->mFlags & 0x4)) {
+		if (!(gameSystem->isFlag(GAMESYS_Unk3))) {
 			sys->getTime();
 			cellMgr->resolveCollision();
 			CellPyramid::sSpeedUpResolveColl = true;
@@ -1499,7 +1499,7 @@ void BaseGameSection::onMovieCommand(int cmd)
 	case 0:
 		break;
 	case 2:
-		if (moviePlayer && !(moviePlayer->mFlags & 0x2)) {
+		if (moviePlayer && !(moviePlayer->isFlag(MVP_IsFinished))) {
 			createFallPikminSound();
 		}
 		break;
@@ -2194,17 +2194,6 @@ void BaseGameSection::setPlayerMode(int naviIdx)
 	mPrevNaviIdx = naviIdx;
 }
 
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8014DBD0
- * Size:	000004
- */
-void Splitter::split2(float) { }
-
-namespace Game {
-
 /*
  * --INFO--
  * Address:	8014DBD4
@@ -2345,13 +2334,13 @@ void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
 	P2ASSERTLINE(3197, mOlimarCamera);
 	P2ASSERTLINE(3198, mLouieCamera);
 
-	sceneInfo.mCameras      = 2;
-	sceneInfo.mCam1Position = mOlimarCamera->getSoundPositionPtr();
-	sceneInfo.mCam2Position = mOlimarCamera->getSoundPositionPtr();
-	sceneInfo.mCameraMtx    = mOlimarCamera->getSoundMatrixPtr();
-	sceneInfo._0C           = mLouieCamera->getSoundPositionPtr();
-	sceneInfo._14           = mLouieCamera->getSoundPositionPtr();
-	sceneInfo._1C           = mLouieCamera->getSoundMatrixPtr();
+	sceneInfo.mCameras         = 2;
+	sceneInfo.mCam1Position[0] = mOlimarCamera->getSoundPositionPtr();
+	sceneInfo.mCam2Position[0] = mOlimarCamera->getSoundPositionPtr();
+	sceneInfo.mCameraMtx[0]    = mOlimarCamera->getSoundMatrixPtr();
+	sceneInfo.mCam1Position[1] = mLouieCamera->getSoundPositionPtr();
+	sceneInfo.mCam2Position[1] = mLouieCamera->getSoundPositionPtr();
+	sceneInfo.mCameraMtx[1]    = mLouieCamera->getSoundMatrixPtr();
 	BoundBox box;
 
 	mapMgr->getBoundBox(box);
@@ -2359,12 +2348,12 @@ void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
 	Vector3f min = box.mMin;
 	Vector3f max = box.mMax;
 
-	sceneInfo._20.minX = min.x;
-	sceneInfo._20.minY = min.y;
-	sceneInfo._20.minZ = min.z;
-	sceneInfo._20.maxX = max.x;
-	sceneInfo._20.maxY = max.y;
-	sceneInfo._20.maxZ = max.z;
+	sceneInfo.mBounds.minX = min.x;
+	sceneInfo.mBounds.minY = min.y;
+	sceneInfo.mBounds.minZ = min.z;
+	sceneInfo.mBounds.maxX = max.x;
+	sceneInfo.mBounds.maxY = max.y;
+	sceneInfo.mBounds.maxZ = max.z;
 }
 
 /*
@@ -2597,7 +2586,7 @@ void BaseGameSection::draw2D(Graphics& gfx)
 		_168->capture(mTexData1, _170, GX_TF_IA8, false, 0);
 	}
 	if (!_168 && mXfbFlags & 2) {
-		mXfbImage->capture(mXfbTexture1, mXfbTexture2, GX_TF_IA8, true, 0);
+		mXfbImage->capture(mXfbBoundsX, mXfbBoundsY, GX_TF_IA8, true, 0);
 		mXfbFlags &= ~2;
 		mXfbFlags |= 1;
 		mXfbFlags |= 4;

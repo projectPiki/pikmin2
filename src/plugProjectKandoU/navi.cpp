@@ -128,7 +128,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	mHoldPikiTimer = 0.0f;
 	_2AC           = 0;
 
-	mCollTree->createFromFactory(mModel, naviMgr->_CC, nullptr);
+	mCollTree->createFromFactory(mModel, naviMgr->mCollData, nullptr);
 	JUT_ASSERTLINE(838, ((int)mCollTree->mPart) >= 0x80000000,
 	               "ã‚¶ãƒ³ãƒ¼ãƒ¼?¼ˆã?»Ð´ãƒ»?¼???ãƒãƒ³\n"); // 'disappointttttt D: ?? ment' (lol)
 	mCollTree->attachModel(mModel);
@@ -161,8 +161,8 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	mScale = navi_scale;
 	uVar2  = mNaviIndex;
-	mCursorMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 3));
-	mArrowMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 0xd));
+	mCursorMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->mNaviDeadFlags + (u32)uVar2 * 5 + 3));
+	mArrowMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->mNaviDeadFlags + (u32)uVar2 * 5 + 0xd));
 }
 
 /*
@@ -171,17 +171,6 @@ void Navi::onInit(Game::CreatureInitArg* arg)
  * Size:	000008
  */
 s32 Navi::getCreatureID() { return mNaviIndex; }
-
-/*
- * --INFO--
- * Address:	80140348
- * Size:	000034
- */
-void StateMachine<Game::Navi>::start(Navi* navi, int stateID, StateArg* stateArg)
-{
-	navi->mCurrentState = nullptr;
-	transit(navi, stateID, stateArg);
-}
 
 /*
  * --INFO--
@@ -1189,13 +1178,6 @@ void Navi::wallCallback(Vector3f& pos)
 
 /*
  * --INFO--
- * Address:	80141510
- * Size:	000004
- */
-void NaviState::wallCallback(Navi*, Vector3f&) { }
-
-/*
- * --INFO--
  * Address:	80141514
  * Size:	000044
  */
@@ -1208,13 +1190,6 @@ void Navi::bounceCallback(Sys::Triangle* tri)
 
 /*
  * --INFO--
- * Address:	80141558
- * Size:	000004
- */
-void NaviState::bounceCallback(Navi*, Sys::Triangle*) { }
-
-/*
- * --INFO--
  * Address:	8014155C
  * Size:	000044
  */
@@ -1224,13 +1199,6 @@ void Navi::collisionCallback(CollEvent& event)
 		mCurrentState->collisionCallback(this, event);
 	}
 }
-
-/*
- * --INFO--
- * Address:	801415A0
- * Size:	000004
- */
-void NaviState::collisionCallback(Navi*, CollEvent&) { }
 
 /*
  * --INFO--
@@ -2146,13 +2114,6 @@ void Navi::update()
 
 /*
  * --INFO--
- * Address:	80142368
- * Size:	000008
- */
-bool NaviState::vsUsableY() { return true; }
-
-/*
- * --INFO--
  * Address:	80142370
  * Size:	000004
  */
@@ -2231,13 +2192,6 @@ bool Navi::ignoreAtari(Creature* other)
 
 	return mCurrentState->ignoreAtari(other);
 }
-
-/*
- * --INFO--
- * Address:	80142510
- * Size:	000008
- */
-bool NaviState::ignoreAtari(Creature*) { return false; }
 
 /*
  * --INFO--
@@ -3610,7 +3564,7 @@ void Navi::checkBigFountain()
  * Address:	80143738
  * Size:	000368
  */
-void Navi::checkOnyon()
+Onyon* Navi::checkOnyon()
 {
 	/*
 	.loc_0x0:
@@ -3964,7 +3918,7 @@ void Navi::disableController() { mController1 = nullptr; }
  */
 void Navi::control()
 {
-	if ((moviePlayer->isFlag(MVP_IsActive) == FALSE) {
+	if (moviePlayer->isFlag(MVP_IsActive) == FALSE) {
 		makeVelocity();
 	}
 
@@ -4594,13 +4548,6 @@ bool Navi::invincible()
 	  blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	801443F8
- * Size:	000008
- */
-bool NaviState::invincible() { return false; }
 
 /*
  * --INFO--
@@ -5867,7 +5814,7 @@ void Navi::demowaitAllPikis()
  * Address:	8014548C
  * Size:	000954
  */
-void Navi::releasePikis()
+bool Navi::releasePikis()
 {
 	/*
 	.loc_0x0:

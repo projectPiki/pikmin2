@@ -1849,7 +1849,7 @@ void SingleGameSection::onMovieStart(Game::MovieConfig* config, unsigned long p2
  */
 void SingleGameSection::onMovieDone(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
 {
-	gameSystem->mFlags &= 0xF7;
+	gameSystem->resetFlag(GAMESYS_Unk4);
 	if (mCurrentState) {
 		mCurrentState->onMovieDone(this, config, p2, p3);
 	}

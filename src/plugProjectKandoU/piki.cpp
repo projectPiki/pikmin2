@@ -176,18 +176,6 @@ void Piki::onInit(CreatureInitArg* initArg)
 
 /*
  * --INFO--
- * Address:	801480D4
- * Size:	000034
- */
-template <>
-void StateMachine<Piki>::start(Piki* piki, int stateID, StateArg* stateArg)
-{
-	piki->mCurrentState = nullptr;
-	transit(piki, stateID, stateArg);
-}
-
-/*
- * --INFO--
  * Address:	80148108
  * Size:	00038C
  */
