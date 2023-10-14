@@ -143,6 +143,13 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	KOGANEANIM_Move   = 0,
+	KOGANEANIM_Wait   = 1,
+	KOGANEANIM_Damage = 2,
+	KOGANEANIM_AnimCount, // 3
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

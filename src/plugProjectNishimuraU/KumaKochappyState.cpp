@@ -31,7 +31,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(KUMAKOCHAPPYANIM_Dead, nullptr);
 }
 
 /*
@@ -63,7 +63,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mHealth = 0.0f;
 	enemy->deathProcedure();
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(4, nullptr);
+	enemy->startMotion(KUMAKOCHAPPYANIM_Press, nullptr);
 }
 
 /*
@@ -97,7 +97,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kuma->mNextState = KUMAKOCHAPPY_NULL;
 	kuma->enableEvent(0, EB_Constrained);
 	kuma->mTargetVelocity = Vector3f(0.0f);
-	kuma->startMotion(6, nullptr);
+	kuma->startMotion(KUMAKOCHAPPYANIM_Wait, nullptr);
 }
 
 /*
@@ -427,7 +427,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kuma->mNextState      = KUMAKOCHAPPY_NULL;
 	kuma->mTargetVelocity = Vector3f(0.0f);
 	kuma->setEmotionExcitement();
-	kuma->startMotion(0, nullptr);
+	kuma->startMotion(KUMAKOCHAPPYANIM_Attack, nullptr);
 }
 
 /*
@@ -455,7 +455,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			                            kuma->getFaceDir(), nullptr);
 
 			if (!totalEat) {
-				kuma->startMotion(8, nullptr);
+				kuma->startMotion(KUMAKOCHAPPYANIM_Eat, nullptr);
 			}
 
 		} else if (kuma->mCurAnim->mType == KEYEVENT_3) {
@@ -847,7 +847,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kuma             = OBJ(enemy);
 	kuma->mNextState      = KUMAKOCHAPPY_NULL;
 	kuma->mTargetVelocity = Vector3f(0.0f);
-	kuma->startMotion(2, nullptr);
+	kuma->startMotion(KUMAKOCHAPPYANIM_Flick, nullptr);
 }
 
 /*
@@ -1268,7 +1268,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kuma        = OBJ(enemy);
 	kuma->mNextState = KUMAKOCHAPPY_NULL;
-	kuma->startMotion(3, nullptr);
+	kuma->startMotion(KUMAKOCHAPPYANIM_Move, nullptr);
 }
 
 /*
@@ -1725,7 +1725,7 @@ void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kuma        = OBJ(enemy);
 	kuma->mNextState = KUMAKOCHAPPY_NULL;
-	kuma->startMotion(3, nullptr);
+	kuma->startMotion(KUMAKOCHAPPYANIM_Move, nullptr);
 	kuma->setAnimSpeed(45.0f);
 }
 

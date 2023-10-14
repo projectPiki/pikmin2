@@ -33,6 +33,11 @@ namespace Game {
  * --Plant Base Class (Plants)--
  */
 namespace Plants {
+enum AnimID {
+	PLANTANIM_Default = 0, // only 1 anim for each plant
+	PLANTANIM_AnimCount,   // 1
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 

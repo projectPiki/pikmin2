@@ -143,6 +143,21 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	FROGANIM_Dead     = 0,
+	FROGANIM_Wait1    = 1, // 'wait1'
+	FROGANIM_Wait2    = 2, // 'waitact2'
+	FROGANIM_Move     = 3, // 'move1'
+	FROGANIM_Turn     = 4, // 'waitact1'
+	FROGANIM_Jump     = 5, // 'type1'
+	FROGANIM_JumpWait = 6, // 'wait2'
+	FROGANIM_Fall     = 7, // 'type2'
+	FROGANIM_Attack   = 8,
+	FROGANIM_Fail     = 9,  // 'damage'
+	FROGANIM_Carry    = 10, // 'type5'
+	FROGANIM_AnimCount,     // 11
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

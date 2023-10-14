@@ -20,21 +20,21 @@ namespace Pelplant {
  */
 void FSM::init(EnemyBase* enemy)
 {
-	create(PELPLANT_Count);
+	create(PELPLANT_StateCount);
 
-	registerState(new StateWait(PELPLANT_WaitSmall, 0));
-	registerState(new StateWait(PELPLANT_WaitMiddle, 1));
-	registerState(new StateWait(PELPLANT_WaitBig, 2));
+	registerState(new StateWait(PELPLANT_WaitSmall, PELPLANTSIZE_Small));
+	registerState(new StateWait(PELPLANT_WaitMiddle, PELPLANTSIZE_Middle));
+	registerState(new StateWait(PELPLANT_WaitFull, PELPLANTSIZE_Full));
 
-	registerState(new StateGrow(PELPLANT_Grow1, 2, 1));
-	registerState(new StateGrow(PELPLANT_Grow2, 3, 2));
+	registerState(new StateGrow(PELPLANT_GrowSmallMid, PELPLANTANIM_GrowSmallMed, PELPLANT_WaitMiddle));
+	registerState(new StateGrow(PELPLANT_GrowMidFull, PELPLANTANIM_GrowMedFull, PELPLANT_WaitFull));
 
-	registerState(new StateDamage(PELPLANT_Damage, 0));
-	registerState(new StateDead(PELPLANT_Dead, 1));
+	registerState(new StateDamage(PELPLANT_Damage, PELPLANTANIM_Damage));
+	registerState(new StateDead(PELPLANT_Dead, PELPLANTANIM_Dead));
 
-	registerState(new StateWither(PELPLANT_WitherBig, 0, 6, 4));
-	registerState(new StateWither(PELPLANT_WitherMiddle, 0, 5, 4));
-	registerState(new StateWither(PELPLANT_WitherSmall, 0, 4, 4));
+	registerState(new StateWither(PELPLANT_WitherFull, PELPLANT_WaitSmall, PELPLANTANIM_WaitFull, PELPLANTANIM_WaitSmall));
+	registerState(new StateWither(PELPLANT_WitherMiddle, PELPLANT_WaitSmall, PELPLANTANIM_WaitMedium, PELPLANTANIM_WaitSmall));
+	registerState(new StateWither(PELPLANT_WitherSmall, PELPLANT_WaitSmall, PELPLANTANIM_WaitSmall, PELPLANTANIM_WaitSmall));
 }
 
 /*
@@ -44,11 +44,11 @@ void FSM::init(EnemyBase* enemy)
  * Address:	........
  * Size:	000040
  */
-StateBlendAnim::StateBlendAnim(int stateID, int a, int b, int c)
+StateBlendAnim::StateBlendAnim(int stateID, int nextState, int startAnimIdx, int endAnimIdx)
     : State(stateID)
-    , _10(a)
-    , _14(b)
-    , _18(c)
+    , mNextState(nextState)
+    , mStartAnimIdx(startAnimIdx)
+    , mEndAnimIdx(endAnimIdx)
 {
 }
 
@@ -59,7 +59,7 @@ StateBlendAnim::StateBlendAnim(int stateID, int a, int b, int c)
  */
 void StateBlendAnim::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startBlend(_14, _18, &EnemyBlendAnimatorBase::sBlendQuadraticFun, 30.0f, nullptr);
+	enemy->startBlend(mStartAnimIdx, mEndAnimIdx, &EnemyBlendAnimatorBase::sBlendQuadraticFun, 30.0f, nullptr);
 }
 
 /*
@@ -73,7 +73,7 @@ void StateBlendAnim::exec(EnemyBase* enemy)
 		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_END_BLEND:
 			enemy->endBlend();
-			transit(enemy, _10, nullptr);
+			transit(enemy, mNextState, nullptr);
 		}
 	}
 }
@@ -83,11 +83,11 @@ void StateBlendAnim::exec(EnemyBase* enemy)
  * Address:	8010ADD0
  * Size:	000098
  */
-StateWither::StateWither(int stateID, int p1, int p2, int p3)
-    : StateBlendAnim(stateID, p1, p2, p3)
+StateWither::StateWither(int stateID, int nextState, int startAnimIdx, int endAnimIdx)
+    : StateBlendAnim(stateID, nextState, startAnimIdx, endAnimIdx)
 {
 	switch (stateID) {
-	case PELPLANT_WitherBig:
+	case PELPLANT_WitherFull:
 		mName = "wither_big";
 		return;
 	case PELPLANT_WitherMiddle:
@@ -106,7 +106,7 @@ StateWither::StateWither(int stateID, int p1, int p2, int p3)
  */
 void StateWither::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startBlend(_14, _18, &EnemyBlendAnimatorBase::sBlendQuadraticFun, 30.0f, nullptr);
+	enemy->startBlend(mStartAnimIdx, mEndAnimIdx, &EnemyBlendAnimatorBase::sBlendQuadraticFun, 30.0f, nullptr);
 	enemy->enableEvent(0, EB_Invulnerable);
 	EnemyFunc::flickStickPikmin(enemy, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
 }
@@ -122,7 +122,7 @@ void StateWither::exec(EnemyBase* enemy)
 		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_END_BLEND:
 			enemy->endBlend();
-			transit(enemy, _10, 0);
+			transit(enemy, mNextState, nullptr);
 		}
 	}
 }
@@ -132,7 +132,7 @@ void StateWither::exec(EnemyBase* enemy)
  * Address:	8010AF54
  * Size:	000028
  */
-void StateWither::cleanup(EnemyBase* enemy) { static_cast<Obj*>(enemy)->updateLODSphereRadius(0); }
+void StateWither::cleanup(EnemyBase* enemy) { OBJ(enemy)->updateLODSphereRadius(PELPLANTSIZE_Small); }
 
 /*
  * --INFO--
@@ -144,13 +144,13 @@ StateWait::StateWait(int stateID, int pelSize)
 {
 	mPelSize = pelSize;
 	switch (mPelSize) {
-	case PELPLANT_SIZE_SMALL:
+	case PELPLANTSIZE_Small:
 		mName = "wait_small";
 		return;
-	case PELPLANT_SIZE_MIDDLE:
+	case PELPLANTSIZE_Middle:
 		mName = "wait_middle";
 		return;
-	case PELPLANT_SIZE_BIG:
+	case PELPLANTSIZE_Full:
 		mName = "wait_big";
 		return;
 	}
@@ -161,25 +161,25 @@ StateWait::StateWait(int stateID, int pelSize)
  * Address:	8010B004
  * Size:	000144
  */
-void StateWait::init(EnemyBase* e, StateArg* stateArg)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* pellet = static_cast<Obj*>(e);
+	Obj* pellet = OBJ(enemy);
 
 	pellet->disableEvent(0, EB_Cullable);
-	RESET_FLAG(pellet->mFlags, PELPLANT_FLAGS_UNK2);
+	pellet->resetPelFlag(PELPLANTFLAG_Full);
 	pellet->enableEvent(0, EB_Invulnerable);
 
 	switch (mPelSize) {
-	case PELPLANT_SIZE_SMALL:
-		pellet->startMotion(4, nullptr);
+	case PELPLANTSIZE_Small:
+		pellet->startMotion(PELPLANTANIM_WaitSmall, nullptr);
 		break;
-	case PELPLANT_SIZE_MIDDLE:
-		pellet->startMotion(5, nullptr);
+	case PELPLANTSIZE_Middle:
+		pellet->startMotion(PELPLANTANIM_WaitMedium, nullptr);
 		break;
-	case PELPLANT_SIZE_BIG:
-		SET_FLAG(pellet->mFlags, PELPLANT_FLAGS_UNK2);
+	case PELPLANTSIZE_Full:
+		pellet->setPelFlag(PELPLANTFLAG_Full);
 		pellet->disableEvent(0, EB_Invulnerable);
-		pellet->startMotion(6, nullptr);
+		pellet->startMotion(PELPLANTANIM_WaitFull, nullptr);
 		pellet->updateLODSphereRadius(2);
 		pellet->enableEvent(0, EB_Cullable);
 		break;
@@ -200,63 +200,63 @@ void StateWait::init(EnemyBase* e, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	float frameTime = sys->mDeltaTime;
-	if (static_cast<Obj*>(enemy)->mFlags & 1) {
-		static_cast<Obj*>(enemy)->_2C0 += frameTime;
+	f32 frameTime = sys->mDeltaTime;
+	if (OBJ(enemy)->isPelFlag(PELPLANTFLAG_Growing)) {
+		OBJ(enemy)->mGrowTimer += frameTime;
 	}
 
 	if (enemy->mCurAnim->mIsPlaying) {
 		switch (enemy->mCurAnim->mType) {
-		case 1000:
-		case 1:
-			float growth;
+		case KEYEVENT_END:
+		case KEYEVENT_1:
+			f32 maxGrowTime;
 			if (gameSystem->isZukanMode()) {
-				growth = 5.0f * randFloat();
-			} else if (mPelSize == 0) {
-				growth = CG_PARMS(enemy)->mPelplantParms.mSmallToMedGrowth.mValue;
+				maxGrowTime = 5.0f * randFloat();
+			} else if (mPelSize == PELPLANTSIZE_Small) {
+				maxGrowTime = CG_PARMS(enemy)->mPelplantParms.mSmallToMedGrowth.mValue;
 			} else {
-				growth = CG_PARMS(enemy)->mPelplantParms.mMedToLargeGrowth.mValue;
+				maxGrowTime = CG_PARMS(enemy)->mPelplantParms.mMedToLargeGrowth.mValue;
 			}
 
-			if ((static_cast<Obj*>(enemy)->_2C0 > growth) || (static_cast<Obj*>(enemy)->mFarmPow > 0)) {
-				static_cast<Obj*>(enemy)->_2C0 = 0.0f;
+			if ((OBJ(enemy)->mGrowTimer > maxGrowTime) || (OBJ(enemy)->mFarmPow > 0)) {
+				OBJ(enemy)->mGrowTimer = 0.0f;
 				switch (mPelSize) {
-				case PELPLANT_SIZE_SMALL:
-					transit(enemy, 3, 0);
+				case PELPLANTSIZE_Small:
+					transit(enemy, PELPLANT_GrowSmallMid, nullptr);
 					break;
-				case PELPLANT_SIZE_MIDDLE:
-					transit(enemy, 4, 0);
+				case PELPLANTSIZE_Middle:
+					transit(enemy, PELPLANT_GrowMidFull, nullptr);
 					break;
-				case PELPLANT_SIZE_BIG:
+				case PELPLANTSIZE_Full:
 					break;
 				}
 
-			} else if (static_cast<Obj*>(enemy)->mFarmPow < 0) {
+			} else if (OBJ(enemy)->mFarmPow < 0) {
 				switch (mPelSize) {
-				case PELPLANT_SIZE_SMALL:
+				case PELPLANTSIZE_Small:
 					break;
-				case PELPLANT_SIZE_MIDDLE:
-					transit(enemy, 8, 0);
+				case PELPLANTSIZE_Middle:
+					transit(enemy, PELPLANT_WitherMiddle, nullptr);
 					break;
-				case PELPLANT_SIZE_BIG:
-					transit(enemy, 7, 0);
+				case PELPLANTSIZE_Full:
+					transit(enemy, PELPLANT_WitherFull, nullptr);
 					break;
 				}
 			}
 		}
 	} else {
-		static_cast<Obj*>(enemy)->changePelletColor();
+		OBJ(enemy)->changePelletColor();
 		if (enemy->injure()) {
 			if (enemy->mHealth <= 0.0f) {
 				switch (mPelSize) {
-				case PELPLANT_SIZE_BIG:
-					transit(enemy, 6, 0);
+				case PELPLANTSIZE_Full:
+					transit(enemy, PELPLANT_Dead, nullptr);
 					return;
 				}
 			} else {
 				switch (mPelSize) {
-				case PELPLANT_SIZE_BIG:
-					transit(enemy, 5, 0);
+				case PELPLANTSIZE_Full:
+					transit(enemy, PELPLANT_Damage, nullptr);
 					return;
 				}
 			}
@@ -276,12 +276,12 @@ void StateWait::cleanup(EnemyBase*) { }
  * Address:	8010B3C4
  * Size:	000044
  */
-StateGrow::StateGrow(int stateID, int p1, int p2)
+StateGrow::StateGrow(int stateID, int animIdx, int nextState)
     : State(stateID)
 {
-	_10   = p1;
-	_14   = p2;
-	mName = "grow";
+	mAnimIdx   = animIdx;
+	mNextState = nextState;
+	mName      = "grow";
 }
 
 /*
@@ -293,21 +293,21 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->enableEvent(0, EB_Invulnerable);
 
-	if (_10 == 3) {
-		static_cast<Obj*>(enemy)->attachPellet();
+	if (mAnimIdx == PELPLANTANIM_GrowMedFull) {
+		OBJ(enemy)->attachPellet();
 	}
 
 	Vector3f position = enemy->getPosition();
 	efx::Arg effectArg(position);
 
-	switch (_14) {
-	case 1:
+	switch (mNextState) {
+	case PELPLANT_WaitMiddle:
 		efx::TPplGrow1 grow1;
 		grow1.create(&effectArg);
-		enemy->startMotion(_10, nullptr);
+		enemy->startMotion(mAnimIdx, nullptr);
 		return;
-	case 2:
-		switch (static_cast<Obj*>(enemy)->mSize) {
+	case PELPLANT_WaitFull:
+		switch (OBJ(enemy)->mSize) {
 		case PELLET_NUMBER_ONE:
 			efx::TPplGrow2 grow2;
 			grow2.create(&effectArg);
@@ -326,12 +326,12 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 			break;
 		}
 
-		static_cast<Obj*>(enemy)->updateLODSphereRadius(2);
-		if ((static_cast<Obj*>(enemy)->mSize == 10) || (static_cast<Obj*>(enemy)->mSize == 20)) {
-			enemy->startMotion(7, nullptr);
+		OBJ(enemy)->updateLODSphereRadius(PELPLANTSIZE_Full);
+		if ((OBJ(enemy)->mSize == PELLET_NUMBER_TEN) || (OBJ(enemy)->mSize == PELLET_NUMBER_TWENTY)) {
+			enemy->startMotion(PELPLANTANIM_BigGrow, nullptr);
 			return;
 		}
-		enemy->startMotion(_10, nullptr);
+		enemy->startMotion(mAnimIdx, nullptr);
 		return;
 	}
 }
@@ -343,11 +343,11 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateGrow::exec(EnemyBase* enemy)
 {
-	if (enemy->mCurAnim->mIsPlaying != 0) {
+	if (enemy->mCurAnim->mIsPlaying) {
 		switch (enemy->mCurAnim->mType) {
-		case 1000:
-		case 1:
-			transit(enemy, _14, 0);
+		case KEYEVENT_END:
+		case KEYEVENT_1:
+			transit(enemy, mNextState, nullptr);
 		}
 	}
 }
@@ -364,11 +364,11 @@ void StateGrow::cleanup(Game::EnemyBase*) { }
  * Address:	8010B74C
  * Size:	000040
  */
-StateDamage::StateDamage(int stateID, int p1)
+StateDamage::StateDamage(int stateID, int animIdx)
     : State(stateID)
 {
-	mName = "damage";
-	_10   = p1;
+	mName    = "damage";
+	mAnimIdx = animIdx;
 }
 
 /*
@@ -378,12 +378,14 @@ StateDamage::StateDamage(int stateID, int p1)
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	if (_10 != 5) {
-		enemy->startMotion(_10, nullptr);
-	} else if ((static_cast<Obj*>(enemy)->mSize == 10) || (static_cast<Obj*>(enemy)->mSize == 20)) {
-		enemy->startMotion(8, nullptr);
+	if (mAnimIdx != PELPLANTANIM_WaitMedium) {
+		enemy->startMotion(mAnimIdx, nullptr);
+
+	} else if ((OBJ(enemy)->mSize == PELLET_NUMBER_TEN) || (OBJ(enemy)->mSize == PELLET_NUMBER_TWENTY)) {
+		enemy->startMotion(PELPLANTANIM_BigDamage, nullptr);
+
 	} else {
-		enemy->startMotion(_10, nullptr);
+		enemy->startMotion(mAnimIdx, nullptr);
 	}
 
 	enemy->disableEvent(0, EB_Invulnerable);
@@ -396,10 +398,10 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDamage::exec(Game::EnemyBase* enemy)
 {
-	if ((enemy->mCurAnim->mIsPlaying != 0) && ((u32)enemy->mCurAnim->mType == 0x3E8)) {
-		transit(enemy, mStateMachine->mPreviousID, 0);
+	if ((enemy->mCurAnim->mIsPlaying) && (enemy->mCurAnim->mType == KEYEVENT_END)) {
+		transit(enemy, mStateMachine->mPreviousID, nullptr);
 	}
-	static_cast<Obj*>(enemy)->changePelletColor();
+	OBJ(enemy)->changePelletColor();
 }
 
 /*
@@ -414,11 +416,11 @@ void StateDamage::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Invulnera
  * Address:	8010B890
  * Size:	000040
  */
-StateDead::StateDead(int stateID, int p1)
+StateDead::StateDead(int stateID, int animIdx)
     : State(stateID)
 {
-	mName = "dead";
-	_10   = p1;
+	mName    = "dead";
+	mAnimIdx = animIdx;
 }
 
 /*
@@ -428,20 +430,20 @@ StateDead::StateDead(int stateID, int p1)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	if (_10 != 1) {
-		enemy->startMotion(_10, nullptr);
-	} else if ((static_cast<Obj*>(enemy)->mSize == PELLET_NUMBER_TEN) || (static_cast<Obj*>(enemy)->mSize == PELLET_NUMBER_TWENTY)) {
-		enemy->startMotion(9, nullptr);
+	if (mAnimIdx != PELPLANTANIM_Dead) {
+		enemy->startMotion(mAnimIdx, nullptr);
+	} else if ((OBJ(enemy)->mSize == PELLET_NUMBER_TEN) || (OBJ(enemy)->mSize == PELLET_NUMBER_TWENTY)) {
+		enemy->startMotion(PELPLANTANIM_BigDead, nullptr);
 	} else {
-		enemy->startMotion(_10, nullptr);
+		enemy->startMotion(mAnimIdx, nullptr);
 	}
 
 	enemy->deathProcedure();
 
-	if (_10 != 1) {
-		if (static_cast<Obj*>(enemy)->mPellet) {
-			static_cast<Obj*>(enemy)->mPellet->kill(nullptr);
-			static_cast<Obj*>(enemy)->mPellet = nullptr;
+	if (mAnimIdx != PELPLANTANIM_Dead) {
+		if (OBJ(enemy)->mPellet) {
+			OBJ(enemy)->mPellet->kill(nullptr);
+			OBJ(enemy)->mPellet = nullptr;
 		}
 	}
 }
@@ -453,10 +455,10 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if ((enemy->mCurAnim->mIsPlaying) && ((u32)enemy->mCurAnim->mType == 1000)) {
-		if (static_cast<Obj*>(enemy)->mPellet) {
-			static_cast<Obj*>(enemy)->mPellet->endCapture();
-			static_cast<Obj*>(enemy)->mPellet = nullptr;
+	if ((enemy->mCurAnim->mIsPlaying) && (enemy->mCurAnim->mType == KEYEVENT_END)) {
+		if (OBJ(enemy)->mPellet) {
+			OBJ(enemy)->mPellet->endCapture();
+			OBJ(enemy)->mPellet = nullptr;
 		}
 		enemy->kill(nullptr);
 	}

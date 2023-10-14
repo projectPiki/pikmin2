@@ -42,7 +42,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->mTargetVelocity = Vector3f(0.0f);
 	sarai->disableEvent(0, EB_Untargetable);
 	sarai->flickStickTarget();
-	sarai->startMotion(10, nullptr);
+	sarai->startMotion(SARAIANIM_Dead, nullptr);
 }
 
 /*
@@ -76,7 +76,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->mTargetVelocity = Vector3f(0.0f);
 	sarai->disableEvent(0, EB_Untargetable);
 	sarai->setEmotionExcitement();
-	sarai->startMotion(6, nullptr);
+	sarai->startMotion(SARAIANIM_Fall, nullptr);
 	sarai->flickStickTarget();
 }
 
@@ -140,7 +140,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->mTargetVelocity = Vector3f(0.0f);
 	sarai->disableEvent(0, EB_Untargetable);
 	sarai->setEmotionExcitement();
-	sarai->startMotion(7, nullptr);
+	sarai->startMotion(SARAIANIM_Damage, nullptr);
 	sarai->flickStickTarget();
 }
 
@@ -183,7 +183,7 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->enableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(8, nullptr);
+	enemy->startMotion(SARAIANIM_TakeOff, nullptr);
 }
 
 /*
@@ -233,7 +233,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->enableEvent(0, EB_Untargetable);
 	enemy->enableEvent(0, EB_NoInterrupt);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(5, nullptr);
+	enemy->startMotion(SARAIANIM_Flick, nullptr);
 }
 
 /*
@@ -294,9 +294,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->enableEvent(0, EB_Untargetable);
 
 	if (randWeightFloat(1.0f) < 0.5f) {
-		sarai->startMotion(0, nullptr);
+		sarai->startMotion(SARAIANIM_Wait, nullptr);
 	} else {
-		sarai->startMotion(1, nullptr);
+		sarai->startMotion(SARAIANIM_Move, nullptr);
 	}
 }
 
@@ -355,7 +355,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->setRandTarget();
 	sarai->mTargetCreature = nullptr;
 	sarai->enableEvent(0, EB_Untargetable);
-	sarai->startMotion(1, nullptr);
+	sarai->startMotion(SARAIANIM_Move, nullptr);
 }
 
 /*
@@ -423,7 +423,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->enableEvent(0, EB_NoInterrupt);
 	sarai->enableEvent(0, EB_Untargetable);
 	sarai->setEmotionExcitement();
-	sarai->startMotion(2, nullptr);
+	sarai->startMotion(SARAIANIM_Attack, nullptr);
 }
 
 /*
@@ -902,7 +902,7 @@ void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->enableEvent(0, EB_Untargetable);
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(9, nullptr);
+	enemy->startMotion(SARAIANIM_Fail, nullptr);
 }
 
 /*
@@ -1014,7 +1014,7 @@ void StateCatchFly::init(EnemyBase* enemy, StateArg* stateArg)
 	sarai->mTargetCreature = nullptr;
 	sarai->enableEvent(0, EB_Untargetable);
 	sarai->setEmotionExcitement();
-	sarai->startMotion(3, nullptr);
+	sarai->startMotion(SARAIANIM_CatchFly, nullptr);
 }
 
 /*
@@ -1077,7 +1077,7 @@ void StateFallMeck::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetCreature = nullptr;
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(4, nullptr);
+	enemy->startMotion(SARAIANIM_FallMeck, nullptr);
 }
 
 /*

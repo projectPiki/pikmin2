@@ -165,7 +165,7 @@ Vector3f Obj::getOffsetForMapCollision()
  * Address:	8012DFA0
  * Size:	000028
  */
-void Obj::startCarcassMotion() { EnemyBase::startMotion(5, nullptr); }
+void Obj::startCarcassMotion() { EnemyBase::startMotion(KOCHAPPYANIM_Carry, nullptr); }
 
 /*
  * --INFO--

@@ -251,7 +251,7 @@ void StateLand::exec(EnemyBase* enemy)
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
-		} else if ((u32)titan->mCurAnim->mType == 9) {
+		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_9) {
 			Vector3f position = titan->getPosition();
 			cameraMgr->startVibration(2, position, 2);
 			rumbleMgr->startRumble(5, position, 2);
@@ -259,9 +259,9 @@ void StateLand::exec(EnemyBase* enemy)
 			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
-		} else if ((u32)titan->mCurAnim->mType == 10) {
+		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_10) {
 			if (!titan->isCapturedTreasure()) {
-				titan->startMotion(1, nullptr);
+				titan->startMotion(BIGTREASUREANIM_Appear2, nullptr);
 			}
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_END) {

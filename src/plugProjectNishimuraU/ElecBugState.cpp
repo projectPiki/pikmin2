@@ -41,7 +41,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(ELECBUGANIM_Dead, nullptr);
 }
 
 /*
@@ -74,7 +74,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->mStateTimer = 0.0f;
 	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
-	bug->startMotion(2, nullptr);
+	bug->startMotion(ELECBUGANIM_Wait, nullptr);
 }
 
 /*
@@ -112,7 +112,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->setTargetPosition();
 	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
-	bug->startMotion(1, nullptr);
+	bug->startMotion(ELECBUGANIM_Move, nullptr);
 }
 
 /*
@@ -164,7 +164,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	bug->enableEvent(0, EB_Cullable);
-	bug->startMotion(1, nullptr);
+	bug->startMotion(ELECBUGANIM_Move, nullptr);
 }
 
 /*
@@ -219,7 +219,7 @@ void StateCharge::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->setEmotionExcitement();
-	bug->startMotion(3, nullptr);
+	bug->startMotion(ELECBUGANIM_Charge, nullptr);
 }
 
 /*
@@ -306,7 +306,7 @@ void StateDischarge::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->disableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->setEmotionExcitement();
-	bug->startMotion(4, nullptr);
+	bug->startMotion(ELECBUGANIM_Discharge, nullptr);
 }
 
 /*
@@ -367,7 +367,7 @@ void StateChildCharge::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->disableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->setEmotionExcitement();
-	bug->startMotion(3, nullptr);
+	bug->startMotion(ELECBUGANIM_Charge, nullptr);
 }
 
 /*
@@ -571,7 +571,7 @@ void StateChildDischarge::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->disableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->setEmotionExcitement();
-	bug->startMotion(4, nullptr);
+	bug->startMotion(ELECBUGANIM_Discharge, nullptr);
 }
 
 /*
@@ -624,7 +624,7 @@ void StateReverse::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->enableEvent(0, EB_Cullable);
 	bug->disableEvent(0, EB_Invulnerable);
 	bug->mTargetVelocity = Vector3f(0.0f);
-	bug->startMotion(5, nullptr);
+	bug->startMotion(ELECBUGANIM_Turn, nullptr);
 }
 
 /*
@@ -668,7 +668,7 @@ void StateReturn::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* bug = OBJ(enemy); // nothing even uses the obj cast here but it's necessary for codegen, smh.
 	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
-	bug->startMotion(6, nullptr);
+	bug->startMotion(ELECBUGANIM_Recover, nullptr);
 }
 
 /*

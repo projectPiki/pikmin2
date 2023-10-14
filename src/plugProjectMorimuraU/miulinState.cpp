@@ -44,7 +44,7 @@ StateWait::StateWait(int stateID)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(7, nullptr);
+	enemy->startMotion(MIULINANIM_Wait, nullptr);
 	enemy->stopMotion();
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
@@ -98,7 +98,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	OBJ(enemy)->mNextState = MIULIN_NULL;
-	enemy->startMotion(5, nullptr);
+	enemy->startMotion(MIULINANIM_Move, nullptr);
 	_14 = 0;
 	if (enemy->mTargetCreature) {
 		_10                = 0;
@@ -213,7 +213,7 @@ StateAttackStart::StateAttackStart(int stateID)
 void StateAttackStart::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(MIULINANIM_AttackStart, nullptr);
 	enemy->setEmotionExcitement();
 }
 
@@ -248,7 +248,7 @@ StateAttacking::StateAttacking(int stateID)
 void StateAttacking::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(MIULINANIM_Attacking, nullptr);
 	_10 = 1;
 }
 
@@ -368,7 +368,7 @@ StateAttackEnd::StateAttackEnd(int stateID)
 void StateAttackEnd::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
-	enemy->startMotion(2, nullptr);
+	enemy->startMotion(MIULINANIM_AttackEnd, nullptr);
 	static_cast<Obj*>(enemy)->mNextState = MIULIN_Turn;
 	enemy->setEmotionCaution();
 }
@@ -421,7 +421,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	if (OBJ(enemy)->turnFunc(1.0f) < maxAngle) {
 		transit(enemy, MIULIN_Walk, nullptr);
 	} else {
-		enemy->startMotion(8, nullptr);
+		enemy->startMotion(MIULINANIM_Turn, nullptr);
 		enemy->mTargetVelocity  = Vector3f(0.0f);
 		enemy->mCurrentVelocity = Vector3f(0.0f);
 	}
@@ -484,7 +484,7 @@ StateFlick::StateFlick(int stateID)
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
-	enemy->startMotion(4, nullptr);
+	enemy->startMotion(MIULINANIM_Flick, nullptr);
 	enemy->setEmotionCaution();
 }
 
@@ -541,7 +541,7 @@ StateDead::StateDead(int stateID)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
-	enemy->startMotion(3, nullptr);
+	enemy->startMotion(MIULINANIM_Dead, nullptr);
 	enemy->setEmotionCaution();
 	enemy->deathProcedure();
 }

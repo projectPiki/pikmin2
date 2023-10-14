@@ -86,12 +86,12 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                  // _2BC
-	u8 _2C0;                    // _2C0
+	bool mCanStruggle;          // _2C0, can be knocked over
 	f32 mAppearTimer;           // _2C4
 	f32 mStateTimer;            // _2C8, timer for current state
 	f32 mWhistleTimer;          // _2CC
 	f32 mWhistleRadiusModifier; // _2D0, ranges from 0.0f to 1.0f as whistle grows
-	f32 mTurnTimer;             // _2D4, timer?
+	f32 mSquadTimer;            // _2D4, timer to keep beetle turning while it has a squad
 	StateID mNextState;         // _2D8
 	Vector3f mTargetPosition;   // _2DC
 	Footmarks* mFootmarks;      // _2E8
@@ -121,27 +121,27 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mMaxGroundTime(this, 'fp01', "出現時間(Max)", 30.0f, 0.0f, 100.0f) // 'appearance time (max)'
-		    , mMinGroundTime(this, 'fp02', "出現時間(Min)", 20.0f, 0.0f, 100.0f) // 'appearance time (min)'
-		    , mAirborneTime(this, 'fp03', "出現間隔", 3.0f, 0.0f, 100.0f)        // 'appearance interval'
-		    , mFp11(this, 'fp11', "フエ間隔(1)", 0.0f, 0.0f, 5.0f)               // 'hue interval (1)
-		    , mFp12(this, 'fp12', "フエ間隔(2～:隊列ナシ)", 5.0f, 0.0f, 10.0f)   // 'hue interval (2 ~: no formation)'
-		    , mFp13(this, 'fp13', "フエ間隔(2～:隊列アリ)", 10.0f, 0.0f, 20.0f)  // 'hue interval (2 ~: platoon ants)'
-		    , mStruggleTime(this, 'fp21', "もがき時間", 3.0f, 0.0f, 10.0f)       // 'struggling time'
-		    , mFp22(this, 'fp22', "逃げジャンプ時間", 0.0f, 0.0f, 5.0f)          // 'escape jump time'
-		    , mFp31(this, 'fp31', "通常出現率", 0.5f, 0.0f, 1.0f)                // 'normal appearance rate'
+		    , mMaxGroundTime(this, 'fp01', "出現時間(Max)", 30.0f, 0.0f, 100.0f)                   // 'appearance time (max)'
+		    , mMinGroundTime(this, 'fp02', "出現時間(Min)", 20.0f, 0.0f, 100.0f)                   // 'appearance time (min)'
+		    , mAirborneTime(this, 'fp03', "出現間隔", 3.0f, 0.0f, 100.0f)                          // 'appearance interval'
+		    , mMinWhistleTime(this, 'fp11', "フエ間隔(1)", 0.0f, 0.0f, 5.0f)                       // 'hue interval (1)
+		    , mMaxWhistleTimeNoSquad(this, 'fp12', "フエ間隔(2～:隊列ナシ)", 5.0f, 0.0f, 10.0f)    // 'hue interval (2 ~: no formation)'
+		    , mMaxWhistleTimeWithSquad(this, 'fp13', "フエ間隔(2～:隊列アリ)", 10.0f, 0.0f, 20.0f) // 'hue interval (2 ~: platoon ants)'
+		    , mStruggleTime(this, 'fp21', "もがき時間", 3.0f, 0.0f, 10.0f)                         // 'struggling time'
+		    , mJumpTime(this, 'fp22', "逃げジャンプ時間", 0.0f, 0.0f, 5.0f)                        // 'escape jump time'
+		    , mNormalLandingChance(this, 'fp31', "通常出現率", 0.5f, 0.0f, 1.0f)                   // 'normal appearance rate'
 		{
 		}
 
-		Parm<f32> mMaxGroundTime; // _804, fp01
-		Parm<f32> mMinGroundTime; // _82C, fp02
-		Parm<f32> mAirborneTime;  // _854, fp03
-		Parm<f32> mFp11;          // _87C, hue interval 1?
-		Parm<f32> mFp12;          // _8A4, hue interval 2_1?
-		Parm<f32> mFp13;          // _8CC, hue interval 2_2?
-		Parm<f32> mStruggleTime;  // _8F4, fp21
-		Parm<f32> mFp22;          // _91C, time it takes to jump?
-		Parm<f32> mFp31;          // _944
+		Parm<f32> mMaxGroundTime;           // _804, fp01
+		Parm<f32> mMinGroundTime;           // _82C, fp02
+		Parm<f32> mAirborneTime;            // _854, fp03
+		Parm<f32> mMinWhistleTime;          // _87C
+		Parm<f32> mMaxWhistleTimeNoSquad;   // _8A4
+		Parm<f32> mMaxWhistleTimeWithSquad; // _8CC
+		Parm<f32> mStruggleTime;            // _8F4, fp21
+		Parm<f32> mJumpTime;                // _91C, time it takes to jump
+		Parm<f32> mNormalLandingChance;     // _944, chance of normal landing (rather than failed landing)
 	};
 
 	Parms() { }
@@ -155,6 +155,20 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms mProperParms; // _7F8
+};
+
+enum AnimID {
+	FUEFUKIANIM_Dead     = 0,
+	FUEFUKIANIM_Landing  = 1,
+	FUEFUKIANIM_LandFail = 2,
+	FUEFUKIANIM_Move     = 3,
+	FUEFUKIANIM_Pivot    = 4,
+	FUEFUKIANIM_Wait     = 5,
+	FUEFUKIANIM_Whisle   = 6,
+	FUEFUKIANIM_Struggle = 7,
+	FUEFUKIANIM_Jump     = 8,
+	FUEFUKIANIM_Carry    = 9,
+	FUEFUKIANIM_AnimCount, // 10
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

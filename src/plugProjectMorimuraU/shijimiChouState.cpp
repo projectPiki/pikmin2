@@ -46,7 +46,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->enableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
-	enemy->startMotion(2, nullptr);
+	enemy->startMotion(SHIJIMIANIM_Move, nullptr);
 	enemy->setMotionFrame(enemy->getMotionFrameMax() * randFloat());
 	mWaitTimer = 0;
 }
@@ -215,7 +215,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->enableEvent(0, EB_LeaveCarcass);
 	enemy->deathProcedure();
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(SHIJIMIANIM_Dead, nullptr);
 	PSStartEnemyFatalHitSE(enemy, 0.0f);
 	OBJ(enemy)->deadEffect();
 }
@@ -336,7 +336,7 @@ void StateRest::exec(EnemyBase* enemy)
 
 		if (mRestTimer >= _18) {
 			if (mRestTimer == _18) {
-				enemy->startMotion(2, nullptr);
+				enemy->startMotion(SHIJIMIANIM_Move, nullptr);
 				_1E = false;
 			}
 
@@ -359,7 +359,7 @@ void StateRest::exec(EnemyBase* enemy)
 
 				mRestTimer = 0;
 				_18        = 600.0f + 400.0f * randFloat();
-				enemy->startMotion(2, nullptr);
+				enemy->startMotion(SHIJIMIANIM_Move, nullptr);
 			}
 		}
 

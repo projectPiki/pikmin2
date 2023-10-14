@@ -44,7 +44,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->deathProcedure();
 	imomushi->mTargetVelocity = 0.0f;
-	imomushi->startMotion(0, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Dead, nullptr);
 }
 
 /*
@@ -80,7 +80,7 @@ void StateFallDive::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->mNextState      = IMOMUSHI_NULL;
 	imomushi->mTargetCreature = nullptr;
 	imomushi->mTargetVelocity = Vector3f(0.0f);
-	imomushi->startMotion(6, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_FallDive, nullptr);
 }
 
 /*
@@ -124,7 +124,7 @@ void StateFallMove::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->mNextState      = IMOMUSHI_NULL;
 	imomushi->mTargetCreature = nullptr;
 	imomushi->mTargetVelocity = Vector3f(0.0f);
-	imomushi->startMotion(5, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_FallMove, nullptr);
 }
 
 /*
@@ -178,7 +178,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->enableEvent(0, EB_ModelHidden);
 	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->mStateTimer     = 0.0f;
-	imomushi->startMotion(1, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Appear, nullptr);
 	imomushi->stopMotion();
 }
 
@@ -231,7 +231,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->enableEvent(0, EB_LifegaugeVisible);
 	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->setEmotionExcitement();
-	imomushi->startMotion(1, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Appear, nullptr);
 	imomushi->createAppearEffect();
 }
 
@@ -279,7 +279,7 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->mTargetCreature = nullptr;
 	imomushi->mTargetVelocity = Vector3f(0.0f);
 	imomushi->setEmotionCaution();
-	imomushi->startMotion(2, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Dive, nullptr);
 	imomushi->createDisAppearEffect();
 }
 
@@ -317,7 +317,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* imomushi        = static_cast<Obj*>(enemy);
 	imomushi->mNextState = IMOMUSHI_NULL;
-	imomushi->startMotion(3, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Move, nullptr);
 	imomushi->startMoveTraceEffect();
 }
 
@@ -400,7 +400,7 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* imomushi        = static_cast<Obj*>(enemy);
 	imomushi->mNextState = IMOMUSHI_NULL;
-	imomushi->startMotion(3, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Move, nullptr);
 	imomushi->startMoveTraceEffect();
 }
 
@@ -464,7 +464,7 @@ void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->setStickDiff(pos.x, pos.z);
 	imomushi->startClimbPlant(static_cast<CollPart*>(imomushi->mTargetCreature->mCollTree->mPart->mChild));
 	imomushi->mTargetVelocity = Vector3f(0.0f);
-	imomushi->startMotion(4, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Climb, nullptr);
 
 	const f32 faceDir = imomushi->getFaceDir();
 	f32 cos           = pikmin2_cosf(faceDir);
@@ -545,7 +545,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->endStick();
 	imomushi->startStick(target, collpart);
 	imomushi->mTargetVelocity = Vector3f(0.0f);
-	imomushi->startMotion(7, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Eat, nullptr);
 }
 
 /*
@@ -614,7 +614,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->endStick();
 	imomushi->startStick(target, collpart);
 	imomushi->mTargetVelocity = Vector3f(0.0f);
-	imomushi->startMotion(4, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Climb, nullptr);
 }
 
 /*
@@ -679,7 +679,7 @@ void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->enableEvent(0, EB_BitterImmune);
 	imomushi->hardConstraintOn();
 	imomushi->mTargetVelocity = Vector3f(0.0f);
-	imomushi->startMotion(1, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Appear, nullptr);
 	imomushi->stopMotion();
 }
 
@@ -719,7 +719,7 @@ void StateZukanAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->enableEvent(0, EB_NoInterrupt);
 	imomushi->mTargetVelocity = Vector3f(0.0f);
-	imomushi->startMotion(1, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Appear, nullptr);
 	imomushi->createAppearEffect();
 }
 
@@ -757,7 +757,7 @@ void StateZukanMove::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->setZukanTargetPosition();
 	imomushi->mTargetVelocity = 0.0f;
-	imomushi->startMotion(3, nullptr);
+	imomushi->startMotion(IMOMUSHIANIM_Move, nullptr);
 	imomushi->startMoveTraceEffect();
 }
 

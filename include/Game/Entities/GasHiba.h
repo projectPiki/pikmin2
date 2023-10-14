@@ -129,6 +129,12 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	GASHIBAANIM_Wait   = 0,
+	GASHIBAANIM_Attack = 1,
+	GASHIBAANIM_AnimCount, // 2
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

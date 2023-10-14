@@ -150,7 +150,7 @@ void Obj::doFinishStoneState()
  * Address:	802E4638
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(13, nullptr); }
+void Obj::startCarcassMotion() { startMotion(KABUTOANIM_Carry, nullptr); }
 
 /*
  * --INFO--

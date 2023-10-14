@@ -178,7 +178,7 @@ void Obj::doFinishStoneState() { EnemyBase::doFinishStoneState(); }
  * Address:	802F187C
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(8, nullptr); }
+void Obj::startCarcassMotion() { startMotion(SOKKURIANIM_Carry, nullptr); }
 
 /*
  * --INFO--

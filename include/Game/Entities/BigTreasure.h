@@ -77,6 +77,7 @@ enum AttackID {
 	BIGATTACK_Fire  = 1,
 	BIGATTACK_Gas   = 2,
 	BIGATTACK_Water = 3,
+	BIGATTACK_AttackCount, // 4
 };
 
 enum EyeColorTargetID {
@@ -455,6 +456,53 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms mProperParms; // _7F8
+};
+
+enum AnimID {
+	BIGTREASUREANIM_NULL    = -1,
+	BIGTREASUREANIM_Appear  = 0,
+	BIGTREASUREANIM_Appear2 = 1,
+	BIGTREASUREANIM_Wait1   = 2,
+
+	// Fire attacks (forward, right, left, back)
+	BIGTREASUREANIM_PreAttackF = 3,
+	BIGTREASUREANIM_AttackF    = 4,
+	BIGTREASUREANIM_AttackEndF = 5,
+
+	BIGTREASUREANIM_PreAttackFR = 6,
+	BIGTREASUREANIM_AttackFR    = 7,
+	BIGTREASUREANIM_AttackEndFR = 8,
+
+	BIGTREASUREANIM_PreAttackFL = 9,
+	BIGTREASUREANIM_AttackFL    = 10,
+	BIGTREASUREANIM_AttackEndFL = 11,
+
+	BIGTREASUREANIM_PreAttackFB = 12,
+	BIGTREASUREANIM_AttackFB    = 13,
+	BIGTREASUREANIM_AttackEndFB = 14,
+
+	// Water attack
+	BIGTREASUREANIM_PreAttackW = 15,
+	BIGTREASUREANIM_AttackW    = 16,
+	BIGTREASUREANIM_AttackEndW = 17,
+
+	// Gas attack
+	BIGTREASUREANIM_PreAttackG = 18,
+	BIGTREASUREANIM_AttackG    = 19,
+	BIGTREASUREANIM_AttackEndG = 20,
+
+	// Elec attack
+	BIGTREASUREANIM_PreAttackE = 21,
+	BIGTREASUREANIM_AttackE    = 22,
+	BIGTREASUREANIM_AttackEndE = 23,
+
+	BIGTREASUREANIM_DropItem = 24,
+	BIGTREASUREANIM_Wait2    = 25,
+	BIGTREASUREANIM_Flick    = 26,
+	BIGTREASUREANIM_Dead     = 27,
+	BIGTREASUREANIM_Move1    = 28,
+	BIGTREASUREANIM_Wait2_2  = 29, // repeat of Wait2?
+	BIGTREASUREANIM_AnimCount,     // 30
 };
 
 struct ProperAnimator : public EnemyBlendAnimatorBase {

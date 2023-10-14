@@ -177,7 +177,7 @@ void Obj::doEntry()
  */
 void Obj::doAnimationCullingOff()
 {
-	mCurAnim->mIsPlaying = 0;
+	mCurAnim->mIsPlaying = false;
 	doAnimationUpdateAnimator();
 	bool check   = true;
 	Vector3f vec = mObjMatrix.getBasis(3);

@@ -158,6 +158,24 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	BOMBSARAIANIM_Dead      = 0, // 'dead1'
+	BOMBSARAIANIM_Fall      = 1, // 'fall1'
+	BOMBSARAIANIM_Flick     = 2, // 'flick1'
+	BOMBSARAIANIM_BombFlick = 3, // 'bflick1'
+	BOMBSARAIANIM_Struggle  = 4, // 'mogaki1'
+	BOMBSARAIANIM_Release   = 5, // 'release1'
+	BOMBSARAIANIM_Run       = 6, // 'run1'
+	BOMBSARAIANIM_BombRun   = 7, // 'run2'
+	BOMBSARAIANIM_Supply    = 8, // 'supli1'
+	BOMBSARAIANIM_TakeOff1  = 9,
+	BOMBSARAIANIM_TakeOff2  = 10,
+	BOMBSARAIANIM_Carry     = 11, // 'type5'
+	BOMBSARAIANIM_Wait      = 12, // 'wait1'
+	BOMBSARAIANIM_BombWait  = 13, // 'wait2'
+	BOMBSARAIANIM_AnimCount,      // 14
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

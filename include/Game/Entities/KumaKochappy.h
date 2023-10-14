@@ -127,6 +127,20 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+// these aren't defined in an enemyanimmgr.txt, but assume it uses the same as kochappy
+enum AnimID {
+	KUMAKOCHAPPYANIM_Attack = 0,
+	KUMAKOCHAPPYANIM_Dead   = 1,
+	KUMAKOCHAPPYANIM_Flick  = 2,
+	KUMAKOCHAPPYANIM_Move   = 3, // 'move1'
+	KUMAKOCHAPPYANIM_Press  = 4, // 'type1'
+	KUMAKOCHAPPYANIM_Carry  = 5, // 'type5'
+	KUMAKOCHAPPYANIM_Wait   = 6, // 'wait1'
+	KUMAKOCHAPPYANIM_Turn   = 7, // 'waitact1'
+	KUMAKOCHAPPYANIM_Eat    = 8, // 'waitact2'
+	KUMAKOCHAPPYANIM_AnimCount,  // 9
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

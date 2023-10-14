@@ -189,6 +189,19 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	QUEENANIM_Dead     = 0,
+	QUEENANIM_Sleep    = 1,
+	QUEENANIM_Wait     = 2, // 'wait1'
+	QUEENANIM_Damage   = 3,
+	QUEENANIM_Flick    = 4,
+	QUEENANIM_RollingL = 5,
+	QUEENANIM_RollingR = 6,
+	QUEENANIM_Born     = 7,
+	QUEENANIM_Carry    = 8,
+	QUEENANIM_AnimCount, // 9
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

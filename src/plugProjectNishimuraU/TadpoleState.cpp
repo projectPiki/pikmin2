@@ -34,7 +34,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(TADPOLEANIM_Dead, nullptr);
 }
 
 /*
@@ -72,7 +72,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	tadpole->mStateTimer     = 0.0f;
 	tadpole->mNextState      = TADPOLE_Move;
 	tadpole->mTargetVelocity = Vector3f(0.0f);
-	tadpole->startMotion(1, nullptr);
+	tadpole->startMotion(TADPOLEANIM_Wait, nullptr);
 }
 
 /*
@@ -129,7 +129,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	tadpole->mStateTimer = 0.0f;
 	tadpole->setRandTarget(false);
 	tadpole->mNextState = TADPOLE_Wait;
-	tadpole->startMotion(2, nullptr);
+	tadpole->startMotion(TADPOLEANIM_Move, nullptr);
 }
 
 /*
@@ -193,7 +193,7 @@ void StateAmaze::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_NoInterrupt);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(3, nullptr);
+	enemy->startMotion(TADPOLEANIM_Amaze, nullptr);
 }
 
 /*
@@ -240,7 +240,7 @@ void StateAmaze::cleanup(EnemyBase* enemy)
 void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
-	enemy->startMotion(2, nullptr);
+	enemy->startMotion(TADPOLEANIM_Move, nullptr);
 }
 
 /*
@@ -304,7 +304,7 @@ void StateLeap::init(EnemyBase* enemy, StateArg* stateArg)
 
 	tadpole->mNextState = TADPOLE_NULL;
 	tadpole->enableEvent(0, EB_NoInterrupt);
-	tadpole->startMotion(4, nullptr);
+	tadpole->startMotion(TADPOLEANIM_Piti, nullptr);
 	tadpole->mTargetVelocity = Vector3f(tadpole->getVelocity());
 }
 

@@ -160,6 +160,12 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms;
 };
 
+enum AnimID {
+	BOMBANIM_HitStart = 0,
+	BOMBANIM_HitLoop  = 1,
+	BOMBANIM_AnimCount, // 2
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

@@ -110,7 +110,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
  * Address:	80278924
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(5, nullptr); }
+void Obj::startCarcassMotion() { startMotion(TADPOLEANIM_Carry, nullptr); }
 
 /*
  * --INFO--

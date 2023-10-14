@@ -50,7 +50,7 @@ StateWait::StateWait(int stateID)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(15, nullptr);
+	enemy->startMotion(JIGUMOANIM_Wait, nullptr);
 	enemy->mPosition       = enemy->mHomePosition;
 	enemy->mTargetCreature = nullptr;
 	OBJ(enemy)->mNextState = JIGUMO_NULL;
@@ -102,7 +102,7 @@ StateAppear::StateAppear(int stateID)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(JIGUMOANIM_Appear, nullptr);
 	enemy->stopMotion();
 	enemy->hardConstraintOn();
 	enemy->setAtari(false);
@@ -196,9 +196,9 @@ StateHide::StateHide(int stateID)
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	if (OBJ(enemy)->_2E8) {
-		enemy->startMotion(7, nullptr);
+		enemy->startMotion(JIGUMOANIM_Hide, nullptr);
 	} else {
-		enemy->startMotion(8, nullptr);
+		enemy->startMotion(JIGUMOANIM_RDive, nullptr);
 	}
 
 	OBJ(enemy)->_2BC        = enemy->mPosition;
@@ -263,7 +263,7 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(4, nullptr);
+	enemy->startMotion(JIGUMOANIM_Dead, nullptr);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->deathProcedure();
@@ -308,7 +308,7 @@ StateAttack::StateAttack(int stateID)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(JIGUMOANIM_Attack, nullptr);
 	enemy->disableEvent(0, EB_Cullable);
 	OBJ(enemy)->mNextState                            = JIGUMO_Miss;
 	OBJ(enemy)->_2E8                                  = 0;
@@ -728,7 +728,7 @@ StateMiss::StateMiss(int stateID)
 void StateMiss::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	OBJ(enemy)->_2EC = enemy->mFaceDir;
-	enemy->startMotion(16, nullptr);
+	enemy->startMotion(JIGUMOANIM_Miss, nullptr);
 	_10 = 0;
 }
 
@@ -913,7 +913,7 @@ StateReturn::StateReturn(int stateID)
  */
 void StateReturn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(10, nullptr);
+	enemy->startMotion(JIGUMOANIM_RunAway, nullptr);
 	OBJ(enemy)->effectStart();
 }
 
@@ -981,7 +981,7 @@ StateCarry::StateCarry(int stateID)
  */
 void StateCarry::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(2, nullptr);
+	enemy->startMotion(JIGUMOANIM_BackRun, nullptr);
 	OBJ(enemy)->effectStart();
 }
 
@@ -1059,9 +1059,9 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	if (OBJ(enemy)->_2E8) {
-		enemy->startMotion(6, nullptr);
+		enemy->startMotion(JIGUMOANIM_Flick, nullptr);
 	} else {
-		enemy->startMotion(9, nullptr);
+		enemy->startMotion(JIGUMOANIM_RFlick, nullptr);
 	}
 
 	Vector3f pos = enemy->getPosition();
@@ -1119,7 +1119,7 @@ StateEat::StateEat(int stateID)
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	OBJ(enemy)->_2BC = enemy->mPosition;
-	enemy->startMotion(5, nullptr);
+	enemy->startMotion(JIGUMOANIM_Eat, nullptr);
 	enemy->hardConstraintOn();
 }
 
@@ -1179,7 +1179,7 @@ StateSearch::StateSearch(int stateID)
  */
 void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(13, nullptr);
+	enemy->startMotion(JIGUMOANIM_Turn, nullptr);
 	enemy->setAtari(false);
 	enemy->setAlive(false);
 	enemy->mTargetCreature = nullptr;
@@ -1633,7 +1633,7 @@ StateSAttack::StateSAttack(int stateID)
  */
 void StateSAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(11, nullptr);
+	enemy->startMotion(JIGUMOANIM_SAttack, nullptr);
 	_10 = 0;
 	_11 = 0;
 	enemy->setEmotionExcitement();
@@ -1729,7 +1729,7 @@ StateSMiss::StateSMiss(int stateID)
  * Address:	803686C4
  * Size:	00002C
  */
-void StateSMiss::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(12, nullptr); }
+void StateSMiss::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(JIGUMOANIM_SMiss, nullptr); }
 
 /*
  * --INFO--

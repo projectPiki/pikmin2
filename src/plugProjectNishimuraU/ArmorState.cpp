@@ -41,7 +41,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(ARMORANIM_Dead, nullptr);
 }
 
 /*
@@ -81,7 +81,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_LifegaugeVisible);
 	enemy->disableEvent(0, EB_Animating);
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(ARMORANIM_Appear, nullptr);
 	enemy->stopMotion();
 }
 
@@ -129,7 +129,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->enableEvent(0, EB_LifegaugeVisible);
 	armor->mTargetVelocity = Vector3f(0.0f);
 	armor->setEmotionExcitement();
-	armor->startMotion(1, nullptr);
+	armor->startMotion(ARMORANIM_Appear, nullptr);
 	armor->createAppearEffect();
 
 	Vector3f pos = armor->getPosition();
@@ -177,7 +177,7 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 	armor->hardConstraintOn();
 	armor->mTargetVelocity = Vector3f(0.0f);
 	armor->setEmotionCaution();
-	armor->startMotion(2, nullptr);
+	armor->startMotion(ARMORANIM_Dive, nullptr);
 	armor->createDisAppearEffect();
 }
 
@@ -216,7 +216,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* armor        = OBJ(enemy);
 	armor->mNextState = ARMOR_NULL;
-	armor->startMotion(3, nullptr);
+	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
 /*
@@ -593,7 +593,7 @@ void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* armor        = OBJ(enemy);
 	armor->mNextState = ARMOR_NULL;
-	armor->startMotion(3, nullptr);
+	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
 /*
@@ -650,7 +650,7 @@ void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* armor        = OBJ(enemy);
 	armor->mNextState = ARMOR_NULL;
-	armor->startMotion(3, nullptr);
+	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
 /*
@@ -706,7 +706,7 @@ void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* armor        = OBJ(enemy);
 	armor->mNextState = ARMOR_NULL;
-	armor->startMotion(3, nullptr);
+	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
 /*
@@ -762,7 +762,7 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* armor        = OBJ(enemy);
 	armor->mNextState = ARMOR_NULL;
-	armor->startMotion(3, nullptr);
+	armor->startMotion(ARMORANIM_Move, nullptr);
 }
 
 /*
@@ -824,7 +824,7 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* armor             = OBJ(enemy);
 	armor->mTargetVelocity = Vector3f(0.0f);
-	armor->startMotion(4, nullptr);
+	armor->startMotion(ARMORANIM_Attack1, nullptr);
 	armor->mNextState = ARMOR_NULL;
 	armor->createBridgeEffect();
 }
@@ -885,7 +885,7 @@ void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	static_cast<Obj*>(enemy)->mAttackLoopTime = 0.0f;
 	enemy->mTargetVelocity                    = Vector3f(0.0f);
-	enemy->startMotion(5, nullptr);
+	enemy->startMotion(ARMORANIM_Attack2, nullptr);
 }
 
 /*
@@ -948,7 +948,7 @@ void StateAttack2::cleanup(EnemyBase* enemy) { }
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(6, nullptr);
+	enemy->startMotion(ARMORANIM_Eat, nullptr);
 }
 
 /*
@@ -987,7 +987,7 @@ void StateEat::cleanup(EnemyBase* enemy) { }
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(7, nullptr);
+	enemy->startMotion(ARMORANIM_Flick, nullptr);
 }
 
 /*
@@ -1038,7 +1038,7 @@ void StateFlick::cleanup(EnemyBase* enemy) { }
 void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(8, nullptr);
+	enemy->startMotion(ARMORANIM_AttackFail, nullptr);
 }
 
 /*

@@ -206,6 +206,14 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	DAMAGUMOANIM_Dead    = 0,
+	DAMAGUMOANIM_Landing = 1,
+	DAMAGUMOANIM_Wait    = 2,
+	DAMAGUMOANIM_Flick   = 3,
+	DAMAGUMOANIM_AnimCount, // 4
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

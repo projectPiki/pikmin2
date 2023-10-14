@@ -37,7 +37,7 @@ StateWait::StateWait(int stateID)
 
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(EGGANIM_Damage, nullptr);
 	enemy->stopMotion();
 }
 
@@ -74,7 +74,7 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 
 	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
-		enemy->startMotion(0, nullptr);
+		enemy->startMotion(EGGANIM_Damage, nullptr);
 		enemy->stopMotion();
 	}
 }

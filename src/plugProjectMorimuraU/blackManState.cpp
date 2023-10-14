@@ -57,9 +57,9 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	if (check) {
-		wraith->startMotion(6, nullptr);
+		wraith->startMotion(WRAITHANIM_Move, nullptr);
 	} else {
-		wraith->startMotion(8, nullptr);
+		wraith->startMotion(WRAITHANIM_Run, nullptr);
 	}
 
 	wraith->createTraceEffect();
@@ -100,12 +100,12 @@ void StateWalk::exec(EnemyBase* enemy)
 		case KEYEVENT_2:
 		case KEYEVENT_3:
 			Vector3f position = wraith->getPosition();
-			if (wraith->getCurrAnimIndex() == 11) {
+			if (wraith->getCurrAnimIndex() == WRAITHANIM_Walk) {
 				cameraMgr->startVibration(3, position, 2);
 				rumbleMgr->startRumble(8, position, 2);
 			}
 
-			if (wraith->getCurrAnimIndex() == 8) {
+			if (wraith->getCurrAnimIndex() == WRAITHANIM_Run) {
 				cameraMgr->startVibration(6, position, 2);
 				rumbleMgr->startRumble(8, position, 2);
 			}
@@ -145,7 +145,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
-	enemy->startMotion(2, nullptr);
+	enemy->startMotion(WRAITHANIM_Dead, nullptr);
 
 	Obj* wraith = static_cast<Obj*>(enemy);
 	wraith->deadTraceEffect();
@@ -203,10 +203,10 @@ void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 	wraith->collisionStOn();
 
 	bool check = false;
-	if (enemy->getCurrAnimIndex() == 4) {
+	if (enemy->getCurrAnimIndex() == WRAITHANIM_Flick2) {
 		check = true;
 	}
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(WRAITHANIM_Bend2, nullptr);
 	if (check) {
 		enemy->setMotionFrame(3.0f);
 	}
@@ -288,11 +288,11 @@ void StateBend::init(EnemyBase* enemy, StateArg* stateArg)
 	wraith->collisionStOn();
 
 	bool check = false;
-	if (enemy->getCurrAnimIndex() == 3) {
+	if (enemy->getCurrAnimIndex() == WRAITHANIM_Flick) {
 		check = true;
 	}
 
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(WRAITHANIM_Bend, nullptr);
 
 	if (check) {
 		enemy->setMotionFrame(5.0f);
@@ -376,7 +376,7 @@ StateEscape::StateEscape(int stateID)
  */
 void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(5, nullptr);
+	enemy->startMotion(WRAITHANIM_GetOff, nullptr);
 
 	Obj* wraith = static_cast<Obj*>(enemy);
 	wraith->escape();
@@ -447,7 +447,7 @@ StateFall::StateFall(int stateID)
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(13, nullptr);
+	enemy->startMotion(WRAITHANIM_Land, nullptr);
 	enemy->hardConstraintOn();
 	enemy->enableEvent(0, EB_NoInterrupt);
 }
@@ -506,7 +506,7 @@ StateRecover::StateRecover(int stateID)
 void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 {
 
-	if (enemy->getCurrAnimIndex() != 13) {
+	if (enemy->getCurrAnimIndex() != WRAITHANIM_Land) {
 		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 		PSM::checkMidBoss(soundObj);
 		if (soundObj != nullptr && soundObj->mAppearFlag) {
@@ -514,7 +514,7 @@ void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 		}
 	}
 
-	enemy->startMotion(7, nullptr);
+	enemy->startMotion(WRAITHANIM_Recover, nullptr);
 	Obj* wraith = static_cast<Obj*>(enemy);
 	wraith->recoverFlick();
 	wraith->tyreUpEffect();
@@ -592,14 +592,14 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	if (check) {
-		enemy->startMotion(3, nullptr);
+		enemy->startMotion(WRAITHANIM_Flick, nullptr);
 		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 		PSM::checkMidBoss(soundObj);
 		if (soundObj != nullptr && soundObj->mAppearFlag) {
 			soundObj->jumpRequest(4);
 		}
 	} else {
-		enemy->startMotion(4, nullptr);
+		enemy->startMotion(WRAITHANIM_Flick2, nullptr);
 		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->mSoundObj);
 		PSM::checkMidBoss(soundObj);
 		if (soundObj != nullptr && soundObj->mAppearFlag) {
@@ -661,7 +661,7 @@ StateTired::StateTired(int stateID)
  */
 void StateTired::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(10, nullptr);
+	enemy->startMotion(WRAITHANIM_Wait2, nullptr);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	_10                    = 0;
 }

@@ -140,6 +140,19 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	UJIBANIM_Dead      = 0,
+	UJIBANIM_PressDead = 1, // 'dead_p'
+	UJIBANIM_Appear    = 2,
+	UJIBANIM_Dive      = 3,
+	UJIBANIM_Move      = 4,
+	UJIBANIM_Attack1   = 5,
+	UJIBANIM_Attack2   = 6,
+	UJIBANIM_Eat       = 7,
+	UJIBANIM_Carry     = 8,
+	UJIBANIM_AnimCount, // 7
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

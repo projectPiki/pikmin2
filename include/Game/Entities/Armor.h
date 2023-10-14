@@ -134,6 +134,20 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	ARMORANIM_Dead       = 0,
+	ARMORANIM_Appear     = 1,
+	ARMORANIM_Dive       = 2,
+	ARMORANIM_Move       = 3,
+	ARMORANIM_Attack1    = 4,
+	ARMORANIM_Attack2    = 5,
+	ARMORANIM_Eat        = 6,
+	ARMORANIM_Flick      = 7,
+	ARMORANIM_AttackFail = 8,
+	ARMORANIM_Carry      = 9,
+	ARMORANIM_AnimCount, // 10
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

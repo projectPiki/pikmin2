@@ -138,6 +138,11 @@ struct Parms : public EnemyParmsBase {
 	u8 _8D1;                  // _8D1
 };
 
+enum AnimID {
+	EGGANIM_Damage = 0, // 'damage1', only one anim
+	EGGANIM_AnimCount,  // 1
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

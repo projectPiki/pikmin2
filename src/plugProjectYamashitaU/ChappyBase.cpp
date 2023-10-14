@@ -204,7 +204,7 @@ Vector3f Obj::getOffsetForMapCollision()
  * Address:	8012AEDC
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(5, nullptr); }
+void Obj::startCarcassMotion() { startMotion(CHAPPYANIM_Carry, nullptr); }
 
 /*
  * --INFO--

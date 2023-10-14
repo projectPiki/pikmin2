@@ -936,7 +936,7 @@ void Obj::inWaterCallback(WaterBox* wbox)
  * Address:	8035EC5C
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(13, nullptr); }
+void Obj::startCarcassMotion() { startMotion(KINGANIM_Carry, nullptr); }
 
 /*
  * --INFO--

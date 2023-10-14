@@ -44,9 +44,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->deathProcedure();
 
 	if (mar->isFlying()) {
-		mar->startMotion(0, nullptr);
+		mar->startMotion(MARANIM_DeadFly, nullptr);
 	} else {
-		mar->startMotion(1, nullptr);
+		mar->startMotion(MARANIM_DeadGround, nullptr);
 	}
 
 	mar->enableEvent(0, EB_Untargetable);
@@ -91,7 +91,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->mTargetCreature = nullptr;
 	mar->enableEvent(0, EB_Untargetable);
-	mar->startMotion(5, nullptr);
+	mar->startMotion(MARANIM_WaitFly, nullptr);
 }
 
 /*
@@ -1134,7 +1134,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->enableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->setEmotionExcitement();
-	mar->startMotion(9, nullptr);
+	mar->startMotion(MARANIM_Attack, nullptr);
 	mar->_308 = 0;
 	mar->_304 = 0.0f;
 	mar->createSuckEffect();
@@ -1196,7 +1196,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->enableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->setEmotionExcitement();
-	mar->startMotion(8, nullptr);
+	mar->startMotion(MARANIM_Fall, nullptr);
 }
 
 /*
@@ -1264,7 +1264,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->disableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->setEmotionExcitement();
-	mar->startMotion(6, nullptr);
+	mar->startMotion(MARANIM_Land, nullptr);
 	mar->createDownEffect();
 }
 
@@ -1305,7 +1305,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->disableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->setEmotionExcitement();
-	mar->startMotion(4, nullptr);
+	mar->startMotion(MARANIM_WaitGround, nullptr);
 }
 
 /*
@@ -1354,7 +1354,7 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(7, nullptr);
+	enemy->startMotion(MARANIM_TakeOff, nullptr);
 }
 
 /*
@@ -1407,7 +1407,7 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->enableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(2, nullptr);
+	enemy->startMotion(MARANIM_FlickFly, nullptr);
 }
 
 /*
@@ -1455,7 +1455,7 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(3, nullptr);
+	enemy->startMotion(MARANIM_FlickGround, nullptr);
 }
 
 /*

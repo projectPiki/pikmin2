@@ -42,9 +42,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->setEmotionCaution();
 
 	if (stateArg) {
-		crab->startBlendAnimation(7, true);
+		crab->startBlendAnimation(DANGOANIM_Dead, true);
 	} else {
-		crab->startBlendAnimation(7, false);
+		crab->startBlendAnimation(DANGOANIM_Dead, false);
 	}
 }
 
@@ -103,7 +103,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->hardConstraintOn();
 	crab->enableEvent(0, EB_ModelHidden);
 	crab->mTargetVelocity = Vector3f(0.0f);
-	crab->startBlendAnimation(0, false);
+	crab->startBlendAnimation(DANGOANIM_Fly, false);
 	crab->stopMotion();
 }
 
@@ -165,7 +165,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->hardConstraintOn();
 	crab->disableEvent(0, EB_ModelHidden);
 	crab->mTargetVelocity = Vector3f(0.0f);
-	crab->startBlendAnimation(0, false);
+	crab->startBlendAnimation(DANGOANIM_Fly, false);
 }
 
 /*
@@ -517,9 +517,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mTargetVelocity = Vector3f(0.0f);
 
 	if (stateArg) {
-		crab->startBlendAnimation(1, true);
+		crab->startBlendAnimation(DANGOANIM_Wait, true);
 	} else {
-		crab->startBlendAnimation(1, false);
+		crab->startBlendAnimation(DANGOANIM_Wait, false);
 	}
 }
 
@@ -822,7 +822,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mIsBall     = false;
 	crab->enableEvent(0, EB_Invulnerable);
 	crab->mTargetVelocity = Vector3f(0.0f);
-	crab->startBlendAnimation(2, false);
+	crab->startBlendAnimation(DANGOANIM_Move, false);
 }
 
 /*
@@ -1456,7 +1456,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->enableEvent(0, EB_BitterImmune);
 	crab->setEmotionExcitement();
 	crab->mTargetVelocity = Vector3f(0.0f);
-	crab->startBlendAnimation(3, false);
+	crab->startBlendAnimation(DANGOANIM_Attack, false);
 }
 
 /*
@@ -1550,7 +1550,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->enableEvent(0, EB_NoInterrupt);
 	crab->enableEvent(0, EB_Invulnerable);
 	crab->mTargetVelocity = Vector3f(0.0f);
-	crab->startBlendAnimation(5, false);
+	crab->startBlendAnimation(DANGOANIM_Turn, false);
 	crab->createCrashEnemy();
 
 	Vector3f crabPos = crab->getPosition();
@@ -1638,7 +1638,7 @@ void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mStateTimer     = 0.0f;
 	crab->mIsBall         = false;
 	crab->mTargetVelocity = Vector3f(0.0f);
-	crab->startBlendAnimation(6, false);
+	crab->startBlendAnimation(DANGOANIM_Recover, false);
 }
 
 /*
@@ -1689,7 +1689,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mIsBall        = false;
 	crab->setEmotionExcitement();
 	crab->mTargetVelocity = Vector3f(0.0f);
-	crab->startBlendAnimation(4, false);
+	crab->startBlendAnimation(DANGOANIM_Attack2, false);
 }
 
 /*

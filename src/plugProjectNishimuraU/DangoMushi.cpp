@@ -298,7 +298,7 @@ void Obj::doFinishStoneState()
  * Address:	802FCD9C
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(8, nullptr); }
+void Obj::startCarcassMotion() { startMotion(DANGOANIM_Carry, nullptr); }
 
 /*
  * --INFO--
@@ -1649,15 +1649,15 @@ void Obj::startBlendAnimation(int animIdx, bool blendAnim)
 			f1 = 0.0f;
 		}
 		f32 frame = anim.mTimer;
-		int animId;
+		int currAnimId;
 		if (f1 - 1.0f > frame) {
 			if (animInfo) {
-				animId = animInfo->mId;
+				currAnimId = animInfo->mId;
 			} else {
-				animId = -1;
+				currAnimId = DANGOANIM_NULL;
 			}
-			if (animIdx != animId) {
-				startBlend(animId, animIdx, &EnemyBlendAnimatorBase::sBlendLinearFun, 30.0f, nullptr);
+			if (animIdx != currAnimId) {
+				startBlend(currAnimId, animIdx, &EnemyBlendAnimatorBase::sBlendLinearFun, 30.0f, nullptr);
 				anim.setCurrFrame(frame);
 			}
 		} else {
@@ -1681,7 +1681,7 @@ void Obj::endBlendAnimation()
 	if (animInfo) {
 		animId = animInfo->mId;
 	} else {
-		animId = -1;
+		animId = DANGOANIM_NULL;
 	}
 	f32 frame = anim.mTimer;
 	endBlend();

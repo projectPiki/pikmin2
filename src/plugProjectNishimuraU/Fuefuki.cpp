@@ -19,7 +19,7 @@ namespace Game {
 bool InteractFuefukiTimerReset::actEnemy(EnemyBase* enemy)
 {
 	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_Fuefuki) {
-		static_cast<Fuefuki::Obj*>(enemy)->mTurnTimer = 5.0f;
+		static_cast<Fuefuki::Obj*>(enemy)->mSquadTimer = 5.0f;
 		return true;
 	}
 
@@ -69,12 +69,12 @@ void Obj::birth(Vector3f& position, f32 angle)
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	mDropGroup = 0;
-	_2C0       = 0;
+	mDropGroup   = 0;
+	mCanStruggle = false;
 	resetAppearTimer();
 	mStateTimer = 0.0f;
 	resetWhisleTimer(true);
-	mTurnTimer             = 0.0f;
+	mSquadTimer            = 0.0f;
 	mWhistleRadiusModifier = 0.0f;
 
 	mNextState = FUEFUKI_NULL;
@@ -105,8 +105,8 @@ void Obj::doUpdate()
 {
 	mFsm->exec(this);
 	mAppearTimer += sys->mDeltaTime;
-	if (mTurnTimer > 0.0f) {
-		mTurnTimer--;
+	if (mSquadTimer > 0.0f) {
+		mSquadTimer--;
 	}
 
 	updateFootmarks();
@@ -167,7 +167,7 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (creature && _2C0 && !isEvent(0, EB_Bittered)) {
+	if (creature && mCanStruggle && !isEvent(0, EB_Bittered)) {
 		mFsm->transit(this, FUEFUKI_Struggle, nullptr);
 		return false;
 	}
@@ -182,7 +182,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (creature && _2C0 && !isEvent(0, EB_Bittered)) {
+	if (creature && mCanStruggle && !isEvent(0, EB_Bittered)) {
 		mFsm->transit(this, FUEFUKI_Struggle, nullptr);
 		return false;
 	}
@@ -269,7 +269,7 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * Address:	8029C840
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(9, nullptr); }
+void Obj::startCarcassMotion() { startMotion(FUEFUKIANIM_Carry, nullptr); }
 
 /*
  * --INFO--
@@ -325,7 +325,7 @@ void Obj::resetAppearTimer()
 void Obj::resetWhisleTimer(bool check)
 {
 	if (check) {
-		mWhistleTimer = C_PROPERPARMS.mFp12.mValue - C_PROPERPARMS.mFp11.mValue;
+		mWhistleTimer = C_PROPERPARMS.mMaxWhistleTimeNoSquad.mValue - C_PROPERPARMS.mMinWhistleTime.mValue;
 	} else {
 		mWhistleTimer = 0.0f;
 	}
@@ -338,15 +338,15 @@ void Obj::resetWhisleTimer(bool check)
  */
 bool Obj::isWhisleTimeMax()
 {
-	if (mTurnTimer > 0.0f) {
+	if (mSquadTimer > 0.0f) {
 		if (mStuckPikminCount != 0) {
-			if (mWhistleTimer > C_PROPERPARMS.mFp12.mValue) {
+			if (mWhistleTimer > C_PROPERPARMS.mMaxWhistleTimeNoSquad.mValue) {
 				return true;
 			}
-		} else if (mWhistleTimer > C_PROPERPARMS.mFp13.mValue) {
+		} else if (mWhistleTimer > C_PROPERPARMS.mMaxWhistleTimeWithSquad.mValue) {
 			return true;
 		}
-	} else if (mWhistleTimer > C_PROPERPARMS.mFp12.mValue) {
+	} else if (mWhistleTimer > C_PROPERPARMS.mMaxWhistleTimeNoSquad.mValue) {
 		return true;
 	}
 
@@ -459,7 +459,7 @@ bool Obj::isJumpAway()
 		return true;
 	}
 
-	if (!(mTurnTimer > 0.0f)) {
+	if (!(mSquadTimer > 0.0f)) {
 		f32 privRad = C_PARMS->mGeneral.mPrivateRadius.mValue;
 		Sys::Sphere sphere(mPosition, privRad);
 		f32 privateDiameter = privRad * privRad;

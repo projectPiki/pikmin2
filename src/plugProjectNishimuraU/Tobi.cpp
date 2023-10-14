@@ -200,7 +200,7 @@ void Obj::doFinishEarthquakeFitState()
  * Address:	80269EA4
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(9, nullptr); }
+void Obj::startCarcassMotion() { startMotion(TOBIANIM_Carry, nullptr); }
 
 /*
  * --INFO--

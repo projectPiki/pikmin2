@@ -45,7 +45,7 @@ void Obj::doUpdateCommon()
 
 	} else {
 		if (mHealth < 0.5f * mMaxHealth) {
-			if (mHasHair != 0) {
+			if (mHasHair) {
 				SysShape::Joint* joint = mModel->getJoint("body");
 				P2ASSERTLINE(124, joint != nullptr);
 				Matrixf* mat = joint->getWorldMatrix();

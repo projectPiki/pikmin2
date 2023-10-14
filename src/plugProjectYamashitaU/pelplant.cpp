@@ -12,7 +12,7 @@ FarmMgr* farmMgr;
 namespace Pelplant {
 Obj* Obj::sCurrentObj;
 
-static float sLODRadius[4] = { 45.0f, 60.0f, 103.0f, 133.0f };
+static f32 sLODRadius[4] = { 45.0f, 60.0f, 103.0f, 133.0f }; // one, five, ten, twenty
 } // namespace Pelplant
 } // namespace Game
 
@@ -58,7 +58,7 @@ f32 BlendAccelerationFunc::getValue(f32 t)
  * Address:	801083B0
  * Size:	0000B4
  */
-void Obj::birth(Vector3f& position, float faceDir)
+void Obj::birth(Vector3f& position, f32 faceDir)
 {
 	EnemyBase::birth(position, faceDir);
 
@@ -68,7 +68,7 @@ void Obj::birth(Vector3f& position, float faceDir)
 	}
 
 	if (gameSystem->isVersusMode()) {
-		mFsm->start(this, PELPLANT_Grow2, nullptr);
+		mFsm->start(this, PELPLANT_GrowMidFull, nullptr);
 	} else {
 		mFsm->start(this, PELPLANT_WaitSmall, nullptr);
 	}
@@ -86,13 +86,13 @@ void Obj::setInitialSetting(EnemyInitialParamBase* initParms)
 	PelplantInitialParam* plParms = static_cast<PelplantInitialParam*>(initParms);
 
 	if (mFarmPow == 0) {
-		SET_FLAG(mFlags, PELPLANT_FLAGS_GROW);
+		setPelFlag(PELPLANTFLAG_Growing);
 	} else {
-		RESET_FLAG(mFlags, PELPLANT_FLAGS_GROW);
+		resetPelFlag(PELPLANTFLAG_Growing);
 	}
 
 	if (mFarmPow < 0) {
-		plParms->mInitialState = PELPLANT_SIZE_SMALL;
+		plParms->mInitialState = PELPLANTSIZE_Small;
 	}
 
 	mColor = plParms->mColor;
@@ -100,14 +100,14 @@ void Obj::setInitialSetting(EnemyInitialParamBase* initParms)
 
 	mSize = plParms->mAmount;
 	switch (plParms->mInitialState) {
-	case PELPLANT_SIZE_SMALL:
+	case PELPLANTSIZE_Small:
 		mFsm->start(this, PELPLANT_WaitSmall, nullptr);
 		break;
-	case PELPLANT_SIZE_MIDDLE:
+	case PELPLANTSIZE_Middle:
 		mFsm->start(this, PELPLANT_WaitMiddle, nullptr);
 		break;
-	case PELPLANT_SIZE_BIG:
-		mFsm->start(this, PELPLANT_WaitBig, nullptr);
+	case PELPLANTSIZE_Full:
+		mFsm->start(this, PELPLANT_WaitFull, nullptr);
 		attachPellet();
 		break;
 	}
@@ -152,16 +152,16 @@ Obj::Obj()
     : EnemyBase()
     , mFsm(nullptr)
     , mRootJointMtx(nullptr)
-    , mFlags(PELPLANT_FLAGS_NONE)
+    , mPelFlags()
     , mPellet(nullptr)
     , mColorChangeTimer(0.0f)
     , mColor(PELCOLOR_RANDOM)
-    , mSize(PELPLANT_SIZE_MIDDLE)
+    , mSize(PELPLANTSIZE_Middle)
     , mFarmPow(0)
 {
 	mAnimator = new ProperAnimator();
 	setFSM(new FSM());
-	mFlags = PELPLANT_FLAGS_NONE;
+	mPelFlags.clear();
 }
 
 /*
@@ -178,7 +178,7 @@ void Pelplant::Obj::doUpdate() { mFsm->exec(this); }
  */
 void Pelplant::Obj::updateLODSphereRadius(int size)
 {
-	if (size == PELPLANT_SIZE_BIG) {
+	if (size == PELPLANTSIZE_Full) {
 		switch (mSize) {
 		case PELLET_NUMBER_ONE:
 			mCurLodSphere.mRadius = sLODRadius[0];
@@ -221,12 +221,12 @@ void Obj::doDebugDraw(Graphics& gfx)
 
 		info.mColorA = Color4(0xC8, 0xC8, 0xFF, 0xC8);
 		info.mColorB = Color4(0x64, 0x64, 0xFF, 0xC8);
-		gfx.perspPrintf(info, pos, "FARM_POW(%d) Grow%s", mFarmPow, (mFlags & PELPLANT_FLAGS_GROW) ? "on" : "off");
+		gfx.perspPrintf(info, pos, "FARM_POW(%d) Grow%s", mFarmPow, isPelFlag(PELPLANTFLAG_Growing) ? "on" : "off");
 
 		pos.y += 16.0f;
 		info.mColorA = Color4(0xFF, 0xC8, 0xFF, 0xC8);
 		info.mColorB = Color4(0xC8, 0x64, 0xFF, 0xC8);
-		gfx.perspPrintf(info, pos, "%s %4.2f", mFsm->getCurrName(this), _2C0);
+		gfx.perspPrintf(info, pos, "%s %4.2f", mFsm->getCurrName(this), mGrowTimer);
 	}
 }
 
@@ -252,7 +252,7 @@ void Obj::getShadowParam(ShadowParam& param)
 
 	Vector3f newVec;
 	mRootJointMtx->getRow(0, newVec);
-	float sum = newVec.x;
+	f32 sum = newVec.x;
 	newVec.y *= newVec.y;
 	newVec.z *= newVec.z;
 	sum *= newVec.x;
@@ -332,7 +332,7 @@ void Obj::doAnimation()
 	Obj::sCurrentObj = nullptr;
 
 	if (mPellet) {
-		float neckScale;
+		f32 neckScale;
 		switch (mSize) {
 		case PELLET_NUMBER_ONE:
 			neckScale = 12.0f;
@@ -368,7 +368,7 @@ void Obj::doAnimation()
  * Address:	80108E50
  * Size:	000004
  */
-void Obj::doSimulation(float) { }
+void Obj::doSimulation(f32) { }
 
 /*
  * --INFO--
@@ -435,7 +435,7 @@ void Obj::changePelletColor()
 
 			setPelletColor(nextColor, true);
 
-			if (mFlags & PELPLANT_FLAGS_GROW) {
+			if (isPelFlag(PELPLANTFLAG_Growing)) {
 				mColorChangeTimer = 0.0f;
 				return;
 			}
@@ -444,8 +444,8 @@ void Obj::changePelletColor()
 			return;
 		}
 
-		const float dt = sys->mDeltaTime;
-		if (mFlags & PELPLANT_FLAGS_GROW) {
+		const f32 dt = sys->mDeltaTime;
+		if (isPelFlag(PELPLANTFLAG_Growing)) {
 			mColorChangeTimer += dt;
 		}
 	}
@@ -458,14 +458,14 @@ void Obj::changePelletColor()
  */
 void Obj::attachPellet()
 {
-	if (mPellet == nullptr) {
+	if (!mPellet) {
 		Obj::sCurrentObj = this;
 
-		PelletNumberInitArg numberArg(mSize, 0);
+		PelletNumberInitArg numberArg(mSize, PELCOLOR_BLUE);
 		Pellet* newPellet = pelletMgr->birth(&numberArg);
 		if (newPellet) {
 			Matrixf* mat = mModel->getJoint("headjnt")->getWorldMatrix();
-			P2ASSERTLINE(777, mat != nullptr);
+			P2ASSERTLINE(777, mat);
 			newPellet->startCapture(mat);
 
 			mPellet = (PelletNumber::Object*)newPellet;
@@ -482,7 +482,7 @@ void Obj::attachPellet()
  * Address:	801091E4
  * Size:	000098
  */
-bool Obj::damageCallBack(Creature* source, float damage, CollPart* part)
+bool Obj::damageCallBack(Creature* source, f32 damage, CollPart* part)
 {
 	if (isLivingThing()) {
 		addDamage(damage, 1.0f);
@@ -499,15 +499,15 @@ bool Obj::damageCallBack(Creature* source, float damage, CollPart* part)
  * Address:	80109288
  * Size:	000078
  */
-bool Obj::farmCallBack(Creature* c, float power)
+bool Obj::farmCallBack(Creature* c, f32 power)
 {
 	// If power > 0, round up + 1; else we round down -1
 	mFarmPow = (s8)(power >= 0.0f ? power + 0.5f : power - 0.5f);
 
 	if (mFarmPow < 0) {
-		RESET_FLAG(mFlags, PELPLANT_FLAGS_GROW);
+		resetPelFlag(PELPLANTFLAG_Growing);
 	} else {
-		SET_FLAG(mFlags, PELPLANT_FLAGS_GROW);
+		setPelFlag(PELPLANTFLAG_Growing);
 	}
 
 	disableEvent(0, EB_Cullable);
@@ -534,7 +534,7 @@ void Obj::onStickStart(Creature* other)
  */
 bool Obj::headJointCallBack(J3DJoint* joint, int p2)
 {
-	if (sCurrentObj != nullptr && p2 == 1) {
+	if (sCurrentObj && p2 == 1) {
 		Mtx& mtx  = J3DMtxCalc::mMtxBuffer->mWorldMatrices[joint->getJntNo()];
 		f32 scale = sCurrentObj->getHeadScale();
 		for (int i = 0; i < 3; i++) {
@@ -544,7 +544,7 @@ bool Obj::headJointCallBack(J3DJoint* joint, int p2)
 		}
 	}
 
-	return 0;
+	return false;
 }
 
 /*
@@ -554,7 +554,7 @@ bool Obj::headJointCallBack(J3DJoint* joint, int p2)
  */
 bool Obj::neckJointCallBack(J3DJoint* joint, int p2)
 {
-	if (sCurrentObj != nullptr && p2 == 1) {
+	if (sCurrentObj && p2 == 1) {
 		Mtx& mtx = J3DMtxCalc::mMtxBuffer->mWorldMatrices[joint->getJntNo()];
 
 		f32 neckLength;
@@ -597,7 +597,7 @@ bool Obj::neckJointCallBack(J3DJoint* joint, int p2)
 		mtx[2][1] *= scale.z;
 		mtx[2][2] *= scale.z;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -606,8 +606,8 @@ bool Obj::neckJointCallBack(J3DJoint* joint, int p2)
  * Address:	80109554
  * Size:	000050
  */
-Mgr::Mgr(int p1, unsigned char p2)
-    : EnemyMgrBase(p1, p2)
+Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBase(objLimit, modelType)
 {
 	mName = "ペレット草マネージャ"; // pellet plant manager
 }
@@ -635,17 +635,17 @@ EnemyBase* Mgr::birth(EnemyBirthArg& arg) { return EnemyMgrBase::birth(arg); }
 void Obj::onInit(CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
-	_2C0 = 0.0f;
+	mGrowTimer = 0.0f;
 	setEmotionNone();
 
 	if (mFarmPow == 0) {
-		SET_FLAG(mFlags, PELPLANT_FLAGS_GROW);
+		setPelFlag(PELPLANTFLAG_Growing);
 	} else {
-		RESET_FLAG(mFlags, PELPLANT_FLAGS_GROW);
+		resetPelFlag(PELPLANTFLAG_Growing);
 	}
 
 	int stateID = getStateID();
-	if (stateID == PELPLANT_Invalid) {
+	if (stateID == PELPLANT_NULL) {
 		stateID = PELPLANT_WaitSmall;
 	}
 

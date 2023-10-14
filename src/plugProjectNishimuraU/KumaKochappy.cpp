@@ -137,7 +137,7 @@ bool KumaKochappy::Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart
  * Address:	802E7460
  * Size:	000028
  */
-void KumaKochappy::Obj::startCarcassMotion() { startMotion(5, nullptr); }
+void KumaKochappy::Obj::startCarcassMotion() { startMotion(KUMAKOCHAPPYANIM_Carry, nullptr); }
 
 /*
  * --INFO--

@@ -51,7 +51,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 		panModoki->mTargetCreature = nullptr;
 	}
 
-	panModoki->startMotion(0, nullptr);
+	panModoki->startMotion(PANMODOKIANIM_Dead, nullptr);
 	panModoki->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	panModoki->deathProcedure();
 	panModoki->mCurrentVelocity = Vector3f(0.0f);
@@ -94,8 +94,8 @@ StateWalk::StateWalk(int stateID)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	if (enemy->getCurrAnimIndex() != 1) {
-		enemy->startMotion(1, nullptr);
+	if (enemy->getCurrAnimIndex() != PANMODOKIANIM_Walk) {
+		enemy->startMotion(PANMODOKIANIM_Walk, nullptr);
 		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
 	}
 
@@ -151,13 +151,13 @@ StateBack::StateBack(int stateID)
 void StateBack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	int animIdx = enemy->getCurrAnimIndex();
-	if (animIdx != 2) {
-		enemy->startMotion(2, nullptr);
+	if (animIdx != PANMODOKIANIM_Back) {
+		enemy->startMotion(PANMODOKIANIM_Back, nullptr);
 	}
 
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
 
-	if (animIdx == 3) {
+	if (animIdx == PANMODOKIANIM_Pulled) {
 		enemy->setMotionFrame(enemy->getFirstKeyFrame());
 	}
 
@@ -190,8 +190,8 @@ void StateBack::exec(EnemyBase* enemy)
 
 	if (OBJ(enemy)->mNextState < 0) {
 		if (OBJ(enemy)->isEndPathFinder()) {
-			if (enemy->getCurrAnimIndex() == 8) {
-				enemy->startMotion(2, nullptr);
+			if (enemy->getCurrAnimIndex() == PANMODOKIANIM_Wait) {
+				enemy->startMotion(PANMODOKIANIM_Back, nullptr);
 			}
 			OBJ(enemy)->carryTarget(1.0f);
 		}
@@ -267,10 +267,10 @@ StatePulled::StatePulled(int stateID)
 void StatePulled::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	int animIdx = enemy->getCurrAnimIndex();
-	enemy->startMotion(3, nullptr);
+	enemy->startMotion(PANMODOKIANIM_Pulled, nullptr);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
 
-	if (animIdx == 2) {
+	if (animIdx == PANMODOKIANIM_Back) {
 		enemy->setMotionFrame(enemy->getFirstKeyFrame());
 	}
 
@@ -379,7 +379,7 @@ StateAppear::StateAppear(int stateID)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(4, nullptr);
+	enemy->startMotion(PANMODOKIANIM_Appear, nullptr);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	OBJ(enemy)->checkNearHomeGraphIndex();
 	OBJ(enemy)->appearRumble();
@@ -418,7 +418,7 @@ StateHide::StateHide(int stateID)
  */
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(5, nullptr);
+	enemy->startMotion(PANMODOKIANIM_Hide, nullptr);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	mHideTimer             = 0;
@@ -471,7 +471,7 @@ StateDamage::StateDamage(int stateID)
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(6, nullptr);
+	enemy->startMotion(PANMODOKIANIM_Damage, nullptr);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 
@@ -530,7 +530,7 @@ StateWait::StateWait(int stateID)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(8, nullptr);
+	enemy->startMotion(PANMODOKIANIM_Wait, nullptr);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	mWaitTimer             = 0;
@@ -578,8 +578,8 @@ StateStick::StateStick(int stateID)
  */
 void StateStick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	if (enemy->getCurrAnimIndex() != 1) {
-		enemy->startMotion(1, nullptr);
+	if (enemy->getCurrAnimIndex() != PANMODOKIANIM_Walk) {
+		enemy->startMotion(PANMODOKIANIM_Walk, nullptr);
 		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
 	}
 
@@ -913,7 +913,7 @@ StateSucked::StateSucked(int stateID)
  */
 void StateSucked::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(8, nullptr);
+	enemy->startMotion(PANMODOKIANIM_Wait, nullptr);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 
 	if (OBJ(enemy)->getCarryTarget()) {

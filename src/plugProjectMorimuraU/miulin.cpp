@@ -141,10 +141,7 @@ void Obj::wallCallback(MoveInfo const& moveInfo)
  * Address:	803648FC
  * Size:	000028
  */
-void Obj::startCarcassMotion()
-{
-	startMotion(6, nullptr); // probably needs enum/define
-}
+void Obj::startCarcassMotion() { startMotion(MIULINANIM_Carry, nullptr); }
 
 /*
  * --INFO--

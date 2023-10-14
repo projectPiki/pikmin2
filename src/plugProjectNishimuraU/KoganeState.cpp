@@ -36,7 +36,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->enableEvent(0, EB_ModelHidden);
 
 	kogane->mTargetVelocity = Vector3f(0.0f);
-	kogane->startMotion(0, nullptr);
+	kogane->startMotion(KOGANEANIM_Move, nullptr);
 	kogane->stopMotion();
 }
 
@@ -138,7 +138,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	Parms* parms = static_cast<Parms*>(kogane->mParms);
 	kogane->resetMoveTimer(parms->mProperParms.mMinTravelTime.mValue, parms->mProperParms.mMaxTravelTime.mValue);
 	kogane->setTargetPosition(nullptr);
-	kogane->startMotion(0, nullptr);
+	kogane->startMotion(KOGANEANIM_Move, nullptr);
 	kogane->createFartEffect();
 }
 
@@ -194,7 +194,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->resetMoveTimer(parms->mProperParms.mMinStopTime.mValue, parms->mProperParms.mMaxStopTime.mValue);
 
 	kogane->mTargetVelocity = Vector3f(0.0f);
-	kogane->startMotion(1, nullptr);
+	kogane->startMotion(KOGANEANIM_Wait, nullptr);
 }
 
 /*
@@ -241,7 +241,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mScale.mValue);
 	hitEffect.create(&scaleArg);
 
-	kogane->startMotion(2, nullptr);
+	kogane->startMotion(KOGANEANIM_Damage, nullptr);
 	kogane->createPressSENormal();
 }
 

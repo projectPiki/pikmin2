@@ -904,21 +904,7 @@ lbl_80369968:
  * Address:	803699E4
  * Size:	000028
  */
-void Jigumo::Obj::startCarcassMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0xe
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Jigumo::Obj::startCarcassMotion() { startMotion(JIGUMOANIM_Carry, nullptr); }
 
 /*
  * --INFO--

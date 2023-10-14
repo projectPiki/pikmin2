@@ -183,6 +183,20 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	DANGOANIM_NULL    = -1,
+	DANGOANIM_Fly     = 0,
+	DANGOANIM_Wait    = 1,
+	DANGOANIM_Move    = 2,
+	DANGOANIM_Attack  = 3,
+	DANGOANIM_Attack2 = 4, // flick anim
+	DANGOANIM_Turn    = 5,
+	DANGOANIM_Recover = 6,
+	DANGOANIM_Dead    = 7,
+	DANGOANIM_Carry   = 8,
+	DANGOANIM_AnimCount, // 9
+};
+
 struct ProperAnimator : public EnemyBlendAnimatorBase {
 	virtual ~ProperAnimator() { } // _08 (weak)
 

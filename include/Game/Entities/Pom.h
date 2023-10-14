@@ -125,6 +125,16 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	POMANIM_Wait  = 0,
+	POMANIM_Dead  = 1,
+	POMANIM_Open  = 2, // 'type1'
+	POMANIM_Close = 3, // 'type2'
+	POMANIM_Shot  = 4, // 'type3'
+	POMANIM_Swing = 5, // 'type4'
+	POMANIM_AnimCount, // 6
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

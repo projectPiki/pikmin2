@@ -237,7 +237,7 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802EC5C0
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(6, nullptr); }
+void Obj::startCarcassMotion() { startMotion(MINIHOUDAIANIM_Carry, nullptr); }
 
 /*
  * --INFO--

@@ -50,7 +50,7 @@ StateWait::StateWait(int stateID)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(6, nullptr);
+	enemy->startMotion(UMIANIM_SRun, nullptr);
 	OBJ(enemy)->mNextState = UMIMUSHI_NULL;
 	mWaitTimer             = 0;
 }
@@ -122,7 +122,7 @@ StateWalk::StateWalk(int stateID)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(4, nullptr);
+	enemy->startMotion(UMIANIM_Run, nullptr);
 	OBJ(enemy)->mNextState = UMIMUSHI_NULL;
 	OBJ(enemy)->resetWalkParm();
 	mBlindWaitTimer = 0;
@@ -282,7 +282,7 @@ StateSearch::StateSearch(int stateID)
  */
 void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(6, nullptr);
+	enemy->startMotion(UMIANIM_SRun, nullptr);
 	OBJ(enemy)->mNextState = UMIMUSHI_NULL;
 }
 
@@ -362,7 +362,7 @@ StateTurn::StateTurn(int stateID)
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(7, nullptr);
+	enemy->startMotion(UMIANIM_STurn, nullptr);
 	OBJ(enemy)->mNextState = UMIMUSHI_NULL;
 }
 
@@ -442,7 +442,7 @@ StateFlick::StateFlick(int stateID)
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(3, nullptr);
+	enemy->startMotion(UMIANIM_Flick, nullptr);
 	OBJ(enemy)->flickEffect();
 
 	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_UmiMushi) {
@@ -509,7 +509,7 @@ StateAttack::StateAttack(int stateID)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(UMIANIM_Attack, nullptr);
 	OBJ(enemy)->mNextState = UMIMUSHI_NULL;
 	mIsTongueActive        = false;
 	mTongueHasPiki         = false;
@@ -619,7 +619,7 @@ StateEat::StateEat(int stateID)
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(2, nullptr);
+	enemy->startMotion(UMIANIM_Eat, nullptr);
 	OBJ(enemy)->eatEffect();
 }
 
@@ -660,7 +660,7 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(UMIANIM_Dead, nullptr);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->deathProcedure();
@@ -718,7 +718,7 @@ StateLost::StateLost(int stateID)
  */
 void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(9, nullptr);
+	enemy->startMotion(UMIANIM_OutView, nullptr);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 }

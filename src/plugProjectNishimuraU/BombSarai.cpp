@@ -179,7 +179,7 @@ void BombSarai::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802B2D08
  * Size:	000028
  */
-void BombSarai::Obj::startCarcassMotion() { startMotion(11, nullptr); }
+void BombSarai::Obj::startCarcassMotion() { startMotion(BOMBSARAIANIM_Carry, nullptr); }
 
 /*
  * --INFO--

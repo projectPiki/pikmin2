@@ -39,7 +39,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 	bigfoot->mTargetVelocity = 0.0f;
 	bigfoot->setEmotionCaution();
-	bigfoot->startMotion(0, nullptr);
+	bigfoot->startMotion(BIGFOOTANIM_Dead, nullptr);
 
 	Vector3f position = bigfoot->getPosition();
 	cameraMgr->startVibration(0, position, 2);
@@ -90,7 +90,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->mTargetCreature = nullptr;
 
 	bigfoot->mTargetVelocity = Vector3f(0.0f);
-	bigfoot->startMotion(1, nullptr);
+	bigfoot->startMotion(BIGFOOTANIM_Landing, nullptr);
 	bigfoot->stopMotion();
 }
 
@@ -144,7 +144,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->mTargetCreature = nullptr;
 
 	bigfoot->mTargetVelocity = Vector3f(0.0f);
-	bigfoot->startMotion(1, nullptr);
+	bigfoot->startMotion(BIGFOOTANIM_Landing, nullptr);
 
 	shadowMgr->addJointShadow(bigfoot);
 	shadowMgr->setForceVisible(bigfoot, true);
@@ -213,7 +213,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->setIKParameter();
 	bigfoot->mTargetCreature = nullptr;
 	bigfoot->mTargetVelocity = Vector3f(0.0f);
-	bigfoot->startMotion(2, nullptr);
+	bigfoot->startMotion(BIGFOOTANIM_Wait, nullptr);
 }
 
 /*
@@ -262,7 +262,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->mTargetCreature = nullptr;
 	bigfoot->mTargetVelocity = Vector3f(0.0f);
 
-	bigfoot->startMotion(3, nullptr);
+	bigfoot->startMotion(BIGFOOTANIM_Flick, nullptr);
 	bigfoot->startBlendMotion();
 	bigfoot->startBossChargeBGM();
 }

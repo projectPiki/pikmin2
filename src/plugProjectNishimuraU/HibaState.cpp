@@ -37,7 +37,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	hiba->mIsAlive = false;
 	hiba->generatorKill();
 
-	hiba->startMotion(0, nullptr);
+	hiba->startMotion(HIBAANIM_Wait, nullptr);
 	hiba->getJAIObject()->startSound(PSSE_EN_HIBA_STOP, 0);
 	PSStartEnemyFatalHitSE(hiba, 0.0f);
 
@@ -78,7 +78,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 		hiba->mTimer = 0.0f;
 	}
 
-	hiba->startMotion(0, nullptr);
+	hiba->startMotion(HIBAANIM_Wait, nullptr);
 }
 
 /*
@@ -118,7 +118,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hiba    = static_cast<Obj*>(enemy);
 	hiba->mTimer = 0.0f;
-	hiba->startMotion(1, nullptr);
+	hiba->startMotion(HIBAANIM_Attack, nullptr);
 	hiba->startFireEffect();
 }
 

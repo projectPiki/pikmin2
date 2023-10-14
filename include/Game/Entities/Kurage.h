@@ -166,6 +166,20 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	KURAGEANIM_DeadFly     = 0, // 'dead1'
+	KURAGEANIM_DeadGround  = 1, // 'dead2'
+	KURAGEANIM_FlickFly    = 2, // 'flick1'
+	KURAGEANIM_FlickGround = 3, // 'flick2'
+	KURAGEANIM_Wait        = 4,
+	KURAGEANIM_Move        = 5, // 'move1'
+	KURAGEANIM_Land        = 6, // 'move2'
+	KURAGEANIM_TakeOff     = 7, // 'type1'
+	KURAGEANIM_Fall        = 8, // 'type2'
+	KURAGEANIM_Attack      = 9,
+	KURAGEANIM_AnimCount, // 10
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

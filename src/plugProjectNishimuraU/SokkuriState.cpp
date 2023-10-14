@@ -39,7 +39,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->disableEvent(0, EB_Cullable);
 	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
-	sokkuri->startMotion(4, nullptr);
+	sokkuri->startMotion(SOKKURIANIM_Dead, nullptr);
 }
 
 /*
@@ -79,7 +79,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->deathProcedure();
 	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
-	sokkuri->startMotion(5, nullptr);
+	sokkuri->startMotion(SOKKURIANIM_PressDead, nullptr);
 	sokkuri->createDownEffect(0.75f, 0.0f);
 }
 
@@ -128,7 +128,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->disableEvent(0, EB_Animating);
 
 	sokkuri->mTargetVelocity = Vector3f(0.0f);
-	sokkuri->startMotion(1, nullptr);
+	sokkuri->startMotion(SOKKURIANIM_Appear, nullptr);
 	sokkuri->stopMotion();
 
 	if (sokkuri->mWaterBox) {
@@ -181,7 +181,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->resetMoveVelocity();
 	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionExcitement();
-	sokkuri->startMotion(1, nullptr);
+	sokkuri->startMotion(SOKKURIANIM_Appear, nullptr);
 	sokkuri->createDownEffect(0.35f, 0.0f);
 }
 
@@ -225,7 +225,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->resetMoveVelocity();
 	sokkuri->mTargetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
-	sokkuri->startMotion(3, nullptr);
+	sokkuri->startMotion(SOKKURIANIM_Hide, nullptr);
 	sokkuri->createBubbleEffect();
 }
 
@@ -270,7 +270,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->resetMoveVelocity();
 	sokkuri->setNextWaitInfo();
 	sokkuri->mTargetVelocity = Vector3f(0.0f);
-	sokkuri->startMotion(2, nullptr);
+	sokkuri->startMotion(SOKKURIANIM_Wait, nullptr);
 }
 
 /*
@@ -329,7 +329,7 @@ void StateMoveGround::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->mTimer     = 0.0f;
 	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->setNextMoveInfo();
-	sokkuri->startMotion(0, nullptr);
+	sokkuri->startMotion(SOKKURIANIM_RunGround, nullptr);
 	sokkuri->createDownEffect(0.28f, 0.0f);
 }
 
@@ -412,7 +412,7 @@ void StateMoveWater::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->mTimer     = 0.0f;
 	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->setNextMoveInfo();
-	sokkuri->startMotion(6, nullptr);
+	sokkuri->startMotion(SOKKURIANIM_RunWater, nullptr);
 }
 
 /*
@@ -491,7 +491,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->resetMoveVelocity();
 	sokkuri->disableEvent(0, EB_NoInterrupt);
 	sokkuri->mTargetVelocity = Vector3f(0.0f);
-	sokkuri->startMotion(7, nullptr);
+	sokkuri->startMotion(SOKKURIANIM_Flick, nullptr);
 }
 
 /*

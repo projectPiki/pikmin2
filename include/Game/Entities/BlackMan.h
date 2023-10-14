@@ -318,6 +318,24 @@ struct Parms : public EnemyParmsBase {
 	f32 _A58;                 // _A58
 };
 
+enum AnimID {
+	WRAITHANIM_Bend    = 0,
+	WRAITHANIM_Bend2   = 1,
+	WRAITHANIM_Dead    = 2,
+	WRAITHANIM_Flick   = 3,
+	WRAITHANIM_Flick2  = 4,
+	WRAITHANIM_GetOff  = 5,
+	WRAITHANIM_Move    = 6,
+	WRAITHANIM_Recover = 7,
+	WRAITHANIM_Run     = 8,
+	WRAITHANIM_Wait    = 9,
+	WRAITHANIM_Wait2   = 10,
+	WRAITHANIM_Walk    = 11,
+	WRAITHANIM_Through = 12,
+	WRAITHANIM_Land    = 13,
+	WRAITHANIM_AnimCount, // 14
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

@@ -25,7 +25,7 @@ void FSM::init(EnemyBase* enemy)
  * Address:	80255EC8
  * Size:	00002C
  */
-void StateWait::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(0, nullptr); }
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(POMANIM_Wait, nullptr); }
 
 /*
  * --INFO--
@@ -58,7 +58,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->mCanSwallowPiki  = false;
 	pom->mSwingTimer      = 0.0f;
 	pom->disableEvent(0, EB_Cullable);
-	pom->startMotion(1, nullptr);
+	pom->startMotion(POMANIM_Dead, nullptr);
 	pom->createPomDeadEffect();
 }
 
@@ -69,7 +69,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -92,7 +92,7 @@ void StateOpen::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->mCanTouchToClose = false;
 	pom->mCanSwallowPiki  = false;
 	pom->mSwingTimer      = 0.0f;
-	pom->startMotion(2, nullptr);
+	pom->startMotion(POMANIM_Open, nullptr);
 }
 
 /*
@@ -108,7 +108,7 @@ void StateOpen::exec(EnemyBase* enemy)
 		if (pom->isEvent(0, EB_Colliding)) {
 			transit(pom, POM_Swing, nullptr);
 		}
-	} else if (pom->mCurAnim->mIsPlaying && (u32)pom->mCurAnim->mType == KEYEVENT_2) {
+	} else if (pom->mCurAnim->mIsPlaying && pom->mCurAnim->mType == KEYEVENT_2) {
 		pom->mCanTouchToClose = true;
 		pom->mCanSwallowPiki  = true;
 	}
@@ -132,7 +132,7 @@ void StateClose::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->mCanTouchToClose = false;
 	pom->mCanSwallowPiki  = false;
 	pom->mSwingTimer      = 0.0f;
-	pom->startMotion(3, nullptr);
+	pom->startMotion(POMANIM_Close, nullptr);
 }
 
 /*
@@ -142,7 +142,7 @@ void StateClose::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateClose::exec(EnemyBase* enemy)
 {
-	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
 		if (enemy->mStuckPikminCount != 0) {
 			transit(enemy, POM_Shot, nullptr);
 		} else {
@@ -170,7 +170,7 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->mCanSwallowPiki  = false;
 	pom->mSwingTimer      = 0.0f;
 	pom->disableEvent(0, EB_Cullable);
-	pom->startMotion(4, nullptr);
+	pom->startMotion(POMANIM_Shot, nullptr);
 }
 
 /*
@@ -182,9 +182,9 @@ void StateShot::exec(EnemyBase* enemy)
 {
 	Obj* pom = static_cast<Obj*>(enemy);
 	if (enemy->mCurAnim->mIsPlaying) {
-		if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
+		if (enemy->mCurAnim->mType == KEYEVENT_2) {
 			pom->shotPikmin();
-		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
+		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
 			if (pom->mUsedSlotCount < pom->mTotalSlotCount) {
 				transit(pom, POM_Wait, nullptr);
 			} else {
@@ -211,7 +211,7 @@ void StateSwing::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* pom              = static_cast<Obj*>(enemy);
 	pom->mCanTouchToClose = false;
 	pom->mSwingTimer      = 0.0f;
-	pom->startMotion(5, nullptr);
+	pom->startMotion(POMANIM_Swing, nullptr);
 }
 
 /*

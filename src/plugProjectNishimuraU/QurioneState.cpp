@@ -39,7 +39,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	wisp->enableEvent(0, EB_ModelHidden);
 
 	wisp->mTargetVelocity = Vector3f(0.0f);
-	wisp->startMotion(3, nullptr);
+	wisp->startMotion(QURIONEANIM_Appear, nullptr);
 	wisp->stopMotion();
 }
 
@@ -81,7 +81,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->setAtari(false);
 	wisp->mTargetVelocity = Vector3f(0.0f);
-	wisp->startMotion(3, nullptr);
+	wisp->startMotion(QURIONEANIM_Appear, nullptr);
 
 	wisp->createAppearEffect();
 	wisp->startGlowEffect();
@@ -125,7 +125,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->setAtari(false);
 	wisp->mTargetVelocity = Vector3f(0.0f);
-	wisp->startMotion(4, nullptr);
+	wisp->startMotion(QURIONEANIM_Hide, nullptr);
 	wisp->createDisppearEffect();
 }
 
@@ -173,7 +173,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wisp             = static_cast<Obj*>(enemy);
 	wisp->mTargetVelocity = Vector3f(0.0f);
-	wisp->startMotion(0, nullptr);
+	wisp->startMotion(QURIONEANIM_Wait, nullptr);
 }
 
 /*
@@ -216,7 +216,7 @@ void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 	wisp->disableEvent(0, EB_Cullable);
 	wisp->createHitEffect();
 	wisp->mTargetVelocity = Vector3f(0.0f);
-	wisp->startMotion(1, nullptr);
+	wisp->startMotion(QURIONEANIM_Damage, nullptr);
 }
 
 /*
@@ -259,7 +259,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	wisp->mTargetVelocity = velocity;
 
 	wisp->resetUtilityTimer();
-	wisp->startMotion(2, nullptr);
+	wisp->startMotion(QURIONEANIM_Run, nullptr);
 }
 
 /*

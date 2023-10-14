@@ -55,7 +55,7 @@ StateWalk::StateWalk(int stateID)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(6, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_Move, nullptr);
 	OBJ(enemy)->resetFootPos();
 	if (enemy->mTargetCreature) {
 		_10 = 0;
@@ -134,7 +134,7 @@ StateAttack::StateAttack(int stateID)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(0, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_Attack, nullptr);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	_10                    = 0;
 	_14                    = 0;
@@ -764,7 +764,7 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(3, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_Dead, nullptr);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->deathProcedure();
@@ -829,7 +829,7 @@ StateFlick::StateFlick(int stateID)
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(5, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_Flick, nullptr);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->enableEvent(0, EB_NoInterrupt);
@@ -1595,7 +1595,7 @@ StateWarCry::StateWarCry(int stateID)
  */
 void StateWarCry::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(1, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_WarCry, nullptr);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 }
@@ -2197,7 +2197,7 @@ StateDamage::StateDamage(int stateID)
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(2, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_Damage, nullptr);
 	_10 = 0;
 }
 
@@ -2285,7 +2285,7 @@ StateTurn::StateTurn(int stateID)
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(11, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_Turn, nullptr);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 }
 
@@ -2337,7 +2337,7 @@ StateEat::StateEat(int stateID)
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(8, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_Eat, nullptr);
 	_10 = static_cast<StateEatArg*>(stateArg)->_00;
 }
 
@@ -2382,7 +2382,7 @@ StateHide::StateHide(int stateID)
  */
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(4, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_Dive, nullptr);
 	enemy->setEmotionCaution();
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->enableEvent(0, EB_BitterImmune);
@@ -2460,7 +2460,7 @@ StateHideWait::StateHideWait(int stateID)
 void StateHideWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	_10 = 0;
-	OBJ(enemy)->startMotionSelf(10, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_HideWait, nullptr);
 	enemy->disableEvent(0, EB_LifegaugeVisible);
 	enemy->hardConstraintOn();
 	OBJ(enemy)->fadeEffect(0);
@@ -2540,7 +2540,7 @@ StateAppear::StateAppear(int stateID)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->startMotionSelf(9, nullptr);
+	OBJ(enemy)->startMotionSelf(KINGANIM_Appear, nullptr);
 	OBJ(enemy)->searchTarget();
 	enemy->setEmotionExcitement();
 	enemy->disableEvent(0, EB_BitterImmune);
@@ -2633,7 +2633,7 @@ StateCaution::StateCaution(int stateID)
  * Address:	8035C0C8
  * Size:	00002C
  */
-void StateCaution::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(12, nullptr); }
+void StateCaution::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(KINGANIM_Caution, nullptr); }
 
 /*
  * --INFO--
@@ -2668,7 +2668,7 @@ StateSwallow::StateSwallow(int stateID)
  * Address:	8035C194
  * Size:	00002C
  */
-void StateSwallow::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(7, nullptr); }
+void StateSwallow::init(EnemyBase* enemy, StateArg* stateArg) { OBJ(enemy)->startMotionSelf(KINGANIM_Swallow, nullptr); }
 
 /*
  * --INFO--

@@ -46,9 +46,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->mTargetVelocity = Vector3f(0.0f);
 
 	if (kurage->isFlying()) {
-		kurage->startMotion(0, nullptr);
+		kurage->startMotion(ONIKURAGEANIM_DeadFly, nullptr);
 	} else {
-		kurage->startMotion(1, nullptr);
+		kurage->startMotion(ONIKURAGEANIM_DeadGround, nullptr);
 	}
 
 	kurage->enableEvent(0, EB_Untargetable);
@@ -116,7 +116,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->enableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->_2C8            = 3.5f;
-	kurage->startMotion(5, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_Move, nullptr);
 }
 
 /*
@@ -179,7 +179,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->enableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->_2C8            = 3.5f;
-	kurage->startMotion(5, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_Move, nullptr);
 }
 
 /*
@@ -254,7 +254,7 @@ void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->setEmotionExcitement();
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->_2C8            = 3.5f;
-	kurage->startMotion(5, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_Move, nullptr);
 }
 
 /*
@@ -322,7 +322,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->disableEvent(0, EB_Cullable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
-	kurage->startMotion(9, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_Attack, nullptr);
 }
 
 /*
@@ -426,7 +426,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->enableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
-	kurage->startMotion(8, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_Fall, nullptr);
 }
 
 /*
@@ -483,7 +483,7 @@ void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->disableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
-	kurage->startMotion(8, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_Fall, nullptr);
 	kurage->getJAIObject()->startSound(PSSE_EN_ONIKURAGE_BOWEL, 0);
 }
 
@@ -532,7 +532,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->disableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
-	kurage->startMotion(6, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_Land, nullptr);
 	kurage->createDownEffect();
 
 	Vector3f position = kurage->getPosition();
@@ -577,7 +577,7 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->disableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
-	kurage->startMotion(7, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_TakeOff, nullptr);
 }
 
 /*
@@ -625,7 +625,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->disableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
-	kurage->startMotion(4, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_Wait, nullptr);
 }
 
 /*
@@ -673,7 +673,7 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->mNextState      = ONIKURAGE_NULL;
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
-	kurage->startMotion(2, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_FlickFly, nullptr);
 
 	Vector3f position = kurage->getPosition();
 	efx::Arg fxArg(position);
@@ -733,7 +733,7 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->disableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
-	kurage->startMotion(3, nullptr);
+	kurage->startMotion(ONIKURAGEANIM_FlickGround, nullptr);
 
 	Vector3f position = kurage->getPosition();
 	efx::Arg fxArg(position);

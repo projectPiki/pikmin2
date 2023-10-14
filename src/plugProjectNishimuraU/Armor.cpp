@@ -181,7 +181,7 @@ void Obj::doFinishStoneState()
  * Address:	8027DDAC
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(9, nullptr); }
+void Obj::startCarcassMotion() { startMotion(ARMORANIM_Carry, nullptr); }
 
 /*
  * --INFO--

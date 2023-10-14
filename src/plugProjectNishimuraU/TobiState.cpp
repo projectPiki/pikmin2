@@ -42,7 +42,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(TOBIANIM_Dead, nullptr);
 }
 
 /*
@@ -76,7 +76,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(TOBIANIM_PressDead, nullptr);
 }
 
 /*
@@ -116,7 +116,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->disableEvent(0, EB_Animating);
 	tobi->enableEvent(0, EB_ModelHidden);
 	tobi->mTargetVelocity = Vector3f(0.0f);
-	tobi->startMotion(2, nullptr);
+	tobi->startMotion(TOBIANIM_Appear, nullptr);
 	tobi->stopMotion();
 }
 
@@ -169,7 +169,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->enableEvent(0, EB_LifegaugeVisible);
 	tobi->mTargetVelocity = Vector3f(0.0f);
 	tobi->setEmotionExcitement();
-	tobi->startMotion(2, nullptr);
+	tobi->startMotion(TOBIANIM_Appear, nullptr);
 	tobi->createAppearEffect();
 }
 
@@ -214,7 +214,7 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->enableEvent(0, EB_BitterImmune);
 	tobi->mTargetVelocity = Vector3f(0.0f);
 	tobi->setEmotionCaution();
-	tobi->startMotion(3, nullptr);
+	tobi->startMotion(TOBIANIM_Dive, nullptr);
 	tobi->createDisAppearEffect();
 }
 
@@ -250,7 +250,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tobi        = OBJ(enemy);
 	tobi->mNextState = TOBI_NULL;
-	tobi->startMotion(4, nullptr);
+	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
 /*
@@ -622,7 +622,7 @@ void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tobi        = OBJ(enemy);
 	tobi->mNextState = TOBI_NULL;
-	tobi->startMotion(4, nullptr);
+	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
 /*
@@ -681,7 +681,7 @@ void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tobi        = OBJ(enemy);
 	tobi->mNextState = TOBI_NULL;
-	tobi->startMotion(4, nullptr);
+	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
 /*
@@ -740,7 +740,7 @@ void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tobi        = OBJ(enemy);
 	tobi->mNextState = TOBI_NULL;
-	tobi->startMotion(4, nullptr);
+	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
 /*
@@ -799,7 +799,7 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tobi        = OBJ(enemy);
 	tobi->mNextState = TOBI_NULL;
-	tobi->startMotion(4, nullptr);
+	tobi->startMotion(TOBIANIM_Move, nullptr);
 }
 
 /*
@@ -866,7 +866,7 @@ void StateFly::init(EnemyBase* enemy, StateArg* stateArg)
 	tobi->enableEvent(0, EB_Invulnerable);
 	tobi->enableEvent(0, EB_Untargetable);
 	tobi->mTargetVelocity = Vector3f(0.0f);
-	tobi->startMotion(5, nullptr);
+	tobi->startMotion(TOBIANIM_Fly, nullptr);
 }
 
 /*
@@ -916,7 +916,7 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tobi             = OBJ(enemy);
 	tobi->mTargetVelocity = Vector3f(0.0f);
-	tobi->startMotion(6, nullptr);
+	tobi->startMotion(TOBIANIM_Attack1, nullptr);
 	tobi->mNextState = TOBI_NULL;
 	tobi->createBridgeEffect();
 }
@@ -980,7 +980,7 @@ void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* tobi = OBJ(enemy);
 	tobi->disableEvent(0, EB_NoInterrupt);
 	tobi->mTargetVelocity = Vector3f(0.0f);
-	tobi->startMotion(7, nullptr);
+	tobi->startMotion(TOBIANIM_Attack2, nullptr);
 }
 
 /*
@@ -1045,7 +1045,7 @@ void StateAttack2::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInter
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(8, nullptr);
+	enemy->startMotion(TOBIANIM_Eat, nullptr);
 }
 
 /*

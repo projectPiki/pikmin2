@@ -143,6 +143,24 @@ struct Parms : public EnemyParmsBase {
 	ParmParms mKabutoParms; // _7F8
 };
 
+enum AnimID {
+	KABUTOANIM_Dead      = 0,
+	KABUTOANIM_Move      = 1,
+	KABUTOANIM_Flick     = 2,
+	KABUTOANIM_Attack    = 3,
+	KABUTOANIM_Pivot     = 4,
+	KABUTOANIM_Wait      = 5,
+	KABUTOANIM_FixPivot  = 6,  // 'K_pivot'
+	KABUTOANIM_FixWait   = 7,  // 'K_wait'
+	KABUTOANIM_FixAttack = 8,  // 'K_attack'
+	KABUTOANIM_FixFlick  = 9,  // 'K_flick'
+	KABUTOANIM_FixDead   = 10, // 'K_dead'
+	KABUTOANIM_FixAppear = 11, // 'K_appear'
+	KABUTOANIM_FixHide   = 12, // 'K_hide'
+	KABUTOANIM_Carry     = 13,
+	KABUTOANIM_AnimCount, // 14
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

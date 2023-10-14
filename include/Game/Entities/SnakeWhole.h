@@ -149,7 +149,7 @@ struct Obj : public EnemyBase {
 	StateID mNextState;              // _2CC
 	MouthSlots mMouthSlots;          // _2D0
 	Vector3f mFitEffectPos;          // _2D8
-	int mAttackAnimIdx;              // _2E4
+	int mAttackAnimIdx;              // _2E4, 0=near, 1=normal, 2=far, 3=right, 4=left
 	Vector3f mAttackPositions[5];    // _2E8, indexed by mAttackAnimIdx
 	SnakeJointMgr* mSnakeJointMgr;   // _324
 	SnakeWholeShadowMgr* mShadowMgr; // _328
@@ -209,6 +209,27 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms mProperParms; // _7F8
+};
+
+enum AnimID {
+	SNAKEWHOLEANIM_Dead    = 0,
+	SNAKEWHOLEANIM_Appear1 = 1,
+	SNAKEWHOLEANIM_Appear2 = 2,
+	SNAKEWHOLEANIM_Dive    = 3,
+
+	SNAKEWHOLEANIM_AttackOffset = 4,
+	SNAKEWHOLEANIM_HitNear      = SNAKEWHOLEANIM_AttackOffset, // 4
+	SNAKEWHOLEANIM_Hit          = 5,
+	SNAKEWHOLEANIM_HitFar       = 6,
+	SNAKEWHOLEANIM_HitRight     = 7, // 'hit_r'
+	SNAKEWHOLEANIM_HitLeft      = 8, // 'hit_l'
+
+	SNAKEWHOLEANIM_Wait     = 9,  // 'wait1'
+	SNAKEWHOLEANIM_Eat      = 10, // 'waitact1'
+	SNAKEWHOLEANIM_Struggle = 11, // 'waitact2'
+	SNAKEWHOLEANIM_Jump     = 12, // 'run1'
+	SNAKEWHOLEANIM_Carry    = 13, // 'type5'
+	SNAKEWHOLEANIM_AnimCount,     // 14
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

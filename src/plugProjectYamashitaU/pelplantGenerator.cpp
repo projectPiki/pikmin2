@@ -11,10 +11,10 @@ namespace Pelplant {
  */
 Generator::Generator()
     : EnemyGeneratorBase("ÉyÉåÉbÉgëê")
-    , mPelletType(0)
-    , mPelletSize(1)
-    , mSize(0)
 {
+	mInitialParam.mColor        = PELCOLOR_BLUE;
+	mInitialParam.mAmount       = PELLET_NUMBER_ONE;
+	mInitialParam.mInitialState = PELPLANTSIZE_Small;
 }
 
 /*
@@ -26,9 +26,9 @@ void Generator::doRead(Stream& stream)
 {
 	// if latest version, do the following
 	if (mVersion == getLatestVersion()) {
-		mPelletType = stream.readByte();
-		mPelletSize = stream.readByte();
-		mSize       = stream.readByte();
+		mInitialParam.mColor        = stream.readByte();
+		mInitialParam.mAmount       = stream.readByte();
+		mInitialParam.mInitialState = stream.readByte();
 		return;
 	}
 	// if not latest version, use old read function
@@ -44,8 +44,8 @@ void Generator::doReadOldVersion(Stream& stream)
 {
 	switch (mVersion.getID()) {
 	case '0000':
-		mPelletType = stream.readByte();
-		mSize       = stream.readByte();
+		mInitialParam.mColor        = stream.readByte();
+		mInitialParam.mInitialState = stream.readByte();
 		break;
 	default:
 		return;
@@ -60,13 +60,13 @@ void Generator::doReadOldVersion(Stream& stream)
 void Generator::doWrite(Stream& stream)
 {
 	stream.textWriteTab(stream.mTabCount);
-	stream.writeByte(mPelletType);
+	stream.writeByte(mInitialParam.mColor);
 	stream.textWriteText("\t\t# %s \r\n", "pellet type");
 	stream.textWriteTab(stream.mTabCount);
-	stream.writeByte(mPelletSize);
+	stream.writeByte(mInitialParam.mAmount);
 	stream.textWriteText("\t\t# %s \r\n", "pellet size");
 	stream.textWriteTab(stream.mTabCount);
-	stream.writeByte(mSize);
+	stream.writeByte(mInitialParam.mInitialState);
 	stream.textWriteText("\t\t# %s \r\n", "size");
 }
 

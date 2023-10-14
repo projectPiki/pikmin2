@@ -176,6 +176,18 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	MINIHOUDAIANIM_Walk    = 0,
+	MINIHOUDAIANIM_Search  = 1, // 'search1'
+	MINIHOUDAIANIM_Turn    = 2, // 'turn1'
+	MINIHOUDAIANIM_Attack  = 3, // 'attack1'
+	MINIHOUDAIANIM_Flick   = 4, // 'flick1'
+	MINIHOUDAIANIM_Dead    = 5, // 'dead1'
+	MINIHOUDAIANIM_Carry   = 6, // 'type5'
+	MINIHOUDAIANIM_Rebirth = 7,
+	MINIHOUDAIANIM_AnimCount, // 8
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

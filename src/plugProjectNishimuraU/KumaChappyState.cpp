@@ -33,7 +33,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(KUMACHAPPYANIM_Dead, nullptr);
 }
 
 /*
@@ -76,7 +76,7 @@ void StateRebirth::init(EnemyBase* enemy, StateArg* stateArg)
 	chappy->disableEvent(0, EB_NoInterrupt);
 	chappy->mTargetCreature = nullptr;
 	chappy->mTargetVelocity = Vector3f(0.0f);
-	chappy->startMotion(8, nullptr);
+	chappy->startMotion(KUMACHAPPYANIM_Rebirth, nullptr);
 }
 
 /*
@@ -501,7 +501,7 @@ void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 	chappy->mNextState      = KUMACHAPPY_NULL;
 	chappy->mTargetCreature = nullptr;
 	chappy->mTargetVelocity = Vector3f(0.0f);
-	chappy->startMotion(5, nullptr);
+	chappy->startMotion(KUMACHAPPYANIM_Lost, nullptr);
 }
 
 /*
@@ -830,7 +830,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	chappy->mNextState      = KUMACHAPPY_NULL;
 	chappy->mTargetVelocity = Vector3f(0.0f);
 	chappy->setEmotionExcitement();
-	chappy->startMotion(0, nullptr);
+	chappy->startMotion(KUMACHAPPYANIM_Attack, nullptr);
 }
 
 /*
@@ -1223,7 +1223,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	chappy->mNextState = KUMACHAPPY_NULL;
 	chappy->setEmotionExcitement();
 	chappy->mTargetVelocity = Vector3f(0.0f);
-	chappy->startMotion(2, nullptr);
+	chappy->startMotion(KUMACHAPPYANIM_Flick, nullptr);
 	chappy->setAnimSpeed(45.0f);
 }
 
@@ -1591,7 +1591,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	chappy->mNextState = KUMACHAPPY_NULL;
 	chappy->setEmotionExcitement();
 	chappy->mTargetVelocity = Vector3f(0.0f);
-	chappy->startMotion(6, nullptr);
+	chappy->startMotion(KUMACHAPPYANIM_Turn, nullptr);
 }
 
 /*
@@ -2072,7 +2072,7 @@ void StateTurnPath::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* chappy             = OBJ(enemy);
 	chappy->mNextState      = KUMACHAPPY_NULL;
 	chappy->mTargetVelocity = Vector3f(0.0f);
-	chappy->startMotion(6, nullptr);
+	chappy->startMotion(KUMACHAPPYANIM_Turn, nullptr);
 }
 
 /*
@@ -2442,7 +2442,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	chappy->mTimer     = 0.0f;
 	chappy->mNextState = KUMACHAPPY_NULL;
 	chappy->setEmotionExcitement();
-	chappy->startMotion(3, nullptr);
+	chappy->startMotion(KUMACHAPPYANIM_Move, nullptr);
 }
 
 /*
@@ -2967,7 +2967,7 @@ void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* chappy        = OBJ(enemy);
 	chappy->mNextState = KUMACHAPPY_NULL;
-	chappy->startMotion(3, nullptr);
+	chappy->startMotion(KUMACHAPPYANIM_Move, nullptr);
 }
 
 /*

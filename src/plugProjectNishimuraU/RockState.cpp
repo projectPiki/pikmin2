@@ -39,7 +39,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->enableEvent(0, EB_ModelHidden);
 
 	rock->mTargetVelocity = Vector3f(0.0f);
-	rock->startMotion(1, nullptr);
+	rock->startMotion(ROCKANIM_Run, nullptr);
 	rock->stopMotion();
 }
 
@@ -103,7 +103,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->disableEvent(0, EB_14);
 
 	rock->mTargetVelocity = Vector3f(0.0f);
-	rock->startMotion(1, nullptr);
+	rock->startMotion(ROCKANIM_Run, nullptr);
 
 	shadowMgr->addShadow(rock);
 	shadowMgr->setForceVisible(rock, true);
@@ -145,7 +145,7 @@ void StateAppear::cleanup(EnemyBase* enemy)
 void StateDropWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	rock->startMotion(1, nullptr);
+	rock->startMotion(ROCKANIM_Run, nullptr);
 }
 
 /*
@@ -223,7 +223,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->disableEvent(0, EB_Cullable);
 	rock->disableEvent(0, EB_14);
-	rock->startMotion(1, nullptr);
+	rock->startMotion(ROCKANIM_Run, nullptr);
 	rock->mTimer = 0.0f;
 
 	if (rock->mWaterBox) {
@@ -276,7 +276,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* rock             = static_cast<Obj*>(enemy);
 	rock->mTargetVelocity = Vector3f(0.0f);
-	rock->startMotion(0, nullptr);
+	rock->startMotion(ROCKANIM_Dead, nullptr);
 	shadowMgr->delShadow(rock);
 	rock->createRockDeadEffect();
 	rock->getJAIObject()->startSound(PSSE_EN_ROCK_BREAK, 0);

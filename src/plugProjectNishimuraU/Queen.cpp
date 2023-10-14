@@ -265,7 +265,7 @@ bool Obj::ignoreAtari(Creature* creature)
  * Address:	80289C48
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(8, nullptr); }
+void Obj::startCarcassMotion() { startMotion(QUEENANIM_Carry, nullptr); }
 
 /*
  * --INFO--

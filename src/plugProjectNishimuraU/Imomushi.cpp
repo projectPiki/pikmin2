@@ -822,21 +822,7 @@ lbl_802BCC34:
  * Address:	802BCC48
  * Size:	000028
  */
-void Obj::startCarcassMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 8
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startCarcassMotion() { startMotion(IMOMUSHIANIM_Carry, nullptr); }
 
 /*
  * --INFO--

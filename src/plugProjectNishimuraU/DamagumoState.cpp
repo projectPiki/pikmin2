@@ -40,7 +40,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 	damagumo->mTargetVelocity = 0.0f;
 	damagumo->setEmotionCaution();
-	damagumo->startMotion(0, nullptr);
+	damagumo->startMotion(DAMAGUMOANIM_Dead, nullptr);
 
 	Vector3f position = damagumo->getPosition();
 	cameraMgr->startVibration(0, position, 2);
@@ -89,7 +89,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->mTargetCreature = nullptr;
 
 	damagumo->mTargetVelocity = Vector3f(0.0f);
-	damagumo->startMotion(1, nullptr);
+	damagumo->startMotion(DAMAGUMOANIM_Landing, nullptr);
 	damagumo->stopMotion();
 }
 
@@ -143,7 +143,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->mTargetCreature = nullptr;
 
 	damagumo->mTargetVelocity = Vector3f(0.0f);
-	damagumo->startMotion(1, nullptr);
+	damagumo->startMotion(DAMAGUMOANIM_Landing, nullptr);
 
 	shadowMgr->addJointShadow(damagumo);
 	shadowMgr->setForceVisible(damagumo, true);
@@ -223,7 +223,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->mStateDuration  = 1.75f + randWeightFloat(1.75f);
 	damagumo->mTargetCreature = nullptr;
 	damagumo->mTargetVelocity = Vector3f(0.0f);
-	damagumo->startMotion(2, nullptr);
+	damagumo->startMotion(DAMAGUMOANIM_Wait, nullptr);
 }
 
 /*
@@ -272,7 +272,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->mTargetCreature = nullptr;
 	damagumo->mTargetVelocity = Vector3f(0.0f);
 
-	damagumo->startMotion(3, nullptr);
+	damagumo->startMotion(DAMAGUMOANIM_Flick, nullptr);
 	damagumo->startBlendMotion();
 }
 

@@ -506,12 +506,7 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * Address:	8027B558
  * Size:	000028
  */
-void Obj::startCarcassMotion()
-{
-	{
-		startMotion(7, nullptr);
-	}
-}
+void Obj::startCarcassMotion() { startMotion(ELECBUGANIM_Carry, nullptr); }
 
 /*
  * --INFO--

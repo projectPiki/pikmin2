@@ -47,7 +47,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->disableEvent(0, EB_Cullable);
 	snagret->mTargetVelocity = Vector3f(0.0f);
 	snagret->setEmotionCaution();
-	snagret->startMotion(0, nullptr);
+	snagret->startMotion(SNAKEWHOLEANIM_Dead, nullptr);
 	snagret->createDeadStartEffect();
 
 	Vector3f position = snagret->getPosition();
@@ -122,7 +122,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->disableEvent(0, EB_LifegaugeVisible);
 
 	snagret->mTargetVelocity = Vector3f(0.0f);
-	snagret->startMotion(1, nullptr);
+	snagret->startMotion(SNAKEWHOLEANIM_Appear1, nullptr);
 	snagret->stopMotion();
 
 	if (snagret->mWaterBox) {
@@ -687,7 +687,7 @@ void StateAppear1::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->hardConstraintOn();
 	snagret->mTargetVelocity = Vector3f(0.0f);
 	snagret->setEmotionExcitement();
-	snagret->startMotion(1, nullptr);
+	snagret->startMotion(SNAKEWHOLEANIM_Appear1, nullptr);
 	snagret->createAppearEffect(0);
 
 	Vector3f position = snagret->getPosition();
@@ -782,7 +782,7 @@ void StateAppear2::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->hardConstraintOn();
 	snagret->mTargetVelocity = Vector3f(0.0f);
 	snagret->setEmotionExcitement();
-	snagret->startMotion(2, nullptr);
+	snagret->startMotion(SNAKEWHOLEANIM_Appear2, nullptr);
 	snagret->createAppearEffect(1);
 
 	Vector3f position = snagret->getPosition();
@@ -880,7 +880,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionCaution();
-	enemy->startMotion(3, nullptr);
+	enemy->startMotion(SNAKEWHOLEANIM_Dive, nullptr);
 }
 
 /*
@@ -960,7 +960,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->setAttackPosition();
 	snagret->mTargetCreature = nullptr;
 	snagret->mTargetVelocity = Vector3f(0.0f);
-	snagret->startMotion(9, nullptr);
+	snagret->startMotion(SNAKEWHOLEANIM_Wait, nullptr);
 }
 
 /*
@@ -1020,7 +1020,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->mIsJumping      = false;
 	snagret->mFaceDirOffset  = 0.0f;
 	snagret->mTargetVelocity = Vector3f(0.0f);
-	snagret->startMotion(12, nullptr);
+	snagret->startMotion(SNAKEWHOLEANIM_Jump, nullptr);
 }
 
 /*
@@ -1106,7 +1106,7 @@ void StateHome::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->mIsJumping      = false;
 	snagret->mFaceDirOffset  = 0.0f;
 	snagret->mTargetVelocity = Vector3f(0.0f);
-	snagret->startMotion(12, nullptr);
+	snagret->startMotion(SNAKEWHOLEANIM_Jump, nullptr);
 }
 
 /*
@@ -1174,7 +1174,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* snagret = static_cast<Obj*>(enemy);
 	snagret->disableEvent(0, EB_Cullable);
 	snagret->mTargetVelocity = Vector3f(0.0f);
-	snagret->startMotion(snagret->mAttackAnimIdx + 4, nullptr);
+	snagret->startMotion(snagret->mAttackAnimIdx + SNAKEWHOLEANIM_AttackOffset, nullptr);
 }
 
 /*
@@ -1225,7 +1225,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			if (!snagret->isFinishMotion() && snagret->getSwallowSlot()) {
 
 				if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
-					snagret->startMotion(snagret->mAttackAnimIdx + 4, nullptr);
+					snagret->startMotion(snagret->mAttackAnimIdx + SNAKEWHOLEANIM_AttackOffset, nullptr);
 					snagret->setMotionFrame(snagret->getFirstKeyFrame());
 					snagret->startJointCallBack();
 
@@ -1294,7 +1294,7 @@ void StateAttack::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Cullable)
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(10, nullptr);
+	enemy->startMotion(SNAKEWHOLEANIM_Eat, nullptr);
 }
 
 /*
@@ -1366,7 +1366,7 @@ void StateStruggle::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* snagret             = static_cast<Obj*>(enemy);
 	snagret->mStateTimer     = 0.0f;
 	snagret->mTargetVelocity = Vector3f(0.0f);
-	snagret->startMotion(11, nullptr);
+	snagret->startMotion(SNAKEWHOLEANIM_Struggle, nullptr);
 }
 
 /*

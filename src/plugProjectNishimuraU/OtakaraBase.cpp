@@ -345,7 +345,7 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802B6BA0
  * Size:	000028
  */
-void Obj::startCarcassMotion() { EnemyBase::startMotion(11, nullptr); }
+void Obj::startCarcassMotion() { EnemyBase::startMotion(OTAKARAANIM_Carry, nullptr); }
 
 /*
  * --INFO--

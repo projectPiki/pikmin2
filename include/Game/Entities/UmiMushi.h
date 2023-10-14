@@ -296,6 +296,21 @@ struct Mgr : public EnemyMgrBase {
 	Obj* mObj;                           // _48, array of Objs
 };
 
+enum AnimID {
+	UMIANIM_Attack  = 0,  // 'attack1'
+	UMIANIM_Dead    = 1,  // 'dead1'
+	UMIANIM_Eat     = 2,  // 'eat1'
+	UMIANIM_Flick   = 3,  // 'flick1'
+	UMIANIM_Run     = 4,  // 'run1'
+	UMIANIM_Search  = 5,  // 'search1'
+	UMIANIM_SRun    = 6,  // 'srun1'
+	UMIANIM_STurn   = 7,  // 'sturn1'
+	UMIANIM_Carry   = 8,  // 'type5'
+	UMIANIM_OutView = 9,  // 'outview1'
+	UMIANIM_FSearch = 10, // 'fsearch1'
+	UMIANIM_AnimCount,    // 11
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

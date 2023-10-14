@@ -140,6 +140,17 @@ struct Parms : public EnemyParmsBase {
 	Parameters mParameters; // _7F8
 };
 
+enum AnimID {
+	TANKANIM_Dead   = 0,
+	TANKANIM_Move   = 1, // 'move1'
+	TANKANIM_Flick  = 2,
+	TANKANIM_Attack = 3,
+	TANKANIM_Turn   = 4, // 'waitact1'
+	TANKANIM_Wait   = 5, // 'waitact2'
+	TANKANIM_Carry  = 6, // 'type5'
+	TANKANIM_AnimCount,  // 7
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

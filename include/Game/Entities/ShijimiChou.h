@@ -282,6 +282,13 @@ struct Parms : public EnemyParmsBase {
 	f32 mHorizFallScatter;     // _970
 };
 
+enum AnimID {
+	SHIJIMIANIM_Carry = 0,
+	SHIJIMIANIM_Dead  = 1,
+	SHIJIMIANIM_Move  = 2,
+	SHIJIMIANIM_AnimCount, // 3
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

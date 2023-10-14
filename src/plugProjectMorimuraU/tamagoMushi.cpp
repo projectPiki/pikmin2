@@ -504,10 +504,7 @@ void Obj::resetWalkParm()
  * Address:	803701C0
  * Size:	000028
  */
-void Obj::startCarcassMotion()
-{
-	startMotion(5, nullptr); // needs enum/define
-}
+void Obj::startCarcassMotion() { startMotion(TAMAGOANIM_Carry, nullptr); }
 
 /*
  * --INFO--

@@ -176,6 +176,11 @@ struct Generator : public EnemyGeneratorBase {
 	f32 mDistance; // _24
 };
 
+enum AnimID {
+	ELECHIBAANIM_Wait = 0,
+	ELECHIBAANIM_AnimCount, // 1
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

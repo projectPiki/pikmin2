@@ -238,6 +238,19 @@ struct Parms : public EnemyParmsBase {
 	f32 _99C;                 // _99C
 };
 
+enum AnimID {
+	PANMODOKIANIM_Dead   = 0,
+	PANMODOKIANIM_Walk   = 1, // 'move1'
+	PANMODOKIANIM_Back   = 2, // 'move2'
+	PANMODOKIANIM_Pulled = 3, // 'type1'
+	PANMODOKIANIM_Appear = 4, // 'type2'
+	PANMODOKIANIM_Hide   = 5, // 'type3'
+	PANMODOKIANIM_Damage = 6, // 'type4'
+	PANMODOKIANIM_Carry  = 7, // 'type5'
+	PANMODOKIANIM_Wait   = 8, // 'wait'
+	PANMODOKIANIM_AnimCount,  // 9
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

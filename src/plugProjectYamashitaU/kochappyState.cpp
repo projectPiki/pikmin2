@@ -47,9 +47,9 @@ StatePress::StatePress(int stateID)
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mHealth = 0.0f;
-	enemy->startMotion(4, nullptr);
+	enemy->startMotion(KOCHAPPYANIM_Press, nullptr);
 	enemy->deathProcedure();
-	enemy->mCurAnim->mIsPlaying = 0;
+	enemy->mCurAnim->mIsPlaying = false;
 }
 
 /*
@@ -82,7 +82,7 @@ StateWait::StateWait(int stateID)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(6, nullptr);
+	enemy->startMotion(KOCHAPPYANIM_Wait, nullptr);
 	enemy->mTargetCreature = nullptr;
 	if ((int)stateArg == 'rand') {
 		enemy->setMotionFrame(randFloat() * enemy->getFirstKeyFrame());
@@ -375,7 +375,7 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(KOCHAPPYANIM_Dead, nullptr);
 	enemy->deathProcedure();
 }
 
@@ -417,7 +417,7 @@ StateTurn::StateTurn(int stateID)
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
-	enemy->startMotion(7, nullptr);
+	enemy->startMotion(KOCHAPPYANIM_Turn, nullptr);
 	mNextState = -1;
 }
 
@@ -1014,7 +1014,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	kochappy->setEmotionExcitement();
 	Parms* parms = kochappy->getParms();
 	kochappy->setAnimationSpeed(40.0f * (parms->mGeneral.mMoveSpeed.mValue / 50.0f));
-	kochappy->startMotion(3, nullptr);
+	kochappy->startMotion(KOCHAPPYANIM_Move, nullptr);
 	mNextState = -1;
 }
 
@@ -1619,7 +1619,7 @@ StateAttack::StateAttack(int stateID)
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(KOCHAPPYANIM_Attack, nullptr);
 	enemy->resetAnimSpeed();
 }
 
@@ -1637,7 +1637,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			EnemyFunc::attackNavi(obj, CG_PARMS(obj)->mGeneral.mAttackRadius, CG_PARMS(obj)->mGeneral.mAttackHitAngle,
 			                      CG_PARMS(obj)->mGeneral.mAttackDamage, nullptr, nullptr);
 			if (!EnemyFunc::eatPikmin(obj, nullptr)) {
-				obj->startMotion(8, nullptr);
+				obj->startMotion(KOCHAPPYANIM_Eat, nullptr);
 			}
 			f32 dir = obj->getFaceDir();
 			EnemyFunc::flickStickPikmin(obj, CG_PARMS(obj)->mGeneral.mShakeRateMaybe, CG_PARMS(obj)->mGeneral.mShakeKnockback,
@@ -1986,7 +1986,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 		mNextState = -1;
 	}
 
-	enemy->startMotion(2, nullptr);
+	enemy->startMotion(KOCHAPPYANIM_Flick, nullptr);
 	enemy->disableEvent(0, EB_FlickEnabled);
 	static_cast<Obj*>(enemy)->resetEnemyNonStone();
 }
@@ -2069,7 +2069,7 @@ void StateTurnToHome::init(EnemyBase* enemy, StateArg* stateArg)
 	if (obj->getSqrHomeRadius() < CG_PARMS(obj)->mGeneral.mHomeRadius) {
 		transit(obj, KOCHAPPY_Wait, nullptr);
 	} else {
-		obj->startMotion(7, nullptr);
+		obj->startMotion(KOCHAPPYANIM_Turn, nullptr);
 	}
 	/*
 	stwu     r1, -0x50(r1)
@@ -2522,7 +2522,7 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kochappy = static_cast<Obj*>(enemy);
 	kochappy->setAnimationSpeed(40.0f);
-	kochappy->startMotion(3, nullptr);
+	kochappy->startMotion(KOCHAPPYANIM_Move, nullptr);
 	mNextState = -1;
 }
 

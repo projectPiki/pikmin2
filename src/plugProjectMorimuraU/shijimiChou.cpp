@@ -464,7 +464,7 @@ void Obj::collisionCallback(CollEvent& event)
  * Address:	8038A830
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(0, nullptr); }
+void Obj::startCarcassMotion() { startMotion(SHIJIMIANIM_Carry, nullptr); }
 
 /*
  * --INFO--
@@ -931,7 +931,7 @@ void Obj::restFly()
 void Obj::restCheck()
 {
 	if (mGroupLeader && mGroupLeader->getStateID() != SHIJIMICHOU_Wait && getStateID() != SHIJIMICHOU_Dead) {
-		startMotion(2, nullptr);
+		startMotion(SHIJIMIANIM_Move, nullptr);
 		mFsm->transit(this, SHIJIMICHOU_Fly, nullptr);
 		mRotation.x = 0.0f;
 		hardConstraintOff();

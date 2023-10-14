@@ -963,15 +963,15 @@ void Obj::finishAttack() { mAttackMgr->finishAttack(); }
  */
 void Obj::setTreasureAttack()
 {
-	int attackIdx[4];     // indices for available attacks, max 4
-	f32 weaponWeights[4]; // weightings for each available attack based on health, max 4
+	int attackIdx[BIGATTACK_AttackCount];     // indices for available attacks, max 4
+	f32 weaponWeights[BIGATTACK_AttackCount]; // weightings for each available attack based on health, max 4
 
 	f32 totalWeights = 0.0f; // total weightings
 	int count        = 0;    // how many weapons alive, max 4
 
 	// loop through all weapons; if alive, calc weighting + add to arrays
 	// 0 = elec, 1 = fire, 2 = gas, 3 = water
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < BIGATTACK_AttackCount; i++) {
 		if (mTreasures[i]) {
 			attackIdx[count] = i;
 
@@ -1022,16 +1022,16 @@ void Obj::setTreasureAttack()
 int Obj::getPreAttackAnimIndex()
 {
 	if (mAttackIndex == BIGATTACK_Elec) {
-		return 21;
+		return BIGTREASUREANIM_PreAttackE;
 	} else if (mAttackIndex == BIGATTACK_Fire) {
-		return 3;
+		return BIGTREASUREANIM_PreAttackF;
 	} else if (mAttackIndex == BIGATTACK_Gas) {
-		return 18;
+		return BIGTREASUREANIM_PreAttackG;
 	} else if (mAttackIndex == BIGATTACK_Water) {
-		return 15;
+		return BIGTREASUREANIM_PreAttackW;
 	}
 
-	return 24;
+	return BIGTREASUREANIM_DropItem;
 }
 
 /*
@@ -1042,25 +1042,25 @@ int Obj::getPreAttackAnimIndex()
 int Obj::getAttackAnimIndex()
 {
 	if (mAttackIndex == BIGATTACK_Elec) {
-		return 22;
+		return BIGTREASUREANIM_AttackE;
 	} else if (mAttackIndex == BIGATTACK_Fire) {
 		int currAnimIdx = getCurrAnimationIndex();
-		if (currAnimIdx == 3) {
-			return 4;
-		} else if (currAnimIdx == 6) {
-			return 7;
-		} else if (currAnimIdx == 9) {
-			return 10;
+		if (currAnimIdx == BIGTREASUREANIM_PreAttackF) {
+			return BIGTREASUREANIM_AttackF;
+		} else if (currAnimIdx == BIGTREASUREANIM_PreAttackFR) {
+			return BIGTREASUREANIM_AttackFR;
+		} else if (currAnimIdx == BIGTREASUREANIM_PreAttackFL) {
+			return BIGTREASUREANIM_AttackFL;
 		} else {
-			return 13;
+			return BIGTREASUREANIM_AttackFB;
 		}
 	} else if (mAttackIndex == BIGATTACK_Gas) {
-		return 19;
+		return BIGTREASUREANIM_AttackG;
 	} else if (mAttackIndex == BIGATTACK_Water) {
-		return 16;
+		return BIGTREASUREANIM_AttackW;
 	}
 
-	return 24;
+	return BIGTREASUREANIM_DropItem;
 }
 
 /*
@@ -1071,25 +1071,25 @@ int Obj::getAttackAnimIndex()
 int Obj::getPutItemAnimIndex()
 {
 	if (mAttackIndex == BIGATTACK_Elec) {
-		return 23;
+		return BIGTREASUREANIM_AttackEndE;
 	} else if (mAttackIndex == BIGATTACK_Fire) {
 		int currAnimIdx = getCurrAnimationIndex();
-		if (currAnimIdx == 4) {
-			return 5;
-		} else if (currAnimIdx == 7) {
-			return 8;
-		} else if (currAnimIdx == 10) {
-			return 11;
+		if (currAnimIdx == BIGTREASUREANIM_AttackF) {
+			return BIGTREASUREANIM_AttackEndF;
+		} else if (currAnimIdx == BIGTREASUREANIM_AttackFR) {
+			return BIGTREASUREANIM_AttackEndFR;
+		} else if (currAnimIdx == BIGTREASUREANIM_AttackFL) {
+			return BIGTREASUREANIM_AttackEndFL;
 		} else {
-			return 14;
+			return BIGTREASUREANIM_AttackEndFB;
 		}
 	} else if (mAttackIndex == BIGATTACK_Gas) {
-		return 20;
+		return BIGTREASUREANIM_AttackEndG;
 	} else if (mAttackIndex == BIGATTACK_Water) {
-		return 17;
+		return BIGTREASUREANIM_AttackEndW;
 	}
 
-	return 24;
+	return BIGTREASUREANIM_DropItem;
 }
 
 /*
@@ -1117,16 +1117,16 @@ int Obj::getFireAttackAnimIndex()
 	}
 
 	if (angle > (PI / 4) && angle <= (3 * PI / 4)) {
-		return 9;
+		return BIGTREASUREANIM_PreAttackFL;
 
 	} else if (angle > (3 * PI / 4) && angle <= (5 * PI / 4)) {
-		return 12;
+		return BIGTREASUREANIM_PreAttackFB;
 
 	} else if (angle > (5 * PI / 4) && angle <= (7 * PI / 4)) {
-		return 6;
+		return BIGTREASUREANIM_PreAttackFR;
 	}
 
-	return 3;
+	return BIGTREASUREANIM_PreAttackF;
 }
 
 /*
@@ -1480,7 +1480,7 @@ void Obj::startBlendAnimation(int animIdx, bool doBlendAnim)
 			if (animInfo) {
 				newIdx = animInfo->mId;
 			} else {
-				newIdx = -1;
+				newIdx = BIGTREASUREANIM_NULL;
 			}
 
 			if (animIdx != newIdx) {
@@ -1509,7 +1509,7 @@ void Obj::endBlendAnimation()
 	if (animInfo) {
 		animIdx = animInfo->mId;
 	} else {
-		animIdx = -1;
+		animIdx = BIGTREASUREANIM_NULL;
 	}
 
 	f32 currFrame = animator.mTimer;
@@ -1531,7 +1531,7 @@ int Obj::getCurrAnimationIndex()
 		return animInfo->mId;
 	}
 
-	return -1;
+	return BIGTREASUREANIM_NULL;
 }
 
 /*

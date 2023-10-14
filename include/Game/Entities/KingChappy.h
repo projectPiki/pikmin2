@@ -304,6 +304,24 @@ struct Mgr : public EnemyMgrBase {
 	Obj* mObj; // _44
 };
 
+enum AnimID {
+	KINGANIM_Attack   = 0,
+	KINGANIM_WarCry   = 1, // 'cry'
+	KINGANIM_Damage   = 2,
+	KINGANIM_Dead     = 3,
+	KINGANIM_Dive     = 4,
+	KINGANIM_Flick    = 5,
+	KINGANIM_Move     = 6,  // 'move1'
+	KINGANIM_Swallow  = 7,  // 'type1'
+	KINGANIM_Eat      = 8,  // 'type2'
+	KINGANIM_Appear   = 9,  // 'type3'
+	KINGANIM_HideWait = 10, // 'wait2'
+	KINGANIM_Turn     = 11, // 'waitact1'
+	KINGANIM_Caution  = 12, // 'waitact2'
+	KINGANIM_Carry    = 13,
+	KINGANIM_AnimCount, // 14
+};
+
 struct ProperAnimator : public EnemyBlendAnimatorBase {
 	virtual ~ProperAnimator() { } // _08 (weak)
 

@@ -1741,23 +1741,23 @@ void BlackMan::Obj::walkFunc()
 
 				if (sqrDist > SQUARE(800.0f)) {
 					_2F4 = 0;
-					if (getCurrAnimIndex() != 9) {
+					if (getCurrAnimIndex() != WRAITHANIM_Wait) {
 						finishMotion();
 					}
 					if (isAnimEnd) {
-						startMotion(9, nullptr);
+						startMotion(WRAITHANIM_Wait, nullptr);
 					}
 				} else if (sqrDist > SQUARE(400.0f)) {
 					_2F4 = 0;
-					if (getCurrAnimIndex() != 11) {
+					if (getCurrAnimIndex() != WRAITHANIM_Walk) {
 						finishMotion();
 					}
 					if (isAnimEnd) {
-						startMotion(11, nullptr);
+						startMotion(WRAITHANIM_Walk, nullptr);
 					}
 				} else {
 					_2F4++;
-					if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength || getCurrAnimIndex() != 8) {
+					if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength || getCurrAnimIndex() != WRAITHANIM_Run) {
 						finishMotion();
 					}
 					if (isAnimEnd) {
@@ -1765,16 +1765,16 @@ void BlackMan::Obj::walkFunc()
 							_2F4 = 0;
 							mFSM->transit(this, WRAITH_Tired, nullptr);
 						} else {
-							startMotion(8, nullptr);
+							startMotion(WRAITHANIM_Run, nullptr);
 						}
 					}
 				}
 			}
-			if (getCurrAnimIndex() == 9) {
+			if (getCurrAnimIndex() == WRAITHANIM_Wait) {
 				rotationAccel = 0.0f;
 			}
 
-			if (getCurrAnimIndex() == 11) {
+			if (getCurrAnimIndex() == WRAITHANIM_Walk) {
 				rotationAccel = C_PROPERPARMS.mWalkingSpeed;
 			}
 
@@ -1792,18 +1792,18 @@ void BlackMan::Obj::walkFunc()
 			}
 
 			if (sqrDist < SQUARE(100.0f)) {
-				if (getCurrAnimIndex() == 6) {
+				if (getCurrAnimIndex() == WRAITHANIM_Move) {
 					finishMotion();
 				}
 				if (isAnimEnd) {
-					startMotion(12, nullptr);
+					startMotion(WRAITHANIM_Through, nullptr);
 				}
 			} else {
-				if (getCurrAnimIndex() == 12) {
+				if (getCurrAnimIndex() == WRAITHANIM_Through) {
 					finishMotion();
 				}
 				if (isAnimEnd) {
-					startMotion(6, nullptr);
+					startMotion(WRAITHANIM_Move, nullptr);
 				}
 			}
 		}

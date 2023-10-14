@@ -145,7 +145,7 @@ void Obj::doFinishStoneState()
  * Address:	80273000
  * Size:	000028
  */
-void Obj::startCarcassMotion() { EnemyBase::startMotion(11, nullptr); }
+void Obj::startCarcassMotion() { EnemyBase::startMotion(SARAIANIM_Carry, nullptr); }
 
 /*
  * --INFO--

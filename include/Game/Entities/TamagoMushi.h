@@ -213,6 +213,16 @@ struct Mgr : public EnemyMgrBase {
 	Obj* mObj;                                           // _48, likely an array of Objs
 };
 
+enum AnimID {
+	TAMAGOANIM_Dead   = 0,
+	TAMAGOANIM_Dive   = 1,
+	TAMAGOANIM_Move   = 2,
+	TAMAGOANIM_Appear = 3, // 'set'
+	TAMAGOANIM_Wait   = 4,
+	TAMAGOANIM_Carry  = 5,
+	TAMAGOANIM_AnimCount, // 6
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

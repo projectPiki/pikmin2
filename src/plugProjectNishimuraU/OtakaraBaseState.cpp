@@ -44,7 +44,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_Cullable);
-	enemy->startMotion(10, nullptr);
+	enemy->startMotion(OTAKARAANIM_Dead, nullptr);
 }
 
 /*
@@ -80,7 +80,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mTargetVelocity = Vector3f(0.0f);
 
 	ota->setEmotionExcitement();
-	ota->startMotion(3, nullptr);
+	ota->startMotion(OTAKARAANIM_Attack, nullptr);
 	ota->_2D0 = 1;
 	ota->startChargeEffect();
 }
@@ -158,7 +158,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mEscapeSfxTimer = 0.0f;
 	ota->mTargetVelocity = Vector3f(0.0f);
 	ota->mTargetCreature = nullptr;
-	ota->startMotion(0, nullptr);
+	ota->startMotion(OTAKARAANIM_Wait, nullptr);
 }
 
 /*
@@ -219,7 +219,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* ota        = static_cast<Obj*>(enemy);
 	ota->mNextState = OTA_Null;
 	ota->setEmotionExcitement();
-	ota->startMotion(1, nullptr);
+	ota->startMotion(OTAKARAANIM_Move, nullptr);
 }
 
 /*
@@ -291,7 +291,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mNextState      = OTA_Null;
 	ota->mTargetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
-	ota->startMotion(2, nullptr);
+	ota->startMotion(OTAKARAANIM_Turn, nullptr);
 }
 
 /*
@@ -358,7 +358,7 @@ void StateTake::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mNextState      = OTA_Null;
 	ota->mEscapeSfxTimer = 0.0f;
 	ota->setEmotionExcitement();
-	ota->startMotion(4, nullptr);
+	ota->startMotion(OTAKARAANIM_TakeItem, nullptr);
 }
 
 /*
@@ -411,7 +411,7 @@ void StateItemWait::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mNextState      = OTA_Null;
 	ota->mEscapeSfxTimer = 0.0f;
 	ota->mTargetVelocity = Vector3f(0.0f);
-	ota->startMotion(5, nullptr);
+	ota->startMotion(OTAKARAANIM_ItemWait, nullptr);
 }
 
 /*
@@ -472,7 +472,7 @@ void StateItemMove::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* ota        = static_cast<Obj*>(enemy);
 	ota->mNextState = OTA_Null;
 	ota->setEmotionExcitement();
-	ota->startMotion(6, nullptr);
+	ota->startMotion(OTAKARAANIM_ItemMove, nullptr);
 }
 
 /*
@@ -548,7 +548,7 @@ void StateItemTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mNextState      = OTA_Null;
 	ota->mTargetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
-	ota->startMotion(7, nullptr);
+	ota->startMotion(OTAKARAANIM_ItemTurn, nullptr);
 }
 
 /*
@@ -619,7 +619,7 @@ void StateItemFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mEscapeSfxTimer = 0.0f;
 	ota->mTargetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
-	ota->startMotion(8, nullptr);
+	ota->startMotion(OTAKARAANIM_ItemAttack, nullptr);
 	ota->_2D0 = 1;
 	ota->startChargeEffect();
 }
@@ -693,7 +693,7 @@ void StateItemDrop::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mEscapeSfxTimer = 0.0f;
 	ota->mTargetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
-	ota->startMotion(9, nullptr);
+	ota->startMotion(OTAKARAANIM_DropItem, nullptr);
 }
 
 /*
@@ -759,7 +759,7 @@ void StateBombWait::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mNextState      = OTA_Null;
 	ota->_2E8            = 0.0f;
 	ota->mTargetVelocity = Vector3f(0.0f);
-	ota->startMotion(5, nullptr);
+	ota->startMotion(OTAKARAANIM_ItemWait, nullptr);
 }
 
 /*
@@ -815,7 +815,7 @@ void StateBombMove::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* ota        = static_cast<Obj*>(enemy);
 	ota->mNextState = OTA_Null;
 	ota->setEmotionExcitement();
-	ota->startMotion(6, nullptr);
+	ota->startMotion(OTAKARAANIM_ItemMove, nullptr);
 }
 
 /*
@@ -879,7 +879,7 @@ void StateBombTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->mNextState      = OTA_Null;
 	ota->mTargetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
-	ota->startMotion(7, nullptr);
+	ota->startMotion(OTAKARAANIM_ItemTurn, nullptr);
 }
 
 /*

@@ -193,7 +193,7 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802762CC
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(6, nullptr); }
+void Obj::startCarcassMotion() { startMotion(TANKANIM_Carry, nullptr); }
 
 /*
  * --INFO--

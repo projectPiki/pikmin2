@@ -38,7 +38,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->deathProcedure();
 	houdai->mTargetVelocity = Vector3f(0.0f);
 	houdai->setEmotionCaution();
-	houdai->startMotion(0, nullptr);
+	houdai->startMotion(HOUDAIANIM_Dead, nullptr);
 	houdai->createHoudaiDeadEffect();
 	houdai->startChimneyEffect();
 	houdai->finishSteamEffect();
@@ -86,7 +86,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->disableEvent(0, EB_Animating);
 	houdai->mTargetCreature = nullptr;
 	houdai->mTargetVelocity = Vector3f(0.0f);
-	houdai->startMotion(1, nullptr);
+	houdai->startMotion(HOUDAIANIM_Dormant, nullptr);
 	houdai->stopMotion();
 }
 
@@ -139,7 +139,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->mTargetCreature = nullptr;
 	houdai->mTargetVelocity = Vector3f(0.0f);
 
-	houdai->startMotion(1, nullptr);
+	houdai->startMotion(HOUDAIANIM_Dormant, nullptr);
 	houdai->createAppearEffect();
 	shadowMgr->addJointShadow(houdai);
 
@@ -244,7 +244,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->mStateDuration  = 1.5f + randWeightFloat(1.5f);
 	houdai->mTargetCreature = nullptr;
 	houdai->mTargetVelocity = Vector3f(0.0f);
-	houdai->startMotion(2, nullptr);
+	houdai->startMotion(HOUDAIANIM_Wait, nullptr);
 }
 
 /*
@@ -295,7 +295,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->mStateTimer     = 0.0f;
 	houdai->mTargetCreature = nullptr;
 	houdai->mTargetVelocity = Vector3f(0.0f);
-	houdai->startMotion(3, nullptr);
+	houdai->startMotion(HOUDAIANIM_Flick, nullptr);
 	houdai->startBlendMotion();
 }
 
@@ -408,7 +408,7 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->mShotGunSearchTimer = 0.0f;
 	houdai->mTargetCreature     = nullptr;
 	houdai->mTargetVelocity     = Vector3f(0.0f);
-	houdai->startMotion(4, nullptr);
+	houdai->startMotion(HOUDAIANIM_Attack, nullptr);
 	houdai->startBlendMotion();
 	houdai->createShotGunOpenEffect();
 	houdai->mIsAttackMusicLooping = false;

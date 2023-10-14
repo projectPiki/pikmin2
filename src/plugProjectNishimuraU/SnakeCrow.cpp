@@ -244,7 +244,7 @@ void Obj::doFinishStoneState()
  * Address:	80293724
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(12, nullptr); }
+void Obj::startCarcassMotion() { startMotion(SNAKECROWANIM_Carry, nullptr); }
 
 /*
  * --INFO--

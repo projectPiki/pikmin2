@@ -42,7 +42,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* mini = OBJ(enemy);
 	mini->deathProcedure();
 	mini->mTargetVelocity = Vector3f(0.0f);
-	mini->startMotion(5, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Dead, nullptr);
 	mini->createDeadLightEffect();
 }
 
@@ -92,7 +92,7 @@ void StateRebirth::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->disableEvent(0, EB_NoInterrupt);
 	mini->mTargetCreature = nullptr;
 	mini->mTargetVelocity = Vector3f(0.0f);
-	mini->startMotion(7, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Rebirth, nullptr);
 }
 
 /*
@@ -443,7 +443,7 @@ void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->mNextState      = MINIHOUDAI_NULL;
 	mini->mTargetCreature = nullptr;
 	mini->mTargetVelocity = Vector3f(0.0f);
-	mini->startMotion(1, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Search, nullptr);
 }
 
 /*
@@ -903,7 +903,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->_2C8            = 0.0f;
 	mini->mTargetVelocity = Vector3f(0.0f);
 	mini->setEmotionExcitement();
-	mini->startMotion(3, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Attack, nullptr);
 }
 
 /*
@@ -1418,7 +1418,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->_2C8            = 0.0f;
 	mini->mTargetVelocity = Vector3f(0.0f);
 	mini->setEmotionExcitement();
-	mini->startMotion(4, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Flick, nullptr);
 	mini->setAnimSpeed(45.0f);
 }
 
@@ -1818,7 +1818,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->mNextState      = MINIHOUDAI_NULL;
 	mini->mTargetVelocity = Vector3f(0.0f);
 	mini->setEmotionExcitement();
-	mini->startMotion(2, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Turn, nullptr);
 }
 
 /*
@@ -2314,7 +2314,7 @@ void StateTurnHome::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* mini             = OBJ(enemy);
 	mini->mNextState      = MINIHOUDAI_NULL;
 	mini->mTargetVelocity = Vector3f(0.0f);
-	mini->startMotion(2, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Turn, nullptr);
 }
 
 /*
@@ -2583,7 +2583,7 @@ void StateTurnPath::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* mini             = OBJ(enemy);
 	mini->mNextState      = MINIHOUDAI_NULL;
 	mini->mTargetVelocity = Vector3f(0.0f);
-	mini->startMotion(2, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Turn, nullptr);
 }
 
 /*
@@ -2865,7 +2865,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	mini->_2D0       = 0.0f;
 	mini->mNextState = MINIHOUDAI_NULL;
 	mini->setEmotionExcitement();
-	mini->startMotion(0, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Walk, nullptr);
 }
 
 /*
@@ -3446,7 +3446,7 @@ void StateWalkHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mini        = OBJ(enemy);
 	mini->mNextState = MINIHOUDAI_NULL;
-	mini->startMotion(0, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Walk, nullptr);
 }
 
 /*
@@ -3862,7 +3862,7 @@ void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mini        = OBJ(enemy);
 	mini->mNextState = MINIHOUDAI_NULL;
-	mini->startMotion(0, nullptr);
+	mini->startMotion(MINIHOUDAIANIM_Walk, nullptr);
 }
 
 /*

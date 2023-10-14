@@ -35,7 +35,7 @@ StateMove::StateMove(int stateID)
  */
 void Tyre::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(TYREANIM_Move, nullptr);
 
 	Obj* tyre = static_cast<Obj*>(enemy);
 	tyre->collisionStOff();
@@ -97,7 +97,7 @@ StateLand::StateLand(int stateID)
  */
 void Tyre::StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(TYREANIM_Move, nullptr);
 	shadowMgr->setForceVisible(enemy, true);
 }
 
@@ -188,7 +188,7 @@ Tyre::StateDead::StateDead(int stateID)
  */
 void Tyre::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(TYREANIM_GetOff, nullptr);
 	Obj* tyre = static_cast<Obj*>(enemy);
 	tyre->deathProcedure();
 	tyre->deadEffect();

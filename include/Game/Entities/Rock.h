@@ -154,6 +154,12 @@ struct Generator : public EnemyGeneratorBase {
 	f32 mScale;  // _2C
 };
 
+enum AnimID {
+	ROCKANIM_Dead = 0,
+	ROCKANIM_Run  = 1,
+	ROCKANIM_AnimCount, // 2
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

@@ -35,7 +35,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->createDeadEffect();
 	queen->mTargetVelocity = Vector3f(0.0f);
 	queen->deathProcedure();
-	queen->startMotion(0, nullptr);
+	queen->startMotion(QUEENANIM_Dead, nullptr);
 }
 
 /*
@@ -79,7 +79,7 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->_2D0             = queen->mToFlick;
 	queen->hardConstraintOn();
 	queen->mTargetVelocity = Vector3f(0.0f);
-	queen->startMotion(1, nullptr);
+	queen->startMotion(QUEENANIM_Sleep, nullptr);
 }
 
 /*
@@ -146,7 +146,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->_2D0             = queen->mToFlick;
 	queen->hardConstraintOn();
 	queen->mTargetVelocity = Vector3f(0.0f);
-	queen->startMotion(2, nullptr);
+	queen->startMotion(QUEENANIM_Wait, nullptr);
 }
 
 /*
@@ -211,7 +211,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->hardConstraintOn();
 	queen->mTargetVelocity = Vector3f(0.0f);
 	queen->setEmotionExcitement();
-	queen->startMotion(3, nullptr);
+	queen->startMotion(QUEENANIM_Damage, nullptr);
 }
 
 /*
@@ -276,7 +276,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->hardConstraintOn();
 	queen->mTargetVelocity = Vector3f(0.0f);
 	queen->setEmotionExcitement();
-	queen->startMotion(4, nullptr);
+	queen->startMotion(QUEENANIM_Flick, nullptr);
 	queen->startBossChargeBGM();
 }
 
@@ -328,9 +328,9 @@ void StateRolling::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->setEmotionExcitement();
 	RollingStateArg* arg = static_cast<RollingStateArg*>(stateArg);
 	if (arg) {
-		queen->startMotion(5, nullptr);
+		queen->startMotion(QUEENANIM_RollingL, nullptr);
 	} else {
-		queen->startMotion(6, nullptr);
+		queen->startMotion(QUEENANIM_RollingR, nullptr);
 	}
 }
 
@@ -909,7 +909,7 @@ void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->mWaitTimer       = 0.0f;
 	queen->hardConstraintOn();
 	queen->mTargetVelocity = Vector3f(0.0f);
-	queen->startMotion(7, nullptr);
+	queen->startMotion(QUEENANIM_Born, nullptr);
 	queen->setEmotionExcitement();
 }
 

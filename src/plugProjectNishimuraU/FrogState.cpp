@@ -37,7 +37,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->deathProcedure();
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(FROGANIM_Dead, nullptr);
 }
 
 /*
@@ -75,9 +75,9 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->mTargetCreature = nullptr;
 	if (randWeightFloat(1.0f) < 0.2f) {
-		enemy->startMotion(2, nullptr);
+		enemy->startMotion(FROGANIM_Wait2, nullptr);
 	} else {
-		enemy->startMotion(1, nullptr);
+		enemy->startMotion(FROGANIM_Wait1, nullptr);
 	}
 }
 
@@ -442,7 +442,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->mTargetCreature = nullptr;
 	frog->mTargetVelocity = Vector3f(0.0f);
 	frog->setEmotionExcitement();
-	frog->startMotion(4, nullptr);
+	frog->startMotion(FROGANIM_Turn, nullptr);
 }
 
 /*
@@ -789,7 +789,7 @@ void StateJump::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	frog->startJumpEffect();
-	frog->startMotion(5, nullptr);
+	frog->startMotion(FROGANIM_Jump, nullptr);
 }
 
 /*
@@ -843,7 +843,7 @@ void StateJumpWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->enableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(6, nullptr);
+	enemy->startMotion(FROGANIM_JumpWait, nullptr);
 }
 
 /*
@@ -888,7 +888,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->mTargetVelocity = Vector3f(0.0f);
 	frog->disableEvent(0, EB_Untargetable);
 	frog->setEmotionExcitement();
-	frog->startMotion(7, nullptr);
+	frog->startMotion(FROGANIM_Fall, nullptr);
 	frog->mCurrentVelocity = Vector3f(0.0f, -CG_PROPERPARMS(frog).mFallSpeed.mValue, 0.0f);
 }
 
@@ -931,7 +931,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->disableEvent(0, EB_Cullable);
 	frog->setEmotionExcitement();
 	frog->mTargetVelocity = Vector3f(0.0f);
-	frog->startMotion(8, nullptr);
+	frog->startMotion(FROGANIM_Attack, nullptr);
 }
 
 /*
@@ -984,7 +984,7 @@ void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mToFlick        = 0.0f;
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(9, nullptr);
+	enemy->startMotion(FROGANIM_Fail, nullptr);
 }
 
 /*
@@ -1036,7 +1036,7 @@ void StateTurnToHome::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* frog             = OBJ(enemy);
 	frog->mNextState      = FROG_NULL;
 	frog->mTargetVelocity = Vector3f(0.0f);
-	frog->startMotion(4, nullptr);
+	frog->startMotion(FROGANIM_Turn, nullptr);
 }
 
 /*
@@ -1250,7 +1250,7 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->mAirTimer  = 0.0f;
 	frog->disableEvent(0, EB_NoInterrupt);
 	frog->mTargetVelocity = Vector3f(0.0f);
-	frog->startMotion(3, nullptr);
+	frog->startMotion(FROGANIM_Move, nullptr);
 }
 
 /*

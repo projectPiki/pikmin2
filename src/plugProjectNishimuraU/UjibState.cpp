@@ -39,7 +39,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(UJIBANIM_Dead, nullptr);
 }
 
 /*
@@ -72,7 +72,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(UJIBANIM_PressDead, nullptr);
 }
 
 /*
@@ -112,7 +112,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->disableEvent(0, EB_Animating);
 	uji->enableEvent(0, EB_ModelHidden);
 	uji->mTargetVelocity = Vector3f(0.0f);
-	uji->startMotion(2, nullptr);
+	uji->startMotion(UJIBANIM_Appear, nullptr);
 	uji->stopMotion();
 }
 
@@ -165,7 +165,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->enableEvent(0, EB_LifegaugeVisible);
 	uji->mTargetVelocity = Vector3f(0.0f);
 	uji->setEmotionExcitement();
-	uji->startMotion(2, nullptr);
+	uji->startMotion(UJIBANIM_Appear, nullptr);
 	uji->createAppearEffect();
 }
 
@@ -210,7 +210,7 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 	uji->enableEvent(0, EB_BitterImmune);
 	uji->mTargetVelocity = Vector3f(0.0f);
 	uji->setEmotionCaution();
-	uji->startMotion(3, nullptr);
+	uji->startMotion(UJIBANIM_Dive, nullptr);
 	uji->createDisAppearEffect();
 }
 
@@ -246,7 +246,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* uji        = OBJ(enemy);
 	uji->mNextState = UJIB_NULL;
-	uji->startMotion(4, nullptr);
+	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
 /*
@@ -700,7 +700,7 @@ void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* uji        = OBJ(enemy);
 	uji->mNextState = UJIB_NULL;
-	uji->startMotion(4, nullptr);
+	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
 /*
@@ -754,7 +754,7 @@ void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* uji        = OBJ(enemy);
 	uji->mNextState = UJIB_NULL;
-	uji->startMotion(4, nullptr);
+	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
 /*
@@ -808,7 +808,7 @@ void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* uji        = OBJ(enemy);
 	uji->mNextState = UJIB_NULL;
-	uji->startMotion(4, nullptr);
+	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
 /*
@@ -862,7 +862,7 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* uji        = OBJ(enemy);
 	uji->mNextState = UJIB_NULL;
-	uji->startMotion(4, nullptr);
+	uji->startMotion(UJIBANIM_Move, nullptr);
 }
 
 /*
@@ -920,7 +920,7 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* uji             = OBJ(enemy);
 	uji->mTargetVelocity = Vector3f(0.0f);
-	uji->startMotion(5, nullptr);
+	uji->startMotion(UJIBANIM_Attack1, nullptr);
 	uji->mNextState = UJIB_NULL;
 	uji->createBridgeEffect();
 }
@@ -980,7 +980,7 @@ void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* uji = OBJ(enemy);
 	uji->disableEvent(0, EB_NoInterrupt);
 	uji->mTargetVelocity = Vector3f(0.0f);
-	uji->startMotion(6, nullptr);
+	uji->startMotion(UJIBANIM_Attack2, nullptr);
 }
 
 /*
@@ -1045,7 +1045,7 @@ void StateAttack2::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInter
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->startMotion(7, nullptr);
+	enemy->startMotion(UJIBANIM_Eat, nullptr);
 }
 
 /*

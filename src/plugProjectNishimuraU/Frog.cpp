@@ -522,7 +522,7 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * Address:	80258E18
  * Size:	000028
  */
-void Obj::startCarcassMotion() { EnemyBase::startMotion(10, nullptr); }
+void Obj::startCarcassMotion() { EnemyBase::startMotion(FROGANIM_Carry, nullptr); }
 
 /*
  * --INFO--

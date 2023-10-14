@@ -1046,9 +1046,9 @@ PelletIndexInitArg::PelletIndexInitArg(int idx)
  * Address:	80166B74
  * Size:	0000F0
  */
-PelletNumberInitArg::PelletNumberInitArg(int p1, int p2)
+PelletNumberInitArg::PelletNumberInitArg(int pelNumber, int pelColor)
 {
-	switch (p1) {
+	switch (pelNumber) {
 	case PELLET_NUMBER_ONE:
 		mTextIdentifier = "number1";
 		mPelletIndex    = 0;
@@ -1071,8 +1071,8 @@ PelletNumberInitArg::PelletNumberInitArg(int p1, int p2)
 		break;
 	}
 
-	mPelletColor = p2;
-	mPelletType  = 0;
+	mPelletColor = pelColor;
+	mPelletType  = PELTYPE_NUMBER;
 }
 
 /*

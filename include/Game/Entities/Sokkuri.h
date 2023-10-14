@@ -146,6 +146,19 @@ struct Mgr : public EnemyMgrBase {
 	Obj* mObj; // _44, likely an array of Objs
 };
 
+enum AnimID {
+	SOKKURIANIM_RunGround = 0, // 'run1'
+	SOKKURIANIM_Appear    = 1, // 'appear1'
+	SOKKURIANIM_Wait      = 2, // 'wait1'
+	SOKKURIANIM_Hide      = 3, // 'hide1'
+	SOKKURIANIM_Dead      = 4, // 'dead1'
+	SOKKURIANIM_PressDead = 5, // 'pdead1'
+	SOKKURIANIM_RunWater  = 6, // 'wrun1'
+	SOKKURIANIM_Flick     = 7, // 'flick1'
+	SOKKURIANIM_Carry     = 8, // 'type5'
+	SOKKURIANIM_AnimCount,     // 9
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

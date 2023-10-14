@@ -44,6 +44,7 @@
 #define PELTYPE_BERRY    (2)
 #define PELTYPE_TREASURE (3)
 #define PELTYPE_UPGRADE  (4)
+#define PELTYPE_INVALID  (0xFF)
 
 namespace PSM {
 struct EventBase;
@@ -139,7 +140,7 @@ struct PelletInitArg : public CreatureInitArg {
 	{
 		_1C                   = 0;
 		mState                = 0;
-		mPelletType           = 0xFF;
+		mPelletType           = PELTYPE_INVALID;
 		_18                   = nullptr;
 		_17                   = 0;
 		_04                   = true;

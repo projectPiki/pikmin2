@@ -31,7 +31,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* Args)
 	tank->disableEvent(0, EB_Cullable);
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->deathProcedure();
-	tank->startMotion(0, nullptr);
+	tank->startMotion(TANKANIM_Dead, nullptr);
 }
 
 /*
@@ -63,7 +63,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* tank             = static_cast<Obj*>(enemy);
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->mTargetCreature = nullptr;
-	tank->startMotion(5, nullptr);
+	tank->startMotion(TANKANIM_Wait, nullptr);
 }
 
 /*
@@ -130,7 +130,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* tank             = static_cast<Obj*>(enemy);
 	tank->_2F0            = 0.0f;
 	tank->mTargetCreature = nullptr;
-	tank->startMotion(1, nullptr);
+	tank->startMotion(TANKANIM_Move, nullptr);
 	tank->setAnimSpeed(60.0f);
 }
 
@@ -687,7 +687,7 @@ void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* tank             = static_cast<Obj*>(enemy);
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
-	tank->startMotion(4, nullptr);
+	tank->startMotion(TANKANIM_Turn, nullptr);
 }
 
 /*
@@ -1146,7 +1146,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->mTargetCreature = nullptr;
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
-	tank->startMotion(3, nullptr);
+	tank->startMotion(TANKANIM_Attack, nullptr);
 	tank->createChargeSE();
 }
 
@@ -1249,7 +1249,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->mTargetCreature = nullptr;
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
-	tank->startMotion(2, nullptr);
+	tank->startMotion(TANKANIM_Flick, nullptr);
 }
 
 /*

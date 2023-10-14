@@ -36,7 +36,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 	elecHiba->mIsLivingThing = 0;
 	elecHiba->generatorKill();
-	elecHiba->startMotion(0, nullptr);
+	elecHiba->startMotion(ELECHIBAANIM_Wait, nullptr);
 	elecHiba->getJAIObject()->startSound(PSSE_EN_HIBA_STOP, 0);
 	PSStartEnemyFatalHitSE(elecHiba, 0.0f);
 
@@ -57,7 +57,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 		childHiba->mIsLivingThing = 0;
 		childHiba->generatorKill();
-		childHiba->startMotion(0, nullptr);
+		childHiba->startMotion(ELECHIBAANIM_Wait, nullptr);
 		childHiba->getJAIObject()->startSound(PSSE_EN_HIBA_STOP, 0);
 		PSStartEnemyFatalHitSE(childHiba, 0.0f);
 
@@ -102,11 +102,11 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 		elecHiba->mWaitTimer = 0.0f;
 	}
 
-	elecHiba->startMotion(0, nullptr);
+	elecHiba->startMotion(ELECHIBAANIM_Wait, nullptr);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 	if (childHiba) {
-		childHiba->startMotion(0, nullptr);
+		childHiba->startMotion(ELECHIBAANIM_Wait, nullptr);
 	}
 }
 
@@ -150,12 +150,12 @@ void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 
 	elecHiba->mWaitTimer = 0.0f;
 	elecHiba->disableEvent(0, EB_Cullable);
-	elecHiba->startMotion(0, nullptr);
+	elecHiba->startMotion(ELECHIBAANIM_Wait, nullptr);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 	if (childHiba) {
 		childHiba->disableEvent(0, EB_Cullable);
-		childHiba->startMotion(0, nullptr);
+		childHiba->startMotion(ELECHIBAANIM_Wait, nullptr);
 		elecHiba->startChargeEffect(childHiba);
 	}
 }
@@ -212,13 +212,13 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 
 	elecHiba->mWaitTimer = 0.0f;
 	elecHiba->disableEvent(0, EB_Cullable);
-	elecHiba->startMotion(0, nullptr);
+	elecHiba->startMotion(ELECHIBAANIM_Wait, nullptr);
 	elecHiba->setVersusHibaType();
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 	if (childHiba) {
 		childHiba->disableEvent(0, EB_Cullable);
-		childHiba->startMotion(0, nullptr);
+		childHiba->startMotion(ELECHIBAANIM_Wait, nullptr);
 		elecHiba->startDisChargeEffect();
 	}
 }

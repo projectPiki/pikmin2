@@ -194,13 +194,13 @@ void Obj::createSmokeEffect()
 {
 	Vector3f pos = mPosition;
 	int id       = getCurrAnimIndex();
-	if (id == 8) {
+	if (id == ChappyBase::CHAPPYANIM_WaitAct2) {
 		pos -= Vector3f(pikmin2_sinf(mFaceDir) * 60.0f, 0.0f, pikmin2_cosf(mFaceDir) * 60.0f);
 
 		cameraMgr->startVibration(3, pos, 2);
 		rumbleMgr->startRumble(11, pos, 2);
 
-	} else if (id == 4) {
+	} else if (id == ChappyBase::CHAPPYANIM_Sleep) {
 		setAtari(true);
 
 		ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);

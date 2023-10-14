@@ -156,6 +156,20 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	TOBIANIM_Dead      = 0,
+	TOBIANIM_PressDead = 1, // 'dead_p'
+	TOBIANIM_Appear    = 2,
+	TOBIANIM_Dive      = 3,
+	TOBIANIM_Move      = 4,
+	TOBIANIM_Fly       = 5,
+	TOBIANIM_Attack1   = 6,
+	TOBIANIM_Attack2   = 7,
+	TOBIANIM_Eat       = 8,
+	TOBIANIM_Carry     = 9, // 'type5'
+	TOBIANIM_AnimCount,     // 10
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

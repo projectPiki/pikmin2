@@ -126,6 +126,19 @@ struct Parms : public EnemyParmsBase {
 	ProperParms mProperParms; // _7F8
 };
 
+enum AnimID {
+	KOCHAPPYANIM_Attack = 0,
+	KOCHAPPYANIM_Dead   = 1,
+	KOCHAPPYANIM_Flick  = 2,
+	KOCHAPPYANIM_Move   = 3, // 'move1'
+	KOCHAPPYANIM_Press  = 4, // 'type1'
+	KOCHAPPYANIM_Carry  = 5, // 'type5'
+	KOCHAPPYANIM_Wait   = 6, // 'wait1'
+	KOCHAPPYANIM_Turn   = 7, // 'waitact1'
+	KOCHAPPYANIM_Eat    = 8, // 'waitact2'
+	KOCHAPPYANIM_AnimCount,  // 9
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

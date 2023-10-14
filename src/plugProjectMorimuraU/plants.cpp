@@ -55,7 +55,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 
 	P2ASSERTLINE(83, mModel);
 
-	startMotion(0, nullptr);
+	startMotion(PLANTANIM_Default, nullptr);
 
 	SysShape::Animator* animator                                  = &mAnimator->getAnimator();
 	SysShape::Model* model                                        = mModel;
@@ -156,7 +156,7 @@ void Plants::Obj::collisionCallback(CollEvent& collEvent)
 					}
 
 					if (!_2BC) {
-						startMotion(0, nullptr);
+						startMotion(PLANTANIM_Default, nullptr);
 						touched();
 						_2BC = 1;
 					}
@@ -174,7 +174,7 @@ void Plants::Obj::collisionCallback(CollEvent& collEvent)
 bool Plants::Obj::earthquakeCallBack(Creature* creature, f32 damage)
 {
 	if (!_2BC) {
-		startMotion(0, nullptr);
+		startMotion(PLANTANIM_Default, nullptr);
 		touched();
 		_2BC = 1;
 	}

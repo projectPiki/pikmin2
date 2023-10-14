@@ -176,6 +176,15 @@ struct Generator : public EnemyGeneratorBase {
 	QurioneInitialParam mInitialParam; // _24
 };
 
+enum AnimID {
+	QURIONEANIM_Wait   = 0,
+	QURIONEANIM_Damage = 1,
+	QURIONEANIM_Run    = 2,
+	QURIONEANIM_Appear = 3, // 'appear1'
+	QURIONEANIM_Hide   = 4, // 'hide1'
+	QURIONEANIM_AnimCount,  // 5
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                   // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                // _0C

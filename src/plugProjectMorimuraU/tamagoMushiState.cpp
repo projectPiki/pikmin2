@@ -45,7 +45,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	int p1;
 	int diff;
 	Obj* mitite = static_cast<Obj*>(enemy);
-	mitite->startMotion(2, nullptr);
+	mitite->startMotion(TAMAGOANIM_Move, nullptr);
 	mitite->resetWalkParm();
 	Parms* parms = static_cast<Parms*>(mitite->mParms);
 	p1           = parms->mProperParms.mIp01.mValue;
@@ -103,7 +103,7 @@ StateTurn::StateTurn(int stateID)
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(4, nullptr);
+	enemy->startMotion(TAMAGOANIM_Wait, nullptr);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 }
@@ -146,7 +146,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	int p1;
 	int diff;
 
-	enemy->startMotion(3, nullptr);
+	enemy->startMotion(TAMAGOANIM_Appear, nullptr);
 	enemy->stopMotion();
 	enemy->enableEvent(0, EB_BitterImmune);
 
@@ -232,7 +232,7 @@ StateHide::StateHide(int stateID)
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
 
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(TAMAGOANIM_Dive, nullptr);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->hardConstraintOn();
@@ -272,7 +272,7 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(TAMAGOANIM_Dead, nullptr);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->enableEvent(0, EB_LeaveCarcass);
@@ -327,7 +327,7 @@ StateWait::StateWait(int stateID)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(4, nullptr);
+	enemy->startMotion(TAMAGOANIM_Wait, nullptr);
 	enemy->setEmotionExcitement();
 	enemy->hardConstraintOff();
 	enemy->disableEvent(0, EB_Cullable);

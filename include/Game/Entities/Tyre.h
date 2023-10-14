@@ -198,6 +198,12 @@ struct Parms : public EnemyParmsBase {
 	f32 _848;                 // _848
 };
 
+enum AnimID {
+	TYREANIM_Move   = 0, // 'tyre_move'
+	TYREANIM_GetOff = 1, // 'tyre_getoff'
+	TYREANIM_AnimCount,  // 2
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

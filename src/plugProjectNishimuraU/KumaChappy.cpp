@@ -131,7 +131,7 @@ bool Obj::damageCallBack(Creature*, f32 dmg, CollPart* part)
  * Address:	80299A40
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(4, nullptr); }
+void Obj::startCarcassMotion() { startMotion(KUMACHAPPYANIM_Carry, nullptr); }
 
 /*
  * --INFO--

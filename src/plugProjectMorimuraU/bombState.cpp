@@ -40,7 +40,7 @@ StateWait::StateWait(int stateID)
 void Bomb::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bomb = static_cast<Obj*>(enemy);
-	bomb->startMotion(0, nullptr);
+	bomb->startMotion(BOMBANIM_HitStart, nullptr);
 	bomb->stopMotion();
 	bomb->setEmotionCaution();
 	_10 = 0;
@@ -64,6 +64,7 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 	if (!bomb->isStopMotion()) {
 		bomb->addDamage(sys->mDeltaTime, 1.0f);
 		bomb->mSoundObj->startSound(PSSE_EN_BOMB_LOOP, 0);
+
 	} else if (bomb->isAnimStart()) {
 		bomb->enableEvent(0, EB_NoInterrupt);
 		bomb->startMotion();
@@ -71,12 +72,12 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 		bomb->setEmotionExcitement();
 	}
 
-	if (bomb->mCurAnim->mIsPlaying != 0) {
+	if (bomb->mCurAnim->mIsPlaying) {
 		switch (bomb->mCurAnim->mType) {
-		case 2:
+		case KEYEVENT_2:
 			bomb->disableEvent(0, EB_NoInterrupt);
 			break;
-		case 1000:
+		case KEYEVENT_END:
 			transit(bomb, BOMB_Bomb, nullptr);
 			break;
 		}
@@ -102,7 +103,7 @@ StateBomb::StateBomb(int stateID)
 void Bomb::StateBomb::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->disableEvent(0, EB_Cullable);
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(BOMBANIM_HitLoop, nullptr);
 	enemy->setEmotionExcitement();
 	_10 = 0;
 }

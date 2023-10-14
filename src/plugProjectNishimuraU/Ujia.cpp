@@ -124,7 +124,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { retu
  * Address:	80266458
  * Size:	000028
  */
-void Obj::startCarcassMotion() { startMotion(6, nullptr); }
+void Obj::startCarcassMotion() { startMotion(UJIAANIM_Carry, nullptr); }
 
 /*
  * --INFO--

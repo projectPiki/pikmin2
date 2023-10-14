@@ -278,6 +278,27 @@ struct Parms : public EnemyParmsBase {
 	f32 _930;                 // _930
 };
 
+enum AnimID {
+	JIGUMOANIM_Appear   = 0,  // 'appear1'
+	JIGUMOANIM_Attack   = 1,  // 'attack1'
+	JIGUMOANIM_BackRun  = 2,  // 'backrun1', while carrying piki
+	JIGUMOANIM_BackWait = 3,  // 'backwait1', while carrying piki
+	JIGUMOANIM_Dead     = 4,  // 'dead1'
+	JIGUMOANIM_Eat      = 5,  // 'dive1'
+	JIGUMOANIM_Flick    = 6,  // 'flick1'
+	JIGUMOANIM_Hide     = 7,  // 'hide1', no piki
+	JIGUMOANIM_RDive    = 8,  // 'rdive1', after eating
+	JIGUMOANIM_RFlick   = 9,  // 'rflick1', while carrying piki
+	JIGUMOANIM_RunAway  = 10, // 'runaway1', no piki
+	JIGUMOANIM_SAttack  = 11, // 'sattack1'
+	JIGUMOANIM_SMiss    = 12, // 'smiss1'
+	JIGUMOANIM_Turn     = 13, // 'turn1'
+	JIGUMOANIM_Carry    = 14, // 'type5', carcass (not carrying piki)
+	JIGUMOANIM_Wait     = 15, // 'wait1'
+	JIGUMOANIM_Miss     = 16, // 'to_runaway1'
+	JIGUMOANIM_AnimCount,     // 17
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C

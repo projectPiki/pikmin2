@@ -43,10 +43,10 @@ void Kabuto::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->disableEvent(0, EB_Cullable);
 	kabuto->mTargetVelocity = Vector3f(0.0f);
 	if (kabuto->getEnemyTypeID() == EnemyTypeID::EnemyID_Fkabuto) {
-		kabuto->startMotion(10, nullptr);
+		kabuto->startMotion(KABUTOANIM_FixDead, nullptr);
 		kabuto->finishWaitEffect();
 	} else {
-		kabuto->startMotion(0, nullptr);
+		kabuto->startMotion(KABUTOANIM_Dead, nullptr);
 	}
 }
 
@@ -82,7 +82,7 @@ void Kabuto::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->mNextState = KABUTO_NULL;
 	kabuto->enableEvent(0, EB_Constrained);
 	kabuto->mTargetVelocity = Vector3f(0.0f);
-	kabuto->startMotion(5, nullptr);
+	kabuto->startMotion(KABUTOANIM_Wait, nullptr);
 }
 
 /*
@@ -132,7 +132,7 @@ void Kabuto::StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->mNextState  = KABUTO_NULL;
 	kabuto->enableEvent(0, EB_Constrained);
 	kabuto->mTargetVelocity = Vector3f(0.0f);
-	kabuto->startMotion(4, nullptr);
+	kabuto->startMotion(KABUTOANIM_Pivot, nullptr);
 }
 
 /*
@@ -424,7 +424,7 @@ void Kabuto::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->mIsWalking      = false;
 	kabuto->mNextState      = KABUTO_NULL;
 	kabuto->mTargetVelocity = Vector3f(0.0f);
-	kabuto->startMotion(1, nullptr);
+	kabuto->startMotion(KABUTOANIM_Move, nullptr);
 }
 
 /*
@@ -771,7 +771,7 @@ void Kabuto::StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->enableEvent(0, EB_Constrained);
 	kabuto->mTargetVelocity = Vector3f(0.0f);
 	kabuto->setEmotionExcitement();
-	kabuto->startMotion(2, nullptr);
+	kabuto->startMotion(KABUTOANIM_Flick, nullptr);
 }
 
 /*
@@ -834,7 +834,7 @@ void Kabuto::StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->setEmotionExcitement();
 	kabuto->disableEvent(0, EB_Cullable);
 	kabuto->mTargetVelocity = Vector3f(0.0f);
-	kabuto->startMotion(3, nullptr);
+	kabuto->startMotion(KABUTOANIM_Attack, nullptr);
 }
 
 /*
@@ -899,7 +899,7 @@ void Kabuto::StateFixStay::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->disableEvent(0, EB_LifegaugeVisible);
 	kabuto->disableEvent(0, EB_Animating);
 	kabuto->enableEvent(0, EB_ModelHidden);
-	kabuto->startMotion(11, nullptr);
+	kabuto->startMotion(KABUTOANIM_FixAppear, nullptr);
 	kabuto->stopMotion();
 	kabuto->finishWaitEffect();
 }
@@ -952,7 +952,7 @@ void Kabuto::StateFixAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->mAlertTimer = 0.0f;
 	kabuto->enableEvent(0, EB_NoInterrupt);
 	kabuto->setEmotionExcitement();
-	kabuto->startMotion(11, nullptr);
+	kabuto->startMotion(KABUTOANIM_FixAppear, nullptr);
 
 	Vector3f pos = kabuto->getPosition();
 	efx::Arg fxArg(pos);
@@ -1031,7 +1031,7 @@ void Kabuto::StateFixHide::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->enableEvent(0, EB_BitterImmune);
 	kabuto->enableEvent(0, EB_Invulnerable);
 	kabuto->setEmotionCaution();
-	kabuto->startMotion(12, nullptr);
+	kabuto->startMotion(KABUTOANIM_FixHide, nullptr);
 
 	Vector3f pos = kabuto->getPosition();
 	efx::Arg fxArg(pos);
@@ -1081,7 +1081,7 @@ void Kabuto::StateFixWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kabuto        = OBJ(enemy);
 	kabuto->mNextState = KABUTO_NULL;
-	kabuto->startMotion(7, nullptr);
+	kabuto->startMotion(KABUTOANIM_FixWait, nullptr);
 	kabuto->startWaitEffect();
 }
 
@@ -1141,7 +1141,7 @@ void Kabuto::StateFixTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kabuto        = OBJ(enemy);
 	kabuto->mNextState = KABUTO_NULL;
-	kabuto->startMotion(6, nullptr);
+	kabuto->startMotion(KABUTOANIM_FixPivot, nullptr);
 	kabuto->startWaitEffect();
 	kabuto->startRotateEffect();
 }
@@ -1213,7 +1213,7 @@ void Kabuto::StateFixAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kabuto->mNextState  = KABUTO_NULL;
 	kabuto->mAlertTimer = 0.0f;
 	kabuto->disableEvent(0, EB_Cullable);
-	kabuto->startMotion(8, nullptr);
+	kabuto->startMotion(KABUTOANIM_FixAttack, nullptr);
 	kabuto->startWaitEffect();
 }
 
@@ -1278,7 +1278,7 @@ void Kabuto::StateFixFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kabuto        = OBJ(enemy);
 	kabuto->mNextState = KABUTO_NULL;
-	kabuto->startMotion(9, nullptr);
+	kabuto->startMotion(KABUTOANIM_FixFlick, nullptr);
 	kabuto->startWaitEffect();
 }
 

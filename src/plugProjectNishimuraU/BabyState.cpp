@@ -30,7 +30,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	baby->createHoney();
 	baby->deathProcedure();
 	baby->mTargetVelocity = Vector3f(0.0f);
-	baby->startMotion(0, nullptr);
+	baby->startMotion(BABYANIM_Dead, nullptr);
 }
 
 /*
@@ -64,7 +64,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	baby->mHealth = 0.0f;
 	baby->deathProcedure();
 	baby->mTargetVelocity = Vector3f(0.0f);
-	baby->startMotion(1, nullptr);
+	baby->startMotion(BABYANIM_DeadPress, nullptr);
 	Vector3f position = baby->getPosition();
 
 	efx::Arg fxArg(position);
@@ -101,7 +101,7 @@ void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* baby = static_cast<Obj*>(enemy);
 	baby->createBornEffect();
-	baby->startMotion(5, nullptr);
+	baby->startMotion(BABYANIM_Born, nullptr);
 }
 
 /*
@@ -146,7 +146,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* baby             = static_cast<Obj*>(enemy);
 	baby->mTargetCreature = nullptr;
-	baby->startMotion(2, nullptr);
+	baby->startMotion(BABYANIM_Move, nullptr);
 }
 
 /*
@@ -525,7 +525,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
-	enemy->startMotion(3, nullptr);
+	enemy->startMotion(BABYANIM_Attack, nullptr);
 }
 
 /*
@@ -544,7 +544,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			EnemyFunc::eatPikmin(baby, nullptr);
 			int slotCount = baby->getSlotPikiNum();
 			if (slotCount == 0) {
-				baby->startMotion(4, nullptr);
+				baby->startMotion(BABYANIM_AttackFail, nullptr);
 			}
 		} else if ((u32)baby->mCurAnim->mType == KEYEVENT_3) {
 			Parms* parms = static_cast<Parms*>(baby->mParms);

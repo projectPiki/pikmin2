@@ -100,10 +100,10 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	SleepArg* arg = static_cast<SleepArg*>(stateArg);
 	if (arg && arg->_00) {
-		enemy->startMotion(4, nullptr);
+		enemy->startMotion(CHAPPYANIM_Sleep, nullptr);
 		enemy->setMotionFrame(70.0f);
 	} else {
-		enemy->startMotion(6, nullptr);
+		enemy->startMotion(CHAPPYANIM_Wait2, nullptr);
 	}
 
 	enemy->mTargetCreature = nullptr;
@@ -126,12 +126,12 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSleep::exec(EnemyBase* enemy)
 {
-	if (enemy->getCurrAnimIndex() == 6) {
+	if (enemy->getCurrAnimIndex() == CHAPPYANIM_Wait2) {
 		if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
 			if (enemy->isEvent(0, EB_TakingDamage)) {
 				transit(enemy, CHAPPY_Turn, nullptr);
 			} else {
-				enemy->startMotion(4, nullptr);
+				enemy->startMotion(CHAPPYANIM_Sleep, nullptr);
 			}
 		}
 
@@ -211,7 +211,7 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->startMotion(1, nullptr);
+	enemy->startMotion(CHAPPYANIM_Dead, nullptr);
 	enemy->deathProcedure();
 }
 
@@ -275,7 +275,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
 	OBJ(enemy)->setAnimationSpeed(40.0f);
-	enemy->startMotion(7, nullptr);
+	enemy->startMotion(CHAPPYANIM_WaitAct1, nullptr);
 }
 
 /*
@@ -936,7 +936,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
 	OBJ(enemy)->setAnimationSpeed(40.0f);
-	enemy->startMotion(3, nullptr);
+	enemy->startMotion(CHAPPYANIM_Move1, nullptr);
 }
 
 /*
@@ -1552,7 +1552,7 @@ StateAttack::StateAttack(int stateID)
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
-	enemy->startMotion(0, nullptr);
+	enemy->startMotion(CHAPPYANIM_Attack, nullptr);
 	enemy->resetAnimSpeed();
 }
 
@@ -2074,7 +2074,7 @@ StateFlick::StateFlick(int stateID)
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionExcitement();
-	enemy->startMotion(2, nullptr);
+	enemy->startMotion(CHAPPYANIM_Flick, nullptr);
 	OBJ(enemy)->setAnimationSpeed(40.0f);
 	enemy->disableEvent(0, EB_FlickEnabled);
 	OBJ(enemy)->createFlickEffect();
@@ -2917,7 +2917,7 @@ StateGoHome::StateGoHome(int stateID)
  * Address:	8011910C
  * Size:	00002C
  */
-void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(3, nullptr); }
+void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg) { enemy->startMotion(CHAPPYANIM_Move1, nullptr); }
 
 /*
  * --INFO--
