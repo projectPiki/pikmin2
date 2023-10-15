@@ -10,12 +10,12 @@ GDOverflowCallback overflowcb = (GDOverflowCallback)NULL;
  * Address:	800E1B04
  * Size:	000018
  */
-void GDInitGDLObj(GDCurrentDL* GDL_Obj, u8* begin_ptr, s32 new_length)
+void GDInitGDLObj(GDCurrentDL* GDL_Obj, u8* start, s32 len)
 {
-	GDL_Obj->begin            = begin_ptr;
-	GDL_Obj->pDisplayListData = begin_ptr;
-	GDL_Obj->end              = begin_ptr + new_length;
-	GDL_Obj->length           = new_length;
+	GDL_Obj->begin            = start;
+	GDL_Obj->pDisplayListData = start;
+	GDL_Obj->end              = start + len;
+	GDL_Obj->length           = len;
 }
 
 /*
@@ -23,14 +23,14 @@ void GDInitGDLObj(GDCurrentDL* GDL_Obj, u8* begin_ptr, s32 new_length)
  * Address:	800E1B1C
  * Size:	00002C
  */
-void GDFlushCurrToMem(void) { DCFlushRange(__GDCurrentDL->begin, __GDCurrentDL->length); }
+void GDFlushCurrToMem() { DCFlushRange(__GDCurrentDL->begin, __GDCurrentDL->length); }
 
 /*
  * --INFO--
  * Address:	800E1B48
  * Size:	0000F8
  */
-void GDPadCurr32(void)
+void GDPadCurr32()
 {
 	u32 i = ((u32)__GDCurrentDL->pDisplayListData & 31);
 	if (i) {
@@ -57,19 +57,11 @@ void GDOverflowed(void)
  * Address:	........
  * Size:	000008
  */
-void GDSetOverflowCallback(GDOverflowCallback cb)
-{
-	// UNUSED FUNCTION
-	overflowcb = cb;
-}
+void GDSetOverflowCallback(GDOverflowCallback cb) { overflowcb = cb; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-GDOverflowCallback GDGetOverflowCallback(void)
-{
-	// UNUSED FUNCTION
-	return overflowcb;
-}
+GDOverflowCallback GDGetOverflowCallback(void) { return overflowcb; }

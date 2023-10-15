@@ -690,7 +690,7 @@ LIBS = [
         "host": False,
         "objects": [
             ["Dolphin/gd/GDBase", True],
-            "Dolphin/gd/GDGeometry",
+            ["Dolphin/gd/GDGeometry", True],
         ],
     },
     {
