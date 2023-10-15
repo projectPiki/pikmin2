@@ -1,9 +1,10 @@
 #include "Dolphin/db.h"
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
 #include "Dolphin/AmcExi2Stubs.h"
+#include "PowerPC_EABI_Support/MetroTRK/custconn/CircleBuffer.h"
 
-static char gRecvCB[0x20];
-static char gRecvBuf[0x500];
+static CircleBuffer gRecvCB;
+static u8 gRecvBuf[0x500];
 static BOOL gIsInitialized;
 
 /*
@@ -16,7 +17,7 @@ BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback
 	MWTRACE(1, "CALLING EXI2_Init\n");
 	DBInitComm(inputPendingPtrRef, monitorCallback);
 	MWTRACE(1, "DONE CALLING EXI2_Init\n");
-	CircleBufferInitialize(&gRecvCB, &gRecvBuf, 0x500);
+	CircleBufferInitialize(&gRecvCB, gRecvBuf, 0x500);
 	return FALSE;
 }
 
@@ -54,7 +55,7 @@ BOOL gdev_cc_close() { return FALSE; }
  * Address:	800C1398
  * Size:	0000F4
  */
-u32 gdev_cc_read(int arg0, u32 arg1)
+u32 gdev_cc_read(u8* data, u32 size)
 {
 	u8 buff[0x500];
 	int p1;
@@ -66,10 +67,10 @@ u32 gdev_cc_read(int arg0, u32 arg1)
 		return -0x2711;
 	}
 
-	MWTRACE(1, "Expected packet size : 0x%08x (%ld)\n", arg1, arg1);
+	MWTRACE(1, "Expected packet size : 0x%08x (%ld)\n", size, size);
 
-	p1 = arg1;
-	p2 = arg1;
+	p1 = size;
+	p2 = size;
 	while ((u32)CBGetBytesAvailableForRead(&gRecvCB) < p2) {
 		retval = 0;
 		poll   = DBQueryData();
@@ -82,7 +83,7 @@ u32 gdev_cc_read(int arg0, u32 arg1)
 	}
 
 	if (retval == 0) {
-		CircleBufferReadBytes(&gRecvCB, arg0, p1);
+		CircleBufferReadBytes(&gRecvCB, data, p1);
 	} else {
 		MWTRACE(8, "cc_read : error reading bytes from EXI2 %ld\n", retval);
 	}
@@ -162,7 +163,7 @@ int gdev_cc_peek()
 	}
 
 	if (DBRead(buff, poll) == 0) {
-		CircleBufferWriteBytes(gRecvCB, buff, poll);
+		CircleBufferWriteBytes(&gRecvCB, buff, poll);
 	} else {
 		return -0x2719;
 	}

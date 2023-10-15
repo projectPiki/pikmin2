@@ -1,4 +1,4 @@
-
+#include "Dolphin/mtx.h"
 
 /*
  * --INFO--
@@ -10,38 +10,38 @@ void C_MTXMultVec(void)
 	// UNUSED FUNCTION
 }
 
+// clang-format off
 /*
  * --INFO--
  * Address:	800EABD8
  * Size:	000054
  */
-void PSMTXMultVec(void)
+asm void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec* out)
 {
-	/*
-	.loc_0x0:
-	  psq_l     f0,0x0(r4),0,0
-	  psq_l     f2,0x0(r3),0,0
-	  psq_l     f1,0x8(r4),0x1,0
-	  ps_mul    f4, f2, f0
-	  psq_l     f3,0x8(r3),0,0
-	  ps_madd   f5, f3, f1, f4
-	  psq_l     f8,0x10(r3),0,0
-	  ps_sum0   f6, f5, f6, f5
-	  psq_l     f9,0x18(r3),0,0
-	  ps_mul    f10, f8, f0
-	  psq_st    f6,0x0(r5),0x1,0
-	  ps_madd   f11, f9, f1, f10
-	  psq_l     f2,0x20(r3),0,0
-	  ps_sum0   f12, f11, f12, f11
-	  psq_l     f3,0x28(r3),0,0
-	  ps_mul    f4, f2, f0
-	  psq_st    f12,0x4(r5),0x1,0
-	  ps_madd   f5, f3, f1, f4
-	  ps_sum0   f6, f5, f6, f5
-	  psq_st    f6,0x8(r5),0x1,0
-	  blr
-	*/
+	nofralloc;
+	psq_l fp0, 0(in), 0, 0;
+	psq_l fp2, 0(m), 0, 0;
+	psq_l fp1, 8(in), 1, 0;
+	ps_mul fp4, fp2, fp0;
+	psq_l fp3, 8(m), 0, 0;
+	ps_madd fp5, fp3, fp1, fp4;
+	psq_l fp8, 16(m), 0, 0;
+	ps_sum0 fp6, fp5, fp6, fp5;
+	psq_l fp9, 24(m), 0, 0;
+	ps_mul fp10, fp8, fp0;
+	psq_st fp6, 0(out), 1, 0;
+	ps_madd fp11, fp9, fp1, fp10;
+	psq_l fp2, 32(m), 0, 0;
+	ps_sum0 fp12, fp11, fp12, fp11;
+	psq_l fp3, 40(m), 0, 0;
+	ps_mul fp4, fp2, fp0;
+	psq_st fp12, 4(out), 1, 0;
+	ps_madd fp5, fp3, fp1, fp4;
+	ps_sum0 fp6, fp5, fp6, fp5;
+	psq_st fp6, 8(out), 1, 0;
+	blr;
 }
+// clang-format on
 
 /*
  * --INFO--
@@ -73,38 +73,38 @@ void C_MTXMultVecSR(void)
 	// UNUSED FUNCTION
 }
 
+// clang-format off
 /*
  * --INFO--
  * Address:	800EAC2C
  * Size:	000054
  */
-void PSMTXMultVecSR(void)
+asm void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register Vec* out)
 {
-	/*
-	.loc_0x0:
-	  psq_l     f0,0x0(r3),0,0
-	  psq_l     f6,0x0(r4),0,0
-	  psq_l     f2,0x10(r3),0,0
-	  ps_mul    f8, f0, f6
-	  psq_l     f4,0x20(r3),0,0
-	  ps_mul    f10, f2, f6
-	  psq_l     f7,0x8(r4),0x1,0
-	  ps_mul    f12, f4, f6
-	  psq_l     f3,0x18(r3),0,0
-	  ps_sum0   f8, f8, f8, f8
-	  psq_l     f5,0x28(r3),0,0
-	  ps_sum0   f10, f10, f10, f10
-	  psq_l     f1,0x8(r3),0,0
-	  ps_sum0   f12, f12, f12, f12
-	  ps_madd   f9, f1, f7, f8
-	  psq_st    f9,0x0(r5),0x1,0
-	  ps_madd   f11, f3, f7, f10
-	  psq_st    f11,0x4(r5),0x1,0
-	  ps_madd   f13, f5, f7, f12
-	  psq_st    f13,0x8(r5),0x1,0
-	  blr
-	*/
+	nofralloc;
+	psq_l fp0, 0(mtx), 0, 0;
+	psq_l fp6, 0(in), 0, 0;
+	psq_l fp2, 0x10(mtx), 0, 0;
+	ps_mul fp8, fp0, fp6;
+	psq_l fp4, 0x20(mtx), 0, 0;
+	ps_mul fp10, fp2, fp6;
+	psq_l fp7, 8(in), 1, 0;
+	ps_mul fp12, fp4, fp6;
+	psq_l fp3, 0x18(mtx), 0, 0;
+	ps_sum0 fp8, fp8, fp8, fp8;
+	psq_l fp5, 0x28(mtx), 0, 0;
+	ps_sum0 fp10, fp10, fp10, fp10;
+	psq_l fp1, 8(mtx), 0, 0;
+	ps_sum0 fp12, fp12, fp12, fp12;
+	ps_madd fp9, fp1, fp7, fp8;
+	psq_st fp9, 0(out), 1, 0;
+	ps_madd fp11, fp3, fp7, fp10;
+	psq_st fp11, 4(out), 1, 0;
+	ps_madd fp13, fp5, fp7, fp12;
+	psq_st fp13, 8(out), 1, 0;
+	blr;
 }
+// clang-format on
 
 /*
  * --INFO--
@@ -121,45 +121,45 @@ void C_MTXMultVecArraySR(void)
  * Address:	800EAC80
  * Size:	000088
  */
-void PSMTXMultVecArraySR(void)
+asm void PSMTXMultVecArraySR(const register Mtx mtx, register f32* in, register f32* out, register f32* count)
 {
-	/*
-	.loc_0x0:
-	  psq_l     f13,0x0(r3),0,0
-	  psq_l     f12,0x10(r3),0,0
-	  subi      r6, r6, 0x1
-	  psq_l     f11,0x8(r3),0x1,0
-	  ps_merge00f0, f13, f12
-	  subi      r5, r5, 0x4
-	  psq_l     f10,0x18(r3),0x1,0
-	  ps_merge11f1, f13, f12
-	  mtctr     r6
-	  psq_l     f3,0x20(r3),0,0
-	  ps_merge00f2, f11, f10
-	  psq_l     f4,0x28(r3),0x1,0
-	  psq_l     f6,0x0(r4),0,0
-	  psq_lu    f7,0x8(r4),0x1,0
-	  ps_muls0  f8, f0, f6
-	  ps_mul    f9, f3, f6
-	  ps_madds1 f8, f1, f6, f8
-	  ps_madd   f10, f4, f7, f9
+	nofralloc;
+	psq_l fp13, 0(mtx), 0, 0;
+	psq_l fp12, 0x10(mtx), 0, 0;
+	subi count, count, 1;
+	psq_l fp11, 8(mtx), 1, 0;
+	ps_merge00 fp0, fp13, fp12;
+	subi out, out, 4;
+	psq_l fp10, 0x18(mtx), 1, 0;
+	ps_merge11 fp1, fp13, fp12;
+	mtctr count;
 
-	.loc_0x48:
-	  psq_lu    f6,0x4(r4),0,0
-	  ps_madds0 f12, f2, f7, f8
-	  psq_lu    f7,0x8(r4),0x1,0
-	  ps_sum0   f13, f10, f9, f9
-	  ps_muls0  f8, f0, f6
-	  ps_mul    f9, f3, f6
-	  psq_stu   f12,0x4(r5),0,0
-	  ps_madds1 f8, f1, f6, f8
-	  psq_stu   f13,0x8(r5),0x1,0
-	  ps_madd   f10, f4, f7, f9
-	  bdnz+     .loc_0x48
-	  ps_madds0 f12, f2, f7, f8
-	  ps_sum0   f13, f10, f9, f9
-	  psq_stu   f12,0x4(r5),0,0
-	  psq_stu   f13,0x8(r5),0x1,0
-	  blr
-	*/
+	psq_l fp3, 0x20(mtx), 0, 0;
+	ps_merge00 fp2, fp11, fp10;
+	psq_l fp4, 0x28(mtx), 1, 0;
+	psq_l fp6, 0(in), 0, 0;
+	psq_lu fp7, 8(in), 1, 0;
+	ps_muls0 fp8, fp0, fp6;
+	ps_mul fp9, fp3, fp6;
+	ps_madds1 fp8, fp1, fp6, fp8;
+	ps_madd fp10, fp4, fp7, fp9;
+
+loop:
+	psq_lu fp6, 4(in), 0, 0;
+	ps_madds0 fp12, fp2, fp7, fp8;
+	psq_lu fp7, 8(in), 1, 0;
+	ps_sum0 fp13, fp10, fp9, fp9;
+	ps_muls0 fp8, fp0, fp6;
+	ps_mul fp9, fp3, fp6;
+	psq_stu fp12, 4(out), 0, 0;
+	ps_madds1 fp8, fp1, fp6, fp8;
+	psq_stu fp13, 8(out), 1, 0;
+	ps_madd fp10, fp4, fp7, fp9;
+	bdnz + loop;
+
+	ps_madds0 fp12, fp2, fp7, fp8;
+	ps_sum0 fp13, fp10, fp9, fp9;
+	psq_stu fp12, 4(out), 0, 0;
+	psq_stu fp13, 8(out), 1, 0;
+	blr;
 }

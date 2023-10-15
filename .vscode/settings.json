@@ -32,6 +32,8 @@
     "gx.h": "c",
     "gxenum.h": "c",
     "pad.h": "c",
-    "gd.h": "c"
+    "gd.h": "c",
+    "mtx.h": "c",
+    "vec.h": "c"
   }
 }

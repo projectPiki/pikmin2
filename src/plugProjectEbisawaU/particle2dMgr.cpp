@@ -285,7 +285,7 @@ void TParticle2dMgr::draw(u8 a, u16 flag)
 		u16 width  = System::getRenderModeObj()->fbWidth;
 		u16 height = System::getRenderModeObj()->efbHeight;
 		PSMTXCopy(info.mtx1, info.mtx2);
-		C_MTXLightOrtho(0.0f, height, 0.0f, width, 0.5f, 0.5f, 0.5f, 0.5f, info.mtx2);
+		C_MTXLightOrtho(info.mtx2, 0.0f, height, 0.0f, width, 0.5f, 0.5f, 0.5f, 0.5f);
 		mEmitterManager->draw(&info, a);
 	} else {
 		Graphics* gfx = sys->mGfx;
@@ -294,7 +294,7 @@ void TParticle2dMgr::draw(u8 a, u16 flag)
 		u16 width  = System::getRenderModeObj()->fbWidth;
 		f32 fov    = gfx->mPerspGraph.mFovY;
 		PSMTXCopy(gfx->mPerspGraph.mPosMtx, info.mtx2);
-		C_MTXLightPerspective(fov, (f32)width / (f32)height, 0.5f, -0.5f, 0.5f, 0.5f, info.mtx2);
+		C_MTXLightPerspective(info.mtx2, fov, (f32)width / (f32)height, 0.5f, -0.5f, 0.5f, 0.5f);
 		mEmitterManager->draw(&info, a);
 	}
 	/*

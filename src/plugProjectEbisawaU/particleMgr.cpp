@@ -547,7 +547,7 @@ void ParticleMgr::draw(Viewport* vp, u8 flag)
 	x = vp->mCamera->mViewAngle;
 	JPADrawInfo info;
 	PSMTXCopy(vp->getMatrix(1)->mMatrix.mtxView, info.mtx1);
-	C_MTXLightPerspective(x, y, 0.5f, -0.5f, 0.5f, 0.5f, info.mtx2);
+	C_MTXLightPerspective(info.mtx2, x, y, 0.5f, -0.5f, 0.5f, 0.5f);
 	mEmitterManager->draw(&info, flag);
 }
 

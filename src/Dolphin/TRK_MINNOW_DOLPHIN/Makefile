@@ -25,7 +25,7 @@ TRK_MINNOW_DOLPHIN_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/mslsupp.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/UDP_Stubs.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/ddh/main.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/CircleBuffer.o\
+	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/CircleBuffer.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/gdev/main.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/MWTrace.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/MWCriticalSection_gc.o\

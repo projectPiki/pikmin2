@@ -1,15 +1,27 @@
 #include "types.h"
 #include "fdlibm.h"
 #include "Dolphin/mtx.h"
+#include "Dolphin/math.h"
 static f32 Unit01[] = { 0.0f, 1.0f };
+
+extern f32 sinf(f32);
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00003C
  */
-void C_MTXIdentity(void)
+void C_MTXIdentity(Mtx mtx)
 {
+	mtx[0][0] = 1.0f;
+	mtx[0][1] = 0.0f;
+	mtx[0][2] = 0.0f;
+	mtx[1][0] = 0.0f;
+	mtx[1][1] = 1.0f;
+	mtx[1][2] = 0.0f;
+	mtx[2][0] = 0.0f;
+	mtx[2][1] = 0.0f;
+	mtx[2][2] = 1.0f;
 	// UNUSED FUNCTION
 }
 
@@ -383,12 +395,10 @@ void C_MTXRotRad(void)
  */
 void PSMTXRotRad ( Mtx m, char axis, f32 rad )
 {
-    f32 sinA, cosA;
-
-    sinA = sinf(rad);
-    cosA = cosf(rad);
-
-    PSMTXRotTrig( m, axis, sinA, cosA );
+  f32 sinA, cosA;
+  sinA = sinf(rad);
+  cosA = cosf(rad);
+  PSMTXRotTrig(m, axis, sinA, cosA);
 }
 
 /*
@@ -819,6 +829,8 @@ void PSMTXReflect(void)
 	// UNUSED FUNCTION
 }
 
+#pragma fp_contract off
+
 /*
  * --INFO--
  * Address:	800EA8F8
@@ -860,9 +872,22 @@ void C_MTXLookAt(Mtx m, const Vec* camPos, const Vec* camUp, const Vec* target)
  * Address:	........
  * Size:	000094
  */
-void C_MTXLightFrustum(void)
+void C_MTXLightFrustum(Mtx m, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9)
 {
-	// UNUSED FUNCTION
+	f32 tmp = 1.0f / (arg4 - arg3);
+	m[0][0] = ((2 * arg5) * tmp) * arg6;
+	m[0][1] = 0.0f;
+	m[0][2] = (((arg4 + arg3) * tmp) * arg6) - arg8;
+	m[0][3] = 0.0f;
+	tmp     = 1.0f / (arg1 - arg2);
+	m[1][0] = 0.0f;
+	m[1][1] = ((2 * arg5) * tmp) * arg7;
+	m[1][2] = (((arg1 + arg2) * tmp) * arg7) - arg9;
+	m[1][3] = 0.0f;
+	m[2][0] = 0.0f;
+	m[2][1] = 0.0f;
+	m[2][2] = -1.0f;
+	m[2][3] = 0.0f;
 }
 
 /*
@@ -922,3 +947,4 @@ void C_MTXLightOrtho(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, 
 	m[2][2] = 0.0f;
 	m[2][3] = 1.0f;
 }
+#pragma fp_contract reset

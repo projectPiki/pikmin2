@@ -52,7 +52,7 @@ void J2DPerspGraph::setFovy(f32 fovY)
 void J2DPerspGraph::setPort()
 {
 	J2DGrafContext::setPort();
-	C_MTXPerspective(mFovY, mBounds.getWidth() / mBounds.getHeight(), _C0, _C4, mMtx44);
+	C_MTXPerspective(mMtx44, mFovY, mBounds.getWidth() / mBounds.getHeight(), _C0, _C4);
 	GXSetProjection(mMtx44, GX_PERSPECTIVE);
 }
 

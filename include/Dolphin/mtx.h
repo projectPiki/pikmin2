@@ -9,43 +9,61 @@ extern "C" {
 
 #include "Dolphin/vec.h"
 
-// sizeof = 48 or 0x30
+/////////////// TYPE DEFINES ///////////////
+#define MTXDegToRad(a) ((a)*0.01745329252f)
+
 typedef f32 Mtx[3][4];
 typedef f32 Mtx23[2][3];
 typedef f32 Mtx33[3][3];
 typedef f32 Mtx44[4][4];
 typedef f32 PSQuaternion[4];
-#define MTXDegToRad(a) ((a)*0.01745329252f)
 
 typedef struct Quaternion {
 	f32 x, y, z, w;
 } Quaternion;
 
-void PSMTXConcat(const Mtx, const Mtx, Mtx);
-void PSMTXCopy(const Mtx, Mtx);
-void PSMTXIdentity(Mtx);
-void PSMTXTranspose(const Mtx, Mtx);
-u32 PSMTXInverse(const Mtx, Mtx);
-void PSMTXRotRad(Mtx, char, f32);
-void PSMTXRotTrig(Mtx, char, f32, f32);
-void __PSMTXRotAxisRadInternal(Mtx, const struct Vec*, f32, f32);
-void PSMTXRotAxisRad(Mtx, const struct Vec*, f32);
-void PSMTXTrans(Mtx, f32, f32, f32);
-void PSMTXTransApply(const Mtx, Mtx, f32, f32, f32);
-void PSMTXScale(Mtx, f32, f32, f32);
-void PSMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
-void PSMTXQuat(Mtx, const PSQuaternion*);
-void PSMTXMultVec(Mtx, Vec*, Vec*);
-void PSMTXMultVecSR(Mtx, Vec*, Vec*);
-/* TODO: Determine what these params are. */
-void PSMTXMultVecArraySR(Mtx, f32*, f32*, f32*);
-void PSMTX44Copy(Mtx44, Mtx44);
+////////////////////////////////////////////
 
-void C_MTXPerspective(f32, f32, f32, f32, Mtx);
-void C_MTXOrtho(Mtx44, f32, f32, f32, f32, f32, f32);
+////// PAIRED SINGLE MATRIX FUNCTIONS //////
+void PSMTXIdentity(Mtx mtx);
+void PSMTXCopy(const Mtx src, Mtx dest);
+void PSMTXConcat(const Mtx A, const Mtx B, Mtx concat);
+
+void PSMTXTranspose(const Mtx src, Mtx xPose);
+u32 PSMTXInverse(const Mtx src, Mtx inv);
+
+void __PSMTXRotAxisRadInternal(Mtx mtx, const Vec* axis, f32 sinA, f32 cosA);
+void PSMTXRotRad(Mtx mtx, char axis, f32 angle);
+void PSMTXRotTrig(Mtx mtx, char axis, f32 sinA, f32 cosA);
+void PSMTXRotAxisRad(Mtx mtx, const Vec* axis, f32 angle);
+
+void PSMTXTrans(Mtx mtx, f32 xT, f32 yT, f32 zT);
+void PSMTXTransApply(const Mtx src, Mtx dest, f32 xT, f32 yT, f32 zT);
+
+void PSMTXScale(Mtx mtx, f32 xS, f32 yS, f32 zS);
+void PSMTXScaleApply(const Mtx src, Mtx dest, f32 xS, f32 yS, f32 zS);
+void PSMTXQuat(Mtx mtx, const PSQuaternion* quat);
+
+////////////////////////////////////////////
+
+//// PAIRED SINGLE MATRIX VEC FUNCTIONS ////
+void PSMTXMultVec(const Mtx, const Vec*, Vec*);
+void PSMTXMultVecSR(const Mtx, const Vec*, Vec*);
+void PSMTXMultVecArraySR(const Mtx, f32*, f32*, f32*);
+
+////////////////////////////////////////////
+
+///////////  MATRIX44 FUNCTIONS ////////////
+void PSMTX44Copy(Mtx44 src, Mtx44 dest);
+void C_MTXPerspective(Mtx44 mtx, f32 fovY, f32 aspect, f32 n, f32 f);
+void C_MTXOrtho(Mtx44 mtx, f32 t, f32 b, f32 l, f32 r, f32 n, f32 f);
+////////////////////////////////////////////
+
+///////// CODED C MATRIX FUNCTIONS /////////
 void C_MTXLookAt(Mtx, const Vec*, const Vec*, const Vec*);
-void C_MTXLightPerspective(f32, f32, f32, f32, f32, f32, Mtx);
-void C_MTXLightOrtho(f32, f32, f32, f32, f32, f32, f32, f32, Mtx);
+void C_MTXLightPerspective(Mtx mtx, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 transS, f32 transT);
+void C_MTXLightOrtho(Mtx mtx, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS, f32 transT);
+////////////////////////////////////////////
 
 #ifdef __cplusplus
 }
