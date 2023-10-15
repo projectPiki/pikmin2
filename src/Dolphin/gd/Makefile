@@ -3,7 +3,7 @@ GD_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/gd/GDGeometry.o\
 
 $(GD_FILES): CFLAGS += -common off
-$(GD_FILES): MWCC_VERSION := 1.2.5
+$(GD_FILES): MWCC_VERSION := 1.2.5n
 
 DEPENDS += $(GD_FILES:.o=.d)
 
