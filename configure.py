@@ -920,7 +920,7 @@ LIBS = [
             ["plugProjectKandoU/interactBattle", True],
             ["plugProjectKandoU/aiFree", True],
             "plugProjectKandoU/aiAttack",
-            "plugProjectKandoU/aiTransport",
+            ["plugProjectKandoU/aiTransport", True],
             "plugProjectKandoU/aiEnter",
             "plugProjectKandoU/pathfinder",
             "plugProjectKandoU/pelletState",

@@ -1098,12 +1098,18 @@ struct ActTransportArg : public ActionArg {
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
-	Game::Onyon* _08;      // _08
+	Game::Onyon* mGoal;    // _08
 	Vector3f _0C;          // _0C
 	s16 _18;               // _18, slot maybe?
 };
 
 struct ActTransport : public Action, virtual SysShape::MotionListener {
+	enum TransportState {
+		TRANSPORT_Slot = 0, // finding a slot
+		TRANSPORT_Lift = 1, // lifting pellet
+		TRANSPORT_Move = 2, // moving with pellet
+	};
+
 	ActTransport(Game::Piki* parent);
 
 	virtual void init(ActionArg* settings);                   // _08
@@ -1127,17 +1133,17 @@ struct ActTransport : public Action, virtual SysShape::MotionListener {
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
 	Game::Pellet* mPellet;  // _10
-	Game::Onyon* _14;       // _14
-	u16 _18;                // _18
-	Vector3f _1C;           // _1C
-	s16 _28;                // _28
+	Game::Onyon* mGoal;     // _14
+	u16 mState;             // _18
+	Vector3f _1C;           // _1C, gets passed to PathMove
+	s16 _28;                // _28, gets passed to PathMove
 	ActGotoSlot* mGotoSlot; // _2C
 	ActPathMove* mPathMove; // _30
-	u8 _34;                 // _34
-	s16 _36;                // _36
-	u8 _38;                 // _38
-	u8 _39;                 // _39
-	bool _3A;               // _3A
+	bool mIsLiftAnimReady;  // _34, has reached point in lift anim to actually lift
+	s16 mLiftTimer;         // _36
+	bool mIsPathMoveActive; // _38
+	bool mIsMoving;         // _39
+	bool mIsCaptured;       // _3A
 	                        // _3C = MotionListener
 };
 

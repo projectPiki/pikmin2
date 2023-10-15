@@ -30,7 +30,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/interactBattle.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiFree.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiAttack.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiTransport.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiTransport.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiEnter.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pathfinder.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletState.o\

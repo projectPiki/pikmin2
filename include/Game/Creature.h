@@ -415,20 +415,6 @@ struct Creature : public CellObject {
 	// unused/inlined
 	bool isStickLeader();
 
-	inline Creature* getStickLeader()
-	{
-		Creature* v1 = mSticked;
-		Creature* v2 = nullptr;
-		while (v1 != nullptr) {
-			if (v1->isPiki()) {
-				v2 = v1;
-				break;
-			}
-			v1 = v1->mCaptured;
-		}
-		return v2;
-	}
-
 	static bool usePacketCulling;
 	static Creature* currOp;
 
