@@ -99,8 +99,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 						closestCavePos  = cavePos;
 					}
 				}
-				HoleinStateArg holeInArg;
-				holeInArg.mPosition = closestCavePos;
+				HoleinStateArg holeInArg(closestCavePos);
 				piki->mFsm->transit(piki, PIKISTATE_Holein, &holeInArg);
 				return false;
 			}

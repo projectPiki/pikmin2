@@ -12,9 +12,9 @@ struct VsGameSection;
 struct Pellet;
 
 struct GameMessage {
-	virtual bool actCommon(BaseGameSection*);   // _08 (weak)
-	virtual bool actSingle(SingleGameSection*); // _0C (weak)
-	virtual bool actVs(VsGameSection*);         // _10 (weak)
+	virtual bool actCommon(BaseGameSection*) { return true; }   // _08 (weak)
+	virtual bool actSingle(SingleGameSection*) { return true; } // _0C (weak)
+	virtual bool actVs(VsGameSection*) { return true; }         // _10 (weak)
 
 	// _00 = VTBL
 };
@@ -121,6 +121,7 @@ struct GameMessageVsRedOrSuckStart : public GameMessage {
 };
 
 struct GameMessageVsUseCard : public GameMessage {
+	GameMessageVsUseCard(int id) { _04 = id; }
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL

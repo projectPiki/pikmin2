@@ -8,8 +8,17 @@
 #include "Game/MoviePlayer.h"
 #include "Game/PikiMgr.h"
 #include "Game/Entities/ItemPikihead.h"
+#include "Game/Entities/ItemBigFountain.h"
+#include "Game/Entities/ItemHole.h"
+#include "Game/Entities/ItemCave.h"
+#include "Game/Entities/ItemOnyon.h"
+#include "Game/MapMgr.h"
+#include "Game/CameraMgr.h"
+#include "Game/Stickers.h"
+#include "Game/rumble.h"
 #include "Game/AIConstants.h"
 #include "JSystem/J3D/J3DJoint.h"
+#include "PSSystem/PSSystemIF.h"
 #include "P2Macros.h"
 #include "PSM/Navi.h"
 #include "SysShape/Model.h"
@@ -18,6 +27,7 @@
 #include "PikiAI.h"
 #include "Radar.h"
 #include "nans.h"
+#include "utilityU.h"
 
 static const u32 fillerbytes[3] = { 0, 0, 0 };
 
@@ -56,7 +66,6 @@ void Navi::getLODSphere(Sys::Sphere& sphere)
  * Size:	000208
  */
 Navi::Navi()
-    : FakePiki()
 {
 	mController1 = nullptr;
 	mController2 = nullptr;
@@ -64,7 +73,7 @@ Navi::Navi()
 	mCamera2     = nullptr;
 	mWhistle     = nullptr;
 
-	mObjectTypeID = 1;
+	mObjectTypeID = OBJTYPE_Navi;
 
 	mEffectsObj = new efx::TNaviEffect;
 	mEffectsObj->init(nullptr, nullptr, nullptr, efx::TNaviEffect::NAVITYPE_Olimar);
@@ -130,7 +139,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	mCollTree->createFromFactory(mModel, naviMgr->mCollData, nullptr);
 	JUT_ASSERTLINE(838, ((int)mCollTree->mPart) >= 0x80000000,
-	               "繧ｶ繝ｳ繝ｼ繝ｼ?ｼ医?ｻﾐｴ繝ｻ?ｼ???繝阪Φ\n"); // 'disappointttttt D: ?? ment' (lol)
+	               "ザンーー（・д・）ーーネン\n"); // 'disappointttttt D: ?? ment' (lol)
 	mCollTree->attachModel(mModel);
 
 	mFsm->start(this, NSID_Walk, nullptr);
@@ -153,24 +162,17 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	_26A = 0;
 	_269 = 0;
 	Vector3f navi_scale; // navi model scale
-	navi_scale = Vector3f(1.3f);
+	navi_scale = Vector3f(OLIMAR_SCALE);
 
 	if (mNaviIndex == 1) { // case for Louie/President scale
-		navi_scale = Vector3f(1.5f);
+		navi_scale = Vector3f(LOUIE_SCALE);
 	}
 
 	mScale = navi_scale;
-	uVar2  = mNaviIndex;
-	mCursorMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->mNaviDeadFlags + (u32)uVar2 * 5 + 3));
-	mArrowMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->mNaviDeadFlags + (u32)uVar2 * 5 + 0xd));
+	int id = mNaviIndex;
+	mCursorMatAnim->start(&naviMgr->mCursorAnims[id]);
+	mArrowMatAnim->start(&naviMgr->mMarkerAnims[id]);
 }
-
-/*
- * --INFO--
- * Address:	80140340
- * Size:	000008
- */
-s32 Navi::getCreatureID() { return mNaviIndex; }
 
 /*
  * --INFO--
@@ -309,7 +311,7 @@ bool Navi::procActionButton()
 
 	// if sprout found, pluck it.
 	if (targetSprout) {
-		NaviNukuAdjustArg nukuAdjustArg;
+		NaviNukuAdjustStateArg nukuAdjustArg;
 		setupNukuAdjustArg(targetSprout, nukuAdjustArg);
 		mFsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg);
 
@@ -342,7 +344,7 @@ bool Navi::procActionButton()
 
 			// if sprout found, pluck it.
 			if (otherTargetSprout) {
-				NaviNukuAdjustArg nukuAdjustArg2;
+				NaviNukuAdjustStateArg nukuAdjustArg2;
 				setupNukuAdjustArg(otherTargetSprout, nukuAdjustArg2);
 				nukuAdjustArg2._18 = 1;
 				otherNavi->mFsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg2);
@@ -816,59 +818,12 @@ lbl_80140C64:
 	*/
 }
 
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	80140C98
- * Size:	000010
- */
-/*void MonoObjectMgr<Game::Navi>::getAt(int)
-{
-    mulli    r0, r4, 0x320
-    lwz      r3, 0x28(r3)
-    add      r3, r3, r0
-    blr
-}*/
-
-/*
- * --INFO--
- * Address:	80140CA8
- * Size:	00004C
- */
-// void Iterator<Game::ItemPikihead::Item>::isDone()
-//{
-/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 8(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x1c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 4(r31)
-subf     r0, r0, r3
-cntlzw   r0, r0
-srwi     r3, r0, 5
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-*/
-//}
-
-namespace Game {
-
 /*
  * --INFO--
  * Address:	80140CF4
  * Size:	000138
  */
-void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item* item, Game::NaviNukuAdjustArg& arg)
+void Navi::setupNukuAdjustArg(ItemPikihead::Item* item, NaviNukuAdjustStateArg& arg)
 {
 	Vector3f direction = item->getPosition() - getPosition();
 	arg._00            = angDist(roundAng(pikmin2_atan2f(direction.x, direction.z)), mFaceDir) / 10.0f;
@@ -938,20 +893,6 @@ void Navi::incDopeCount(int sprayType)
 
 	playData->incDopeCount(sprayType);
 }
-
-/*
- * --INFO--
- * Address:	80140FAC
- * Size:	000008
- */
-// void BaseGameSection::sendMessage(Game::GameMessage&)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  li        r3, 0
-// 	  blr
-// 	*/
-// }
 
 /*
  * --INFO--
@@ -1205,8 +1146,24 @@ void Navi::collisionCallback(CollEvent& event)
  * Address:	801415A4
  * Size:	000194
  */
-void Navi::platCallback(PlatEvent&)
+void Navi::platCallback(PlatEvent& plat)
 {
+	Creature* obj = plat.mObj;
+	if (plat.mInstance->mId.match('elec', '*')) {
+		if (!playData->mOlimarData->hasItem(OlimarData::ODII_DreamMaterial)) {
+			Vector3f origin = plat.mInstance->mMatrix->getBasis(3);
+			Vector3f pos    = obj->getPosition() * origin;
+			if (sqrDistance(mPosition, pos) < 0.0f) {
+				origin.x *= -1.0f;
+				origin.z *= -1.0f;
+			}
+			Vector3f mag(origin.x * 200.0f, 150.0f, origin.z * 200.0f);
+			NaviFlickArg arg(obj, mag, naviMgr->mNaviParms->mNaviParms.mQ010());
+			transit(NSID_Flick, &arg);
+		}
+	} else if (plat.mInstance->mId.match('finl', '*')) {
+		mCPlateMgr->shrink();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -1316,56 +1273,6 @@ void Navi::platCallback(PlatEvent&)
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00005C
-//  */
-// void Game::ColorAnimator::__ct()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000060
-//  */
-// void Game::ColorAnimLoop::__dt()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00004C
-//  */
-// void Game::ColorAnimator::start((int))
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00008C
-//  */
-// void Game::ColorAnimator::setLoop((int, float, float))
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	00008C
-//  */
-// void Game::ColorAnimator::animate((float))
-// {
-// 	// UNUSED FUNCTION
-// }
-
 /*
  * --INFO--
  * Address:	80141738
@@ -1426,7 +1333,10 @@ void Navi::doEntry()
 		cursorCols.b = col.b;
 		cursorCols.a = col.a;
 	} else {
-		cursorCols = J3DGXColorS10();
+		cursorCols.r = 255;
+		cursorCols.g = 255;
+		cursorCols.b = 255;
+		cursorCols.a = 255;
 	}
 
 	J3DMaterial* materials = mCursorModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[0];
@@ -1454,6 +1364,53 @@ void Navi::doEntry()
  */
 void Navi::doAnimation()
 {
+	if (isMovieMotion()) {
+		f32 time = sys->mDeltaTime;
+		updateCell();
+		AILODParm parm;
+		parm.mClose = 0.02f;
+		parm.mFar   = 0.015f;
+		updateLOD(parm);
+		mModel->clearAnimatorAll();
+		f32 calc = time * 30.0f;
+		mAnimator.mSelfAnimator.animate(calc);
+		mAnimator.mBoundAnimator.animate(calc);
+		updateTrMatrix();
+		mModel->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimator.mSelfAnimator.getCalc();
+		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->calc();
+		mCollTree->update();
+		updateCursor();
+	} else {
+		if (mapMgr) {
+			FakePiki::doAnimation();
+		} else {
+			f32 time = sys->mDeltaTime;
+			updateCell();
+			if (!gameSystem->mIsFrozen) {
+				mAnimator.mSelfAnimator.animate(mAnimSpeed * time);
+				mAnimator.mBoundAnimator.animate(mAnimSpeed * time);
+			}
+			updateTrMatrix();
+			moveVelocity();
+			moveRotation();
+			PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+			mModel->mJ3dModel->calc();
+			mCollTree->update();
+		}
+		Matrixf* mtx    = mBeaconJoint->getWorldMatrix();
+		mBeaconPosition = (5.0f, 0.0f, 0.0f);
+		Vector3f calcpos;
+		PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&mBeaconPosition, (Vec*)&calcpos);
+		mBeaconPosition = calcpos;
+		f32 rad         = mWhistle->mRadius;
+		if (mController1) {
+			mEffectsObj->updateCursor_(*mEffectsObj->mNaviPos, rad);
+		} else {
+			mEffectsObj->updateCursor_(*mEffectsObj->mNaviPos, rad);
+		}
+		updateCursor();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -1651,6 +1608,14 @@ void Navi::doAnimation()
  */
 void Navi::updateCursor()
 {
+	Vector3f navipos = getPosition();
+	Vector3f pos1    = mWhistle->mPosition.distance(navipos);
+
+	Matrixf mtx;
+	PSMTXCopy(mtx.mMatrix.mtxView, mCursorModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mtx.mMatrix.mtxView, mMarkerModel->mJ3dModel->mPosMtx);
+	mCursorModel->mJ3dModel->calc();
+	mMarkerModel->mJ3dModel->calc();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x110(r1)
@@ -1930,208 +1895,51 @@ int Navi::getDownfloorMass()
  */
 void Navi::update()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x38(r1)
-	  lbz       r3, 0x2A4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  subi      r0, r3, 0x1
-	  stb       r0, 0x2A4(r31)
-	.loc_0x2C:
-	  lwz       r3, 0x26C(r31)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0xDD2CC
-	  mr        r3, r31
-	  bl        -0x48D0
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x210(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0x29AC
-	  mr        r3, r31
-	  bl        0x2A3C
-	  lwz       r3, 0x2D0(r31)
-	  bl        0x275DC4
-	  mr        r3, r31
-	  bl        0xD50
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC4
-	  lwz       r5, 0x278(r31)
-	  cmplwi    r5, 0
-	  beq-      .loc_0xC4
-	  lwz       r0, 0x1C(r5)
-	  rlwinm.   r0,r0,0,23,23
-	  beq-      .loc_0xC4
-	  lwz       r6, -0x6C18(r13)
-	  mr        r4, r3
-	  lwz       r3, 0x58(r6)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xDC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x290
-	.loc_0xC4:
-	  mr        r3, r31
-	  bl        0x1030
-	  cmplwi    r3, 0
-	  beq-      .loc_0x110
-	  lwz       r4, 0x278(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x110
-	  lwz       r0, 0x1C(r4)
-	  rlwinm.   r0,r0,0,23,23
-	  beq-      .loc_0x110
-	  lwz       r6, -0x6C18(r13)
-	  mr        r4, r3
-	  lhz       r5, 0x2DC(r31)
-	  lwz       r3, 0x58(r6)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xD8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x290
-	.loc_0x110:
-	  mr        r3, r31
-	  bl        0x12B0
-	  mr.       r30, r3
-	  beq-      .loc_0x174
-	  lwz       r4, 0x278(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x174
-	  lwz       r0, 0x1C(r4)
-	  rlwinm.   r0,r0,0,23,23
-	  beq-      .loc_0x174
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x174
-	  lwz       r3, -0x6C18(r13)
-	  mr        r4, r30
-	  lwz       r5, 0x278(r31)
-	  lwz       r3, 0x58(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xE0(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x290
-	.loc_0x174:
-	  lwz       r4, -0x6C18(r13)
-	  lwz       r3, 0x2D8(r31)
-	  lwz       r4, 0x50(r4)
-	  lwz       r0, 0x10(r3)
-	  sub       r3, r0, r4
-	  bl        -0x7C0F8
-	  cmpwi     r3, 0xA
-	  ble-      .loc_0x1D8
-	  addi      r3, r1, 0x1C
-	  bl        0x7253C
-	  mr        r4, r31
-	  addi      r3, r1, 0x10
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x10(r1)
-	  addi      r4, r1, 0x1C
-	  lfs       f1, 0x14(r1)
-	  lfs       f0, 0x18(r1)
-	  stfs      f2, 0x1C(r1)
-	  stfs      f1, 0x20(r1)
-	  stfs      f0, 0x24(r1)
-	  lwz       r3, 0x2D8(r31)
-	  bl        0x725A4
-	.loc_0x1D8:
-	  lwz       r3, -0x6C18(r13)
-	  bl        0x72D24
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x270
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x270
-	  lwz       r3, 0x278(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x270
-	  lwz       r0, 0x1C(r3)
-	  rlwinm.   r0,r0,0,20,20
-	  beq-      .loc_0x270
-	  lwz       r3, 0x274(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x270
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x270
-	  lhz       r5, 0x2DC(r31)
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x590
-	  lis       r3, 0x804B
-	  stw       r0, 0x8(r1)
-	  addi      r0, r3, 0x60F4
-	  lwz       r3, -0x6C18(r13)
-	  addi      r4, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  lwz       r3, 0x58(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	.loc_0x270:
-	  lwz       r3, 0x270(r31)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x254(r31)
-	  bl        0x54250
-	.loc_0x290:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	if (mInvincibleTimer) {
+		mInvincibleTimer--;
+	}
+	mSoundObj->exec();
+	demoCheck();
+	updateLook();
+	updateLookCreature();
+	updateKaisanDisable();
+	updateThrowDisable();
+	mEffectsObj->update();
+
+	ItemHole::Item* hole = checkHole();
+	if (hole && mController1 && mController1->getButtonDown() & Controller::PRESS_A) {
+		gameSystem->mSection->openCaveMoreMenu(hole, mController1);
+		return;
+	}
+
+	ItemCave::Item* cave = checkCave();
+	if (cave && mController1 && mController1->getButtonDown() & Controller::PRESS_A) {
+		gameSystem->mSection->openCaveInMenu(cave, mNaviIndex);
+		return;
+	}
+
+	ItemBigFountain::Item* geyser = checkBigFountain();
+	if (geyser && mController1 && mController1->getButtonDown() & Controller::PRESS_A && !geyser->isAlive()) {
+		gameSystem->mSection->openKanketuMenu(geyser, mController1);
+		return;
+	}
+
+	// abs?
+	if (mFootmarks->mCount - gameSystem->mFrameTimer > 10) {
+		Footmark mark;
+		mark.mPosition = getPosition();
+		mFootmarks->add(mark);
+	}
+
+	if (!gameSystem->paused_soft() && gameSystem->isVersusMode() && mController1 && mController1->getButtonDown() & Controller::PRESS_Y
+	    && mCurrentState && mCurrentState->vsUsableY()) {
+		GameMessageVsUseCard mesg(mNaviIndex);
+		gameSystem->mSection->sendMessage(mesg);
+	}
+
+	mFsm->exec(this);
+	mCPlateMgr->update();
 }
-
-/*
- * --INFO--
- * Address:	80142370
- * Size:	000004
- */
-void BaseGameSection::openKanketuMenu(ItemBigFountain::Item*, Controller*) { }
-
-/*
- * --INFO--
- * Address:	80142374
- * Size:	000004
- */
-void BaseGameSection::openCaveInMenu(ItemCave::Item*, int) { }
-
-/*
- * --INFO--
- * Address:	80142378
- * Size:	000004
- */
-void BaseGameSection::openCaveMoreMenu(ItemHole::Item*, Controller*) { }
 
 /*
  * --INFO--
@@ -2515,45 +2323,14 @@ void Navi::movieStartDemoAnimation(SysShape::AnimInfo* info)
  * Address:	80142978
  * Size:	000088
  */
-void Navi::movieSetTranslation(Vector3f&, f32)
+void Navi::movieSetTranslation(Vector3f& newpos, f32 dir)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  lfs       f0, -0x600C(r2)
-	  mr        r31, r3
-	  fmr       f31, f1
-	  li        r5, 0
-	  stfs      f0, 0x200(r3)
-	  stfs      f0, 0x204(r3)
-	  stfs      f0, 0x208(r3)
-	  stfs      f0, 0x1E4(r3)
-	  stfs      f0, 0x1E8(r3)
-	  stfs      f0, 0x1EC(r3)
-	  stfs      f0, 0x11C(r3)
-	  stfs      f0, 0x120(r3)
-	  stfs      f0, 0x124(r3)
-	  lfs       f0, 0x20C(r3)
-	  stfs      f0, 0x238(r3)
-	  lfs       f0, 0x210(r3)
-	  stfs      f0, 0x23C(r3)
-	  lfs       f0, 0x214(r3)
-	  stfs      f0, 0x240(r3)
-	  bl        -0x7834
-	  stfs      f31, 0x1FC(r31)
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	mSimVelocity         = 0.0f;
+	mVelocity            = 0.0f;
+	mAcceleration        = 0.0f;
+	mPositionBeforeMovie = mPosition;
+	setPosition(newpos, false);
+	mFaceDir = dir;
 }
 
 /*
@@ -2561,8 +2338,16 @@ void Navi::movieSetTranslation(Vector3f&, f32)
  * Address:	80142A00
  * Size:	00012C
  */
-bool Navi::movieGotoPosition(Vector3f&)
+bool Navi::movieGotoPosition(Vector3f& pos)
 {
+	if (pos.distance(mPosition) <= 400.0f) {
+		mVelocity    = 0.0f;
+		mSimVelocity = 0.0f;
+		return true;
+	} else {
+		mVelocity = naviMgr->mNaviParms->mNaviParms.mP004.mValue;
+		return false;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -2651,8 +2436,9 @@ bool Navi::movieGotoPosition(Vector3f&)
  * Address:	80142B2C
  * Size:	0001A8
  */
-void Navi::set_movie_draw(bool)
+void Navi::set_movie_draw(bool on)
 {
+	if (isMovieActor() && on) { }
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -2774,32 +2560,7 @@ void Navi::set_movie_draw(bool)
  * Address:	80142CD4
  * Size:	000050
  */
-bool Navi::isWalking()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lfs       f1, 0x1E4(r3)
-	  lfs       f0, 0x1E8(r3)
-	  fmuls     f1, f1, f1
-	  lfs       f2, 0x1EC(r3)
-	  fmuls     f0, f0, f0
-	  fmuls     f2, f2, f2
-	  fadds     f0, f1, f0
-	  fadds     f1, f2, f0
-	  bl        0x2CEB04
-	  lfs       f0, -0x6014(r2)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r3,r0,2,31,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+bool Navi::isWalking() { return mVelocity.qLength() > 10.0f; }
 
 /*
  * --INFO--
@@ -2808,6 +2569,31 @@ bool Navi::isWalking()
  */
 void Navi::setDeadLaydown()
 {
+	int id = mNaviIndex;
+	if (id < 8) {
+		playData->mDeadNaviID = mNaviIndex; // erm
+	}
+
+	Vector3f offset;
+	if (mNaviIndex == 0) {
+		offset = (-170.0f, 0.0f, 40.0f);
+	} else {
+		offset = (-190.0f, 0.0f, 10.0f);
+	}
+	if (mapMgr->getDemoMatrix()) {
+		Matrixf* mtx = mapMgr->getDemoMatrix();
+		Vector3f newpos;
+		PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&offset, (Vec*)&newpos);
+		offset = newpos;
+		setPosition(offset, false);
+		startMotion(IPikiAnims::DEAD, IPikiAnims::DEAD, nullptr, nullptr);
+		mIsAlive = false;
+	} else {
+		mIsAlive = true;
+	}
+	setAlive(false);
+	naviMgr->informOrimaDead(id);
+	mHealth = 0.0f;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -2914,241 +2700,31 @@ void Navi::setDeadLaydown()
  * Address:	80142E90
  * Size:	0002DC
  */
-void Navi::checkHole()
+ItemHole::Item* Navi::checkHole()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  lwz       r4, -0x6BB8(r13)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x2C4
-	.loc_0x2C:
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x2C4
-	.loc_0x44:
-	  lwz       r3, 0x274(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r0, 0x4(r3)
-	  b         .loc_0x5C
-	.loc_0x58:
-	  li        r0, -0x1
-	.loc_0x5C:
-	  cmpwi     r0, 0
-	  beq-      .loc_0x6C
-	  li        r3, 0
-	  b         .loc_0x2C4
-	.loc_0x6C:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x78
-	  addi      r4, r4, 0x30
-	.loc_0x78:
-	  li        r0, 0
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x560
-	  stw       r0, 0x20(r1)
-	  cmplwi    r0, 0
-	  stw       r3, 0x14(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r4, 0x1C(r1)
-	  bne-      .loc_0xB8
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x2A0
-	.loc_0xB8:
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x128
-	.loc_0xD4:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x20(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2A0
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	.loc_0x128:
-	  lwz       r12, 0x14(r1)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xD4
-	  b         .loc_0x2A0
-	.loc_0x148:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r0, r3
-	  mr        r30, r0
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1E4
-	  mr        r3, r30
-	  bl        0x8F4E8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1E4
-	  lwz       r0, 0x1E4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1E4
-	  mr        r4, r30
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x10(r1)
-	  lfs       f0, 0x214(r31)
-	  lfs       f2, 0x8(r1)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x20C(r31)
-	  lfs       f0, -0x5FB0(r2)
-	  fsubs     f2, f2, f1
-	  fmuls     f1, f3, f3
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1E4
-	  mr        r3, r30
-	  b         .loc_0x2C4
-	.loc_0x1E4:
-	  lwz       r0, 0x20(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x210
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x2A0
-	.loc_0x210:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x284
-	.loc_0x230:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x20(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2A0
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	.loc_0x284:
-	  lwz       r12, 0x14(r1)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x230
-	.loc_0x2A0:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x18(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x148
-	  li        r3, 0
-	.loc_0x2C4:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
-}
+	if (!ItemHole::mgr) {
+		return nullptr;
+	}
+	if (moviePlayer->mDemoState != 0) {
+		return nullptr;
+	}
+	if (getStateID() != NSID_Walk) {
+		return nullptr;
+	}
 
-/*
- * --INFO--
- * Address:	8014316C
- * Size:	00004C
- */
-bool Iterator<Game::BaseItem>::isDone()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r31)
-	  sub       r0, r3, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	Iterator<BaseItem> iterator(ItemHole::mgr);
+	CI_LOOP(iterator)
+	{
+		ItemHole::Item* hole = static_cast<ItemHole::Item*>(*iterator);
+		if (hole->isAlive() && hole->canRide() && !hole->mBarrel) {
+			Vector3f holepos = hole->getPosition();
+			if (sqrDistanceXZ(holepos, mPosition) < 3600.0f) {
+				return hole;
+			}
+		}
+	}
+
+	return nullptr;
 }
 
 /*
@@ -3156,206 +2732,30 @@ bool Iterator<Game::BaseItem>::isDone()
  * Address:	801431B8
  * Size:	0002CC
  */
-void Navi::checkCave()
+ItemCave::Item* Navi::checkCave()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  lwz       r4, -0x6B60(r13)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x2B4
-	.loc_0x2C:
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x2B4
-	.loc_0x44:
-	  lwz       r3, 0x274(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r0, 0x4(r3)
-	  b         .loc_0x5C
-	.loc_0x58:
-	  li        r0, -0x1
-	.loc_0x5C:
-	  cmpwi     r0, 0
-	  beq-      .loc_0x6C
-	  li        r3, 0
-	  b         .loc_0x2B4
-	.loc_0x6C:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x78
-	  addi      r4, r4, 0x30
-	.loc_0x78:
-	  li        r0, 0
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x560
-	  stw       r0, 0x20(r1)
-	  cmplwi    r0, 0
-	  stw       r3, 0x14(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r4, 0x1C(r1)
-	  bne-      .loc_0xB8
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x290
-	.loc_0xB8:
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x128
-	.loc_0xD4:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x20(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x290
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	.loc_0x128:
-	  lwz       r12, 0x14(r1)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xD4
-	  b         .loc_0x290
-	.loc_0x148:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r0, r3
-	  mr        r30, r0
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1D4
-	  lwz       r0, 0x1F4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1D4
-	  mr        r4, r30
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x10(r1)
-	  lfs       f0, 0x214(r31)
-	  lfs       f2, 0x8(r1)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x20C(r31)
-	  lfs       f0, -0x5FAC(r2)
-	  fsubs     f2, f2, f1
-	  fmuls     f1, f3, f3
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1D4
-	  mr        r3, r30
-	  b         .loc_0x2B4
-	.loc_0x1D4:
-	  lwz       r0, 0x20(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x200
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x290
-	.loc_0x200:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x274
-	.loc_0x220:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x20(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x290
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	.loc_0x274:
-	  lwz       r12, 0x14(r1)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x220
-	.loc_0x290:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x18(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x148
-	  li        r3, 0
-	.loc_0x2B4:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	if (!ItemCave::mgr) {
+		return nullptr;
+	}
+	if (moviePlayer->mDemoState != 0) {
+		return nullptr;
+	}
+	if (getStateID() != NSID_Walk) {
+		return nullptr;
+	}
+
+	Iterator<BaseItem> iterator(ItemCave::mgr);
+	CI_LOOP(iterator)
+	{
+		ItemCave::Item* hole = static_cast<ItemCave::Item*>(*iterator);
+		if (hole->isAlive() && !hole->mBarrel) {
+			Vector3f holepos = hole->getPosition();
+			if (sqrDistanceXZ(holepos, mPosition) < 6400.0f) {
+				return hole;
+			}
+		}
+	}
+	return nullptr;
 }
 
 /*
@@ -3363,200 +2763,31 @@ void Navi::checkCave()
  * Address:	80143484
  * Size:	0002B4
  */
-void Navi::checkBigFountain()
+ItemBigFountain::Item* Navi::checkBigFountain()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  lwz       r4, -0x6B50(r13)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x29C
-	.loc_0x2C:
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x29C
-	.loc_0x44:
-	  lwz       r3, 0x274(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r0, 0x4(r3)
-	  b         .loc_0x5C
-	.loc_0x58:
-	  li        r0, -0x1
-	.loc_0x5C:
-	  cmpwi     r0, 0
-	  beq-      .loc_0x6C
-	  li        r3, 0
-	  b         .loc_0x29C
-	.loc_0x6C:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x78
-	  addi      r4, r4, 0x30
-	.loc_0x78:
-	  li        r0, 0
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x560
-	  stw       r0, 0x20(r1)
-	  cmplwi    r0, 0
-	  stw       r3, 0x14(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r4, 0x1C(r1)
-	  bne-      .loc_0xB8
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x278
-	.loc_0xB8:
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x128
-	.loc_0xD4:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x20(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x278
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	.loc_0x128:
-	  lwz       r12, 0x14(r1)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xD4
-	  b         .loc_0x278
-	.loc_0x148:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r0, r3
-	  mr        r30, r0
-	  bl        0xA9C80
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1BC
-	  mr        r4, r30
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x10(r1)
-	  lfs       f0, 0x214(r31)
-	  lfs       f2, 0x8(r1)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x20C(r31)
-	  lfs       f0, -0x5FAC(r2)
-	  fsubs     f2, f2, f1
-	  fmuls     f1, f3, f3
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1BC
-	  mr        r3, r30
-	  b         .loc_0x29C
-	.loc_0x1BC:
-	  lwz       r0, 0x20(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1E8
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x278
-	.loc_0x1E8:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	  b         .loc_0x25C
-	.loc_0x208:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x20(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x278
-	  lwz       r3, 0x1C(r1)
-	  lwz       r4, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r1)
-	.loc_0x25C:
-	  lwz       r12, 0x14(r1)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x208
-	.loc_0x278:
-	  lwz       r3, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x18(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x148
-	  li        r3, 0
-	.loc_0x29C:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	if (!ItemBigFountain::mgr) {
+		return nullptr;
+	}
+	if (moviePlayer->mDemoState != 0) {
+		return nullptr;
+	}
+	if (getStateID() != NSID_Walk) {
+		return nullptr;
+	}
+
+	Iterator<BaseItem> iterator(ItemBigFountain::mgr);
+	CI_LOOP(iterator)
+	{
+		ItemBigFountain::Item* hole = static_cast<ItemBigFountain::Item*>(*iterator);
+		if (hole->canRide()) {
+			Vector3f holepos = hole->getPosition();
+			if (sqrDistanceXZ(holepos, mPosition) < 6400.0f) {
+				return hole;
+			}
+		}
+	}
+
+	return nullptr;
 }
 
 /*
@@ -3566,6 +2797,43 @@ void Navi::checkBigFountain()
  */
 Onyon* Navi::checkOnyon()
 {
+	if (!gameSystem->isStoryMode()) {
+		return nullptr;
+	}
+	if (moviePlayer->mDemoState != 0) {
+		return nullptr;
+	}
+	if (!ItemOnyon::mgr) {
+		return nullptr;
+	}
+	if (gameSystem->mTimeMgr->mDayCount == 0) {
+		return nullptr;
+	}
+	if (getStateID() != NSID_Walk) {
+		return nullptr;
+	}
+
+	Iterator<Onyon> iterator(ItemOnyon::mgr);
+	Vector3f navipos = getPosition();
+	Onyon* ret       = nullptr;
+	CI_LOOP(iterator)
+	{
+		Onyon* onyon = static_cast<Onyon*>(*iterator);
+		if (onyon->mOnyonType != ONYON_TYPE_POD
+		    && (onyon->mOnyonType != ONYON_TYPE_SHIP || ((playData->hasContainer(White) || playData->hasContainer(Purple))))) {
+			if (onyon->insideAccessArea(navipos)) {
+				onyon->setSpotEffectActive(true);
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_ONYON_READY, 0);
+				mNaviControlFlag.unset(2);
+				ret = onyon;
+			} else {
+				mNaviControlFlag.set(2);
+				onyon->setSpotEffectActive(false);
+			}
+		}
+	}
+
+	return ret;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -3805,37 +3073,6 @@ Onyon* Navi::checkOnyon()
 	  lwz       r29, 0x34(r1)
 	  mtlr      r0
 	  addi      r1, r1, 0x40
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80143AA0
- * Size:	00004C
- */
-bool Iterator<Game::Onyon>::isDone()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r31)
-	  sub       r0, r3, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
 	  blr
 	*/
 }
@@ -4360,6 +3597,29 @@ void Navi::reviseController(Vector3f&)
  */
 void Navi::callPikis()
 {
+	// numsearch = 0;
+	Sys::Sphere bounds(mWhistle->mPosition, mWhistle->mRadius);
+	CellIteratorArg arg(bounds);
+	CellIterator iterator(arg);
+	f32 time       = 0.0f;
+	FakePiki* last = nullptr;
+	CI_LOOP(iterator)
+	{
+		time += sys->mDeltaTime;
+		JUT_ASSERTLINE(3156, time < 15.0f, "timeout %d,%d:%d\n%d,%d-%d,%d\n", iterator.mCurrX, iterator.mCurrY, iterator.mCurrLayerIdx,
+		               iterator.mMinX, iterator.mMinY, iterator.mMaxX, iterator.mMaxY);
+
+		FakePiki* piki = static_cast<FakePiki*>(*iterator);
+
+		JUT_ASSERTLINE(3169, (last && last != piki), "infloop %d,%d:%d\n%d,%d-%d,%d\n", iterator.mCurrX, iterator.mCurrY,
+		               iterator.mCurrLayerIdx, iterator.mMinX, iterator.mMinY, iterator.mMaxX, iterator.mMaxY);
+
+		last = piki;
+		if (piki && piki != this) {
+			InteractFue act(this, false, true);
+			piki->stimulate(act);
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xD0(r1)
@@ -4504,49 +3764,19 @@ void Navi::callPikis()
  */
 bool Navi::invincible()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, -0x64AC(r13)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x2C
-	  lwz       r0, 0x18(r4)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x2C
-	  li        r3, 0x1
-	  b         .loc_0x7C
-	.loc_0x2C:
-	  lbz       r0, 0x2A4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x40
-	  li        r3, 0x1
-	  b         .loc_0x7C
-	.loc_0x40:
-	  lwz       r4, -0x6C18(r13)
-	  lbz       r0, 0x3C(r4)
-	  rlwinm.   r0,r0,0,26,26
-	  bne-      .loc_0x58
-	  li        r3, 0x1
-	  b         .loc_0x7C
-	.loc_0x58:
-	  lwz       r3, 0x274(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x7C
-	.loc_0x78:
-	  li        r3, 0x1
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (moviePlayer && moviePlayer->mDemoState != 0) {
+		return true;
+	}
+	if (mInvincibleTimer) {
+		return true;
+	}
+	if (!gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
+		return true;
+	}
+	if (!mCurrentState) {
+		return true;
+	}
+	return mCurrentState->invincible();
 }
 
 /*
@@ -4561,8 +3791,31 @@ void Navi::setInvincibleTimer(u8 timer) { mInvincibleTimer = timer; }
  * Address:	80144408
  * Size:	000208
  */
-void Navi::startDamage(f32)
+void Navi::startDamage(f32 damage)
 {
+	if (isAlive() && !invincible()) {
+		if (playData->mOlimarData->hasItem(OlimarData::ODII_JusticeAlloy)) {
+			damage *= naviMgr->mNaviParms->mNaviParms.mQ008();
+		}
+		if (getStateID() != NSID_Damaged) {
+			NaviDamageArg arg(damage);
+			transit(NSID_Damaged, &arg);
+			mHealth -= damage;
+			mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
+			cameraMgr->startVibration(29, mNaviIndex);
+			rumbleMgr->startRumble(1, mNaviIndex);
+			mEffectsObj->createOrimadamage_(mEffectsObj->mHeadMtx->mMatrix.mtxView);
+			PSM::DamageDirector* director = PSMGetDamageD();
+			if (director) {
+				director->directOn();
+			}
+			if (mHealth < 1.0f) {
+				if (getStateID() != NSID_Dead) {
+					mFsm->transit(this, NSID_Dead, nullptr);
+				}
+			}
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -4716,8 +3969,35 @@ void Navi::startDamage(f32)
  * Address:	80144610
  * Size:	000214
  */
-void Navi::addDamage(f32, bool)
+void Navi::addDamage(f32 damage, bool flag)
 {
+	if (!moviePlayer || moviePlayer->mDemoState != 0 || !gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
+		return;
+	}
+
+	if (playData->mOlimarData->hasItem(OlimarData::ODII_JusticeAlloy)) {
+		damage *= naviMgr->mNaviParms->mNaviParms.mQ008();
+	}
+
+	if (isAlive() && !mCurrentState->invincible() && !invincible()) {
+		mHealth -= damage;
+		if (flag) {
+			mSoundObj->startSound(PSSE_PL_ORIMA_DAMAGE, 0);
+			cameraMgr->startVibration(29, mNaviIndex);
+			rumbleMgr->startRumble(1, mNaviIndex);
+			mEffectsObj->createOrimadamage_(mEffectsObj->mHeadMtx->mMatrix.mtxView);
+			PSM::DamageDirector* director = PSMGetDamageD();
+			if (director) {
+				director->directOn();
+			}
+			if (mHealth < 1.0f) {
+				if (getStateID() != NSID_Dead) {
+					mFsm->transit(this, NSID_Dead, nullptr);
+				}
+			}
+		}
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -4875,6 +4155,33 @@ void Navi::addDamage(f32, bool)
  */
 void Navi::enterAllPikis()
 {
+	Piki* buffer[100];
+
+	Iterator<Piki> iterator(pikiMgr);
+	int pikis = 0;
+	CI_LOOP(iterator)
+	{
+		Piki* piki = *iterator;
+		if (piki->isAlive()) {
+			buffer[pikis] = piki;
+		}
+		pikis++;
+	}
+
+	for (int i = 0; i < pikis; i++) {
+		Onyon* target = nullptr;
+		Piki* piki    = buffer[i];
+		if (piki->getKind() < Purple) {
+			target = ItemOnyon::mgr->getOnyon(piki->getKind());
+		} else {
+			target = ItemOnyon::mgr->mUfo;
+		}
+
+		if (target) {
+			PikiAI::CreatureActionArg arg(target);
+			piki->mBrain->start(PikiAI::ACT_Enter, &arg);
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x1C0(r1)
@@ -5066,17 +4373,7 @@ void Navi::enterAllPikis()
  * Address:	80144AC0
  * Size:	000014
  */
-bool Navi::formationable()
-{
-	/*
-	.loc_0x0:
-	  lbz       r0, 0x2D4(r3)
-	  extsb     r0, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  blr
-	*/
-}
+bool Navi::formationable() { return mDisbandTimer == 0; }
 
 // /*
 //  * --INFO--
@@ -5095,38 +4392,9 @@ bool Navi::formationable()
  */
 void Navi::updateKaisanDisable()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x2D4(r3)
-	  extsb.    r0, r0
-	  ble-      .loc_0x5C
-	  lfs       f1, 0x1E4(r31)
-	  lfs       f0, 0x1E8(r31)
-	  fmuls     f1, f1, f1
-	  lfs       f2, 0x1EC(r31)
-	  fmuls     f0, f0, f0
-	  fmuls     f2, f2, f2
-	  fadds     f0, f1, f0
-	  fadds     f1, f2, f0
-	  bl        0x2CCCF0
-	  lfs       f0, -0x5F88(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x5C
-	  lbz       r3, 0x2D4(r31)
-	  subi      r0, r3, 0x1
-	  stb       r0, 0x2D4(r31)
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (mDisbandTimer > 0 && mVelocity.qLength() > 20.0f) {
+		mDisbandTimer--;
+	}
 }
 
 /*
@@ -5180,8 +4448,34 @@ void Navi::clearThrowDisable() { mThrowTimer = 0; }
  * Address:	80144BB4
  * Size:	0002FC
  */
-void Navi::holeinAllPikis(Vector3f&)
+void Navi::holeinAllPikis(Vector3f& pos)
 {
+	naviMgr->getAliveOrima(0);
+	Piki* buffer[100];
+
+	Iterator<Creature> iterator(mCPlateMgr);
+	int pikis = 0;
+	CI_LOOP(iterator)
+	{
+		Piki* piki = static_cast<Piki*>(*iterator);
+		if (piki->isAlive()) {
+			if (piki->mCurrentState->transittable(PIKISTATE_Holein) && piki->mCurrentState->soft_transittable(PIKISTATE_Holein)) {
+				buffer[pikis] = piki;
+				pikis++;
+			} else {
+				piki->mFsm->transitForce(piki, 0, nullptr);
+				buffer[pikis] = piki;
+				pikis++;
+			}
+		}
+	}
+
+	for (int i = 0; i < pikis; i++) {
+		Piki* piki = buffer[i];
+		HoleinStateArg arg(pos);
+		piki->mFsm->transit(piki, PIKISTATE_Holein, &arg);
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x1D0(r1)
@@ -5395,8 +4689,33 @@ void Navi::holeinAllPikis(Vector3f&)
  * Address:	80144EC0
  * Size:	0002F8
  */
-void Navi::fountainonAllPikis(Vector3f&)
+void Navi::fountainonAllPikis(Vector3f& pos)
 {
+	naviMgr->getAliveOrima(0);
+	Piki* buffer[100];
+
+	Iterator<Creature> iterator(mCPlateMgr);
+	int pikis = 0;
+	CI_LOOP(iterator)
+	{
+		Piki* piki = static_cast<Piki*>(*iterator);
+		if (piki->isAlive() && (int)piki->getKind() != Bulbmin) {
+			if (piki->mCurrentState->transittable(PIKISTATE_Fountainon) && piki->mCurrentState->soft_transittable(PIKISTATE_Fountainon)) {
+				buffer[pikis] = piki;
+				pikis++;
+			} else {
+				piki->mFsm->transitForce(piki, 0, nullptr);
+				buffer[pikis] = piki;
+				pikis++;
+			}
+		}
+	}
+
+	for (int i = 0; i < pikis; i++) {
+		Piki* piki = buffer[i];
+		FountainonStateArg arg(pos);
+		piki->mFsm->transit(piki, PIKISTATE_Fountainon, &arg);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x1D0(r1)
@@ -5611,6 +4930,29 @@ void Navi::fountainonAllPikis(Vector3f&)
  */
 void Navi::demowaitAllPikis()
 {
+	Piki* buffer[100];
+
+	Iterator<Creature> iterator(mCPlateMgr);
+	int pikis = 0;
+	CI_LOOP(iterator)
+	{
+		Piki* piki = static_cast<Piki*>(*iterator);
+		if (piki->isAlive() && (int)piki->getKind() != Bulbmin) {
+			if (piki->mCurrentState->transittable(PIKISTATE_DemoWait) && piki->mCurrentState->soft_transittable(PIKISTATE_DemoWait)) {
+				buffer[pikis] = piki;
+				pikis++;
+			} else {
+				piki->mFsm->transitForce(piki, 0, nullptr);
+				buffer[pikis] = piki;
+				pikis++;
+			}
+		}
+	}
+
+	for (int i = 0; i < pikis; i++) {
+		Piki* piki = buffer[i];
+		piki->mFsm->transit(piki, PIKISTATE_DemoWait, nullptr);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x1C0(r1)
@@ -7606,815 +6948,5 @@ void Navi::throwPiki(Piki* piki, Vector3f& cursorPos)
  * Size:	000008
  */
 bool Navi::commandOn() { return mCommandOn2; }
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	80146D1C
- * Size:	00000C
- */
-char* PikiAI::ActFreeArg::getName()
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0x8048
-	  subi      r3, r3, 0x37C0
-	  blr
-	*/
-}
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	80146D40
- * Size:	00000C
- */
-const char* NaviDamageArg::getName()
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0x8048
-	  subi      r3, r3, 0x3794
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80146D4C
- * Size:	000038
- */
-Game::Onyon* Iterator<Game::Onyon>::operator*()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80146D84
- * Size:	0000E4
- */
-void Iterator<Game::Onyon>::next()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xD0
-	.loc_0x40:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xB4
-	.loc_0x60:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	.loc_0xB4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80146E68
- * Size:	0000DC
- */
-void Iterator<Game::Onyon>::first()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xC8
-	.loc_0x3C:
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xAC
-	.loc_0x58:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80146F44
- * Size:	000038
- */
-Game::BaseItem* Iterator<Game::BaseItem>::operator*()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80146F7C
- * Size:	0000E4
- */
-void Iterator<Game::BaseItem>::next()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xD0
-	.loc_0x40:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xB4
-	.loc_0x60:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	.loc_0xB4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147060
- * Size:	0000DC
- */
-void Iterator<Game::BaseItem>::first()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xC8
-	.loc_0x3C:
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xAC
-	.loc_0x58:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8014713C
- * Size:	000008
- */
-bool GameMessage::actCommon(BaseGameSection*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147144
- * Size:	000008
- */
-bool GameMessage::actSingle(SingleGameSection*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8014714C
- * Size:	000008
- */
-bool GameMessage::actVs(VsGameSection*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
-
-// /*
-//  * --INFO--
-//  * Address:	8014734C
-//  * Size:	00001C
-//  */
-// void Navi::setVelocity(Vector3f& vel)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  lfs       f0, 0x0(r4)
-// 	  stfs      f0, 0x1E4(r3)
-// 	  lfs       f0, 0x4(r4)
-// 	  stfs      f0, 0x1E8(r3)
-// 	  lfs       f0, 0x8(r4)
-// 	  stfs      f0, 0x1EC(r3)
-// 	  blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80147368
- * Size:	000008
- */
-// char* Navi::getCreatureName()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  subi      r3, r2, 0x5F58
-// 	  blr
-// 	*/
-// }
 
 } // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	80147370
- * Size:	00009C
- */
-bool TFueact::create(Arg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0x4
-	  lwz       r12, 0x4(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  addi      r3, r30, 0x1C
-	  li        r4, 0
-	  lwz       r12, 0x1C(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  addi      r3, r30, 0x34
-	  li        r4, 0
-	  lwz       r12, 0x34(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  li        r31, 0x1
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8014740C
- * Size:	000064
- */
-void TFueact::fade()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0x4
-	  lwz       r12, 0x4(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r31, 0x1C
-	  lwz       r12, 0x1C(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r31, 0x34
-	  lwz       r12, 0x34(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147470
- * Size:	00003C
- */
-void TFueactCircle::fade()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, -0x65E8(r13)
-	  lwz       r4, 0x14(r31)
-	  bl        0x274620
-	  li        r0, 0
-	  stw       r0, 0x14(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801474AC
- * Size:	000064
- */
-void TFueact::forceKill()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0x4
-	  lwz       r12, 0x4(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r31, 0x1C
-	  lwz       r12, 0x1C(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r31, 0x34
-	  lwz       r12, 0x34(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147510
- * Size:	00003C
- */
-void TFueactCircle::forceKill()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, -0x65E8(r13)
-	  lwz       r4, 0x14(r31)
-	  bl        0x274554
-	  li        r0, 0
-	  stw       r0, 0x14(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-} // namespace efx
-
-/*
- * --INFO--
- * Address:	8014754C
- * Size:	000004
- */
-void Game::StateMachine<Game::Navi>::init(Game::Navi*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147550
- * Size:	000030
- */
-void Delegate1<Game::Navi, Game::CellObject*>::invoke(Game::CellObject*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  stw       r0, 0x14(r1)
-	  addi      r12, r5, 0x8
-	  lwz       r3, 0x4(r3)
-	  bl        -0x85A44
-	  nop
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147580
- * Size:	00009C
- */
-void Game::StateMachine<Game::Navi>::transit(Game::Navi*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x274(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
-	.loc_0x5C:
-	  b         .loc_0x5C
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x274(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8014761C
- * Size:	000004
- */
-void Game::FSMState<Game::Navi>::init(Game::Navi*, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147620
- * Size:	000004
- */
-void Game::FSMState<Game::Navi>::cleanup(Game::Navi*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147624
- * Size:	000038
- */
-void Game::StateMachine<Game::Navi>::exec(Game::Navi*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x274(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8014765C
- * Size:	000004
- */
-void Game::FSMState<Game::Navi>::exec(Game::Navi*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147660
- * Size:	000028
- */
-void __sinit_navi_cpp()
-{
-	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804B
-	  stw       r0, -0x6D70(r13)
-	  stfsu     f0, 0x4E0(r3)
-	  stfs      f0, -0x6D6C(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
-	*/
-}

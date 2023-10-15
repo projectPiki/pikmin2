@@ -49,9 +49,17 @@ struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAPartic
 	{
 	}
 
-	virtual bool create(Arg*);                               // _08
-	virtual void forceKill();                                // _0C (weak)
-	virtual void fade();                                     // _10 (weak)
+	virtual bool create(Arg*); // _08
+	virtual void forceKill()
+	{
+		particleMgr->forceKill(mEmitter);
+		mEmitter = nullptr;
+	} // _0C (weak)
+	virtual void fade()
+	{
+		particleMgr->fade(mEmitter);
+		mEmitter = nullptr;
+	}                                                        // _10 (weak)
 	virtual void execute(JPABaseEmitter*);                   // _44 (weak)
 	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _48 (weak)
 	virtual void executeAfter(JPABaseEmitter*);              // _4C (weak)
@@ -66,9 +74,30 @@ struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAPartic
 };
 
 struct TFueact : public TBase {
-	virtual bool create(Arg*); // _08 (weak)
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual bool create(Arg*)
+	{
+		bool ret = false;
+		if (mCircle.create(nullptr)) {
+			if (mBiri1.create(nullptr)) {
+				if (mBiri2.create(nullptr)) {
+					ret = true;
+				}
+			}
+		}
+		return ret;
+	} // _08 (weak)
+	virtual void forceKill()
+	{
+		mCircle.forceKill();
+		mBiri1.forceKill();
+		mBiri2.forceKill();
+	} // _0C (weak)
+	virtual void fade()
+	{
+		mCircle.fade();
+		mBiri1.fade();
+		mBiri2.fade();
+	} // _10 (weak)
 
 	// _00      = VTBL
 	TFueactCircle mCircle; // _04

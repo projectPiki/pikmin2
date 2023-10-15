@@ -33,6 +33,10 @@ enum NaviIndex {
 
 #define GET_OTHER_NAVI(navi) (1 - (navi)->mNaviIndex)
 
+// Louie scale is also used for president
+#define OLIMAR_SCALE 1.3f
+#define LOUIE_SCALE  1.5f
+
 namespace PSM {
 struct DirectorUpdator;
 struct Navi;
@@ -40,7 +44,7 @@ struct Navi;
 
 namespace Game {
 struct CPlate;
-struct NaviNukuAdjustArg;
+struct NaviNukuAdjustStateArg;
 struct NaviState;
 struct NaviParms;
 
@@ -51,12 +55,6 @@ struct Item;
 enum NaviControlFlags {
 	NAVICTRL_InMovie = 0x1,
 	NAVICTRL_InOnyon = 0x2,
-};
-
-struct NaviDamageArg {
-	virtual const char* getName(); // _08 (weak)
-
-	// _00 VTBL
 };
 
 struct NaviFSM : public StateMachine<Navi> {
@@ -133,7 +131,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	virtual bool ignoreAtari(Creature* toIgnore);                       // _190
 	virtual bool stimulate(Interaction& data);                          // _1A4
 	virtual char* getCreatureName();                                    // _1A8 (weak)
-	virtual s32 getCreatureID();                                        // _1AC (weak)
+	virtual s32 getCreatureID() { return mNaviIndex; }                  // _1AC (weak)
 
 	// vtable 2 (MotionListener + FakePiki + self)
 	virtual int getDownfloorMass();                           // _1BC
@@ -155,10 +153,10 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void applyDopes(int, Vector3f&);
 	void applyDopeSmoke(CellObject*);
 	void callPikis();
-	void checkBigFountain();
-	void checkCave();
+	ItemBigFountain::Item* checkBigFountain();
+	ItemCave::Item* checkCave();
 	FakePiki* checkDemoNaviAndPiki(Sys::Sphere&);
-	void checkHole();
+	ItemHole::Item* checkHole();
 	Onyon* checkOnyon();
 	void clearKaisanDisable();
 	void clearThrowDisable();
@@ -192,7 +190,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void setDeadLaydown();
 	void setInvincibleTimer(u8);
 	void setLifeMax();
-	void setupNukuAdjustArg(ItemPikihead::Item*, NaviNukuAdjustArg&);
+	void setupNukuAdjustArg(ItemPikihead::Item*, NaviNukuAdjustStateArg&);
 	void startDamage(f32);
 	void startThrowDisable();
 	bool throwable();
@@ -251,7 +249,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	SysShape::Joint* mBeaconJoint;          // _2C0
 	Vector3f mBeaconPosition;               // _2C4
 	efx::TNaviEffect* mEffectsObj;          // _2D0
-	u8 mDisbandTimer;                       // _2D4
+	s8 mDisbandTimer;                       // _2D4
 	Footmarks* mFootmarks;                  // _2D8
 	u16 mNaviIndex;                         // _2DC
 	u8 _2DE;                                // _2DE

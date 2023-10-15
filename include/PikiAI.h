@@ -722,7 +722,7 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 };
 
 struct ActFreeArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ActFreeArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	u8 mToGather;          // _04

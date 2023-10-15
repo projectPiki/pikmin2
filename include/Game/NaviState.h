@@ -414,6 +414,15 @@ struct NaviKokeDamageInitArg : public StateArg {
 	u8 _0C;              // _0C
 };
 
+struct NaviDamageArg : public StateArg {
+	NaviDamageArg(f32 damage) { mDamage = damage; }
+
+	virtual const char* getName() { return "NaviDamageArg"; } // _08 (weak)
+
+	// _00 VTBL
+	f32 mDamage;
+};
+
 // WTF is Koke Damage? Heart Attack?
 struct NaviKokeDamageState : public NaviState {
 	inline NaviKokeDamageState()
@@ -437,8 +446,8 @@ struct NaviKokeDamageState : public NaviState {
 	u8 _20;              // _20
 };
 
-struct NaviNukuAdjustArg : public StateArg {
-	inline NaviNukuAdjustArg()
+struct NaviNukuAdjustStateArg : public StateArg {
+	inline NaviNukuAdjustStateArg()
 	    : _18(0)
 	{
 	}

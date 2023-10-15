@@ -40,9 +40,9 @@ struct PlatInstance : public CellObject {
 	inline PlatInstance()
 	    : CellObject()
 	{
-		_B8 = nullptr;
-		_EC = nullptr;
-		_F4 = nullptr;
+		mMatrix = nullptr;
+		_EC     = nullptr;
+		_F4     = nullptr;
 		mId.setID('none');
 		_F0  = nullptr;
 		_108 = 1;
@@ -68,14 +68,14 @@ struct PlatInstance : public CellObject {
 
 	// _00		 = VTBL
 	// _00-_B8 = CellObject
-	Matrixf* _B8;  // _B8
-	Matrixf _BC;   // _BC
-	Platform* _EC; // _EC
-	Platform* _F0; // _F0
-	BaseItem* _F4; // _F4
-	ID32 mId;      // _F8
-	u32 _104;      // _104
-	u8 _108;       // _108
+	Matrixf* mMatrix; // _B8
+	Matrixf _BC;      // _BC
+	Platform* _EC;    // _EC
+	Platform* _F0;    // _F0
+	BaseItem* _F4;    // _F4
+	ID32 mId;         // _F8
+	u32 _104;         // _104
+	u8 _108;          // _108
 };
 
 struct PlatInstanceAttacher {

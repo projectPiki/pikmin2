@@ -104,8 +104,8 @@ struct TNaviEffect {
 	Matrixf* mHeadMtx;        // _14
 	f32* mHeight;             // _18
 	Vector3f mHamonPosition;  // _1C
-	ToeHamonA mHamonA;        // _28
-	ToeHamonB mHamonB;        // _44
+	ToeHamonA mHamonA[1];     // _28
+	ToeHamonB mHamonB[1];     // _44
 	TFueact mFueact;          // _60
 	TCursor mCursor;          // _AC
 	TOrimaLight mLight;       // _33C

@@ -480,6 +480,7 @@ struct PikiFlyingState : public PikiState {
 };
 
 struct FountainonStateArg : public StateArg {
+	FountainonStateArg(Vector3f& pos) { mPosition = pos; }
 	Vector3f mPosition; // _00
 };
 
@@ -579,6 +580,7 @@ struct PikiHipDropState : public PikiState {
 };
 
 struct HoleinStateArg : public StateArg {
+	HoleinStateArg(Vector3f& pos) { mPosition = pos; }
 	Vector3f mPosition; // _00
 };
 
