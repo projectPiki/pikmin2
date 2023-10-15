@@ -937,41 +937,41 @@ bool JMessage::TParse_color::parseBlock_next(const void**, unsigned long*, unsig
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80006CB8
- * Size:	000054
- */
-void std::lower_bound<const unsigned long*, unsigned long>(const unsigned long*, const unsigned long*, const unsigned long&)
-{
-	/*
-	.loc_0x0:
-	  sub       r0, r4, r3
-	  lwz       r5, 0x0(r5)
-	  srawi     r0, r0, 0x2
-	  addze     r4, r0
-	  b         .loc_0x48
+// /*
+//  * --INFO--
+//  * Address:	80006CB8
+//  * Size:	000054
+//  */
+// void std::lower_bound<const unsigned long*, unsigned long>(const unsigned long*, const unsigned long*, const unsigned long&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  sub       r0, r4, r3
+// 	  lwz       r5, 0x0(r5)
+// 	  srawi     r0, r0, 0x2
+// 	  addze     r4, r0
+// 	  b         .loc_0x48
 
-	.loc_0x14:
-	  rlwinm    r0,r4,1,31,31
-	  add       r0, r0, r4
-	  srawi     r7, r0, 0x1
-	  rlwinm    r0,r7,2,0,29
-	  add       r6, r3, r0
-	  lwz       r0, 0x0(r6)
-	  cmplw     r0, r5
-	  bge-      .loc_0x44
-	  addi      r0, r7, 0x1
-	  addi      r3, r6, 0x4
-	  sub       r4, r4, r0
-	  b         .loc_0x48
+// 	.loc_0x14:
+// 	  rlwinm    r0,r4,1,31,31
+// 	  add       r0, r0, r4
+// 	  srawi     r7, r0, 0x1
+// 	  rlwinm    r0,r7,2,0,29
+// 	  add       r6, r3, r0
+// 	  lwz       r0, 0x0(r6)
+// 	  cmplw     r0, r5
+// 	  bge-      .loc_0x44
+// 	  addi      r0, r7, 0x1
+// 	  addi      r3, r6, 0x4
+// 	  sub       r4, r4, r0
+// 	  b         .loc_0x48
 
-	.loc_0x44:
-	  mr        r4, r7
+// 	.loc_0x44:
+// 	  mr        r4, r7
 
-	.loc_0x48:
-	  cmpwi     r4, 0
-	  bgt+      .loc_0x14
-	  blr
-	*/
-}
+// 	.loc_0x48:
+// 	  cmpwi     r4, 0
+// 	  bgt+      .loc_0x14
+// 	  blr
+// 	*/
+// }

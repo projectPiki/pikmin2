@@ -3,6 +3,7 @@
 #include "Game/PikiState.h"
 #include "Game/MapMgr.h"
 #include "Game/routeMgr.h"
+#include "Game/AIConstants.h"
 
 static const char className[] = "actRescue";
 
@@ -15,7 +16,7 @@ namespace PikiAI {
 ActRescue::ActRescue(Game::Piki* piki)
     : Action(piki)
 {
-	mFlag        = false;
+	mThrowFlag   = THROW_Null;
 	mName        = "Rescue";
 	mApproachPos = new ActApproachPos(piki);
 }
@@ -51,11 +52,11 @@ void ActRescue::init(ActionArg* arg)
 int ActRescue::exec()
 {
 	switch (mState) {
-	case 0:
+	case RESCUE_Approach:
 		return execApproach();
-	case 1:
+	case RESCUE_Go:
 		return execGo();
-	case 2:
+	case RESCUE_Throw:
 		return execThrow();
 	default:
 		return ACTEXEC_Continue;
@@ -89,7 +90,7 @@ ActionExitCode ActRescue::checkPikmin()
  */
 void ActRescue::initApproach()
 {
-	mState       = 0;
+	mState       = RESCUE_Approach;
 	Vector3f pos = mTargetPiki->getPosition();
 	ApproachPosActionArg arg(pos, 10.0f, -1.0f);
 	mApproachPos->init(&arg);
@@ -127,7 +128,7 @@ int ActRescue::execApproach()
  */
 void ActRescue::initGo()
 {
-	mState = 1;
+	mState = RESCUE_Go;
 	WPFindCond cond;
 	Vector3f pos = mTargetPiki->getPosition();
 	Game::WPSearchArg arg(pos, &cond, false, 10.0f);
@@ -168,10 +169,7 @@ int ActRescue::execGo()
 			SysShape::Joint* jnt = mParent->mModel->getJoint("rhandjnt");
 			P2ASSERTLINE(220, jnt);
 			Vector3f mod(3.0f, 0.0f, 0.0f);
-			Matrixf* mtx = jnt->getWorldMatrix();
-			Vec pos;
-			PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&mod, &pos);
-			mod = pos;
+			mod = jnt->getWorldMatrix()->mtxMult(mod);
 			mTargetPiki->setPosition(mod, false);
 			ret = ACTEXEC_Continue;
 		}
@@ -187,9 +185,9 @@ int ActRescue::execGo()
  */
 void ActRescue::initThrow()
 {
-	mState = 2;
+	mState = RESCUE_Throw;
 	mParent->startMotion(Game::IPikiAnims::THROW, Game::IPikiAnims::THROW, this, nullptr);
-	mFlag = 0;
+	mThrowFlag = THROW_Null;
 }
 
 /*
@@ -203,15 +201,34 @@ int ActRescue::execThrow()
 		return ACTEXEC_Fail;
 	}
 
-	if (!(mFlag & 1) && mFlag & 2) {
+	if (mThrowFlag & THROW_DoThrow) {
+		mTargetPiki->mBrain->start(ACT_Free, nullptr);
+		mTargetPiki->mFsm->transit(mTargetPiki, Game::PIKISTATE_Flying, nullptr);
+		mThrowFlag            = THROW_Null;
+		Vector3f pikiPos      = mParent->getPosition();
+		f32 y                 = mWayPoint->mPosition.y - pikiPos.y;
+		Vector2f sep          = Vector2f(mWayPoint->mPosition.x - pikiPos.x, mWayPoint->mPosition.z - pikiPos.z);
+		f32 dist              = sep.length();
+		f32 angleDist         = JMAAtan2Radian(sep.x, sep.y);
+		mTargetPiki->mFaceDir = roundAng(angleDist);
+
+		f32 factor = 0.5f;
+		f32 height = mTargetPiki->getThrowHeight() + absF(y) + 50.0f;
+		if ((int)mTargetPiki->mPikiKind == Game::Purple) {
+			factor *= 0.5f;
+		}
+
+		f32 yVel = factor * (0.5f * Game::_aiConstants->mGravity.mData) + (height / factor);
+
+		f32 throwDist = dist / (2.0f * factor);
+
+		mTargetPiki->mSimVelocity = Vector3f(pikmin2_sinf(angleDist) * throwDist, yVel, pikmin2_cosf(angleDist) * throwDist);
+		mTargetPiki->mVelocity    = mTargetPiki->mSimVelocity;
+
+	} else if (mThrowFlag & THROW_Stop) {
 		return ACTEXEC_Success;
 	}
 
-	mTargetPiki->mBrain->start(1, nullptr);
-	mTargetPiki->mFsm->transit(mTargetPiki, Game::PIKISTATE_Flying, nullptr);
-	mState = 0;
-	mTargetPiki->getPosition();
-	// this rest of this seems to be a direct copy of Navi::throwPiki?
 	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x80(r1)
@@ -402,10 +419,10 @@ lbl_8023982C:
  */
 void ActRescue::onKeyEvent(SysShape::KeyEvent const& event)
 {
-	if (event.mType == 2) {
-		mFlag |= 1;
+	if (event.mType == KEYEVENT_2) {
+		mThrowFlag |= THROW_DoThrow;
 	} else {
-		mFlag |= 2;
+		mThrowFlag |= THROW_Stop;
 	}
 }
 

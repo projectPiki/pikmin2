@@ -1,6 +1,6 @@
 JSTUDIO_JPARTICLE_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JStudio_JParticle/object-particle.o\
-	$(BUILD_DIR)/asm/JSystem/JStudio_JParticle/control.o\
+	$(BUILD_DIR)/src/JSystem/JStudio_JParticle/control.o\
 
 DEPENDS += $(JSTUDIO_JPARTICLE_FILES:.o=.d)
 

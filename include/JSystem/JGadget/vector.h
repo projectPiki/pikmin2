@@ -18,7 +18,7 @@ struct TVector {
 	// 	~Destructed_deallocate_(); // unused/inlined
 	// };
 
-	TVector(u32, const T&, const Allocator&);
+	TVector(u32, const T&, const Allocator<T>&);
 
 	TVector(Allocator<T> alloc)
 	{

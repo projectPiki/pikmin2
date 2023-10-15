@@ -1,4 +1,5 @@
 #include "JSystem/JStudio/fvb/fvb.h"
+// #include "JSystem/JStudio/fvb/functionvalue.h"
 #include "JSystem/JStudio/functionvalue.h"
 #include "JSystem/JStudio/object.h"
 #include "types.h"
@@ -129,7 +130,8 @@
         .4byte 0
 */
 
-namespace JStudio::fvb {
+namespace JStudio {
+namespace fvb {
 
 /*
  * --INFO--
@@ -1675,4 +1677,5 @@ addi     r1, r1, 0x10
 blr
 	*/
 }
-} // namespace JStudio::fvb
+} // namespace fvb
+} // namespace JStudio

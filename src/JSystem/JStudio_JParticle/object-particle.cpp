@@ -3,6 +3,7 @@
 #include "JSystem/JStudio/data.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JStudio_JParticle.h"
+#include "stl/math.h"
 #include "float.h"
 #include "types.h"
 
@@ -193,16 +194,14 @@ JStudio_JParticle::TAdaptor_particle::~TAdaptor_particle()
  */
 void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare(const JStudio::TObject* p1)
 {
-	static TSetVariableValue_immediate aoData[18]
-	    = { TSetVariableValue_immediate(0, 0.0f),    TSetVariableValue_immediate(1, 0.0f),
-		    TSetVariableValue_immediate(2, 0.0f),    TSetVariableValue_immediate(3, 0.0f),
-		    TSetVariableValue_immediate(4, 0.0f),    TSetVariableValue_immediate(5, 0.0f),
-		    TSetVariableValue_immediate(6, 1.0f),    TSetVariableValue_immediate(7, 1.0f),
-		    TSetVariableValue_immediate(8, 1.0f),    TSetVariableValue_immediate(9, 255.0f),
-		    TSetVariableValue_immediate(10, 255.0f), TSetVariableValue_immediate(11, 255.0f),
-		    TSetVariableValue_immediate(12, 255.0f), TSetVariableValue_immediate(13, 255.0f),
-		    TSetVariableValue_immediate(14, 255.0f), TSetVariableValue_immediate(15, 255.0f),
-		    TSetVariableValue_immediate(16, 255.0f), TSetVariableValue_immediate(0xFFFFFFFF, __float_nan) };
+	static TSetVariableValue_immediate aoData[18] = {
+		TSetVariableValue_immediate(0, 0.0f),    TSetVariableValue_immediate(1, 0.0f),    TSetVariableValue_immediate(2, 0.0f),
+		TSetVariableValue_immediate(3, 0.0f),    TSetVariableValue_immediate(4, 0.0f),    TSetVariableValue_immediate(5, 0.0f),
+		TSetVariableValue_immediate(6, 1.0f),    TSetVariableValue_immediate(7, 1.0f),    TSetVariableValue_immediate(8, 1.0f),
+		TSetVariableValue_immediate(9, 255.0f),  TSetVariableValue_immediate(10, 255.0f), TSetVariableValue_immediate(11, 255.0f),
+		TSetVariableValue_immediate(12, 255.0f), TSetVariableValue_immediate(13, 255.0f), TSetVariableValue_immediate(14, 255.0f),
+		TSetVariableValue_immediate(15, 255.0f), TSetVariableValue_immediate(16, 255.0f), TSetVariableValue_immediate(0xFFFFFFFF, NAN)
+	};
 	adaptor_setVariableValue_immediate(aoData);
 	mCallback.mObject = p1;
 	/*
@@ -373,7 +372,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOpera
 	if (emitter == nullptr) {
 		return;
 	}
-	emitter->_F4 |= 1;
+	emitter->mFlags |= 1;
 	emitter->_24 = 1;
 }
 

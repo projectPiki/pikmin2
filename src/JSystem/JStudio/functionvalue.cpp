@@ -5,6 +5,7 @@
 #include "fdlibm.h"
 #include "stl/functional.h"
 #include "stl/algorithm.h"
+#include "stl/math.h"
 #include "types.h"
 
 /*
@@ -877,7 +878,7 @@ void TFunctionValue_composite::composite_divide(const JGadget::TVector_pointer<J
  * Size:	000028
  */
 TFunctionValue_constant::TFunctionValue_constant()
-    : _08(__float_nan)
+    : _08(NAN)
 {
 	/*
 	lis      r6, __vt__Q27JStudio14TFunctionValue@ha
@@ -1026,7 +1027,7 @@ lbl_80009310:
  */
 void TFunctionValue_transition::initialize()
 {
-	_08 = __float_nan;
+	_08 = NAN;
 	_10 = _08;
 	_18 = _08;
 	_20 = 0;
@@ -1034,7 +1035,7 @@ void TFunctionValue_transition::initialize()
 	_38 = 0;
 	_3C = 0;
 	_40 = 0;
-	_48 = __float_nan;
+	_48 = NAN;
 	_50 = _48;
 	/*
 	lis      r4, __float_nan@ha

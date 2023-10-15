@@ -24,13 +24,9 @@
 
 namespace JStudio_JParticle {
 namespace {
-JStudio::TObject_particle* createObject_PARTICLE_JPA_(const JStudio::stb::data::TParse_TBlock_object& data, JPAEmitterManager* manager,
-                                                      const JStage::TSystem* system)
+// smh
+static inline JStudio::TObject_particle* create(const JStudio::stb::data::TParse_TBlock_object& data, TAdaptor_particle* adaptor)
 {
-	TAdaptor_particle* adaptor = new TAdaptor_particle(manager, system);
-	if (adaptor == nullptr) {
-		return nullptr;
-	}
 	JStudio::TObject_particle* object = new JStudio::TObject_particle(data, adaptor);
 	if (object == nullptr) {
 		// TODO: This should probably delete the adaptor in NONMATCHING builds, if the object couldn't get created.
@@ -40,6 +36,17 @@ JStudio::TObject_particle* createObject_PARTICLE_JPA_(const JStudio::stb::data::
 			object->mAdaptor->adaptor_do_prepare(object);
 		}
 	}
+	return object;
+}
+
+JStudio::TObject_particle* createObject_PARTICLE_JPA_(const JStudio::stb::data::TParse_TBlock_object& data, JPAEmitterManager* manager,
+                                                      const JStage::TSystem* system)
+{
+	TAdaptor_particle* adaptor = new TAdaptor_particle(manager, system);
+	if (adaptor == nullptr) {
+		return nullptr;
+	}
+	JStudio::TObject_particle* object = create(data, adaptor);
 	return object;
 	/*
 	.loc_0x0:
@@ -124,54 +131,16 @@ TCreateObject::~TCreateObject() { }
  */
 bool TCreateObject::create(JStudio::TObject** newObject, JStudio::stb::data::TParse_TBlock_object const& data)
 {
-	if (data.filedata[1] == 'JPTC') {
-		JStudio::TObject_particle* (*func)(const JStudio::stb::data::TParse_TBlock_object&, JPAEmitterManager*, const JStage::TSystem*)
-		    = &createObject_PARTICLE_JPA_;
-		*newObject = func(data, mEmitterManager, mSystem);
-		return true;
-	} else {
+	JStudio::TObject_particle* (*func)(const JStudio::stb::data::TParse_TBlock_object&, JPAEmitterManager*, const JStage::TSystem*);
+	switch (data.filedata->_04) {
+	case 'JPTC': {
+		func = &createObject_PARTICLE_JPA_;
+		break;
+	}
+	default:
 		return false;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lwz       r7, 0x0(r5)
-	  lis       r6, 0x4A50
-	  stw       r0, 0x14(r1)
-	  addi      r0, r6, 0x5443
-	  mr        r6, r3
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r3, 0x4(r7)
-	  cmpw      r3, r0
-	  beq-      .loc_0x34
-	  b         .loc_0x40
-
-	.loc_0x34:
-	  lis       r3, 0x8000
-	  addi      r12, r3, 0x6220
-	  b         .loc_0x48
-
-	.loc_0x40:
-	  li        r3, 0
-	  b         .loc_0x64
-
-	.loc_0x48:
-	  mr        r3, r5
-	  lwz       r4, 0xC(r6)
-	  lwz       r5, 0x10(r6)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x0(r31)
-	  li        r3, 0x1
-
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	*newObject = func(data, mEmitterManager, mSystem);
+	return true;
 }
 } // namespace JStudio_JParticle

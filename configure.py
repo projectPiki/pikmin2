@@ -7,7 +7,7 @@ LIBS = [
         "host": True,
         "objects": [
             "JSystem/JStudio_JParticle/object-particle",
-            "JSystem/JStudio_JParticle/control",
+            ["JSystem/JStudio_JParticle/control", True],
         ],
     },
     {
@@ -952,7 +952,7 @@ LIBS = [
             "plugProjectKandoU/itemPlant",
             "plugProjectKandoU/itemRock",
             ["plugProjectKandoU/aiBreakRock", True],
-            "plugProjectKandoU/aiCrop",
+            ["plugProjectKandoU/aiCrop", True],
             ["plugProjectKandoU/registItem", True],
             "plugProjectKandoU/gamePlayData",
             "plugProjectKandoU/itemCave",

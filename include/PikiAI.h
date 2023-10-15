@@ -490,32 +490,41 @@ struct ActCropArg : public ActionArg {
 };
 
 struct ActCrop : public Action, virtual SysShape::MotionListener {
+	enum CropState {
+		CROP_Goto   = 0,
+		CROP_Climb  = 1,
+		CROP_Attack = 2,
+	};
+
 	ActCrop(Game::Piki* parent);
 
 	virtual void init(ActionArg* settings);                                // _08
 	virtual int exec();                                                    // _0C
 	virtual void cleanup();                                                // _10
-	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual u32 getNextAIType() { return ACT_Free; }                       // _20 (weak)
 	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
 	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
-	void execClimb();
+	int execClimb();
 	void initGoto();
 	void initAttack();
+
+	void initClimb();
+	void prepareClimb();
 
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
 	Game::Creature* mCreature;    // _10
 	CollPart* mCollPart;          // _14
-	Vector3f _18;                 // _18
-	f32 _24;                      // _24
-	s16 _28;                      // _28
+	Vector3f mClimbDirection;     // _18
+	f32 mPlantHeightRatio;        // _24, 1 / tube tree length
+	u16 mState;                   // _28
 	ActStickAttack* mStickAttack; // _2C
 	ActGotoPos* mGotoPos;         // _30
 	u32 _34;                      // _34, unknown
-	f32 _38;                      // _38
-	u8 _3C;                       // _3C
+	f32 mAttackDir;               // _38
+	bool _3C;                     // _3C
 	                              // _40 = MotionListener
 };
 
@@ -941,6 +950,18 @@ struct ActRescueArg : public ActionArg {
 };
 
 struct ActRescue : public Action, virtual SysShape::MotionListener {
+	enum RescueState {
+		RESCUE_Approach = 0,
+		RESCUE_Go       = 1,
+		RESCUE_Throw    = 2,
+	};
+
+	enum ThrowFlag {
+		THROW_Null    = 0,
+		THROW_DoThrow = 1,
+		THROW_Stop    = 2,
+	};
+
 	ActRescue(Game::Piki* piki);
 
 	virtual void init(ActionArg* arg);                                        // _08
@@ -964,7 +985,7 @@ struct ActRescue : public Action, virtual SysShape::MotionListener {
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
 	int mState;                   // _10
-	u8 mFlag;                     // _14
+	u8 mThrowFlag;                // _14
 	ActApproachPos* mApproachPos; // _18
 	Game::Piki* mTargetPiki;      // _1C
 	Game::WayPoint* mWayPoint;    // _20

@@ -134,7 +134,7 @@ void ActTeki::makeTarget()
 	}
 
 	Game::Footmark* currentFm = mFollowMark;
-	float dist                = 12800.0f;
+	f32 dist                  = 12800.0f;
 	if (currentFm) {
 		dist = destPos.distance(currentFm->mPosition);
 	}
@@ -143,7 +143,7 @@ void ActTeki::makeTarget()
 	for (int i = fm->_08 - 1; i >= 0; i--) {
 		Game::Footmark* curMark = fm->get(i);
 
-		f32 curDist2 = curMark->mPosition.distance(destPos); // sure.
+		f32 curDist2 = curMark->mPosition.distance(sourcePos); // sure.
 		f32 curDist  = destPos.distance(curMark->mPosition);
 		curDist      = (curDist > 0.0f) ? curDist : 0.0f;
 

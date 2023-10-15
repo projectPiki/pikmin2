@@ -68,6 +68,7 @@ struct CollPart : public CNode {
 	CollPart* getChild() { return (CollPart*)mChild; }
 	CollPart* getCollPart(u32);
 	CollPart* getNext() { return (CollPart*)mNext; }
+	CollPart* getParent() { return (CollPart*)mParent; }
 
 	void getSphere(Sys::Sphere&);
 	void getTube(Sys::Tube&);

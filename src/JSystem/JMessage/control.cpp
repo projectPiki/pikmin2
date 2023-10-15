@@ -25,16 +25,16 @@ namespace JMessage {
  */
 TControl::TControl()
 {
-	_04 = 0;
-	_08 = 0;
-	_0C = 0xFFFF;
-	_0E = 0xFFFF;
-	_10 = 0;
-	_14 = 0;
-	_18 = 0;
-	_1C = 0;
-	_20 = 0;
-	_24 = 0;
+	mBaseProcSeq    = nullptr;
+	mBaseProcRender = nullptr;
+	_0C             = 0xFFFF;
+	_0E             = 0xFFFF;
+	_10             = 0;
+	_14             = 0;
+	_18             = 0;
+	_1C             = 0;
+	_20             = 0;
+	_24             = 0;
 }
 
 /*
@@ -57,12 +57,12 @@ void TControl::reset()
 	_20 = 0;
 	_24 = 0;
 
-	if (_04) {
-		_04->reset_(0);
+	if (mBaseProcSeq) {
+		mBaseProcSeq->reset_(0);
 	}
 
-	if (_08) {
-		_08->reset_(0);
+	if (mBaseProcRender) {
+		mBaseProcRender->reset_(0);
 	}
 }
 
@@ -73,13 +73,13 @@ void TControl::reset()
  */
 bool TControl::update()
 {
-	bool checkVars = (_18 && _04);
+	bool checkVars = (_18 && mBaseProcSeq);
 
 	if (!checkVars) {
 		return false;
 	}
 
-	_1C = ((TSequenceProcessor*)_04)->process(0);
+	_1C = ((TSequenceProcessor*)mBaseProcSeq)->process(0);
 
 	if (_1C == 0) {
 		_18 = 0;
@@ -208,17 +208,17 @@ bool TControl::setMessageCode(u16 idx1, u16 idx2)
 	TProcessor* proc1;
 	void* voidPtr;
 
-	TProcessor* processor = (_04) ? _04 : _08;
+	TProcessor* processor = (mBaseProcSeq) ? mBaseProcSeq : mBaseProcRender;
 
 	if (!setMessageCode_inSequence_(processor, idx1, idx2)) {
 		return false;
 	}
 
 	char* ptr      = _18;
-	bool checkVars = (ptr && _04);
+	bool checkVars = (ptr && mBaseProcSeq);
 
 	if (checkVars) {
-		proc1      = _04;
+		proc1      = mBaseProcSeq;
 		voidPtr    = _14;
 		proc1->_08 = _10;
 		proc1->reset_(ptr);
@@ -239,7 +239,7 @@ bool TControl::setMessageID(u32 p1, u32 p2, bool* p3)
 	TProcessor* proc1;
 	void* voidPtr;
 
-	TProcessor* processor = (_04 != nullptr) ? _04 : _08;
+	TProcessor* processor = (mBaseProcSeq != nullptr) ? mBaseProcSeq : mBaseProcRender;
 
 	u32 msgCode = processor->toMessageCode_messageID(p1, p2, p3);
 	if (msgCode == 0xFFFFFFFF) {
@@ -250,10 +250,10 @@ bool TControl::setMessageID(u32 p1, u32 p2, bool* p3)
 	}
 
 	char* ptr      = _18;
-	bool checkVars = (ptr && _04);
+	bool checkVars = (ptr && mBaseProcSeq);
 
 	if (checkVars) {
-		proc1      = _04;
+		proc1      = mBaseProcSeq;
 		voidPtr    = _14;
 		proc1->_08 = _10;
 		proc1->reset_(ptr);

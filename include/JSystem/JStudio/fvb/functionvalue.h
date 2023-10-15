@@ -270,18 +270,18 @@ public:
 	/* 802827A8 */ virtual void prepare();
 	/* 80282858 */ virtual f64 getValue(f64);
 
-	void data_set(const f32* pf, u32 u)
-	{
-		ASSERT((pf != NULL) || (u == 0));
-		_44 = pf;
-		_48 = u;
-	}
+	// void data_set(const f32* pf, u32 u)
+	// {
+	// 	ASSERT((pf != NULL) || (u == 0));
+	// 	_44 = pf;
+	// 	_48 = u;
+	// }
 
-	void data_setInterval(f64 f)
-	{
-		ASSERT(f > TValue(0));
-		_50 = f;
-	}
+	// void data_setInterval(f64 f)
+	// {
+	// 	ASSERT(f > TValue(0));
+	// 	_50 = f;
+	// }
 
 	/* 80282C10 */ static f64 update_INTERPOLATE_NONE_(JStudio::TFunctionValue_list const&,
 	                                                   JStudio::TFunctionValue_list::TIndexData_ const&);
