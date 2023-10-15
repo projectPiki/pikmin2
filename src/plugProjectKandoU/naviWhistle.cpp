@@ -6,48 +6,6 @@
 #include "Game/PlatInstance.h"
 #include "trig.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805188E0
-    lbl_805188E0:
-        .4byte 0x41200000
-    .global lbl_805188E4
-    lbl_805188E4:
-        .4byte 0x00000000
-    .global lbl_805188E8
-    lbl_805188E8:
-        .float 0.5
-    .global lbl_805188EC
-    lbl_805188EC:
-        .4byte 0x43A2F983
-    .global lbl_805188F0
-    lbl_805188F0:
-        .4byte 0xC3A2F983
-    .global lbl_805188F4
-    lbl_805188F4:
-        .4byte 0x47FA0000
-    .global lbl_805188F8
-    lbl_805188F8:
-        .4byte 0xC7FA0000
-    .global lbl_805188FC
-    lbl_805188FC:
-        .float 1.0
-    .global lbl_80518900
-    lbl_80518900:
-        .4byte 0x437F0000
-    .global lbl_80518904
-    lbl_80518904:
-        .4byte 0xC32F0000
-    .global lbl_80518908
-    lbl_80518908:
-        .4byte 0x42F00000
-    .global lbl_8051890C
-    lbl_8051890C:
-        .4byte 0xC2DC0000
-*/
-
 namespace Game {
 
 /*
@@ -70,98 +28,16 @@ NaviWhistle::NaviWhistle(Game::Navi* navi)
  */
 void NaviWhistle::init()
 {
-	mState           = 0;
-	mRadius          = 10.0f;
-	mActiveTime      = 0.0f;
-	mColor           = Color4(255, 150, 0, 120);
-	f32 faceDir      = mNavi->getFaceDir();
-	NaviParms* parms = static_cast<NaviParms*>(mNavi->mParms);
-	f32 v1           = parms->mNaviParms.mP046.mValue * 0.5f;
-	mNaviOffsetVec   = Vector3f(pikmin2_sinf(faceDir) * v1, 0.0f, pikmin2_cosf(faceDir) * v1);
+	mState            = 0;
+	mRadius           = 10.0f;
+	mActiveTime       = 0.0f;
+	mColor            = Color4(255, 150, 0, 120);
+	const f32 faceDir = mNavi->getFaceDir();
+	NaviParms* parms  = static_cast<NaviParms*>(mNavi->mParms);
+	f32 v1            = parms->mNaviParms.mP046.mValue * 0.5f;
+	mNaviOffsetVec    = Vector3f(pikmin2_sinf(faceDir) * v1, 0.0f, pikmin2_cosf(faceDir) * v1);
 
 	updatePosition();
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r5, 0
-	lfs      f1, lbl_805188E0@sda21(r2)
-	stw      r0, 0x34(r1)
-	li       r4, 0xff
-	lfs      f0, lbl_805188E4@sda21(r2)
-	li       r0, 0x78
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	sth      r5, 0x28(r3)
-	li       r3, 0x96
-	stfs     f1, 0x24(r31)
-	stfs     f0, 0x2c(r31)
-	stb      r4, 0x38(r31)
-	stb      r3, 0x39(r31)
-	stb      r5, 0x3a(r31)
-	stb      r0, 0x3b(r31)
-	lwz      r3, 0x34(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x34(r31)
-	fmr      f4, f1
-	lfs      f0, lbl_805188E4@sda21(r2)
-	lwz      r3, 0xc0(r3)
-	lfs      f3, lbl_805188E8@sda21(r2)
-	fcmpo    cr0, f4, f0
-	lfs      f2, 0x980(r3)
-	fmuls    f5, f3, f2
-	bge      lbl_80165140
-	fneg     f4, f4
-
-lbl_80165140:
-	lfs      f3, lbl_805188EC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_805188E4@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f4, f3
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f2, f5, f0
-	bge      lbl_8016519C
-	lfs      f0, lbl_805188F0@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_801651B4
-
-lbl_8016519C:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-
-lbl_801651B4:
-	fmuls    f1, f5, f0
-	lfs      f0, lbl_805188E4@sda21(r2)
-	mr       r3, r31
-	stfs     f1, 0(r31)
-	stfs     f0, 4(r31)
-	stfs     f2, 8(r31)
-	bl       updatePosition__Q24Game11NaviWhistleFv
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -186,121 +62,15 @@ void NaviWhistle::updatePosition()
 	if (platMgr) {
 		info.mMinY = FLOAT_DIST_MIN;
 		platMgr->getCurrTri(info);
-		if (info.mMinY > y) {
+		f32 minY = info.mMinY;
+		if (minY > y) {
 			mNormal = info.mNormalVec;
-			y       = info.mMinY;
+			y       = minY;
 		}
 	}
 
 	mPosition.y = y;
 	mPosition   = mPosition + mNormal;
-
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	lwz      r4, 0x34(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	li       r4, 0
-	lfs      f0, 0(r31)
-	li       r0, 1
-	lfs      f3, 0xc(r1)
-	lfs      f2, 4(r31)
-	fadds    f0, f1, f0
-	lfs      f5, 0x10(r1)
-	lfs      f4, 8(r31)
-	fadds    f2, f3, f2
-	lfs      f1, lbl_805188E4@sda21(r2)
-	stfs     f0, 0xc(r31)
-	fadds    f0, f5, f4
-	lfs      f3, lbl_805188F4@sda21(r2)
-	fmr      f31, f1
-	stfs     f2, 0x10(r31)
-	lfs      f2, lbl_805188F8@sda21(r2)
-	stfs     f0, 0x14(r31)
-	lfs      f0, lbl_805188FC@sda21(r2)
-	stw      r4, 0x28(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f3, 0x2c(r1)
-	cmplwi   r3, 0
-	stfs     f2, 0x30(r1)
-	stw      r4, 0x24(r1)
-	stfs     f1, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	stfs     f1, 0x3c(r1)
-	stb      r0, 0x20(r1)
-	stb      r4, 0x21(r1)
-	lfs      f0, 0xc(r31)
-	stfs     f0, 0x14(r1)
-	lfs      f0, 0x10(r31)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0x14(r31)
-	stfs     f0, 0x1c(r1)
-	beq      lbl_801652E0
-	stb      r4, 0x20(r1)
-	addi     r4, r1, 0x14
-	lwz      r12, 4(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 0x30(r1)
-	lfs      f0, 0x34(r1)
-	stfs     f0, 0x18(r31)
-	lfs      f0, 0x38(r1)
-	stfs     f0, 0x1c(r31)
-	lfs      f0, 0x3c(r1)
-	stfs     f0, 0x20(r31)
-
-lbl_801652E0:
-	lwz      r3, platMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80165324
-	lfs      f0, lbl_805188F8@sda21(r2)
-	addi     r4, r1, 0x14
-	stfs     f0, 0x30(r1)
-	bl       getCurrTri__Q24Game7PlatMgrFRQ24Game11CurrTriInfo
-	lfs      f1, 0x30(r1)
-	fcmpo    cr0, f1, f31
-	ble      lbl_80165324
-	lfs      f0, 0x34(r1)
-	fmr      f31, f1
-	stfs     f0, 0x18(r31)
-	lfs      f0, 0x38(r1)
-	stfs     f0, 0x1c(r31)
-	lfs      f0, 0x3c(r1)
-	stfs     f0, 0x20(r31)
-
-lbl_80165324:
-	stfs     f31, 0x10(r31)
-	lfs      f1, 0xc(r31)
-	lfs      f0, 0x18(r31)
-	lfs      f3, 0x10(r31)
-	lfs      f2, 0x1c(r31)
-	fadds    f0, f1, f0
-	lfs      f4, 0x14(r31)
-	lfs      f1, 0x20(r31)
-	fadds    f2, f3, f2
-	stfs     f0, 0xc(r31)
-	fadds    f0, f4, f1
-	stfs     f2, 0x10(r31)
-	stfs     f0, 0x14(r31)
-	psq_l    f31, 88(r1), 0, qr0
-	lwz      r0, 0x64(r1)
-	lfd      f31, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /*
@@ -407,9 +177,10 @@ void NaviWhistle::updateWhistle()
 				parms   = naviMgr->mNaviParms;
 				maxSize = parms->mNaviParms.mP001.mValue;
 			}
-			parms   = static_cast<NaviParms*>(mNavi->mParms);
-			mRadius = (mActiveTime / parms->mNaviParms.mP002.mValue) * (maxSize - parms->mNaviParms.mP053.mValue)
-			        + parms->mNaviParms.mP002.mValue;
+			parms     = static_cast<NaviParms*>(mNavi->mParms);
+			f32 ratio = mActiveTime / parms->mNaviParms.mP002();
+			f32 diff  = maxSize - parms->mNaviParms.mP053();
+			mRadius   = ratio * diff + parms->mNaviParms.mP053();
 		}
 		break;
 	case Whistle_Timeout:

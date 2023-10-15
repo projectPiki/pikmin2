@@ -173,8 +173,8 @@ void ActFormation::setFormed()
 	    c) reds-purples cutscene hasn't played, and
 	    d) purples in ship cutscene HAS played
 	*/
-	if (!Game::gameSystem->mIsInCave && Game::gameSystem->mFlags & 0x20 && !Game::playData->isDemoFlag(Game::DEMO_Reds_Purples_Tutorial)
-	    && Game::playData->isDemoFlag(Game::DEMO_Purples_In_Ship)) {
+	if (!Game::gameSystem->mIsInCave && Game::gameSystem->isFlag(Game::GAMESYS_IsGameWorldActive)
+	    && !Game::playData->isDemoFlag(Game::DEMO_Reds_Purples_Tutorial) && Game::playData->isDemoFlag(Game::DEMO_Purples_In_Ship)) {
 		Game::GameStat::checkNaviIndex(index); // check navi index is between 0 and 6 otherwise panic (?)
 		Game::GameStat::PikiCounter* counter = &Game::GameStat::formationPikis.mCounter[index]; // get squad numbers
 

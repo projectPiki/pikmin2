@@ -91,7 +91,7 @@ void ActRescue::initApproach()
 {
 	mState       = 0;
 	Vector3f pos = mTargetPiki->getPosition();
-	ApproachPosActionArg arg(pos, 10.0f, -1.0f, 0, 0);
+	ApproachPosActionArg arg(pos, 10.0f, -1.0f);
 	mApproachPos->init(&arg);
 }
 
@@ -133,7 +133,7 @@ void ActRescue::initGo()
 	Game::WPSearchArg arg(pos, &cond, false, 10.0f);
 	mWayPoint = Game::mapMgr->mRouteMgr->getNearestWayPoint(arg);
 	if (mWayPoint) {
-		ApproachPosActionArg arg(mWayPoint->mPosition, 250.0f, -1.0f, 0, 0);
+		ApproachPosActionArg arg(mWayPoint->mPosition, 250.0f, -1.0f);
 		mApproachPos->init(&arg);
 		Game::WaterHangedStateArg statearg(mParent);
 		mTargetPiki->mFsm->transit(mTargetPiki, Game::PIKISTATE_WaterHanged, &statearg);

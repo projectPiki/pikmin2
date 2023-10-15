@@ -51,7 +51,7 @@ void Creature::updateLOD(Game::AILODParm& parm)
 	bool shouldCull   = true; // set to false if visible on any viewport
 	int v11           = 2;
 	Graphics* gfx     = sys->mGfx;
-	int viewportCount = gfx->mViewportCount;
+	int viewportCount = gfx->mActiveViewports;
 	for (int i = 0; i < viewportCount; i++) {
 		Viewport* vp = gfx->getViewport(i);
 		if (!vp->viewable()) {

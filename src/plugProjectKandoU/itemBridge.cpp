@@ -1158,8 +1158,8 @@ bool Item::interactBreakBridge(InteractBreakBridge& breakBridge)
 	int idx      = mCurrStageIdx - 1;
 	healths[idx] += breakBridge.mDamage;
 
-	if (healths[idx] >= *mgr->mParms->mBridgeParms.mHealth()) {
-		healths[idx] = *mgr->mParms->mBridgeParms.mHealth();
+	if (healths[idx] >= mgr->mParms->mBridgeParms.mHealth()) {
+		healths[idx] = mgr->mParms->mBridgeParms.mHealth();
 		setCurrStage(mCurrStageIdx - 1);
 		setAlive(true);
 

@@ -490,7 +490,7 @@ void Game::WayPoint::reset()
 	mNumFromLinks = 0;
 	mNumToLinks   = 0;
 	mDoFloorSnap  = 0;
-	mFlags        = WPF_Unset;
+	mFlags.clear();
 }
 
 /*
@@ -511,9 +511,9 @@ void Game::WayPoint::getLink(int)
 void Game::WayPoint::setOpen(bool open)
 {
 	if (open) {
-		mFlags &= ~WPF_Closed;
+		resetFlag(WPF_Closed);
 	} else {
-		mFlags |= WPF_Closed;
+		setFlag(WPF_Closed);
 	}
 }
 
@@ -525,9 +525,9 @@ void Game::WayPoint::setOpen(bool open)
 void Game::WayPoint::setWater(bool water)
 {
 	if (water) {
-		mFlags |= WPF_Water;
+		setFlag(WPF_Water);
 	} else {
-		mFlags &= ~WPF_Water;
+		resetFlag(WPF_Water);
 	}
 }
 
@@ -539,9 +539,9 @@ void Game::WayPoint::setWater(bool water)
 void Game::WayPoint::setBridge(bool bridge)
 {
 	if (bridge) {
-		mFlags |= WPF_Bridge;
+		setFlag(WPF_Bridge);
 	} else {
-		mFlags &= ~WPF_Bridge;
+		resetFlag(WPF_Bridge);
 	}
 }
 
@@ -1019,19 +1019,19 @@ void Game::RouteMgr::refreshWater()
 	iterator.first();
 	while (!iterator.isDone()) {
 		WayPoint* wp = (*iterator);
-		wp->mFlags &= ~WPF_Water;
+		wp->resetFlag(WPF_Water);
 		if (Game::mapMgr) {
 			Sys::Sphere searchSphere;
 			searchSphere.mPosition.y = wp->mPosition.y;
 			searchSphere.mPosition.z = wp->mPosition.z;
 			searchSphere.mPosition.x = wp->mPosition.x;
-			if (wp->mFlags & WPF_Water) {
+			if (wp->isFlag(WPF_Water)) {
 				searchSphere.mPosition.y = mapMgr->getMinY(searchSphere.mPosition);
 			}
 			searchSphere.mRadius = 4.0f;
 			WaterBox* waterBox   = mapMgr->findWater(searchSphere);
 			if ((waterBox) && (waterBox->mFlags & 1)) {
-				wp->mFlags |= WPF_Water;
+				wp->setFlag(WPF_Water);
 			}
 		}
 		iterator.next();
@@ -1251,7 +1251,7 @@ void Game::RouteMgr::refreshWater()
  * Address:	80172FC4
  * Size:	0003A8
  */
-void Game::RouteMgr::getNearestWayPoint(Game::WPSearchArg&)
+Game::WayPoint* Game::RouteMgr::getNearestWayPoint(Game::WPSearchArg&)
 {
 	/*
 	.loc_0x0:
@@ -1525,7 +1525,7 @@ void Game::RouteMgr::getNearestWayPoint(Game::WPSearchArg&)
  * Address:	8017336C
  * Size:	00081C
  */
-void Game::RouteMgr::getNearestEdge(Game::WPEdgeSearchArg&)
+bool Game::RouteMgr::getNearestEdge(Game::WPEdgeSearchArg&)
 {
 	/*
 	.loc_0x0:
@@ -2194,7 +2194,7 @@ void Game::RouteMgr::setCloseAll()
 	iterator.first();
 	while (!iterator.isDone()) {
 		WayPoint* wp = (*iterator);
-		wp->mFlags |= WPF_Unknown8;
+		wp->setFlag(WPF_Unknown8);
 		iterator.next();
 	}
 }
@@ -2213,7 +2213,7 @@ void Game::RouteMgr::openRoom(short p1)
 		for (WayPoint::RoomList* node = (WayPoint::RoomList*)wp->mRoomList.mChild; node != nullptr;
 		     node                     = (WayPoint::RoomList*)node->mNext) {
 			if (node->_18 == p1) {
-				wp->mFlags &= ~WPF_Closed;
+				wp->resetFlag(WPF_Closed);
 			}
 		}
 		iterator.next();

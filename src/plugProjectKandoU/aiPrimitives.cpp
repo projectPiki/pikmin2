@@ -89,8 +89,8 @@ void ActApproachPos::init(ActionArg* settings)
 	ApproachPosActionArg* approachArg = static_cast<ApproachPosActionArg*>(settings);
 
 	mParent->startMotion(30, 30, nullptr, nullptr);
-	mPosition = approachArg->mPosition;
-	_0C       = approachArg->mRadius;
+	mPosition = approachArg->mSphere.mPosition;
+	_0C       = approachArg->mSphere.mRadius;
 	_24       = approachArg->_18;
 	_25       = approachArg->_19;
 	_1C       = approachArg->_14;
@@ -1993,9 +1993,9 @@ int ActPathMove::execPathfinding()
 	if (mPellet->isPellet()) {
 		if (mPellet->isPicked()) {
 			mPellet->setVelocity(Vector3f::zero);
-			mPellet->mRigid.mConfigs->_14.x = 0.0f;
-			mPellet->mRigid.mConfigs->_14.y = 0.0f;
-			mPellet->mRigid.mConfigs->_14.z = 0.0f;
+			mPellet->mRigid.mConfigs->mVelocity.x = 0.0f;
+			mPellet->mRigid.mConfigs->mVelocity.y = 0.0f;
+			mPellet->mRigid.mConfigs->mVelocity.z = 0.0f;
 			if (mPellet->getSpeicalSlot() == -1) {
 				mPellet->mPelletCarry->reset();
 			}

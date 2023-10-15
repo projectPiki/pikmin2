@@ -521,9 +521,9 @@ void PelletGoalState::exec(Pellet* pelt)
 		mStartSuck = true;
 
 	} else {
-		pelt->mRigid.mConfigs[0]._00 = test;
-		pelt->mPelletPosition        = test;
-		f32 scale                    = (1.0f - mSuckTime) * mScale;
+		pelt->mRigid.mConfigs[0].mPosition = test;
+		pelt->mPelletPosition              = test;
+		f32 scale                          = (1.0f - mSuckTime) * mScale;
 
 		// weird regswap and also loading the sin values (325.whatever) too late??
 		f32 angle    = 8.0f * (TAU * (1.0f - mSuckTime));
@@ -1798,14 +1798,14 @@ int PelletReturnState::initPathfinding(Pellet* pelt)
 	WayPoint* start;
 	if (mapMgr->mRouteMgr->getNearestEdge(arg)) {
 		WayPoint* wp = arg.mWp1;
-		if (!(wp->mFlags & WPF_Closed)) {
+		if (!(wp->isFlag(WPF_Closed))) {
 			start = wp;
 		} else {
 			start = arg.mWp2;
 		}
 	} else if (mapMgr->mRouteMgr->getNearestEdge(arg)) {
 		WayPoint* wp = arg.mWp1;
-		if ((wp->mFlags & WPF_Closed)) {
+		if ((wp->isFlag(WPF_Closed))) {
 			start = arg.mWp2;
 		} else {
 			start = wp;

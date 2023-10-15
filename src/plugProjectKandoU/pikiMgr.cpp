@@ -17,6 +17,10 @@ namespace Game {
 
 static const int unusedPikiMgrArray[] = { 0, 0, 0 };
 
+bool PikiMgr::throwPikiDebug;
+PikiMgr* pikiMgr;
+int PikiMgr::mBirthMode;
+
 /*
  * --INFO--
  * Address:	8015CD14
@@ -57,25 +61,9 @@ void PikiMgr::init()
  */
 void PikiMgr::resetMgr()
 {
-	resetMgr(); // should be MonoObjectMgr::resetMgr
+	MonoObjectMgr::resetMgr(); // should be MonoObjectMgr::resetMgr
 	mDopedPikis = 0;
 	mFlags[0]   = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "resetMgr__27MonoObjectMgr<Q24Game4Piki>Fv"
-	li       r0, 0
-	stw      r0, 0x30(r31)
-	stb      r0, 0x38(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

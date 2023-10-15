@@ -72,14 +72,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-	virtual void doSimulation(f32 timeStep) // _74 (weak, thunk at _44)
-	{
-		for (int i = 0; i < mMax; i++) {
-			if (mOpenIds[i] == false) {
-				mArray[i].doSimulation(timeStep);
-			}
-		}
-	}
+	virtual void doSimulation(f32 timeStep); // _74 (weak, thunk at _44)
 	virtual void doDirectDraw(Graphics& gfx) // _78 (weak, thunk at _48)
 	{
 		for (int i = 0; i < mMax; i++) {
@@ -90,14 +83,8 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	}
 	virtual T* birth(); // _7C (weak)
 
-	virtual void resetMgr() // _80 (weak, thunk at _54)
-	{
-		mArray       = nullptr;
-		mMax         = 0;
-		mActiveCount = 0;
-		mOpenIds     = nullptr;
-	}
-	virtual void clearMgr() // _84 (weak)
+	virtual void resetMgr(); // _80 (weak, thunk at _54)
+	virtual void clearMgr()  // _84 (weak)
 	{
 		mActiveCount = 0;
 		for (int i = 0; i < mMax; i++) {
@@ -132,6 +119,16 @@ MonoObjectMgr<T>::MonoObjectMgr()
 }
 
 template <typename T>
+void MonoObjectMgr<T>::doSimulation(f32 timeStep)
+{
+	for (int i = 0; i < mMax; i++) {
+		if (mOpenIds[i] == false) {
+			mArray[i].doSimulation(timeStep);
+		}
+	}
+}
+
+template <typename T>
 void MonoObjectMgr<T>::alloc(int count)
 {
 	mArray       = new T[count];
@@ -160,6 +157,15 @@ void MonoObjectMgr<T>::kill(T* item)
 			return;
 		}
 	}
+}
+
+template <typename T>
+void MonoObjectMgr<T>::resetMgr()
+{
+	mArray       = nullptr;
+	mMax         = 0;
+	mActiveCount = 0;
+	mOpenIds     = nullptr;
 }
 
 template <typename T>

@@ -1439,7 +1439,7 @@ void GateDownState::init(Game::ItemGate* gate, Game::StateArg* arg)
 	gate->mMabiki.mBuffer += 200;
 	gate->startSound(PSSE_EV_WORK_WALLDOWN);
 	if (gate->mSegmentsDown + 1 == gate->mMaxSegments) {
-		if (gameSystem->mFlags & 0x20 && !playData->isDemoFlag(DEMO_First_Gate_Down)) {
+		if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_First_Gate_Down)) {
 			MoviePlayArg gateMovie("g18_find_gate", nullptr, nullptr, 0);
 			gateMovie.setTarget(gate);
 			moviePlayer->mTargetObject = gate;

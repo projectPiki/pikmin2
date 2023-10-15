@@ -185,7 +185,7 @@ void ItemHole::Item::movieUserCommand(u32 command, MoviePlayer* player)
  */
 bool ItemHole::Item::interactGotKey(Game::InteractGotKey& interaction)
 {
-	if (getStateID() == Hole_Close && gameSystem->mFlags & 0x20) {
+	if (getStateID() == Hole_Close && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		MoviePlayArg arg("g2F_appear_hole", nullptr, nullptr, 0);
 		arg.mOrigin                = getPosition();
 		arg.mAngle                 = getFaceDir();

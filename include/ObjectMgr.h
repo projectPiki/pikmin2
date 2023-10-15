@@ -131,7 +131,7 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 template <typename T>
 void NodeObjectMgr<T>::delNode(T* obj)
 {
-	FOREACH_NODE(TObjectNode<GenericObjectMgr>, mNode.mChild, node)
+	FOREACH_NODE(TObjectNode<T>, mNode.mChild, node)
 	{
 		if (node->mContents == obj) {
 			node->del();

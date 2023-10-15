@@ -1303,7 +1303,7 @@ void PikiNukareState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(mAnimIdx, mAnimIdx, piki, nullptr);
 	_14 = false;
 	if (!playData->hasMetPikmin(piki->mPikiKind)) {
-		gameSystem->mFlags |= 0x8;
+		gameSystem->setFlag(GAMESYS_Unk4);
 	}
 }
 
@@ -1604,7 +1604,7 @@ inline void PikiPanicState::checkDemo(Piki* piki)
 		flag = DEMO_Pikmin_In_Danger_Poison;
 	}
 
-	if (flag != 0 && !playData->isDemoFlag(flag) && gameSystem->isStoryMode() && gameSystem->mFlags & 0x20) {
+	if (flag != 0 && !playData->isDemoFlag(flag) && gameSystem->isStoryMode() && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		_28 -= sys->mDeltaTime;
 		if (_28 <= 0.0f) {
 			playData->setDemoFlag(flag);
@@ -5694,7 +5694,8 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 
 	switch (_24) {
 	case 0: {
-		KandoLib::Choice choiceList[3] = { { IPikiAnims::JUMPB1, 0.33f }, { IPikiAnims::JUMP, 0.33f }, { IPikiAnims::JUMPR1, 0.33f } };
+		KandoLib::Choice choiceList[3] = { (KandoLib::Choice) { IPikiAnims::JUMPB1, 0.33f }, (KandoLib::Choice) { IPikiAnims::JUMP, 0.33f },
+			                               (KandoLib::Choice) { IPikiAnims::JUMPR1, 0.33f } };
 
 		u32 choice = KandoLib::getRandomChoice(choiceList, 3);
 		_26        = choice;
@@ -5704,7 +5705,8 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 	}
 
 	case 1: {
-		KandoLib::Choice choiceList[3] = { { IPikiAnims::JUMPB1, 0.33f }, { IPikiAnims::JUMP, 0.33f }, { IPikiAnims::JUMPR1, 0.33f } };
+		KandoLib::Choice choiceList[3] = { (KandoLib::Choice) { IPikiAnims::JUMPB1, 0.33f }, (KandoLib::Choice) { IPikiAnims::JUMP, 0.33f },
+			                               (KandoLib::Choice) { IPikiAnims::JUMPR1, 0.33f } };
 
 		u32 choice = KandoLib::getRandomChoice(choiceList, 3);
 		_26        = choice;
@@ -5714,7 +5716,8 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 	}
 
 	case 2: {
-		KandoLib::Choice choiceList[2] = { { IPikiAnims::SAGASU, 0.5f }, { IPikiAnims::SAGASU2, 0.5f } };
+		KandoLib::Choice choiceList[2]
+		    = { (KandoLib::Choice) { IPikiAnims::SAGASU, 0.5f }, (KandoLib::Choice) { IPikiAnims::SAGASU2, 0.5f } };
 
 		u32 choice = KandoLib::getRandomChoice(choiceList, 2);
 		_26        = choice;
@@ -5724,7 +5727,8 @@ void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 	}
 
 	case 4: {
-		KandoLib::Choice choiceList[2] = { { IPikiAnims::GAKKARI, 0.5f }, { IPikiAnims::SAGASU2, 0.5f } };
+		KandoLib::Choice choiceList[2]
+		    = { (KandoLib::Choice) { IPikiAnims::GAKKARI, 0.5f }, (KandoLib::Choice) { IPikiAnims::SAGASU2, 0.5f } };
 
 		u32 choice = KandoLib::getRandomChoice(choiceList, 2);
 		_26        = choice;

@@ -346,7 +346,7 @@ void ActWeed::initAdjust()
 		if (mFlockMgr->isWeed(_24)) {
 			modifier = 4.0f;
 		}
-		ApproachPosActionArg approachPosActionArg(mAttackPosition, radius + modifier, -1.0f, 0, 0);
+		ApproachPosActionArg approachPosActionArg(mAttackPosition, radius + modifier, -1.0f);
 		_14 = 1;
 		mApproachPos->init(&approachPosActionArg);
 	}
@@ -1251,7 +1251,7 @@ ActFlockAttack::ActFlockAttack(Game::Piki* parent)
  */
 void ActFlockAttack::init(ActionArg* settings)
 {
-	P2ASSERTBOOLLINE(276, settings && !checkName3(settings, "FlockAttackActionArg"));
+	// P2ASSERTBOOLLINE(276, settings && !checkName3(settings, "FlockAttackActionArg"));
 	FlockAttackActionArg* arg = static_cast<FlockAttackActionArg*>(settings);
 
 	mTarget     = 0;

@@ -239,7 +239,7 @@ Vector3f PlatInstance::getPosition()
  * Address:	801C4C1C
  * Size:	000050
  */
-void PlatInstance::getBoundingSphere(Sys::Sphere& sphere) { sphere = ((Sys::OBBTree*)_EC->getTriDivider())->mObb._100; }
+void PlatInstance::getBoundingSphere(Sys::Sphere& sphere) { sphere = ((Sys::OBBTree*)_EC->getTriDivider())->mRoot.mSphere; }
 
 /*
  * --INFO--
@@ -247,10 +247,10 @@ void PlatInstance::getBoundingSphere(Sys::Sphere& sphere) { sphere = ((Sys::OBBT
  * Size:	0000FC
  */
 // void getMinY__Q24Game12PlatInstanceFR10Vector3f()
-void PlatInstance::getMinY(Vector3f&) const
-{
-	// UNUSED FUNCTION
-}
+// void PlatInstance::getMinY(Vector3f&) const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -1354,7 +1354,7 @@ PlatAddInstanceArg::PlatAddInstanceArg()
 	mPlatform = nullptr;
 	mMatrix   = nullptr;
 	_18       = false;
-	_1C       = 0.0f;
+	mRadius   = 0.0f;
 }
 
 /*
@@ -1385,12 +1385,12 @@ PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 		sphere.mPosition.y = instance->_B8->mMatrix.structView.ty;
 		sphere.mPosition.z = instance->_B8->mMatrix.structView.tz;
 		Sys::OBBTree* div  = (Sys::OBBTree*)instance->_EC->getTriDivider();
-		sphere.mPosition.x += div->mObb._100.mPosition.x;
-		sphere.mPosition.y += div->mObb._100.mPosition.y;
-		sphere.mPosition.z += div->mObb._100.mPosition.z;
-		sphere.mRadius = div->mObb._100.mRadius;
-		if (0.0 < arg._1C) {
-			sphere.mRadius = arg._1C;
+		sphere.mPosition.x += div->mRoot.mSphere.mPosition.x;
+		sphere.mPosition.y += div->mRoot.mSphere.mPosition.y;
+		sphere.mPosition.z += div->mRoot.mSphere.mPosition.z;
+		sphere.mRadius = div->mRoot.mSphere.mRadius;
+		if (0.0 < arg.mRadius) {
+			sphere.mRadius = arg.mRadius;
 		}
 		int v1;
 		Recti v2;
