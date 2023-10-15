@@ -1,6 +1,6 @@
 RUNTIME_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/Runtime/__va_arg.o\
-	$(BUILD_DIR)/asm/Dolphin/Runtime/global_destructor_chain.o\
+	$(BUILD_DIR)/src/Dolphin/Runtime/global_destructor_chain.o\
 	$(BUILD_DIR)/src/Dolphin/Runtime/CPlusLibPPC.o\
 	$(BUILD_DIR)/asm/Dolphin/Runtime/NMWException.o\
 	$(BUILD_DIR)/src/Dolphin/Runtime/ptmf.o\

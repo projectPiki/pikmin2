@@ -473,7 +473,11 @@ LIBS = [
         "host": False,
         "objects": [
             ["Dolphin/Runtime/__va_arg", True],
-            "Dolphin/Runtime/global_destructor_chain",
+            [
+                "Dolphin/Runtime/global_destructor_chain",
+                True,
+                 {"cflags": "$cflags_base -inline deferred"},
+            ],
             [
                 "Dolphin/Runtime/CPlusLibPPC",
                 True,
