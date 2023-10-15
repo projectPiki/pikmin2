@@ -37,7 +37,7 @@ ActBattle::ActBattle(Game::Piki* p)
  */
 void ActBattle::emotion_success()
 {
-	Game::EmotionStateArg arg(1); // will need to create new derived StateArg struct for this eventually
+	Game::EmotionStateArg arg(1);
 	mParent->mFsm->transit(mParent, Game::PIKISTATE_Emotion, &arg);
 }
 
@@ -49,22 +49,23 @@ void ActBattle::emotion_success()
  */
 void ActBattle::init(PikiAI::ActionArg* arg)
 {
-	PikiAI::ActBattleArg* cArg = static_cast<PikiAI::ActBattleArg*>(arg);
 
-	bool assert = false;
-	if (cArg) {
-		bool st = strcmp("ActBattleArg", cArg->getName()) == 0;
-		if (st) {
-			assert = true;
+	bool isBattleArg = false;
+	if (arg) {
+		bool strCheck = strcmp("ActTransportArg", arg->getName()) == 0;
+		if (strCheck) {
+			isBattleArg = true;
 		}
 	}
-	P2ASSERTLINE(179, assert);
+	P2ASSERTLINE(179, isBattleArg);
 
-	mOther = cArg->mAggressor;
+	PikiAI::ActBattleArg* battleArg = static_cast<PikiAI::ActBattleArg*>(arg);
+
+	mOther = battleArg->mAggressor;
 
 	Game::InteractBattle battle(mParent);
 	mOther->stimulate(battle);
-	if (cArg->mIsAttackStart) {
+	if (battleArg->mIsAttackStart) {
 		SET_FLAG(_1C, 2);
 	} else if (mOther == mOther->getVsBattlePiki()) {
 		SET_FLAG(_1C, 2);
@@ -180,7 +181,7 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 			if (mParent->doped()) {
 				efx::TPkAttackDP dp;
 				efx::Arg arg;
-				arg.mPosition = Vector3f(mParent->mLeafStemOffset);
+				arg.mPosition = mParent->mLeafStemOffset;
 				dp.create(&arg);
 			} else {
 				efx::PikiDamage pd;

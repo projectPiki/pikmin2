@@ -2,6 +2,7 @@
 #include "Game/Piki.h"
 #include "Game/PikiMgr.h"
 #include "Game/Navi.h"
+#include "Game/NaviState.h"
 #include "Game/gameStat.h"
 #include "Game/CPlate.h"
 #include "Game/GameSystem.h"
@@ -10,6 +11,8 @@
 #include "P2Macros.h"
 #include "Iterator.h"
 #include "nans.h"
+
+static bool newVer = true;
 
 namespace PikiAI {
 
@@ -265,6 +268,64 @@ void ActFormation::cleanup()
  */
 int PikiAI::ActFormation::exec()
 {
+	if (_38) {
+		_38--;
+	}
+
+	if (mSlotID == -1) {
+		return ACTEXEC_Fail;
+	}
+
+	if (!mInitArg._08 && mNavi && mNavi->mPellet) {
+		return ACTEXEC_Fail;
+	}
+
+	if (mNavi && !mNavi->isAlive()) {
+		return ACTEXEC_Fail;
+	}
+
+	if (!mInitArg._08 && !Game::gameSystem->isMultiplayerMode() && mNavi && !mNavi->mController1
+	    && mNavi->getStateID() == Game::NSID_Follow) {
+		mNextAIType = ACT_Formation;
+		mParent->getCreatureID();
+		return ACTEXEC_Fail;
+	}
+
+	mParent->setMoveRotation(true);
+	_2C = _2A;
+	_2A = 5;
+	if (_54) {
+		int animId;
+		if (mParent->mAnimator.mSelfAnimator.mAnimInfo) {
+			animId = mParent->mAnimator.mSelfAnimator.mAnimInfo->mId;
+		} else {
+			animId = -1;
+		}
+
+		if (animId != Game::IPikiAnims::KOROBU) {
+			_54 = 0;
+			mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
+		}
+
+		mParent->mVelocity = mParent->mVelocity * 0.955f;
+		return ACTEXEC_Continue;
+	}
+
+	_61 = _60;
+	if (!mParent->mNavi) {
+		return ACTEXEC_Fail;
+	}
+
+	bool cstickTest = mParent->mNavi->isCStickNetural();
+	JUT_ASSERTLINE(661, mCPlate->validSlot(mSlotID), "invalid slotId!\n");
+
+	Vector3f slotPos;
+	mCPlate->getSlotPosition(mSlotID, slotPos);
+
+	if (!mParent->mNavi->commandOn()) {
+		Vector3f pikiPos = mParent->getPosition();
+	}
+
 	/*
 	stwu     r1, -0x1c0(r1)
 	mflr     r0
