@@ -294,14 +294,25 @@ bool IKSystemMgr::isCollisionCheck(CollPart* part)
 void IKSystemMgr::updateController()
 {
 	if (mInMotion) {
-		if (checkLegStates(3)) {
-			mLegStates[0] = 0;
-			mLegStates[1] = 0;
-			mLegStates[2] = 0;
-			mLegStates[3] = 0;
+		bool check3 = true;
+		for (int i = 0; i < IK_LEG_COUNT; i++) {
+			if (mLegStates[i] != 3) {
+				check3 = false;
+			}
+		}
+		if (check3) {
+			for (int i = 0; i < IK_LEG_COUNT; i++) {
+				mLegStates[i] = 0;
+			}
 		}
 
-		if (checkLegStates(0)) {
+		bool check0 = true;
+		for (int i = 0; i < IK_LEG_COUNT; i++) {
+			if (mLegStates[i] != 0) {
+				check0 = false;
+			}
+		}
+		if (check0) {
 			setNextCentrePosition();
 			mIKSystems[0].startMovePosition(mLegTargetPosition[0]);
 			mLegStates[0] = 1;
@@ -328,16 +339,9 @@ void IKSystemMgr::updateController()
 				Game::WaterBox* water = mapMgr->findWater(bounds);
 				mJointGroundCallBack->invokeOnGround(i, water);
 			}
-			int newid;
-			if (i + 1 < 4) {
-				newid = i + 5;
-			} else {
-				newid = i + 1;
-				if (newid > 3) {
-					newid = i - 3;
-				}
-			}
-			if (newid > 3 && !mOnGround) {
+			int newid = (i + 1 < 0) ? i + 5 : (i + 1 > 3) ? i - 3 : i + 1;
+
+			if (newid > 0 && !mOnGround) {
 				mIKSystems[newid].startMovePosition(mLegTargetPosition[newid]);
 				mLegStates[newid] = 1;
 				if (mJointGroundCallBack) {
@@ -349,234 +353,6 @@ void IKSystemMgr::updateController()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stmw     r26, 0x68(r1)
-	mr       r28, r3
-	lbz      r0, 1(r3)
-	cmplwi   r0, 0
-	beq      lbl_802A9454
-	lwz      r0, 0x1c(r28)
-	li       r4, 1
-	cmpwi    r0, 3
-	beq      lbl_802A9334
-	li       r4, 0
-
-lbl_802A9334:
-	lwz      r0, 0x20(r28)
-	cmpwi    r0, 3
-	beq      lbl_802A9344
-	li       r4, 0
-
-lbl_802A9344:
-	addi     r3, r28, 8
-	lwz      r0, 0x24(r28)
-	cmpwi    r0, 3
-	beq      lbl_802A9358
-	li       r4, 0
-
-lbl_802A9358:
-	lwz      r0, 0x20(r3)
-	cmpwi    r0, 3
-	beq      lbl_802A9368
-	li       r4, 0
-
-lbl_802A9368:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_802A9384
-	li       r0, 0
-	stw      r0, 0x1c(r28)
-	stw      r0, 0x20(r28)
-	stw      r0, 0x24(r28)
-	stw      r0, 0x28(r28)
-
-lbl_802A9384:
-	lwz      r0, 0x1c(r28)
-	li       r4, 1
-	cmpwi    r0, 0
-	beq      lbl_802A9398
-	li       r4, 0
-
-lbl_802A9398:
-	lwz      r0, 0x20(r28)
-	cmpwi    r0, 0
-	beq      lbl_802A93A8
-	li       r4, 0
-
-lbl_802A93A8:
-	addi     r3, r28, 8
-	lwz      r0, 0x24(r28)
-	cmpwi    r0, 0
-	beq      lbl_802A93BC
-	li       r4, 0
-
-lbl_802A93BC:
-	lwz      r0, 0x20(r3)
-	cmpwi    r0, 0
-	beq      lbl_802A93CC
-	li       r4, 0
-
-lbl_802A93CC:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_802A9454
-	mr       r3, r28
-	bl       setNextCentrePosition__Q24Game11IKSystemMgrFv
-	lwz      r3, 0x8c(r28)
-	addi     r4, r28, 0x5c
-	bl       "startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>"
-	li       r0, 1
-	stw      r0, 0x1c(r28)
-	lwz      r0, 0x94(r28)
-	cmplwi   r0, 0
-	beq      lbl_802A9454
-	lwz      r4, 0x8c(r28)
-	addi     r3, r1, 0x20
-	bl       getBottomJointPosition__Q24Game12IKSystemBaseFv
-	lfs      f3, 0x20(r1)
-	addi     r4, r1, 0x4c
-	lfs      f2, 0x24(r1)
-	lfs      f1, 0x28(r1)
-	lfs      f0, lbl_8051BF7C@sda21(r2)
-	stfs     f3, 0x4c(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f2, 0x50(r1)
-	stfs     f1, 0x54(r1)
-	stfs     f0, 0x58(r1)
-	bl       findWater__Q24Game6MapMgrFRQ23Sys6Sphere
-	mr       r0, r3
-	lwz      r3, 0x94(r28)
-	mr       r5, r0
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802A9454:
-	mr       r31, r28
-	li       r29, 0
-	li       r30, 0
-
-lbl_802A9460:
-	lwz      r0, 0x1c(r31)
-	cmpwi    r0, 1
-	bne      lbl_802A948C
-	lwz      r0, 0x8c(r28)
-	add      r3, r0, r30
-	bl       onGround__Q24Game12IKSystemBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A95E0
-	li       r0, 2
-	stw      r0, 0x1c(r31)
-	b        lbl_802A95E0
-
-lbl_802A948C:
-	cmpwi    r0, 2
-	bne      lbl_802A95E0
-	li       r0, 3
-	stw      r0, 0x1c(r31)
-	lwz      r3, 0x98(r28)
-	lfs      f1, 0x54(r28)
-	lfs      f0, 0x44(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x54(r28)
-	lwz      r0, 0x94(r28)
-	cmplwi   r0, 0
-	beq      lbl_802A9518
-	lwz      r0, 0x8c(r28)
-	addi     r3, r1, 0x14
-	add      r4, r0, r30
-	bl       getBottomJointPosition__Q24Game12IKSystemBaseFv
-	lfs      f3, 0x14(r1)
-	addi     r4, r1, 0x3c
-	lfs      f2, 0x18(r1)
-	lfs      f1, 0x1c(r1)
-	lfs      f0, lbl_8051BF7C@sda21(r2)
-	stfs     f3, 0x3c(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f2, 0x40(r1)
-	stfs     f1, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	bl       findWater__Q24Game6MapMgrFRQ23Sys6Sphere
-	mr       r0, r3
-	lwz      r3, 0x94(r28)
-	mr       r5, r0
-	mr       r4, r29
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802A9518:
-	addic.   r0, r29, 1
-	bge      lbl_802A9528
-	addi     r27, r29, 5
-	b        lbl_802A9538
-
-lbl_802A9528:
-	addi     r27, r29, 1
-	cmpwi    r27, 3
-	ble      lbl_802A9538
-	addi     r27, r29, -3
-
-lbl_802A9538:
-	cmpwi    r27, 0
-	ble      lbl_802A95E0
-	lbz      r0, 2(r28)
-	cmplwi   r0, 0
-	bne      lbl_802A95E0
-	mulli    r3, r27, 0xc
-	lwz      r0, 0x8c(r28)
-	mulli    r26, r27, 0x5c
-	addi     r4, r3, 0x5c
-	add      r3, r0, r26
-	add      r4, r28, r4
-	bl       "startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>"
-	slwi     r3, r27, 2
-	li       r4, 1
-	addi     r0, r3, 0x1c
-	stwx     r4, r28, r0
-	lwz      r0, 0x94(r28)
-	cmplwi   r0, 0
-	beq      lbl_802A95E0
-	lwz      r0, 0x8c(r28)
-	addi     r3, r1, 8
-	add      r4, r0, r26
-	bl       getBottomJointPosition__Q24Game12IKSystemBaseFv
-	lfs      f3, 8(r1)
-	addi     r4, r1, 0x2c
-	lfs      f2, 0xc(r1)
-	lfs      f1, 0x10(r1)
-	lfs      f0, lbl_8051BF7C@sda21(r2)
-	stfs     f3, 0x2c(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f2, 0x30(r1)
-	stfs     f1, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	bl       findWater__Q24Game6MapMgrFRQ23Sys6Sphere
-	mr       r0, r3
-	lwz      r3, 0x94(r28)
-	mr       r5, r0
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802A95E0:
-	addi     r29, r29, 1
-	addi     r30, r30, 0x5c
-	cmpwi    r29, 4
-	addi     r31, r31, 4
-	blt      lbl_802A9460
-	lmw      r26, 0x68(r1)
-	lwz      r0, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /*
@@ -586,6 +362,8 @@ lbl_802A95E0:
  */
 void IKSystemMgr::setNextCentrePosition()
 {
+	Vector3f ownerPos = mOwner->getPosition();
+	f32 angleDist     = angXZ(ownerPos, mTargetPosition);
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0

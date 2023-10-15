@@ -138,16 +138,6 @@ struct IKSystemMgr {
 	void calcCentrePosition();
 	void calcTraceCentrePosition();
 
-	inline bool checkLegStates(int id)
-	{
-		bool ret = true;
-		for (int i = 0; i < IK_LEG_COUNT; i++) {
-			if (mLegStates[i] != id)
-				ret = false;
-		}
-		return ret;
-	}
-
 	bool mIsIKActive;                          // _00
 	bool mInMotion;                            // _01
 	bool mOnGround;                            // _02
