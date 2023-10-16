@@ -502,12 +502,12 @@ void TAdaptor_actor::setJSG_ID_(IDFunction function, JStudio::data::TEOperationD
  */
 void TAdaptor_actor::setJSG_SRT_(const JStudio::TControl* control)
 {
-	JStudio::TControl::TTransformTranslation_rotation_scaling transform;
-	JStudio::TControl::TTransformTranslation_rotation_scaling multipliedTransform;
+	JStudio::TControl::TTransform_translation_rotation_scaling transform;
+	JStudio::TControl::TTransform_translation_rotation_scaling multipliedTransform;
 	adaptor_getVariableValue_Vec(&transform.getTranslation(), sauVariableValue_3_TRANSLATION_XYZ);
 	adaptor_getVariableValue_Vec(&transform.getRotation(), sauVariableValue_3_ROTATION_XYZ);
 	adaptor_getVariableValue_Vec(&transform.getScaling(), sauVariableValue_3_SCALING_XYZ);
-	JStudio::TControl::TTransformTranslation_rotation_scaling* pTransform;
+	JStudio::TControl::TTransform_translation_rotation_scaling* pTransform;
 	if (_140 == 0) {
 		if (control->_74 == 0) {
 			pTransform = &transform;
@@ -523,7 +523,7 @@ void TAdaptor_actor::setJSG_SRT_(const JStudio::TControl* control)
 		switch (_134) {
 		case 0: {
 			Mtx mtx;
-			if (transformToGlobalFromLocal(mtx, *pTransform, _138, _13C) == false) {
+			if (transform_toGlobalFromLocal(mtx, *pTransform, _138, _13C) == false) {
 				return;
 			}
 			JStudio::math::getFromTransformation_SRxyzT(&multipliedTransform.getScaling(), &multipliedTransform.getRotation(),
@@ -597,7 +597,7 @@ lbl_800129C4:
 	lwz      r6, 0x13c(r30)
 	addi     r3, r1, 8
 	bl
-transformToGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransformTranslation_rotation_scalingPCQ26JStage7TObjectUl
+transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
 	clrlwi.  r0, r3, 0x18
 	bne      lbl_800129E8
 	li       r0, 0
@@ -723,7 +723,7 @@ lbl_80012B4C:
 	lwz      r6, 0x13c(r30)
 	addi     r3, r1, 8
 	bl
-transformToLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransformTranslation_rotation_scalingPCQ26JStage7TObjectUl
+transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
 	clrlwi.  r0, r3, 0x18
 	bne      lbl_80012B70
 	li       r0, 0

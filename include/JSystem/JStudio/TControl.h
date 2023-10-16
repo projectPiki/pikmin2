@@ -9,7 +9,7 @@
 
 namespace JStudio {
 struct TControl : stb::TControl {
-	struct TTransformTranslation_rotation_scaling {
+	struct TTransform_translation_rotation_scaling {
 		/** @fabricated */
 		Vec& getTranslation() { return mVecs[0]; }
 		/** @fabricated */
@@ -32,7 +32,7 @@ struct TControl : stb::TControl {
 		Vec mVecs[3];
 	};
 
-	struct TTransformPosition {
+	struct TTransform_position {
 		Vec mPosition;
 	};
 

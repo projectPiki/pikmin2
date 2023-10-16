@@ -16,8 +16,9 @@
  * Address:	80011DCC
  * Size:	000098
  */
-bool JStudio_JStage::transformToGlobalFromLocal(float (*p1)[4], const JStudio::TControl::TTransformTranslation_rotation_scaling& transform,
-                                                const JStage::TObject* object, unsigned long p4)
+bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4],
+                                                 const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
+                                                 const JStage::TObject* object, unsigned long p4)
 {
 	if (object == nullptr) {
 		return false;
@@ -36,10 +37,10 @@ bool JStudio_JStage::transformToGlobalFromLocal(float (*p1)[4], const JStudio::T
  * --INFO--
  * Address:	80011E64
  * Size:	000098
- * transformToGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransformPositionPCQ26JStage7TObjectUl
+ * transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
  */
-bool JStudio_JStage::transformToGlobalFromLocal(float (*p1)[4], const JStudio::TControl::TTransformPosition& transform,
-                                                const JStage::TObject* object, unsigned long p4)
+bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4], const JStudio::TControl::TTransform_position& transform,
+                                                 const JStage::TObject* object, unsigned long p4)
 {
 	if (object == nullptr) {
 		return false;
@@ -59,8 +60,9 @@ bool JStudio_JStage::transformToGlobalFromLocal(float (*p1)[4], const JStudio::T
  * Address:	80011EFC
  * Size:	0000A4
  */
-bool JStudio_JStage::transformToLocalFromGlobal(float (*p1)[4], const JStudio::TControl::TTransformTranslation_rotation_scaling& transform,
-                                                const JStage::TObject* object, unsigned long p4)
+bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4],
+                                                 const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
+                                                 const JStage::TObject* object, unsigned long p4)
 {
 	if (object == nullptr) {
 		return false;
@@ -81,10 +83,10 @@ bool JStudio_JStage::transformToLocalFromGlobal(float (*p1)[4], const JStudio::T
  * --INFO--
  * Address:	80011FA0
  * Size:	0000A4
- * transformToLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransformPositionPCQ26JStage7TObjectUl
+ * transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
  */
-bool JStudio_JStage::transformToLocalFromGlobal(float (*p1)[4], const JStudio::TControl::TTransformPosition& transform,
-                                                const JStage::TObject* object, unsigned long p4)
+bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4], const JStudio::TControl::TTransform_position& transform,
+                                                 const JStage::TObject* object, unsigned long p4)
 {
 	if (object == nullptr) {
 		return false;

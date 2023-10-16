@@ -437,7 +437,7 @@ lbl_800139F4:
 	addi     r3, r1, 0x20
 	lwz      r6, 0x10c(r30)
 	bl
-transformToGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransformPositionPCQ26JStage7TObjectUl
+transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
 	clrlwi.  r0, r3, 0x18
 	bne      lbl_80013A14
 	li       r0, 0
@@ -530,7 +530,7 @@ lbl_80013AF8:
 	addi     r3, r1, 0x20
 	lwz      r6, 0x10c(r30)
 	bl
-transformToLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransformPositionPCQ26JStage7TObjectUl
+transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
 	clrlwi.  r0, r3, 0x18
 	bne      lbl_80013B18
 	li       r0, 0

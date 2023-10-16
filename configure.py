@@ -49,7 +49,7 @@ LIBS = [
         "host": True,
         "objects": [
             "JSystem/JStudio_JStage/object-light",
-            "JSystem/JStudio_JStage/object",
+            ["JSystem/JStudio_JStage/object", True],
             "JSystem/JStudio_JStage/object-actor",
             ["JSystem/JStudio_JStage/object-ambientlight", True],
             "JSystem/JStudio_JStage/object-camera",

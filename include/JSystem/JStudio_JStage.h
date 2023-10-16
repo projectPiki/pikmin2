@@ -254,10 +254,12 @@ struct TAdaptor_light : public JStudio::TAdaptor_light {
 	virtual void adaptor_do_FACULTY(JStudio::data::TEOperationData, const void*, unsigned long);                   // _24
 };
 
-bool transformToGlobalFromLocal(f32 (*)[4], const JStudio::TControl::TTransformTranslation_rotation_scaling&, const JStage::TObject*, u32);
-bool transformToGlobalFromLocal(f32 (*)[4], const JStudio::TControl::TTransformPosition&, const JStage::TObject*, u32);
-bool transformToLocalFromGlobal(f32 (*)[4], const JStudio::TControl::TTransformTranslation_rotation_scaling&, const JStage::TObject*, u32);
-bool transformToLocalFromGlobal(f32 (*)[4], const JStudio::TControl::TTransformPosition&, const JStage::TObject*, u32);
+bool transform_toGlobalFromLocal(f32 (*)[4], const JStudio::TControl::TTransform_translation_rotation_scaling&, const JStage::TObject*,
+                                 u32);
+bool transform_toGlobalFromLocal(f32 (*)[4], const JStudio::TControl::TTransform_position&, const JStage::TObject*, u32);
+bool transform_toLocalFromGlobal(f32 (*)[4], const JStudio::TControl::TTransform_translation_rotation_scaling&, const JStage::TObject*,
+                                 u32);
+bool transform_toLocalFromGlobal(f32 (*)[4], const JStudio::TControl::TTransform_position&, const JStage::TObject*, u32);
 } // namespace JStudio_JStage
 
 #endif
