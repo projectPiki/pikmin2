@@ -10,7 +10,7 @@ struct TLastMomiji : public TChasePos {
 	{
 	}
 
-	virtual ~TLastMomiji(); // _48 (weak)
+	virtual ~TLastMomiji() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos

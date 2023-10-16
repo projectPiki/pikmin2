@@ -78,9 +78,9 @@ struct CaveFloorInfo : public SceneInfo {
 		mChallengeModeStageNum = 0xFF;
 	}
 
-	virtual bool isCaveFloor() { return true; } // _08 (weak)
-	virtual bool isBossFloor();                 // _0C (weak)
-	virtual bool isRelaxFloor();                // _10 (weak)
+	virtual bool isCaveFloor() { return true; }            // _08 (weak)
+	virtual bool isBossFloor() { return mBetaType == 1; }  // _0C (weak)
+	virtual bool isRelaxFloor() { return mBetaType == 2; } // _10 (weak)
 
 	u32 getCaveNoFromID();
 

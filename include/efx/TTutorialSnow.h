@@ -10,7 +10,7 @@ struct TTutorialSnow : public TChasePos {
 	{
 	}
 
-	virtual ~TTutorialSnow(); // _48 (weak)
+	virtual ~TTutorialSnow() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos

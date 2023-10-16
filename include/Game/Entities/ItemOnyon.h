@@ -74,7 +74,7 @@ struct Onyon : public BaseItem {
 	virtual void onInit(CreatureInitArg* settings);                     // _30
 	virtual void onKill(CreatureKillArg* settings);                     // _34
 	virtual void doDirectDraw(Graphics& gfx);                           // _50
-	virtual f32 getFaceDir();                                           // _64 (weak)
+	virtual f32 getFaceDir() { return mFaceDir; }                       // _64 (weak)
 	virtual bool sound_culling();                                       // _104
 	virtual void on_movie_end(bool shouldResetAnims);                   // _114
 	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130

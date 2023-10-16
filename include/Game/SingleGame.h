@@ -55,6 +55,14 @@ struct FSM : public StateMachine<SingleGameSection> {
 	void draw(Game::SingleGameSection*, Graphics&); // UNUSED
 	State* getState(int);
 
+	inline bool assertValidID(int id)
+	{
+		if (id < 0 || id >= mLimit) {
+			return false;
+		}
+		return true;
+	}
+
 	// _00     = VTBL
 	// _00-_1C = StateMachine
 };
@@ -99,7 +107,7 @@ struct CaveDayEndState : public State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	f32 _10; // _10
+	f32 mFadeTimer; // _10
 };
 
 struct CaveResultArg : public StateArg {

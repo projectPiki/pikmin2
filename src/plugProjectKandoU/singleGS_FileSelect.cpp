@@ -170,7 +170,7 @@ void FileState::startGame(SingleGameSection* game)
 		playData->getCurrentCave(id, floor);
 		game->mCurrentCourseInfo = info;
 		game->mCurrentFloor      = floor;
-		game->_190               = id.getID();
+		game->mCaveIndex         = id.getID();
 		game->mInCave            = true;
 		game->mCaveID            = id;
 		strcpy(game->mCaveFilename, info->getCaveinfoFilename_FromID(id));

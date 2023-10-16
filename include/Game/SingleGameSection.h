@@ -32,22 +32,22 @@ struct SingleGameSection : public BaseGameSection {
 	virtual ~SingleGameSection();                                      // _08
 	virtual bool doUpdate();                                           // _3C
 	virtual void doDraw(Graphics& gfx);                                // _40
-	virtual int getCurrFloor();                                        // _58 (weak)
-	virtual bool isDevelopSection();                                   // _5C (weak)
+	virtual int getCurrFloor() { return mCurrentFloor; }               // _58 (weak)
+	virtual bool isDevelopSection() { return false; }                  // _5C (weak)
 	virtual void startMainBgm();                                       // _64
 	virtual void section_fadeout();                                    // _68
 	virtual void goNextFloor(ItemHole::Item*);                         // _6C
 	virtual void goCave(ItemCave::Item*);                              // _70
 	virtual void goMainMap(ItemBigFountain::Item*);                    // _74
-	virtual u32 getCaveID();                                           // _78 (weak)
+	virtual u32 getCaveID() { return mCaveID.getID(); }                // _78 (weak)
 	virtual CourseInfo* getCurrentCourseInfo();                        // _7C (weak)
-	virtual char* getCaveFilename();                                   // _84 (weak)
+	virtual char* getCaveFilename() { return mCaveFilename; }          // _84 (weak)
 	virtual void playMovie_firstexperience(int, Creature*);            // _98
 	virtual void playMovie_bootup(Onyon*);                             // _9C
 	virtual void playMovie_helloPikmin(Piki*);                         // _A0
 	virtual void enableTimer(f32, u32);                                // _A4
 	virtual void disableTimer(u32);                                    // _A8
-	virtual u32 getTimerType();                                        // _AC (weak)
+	virtual u32 getTimerType() { return mTimerType; }                  // _AC (weak)
 	virtual void onMovieStart(MovieConfig*, u32, u32);                 // _B0
 	virtual void onMovieDone(MovieConfig*, u32, u32);                  // _B4
 	virtual void onMovieCommand(int);                                  // _B8
@@ -89,10 +89,10 @@ struct SingleGameSection : public BaseGameSection {
 	struct Game::ItemCave::Item* mCurrentCave;     // _184
 	struct Game::ItemHole::Item* mHole;            // _188
 	struct Game::ItemBigFountain::Item* mFountain; // _18C
-	u32 _190;                                      // _190
+	u32 mCaveIndex;                                // _190
 	bool _194;                                     // _194
 	char mCaveFilename[0x20];                      // _195
-	bool _1B5;                                     // _1B5, unknown
+	bool mDoEnd;                                   // _1B5
 	DvdThreadCommand mDvdThread;                   // _1B8
 	Delegate<Game::SingleGameSection>* _224;       // _224
 	u8 _228;                                       // _228
@@ -102,7 +102,7 @@ struct SingleGameSection : public BaseGameSection {
 	u8 _23D;                                       // _23D
 	bool mNeedTreasureCalc;                        // _23E
 	Delegate<Game::SingleGameSection>* _240;       // _240
-	efx::TChasePos* _244;                          // _244
+	efx::TChasePos* mWeatherEfx;                   // _244
 	int mCurrentFloor;                             // _248
 	Game::SingleGame::FSM* mFsm;                   // _24C
 	Game::SingleGame::GameState* mCurrentState;    // _250

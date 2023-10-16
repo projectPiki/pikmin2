@@ -8,18 +8,26 @@
 #include "Game/Entities/ItemCave.h"
 #include "Game/gameStat.h"
 #include "Game/Farm.h"
+#include "Game/Navi.h"
 #include "efx/TLastMomiji.h"
 #include "efx/TForestSakura.h"
 #include "efx/TTutorialSnow.h"
 #include "Game/MapMgr.h"
 #include "Screen/Enums.h"
 #include "PSM/Scene.h"
+#include "Screen/Game2DMgr.h"
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSMainSide_Scene.h"
 #include "string.h"
 #include "Iterator.h"
+#include "Game/Cave/RandMapMgr.h"
 #include "Game/MoviePlayer.h"
 #include "Radar.h"
+#include "utilityU.h"
+#include "Game/NaviParms.h"
+#include "Dolphin/rand.h"
+#include "Game/PikiState.h"
+#include "PikiAI.h"
 #include "nans.h"
 
 /*
@@ -673,18 +681,18 @@ void SingleGameSection::startMainBgm()
 void SingleGame::FSM::init(SingleGameSection* section)
 {
 	create(SGS_StateCount);
-	registerState(new SingleGame::FileState());
-	registerState(new SingleGame::SelectState());
-	registerState(new SingleGame::LoadState());
-	registerState(new SingleGame::GameState());
-	registerState(new SingleGame::CaveState());
-	registerState(new SingleGame::DayEndState());
-	registerState(new SingleGame::CaveDayEndState());
-	registerState(new SingleGame::MainResultState());
-	registerState(new SingleGame::CaveResultState());
-	registerState(new SingleGame::MovieState());
-	registerState(new SingleGame::ZukanState());
-	registerState(new SingleGame::EndingState());
+	registerState(new FileState);
+	registerState(new SelectState);
+	registerState(new LoadState);
+	registerState(new GameState);
+	registerState(new CaveState);
+	registerState(new DayEndState);
+	registerState(new CaveDayEndState);
+	registerState(new MainResultState);
+	registerState(new CaveResultState);
+	registerState(new MovieState);
+	registerState(new ZukanState);
+	registerState(new EndingState);
 }
 
 /*
@@ -692,7 +700,7 @@ void SingleGame::FSM::init(SingleGameSection* section)
  * Address:	........
  * Size:	000038
  */
-void SingleGame::FSM::draw(SingleGameSection* section, Graphics&)
+void SingleGame::FSM::draw(SingleGameSection* game, Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -702,9 +710,9 @@ void SingleGame::FSM::draw(SingleGameSection* section, Graphics&)
  * Address:	80152528
  * Size:	000020
  */
-void SingleGame::FSM::transit(SingleGameSection* section, int sceneNum, Game::StateArg* arg)
+void SingleGame::FSM::transit(SingleGameSection* game, int sceneNum, Game::StateArg* arg)
 {
-	StateMachine<SingleGameSection>::transit(section, sceneNum, arg);
+	StateMachine<SingleGameSection>::transit(game, sceneNum, arg);
 }
 
 /*
@@ -715,11 +723,9 @@ void SingleGame::FSM::transit(SingleGameSection* section, int sceneNum, Game::St
  */
 SingleGame::State* SingleGame::FSM::getState(int index)
 {
-	if (index < 0 || index >= mCount) {
-		return nullptr;
-	}
-
-	return (SingleGame::State*)mStates[index];
+	if (assertValidID(index))
+		return (State*)mStates[index];
+	return nullptr;
 }
 
 /*
@@ -727,7 +733,7 @@ SingleGame::State* SingleGame::FSM::getState(int index)
  * Address:	80152588
  * Size:	000200
  */
-SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* section, Game::PelletCropMemory*, bool)
+SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, PelletCropMemory*, bool)
 {
 	/*
 	.loc_0x0:
@@ -888,24 +894,28 @@ SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* section
  * Size:	000160
  * TODO
  */
-void SingleGame::CaveDayEndState::init(SingleGameSection* section, Game::StateArg* arg)
+void SingleGame::CaveDayEndState::init(SingleGameSection* game, StateArg* arg)
 {
-	Game::moviePlayer->reset();
+	moviePlayer->reset();
 
-	// arg->dword18 = section->mWipeOutFader;
-	_10 = 2.5f;
-	section->mWipeOutFader->start(_10);
+	game->mDisplayWiper = game->mWipeOutFader;
+	mFadeTimer          = 2.5f;
+	game->mWipeOutFader->start(mFadeTimer);
 
-	Game::gameSystem->setPause(1, "cavedayend", 3);
+	gameSystem->setPause(1, "cavedayend", 3);
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
-	PSSystem::checkSceneMgr(mgr);
+	if (!mgr) {
+		return;
+	}
+
+	mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
 	mgr->checkScene();
 	PSSystem::Scene* scene = mgr->mScenes->mChild;
 	if (scene) {
-		scene->stopAllSound(_10 / sys->mDeltaTime);
+		scene->stopAllSound(mFadeTimer / sys->mDeltaTime);
 	}
 }
 
@@ -917,11 +927,11 @@ void SingleGame::CaveDayEndState::init(SingleGameSection* section, Game::StateAr
  */
 void SingleGame::CaveDayEndState::exec(SingleGameSection* section)
 {
-	section->doUpdate();
+	section->BaseGameSection::doUpdate();
 	section->updateCaveScreen();
 
-	_10 -= sys->mDeltaTime;
-	if (_10 <= 0.0) {
+	mFadeTimer -= sys->mDeltaTime;
+	if (mFadeTimer <= 0.0f) {
 		section->advanceDayCount();
 		gameSystem->mTimeMgr->setStartTime();
 		pikiMgr->forceEnterPikmins(0);
@@ -933,37 +943,13 @@ void SingleGame::CaveDayEndState::exec(SingleGameSection* section)
 
 /*
  * --INFO--
- * Address:	8015299C
- * Size:	000030
- */
-// void transit__Q24Game36FSMState<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  lwz       r3, 0x8(r3)
-// 	  lwz       r12, 0x0(r3)
-// 	  lwz       r12, 0x14(r12)
-// 	  mtctr     r12
-// 	  bctrl
-// 	  lwz       r0, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
-
-/*
- * --INFO--
  * Address:	801529CC
  * Size:	00003C
  * TODO
  */
 void SingleGame::CaveDayEndState::draw(SingleGameSection* section, Graphics& gfx)
 {
-	section->doDraw(gfx);
+	section->BaseGameSection::doDraw(gfx);
 	section->drawCaveScreen();
 }
 
@@ -981,69 +967,11 @@ void SingleGame::CaveDayEndState::cleanup(SingleGameSection* section) { gameSyst
  */
 SingleGameSection::SingleGameSection(JKRHeap* heap)
     : BaseGameSection(heap)
+    , mOpenMenuFlags()
 {
-	_240 = new Delegate<Game::SingleGameSection>(nullptr, nullptr);
+	mPlayerMode = 2;
+	_240        = new Delegate<Game::SingleGameSection>(this, nullptr);
 	newCaveOtakaraEarningsAndDrops();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       __ct__Q24Game15BaseGameSectionFP7JKRHeap
-	lis      r3, __vt__Q24Game17SingleGameSection@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q24Game17SingleGameSection@l
-	addi     r3, r31, 0x1b8
-	stw      r4, 0(r31)
-	stb      r0, 0x180(r31)
-	bl       __ct__16DvdThreadCommandFv
-	addi     r3, r31, 0x230
-	bl       __ct__4ID32Fv
-	addi     r3, r31, 0x254
-	bl       __ct__Q24Game11KindCounterFv
-	addi     r3, r31, 0x25c
-	bl       __ct__Q24Game11KindCounterFv
-	addi     r3, r31, 0x264
-	bl       __ct__Q24Game11KindCounterFv
-	addi     r3, r31, 0x26c
-	bl       __ct__Q24Game11KindCounterFv
-	li       r0, 2
-	li       r3, 0x14
-	stw      r0, 0x114(r31)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80152AF8
-	lis      r4, lbl_804B107C@ha
-	lis      r5, __vt__9IDelegate@ha
-	addi     r8, r4, lbl_804B107C@l
-	lis      r4, "__vt__36Delegate<Q24Game17SingleGameSection>"@ha
-	lwz      r7, 0(r8)
-	addi     r5, r5, __vt__9IDelegate@l
-	lwz      r6, 4(r8)
-	addi     r0, r4, "__vt__36Delegate<Q24Game17SingleGameSection>"@l
-	lwz      r4, 8(r8)
-	stw      r7, 8(r1)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stw      r31, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0xc(r1)
-	stw      r4, 0x10(r1)
-	stw      r4, 0x10(r3)
-
-lbl_80152AF8:
-	stw      r3, 0x240(r31)
-	mr       r3, r31
-	bl       newCaveOtakaraEarningsAndDrops__Q24Game17SingleGameSectionFv
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1058,11 +986,7 @@ void SingleGameSection::section_fadeout() { mCurrentState->on_section_fadeout(th
  * Address:	80152B54
  * Size:	00000C
  */
-void SingleGameSection::flow_goto_title()
-{
-	// Generated from stb r0, 0x1B5(r3)
-	_1B5 = 1;
-}
+void SingleGameSection::flow_goto_title() { mDoEnd = true; }
 
 /*
  * --INFO--
@@ -1076,51 +1000,26 @@ void SingleGameSection::onInit()
 
 	System::assert_fragmentation("SGS::onInit");
 
-	_244 = nullptr;
-	_194 = false;
+	mWeatherEfx = nullptr;
+	_194        = false;
 	clearCaveMenus();
 
 	_11C = 0;
-	_224 = new Delegate<Game::SingleGameSection>(nullptr, nullptr);
+	_224 = new Delegate<Game::SingleGameSection>(this, nullptr);
 
-	mFsm = new SingleGame::FSM();
+	mFsm = new SingleGame::FSM;
 	mFsm->init(this);
-	mFsm->transit(this, 0, nullptr);
+	mFsm->start(this, 0, nullptr);
 
 	System::assert_fragmentation("SGS::FSM");
 	setupFixMemory();
 	System::assert_fragmentation("SGS::setupFix");
 
-	_1B5 = 0;
+	mDoEnd = false;
 
-	Radar::mgr = new Radar::Mgr();
+	Radar::mgr = new Radar::Mgr;
 	disableTimer(0);
 }
-
-/*
- * --INFO--
- * Address:	80152CE8
- * Size:	000034
- */
-// void start__Q24Game40StateMachine<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  li        r0, 0
-// 	  stw       r0, 0x250(r4)
-// 	  lwz       r12, 0x0(r3)
-// 	  lwz       r12, 0x14(r12)
-// 	  mtctr     r12
-// 	  bctrl
-// 	  lwz       r0, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
 
 /*
  * --INFO--
@@ -1129,7 +1028,7 @@ void SingleGameSection::onInit()
  */
 bool SingleGameSection::doUpdate()
 {
-	if (!_1B5) {
+	if (!mDoEnd) {
 		mFsm->exec(this);
 
 		if (!gameSystem->mIsFrozen && !gameSystem->paused()) {
@@ -1143,7 +1042,7 @@ bool SingleGameSection::doUpdate()
 		}
 	}
 
-	if (_1B5) {
+	if (mDoEnd) {
 		mIsMainActive = false;
 	}
 
@@ -1157,30 +1056,12 @@ bool SingleGameSection::doUpdate()
  */
 void SingleGameSection::doDraw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x1b5(r3)
-	cmplwi   r0, 0
-	bne      lbl_80152E4C
-	lwz      r3, 0x250(r6)
-	cmplwi   r3, 0
-	beq      lbl_80152E4C
-	lwz      r12, 0(r3)
-	mr       r4, r6
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80152E4C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!mDoEnd) {
+		SingleGame::State* state = mCurrentState;
+		if (state) {
+			state->draw(this, gfx);
+		}
+	}
 }
 
 /*
@@ -1190,33 +1071,12 @@ lbl_80152E4C:
  */
 void SingleGameSection::on_setCamController(int)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x244(r3)
-	cmplwi   r0, 0
-	beq      lbl_80152EA4
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	cmplwi   r3, 0
-	beq      lbl_80152EA4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x100(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x244(r31)
-	stw      r3, 0x10(r4)
-
-lbl_80152EA4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mWeatherEfx) {
+		Navi* navi = naviMgr->getActiveNavi();
+		if (navi) {
+			mWeatherEfx->mPosition = navi->getSound_PosPtr();
+		}
+	}
 }
 
 /*
@@ -1226,191 +1086,43 @@ lbl_80152EA4:
  */
 void SingleGameSection::onSetSoundScene()
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stw      r31, 0x9c(r1)
-	stw      r30, 0x98(r1)
-	mr       r30, r3
-	lis      r3, lbl_8047CD98@ha
-	lbz      r0, 0x23c(r30)
-	addi     r31, r3, lbl_8047CD98@l
-	cmplwi   r0, 0
-	beq      lbl_80152FE4
-	addi     r3, r1, 0x40
-	bl       __ct__Q26PSGame9SceneInfoFv
-	lis      r4, __vt__Q26PSGame13CaveFloorInfo@ha
-	lis      r3, 0x0000FFFF@ha
-	li       r5, 0
-	li       r0, 0xff
-	addi     r6, r4, __vt__Q26PSGame13CaveFloorInfo@l
-	addi     r4, r3, 0x0000FFFF@l
-	stw      r6, 0x40(r1)
-	mr       r3, r30
-	lwz      r6, mapMgr__4Game@sda21(r13)
-	stw      r5, 0x78(r1)
-	stw      r5, 0x7c(r1)
-	stb      r5, 0x80(r1)
-	stw      r4, 0x84(r1)
-	stb      r0, 0x88(r1)
-	stb      r0, 0x89(r1)
-	lwz      r4, 0x2c(r6)
-	lwz      r5, 0x30(r6)
-	lwz      r0, 0x22c(r4)
-	stw      r0, 0x78(r1)
-	lwz      r0, 0x250(r4)
-	stw      r0, 0x7c(r1)
-	stb      r5, 0x80(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x84(r1)
-	mr       r3, r30
-	addi     r4, r1, 0x40
-	bl setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo addi
-r3, r1, 0x40 li       r4, 0 li       r5, 1 bl
-setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo12FlagBitShift
-	lwz      r3, 0x22c(r30)
-	lwz      r0, 0x48(r3)
-	cmpwi    r0, 4
-	blt      lbl_80152F98
-	addi     r3, r31, 0xb0
-	addi     r5, r31, 0x2c
-	li       r4, 0x485
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (mInCave) {
+		PSGame::CaveFloorInfo info;
+		int floor             = static_cast<RoomMapMgr*>(mapMgr)->mSublevel;
+		info.mAlphaType       = static_cast<RoomMapMgr*>(mapMgr)->mFloorInfo->mParms.mFloorAlphaType;
+		info.mBetaType        = static_cast<RoomMapMgr*>(mapMgr)->mFloorInfo->mParms.mFloorBetaType;
+		info.mFloorNum        = floor;
+		info.mCaveID.fullView = getCaveID();
+		setDefaultPSSceneInfo(info);
+		info.setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk0, PSGame::SceneInfo::SFBS_1);
+		P2ASSERTLINE(1157, (int)mCurrentCourseInfo->mCourseIndex < 4);
+		info.mSceneType          = mCurrentCourseInfo->mCourseIndex + 1;
+		PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+		mgr->newAndSetCurrentScene(info);
+	} else {
+		PSGame::SceneInfo info;
+		setDefaultPSSceneInfo(info);
+		info.setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk0, PSGame::SceneInfo::SFBS_1);
+		int id = mCurrentCourseInfo->mCourseIndex;
+		if (id >= 4) {
+			info.mSceneType = PSGame::SceneInfo::COURSE_TUTORIAL;
+		} else {
+			if (id == 0 && gameSystem->mTimeMgr->mDayCount == 0) {
+				info.mSceneType = PSGame::SceneInfo::COURSE_TUTORIALDAY1;
+			} else {
+				info.mSceneType = id + 1;
+			}
+		}
+		PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+		mgr->newAndSetCurrentScene(info);
+	}
 
-lbl_80152F98:
-	lwz      r3, 0x22c(r30)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r3, 0x48(r3)
-	cmplwi   r0, 0
-	addi     r0, r3, 1
-	stb      r0, 0x46(r1)
-	bne      lbl_80152FC8
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x2c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80152FC8:
-	lwz      r3, spSceneMgr__8PSSystem@sda21(r13)
-	addi     r4, r1, 0x40
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8015308C
-
-lbl_80152FE4:
-	addi     r3, r1, 8
-	bl       __ct__Q26PSGame9SceneInfoFv
-	mr       r3, r30
-	addi     r4, r1, 8
-	bl setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo addi
-r3, r1, 8 li       r4, 0 li       r5, 1 bl
-setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo12FlagBitShift
-	lwz      r3, 0x22c(r30)
-	lwz      r4, 0x48(r3)
-	cmpwi    r4, 4
-	blt      lbl_80153024
-	li       r0, 1
-	stb      r0, 0xe(r1)
-	b        lbl_80153054
-
-lbl_80153024:
-	cmpwi    r4, 0
-	bne      lbl_8015304C
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x40(r3)
-	lwz      r0, 0x218(r3)
-	cmplwi   r0, 0
-	bne      lbl_8015304C
-	li       r0, 0x14
-	stb      r0, 0xe(r1)
-	b        lbl_80153054
-
-lbl_8015304C:
-	addi     r0, r4, 1
-	stb      r0, 0xe(r1)
-
-lbl_80153054:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80153074
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x2c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80153074:
-	lwz      r3, spSceneMgr__8PSSystem@sda21(r13)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8015308C:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_801530AC
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x2c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801530AC:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_801530D0
-	addi     r3, r31, 0x38
-	addi     r5, r31, 0x2c
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801530D0:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 0
-	bne      lbl_80153100
-	li       r3, 0
-	bl       PSSetCurCameraNo__FUc
-
-lbl_80153100:
-	lwz      r0, 0xa4(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r30, 0x98(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80153118
- * Size:	000008
- */
-u32 SingleGameSection::getCaveID()
-{
-	/*
-	lwz      r3, 0x238(r3)
-	blr
-	*/
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	mgr->checkScene();
+	mgr->mScenes->mChild->scene1stLoadSync();
+	if (gameSystem->isStoryMode()) {
+		PSSetCurCameraNo(0);
+	}
 }
 
 /*
@@ -1420,22 +1132,26 @@ u32 SingleGameSection::getCaveID()
  */
 void SingleGameSection::onSetupFloatMemory()
 {
-	if (mInCave) {
+	if (!mInCave) {
 		P2ASSERTLINE(1260, mCurrentCourseInfo);
 
 		switch (mCurrentCourseInfo->mCourseIndex) {
-		case 2:
-			return;
-		case 1:
-			return;
-		case 0:
-			return;
-		case 4:
+		case 0: // Falling snow in Valley of Repose
+			mWeatherEfx = new efx::TTutorialSnow;
+			break;
+		case 1: // Falling flowers in Awakening Wood
+			mWeatherEfx = new efx::TForestSakura;
+			break;
+		case 3: // Falling leaves in Wistful Wild
+			mWeatherEfx = new efx::TLastMomiji;
+			break;
+		default: // Nothing in Perplexing Pool
+			mWeatherEfx = nullptr;
 			break;
 		}
+	} else {
+		Farm::farmMgr = nullptr;
 	}
-
-	Farm::farmMgr = nullptr;
 
 	if (!mInCave) {
 		Stages::createMapMgr(mCurrentCourseInfo, nullptr);
@@ -1443,207 +1159,9 @@ void SingleGameSection::onSetupFloatMemory()
 
 		if (Farm::farmMgr) {
 			gameSystem->addObjectMgr(Farm::farmMgr);
-			addGenNode(Farm::farmMgr->mNext);
+			BaseHIOSection::addGenNode(Farm::farmMgr);
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x23c(r3)
-	cmplwi   r0, 0
-	bne      lbl_80153348
-	lwz      r0, 0x22c(r31)
-	cmplwi   r0, 0
-	bne      lbl_80153168
-	lis      r3, lbl_8047CE48@ha
-	lis      r5, lbl_8047CDC4@ha
-	addi     r3, r3, lbl_8047CE48@l
-	li       r4, 0x4ec
-	addi     r5, r5, lbl_8047CDC4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80153168:
-	lwz      r3, 0x22c(r31)
-	lwz      r0, 0x48(r3)
-	cmpwi    r0, 2
-	beq      lbl_8015333C
-	bge      lbl_8015318C
-	cmpwi    r0, 0
-	beq      lbl_80153198
-	bge      lbl_80153224
-	b        lbl_8015333C
-
-lbl_8015318C:
-	cmpwi    r0, 4
-	bge      lbl_8015333C
-	b        lbl_801532B0
-
-lbl_80153198:
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8015321C
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChasePos@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChasePos@l
-	lis      r4, __vt__Q23efx13TTutorialSnow@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx13TTutorialSnow@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x272
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_8015321C:
-	stw      r3, 0x244(r31)
-	b        lbl_80153350
-
-lbl_80153224:
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_801532A8
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChasePos@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChasePos@l
-	lis      r4, __vt__Q23efx13TForestSakura@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx13TForestSakura@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x5b
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_801532A8:
-	stw      r3, 0x244(r31)
-	b        lbl_80153350
-
-lbl_801532B0:
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80153334
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChasePos@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChasePos@l
-	lis      r4, __vt__Q23efx11TLastMomiji@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx11TLastMomiji@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x27c
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_80153334:
-	stw      r3, 0x244(r31)
-	b        lbl_80153350
-
-lbl_8015333C:
-	li       r0, 0
-	stw      r0, 0x244(r31)
-	b        lbl_80153350
-
-lbl_80153348:
-	li       r0, 0
-	stw      r0, farmMgr__Q24Game4Farm@sda21(r13)
-
-lbl_80153350:
-	lbz      r0, 0x23c(r31)
-	cmplwi   r0, 0
-	bne      lbl_801533AC
-	lwz      r3, 0x22c(r31)
-	li       r4, 0
-	bl       createMapMgr__Q24Game6StagesFPQ24Game10CourseInfoPQ24Game8RouteMgr
-	lwz      r4, mapMgr__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_80153378
-	lwz      r4, 0(r4)
-
-lbl_80153378:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-	lwz      r4, farmMgr__Q24Game4Farm@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_801533AC
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-	lwz      r4, farmMgr__Q24Game4Farm@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_801533A4
-	addi     r4, r4, 4
-
-lbl_801533A4:
-	mr       r3, r31
-	bl       addGenNode__Q24Game14BaseHIOSectionFP5CNode
-
-lbl_801533AC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1653,30 +1171,11 @@ lbl_801533AC:
  */
 void SingleGameSection::onClearHeap()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, farmMgr__Q24Game4Farm@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_801533FC
-	addi     r3, r4, 4
-	bl       del__5CNodeFv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r4, farmMgr__Q24Game4Farm@sda21(r13)
-	bl       detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-	li       r0, 0
-	stw      r0, 0x244(r31)
-
-lbl_801533FC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (Farm::farmMgr) {
+		Farm::farmMgr->del();
+		gameSystem->detachObjectMgr(Farm::farmMgr);
+		mWeatherEfx = nullptr;
+	}
 }
 
 /*
@@ -1684,11 +1183,7 @@ lbl_801533FC:
  * Address:	80153410
  * Size:	00000C
  */
-void SingleGameSection::onStartHeap()
-{
-	// Generated from stb r0, 0x194(r3)
-	_194 = 0;
-}
+void SingleGameSection::onStartHeap() { _194 = 0; }
 
 /*
  * --INFO--
@@ -1700,27 +1195,6 @@ void SingleGameSection::gmOrimaDown(int naviID)
 	if (mCurrentState) {
 		mCurrentState->onOrimaDown(this, naviID);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x250(r3)
-	cmplwi   r3, 0
-	beq      lbl_80153450
-	lwz      r12, 0(r3)
-	mr       r4, r6
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80153450:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1735,24 +1209,14 @@ void SingleGameSection::gmPikminZero() { }
  * Address:	80153468
  * Size:	000020
  */
-void SingleGameSection::enableTimer(float initialValue, unsigned long timerType)
+void SingleGameSection::enableTimer(f32 initialValue, u32 timerType)
 {
-	if (timerType != 0) {
+	if (mTimerType != 0) {
 		return;
 	}
 	mTimerType    = timerType;
 	mTimer        = initialValue;
 	mTimerEnabled = true;
-	/*
-	lwz      r0, 0x17c(r3)
-	cmplwi   r0, 0
-	bnelr
-	stw      r4, 0x17c(r3)
-	li       r0, 1
-	stfs     f1, 0x174(r3)
-	stb      r0, 0x178(r3)
-	blr
-	*/
 }
 
 /*
@@ -1760,48 +1224,18 @@ void SingleGameSection::enableTimer(float initialValue, unsigned long timerType)
  * Address:	80153488
  * Size:	000080
  */
-void SingleGameSection::disableTimer(unsigned long)
+void SingleGameSection::disableTimer(u32 id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bne      lbl_801534B4
-	li       r0, 0
-	stb      r0, 0x178(r31)
-	stw      r0, 0x17c(r31)
-	b        lbl_801534F4
+	if (id == 0) {
+		mTimerEnabled = false;
+		mTimerType    = 0;
+		return;
+	}
 
-lbl_801534B4:
-	lwz      r6, 0x17c(r31)
-	cmplwi   r6, 0
-	beq      lbl_801534E8
-	cmplw    r4, r6
-	beq      lbl_801534E8
-	lis      r3, lbl_8047CE48@ha
-	lis      r5, lbl_8047CE60@ha
-	mr       r7, r4
-	li       r4, 0x551
-	addi     r3, r3, lbl_8047CE48@l
-	addi     r5, r5, lbl_8047CE60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801534E8:
-	li       r0, 0
-	stb      r0, 0x178(r31)
-	stw      r0, 0x17c(r31)
-
-lbl_801534F4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// Cutscene Timer Storage crash my beloved
+	JUT_ASSERTLINE(1361, (mTimerType == 0 || id == mTimerType), "CurrTimer (%d) : disableTimer(%d)\n", mTimerType, id);
+	mTimerEnabled = false;
+	mTimerType    = 0;
 }
 
 /*
@@ -1809,37 +1243,11 @@ lbl_801534F4:
  * Address:	80153508
  * Size:	000054
  */
-void SingleGameSection::onMovieStart(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
+void SingleGameSection::onMovieStart(Game::MovieConfig* config, u32 p2, u32 p3)
 {
 	if (mCurrentState) {
 		mCurrentState->onMovieStart(this, config, p2, p3);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r9, r3
-	  mr        r8, r4
-	  stw       r0, 0x14(r1)
-	  mr        r0, r5
-	  mr        r7, r6
-	  lwz       r3, 0x250(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x44
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r9
-	  mr        r5, r8
-	  mr        r6, r0
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1847,42 +1255,12 @@ void SingleGameSection::onMovieStart(Game::MovieConfig* config, unsigned long p2
  * Address:	80153560
  * Size:	000064
  */
-void SingleGameSection::onMovieDone(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
+void SingleGameSection::onMovieDone(Game::MovieConfig* config, u32 p2, u32 p3)
 {
 	gameSystem->resetFlag(GAMESYS_Unk4);
 	if (mCurrentState) {
 		mCurrentState->onMovieDone(this, config, p2, p3);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r11, r3
-	  mr        r10, r4
-	  stw       r0, 0x14(r1)
-	  mr        r9, r5
-	  mr        r7, r6
-	  lwz       r8, -0x6C18(r13)
-	  lbz       r0, 0x3C(r8)
-	  rlwinm    r0,r0,0,29,27
-	  stb       r0, 0x3C(r8)
-	  lwz       r3, 0x250(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r11
-	  mr        r5, r10
-	  mr        r6, r9
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1896,33 +1274,6 @@ void SingleGameSection::onMovieCommand(int p1)
 	if (mCurrentState) {
 		mCurrentState->onMovieCommand(this, p1);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       onMovieCommand__Q24Game15BaseGameSectionFi
-	lwz      r3, 0x250(r30)
-	cmplwi   r3, 0
-	beq      lbl_8015360C
-	lwz      r12, 0(r3)
-	mr       r4, r30
-	mr       r5, r31
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8015360C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1930,177 +1281,36 @@ lbl_8015360C:
  * Address:	80153628
  * Size:	000240
  */
-void SingleGameSection::playMovie_bootup(Game::Onyon*)
+void SingleGameSection::playMovie_bootup(Onyon* onyon)
 {
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	lis      r5, lbl_8047CD98@ha
-	stw      r0, 0xd4(r1)
-	addi     r5, r5, lbl_8047CD98@l
-	stw      r31, 0xcc(r1)
-	mr       r31, r4
-	lhz      r0, 0x22e(r4)
-	cmpwi    r0, 1
-	beq      lbl_8015366C
-	bge      lbl_80153660
-	cmpwi    r0, 0
-	bge      lbl_801537B4
-	b        lbl_80153854
+	// Entirely unused function, leftover from booting onions
 
-lbl_80153660:
-	cmpwi    r0, 3
-	bge      lbl_80153854
-	b        lbl_80153710
-
-lbl_8015366C:
-	lwz      r6, 0xc8(r3)
-	li       r0, 0
-	lfs      f0, lbl_805185C8@sda21(r2)
-	addi     r3, r5, 0xec
-	stw      r3, 0x94(r1)
-	addi     r3, r1, 0x20
-	stw      r0, 0x98(r1)
-	stw      r6, 0xa0(r1)
-	stfs     f0, 0xac(r1)
-	stfs     f0, 0xb0(r1)
-	stfs     f0, 0xb4(r1)
-	stfs     f0, 0xb8(r1)
-	stw      r0, 0xbc(r1)
-	stw      r0, 0xa4(r1)
-	stw      r0, 0x9c(r1)
-	stw      r0, 0xc0(r1)
-	stw      r0, 0xa8(r1)
-	stw      r0, 0xc4(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x20(r1)
-	mr       r3, r31
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	stfs     f2, 0xac(r1)
-	stfs     f1, 0xb0(r1)
-	stfs     f0, 0xb4(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0xb8(r1)
-	addi     r4, r1, 0x94
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, playData__4Game@sda21(r13)
-	lhz      r4, 0x22e(r31)
-	bl       setBootContainer__Q24Game8PlayDataFi
-	b        lbl_80153854
-
-lbl_80153710:
-	lwz      r6, 0xc8(r3)
-	li       r0, 0
-	lfs      f0, lbl_805185C8@sda21(r2)
-	addi     r3, r5, 0xfc
-	stw      r3, 0x60(r1)
-	addi     r3, r1, 0x14
-	stw      r0, 0x64(r1)
-	stw      r6, 0x6c(r1)
-	stfs     f0, 0x78(r1)
-	stfs     f0, 0x7c(r1)
-	stfs     f0, 0x80(r1)
-	stfs     f0, 0x84(r1)
-	stw      r0, 0x88(r1)
-	stw      r0, 0x70(r1)
-	stw      r0, 0x68(r1)
-	stw      r0, 0x8c(r1)
-	stw      r0, 0x74(r1)
-	stw      r0, 0x90(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	mr       r3, r31
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	stfs     f2, 0x78(r1)
-	stfs     f1, 0x7c(r1)
-	stfs     f0, 0x80(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x84(r1)
-	addi     r4, r1, 0x60
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, playData__4Game@sda21(r13)
-	lhz      r4, 0x22e(r31)
-	bl       setBootContainer__Q24Game8PlayDataFi
-	b        lbl_80153854
-
-lbl_801537B4:
-	lwz      r6, 0xc8(r3)
-	li       r0, 0
-	lfs      f0, lbl_805185C8@sda21(r2)
-	addi     r3, r5, 0x10c
-	stw      r3, 0x2c(r1)
-	addi     r3, r1, 8
-	stw      r0, 0x30(r1)
-	stw      r6, 0x38(r1)
-	stfs     f0, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	stfs     f0, 0x50(r1)
-	stw      r0, 0x54(r1)
-	stw      r0, 0x3c(r1)
-	stw      r0, 0x34(r1)
-	stw      r0, 0x58(r1)
-	stw      r0, 0x40(r1)
-	stw      r0, 0x5c(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	mr       r3, r31
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x44(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x50(r1)
-	addi     r4, r1, 0x2c
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, playData__4Game@sda21(r13)
-	lhz      r4, 0x22e(r31)
-	bl       setBootContainer__Q24Game8PlayDataFi
-
-lbl_80153854:
-	lwz      r0, 0xd4(r1)
-	lwz      r31, 0xcc(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80153868
- * Size:	000008
- */
-f32 Onyon::getFaceDir()
-{
-	/*
-	lfs      f1, 0x228(r3)
-	blr
-	*/
+	switch (onyon->mOnyonType) {
+	case ONYON_TYPE_RED: {
+		MoviePlayArg arg("g02_boot_onyonR", nullptr, mMovieFinishCallback, 0);
+		arg.mOrigin = onyon->getPosition();
+		arg.mAngle  = onyon->getFaceDir();
+		moviePlayer->play(arg);
+		playData->setBootContainer(onyon->mOnyonType);
+		break;
+	}
+	case ONYON_TYPE_YELLOW: {
+		MoviePlayArg arg("g1E_boot_onyonY", nullptr, mMovieFinishCallback, 0);
+		arg.mOrigin = onyon->getPosition();
+		arg.mAngle  = onyon->getFaceDir();
+		moviePlayer->play(arg);
+		playData->setBootContainer(onyon->mOnyonType);
+		break;
+	}
+	case ONYON_TYPE_BLUE: {
+		MoviePlayArg arg("g20_boot_onyonB", nullptr, mMovieFinishCallback, 0);
+		arg.mOrigin = onyon->getPosition();
+		arg.mAngle  = onyon->getFaceDir();
+		moviePlayer->play(arg);
+		playData->setBootContainer(onyon->mOnyonType);
+		break;
+	}
+	}
 }
 
 /*
@@ -2108,303 +1318,63 @@ f32 Onyon::getFaceDir()
  * Address:	80153870
  * Size:	000454
  */
-void SingleGameSection::playMovie_helloPikmin(Game::Piki* p)
+void SingleGameSection::playMovie_helloPikmin(Piki* piki)
 {
-	/*
-	stwu     r1, -0x160(r1)
-	mflr     r0
-	lis      r5, lbl_8047CD98@ha
-	stw      r0, 0x164(r1)
-	stw      r31, 0x15c(r1)
-	mr       r31, r4
-	stw      r30, 0x158(r1)
-	addi     r30, r5, lbl_8047CD98@l
-	stw      r29, 0x154(r1)
-	stw      r28, 0x150(r1)
-	mr       r28, r3
-	lbz      r0, 0x2b8(r4)
-	cmpwi    r0, 2
-	beq      lbl_801539C8
-	bge      lbl_801538BC
-	cmpwi    r0, 0
-	beq      lbl_80153A80
-	bge      lbl_801538CC
-	b        lbl_80153CA4
-
-lbl_801538BC:
-	cmpwi    r0, 4
-	beq      lbl_80153BF0
-	bge      lbl_80153CA4
-	b        lbl_80153B38
-
-lbl_801538CC:
-	lwz      r5, 0xc8(r28)
-	li       r0, 0
-	lfs      f0, lbl_805185C8@sda21(r2)
-	addi     r3, r30, 0x11c
-	stw      r3, 0x114(r1)
-	li       r4, 1
-	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
-	stw      r0, 0x118(r1)
-	stw      r5, 0x120(r1)
-	stfs     f0, 0x12c(r1)
-	stfs     f0, 0x130(r1)
-	stfs     f0, 0x134(r1)
-	stfs     f0, 0x138(r1)
-	stw      r0, 0x13c(r1)
-	stw      r0, 0x124(r1)
-	stw      r0, 0x11c(r1)
-	stw      r0, 0x140(r1)
-	stw      r0, 0x128(r1)
-	stw      r0, 0x144(r1)
-	bl       getOnyon__Q34Game9ItemOnyon3MgrFi
-	or.      r29, r3, r3
-	bne      lbl_80153938
-	addi     r3, r30, 0xb0
-	addi     r5, r30, 0x130
-	li       r4, 0x5c9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80153938:
-	mr       r4, r29
-	addi     r3, r1, 0x38
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x38(r1)
-	mr       r3, r29
-	lfs      f1, 0x3c(r1)
-	lfs      f0, 0x40(r1)
-	stfs     f2, 0x12c(r1)
-	stfs     f1, 0x130(r1)
-	stfs     f0, 0x134(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x138(r1)
-	addi     r4, r1, 0x114
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	stw      r31, 0x194(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setMeetPikmin__Q24Game8PlayDataFi
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setContainer__Q24Game8PlayDataFi
-	mr       r3, r28
-	li       r4, 1
-	lwz      r12, 0(r28)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80153CA4
-
-lbl_801539C8:
-	lwz      r5, 0xc8(r28)
-	li       r0, 0
-	lfs      f0, lbl_805185C8@sda21(r2)
-	addi     r3, r30, 0x140
-	stw      r3, 0xe0(r1)
-	addi     r3, r1, 0x2c
-	stw      r0, 0xe4(r1)
-	stw      r5, 0xec(r1)
-	stfs     f0, 0xf8(r1)
-	stfs     f0, 0xfc(r1)
-	stfs     f0, 0x100(r1)
-	stfs     f0, 0x104(r1)
-	stw      r0, 0x108(r1)
-	stw      r0, 0xf0(r1)
-	stw      r0, 0xe8(r1)
-	stw      r0, 0x10c(r1)
-	stw      r0, 0xf4(r1)
-	stw      r0, 0x110(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x2c(r1)
-	mr       r3, r31
-	lfs      f1, 0x30(r1)
-	lfs      f0, 0x34(r1)
-	stfs     f2, 0xf8(r1)
-	stfs     f1, 0xfc(r1)
-	stfs     f0, 0x100(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x104(r1)
-	addi     r4, r1, 0xe0
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	stw      r31, 0x194(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setMeetPikmin__Q24Game8PlayDataFi
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setContainer__Q24Game8PlayDataFi
-	b        lbl_80153CA4
-
-lbl_80153A80:
-	lwz      r5, 0xc8(r28)
-	li       r0, 0
-	lfs      f0, lbl_805185C8@sda21(r2)
-	addi     r3, r30, 0x158
-	stw      r3, 0xac(r1)
-	addi     r3, r1, 0x20
-	stw      r0, 0xb0(r1)
-	stw      r5, 0xb8(r1)
-	stfs     f0, 0xc4(r1)
-	stfs     f0, 0xc8(r1)
-	stfs     f0, 0xcc(r1)
-	stfs     f0, 0xd0(r1)
-	stw      r0, 0xd4(r1)
-	stw      r0, 0xbc(r1)
-	stw      r0, 0xb4(r1)
-	stw      r0, 0xd8(r1)
-	stw      r0, 0xc0(r1)
-	stw      r0, 0xdc(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x20(r1)
-	mr       r3, r31
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	stfs     f2, 0xc4(r1)
-	stfs     f1, 0xc8(r1)
-	stfs     f0, 0xcc(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0xd0(r1)
-	addi     r4, r1, 0xac
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	stw      r31, 0x194(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setMeetPikmin__Q24Game8PlayDataFi
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setContainer__Q24Game8PlayDataFi
-	b        lbl_80153CA4
-
-lbl_80153B38:
-	lwz      r5, 0xc8(r28)
-	li       r0, 0
-	lfs      f0, lbl_805185C8@sda21(r2)
-	addi     r3, r30, 0x16c
-	stw      r3, 0x78(r1)
-	addi     r3, r1, 0x14
-	stw      r0, 0x7c(r1)
-	stw      r5, 0x84(r1)
-	stfs     f0, 0x90(r1)
-	stfs     f0, 0x94(r1)
-	stfs     f0, 0x98(r1)
-	stfs     f0, 0x9c(r1)
-	stw      r0, 0xa0(r1)
-	stw      r0, 0x88(r1)
-	stw      r0, 0x80(r1)
-	stw      r0, 0xa4(r1)
-	stw      r0, 0x8c(r1)
-	stw      r0, 0xa8(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	mr       r3, r31
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	stfs     f2, 0x90(r1)
-	stfs     f1, 0x94(r1)
-	stfs     f0, 0x98(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x9c(r1)
-	addi     r4, r1, 0x78
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	stw      r31, 0x194(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setMeetPikmin__Q24Game8PlayDataFi
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setContainer__Q24Game8PlayDataFi
-	b        lbl_80153CA4
-
-lbl_80153BF0:
-	lwz      r5, 0xc8(r28)
-	li       r0, 0
-	lfs      f0, lbl_805185C8@sda21(r2)
-	addi     r3, r30, 0x184
-	stw      r3, 0x44(r1)
-	addi     r3, r1, 8
-	stw      r0, 0x48(r1)
-	stw      r5, 0x50(r1)
-	stfs     f0, 0x5c(r1)
-	stfs     f0, 0x60(r1)
-	stfs     f0, 0x64(r1)
-	stfs     f0, 0x68(r1)
-	stw      r0, 0x6c(r1)
-	stw      r0, 0x54(r1)
-	stw      r0, 0x4c(r1)
-	stw      r0, 0x70(r1)
-	stw      r0, 0x58(r1)
-	stw      r0, 0x74(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	mr       r3, r31
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x5c(r1)
-	stfs     f1, 0x60(r1)
-	stfs     f0, 0x64(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x68(r1)
-	addi     r4, r1, 0x44
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	stw      r31, 0x194(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setMeetPikmin__Q24Game8PlayDataFi
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r4, 0x2b8(r31)
-	bl       setContainer__Q24Game8PlayDataFi
-
-lbl_80153CA4:
-	lwz      r0, 0x164(r1)
-	lwz      r31, 0x15c(r1)
-	lwz      r30, 0x158(r1)
-	lwz      r29, 0x154(r1)
-	lwz      r28, 0x150(r1)
-	mtlr     r0
-	addi     r1, r1, 0x160
-	blr
-	*/
+	switch (piki->mPikiKind) {
+	case Red: {
+		MoviePlayArg arg("g03_meet_redpikmin", nullptr, mMovieFinishCallback, 0);
+		Onyon* onyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
+		JUT_ASSERTLINE(1481, onyon, "No RED ONYON");
+		arg.mOrigin                = onyon->getPosition();
+		arg.mAngle                 = onyon->getFaceDir();
+		moviePlayer->mTargetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->mPikiKind);
+		playData->setContainer(piki->mPikiKind);
+		disableTimer(1);
+		break;
+	}
+	case Yellow: {
+		MoviePlayArg arg("g1F_meet_yellowpikmin", nullptr, mMovieFinishCallback, 0);
+		arg.mOrigin                = piki->getPosition();
+		arg.mAngle                 = piki->getFaceDir();
+		moviePlayer->mTargetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->mPikiKind);
+		playData->setContainer(piki->mPikiKind);
+		break;
+	}
+	case Blue: {
+		MoviePlayArg arg("g21_meet_bluepikmin", nullptr, mMovieFinishCallback, 0);
+		arg.mOrigin                = piki->getPosition();
+		arg.mAngle                 = piki->getFaceDir();
+		moviePlayer->mTargetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->mPikiKind);
+		playData->setContainer(piki->mPikiKind);
+		break;
+	}
+	case Purple: {
+		MoviePlayArg arg("g24_meet_blackpikmin", nullptr, mMovieFinishCallback, 0);
+		arg.mOrigin                = piki->getPosition();
+		arg.mAngle                 = piki->getFaceDir();
+		moviePlayer->mTargetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->mPikiKind);
+		playData->setContainer(piki->mPikiKind);
+		break;
+	}
+	case White: {
+		MoviePlayArg arg("g27_meet_whitepikmin", nullptr, mMovieFinishCallback, 0);
+		arg.mOrigin                = piki->getPosition();
+		arg.mAngle                 = piki->getFaceDir();
+		moviePlayer->mTargetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->mPikiKind);
+		playData->setContainer(piki->mPikiKind);
+		break;
+	}
+	}
 }
 
 /*
@@ -2426,7 +1396,7 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 		iterator.first();
 		while (!iterator.isDone()) {
 			Piki* piki = (*iterator);
-			if (piki->isAlive() && piki->mPikiKind != Blue) {
+			if (piki->isAlive() && (int)piki->mPikiKind != Blue) {
 				playData->mPikiContainer.getCount(piki->mPikiKind, piki->mHappaKind)++;
 				PikiKillArg killArg(0x10001);
 				piki->kill(&killArg);
@@ -2438,196 +1408,6 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 	pikiMgr->forceEnterPikmins(1);
 	playData->mCaveSaveData.mTime = gameSystem->mTimeMgr->mCurrentTimeOfDay;
 	saveToGeneratorCache(mCurrentCourseInfo);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	clrlwi.  r0, r4, 0x18
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	beq      lbl_80153F18
-	li       r0, 0
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
-	stw      r0, 0x1c(r1)
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
-	cmplwi   r0, 0
-	stw      r4, 0x10(r1)
-	stw      r0, 0x14(r1)
-	stw      r3, 0x18(r1)
-	bne      lbl_80153D28
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_80153EF8
-
-lbl_80153D28:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_80153D94
-
-lbl_80153D40:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80153EF8
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_80153D94:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80153D40
-	b        lbl_80153EF8
-
-lbl_80153DB4:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80153E3C
-	lbz      r4, 0x2b8(r30)
-	cmpwi    r4, 0
-	beq      lbl_80153E3C
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r5, 0x2b9(r30)
-	addi     r3, r3, 0xa8
-	bl       getCount__Q24Game13PikiContainerFii
-	lwz      r7, 0(r3)
-	lis      r6, __vt__Q24Game15CreatureKillArg@ha
-	lis      r5, 0x00010001@ha
-	lis      r4, __vt__Q24Game11PikiKillArg@ha
-	addi     r0, r7, 1
-	addi     r6, r6, __vt__Q24Game15CreatureKillArg@l
-	stw      r0, 0(r3)
-	addi     r5, r5, 0x00010001@l
-	addi     r0, r4, __vt__Q24Game11PikiKillArg@l
-	mr       r3, r30
-	stw      r6, 8(r1)
-	addi     r4, r1, 8
-	stw      r5, 0xc(r1)
-	stw      r0, 8(r1)
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_80153E3C:
-	lwz      r0, 0x1c(r1)
-	cmplwi   r0, 0
-	bne      lbl_80153E68
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_80153EF8
-
-lbl_80153E68:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_80153EDC
-
-lbl_80153E88:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80153EF8
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_80153EDC:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80153E88
-
-lbl_80153EF8:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x14(r1)
-	cmplw    r4, r3
-	bne      lbl_80153DB4
-
-lbl_80153F18:
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       caveSaveFormationPikmins__Q24Game7PikiMgrFb
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	li       r4, 1
-	bl       forceEnterPikmins__Q24Game7PikiMgrFUc
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	mr       r3, r31
-	lwz      r4, playData__4Game@sda21(r13)
-	lwz      r5, 0x40(r5)
-	lfs      f0, 0x20c(r5)
-	stfs     f0, 0x68(r4)
-	lwz      r4, 0x22c(r31)
-	bl       saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -2635,24 +1415,7 @@ lbl_80153F18:
  * Address:	80153F68
  * Size:	000030
  */
-void SingleGameSection::loadMainMapSituation()
-{
-	gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mTime);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r4, playData__4Game@sda21(r13)
-	lwz      r3, 0x40(r3)
-	lfs      f1, 0x68(r4)
-	bl       setTime__Q24Game7TimeMgrFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SingleGameSection::loadMainMapSituation() { gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mTime); }
 
 /*
  * --INFO--
@@ -2665,14 +1428,6 @@ void SingleGameSection::clearCaveMenus()
 	mCurrentCave   = nullptr;
 	mHole          = nullptr;
 	mFountain      = nullptr;
-	/*
-	li       r0, 0
-	stb      r0, 0x180(r3)
-	stw      r0, 0x184(r3)
-	stw      r0, 0x188(r3)
-	stw      r0, 0x18c(r3)
-	blr
-	*/
 }
 
 /*
@@ -2680,8 +1435,47 @@ void SingleGameSection::clearCaveMenus()
  * Address:	80153FB0
  * Size:	000418
  */
-void SingleGameSection::openCaveInMenu(Game::ItemCave::Item*, int)
+void SingleGameSection::openCaveInMenu(ItemCave::Item* cave, int naviID)
 {
+	u32 id    = cave->mCaveID.getID();
+	bool isSC = id == 'y_04';
+	if (!_194 && !(mOpenMenuFlags & 1)) {
+		mCaveIndex = id;
+		og::Screen::DispMemberAnaDemo disp;
+		disp._20             = 0;
+		disp.mCaveOtakaraNum = cave->getCaveOtakaraNum();
+		disp.mCaveOtakaraMax = cave->getCaveOtakaraMax();
+		disp.mPayedDebt      = playData->mStoryFlags & STORY_DebtPaid;
+		disp.mPikisField     = GameStat::getMapPikmins(-1) - GameStat::getZikatuPikmins(-1);
+
+		int pikis = 0;
+		Iterator<Piki> iterator(pikiMgr);
+		CI_LOOP(iterator)
+		{
+			Piki* piki = *iterator;
+			piki->mFakePikiFlags.unset(0x40);
+			if (piki->isAlive() && piki->getCurrActionID() == PikiAI::ACT_Formation) {
+				int state = piki->getStateID();
+				if (state != PIKISTATE_Flying && state != PIKISTATE_HipDrop && piki->mNavi && naviID == piki->mNavi->mNaviIndex
+				    && (!isSC || (int)piki->getKind() == Blue)) {
+					pikis++;
+					piki->mFakePikiFlags.set(0x40);
+				}
+			}
+		}
+		disp.mPikis  = pikis;
+		disp.mCaveID = mCaveIndex;
+		if (Screen::gGame2DMgr->open_CaveInMenu(disp)) {
+			playData->setSaveFlag(3, nullptr);
+			playData->setCurrentCourse(getCurrentCourseInfo()->mCourseIndex);
+			playData->setCurrentCave(cave->mCaveID, 0);
+			getCurrentCourseInfo()->getCaveinfoFilename_FromID(cave->mCaveID);
+			mCurrentCave = cave;
+			mOpenMenuFlags |= 1;
+			gameSystem->setPause(true, "open_caveIn", 3);
+			gameSystem->setMoviePause(true, "open_caveIn");
+		}
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -2977,22 +1771,40 @@ lbl_801543B4:
  * Address:	801543C8
  * Size:	000008
  */
-CourseInfo* SingleGameSection::getCurrentCourseInfo()
-{
-	return mCurrentCourseInfo;
-	/*
-	lwz      r3, 0x22c(r3)
-	blr
-	*/
-}
+CourseInfo* SingleGameSection::getCurrentCourseInfo() { return mCurrentCourseInfo; }
 
 /*
  * --INFO--
  * Address:	801543D0
  * Size:	00019C
  */
-void SingleGameSection::openCaveMoreMenu(Game::ItemHole::Item*, Controller*)
+void SingleGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* input)
 {
+	if (!_194 && !(mOpenMenuFlags & 2)) {
+		og::Screen::DispMemberCaveMore disp;
+		disp.mCaveID = mCaveIndex;
+		int pikis    = GameStat::mePikis(-1);
+		if (pikis) {
+			disp.mPikiInDanger = true;
+			if (pikis == GameStat::getMapPikmins(-1)) {
+				disp.mCantProceed = true;
+			} else {
+				disp.mCantProceed = false;
+			}
+
+		} else {
+			disp.mCantProceed  = false;
+			disp.mPikiInDanger = false;
+		}
+
+		if (Screen::gGame2DMgr->open_CaveMoreMenu(disp)) {
+			playData->setSaveFlag(3, nullptr);
+			mHole = hole;
+			mOpenMenuFlags |= 2;
+			gameSystem->setPause(true, "openCaveMore", 3);
+			gameSystem->setMoviePause(true, "openCaveMore");
+		}
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3113,31 +1925,39 @@ lbl_80154550:
  * Address:	8015456C
  * Size:	00002C
  */
-void SingleGameSection::saveCaveMore()
-{
-	pikiMgr->caveSaveAllPikmins(false, false);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	bl       caveSaveAllPikmins__Q24Game7PikiMgrFbb
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SingleGameSection::saveCaveMore() { pikiMgr->caveSaveAllPikmins(false, false); }
 
 /*
  * --INFO--
  * Address:	80154598
  * Size:	000184
  */
-void SingleGameSection::openKanketuMenu(Game::ItemBigFountain::Item*, Controller*)
+void SingleGameSection::openKanketuMenu(ItemBigFountain::Item* geyser, Controller*)
 {
+	if (!_194 && !(mOpenMenuFlags & 4)) {
+		og::Screen::DispMemberKanketuMenu disp;
+		disp.mCaveID = mCaveIndex;
+		int pikis    = GameStat::mePikis(-1);
+		if (pikis) {
+			disp.mPikiInDanger = true;
+			if (pikis == GameStat::getMapPikmins(-1)) {
+				disp.mCantProceed = true;
+			} else {
+				disp.mCantProceed = false;
+			}
+
+		} else {
+			disp.mCantProceed  = false;
+			disp.mPikiInDanger = false;
+		}
+
+		if (Screen::gGame2DMgr->open_KanketuMenu(disp)) {
+			mFountain = geyser;
+			mOpenMenuFlags |= 4;
+			gameSystem->setPause(true, "openKanketu", 3);
+			gameSystem->setMoviePause(true, "openKanketu");
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -3255,6 +2075,64 @@ void SingleGameSection::openKanketuMenu(Game::ItemBigFountain::Item*, Controller
  */
 bool SingleGameSection::updateCaveMenus()
 {
+	u32 flag = mOpenMenuFlags;
+	if (flag & 1) {
+		switch (Screen::gGame2DMgr->check_CaveInMenu()) {
+		case 1:
+			playData->mNaviLifeMax[0] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
+			playData->mNaviLifeMax[1] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
+			gameSystem->setPause(false, "cave-yes", 3);
+			gameSystem->setMoviePause(false, "cave-yes");
+			mOpenMenuFlags &= ~1;
+			goCave(mCurrentCave);
+			return true;
+		case 2:
+			gameSystem->setPause(false, "cave-no", 3);
+			gameSystem->setMoviePause(false, "cave-no");
+			mOpenMenuFlags &= ~1;
+			break;
+		case 0:
+		case 3:
+			gameSystem->setMoviePause(false, "cave-zenkai");
+			break;
+		}
+	} else if (flag & 2) {
+		switch (Screen::gGame2DMgr->check_CaveMoreMenu()) {
+		case 1:
+			playData->mNaviLifeMax[0] = naviMgr->getAt(0)->mHealth;
+			playData->mNaviLifeMax[1] = naviMgr->getAt(1)->mHealth;
+			gameSystem->setPause(false, "more-yes", 3);
+			gameSystem->setMoviePause(false, "more-yes");
+			mOpenMenuFlags &= ~2;
+			goNextFloor(mHole);
+			return true;
+		case 2:
+			gameSystem->setPause(false, "more-no", 3);
+			gameSystem->setMoviePause(false, "more-no");
+			mOpenMenuFlags &= ~2;
+			break;
+		case 0:
+		case 3:
+			gameSystem->setMoviePause(false, "more-zenkai");
+			break;
+		}
+	} else if (flag & 4) {
+		switch (Screen::gGame2DMgr->check_KanketuMenu()) {
+		case 1:
+			gameSystem->setPause(false, "kank-yes", 3);
+			gameSystem->setMoviePause(false, "kank-yes");
+			mOpenMenuFlags &= ~4;
+			goMainMap(mFountain);
+			return true;
+		case 2:
+			gameSystem->setPause(false, "kank-no", 3);
+			gameSystem->setMoviePause(false, "kank-no");
+			mOpenMenuFlags &= ~2;
+			break;
+		}
+	}
+
+	return false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3484,28 +2362,10 @@ lbl_80154A04:
  * Address:	80154A1C
  * Size:	000040
  */
-void SingleGameSection::goNextFloor(Game::ItemHole::Item* hole)
+void SingleGameSection::goNextFloor(ItemHole::Item* hole)
 {
 	_194 = true;
 	mCurrentState->onNextFloor(this, hole);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stb      r0, 0x194(r3)
-	lwz      r3, 0x250(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3513,44 +2373,13 @@ void SingleGameSection::goNextFloor(Game::ItemHole::Item* hole)
  * Address:	80154A60
  * Size:	000074
  */
-void SingleGameSection::goCave(Game::ItemCave::Item* cave)
+void SingleGameSection::goCave(ItemCave::Item* cave)
 {
 	strcpy(mCaveFilename, cave->mCaveFilename);
 	mCaveID.setID(cave->mCaveID.getID());
 	_194    = true;
 	mInCave = true;
 	mCurrentState->onHoleIn(this, cave);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r30, 0x195
-	lwz      r4, 0x1e0(r4)
-	bl       strcpy
-	lwz      r4, 0x1f0(r31)
-	addi     r3, r30, 0x230
-	bl       setID__4ID32FUl
-	li       r0, 1
-	mr       r4, r30
-	stb      r0, 0x194(r30)
-	mr       r5, r31
-	stb      r0, 0x23c(r30)
-	lwz      r3, 0x250(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3558,31 +2387,11 @@ void SingleGameSection::goCave(Game::ItemCave::Item* cave)
  * Address:	80154AD8
  * Size:	000048
  */
-void SingleGameSection::goMainMap(Game::ItemBigFountain::Item* fountain)
+void SingleGameSection::goMainMap(ItemBigFountain::Item* fountain)
 {
 	_194    = true;
 	mInCave = false;
 	mCurrentState->onFountainReturn(this, fountain);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stb      r0, 0x194(r3)
-	li       r0, 0
-	stb      r0, 0x23c(r3)
-	lwz      r3, 0x250(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3590,40 +2399,14 @@ void SingleGameSection::goMainMap(Game::ItemBigFountain::Item* fountain)
  * Address:	80154B24
  * Size:	000020
  */
-void SingleGameSection::setupMainMapGames()
-{
-	createFallPikmins();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       createFallPikmins__Q24Game17SingleGameSectionFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SingleGameSection::setupMainMapGames() { createFallPikmins(); }
 
 /*
  * --INFO--
  * Address:	80154B44
  * Size:	000020
  */
-void SingleGameSection::setupCaveGames()
-{
-	createFallPikmins();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       createFallPikmins__Q24Game17SingleGameSectionFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SingleGameSection::setupCaveGames() { createFallPikmins(); }
 
 /*
  * --INFO--
@@ -3632,6 +2415,40 @@ void SingleGameSection::setupCaveGames()
  */
 void SingleGameSection::createFallPikmins()
 {
+	Vector3f origin;
+	mapMgr->getStartPosition(origin, 0);
+	playData->mCaveSaveData.mCavePikis.dump("createFallPikmins");
+	Navi* navi = naviMgr->getAliveOrima(0);
+	if (navi) {
+		origin = navi->getPosition();
+	}
+	origin.y = mapMgr->getMinY(origin);
+	naviMgr->getDeadOrima(0);
+
+	for (int color = 0; color < 7; color++) {
+		for (int happa = 0; happa < 3; happa++) {
+			for (int i = 0; i < playData->mCaveSaveData.mCavePikis.getCount(color, happa); i++) {
+				PikiMgr::mBirthMode = 2;
+				Piki* piki          = pikiMgr->birth();
+				PikiMgr::mBirthMode = 0;
+				if (piki) {
+					PikiInitArg arg(PIKISTATE_Tane);
+					piki->init(&arg);
+					piki->setPosition(origin, true);
+					piki->mFaceDir = randFloat() * TAU;
+					piki->changeShape(color);
+					piki->changeHappa(happa);
+					Vector3f velocity(0.0f, -(randFloat() * 150.0f + 2700.0f), 0.0f);
+					piki->setVelocity(velocity);
+					piki->movie_begin(false);
+				} else {
+					playData->mPikiContainer.getCount(color, happa)++;
+				}
+			}
+		}
+	}
+	playData->mCaveSaveData.mCavePikis.clear();
+
 	/*
 	stwu     r1, -0x150(r1)
 	mflr     r0
@@ -5094,20 +3911,6 @@ lbl_80155EC0:
 
 /*
  * --INFO--
- * Address:	80155F54
- * Size:	000008
- */
-int SingleGameSection::getCurrFloor()
-{
-	return mCurrentFloor;
-	/*
-	lwz      r3, 0x248(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	80155F5C
  * Size:	000004
  */
@@ -5127,43 +3930,6 @@ void SingleGameSection::newCaveOtakaraEarningsAndDrops()
 	mOtakaraCounter.alloc(otakaraCount);
 	mItemCounter.alloc(itemCount);
 	_274 = 0;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 3
-	bl       getCount__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
-	mr       r0, r3
-	li       r3, 4
-	mr       r31, r0
-	bl       getCount__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
-	mr       r30, r3
-	mr       r4, r31
-	addi     r3, r29, 0x254
-	bl       alloc__Q24Game11KindCounterFi
-	mr       r4, r30
-	addi     r3, r29, 0x25c
-	bl       alloc__Q24Game11KindCounterFi
-	mr       r4, r31
-	addi     r3, r29, 0x264
-	bl       alloc__Q24Game11KindCounterFi
-	mr       r4, r30
-	addi     r3, r29, 0x26c
-	bl       alloc__Q24Game11KindCounterFi
-	li       r0, 0
-	stb      r0, 0x274(r29)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -5178,455 +3944,6 @@ void SingleGameSection::clearCaveOtakaraEarningsAndDrops()
 	mOtakaraCounter.clear();
 	mItemCounter.clear();
 	_274 = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x254
-	bl       clear__Q24Game11KindCounterFv
-	addi     r3, r31, 0x25c
-	bl       clear__Q24Game11KindCounterFv
-	addi     r3, r31, 0x264
-	bl       clear__Q24Game11KindCounterFv
-	addi     r3, r31, 0x26c
-	bl       clear__Q24Game11KindCounterFv
-	li       r0, 0
-	stb      r0, 0x274(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	80156168
- * Size:	00009C
- */
-TLastMomiji::~TLastMomiji()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_801561E8
-lis      r3, __vt__Q23efx11TLastMomiji@ha
-addi     r3, r3, __vt__Q23efx11TLastMomiji@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_801561D8
-lis      r3, __vt__Q23efx9TChasePos@ha
-addi     r3, r3, __vt__Q23efx9TChasePos@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_801561D8
-lis      r4, __vt__Q23efx5TSync@ha
-addi     r3, r30, 4
-addi     r5, r4, __vt__Q23efx5TSync@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x14
-stw      r0, 4(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_801561D8:
-extsh.   r0, r31
-ble      lbl_801561E8
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_801561E8:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80156204
- * Size:	00009C
- */
-TForestSakura::~TForestSakura()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_80156284
-lis      r3, __vt__Q23efx13TForestSakura@ha
-addi     r3, r3, __vt__Q23efx13TForestSakura@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_80156274
-lis      r3, __vt__Q23efx9TChasePos@ha
-addi     r3, r3, __vt__Q23efx9TChasePos@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_80156274
-lis      r4, __vt__Q23efx5TSync@ha
-addi     r3, r30, 4
-addi     r5, r4, __vt__Q23efx5TSync@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x14
-stw      r0, 4(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_80156274:
-extsh.   r0, r31
-ble      lbl_80156284
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_80156284:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801562A0
- * Size:	00009C
- */
-TTutorialSnow::~TTutorialSnow()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_80156320
-lis      r3, __vt__Q23efx13TTutorialSnow@ha
-addi     r3, r3, __vt__Q23efx13TTutorialSnow@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_80156310
-lis      r3, __vt__Q23efx9TChasePos@ha
-addi     r3, r3, __vt__Q23efx9TChasePos@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_80156310
-lis      r4, __vt__Q23efx5TSync@ha
-addi     r3, r30, 4
-addi     r5, r4, __vt__Q23efx5TSync@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x14
-stw      r0, 4(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_80156310:
-extsh.   r0, r31
-ble      lbl_80156320
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_80156320:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-} // namespace efx
-
-/**
- * @reified{isCaveFloor__Q26PSGame13CaveFloorInfoFv}
- * @reified{isBossFloor__Q26PSGame13CaveFloorInfoFv}
- * @reified{isRelaxFloor__Q26PSGame13CaveFloorInfoFv}
- */
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	8015636C
- * Size:	000008
- */
-bool SingleGameSection::isDevelopSection() { return false; }
-
-/*
- * --INFO--
- * Address:	80156374
- * Size:	000008
- */
-u32 SingleGameSection::getTimerType()
-{
-	/*
-	lwz      r3, 0x17c(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8015637C
- * Size:	000008
- */
-char* SingleGameSection::getCaveFilename()
-{
-	/*
-	addi     r3, r3, 0x195
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80156384
- * Size:	000004
- */
-void FSMState<SingleGameSection>::init(SingleGameSection*, StateArg*) { }
-
-/*
- * --INFO--
- * Address:	80156388
- * Size:	000004
- */
-void FSMState<SingleGameSection>::exec(SingleGameSection*) { }
-
-/*
- * --INFO--
- * Address:	8015638C
- * Size:	000004
- */
-void FSMState<SingleGameSection>::cleanup(SingleGameSection*) { }
-
-/*
- * --INFO--
- * Address:	80156390
- * Size:	000004
- */
-void FSMState<SingleGameSection>::resume(SingleGameSection*) { }
-
-/*
- * --INFO--
- * Address:	80156394
- * Size:	000004
- */
-void FSMState<SingleGameSection>::restart(SingleGameSection*) { }
-
-/*
- * --INFO--
- * Address:	80156398
- * Size:	000004
- */
-void StateMachine<SingleGameSection>::init(SingleGameSection*) { }
-
-/*
- * --INFO--
- * Address:	8015639C
- * Size:	000038
- */
-void StateMachine<SingleGameSection>::exec(SingleGameSection*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x250(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801563D4
- * Size:	000064
- */
-void StateMachine<SingleGameSection>::create(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/**
- * @generated{invoke__36Delegate<Q24Game17SingleGameSection>Fv}
- */
-
-/*
- * --INFO--
- * Address:	80156468
- * Size:	00009C
- */
-void StateMachine<SingleGameSection>::transit(SingleGameSection*, int, StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x250(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
-
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
-
-	.loc_0x5C:
-	  b         .loc_0x5C
-
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x250(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80156504
- * Size:	000084
- */
-void StateMachine<SingleGameSection>::registerState(FSMState<SingleGameSection>*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
-
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
-
-	.loc_0x3C:
-	  li        r0, 0x1
-
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
 }
 
 } // namespace Game
