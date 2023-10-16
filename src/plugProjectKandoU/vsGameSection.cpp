@@ -882,7 +882,7 @@ bool GameMessageVsGetOtakara::actVs(VsGameSection* section)
  */
 bool GameMessageVsAddEnemy::actVs(VsGameSection* section)
 {
-	section->mTekiMgr->entry(_04, _08);
+	section->mTekiMgr->entry(mEnemyID, mCount);
 	return true;
 }
 

@@ -5,9 +5,11 @@
 #include "System.h"
 #include "Rect.h"
 
-inline Vector2<u16> getScreenSize()
+inline Vector2f getScreenSize()
 {
-	return Vector2<u16>(System::getRenderModeObj()->fbWidth, System::getRenderModeObj()->efbHeight);
+	u16 x = sys->getRenderModeObj()->fbWidth;
+	u16 y = sys->getRenderModeObj()->efbHeight;
+	return Vector2f(x, y);
 } // doesn't have to be an inline
 
 struct Graphics;

@@ -207,6 +207,18 @@ struct Navi : public FakePiki, virtual public PelletView {
 		model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(mAnimator.mBoundAnimator.getCalc());
 	}
 
+	inline void setCamera(PlayCamera* cam)
+	{
+		mCamera  = cam;
+		mCamera2 = cam;
+	}
+
+	inline void setController(Controller* control)
+	{
+		mController1 = control;
+		mController2 = control;
+	}
+
 	inline NaviState* getCurrentState() { return mCurrentState; }
 
 	inline void setControlFlag(u16 flag) { mNaviControlFlag.typeView |= flag; }

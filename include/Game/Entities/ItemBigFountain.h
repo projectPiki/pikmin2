@@ -9,7 +9,7 @@
 #include "Condition.h"
 
 struct PikiCond_ExceptChappyPikmin : public Condition<Game::Piki> {
-	virtual bool satisfy(Game::Piki*); // _08 (weak)
+	virtual bool satisfy(Game::Piki* piki) { return piki->getKind() != Game::Bulbmin; } // _08 (weak)
 
 	// _00 = VTBL
 };

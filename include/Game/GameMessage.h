@@ -44,11 +44,17 @@ struct GameMessagePelletDead : public GameMessage {
 };
 
 struct GameMessageVsAddEnemy : public GameMessage {
+	GameMessageVsAddEnemy(EnemyTypeID::EEnemyTypeID id, int count)
+	{
+		mEnemyID = id;
+		mCount   = count;
+	}
+
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	EnemyTypeID::EEnemyTypeID _04; // _04 (enemy ID)
-	int _08;                       // _08 (spawn num)
+	EnemyTypeID::EEnemyTypeID mEnemyID; // _04 (enemy ID)
+	int mCount;                         // _08 (spawn num)
 };
 
 struct GameMessageVsBattleFinished : public GameMessage {

@@ -86,6 +86,9 @@ J2DPane* TagSearch(J2DScreen*, u64);
 void TagToHex(u64, char*);
 void TagToName(u64, char*);
 
+// Unused
+void setBlendPane(J2DBlendInfo, J2DScreen*, u64*);
+
 extern const char* PikiIconTextureName[19];
 
 extern ResTIMG* PikiIconTextureResTIMG[19];

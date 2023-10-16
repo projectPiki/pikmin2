@@ -48,8 +48,8 @@ struct Mgr {
 	Caster* create(Sys::Sphere&, f32);
 	void draw(Graphics&);
 
-	void globalInstance();
-	void deleteInstance();
+	static void globalInstance();
+	static void deleteInstance();
 	void loadResource();
 
 	// unused/inlined:

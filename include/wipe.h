@@ -128,7 +128,7 @@ struct BlackFader : public WipeBase {
 	virtual void do_draw(f32); // _24
 
 	JUtility::TColor _24; // _24
-	bool _28;             // _28
+	bool mIsBlack;        // _28, (1 = black, 0 = white)
 };
 
 struct BallFader : public WipeBase {

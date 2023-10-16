@@ -166,6 +166,7 @@ struct System : public OSMutex {
 	static GXVerifyArg sVerifyArg;
 
 	inline f32 getFrameLength() const { return mDeltaTime; }
+	inline f32 getFrameRate(f32 mod) const { return getFrameLength() / mod; }
 
 	// _00-_18 = OSMutex
 	JKRHeap* mBackupHeap;                 // _18

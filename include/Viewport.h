@@ -4,9 +4,8 @@
 #include "Rect.h"
 #include "types.h"
 #include "CNode.h"
+#include "Camera.h"
 
-struct Camera;
-struct LookAtCamera;
 struct J2DGrafContext;
 struct J2DOrthoGraph;
 struct Matrixf;
@@ -32,6 +31,12 @@ struct Viewport : CNode {
 	void setViewport();
 	void updateCameraAspect();
 	bool viewable();
+
+	inline void setCamera(Camera* cam)
+	{
+		mCamera = static_cast<LookAtCamera*>(cam);
+		updateCameraAspect();
+	}
 
 	u16 mVpId;             // _18
 	Rectf mBounds;         // _1C
