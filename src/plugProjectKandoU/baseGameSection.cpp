@@ -80,21 +80,33 @@
 #include "Game/AIConstants.h"
 #include "efx/OnyonSpot.h"
 
-static const int padding[]    = { 0, 0, 0 };
-static const char className[] = "baseGameSection";
+namespace og {
+namespace Screen {
 
-static Delegate1<Game::BaseGameSection, Game::CameraArg*>* cameraMgrCallback;
+int UfoMenuResult[4] = { 1, 2, 3, 0 };
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000CC
  */
-void og::Screen::setBlendPane(J2DBlendInfo, J2DScreen*, u64*)
+void setBlendPane(J2DBlendInfo, J2DScreen*, u64*)
 {
 	// UNUSED FUNCTION
 }
 
+} // namespace Screen
+} // namespace og
+
+static const int padding[]    = { 0, 0, 0 };
+static const char className[] = "baseGameSection";
+
+static Delegate1<Game::BaseGameSection, Game::CameraArg*>* cameraMgrCallback;
+static JKRExpHeap* theExpHeap;
+
 namespace Game {
+
+u8 BaseGameSection::sOptDraw = 3;
 
 /*
  * --INFO--
@@ -144,7 +156,7 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
  */
 void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
-	JUT_ASSERTLINE(1523, mFbTexture == nullptr, "‚Q‰ñ‚Í–³—‚—\n");
+	JUT_ASSERTLINE(1523, !mFbTexture, "‚Q‰ñ‚Í–³—‚—\n"); // 'it's impossible to do twice lol'
 	mFbTexture                    = mXfbImage;
 	mXfbImage                     = texture;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -157,7 +169,7 @@ void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
  */
 void BaseGameSection::restoreFBTexture()
 {
-	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture ‚µ‚Ä‚È‚¢‚—\n");
+	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture ‚µ‚Ä‚È‚¢‚—\n"); // 'i haven't used useSpecificFBTexture lol'
 	mXfbImage                     = mFbTexture;
 	mFbTexture                    = nullptr;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -170,6 +182,7 @@ void BaseGameSection::restoreFBTexture()
  */
 BaseGameSection::~BaseGameSection()
 {
+	theExpHeap                   = nullptr;
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(sceneMgr);
 	sceneMgr->deleteCurrentScene();
@@ -630,13 +643,16 @@ void BaseGameSection::initViewports(Graphics& gfx)
 	mTreasureGetViewport        = new Viewport;
 	mTreasureGetViewport->mVpId = 2;
 
-	Vector2f screenSize = getScreenSize();
-	getScreenSize();
-	Vector2f rectSkew   = getRectSkew();
-	Vector2f topRight   = rectSkew + screenSize;
-	Vector2f bottomLeft = getBottomLeft() + rectSkew;
+	u16 x               = sys->getRenderModeObj()->fbWidth;
+	u16 y               = sys->getRenderModeObj()->efbHeight;
+	Vector2f screenSize = Vector2f(x, y);
+	sys->getRenderModeObj();
+	sys->getRenderModeObj();
+	// there's probably some rect ctor or setter that takes vector2fs tbh
 	// float moment
-	Rectf rect(bottomLeft.x, bottomLeft.y, topRight.x, topRight.y);
+	Rectf rect;
+	rect.p1 = getBottomLeft() + getRectSkew();
+	rect.p2 = getRectSkew() + screenSize;
 	mTreasureGetViewport->setRect(rect);
 	mTreasureGetViewport->setCamera(mTreasureZoomCamera);
 }
@@ -651,7 +667,7 @@ void BaseGameSection::initViewports(Graphics& gfx)
 void BaseGameSection::initGenerators()
 {
 
-	generatorCache->clearCache();
+	generatorCache->clearGeneratorList();
 	Generator::initialiseSystem();
 
 	{ // Init Generator Managers
@@ -694,10 +710,9 @@ void BaseGameSection::initGenerators()
 
 		int fileIdx = 0;
 
-		GeneratorMgr* generatorManagers[64];
-		void* generatorFiles[64];
-
 		char filenameCharArr[256];
+		void* generatorFiles[64];
+		GeneratorMgr* generatorManagers[64];
 
 #pragma region defaultgen
 
@@ -710,13 +725,13 @@ void BaseGameSection::initGenerators()
 			defaultGenTxt.mMode = 1;
 			if (defaultGenTxt.mMode == 1) {
 				defaultGenTxt.mTabCount = 0;
-				generatorMgr->read(defaultGenTxt, false);
-				generatorMgr->updateUseList();
-
-				generatorFiles[0]    = defaultGenFile;
-				generatorManagers[0] = generatorMgr;
-				fileIdx++;
 			}
+			generatorMgr->read(defaultGenTxt, false);
+			generatorMgr->updateUseList();
+
+			generatorFiles[0]    = defaultGenFile;
+			generatorManagers[0] = generatorMgr;
+			fileIdx++;
 		}
 
 #pragma endregion
@@ -733,12 +748,12 @@ void BaseGameSection::initGenerators()
 				plantsGenTxt.mMode = 1;
 				if (plantsGenTxt.mMode == 1) {
 					plantsGenTxt.mTabCount = 0;
-					plantsGeneratorMgr->read(plantsGenTxt, false);
-					plantsGeneratorMgr->updateUseList();
-					generatorManagers[fileIdx] = plantsGeneratorMgr;
-					generatorFiles[fileIdx]    = plantsgenFile;
-					fileIdx++;
 				}
+				plantsGeneratorMgr->read(plantsGenTxt, false);
+				plantsGeneratorMgr->updateUseList();
+				generatorFiles[fileIdx]    = plantsgenFile;
+				generatorManagers[fileIdx] = plantsGeneratorMgr;
+				fileIdx++;
 			}
 		}
 
@@ -759,12 +774,12 @@ void BaseGameSection::initGenerators()
 				initgenTxt.mMode = 1;
 				if (initgenTxt.mMode == 1) {
 					initgenTxt.mTabCount = 0;
-					onceGeneratorMgr->read(initgenTxt, false);
-					onceGeneratorMgr->updateUseList();
-					generatorManagers[fileIdx] = onceGeneratorMgr;
-					generatorFiles[fileIdx]    = initgenFile;
-					fileIdx++;
 				}
+				onceGeneratorMgr->read(initgenTxt, false);
+				onceGeneratorMgr->updateUseList();
+				generatorFiles[fileIdx]    = initgenFile;
+				generatorManagers[fileIdx] = onceGeneratorMgr;
+				fileIdx++;
 			}
 		}
 
@@ -773,12 +788,10 @@ void BaseGameSection::initGenerators()
 
 		{ // nonloop
 
-			int limitGens = courseInfo->mLimitGenInfo.mCount;
-
-			for (int i = 0; i < limitGens; i++) {
+			for (int i = 0; i < courseInfo->mLimitGenInfo.mCount; i++) {
 				LimitGen* currentGen = static_cast<LimitGen*>(courseInfo->mLimitGenInfo.mOwner.getChildAt(i));
 
-				if (today > currentGen->mMinimumDay || today > currentGen->mMaximumDay)
+				if (currentGen->mMinimumDay > today || today > currentGen->mMaximumDay)
 					continue;
 				if (playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.isFlag(i))
 					continue;
@@ -792,35 +805,35 @@ void BaseGameSection::initGenerators()
 					noonloopTxt.mMode = 1;
 					if (noonloopTxt.mMode == 1) {
 						noonloopTxt.mTabCount = 0;
-
-						GeneratorMgr* currentNonloopMgr = new GeneratorMgr;
-						currentNonloopMgr->_6C          = true; // is nonrepeating?
-
-						currentNonloopMgr->read(noonloopTxt, false);
-						currentNonloopMgr->setDayLimit(currentGen->mMaximumDay);
-						currentNonloopMgr->updateUseList();
-
-						generatorFiles[fileIdx]    = nonLoopFile;
-						generatorManagers[fileIdx] = currentNonloopMgr;
-						fileIdx++;
-
-						limitGeneratorMgr->addMgr(currentNonloopMgr);
-						playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.setFlag(i);
 					}
+
+					GeneratorMgr* currentNonloopMgr = new GeneratorMgr;
+					currentNonloopMgr->_6C          = true; // is nonrepeating?
+
+					currentNonloopMgr->read(noonloopTxt, false);
+					currentNonloopMgr->setDayLimit(currentGen->mDayLimit);
+					currentNonloopMgr->updateUseList();
+
+					generatorFiles[fileIdx]    = nonLoopFile;
+					generatorManagers[fileIdx] = currentNonloopMgr;
+					fileIdx++;
+
+					limitGeneratorMgr->addMgr(currentNonloopMgr);
+					playData->mLimitGen[courseInfo->mCourseIndex].mNonLoops.setFlag(i);
 				}
 			}
 
 		} // end nonloop
 		{ // loop
 
-			int day          = gameSystem->mTimeMgr->mDayCount;
-			int loopGenCount = courseInfo->mLoopGenInfo.mCount;
+			int day = gameSystem->mTimeMgr->mDayCount;
+			// int loopGenCount = courseInfo->mLoopGenInfo.mCount;
 
 			if (day % 30 == 0) {
 
-				for (int i = 0; i < loopGenCount; i++) {
+				for (int i = 0; i < courseInfo->mLoopGenInfo.mCount; i++) {
 					LimitGen* currentGen = static_cast<LimitGen*>(courseInfo->mLoopGenInfo.mOwner.getChildAt(i));
-					if (day % 30 < currentGen->mMinimumDay - 30 || day % 30 < currentGen->mMinimumDay - 30)
+					if (currentGen->mMinimumDay - 30 > day % 30 || day % 30 > currentGen->mMinimumDay - 30)
 						continue;
 
 					bool loopLoaded = playData->mLimitGen[courseInfo->mCourseIndex].mLoops.isFlag(i);
@@ -835,21 +848,21 @@ void BaseGameSection::initGenerators()
 						loopTxt.mMode = 1;
 						if (loopTxt.mMode == 1) {
 							loopTxt.mTabCount = 0;
-
-							GeneratorMgr* currentLoopMgr = new GeneratorMgr;
-							currentLoopMgr->_6C          = true; // is nonrepeating?
-
-							currentLoopMgr->read(loopTxt, false);
-							currentLoopMgr->setDayLimit(currentGen->mMaximumDay - 30);
-							currentLoopMgr->updateUseList();
-
-							generatorManagers[fileIdx] = currentLoopMgr;
-							generatorFiles[fileIdx]    = loopFile;
-							fileIdx++;
-							limitGeneratorMgr->addMgr(currentLoopMgr);
-
-							playData->mLimitGen[courseInfo->mCourseIndex].mLoops.setFlag(i);
 						}
+
+						GeneratorMgr* currentLoopMgr = new GeneratorMgr;
+						currentLoopMgr->_6C          = true; // is nonrepeating?
+
+						currentLoopMgr->read(loopTxt, false);
+						currentLoopMgr->setDayLimit(currentGen->mMaximumDay - 30);
+						currentLoopMgr->updateUseList();
+
+						generatorManagers[fileIdx] = currentLoopMgr;
+						generatorFiles[fileIdx]    = loopFile;
+						fileIdx++;
+						limitGeneratorMgr->addMgr(currentLoopMgr);
+
+						playData->mLimitGen[courseInfo->mCourseIndex].mLoops.setFlag(i);
 					}
 				}
 			}
@@ -866,12 +879,12 @@ void BaseGameSection::initGenerators()
 					dayTxt.mMode = 1;
 					if (dayTxt.mMode == 1) {
 						dayTxt.mTabCount = 0;
-						dayGeneratorMgr->read(dayTxt, false);
-						dayGeneratorMgr->updateUseList();
-						generatorManagers[fileIdx] = dayGeneratorMgr;
-						generatorFiles[fileIdx]    = dayFile;
-						fileIdx++;
 					}
+					dayGeneratorMgr->read(dayTxt, false);
+					dayGeneratorMgr->updateUseList();
+					generatorFiles[fileIdx]    = dayFile;
+					generatorManagers[fileIdx] = dayGeneratorMgr;
+					fileIdx++;
 				}
 			}
 		}
@@ -895,117 +908,124 @@ void BaseGameSection::initGenerators()
 
 	PelletBirthBuffer::birthAll();
 	Iterator<Navi> iNavi = naviMgr;
-	int unknownidx       = 0;
-	CI_LOOP(iNavi)
-	{
-		switch (unknownidx) {
-		case 0: {
-			Vector3f vec_0x1c30 = Vector3f(0.0f);
-			f32 mapRotation     = mapMgr->getMapRotation();
-			Vector3f vec_0x1c24(-40.0f, 0.0f, 2.0f);
-			if (gameSystem->isVersusMode()) {
-				Onyon* redOnyon = ItemOnyon::mgr->getOnyon(Red);
-				P2ASSERTLINE(2739, redOnyon);
-				vec_0x1c24 = redOnyon->getPosition();
-			} else {
-				if (!mapMgr->getDemoMatrix()) {
-					mapMgr->getStartPosition(vec_0x1c24, 0);
-					vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24) + 8.5f;
-					vec_0x1c24.x += -4.526f;
-					vec_0x1c24.z += 7.453f;
-				} else {
-					Matrixf* demoMtx = mapMgr->getDemoMatrix();
-					Vector3f vec_0x1c78;
-					PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&vec_0x1c24, (Vec*)&vec_0x1c78);
-					vec_0x1c24   = vec_0x1c78;
-					vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24);
-					vec_0x1c30   = Vector3f(0.0f);
-				}
-			}
-			Navi* olimar = naviMgr->birth();
-			olimar->init(nullptr);
-			olimar->mFaceDir = roundAng(mapRotation);
-			olimar->setCamera(mOlimarCamera);
-			olimar->setController(mControllerP1);
-			olimar->setPosition(vec_0x1c24, false);
-			olimar->setVelocity(vec_0x1c30);
-			bool olimarAlive = false;
-			if (playData->mDeadNaviID & 1) {
-				olimarAlive = true;
-				olimar->setDeadLaydown();
-			} else {
-				olimar->mHealth = playData->mNaviLifeMax[0];
-			}
+	int naviCount        = 0;
+	CI_LOOP(iNavi) { naviCount++; }
+	switch (naviCount) {
+	case 0: {
+		bool olimarAlive    = false;
+		Vector3f vec_0x1c30 = Vector3f(0.0f);
 
-			mapRotation = mapMgr->getMapRotation();
-			vec_0x1c24  = Vector3f(-60.0f, 0.0f, -10.0f);
-			if (gameSystem->isVersusMode()) {
-				Onyon* blueOnyon = ItemOnyon::mgr->getOnyon(Blue);
-				P2ASSERTLINE(2791, blueOnyon);
-				vec_0x1c24 = blueOnyon->getPosition();
+		f32 mapRotation = mapMgr->getMapRotation();
+		Vector3f vec_0x1c24(-40.0f, 0.0f, 2.0f);
+		if (gameSystem->isVersusMode()) {
+			Onyon* redOnyon = ItemOnyon::mgr->getOnyon(Red);
+			P2ASSERTLINE(2739, redOnyon);
+			vec_0x1c24 = redOnyon->getPosition();
+		} else {
+			if (!mapMgr->getDemoMatrix()) {
+				mapMgr->getStartPosition(vec_0x1c24, 0);
+				vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24) + 8.5f;
+				vec_0x1c24.x += -4.526f;
+				vec_0x1c24.z += 7.453f;
 			} else {
-				if (!mapMgr->getDemoMatrix()) {
-					mapMgr->getStartPosition(vec_0x1c24, 0);
-					vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24) + 8.5f;
-					vec_0x1c24.x += 18.082f;
-					vec_0x1c24.z += -11.428f;
-				} else {
-					Matrixf* demoMtx = mapMgr->getDemoMatrix();
-					Vector3f vec_0x1c78;
-					PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&vec_0x1c24, (Vec*)&vec_0x1c78);
-					vec_0x1c24   = vec_0x1c78;
-					vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24);
-					vec_0x1c30   = Vector3f(0.0f);
-				}
-			}
-			Navi* louie = naviMgr->birth();
-			louie->init(nullptr);
-			louie->mFaceDir = roundAng(mapRotation);
-			louie->setCamera(mLouieCamera);
-			louie->setController(mControllerP2);
-			louie->setPosition(vec_0x1c24, false);
-			louie->setVelocity(vec_0x1c30);
-			if (playData->mDeadNaviID & 2 == 0) {
-				louie->setDeadLaydown();
-			} else {
-				louie->mHealth = playData->mNaviLifeMax[1];
-				if (olimarAlive && !gameSystem->isMultiplayerMode()) {
-					InteractFue callNavi(olimar, 0, 1);
-					louie->stimulate(callNavi);
-				}
+				Matrixf* demoMtx = mapMgr->getDemoMatrix();
+				Vector3f vec_0x1c78;
+				PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&vec_0x1c24, (Vec*)&vec_0x1c78);
+				vec_0x1c24   = vec_0x1c78;
+				vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24);
+				vec_0x1c30   = Vector3f(0.0f);
 			}
 		}
-		case 1:
-			JUT_PANICLINE(2823, "KESHIMASU!\n"); // erase?
-			mapMgr->getMapRotation();
-			Vector3f offset(-60.0f, 0.0f, 2.0f);
-			JUT_ASSERTLINE(2859, mapMgr->getDemoMatrix(), "no demomatrix\n");
-			Matrixf* mtx = mapMgr->getDemoMatrix();
-			Vector3f pos;
-			PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&offset, (Vec*)&pos);
-			offset       = pos;
-			offset.y     = mapMgr->getMinY(offset) + 8.5f;
-			Navi* olimar = naviMgr->getAt(0);
-			olimar->setCamera(mOlimarCamera);
-			olimar->setController(mControllerP1);
-			olimar = naviMgr->birth();
-			olimar->init(nullptr);
-			olimar->setCamera(mOlimarCamera);
-			olimar->setController(mControllerP1);
-			olimar->setPosition(offset, false);
-			break;
-		case 2: {
-			Navi* olimar = naviMgr->getAt(0);
-			olimar->setCamera(mOlimarCamera);
-			olimar->setController(mControllerP1);
-			Navi* louie = naviMgr->getAt(1);
-			louie->setCamera(mLouieCamera);
-			louie->setController(mControllerP2);
-			break;
+		Navi* olimar = naviMgr->birth();
+		olimar->init(nullptr);
+		olimar->mFaceDir = roundAng(mapRotation);
+		olimar->setCamera(mOlimarCamera);
+		olimar->setController(mControllerP1);
+		olimar->setPosition(vec_0x1c24, false);
+		olimar->setVelocity(vec_0x1c30);
+
+		if (playData->mDeadNaviID & 1) {
+
+			olimar->setDeadLaydown();
+			olimarAlive = true;
+		} else {
+			olimar->mHealth = playData->mNaviLifeMax[0];
 		}
+
+		mapRotation = mapMgr->getMapRotation();
+		vec_0x1c24  = Vector3f(-60.0f, 0.0f, -10.0f);
+		if (gameSystem->isVersusMode()) {
+			Onyon* blueOnyon = ItemOnyon::mgr->getOnyon(Blue);
+			P2ASSERTLINE(2791, blueOnyon);
+			vec_0x1c24 = blueOnyon->getPosition();
+		} else {
+			if (!mapMgr->getDemoMatrix()) {
+				mapMgr->getStartPosition(vec_0x1c24, 0);
+				vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24) + 8.5f;
+				vec_0x1c24.x += 18.082f;
+				vec_0x1c24.z += -11.428f;
+			} else {
+				Matrixf* demoMtx = mapMgr->getDemoMatrix();
+				Vector3f vec_0x1c78;
+				PSMTXMultVec((PSQuaternion*)demoMtx, (Vec*)&vec_0x1c24, (Vec*)&vec_0x1c78);
+				vec_0x1c24   = vec_0x1c78;
+				vec_0x1c24.y = mapMgr->getMinY(vec_0x1c24);
+				vec_0x1c30   = Vector3f(0.0f);
+			}
 		}
+		Navi* louie = naviMgr->birth();
+		louie->init(nullptr);
+
+		louie->setCamera(mLouieCamera);
+
+		louie->setController(mControllerP2);
+		louie->mFaceDir = roundAng(mapRotation);
+		louie->setPosition(vec_0x1c24, false);
+		louie->setVelocity(vec_0x1c30);
+		if (!(playData->mDeadNaviID & 1)) {
+			louie->mHealth = playData->mNaviLifeMax[1];
+		}
+		if (playData->mDeadNaviID & 2) {
+			louie->setDeadLaydown();
+			return;
+		}
+		if (!gameSystem->isMultiplayerMode() && !olimarAlive) {
+			InteractFue callNavi(olimar, 0, 1);
+			louie->stimulate(callNavi);
+		}
+		break;
 	}
-	unknownidx++;
+
+	case 1:
+		JUT_PANICLINE(2853, "KESHIMASU!\n"); // erase?
+		mapMgr->getMapRotation();
+		Vector3f offset(-60.0f, 0.0f, 2.0f);
+		JUT_ASSERTLINE(2859, mapMgr->getDemoMatrix(), "no demomatrix\n");
+		Matrixf* mtx = mapMgr->getDemoMatrix();
+		Vector3f pos;
+		PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&offset, (Vec*)&pos);
+		offset       = pos;
+		offset.y     = mapMgr->getMinY(offset) + 8.5f;
+		Navi* olimar = naviMgr->getAt(0);
+		olimar->setCamera(mOlimarCamera);
+		olimar->setController(mControllerP1);
+		olimar = naviMgr->birth();
+		olimar->init(nullptr);
+		olimar->setCamera(mLouieCamera);
+		olimar->setController(mControllerP2);
+		olimar->setPosition(offset, false);
+		break;
+
+	case 2: {
+		Navi* olimar = naviMgr->getAt(0);
+		olimar->setCamera(mOlimarCamera);
+		olimar->setController(mControllerP1);
+		Navi* louie = naviMgr->getAt(1);
+		louie->setCamera(mLouieCamera);
+		louie->setController(mControllerP2);
+		break;
+	}
+	}
 }
 
 void BaseGameSection::advanceDayCount()
@@ -1070,6 +1090,7 @@ void BaseGameSection::pmPlayerJoin()
  */
 void BaseGameSection::setPlayerMode(int mode)
 {
+	// this is a really dumb regswap
 	Navi* fools[2];
 	fools[0] = naviMgr->getAt(0);
 	fools[1] = naviMgr->getAt(1);
@@ -1125,7 +1146,7 @@ void BaseGameSection::setPlayerMode(int mode)
 	case NAVIID_President: {
 		mSecondViewportHeight = 0.5f;
 		mSplit                = 0.0f;
-		mSplitter->split2(0.5f);
+		static_cast<Splitter*>(mSplitter)->split2(0.5f); // mSplitter probably should just be Splitter* not HorizonalSplitter*
 		cameraMgr->changePlayerMode(2, cameraMgrCallback);
 		break;
 	}

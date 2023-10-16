@@ -261,7 +261,7 @@ struct BaseGameSection : public BaseHIOSection {
 	u8 mSetSplit;                                             // _F0
 	JUTTexture* mMizuTexture;                                 // _F4
 	TreasureLight::Mgr* mTreasureLightMgr;                    // _F8
-	JKRHeap* mTheExpHeap;                                     // _FC
+	JKRExpHeap* mTheExpHeap;                                  // _FC
 	JKRHeap* mBackupHeap;                                     // _100
 	PlayCamera* mOlimarCamera;                                // _104
 	PlayCamera* mLouieCamera;                                 // _108
@@ -298,7 +298,5 @@ struct BaseGameSection : public BaseHIOSection {
 #endif
 };
 } // namespace Game
-
-extern JKRHeap* theExpHeap;
 
 #endif
