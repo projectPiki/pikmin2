@@ -1,13 +1,17 @@
 #include "PikiAI.h"
 #include "Game/Piki.h"
 #include "Game/PikiMgr.h"
+#include "Game/PikiState.h"
 #include "Game/Navi.h"
+#include "Game/NaviParms.h"
 #include "Game/NaviState.h"
 #include "Game/gameStat.h"
 #include "Game/CPlate.h"
 #include "Game/GameSystem.h"
 #include "Game/gamePlayData.h"
 #include "Game/MoviePlayer.h"
+#include "Game/Footmark.h"
+#include "Dolphin/rand.h"
 #include "P2Macros.h"
 #include "Iterator.h"
 #include "nans.h"
@@ -101,7 +105,7 @@ void ActFormation::init(ActionArg* initArg)
 	_4C        = 0;
 	_50        = 0.0f;
 	_54        = 0;
-	_3C        = 0;
+	mFootmark  = nullptr;
 
 	mParent->setPastel(false);
 	_40 = 0;
@@ -319,12 +323,232 @@ int PikiAI::ActFormation::exec()
 	bool cstickTest = mParent->mNavi->isCStickNetural();
 	JUT_ASSERTLINE(661, mCPlate->validSlot(mSlotID), "invalid slotId!\n");
 
-	Vector3f slotPos;
+	Vector3f slotPos; // 0x138
 	mCPlate->getSlotPosition(mSlotID, slotPos);
 
 	if (!mParent->mNavi->commandOn()) {
-		Vector3f pikiPos = mParent->getPosition();
+		Vector3f sep     = slotPos - mParent->getPosition(); // 0x12c
+		f32 dist         = sep.length();                     // f26
+		Vector3f pikiPos = mParent->getPosition();           // 0x120
+		if ((Game::gameSystem->mFrameTimer - mFrameTimer) < 0x32 && dist > 60.0f) {
+			if (_40 > 3) {
+				mFootmark = mParent->mNavi->mFootmarks->findNearest2(pikiPos, _48);
+				if (mFootmark) {
+					sep = mFootmark->mPosition - pikiPos;
+					if (sep.normalise() < 20.0f) {
+						_48 = mFootmark->mFlags;
+					}
+
+					mParent->setSpeed(1.0f, sep);
+					return ACTEXEC_Continue;
+				}
+			}
+		} else {
+			_40 = 0;
+			_48 = -1;
+		}
+	} else {
+		_40 = 0;
+		_48 = -1;
 	}
+
+	Vector3f movieSep = mParent->mPositionBeforeMovie - mParent->getPosition();
+	_50 += movieSep.length();
+
+	if ((int)mParent->mPikiKind != Game::Bulbmin && _50 >= 100.0f && mParent->mSimVelocity.length() > 110.0f) {
+		if (randFloat() >= 0.99f && randFloat() > 0.7f) {
+			if (mParent->getStateID() == Game::PIKISTATE_Walk) {
+				mParent->mFsm->transit(mParent, Game::PIKISTATE_Koke, nullptr);
+			}
+			_50 = 0.0f;
+			return ACTEXEC_Continue;
+		}
+
+		_50 = 0.0f;
+	}
+
+	Vector3f sep = slotPos - mParent->getPosition(); // 0x114
+	f32 dist     = sep.length();                     // f31
+
+	sep.normalise();
+
+	if (dist < 60.0f && mParent->mNavi->mCommandOn1 && mSortState != FORMATION_SORT_STARTED) {
+		if (!_60
+		    && (mParent->mNavi->mSceneAnimationTimer - 2.0f * randFloat())
+		           >= static_cast<Game::NaviParms*>(mParent->mNavi->mParms)->mNaviParms.mP049.mValue) {
+			_60 = true;
+			return ACTEXEC_Continue;
+		}
+
+		if (mSortState == FORMATION_SORT_NONE) {
+			_2A = 0;
+			Iterator<Game::Creature> iter(mParent->mNavi->mCPlateMgr);
+			CI_LOOP(iter)
+			{
+				Game::Creature* creature = *iter;
+				// ?
+			}
+
+			slotPos              = mParent->mNavi->getPosition(); // 0x138
+			_60                  = false;
+			Vector3f naviPikiDir = slotPos - mParent->getPosition(); // 0xf8
+			naviPikiDir.normalise();
+
+			if (qdist2(slotPos.x, slotPos.z, mParent->getPosition().x, mParent->getPosition().z) <= 40.0f) {
+				if (mSortState != FORMATION_SORT_FORMED) {
+					setFormed();
+				}
+			} else {
+				mParent->setSpeed(1.0f, naviPikiDir);
+				if (_61 && !_60) {
+					mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
+				}
+			}
+
+			return ACTEXEC_Continue;
+		}
+
+		_2A                  = 1;
+		mParent->mVelocity   = Vector3f(0.0f);
+		Vector3f naviPikiSep = mParent->mNavi->getPosition() - mParent->getPosition();
+		f32 angle            = JMAAtan2Radian(naviPikiSep.x, naviPikiSep.z); // f26
+		mParent->setMoveRotation(false);
+		mParent->mFaceDir += 0.3f * angDist(angle, mParent->mFaceDir);
+		return ACTEXEC_Continue;
+	}
+
+	if (dist <= 7.0f) {
+		_2E = 0;
+	} else if (dist < 15.0f) {
+		_2E++;
+		if (_2C == 2 && mParent->mNavi->mSceneAnimationTimer > 0.1f) {
+			_2E = 0;
+		}
+
+		if (_2E >= 6) {
+			_2E = 6;
+		}
+	} else {
+		_2E = 0;
+	}
+
+	if (dist <= 7.0f || (_2E < 6 && dist <= 15.0f)) {
+		_2A                = 2;
+		mParent->mVelocity = Vector3f(0.0f);
+
+		sep = mParent->mNavi->getPosition() - mParent->getPosition(); // 0x114
+
+		f32 angle = angDist(JMAAtan2Radian(sep.x, sep.z), mParent->mFaceDir); // f26
+		mParent->setMoveRotation(false);
+		mParent->mFaceDir += 0.3f * angle;
+		if (mSortState != FORMATION_SORT_FORMED) {
+			setFormed();
+		}
+
+	} else if (dist < 15.0f) {
+		_2A = 3;
+		mParent->setMoveRotation(false);
+
+		if (_60 && dist < 10.0f) {
+			_60 = true; // this has to be true to get... set to true lol
+		}
+
+		f32 factor  = 10.0f / static_cast<Game::PikiParms*>(mParent->mParms)->mCreatureProps.mProps.mAccel.mValue; // f26
+		f32 speed   = mParent->getSpeed(1.0f);                                                                     // f1
+		f32 factor2 = (0.5f * (speed / factor)) * speed;                                                           // f7
+
+		f32 simSpeed = mParent->mSimVelocity.length(); // f3
+		f32 factor3  = (0.5f * (simSpeed / factor)) * simSpeed;
+
+		if (dist < factor3) {
+			mParent->mVelocity = Vector3f(0.0f);
+			sep                = mParent->mNavi->getPosition() - mParent->getPosition();   // 0x114
+			f32 angle          = angDist(JMAAtan2Radian(sep.x, sep.z), mParent->mFaceDir); // f26
+			mParent->setMoveRotation(false);
+			mParent->mFaceDir += 0.3f * angle;
+		} else if (dist < factor2) {
+			f32 val            = SQUARE(simSpeed) + (8.0f * factor) * dist;
+			f32 val2           = 0.5f * _sqrtf2(val) + simSpeed;
+			mParent->mVelocity = sep * val2;
+		} else {
+			mParent->setSpeed(1.0f, sep);
+		}
+
+		Vector3f naviPikiSep = mParent->getPosition() - mParent->mNavi->getPosition(); // f30, f29, f28
+		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->_A4;
+		plateSep.normalise();
+
+		if (dot(plateSep, naviPikiSep) > 0.0f) {
+			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
+			if (mSlotID & 1) {
+				impulse.negate();
+			}
+
+			impulse.normalise();
+
+			if (newVer && cstickTest) {
+				impulse = Vector3f(0.0f);
+			}
+
+			f32 currSpeed = mParent->mVelocity.length(); // f28
+
+			mParent->mVelocity += impulse * mParent->getSpeed(1.0f);
+			mParent->mVelocity.normalise();
+			mParent->mVelocity *= currSpeed;
+		}
+	} else {
+		_2A = 4;
+		mParent->setSpeed(1.0f, sep);
+
+		Vector3f naviPikiSep = mParent->getPosition() - mParent->mNavi->getPosition(); // f30, f29, f28
+		Vector3f plateSep    = mParent->mNavi->getPosition() - mCPlate->_A4;
+		plateSep.normalise();
+
+		if (dot(plateSep, naviPikiSep) > 0.0f) {
+			Vector3f impulse = Vector3f(-naviPikiSep.z, 0.0f, naviPikiSep.x); // f29, f27, f30
+			if (mSlotID & 1) {
+				impulse.negate();
+			}
+
+			impulse.normalise();
+
+			if (newVer && cstickTest) {
+				impulse = Vector3f(0.0f);
+			}
+
+			f32 currSpeed = mParent->mVelocity.length(); // f28
+
+			mParent->mVelocity += impulse * mParent->getSpeed(1.0f);
+			mParent->mVelocity.normalise();
+			mParent->mVelocity *= currSpeed;
+		}
+	}
+
+	if (dist < static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mWhiteDistance.mValue) {
+		_58 = 0.0f;
+		_30 = 0;
+	} else if (dist < static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mGrayDistance.mValue) {
+		_58 += sys->mDeltaTime;
+		if (!_30) {
+			if (mSlotID != -1) {
+				mCPlate->releaseSlot(mParent, mSlotID);
+				mSlotID = mCPlate->getSlot(mParent, this, false);
+			}
+			_30 = 1;
+		}
+		if ((!mInitArg._08 && mSlotID == -1) || _58 > static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mLostChildTime.mValue) {
+			return ACTEXEC_Fail;
+		}
+
+	} else if (!mInitArg._08) {
+		return ACTEXEC_Fail;
+	}
+
+	if (_61 && !_60) {
+		mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
+	}
+
+	return ACTEXEC_Continue;
 
 	/*
 	stwu     r1, -0x1c0(r1)

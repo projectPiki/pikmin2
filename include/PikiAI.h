@@ -735,7 +735,7 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 	u8 _31;                       // _31
 	int mSlotID;                  // _34
 	u8 _38;                       // _38
-	u32 _3C;                      // _3C, unknown
+	Game::Footmark* mFootmark;    // _3C
 	u8 _40;                       // _40
 	int mFrameTimer;              // _44
 	int _48;                      // _48
