@@ -737,14 +737,12 @@ bool DrawInfo::getPosAndScale(Vector3f* pos, f32* scale)
 	if (makeMatrix(&mtx, false)) {
 		*scale = 0.0f;
 
-		// this needs to not unroll somehow
 		f32* row1 = &mtx.mMatrix.structView.xx;
 		f32* row2 = &mtx.mMatrix.structView.yx;
 		f32* row3 = &mtx.mMatrix.structView.zx;
 		for (int i = 0; i < 3; i++) {
 			Vector3f vec = Vector3f(row1[i], row2[i], row3[i]);
-			f32 length   = _length(vec);
-			*scale += length;
+			*scale += vec.length();
 		}
 
 		*scale = *scale / 3.0f;
