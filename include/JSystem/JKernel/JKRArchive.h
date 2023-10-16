@@ -247,7 +247,7 @@ struct JKRCompArchive : public JKRArchive {
 	JKRCompression mCompression;     // _5C
 	EMountDirection mMountDirection; // _60
 	u32 _64;                         // _64
-	void* _68;                       // _68
+	JKRAramBlock* mAramPart;         // _68
 	unknown _6C;                     // _6C
 	JKRDvdFile* mDvdFile;            // _70
 	u32 mMemSize;                    // _74

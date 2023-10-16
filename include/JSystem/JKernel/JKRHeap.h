@@ -54,7 +54,7 @@ struct JKRHeap : public JKRDisposer {
 		}
 
 		~TState();
-		// void dump() const { mArgument.mHeap->state_dump(this); }
+		void dump() const { mArgument.mHeap->state_dump(*this); }
 		bool isVerbose() { return bVerbose_; };
 		bool isCompareOnDestructed() const { return mArgument.mIsCompareOnDestructed; };
 		u32 getUsedSize() const { return mUsedSize; }
@@ -360,15 +360,13 @@ struct JKRSolidHeap : public JKRHeap {
 	SolidList* mList; // _78
 };
 
-void JKRDefaultMemoryErrorRoutine(void*, u32, int);
-
 inline void* operator new(size_t size, void* mem) { return mem; } // fabricated?
 void* operator new(size_t, JKRHeap*, int);
 void* operator new(u32 byteCount, int p2);
 void* operator new[](size_t, JKRHeap*, int);
 void* operator new[](u32 byteCount, int p2);
 
-void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment);
+static void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment);
 
 inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) { return JKRHeap::alloc(size, alignment, heap); }
 

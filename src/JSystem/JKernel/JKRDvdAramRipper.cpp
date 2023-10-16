@@ -5,6 +5,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JSupport/JSUStream.h"
+#include "stl/limits.h"
 #include "types.h"
 
 /*
@@ -89,8 +90,7 @@
  * Size:	00009C
  * loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
  */
-u32 JKRDvdAramRipper::loadToAram(const char* p1, unsigned long p2, JKRExpandSwitch expandSwitch, unsigned long p4, unsigned long p5,
-                                 unsigned long* p6)
+JKRAramBlock* JKRDvdAramRipper::loadToAram(const char* p1, u32 p2, JKRExpandSwitch expandSwitch, u32 p4, u32 p5, u32* p6)
 {
 	JKRDvdFile file;
 	if (file.open(p1) == 0) {
@@ -105,8 +105,7 @@ u32 JKRDvdAramRipper::loadToAram(const char* p1, unsigned long p2, JKRExpandSwit
  * Size:	00009C
  * loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl
  */
-u32 JKRDvdAramRipper::loadToAram(long p1, unsigned long p2, JKRExpandSwitch expandSwitch, unsigned long p4, unsigned long p5,
-                                 unsigned long* p6)
+JKRAramBlock* JKRDvdAramRipper::loadToAram(long p1, u32 p2, JKRExpandSwitch expandSwitch, u32 p4, u32 p5, u32* p6)
 {
 	JKRDvdFile file;
 	if (file.open(p1) == 0) {
@@ -121,8 +120,7 @@ u32 JKRDvdAramRipper::loadToAram(long p1, unsigned long p2, JKRExpandSwitch expa
  * Size:	0000A4
  * loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl
  */
-u32 JKRDvdAramRipper::loadToAram(JKRDvdFile* file, unsigned long p2, JKRExpandSwitch expandSwitch, unsigned long p4, unsigned long p5,
-                                 unsigned long* p6)
+JKRAramBlock* JKRDvdAramRipper::loadToAram(JKRDvdFile* file, u32 p2, JKRExpandSwitch expandSwitch, u32 p4, u32 p5, u32* p6)
 {
 	JKRADCommand* command = loadToAram_Async(file, p2, expandSwitch, nullptr, p4, p5, p6);
 	syncAram(command, 0);
@@ -132,9 +130,9 @@ u32 JKRDvdAramRipper::loadToAram(JKRDvdFile* file, unsigned long p2, JKRExpandSw
 	}
 	if (p2 != 0) {
 		delete command;
-		return 0xFFFFFFFF;
+		return reinterpret_cast<JKRAramBlock*>(std::numeric_limits<size_t>::max());
 	}
-	u32 result = (u32)command->_30;
+	JKRAramBlock* result = command->mBlock;
 	delete command;
 	return result;
 }
@@ -185,15 +183,15 @@ void JKRDvdAramRipper::loadToAram_Async(long, u32, JKRExpandSwitch, LoadCallback
  * Size:	0000AC
  * loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl
  */
-JKRADCommand* JKRDvdAramRipper::loadToAram_Async(JKRDvdFile* file, unsigned long p2, JKRExpandSwitch expandSwitch,
-                                                 void (*p4)(unsigned long), unsigned long p5, unsigned long p6, unsigned long* p7)
+JKRADCommand* JKRDvdAramRipper::loadToAram_Async(JKRDvdFile* file, u32 p2, JKRExpandSwitch expandSwitch, void (*p4)(u32), u32 p5, u32 p6,
+                                                 u32* p7)
 {
 	JKRADCommand* command = new (JKRHeap::sSystemHeap, -4) JKRADCommand();
-	command->_28          = file;
+	command->mDvdFile     = file;
 	command->_2C          = p2;
-	command->_30          = nullptr;
+	command->mBlock       = nullptr;
 	command->_34          = expandSwitch;
-	command->_38          = p4;
+	command->mCallBack    = p4;
 	command->_3C          = p5;
 	command->_40          = p6;
 	command->_44          = p7;
@@ -490,24 +488,24 @@ lbl_8001DCB4:
  */
 bool JKRDvdAramRipper::syncAram(JKRADCommand* command, int p2)
 {
-	JKRDvdFile* file = command->_28;
-	OSLockMutex(&file->_34);
-	JKRAramStreamCommand* streamCommand = command->_50;
+	JKRDvdFile* file = command->mDvdFile;
+	OSLockMutex(&file->mMutex2);
+	JKRAramStreamCommand* streamCommand = command->mStreamCommand;
 	if (streamCommand != nullptr) {
 		streamCommand = JKRAramStream::sync(streamCommand, p2);
 		command->_48  = -(streamCommand == nullptr);
 		if (p2 != 0 && streamCommand == nullptr) {
-			OSUnlockMutex(&file->_34);
+			OSUnlockMutex(&file->mMutex2);
 			return false;
 		}
 	}
 	sDvdAramAsyncList.remove(command);
-	if (command->_50 != nullptr) {
-		delete command->_50;
+	if (command->mStreamCommand != nullptr) {
+		delete command->mStreamCommand;
 	}
 	delete file->mInputStream;
 	file->_50 = nullptr;
-	OSUnlockMutex(&file->_34);
+	OSUnlockMutex(&file->mMutex2);
 	return true;
 }
 
@@ -573,7 +571,7 @@ JKRADCommand::JKRADCommand()
 JKRADCommand::~JKRADCommand()
 {
 	if (_4C == 1) {
-		delete _28;
+		delete mDvdFile;
 	}
 }
 
@@ -582,7 +580,7 @@ JKRADCommand::~JKRADCommand()
  * Address:	8001DEE4
  * Size:	000178
  */
-void JKRDecompressFromDVDToAram(JKRDvdFile*, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long*)
+void JKRDecompressFromDVDToAram(JKRDvdFile*, u32, u32, u32, u32, u32, u32*)
 {
 	/*
 	.loc_0x0:
@@ -700,7 +698,7 @@ void JKRDecompressFromDVDToAram(JKRDvdFile*, unsigned long, unsigned long, unsig
  * Address:	8001E05C
  * Size:	000280
  */
-void decompSZS_subroutine(unsigned char*, unsigned long)
+static void decompSZS_subroutine(u8*, u32)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -911,7 +909,7 @@ lbl_8001E2C8:
  * Address:	8001E2DC
  * Size:	0000B4
  */
-void firstSrcData()
+static void firstSrcData()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -975,7 +973,7 @@ lbl_8001E378:
  * Address:	8001E390
  * Size:	0000EC
  */
-void nextSrcData(unsigned char*)
+static void nextSrcData(u8*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1059,7 +1057,7 @@ lbl_8001E460:
  * Address:	8001E47C
  * Size:	000068
  */
-void dmaBufferFlush(unsigned long)
+static void dmaBufferFlush(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1094,65 +1092,3 @@ lbl_8001E4D0:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	8001E4E4
- * Size:	000044
- */
-void __sinit_JKRDvdAramRipper_cpp()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sDvdAramAsyncList__16JKRDvdAramRipper@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sDvdAramAsyncList__16JKRDvdAramRipper@l
-	bl       initiate__10JSUPtrListFv
-	lis      r3, sDvdAramAsyncList__16JKRDvdAramRipper@ha
-	lis      r4, "__dt__23JSUList<12JKRADCommand>Fv"@ha
-	lis      r5, lbl_804EFF50@ha
-	addi     r3, r3, sDvdAramAsyncList__16JKRDvdAramRipper@l
-	addi     r4, r4, "__dt__23JSUList<12JKRADCommand>Fv"@l
-	addi     r5, r5, lbl_804EFF50@l
-	bl       __register_global_object
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8001E528
- * Size:	000054
- */
-// void JSUList<JKRADCommand>::~JSUList()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_8001E560
-// 	li       r4, 0
-// 	bl       __dt__10JSUPtrListFv
-// 	extsh.   r0, r31
-// 	ble      lbl_8001E560
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_8001E560:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }

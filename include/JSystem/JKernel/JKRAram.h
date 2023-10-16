@@ -147,6 +147,7 @@ struct JKRAram : public JKRThread {
 };
 
 struct JKRAramArchive : public JKRArchive {
+	JKRAramArchive(); // unused
 	JKRAramArchive(long, EMountDirection);
 
 	virtual ~JKRAramArchive();                                    // _08

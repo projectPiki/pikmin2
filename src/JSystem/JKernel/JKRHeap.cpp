@@ -78,8 +78,8 @@
     .global mMemorySize__7JKRHeap
     mMemorySize__7JKRHeap:
         .skip 0x4
-    .global bVerbose___Q27JKRHeap6TState
-    bVerbose___Q27JKRHeap6TState:
+    .global bVerbose____Q27JKRHeap6TState
+    bVerbose____Q27JKRHeap6TState:
         .skip 0x8
 
     .section .sdata2, "a"     # 0x80516360 - 0x80520E40
@@ -103,7 +103,7 @@ u8* JKRHeap::mCodeEnd;
 u8* JKRHeap::mUserRamStart;
 u8* JKRHeap::mUserRamEnd;
 u32 JKRHeap::mMemorySize;
-bool JKRHeap::TState::bVerbose;
+bool JKRHeap::TState::bVerbose_;
 
 u8 JKRHeap::sDefaultFillFlag = 1;
 
@@ -468,7 +468,7 @@ void JKRHeap::freeTail() { do_freeTail(); }
  * Address:	80023788
  * Size:	00002C
  */
-void JKRHeap::resize(void* memoryBlock, u32 newSize) { do_resize(memoryBlock, newSize); }
+int JKRHeap::resize(void* memoryBlock, u32 newSize) { do_resize(memoryBlock, newSize); }
 
 /*
  * --INFO--
@@ -1189,26 +1189,7 @@ lbl_80023E38:
  * Address:	80023E50
  * Size:	000034
  */
-void JKRDefaultMemoryErrorRoutine(void*, unsigned long, int)
-{
-	OSErrorLine(791, "abort\n");
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8047
-	  li        r4, 0x317
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x3A68
-	  subi      r5, r2, 0x7E30
-	  crclr     6, 0x6
-	  bl        0xC98FC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+static void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment) { OSErrorLine(791, "abort\n"); }
 
 /*
  * --INFO--
@@ -1333,35 +1314,35 @@ void operator delete[](void* memory)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-JKRHeap::TState::TState(const JKRHeap::TState::TArgument& arg, const JKRHeap::TState::TLocation& location)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-JKRHeap::TState::TState(const JKRHeap::TState& other, bool p2)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-JKRHeap::TState::TState(const JKRHeap::TState& other, const JKRHeap::TState::TLocation& location, bool p3)
-{
-	// UNUSED FUNCTION
-}
+///*
+// * --INFO--
+// * Address:	........
+// * Size:	00007C
+// */
+// JKRHeap::TState::TState(const JKRHeap::TState::TArgument& arg, const JKRHeap::TState::TLocation& location)
+//{
+//	// UNUSED FUNCTION
+//}
+//
+///*
+// * --INFO--
+// * Address:	........
+// * Size:	000080
+// */
+// JKRHeap::TState::TState(const JKRHeap::TState& other, bool p2)
+//{
+//	// UNUSED FUNCTION
+//}
+//
+///*
+// * --INFO--
+// * Address:	........
+// * Size:	000080
+// */
+// JKRHeap::TState::TState(const JKRHeap::TState& other, const JKRHeap::TState::TLocation& location, bool p3)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
@@ -1422,7 +1403,7 @@ lbl_800241A0:
 	mr       r3, r31
 	addi     r4, r1, 0x54
 	bl state_dumpDifference__7JKRHeapFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState lbz
-r0, bVerbose___Q27JKRHeap6TState@sda21(r13) cmplwi   r0, 0 beq      lbl_800241E8
+r0, bVerbose____Q27JKRHeap6TState@sda21(r13) cmplwi   r0, 0 beq      lbl_800241E8
 	lwz      r3, 0x10(r31)
 	mr       r4, r31
 	lwz      r12, 0(r3)
@@ -1477,7 +1458,7 @@ lbl_80024274:
 	addi     r3, r1, 0x54
 	addi     r4, r1, 0x30
 	bl state_dumpDifference__7JKRHeapFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState lbz
-r0, bVerbose___Q27JKRHeap6TState@sda21(r13) cmplwi   r0, 0 beq      lbl_800242BC
+r0, bVerbose____Q27JKRHeap6TState@sda21(r13) cmplwi   r0, 0 beq      lbl_800242BC
 	lwz      r3, 0x64(r1)
 	addi     r4, r1, 0x54
 	lwz      r12, 0(r3)
@@ -1687,115 +1668,3 @@ lbl_800244F8:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	80024510
- * Size:	000034
- */
-void JKRHeap::TState::dump() const { mHeap->state_dump(this); }
-
-/*
- * --INFO--
- * Address:	80024544
- * Size:	000008
- */
-bool JKRHeap::TState::isVerbose() { return bVerbose; }
-
-/*
- * --INFO--
- * Address:	8002454C
- * Size:	000080
- *  __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb
- */
-JKRHeap::TState::TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
-    : _00(nullptr)
-    , _04(0)
-    , mHeap(heap ? heap : sCurrentHeap)
-    , mId(id)
-    , mIsCompareOnDestructed(isCompareOnDestructed)
-    , _1C(0)
-    , _20(-1)
-{
-	mHeap->state_register(this, mId);
-}
-
-/*
- * --INFO--
- * Address:	800245CC
- * Size:	000008
- */
-bool JKRHeap::TState::isCompareOnDestructed() const { return mIsCompareOnDestructed; }
-
-/*
- * --INFO--
- * Address:	800245D4
- * Size:	000014
- */
-JKRHeap::TState::TLocation::TLocation()
-    : _00(nullptr)
-    , _04(-1)
-{
-}
-
-/*
- * --INFO--
- * Address:	800245E8
- * Size:	000020
- * __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb
- */
-JKRHeap::TState::TArgument::TArgument(const JKRHeap* heap, u32 p2, bool p3)
-    : mHeap((heap) ? heap : JKRHeap::sCurrentHeap)
-    , _04(p2)
-    , _08(p3)
-{
-}
-
-/*
- * --INFO--
- * Address:	80024608
- * Size:	000008
- */
-const JKRHeap* JKRHeap::TState::getHeap() const { return mHeap; }
-
-/*
- * --INFO--
- * Address:	80024610
- * Size:	000008
- */
-u32 JKRHeap::TState::getId() const { return mId; }
-
-/*
- * --INFO--
- * Address:	80024618
- * Size:	000004
- */
-void JKRHeap::state_register(JKRHeap::TState*, u32) const { }
-
-/*
- * --INFO--
- * Address:	8002461C
- * Size:	000018
- */
-bool JKRHeap::state_compare(const JKRHeap::TState& state1, const JKRHeap::TState& state2) const { return (state1._04 == state2._04); }
-
-/*
- * --INFO--
- * Address:	80024634
- * Size:	000004
- */
-void JKRHeap::state_dumpDifference(const JKRHeap::TState&, const JKRHeap::TState&) { }
-
-/*
- * --INFO--
- * Address:	80024638
- * Size:	000004
- */
-void JKRHeap::state_dump(const JKRHeap::TState*) const { }
-
-/*
- * --INFO--
- * Address:	8002463C
- * Size:	000008
- */
-bool JKRHeap::dump_sort() { return true; }

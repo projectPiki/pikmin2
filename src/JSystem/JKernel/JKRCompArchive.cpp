@@ -75,10 +75,10 @@ JKRCompArchive::JKRCompArchive(long p1, JKRArchive::EMountDirection mountDirecti
 	if (!open(p1)) {
 		return;
 	}
-	mMagicWord = 'RARC';
-	_28        = _54 + _48->_04;
-	sVolumeList.prepend(&_18);
-	_30 = 1;
+	mMagicWord  = 'RARC';
+	mVolumeName = mStrTable + mDirectories->mOffset;
+	sVolumeList.prepend(&mFileLoaderLink);
+	mIsMounted = true;
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -139,108 +139,30 @@ lbl_8001BC4C:
  */
 JKRCompArchive::~JKRCompArchive()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	or.      r30, r3, r3
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	beq      lbl_8001BD94
-	lis      r3, __vt__14JKRCompArchive@ha
-	addi     r0, r3, __vt__14JKRCompArchive@l
-	stw      r0, 0(r30)
-	lwz      r0, 0x44(r30)
-	cmplwi   r0, 0
-	beq      lbl_8001BCFC
-	lwz      r29, 0x4c(r30)
-	li       r28, 0
-	b        lbl_8001BCDC
+	if (mDataInfo) {
+		SDIFileEntry* fileEntries = mFileEntries;
+		for (int i = 0; i < mDataInfo->mNumFileEntries; i++) {
+			if (fileEntries->getFlag10() == 0 && fileEntries->mData != nullptr) {
+				JKRFreeToHeap(mHeap, fileEntries->mData);
+			}
+			fileEntries++;
+		}
+		JKRFreeToHeap(mHeap, mDataInfo);
+		mDataInfo = nullptr;
+	}
+	if (mAramPart) {
+		delete mAramPart;
+	}
+	if (mExpandSizes) {
+		JKRFree(mExpandSizes);
+		mExpandSizes = nullptr;
+	}
+	if (mDvdFile) {
+		delete mDvdFile;
+	}
 
-lbl_8001BCB4:
-	lwz      r0, 4(r29)
-	rlwinm.  r0, r0, 8, 0x1b, 0x1b
-	bne      lbl_8001BCD4
-	lwz      r3, 0x10(r29)
-	cmplwi   r3, 0
-	beq      lbl_8001BCD4
-	lwz      r4, 0x38(r30)
-	bl       free__7JKRHeapFPvP7JKRHeap
-
-lbl_8001BCD4:
-	addi     r29, r29, 0x14
-	addi     r28, r28, 1
-
-lbl_8001BCDC:
-	lwz      r3, 0x44(r30)
-	lwz      r0, 8(r3)
-	cmplw    r28, r0
-	blt      lbl_8001BCB4
-	lwz      r4, 0x38(r30)
-	bl       free__7JKRHeapFPvP7JKRHeap
-	li       r0, 0
-	stw      r0, 0x44(r30)
-
-lbl_8001BCFC:
-	lwz      r3, 0x68(r30)
-	cmplwi   r3, 0
-	beq      lbl_8001BD20
-	beq      lbl_8001BD20
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8001BD20:
-	lwz      r3, 0x50(r30)
-	cmplwi   r3, 0
-	beq      lbl_8001BD3C
-	li       r4, 0
-	bl       free__7JKRHeapFPvP7JKRHeap
-	li       r0, 0
-	stw      r0, 0x50(r30)
-
-lbl_8001BD3C:
-	lwz      r3, 0x70(r30)
-	cmplwi   r3, 0
-	beq      lbl_8001BD60
-	beq      lbl_8001BD60
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8001BD60:
-	lis      r3, sVolumeList__13JKRFileLoader@ha
-	addi     r4, r30, 0x18
-	addi     r3, r3, sVolumeList__13JKRFileLoader@l
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	li       r0, 0
-	mr       r3, r30
-	stb      r0, 0x30(r30)
-	li       r4, 0
-	bl       __dt__10JKRArchiveFv
-	extsh.   r0, r31
-	ble      lbl_8001BD94
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8001BD94:
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	sVolumeList.remove(&mFileLoaderLink);
+	mIsMounted = false;
 }
 
 /*
@@ -994,14 +916,14 @@ void* JKRCompArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEnt
  */
 void JKRCompArchive::removeResourceAll()
 {
-	if (_44 != nullptr && mMountMode != EMM_Mem) {
+	if (mDataInfo != nullptr && mMountMode != EMM_Mem) {
 		SDIFileEntry* entry = mFileEntries;
-		for (u32 i = 0; i < _44->_08; i++) {
-			if (entry->_10 != nullptr) {
+		for (u32 i = 0; i < mDataInfo->mNumFileEntries; i++) {
+			if (entry->mData != nullptr) {
 				if (!entry->getFlag10()) {
-					JKRHeap::free(entry->_10, _38);
+					JKRHeap::free(entry->mData, mHeap);
 				}
-				entry->_10 = nullptr;
+				entry->mData = nullptr;
 			}
 		}
 	}
@@ -1072,9 +994,9 @@ bool JKRCompArchive::removeResource(void* p1)
 		return false;
 	}
 	if (!entry->getFlag10()) {
-		JKRHeap::free(p1, _38);
+		JKRHeap::free(p1, mHeap);
 	}
-	entry->_10 = 0;
+	entry->mData = 0;
 	return true;
 }
 

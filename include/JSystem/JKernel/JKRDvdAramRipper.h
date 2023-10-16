@@ -11,9 +11,9 @@ struct JKRADCommand;
 
 struct JKRDvdAramRipper {
 	typedef void (*LoadCallback)(u32);
-	static u32 loadToAram(char const*, u32, JKRExpandSwitch, u32, u32, u32*);
-	static u32 loadToAram(long, u32, JKRExpandSwitch, u32, u32, u32*);
-	static u32 loadToAram(JKRDvdFile*, u32, JKRExpandSwitch, u32, u32, u32*);
+	static JKRAramBlock* loadToAram(char const*, u32, JKRExpandSwitch, u32, u32, u32*);
+	static JKRAramBlock* loadToAram(long, u32, JKRExpandSwitch, u32, u32, u32*);
+	static JKRAramBlock* loadToAram(JKRDvdFile*, u32, JKRExpandSwitch, u32, u32, u32*);
 	static JKRADCommand* loadToAram_Async(JKRDvdFile*, u32, JKRExpandSwitch, LoadCallback, u32, u32, u32*);
 	static JKRADCommand* callCommand_Async(JKRADCommand*);
 	static bool syncAram(JKRADCommand*, int);
@@ -45,5 +45,10 @@ struct JKRADCommand : public JSULink<JKRADCommand> {
 	u8 _4C;                                   // _4C
 	JKRAramStreamCommand* mStreamCommand;     // _50
 };
+
+inline JKRAramBlock* JKRDvdToAram(s32 entrynum, u32 p2, JKRExpandSwitch expSwitch, u32 p4, u32 p5, u32* p6)
+{
+	return JKRDvdAramRipper::loadToAram(entrynum, p2, expSwitch, p4, p5, p6);
+}
 
 #endif
