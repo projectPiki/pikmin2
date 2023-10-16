@@ -260,6 +260,7 @@ J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, f32 x, f32 y, 
 	offset.x = pic->mBounds.getWidth();
 	offset.y = pic->mBounds.getHeight();
 	JGeometry::TVec2f origin;
+	// diff lives here
 	origin.x = x - offset.x / 2;
 	origin.y = y - offset.y / 2;
 
