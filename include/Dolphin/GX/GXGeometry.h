@@ -32,6 +32,7 @@ extern void GXSetNumTexGens(u8 count);
 extern void GXSetLineWidth(u8 width, GXTexOffset offset);
 extern void GXSetPointSize(u8 pointSize, GXTexOffset offset);
 extern void GXEnableTexOffsets(GXTexCoordID coord, GXBool enableLine, GXBool enablePoint);
+extern void __GXSetGenMode();
 
 // Cull and manip functions.
 extern void GXSetCullMode(GXCullMode mode);

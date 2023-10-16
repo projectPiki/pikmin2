@@ -87,7 +87,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/flockMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemWeed.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiBridge.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiTeki.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiTeki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_MainGame.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_CaveGame.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_MainResult.o\
@@ -124,7 +124,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameChallenge2D.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsTekiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsCardMgr.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiRescue.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiRescue.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseGameSectionDraw.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Load.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_DayEnd.o\

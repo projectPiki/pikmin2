@@ -14,7 +14,6 @@ void DsyncFrame(u32 p1, u32 p2, u32 p3);
 // dsptask.c
 void DspHandShake();
 void DspBoot(DSPCallback callback);
-void DSPSendCommands2(u32* p1, u32 p2, void (*p3)(u16));
 void DspInitWork();
 void DspStartWork(u32 p1, void (*p2)(u16));
 void DspFinishWork(u16 p1);
@@ -45,6 +44,12 @@ void DiplSec(u32 p1, void (*p2)(u16));
 void DagbSec(u32 p1, void (*p2)(u16));
 void dummy_callback(u16 p1);
 void DsetDolbyDelay(u32 p1, u16 p2);
+
+void DSPReleaseHalt2(u32 msg);
+u16 DSP_CreateMap2(u32 msg);
+int DSPSendCommands2(u32* msgs, u32 param_1, void (*param_2)(u16));
+void DsetupTable(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4);
+void DsetMixerLevel(f32 level);
 
 extern DSPTaskInfo* DSP_prior_task;
 

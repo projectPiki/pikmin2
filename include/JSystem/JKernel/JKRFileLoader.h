@@ -37,7 +37,7 @@ struct JKRFileLoader : public JKRDisposer {
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
 	JSULink<JKRFileLoader> mFileLoaderLink; // _18
-	char* mVolumeName;                      // _28
+	const char* mVolumeName;                // _28
 	u32 mMagicWord;                         // _2C
 	bool mIsMounted;                        // _30
 	u32 mMountCount;                        // _34

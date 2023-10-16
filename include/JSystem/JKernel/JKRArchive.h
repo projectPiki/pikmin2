@@ -150,6 +150,19 @@ struct JKRArchive : public JKRFileLoader {
 
 	static u32 sCurrentDirID;
 
+	static int convertAttrToCompressionType(int attr)
+	{
+		int compression;
+		if (!(attr & 4))
+			compression = COMPRESSION_None;
+		else if (attr & 0x80)
+			compression = COMPRESSION_YAZ0;
+		else
+			compression = COMPRESSION_YAY0;
+
+		return compression;
+	}
+
 	// _00     = VTBL
 	// _00-_38 = JKRFileLoader
 	JKRHeap* mHeap;             // _38
@@ -192,7 +205,7 @@ struct JKRMemArchive : public JKRArchive {
 
 	bool open(long, EMountDirection);
 	bool open(void*, u32, JKRMemBreakFlag);
-	u32 fetchResource_subroutine(u8*, u32, u8*, u32, int);
+	static u32 fetchResource_subroutine(u8*, u32, u8*, u32, int);
 
 	// Unused/inlined:
 	void fixedInit(long);
@@ -267,5 +280,7 @@ struct JKRDvdArchive : public JKRArchive {
 	int _64;                         // _64
 	JKRDvdFile* mDvdFile;            // _68
 };
+
+inline int JKRConvertAttrToCompressionType(int attr) { return JKRArchive::convertAttrToCompressionType(attr); }
 
 #endif

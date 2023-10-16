@@ -1,4 +1,4 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
@@ -7,53 +7,33 @@
  */
 void __GXSetDirtyState(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r31, 0x5AC(r3)
-	  rlwinm.   r0,r31,0,31,31
-	  beq-      .loc_0x24
-	  bl        0x2148
+	u32 dirtyFlags = __GXData->_5AC;
 
-	.loc_0x24:
-	  rlwinm.   r0,r31,0,30,30
-	  beq-      .loc_0x30
-	  bl        0x2AF0
+	if (dirtyFlags & 1) {
+		__GXSetSUTexRegs();
+	}
 
-	.loc_0x30:
-	  rlwinm.   r0,r31,0,29,29
-	  beq-      .loc_0x3C
-	  bl        0x2E0
+	if (dirtyFlags & 2) {
+		__GXUpdateBPMask();
+	}
 
-	.loc_0x3C:
-	  rlwinm.   r0,r31,0,28,28
-	  beq-      .loc_0x48
-	  bl        -0x145C
+	if (dirtyFlags & 4) {
+		__GXSetGenMode();
+	}
 
-	.loc_0x48:
-	  rlwinm.   r0,r31,0,27,27
-	  beq-      .loc_0x54
-	  bl        -0xD74
+	if (dirtyFlags & 8) {
+		__GXSetVCD();
+	}
 
-	.loc_0x54:
-	  rlwinm.   r0,r31,0,27,28
-	  beq-      .loc_0x60
-	  bl        -0x13B8
+	if (dirtyFlags & 0x10) {
+		__GXSetVAT();
+	}
 
-	.loc_0x60:
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0
-	  stw       r0, 0x5AC(r3)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
+	if (dirtyFlags & 0x18) {
+		__GXCalculateVLim();
+	}
+
+	__GXData->_5AC = 0;
 }
 
 /*
@@ -61,81 +41,18 @@ void __GXSetDirtyState(void)
  * Address:	800E5988
  * Size:	0000D0
  */
-void GXBegin(void)
+void GXBegin(GXPrimitive type, GXVtxFmt fmt, u16 vert_num)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  stw       r30, 0x20(r1)
-	  addi      r30, r5, 0
-	  stw       r29, 0x1C(r1)
-	  addi      r29, r4, 0
-	  stw       r28, 0x18(r1)
-	  addi      r28, r3, 0
-	  lwz       r6, -0x6D70(r2)
-	  lwz       r31, 0x5AC(r6)
-	  cmplwi    r31, 0
-	  beq-      .loc_0x8C
-	  rlwinm.   r0,r31,0,31,31
-	  beq-      .loc_0x44
-	  bl        0x20A8
+	if (__GXData->_5AC != 0) {
+		__GXSetDirtyState();
+	}
 
-	.loc_0x44:
-	  rlwinm.   r0,r31,0,30,30
-	  beq-      .loc_0x50
-	  bl        0x2A50
+	if (*(u32*)__GXData == 0) {
+		__GXSendFlushPrim();
+	}
 
-	.loc_0x50:
-	  rlwinm.   r0,r31,0,29,29
-	  beq-      .loc_0x5C
-	  bl        0x240
-
-	.loc_0x5C:
-	  rlwinm.   r0,r31,0,28,28
-	  beq-      .loc_0x68
-	  bl        -0x14FC
-
-	.loc_0x68:
-	  rlwinm.   r0,r31,0,27,27
-	  beq-      .loc_0x74
-	  bl        -0xE14
-
-	.loc_0x74:
-	  rlwinm.   r0,r31,0,27,28
-	  beq-      .loc_0x80
-	  bl        -0x1458
-
-	.loc_0x80:
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0
-	  stw       r0, 0x5AC(r3)
-
-	.loc_0x8C:
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xA0
-	  bl        .loc_0xD0
-
-	.loc_0xA0:
-	  or        r0, r29, r28
-	  lis       r3, 0xCC01
-	  stb       r0, -0x8000(r3)
-	  sth       r30, -0x8000(r3)
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  lwz       r28, 0x18(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-
-	.loc_0xD0:
-	*/
+	GXWGFifo.u8  = fmt | type;
+	GXWGFifo.u16 = vert_num;
 }
 
 /*
@@ -145,6 +62,19 @@ void GXBegin(void)
  */
 void __GXSendFlushPrim(void)
 {
+	u32 i;
+	u32 sz;
+	u16 tmp = __GXData->_004;
+	sz      = tmp * __GXData->_006;
+
+	GXWGFifo.u8  = 0x98;
+	GXWGFifo.u16 = tmp;
+
+	for (i = 0; i < sz; i += 4) {
+		GXWGFifo.s32 = 0;
+	}
+
+	__GXData->_000.s[1] = 1;
 	/*
 	.loc_0x0:
 	  lwz       r3, -0x6D70(r2)
@@ -197,37 +127,15 @@ void __GXSendFlushPrim(void)
  * Address:	800E5AE0
  * Size:	000040
  */
-void GXSetLineWidth(void)
+void GXSetLineWidth(u8 width, GXTexOffset offsets)
 {
-	/*
-	.loc_0x0:
-	  lwz       r7, -0x6D70(r2)
-	  rlwinm    r0,r3,0,24,31
-	  li        r3, 0x61
-	  lwz       r6, 0x7C(r7)
-	  rlwimi    r6,r0,0,24,31
-	  lis       r5, 0xCC01
-	  stw       r6, 0x7C(r7)
-	  li        r0, 0
-	  lwz       r6, 0x7C(r7)
-	  rlwimi    r6,r4,16,13,15
-	  stw       r6, 0x7C(r7)
-	  stb       r3, -0x8000(r5)
-	  lwz       r3, 0x7C(r7)
-	  stw       r3, -0x8000(r5)
-	  sth       r0, 0x2(r7)
-	  blr
-	*/
-}
+	GXData* data = __GXData;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
- */
-void GXGetLineWidth(void)
-{
-	// UNUSED FUNCTION
+	GX_BITFIELD_SET(data->_07C, 24, 8, width);
+	GX_BITFIELD_SET(data->_07C, 13, 3, offsets);
+	GXWGFifo.u8     = 0x61;
+	GXWGFifo.u32    = data->_07C;
+	data->_000.s[1] = 0;
 }
 
 /*
@@ -235,37 +143,15 @@ void GXGetLineWidth(void)
  * Address:	800E5B20
  * Size:	000040
  */
-void GXSetPointSize(void)
+void GXSetPointSize(u8 size, GXTexOffset offsets)
 {
-	/*
-	.loc_0x0:
-	  lwz       r7, -0x6D70(r2)
-	  rlwinm    r0,r3,0,24,31
-	  li        r3, 0x61
-	  lwz       r6, 0x7C(r7)
-	  rlwimi    r6,r0,8,16,23
-	  lis       r5, 0xCC01
-	  stw       r6, 0x7C(r7)
-	  li        r0, 0
-	  lwz       r6, 0x7C(r7)
-	  rlwimi    r6,r4,19,10,12
-	  stw       r6, 0x7C(r7)
-	  stb       r3, -0x8000(r5)
-	  lwz       r3, 0x7C(r7)
-	  stw       r3, -0x8000(r5)
-	  sth       r0, 0x2(r7)
-	  blr
-	*/
-}
+	GXData* data = __GXData;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void GXGetPointSize(void)
-{
-	// UNUSED FUNCTION
+	GX_BITFIELD_SET(data->_07C, 16, 8, size);
+	GX_BITFIELD_SET(data->_07C, 10, 3, offsets);
+	GXWGFifo.u8     = 0x61;
+	GXWGFifo.u32    = data->_07C;
+	data->_000.s[1] = 0;
 }
 
 /*
@@ -273,29 +159,15 @@ void GXGetPointSize(void)
  * Address:	800E5B60
  * Size:	000048
  */
-void GXEnableTexOffsets(void)
+void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point)
 {
-	/*
-	.loc_0x0:
-	  lwz       r7, -0x6D70(r2)
-	  rlwinm    r3,r3,2,0,29
-	  rlwinm    r0,r5,0,24,31
-	  add       r6, r7, r3
-	  lwz       r3, 0xB8(r6)
-	  rlwimi    r3,r4,18,13,13
-	  lis       r4, 0xCC01
-	  stw       r3, 0xB8(r6)
-	  li        r3, 0x61
-	  lwz       r5, 0xB8(r6)
-	  rlwimi    r5,r0,19,12,12
-	  li        r0, 0
-	  stw       r5, 0xB8(r6)
-	  stb       r3, -0x8000(r4)
-	  lwz       r3, 0xB8(r6)
-	  stw       r3, -0x8000(r4)
-	  sth       r0, 0x2(r7)
-	  blr
-	*/
+	GXData* data = __GXData;
+
+	GX_BITFIELD_SET(data->_0B8[coord], 13, 1, line);
+	GX_BITFIELD_SET(data->_0B8[coord], 12, 1, point);
+	GXWGFifo.u8     = 0x61;
+	GXWGFifo.u32    = data->_0B8[coord];
+	data->_000.s[1] = 0;
 }
 
 /*
@@ -303,44 +175,22 @@ void GXEnableTexOffsets(void)
  * Address:	800E5BA8
  * Size:	000044
  */
-void GXSetCullMode(void)
+void GXSetCullMode(GXCullMode mode)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r3, 0x2
-	  beq-      .loc_0x20
-	  bge-      .loc_0x24
-	  cmpwi     r3, 0x1
-	  bge-      .loc_0x18
-	  b         .loc_0x24
+	GXData* data;
+	switch (mode) {
+	case GX_CULL_FRONT:
+		mode = GX_CULL_BACK;
+		break;
+	case GX_CULL_BACK:
+		mode = GX_CULL_FRONT;
+		break;
+	}
 
-	.loc_0x18:
-	  li        r3, 0x2
-	  b         .loc_0x24
+	data = __GXData;
 
-	.loc_0x20:
-	  li        r3, 0x1
-
-	.loc_0x24:
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x204(r4)
-	  rlwimi    r0,r3,14,16,17
-	  stw       r0, 0x204(r4)
-	  lwz       r0, 0x5AC(r4)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0x5AC(r4)
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void GXGetCullMode(void)
-{
-	// UNUSED FUNCTION
+	GX_BITFIELD_SET(data->_204, 16, 2, mode);
+	data->_5AC |= 4;
 }
 
 /*
@@ -348,24 +198,15 @@ void GXGetCullMode(void)
  * Address:	800E5BEC
  * Size:	000034
  */
-void GXSetCoPlanar(void)
+void GXSetCoPlanar(GXBool enable)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, -0x6D70(r2)
-	  li        r4, 0x61
-	  lis       r0, 0xFE08
-	  lwz       r5, 0x204(r6)
-	  rlwimi    r5,r3,19,12,12
-	  lis       r3, 0xCC01
-	  stw       r5, 0x204(r6)
-	  stb       r4, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  stb       r4, -0x8000(r3)
-	  lwz       r0, 0x204(r6)
-	  stw       r0, -0x8000(r3)
-	  blr
-	*/
+	GXData* data = __GXData;
+
+	GX_BITFIELD_SET(data->_204, 12, 1, enable);
+	GXWGFifo.u8  = 0x61;
+	GXWGFifo.u32 = 0xFE080000;
+	GXWGFifo.u8  = 0x61;
+	GXWGFifo.u32 = data->_204;
 }
 
 /*
@@ -375,16 +216,7 @@ void GXSetCoPlanar(void)
  */
 void __GXSetGenMode(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x61
-	  lwz       r4, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r0, 0
-	  lwz       r3, 0x204(r4)
-	  stw       r3, -0x8000(r5)
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
+	GXWGFifo.u8         = 0x61;
+	GXWGFifo.u32        = __GXData->_204;
+	__GXData->_000.s[1] = 0;
 }

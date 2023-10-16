@@ -125,7 +125,8 @@ void ActTeki::makeTarget()
 	Vector3f sourcePos = mParent->getPosition();
 	Vector3f destPos   = mFollowingTeki->getPosition();
 
-	f32 distance = destPos.distance(sourcePos);
+	Vector3f sep = destPos - sourcePos;
+	f32 distance = sep.length();
 	distance     = distance > 0.0f ? distance : 0.0f;
 
 	Game::Footmarks* fm = mFollowingTeki->getFootmarks();
@@ -136,16 +137,19 @@ void ActTeki::makeTarget()
 	Game::Footmark* currentFm = mFollowMark;
 	f32 dist                  = 12800.0f;
 	if (currentFm) {
-		dist = destPos.distance(currentFm->mPosition);
+		Vector3f sep2 = destPos - currentFm->mPosition;
+		dist          = sep2.length();
 	}
 
 	mFollowMark = fm->get(0);
 	for (int i = fm->_08 - 1; i >= 0; i--) {
 		Game::Footmark* curMark = fm->get(i);
 
-		f32 curDist2 = curMark->mPosition.distance(sourcePos); // sure.
-		f32 curDist  = destPos.distance(curMark->mPosition);
-		curDist      = (curDist > 0.0f) ? curDist : 0.0f;
+		Vector3f sep3 = curMark->mPosition - sourcePos;
+		Vector3f sep4 = destPos - curMark->mPosition;
+		sep3.length();
+		f32 curDist = sep4.length();
+		curDist     = (curDist > 0.0f) ? curDist : 0.0f;
 
 		if (dist > curDist && curDist < 100.0f) {
 			mFollowMark = curMark;
@@ -291,4 +295,6 @@ void ActTeki::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
 		_44 = -0.1f;
 	}
 }
+
+void ActTeki::onKeyEvent(const SysShape::KeyEvent& event) { }
 } // namespace PikiAI

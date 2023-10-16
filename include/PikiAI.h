@@ -485,6 +485,15 @@ struct ActClimb : public Action {
 struct ActCropArg : public ActionArg {
 	virtual char* getName() { return "ActCropArg"; } // _08 (weak)
 
+	inline bool isOnyonOrShip()
+	{
+		bool isOnyonCheck = false;
+		if (mCreature->mObjectTypeID == OBJTYPE_Onyon || mCreature->mObjectTypeID == OBJTYPE_Ufo) {
+			isOnyonCheck = true;
+		}
+		return isOnyonCheck;
+	}
+
 	// _00 = VTBL
 	Game::Creature* mCreature; // _04
 };
@@ -529,6 +538,17 @@ struct ActCrop : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActEnter : public Action, virtual SysShape::MotionListener {
+	enum EnterState {
+		// states for entering onyon
+		ENTER_OnyonBegin = 0,
+		ENTER_OnyonClimb = 1,
+
+		// states for entering ship
+		ENTER_ShipGoto = 2,
+		ENTER_ShipStay = 3,
+		ENTER_ShipSuck = 4,
+	};
+
 	ActEnter(Game::Piki* p);
 
 	virtual void init(ActionArg* settings);                   // _08
@@ -544,21 +564,21 @@ struct ActEnter : public Action, virtual SysShape::MotionListener {
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	u16 _10;              // _10
-	ActGotoPos* mGotoPos; // _14
-	ActClimb* mClimb;     // _18
-	CollPart* mOnyonLeg;  // _1C
-	CollPart* mOnyonFoot; // _20
-	Game::Onyon* mOnyon;  // _24
-	Vector3f _28;         // _28
-	Vector3f _34;         // _34
-	f32 _40;              // _40
-	f32 _44;              // _44
-	f32 _48;              // _48
-	u8 _4C;               // _4C
-	Vector3f _50;         // _50
-	f32 mBaseScale;       // _54
-	                      // _58 = MotionListener
+	u16 mState;            // _10
+	ActGotoPos* mGotoPos;  // _14
+	ActClimb* mClimb;      // _18
+	CollPart* mOnyonLeg;   // _1C
+	CollPart* mOnyonFoot;  // _20
+	Game::Onyon* mOnyon;   // _24
+	Vector3f mSuckGoalPos; // _28, position pikis entering ship get sucked to
+	Vector3f mSuckDir;     // _34, direction (vector) pikis entering ship get sucked along
+	f32 mTimer;            // _40, timer for pikis entering ship, reused by stay and suck
+	f32 mVertSuckDist;     // _44, distance left to travel before entering ship, Y
+	f32 mHorizSuckDist;    // _48, distance left to travel before entering ship, XZ
+	u8 _4C;                // _4C
+	Vector3f mSuckPos;     // _50, current suck position
+	f32 mBaseScale;        // _54
+	                       // _58 = MotionListener
 };
 
 struct ActExit : public Action {
@@ -1068,7 +1088,7 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 	virtual u32 getNextAIType() { return 1; }                              // _20 (weak)
 	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
 	virtual void doDirectDraw(Graphics& gfx);                              // _30
-	virtual void onKeyEvent(const SysShape::KeyEvent& event) { }           // _3C (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	void makeTarget();
 	void test_0();

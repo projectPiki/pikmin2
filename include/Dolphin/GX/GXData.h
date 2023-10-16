@@ -56,7 +56,8 @@ typedef struct _GXData {
 		s16 s[2];
 		u32 w;
 	} _000;                          // _000
-	u8 _004[4];                      // _004
+	u16 _004;                        // _004
+	u16 _006;                        // _006
 	ControlRegister controlRegister; // _008
 	u32 _00C;                        // _00C, probably CPStatus
 	u8 _010[0x6C];                   // _010
