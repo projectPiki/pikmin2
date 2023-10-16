@@ -3,23 +3,6 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__20JSUMemoryInputStream
-    __vt__20JSUMemoryInputStream:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__20JSUMemoryInputStreamFv
-        .4byte getAvailable__20JSURandomInputStreamCFv
-        .4byte skip__20JSURandomInputStreamFl
-        .4byte readData__20JSUMemoryInputStreamFPvl
-        .4byte getLength__20JSUMemoryInputStreamCFv
-        .4byte getPosition__20JSUMemoryInputStreamCFv
-        .4byte seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom
-*/
-
-/*
  * --INFO--
  * Address:	80026D5C
  * Size:	000014

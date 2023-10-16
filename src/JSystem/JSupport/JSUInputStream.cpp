@@ -2,31 +2,6 @@
 #include "JSystem/JSupport/JSUStream.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__20JSURandomInputStream
-    __vt__20JSURandomInputStream:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__20JSURandomInputStreamFv
-        .4byte getAvailable__20JSURandomInputStreamCFv
-        .4byte skip__20JSURandomInputStreamFl
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__14JSUInputStream
-    __vt__14JSUInputStream:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__14JSUInputStreamFv
-        .4byte 0
-        .4byte skip__14JSUInputStreamFl
-        .4byte 0
-*/
-
-/*
  * --INFO--
  * Address:	80026378
  * Size:	00005C

@@ -3,10 +3,6 @@
 #include "JSystem/JSupport/JSUList.h"
 
 /*
-    Generated from dpostproc
-*/
-
-/*
  * Decompilation of this file is derived from https://github.com/shibbo/Petari
  */
 
