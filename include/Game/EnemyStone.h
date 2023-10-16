@@ -52,6 +52,7 @@ struct Info {
 };
 
 struct DrawInfo : public CNode {
+	typedef FSMState StateType;
 	DrawInfo(bool check = true);
 
 	virtual ~DrawInfo() { } // _08 (weak)
