@@ -54,6 +54,8 @@ static inline void __GDCheckOverflowed(size_t size)
 	}
 }
 
+static inline void __GDSetCurrent(GDCurrentDL* obj) { __GDCurrentDL = obj; }
+
 static inline void __GDWriteU32(u32 data)
 {
 	__GDWrite((data >> 24) & 0xFF);

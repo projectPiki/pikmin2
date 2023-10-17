@@ -46,6 +46,10 @@ struct J3DShapeInitData {
 struct J3DShape {
 	J3DShape() { initialize(); }
 
+	enum {
+		kVcdVatDLSize = 0xC0,
+	};
+
 	virtual void draw() const;            // _08
 	virtual void drawFast() const;        // _0C
 	virtual void simpleDraw() const;      // _10
@@ -71,9 +75,9 @@ struct J3DShape {
 	void show() { offFlag(J3DShape_IsHidden); }
 	void hide() { onFlag(J3DShape_IsHidden); }
 	void setCurrentViewNoPtr(u32* pViewNoPtr) { mCurrentViewNumber = pViewNoPtr; }
-	void setScaleFlagArray(u8* pScaleFlagArray) { mFlagList = pScaleFlagArray; }
+	void setScaleFlagArray(u8* pScaleFlagArray) { mScaleFlagArray = pScaleFlagArray; }
 	void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }
-	bool getNBTFlag() const { return mMode; }
+	bool getNBTFlag() const { return mHasNBT; }
 	u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
 
 	J3DMaterial* getMaterial() const { return mMaterial; }
@@ -88,6 +92,7 @@ struct J3DShape {
 
 	static u8* sOldVcdVatCmd;
 	static u8 sEnvelopeFlag;
+	static void resetVcdVatCache() { sOldVcdVatCmd = nullptr; }
 
 	// _00 = VTBL
 	J3DMaterial* mMaterial;       // _04
@@ -99,14 +104,14 @@ struct J3DShape {
 	JGeometry::TVec3f mMax;       // _20
 	u8* mVcdVatCmd;               // _2C
 	GXVtxDescList* mVtxDesc;      // _30
-	u8 mMode;                     // _34
+	bool mHasNBT;                 // _34
 	J3DShapeMtx** mShapeMtx;      // _38
 	J3DShapeDraw** mShapeDraw;    // _3C
 	J3DCurrentMtx mCurrentMtx;    // _40
-	u8 _48;                       // _48
+	u8 mHasPNMTXIdx;              // _48
 	J3DVertexData* mVtxData;      // _4C
 	J3DDrawMtxData* mDrawMtxData; // _50
-	u8* mFlagList;                // _54
+	u8* mScaleFlagArray;          // _54
 	Mtx** mDrawMtx;               // _58
 	Mtx33** mNrmMtx;              // _5C
 	u32* mCurrentViewNumber;      // _60
@@ -126,9 +131,11 @@ struct J3DShapeMtx {
 	virtual int getUseMtxNum() const { return 1; }                 // _10 (weak)
 	virtual u16 getUseMtxIndex(u16) const { return mUseMtxIndex; } // _14 (weak)
 	virtual void load() const;                                     // _18
-	virtual void calcNBTScale(const Vec&, Mtx33, f32 Mtx33);       // _1C
+	virtual void calcNBTScale(const Vec&, Mtx33, Mtx33);           // _1C
 
 	static void setLODFlag(u8 flag) { sLODFlag = flag; }
+	static u8 getLODFlag() { return sLODFlag; }
+	static void setCurrentPipeline(u32 pipeline) { sCurrentPipeline = pipeline; }
 
 	void loadMtxIndx_PNGP(int, u16) const;
 	void loadMtxIndx_PCPU(int, u16) const;
