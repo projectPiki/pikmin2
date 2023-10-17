@@ -192,7 +192,7 @@ struct J3DShapeTable {
 };
 
 struct J3DShapeMtxMulti : public J3DShapeMtx {
-	J3DShapeMtxMulti(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
+	J3DShapeMtxMulti(u16* useMtxIndexTable, u16 useMtxIndex, u16 useMtxNum)
 	    : J3DShapeMtx(useMtxIndex)
 	    , mUseMtxNum(useMtxNum)
 	    , mUseMtxIndexTable(useMtxIndexTable)
@@ -236,7 +236,7 @@ struct J3DShapeMtxConcatView : public J3DShapeMtx {
 };
 
 struct J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
-	J3DShapeMtxMultiConcatView(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
+	J3DShapeMtxMultiConcatView(u16* useMtxIndexTable, u16 useMtxIndex, u16 useMtxNum)
 	    : J3DShapeMtxConcatView(useMtxIndex)
 	    , mUseMtxNum(useMtxNum)
 	    , mUseMtxIndexTable(useMtxIndexTable)

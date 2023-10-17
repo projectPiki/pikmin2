@@ -23,7 +23,7 @@ void DSPAddPriorTask(DSPTaskInfo* task);
 
 // osdsp_task.c
 void DsyncFrame2(u32 p1, u32 p2, u32 p3);
-void Dsp_Update_Request();
+static void Dsp_Update_Request();
 BOOL Dsp_Running_Check();
 void Dsp_Running_Start();
 

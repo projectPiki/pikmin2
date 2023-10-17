@@ -9,7 +9,7 @@
  */
 void JPACalcScaleX(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPAExtraShape* esp = work->mResource->getEsp();
+	JPAExtraShape* esp = work->mResource->mExtraShape;
 	if (work->mScaleAnm < esp->getScaleInTiming()) {
 		ptcl->mParticleScaleX = ptcl->mScaleOut * (esp->getScaleIncRateX() * work->mScaleAnm + esp->getScaleInValueX());
 	} else if (work->mScaleAnm > esp->getScaleOutTiming()) {
@@ -26,7 +26,7 @@ void JPACalcScaleX(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  */
 void JPACalcScaleY(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPAExtraShape* esp = work->mResource->getEsp();
+	JPAExtraShape* esp = work->mResource->mExtraShape;
 	if (work->mScaleAnm < esp->getScaleInTiming()) {
 		ptcl->mParticleScaleY = ptcl->mScaleOut * (esp->getScaleIncRateY() * work->mScaleAnm + esp->getScaleInValueY());
 	} else if (work->mScaleAnm > esp->getScaleOutTiming()) {
@@ -109,7 +109,7 @@ void JPACalcScaleAnmReverseY(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  */
 void JPACalcAlphaAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
-	JPAExtraShape* esp = work->mResource->getEsp();
+	JPAExtraShape* esp = work->mResource->mExtraShape;
 	f32 alpha;
 	if (ptcl->mTime < esp->getAlphaInTiming()) {
 		alpha = 255.0f * (esp->getAlphaInValue() + esp->getAlphaIncRate() * ptcl->mTime);
@@ -119,46 +119,6 @@ void JPACalcAlphaAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 		alpha = 255.0f * esp->getAlphaBaseValue();
 	}
 	OSf32tou8(&alpha, &ptcl->mPrmColorAlphaAnm);
-	/*
-	stwu     r1, -0x10(r1)
-	lwz      r3, 4(r3)
-	lfs      f3, 0x84(r4)
-	lwz      r5, 0x20(r3)
-	lwz      r3, 0(r5)
-	lfs      f0, 0x2c(r3)
-	fcmpo    cr0, f3, f0
-	bge      lbl_80091340
-	lfs      f1, 4(r5)
-	lfs      f0, 0x34(r3)
-	lfs      f2, lbl_80516BE4@sda21(r2)
-	fmadds   f0, f3, f1, f0
-	fmuls    f4, f2, f0
-	b        lbl_80091374
-
-lbl_80091340:
-	lfs      f0, 0x30(r3)
-	fcmpo    cr0, f3, f0
-	ble      lbl_80091368
-	fsubs    f2, f3, f0
-	lfs      f1, 8(r5)
-	lfs      f0, 0x38(r3)
-	lfs      f3, lbl_80516BE4@sda21(r2)
-	fmadds   f0, f2, f1, f0
-	fmuls    f4, f3, f0
-	b        lbl_80091374
-
-lbl_80091368:
-	lfs      f1, lbl_80516BE4@sda21(r2)
-	lfs      f0, 0x38(r3)
-	fmuls    f4, f1, f0
-
-lbl_80091374:
-	psq_st   f4, 8(r1), 1, qr2
-	lbz      r0, 8(r1)
-	stb      r0, 0x96(r4)
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

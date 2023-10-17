@@ -40,7 +40,7 @@ struct JPAResource {
 	JPAExTexShape* getEts() const { return mExTexShape; }
 	JPADynamicsBlock* getDyn() const { return mDynamicsBlock; }
 
-	u32 getTexIdx(u32 idx) const { return mTextureIDList[idx]; }
+	u16 getTexIdx(u8 idx) const { return mTextureIDList[idx]; }
 	u16 getUsrIdx() const { return mUsrIdx; }
 
 	JPAFunctionA** _00;                      // _00
@@ -108,7 +108,7 @@ struct JPAResourceLoader {
 	void load_jpc(const u8*, JPAResourceManager*);
 
 	// unused/inlined:
-	~JPAResourceLoader();
+	// ~JPAResourceLoader();
 	void load_jpa(const u8*, JPAResourceManager*, u16);
 };
 

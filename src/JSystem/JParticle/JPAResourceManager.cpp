@@ -28,32 +28,7 @@ JPAResourceManager::JPAResourceManager(const void* p1, JKRHeap* heap)
     , mTextureCount(0)
 {
 	mHeap = heap;
-	JPAResourceLoader loader((const u8*)p1, this); // needs to not have dtor?
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r0, 4(r3)
-	addi     r3, r1, 8
-	stw      r0, 8(r31)
-	sth      r0, 0xc(r31)
-	sth      r0, 0xe(r31)
-	sth      r0, 0x10(r31)
-	sth      r0, 0x12(r31)
-	stw      r5, 0(r31)
-	mr       r5, r31
-	bl       __ct__17JPAResourceLoaderFPCUcP18JPAResourceManager
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JPAResourceLoader loader((const u8*)p1, this);
 }
 
 /*
@@ -78,25 +53,14 @@ void JPAResourceManager::load(const void*, u16)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-JPAResourceLoader::~JPAResourceLoader()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80098528
  * Size:	000040
  */
 JPAResource* JPAResourceManager::getResource(u16 p1) const
 {
 	for (u16 i = 0; i < mResourceCount; i++) {
-		JPAResource* resource = mResources[i];
-		if (p1 == resource->mUsrIdx) {
-			return resource;
+		if (p1 == mResources[i]->getUsrIdx()) {
+			return mResources[i];
 		}
 	}
 	return nullptr;

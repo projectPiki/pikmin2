@@ -1,5 +1,5 @@
 JGADGET_FILES:=\
-	$(BUILD_DIR)/asm/JSystem/JGadget/binary.o\
+	$(BUILD_DIR)/src/JSystem/JGadget/binary.o\
 	$(BUILD_DIR)/asm/JSystem/JGadget/linklist.o\
 	$(BUILD_DIR)/asm/JSystem/JGadget/std-list.o\
 	$(BUILD_DIR)/asm/JSystem/JGadget/std-vector.o\
