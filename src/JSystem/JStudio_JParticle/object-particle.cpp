@@ -304,7 +304,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_end(const JStudio::TObject
  * Address:	80005A00
  * Size:	0000B0
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(const JStudio::TObject* p1, unsigned long p2)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(const JStudio::TObject* p1, u32 p2)
 {
 	if (_190 == 0) {
 		return;
@@ -334,7 +334,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(const JStudio::TObj
  * Address:	80005AB0
  * Size:	000030
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_01:
@@ -348,8 +348,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN(JStudio::data::TEOpe
  * Address:	80005AE0
  * Size:	000048
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData operation, const void* p2,
-                                                                    unsigned long p3)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_02:
@@ -363,7 +362,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(JStudio::dat
  * Address:	80005B28
  * Size:	00002C
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	if (operation != JStudio::data::TEOD_Unknown_01) {
 		return;
@@ -373,7 +372,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOpera
 		return;
 	}
 	emitter->mFlags |= 1;
-	emitter->_24 = 1;
+	emitter->mMaxFrame = 1;
 }
 
 /*
@@ -381,8 +380,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOpera
  * Address:	80005B54
  * Size:	000048
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData operation, const void* p2,
-                                                                   unsigned long p3)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_02:
@@ -396,7 +394,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(JStudio::data
  * Address:	80005B9C
  * Size:	000014
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_19:
@@ -410,7 +408,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(JStudio::data::TE
  * Address:	80005BB0
  * Size:	000068
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -428,8 +426,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(JStudio::data::TEOp
  * Address:	80005C18
  * Size:	000080
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2,
-                                                                  unsigned long p3)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -451,8 +448,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(JStudio::data:
  * Address:	80005C98
  * Size:	000020
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData operation, const void* p2,
-                                                                    unsigned long p3)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_02:
@@ -719,7 +715,7 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter
  * Address:	80006014
  * Size:	0000E4
  */
-void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_(unsigned long p1)
+void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_(u32 p1)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -794,7 +790,7 @@ lbl_800060E0:
  * Address:	800060F8
  * Size:	000118
  */
-void JStudio_JParticle::TAdaptor_particle::endParticle_fadeOut_(unsigned long p1)
+void JStudio_JParticle::TAdaptor_particle::endParticle_fadeOut_(u32 p1)
 {
 	if (mEmitter == nullptr) {
 		return;
