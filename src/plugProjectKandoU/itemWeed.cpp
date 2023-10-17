@@ -10,6 +10,7 @@
 #include "nans.h"
 
 #define WEED_NECTAR_CHANCE (0.08f)
+#define WEED_MAX_ATTACKERS (5)
 
 namespace Game {
 namespace ItemWeed {
@@ -88,7 +89,7 @@ WeedMgr::WeedMgr(int count)
     : TFlockMgr()
 {
 	mMonoObjectMgr.alloc(count);
-	_04 = 5;
+	mMaxAttackers = WEED_MAX_ATTACKERS;
 }
 
 /*
@@ -405,11 +406,11 @@ void Item::updateBoundSphere()
  */
 bool Item::interactFlockAttack(InteractFlockAttack& attack)
 {
-	TFlock* flock     = mFlockMgr->getValidFlock(attack._08);
-	Vector3f flockPos = Vector3f(*flock);
-	attack._14        = flockPos;
-	int res           = mFlockMgr->attackFlock(attack._08, attack._0C);
-	if (res == 1) {
+	TFlock* flock         = mFlockMgr->getValidFlock(attack.mFlockIdx);
+	Vector3f flockPos     = Vector3f(*flock);
+	attack.mFlockPosition = flockPos;
+	int res               = mFlockMgr->attackFlock(attack.mFlockIdx, attack.mDamage);
+	if (res == 1) { // just killed flock
 		if (attack.mCreature->isPiki() && mWeedType == WEEDTYPE_Stone) {
 			efx::createSimpleStoneAttack(flockPos);
 		}
@@ -429,8 +430,8 @@ bool Item::interactFlockAttack(InteractFlockAttack& attack)
 		}
 	}
 
-	attack._10 = res != 0;
-	mFlockMgr->getFlock(attack._08);
+	attack.mIsFlockDead = res != 0; // flock dead = 1, flock alive = 0
+	mFlockMgr->getFlock(attack.mFlockIdx);
 	return true;
 }
 

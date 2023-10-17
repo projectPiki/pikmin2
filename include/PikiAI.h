@@ -328,12 +328,16 @@ struct ActBore : public Action {
 	void startCurrAction();
 	void finish();
 
+	inline void setFlag(u32 flag) { mFlag.typeView |= flag; }
+	inline void resetFlag(u32 flag) { mFlag.typeView &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlag.typeView & flag; }
+
 	// _00     = VTBL
 	// _00-_0C = Action
 	u8 mRandBehaviorType;     // _0C
 	f32 _10;                  // _10
 	f32 mTimer;               // _14
-	u8 mFlag;                 // _18
+	BitFlag<u8> mFlag;        // _18
 	ActBoreBase* mActions[2]; // _1C
 };
 
@@ -627,10 +631,18 @@ struct FlockAttackActionArg : public ActionArg {
 	f32 mDamage;             // _04
 	Game::BaseItem* mTarget; // _08
 	int mFlockIndex;         // _0C
-	int mType;               // _10
+	int mType;               // _10, weed type - 0=stone, 1=grass - see Game::ItemWeed::cWeedType enum
 };
 
 struct ActFlockAttack : public Action, virtual SysShape::MotionListener {
+	enum FlockFlag {
+		FLOCK_AttackReady    = 0x1,
+		FLOCK_Unk2           = 0x2, // unused in aiWeed
+		FLOCK_AnimFinished   = 0x4,
+		FLOCK_AttackFinished = 0x8,
+		FLOCK_Dead           = 0x10,
+	};
+
 	ActFlockAttack(Game::Piki* parent);
 
 	virtual void init(ActionArg* settings);                   // _08
@@ -638,14 +650,17 @@ struct ActFlockAttack : public Action, virtual SysShape::MotionListener {
 	virtual void cleanup();                                   // _10
 	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _3C (weak)
 
+	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
+	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
+
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	u8 _10;                  // _10
-	u8 _11[0x3];             // _11, unknown/probably padding
+	u8 mWeedType;            // _10, 0=stone, 1=grass
 	Game::Creature* mTarget; // _14, unknown
 	f32 mDamage;             // _18
-	BitFlag<u8> _1C;         // _1C
+	BitFlag<u8> mFlags;      // _1C
 	int mAnimIdx;            // _20
 	u32 mFlockIndex;         // _24, unknown
 
@@ -1175,6 +1190,11 @@ struct ActWeedArg : public ActionArg {
 };
 
 struct ActWeed : public Action {
+	enum WeedState {
+		WEED_Attack = 0, // attack
+		WEED_Adjust = 1, // move to new target
+	};
+
 	ActWeed(Game::Piki* parent);
 
 	virtual void init(ActionArg* settings);                                // _08
@@ -1194,11 +1214,11 @@ struct ActWeed : public Action {
 	// _00-_0C = Action
 	Game::ItemWeed::Item* mWeed;   // _0C
 	Game::BaseFlockMgr* mFlockMgr; // _10
-	u16 _14;                       // _14
+	u16 mState;                    // _14
 	ActFlockAttack* mFlockAttack;  // _18
 	ActApproachPos* mApproachPos;  // _1C
-	u8 _20;                        // _20
-	int _24;                       // _24
+	bool mIsAttacking;             // _20
+	int mTargetFlockIdx;           // _24
 	Vector3f mAttackPosition;      // _28
 };
 

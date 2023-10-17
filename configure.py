@@ -973,7 +973,7 @@ LIBS = [
             "plugProjectKandoU/mapMgrTraceMove",
             ["plugProjectKandoU/efxModelObjects", True],
             "plugProjectKandoU/itemUjamushi",
-            "plugProjectKandoU/aiWeed",
+            ["plugProjectKandoU/aiWeed", True],
             "plugProjectKandoU/flockMgr",
             "plugProjectKandoU/itemWeed",
             ["plugProjectKandoU/aiBridge", True],

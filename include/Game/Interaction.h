@@ -252,11 +252,11 @@ struct InteractFlick : public Interaction {
 };
 
 struct InteractFlockAttack : public Interaction {
-	inline InteractFlockAttack(Creature* parent, int p1, f32 p2, u8 p3)
+	inline InteractFlockAttack(Creature* parent, int flockIdx, f32 damage, bool isDead)
 	    : Interaction(parent)
-	    , _08(p1)
-	    , _0C(p2)
-	    , _10(p3)
+	    , mFlockIdx(flockIdx)
+	    , mDamage(damage)
+	    , mIsFlockDead(isDead)
 	{
 	}
 
@@ -264,10 +264,10 @@ struct InteractFlockAttack : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	int _08;      // _08
-	f32 _0C;      // _0C
-	u8 _10;       // _10
-	Vector3f _14; // _14
+	int mFlockIdx;           // _08
+	f32 mDamage;             // _0C
+	bool mIsFlockDead;       // _10
+	Vector3f mFlockPosition; // _14
 };
 
 struct InteractFlyCollision : public Interaction {

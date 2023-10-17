@@ -36,8 +36,8 @@ struct BaseFlockMgr {
 	{
 		mIsAgentVisible[1] = true;
 		mIsAgentVisible[0] = true;
-		_04                = -1;
-		_08                = 0;
+		mMaxAttackers      = -1;
+		mNumAttackers      = 0;
 	}
 
 	virtual int getMaxObjects()     = 0;                       // _08
@@ -78,14 +78,24 @@ struct BaseFlockMgr {
 		return getFlock(idx)->getRadius();
 	}
 
+	inline bool isAttackable()
+	{
+		bool check = false;
+		if (mMaxAttackers == -1 || mNumAttackers < mMaxAttackers) {
+			check = true;
+		}
+
+		return check;
+	}
+
 	void update();
 	int getNearestFlock(Vector3f& pos);
 	int attackFlock(int, f32);
 	void resolveCollision(f32);
 
 	// _00 VTBL
-	int _04;                 // _04
-	u32 _08;                 // _08
+	int mMaxAttackers;       // _04, -1 = no limit (uja), otherwise 5 (stone/weed)
+	int mNumAttackers;       // _08
 	Sys::Sphere _0C;         // _0C
 	bool mIsAgentVisible[2]; // _1C, might be 4, IDK
 };

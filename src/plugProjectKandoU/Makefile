@@ -83,7 +83,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/mapMgrTraceMove.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/efxModelObjects.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemUjamushi.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiWeed.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiWeed.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/flockMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemWeed.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiBridge.o\

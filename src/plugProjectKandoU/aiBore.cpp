@@ -24,7 +24,6 @@ namespace PikiAI {
 ActBore::ActBore(Game::Piki* piki)
     : Action(piki)
 {
-	mFlag       = 0;
 	mActions[0] = new ActRest(piki);
 	mActions[1] = new ActOneshot(piki);
 }
@@ -39,7 +38,7 @@ void ActBore::init(ActionArg* arg)
 	mRandBehaviorType = randFloat() * 2.0f;
 	mTimer            = 0.0f;
 	startCurrAction();
-	mFlag = 0;
+	mFlag.clear();
 }
 
 /*
@@ -187,7 +186,7 @@ void ActBore::finish()
 {
 	P2ASSERTLINE(70, mRandBehaviorType < 2);
 	mActions[mRandBehaviorType]->finish();
-	mFlag |= 1;
+	setFlag(1);
 }
 
 /*
@@ -203,7 +202,7 @@ int ActBore::exec()
 	P2ASSERTLINE(81, mRandBehaviorType < 2);
 	int stat = mActions[mRandBehaviorType]->exec();
 	if (stat == 0 || stat == 2) {
-		if (mFlag & 1) {
+		if (isFlag(1)) {
 			return ACTEXEC_Success;
 		}
 		mRandBehaviorType = randFloat() * 2.0f;

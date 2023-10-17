@@ -76,12 +76,12 @@ int BaseFlockMgr::getNearestFlock(Vector3f& pos)
  * Address:	8020ED10
  * Size:	00011C
  */
-int BaseFlockMgr::attackFlock(int idx, f32 p2)
+int BaseFlockMgr::attackFlock(int idx, f32 damage)
 {
 	P2ASSERTBOUNDSLINE(93, 0, idx, getMaxObjects());
 	TFlock* flock = getFlock(idx);
 	if (isFlagAlive(idx)) {
-		if (flock->damaged(p2)) {
+		if (flock->damaged(damage)) {
 			killFlock(flock);
 			return 1;
 		}
