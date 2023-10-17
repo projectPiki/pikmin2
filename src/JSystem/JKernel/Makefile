@@ -1,6 +1,6 @@
 JKERNEL_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRAram.o\
-	$(BUILD_DIR)/asm/JSystem/JKernel/JKRAramArchive.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRAramArchive.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRAramBlock.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRAramHeap.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRAramPiece.o\

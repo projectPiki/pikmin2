@@ -96,7 +96,7 @@ LIBS = [
         "host": True,
         "objects": [
             ["JSystem/JKernel/JKRAram", True],
-            "JSystem/JKernel/JKRAramArchive",
+            ["JSystem/JKernel/JKRAramArchive", True],
             ["JSystem/JKernel/JKRAramBlock", True],
             ["JSystem/JKernel/JKRAramHeap", True],
             ["JSystem/JKernel/JKRAramPiece", True],

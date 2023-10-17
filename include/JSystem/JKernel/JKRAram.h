@@ -164,7 +164,7 @@ struct JKRAramArchive : public JKRArchive {
 	JKRCompression mCompression;     // _5C
 	EMountDirection mMountDirection; // _60
 	JKRAramBlock* mBlock;            // _64
-	JKRDvdFile* mDvdFile;            // _68
+	JKRFile* mDvdFile;               // _68
 };
 
 // Size: 0x98
