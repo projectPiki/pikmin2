@@ -8,7 +8,7 @@ struct J3DPacket;
 struct J3DMatPacket;
 struct J3DDrawBuffer;
 
-typedef int (J3DDrawBuffer::*sortFunc)(J3DMatPacket*);
+typedef bool (J3DDrawBuffer::*sortFunc)(J3DMatPacket*);
 typedef void (J3DDrawBuffer::*drawFunc)() const;
 
 /**

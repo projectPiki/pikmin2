@@ -28,38 +28,38 @@ typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
 
 // TODO: name these
 enum J3DModelFlags {
-	J3DMODEL_Unk1  = 0x1,
-	J3DMODEL_Unk2  = 0x2,
-	J3DMODEL_Unk3  = 0x4,
-	J3DMODEL_Unk4  = 0x8,
-	J3DMODEL_Unk5  = 0x10,
-	J3DMODEL_Unk6  = 0x20,
-	J3DMODEL_Unk7  = 0x40,
-	J3DMODEL_Unk8  = 0x80,
-	J3DMODEL_Unk9  = 0x100,
-	J3DMODEL_Unk10 = 0x200,
-	J3DMODEL_Unk11 = 0x400,
-	J3DMODEL_Unk12 = 0x800,
-	J3DMODEL_Unk13 = 0x1000,
-	J3DMODEL_Unk14 = 0x2000,
-	J3DMODEL_Unk15 = 0x4000,
-	J3DMODEL_Unk16 = 0x8000,
-	J3DMODEL_Unk17 = 0x10000,
-	J3DMODEL_Unk18 = 0x20000,
-	J3DMODEL_Unk19 = 0x40000,
-	J3DMODEL_Unk20 = 0x80000,
-	J3DMODEL_Unk21 = 0x100000,
-	J3DMODEL_Unk22 = 0x200000,
-	J3DMODEL_Unk23 = 0x400000,
-	J3DMODEL_Unk24 = 0x800000,
-	J3DMODEL_Unk25 = 0x1000000,
-	J3DMODEL_Unk26 = 0x2000000,
-	J3DMODEL_Unk27 = 0x4000000,
-	J3DMODEL_Unk28 = 0x8000000,
-	J3DMODEL_Unk29 = 0x10000000,
-	J3DMODEL_Unk30 = 0x20000000,
-	J3DMODEL_Unk31 = 0x40000000,
-	J3DMODEL_Unk32 = 0x80000000,
+	J3DMODEL_Unk1       = 0x1,
+	J3DMODEL_Unk2       = 0x2,
+	J3DMODEL_SkinPosCpu = 0x4,
+	J3DMODEL_SkinNrmCpu = 0x8,
+	J3DMODEL_Unk5       = 0x10,
+	J3DMODEL_Unk6       = 0x20,
+	J3DMODEL_Unk7       = 0x40,
+	J3DMODEL_Unk8       = 0x80,
+	J3DMODEL_Unk9       = 0x100,
+	J3DMODEL_Unk10      = 0x200,
+	J3DMODEL_Unk11      = 0x400,
+	J3DMODEL_Unk12      = 0x800,
+	J3DMODEL_Unk13      = 0x1000,
+	J3DMODEL_Unk14      = 0x2000,
+	J3DMODEL_Unk15      = 0x4000,
+	J3DMODEL_Unk16      = 0x8000,
+	J3DMODEL_Unk17      = 0x10000,
+	J3DMODEL_Unk18      = 0x20000,
+	J3DMODEL_Unk19      = 0x40000,
+	J3DMODEL_Unk20      = 0x80000,
+	J3DMODEL_Unk21      = 0x100000,
+	J3DMODEL_Unk22      = 0x200000,
+	J3DMODEL_Unk23      = 0x400000,
+	J3DMODEL_Unk24      = 0x800000,
+	J3DMODEL_Unk25      = 0x1000000,
+	J3DMODEL_Unk26      = 0x2000000,
+	J3DMODEL_Unk27      = 0x4000000,
+	J3DMODEL_Unk28      = 0x8000000,
+	J3DMODEL_Unk29      = 0x10000000,
+	J3DMODEL_Unk30      = 0x20000000,
+	J3DMODEL_Unk31      = 0x40000000,
+	J3DMODEL_Unk32      = 0x80000000,
 };
 
 /**
@@ -188,11 +188,11 @@ struct J3DModel {
 	void offFlag(u32 flag) { mFlags &= ~flag; }
 	bool checkFlag(u32 flag) const { return mFlags & flag; }
 
-	bool isCpuSkinningOn() const { return (mFlags & J3DMODEL_Unk3) && (mFlags & J3DMODEL_Unk4); }
+	bool isCpuSkinningOn() const { return (mFlags & J3DMODEL_SkinPosCpu) && (mFlags & J3DMODEL_SkinNrmCpu); }
 
 	Mtx& getBaseTRMtx() { return mPosMtx; }
 	void i_setBaseTRMtx(Mtx m) { PSMTXCopy(m, mPosMtx); }
-	u32 getMtxCalcMode() const { return mFlags & J3DMODEL_Unk3; }
+	u32 getMtxCalcMode() const { return mFlags & J3DMODEL_SkinPosCpu; }
 	J3DVertexBuffer* getVertexBuffer() const { return (J3DVertexBuffer*)&mVertexBuffer; }
 	J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPackets[idx]; }
 	J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePackets[idx]; }

@@ -22,6 +22,16 @@ struct J3DShapeMtx;
 #define J3DShapeMtx_Y_BBoard 0x2
 #define J3DShapeMtx_Multi    0x3
 
+enum J3DShapeFlags {
+	J3DShape_IsHidden  = 0x1,
+	J3DShape_SkinPos   = 0x4,
+	J3DShape_SkinNorm  = 0x8,
+	J3DShape_unk0x10   = 0x10,
+	J3DShape_EnableLOD = 0x100,
+	J3DShape_NoMtx     = 0x200,
+	J3DShape_Invalid   = 0xFFFFFFFF,
+};
+
 struct J3DShapeInitData {
 	u8 mShapeMtxType;            // _00
 	u16 mMtxGroupNum;            // _02
@@ -35,15 +45,6 @@ struct J3DShapeInitData {
 
 struct J3DShape {
 	J3DShape() { initialize(); }
-
-	enum Flags {
-		IsHidden  = 0x1,
-		SkinPos   = 0x4,
-		SkinNorm  = 0x8,
-		EnableLOD = 0x100,
-		NoMtx     = 0x200,
-		Invalid   = 0xFFFFFFFF,
-	};
 
 	virtual void draw() const;            // _08
 	virtual void drawFast() const;        // _0C
@@ -65,8 +66,10 @@ struct J3DShape {
 	void setVertexDataPointer(J3DVertexData* pVtxData) { mVtxData = pVtxData; }
 	void* getVcdVatCmd() const { return mVcdVatCmd; }
 	void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = (u8*)pVatCmd; }
-	void show() { offFlag(IsHidden); }
-	void hide() { onFlag(IsHidden); }
+	void setDrawMtx(Mtx** pDrawMtx) { mDrawMtx = pDrawMtx; }
+	void setNrmMtx(Mtx33** pNrmMtx) { mNrmMtx = pNrmMtx; }
+	void show() { offFlag(J3DShape_IsHidden); }
+	void hide() { onFlag(J3DShape_IsHidden); }
 	void setCurrentViewNoPtr(u32* pViewNoPtr) { mCurrentViewNumber = pViewNoPtr; }
 	void setScaleFlagArray(u8* pScaleFlagArray) { mFlagList = pScaleFlagArray; }
 	void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }
@@ -104,8 +107,8 @@ struct J3DShape {
 	J3DVertexData* mVtxData;      // _4C
 	J3DDrawMtxData* mDrawMtxData; // _50
 	u8* mFlagList;                // _54
-	J3DJos32Tree* mTree1;         // _58, TP has this as Mtx** mDrawMtx
-	J3DJos32Tree* mTree2;         // _5C, TP has this as Mtx33** mNrmMtx
+	Mtx** mDrawMtx;               // _58
+	Mtx33** mNrmMtx;              // _5C
 	u32* mCurrentViewNumber;      // _60
 	int mBumpMtxOffset;           // _64
 };
@@ -124,6 +127,8 @@ struct J3DShapeMtx {
 	virtual u16 getUseMtxIndex(u16) const { return mUseMtxIndex; } // _14 (weak)
 	virtual void load() const;                                     // _18
 	virtual void calcNBTScale(const Vec&, Mtx33, f32 Mtx33);       // _1C
+
+	static void setLODFlag(u8 flag) { sLODFlag = flag; }
 
 	void loadMtxIndx_PNGP(int, u16) const;
 	void loadMtxIndx_PCPU(int, u16) const;

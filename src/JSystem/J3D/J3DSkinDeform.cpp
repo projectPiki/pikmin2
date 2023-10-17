@@ -10,13 +10,13 @@
  */
 void J3DSkinDeform::deform(J3DModel* model)
 {
-	if (model->checkFlag(J3DMODEL_Unk3)) {
+	if (model->checkFlag(J3DMODEL_SkinPosCpu)) {
 		setFlag(J3DSKIN_Unk2);
 	} else {
 		resetFlag(J3DSKIN_Unk2);
 	}
 
-	if (model->checkFlag(J3DMODEL_Unk4)) {
+	if (model->checkFlag(J3DMODEL_SkinNrmCpu)) {
 		setFlag(J3DSKIN_Unk1);
 	} else {
 		resetFlag(J3DSKIN_Unk1);

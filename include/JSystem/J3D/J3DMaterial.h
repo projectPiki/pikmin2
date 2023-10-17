@@ -108,6 +108,9 @@ struct J3DMaterial {
 	J3DDisplayListObj* getSharedDisplayListObj() const { return mSharedDLObj; }
 	J3DShape* getShape() { return mShape; }
 	J3DJoint* getJoint() { return mJoint; }
+	u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
+	u8 getTevStageNum() const { return mTevBlock->getTevStageNum(); }
+
 	J3DMaterialAnm* getMaterialAnm() const
 	{
 		if ((u32)mAnm < 0xC0000000) {

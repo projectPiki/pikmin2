@@ -2,7 +2,6 @@
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DJointTree.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
-#include "types.h"
 
 /*
  * --INFO--
@@ -113,7 +112,7 @@ void J3DJointTree::findImportantMtxIndex()
 {
 	const int wEvlpMtxNum       = getWEvlpMtxNum();
 	u32 tableIdx                = 0;
-	const u16 drawFullWgtMtxNum = getDrawFullWgtMtxNum();
+	const u32 drawFullWgtMtxNum = getDrawFullWgtMtxNum();
 	const u16* wEvlpMixIndex    = getWEvlpMixIndex();
 	const f32* wEvlpMixWeight   = getWEvlpMixWeight();
 	u16* wEvlpImportantMtxIdx   = getWEvlpImportantMtxIndex();
@@ -261,7 +260,7 @@ lbl_800885CC:
  * Address:	800885E0
  * Size:	000070
  */
-void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const float (&mtx)[3][4])
+void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const f32 (&mtx)[3][4])
 {
 	// mTransformCalc->init(vec, mtx);
 	// J3DMtxCalc::setMtxBuffer(buffer);
@@ -272,7 +271,7 @@ void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const float (&mtx)
 	mTransformCalc->init(vec, mtx);
 	J3DMtxCalc::setMtxBuffer(buffer);
 	J3DJoint* root = mRootNode;
-	if (root != nullptr) {
+	if (root) {
 		J3DJoint::mCurrentMtxCalc = mTransformCalc;
 		root->recursiveCalc();
 	}

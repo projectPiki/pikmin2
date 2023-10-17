@@ -30,7 +30,7 @@ struct J3DTexMtx {
 namespace J3DDifferedTexMtx {
 void loadExecute(const f32 (*)[4]);
 extern J3DTexGenBlock* sTexGenBlock;
-extern J3DShapePacket_0x24* sTexMtxObj;
+extern J3DTexMtxObj* sTexMtxObj;
 } // namespace J3DDifferedTexMtx
 
 #endif

@@ -37,7 +37,7 @@ struct J3DJointTree {
 	u16* getWEvlpMixIndex() const { return mEnvelopeMixIdx; }
 	f32* getWEvlpMixWeight() const { return mEnvelopeMixWeight; }
 	u16* getWEvlpImportantMtxIndex() const { return mEnvelopeImptIdx; }
-	u16 getDrawFullWgtMtxNum() const { return mMtxData.mDrawMtxCount; }
+	u32 getDrawFullWgtMtxNum() const { return mMtxData.mDrawMtxCount; }
 	u16 getJointNum() const { return mJointCnt; }
 	u16 getDrawMtxNum() const { return mMtxData.mCount; }
 	u8 getDrawMtxFlag(u16 idx) const { return mMtxData.mDrawMtxFlag[idx]; }

@@ -7,9 +7,9 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/J3D/J3DDrawBuffer.h"
 #include "types.h"
 
-struct J3DDrawBuffer;
 struct J3DTexMtxObj;
 struct J3DTexture;
 struct J3DMaterialAnm;
@@ -17,10 +17,43 @@ struct J3DShapePacket;
 struct J3DMtxBuffer;
 struct J3DModel;
 
+inline u32 getDiffFlag_LightObjNum(u32 param_1) { return (param_1 & 0xf0) >> 4; }
+
+inline u32 getDiffFlag_TexGenNum(u32 param_1) { return (param_1 & 0xf00) >> 8; }
+
+inline int calcDifferedBufferSize_TexMtxSize(int param_1) { return param_1 * 0x35; }
+
+inline int calcDifferedBufferSize_TexGenSize(int param_1) { return param_1 * 0x3d + 10; }
+
+inline u32 getDiffFlag_TexNoNum(u32 param_1) { return (param_1 & 0xf0000) >> 0x10; }
+
+inline int calcDifferedBufferSize_TexNoSize(int param_1) { return param_1 * 0x37; }
+
+inline u32 calcDifferedBufferSize_TexNoAndTexCoordScaleSize(u32 param_1)
+{
+	u32 res = param_1 * 0x37;
+	res += ((param_1 + 1) >> 1) * 0x37;
+	return res;
+}
+
+inline u32 getDiffFlag_TevStageNum(u32 param_1) { return (param_1 & 0xf00000) >> 0x14; }
+
+inline int calcDifferedBufferSize_TevStageSize(int param_1) { return param_1 * 10; }
+
+inline int calcDifferedBufferSize_TevStageDirectSize(int param_1) { return param_1 * 5; }
+
 struct J3DTexMtxObj {
+	J3DTexMtxObj(u16 i)
+	{
+		mTexMtx    = new Mtx[i];
+		_04        = new Mtx44[i];
+		mTexGenNum = i;
+	}
 	Mtx& getMtx(u16 idx) { return mTexMtx[idx]; }
 
-	Mtx* mTexMtx; // _00, array of Mtxs
+	Mtx* mTexMtx;   // _00, array of Mtxs
+	Mtx44* _04;     // _04
+	u16 mTexGenNum; // _08
 };
 
 // TODO: Could this use TLinkList?
@@ -98,9 +131,13 @@ struct J3DMatPacket : public J3DDrawPacket {
 
 	J3DMatPacket();
 
-	virtual bool entry(J3DDrawBuffer*); // _08 (weak)
-	virtual void draw();                // _0C
-	virtual ~J3DMatPacket();            // _10
+	virtual bool entry(J3DDrawBuffer* buffer)
+	{
+		sortFunc func = J3DDrawBuffer::sortFuncTable[buffer->mSortType];
+		return (buffer->*func)(this);
+	}                        // _08 (weak)
+	virtual void draw();     // _0C
+	virtual ~J3DMatPacket(); // _10
 
 	void addShapePacket(J3DShapePacket*);
 	void beginDiff();
@@ -121,18 +158,6 @@ struct J3DMatPacket : public J3DDrawPacket {
 	u32 mDiffFlag;                    // _34
 	J3DTexture* mTexture;             // _38
 	J3DMaterialAnm* mMaterialAnm;     // _3C
-};
-
-struct J3DShapePacket_0x24 {
-	inline J3DShapePacket_0x24(u16 num)
-	    : _00(new Mtx[num])
-	    , _04(new Mtx44[num])
-	    , _08(num)
-	{
-	}
-	Mtx* _00;   // _00
-	Mtx44* _04; // _04
-	s16 _08;    // _08
 };
 
 /**
