@@ -494,8 +494,8 @@ u32 JKRFileCache::countFile(const char* p1) const
  */
 JKRFileFinder* JKRFileCache::getFirstFile(const char* p1) const
 {
-	char* path           = getDvdPathName(p1);
-	JKRDvdFinder* finder = new (JKRHeap::sSystemHeap, 0) JKRDvdFinder(path);
+	char* path            = getDvdPathName(p1);
+	JKRFileFinder* finder = new (JKRHeap::sSystemHeap, 0) JKRDvdFinder(path);
 	JKRHeap::sSystemHeap->free(path);
 	if (finder->mIsAvailable != true) {
 		delete finder;
@@ -503,14 +503,6 @@ JKRFileFinder* JKRFileCache::getFirstFile(const char* p1) const
 	}
 	return finder;
 }
-
-/*
- * --INFO--
- * Address:	800223E0
- * Size:	000048
- * __dt__13JKRFileFinderFv
- */
-// JKRFileFinder::~JKRFileFinder() { }
 
 /*
  * --INFO--
