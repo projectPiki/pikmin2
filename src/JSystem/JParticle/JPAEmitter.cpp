@@ -39,7 +39,7 @@ void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 	mRndmDirSpeed        = mResource->getDyn()->getInitVelRndm();
 	mAirResist           = mResource->getDyn()->getAirRes();
 	// mRandom.set_seed(mManager->mWorkData->mRndm.get_rndm_u());
-	// MTXIdentity(mGlobalRot);
+	PSMTXIdentity(mGlobalRot);
 	mGlobalScl.set(1.0f, 1.0f, 1.0f);
 	// mGlobalTrs.zero();
 	mGlobalPScl.set(1.0f, 1.0f);
@@ -56,12 +56,12 @@ void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 	mpUserWork = nullptr;
 	mScaleOut  = 1.0f;
 	mEmitCount = 0.0f;
-	// initStatus(0x30);
+	initFlag(0x30);
 	mDrawTimes     = 1;
 	mTick          = 0;
 	mWaitTime      = 0;
 	mRateStepTimer = 0;
-	mTexAnmIdx     = 0;
+	// mTexAnmIdx     = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -601,7 +601,7 @@ void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3f* p1) const
 {
 	Mtx mtx;
 	PSMTXScale(mtx, mGlobalScl.x, mGlobalScl.y, mGlobalScl.z);
-	PSMTXConcat(mGlobalMtx, mtx, mtx);
+	PSMTXConcat(mGlobalRot, mtx, mtx);
 	mtx[0][3] = mGlobalTrs.x;
 	mtx[1][3] = mGlobalTrs.y;
 	mtx[2][3] = mGlobalTrs.z;

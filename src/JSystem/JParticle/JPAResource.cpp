@@ -176,32 +176,32 @@
  */
 JPAResource::JPAResource()
 {
-	_08 = nullptr;
-	_04 = nullptr;
-	_00 = nullptr;
-	_18 = nullptr;
-	_14 = nullptr;
-	_10 = nullptr;
-	_0C = nullptr;
-	_1C = nullptr;
-	_20 = nullptr;
-	_24 = nullptr;
-	_28 = nullptr;
-	_2C = nullptr;
-	_30 = nullptr;
-	_34 = nullptr;
-	_38 = nullptr;
-	_47 = 0;
-	_46 = 0;
-	_45 = 0;
-	_44 = 0;
-	_43 = 0;
-	_42 = 0;
-	_41 = 0;
-	_40 = 0;
-	_3F = 0;
-	_3E = 0;
-	_3C = 0;
+	mDrawEmitterChildFuncList     = nullptr;
+	mDrawEmitterFuncList          = nullptr;
+	mCalcEmitterFuncList          = nullptr;
+	mDrawParticleChildFuncList    = nullptr;
+	mCalcParticleChildFuncList    = nullptr;
+	mDrawParticleFuncList         = nullptr;
+	mCalcParticleFuncList         = nullptr;
+	mBaseShape                    = nullptr;
+	mExtraShape                   = nullptr;
+	mChildShape                   = nullptr;
+	mExTexShape                   = nullptr;
+	mDynamicsBlock                = nullptr;
+	mFieldBlocks                  = nullptr;
+	mKeyBlocks                    = nullptr;
+	mTextureIDList                = nullptr;
+	mDrawParticleChildFuncListNum = 0;
+	mCalcParticleChildFuncListNum = 0;
+	mDrawParticleFuncListNum      = 0;
+	mCalcParticleFuncListNum      = 0;
+	mDrawEmitterChildFuncListNum  = 0;
+	mDrawEmitterFuncListNum       = 0;
+	mCalcEmitterFuncListNum       = 0;
+	mTDB1Num                      = 0;
+	mKeyBlockNum                  = 0;
+	mFieldBlockNum                = 0;
+	mUsrIdx                       = 0;
 }
 
 /*
@@ -2356,22 +2356,20 @@ lbl_800970E4:
  * Address:	800970F8
  * Size:	0000F0
  */
-void JPAResource::draw(JPAEmitterWorkData* workData, JPABaseEmitter* emitter)
+void JPAResource::draw(JPAEmitterWorkData* work, JPABaseEmitter* emtr)
 {
-	workData->mEmitter  = emitter;
-	workData->mResource = this;
-	workData->_216      = 0;
-	calcWorkData_d(workData);
-	_1C->setGX(workData);
-	for (int i = 1; i <= emitter->_110; i++) {
-		workData->_216++;
-		if ((_1C->mData->_08 & 0x400000) != 0 && _24 != nullptr) {
-			drawC(workData);
-		}
-		drawP(workData);
-		if ((_1C->mData->_08 & 0x400000) == 0 && _24 != nullptr) {
-			drawC(workData);
-		}
+	work->mEmitter   = emtr;
+	work->mResource  = this;
+	work->mDrawCount = 0;
+	calcWorkData_d(work);
+	mBaseShape->setGX(work);
+	for (s32 i = 1; i <= emtr->getDrawTimes(); i++) {
+		work->mDrawCount++;
+		if (getBsp()->isDrawPrntAhead() && mChildShape != nullptr)
+			drawC(work);
+		drawP(work);
+		if (!getBsp()->isDrawPrntAhead() && mChildShape != nullptr)
+			drawC(work);
 	}
 }
 
@@ -3178,11 +3176,11 @@ lbl_80097B90:
  */
 void JPAResource::calc_p(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	if (_0C == nullptr) {
+	if (mCalcParticleFuncList == nullptr) {
 		return;
 	}
-	for (int i = _44 - 1; 0 <= i; i--) {
-		_0C[i](workData, particle);
+	for (int i = mCalcParticleFuncListNum - 1; 0 <= i; i--) {
+		mCalcParticleFuncList[i](workData, particle);
 	}
 }
 
@@ -3193,11 +3191,11 @@ void JPAResource::calc_p(JPAEmitterWorkData* workData, JPABaseParticle* particle
  */
 void JPAResource::calc_c(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	if (_14 == nullptr) {
+	if (mCalcParticleChildFuncList == nullptr) {
 		return;
 	}
-	for (int i = _46 - 1; 0 <= i; i--) {
-		_14[i](workData, particle);
+	for (int i = mCalcParticleChildFuncListNum - 1; 0 <= i; i--) {
+		mCalcParticleChildFuncList[i](workData, particle);
 	}
 }
 
@@ -3503,10 +3501,10 @@ void JPAResource::calcWorkData_c(JPAEmitterWorkData*)
  * Address:	80098058
  * Size:	000080
  */
-void JPAResource::calcWorkData_d(JPAEmitterWorkData* workData)
+void JPAResource::calcWorkData_d(JPAEmitterWorkData* work)
 {
-	Mtx v1;
-	JPAGetXYZRotateMtx(workData->mEmitter->_4C * 182, workData->mEmitter->_4E * 182, workData->mEmitter->_50 * 182, v1);
-	PSMTXConcat(workData->mEmitter->_68, v1, workData->_A8);
-	PSMTXMultVecSR(workData->_A8, reinterpret_cast<Vec*>(&workData->mEmitter->_18), reinterpret_cast<Vec*>(&workData->_120));
+	Mtx mtx;
+	JPAGetXYZRotateMtx(work->mEmitter->mLocalRot.x * 0xB6, work->mEmitter->mLocalRot.y * 0xB6, work->mEmitter->mLocalRot.z * 0xB6, mtx);
+	PSMTXConcat(work->mEmitter->mGlobalRot, mtx, work->mGlobalRot);
+	PSMTXMultVecSR(work->mGlobalRot, (Vec*)&work->mEmitter->mLocalDir, (Vec*)&work->mGlobalEmtrDir);
 }

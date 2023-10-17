@@ -8,9 +8,9 @@ struct JKRHeap;
 
 struct JPATextureData {
 	// Probably magic / size / flags up top here, but they're unused.
-	/* 0x00 */ char _00[0x0C];
-	/* 0x0C */ char mName[0x14];
-	/* 0x20 */ ResTIMG mResTIMG;
+	char _00[0x0C];   // _00
+	char mName[0x14]; // _0C
+	ResTIMG mResTIMG; // _20
 };
 
 struct JPATexture {

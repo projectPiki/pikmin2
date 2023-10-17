@@ -19,7 +19,7 @@ struct JPANode {
 	T mData;
 };
 
-template <class T>
+template <typename T>
 struct JPAList {
 	JPANode<T>* mFirst;
 	JPANode<T>* mLast;

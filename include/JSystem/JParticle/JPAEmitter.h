@@ -9,6 +9,8 @@
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/TColor.h"
+#include "JSystem/JParticle/JPABlock.h"
+#include "JSystem/JParticle/JPAMath.h"
 #include "types.h"
 #include "Color4.h"
 #include "Vector3.h"
@@ -35,6 +37,17 @@ enum JPAEmitterFlags {
 	JPAEMIT_Unk8     = 0x80,
 	JPAEMIT_Unk9     = 0x100,
 };
+
+void noLoadPrj(const JPAEmitterWorkData* workData, const Mtx mtx);
+void loadPrj(const JPAEmitterWorkData* workData, const Mtx p2);
+void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx p2);
+void rotTypeX(f32, f32, f32 (&)[3][4]);
+void rotTypeY(f32, f32, f32 (&)[3][4]);
+void rotTypeZ(f32, f32, f32 (&)[3][4]);
+void rotTypeXYZ(f32, f32, f32 (&)[3][4]);
+void basePlaneTypeXY(f32 (*)[4], f32, f32);
+void basePlaneTypeXZ(f32 (*)[4], f32, f32);
+void basePlaneTypeX(f32 (*)[4], f32, f32);
 
 struct JPABaseParticle {
 	void init_p(JPAEmitterWorkData*);
@@ -121,6 +134,7 @@ struct JPABaseEmitter {
 
 	u32 getParticleNumber() { return mAlivePtclBase.getNum() + mAlivePtclChld.getNum(); }
 
+	void initFlag(u32 flag) { mFlags = flag; }
 	void setFlag(u32 flag) { mFlags |= flag; }
 	bool isFlag(u32 flag) { return mFlags & flag; }
 	void resetFlag(u32 flag) { mFlags &= ~flag; }
@@ -252,6 +266,34 @@ struct JPABaseEmitter {
 		mGlobalTrs.z = z;
 	}
 
+	bool checkFlag(u32 flag) { return !!(mResource->getDyn()->getFlag() & flag); }
+	u8 getResourceManagerID() const { return mResMgrID; }
+	u8 getGroupID() const { return mGroupID; }
+	u8 getDrawTimes() const { return mDrawTimes; }
+	void setRate(f32 rate) { mRate = rate; }
+	void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mEmitterCallback = ptr; }
+	void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
+	void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
+	void getLocalTranslation(JGeometry::TVec3f& vec) { vec.set(mLocalTrs); }
+	void setGlobalRotation(const JGeometry::TVec3<s16>& rot) { JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); }
+	void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
+	u8 getGlobalAlpha() { return mGlobalPrmClr.a; }
+	void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }
+	void setGlobalPrmColor(u8 r, u8 g, u8 b)
+	{
+		mGlobalPrmClr.r = r;
+		mGlobalPrmClr.g = g;
+		mGlobalPrmClr.b = b;
+	}
+	void setGlobalEnvColor(u8 r, u8 g, u8 b)
+	{
+		mGlobalEnvClr.r = r;
+		mGlobalEnvClr.g = g;
+		mGlobalEnvClr.b = b;
+	}
+	void setVolumeSize(u16 size) { mVolumeSize = size; }
+	void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
+
 	JGeometry::TVec3f mLocalScl;             // _00
 	JGeometry::TVec3f mLocalTrs;             // _0C
 	JGeometry::TVec3f mLocalDir;             // _18
@@ -270,7 +312,7 @@ struct JPABaseEmitter {
 	u16 mVolumeSize;                         // _54
 	u8 mRateStep;                            // _56
 	JSUPtrLink mLink;                        // _58
-	Mtx mGlobalMtx;                          // _68
+	Mtx mGlobalRot;                          // _68
 	JGeometry::TVec3f mGlobalScl;            // _98
 	JGeometry::TVec3f mGlobalTrs;            // _A4
 	JGeometry::TVec2f mGlobalPScl;           // _B0
@@ -378,23 +420,21 @@ struct JPAEmitterManager {
 	// unused/inlined:
 	void createSimpleEmitter(const JGeometry::TVec3f&, u16, JPAEmitterCallBack*, JPAParticleCallBack*);
 	void calc(u8);
-	void draw(f32 (*)[4], u8);
+	void draw(Mtx, u8);
 	void draw(const JPADrawInfo*);
-	void draw(f32 (*)[4]);
+	void draw(Mtx);
 
-	JSUList<JPABaseEmitter>* _00; // _00
-	JSUPtrList _04;               // _04
-	void* _10;
-	void* _14;
-	// JPANode<JPABaseParticle>* _10; // _10
-	// JPANode<JPABaseParticle>* _14; // _14
-	int _18;                         // _18
-	struct JPAResourceManager** _1C; // _1C
-	JPAEmitterWorkData* mWorkData;   // _20
-	uint _24;                        // _24
-	uint _28;                        // _28
-	u8 _2C;                          // _2C
-	u8 _2D;                          // _2D
+	JPAResourceManager* getResourceManager(u16 idx) { return mResMgrAry[idx]; }
+
+	JSUList<JPABaseEmitter>* mGrpEmtr;     // _00
+	JSUList<JPABaseEmitter> mFreeEmtrList; // _04
+	JPAList<JPABaseParticle> mPtclPool;    // _10
+	JPAResourceManager** mResMgrAry;       // _1C
+	JPAEmitterWorkData* mWorkData;         // _20
+	uint mEmtrMax;                         // _24
+	uint mPtclMax;                         // _28
+	u8 mGrpMax;                            // _2C
+	u8 mResMax;                            // _2D
 };
 
 #endif

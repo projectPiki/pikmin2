@@ -4,7 +4,40 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAShape.h"
 #include "JSystem/JUtility/TColor.h"
-#include "types.h"
+
+static u8 jpa_dl[32] = {
+	0x80, 0x00, 0x04, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+static u8 jpa_dl_x[32] = {
+	0x80, 0x00, 0x08, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x48, 0x00, 0x49, 0x01, 0x4A,
+	0x02, 0x4B, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+typedef void (*projectionFunc)(JPAEmitterWorkData const*, const Mtx);
+static projectionFunc p_prj[3] = {
+	noLoadPrj,
+	loadPrj,
+	loadPrjAnm,
+};
+
+typedef void (*rotTypeFunc)(f32, f32, f32 (&)[3][4]);
+static rotTypeFunc p_rot[5] = {
+	rotTypeY, rotTypeX, rotTypeZ, rotTypeXYZ, rotTypeY,
+};
+
+typedef void (*planeFunc)(f32 (*)[4], f32, f32);
+static planeFunc p_plane[3] = {
+	basePlaneTypeXY,
+	basePlaneTypeXZ,
+	basePlaneTypeX,
+};
+
+static u8* p_dl[2] = {
+	jpa_dl,
+	jpa_dl_x,
+};
 
 typedef u32 JPAClrAnmKeyData; /** TODO: Remove and replace this. */
 
@@ -1329,7 +1362,6 @@ void loadPrjAnm(const JPAEmitterWorkData* workData, const Mtx p2)
  * --INFO--
  * Address:	8008C508
  * Size:	0000E8
- * TODO: Needs p_prj and jpa_dl, probably float stuff
  */
 void JPADrawBillboard(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
@@ -1904,29 +1936,14 @@ void rotTypeXYZ(float, float, float (&)[3][4])
  * Address:	8008CBA4
  * Size:	00004C
  */
-void basePlaneTypeXY(float (*)[4], float, float)
+void basePlaneTypeXY(Mtx mtx, f32 x, f32 y)
 {
-	/*
-	lfs      f0, 0(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0(r3)
-	lfs      f0, 0x10(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x20(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x20(r3)
-	lfs      f0, 4(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 4(r3)
-	lfs      f0, 0x14(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x14(r3)
-	lfs      f0, 0x24(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x24(r3)
-	blr
-	*/
+	mtx[0][0] *= x;
+	mtx[1][0] *= x;
+	mtx[2][0] *= x;
+	mtx[0][1] *= y;
+	mtx[1][1] *= y;
+	mtx[2][1] *= y;
 }
 
 /*
@@ -1934,29 +1951,14 @@ void basePlaneTypeXY(float (*)[4], float, float)
  * Address:	8008CBF0
  * Size:	00004C
  */
-void basePlaneTypeXZ(float (*)[4], float, float)
+void basePlaneTypeXZ(Mtx mtx, f32 x, f32 z)
 {
-	/*
-	lfs      f0, 0(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0(r3)
-	lfs      f0, 0x10(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x20(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x20(r3)
-	lfs      f0, 8(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 8(r3)
-	lfs      f0, 0x18(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x28(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x28(r3)
-	blr
-	*/
+	mtx[0][0] *= x;
+	mtx[1][0] *= x;
+	mtx[2][0] *= x;
+	mtx[0][2] *= z;
+	mtx[1][2] *= z;
+	mtx[2][2] *= z;
 }
 
 /*
@@ -1964,38 +1966,17 @@ void basePlaneTypeXZ(float (*)[4], float, float)
  * Address:	8008CC3C
  * Size:	000070
  */
-void basePlaneTypeX(float (*)[4], float, float)
+void basePlaneTypeX(Mtx mtx, f32 xz, f32 y)
 {
-	/*
-	lfs      f0, 0(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0(r3)
-	lfs      f0, 0x10(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x20(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x20(r3)
-	lfs      f0, 4(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 4(r3)
-	lfs      f0, 0x14(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x14(r3)
-	lfs      f0, 0x24(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x24(r3)
-	lfs      f0, 8(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 8(r3)
-	lfs      f0, 0x18(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x28(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x28(r3)
-	blr
-	*/
+	mtx[0][0] *= xz;
+	mtx[1][0] *= xz;
+	mtx[2][0] *= xz;
+	mtx[0][1] *= y;
+	mtx[1][1] *= y;
+	mtx[2][1] *= y;
+	mtx[0][2] *= xz;
+	mtx[1][2] *= xz;
+	mtx[2][2] *= xz;
 }
 
 /*
@@ -2681,8 +2662,24 @@ lbl_8008D5E4:
  * Address:	8008D600
  * Size:	000150
  */
-void JPADrawRotation(JPAEmitterWorkData* workData, JPABaseParticle* particle)
+void JPADrawRotation(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
+	if (ptcl->checkStatus(8) == 0) {
+		f32 sinRot    = JMASSin(ptcl->mRotateAngle);
+		f32 cosRot    = JMASCos(ptcl->mRotateAngle);
+		f32 particleX = work->mGlobalPtclScl.x * ptcl->mParticleScaleX;
+		f32 particleY = work->mGlobalPtclScl.y * ptcl->mParticleScaleY;
+		Mtx mtx;
+		p_rot[work->mRotType](sinRot, cosRot, mtx);
+		p_plane[work->mPlaneType](mtx, particleX, particleY);
+		mtx[0][3] = ptcl->mPosition.x;
+		mtx[1][3] = ptcl->mPosition.y;
+		mtx[2][3] = ptcl->mPosition.z;
+		PSMTXConcat(work->mPosCamMtx, mtx, mtx);
+		GXLoadPosMtxImm(mtx, 0);
+		p_prj[work->mPrjType](work, mtx);
+		GXCallDisplayList(p_dl[work->mDLType], sizeof(jpa_dl));
+	}
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2798,7 +2795,7 @@ void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
  * Address:	8008D7EC
  * Size:	0001B8
  */
-void JPADrawLine(JPAEmitterWorkData* workData, JPABaseParticle* particle)
+void JPADrawLine(JPAEmitterWorkData* work, JPABaseParticle* ptcl)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2850,7 +2847,7 @@ void JPADrawLine(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 	bne      lbl_8008D8AC
 	b        lbl_8008D8CC
 
-lbl_8008D8AC:
+	lbl_8008D8AC:
 	frsqrte  f4, f8
 	lfs      f2, lbl_80516B48@sda21(r2)
 	lfs      f0, lbl_80516B6C@sda21(r2)
@@ -2860,13 +2857,13 @@ lbl_8008D8AC:
 	fnmsubs  f0, f8, f1, f0
 	fmuls    f8, f2, f0
 
-lbl_8008D8CC:
+	lbl_8008D8CC:
 	fmuls    f0, f8, f3
 	fmuls    f5, f5, f0
 	fmuls    f6, f6, f0
 	fmuls    f7, f7, f0
 
-lbl_8008D8DC:
+	lbl_8008D8DC:
 	lfs      f0, 8(r1)
 	li       r3, 9
 	lfs      f31, 0xc(r1)
@@ -2904,7 +2901,7 @@ lbl_8008D8DC:
 	li       r4, 2
 	bl       GXSetVtxDesc
 
-lbl_8008D96C:
+	lbl_8008D96C:
 	psq_l    f31, 104(r1), 0, qr0
 	lfd      f31, 0x60(r1)
 	psq_l    f30, 88(r1), 0, qr0
