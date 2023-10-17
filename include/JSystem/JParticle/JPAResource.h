@@ -75,20 +75,22 @@ struct JPAResource {
  * @size{0x14}
  */
 struct JPAResourceManager {
-	JPAResourceManager(unsigned short, unsigned short, JKRHeap*); // unused/inlined
+	JPAResourceManager(u16, u16, JKRHeap*); // unused/inlined
 	JPAResourceManager(const void*, JKRHeap*);
 
-	JPAResource* getResource(unsigned short) const;
-	ResTIMG* swapTexture(const ResTIMG*, const char*);
+	JPAResource* getResource(u16) const;
+	const ResTIMG* swapTexture(const ResTIMG*, const char*);
 	void registRes(JPAResource*);
 	void registTex(JPATexture*);
-	void* getResUserWork(unsigned short) const;
+	u32 getResUserWork(u16) const;
 
 	// unused/inlined:
-	void load(const char*, unsigned short);
-	void load(const void*, unsigned short);
-	void checkUserIndexDuplication(unsigned short) const;
-	void registTexDupCheck(const unsigned char*, JKRHeap*);
+	void load(const char*, u16);
+	void load(const void*, u16);
+	void checkUserIndexDuplication(u16) const;
+	void registTexDupCheck(const u8*, JKRHeap*);
+
+	void load(u16 idx, GXTexMapID texMapID) { mTextures[idx]->load(texMapID); }
 
 	JKRHeap* mHeap;                // _00
 	JPAResource** mResources;      // _04
@@ -100,14 +102,14 @@ struct JPAResourceManager {
 };
 
 struct JPAResourceLoader {
-	JPAResourceLoader(const unsigned char*, JPAResourceManager*, unsigned short); // unused/inlined
+	JPAResourceLoader(const u8*, JPAResourceManager*, u16); // unused/inlined
 	JPAResourceLoader(const u8*, JPAResourceManager*);
 
-	void load_jpc(const unsigned char*, JPAResourceManager*);
+	void load_jpc(const u8*, JPAResourceManager*);
 
 	// unused/inlined:
 	~JPAResourceLoader();
-	void load_jpa(const unsigned char*, JPAResourceManager*, unsigned short);
+	void load_jpa(const u8*, JPAResourceManager*, u16);
 };
 
 #endif

@@ -21,7 +21,7 @@ bool TPkOneEmitterSimple::create(Arg*)
 	if (mEmitter) {
 		mEmitter->mFlags |= 0x40;
 		mEmitter->mFlags |= 0x1;
-		mEmitter->_24              = 0;
+		mEmitter->mMaxFrame        = 0;
 		mEmitter->mEmitterCallback = this;
 	}
 
@@ -43,11 +43,11 @@ void TPkOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 		mPtrList.remove(ptrLink);
 		bool cullSuccess = particleMgr->cullByResFlg(pos, mEffectID);
 		if (!cullSuccess) {
-			int count = emitter->_28;
+			int count = emitter->mRate;
 			for (int i = 0; i < count; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
 				if (particle) {
-					particle->_18 = JGeometry::TVec3f(pos.x, pos.y, pos.z);
+					particle->mOffsetPosition = JGeometry::TVec3f(pos.x, pos.y, pos.z);
 				}
 			}
 		}

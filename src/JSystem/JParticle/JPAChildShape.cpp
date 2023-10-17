@@ -43,8 +43,8 @@ void JPACalcChildAlphaOut(JPAEmitterWorkData* workData, JPABaseParticle* particl
  */
 void JPACalcChildScaleOut(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	particle->_60 = particle->_68 * (1.0f - particle->mTime);
-	particle->_64 = particle->_6C * (1.0f - particle->mTime);
+	particle->mParticleScaleX = particle->mScaleOut * (1.0f - particle->mTime);
+	particle->mParticleScaleY = particle->mAlphaWaveRandom * (1.0f - particle->mTime);
 }
 
 /*

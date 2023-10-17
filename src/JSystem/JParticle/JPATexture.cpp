@@ -1,18 +1,5 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JParticle/JPATexture.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__10JPATexture
-    __vt__10JPATexture:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__10JPATextureFv
-        .4byte 0
-*/
 
 /*
  * __ct__10JPATextureFPCUc
@@ -21,11 +8,11 @@
  * Address:	800986A0
  * Size:	000068
  */
-JPATexture::JPATexture(const unsigned char* p1)
+JPATexture::JPATexture(const u8* p1)
     : mTexture()
-    , _44(p1)
+    , mData((JPATextureData*)p1)
 {
-	mTexture.storeTIMG(reinterpret_cast<const ResTIMG*>(_44 + 0x20), (u8)'\0');
+	mTexture.storeTIMG(&mData->mResTIMG, (u8)'\0');
 }
 
 /*

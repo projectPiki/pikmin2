@@ -2,6 +2,7 @@
 #include "JSystem/JParticle/JPABlock.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAResource.h"
+#include "JSystem/JParticle/JPAShape.h"
 
 /*
  * --INFO--
@@ -19,7 +20,48 @@ void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 {
 	mManager  = manager;
 	mResource = resource;
-	mResource->mDynamicsBlock->mData;
+	mResource->getDyn()->getEmitterScl(&mLocalScl);
+	mResource->getDyn()->getEmitterTrs(&mLocalTrs);
+	mResource->getDyn()->getEmitterDir(&mLocalDir);
+	// mLocalDir.normalize();
+	mResource->getDyn()->getEmitterRot(&mLocalRot);
+	mMaxFrame            = mResource->getDyn()->getMaxFrame();
+	mLifeTime            = mResource->getDyn()->getLifetime();
+	mVolumeSize          = mResource->getDyn()->getVolumeSize();
+	mRate                = mResource->getDyn()->getRate();
+	mRateStep            = mResource->getDyn()->getRateStep();
+	mVolumeSweep         = mResource->getDyn()->getVolumeSweep();
+	mVolumeMinRad        = mResource->getDyn()->getVolumeMinRad();
+	mAwayFromCenterSpeed = mResource->getDyn()->getInitVelOmni();
+	mAwayFromAxisSpeed   = mResource->getDyn()->getInitVelAxis();
+	mDirSpeed            = mResource->getDyn()->getInitVelDir();
+	mSpread              = mResource->getDyn()->getInitVelDirSp();
+	mRndmDirSpeed        = mResource->getDyn()->getInitVelRndm();
+	mAirResist           = mResource->getDyn()->getAirRes();
+	// mRandom.set_seed(mManager->mWorkData->mRndm.get_rndm_u());
+	// MTXIdentity(mGlobalRot);
+	mGlobalScl.set(1.0f, 1.0f, 1.0f);
+	// mGlobalTrs.zero();
+	mGlobalPScl.set(1.0f, 1.0f);
+	mGlobalEnvClr.a = 0xff;
+	mGlobalEnvClr.b = 0xff;
+	mGlobalEnvClr.g = 0xff;
+	mGlobalEnvClr.r = 0xff;
+	mGlobalPrmClr.a = 0xff;
+	mGlobalPrmClr.b = 0xff;
+	mGlobalPrmClr.g = 0xff;
+	mGlobalPrmClr.r = 0xff;
+	resource->getBsp()->getPrmClr(&mPrmClr);
+	resource->getBsp()->getEnvClr(&mEnvClr);
+	mpUserWork = nullptr;
+	mScaleOut  = 1.0f;
+	mEmitCount = 0.0f;
+	// initStatus(0x30);
+	mDrawTimes     = 1;
+	mTick          = 0;
+	mWaitTime      = 0;
+	mRateStepTimer = 0;
+	mTexAnmIdx     = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -252,6 +294,15 @@ lbl_8008FE08:
  */
 JPABaseParticle* JPABaseEmitter::createParticle()
 {
+	if (mPtclPool->getNum() != 0) {
+		JPANode<JPABaseParticle>* node = mPtclPool->pop_front();
+		mAlivePtclBase.push_front(node);
+		mResource->getDyn()->calc(mManager->mWorkData);
+		node->mData.init_p(mManager->mWorkData);
+		return &node->mData;
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -344,8 +395,16 @@ lbl_80090144:
  * Address:	8009015C
  * Size:	0000FC
  */
-JPABaseParticle* JPABaseEmitter::createChild(JPABaseParticle*)
+JPABaseParticle* JPABaseEmitter::createChild(JPABaseParticle* parent)
 {
+	if (mPtclPool->getNum() != 0) {
+		JPANode<JPABaseParticle>* node = mPtclPool->pop_front();
+		mAlivePtclChld.push_front(node);
+		node->mData.init_c(mManager->mWorkData, parent);
+		return &node->mData;
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -432,125 +491,10 @@ lbl_80090244:
  */
 void JPABaseEmitter::deleteAllParticle()
 {
-	/*
-	b        lbl_80090304
-
-lbl_8009025C:
-	cmplwi   r0, 1
-	li       r6, 0
-	bne      lbl_80090288
-	lwz      r6, 0xcc(r3)
-	li       r0, 0
-	stw      r0, 0xcc(r3)
-	stw      r0, 0xc8(r3)
-	lwz      r4, 0xd0(r3)
-	addi     r0, r4, -1
-	stw      r0, 0xd0(r3)
-	b        lbl_800902B4
-
-lbl_80090288:
-	cmplwi   r0, 0
-	beq      lbl_800902B4
-	lwz      r6, 0xcc(r3)
-	li       r0, 0
-	lwz      r4, 0(r6)
-	stw      r0, 4(r4)
-	lwz      r0, 0(r6)
-	stw      r0, 0xcc(r3)
-	lwz      r4, 0xd0(r3)
-	addi     r0, r4, -1
-	stw      r0, 0xd0(r3)
-
-lbl_800902B4:
-	lwz      r5, 0xe0(r3)
-	lwz      r0, 0(r5)
-	cmplwi   r0, 0
-	beq      lbl_800902E4
-	li       r0, 0
-	stw      r0, 0(r6)
-	lwz      r0, 0(r5)
-	stw      r0, 4(r6)
-	lwz      r4, 0(r5)
-	stw      r6, 0(r4)
-	stw      r6, 0(r5)
-	b        lbl_800902F8
-
-lbl_800902E4:
-	stw      r6, 4(r5)
-	li       r0, 0
-	stw      r6, 0(r5)
-	stw      r0, 0(r6)
-	stw      r0, 4(r6)
-
-lbl_800902F8:
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-
-lbl_80090304:
-	lwz      r0, 0xd0(r3)
-	cmplwi   r0, 0
-	bne      lbl_8009025C
-	b        lbl_800903BC
-
-lbl_80090314:
-	cmplwi   r0, 1
-	li       r6, 0
-	bne      lbl_80090340
-	lwz      r6, 0xd8(r3)
-	li       r0, 0
-	stw      r0, 0xd8(r3)
-	stw      r0, 0xd4(r3)
-	lwz      r4, 0xdc(r3)
-	addi     r0, r4, -1
-	stw      r0, 0xdc(r3)
-	b        lbl_8009036C
-
-lbl_80090340:
-	cmplwi   r0, 0
-	beq      lbl_8009036C
-	lwz      r6, 0xd8(r3)
-	li       r0, 0
-	lwz      r4, 0(r6)
-	stw      r0, 4(r4)
-	lwz      r0, 0(r6)
-	stw      r0, 0xd8(r3)
-	lwz      r4, 0xdc(r3)
-	addi     r0, r4, -1
-	stw      r0, 0xdc(r3)
-
-lbl_8009036C:
-	lwz      r5, 0xe0(r3)
-	lwz      r0, 0(r5)
-	cmplwi   r0, 0
-	beq      lbl_8009039C
-	li       r0, 0
-	stw      r0, 0(r6)
-	lwz      r0, 0(r5)
-	stw      r0, 4(r6)
-	lwz      r4, 0(r5)
-	stw      r6, 0(r4)
-	stw      r6, 0(r5)
-	b        lbl_800903B0
-
-lbl_8009039C:
-	stw      r6, 4(r5)
-	li       r0, 0
-	stw      r6, 0(r5)
-	stw      r0, 0(r6)
-	stw      r0, 4(r6)
-
-lbl_800903B0:
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-
-lbl_800903BC:
-	lwz      r0, 0xdc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80090314
-	blr
-	*/
+	while (mAlivePtclBase.getNum())
+		mPtclPool->push_front(mAlivePtclBase.pop_back());
+	while (mAlivePtclChld.getNum())
+		mPtclPool->push_front(mAlivePtclChld.pop_back());
 }
 
 /*
@@ -560,11 +504,11 @@ lbl_800903BC:
  */
 bool JPABaseEmitter::processTillStartFrame()
 {
-	if (_104 >= mResource->mDynamicsBlock->castData()->_70) {
+	if (mWaitTime >= mResource->mDynamicsBlock->mData->mStartFrame) {
 		return true;
 	}
 	if ((mFlags & 2) == 0) {
-		_104++;
+		mWaitTime++;
 	}
 	return false;
 }
@@ -576,26 +520,23 @@ bool JPABaseEmitter::processTillStartFrame()
  */
 bool JPABaseEmitter::processTermination()
 {
-	if (is100()) {
-		// if ((_F4 & 0x100) != 0) {
+	if (isFlag(0x100)) {
 		return true;
 	}
-	if (_24 == 0) {
+
+	if (mMaxFrame == 0) {
 		return false;
 	}
-	if (_24 < 0) {
+	if (mMaxFrame < 0) {
 		setFlag(8);
-		// _F4 = _F4 | 8;
-		return !(_D0 + _DC);
+		return getParticleNumber() == 0;
 	}
-	if (_100 >= _24) {
+	if (mTick >= mMaxFrame) {
 		setFlag(8);
-		// _F4 = _F4 | 8;
 		if (isFlag(0x40)) {
-			// if ((_F4 & 0x40) != 0) {
-			return false;
+			return 0;
 		}
-		return !(_D0 + _DC);
+		return getParticleNumber() == 0;
 	}
 	return false;
 	/*
@@ -656,15 +597,15 @@ lbl_800904A0:
  * Address:	800904A8
  * Size:	000080
  */
-void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3<float>* p1) const
+void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3f* p1) const
 {
 	Mtx mtx;
-	PSMTXScale(mtx, _98.x, _98.y, _98.z);
-	PSMTXConcat(mMatrix, mtx, mtx);
-	mtx[0][3] = mPosition.x;
-	mtx[1][3] = mPosition.y;
-	mtx[2][3] = mPosition.z;
-	PSMTXMultVec(mtx, (Vec*)&_0C, (Vec*)p1);
+	PSMTXScale(mtx, mGlobalScl.x, mGlobalScl.y, mGlobalScl.z);
+	PSMTXConcat(mGlobalMtx, mtx, mtx);
+	mtx[0][3] = mGlobalTrs.x;
+	mtx[1][3] = mGlobalTrs.y;
+	mtx[2][3] = mGlobalTrs.z;
+	PSMTXMultVec(mtx, (Vec*)&mLocalTrs, (Vec*)p1);
 }
 
 /*
@@ -702,7 +643,7 @@ void JPABaseEmitter::getEmitterAxisZ(JGeometry::TVec3<float>*) const
  * Address:	80090528
  * Size:	000010
  */
-int JPABaseEmitter::getCurrentCreateNumber() const { return mManager->_20->mCreateNumber; }
+int JPABaseEmitter::getCurrentCreateNumber() const { return mManager->mWorkData->mCreateNumber; }
 
 /*
  * --INFO--
@@ -719,7 +660,7 @@ int JPABaseEmitter::getDrawCount() const
  * Address:	........
  * Size:	000054
  */
-void JPABaseEmitter::loadTexture(unsigned char, _GXTexMapID)
+void JPABaseEmitter::loadTexture(u8, _GXTexMapID)
 {
 	// UNUSED FUNCTION
 }

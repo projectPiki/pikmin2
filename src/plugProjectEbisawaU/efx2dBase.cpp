@@ -119,9 +119,9 @@ void TForever::setGlobalScale(f32 scale)
 		return;
 	}
 
-	emitter->_98 = scale;
-	emitter->_B0 = scale;
-	emitter->_B4 = scale;
+	emitter->mGlobalScl    = scale;
+	emitter->mGlobalPScl.x = scale;
+	emitter->mGlobalPScl.y = scale;
 }
 
 /*
@@ -273,9 +273,9 @@ void TChasePos::execute(JPABaseEmitter* emitter)
 	f32 x = _14->x;
 	f32 y = _14->y;
 
-	emitter->mPosition.x = x;
-	emitter->mPosition.y = y;
-	emitter->mPosition.z = 0.0f;
+	emitter->mGlobalTrs.x = x;
+	emitter->mGlobalTrs.y = y;
+	emitter->mGlobalTrs.z = 0.0f;
 }
 
 /*
@@ -316,12 +316,12 @@ void TChasePosDir::execute(JPABaseEmitter* emitter)
 	f32 x2 = _18->x;
 	f32 y2 = _18->y;
 
-	emitter->mPosition.x = x1;
-	emitter->mPosition.y = y1;
-	emitter->mPosition.z = 0.0f;
+	emitter->mGlobalTrs.x = x1;
+	emitter->mGlobalTrs.y = y1;
+	emitter->mGlobalTrs.z = 0.0f;
 
-	emitter->_18.x = x2;
-	emitter->_18.y = y2;
-	emitter->_18.z = 0.0f;
+	emitter->mLocalDir.x = x2;
+	emitter->mLocalDir.y = y2;
+	emitter->mLocalDir.z = 0.0f;
 }
 } // namespace efx2d
