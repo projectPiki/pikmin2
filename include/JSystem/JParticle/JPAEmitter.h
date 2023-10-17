@@ -69,14 +69,14 @@ struct JPABaseParticle {
 	uint mFlags;                 // _7C
 	s16 _80;                     // _80
 	u16 _82;                     // _82
-	f32 _84;                     // _84
+	f32 mTime;                   // _84
 	s16 _88;                     // _88
 	s16 _8A;                     // _8A
 	JUtility::TColor _8C;        // _8C
 	JUtility::TColor _90;        // _90
 	u8 _94;                      // _94
 	u8 _95;                      // _95
-	u8 _96;                      // _96
+	u8 mPrmColorAlphaAnm;        // _96
 };
 
 struct JPAParticleCallBack {
@@ -182,51 +182,51 @@ struct JPABaseEmitter {
 
 	inline void setColor(Color4& color)
 	{
-		mColor1.r = color.r;
-		mColor1.g = color.g;
-		mColor1.b = color.b;
-		mColor1.a = color.a;
+		mGlobalPrmClr.r = color.r;
+		mGlobalPrmClr.g = color.g;
+		mGlobalPrmClr.b = color.b;
+		mGlobalPrmClr.a = color.a;
 	}
 
 	inline void setColorRGB(Color4& color)
 	{
-		mColor1.r = color.r;
-		mColor1.g = color.g;
-		mColor1.b = color.b;
+		mGlobalPrmClr.r = color.r;
+		mGlobalPrmClr.g = color.g;
+		mGlobalPrmClr.b = color.b;
 	}
 
 	inline void setColorRGB(u8 r, u8 g, u8 b)
 	{
-		mColor1.r = r;
-		mColor1.g = g;
-		mColor1.b = b;
+		mGlobalPrmClr.r = r;
+		mGlobalPrmClr.g = g;
+		mGlobalPrmClr.b = b;
 	}
 
 	inline void setColorRGB(JUtility::TColor& color)
 	{
-		mColor2.r = color.r;
-		mColor2.g = color.g;
-		mColor2.b = color.b;
+		mGlobalEnvClr.r = color.r;
+		mGlobalEnvClr.g = color.g;
+		mGlobalEnvClr.b = color.b;
 	}
 
 	inline void setPrmColorRGB(JUtility::TColor& color)
 	{
-		mColor1.r = color.r;
-		mColor1.g = color.g;
-		mColor1.b = color.b;
+		mGlobalPrmClr.r = color.r;
+		mGlobalPrmClr.g = color.g;
+		mGlobalPrmClr.b = color.b;
 	}
 
 	inline void setPrmColorRGB(u8 r, u8 g, u8 b)
 	{
-		mColor1.r = r;
-		mColor1.g = g;
-		mColor1.b = b;
+		mGlobalPrmClr.r = r;
+		mGlobalPrmClr.g = g;
+		mGlobalPrmClr.b = b;
 	}
 
 	inline void setPrmColor(JUtility::TColor& color)
 	{
-		mColor1.setRGB(color);
-		mColor1.a = color.a;
+		mGlobalPrmClr.setRGB(color);
+		mGlobalPrmClr.a = color.a;
 	}
 
 	inline void setTranslation(f32 x, f32 y, f32 z)
@@ -236,36 +236,36 @@ struct JPABaseEmitter {
 		mPosition.z = z;
 	}
 
-	Vector3f mScale;             // _00
-	JGeometry::TVec3f _0C;       // _0C
-	JGeometry::TVec3f _18;       // _18
-	s32 _24;                     // _24
-	f32 _28;                     // _28
-	f32 _2C;                     // _2C
-	f32 _30;                     // _30
-	f32 _34;                     // _34, away from center speed?
-	u8 _38[0x8];                 // _38
-	f32 _40;                     // _40, spread?
-	u8 _44[4];                   // _44
-	f32 _48;                     // _48
-	s16 _4C;                     // _4C
-	s16 _4E;                     // _4E
-	s16 _50;                     // _50
-	s16 mLifeTime;               // _52
-	u16 _54;                     // _54
-	JSUPtrLink _58;              // _58
-	Mtx mMatrix;                 // _68
-	JGeometry::TVec3f _98;       // _98, global dynamics scale?
-	JGeometry::TVec3f mPosition; // _A4
-	f32 _B0;                     // _B0
-	f32 _B4;                     // _B4, global particle scale?
-	JUtility::TColor mColor1;    // _B8
-	JUtility::TColor mColor2;    // _BC
-	s32 : 0;                     // reset alignment to _C0
-	u8 _C0[4];                   // _C0
-	JMath::TRandom_fast_ mRng;   // _C4
-	void* _C8;                   // _C8
-	void* _CC;                   // _CC
+	Vector3f mScale;                // _00
+	JGeometry::TVec3f _0C;          // _0C
+	JGeometry::TVec3f _18;          // _18
+	s32 _24;                        // _24
+	f32 _28;                        // _28
+	f32 _2C;                        // _2C
+	f32 _30;                        // _30
+	f32 _34;                        // _34, away from center speed?
+	u8 _38[0x8];                    // _38
+	f32 _40;                        // _40, spread?
+	u8 _44[4];                      // _44
+	f32 _48;                        // _48
+	s16 _4C;                        // _4C
+	s16 _4E;                        // _4E
+	s16 _50;                        // _50
+	s16 mLifeTime;                  // _52
+	u16 _54;                        // _54
+	JSUPtrLink _58;                 // _58
+	Mtx mMatrix;                    // _68
+	JGeometry::TVec3f _98;          // _98, global dynamics scale?
+	JGeometry::TVec3f mPosition;    // _A4
+	f32 _B0;                        // _B0
+	f32 _B4;                        // _B4, global particle scale?
+	JUtility::TColor mGlobalPrmClr; // _B8
+	JUtility::TColor mGlobalEnvClr; // _BC
+	s32 : 0;                        // reset alignment to _C0
+	u8 _C0[4];                      // _C0
+	JMath::TRandom_fast_ mRng;      // _C4
+	void* _C8;                      // _C8
+	void* _CC;                      // _CC
 	// JPANode<JPABaseParticle>* _C8; // _C8
 	// JPANode<JPABaseParticle>* _CC; // _CC
 	s32 _D0;   // _D0

@@ -1,10 +1,5 @@
 #include "JSystem/JAudio/JAS/JASRegisterParam.h"
 #include "JSystem/JSupport/JSU.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-*/
 
 /*
  * --INFO--
@@ -92,7 +87,7 @@ void JASRegisterParam::inherit(const JASRegisterParam& other)
  * Address:	........
  * Size:	00002C
  */
-void JASRegisterParam::setBankNumber(unsigned char)
+void JASRegisterParam::setBankNumber(u8)
 {
 	// UNUSED FUNCTION
 }
@@ -104,13 +99,8 @@ void JASRegisterParam::setBankNumber(unsigned char)
  */
 u8 JASRegisterParam::getBankNumber() const
 {
-	return JSUHiByte(_0C);
-	/*
-	lhz      r0, 0xc(r3)
-	srawi    r0, r0, 8
-	clrlwi   r3, r0, 0x18
-	blr
-	*/
+	// should be JSUHiByte but doesnt match when used
+	return _0C >> 8;
 }
 
 /*

@@ -134,7 +134,7 @@ void TForever::setGlobalEnvColor(JUtility::TColor& color)
 	JPABaseEmitter* emitter = mEmitter;
 
 	if (emitter) {
-		mEmitter->mColor2.setRGB(color);
+		mEmitter->mGlobalEnvClr.setRGB(color);
 	}
 }
 
@@ -146,7 +146,7 @@ void TForever::setGlobalEnvColor(JUtility::TColor& color)
 void TForever::setGlobalAlpha(u8 alpha)
 {
 	if (mEmitter) {
-		mEmitter->mColor1.a = alpha;
+		mEmitter->mGlobalPrmClr.a = alpha;
 	}
 }
 
@@ -234,7 +234,7 @@ void TForeverN::setGlobalAlpha(u8 alpha)
 	for (u8 i = 0; i < mLength; i++) {
 		JPABaseEmitter* emitter = mForevers[i].mEmitter;
 		if (emitter) {
-			emitter->mColor1.a = alpha;
+			emitter->mGlobalPrmClr.a = alpha;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/JParticle/JPAMath.h"
-#include "types.h"
+#include "JSystem/JMath.h"
 
 /*
     Generated from dpostproc
@@ -39,8 +39,37 @@ void JPAConvertFixToFloat(short)
  * Address:	80093AE4
  * Size:	000100
  */
-void JPAGetDirMtx(const JGeometry::TVec3f&, float (*)[4])
+void JPAGetDirMtx(const JGeometry::TVec3f& vec, Mtx mtx)
 {
+	JGeometry::TVec3f local_78;
+	f32 minusx = -vec.x;
+	local_78.x = vec.y;
+	local_78.y = minusx;
+	local_78.z = 0.0f;
+	f32 len; //    = local_78.length();
+
+	// if (len <= 32.0f * FLT_EPSILON) {
+	// local_78.zero();
+	//} else {
+	// local_78.scale(1.0f / len);
+	//}
+	f32 xsquared = local_78.x * local_78.x;
+	f32 ysquared = local_78.y * local_78.y;
+	f32 xlen     = local_78.x * len;
+	f32 ylen     = local_78.y * len;
+	f32 fVar5    = (1.0f - vec.z) * (local_78.x * local_78.y);
+	mtx[0][0]    = xsquared + vec.z * (1.0f - xsquared);
+	mtx[0][1]    = fVar5;
+	mtx[0][2]    = -ylen;
+	mtx[0][3]    = 0.0f;
+	mtx[1][0]    = fVar5;
+	mtx[1][1]    = ysquared + vec.z * (1.0f - ysquared);
+	mtx[1][2]    = xlen;
+	mtx[1][3]    = 0.0f;
+	mtx[2][0]    = ylen;
+	mtx[2][1]    = -xlen;
+	mtx[2][2]    = vec.z;
+	mtx[2][3]    = 0.0f;
 	/*
 	lfs      f0, 0(r3)
 	lfs      f3, 4(r3)
@@ -122,39 +151,24 @@ lbl_80093B6C:
  * Address:	80093BE4
  * Size:	000074
  */
-void JPAGetYZRotateMtx(short, short, float (*)[4])
+void JPAGetYZRotateMtx(s16 angleY, s16 angleZ, Mtx mtx)
 {
-	/*
-	lis      r6, sincosTable___5JMath@ha
-	rlwinm   r0, r3, 0x1e, 0x12, 0x1c
-	addi     r3, r6, sincosTable___5JMath@l
-	lfs      f0, lbl_80516C1C@sda21(r2)
-	rlwinm   r6, r4, 0x1e, 0x12, 0x1c
-	lfsx     f8, r3, r0
-	addi     r4, r3, 4
-	lfsx     f2, r3, r6
-	lfsx     f6, r4, r0
-	lfsx     f7, r4, r6
-	fneg     f5, f2
-	fmuls    f3, f6, f2
-	fmuls    f1, f6, f7
-	fmuls    f4, f8, f7
-	fmuls    f2, f8, f2
-	stfs     f1, 0(r5)
-	fneg     f1, f8
-	stfs     f5, 4(r5)
-	stfs     f4, 8(r5)
-	stfs     f3, 0x10(r5)
-	stfs     f7, 0x14(r5)
-	stfs     f2, 0x18(r5)
-	stfs     f1, 0x20(r5)
-	stfs     f6, 0x28(r5)
-	stfs     f0, 0x2c(r5)
-	stfs     f0, 0x24(r5)
-	stfs     f0, 0x1c(r5)
-	stfs     f0, 0xc(r5)
-	blr
-	*/
+	f32 cosy  = JMASCos(angleY);
+	f32 cosz  = JMASCos(angleZ);
+	f32 siny  = JMASSin(angleY);
+	f32 sinz  = JMASSin(angleZ);
+	mtx[0][0] = (cosy * cosz);
+	mtx[0][1] = -sinz;
+	mtx[0][2] = (siny * cosz);
+	mtx[1][0] = (cosy * sinz);
+	mtx[1][1] = cosz;
+	mtx[1][2] = (siny * sinz);
+	mtx[2][0] = -siny;
+	mtx[2][2] = cosy;
+	mtx[2][3] = 0.0f;
+	mtx[2][1] = 0.0f;
+	mtx[1][3] = 0.0f;
+	mtx[0][3] = 0.0f;
 }
 
 /*
@@ -162,49 +176,30 @@ void JPAGetYZRotateMtx(short, short, float (*)[4])
  * Address:	80093C58
  * Size:	00009C
  */
-void JPAGetXYZRotateMtx(short, short, short, float (*)[4])
+void JPAGetXYZRotateMtx(s16 x, s16 y, s16 z, Mtx mtx)
 {
-	/*
-	lis      r7, sincosTable___5JMath@ha
-	rlwinm   r8, r4, 0x1e, 0x12, 0x1c
-	addi     r7, r7, sincosTable___5JMath@l
-	rlwinm   r5, r5, 0x1e, 0x12, 0x1c
-	addi     r4, r7, 4
-	rlwinm   r0, r3, 0x1e, 0x12, 0x1c
-	lfsx     f5, r4, r8
-	lfsx     f6, r4, r5
-	lfsx     f9, r7, r5
-	lfsx     f7, r7, r0
-	fmuls    f0, f5, f6
-	lfsx     f4, r4, r0
-	fmuls    f2, f5, f9
-	lfsx     f8, r7, r8
-	fmuls    f3, f7, f5
-	fmuls    f10, f4, f9
-	stfs     f0, 0(r6)
-	fneg     f1, f8
-	fmuls    f11, f7, f6
-	lfs      f0, lbl_80516C1C@sda21(r2)
-	stfs     f2, 0x10(r6)
-	fmuls    f2, f4, f5
-	stfs     f1, 0x20(r6)
-	fmsubs   f1, f11, f8, f10
-	fmuls    f5, f7, f9
-	stfs     f3, 0x24(r6)
-	fmuls    f4, f4, f6
-	fmsubs   f3, f10, f8, f11
-	stfs     f2, 0x28(r6)
-	fmadds   f2, f4, f8, f5
-	stfs     f1, 4(r6)
-	fmadds   f1, f5, f8, f4
-	stfs     f3, 0x18(r6)
-	stfs     f2, 8(r6)
-	stfs     f1, 0x14(r6)
-	stfs     f0, 0x2c(r6)
-	stfs     f0, 0x1c(r6)
-	stfs     f0, 0xc(r6)
-	blr
-	*/
+	f32 cosx     = JMASCos(x);
+	f32 cosy     = JMASCos(y);
+	f32 cosz     = JMASCos(z);
+	f32 sinx     = JMASSin(x);
+	f32 siny     = JMASSin(y);
+	f32 sinz     = JMASSin(z);
+	mtx[0][0]    = cosy * cosz;
+	mtx[1][0]    = cosy * sinz;
+	mtx[2][0]    = -siny;
+	mtx[2][1]    = sinx * cosy;
+	mtx[2][2]    = cosx * cosy;
+	f32 cosxsinz = cosx * sinz;
+	f32 sinxcosz = sinx * cosz;
+	mtx[0][1]    = sinxcosz * siny - cosxsinz;
+	mtx[1][2]    = cosxsinz * siny - sinxcosz;
+	f32 sinxsinz = sinx * sinz;
+	f32 cosxcosz = cosx * cosz;
+	mtx[0][2]    = sinxsinz + cosxcosz * siny;
+	mtx[1][1]    = cosxcosz + sinxsinz * siny;
+	mtx[2][3]    = 0.0f;
+	mtx[1][3]    = 0.0f;
+	mtx[0][3]    = 0.0f;
 }
 
 /*
@@ -212,7 +207,7 @@ void JPAGetXYZRotateMtx(short, short, short, float (*)[4])
  * Address:	80093CF4
  * Size:	000028
  */
-void JPASetRMtxfromMtx(const float (*p1)[4], float (*p2)[4])
+void JPASetRMtxfromMtx(const Mtx p1, Mtx p2)
 {
 	JGeometry::TVec3f v1;
 	JGeometry::TVec3f v2;
@@ -224,7 +219,7 @@ void JPASetRMtxfromMtx(const float (*p1)[4], float (*p2)[4])
  * Address:	80093D1C
  * Size:	000028
  */
-void JPASetRMtxTVecfromMtx(const float (*p1)[4], float (*p2)[4], JGeometry::TVec3<float>* p3)
+void JPASetRMtxTVecfromMtx(const Mtx p1, Mtx p2, JGeometry::TVec3f* p3)
 {
 	JGeometry::TVec3f v1;
 	JPASetRMtxSTVecfromMtx(p1, p2, &v1, p3);
@@ -235,8 +230,36 @@ void JPASetRMtxTVecfromMtx(const float (*p1)[4], float (*p2)[4], JGeometry::TVec
  * Address:	80093D44
  * Size:	00021C
  */
-void JPASetRMtxSTVecfromMtx(const float (*)[4], float (*)[4], JGeometry::TVec3<float>*, JGeometry::TVec3<float>*)
+void JPASetRMtxSTVecfromMtx(const Mtx p1, Mtx p2, JGeometry::TVec3f* vec1, JGeometry::TVec3f* vec2)
 {
+	JGeometry::TVec3f aTStack_54;
+	aTStack_54.set(p1[0][0], p1[1][0], p1[2][0]);
+	// vec1->x = aTStack_54.length();
+	aTStack_54.set(p1[0][1], p1[1][1], p1[2][1]);
+	// vec1->y = p1.length();
+	aTStack_54.set(p1[0][2], p1[1][2], p1[2][2]);
+	// vec1->z = aTStack_54.length();
+	// MTXIdentity(p2);
+	if (vec1->x != 0.0f) {
+		f32 fVar5 = 1.0f / vec1->x;
+		p2[0][0]  = p1[0][0] * fVar5;
+		p2[1][0]  = p1[1][0] * fVar5;
+		p2[2][0]  = p1[2][0] * fVar5;
+	}
+	if (vec1->y != 0.0f) {
+		f32 fVar5 = 1.0f / vec1->y;
+		p2[0][1]  = p1[0][1] * fVar5;
+		p2[1][1]  = p1[1][1] * fVar5;
+		p2[2][1]  = p1[2][1] * fVar5;
+	}
+	if (vec1->z != 0.0f) {
+		f32 fVar5 = 1.0f / vec1->z;
+		p2[0][2]  = p1[0][2] * fVar5;
+		p2[1][2]  = p1[1][2] * fVar5;
+		p2[2][2]  = p1[2][2] * fVar5;
+	}
+	vec2->set(p1[0][3], p1[1][3], p1[2][3]);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -400,66 +423,24 @@ void JPASetRMtxSTVecfromMtx(const float (*)[4], float (*)[4], JGeometry::TVec3<f
  * Address:	80093F60
  * Size:	0000C8
  */
-void JPACalcKeyAnmValue(float, unsigned short, const float*)
+f32 JPACalcKeyAnmValue(f32 p1, u16 p2, const f32* p3)
 {
-	/*
-	lfs      f0, 0(r4)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80093F74
-	lfs      f1, 4(r4)
-	blr
-
-lbl_80093F74:
-	clrlwi   r3, r3, 0x10
-	addi     r0, r3, -1
-	slwi     r0, r0, 4
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_80093FD0
-	add      r3, r4, r0
-	lfs      f1, 4(r3)
-	blr
-	b        lbl_80093FD0
-
-lbl_80093FA0:
-	srwi     r0, r3, 0x1f
-	add      r0, r0, r3
-	srawi    r5, r0, 1
-	slwi     r0, r5, 4
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80093FCC
-	add      r4, r4, r0
-	subf     r3, r5, r3
-	b        lbl_80093FD0
-
-lbl_80093FCC:
-	mr       r3, r5
-
-lbl_80093FD0:
-	cmpwi    r3, 1
-	bgt      lbl_80093FA0
-	lfs      f0, 0(r4)
-	lfs      f2, 0x10(r4)
-	fsubs    f5, f1, f0
-	lfs      f6, 4(r4)
-	fsubs    f4, f2, f0
-	lfs      f2, 0x14(r4)
-	lfs      f7, 0xc(r4)
-	lfs      f8, 0x18(r4)
-	fdivs    f3, f5, f4
-	fmuls    f0, f3, f3
-	fsubs    f4, f6, f2
-	fadds    f1, f3, f3
-	fsubs    f2, f0, f3
-	fmsubs   f0, f1, f2, f0
-	fmadds   f1, f7, f2, f7
-	fmadds   f0, f0, f4, f6
-	fmadds   f1, f8, f2, f1
-	fmsubs   f1, f3, f7, f1
-	fnmsubs  f1, f5, f1, f0
-	blr
-	*/
+	if (p1 < p3[0]) {
+		return p3[1];
+	}
+	int ind = p2 - 1;
+	if (p3[ind * 4] <= p1) {
+		return p3[ind * 4 + 1];
+	}
+	int x = p2;
+	while (x > 1) {
+		u32 uVar3 = x / 2;
+		if (p1 >= p3[uVar3 * 4]) {
+			p3 += uVar3 * 4;
+			x -= uVar3;
+		} else {
+			x = uVar3;
+		}
+	}
+	return JMAHermiteInterpolation(p1, p3[0], p3[1], p3[3], p3[4], p3[5], p3[6]);
 }

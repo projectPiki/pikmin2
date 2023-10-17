@@ -6,7 +6,7 @@
 namespace JGadget {
 namespace binary {
 struct TEBit {
-	u32 _00; // _00
+	u32 mValue; // _00
 };
 
 struct TParse_header_block {
@@ -17,9 +17,18 @@ struct TParse_header_block {
 	virtual bool parseBlock_next(const void**, u32*, u32)  = 0; // _10
 
 	bool parse_next(void const**, u32);
+
+	bool checkNext(const void** ptrLocation, u32* headerEnd, u32 idx)
+	{
+		bool checkNext = false;
+		if (parseHeader_next(ptrLocation, headerEnd, idx)) {
+			checkNext = true;
+		}
+		return checkNext;
+	}
 };
 
-extern u16* parseVariableUInt_16_32_following(void const*, u32*, u32*, TEBit*);
+extern const void* parseVariableUInt_16_32_following(void const*, u32*, u32*, TEBit*);
 
 } // namespace binary
 } // namespace JGadget

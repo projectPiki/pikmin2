@@ -4,7 +4,13 @@
 
 static DSPTaskInfo audio_task;
 static u16 AUDIO_YIELD_BUFFER[0x1000];
-static u8 taskwork[0x80];
+typedef struct {
+	u16 field_0x0;
+	u16 field_0x2;
+	void (*field_0x4)(u16);
+} TaskWorkStruct;
+
+TaskWorkStruct taskwork[16];
 
 u16 jdsp[3728] ATTRIBUTE_ALIGN(32)
     = { 0x29f, 0x12,  0,     0,    0x2ff,  0,     0x2ff, 0,      0x2ff, 0,      0x2ff, 0, 0x2ff, 0,
@@ -101,8 +107,39 @@ void DspBoot(DSPCallback callback)
  * Address:	800AAA00
  * Size:	0000E8
  */
-void DSPSendCommands2(u32* p1, u32 p2, void (*p3)(u16))
+int DSPSendCommands2(u32* p1, u32 p2, void (*p3)(u16))
 {
+	while (Dsp_Running_Check() == 0)
+		;
+
+	BOOL status = OSDisableInterrupts();
+	if (DSPCheckMailToDSP()) {
+		OSRestoreInterrupts(status);
+		return -1;
+	}
+
+	DSPSendMailToDSP(p2);
+	DSPAssertInt();
+	while (DSPCheckMailToDSP() != 0)
+		;
+
+	if (p2 == 0) {
+		p2 = 1;
+	}
+
+	int startWorkStatus;
+	if (p3) {
+		startWorkStatus = DspStartWork(p1[0], p3);
+	}
+
+	for (int i = 0; i < p2; i++) {
+		DSPSendMailToDSP(p1[i]);
+		while (DSPCheckMailToDSP() != 0)
+			;
+	}
+
+	OSRestoreInterrupts(status);
+	return startWorkStatus;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -191,7 +228,9 @@ void DSPSendCommands2(u32* p1, u32 p2, void (*p3)(u16))
  */
 void DspInitWork()
 {
-	while (taskwork) { }
+	for (int i = 0; i < 16; i++) {
+		taskwork[i].field_0x4 = nullptr;
+	}
 
 	/*
 	.loc_0x0:
@@ -211,36 +250,26 @@ void DspInitWork()
 	*/
 }
 
+static u32 taskreadp;
+static u32 taskwritep;
+
 /*
  * --INFO--
  * Address:	800AAB40
  * Size:	000048
  */
-void DspStartWork(u32 p1, void (*p2)(u16))
+int DspStartWork(u32 p1, void (*p2)(u16))
 {
-	/*
-	.loc_0x0:
-	  lwz       r7, -0x74C4(r13)
-	  lwz       r0, -0x74C8(r13)
-	  addi      r6, r7, 0x1
-	  rlwinm    r8,r6,0,28,31
-	  cmplw     r8, r0
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  blr
+	u32 taskWritePrev = taskwritep;
+	u32 writeVal      = ((taskWritePrev + 1) & 0xf);
+	if (writeVal == taskreadp) {
+		return 0;
+	}
 
-	.loc_0x20:
-	  lis       r5, 0x804F
-	  rlwinm    r0,r3,16,16,31
-	  rlwinm    r7,r7,3,0,28
-	  stw       r8, -0x74C4(r13)
-	  addi      r5, r5, 0x27E0
-	  mr        r3, r6
-	  sthx      r0, r5, r7
-	  add       r5, r5, r7
-	  stw       r4, 0x4(r5)
-	  blr
-	*/
+	taskwritep                        = writeVal;
+	taskwork[taskWritePrev].field_0x0 = p1 >> 0x10;
+	taskwork[taskWritePrev].field_0x4 = p2;
+	return taskWritePrev + 1;
 }
 
 /*
@@ -250,37 +279,11 @@ void DspStartWork(u32 p1, void (*p2)(u16))
  */
 void DspFinishWork(u16 p1)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804F
-	  rlwinm    r3,r3,0,16,31
-	  stw       r0, 0x14(r1)
-	  addi      r4, r4, 0x27E0
-	  lwz       r6, -0x74C8(r13)
-	  rlwinm    r5,r6,3,0,28
-	  lhzx      r0, r4, r5
-	  cmplw     r3, r0
-	  bne-      .loc_0x58
-	  add       r3, r4, r5
-	  lwz       r12, 0x4(r3)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x48
-	  rlwinm    r3,r6,0,16,31
-	  mtctr     r12
-	  bctrl
+	if (p1 == taskwork[taskreadp].field_0x0) {
+		if (taskwork[taskreadp].field_0x4) {
+			taskwork[taskreadp].field_0x4(taskreadp);
+		}
 
-	.loc_0x48:
-	  lwz       r3, -0x74C8(r13)
-	  addi      r0, r3, 0x1
-	  rlwinm    r0,r0,0,28,31
-	  stw       r0, -0x74C8(r13)
-
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+		taskreadp = (taskreadp + 1) & 0xf;
+	}
 }

@@ -271,7 +271,7 @@ LIBS = [
         "host": True,
         "objects": [
             "JSystem/JParticle/JPABaseShape",
-            "JSystem/JParticle/JPAChildShape",
+            ["JSystem/JParticle/JPAChildShape", True],
             "JSystem/JParticle/JPADynamicsBlock",
             "JSystem/JParticle/JPAEmitter",
             "JSystem/JParticle/JPAEmitterManager",
@@ -323,7 +323,7 @@ LIBS = [
             ["JSystem/JAudio/JAS/JASTrackPort", True],
             ["JSystem/JAudio/JAS/JASOuterParam", True],
             "JSystem/JAudio/JAS/JASPlayer_impl",
-            "JSystem/JAudio/JAS/JASRegisterParam",
+            ["JSystem/JAudio/JAS/JASRegisterParam", True],
             "JSystem/JAudio/JAS/JASSeqCtrl",
             "JSystem/JAudio/JAS/JASSeqParser",
             "JSystem/JAudio/JAS/JASTrack",

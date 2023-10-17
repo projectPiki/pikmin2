@@ -51,7 +51,7 @@ void TParse_TSequence::getData(TParse_TSequence::TData* data) const
 void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
 {
 	u32 block[1];
-	u16* parse  = JGadget::binary::parseVariableUInt_16_32_following(stbData, block, (u32*)data, 0);
+	u16* parse  = (u16*)JGadget::binary::parseVariableUInt_16_32_following(stbData, block, (u32*)data, 0);
 	data->param = block[0];
 	if (!block[0]) {
 		data->content = nullptr;

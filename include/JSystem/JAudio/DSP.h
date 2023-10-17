@@ -15,7 +15,7 @@ void DsyncFrame(u32 p1, u32 p2, u32 p3);
 void DspHandShake();
 void DspBoot(DSPCallback callback);
 void DspInitWork();
-void DspStartWork(u32 p1, void (*p2)(u16));
+int DspStartWork(u32 p1, void (*p2)(u16));
 void DspFinishWork(u16 p1);
 
 // osdsp.c

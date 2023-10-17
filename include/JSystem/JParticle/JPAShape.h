@@ -8,6 +8,11 @@ struct JKRHeap;
 struct JPAEmitterWorkData;
 struct JPABaseParticle;
 
+// not sure where this belongs
+static inline u32 COLOR_MULTI(u32 a, u32 b) {
+    return ((a * (b + 1)) * 0x10000) >> 24;
+}
+
 /**
  * @fabricated
  */
@@ -40,6 +45,30 @@ struct JPABaseShape {
 	GXColor _10;                   // _10
 };
 
+struct JPAChildShapeData {
+	u8 mMagic[4];      // _00
+	u32 mSize;         // _04
+	u32 mFlags;        // _08
+	f32 mPosRndm;      // _0C
+	f32 mBaseVel;      // _10
+	f32 mBaseVelRndm;  // _14
+	f32 mVelInfRate;   // _18
+	f32 mGravity;      // _1C
+	f32 mScaleX;       // _20
+	f32 mScaleY;       // _24
+	f32 mInheritScale; // _28
+	f32 mInheritAlpha; // _2C
+	f32 mInheritRGB;   // _30
+	GXColor mPrmClr;   // _34
+	GXColor mEnvClr;   // _38
+	f32 mTiming;       // _3C
+	s16 mLife;         // _40
+	s16 mRate;         // _44
+	u8 mStep;          // _48
+	u8 mTexIdx;        // _4C
+	s16 mRotSpeed;     // _50
+};
+
 /**
  * @size{0x4}
  */
@@ -49,7 +78,10 @@ struct JPAChildShape {
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	const u8* mData; // _00
+	void getPrmClr(GXColor* dst) { *dst = mData->mPrmClr; }
+	void getEnvClr(GXColor* dst) { *dst = mData->mEnvClr; }
+
+	const JPAChildShapeData* mData; // _00
 };
 
 /**

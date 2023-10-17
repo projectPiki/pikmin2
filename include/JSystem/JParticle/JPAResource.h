@@ -8,6 +8,12 @@
 typedef void JPAFunctionA(struct JPAEmitterWorkData*);
 typedef void JPAFunctionB(struct JPAEmitterWorkData*, struct JPABaseParticle*);
 
+struct JPABaseShape;
+struct JPAExtraShape;
+struct JPAChildShape;
+struct JPAExTexShape;
+struct JPADynamicsBlock;
+
 /**
  * @size{0x48}
  */
@@ -28,6 +34,15 @@ struct JPAResource {
 	void calcWorkData_c(JPAEmitterWorkData*);
 	void calcWorkData_d(JPAEmitterWorkData*);
 
+	JPABaseShape* getBsp() const { return mBaseShape; }
+	JPAExtraShape* getEsp() const { return mExtraShape; }
+	JPAChildShape* getCsp() const { return mChildShape; }
+	JPAExTexShape* getEts() const { return mExTexShape; }
+	JPADynamicsBlock* getDyn() const { return mDynamicsBlock; }
+
+	u32 getTexIdx(u32 idx) const { return mTextureIDList[idx]; }
+	u16 getUsrIdx() const { return mUsrIdx; }
+
 	JPAFunctionA** _00;                      // _00
 	JPAFunctionA** _04;                      // _04
 	JPAFunctionA** _08;                      // _08
@@ -42,8 +57,8 @@ struct JPAResource {
 	struct JPADynamicsBlock* mDynamicsBlock; // _2C
 	struct JPAFieldBlock** mFieldBlocks;     // _30
 	struct JPAKeyBlock** mKeyBlocks;         // _34
-	u16* _38;                                // _38
-	u16 _3C;                                 // _3C
+	u16* mTextureIDList;                     // _38
+	u16 mUsrIdx;                             // _3C
 	u8 _3E;                                  // _3E
 	u8 _3F;                                  // _3F
 	u8 _40;                                  // _40
