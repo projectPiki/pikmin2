@@ -1,5 +1,87 @@
 #include "Dolphin/vi.h"
 #include "Dolphin/gx.h"
+#include "Dolphin/os.h"
+#include "Dolphin/hw_regs.h"
+
+// Useful macros.
+#define CLAMP(x, l, h)   (((x) > (h)) ? (h) : (((x) < (l)) ? (l) : (x)))
+#define MIN(a, b)        (((a) < (b)) ? (a) : (b))
+#define MAX(a, b)        (((a) > (b)) ? (a) : (b))
+#define IS_LOWER_16MB(x) ((x) < 16 * 1024 * 1024)
+#define ToPhysical(fb)   (u32)(((u32)(fb)) & 0x3FFFFFFF)
+#define ONES(x)          ((1 << (x)) - 1)
+
+const char* __VIVersion = "<< Dolphin SDK - VI\trelease build: Apr 17 2003 12:33:22 (0x2301) >>";
+
+static BOOL IsInitialized;
+static vu32 retraceCount;
+static u32 flushFlag;
+static OSThreadQueue retraceQueue;
+static VIRetraceCallback PreCB;
+static VIRetraceCallback PostCB;
+static VIPositionCallback PositionCallback;
+static u32 encoderType;
+
+static s16 displayOffsetH;
+static s16 displayOffsetV;
+
+static vu32 changeMode;
+static vu64 changed;
+
+static vu32 shdwChangeMode;
+static vu64 shdwChanged;
+
+static VITimingInfo* CurrTiming;
+static u32 CurrTvMode;
+
+static u32 NextBufAddr;
+static u32 CurrBufAddr;
+
+static u32 FBSet;
+
+static vu16 regs[59];
+static vu16 shdwRegs[59];
+
+static VIPositionInfo HorVer;
+// clang-format off
+static VITimingInfo timing[10] = { 
+	{ // NTSC INT
+		6, 240, 24, 25, 3, 2, 12, 13, 12, 13, 520, 519, 520, 519, 525, 429, 64, 71, 105, 162, 373, 122, 412,
+	},
+	{ // NTSC DS
+		6, 240, 24, 24, 4, 4, 12, 12, 12, 12, 520, 520, 520, 520, 526, 429, 64, 71, 105, 162, 373, 122, 412,
+	},
+	{ // PAL INT
+		5, 287, 35, 36, 1, 0, 13, 12, 11, 10, 619, 618, 617, 620, 625, 432, 64, 75, 106, 172, 380, 133, 420,
+	}, 
+	{ // PAL DS
+		5, 287, 33, 33, 2, 2, 13, 11, 13, 11, 619, 621, 619, 621, 624, 432, 64, 75, 106, 172, 380, 133, 420,
+	}, 	
+	{ // MPAL INT
+		6, 240, 24, 25, 3, 2, 16, 15, 14, 13, 518, 517, 516, 519, 525, 429, 64, 78, 112, 162, 373, 122, 412,
+	},
+	{ // MPAL DS
+		6, 240, 24, 24, 4, 4, 16, 14, 16, 14, 518, 520, 518, 520, 526, 429, 64, 78, 112, 162, 373, 122, 412,
+	},
+	{ // NTSC PRO
+		12, 480, 48, 48, 6, 6, 24, 24, 24, 24, 1038, 1038, 1038, 1038, 1050, 429, 64, 71, 105, 162, 373, 122, 412,
+	},
+	{ // NTSC 3D
+		12, 480, 44, 44, 10, 10, 24, 24, 24, 24, 1038, 1038, 1038, 1038, 1050, 429, 64, 71, 105, 168, 379, 122, 412,
+	},
+	{ // GCA INT
+		6, 241, 24, 25, 1, 0, 12, 13, 12, 13, 520, 519, 520, 519, 525, 429, 64, 71, 105, 159, 370, 122, 412,
+	},
+	{ // GCA DS
+		12, 480, 48, 48, 6, 6, 24, 24, 24, 24, 1038, 1038, 1038, 1038, 1050, 429, 64, 71, 105, 180, 391, 122, 412,
+	},
+};
+// clang-format on
+
+static u16 taps[26] = { 496, 476, 430, 372, 297, 219, 142, 70, 12, 226, 203, 192, 196, 207, 222, 236, 252, 8, 15, 19, 19, 15, 12, 8, 1, 0 };
+
+// forward declaring statics
+static u32 getCurrentFieldEvenOdd();
 
 /*
  * --INFO--
@@ -16,9 +98,20 @@ static void getEncoderType(void)
  * Address:	........
  * Size:	00005C
  */
-static void cntlzd(void)
+static int cntlzd(u64 bit)
 {
-	// UNUSED FUNCTION
+	u32 hi, lo;
+	int value;
+
+	hi    = (u32)(bit >> 32);
+	lo    = (u32)(bit & 0xFFFFFFFF);
+	value = __cntlzw(hi);
+
+	if (value < 32) {
+		return value;
+	}
+
+	return (32 + __cntlzw(lo));
 }
 
 /*
@@ -26,9 +119,25 @@ static void cntlzd(void)
  * Address:	........
  * Size:	000120
  */
-void VISetRegs(void)
+static BOOL VISetRegs(void)
 {
-	// UNUSED FUNCTION
+	int regIndex;
+
+	if (!((shdwChangeMode == 1) && (getCurrentFieldEvenOdd() == 0))) {
+		while (shdwChanged) {
+			regIndex           = cntlzd(shdwChanged);
+			__VIRegs[regIndex] = shdwRegs[regIndex];
+			shdwChanged &= ~(1ull << (63 - (regIndex)));
+		}
+
+		shdwChangeMode = 0;
+		CurrTiming     = HorVer.timing;
+		CurrTvMode     = HorVer.tv;
+		CurrBufAddr    = NextBufAddr;
+
+		return TRUE;
+	}
+	return FALSE;
 }
 
 /*
@@ -36,204 +145,72 @@ void VISetRegs(void)
  * Address:	800D07E8
  * Size:	000274
  */
-static void __VIRetraceHandler(void)
+static void __VIRetraceHandler(__OSInterrupt interrupt, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0xCC00
-	  stw       r0, 0x4(r1)
-	  addi      r5, r3, 0x2000
-	  lis       r3, 0x804F
-	  stwu      r1, -0x2F8(r1)
-	  li        r7, 0
-	  stmw      r27, 0x2E4(r1)
-	  addi      r30, r4, 0
-	  addi      r31, r3, 0x59A8
-	  lhzu      r6, 0x30(r5)
-	  rlwinm.   r0,r6,0,16,16
-	  beq-      .loc_0x40
-	  rlwinm    r0,r6,0,17,15
-	  sth       r0, 0x0(r5)
-	  ori       r7, r7, 0x1
+	OSContext exceptionContext;
+	u16 viReg;
+	u32 inter = 0;
 
-	.loc_0x40:
-	  lis       r3, 0xCC00
-	  lhzu      r4, 0x2034(r3)
-	  rlwinm.   r0,r4,0,16,16
-	  beq-      .loc_0x5C
-	  rlwinm    r0,r4,0,17,15
-	  sth       r0, 0x0(r3)
-	  ori       r7, r7, 0x2
+	viReg = __VIRegs[VI_DISP_INT_0];
+	if (viReg & 0x8000) {
+		__VIRegs[VI_DISP_INT_0] = (u16)(viReg & ~0x8000);
+		inter |= 1;
+	}
 
-	.loc_0x5C:
-	  lis       r3, 0xCC00
-	  lhzu      r4, 0x2038(r3)
-	  rlwinm.   r0,r4,0,16,16
-	  beq-      .loc_0x78
-	  rlwinm    r0,r4,0,17,15
-	  sth       r0, 0x0(r3)
-	  ori       r7, r7, 0x4
+	viReg = __VIRegs[VI_DISP_INT_1];
+	if (viReg & 0x8000) {
+		__VIRegs[VI_DISP_INT_1] = (u16)(viReg & ~0x8000);
+		inter |= 2;
+	}
 
-	.loc_0x78:
-	  lis       r3, 0xCC00
-	  lhzu      r4, 0x203C(r3)
-	  rlwinm.   r0,r4,0,16,16
-	  beq-      .loc_0x94
-	  rlwinm    r0,r4,0,17,15
-	  sth       r0, 0x0(r3)
-	  ori       r7, r7, 0x8
+	viReg = __VIRegs[VI_DISP_INT_2];
+	if (viReg & 0x8000) {
+		__VIRegs[VI_DISP_INT_2] = (u16)(viReg & ~0x8000);
+		inter |= 4;
+	}
 
-	.loc_0x94:
-	  rlwinm.   r0,r7,0,29,29
-	  bne-      .loc_0xA4
-	  rlwinm.   r0,r7,0,28,28
-	  beq-      .loc_0xF4
+	viReg = __VIRegs[VI_DISP_INT_3];
+	if (viReg & 0x8000) {
+		__VIRegs[VI_DISP_INT_3] = (u16)(viReg & ~0x8000);
+		inter |= 8;
+	}
 
-	.loc_0xA4:
-	  addi      r3, r1, 0x18
-	  bl        0x1C8DC
-	  addi      r3, r1, 0x18
-	  bl        0x1C70C
-	  lwz       r0, -0x72EC(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xE0
-	  addi      r3, r1, 0x16
-	  addi      r4, r1, 0x14
-	  bl        0x1D34
-	  lwz       r12, -0x72EC(r13)
-	  lha       r3, 0x16(r1)
-	  mtlr      r12
-	  lha       r4, 0x14(r1)
-	  blrl
+	if ((inter & 4) || (inter & 8)) {
+		OSClearContext(&exceptionContext);
+		OSSetCurrentContext(&exceptionContext);
+		if (PositionCallback) {
+			s16 x, y;
+			__VIGetCurrentPosition(&x, &y);
+			(*PositionCallback)(x, y);
+		}
+		OSClearContext(&exceptionContext);
+		OSSetCurrentContext(context);
+		return;
+	}
 
-	.loc_0xE0:
-	  addi      r3, r1, 0x18
-	  bl        0x1C8A0
-	  mr        r3, r30
-	  bl        0x1C6D0
-	  b         .loc_0x260
+	retraceCount++;
 
-	.loc_0xF4:
-	  lwz       r4, -0x7304(r13)
-	  addi      r3, r1, 0x18
-	  addi      r0, r4, 0x1
-	  stw       r0, -0x7304(r13)
-	  bl        0x1C880
-	  addi      r3, r1, 0x18
-	  bl        0x1C6B0
-	  lwz       r12, -0x72F4(r13)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x128
-	  lwz       r3, -0x7304(r13)
-	  mtlr      r12
-	  blrl
+	OSClearContext(&exceptionContext);
+	OSSetCurrentContext(&exceptionContext);
+	if (PreCB) {
+		(*PreCB)(retraceCount);
+	}
 
-	.loc_0x128:
-	  lwz       r0, -0x7300(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x224
-	  lwz       r0, -0x72D0(r13)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x14C
-	  bl        0x1860
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20C
+	if (flushFlag) {
+		if (VISetRegs()) {
+			flushFlag = 0;
+			SIRefreshSamplingRate();
+		}
+	}
 
-	.loc_0x14C:
-	  lis       r3, 0xCC00
-	  addi      r29, r3, 0x2000
-	  b         .loc_0x1CC
+	if (PostCB) {
+		OSClearContext(&exceptionContext);
+		(*PostCB)(retraceCount);
+	}
 
-	.loc_0x158:
-	  lwz       r3, -0x72C8(r13)
-	  li        r5, 0x20
-	  lwz       r27, -0x72C4(r13)
-	  addi      r4, r27, 0
-	  bl        -0xE840
-	  cntlzw    r4, r4
-	  cmpwi     r4, 0x20
-	  li        r0, -0x1
-	  and       r0, r27, r0
-	  bge-      .loc_0x184
-	  b         .loc_0x18C
-
-	.loc_0x184:
-	  cntlzw    r3, r0
-	  addi      r4, r3, 0x20
-
-	.loc_0x18C:
-	  rlwinm    r6,r4,1,0,30
-	  add       r3, r31, r6
-	  lhz       r0, 0x78(r3)
-	  subfic    r5, r4, 0x3F
-	  li        r3, 0
-	  sthx      r0, r29, r6
-	  li        r4, 0x1
-	  bl        -0xE8A4
-	  lwz       r0, -0x72C8(r13)
-	  not       r5, r3
-	  not       r4, r4
-	  lwz       r3, -0x72C4(r13)
-	  and       r0, r0, r5
-	  and       r3, r3, r4
-	  stw       r3, -0x72C4(r13)
-	  stw       r0, -0x72C8(r13)
-
-	.loc_0x1CC:
-	  lwz       r0, -0x72C8(r13)
-	  li        r4, 0
-	  lwz       r3, -0x72C4(r13)
-	  xor       r0, r0, r4
-	  xor       r3, r3, r4
-	  or.       r0, r3, r0
-	  bne+      .loc_0x158
-	  stw       r4, -0x72D0(r13)
-	  li        r4, 0x1
-	  lwz       r0, -0x72B8(r13)
-	  lwz       r3, 0x144(r31)
-	  stw       r3, -0x72C0(r13)
-	  lwz       r3, 0x118(r31)
-	  stw       r3, -0x72BC(r13)
-	  stw       r0, -0x72B4(r13)
-	  b         .loc_0x210
-
-	.loc_0x20C:
-	  li        r4, 0
-
-	.loc_0x210:
-	  cmpwi     r4, 0
-	  beq-      .loc_0x224
-	  li        r0, 0
-	  stw       r0, -0x7300(r13)
-	  bl        0x25E38
-
-	.loc_0x224:
-	  lwz       r0, -0x72F0(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x248
-	  addi      r3, r1, 0x18
-	  bl        0x1C750
-	  lwz       r12, -0x72F0(r13)
-	  lwz       r3, -0x7304(r13)
-	  mtlr      r12
-	  blrl
-
-	.loc_0x248:
-	  subi      r3, r13, 0x72FC
-	  bl        0x21FA4
-	  addi      r3, r1, 0x18
-	  bl        0x1C730
-	  mr        r3, r30
-	  bl        0x1C560
-
-	.loc_0x260:
-	  lmw       r27, 0x2E4(r1)
-	  lwz       r0, 0x2FC(r1)
-	  addi      r1, r1, 0x2F8
-	  mtlr      r0
-	  blr
-	*/
+	OSWakeupThread(&retraceQueue);
+	OSClearContext(&exceptionContext);
+	OSSetCurrentContext(context);
 }
 
 /*
@@ -243,26 +220,16 @@ static void __VIRetraceHandler(void)
  */
 VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback callback)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  lwz       r31, -0x72F4(r13)
-	  bl        0x1E1C0
-	  stw       r30, -0x72F4(r13)
-	  bl        0x1E1E0
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	int interrupt;
+	VIRetraceCallback oldCallback;
+
+	oldCallback = PreCB;
+
+	interrupt = OSDisableInterrupts();
+	PreCB     = callback;
+	OSRestoreInterrupts(interrupt);
+
+	return oldCallback;
 }
 
 /*
@@ -272,26 +239,16 @@ VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback callback)
  */
 VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback callback)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  lwz       r31, -0x72F0(r13)
-	  bl        0x1E17C
-	  stw       r30, -0x72F0(r13)
-	  bl        0x1E19C
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	int interrupt;
+	VIRetraceCallback oldCallback;
+
+	oldCallback = PostCB;
+
+	interrupt = OSDisableInterrupts();
+	PostCB    = callback;
+	OSRestoreInterrupts(interrupt);
+
+	return oldCallback;
 }
 
 /*
@@ -299,53 +256,46 @@ VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback callback)
  * Address:	800D0AE4
  * Size:	0000A0
  */
-static void getTiming(void)
+static VITimingInfo* getTiming(VITVMode mode)
 {
-	/*
-	.loc_0x0:
-	  cmplwi    r3, 0x1A
-	  lis       r4, 0x804A
-	  addi      r5, r4, 0x72B0
-	  bgt-      .loc_0x98
-	  lis       r4, 0x804A
-	  addi      r4, r4, 0x74A4
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r0, r4, r0
-	  mtctr     r0
-	  bctr
-	  addi      r3, r5, 0x44
-	  blr
-	  addi      r3, r5, 0x6A
-	  blr
-	  addi      r3, r5, 0x90
-	  blr
-	  addi      r3, r5, 0xB6
-	  blr
-	  addi      r3, r5, 0x44
-	  blr
-	  addi      r3, r5, 0x6A
-	  blr
-	  addi      r3, r5, 0xDC
-	  blr
-	  addi      r3, r5, 0x102
-	  blr
-	  addi      r3, r5, 0x128
-	  blr
-	  addi      r3, r5, 0x14E
-	  blr
-	  addi      r3, r5, 0x90
-	  blr
-	  addi      r3, r5, 0xB6
-	  blr
-	  addi      r3, r5, 0x174
-	  blr
-	  addi      r3, r5, 0x19A
-	  blr
+	switch (mode) {
+	case VI_TVMODE_NTSC_INT:
+		return &timing[0];
+	case VI_TVMODE_NTSC_DS:
+		return &timing[1];
 
-	.loc_0x98:
-	  li        r3, 0
-	  blr
-	*/
+	case VI_TVMODE_PAL_INT:
+		return &timing[2];
+	case VI_TVMODE_PAL_DS:
+		return &timing[3];
+
+	case VI_TVMODE_EURGB60_INT:
+		return &timing[0];
+	case VI_TVMODE_EURGB60_DS:
+		return &timing[1];
+
+	case VI_TVMODE_MPAL_INT:
+		return &timing[4];
+	case VI_TVMODE_MPAL_DS:
+		return &timing[5];
+
+	case VI_TVMODE_NTSC_PROG:
+		return &timing[6];
+	case VI_TVMODE_NTSC_3D:
+		return &timing[7];
+
+	case VI_TVMODE_DEBUG_PAL_INT:
+		return &timing[2];
+	case VI_TVMODE_DEBUG_PAL_DS:
+		return &timing[3];
+
+	case VI_TVMODE_GCA_INT:
+		return &timing[8];
+	case VI_TVMODE_GCA_PROG:
+		return &timing[9];
+	}
+
+	return nullptr;
 }
 
 /*
@@ -353,8 +303,68 @@ static void getTiming(void)
  * Address:	800D0B84
  * Size:	000200
  */
-void __VIInit(void)
+void __VIInit(VITVMode mode)
 {
+	VITimingInfo* tm;
+	u32 nonInter;
+	vu32 a;
+	u32 tv, tvForReg;
+
+	u16 hct, vct;
+
+	nonInter = mode & 2;
+	tv       = mode >> 2;
+
+	*(u32*)OSPhysicalToCached(0xCC) = tv;
+
+	tm = getTiming(mode);
+
+	__VIRegs[VI_DISP_CONFIG] = 2;
+	for (a = 0; a < 1000; a++) {
+		;
+	}
+
+	__VIRegs[VI_DISP_CONFIG] = 0;
+
+	__VIRegs[VI_HORIZ_TIMING_0U] = tm->hlw << 0;
+	__VIRegs[VI_HORIZ_TIMING_0L] = (tm->hce << 0) | (tm->hcs << 8);
+
+	__VIRegs[VI_HORIZ_TIMING_1U] = (tm->hsy << 0) | ((tm->hbe640 & ((1 << 9) - 1)) << 7);
+	__VIRegs[VI_HORIZ_TIMING_1L] = ((tm->hbe640 >> 9) << 0) | (tm->hbs640 << 1);
+
+	__VIRegs[VI_VERT_TIMING] = (tm->equ << 0) | (0 << 4);
+
+	__VIRegs[VI_VERT_TIMING_ODD_U] = (tm->prbOdd + tm->acv * 2 - 2) << 0;
+	__VIRegs[VI_VERT_TIMING_ODD]   = tm->psbOdd + 2 << 0;
+
+	__VIRegs[VI_VERT_TIMING_EVEN_U] = (tm->prbEven + tm->acv * 2 - 2) << 0;
+	__VIRegs[VI_VERT_TIMING_EVEN]   = tm->psbEven + 2 << 0;
+
+	__VIRegs[VI_BBI_ODD_U] = (tm->bs1 << 0) | (tm->be1 << 5);
+	__VIRegs[VI_BBI_ODD]   = (tm->bs3 << 0) | (tm->be3 << 5);
+
+	__VIRegs[VI_BBI_EVEN_U] = (tm->bs2 << 0) | (tm->be2 << 5);
+	__VIRegs[VI_BBI_EVEN]   = (tm->bs4 << 0) | (tm->be4 << 5);
+
+	__VIRegs[VI_HSW] = (40 << 0) | (40 << 8);
+
+	__VIRegs[VI_DISP_INT_1U] = 1;
+	__VIRegs[VI_DISP_INT_1]  = (1 << 0) | (1 << 12) | (0 << 15);
+
+	hct                      = (tm->hlw + 1);
+	vct                      = (tm->numHalfLines / 2 + 1) | (1 << 12) | (0 << 15);
+	__VIRegs[VI_DISP_INT_0U] = hct;
+	__VIRegs[VI_DISP_INT_0]  = vct;
+
+	if (mode != VI_TVMODE_NTSC_PROG && mode != VI_TVMODE_NTSC_3D && mode != VI_TVMODE_GCA_PROG) {
+		__VIRegs[VI_DISP_CONFIG] = (1 << 0) | (0 << 1) | (nonInter << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (tv << 8);
+		__VIRegs[VI_CLOCK_SEL]   = 0;
+
+	} else {
+		__VIRegs[VI_DISP_CONFIG] = (1 << 0) | (0 << 1) | (1 << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (tv << 8);
+		__VIRegs[VI_CLOCK_SEL]   = 1;
+	}
+
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -503,9 +513,24 @@ void __VIInit(void)
  * Address:	........
  * Size:	000160
  */
-static void AdjustPosition(void)
+static void AdjustPosition(u16 acv)
 {
-	// UNUSED FUNCTION
+	s32 coeff, frac;
+
+	HorVer.adjDispPosX = (u16)CLAMP((s16)HorVer.dispPosX + displayOffsetH, 0, 720 - HorVer.dispSizeX);
+
+	coeff = (HorVer.xfbMode == VI_XFBMODE_SF) ? 2 : 1;
+	frac  = HorVer.dispPosY & 1;
+
+	HorVer.adjDispPosY = (u16)MAX((s16)HorVer.dispPosY + displayOffsetV, frac);
+
+	HorVer.adjDispSizeY = (u16)(HorVer.dispSizeY + MIN((s16)HorVer.dispPosY + displayOffsetV - frac, 0)
+	                            - MAX((s16)HorVer.dispPosY + (s16)HorVer.dispSizeY + displayOffsetV - ((s16)acv * 2 - frac), 0));
+
+	HorVer.adjPanPosY = (u16)(HorVer.panPosY - MIN((s16)HorVer.dispPosY + displayOffsetV - frac, 0) / coeff);
+
+	HorVer.adjPanSizeY = (u16)(HorVer.panSizeY + MIN((s16)HorVer.dispPosY + displayOffsetV - frac, 0) / coeff
+	                           - MAX((s16)HorVer.dispPosY + (s16)HorVer.dispSizeY + displayOffsetV - ((s16)acv * 2 - frac), 0) / coeff);
 }
 
 /*
@@ -515,7 +540,9 @@ static void AdjustPosition(void)
  */
 static void ImportAdjustingValues(void)
 {
-	// UNUSED FUNCTION
+	displayOffsetH = __OSLockSram()->displayOffsetH;
+	displayOffsetV = 0;
+	__OSUnlockSram(FALSE);
 }
 
 /*
@@ -525,353 +552,98 @@ static void ImportAdjustingValues(void)
  */
 void VIInit(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x4(r1)
-	  lis       r3, 0x804F
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  addi      r30, r3, 0x59A8
-	  stw       r29, 0xC(r1)
-	  addi      r29, r4, 0x72B0
-	  stw       r28, 0x8(r1)
-	  lwz       r0, -0x7308(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x490
-	  lwz       r3, -0x7D98(r13)
-	  bl        0x1ACC8
-	  li        r0, 0x1
-	  stw       r0, -0x7308(r13)
-	  lis       r3, 0xCC00
-	  addi      r28, r3, 0x2000
-	  stw       r0, -0x72E8(r13)
-	  lhzu      r0, 0x2(r28)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0x68
-	  li        r3, 0
-	  bl        -0x264
+	u16 dspCfg;
+	u32 value, tv, tvInBootrom;
 
-	.loc_0x68:
-	  li        r31, 0
-	  stw       r31, -0x7304(r13)
-	  lis       r3, 0xCC00
-	  addi      r3, r3, 0x2000
-	  stw       r31, -0x72D4(r13)
-	  li        r0, 0x280
-	  stw       r31, -0x72D8(r13)
-	  stw       r31, -0x72C4(r13)
-	  stw       r31, -0x72C8(r13)
-	  stw       r31, -0x72E0(r13)
-	  stw       r31, -0x72D0(r13)
-	  stw       r31, -0x7300(r13)
-	  lhz       r5, 0x1C2(r29)
-	  lhz       r6, 0x1C0(r29)
-	  rlwinm    r5,r5,10,16,21
-	  or        r5, r6, r5
-	  sth       r5, 0x4E(r3)
-	  lhz       r6, 0x1C2(r29)
-	  lhz       r5, 0x1C4(r29)
-	  srawi     r6, r6, 0x6
-	  rlwinm    r5,r5,4,0,27
-	  or        r5, r6, r5
-	  sth       r5, 0x4C(r3)
-	  lhz       r5, 0x1C8(r29)
-	  lhz       r6, 0x1C6(r29)
-	  rlwinm    r5,r5,10,16,21
-	  or        r5, r6, r5
-	  sth       r5, 0x52(r3)
-	  lhz       r6, 0x1C8(r29)
-	  lhz       r5, 0x1CA(r29)
-	  srawi     r6, r6, 0x6
-	  rlwinm    r5,r5,4,0,27
-	  or        r5, r6, r5
-	  sth       r5, 0x50(r3)
-	  lhz       r5, 0x1CE(r29)
-	  lhz       r6, 0x1CC(r29)
-	  rlwinm    r5,r5,10,16,21
-	  or        r5, r6, r5
-	  sth       r5, 0x56(r3)
-	  lhz       r5, 0x1CE(r29)
-	  lhz       r4, 0x1D0(r29)
-	  srawi     r5, r5, 0x6
-	  rlwinm    r4,r4,4,0,27
-	  or        r4, r5, r4
-	  sth       r4, 0x54(r3)
-	  lhz       r4, 0x1D4(r29)
-	  lhz       r5, 0x1D2(r29)
-	  rlwinm    r4,r4,8,0,23
-	  or        r4, r5, r4
-	  sth       r4, 0x5A(r3)
-	  lhz       r4, 0x1D8(r29)
-	  lhz       r5, 0x1D6(r29)
-	  rlwinm    r4,r4,8,0,23
-	  or        r4, r5, r4
-	  sth       r4, 0x58(r3)
-	  lhz       r4, 0x1DC(r29)
-	  lhz       r5, 0x1DA(r29)
-	  rlwinm    r4,r4,8,0,23
-	  or        r4, r5, r4
-	  sth       r4, 0x5E(r3)
-	  lhz       r4, 0x1E0(r29)
-	  lhz       r5, 0x1DE(r29)
-	  rlwinm    r4,r4,8,0,23
-	  or        r4, r5, r4
-	  sth       r4, 0x5C(r3)
-	  lhz       r4, 0x1E4(r29)
-	  lhz       r5, 0x1E2(r29)
-	  rlwinm    r4,r4,8,0,23
-	  or        r4, r5, r4
-	  sth       r4, 0x62(r3)
-	  lhz       r4, 0x1E8(r29)
-	  lhz       r5, 0x1E6(r29)
-	  rlwinm    r4,r4,8,0,23
-	  or        r4, r5, r4
-	  sth       r4, 0x60(r3)
-	  lhz       r4, 0x1EC(r29)
-	  lhz       r5, 0x1EA(r29)
-	  rlwinm    r4,r4,8,0,23
-	  or        r4, r5, r4
-	  sth       r4, 0x66(r3)
-	  lhz       r4, 0x1F0(r29)
-	  lhz       r5, 0x1EE(r29)
-	  rlwinm    r4,r4,8,0,23
-	  or        r4, r5, r4
-	  sth       r4, 0x64(r3)
-	  sth       r0, 0x70(r3)
-	  bl        0x1FDEC
-	  lbz       r0, 0x10(r3)
-	  li        r3, 0
-	  extsb     r0, r0
-	  sth       r31, -0x72E2(r13)
-	  sth       r0, -0x72E4(r13)
-	  bl        0x201C8
-	  lhz       r29, 0x0(r28)
-	  lis       r3, 0x8000
-	  lwz       r3, 0xCC(r3)
-	  addi      r4, r30, 0x114
-	  rlwinm    r0,r29,30,31,31
-	  stw       r0, 0x114(r30)
-	  rlwinm    r0,r29,24,30,31
-	  cmplwi    r3, 0x1
-	  stw       r0, 0x118(r30)
-	  addi      r28, r30, 0x118
-	  bne-      .loc_0x21C
-	  lwz       r0, 0x0(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x21C
-	  li        r0, 0x5
-	  stw       r0, 0x0(r28)
+	if (IsInitialized) {
+		return;
+	}
 
-	.loc_0x21C:
-	  lwz       r3, 0x0(r28)
-	  cmplwi    r3, 0x3
-	  bne-      .loc_0x22C
-	  li        r3, 0
+	OSRegisterVersion(__VIVersion);
+	IsInitialized = TRUE;
+	encoderType   = 1;
 
-	.loc_0x22C:
-	  lwz       r0, 0x0(r4)
-	  rlwinm    r3,r3,2,0,29
-	  add       r3, r3, r0
-	  bl        -0x4D8
-	  stw       r3, 0x144(r30)
-	  addi      r4, r30, 0x144
-	  li        r0, 0x280
-	  sth       r29, 0x2(r30)
-	  li        r8, 0
-	  addi      r6, r30, 0xF6
-	  lwz       r4, 0x0(r4)
-	  addi      r3, r30, 0xF2
-	  stw       r4, -0x72C0(r13)
-	  lwz       r4, 0x0(r28)
-	  stw       r4, -0x72BC(r13)
-	  sth       r0, 0xF4(r30)
-	  lwz       r4, -0x72C0(r13)
-	  lhzu      r0, 0x2(r4)
-	  rlwinm    r0,r0,1,16,30
-	  sth       r0, 0xF6(r30)
-	  lhz       r0, 0xF4(r30)
-	  subfic    r0, r0, 0x2D0
-	  srawi     r0, r0, 0x1
-	  addze     r0, r0
-	  sth       r0, 0xF0(r30)
-	  sth       r8, 0xF2(r30)
-	  lhz       r0, 0xF4(r30)
-	  lha       r7, 0xF0(r30)
-	  lha       r5, -0x72E4(r13)
-	  subfic    r0, r0, 0x2D0
-	  lhz       r9, 0x0(r4)
-	  add       r5, r7, r5
-	  cmpw      r5, r0
-	  ble-      .loc_0x2B8
-	  b         .loc_0x2CC
+	if (!(__VIRegs[VI_DISP_CONFIG] & 1)) {
+		__VIInit(VI_TVMODE_NTSC_INT);
+	}
 
-	.loc_0x2B8:
-	  cmpwi     r5, 0
-	  bge-      .loc_0x2C4
-	  b         .loc_0x2C8
+	retraceCount   = 0;
+	changed        = 0;
+	shdwChanged    = 0;
+	changeMode     = 0;
+	shdwChangeMode = 0;
+	flushFlag      = 0;
 
-	.loc_0x2C4:
-	  mr        r8, r5
+	__VIRegs[VI_FCT_0U] = ((((taps[0])) << 0) | (((taps[1] & ((1 << (6)) - 1))) << 10));
+	__VIRegs[VI_FCT_0]  = ((((taps[1] >> 6)) << 0) | (((taps[2])) << 4));
+	__VIRegs[VI_FCT_1U] = ((((taps[3])) << 0) | (((taps[4] & ((1 << (6)) - 1))) << 10));
+	__VIRegs[VI_FCT_1]  = ((((taps[4] >> 6)) << 0) | (((taps[5])) << 4));
+	__VIRegs[VI_FCT_2U] = ((((taps[6])) << 0) | (((taps[7] & ((1 << (6)) - 1))) << 10));
+	__VIRegs[VI_FCT_2]  = ((((taps[7] >> 6)) << 0) | (((taps[8])) << 4));
+	__VIRegs[VI_FCT_3U] = ((((taps[9])) << 0) | (((taps[10])) << 8));
+	__VIRegs[VI_FCT_3]  = ((((taps[11])) << 0) | (((taps[12])) << 8));
+	__VIRegs[VI_FCT_4U] = ((((taps[13])) << 0) | (((taps[14])) << 8));
+	__VIRegs[VI_FCT_4]  = ((((taps[15])) << 0) | (((taps[16])) << 8));
+	__VIRegs[VI_FCT_5U] = ((((taps[17])) << 0) | (((taps[18])) << 8));
+	__VIRegs[VI_FCT_5]  = ((((taps[19])) << 0) | (((taps[20])) << 8));
+	__VIRegs[VI_FCT_6U] = ((((taps[21])) << 0) | (((taps[22])) << 8));
+	__VIRegs[VI_FCT_6]  = ((((taps[23])) << 0) | (((taps[24])) << 8));
 
-	.loc_0x2C8:
-	  mr        r0, r8
+	__VIRegs[VI_WIDTH] = 640;
+	ImportAdjustingValues();
+	tvInBootrom = *(u32*)OSPhysicalToCached(0xCC);
+	dspCfg      = __VIRegs[VI_DISP_CONFIG];
 
-	.loc_0x2CC:
-	  sth       r0, 0xF8(r30)
-	  addi      r8, r30, 0x110
-	  lwz       r0, 0x110(r30)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x2E8
-	  li        r11, 0x2
-	  b         .loc_0x2EC
+	HorVer.nonInter = ((((u32)(dspCfg)) >> 2 & 0x00000001));
+	HorVer.tv       = ((((u32)(dspCfg)) & 0x00000300) >> 8);
 
-	.loc_0x2E8:
-	  li        r11, 0x1
+	if ((tvInBootrom == VI_PAL) && (HorVer.tv == VI_NTSC)) {
+		HorVer.tv = VI_EURGB60;
+	}
 
-	.loc_0x2EC:
-	  lhz       r0, 0x0(r3)
-	  lha       r5, -0x72E2(r13)
-	  extsh     r7, r0
-	  rlwinm    r0,r0,0,31,31
-	  add       r7, r7, r5
-	  cmpw      r7, r0
-	  ble-      .loc_0x30C
-	  b         .loc_0x310
+	tv                   = (HorVer.tv == VI_DEBUG) ? VI_NTSC : HorVer.tv;
+	HorVer.timing        = getTiming((VITVMode)VI_TVMODE(tv, HorVer.nonInter));
+	regs[VI_DISP_CONFIG] = dspCfg;
 
-	.loc_0x30C:
-	  mr        r7, r0
+	CurrTiming = HorVer.timing;
+	CurrTvMode = HorVer.tv;
 
-	.loc_0x310:
-	  sth       r7, 0xFA(r30)
-	  extsh     r7, r9
-	  rlwinm    r7,r7,1,0,30
-	  lhz       r28, 0x0(r6)
-	  sub       r12, r7, r0
-	  lha       r10, 0x0(r3)
-	  extsh     r7, r28
-	  add       r9, r7, r5
-	  add       r9, r10, r9
-	  sub.      r7, r9, r12
-	  ble-      .loc_0x344
-	  sub       r9, r9, r12
-	  b         .loc_0x348
+	HorVer.dispSizeX = 640;
+	HorVer.dispSizeY = (u16)(CurrTiming->acv * 2);
+	HorVer.dispPosX  = (u16)((720 - HorVer.dispSizeX) / 2);
+	HorVer.dispPosY  = 0;
 
-	.loc_0x344:
-	  li        r9, 0
+	AdjustPosition(CurrTiming->acv);
 
-	.loc_0x348:
-	  add       r10, r10, r5
-	  sub.      r7, r10, r0
-	  bge-      .loc_0x35C
-	  sub       r7, r10, r0
-	  b         .loc_0x360
+	HorVer.fbSizeX     = 640;
+	HorVer.fbSizeY     = (u16)(CurrTiming->acv * 2);
+	HorVer.panPosX     = 0;
+	HorVer.panPosY     = 0;
+	HorVer.panSizeX    = 640;
+	HorVer.panSizeY    = (u16)(CurrTiming->acv * 2);
+	HorVer.xfbMode     = VI_XFBMODE_SF;
+	HorVer.wordPerLine = 40;
+	HorVer.std         = 40;
+	HorVer.wpl         = 40;
+	HorVer.xof         = 0;
+	HorVer.isBlack     = TRUE;
+	HorVer.is3D        = FALSE;
 
-	.loc_0x35C:
-	  li        r7, 0
+	OSInitThreadQueue(&retraceQueue);
 
-	.loc_0x360:
-	  add       r7, r28, r7
-	  sub       r7, r7, r9
-	  sth       r7, 0xFC(r30)
-	  lha       r7, 0x0(r3)
-	  add       r9, r7, r5
-	  sub.      r7, r9, r0
-	  bge-      .loc_0x384
-	  sub       r7, r9, r0
-	  b         .loc_0x388
+	value                   = __VIRegs[VI_DISP_INT_0];
+	value                   = (((u32)(value)) & ~0x00008000) | (((0)) << 15);
+	__VIRegs[VI_DISP_INT_0] = value;
 
-	.loc_0x384:
-	  li        r7, 0
+	value                   = __VIRegs[VI_DISP_INT_1];
+	value                   = (((u32)(value)) & ~0x00008000) | (((0)) << 15);
+	__VIRegs[VI_DISP_INT_1] = value;
 
-	.loc_0x388:
-	  divw      r10, r7, r11
-	  addi      r7, r30, 0x108
-	  lhz       r9, 0x108(r30)
-	  sub       r9, r9, r10
-	  sth       r9, 0xFE(r30)
-	  lha       r6, 0x0(r6)
-	  lha       r9, 0x0(r3)
-	  add       r6, r6, r5
-	  add       r6, r9, r6
-	  sub.      r3, r6, r12
-	  ble-      .loc_0x3BC
-	  sub       r6, r6, r12
-	  b         .loc_0x3C0
+	PreCB  = nullptr;
+	PostCB = nullptr;
 
-	.loc_0x3BC:
-	  li        r6, 0
-
-	.loc_0x3C0:
-	  add       r5, r9, r5
-	  sub.      r3, r5, r0
-	  bge-      .loc_0x3D4
-	  sub       r0, r5, r0
-	  b         .loc_0x3D8
-
-	.loc_0x3D4:
-	  li        r0, 0
-
-	.loc_0x3D8:
-	  divw      r0, r0, r11
-	  lhz       r3, 0x10C(r30)
-	  add       r0, r3, r0
-	  divw      r5, r6, r11
-	  sub       r0, r0, r5
-	  sth       r0, 0x100(r30)
-	  li        r9, 0x280
-	  li        r28, 0
-	  sth       r9, 0x102(r30)
-	  li        r5, 0x28
-	  li        r0, 0x1
-	  lhz       r6, 0x0(r4)
-	  subi      r3, r13, 0x72FC
-	  rlwinm    r6,r6,1,16,30
-	  sth       r6, 0x104(r30)
-	  sth       r28, 0x106(r30)
-	  sth       r28, 0x0(r7)
-	  sth       r9, 0x10A(r30)
-	  lhz       r4, 0x0(r4)
-	  rlwinm    r4,r4,1,16,30
-	  sth       r4, 0x10C(r30)
-	  stw       r28, 0x0(r8)
-	  stb       r5, 0x11C(r30)
-	  stb       r5, 0x11D(r30)
-	  stb       r5, 0x11E(r30)
-	  stb       r28, 0x12C(r30)
-	  stw       r0, 0x130(r30)
-	  stw       r28, 0x134(r30)
-	  bl        0x207E8
-	  lis       r3, 0xCC00
-	  lhz       r0, 0x2030(r3)
-	  addi      r4, r3, 0x2000
-	  addi      r5, r3, 0x2000
-	  rlwinm    r0,r0,0,17,31
-	  sth       r0, 0x30(r4)
-	  lis       r3, 0x800D
-	  addi      r4, r3, 0x7E8
-	  lhz       r0, 0x34(r5)
-	  li        r3, 0x18
-	  rlwinm    r0,r0,0,17,31
-	  sth       r0, 0x34(r5)
-	  stw       r28, -0x72F4(r13)
-	  stw       r28, -0x72F0(r13)
-	  bl        0x1DA7C
-	  li        r3, 0x80
-	  bl        0x1DE78
-
-	.loc_0x490:
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  lwz       r29, 0xC(r1)
-	  lwz       r28, 0x8(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	__OSSetInterruptHandler(24, __VIRetraceHandler);
+	__OSUnmaskInterrupts((0x80000000u >> (24)));
 }
 
 /*
@@ -881,32 +653,15 @@ void VIInit(void)
  */
 void VIWaitForRetrace(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  bl        0x1D9F0
-	  lwz       r30, -0x7304(r13)
-	  mr        r31, r3
+	int interrupt;
+	u32 startCount;
 
-	.loc_0x20:
-	  subi      r3, r13, 0x72FC
-	  bl        0x21694
-	  lwz       r0, -0x7304(r13)
-	  cmplw     r30, r0
-	  beq+      .loc_0x20
-	  mr        r3, r31
-	  bl        0x1D9F4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
+	interrupt  = OSDisableInterrupts();
+	startCount = retraceCount;
+	do {
+		OSSleepThread(&retraceQueue);
+	} while (startCount == retraceCount);
+	OSRestoreInterrupts(interrupt);
 }
 
 /*
@@ -914,9 +669,22 @@ void VIWaitForRetrace(void)
  * Address:	........
  * Size:	00007C
  */
-static void setInterruptRegs(void)
+static void setInterruptRegs(VITimingInfo* tm)
 {
-	// UNUSED FUNCTION
+	u16 vct, hct, borrow;
+
+	vct    = (u16)(tm->numHalfLines / 2);
+	borrow = (u16)(tm->numHalfLines % 2);
+	hct    = (u16)((borrow) ? tm->hlw : (u16)0);
+
+	vct++;
+	hct++;
+
+	regs[VI_DISP_INT_0U] = (u16)hct;
+	changed |= (1ull << (63 - (0x19)));
+
+	regs[VI_DISP_INT_0] = (u16)((((u32)(vct))) | (((u32)(1)) << 12) | (((u32)(0)) << 15));
+	changed |= (1ull << (63 - (0x18)));
 }
 
 /*
@@ -924,9 +692,15 @@ static void setInterruptRegs(void)
  * Address:	........
  * Size:	000098
  */
-static void setPicConfig(void)
+static void setPicConfig(u16 fbSizeX, VIXFBMode xfbMode, u16 panPosX, u16 panSizeX, u8* wordPerLine, u8* std, u8* wpl, u8* xof)
 {
-	// UNUSED FUNCTION
+	*wordPerLine = (u8)((fbSizeX + 15) / 16);
+	*std         = (u8)((xfbMode == VI_XFBMODE_SF) ? *wordPerLine : (u8)(2 * *wordPerLine));
+	*xof         = (u8)(panPosX % 16);
+	*wpl         = (u8)((*xof + panSizeX + 15) / 16);
+
+	regs[VI_HSW] = (u16)((((u32)(*std))) | (((u32)(*wpl)) << 8));
+	changed |= (1ull << (63 - (0x24)));
 }
 
 /*
@@ -934,9 +708,25 @@ static void setPicConfig(void)
  * Address:	........
  * Size:	0000BC
  */
-static void setBBIntervalRegs(void)
+static void setBBIntervalRegs(VITimingInfo* tm)
 {
-	// UNUSED FUNCTION
+	u16 val;
+
+	val                = (u16)((((u32)(tm->bs1))) | (((u32)(tm->be1)) << 5));
+	regs[VI_BBI_ODD_U] = val;
+	changed |= (1ull << (63 - (0x0b)));
+
+	val              = (u16)((((u32)(tm->bs3))) | (((u32)(tm->be3)) << 5));
+	regs[VI_BBI_ODD] = val;
+	changed |= (1ull << (63 - (0x0a)));
+
+	val                 = (u16)((((u32)(tm->bs2))) | (((u32)(tm->be2)) << 5));
+	regs[VI_BBI_EVEN_U] = val;
+	changed |= (1ull << (63 - (0x0d)));
+
+	val               = (u16)((((u32)(tm->bs4))) | (((u32)(tm->be4)) << 5));
+	regs[VI_BBI_EVEN] = val;
+	changed |= (1ull << (63 - (0x0c)));
 }
 
 /*
@@ -944,9 +734,24 @@ static void setBBIntervalRegs(void)
  * Address:	........
  * Size:	00009C
  */
-static void setScalingRegs(void)
+static void setScalingRegs(u16 panSizeX, u16 dispSizeX, BOOL is3D)
 {
-	// UNUSED FUNCTION
+	u32 scale;
+
+	panSizeX = (u16)(is3D ? panSizeX * 2 : panSizeX);
+
+	if (panSizeX < dispSizeX) {
+		scale = (256 * (u32)panSizeX + (u32)dispSizeX - 1) / (u32)dispSizeX;
+
+		regs[VI_HSR] = (u16)((((u32)(scale))) | (((u32)(1)) << 12));
+		changed |= (1ull << (63 - (0x25)));
+
+		regs[VI_WIDTH] = (u16)((((u32)(panSizeX))));
+		changed |= (1ull << (63 - (0x38)));
+	} else {
+		regs[VI_HSR] = (u16)((((u32)(256))) | (((u32)(0)) << 12));
+		changed |= (1ull << (63 - (0x25)));
+	}
 }
 
 /*
@@ -954,9 +759,23 @@ static void setScalingRegs(void)
  * Address:	........
  * Size:	000080
  */
-static void calcFbbs(void)
+static void calcFbbs(u32 bufAddr, u16 panPosX, u16 panPosY, u8 wordPerLine, VIXFBMode xfbMode, u16 dispPosY, u32* tfbb, u32* bfbb)
 {
-	// UNUSED FUNCTION
+	u32 bytesPerLine, xoffInWords;
+	xoffInWords  = (u32)panPosX / 16;
+	bytesPerLine = (u32)wordPerLine * 32;
+
+	*tfbb = bufAddr + xoffInWords * 32 + bytesPerLine * panPosY;
+	*bfbb = (xfbMode == VI_XFBMODE_SF) ? *tfbb : (*tfbb + bytesPerLine);
+
+	if (dispPosY % 2 == 1) {
+		u32 tmp = *tfbb;
+		*tfbb   = *bfbb;
+		*bfbb   = tmp;
+	}
+
+	*tfbb = ToPhysical(*tfbb);
+	*bfbb = ToPhysical(*bfbb);
 }
 
 /*
@@ -964,214 +783,53 @@ static void calcFbbs(void)
  * Address:	800D1288
  * Size:	0002D4
  */
-static void setFbbRegs(void)
+static void setFbbRegs(VIPositionInfo* hv, u32* tfbb, u32* bfbb, u32* rtfbb, u32* rbfbb)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x48(r1)
-	  lis       r9, 0x804F
-	  addi      r9, r9, 0x59A8
-	  stw       r31, 0x44(r1)
-	  lbz       r8, 0x2C(r3)
-	  lhz       r0, 0xE(r3)
-	  rlwinm    r31,r8,5,0,26
-	  lhz       r8, 0x16(r3)
-	  mullw     r0, r31, r0
-	  lwz       r11, 0x20(r3)
-	  lwz       r10, 0x30(r3)
-	  lhz       r12, 0xA(r3)
-	  rlwinm    r8,r8,1,0,26
-	  add       r0, r8, r0
-	  add       r0, r10, r0
-	  cmpwi     r11, 0
-	  stw       r0, 0x0(r4)
-	  bne-      .loc_0x50
-	  lwz       r8, 0x0(r4)
-	  b         .loc_0x58
+	u32 shifted;
+	calcFbbs(hv->bufAddr, hv->panPosX, hv->adjPanPosY, hv->wordPerLine, hv->xfbMode, hv->adjDispPosY, tfbb, bfbb);
 
-	.loc_0x50:
-	  lwz       r0, 0x0(r4)
-	  add       r8, r0, r31
+	if (hv->is3D) {
+		calcFbbs(hv->rbufAddr, hv->panPosX, hv->adjPanPosY, hv->wordPerLine, hv->xfbMode, hv->adjDispPosY, rtfbb, rbfbb);
+	}
 
-	.loc_0x58:
-	  srawi     r0, r12, 0x1
-	  stw       r8, 0x0(r5)
-	  addze     r0, r0
-	  rlwinm    r0,r0,1,0,30
-	  subc      r0, r12, r0
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x84
-	  lwz       r8, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x0(r4)
-	  stw       r8, 0x0(r5)
+	if (IS_LOWER_16MB(*tfbb) && IS_LOWER_16MB(*bfbb) && IS_LOWER_16MB(*rtfbb) && IS_LOWER_16MB(*rbfbb)) {
+		shifted = 0;
+	} else {
+		shifted = 1;
+	}
 
-	.loc_0x84:
-	  lwz       r0, 0x0(r4)
-	  rlwinm    r0,r0,0,2,31
-	  stw       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm    r0,r0,0,2,31
-	  stw       r0, 0x0(r5)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x134
-	  lbz       r8, 0x2C(r3)
-	  lhz       r0, 0xE(r3)
-	  rlwinm    r31,r8,5,0,26
-	  lhz       r8, 0x16(r3)
-	  mullw     r0, r31, r0
-	  lwz       r11, 0x20(r3)
-	  lwz       r10, 0x48(r3)
-	  lhz       r12, 0xA(r3)
-	  rlwinm    r8,r8,1,0,26
-	  add       r0, r8, r0
-	  add       r0, r10, r0
-	  cmpwi     r11, 0
-	  stw       r0, 0x0(r6)
-	  bne-      .loc_0xE8
-	  lwz       r8, 0x0(r6)
-	  b         .loc_0xF0
+	if (shifted) {
+		*tfbb >>= 5;
+		*bfbb >>= 5;
+		*rtfbb >>= 5;
+		*rbfbb >>= 5;
+	}
 
-	.loc_0xE8:
-	  lwz       r0, 0x0(r6)
-	  add       r8, r0, r31
+	regs[VI_TOP_FIELD_BASE_LEFT_U] = (u16)(*tfbb & 0xFFFF);
+	changed |= (1ull << (63 - (0xF)));
 
-	.loc_0xF0:
-	  srawi     r0, r12, 0x1
-	  stw       r8, 0x0(r7)
-	  addze     r0, r0
-	  rlwinm    r0,r0,1,0,30
-	  subc      r0, r12, r0
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x11C
-	  lwz       r8, 0x0(r6)
-	  lwz       r0, 0x0(r7)
-	  stw       r0, 0x0(r6)
-	  stw       r8, 0x0(r7)
+	regs[VI_TOP_FIELD_BASE_LEFT] = (u16)((((*tfbb >> 16))) | hv->xof << 8 | shifted << 12);
+	changed |= (1ull << (63 - (0xE)));
 
-	.loc_0x11C:
-	  lwz       r0, 0x0(r6)
-	  rlwinm    r0,r0,0,2,31
-	  stw       r0, 0x0(r6)
-	  lwz       r0, 0x0(r7)
-	  rlwinm    r0,r0,0,2,31
-	  stw       r0, 0x0(r7)
+	regs[VI_BTTM_FIELD_BASE_LEFT_U] = (u16)(*bfbb & 0xFFFF);
+	changed |= (1ull << (63 - (0x13)));
 
-	.loc_0x134:
-	  lwz       r0, 0x0(r4)
-	  lis       r8, 0x100
-	  cmplw     r0, r8
-	  bge-      .loc_0x170
-	  lwz       r0, 0x0(r5)
-	  cmplw     r0, r8
-	  bge-      .loc_0x170
-	  lwz       r0, 0x0(r6)
-	  cmplw     r0, r8
-	  bge-      .loc_0x170
-	  lwz       r0, 0x0(r7)
-	  cmplw     r0, r8
-	  bge-      .loc_0x170
-	  li        r10, 0
-	  b         .loc_0x174
+	regs[VI_BTTM_FIELD_BASE_LEFT] = (u16)(*bfbb >> 16);
+	changed |= (1ull << (63 - (0x12)));
 
-	.loc_0x170:
-	  li        r10, 0x1
+	if (hv->is3D) {
+		regs[VI_TOP_FIELD_BASE_RIGHT_U] = *rtfbb & 0xffff;
+		changed |= (1ull << (63 - (0x11)));
 
-	.loc_0x174:
-	  cmplwi    r10, 0
-	  beq-      .loc_0x1AC
-	  lwz       r0, 0x0(r4)
-	  rlwinm    r0,r0,27,5,31
-	  stw       r0, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm    r0,r0,27,5,31
-	  stw       r0, 0x0(r5)
-	  lwz       r0, 0x0(r6)
-	  rlwinm    r0,r0,27,5,31
-	  stw       r0, 0x0(r6)
-	  lwz       r0, 0x0(r7)
-	  rlwinm    r0,r0,27,5,31
-	  stw       r0, 0x0(r7)
+		regs[VI_TOP_FIELD_BASE_RIGHT] = *rtfbb >> 16;
+		changed |= (1ull << (63 - (0x10)));
 
-	.loc_0x1AC:
-	  lwz       r0, 0x0(r4)
-	  rlwinm    r11,r10,12,0,19
-	  lis       r8, 0x1
-	  sth       r0, 0x1E(r9)
-	  lis       r0, 0x2
-	  lwz       r10, -0x72D8(r13)
-	  lwz       r12, -0x72D4(r13)
-	  or        r10, r10, r8
-	  stw       r12, -0x72D4(r13)
-	  stw       r10, -0x72D8(r13)
-	  lwz       r10, 0x0(r4)
-	  lbz       r4, 0x3C(r3)
-	  rlwinm    r10,r10,16,16,31
-	  rlwinm    r4,r4,8,0,23
-	  or        r4, r10, r4
-	  or        r4, r11, r4
-	  sth       r4, 0x1C(r9)
-	  lwz       r4, -0x72D8(r13)
-	  lwz       r10, -0x72D4(r13)
-	  or        r0, r4, r0
-	  stw       r10, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-	  lwz       r0, 0x0(r5)
-	  sth       r0, 0x26(r9)
-	  lwz       r0, -0x72D8(r13)
-	  lwz       r4, -0x72D4(r13)
-	  ori       r0, r0, 0x1000
-	  stw       r4, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-	  lwz       r0, 0x0(r5)
-	  rlwinm    r0,r0,16,16,31
-	  sth       r0, 0x24(r9)
-	  lwz       r0, -0x72D8(r13)
-	  lwz       r4, -0x72D4(r13)
-	  ori       r0, r0, 0x2000
-	  stw       r4, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x2C8
-	  lwz       r3, 0x0(r6)
-	  subi      r0, r8, 0x8000
-	  sth       r3, 0x22(r9)
-	  lwz       r3, -0x72D8(r13)
-	  lwz       r4, -0x72D4(r13)
-	  ori       r3, r3, 0x4000
-	  stw       r4, -0x72D4(r13)
-	  stw       r3, -0x72D8(r13)
-	  lwz       r3, 0x0(r6)
-	  rlwinm    r3,r3,16,16,31
-	  sth       r3, 0x20(r9)
-	  lwz       r3, -0x72D8(r13)
-	  lwz       r4, -0x72D4(r13)
-	  or        r0, r3, r0
-	  stw       r4, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-	  lwz       r0, 0x0(r7)
-	  sth       r0, 0x2A(r9)
-	  lwz       r0, -0x72D8(r13)
-	  lwz       r3, -0x72D4(r13)
-	  ori       r0, r0, 0x400
-	  stw       r3, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-	  lwz       r0, 0x0(r7)
-	  rlwinm    r0,r0,16,16,31
-	  sth       r0, 0x28(r9)
-	  lwz       r0, -0x72D8(r13)
-	  lwz       r3, -0x72D4(r13)
-	  ori       r0, r0, 0x800
-	  stw       r3, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
+		regs[VI_BTTM_FIELD_BASE_RIGHT_U] = *rbfbb & 0xFFFF;
+		changed |= (1ull << (63 - (0x15)));
 
-	.loc_0x2C8:
-	  lwz       r31, 0x44(r1)
-	  addi      r1, r1, 0x48
-	  blr
-	*/
+		regs[VI_BTTM_FIELD_BASE_RIGHT] = *rbfbb >> 16;
+		changed |= (1ull << (63 - (0x14)));
+	}
 }
 
 /*
@@ -1179,9 +837,32 @@ static void setFbbRegs(void)
  * Address:	........
  * Size:	0000CC
  */
-static void setHorizontalRegs(void)
+static void setHorizontalRegs(VITimingInfo* tm, u16 dispPosX, u16 dispSizeX)
 {
-	// UNUSED FUNCTION
+	u32 hbe, hbs, hbeLo, hbeHi;
+
+	regs[VI_HORIZ_TIMING_0U] = (u16)tm->hlw;
+	changed |= (1ull << (63 - (0x3)));
+
+	regs[VI_HORIZ_TIMING_0L] = (u16)(tm->hce | tm->hcs << 8);
+	changed |= (1ull << (63 - (0x2)));
+
+	if (HorVer.tv == 8) {
+		hbe = (u32)(tm->hbe640 + 172);
+		hbs = tm->hbs640;
+	} else {
+		hbe = (u32)(tm->hbe640 - 40 + dispPosX);
+		hbs = (u32)(tm->hbs640 + 40 + dispPosX - (720 - dispSizeX));
+	}
+
+	hbeLo = hbe & ONES(9);
+	hbeHi = hbe >> 9;
+
+	regs[VI_HORIZ_TIMING_1U] = (u16)(tm->hsy | hbeLo << 7);
+	changed |= (1ull << (63 - (0x05)));
+
+	regs[VI_HORIZ_TIMING_1L] = (u16)(hbeHi | hbs << 1);
+	changed |= (1ull << (63 - (0x04)));
 }
 
 /*
@@ -1189,8 +870,54 @@ static void setHorizontalRegs(void)
  * Address:	800D155C
  * Size:	0001A0
  */
-static void setVerticalRegs(void)
+static void setVerticalRegs(u16 dispPosY, u16 dispSizeY, u8 equ, u16 acv, u16 prbOdd, u16 prbEven, u16 psbOdd, u16 psbEven, BOOL black)
 {
+	u16 actualPrbOdd, actualPrbEven, actualPsbOdd, actualPsbEven, actualAcv, c, d;
+
+	if (regs[VI_CLOCK_SEL] & 1) {
+		c = 1;
+		d = 2;
+	} else {
+		c = 2;
+		d = 1;
+	}
+
+	if (dispPosY % 2 == 0) {
+		actualPrbOdd  = (u16)(prbOdd + d * dispPosY);
+		actualPsbOdd  = (u16)(psbOdd + d * ((c * acv - dispSizeY) - dispPosY));
+		actualPrbEven = (u16)(prbEven + d * dispPosY);
+		actualPsbEven = (u16)(psbEven + d * ((c * acv - dispSizeY) - dispPosY));
+	} else {
+		actualPrbOdd  = (u16)(prbEven + d * dispPosY);
+		actualPsbOdd  = (u16)(psbEven + d * ((c * acv - dispSizeY) - dispPosY));
+		actualPrbEven = (u16)(prbOdd + d * dispPosY);
+		actualPsbEven = (u16)(psbOdd + d * ((c * acv - dispSizeY) - dispPosY));
+	}
+
+	actualAcv = (u16)(dispSizeY / c);
+
+	if (black) {
+		actualPrbOdd += 2 * actualAcv - 2;
+		actualPsbOdd += 2;
+		actualPrbEven += 2 * actualAcv - 2;
+		actualPsbEven += 2;
+		actualAcv = 0;
+	}
+
+	regs[VI_VERT_TIMING] = (u16)(equ | actualAcv << 4);
+	changed |= (1ull << (63 - (0x00)));
+
+	regs[VI_VERT_TIMING_ODD_U] = (u16)actualPrbOdd;
+	changed |= (1ull << (63 - (0x07)));
+
+	regs[VI_VERT_TIMING_ODD] = (u16)actualPsbOdd;
+	changed |= (1ull << (63 - (0x06)));
+
+	regs[VI_VERT_TIMING_EVEN_U] = (u16)actualPrbEven;
+	changed |= (1ull << (63 - (0x09)));
+
+	regs[VI_VERT_TIMING_EVEN] = (u16)actualPsbEven;
+	changed |= (1ull << (63 - (0x08)));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x28(r1)
@@ -1317,7 +1044,18 @@ static void setVerticalRegs(void)
  */
 static void PrintDebugPalCaution(void)
 {
-	// UNUSED FUNCTION
+	static u32 message = 0;
+
+	if (message == 0) {
+		message = 1;
+		OSReport("***************************************\n");
+		OSReport(" ! ! ! C A U T I O N ! ! !             \n");
+		OSReport("This TV format \"DEBUG_PAL\" is only for \n");
+		OSReport("temporary solution until PAL DAC board \n");
+		OSReport("is available. Please do NOT use this   \n");
+		OSReport("mode in real games!!!                  \n");
+		OSReport("***************************************\n");
+	}
 }
 
 /*
@@ -1327,6 +1065,125 @@ static void PrintDebugPalCaution(void)
  */
 void VIConfigure(const GXRenderModeObj* obj)
 {
+	VITimingInfo* tm;
+	u32 regDspCfg, regClksel;
+	BOOL enabled;
+	u32 newNonInter, tvInBootrom, tvInGame;
+
+	enabled     = OSDisableInterrupts();
+	newNonInter = (u32)obj->viTVmode & 3;
+
+	if (HorVer.nonInter != newNonInter) {
+		changeMode      = 1;
+		HorVer.nonInter = newNonInter;
+	}
+
+	tvInGame    = (u32)obj->viTVmode >> 2;
+	tvInBootrom = *(u32*)OSPhysicalToCached(0xCC);
+
+	if (tvInGame == VI_DEBUG_PAL) {
+		PrintDebugPalCaution();
+	}
+
+	switch (tvInBootrom) {
+	case VI_MPAL:
+	case VI_NTSC:
+	case VI_GCA:
+		if (tvInGame == VI_NTSC || tvInGame == VI_MPAL || tvInGame == VI_GCA) {
+			break;
+		}
+		goto panic;
+	case VI_PAL:
+	case VI_EURGB60:
+		if (tvInGame == VI_PAL || tvInGame == VI_EURGB60) {
+			break;
+		}
+	default:
+	panic:
+		OSErrorLine(1908, "VIConfigure(): Tried to change mode from (%d) to (%d), which is forbidden\n", tvInBootrom, tvInGame);
+	}
+	// if (((tvInBootrom != VI_PAL && tvInBootrom != VI_EURGB60) && (tvInGame == VI_PAL || tvInGame == VI_EURGB60))
+	//     || ((tvInBootrom == VI_PAL || tvInBootrom == VI_EURGB60) && (tvInGame != VI_PAL && tvInGame != VI_EURGB60))) {
+
+	// 	OSErrorLine(1908, "VIConfigure(): Tried to change mode from (%d) to (%d), which is forbidden\n", tvInBootrom, tvInGame);
+	// }
+
+	if ((tvInGame == VI_NTSC) || (tvInGame == VI_MPAL)) {
+		HorVer.tv = tvInBootrom;
+	} else {
+		HorVer.tv = tvInGame;
+	}
+
+	HorVer.dispPosX  = obj->viXOrigin;
+	HorVer.dispPosY  = (u16)((HorVer.nonInter == VI_NON_INTERLACE) ? (u16)(obj->viYOrigin * 2) : obj->viYOrigin);
+	HorVer.dispSizeX = obj->viWidth;
+	HorVer.fbSizeX   = obj->fbWidth;
+	HorVer.fbSizeY   = obj->xfbHeight;
+	HorVer.xfbMode   = obj->xFBmode;
+	HorVer.panSizeX  = HorVer.fbSizeX;
+	HorVer.panSizeY  = HorVer.fbSizeY;
+	HorVer.panPosX   = 0;
+	HorVer.panPosY   = 0;
+
+	HorVer.dispSizeY = (u16)((HorVer.nonInter == VI_PROGRESSIVE) ? HorVer.panSizeY
+	                         : (HorVer.nonInter == VI_3D)        ? HorVer.panSizeY
+	                         : (HorVer.xfbMode == VI_XFBMODE_SF) ? (u16)(2 * HorVer.panSizeY)
+	                                                             : HorVer.panSizeY);
+
+	HorVer.is3D = (HorVer.nonInter == VI_3D) ? TRUE : FALSE;
+
+	tm            = getTiming((VITVMode)VI_TVMODE(HorVer.tv, HorVer.nonInter));
+	HorVer.timing = tm;
+
+	AdjustPosition(tm->acv);
+	if (encoderType == 0) {
+		HorVer.tv = VI_DEBUG;
+	}
+	setInterruptRegs(tm);
+
+	regDspCfg = regs[1];
+	regClksel = regs[0x36];
+
+	if ((HorVer.nonInter == VI_PROGRESSIVE) || (HorVer.nonInter == VI_3D)) {
+		regDspCfg = (((u32)(regDspCfg)) & ~0x00000004) | (((u32)(1)) << 2);
+
+		// if (HorVer.tv == VI_HD720) {
+		//     regClksel = (((u32)(regClksel)) & ~0x00000001) | (((u32)(0)));
+		// }
+		// else {
+		regClksel = (((u32)(regClksel)) & ~0x00000001) | (((u32)(1)));
+		// }
+	} else {
+		regDspCfg = (((u32)(regDspCfg)) & ~0x00000004) | (((u32)(HorVer.nonInter & 1)) << 2);
+		regClksel = (((u32)(regClksel)) & ~0x00000001) | (((u32)(0)));
+	}
+
+	regDspCfg = (((u32)(regDspCfg)) & ~0x00000008) | (((u32)(HorVer.is3D)) << 3);
+
+	if ((HorVer.tv == VI_PAL) || (HorVer.tv == VI_MPAL) || (HorVer.tv == VI_DEBUG)) {
+		regDspCfg = (((u32)(regDspCfg)) & ~0x00000300) | (((u32)(0)) << 8);
+	} else {
+		regDspCfg = (((u32)(regDspCfg)) & ~0x00000300) | (((u32)(HorVer.tv)) << 8);
+	}
+
+	regs[1]    = (u16)regDspCfg;
+	regs[0x36] = (u16)regClksel;
+	changed |= (1ull << (63 - (0x01)));
+	changed |= (1ull << (63 - (0x36)));
+
+	setScalingRegs(HorVer.panSizeX, HorVer.dispSizeX, HorVer.is3D);
+	setHorizontalRegs(tm, HorVer.adjDispPosX, HorVer.dispSizeX);
+	setBBIntervalRegs(tm);
+	setPicConfig(HorVer.fbSizeX, HorVer.xfbMode, HorVer.panPosX, HorVer.panSizeX, &HorVer.wordPerLine, &HorVer.std, &HorVer.wpl,
+	             &HorVer.xof);
+
+	if (FBSet) {
+		setFbbRegs(&HorVer, &HorVer.tfbb, &HorVer.bfbb, &HorVer.rtfbb, &HorVer.rbfbb);
+	}
+
+	setVerticalRegs(HorVer.adjDispPosY, HorVer.adjDispSizeY, tm->equ, tm->acv, tm->prbOdd, tm->prbEven, tm->psbOdd, tm->psbEven,
+	                HorVer.isBlack);
+	OSRestoreInterrupts(enabled);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1979,93 +1836,24 @@ void VIConfigurePan(u16 panPosX, u16 panPosY, u16 panSizeX, u16 panSizeY)
  */
 void VIFlush(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r3, 0x59A8
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  bl        0x1CCF0
-	  lwz       r5, -0x72D0(r13)
-	  addi      r30, r3, 0
-	  li        r0, 0
-	  lwz       r4, -0x72E0(r13)
-	  or        r3, r5, r4
-	  stw       r3, -0x72D0(r13)
-	  stw       r0, -0x72E0(r13)
-	  lwz       r4, -0x72C8(r13)
-	  lwz       r5, -0x72C4(r13)
-	  lwz       r0, -0x72D8(r13)
-	  lwz       r3, -0x72D4(r13)
-	  or        r0, r4, r0
-	  or        r3, r5, r3
-	  stw       r3, -0x72C4(r13)
-	  stw       r0, -0x72C8(r13)
-	  b         .loc_0xDC
+	BOOL enabled;
+	s32 regIndex;
+	u32 val; // for stack.
 
-	.loc_0x68:
-	  lwz       r3, -0x72D8(r13)
-	  li        r5, 0x20
-	  lwz       r28, -0x72D4(r13)
-	  addi      r4, r28, 0
-	  bl        -0xFE8C
-	  cntlzw    r4, r4
-	  cmpwi     r4, 0x20
-	  li        r0, -0x1
-	  and       r0, r28, r0
-	  bge-      .loc_0x94
-	  b         .loc_0x9C
+	enabled = OSDisableInterrupts();
+	shdwChangeMode |= changeMode;
+	changeMode = 0;
+	shdwChanged |= changed;
 
-	.loc_0x94:
-	  cntlzw    r3, r0
-	  addi      r4, r3, 0x20
+	while (changed) {
+		regIndex           = cntlzd(changed);
+		shdwRegs[regIndex] = regs[regIndex];
+		changed &= ~(1ull << (63 - (regIndex)));
+	}
 
-	.loc_0x9C:
-	  rlwinm    r3,r4,1,0,30
-	  lhzx      r0, r31, r3
-	  add       r3, r31, r3
-	  subfic    r5, r4, 0x3F
-	  sth       r0, 0x78(r3)
-	  li        r3, 0
-	  li        r4, 0x1
-	  bl        -0xFEF0
-	  lwz       r0, -0x72D8(r13)
-	  not       r5, r3
-	  not       r4, r4
-	  lwz       r3, -0x72D4(r13)
-	  and       r0, r0, r5
-	  and       r3, r3, r4
-	  stw       r3, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-
-	.loc_0xDC:
-	  lwz       r0, -0x72D8(r13)
-	  li        r3, 0
-	  lwz       r4, -0x72D4(r13)
-	  xor       r0, r0, r3
-	  xor       r3, r4, r3
-	  or.       r0, r3, r0
-	  bne+      .loc_0x68
-	  li        r0, 0x1
-	  stw       r0, -0x7300(r13)
-	  mr        r3, r30
-	  lwz       r0, 0x120(r31)
-	  stw       r0, -0x72B8(r13)
-	  bl        0x1CC30
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	flushFlag   = 1;
+	NextBufAddr = HorVer.bufAddr;
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -2075,36 +1863,11 @@ void VIFlush(void)
  */
 void VISetNextFrameBuffer(void* fb)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  addi      r31, r4, 0x59A8
-	  stw       r30, 0x10(r1)
-	  addi      r30, r3, 0
-	  bl        0x1CBC4
-	  stw       r30, 0x120(r31)
-	  li        r0, 0x1
-	  addi      r30, r3, 0
-	  stw       r0, -0x72B0(r13)
-	  addi      r3, r31, 0xF0
-	  addi      r4, r31, 0x124
-	  addi      r5, r31, 0x128
-	  addi      r6, r31, 0x13C
-	  addi      r7, r31, 0x140
-	  bl        -0xE14
-	  mr        r3, r30
-	  bl        0x1CBBC
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	BOOL enabled   = OSDisableInterrupts();
+	HorVer.bufAddr = (u32)fb;
+	FBSet          = 1;
+	setFbbRegs(&HorVer, &HorVer.tfbb, &HorVer.bfbb, &HorVer.rtfbb, &HorVer.rbfbb);
+	OSRestoreInterrupts(enabled);
 }
 
 /*
@@ -2122,14 +1885,7 @@ void* VIGetNextFrameBuffer()
  * Address:	800D20C0
  * Size:	000008
  */
-void* VIGetCurrentFrameBuffer(void)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, -0x72B4(r13)
-	  blr
-	*/
-}
+void* VIGetCurrentFrameBuffer(void) { return (void*)CurrBufAddr; }
 
 /*
  * --INFO--
@@ -2148,40 +1904,15 @@ void VISetNextRightFrameBuffer(void* fb)
  */
 void VISetBlack(BOOL isBlack)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r4, 0x59A8
-	  stw       r30, 0x18(r1)
-	  addi      r30, r3, 0
-	  bl        0x1CB50
-	  stw       r30, 0x130(r31)
-	  mr        r30, r3
-	  lwz       r10, 0x144(r31)
-	  lwz       r0, 0x130(r31)
-	  stw       r0, 0x8(r1)
-	  lhz       r3, 0xFA(r31)
-	  lhz       r4, 0xF6(r31)
-	  lbz       r5, 0x0(r10)
-	  lhz       r6, 0x2(r10)
-	  lhz       r7, 0x4(r10)
-	  lhz       r8, 0x6(r10)
-	  lhz       r9, 0x8(r10)
-	  lhz       r10, 0xA(r10)
-	  bl        -0xBC4
-	  mr        r3, r30
-	  bl        0x1CB38
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	int interrupt;
+	VITimingInfo* tm;
+
+	interrupt      = OSDisableInterrupts();
+	HorVer.isBlack = isBlack;
+	tm             = HorVer.timing;
+	setVerticalRegs(HorVer.adjDispPosY, HorVer.dispSizeY, tm->equ, tm->acv, tm->prbOdd, tm->prbEven, tm->psbOdd, tm->psbEven,
+	                HorVer.isBlack);
+	OSRestoreInterrupts(interrupt);
 }
 
 /*
@@ -2199,42 +1930,26 @@ void VISet3D(void)
  * Address:	800D2144
  * Size:	000008
  */
-u32 VIGetRetraceCount(void)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, -0x7304(r13)
-	  blr
-	*/
-}
+u32 VIGetRetraceCount(void) { return retraceCount; }
 
 /*
  * --INFO--
  * Address:	800D214C
  * Size:	00003C
  */
-static void GetCurrentDisplayPosition(void)
+static void GetCurrentDisplayPosition(u32* hct, u32* vct)
 {
-	/*
-	.loc_0x0:
-	  lis       r5, 0xCC00
-	  addi      r7, r5, 0x2000
-	  lhzu      r0, 0x2C(r7)
-	  addi      r6, r5, 0x2000
-	  rlwinm    r9,r0,0,21,31
+	u32 hcount, vcount0, vcount;
+	vcount = __VIRegs[VI_VERT_COUNT] & 0x7FF;
 
-	.loc_0x14:
-	  lhz       r0, 0x0(r7)
-	  mr        r8, r9
-	  lhz       r5, 0x2E(r6)
-	  rlwinm    r9,r0,0,21,31
-	  cmplw     r8, r9
-	  rlwinm    r0,r5,0,21,31
-	  bne+      .loc_0x14
-	  stw       r0, 0x0(r3)
-	  stw       r9, 0x0(r4)
-	  blr
-	*/
+	do {
+		vcount0 = vcount;
+		hcount  = __VIRegs[VI_HORIZ_COUNT] & 0x7FF;
+		vcount  = __VIRegs[VI_VERT_COUNT] & 0x7FF;
+	} while (vcount0 != vcount);
+
+	*hct = hcount;
+	*vct = vcount;
 }
 
 /*
@@ -2242,9 +1957,12 @@ static void GetCurrentDisplayPosition(void)
  * Address:	........
  * Size:	000050
  */
-static void getCurrentHalfLine(void)
+static u32 getCurrentHalfLine(void)
 {
-	// UNUSED FUNCTION
+	u32 hcount, vcount;
+	GetCurrentDisplayPosition(&hcount, &vcount);
+
+	return ((vcount - 1) << 1) + ((hcount - 1) / CurrTiming->hlw);
 }
 
 /*
@@ -2252,42 +1970,7 @@ static void getCurrentHalfLine(void)
  * Address:	800D2188
  * Size:	000068
  */
-static void getCurrentFieldEvenOdd(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  addi      r7, r3, 0x2000
-	  lhzu      r0, 0x2C(r7)
-	  addi      r4, r3, 0x2000
-	  rlwinm    r5,r0,0,21,31
-
-	.loc_0x14:
-	  lhz       r0, 0x0(r7)
-	  mr        r6, r5
-	  lhz       r3, 0x2E(r4)
-	  rlwinm    r5,r0,0,21,31
-	  cmplw     r6, r5
-	  rlwinm    r3,r3,0,21,31
-	  bne+      .loc_0x14
-	  lwz       r6, -0x72C0(r13)
-	  subi      r0, r5, 0x1
-	  subi      r4, r3, 0x1
-	  lhz       r3, 0x1A(r6)
-	  rlwinm    r5,r0,1,0,30
-	  lhz       r0, 0x18(r6)
-	  divwu     r3, r4, r3
-	  add       r3, r5, r3
-	  cmplw     r3, r0
-	  bge-      .loc_0x60
-	  li        r3, 0x1
-	  blr
-
-	.loc_0x60:
-	  li        r3, 0
-	  blr
-	*/
-}
+static u32 getCurrentFieldEvenOdd() { return (getCurrentHalfLine() < CurrTiming->numHalfLines) ? 1 : 0; }
 
 /*
  * --INFO--
@@ -2296,52 +1979,13 @@ static void getCurrentFieldEvenOdd(void)
  */
 u32 VIGetNextField(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  stw       r30, 0x20(r1)
-	  bl        0x1CA34
-	  addi      r30, r3, 0
-	  addi      r3, r1, 0x10
-	  addi      r4, r1, 0x14
-	  bl        -0xC8
-	  lwz       r5, -0x72C0(r13)
-	  lwz       r3, 0x10(r1)
-	  lhz       r0, 0x1A(r5)
-	  subi      r3, r3, 0x1
-	  lwz       r4, 0x14(r1)
-	  divwu     r3, r3, r0
-	  lhz       r0, 0x18(r5)
-	  subi      r4, r4, 0x1
-	  rlwinm    r4,r4,1,0,30
-	  add       r3, r4, r3
-	  cmplw     r3, r0
-	  bge-      .loc_0x60
-	  li        r31, 0x1
-	  b         .loc_0x64
+	u32 nextField;
+	int interrupt;
 
-	.loc_0x60:
-	  li        r31, 0
-
-	.loc_0x64:
-	  mr        r3, r30
-	  bl        0x1CA08
-	  lis       r3, 0x804F
-	  addi      r3, r3, 0x5A98
-	  lhz       r0, 0xA(r3)
-	  xori      r3, r31, 0x1
-	  rlwinm    r0,r0,0,31,31
-	  xor       r3, r3, r0
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	interrupt = OSDisableInterrupts();
+	nextField = getCurrentFieldEvenOdd() ^ 1;
+	OSRestoreInterrupts(interrupt);
+	return nextField ^ (HorVer.adjDispPosY & 1);
 }
 
 /*
@@ -2351,51 +1995,20 @@ u32 VIGetNextField(void)
  */
 u32 VIGetCurrentLine(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  lwz       r31, -0x72C0(r13)
-	  bl        0x1C994
-	  lis       r4, 0xCC00
-	  addi      r8, r4, 0x2000
-	  lhzu      r0, 0x2C(r8)
-	  addi      r5, r4, 0x2000
-	  rlwinm    r6,r0,0,21,31
+	u32 line;
+	VITimingInfo* tm;
+	int interrupt;
 
-	.loc_0x30:
-	  lhz       r0, 0x0(r8)
-	  mr        r7, r6
-	  lhz       r4, 0x2E(r5)
-	  rlwinm    r6,r0,0,21,31
-	  cmplw     r7, r6
-	  rlwinm    r7,r4,0,21,31
-	  bne+      .loc_0x30
-	  lwz       r4, -0x72C0(r13)
-	  subi      r5, r7, 0x1
-	  subi      r6, r6, 0x1
-	  lhz       r0, 0x1A(r4)
-	  rlwinm    r4,r6,1,0,30
-	  divwu     r0, r5, r0
-	  add       r30, r4, r0
-	  bl        0x1C96C
-	  lhz       r0, 0x18(r31)
-	  cmplw     r30, r0
-	  blt-      .loc_0x7C
-	  sub       r30, r30, r0
+	tm        = CurrTiming;
+	interrupt = OSDisableInterrupts();
+	line      = getCurrentHalfLine();
+	OSRestoreInterrupts(interrupt);
 
-	.loc_0x7C:
-	  rlwinm    r3,r30,31,1,31
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	if (line >= tm->numHalfLines) {
+		line -= tm->numHalfLines;
+	}
+
+	return (line >> 1);
 }
 
 /*
@@ -2405,37 +2018,29 @@ u32 VIGetCurrentLine(void)
  */
 u32 VIGetTvFormat(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  bl        0x1C904
-	  lwz       r5, -0x72BC(r13)
-	  cmplwi    r5, 0x6
-	  bgt-      .loc_0x4C
-	  lis       r4, 0x804A
-	  addi      r4, r4, 0x7664
-	  rlwinm    r0,r5,2,0,29
-	  lwzx      r0, r4, r0
-	  mtctr     r0
-	  bctr
-	  li        r31, 0
-	  b         .loc_0x4C
-	  li        r31, 0x1
-	  b         .loc_0x4C
-	  mr        r31, r5
+	u32 fmt;
+	int interrupt;
 
-	.loc_0x4C:
-	  bl        0x1C8F0
-	  mr        r3, r31
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
+	interrupt = OSDisableInterrupts();
+
+	switch (CurrTvMode) {
+	case VI_NTSC:
+	case VI_DEBUG:
+	case VI_GCA:
+		fmt = VI_NTSC;
+		break;
+	case VI_PAL:
+	case VI_DEBUG_PAL:
+		fmt = VI_PAL;
+		break;
+	case VI_EURGB60:
+	case VI_MPAL:
+		fmt = CurrTvMode;
+		break;
+	}
+
+	OSRestoreInterrupts(interrupt);
+	return fmt;
 }
 
 /*
@@ -2445,64 +2050,13 @@ u32 VIGetTvFormat(void)
  */
 u32 VIGetDTVStatus(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  bl        0x1C89C
-	  lis       r4, 0xCC00
-	  lhz       r0, 0x206E(r4)
-	  rlwinm    r31,r0,0,30,31
-	  bl        0x1C8B4
-	  rlwinm    r3,r31,0,31,31
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
-}
+	u32 stat;
+	int interrupt;
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002C8
- */
-void __VISetAdjustingValues(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void __VIGetAdjustingValues(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000180
- */
-void __VIEnableRawPositionInterrupt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void __VIDisableRawPositionInterrupt(void)
-{
-	// UNUSED FUNCTION
+	interrupt = OSDisableInterrupts();
+	stat      = (__VIRegs[VI_DTV_STAT] & 3);
+	OSRestoreInterrupts(interrupt);
+	return (stat & 1);
 }
 
 /*
@@ -2510,178 +2064,64 @@ void __VIDisableRawPositionInterrupt(void)
  * Address:	800D23C8
  * Size:	00021C
  */
-void __VIDisplayPositionToXY(void)
+void __VIDisplayPositionToXY(u32 hcount, u32 vcount, s16* x, s16* y)
 {
-	/*
-	.loc_0x0:
-	  lwz       r9, -0x72C0(r13)
-	  lis       r7, 0x804F
-	  addi      r7, r7, 0x5A98
-	  lhz       r0, 0x1A(r9)
-	  subi      r8, r3, 0x1
-	  lwz       r7, 0x24(r7)
-	  subi      r4, r4, 0x1
-	  divwu     r0, r8, r0
-	  rlwinm    r4,r4,1,0,30
-	  cmplwi    r7, 0
-	  add       r0, r4, r0
-	  bne-      .loc_0xEC
-	  lhz       r10, 0x18(r9)
-	  cmplw     r0, r10
-	  bge-      .loc_0x90
-	  lbz       r4, 0x0(r9)
-	  lhz       r8, 0x4(r9)
-	  mulli     r7, r4, 0x3
-	  add       r4, r8, r7
-	  cmplw     r0, r4
-	  bge-      .loc_0x60
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
+	u32 halfLine = ((vcount - 1) << 1) + ((hcount - 1) / CurrTiming->hlw);
 
-	.loc_0x60:
-	  lhz       r4, 0x8(r9)
-	  sub       r4, r10, r4
-	  cmplw     r0, r4
-	  blt-      .loc_0x7C
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
+	if (HorVer.nonInter == VI_INTERLACE) {
+		if (halfLine < CurrTiming->numHalfLines) {
+			if (halfLine < CurrTiming->equ * 3 + CurrTiming->prbOdd) {
+				*y = -1;
+			} else if (halfLine >= CurrTiming->numHalfLines - CurrTiming->psbOdd) {
+				*y = -1;
+			} else {
+				*y = (s16)((halfLine - CurrTiming->equ * 3 - CurrTiming->prbOdd) & ~1);
+			}
+		} else {
+			halfLine -= CurrTiming->numHalfLines;
 
-	.loc_0x7C:
-	  sub       r0, r0, r7
-	  sub       r0, r0, r8
-	  rlwinm    r0,r0,0,0,30
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
+			if (halfLine < CurrTiming->equ * 3 + CurrTiming->prbEven) {
+				*y = -1;
+			} else if (halfLine >= CurrTiming->numHalfLines - CurrTiming->psbEven) {
+				*y = -1;
+			} else {
+				*y = (s16)(((halfLine - CurrTiming->equ * 3 - CurrTiming->prbEven) & ~1) + 1);
+			}
+		}
+	} else if (HorVer.nonInter == VI_NON_INTERLACE) {
+		if (halfLine >= CurrTiming->numHalfLines) {
+			halfLine -= CurrTiming->numHalfLines;
+		}
 
-	.loc_0x90:
-	  lbz       r4, 0x0(r9)
-	  sub       r0, r0, r10
-	  lhz       r8, 0x6(r9)
-	  mulli     r7, r4, 0x3
-	  add       r4, r8, r7
-	  cmplw     r0, r4
-	  bge-      .loc_0xB8
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
+		if (halfLine < CurrTiming->equ * 3 + CurrTiming->prbOdd) {
+			*y = -1;
+		} else if (halfLine >= CurrTiming->numHalfLines - CurrTiming->psbOdd) {
+			*y = -1;
+		} else {
+			*y = (s16)((halfLine - CurrTiming->equ * 3 - CurrTiming->prbOdd) & ~1);
+		}
+	} else if (HorVer.nonInter == VI_PROGRESSIVE) {
+		if (halfLine < CurrTiming->numHalfLines) {
+			if (halfLine < CurrTiming->equ * 3 + CurrTiming->prbOdd) {
+				*y = -1;
+			} else if (halfLine >= CurrTiming->numHalfLines - CurrTiming->psbOdd) {
+				*y = -1;
+			} else {
+				*y = (s16)(halfLine - CurrTiming->equ * 3 - CurrTiming->prbOdd);
+			}
+		} else {
+			halfLine -= CurrTiming->numHalfLines;
 
-	.loc_0xB8:
-	  lhz       r4, 0xA(r9)
-	  sub       r4, r10, r4
-	  cmplw     r0, r4
-	  blt-      .loc_0xD4
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
+			if (halfLine < CurrTiming->equ * 3 + CurrTiming->prbEven) {
+				*y = -1;
+			} else if (halfLine >= CurrTiming->numHalfLines - CurrTiming->psbEven) {
+				*y = -1;
+			} else
+				*y = (s16)((halfLine - CurrTiming->equ * 3 - CurrTiming->prbEven) & ~1);
+		}
+	}
 
-	.loc_0xD4:
-	  sub       r0, r0, r7
-	  sub       r0, r0, r8
-	  rlwinm    r4,r0,0,0,30
-	  addi      r0, r4, 0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
-
-	.loc_0xEC:
-	  cmplwi    r7, 0x1
-	  bne-      .loc_0x158
-	  lhz       r7, 0x18(r9)
-	  cmplw     r0, r7
-	  blt-      .loc_0x104
-	  sub       r0, r0, r7
-
-	.loc_0x104:
-	  lbz       r4, 0x0(r9)
-	  lhz       r10, 0x4(r9)
-	  mulli     r8, r4, 0x3
-	  add       r4, r10, r8
-	  cmplw     r0, r4
-	  bge-      .loc_0x128
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
-
-	.loc_0x128:
-	  lhz       r4, 0x8(r9)
-	  sub       r4, r7, r4
-	  cmplw     r0, r4
-	  blt-      .loc_0x144
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
-
-	.loc_0x144:
-	  sub       r0, r0, r8
-	  sub       r0, r0, r10
-	  rlwinm    r0,r0,0,0,30
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
-
-	.loc_0x158:
-	  cmplwi    r7, 0x2
-	  bne-      .loc_0x210
-	  lhz       r10, 0x18(r9)
-	  cmplw     r0, r10
-	  bge-      .loc_0x1BC
-	  lbz       r4, 0x0(r9)
-	  lhz       r8, 0x4(r9)
-	  mulli     r7, r4, 0x3
-	  add       r4, r8, r7
-	  cmplw     r0, r4
-	  bge-      .loc_0x190
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
-
-	.loc_0x190:
-	  lhz       r4, 0x8(r9)
-	  sub       r4, r10, r4
-	  cmplw     r0, r4
-	  blt-      .loc_0x1AC
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
-
-	.loc_0x1AC:
-	  sub       r0, r0, r7
-	  sub       r0, r0, r8
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
-
-	.loc_0x1BC:
-	  lbz       r4, 0x0(r9)
-	  sub       r0, r0, r10
-	  lhz       r8, 0x6(r9)
-	  mulli     r7, r4, 0x3
-	  add       r4, r8, r7
-	  cmplw     r0, r4
-	  bge-      .loc_0x1E4
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
-
-	.loc_0x1E4:
-	  lhz       r4, 0xA(r9)
-	  sub       r4, r10, r4
-	  cmplw     r0, r4
-	  blt-      .loc_0x200
-	  li        r0, -0x1
-	  sth       r0, 0x0(r6)
-	  b         .loc_0x210
-
-	.loc_0x200:
-	  sub       r0, r0, r7
-	  sub       r0, r0, r8
-	  rlwinm    r0,r0,0,0,30
-	  sth       r0, 0x0(r6)
-
-	.loc_0x210:
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x0(r5)
-	  blr
-	*/
+	*x = (s16)(hcount - 1);
 }
 
 /*
@@ -2689,75 +2129,9 @@ void __VIDisplayPositionToXY(void)
  * Address:	800D25E4
  * Size:	000060
  */
-void __VIGetCurrentPosition(void)
+void __VIGetCurrentPosition(s16* x, s16* y)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r7, 0xCC00
-	  stw       r0, 0x4(r1)
-	  addi      r6, r4, 0
-	  addi      r9, r7, 0x2000
-	  stwu      r1, -0x8(r1)
-	  addi      r5, r3, 0
-	  addi      r4, r7, 0x2000
-	  lhzu      r0, 0x2C(r9)
-	  rlwinm    r8,r0,0,21,31
-
-	.loc_0x28:
-	  lhz       r0, 0x0(r9)
-	  mr        r7, r8
-	  lhz       r3, 0x2E(r4)
-	  rlwinm    r8,r0,0,21,31
-	  cmplw     r7, r8
-	  rlwinm    r0,r3,0,21,31
-	  bne+      .loc_0x28
-	  mr        r3, r0
-	  addi      r4, r8, 0
-	  bl        -0x268
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void __VISetLatchMode(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void __VIGetLatch0Position(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void __VIGetLatch1Position(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void __VIGetLatchPosition(void)
-{
-	// UNUSED FUNCTION
+	u32 h, v;
+	GetCurrentDisplayPosition(&h, &v);
+	__VIDisplayPositionToXY(h, v, x, y);
 }

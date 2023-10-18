@@ -178,6 +178,7 @@ typedef struct SramControlBlock {
 // SRAM functions.
 OSSram* __OSLockSram();
 OSSramEx* __OSLockSramEx();
+BOOL __OSUnlockSram(BOOL commit);
 BOOL __OSUnlockSramEx(BOOL commit);
 void OSSetWirelessID(s32 channel, u16 id);
 u16 OSGetWirelessID(s32 channel);

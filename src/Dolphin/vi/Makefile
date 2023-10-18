@@ -1,8 +1,8 @@
 VI_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/vi/vi.o\
 
-$(VI_FILES): CFLAGS += -common off
-$(VI_FILES): MWCC_VERSION := 1.2.5
+$(VI_FILES): CFLAGS += -common off -str noreadonly
+$(VI_FILES): MWCC_VERSION := 1.2.5n
 
 DEPENDS += $(VI_FILES:.o=.d)
 
