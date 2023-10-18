@@ -101,242 +101,80 @@ void JUTCacheFont::initialize_state()
  * Address:	80034178
  * Size:	000188
  */
-bool JUTCacheFont::getMemorySize(const ResFONT* resource, unsigned short* widthBlocksCount, unsigned long* widthBlocksSize,
-                                 unsigned short* glyphBlocksCount, unsigned long* glyphBlocksSize, unsigned short* mapBlocksCount,
-                                 unsigned long* mapBlocksSize, unsigned long* maxPageByteSize)
+bool JUTCacheFont::getMemorySize(const ResFONT* resource, u16* widthBlocksCount, u32* widthBlocksSize, u16* glyphBlocksCount,
+                                 u32* glyphBlocksSize, u16* mapBlocksCount, u32* mapBlocksSize, u32* maxPageByteSize)
 {
 	if (resource == nullptr) {
 		return false;
 	}
-	BlockHeader* pData = (BlockHeader*)((u8*)&resource->mData);
-	/* acc: accumulated */
-	u16 accWidthBlocksCount = 0;
-	u16 accGlyphBlocksCount = 0;
-	u16 accMapBlocksCount   = 0;
-	u32 accWidthBlocksSize  = 0;
-	u32 accGlyphBlocksSize  = 0;
-	u32 accMapBlocksSize    = 0;
-	u32 accMaxPageByteSize  = 0;
-	for (u32 i = 0; i < resource->mNumBlocks; i++, pData = (BlockHeader*)pData->getNext()) {
-		switch (pData->mMagic) {
-		case 'WID1':
-			accWidthBlocksCount++;
-			accWidthBlocksSize += pData->mSize;
-			break;
 
-		case 'GLY1': {
-			accGlyphBlocksCount++;
-			accGlyphBlocksSize += pData->mSize;
-			const ResFONT::GlyphBlock* glyphBlock = (const ResFONT::GlyphBlock*)pData;
-			if (glyphBlock->mNumRows > accMaxPageByteSize) {
-				accMaxPageByteSize = glyphBlock->mNumRows;
-			}
-			break;
-		}
+	u16 widBlockCount = 0;
+	u16 glyBlockCount = 0;
+	u16 mapBlockCount = 0;
+	u32 totalWidSize  = 0;
+	u32 totalGlySize  = 0;
+	u32 totalMapSize  = 0;
+	u32 maxGlyTexSize = 0;
+	u32 glyTexSize;
 
-		case 'MAP1':
-			accMapBlocksCount++;
-			accMapBlocksSize += pData->mSize;
-			break;
-
+	u8* fontInf = (u8*)resource->mData;
+	for (int i = 0; i < resource->mNumBlocks; i++) {
+		switch (((BlockHeader*)fontInf)->mMagic) {
 		case 'INF1':
 			break;
-
+		case 'WID1':
+			totalWidSize += ((BlockHeader*)fontInf)->mSize;
+			widBlockCount++;
+			break;
+		case 'GLY1':
+			totalGlySize += ((BlockHeader*)fontInf)->mSize;
+			glyTexSize = ((ResFONT::GlyphBlock*)fontInf)->mTextureSize;
+			glyBlockCount++;
+			if (glyTexSize > maxGlyTexSize) {
+				maxGlyTexSize = glyTexSize;
+			}
+			break;
+		case 'MAP1':
+			totalMapSize += ((BlockHeader*)fontInf)->mSize;
+			mapBlockCount++;
+			break;
 		default:
 			JUTReportConsole("JUTCacheFont: Unknown data block\n");
 			break;
 		}
+
+		fontInf += ((BlockHeader*)fontInf)->mSize;
 	}
-	// u8* pData = (u8*)&resource->mData;
-	// /* acc: accumulated */
-	// u16 accWidthBlocksCount = 0;
-	// u16 accGlyphBlocksCount = 0;
-	// u16 accMapBlocksCount   = 0;
-	// u32 accWidthBlocksSize  = 0;
-	// u32 accGlyphBlocksSize  = 0;
-	// u32 accMapBlocksSize    = 0;
-	// u32 accMaxPageByteSize  = 0;
-	// for (u32 i = 0; i < resource->mChunkNum; i++, pData += ((BlockHeader*)pData)->mSize) {
-	// 	switch (((BlockHeader*)pData)->mMagic) {
-	// 	case 'INF1':
-	// 		break;
-	// 	case 'WID1':
-	// 		accWidthBlocksCount++;
-	// 		accWidthBlocksSize += ((BlockHeader*)pData)->mSize;
-	// 		break;
-	// 	case 'GLY1':
-	// 		accGlyphBlocksCount++;
-	// 		accGlyphBlocksSize += ((BlockHeader*)pData)->mSize;
-	// 		if (((GlyphBlock*)pData)->mPageByteSize > accMaxPageByteSize) {
-	// 			accMaxPageByteSize = ((GlyphBlock*)pData)->mPageByteSize;
-	// 		}
-	// 		break;
-	// 	case 'MAP1':
-	// 		accMapBlocksCount++;
-	// 		accMapBlocksSize += ((BlockHeader*)pData)->mSize;
-	// 		break;
-	// 	default:
-	// 		JUTReportConsole("JUTCacheFont: Unknown data block\n");
-	// 		break;
-	// 	}
-	// }
+
 	if (widthBlocksCount != nullptr) {
-		*widthBlocksCount = accWidthBlocksCount;
+		*widthBlocksCount = widBlockCount;
 	}
+
 	if (glyphBlocksCount != nullptr) {
-		*glyphBlocksCount = accGlyphBlocksCount;
+		*glyphBlocksCount = glyBlockCount;
 	}
+
 	if (mapBlocksCount != nullptr) {
-		*mapBlocksCount = accMapBlocksCount;
+		*mapBlocksCount = mapBlockCount;
 	}
+
 	if (widthBlocksSize != nullptr) {
-		*widthBlocksSize = accWidthBlocksSize;
+		*widthBlocksSize = totalWidSize;
 	}
+
 	if (glyphBlocksSize != nullptr) {
-		*glyphBlocksSize = accGlyphBlocksSize;
+		*glyphBlocksSize = totalGlySize;
 	}
+
 	if (mapBlocksSize != nullptr) {
-		*mapBlocksSize = accMapBlocksSize;
+		*mapBlocksSize = totalMapSize;
 	}
+
 	if (maxPageByteSize != nullptr) {
-		*maxPageByteSize = accMaxPageByteSize;
+		*maxPageByteSize = maxGlyTexSize;
 	}
+
 	return true;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stmw      r14, 0x8(r1)
-	  mr.       r31, r4
-	  lwz       r14, 0x58(r1)
-	  mr        r15, r5
-	  mr        r16, r6
-	  mr        r17, r7
-	  mr        r18, r8
-	  mr        r19, r9
-	  mr        r20, r10
-	  bne-      .loc_0x3C
-	  li        r3, 0
-	  b         .loc_0x174
-
-	.loc_0x3C:
-	  lis       r3, 0x4D41
-	  addi      r22, r31, 0x20
-	  addi      r30, r3, 0x5031
-	  li        r29, 0
-	  li        r28, 0
-	  li        r27, 0
-	  li        r26, 0
-	  li        r25, 0
-	  li        r24, 0
-	  li        r23, 0
-	  li        r21, 0
-	  b         .loc_0x110
-
-	.loc_0x6C:
-	  lwz       r4, 0x0(r22)
-	  cmpw      r4, r30
-	  beq-      .loc_0xE8
-	  bge-      .loc_0xA4
-	  lis       r3, 0x494E
-	  addi      r0, r3, 0x4631
-	  cmpw      r4, r0
-	  beq-      .loc_0x104
-	  bge-      .loc_0xF8
-	  lis       r3, 0x474C
-	  addi      r0, r3, 0x5931
-	  cmpw      r4, r0
-	  beq-      .loc_0xC8
-	  b         .loc_0xF8
-
-	.loc_0xA4:
-	  lis       r3, 0x5749
-	  addi      r0, r3, 0x4431
-	  cmpw      r4, r0
-	  beq-      .loc_0xB8
-	  b         .loc_0xF8
-
-	.loc_0xB8:
-	  lwz       r0, 0x4(r22)
-	  addi      r29, r29, 0x1
-	  add       r26, r26, r0
-	  b         .loc_0x104
-
-	.loc_0xC8:
-	  lwz       r3, 0x10(r22)
-	  addi      r28, r28, 0x1
-	  lwz       r0, 0x4(r22)
-	  cmplw     r3, r23
-	  add       r25, r25, r0
-	  ble-      .loc_0x104
-	  mr        r23, r3
-	  b         .loc_0x104
-
-	.loc_0xE8:
-	  lwz       r0, 0x4(r22)
-	  addi      r27, r27, 0x1
-	  add       r24, r24, r0
-	  b         .loc_0x104
-
-	.loc_0xF8:
-	  lis       r3, 0x8048
-	  subi      r3, r3, 0x7BE0
-	  bl        -0xAED8
-
-	.loc_0x104:
-	  lwz       r0, 0x4(r22)
-	  addi      r21, r21, 0x1
-	  add       r22, r22, r0
-
-	.loc_0x110:
-	  lwz       r0, 0xC(r31)
-	  cmplw     r21, r0
-	  blt+      .loc_0x6C
-	  cmplwi    r15, 0
-	  beq-      .loc_0x128
-	  sth       r29, 0x0(r15)
-
-	.loc_0x128:
-	  cmplwi    r17, 0
-	  beq-      .loc_0x134
-	  sth       r28, 0x0(r17)
-
-	.loc_0x134:
-	  cmplwi    r19, 0
-	  beq-      .loc_0x140
-	  sth       r27, 0x0(r19)
-
-	.loc_0x140:
-	  cmplwi    r16, 0
-	  beq-      .loc_0x14C
-	  stw       r26, 0x0(r16)
-
-	.loc_0x14C:
-	  cmplwi    r18, 0
-	  beq-      .loc_0x158
-	  stw       r25, 0x0(r18)
-
-	.loc_0x158:
-	  cmplwi    r20, 0
-	  beq-      .loc_0x164
-	  stw       r24, 0x0(r20)
-
-	.loc_0x164:
-	  cmplwi    r14, 0
-	  beq-      .loc_0x170
-	  stw       r23, 0x0(r14)
-
-	.loc_0x170:
-	  li        r3, 0x1
-
-	.loc_0x174:
-	  lmw       r14, 0x8(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
 }
 
 /*
@@ -345,7 +183,7 @@ bool JUTCacheFont::getMemorySize(const ResFONT* resource, unsigned short* widthB
  * Size:	0000B4
  * initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap
  */
-bool JUTCacheFont::initiate(const ResFONT* resource, void* p2, unsigned long p3, JKRHeap* heap)
+bool JUTCacheFont::initiate(const ResFONT* resource, void* p2, u32 p3, JKRHeap* heap)
 {
 	if (!internal_initiate(resource, p2, p3, heap)) {
 		deleteMemBlocks_CacheFont();
@@ -362,7 +200,7 @@ bool JUTCacheFont::initiate(const ResFONT* resource, void* p2, unsigned long p3,
  * Address:	800343B4
  * Size:	000184
  */
-bool JUTCacheFont::internal_initiate(const ResFONT* resource, void* p2, unsigned long p3, JKRHeap* heap)
+bool JUTCacheFont::internal_initiate(const ResFONT* resource, void* p2, u32 p3, JKRHeap* heap)
 {
 	deleteMemBlocks_CacheFont();
 	initialize_state();
@@ -391,7 +229,7 @@ bool JUTCacheFont::internal_initiate(const ResFONT* resource, void* p2, unsigned
  * Address:	80034538
  * Size:	0001C4
  */
-bool JUTCacheFont::allocArea(void* p1, unsigned long p2, JKRHeap* heap)
+bool JUTCacheFont::allocArea(void* p1, u32 p2, JKRHeap* heap)
 {
 	mInfoBlock = (ResFONT::InfoBlock*)new (heap, 0) ResFONT();
 	if (mInfoBlock == nullptr) {
@@ -482,164 +320,59 @@ bool JUTCacheFont::allocArray(JKRHeap* heap)
  */
 void JUTCacheFont::setBlock()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, 0x0000FFFF@ha
-	lis      r6, lbl_80478420@ha
-	stw      r0, 0x44(r1)
-	addi     r0, r4, 0x0000FFFF@l
-	stmw     r20, 0x10(r1)
-	mr       r20, r3
-	li       r29, 0
-	addi     r30, r6, lbl_80478420@l
-	mr       r28, r29
-	li       r21, 0
-	mr       r27, r29
-	lwz      r5, 0xac(r3)
-	lis      r3, 0x4D415031@ha
-	lwz      r26, 0x7c(r20)
-	addi     r31, r3, 0x4D415031@l
-	lwz      r25, 0x80(r20)
-	lwz      r24, 0x84(r20)
-	lwz      r23, 0x14(r5)
-	sth      r0, 0x68(r20)
-	lwz      r3, 0x48(r20)
-	addi     r22, r3, 0x20
-	b        lbl_800349D0
+	int widthNum                = 0;
+	int gylphNum                = 0;
+	int mapNum                  = 0;
+	u8* pWidth                  = (u8*)_7C;
+	ResFONT::GlyphBlock* piVar5 = (ResFONT::GlyphBlock*)_80;
+	ResFONT::MapBlock* pMap     = (ResFONT::MapBlock*)_84;
+	u32 aramAddress             = mAramBlock->getAddress();
+	mMaxCode                    = 0xffff;
+	const int* pData            = (int*)mResource->mData;
 
-lbl_80034844:
-	lwz      r4, 0(r22)
-	cmpw     r4, r31
-	beq      lbl_80034978
-	bge      lbl_8003487C
-	lis      r3, 0x494E4631@ha
-	addi     r0, r3, 0x494E4631@l
-	cmpw     r4, r0
-	beq      lbl_80034890
-	bge      lbl_800349BC
-	lis      r3, 0x474C5931@ha
-	addi     r0, r3, 0x474C5931@l
-	cmpw     r4, r0
-	beq      lbl_800348E8
-	b        lbl_800349BC
+	for (int i = 0; i < mResource->mNumBlocks; i++) {
+		switch (*pData) {
+		case 'INF1':
+			memcpy(mInfoBlock, pData, 0x20);
+			mIsLeadByte = &JUTResFont::saoAboutEncoding_[mInfoBlock->mFontType];
+			break;
+		case 'WID1':
+			memcpy(pWidth, pData, pData[1]);
+			mWidthBlocks[widthNum] = (ResFONT::WidthBlock*)pWidth;
+			pWidth += pData[1];
+			widthNum++;
+			break;
+		case 'GLY1':
+			memcpy(piVar5, pData, 0x20);
+			JKRAramBlock* block
+			    = JKRAram::mainRamToAram((u8*)pData + 0x20, aramAddress, pData[1] - 0x20, Switch_0, 0, nullptr, 0xffffffff, nullptr);
+			JUT_ASSERTLINE(477, block, "%s", "trouble occurred in JKRMainRamToAram.");
 
-lbl_8003487C:
-	lis      r3, 0x57494431@ha
-	addi     r0, r3, 0x57494431@l
-	cmpw     r4, r0
-	beq      lbl_800348C0
-	b        lbl_800349BC
+			piVar5->mMagic = aramAddress;
+			if (piVar5->mTextureSize > mMaxSheetSize) {
+				mMaxSheetSize = piVar5->mTextureSize;
+			}
+			mGlyphBlocks[gylphNum] = piVar5;
+			gylphNum++;
+			piVar5++;
+			aramAddress = pData[1] + aramAddress - 0x20;
+			break;
+		case 'MAP1':
+			memcpy(pMap, pData, pData[1]);
+			mMapBlocks[mapNum] = pMap;
+			if (mMaxCode > mMapBlocks[mapNum]->mStartCode) {
+				mMaxCode = mMapBlocks[mapNum]->mStartCode;
+			}
+			mapNum++;
+			pMap = (ResFONT::MapBlock*)((u8*)pMap + pData[1]);
+			break;
+		default:
+			JUTReportConsole("Unknown data block\n");
+			break;
+		}
 
-lbl_80034890:
-	lwz      r3, 0x4c(r20)
-	mr       r4, r22
-	li       r5, 0x20
-	bl       memcpy
-	lwz      r4, 0x4c(r20)
-	lis      r3, saoAboutEncoding___10JUTResFont@ha
-	addi     r0, r3, saoAboutEncoding___10JUTResFont@l
-	lhz      r3, 8(r4)
-	slwi     r3, r3, 2
-	add      r0, r0, r3
-	stw      r0, 0x6c(r20)
-	b        lbl_800349C4
-
-lbl_800348C0:
-	lwz      r5, 4(r22)
-	mr       r3, r26
-	mr       r4, r22
-	bl       memcpy
-	lwz      r3, 0x54(r20)
-	stwx     r26, r3, r29
-	addi     r29, r29, 4
-	lwz      r0, 4(r22)
-	add      r26, r26, r0
-	b        lbl_800349C4
-
-lbl_800348E8:
-	mr       r3, r25
-	mr       r4, r22
-	li       r5, 0x20
-	bl       memcpy
-	lwz      r5, 4(r22)
-	mr       r4, r23
-	addi     r3, r22, 0x20
-	li       r6, 0
-	addi     r5, r5, -32
-	li       r7, 0
-	li       r8, 0
-	li       r9, -1
-	li       r10, 0
-	bl       mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl
-	cmplwi   r3, 0
-	bne      lbl_80034940
-	addi     r3, r30, 0x24
-	addi     r6, r30, 0x38
-	li       r4, 0x1dd
-	addi     r5, r2, lbl_80516720@sda21
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80034940:
-	stw      r23, 0(r25)
-	lwz      r3, 0x10(r25)
-	lwz      r0, 0x88(r20)
-	cmplw    r3, r0
-	ble      lbl_80034958
-	stw      r3, 0x88(r20)
-
-lbl_80034958:
-	lwz      r3, 0x58(r20)
-	stwx     r25, r3, r28
-	addi     r28, r28, 4
-	addi     r25, r25, 0x20
-	lwz      r0, 4(r22)
-	add      r23, r0, r23
-	addi     r23, r23, -32
-	b        lbl_800349C4
-
-lbl_80034978:
-	lwz      r5, 4(r22)
-	mr       r3, r24
-	mr       r4, r22
-	bl       memcpy
-	lwz      r3, 0x5c(r20)
-	stwx     r24, r3, r27
-	lwz      r3, 0x5c(r20)
-	lhz      r0, 0x68(r20)
-	lwzx     r3, r3, r27
-	lhz      r3, 0xa(r3)
-	cmplw    r0, r3
-	ble      lbl_800349AC
-	sth      r3, 0x68(r20)
-
-lbl_800349AC:
-	lwz      r0, 4(r22)
-	addi     r27, r27, 4
-	add      r24, r24, r0
-	b        lbl_800349C4
-
-lbl_800349BC:
-	addi     r3, r30, 0x60
-	bl       JUTReportConsole
-
-lbl_800349C4:
-	lwz      r0, 4(r22)
-	addi     r21, r21, 1
-	add      r22, r22, r0
-
-lbl_800349D0:
-	lwz      r3, 0x48(r20)
-	lwz      r0, 0xc(r3)
-	cmplw    r21, r0
-	blt      lbl_80034844
-	lmw      r20, 0x10(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		pData = (int*)((u8*)pData + pData[1]);
+	}
 }
 
 /*
@@ -647,9 +380,32 @@ lbl_800349D0:
  * Address:	........
  * Size:	0000B0
  */
-void JUTCacheFont::determineBlankPage()
+JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::determineBlankPage()
 {
-	// UNUSED FUNCTION
+	TGlyphCacheInfo* pVar1 = _A4;
+	if (pVar1 != nullptr) {
+		_A4                    = pVar1->mNext;
+		TGlyphCacheInfo* pVar2 = pVar1->mNext;
+		if (pVar2 == nullptr) {
+			_A8 = 0;
+		} else {
+			pVar2->mPrev = nullptr;
+		}
+		return pVar1;
+	}
+
+	TGlyphCacheInfo* puVar1 = _A0;
+	while (puVar1 != nullptr) {
+		TGlyphCacheInfo* prev = puVar1->mPrev;
+		if (puVar1->_1E == 0) {
+			unlink(puVar1);
+			_B4++;
+			return puVar1;
+		}
+		puVar1 = prev;
+	}
+
+	return nullptr;
 }
 
 /*
@@ -657,9 +413,24 @@ void JUTCacheFont::determineBlankPage()
  * Address:	........
  * Size:	000120
  */
-void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo*, JUTCacheFont::TCachePage*, int*, int*)
+void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* info, JUTCacheFont::TCachePage* cache, int* a1, int* a2)
 {
-	// UNUSED FUNCTION
+	TGlyphCacheInfo* pGylphCacheInfo = cache;
+	memcpy(pGylphCacheInfo, info, sizeof(TGlyphCacheInfo));
+	prepend(pGylphCacheInfo);
+	int iVar3 = pGylphCacheInfo->_16 * pGylphCacheInfo->_18;
+	int iVar2 = *a1 / iVar3;
+	pGylphCacheInfo->_08 += iVar2 * iVar3;
+	u16 local_30         = pGylphCacheInfo->_08 + iVar3 - 1;
+	pGylphCacheInfo->_0A = pGylphCacheInfo->_0A < local_30 ? pGylphCacheInfo->_0A : local_30;
+	*a2                  = iVar2;
+	*a1 -= iVar2 * iVar3;
+	u8* addr = JKRAram::aramToMainRam((u32)info->mPrev + pGylphCacheInfo->_10 * iVar2, cache->mImage, pGylphCacheInfo->_10, Switch_0, 0,
+	                                  nullptr, 0xffffffff, nullptr);
+	// JUT_ASSERT(624, addr != NULL);
+	GXInitTexObj(&cache->mTexObj, cache->mImage, pGylphCacheInfo->mWidth, pGylphCacheInfo->mHeight, (GXTexFmt)pGylphCacheInfo->mTexFormat,
+	             GX_CLAMP, GX_CLAMP, GX_FALSE);
+	GXInitTexObjLOD(&cache->mTexObj, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
 }
 
 /*
@@ -669,69 +440,16 @@ void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo*, JUTCacheFont
  */
 void JUTCacheFont::loadImage(int p1, _GXTexMapID id)
 {
-	TGlyphCacheInfo* cacheInfo = loadCache_char_subroutine(&p1, false);
-	if (cacheInfo == nullptr) {
-		return;
+	TGlyphCacheInfo* cachePage = loadCache_char_subroutine(&p1, false);
+	if (cachePage != nullptr) {
+		mWidth  = cachePage->_0C * (p1 % (int)cachePage->_16);
+		mHeight = cachePage->_0E * (p1 / cachePage->_16);
+		GXLoadTexObj(getTexObj(cachePage), id);
+		if (mPagingType == CFPAGETYPE_Unk1) {
+			unlink(cachePage);
+			prepend(cachePage);
+		}
 	}
-	int frac = p1 / cacheInfo->_16;
-	mWidth   = cacheInfo->_0C * (p1 - frac * cacheInfo->_16);
-	mHeight  = cacheInfo->_0E * (p1 / cacheInfo->_16);
-	GXLoadTexObj(&cacheInfo->mGxTexObj, id);
-	if (mPagingType == CFPAGETYPE_Unk1) {
-		unlink(cacheInfo);
-		prepend(cacheInfo);
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	li       r5, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r4, 8(r1)
-	addi     r4, r1, 8
-	bl       loadCache_char_subroutine__12JUTCacheFontFPib
-	or.      r31, r3, r3
-	beq      lbl_80034A94
-	lwz      r6, 8(r1)
-	mr       r4, r30
-	lhz      r5, 0x16(r31)
-	addi     r3, r31, 0x20
-	lhz      r7, 0xc(r31)
-	divw     r0, r6, r5
-	mullw    r0, r0, r5
-	subf     r0, r0, r6
-	mullw    r0, r7, r0
-	stw      r0, 0x1c(r29)
-	lwz      r5, 8(r1)
-	lhz      r0, 0x16(r31)
-	lhz      r6, 0xe(r31)
-	divw     r0, r5, r0
-	mullw    r0, r6, r0
-	stw      r0, 0x20(r29)
-	bl       GXLoadTexObj
-	lwz      r0, 0x8c(r29)
-	cmpwi    r0, 1
-	bne      lbl_80034A94
-	mr       r3, r29
-	mr       r4, r31
-	bl       unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo
-	mr       r3, r29
-	mr       r4, r31
-	bl       prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo
-
-lbl_80034A94:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -739,8 +457,43 @@ lbl_80034A94:
  * Address:	80034AB0
  * Size:	000298
  */
-JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::loadCache_char_subroutine(int*, bool)
+JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::loadCache_char_subroutine(int* a1, bool a2)
 {
+	TCachePage* rv = nullptr;
+	for (TCachePage* pCachePage = (TCachePage*)_9C; pCachePage != NULL; pCachePage = (TCachePage*)pCachePage->mNext) {
+		if (pCachePage->_08 <= *a1 && *a1 <= pCachePage->_0A) {
+			rv = pCachePage;
+			*a1 -= pCachePage->_08;
+			break;
+		}
+	}
+
+	if (rv == NULL) {
+		int i = 0;
+		for (; i < mGlyphBlockCount; i++) {
+			if (mGlyphBlocks[i]->mStartCode <= *a1 && *a1 <= mGlyphBlocks[i]->mEndCode) {
+				*a1 -= mGlyphBlocks[i]->mStartCode;
+				break;
+			}
+		}
+		if (i < mGlyphBlockCount) {
+			TCachePage* pBlankPage = (TCachePage*)determineBlankPage();
+			if (pBlankPage == nullptr) {
+				return nullptr;
+			}
+			int texPageIdx;
+			getGlyphFromAram((JUTCacheFont::TGlyphCacheInfo*)mGlyphBlocks[i], pBlankPage, a1, &texPageIdx);
+			mTexPageIdx = texPageIdx;
+			_66         = i;
+			rv          = pBlankPage;
+		} else {
+			return nullptr;
+		}
+	}
+	if (a2) {
+		rv->_1E = 1;
+	}
+	return rv;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -962,8 +715,9 @@ void JUTCacheFont::loadCache_char(int, bool)
  * Address:	80034D48
  * Size:	0000C8
  */
-void JUTCacheFont::loadCache_string(const char*, bool)
+void JUTCacheFont::loadCache_string(const char* a1, bool a2)
 {
+	loadCache_char_subroutine((int*)a1, a2);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1033,7 +787,7 @@ lbl_80034DF0:
  * Address:	........
  * Size:	0000BC
  */
-void JUTCacheFont::loadCache_string_size(const char*, unsigned long, bool)
+void JUTCacheFont::loadCache_string_size(const char*, u32, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -1073,7 +827,7 @@ void JUTCacheFont::unlockCache_string(const char*)
  * Address:	........
  * Size:	0000D8
  */
-void JUTCacheFont::unlockCache_string_size(const char*, unsigned long)
+void JUTCacheFont::unlockCache_string_size(const char*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1085,16 +839,25 @@ void JUTCacheFont::unlockCache_string_size(const char*, unsigned long)
  */
 void JUTCacheFont::invalidiateAllCache()
 {
-	u32* buffer = (u32*)mCacheBuffer;
-
-	for (int i = 0; i < mCachePage; i++) {
-		buffer[0] = (i == 0) ? 0 : (u32)buffer - _94;
-		buffer[1] = (i == mCachePage - 1) ? 0 : (u32)buffer + _94;
-		buffer    = (u32*)((u32)buffer + _94);
+	int* piVar3 = (int*)mCacheBuffer;
+	for (int uVar2 = 0; uVar2 < mCachePage; uVar2++) {
+		int iVar1;
+		if (uVar2 == 0) {
+			iVar1 = 0;
+		} else {
+			iVar1 = (int)piVar3 - _94;
+		}
+		*piVar3 = iVar1;
+		if (uVar2 == mCachePage - 1) {
+			iVar1 = 0;
+		} else {
+			iVar1 = (int)piVar3 + _94;
+		}
+		piVar3[1] = iVar1;
+		piVar3    = (int*)((int)piVar3 + _94);
 	}
-
-	_A8 = (u32)buffer - _94;
-	_A4 = mCacheBuffer;
+	_A8 = (int)piVar3 - _94;
+	_A4 = (TGlyphCacheInfo*)mCacheBuffer;
 	_9C = nullptr;
 	_A0 = nullptr;
 }
@@ -1104,7 +867,7 @@ void JUTCacheFont::invalidiateAllCache()
  * Address:	80034E98
  * Size:	000044
  */
-void JUTCacheFont::unlink(JUTCacheFont::TGlyphCacheInfo* cacheInfo)
+void JUTCacheFont::unlink(TGlyphCacheInfo* cacheInfo)
 {
 	if (cacheInfo->mPrev == nullptr) {
 		_9C = cacheInfo->mNext;
@@ -1123,7 +886,7 @@ void JUTCacheFont::unlink(JUTCacheFont::TGlyphCacheInfo* cacheInfo)
  * Address:	80034EDC
  * Size:	00002C
  */
-void JUTCacheFont::prepend(JUTCacheFont::TGlyphCacheInfo* cacheInfo)
+void JUTCacheFont::prepend(TGlyphCacheInfo* cacheInfo)
 {
 	TGlyphCacheInfo* oldHead = _9C;
 	_9C                      = cacheInfo;

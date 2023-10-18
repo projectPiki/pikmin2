@@ -70,7 +70,7 @@ void JUTResFont::initialize_state()
 	mMapBlocks   = nullptr;
 	mWidth       = 0;
 	mHeight      = 0;
-	_44          = -1;
+	mTexPageIdx  = -1;
 }
 
 /*
@@ -558,13 +558,13 @@ void JUTResFont::loadImage(int code, GXTexMapID id)
 	mWidth            = cellCol * mGlyphBlocks[i]->mCellWidth;
 	mHeight           = cellRow * mGlyphBlocks[i]->mCellHeight;
 
-	if (pageIdx != _44 || i != _66) {
+	if (pageIdx != mTexPageIdx || i != _66) {
 		GXInitTexObj(&_24, &mGlyphBlocks[i]->mData[pageIdx * mGlyphBlocks[i]->mTextureSize], mGlyphBlocks[i]->mTextureWidth,
 		             mGlyphBlocks[i]->mTextureHeight, (GXTexFmt)mGlyphBlocks[i]->mTextureFormat, GX_CLAMP, GX_CLAMP, 0);
 
 		GXInitTexObjLOD(&_24, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, 0U, 0U, GX_ANISO_1);
-		_44 = pageIdx;
-		_66 = i;
+		mTexPageIdx = pageIdx;
+		_66         = i;
 	}
 
 	GXLoadTexObj(&_24, id);

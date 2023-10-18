@@ -203,11 +203,11 @@ void JUTTexture::initTexObj()
 
 	image += ((mTexInfo->mImageDataOffset) ? mTexInfo->mImageDataOffset : 0x20);
 
-	GXInitTexObj(this, image, /*(u16) */ mTexInfo->mSizeX,
-	             /*(u16) */ mTexInfo->mSizeY, (GXTexFmt)mTexInfo->mTextureFormat, (GXTexWrapMode)mWrapS, (GXTexWrapMode)mWrapT, hasMipMap);
+	GXInitTexObj(this, image, mTexInfo->mSizeX, mTexInfo->mSizeY, (GXTexFmt)mTexInfo->mTextureFormat, (GXTexWrapMode)mWrapS,
+	             (GXTexWrapMode)mWrapT, hasMipMap);
 
 	GXInitTexObjLOD(this, (GXTexFilter)mMinFilter, (GXTexFilter)mMagFilter, (f32)mMinLOD / 8, (f32)mMaxLOD / 8, mLODBias / 100.0f,
-	                /*(u16) */ mTexInfo->mIsBiasClamp, /*(u16) */ mTexInfo->mDoEdgeLOD, (GXAnisotropy)mTexInfo->mIsMaxAnisotropy);
+	                mTexInfo->mIsBiasClamp, mTexInfo->mDoEdgeLOD, (GXAnisotropy)mTexInfo->mIsMaxAnisotropy);
 }
 
 /*
@@ -223,12 +223,11 @@ void JUTTexture::initTexObj(GXTlut tlut)
 
 	image += ((mTexInfo->mImageDataOffset) ? mTexInfo->mImageDataOffset : 0x20);
 
-	GXInitTexObjCI(this, image, /*(u16) */ mTexInfo->mSizeX,
-	               /*(u16) */ mTexInfo->mSizeY, (GXCITexFmt)mTexInfo->mTextureFormat, (GXTexWrapMode)mWrapS, (GXTexWrapMode)mWrapT,
-	               hasMipMap, tlut);
+	GXInitTexObjCI(this, image, mTexInfo->mSizeX, mTexInfo->mSizeY, (GXCITexFmt)mTexInfo->mTextureFormat, (GXTexWrapMode)mWrapS,
+	               (GXTexWrapMode)mWrapT, hasMipMap, tlut);
 
 	GXInitTexObjLOD(this, (GXTexFilter)mMinFilter, (GXTexFilter)mMagFilter, (f32)mMinLOD / 8, (f32)mMaxLOD / 8, mLODBias / 100.0f,
-	                /*(u16) */ mTexInfo->mIsBiasClamp, /*(u16) */ mTexInfo->mDoEdgeLOD, (GXAnisotropy)mTexInfo->mIsMaxAnisotropy);
+	                mTexInfo->mIsBiasClamp, mTexInfo->mDoEdgeLOD, (GXAnisotropy)mTexInfo->mIsMaxAnisotropy);
 }
 
 /*
