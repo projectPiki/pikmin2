@@ -46,30 +46,31 @@ void JPAGetDirMtx(const JGeometry::TVec3f& vec, Mtx mtx)
 	local_78.x = vec.y;
 	local_78.y = minusx;
 	local_78.z = 0.0f;
-	f32 len; //    = local_78.length();
+	local_78.normalize();
+	// f32 len; //    = local_78.length();
 
-	// if (len <= 32.0f * FLT_EPSILON) {
-	// local_78.zero();
-	//} else {
-	// local_78.scale(1.0f / len);
-	//}
-	f32 xsquared = local_78.x * local_78.x;
-	f32 ysquared = local_78.y * local_78.y;
-	f32 xlen     = local_78.x * len;
-	f32 ylen     = local_78.y * len;
-	f32 fVar5    = (1.0f - vec.z) * (local_78.x * local_78.y);
-	mtx[0][0]    = xsquared + vec.z * (1.0f - xsquared);
-	mtx[0][1]    = fVar5;
-	mtx[0][2]    = -ylen;
-	mtx[0][3]    = 0.0f;
-	mtx[1][0]    = fVar5;
-	mtx[1][1]    = ysquared + vec.z * (1.0f - ysquared);
-	mtx[1][2]    = xlen;
-	mtx[1][3]    = 0.0f;
-	mtx[2][0]    = ylen;
-	mtx[2][1]    = -xlen;
-	mtx[2][2]    = vec.z;
-	mtx[2][3]    = 0.0f;
+	// // if (len <= 32.0f * FLT_EPSILON) {
+	// // local_78.zero();
+	// //} else {
+	// // local_78.scale(1.0f / len);
+	// //}
+	// f32 xsquared = local_78.x * local_78.x;
+	// f32 ysquared = local_78.y * local_78.y;
+	// f32 xlen     = local_78.x * len;
+	// f32 ylen     = local_78.y * len;
+	// f32 fVar5    = (1.0f - vec.z) * (local_78.x * local_78.y);
+	// mtx[0][0]    = xsquared + vec.z * (1.0f - xsquared);
+	// mtx[0][1]    = fVar5;
+	// mtx[0][2]    = -ylen;
+	// mtx[0][3]    = 0.0f;
+	// mtx[1][0]    = fVar5;
+	// mtx[1][1]    = ysquared + vec.z * (1.0f - ysquared);
+	// mtx[1][2]    = xlen;
+	// mtx[1][3]    = 0.0f;
+	// mtx[2][0]    = ylen;
+	// mtx[2][1]    = -xlen;
+	// mtx[2][2]    = vec.z;
+	// mtx[2][3]    = 0.0f;
 	/*
 	lfs      f0, 0(r3)
 	lfs      f3, 4(r3)

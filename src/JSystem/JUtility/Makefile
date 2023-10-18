@@ -19,7 +19,7 @@ JUTILITY_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTTexture.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTVideo.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTXfb.o\
-	$(BUILD_DIR)/asm/JSystem/JUtility/JUTCacheFont.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTCacheFont.o\
 
 DEPENDS += $(JUTILITY_FILES:.o=.d)
 

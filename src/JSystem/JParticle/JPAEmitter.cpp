@@ -23,7 +23,7 @@ void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 	mResource->getDyn()->getEmitterScl(&mLocalScl);
 	mResource->getDyn()->getEmitterTrs(&mLocalTrs);
 	mResource->getDyn()->getEmitterDir(&mLocalDir);
-	// mLocalDir.normalize();
+	mLocalDir.normalize();
 	mResource->getDyn()->getEmitterRot(&mLocalRot);
 	mMaxFrame            = mResource->getDyn()->getMaxFrame();
 	mLifeTime            = mResource->getDyn()->getLifetime();
@@ -38,10 +38,10 @@ void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 	mSpread              = mResource->getDyn()->getInitVelDirSp();
 	mRndmDirSpeed        = mResource->getDyn()->getInitVelRndm();
 	mAirResist           = mResource->getDyn()->getAirRes();
-	// mRandom.set_seed(mManager->mWorkData->mRndm.get_rndm_u());
+	mRandom.setSeed(mManager->mWorkData->mRndm.next());
 	PSMTXIdentity(mGlobalRot);
 	mGlobalScl.set(1.0f, 1.0f, 1.0f);
-	// mGlobalTrs.zero();
+	mGlobalTrs.zero();
 	mGlobalPScl.set(1.0f, 1.0f);
 	mGlobalEnvClr.a = 0xff;
 	mGlobalEnvClr.b = 0xff;
@@ -294,7 +294,8 @@ lbl_8008FE08:
  */
 JPABaseParticle* JPABaseEmitter::createParticle()
 {
-	if (mPtclPool->getNum() != 0) {
+
+	if (mPtclPool->mNum != 0) {
 		JPANode<JPABaseParticle>* node = mPtclPool->pop_front();
 		mAlivePtclBase.push_front(node);
 		mResource->getDyn()->calc(mManager->mWorkData);
@@ -303,91 +304,6 @@ JPABaseParticle* JPABaseEmitter::createParticle()
 	}
 
 	return nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r4, 0xe0(r3)
-	lwz      r0, 8(r4)
-	cmplwi   r0, 0
-	beq      lbl_80090140
-	cmplwi   r0, 1
-	li       r31, 0
-	bne      lbl_80090094
-	lwz      r31, 0(r4)
-	li       r0, 0
-	stw      r0, 4(r4)
-	stw      r0, 0(r4)
-	lwz      r3, 8(r4)
-	addi     r0, r3, -1
-	stw      r0, 8(r4)
-	b        lbl_800900C0
-
-lbl_80090094:
-	cmplwi   r0, 0
-	beq      lbl_800900C0
-	lwz      r31, 0(r4)
-	li       r0, 0
-	lwz      r3, 4(r31)
-	stw      r0, 0(r3)
-	lwz      r0, 4(r31)
-	stw      r0, 0(r4)
-	lwz      r3, 8(r4)
-	addi     r0, r3, -1
-	stw      r0, 8(r4)
-
-lbl_800900C0:
-	lwz      r0, 0xc8(r30)
-	cmplwi   r0, 0
-	beq      lbl_800900EC
-	li       r0, 0
-	stw      r0, 0(r31)
-	lwz      r0, 0xc8(r30)
-	stw      r0, 4(r31)
-	lwz      r3, 0xc8(r30)
-	stw      r31, 0(r3)
-	stw      r31, 0xc8(r30)
-	b        lbl_80090100
-
-lbl_800900EC:
-	stw      r31, 0xcc(r30)
-	li       r0, 0
-	stw      r31, 0xc8(r30)
-	stw      r0, 0(r31)
-	stw      r0, 4(r31)
-
-lbl_80090100:
-	lwz      r3, 0xd0(r30)
-	addi     r0, r3, 1
-	stw      r0, 0xd0(r30)
-	lwz      r3, 0xe8(r30)
-	lwz      r5, 0xe4(r30)
-	lwz      r4, 0x2c(r3)
-	lwz      r3, 0x20(r5)
-	lwz      r12, 4(r4)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xe4(r30)
-	addi     r3, r31, 8
-	lwz      r4, 0x20(r4)
-	bl       init_p__15JPABaseParticleFP18JPAEmitterWorkData
-	addi     r3, r31, 8
-	b        lbl_80090144
-
-lbl_80090140:
-	li       r3, 0
-
-lbl_80090144:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -397,7 +313,7 @@ lbl_80090144:
  */
 JPABaseParticle* JPABaseEmitter::createChild(JPABaseParticle* parent)
 {
-	if (mPtclPool->getNum() != 0) {
+	if (mPtclPool->mNum != 0) {
 		JPANode<JPABaseParticle>* node = mPtclPool->pop_front();
 		mAlivePtclChld.push_front(node);
 		node->mData.init_c(mManager->mWorkData, parent);
@@ -405,83 +321,6 @@ JPABaseParticle* JPABaseEmitter::createChild(JPABaseParticle* parent)
 	}
 
 	return nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r7, r3
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r5, 0xe0(r3)
-	lwz      r0, 8(r5)
-	cmplwi   r0, 0
-	beq      lbl_80090240
-	cmplwi   r0, 1
-	li       r31, 0
-	bne      lbl_800901AC
-	lwz      r31, 0(r5)
-	li       r0, 0
-	stw      r0, 4(r5)
-	stw      r0, 0(r5)
-	lwz      r3, 8(r5)
-	addi     r0, r3, -1
-	stw      r0, 8(r5)
-	b        lbl_800901D8
-
-lbl_800901AC:
-	cmplwi   r0, 0
-	beq      lbl_800901D8
-	lwz      r31, 0(r5)
-	li       r0, 0
-	lwz      r3, 4(r31)
-	stw      r0, 0(r3)
-	lwz      r0, 4(r31)
-	stw      r0, 0(r5)
-	lwz      r3, 8(r5)
-	addi     r0, r3, -1
-	stw      r0, 8(r5)
-
-lbl_800901D8:
-	lwz      r0, 0xd4(r7)
-	cmplwi   r0, 0
-	beq      lbl_80090204
-	li       r0, 0
-	stw      r0, 0(r31)
-	lwz      r0, 0xd4(r7)
-	stw      r0, 4(r31)
-	lwz      r3, 0xd4(r7)
-	stw      r31, 0(r3)
-	stw      r31, 0xd4(r7)
-	b        lbl_80090218
-
-lbl_80090204:
-	stw      r31, 0xd8(r7)
-	li       r0, 0
-	stw      r31, 0xd4(r7)
-	stw      r0, 0(r31)
-	stw      r0, 4(r31)
-
-lbl_80090218:
-	lwz      r6, 0xdc(r7)
-	mr       r5, r4
-	addi     r3, r31, 8
-	addi     r0, r6, 1
-	stw      r0, 0xdc(r7)
-	lwz      r4, 0xe4(r7)
-	lwz      r4, 0x20(r4)
-	bl       init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle
-	addi     r3, r31, 8
-	b        lbl_80090244
-
-lbl_80090240:
-	li       r3, 0
-
-lbl_80090244:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -539,57 +378,6 @@ bool JPABaseEmitter::processTermination()
 		return getParticleNumber() == 0;
 	}
 	return false;
-	/*
-	lwz      r0, 0xf4(r3)
-	rlwinm.  r0, r0, 0, 0x17, 0x17
-	beq      lbl_80090420
-	li       r3, 1
-	blr
-
-lbl_80090420:
-	lwz      r4, 0x24(r3)
-	cmpwi    r4, 0
-	bne      lbl_80090434
-	li       r3, 0
-	blr
-
-lbl_80090434:
-	bge      lbl_8009045C
-	lwz      r0, 0xf4(r3)
-	ori      r0, r0, 8
-	stw      r0, 0xf4(r3)
-	lwz      r4, 0xd0(r3)
-	lwz      r0, 0xdc(r3)
-	add      r0, r4, r0
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-
-lbl_8009045C:
-	lwz      r0, 0x100(r3)
-	cmplw    r0, r4
-	blt      lbl_800904A0
-	lwz      r0, 0xf4(r3)
-	ori      r0, r0, 8
-	stw      r0, 0xf4(r3)
-	lwz      r0, 0xf4(r3)
-	rlwinm.  r0, r0, 0, 0x19, 0x19
-	beq      lbl_80090488
-	li       r3, 0
-	blr
-
-lbl_80090488:
-	lwz      r4, 0xd0(r3)
-	lwz      r0, 0xdc(r3)
-	add      r0, r4, r0
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-
-lbl_800904A0:
-	li       r3, 0
-	blr
-	*/
 }
 
 /*

@@ -15,6 +15,7 @@ typedef u16 OSError;
 
 // Error handler function type.
 typedef void (*OSErrorHandler)(OSError error, OSContext* context, ...);
+typedef void (*OSErrorHandlerNoVARG)(OSError error, OSContext* context, u32 p1, u32 p2);
 
 // Error functions.
 OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler);

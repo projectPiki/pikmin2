@@ -177,11 +177,7 @@ struct TRandom_fast_ {
 
 	TRandom_fast_(u32 param_0);
 
-	inline u32 next()
-	{
-		value = value * 0x19660d + 0x3c6ef35f;
-		return value;
-	}
+	inline u32 next() { return value = value * 0x19660d + 0x3c6ef35f; }
 
 	/**
 	 * @fabricated
@@ -228,6 +224,8 @@ struct TRandom_fast_ {
 		}
 		return min + v7;
 	}
+
+	void setSeed(u32 seed) { value = seed; }
 };
 
 inline f32 JMAFastReciprocal(f32 value) { return __fres(value); }

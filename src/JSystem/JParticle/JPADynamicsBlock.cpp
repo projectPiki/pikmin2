@@ -50,10 +50,11 @@
  */
 void JPAVolumePoint(JPAEmitterWorkData* workData)
 {
-	workData->_10 = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
-	workData->_1C = JGeometry::TVec3f(workData->mEmitter->mRng.nextFloat_0_1() - 0.5f, workData->mEmitter->mRng.nextFloat_0_1() - 0.5f,
-	                                  workData->mEmitter->mRng.nextFloat_0_1() - 0.5f);
-	workData->_28 = JGeometry::TVec3f(workData->_1C.x, 0.0f, workData->_1C.z);
+	workData->mVolumePos.set(0.0f, 0.0f, 0.0f);
+	workData->mVelOmni
+	    = JGeometry::TVec3f(workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f, workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f,
+	                        workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f);
+	workData->mVelAxis = JGeometry::TVec3f(workData->mVelOmni.x, 0.0f, workData->mVelOmni.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r4, 0x0019660D@ha
@@ -120,15 +121,15 @@ void JPAVolumePoint(JPAEmitterWorkData* workData)
  */
 void JPAVolumeLine(JPAEmitterWorkData* workData)
 {
-	if (workData->mEmitter->mResource->_2C->castData()->_08 & 2) {
-		workData->_10
-		    = JGeometry::TVec3f(0.0f, 0.0f, workData->_34 * ((float)workData->_44 / ((float)workData->mCreateNumber - 1.0f) - 0.5f));
-		workData->_44++;
+	if (workData->mEmitter->mResource->mDynamicsBlock->castData()->mFlags & 2) {
+		workData->mVolumePos = JGeometry::TVec3f(
+		    0.0f, 0.0f, workData->mVolumeSize * ((float)workData->mVolumeEmitIdx / ((float)workData->mCreateNumber - 1.0f) - 0.5f));
+		workData->mVolumeEmitIdx++;
 	} else {
-		workData->_10 = JGeometry::TVec3f(0.0f, 0.0f, workData->_34 * (workData->mEmitter->mRng.nextFloat_0_1() - 0.5f));
+		workData->mVolumePos = JGeometry::TVec3f(0.0f, 0.0f, workData->mVolumeSize * (workData->mEmitter->mRandom.nextFloat_0_1() - 0.5f));
 	}
-	workData->_1C = JGeometry::TVec3f(0.0f, 0.0f, workData->_10.z * workData->_11C);
-	workData->_28 = JGeometry::TVec3f(0.0f, 0.0f, workData->_10.z);
+	workData->mVelOmni = JGeometry::TVec3f(0.0f, 0.0f, workData->mVolumePos.z * workData->mGlobalScl.z);
+	workData->mVelAxis = JGeometry::TVec3f(0.0f, 0.0f, workData->mVolumePos.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lwz      r6, 0(r3)

@@ -3,6 +3,13 @@
 
 #include "Dolphin/vec.h"
 #include "types.h"
+#include "stl/float.h"
+
+inline float fsqrt_step(float mag)
+{
+	f32 root = __frsqrte(mag);
+	return 0.5f * root * (3.0f - mag * (root * root));
+}
 
 namespace JGeometry {
 template <typename T>
@@ -127,6 +134,45 @@ struct TVec3 {
 		x = vec.x;
 		y = vec.y;
 		z = vec.z;
+	}
+
+	void zero() { x = y = z = 0.0f; }
+
+	f32 squared() const { return x * x + y * y + z * z; }
+
+	void normalize()
+	{
+		f32 sq = squared();
+		if (sq <= FLT_EPSILON * 32.0f) {
+			return;
+		}
+		f32 norm;
+		if (sq <= 0.0f) {
+			norm = sq;
+		} else {
+			norm = fsqrt_step(sq);
+		}
+		x *= norm;
+		y *= norm;
+		z *= norm;
+	}
+
+	void normalize(const TVec3<f32>& other)
+	{
+		f32 sq = other.squared();
+		if (sq <= FLT_EPSILON * 32.0f) {
+			zero();
+			return;
+		}
+		f32 norm;
+		if (sq <= 0.0f) {
+			norm = sq;
+		} else {
+			norm = fsqrt_step(sq);
+		}
+		x = other.x * norm;
+		y = other.y * norm;
+		z = other.z * norm;
 	}
 
 	T x;

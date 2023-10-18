@@ -7,10 +7,12 @@
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JUtility/JUTDirectFile.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTExternalFB.h"
 #include "JSystem/JUtility/JUTGamePad.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/strtold.h"
 #include "types.h"
 
 JUTException* JUTException::sErrorManager;
@@ -88,11 +90,13 @@ void* JUTException::run()
 		OSReceiveMessage(&sMessageQueue, (void**)&msg, OS_MESSAGE_BLOCK);
 		VISetPreRetraceCallback(nullptr);
 		VISetPostRetraceCallback(nullptr);
-		OSError error          = msg->mError;
-		OSErrorHandler handler = msg->mErrorHandler;
-		OSContext* context     = msg->mContext;
-		u32 v1                 = msg->_0C;
-		u32 v2                 = msg->_10;
+		OSErrorHandler handler;
+		OSError error;
+		error              = msg->mError;
+		handler            = msg->mErrorHandler;
+		OSContext* context = msg->mContext;
+		u32 v1             = msg->_0C;
+		u32 v2             = msg->_10;
 		if (error < OS_ERROR_MAX + 1) {
 			mStackPointer = (void*)context->gpr[1];
 		}
@@ -103,7 +107,7 @@ void* JUTException::run()
 		sErrorManager->mDirectPrint->changeFrameBuffer(mFrameMemory, sErrorManager->mDirectPrint->mFBWidth,
 		                                               sErrorManager->mDirectPrint->mFBHeight);
 		if (handler != nullptr) {
-			handler(error, context, v1, v2);
+			((OSErrorHandlerNoVARG)handler)(error, context, v1, v2);
 		}
 		OSDisableInterrupts();
 		mFrameMemory = (JUTExternalFB*)VIGetCurrentFrameBuffer();
@@ -111,88 +115,6 @@ void* JUTException::run()
 		                                               sErrorManager->mDirectPrint->mFBHeight);
 		sErrorManager->printContext(error, context, v1, v2);
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r31, r3
-	bl       PPCMfmsr
-	li       r0, -2305
-	and      r3, r3, r0
-	bl       PPCMtmsr
-	lis      r3, sMessageQueue__12JUTException@ha
-	addi     r4, r13, sMessageBuffer__12JUTException@sda21
-	addi     r3, r3, sMessageQueue__12JUTException@l
-	li       r5, 1
-	bl       OSInitMessageQueue
-	lis      r3, sMessageQueue__12JUTException@ha
-	addi     r30, r3, sMessageQueue__12JUTException@l
-
-lbl_8002A45C:
-	mr       r3, r30
-	addi     r4, r1, 8
-	li       r5, 1
-	bl       OSReceiveMessage
-	li       r3, 0
-	bl       VISetPreRetraceCallback
-	li       r3, 0
-	bl       VISetPostRetraceCallback
-	lwz      r3, 8(r1)
-	lhz      r28, 4(r3)
-	lwz      r29, 0(r3)
-	cmplwi   r28, 0x11
-	lwz      r27, 8(r3)
-	lwz      r26, 0xc(r3)
-	lwz      r25, 0x10(r3)
-	bge      lbl_8002A4A4
-	lwz      r0, 4(r27)
-	stw      r0, 0xa0(r31)
-
-lbl_8002A4A4:
-	bl       VIGetCurrentFrameBuffer
-	stw      r3, 0x7c(r31)
-	lwz      r0, 0x7c(r31)
-	cmplwi   r0, 0
-	bne      lbl_8002A4C0
-	lwz      r3, sErrorManager__12JUTException@sda21(r13)
-	bl       createFB__12JUTExceptionFv
-
-lbl_8002A4C0:
-	lwz      r3, sErrorManager__12JUTException@sda21(r13)
-	lwz      r4, 0x7c(r31)
-	lwz      r3, 0x80(r3)
-	lhz      r5, 4(r3)
-	lhz      r6, 6(r3)
-	bl       changeFrameBuffer__14JUTDirectPrintFPvUsUs
-	cmplwi   r29, 0
-	beq      lbl_8002A4FC
-	mr       r12, r29
-	mr       r3, r28
-	mr       r4, r27
-	mr       r5, r26
-	mr       r6, r25
-	mtctr    r12
-	bctrl
-
-lbl_8002A4FC:
-	bl       OSDisableInterrupts
-	bl       VIGetCurrentFrameBuffer
-	stw      r3, 0x7c(r31)
-	lwz      r3, sErrorManager__12JUTException@sda21(r13)
-	lwz      r4, 0x7c(r31)
-	lwz      r3, 0x80(r3)
-	lhz      r5, 4(r3)
-	lhz      r6, 6(r3)
-	bl       changeFrameBuffer__14JUTDirectPrintFPvUsUs
-	lwz      r3, sErrorManager__12JUTException@sda21(r13)
-	mr       r4, r28
-	mr       r5, r27
-	mr       r6, r26
-	mr       r7, r25
-	bl       printContext__12JUTExceptionFUsP9OSContextUlUl
-	b        lbl_8002A45C
-	*/
 }
 
 /*
@@ -217,11 +139,6 @@ void JUTException::errorHandler(OSError error, OSContext* context, u32 p3, u32 p
 	exCallbackObject.mContext      = context;
 	exCallbackObject._0C           = p3;
 	exCallbackObject._10           = p4;
-	// exCallbackObject[0] = (void*)sPreUserCallback;
-	// exCallbackObject[1] = (void*)error;
-	// exCallbackObject[2] = (void*)context;
-	// exCallbackObject[3] = (void*)p3;
-	// exCallbackObject[4] = (void*)p4;
 	OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCK);
 	OSEnableScheduler();
 	OSYieldThread();
@@ -1312,8 +1229,127 @@ bool JUTException::queryMapAddress(char* p1, u32 p2, long p3, u32* p4, u32* p5, 
  * Address:	8002C924
  * Size:	00033C
  */
-bool JUTException::queryMapAddress_single(char*, u32, long, u32*, u32*, char*, u32, bool, bool)
+bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 section_id, u32* out_addr, u32* out_size, char* out_line,
+                                          u32 line_length, bool print, bool begin_with_newline)
 {
+	if (!mapPath) {
+		return false;
+	}
+
+	char section_name[16];
+	char buffer[0x200];
+	JUTDirectFile file;
+	int i = 0;
+	if (!file.fopen(mapPath)) {
+		return false;
+	}
+
+	int result = 0;
+	do {
+		char* src         = buffer;
+		int found_section = 0;
+		do {
+			i++;
+			while (true) {
+				while (true) {
+					int length = file.fgets(buffer, ARRAY_SIZE(buffer));
+					if (length < 0)
+						goto next_section;
+					if (buffer[0] == '.')
+						break;
+				}
+
+				char* dst = section_name;
+				int i     = 0;
+				char* src = buffer + 1;
+				for (; *src != '\0'; i++, dst++, src++) {
+					*dst = *src;
+					if (*src == ' ' || i == 0xf)
+						break;
+				}
+
+				section_name[i] = 0;
+				if (*src == 0)
+					break;
+
+				if (src[1] == 's' && src[2] == 'e' && src[3] == 'c' && src[4] == 't') {
+					found_section = true;
+					break;
+				}
+			}
+			if ((found_section & 0xFF) == 0)
+				goto end;
+		} while (section_id >= 0 && section_id != i);
+	next_section:;
+
+		u32 addr;
+		int size;
+		do {
+			int length;
+			do {
+				length = file.fgets(buffer, ARRAY_SIZE(buffer));
+				if (length <= 4)
+					goto next_symbol;
+			} while ((length < 28) || (buffer[28] != '4'));
+
+			addr = strtol(buffer + 19, nullptr, 16);
+			addr = ((buffer[18] - '0') << 28) | addr;
+			size = strtol(buffer + 11, nullptr, 16);
+		} while (addr > address || address >= addr + size);
+
+		if (out_addr)
+			*out_addr = addr;
+
+		if (out_size)
+			*out_size = size;
+
+		if (out_line) {
+			src        = buffer + 0x1e;
+			char* dst  = out_line;
+			u32 length = 0;
+			for (; length < line_length - 1; src++) {
+				u32 ch = *(u8*)src;
+				if (ch < ' ' && ch != '\t')
+					break;
+				if (((int)ch == ' ' || ch == '\t') && (length != 0)) {
+					if (dst[-1] != ' ') {
+						*dst = ' ';
+						dst++;
+						length++;
+					}
+				} else {
+					*dst = ch;
+					dst++;
+					length++;
+				}
+			}
+			if (length != 0 && dst[-1] == ' ') {
+				dst--;
+			}
+			*dst = 0;
+			if (print) {
+				if (begin_with_newline) {
+					sConsole->print("\n");
+				}
+				sConsole->print_f("  [%08X]: .%s [%08X: %XH]\n  %s\n", address, section_name, addr, size, out_line);
+				begin_with_newline = false;
+			}
+		}
+
+		result = true;
+
+	next_symbol:;
+	} while (section_id >= 0 && section_id != i);
+
+	if (print && begin_with_newline) {
+		sConsole->print("\n");
+	}
+
+end:
+	int bresult = result != 0;
+	file.fclose();
+
+	return bresult;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xAD0(r1)

@@ -136,7 +136,7 @@ struct JPABaseEmitter {
 
 	void initFlag(u32 flag) { mFlags = flag; }
 	void setFlag(u32 flag) { mFlags |= flag; }
-	bool isFlag(u32 flag) { return mFlags & flag; }
+	bool isFlag(u32 flag) const { return mFlags & flag; }
 	void resetFlag(u32 flag) { mFlags &= ~flag; }
 	bool is100() { return mFlags & 0x100; }
 
@@ -362,14 +362,14 @@ struct JPAEmitterWorkData {
 	JPABaseEmitter* mEmitter;              // _00
 	JPAResource* mResource;                // _04
 	JPAResourceManager* mResourceMgr;      // _08
-	u32 mRndm;                             // _0C
+	JMath::TRandom_fast_ mRndm;            // _0C
 	JGeometry::TVec3f mVolumePos;          // _10
 	JGeometry::TVec3f mVelOmni;            // _1C
 	JGeometry::TVec3f mVelAxis;            // _28
 	f32 mVolumeSize;                       // _34
 	f32 mVolumeMinRad;                     // _38
 	f32 mVolumeSweep;                      // _3C
-	int mCreateNumber;                     // _40;
+	int mCreateNumber;                     // _40
 	u32 mVolumeEmitIdx;                    // _44
 	Mtx mDirectionMtx;                     // _48
 	Mtx mRotationMtx;                      // _78
