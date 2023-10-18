@@ -323,39 +323,28 @@ struct J3DDefaultTexCoordInfo {
 	u8 mPadding;    // _03
 };
 
+extern const J3DDefaultTexCoordInfo j3dDefaultTexCoordInfo[8];
+
 struct J3DTexCoordInfo {
 	u8 mTexGenType; // _00
 	u8 mTexGenSrc;  // _01
 	u8 mTexGenMtx;  // _02
+	void operator=(J3DTexCoordInfo const& other) { *(u32*)this = *(u32*)&other; }
 };
 
-extern const J3DDefaultTexCoordInfo j3dDefaultTexCoordInfo[8];
+struct J3DTexCoord : public J3DTexCoordInfo {
 
-// TODO: Determine if this needs packing pragmas to make it exactly 6 bytes
-/**
- * @size{0x6}
- */
-struct J3DTexCoord {
-	inline J3DTexCoord()
-	    : _00(j3dDefaultTexCoordInfo[0].mTexGenType)
-	    , _01(j3dDefaultTexCoordInfo[0].mTexGenSrc)
-	    , _02(j3dDefaultTexCoordInfo[0].mTexGenMtx)
-	    , _04(_02)
-	{
-	}
+	J3DTexCoord();
+	void setTexCoordInfo(J3DTexCoordInfo* param_1) { *(J3DTexCoordInfo*)this = *param_1; }
 
-	inline J3DTexCoord(const J3DTexCoordInfo& info)
-	    : _00(info.mTexGenType)
-	    , _01(info.mTexGenSrc)
-	    , _02(info.mTexGenMtx)
-	    , _04(_02)
-	{
-	}
+	u8 getTexGenType() { return mTexGenType; }
+	u8 getTexGenSrc() { return mTexGenSrc; }
+	u8 getTexGenMtx() { return mTexGenMtx & 0xff; }
+	u16 getTexMtxReg() { return mTexMtxReg & 0xff; }
 
-	u8 _00;  // _00
-	u8 _01;  // _01
-	u8 _02;  // _02
-	u16 _04; // _04
+	void resetTexMtxReg() { mTexMtxReg = mTexGenMtx; }
+
+	u16 mTexMtxReg; // _04
 };
 
 struct J3DTextureSRTInfo {

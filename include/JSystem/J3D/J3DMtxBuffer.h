@@ -8,27 +8,8 @@
 struct J3DJointTree;
 struct J3DModelData;
 
-/**
- * @size{0x34}
- * @fabricatedName
- */
-struct J3DMtxBufferParent {
-	J3DJointTree* mJointTree;     // _00
-	u8* mScaleFlags;              // _04
-	u8* mEnvelopeScaleFlags;      // _08
-	Mtx* mWorldMatrices;          // _0C
-	Mtx* mWeightEnvelopeMatrices; // _10
-	Mtx** mDrawMatrices[2];       // _14
-	Mtx33** mNormMatrices[2];     // _1C
-	Mtx33*** mBumpMatrices[2];    // _24
-	u32 mModelType;               // _2C
-	u32 mCurrentViewNumber;       // _30
-};
-
-struct J3DMtxBuffer : public J3DMtxBufferParent {
+struct J3DMtxBuffer {
 	inline J3DMtxBuffer() { initialize(); }
-
-	virtual ~J3DMtxBuffer() { } // _08 (weak)
 
 	void initialize();
 	int create(J3DModelData*, u32);
@@ -42,9 +23,12 @@ struct J3DMtxBuffer : public J3DMtxBufferParent {
 	void calcNrmMtx();
 	void calcBBoardMtx();
 
+	MtxP getAnmMtx(int idx) const { return mWorldMatrices[idx]; }
+	void setAnmMtx(int i, Mtx m) { PSMTXCopy(m, (MtxP)mWorldMatrices[i]); }
+	MtxP getWeightAnmMtx(int idx) const { return mWeightEnvelopeMatrices[idx]; }
+
 	inline Matrixf* getWorldMatrix(int i) { return (Matrixf*)mWorldMatrices[i]; }
 
-	void setAnmMtx(int i, Mtx m) { PSMTXCopy(m, mWorldMatrices[i]); }
 	void setScaleFlag(int idx, u8 flag) { mScaleFlags[idx] = flag; }
 	u32* getCurrentViewNoPtr() { return &mCurrentViewNumber; }
 	u8* getScaleFlagArray() const { return mScaleFlags; }
@@ -72,11 +56,24 @@ struct J3DMtxBuffer : public J3DMtxBufferParent {
 		mNormMatrices[1][mCurrentViewNumber] = tmp;
 	}
 
+	static Mtx sNoUseDrawMtx;
+	static Mtx33 sNoUseNrmMtx;
 	static Mtx* sNoUseDrawMtxPtr;
 	static Mtx33* sNoUseNrmMtxPtr;
 
-	// _00-_30 = J3DMtxBufferParent;
+	J3DJointTree* mJointTree;     // _00
+	u8* mScaleFlags;              // _04
+	u8* mEnvelopeScaleFlags;      // _08
+	Mtx* mWorldMatrices;          // _0C
+	Mtx* mWeightEnvelopeMatrices; // _10
+	Mtx** mDrawMatrices[2];       // _14
+	Mtx33** mNormMatrices[2];     // _1C
+	Mtx33*** mBumpMatrices[2];    // _24
+	u32 mModelType;               // _2C
+	u32 mCurrentViewNumber;       // _30
+
 	// _34     = VTBL
+	virtual ~J3DMtxBuffer() { } // _08 (weak)
 };
 
 #endif

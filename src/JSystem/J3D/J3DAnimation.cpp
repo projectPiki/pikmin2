@@ -138,15 +138,15 @@
  * Address:	80067678
  * Size:	000030
  */
-void J3DFrameCtrl::init(short p1)
+void J3DFrameCtrl::init(short i_end)
 {
-	mAttr = 2;
-	_05   = 0;
-	_06   = 0;
-	_08   = p1;
-	_0A   = 0;
-	_0C   = 1.0f;
-	_10   = 0.0f;
+	mAttribute = 2;
+	mState     = 0;
+	mStart     = 0;
+	mEnd       = i_end;
+	mLoop      = 0;
+	mRate      = 1.0f;
+	mFrame     = 0.0f;
 }
 
 /*
@@ -156,75 +156,71 @@ void J3DFrameCtrl::init(short p1)
  */
 void J3DFrameCtrl::update()
 {
-	_05 = 0;
-	_10 = _10 + _0C;
-	switch (mAttr) {
+	mState = 0;
+	mFrame += mRate;
+	switch (mAttribute) {
 	case 0:
-		if (_10 < _06) {
-			_10 = _06;
-			_0C = 0.0f;
-			_05 = _05 | 1;
+		if (mFrame < mStart) {
+			mFrame = mStart;
+			mRate  = 0.0f;
+			mState |= 1;
 		}
-		if (_10 >= _08) {
-			_10 = _08 - 0.001f;
-			_0C = 0.0f;
-			_05 = _05 | 1;
+		if (mFrame >= mEnd) {
+			mFrame = mEnd - 0.001f;
+			mRate  = 0.0f;
+			mState |= 1;
 		}
-		return;
+		break;
 	case 1:
-		if (_10 < _06) {
-			_10 = _06;
-			_0C = 0.0f;
-			_05 = _05 | 1;
+		if (mFrame < mStart) {
+			mFrame = mStart;
+			mRate  = 0.0f;
+			mState |= 1;
 		}
-		if (_10 >= _08) {
-			_10 = _06;
-			_0C = 0.0f;
-			_05 = _05 | 1;
+		if (mFrame >= mEnd) {
+			mFrame = mStart;
+			mRate  = 0.0f;
+			mState |= 1;
 		}
-		return;
+		break;
 	case 2:
-		while (_10 < _06) {
-			_05    = _05 | 2;
-			int v1 = _0A - _06;
-			if (v1 <= 0.0f) {
+		while (mFrame < mStart) {
+			mState |= 2;
+			if (mLoop - mStart <= 0.0f) {
 				break;
 			}
-			_10 = _10 + v1;
+			mFrame += mLoop - mStart;
 		}
-		while (_10 >= _08) {
-			_05    = _05 | 2;
-			int v1 = _08 - _0A;
-			if (v1 <= 0.0f) {
+		while (mFrame >= mEnd) {
+			mState |= 2;
+			if (mEnd - mLoop <= 0.0f) {
 				break;
 			}
-			_10 = _10 - v1;
+			mFrame -= mEnd - mLoop;
 		}
-		return;
+		break;
 	case 3:
-		if (_10 >= _08) {
-			_10 = _08 - (_10 - _08);
-			_0C = -_0C;
+		if (mFrame >= mEnd) {
+			mFrame = mEnd - (mFrame - mEnd);
+			mRate  = -mRate;
 		}
-		if (_10 < _06) {
-			_10 = _06 - (_10 - _06);
-			_0C = 0.0f;
-			_05 = _05 | 1;
+		if (mFrame < mStart) {
+			mFrame = mStart - (mFrame - mStart);
+			mRate  = 0.0f;
+			mState |= 1;
 		}
-		return;
-	case 4: {
-		f32 v2 = _08 - 1.0f;
-		if (_10 >= v2) {
-			_10 = v2 - (_10 - v2);
-			_0C = -_0C;
+		break;
+	case 4:
+		if (mFrame >= mEnd - 1.0f) {
+			mFrame = (mEnd - 1.0f) - (mFrame - (mEnd - 1.0f));
+			mRate  = -mRate;
 		}
-		if (_10 < _06) {
-			_10 = _06 - (_10 - _06);
-			_0C = -_0C;
-			_05 = _05 | 2;
+		if (mFrame < mStart) {
+			mFrame = mStart - (mFrame - mStart);
+			mRate  = -mRate;
+			mState |= 2;
 		}
-		return;
-	}
+		break;
 	}
 }
 
@@ -233,72 +229,74 @@ void J3DFrameCtrl::update()
  * Address:	80067B1C
  * Size:	000360
  */
-void J3DAnmTransformFull::getTransform(unsigned short p1, J3DTransformInfo* info) const
+void J3DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* info) const
 {
+	/*
 	u16 tableIndex                    = p1 * 3;
 	J3DAnmTransformFullTable::Row* v1 = _20->_00[tableIndex];
 	J3DAnmTransformFullTable::Row* v2 = _20->_00[tableIndex + 1];
 	J3DAnmTransformFullTable::Row* v3 = _20->_00[tableIndex + 2];
 	if (mFTime < 0.0f) {
-		info->mScale.x     = _0C[v1[0][1]];
-		info->mScale.y     = _0C[v2[0][1]];
-		info->mScale.z     = _0C[v3[0][1]];
-		info->mEulerRot.x  = _10[v1[1][1]];
-		info->mEulerRot.y  = _10[v2[1][1]];
-		info->mEulerRot.z  = _10[v3[1][1]];
-		info->mZRotation.x = _14[v1[2][1]];
-		info->mZRotation.y = _14[v2[2][1]];
-		info->mZRotation.z = _14[v3[2][1]];
+	    info->mScale.x     = _0C[v1[0][1]];
+	    info->mScale.y     = _0C[v2[0][1]];
+	    info->mScale.z     = _0C[v3[0][1]];
+	    info->mEulerRot.x  = _10[v1[1][1]];
+	    info->mEulerRot.y  = _10[v2[1][1]];
+	    info->mEulerRot.z  = _10[v3[1][1]];
+	    info->mZRotation.x = _14[v1[2][1]];
+	    info->mZRotation.y = _14[v2[2][1]];
+	    info->mZRotation.z = _14[v3[2][1]];
 	} else {
-		u32 v4 = (int)(0.5f + mFTime);
-		if (v4 >= v1[0][0]) {
-			info->mScale.x = _0C[v1[0][0] - 1 + v1[0][1]];
-		} else {
-			info->mScale.x = _0C[v1[0][1] + v4];
-		}
-		if (v4 >= v1[1][0]) {
-			info->mEulerRot.x = _10[v1[1][0] - 1 + v1[1][1]];
-		} else {
-			info->mEulerRot.x = _10[v1[1][1] + v4];
-		}
-		if (v4 >= v1[2][0]) {
-			info->mZRotation.x = _14[v1[2][0] - 1 + v1[2][1]];
-		} else {
-			info->mZRotation.x = _14[v1[2][1] + v4];
-		}
+	    u32 v4 = (int)(0.5f + mFTime);
+	    if (v4 >= v1[0][0]) {
+	        info->mScale.x = _0C[v1[0][0] - 1 + v1[0][1]];
+	    } else {
+	        info->mScale.x = _0C[v1[0][1] + v4];
+	    }
+	    if (v4 >= v1[1][0]) {
+	        info->mEulerRot.x = _10[v1[1][0] - 1 + v1[1][1]];
+	    } else {
+	        info->mEulerRot.x = _10[v1[1][1] + v4];
+	    }
+	    if (v4 >= v1[2][0]) {
+	        info->mZRotation.x = _14[v1[2][0] - 1 + v1[2][1]];
+	    } else {
+	        info->mZRotation.x = _14[v1[2][1] + v4];
+	    }
 
-		if (v4 >= v2[0][0]) {
-			info->mScale.y = _0C[v2[0][0] - 1 + v2[0][1]];
-		} else {
-			info->mScale.y = _0C[v2[0][1] + v4];
-		}
-		if (v4 >= v2[1][0]) {
-			info->mEulerRot.y = _10[v2[1][0] - 1 + v2[1][1]];
-		} else {
-			info->mEulerRot.y = _10[v2[1][1] + v4];
-		}
-		if (v4 >= v2[2][0]) {
-			info->mZRotation.y = _14[v2[2][0] - 1 + v2[2][1]];
-		} else {
-			info->mZRotation.y = _14[v2[2][1] + v4];
-		}
+	    if (v4 >= v2[0][0]) {
+	        info->mScale.y = _0C[v2[0][0] - 1 + v2[0][1]];
+	    } else {
+	        info->mScale.y = _0C[v2[0][1] + v4];
+	    }
+	    if (v4 >= v2[1][0]) {
+	        info->mEulerRot.y = _10[v2[1][0] - 1 + v2[1][1]];
+	    } else {
+	        info->mEulerRot.y = _10[v2[1][1] + v4];
+	    }
+	    if (v4 >= v2[2][0]) {
+	        info->mZRotation.y = _14[v2[2][0] - 1 + v2[2][1]];
+	    } else {
+	        info->mZRotation.y = _14[v2[2][1] + v4];
+	    }
 
-		if (v4 >= v3[0][0]) {
-			info->mScale.z = _0C[v3[0][0] - 1 + v3[0][1]];
-		} else {
-			info->mScale.z = _0C[v3[0][1] + v4];
-		}
-		if (v4 >= v3[1][0]) {
-			info->mEulerRot.z = _10[v3[1][0] - 1 + v3[1][1]];
-		} else {
-			info->mEulerRot.z = _10[v3[1][1] + v4];
-		}
-		if (v4 >= v3[2][0]) {
-			info->mZRotation.z = _14[v3[2][0] - 1 + v3[2][1]];
-		} else {
-			info->mZRotation.z = _14[v3[2][1] + v4];
-		}
+	    if (v4 >= v3[0][0]) {
+	        info->mScale.z = _0C[v3[0][0] - 1 + v3[0][1]];
+	    } else {
+	        info->mScale.z = _0C[v3[0][1] + v4];
+	    }
+	    if (v4 >= v3[1][0]) {
+	        info->mEulerRot.z = _10[v3[1][0] - 1 + v3[1][1]];
+	    } else {
+	        info->mEulerRot.z = _10[v3[1][1] + v4];
+	    }
+	    if (v4 >= v3[2][0]) {
+	        info->mZRotation.z = _14[v3[2][0] - 1 + v3[2][1]];
+	    } else {
+	        info->mZRotation.z = _14[v3[2][1] + v4];
+	    }
 	}
+	*/
 }
 
 /*
@@ -309,6 +307,7 @@ void J3DAnmTransformFull::getTransform(unsigned short p1, J3DTransformInfo* info
  */
 void J3DAnmTransformKey::calcTransform(float p1, unsigned short p2, J3DTransformInfo* info) const
 {
+	/*
 	u16 v0                 = p2 * 3;
 	J3DAnmKeyTableBase* v1 = _24[v0]._00;
 	J3DAnmKeyTableBase* v2 = _24[v0 + 1]._00;
@@ -316,111 +315,112 @@ void J3DAnmTransformKey::calcTransform(float p1, unsigned short p2, J3DTransform
 
 	switch (v1[0]._00) {
 	case 0:
-		info->mScale.x = 1.0f;
-		break;
+	    info->mScale.x = 1.0f;
+	    break;
 	case 1:
-		info->mScale.x = _0C[v1[0]._02];
-		break;
+	    info->mScale.x = _0C[v1[0]._02];
+	    break;
 	default:
-		info->mScale.x = J3DGetKeyFrameInterpolation(p1, v1, _0C + v1[0]._02);
-		break;
+	    info->mScale.x = J3DGetKeyFrameInterpolation(p1, v1, _0C + v1[0]._02);
+	    break;
 	}
 
 	switch (v2[0]._00) {
 	case 0:
-		info->mScale.y = 1.0f;
-		break;
+	    info->mScale.y = 1.0f;
+	    break;
 	case 1:
-		info->mScale.y = _0C[v2[0]._02];
-		break;
+	    info->mScale.y = _0C[v2[0]._02];
+	    break;
 	default:
-		info->mScale.y = J3DGetKeyFrameInterpolation(p1, v2, _0C + v2[0]._02);
-		break;
+	    info->mScale.y = J3DGetKeyFrameInterpolation(p1, v2, _0C + v2[0]._02);
+	    break;
 	}
 
 	switch (v3[0]._00) {
 	case 0:
-		info->mScale.z = 1.0f;
-		break;
+	    info->mScale.z = 1.0f;
+	    break;
 	case 1:
-		info->mScale.z = _0C[v3[0]._02];
-		break;
+	    info->mScale.z = _0C[v3[0]._02];
+	    break;
 	default:
-		info->mScale.z = J3DGetKeyFrameInterpolation(p1, v3, _0C + v3[0]._02);
-		break;
+	    info->mScale.z = J3DGetKeyFrameInterpolation(p1, v3, _0C + v3[0]._02);
+	    break;
 	}
 
 	switch (v1[1]._00) {
 	case 0:
-		info->mEulerRot.x = 0;
-		break;
+	    info->mEulerRot.x = 0;
+	    break;
 	case 1:
-		info->mEulerRot.x = _10[v1[1]._02] << _20;
-		break;
+	    info->mEulerRot.x = _10[v1[1]._02] << _20;
+	    break;
 	default:
-		info->mEulerRot.x = (int)J3DGetKeyFrameInterpolation(p1, v1 + 1, _10 + v1[1]._02) << _20;
-		break;
+	    info->mEulerRot.x = (int)J3DGetKeyFrameInterpolation(p1, v1 + 1, _10 + v1[1]._02) << _20;
+	    break;
 	}
 
 	switch (v2[1]._00) {
 	case 0:
-		info->mEulerRot.y = 0;
-		break;
+	    info->mEulerRot.y = 0;
+	    break;
 	case 1:
-		info->mEulerRot.y = _10[v2[1]._02] << _20;
-		break;
+	    info->mEulerRot.y = _10[v2[1]._02] << _20;
+	    break;
 	default:
-		info->mEulerRot.y = (int)J3DGetKeyFrameInterpolation(p1, v2 + 1, _10 + v2[1]._02) << _20;
-		break;
+	    info->mEulerRot.y = (int)J3DGetKeyFrameInterpolation(p1, v2 + 1, _10 + v2[1]._02) << _20;
+	    break;
 	}
 
 	switch (v3[1]._00) {
 	case 0:
-		info->mEulerRot.z = 0;
-		break;
+	    info->mEulerRot.z = 0;
+	    break;
 	case 1:
-		info->mEulerRot.z = _10[v3[1]._02] << _20;
-		break;
+	    info->mEulerRot.z = _10[v3[1]._02] << _20;
+	    break;
 	default:
-		info->mEulerRot.z = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _10 + v3[1]._02) << _20;
-		break;
+	    info->mEulerRot.z = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _10 + v3[1]._02) << _20;
+	    break;
 	}
 
 	switch (v1[2]._00) {
 	case 0:
-		info->mZRotation.x = 0.0f;
-		break;
+	    info->mZRotation.x = 0.0f;
+	    break;
 	case 1:
-		info->mZRotation.x = _14[v1[2]._02];
-		break;
+	    info->mZRotation.x = _14[v1[2]._02];
+	    break;
 	default:
-		info->mZRotation.x = J3DGetKeyFrameInterpolation(p1, v1 + 2, _14 + v1[2]._02);
-		break;
+	    info->mZRotation.x = J3DGetKeyFrameInterpolation(p1, v1 + 2, _14 + v1[2]._02);
+	    break;
 	}
 
 	switch (v2[2]._00) {
 	case 0:
-		info->mZRotation.y = 0.0f;
-		break;
+	    info->mZRotation.y = 0.0f;
+	    break;
 	case 1:
-		info->mZRotation.y = _14[v2[2]._02];
-		break;
+	    info->mZRotation.y = _14[v2[2]._02];
+	    break;
 	default:
-		info->mZRotation.y = J3DGetKeyFrameInterpolation(p1, v2 + 2, _14 + v2[2]._02);
-		break;
+	    info->mZRotation.y = J3DGetKeyFrameInterpolation(p1, v2 + 2, _14 + v2[2]._02);
+	    break;
 	}
 
 	switch (v3[2]._00) {
 	case 0:
-		info->mZRotation.z = 0.0f;
-		break;
+	    info->mZRotation.z = 0.0f;
+	    break;
 	case 1:
-		info->mZRotation.z = _14[v3[2]._02];
-		break;
+	    info->mZRotation.z = _14[v3[2]._02];
+	    break;
 	default:
-		info->mZRotation.z = J3DGetKeyFrameInterpolation(p1, v3 + 2, _14 + v3[2]._02);
-		break;
+	    info->mZRotation.z = J3DGetKeyFrameInterpolation(p1, v3 + 2, _14 + v3[2]._02);
+	    break;
 	}
+	*/
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -769,6 +769,7 @@ void J3DAnmTransformKey::calcTransform(float p1, unsigned short p2, J3DTransform
  */
 void J3DAnmTextureSRTKey::calcTransform(float p1, unsigned short p2, J3DTextureSRTInfo* info) const
 {
+	/*
 	u16 v0                 = p2 * 3;
 	J3DAnmKeyTableBase* v1 = _10[v0]._00;
 	J3DAnmKeyTableBase* v2 = _10[v0 + 1]._00;
@@ -776,63 +777,64 @@ void J3DAnmTextureSRTKey::calcTransform(float p1, unsigned short p2, J3DTextureS
 
 	switch (v1[0]._00) {
 	case 0:
-		info->mScaleX = 1.0f;
-		break;
+	    info->mScaleX = 1.0f;
+	    break;
 	case 1:
-		info->mScaleX = _1C[v1[0]._02];
-		break;
+	    info->mScaleX = _1C[v1[0]._02];
+	    break;
 	default:
-		info->mScaleX = J3DGetKeyFrameInterpolation(p1, v1, _1C + v1[0]._02);
-		break;
+	    info->mScaleX = J3DGetKeyFrameInterpolation(p1, v1, _1C + v1[0]._02);
+	    break;
 	}
 
 	switch (v2[0]._00) {
 	case 0:
-		info->mScaleY = 1.0f;
-		break;
+	    info->mScaleY = 1.0f;
+	    break;
 	case 1:
-		info->mScaleY = _1C[v2[0]._02];
-		break;
+	    info->mScaleY = _1C[v2[0]._02];
+	    break;
 	default:
-		info->mScaleY = J3DGetKeyFrameInterpolation(p1, v2, _1C + v2[0]._02);
-		break;
+	    info->mScaleY = J3DGetKeyFrameInterpolation(p1, v2, _1C + v2[0]._02);
+	    break;
 	}
 
 	switch (v3[1]._00) {
 	case 0:
-		info->_08 = 0;
-		break;
+	    info->_08 = 0;
+	    break;
 	case 1:
-		info->_08 = _20[v3[1]._02] << _0C;
-		break;
+	    info->_08 = _20[v3[1]._02] << _0C;
+	    break;
 	default:
-		info->_08 = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _20 + v3[1]._02) << _0C;
-		break;
+	    info->_08 = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _20 + v3[1]._02) << _0C;
+	    break;
 	}
 
 	switch (v1[2]._00) {
 	case 0:
-		info->_0C = 0.0f;
-		break;
+	    info->_0C = 0.0f;
+	    break;
 	case 1:
-		info->_0C = _24[v1[2]._02];
-		break;
+	    info->_0C = _24[v1[2]._02];
+	    break;
 	default:
-		info->_0C = J3DGetKeyFrameInterpolation(p1, v1 + 2, _24 + v1[2]._02);
-		break;
+	    info->_0C = J3DGetKeyFrameInterpolation(p1, v1 + 2, _24 + v1[2]._02);
+	    break;
 	}
 
 	switch (v2[2]._00) {
 	case 0:
-		info->_10 = 0.0f;
-		break;
+	    info->_10 = 0.0f;
+	    break;
 	case 1:
-		info->_10 = _24[v2[2]._02];
-		break;
+	    info->_10 = _24[v2[2]._02];
+	    break;
 	default:
-		info->_10 = J3DGetKeyFrameInterpolation(p1, v2 + 2, _24 + v2[2]._02);
-		break;
+	    info->_10 = J3DGetKeyFrameInterpolation(p1, v2 + 2, _24 + v2[2]._02);
+	    break;
 	}
+	*/
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -1039,19 +1041,19 @@ void J3DAnmTextureSRTKey::calcTransform(float p1, unsigned short p2, J3DTextureS
  */
 float J3DAnmClusterFull::getWeight(unsigned short p1) const
 {
-
-	int v4                     = (int)(0.5f + mFTime);
-	u32 index                  = p1;
-	J3DAnmClusterFullTable* v1 = _10;
-	if (mFTime < 0.0f) {
-		return _0C[v1[index]._00[1]];
-	}
-	if (v4 >= v1[index]._00[0]) {
-		int v2 = v1[index]._00[0] - 1 + v1[index]._00[1];
-		return _0C[v2];
-	}
-	return _0C[v1[index]._00[1] + v4];
-
+	/*
+	    int v4                     = (int)(0.5f + mFTime);
+	    u32 index                  = p1;
+	    J3DAnmClusterFullTable* v1 = _10;
+	    if (mFTime < 0.0f) {
+	        return _0C[v1[index]._00[1]];
+	    }
+	    if (v4 >= v1[index]._00[0]) {
+	        int v2 = v1[index]._00[0] - 1 + v1[index]._00[1];
+	        return _0C[v2];
+	    }
+	    return _0C[v1[index]._00[1] + v4];
+	*/
 	// int v4 = (int)(0.5f + mFTime);
 
 	// J3DAnmClusterFullTable* v1 = _10;
@@ -1141,11 +1143,11 @@ lbl_80068590:
  */
 float J3DAnmClusterKey::getWeight(unsigned short p1) const
 {
-	switch (_10[p1]._00) {
+	switch (mTables[p1]._00) {
 	case 0:
 		return 1.0f;
 	case 1:
-		return _0C[_10[p1]._02];
+		return _0C[mTables[p1]._02];
 	default:
 		return J3DGetKeyFrameInterpolation<float>(mFTime, &_10[p1], &_0C[_10[p1]._02]);
 	}

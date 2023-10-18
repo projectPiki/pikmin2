@@ -122,6 +122,13 @@ struct TVec3 {
 		return other;
 	}
 
+	inline TVec3(Vec& vec)
+	{
+		x = vec.x;
+		y = vec.y;
+		z = vec.z;
+	}
+
 	T x;
 	T y;
 	T z;

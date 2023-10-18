@@ -229,6 +229,11 @@ struct TRandom_fast_ {
 		return min + v7;
 	}
 };
+
+inline f32 JMAFastReciprocal(f32 value) { return __fres(value); }
+
+inline f32 fastReciprocal(f32 value) { return JMAFastReciprocal(value); }
+
 } // namespace JMath
 
 void JMAEulerToQuat(short, short, short, Quaternion*);

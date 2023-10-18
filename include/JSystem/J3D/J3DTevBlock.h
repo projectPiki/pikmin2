@@ -12,8 +12,8 @@ struct J3DTevSwapModeInfo {
 };
 
 struct J3DTevBlock {
-	virtual void reset(J3DTevBlock*);                      // _08 (weak)
-	virtual void load();                                   // _0C (weak)
+	virtual void reset(J3DTevBlock*) { }                   // _08 (weak)
+	virtual void load() { }                                // _0C (weak)
 	virtual void diff(u32);                                // _10
 	virtual void diffTexNo() { }                           // _14 (weak)
 	virtual void diffTevReg() { }                          // _18 (weak)
@@ -27,7 +27,7 @@ struct J3DTevBlock {
 	virtual void ptrToIndex()    = 0;                      // _38 (weak)
 	virtual void indexToPtr()    = 0;                      // _3C (weak)
 	virtual JBlockType getType() = 0;                      // _40 (weak)
-	virtual u32 countDLSize();                             // _44 (weak)
+	virtual u32 countDLSize() { return 0; }                // _44 (weak)
 	virtual void setTexNo(u32 index, const u16* texNo) { } // _48 (weak)
 	/**
 	 * @reifiedAddress{8006A360}

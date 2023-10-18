@@ -7,21 +7,17 @@
 struct ResTIMG;
 struct ResTIMGPair;
 
-struct _UnknownJ3DTextureParent {
-	u16 mNum;      // _00
-	u16 _02;       // _02
-	ResTIMG* mRes; // _04
-};
-
 /**
  * @size{0xC}
  */
-struct J3DTexture : _UnknownJ3DTextureParent {
+struct J3DTexture {
+	u16 mNum;      // _00
+	ResTIMG* mRes; // _04
+
 	/** @fabricated */
 	inline J3DTexture(u16 count, ResTIMG* res)
 	{
 		mNum = count;
-		_02  = 0;
 		mRes = res;
 	}
 

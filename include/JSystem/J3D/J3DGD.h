@@ -38,4 +38,38 @@ void J3DFifoLoadNrmMtxImm3x3(Mtx33, u32);
 void J3DFifoLoadNrmMtxToTexMtx(Mtx, u32);
 void J3DFifoLoadNrmMtxToTexMtx3x3(Mtx33, u32);
 
+inline void J3DGDWrite_u8(u8 param) { __GDWrite(param); }
+
+inline void J3DGDWrite_u16(u16 param)
+{
+	__GDWrite((param & 0xffff) >> 8);
+	__GDWrite(param & 0xff);
+}
+
+inline void J3DGDWrite_u32(u32 param)
+{
+	__GDWrite((param >> 24) & 0xff);
+	__GDWrite((param >> 16) & 0xff);
+	__GDWrite((param >> 8) & 0xff);
+	__GDWrite(param & 0xff);
+}
+
+inline void J3DGDWrite_f32(f32 param)
+{
+	u32 tmp = *(u32*)&param;
+	J3DGDWrite_u32(tmp);
+}
+
+inline void J3DGDWriteXFCmd(u16 param_1, u32 param_2)
+{
+	J3DGDWrite_u8(0x10);
+	J3DGDWrite_u16(0);
+	J3DGDWrite_u16(param_1);
+	J3DGDWrite_u32(param_2);
+}
+
+inline void J3DGDSetNumChans(u8 numChans) { J3DGDWriteXFCmd(0x1009, numChans); }
+
+inline void J3DGDSetNumTexGens(u8 numTexGens) { J3DGDWriteXFCmd(0x103f, numTexGens); }
+
 #endif

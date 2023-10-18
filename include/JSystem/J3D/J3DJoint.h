@@ -30,18 +30,22 @@ struct J3DJoint {
 	void recursiveCalc();
 
 	u16 getJntNo() const { return mJointIdx; }
-	J3DJoint* getYounger() { return mParent; }
-	J3DJoint* getChild() { return mChild; }
 	J3DMaterial* getMesh() { return mMaterial; }
-	u8 getScaleCompensate() const { return mIgnoreParentScaling; }
-	J3DTransformInfo& getTransformInfo() { return mTransformInfo; }
 	JGeometry::TVec3f* getMax() { return &mMax; }
 	JGeometry::TVec3f* getMin() { return &mMin; }
 
-	void setYounger(J3DJoint* parent) { mParent = parent; }
+	void setYounger(J3DJoint* parent) { mYounger = parent; }
 	void setCallBack(J3DJointCallBack callback) { mFunction = callback; }
 	void setMtxCalc(J3DMtxCalc* i_mtxCalc) { mMtxCalc = i_mtxCalc; }
 	void setCurrentMtxCalc(J3DMtxCalc* calc) { mCurrentMtxCalc = calc; }
+
+	u8 getScaleCompensate() const { return mScaleCompensate; }
+	J3DJoint* getYounger() { return mYounger; }
+	J3DTransformInfo& getTransformInfo() { return mTransformInfo; }
+	J3DJointCallBack getCallBack() { return mFunction; }
+	J3DMtxCalc* getMtxCalc() { return mMtxCalc; }
+	J3DMtxCalc* getCurrentMtxCalc() { return mCurrentMtxCalc; };
+	J3DJoint* getChild() { return mChild; }
 
 	static J3DMtxCalc* mCurrentMtxCalc;
 
@@ -49,12 +53,12 @@ struct J3DJoint {
 	J3DJointCallBack mFunction;      // _04
 	u32 _08;                         // _08
 	J3DJoint* mChild;                // _0C
-	J3DJoint* mParent;               // _10
+	J3DJoint* mYounger;              // _10
 	u16 mJointIdx;                   // _14
 	s8 mKind;                        // _16
-	u8 mIgnoreParentScaling;         // _17
+	u8 mScaleCompensate;             // _17
 	J3DTransformInfo mTransformInfo; // _18
-	f32 mRadius;                     // _38, bounding sphere radius
+	f32 mBoundingSphereRadius;       // _38, bounding sphere radius
 	JGeometry::TVec3f mMin;          // _3C
 	JGeometry::TVec3f mMax;          // _48
 	J3DMtxCalc* mMtxCalc;            // _54

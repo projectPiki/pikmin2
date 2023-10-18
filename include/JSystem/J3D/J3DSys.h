@@ -55,6 +55,8 @@ struct J3DSys {
 	void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
 	void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
+	J3DMatPacket* getMatPacket() { return mMatPacket; }
+
 	void setTexture(J3DTexture* pTex) { mTexture = pTex; }
 	J3DTexture* getTexture() { return mTexture; }
 
@@ -94,8 +96,8 @@ struct J3DSys {
 	J3DModel* getModel() { return mModel; }
 
 	static Mtx mCurrentMtx;
-	static JGeometry::TVec3f mCurrentS;
-	static JGeometry::TVec3f mParentS;
+	static Vec mCurrentS;
+	static Vec mParentS;
 	static u16 sTexCoordScaleTable[8][4];
 
 	Mtx mViewMtx;                   // _000

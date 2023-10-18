@@ -12,20 +12,21 @@
 struct J3DMtxBuffer;
 
 struct J3DMtxCalc {
-	virtual ~J3DMtxCalc() {};                                      // _08
-	virtual void setAnmTransform(J3DAnmTransform*);                // _0C
-	virtual J3DAnmTransform* getAnmTransform();                    // _10
-	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14
-	virtual J3DAnmTransform* getAnmTransform(unsigned char);       // _18
-	virtual void setWeight(unsigned char, f32);                    // _1C
-	virtual void getWeight(unsigned char) const;                   // _20
-	virtual void init(const Vec&, const f32 (&)[3][4]) = 0;        // _24
-	virtual void calc()                                = 0;        // _28
+	virtual ~J3DMtxCalc() {};                           // _08
+	virtual void setAnmTransform(J3DAnmTransform*);     // _0C
+	virtual J3DAnmTransform* getAnmTransform();         // _10
+	virtual void setAnmTransform(u8, J3DAnmTransform*); // _14
+	virtual J3DAnmTransform* getAnmTransform(u8);       // _18
+	virtual void setWeight(u8, f32);                    // _1C
+	virtual void getWeight(u8) const;                   // _20
+	virtual void init(const Vec&, const Mtx&) = 0;      // _24
+	virtual void calc()                       = 0;      // _28
 
 	static void setMtxBuffer(J3DMtxBuffer* buffer) { mMtxBuffer = buffer; }
 
 	static J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
 	static J3DJoint* getJoint() { return mJoint; }
+	static void setJoint(J3DJoint* joint) { mJoint = joint; }
 
 	static J3DMtxBuffer* mMtxBuffer;
 	static struct J3DJoint* mJoint;
@@ -51,16 +52,16 @@ struct J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
 struct J3DMtxCalcAnmBase : public J3DMtxCalc {
 	/** @fabricated */
 	inline J3DMtxCalcAnmBase(J3DAnmTransform* animation)
-	    : _04(animation)
+	    : mAnim(animation)
 	{
 	}
 
-	virtual ~J3DMtxCalcAnmBase();                   // _08
-	virtual void setAnmTransform(J3DAnmTransform*); // _0C
-	virtual J3DAnmTransform* getAnmTransform();     // _10
+	virtual ~J3DMtxCalcAnmBase();                                         // _08
+	virtual void setAnmTransform(J3DAnmTransform* anim) { mAnim = anim; } // _0C
+	virtual J3DAnmTransform* getAnmTransform() { return mAnim; }          // _10
 
 	// _00 = VTBL
-	J3DAnmTransform* _04; // _04
+	J3DAnmTransform* mAnim; // _04
 };
 
 template <typename Adaptor, typename Init>
@@ -72,7 +73,7 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 	}
 
 	virtual ~J3DMtxCalcAnimation() {};                                              // _08
-	virtual void setAnmTransform(J3DAnmTransform* p1) { _04 = p1; }                 // _0C
+	virtual void setAnmTransform(J3DAnmTransform* p1) { mAnim = p1; }               // _0C
 	virtual void init(const Vec& p1, const f32 (&p2)[3][4]) { Init::init(p1, p2); } // _24
 	virtual void calc()                                                             // _28
 	{

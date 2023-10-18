@@ -260,14 +260,8 @@ lbl_800885CC:
  * Address:	800885E0
  * Size:	000070
  */
-void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const f32 (&mtx)[3][4])
+void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const Mtx& mtx)
 {
-	// mTransformCalc->init(vec, mtx);
-	// J3DMtxCalc::setMtxBuffer(buffer);
-	// if (_10 != nullptr) {
-	// 	_10->doRecursiveCalc(mTransformCalc);
-	// }
-
 	mTransformCalc->init(vec, mtx);
 	J3DMtxCalc::setMtxBuffer(buffer);
 	J3DJoint* root = mRootNode;
@@ -308,10 +302,3 @@ lbl_80088638:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	80088650
- * Size:	000008
- */
-// void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer*) { }

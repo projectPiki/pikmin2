@@ -175,8 +175,9 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	inline void resetModelMass()
 	{
-		mModel->mJ3dModel->mModelScale = 1.0f;
-		mMass                          = 0.0f;
+		// Dumb, but best I can do since mModelScale needs to be Vec
+		(*(JGeometry::TVec3f*)&mModel->mJ3dModel->mModelScale).set(1.0f);
+		mMass = 0.0f;
 	}
 
 	// _00      = VTBL

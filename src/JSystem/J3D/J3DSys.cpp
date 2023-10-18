@@ -6,8 +6,8 @@
 
 J3DSys j3dSys;
 Mtx J3DSys::mCurrentMtx;
-JGeometry::TVec3f J3DSys::mCurrentS;
-JGeometry::TVec3f J3DSys::mParentS;
+Vec J3DSys::mCurrentS;
+Vec J3DSys::mParentS;
 u16 J3DSys::sTexCoordScaleTable[8][4];
 
 static GXColor ColorBlack = { 0x00, 0x00, 0x00, 0x00 };

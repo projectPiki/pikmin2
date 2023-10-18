@@ -61,6 +61,12 @@ struct J3DCurrentMtx : public J3DCurrentMtxInfo {
 		GXWGFifo.u32 = getMtxIdxRegB();
 	}
 
+	void setCurrentTexMtx(u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5, u8 param_6, u8 param_7, u8 param_8)
+	{
+		mMtxIdxRegA = ((param_1 & 0xff) << 6) | (param_2 << 0xc) | (param_3 << 0x12) | (param_4 << 0x18);
+		mMtxIdxRegB = (param_5) | param_6 << 6 | param_7 << 0xc | param_8 << 0x12;
+	}
+
 	// _00-_08 = J3DCurrentMtxInfo
 };
 
@@ -110,11 +116,13 @@ struct J3DMaterial {
 	J3DJoint* getJoint() { return mJoint; }
 	u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
 	u8 getTevStageNum() const { return mTevBlock->getTevStageNum(); }
+	bool isDrawModeOpaTexEdge() { return (mMaterialMode & 3) == 0; }
+	u16 getIndex() { return mIndex; }
 
 	J3DMaterialAnm* getMaterialAnm() const
 	{
-		if ((u32)mAnm < 0xC0000000) {
-			return mAnm;
+		if ((u32)mMaterialAnm < 0xC0000000) {
+			return mMaterialAnm;
 		} else {
 			return nullptr;
 		}
@@ -124,7 +132,10 @@ struct J3DMaterial {
 
 	void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
 	void setTevKColor(u32 i, const J3DGXColor* i_color) { mTevBlock->setTevKColor(i, i_color); }
-	void setMaterialAnm(J3DMaterialAnm* i_anm) { mAnm = i_anm; }
+	void setMaterialAnm(J3DMaterialAnm* i_anm) { mMaterialAnm = i_anm; }
+
+	// unused?
+	void makeDisplayList_private(J3DDisplayListObj* obj);
 
 	// VTBL _00
 	J3DMaterial* mNext;              // _04
@@ -139,9 +150,9 @@ struct J3DMaterial {
 	J3DTexGenBlock* mTexGenBlock;    // _28
 	J3DTevBlock* mTevBlock;          // _2C
 	J3DIndBlock* mIndBlock;          // _30
-	J3DPEBlock* mPeBlock;            // _34
+	J3DPEBlock* mPEBlock;            // _34
 	J3DMaterial* mOrigMaterial;      // _38
-	J3DMaterialAnm* mAnm;            // _3C
+	J3DMaterialAnm* mMaterialAnm;    // _3C
 	J3DCurrentMtx mCurrentMtx;       // _40
 	J3DDisplayListObj* mSharedDLObj; // _48
 };

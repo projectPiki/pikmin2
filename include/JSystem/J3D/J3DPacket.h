@@ -112,6 +112,11 @@ struct J3DDrawPacket : public J3DPacket {
 	void lock() { onFlag(J3DDP_IsLocked); }
 	void unlock() { offFlag(J3DDP_IsLocked); }
 	J3DTexMtxObj* getTexMtxObj() const { return mTexMtxObj; }
+	bool isLocked() const { return checkFlag(J3DDP_IsLocked); }
+	J3DDisplayListObj* getDisplayListObj() const { return mDisplayList; }
+
+	void beginPatch() { mDisplayList->beginPatch(); }
+	void endPatch() { mDisplayList->endPatch(); }
 
 	// _00     = VTBL
 	// _00-_10 = J3DPacket
@@ -119,45 +124,6 @@ struct J3DDrawPacket : public J3DPacket {
 	u8 _14[0xC];                     // _14, unknown
 	J3DDisplayListObj* mDisplayList; // _20
 	J3DTexMtxObj* mTexMtxObj;        // _24
-};
-
-/**
- * @size{0x40}
- */
-struct J3DMatPacket : public J3DDrawPacket {
-	enum MatPacketFlags {
-		J3DMP_IsChanged = 0x80000000,
-	};
-
-	J3DMatPacket();
-
-	virtual bool entry(J3DDrawBuffer* buffer)
-	{
-		sortFunc func = J3DDrawBuffer::sortFuncTable[buffer->mSortType];
-		return (buffer->*func)(this);
-	}                        // _08 (weak)
-	virtual void draw();     // _0C
-	virtual ~J3DMatPacket(); // _10
-
-	void addShapePacket(J3DShapePacket*);
-	void beginDiff();
-	u32 endDiff();
-	bool isSame(J3DMatPacket*) const;
-
-	J3DMaterial* getMaterial() const { return mMaterial; }
-	J3DShapePacket* getShapePacket() const { return mShapePacket; }
-	void setShapePacket(J3DShapePacket* packet) { mShapePacket = packet; }
-	void setInitShapePacket(J3DShapePacket* packet) { mInitShapePacket = packet; }
-	bool isChanged() const { return mDiffFlag & J3DMP_IsChanged; }
-
-	// _00     = VTBL
-	// _00-_28 = J3DDrawPacket
-	J3DShapePacket* mInitShapePacket; // _28
-	J3DShapePacket* mShapePacket;     // _2C
-	J3DMaterial* mMaterial;           // _30
-	u32 mDiffFlag;                    // _34
-	J3DTexture* mTexture;             // _38
-	J3DMaterialAnm* mMaterialAnm;     // _3C
 };
 
 /**
@@ -190,6 +156,47 @@ struct J3DShapePacket : public J3DDrawPacket {
 	Mtx* mBaseMtxPtr;         // _30
 	u32 mDiffFlag;            // _34
 	J3DModel* mModel;         // _38
+};
+
+/**
+ * @size{0x40}
+ */
+struct J3DMatPacket : public J3DDrawPacket {
+	enum MatPacketFlags {
+		J3DMP_IsChanged = 0x80000000,
+	};
+
+	J3DMatPacket();
+
+	virtual bool entry(J3DDrawBuffer* buffer)
+	{
+		sortFunc func = J3DDrawBuffer::sortFuncTable[buffer->mSortType];
+		return (buffer->*func)(this);
+	}                        // _08 (weak)
+	virtual void draw();     // _0C
+	virtual ~J3DMatPacket(); // _10
+
+	void addShapePacket(J3DShapePacket*);
+	void beginDiff();
+	u32 endDiff();
+	bool isSame(J3DMatPacket*) const;
+
+	J3DMaterial* getMaterial() const { return mMaterial; }
+	J3DShapePacket* getShapePacket() const { return mShapePacket; }
+	void setShapePacket(J3DShapePacket* packet) { mShapePacket = packet; }
+	void setInitShapePacket(J3DShapePacket* packet) { mInitShapePacket = packet; }
+	bool isChanged() const { return mDiffFlag & J3DMP_IsChanged; }
+	void setMaterialAnmID(J3DMaterialAnm* materialAnm) { mMaterialAnm = materialAnm; }
+	bool isEnabled_Diff() const { return mInitShapePacket->getDisplayListObj() != nullptr; }
+
+	// _00     = VTBL
+	// _00-_28 = J3DDrawPacket
+	J3DShapePacket* mInitShapePacket; // _28
+	J3DShapePacket* mShapePacket;     // _2C
+	J3DMaterial* mMaterial;           // _30
+	u32 mDiffFlag;                    // _34
+	J3DTexture* mTexture;             // _38
+	J3DMaterialAnm* mMaterialAnm;     // _3C
 };
 
 #endif

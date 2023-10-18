@@ -6,6 +6,18 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
+sortFunc J3DDrawBuffer::sortFuncTable[6] = {
+	&J3DDrawBuffer::entryMatSort,   &J3DDrawBuffer::entryMatAnmSort,  &J3DDrawBuffer::entryZSort,
+	&J3DDrawBuffer::entryModelSort, &J3DDrawBuffer::entryInvalidSort, &J3DDrawBuffer::entryNonSort,
+};
+
+drawFunc J3DDrawBuffer::drawFuncTable[2] = {
+	&J3DDrawBuffer::drawHead,
+	&J3DDrawBuffer::drawTail,
+};
+
+void J3DDrawBuffer::calcZRatio() { mZRatio = (mZFar - mZNear) / (f32)mBufferSize; }
+
 /*
     Generated from dpostproc
 
@@ -93,14 +105,14 @@
  */
 void J3DDrawBuffer::initialize()
 {
-	_08 = 0;
-	_0C = 0;
-	_10 = 1.0f;
-	_14 = 10000.0f;
-	_1C = 0;
-	_20 = 0;
-	_04 = 0x20;
-	_18 = (_14 - _10) / _04;
+	mDrawType       = J3DDRAW_Head;
+	mSortType       = J3DSORT_Mat;
+	mZNear          = 1.0f;
+	mZFar           = 10000.0f;
+	mZMtx           = nullptr;
+	mCallBackPacket = nullptr;
+	mBufferSize     = 0x20;
+	calcZRatio();
 }
 
 /*
@@ -108,12 +120,15 @@ void J3DDrawBuffer::initialize()
  * Address:	80065A0C
  * Size:	000084
  */
-J3DErrType J3DDrawBuffer::allocBuffer(unsigned long count)
+J3DErrType J3DDrawBuffer::allocBuffer(u32 bufSize)
 {
-	_00 = new (0x20) J3DMatPacket*[count];
-	_04 = count;
+	mBuffer = new (0x20) J3DPacket*[bufSize];
+	// if (mBuffer == nullptr)
+	//	return JET_OutOfMemory;
+
+	mBufferSize = bufSize;
 	frameInit();
-	_18 = (_14 - _10) / _04;
+	calcZRatio();
 	return JET_Success;
 }
 
@@ -124,79 +139,11 @@ J3DErrType J3DDrawBuffer::allocBuffer(unsigned long count)
  */
 void J3DDrawBuffer::frameInit()
 {
-	for (int i = _04; i >= 0; i--) {
-		_00[i] = 0;
-	}
-	_20 = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	li       r30, 0
-	lwz      r31, 4(r3)
-	cmplwi   r31, 0
-	ble      lbl_80065B64
-	cmplwi   r31, 8
-	addi     r4, r31, -8
-	ble      lbl_80065B3C
-	addi     r0, r4, 7
-	li       r12, 0
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmplwi   r4, 0
-	ble      lbl_80065B3C
+	u32 bufSize = mBufferSize;
+	for (u32 i = 0; i < bufSize; i++)
+		mBuffer[i] = nullptr;
 
-lbl_80065AD0:
-	lwz      r4, 0(r3)
-	li       r11, 0
-	addi     r9, r12, 4
-	addi     r8, r12, 8
-	stwx     r11, r4, r12
-	addi     r7, r12, 0xc
-	addi     r6, r12, 0x10
-	addi     r5, r12, 0x14
-	lwz      r10, 0(r3)
-	addi     r4, r12, 0x18
-	addi     r0, r12, 0x1c
-	addi     r12, r12, 0x20
-	stwx     r11, r10, r9
-	addi     r30, r30, 8
-	lwz      r9, 0(r3)
-	stwx     r11, r9, r8
-	lwz      r8, 0(r3)
-	stwx     r11, r8, r7
-	lwz      r7, 0(r3)
-	stwx     r11, r7, r6
-	lwz      r6, 0(r3)
-	stwx     r11, r6, r5
-	lwz      r5, 0(r3)
-	stwx     r11, r5, r4
-	lwz      r4, 0(r3)
-	stwx     r11, r4, r0
-	bdnz     lbl_80065AD0
-
-lbl_80065B3C:
-	subf     r0, r30, r31
-	slwi     r6, r30, 2
-	li       r5, 0
-	mtctr    r0
-	cmplw    r30, r31
-	bge      lbl_80065B64
-
-lbl_80065B54:
-	lwz      r4, 0(r3)
-	stwx     r5, r4, r6
-	addi     r6, r6, 4
-	bdnz     lbl_80065B54
-
-lbl_80065B64:
-	li       r0, 0
-	stw      r0, 0x20(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCallBackPacket = nullptr;
 }
 
 /*
@@ -206,127 +153,41 @@ lbl_80065B64:
  */
 bool J3DDrawBuffer::entryMatSort(J3DMatPacket* packet)
 {
-	// packet->_04         = nullptr;
-	// packet->_08         = nullptr;
-	// packet->_2C->_04    = nullptr;
-	// packet->_2C->_08    = nullptr;
-	// J3DTexture* texture = j3dSys._58;
-	// if ((packet->_34 & 0x80000000) == 0) {
-	// 	s16 texNo = packet->_30->mTevBlock->getTexNo(0);
-	// 	u32 index = (texNo == -1) ? 0 : texture->_04->_00.mTextureFormat + texture->_04->_00.mImageDataOffset
-	// }
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	stw      r0, 4(r4)
-	stw      r0, 8(r4)
-	lwz      r3, 0x2c(r4)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0x34(r4)
-	rlwinm.  r0, r0, 0, 0, 0
-	beq      lbl_80065BE0
-	lwz      r4, 0(r30)
-	li       r3, 1
-	lwz      r0, 0(r4)
-	stw      r0, 4(r31)
-	lwz      r4, 0(r30)
-	stw      r31, 0(r4)
-	b        lbl_80065CB4
+	packet->drawClear();
+	packet->getShapePacket()->drawClear();
 
-lbl_80065BE0:
-	lwz      r3, 0x30(r31)
-	lis      r4, j3dSys@ha
-	addi     r5, r4, j3dSys@l
-	li       r4, 0
-	lwz      r3, 0x2c(r3)
-	lwz      r29, 0x58(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x10
-	cmplwi   r0, 0xffff
-	bne      lbl_80065C1C
-	li       r5, 0
-	b        lbl_80065C34
+	if (packet->isChanged()) {
+		packet->setNextPacket(mBuffer[0]);
+		mBuffer[0] = packet;
+		return true;
+	}
 
-lbl_80065C1C:
-	lwz      r4, 4(r29)
-	rlwinm   r0, r3, 5, 0xb, 0x1a
-	add      r3, r4, r0
-	lwz      r0, 0x1c(r3)
-	add      r0, r3, r0
-	srwi     r5, r0, 5
+	J3DTexture* texture = j3dSys.getTexture();
+	u32 hash;
+	u16 texNo = packet->getMaterial()->getTexNo(0);
+	if (texNo == 0xFFFF) {
+		hash = 0;
+	} else {
+		hash = ((u32)texture->getResTIMG(texNo) + texture->getResTIMG(texNo)->mImageDataOffset) >> 5;
+	}
+	u32 slot = hash & (mBufferSize - 1);
 
-lbl_80065C34:
-	lwz      r3, 4(r30)
-	lwz      r4, 0(r30)
-	addi     r0, r3, -1
-	and      r0, r5, r0
-	slwi     r29, r0, 2
-	lwzx     r0, r4, r29
-	cmplwi   r0, 0
-	bne      lbl_80065C60
-	stwx     r31, r4, r29
-	li       r3, 1
-	b        lbl_80065CB4
+	if (mBuffer[slot] == nullptr) {
+		mBuffer[slot] = packet;
+		return true;
+	} else {
+		for (J3DMatPacket* pkt = (J3DMatPacket*)mBuffer[slot]; pkt != nullptr; pkt = (J3DMatPacket*)pkt->getNextPacket()) {
+			if (pkt->isSame(packet)) {
+				pkt->addShapePacket(packet->getShapePacket());
+				return false;
+			}
+		}
 
-lbl_80065C60:
-	mr       r28, r0
-	b        lbl_80065C94
-
-lbl_80065C68:
-	mr       r3, r28
-	mr       r4, r31
-	bl       isSame__12J3DMatPacketCFP12J3DMatPacket
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80065C90
-	lwz      r4, 0x2c(r31)
-	mr       r3, r28
-	bl       addShapePacket__12J3DMatPacketFP14J3DShapePacket
-	li       r3, 0
-	b        lbl_80065CB4
-
-lbl_80065C90:
-	lwz      r28, 4(r28)
-
-lbl_80065C94:
-	cmplwi   r28, 0
-	bne      lbl_80065C68
-	lwz      r4, 0(r30)
-	li       r3, 1
-	lwzx     r0, r4, r29
-	stw      r0, 4(r31)
-	lwz      r4, 0(r30)
-	stwx     r31, r4, r29
-
-lbl_80065CB4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		packet->setNextPacket(mBuffer[slot]);
+		mBuffer[slot] = packet;
+		return true;
+	}
 }
-
-/*
- * --INFO--
- * Address:	80065CD4
- * Size:	00000C
- */
-// u16 J3DTevBlock::getTexNo(unsigned long p1) const { return 0xFFFF; }
 
 /*
  * --INFO--
@@ -335,173 +196,30 @@ lbl_80065CB4:
  */
 bool J3DDrawBuffer::entryMatAnmSort(J3DMatPacket* packet)
 {
-	u32 index = packet->_3C & (_04 - 1);
-	if (packet->_3C == 0) {
+	J3DMaterialAnm* pMaterialAnm = packet->mMaterialAnm;
+	u32 slot                     = (u32)pMaterialAnm & (mBufferSize - 1);
+
+	if (pMaterialAnm == nullptr) {
 		return entryMatSort(packet);
-	}
-	packet->drawClear();
-	packet->_2C->drawClear();
-	if (_00[index] == nullptr) {
-		_00[index] = packet;
 	} else {
-		for (J3DMatPacket* iPacket = _00[index]; iPacket != nullptr; iPacket = (J3DMatPacket*)iPacket->mNextPacket) {
-			if (iPacket->_3C == packet->_3C) {
-				iPacket->addShapePacket(packet->_2C);
-				return false;
+		packet->drawClear();
+		packet->getShapePacket()->drawClear();
+		if (mBuffer[slot] == nullptr) {
+			mBuffer[slot] = packet;
+			return true;
+		} else {
+			for (J3DMatPacket* pkt = (J3DMatPacket*)mBuffer[slot]; pkt != nullptr; pkt = (J3DMatPacket*)pkt->getNextPacket()) {
+				if (pkt->mMaterialAnm == pMaterialAnm) {
+					pkt->addShapePacket(packet->getShapePacket());
+					return false;
+				}
 			}
+
+			packet->setNextPacket(mBuffer[slot]);
+			mBuffer[slot] = packet;
+			return true;
 		}
-		packet->mNextPacket = _00[index];
-		_00[index]          = packet;
 	}
-	return true;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	lwz      r6, 0x3c(r4)
-	lwz      r3, 4(r3)
-	cmplwi   r6, 0
-	addi     r0, r3, -1
-	and      r3, r6, r0
-	bne      lbl_80065E30
-	li       r0, 0
-	stw      r0, 4(r31)
-	stw      r0, 8(r31)
-	lwz      r3, 0x2c(r31)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0x34(r31)
-	rlwinm.  r0, r0, 0, 0, 0
-	beq      lbl_80065D5C
-	lwz      r4, 0(r30)
-	li       r3, 1
-	lwz      r0, 0(r4)
-	stw      r0, 4(r31)
-	lwz      r4, 0(r30)
-	stw      r31, 0(r4)
-	b        lbl_80065EA8
-
-lbl_80065D5C:
-	lwz      r3, 0x30(r31)
-	lis      r4, j3dSys@ha
-	addi     r5, r4, j3dSys@l
-	li       r4, 0
-	lwz      r3, 0x2c(r3)
-	lwz      r29, 0x58(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x10
-	cmplwi   r0, 0xffff
-	bne      lbl_80065D98
-	li       r5, 0
-	b        lbl_80065DB0
-
-lbl_80065D98:
-	lwz      r4, 4(r29)
-	rlwinm   r0, r3, 5, 0xb, 0x1a
-	add      r3, r4, r0
-	lwz      r0, 0x1c(r3)
-	add      r0, r3, r0
-	srwi     r5, r0, 5
-
-lbl_80065DB0:
-	lwz      r3, 4(r30)
-	lwz      r4, 0(r30)
-	addi     r0, r3, -1
-	and      r0, r5, r0
-	slwi     r28, r0, 2
-	lwzx     r29, r4, r28
-	cmplwi   r29, 0
-	bne      lbl_80065E0C
-	stwx     r31, r4, r28
-	li       r3, 1
-	b        lbl_80065EA8
-	b        lbl_80065E0C
-
-lbl_80065DE0:
-	mr       r3, r29
-	mr       r4, r31
-	bl       isSame__12J3DMatPacketCFP12J3DMatPacket
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80065E08
-	lwz      r4, 0x2c(r31)
-	mr       r3, r29
-	bl       addShapePacket__12J3DMatPacketFP14J3DShapePacket
-	li       r3, 0
-	b        lbl_80065EA8
-
-lbl_80065E08:
-	lwz      r29, 4(r29)
-
-lbl_80065E0C:
-	cmplwi   r29, 0
-	bne      lbl_80065DE0
-	lwz      r4, 0(r30)
-	li       r3, 1
-	lwzx     r0, r4, r28
-	stw      r0, 4(r31)
-	lwz      r4, 0(r30)
-	stwx     r31, r4, r28
-	b        lbl_80065EA8
-
-lbl_80065E30:
-	li       r0, 0
-	slwi     r5, r3, 2
-	stw      r0, 4(r31)
-	stw      r0, 8(r31)
-	lwz      r3, 0x2c(r31)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	lwz      r3, 0(r30)
-	lwzx     r4, r3, r5
-	cmplwi   r4, 0
-	bne      lbl_80065E68
-	stwx     r31, r3, r5
-	li       r3, 1
-	b        lbl_80065EA8
-
-lbl_80065E68:
-	mr       r3, r4
-	b        lbl_80065E90
-
-lbl_80065E70:
-	lwz      r0, 0x3c(r3)
-	cmplw    r0, r6
-	bne      lbl_80065E8C
-	lwz      r4, 0x2c(r31)
-	bl       addShapePacket__12J3DMatPacketFP14J3DShapePacket
-	li       r3, 0
-	b        lbl_80065EA8
-
-lbl_80065E8C:
-	lwz      r3, 4(r3)
-
-lbl_80065E90:
-	cmplwi   r3, 0
-	bne      lbl_80065E70
-	stw      r4, 4(r31)
-	li       r3, 1
-	lwz      r4, 0(r30)
-	stwx     r31, r4, r5
-
-lbl_80065EA8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -509,8 +227,34 @@ lbl_80065EA8:
  * Address:	80065EC8
  * Size:	00011C
  */
-void J3DDrawBuffer::entryZSort(J3DMatPacket*)
+bool J3DDrawBuffer::entryZSort(J3DMatPacket* i_packet)
 {
+	i_packet->drawClear();
+	i_packet->getShapePacket()->drawClear();
+
+	Vec tmp;
+	tmp.x = mZMtx[0][3];
+	tmp.y = mZMtx[1][3];
+	tmp.z = mZMtx[2][3];
+
+	f32 value = -J3DCalcZValue(j3dSys.getViewMtx(), tmp);
+
+	u32 uvar4;
+	if (mZNear + mZRatio < value) {
+		if (mZFar - mZRatio > value) {
+			uvar4 = value / mZRatio;
+		} else {
+			uvar4 = mBufferSize - 1;
+		}
+	} else {
+		uvar4 = 0;
+	}
+
+	u32 idx = (mBufferSize - 1) - uvar4;
+	i_packet->setNextPacket(mBuffer[idx]);
+	mBuffer[idx] = i_packet;
+
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -597,14 +341,16 @@ lbl_80065FA4:
  * Address:	80065FE4
  * Size:	000050
  */
-bool J3DDrawBuffer::entryModelSort(J3DMatPacket* packet)
+bool J3DDrawBuffer::entryModelSort(J3DMatPacket* i_packet)
 {
-	packet->drawClear();
-	packet->_2C->drawClear();
-	if (_20 != nullptr) {
-		_20->addChildPacket(packet);
+	i_packet->drawClear();
+	i_packet->getShapePacket()->drawClear();
+
+	if (mCallBackPacket != nullptr) {
+		mCallBackPacket->addChildPacket(i_packet);
 		return true;
 	}
+
 	return false;
 }
 
@@ -613,14 +359,16 @@ bool J3DDrawBuffer::entryModelSort(J3DMatPacket* packet)
  * Address:	80066034
  * Size:	000054
  */
-bool J3DDrawBuffer::entryInvalidSort(J3DMatPacket* packet)
+bool J3DDrawBuffer::entryInvalidSort(J3DMatPacket* i_packet)
 {
-	packet->drawClear();
-	packet->_2C->drawClear();
-	if (_20 != nullptr) {
-		_20->addChildPacket(packet->_2C);
+	i_packet->drawClear();
+	i_packet->getShapePacket()->drawClear();
+
+	if (mCallBackPacket != nullptr) {
+		mCallBackPacket->addChildPacket(i_packet->getShapePacket());
 		return true;
 	}
+
 	return false;
 }
 
@@ -629,12 +377,14 @@ bool J3DDrawBuffer::entryInvalidSort(J3DMatPacket* packet)
  * Address:	80066088
  * Size:	000034
  */
-bool J3DDrawBuffer::entryNonSort(J3DMatPacket* packet)
+bool J3DDrawBuffer::entryNonSort(J3DMatPacket* i_packet)
 {
-	packet->drawClear();
-	packet->_2C->drawClear();
-	packet->mNextPacket = _00[0];
-	_00[0]              = packet;
+	i_packet->drawClear();
+	i_packet->mShapePacket->drawClear();
+
+	i_packet->setNextPacket(mBuffer[0]);
+	mBuffer[0] = i_packet;
+
 	return true;
 }
 
@@ -645,29 +395,8 @@ bool J3DDrawBuffer::entryNonSort(J3DMatPacket* packet)
  */
 void J3DDrawBuffer::draw() const
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lwz      r5, 8(r3)
-	lis      r4, drawFuncTable__13J3DDrawBuffer@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r4, drawFuncTable__13J3DDrawBuffer@l
-	mulli    r4, r5, 0xc
-	addi     r12, r1, 8
-	add      r6, r0, r4
-	lwz      r5, 0(r6)
-	lwz      r4, 4(r6)
-	lwz      r0, 8(r6)
-	stw      r5, 8(r1)
-	stw      r4, 0xc(r1)
-	stw      r0, 0x10(r1)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	drawFunc func = drawFuncTable[mDrawType];
+	(this->*func)();
 }
 
 /*
@@ -677,76 +406,14 @@ void J3DDrawBuffer::draw() const
  */
 void J3DDrawBuffer::drawHead() const
 {
-	for (int i = 0; i < _04; i++) {
-		for (J3DPacket* packet = _00[i]; packet != nullptr; packet = packet->mNextPacket) {
+	u32 size        = mBufferSize;
+	J3DPacket** buf = mBuffer;
+
+	for (u32 i = 0; i < size; i++) {
+		for (J3DPacket* packet = buf[i]; packet != nullptr; packet = packet->getNextPacket()) {
 			packet->draw();
 		}
 	}
-
-	// J3DPacket* v1 = *_00;
-	// for (int i = 0; i < _04; i++) {
-	// 	for (J3DPacket* packet = v1; packet != nullptr; packet = packet->_04) {
-	// 		packet->draw();
-	// 	}
-	// 	v1++;
-	// }
-
-	// J3DPacket* v1 = *_00;
-	// for (int i = 0; i < _04; i++) {
-	// 	for (J3DPacket* packet = v1++; packet != nullptr; packet = packet->_04) {
-	// 		packet->draw();
-	// 	}
-	// }
-
-	// J3DPacket* v1 = *_00;
-	// for (int i = 0; i < _04; v1++, i++) {
-	// 	for (J3DPacket* packet = v1; packet != nullptr; packet = packet->_04) {
-	// 		packet->draw();
-	// 	}
-	// }
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	lwz      r31, 0(r3)
-	stw      r30, 0x18(r1)
-	lwz      r30, 4(r3)
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	b        lbl_8006616C
-
-lbl_8006613C:
-	lwz      r28, 0(r31)
-	b        lbl_8006615C
-
-lbl_80066144:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r28, 4(r28)
-
-lbl_8006615C:
-	cmplwi   r28, 0
-	bne      lbl_80066144
-	addi     r31, r31, 4
-	addi     r29, r29, 1
-
-lbl_8006616C:
-	cmplw    r29, r30
-	blt      lbl_8006613C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -756,49 +423,13 @@ lbl_8006616C:
  */
 void J3DDrawBuffer::drawTail() const
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lwz      r4, 4(r3)
-	stw      r0, 0x24(r1)
-	lwz      r0, 0(r3)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	addi     r30, r4, -1
-	slwi     r3, r30, 2
-	stw      r29, 0x14(r1)
-	add      r31, r0, r3
-	b        lbl_800661F4
+	int num = mBufferSize - 1;
 
-lbl_800661C4:
-	lwz      r29, 0(r31)
-	b        lbl_800661E4
-
-lbl_800661CC:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r29, 4(r29)
-
-lbl_800661E4:
-	cmplwi   r29, 0
-	bne      lbl_800661CC
-	addi     r31, r31, -4
-	addi     r30, r30, -1
-
-lbl_800661F4:
-	cmpwi    r30, 0
-	bge      lbl_800661C4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = num; i >= 0; i--) {
+		for (J3DPacket* packet = mBuffer[i]; packet != nullptr; packet = packet->getNextPacket()) {
+			packet->draw();
+		}
+	}
 }
 
 /*
