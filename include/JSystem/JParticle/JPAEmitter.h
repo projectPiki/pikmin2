@@ -343,11 +343,11 @@ struct JPABaseEmitter {
 };
 
 struct JPAEmitterCallBack {
-	virtual ~JPAEmitterCallBack() = 0;          // _08
-	virtual void execute(JPABaseEmitter*);      // _0C (weak)
-	virtual void executeAfter(JPABaseEmitter*); // _10 (weak)
-	virtual void draw(JPABaseEmitter*);         // _14 (weak)
-	virtual void drawAfter(JPABaseEmitter*);    // _18 (weak)
+	virtual ~JPAEmitterCallBack() = 0;             // _08
+	virtual void execute(JPABaseEmitter*) { }      // _0C (weak)
+	virtual void executeAfter(JPABaseEmitter*) { } // _10 (weak)
+	virtual void draw(JPABaseEmitter*) { }         // _14 (weak)
+	virtual void drawAfter(JPABaseEmitter*) { }    // _18 (weak)
 
 	// not sure how this works with the pure virtual dtor
 	// ~JPAEmitterCallBack();

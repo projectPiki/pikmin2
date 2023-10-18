@@ -144,14 +144,6 @@ JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(JPAEmitterManager* emitt
 {
 }
 
-/*
- * --INFO--
- * Address:	800057A8
- * Size:	000060
- * __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv
- */
-JStudio_JParticle::TAdaptor_particle::TJPACallback_::~TJPACallback_() { }
-
 namespace JStudio {
 
 /*
@@ -821,31 +813,3 @@ void JStudio_JParticle::TAdaptor_particle::endParticle_fadeOut_(u32 p1)
 	_190 = (f64)p1 * (f64)_190 / (f64)v2;
 	_194 = _190 - p1;
 }
-
-/*
- * --INFO--
- * Address:	80006210
- * Size:	000004
- */
-void JPAEmitterCallBack::executeAfter(JPABaseEmitter*) { }
-
-/*
- * --INFO--
- * Address:	80006214
- * Size:	000004
- */
-void JPAEmitterCallBack::draw(JPABaseEmitter*) { }
-
-/*
- * --INFO--
- * Address:	80006218
- * Size:	000004
- */
-void JPAEmitterCallBack::drawAfter(JPABaseEmitter*) { }
-
-/*
- * --INFO--
- * Address:	8000621C
- * Size:	000004
- */
-void JPAEmitterCallBack::execute(JPABaseEmitter*) { }
