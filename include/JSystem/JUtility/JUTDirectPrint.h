@@ -3,6 +3,8 @@
 
 #include "types.h"
 #include "JSystem/JUtility/TColor.h"
+#include "stdarg.h"
+#include "stdio.h"
 
 struct JUTDirectPrint {
 	JUTDirectPrint(); // unused/inlined
@@ -15,7 +17,9 @@ struct JUTDirectPrint {
 	void drawString_f(u16 x, u16 y, const char* format, ...);
 	void changeFrameBuffer(void* buffer, u16 pixelWidth, u16 pixelHeight);
 
-	bool isActive() const { return _00 != nullptr; }
+	void printSub(u16, u16, const char*, va_list, bool);
+
+	bool isActive() const { return mFrameBuffer != nullptr; }
 
 	inline static JUTDirectPrint* getManager() { return sDirectPrint; }
 
@@ -26,13 +30,13 @@ struct JUTDirectPrint {
 	static u32 sFontData2[0x4D];
 	static JUTDirectPrint* sDirectPrint;
 
-	void* _00;                   // _00
+	void* mFrameBuffer;          // _00
 	u16 mFBWidth;                // _04, width of frame buffer in pixels?
 	u16 mFBHeight;               // _06, height of frame buffer in pixels?
 	u16 mStride;                 // _08, width of buffer in ???
 	uint mFBSize;                // _0C
 	u8 _10[0x4];                 // _10, unknown
-	u16* mFrameBuffer;           // _14
+	u16* mFrameMemory;           // _14
 	JUtility::TColor mCharColor; // _18
 	u16 mCharColor_Y;            // _1C, 1C-2C = color in YCbCr
 	u16 mCharColor_Cb;           // _1E

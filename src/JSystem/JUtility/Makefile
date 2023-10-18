@@ -3,7 +3,7 @@ JUTILITY_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTConsole.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTDbPrint.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTDirectFile.o\
-	$(BUILD_DIR)/asm/JSystem/JUtility/JUTDirectPrint.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTDirectPrint.o\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTException.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTFader.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTFont.o\
