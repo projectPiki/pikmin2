@@ -169,7 +169,7 @@ LIBS = [
             ["JSystem/JUtility/JUTResource", True],
             ["JSystem/JUtility/JUTRomFont", True],
             ["JSystem/JUtility/JUTFontData_Ascfont_fix12", True],
-            "JSystem/JUtility/JUTTexture",
+            ["JSystem/JUtility/JUTTexture", True],
             ["JSystem/JUtility/JUTVideo", True],
             ["JSystem/JUtility/JUTXfb", True],
             "JSystem/JUtility/JUTCacheFont",
