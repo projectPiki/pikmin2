@@ -181,7 +181,7 @@ BOOL IsSjisTrailByte(u8 letter) { return (letter >= 0x40 && letter <= 0xFC && le
  * Address:	800EDD98
  * Size:	00019C
  */
-int GetFontCode(u16 code)
+static int GetFontCode(u16 code)
 {
 	int preCode;
 	int lastByte;
@@ -237,7 +237,7 @@ int GetFontCode(u16 code)
  * Address:	800EDF34
  * Size:	000174
  */
-void Decode(u8* in, u8* out)
+static void Decode(u8* in, u8* out)
 {
 	/*
 	.loc_0x0:
@@ -433,7 +433,7 @@ u16 OSGetFontEncode()
  * Address:	800EE100
  * Size:	00008C
  */
-void ReadROM(void* string, int len, int offset)
+static void ReadROM(void* string, int len, int offset)
 {
 	int inc;
 	while (len > 0) {
@@ -725,7 +725,7 @@ u32 OSLoadFont(void* fontInfo, void* temp)
  * Address:	800EE4C0
  * Size:	0003B0
  */
-void ExpandFontSheet(OSFontHeader* fontInfo, u8* source, u8* dest)
+static void ExpandFontSheet(OSFontHeader* fontInfo, u8* source, u8* dest)
 {
 	/*
 	.loc_0x0:

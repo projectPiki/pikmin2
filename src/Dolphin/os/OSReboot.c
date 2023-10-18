@@ -1,5 +1,12 @@
 #include "Dolphin/os.h"
 
+static void* SaveStart = nullptr;
+static void* SaveEnd   = nullptr;
+static BOOL Prepared;
+
+extern void* __OSSavedRegionStart;
+extern void* __OSSavedRegionEnd;
+
 /*
  * --INFO--
  * Address:	........
@@ -15,8 +22,12 @@ void IsStreamEnabled(void)
  * Address:	800EFF4C
  * Size:	000010
  */
-void Run(void)
+static void Run(void)
 {
+	__sync();
+	__isync();
+	// mtlr r3
+	return;
 	/*
 	.loc_0x0:
 	  sync
@@ -41,15 +52,7 @@ void ReadApploader(void)
  * Address:	800EFF5C
  * Size:	00000C
  */
-void Callback(void)
-{
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stw       r0, -0x7060(r13)
-	  blr
-	*/
-}
+static void Callback(void) { Prepared = TRUE; }
 
 /*
  * --INFO--
@@ -318,14 +321,10 @@ void __OSReboot(void)
  * Address:	800F0298
  * Size:	00000C
  */
-void OSSetSaveRegion(void)
+void OSSetSaveRegion(void* start, void* end)
 {
-	/*
-	.loc_0x0:
-	  stw       r3, -0x7068(r13)
-	  stw       r4, -0x7064(r13)
-	  blr
-	*/
+	SaveStart = start;
+	SaveEnd   = end;
 }
 
 /*
@@ -333,9 +332,10 @@ void OSSetSaveRegion(void)
  * Address:	........
  * Size:	000014
  */
-void OSGetSaveRegion(void)
+void OSGetSaveRegion(void** start, void** end)
 {
-	// UNUSED FUNCTION
+	*start = SaveStart;
+	*end   = SaveEnd;
 }
 
 /*
@@ -343,7 +343,8 @@ void OSGetSaveRegion(void)
  * Address:	........
  * Size:	000014
  */
-void OSGetSavedRegion(void)
+void OSGetSavedRegion(void** start, void** end)
 {
-	// UNUSED FUNCTION
+	*start = __OSSavedRegionStart;
+	*end   = __OSSavedRegionEnd;
 }
