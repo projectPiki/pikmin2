@@ -313,7 +313,7 @@ void __VIInit(VITVMode mode)
 	u16 hct, vct;
 
 	nonInter = mode & 2;
-	tv       = mode >> 2;
+	tv       = (u32)mode >> 2;
 
 	*(u32*)OSPhysicalToCached(0xCC) = tv;
 
@@ -353,7 +353,7 @@ void __VIInit(VITVMode mode)
 
 	hct                      = (tm->hlw + 1);
 	vct                      = (tm->numHalfLines / 2 + 1) | (1 << 12) | (0 << 15);
-	__VIRegs[VI_DISP_INT_0U] = hct;
+	__VIRegs[VI_DISP_INT_0U] = hct << 0;
 	__VIRegs[VI_DISP_INT_0]  = vct;
 
 	if (mode != VI_TVMODE_NTSC_PROG && mode != VI_TVMODE_NTSC_3D && mode != VI_TVMODE_GCA_PROG) {
@@ -364,148 +364,6 @@ void __VIInit(VITVMode mode)
 		__VIRegs[VI_DISP_CONFIG] = (1 << 0) | (0 << 1) | (1 << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (tv << 8);
 		__VIRegs[VI_CLOCK_SEL]   = 1;
 	}
-
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x30(r1)
-	  stw       r31, 0x2C(r1)
-	  rlwinm    r31,r3,30,2,31
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  addi      r29, r3, 0
-	  lis       r3, 0x8000
-	  stw       r31, 0xCC(r3)
-	  addi      r3, r29, 0
-	  rlwinm    r30,r29,0,30,30
-	  bl        -0xD0
-	  lis       r4, 0xCC00
-	  li        r0, 0x2
-	  addi      r5, r4, 0x2000
-	  sthu      r0, 0x2(r5)
-	  li        r0, 0
-	  stw       r0, 0x1C(r1)
-	  lwz       r0, 0x1C(r1)
-	  cmplwi    r0, 0x3E8
-	  bge-      .loc_0x74
-	  b         .loc_0x68
-
-	.loc_0x5C:
-	  lwz       r4, 0x1C(r1)
-	  addi      r0, r4, 0x8
-	  stw       r0, 0x1C(r1)
-
-	.loc_0x68:
-	  lwz       r0, 0x1C(r1)
-	  cmplwi    r0, 0x3E8
-	  blt+      .loc_0x5C
-
-	.loc_0x74:
-	  li        r0, 0
-	  sth       r0, 0x0(r5)
-	  lis       r12, 0xCC00
-	  li        r8, 0x2828
-	  lhz       r6, 0x1A(r3)
-	  li        r7, 0x1
-	  cmpwi     r29, 0x2
-	  sth       r6, 0x2006(r12)
-	  li        r6, 0x1001
-	  addi      r4, r12, 0x2000
-	  lbz       r9, 0x1D(r3)
-	  lbz       r10, 0x1E(r3)
-	  rlwimi    r10,r9,8,16,23
-	  sth       r10, 0x2004(r12)
-	  lbz       r9, 0x1F(r3)
-	  lbz       r10, 0x1C(r3)
-	  rlwinm    r9,r9,7,0,24
-	  or        r9, r10, r9
-	  sth       r9, 0x200A(r12)
-	  lhz       r9, 0x20(r3)
-	  rlwinm    r9,r9,1,16,30
-	  sth       r9, 0x2008(r12)
-	  lhz       r9, 0x2(r3)
-	  lbz       r11, 0x0(r3)
-	  rlwinm    r9,r9,1,0,30
-	  lhz       r10, 0x4(r3)
-	  subi      r9, r9, 0x2
-	  sth       r11, 0x2000(r12)
-	  add       r9, r10, r9
-	  sth       r9, 0x200E(r12)
-	  lhz       r9, 0x8(r3)
-	  addi      r9, r9, 0x2
-	  sth       r9, 0x200C(r12)
-	  lhz       r9, 0x2(r3)
-	  lhz       r10, 0x6(r3)
-	  rlwinm    r9,r9,1,0,30
-	  subi      r9, r9, 0x2
-	  add       r9, r10, r9
-	  sth       r9, 0x2012(r12)
-	  lhz       r9, 0xA(r3)
-	  addi      r9, r9, 0x2
-	  sth       r9, 0x2010(r12)
-	  lhz       r9, 0x10(r3)
-	  lbz       r10, 0xC(r3)
-	  rlwinm    r9,r9,5,0,26
-	  or        r9, r10, r9
-	  sth       r9, 0x2016(r12)
-	  lhz       r9, 0x14(r3)
-	  lbz       r10, 0xE(r3)
-	  rlwinm    r9,r9,5,0,26
-	  or        r9, r10, r9
-	  sth       r9, 0x2014(r12)
-	  lhz       r9, 0x12(r3)
-	  lbz       r10, 0xD(r3)
-	  rlwinm    r9,r9,5,0,26
-	  or        r9, r10, r9
-	  sth       r9, 0x201A(r12)
-	  lhz       r9, 0x16(r3)
-	  lbz       r10, 0xF(r3)
-	  rlwinm    r9,r9,5,0,26
-	  or        r9, r10, r9
-	  sth       r9, 0x2018(r12)
-	  sth       r8, 0x2048(r12)
-	  sth       r7, 0x2036(r12)
-	  sth       r6, 0x2034(r12)
-	  lhz       r6, 0x18(r3)
-	  lhz       r3, 0x1A(r3)
-	  srawi     r6, r6, 0x1
-	  addi      r3, r3, 0x1
-	  addze     r6, r6
-	  sth       r3, 0x2032(r12)
-	  addi      r6, r6, 0x1
-	  ori       r3, r6, 0x1000
-	  sth       r3, 0x2030(r12)
-	  beq-      .loc_0x1CC
-	  cmpwi     r29, 0x3
-	  beq-      .loc_0x1CC
-	  cmpwi     r29, 0x1A
-	  beq-      .loc_0x1CC
-	  rlwinm    r3,r30,2,0,29
-	  ori       r6, r3, 0x1
-	  rlwinm    r3,r31,8,0,23
-	  or        r3, r6, r3
-	  sth       r3, 0x0(r5)
-	  sth       r0, 0x6C(r4)
-	  b         .loc_0x1E4
-
-	.loc_0x1CC:
-	  rlwinm    r0,r31,8,0,23
-	  ori       r0, r0, 0x5
-	  sth       r0, 0x0(r5)
-	  lis       r3, 0xCC00
-	  li        r0, 0x1
-	  sth       r0, 0x206C(r3)
-
-	.loc_0x1E4:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  addi      r1, r1, 0x30
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*
@@ -907,134 +765,17 @@ static void setVerticalRegs(u16 dispPosY, u16 dispSizeY, u8 equ, u16 acv, u16 pr
 	regs[VI_VERT_TIMING] = (u16)(equ | actualAcv << 4);
 	changed |= (1ull << (63 - (0x00)));
 
-	regs[VI_VERT_TIMING_ODD_U] = (u16)actualPrbOdd;
+	regs[VI_VERT_TIMING_ODD_U] = (u16)actualPrbOdd << 0;
 	changed |= (1ull << (63 - (0x07)));
 
-	regs[VI_VERT_TIMING_ODD] = (u16)actualPsbOdd;
+	regs[VI_VERT_TIMING_ODD] = (u16)actualPsbOdd << 0;
 	changed |= (1ull << (63 - (0x06)));
 
-	regs[VI_VERT_TIMING_EVEN_U] = (u16)actualPrbEven;
+	regs[VI_VERT_TIMING_EVEN_U] = (u16)actualPrbEven << 0;
 	changed |= (1ull << (63 - (0x09)));
 
-	regs[VI_VERT_TIMING_EVEN] = (u16)actualPsbEven;
+	regs[VI_VERT_TIMING_EVEN] = (u16)actualPsbEven << 0;
 	changed |= (1ull << (63 - (0x08)));
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x28(r1)
-	  lis       r11, 0x804F
-	  addi      r11, r11, 0x59A8
-	  stw       r31, 0x24(r1)
-	  lwz       r31, 0x30(r1)
-	  stw       r30, 0x20(r1)
-	  stw       r29, 0x1C(r1)
-	  lhz       r0, 0x6C(r11)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x34
-	  li        r12, 0x1
-	  li        r29, 0x2
-	  b         .loc_0x3C
-
-	.loc_0x34:
-	  li        r12, 0x2
-	  li        r29, 0x1
-
-	.loc_0x3C:
-	  rlwinm    r30,r3,0,16,31
-	  srawi     r0, r30, 0x1
-	  addze     r0, r0
-	  rlwinm    r0,r0,1,0,30
-	  subc.     r0, r30, r0
-	  bne-      .loc_0x8C
-	  rlwinm    r3,r12,0,16,31
-	  rlwinm    r0,r6,0,16,31
-	  mullw     r0, r3, r0
-	  rlwinm    r3,r4,0,16,31
-	  sub       r0, r0, r3
-	  rlwinm    r3,r29,0,16,31
-	  mullw     r29, r3, r30
-	  sub       r0, r0, r30
-	  mullw     r30, r3, r0
-	  add       r0, r7, r29
-	  add       r6, r9, r30
-	  add       r3, r8, r29
-	  add       r7, r10, r30
-	  b         .loc_0xC0
-
-	.loc_0x8C:
-	  rlwinm    r3,r12,0,16,31
-	  rlwinm    r0,r6,0,16,31
-	  mullw     r0, r3, r0
-	  rlwinm    r3,r4,0,16,31
-	  sub       r0, r0, r3
-	  rlwinm    r3,r29,0,16,31
-	  mullw     r29, r3, r30
-	  sub       r0, r0, r30
-	  mullw     r30, r3, r0
-	  add       r0, r8, r29
-	  add       r6, r10, r30
-	  add       r3, r7, r29
-	  add       r7, r9, r30
-
-	.loc_0xC0:
-	  rlwinm    r8,r4,0,16,31
-	  rlwinm    r4,r12,0,16,31
-	  divw      r4, r8, r4
-	  cmpwi     r31, 0
-	  rlwinm    r4,r4,0,16,31
-	  beq-      .loc_0xF4
-	  rlwinm    r4,r4,1,0,30
-	  subi      r4, r4, 0x2
-	  add       r0, r0, r4
-	  add       r3, r3, r4
-	  li        r4, 0
-	  addi      r6, r6, 0x2
-	  addi      r7, r7, 0x2
-
-	.loc_0xF4:
-	  rlwinm    r5,r5,0,24,31
-	  rlwinm    r4,r4,4,12,27
-	  or        r4, r5, r4
-	  sth       r4, 0x0(r11)
-	  lis       r4, 0x8000
-	  lis       r9, 0x100
-	  lwz       r5, -0x72D8(r13)
-	  lis       r8, 0x200
-	  lwz       r10, -0x72D4(r13)
-	  or        r4, r5, r4
-	  lis       r5, 0x40
-	  stw       r10, -0x72D4(r13)
-	  stw       r4, -0x72D8(r13)
-	  lis       r4, 0x80
-	  sth       r0, 0xE(r11)
-	  lwz       r0, -0x72D8(r13)
-	  lwz       r10, -0x72D4(r13)
-	  or        r0, r0, r9
-	  stw       r10, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-	  sth       r6, 0xC(r11)
-	  lwz       r0, -0x72D8(r13)
-	  lwz       r6, -0x72D4(r13)
-	  or        r0, r0, r8
-	  stw       r6, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-	  sth       r3, 0x12(r11)
-	  lwz       r0, -0x72D8(r13)
-	  lwz       r3, -0x72D4(r13)
-	  or        r0, r0, r5
-	  stw       r3, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-	  sth       r7, 0x10(r11)
-	  lwz       r0, -0x72D8(r13)
-	  lwz       r3, -0x72D4(r13)
-	  or        r0, r0, r4
-	  stw       r3, -0x72D4(r13)
-	  stw       r0, -0x72D8(r13)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  blr
-	*/
 }
 
 /*
