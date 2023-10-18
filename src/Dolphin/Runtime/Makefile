@@ -1,4 +1,5 @@
 RUNTIME_FILES:=\
+	$(BUILD_DIR)/src/Dolphin/Runtime/__mem.o\
 	$(BUILD_DIR)/src/Dolphin/Runtime/__va_arg.o\
 	$(BUILD_DIR)/src/Dolphin/Runtime/global_destructor_chain.o\
 	$(BUILD_DIR)/src/Dolphin/Runtime/CPlusLibPPC.o\
@@ -9,14 +10,7 @@ RUNTIME_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/Runtime/Gecko_ExceptionPPC.o\
 	$(BUILD_DIR)/src/Dolphin/Runtime/GCN_mem_alloc.o\
 
-$(RUNTIME_FILES): CFLAGS += -common off
-
-# Some files need inline deferred
-$(BUILD_DIR)/src/Dolphin/Runtime/global_destructor_chain.o: CFLAGS += -inline deferred
-$(BUILD_DIR)/src/Dolphin/Runtime/CPlusLibPPC.o: CFLAGS += -inline deferred
-$(BUILD_DIR)/src/Dolphin/Runtime/NMWException.o: CFLAGS += -inline deferred
-$(BUILD_DIR)/src/Dolphin/Runtime/__init_cpp_exceptions.o: CFLAGS += -inline deferred
-$(BUILD_DIR)/src/Dolphin/Runtime/Gecko_ExceptionPPC.o: CFLAGS += -inline deferred
+$(RUNTIME_FILES): CFLAGS += -common off -inline deferred
 
 DEPENDS += $(RUNTIME_FILES:.o=.d)
 

@@ -20,7 +20,6 @@ OS_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/os/OSSync.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSThread.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSTime.o\
-	$(BUILD_DIR)/asm/Dolphin/os/__mem.o\
 	$(BUILD_DIR)/src/Dolphin/os/__start.o\
 	$(BUILD_DIR)/src/Dolphin/os/__ppc_eabi_init.o\
 

@@ -469,26 +469,19 @@ LIBS = [
     {
         "lib": "Runtime",
         "mw_version": "2.6",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_base -inline deferred",
         "host": False,
         "objects": [
             ["Dolphin/Runtime/__va_arg", True],
-            [
-                "Dolphin/Runtime/global_destructor_chain",
-                True,
-                 {"cflags": "$cflags_base -inline deferred"},
-            ],
-            [
-                "Dolphin/Runtime/CPlusLibPPC",
-                True,
-                {"cflags": "$cflags_base -inline deferred"},
-            ],
+            ["Dolphin/Runtime/global_destructor_chain", True],
+            ["Dolphin/Runtime/CPlusLibPPC", True],
             "Dolphin/Runtime/NMWException",
             ["Dolphin/Runtime/ptmf", True],
             "Dolphin/Runtime/runtime",
             "Dolphin/Runtime/__init_cpp_exceptions",
             "Dolphin/Runtime/Gecko_ExceptionPPC",
             ["Dolphin/Runtime/GCN_mem_alloc", True],
+            ["Dolphin/Runtime/__mem", True],
         ],
     },
     {
@@ -767,7 +760,6 @@ LIBS = [
             ["Dolphin/os/OSSync", True],
             ["Dolphin/os/OSThread", True],
             ["Dolphin/os/OSTime", True],
-            "Dolphin/os/__mem",
             ["Dolphin/os/__start", True],
             ["Dolphin/os/__ppc_eabi_init", True],
         ],

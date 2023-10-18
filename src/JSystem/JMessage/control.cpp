@@ -349,7 +349,7 @@ lbl_80008834:
  * Size:	0000E8
  * setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
  */
-bool TControl::setMessageCode_inSequence_(TProcessor const* processor, unsigned short resID, unsigned short msgID)
+bool TControl::setMessageCode_inSequence_(TProcessor const* processor, u16 resID, u16 msgID)
 {
 	char* v1;
 	TResource* resource = processor->getResource_groupID(resID);

@@ -16,6 +16,56 @@ void __ptmf_scall(...);
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000024
+ */
+void __ptmf_cast(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000028
+ */
+void __ptmf_scall4(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000034
+ */
+void __ptmf_call4(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000034
+ */
+void __ptmf_call(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00003C
+ */
+void __ptmf_cmpr(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	800C1AF4
  * Size:	000030
  */
@@ -36,37 +86,9 @@ asm long __ptmf_test(register PTMF* ptmf)
 		li        r3, 0
 		blr
 }
+// clang-format on
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void __ptmf_cmpr(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void __ptmf_call(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void __ptmf_call4(void)
-{
-	// UNUSED FUNCTION
-}
-
+// clang-format off
 /*
  * --INFO--
  * Address:	800C1B24
@@ -88,22 +110,3 @@ asm void __ptmf_scall(...)
 		bctr
 }
 // clang-format on
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
- */
-void __ptmf_scall4(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void __ptmf_cast(void)
-{
-	// UNUSED FUNCTION
-}
