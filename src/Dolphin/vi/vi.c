@@ -1,11 +1,12 @@
-
+#include "Dolphin/vi.h"
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void getEncoderType(void)
+static void getEncoderType(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +16,7 @@ void getEncoderType(void)
  * Address:	........
  * Size:	00005C
  */
-void cntlzd(void)
+static void cntlzd(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +36,7 @@ void VISetRegs(void)
  * Address:	800D07E8
  * Size:	000274
  */
-void __VIRetraceHandler(void)
+static void __VIRetraceHandler(void)
 {
 	/*
 	.loc_0x0:
@@ -240,7 +241,7 @@ void __VIRetraceHandler(void)
  * Address:	800D0A5C
  * Size:	000044
  */
-void VISetPreRetraceCallback(void)
+VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback callback)
 {
 	/*
 	.loc_0x0:
@@ -269,7 +270,7 @@ void VISetPreRetraceCallback(void)
  * Address:	800D0AA0
  * Size:	000044
  */
-void VISetPostRetraceCallback(void)
+VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback callback)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +299,7 @@ void VISetPostRetraceCallback(void)
  * Address:	800D0AE4
  * Size:	0000A0
  */
-void getTiming(void)
+static void getTiming(void)
 {
 	/*
 	.loc_0x0:
@@ -502,7 +503,7 @@ void __VIInit(void)
  * Address:	........
  * Size:	000160
  */
-void AdjustPosition(void)
+static void AdjustPosition(void)
 {
 	// UNUSED FUNCTION
 }
@@ -512,7 +513,7 @@ void AdjustPosition(void)
  * Address:	........
  * Size:	00003C
  */
-void ImportAdjustingValues(void)
+static void ImportAdjustingValues(void)
 {
 	// UNUSED FUNCTION
 }
@@ -913,7 +914,7 @@ void VIWaitForRetrace(void)
  * Address:	........
  * Size:	00007C
  */
-void setInterruptRegs(void)
+static void setInterruptRegs(void)
 {
 	// UNUSED FUNCTION
 }
@@ -923,7 +924,7 @@ void setInterruptRegs(void)
  * Address:	........
  * Size:	000098
  */
-void setPicConfig(void)
+static void setPicConfig(void)
 {
 	// UNUSED FUNCTION
 }
@@ -933,7 +934,7 @@ void setPicConfig(void)
  * Address:	........
  * Size:	0000BC
  */
-void setBBIntervalRegs(void)
+static void setBBIntervalRegs(void)
 {
 	// UNUSED FUNCTION
 }
@@ -943,7 +944,7 @@ void setBBIntervalRegs(void)
  * Address:	........
  * Size:	00009C
  */
-void setScalingRegs(void)
+static void setScalingRegs(void)
 {
 	// UNUSED FUNCTION
 }
@@ -953,7 +954,7 @@ void setScalingRegs(void)
  * Address:	........
  * Size:	000080
  */
-void calcFbbs(void)
+static void calcFbbs(void)
 {
 	// UNUSED FUNCTION
 }
@@ -963,7 +964,7 @@ void calcFbbs(void)
  * Address:	800D1288
  * Size:	0002D4
  */
-void setFbbRegs(void)
+static void setFbbRegs(void)
 {
 	/*
 	.loc_0x0:
@@ -1178,7 +1179,7 @@ void setFbbRegs(void)
  * Address:	........
  * Size:	0000CC
  */
-void setHorizontalRegs(void)
+static void setHorizontalRegs(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1188,7 +1189,7 @@ void setHorizontalRegs(void)
  * Address:	800D155C
  * Size:	0001A0
  */
-void setVerticalRegs(void)
+static void setVerticalRegs(void)
 {
 	/*
 	.loc_0x0:
@@ -1314,7 +1315,7 @@ void setVerticalRegs(void)
  * Address:	........
  * Size:	000094
  */
-void PrintDebugPalCaution(void)
+static void PrintDebugPalCaution(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1324,7 +1325,7 @@ void PrintDebugPalCaution(void)
  * Address:	800D16FC
  * Size:	000828
  */
-void VIConfigure(void)
+void VIConfigure(const GXRenderModeObj* obj)
 {
 	/*
 	.loc_0x0:
@@ -1966,7 +1967,7 @@ void VIConfigure(void)
  * Address:	........
  * Size:	000394
  */
-void VIConfigurePan(void)
+void VIConfigurePan(u16 panPosX, u16 panPosY, u16 panSizeX, u16 panSizeY)
 {
 	// UNUSED FUNCTION
 }
@@ -2072,7 +2073,7 @@ void VIFlush(void)
  * Address:	800D2054
  * Size:	00006C
  */
-void VISetNextFrameBuffer(void)
+void VISetNextFrameBuffer(void* fb)
 {
 	/*
 	.loc_0x0:
@@ -2111,7 +2112,7 @@ void VISetNextFrameBuffer(void)
  * Address:	........
  * Size:	000008
  */
-void VIGetNextFrameBuffer(void)
+void* VIGetNextFrameBuffer()
 {
 	// UNUSED FUNCTION
 }
@@ -2121,7 +2122,7 @@ void VIGetNextFrameBuffer(void)
  * Address:	800D20C0
  * Size:	000008
  */
-void VIGetCurrentFrameBuffer(void)
+void* VIGetCurrentFrameBuffer(void)
 {
 	/*
 	.loc_0x0:
@@ -2135,7 +2136,7 @@ void VIGetCurrentFrameBuffer(void)
  * Address:	........
  * Size:	00006C
  */
-void VISetNextRightFrameBuffer(void)
+void VISetNextRightFrameBuffer(void* fb)
 {
 	// UNUSED FUNCTION
 }
@@ -2145,7 +2146,7 @@ void VISetNextRightFrameBuffer(void)
  * Address:	800D20C8
  * Size:	00007C
  */
-void VISetBlack(void)
+void VISetBlack(BOOL isBlack)
 {
 	/*
 	.loc_0x0:
@@ -2198,7 +2199,7 @@ void VISet3D(void)
  * Address:	800D2144
  * Size:	000008
  */
-void VIGetRetraceCount(void)
+u32 VIGetRetraceCount(void)
 {
 	/*
 	.loc_0x0:
@@ -2212,7 +2213,7 @@ void VIGetRetraceCount(void)
  * Address:	800D214C
  * Size:	00003C
  */
-void GetCurrentDisplayPosition(void)
+static void GetCurrentDisplayPosition(void)
 {
 	/*
 	.loc_0x0:
@@ -2241,7 +2242,7 @@ void GetCurrentDisplayPosition(void)
  * Address:	........
  * Size:	000050
  */
-void getCurrentHalfLine(void)
+static void getCurrentHalfLine(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2251,7 +2252,7 @@ void getCurrentHalfLine(void)
  * Address:	800D2188
  * Size:	000068
  */
-void getCurrentFieldEvenOdd(void)
+static void getCurrentFieldEvenOdd(void)
 {
 	/*
 	.loc_0x0:
@@ -2293,7 +2294,7 @@ void getCurrentFieldEvenOdd(void)
  * Address:	800D21F0
  * Size:	00009C
  */
-void VIGetNextField(void)
+u32 VIGetNextField(void)
 {
 	/*
 	.loc_0x0:
@@ -2348,7 +2349,7 @@ void VIGetNextField(void)
  * Address:	800D228C
  * Size:	000098
  */
-void VIGetCurrentLine(void)
+u32 VIGetCurrentLine(void)
 {
 	/*
 	.loc_0x0:
@@ -2402,7 +2403,7 @@ void VIGetCurrentLine(void)
  * Address:	800D2324
  * Size:	000068
  */
-void VIGetTvFormat(void)
+u32 VIGetTvFormat(void)
 {
 	/*
 	.loc_0x0:
@@ -2442,7 +2443,7 @@ void VIGetTvFormat(void)
  * Address:	800D238C
  * Size:	00003C
  */
-void VIGetDTVStatus(void)
+u32 VIGetDTVStatus(void)
 {
 	/*
 	.loc_0x0:
