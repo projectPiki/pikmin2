@@ -706,13 +706,8 @@ static void setHorizontalRegs(VITimingInfo* tm, u16 dispPosX, u16 dispSizeX)
 	regs[VI_HORIZ_TIMING_0L] = (u16)(tm->hce | tm->hcs << 8);
 	changed |= VI_BITMASK(VI_HORIZ_TIMING_0L);
 
-	if (HorVer.tv == 8) {
-		hbe = (u32)(tm->hbe640 + 172);
-		hbs = tm->hbs640;
-	} else {
-		hbe = (u32)(tm->hbe640 - 40 + dispPosX);
-		hbs = (u32)(tm->hbs640 + 40 + dispPosX - (720 - dispSizeX));
-	}
+	hbe = (u32)(tm->hbe640 - 40 + dispPosX);
+	hbs = (u32)(tm->hbs640 + 40 + dispPosX - (720 - dispSizeX));
 
 	hbeLo = hbe & ONES(9);
 	hbeHi = hbe >> 9;
@@ -808,7 +803,7 @@ static void PrintDebugPalCaution(void)
 void VIConfigure(const GXRenderModeObj* obj)
 {
 	VITimingInfo* tm;
-	u32 regDspCfg, regClksel;
+	u32 regDspCfg;
 	BOOL enabled;
 	u32 newNonInter, tvInBootrom, tvInGame;
 
@@ -884,35 +879,33 @@ void VIConfigure(const GXRenderModeObj* obj)
 	setInterruptRegs(tm);
 
 	regDspCfg = regs[1];
-	regClksel = regs[0x36];
 
 	if ((HorVer.nonInter == VI_PROGRESSIVE) || (HorVer.nonInter == VI_3D)) {
 		regDspCfg = (((u32)(regDspCfg)) & ~0x00000004) | (((u32)(1)) << 2);
-
-		// if (HorVer.tv == VI_HD720) {
-		//     regClksel = (((u32)(regClksel)) & ~0x00000001) | (((u32)(0)));
-		// }
-		// else {
-		regClksel = (((u32)(regClksel)) & ~0x00000001) | (((u32)(1)));
-		// }
 	} else {
 		regDspCfg = (((u32)(regDspCfg)) & ~0x00000004) | (((u32)(HorVer.nonInter & 1)) << 2);
-		regClksel = (((u32)(regClksel)) & ~0x00000001) | (((u32)(0)));
 	}
 
 	regDspCfg = (((u32)(regDspCfg)) & ~0x00000008) | (((u32)(HorVer.is3D)) << 3);
 
-	if ((HorVer.tv == VI_PAL) || (HorVer.tv == VI_MPAL) || (HorVer.tv == VI_DEBUG)) {
+	if ((HorVer.tv == VI_DEBUG_PAL) || (HorVer.tv == VI_EURGB60) || (HorVer.tv == VI_GCA)) {
 		regDspCfg = (((u32)(regDspCfg)) & ~0x00000300) | (((u32)(0)) << 8);
 	} else {
 		regDspCfg = (((u32)(regDspCfg)) & ~0x00000300) | (((u32)(HorVer.tv)) << 8);
 	}
 
-	regs[1]    = (u16)regDspCfg;
-	regs[0x36] = (u16)regClksel;
+	regs[1] = (u16)regDspCfg;
 	changed |= VI_BITMASK(0x01);
-	changed |= VI_BITMASK(0x36);
 
+	if (VI_TVMODE(HorVer.tv, HorVer.nonInter) != VI_TVMODE_NTSC_PROG && VI_TVMODE(HorVer.tv, HorVer.nonInter) != VI_TVMODE_NTSC_3D
+	    && VI_TVMODE(HorVer.tv, HorVer.nonInter) != VI_TVMODE_GCA_PROG) {
+		//__VIRegs[VI_DISP_CONFIG] = (1 << 0) | (0 << 1) | (newNonInter << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (HorVer.tv << 8);
+		//__VIRegs[VI_CLOCK_SEL]   = 0;
+
+	} else {
+		//__VIRegs[VI_DISP_CONFIG] = (1 << 0) | (0 << 1) | (1 << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (HorVer.tv << 8);
+		//__VIRegs[VI_CLOCK_SEL]   = 1;
+	}
 	setScalingRegs(HorVer.panSizeX, HorVer.dispSizeX, HorVer.is3D);
 	setHorizontalRegs(tm, HorVer.adjDispPosX, HorVer.dispSizeX);
 	setBBIntervalRegs(tm);
