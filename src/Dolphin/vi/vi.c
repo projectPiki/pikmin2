@@ -4,12 +4,13 @@
 #include "Dolphin/hw_regs.h"
 
 // Useful macros.
-#define CLAMP(x, l, h)   (((x) > (h)) ? (h) : (((x) < (l)) ? (l) : (x)))
-#define MIN(a, b)        (((a) < (b)) ? (a) : (b))
-#define MAX(a, b)        (((a) > (b)) ? (a) : (b))
-#define IS_LOWER_16MB(x) ((x) < 16 * 1024 * 1024)
-#define ToPhysical(fb)   (u32)(((u32)(fb)) & 0x3FFFFFFF)
-#define ONES(x)          ((1 << (x)) - 1)
+#define CLAMP(x, l, h)    (((x) > (h)) ? (h) : (((x) < (l)) ? (l) : (x)))
+#define MIN(a, b)         (((a) < (b)) ? (a) : (b))
+#define MAX(a, b)         (((a) > (b)) ? (a) : (b))
+#define IS_LOWER_16MB(x)  ((x) < 16 * 1024 * 1024)
+#define ToPhysical(fb)    (u32)(((u32)(fb)) & 0x3FFFFFFF)
+#define ONES(x)           ((1 << (x)) - 1)
+#define VI_BITMASK(index) (1ull << (63 - (index)))
 
 const char* __VIVersion = "<< Dolphin SDK - VI\trelease build: Apr 17 2003 12:33:22 (0x2301) >>";
 
@@ -127,7 +128,7 @@ static BOOL VISetRegs(void)
 		while (shdwChanged) {
 			regIndex           = cntlzd(shdwChanged);
 			__VIRegs[regIndex] = shdwRegs[regIndex];
-			shdwChanged &= ~(1ull << (63 - (regIndex)));
+			shdwChanged &= ~(VI_BITMASK(regIndex));
 		}
 
 		shdwChangeMode = 0;
@@ -539,10 +540,10 @@ static void setInterruptRegs(VITimingInfo* tm)
 	hct++;
 
 	regs[VI_DISP_INT_0U] = (u16)hct;
-	changed |= (1ull << (63 - (0x19)));
+	changed |= VI_BITMASK(VI_DISP_INT_0U);
 
 	regs[VI_DISP_INT_0] = (u16)((((u32)(vct))) | (((u32)(1)) << 12) | (((u32)(0)) << 15));
-	changed |= (1ull << (63 - (0x18)));
+	changed |= VI_BITMASK(VI_DISP_INT_0);
 }
 
 /*
@@ -558,7 +559,7 @@ static void setPicConfig(u16 fbSizeX, VIXFBMode xfbMode, u16 panPosX, u16 panSiz
 	*wpl         = (u8)((*xof + panSizeX + 15) / 16);
 
 	regs[VI_HSW] = (u16)((((u32)(*std))) | (((u32)(*wpl)) << 8));
-	changed |= (1ull << (63 - (0x24)));
+	changed |= VI_BITMASK(VI_HSW);
 }
 
 /*
@@ -572,19 +573,19 @@ static void setBBIntervalRegs(VITimingInfo* tm)
 
 	val                = (u16)((((u32)(tm->bs1))) | (((u32)(tm->be1)) << 5));
 	regs[VI_BBI_ODD_U] = val;
-	changed |= (1ull << (63 - (0x0b)));
+	changed |= VI_BITMASK(VI_BBI_ODD_U);
 
 	val              = (u16)((((u32)(tm->bs3))) | (((u32)(tm->be3)) << 5));
 	regs[VI_BBI_ODD] = val;
-	changed |= (1ull << (63 - (0x0a)));
+	changed |= VI_BITMASK(VI_BBI_ODD);
 
 	val                 = (u16)((((u32)(tm->bs2))) | (((u32)(tm->be2)) << 5));
 	regs[VI_BBI_EVEN_U] = val;
-	changed |= (1ull << (63 - (0x0d)));
+	changed |= VI_BITMASK(VI_BBI_EVEN_U);
 
 	val               = (u16)((((u32)(tm->bs4))) | (((u32)(tm->be4)) << 5));
 	regs[VI_BBI_EVEN] = val;
-	changed |= (1ull << (63 - (0x0c)));
+	changed |= VI_BITMASK(VI_BBI_EVEN);
 }
 
 /*
@@ -602,13 +603,13 @@ static void setScalingRegs(u16 panSizeX, u16 dispSizeX, BOOL is3D)
 		scale = (256 * (u32)panSizeX + (u32)dispSizeX - 1) / (u32)dispSizeX;
 
 		regs[VI_HSR] = (u16)((((u32)(scale))) | (((u32)(1)) << 12));
-		changed |= (1ull << (63 - (0x25)));
+		changed |= VI_BITMASK(VI_HSR);
 
 		regs[VI_WIDTH] = (u16)((((u32)(panSizeX))));
-		changed |= (1ull << (63 - (0x38)));
+		changed |= VI_BITMASK(VI_WIDTH);
 	} else {
 		regs[VI_HSR] = (u16)((((u32)(256))) | (((u32)(0)) << 12));
-		changed |= (1ull << (63 - (0x25)));
+		changed |= VI_BITMASK(VI_HSR);
 	}
 }
 
@@ -664,29 +665,29 @@ static void setFbbRegs(VIPositionInfo* hv, u32* tfbb, u32* bfbb, u32* rtfbb, u32
 	}
 
 	regs[VI_TOP_FIELD_BASE_LEFT_U] = (u16)(*tfbb & 0xFFFF);
-	changed |= (1ull << (63 - (0xF)));
+	changed |= VI_BITMASK(VI_TOP_FIELD_BASE_LEFT_U);
 
 	regs[VI_TOP_FIELD_BASE_LEFT] = (u16)((((*tfbb >> 16))) | hv->xof << 8 | shifted << 12);
-	changed |= (1ull << (63 - (0xE)));
+	changed |= VI_BITMASK(VI_TOP_FIELD_BASE_LEFT);
 
 	regs[VI_BTTM_FIELD_BASE_LEFT_U] = (u16)(*bfbb & 0xFFFF);
-	changed |= (1ull << (63 - (0x13)));
+	changed |= VI_BITMASK(VI_BTTM_FIELD_BASE_LEFT_U);
 
 	regs[VI_BTTM_FIELD_BASE_LEFT] = (u16)(*bfbb >> 16);
-	changed |= (1ull << (63 - (0x12)));
+	changed |= VI_BITMASK(VI_BTTM_FIELD_BASE_LEFT);
 
 	if (hv->is3D) {
 		regs[VI_TOP_FIELD_BASE_RIGHT_U] = *rtfbb & 0xffff;
-		changed |= (1ull << (63 - (0x11)));
+		changed |= VI_BITMASK(VI_TOP_FIELD_BASE_RIGHT_U);
 
 		regs[VI_TOP_FIELD_BASE_RIGHT] = *rtfbb >> 16;
-		changed |= (1ull << (63 - (0x10)));
+		changed |= VI_BITMASK(VI_TOP_FIELD_BASE_RIGHT);
 
 		regs[VI_BTTM_FIELD_BASE_RIGHT_U] = *rbfbb & 0xFFFF;
-		changed |= (1ull << (63 - (0x15)));
+		changed |= VI_BITMASK(VI_BTTM_FIELD_BASE_RIGHT_U);
 
 		regs[VI_BTTM_FIELD_BASE_RIGHT] = *rbfbb >> 16;
-		changed |= (1ull << (63 - (0x14)));
+		changed |= VI_BITMASK(VI_BTTM_FIELD_BASE_RIGHT);
 	}
 }
 
@@ -700,10 +701,10 @@ static void setHorizontalRegs(VITimingInfo* tm, u16 dispPosX, u16 dispSizeX)
 	u32 hbe, hbs, hbeLo, hbeHi;
 
 	regs[VI_HORIZ_TIMING_0U] = (u16)tm->hlw;
-	changed |= (1ull << (63 - (0x3)));
+	changed |= VI_BITMASK(VI_HORIZ_TIMING_0U);
 
 	regs[VI_HORIZ_TIMING_0L] = (u16)(tm->hce | tm->hcs << 8);
-	changed |= (1ull << (63 - (0x2)));
+	changed |= VI_BITMASK(VI_HORIZ_TIMING_0L);
 
 	if (HorVer.tv == 8) {
 		hbe = (u32)(tm->hbe640 + 172);
@@ -717,10 +718,10 @@ static void setHorizontalRegs(VITimingInfo* tm, u16 dispPosX, u16 dispSizeX)
 	hbeHi = hbe >> 9;
 
 	regs[VI_HORIZ_TIMING_1U] = (u16)(tm->hsy | hbeLo << 7);
-	changed |= (1ull << (63 - (0x05)));
+	changed |= VI_BITMASK(VI_HORIZ_TIMING_1U);
 
 	regs[VI_HORIZ_TIMING_1L] = (u16)(hbeHi | hbs << 1);
-	changed |= (1ull << (63 - (0x04)));
+	changed |= VI_BITMASK(VI_HORIZ_TIMING_1L);
 }
 
 /*
@@ -763,19 +764,19 @@ static void setVerticalRegs(u16 dispPosY, u16 dispSizeY, u8 equ, u16 acv, u16 pr
 	}
 
 	regs[VI_VERT_TIMING] = (u16)(equ | actualAcv << 4);
-	changed |= (1ull << (63 - (0x00)));
+	changed |= VI_BITMASK(VI_VERT_TIMING);
 
 	regs[VI_VERT_TIMING_ODD_U] = (u16)actualPrbOdd << 0;
-	changed |= (1ull << (63 - (0x07)));
+	changed |= VI_BITMASK(VI_VERT_TIMING_ODD_U);
 
 	regs[VI_VERT_TIMING_ODD] = (u16)actualPsbOdd << 0;
-	changed |= (1ull << (63 - (0x06)));
+	changed |= VI_BITMASK(VI_VERT_TIMING_ODD);
 
 	regs[VI_VERT_TIMING_EVEN_U] = (u16)actualPrbEven << 0;
-	changed |= (1ull << (63 - (0x09)));
+	changed |= VI_BITMASK(VI_VERT_TIMING_EVEN_U);
 
 	regs[VI_VERT_TIMING_EVEN] = (u16)actualPsbEven << 0;
-	changed |= (1ull << (63 - (0x08)));
+	changed |= VI_BITMASK(VI_VERT_TIMING_EVEN);
 }
 
 /*
@@ -909,8 +910,8 @@ void VIConfigure(const GXRenderModeObj* obj)
 
 	regs[1]    = (u16)regDspCfg;
 	regs[0x36] = (u16)regClksel;
-	changed |= (1ull << (63 - (0x01)));
-	changed |= (1ull << (63 - (0x36)));
+	changed |= VI_BITMASK(0x01);
+	changed |= VI_BITMASK(0x36);
 
 	setScalingRegs(HorVer.panSizeX, HorVer.dispSizeX, HorVer.is3D);
 	setHorizontalRegs(tm, HorVer.adjDispPosX, HorVer.dispSizeX);
@@ -1589,7 +1590,7 @@ void VIFlush(void)
 	while (changed) {
 		regIndex           = cntlzd(changed);
 		shdwRegs[regIndex] = regs[regIndex];
-		changed &= ~(1ull << (63 - (regIndex)));
+		changed &= ~VI_BITMASK(regIndex);
 	}
 
 	flushFlag   = 1;
