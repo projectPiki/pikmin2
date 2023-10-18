@@ -172,7 +172,7 @@ LIBS = [
             ["JSystem/JUtility/JUTTexture", True],
             ["JSystem/JUtility/JUTVideo", True],
             ["JSystem/JUtility/JUTXfb", True],
-            "JSystem/JUtility/JUTCacheFont",
+            ["JSystem/JUtility/JUTCacheFont", True],
         ],
     },
     {

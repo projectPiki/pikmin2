@@ -223,7 +223,7 @@ struct JUTResFont : public JUTFont {
 	// _00-_1C = JUTFont
 	int mWidth;                         // _1C
 	int mHeight;                        // _20
-	GXTexObj _24;                       // _24
+	GXTexObj mTexObj;                   // _24
 	int mTexPageIdx;                    // _44
 	const ResFONT* mResource;           // _48
 	ResFONT::InfoBlock* mInfoBlock;     // _4C, INF1
@@ -248,20 +248,20 @@ struct JUTCacheFont : public JUTResFont {
 	struct TGlyphCacheInfo {
 		TGlyphCacheInfo* mPrev; // _00
 		TGlyphCacheInfo* mNext; // _04
-		u16 _08;                // _08
-		u16 _0A;                // _0A
-		u16 _0C;                // _0C
-		u16 _0E;                // _0E
-		u32 _10;                // _10
+		u16 mStartCode;         // _08
+		u16 mEndCode;           // _0A
+		u16 mCellWidth;         // _0C
+		u16 mCellHeight;        // _0E
+		u32 mPageSize;          // _10
 		u16 mTexFormat;         // _14
-		u16 _16;                // _16
-		u16 _18;                // _18
-		u16 mWidth;             // _1A
-		u16 mHeight;            // _1C
-		u16 _1E;                // _1E
+		u16 mNumRows;           // _16
+		u16 mNumCols;           // _18
+		u16 mTexWidth;          // _1A
+		u16 mTexHeight;         // _1C
+		u16 mFontType;          // _1E, 0 = ANSI, 1 = SJIS
 	};
 
-	struct TCachePage : TGlyphCacheInfo {
+	struct TCachePage : public TGlyphCacheInfo {
 		GXTexObj mTexObj; // _20
 		u8 mImage[];      // _40
 	};
@@ -283,7 +283,7 @@ struct JUTCacheFont : public JUTResFont {
 	bool internal_initiate(const ResFONT*, void*, u32, JKRHeap*);
 	void invalidiateAllCache();
 	TGlyphCacheInfo* loadCache_char_subroutine(int*, bool);
-	void loadCache_string(const char*, bool);
+	bool loadCache_string(const char*, bool);
 	void prepend(TGlyphCacheInfo*);
 	void unlink(TGlyphCacheInfo*);
 
@@ -299,29 +299,31 @@ struct JUTCacheFont : public JUTResFont {
 
 	void setPagingType(EPagingType type) { mPagingType = type; }
 
-	static u32 calcCacheSize(u32 param_0, int param_1) { return (ALIGN_NEXT(param_0, 0x20) + 0x40) * param_1; }
+	static u32 calcCacheSize(u32 sheetSize, int pageCount) { return (ALIGN_NEXT(sheetSize, 0x20) + 0x40) * pageCount; }
 	GXTexObj* getTexObj(void* buffer) { return &((TCachePage*)buffer)->mTexObj; }
+	u8* getImage(void* buffer) { return ((TCachePage*)buffer)->mImage; }
+	TGlyphCacheInfo* getCurrPage() { return mCurrPage; }
 
 	// _00     = VTBL
 	// _00-_70 = JUTResFont
-	u32 mWidthBlocksSize;     // _70
-	u32 mGlyphBlocksSize;     // _74
-	u32 mMapBlocksSize;       // _78
-	void* _7C;                // _7C
-	void* _80;                // _80
-	void* _84;                // _84
-	u32 mMaxSheetSize;        // _88
-	EPagingType mPagingType;  // _8C
-	void* mCacheBuffer;       // _90
-	u32 _94;                  // _94
-	u32 mCachePage;           // _98
-	TGlyphCacheInfo* _9C;     // _9C
-	TGlyphCacheInfo* _A0;     // _A0
-	TGlyphCacheInfo* _A4;     // _A4
-	u32 _A8;                  // _A8
-	JKRAramBlock* mAramBlock; // _AC
-	u8 _B0;                   // _B0
-	int _B4;                  // _B4
+	u32 mWidthBlocksSize;        // _70
+	u32 mGlyphBlocksSize;        // _74
+	u32 mMapBlocksSize;          // _78
+	void* mWidthBlockBuffer;     // _7C
+	void* mGlyphBlockBuffer;     // _80
+	void* mMapBlockBuffer;       // _84
+	u32 mMaxSheetSize;           // _88
+	EPagingType mPagingType;     // _8C
+	void* mCacheBuffer;          // _90
+	u32 mPageSize;               // _94
+	u32 mCachePageCount;         // _98
+	TGlyphCacheInfo* mStartPage; // _9C
+	TGlyphCacheInfo* mEndPage;   // _A0
+	TGlyphCacheInfo* mCurrPage;  // _A4
+	void* mEndPageAddr;          // _A8
+	JKRAramBlock* mAramBlock;    // _AC
+	bool mIsHeapBuffer;          // _B0, if true, must be delete[]'d
+	int mBlankPageCount;         // _B4
 };
 
 #endif
