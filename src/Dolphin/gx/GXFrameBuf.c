@@ -1,11 +1,11 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000144
  */
-void GXAdjustForOverscan(void)
+void GXAdjustForOverscan(GXRenderModeObj* rIn, GXRenderModeObj* rOut, u16 horiz, u16 vert)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void GXAdjustForOverscan(void)
  * Address:	800E5C44
  * Size:	00007C
  */
-void GXSetDispCopySrc(void)
+void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height)
 {
 	/*
 	.loc_0x0:
@@ -58,7 +58,7 @@ void GXSetDispCopySrc(void)
  * Address:	800E5CC0
  * Size:	00007C
  */
-void GXSetTexCopySrc(void)
+void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height)
 {
 	/*
 	.loc_0x0:
@@ -101,7 +101,7 @@ void GXSetTexCopySrc(void)
  * Address:	800E5D3C
  * Size:	000034
  */
-void GXSetDispCopyDst(void)
+void GXSetDispCopyDst(u16 width, u16 height)
 {
 	/*
 	.loc_0x0:
@@ -126,7 +126,7 @@ void GXSetDispCopyDst(void)
  * Address:	800E5D70
  * Size:	000130
  */
-void GXSetTexCopyDst(void)
+void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt format, GXBool useMIPmap)
 {
 	/*
 	.loc_0x0:
@@ -222,7 +222,7 @@ void GXSetTexCopyDst(void)
  * Address:	800E5EA0
  * Size:	000024
  */
-void GXSetDispCopyFrame2Field(void)
+void GXSetDispCopyFrame2Field(GXCopyMode mode)
 {
 	/*
 	.loc_0x0:
@@ -243,7 +243,7 @@ void GXSetDispCopyFrame2Field(void)
  * Address:	800E5EC4
  * Size:	000058
  */
-void GXSetCopyClamp(void)
+void GXSetCopyClamp(GXFBClamp clamp)
 {
 	/*
 	.loc_0x0:
@@ -287,7 +287,7 @@ void __GXGetNumXfbLines(void)
  * Address:	800E5F1C
  * Size:	000090
  */
-void GXGetNumXfbLines(void)
+u16 GXGetNumXfbLines(u16 efbHeight, f32 yScale)
 {
 	/*
 	.loc_0x0:
@@ -343,7 +343,7 @@ void GXGetNumXfbLines(void)
  * Address:	800E5FAC
  * Size:	000238
  */
-void GXGetYScaleFactor(void)
+f32 GXGetYScaleFactor(u16 efbHeight, u16 xfbHeight)
 {
 	/*
 	.loc_0x0:
@@ -529,7 +529,7 @@ void GXGetYScaleFactor(void)
  * Address:	800E61E4
  * Size:	0000CC
  */
-void GXSetDispCopyYScale(void)
+u32 GXSetDispCopyYScale(f32 vertScale)
 {
 	/*
 	.loc_0x0:
@@ -600,7 +600,7 @@ void GXSetDispCopyYScale(void)
  * Address:	800E62B0
  * Size:	000078
  */
-void GXSetCopyClear(void)
+void GXSetCopyClear(GXColor clearColor, u32 clearZ)
 {
 	/*
 	.loc_0x0:
@@ -642,7 +642,7 @@ void GXSetCopyClear(void)
  * Address:	800E6328
  * Size:	000208
  */
-void GXSetCopyFilter(void)
+void GXSetCopyFilter(GXBool useAA, u8 samplePattern[12][2], GXBool doVertFilt, u8 vFilt[7])
 {
 	/*
 	.loc_0x0:
@@ -792,8 +792,9 @@ void GXSetCopyFilter(void)
  * Address:	800E6530
  * Size:	000014
  */
-void GXSetDispCopyGamma(void)
+void GXSetDispCopyGamma(GXGamma gamma)
 {
+	__GXData->_1D0 = (gamma & 3) << 7 | __GXData->_1D0 & ~0x80;
 	/*
 	.loc_0x0:
 	  lwz       r4, -0x6D70(r2)
@@ -809,7 +810,7 @@ void GXSetDispCopyGamma(void)
  * Address:	800E6544
  * Size:	000168
  */
-void GXCopyDisp(void)
+void GXCopyDisp(void* dest, GXBool doClear)
 {
 	/*
 	.loc_0x0:
@@ -921,7 +922,7 @@ void GXCopyDisp(void)
  * Address:	800E66AC
  * Size:	00018C
  */
-void GXCopyTex(void)
+void GXCopyTex(void* dest, GXBool doClear)
 {
 	/*
 	.loc_0x0:
@@ -1072,7 +1073,7 @@ void GXClearBoundingBox(void)
  * Address:	........
  * Size:	000034
  */
-void GXReadBoundingBox(void)
+void GXReadBoundingBox(u16* left, u16* top, u16* right, u16* bottom)
 {
 	// UNUSED FUNCTION
 }

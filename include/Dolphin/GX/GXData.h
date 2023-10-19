@@ -60,7 +60,9 @@ typedef struct _GXData {
 	u16 _006;                        // _006
 	ControlRegister controlRegister; // _008
 	u32 _00C;                        // _00C, probably CPStatus
-	u8 _010[0x6C];                   // _010
+	u32 _010;                        // _010
+	u32 _014;                        // _014
+	u8 _018[0x64];                   // _018
 	u32 _07C;                        // _07C
 	u8 _080[0x28];                   // _080
 	GXColor _0A8[2];                 // _0A8

@@ -1,11 +1,11 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000174
  */
-void GXProject(void)
+void GXProject(f32 x, f32 y, f32 z, Mtx viewMtx, f32* projMtx, f32* viewport, f32* screenX, f32* screenY, f32* screenZ)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void __GXSetProjection(void)
  * Address:	800E9448
  * Size:	0000A4
  */
-void GXSetProjection(void)
+void GXSetProjection(Mtx44 mtx, GXProjectionType type)
 {
 	/*
 	.loc_0x0:
@@ -102,7 +102,7 @@ void GXSetProjection(void)
  * Address:	800E94EC
  * Size:	00008C
  */
-void GXSetProjectionv(void)
+void GXSetProjectionv(f32* ptr)
 {
 	/*
 	.loc_0x0:
@@ -153,7 +153,7 @@ void GXSetProjectionv(void)
  * Address:	........
  * Size:	000048
  */
-void GXGetProjectionv(void)
+void GXGetProjectionv(f32* ptr)
 {
 	// UNUSED FUNCTION
 }
@@ -203,7 +203,7 @@ void WriteMTXPS4x2(void)
  * Address:	800E9578
  * Size:	000050
  */
-void GXLoadPosMtxImm(void)
+void GXLoadPosMtxImm(Mtx mtx, u32 id)
 {
 	/*
 	.loc_0x0:
@@ -235,7 +235,7 @@ void GXLoadPosMtxImm(void)
  * Address:	........
  * Size:	000030
  */
-void GXLoadPosMtxIndx(void)
+void GXLoadPosMtxIndx(u16 index, u32 id)
 {
 	// UNUSED FUNCTION
 }
@@ -245,7 +245,7 @@ void GXLoadPosMtxIndx(void)
  * Address:	800E95C8
  * Size:	000050
  */
-void GXLoadNrmMtxImm(void)
+void GXLoadNrmMtxImm(Mtx mtx, u32 id)
 {
 	/*
 	.loc_0x0:
@@ -277,7 +277,7 @@ void GXLoadNrmMtxImm(void)
  * Address:	........
  * Size:	000048
  */
-void GXLoadNrmMtxImm3x3(void)
+void GXLoadNrmMtxImm3x3(Mtx33, u32 id)
 {
 	// UNUSED FUNCTION
 }
@@ -287,7 +287,7 @@ void GXLoadNrmMtxImm3x3(void)
  * Address:	........
  * Size:	000034
  */
-void GXLoadNrmMtxIndx3x3(void)
+void GXLoadNrmMtxIndx3x3(u16 index, u32 id)
 {
 	// UNUSED FUNCTION
 }
@@ -297,7 +297,7 @@ void GXLoadNrmMtxIndx3x3(void)
  * Address:	800E9618
  * Size:	000034
  */
-void GXSetCurrentMtx(void)
+void GXSetCurrentMtx(u32 id)
 {
 	/*
 	.loc_0x0:
@@ -322,7 +322,7 @@ void GXSetCurrentMtx(void)
  * Address:	800E964C
  * Size:	0000B4
  */
-void GXLoadTexMtxImm(void)
+void GXLoadTexMtxImm(f32 mtx[][4], u32 id, GXTexMtxType type)
 {
 	/*
 	.loc_0x0:
@@ -389,7 +389,7 @@ void GXLoadTexMtxImm(void)
  * Address:	........
  * Size:	000058
  */
-void GXLoadTexMtxIndx(void)
+void GXLoadTexMtxIndx(u16 index, u32 id, GXTexMtxType type)
 {
 	// UNUSED FUNCTION
 }
@@ -447,7 +447,7 @@ void __GXSetViewport(void)
  * Address:	........
  * Size:	000058
  */
-void GXSetViewportJitter(void)
+void GXSetViewportJitter(f32 left, f32 top, f32 width, f32 height, f32 nearZ, f32 farZ, u32 field)
 {
 	// UNUSED FUNCTION
 }
@@ -457,7 +457,7 @@ void GXSetViewportJitter(void)
  * Address:	800E9790
  * Size:	000048
  */
-void GXSetViewport(void)
+void GXSetViewport(f32 left, f32 top, f32 width, f32 height, f32 nearZ, f32 farZ)
 {
 	/*
 	.loc_0x0:
@@ -487,7 +487,7 @@ void GXSetViewport(void)
  * Address:	........
  * Size:	000024
  */
-void GXGetViewportv(void)
+void GXGetViewportv(f32* viewport)
 {
 	// UNUSED FUNCTION
 }
@@ -507,7 +507,7 @@ void GXSetZScaleOffset(void)
  * Address:	800E97D8
  * Size:	000078
  */
-void GXSetScissor(void)
+void GXSetScissor(u32 left, u32 top, u32 width, u32 height)
 {
 	/*
 	.loc_0x0:
@@ -549,7 +549,7 @@ void GXSetScissor(void)
  * Address:	800E9850
  * Size:	000048
  */
-void GXGetScissor(void)
+void GXGetScissor(u32* left, u32* top, u32* width, u32* height)
 {
 	/*
 	.loc_0x0:
@@ -607,7 +607,7 @@ void GXSetScissorBoxOffset(void)
  * Address:	800E98D8
  * Size:	000028
  */
-void GXSetClipMode(void)
+void GXSetClipMode(GXClipMode mode)
 {
 	/*
 	.loc_0x0:

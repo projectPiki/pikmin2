@@ -1,4 +1,4 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
@@ -15,8 +15,95 @@ void __GXXfVtxSpecs(void)
  * Address:	800E4284
  * Size:	00026C
  */
-void GXSetVtxDesc(void)
+void GXSetVtxDesc(GXAttr attr, GXAttrType type)
 {
+	switch (attr) {
+	case GX_VA_PNMTXIDX:
+		__GXData->_014 = (type & 1) | (__GXData->_014 & ~0x1);
+		break;
+	case GX_VA_TEX0MTXIDX:
+		__GXData->_014 = (type & 1) << 1 | (__GXData->_014 & ~0x2);
+		break;
+	case GX_VA_TEX1MTXIDX:
+		__GXData->_014 = (type & 1) << 2 | (__GXData->_014 & ~0x4);
+		break;
+	case GX_VA_TEX2MTXIDX:
+		__GXData->_014 = (type & 1) << 3 | (__GXData->_014 & ~0x8);
+		break;
+	case GX_VA_TEX3MTXIDX:
+		__GXData->_014 = (type & 1) << 4 | (__GXData->_014 & ~0x10);
+		break;
+	case GX_VA_TEX4MTXIDX:
+		__GXData->_014 = (type & 1) << 5 | (__GXData->_014 & ~0x20);
+		break;
+	case GX_VA_TEX5MTXIDX:
+		__GXData->_014 = (type & 1) << 6 | (__GXData->_014 & ~0x40);
+		break;
+	case GX_VA_TEX6MTXIDX:
+		__GXData->_014 = (type & 1) << 7 | (__GXData->_014 & ~0x80);
+		break;
+	case GX_VA_TEX7MTXIDX:
+		__GXData->_014 = (type & 1) << 8 | (__GXData->_014 & ~0x100);
+		break;
+	case GX_VA_POS:
+		__GXData->_014 = (type & 3) << 9 | (__GXData->_014 & ~0x200);
+		break;
+	case GX_VA_NRM:
+		if (type != GX_NONE) {
+			__GXData->_258[0] = 1;
+			__GXData->_258[1] = 0;
+			__GXData->_254    = type;
+		} else {
+			__GXData->_258[0] = 0;
+		}
+		break;
+	case GX_VA_CLR0:
+		__GXData->_014 = (type & 3) << 13 | (__GXData->_014 & ~0x8000);
+		break;
+	case GX_VA_CLR1:
+		__GXData->_014 = (type & 3) << 15 | (__GXData->_014 & ~0x12000);
+		break;
+	case GX_VA_TEX0:
+		__GXData->_014 = type & 3 | (__GXData->_014 & ~0x3);
+		break;
+	case GX_VA_TEX1:
+		__GXData->_014 = (type & 3) << 2 | (__GXData->_014 & ~0x9);
+		break;
+	case GX_VA_TEX2:
+		__GXData->_014 = (type & 3) << 4 | (__GXData->_014 & ~0x30);
+		break;
+	case GX_VA_TEX3:
+		__GXData->_014 = (type & 3) << 6 | (__GXData->_014 & ~0x90);
+		break;
+	case GX_VA_TEX4:
+		__GXData->_014 = (type & 3) << 8 | (__GXData->_014 & ~0x300);
+		break;
+	case GX_VA_TEX5:
+		__GXData->_014 = (type & 3) << 10 | (__GXData->_014 & ~0x900);
+		break;
+	case GX_VA_TEX6:
+		__GXData->_014 = (type & 3) << 12 | (__GXData->_014 & ~0x3000);
+		break;
+	case GX_VA_TEX7:
+		__GXData->_014 = (type & 3) << 14 | (__GXData->_014 & ~0x9000);
+		break;
+	case GX_VA_NBT:
+		if (type != GX_NONE) {
+			__GXData->_258[0] = 1;
+			__GXData->_258[1] = 0;
+			__GXData->_254    = type;
+		} else {
+			__GXData->_258[0] = 0;
+		}
+		break;
+	}
+
+	if (__GXData->_258[0] == 0 && __GXData->_258[1] == 0) {
+		__GXData->_014 = (__GXData->_254 & 3) << 11 | (__GXData->_014 & ~0x2800);
+	} else {
+		__GXData->_014 &= ~0x3800;
+	}
+	__GXData->_5AC |= 8;
 	/*
 	.loc_0x0:
 	  cmplwi    r3, 0x19
@@ -194,7 +281,7 @@ void GXSetVtxDesc(void)
  * Address:	........
  * Size:	000288
  */
-void GXSetVtxDescv(void)
+void GXSetVtxDescv(GXVtxDescList* list)
 {
 	// UNUSED FUNCTION
 }
@@ -358,7 +445,7 @@ void __GXCalculateVLim(void)
  * Address:	........
  * Size:	0001B4
  */
-void GXGetVtxDesc(void)
+void GXGetVtxDesc(GXAttr attr, GXAttrType* type)
 {
 	// UNUSED FUNCTION
 }
@@ -368,7 +455,7 @@ void GXGetVtxDesc(void)
  * Address:	........
  * Size:	000090
  */
-void GXGetVtxDescv(void)
+void GXGetVtxDescv(GXVtxDescList* list)
 {
 	// UNUSED FUNCTION
 }
@@ -404,7 +491,7 @@ void GXClearVtxDesc(void)
  * Address:	800E4708
  * Size:	00025C
  */
-void GXSetVtxAttrFmt(void)
+void GXSetVtxAttrFmt(GXVtxFmt format, GXAttr attr, GXCompCnt count, GXCompType type, u8 frac)
 {
 	/*
 	.loc_0x0:
@@ -571,7 +658,7 @@ void GXSetVtxAttrFmt(void)
  * Address:	800E4964
  * Size:	000280
  */
-void GXSetVtxAttrFmtv(void)
+void GXSetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
 {
 	/*
 	.loc_0x0:
@@ -818,7 +905,7 @@ void GXGetVtxAttrFmt(void)
  * Address:	........
  * Size:	000074
  */
-void GXGetVtxAttrFmtv(void)
+void GXGetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
 {
 	// UNUSED FUNCTION
 }
@@ -828,7 +915,7 @@ void GXGetVtxAttrFmtv(void)
  * Address:	800E4C80
  * Size:	00008C
  */
-void GXSetArray(void)
+void GXSetArray(GXAttr attr, void* basePtr, u8 stride)
 {
 	/*
 	.loc_0x0:
@@ -881,6 +968,7 @@ void GXSetArray(void)
  */
 void GXInvalidateVtxCache(void)
 {
+	__GXData->_000.w = 0x48;
 	/*
 	.loc_0x0:
 	  li        r0, 0x48
@@ -895,7 +983,7 @@ void GXInvalidateVtxCache(void)
  * Address:	800E4D1C
  * Size:	000280
  */
-void GXSetTexCoordGen2(void)
+void GXSetTexCoordGen2(GXTexCoordID coord, GXTexGenType genType, GXTexGenSrc srcParam, u32 mtx, GXBool doNormalise, u32 postMtx)
 {
 	/*
 	.loc_0x0:
@@ -1089,8 +1177,10 @@ void GXSetTexCoordGen2(void)
  * Address:	800E4F9C
  * Size:	00003C
  */
-void GXSetNumTexGens(void)
+void GXSetNumTexGens(u8 count)
 {
+	GXData* data = __GXData;
+	
 	/*
 	.loc_0x0:
 	  lwz       r6, -0x6D70(r2)

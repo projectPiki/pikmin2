@@ -1,11 +1,11 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void IsWriteGatherBufferEmpty(void)
+BOOL IsWriteGatherBufferEmpty(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void DisableWriteGatherPipe(void)
  * Address:	800E2680
  * Size:	0000FC
  */
-void __GXDefaultTexRegionCallback(void)
+GXTexRegion* __GXDefaultTexRegionCallback(GXTexObj* obj)
 {
 	/*
 	.loc_0x0:
@@ -124,7 +124,7 @@ void __GXDefaultTexRegionCallback(void)
  * Address:	800E277C
  * Size:	000024
  */
-void __GXDefaultTlutRegionCallback(void)
+GXTlutRegion* __GXDefaultTlutRegionCallback(GXTlut tlut)
 {
 	/*
 	.loc_0x0:
@@ -279,7 +279,7 @@ void __GXShutdown(void)
  * Address:	800E2930
  * Size:	000798
  */
-void GXInit(void)
+GXFifoObj* GXInit(void* base, u32 size)
 {
 	/*
 	.loc_0x0:

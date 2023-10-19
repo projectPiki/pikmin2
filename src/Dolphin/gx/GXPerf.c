@@ -1,11 +1,11 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	800E9984
  * Size:	000848
  */
-void GXSetGPMetric(void)
+void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
 {
 	/*
 	.loc_0x0:
@@ -571,7 +571,7 @@ void GXSetGPMetric(void)
  * Address:	........
  * Size:	0001A8
  */
-void GXReadGPMetric(void)
+void GXReadGPMetric(u32* count0, u32* count1)
 {
 	// UNUSED FUNCTION
 }
@@ -581,23 +581,14 @@ void GXReadGPMetric(void)
  * Address:	800EA1CC
  * Size:	000010
  */
-void GXClearGPMetric(void)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, -0x714C(r13)
-	  li        r0, 0x4
-	  sth       r0, 0x4(r3)
-	  blr
-	*/
-}
+void GXClearGPMetric(void) { __cpReg->clearRegister = 4; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-void GXReadGP0Metric(void)
+u32 GXReadGP0Metric(void)
 {
 	// UNUSED FUNCTION
 }
@@ -607,7 +598,7 @@ void GXReadGP0Metric(void)
  * Address:	........
  * Size:	00002C
  */
-void GXReadGP1Metric(void)
+u32 GXReadGP1Metric(void)
 {
 	// UNUSED FUNCTION
 }
@@ -617,7 +608,8 @@ void GXReadGP1Metric(void)
  * Address:	........
  * Size:	000214
  */
-void GXReadMemMetric(void)
+void GXReadMemMetric(u32* cpReq, u32* tcReq, u32* cpuReadReq, u32* cpuWriteReq, u32* dspReq, u32* ioReq, u32* viReq, u32* peReq, u32* rfReq,
+                     u32* fiReq)
 {
 	// UNUSED FUNCTION
 }
@@ -637,7 +629,7 @@ void GXClearMemMetric(void)
  * Address:	........
  * Size:	000138
  */
-void GXReadPixMetric(void)
+void GXReadPixMetric(u32* topIn, u32* topOut, u32* bottomIn, u32* bottomOut, u32* clearIn, u32* copyClocks)
 {
 	// UNUSED FUNCTION
 }
@@ -657,7 +649,7 @@ void GXClearPixMetric(void)
  * Address:	........
  * Size:	000044
  */
-void GXSetVCacheMetric(void)
+void GXSetVCacheMetric(GXVCachePerf attr)
 {
 	// UNUSED FUNCTION
 }
@@ -667,7 +659,7 @@ void GXSetVCacheMetric(void)
  * Address:	........
  * Size:	000094
  */
-void GXReadVCacheMetric(void)
+void GXReadVCacheMetric(u32* check, u32* miss, u32* stall)
 {
 	// UNUSED FUNCTION
 }
@@ -697,7 +689,7 @@ void GXInitXfRasMetric(void)
  * Address:	800EA1DC
  * Size:	0000C4
  */
-void GXReadXfRasMetric(void)
+void GXReadXfRasMetric(u32* xfWaitIn, u32* xfWaitOut, u32* rasBusy, u32* clocks)
 {
 	/*
 	.loc_0x0:
@@ -766,7 +758,7 @@ void GXReadXfRasMetric(void)
  * Address:	........
  * Size:	000040
  */
-void GXReadClksPerVtx(void)
+u32 GXReadClksPerVtx(void)
 {
 	// UNUSED FUNCTION
 }

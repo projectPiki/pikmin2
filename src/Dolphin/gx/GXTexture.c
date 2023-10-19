@@ -1,4 +1,4 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
@@ -15,7 +15,7 @@ void __GXGetTexTileShift(void)
  * Address:	800E6F58
  * Size:	00015C
  */
-void GXGetTexBufferSize(void)
+u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_lod)
 {
 	/*
 	.loc_0x0:
@@ -216,7 +216,8 @@ void __GetImageTileCount(void)
  * Address:	800E717C
  * Size:	00024C
  */
-void GXInitTexObj(void)
+void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt format, GXTexWrapMode sWrap, GXTexWrapMode tWrap,
+                  GXBool useMIPmap)
 {
 	/*
 	.loc_0x0:
@@ -391,7 +392,8 @@ void GXInitTexObj(void)
  * Address:	800E73C8
  * Size:	000048
  */
-void GXInitTexObjCI(void)
+void GXInitTexObjCI(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXCITexFmt format, GXTexWrapMode sWrap, GXTexWrapMode tWrap,
+                    GXBool useMIPmap, u32 tlutName)
 {
 	/*
 	.loc_0x0:
@@ -421,7 +423,8 @@ void GXInitTexObjCI(void)
  * Address:	800E7410
  * Size:	000164
  */
-void GXInitTexObjLOD(void)
+void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter minFilter, GXTexFilter maxFilter, f32 minLOD, f32 maxLOD, f32 lodBias, GXBool doBiasClamp,
+                     GXBool doEdgeLOD, GXAnisotropy maxAniso)
 {
 	/*
 	.loc_0x0:
@@ -542,7 +545,7 @@ void GXInitTexObjLOD(void)
  * Address:	........
  * Size:	000010
  */
-void GXInitTexObjData(void)
+void GXInitTexObjData(GXTexObj* obj, void* imagePtr)
 {
 	// UNUSED FUNCTION
 }
@@ -552,7 +555,7 @@ void GXInitTexObjData(void)
  * Address:	........
  * Size:	00001C
  */
-void GXInitTexObjWrapMode(void)
+void GXInitTexObjWrapMode(GXTexObj* obj, GXTexWrapMode sWrap, GXTexWrapMode tWrap)
 {
 	// UNUSED FUNCTION
 }
@@ -562,7 +565,7 @@ void GXInitTexObjWrapMode(void)
  * Address:	........
  * Size:	000008
  */
-void GXInitTexObjTlut(void)
+void GXInitTexObjTlut(GXTexObj* obj, u32 tlutName)
 {
 	// UNUSED FUNCTION
 }
@@ -702,14 +705,7 @@ void GXGetTexObjHeight(void)
  * Address:	800E7574
  * Size:	000008
  */
-void GXGetTexObjFmt(void)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x14(r3)
-	  blr
-	*/
-}
+GXTexFmt GXGetTexObjFmt(GXTexObj* obj) { return obj->format; }
 
 /*
  * --INFO--
@@ -736,7 +732,7 @@ void GXGetTexObjWrapT(void)
  * Address:	800E757C
  * Size:	000018
  */
-void GXGetTexObjMipMap(void)
+GXBool GXGetTexObjMipMap(GXTexObj* obj)
 {
 	/*
 	.loc_0x0:
@@ -854,7 +850,7 @@ void GXGetTexObjTlut(void)
  * Address:	800E7594
  * Size:	00017C
  */
-void GXLoadTexObjPreLoaded(void)
+void GXLoadTexObjPreLoaded(GXTexObj* obj, GXTexRegion* region, GXTexMapID map)
 {
 	/*
 	.loc_0x0:
@@ -963,7 +959,7 @@ void GXLoadTexObjPreLoaded(void)
  * Address:	800E7710
  * Size:	000054
  */
-void GXLoadTexObj(void)
+void GXLoadTexObj(GXTexObj* obj, GXTexMapID map)
 {
 	/*
 	.loc_0x0:
@@ -996,7 +992,7 @@ void GXLoadTexObj(void)
  * Address:	800E7764
  * Size:	000038
  */
-void GXInitTlutObj(void)
+void GXInitTlutObj(GXTlutObj* obj, void* table, GXTlutFmt format, u16 numEntries)
 {
 	/*
 	.loc_0x0:
@@ -1062,7 +1058,7 @@ void GXGetTlutObjNumEntries(void)
  * Address:	800E779C
  * Size:	000098
  */
-void GXLoadTlut(void)
+void GXLoadTlut(GXTlutObj* obj, u32 tlutName)
 {
 	/*
 	.loc_0x0:
@@ -1112,7 +1108,7 @@ void GXLoadTlut(void)
  * Address:	800E7834
  * Size:	0000F4
  */
-void GXInitTexCacheRegion(void)
+void GXInitTexCacheRegion(GXTexRegion* region, GXBool is32bMIPmap, u32 memEven, GXTexCacheSize sizeEven, u32 memOdd, GXTexCacheSize sizeOdd)
 {
 	/*
 	.loc_0x0:
@@ -1227,7 +1223,7 @@ void GXGetTexRegionAll(void)
  * Address:	800E7928
  * Size:	000038
  */
-void GXInitTlutRegion(void)
+void GXInitTlutRegion(GXTlutRegion* region, u32 memAddr, GXTlutSize tlutSize)
 {
 	/*
 	.loc_0x0:
@@ -1303,7 +1299,7 @@ void GXInvalidateTexAll(void)
  * Address:	800E79A8
  * Size:	000014
  */
-void GXSetTexRegionCallback(void)
+GXTexRegionCallback GXSetTexRegionCallback(GXTexRegionCallback func)
 {
 	/*
 	.loc_0x0:
@@ -1320,7 +1316,7 @@ void GXSetTexRegionCallback(void)
  * Address:	800E79BC
  * Size:	000014
  */
-void GXSetTlutRegionCallback(void)
+GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback func)
 {
 	/*
 	.loc_0x0:

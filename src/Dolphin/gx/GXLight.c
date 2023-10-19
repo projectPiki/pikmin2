@@ -1,22 +1,19 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	800E6870
  * Size:	00001C
  */
-void GXInitLightAttn(void)
+void GXInitLightAttn(GXLightObj* obj, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2)
 {
-	/*
-	.loc_0x0:
-	  stfs      f1, 0x10(r3)
-	  stfs      f2, 0x14(r3)
-	  stfs      f3, 0x18(r3)
-	  stfs      f4, 0x1C(r3)
-	  stfs      f5, 0x20(r3)
-	  stfs      f6, 0x24(r3)
-	  blr
-	*/
+	obj->a[0] = a0;
+	obj->a[1] = a1;
+	obj->a[2] = a2;
+
+	obj->k[0] = k0;
+	obj->k[1] = k1;
+	obj->k[2] = k2;
 }
 
 /*
@@ -24,7 +21,7 @@ void GXInitLightAttn(void)
  * Address:	........
  * Size:	000010
  */
-void GXInitLightAttnA(void)
+void GXInitLightAttnA(GXLightObj* obj, f32 a0, f32 a1, f32 a2)
 {
 	// UNUSED FUNCTION
 }
@@ -34,7 +31,7 @@ void GXInitLightAttnA(void)
  * Address:	........
  * Size:	00001C
  */
-void GXGetLightAttnA(void)
+void GXGetLightAttnA(GXLightObj* obj, f32* a0, f32* a1, f32* a2)
 {
 	// UNUSED FUNCTION
 }
@@ -44,7 +41,7 @@ void GXGetLightAttnA(void)
  * Address:	........
  * Size:	000010
  */
-void GXInitLightAttnK(void)
+void GXInitLightAttnK(GXLightObj* obj, f32 k0, f32 k1, f32 k2)
 {
 	// UNUSED FUNCTION
 }
@@ -54,7 +51,7 @@ void GXInitLightAttnK(void)
  * Address:	........
  * Size:	00001C
  */
-void GXGetLightAttnK(void)
+void GXGetLightAttnK(GXLightObj* obj, f32* k0, f32* k1, f32* k2)
 {
 	// UNUSED FUNCTION
 }
@@ -64,7 +61,7 @@ void GXGetLightAttnK(void)
  * Address:	800E688C
  * Size:	000190
  */
-void GXInitLightSpot(void)
+void GXInitLightSpot(GXLightObj* obj, f32 cutoff, GXSpotFn spotFunc)
 {
 	/*
 	.loc_0x0:
@@ -184,7 +181,7 @@ void GXInitLightSpot(void)
  * Address:	800E6A1C
  * Size:	0000D0
  */
-void GXInitLightDistAttn(void)
+void GXInitLightDistAttn(GXLightObj* obj, f32 refDist, f32 refBrightness, GXDistAttnFn distFunc)
 {
 	/*
 	.loc_0x0:
@@ -266,15 +263,11 @@ void GXInitLightDistAttn(void)
  * Address:	800E6AEC
  * Size:	000010
  */
-void GXInitLightPos(void)
+void GXInitLightPos(GXLightObj* obj, f32 x, f32 y, f32 z)
 {
-	/*
-	.loc_0x0:
-	  stfs      f1, 0x28(r3)
-	  stfs      f2, 0x2C(r3)
-	  stfs      f3, 0x30(r3)
-	  blr
-	*/
+	obj->lpos[0] = x;
+	obj->lpos[1] = y;
+	obj->lpos[2] = z;
 }
 
 /*
@@ -282,7 +275,7 @@ void GXInitLightPos(void)
  * Address:	........
  * Size:	00001C
  */
-void GXGetLightPos(void)
+void GXGetLightPos(GXLightObj* obj, f32* x, f32* y, f32* z)
 {
 	// UNUSED FUNCTION
 }
@@ -292,18 +285,11 @@ void GXGetLightPos(void)
  * Address:	800E6AFC
  * Size:	00001C
  */
-void GXInitLightDir(void)
+void GXInitLightDir(GXLightObj* obj, f32 nX, f32 nY, f32 nZ)
 {
-	/*
-	.loc_0x0:
-	  fneg      f4, f1
-	  fneg      f1, f2
-	  fneg      f0, f3
-	  stfs      f4, 0x34(r3)
-	  stfs      f1, 0x38(r3)
-	  stfs      f0, 0x3C(r3)
-	  blr
-	*/
+	obj->ldir[0] = -nX;
+	obj->ldir[1] = -nY;
+	obj->ldir[2] = -nZ;
 }
 
 /*
@@ -311,7 +297,7 @@ void GXInitLightDir(void)
  * Address:	........
  * Size:	000028
  */
-void GXGetLightDir(void)
+void GXGetLightDir(GXLightObj* obj, f32* nX, f32* nY, f32* nZ)
 {
 	// UNUSED FUNCTION
 }
@@ -321,7 +307,7 @@ void GXGetLightDir(void)
  * Address:	800E6B18
  * Size:	0000E4
  */
-void GXInitSpecularDir(void)
+void GXInitSpecularDir(GXLightObj* obj, f32 nX, f32 nY, f32 nZ)
 {
 	/*
 	.loc_0x0:
@@ -396,7 +382,7 @@ void GXInitSpecularDir(void)
  * Address:	........
  * Size:	00002C
  */
-void GXInitSpecularDirHA(void)
+void GXInitSpecularDirHA(GXLightObj* obj, f32 nX, f32 nY, f32 nZ, f32 hX, f32 hY, f32 hZ)
 {
 	// UNUSED FUNCTION
 }
@@ -406,22 +392,14 @@ void GXInitSpecularDirHA(void)
  * Address:	800E6BFC
  * Size:	00000C
  */
-void GXInitLightColor(void)
-{
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0xC(r3)
-	  blr
-	*/
-}
+void GXInitLightColor(GXLightObj* obj, GXColor color) { obj->Color = color; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void GXGetLightColor(void)
+void GXGetLightColor(GXLightObj* obj, GXColor* color)
 {
 	// UNUSED FUNCTION
 }
@@ -431,7 +409,7 @@ void GXGetLightColor(void)
  * Address:	800E6C08
  * Size:	00007C
  */
-void GXLoadLightObjImm(void)
+void GXLoadLightObjImm(GXLightObj* obj, GXLightID light)
 {
 	/*
 	.loc_0x0:
@@ -474,7 +452,7 @@ void GXLoadLightObjImm(void)
  * Address:	........
  * Size:	000048
  */
-void GXLoadLightObjIndx(void)
+void GXLoadLightObjIndx(u32 objIndex, GXLightID light)
 {
 	// UNUSED FUNCTION
 }
@@ -484,7 +462,7 @@ void GXLoadLightObjIndx(void)
  * Address:	800E6C84
  * Size:	0000F0
  */
-void GXSetChanAmbColor(void)
+void GXSetChanAmbColor(GXChannelID channel, GXColor color)
 {
 	/*
 	.loc_0x0:
@@ -572,7 +550,7 @@ void GXSetChanAmbColor(void)
  * Address:	800E6D74
  * Size:	0000F0
  */
-void GXSetChanMatColor(void)
+void GXSetChanMatColor(GXChannelID channel, GXColor color)
 {
 	/*
 	.loc_0x0:
@@ -660,7 +638,7 @@ void GXSetChanMatColor(void)
  * Address:	800E6E64
  * Size:	00003C
  */
-void GXSetNumChans(void)
+void GXSetNumChans(u8 count)
 {
 	/*
 	.loc_0x0:
@@ -687,7 +665,8 @@ void GXSetNumChans(void)
  * Address:	800E6EA0
  * Size:	0000B8
  */
-void GXSetChanCtrl(void)
+void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 mask, GXDiffuseFn diffFunc,
+                   GXAttnFn attnFunc)
 {
 	/*
 	.loc_0x0:

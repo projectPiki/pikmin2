@@ -1,11 +1,11 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	800E847C
  * Size:	00008C
  */
-void GXSetTevOp(void)
+void GXSetTevOp(GXTevStageID stage, GXTevMode mode)
 {
 	/*
 	.loc_0x0:
@@ -56,7 +56,7 @@ void GXSetTevOp(void)
  * Address:	800E8508
  * Size:	000044
  */
-void GXSetTevColorIn(void)
+void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d)
 {
 	/*
 	.loc_0x0:
@@ -85,7 +85,7 @@ void GXSetTevColorIn(void)
  * Address:	800E854C
  * Size:	000044
  */
-void GXSetTevAlphaIn(void)
+void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d)
 {
 	/*
 	.loc_0x0:
@@ -114,7 +114,7 @@ void GXSetTevAlphaIn(void)
  * Address:	800E8590
  * Size:	000068
  */
-void GXSetTevColorOp(void)
+void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool doClamp, GXTevRegID outReg)
 {
 	/*
 	.loc_0x0:
@@ -156,7 +156,7 @@ void GXSetTevColorOp(void)
  * Address:	800E85F8
  * Size:	000068
  */
-void GXSetTevAlphaOp(void)
+void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool doClamp, GXTevRegID outReg)
 {
 	/*
 	.loc_0x0:
@@ -198,7 +198,7 @@ void GXSetTevAlphaOp(void)
  * Address:	800E8660
  * Size:	00007C
  */
-void GXSetTevColor(void)
+void GXSetTevColor(GXTevRegID reg, GXColor color)
 {
 	/*
 	.loc_0x0:
@@ -241,7 +241,7 @@ void GXSetTevColor(void)
  * Address:	800E86DC
  * Size:	00007C
  */
-void GXSetTevColorS10(void)
+void GXSetTevColorS10(GXTevRegID reg, GXColorS10 color)
 {
 	/*
 	.loc_0x0:
@@ -284,7 +284,7 @@ void GXSetTevColorS10(void)
  * Address:	800E8758
  * Size:	000074
  */
-void GXSetTevKColor(void)
+void GXSetTevKColor(GXTevKColorID id, GXColor color)
 {
 	/*
 	.loc_0x0:
@@ -325,7 +325,7 @@ void GXSetTevKColor(void)
  * Address:	800E87CC
  * Size:	00005C
  */
-void GXSetTevKColorSel(void)
+void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
 {
 	/*
 	.loc_0x0:
@@ -364,7 +364,7 @@ void GXSetTevKColorSel(void)
  * Address:	800E8828
  * Size:	00005C
  */
-void GXSetTevKAlphaSel(void)
+void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
 {
 	/*
 	.loc_0x0:
@@ -403,7 +403,7 @@ void GXSetTevKAlphaSel(void)
  * Address:	800E8884
  * Size:	000048
  */
-void GXSetTevSwapMode(void)
+void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel rasSel, GXTevSwapSel texSel)
 {
 	/*
 	.loc_0x0:
@@ -433,7 +433,7 @@ void GXSetTevSwapMode(void)
  * Address:	800E88CC
  * Size:	000080
  */
-void GXSetTevSwapModeTable(void)
+void GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorChan green, GXTevColorChan blue, GXTevColorChan alpha)
 {
 	/*
 	.loc_0x0:
@@ -477,7 +477,7 @@ void GXSetTevSwapModeTable(void)
  * Address:	........
  * Size:	000004
  */
-void GXSetTevClampMode(void)
+void GXSetTevClampMode(GXTevStageID stage, GXTevClampMode mode)
 {
 	// UNUSED FUNCTION
 }
@@ -487,7 +487,7 @@ void GXSetTevClampMode(void)
  * Address:	800E894C
  * Size:	000044
  */
-void GXSetAlphaCompare(void)
+void GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1)
 {
 	/*
 	.loc_0x0:
@@ -516,7 +516,7 @@ void GXSetAlphaCompare(void)
  * Address:	800E8990
  * Size:	00008C
  */
-void GXSetZTexture(void)
+void GXSetZTexture(GXZTexOp op, GXTexFmt format, u32 bias)
 {
 	/*
 	.loc_0x0:
@@ -575,7 +575,7 @@ void GXSetZTexture(void)
  * Address:	800E8A1C
  * Size:	00019C
  */
-void GXSetTevOrder(void)
+void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color)
 {
 	/*
 	.loc_0x0:
@@ -714,7 +714,7 @@ void GXSetTevOrder(void)
  * Address:	800E8BB8
  * Size:	000028
  */
-void GXSetNumTevStages(void)
+void GXSetNumTevStages(u8 count)
 {
 	/*
 	.loc_0x0:

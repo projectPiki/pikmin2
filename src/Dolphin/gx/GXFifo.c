@@ -6,7 +6,7 @@ static GXFifoObj* GPFifo;
 static OSThread* __GXCurrentThread;
 static u8 CPGPLinked;
 static BOOL GXOverflowSuspendInProgress;
-static GXBreakpointCallback* BreakPointCB;
+static GXBreakPtCallback BreakPointCB;
 static u32 __GXOverflowCount;
 static u32 __GXCurrentBP; // unused and removed
 
@@ -65,7 +65,7 @@ void GXBreakPointHandler(OSContext* context)
 	if (BreakPointCB) {
 		OSClearContext(&bpContext);
 		OSSetCurrentContext(&bpContext);
-		BreakPointCB();
+		// BreakPointCB();
 		OSClearContext(&bpContext);
 		OSSetCurrentContext(context);
 	}
@@ -77,7 +77,7 @@ void GXBreakPointHandler(OSContext* context)
  * Address:	800E3A00
  * Size:	000134
  */
-void GXCPInterruptHandler(unknown p1, OSContext* context)
+void GXCPInterruptHandler(s16 p1, OSContext* context)
 {
 	GXData* data;
 	// GXData* data = __GXData;
@@ -198,10 +198,10 @@ void GXCPInterruptHandler(unknown p1, OSContext* context)
  */
 void GXInitFifoBase(GXFifoObj* fifo, void* base, u32 size)
 {
-	fifo->base       = base;
-	fifo->end        = (void*)((u32)base + (size - 4));
-	fifo->size       = size;
-	fifo->rwDistance = 0;
+	//fifo->base       = base;
+	//fifo->end        = (void*)((u32)base + (size - 4));
+	//fifo->size       = size;
+	//fifo->rwDistance = 0;
 	GXInitFifoLimits(fifo, size - 0x4000, size >> 1 & 0x7FFFFFE0);
 	// GXInitFifoLimits(fifo, size - 0x4000, ALIGN_PREV(size >> 1, 0x20));
 	GXInitFifoPtrs(fifo, base, base);
@@ -247,12 +247,12 @@ void GXInitFifoBase(GXFifoObj* fifo, void* base, u32 size)
 void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr)
 {
 	int interrupts   = OSDisableInterrupts();
-	fifo->readPtr    = readPtr;
-	fifo->writePtr   = writePtr;
-	fifo->rwDistance = (int)writePtr - (int)readPtr;
-	if (fifo->rwDistance < 0) {
-		fifo->rwDistance += fifo->size;
-	}
+	//fifo->readPtr    = readPtr;
+	//fifo->writePtr   = writePtr;
+	//fifo->rwDistance = (int)writePtr - (int)readPtr;
+	//if (fifo->rwDistance < 0) {
+	//	fifo->rwDistance += fifo->size;
+	//}
 	OSRestoreInterrupts(interrupts);
 }
 
@@ -263,8 +263,8 @@ void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr)
  */
 void GXInitFifoLimits(GXFifoObj* fifo, u32 highWatermark, u32 lowWatermark)
 {
-	fifo->highWatermark = highWatermark;
-	fifo->lowWatermark  = lowWatermark;
+	//fifo->highWatermark = highWatermark;
+	//fifo->lowWatermark  = lowWatermark;
 }
 
 /*
@@ -370,21 +370,21 @@ void GXSetGPFifo(GXFifoObj* fifo)
 	__GXFifoReadDisable();
 	__GXWriteFifoIntEnable(0, 0);
 	GPFifo                         = fifo;
-	__cpReg->cpFIFOBaseLo          = (u16)fifo->base;
-	__cpReg->cpFIFOEndLo           = (u16)fifo->end;
-	__cpReg->cpFIFORWDistanceLo    = (u16)fifo->rwDistance;
-	__cpReg->cpFIFOWritePointerLo  = (u16)fifo->writePtr;
-	__cpReg->cpFIFOReadPointerLo   = (u16)fifo->readPtr;
-	__cpReg->cpFIFOHighWatermarkLo = (u16)fifo->highWatermark;
-	__cpReg->cpFIFOLowWatermarkLo  = (u16)fifo->lowWatermark;
+	//__cpReg->cpFIFOBaseLo          = (u16)fifo->base;
+	//__cpReg->cpFIFOEndLo           = (u16)fifo->end;
+	//__cpReg->cpFIFORWDistanceLo    = (u16)fifo->rwDistance;
+	//__cpReg->cpFIFOWritePointerLo  = (u16)fifo->writePtr;
+	//__cpReg->cpFIFOReadPointerLo   = (u16)fifo->readPtr;
+	//__cpReg->cpFIFOHighWatermarkLo = (u16)fifo->highWatermark;
+	//__cpReg->cpFIFOLowWatermarkLo  = (u16)fifo->lowWatermark;
 
-	__cpReg->cpFIFOBaseHi          = ((u32)fifo->base >> 0x10) & 0x3FFF;
-	__cpReg->cpFIFOEndHi           = ((u32)fifo->end >> 0x10) & 0x3FFF;
-	__cpReg->cpFIFORWDistanceHi    = fifo->rwDistance >> 0x10;
-	__cpReg->cpFIFOWritePointerHi  = ((u32)fifo->writePtr >> 0x10) & 0x3FFF;
-	__cpReg->cpFIFOReadPointerHi   = ((u32)fifo->readPtr >> 0x10) & 0x3FFF;
-	__cpReg->cpFIFOHighWatermarkHi = fifo->highWatermark >> 0x10;
-	__cpReg->cpFIFOLowWatermarkHi  = fifo->lowWatermark >> 0x10;
+	//__cpReg->cpFIFOBaseHi          = ((u32)fifo->base >> 0x10) & 0x3FFF;
+	//__cpReg->cpFIFOEndHi           = ((u32)fifo->end >> 0x10) & 0x3FFF;
+	//__cpReg->cpFIFORWDistanceHi    = fifo->rwDistance >> 0x10;
+	//__cpReg->cpFIFOWritePointerHi  = ((u32)fifo->writePtr >> 0x10) & 0x3FFF;
+	//__cpReg->cpFIFOReadPointerHi   = ((u32)fifo->readPtr >> 0x10) & 0x3FFF;
+	//__cpReg->cpFIFOHighWatermarkHi = fifo->highWatermark >> 0x10;
+	//__cpReg->cpFIFOLowWatermarkHi  = fifo->lowWatermark >> 0x10;
 
 	PPCSync();
 
@@ -421,18 +421,18 @@ void GXSaveCPUFifo(GXFifoObj* fifo)
 void __GXSaveCPUFifoAux(GXFifoObj* fifo)
 {
 	int interrupts = OSDisableInterrupts();
-	fifo->base     = OSPhysicalToCached(__piReg->fifoBase);
-	fifo->end      = OSPhysicalToCached(__piReg->fifoEnd);
-	fifo->writePtr = OSPhysicalToCached(__piReg->cpuFIFOCurrentWritePtrMaybe & 0xFBFFFFFF);
+	//fifo->base     = OSPhysicalToCached(__piReg->fifoBase);
+	//fifo->end      = OSPhysicalToCached(__piReg->fifoEnd);
+	//fifo->writePtr = OSPhysicalToCached(__piReg->cpuFIFOCurrentWritePtrMaybe & 0xFBFFFFFF);
 	if (CPGPLinked != 0) {
-		fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + ((u32)__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);
+		//fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + ((u32)__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);
 		// fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + (u32)(__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);
-		fifo->rwDistance = (u32)(((u32)__cpReg->cpFIFORWDistanceHi << 0x10) + __cpReg->cpFIFORWDistanceLo);
+		//fifo->rwDistance = (u32)(((u32)__cpReg->cpFIFORWDistanceHi << 0x10) + __cpReg->cpFIFORWDistanceLo);
 	} else {
-		fifo->rwDistance = (int)fifo->writePtr - (int)fifo->readPtr;
-		if (fifo->rwDistance < 0) {
-			fifo->rwDistance += fifo->size;
-		}
+		//fifo->rwDistance = (int)fifo->writePtr - (int)fifo->readPtr;
+		//if (fifo->rwDistance < 0) {
+		//	fifo->rwDistance += fifo->size;
+		//}
 	}
 	OSRestoreInterrupts(interrupts);
 	/*
@@ -549,7 +549,8 @@ void GXGetGPStatus(GXBool* overhi, GXBool* underlow, GXBool* readIdle, GXBool* c
  * Address:	........
  * Size:	000114
  */
-void GXGetFifoStatus(void)
+void GXGetFifoStatus(GXFifoObj* obj, GXBool* isOverHi, GXBool* isUnderLo, u32* fifoCount, GXBool* isCpuWrite, GXBool* isGPRead,
+                     GXBool* isFifoWrap)
 {
 	// UNUSED FUNCTION
 }
@@ -559,7 +560,7 @@ void GXGetFifoStatus(void)
  * Address:	........
  * Size:	000098
  */
-void GXGetFifoPtrs(void)
+void GXGetFifoPtrs(GXFifoObj* obj, void** readPtr, void** writePtr)
 {
 	// UNUSED FUNCTION
 }
@@ -569,7 +570,7 @@ void GXGetFifoPtrs(void)
  * Address:	........
  * Size:	000008
  */
-void GXGetFifoBase(void)
+void* GXGetFifoBase(GXFifoObj* obj)
 {
 	// UNUSED FUNCTION
 }
@@ -579,7 +580,7 @@ void GXGetFifoBase(void)
  * Address:	........
  * Size:	000008
  */
-void GXGetFifoSize(void)
+u32 GXGetFifoSize(GXFifoObj* obj)
 {
 	// UNUSED FUNCTION
 }
@@ -589,7 +590,7 @@ void GXGetFifoSize(void)
  * Address:	........
  * Size:	000014
  */
-void GXGetFifoLimits(void)
+void GXGetFifoLimits(GXFifoObj* obj, u32* hi, u32* lo)
 {
 	// UNUSED FUNCTION
 }
@@ -599,11 +600,11 @@ void GXGetFifoLimits(void)
  * Address:	800E4008
  * Size:	000044
  */
-GXBreakpointCallback* GXSetBreakPtCallback(GXBreakpointCallback* cb)
+GXBreakPtCallback GXSetBreakPtCallback(GXBreakPtCallback cb)
 {
-	GXBreakpointCallback* oldCallback = BreakPointCB;
-	int interrupts                    = OSDisableInterrupts();
-	BreakPointCB                      = cb;
+	GXBreakPtCallback oldCallback = BreakPointCB;
+	int interrupts                = OSDisableInterrupts();
+	BreakPointCB                  = cb;
 	OSRestoreInterrupts(interrupts);
 	return oldCallback;
 	/*
@@ -633,7 +634,7 @@ GXBreakpointCallback* GXSetBreakPtCallback(GXBreakpointCallback* cb)
  * Address:	........
  * Size:	00008C
  */
-void GXEnableBreakPt(void)
+void GXEnableBreakPt(void* breakPtr)
 {
 	// UNUSED FUNCTION
 }
@@ -929,28 +930,14 @@ void GXGetCurrentGXThread(void)
  * Address:	800E4274
  * Size:	000008
  */
-void GXGetCPUFifo(void)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, -0x7128(r13)
-	  blr
-	*/
-}
+GXFifoObj* GXGetCPUFifo(void) { return CPUFifo; }
 
 /*
  * --INFO--
  * Address:	800E427C
  * Size:	000008
  */
-void GXGetGPFifo(void)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, -0x7124(r13)
-	  blr
-	*/
-}
+GXFifoObj* GXGetGPFifo(void) { return GPFifo; }
 
 /*
  * --INFO--

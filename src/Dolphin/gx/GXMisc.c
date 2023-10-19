@@ -1,11 +1,11 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	800E4FD8
  * Size:	000094
  */
-void GXSetMisc(void)
+void GXSetMisc(GXMiscToken token, u32 val)
 {
 	/*
 	.loc_0x0:
@@ -364,7 +364,7 @@ void GXAbortFrame(void)
  * Address:	800E53A4
  * Size:	0000B4
  */
-void GXSetDrawSync(void)
+void GXSetDrawSync(u16 token)
 {
 	/*
 	.loc_0x0:
@@ -599,7 +599,7 @@ void GXTexModeSync(void)
  * Address:	800E55E0
  * Size:	000014
  */
-void GXPokeAlphaMode(void)
+void GXPokeAlphaMode(GXCompare func, u8 threshold)
 {
 	/*
 	.loc_0x0:
@@ -616,7 +616,7 @@ void GXPokeAlphaMode(void)
  * Address:	800E55F4
  * Size:	000020
  */
-void GXPokeAlphaRead(void)
+void GXPokeAlphaRead(GXAlphaReadMode mode)
 {
 	/*
 	.loc_0x0:
@@ -636,7 +636,7 @@ void GXPokeAlphaRead(void)
  * Address:	800E5614
  * Size:	000018
  */
-void GXPokeAlphaUpdate(void)
+void GXPokeAlphaUpdate(GXBool doUpdate)
 {
 	/*
 	.loc_0x0:
@@ -654,7 +654,7 @@ void GXPokeAlphaUpdate(void)
  * Address:	800E562C
  * Size:	000064
  */
-void GXPokeBlendMode(void)
+void GXPokeBlendMode(GXBlendMode mode, GXBlendFactor srcFactor, GXBlendFactor destFactor, GXLogicOp op)
 {
 	/*
 	.loc_0x0:
@@ -693,7 +693,7 @@ void GXPokeBlendMode(void)
  * Address:	800E5690
  * Size:	000018
  */
-void GXPokeColorUpdate(void)
+void GXPokeColorUpdate(GXBool doUpdate)
 {
 	/*
 	.loc_0x0:
@@ -711,7 +711,7 @@ void GXPokeColorUpdate(void)
  * Address:	800E56A8
  * Size:	000024
  */
-void GXPokeDstAlpha(void)
+void GXPokeDstAlpha(GXBool doEnable, u8 alpha)
 {
 	/*
 	.loc_0x0:
@@ -732,7 +732,7 @@ void GXPokeDstAlpha(void)
  * Address:	800E56CC
  * Size:	000018
  */
-void GXPokeDither(void)
+void GXPokeDither(GXBool doDither)
 {
 	/*
 	.loc_0x0:
@@ -750,7 +750,7 @@ void GXPokeDither(void)
  * Address:	800E56E4
  * Size:	000020
  */
-void GXPokeZMode(void)
+void GXPokeZMode(GXBool doCompare, GXCompare func, GXBool doUpdate)
 {
 	/*
 	.loc_0x0:
@@ -770,7 +770,7 @@ void GXPokeZMode(void)
  * Address:	........
  * Size:	000024
  */
-void GXPeekARGB(void)
+void GXPeekARGB(u16 x, u16 y, u32* color)
 {
 	// UNUSED FUNCTION
 }
@@ -780,7 +780,7 @@ void GXPeekARGB(void)
  * Address:	........
  * Size:	000020
  */
-void GXPokeARGB(void)
+void GXPokeARGB(u16 x, u16 y, u32 color)
 {
 	// UNUSED FUNCTION
 }
@@ -790,7 +790,7 @@ void GXPokeARGB(void)
  * Address:	........
  * Size:	000024
  */
-void GXPeekZ(void)
+void GXPeekZ(u16 x, u16 y, u32* z)
 {
 	// UNUSED FUNCTION
 }
@@ -800,7 +800,7 @@ void GXPeekZ(void)
  * Address:	........
  * Size:	000020
  */
-void GXPokeZ(void)
+void GXPokeZ(u16 x, u16 y, u32 z)
 {
 	// UNUSED FUNCTION
 }
@@ -810,7 +810,7 @@ void GXPokeZ(void)
  * Address:	800E5704
  * Size:	000044
  */
-void GXSetDrawSyncCallback(void)
+GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback callback)
 {
 	/*
 	.loc_0x0:
@@ -887,7 +887,7 @@ void GXTokenInterruptHandler(void)
  * Address:	800E57D0
  * Size:	000044
  */
-void GXSetDrawDoneCallback(void)
+GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback callback)
 {
 	/*
 	.loc_0x0:
@@ -1003,7 +1003,7 @@ void __GXPEInit(void)
  * Address:	........
  * Size:	000134
  */
-void GXCompressZ16(void)
+u32 GXCompressZ16(u32 z24, GXZFmt16 zFormat)
 {
 	// UNUSED FUNCTION
 }
@@ -1013,7 +1013,7 @@ void GXCompressZ16(void)
  * Address:	........
  * Size:	00011C
  */
-void GXDecompressZ16(void)
+u32 GXDecompressZ16(u32 z16, GXZFmt16 zFormat)
 {
 	// UNUSED FUNCTION
 }
