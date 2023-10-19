@@ -878,7 +878,7 @@ void VIConfigure(const GXRenderModeObj* obj)
 	}
 	setInterruptRegs(tm);
 
-	regDspCfg = regs[1];
+	regDspCfg = regs[VI_DISP_CONFIG];
 
 	if ((HorVer.nonInter == VI_PROGRESSIVE) || (HorVer.nonInter == VI_3D)) {
 		regDspCfg = (((u32)(regDspCfg)) & ~0x00000004) | (((u32)(1)) << 2);
@@ -894,18 +894,20 @@ void VIConfigure(const GXRenderModeObj* obj)
 		regDspCfg = (((u32)(regDspCfg)) & ~0x00000300) | (((u32)(HorVer.tv)) << 8);
 	}
 
-	regs[1] = (u16)regDspCfg;
+	regs[VI_DISP_CONFIG] = (u16)regDspCfg;
 	changed |= VI_BITMASK(0x01);
 
-	if (VI_TVMODE(HorVer.tv, HorVer.nonInter) != VI_TVMODE_NTSC_PROG && VI_TVMODE(HorVer.tv, HorVer.nonInter) != VI_TVMODE_NTSC_3D
-	    && VI_TVMODE(HorVer.tv, HorVer.nonInter) != VI_TVMODE_GCA_PROG) {
-		//__VIRegs[VI_DISP_CONFIG] = (1 << 0) | (0 << 1) | (newNonInter << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (HorVer.tv << 8);
-		//__VIRegs[VI_CLOCK_SEL]   = 0;
-
+	regDspCfg = regs[VI_CLOCK_SEL];
+	if (obj->viTVmode == VI_TVMODE_NTSC_PROG || obj->viTVmode == VI_TVMODE_NTSC_3D || obj->viTVmode == VI_TVMODE_GCA_PROG) {
+		regDspCfg = (u32)(regDspCfg & ~0x1) | 1;
 	} else {
-		//__VIRegs[VI_DISP_CONFIG] = (1 << 0) | (0 << 1) | (1 << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (HorVer.tv << 8);
-		//__VIRegs[VI_CLOCK_SEL]   = 1;
+		regDspCfg = (u32)(regDspCfg & ~0x1);
 	}
+
+	regs[VI_CLOCK_SEL] = (u16)regDspCfg;
+
+	changed |= 0x200;
+
 	setScalingRegs(HorVer.panSizeX, HorVer.dispSizeX, HorVer.is3D);
 	setHorizontalRegs(tm, HorVer.adjDispPosX, HorVer.dispSizeX);
 	setBBIntervalRegs(tm);

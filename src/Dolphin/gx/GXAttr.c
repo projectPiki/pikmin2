@@ -1180,7 +1180,7 @@ void GXSetTexCoordGen2(GXTexCoordID coord, GXTexGenType genType, GXTexGenSrc src
 void GXSetNumTexGens(u8 count)
 {
 	GXData* data = __GXData;
-	
+
 	/*
 	.loc_0x0:
 	  lwz       r6, -0x6D70(r2)

@@ -198,10 +198,10 @@ void GXCPInterruptHandler(s16 p1, OSContext* context)
  */
 void GXInitFifoBase(GXFifoObj* fifo, void* base, u32 size)
 {
-	//fifo->base       = base;
-	//fifo->end        = (void*)((u32)base + (size - 4));
-	//fifo->size       = size;
-	//fifo->rwDistance = 0;
+	// fifo->base       = base;
+	// fifo->end        = (void*)((u32)base + (size - 4));
+	// fifo->size       = size;
+	// fifo->rwDistance = 0;
 	GXInitFifoLimits(fifo, size - 0x4000, size >> 1 & 0x7FFFFFE0);
 	// GXInitFifoLimits(fifo, size - 0x4000, ALIGN_PREV(size >> 1, 0x20));
 	GXInitFifoPtrs(fifo, base, base);
@@ -246,11 +246,11 @@ void GXInitFifoBase(GXFifoObj* fifo, void* base, u32 size)
  */
 void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr)
 {
-	int interrupts   = OSDisableInterrupts();
-	//fifo->readPtr    = readPtr;
-	//fifo->writePtr   = writePtr;
-	//fifo->rwDistance = (int)writePtr - (int)readPtr;
-	//if (fifo->rwDistance < 0) {
+	int interrupts = OSDisableInterrupts();
+	// fifo->readPtr    = readPtr;
+	// fifo->writePtr   = writePtr;
+	// fifo->rwDistance = (int)writePtr - (int)readPtr;
+	// if (fifo->rwDistance < 0) {
 	//	fifo->rwDistance += fifo->size;
 	//}
 	OSRestoreInterrupts(interrupts);
@@ -263,8 +263,8 @@ void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr)
  */
 void GXInitFifoLimits(GXFifoObj* fifo, u32 highWatermark, u32 lowWatermark)
 {
-	//fifo->highWatermark = highWatermark;
-	//fifo->lowWatermark  = lowWatermark;
+	// fifo->highWatermark = highWatermark;
+	// fifo->lowWatermark  = lowWatermark;
 }
 
 /*
@@ -369,7 +369,7 @@ void GXSetGPFifo(GXFifoObj* fifo)
 	int interrupts = OSDisableInterrupts();
 	__GXFifoReadDisable();
 	__GXWriteFifoIntEnable(0, 0);
-	GPFifo                         = fifo;
+	GPFifo = fifo;
 	//__cpReg->cpFIFOBaseLo          = (u16)fifo->base;
 	//__cpReg->cpFIFOEndLo           = (u16)fifo->end;
 	//__cpReg->cpFIFORWDistanceLo    = (u16)fifo->rwDistance;
@@ -421,16 +421,16 @@ void GXSaveCPUFifo(GXFifoObj* fifo)
 void __GXSaveCPUFifoAux(GXFifoObj* fifo)
 {
 	int interrupts = OSDisableInterrupts();
-	//fifo->base     = OSPhysicalToCached(__piReg->fifoBase);
-	//fifo->end      = OSPhysicalToCached(__piReg->fifoEnd);
-	//fifo->writePtr = OSPhysicalToCached(__piReg->cpuFIFOCurrentWritePtrMaybe & 0xFBFFFFFF);
+	// fifo->base     = OSPhysicalToCached(__piReg->fifoBase);
+	// fifo->end      = OSPhysicalToCached(__piReg->fifoEnd);
+	// fifo->writePtr = OSPhysicalToCached(__piReg->cpuFIFOCurrentWritePtrMaybe & 0xFBFFFFFF);
 	if (CPGPLinked != 0) {
-		//fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + ((u32)__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);
+		// fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + ((u32)__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);
 		// fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + (u32)(__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);
-		//fifo->rwDistance = (u32)(((u32)__cpReg->cpFIFORWDistanceHi << 0x10) + __cpReg->cpFIFORWDistanceLo);
+		// fifo->rwDistance = (u32)(((u32)__cpReg->cpFIFORWDistanceHi << 0x10) + __cpReg->cpFIFORWDistanceLo);
 	} else {
-		//fifo->rwDistance = (int)fifo->writePtr - (int)fifo->readPtr;
-		//if (fifo->rwDistance < 0) {
+		// fifo->rwDistance = (int)fifo->writePtr - (int)fifo->readPtr;
+		// if (fifo->rwDistance < 0) {
 		//	fifo->rwDistance += fifo->size;
 		//}
 	}

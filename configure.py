@@ -585,7 +585,7 @@ LIBS = [
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
-            "Dolphin/vi/vi",
+            ["Dolphin/vi/vi", True],
         ],
     },
     {
