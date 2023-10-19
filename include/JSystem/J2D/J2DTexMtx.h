@@ -20,15 +20,14 @@ struct J2DTexMtxInfo {
 	J2DTextureSRTInfo mTextureSRTInfo; // _10
 };
 
+extern J2DTexMtxInfo const j2dDefaultTexMtxInfo;
+
 /**
  * @size{0x54}
  */
 struct J2DTexMtx {
-	/* @fabricated */
-	inline J2DTexMtx(J2DTexMtxInfo* info)
-	    : mInfo(*info)
-	{
-	}
+	J2DTexMtx() { mInfo = j2dDefaultTexMtxInfo; }
+	J2DTexMtx(const J2DTexMtxInfo& info) { mInfo = info; }
 
 	inline ~J2DTexMtx() { } // unused/inlined
 
@@ -36,6 +35,9 @@ struct J2DTexMtx {
 	void calc();
 	void getTextureMtx(const J2DTextureSRTInfo&, Vec, Mtx);
 	void getTextureMtxMaya(const J2DTextureSRTInfo&, Mtx);
+
+	J2DTexMtxInfo& getTexMtxInfo() { return mInfo; }
+	void setTexMtxInfo(J2DTexMtxInfo info) { mInfo = info; }
 
 	J2DTexMtxInfo mInfo; // _00
 	Mtx mMtx;            // _24

@@ -18,6 +18,10 @@ struct J2DPEBlock {
 	void initialize();
 	void setGX();
 
+	void setAlphaComp(J2DAlphaComp comp) { mAlphaComp = comp; }
+	void setBlend(J2DBlend blend) { mBlendInfo = blend; }
+	void setDither(u8 dither) { mDither = dither; }
+
 	J2DAlphaComp mAlphaComp; // _00
 	J2DBlend mBlendInfo;     // _04
 	u8 mDither;              // _08

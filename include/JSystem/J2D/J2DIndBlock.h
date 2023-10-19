@@ -9,6 +9,13 @@ struct J2DIndTexCoordScaleInfo {
 	GXIndTexScale getScaleS() const { return (GXIndTexScale)mScaleS; }
 	GXIndTexScale getScaleT() const { return (GXIndTexScale)mScaleT; }
 
+	J2DIndTexCoordScaleInfo& operator=(const J2DIndTexCoordScaleInfo& other)
+	{
+		mScaleS = other.mScaleS;
+		mScaleT = other.mScaleT;
+		return *this;
+	}
+
 	u8 mScaleS; // _00
 	u8 mScaleT; // _01
 };
@@ -29,6 +36,17 @@ struct J2DIndTexCoordScale {
 struct J2DIndTexMtxInfo {
 	Mtx23 mMtx; // _00
 	s8 mScale;  // _18
+
+	J2DIndTexMtxInfo& operator=(const J2DIndTexMtxInfo& other)
+	{
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 3; j++) {
+				mMtx[i][j] = other.mMtx[i][j];
+			}
+		}
+		mScale = other.mScale;
+		return *this;
+	}
 };
 
 /**
@@ -95,18 +113,18 @@ struct J2DIndBlockFull : public J2DIndBlock {
 		initialize();
 	}
 
-	virtual void initialize();                                                                                           // _08
-	virtual void setGX();                                                                                                // _0C
-	virtual u32 getType() { return JBT_IndFull; }                                                                        // _10 (weak)
-	virtual void setIndTexStageNum(u8 texStageNum) { mTexStageNum = texStageNum; }                                       // _14 (weak)
-	virtual u8 getIndTexStageNum() const { return mTexStageNum; }                                                        // _18 (weak)
-	virtual void setIndTexOrder(unsigned long index, J2DIndTexOrder order) { mTexOrders[index] = order; }                // _1C (weak)
-	virtual J2DIndTexOrder* getIndTexOrder(unsigned long index) { return mTexOrders + index; }                           // _20 (weak)
-	virtual void setIndTexMtx(unsigned long, J2DIndTexMtx);                                                              // _24 (weak)
-	virtual J2DIndTexMtx* getIndTexMtx(unsigned long index) { return mTexMtxes + index; }                                // _28 (weak)
-	virtual void setIndTexCoordScale(unsigned long index, J2DIndTexCoordScale scale) { mTexCoordScales[index] = scale; } // _2C (weak)
-	virtual J2DIndTexCoordScale* getIndTexCoordScale(unsigned long index) { return mTexCoordScales + index; }            // _30 (weak)
-	virtual ~J2DIndBlockFull() { }                                                                                       // _34 (weak)
+	virtual void initialize();                                                                                 // _08
+	virtual void setGX();                                                                                      // _0C
+	virtual u32 getType() { return JBT_IndFull; }                                                              // _10 (weak)
+	virtual void setIndTexStageNum(u8 texStageNum) { mTexStageNum = texStageNum; }                             // _14 (weak)
+	virtual u8 getIndTexStageNum() const { return mTexStageNum; }                                              // _18 (weak)
+	virtual void setIndTexOrder(u32 index, J2DIndTexOrder order) { mTexOrders[index] = order; }                // _1C (weak)
+	virtual J2DIndTexOrder* getIndTexOrder(u32 index) { return mTexOrders + index; }                           // _20 (weak)
+	virtual void setIndTexMtx(u32 index, J2DIndTexMtx texMtx) { mTexMtxes[index] = texMtx; }                   // _24 (weak)
+	virtual J2DIndTexMtx* getIndTexMtx(u32 index) { return mTexMtxes + index; }                                // _28 (weak)
+	virtual void setIndTexCoordScale(u32 index, J2DIndTexCoordScale scale) { mTexCoordScales[index] = scale; } // _2C (weak)
+	virtual J2DIndTexCoordScale* getIndTexCoordScale(u32 index) { return mTexCoordScales + index; }            // _30 (weak)
+	virtual ~J2DIndBlockFull() { }                                                                             // _34 (weak)
 
 	u8 mTexStageNum;              // _04
 	J2DIndTexOrder mTexOrders[4]; // _05

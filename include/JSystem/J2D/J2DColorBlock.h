@@ -6,32 +6,27 @@
 #include "JSystem/JUtility/TColor.h"
 #include "types.h"
 
-// NB: TP has this rolled into the J2DColorBlock struct as private members
-// (then the J2DColorBlock stuff as public after it)
-struct _J2DColorBlockParent {
-	inline _J2DColorBlockParent() { }
-
+struct J2DColorBlock {
 	JUtility::TColor mColors[2]; // _00
 	u8 mChannelCount;            // _08
 	J2DColorChan mChannels[4];   // _0A
 	u8 mCullMode;                // _12 - _GXCullMode
-};
 
-struct J2DColorBlock : _J2DColorBlockParent {
+	JUtility::TColor* getMatColor(u32 i) { return &mColors[i]; }
+	J2DColorChan* getColorChan(u32 i) { return &mChannels[i]; }
+	void setCullMode(u8 mode) { mCullMode = mode; }
+	void setColorChanNum(u8 num) { mChannelCount = num; }
+	void setMatColor(u32 i, JUtility::TColor color) { mColors[i] = color; }
+	void setColorChan(u32 i, const J2DColorChan& color) { mChannels[i] = color; }
+
 	/** @fabricated */
 	inline J2DColorBlock() { initialize(); }
-
-	virtual ~J2DColorBlock() { } // _08 (weak)
 
 	void initialize();
 	void setGX();
 
-	inline JUtility::TColor* getMatColor(u32 i) { return &mColors[i]; }
-	inline J2DColorChan* getColorChan(u32 i) { return &mChannels[i]; }
-	inline void setCullMode(u8 mode) { mCullMode = mode; }
-
-	// _00-_14 = _J2DColorBlockParent
-	// _14 VTBL
+	virtual ~J2DColorBlock() { } // _08 (weak)
+	                             // _14 VTBL
 };
 
 #endif

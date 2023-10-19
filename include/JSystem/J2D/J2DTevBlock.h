@@ -65,46 +65,52 @@ struct J2DTevBlock {
 struct J2DTevBlock1 : public J2DTevBlock {
 	J2DTevBlock1();
 
-	virtual void initialize();                                                                                 // _08
-	virtual void setGX();                                                                                      // _0C
-	virtual void loadTexture(_GXTexMapID id, u32 index);                                                       // _10
-	virtual u32 getType() { return JBT_Tev1; }                                                                 // _14 (weak)
-	virtual u32 getMaxStage() { return 0x1; }                                                                  // _18 (weak)
-	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }                                // _1C (weak)
-	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                                       // _20 (weak)
-	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                                                   // _24 (weak)
-	virtual u16 getFontNo() const { return mFontNo; }                                                          // _28 (weak)
-	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }                         // _2C (weak)
-	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }                                    // _30 (weak)
-	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; }                       // _34 (weak)
-	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }                                  // _38 (weak)
-	virtual void setTevKColor(u32 index, JUtility::TColor color);                                              // _3C (weak)
-	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                             // _40 (weak)
-	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                              // _44 (weak)
-	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                       // _48 (weak)
-	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                              // _4C (weak)
-	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                       // _50 (weak)
-	virtual void setTevStageNum(u8 stageNum) { }                                                               // _54 (weak)
-	virtual u8 getTevStageNum() const { return 0x1; }                                                          // _58 (weak)
-	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                         // _5C (weak)
-	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                    // _60 (weak)
-	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info);                                       // _64 (weak)
-	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; } // _68 (weak)
-	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return mSwapModeTables + index; }            // _6C (weak)
-	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                // _70 (weak)
-	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                           // _74 (weak)
-	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }   // _78 (weak)
-	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                              // _7C
-	virtual bool insertTexture(u32, JUTTexture*);                                                              // _80
-	virtual bool setTexture(u32 index, const ResTIMG* img);                                                    // _84
-	virtual bool setTexture(u32 index, JUTTexture* texture);                                                   // _88
-	virtual bool removeTexture(u32);                                                                           // _8C
-	virtual bool setFont(ResFONT* font);                                                                       // _90
-	virtual bool setFont(JUTFont* font);                                                                       // _94
-	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                    // _98
-	virtual bool prepareTexture(u8 count);                                                                     // _9C
-	virtual JUTTexture* getTexture(u32 index) { return (index >= 1) ? nullptr : mTextures[index]; }            // _A0 (weak)
-	virtual JUTPalette* getPalette(u32 index)                                                                  // _A4 (weak)
+	virtual void initialize();                                                           // _08
+	virtual void setGX();                                                                // _0C
+	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
+	virtual u32 getType() { return JBT_Tev1; }                                           // _14 (weak)
+	virtual u32 getMaxStage() { return 0x1; }                                            // _18 (weak)
+	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
+	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
+	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)
+	virtual u16 getFontNo() const { return mFontNo; }                                    // _28 (weak)
+	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }   // _2C (weak)
+	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }              // _30 (weak)
+	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; } // _34 (weak)
+	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }            // _38 (weak)
+	virtual void setTevKColor(u32 index, JUtility::TColor color)
+	{
+		mKColors[index].r = color.r;
+		mKColors[index].g = color.g;
+		mKColors[index].b = color.b;
+		mKColors[index].a = color.a;
+	}                                                                                                                // _3C (weak)
+	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                                   // _40 (weak)
+	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                                    // _44 (weak)
+	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                             // _48 (weak)
+	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                                    // _4C (weak)
+	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                             // _50 (weak)
+	virtual void setTevStageNum(u8 stageNum) { }                                                                     // _54 (weak)
+	virtual u8 getTevStageNum() const { return 0x1; }                                                                // _58 (weak)
+	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                               // _5C (weak)
+	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                          // _60 (weak)
+	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) { mStages[index].setTevSwapModeInfo(info); } // _64 (weak)
+	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; }       // _68 (weak)
+	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return mSwapModeTables + index; }                  // _6C (weak)
+	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                      // _70 (weak)
+	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                                 // _74 (weak)
+	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }         // _78 (weak)
+	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                                    // _7C
+	virtual bool insertTexture(u32, JUTTexture*);                                                                    // _80
+	virtual bool setTexture(u32 index, const ResTIMG* img);                                                          // _84
+	virtual bool setTexture(u32 index, JUTTexture* texture);                                                         // _88
+	virtual bool removeTexture(u32);                                                                                 // _8C
+	virtual bool setFont(ResFONT* font);                                                                             // _90
+	virtual bool setFont(JUTFont* font);                                                                             // _94
+	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                          // _98
+	virtual bool prepareTexture(u8 count);                                                                           // _9C
+	virtual JUTTexture* getTexture(u32 index) { return (index >= 1) ? nullptr : mTextures[index]; }                  // _A0 (weak)
+	virtual JUTPalette* getPalette(u32 index)                                                                        // _A4 (weak)
 	{
 		if (index >= 1) {
 			return nullptr;
@@ -137,46 +143,52 @@ struct J2DTevBlock1 : public J2DTevBlock {
 struct J2DTevBlock2 : public J2DTevBlock {
 	J2DTevBlock2();
 
-	virtual void initialize();                                                                                 // _08
-	virtual void setGX();                                                                                      // _0C
-	virtual void loadTexture(_GXTexMapID id, u32 index);                                                       // _10
-	virtual u32 getType() { return JBT_Tev2; }                                                                 // _14 (weak)
-	virtual u32 getMaxStage() { return 0x2; }                                                                  // _18 (weak)
-	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }                                // _1C (weak)
-	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                                       // _20 (weak)
-	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                                                   // _24 (weak)
-	virtual u16 getFontNo() const { return mFontNo; }                                                          // _28 (weak)
-	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }                         // _2C (weak)
-	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }                                    // _30 (weak)
-	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; }                       // _34 (weak)
-	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }                                  // _38 (weak)
-	virtual void setTevKColor(u32 index, JUtility::TColor color);                                              // _3C (weak)
-	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                             // _40 (weak)
-	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                              // _44 (weak)
-	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                       // _48 (weak)
-	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                              // _4C (weak)
-	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                       // _50 (weak)
-	virtual void setTevStageNum(u8 stageNum) { mStageNum = stageNum; }                                         // _54 (weak)
-	virtual u8 getTevStageNum() const { return mStageNum; }                                                    // _58 (weak)
-	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                         // _5C (weak)
-	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                    // _60 (weak)
-	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info);                                       // _64 (weak)
-	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; } // _68 (weak)
-	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return mSwapModeTables + index; }            // _6C (weak)
-	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                // _70 (weak)
-	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                           // _74 (weak)
-	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }   // _78 (weak)
-	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                              // _7C
-	virtual bool insertTexture(u32, JUTTexture*);                                                              // _80
-	virtual bool setTexture(u32 index, const ResTIMG* img);                                                    // _84
-	virtual bool setTexture(u32 index, JUTTexture* texture);                                                   // _88
-	virtual bool removeTexture(u32);                                                                           // _8C
-	virtual bool setFont(ResFONT* font);                                                                       // _90
-	virtual bool setFont(JUTFont* font);                                                                       // _94
-	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                    // _98
-	virtual bool prepareTexture(u8 count);                                                                     // _9C
-	virtual JUTTexture* getTexture(u32 index) { return (index >= 2) ? nullptr : mTextures[index]; }            // _A0 (weak)
-	virtual JUTPalette* getPalette(u32 index)                                                                  // _A4 (weak)
+	virtual void initialize();                                                           // _08
+	virtual void setGX();                                                                // _0C
+	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
+	virtual u32 getType() { return JBT_Tev2; }                                           // _14 (weak)
+	virtual u32 getMaxStage() { return 0x2; }                                            // _18 (weak)
+	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
+	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
+	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)
+	virtual u16 getFontNo() const { return mFontNo; }                                    // _28 (weak)
+	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }   // _2C (weak)
+	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }              // _30 (weak)
+	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; } // _34 (weak)
+	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }            // _38 (weak)
+	virtual void setTevKColor(u32 index, JUtility::TColor color)
+	{
+		mKColors[index].r = color.r;
+		mKColors[index].g = color.g;
+		mKColors[index].b = color.b;
+		mKColors[index].a = color.a;
+	}                                                                                                                // _3C (weak)
+	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                                   // _40 (weak)
+	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                                    // _44 (weak)
+	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                             // _48 (weak)
+	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                                    // _4C (weak)
+	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                             // _50 (weak)
+	virtual void setTevStageNum(u8 stageNum) { mStageNum = stageNum; }                                               // _54 (weak)
+	virtual u8 getTevStageNum() const { return mStageNum; }                                                          // _58 (weak)
+	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                               // _5C (weak)
+	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                          // _60 (weak)
+	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) { mStages[index].setTevSwapModeInfo(info); } // _64 (weak)
+	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; }       // _68 (weak)
+	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return &mSwapModeTables[index]; }                  // _6C (weak)
+	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                      // _70 (weak)
+	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                                 // _74 (weak)
+	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }         // _78 (weak)
+	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                                    // _7C
+	virtual bool insertTexture(u32, JUTTexture*);                                                                    // _80
+	virtual bool setTexture(u32 index, const ResTIMG* img);                                                          // _84
+	virtual bool setTexture(u32 index, JUTTexture* texture);                                                         // _88
+	virtual bool removeTexture(u32);                                                                                 // _8C
+	virtual bool setFont(ResFONT* font);                                                                             // _90
+	virtual bool setFont(JUTFont* font);                                                                             // _94
+	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                          // _98
+	virtual bool prepareTexture(u8 count);                                                                           // _9C
+	virtual JUTTexture* getTexture(u32 index) { return (index >= 2) ? nullptr : mTextures[index]; }                  // _A0 (weak)
+	virtual JUTPalette* getPalette(u32 index)                                                                        // _A4 (weak)
 	{
 		if (index >= 2) {
 			return nullptr;
@@ -196,6 +208,7 @@ struct J2DTevBlock2 : public J2DTevBlock {
 	J2DGXColorS10 mColors[4];               // _12
 	u8 mStageNum;                           // _32
 	J2DTevStage mStages[2];                 // _33
+	u8 __;                                  // ???
 	JUtility::TColor mKColors[4];           // _44
 	u8 mKColorSels[2];                      // _54
 	u8 mKAlphaSels[2];                      // _56
@@ -210,46 +223,52 @@ struct J2DTevBlock2 : public J2DTevBlock {
 struct J2DTevBlock4 : J2DTevBlock {
 	J2DTevBlock4();
 
-	virtual void initialize();                                                                                 // _08
-	virtual void setGX();                                                                                      // _0C
-	virtual void loadTexture(_GXTexMapID id, u32 index);                                                       // _10
-	virtual u32 getType() { return JBT_Tev4; }                                                                 // _14 (weak)
-	virtual u32 getMaxStage() { return 0x4; }                                                                  // _18 (weak)
-	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }                                // _1C (weak)
-	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                                       // _20 (weak)
-	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                                                   // _24 (weak)
-	virtual u16 getFontNo() const { return mFontNo; }                                                          // _28 (weak)
-	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }                         // _2C (weak)
-	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }                                    // _30 (weak)
-	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; }                       // _34 (weak)
-	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }                                  // _38 (weak)
-	virtual void setTevKColor(u32 index, JUtility::TColor color);                                              // _3C (weak)
-	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                             // _40 (weak)
-	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                              // _44 (weak)
-	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                       // _48 (weak)
-	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                              // _4C (weak)
-	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                       // _50 (weak)
-	virtual void setTevStageNum(u8 stageNum) { mStageNum = stageNum; }                                         // _54 (weak)
-	virtual u8 getTevStageNum() const { return mStageNum; }                                                    // _58 (weak)
-	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                         // _5C (weak)
-	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                    // _60 (weak)
-	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info);                                       // _64 (weak)
-	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; } // _68 (weak)
-	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return mSwapModeTables + index; }            // _6C (weak)
-	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                // _70 (weak)
-	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                           // _74 (weak)
-	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }   // _78 (weak)
-	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                              // _7C
-	virtual bool insertTexture(u32, JUTTexture*);                                                              // _80
-	virtual bool setTexture(u32 index, const ResTIMG* img);                                                    // _84
-	virtual bool setTexture(u32 index, JUTTexture* texture);                                                   // _88
-	virtual bool removeTexture(u32);                                                                           // _8C
-	virtual bool setFont(ResFONT* font);                                                                       // _90
-	virtual bool setFont(JUTFont* font);                                                                       // _94
-	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                    // _98
-	virtual bool prepareTexture(u8 count);                                                                     // _9C
-	virtual JUTTexture* getTexture(u32 index) { return (index >= 4) ? nullptr : mTextures[index]; }            // _A0 (weak)
-	virtual JUTPalette* getPalette(u32 index)                                                                  // _A4 (weak)
+	virtual void initialize();                                                           // _08
+	virtual void setGX();                                                                // _0C
+	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
+	virtual u32 getType() { return JBT_Tev4; }                                           // _14 (weak)
+	virtual u32 getMaxStage() { return 0x4; }                                            // _18 (weak)
+	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
+	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
+	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)
+	virtual u16 getFontNo() const { return mFontNo; }                                    // _28 (weak)
+	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }   // _2C (weak)
+	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }              // _30 (weak)
+	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; } // _34 (weak)
+	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }            // _38 (weak)
+	virtual void setTevKColor(u32 index, JUtility::TColor color)
+	{
+		mKColors[index].r = color.r;
+		mKColors[index].g = color.g;
+		mKColors[index].b = color.b;
+		mKColors[index].a = color.a;
+	}                                                                                                                // _3C (weak)
+	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                                   // _40 (weak)
+	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                                    // _44 (weak)
+	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                             // _48 (weak)
+	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                                    // _4C (weak)
+	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                             // _50 (weak)
+	virtual void setTevStageNum(u8 stageNum) { mStageNum = stageNum; }                                               // _54 (weak)
+	virtual u8 getTevStageNum() const { return mStageNum; }                                                          // _58 (weak)
+	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                               // _5C (weak)
+	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                          // _60 (weak)
+	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) { mStages[index].setTevSwapModeInfo(info); } // _64 (weak)
+	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; }       // _68 (weak)
+	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return mSwapModeTables + index; }                  // _6C (weak)
+	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                      // _70 (weak)
+	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                                 // _74 (weak)
+	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }         // _78 (weak)
+	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                                    // _7C
+	virtual bool insertTexture(u32, JUTTexture*);                                                                    // _80
+	virtual bool setTexture(u32 index, const ResTIMG* img);                                                          // _84
+	virtual bool setTexture(u32 index, JUTTexture* texture);                                                         // _88
+	virtual bool removeTexture(u32);                                                                                 // _8C
+	virtual bool setFont(ResFONT* font);                                                                             // _90
+	virtual bool setFont(JUTFont* font);                                                                             // _94
+	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                          // _98
+	virtual bool prepareTexture(u8 count);                                                                           // _9C
+	virtual JUTTexture* getTexture(u32 index) { return (index >= 4) ? nullptr : mTextures[index]; }                  // _A0 (weak)
+	virtual JUTPalette* getPalette(u32 index)                                                                        // _A4 (weak)
 	{
 		if (index >= 4) {
 			return nullptr;
@@ -269,6 +288,7 @@ struct J2DTevBlock4 : J2DTevBlock {
 	J2DGXColorS10 mColors[4];               // _1E
 	u8 mStageNum;                           // _3E
 	J2DTevStage mStages[4];                 // _3F
+	u8 __;                                  // ???
 	JUtility::TColor mKColors[4];           // _60
 	u8 mKColorSels[4];                      // _70
 	u8 mKAlphaSels[4];                      // _74
@@ -283,46 +303,52 @@ struct J2DTevBlock4 : J2DTevBlock {
 struct J2DTevBlock8 : J2DTevBlock {
 	J2DTevBlock8();
 
-	virtual void initialize();                                                                                 // _08
-	virtual void setGX();                                                                                      // _0C
-	virtual void loadTexture(_GXTexMapID id, u32 index);                                                       // _10
-	virtual u32 getType() { return JBT_Tev8; }                                                                 // _14 (weak)
-	virtual u32 getMaxStage() { return 0x8; }                                                                  // _18 (weak)
-	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }                                // _1C (weak)
-	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                                       // _20 (weak)
-	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                                                   // _24 (weak)
-	virtual u16 getFontNo() const { return mFontNo; }                                                          // _28 (weak)
-	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }                         // _2C (weak)
-	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }                                    // _30 (weak)
-	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; }                       // _34 (weak)
-	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }                                  // _38 (weak)
-	virtual void setTevKColor(u32 index, JUtility::TColor color);                                              // _3C (weak)
-	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                             // _40 (weak)
-	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                              // _44 (weak)
-	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                       // _48 (weak)
-	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                              // _4C (weak)
-	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                       // _50 (weak)
-	virtual void setTevStageNum(u8 stageNum) { mStageNum = stageNum; }                                         // _54 (weak)
-	virtual u8 getTevStageNum() const { return mStageNum; }                                                    // _58 (weak)
-	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                         // _5C (weak)
-	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                    // _60 (weak)
-	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info);                                       // _64 (weak)
-	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; } // _68 (weak)
-	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return mSwapModeTables + index; }            // _6C (weak)
-	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                // _70 (weak)
-	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                           // _74 (weak)
-	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }   // _78 (weak)
-	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                              // _7C
-	virtual bool insertTexture(u32, JUTTexture*);                                                              // _80
-	virtual bool setTexture(u32 index, const ResTIMG* img);                                                    // _84
-	virtual bool setTexture(u32 index, JUTTexture* texture);                                                   // _88
-	virtual bool removeTexture(u32);                                                                           // _8C
-	virtual bool setFont(ResFONT* font);                                                                       // _90
-	virtual bool setFont(JUTFont* font);                                                                       // _94
-	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                    // _98
-	virtual bool prepareTexture(u8 count);                                                                     // _9C
-	virtual JUTTexture* getTexture(u32 index) { return (index >= 8) ? nullptr : mTextures[index]; }            // _A0 (weak)
-	virtual JUTPalette* getPalette(u32 index)                                                                  // _A4 (weak)
+	virtual void initialize();                                                           // _08
+	virtual void setGX();                                                                // _0C
+	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
+	virtual u32 getType() { return JBT_Tev8; }                                           // _14 (weak)
+	virtual u32 getMaxStage() { return 0x8; }                                            // _18 (weak)
+	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
+	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
+	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)
+	virtual u16 getFontNo() const { return mFontNo; }                                    // _28 (weak)
+	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }   // _2C (weak)
+	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }              // _30 (weak)
+	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; } // _34 (weak)
+	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }            // _38 (weak)
+	virtual void setTevKColor(u32 index, JUtility::TColor color)
+	{
+		mKColors[index].r = color.r;
+		mKColors[index].g = color.g;
+		mKColors[index].b = color.b;
+		mKColors[index].a = color.a;
+	}                                                                                                                // _3C (weak)
+	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                                   // _40 (weak)
+	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                                    // _44 (weak)
+	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                             // _48 (weak)
+	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                                    // _4C (weak)
+	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                             // _50 (weak)
+	virtual void setTevStageNum(u8 stageNum) { mStageNum = stageNum; }                                               // _54 (weak)
+	virtual u8 getTevStageNum() const { return mStageNum; }                                                          // _58 (weak)
+	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                               // _5C (weak)
+	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                          // _60 (weak)
+	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) { mStages[index].setTevSwapModeInfo(info); } // _64 (weak)
+	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; }       // _68 (weak)
+	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return mSwapModeTables + index; }                  // _6C (weak)
+	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                      // _70 (weak)
+	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                                 // _74 (weak)
+	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }         // _78 (weak)
+	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                                    // _7C
+	virtual bool insertTexture(u32, JUTTexture*);                                                                    // _80
+	virtual bool setTexture(u32 index, const ResTIMG* img);                                                          // _84
+	virtual bool setTexture(u32 index, JUTTexture* texture);                                                         // _88
+	virtual bool removeTexture(u32);                                                                                 // _8C
+	virtual bool setFont(ResFONT* font);                                                                             // _90
+	virtual bool setFont(JUTFont* font);                                                                             // _94
+	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                          // _98
+	virtual bool prepareTexture(u8 count);                                                                           // _9C
+	virtual JUTTexture* getTexture(u32 index) { return (index >= 8) ? nullptr : mTextures[index]; }                  // _A0 (weak)
+	virtual JUTPalette* getPalette(u32 index)                                                                        // _A4 (weak)
 	{
 		if (index >= 8) {
 			return nullptr;
@@ -342,6 +368,7 @@ struct J2DTevBlock8 : J2DTevBlock {
 	J2DGXColorS10 mColors[4];               // _36
 	u8 mStageNum;                           // _56
 	J2DTevStage mStages[8];                 // _57
+	u8 __;                                  // ???
 	JUtility::TColor mKColors[4];           // _98
 	u8 mKColorSels[8];                      // _A8
 	u8 mKAlphaSels[8];                      // _B0
@@ -357,46 +384,52 @@ struct J2DTevBlock8 : J2DTevBlock {
 struct J2DTevBlock16 : J2DTevBlock {
 	J2DTevBlock16();
 
-	virtual void initialize();                                                                                 // _08
-	virtual void setGX();                                                                                      // _0C
-	virtual void loadTexture(_GXTexMapID id, u32 index);                                                       // _10
-	virtual u32 getType() { return JBT_Tev16; }                                                                // _14 (weak)
-	virtual u32 getMaxStage() { return 0x10; }                                                                 // _18 (weak)
-	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }                                // _1C (weak)
-	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                                       // _20 (weak)
-	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                                                   // _24 (weak)
-	virtual u16 getFontNo() const { return mFontNo; }                                                          // _28 (weak)
-	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }                         // _2C (weak)
-	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }                                    // _30 (weak)
-	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; }                       // _34 (weak)
-	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }                                  // _38 (weak)
-	virtual void setTevKColor(u32 index, JUtility::TColor color);                                              // _3C (weak)
-	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                             // _40 (weak)
-	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                              // _44 (weak)
-	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                       // _48 (weak)
-	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                              // _4C (weak)
-	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                       // _50 (weak)
-	virtual void setTevStageNum(u8 stageNum) { mStageNum = stageNum; }                                         // _54 (weak)
-	virtual u8 getTevStageNum() const { return mStageNum; }                                                    // _58 (weak)
-	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                         // _5C (weak)
-	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                    // _60 (weak)
-	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info);                                       // _64 (weak)
-	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; } // _68 (weak)
-	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return mSwapModeTables + index; }            // _6C (weak)
-	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                // _70 (weak)
-	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                           // _74 (weak)
-	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }   // _78 (weak)
-	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                              // _7C
-	virtual bool insertTexture(u32, JUTTexture*);                                                              // _80
-	virtual bool setTexture(u32 index, const ResTIMG* img);                                                    // _84
-	virtual bool setTexture(u32 index, JUTTexture* texture);                                                   // _88
-	virtual bool removeTexture(u32);                                                                           // _8C
-	virtual bool setFont(ResFONT* font);                                                                       // _90
-	virtual bool setFont(JUTFont* font);                                                                       // _94
-	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                    // _98
-	virtual bool prepareTexture(u8 count);                                                                     // _9C
-	virtual JUTTexture* getTexture(u32 index) { return (index >= 8) ? nullptr : mTextures[index]; }            // _A0 (weak)
-	virtual JUTPalette* getPalette(u32 index)                                                                  // _A4 (weak)
+	virtual void initialize();                                                           // _08
+	virtual void setGX();                                                                // _0C
+	virtual void loadTexture(_GXTexMapID id, u32 index);                                 // _10
+	virtual u32 getType() { return JBT_Tev16; }                                          // _14 (weak)
+	virtual u32 getMaxStage() { return 0x10; }                                           // _18 (weak)
+	virtual void setTexNo(u32 index, u16 texNo) { mTexIndices[index] = texNo; }          // _1C (weak)
+	virtual u16 getTexNo(u32 index) const { return mTexIndices[index]; }                 // _20 (weak)
+	virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }                             // _24 (weak)
+	virtual u16 getFontNo() const { return mFontNo; }                                    // _28 (weak)
+	virtual void setTevOrder(u32 index, J2DTevOrder order) { mOrders[index] = order; }   // _2C (weak)
+	virtual J2DTevOrder* getTevOrder(u32 index) { return mOrders + index; }              // _30 (weak)
+	virtual void setTevColor(u32 index, J2DGXColorS10 color) { mColors[index] = color; } // _34 (weak)
+	virtual J2DGXColorS10* getTevColor(u32 index) { return mColors + index; }            // _38 (weak)
+	virtual void setTevKColor(u32 index, JUtility::TColor color)
+	{
+		mKColors[index].r = color.r;
+		mKColors[index].g = color.g;
+		mKColors[index].b = color.b;
+		mKColors[index].a = color.a;
+	}                                                                                                                // _3C (weak)
+	virtual JUtility::TColor* getTevKColor(u32 index) { return mKColors + index; }                                   // _40 (weak)
+	virtual void setTevKColorSel(u32 index, u8 sel) { mKColorSels[index] = sel; }                                    // _44 (weak)
+	virtual u8 getTevKColorSel(u32 index) { return mKColorSels[index]; }                                             // _48 (weak)
+	virtual void setTevKAlphaSel(u32 index, u8 sel) { mKAlphaSels[index] = sel; }                                    // _4C (weak)
+	virtual u8 getTevKAlphaSel(u32 index) { return mKAlphaSels[index]; }                                             // _50 (weak)
+	virtual void setTevStageNum(u8 stageNum) { mTevStageNum = stageNum; }                                            // _54 (weak)
+	virtual u8 getTevStageNum() const { return mTevStageNum; }                                                       // _58 (weak)
+	virtual void setTevStage(u32 index, J2DTevStage stage) { mStages[index] = stage; }                               // _5C (weak)
+	virtual J2DTevStage* getTevStage(u32 index) { return mStages + index; }                                          // _60 (weak)
+	virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) { mStages[index].setTevSwapModeInfo(info); } // _64 (weak)
+	virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) { mSwapModeTables[index] = table; }       // _68 (weak)
+	virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) { return mSwapModeTables + index; }                  // _6C (weak)
+	virtual void setIndTevStage(u32 index, J2DIndTevStage stage) { mIndStages[index] = stage; }                      // _70 (weak)
+	virtual J2DIndTevStage* getIndTevStage(u32 index) { return mIndStages + index; }                                 // _74 (weak)
+	virtual bool insertTexture(u32 index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }         // _78 (weak)
+	virtual bool insertTexture(u32, const ResTIMG*, JUTPalette*);                                                    // _7C
+	virtual bool insertTexture(u32, JUTTexture*);                                                                    // _80
+	virtual bool setTexture(u32 index, const ResTIMG* img);                                                          // _84
+	virtual bool setTexture(u32 index, JUTTexture* texture);                                                         // _88
+	virtual bool removeTexture(u32);                                                                                 // _8C
+	virtual bool setFont(ResFONT* font);                                                                             // _90
+	virtual bool setFont(JUTFont* font);                                                                             // _94
+	virtual bool setPalette(u32 index, const ResTLUT* lut);                                                          // _98
+	virtual bool prepareTexture(u8 count);                                                                           // _9C
+	virtual JUTTexture* getTexture(u32 index) { return (index >= 8) ? nullptr : mTextures[index]; }                  // _A0 (weak)
+	virtual JUTPalette* getPalette(u32 index)                                                                        // _A4 (weak)
 	{
 		if (index >= 8) {
 			return nullptr;
@@ -414,8 +447,9 @@ struct J2DTevBlock16 : J2DTevBlock {
 	u16 mFontNo;                            // _14
 	J2DTevOrder mOrders[16];                // _16
 	J2DGXColorS10 mColors[4];               // _56
-	u8 mStageNum;                           // _76
+	u8 mTevStageNum;                        // _76
 	J2DTevStage mStages[16];                // _77
+	u8 __;                                  // ???
 	JUtility::TColor mKColors[4];           // _F8
 	u8 mKColorSels[16];                     // _108
 	u8 mKAlphaSels[16];                     // _118
