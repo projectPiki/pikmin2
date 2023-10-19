@@ -38,7 +38,7 @@ void ActGotoPos::init(ActionArg* actionArg)
 	GotoPosActionArg* posArg = static_cast<GotoPosActionArg*>(actionArg);
 	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 	mPosition = posArg->mPosition;
-	_0C       = posArg->_10;
+	mRadius   = posArg->mRadius;
 }
 
 /*
@@ -51,13 +51,13 @@ int ActGotoPos::exec()
 	Vector3f pikiPos = mParent->getPosition();
 	Vector3f diff    = mPosition - pikiPos;
 
-	f32 length = diff.normalise();
-	if (length <= _0C) {
-		return 0;
+	f32 dist = diff.normalise();
+	if (dist <= mRadius) {
+		return ACTEXEC_Success;
 	}
 
 	mParent->setSpeed(1.0f, diff);
-	return 1;
+	return ACTEXEC_Continue;
 }
 
 /*
@@ -84,89 +84,23 @@ ActApproachPos::ActApproachPos(Game::Piki* p)
  */
 void ActApproachPos::init(ActionArg* settings)
 {
-
-	P2ASSERTBOOLLINE(424, settings && !checkName(settings, "ApproachPosActionArg"));
+	bool isApproachArg = false;
+	if (settings) {
+		bool strCheck = strcmp("ApproachPosActionArg", settings->getName()) == 0;
+		if (strCheck) {
+			isApproachArg = true;
+		}
+	}
+	P2ASSERTLINE(424, isApproachArg);
 	ApproachPosActionArg* approachArg = static_cast<ApproachPosActionArg*>(settings);
 
-	mParent->startMotion(30, 30, nullptr, nullptr);
+	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 	mPosition = approachArg->mSphere.mPosition;
-	_0C       = approachArg->mSphere.mRadius;
+	mRadius   = approachArg->mSphere.mRadius;
 	_24       = approachArg->_18;
 	_25       = approachArg->_19;
 	_1C       = approachArg->_14;
 	_20       = 0.0f;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	or.      r29, r4, r4
-	lis      r4, lbl_8047F070@ha
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	addi     r31, r4, lbl_8047F070@l
-	beq      lbl_80197550
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x1c
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	beq      lbl_80197550
-	li       r30, 1
-
-lbl_80197550:
-	clrlwi.  r0, r30, 0x18
-	bne      lbl_8019756C
-	addi     r3, r31, 0x34
-	addi     r5, r31, 0x48
-	li       r4, 0x1a8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8019756C:
-	lwz      r3, 4(r28)
-	li       r4, 0x1e
-	li       r5, 0x1e
-	li       r6, 0
-	lwz      r12, 0(r3)
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 4(r29)
-	lfs      f0, lbl_80518F60@sda21(r2)
-	stfs     f1, 0x10(r28)
-	lfs      f1, 8(r29)
-	stfs     f1, 0x14(r28)
-	lfs      f1, 0xc(r29)
-	stfs     f1, 0x18(r28)
-	lfs      f1, 0x10(r29)
-	stfs     f1, 0xc(r28)
-	lbz      r0, 0x18(r29)
-	stb      r0, 0x24(r28)
-	lbz      r0, 0x19(r29)
-	stb      r0, 0x25(r28)
-	lfs      f1, 0x14(r29)
-	stfs     f1, 0x1c(r28)
-	stfs     f0, 0x20(r28)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -176,8 +110,55 @@ lbl_8019756C:
  */
 int ActApproachPos::exec()
 {
-	// Vector3f v1 = mPosition - mParent->getPosition();
-	// _normaliseXZ(v1);
+	Vector3f dir = mPosition - mParent->getPosition();
+	f32 y        = dir.y;
+	// Vector3f dir = sep;
+	f32 dist = dir.length();
+	dir.normalise();
+
+	f32 angleDist = angDist(JMAAtan2Radian(dir.x, dir.z), mParent->getFaceDir());
+	if (_1C > 0.0f) {
+		_20 += sys->mDeltaTime;
+		if (_20 >= _1C) {
+			return ACTEXEC_Success;
+		}
+	}
+
+	if (_25 && FABS(y) > 20.0f) {
+		return ACTEXEC_Fail;
+	}
+
+	if (dist < mRadius) {
+		mParent->setMoveRotation(false);
+		mParent->setSpeed(-0.5f, dir, dist);
+	} else if (dist > mRadius + 6.0f) {
+		mParent->setMoveRotation(true);
+		if (_24) {
+			f32 speed = 0.01f * dist;
+			if (speed > 1.0f) {
+				speed = 1.0f;
+			}
+
+			speed *= 0.5f;
+			mParent->setSpeed(speed + 0.5f, dir);
+		} else {
+			mParent->setSpeed(0.5f, dir);
+		}
+	} else {
+		mParent->setVelocity(Vector3f::zero);
+		if (FABS(angleDist) < PI / 10.0f) {
+			if (_25) {
+				if (FABS(dir.y) > 10.0f) {
+					return ACTEXEC_Continue;
+				}
+			}
+			return ACTEXEC_Success;
+		} else {
+			mParent->mFaceDir = roundAng(0.2f * angleDist + mParent->mFaceDir);
+		}
+	}
+
+	return ACTEXEC_Continue;
 
 	/*
 	stwu     r1, -0x60(r1)
@@ -437,119 +418,37 @@ ActGotoSlot::ActGotoSlot(Game::Piki* p)
  * Address:	80197988
  * Size:	00018C
  */
-void ActGotoSlot::init(ActionArg*)
+void ActGotoSlot::init(ActionArg* settings)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	li       r30, 0
-	stw      r29, 0x24(r1)
-	or.      r29, r4, r4
-	lis      r4, lbl_8047F070@ha
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	addi     r31, r4, lbl_8047F070@l
-	beq      lbl_801979EC
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x60
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	beq      lbl_801979EC
-	li       r30, 1
+	bool isGotoSlotArg = false;
+	if (settings) {
+		bool strCheck = strcmp("GotoSlotArg", settings->getName()) == 0;
+		if (strCheck) {
+			isGotoSlotArg = true;
+		}
+	}
+	P2ASSERTLINE(529, isGotoSlotArg);
 
-lbl_801979EC:
-	clrlwi.  r0, r30, 0x18
-	bne      lbl_80197A08
-	addi     r3, r31, 0x34
-	addi     r5, r31, 0x48
-	li       r4, 0x211
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 
-lbl_80197A08:
-	lwz      r3, 4(r28)
-	li       r4, 0x1e
-	li       r5, 0x1e
-	li       r6, 0
-	lwz      r12, 0(r3)
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r29)
-	stw      r0, 0xc(r28)
-	lbz      r0, 8(r29)
-	cmplwi   r0, 1
-	bne      lbl_80197A90
-	lwz      r4, 4(r28)
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r4, r1, 0x14
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 0xc(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x170(r12)
-	mtctr    r12
-	bctrl
-	sth      r3, 0x10(r28)
-	b        lbl_80197AA8
+	GotoSlotArg* slotArg = static_cast<GotoSlotArg*>(settings);
+	mPellet              = slotArg->mPellet;
 
-lbl_80197A90:
-	lwz      r3, 0xc(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x174(r12)
-	mtctr    r12
-	bctrl
-	sth      r3, 0x10(r28)
+	if (slotArg->mSlotSearchType == SLOTSEARCH_Nearest) {
+		Vector3f pikiPos = mParent->getPosition();
+		mSlotId          = mPellet->getNearFreeStickSlot(pikiPos);
 
-lbl_80197AA8:
-	lwz      r3, 0xc(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80197AE4
-	lwz      r3, 0xc(r28)
-	bl       getTotalPikmins__Q24Game6PelletFv
-	cmpwi    r3, 0
-	bne      lbl_80197AE4
-	li       r3, 0
-	li       r0, 1
-	sth      r3, 0x10(r28)
-	stb      r0, 0x1d(r28)
+	} else {
+		mSlotId = mPellet->getRandomFreeStickSlot();
+	}
 
-lbl_80197AE4:
-	mr       r3, r28
-	bl       resetTimers__Q26PikiAI11ActGotoSlotFv
-	li       r0, 0
-	stb      r0, 0x1c(r28)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (mPellet->isPellet() && mPellet->getTotalPikmins() == 0) {
+		mSlotId = 0;
+		_1D     = 1;
+	}
+
+	resetTimers();
+	_1C = 0;
 }
 
 /*
@@ -571,8 +470,8 @@ void ActGotoSlot::wallCallback(Vector3f&)
  */
 void ActGotoSlot::resetTimers()
 {
-	_14 = 0.0f;
-	_18 = 0.0f;
+	_14 = 0;
+	_18 = 3.0f;
 }
 
 /*
@@ -582,6 +481,59 @@ void ActGotoSlot::resetTimers()
  */
 int ActGotoSlot::exec()
 {
+	if (mSlotId == -1) {
+		return ACTEXEC_Fail;
+	}
+
+	if (!mPellet->isAlive()) {
+		return ACTEXEC_Fail;
+	}
+
+	if (_1D) {
+		Game::Pellet* pellet = mPellet;
+		bool isAlreadyPikmin = false;
+		if (pellet->getTotalPikmins()) {
+			isAlreadyPikmin = true;
+		}
+
+		if (isAlreadyPikmin) {
+			_1D              = 0;
+			Vector3f pikiPos = mParent->getPosition();
+			mSlotId          = mPellet->getNearFreeStickSlot(pikiPos);
+			if (mSlotId == -1) {
+				return ACTEXEC_Fail;
+			}
+
+			resetTimers();
+			return ACTEXEC_Continue;
+		}
+
+		Vector3f stickSlotPos;
+		mPellet->calcStickSlotGlobal(mSlotId, stickSlotPos);
+
+		Vector3f pelletPos = pellet->getPosition();   // f30, f29, f28
+		f32 pickRadius     = pellet->getPickRadius(); // f31
+		Vector3f pikiPos   = mParent->getPosition();  // f27, f26, f25
+
+		if (mPellet->isPellet()) {
+			pelletPos -= 0.5f * mPellet->getCylinderHeight();
+		}
+
+		Vector3f sep = pelletPos - pikiPos; // 0x8c
+		sep.y        = 0.0f;
+
+		sep.normalise();
+
+		Vector3f vec = (pelletPos + sep * pickRadius) - pikiPos;
+
+		f32 dist = vec.length();
+		if (dist > 6.0f) {
+			mParent->setSpeed(1.0f, sep);
+			if (dist > 40.0f) {
+				_14++;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0

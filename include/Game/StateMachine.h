@@ -125,5 +125,15 @@ void StateMachine<T>::exec(T* obj)
 	}
 }
 
+template <typename T>
+int StateMachine<T>::getCurrID(T* obj)
+{
+	if (obj->getCurrState()) {
+		return obj->getCurrState()->mId;
+	}
+
+	return -1;
+}
+
 } // namespace Game
 #endif

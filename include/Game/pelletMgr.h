@@ -3,6 +3,7 @@
 
 #include "CarryInfo.h"
 #include "Game/DynCreature.h"
+#include "Game/DynParticle.h"
 #include "ObjectMgr.h"
 #include "GenericObjectMgr.h"
 #include "Game/Interaction.h"
@@ -194,6 +195,17 @@ struct PelletKillArg : public CreatureKillArg {
 struct Pellet : public DynCreature, public SysShape::MotionListener, public CarryInfoOwner {
 	typedef PelletState StateType;
 
+	struct PelletSlots {
+		PelletSlots()
+		{
+			for (int i = 0; i < 16; i++) {
+				mSlots[i] = 0;
+			}
+		}
+
+		u8 mSlots[16]; // _00
+	};
+
 	Pellet();
 
 	enum PelletFlag {
@@ -348,7 +360,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		if (slot < 128) {
 			u32 index = slot >> 3;
 			u32 flag  = 1 << slot - index * 8;
-			mSlots[15 - index] |= flag;
+			mSlots.mSlots[15 - index] |= flag;
 		}
 	}
 
@@ -357,7 +369,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		if (slot < 128) {
 			u32 index = slot >> 3;
 			u32 flag  = 1 << slot - index * 8;
-			mSlots[15 - index] &= ~flag;
+			mSlots.mSlots[15 - index] &= ~flag;
 		}
 	}
 
@@ -404,7 +416,16 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 
 	inline f32 getStickRadius() { return mConfig->mParams.mRadius.mData; }
 
+	inline StateType* getCurrState() { return mCurrentState; }
+
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
+
+	inline void setupDynParticle(int idx, f32 height, Vector3f& rotation)
+	{
+		_2F4                          = _2F4 + rotation;
+		mDynParticle->getAt(idx)->_00 = rotation;
+		mDynParticle->getAt(idx)->_18 = height;
+	}
 
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
@@ -428,14 +449,14 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	int _360;                      // _360
 	u8 _364;                       // _364
 	u8 _365[0x33];                 // _365 - unknown
-	CarryInfoMgr* mCarryInfoMgr;   // _398
+	CarryInfoList* mCarryInfoList; // _398
 	u8 _39C;                       // _39C - unknown
 	u8 _39D[0xF];                  // _39D - unknown
 	Vector3f mPelletPosition;      // _3AC
 	f32 mFaceDir;                  // _3B8
 	u8 mWallTimer;                 // _3BC
 	u8 _3BD[0x3];                  // _3BD - possibly padding
-	u32 mClaim;                    // _3C0
+	int mClaim;                    // _3C0
 	bool _3C4;                     // _3C4
 	u8 _3C5[0x3];                  // _3C5 - unknown
 	PelletFSM* mPelletSM;          // _3C8
@@ -445,7 +466,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	int mMinCarriers;              // _3D8, to do with pikmin number
 	int mMaxCarriers;              // _3DC
 	f32 _3E0;                      // _3E0
-	u8 mSlots[16];                 // _3E4
+	PelletSlots mSlots;            // _3E4
 	short mSlotCount;              // _3F4
 	u8 _3F6;                       // _3F6
 	u8 _3F7;                       // _3F7 - unknown, maybe padding

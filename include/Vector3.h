@@ -100,6 +100,13 @@ struct Vector3 {
 		vec.z = z;
 	}
 
+	inline void setVec(Vec& vec)
+	{
+		vec.x = x;
+		vec.y = y;
+		vec.z = z;
+	}
+
 	inline void negate()
 	{
 		x *= -1.0f;

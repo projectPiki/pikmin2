@@ -124,7 +124,7 @@ void ActCrop::initGoto()
 	Vector3f creaturePosition = mCreature->getPosition();
 	GotoPosActionArg gotoPosArg;
 	gotoPosArg.mPosition = creaturePosition;
-	gotoPosArg._10       = 20.0f;
+	gotoPosArg.mRadius   = 20.0f;
 	mGotoPos->init(&gotoPosArg);
 	mState = CROP_Goto;
 }

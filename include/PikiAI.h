@@ -198,18 +198,9 @@ struct ActApproachPos : public Action {
 	virtual int exec();                     // _0C
 	virtual void cleanup();                 // _10
 
-	// ApproachPosActionArg* checkArg(ActionArg* settings)
-	// {
-	// 	ApproachPosActionArg* approachArg = static_cast<ApproachPosActionArg*>(settings);
-	// 	if (approachArg != nullptr && (strcmp("ApproachPosActionArg", approachArg->getName()) == 0)) {
-	// 		return approachArg;
-	// 	}
-	// 	return nullptr;
-	// }
-
 	// _00     = VTBL
 	// _00-_0C = Action
-	f32 _0C;            // _0C
+	f32 mRadius;        // _0C
 	Vector3f mPosition; // _10
 	f32 _1C;            // _1C
 	f32 _20;            // _20
@@ -833,7 +824,7 @@ struct GotoPosActionArg : public ActionArg {
 
 	// _00 = VTBL
 	Vector3f mPosition; // _04
-	f32 _10;            // _10
+	f32 mRadius;        // _10
 };
 
 struct ActGotoPos : public Action {
@@ -845,15 +836,20 @@ struct ActGotoPos : public Action {
 
 	// _00     = VTBL
 	// _00-_0C = Action
-	f32 _0C;            // _0C
+	f32 mRadius;        // _0C
 	Vector3f mPosition; // _10
 };
 
+enum GotoSlotSearchType {
+	SLOTSEARCH_Random  = 0,
+	SLOTSEARCH_Nearest = 1,
+};
+
 struct GotoSlotArg : public ActionArg {
-	inline GotoSlotArg(Game::Pellet* pellet, u8 p2)
+	inline GotoSlotArg(Game::Pellet* pellet, u8 searchType)
 	    : ActionArg()
 	    , mPellet(pellet)
-	    , _08(p2)
+	    , mSlotSearchType(searchType)
 	{
 	}
 
@@ -861,7 +857,7 @@ struct GotoSlotArg : public ActionArg {
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
-	u8 _08;                // _08
+	u8 mSlotSearchType;    // _08
 };
 
 struct ActGotoSlot : public Action {
@@ -877,7 +873,7 @@ struct ActGotoSlot : public Action {
 	// _00     = VTBL
 	// _00-_0C = Action
 	Game::Pellet* mPellet; // _0C
-	s16 _10;               // _10, slot?
+	s16 mSlotId;           // _10
 	u32 _14;               // _14
 	f32 _18;               // _18
 	u8 _1C;                // _1C
