@@ -83,19 +83,18 @@ struct J3DAnmColorFull : public J3DAnmColor {
 };
 
 struct J3DAnmColorFullData : J3DFileBlockBase {
-	u8 _08;  // _08
-	s16 _0A; // _0A
-	s16 _0C; // _0C
-	u16 _0E; // _0E
-
-	u8 _10[8]; // _10
-	void* _18; // _18
-	void* _1C; // _1C
-	void* _20; // _20
-	void* _24; // _24
-	void* _28; // _28
-	void* _2C; // _2C
-	void* _30; // _30
+	u8 _08;                      // _08
+	u8 _09[3];                   // _09
+	s16 mFrameMax;               // _0C
+	u16 mUpdateMaterialNum;      // _0E
+	u8 _12[0x18 - 0x10];         // _10
+	s32 mTableOffset;            // _18
+	s32 mUpdateMaterialIDOffset; // _1C
+	s32 mNameTabOffset;          // _20
+	s32 mRValuesOffset;          // _24
+	s32 mGValuesOffset;          // _28
+	s32 mBValuesOffset;          // _2C
+	s32 mAValuesOffset;          // _30
 };
 
 /**
@@ -123,21 +122,21 @@ struct J3DAnmColorKey : public J3DAnmColor {
 };
 
 struct J3DAnmColorKeyData : J3DFileBlockBase {
-	u8 _08; // _08
-	u32 : 0;
-	s16 _0C;   // _0C
-	u16 _0E;   // _0E
-	u16 _10;   // _10
-	u16 _12;   // _12
-	u16 _14;   // _14
-	u16 _16;   // _16
-	void* _18; // _18
-	void* _1C; // _1C
-	void* _20; // _20
-	void* _24; // _24
-	void* _28; // _28
-	void* _2C; // _28
-	void* _30; // _30
+	u8 _08;                      // _08
+	u8 _09[3];                   // _09
+	s16 mFrameMax;               // _0C
+	u16 mUpdateMaterialNum;      // _0E
+	u16 _10;                     // _10
+	u16 _12;                     // _12
+	u16 _14;                     // _14
+	u16 _16;                     // _16
+	s32 mTableOffset;            // _18
+	s32 mUpdateMaterialIDOffset; // _1C
+	s32 mNameTabOffset;          // _20
+	s32 mRValOffset;             // _24
+	s32 mGValOffset;             // _28
+	s32 mBValOffset;             // _2C
+	s32 mAValOffset;             // _30
 };
 
 /**

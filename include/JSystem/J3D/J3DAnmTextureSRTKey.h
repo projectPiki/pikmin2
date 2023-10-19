@@ -80,29 +80,29 @@ struct J3DAnmTextureSRTKey : public J3DAnmBase {
 };
 
 struct J3DAnmTextureSRTKeyData : J3DAnmFullData {
-	u16 _10;   // _10
-	u16 _12;   // _12
-	void* _14; // _14
-	void* _18; // _18
-	void* _1C; // _1C
-	void* _20; // _20
-	void* _24; // _24
-	void* _28; // _28
-	void* _2C; // _2C
-	void* _30; // _30
-	u16 _34;   // _34
-	u16 _36;   // _36
-	u16 _38;   // _38
-	u16 _3A;   // _3A
-	void* _3C; // _3C
-	void* _40; // _40
-	void* _44; // _44
-	void* _48; // _48
-	void* _4C; // _4C
-	void* _50; // _50
-	void* _54; // _54
-	void* _58; // _58
-	int _5C;   // _5C
+	u16 _10;                   // _10
+	u16 _12;                   // _12
+	s32 mTableOffset;          // _14
+	s32 mUpdateMatIDOffset;    // _18
+	s32 mNameTab1Offset;       // _1C
+	s32 mUpdateTexMtxIDOffset; // _20
+	s32 unkOffset;             // _24
+	s32 mScaleValOffset;       // _28
+	s32 mRotValOffset;         // _2C
+	s32 mTransValOffset;       // _30
+	u16 _34;                   // _34
+	u16 _36;                   // _36
+	u16 _38;                   // _38
+	u16 _3A;                   // _3A
+	s32 mInfoTable2Offset;     // _3C
+	s32 _40;                   // _40
+	u32 mNameTab2Offset;       // _44
+	s32 _48;                   // _48
+	s32 _4C;                   // _4C
+	s32 _50;                   // _50
+	s32 _54;                   // _54
+	s32 _58;                   // _58
+	s32 _5C;                   // _5C
 };
 
 #endif

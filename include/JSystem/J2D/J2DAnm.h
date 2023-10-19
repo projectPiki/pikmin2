@@ -41,8 +41,8 @@ struct J2DAnmBase {
 		mFrameLength  = 0;
 	}
 
-	virtual ~J2DAnmBase() { }                        // _08 (weak)
-	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (weak)
+	virtual ~J2DAnmBase() { }                           // _08 (weak)
+	virtual void searchUpdateMaterialID(J2DScreen*) { } // _0C (weak)
 
 	inline s16 getFrameMax() const { return mFrameLength; }
 	inline void setFrame(f32 frame) { mCurrentFrame = frame; }
@@ -50,7 +50,8 @@ struct J2DAnmBase {
 	inline J2DAnmKind getKind() const { return mKind; }
 
 	// VTBL _00
-	u8 _04[2];         // _04, unknown
+	u8 _04;            // _04
+	u8 _05;            // _05
 	s16 mFrameLength;  // _06
 	f32 mCurrentFrame; // _08
 	J2DAnmKind mKind;  // _0C
@@ -251,9 +252,9 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	J2DAnmTextureSRTKey()
 	{ // taken from TP - may need tweaking for P2 given different sized struct?
 		_10                = 0;
-		_22                = 0;
 		_20                = 0;
 		_1E                = 0;
+		_1C                = 0;
 		mUpdateMaterialNum = 0;
 		mInfoTable         = nullptr;
 		mTranslationVals   = nullptr;
@@ -262,8 +263,8 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 		_50                = 0;
 		_4E                = 0;
 		_4C                = 0;
-		_52                = 0;
 		_60                = nullptr;
+		_64                = nullptr;
 		_5C                = nullptr;
 		_54                = nullptr;
 		_58                = nullptr;
@@ -288,7 +289,7 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	u32 _10;                             // _10
 	u16 mUpdateMaterialNum;              // _14
 	J3DAnmTransformKeyTable* mInfoTable; // _18
-	u16 _14;                             // _1C
+	u16 _1C;                             // _1C
 	u16 _1E;                             // _1E
 	u16 _20;                             // _20
 	u16 _22;                             // _22
@@ -310,7 +311,7 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	J3DAnmTransformKeyTable* _64;        // _64
 	u8* _68;                             // _68
 	u16* _6C;                            // _6C
-	JUTNameTab _70;                      // _70
+	JUTNameTab mNameTab2;                // _70
 	Vec* _80;                            // _80
 	u32 _84;                             // _84
 };
@@ -357,8 +358,8 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 	J2DAnmTransformKey()
 	    : J2DAnmTransform(nullptr, nullptr, nullptr)
 	{
-		_24    = 0;
-		mTable = nullptr;
+		_24        = 0;
+		mInfoTable = nullptr;
 	}
 
 	virtual ~J2DAnmTransformKey() { }                               // _08 (weak)
@@ -370,10 +371,10 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 
 	// _00     = VTBL
 	// _00-_1C = J2DAnmTransform
-	u8 _1C[6];                       // _1C, unknown
-	u16 _22;                         // _22
-	int _24;                         // _24
-	J3DAnmTransformKeyTable* mTable; // _28
+	u8 _1C[6];                           // _1C, unknown
+	u16 _22;                             // _22
+	int _24;                             // _24
+	J3DAnmTransformKeyTable* mInfoTable; // _28
 };
 
 // Size: 0x1C

@@ -65,11 +65,11 @@ struct J3DAnmBase {
  * @fabricated
  */
 struct J3DAnmFullData : public J3DFileBlockBase {
-	u8 _08;  // _08
-	u8 _09;  // _09
-	s16 _0A; // _0A
-	u16 _0C; // _0C
-	u16 _0E; // _0E
+	u8 _08;        // _08
+	u8 _09;        // _09
+	s16 mFrameMax; // _0A
+	u16 _0C;       // _0C
+	u16 _0E;
 };
 
 struct J3DAnmKeyTableBase {

@@ -59,11 +59,11 @@ struct J3DAnmTransformFull : public J3DAnmTransform {
 };
 
 struct J3DAnmTransformFullData : J3DAnmFullData {
-	u8 _10[0x4]; // _10
-	void* _14;   // _14
-	void* _18;   // _18
-	void* _1C;   // _1C
-	void* _20;   // _20
+	int _10;             // _10
+	s32 mTableOffset;    // _14
+	s32 mScaleValOffset; // _18
+	s32 mRotValOffset;   // _1C
+	s32 mTransValOffset; // _20
 };
 
 struct J3DAnmTransformFullTable {
@@ -102,11 +102,11 @@ struct J3DAnmTransformKey : public J3DAnmTransform {
 };
 
 struct J3DAnmTransformKeyData : public J3DAnmFullData {
-	u8 _10[0x4]; // _10
-	void* _14;   // _14
-	void* _18;   // _18
-	void* _1C;   // _1C
-	void* _20;   // _20
+	u32 _10;              // _10
+	s32 mTableOffset;     // _14
+	s32 mScaleOffset;     // _18
+	s32 mRotationOffset;  // _1C
+	s32 mTranslateOffset; // _20
 };
 
 struct J3DAnmTransformKeyTable {

@@ -202,7 +202,7 @@ LIBS = [
             ["JSystem/J2D/J2DTextBox", True],
             "JSystem/J2D/J2DWindow",
             "JSystem/J2D/J2DWindowEx",
-            "JSystem/J2D/J2DAnmLoader",
+            ["JSystem/J2D/J2DAnmLoader", True],
             "JSystem/J2D/J2DBloSaver",
             ["JSystem/J2D/J2DManage", True],
             "JSystem/J2D/J2DMatBlock",

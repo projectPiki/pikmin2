@@ -12,19 +12,33 @@ struct J2DAnmLoaderDataBase {
 	static J2DAnmBase* load(const void*);
 };
 
+struct J2DAnmDataBlockHeader {
+	u32 mType;       // _00
+	u32 mNextOffset; // _04
+};
+
+struct J2DAnmDataHeader {
+	u32 mMagic;                   // _00
+	u32 mType;                    // _04
+	u8 _08[4];                    // _08
+	u32 mCount;                   // _0C
+	u8 _10[0x20 - 0x10];          // _10
+	J2DAnmDataBlockHeader mFirst; // _20
+};
+
 struct J2DAnmLoader {
-	virtual void load(const void*)                     = 0; // _08
+	virtual J2DAnmBase* load(const void*)              = 0; // _08
 	virtual void setResource(J2DAnmBase*, const void*) = 0; // _0C
-	virtual ~J2DAnmLoader();                                // _10 (weak)
+	virtual ~J2DAnmLoader() { }                             // _10 (weak)
 
 	// _00 = VTBL
-	J2DAnmBase* mAnimation; // _04
+	J2DAnmBase* mResource; // _04
 };
 
 struct J2DAnmFullLoader_v15 : public J2DAnmLoader {
 	J2DAnmFullLoader_v15();
 
-	virtual void load(const void*);                     // _08
+	virtual J2DAnmBase* load(const void*);              // _08
 	virtual void setResource(J2DAnmBase*, const void*); // _0C
 	virtual ~J2DAnmFullLoader_v15();                    // _10
 
@@ -46,7 +60,7 @@ struct J2DAnmFullLoader_v15 : public J2DAnmLoader {
 struct J2DAnmKeyLoader_v15 : public J2DAnmLoader {
 	J2DAnmKeyLoader_v15();
 
-	virtual void load(const void*);                     // _08
+	virtual J2DAnmBase* load(const void*);              // _08
 	virtual void setResource(J2DAnmBase*, const void*); // _0C
 	virtual ~J2DAnmKeyLoader_v15();                     // _10
 

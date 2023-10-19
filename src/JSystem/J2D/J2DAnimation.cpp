@@ -103,9 +103,9 @@ void J2DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* transformInfo) 
 void J2DAnmTransformKey::calcTransform(f32 p1, u16 p2, J3DTransformInfo* transformInfo) const
 {
 	u16 idx                       = p2 * 3;
-	J3DAnmTransformKeyTable* xInf = &mTable[idx];
-	J3DAnmTransformKeyTable* yInf = &mTable[idx + 1];
-	J3DAnmTransformKeyTable* zInf = &mTable[idx + 2];
+	J3DAnmTransformKeyTable* xInf = &mInfoTable[idx];
+	J3DAnmTransformKeyTable* yInf = &mInfoTable[idx + 1];
+	J3DAnmTransformKeyTable* zInf = &mInfoTable[idx + 2];
 
 	switch (xInf->mScaleInfo.mMaxFrame) {
 	case 0:

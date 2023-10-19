@@ -35,8 +35,8 @@ struct J3DAnmVisibilityFull : public J3DAnmBase {
 };
 
 struct J3DAnmVisibilityFullData : J3DAnmFullData {
-	void* _10; // _10
-	void* _14; // _14
+	s32 mTableOffset;  // _10
+	s32 mValuesOffset; // _14
 };
 
 struct J3DAnmVisibilityFullTable {

@@ -85,32 +85,33 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 };
 
 struct J3DAnmTevRegKeyData : J3DFileBlockBase {
-	u8 _08;    // _08
-	s16 _0A;   // _0A
-	u16 _0C;   // _0C
-	u16 _0E;   // _0E
-	u16 _10;   // _10
-	u16 _12;   // _12
-	u16 _14;   // _14
-	u16 _16;   // _16
-	u16 _18;   // _18
-	u16 _1A;   // _1A
-	u16 _1C;   // _1C
-	u16 _1E;   // _1E
-	void* _20; // _20
-	void* _24; // _24
-	void* _28; // _28
-	void* _2C; // _2C
-	void* _30; // _30
-	void* _34; // _34
-	void* _38; // _38
-	void* _3C; // _3C
-	void* _40; // _40
-	void* _44; // _44
-	void* _48; // _48
-	void* _4C; // _4C
-	void* _50; // _50
-	void* _54; // _54
+	u8 _08;                          // _08
+	u8 _09;                          // _09
+	s16 mFrameMax;                   // _0A
+	u16 mCRegUpdateMaterialNum;      // _0C
+	u16 mKRegUpdateMaterialNum;      // _0E
+	u16 _10;                         // _10
+	u16 _12;                         // _12
+	u16 _14;                         // _14
+	u16 _16;                         // _16
+	u16 _18;                         // _18
+	u16 _1A;                         // _1A
+	u16 _1C;                         // _1C
+	u16 _1E;                         // _1E
+	s32 mCRegTableOffset;            // _20
+	s32 mKRegTableOffset;            // _24
+	s32 mCRegUpdateMaterialIDOffset; // _28
+	s32 mKRegUpdateMaterialIDOffset; // _2C
+	s32 mCRegNameTabOffset;          // _30
+	s32 mKRegNameTabOffset;          // _34
+	s32 mCRValuesOffset;             // _38
+	s32 mCGValuesOffset;             // _3C
+	s32 mCBValuesOffset;             // _40
+	s32 mCAValuesOffset;             // _44
+	s32 mKRValuesOffset;             // _48
+	s32 mKGValuesOffset;             // _4C
+	s32 mKBValuesOffset;             // _50
+	s32 mKAValuesOffset;             // _54
 };
 
 /**
