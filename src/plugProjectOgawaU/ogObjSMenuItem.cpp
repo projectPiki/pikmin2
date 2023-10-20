@@ -72,7 +72,7 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	}
 
 	mScreenItems = new P2DScreen::Mgr_tuning;
-	mScreenItems->set("s_menu_itemL.blo", 0x1040000, arc);
+	mScreenItems->set("s_menu_item_l.blo", 0x1040000, arc);
 
 	J2DScreen* tempscreen = new J2DScreen;
 	tempscreen->set("s_menu_powerup_icon.blo", 0x1040000, arc);
@@ -84,7 +84,7 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 
 		J2DPane* pane1 = og::Screen::TagSearch(mScreenItems, tag);
 		J2DPane* pane2 = og::Screen::TagSearch(tempscreen, tag2);
-		J2DPane* pane3 = og::Screen::TagSearch(mScreenMain, tag3);
+		J2DPane* pane3 = og::Screen::TagSearch(mScreenItems, tag3);
 
 		pane2->setBasePosition((J2DBasePosition)pane3->mBasePosition);
 		pane1->appendChild(pane2);
@@ -93,21 +93,21 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	}
 
 	mScreenSprays = new P2DScreen::Mgr;
-	mScreenSprays->set("s_menu_itemSpray.blo", 0x1040000, arc);
+	mScreenSprays->set("s_menu_item_spray.blo", 0x1040000, arc);
 
 	mPaneSpray0    = og::Screen::TagSearch(mScreenItems, 'Nspray00');
 	mPaneSpray1    = og::Screen::TagSearch(mScreenItems, 'Nspray01');
 	mPaneSpraySub0 = og::Screen::TagSearch(mScreenSprays, 'Nspray00');
 	mPaneSpraySub1 = og::Screen::TagSearch(mScreenSprays, 'Nspray01');
 
-	mPaneSpray0->add(msVal._08, msVal._0C);
-	mPaneSpray1->add(msVal._10, msVal._14);
+	mPaneSpray0->move(msVal._08, msVal._0C);
+	mPaneSpray1->move(msVal._10, msVal._14);
 
 	og::Screen::DispMemberSMenuItem* disp = mDisp;
 	if (!disp->mIsBitterUnlocked && !disp->mIsSpicyUnlocked) {
 		og::Screen::TagSearch(mScreenItems, 'Nwin0')->hide();
 		og::Screen::TagSearch(mScreenItems, 'Nwin1')->hide();
-		og::Screen::TagSearch(mScreenItems, 'NULL_002')->add(-100.0f, 0.0f);
+		og::Screen::TagSearch(mScreenItems, 'NULL_002')->add(-96.0f, 0.0f);
 		mPaneSpraySub0->hide();
 		mPaneSpraySub1->hide();
 	} else if (!disp->mIsBitterUnlocked) {
@@ -121,14 +121,14 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	}
 
 	mAnims1 = new og::Screen::AnimGroup(5);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_itemL.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_itemL_02.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_itemL_03.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_itemL_04.btk", msBaseVal._00);
-	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_itemL_05.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_02.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_03.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_04.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(mAnims1, arc, mScreenItems, "s_menu_item_l_05.btk", msBaseVal._00);
 
 	mAnims2 = new og::Screen::AnimGroup(1);
-	og::Screen::registAnimGroupScreen(mAnims2, arc, mScreenSprays, "s_menu_itemSpray.btk", 1.0f);
+	og::Screen::registAnimGroupScreen(mAnims2, arc, mScreenSprays, "s_menu_item_spray.btk", 1.0f);
 
 	og::Screen::setCallBack_CounterRV(mScreenItems, 'Pup_1', 'Pup_2', 'Pup_2', &mDisp->mSpicySprayCount, 3, 3, 0, arc);
 	og::Screen::setCallBack_CounterRV(mScreenItems, 'PupS_1', 'PupS_2', 'PupS_2', &mDisp->mSpicyBerryCount, 2, 2, 0, arc);
@@ -136,15 +136,18 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	og::Screen::setCallBack_CounterRV(mScreenItems, 'PdownS_1', 'PdownS_2', 'PdownS_2', &mDisp->mBitterBerryCount, 2, 2, 0, arc);
 
 	J2DPane* panelist[12];
+	JUtility::TColor colorC(0xff, 0xff, 0xff, 0xa0);
+	JUtility::TColor colorD(0, 0, 0, 0);
 	for (int i = 0; i < 12; i++) {
-		u64 tag  = 'Pitemb00' + (i % 10) + (i / 10) % 10 * 256;
-		u64 tag2 = 'Titem000' + (i % 10) + (i / 10) % 10 * 256;
-		u64 tag3 = 'Picon00' + (i % 10) + (i / 10) % 10 * 256;
 
+		u64 tag             = 'Pitemb00' + (i % 10) + (i / 10) % 10 * 256;
 		J2DPictureEx* pane1 = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mScreenItems, tag));
-		J2DPane* pane2      = og::Screen::TagSearch(mScreenItems, tag2);
+
+		u64 tag2       = 'Titem000' + (i % 10) + (i / 10) % 10 * 256;
+		J2DPane* pane2 = og::Screen::TagSearch(mScreenItems, tag2);
 		pane2->setMsgID(ItemMsgID_List[i]);
 
+		u64 tag3    = 'Picon00' + (i % 10) + (i / 10) % 10 * 256;
 		panelist[i] = og::Screen::TagSearch(mScreenItems, tag3);
 		if (panelist[i]) {
 			int id = Game::Equip::EquipItemList[i];
@@ -152,14 +155,14 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 			pane1->setWhite(msVal._00);
 			pane1->setBlack(msVal._04);
 
-			if (mDisp->mExplorationKitInventory[i]) {
+			if (mDisp->mExplorationKitInventory[id]) {
 				panelist[i]->show();
 				if (pane2)
 					pane2->show();
 			} else {
 				panelist[i]->show();
-				pane1->setBlack(0xffffffa0);
-				pane1->setWhite(0);
+				pane1->setWhite(colorC);
+				pane1->setBlack(colorD);
 				if (pane2) {
 					pane2->show();
 					pane2->setMsgID('6130_00'); // "Incomplete"
@@ -898,7 +901,7 @@ void ObjSMenuItem::doDraw(Graphics& gfx)
 void ObjSMenuItem::in_L()
 {
 	mState = MENUSTATE_OpenL;
-	mAngle = 45.0f;
+	mAngle = 15.0f;
 }
 
 /*
@@ -909,7 +912,7 @@ void ObjSMenuItem::in_L()
 void ObjSMenuItem::in_R()
 {
 	mState = MENUSTATE_OpenR;
-	mAngle = 45.0f;
+	mAngle = 15.0f;
 }
 
 /*
