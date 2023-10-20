@@ -34,6 +34,10 @@
     "pad.h": "c",
     "gd.h": "c",
     "mtx.h": "c",
-    "vec.h": "c"
+    "vec.h": "c",
+    "osthread.h": "c",
+    "osreboot.h": "c",
+    "osreset.h": "c",
+    "osfastcast.h": "c"
   }
 }

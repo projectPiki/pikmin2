@@ -4,9 +4,13 @@ static void* SaveStart = nullptr;
 static void* SaveEnd   = nullptr;
 static BOOL Prepared;
 
+extern u32 BOOT_REGION_START : 0x812FDFF0; //(*(u32 *)0x812fdff0)
+extern u32 BOOT_REGION_END : 0x812FDFEC;   //(*(u32 *)0x812fdfec)
+
 extern void* __OSSavedRegionStart;
 extern void* __OSSavedRegionEnd;
 
+void* Header[8];
 /*
  * --INFO--
  * Address:	........
@@ -22,19 +26,16 @@ void IsStreamEnabled(void)
  * Address:	800EFF4C
  * Size:	000010
  */
-static void Run(void)
+static asm void Run(void)
 {
-	__sync();
-	__isync();
-	// mtlr r3
-	return;
-	/*
-	.loc_0x0:
-	  sync
-	  isync
-	  mtlr      r3
-	  blr
-	*/
+	// clang-format off
+	nofralloc
+
+	sync
+	isync
+	mtlr r3
+	blr
+	// clang-format on
 }
 
 /*
@@ -59,8 +60,30 @@ static void Callback(void) { Prepared = TRUE; }
  * Address:	800EFF68
  * Size:	000330
  */
-void __OSReboot(void)
+void __OSReboot(u32 resetCode, u32 bootDol)
 {
+	char* argvToPass;
+	OSDisableInterrupts();
+	(*(u8*)OSPhysicalToCached(0x30E2) = TRUE);
+	*(u32*)BOOT_REGION_START          = (u32)SaveStart;
+	*(u32*)BOOT_REGION_END            = (u32)SaveEnd;
+	*(u32*)OSPhysicalToCached(0x30F0) = resetCode;
+	OSClearContext((void*)&Header);
+	DVDInit();
+	DVDSetAutoInvalidation(TRUE);
+	DVDResume();
+
+	Prepared = FALSE;
+	__DVDPrepareResetAsync(Callback);
+
+	__OSMaskInterrupts(0xffffffe0);
+	__OSUnmaskInterrupts(0x400);
+	OSEnableInterrupts();
+
+	ICInvalidateRange((void*)BOOT_REGION_START, OSRoundUp32B(Header));
+	OSDisableInterrupts();
+	ICFlashInvalidate();
+	Run();
 	/*
 	.loc_0x0:
 	  mflr      r0
