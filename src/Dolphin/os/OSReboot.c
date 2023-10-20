@@ -60,10 +60,8 @@ static asm void Run(register u32 addr)
 void ReadApploader(OSTime time1, OSTime time2)
 {
 	// this probably needs to be more complicated with a callback input that does the while loop check I think
-	OSTime time3;
 	if (DVDCheckDisk()) {
-		time3 = OSGetTime();
-		if (time3 - time1 < time2) {
+		if (OSGetTime() - time1 < time2) {
 			__OSDoHotReset(0);
 		}
 	}
@@ -112,7 +110,7 @@ void __OSReboot(u32 resetCode, u32 bootDol)
 	time2 = __OSBusClock;
 	do {
 		ReadApploader(time1, time2);
-	} while (Prepared);
+	} while (Prepared != TRUE);
 
 	if (!__OSIsGcam) {
 		if (IsStreamEnabled()) {

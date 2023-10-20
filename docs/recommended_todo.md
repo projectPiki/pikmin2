@@ -21,7 +21,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXGeometry.c">gx/GXGeometry.c</a> | 3891 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/mslsupp.c">TRK_MINNOW_DOLPHIN/mslsupp.c</a> | 4555 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.c">TRK_MINNOW_DOLPHIN/serpoll.c</a> | 4793 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c">TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c</a> | 5554 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSReboot.c">os/OSReboot.c</a> | 9159 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10320 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSReboot.c">os/OSReboot.c</a> | 9133 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10320 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 11230 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 12046 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTransform.c">gx/GXTransform.c</a> | 12884 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXLight.c">gx/GXLight.c</a> | 14727 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTev.c">gx/GXTev.c</a> | 15536 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXPixel.c">gx/GXPixel.c</a> | 15816 |
@@ -37,10 +37,9 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAU/JAUData.cpp">JAudio/JAU/JAUData.cpp</a> | 5463 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAI/JAISoundTable.cpp">JAudio/JAI/JAISoundTable.cpp</a> | 5690 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/dsp/dsptask.c">JAudio/dsp/dsptask.c</a> | 5880 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/std-list.cpp">JGadget/std-list.cpp</a> | 5990 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAI/JAIFx.cpp">JAudio/JAI/JAIFx.cpp</a> | 6646 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJointTree.cpp">J3D/J3DJointTree.cpp</a> | 6775 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DBloSaver.cpp">J2D/J2DBloSaver.cpp</a> | 7230 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTTexture.cpp">JUtility/JUTTexture.cpp</a> | 7274 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAI/JAIDummyObject.cpp">JAudio/JAI/JAIDummyObject.cpp</a> | 7337 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelData.cpp">J3D/J3DModelData.cpp</a> | 7479 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRSolidHeap.cpp">JKernel/JKRSolidHeap.cpp</a> | 7690 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/jstudio-math.cpp">JStudio/jstudio-math.cpp</a> | 8174 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTDirectPrint.cpp">JUtility/JUTDirectPrint.cpp</a> | 8715 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/control.cpp">JMessage/control.cpp</a> | 8833 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DBloSaver.cpp">J2D/J2DBloSaver.cpp</a> | 7230 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAI/JAIDummyObject.cpp">JAudio/JAI/JAIDummyObject.cpp</a> | 7337 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelData.cpp">J3D/J3DModelData.cpp</a> | 7479 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRSolidHeap.cpp">JKernel/JKRSolidHeap.cpp</a> | 7690 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/jstudio-math.cpp">JStudio/jstudio-math.cpp</a> | 8174 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/control.cpp">JMessage/control.cpp</a> | 8833 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRThread.cpp">JKernel/JKRThread.cpp</a> | 9057 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAL/JALCalc.cpp">JAudio/JAL/JALCalc.cpp</a> | 9063 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAS/JASDriverIF.cpp">JAudio/JAS/JASDriverIF.cpp</a> | 9496 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAS/JASBasicWaveBank.cpp">JAudio/JAS/JASBasicWaveBank.cpp</a> | 9651 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAResourceLoader.cpp">JParticle/JPAResourceLoader.cpp</a> | 9814 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAU/JAUDataMgr.cpp">JAudio/JAU/JAUDataMgr.cpp</a> | 10083 |
@@ -55,9 +54,11 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DTransform.cpp">J3D/J3DTransform.cpp</a> | 19101 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAI/JAIObject.cpp">JAudio/JAI/JAIObject.cpp</a> | 19418 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAEmitterManager.cpp">JParticle/JPAEmitterManager.cpp</a> | 19473 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAI/JAISystemInterface.cpp">JAudio/JAI/JAISystemInterface.cpp</a> | 19726 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/resource.cpp">JMessage/resource.cpp</a> | 20494 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JParticle/object-particle.cpp">JStudio_JParticle/object-particle.cpp</a> | 20658 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DAnmLoader.cpp">J2D/J2DAnmLoader.cpp</a> | 21173 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelLoaderCalcSize.cpp">J3D/J3DModelLoaderCalcSize.cpp</a> | 21399 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAS/JASHeapCtrl.cpp">JAudio/JAS/JASHeapCtrl.cpp</a> | 22633 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DCluster.cpp">J3D/J3DCluster.cpp</a> | 22642 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DWindow.cpp">J2D/J2DWindow.cpp</a> | 22691 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRFileCache.cpp">JKernel/JKRFileCache.cpp</a> | 23071 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelLoaderCalcSize.cpp">J3D/J3DModelLoaderCalcSize.cpp</a> | 21399 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAS/JASHeapCtrl.cpp">JAudio/JAS/JASHeapCtrl.cpp</a> | 22633 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DCluster.cpp">J3D/J3DCluster.cpp</a> | 22642 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DWindow.cpp">J2D/J2DWindow.cpp</a> | 22691 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRFileCache.cpp">JKernel/JKRFileCache.cpp</a> | 23071 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKernel/JKRDvdAramRipper.cpp">JKernel/JKRDvdAramRipper.cpp</a> | 23243 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJoint.cpp">J3D/J3DJoint.cpp</a> | 23487 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMtxBuffer.cpp">J3D/J3DMtxBuffer.cpp</a> | 23638 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JStage/object-light.cpp">JStudio_JStage/object-light.cpp</a> | 24138 |
 
 ### <section id="plugProjectEbisawaU">plugProjectEbisawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -135,10 +136,10 @@
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjCourseName.cpp">ogObjCourseName.cpp</a> | 5759 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7718 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogFuriko.cpp">ogFuriko.cpp</a> | 10967 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15235 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuItem.cpp">ogObjSMenuItem.cpp</a> | 26151 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 26508 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 33161 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 7718 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogFuriko.cpp">ogFuriko.cpp</a> | 10967 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 15235 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuItem.cpp">ogObjSMenuItem.cpp</a> | 26151 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 26508 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterRV.cpp">ogCounterRV.cpp</a> | 33161 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogTitleMsg.cpp">ogTitleMsg.cpp</a> | 50754 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |

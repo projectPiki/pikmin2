@@ -581,7 +581,7 @@ LIBS = [
     {
         "lib": "OdemuExi2",
         "mw_version": "1.2.5n",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_base -inline deferred",
         "host": False,
         "objects": [
             "Dolphin/OdemuExi2/DebuggerDriver",
