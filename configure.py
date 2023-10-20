@@ -487,7 +487,11 @@ LIBS = [
             ["Dolphin/Runtime/ptmf", True],
             "Dolphin/Runtime/runtime",
             ["Dolphin/Runtime/__init_cpp_exceptions", True],
+            [
             "Dolphin/Runtime/Gecko_ExceptionPPC",
+            True,
+            {"cflags": "$cflags_base -inline deferred -Cpp_exceptions on"},
+            ],
             ["Dolphin/Runtime/GCN_mem_alloc", True],
             ["Dolphin/Runtime/__mem", True],
         ],

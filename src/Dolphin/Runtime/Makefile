@@ -7,7 +7,7 @@ RUNTIME_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/Runtime/ptmf.o\
 	$(BUILD_DIR)/asm/Dolphin/Runtime/runtime.o\
 	$(BUILD_DIR)/src/Dolphin/Runtime/__init_cpp_exceptions.o\
-	$(BUILD_DIR)/asm/Dolphin/Runtime/Gecko_ExceptionPPC.o\
+	$(BUILD_DIR)/src/Dolphin/Runtime/Gecko_ExceptionPPC.o\
 	$(BUILD_DIR)/src/Dolphin/Runtime/GCN_mem_alloc.o\
 
 $(RUNTIME_FILES): CFLAGS += -common off -inline deferred

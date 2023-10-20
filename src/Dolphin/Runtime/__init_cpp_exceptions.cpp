@@ -26,7 +26,7 @@ void __init_cpp_exceptions()
 {
 	if ((s32)fragmentID == -2) {
 		char* R2   = GetR2();
-		fragmentID = __register_fragment(&_eti_init_info, R2);
+		fragmentID = __register_fragment(_eti_init_info, R2);
 	}
 }
 

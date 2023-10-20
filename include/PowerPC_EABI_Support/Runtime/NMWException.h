@@ -2,26 +2,41 @@
 #define _NMWEXCEPTION
 
 #include "types.h"
+#include "PowerPC_EABI_Support/Runtime/exception.h"
+#include "PowerPC_EABI_Support/Runtime/__ppc_eabi_linker.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define CTORARG_TYPE     int
-#define CTORARG_PARTIAL  (0)
-#define CTORARG_COMPLETE (1)
+typedef short vbase_ctor_arg_type;
+typedef char local_cond_type;
 
-#define CTORCALL_COMPLETE(ctor, objptr) (((void (*)(void*, CTORARG_TYPE))ctor)(objptr, CTORARG_COMPLETE))
+typedef struct CatchInfo {
+	void* location;
+	void* typeinfo;
+	void* dtor;
+	void* sublocation;
+	long pointercopy;
+	void* stacktop;
+} CatchInfo;
 
-#define DTORARG_TYPE int
+typedef struct DestructorChain {
+	struct DestructorChain* next;
+	void* destructor;
+	void* object;
+} DestructorChain;
 
-#define DTORCALL_COMPLETE(dtor, objptr) (((void (*)(void*, DTORARG_TYPE))dtor)(objptr, -1))
+extern void* __register_global_object(void* object, void* destructor, void* registration);
+extern void __destroy_global_chain(void);
 
-void __unregister_fragment(int fragmentID);
-// struct __eti_init_info* info
-int __register_fragment(void* info, char* TOC);
-void* __register_global_object(void* object, void* destructor, void* regmem);
-void __destroy_global_chain(void);
+extern void __end__catch(CatchInfo* catchinfo);
+extern void __throw(char* throwtype, void* location, void* dtor);
+extern char __throw_catch_compare(const char* throwtype, const char* catchtype, long* offset_result);
+extern void __unexpected(CatchInfo* catchinfo);
+
+extern int __register_fragment(struct __eti_init_info* info, char* TOC);
+extern void __unregister_fragment(int fragmentID);
 
 #ifdef __cplusplus
 }
