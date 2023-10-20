@@ -94,7 +94,7 @@ typedef struct _GXData {
 	u8 _258[0x354];                  // _258
 	u32 _5AC;                        // _5AC
 } GXData;
-extern GXData* __GXData; // NB: this is const in SMG1 decomp.
+extern GXData* const __GXData; // NB: this is const in SMG1 decomp.
 
 ////////////////////////////////////////////
 

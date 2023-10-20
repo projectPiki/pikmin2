@@ -15,265 +15,97 @@ void __GXXfVtxSpecs(void)
  * Address:	800E4284
  * Size:	00026C
  */
-void GXSetVtxDesc(GXAttr attr, GXAttrType type)
-{
+
+void GXSetVtxDesc(GXAttr attr, GXAttrType type) {
 	switch (attr) {
 	case GX_VA_PNMTXIDX:
-		__GXData->_014 = (type & 1) | (__GXData->_014 & ~0x1);
+		GX_BITFIELD_SET(__GXData->_014, 31, 1, type);
 		break;
 	case GX_VA_TEX0MTXIDX:
-		__GXData->_014 = (type & 1) << 1 | (__GXData->_014 & ~0x2);
+		GX_BITFIELD_SET(__GXData->_014, 30, 1, type);
 		break;
 	case GX_VA_TEX1MTXIDX:
-		__GXData->_014 = (type & 1) << 2 | (__GXData->_014 & ~0x4);
+		GX_BITFIELD_SET(__GXData->_014, 29, 1, type);
 		break;
 	case GX_VA_TEX2MTXIDX:
-		__GXData->_014 = (type & 1) << 3 | (__GXData->_014 & ~0x8);
+		GX_BITFIELD_SET(__GXData->_014, 28, 1, type);
 		break;
 	case GX_VA_TEX3MTXIDX:
-		__GXData->_014 = (type & 1) << 4 | (__GXData->_014 & ~0x10);
+		GX_BITFIELD_SET(__GXData->_014, 27, 1, type);
 		break;
 	case GX_VA_TEX4MTXIDX:
-		__GXData->_014 = (type & 1) << 5 | (__GXData->_014 & ~0x20);
+		GX_BITFIELD_SET(__GXData->_014, 26, 1, type);
 		break;
 	case GX_VA_TEX5MTXIDX:
-		__GXData->_014 = (type & 1) << 6 | (__GXData->_014 & ~0x40);
+		GX_BITFIELD_SET(__GXData->_014, 25, 1, type);
 		break;
 	case GX_VA_TEX6MTXIDX:
-		__GXData->_014 = (type & 1) << 7 | (__GXData->_014 & ~0x80);
+		GX_BITFIELD_SET(__GXData->_014, 24, 1, type);
 		break;
 	case GX_VA_TEX7MTXIDX:
-		__GXData->_014 = (type & 1) << 8 | (__GXData->_014 & ~0x100);
+		GX_BITFIELD_SET(__GXData->_014, 23, 1, type);
 		break;
 	case GX_VA_POS:
-		__GXData->_014 = (type & 3) << 9 | (__GXData->_014 & ~0x200);
+		GX_BITFIELD_SET(__GXData->_014, 21, 2, type);
 		break;
 	case GX_VA_NRM:
 		if (type != GX_NONE) {
-			__GXData->_258[0] = 1;
-			__GXData->_258[1] = 0;
-			__GXData->_254    = type;
+			LOAD_GX_FIELD(0x4d4, u8) = TRUE;
+			LOAD_GX_FIELD(0x4d5, u8) = FALSE;
+			LOAD_GX_FIELD(0x4d0, u32) = type;
 		} else {
-			__GXData->_258[0] = 0;
+			LOAD_GX_FIELD(0x4d4, u8) = 0;
 		}
-		break;
-	case GX_VA_CLR0:
-		__GXData->_014 = (type & 3) << 13 | (__GXData->_014 & ~0x8000);
-		break;
-	case GX_VA_CLR1:
-		__GXData->_014 = (type & 3) << 15 | (__GXData->_014 & ~0x12000);
-		break;
-	case GX_VA_TEX0:
-		__GXData->_014 = type & 3 | (__GXData->_014 & ~0x3);
-		break;
-	case GX_VA_TEX1:
-		__GXData->_014 = (type & 3) << 2 | (__GXData->_014 & ~0x9);
-		break;
-	case GX_VA_TEX2:
-		__GXData->_014 = (type & 3) << 4 | (__GXData->_014 & ~0x30);
-		break;
-	case GX_VA_TEX3:
-		__GXData->_014 = (type & 3) << 6 | (__GXData->_014 & ~0x90);
-		break;
-	case GX_VA_TEX4:
-		__GXData->_014 = (type & 3) << 8 | (__GXData->_014 & ~0x300);
-		break;
-	case GX_VA_TEX5:
-		__GXData->_014 = (type & 3) << 10 | (__GXData->_014 & ~0x900);
-		break;
-	case GX_VA_TEX6:
-		__GXData->_014 = (type & 3) << 12 | (__GXData->_014 & ~0x3000);
-		break;
-	case GX_VA_TEX7:
-		__GXData->_014 = (type & 3) << 14 | (__GXData->_014 & ~0x9000);
 		break;
 	case GX_VA_NBT:
-		if (type != GX_NONE) {
-			__GXData->_258[0] = 1;
-			__GXData->_258[1] = 0;
-			__GXData->_254    = type;
-		} else {
-			__GXData->_258[0] = 0;
-		}
+        if (type != GX_NONE) {
+			LOAD_GX_FIELD(0x4d5, u8) = TRUE;
+			LOAD_GX_FIELD(0x4d4, u8) = FALSE;
+			LOAD_GX_FIELD(0x4d0, u32) = type;
+        } else {
+			LOAD_GX_FIELD(0x4d5, u8) = 0;
+        }
+        break;
+	case GX_VA_CLR0:
+		GX_BITFIELD_SET(__GXData->_014, 17, 2, type);
+		break;
+	case GX_VA_CLR1:
+		GX_BITFIELD_SET(__GXData->_014, 15, 2, type);
+		break;
+	case GX_VA_TEX0:
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 30, 2, type);
+		break;
+	case GX_VA_TEX1:
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 28, 2, type);
+		break;
+	case GX_VA_TEX2:
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 26, 2, type);
+		break;
+	case GX_VA_TEX3:
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 24, 2, type);
+		break;
+	case GX_VA_TEX4:
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 22, 2, type);
+		break;
+	case GX_VA_TEX5:
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 20, 2, type);
+		break;
+	case GX_VA_TEX6:
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 18, 2, type);
+		break;
+	case GX_VA_TEX7:
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 16, 2, type);
 		break;
 	}
-
-	if (__GXData->_258[0] == 0 && __GXData->_258[1] == 0) {
-		__GXData->_014 = (__GXData->_254 & 3) << 11 | (__GXData->_014 & ~0x2800);
+	
+	if (LOAD_GX_FIELD(0x4d4, u8) != 0 || LOAD_GX_FIELD(0x4d5, u8) != 0) {
+			GX_BITFIELD_SET(LOAD_GX_FIELD(0x14, u32), 19, 2, LOAD_GX_FIELD(0x4d0, u32));
 	} else {
-		__GXData->_014 &= ~0x3800;
+		// __GXData->_014 &= ~0x3800;
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x14, u32), 19, 2, 0);
 	}
+
 	__GXData->_5AC |= 8;
-	/*
-	.loc_0x0:
-	  cmplwi    r3, 0x19
-	  bgt-      .loc_0x214
-	  lis       r5, 0x804B
-	  subi      r5, r5, 0x7D60
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r0, r5, r0
-	  mtctr     r0
-	  bctr
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,0,31,31
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,1,30,30
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,2,29,29
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,3,28,28
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,4,27,27
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,5,26,26
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,6,25,25
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,7,24,24
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,8,23,23
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,9,21,22
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  cmpwi     r4, 0
-	  beq-      .loc_0x10C
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0x1
-	  li        r0, 0
-	  stb       r5, 0x4D4(r3)
-	  stb       r0, 0x4D5(r3)
-	  stw       r4, 0x4D0(r3)
-	  b         .loc_0x214
-
-	.loc_0x10C:
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0
-	  stb       r0, 0x4D4(r3)
-	  b         .loc_0x214
-	  cmpwi     r4, 0
-	  beq-      .loc_0x140
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0x1
-	  li        r0, 0
-	  stb       r5, 0x4D5(r3)
-	  stb       r0, 0x4D4(r3)
-	  stw       r4, 0x4D0(r3)
-	  b         .loc_0x214
-
-	.loc_0x140:
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0
-	  stb       r0, 0x4D5(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,13,17,18
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x14(r3)
-	  rlwimi    r0,r4,15,15,16
-	  stw       r0, 0x14(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x18(r3)
-	  rlwimi    r0,r4,0,30,31
-	  stw       r0, 0x18(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x18(r3)
-	  rlwimi    r0,r4,2,28,29
-	  stw       r0, 0x18(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x18(r3)
-	  rlwimi    r0,r4,4,26,27
-	  stw       r0, 0x18(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x18(r3)
-	  rlwimi    r0,r4,6,24,25
-	  stw       r0, 0x18(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x18(r3)
-	  rlwimi    r0,r4,8,22,23
-	  stw       r0, 0x18(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x18(r3)
-	  rlwimi    r0,r4,10,20,21
-	  stw       r0, 0x18(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x18(r3)
-	  rlwimi    r0,r4,12,18,19
-	  stw       r0, 0x18(r3)
-	  b         .loc_0x214
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x18(r3)
-	  rlwimi    r0,r4,14,16,17
-	  stw       r0, 0x18(r3)
-
-	.loc_0x214:
-	  lwz       r4, -0x6D70(r2)
-	  lbz       r0, 0x4D4(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x230
-	  lbz       r0, 0x4D5(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x248
-
-	.loc_0x230:
-	  lwz       r0, 0x4D0(r4)
-	  lwz       r4, 0x14(r4)
-	  lwz       r3, -0x6D70(r2)
-	  rlwimi    r4,r0,11,19,20
-	  stw       r4, 0x14(r3)
-	  b         .loc_0x258
-
-	.loc_0x248:
-	  lwz       r3, 0x14(r4)
-	  li        r0, 0
-	  rlwimi    r3,r0,11,19,20
-	  stw       r3, 0x14(r4)
-
-	.loc_0x258:
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x5AC(r3)
-	  ori       r0, r0, 0x8
-	  stw       r0, 0x5AC(r3)
-	  blr
-	*/
 }
 
 /*
