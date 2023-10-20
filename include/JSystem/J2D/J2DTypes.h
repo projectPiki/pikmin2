@@ -58,44 +58,78 @@ struct J2DAlphaComp {
 	u8 mRef1;      // _03
 };
 
-struct J2DBlendInfo {
+// struct J2DBlendInfo {
+// 	u8 mType;       // _00
+// 	u8 mSrcFactor;  // _01
+// 	u8 mDestFactor; // _02
+// };
+
+// extern J2DBlendInfo j2dDefaultBlendInfo;
+
+// struct J2DBlend {
+// 	J2DBlend()
+// 	{
+// 		mType       = j2dDefaultBlendInfo.mType;
+// 		mSrcFactor  = j2dDefaultBlendInfo.mSrcFactor;
+// 		mDestFactor = j2dDefaultBlendInfo.mDestFactor;
+// 	}
+
+// 	J2DBlend(u8 type, u8 srcFactor, u8 destFactor, u8 op)
+// 	{
+// 		mType       = type;
+// 		mSrcFactor  = srcFactor;
+// 		mDestFactor = destFactor;
+// 		mOp         = op;
+// 	}
+
+// 	void operator=(J2DBlend const& other)
+// 	{
+// 		mType       = other.mType;
+// 		mSrcFactor  = other.mSrcFactor;
+// 		mDestFactor = other.mDestFactor;
+// 		mOp         = other.mOp;
+// 	}
+
+// 	inline void set(J2DBlend blend)
+// 	{
+// 		mType       = blend.mType;
+// 		mSrcFactor  = blend.mSrcFactor;
+// 		mDestFactor = blend.mDestFactor;
+// 		mOp         = blend.mOp;
+// 	}
+
+// 	inline void set(J2DBlendInfo info)
+// 	{
+// 		mType = info.mType;
+// 		mSrcFactor = info.mSrcFactor;
+// 		mDestFactor = info.mDestFactor;
+// 		mOp = 0;
+// 	}
+
+//     u8 getType() { return mBlendInfo.mType; }
+//     u8 getSrcFactor() { return mBlendInfo.mSrcFactor; }
+//     u8 getDstFactor() { return mBlendInfo.mDestFactor; }
+//     u8 getOp() { return mBlendInfo.mOp; }
+
+// 	u8 mType;       // _00
+// 	u8 mSrcFactor;  // _01
+// 	u8 mDestFactor; // _02
+// 	u8 mOp;         // _03
+// };
+
+struct J2DGrafBlend {
 	u8 mType;       // _00
 	u8 mSrcFactor;  // _01
 	u8 mDestFactor; // _02
 };
 
-extern J2DBlendInfo j2dDefaultBlendInfo;
-
-struct J2DBlend {
-	J2DBlend()
-	{
-		mType       = j2dDefaultBlendInfo.mType;
-		mSrcFactor  = j2dDefaultBlendInfo.mSrcFactor;
-		mDestFactor = j2dDefaultBlendInfo.mDestFactor;
-	}
-
-	J2DBlend(u8 type, u8 srcFactor, u8 destFactor, u8 op)
-	{
-		mType       = type;
-		mSrcFactor  = srcFactor;
-		mDestFactor = destFactor;
-		mOp         = op;
-	}
-
-	void operator=(J2DBlend const& other)
+struct J2DBlendInfo {
+	void operator=(J2DBlendInfo const& other)
 	{
 		mType       = other.mType;
 		mSrcFactor  = other.mSrcFactor;
 		mDestFactor = other.mDestFactor;
 		mOp         = other.mOp;
-	}
-
-	inline void set(J2DBlend blend)
-	{
-		mType       = blend.mType;
-		mSrcFactor  = blend.mSrcFactor;
-		mDestFactor = blend.mDestFactor;
-		mOp         = blend.mOp;
 	}
 
 	u8 mType;       // _00
@@ -104,44 +138,27 @@ struct J2DBlend {
 	u8 mOp;         // _03
 };
 
-/*
-struct J2DBlendInfo {
-    void operator=(J2DBlendInfo const& other)
-    {
-        mType       = other.mType;
-        mSrcFactor  = other.mSrcFactor;
-        mDestFactor = other.mDestFactor;
-        mOp         = other.mOp;
-    }
-
-    u8 mType;       // _00
-    u8 mSrcFactor;  // _01
-    u8 mDestFactor; // _02
-    u8 mOp;         // _03
-};
-
 extern J2DBlendInfo j2dDefaultBlendInfo;
 
 struct J2DBlend {
-    J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
-    J2DBlend(const J2DBlendInfo& info) { mBlendInfo = info; }
-    void setBlendInfo(const J2DBlendInfo& info) { mBlendInfo = info; }
-    u8 getType() { return mBlendInfo.mType; }
-    u8 getSrcFactor() { return mBlendInfo.mSrcFactor; }
-    u8 getDstFactor() { return mBlendInfo.mDestFactor; }
-    u8 getOp() { return mBlendInfo.mOp; }
+	J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
+	J2DBlend(const J2DBlendInfo& info) { mBlendInfo = info; }
+	void setBlendInfo(const J2DBlendInfo& info) { mBlendInfo = info; }
+	u8 getType() { return mBlendInfo.mType; }
+	u8 getSrcFactor() { return mBlendInfo.mSrcFactor; }
+	u8 getDstFactor() { return mBlendInfo.mDestFactor; }
+	u8 getOp() { return mBlendInfo.mOp; }
 
-    inline void set(J2DBlend blend)
-    {
-        mBlendInfo.mType       = blend.mBlendInfo.mType;
-        mBlendInfo.mSrcFactor  = blend.mBlendInfo.mSrcFactor;
-        mBlendInfo.mDestFactor = blend.mBlendInfo.mDestFactor;
-        mBlendInfo.mOp         = blend.mBlendInfo.mOp;
-    }
+	inline void set(J2DBlend blend)
+	{
+		mBlendInfo.mType       = blend.mBlendInfo.mType;
+		mBlendInfo.mSrcFactor  = blend.mBlendInfo.mSrcFactor;
+		mBlendInfo.mDestFactor = blend.mBlendInfo.mDestFactor;
+		mBlendInfo.mOp         = blend.mBlendInfo.mOp;
+	}
 
-    J2DBlendInfo mBlendInfo; // _00
+	J2DBlendInfo mBlendInfo; // _00
 };
-*/
 
 struct J2DColorChanInfo {
 	u8 _00; // _00

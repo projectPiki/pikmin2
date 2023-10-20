@@ -60,9 +60,9 @@ struct J2DGrafContext {
 	JGeometry::TVec2f mPrevPos;       // _38
 	Mtx44 mMtx44;                     // _40
 	Mtx mPosMtx;                      // _80
-	J2DBlendInfo _B0;                 // _B0
-	J2DBlendInfo mLinePart;           // _B3
-	J2DBlendInfo mBoxPart;            // _B6
+	J2DGrafBlend _B0;                 // _B0
+	J2DGrafBlend mLinePart;           // _B3
+	J2DGrafBlend mBoxPart;            // _B6
 };
 
 struct J2DPerspGraph : public J2DGrafContext {
