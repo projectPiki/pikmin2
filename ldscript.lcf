@@ -26,9 +26,3 @@ GROUP: {
 	__ArenaHi = 0x81700000;
 	__DIRegs = 0xCC006000;
 }
-
-FORCEFILES {
-	__init_cpp_exceptions.o
-	targsupp.o
-	id32.o
-}
