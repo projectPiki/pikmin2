@@ -485,7 +485,7 @@ LIBS = [
             {"cflags": "$cflags_base -inline deferred -Cpp_exceptions on"},
             ],
             ["Dolphin/Runtime/ptmf", True],
-            "Dolphin/Runtime/runtime",
+            ["Dolphin/Runtime/runtime", True],
             ["Dolphin/Runtime/__init_cpp_exceptions", True],
             [
             "Dolphin/Runtime/Gecko_ExceptionPPC",
