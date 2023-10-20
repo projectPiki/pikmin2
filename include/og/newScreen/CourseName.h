@@ -15,6 +15,15 @@ struct AnimGroup;
 } // namespace Screen
 
 namespace newScreen {
+
+extern const char* CourseNumToSZS[];
+extern const char* bloFileNameCourse[];
+extern char* animFile_Course00[];
+extern char* animFile_Course01[];
+extern char* animFile_Course02[];
+extern char* animFile_Course03[];
+extern char** animFileTableCourse[];
+
 struct CourseName : public ::Screen::SceneBase {
 	CourseName();
 
@@ -31,6 +40,8 @@ struct CourseName : public ::Screen::SceneBase {
 	// unused/inline
 	int getCourseNum();
 	~CourseName();
+
+	const char* getCourseBloName() { return bloFileNameCourse[mCourseIndex]; }
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
@@ -87,14 +98,6 @@ struct ObjCourseName : public ::Screen::ObjBase {
 		f32 _0C; // _0C
 	} msVal;
 };
-
-extern const char* CourseNumToSZS[];
-extern const char* bloFileNameCourse[];
-extern char* animFile_Course00[];
-extern char* animFile_Course01[];
-extern char* animFile_Course02[];
-extern char* animFile_Course03[];
-extern char** animFileTableCourse[];
 
 } // namespace newScreen
 } // namespace og

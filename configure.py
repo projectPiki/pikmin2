@@ -1307,7 +1307,7 @@ LIBS = [
             ["plugProjectOgawaU/ogSceneSMenuPause", True],
             ["plugProjectOgawaU/ogObjSMenuPause", True],
             ["plugProjectOgawaU/ogObjSMenuBase", True],
-            "plugProjectOgawaU/ogObjCourseName",
+            ["plugProjectOgawaU/ogObjCourseName", True],
             ["plugProjectOgawaU/ogUtil", True],
             ["plugProjectOgawaU/ogSceneCourseName", True],
             ["plugProjectOgawaU/ogObjKantei", True],
