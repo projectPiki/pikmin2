@@ -288,7 +288,7 @@ CallBack_Furiko* setCallBack_Furiko(P2DScreen::Mgr* screen, u64 tag)
 void setFurikoScreen(P2DScreen::Mgr* screen)
 {
 	for (int i = 0; i < 100; i++) {
-		u64 tag       = (i % 10) + 'furiko00' + ((i % 10 + i) % 10); // this is closer but still not quite right
+		u64 tag       = 'furiko00' + (i % 10) + (i / 10) % 10 * 256;
 		J2DPane* pane = screen->search(tag);
 		if (pane) {
 			pane->mMessageID = (u64)setCallBack_Furiko(screen, tag);

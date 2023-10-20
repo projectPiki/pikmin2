@@ -78,9 +78,9 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	tempscreen->set("s_menu_powerup_icon.blo", 0x1040000, arc);
 
 	for (int i = 0; i < 12; i++) {
-		u64 tag  = 'Nitem00' + (i / 10 * 0x100) + i % 10;
-		u64 tag2 = 'Picon00' + (i / 10 * 0x100) + i % 10;
-		u64 tag3 = 'Pitemb00' + (i / 10 * 0x100) + i % 10;
+		u64 tag  = 'Nitem00' + (i % 10) + (i / 10) % 10 * 256;
+		u64 tag2 = 'Picon00' + (i % 10) + (i / 10) % 10 * 256;
+		u64 tag3 = 'Pitemb00' + (i % 10) + (i / 10) % 10 * 256;
 
 		J2DPane* pane1 = og::Screen::TagSearch(mScreenItems, tag);
 		J2DPane* pane2 = og::Screen::TagSearch(tempscreen, tag2);
@@ -137,9 +137,9 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 
 	J2DPane* panelist[12];
 	for (int i = 0; i < 12; i++) {
-		u64 tag  = 'Pitemb00' + (i / 10 * 0x100) + i % 10;
-		u64 tag2 = 'Titem000' + (i / 10 * 0x100) + i % 10;
-		u64 tag3 = 'Picon00' + (i / 10 * 0x100) + i % 10;
+		u64 tag  = 'Pitemb00' + (i % 10) + (i / 10) % 10 * 256;
+		u64 tag2 = 'Titem000' + (i % 10) + (i / 10) % 10 * 256;
+		u64 tag3 = 'Picon00' + (i % 10) + (i / 10) % 10 * 256;
 
 		J2DPictureEx* pane1 = static_cast<J2DPictureEx*>(og::Screen::TagSearch(mScreenItems, tag));
 		J2DPane* pane2      = og::Screen::TagSearch(mScreenItems, tag2);

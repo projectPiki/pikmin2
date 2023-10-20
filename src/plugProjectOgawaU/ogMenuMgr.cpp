@@ -227,13 +227,13 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 	u64 mesg2 = MojiToNum(tag3, 2);
 
 	for (int i = 0; i < options; i++) {
-		u64 cMesg     = mesg0 + (i / 10 * 0x100) + i % 10;
+		u64 cMesg     = mesg0 + (i % 10) + (i / 10) % 10 * 256;
 		mPaneList1[i] = screen->search(cMesg);
 
-		cMesg         = mesg1 + (i / 10 * 0x100) + i % 10;
+		cMesg         = mesg1 + (i % 10) + (i / 10) % 10 * 256;
 		mPaneList2[i] = screen->search(cMesg);
 
-		cMesg         = mesg2 + (i / 10 * 0x100) + i % 10;
+		cMesg         = mesg2 + (i % 10) + (i / 10) % 10 * 256;
 		mPaneList3[i] = screen->search(cMesg);
 	}
 
@@ -253,10 +253,10 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 	mesg2 = MojiToNum(tag3, 2);
 
 	for (int i = 0; i < options; i++) {
-		u64 cMesg     = mesg1 + (i / 10 * 0x100) + i % 10;
+		u64 cMesg     = mesg1 + (i % 10) + (i / 10) % 10 * 256;
 		mPaneList4[i] = og::Screen::TagSearch(screen, cMesg);
 
-		cMesg = mesg2 + (i / 10 * 0x100) + i % 10;
+		cMesg = mesg2 + (i % 10) + (i / 10) % 10 * 256;
 
 		mPaneList5[i] = og::Screen::TagSearch(screen, cMesg);
 
