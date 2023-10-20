@@ -42,6 +42,8 @@ typedef struct BI2Debug {
 #define OS_DVD_MAGIC_NINTENDO  0xC2339F3D
 #define OS_THREAD_STACK_MAGIC  0xDEADBABE
 
+#define OS_BOOTROM_ADDR 0x81300000
+
 //////////////////////////////////
 
 #ifdef __cplusplus

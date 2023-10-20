@@ -45,6 +45,13 @@ void OSSetSaveRegion(void* start, void* end);
 BOOL OSGetResetButtonState();
 BOOL OSGetResetSwitchState();
 
+// Reboot functions.
+void __OSReboot(u32 resetCode, u32 bootDol);
+void __OSDoHotReset(s32 code);
+void OSSetSaveRegion(void* start, void* end);
+void OSGetSaveRegion(void** start, void** end);
+void OSGetSavedRegion(void** start, void** end);
+
 // Unused/inlined in P2.
 void OSUnregisterResetFunction(OSResetFunctionInfo* info);
 OSResetCallback OSSetResetCallback(OSResetCallback callback);
@@ -73,14 +80,9 @@ OSResetCallback OSSetResetCallback(OSResetCallback callback);
 #define OS_RESET_PRIO_GX    127
 #define OS_RESET_PRIO_ALARM 4294967295
 
+extern BOOL __OSIsGcam;
+
 //////////////////////////////////
-
-// Reboot functions.
-
-void __OSReboot(u32 resetCode, u32 bootDol);
-void OSSetSaveRegion(void* start, void* end);
-void OSGetSaveRegion(void** start, void** end);
-void OSGetSavedRegion(void** start, void** end);
 
 #ifdef __cplusplus
 };

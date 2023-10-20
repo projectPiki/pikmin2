@@ -1,24 +1,29 @@
 #include "Dolphin/os.h"
+#include "Dolphin/ai.h"
 
 static void* SaveStart = nullptr;
 static void* SaveEnd   = nullptr;
 static BOOL Prepared;
 
-extern u32 BOOT_REGION_START : 0x812FDFF0; //(*(u32 *)0x812fdff0)
-extern u32 BOOT_REGION_END : 0x812FDFEC;   //(*(u32 *)0x812fdfec)
+extern u32 BOOT_REGION_START AT_ADDRESS(0x812FDFF0); //(*(u32 *)0x812fdff0)
+extern u32 BOOT_REGION_END AT_ADDRESS(0x812FDFEC);   //(*(u32 *)0x812fdfec)
 
 extern void* __OSSavedRegionStart;
 extern void* __OSSavedRegionEnd;
 
 void* Header[8];
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000038
  */
-void IsStreamEnabled(void)
+BOOL IsStreamEnabled(void)
 {
-	// UNUSED FUNCTION
+	if (DVDGetCurrentDiskID()->streaming) {
+		return TRUE;
+	}
+	return FALSE;
 }
 
 /*
@@ -26,14 +31,14 @@ void IsStreamEnabled(void)
  * Address:	800EFF4C
  * Size:	000010
  */
-static asm void Run(void)
+static asm void Run(register u32 addr)
 {
 	// clang-format off
 	nofralloc
 
 	sync
 	isync
-	mtlr r3
+	mtlr addr
 	blr
 	// clang-format on
 }
@@ -43,9 +48,16 @@ static asm void Run(void)
  * Address:	........
  * Size:	0000D8
  */
-void ReadApploader(void)
+void ReadApploader(OSTime time1, OSTime time2)
 {
-	// UNUSED FUNCTION
+	// this probably needs to be more complicated with a callback input that does the while loop check I think
+	OSTime time3;
+	if (DVDCheckDisk()) {
+		time3 = OSGetTime();
+		if (time3 - time1 < time2) {
+			__OSDoHotReset(0);
+		}
+	}
 }
 
 /*
@@ -62,13 +74,20 @@ static void Callback(void) { Prepared = TRUE; }
  */
 void __OSReboot(u32 resetCode, u32 bootDol)
 {
-	char* argvToPass;
+	OSContext exceptionContext;
+	OSTime time1;
+	OSTime time2;
+	DVDCommandBlock dvdCmd;
+	DVDCommandBlock dvdCmd2;
+	DVDCommandBlock dvdCmd3;
+	u32 numBytes;
 	OSDisableInterrupts();
-	(*(u8*)OSPhysicalToCached(0x30E2) = TRUE);
-	*(u32*)BOOT_REGION_START          = (u32)SaveStart;
-	*(u32*)BOOT_REGION_END            = (u32)SaveEnd;
 	*(u32*)OSPhysicalToCached(0x30F0) = resetCode;
-	OSClearContext((void*)&Header);
+	(*(u8*)OSPhysicalToCached(0x30E2) = TRUE);
+	*(u32*)BOOT_REGION_START = (u32)SaveStart;
+	*(u32*)BOOT_REGION_END   = (u32)SaveEnd;
+	OSClearContext(&exceptionContext);
+	OSSetCurrentContext(&exceptionContext);
 	DVDInit();
 	DVDSetAutoInvalidation(TRUE);
 	DVDResume();
@@ -80,10 +99,48 @@ void __OSReboot(u32 resetCode, u32 bootDol)
 	__OSUnmaskInterrupts(0x400);
 	OSEnableInterrupts();
 
-	ICInvalidateRange((void*)BOOT_REGION_START, OSRoundUp32B(Header));
+	time1 = OSGetTime();
+	time2 = __OSBusClock;
+	do {
+		ReadApploader(time1, time2);
+	} while (Prepared);
+
+	if (!__OSIsGcam) {
+		if (IsStreamEnabled()) {
+			AISetStreamVolLeft(0);
+			AISetStreamVolRight(0);
+			DVDCancelStreamAsync(&dvdCmd, nullptr);
+			time1 = OSGetTime();
+			time2 = __OSBusClock;
+			do {
+				ReadApploader(time1, time2);
+			} while (DVDGetCommandBlockStatus(&dvdCmd));
+
+			AISetStreamPlayState(0);
+		}
+	}
+
+	DVDReadAbsAsyncPrio(&dvdCmd2, (void*)Header, 32, 0x2440, nullptr, 0);
+	time1 = OSGetTime();
+	time2 = __OSBusClock;
+
+	do {
+		ReadApploader(time1, time2);
+	} while (DVDGetCommandBlockStatus(&dvdCmd2));
+
+	numBytes = OSRoundUp32B(Header[6]);
+	DVDReadAbsAsyncPrio(&dvdCmd3, (void*)(OS_BOOTROM_ADDR), numBytes, (u32)Header[5] + 0x20 + 0x2440, nullptr, 0);
+	time1 = OSGetTime();
+	time2 = __OSBusClock;
+
+	do {
+		ReadApploader(time1, time2);
+	} while (DVDGetCommandBlockStatus(&dvdCmd2));
+
+	ICInvalidateRange((void*)(OS_BOOTROM_ADDR), numBytes);
 	OSDisableInterrupts();
 	ICFlashInvalidate();
-	Run();
+	Run(OS_BOOTROM_ADDR);
 	/*
 	.loc_0x0:
 	  mflr      r0
