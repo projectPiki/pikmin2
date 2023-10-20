@@ -39,7 +39,7 @@ struct J2DMaterialFactory {
 
 	void countStages(int) const;
 	void create(J2DMaterial*, int, u32, J2DResReference*, J2DResReference*, JKRArchive*) const;
-	void newMatColor(int, int) const;
+	JUtility::TColor newMatColor(int, int) const;
 	void newColorChanNum(int) const;
 	void newColorChan(int, int) const;
 	void newTexGenNum(int) const;

@@ -1,24 +1,4 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805168D8
-    lbl_805168D8:
-        .4byte 0xFFFFFFFF
-    .global lbl_805168DC
-    lbl_805168DC:
-        .4byte 0xFFFFFFFF
-
-    .section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
-    .global lbl_80520E40
-    lbl_80520E40:
-        .skip 0x4
-    .global lbl_80520E44
-    lbl_80520E44:
-        .skip 0x4
-*/
+#include "JSystem/J2D/J2DMaterialFactory.h"
 
 /*
  * --INFO--
@@ -153,7 +133,7 @@ lbl_80053360:
  * Address:	800534AC
  * Size:	0009C8
  */
-void J2DMaterialFactory::create(J2DMaterial*, int, unsigned long, J2DResReference*, J2DResReference*, JKRArchive*) const
+void J2DMaterialFactory::create(J2DMaterial*, int, u32, J2DResReference*, J2DResReference*, JKRArchive*) const
 {
 	/*
 	.loc_0x0:
@@ -897,8 +877,15 @@ void J2DMaterialFactory::create(J2DMaterial*, int, unsigned long, J2DResReferenc
  * Address:	80053E74
  * Size:	00009C
  */
-void J2DMaterialFactory::newMatColor(int, int) const
+JUtility::TColor J2DMaterialFactory::newMatColor(int id1, int id2) const
 {
+	GXColor color              = { 0xff, 0xff, 0xff, 0xff };
+	JUtility::TColor local_20  = GXColor(color);
+	J2DMaterialInitData* iVar2 = &mMaterialInitData[_08[id1]];
+	if (iVar2->_08[id2] != 0xffff) {
+		return _10[iVar2->_08[id2]];
+	}
+	return local_20;
 	/*
 	stwu     r1, -0x20(r1)
 	slwi     r0, r6, 1
@@ -1931,272 +1918,6 @@ void J2DMaterialFactory::newDither(int) const
 
 lbl_80054998:
 	li       r3, 0
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	800549A0
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DBlendInfo>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800549B0
-	li       r3, 0
-	blr
-
-lbl_800549B0:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	800549B8
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DAlphaCompInfo>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800549C8
-	li       r3, 0
-	blr
-
-lbl_800549C8:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	800549D0
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DTevSwapModeTableInfo>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800549E0
-	li       r3, 0
-	blr
-
-lbl_800549E0:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	800549E8
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DTevSwapModeInfo>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800549F8
-	li       r3, 0
-	blr
-
-lbl_800549F8:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054A00
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DTevStageInfo>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054A10
-	li       r3, 0
-	blr
-
-lbl_80054A10:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054A18
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<_GXColorS10>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054A28
-	li       r3, 0
-	blr
-
-lbl_80054A28:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054A30
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DTevOrderInfo>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054A40
-	li       r3, 0
-	blr
-
-lbl_80054A40:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054A48
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DTexMtxInfo>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054A58
-	li       r3, 0
-	blr
-
-lbl_80054A58:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054A60
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DTexCoordInfo>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054A70
-	li       r3, 0
-	blr
-
-lbl_80054A70:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054A78
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DColorChanInfo>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054A88
-	li       r3, 0
-	blr
-
-lbl_80054A88:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054A90
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<_GXColor>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054AA0
-	li       r3, 0
-	blr
-
-lbl_80054AA0:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054AA8
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<_GXCullMode>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054AB8
-	li       r3, 0
-	blr
-
-lbl_80054AB8:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054AC0
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DIndInitData>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054AD0
-	li       r3, 0
-	blr
-
-lbl_80054AD0:
-	add      r3, r3, r4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80054AD8
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J2DMaterialInitData>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80054AE8
-	li       r3, 0
-	blr
-
-lbl_80054AE8:
-	add      r3, r3, r4
 	blr
 	*/
 }

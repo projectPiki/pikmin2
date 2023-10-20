@@ -76,16 +76,16 @@ struct Mgr_tuning : public Mgr {
 		mScreenScaleY = scale * mstTuningScaleY;
 	}
 
-	inline void setBlendInfo(J2DBlend info, u64* tags)
+	inline void setBlendInfo(J2DBlendInfo info, u64* tags)
 	{
-		J2DBlend blend = info;
+		J2DBlend blend(info);
 		while (true) {
 			if (!*tags) {
 				return;
 			}
 			J2DPictureEx* pane = static_cast<J2DPictureEx*>(search(*(tags++)));
 			if (pane) {
-				pane->getMaterial()->mPeBlock.mBlendInfo.set(blend);
+				pane->getMaterial()->mPeBlock.setBlend(blend);
 			}
 		}
 	}

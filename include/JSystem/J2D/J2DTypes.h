@@ -124,12 +124,22 @@ struct J2DGrafBlend {
 };
 
 struct J2DBlendInfo {
+	J2DBlendInfo() { }
+
 	void operator=(J2DBlendInfo const& other)
 	{
 		mType       = other.mType;
 		mSrcFactor  = other.mSrcFactor;
 		mDestFactor = other.mDestFactor;
 		mOp         = other.mOp;
+	}
+
+	J2DBlendInfo(u8 type, u8 src, u8 dst, u8 op)
+	{
+		mType       = type;
+		mSrcFactor  = src;
+		mDestFactor = dst;
+		mOp         = op;
 	}
 
 	u8 mType;       // _00

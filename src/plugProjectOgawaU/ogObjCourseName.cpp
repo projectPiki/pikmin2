@@ -72,14 +72,16 @@ void ObjCourseName::doCreate(JKRArchive* arc)
 	mAnims         = new og::Screen::AnimGroup(5);
 	char** list    = animFileTableCourse[owner->mCourseIndex];
 	char* listItem = list[0];
-	for (int i = 0; listItem != nullptr; listItem = list[i + 1], i++) {
+	for (int i = 0; listItem; i++) {
 		og::Screen::registAnimGroupScreen(mAnims, arc, mScreen, listItem, 1.0f);
+		listItem = list[i + 1];
 	}
 
 	og::Screen::setAlphaScreen(mScreen);
 
 	u64 tags[4] = { 'nuki_tex', 'efect_00', 'efect_01', 0 };
-	mScreen->setBlendInfo(J2DBlend(1, 7, 6, 0), tags);
+	J2DBlendInfo info(1, 7, 6, 0);
+	mScreen->setBlendInfo(info, tags);
 
 	J2DPane* pane = mScreen->search('nuki_tex');
 	if (pane) {
