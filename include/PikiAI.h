@@ -62,6 +62,13 @@ struct FindCondition : public Condition<CollPart> {
 	}
 };
 
+struct SlotHandles {
+	inline SlotHandles() { _08 = 0; }
+
+	u8 _00[0x8]; // _00
+	s16 _08;     // _08
+};
+
 namespace PikiAI {
 struct ActAttack;
 struct ActBattle;
@@ -919,10 +926,17 @@ struct PathMoveArg : public ActionArg {
 	Game::Pellet* mPellet; // _04
 	Vector3f _08;          // _08
 	s16 _14;               // _14
-	u32 _18;               // _18
+	int _18;               // _18
 };
 
 struct ActPathMove : public Action {
+	enum PathMoveState {
+		PATHMOVE_Pathfinding = 0,
+		PATHMOVE_Move        = 1,
+		PATHMOVE_MoveGoal    = 2,
+		PATHMOVE_MoveGuru    = 3,
+	};
+
 	ActPathMove(Game::Piki* p);
 
 	virtual void init(ActionArg* settings); // _08
@@ -947,32 +961,32 @@ struct ActPathMove : public Action {
 
 	// _00     = VTBL
 	// _00-_0C = Action
-	void* _0C;             // _0C, unknown
-	Vector3f _10;          // _10
-	s16 _1C;               // _1C
-	s16 _1E;               // _1E
-	u32 _20;               // _20
-	Vector3f _24;          // _24
-	Game::Pellet* mPellet; // _30
-	Game::Onyon* mOnyon;   // _34
-	f32 _38;               // _38
-	u8 _3C;                // _3C
-	u8 _3D;                // _3D
-	int _40;               // _40
-	Game::PathNode* _44;   // _44
-	Game::PathNode* _48;   // _48
-	int _4C;               // _4C
-	int _50;               // _50
-	s16 _54;               // _54
-	s16 _56;               // _56
-	Vector3f _58;          // _58
-	Game::WayPoint* _64;   // _64
-	f32 _68;               // _68
-	u8 _6C;                // _6C
-	int _70;               // _70
-	Vector3f _74[4];       // _74
-	Vector3f _A4;          // _A4
-	Vector3f _B0;          // _B0
+	SlotHandles* mHandles;  // _0C
+	Vector3f _10;           // _10
+	s16 mStartWPIndex;      // _1C
+	u16 mState;             // _1E
+	u32 _20;                // _20
+	Vector3f mGoalPosition; // _24
+	Game::Pellet* mPellet;  // _30
+	Game::Onyon* mOnyon;    // _34
+	f32 _38;                // _38
+	u8 _3C;                 // _3C
+	u8 _3D;                 // _3D
+	int _40;                // _40
+	Game::PathNode* _44;    // _44
+	Game::PathNode* _48;    // _48
+	int _4C;                // _4C
+	int _50;                // _50
+	s16 _54;                // _54
+	s16 mGoalWPIndex;       // _56
+	Vector3f _58;           // _58
+	Game::WayPoint* _64;    // _64
+	f32 _68;                // _68
+	u8 _6C;                 // _6C
+	int _70;                // _70
+	Vector3f _74[4];        // _74
+	Vector3f _A4;           // _A4
+	Vector3f _B0;           // _B0
 };
 
 struct ActRescueArg : public ActionArg {

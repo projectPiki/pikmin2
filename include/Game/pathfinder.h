@@ -20,9 +20,9 @@ struct PathfindRequest {
 		mFlag      = f;
 	}
 
-	s16 mStartWpID;
-	s16 mEndWpID;
-	u8 mFlag;
+	s16 mStartWpID; // _00
+	s16 mEndWpID;   // _02
+	u8 mFlag;       // _04
 };
 
 struct PathNode {

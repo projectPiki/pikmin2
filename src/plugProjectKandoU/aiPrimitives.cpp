@@ -11,6 +11,7 @@
 #include "Game/pathfinder.h"
 #include "Game/routeMgr.h"
 #include "Game/MapMgr.h"
+#include "Game/mapParts.h"
 #include "nans.h"
 
 static const int unusedAiPrimArray[] = { 0, 0, 0 };
@@ -529,9 +530,20 @@ int ActGotoSlot::exec()
 		f32 dist = vec.length();
 		if (dist > 6.0f) {
 			mParent->setSpeed(1.0f, sep);
-			if (dist > 40.0f) {
-				_14++;
+			if (dist < 40.0f) {
+				if (_14++ > 60) {
+					resetTimers();
+					return ACTEXEC_Fail;
+				}
 			}
+		} else if (FABS(vec.y) < 20.0f) {
+			Vector3f slotPos;
+			pellet->calcStickSlotGlobal(0, slotPos);
+
+			slotPos -= pelletPos;
+			slotPos.normalise();
+
+			sep *= -1.0f;
 		}
 	}
 	/*
@@ -1336,43 +1348,8 @@ void ActGotoSlot::cleanup() { }
 ActPathMove::ActPathMove(Game::Piki* p)
     : Action(p)
 {
-	// _0C = new (something);
-	_1C = -1;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r3, __vt__Q26PikiAI11ActPathMove@ha
-	lis      r4, "__ct__10Vector3<f>Fv"@ha
-	addi     r0, r3, __vt__Q26PikiAI11ActPathMove@l
-	li       r5, 0
-	stw      r0, 0(r31)
-	addi     r3, r31, 0x74
-	addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-	li       r6, 0xc
-	li       r7, 4
-	bl       __construct_array
-	li       r3, 0xa
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80198630
-	li       r0, 0
-	sth      r0, 8(r3)
-
-lbl_80198630:
-	stw      r3, 0xc(r31)
-	li       r0, -1
-	mr       r3, r31
-	sth      r0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mHandles      = new SlotHandles;
+	mStartWPIndex = -1;
 }
 
 /*
@@ -1380,8 +1357,44 @@ lbl_80198630:
  * Address:	80198654
  * Size:	0001BC
  */
-void ActPathMove::init(ActionArg*)
+void ActPathMove::init(ActionArg* settings)
 {
+	bool isPathMove = false;
+	_3D             = 0;
+	if (settings) {
+		bool strCheck = strcmp("PathMoveArg", settings->getName()) == 0;
+		if (strCheck) {
+			isPathMove = true;
+		}
+	}
+	P2ASSERTLINE(790, isPathMove);
+	PathMoveArg* pathMoveArg = static_cast<PathMoveArg*>(settings);
+
+	mOnyon  = nullptr;
+	mPellet = pathMoveArg->mPellet;
+	_3C     = (pathMoveArg->_18 > 0);
+
+	if (_3C) {
+		_38 = pathMoveArg->_18;
+	}
+
+	_20 = 0;
+	_B0 = Vector3f(0.0f);
+
+	initPathfinding(true);
+
+	_6C = 1;
+	_10 = mPellet->getPosition();
+
+	if (mPellet->isPellet()) {
+		Game::Pellet* pellet = mPellet;
+		mPellet->setVelocity(Vector3f::zero);
+		pellet->mRigid.mConfigs[0]._18 = Vector3f(0.0f);
+		s16 slot                       = pellet->getSpeicalSlot();
+		if (slot == -1) {
+			pellet->mPelletCarry->reset();
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1510,281 +1523,105 @@ lbl_801987F0:
  * Address:	80198810
  * Size:	0003AC
  */
-void ActPathMove::initPathfinding(bool)
+void ActPathMove::initPathfinding(bool check)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	clrlwi.  r0, r4, 0x18
-	lis      r4, lbl_8047F070@ha
-	stw      r31, 0x7c(r1)
-	addi     r31, r4, lbl_8047F070@l
-	stw      r30, 0x78(r1)
-	mr       r30, r3
-	stw      r29, 0x74(r1)
-	beq      lbl_80198848
-	lwz      r3, 0xc(r30)
-	li       r0, 0
-	sth      r0, 8(r3)
+	if (check) {
+		mHandles->_08 = 0;
+	}
 
-lbl_80198848:
-	lwz      r3, 0x30(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801988B0
-	lwz      r3, 0x30(r30)
-	lis      r4, "zero__10Vector3<f>"@ha
-	addi     r4, r4, "zero__10Vector3<f>"@l
-	lwz      r12, 0(r3)
-	mr       r29, r3
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518F60@sda21(r2)
-	mr       r3, r29
-	stfs     f0, 0x1c8(r29)
-	stfs     f0, 0x1cc(r29)
-	stfs     f0, 0x1d0(r29)
-	bl       getSpeicalSlot__Q24Game6PelletFv
-	extsh    r0, r3
-	cmpwi    r0, -1
-	bne      lbl_801988B0
-	lwz      r3, 0x334(r29)
-	bl       reset__Q24Game11PelletCarryFv
+	if (mPellet->isPellet()) {
+		Game::Pellet* pellet = mPellet;
+		mPellet->setVelocity(Vector3f::zero);
+		pellet->mRigid.mConfigs[0]._18 = Vector3f(0.0f);
+		s16 slot                       = pellet->getSpeicalSlot();
+		if (slot == -1) {
+			pellet->mPelletCarry->reset();
+		}
+	}
 
-lbl_801988B0:
-	lwz      r4, 0x30(r30)
-	addi     r3, r1, 0x1c
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 0x1c(r1)
-	li       r4, 0
-	lfs      f2, 0x20(r1)
-	li       r0, -1
-	lfs      f1, 0x24(r1)
-	stw      r4, 0x60(r1)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stw      r4, 0x5c(r1)
-	stb      r4, 0x50(r1)
-	sth      r0, 0x58(r1)
-	stw      r4, 0x54(r1)
-	stfs     f3, 0x44(r1)
-	stfs     f2, 0x48(r1)
-	stfs     f1, 0x4c(r1)
-	lbz      r0, 0x48(r3)
-	lwz      r3, 4(r30)
-	cmplwi   r0, 0
-	stfs     f3, 0x38(r1)
-	lha      r3, 0x18c(r3)
-	stfs     f2, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	beq      lbl_80198964
-	lfs      f0, lbl_80518F64@sda21(r2)
-	stfs     f3, 0x28(r1)
-	stfs     f2, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	lwz      r3, 0x30(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80198958
-	lfs      f0, lbl_80518F64@sda21(r2)
-	stfs     f0, 0x34(r1)
+	Vector3f pelletPos = mPellet->getPosition();
+	Game::WPEdgeSearchArg searchArg(pelletPos);
+	s16 roomIndex    = mParent->mRoomIndex;
+	Vector3f* posPtr = &pelletPos; // required to make pelletPos go on stack properly smh
+	if (Game::gameSystem->mIsInCave) {
+		Sys::Sphere sphere;
+		sphere.mPosition = pelletPos;
+		sphere.mRadius   = 1.0f;
+		if (mPellet->isPellet()) {
+			sphere.mRadius = 1.0f;
+		}
 
-lbl_80198958:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x28
-	bl       findRoomIndex__Q24Game10RoomMapMgrFRQ23Sys6Sphere
+		roomIndex = static_cast<Game::RoomMapMgr*>(Game::mapMgr)->findRoomIndex(sphere);
+	}
 
-lbl_80198964:
-	sth      r3, 0x58(r1)
-	lwz      r0, 0xc(r30)
-	stw      r0, 0x54(r1)
-	lwz      r3, 0x30(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80198994
-	li       r0, 1
-	stb      r0, 0x50(r1)
+	searchArg.mRoomID  = roomIndex;
+	searchArg.mHandles = mHandles;
 
-lbl_80198994:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x44
-	li       r29, 0
-	lwz      r3, 8(r3)
-	bl       getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801989D0
-	lwz      r3, 0x5c(r1)
-	lbz      r0, 0x34(r3)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_801989C8
-	mr       r29, r3
-	b        lbl_80198A24
+	if (mPellet->inWater()) {
+		searchArg.mInWater = true;
+	}
 
-lbl_801989C8:
-	lwz      r29, 0x60(r1)
-	b        lbl_80198A24
+	Game::WayPoint* startWP = nullptr;
+	if (Game::mapMgr->mRouteMgr->getNearestEdge(searchArg)) {
+		if (!searchArg.mWp1->isFlag(Game::WPF_Closed)) {
+			startWP = searchArg.mWp1;
+		} else {
+			startWP = searchArg.mWp2;
+		}
+	} else {
+		searchArg.mHandles = nullptr;
+		if (Game::mapMgr->mRouteMgr->getNearestEdge(searchArg)) {
+			if (searchArg.mWp1->isFlag(Game::WPF_Closed)) {
+				startWP = searchArg.mWp2;
+			} else {
+				startWP = searchArg.mWp1;
+			}
+		} else {
+			JUT_PANICLINE(925, "zannen !\n");
+		}
+	}
 
-lbl_801989D0:
-	li       r0, 0
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stw      r0, 0x54(r1)
-	addi     r4, r1, 0x44
-	lwz      r3, 8(r3)
-	bl       getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80198A10
-	lwz      r3, 0x5c(r1)
-	lbz      r0, 0x34(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80198A08
-	lwz      r29, 0x60(r1)
-	b        lbl_80198A24
+	JUT_ASSERTLINE(929, startWP, "start==0");
 
-lbl_80198A08:
-	mr       r29, r3
-	b        lbl_80198A24
+	mStartWPIndex = startWP->mIndex;
 
-lbl_80198A10:
-	addi     r3, r31, 0x34
-	addi     r5, r31, 0x78
-	li       r4, 0x39d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	_54               = startWP->mIndex;
+	Game::Onyon* goal = decideGoal();
+	JUT_ASSERTLINE(937, goal, "newgoal == 0");
 
-lbl_80198A24:
-	cmplwi   r29, 0
-	bne      lbl_80198A40
-	addi     r3, r31, 0x34
-	addi     r5, r31, 0x84
-	li       r4, 0x3a1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (goal && mPellet->isPellet()) {
+		mPellet->setCarryColor(goal->mOnyonType);
+	}
 
-lbl_80198A40:
-	lha      r0, 0x36(r29)
-	mr       r3, r30
-	sth      r0, 0x1c(r30)
-	lha      r0, 0x36(r29)
-	sth      r0, 0x54(r30)
-	bl       decideGoal__Q26PikiAI11ActPathMoveFv
-	or.      r29, r3, r3
-	bne      lbl_80198A74
-	addi     r3, r31, 0x34
-	addi     r5, r31, 0x90
-	li       r4, 0x3a9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (goal != mOnyon) {
+		mGoalWPIndex  = goal->mGoalWayPoint->mIndex;
+		mGoalPosition = goal->getGoalPos();
+		mOnyon        = goal;
+		if (_20) {
+			Game::testPathfinder->release(_20);
+		}
+		mState = PATHMOVE_Pathfinding;
 
-lbl_80198A74:
-	cmplwi   r29, 0
-	beq      lbl_80198AA4
-	lwz      r3, 0x30(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80198AA4
-	lwz      r3, 0x30(r30)
-	lhz      r4, 0x22e(r29)
-	bl       setCarryColor__Q24Game6PelletFi
+		u8 flag = 1;
+		if (isAllBlue()) {
+			flag |= 0x2;
+		}
 
-lbl_80198AA4:
-	lwz      r0, 0x34(r30)
-	cmplw    r29, r0
-	beq      lbl_80198BA0
-	lwz      r5, 0x23c(r29)
-	mr       r4, r29
-	addi     r3, r1, 0x10
-	lha      r0, 0x36(r5)
-	sth      r0, 0x56(r30)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x198(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x24(r30)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0x28(r30)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x2c(r30)
-	stw      r29, 0x34(r30)
-	lwz      r4, 0x20(r30)
-	cmplwi   r4, 0
-	beq      lbl_80198B04
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	bl       release__Q24Game10PathfinderFUl
+		flag |= 0x4;
+		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
+			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
+				flag |= 0x60;
+			} else {
+				flag |= 0x50;
+			}
+		}
 
-lbl_80198B04:
-	li       r0, 0
-	mr       r3, r30
-	sth      r0, 0x1e(r30)
-	li       r29, 1
-	bl       isAllBlue__Q26PikiAI11ActPathMoveFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80198B28
-	ori      r0, r29, 2
-	clrlwi   r29, r0, 0x18
-
-lbl_80198B28:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	ori      r0, r29, 4
-	clrlwi   r29, r0, 0x18
-	cmplwi   r3, 0
-	beq      lbl_80198B6C
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_80198B6C
-	lwz      r3, 0x34(r30)
-	lhz      r0, 0x22e(r3)
-	cmplwi   r0, 0
-	bne      lbl_80198B64
-	ori      r0, r29, 0x60
-	clrlwi   r29, r0, 0x18
-	b        lbl_80198B6C
-
-lbl_80198B64:
-	ori      r0, r29, 0x50
-	clrlwi   r29, r0, 0x18
-
-lbl_80198B6C:
-	lha      r5, 0x56(r30)
-	addi     r4, r1, 8
-	lha      r0, 0x54(r30)
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	sth      r0, 8(r1)
-	sth      r5, 0xa(r1)
-	stb      r29, 0xc(r1)
-	bl       start__Q24Game10PathfinderFRQ24Game15PathfindRequest
-	stw      r3, 0x20(r30)
-	li       r0, 0
-	stw      r0, 0x50(r30)
-	stw      r0, 0x40(r30)
-	stw      r0, 0x48(r30)
-
-lbl_80198BA0:
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	lwz      r29, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+		Game::PathfindRequest request(_54, mGoalWPIndex, flag);
+		_20 = Game::testPathfinder->start(request);
+		_50 = 0;
+		_40 = 0;
+		_48 = nullptr;
+	}
 }
 
 /*
@@ -1806,8 +1643,9 @@ Game::Onyon* ActPathMove::decideGoal()
 int ActPathMove::exec()
 {
 	if (_6C == 0) {
-		if (mPellet->mPelletCarry->pullable(0, mPellet->getTotalCarryPikmins())) {
-			mPellet->startPick();
+		Game::Pellet* pellet = mPellet;
+		if (pellet->mPelletCarry->pullable(0, pellet->getTotalCarryPikmins())) {
+			pellet->startPick();
 			if (_20 != 0) {
 				Game::testPathfinder->release(_20);
 				_20 = 0;
@@ -1818,111 +1656,18 @@ int ActPathMove::exec()
 		}
 		return ACTEXEC_Continue;
 	}
-	switch (_1E) {
-	case 0:
+	switch (mState) {
+	case PATHMOVE_Pathfinding:
 		return execPathfinding();
-	case 1:
+	case PATHMOVE_Move:
 		return execMove();
-	case 2:
+	case PATHMOVE_MoveGoal:
 		return execMoveGoal();
-	case 3:
+	case PATHMOVE_MoveGuru:
 		return execMoveGuru();
 	default:
 		return ACTEXEC_Continue;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lbz      r0, 0x6c(r3)
-	cmplwi   r0, 0
-	bne      lbl_80198CCC
-	lwz      r31, 0x30(r30)
-	mr       r3, r31
-	bl       getTotalCarryPikmins__Q24Game6PelletFv
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	li       r4, 0
-	lfd      f1, lbl_80518FA8@sda21(r2)
-	stw      r0, 8(r1)
-	lwz      r3, 0x334(r31)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f1
-	bl       pullable__Q24Game11PelletCarryFUsf
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80198CC4
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x148(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x20(r30)
-	cmplwi   r4, 0
-	beq      lbl_80198CA8
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	bl       release__Q24Game10PathfinderFUl
-	li       r0, 0
-	stw      r0, 0x20(r30)
-
-lbl_80198CA8:
-	li       r3, 1
-	li       r0, 0
-	stb      r3, 0x6c(r30)
-	mr       r3, r30
-	li       r4, 1
-	stw      r0, 0x34(r30)
-	bl       initPathfinding__Q26PikiAI11ActPathMoveFb
-
-lbl_80198CC4:
-	li       r3, 1
-	b        lbl_80198D1C
-
-lbl_80198CCC:
-	lhz      r0, 0x1e(r30)
-	cmpwi    r0, 2
-	beq      lbl_80198D08
-	bge      lbl_80198CEC
-	cmpwi    r0, 0
-	beq      lbl_80198CF8
-	bge      lbl_80198D00
-	b        lbl_80198D18
-
-lbl_80198CEC:
-	cmpwi    r0, 4
-	bge      lbl_80198D18
-	b        lbl_80198D10
-
-lbl_80198CF8:
-	bl       execPathfinding__Q26PikiAI11ActPathMoveFv
-	b        lbl_80198D1C
-
-lbl_80198D00:
-	bl       execMove__Q26PikiAI11ActPathMoveFv
-	b        lbl_80198D1C
-
-lbl_80198D08:
-	bl       execMoveGoal__Q26PikiAI11ActPathMoveFv
-	b        lbl_80198D1C
-
-lbl_80198D10:
-	bl       execMoveGuru__Q26PikiAI11ActPathMoveFv
-	b        lbl_80198D1C
-
-lbl_80198D18:
-	li       r3, 1
-
-lbl_80198D1C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1932,8 +1677,9 @@ lbl_80198D1C:
  */
 int ActPathMove::execPathfinding()
 {
-	if (mPellet != nullptr) {
-		mPellet->mPelletCarry->pull(0, Vector3f::zero, mPellet->getTotalCarryPikmins());
+	Game::Pellet* pellet = mPellet;
+	if (pellet) {
+		pellet->mPelletCarry->pull(0, Vector3f::zero, pellet->getTotalCarryPikmins());
 	}
 	if (_20 == 0) {
 		return ACTEXEC_Fail;
@@ -1942,24 +1688,45 @@ int ActPathMove::execPathfinding()
 		return ACTEXEC_Fail;
 	}
 	_40++;
+
 	if (mPellet->isPellet()) {
-		if (mPellet->isPicked()) {
+		pellet = mPellet;
+		if (pellet->isPicked()) {
 			mPellet->setVelocity(Vector3f::zero);
-			mPellet->mRigid.mConfigs->mVelocity.x = 0.0f;
-			mPellet->mRigid.mConfigs->mVelocity.y = 0.0f;
-			mPellet->mRigid.mConfigs->mVelocity.z = 0.0f;
-			if (mPellet->getSpeicalSlot() == -1) {
-				mPellet->mPelletCarry->reset();
+			pellet->mRigid.mConfigs->_18 = Vector3f(0.0f);
+			if ((s16)pellet->getSpeicalSlot() == -1) {
+				pellet->mPelletCarry->reset();
 			}
 		}
 	}
+
 	switch (Game::testPathfinder->check(_20)) {
 	case 0:
-		_4C = Game::testPathfinder->makepath(_20, &_44);
-		_48 = _44;
-		_1E = 1;
+		_4C    = Game::testPathfinder->makepath(_20, &_44);
+		_48    = _44;
+		mState = PATHMOVE_Move;
 		crInit();
-		// TODO
+		Game::PathNode* startNode = _44;
+		s16 endIdx                = -1;
+		FOREACH_NODE(Game::PathNode, startNode, node) { endIdx = node->mWpIndex; }
+		char buf[10];
+		sprintf(buf, "%d->%d->...->%d", startNode->mWpIndex, startNode->mNext ? (char*)startNode->mNext->mWpIndex : "...", endIdx);
+		return ACTEXEC_Continue;
+	case 1:
+		if (_20) {
+			Game::testPathfinder->release(_20);
+		}
+		u8 flag = 0x6;
+		_50++;
+		mState = PATHMOVE_Pathfinding;
+		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
+			flag |= 0x40;
+		}
+
+		break;
+	case 2:
+		break;
+	case 3:
 		break;
 	}
 	return ACTEXEC_Continue;
@@ -3585,7 +3352,7 @@ Vector3f ActPathMove::crGetPoint(int idx)
 	}
 
 	if (idx >= _4C) {
-		return _24;
+		return mGoalPosition;
 	}
 
 	// breadbug crash happens in this loop.
@@ -3606,7 +3373,7 @@ Vector3f ActPathMove::crGetPoint(int idx)
 	}
 
 	Vector3f result = currWayPoint->mPosition;
-	Vector3f diff   = result - _24;
+	Vector3f diff   = result - mGoalPosition;
 	if (diff.x * diff.x + diff.y * diff.y + diff.z * diff.z > 0.0f) {
 		result = result;
 	}

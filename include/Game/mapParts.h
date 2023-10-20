@@ -279,7 +279,7 @@ struct RoomMapMgr : public MapMgr {
 	void makeRoom(char*, f32, f32, int, int, RoomLink*, ObjectLayoutInfo*);
 	void placeObjects();
 	void entryToMapRoomCellMgr();
-	void findRoomIndex(Sys::Sphere&);
+	s16 findRoomIndex(Sys::Sphere&);
 	void createGlobalCollision();
 	void makeOneRoom(f32, f32, f32, char*, s16, RoomLink*, ObjectLayoutInfo*);
 	void deleteTemp();

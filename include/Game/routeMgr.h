@@ -10,6 +10,7 @@
 
 struct Graphics;
 struct Plane;
+struct SlotHandles;
 
 namespace Game {
 enum WayPointFlags {
@@ -132,7 +133,7 @@ struct WPEdgeSearchArg {
 
 	Vector3f mStartPosition; // _00
 	bool mInWater;           // _0C
-	short* mHandles;         // _10
+	SlotHandles* mHandles;   // _10
 	s16 mRoomID;             // _14
 	WayPoint* mWp1;          // _18
 	WayPoint* mWp2;          // _1C
