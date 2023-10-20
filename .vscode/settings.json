@@ -38,6 +38,7 @@
     "osthread.h": "c",
     "osreboot.h": "c",
     "osreset.h": "c",
-    "osfastcast.h": "c"
+    "osfastcast.h": "c",
+    "*.cp": "cpp"
   }
 }

@@ -2,7 +2,6 @@
 #define _NMWEXCEPTION
 
 #include "types.h"
-#include "exception" //#include <exception>
 
 #ifdef __cplusplus
 extern "C" {

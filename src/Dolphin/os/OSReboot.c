@@ -11,7 +11,16 @@ extern u32 BOOT_REGION_END AT_ADDRESS(0x812FDFEC);   //(*(u32 *)0x812fdfec)
 extern void* __OSSavedRegionStart;
 extern void* __OSSavedRegionEnd;
 
-void* Header[8];
+typedef struct ApploaderHeader {
+	// total size: 0x20
+	char date[16];  // offset 0x0, size 0x10
+	u32 entry;      // offset 0x10, size 0x4
+	u32 size;       // offset 0x14, size 0x4
+	u32 rebootSize; // offset 0x18, size 0x4
+	u32 reserved2;  // offset 0x1C, size 0x4
+} ApploaderHeader;
+
+ApploaderHeader Header;
 
 /*
  * --INFO--
@@ -120,7 +129,7 @@ void __OSReboot(u32 resetCode, u32 bootDol)
 		}
 	}
 
-	DVDReadAbsAsyncPrio(&dvdCmd2, (void*)Header, 32, 0x2440, nullptr, 0);
+	DVDReadAbsAsyncPrio(&dvdCmd2, &Header, 32, 0x2440, nullptr, 0);
 	time1 = OSGetTime();
 	time2 = __OSBusClock;
 
@@ -128,8 +137,8 @@ void __OSReboot(u32 resetCode, u32 bootDol)
 		ReadApploader(time1, time2);
 	} while (DVDGetCommandBlockStatus(&dvdCmd2));
 
-	numBytes = OSRoundUp32B(Header[6]);
-	DVDReadAbsAsyncPrio(&dvdCmd3, (void*)(OS_BOOTROM_ADDR), numBytes, (u32)Header[5] + 0x20 + 0x2440, nullptr, 0);
+	numBytes = OSRoundUp32B(Header.size);
+	DVDReadAbsAsyncPrio(&dvdCmd3, (void*)(OS_BOOTROM_ADDR), numBytes, Header.entry + 0x20 + 0x2440, nullptr, 0);
 	time1 = OSGetTime();
 	time2 = __OSBusClock;
 
