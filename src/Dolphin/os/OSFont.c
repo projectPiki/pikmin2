@@ -370,11 +370,12 @@ u32 GetFontSize(u8* in)
  * Address:	800EE0A8
  * Size:	000058
  */
-u16 OSGetFontEncode()
+u16 OSGetFontEncode(void)
 {
-	static vu16 fontEncode = OS_FONT_ENCODE_NULL;
-
-	if (fontEncode > 1) {
+	static u16 fontEncode = OS_FONT_ENCODE_NULL;
+	if (fontEncode <= 1) { // use r3 dangit
+		return;
+	} else {
 		switch (__OSTVMode) {
 		case VI_NTSC:
 			fontEncode = (__VIRegs[VI_DTV_STAT] & 2) ? OS_FONT_ENCODE_SJIS : OS_FONT_ENCODE_ANSI;
