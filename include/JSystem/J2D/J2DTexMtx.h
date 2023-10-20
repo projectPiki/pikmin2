@@ -27,7 +27,19 @@ extern J2DTexMtxInfo const j2dDefaultTexMtxInfo;
  */
 struct J2DTexMtx {
 	J2DTexMtx() { mInfo = j2dDefaultTexMtxInfo; }
-	J2DTexMtx(const J2DTexMtxInfo& info) { mInfo = info; }
+	J2DTexMtx(const J2DTexMtxInfo& info)
+	{
+		mInfo.mCenter.x           = info.mCenter.x;
+		mInfo.mCenter.y           = info.mCenter.y;
+		mInfo.mCenter.z           = info.mCenter.z;
+		mInfo.mTexMtxType         = info.mTexMtxType;
+		mInfo.mTexMtxDCC          = info.mTexMtxDCC;
+		mInfo.mTextureSRTInfo._00 = info.mTextureSRTInfo._00;
+		mInfo.mTextureSRTInfo._04 = info.mTextureSRTInfo._04;
+		mInfo.mTextureSRTInfo._08 = info.mTextureSRTInfo._08;
+		mInfo.mTextureSRTInfo._0C = info.mTextureSRTInfo._0C;
+		mInfo.mTextureSRTInfo._10 = info.mTextureSRTInfo._10;
+	}
 
 	inline ~J2DTexMtx() { } // unused/inlined
 
@@ -37,7 +49,19 @@ struct J2DTexMtx {
 	void getTextureMtxMaya(const J2DTextureSRTInfo&, Mtx);
 
 	J2DTexMtxInfo& getTexMtxInfo() { return mInfo; }
-	void setTexMtxInfo(J2DTexMtxInfo info) { mInfo = info; }
+	void setTexMtxInfo(J2DTexMtxInfo info)
+	{
+		mInfo.mCenter.x           = info.mCenter.x;
+		mInfo.mCenter.y           = info.mCenter.y;
+		mInfo.mCenter.z           = info.mCenter.z;
+		mInfo.mTexMtxType         = info.mTexMtxType;
+		mInfo.mTexMtxDCC          = info.mTexMtxDCC;
+		mInfo.mTextureSRTInfo._00 = info.mTextureSRTInfo._00;
+		mInfo.mTextureSRTInfo._04 = info.mTextureSRTInfo._04;
+		mInfo.mTextureSRTInfo._08 = info.mTextureSRTInfo._08;
+		mInfo.mTextureSRTInfo._0C = info.mTextureSRTInfo._0C;
+		mInfo.mTextureSRTInfo._10 = info.mTextureSRTInfo._10;
+	}
 
 	J2DTexMtxInfo mInfo; // _00
 	Mtx mMtx;            // _24
