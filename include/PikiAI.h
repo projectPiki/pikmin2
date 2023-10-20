@@ -65,8 +65,8 @@ struct FindCondition : public Condition<CollPart> {
 struct SlotHandles {
 	inline SlotHandles() { _08 = 0; }
 
-	u8 _00[0x8]; // _00
-	s16 _08;     // _08
+	u16 _00[4]; // _00
+	s16 _08;    // _08
 };
 
 namespace PikiAI {
@@ -949,9 +949,10 @@ struct ActPathMove : public Action {
 	int execMoveGoal();
 	bool isAllBlue();
 	void carry(Vector3f&);
+	f32 getCarrySpeed();
 	int execMove();
 	int execMoveGuru();
-	void getWayPoint(int);
+	Game::WayPoint* getWayPoint(int);
 	Vector3f crGetPoint(int);
 	void contextCheck(int);
 	void crGetRadius(int);

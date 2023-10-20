@@ -16,7 +16,8 @@ void __GXXfVtxSpecs(void)
  * Size:	00026C
  */
 
-void GXSetVtxDesc(GXAttr attr, GXAttrType type) {
+void GXSetVtxDesc(GXAttr attr, GXAttrType type)
+{
 	switch (attr) {
 	case GX_VA_PNMTXIDX:
 		GX_BITFIELD_SET(__GXData->_014, 31, 1, type);
@@ -50,22 +51,22 @@ void GXSetVtxDesc(GXAttr attr, GXAttrType type) {
 		break;
 	case GX_VA_NRM:
 		if (type != GX_NONE) {
-			LOAD_GX_FIELD(0x4d4, u8) = TRUE;
-			LOAD_GX_FIELD(0x4d5, u8) = FALSE;
+			LOAD_GX_FIELD(0x4d4, u8)  = TRUE;
+			LOAD_GX_FIELD(0x4d5, u8)  = FALSE;
 			LOAD_GX_FIELD(0x4d0, u32) = type;
 		} else {
 			LOAD_GX_FIELD(0x4d4, u8) = 0;
 		}
 		break;
 	case GX_VA_NBT:
-        if (type != GX_NONE) {
-			LOAD_GX_FIELD(0x4d5, u8) = TRUE;
-			LOAD_GX_FIELD(0x4d4, u8) = FALSE;
+		if (type != GX_NONE) {
+			LOAD_GX_FIELD(0x4d5, u8)  = TRUE;
+			LOAD_GX_FIELD(0x4d4, u8)  = FALSE;
 			LOAD_GX_FIELD(0x4d0, u32) = type;
-        } else {
+		} else {
 			LOAD_GX_FIELD(0x4d5, u8) = 0;
-        }
-        break;
+		}
+		break;
 	case GX_VA_CLR0:
 		GX_BITFIELD_SET(__GXData->_014, 17, 2, type);
 		break;
@@ -97,9 +98,9 @@ void GXSetVtxDesc(GXAttr attr, GXAttrType type) {
 		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 16, 2, type);
 		break;
 	}
-	
+
 	if (LOAD_GX_FIELD(0x4d4, u8) != 0 || LOAD_GX_FIELD(0x4d5, u8) != 0) {
-			GX_BITFIELD_SET(LOAD_GX_FIELD(0x14, u32), 19, 2, LOAD_GX_FIELD(0x4d0, u32));
+		GX_BITFIELD_SET(LOAD_GX_FIELD(0x14, u32), 19, 2, LOAD_GX_FIELD(0x4d0, u32));
 	} else {
 		// __GXData->_014 &= ~0x3800;
 		GX_BITFIELD_SET(LOAD_GX_FIELD(0x14, u32), 19, 2, 0);

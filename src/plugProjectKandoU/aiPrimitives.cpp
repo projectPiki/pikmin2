@@ -7,11 +7,14 @@
 #include "Vector3.h"
 #include "PikiAI.h"
 #include "Game/pelletMgr.h"
+// #include "Game/pelletConfig.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/pathfinder.h"
 #include "Game/routeMgr.h"
 #include "Game/MapMgr.h"
 #include "Game/mapParts.h"
+#include "Game/Stickers.h"
+#include "Game/PikiParms.h"
 #include "nans.h"
 
 static const int unusedAiPrimArray[] = { 0, 0, 0 };
@@ -1709,7 +1712,7 @@ int ActPathMove::execPathfinding()
 		Game::PathNode* startNode = _44;
 		s16 endIdx                = -1;
 		FOREACH_NODE(Game::PathNode, startNode, node) { endIdx = node->mWpIndex; }
-		char buf[10];
+		char buf[256];
 		sprintf(buf, "%d->%d->...->%d", startNode->mWpIndex, startNode->mNext ? (char*)startNode->mNext->mWpIndex : "...", endIdx);
 		return ACTEXEC_Continue;
 	case 1:
@@ -1722,13 +1725,24 @@ int ActPathMove::execPathfinding()
 		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
 			flag |= 0x40;
 		}
+		if (_50 >= 2) {
+			flag |= 0x40;
+			if (_50 >= 3) {
+				_50 = 3;
+			}
+		}
 
-		break;
+		Game::PathfindRequest request(_54, mGoalWPIndex, flag);
+		_20 = Game::testPathfinder->start(request);
+		_40 = 0;
+		return ACTEXEC_Continue;
 	case 2:
 		break;
 	case 3:
+		JUT_PANICLINE(1201, "no handle %d\n", _20);
 		break;
 	}
+
 	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x130(r1)
@@ -1940,15 +1954,37 @@ lbl_80198FC8:
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0001AC
-//  */
-// void ActPathMove::getCarrySpeed()
-// {
-// 	// UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0001AC
+ */
+f32 ActPathMove::getCarrySpeed()
+{
+	f32 carryPower;
+	f32 maxFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mCarryMaxFactor.mValue; // f30
+	f32 minFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mCarryMinFactor.mValue; // f31
+
+	P2ASSERTLINE(1215, mPellet->mObjectTypeID == OBJTYPE_Pellet);
+
+	Game::Pellet* pellet = mPellet;
+	if (pellet->mPelletView && pellet->mPelletView->mCreature->isNavi()) {
+		return static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed();
+	} else if (Game::gameSystem->isVersusMode() && pellet->mPelletFlag == 3) {
+		return static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed();
+	}
+
+	maxFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * maxFactor;
+	minFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * minFactor;
+
+	int max = pellet->getPelletConfigMax();
+	int min = pellet->getPelletConfigMin();
+
+	carryPower = pellet->mCarryPower;
+	JUT_ASSERTLINE(1248, min, "max is 0 [%s]\n", pellet->mConfig->mParams.mName.mData);
+
+	return minFactor + (((1.0f + carryPower) - (f32)min) / (f32)max) * (maxFactor - minFactor);
+}
 
 /*
  * --INFO--
@@ -1957,6 +1993,44 @@ lbl_80198FC8:
  */
 int ActPathMove::execMoveGoal()
 {
+	Vector3f pelletPos = mPellet->getPosition();
+	Vector3f sep       = mGoalPosition - pelletPos; // 0x34
+	f32 sqrDistXZ      = sep.x * sep.x + sep.z * sep.z;
+	f32 dist           = sep.normalise();
+	if (dist == 0.0f) {
+		sep = Vector3f(0.0f);
+	}
+
+	if (sqrDistXZ < 100.0f) {
+		{ // this is so stickers gets deleted after the loop
+			Game::Stickers stickers(mPellet);
+			Iterator<Game::Creature> iter(&stickers);
+			CI_LOOP(iter) { (*iter)->movie_begin(false); }
+		}
+		mParent->finishMotion();
+		mParent->endStick();
+
+		{
+			Game::Stickers stickers(mPellet);
+			Iterator<Game::Creature> iter(&stickers);
+			CI_LOOP(iter)
+			{
+				Game::Creature* stuck = *iter;
+				if (stuck->isPiki()) {
+					stuck->endStick();
+				}
+			}
+
+			return ACTEXEC_Success;
+		}
+	}
+
+	f32 speed = getCarrySpeed();
+
+	sep.y = 0.0f;
+	sep *= speed;
+	carry(sep);
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -2453,59 +2527,11 @@ lbl_80199660:
 bool ActPathMove::isAllBlue()
 {
 	P2ASSERTLINE(1325, mPellet->mObjectTypeID == OBJTYPE_Pellet);
-	int count = mPellet->getPikmins(Game::Bulbmin);
-	count += mPellet->getPikmins(Game::Blue);
-	if (count == mPellet->getTotalPikmins()) {
+	Game::Pellet* pellet = mPellet;
+	if (pellet->getPikmins(Game::Blue) + pellet->getPikmins(Game::Bulbmin) == pellet->getTotalPikmins()) {
 		return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x30(r3)
-	lhz      r0, 0x128(r3)
-	cmplwi   r0, 0x401
-	beq      lbl_801996D0
-	lis      r3, lbl_8047F0A4@ha
-	lis      r5, lbl_8047F0B8@ha
-	addi     r3, r3, lbl_8047F0A4@l
-	li       r4, 0x52d
-	addi     r5, r5, lbl_8047F0B8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801996D0:
-	lwz      r30, 0x30(r30)
-	li       r4, 5
-	mr       r3, r30
-	bl       getPikmins__Q24Game6PelletFi
-	mr       r31, r3
-	mr       r3, r30
-	li       r4, 0
-	bl       getPikmins__Q24Game6PelletFi
-	add      r31, r3, r31
-	mr       r3, r30
-	bl       getTotalPikmins__Q24Game6PelletFv
-	cmpw     r3, r31
-	bne      lbl_8019970C
-	li       r3, 1
-	b        lbl_80199710
-
-lbl_8019970C:
-	li       r3, 0
-
-lbl_80199710:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2521,52 +2547,6 @@ void ActPathMove::carry(Vector3f& p1)
 		_6C = 0;
 		pellet->endPick(false);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r31, 0x30(r3)
-	mr       r3, r31
-	bl       getTotalCarryPikmins__Q24Game6PelletFv
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	mr       r5, r30
-	lfd      f1, lbl_80518FA8@sda21(r2)
-	li       r4, 0
-	stw      r0, 8(r1)
-	lwz      r3, 0x334(r31)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f1
-	bl       "pull__Q24Game11PelletCarryFUsR10Vector3<f>f"
-	lbz      r0, 0x6c(r29)
-	cmplwi   r0, 0
-	beq      lbl_801997B4
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801997B4
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x6c(r29)
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801997B4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -2576,6 +2556,63 @@ lbl_801997B4:
  */
 int ActPathMove::execMove()
 {
+	f32 speed = getCarrySpeed();
+	crMove();
+	_B0.y = 0.0f;
+	_B0.normalise();
+	_B0 *= speed;
+
+	Game::Pellet* pellet = mPellet;
+	bool pullCheck       = pellet->mPelletCarry->pull(0, _B0, pellet->getTotalCarryPikmins());
+	if (_6C && !pullCheck) {
+		_6C = 0;
+		pellet->endPick(false);
+	}
+
+	if (mPellet->isPellet()) {
+		pellet = mPellet;
+		// Vector3f pelletPos = pellet->getPosition();
+		Vector3f sep = pellet->getPosition() - _10;
+		f32 dist     = sep.length(); // f30
+		_10          = sep;
+		if (pellet->getWallTimer() > 99 && dist < 1.0f) {
+			pellet->mWallTimer = 0;
+			mOnyon             = nullptr;
+			if (_20) {
+				Game::testPathfinder->release(_20);
+				_20 = 0;
+			}
+
+			mHandles->_08        = 0;
+			SlotHandles* handles = mHandles;
+			s16 wpIdx            = mStartWPIndex;
+			bool handleCheck;
+			if (wpIdx != -1 && handles->_08 < 4) {
+				s16 prevHandle = handles->_08;
+				handles->_08++;
+				handleCheck              = true;
+				handles->_00[prevHandle] = wpIdx;
+			} else {
+				handleCheck = false;
+			}
+
+			if (!handleCheck) {
+				s16 prevHandle       = mHandles->_08;
+				mHandles->_08        = 0;
+				SlotHandles* handles = mHandles;
+				s16 wpIdx            = mStartWPIndex;
+				if (wpIdx != -1 && handles->_08 < 4) {
+					s16 prevHandle = handles->_08;
+					handles->_08++;
+					handles->_00[prevHandle] = wpIdx;
+				}
+			}
+
+			initPathfinding(false);
+		}
+	}
+
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2904,6 +2941,26 @@ void ActPathMove::cleanup()
  */
 int ActPathMove::execMoveGuru()
 {
+	if (!_64->isFlag(Game::WPF_Closed)) {
+		mState = PATHMOVE_Move;
+		return ACTEXEC_Continue;
+	}
+
+	int wpId = _70;
+	Vector3f moveVec;
+	if (wpId >= 0) {
+		Game::WayPoint* wp = getWayPoint(wpId);
+		Vector3f sep       = _64->mPosition - wp->mPosition;
+		f32 dist           = sep.normalise() - 160.0f;
+		if (dist < 0.0f) {
+			dist = 0.0f;
+		}
+		Vector3f vec(dist, 160.0f, 0.0f);
+		moveVec = wp->mPosition + vec;
+	} else {
+		moveVec = _58;
+	}
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -3275,7 +3332,7 @@ lbl_8019A144:
  * Address:	8019A170
  * Size:	0000B8
  */
-void ActPathMove::getWayPoint(int)
+Game::WayPoint* ActPathMove::getWayPoint(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
