@@ -7,7 +7,6 @@
 #include "Vector3.h"
 #include "PikiAI.h"
 #include "Game/pelletMgr.h"
-// #include "Game/pelletConfig.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/pathfinder.h"
 #include "Game/routeMgr.h"
@@ -2950,17 +2949,49 @@ int ActPathMove::execMoveGuru()
 	Vector3f moveVec;
 	if (wpId >= 0) {
 		Game::WayPoint* wp = getWayPoint(wpId);
-		Vector3f sep       = _64->mPosition - wp->mPosition;
+		Vector3f wpPos     = wp->mPosition;
+		Vector3f sep       = _64->mPosition - wpPos;
 		f32 dist           = sep.normalise() - 160.0f;
 		if (dist < 0.0f) {
 			dist = 0.0f;
 		}
-		Vector3f vec(dist, 160.0f, 0.0f);
-		moveVec = wp->mPosition + vec;
+
+		moveVec = wp->mPosition + sep * dist;
 	} else {
 		moveVec = _58;
 	}
 
+	_68 += PI * sys->mDeltaTime;
+	if (_68 > TAU) {
+		_68 -= TAU;
+	}
+
+	Vector3f dir = getDirection(_68);
+	dir *= 10.0f;
+	Vector3f pullDir = dir + moveVec;
+
+	Vector3f pelletPos = mPellet->getPosition();
+	pullDir -= pelletPos;
+	pullDir.y = 0.0f;
+	f32 dist  = pullDir.normalise();
+
+	if (dist == 0.0f) {
+		pullDir = Vector3f(0.0f);
+	}
+
+	f32 carrySpeed = getCarrySpeed();
+
+	pullDir *= carrySpeed / 2;
+
+	Game::Pellet* pellet = mPellet;
+	bool pullCheck       = pellet->mPelletCarry->pull(0, pullDir, pellet->getTotalCarryPikmins());
+
+	if (_6C && !pullCheck) {
+		_6C = 0;
+		pellet->endPick(false);
+	}
+
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -3332,68 +3363,18 @@ lbl_8019A144:
  * Address:	8019A170
  * Size:	0000B8
  */
-Game::WayPoint* ActPathMove::getWayPoint(int)
+Game::WayPoint* ActPathMove::getWayPoint(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x48(r3)
-	ble      lbl_8019A1EC
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_8019A1D4
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_8019A1D4
+	Game::PathNode* node = _48;
+	for (int i = 0; i < count; i++) {
+		node = node->mNext;
+	}
 
-lbl_8019A1AC:
-	lwz      r3, 0xc(r5)
-	addi     r6, r6, 8
-	lwz      r3, 0xc(r3)
-	lwz      r3, 0xc(r3)
-	lwz      r3, 0xc(r3)
-	lwz      r3, 0xc(r3)
-	lwz      r3, 0xc(r3)
-	lwz      r3, 0xc(r3)
-	lwz      r5, 0xc(r3)
-	bdnz     lbl_8019A1AC
+	if (node) {
+		return Game::mapMgr->mRouteMgr->getWayPoint(node->mWpIndex);
+	}
 
-lbl_8019A1D4:
-	subf     r0, r6, r4
-	mtctr    r0
-	cmpw     r6, r4
-	bge      lbl_8019A1EC
-
-lbl_8019A1E4:
-	lwz      r5, 0xc(r5)
-	bdnz     lbl_8019A1E4
-
-lbl_8019A1EC:
-	cmplwi   r5, 0
-	beq      lbl_8019A214
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x20(r5)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8019A218
-
-lbl_8019A214:
-	li       r3, 0
-
-lbl_8019A218:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -3412,18 +3393,8 @@ Vector3f ActPathMove::crGetPoint(int idx)
 		return mGoalPosition;
 	}
 
-	// breadbug crash happens in this loop.
-	Game::PathNode* currPathNode = _48;
-	for (int i = 0; i < idx; i++) {
-		currPathNode = currPathNode->mNext;
-	}
-
-	if (currPathNode) {
-		Game::RouteMgr* routeMgr = Game::mapMgr->mRouteMgr;
-		currWayPoint             = routeMgr->getWayPoint(currPathNode->mWpIndex);
-	} else {
-		currWayPoint = nullptr;
-	}
+	// // breadbug crash happens in this inline.
+	currWayPoint = getWayPoint(idx);
 
 	if (!currWayPoint) {
 		return Vector3f::zero;
@@ -3431,138 +3402,8 @@ Vector3f ActPathMove::crGetPoint(int idx)
 
 	Vector3f result = currWayPoint->mPosition;
 	Vector3f diff   = result - mGoalPosition;
-	if (diff.x * diff.x + diff.y * diff.y + diff.z * diff.z > 0.0f) {
-		result = result;
-	}
+	diff.length(); // unused
 	return result;
-
-	// Vector3f result = currWayPoint->mPosition;
-	// if (SQUARE(result.y - _24.y) + sqrDistanceXZ(result, _24) > 0.0f) {
-	// 	result = result;
-	// }
-	// return result;
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	bge      lbl_8019A268
-	lfs      f0, 0xa4(r30)
-	stfs     f0, 0(r31)
-	lfs      f0, 0xa8(r30)
-	stfs     f0, 4(r31)
-	lfs      f0, 0xac(r30)
-	stfs     f0, 8(r31)
-	b        lbl_8019A39C
-
-lbl_8019A268:
-	lwz      r0, 0x4c(r30)
-	cmpw     r5, r0
-	blt      lbl_8019A290
-	lfs      f0, 0x24(r30)
-	stfs     f0, 0(r31)
-	lfs      f0, 0x28(r30)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x2c(r30)
-	stfs     f0, 8(r31)
-	b        lbl_8019A39C
-
-lbl_8019A290:
-	cmpwi    r5, 0
-	lwz      r6, 0x48(r30)
-	li       r3, 0
-	ble      lbl_8019A300
-	cmpwi    r5, 8
-	addi     r4, r5, -8
-	ble      lbl_8019A2E8
-	addi     r0, r4, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r4, 0
-	ble      lbl_8019A2E8
-
-lbl_8019A2C0:
-	lwz      r4, 0xc(r6)
-	addi     r3, r3, 8
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r4, 0xc(r4)
-	lwz      r6, 0xc(r4)
-	bdnz     lbl_8019A2C0
-
-lbl_8019A2E8:
-	subf     r0, r3, r5
-	mtctr    r0
-	cmpw     r3, r5
-	bge      lbl_8019A300
-
-lbl_8019A2F8:
-	lwz      r6, 0xc(r6)
-	bdnz     lbl_8019A2F8
-
-lbl_8019A300:
-	cmplwi   r6, 0
-	beq      lbl_8019A328
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x20(r6)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8019A32C
-
-lbl_8019A328:
-	li       r3, 0
-
-lbl_8019A32C:
-	cmplwi   r3, 0
-	bne      lbl_8019A354
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfsu     f0, "zero__10Vector3<f>"@l(r3)
-	stfs     f0, 0(r31)
-	lfs      f0, 4(r3)
-	stfs     f0, 4(r31)
-	lfs      f0, 8(r3)
-	stfs     f0, 8(r31)
-	b        lbl_8019A39C
-
-lbl_8019A354:
-	lfs      f5, 0x50(r3)
-	lfs      f0, 0x28(r30)
-	lfs      f4, 0x4c(r3)
-	fsubs    f3, f5, f0
-	lfs      f0, 0x24(r30)
-	lfs      f6, 0x54(r3)
-	lfs      f1, 0x2c(r30)
-	fsubs    f2, f4, f0
-	fmuls    f7, f3, f3
-	fsubs    f3, f6, f1
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fmadds   f1, f2, f2, f7
-	fmuls    f2, f3, f3
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	stfs     f4, 0(r31)
-	stfs     f5, 4(r31)
-	stfs     f6, 8(r31)
-
-lbl_8019A39C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -5586,182 +5427,46 @@ ActStickAttack::ActStickAttack(Game::Piki* p)
  */
 void ActStickAttack::init(ActionArg* settings)
 {
-	P2ASSERTLINE(2331, checkArg(settings, "StickAttackActionArg"));
+	bool isStickArg = false;
+	if (settings) {
+		bool strCheck = strcmp("StickAttackActionArg", settings->getName()) == 0;
+		if (strCheck) {
+			isStickArg = true;
+		}
+	}
+	P2ASSERTLINE(2331, isStickArg);
 	StickAttackActionArg* arg = static_cast<StickAttackActionArg*>(settings);
 
 	mCreature = arg->mCreature;
-	_14       = arg->mAttackDamage;
-	_1D       = arg->_10;
-	mStateID  = 27;
+	mDamage   = arg->mAttackDamage;
+	mObjType  = arg->mObjType;
+	mAnimIdx  = Game::IPikiAnims::KUTTUKU;
 	if (mParent->isStickTo()) {
-		mParent->startMotion(27, 27, this, nullptr);
-		_19 = 1;
+		mParent->startMotion(Game::IPikiAnims::KUTTUKU, Game::IPikiAnims::KUTTUKU, this, nullptr);
+		mIsInitialStick = true;
+
 	} else {
-		if (arg->mNextState == -1) {
-			mParent->startMotion(27, 27, this, nullptr);
-			_19 = 0;
+		int animIdx = arg->mAnimIdx;
+		if (animIdx == -1) {
+			mParent->startMotion(Game::IPikiAnims::KUTTUKU, Game::IPikiAnims::KUTTUKU, this, nullptr);
+			mIsInitialStick = false;
 		} else {
-			mStateID = arg->mNextState;
-			mParent->startMotion(arg->mNextState, arg->mNextState, this, nullptr);
-			_19 = 0;
+			mAnimIdx = animIdx;
+			mParent->startMotion(animIdx, animIdx, this, nullptr);
+			mIsInitialStick = false;
 		}
 	}
-	_18                = 0;
-	_1A                = 0;
-	_1B                = 0;
-	_1C                = 0;
-	mParent->mVelocity = 0.0f;
+
+	mIsAttackReady      = false;
+	mIsAnimFinished     = false;
+	mHasAttacked        = false;
+	mIsAttackSuccessful = false;
+	mParent->mVelocity  = Vector3f(0.0f);
 	if (mParent->doped()) {
 		mParent->startSound(mCreature, PSSE_PK_VC_DOPE_ATTACK, true);
 	} else {
 		mParent->startSound(mCreature, PSSE_PK_VC_ATTACK, true);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	or.      r28, r4, r4
-	lis      r4, lbl_8047F070@ha
-	addi     r30, r4, lbl_8047F070@l
-	beq      lbl_8019BD98
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r30, 0xd0
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	beq      lbl_8019BD98
-	li       r29, 1
-
-lbl_8019BD98:
-	clrlwi.  r0, r29, 0x18
-	bne      lbl_8019BDB4
-	addi     r3, r30, 0x34
-	addi     r5, r30, 0x48
-	li       r4, 0x91b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8019BDB4:
-	lwz      r3, 8(r28)
-	li       r0, 0x1b
-	stw      r3, 0x10(r31)
-	lfs      f0, 4(r28)
-	stfs     f0, 0x14(r31)
-	lbz      r3, 0x10(r28)
-	stb      r3, 0x1d(r31)
-	stw      r0, 0x20(r31)
-	lwz      r3, 4(r31)
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019BE20
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_8019BDF4
-	lwz      r6, 0xc(r31)
-
-lbl_8019BDF4:
-	lwz      r3, 4(r31)
-	li       r4, 0x1b
-	li       r5, 0x1b
-	li       r7, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stb      r0, 0x19(r31)
-	b        lbl_8019BEA0
-
-lbl_8019BE20:
-	lwz      r4, 0xc(r28)
-	cmpwi    r4, -1
-	bne      lbl_8019BE68
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_8019BE3C
-	lwz      r6, 0xc(r31)
-
-lbl_8019BE3C:
-	lwz      r3, 4(r31)
-	li       r4, 0x1b
-	li       r5, 0x1b
-	li       r7, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x19(r31)
-	b        lbl_8019BEA0
-
-lbl_8019BE68:
-	cmplwi   r31, 0
-	stw      r4, 0x20(r31)
-	mr       r6, r31
-	beq      lbl_8019BE7C
-	lwz      r6, 0xc(r31)
-
-lbl_8019BE7C:
-	lwz      r3, 4(r31)
-	mr       r5, r4
-	li       r7, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x19(r31)
-
-lbl_8019BEA0:
-	li       r0, 0
-	lfs      f0, lbl_80518F60@sda21(r2)
-	stb      r0, 0x18(r31)
-	stb      r0, 0x1a(r31)
-	stb      r0, 0x1b(r31)
-	stb      r0, 0x1c(r31)
-	lwz      r3, 4(r31)
-	stfs     f0, 0x1e4(r3)
-	stfs     f0, 0x1e8(r3)
-	stfs     f0, 0x1ec(r3)
-	lwz      r3, 4(r31)
-	bl       doped__Q24Game4PikiFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019BEF0
-	lwz      r3, 4(r31)
-	li       r5, 0x2852
-	lwz      r4, 0x10(r31)
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	b        lbl_8019BF04
-
-lbl_8019BEF0:
-	lwz      r3, 4(r31)
-	li       r5, 0x2806
-	lwz      r4, 0x10(r31)
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-
-lbl_8019BF04:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -5771,29 +5476,42 @@ lbl_8019BF04:
  */
 int ActStickAttack::exec()
 {
+	// target is dead
 	if (!mCreature->isAlive()) {
 		mParent->endStick();
 		return ACTEXEC_Success;
 	}
-	if (_1A != 0) {
+
+	// animation is done
+	if (mIsAnimFinished) {
 		return ACTEXEC_Fail;
 	}
-	if (!mParent->assertMotion(mStateID)) {
+
+	// piki no longer in correct animation
+	if (!mParent->assertMotion(mAnimIdx)) {
 		return ACTEXEC_Fail;
 	}
-	if (_19 != 0 && !mParent->isStickTo()) {
+
+	// piki has fallen off
+	if (mIsInitialStick && !mParent->isStickTo()) {
 		return ACTEXEC_Fail;
 	}
-	if (_18 != 0 && _1B == 0) {
-		Game::InteractAttack interaction(mParent, _14, mParent->mStuckCollPart);
+
+	// do an attack
+	if (mIsAttackReady && !mHasAttacked) {
+		Game::InteractAttack attack(mParent, mDamage, mParent->mStuckCollPart);
+		// wild pikmin do no damage
 		if (mParent->isZikatu()) {
-			interaction.mDamage = 0.0f;
+			attack.mDamage = 0.0f;
 		}
-		_1B = 1;
-		if (mCreature->stimulate(interaction)) {
-			_1C = 1;
+		// don't attack again this animation
+		mHasAttacked = true;
+
+		// do attack
+		if (mCreature->stimulate(attack)) {
+			mIsAttackSuccessful = true;
 		} else {
-			_1C = 0;
+			mIsAttackSuccessful = false;
 			mParent->startSound(mCreature, PSSE_PK_SE_KARABURI, true);
 		}
 	}
@@ -5807,35 +5525,39 @@ int ActStickAttack::exec()
  */
 void ActStickAttack::createEfx()
 {
-	if (_1C == 0) {
-		Vector3f pos(mParent->mLeafStemOffset.x, mParent->mLeafStemOffset.y, mParent->mLeafStemOffset.z);
+	if (!mIsAttackSuccessful) {
+		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
 		efx::createSimpleInattack(pos);
 		return;
 	}
-	switch (_1D) {
-	case 0:
-	case 7:
-		if (_1D != 7) {
+	switch (mObjType) {
+	case STICKATK_Default:
+	case STICKATK_Rock:
+		if (mObjType != STICKATK_Rock) {
 			if (mParent->doped()) {
 				efx::TPkAttackDP effect;
+				Vector3f offset = mParent->mLeafStemOffset;
 				efx::Arg effectArg;
-				effectArg.mPosition = mParent->mLeafStemOffset;
+				effectArg.mPosition = offset;
 				effect.create(&effectArg);
+
 			} else {
 				efx::PikiDamage effect;
+				Vector3f offset = mParent->mLeafStemOffset;
 				efx::Arg effectArg;
-				effectArg.mPosition = Vector3f(mParent->mLeafStemOffset.x, mParent->mLeafStemOffset.y, mParent->mLeafStemOffset.z);
+				effectArg.mPosition = offset;
 				effect.create(&effectArg);
 			}
 		}
 		mParent->startSound(mCreature, PSSE_PK_SE_ATTACKHIT, true);
 		break;
-	case 4: {
-		Vector3f pos(mParent->mLeafStemOffset.x, mParent->mLeafStemOffset.y, mParent->mLeafStemOffset.z);
-		if (Game::BaseHIOParms::sMabikiEfx != false && mCreature->getMabiki() != nullptr) {
+
+	case STICKATK_Bridge: {
+		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
+		if (Game::BaseHIOParms::sMabikiEfx && mCreature->getMabiki()) {
 			Game::Mabiki* mabiki = mCreature->getMabiki();
-			f32 v1               = (100 - mabiki->mCounter) / 100.0f;
-			if (randFloat() <= v1) {
+			f32 fxChance         = (100 - mabiki->mCounter) / 100.0f;
+			if (randFloat() <= fxChance) {
 				efx::createSimpleBridgeAttack(pos);
 				mabiki->mBuffer++;
 				mParent->startSound(mCreature, PSSE_PK_SE_HIT_BRIDGE, PSGame::SeMgr::SETSE_PikiWorking);
@@ -5845,12 +5567,13 @@ void ActStickAttack::createEfx()
 		}
 		break;
 	}
-	case 2: {
-		Vector3f pos(mParent->mLeafStemOffset.x, mParent->mLeafStemOffset.y, mParent->mLeafStemOffset.z);
-		if (Game::BaseHIOParms::sMabikiEfx != false && mCreature->getMabiki() != nullptr) {
+
+	case STICKATK_BlackGate: {
+		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
+		if (Game::BaseHIOParms::sMabikiEfx && mCreature->getMabiki()) {
 			Game::Mabiki* mabiki = mCreature->getMabiki();
-			f32 v1               = (100 - mabiki->mCounter) / 100.0f;
-			if (randFloat() <= v1) {
+			f32 fxChance         = (100 - mabiki->mCounter) / 100.0f;
+			if (randFloat() <= fxChance) {
 				efx::createSimpleGate2Attack(pos);
 				mParent->startSound(mCreature, PSSE_PK_SE_HIT_HARDWALL, PSGame::SeMgr::SETSE_PikiWorking);
 				mabiki->mBuffer++;
@@ -5860,12 +5583,13 @@ void ActStickAttack::createEfx()
 		}
 		break;
 	}
-	case 1: {
-		Vector3f pos(mParent->mLeafStemOffset.x, mParent->mLeafStemOffset.y, mParent->mLeafStemOffset.z);
-		if (Game::BaseHIOParms::sMabikiEfx != false && mCreature->getMabiki() != nullptr) {
+
+	case STICKATK_WhiteGate: {
+		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
+		if (Game::BaseHIOParms::sMabikiEfx && mCreature->getMabiki()) {
 			Game::Mabiki* mabiki = mCreature->getMabiki();
-			f32 v1               = (100 - mabiki->mCounter) / 100.0f;
-			if (randFloat() <= v1) {
+			f32 fxChance         = (100 - mabiki->mCounter) / 100.0f;
+			if (randFloat() <= fxChance) {
 				efx::createSimpleGate1Attack(pos);
 				mParent->startSound(mCreature, PSSE_PK_SE_HIT_SOFTWALL, PSGame::SeMgr::SETSE_PikiWorking);
 				mabiki->mBuffer++;
@@ -5875,12 +5599,13 @@ void ActStickAttack::createEfx()
 		}
 		break;
 	}
-	case 3: {
-		Vector3f pos(mParent->mLeafStemOffset.x, mParent->mLeafStemOffset.y, mParent->mLeafStemOffset.z);
-		if (Game::BaseHIOParms::sMabikiEfx != false && mCreature->getMabiki() != nullptr) {
+
+	case STICKATK_ElecGate: {
+		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
+		if (Game::BaseHIOParms::sMabikiEfx && mCreature->getMabiki()) {
 			Game::Mabiki* mabiki = mCreature->getMabiki();
-			f32 v1               = (100 - mabiki->mCounter) / 100.0f;
-			if (randFloat() <= v1) {
+			f32 fxChance         = (100 - mabiki->mCounter) / 100.0f;
+			if (randFloat() <= fxChance) {
 				efx::createSimpleGate3Attack(pos);
 				mParent->startSound(mCreature, PSSE_PK_SE_HIT_ELEC_GATE, PSGame::SeMgr::SETSE_PikiWorking);
 				mabiki->mBuffer++;
@@ -5890,476 +5615,30 @@ void ActStickAttack::createEfx()
 		}
 		break;
 	}
-	case 5: {
-		// Vector3f pos;
-		// pos.y = mParent->mLeafStemOffset.y;
-		// pos.z = mParent->mLeafStemOffset.z;
-		// pos.x = mParent->mLeafStemOffset.x;
-		Vector3f pos(mParent->mLeafStemOffset.x, mParent->mLeafStemOffset.y, mParent->mLeafStemOffset.z);
+
+	case STICKATK_BreakStone: {
+		Vector3f pos = Vector3f(mParent->mLeafStemOffset);
 		efx::createSimpleStoneAttack(pos);
 		if (mCreature->mObjectTypeID == OBJTYPE_Barrel) {
 			mParent->startSound(mCreature, PSSE_PK_SE_HIT_CONCRETEWALL, PSGame::SeMgr::SETSE_PikiWorking);
-		} else if (mCreature->mObjectTypeID == OBJTYPE_Weed) {
+
+		} else if (mCreature->mObjectTypeID == OBJTYPE_Weed) { // aiWeed uses FlockAttack not StickAttack, don't think this can happen
 			mParent->startSound(mCreature, PSSE_EV_WORK_STONE_BREAK, true);
+
 		} else if (mCreature->mObjectTypeID == OBJTYPE_BigFountain) {
 			mParent->startSound(mCreature, PSSE_PK_SE_HIT_FOUNTAIN, PSGame::SeMgr::SETSE_PikiWorking);
 		}
 		break;
 	}
-	case 6:
+
+	case STICKATK_Treasure:
 		efx::createSimpleDig(*mParent->mEffectsObj->_0C);
-		mParent->startSound(mCreature, PSSE_PK_VC_DIGGING, 1);
+		mParent->startSound(mCreature, PSSE_PK_VC_DIGGING, PSGame::SeMgr::SETSE_PikiCarry);
 		break;
+
 	default:
 		break;
 	}
-	/*
-	stwu     r1, -0xb0(r1)
-	mflr     r0
-	stw      r0, 0xb4(r1)
-	stfd     f31, 0xa0(r1)
-	psq_st   f31, 168(r1), 0, qr0
-	stw      r31, 0x9c(r1)
-	stw      r30, 0x98(r1)
-	mr       r31, r3
-	lbz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	bne      lbl_8019C0DC
-	lwz      r4, 4(r31)
-	addi     r3, r1, 0x7c
-	lfs      f1, 0x260(r4)
-	lfs      f2, 0x264(r4)
-	lfs      f0, 0x25c(r4)
-	stfs     f0, 0x7c(r1)
-	stfs     f1, 0x80(r1)
-	stfs     f2, 0x84(r1)
-	bl       "createSimpleInattack__3efxFR10Vector3<f>"
-	b        lbl_8019C6B8
-
-lbl_8019C0DC:
-	lbz      r4, 0x1d(r31)
-	cmplwi   r4, 7
-	bgt      lbl_8019C6B8
-	lis      r3, lbl_804B4AB4@ha
-	slwi     r0, r4, 2
-	addi     r3, r3, lbl_804B4AB4@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_8019C100
-
-lbl_8019C100:
-	cmplwi   r4, 7
-	beq      lbl_8019C22C
-	lwz      r3, 4(r31)
-	bl       doped__Q24Game4PikiFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019C1A4
-	lis      r3, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx11TPkAttackDP@ha
-	stw      r0, 0x70(r1)
-	addi     r4, r4, __vt__Q23efx8TSimple1@l
-	li       r0, 0x149
-	li       r7, 0
-	stw      r4, 0x70(r1)
-	addi     r6, r3, __vt__Q23efx11TPkAttackDP@l
-	lis      r3, "zero__10Vector3<f>"@ha
-	lis      r4, __vt__Q23efx3Arg@ha
-	sth      r0, 0x74(r1)
-	addi     r5, r3, "zero__10Vector3<f>"@l
-	lfs      f2, 0(r5)
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	stw      r7, 0x78(r1)
-	addi     r3, r1, 0x70
-	lfs      f1, 4(r5)
-	addi     r4, r1, 0x60
-	stw      r6, 0x70(r1)
-	lfs      f0, 8(r5)
-	lwz      r5, 4(r31)
-	lfs      f3, 0x25c(r5)
-	lfs      f4, 0x260(r5)
-	lfs      f5, 0x264(r5)
-	stfs     f2, 0x64(r1)
-	stfs     f1, 0x68(r1)
-	stfs     f0, 0x6c(r1)
-	stw      r0, 0x60(r1)
-	stfs     f3, 0x64(r1)
-	stfs     f4, 0x68(r1)
-	stfs     f5, 0x6c(r1)
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	b        lbl_8019C22C
-
-lbl_8019C1A4:
-	lis      r3, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx10PikiDamage@ha
-	stw      r0, 0x54(r1)
-	addi     r4, r4, __vt__Q23efx8TSimple1@l
-	li       r0, 0x148
-	li       r7, 0
-	stw      r4, 0x54(r1)
-	addi     r6, r3, __vt__Q23efx10PikiDamage@l
-	lis      r3, "zero__10Vector3<f>"@ha
-	lis      r4, __vt__Q23efx3Arg@ha
-	sth      r0, 0x58(r1)
-	addi     r5, r3, "zero__10Vector3<f>"@l
-	lfs      f2, 0(r5)
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	stw      r7, 0x5c(r1)
-	addi     r3, r1, 0x54
-	lfs      f1, 4(r5)
-	addi     r4, r1, 0x44
-	stw      r6, 0x54(r1)
-	lfs      f0, 8(r5)
-	lwz      r5, 4(r31)
-	lfs      f3, 0x25c(r5)
-	lfs      f4, 0x260(r5)
-	lfs      f5, 0x264(r5)
-	stfs     f2, 0x48(r1)
-	stfs     f1, 0x4c(r1)
-	stfs     f0, 0x50(r1)
-	stw      r0, 0x44(r1)
-	stfs     f3, 0x48(r1)
-	stfs     f4, 0x4c(r1)
-	stfs     f5, 0x50(r1)
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-
-lbl_8019C22C:
-	lwz      r3, 4(r31)
-	li       r5, 0x2808
-	lwz      r4, 0x10(r31)
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	b        lbl_8019C6B8
-	.global  lbl_8019C244
-
-lbl_8019C244:
-	lwz      r3, 4(r31)
-	lbz      r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
-	lfs      f1, 0x260(r3)
-	lfs      f2, 0x264(r3)
-	cmplwi   r0, 0
-	lfs      f0, 0x25c(r3)
-	stfs     f0, 0x38(r1)
-	stfs     f1, 0x3c(r1)
-	stfs     f2, 0x40(r1)
-	beq      lbl_8019C32C
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_8019C32C
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-	lis      r0, 0x4330
-	lwz      r3, 0(r3)
-	stw      r0, 0x88(r1)
-	subfic   r0, r3, 0x64
-	lfd      f2, lbl_80518FA8@sda21(r2)
-	xoris    r0, r0, 0x8000
-	lfs      f0, lbl_80518FA0@sda21(r2)
-	stw      r0, 0x8c(r1)
-	lfd      f1, 0x88(r1)
-	fsubs    f1, f1, f2
-	fdivs    f31, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x94(r1)
-	lfd      f2, lbl_80518FA8@sda21(r2)
-	stw      r0, 0x90(r1)
-	lfs      f0, lbl_80518FD8@sda21(r2)
-	lfd      f1, 0x90(r1)
-	fsubs    f1, f1, f2
-	fdivs    f0, f1, f0
-	fcmpo    cr0, f0, f31
-	cror     2, 0, 2
-	bne      lbl_8019C6B8
-	addi     r3, r1, 0x38
-	bl       "createSimpleBridgeAttack__3efxFR10Vector3<f>"
-	lwz      r3, 4(r30)
-	li       r5, 0x2827
-	li       r6, 2
-	addi     r0, r3, 1
-	stw      r0, 4(r30)
-	lwz      r3, 4(r31)
-	lwz      r4, 0x10(r31)
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-	b        lbl_8019C6B8
-
-lbl_8019C32C:
-	addi     r3, r1, 0x38
-	bl       "createSimpleBridgeAttack__3efxFR10Vector3<f>"
-	b        lbl_8019C6B8
-	.global  lbl_8019C338
-
-lbl_8019C338:
-	lwz      r3, 4(r31)
-	lbz      r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
-	lfs      f1, 0x260(r3)
-	lfs      f2, 0x264(r3)
-	cmplwi   r0, 0
-	lfs      f0, 0x25c(r3)
-	stfs     f0, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	stfs     f2, 0x34(r1)
-	beq      lbl_8019C420
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_8019C420
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-	lis      r0, 0x4330
-	lwz      r3, 0(r3)
-	stw      r0, 0x90(r1)
-	subfic   r0, r3, 0x64
-	lfd      f2, lbl_80518FA8@sda21(r2)
-	xoris    r0, r0, 0x8000
-	lfs      f0, lbl_80518FA0@sda21(r2)
-	stw      r0, 0x94(r1)
-	lfd      f1, 0x90(r1)
-	fsubs    f1, f1, f2
-	fdivs    f31, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x8c(r1)
-	lfd      f2, lbl_80518FA8@sda21(r2)
-	stw      r0, 0x88(r1)
-	lfs      f0, lbl_80518FD8@sda21(r2)
-	lfd      f1, 0x88(r1)
-	fsubs    f1, f1, f2
-	fdivs    f0, f1, f0
-	fcmpo    cr0, f0, f31
-	cror     2, 0, 2
-	bne      lbl_8019C6B8
-	addi     r3, r1, 0x2c
-	bl       "createSimpleGate2Attack__3efxFR10Vector3<f>"
-	lwz      r3, 4(r31)
-	li       r5, 0x2824
-	lwz      r4, 0x10(r31)
-	li       r6, 2
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-	lwz      r3, 4(r30)
-	addi     r0, r3, 1
-	stw      r0, 4(r30)
-	b        lbl_8019C6B8
-
-lbl_8019C420:
-	addi     r3, r1, 0x2c
-	bl       "createSimpleGate2Attack__3efxFR10Vector3<f>"
-	b        lbl_8019C6B8
-	.global  lbl_8019C42C
-
-lbl_8019C42C:
-	lwz      r3, 4(r31)
-	lbz      r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
-	lfs      f1, 0x260(r3)
-	lfs      f2, 0x264(r3)
-	cmplwi   r0, 0
-	lfs      f0, 0x25c(r3)
-	stfs     f0, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	beq      lbl_8019C514
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_8019C514
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-	lis      r0, 0x4330
-	lwz      r3, 0(r3)
-	stw      r0, 0x90(r1)
-	subfic   r0, r3, 0x64
-	lfd      f2, lbl_80518FA8@sda21(r2)
-	xoris    r0, r0, 0x8000
-	lfs      f0, lbl_80518FA0@sda21(r2)
-	stw      r0, 0x94(r1)
-	lfd      f1, 0x90(r1)
-	fsubs    f1, f1, f2
-	fdivs    f31, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x8c(r1)
-	lfd      f2, lbl_80518FA8@sda21(r2)
-	stw      r0, 0x88(r1)
-	lfs      f0, lbl_80518FD8@sda21(r2)
-	lfd      f1, 0x88(r1)
-	fsubs    f1, f1, f2
-	fdivs    f0, f1, f0
-	fcmpo    cr0, f0, f31
-	cror     2, 0, 2
-	bne      lbl_8019C6B8
-	addi     r3, r1, 0x20
-	bl       "createSimpleGate1Attack__3efxFR10Vector3<f>"
-	lwz      r3, 4(r31)
-	li       r5, 0x2825
-	lwz      r4, 0x10(r31)
-	li       r6, 2
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-	lwz      r3, 4(r30)
-	addi     r0, r3, 1
-	stw      r0, 4(r30)
-	b        lbl_8019C6B8
-
-lbl_8019C514:
-	addi     r3, r1, 0x20
-	bl       "createSimpleGate1Attack__3efxFR10Vector3<f>"
-	b        lbl_8019C6B8
-	.global  lbl_8019C520
-
-lbl_8019C520:
-	lwz      r3, 4(r31)
-	lbz      r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
-	lfs      f1, 0x260(r3)
-	lfs      f2, 0x264(r3)
-	cmplwi   r0, 0
-	lfs      f0, 0x25c(r3)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f2, 0x1c(r1)
-	beq      lbl_8019C608
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_8019C608
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-	lis      r0, 0x4330
-	lwz      r3, 0(r3)
-	stw      r0, 0x90(r1)
-	subfic   r0, r3, 0x64
-	lfd      f2, lbl_80518FA8@sda21(r2)
-	xoris    r0, r0, 0x8000
-	lfs      f0, lbl_80518FA0@sda21(r2)
-	stw      r0, 0x94(r1)
-	lfd      f1, 0x90(r1)
-	fsubs    f1, f1, f2
-	fdivs    f31, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x8c(r1)
-	lfd      f2, lbl_80518FA8@sda21(r2)
-	stw      r0, 0x88(r1)
-	lfs      f0, lbl_80518FD8@sda21(r2)
-	lfd      f1, 0x88(r1)
-	fsubs    f1, f1, f2
-	fdivs    f0, f1, f0
-	fcmpo    cr0, f0, f31
-	cror     2, 0, 2
-	bne      lbl_8019C6B8
-	addi     r3, r1, 0x14
-	bl       "createSimpleGate3Attack__3efxFR10Vector3<f>"
-	lwz      r3, 4(r31)
-	li       r5, 0x284d
-	lwz      r4, 0x10(r31)
-	li       r6, 2
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-	lwz      r3, 4(r30)
-	addi     r0, r3, 1
-	stw      r0, 4(r30)
-	b        lbl_8019C6B8
-
-lbl_8019C608:
-	addi     r3, r1, 0x14
-	bl       "createSimpleGate3Attack__3efxFR10Vector3<f>"
-	b        lbl_8019C6B8
-	.global  lbl_8019C614
-
-lbl_8019C614:
-	lwz      r4, 4(r31)
-	addi     r3, r1, 8
-	lfs      f1, 0x260(r4)
-	lfs      f2, 0x264(r4)
-	lfs      f0, 0x25c(r4)
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	bl       "createSimpleStoneAttack__3efxFR10Vector3<f>"
-	lwz      r4, 0x10(r31)
-	lhz      r0, 0x128(r4)
-	cmplwi   r0, 0x410
-	bne      lbl_8019C65C
-	lwz      r3, 4(r31)
-	li       r5, 0x2826
-	li       r6, 2
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-	b        lbl_8019C6B8
-
-lbl_8019C65C:
-	cmplwi   r0, 0x412
-	bne      lbl_8019C678
-	lwz      r3, 4(r31)
-	li       r5, 0x3802
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	b        lbl_8019C6B8
-
-lbl_8019C678:
-	cmplwi   r0, 0x40c
-	bne      lbl_8019C6B8
-	lwz      r3, 4(r31)
-	li       r5, 0x2823
-	li       r6, 2
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-	b        lbl_8019C6B8
-	.global  lbl_8019C694
-
-lbl_8019C694:
-	lwz      r3, 4(r31)
-	lwz      r3, 0x258(r3)
-	lwz      r3, 0xc(r3)
-	bl       "createSimpleDig__3efxFR10Vector3<f>"
-	lwz      r3, 4(r31)
-	li       r5, 0x284f
-	lwz      r4, 0x10(r31)
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
-
-lbl_8019C6B8:
-	psq_l    f31, 168(r1), 0, qr0
-	lwz      r0, 0xb4(r1)
-	lfd      f31, 0xa0(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r30, 0x98(r1)
-	mtlr     r0
-	addi     r1, r1, 0xb0
-	blr
-	*/
 }
 
 /*
@@ -6372,19 +5651,24 @@ void ActStickAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 	switch (keyEvent.mType) {
 	case KEYEVENT_1:
 		break;
-	case KEYEVENT_2:
-		_18 = 1;
+
+	case KEYEVENT_2: // attack ready
+		mIsAttackReady = true;
 		break;
-	case KEYEVENT_3:
-		_18 = 0;
-		_1B = 0;
+
+	case KEYEVENT_3: // re-prime attack triggers after attack
+		mIsAttackReady = false;
+		mHasAttacked   = false;
 		break;
+
 	case KEYEVENT_END:
-		_1A = 1;
+		mIsAnimFinished = true;
 		break;
-	case KEYEVENT_100:
+
+	case KEYEVENT_100: // do efx
 		createEfx();
 		break;
+
 	default:
 		break;
 	}
@@ -6415,84 +5699,18 @@ ActClimb::ActClimb(Game::Piki* p)
 void ActClimb::init(ActionArg* settings)
 {
 	mParent->startMotion(20, 20, nullptr, nullptr);
-	mCollPart = (static_cast<ClimbActionArg*>(settings))->mCollPart;
-	_10       = (static_cast<ClimbActionArg*>(settings))->_08;
-	_20       = (static_cast<ClimbActionArg*>(settings))->_0C;
+	ClimbActionArg* climbArg = static_cast<ClimbActionArg*>(settings);
+	mCollPart                = climbArg->mCollPart;
+	mSpeed                   = climbArg->mSpeed;
+	mIsClimbTowards          = climbArg->mIsClimbTowards;
 	P2ASSERTLINE(2609, mCollPart->mPartType == COLLTYPE_TUBE);
 	Sys::Tube tube;
 	mCollPart->getTube(tube);
-	tube.getAxisVector(_14);
-	_14.negate();
-	_14 *= _10;
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r5, 0x14
-	li       r6, 0
-	stw      r0, 0x34(r1)
-	li       r7, 0
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	li       r4, 0x14
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r3, 4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	stw      r0, 0xc(r30)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x10(r30)
-	lbz      r0, 0xc(r31)
-	stb      r0, 0x20(r30)
-	lwz      r3, 0xc(r30)
-	lbz      r0, 0x58(r3)
-	cmplwi   r0, 1
-	beq      lbl_8019C83C
-	lis      r3, lbl_8047F0A4@ha
-	lis      r5, lbl_8047F0B8@ha
-	addi     r3, r3, lbl_8047F0A4@l
-	li       r4, 0xa31
-	addi     r5, r5, lbl_8047F0B8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8019C83C:
-	lwz      r3, 0xc(r30)
-	addi     r4, r1, 8
-	bl       getTube__8CollPartFRQ23Sys4Tube
-	addi     r3, r1, 8
-	addi     r4, r30, 0x14
-	bl       "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
-	lfs      f0, 0x14(r30)
-	fneg     f0, f0
-	stfs     f0, 0x14(r30)
-	lfs      f0, 0x18(r30)
-	fneg     f0, f0
-	stfs     f0, 0x18(r30)
-	lfs      f0, 0x1c(r30)
-	fneg     f0, f0
-	stfs     f0, 0x1c(r30)
-	lfs      f3, 0x10(r30)
-	lfs      f0, 0x14(r30)
-	lfs      f1, 0x18(r30)
-	lfs      f2, 0x1c(r30)
-	fmuls    f0, f0, f3
-	fmuls    f1, f1, f3
-	fmuls    f2, f2, f3
-	stfs     f0, 0x14(r30)
-	stfs     f1, 0x18(r30)
-	stfs     f2, 0x1c(r30)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	tube.getAxisVector(mVelocity);
+	mVelocity.x = -mVelocity.x;
+	mVelocity.y = -mVelocity.y;
+	mVelocity.z = -mVelocity.z;
+	mVelocity   = mVelocity * mSpeed;
 }
 
 /*
@@ -6502,12 +5720,14 @@ lbl_8019C83C:
  */
 int ActClimb::exec()
 {
-	mParent->mSimVelocity = _14;
-	if (_20 == 0) {
+	mParent->mSimVelocity = mVelocity;
+	if (!mIsClimbTowards) {
 		mParent->mSimVelocity *= -1.0f;
 	}
+
 	mParent->move(sys->getFrameLength());
-	if (_20 != 0) {
+
+	if (mIsClimbTowards) {
 		if (mParent->mClimbingPosition.y < 0.0f) {
 			return ACTEXEC_Success;
 		}
@@ -6517,73 +5737,6 @@ int ActClimb::exec()
 		}
 	}
 	return ACTEXEC_Continue;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 4(r3)
-	lfs      f0, 0x14(r31)
-	stfs     f0, 0x200(r3)
-	lfs      f0, 0x18(r31)
-	stfs     f0, 0x204(r3)
-	lfs      f0, 0x1c(r31)
-	stfs     f0, 0x208(r3)
-	lbz      r0, 0x20(r31)
-	cmplwi   r0, 0
-	bne      lbl_8019C920
-	lwz      r3, 4(r31)
-	lfs      f1, lbl_80518F90@sda21(r2)
-	lfs      f0, 0x200(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x200(r3)
-	lfs      f0, 0x204(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x204(r3)
-	lfs      f0, 0x208(r3)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x208(r3)
-
-lbl_8019C920:
-	lwz      r3, 4(r31)
-	lwz      r4, sys@sda21(r13)
-	lwz      r12, 0(r3)
-	lfs      f1, 0x54(r4)
-	lwz      r12, 0x1d0(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x20(r31)
-	cmplwi   r0, 0
-	beq      lbl_8019C964
-	lwz      r3, 4(r31)
-	lfs      f0, lbl_80518F60@sda21(r2)
-	lfs      f1, 0x108(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8019C984
-	li       r3, 0
-	b        lbl_8019C988
-
-lbl_8019C964:
-	lwz      r3, 4(r31)
-	lfs      f0, lbl_80518F64@sda21(r2)
-	lfs      f1, 0x108(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8019C984
-	li       r3, 0
-	b        lbl_8019C988
-
-lbl_8019C984:
-	li       r3, 1
-
-lbl_8019C988:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -6608,68 +5761,17 @@ ActGather::ActGather(Game::Piki* p)
  * Address:	8019C9DC
  * Size:	0000E0
  */
-void ActGather::init(ActionArg*)
+void ActGather::init(ActionArg* settings)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lis      r4, lbl_8047F070@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_8047F070@l
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0xe8
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_8019CA44
-	addi     r3, r31, 0x34
-	addi     r5, r31, 0x48
-	li       r4, 0xa6d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	bool strCheck = strcmp("GatherActionArg", settings->getName()) == 0;
+	P2ASSERTLINE(2669, strCheck);
 
-lbl_8019CA44:
-	lfs      f0, 4(r30)
-	li       r4, 0x1e
-	li       r5, 0x1e
-	li       r6, 0
-	stfs     f0, 0xc(r29)
-	li       r7, 0
-	lfs      f0, 8(r30)
-	stfs     f0, 0x10(r29)
-	lfs      f0, 0xc(r30)
-	stfs     f0, 0x14(r29)
-	lfs      f0, 0x10(r30)
-	stfs     f0, 0x18(r29)
-	lwz      r3, 4(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_80518FDC@sda21(r2)
-	lfs      f0, lbl_80518FE0@sda21(r2)
-	stfs     f1, 0x1c(r29)
-	lfs      f1, 0x18(r29)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x18(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	GatherActionArg* arg = static_cast<GatherActionArg*>(settings);
+	mDestination         = arg->mDestination;
+	mRadius              = arg->mRadius;
+	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
+	mTimer = 5.0f;
+	mRadius *= 0.6f;
 }
 
 /*
@@ -6679,107 +5781,19 @@ lbl_8019CA44:
  */
 int ActGather::exec()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 0x10(r31)
-	lfs      f2, 0xc(r1)
-	lfs      f1, 0xc(r31)
-	lfs      f0, 8(r1)
-	fsubs    f4, f3, f2
-	lfs      f3, 0x14(r31)
-	fsubs    f2, f1, f0
-	lfs      f0, 0x10(r1)
-	fmuls    f5, f4, f4
-	lfs      f1, lbl_80518F60@sda21(r2)
-	fsubs    f3, f3, f0
-	stfs     f4, 0x18(r1)
-	fmuls    f0, f2, f2
-	stfs     f2, 0x14(r1)
-	fmuls    f4, f3, f3
-	stfs     f3, 0x1c(r1)
-	fadds    f0, f0, f5
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8019CB54
-	fmadds   f0, f2, f2, f5
-	fadds    f4, f4, f0
-	fcmpo    cr0, f4, f1
-	ble      lbl_8019CB58
-	frsqrte  f0, f4
-	fmuls    f4, f0, f4
-	b        lbl_8019CB58
+	Vector3f pikiPos = mParent->getPosition();
+	Vector3f dir     = mDestination - pikiPos;
+	f32 dist         = dir.normalise();
 
-lbl_8019CB54:
-	fmr      f4, f1
+	mTimer -= sys->mDeltaTime;
 
-lbl_8019CB58:
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpo    cr0, f4, f0
-	ble      lbl_8019CB94
-	lfs      f0, lbl_80518F64@sda21(r2)
-	lfs      f2, 0x14(r1)
-	fdivs    f3, f0, f4
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	b        lbl_8019CB98
+	if (dist < mRadius || mTimer <= 0.0f) {
+		mParent->mVelocity = Vector3f(0.0f);
+		return ACTEXEC_Success;
+	}
 
-lbl_8019CB94:
-	fmr      f4, f0
-
-lbl_8019CB98:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x1c(r31)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x1c(r31)
-	lfs      f0, 0x18(r31)
-	fcmpo    cr0, f4, f0
-	blt      lbl_8019CBCC
-	lfs      f1, 0x1c(r31)
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8019CBE8
-
-lbl_8019CBCC:
-	lwz      r4, 4(r31)
-	li       r3, 0
-	lfs      f0, lbl_80518F60@sda21(r2)
-	stfs     f0, 0x1e4(r4)
-	stfs     f0, 0x1e8(r4)
-	stfs     f0, 0x1ec(r4)
-	b        lbl_8019CBFC
-
-lbl_8019CBE8:
-	lwz      r3, 4(r31)
-	addi     r4, r1, 0x14
-	lfs      f1, lbl_80518FE0@sda21(r2)
-	bl       "setSpeed__Q24Game4PikiFfR10Vector3<f>"
-	li       r3, 1
-
-lbl_8019CBFC:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mParent->setSpeed(0.6f, dir);
+	return ACTEXEC_Continue;
 }
 
 /*
@@ -6806,7 +5820,7 @@ ActFollowVectorField::ActFollowVectorField(Game::Piki* p)
  */
 void ActFollowVectorField::init(ActionArg* arg)
 {
-	mParent->startMotion(30, 30, nullptr, nullptr);
+	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 	mItem = static_cast<FollowVectorFieldActionArg*>(arg)->mItem;
 }
 
@@ -6818,13 +5832,13 @@ void ActFollowVectorField::init(ActionArg* arg)
 int ActFollowVectorField::exec()
 {
 	Sys::Sphere sphere;
-	Vector3f v2;
+	Vector3f dir;
 
 	mParent->getBoundingSphere(sphere);
-	if (!mItem->getVectorField(sphere, v2)) {
+	if (!mItem->getVectorField(sphere, dir)) {
 		return ACTEXEC_Fail;
 	}
-	mParent->setSpeed(1.0f, v2);
+	mParent->setSpeed(1.0f, dir);
 	return ACTEXEC_Continue;
 }
 

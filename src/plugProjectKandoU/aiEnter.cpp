@@ -3,6 +3,11 @@
 #include "Game/Entities/ItemOnyon.h"
 #include "Dolphin/rand.h"
 
+#define PIKI_ENTERSHIP_RADIUS  (30.0f)
+#define PIKI_ENTERONYON_RADIUS (10.0f)
+#define PIKI_ENTERONYON_SPEED  (50.0f)
+#define PIKI_EXITONYON_SPEED   (100.0f)
+
 namespace PikiAI {
 /*
  * --INFO--
@@ -25,7 +30,6 @@ ActEnter::ActEnter(Game::Piki* p)
  */
 void ActEnter::init(ActionArg* arg)
 {
-
 	mOnyonLeg           = nullptr;
 	mOnyonFoot          = nullptr;
 	ActCropArg* cropArg = static_cast<ActCropArg*>(arg);
@@ -39,13 +43,13 @@ void ActEnter::init(ActionArg* arg)
 	// pikis entering the ship
 	if (mOnyon->mOnyonType == ONYON_TYPE_SHIP) {
 		Vector3f startPos = mOnyon->getInStart_UFO();
-		f32 randDist      = 34.0f * randFloat();
+		f32 randDist      = (PIKI_ENTERSHIP_RADIUS + 4.0f) * randFloat();
 		f32 randAngle     = TAU * randFloat();
 		Vector3f offset   = Vector3f(pikmin2_sinf(randAngle) * randDist, 0.0f, pikmin2_cosf(randAngle) * randDist);
 		Vector3f gotoPos  = startPos + offset;
 		GotoPosActionArg gotoArg;
 		gotoArg.mPosition = gotoPos;
-		gotoArg._10       = 30.0f;
+		gotoArg.mRadius   = PIKI_ENTERSHIP_RADIUS;
 		mGotoPos->init(&gotoArg);
 		mState = ENTER_ShipGoto;
 		return;
@@ -58,7 +62,7 @@ void ActEnter::init(ActionArg* arg)
 	CollPart* leg = mOnyonLeg;
 	GotoPosActionArg gotoArg;
 	gotoArg.mPosition = leg->mPosition;
-	gotoArg._10       = 10.0f;
+	gotoArg.mRadius   = PIKI_ENTERONYON_RADIUS;
 	mOnyonLeg         = static_cast<Game::Onyon*>(cropArg->mCreature)->getLegPart(randFoot);
 	mGotoPos->init(&gotoArg);
 	mState = ENTER_OnyonBegin;
@@ -77,7 +81,7 @@ int ActEnter::exec()
 			mGotoPos->mPosition = mOnyonFoot->mPosition;
 		}
 		if (mGotoPos->exec() == ACTEXEC_Success) {
-			ClimbActionArg climbArg(mOnyonLeg, 50.0f, 1);
+			ClimbActionArg climbArg(mOnyonLeg, PIKI_ENTERONYON_SPEED, true);
 			mParent->getPosition();
 			mParent->startStick(mOnyon, mOnyonLeg);
 			mParent->getPosition();
@@ -380,7 +384,7 @@ void ActExit::init(ActionArg* arg)
 	mCreature          = cropArg->mCreature;
 	mOnyonLeg          = static_cast<Game::Onyon*>(cropArg->mCreature)->getLegPart(randFoot);
 
-	ClimbActionArg climbArg(mOnyonLeg, 100.0f, 0);
+	ClimbActionArg climbArg(mOnyonLeg, PIKI_EXITONYON_SPEED, false);
 	mParent->setPosition(mOnyonLeg->mPosition, false);
 	mParent->startStick(mCreature, mOnyonLeg);
 	mClimb->init(&climbArg);

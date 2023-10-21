@@ -88,7 +88,7 @@ void ActBridge::initGoto()
 void ActBridge::initStickAttack()
 {
 	f32 attackDamage = mParent->getAttackDamage();
-	StickAttackActionArg stickAttackArg(attackDamage, mBridge, -1, 4);
+	StickAttackActionArg stickAttackArg(attackDamage, mBridge, Game::IPikiAnims::NULLANIM, STICKATK_Bridge);
 
 	bool check = false;
 	if ((_30 & 1) && mParent->mCollisionPosition.y > 0.5f) {
@@ -96,7 +96,7 @@ void ActBridge::initStickAttack()
 	}
 
 	if (check) {
-		stickAttackArg.mNextState = 25;
+		stickAttackArg.mAnimIdx = Game::IPikiAnims::JOB2;
 	}
 
 	mStickAttack->init(&stickAttackArg);

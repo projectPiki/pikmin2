@@ -454,19 +454,19 @@ struct ActBridge : public Action, virtual SysShape::MotionListener {
 };
 
 struct ClimbActionArg : public ActionArg {
-	inline ClimbActionArg(CollPart* collPart, f32 p2, u8 p3)
+	inline ClimbActionArg(CollPart* collPart, f32 speed, u8 isClimbTowards)
 	    : mCollPart(collPart)
-	    , _08(p2)
-	    , _0C(p3)
+	    , mSpeed(speed)
+	    , mIsClimbTowards(isClimbTowards)
 	{
 	}
 
 	virtual char* getName() { return "ClimbActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
-	CollPart* mCollPart; // _04
-	f32 _08;             // _08
-	u8 _0C;              // _0C
+	CollPart* mCollPart;  // _04
+	f32 mSpeed;           // _08
+	bool mIsClimbTowards; // _0C
 };
 
 struct ActClimb : public Action {
@@ -478,10 +478,10 @@ struct ActClimb : public Action {
 
 	// _00     = VTBL
 	// _00-_0C = Action
-	CollPart* mCollPart; // _0C
-	f32 _10;             // _10
-	Vector3f _14;        // _14
-	u8 _20;              // _20
+	CollPart* mCollPart;  // _0C
+	f32 mSpeed;           // _10
+	Vector3f mVelocity;   // _14
+	bool mIsClimbTowards; // _20, which way are we going along tube
 };
 
 struct ActCropArg : public ActionArg {
@@ -802,14 +802,14 @@ struct GatherActionArg : public ActionArg {
 		mDestination.x = arg->mDestination.x;
 		mDestination.y = arg->mDestination.y;
 		mDestination.z = arg->mDestination.z;
-		_10            = arg->_14;
+		mRadius        = arg->_14;
 	}
 
 	virtual char* getName(); // _08 (weak)
 
 	// _00 = VTBL
 	Vector3f mDestination; // _04
-	f32 _10;               // _10
+	f32 mRadius;           // _10
 };
 
 struct ActGather : public Action {
@@ -821,9 +821,9 @@ struct ActGather : public Action {
 
 	// _00     = VTBL
 	// _00-_0C = Action
-	Vector3f _0C; // _0C
-	f32 _18;      // _18
-	f32 mTimer;   // _1C
+	Vector3f mDestination; // _0C
+	f32 mRadius;           // _18
+	f32 mTimer;            // _1C
 };
 
 struct GotoPosActionArg : public ActionArg {
@@ -1060,12 +1060,23 @@ struct ActRest : public ActBoreBase {
 	// _1C = MotionListener
 };
 
+enum StickAttackObjType {
+	STICKATK_Default    = 0, // regular attack + attacking berries
+	STICKATK_WhiteGate  = 1,
+	STICKATK_BlackGate  = 2,
+	STICKATK_ElecGate   = 3,
+	STICKATK_Bridge     = 4,
+	STICKATK_BreakStone = 5, // barrel/plug or bigfountain
+	STICKATK_Treasure   = 6, // digging buried treasure
+	STICKATK_Rock       = 7, // mold
+};
+
 struct StickAttackActionArg : public ActionArg {
-	inline StickAttackActionArg(f32 damage, Game::Creature* creature, int state, u8 p1)
+	inline StickAttackActionArg(f32 damage, Game::Creature* creature, int animIdx, u8 objType)
 	    : mAttackDamage(damage)
 	    , mCreature(creature)
-	    , mNextState(state)
-	    , _10(p1)
+	    , mAnimIdx(animIdx)
+	    , mObjType(objType)
 	{
 	}
 
@@ -1074,8 +1085,8 @@ struct StickAttackActionArg : public ActionArg {
 	// _00 = VTBL
 	f32 mAttackDamage;         // _04
 	Game::Creature* mCreature; // _08
-	int mNextState;            // _0C
-	u8 _10;                    // _10
+	int mAnimIdx;              // _0C
+	u8 mObjType;               // _10, see StickAttackObjType enum
 };
 
 struct ActStickAttack : public Action, virtual SysShape::MotionListener {
@@ -1092,14 +1103,14 @@ struct ActStickAttack : public Action, virtual SysShape::MotionListener {
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
 	Game::Creature* mCreature; // _10
-	f32 _14;                   // _14
-	u8 _18;                    // _18
-	u8 _19;                    // _19
-	u8 _1A;                    // _1A
-	u8 _1B;                    // _1B
-	u8 _1C;                    // _1C
-	u8 _1D;                    // _1D
-	int mStateID;              // _20
+	f32 mDamage;               // _14
+	bool mIsAttackReady;       // _18
+	bool mIsInitialStick;      // _19, is piki stuck to object initially (attack fails if it falls off)
+	bool mIsAnimFinished;      // _1A
+	bool mHasAttacked;         // _1B
+	bool mIsAttackSuccessful;  // _1C
+	u8 mObjType;               // _1D, see StickAttackObjType enum
+	int mAnimIdx;              // _20
 
 	// _24 = MotionListener
 };

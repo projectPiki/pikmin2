@@ -83,7 +83,7 @@ void ActAttack::init(ActionArg* initarg)
 void ActAttack::initStickAttack()
 {
 	f32 damage = mParent->getAttackDamage();
-	StickAttackActionArg stickArg(damage, mCreature, 2, 0);
+	StickAttackActionArg stickArg(damage, mCreature, Game::IPikiAnims::ATTACK1, STICKATK_Default);
 	mStickAttack->init(&stickArg);
 	mAttackID = 0;
 }

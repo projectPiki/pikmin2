@@ -80,20 +80,21 @@ void ActBreakGate::initGoto()
  */
 void ActBreakGate::initStickAttack()
 {
-	u8 type = 1;
-	if (mGate->mColor == 1) {
-		type = 2;
+	u8 type = STICKATK_WhiteGate;
+	if (mGate->mColor == GATECOLOR_Black) {
+		type = STICKATK_BlackGate;
 	} else if (mGate->mIsElectric) {
-		type = 3;
+		type = STICKATK_ElecGate;
 	}
 
 	if (_24 == 0) {
 		f32 attackDamage = mParent->getAttackDamage();
-		StickAttackActionArg stickAttackArg(attackDamage, mGate, -1, type);
+		StickAttackActionArg stickAttackArg(attackDamage, mGate, Game::IPikiAnims::NULLANIM, type);
 		mStickAttack->init(&stickAttackArg);
+
 	} else {
 		f32 attackDamage = mParent->getAttackDamage();
-		StickAttackActionArg stickAttackArg(attackDamage, mGate, 25, type);
+		StickAttackActionArg stickAttackArg(attackDamage, mGate, Game::IPikiAnims::JOB2, type);
 		mStickAttack->init(&stickAttackArg);
 	}
 

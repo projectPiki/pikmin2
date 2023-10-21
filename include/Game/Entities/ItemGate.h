@@ -17,6 +17,11 @@ enum GateStates {
 	GATESTATE_MAX, // 3
 };
 
+enum GateColor {
+	GATECOLOR_White = 0,
+	GATECOLOR_Black = 1,
+};
+
 namespace Game {
 struct ItemGate;
 
@@ -147,7 +152,7 @@ struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 	Plane mPlanes[4];                   // _224
 	Vector3f _264;                      // _264
 	Vector3f _270;                      // _270
-	u8 mColor;                          // _27C, unknown
+	u8 mColor;                          // _27C
 	Sys::MatBaseAnimator* mMatAnimator; // _280
 };
 

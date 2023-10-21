@@ -137,13 +137,13 @@ void ActCrop::initGoto()
 void ActCrop::initAttack()
 {
 	CollPart* part = mCreature->mCollTree->getCollPart('tops');
-	if (part != nullptr) {
+	if (part) {
 		mParent->endStick();
 		mAttackDir = randFloat() * TAU;
 		mParent->startStick(mCreature, part);
 	}
 	f32 damage = mParent->getAttackDamage();
-	StickAttackActionArg stickAttackArg(damage, mCreature, -1, 0);
+	StickAttackActionArg stickAttackArg(damage, mCreature, Game::IPikiAnims::NULLANIM, 0);
 	mStickAttack->init(&stickAttackArg);
 	mState = CROP_Attack;
 	_3C    = true;
