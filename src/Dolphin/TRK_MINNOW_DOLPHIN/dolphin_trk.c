@@ -1,5 +1,8 @@
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
+extern u8 _db_stack_addr[];
+#define EXCEPTIONMASK_ADDR 0x80000044
+
 extern void OSResetSystem(BOOL reset, u32 resetCode, BOOL forceMenu);
 
 static u32 lc_base;
@@ -75,7 +78,7 @@ void __TRK_copy_vectors(void)
 	if (r3 <= 0x44 && r3 + 0x4000 > 0x44 && ((u32*)(&gTRKCPUState.Extended1))[36] & 3) {
 		r3 = 0x44;
 	} else {
-		r3 = 0x80000044;
+		r3 = EXCEPTIONMASK_ADDR;
 	}
 
 	isrOffsetPtr = TRK_ISR_OFFSETS;
@@ -507,8 +510,8 @@ asm void InitMetroTRK_BBA(void)
     mtspr  0x3f2, r0
     mtspr 0x3f5, r0
 	//Restore the stack pointer
-    // lis r1, _db_stack_addr@h
-    // ori r1, r1, _db_stack_addr@l
+    lis r1, _db_stack_addr@h
+    ori r1, r1, _db_stack_addr@l
     li r3, 2
     bl InitMetroTRKCommTable //Initialize comm table as BBA hardware
 	/*
@@ -532,48 +535,6 @@ initCommTableSuccess:
     b TRK_main //Jump to TRK_main
     blr
 	// clang-format on
-	/*
-	.loc_0x0:
-	  subi      r1, r1, 0x4
-	  stw       r3, 0x0(r1)
-	  lis       r3, 0x804F
-	  ori       r3, r3, 0x4328
-	  stmw      r0, 0x0(r3)
-	  lwz       r4, 0x0(r1)
-	  addi      r1, r1, 0x4
-	  stw       r1, 0x4(r3)
-	  stw       r4, 0xC(r3)
-	  mflr      r4
-	  stw       r4, 0x84(r3)
-	  stw       r4, 0x80(r3)
-	  mfcr      r4
-	  stw       r4, 0x88(r3)
-	  mfmsr     r4
-	  ori       r3, r4, 0x8000
-	  mtmsr     r3
-	  mtsrr1    r4
-	  bl        -0x450
-	  lis       r3, 0x804F
-	  ori       r3, r3, 0x4328
-	  lmw       r0, 0x0(r3)
-	  li        r0, 0
-	  mtspr     1010, r0
-	  mtdabr    r0
-	  lis       r1, 0x8053
-	  ori       r1, r1, 0x2ED8
-	  li        r3, 0x2
-	  bl        0x840
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0x8C
-	  lwz       r4, 0x84(r3)
-	  mtlr      r4
-	  lmw       r0, 0x0(r3)
-	  blr
-
-	.loc_0x8C:
-	  b         0x518
-	  blr
-	*/
 }
 
 /*
@@ -615,8 +576,8 @@ asm void InitMetroTRK(void)
     mtspr  0x3f2, r0
     mtspr  0x3f5, r0
 	//Restore stack pointer
-    // lis r1, _db_stack_addr@h
-    // ori r1, r1, _db_stack_addr@l
+    lis r1, _db_stack_addr@h
+    ori r1, r1, _db_stack_addr@l
     mr r3, r5
     bl InitMetroTRKCommTable //Initialize comm table
 	/*
@@ -641,47 +602,4 @@ initCommTableSuccess:
     b TRK_main //Jump to TRK_main
     blr
 	// clang-format on
-	/*
-	.loc_0x0:
-	  subi      r1, r1, 0x4
-	  stw       r3, 0x0(r1)
-	  lis       r3, 0x804F
-	  ori       r3, r3, 0x4328
-	  stmw      r0, 0x0(r3)
-	  lwz       r4, 0x0(r1)
-	  addi      r1, r1, 0x4
-	  stw       r1, 0x4(r3)
-	  stw       r4, 0xC(r3)
-	  mflr      r4
-	  stw       r4, 0x84(r3)
-	  stw       r4, 0x80(r3)
-	  mfcr      r4
-	  stw       r4, 0x88(r3)
-	  mfmsr     r4
-	  ori       r3, r4, 0x8000
-	  xori      r3, r3, 0x8000
-	  mtmsr     r3
-	  mtsrr1    r4
-	  bl        -0x3BC
-	  lis       r3, 0x804F
-	  ori       r3, r3, 0x4328
-	  lmw       r0, 0x0(r3)
-	  li        r0, 0
-	  mtspr     1010, r0
-	  mtdabr    r0
-	  lis       r1, 0x8053
-	  ori       r1, r1, 0x2ED8
-	  mr        r3, r5
-	  bl        0x8D4
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0x90
-	  lwz       r4, 0x84(r3)
-	  mtlr      r4
-	  lmw       r0, 0x0(r3)
-	  blr
-
-	.loc_0x90:
-	  b         0x5AC
-	  blr
-	*/
 }

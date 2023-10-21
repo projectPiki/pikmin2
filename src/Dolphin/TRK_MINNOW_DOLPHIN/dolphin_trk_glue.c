@@ -1,8 +1,8 @@
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
 #include "Dolphin/os.h"
 
-u8 TRK_Use_BBA;
 BOOL _MetroTRK_Has_Framing;
+u8 TRK_Use_BBA;
 
 DBCommTable gDBCommTable = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 
@@ -42,45 +42,43 @@ int InitMetroTRKCommTable(int hwId)
 		gDBCommTable.pre_continue_func    = udp_cc_pre_continue;
 		gDBCommTable.post_stop_func       = udp_cc_post_stop;
 		gDBCommTable.init_interrupts_func = nullptr;
-		return 0;
+		result                            = 0;
 
 	} else if (hwId == HARDWARE_GDEV) { // NDEV hardware
 		OSReport("MetroTRK : Set to GDEV hardware\n");
 		// Initialize gDBCommTable
 		// need to work out what the deal with the typedef is for these functions
-		// gDBCommTable.initialize_func = gdev_cc_initialize;
-		// gDBCommTable.open_func = gdev_cc_open;
-		// gDBCommTable.close_func = gdev_cc_close;
-		// gDBCommTable.read_func = gdev_cc_read;
-		// gDBCommTable.write_func = gdev_cc_write;
-		// gDBCommTable.shutdown_func = gdev_cc_shutdown;
-		// gDBCommTable.peek_func = gdev_cc_peek;
-		// gDBCommTable.pre_continue_func = gdev_cc_pre_continue;
-		// gDBCommTable.post_stop_func = gdev_cc_post_stop;
-		// gDBCommTable.init_interrupts_func = gdev_cc_initinterrupts;
-		result = 0;
+		gDBCommTable.initialize_func      = gdev_cc_initialize;
+		gDBCommTable.open_func            = gdev_cc_open;
+		gDBCommTable.close_func           = gdev_cc_close;
+		gDBCommTable.read_func            = gdev_cc_read;
+		gDBCommTable.write_func           = gdev_cc_write;
+		gDBCommTable.shutdown_func        = gdev_cc_shutdown;
+		gDBCommTable.peek_func            = gdev_cc_peek;
+		gDBCommTable.pre_continue_func    = gdev_cc_pre_continue;
+		gDBCommTable.post_stop_func       = gdev_cc_post_stop;
+		gDBCommTable.init_interrupts_func = gdev_cc_initinterrupts;
+		result                            = 0;
 
 	} else if (hwId == HARDWARE_AMC_DDH) {
 		OSReport("MetroTRK : Set to AMC DDH hardware\n");
 		// Initialize gDBCommTable
-		// need to make these ddh functions
-		// gDBCommTable.initialize_func = gdev_cc_initialize;
-		// gDBCommTable.open_func = gdev_cc_open;
-		// gDBCommTable.close_func = gdev_cc_close;
-		// gDBCommTable.read_func = gdev_cc_read;
-		// gDBCommTable.write_func = gdev_cc_write;
-		// gDBCommTable.shutdown_func = gdev_cc_shutdown;
-		// gDBCommTable.peek_func = gdev_cc_peek;
-		// gDBCommTable.pre_continue_func = gdev_cc_pre_continue;
-		// gDBCommTable.post_stop_func = gdev_cc_post_stop;
-		// gDBCommTable.init_interrupts_func = gdev_cc_initinterrupts;
-		result = 0;
+		gDBCommTable.initialize_func      = ddh_cc_initialize;
+		gDBCommTable.open_func            = ddh_cc_open;
+		gDBCommTable.close_func           = ddh_cc_close;
+		gDBCommTable.read_func            = ddh_cc_read;
+		gDBCommTable.write_func           = ddh_cc_write;
+		gDBCommTable.shutdown_func        = ddh_cc_shutdown;
+		gDBCommTable.peek_func            = ddh_cc_peek;
+		gDBCommTable.pre_continue_func    = ddh_cc_pre_continue;
+		gDBCommTable.post_stop_func       = ddh_cc_post_stop;
+		gDBCommTable.init_interrupts_func = ddh_cc_initinterrupts;
+		result                            = 0;
 
 	} else { // unknown hardware
 		OSReport("MetroTRK : Set to UNKNOWN hardware. (%ld)\n", hwId);
 		OSReport("MetroTRK : Invalid hardware ID passed from OS\n");
 		OSReport("MetroTRK : Defaulting to GDEV Hardware\n");
-		result = 1;
 	}
 
 	return result;
@@ -367,7 +365,7 @@ void TRK_board_display(char* str) { OSReport("%s\n", str); }
  */
 DSError InitializeProgramEndTrap(void)
 {
-	static const char EndofProgramInstruction[] = "\0END";
+	static const u32 EndofProgramInstruction = 'END';
 
 	u8* endOfProgramInstructionBytes = (u8*)&EndofProgramInstruction;
 	u8* ppcHaltPtr                   = (u8*)PPCHalt;

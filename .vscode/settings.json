@@ -40,6 +40,11 @@
     "osreset.h": "c",
     "osfastcast.h": "c",
     "*.cp": "cpp",
-    "circlebuffer.h": "c"
+    "circlebuffer.h": "c",
+    "trk.h": "c",
+    "ppc_reg.h": "c",
+    "trktypes.h": "c",
+    "trkenum.h": "c",
+    "osinterrupt.h": "c"
   }
 }
