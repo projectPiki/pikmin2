@@ -6,12 +6,19 @@
 #include "stl/iterator.h"
 
 namespace JGadget {
+
+namespace {
+struct TPRIsEqual_pointer_;
+} // namespace
+
 struct TLinkListNode {
 	TLinkListNode()
 	{
 		mNext = nullptr;
 		mPrev = nullptr;
 	}
+
+	TLinkListNode* getNext() { return mNext; }
 
 	TLinkListNode* mNext;
 	TLinkListNode* mPrev;
@@ -22,12 +29,11 @@ struct TNodeLinkList {
 		iterator(TLinkListNode* pNode) { mNode = pNode; }
 		iterator(const iterator& iter) { *this = iter; }
 
-		TLinkListNode* mNode;
-	};
-
-	struct TPRIsEqual_pointer_ {
-		/** @fabricated */
-		bool operator()(TLinkListNode* other) { return other == mNode; }
+		iterator& operator++()
+		{
+			mNode = mNode->getNext();
+			return *this;
+		}
 
 		TLinkListNode* mNode;
 	};
@@ -54,8 +60,8 @@ struct TNodeLinkList {
 	}
 
 	~TNodeLinkList();
-	void Insert(TNodeLinkList::iterator, TLinkListNode*);
-	void Erase(TLinkListNode*);
+	TNodeLinkList::iterator Insert(TNodeLinkList::iterator, TLinkListNode*);
+	TNodeLinkList::iterator Erase(TLinkListNode*);
 	void Remove(TLinkListNode*);
 	void remove_if(TPRIsEqual_pointer_);
 
@@ -149,6 +155,17 @@ struct TLinkList_factory : public TLinkList<T, Offset> {
 	// _00-_08	= TNodeLinkList
 	// _0C		= VTABLE
 };
+
+namespace {
+struct TPRIsEqual_pointer_ {
+	TPRIsEqual_pointer_(TLinkListNode* node) { mNode = node; }
+	/** @fabricated */
+	bool operator()(TLinkListNode* other) { return other == mNode; }
+
+	TLinkListNode* mNode;
+};
+} // namespace
+
 }; // namespace JGadget
 
 #endif
