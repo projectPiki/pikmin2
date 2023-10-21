@@ -39,6 +39,7 @@
     "osreboot.h": "c",
     "osreset.h": "c",
     "osfastcast.h": "c",
-    "*.cp": "cpp"
+    "*.cp": "cpp",
+    "circlebuffer.h": "c"
   }
 }

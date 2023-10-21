@@ -4,7 +4,7 @@ TRK_MINNOW_DOLPHIN_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/nubinit.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/msg.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/msgbuf.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.o\
+	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/usr_put.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/dispatch.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.o\
@@ -15,14 +15,14 @@ TRK_MINNOW_DOLPHIN_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mem_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/targimpl.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/targsupp.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e.o\
+	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/__exception.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/main_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/targcont.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/target_options.o\
-	$(BUILD_DIR)/asm/Dolphin/TRK_MINNOW_DOLPHIN/mslsupp.o\
+	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mslsupp.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/UDP_Stubs.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/ddh/main.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/CircleBuffer.o\

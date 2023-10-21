@@ -1,29 +1,20 @@
-#include "types.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
+#include "Dolphin/os.h"
+
+u8 TRK_Use_BBA;
+BOOL _MetroTRK_Has_Framing;
+
+DBCommTable gDBCommTable = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 
 /*
  * --INFO--
  * Address:	800C0984
  * Size:	000038
  */
-void TRKEXICallBack(void)
+void TRKEXICallBack(s16 r3, OSContext* ctx)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  bl        0x310AC
-	  mr        r3, r31
-	  li        r4, 0x500
-	  bl        -0x540
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	OSEnableScheduler();
+	TRKLoadContext(ctx, 0x500);
 }
 
 /*
@@ -31,8 +22,68 @@ void TRKEXICallBack(void)
  * Address:	800C0718
  * Size:	00026C
  */
-void InitMetroTRKCommTable(void)
+int InitMetroTRKCommTable(int hwId)
 {
+	int result = 1;
+	OSReport("Devkit set to : %ld\n", hwId);
+	TRK_Use_BBA = 0;
+
+	if (hwId == HARDWARE_BBA) { // BBA hardware
+		OSReport("MetroTRK : Set to BBA\n");
+		// Initialize gDBCommTable
+		TRK_Use_BBA                       = 1;
+		gDBCommTable.initialize_func      = udp_cc_initialize;
+		gDBCommTable.open_func            = udp_cc_open;
+		gDBCommTable.close_func           = udp_cc_close;
+		gDBCommTable.read_func            = udp_cc_read;
+		gDBCommTable.write_func           = udp_cc_write;
+		gDBCommTable.shutdown_func        = udp_cc_shutdown;
+		gDBCommTable.peek_func            = udp_cc_peek;
+		gDBCommTable.pre_continue_func    = udp_cc_pre_continue;
+		gDBCommTable.post_stop_func       = udp_cc_post_stop;
+		gDBCommTable.init_interrupts_func = nullptr;
+		return 0;
+
+	} else if (hwId == HARDWARE_GDEV) { // NDEV hardware
+		OSReport("MetroTRK : Set to GDEV hardware\n");
+		// Initialize gDBCommTable
+		// need to work out what the deal with the typedef is for these functions
+		// gDBCommTable.initialize_func = gdev_cc_initialize;
+		// gDBCommTable.open_func = gdev_cc_open;
+		// gDBCommTable.close_func = gdev_cc_close;
+		// gDBCommTable.read_func = gdev_cc_read;
+		// gDBCommTable.write_func = gdev_cc_write;
+		// gDBCommTable.shutdown_func = gdev_cc_shutdown;
+		// gDBCommTable.peek_func = gdev_cc_peek;
+		// gDBCommTable.pre_continue_func = gdev_cc_pre_continue;
+		// gDBCommTable.post_stop_func = gdev_cc_post_stop;
+		// gDBCommTable.init_interrupts_func = gdev_cc_initinterrupts;
+		result = 0;
+
+	} else if (hwId == HARDWARE_AMC_DDH) {
+		OSReport("MetroTRK : Set to AMC DDH hardware\n");
+		// Initialize gDBCommTable
+		// need to make these ddh functions
+		// gDBCommTable.initialize_func = gdev_cc_initialize;
+		// gDBCommTable.open_func = gdev_cc_open;
+		// gDBCommTable.close_func = gdev_cc_close;
+		// gDBCommTable.read_func = gdev_cc_read;
+		// gDBCommTable.write_func = gdev_cc_write;
+		// gDBCommTable.shutdown_func = gdev_cc_shutdown;
+		// gDBCommTable.peek_func = gdev_cc_peek;
+		// gDBCommTable.pre_continue_func = gdev_cc_pre_continue;
+		// gDBCommTable.post_stop_func = gdev_cc_post_stop;
+		// gDBCommTable.init_interrupts_func = gdev_cc_initinterrupts;
+		result = 0;
+
+	} else { // unknown hardware
+		OSReport("MetroTRK : Set to UNKNOWN hardware. (%ld)\n", hwId);
+		OSReport("MetroTRK : Invalid hardware ID passed from OS\n");
+		OSReport("MetroTRK : Defaulting to GDEV Hardware\n");
+		result = 1;
+	}
+
+	return result;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -208,31 +259,11 @@ void InitMetroTRKCommTable(void)
  * Address:	800C06C8
  * Size:	000050
  */
-void TRKInitializeIntDrivenUART(void)
+DSError TRKInitializeIntDrivenUART(u32, u32, u32, void* r5)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x800C
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r4, r4, 0x984
-	  lwz       r12, 0x6920(r3)
-	  mr        r3, r6
-	  mtctr     r12
-	  bctrl
-	  lis       r3, 0x804A
-	  addi      r3, r3, 0x6920
-	  lwz       r12, 0x18(r3)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	gDBCommTable.initialize_func(r5, TRKEXICallBack);
+	gDBCommTable.open_func();
+	return DS_NoError;
 }
 
 /*
@@ -242,29 +273,11 @@ void TRKInitializeIntDrivenUART(void)
  */
 void EnableEXI2Interrupts(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x4810(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x38
-	  lis       r3, 0x804A
-	  addi      r3, r3, 0x6920
-	  lwz       r12, 0x4(r3)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x38
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!TRK_Use_BBA) {
+		if (gDBCommTable.init_interrupts_func != nullptr) {
+			gDBCommTable.init_interrupts_func();
+		}
+	}
 }
 
 /*
@@ -272,50 +285,17 @@ void EnableEXI2Interrupts(void)
  * Address:	800C0650
  * Size:	000030
  */
-void TRKPollUART(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x6920
-	  lwz       r12, 0xC(r3)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+int TRKPollUART(void) { return gDBCommTable.peek_func(); }
 
 /*
  * --INFO--
  * Address:	800C0614
  * Size:	00003C
  */
-void TRKReadUARTN(void)
+UARTError TRKReadUARTN(void* bytes, u32 length)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r5, r5, 0x6920
-	  lwz       r12, 0x10(r5)
-	  mtctr     r12
-	  bctrl
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  srawi     r3, r0, 0x1F
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	int readErr = gDBCommTable.read_func(bytes, length);
+	return ((-readErr | readErr) >> 31);
 }
 
 /*
@@ -323,26 +303,10 @@ void TRKReadUARTN(void)
  * Address:	800C05D8
  * Size:	00003C
  */
-void TRKWriteUARTN(void)
+UARTError TRKWriteUARTN(const void* bytes, u32 length)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r5, r5, 0x6920
-	  lwz       r12, 0x14(r5)
-	  mtctr     r12
-	  bctrl
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  srawi     r3, r0, 0x1F
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	int writeErr = gDBCommTable.write_func(bytes, length);
+	return ((-writeErr | writeErr) >> 31);
 }
 
 /*
@@ -380,105 +344,36 @@ void TRKReadUARTPoll(void)
  * Address:	800C05A8
  * Size:	000030
  */
-void ReserveEXI2Port(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x6920
-	  lwz       r12, 0x24(r3)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void ReserveEXI2Port(void) { gDBCommTable.post_stop_func(); }
 
 /*
  * --INFO--
  * Address:	800C0578
  * Size:	000030
  */
-void UnreserveEXI2Port(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x6920
-	  lwz       r12, 0x20(r3)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void UnreserveEXI2Port(void) { gDBCommTable.pre_continue_func(); }
 
 /*
  * --INFO--
  * Address:	800C0548
  * Size:	000030
  */
-void TRK_board_display(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  subi      r3, r5, 0x63B4
-	  crclr     6, 0x6
-	  bl        0x2D188
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void TRK_board_display(char* str) { OSReport("%s\n", str); }
 
 /*
  * --INFO--
  * Address:	800C04F0
  * Size:	000058
  */
-void InitializeProgramEndTrap(void)
+DSError InitializeProgramEndTrap(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x800D
-	  lis       r3, 0x8048
-	  stw       r0, 0x14(r1)
-	  li        r5, 0x4
-	  stw       r31, 0xC(r1)
-	  addi      r31, r4, 0x4598
-	  subi      r4, r3, 0x63B8
-	  addi      r3, r31, 0x4
-	  bl        -0xBD3E8
-	  addi      r3, r31, 0x4
-	  li        r4, 0x4
-	  bl        0x2C2D8
-	  addi      r3, r31, 0x4
-	  li        r4, 0x4
-	  bl        0x2C1E8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	static const char EndofProgramInstruction[] = "\0END";
+
+	u8* endOfProgramInstructionBytes = (u8*)&EndofProgramInstruction;
+	u8* ppcHaltPtr                   = (u8*)PPCHalt;
+	TRK_memcpy(ppcHaltPtr + 4, endOfProgramInstructionBytes, 4);
+	ICInvalidateRange(ppcHaltPtr + 4, 4);
+	DCFlushRange(ppcHaltPtr + 4, 4);
 }
 
 /*
@@ -493,47 +388,45 @@ void TRKUARTInterruptHandler(void) { }
  * Address:	800C0464
  * Size:	000088
  */
-void TRKLoadContext(void)
+asm void TRKLoadContext(OSContext* ctx, u32 r4)
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x0(r3)
-	  lwz       r1, 0x4(r3)
-	  lwz       r2, 0x8(r3)
-	  lhz       r5, 0x1A2(r3)
-	  rlwinm.   r6,r5,0,30,30
-	  beq-      .loc_0x28
-	  rlwinm    r5,r5,0,31,29
-	  sth       r5, 0x1A2(r3)
-	  lmw       r5, 0x14(r3)
-	  b         .loc_0x2C
-
-	.loc_0x28:
-	  lmw       r13, 0x34(r3)
-
-	.loc_0x2C:
-	  mr        r31, r3
-	  mr        r3, r4
-	  lwz       r4, 0x80(r31)
-	  mtcr      r4
-	  lwz       r4, 0x84(r31)
-	  mtlr      r4
-	  lwz       r4, 0x88(r31)
-	  mtctr     r4
-	  lwz       r4, 0x8C(r31)
-	  mtxer     r4
-	  mfmsr     r4
-	  rlwinm    r4,r4,0,17,15
-	  rlwinm    r4,r4,0,31,29
-	  mtmsr     r4
-	  mtsprg    1, r2
-	  lwz       r4, 0xC(r31)
-	  mtsprg    2, r4
-	  lwz       r4, 0x10(r31)
-	  mtsprg    3, r4
-	  lwz       r2, 0x198(r31)
-	  lwz       r4, 0x19C(r31)
-	  lwz       r31, 0x7C(r31)
-	  b         -0x25F4
-	*/
+	// clang-format off
+    nofralloc
+    lwz r0, OSContext.gpr[0](r3)
+    lwz r1, OSContext.gpr[1](r3)
+    lwz r2, OSContext.gpr[2](r3)
+    lhz r5, OSContext.state(r3)
+    rlwinm. r6, r5, 0, 0x1e, 0x1e
+    beq L_802CC24C
+    rlwinm r5, r5, 0, 0x1f, 0x1d
+    sth r5, OSContext.state(r3)
+    lmw r5, OSContext.gpr[5](r3)
+    b L_802CC250
+L_802CC24C:
+    lmw r13, OSContext.gpr[13](r3)
+L_802CC250:
+    mr r31, r3
+    mr r3, r4
+    lwz r4, OSContext.cr(r31)
+    mtcrf 0xff, r4
+    lwz r4, OSContext.lr(r31)
+    mtlr r4
+    lwz r4, OSContext.ctr(r31)
+    mtctr r4
+    lwz r4, OSContext.xer(r31)
+    mtxer r4
+    mfmsr r4
+    rlwinm r4, r4, 0, 0x11, 0xf //Turn off external exceptions
+    rlwinm r4, r4, 0, 0x1f, 0x1d //Turn off recoverable exception flag
+    mtmsr r4
+    mtsprg 1, r2
+    lwz r4, OSContext.gpr[3](r31)
+    mtsprg 2, r4
+    lwz r4, OSContext.gpr[4](r31)
+    mtsprg 3, r4
+    lwz r2, OSContext.srr0(r31)
+    lwz r4, OSContext.srr1(r31)
+    lwz r31, OSContext.gpr[31](r31)
+    b TRKInterruptHandler
+	// clang-format on
 }

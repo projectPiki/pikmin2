@@ -30,8 +30,8 @@ typedef int UARTError;
 
 // Struct for sending and receiving messages (size 0x88C).
 typedef struct MessageBuffer {
-	BOOL isInUse;            // _00
-	u32 _04;                 // _04, might be swapped with _00
+	u32 _00;                 // _00, unknown
+	BOOL isInUse;            // _04
 	u32 length;              // _08
 	u32 position;            // _0C
 	u8 data[TRKMSGBUF_SIZE]; // _0C
@@ -65,14 +65,28 @@ typedef struct TRKPacketSeq {
 	u8 _02[6]; // _02, unknown
 } TRKPacketSeq;
 
+// Struct for receiving packets from serial poll (size 0x14).
+typedef struct TRKFramingState {
+	MessageBufferID msgBufID;   // _00
+	MessageBuffer* buffer;      // _04
+	ReceiverState receiveState; // _08
+	BOOL isEscape;              // _0C
+	u8 fcsType;                 // _10
+} TRKFramingState;
+
 // Command reply information (size 0x40).
 typedef struct CommandReply {
-	u32 _00;       // _00
-	u8 commandID;  // _04, use MessageCommandID enum - should be enum type?
-	u8 replyError; // _05, use DSReplyError enum - should be enum type? check size.
-	u32 _08;       // _08, unsure if this should be here or be one of the above
-	u32 _0C;       // _0C
-	u8 _10[0x30];  // _10, unknown
+	u32 _00; // _00
+	union {
+		u8 b;
+		MessageCommandID m;
+	} commandID; // _04, use MessageCommandID enum
+	union {
+		u8 b;
+		DSReplyError r;
+	} replyError; // _08, use DSReplyError enum - should be enum type? check size.
+	u32 _0C;      // _0C
+	u8 _10[0x30]; // _10, unknown
 } CommandReply;
 
 // Nub event information (size 0xC).
@@ -93,51 +107,39 @@ typedef struct TRKEventQueue {
 
 // Struct for state information (size 0xB0).
 typedef struct TRKState {
-	u32 _00;         // _00
-	u32 _04;         // _04
-	u32 _08;         // _08
-	u32 _0C;         // _0C
-	u32 _10;         // _10
-	u32 _14;         // _14
-	u32 _18;         // _18
-	u32 _1C;         // _1C
-	u32 _20;         // _20
-	u32 _24;         // _24
-	u32 _28;         // _28
-	u32 _2C;         // _2C
-	u32 _30;         // _30
-	u32 _34;         // _34
-	u32 _38;         // _38
-	u32 _3C;         // _3C
-	u32 _40;         // _40
-	u32 _44;         // _44
-	u32 _48;         // _48
-	u32 _4C;         // _4C
-	u32 _50;         // _50
-	u32 _54;         // _54
-	u32 _58;         // _58
-	u32 _5C;         // _5C
-	u32 _60;         // _60
-	u32 _64;         // _64
-	u32 _68;         // _68
-	u32 _6C;         // _6C
-	u32 _70;         // _70
-	u32 _74;         // _74
-	u32 _78;         // _78
-	u32 _7C;         // _7C
-	u32 _80;         // _80
-	u32 _84;         // _84
-	u32 _88;         // _88
-	u32 _8C;         // _8C
-	u32 _90;         // _90
-	u32 _94;         // _94
-	BOOL mIsStopped; // _98
-	u32 _9C;         // _9C
-	u32 _A0;         // _A0
-	u32 _A4;         // _A4
-	u32 _A8;         // _A8
-	u32 _AC;         // _AC
+	u32 gpr[32];         // _00
+	u32 lr;              // _80
+	u32 ctr;             // _84
+	u32 xer;             // _88
+	u32 msr;             // _8C
+	u32 dar;             // _90
+	u32 dsisr;           // _94
+	BOOL isStopped;      // _98
+	u32 inputActivated;  // _9C
+	u32 inputPendingPtr; // _A0
+	u32 _A4;             // _A4
+	u32 _A8;             // _A8
+	u32 _AC;             // _AC
 } TRKState;
+
+typedef struct TRKState_PPC {
+	u32 GPR[32];         // 0x0
+	u32 LR;              // 0x80
+	u32 CTR;             // 0x84
+	u32 XER;             // 0x88
+	u32 MSR;             // 0x8c
+	u32 DAR;             // 0x90
+	u32 DSISR;           // 0x94
+	BOOL stopped;        // 0x98
+	BOOL inputActivated; // 0x9c
+	u8* inputPendingPtr; // 0xA0
+} TRKState_PPC;
+
+typedef struct ProcessorRestoreFlags_PPC {
+	u8 TBR;
+	u8 DEC;
+	u8 linker_padding[0x9 - 0x2];
+} ProcessorRestoreFlags_PPC;
 
 ////////////////////////////////////
 

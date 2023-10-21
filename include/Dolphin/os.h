@@ -114,10 +114,10 @@ void OSSetArenaHi(void* addr);
 void OSSetArenaLo(void* addr);
 
 // targsupp
-extern void TRKAccessFile(void);
-extern void TRKOpenFile(void);
-extern void TRKCloseFile(void);
-extern void TRKPositionFile(void);
+extern u32 TRKAccessFile(u32, u32, u32*, u8*);
+extern u32 TRKOpenFile(u32, u32, u32*, u8*);
+extern u32 TRKCloseFile(u32, u32);
+extern u32 TRKPositionFile(u32, u32, u32*, u8*);
 
 #define OS_SYS_CALL_HANDLER  ((void*)0x80000C00)
 #define OS_HANDLER_SLOT_SIZE (0x100)

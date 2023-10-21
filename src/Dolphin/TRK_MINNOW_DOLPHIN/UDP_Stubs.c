@@ -1,11 +1,12 @@
 #include "types.h"
+#include "Dolphin/OS/OSInterrupt.h"
 
 /*
  * --INFO--
  * Address:	800C0C48
  * Size:	000008
  */
-int udp_cc_initialize(void) { return -1; }
+int udp_cc_initialize(void* flagOut, __OSInterruptHandler handler) { return -1; }
 
 /*
  * --INFO--
@@ -33,14 +34,14 @@ int udp_cc_close(void) { return -1; }
  * Address:	800C0C28
  * Size:	000008
  */
-int udp_cc_read(void) { return 0; }
+int udp_cc_read(u8* dest, int size) { return 0; }
 
 /*
  * --INFO--
  * Address:	800C0C20
  * Size:	000008
  */
-int udp_cc_write(void) { return 0; }
+int udp_cc_write(const u8* src, int size) { return 0; }
 
 /*
  * --INFO--

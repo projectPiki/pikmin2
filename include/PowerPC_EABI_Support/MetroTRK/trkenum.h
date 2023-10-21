@@ -10,9 +10,9 @@ extern "C" {
 //////////// TRK ENUMS /////////////
 // Hardware types.
 typedef enum {
-	HARDWARE_GDEV = 0,
-	HARDWARE_NDEV = 1,
-	HARDWARE_BBA  = 2,
+	HARDWARE_AMC_DDH = 0,
+	HARDWARE_GDEV    = 1,
+	HARDWARE_BBA     = 2,
 } HardwareType;
 
 // DS Error returns.
@@ -128,6 +128,13 @@ typedef enum {
 	DSREPLY_InvalidThreadID    = 0x22,
 	DSREPLY_DebugSecurityError = 0x23,
 } DSReplyError;
+
+typedef enum {
+	DSRECV_Wait          = 0,
+	DSRECV_Found         = 1,
+	DSRECV_InFrame       = 2,
+	DSRECV_FrameOverflow = 3,
+} ReceiverState;
 
 typedef enum {
 	NUBEVENT_Null       = 0,

@@ -1,12 +1,25 @@
-#include "types.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
+
+static BOOL IsTRKConnected;
 
 /*
  * --INFO--
  * Address:	800BD54C
  * Size:	0000A8
  */
-void OutputData(void)
+void OutputData(void* data, int length)
 {
+	// u8 byte;
+	int i;
+
+	for (i = 0; i < length; i++) {
+		MWTRACE(8, "%02x ", ((u8*)data)[i]);
+		if (i % 16 == 15) {
+			MWTRACE(8, "\n");
+		}
+	}
+
+	MWTRACE(8, "\n");
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -65,31 +78,14 @@ void OutputData(void)
  * Address:	800BD53C
  * Size:	000010
  */
-void GetTRKConnected(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0x804F
-	  addi      r3, r3, 0x4278
-	  lwz       r3, 0x0(r3)
-	  blr
-	*/
-}
+int GetTRKConnected(void) { return IsTRKConnected; }
 
 /*
  * --INFO--
  * Address:	800BD530
  * Size:	00000C
  */
-void SetTRKConnected(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r4, 0x804F
-	  stw       r3, 0x4278(r4)
-	  blr
-	*/
-}
+void SetTRKConnected(int isConnected) { IsTRKConnected = isConnected; }
 
 /*
  * --INFO--
@@ -106,9 +102,13 @@ void TRKMessageIntoReply(void)
  * Address:	........
  * Size:	000064
  */
-void TRKSendACK(void)
+DSError TRKSendACK(MessageBuffer* buffer)
 {
-	// UNUSED FUNCTION
+	DSError err;
+	MWTRACE(1, "SendACK : Calling MessageSend\n");
+	err = TRKMessageSend(buffer);
+	MWTRACE(1, "MessageSend err : %ld\n", err);
+	return err;
 }
 
 /*
@@ -116,9 +116,17 @@ void TRKSendACK(void)
  * Address:	........
  * Size:	000064
  */
-void TRKStandardACK(void)
+DSError TRKStandardACK(MessageBuffer* buffer, MessageCommandID commandID, DSReplyError replyError)
 {
-	// UNUSED FUNCTION
+	CommandReply reply;
+	u32 nextSequence;
+
+	memset((void*)&reply, 0, sizeof(CommandReply));
+	reply.commandID.b  = commandID;
+	reply._00          = 0x40;
+	reply.replyError.b = replyError;
+	TRKWriteUARTN((void*)&reply, sizeof(CommandReply));
+	return DS_NoError;
 }
 
 /*
@@ -146,36 +154,10 @@ void TRKDoUnsupported(void)
  * Address:	800BD4CC
  * Size:	000064
  */
-void TRKDoConnect(void)
+DSError TRKDoConnect(MessageBuffer* buffer)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  lis       r3, 0x804F
-	  li        r5, 0x40
-	  stw       r0, 0x54(r1)
-	  addi      r4, r3, 0x4278
-	  li        r0, 0x1
-	  addi      r3, r1, 0x8
-	  stw       r0, 0x0(r4)
-	  li        r4, 0
-	  bl        -0xB8440
-	  li        r3, 0x80
-	  li        r5, 0x40
-	  li        r0, 0
-	  stb       r3, 0xC(r1)
-	  addi      r3, r1, 0x8
-	  li        r4, 0x40
-	  stw       r5, 0x8(r1)
-	  stb       r0, 0x10(r1)
-	  bl        0x30C0
-	  lwz       r0, 0x54(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
+	IsTRKConnected = TRUE;
+	return TRKStandardACK(buffer, 0x80, DSREPLY_NoError);
 }
 
 /*
@@ -183,41 +165,15 @@ void TRKDoConnect(void)
  * Address:	800BD454
  * Size:	000078
  */
-void TRKDoDisconnect(void)
+DSError TRKDoDisconnect(MessageBuffer* buffer)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lis       r3, 0x804F
-	  li        r5, 0x40
-	  stw       r0, 0x64(r1)
-	  addi      r4, r3, 0x4278
-	  li        r0, 0
-	  addi      r3, r1, 0x14
-	  stw       r0, 0x0(r4)
-	  li        r4, 0
-	  bl        -0xB83C8
-	  li        r3, 0x80
-	  li        r5, 0x40
-	  li        r0, 0
-	  stb       r3, 0x18(r1)
-	  addi      r3, r1, 0x14
-	  li        r4, 0x40
-	  stw       r5, 0x14(r1)
-	  stb       r0, 0x1C(r1)
-	  bl        0x3138
-	  addi      r3, r1, 0x8
-	  li        r4, 0x1
-	  bl        -0x2000
-	  addi      r3, r1, 0x8
-	  bl        -0x1FF0
-	  lwz       r0, 0x64(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
+	TRKEvent event;
+
+	IsTRKConnected = FALSE;
+	TRKStandardACK(buffer, 0x80, DSREPLY_NoError);
+	TRKConstructEvent(&event, 1);
+	TRKPostEvent(&event);
+	return DS_NoError;
 }
 
 /*
@@ -225,33 +181,11 @@ void TRKDoDisconnect(void)
  * Address:	800BD3FC
  * Size:	000058
  */
-void TRKDoReset(void)
+DSError TRKDoReset(MessageBuffer* buffer)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  li        r4, 0
-	  li        r5, 0x40
-	  stw       r0, 0x54(r1)
-	  addi      r3, r1, 0x8
-	  bl        -0xB8360
-	  li        r3, 0x80
-	  li        r5, 0x40
-	  li        r0, 0
-	  stb       r3, 0xC(r1)
-	  addi      r3, r1, 0x8
-	  li        r4, 0x40
-	  stw       r5, 0x8(r1)
-	  stb       r0, 0x10(r1)
-	  bl        0x31A0
-	  bl        -0xB83B4
-	  lwz       r0, 0x54(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
+	TRKStandardACK(buffer, 0x80, DSREPLY_NoError);
+	__TRK_reset();
+	return DS_NoError;
 }
 
 /*
@@ -259,33 +193,11 @@ void TRKDoReset(void)
  * Address:	800BD3A4
  * Size:	000058
  */
-void TRKDoOverride(void)
+DSError TRKDoOverride(MessageBuffer* buffer)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  li        r4, 0
-	  li        r5, 0x40
-	  stw       r0, 0x54(r1)
-	  addi      r3, r1, 0x8
-	  bl        -0xB8308
-	  li        r3, 0x80
-	  li        r5, 0x40
-	  li        r0, 0
-	  stb       r3, 0xC(r1)
-	  addi      r3, r1, 0x8
-	  li        r4, 0x40
-	  stw       r5, 0x8(r1)
-	  stb       r0, 0x10(r1)
-	  bl        0x31F8
-	  bl        0x2E84
-	  lwz       r0, 0x54(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
+	TRKStandardACK(buffer, 0x80, DSREPLY_NoError);
+	__TRK_copy_vectors();
+	return DS_NoError;
 }
 
 /*
@@ -293,14 +205,14 @@ void TRKDoOverride(void)
  * Address:	800BD39C
  * Size:	000008
  */
-u32 TRKDoVersions(void) { return 0x0; }
+DSError TRKDoVersions(MessageBuffer*) { return DS_NoError; }
 
 /*
  * --INFO--
  * Address:	800BD394
  * Size:	000008
  */
-u32 TRKDoSupportMask(void) { return 0x0; }
+DSError TRKDoSupportMask(MessageBuffer*) { return DS_NoError; }
 
 /*
  * --INFO--
@@ -317,8 +229,75 @@ void TRKDoCPUType(void)
  * Address:	800BD150
  * Size:	000244
  */
-void TRKDoReadMemory(void)
+DSError TRKDoReadMemory(MessageBuffer* buffer)
 {
+	DSError result = DS_NoError;
+	DSReplyError replyError;
+	u8 options;
+	u32 test;
+	u32 start;
+	u32 length;
+	CommandReply reply3;
+
+	options = buffer->data[8];
+	start   = *(u32*)(buffer->data + 16);
+	length  = *(u16*)(buffer->data + 12);
+
+	MWTRACE(1, "ReadMemory (0x%02x) : 0x%08x 0x%08x 0x%08x\n", buffer->data[4], start, length, options);
+
+	if (options & 2) {
+		return TRKStandardACK(buffer, DSMSG_ReplyACK, DSREPLY_UnsupportedOptionError);
+	}
+
+	if (result == 0) {
+		u8 buf[0x820];
+
+		size_t tempLength = length;
+
+		result = TRKTargetAccessMemory(buf, start, &tempLength, options & 0x8 ? 0 : 1, TRUE);
+		TRKResetBuffer(buffer, 0);
+
+		if (result == DS_NoError) {
+			memset(&reply3, 0, sizeof(CommandReply));
+			reply3.replyError.b = result;
+			reply3._00          = tempLength + 0x40;
+			reply3.commandID.m  = DSMSG_ReplyACK;
+			TRKAppendBuffer(buffer, (u8*)&reply3, sizeof(CommandReply));
+
+			if (options & 0x40) {
+				result = TRKAppendBuffer(buffer, buf + (start & 0x1F), tempLength);
+			} else {
+				result = TRKAppendBuffer(buffer, buf, tempLength);
+			}
+		}
+	}
+
+	if (result != DS_NoError) {
+		switch (result) {
+		case DS_CWDSException:
+			replyError = DSREPLY_CWDSException;
+			break;
+		case DS_InvalidMemory:
+			replyError = DSREPLY_InvalidMemoryRange;
+			break;
+		case DS_InvalidProcessID:
+			replyError = DSREPLY_InvalidProcessID;
+			break;
+		case DS_InvalidThreadID:
+			replyError = DSREPLY_InvalidThreadID;
+			break;
+		case DS_OSError:
+			replyError = DSREPLY_OSError;
+			break;
+		default:
+			replyError = DSREPLY_CWDSError;
+			break;
+		}
+
+		return TRKStandardACK(buffer, DSMSG_ReplyACK, replyError);
+	}
+
+	return TRKSendACK(buffer);
 	/*
 	.loc_0x0:
 	  rlwinm    r11,r1,0,27,31
@@ -492,7 +471,7 @@ void TRKDoReadMemory(void)
  * Address:	800BCF14
  * Size:	00023C
  */
-void TRKDoWriteMemory(void)
+DSError TRKDoWriteMemory(MessageBuffer*)
 {
 	/*
 	.loc_0x0:
@@ -663,7 +642,7 @@ void TRKDoWriteMemory(void)
  * Address:	800BCC34
  * Size:	0002E0
  */
-void TRKDoReadRegisters(void)
+DSError TRKDoReadRegisters(MessageBuffer*)
 {
 	/*
 	.loc_0x0:
@@ -889,7 +868,7 @@ void TRKDoReadRegisters(void)
  * Address:	800BC9A4
  * Size:	000290
  */
-void TRKDoWriteRegisters(void)
+DSError TRKDoWriteRegisters(MessageBuffer*)
 {
 	/*
 	.loc_0x0:
@@ -1117,7 +1096,7 @@ void TRKDoFlushCache(void)
  * Address:	800BC8F4
  * Size:	0000B0
  */
-void TRKDoContinue(void)
+DSError TRKDoContinue(MessageBuffer*)
 {
 	/*
 	.loc_0x0:
@@ -1177,7 +1156,7 @@ void TRKDoContinue(void)
  * Address:	800BC6D4
  * Size:	000220
  */
-void TRKDoStep(void)
+DSError TRKDoStep(MessageBuffer*)
 {
 	/*
 	.loc_0x0:
@@ -1347,7 +1326,7 @@ void TRKDoStep(void)
  * Address:	800BC62C
  * Size:	0000A8
  */
-void TRKDoStop(void)
+DSError TRKDoStop(MessageBuffer*)
 {
 	/*
 	.loc_0x0:
@@ -1415,7 +1394,7 @@ void TRKDoStop(void)
  * Address:	800BC584
  * Size:	0000A8
  */
-void TRKDoSetOption(void)
+DSError TRKDoSetOption(MessageBuffer*)
 {
 	/*
 	.loc_0x0:
