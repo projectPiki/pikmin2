@@ -178,7 +178,7 @@ DSError TRKAppendBuffer(MessageBuffer* msg, const void* data, size_t length)
 DSError TRKReadBuffer(MessageBuffer* msg, void* data, int length)
 {
 	DSError error = DS_NoError;
-	int bytesLeft;
+	u32 bytesLeft;
 
 	// Return if no bytes to read
 	if (length == 0) {
@@ -262,82 +262,6 @@ DSError TRKAppendBuffer1_ui64(MessageBuffer* buffer, const u64 data)
 	}
 
 	return TRKAppendBuffer(buffer, (const void*)bigEndianData, sizeof(data));
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  lwz       r0, 0x28A8(r4)
-	  stw       r5, 0x8(r1)
-	  cmpwi     r0, 0
-	  stw       r6, 0xC(r1)
-	  beq-      .loc_0x3C
-	  addi      r4, r1, 0x8
-	  b         .loc_0x80
-
-	.loc_0x3C:
-	  lbz       r10, 0xF(r1)
-	  addi      r4, r1, 0x10
-	  lbz       r9, 0xE(r1)
-	  lbz       r8, 0xD(r1)
-	  lbz       r7, 0xC(r1)
-	  lbz       r6, 0xB(r1)
-	  lbz       r5, 0xA(r1)
-	  lbz       r3, 0x9(r1)
-	  lbz       r0, 0x8(r1)
-	  stb       r10, 0x10(r1)
-	  stb       r9, 0x11(r1)
-	  stb       r8, 0x12(r1)
-	  stb       r7, 0x13(r1)
-	  stb       r6, 0x14(r1)
-	  stb       r5, 0x15(r1)
-	  stb       r3, 0x16(r1)
-	  stb       r0, 0x17(r1)
-
-	.loc_0x80:
-	  lwz       r3, 0xC(r31)
-	  li        r29, 0x8
-	  li        r30, 0
-	  subfic    r0, r3, 0x880
-	  cmplwi    r0, 0x8
-	  bge-      .loc_0xA0
-	  li        r30, 0x301
-	  mr        r29, r0
-
-	.loc_0xA0:
-	  cmplwi    r29, 0x1
-	  bne-      .loc_0xB8
-	  lbz       r0, 0x0(r4)
-	  add       r3, r31, r3
-	  stb       r0, 0x10(r3)
-	  b         .loc_0xC8
-
-	.loc_0xB8:
-	  addi      r3, r3, 0x10
-	  mr        r5, r29
-	  add       r3, r31, r3
-	  bl        -0xB8BF4
-
-	.loc_0xC8:
-	  lwz       r0, 0xC(r31)
-	  mr        r3, r30
-	  add       r0, r0, r29
-	  stw       r0, 0xC(r31)
-	  lwz       r0, 0xC(r31)
-	  stw       r0, 0x8(r31)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /*
@@ -392,88 +316,6 @@ DSError TRKAppendBuffer_ui32(MessageBuffer* buffer, const u32* data, int count)
 	}
 
 	return err;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x804F
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r27, r3
-	  mr        r28, r5
-	  mr        r30, r4
-	  addi      r31, r6, 0x28A8
-	  li        r29, 0
-	  li        r3, 0
-	  b         .loc_0xD8
-
-	.loc_0x30:
-	  lwz       r0, 0x0(r31)
-	  lwz       r3, 0x0(r30)
-	  cmpwi     r0, 0
-	  stw       r3, 0x8(r1)
-	  beq-      .loc_0x4C
-	  addi      r4, r1, 0x8
-	  b         .loc_0x70
-
-	.loc_0x4C:
-	  lbz       r6, 0xB(r1)
-	  addi      r4, r1, 0xC
-	  lbz       r5, 0xA(r1)
-	  lbz       r3, 0x9(r1)
-	  lbz       r0, 0x8(r1)
-	  stb       r6, 0xC(r1)
-	  stb       r5, 0xD(r1)
-	  stb       r3, 0xE(r1)
-	  stb       r0, 0xF(r1)
-
-	.loc_0x70:
-	  lwz       r5, 0xC(r27)
-	  li        r25, 0x4
-	  li        r26, 0
-	  subfic    r0, r5, 0x880
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0x90
-	  li        r26, 0x301
-	  mr        r25, r0
-
-	.loc_0x90:
-	  cmplwi    r25, 0x1
-	  bne-      .loc_0xA8
-	  lbz       r3, 0x0(r4)
-	  addi      r0, r5, 0x10
-	  stbx      r3, r27, r0
-	  b         .loc_0xB8
-
-	.loc_0xA8:
-	  addi      r3, r5, 0x10
-	  mr        r5, r25
-	  add       r3, r27, r3
-	  bl        -0xB8A80
-
-	.loc_0xB8:
-	  lwz       r0, 0xC(r27)
-	  mr        r3, r26
-	  addi      r30, r30, 0x4
-	  addi      r29, r29, 0x1
-	  add       r0, r0, r25
-	  stw       r0, 0xC(r27)
-	  lwz       r0, 0xC(r27)
-	  stw       r0, 0x8(r27)
-
-	.loc_0xD8:
-	  cmpwi     r3, 0
-	  bne-      .loc_0xE8
-	  cmpw      r29, r28
-	  blt+      .loc_0x30
-
-	.loc_0xE8:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /*

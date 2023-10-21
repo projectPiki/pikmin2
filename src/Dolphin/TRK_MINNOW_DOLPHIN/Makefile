@@ -30,15 +30,15 @@ TRK_MINNOW_DOLPHIN_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/MWTrace.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/MWCriticalSection_gc.o\
 
-$(TRK_MINNOW_DOLPHIN_FILES): CFLAGS += -common off -inline deferred
+$(TRK_MINNOW_DOLPHIN_FILES): CFLAGS += -common off -inline deferred -sdata 0 -sdata2 0
 
-# Dirty hack to override sdata
-# It seems some TRK-related files need -sdata 0
-$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/mainloop.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/nubinit.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/main_TRK.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/target_options.o: CFLAGS += -sdata 0
+# Override sdata
+# It seems some TRK-related files need -sdata 8
+$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.o: CFLAGS += -sdata 8
+$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/ddh/main.o: CFLAGS += -sdata 8
+$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/gdev/main.o: CFLAGS += -sdata 8
 
+# Force targsupp to be 32-aligned
 $(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/targsupp.o: CFLAGS += -func_align 32
 
 DEPENDS += $(TRK_MINNOW_DOLPHIN_FILES:.o=.d)
