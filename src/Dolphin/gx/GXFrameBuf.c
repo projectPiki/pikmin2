@@ -17,6 +17,16 @@ void GXAdjustForOverscan(GXRenderModeObj* rIn, GXRenderModeObj* rOut, u16 horiz,
  */
 void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height)
 {
+	LOAD_GX_FIELD(0x1e0, u32) = 0;
+	LOAD_GX_FIELD(0x1e0, u32) |= left;
+	LOAD_GX_FIELD(0x1e0, u32) |= top << 0x10;
+	LOAD_GX_FIELD(0x1e0, u32) &= 0x49;
+
+	LOAD_GX_FIELD(0x1e4, u32) = 0;
+	LOAD_GX_FIELD(0x1e4, u32) |= width - 1;
+	LOAD_GX_FIELD(0x1e4, u32) |= height - 1 << 0x10;
+	LOAD_GX_FIELD(0x1e4, u32) &= 0x49;
+
 	/*
 	.loc_0x0:
 	  lwz       r8, -0x6D70(r2)
@@ -60,6 +70,15 @@ void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height)
  */
 void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height)
 {
+	LOAD_GX_FIELD(0x1f0, u32) = 0;
+	LOAD_GX_FIELD(0x1f0, u32) |= left;
+	LOAD_GX_FIELD(0x1f0, u32) |= top << 0x10;
+	LOAD_GX_FIELD(0x1f0, u32) &= 0x49;
+
+	LOAD_GX_FIELD(0x1f4, u32) = 0;
+	LOAD_GX_FIELD(0x1f4, u32) |= width - 1;
+	LOAD_GX_FIELD(0x1f4, u32) |= height - 1 << 0x10;
+	LOAD_GX_FIELD(0x1f4, u32) &= 0x49;
 	/*
 	.loc_0x0:
 	  lwz       r8, -0x6D70(r2)
@@ -103,6 +122,9 @@ void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height)
  */
 void GXSetDispCopyDst(u16 width, u16 height)
 {
+	LOAD_GX_FIELD(0x1e8, u32) = 0;
+	LOAD_GX_FIELD(0x1e8, u32) |= width << 1;
+	LOAD_GX_FIELD(0x1e8, u32) |= 0x4d;
 	/*
 	.loc_0x0:
 	  lwz       r4, -0x6D70(r2)
@@ -224,6 +246,8 @@ void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt format, GXBool useMIPmap)
  */
 void GXSetDispCopyFrame2Field(GXCopyMode mode)
 {
+	LOAD_GX_FIELD(0x1ec, u32) |= mode & 3 << 0xc;
+	LOAD_GX_FIELD(0x1fc, u32) &= ~0x2000;
 	/*
 	.loc_0x0:
 	  lwz       r5, -0x6D70(r2)
@@ -245,6 +269,11 @@ void GXSetDispCopyFrame2Field(GXCopyMode mode)
  */
 void GXSetCopyClamp(GXFBClamp clamp)
 {
+	LOAD_GX_FIELD(0x1ec, u32) |= clamp >> 5 & 1;
+	LOAD_GX_FIELD(0x1ec, u32) |= clamp >> 5 & 2;
+
+	LOAD_GX_FIELD(0x1fc, u32) |= clamp >> 5 & 1;
+	LOAD_GX_FIELD(0x1fc, u32) |= clamp >> 5 & 2;
 	/*
 	.loc_0x0:
 	  rlwinm    r5,r3,0,31,31
@@ -794,7 +823,7 @@ void GXSetCopyFilter(GXBool useAA, u8 samplePattern[12][2], GXBool doVertFilt, u
  */
 void GXSetDispCopyGamma(GXGamma gamma)
 {
-	__GXData->_1D0 = (gamma & 3) << 7 | __GXData->_1D0 & ~0x80;
+	LOAD_GX_FIELD(0x1ec, u32) |= (gamma & 3) >> 7;
 	/*
 	.loc_0x0:
 	  lwz       r4, -0x6D70(r2)
@@ -1049,23 +1078,11 @@ void GXCopyTex(void* dest, GXBool doClear)
  */
 void GXClearBoundingBox(void)
 {
-	/*
-	.loc_0x0:
-	  li        r6, 0x61
-	  lwz       r3, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  lis       r4, 0x5500
-	  stb       r6, -0x8000(r5)
-	  addi      r0, r4, 0x3FF
-	  stw       r0, -0x8000(r5)
-	  lis       r4, 0x5600
-	  addi      r4, r4, 0x3FF
-	  stb       r6, -0x8000(r5)
-	  li        r0, 0
-	  stw       r4, -0x8000(r5)
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
+	GXWGFifo.u8             = 0x61;
+	GXWGFifo.u32            = 0x550003ff;
+	GXWGFifo.u8             = 0x61;
+	GXWGFifo.u32            = 0x560003ff;
+	LOAD_GX_FIELD(0x2, u16) = 0;
 }
 
 /*

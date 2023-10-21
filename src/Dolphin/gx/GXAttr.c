@@ -126,6 +126,18 @@ void GXSetVtxDescv(GXVtxDescList* list)
  */
 void __GXSetVCD(void)
 {
+	u8 shift;
+	if (LOAD_GX_FIELD(0x4d5, u8) == TRUE) {
+		shift = 2;
+	} else if (LOAD_GX_FIELD(0x4d4, u8) == TRUE) {
+		shift = 1;
+	} else {
+		shift = 0;
+	}
+
+	GX_BITFIELD_SET(GXWGFifo.u32, 0x21, 8, shift);
+
+	LOAD_GX_FIELD(0x2, u16) = 1;
 	/*
 	.loc_0x0:
 	  li        r6, 0x8
@@ -191,6 +203,9 @@ void __GXSetVCD(void)
  */
 void __GXCalculateVLim(void)
 {
+	if (!LOAD_GX_FIELD(0x4, u16)) {
+		return;
+	}
 	/*
 	.loc_0x0:
 	  lwz       r3, -0x6D70(r2)
@@ -300,6 +315,13 @@ void GXGetVtxDescv(GXVtxDescList* list)
  */
 void GXClearVtxDesc(void)
 {
+	LOAD_GX_FIELD(0x14, u32) = 0;
+	LOAD_GX_FIELD(0x14, u32) &= 0x200;
+	LOAD_GX_FIELD(0x18, u32) = 0;
+	LOAD_GX_FIELD(0x4d4, u8) = 0;
+	LOAD_GX_FIELD(0x4d5, u8) = 0;
+	LOAD_GX_FIELD(0x5ac, u32) |= 8;
+
 	/*
 	.loc_0x0:
 	  lwz       r4, -0x6D70(r2)
@@ -673,6 +695,15 @@ void GXSetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
  */
 void __GXSetVAT(void)
 {
+	int i;
+
+	for (i = 0; i < 8; i++) {
+		if (LOAD_GX_FIELD(0x5ab, u8) & 1 << i) {
+			GXColor1u32(LOAD_GX_FIELD(0x5ab, u8));
+		}
+	}
+	LOAD_GX_FIELD(0x5ab, u8) = 0;
+
 	/*
 	.loc_0x0:
 	  lwz       r10, -0x6D70(r2)
@@ -799,17 +830,7 @@ void GXSetArray(GXAttr attr, void* basePtr, u8 stride)
  * Address:	800E4D0C
  * Size:	000010
  */
-void GXInvalidateVtxCache(void)
-{
-	__GXData->_000.w = 0x48;
-	/*
-	.loc_0x0:
-	  li        r0, 0x48
-	  lis       r3, 0xCC01
-	  stb       r0, -0x8000(r3)
-	  blr
-	*/
-}
+void GXInvalidateVtxCache(void) { GXWGFifo.u8 = 0x48; }
 
 /*
  * --INFO--
@@ -1012,7 +1033,11 @@ void GXSetTexCoordGen2(GXTexCoordID coord, GXTexGenType genType, GXTexGenSrc src
  */
 void GXSetNumTexGens(u8 count)
 {
-	GXData* data = __GXData;
+	LOAD_GX_FIELD(0x204, u32) |= count & 0xf;
+	GXWGFifo.u8  = 0x10;
+	GXWGFifo.u32 = 0x103f;
+	GXWGFifo.u32 = count;
+	LOAD_GX_FIELD(0x5ac, u32) |= 4;
 
 	/*
 	.loc_0x0:
