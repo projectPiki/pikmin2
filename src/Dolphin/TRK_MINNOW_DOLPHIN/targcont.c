@@ -5,11 +5,11 @@
  * Address:	800C09BC
  * Size:	000034
  */
-TRKResult TRKTargetContinue(void)
+DSError TRKTargetContinue(void)
 {
 	TRKTargetSetStopped(0);
 	UnreserveEXI2Port();
 	TRKSwapAndGo();
 	ReserveEXI2Port();
-	return EXIT_SUCCESS;
+	return DS_NoError;
 }

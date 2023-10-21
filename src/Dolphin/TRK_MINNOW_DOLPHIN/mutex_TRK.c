@@ -5,18 +5,18 @@
  * Address:	800BDD18
  * Size:	000008
  */
-TRKResult TRKInitializeMutex(void* p1) { return TRKSuccess; }
+DSError TRKInitializeMutex(void* p1) { return DS_NoError; }
 
 /*
  * --INFO--
  * Address:	800BDD10
  * Size:	000008
  */
-TRKResult TRKAcquireMutex(void* p1) { return TRKSuccess; }
+DSError TRKAcquireMutex(void* p1) { return DS_NoError; }
 
 /*
  * --INFO--
  * Address:	800BDD08
  * Size:	000008
  */
-TRKResult TRKReleaseMutex(void* p1) { return TRKSuccess; }
+DSError TRKReleaseMutex(void* p1) { return DS_NoError; }

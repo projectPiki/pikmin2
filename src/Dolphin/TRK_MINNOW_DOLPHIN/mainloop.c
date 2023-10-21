@@ -38,48 +38,56 @@ void TRKIdle(void)
  * --INFO--
  * Address:	800BB390
  * Size:	0000F8
- * Perhaps the switch case takes TRK CMD defines as inputs?
- * As seen in Dolphin/trk.h
  */
 void TRKNubMainLoop(void)
 {
 	void* msg;
-	TRKEvent sp8;
-	BOOL var_r31;
-	BOOL var_r30;
+	TRKEvent event;
+	BOOL isShutdownRequested;
+	BOOL isNewInput;
 
-	var_r31 = FALSE;
-	var_r30 = FALSE;
-	while (var_r31 == FALSE) {
-		if (TRKGetNextEvent(&sp8) != FALSE) {
-			var_r30 = FALSE;
-			switch (sp8.mEventType) { /* irregular */
-			case 0:
+	isShutdownRequested = FALSE;
+	isNewInput          = FALSE;
+	while (isShutdownRequested == FALSE) {
+		if (TRKGetNextEvent(&event) != FALSE) {
+			isNewInput = FALSE;
+
+			switch (event.eventType) {
+			case NUBEVENT_Null:
 				break;
-			case 2:
-				msg = TRKGetBuffer(sp8.mBufferIndex);
+
+			case NUBEVENT_Request:
+				msg = TRKGetBuffer(event.msgBufID);
 				TRKDispatchMessage(msg);
 				break;
-			case 1:
-				var_r31 = TRUE;
+
+			case NUBEVENT_Shutdown:
+				isShutdownRequested = TRUE;
 				break;
-			case 3:
-			case 4:
-				TRKTargetInterrupt(&sp8);
+
+			case NUBEVENT_Breakpoint:
+			case NUBEVENT_Exception:
+				TRKTargetInterrupt(&event);
 				break;
-			case 5:
+
+			case NUBEVENT_Support:
 				TRKTargetSupportRequest();
 				break;
 			}
-			TRKDestructEvent(&sp8);
-		} else if ((var_r30 == FALSE) || (*(u8*)gTRKInputPendingPtr != '\0')) {
-			var_r30 = TRUE;
-			TRKGetInput();
-		} else {
-			if (TRKTargetStopped() == FALSE) {
-				TRKTargetContinue();
-			}
-			var_r30 = FALSE;
+
+			TRKDestructEvent(&event);
+			continue;
 		}
+
+		if ((isNewInput == FALSE) || (*(u8*)gTRKInputPendingPtr != '\0')) {
+			isNewInput = TRUE;
+			TRKGetInput();
+			continue;
+		}
+
+		if (TRKTargetStopped() == FALSE) {
+			TRKTargetContinue();
+		}
+		isNewInput = FALSE;
 	}
 }

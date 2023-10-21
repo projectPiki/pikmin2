@@ -15,7 +15,7 @@ void TRKSetBufferUsed(void)
  * Address:	800BC054
  * Size:	000074
  */
-TRKResult TRKInitializeMessageBuffers(void)
+DSError TRKInitializeMessageBuffers(void)
 {
 	/*
 	.loc_0x0:
@@ -224,7 +224,7 @@ void TRKResetBuffer(void)
  * Address:	800BBE8C
  * Size:	000030
  */
-TRKResult TRKSetBufferPosition(TRKBuffer* buffer, u32 p2)
+DSError TRKSetBufferPosition(MessageBuffer* buffer, u32 p2)
 {
 	/*
 	.loc_0x0:
@@ -483,7 +483,7 @@ void TRKAppendBuffer1_ui128(void)
  * Address:	800BBBF8
  * Size:	000068
  */
-TRKResult TRKAppendBuffer_ui8(TRKBuffer* buffer, u8* p2, int p3)
+DSError TRKAppendBuffer_ui8(MessageBuffer* buffer, u8* p2, int p3)
 {
 	/*
 	.loc_0x0:
@@ -682,17 +682,17 @@ void TRKReadBuffer1_ui32(void)
  * Address:	800BBA14
  * Size:	0000E8
  */
-TRKResult TRKReadBuffer1_ui64(TRKBuffer* buffer, u8* p2)
+DSError TRKReadBuffer1_ui64(MessageBuffer* buffer, u8* p2)
 {
 	int i;
 	int j;
-	TRKResult result = TRKSuccess;
+	DSError result = DS_NoError;
 	u32 diff;
 	u32 byteCount;
 	u8* p;
 	u8 littleEndianBuffer[20];
 	p         = (gTRKBigEndian ? p2 : littleEndianBuffer);
-	result    = TRKSuccess;
+	result    = DS_NoError;
 	diff      = buffer->_08 - buffer->_0C;
 	byteCount = 8;
 	if (diff < 8) {
@@ -701,7 +701,7 @@ TRKResult TRKReadBuffer1_ui64(TRKBuffer* buffer, u8* p2)
 	}
 	TRK_memcpy(p, buffer->mBuffer + (buffer->_0C - 4), byteCount);
 	buffer->_0C += byteCount;
-	if (gTRKBigEndian == FALSE && result == TRKSuccess) {
+	if (gTRKBigEndian == FALSE && result == DS_NoError) {
 		for (i = 7, j = 0; j < 8; j++, i--) {
 			p2[j] = littleEndianBuffer[i];
 		}
@@ -783,7 +783,7 @@ TRKResult TRKReadBuffer1_ui64(TRKBuffer* buffer, u8* p2)
  * Address:	........
  * Size:	000128
  */
-void TRKReadBuffer1_ui128(TRKBuffer* buffer, u8* p2, int p3)
+void TRKReadBuffer1_ui128(MessageBuffer* buffer, u8* p2, int p3)
 {
 	// UNUSED FUNCTION
 }
@@ -793,14 +793,14 @@ void TRKReadBuffer1_ui128(TRKBuffer* buffer, u8* p2, int p3)
  * Address:	800BB97C
  * Size:	000098
  */
-TRKResult TRKReadBuffer_ui8(TRKBuffer* buffer, u8* p2, int count)
+DSError TRKReadBuffer_ui8(MessageBuffer* buffer, u8* p2, int count)
 {
-	TRKResult result = TRKSuccess;
+	DSError result = DS_NoError;
 	int i;
 	u32 diff;
 	u32 byteCount;
-	for (i = 0; (result == TRKSuccess && i < count); i++) {
-		result    = TRKSuccess;
+	for (i = 0; (result == DS_NoError && i < count); i++) {
+		result    = DS_NoError;
 		diff      = buffer->_08 - buffer->_0C;
 		byteCount = 1;
 		if (diff == 0) {
@@ -867,7 +867,7 @@ TRKResult TRKReadBuffer_ui8(TRKBuffer* buffer, u8* p2, int count)
  * Address:	........
  * Size:	0000E0
  */
-void TRKReadBuffer_ui16(TRKBuffer* buffer, u8* p2, int p3)
+void TRKReadBuffer_ui16(MessageBuffer* buffer, u8* p2, int p3)
 {
 	// UNUSED FUNCTION
 }
@@ -877,17 +877,17 @@ void TRKReadBuffer_ui16(TRKBuffer* buffer, u8* p2, int p3)
  * Address:	800BB88C
  * Size:	0000F0
  */
-TRKResult TRKReadBuffer_ui32(TRKBuffer* buffer, u8* p2, int count)
+DSError TRKReadBuffer_ui32(MessageBuffer* buffer, u8* p2, int count)
 {
-	TRKResult result = TRKSuccess;
+	DSError result = DS_NoError;
 	u32 diff;
 	int i;
 	u32 byteCount;
 	u8* p;
 	u8 littleEndianBuffer[4];
-	for (i = 0; (result == TRKSuccess && i < count); i++) {
+	for (i = 0; (result == DS_NoError && i < count); i++) {
 		p         = (gTRKBigEndian ? p2 : littleEndianBuffer);
-		result    = TRKSuccess;
+		result    = DS_NoError;
 		diff      = buffer->_08 - buffer->_0C;
 		byteCount = 4;
 		if (diff < 4) {
@@ -896,7 +896,7 @@ TRKResult TRKReadBuffer_ui32(TRKBuffer* buffer, u8* p2, int count)
 		}
 		TRK_memcpy(p, buffer->mBuffer + (buffer->_0C - 4), byteCount);
 		buffer->_0C += byteCount;
-		if (gTRKBigEndian == FALSE && result == TRKSuccess) {
+		if (gTRKBigEndian == FALSE && result == DS_NoError) {
 			p2[0] = littleEndianBuffer[3];
 			p2[1] = littleEndianBuffer[2];
 			p2[2] = littleEndianBuffer[1];
@@ -989,7 +989,7 @@ TRKResult TRKReadBuffer_ui32(TRKBuffer* buffer, u8* p2, int count)
  * Address:	........
  * Size:	000110
  */
-void TRKReadBuffer_ui64(TRKBuffer* buffer, u8* p2, int p3)
+void TRKReadBuffer_ui64(MessageBuffer* buffer, u8* p2, int p3)
 {
 	// UNUSED FUNCTION
 }
@@ -999,7 +999,7 @@ void TRKReadBuffer_ui64(TRKBuffer* buffer, u8* p2, int p3)
  * Address:	........
  * Size:	000150
  */
-void TRKReadBuffer_ui128(TRKBuffer* buffer, u8* p2, int p3)
+void TRKReadBuffer_ui128(MessageBuffer* buffer, u8* p2, int p3)
 {
 	// UNUSED FUNCTION
 }

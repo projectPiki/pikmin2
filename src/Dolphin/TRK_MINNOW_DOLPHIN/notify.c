@@ -16,29 +16,29 @@ void TRKWaitForACK(void)
  * Address:	800BDD20
  * Size:	000098
  */
-s32 TRKDoNotifyStopped(s32 arg0)
+DSError TRKDoNotifyStopped(MessageCommandID cmd)
 {
-	s32 sp8;
-	s32 spC;
-	s32 sp10;
-	s32 retval; // r31
-	s32 temp_r3;
+	int reqIdx;
+	int bufIdx;
+	MessageBuffer* msg;
+	DSError err;
+	DSError bufError;
 
-	temp_r3 = TRKGetFreeBuffer(&spC, &sp10);
-	if ((retval = temp_r3) == 0) {
-		if (retval == 0) {
-			if (arg0 == 0x90) {
-				TRKTargetAddStopInfo(sp10);
+	bufError = TRKGetFreeBuffer(&bufIdx, &msg);
+	if ((err = bufError) == FALSE) {
+		if (err == DS_NoError) {
+			if (cmd == DSMSG_NotifyStopped) {
+				TRKTargetAddStopInfo(msg);
 			} else {
-				TRKTargetAddExceptionInfo(sp10);
+				TRKTargetAddExceptionInfo(msg);
 			}
 		}
-		temp_r3 = TRKRequestSend(sp10, &sp8, 2, 3, 1);
-		retval  = temp_r3;
-		if (retval == 0) {
-			TRKReleaseBuffer(sp8);
+		bufError = TRKRequestSend(msg, &reqIdx, 2, 3, 1);
+		err      = bufError;
+		if (err == DS_NoError) {
+			TRKReleaseBuffer(reqIdx);
 		}
-		TRKReleaseBuffer(spC);
+		TRKReleaseBuffer(bufIdx);
 	}
-	return retval;
+	return err;
 }

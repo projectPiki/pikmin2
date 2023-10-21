@@ -7,15 +7,15 @@ TRKEventQueue gTRKEventQueue;
  * Address:	800BB658
  * Size:	000058
  */
-TRKResult TRKInitializeEventQueue()
+DSError TRKInitializeEventQueue()
 {
 	TRKInitializeMutex(&gTRKEventQueue);
 	TRKAcquireMutex(&gTRKEventQueue);
-	gTRKEventQueue.mCurrEvtID           = 0;
-	gTRKEventQueue.mNextSlotToOverwrite = 0;
-	gTRKEventQueue._24                  = 0x100;
+	gTRKEventQueue.count   = 0;
+	gTRKEventQueue.next    = 0;
+	gTRKEventQueue.eventID = 0x100;
 	TRKReleaseMutex(&gTRKEventQueue);
-	return TRKSuccess;
+	return DS_NoError;
 }
 
 /*
@@ -39,12 +39,12 @@ BOOL TRKGetNextEvent(TRKEvent* ev)
 
 	TRKAcquireMutex(&gTRKEventQueue);
 
-	if (gTRKEventQueue.mCurrEvtID > 0) {
-		TRK_memcpy(ev, &gTRKEventQueue.mEvents[gTRKEventQueue.mNextSlotToOverwrite], sizeof(TRKEvent));
-		gTRKEventQueue.mCurrEvtID--;
+	if (gTRKEventQueue.count > 0) {
+		TRK_memcpy(ev, &gTRKEventQueue.events[gTRKEventQueue.next], sizeof(TRKEvent));
+		gTRKEventQueue.count--;
 
-		if (++gTRKEventQueue.mNextSlotToOverwrite == 2) {
-			gTRKEventQueue.mNextSlotToOverwrite = 0;
+		if (++gTRKEventQueue.next == 2) {
+			gTRKEventQueue.next = 0;
 		}
 
 		ret = TRUE;
@@ -59,25 +59,26 @@ BOOL TRKGetNextEvent(TRKEvent* ev)
  * Address:	800BB4C4
  * Size:	0000E0
  */
-TRKResult TRKPostEvent(TRKEvent* ev)
+DSError TRKPostEvent(TRKEvent* event)
 {
-	TRKResult ret = 0;
-	int evID;
+	DSError ret = DS_NoError;
+	int nextEventID;
 
 	TRKAcquireMutex(&gTRKEventQueue);
 
-	if (gTRKEventQueue.mCurrEvtID == 2) {
-		ret = 256;
-	} else {
-		evID = (gTRKEventQueue.mNextSlotToOverwrite + gTRKEventQueue.mCurrEvtID) % 2;
-		TRK_memcpy(&gTRKEventQueue.mEvents[evID], ev, sizeof(TRKEvent));
-		gTRKEventQueue.mEvents[evID]._04 = gTRKEventQueue._24;
+	if (gTRKEventQueue.count == 2) {
+		ret = DS_EventQueueFull;
 
-		if (++gTRKEventQueue._24 < 256) {
-			gTRKEventQueue._24 = 256;
+	} else {
+		nextEventID = (gTRKEventQueue.next + gTRKEventQueue.count) % 2;
+		TRK_memcpy(&gTRKEventQueue.events[nextEventID], event, sizeof(TRKEvent));
+		gTRKEventQueue.events[nextEventID].eventID = gTRKEventQueue.eventID;
+
+		if (++gTRKEventQueue.eventID < 0x100) {
+			gTRKEventQueue.eventID = 0x100;
 		}
 
-		gTRKEventQueue.mCurrEvtID++;
+		gTRKEventQueue.count++;
 	}
 
 	TRKReleaseMutex(&gTRKEventQueue);
@@ -91,9 +92,9 @@ TRKResult TRKPostEvent(TRKEvent* ev)
  */
 void TRKConstructEvent(TRKEvent* event, int eventType)
 {
-	event->mEventType   = eventType;
-	event->_04          = 0;
-	event->mBufferIndex = -1;
+	event->eventType = eventType;
+	event->eventID   = 0;
+	event->msgBufID  = -1;
 }
 
 /*
@@ -101,4 +102,4 @@ void TRKConstructEvent(TRKEvent* event, int eventType)
  * Address:	800BB488
  * Size:	000024
  */
-void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->mBufferIndex); }
+void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->msgBufID); }

@@ -3,8 +3,10 @@
 #include "Dolphin/AmcExi2Stubs.h"
 #include "PowerPC_EABI_Support/MetroTRK/custconn/CircleBuffer.h"
 
+#define DDH_BUF_SIZE (0x800)
+
 static CircleBuffer gRecvCB;
-static u8 gRecvBuf[0x800];
+static u8 gRecvBuf[DDH_BUF_SIZE];
 static BOOL gIsInitialized;
 
 /*
@@ -17,7 +19,7 @@ BOOL ddh_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
 	MWTRACE(1, "CALLING EXI2_Init\n");
 	EXI2_Init(inputPendingPtrRef, monitorCallback);
 	MWTRACE(1, "DONE CALLING EXI2_Init\n");
-	CircleBufferInitialize(&gRecvCB, gRecvBuf, 0x800);
+	CircleBufferInitialize(&gRecvCB, gRecvBuf, DDH_BUF_SIZE);
 	return FALSE;
 }
 
@@ -57,7 +59,7 @@ BOOL ddh_cc_close() { return FALSE; }
  */
 u32 ddh_cc_read(u8* data, u32 size)
 {
-	u8 buff[0x800];
+	u8 buff[DDH_BUF_SIZE];
 	int p1;
 	u32 retval;
 	int p2;
@@ -156,7 +158,7 @@ BOOL ddh_cc_post_stop()
 int ddh_cc_peek()
 {
 	int poll;
-	u8 buff[0x800];
+	u8 buff[DDH_BUF_SIZE];
 
 	poll = EXI2_Poll();
 	if (poll <= 0) {

@@ -1,10 +1,12 @@
+#include "types.h"
+
 /*
  * --INFO--
  * Address:	800BDDB8
  * Size:	000038
  */
 // clang-format off
-asm void TRK_flush_cache(unsigned long param_1, int param_2) {
+asm void TRK_flush_cache(u32 param_1, int param_2) {
 	nofralloc
 	lis r5, 0xFFFFFFF1@h
 	ori r5, r5, 0xFFFFFFF1@l

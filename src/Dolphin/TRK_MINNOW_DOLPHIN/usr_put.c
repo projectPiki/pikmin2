@@ -1,8 +1,9 @@
 #include "types.h"
-//#include "Dolphin/os.h"
-extern void OSReport(const char*);
+
+// can't include OS headers bc report needs to not generate crclr
 extern void SetTRKConnected(u32);
 extern u32 GetTRKConnected(void);
+extern void OSReport(const char*);
 
 /*
  * --INFO--
