@@ -48,32 +48,32 @@ int InitMetroTRKCommTable(int hwId)
 		OSReport("MetroTRK : Set to GDEV hardware\n");
 		// Initialize gDBCommTable
 		// need to work out what the deal with the typedef is for these functions
-		gDBCommTable.initialize_func      = gdev_cc_initialize;
-		gDBCommTable.open_func            = gdev_cc_open;
-		gDBCommTable.close_func           = gdev_cc_close;
-		gDBCommTable.read_func            = gdev_cc_read;
-		gDBCommTable.write_func           = gdev_cc_write;
-		gDBCommTable.shutdown_func        = gdev_cc_shutdown;
-		gDBCommTable.peek_func            = gdev_cc_peek;
-		gDBCommTable.pre_continue_func    = gdev_cc_pre_continue;
-		gDBCommTable.post_stop_func       = gdev_cc_post_stop;
-		gDBCommTable.init_interrupts_func = gdev_cc_initinterrupts;
-		result                            = 0;
+		// gDBCommTable.initialize_func      = gdev_cc_initialize;
+		// gDBCommTable.open_func            = gdev_cc_open;
+		// gDBCommTable.close_func           = gdev_cc_close;
+		// gDBCommTable.read_func            = gdev_cc_read;
+		// gDBCommTable.write_func           = gdev_cc_write;
+		// gDBCommTable.shutdown_func        = gdev_cc_shutdown;
+		// gDBCommTable.peek_func            = gdev_cc_peek;
+		// gDBCommTable.pre_continue_func    = gdev_cc_pre_continue;
+		// gDBCommTable.post_stop_func       = gdev_cc_post_stop;
+		// gDBCommTable.init_interrupts_func = gdev_cc_initinterrupts;
+		result = 0;
 
 	} else if (hwId == HARDWARE_AMC_DDH) {
 		OSReport("MetroTRK : Set to AMC DDH hardware\n");
 		// Initialize gDBCommTable
-		gDBCommTable.initialize_func      = ddh_cc_initialize;
-		gDBCommTable.open_func            = ddh_cc_open;
-		gDBCommTable.close_func           = ddh_cc_close;
-		gDBCommTable.read_func            = ddh_cc_read;
-		gDBCommTable.write_func           = ddh_cc_write;
-		gDBCommTable.shutdown_func        = ddh_cc_shutdown;
-		gDBCommTable.peek_func            = ddh_cc_peek;
-		gDBCommTable.pre_continue_func    = ddh_cc_pre_continue;
-		gDBCommTable.post_stop_func       = ddh_cc_post_stop;
-		gDBCommTable.init_interrupts_func = ddh_cc_initinterrupts;
-		result                            = 0;
+		// gDBCommTable.initialize_func      = ddh_cc_initialize;
+		// gDBCommTable.open_func            = ddh_cc_open;
+		// gDBCommTable.close_func           = ddh_cc_close;
+		// gDBCommTable.read_func            = ddh_cc_read;
+		// gDBCommTable.write_func           = ddh_cc_write;
+		// gDBCommTable.shutdown_func        = ddh_cc_shutdown;
+		// gDBCommTable.peek_func            = ddh_cc_peek;
+		// gDBCommTable.pre_continue_func    = ddh_cc_pre_continue;
+		// gDBCommTable.post_stop_func       = ddh_cc_post_stop;
+		// gDBCommTable.init_interrupts_func = ddh_cc_initinterrupts;
+		result = 0;
 
 	} else { // unknown hardware
 		OSReport("MetroTRK : Set to UNKNOWN hardware. (%ld)\n", hwId);

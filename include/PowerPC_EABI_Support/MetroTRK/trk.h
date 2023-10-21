@@ -47,16 +47,16 @@ void TRK_board_display(char*);
 ////////////////////////////////////
 
 ////////// GDEV FUNCTIONS //////////
-int gdev_cc_initialize(void* flagOut, __OSInterruptHandler handler);
-int gdev_cc_shutdown();
-int gdev_cc_open();
-int gdev_cc_close();
-int gdev_cc_read(u8* dest, int size);
-int gdev_cc_write(const u8* src, int size);
-int gdev_cc_pre_continue();
-int gdev_cc_post_stop();
-int gdev_cc_peek();
-int gdev_cc_initinterrupts();
+// int gdev_cc_initialize(void* flagOut, __OSInterruptHandler handler);
+// int gdev_cc_shutdown();
+// int gdev_cc_open();
+// int gdev_cc_close();
+// int gdev_cc_read(u8* dest, int size);
+// int gdev_cc_write(const u8* src, int size);
+// int gdev_cc_pre_continue();
+// int gdev_cc_post_stop();
+// int gdev_cc_peek();
+// int gdev_cc_initinterrupts();
 ////////////////////////////////////
 
 /////////// UDP FUNCTIONS //////////
@@ -73,16 +73,16 @@ int udp_cc_initinterrupts();
 ////////////////////////////////////
 
 /////////// DDH FUNCTIONS //////////
-int ddh_cc_initialize(void* flagOut, __OSInterruptHandler handler);
-int ddh_cc_shutdown();
-int ddh_cc_open();
-int ddh_cc_close();
-int ddh_cc_read(u8* dest, int size);
-int ddh_cc_write(const u8* src, int size);
-int ddh_cc_pre_continue();
-int ddh_cc_post_stop();
-int ddh_cc_peek();
-int ddh_cc_initinterrupts();
+// int ddh_cc_initialize(void* flagOut, __OSInterruptHandler handler);
+// int ddh_cc_shutdown();
+// int ddh_cc_open();
+// int ddh_cc_close();
+// int ddh_cc_read(u8* dest, int size);
+// int ddh_cc_write(const u8* src, int size);
+// int ddh_cc_pre_continue();
+// int ddh_cc_post_stop();
+// int ddh_cc_peek();
+// int ddh_cc_initinterrupts();
 ////////////////////////////////////
 
 ////////// EVENT FUNCTIONS /////////
