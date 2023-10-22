@@ -14,7 +14,7 @@ extern "C" {
 // Set bitfields manually.
 #define GX_BITFIELD_SET(field, pos, size, value) ((field) = __rlwimi((field), (value), 31 - (pos) - (size) + 1, (pos), (pos) + (size)-1))
 #define LOAD_GX_FIELD(offset, type)              (*(type*)(((u8*)__GXData) + offset))
-#define GX_BITGET(field, pos, size) 			 ((field) >> (31 - (pos) - (size) + 1) & ((1 << (size)) - 1))
+#define GX_BITGET(field, pos, size)              ((field) >> (31 - (pos) - (size) + 1) & ((1 << (size)) - 1))
 ////////////////////////////////////////////
 
 ////////////////// COLORS //////////////////
