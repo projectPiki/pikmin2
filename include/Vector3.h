@@ -200,6 +200,8 @@ inline Vector3f operator*=(const Vector3f& a, const f32 b) { return Vector3f(a.x
 
 inline f32 dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
+inline bool operator==(const Vector3f& a, const Vector3f& b) { return (a.x == b.x && a.y == b.y && a.z == b.z); }
+
 inline void weightVecXZ(Vector3f& vec, f32 weight)
 {
 	Vector3f temp = vec;

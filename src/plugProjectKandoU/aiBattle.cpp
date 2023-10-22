@@ -562,6 +562,7 @@ void ActBattle::initApproach()
 	if (mOther) {
 		Vector3f pos = mOther->getPosition();
 
+		// no time limit
 		PikiAI::ApproachPosActionArg arg(pos, 10.0f, -1.0f);
 		arg._18 = 1;
 		mApproachPos->init(&arg);
@@ -610,6 +611,7 @@ int ActBattle::execBattle()
 		if (mOther) {
 			Vector3f pos = mOther->getPosition();
 
+			// no time limit
 			PikiAI::ApproachPosActionArg arg(pos, 10.0f, -1.0f);
 			arg._18 = 1;
 			mApproachPos->init(&arg);
@@ -634,6 +636,7 @@ int ActBattle::execDamage()
 		if (mOther) {
 			Vector3f pos = mOther->getPosition();
 
+			// no time limit
 			PikiAI::ApproachPosActionArg arg(pos, 10.0f, -1.0f);
 			arg._18 = 1;
 			mApproachPos->init(&arg);

@@ -6,6 +6,8 @@
 #include "Dolphin/rand.h"
 #include "utilityU.h"
 
+#define PIKIATTACK_JUMP_CHANCE (0.2f)
+
 static const char aiAttackName[] = "actAttack";
 
 namespace PikiAI {
@@ -64,15 +66,20 @@ void ActAttack::init(ActionArg* initarg)
 	mCreature               = attackArg->mCreature;
 	mCollPart               = attackArg->mCollPart;
 
+	// if we're stuck to enemy, do stick attack
 	if (mParent->isStickTo()) {
 		initStickAttack();
-	} else if (randFloat() > 0.8f) {
+
+		// 20% chance of jump adjust
+	} else if (randFloat() > (1.0f - PIKIATTACK_JUMP_CHANCE)) {
 		initJumpAdjust();
+
+		// 80% chance of adjust
 	} else {
 		initAdjust();
 	}
 
-	_36 = 0;
+	mIsSearchAnimFinished = false;
 }
 
 /*
@@ -85,7 +92,7 @@ void ActAttack::initStickAttack()
 	f32 damage = mParent->getAttackDamage();
 	StickAttackActionArg stickArg(damage, mCreature, Game::IPikiAnims::ATTACK1, STICKATK_Default);
 	mStickAttack->init(&stickArg);
-	mAttackID = 0;
+	mAttackID = ATTACK_Stick;
 }
 
 /*
@@ -96,11 +103,13 @@ void ActAttack::initStickAttack()
 void ActAttack::initAdjust()
 {
 	calcAttackPos();
-	// WORK DAMN YOU
-	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, -1.0f);
-	approachArg._18 = 1;
-	approachArg._19 = 1;
-	mAttackID       = 1;
+	// extra radius, no time limit
+	f32 radius   = mAttackSphere.mRadius;
+	f32 modifier = 10.0f;
+	ApproachPosActionArg approachArg(mAttackSphere.mPosition, modifier + radius, -1.0f);
+	approachArg.mIsElasticSpeed = true;
+	approachArg.mIsCheck3D      = true;
+	mAttackID                   = ATTACK_Adjust;
 	mApproachPos->init(&approachArg);
 }
 
@@ -112,11 +121,13 @@ void ActAttack::initAdjust()
 void ActAttack::initJumpAdjust()
 {
 	calcAttackPos();
-	// WORK DAMN YOU
-	ApproachPosActionArg approachArg(mAttackSphere.mPosition, mAttackSphere.mRadius + 10.0f, 2.0f);
-	approachArg._18 = 1;
-	approachArg._19 = 1;
-	mAttackID       = 2;
+	// extra radius, time out after 2s
+	f32 radius   = mAttackSphere.mRadius;
+	f32 modifier = 10.0f;
+	ApproachPosActionArg approachArg(mAttackSphere.mPosition, modifier + radius, 2.0f);
+	approachArg.mIsElasticSpeed = true;
+	approachArg.mIsCheck3D      = true;
+	mAttackID                   = ATTACK_JumpAdjust;
 	mApproachPos->init(&approachArg);
 }
 
@@ -143,7 +154,7 @@ bool ActAttack::applicable()
  */
 void ActAttack::initJump()
 {
-	mAttackID    = 3;
+	mAttackID    = ATTACK_Jump;
 	Vector3f sep = mAttackSphere.mPosition - mParent->getPosition();
 	sep.normalise();
 	mParent->mSimVelocity = Vector3f(sep.x * 100.0f, 200.0f, sep.z * 100.0f);
@@ -171,7 +182,7 @@ void ActAttack::calcAttackPos()
 		findArg.mCondition = &condition;
 		mParent->getBoundingSphere(findArg.mPosition);
 		CollPart* part = mCreature->mCollTree->findCollPart(findArg);
-		if (part != nullptr) {
+		if (part) {
 			mAttackSphere.mPosition = part->mPosition;
 			mAttackSphere.mRadius   = part->mRadius;
 		} else {
@@ -194,37 +205,44 @@ int ActAttack::exec()
 	if (!mCreature->isAlive()) {
 		return ACTEXEC_Success;
 	}
-	if (mAttackID != 4 && !mParent->isStickTo() && (mCreature->isFlying() || mCreature->isUnderground())) {
-		mAttackID = 4;
+
+	if (mAttackID != ATTACK_Search && !mParent->isStickTo() && (mCreature->isFlying() || mCreature->isUnderground())) {
+
+		mAttackID = ATTACK_Search;
+
+		// 50% chance of SAGASU2 or SAGASU
 		if (randFloat() > 0.5f) {
-			_34 = Game::IPikiAnims::SAGASU2;
+			mSearchAnimIdx = Game::IPikiAnims::SAGASU2;
 		} else {
-			_34 = Game::IPikiAnims::SAGASU;
+			mSearchAnimIdx = Game::IPikiAnims::SAGASU;
 		}
-		mParent->startMotion(_34, _34, this, nullptr);
-		_36 = 0;
+
+		mParent->startMotion(mSearchAnimIdx, mSearchAnimIdx, this, nullptr);
+		mIsSearchAnimFinished = false;
 	}
-	if (Game::gameSystem->isVersusMode() && mCreature != nullptr && mCreature->isNavi()) {
+
+	if (Game::gameSystem->isVersusMode() && mCreature && mCreature->isNavi()) {
 		PSMGetPikiBattleD()->_54++;
 	}
+
 	switch (mAttackID) {
-	case 0: {
+	case ATTACK_Stick: {
 		int stickResult = mStickAttack->exec();
 		if (stickResult == ACTEXEC_Success) {
 			return ACTEXEC_Success;
 		}
 		if (stickResult == ACTEXEC_Fail && !mParent->isStickTo()) {
-			// WORK DAMN YOU
 			initJumpAdjust();
 		}
 	} break;
-	case 1:
-	case 2: {
+
+	case ATTACK_Adjust:
+	case ATTACK_JumpAdjust: {
 		calcAttackPos();
-		mApproachPos->mPosition = mAttackSphere.mPosition;
-		int approachResult      = mApproachPos->exec();
+		mApproachPos->mGoalPosition = mAttackSphere.mPosition;
+		int approachResult          = mApproachPos->exec();
 		if (approachResult == ACTEXEC_Success) {
-			if (mAttackID == 1) {
+			if (mAttackID == ATTACK_Adjust) {
 				initStickAttack();
 			} else {
 				initJump();
@@ -233,692 +251,24 @@ int ActAttack::exec()
 			return ACTEXEC_Fail;
 		}
 	} break;
-	case 3:
-		if (mParent->mBounceTriangle != nullptr) {
-			// WORK DAMN YOU
+
+	case ATTACK_Jump:
+		if (mParent->mBounceTriangle) {
 			initAdjust();
 		}
 		break;
-	case 4:
-		if (!mParent->assertMotion(_34)) {
-			_36 = 1;
+
+	case ATTACK_Search:
+		if (!mParent->assertMotion(mSearchAnimIdx)) {
+			mIsSearchAnimFinished = true;
 		}
 		mParent->mVelocity = 0.0f;
-		if (_36 != 0) {
+		if (mIsSearchAnimFinished) {
 			return ACTEXEC_Fail;
 		}
 		break;
 	}
 	return ACTEXEC_Continue;
-	/*
-	stwu     r1, -0x110(r1)
-	mflr     r0
-	stw      r0, 0x114(r1)
-	stw      r31, 0x10c(r1)
-	mr       r31, r3
-	stw      r30, 0x108(r1)
-	stw      r29, 0x104(r1)
-	lwz      r3, 0x10(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801A0BD8
-	li       r3, 0
-	b        lbl_801A14C8
-
-lbl_801A0BD8:
-	lhz      r0, 0x18(r31)
-	cmplwi   r0, 4
-	beq      lbl_801A0CB4
-	lwz      r3, 4(r31)
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801A0CB4
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801A0C2C
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xd0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0CB4
-
-lbl_801A0C2C:
-	li       r0, 4
-	sth      r0, 0x18(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xf4(r1)
-	lfd      f3, lbl_805190A0@sda21(r2)
-	stw      r0, 0xf0(r1)
-	lfs      f1, lbl_80519094@sda21(r2)
-	lfd      f2, 0xf0(r1)
-	lfs      f0, lbl_805190C8@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801A0C74
-	li       r0, 0x36
-	sth      r0, 0x34(r31)
-	b        lbl_801A0C7C
-
-lbl_801A0C74:
-	li       r0, 0x35
-	sth      r0, 0x34(r31)
-
-lbl_801A0C7C:
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_801A0C8C
-	lwz      r6, 0xc(r31)
-
-lbl_801A0C8C:
-	lwz      r3, 4(r31)
-	li       r7, 0
-	lha      r4, 0x34(r31)
-	lwz      r12, 0(r3)
-	mr       r5, r4
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x36(r31)
-
-lbl_801A0CB4:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_801A0CF8
-	lwz      r3, 0x10(r31)
-	cmplwi   r3, 0
-	beq      lbl_801A0CF8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0CF8
-	bl       PSMGetPikiBattleD__Fv
-	lbz      r4, 0x54(r3)
-	addi     r0, r4, 1
-	stb      r0, 0x54(r3)
-
-lbl_801A0CF8:
-	lhz      r0, 0x18(r31)
-	cmpwi    r0, 3
-	beq      lbl_801A1264
-	bge      lbl_801A0D18
-	cmpwi    r0, 0
-	beq      lbl_801A0D24
-	bge      lbl_801A0F70
-	b        lbl_801A14C4
-
-lbl_801A0D18:
-	cmpwi    r0, 5
-	bge      lbl_801A14C4
-	b        lbl_801A1480
-
-lbl_801A0D24:
-	lwz      r3, 0x1c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_801A0D48
-	li       r3, 0
-	b        lbl_801A14C8
-
-lbl_801A0D48:
-	cmpwi    r3, 2
-	bne      lbl_801A14C4
-	lwz      r3, 4(r31)
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801A14C4
-	lwz      r3, 0x10(r31)
-	li       r30, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0DDC
-	lwz      r29, 0x10(r31)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x38
-	beq      lbl_801A0DD8
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x45
-	beq      lbl_801A0DD8
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x42
-	bne      lbl_801A0DDC
-
-lbl_801A0DD8:
-	li       r30, 1
-
-lbl_801A0DDC:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_801A0EA4
-	lis      r4, "__vt__20Condition<8CollPart>"@ha
-	lis      r3, __vt__13FindCondition@ha
-	addi     r4, r4, "__vt__20Condition<8CollPart>"@l
-	addi     r0, r1, 0xc
-	stw      r4, 0xc(r1)
-	addi     r3, r3, __vt__13FindCondition@l
-	addi     r4, r1, 0x80
-	stw      r3, 0xc(r1)
-	stw      r0, 0x7c(r1)
-	lwz      r3, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x10(r31)
-	addi     r4, r1, 0x7c
-	lwz      r3, 0x114(r3)
-	bl       findCollPart__8CollTreeFR15FindCollPartArg
-	cmplwi   r3, 0
-	beq      lbl_801A0E58
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0x2c(r31)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0x30(r31)
-	b        lbl_801A0EEC
-
-lbl_801A0E58:
-	lwz      r4, 0x10(r31)
-	addi     r3, r1, 0x2c
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x2c(r1)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x30(r1)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x34(r1)
-	stfs     f0, 0x2c(r31)
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r31)
-	b        lbl_801A0EEC
-
-lbl_801A0EA4:
-	lwz      r4, 0x10(r31)
-	addi     r3, r1, 0x38
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x38(r1)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x3c(r1)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x40(r1)
-	stfs     f0, 0x2c(r31)
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r31)
-
-lbl_801A0EEC:
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	lfs      f0, 0x30(r31)
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	lis      r3, __vt__Q26PikiAI20ApproachPosActionArg@ha
-	stw      r0, 0xd4(r1)
-	addi     r0, r3, __vt__Q26PikiAI20ApproachPosActionArg@l
-	lfs      f1, lbl_805190A8@sda21(r2)
-	li       r5, 0
-	stw      r0, 0xd4(r1)
-	li       r3, 1
-	fadds    f2, f1, f0
-	lfs      f0, lbl_805190B0@sda21(r2)
-	lfs      f1, 0x24(r31)
-	li       r0, 2
-	addi     r4, r1, 0xd4
-	stfs     f1, 0xd8(r1)
-	lfs      f1, 0x28(r31)
-	stfs     f1, 0xdc(r1)
-	lfs      f1, 0x2c(r31)
-	stb      r5, 0xec(r1)
-	stb      r5, 0xed(r1)
-	stfs     f1, 0xe0(r1)
-	stfs     f2, 0xe4(r1)
-	stfs     f0, 0xe8(r1)
-	stb      r3, 0xec(r1)
-	stb      r3, 0xed(r1)
-	sth      r0, 0x18(r31)
-	lwz      r3, 0x20(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801A14C4
-
-lbl_801A0F70:
-	lwz      r3, 0x10(r31)
-	li       r29, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0FEC
-	lwz      r30, 0x10(r31)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x38
-	beq      lbl_801A0FE8
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x45
-	beq      lbl_801A0FE8
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x42
-	bne      lbl_801A0FEC
-
-lbl_801A0FE8:
-	li       r29, 1
-
-lbl_801A0FEC:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_801A10B4
-	lis      r4, "__vt__20Condition<8CollPart>"@ha
-	lis      r3, __vt__13FindCondition@ha
-	addi     r4, r4, "__vt__20Condition<8CollPart>"@l
-	addi     r0, r1, 0x10
-	stw      r4, 0x10(r1)
-	addi     r3, r3, __vt__13FindCondition@l
-	addi     r4, r1, 0xc4
-	stw      r3, 0x10(r1)
-	stw      r0, 0xc0(r1)
-	lwz      r3, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x10(r31)
-	addi     r4, r1, 0xc0
-	lwz      r3, 0x114(r3)
-	bl       findCollPart__8CollTreeFR15FindCollPartArg
-	cmplwi   r3, 0
-	beq      lbl_801A1068
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0x2c(r31)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0x30(r31)
-	b        lbl_801A10FC
-
-lbl_801A1068:
-	lwz      r4, 0x10(r31)
-	addi     r3, r1, 0x50
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x50(r1)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x54(r1)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x58(r1)
-	stfs     f0, 0x2c(r31)
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r31)
-	b        lbl_801A10FC
-
-lbl_801A10B4:
-	lwz      r4, 0x10(r31)
-	addi     r3, r1, 0x5c
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x5c(r1)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x60(r1)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x64(r1)
-	stfs     f0, 0x2c(r31)
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r31)
-
-lbl_801A10FC:
-	lwz      r3, 0x20(r31)
-	lfs      f0, 0x24(r31)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x28(r31)
-	stfs     f0, 0x14(r3)
-	lfs      f0, 0x2c(r31)
-	stfs     f0, 0x18(r3)
-	lwz      r3, 0x20(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_801A1254
-	lhz      r0, 0x18(r31)
-	cmplwi   r0, 1
-	bne      lbl_801A11A0
-	lwz      r3, 4(r31)
-	bl       getAttackDamage__Q24Game4PikiFv
-	lwz      r5, 0x10(r31)
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	lis      r3, __vt__Q26PikiAI20StickAttackActionArg@ha
-	stw      r0, 0xac(r1)
-	addi     r4, r3, __vt__Q26PikiAI20StickAttackActionArg@l
-	li       r3, 2
-	li       r0, 0
-	stw      r4, 0xac(r1)
-	addi     r4, r1, 0xac
-	stfs     f1, 0xb0(r1)
-	stw      r5, 0xb4(r1)
-	stw      r3, 0xb8(r1)
-	stb      r0, 0xbc(r1)
-	lwz      r3, 0x1c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	sth      r0, 0x18(r31)
-	b        lbl_801A14C4
-
-lbl_801A11A0:
-	li       r0, 3
-	addi     r3, r1, 0x44
-	sth      r0, 0x18(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x28(r31)
-	lfs      f0, 0x48(r1)
-	lfs      f2, 0x2c(r31)
-	fsubs    f3, f1, f0
-	lfs      f0, 0x4c(r1)
-	lfs      f1, 0x24(r31)
-	fsubs    f4, f2, f0
-	lfs      f0, 0x44(r1)
-	fmuls    f3, f3, f3
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_805190B8@sda21(r2)
-	fmuls    f5, f4, f4
-	fmadds   f1, f2, f2, f3
-	fadds    f1, f5, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801A1210
-	ble      lbl_801A1214
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801A1214
-
-lbl_801A1210:
-	fmr      f1, f0
-
-lbl_801A1214:
-	lfs      f0, lbl_805190B8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801A1230
-	lfs      f0, lbl_805190BC@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f2, f2, f0
-	fmuls    f4, f4, f0
-
-lbl_801A1230:
-	lfs      f0, lbl_805190C0@sda21(r2)
-	lwz      r3, 4(r31)
-	fmuls    f2, f0, f2
-	lfs      f1, lbl_805190C4@sda21(r2)
-	fmuls    f0, f0, f4
-	stfs     f2, 0x200(r3)
-	stfs     f1, 0x204(r3)
-	stfs     f0, 0x208(r3)
-	b        lbl_801A14C4
-
-lbl_801A1254:
-	cmpwi    r3, 2
-	bne      lbl_801A14C4
-	li       r3, 2
-	b        lbl_801A14C8
-
-lbl_801A1264:
-	lwz      r3, 4(r31)
-	lwz      r0, 0xc8(r3)
-	cmplwi   r0, 0
-	beq      lbl_801A14C4
-	lwz      r3, 0x10(r31)
-	li       r30, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A12F0
-	lwz      r29, 0x10(r31)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x38
-	beq      lbl_801A12EC
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x45
-	beq      lbl_801A12EC
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x42
-	bne      lbl_801A12F0
-
-lbl_801A12EC:
-	li       r30, 1
-
-lbl_801A12F0:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_801A13B8
-	lis      r4, "__vt__20Condition<8CollPart>"@ha
-	lis      r3, __vt__13FindCondition@ha
-	addi     r4, r4, "__vt__20Condition<8CollPart>"@l
-	addi     r0, r1, 8
-	stw      r4, 8(r1)
-	addi     r3, r3, __vt__13FindCondition@l
-	addi     r4, r1, 0x6c
-	stw      r3, 8(r1)
-	stw      r0, 0x68(r1)
-	lwz      r3, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x10(r31)
-	addi     r4, r1, 0x68
-	lwz      r3, 0x114(r3)
-	bl       findCollPart__8CollTreeFR15FindCollPartArg
-	cmplwi   r3, 0
-	beq      lbl_801A136C
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0x2c(r31)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0x30(r31)
-	b        lbl_801A1400
-
-lbl_801A136C:
-	lwz      r4, 0x10(r31)
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x2c(r31)
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r31)
-	b        lbl_801A1400
-
-lbl_801A13B8:
-	lwz      r4, 0x10(r31)
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x20(r1)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x24(r1)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x28(r1)
-	stfs     f0, 0x2c(r31)
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r31)
-
-lbl_801A1400:
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	lfs      f0, 0x30(r31)
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	lis      r3, __vt__Q26PikiAI20ApproachPosActionArg@ha
-	stw      r0, 0x90(r1)
-	addi     r0, r3, __vt__Q26PikiAI20ApproachPosActionArg@l
-	lfs      f1, lbl_805190A8@sda21(r2)
-	li       r3, 0
-	stw      r0, 0x90(r1)
-	li       r0, 1
-	fadds    f2, f1, f0
-	lfs      f0, lbl_805190AC@sda21(r2)
-	lfs      f1, 0x24(r31)
-	addi     r4, r1, 0x90
-	stfs     f1, 0x94(r1)
-	lfs      f1, 0x28(r31)
-	stfs     f1, 0x98(r1)
-	lfs      f1, 0x2c(r31)
-	stb      r3, 0xa8(r1)
-	stb      r3, 0xa9(r1)
-	stfs     f1, 0x9c(r1)
-	stfs     f2, 0xa0(r1)
-	stfs     f0, 0xa4(r1)
-	stb      r0, 0xa8(r1)
-	stb      r0, 0xa9(r1)
-	sth      r0, 0x18(r31)
-	lwz      r3, 0x20(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801A14C4
-
-lbl_801A1480:
-	lwz      r3, 4(r31)
-	lha      r4, 0x34(r31)
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801A149C
-	li       r0, 1
-	stb      r0, 0x36(r31)
-
-lbl_801A149C:
-	lwz      r3, 4(r31)
-	lfs      f0, lbl_805190B8@sda21(r2)
-	stfs     f0, 0x1e4(r3)
-	stfs     f0, 0x1e8(r3)
-	stfs     f0, 0x1ec(r3)
-	lbz      r0, 0x36(r31)
-	cmplwi   r0, 0
-	beq      lbl_801A14C4
-	li       r3, 2
-	b        lbl_801A14C8
-
-lbl_801A14C4:
-	li       r3, 1
-
-lbl_801A14C8:
-	lwz      r0, 0x114(r1)
-	lwz      r31, 0x10c(r1)
-	lwz      r30, 0x108(r1)
-	lwz      r29, 0x104(r1)
-	mtlr     r0
-	addi     r1, r1, 0x110
-	blr
-	*/
 }
 
 /*
@@ -930,9 +280,10 @@ void ActAttack::cleanup()
 {
 	mParent->mVelocity = 0.0f;
 	switch (mAttackID) {
-	case 0:
+	case ATTACK_Stick:
 		mStickAttack->cleanup();
 		break;
+
 	default:
 		break;
 	}
@@ -945,8 +296,8 @@ void ActAttack::cleanup()
  */
 void ActAttack::collisionCallback(Game::Piki* piki, Game::CollEvent& collEvent)
 {
-	if (collEvent.mCollidingCreature == mCreature && mAttackID == 3) {
-		if (collEvent.mCollisionObj != nullptr && collEvent.mCollisionObj->isStickable()) {
+	if (collEvent.mCollidingCreature == mCreature && mAttackID == ATTACK_Jump) {
+		if (collEvent.mCollisionObj && collEvent.mCollisionObj->isStickable()) {
 			piki->startStick(collEvent.mCollidingCreature, collEvent.mCollisionObj);
 			initStickAttack();
 		}
@@ -960,170 +311,9 @@ void ActAttack::collisionCallback(Game::Piki* piki, Game::CollEvent& collEvent)
  */
 void ActAttack::bounceCallback(Game::Piki*, Sys::Triangle*)
 {
-	if (mAttackID == 3) {
+	if (mAttackID == ATTACK_Jump) {
 		initAdjust();
 	}
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	mr       r31, r3
-	stw      r30, 0x68(r1)
-	stw      r29, 0x64(r1)
-	lhz      r0, 0x18(r3)
-	cmplwi   r0, 3
-	bne      lbl_801A1848
-	lwz      r3, 0x10(r31)
-	li       r29, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A16BC
-	lwz      r30, 0x10(r31)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x38
-	beq      lbl_801A16B8
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x45
-	beq      lbl_801A16B8
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x42
-	bne      lbl_801A16BC
-
-lbl_801A16B8:
-	li       r29, 1
-
-lbl_801A16BC:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_801A1784
-	lis      r4, "__vt__20Condition<8CollPart>"@ha
-	lis      r3, __vt__13FindCondition@ha
-	addi     r4, r4, "__vt__20Condition<8CollPart>"@l
-	addi     r0, r1, 8
-	stw      r4, 8(r1)
-	addi     r3, r3, __vt__13FindCondition@l
-	addi     r4, r1, 0x28
-	stw      r3, 8(r1)
-	stw      r0, 0x24(r1)
-	lwz      r3, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x10(r31)
-	addi     r4, r1, 0x24
-	lwz      r3, 0x114(r3)
-	bl       findCollPart__8CollTreeFR15FindCollPartArg
-	cmplwi   r3, 0
-	beq      lbl_801A1738
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0x2c(r31)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0x30(r31)
-	b        lbl_801A17CC
-
-lbl_801A1738:
-	lwz      r4, 0x10(r31)
-	addi     r3, r1, 0xc
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0x2c(r31)
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r31)
-	b        lbl_801A17CC
-
-lbl_801A1784:
-	lwz      r4, 0x10(r31)
-	addi     r3, r1, 0x18
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x20(r1)
-	stfs     f0, 0x2c(r31)
-	lwz      r3, 0x10(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x30(r31)
-
-lbl_801A17CC:
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	lfs      f0, 0x30(r31)
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	lis      r3, __vt__Q26PikiAI20ApproachPosActionArg@ha
-	stw      r0, 0x38(r1)
-	addi     r0, r3, __vt__Q26PikiAI20ApproachPosActionArg@l
-	lfs      f1, lbl_805190A8@sda21(r2)
-	li       r3, 0
-	stw      r0, 0x38(r1)
-	li       r0, 1
-	fadds    f2, f1, f0
-	lfs      f0, lbl_805190AC@sda21(r2)
-	lfs      f1, 0x24(r31)
-	addi     r4, r1, 0x38
-	stfs     f1, 0x3c(r1)
-	lfs      f1, 0x28(r31)
-	stfs     f1, 0x40(r1)
-	lfs      f1, 0x2c(r31)
-	stb      r3, 0x50(r1)
-	stb      r3, 0x51(r1)
-	stfs     f1, 0x44(r1)
-	stfs     f2, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	stb      r0, 0x50(r1)
-	stb      r0, 0x51(r1)
-	sth      r0, 0x18(r31)
-	lwz      r3, 0x20(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801A1848:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -1133,13 +323,13 @@ lbl_801A1848:
  */
 void ActAttack::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
-	if (keyEvent.mType != 1000) {
+	if (keyEvent.mType != KEYEVENT_END) {
 		return;
 	}
-	if (mAttackID != 4) {
+	if (mAttackID != ATTACK_Search) {
 		return;
 	}
-	_36 = 1;
+	mIsSearchAnimFinished = true;
 }
 
 } // namespace PikiAI

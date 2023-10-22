@@ -98,12 +98,14 @@ void ActApproachPos::init(ActionArg* settings)
 	ApproachPosActionArg* approachArg = static_cast<ApproachPosActionArg*>(settings);
 
 	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
-	mPosition = approachArg->mSphere.mPosition;
-	mRadius   = approachArg->mSphere.mRadius;
-	_24       = approachArg->_18;
-	_25       = approachArg->_19;
-	_1C       = approachArg->_14;
-	_20       = 0.0f;
+
+	mGoalPosition   = approachArg->mGoalPosition;
+	mRadius         = approachArg->mRadius;
+	mIsElasticSpeed = approachArg->mIsElasticSpeed;
+	mIsCheck3D      = approachArg->mIsCheck3D;
+	mTimeOutLimit   = approachArg->mTimeOutLimit;
+
+	mTimer = 0.0f;
 }
 
 /*
@@ -113,30 +115,37 @@ void ActApproachPos::init(ActionArg* settings)
  */
 int ActApproachPos::exec()
 {
-	Vector3f dir = mPosition - mParent->getPosition();
+	Vector3f dir = mGoalPosition - mParent->getPosition();
 	f32 y        = dir.y;
-	// Vector3f dir = sep;
-	f32 dist = dir.length();
+	f32 dist     = dir.length();
 	dir.normalise();
 
 	f32 angleDist = angDist(JMAAtan2Radian(dir.x, dir.z), mParent->getFaceDir());
-	if (_1C > 0.0f) {
-		_20 += sys->mDeltaTime;
-		if (_20 >= _1C) {
+
+	// time out if we have a time limit and we've tried at least that long
+	if (mTimeOutLimit > 0.0f) {
+		mTimer += sys->mDeltaTime;
+		if (mTimer >= mTimeOutLimit) {
 			return ACTEXEC_Success;
 		}
 	}
 
-	if (_25 && FABS(y) > 20.0f) {
+	// if we're checking height and we're *too* far away vertically, fail
+	if (mIsCheck3D && FABS(y) > 20.0f) {
 		return ACTEXEC_Fail;
 	}
 
+	// if we're within the radius, move back a lil pls. too close. jeez.
 	if (dist < mRadius) {
 		mParent->setMoveRotation(false);
 		mParent->setSpeed(-0.5f, dir, dist);
+
+		// if we're nowhere close, keep moving!
 	} else if (dist > mRadius + 6.0f) {
 		mParent->setMoveRotation(true);
-		if (_24) {
+
+		// elastic speed - if we're far away, go a little faster!
+		if (mIsElasticSpeed) {
 			f32 speed = 0.01f * dist;
 			if (speed > 1.0f) {
 				speed = 1.0f;
@@ -144,19 +153,28 @@ int ActApproachPos::exec()
 
 			speed *= 0.5f;
 			mParent->setSpeed(speed + 0.5f, dir);
-		} else {
+
+		} else { // nvm just go a fixed speed
 			mParent->setSpeed(0.5f, dir);
 		}
+
+		// we're close enough to the ~zone~
 	} else {
+		// STOP
 		mParent->setVelocity(Vector3f::zero);
+
+		// if we're basically facing the goal position, we win (we can stop)
 		if (FABS(angleDist) < PI / 10.0f) {
-			if (_25) {
+			// if we need to check height, make sure we're within 10 units. if not, keep going
+			if (mIsCheck3D) {
 				if (FABS(dir.y) > 10.0f) {
 					return ACTEXEC_Continue;
 				}
 			}
 			return ACTEXEC_Success;
+
 		} else {
+			// we're not facing the right spot! turn gradually toward the spot.
 			mParent->mFaceDir = roundAng(0.2f * angleDist + mParent->mFaceDir);
 		}
 	}
@@ -519,7 +537,7 @@ int ActGotoSlot::exec()
 		Vector3f pikiPos   = mParent->getPosition();  // f27, f26, f25
 
 		if (mPellet->isPellet()) {
-			pelletPos -= 0.5f * mPellet->getCylinderHeight();
+			pelletPos.y -= 0.5f * mPellet->getCylinderHeight();
 		}
 
 		Vector3f sep = pelletPos - pikiPos; // 0x8c
@@ -527,27 +545,111 @@ int ActGotoSlot::exec()
 
 		sep.normalise();
 
-		Vector3f vec = (pelletPos + sep * pickRadius) - pikiPos;
-
-		f32 dist = vec.length();
+		Vector3f vec = (pelletPos - sep * pickRadius) - pikiPos;
+		Vector2f vec2D(vec.x, vec.z);
+		f32 dist = vec2D.length();
 		if (dist > 6.0f) {
 			mParent->setSpeed(1.0f, sep);
 			if (dist < 40.0f) {
-				if (_14++ > 60) {
+				if (_14++ >= 60) {
 					resetTimers();
 					return ACTEXEC_Fail;
 				}
 			}
 		} else if (FABS(vec.y) < 20.0f) {
-			Vector3f slotPos;
+			Vector3f slotPos; // 0x80
 			pellet->calcStickSlotGlobal(0, slotPos);
 
 			slotPos -= pelletPos;
 			slotPos.normalise();
 
 			sep *= -1.0f;
+
+			f32 dotProd    = dot(slotPos, sep);
+			f32 crossThing = (slotPos.z * sep.x) - (slotPos.x * sep.z);
+			f32 factor     = (dotProd >= 1.0f) ? 1.0f : (dotProd <= -1.0f) ? -1.0f : dotProd; // f3
+
+			pellet->_3E0 = (crossThing > 0.0f) ? pikmin2_acos(factor) : roundAng(-pikmin2_acos(factor));
+
+			mParent->startStick(mPellet, mSlotId);
+			return ACTEXEC_Success;
+		} else if (++_14 >= 60) {
+			resetTimers();
+			return ACTEXEC_Fail;
+		} else {
+			mParent->setSpeed(0.2f, sep);
 		}
+
+		return ACTEXEC_Continue;
 	}
+
+	Vector3f slotPos; // 0x74
+	mPellet->calcStickSlotGlobal(mSlotId, slotPos);
+	Vector3f pikiPos = mParent->getPosition(); // 0x68
+	Vector3f dir     = slotPos - pikiPos;      // 0x5c
+	f32 absY         = FABS(dir.y);
+	f32 dist         = dir.length();
+	dir.normalise();
+
+	if (dist < 100.0f && ++_14 >= 60) {
+		s16 oldSlot = mSlotId; // r29
+		mSlotId     = mPellet->getNearFreeStickSlot(pikiPos);
+
+		if (mPellet->isPellet()) {
+			mPellet->sendClaim();
+		}
+
+		if (oldSlot == mSlotId) {
+			return ACTEXEC_Fail;
+		}
+		if (mSlotId == -1) {
+			return ACTEXEC_Fail;
+		}
+
+		resetTimers();
+		return ACTEXEC_Continue;
+	}
+
+	if (dist > 6.0f) {
+		mParent->setSpeed(1.0f, dir);
+		return ACTEXEC_Continue;
+	}
+
+	if (dist < 6.0f && absY < 20.0f) {
+		if (!mPellet->isSlotFree(mSlotId)) {
+			mSlotId = mPellet->getNearFreeStickSlot(pikiPos);
+			resetTimers();
+			return ACTEXEC_Continue;
+		}
+
+		mParent->startStick(mPellet, mSlotId);
+
+		pikiPos = mParent->getPosition();
+		return ACTEXEC_Success;
+	}
+
+	Vector3f pelletPos = mPellet->getPosition();
+	Vector3f sep2      = pelletPos - pikiPos;
+	Vector2f sep2D(sep2.x, sep2.z);
+	f32 dist2D = sep2D.length();
+	if (dist2D < dist) {
+		sep2.normalise();
+		Vector3f dir2(sep2.x, 0.0f, -sep2.z);
+		dir2.normalise();
+
+		mParent->setSpeed(0.2f, dir2);
+
+		_18 -= sys->mDeltaTime;
+		if (_18 < 0.0f) {
+			mSlotId = mPellet->getNearFreeStickSlot(pikiPos);
+			resetTimers();
+		}
+
+		return ACTEXEC_Continue;
+	}
+
+	mParent->setSpeed(0.2f, dir);
+	return ACTEXEC_Continue;
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0
@@ -3393,7 +3495,7 @@ Vector3f ActPathMove::crGetPoint(int idx)
 		return mGoalPosition;
 	}
 
-	// // breadbug crash happens in this inline.
+	// breadbug crash happens in this inline.
 	currWayPoint = getWayPoint(idx);
 
 	if (!currWayPoint) {
@@ -3411,8 +3513,85 @@ Vector3f ActPathMove::crGetPoint(int idx)
  * Address:	8019A3B4
  * Size:	0003C4
  */
-void ActPathMove::contextCheck(int)
+bool ActPathMove::contextCheck(int idx)
 {
+	if (Game::gameSystem->isVersusMode()) {
+		int nextIdx = idx + 1;
+		if (nextIdx >= 0 && nextIdx < _4C) {
+			Game::WayPoint* wp = getWayPoint(nextIdx);
+
+			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
+				if (wp->isFlag(Game::WPF_Unknown6)) {
+					_3D++;
+					if (_3D < 2) {
+						return false;
+					}
+				} else {
+					_3D = 0;
+				}
+			} else if (wp->isFlag(Game::WPF_Unknown5)) {
+				_3D++;
+				if (_3D < 2) {
+					return false;
+				}
+			} else {
+				_3D = 0;
+			}
+		}
+	}
+
+	Vector3f pelletPos = mPellet->getPosition();
+	Sys::Tube tube;     // 0x78
+	Sys::Sphere sphere; // 0x68
+	sphere.mPosition = pelletPos;
+	if (mPellet->isPellet()) {
+		sphere.mRadius = mPellet->getBottomRadius();
+	} else {
+		mPellet->getBoundingSphere(sphere);
+	}
+
+	if (idx < 0) {
+		Vector3f point = crGetPoint(idx);
+		crGetRadius(idx);
+
+		Vector2f sep2D(point.x - sphere.mPosition.x, point.z - sphere.mPosition.z);
+		if (sep2D.length() > 700.0f) {
+			return false;
+		}
+
+		return true;
+	}
+
+	Vector3f point     = crGetPoint(idx);
+	Vector3f nextPoint = crGetPoint(idx + 1);
+	f32 rad            = crGetRadius(idx);
+	f32 nextRad        = crGetRadius(idx + 1);
+	sphere.mPosition.y = 0.0f;
+	tube.mStartPos     = Vector3f(point.x, 0.0f, point.z);
+	tube.mEndPos       = Vector3f(nextPoint.x, 0.0f, nextPoint.z);
+	tube.mStartRadius  = rad;
+	tube.mEndRadius    = nextRad;
+
+	Vector3f collVec;
+	f32 collAmt;
+
+	if (tube.collide(sphere, collVec, collAmt)) {
+		return true;
+	}
+
+	Sys::Sphere pointSphere;
+	pointSphere.mPosition = Vector3f(point.x, 0.0f, point.z);
+	pointSphere.mRadius   = rad;
+
+	if (pointSphere.intersect(sphere)) {
+		return true;
+	}
+
+	Sys::Sphere nextPointSphere;
+	nextPointSphere.mPosition = Vector3f(nextPoint.x, 0.0f, nextPoint.z);
+	nextPointSphere.mRadius   = nextRad;
+
+	return (nextPointSphere.intersect(sphere) > 0);
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -3696,124 +3875,48 @@ lbl_8019A730:
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000F0
-//  */
-// void ActPathMove::crPointOpen(int)
-// {
-// 	// UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000F0
+ */
+bool ActPathMove::crPointOpen(int idx)
+{
+	if (idx < 0 || idx >= _4C) {
+		return true;
+	}
+	Game::WayPoint* wp2 = getWayPoint(idx);
+	if (!wp2) {
+		return true;
+	}
+
+	return (wp2->isFlag(Game::WPF_Closed)) <= 0; // SO dumb
+}
 
 /*
  * --INFO--
  * Address:	8019A778
  * Size:	000134
  */
-void ActPathMove::crGetRadius(int)
+f32 ActPathMove::crGetRadius(int idx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x24(r1)
-	bge      lbl_8019A7D8
-	lwz      r3, 0x30(r3)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x14(r1)
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bgt      lbl_8019A7D0
-	lis      r3, lbl_8047F0A4@ha
-	lis      r5, lbl_8047F0B8@ha
-	addi     r3, r3, lbl_8047F0A4@l
-	li       r4, 0x742
-	addi     r5, r5, lbl_8047F0B8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (idx < 0) {
+		Sys::Sphere sphere;
+		mPellet->getBoundingSphere(sphere);
+		P2ASSERTLINE(1858, sphere.mRadius > 0.0f);
+		return sphere.mRadius;
+	}
 
-lbl_8019A7D0:
-	lfs      f1, 0x14(r1)
-	b        lbl_8019A89C
+	if (idx >= _4C) {
+		return 50.0f;
+	}
 
-lbl_8019A7D8:
-	lwz      r0, 0x4c(r3)
-	cmpw     r4, r0
-	blt      lbl_8019A7EC
-	lfs      f1, lbl_80518FC8@sda21(r2)
-	b        lbl_8019A89C
+	Game::WayPoint* wp = getWayPoint(idx);
+	if (!wp) {
+		return 50.0f;
+	}
 
-lbl_8019A7EC:
-	cmpwi    r4, 0
-	lwz      r6, 0x48(r3)
-	li       r3, 0
-	ble      lbl_8019A85C
-	cmpwi    r4, 8
-	addi     r5, r4, -8
-	ble      lbl_8019A844
-	addi     r0, r5, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r5, 0
-	ble      lbl_8019A844
-
-lbl_8019A81C:
-	lwz      r5, 0xc(r6)
-	addi     r3, r3, 8
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r6, 0xc(r5)
-	bdnz     lbl_8019A81C
-
-lbl_8019A844:
-	subf     r0, r3, r4
-	mtctr    r0
-	cmpw     r3, r4
-	bge      lbl_8019A85C
-
-lbl_8019A854:
-	lwz      r6, 0xc(r6)
-	bdnz     lbl_8019A854
-
-lbl_8019A85C:
-	cmplwi   r6, 0
-	beq      lbl_8019A884
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x20(r6)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8019A888
-
-lbl_8019A884:
-	li       r3, 0
-
-lbl_8019A888:
-	cmplwi   r3, 0
-	bne      lbl_8019A898
-	lfs      f1, lbl_80518FC8@sda21(r2)
-	b        lbl_8019A89C
-
-lbl_8019A898:
-	lfs      f1, 0x58(r3)
-
-lbl_8019A89C:
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return wp->mRadius;
 }
 
 /*
@@ -3823,562 +3926,73 @@ lbl_8019A89C:
  */
 void ActPathMove::crInit()
 {
-	/*
-	stwu     r1, -0x180(r1)
-	mflr     r0
-	stw      r0, 0x184(r1)
-	stfd     f31, 0x170(r1)
-	psq_st   f31, 376(r1), 0, qr0
-	stfd     f30, 0x160(r1)
-	psq_st   f30, 360(r1), 0, qr0
-	stfd     f29, 0x150(r1)
-	psq_st   f29, 344(r1), 0, qr0
-	stfd     f28, 0x140(r1)
-	psq_st   f28, 328(r1), 0, qr0
-	stfd     f27, 0x130(r1)
-	psq_st   f27, 312(r1), 0, qr0
-	stfd     f26, 0x120(r1)
-	psq_st   f26, 296(r1), 0, qr0
-	stfd     f25, 0x110(r1)
-	psq_st   f25, 280(r1), 0, qr0
-	stfd     f24, 0x100(r1)
-	psq_st   f24, 264(r1), 0, qr0
-	stfd     f23, 0xf0(r1)
-	psq_st   f23, 248(r1), 0, qr0
-	stfd     f22, 0xe0(r1)
-	psq_st   f22, 232(r1), 0, qr0
-	stw      r31, 0xdc(r1)
-	stw      r30, 0xd8(r1)
-	stw      r29, 0xd4(r1)
-	mr       r30, r3
-	li       r0, -1
-	stw      r0, 0x70(r3)
-	addi     r3, r1, 0x80
-	lwz      r4, 0x30(r30)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x80(r1)
-	mr       r4, r30
-	addi     r3, r1, 0x74
-	stfs     f0, 0xa4(r30)
-	lfs      f0, 0x84(r1)
-	stfs     f0, 0xa8(r30)
-	lfs      f0, 0x88(r1)
-	stfs     f0, 0xac(r30)
-	lwz      r5, 0x70(r30)
-	addi     r5, r5, 1
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lwz      r5, 0x70(r30)
-	mr       r4, r30
-	lfs      f23, 0x74(r1)
-	addi     r3, r1, 0x68
-	lfs      f24, 0x78(r1)
-	addi     r5, r5, 2
-	lfs      f25, 0x7c(r1)
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lfs      f28, 0x68(r1)
-	li       r31, 0
-	lfs      f26, 0x6c(r1)
-	fcmpu    cr0, f23, f28
-	lfs      f27, 0x70(r1)
-	bne      lbl_8019A9B0
-	fcmpu    cr0, f24, f26
-	bne      lbl_8019A9B0
-	fcmpu    cr0, f25, f27
-	bne      lbl_8019A9B0
-	li       r31, 1
+	_70 = -1;
+	_A4 = mPellet->getPosition();
+	Vector3f collVec;
+	Sys::Tube tube;
+	Sys::Sphere collSphere;
 
-lbl_8019A9B0:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_8019AC10
-	lwz      r3, 0x70(r30)
-	addic.   r3, r3, 2
-	bge      lbl_8019AA10
-	lwz      r3, 0x30(r30)
-	addi     r4, r1, 0x1c
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x28(r1)
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bgt      lbl_8019AA08
-	lis      r3, lbl_8047F0A4@ha
-	lis      r5, lbl_8047F0B8@ha
-	addi     r3, r3, lbl_8047F0A4@l
-	li       r4, 0x742
-	addi     r5, r5, lbl_8047F0B8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	Vector3f point1 = crGetPoint(_70 + 1);
+	Vector3f point2 = crGetPoint(_70 + 2);
 
-lbl_8019AA08:
-	lfs      f22, 0x28(r1)
-	b        lbl_8019AAD4
+	bool pointCheck = point1 == point2;
+	if (!pointCheck) {
+		f32 rad2          = crGetRadius(_70 + 2);
+		f32 rad1          = crGetRadius(_70 + 1);
+		tube.mStartPos    = point1;
+		tube.mEndPos      = point2;
+		tube.mStartRadius = rad1;
+		tube.mEndRadius   = rad2;
+	}
 
-lbl_8019AA10:
-	lwz      r0, 0x4c(r30)
-	cmpw     r3, r0
-	blt      lbl_8019AA24
-	lfs      f22, lbl_80518FC8@sda21(r2)
-	b        lbl_8019AAD4
+	collSphere.mPosition = _A4;
+	collSphere.mRadius   = 0.0f;
+	f32 collAmt;
+	if (!pointCheck && tube.collide(collSphere, collVec, collAmt) && crPointOpen(_70 + 2)) {
+		_70    = 0;
+		_74[0] = crGetPoint(-1);
+		_74[1] = crGetPoint(-1); // ?
+		_74[2] = crGetPoint(1);
+		_74[3] = crGetPoint(2);
+		return;
+	}
 
-lbl_8019AA24:
-	cmpwi    r3, 0
-	lwz      r6, 0x48(r30)
-	li       r4, 0
-	ble      lbl_8019AA94
-	cmpwi    r3, 8
-	addi     r5, r3, -8
-	ble      lbl_8019AA7C
-	addi     r0, r5, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r5, 0
-	ble      lbl_8019AA7C
+	Game::WayPoint* nextWp = nullptr;
+	Game::WayPoint* wp     = Game::mapMgr->mRouteMgr->getWayPoint(_44->mWpIndex);
+	if (_44->mNext) {
+		nextWp = Game::mapMgr->mRouteMgr->getWayPoint(_44->mNext->mWpIndex);
+	}
 
-lbl_8019AA54:
-	lwz      r5, 0xc(r6)
-	addi     r4, r4, 8
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r6, 0xc(r5)
-	bdnz     lbl_8019AA54
+	if (wp && nextWp) {
+		Vector3f newPoint = wp->mPosition;
+		Vector3f nextPos  = nextWp->mPosition;
+		Vector3f sep      = nextPos - newPoint;
 
-lbl_8019AA7C:
-	subf     r0, r4, r3
-	mtctr    r0
-	cmpw     r4, r3
-	bge      lbl_8019AA94
+		f32 dist = sep.normalise();
 
-lbl_8019AA8C:
-	lwz      r6, 0xc(r6)
-	bdnz     lbl_8019AA8C
+		Vector3f pelletPos = mPellet->getPosition();
 
-lbl_8019AA94:
-	cmplwi   r6, 0
-	beq      lbl_8019AABC
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x20(r6)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8019AAC0
+		Vector3f pelletSep = pelletPos - newPoint;
 
-lbl_8019AABC:
-	li       r3, 0
+		if (dist == 0.0f) {
+			newPoint = newPoint;
+		} else {
+			f32 ratio = dot(sep, pelletSep) / dist;
+			if (ratio < 0.0f) {
+				newPoint = newPoint;
+			} else if (ratio > 1.0f) {
+				newPoint = nextPos;
+			} else {
+				newPoint = sep * (ratio * dist) + newPoint;
+			}
+		}
 
-lbl_8019AAC0:
-	cmplwi   r3, 0
-	bne      lbl_8019AAD0
-	lfs      f22, lbl_80518FC8@sda21(r2)
-	b        lbl_8019AAD4
+		crMakeRefs();
+		_74[2] = newPoint;
+		return;
+	}
 
-lbl_8019AAD0:
-	lfs      f22, 0x58(r3)
-
-lbl_8019AAD4:
-	lwz      r3, 0x70(r30)
-	addic.   r3, r3, 1
-	bge      lbl_8019AB2C
-	lwz      r3, 0x30(r30)
-	addi     r4, r1, 0xc
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x18(r1)
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bgt      lbl_8019AB24
-	lis      r3, lbl_8047F0A4@ha
-	lis      r5, lbl_8047F0B8@ha
-	addi     r3, r3, lbl_8047F0A4@l
-	li       r4, 0x742
-	addi     r5, r5, lbl_8047F0B8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8019AB24:
-	lfs      f0, 0x18(r1)
-	b        lbl_8019ABF0
-
-lbl_8019AB2C:
-	lwz      r0, 0x4c(r30)
-	cmpw     r3, r0
-	blt      lbl_8019AB40
-	lfs      f0, lbl_80518FC8@sda21(r2)
-	b        lbl_8019ABF0
-
-lbl_8019AB40:
-	cmpwi    r3, 0
-	lwz      r6, 0x48(r30)
-	li       r4, 0
-	ble      lbl_8019ABB0
-	cmpwi    r3, 8
-	addi     r5, r3, -8
-	ble      lbl_8019AB98
-	addi     r0, r5, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r5, 0
-	ble      lbl_8019AB98
-
-lbl_8019AB70:
-	lwz      r5, 0xc(r6)
-	addi     r4, r4, 8
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r6, 0xc(r5)
-	bdnz     lbl_8019AB70
-
-lbl_8019AB98:
-	subf     r0, r4, r3
-	mtctr    r0
-	cmpw     r4, r3
-	bge      lbl_8019ABB0
-
-lbl_8019ABA8:
-	lwz      r6, 0xc(r6)
-	bdnz     lbl_8019ABA8
-
-lbl_8019ABB0:
-	cmplwi   r6, 0
-	beq      lbl_8019ABD8
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x20(r6)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8019ABDC
-
-lbl_8019ABD8:
-	li       r3, 0
-
-lbl_8019ABDC:
-	cmplwi   r3, 0
-	bne      lbl_8019ABEC
-	lfs      f0, lbl_80518FC8@sda21(r2)
-	b        lbl_8019ABF0
-
-lbl_8019ABEC:
-	lfs      f0, 0x58(r3)
-
-lbl_8019ABF0:
-	stfs     f23, 0xa8(r1)
-	stfs     f24, 0xac(r1)
-	stfs     f25, 0xb0(r1)
-	stfs     f28, 0xb4(r1)
-	stfs     f26, 0xb8(r1)
-	stfs     f27, 0xbc(r1)
-	stfs     f0, 0xc0(r1)
-	stfs     f22, 0xc4(r1)
-
-lbl_8019AC10:
-	lfs      f1, 0xa4(r30)
-	clrlwi.  r0, r31, 0x18
-	lfs      f0, lbl_80518F60@sda21(r2)
-	stfs     f1, 0x8c(r1)
-	lfs      f1, 0xa8(r30)
-	stfs     f1, 0x90(r1)
-	lfs      f1, 0xac(r30)
-	stfs     f1, 0x94(r1)
-	stfs     f0, 0x98(r1)
-	bne      lbl_8019ADE0
-	addi     r3, r1, 0xa8
-	addi     r4, r1, 0x8c
-	addi     r5, r1, 0x9c
-	addi     r6, r1, 8
-	bl       "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019ADE0
-	lwz      r3, 0x70(r30)
-	addic.   r3, r3, 2
-	blt      lbl_8019AC6C
-	lwz      r0, 0x4c(r30)
-	cmpw     r3, r0
-	blt      lbl_8019AC74
-
-lbl_8019AC6C:
-	li       r0, 1
-	b        lbl_8019AD2C
-
-lbl_8019AC74:
-	cmpwi    r3, 0
-	lwz      r6, 0x48(r30)
-	li       r4, 0
-	ble      lbl_8019ACE4
-	cmpwi    r3, 8
-	addi     r5, r3, -8
-	ble      lbl_8019ACCC
-	addi     r0, r5, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r5, 0
-	ble      lbl_8019ACCC
-
-lbl_8019ACA4:
-	lwz      r5, 0xc(r6)
-	addi     r4, r4, 8
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r5, 0xc(r5)
-	lwz      r6, 0xc(r5)
-	bdnz     lbl_8019ACA4
-
-lbl_8019ACCC:
-	subf     r0, r4, r3
-	mtctr    r0
-	cmpw     r4, r3
-	bge      lbl_8019ACE4
-
-lbl_8019ACDC:
-	lwz      r6, 0xc(r6)
-	bdnz     lbl_8019ACDC
-
-lbl_8019ACE4:
-	cmplwi   r6, 0
-	beq      lbl_8019AD0C
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x20(r6)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8019AD10
-
-lbl_8019AD0C:
-	li       r3, 0
-
-lbl_8019AD10:
-	cmplwi   r3, 0
-	bne      lbl_8019AD20
-	li       r0, 1
-	b        lbl_8019AD2C
-
-lbl_8019AD20:
-	lbz      r0, 0x34(r3)
-	clrlwi   r0, r0, 0x1f
-	xori     r0, r0, 1
-
-lbl_8019AD2C:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8019ADE0
-	li       r0, 0
-	mr       r4, r30
-	stw      r0, 0x70(r30)
-	addi     r3, r1, 0x5c
-	li       r5, -1
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lfs      f0, 0x5c(r1)
-	mr       r4, r30
-	addi     r3, r1, 0x50
-	li       r5, -1
-	stfs     f0, 0x74(r30)
-	lfs      f0, 0x60(r1)
-	stfs     f0, 0x78(r30)
-	lfs      f0, 0x64(r1)
-	stfs     f0, 0x7c(r30)
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lfs      f0, 0x50(r1)
-	mr       r4, r30
-	addi     r3, r1, 0x44
-	li       r5, 1
-	stfs     f0, 0x80(r30)
-	lfs      f0, 0x54(r1)
-	stfs     f0, 0x84(r30)
-	lfs      f0, 0x58(r1)
-	stfs     f0, 0x88(r30)
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lfs      f0, 0x44(r1)
-	mr       r4, r30
-	addi     r3, r1, 0x38
-	li       r5, 2
-	stfs     f0, 0x8c(r30)
-	lfs      f0, 0x48(r1)
-	stfs     f0, 0x90(r30)
-	lfs      f0, 0x4c(r1)
-	stfs     f0, 0x94(r30)
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lfs      f0, 0x38(r1)
-	stfs     f0, 0x98(r30)
-	lfs      f0, 0x3c(r1)
-	stfs     f0, 0x9c(r30)
-	lfs      f0, 0x40(r1)
-	stfs     f0, 0xa0(r30)
-	b        lbl_8019AF78
-
-lbl_8019ADE0:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	li       r29, 0
-	lwz      r4, 0x44(r30)
-	lwz      r3, 8(r3)
-	lha      r4, 0x20(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x44(r30)
-	mr       r31, r3
-	lwz      r4, 0xc(r4)
-	cmplwi   r4, 0
-	beq      lbl_8019AE38
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x20(r4)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r29, r3
-
-lbl_8019AE38:
-	cmplwi   r31, 0
-	beq      lbl_8019AF70
-	cmplwi   r29, 0
-	beq      lbl_8019AF70
-	lfs      f23, 0x50(r31)
-	lfs      f29, 0x50(r29)
-	lfs      f24, 0x4c(r31)
-	fsubs    f26, f29, f23
-	lfs      f30, 0x4c(r29)
-	lfs      f22, 0x54(r31)
-	lfs      f28, 0x54(r29)
-	fsubs    f27, f30, f24
-	fmuls    f1, f26, f26
-	fsubs    f25, f28, f22
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fmadds   f1, f27, f27, f1
-	fmuls    f2, f25, f25
-	fadds    f31, f2, f1
-	fcmpo    cr0, f31, f0
-	ble      lbl_8019AE98
-	ble      lbl_8019AE9C
-	frsqrte  f0, f31
-	fmuls    f31, f0, f31
-	b        lbl_8019AE9C
-
-lbl_8019AE98:
-	fmr      f31, f0
-
-lbl_8019AE9C:
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_8019AEC0
-	lfs      f0, lbl_80518F64@sda21(r2)
-	fdivs    f0, f0, f31
-	fmuls    f27, f27, f0
-	fmuls    f26, f26, f0
-	fmuls    f25, f25, f0
-	b        lbl_8019AEC4
-
-lbl_8019AEC0:
-	fmr      f31, f0
-
-lbl_8019AEC4:
-	lwz      r4, 0x30(r30)
-	addi     r3, r1, 0x2c
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x34(r1)
-	lfs      f2, 0x30(r1)
-	lfs      f0, 0x2c(r1)
-	fsubs    f4, f1, f22
-	lfs      f1, lbl_80518F60@sda21(r2)
-	fsubs    f3, f2, f23
-	fsubs    f2, f0, f24
-	fcmpu    cr0, f1, f31
-	bne      lbl_8019AF04
-	b        lbl_8019AF58
-
-lbl_8019AF04:
-	fmuls    f0, f26, f3
-	fmadds   f0, f27, f2, f0
-	fmadds   f0, f25, f4, f0
-	fdivs    f2, f0, f31
-	fcmpo    cr0, f2, f1
-	bge      lbl_8019AF20
-	b        lbl_8019AF58
-
-lbl_8019AF20:
-	lfs      f0, lbl_80518F64@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_8019AF3C
-	fmr      f24, f30
-	fmr      f23, f29
-	fmr      f22, f28
-	b        lbl_8019AF58
-
-lbl_8019AF3C:
-	fmuls    f0, f2, f31
-	fmuls    f2, f25, f0
-	fmuls    f1, f27, f0
-	fmuls    f0, f26, f0
-	fadds    f22, f2, f22
-	fadds    f24, f1, f24
-	fadds    f23, f0, f23
-
-lbl_8019AF58:
-	mr       r3, r30
-	bl       crMakeRefs__Q26PikiAI11ActPathMoveFv
-	stfs     f24, 0x8c(r30)
-	stfs     f23, 0x90(r30)
-	stfs     f22, 0x94(r30)
-	b        lbl_8019AF78
-
-lbl_8019AF70:
-	mr       r3, r30
-	bl       crMakeRefs__Q26PikiAI11ActPathMoveFv
-
-lbl_8019AF78:
-	psq_l    f31, 376(r1), 0, qr0
-	lfd      f31, 0x170(r1)
-	psq_l    f30, 360(r1), 0, qr0
-	lfd      f30, 0x160(r1)
-	psq_l    f29, 344(r1), 0, qr0
-	lfd      f29, 0x150(r1)
-	psq_l    f28, 328(r1), 0, qr0
-	lfd      f28, 0x140(r1)
-	psq_l    f27, 312(r1), 0, qr0
-	lfd      f27, 0x130(r1)
-	psq_l    f26, 296(r1), 0, qr0
-	lfd      f26, 0x120(r1)
-	psq_l    f25, 280(r1), 0, qr0
-	lfd      f25, 0x110(r1)
-	psq_l    f24, 264(r1), 0, qr0
-	lfd      f24, 0x100(r1)
-	psq_l    f23, 248(r1), 0, qr0
-	lfd      f23, 0xf0(r1)
-	psq_l    f22, 232(r1), 0, qr0
-	lfd      f22, 0xe0(r1)
-	lwz      r31, 0xdc(r1)
-	lwz      r30, 0xd8(r1)
-	lwz      r0, 0x184(r1)
-	lwz      r29, 0xd4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x180
-	blr
-	*/
+	crMakeRefs();
 }
 
 /*
@@ -4391,42 +4005,6 @@ void ActPathMove::crMakeRefs()
 	for (int i = 0; i < 4; i++) {
 		_74[i] = crGetPoint(_70 + i - 1);
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	li       r30, 0
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	mr       r31, r29
-
-lbl_8019B008:
-	lwz      r0, 0x70(r29)
-	addi     r5, r30, -1
-	mr       r4, r29
-	addi     r3, r1, 8
-	add      r5, r0, r5
-	bl       crGetPoint__Q26PikiAI11ActPathMoveFi
-	lfs      f0, 8(r1)
-	addi     r30, r30, 1
-	cmpwi    r30, 4
-	stfs     f0, 0x74(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x78(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x7c(r31)
-	addi     r31, r31, 0xc
-	blt      lbl_8019B008
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -4434,8 +4012,123 @@ lbl_8019B008:
  * Address:	8019B064
  * Size:	000C54
  */
-void ActPathMove::crMove()
+bool ActPathMove::crMove()
 {
+	Vector3f point0 = crGetPoint(_70); // 0x7c, f28, f27, f26
+	Vector3f point2 = _74[2];          // f31, f29, f22
+	if ((_70 == -1 && !crPointOpen(1)) || (_70 != -1 && !crPointOpen(_70 + 1))) {
+		if (_70 == -1) {
+			_64 = (_48->mNext) ? Game::mapMgr->mRouteMgr->getWayPoint(_48->mNext->mWpIndex) : nullptr;
+		} else {
+			_64 = getWayPoint(_70 + 1);
+		}
+
+		mState = PATHMOVE_MoveGuru;
+		_58    = mPellet->getPosition();
+		_68    = 0.0f;
+	}
+
+	Vector3f pelletPos = mPellet->getPosition(); // f23, f25, f24
+	if (qdist2(point2.x, point2.z, pelletPos.x, pelletPos.z) < 6.0f) {
+		if (_70 >= _4C - 2) {
+			mState = PATHMOVE_MoveGoal;
+			_B0    = CRSplineTangent(1.0f, _74);
+			_B0.normalise();
+			return true;
+		}
+
+		_70++;
+		crMakeRefs();
+
+		Vector3f splinePoints[1]; // 0x4c
+		_B0 = CRSplineTangent(0.0f, _74);
+		_B0.normalise();
+		return true;
+	}
+
+	if (!contextCheck(_70)) {
+		_B0 = Vector3f(0.0f);
+
+		if (_20) {
+			Game::testPathfinder->release(_20);
+			_20 = 0;
+		}
+		mOnyon = nullptr;
+		initPathfinding(true);
+		return false;
+	}
+
+	Vector3f sep = point2 - point0; // f31, f30, f29
+	f32 dist     = sep.normalise();
+	f32 factor; // f27
+	if (dist > 0.0f) {
+		Vector3f diff = pelletPos - point0;
+		factor        = dot(sep, diff) / dist;
+	} else {
+		factor = 1.0f;
+	}
+
+	if (factor < 0.0f) {
+		factor = 0.0f;
+	}
+
+	if (factor > 1.0f) {
+		factor = 1.0f;
+	}
+
+	sep.x *= factor * dist;
+	sep.z *= factor * dist;
+	Vector3f newPoint = (sep + point0) - pelletPos; // f23, f24, f25
+	newPoint.y        = 0.0f;
+	f32 newDist       = newPoint.normalise(); // f28
+
+	f32 rad0 = crGetRadius(_70);     // f26
+	f32 rad1 = crGetRadius(_70 + 1); // f0
+
+	f32 lerp = (1.0f - factor) * rad0 + (factor * rad1);
+	if (lerp == 0.0f) {
+		lerp = 1.0f;
+	}
+
+	f32 comp = FABS(newDist) / lerp; // f26
+	if (comp < 0.3f) {
+		comp = 0.0f;
+	}
+	if (comp > 2.0f && FABS(newDist) > 130.0f) {
+		return true;
+	}
+
+	if (comp > 1.0f) {
+		comp = 1.0f;
+	} else if (comp < 0.0f) {
+		comp = 0.0f;
+	}
+
+	if (factor >= 1.0f) {
+		if (_70 >= _4C - 2) {
+			mState = PATHMOVE_MoveGoal;
+			_B0    = CRSplineTangent(factor, _74);
+			_B0.normalise();
+			return true;
+		}
+		_70++;
+		crMakeRefs();
+		_B0 = CRSplineTangent(0.0f, _74);
+		_B0.normalise();
+		return true;
+	}
+
+	_B0 = CRSplineTangent(factor, _74);
+	_B0.normalise();
+
+	_B0 = _B0 * (1.0f - comp) + newPoint * comp;
+
+	if (_B0.x * sep.x + _B0.z * sep.z <= 0.0f) {
+		_B0 = sep;
+	}
+
+	return true;
+
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0

@@ -29,7 +29,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/creatureStick.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/interactBattle.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiFree.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiAttack.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiAttack.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiTransport.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiEnter.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pathfinder.o\

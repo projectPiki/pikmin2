@@ -181,21 +181,23 @@ struct Action {
 
 struct ApproachPosActionArg : public ActionArg {
 	// why is this ctor so annoying
-	inline ApproachPosActionArg(Vector3f& pos, f32 radius, f32 b)
-	    : mSphere(pos, radius)
-	    , _14(b)
-	    , _18(0)
-	    , _19(0)
+	inline ApproachPosActionArg(Vector3f& pos, const f32 radius, f32 timeLimit)
+	    : mGoalPosition(pos)
+	    , mRadius(radius)
 	{
+		mTimeOutLimit   = timeLimit;
+		mIsElasticSpeed = false;
+		mIsCheck3D      = false;
 	}
 
 	virtual char* getName() { return "ApproachPosActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
-	Sys::Sphere mSphere; // _04
-	f32 _14;             // _14
-	u8 _18;              // _18
-	u8 _19;              // _19
+	Vector3f mGoalPosition; // _04
+	f32 mRadius;            // _10
+	f32 mTimeOutLimit;      // _14, how long to retry before timing out (-1 = don't time out, keep retrying)
+	bool mIsElasticSpeed;   // _18, speed up more if we're far away
+	bool mIsCheck3D;        // _19, check height as well as 2D dist/angle
 };
 
 struct ActApproachPos : public Action {
@@ -207,12 +209,12 @@ struct ActApproachPos : public Action {
 
 	// _00     = VTBL
 	// _00-_0C = Action
-	f32 mRadius;        // _0C
-	Vector3f mPosition; // _10
-	f32 _1C;            // _1C
-	f32 _20;            // _20
-	u8 _24;             // _24
-	u8 _25;             // _25
+	f32 mRadius;            // _0C
+	Vector3f mGoalPosition; // _10
+	f32 mTimeOutLimit;      // _1C, how long to retry before timing out (-1 = don't time out, keep retrying)
+	f32 mTimer;             // _20, timer, piki 'times out' of action once timer hits _1C (if _1C > 0)
+	bool mIsElasticSpeed;   // _24, speed up more if we're far away
+	bool mIsCheck3D;        // _25, check if 'close enough' vertically as well
 };
 
 struct ActAttackArg : public ActionArg {
@@ -224,6 +226,14 @@ struct ActAttackArg : public ActionArg {
 };
 
 struct ActAttack : public Action, virtual SysShape::MotionListener {
+	enum AttackID {
+		ATTACK_Stick      = 0,
+		ATTACK_Adjust     = 1,
+		ATTACK_JumpAdjust = 2,
+		ATTACK_Jump       = 3,
+		ATTACK_Search     = 4, // pikis have no object permanence
+	};
+
 	ActAttack(Game::Piki* p);
 
 	virtual void init(ActionArg* settings);                                // _08
@@ -248,12 +258,12 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 	// _0C-_10 = MotionListener*
 	Game::Creature* mCreature;    // _10
 	CollPart* mCollPart;          // _14
-	u16 mAttackID;                // _18
+	u16 mAttackID;                // _18, see AttackID enum
 	ActStickAttack* mStickAttack; // _1C
 	ActApproachPos* mApproachPos; // _20
 	Sys::Sphere mAttackSphere;    // _24
-	s16 _34;                      // _34
-	u8 _36;                       // _36
+	s16 mSearchAnimIdx;           // _34, either SAGASU or SAGASU2, 50% chance of either
+	bool mIsSearchAnimFinished;   // _36
 	                              // _38 = MotionListener
 };
 
@@ -881,7 +891,7 @@ struct ActGotoSlot : public Action {
 	// _00-_0C = Action
 	Game::Pellet* mPellet; // _0C
 	s16 mSlotId;           // _10
-	u32 _14;               // _14
+	int _14;               // _14
 	f32 _18;               // _18
 	u8 _1C;                // _1C
 	u8 _1D;                // _1D
@@ -954,11 +964,12 @@ struct ActPathMove : public Action {
 	int execMoveGuru();
 	Game::WayPoint* getWayPoint(int);
 	Vector3f crGetPoint(int);
-	void contextCheck(int);
-	void crGetRadius(int);
+	bool contextCheck(int);
+	f32 crGetRadius(int);
 	void crInit();
 	void crMakeRefs();
-	void crMove();
+	bool crMove();
+	bool crPointOpen(int);
 
 	// _00     = VTBL
 	// _00-_0C = Action

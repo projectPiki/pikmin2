@@ -106,6 +106,7 @@ void ActWeed::initAdjust()
 		if (mFlockMgr->isWeed(mTargetFlockIdx)) {
 			modifier = 4.0f;
 		}
+		// no time limit
 		ApproachPosActionArg approachPosActionArg(mAttackPosition, radius + modifier, -1.0f);
 		mState = WEED_Adjust;
 		mApproachPos->init(&approachPosActionArg);
@@ -161,8 +162,8 @@ int ActWeed::exec()
 			return ACTEXEC_Success;
 		}
 		calcAttackPos();
-		mApproachPos->mPosition = mAttackPosition;
-		int approachResult      = mApproachPos->exec();
+		mApproachPos->mGoalPosition = mAttackPosition;
+		int approachResult          = mApproachPos->exec();
 		if (approachResult == ACTEXEC_Success && mState == WEED_Adjust) {
 			initStickAttack();
 		}

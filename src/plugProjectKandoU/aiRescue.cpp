@@ -92,6 +92,8 @@ void ActRescue::initApproach()
 {
 	mState       = RESCUE_Approach;
 	Vector3f pos = mTargetPiki->getPosition();
+
+	// no time limit
 	ApproachPosActionArg arg(pos, 10.0f, -1.0f);
 	mApproachPos->init(&arg);
 }
@@ -106,9 +108,9 @@ int ActRescue::execApproach()
 	ActionExitCode ret = checkPikmin();
 	switch (ret) {
 	case ACTEXEC_Continue: {
-		Vector3f pos            = mTargetPiki->getPosition();
-		mApproachPos->mPosition = pos;
-		ret                     = static_cast<ActionExitCode>(mApproachPos->exec());
+		Vector3f pos                = mTargetPiki->getPosition();
+		mApproachPos->mGoalPosition = pos;
+		ret                         = static_cast<ActionExitCode>(mApproachPos->exec());
 		if (ret == ACTEXEC_Success) {
 			initGo();
 		} else if (ret == ACTEXEC_Fail) {
@@ -134,6 +136,7 @@ void ActRescue::initGo()
 	Game::WPSearchArg arg(pos, &cond, false, 10.0f);
 	mWayPoint = Game::mapMgr->mRouteMgr->getNearestWayPoint(arg);
 	if (mWayPoint) {
+		// no time limit
 		ApproachPosActionArg arg(mWayPoint->mPosition, 250.0f, -1.0f);
 		mApproachPos->init(&arg);
 		Game::WaterHangedStateArg statearg(mParent);
