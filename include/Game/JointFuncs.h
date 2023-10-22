@@ -32,11 +32,14 @@ struct JointShadowNode : public CNode {
 
 	void init(int);
 
+	Matrixf* getMtxA() { return mMainMtx; }
+	Matrixf* getMtxB(int i) { return &mChildMtx[i]; }
+
 	// _00 		= VTBL
 	// _00-_18	= CNode
-	u32 _18;      // _18, unknown
-	Matrixf* _1C; // _1C
-	Matrixf* _20; // _20
+	u32 mCylinderID;    // _18
+	Matrixf* mMainMtx;  // _1C
+	Matrixf* mChildMtx; // _20
 };
 
 struct JointShadowRootNode : public CNode {
@@ -47,8 +50,10 @@ struct JointShadowRootNode : public CNode {
 
 	void init(int);
 
+	JointShadowRootNode* getNext() { return (JointShadowRootNode*)mChild; }
+
 	Creature* mCreature; // _18
-	u8 _1C;              // _1C
+	u8 mIsVisible;       // _1C
 };
 } // namespace Game
 

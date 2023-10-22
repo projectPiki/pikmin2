@@ -11,12 +11,12 @@ namespace Queen {
  */
 void QueenShadowNode::makeShadowSRT()
 {
-	Matrixf* mat1C = _1C;
+	Matrixf* mat1C = mMainMtx;
 	Matrixf* mat   = _24->getWorldMatrix();
 	PSMTXConcat(mat->mMatrix.mtxView, _28.mMatrix.mtxView, mat1C->mMatrix.mtxView);
 
 	Vector3f matVecs[4];
-	Matrixf* matCopy = _1C;
+	Matrixf* matCopy = mMainMtx;
 	matCopy->getBasis(0, matVecs[0]);
 	matCopy->getBasis(1, matVecs[1]);
 	matCopy->getBasis(2, matVecs[2]);
@@ -37,10 +37,10 @@ void QueenShadowNode::makeShadowSRT()
 
 	matVecs[3].y = mapMgr->getMinY(matVecs[3]) + 1.5f;
 
-	_1C->setBasis(0, matVecs[0]);
-	_1C->setBasis(1, matVecs[1]);
-	_1C->setBasis(2, matVecs[2]);
-	_1C->setBasis(3, matVecs[3]);
+	mMainMtx->setBasis(0, matVecs[0]);
+	mMainMtx->setBasis(1, matVecs[1]);
+	mMainMtx->setBasis(2, matVecs[2]);
+	mMainMtx->setBasis(3, matVecs[3]);
 }
 
 /*

@@ -1035,7 +1035,7 @@ LIBS = [
             "plugProjectNishimuraU/nslibmath",
             "plugProjectNishimuraU/ShadowCylinder",
             "plugProjectNishimuraU/playCamera",
-            "plugProjectNishimuraU/shadowMgr",
+            ["plugProjectNishimuraU/shadowMgr", True],
             ["plugProjectNishimuraU/MapUnit", True],
             ["plugProjectNishimuraU/MapNode", True],
             ["plugProjectNishimuraU/EnemyUnit", True],

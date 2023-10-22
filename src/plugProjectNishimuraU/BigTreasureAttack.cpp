@@ -32,10 +32,10 @@ void AttackShadowNode::makeShadowSRT()
 	matVecs[3]   = Vector3f(_24->x, _24->y, _24->z);
 	matVecs[3].y = mapMgr->getMinY(matVecs[3]) + 2.5f;
 
-	_1C->setBasis(0, matVecs[0]);
-	_1C->setBasis(1, matVecs[1]);
-	_1C->setBasis(2, matVecs[2]);
-	_1C->setBasis(3, matVecs[3]);
+	mMainMtx->setBasis(0, matVecs[0]);
+	mMainMtx->setBasis(1, matVecs[1]);
+	mMainMtx->setBasis(2, matVecs[2]);
+	mMainMtx->setBasis(3, matVecs[3]);
 }
 
 /*

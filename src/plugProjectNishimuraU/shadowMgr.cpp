@@ -7,8 +7,8 @@
 
 namespace Game {
 
-static const int unusedArray[] = { 0, 0, 0 };
-static const char unusedName[] = "246-ShadowMgr";
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "246-ShadowMgr";
 
 ShadowMgr* shadowMgr;
 
@@ -19,8 +19,8 @@ ShadowMgr* shadowMgr;
  */
 JointShadowRootNode::JointShadowRootNode()
 {
-	mCreature = nullptr;
-	_1C       = 0;
+	mCreature  = nullptr;
+	mIsVisible = false;
 }
 
 /*
@@ -30,8 +30,8 @@ JointShadowRootNode::JointShadowRootNode()
  */
 JointShadowRootNode::JointShadowRootNode(Creature* owner)
 {
-	mCreature = owner;
-	_1C       = 0;
+	mCreature  = owner;
+	mIsVisible = false;
 	shadowMgr->setJointShadowRootNode(this);
 }
 
@@ -42,7 +42,7 @@ JointShadowRootNode::JointShadowRootNode(Creature* owner)
  */
 void JointShadowRootNode::init(int count)
 {
-	_1C = 0;
+	mIsVisible = false;
 	FOREACH_NODE(JointShadowNode, mChild, childNode) { childNode->init(count); }
 }
 
@@ -63,9 +63,9 @@ JointShadowNode::JointShadowNode()
  */
 JointShadowNode::JointShadowNode(int mtxCount)
 {
-	_18 = 0;
-	_1C = new Matrixf;
-	_20 = new Matrixf[mtxCount];
+	mCylinderID = 0;
+	mMainMtx    = new Matrixf;
+	mChildMtx   = new Matrixf[mtxCount];
 	init(mtxCount);
 }
 
@@ -76,9 +76,9 @@ JointShadowNode::JointShadowNode(int mtxCount)
  */
 void JointShadowNode::init(int count)
 {
-	PSMTXIdentity(_1C->mMatrix.mtxView);
+	PSMTXIdentity(mMainMtx->mMatrix.mtxView);
 	for (int i = 0; i < count; i++) {
-		PSMTXIdentity(_20[i].mMatrix.mtxView);
+		PSMTXIdentity(mChildMtx[i].mMatrix.mtxView);
 	}
 }
 
@@ -129,14 +129,14 @@ void ShadowNode::init(int count)
  */
 ShadowMgr::ShadowMgr(int count)
 {
-	_18 = count;
-	_1C = 0;
+	mViewportNum    = count;
+	mAllocShadowNum = 0;
 	loadResource();
-	_3C   = 1;
-	_3D   = 1;
-	_40   = 0;
-	_44   = 0;
-	mName = "ShadowMgr";
+	mEnabled             = true;
+	mDoCheckCylinderType = 1;
+	mCylinderID          = 0;
+	_44                  = 0;
+	mName                = "ShadowMgr";
 }
 
 /*
@@ -146,14 +146,14 @@ ShadowMgr::ShadowMgr(int count)
  */
 void ShadowMgr::loadResource()
 {
-	mParms     = new ShadowParms;
-	_20        = new ShadowNode;
-	_24        = new ShadowNode;
-	_28[0]     = new ShadowCylinder2(mParms, &mColor);
-	_28[1]     = new ShadowCylinder3(mParms, &mColor);
-	mViewports = new Viewport*[_18];
-	_34        = new JointShadowRootNode;
-	_38        = new JointShadowRootNode;
+	mParms                = new ShadowParms;
+	mActiveShadows        = new ShadowNode;
+	mInactiveShadows      = new ShadowNode;
+	mCylinders[0]         = new ShadowCylinder2(mParms, &mColor);
+	mCylinders[1]         = new ShadowCylinder3(mParms, &mColor);
+	mViewports            = new Viewport*[mViewportNum];
+	mActiveJointShadows   = new JointShadowRootNode;
+	mInactiveJointShadows = new JointShadowRootNode;
 	readShadowParms("/user/Nishimura/Shadow/shadowParms.txt");
 }
 
@@ -178,8 +178,8 @@ void ShadowMgr::setViewport(Viewport* vp, int idx) { mViewports[idx] = vp; }
  */
 void ShadowMgr::setShadowColor(Color4* color)
 {
-	_28[0]->setColor(color);
-	_28[1]->setColor(color);
+	mCylinders[0]->setColor(color);
+	mCylinders[1]->setColor(color);
 }
 
 /*
@@ -219,29 +219,29 @@ void ShadowMgr::drawShadowOff()
  */
 void ShadowMgr::update()
 {
-	if (_3C) {
-		for (int i = 0; i < getCount(); i++) {
-			_28[_40]->setCameraParms(mViewports[i]->mCamera, i);
+	if (mEnabled) {
+		for (int i = 0; i < getViewportCount(); i++) {
+			getActiveCylinder()->setCameraParms(getViewport(i)->getCamera(), i);
 		}
 
-		FOREACH_NODE(ShadowNode, _20->mChild, node)
+		FOREACH_NODE(ShadowNode, mActiveShadows->getNext(), node)
 		{
-			if (node->mCreature->needShadow()) {
+			if (node->getGameObject()->needShadow()) {
 				Matrixf mat;
 				ShadowParam param;
-				node->mCreature->getShadowParam(param);
+				node->getGameObject()->getShadowParam(param);
 				node->mFlags &= ~0x0FFFFFFF;
-				_28[_40]->makeSRT(mat, param);
+				getActiveCylinder()->makeSRT(mat, param);
 
-				for (int i = 0; i < getCount(); i++) {
-					if (mViewports[i]->viewable()) {
-						Matrixf* nodeMat = &node->mMatrices[i];
-						Matrixf* viewMat = mViewports[i]->mCamera->getViewMatrix(false);
+				for (int i = 0; i < getViewportCount(); i++) {
+					if (getViewport(i)->viewable()) {
+						Matrixf* nodeMat = node->getMtx(i);
+						Matrixf* viewMat = getViewport(i)->getCamera()->getViewMatrix(false);
 						PSMTXConcat(viewMat->mMatrix.mtxView, mat.mMatrix.mtxView, nodeMat->mMatrix.mtxView);
 
 						int cylType = 0;
-						if (_3D) {
-							cylType = _28[_40]->getCylinderType(param, i);
+						if (mDoCheckCylinderType) {
+							cylType = getActiveCylinder()->getCylinderType(param, i);
 						}
 
 						node->mFlags |= getShadowMaskType(cylType, i);
@@ -250,16 +250,16 @@ void ShadowMgr::update()
 			}
 		}
 
-		FOREACH_NODE(JointShadowRootNode, _34->mChild, node)
+		FOREACH_NODE(JointShadowRootNode, mActiveJointShadows->getNext(), node)
 		{
 			if (node->mCreature->needShadow()) {
-				FOREACH_NODE(JointShadowNode, node->mChild, childNode)
+				FOREACH_NODE(JointShadowNode, node->getNext(), childNode)
 				{
-					for (int i = 0; i < getCount(); i++) {
-						if (mViewports[i]->viewable()) {
-							Matrixf* dest    = &childNode->_20[i];
-							Matrixf* nodeMat = childNode->_1C;
-							Matrixf* viewMat = mViewports[i]->mCamera->getViewMatrix(false);
+					for (int i = 0; i < getViewportCount(); i++) {
+						if (getViewport(i)->viewable()) {
+							Matrixf* nodeMat = childNode->getMtxA();
+							Matrixf* dest    = childNode->getMtxB(i);
+							Matrixf* viewMat = getViewport(i)->getCamera()->getViewMatrix(false);
 							PSMTXConcat(viewMat->mMatrix.mtxView, nodeMat->mMatrix.mtxView, dest->mMatrix.mtxView);
 						}
 					}
@@ -267,196 +267,6 @@ void ShadowMgr::update()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stmw     r24, 0x60(r1)
-	mr       r27, r3
-	lbz      r0, 0x3c(r3)
-	cmplwi   r0, 0
-	beq      lbl_802418FC
-	li       r28, 0
-	li       r26, 0
-	b        lbl_80241708
-
-lbl_802416DC:
-	lwz      r0, 0x40(r27)
-	mr       r5, r28
-	lwz      r3, 0x30(r27)
-	slwi     r6, r0, 2
-	lwzx     r4, r3, r26
-	addi     r0, r6, 0x28
-	lwzx     r3, r27, r0
-	lwz      r4, 0x44(r4)
-	bl       setCameraParms__Q24Game12CylinderBaseFP6Camerai
-	addi     r26, r26, 4
-	addi     r28, r28, 1
-
-lbl_80241708:
-	lwz      r0, 0x18(r27)
-	cmpw     r28, r0
-	blt      lbl_802416DC
-	lwz      r3, 0x20(r27)
-	lwz      r29, 0x10(r3)
-	b        lbl_80241838
-
-lbl_80241720:
-	lwz      r3, 0x18(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x138(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80241834
-	lwz      r3, 0x18(r29)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x134(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x20(r29)
-	addi     r4, r1, 0x28
-	addi     r5, r1, 8
-	rlwinm   r0, r0, 0, 0, 3
-	stw      r0, 0x20(r29)
-	lwz      r0, 0x40(r27)
-	slwi     r3, r0, 2
-	addi     r0, r3, 0x28
-	lwzx     r3, r27, r0
-	bl       makeSRT__Q24Game12CylinderBaseFR7MatrixfRQ24Game11ShadowParam
-	li       r31, 0
-	li       r28, 0
-	mr       r30, r31
-	b        lbl_80241828
-
-lbl_8024178C:
-	lwz      r3, 0x30(r27)
-	lwzx     r3, r3, r31
-	bl       viewable__8ViewportFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8024181C
-	lwz      r3, 0x30(r27)
-	li       r4, 0
-	lwz      r0, 0x1c(r29)
-	lwzx     r3, r3, r31
-	add      r26, r0, r30
-	lwz      r3, 0x44(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r26
-	addi     r4, r1, 0x28
-	bl       PSMTXConcat
-	lbz      r0, 0x3d(r27)
-	li       r4, 0
-	cmplwi   r0, 0
-	beq      lbl_80241804
-	lwz      r0, 0x40(r27)
-	mr       r5, r28
-	addi     r4, r1, 8
-	slwi     r3, r0, 2
-	addi     r0, r3, 0x28
-	lwzx     r3, r27, r0
-	bl       getCylinderType__Q24Game12CylinderBaseFRQ24Game11ShadowParami
-	mr       r4, r3
-
-lbl_80241804:
-	mr       r3, r27
-	mr       r5, r28
-	bl       getShadowMaskType__Q24Game9ShadowMgrFii
-	lwz      r0, 0x20(r29)
-	or       r0, r0, r3
-	stw      r0, 0x20(r29)
-
-lbl_8024181C:
-	addi     r31, r31, 4
-	addi     r30, r30, 0x30
-	addi     r28, r28, 1
-
-lbl_80241828:
-	lwz      r0, 0x18(r27)
-	cmpw     r28, r0
-	blt      lbl_8024178C
-
-lbl_80241834:
-	lwz      r29, 4(r29)
-
-lbl_80241838:
-	cmplwi   r29, 0
-	bne      lbl_80241720
-	lwz      r3, 0x34(r27)
-	lwz      r31, 0x10(r3)
-	b        lbl_802418F4
-
-lbl_8024184C:
-	lwz      r3, 0x18(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x138(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802418F0
-	lwz      r25, 0x10(r31)
-	b        lbl_802418E8
-
-lbl_80241870:
-	li       r29, 0
-	li       r24, 0
-	mr       r30, r29
-	b        lbl_802418D8
-
-lbl_80241880:
-	lwz      r3, 0x30(r27)
-	lwzx     r3, r3, r29
-	bl       viewable__8ViewportFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802418CC
-	lwz      r3, 0x30(r27)
-	li       r4, 0
-	lwz      r0, 0x20(r25)
-	lwzx     r3, r3, r29
-	add      r28, r0, r30
-	lwz      r26, 0x1c(r25)
-	lwz      r3, 0x44(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r26
-	mr       r5, r28
-	bl       PSMTXConcat
-
-lbl_802418CC:
-	addi     r29, r29, 4
-	addi     r30, r30, 0x30
-	addi     r24, r24, 1
-
-lbl_802418D8:
-	lwz      r0, 0x18(r27)
-	cmpw     r24, r0
-	blt      lbl_80241880
-	lwz      r25, 4(r25)
-
-lbl_802418E8:
-	cmplwi   r25, 0
-	bne      lbl_80241870
-
-lbl_802418F0:
-	lwz      r31, 4(r31)
-
-lbl_802418F4:
-	cmplwi   r31, 0
-	bne      lbl_8024184C
-
-lbl_802418FC:
-	lmw      r24, 0x60(r1)
-	lwz      r0, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /*
@@ -477,31 +287,34 @@ void ShadowMgr::draw(Graphics&)
 void ShadowMgr::draw(Graphics& gfx, int idx)
 {
 	sys->mTimers->_start("shadow", true);
-	if (_3C && mViewports[idx]->viewable()) {
-		Rectf box = mViewports[idx]->mBounds2;
-		_28[_40]->setShadowRect(box);
-		_28[_40]->setFilterTextureID(idx);
-		_28[_40]->drawInit();
+	if (mEnabled && getViewport(idx)->viewable()) {
+		Rectf box = getViewport(idx)->mBounds2;
+		getActiveCylinder()->setShadowRect(box);
+		getActiveCylinder()->setFilterTextureID(idx);
+		getActiveCylinder()->drawInit();
 
-		mViewports[idx]->setProjection();
-		mViewports[idx]->setViewport();
+		getViewport(idx)->setProjection();
+		getViewport(idx)->setViewport();
 
-		FOREACH_NODE(ShadowNode, _20->mChild, node)
+		FOREACH_NODE(ShadowNode, mActiveShadows->getNext(), node)
 		{
 			if (isDrawNormalShadow(node, idx)) {
 				int type = getShadowType(node->mFlags, idx);
-				_28[_40]->drawCylinder(node->mMatrices[idx], type);
+				getActiveCylinder()->drawCylinder(*node->getMtx(idx), type);
 			}
 		}
 
-		FOREACH_NODE(JointShadowRootNode, _34->mChild, node)
+		FOREACH_NODE(JointShadowRootNode, mActiveJointShadows->getNext(), node)
 		{
 			if (isDrawJointShadow(node, idx)) {
-				FOREACH_NODE(JointShadowNode, node->mChild, childNode) { _28[_40]->drawCylinder(childNode->_20[idx], childNode->_18); }
+				FOREACH_NODE(JointShadowNode, node->getNext(), childNode)
+				{
+					getActiveCylinder()->drawCylinder(*childNode->getMtxB(idx), childNode->mCylinderID);
+				}
 			}
 		}
 
-		_28[_40]->drawFinish();
+		getActiveCylinder()->drawFinish();
 	}
 
 	sys->mTimers->_stop("shadow");
@@ -514,22 +327,22 @@ void ShadowMgr::draw(Graphics& gfx, int idx)
  */
 void ShadowMgr::createShadow(Creature* owner)
 {
-	FOREACH_NODE(ShadowNode, _24->mChild, node)
+	FOREACH_NODE(ShadowNode, mInactiveShadows->getNext(), node)
 	{
 		if (owner == node->mCreature) {
 			return;
 		}
 	}
 
-	FOREACH_NODE(ShadowNode, _20->mChild, node)
+	FOREACH_NODE(ShadowNode, mActiveShadows->getNext(), node)
 	{
 		if (owner == node->mCreature) {
 			return;
 		}
 	}
 
-	_24->add(new ShadowNode(owner, getCount()));
-	_1C++;
+	mInactiveShadows->add(new ShadowNode(owner, getViewportCount()));
+	mAllocShadowNum++;
 }
 
 /*
@@ -539,10 +352,10 @@ void ShadowMgr::createShadow(Creature* owner)
  */
 void ShadowMgr::killAll()
 {
-	_34->clearRelations();
-	_38->clearRelations();
-	_20->clearRelations();
-	_24->clearRelations();
+	mActiveJointShadows->clearRelations();
+	mInactiveJointShadows->clearRelations();
+	mActiveShadows->clearRelations();
+	mInactiveShadows->clearRelations();
 }
 
 /*
@@ -595,12 +408,12 @@ void ShadowMgr::delShadow(Creature* owner)
  */
 void ShadowMgr::addNormalShadow(Creature* owner)
 {
-	FOREACH_NODE(ShadowNode, _24->mChild, node)
+	FOREACH_NODE(ShadowNode, mInactiveShadows->getNext(), node)
 	{
 		if (owner == node->mCreature) {
 			node->del();
-			_20->add(node);
-			node->init(getCount());
+			mActiveShadows->add(node);
+			node->init(getViewportCount());
 			return;
 		}
 	}
@@ -613,13 +426,13 @@ void ShadowMgr::addNormalShadow(Creature* owner)
  */
 void ShadowMgr::addJointShadow(Creature* owner)
 {
-	JointShadowRootNode* node = static_cast<JointShadowRootNode*>(_38->mChild);
+	JointShadowRootNode* node = static_cast<JointShadowRootNode*>(mInactiveJointShadows->mChild);
 	while (node) {
 		JointShadowRootNode* nextNode = static_cast<JointShadowRootNode*>(node->mNext);
 		if (owner == node->mCreature) {
 			node->del();
-			_34->add(node);
-			node->init(_18);
+			mActiveJointShadows->add(node);
+			node->init(mViewportNum);
 		}
 		node = nextNode;
 	}
@@ -652,11 +465,11 @@ void ShadowMgr::addHeadJointShadow(Creature*)
  */
 void ShadowMgr::delNormalShadow(Creature* owner)
 {
-	FOREACH_NODE(ShadowNode, _20->mChild, node)
+	FOREACH_NODE(ShadowNode, mActiveShadows->mChild, node)
 	{
 		if (owner == node->mCreature) {
 			node->del();
-			_24->add(node);
+			mInactiveShadows->add(node);
 			return;
 		}
 	}
@@ -670,12 +483,12 @@ void ShadowMgr::delNormalShadow(Creature* owner)
 void ShadowMgr::delJointShadow(Creature* owner)
 {
 	JointShadowRootNode* nextNode;
-	JointShadowRootNode* node = static_cast<JointShadowRootNode*>(_34->mChild);
+	JointShadowRootNode* node = static_cast<JointShadowRootNode*>(mActiveJointShadows->mChild);
 	while (node) {
 		nextNode = static_cast<JointShadowRootNode*>(node->mNext);
 		if (owner == node->mCreature) {
 			node->del();
-			_38->add(node);
+			mInactiveJointShadows->add(node);
 		}
 		node = nextNode;
 	}
@@ -688,17 +501,17 @@ void ShadowMgr::delJointShadow(Creature* owner)
  */
 void ShadowMgr::killNormalShadow(Creature* owner)
 {
-	FOREACH_NODE(ShadowNode, _20->mChild, node)
+	FOREACH_NODE(ShadowNode, mActiveShadows->mChild, node)
 	{
-		if (owner == node->mCreature) {
+		if (owner == node->getGameObject()) {
 			node->mCreature = nullptr;
 			node->del();
 		}
 	}
 
-	FOREACH_NODE(ShadowNode, _24->mChild, node)
+	FOREACH_NODE(ShadowNode, mInactiveShadows->mChild, node)
 	{
-		if (owner == node->mCreature) {
+		if (owner == node->getGameObject()) {
 			node->mCreature = nullptr;
 			node->del();
 		}
@@ -713,7 +526,7 @@ void ShadowMgr::killNormalShadow(Creature* owner)
 void ShadowMgr::killJointShadow(Creature* owner)
 {
 	JointShadowRootNode* nextNode;
-	JointShadowRootNode* node = static_cast<JointShadowRootNode*>(_34->mChild);
+	JointShadowRootNode* node = static_cast<JointShadowRootNode*>(mActiveJointShadows->mChild);
 	while (node) {
 		nextNode = static_cast<JointShadowRootNode*>(node->mNext);
 		if (owner == node->mCreature) {
@@ -723,7 +536,7 @@ void ShadowMgr::killJointShadow(Creature* owner)
 		node = nextNode;
 	}
 
-	node = static_cast<JointShadowRootNode*>(_38->mChild);
+	node = static_cast<JointShadowRootNode*>(mInactiveJointShadows->mChild);
 	while (node) {
 		nextNode = static_cast<JointShadowRootNode*>(node->mNext);
 		if (owner == node->mCreature) {
@@ -739,7 +552,7 @@ void ShadowMgr::killJointShadow(Creature* owner)
  * Address:	802420DC
  * Size:	000024
  */
-void ShadowMgr::setJointShadowRootNode(JointShadowRootNode* node) { _38->add(node); }
+void ShadowMgr::setJointShadowRootNode(JointShadowRootNode* node) { mInactiveJointShadows->add(node); }
 
 /*
  * --INFO--
@@ -748,9 +561,9 @@ void ShadowMgr::setJointShadowRootNode(JointShadowRootNode* node) { _38->add(nod
  */
 void ShadowMgr::setForceVisible(Creature* owner, bool isVisible)
 {
-	FOREACH_NODE(ShadowNode, _20->mChild, node)
+	FOREACH_NODE(ShadowNode, mActiveShadows->mChild, node)
 	{
-		if (owner == node->mCreature) {
+		if (owner == node->getGameObject()) {
 			if (isVisible) {
 				node->mFlags |= 0x10000000;
 				break;
@@ -761,9 +574,9 @@ void ShadowMgr::setForceVisible(Creature* owner, bool isVisible)
 		}
 	}
 
-	FOREACH_NODE(ShadowNode, _24->mChild, node)
+	FOREACH_NODE(ShadowNode, mInactiveShadows->mChild, node)
 	{
-		if (owner == node->mCreature) {
+		if (owner == node->getGameObject()) {
 			if (isVisible) {
 				node->mFlags |= 0x10000000;
 				break;
@@ -774,17 +587,17 @@ void ShadowMgr::setForceVisible(Creature* owner, bool isVisible)
 		}
 	}
 
-	FOREACH_NODE(JointShadowRootNode, _34->mChild, node)
+	FOREACH_NODE(JointShadowRootNode, mActiveJointShadows->mChild, node)
 	{
 		if (owner == node->mCreature) {
-			node->_1C = isVisible;
+			node->mIsVisible = isVisible;
 		}
 	}
 
-	FOREACH_NODE(JointShadowRootNode, _38->mChild, node)
+	FOREACH_NODE(JointShadowRootNode, mInactiveJointShadows->mChild, node)
 	{
 		if (owner == node->mCreature) {
-			node->_1C = isVisible;
+			node->mIsVisible = isVisible;
 		}
 	}
 }
@@ -794,14 +607,14 @@ void ShadowMgr::setForceVisible(Creature* owner, bool isVisible)
  * Address:	802421F0
  * Size:	000030
  */
-int ShadowMgr::getSize() { return _20->getChildCount(); }
+int ShadowMgr::getSize() { return mActiveShadows->getChildCount(); }
 
 /*
  * --INFO--
  * Address:	80242220
  * Size:	000008
  */
-int ShadowMgr::getMax() { return _1C; }
+int ShadowMgr::getMax() { return mAllocShadowNum; }
 
 /*
  * --INFO--
@@ -810,9 +623,9 @@ int ShadowMgr::getMax() { return _1C; }
  */
 Creature* ShadowMgr::getCreature(int idx)
 {
-	ShadowNode* node = static_cast<ShadowNode*>(_20->getChildAt(idx));
+	ShadowNode* node = static_cast<ShadowNode*>(mActiveShadows->getChildAt(idx));
 	if (node) {
-		return node->mCreature;
+		return node->getGameObject();
 	}
 
 	return nullptr;
@@ -898,7 +711,7 @@ u32 ShadowMgr::getShadowType(int p1, int p2)
  */
 bool ShadowMgr::isDrawNormalShadow(ShadowNode* node, int vpNum)
 {
-	if (node->mCreature->needShadow() && (node->mFlags & 0xF0000000 || node->mCreature->mLod.isFlag(AILOD_IsVisVP0 << vpNum))) {
+	if (node->getGameObject()->needShadow() && (node->mFlags & 0xF0000000 || node->getGameObject()->mLod.isFlag(AILOD_IsVisVP0 << vpNum))) {
 		return true;
 	}
 
@@ -912,7 +725,7 @@ bool ShadowMgr::isDrawNormalShadow(ShadowNode* node, int vpNum)
  */
 bool ShadowMgr::isDrawJointShadow(JointShadowRootNode* node, int vpNum)
 {
-	if (node->mCreature->needShadow() && (node->_1C || node->mCreature->mLod.isFlag(AILOD_IsVisVP0 << vpNum))) {
+	if (node->mCreature->needShadow() && (node->mIsVisible || node->mCreature->mLod.isFlag(AILOD_IsVisVP0 << vpNum))) {
 		return true;
 	}
 
@@ -943,9 +756,9 @@ void ShadowMgr::readShadowParms(char* fileName)
  */
 void ShadowMgr::write(Stream& output)
 {
-	output.writeShort((u16)_3C);
-	output.writeShort((u16)_3D);
-	output.writeInt(_40);
+	output.writeShort((u16)mEnabled);
+	output.writeShort((u16)mDoCheckCylinderType);
+	output.writeInt(mCylinderID);
 	output.writeInt(_44);
 	mColor.write(output);
 	mParms->write(output);
@@ -958,10 +771,10 @@ void ShadowMgr::write(Stream& output)
  */
 void ShadowMgr::read(Stream& input)
 {
-	_3C = input.readShort();
-	_3D = input.readShort();
-	_40 = input.readInt();
-	_44 = input.readInt();
+	mEnabled             = input.readShort();
+	mDoCheckCylinderType = input.readShort();
+	mCylinderID          = input.readInt();
+	_44                  = input.readInt();
 	mColor.read(input);
 	mParms->read(input);
 }

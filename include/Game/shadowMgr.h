@@ -51,6 +51,10 @@ struct ShadowNode : public CNode {
 
 	void init(int);
 
+	inline ShadowNode* getNext() { return (ShadowNode*)mChild; }
+	inline Creature* getGameObject() { return mCreature; }
+	inline Matrixf* getMtx(int i) { return &mMatrices[i]; }
+
 	Creature* mCreature; // _18
 	Matrixf* mMatrices;  // _1C
 	u32 mFlags;          // _20 /* bitfield */
@@ -244,23 +248,25 @@ struct ShadowMgr : public CNode {
 
 	void setForceVisible(Creature*, bool);
 
-	inline int getCount() { return _18; }
+	inline int getViewportCount() { return mViewportNum; }
+	CylinderBase* getActiveCylinder() { return mCylinders[mCylinderID]; }
+	inline Viewport* getViewport(int i) { return mViewports[i]; }
 
 	// CNode _00
-	int _18;                  // _18
-	int _1C;                  // _1C /* Sodium called this max? Unsure why. */
-	ShadowNode* _20;          // _20
-	ShadowNode* _24;          // _24
-	CylinderBase* _28[2];     // _28, 0 = ShadowCylinder2, 1 = ShadowCylinder3
-	Viewport** mViewports;    // _30, array of size _18
-	JointShadowRootNode* _34; // _34
-	JointShadowRootNode* _38; // _38
-	u8 _3C;                   // _3C
-	u8 _3D;                   // _3D
-	int _40;                  // _40
-	int _44;                  // _44
-	Color4 mColor;            // _48
-	ShadowParms* mParms;      // _4C
+	int mViewportNum;                           // _18
+	int mAllocShadowNum;                        // _1C
+	ShadowNode* mActiveShadows;                 // _20
+	ShadowNode* mInactiveShadows;               // _24
+	CylinderBase* mCylinders[2];                // _28, 0 = ShadowCylinder2, 1 = ShadowCylinder3
+	Viewport** mViewports;                      // _30, array of size _18
+	JointShadowRootNode* mActiveJointShadows;   // _34
+	JointShadowRootNode* mInactiveJointShadows; // _38
+	u8 mEnabled;                                // _3C
+	u8 mDoCheckCylinderType;                    // _3D
+	int mCylinderID;                            // _40
+	int _44;                                    // _44, seems to be entirely unused
+	Color4 mColor;                              // _48
+	ShadowParms* mParms;                        // _4C
 };
 
 extern ShadowMgr* shadowMgr;

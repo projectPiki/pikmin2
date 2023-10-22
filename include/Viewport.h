@@ -38,6 +38,8 @@ struct Viewport : CNode {
 		updateCameraAspect();
 	}
 
+	inline Camera* getCamera() { return mCamera; }
+
 	u16 mVpId;             // _18
 	Rectf mBounds;         // _1C
 	Rectf mBounds2;        // _2C
