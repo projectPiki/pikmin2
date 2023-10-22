@@ -1,13 +1,37 @@
 #include "Dolphin/gx.h"
+#include "Dolphin/GX/GXHardware.h"
+#include "Dolphin/GX/GXHardwareCP.h"
+#include "Dolphin/GX/GXHardwareXF.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00008C
  */
-void __GXXfVtxSpecs(void)
+inline void __GXXfVtxSpecs(void)
 {
-	// UNUSED FUNCTION
+	unsigned int cmd;
+    u32 numNormals;
+    u32 numColor;
+    u32 numTxc;
+    numNormals = LOAD_GX_FIELD(0x4d5, u8) ? 2 : (LOAD_GX_FIELD(0x4d4, u8) ? 1 : 0);
+
+    // Both fields in one access
+    numColor = 32 - __cntlzw(GX_BITGET(LOAD_GX_FIELD(0x14, u32), GX_CP_VCD_LO_COLORSPECULAR_ST, GX_CP_VCD_LO_COLORSPECULAR_SZ + GX_CP_VCD_LO_COLORDIFFUSED_SZ)) + 1;
+
+    // All 16 assigned bits in VCD_Hi
+    numTxc = 32 - __cntlzw(GX_BITGET(LOAD_GX_FIELD(0x18, u32), GX_CP_VCD_HI_TEX7COORD_ST, sizeof(u16) * 8)) + 1;
+
+    GX_XF_LOAD_REG_HDR(GX_XF_REG_INVERTEXSPEC);
+	
+    cmd = 0;
+    cmd |= numColor >> 1;
+    cmd |= (numTxc << 3) & ~0xF;
+    cmd |= (numNormals << 2);
+    
+	WGPIPE.u32 = cmd;
+
+    LOAD_GX_FIELD(0x2, u16) = TRUE;	
 }
 
 /*
@@ -126,18 +150,11 @@ void GXSetVtxDescv(GXVtxDescList* list)
  */
 void __GXSetVCD(void)
 {
-	u8 shift;
-	if (LOAD_GX_FIELD(0x4d5, u8) == TRUE) {
-		shift = 2;
-	} else if (LOAD_GX_FIELD(0x4d4, u8) == TRUE) {
-		shift = 1;
-	} else {
-		shift = 0;
-	}
 
-	GX_BITFIELD_SET(GXWGFifo.u32, 0x21, 8, shift);
+	GX_CP_LOAD_REG(GX_CP_REG_VCD_LO, LOAD_GX_FIELD(0x14, u32));
+    GX_CP_LOAD_REG(GX_CP_REG_VCD_HI, LOAD_GX_FIELD(0x18, u32));
 
-	LOAD_GX_FIELD(0x2, u16) = 1;
+    __GXXfVtxSpecs();
 	/*
 	.loc_0x0:
 	  li        r6, 0x8
@@ -203,89 +220,47 @@ void __GXSetVCD(void)
  */
 void __GXCalculateVLim(void)
 {
-	if (!LOAD_GX_FIELD(0x4, u16)) {
-		return;
-	}
-	/*
-	.loc_0x0:
-	  lwz       r3, -0x6D70(r2)
-	  lhz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beqlr-
-	  lwz       r9, 0x14(r3)
-	  subi      r5, r13, 0x7D08
-	  lwz       r8, 0x1C(r3)
-	  rlwinm    r0,r9,0,31,31
-	  lwz       r4, 0x18(r3)
-	  rlwinm    r6,r9,31,31,31
-	  add       r0, r0, r6
-	  rlwinm    r6,r9,30,31,31
-	  add       r0, r0, r6
-	  rlwinm    r7,r9,29,31,31
-	  rlwinm    r6,r9,23,30,31
-	  lbzx      r5, r5, r6
-	  rlwinm    r8,r8,23,31,31
-	  add       r0, r0, r7
-	  rlwinm    r6,r9,28,31,31
-	  add       r0, r0, r6
-	  rlwinm    r6,r9,27,31,31
-	  add       r0, r0, r6
-	  rlwinm    r6,r9,26,31,31
-	  add       r0, r0, r6
-	  rlwinm    r6,r9,25,31,31
-	  add       r0, r0, r6
-	  rlwinm    r6,r9,24,31,31
-	  add       r0, r0, r6
-	  cmpwi     r8, 0x1
-	  add       r0, r0, r5
-	  bne-      .loc_0x84
-	  li        r8, 0x3
-	  b         .loc_0x88
+	static u8 tbl1[] = {0, 4, 1, 2};
+    static u8 tbl2[] = {0, 8, 1, 2};
+    static u8 tbl3[] = {0, 12, 1, 2};
 
-	.loc_0x84:
-	  li        r8, 0x1
+    u32 vlim;
+    u32 vcdLo;
+    u32 vcdHi;
+    s32 vat;
+    
+    if (LOAD_GX_FIELD(0x4, u16) == 0) {
+        return;
+    }
 
-	.loc_0x88:
-	  rlwinm    r6,r9,21,30,31
-	  subi      r5, r13, 0x7D08
-	  lbzx      r6, r5, r6
-	  rlwinm    r5,r9,19,30,31
-	  subi      r7, r13, 0x7D10
-	  mullw     r8, r6, r8
-	  lbzx      r6, r7, r5
-	  add       r0, r0, r8
-	  rlwinm    r5,r9,17,30,31
-	  lbzx      r9, r7, r5
-	  add       r0, r0, r6
-	  rlwinm    r6,r4,0,30,31
-	  subi      r8, r13, 0x7D0C
-	  rlwinm    r5,r4,30,30,31
-	  lbzx      r7, r8, r6
-	  add       r0, r0, r9
-	  lbzx      r6, r8, r5
-	  add       r0, r0, r7
-	  rlwinm    r5,r4,28,30,31
-	  lbzx      r7, r8, r5
-	  add       r0, r0, r6
-	  rlwinm    r5,r4,26,30,31
-	  lbzx      r6, r8, r5
-	  add       r0, r0, r7
-	  rlwinm    r5,r4,24,30,31
-	  lbzx      r7, r8, r5
-	  add       r0, r0, r6
-	  rlwinm    r5,r4,22,30,31
-	  lbzx      r6, r8, r5
-	  rlwinm    r5,r4,20,30,31
-	  add       r0, r0, r7
-	  lbzx      r5, r8, r5
-	  rlwinm    r4,r4,18,30,31
-	  add       r0, r0, r6
-	  lbzx      r4, r8, r4
-	  add       r0, r0, r5
-	  add       r0, r0, r4
-	  sth       r0, 0x6(r3)
-	  blr
-	*/
+    vcdLo = LOAD_GX_FIELD(0x14, u32);
+    vcdHi = LOAD_GX_FIELD(0x18, s32);
+    vat = (&LOAD_GX_FIELD(0x1c, u32))[GX_VTXFMT0];
+    vat = (vat & 0x200) >> 9;
+    
+    vlim = vcdLo & 1;
+    vlim += vcdLo >> 1 & 1;
+    vlim += vcdLo >> 2 & 1;
+    vlim += vcdLo >> 3 & 1;
+    vlim += vcdLo >> 4 & 1;
+    vlim += vcdLo >> 5 & 1;
+    vlim += vcdLo >> 6 & 1;
+    vlim += vcdLo >> 7 & 1;
+    vlim += vcdLo >> 8 & 1;
+    vlim += tbl3[vcdLo >> 9 & 3];
+    vlim += tbl3[vcdLo >> 11 & 3] * (vat == 1 ? 3 : 1);
+    vlim += tbl1[vcdLo >> 13 & 3];
+    vlim += tbl1[vcdLo >> 15 & 3];
+    vlim += tbl2[vcdHi & 3];
+    vlim += tbl2[vcdHi >> 2 & 3];
+    vlim += tbl2[vcdHi >> 4 & 3];
+    vlim += tbl2[vcdHi >> 6 & 3];
+    vlim += tbl2[vcdHi >> 8 & 3];
+    vlim += tbl2[vcdHi >> 10 & 3];
+    vlim += tbl2[vcdHi >> 12 & 3];
+    vlim += tbl2[vcdHi >> 14 & 3];
+
+    LOAD_GX_FIELD(0x6, u16) = vlim;
 }
 
 /*
