@@ -66,7 +66,7 @@ void Pathfinder::update()
 	if (counts > 0) {
 		for (int i = 0; i < mAStarContextCount; i++) {
 			if (mAStarContexts[i].checkContext()) {
-				mAStarContexts[i].mCheckHandle = mAStarPathfinder->search(&mAStarContexts[i], 1, &mAStarContexts[i].mNode);
+				mAStarContexts[i].mState = mAStarPathfinder->search(&mAStarContexts[i], 1, &mAStarContexts[i].mNode);
 			}
 		}
 	}
@@ -89,11 +89,11 @@ void Pathfinder::getFreeContext()
  * Address:	........
  * Size:	00004C
  */
-AStarContext* Pathfinder::getContext(u32 id)
+AStarContext* Pathfinder::getContext(u32 handle)
 {
 	for (int i = 0; i < mAStarContextCount; i++) {
-		if (mAStarContexts[i].mStatus == id) {
-			return mAStarContexts + i;
+		if (mAStarContexts[i].mHandleIdx == handle) {
+			return &mAStarContexts[i];
 		}
 	}
 	return nullptr;
@@ -108,25 +108,25 @@ int Pathfinder::start(PathfindRequest& request)
 	if (mClientCount >= mAStarContextCount) {
 		JUT_PANICLINE(250, "Oh! no!\n");
 		return 0;
-	} else {
-		int wpNum = mCounter++;
-		if (20000 <= mCounter) {
-			mCounter = 1;
-		}
-
-		AStarContext* context = getContext(0);
-
-		JUT_ASSERTLINE(258, context, "no context is available (clients=%d)!\n", mClientCount);
-		mClientCount++;
-		context->mStatus      = 0;
-		context->mCheckHandle = 2;
-		context->mStatus      = wpNum;
-		context->mStartWPID   = request.mStartWpID;
-		context->mEndWPID     = request.mEndWpID;
-		context->mRequestFlag = request.mFlag;
-		mAStarPathfinder->initsearch(context);
-		return wpNum;
 	}
+
+	int contextNum = mCounter++;
+	if (mCounter >= 20000) {
+		mCounter = 1;
+	}
+
+	AStarContext* context = getContext(0);
+
+	JUT_ASSERTLINE(258, context, "no context is available (clients=%d)!\n", mClientCount);
+	mClientCount++;
+	context->resetContext();
+
+	context->mHandleIdx   = contextNum;
+	context->mStartWPID   = request.mStartWpID;
+	context->mEndWPID     = request.mEndWpID;
+	context->mRequestFlag = request.mFlag;
+	mAStarPathfinder->initsearch(context);
+	return contextNum;
 }
 
 /*
@@ -134,18 +134,21 @@ int Pathfinder::start(PathfindRequest& request)
  * Address:	801A39A0
  * Size:	0000C0
  */
-int Pathfinder::makepath(u32 id, Game::PathNode** path)
+int Pathfinder::makepath(u32 handle, Game::PathNode** path)
 {
-	AStarContext* context = getContext(id);
+	AStarContext* context = getContext(handle);
 
 	if (context) {
-		if (!context->mCheckHandle) {
+		if (context->mState == PATHFIND_MakePath) {
 			return context->makepath(context->mNode, path);
 		}
-		JUT_PANICLINE(290, "context state is %d\n", context->mCheckHandle);
+
+		JUT_PANICLINE(290, "context state is %d\n", context->mState);
+
 	} else {
-		JUT_PANICLINE(293, "no such handle %d\n", id);
+		JUT_PANICLINE(293, "no such handle %d\n", handle);
 	}
+
 	return 0;
 }
 
@@ -154,7 +157,7 @@ int Pathfinder::makepath(u32 id, Game::PathNode** path)
  * Address:	........
  * Size:	0000C8
  */
-int Pathfinder::makepath(unsigned long, short*, int)
+int Pathfinder::makepath(u32, s16*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -164,13 +167,12 @@ int Pathfinder::makepath(unsigned long, short*, int)
  * Address:	801A3A60
  * Size:	000070
  */
-void Pathfinder::release(u32 id)
+void Pathfinder::release(u32 handle)
 {
-	AStarContext* context = getContext(id);
+	AStarContext* context = getContext(handle);
 	if (context) {
 		mClientCount--;
-		context->mStatus      = 0;
-		context->mCheckHandle = 2;
+		context->resetContext();
 	}
 }
 
@@ -179,14 +181,14 @@ void Pathfinder::release(u32 id)
  * Address:	801A3AD0
  * Size:	000098
  */
-int Pathfinder::check(u32 id)
+int Pathfinder::check(u32 handle)
 {
-	AStarContext* context = getContext(id);
+	AStarContext* context = getContext(handle);
 	if (context) {
-		return context->mCheckHandle;
+		return context->mState;
 	}
-	JUT_PANICLINE(332, " no handle ! %d\n", id);
-	return 3;
+	JUT_PANICLINE(332, " no handle ! %d\n", handle);
+	return PATHFIND_NoHandle;
 }
 
 /*
@@ -280,9 +282,8 @@ void AStarContext::init(RouteMgr* mgr, int wpNum)
 		} else {
 			mWpNum = wpNum;
 		}
-		_58          = new PathNode[mWpNum]; // not sure what this type is
-		mStatus      = 0;
-		mCheckHandle = 2;
+		_58 = new PathNode[mWpNum]; // not sure what this type is
+		resetContext();
 	}
 }
 
@@ -305,7 +306,7 @@ void AStarPathfinder::setContext(AStarContext* context) { mContext = context; }
  * Address:	........
  * Size:	0000A0
  */
-PathNode* AStarContext::getNode(short wpID)
+PathNode* AStarContext::getNode(s16 wpID)
 {
 	// UNUSED FUNCTION
 	PathNode* node;
@@ -329,7 +330,7 @@ PathNode* AStarContext::getNode(short wpID)
  * Address:	........
  * Size:	000558
  */
-void AStarPathfinder::search(short, short, short*, int)
+void AStarPathfinder::search(s16, s16, s16*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -339,7 +340,7 @@ void AStarPathfinder::search(short, short, short*, int)
  * Address:	........
  * Size:	00057C
  */
-void AStarPathfinder::search(Game::AStarContext*, short, short, short*, int, int, int&)
+void AStarPathfinder::search(Game::AStarContext*, s16, s16, s16*, int, int, int&)
 {
 	// UNUSED FUNCTION
 }
@@ -1007,7 +1008,7 @@ int AStarContext::makepath(PathNode* newNode, PathNode** nodePtr)
  * Address:	........
  * Size:	000070
  */
-void AStarPathfinder::constructPath(Game::PathNode*, short*, int)
+void AStarPathfinder::constructPath(Game::PathNode*, s16*, int)
 {
 	// UNUSED FUNCTION
 }

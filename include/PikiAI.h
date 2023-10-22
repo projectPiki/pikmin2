@@ -891,14 +891,15 @@ struct ActGotoSlot : public Action {
 	// _00-_0C = Action
 	Game::Pellet* mPellet; // _0C
 	s16 mSlotId;           // _10
-	int _14;               // _14
-	f32 _18;               // _18
-	u8 _1C;                // _1C
-	u8 _1D;                // _1D
+	int mRetryCounter;     // _14, counts when we "should" grab soon - if we hit 60, fail.
+	f32 mRefreshSlotTimer; // _18, start at 3 - if this hits 0, find a new slot
+	u8 mWallTimer;         // _1C, increments on wall collision up to 100, but doesn't seem to be used
+	bool mIsFirstPiki;     // _1D, no other pikis grabbing = all slots free
 };
 
 struct ActOneshotArg : public ActionArg {
-	ActOneshotArg() { mAnimID = -1; }
+	ActOneshotArg() { mAnimID = Game::IPikiAnims::NULLANIM; }
+
 	// _00 = VTBL
 	int mAnimID; // _04
 };
@@ -934,9 +935,9 @@ struct PathMoveArg : public ActionArg {
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
-	Vector3f _08;          // _08
-	s16 _14;               // _14
-	int _18;               // _18
+	Vector3f _08;          // _08, unused??
+	s16 _14;               // _14, unused??
+	int _18;               // _18, unused??
 };
 
 struct ActPathMove : public Action {
@@ -945,6 +946,14 @@ struct ActPathMove : public Action {
 		PATHMOVE_Move        = 1,
 		PATHMOVE_MoveGoal    = 2,
 		PATHMOVE_MoveGuru    = 3,
+	};
+
+	enum CRPointID {
+		CRMOVE_Prev     = 0,
+		CRMOVE_Curr     = 1,
+		CRMOVE_Next     = 2,
+		CRMOVE_NextNext = 3,
+		CRMOVE_Count, // 4
 	};
 
 	ActPathMove(Game::Piki* p);
@@ -973,32 +982,32 @@ struct ActPathMove : public Action {
 
 	// _00     = VTBL
 	// _00-_0C = Action
-	SlotHandles* mHandles;  // _0C
-	Vector3f _10;           // _10
-	s16 mStartWPIndex;      // _1C
-	u16 mState;             // _1E
-	u32 _20;                // _20
-	Vector3f mGoalPosition; // _24
-	Game::Pellet* mPellet;  // _30
-	Game::Onyon* mOnyon;    // _34
-	f32 _38;                // _38
-	u8 _3C;                 // _3C
-	u8 _3D;                 // _3D
-	int _40;                // _40
-	Game::PathNode* _44;    // _44
-	Game::PathNode* _48;    // _48
-	int _4C;                // _4C
-	int _50;                // _50
-	s16 _54;                // _54
-	s16 mGoalWPIndex;       // _56
-	Vector3f _58;           // _58
-	Game::WayPoint* _64;    // _64
-	f32 _68;                // _68
-	u8 _6C;                 // _6C
-	int _70;                // _70
-	Vector3f _74[4];        // _74
-	Vector3f _A4;           // _A4
-	Vector3f _B0;           // _B0
+	SlotHandles* mHandles;              // _0C
+	Vector3f mPrevDisplacement;         // _10, vector we moved along, last frame to this frame - debug?
+	s16 mStartWPIndex;                  // _1C
+	u16 mState;                         // _1E
+	u32 mContextHandle;                 // _20, pathfinding context handle id
+	Vector3f mGoalPosition;             // _24
+	Game::Pellet* mPellet;              // _30
+	Game::Onyon* mOnyon;                // _34
+	f32 _38;                            // _38, unused??
+	u8 _3C;                             // _3C, unused??
+	u8 mVsWayPointCounter;              // _3D, something to do with vs mode
+	int mPathFindCounter;               // _40, how many frames have we been pathfinding for?
+	Game::PathNode* mStartNode;         // _44
+	Game::PathNode* mRootNode;          // _48, set to same as mStartNode, nodes on path are in this linked list
+	int mWayPointCount;                 // _4C, number of waypoints to goal
+	int mStartPathFindCounter;          // _50, keeps track of how many times we've started the actual pathfinder
+	s16 mPathFindWPIndex;               // _54, where to start pathfinding from (set same as mStartWPIndex)
+	s16 mGoalWPIndex;                   // _56
+	Vector3f mPacePosition;             // _58, position to use when guided by MoveGuru (circling waiting)
+	Game::WayPoint* mNextWayPoint;      // _64
+	f32 mPaceAngle;                     // _68, angle used to calculate wait circle when next waypoint is closed
+	bool mIsPickedUp;                   // _6C, is the pellet being carried
+	int mCurrGraphIdx;                  // _70, how far through our node graph are we? starts at -1
+	Vector3f mCRControls[CRMOVE_Count]; // _74, num 4 - indexed by CRMoveID (prev, curr, next, nextnext)
+	Vector3f mStartPosition;            // _A4, starting pellet position
+	Vector3f mNewVelocity;              // _B0, velocity to update pellet carry with on next execMove call
 };
 
 struct ActRescueArg : public ActionArg {

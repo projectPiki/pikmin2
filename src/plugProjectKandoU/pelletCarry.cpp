@@ -19,9 +19,7 @@ PelletCarry::PelletCarry() { reset(); }
 void PelletCarry::reset()
 {
 	mState         = PCS_Idle;
-	mPosition.x    = 0.0f;
-	mPosition.y    = 0.0f;
-	mPosition.z    = 0.0f;
+	mVelocity      = Vector3f(0.0f);
 	mTimer         = 0.0f;
 	mCarryStrength = 0.0f;
 }
@@ -31,21 +29,17 @@ void PelletCarry::reset()
  * Address:	80234F50
  * Size:	000084
  */
-bool PelletCarry::pull(u16 state, Vector3f& newPos, f32 carryAmt)
+bool PelletCarry::pull(u16 state, Vector3f& velocity, f32 carryAmt)
 {
 	if (mState == PCS_Idle || mState == state) {
-		mState         = state;
-		mPosition.x    = newPos.x;
-		mPosition.y    = newPos.y;
-		mPosition.z    = newPos.z;
+		mState = state;
+		mVelocity.set(velocity);
 		mCarryStrength = carryAmt;
-
 		return true;
+
 	} else if (carryAmt > mCarryStrength) {
-		mState         = state;
-		mPosition.x    = newPos.x;
-		mPosition.y    = newPos.y;
-		mPosition.z    = newPos.z;
+		mState = state;
+		mVelocity.set(velocity);
 		mCarryStrength = carryAmt;
 		mTimer         = 0.5f;
 
@@ -81,9 +75,7 @@ void PelletCarry::giveup(u16 state)
 	}
 
 	mState         = PCS_Idle;
-	mPosition.x    = 0.0f;
-	mPosition.y    = 0.0f;
-	mPosition.z    = 0.0f;
+	mVelocity      = Vector3f(0.0f);
 	mCarryStrength = 0.0f;
 }
 
@@ -92,19 +84,16 @@ void PelletCarry::giveup(u16 state)
  * Address:	8023503C
  * Size:	000064
  */
-bool PelletCarry::frameWork(Vector3f& newPos)
+bool PelletCarry::frameWork(Vector3f& velocity)
 {
 	// Work done in a frame
 	if (mState != PCS_Idle) {
 		if (mTimer > 0.0f) {
 			mTimer -= sys->mDeltaTime;
-			newPos.x = 0.0f;
-			newPos.y = 0.0f;
-			newPos.z = 0.0f;
+			velocity = Vector3f(0.0f);
+
 		} else {
-			newPos.x = mPosition.x;
-			newPos.y = mPosition.y;
-			newPos.z = mPosition.z;
+			velocity = mVelocity;
 		}
 
 		return true;

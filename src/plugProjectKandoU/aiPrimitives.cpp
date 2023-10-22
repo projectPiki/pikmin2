@@ -464,12 +464,12 @@ void ActGotoSlot::init(ActionArg* settings)
 	}
 
 	if (mPellet->isPellet() && mPellet->getTotalPikmins() == 0) {
-		mSlotId = 0;
-		_1D     = 1;
+		mSlotId      = 0;
+		mIsFirstPiki = true;
 	}
 
 	resetTimers();
-	_1C = 0;
+	mWallTimer = 0;
 }
 
 /*
@@ -479,8 +479,8 @@ void ActGotoSlot::init(ActionArg* settings)
  */
 void ActGotoSlot::wallCallback(Vector3f&)
 {
-	if (_1C < 100) {
-		_1C++;
+	if (mWallTimer < 100) {
+		mWallTimer++;
 	}
 }
 
@@ -491,8 +491,8 @@ void ActGotoSlot::wallCallback(Vector3f&)
  */
 void ActGotoSlot::resetTimers()
 {
-	_14 = 0;
-	_18 = 3.0f;
+	mRetryCounter     = 0;
+	mRefreshSlotTimer = 3.0f;
 }
 
 /*
@@ -502,25 +502,31 @@ void ActGotoSlot::resetTimers()
  */
 int ActGotoSlot::exec()
 {
+	// no slot to go to :(
 	if (mSlotId == -1) {
 		return ACTEXEC_Fail;
 	}
 
+	// no pellet to grab :(
 	if (!mPellet->isAlive()) {
 		return ACTEXEC_Fail;
 	}
 
-	if (_1D) {
+	// no slots are filled, we can choose the best seat.
+	if (mIsFirstPiki) {
 		Game::Pellet* pellet = mPellet;
 		bool isAlreadyPikmin = false;
 		if (pellet->getTotalPikmins()) {
 			isAlreadyPikmin = true;
 		}
 
+		// another piki grabbed it while we were waiting
 		if (isAlreadyPikmin) {
-			_1D              = 0;
+			mIsFirstPiki     = false;
 			Vector3f pikiPos = mParent->getPosition();
 			mSlotId          = mPellet->getNearFreeStickSlot(pikiPos);
+
+			// if we can't find a slot, fail
 			if (mSlotId == -1) {
 				return ACTEXEC_Fail;
 			}
@@ -529,7 +535,7 @@ int ActGotoSlot::exec()
 			return ACTEXEC_Continue;
 		}
 
-		Vector3f stickSlotPos;
+		Vector3f stickSlotPos; // unused
 		mPellet->calcStickSlotGlobal(mSlotId, stickSlotPos);
 
 		Vector3f pelletPos = pellet->getPosition();   // f30, f29, f28
@@ -540,22 +546,32 @@ int ActGotoSlot::exec()
 			pelletPos.y -= 0.5f * mPellet->getCylinderHeight();
 		}
 
+		// direction to goal
 		Vector3f sep = pelletPos - pikiPos; // 0x8c
 		sep.y        = 0.0f;
 
 		sep.normalise();
 
+		// how far do we have to go to the actual pickup point?
 		Vector3f vec = (pelletPos - sep * pickRadius) - pikiPos;
 		Vector2f vec2D(vec.x, vec.z);
 		f32 dist = vec2D.length();
+
+		// if we're not that close, get that ass moving
 		if (dist > 6.0f) {
 			mParent->setSpeed(1.0f, sep);
+
+			// if we're SORTA close, check we're not stuck
 			if (dist < 40.0f) {
-				if (_14++ >= 60) {
+
+				// if we're 'stuck' for at least 60 frames, fail
+				if (++mRetryCounter >= 60) {
 					resetTimers();
 					return ACTEXEC_Fail;
 				}
 			}
+
+			// if we're within 6 units and vertically 'close enough', grab the damn pellet
 		} else if (FABS(vec.y) < 20.0f) {
 			Vector3f slotPos; // 0x80
 			pellet->calcStickSlotGlobal(0, slotPos);
@@ -573,9 +589,13 @@ int ActGotoSlot::exec()
 
 			mParent->startStick(mPellet, mSlotId);
 			return ACTEXEC_Success;
-		} else if (++_14 >= 60) {
+
+			// we're close in 2D but not vertically; check we're not stuck
+		} else if (++mRetryCounter >= 60) {
 			resetTimers();
 			return ACTEXEC_Fail;
+
+			// close 2D, not vertically, not stuck. slow down but keep trying
 		} else {
 			mParent->setSpeed(0.2f, sep);
 		}
@@ -583,64 +603,87 @@ int ActGotoSlot::exec()
 		return ACTEXEC_Continue;
 	}
 
+	// we're not the first piki, we need to check the other slots more carefully.
+
 	Vector3f slotPos; // 0x74
 	mPellet->calcStickSlotGlobal(mSlotId, slotPos);
 	Vector3f pikiPos = mParent->getPosition(); // 0x68
-	Vector3f dir     = slotPos - pikiPos;      // 0x5c
-	f32 absY         = FABS(dir.y);
-	f32 dist         = dir.length();
+
+	// direction to goal
+	Vector3f dir = slotPos - pikiPos; // 0x5c
+	f32 absY     = FABS(dir.y);
+	f32 dist     = dir.length();
 	dir.normalise();
 
-	if (dist < 100.0f && ++_14 >= 60) {
-		s16 oldSlot = mSlotId; // r29
-		mSlotId     = mPellet->getNearFreeStickSlot(pikiPos);
+	// if we're within 100 units but we're stuck, get a new slot
+	if (dist < 100.0f && ++mRetryCounter >= 60) {
+		s16 oldSlot = mSlotId;
 
+		// get a better slot.
+		mSlotId = mPellet->getNearFreeStickSlot(pikiPos);
+
+		// HEY I'M TRYNA GRAB OVA ERE
 		if (mPellet->isPellet()) {
 			mPellet->sendClaim();
 		}
 
+		// if we just got the same slot back, fail bc we're stuck
 		if (oldSlot == mSlotId) {
 			return ACTEXEC_Fail;
 		}
+
+		// if we don't find a (free) slot, fail
 		if (mSlotId == -1) {
 			return ACTEXEC_Fail;
 		}
 
+		// we have a new slot, try again
 		resetTimers();
 		return ACTEXEC_Continue;
 	}
 
+	// move closer!!
 	if (dist > 6.0f) {
 		mParent->setSpeed(1.0f, dir);
 		return ACTEXEC_Continue;
 	}
 
+	// we're close! and also close enough vertically! grab the damn pellet.
 	if (dist < 6.0f && absY < 20.0f) {
+		// better double check the slot is free lol.
 		if (!mPellet->isSlotFree(mSlotId)) {
+			// slot got taken :( find a new one and try again
 			mSlotId = mPellet->getNearFreeStickSlot(pikiPos);
 			resetTimers();
 			return ACTEXEC_Continue;
 		}
 
+		// grab pellet.
 		mParent->startStick(mPellet, mSlotId);
-
 		pikiPos = mParent->getPosition();
 		return ACTEXEC_Success;
 	}
 
+	// we're close horizontally, but not vertically? otherwise we'd be out by now?
 	Vector3f pelletPos = mPellet->getPosition();
 	Vector3f sep2      = pelletPos - pikiPos;
 	Vector2f sep2D(sep2.x, sep2.z);
+
+	// NB: this is just horizontal now, and also piki -> pellet, not piki -> slot
 	f32 dist2D = sep2D.length();
 	if (dist2D < dist) {
+
+		// keep trying to get closer to the *pellet* horizontally while we check if we're stuck
 		sep2.normalise();
 		Vector3f dir2(sep2.x, 0.0f, -sep2.z);
 		dir2.normalise();
 
 		mParent->setSpeed(0.2f, dir2);
 
-		_18 -= sys->mDeltaTime;
-		if (_18 < 0.0f) {
+		// we have 3 seconds to keep trying before we look for a new slot.
+		mRefreshSlotTimer -= sys->mDeltaTime;
+		if (mRefreshSlotTimer < 0.0f) {
+			// yeah we're stuck, try a new slot
 			mSlotId = mPellet->getNearFreeStickSlot(pikiPos);
 			resetTimers();
 		}
@@ -648,6 +691,7 @@ int ActGotoSlot::exec()
 		return ACTEXEC_Continue;
 	}
 
+	// 2D distance to pellet is more than 3D distance to slot, so keep moving
 	mParent->setSpeed(0.2f, dir);
 	return ACTEXEC_Continue;
 	/*
@@ -1463,8 +1507,8 @@ ActPathMove::ActPathMove(Game::Piki* p)
  */
 void ActPathMove::init(ActionArg* settings)
 {
-	bool isPathMove = false;
-	_3D             = 0;
+	bool isPathMove    = false;
+	mVsWayPointCounter = 0;
 	if (settings) {
 		bool strCheck = strcmp("PathMoveArg", settings->getName()) == 0;
 		if (strCheck) {
@@ -1476,19 +1520,23 @@ void ActPathMove::init(ActionArg* settings)
 
 	mOnyon  = nullptr;
 	mPellet = pathMoveArg->mPellet;
-	_3C     = (pathMoveArg->_18 > 0);
 
+	// this doesn't seem to be used, input is always 0 anyway.
+	_3C = (pathMoveArg->_18 > 0);
 	if (_3C) {
 		_38 = pathMoveArg->_18;
 	}
 
-	_20 = 0;
-	_B0 = Vector3f(0.0f);
+	mContextHandle = 0;
+	mNewVelocity   = Vector3f(0.0f);
 
 	initPathfinding(true);
 
-	_6C = 1;
-	_10 = mPellet->getPosition();
+	// assume the pellet is picked up bc we're doing pathfinding
+	mIsPickedUp = true;
+
+	// this seems to be more for debug than anything else
+	mPrevDisplacement = mPellet->getPosition();
 
 	if (mPellet->isPellet()) {
 		Game::Pellet* pellet = mPellet;
@@ -1689,7 +1737,7 @@ void ActPathMove::initPathfinding(bool check)
 
 	mStartWPIndex = startWP->mIndex;
 
-	_54               = startWP->mIndex;
+	mPathFindWPIndex  = startWP->mIndex;
 	Game::Onyon* goal = decideGoal();
 	JUT_ASSERTLINE(937, goal, "newgoal == 0");
 
@@ -1701,30 +1749,30 @@ void ActPathMove::initPathfinding(bool check)
 		mGoalWPIndex  = goal->mGoalWayPoint->mIndex;
 		mGoalPosition = goal->getGoalPos();
 		mOnyon        = goal;
-		if (_20) {
-			Game::testPathfinder->release(_20);
+		if (mContextHandle) {
+			Game::testPathfinder->release(mContextHandle);
 		}
 		mState = PATHMOVE_Pathfinding;
 
-		u8 flag = 1;
+		u8 flag = Game::PATHFLAG_Unk1;
 		if (isAllBlue()) {
-			flag |= 0x2;
+			flag |= Game::PATHFLAG_PathThroughWater;
 		}
 
-		flag |= 0x4;
+		flag |= Game::PATHFLAG_Unk3;
 		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
 			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
-				flag |= 0x60;
+				flag |= (Game::PATHFLAG_VsBlue | Game::PATHFLAG_Unk7);
 			} else {
-				flag |= 0x50;
+				flag |= (Game::PATHFLAG_VsRed | Game::PATHFLAG_Unk7);
 			}
 		}
 
-		Game::PathfindRequest request(_54, mGoalWPIndex, flag);
-		_20 = Game::testPathfinder->start(request);
-		_50 = 0;
-		_40 = 0;
-		_48 = nullptr;
+		Game::PathfindRequest request(mPathFindWPIndex, mGoalWPIndex, flag);
+		mContextHandle        = Game::testPathfinder->start(request);
+		mStartPathFindCounter = 0;
+		mPathFindCounter      = 0;
+		mRootNode             = nullptr;
 	}
 }
 
@@ -1746,29 +1794,35 @@ Game::Onyon* ActPathMove::decideGoal()
  */
 int ActPathMove::exec()
 {
-	if (_6C == 0) {
+	// check if we can pick up the pellet
+	if (!mIsPickedUp) {
 		Game::Pellet* pellet = mPellet;
-		if (pellet->mPelletCarry->pullable(0, pellet->getTotalCarryPikmins())) {
+		if (pellet->mPelletCarry->pullable(Game::PCS_Carry, pellet->getTotalCarryPikmins())) {
 			pellet->startPick();
-			if (_20 != 0) {
-				Game::testPathfinder->release(_20);
-				_20 = 0;
+			if (mContextHandle != 0) {
+				Game::testPathfinder->release(mContextHandle);
+				mContextHandle = 0;
 			}
-			_6C    = 1;
-			mOnyon = nullptr;
+			mIsPickedUp = true;
+			mOnyon      = nullptr;
 			initPathfinding(true);
 		}
 		return ACTEXEC_Continue;
 	}
+
 	switch (mState) {
 	case PATHMOVE_Pathfinding:
 		return execPathfinding();
+
 	case PATHMOVE_Move:
 		return execMove();
+
 	case PATHMOVE_MoveGoal:
 		return execMoveGoal();
+
 	case PATHMOVE_MoveGuru:
 		return execMoveGuru();
+
 	default:
 		return ACTEXEC_Continue;
 	}
@@ -1783,18 +1837,28 @@ int ActPathMove::execPathfinding()
 {
 	Game::Pellet* pellet = mPellet;
 	if (pellet) {
-		pellet->mPelletCarry->pull(0, Vector3f::zero, pellet->getTotalCarryPikmins());
+		// RESET PELLET CARRY SPEED
+		pellet->mPelletCarry->pull(Game::PCS_Carry, Vector3f::zero, pellet->getTotalCarryPikmins());
 	}
-	if (_20 == 0) {
-		return ACTEXEC_Fail;
-	}
-	if (_20 == -1) {
-		return ACTEXEC_Fail;
-	}
-	_40++;
 
+	// no context handle!
+	if (mContextHandle == 0) {
+		return ACTEXEC_Fail;
+	}
+
+	// NULL context handle! (!)
+	if (mContextHandle == -1) {
+		return ACTEXEC_Fail;
+	}
+
+	// keep track of how long we've been pathfinding for
+	mPathFindCounter++;
+
+	// god i hope we're a pellet
 	if (mPellet->isPellet()) {
 		pellet = mPellet;
+
+		// if we've been picked up, don't move while we pathfind
 		if (pellet->isPicked()) {
 			mPellet->setVelocity(Vector3f::zero);
 			pellet->mRigid.mConfigs->_18 = Vector3f(0.0f);
@@ -1804,43 +1868,60 @@ int ActPathMove::execPathfinding()
 		}
 	}
 
-	switch (Game::testPathfinder->check(_20)) {
-	case 0:
-		_4C    = Game::testPathfinder->makepath(_20, &_44);
-		_48    = _44;
-		mState = PATHMOVE_Move;
+	// see how pathfinding is going
+	switch (Game::testPathfinder->check(mContextHandle)) {
+	case Game::PATHFIND_MakePath: // ready to make the path!
+
+		// get how many waypoints we have in our path
+		mWayPointCount = Game::testPathfinder->makepath(mContextHandle, &mStartNode);
+
+		// set nodes and get ready to MOVE
+		mRootNode = mStartNode;
+		mState    = PATHMOVE_Move;
+
+		// initialize spline system
 		crInit();
-		Game::PathNode* startNode = _44;
+
+		// debug
+		Game::PathNode* startNode = mStartNode;
 		s16 endIdx                = -1;
 		FOREACH_NODE(Game::PathNode, startNode, node) { endIdx = node->mWpIndex; }
 		char buf[256];
-		sprintf(buf, "%d->%d->...->%d", startNode->mWpIndex, startNode->mNext ? (char*)startNode->mNext->mWpIndex : "...", endIdx);
+		sprintf(buf, "%d->%d->...->%d", startNode->mWpIndex, (startNode->mNext) ? (char*)startNode->mNext->mWpIndex : "...", endIdx);
 		return ACTEXEC_Continue;
-	case 1:
-		if (_20) {
-			Game::testPathfinder->release(_20);
+
+	case Game::PATHFIND_Start: // make a new context and start a path
+		if (mContextHandle) {
+			Game::testPathfinder->release(mContextHandle);
 		}
-		u8 flag = 0x6;
-		_50++;
+
+		u8 flag = (Game::PATHFLAG_PathThroughWater | Game::PATHFLAG_Unk3);
+		mStartPathFindCounter++;
 		mState = PATHMOVE_Pathfinding;
 		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
-			flag |= 0x40;
+			flag |= Game::PATHFLAG_Unk7;
 		}
-		if (_50 >= 2) {
-			flag |= 0x40;
-			if (_50 >= 3) {
-				_50 = 3;
+		if (mStartPathFindCounter >= 2) {
+			flag |= Game::PATHFLAG_Unk7; // hm
+			if (mStartPathFindCounter >= 3) {
+				mStartPathFindCounter = 3;
 			}
 		}
 
-		Game::PathfindRequest request(_54, mGoalWPIndex, flag);
-		_20 = Game::testPathfinder->start(request);
-		_40 = 0;
+		Game::PathfindRequest request(mPathFindWPIndex, mGoalWPIndex, flag);
+
+		// get a new handle
+		mContextHandle = Game::testPathfinder->start(request);
+
+		// reset our counter bc we have a new context!
+		mPathFindCounter = 0;
 		return ACTEXEC_Continue;
-	case 2:
+
+	case Game::PATHFIND_Busy: // keep on keepin' on
 		break;
-	case 3:
-		JUT_PANICLINE(1201, "no handle %d\n", _20);
+
+	case Game::PATHFIND_NoHandle: // woops something happened to the handle
+		JUT_PANICLINE(1201, "no handle %d\n", mContextHandle);
 		break;
 	}
 
@@ -2069,22 +2150,25 @@ f32 ActPathMove::getCarrySpeed()
 	P2ASSERTLINE(1215, mPellet->mObjectTypeID == OBJTYPE_Pellet);
 
 	Game::Pellet* pellet = mPellet;
+	// if we're carrying a captain, go at FULL SPEED
 	if (pellet->mPelletView && pellet->mPelletView->mCreature->isNavi()) {
 		return static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed();
-	} else if (Game::gameSystem->isVersusMode() && pellet->mPelletFlag == 3) {
+
+		// if we're carrying a cherry in VS mode, go at FULL SPEED
+	} else if (Game::gameSystem->isVersusMode() && pellet->mPelletFlag == Game::Pellet::FLAG_VS_CHERRY) {
 		return static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed();
 	}
 
-	maxFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * maxFactor;
-	minFactor = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * minFactor;
+	f32 maxSpeed = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * maxFactor;
+	f32 minSpeed = static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mRunSpeed.mValue * minFactor;
 
-	int max = pellet->getPelletConfigMax();
 	int min = pellet->getPelletConfigMin();
+	int max = pellet->getPelletConfigMax();
 
 	carryPower = pellet->mCarryPower;
-	JUT_ASSERTLINE(1248, min, "max is 0 [%s]\n", pellet->mConfig->mParams.mName.mData);
+	JUT_ASSERTLINE(1248, max, "max is 0 [%s]\n", pellet->mConfig->mParams.mName.mData);
 
-	return minFactor + (((1.0f + carryPower) - (f32)min) / (f32)max) * (maxFactor - minFactor);
+	return minSpeed + (((1.0f + carryPower) - (f32)min) / (f32)max) * (maxSpeed - minSpeed);
 }
 
 /*
@@ -2095,23 +2179,29 @@ f32 ActPathMove::getCarrySpeed()
 int ActPathMove::execMoveGoal()
 {
 	Vector3f pelletPos = mPellet->getPosition();
-	Vector3f sep       = mGoalPosition - pelletPos; // 0x34
-	f32 sqrDistXZ      = sep.x * sep.x + sep.z * sep.z;
-	f32 dist           = sep.normalise();
+	Vector3f dir       = mGoalPosition - pelletPos;
+	f32 sqrDistXZ      = dir.x * dir.x + dir.z * dir.z;
+	f32 dist           = dir.normalise();
 	if (dist == 0.0f) {
-		sep = Vector3f(0.0f);
+		dir = Vector3f(0.0f);
 	}
 
+	// if we're within 10 units of goal (horizontally), WE CAN LET GO
 	if (sqrDistXZ < 100.0f) {
-		{ // this is so stickers gets deleted after the loop
+		{ // this is so `stickers` gets deleted after the loop
+
+			// make all pikis carrying pellet movie extras
 			Game::Stickers stickers(mPellet);
 			Iterator<Game::Creature> iter(&stickers);
 			CI_LOOP(iter) { (*iter)->movie_begin(false); }
 		}
+
+		// stop carrying the pellet
 		mParent->finishMotion();
 		mParent->endStick();
 
 		{
+			// make sure everyone ELSE stops carrying the pellet
 			Game::Stickers stickers(mPellet);
 			Iterator<Game::Creature> iter(&stickers);
 			CI_LOOP(iter)
@@ -2126,498 +2216,13 @@ int ActPathMove::execMoveGoal()
 		}
 	}
 
+	// we're not close enough, move a bit more
 	f32 speed = getCarrySpeed();
 
-	sep.y = 0.0f;
-	sep *= speed;
-	carry(sep);
+	dir.y = 0.0f;
+	dir *= speed;
+	carry(dir);
 	return ACTEXEC_Continue;
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stfd     f31, 0xc0(r1)
-	psq_st   f31, 200(r1), 0, qr0
-	stfd     f30, 0xb0(r1)
-	psq_st   f30, 184(r1), 0, qr0
-	stfd     f29, 0xa0(r1)
-	psq_st   f29, 168(r1), 0, qr0
-	stmw     r27, 0x8c(r1)
-	mr       r31, r3
-	lis      r3, lbl_8047F070@ha
-	lwz      r4, 0x30(r31)
-	addi     r28, r3, lbl_8047F070@l
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 0x28(r31)
-	lfs      f2, 0xc(r1)
-	lfs      f1, 0x24(r31)
-	lfs      f0, 8(r1)
-	fsubs    f4, f3, f2
-	lfs      f3, 0x2c(r31)
-	fsubs    f2, f1, f0
-	lfs      f0, 0x10(r1)
-	fmuls    f5, f4, f4
-	lfs      f1, lbl_80518F60@sda21(r2)
-	fsubs    f0, f3, f0
-	stfs     f4, 0x38(r1)
-	fmuls    f3, f2, f2
-	stfs     f2, 0x34(r1)
-	fmuls    f4, f0, f0
-	stfs     f0, 0x3c(r1)
-	fadds    f0, f3, f5
-	fadds    f6, f3, f4
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_801990A0
-	fmadds   f0, f2, f2, f5
-	fadds    f4, f4, f0
-	fcmpo    cr0, f4, f1
-	ble      lbl_801990A4
-	frsqrte  f0, f4
-	fmuls    f4, f0, f4
-	b        lbl_801990A4
-
-lbl_801990A0:
-	fmr      f4, f1
-
-lbl_801990A4:
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpo    cr0, f4, f0
-	ble      lbl_801990E0
-	lfs      f0, lbl_80518F64@sda21(r2)
-	lfs      f2, 0x34(r1)
-	fdivs    f3, f0, f4
-	lfs      f1, 0x38(r1)
-	lfs      f0, 0x3c(r1)
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0x34(r1)
-	stfs     f1, 0x38(r1)
-	stfs     f0, 0x3c(r1)
-	b        lbl_801990E4
-
-lbl_801990E0:
-	fmr      f4, f0
-
-lbl_801990E4:
-	lfs      f0, lbl_80518F60@sda21(r2)
-	fcmpu    cr0, f0, f4
-	bne      lbl_801990FC
-	stfs     f0, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	stfs     f0, 0x3c(r1)
-
-lbl_801990FC:
-	lfs      f0, lbl_80518FA0@sda21(r2)
-	fcmpo    cr0, f6, f0
-	bge      lbl_801994F4
-	lwz      r4, 0x30(r31)
-	addi     r3, r1, 0x5c
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x5c
-	cmplwi   r0, 0
-	stw      r4, 0x24(r1)
-	stw      r0, 0x30(r1)
-	stw      r0, 0x28(r1)
-	stw      r3, 0x2c(r1)
-	bne      lbl_80199154
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x28(r1)
-	b        lbl_801992B8
-
-lbl_80199154:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x28(r1)
-	b        lbl_801991C0
-
-lbl_8019916C:
-	lwz      r3, 0x2c(r1)
-	lwz      r4, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801992B8
-	lwz      r3, 0x2c(r1)
-	lwz      r4, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x28(r1)
-
-lbl_801991C0:
-	lwz      r12, 0x24(r1)
-	addi     r3, r1, 0x24
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019916C
-	b        lbl_801992B8
-
-lbl_801991E0:
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	li       r4, 0
-	bl       movie_begin__Q24Game8CreatureFb
-	lwz      r0, 0x30(r1)
-	cmplwi   r0, 0
-	bne      lbl_80199228
-	lwz      r3, 0x2c(r1)
-	lwz      r4, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x28(r1)
-	b        lbl_801992B8
-
-lbl_80199228:
-	lwz      r3, 0x2c(r1)
-	lwz      r4, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x28(r1)
-	b        lbl_8019929C
-
-lbl_80199248:
-	lwz      r3, 0x2c(r1)
-	lwz      r4, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801992B8
-	lwz      r3, 0x2c(r1)
-	lwz      r4, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x28(r1)
-
-lbl_8019929C:
-	lwz      r12, 0x24(r1)
-	addi     r3, r1, 0x24
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80199248
-
-lbl_801992B8:
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x28(r1)
-	cmplw    r4, r3
-	bne      lbl_801991E0
-	addi     r3, r1, 0x5c
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	lwz      r3, 4(r31)
-	bl       finishMotion__Q24Game8FakePikiFv
-	lwz      r3, 4(r31)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r4, 0x30(r31)
-	addi     r3, r1, 0x40
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x40
-	cmplwi   r0, 0
-	stw      r4, 0x14(r1)
-	stw      r0, 0x20(r1)
-	stw      r0, 0x18(r1)
-	stw      r3, 0x1c(r1)
-	bne      lbl_80199340
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_801994C0
-
-lbl_80199340:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_801993AC
-
-lbl_80199358:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801994C0
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-
-lbl_801993AC:
-	lwz      r12, 0x14(r1)
-	addi     r3, r1, 0x14
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80199358
-	b        lbl_801994C0
-
-lbl_801993CC:
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r27, r3
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80199404
-	mr       r3, r27
-	bl       endStick__Q24Game8CreatureFv
-
-lbl_80199404:
-	lwz      r0, 0x20(r1)
-	cmplwi   r0, 0
-	bne      lbl_80199430
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_801994C0
-
-lbl_80199430:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_801994A4
-
-lbl_80199450:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801994C0
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-
-lbl_801994A4:
-	lwz      r12, 0x14(r1)
-	addi     r3, r1, 0x14
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80199450
-
-lbl_801994C0:
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x18(r1)
-	cmplw    r4, r3
-	bne      lbl_801993CC
-	addi     r3, r1, 0x40
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	li       r3, 0
-	b        lbl_80199660
-
-lbl_801994F4:
-	lwz      r3, 0x30(r31)
-	lwz      r4, 4(r31)
-	lhz      r0, 0x128(r3)
-	lwz      r3, 0xc0(r4)
-	cmplwi   r0, 0x401
-	lfs      f30, 0x1100(r3)
-	lfs      f31, 0x1128(r3)
-	beq      lbl_80199528
-	addi     r3, r28, 0x34
-	addi     r5, r28, 0x48
-	li       r4, 0x4bf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80199528:
-	lwz      r27, 0x30(r31)
-	lwz      r3, 0x358(r27)
-	cmplwi   r3, 0
-	beq      lbl_80199564
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80199564
-	lwz      r3, 4(r31)
-	lwz      r3, 0xc0(r3)
-	lfs      f4, 0x2c8(r3)
-	b        lbl_80199628
-
-lbl_80199564:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_80199590
-	lbz      r0, 0x32c(r27)
-	cmplwi   r0, 3
-	bne      lbl_80199590
-	lwz      r3, 4(r31)
-	lwz      r3, 0xc0(r3)
-	lfs      f4, 0x2c8(r3)
-	b        lbl_80199628
-
-lbl_80199590:
-	lwz      r4, 4(r31)
-	mr       r3, r27
-	lwz      r4, 0xc0(r4)
-	lfs      f0, 0x2c8(r4)
-	fmuls    f30, f0, f30
-	fmuls    f31, f0, f31
-	bl       getPelletConfigMin__Q24Game6PelletFv
-	mr       r29, r3
-	mr       r3, r27
-	bl       getPelletConfigMax__Q24Game6PelletFv
-	or.      r30, r3, r3
-	lfs      f29, 0x418(r27)
-	bne      lbl_801995E0
-	lwz      r6, 0x35c(r27)
-	addi     r3, r28, 0x34
-	addi     r5, r28, 0xc0
-	li       r4, 0x4e0
-	lwz      r6, 0x40(r6)
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801995E0:
-	lis      r3, 0x4330
-	xoris    r0, r29, 0x8000
-	stw      r0, 0x7c(r1)
-	xoris    r0, r30, 0x8000
-	lfs      f1, lbl_80518F64@sda21(r2)
-	fsubs    f0, f30, f31
-	stw      r3, 0x78(r1)
-	lfd      f3, lbl_80518FA8@sda21(r2)
-	fadds    f4, f1, f29
-	lfd      f1, 0x78(r1)
-	stw      r0, 0x84(r1)
-	fsubs    f2, f1, f3
-	stw      r3, 0x80(r1)
-	lfd      f1, 0x80(r1)
-	fsubs    f2, f4, f2
-	fsubs    f1, f1, f3
-	fdivs    f1, f2, f1
-	fmadds   f4, f1, f0, f31
-
-lbl_80199628:
-	lfs      f3, lbl_80518F60@sda21(r2)
-	mr       r3, r31
-	lfs      f2, 0x34(r1)
-	addi     r4, r1, 0x34
-	lfs      f0, 0x3c(r1)
-	fmuls    f1, f3, f4
-	fmuls    f2, f2, f4
-	stfs     f3, 0x38(r1)
-	fmuls    f0, f0, f4
-	stfs     f1, 0x38(r1)
-	stfs     f2, 0x34(r1)
-	stfs     f0, 0x3c(r1)
-	bl       "carry__Q26PikiAI11ActPathMoveFR10Vector3<f>"
-	li       r3, 1
-
-lbl_80199660:
-	psq_l    f31, 200(r1), 0, qr0
-	lfd      f31, 0xc0(r1)
-	psq_l    f30, 184(r1), 0, qr0
-	lfd      f30, 0xb0(r1)
-	psq_l    f29, 168(r1), 0, qr0
-	lfd      f29, 0xa0(r1)
-	lmw      r27, 0x8c(r1)
-	lwz      r0, 0xd4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
 }
 
 /*
@@ -2629,6 +2234,7 @@ bool ActPathMove::isAllBlue()
 {
 	P2ASSERTLINE(1325, mPellet->mObjectTypeID == OBJTYPE_Pellet);
 	Game::Pellet* pellet = mPellet;
+	// if all carrying pikmin are blues or bulbmin, return true (we can go through water!)
 	if (pellet->getPikmins(Game::Blue) + pellet->getPikmins(Game::Bulbmin) == pellet->getTotalPikmins()) {
 		return true;
 	}
@@ -2640,12 +2246,16 @@ bool ActPathMove::isAllBlue()
  * Address:	80199728
  * Size:	0000A8
  */
-void ActPathMove::carry(Vector3f& p1)
+void ActPathMove::carry(Vector3f& velocity)
 {
 	Game::Pellet* pellet = mPellet;
-	bool pullResult      = pellet->mPelletCarry->pull(0, p1, pellet->getTotalCarryPikmins());
-	if (_6C != 0 && !pullResult) {
-		_6C = 0;
+
+	// MOVE THE PELLET
+	bool pullResult = pellet->mPelletCarry->pull(Game::PCS_Carry, velocity, pellet->getTotalCarryPikmins());
+
+	if (mIsPickedUp && !pullResult) {
+		// we can no longer pick up pellet - drop it.
+		mIsPickedUp = false;
 		pellet->endPick(false);
 	}
 }
@@ -2659,29 +2269,33 @@ int ActPathMove::execMove()
 {
 	f32 speed = getCarrySpeed();
 	crMove();
-	_B0.y = 0.0f;
-	_B0.normalise();
-	_B0 *= speed;
+	mNewVelocity.y = 0.0f;
+	mNewVelocity.normalise();
+	mNewVelocity *= speed;
 
 	Game::Pellet* pellet = mPellet;
-	bool pullCheck       = pellet->mPelletCarry->pull(0, _B0, pellet->getTotalCarryPikmins());
-	if (_6C && !pullCheck) {
-		_6C = 0;
+
+	// MOVE THE PELLET
+	bool pullCheck = pellet->mPelletCarry->pull(Game::PCS_Carry, mNewVelocity, pellet->getTotalCarryPikmins());
+
+	// we can no longer pick up pellet - drop it.
+	if (mIsPickedUp && !pullCheck) {
+		mIsPickedUp = false;
 		pellet->endPick(false);
 	}
 
 	if (mPellet->isPellet()) {
 		pellet = mPellet;
 		// Vector3f pelletPos = pellet->getPosition();
-		Vector3f sep = pellet->getPosition() - _10;
-		f32 dist     = sep.length(); // f30
-		_10          = sep;
+		Vector3f sep      = pellet->getPosition() - mPrevDisplacement;
+		f32 dist          = sep.length(); // f30
+		mPrevDisplacement = sep;
 		if (pellet->getWallTimer() > 99 && dist < 1.0f) {
 			pellet->mWallTimer = 0;
 			mOnyon             = nullptr;
-			if (_20) {
-				Game::testPathfinder->release(_20);
-				_20 = 0;
+			if (mContextHandle) {
+				Game::testPathfinder->release(mContextHandle);
+				mContextHandle = 0;
 			}
 
 			mHandles->_08        = 0;
@@ -3029,10 +2643,10 @@ void ActPathMove::cleanup()
 			pellet->mPelletCarry->reset();
 		}
 	}
-	if (_20 != 0) {
-		Game::testPathfinder->release(_20);
+	if (mContextHandle != 0) {
+		Game::testPathfinder->release(mContextHandle);
 	}
-	_20 = 0;
+	mContextHandle = 0;
 }
 
 /*
@@ -3042,33 +2656,35 @@ void ActPathMove::cleanup()
  */
 int ActPathMove::execMoveGuru()
 {
-	if (!_64->isFlag(Game::WPF_Closed)) {
+	if (!mNextWayPoint->isFlag(Game::WPF_Closed)) {
 		mState = PATHMOVE_Move;
 		return ACTEXEC_Continue;
 	}
 
-	int wpId = _70;
+	int wpId = mCurrGraphIdx;
 	Vector3f moveVec;
 	if (wpId >= 0) {
 		Game::WayPoint* wp = getWayPoint(wpId);
 		Vector3f wpPos     = wp->mPosition;
-		Vector3f sep       = _64->mPosition - wpPos;
+		Vector3f sep       = mNextWayPoint->mPosition - wpPos;
 		f32 dist           = sep.normalise() - 160.0f;
 		if (dist < 0.0f) {
 			dist = 0.0f;
 		}
 
 		moveVec = wp->mPosition + sep * dist;
+
 	} else {
-		moveVec = _58;
+		moveVec = mPacePosition;
 	}
 
-	_68 += PI * sys->mDeltaTime;
-	if (_68 > TAU) {
-		_68 -= TAU;
+	// is this what makes treasures go in circles??
+	mPaceAngle += PI * sys->mDeltaTime;
+	if (mPaceAngle > TAU) {
+		mPaceAngle -= TAU;
 	}
 
-	Vector3f dir = getDirection(_68);
+	Vector3f dir = getDirection(mPaceAngle);
 	dir *= 10.0f;
 	Vector3f pullDir = dir + moveVec;
 
@@ -3086,10 +2702,13 @@ int ActPathMove::execMoveGuru()
 	pullDir *= carrySpeed / 2;
 
 	Game::Pellet* pellet = mPellet;
-	bool pullCheck       = pellet->mPelletCarry->pull(0, pullDir, pellet->getTotalCarryPikmins());
 
-	if (_6C && !pullCheck) {
-		_6C = 0;
+	// MOVE THE PELLET
+	bool pullCheck = pellet->mPelletCarry->pull(Game::PCS_Carry, pullDir, pellet->getTotalCarryPikmins());
+
+	// we can no longer pick up pellet - drop it.
+	if (mIsPickedUp && !pullCheck) {
+		mIsPickedUp = false;
 		pellet->endPick(false);
 	}
 
@@ -3465,17 +3084,20 @@ lbl_8019A144:
  * Address:	8019A170
  * Size:	0000B8
  */
-Game::WayPoint* ActPathMove::getWayPoint(int count)
+Game::WayPoint* ActPathMove::getWayPoint(int id)
 {
-	Game::PathNode* node = _48;
-	for (int i = 0; i < count; i++) {
+	// count through the whole node graph so far til we get to our desired point
+	Game::PathNode* node = mRootNode;
+	for (int i = 0; i < id; i++) {
 		node = node->mNext;
 	}
 
+	// assuming point exists, grab waypoint at this node
 	if (node) {
 		return Game::mapMgr->mRouteMgr->getWayPoint(node->mWpIndex);
 	}
 
+	// no node found
 	return nullptr;
 }
 
@@ -3488,10 +3110,10 @@ Vector3f ActPathMove::crGetPoint(int idx)
 {
 	Game::WayPoint* currWayPoint;
 	if (idx < 0) {
-		return _A4;
+		return mStartPosition;
 	}
 
-	if (idx >= _4C) {
+	if (idx >= mWayPointCount) {
 		return mGoalPosition;
 	}
 
@@ -3517,44 +3139,44 @@ bool ActPathMove::contextCheck(int idx)
 {
 	if (Game::gameSystem->isVersusMode()) {
 		int nextIdx = idx + 1;
-		if (nextIdx >= 0 && nextIdx < _4C) {
+		if (nextIdx >= 0 && nextIdx < mWayPointCount) {
 			Game::WayPoint* wp = getWayPoint(nextIdx);
 
 			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
 				if (wp->isFlag(Game::WPF_Unknown6)) {
-					_3D++;
-					if (_3D < 2) {
+					mVsWayPointCounter++;
+					if (mVsWayPointCounter < 2) {
 						return false;
 					}
 				} else {
-					_3D = 0;
+					mVsWayPointCounter = 0;
 				}
 			} else if (wp->isFlag(Game::WPF_Unknown5)) {
-				_3D++;
-				if (_3D < 2) {
+				mVsWayPointCounter++;
+				if (mVsWayPointCounter < 2) {
 					return false;
 				}
 			} else {
-				_3D = 0;
+				mVsWayPointCounter = 0;
 			}
 		}
 	}
 
 	Vector3f pelletPos = mPellet->getPosition();
-	Sys::Tube tube;     // 0x78
-	Sys::Sphere sphere; // 0x68
-	sphere.mPosition = pelletPos;
+	Sys::Tube tube;           // 0x78
+	Sys::Sphere pelletSphere; // 0x68
+	pelletSphere.mPosition = pelletPos;
 	if (mPellet->isPellet()) {
-		sphere.mRadius = mPellet->getBottomRadius();
+		pelletSphere.mRadius = mPellet->getBottomRadius();
 	} else {
-		mPellet->getBoundingSphere(sphere);
+		mPellet->getBoundingSphere(pelletSphere);
 	}
 
 	if (idx < 0) {
 		Vector3f point = crGetPoint(idx);
 		crGetRadius(idx);
 
-		Vector2f sep2D(point.x - sphere.mPosition.x, point.z - sphere.mPosition.z);
+		Vector2f sep2D(point.x - pelletSphere.mPosition.x, point.z - pelletSphere.mPosition.z);
 		if (sep2D.length() > 700.0f) {
 			return false;
 		}
@@ -3562,20 +3184,20 @@ bool ActPathMove::contextCheck(int idx)
 		return true;
 	}
 
-	Vector3f point     = crGetPoint(idx);
-	Vector3f nextPoint = crGetPoint(idx + 1);
-	f32 rad            = crGetRadius(idx);
-	f32 nextRad        = crGetRadius(idx + 1);
-	sphere.mPosition.y = 0.0f;
-	tube.mStartPos     = Vector3f(point.x, 0.0f, point.z);
-	tube.mEndPos       = Vector3f(nextPoint.x, 0.0f, nextPoint.z);
-	tube.mStartRadius  = rad;
-	tube.mEndRadius    = nextRad;
+	Vector3f point           = crGetPoint(idx);
+	Vector3f nextPoint       = crGetPoint(idx + 1);
+	f32 rad                  = crGetRadius(idx);
+	f32 nextRad              = crGetRadius(idx + 1);
+	pelletSphere.mPosition.y = 0.0f;
+	tube.mStartPos           = Vector3f(point.x, 0.0f, point.z);
+	tube.mEndPos             = Vector3f(nextPoint.x, 0.0f, nextPoint.z);
+	tube.mStartRadius        = rad;
+	tube.mEndRadius          = nextRad;
 
 	Vector3f collVec;
 	f32 collAmt;
 
-	if (tube.collide(sphere, collVec, collAmt)) {
+	if (tube.collide(pelletSphere, collVec, collAmt)) {
 		return true;
 	}
 
@@ -3583,7 +3205,7 @@ bool ActPathMove::contextCheck(int idx)
 	pointSphere.mPosition = Vector3f(point.x, 0.0f, point.z);
 	pointSphere.mRadius   = rad;
 
-	if (pointSphere.intersect(sphere)) {
+	if (pointSphere.intersect(pelletSphere)) {
 		return true;
 	}
 
@@ -3591,7 +3213,7 @@ bool ActPathMove::contextCheck(int idx)
 	nextPointSphere.mPosition = Vector3f(nextPoint.x, 0.0f, nextPoint.z);
 	nextPointSphere.mRadius   = nextRad;
 
-	return (nextPointSphere.intersect(sphere) > 0);
+	return (nextPointSphere.intersect(pelletSphere) > 0);
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -3882,7 +3504,7 @@ lbl_8019A730:
  */
 bool ActPathMove::crPointOpen(int idx)
 {
-	if (idx < 0 || idx >= _4C) {
+	if (idx < 0 || idx >= mWayPointCount) {
 		return true;
 	}
 	Game::WayPoint* wp2 = getWayPoint(idx);
@@ -3907,7 +3529,7 @@ f32 ActPathMove::crGetRadius(int idx)
 		return sphere.mRadius;
 	}
 
-	if (idx >= _4C) {
+	if (idx >= mWayPointCount) {
 		return 50.0f;
 	}
 
@@ -3926,41 +3548,41 @@ f32 ActPathMove::crGetRadius(int idx)
  */
 void ActPathMove::crInit()
 {
-	_70 = -1;
-	_A4 = mPellet->getPosition();
+	mCurrGraphIdx  = -1;
+	mStartPosition = mPellet->getPosition();
 	Vector3f collVec;
 	Sys::Tube tube;
 	Sys::Sphere collSphere;
 
-	Vector3f point1 = crGetPoint(_70 + 1);
-	Vector3f point2 = crGetPoint(_70 + 2);
+	Vector3f point1 = crGetPoint(mCurrGraphIdx + 1); // 0
+	Vector3f point2 = crGetPoint(mCurrGraphIdx + 2); // 1
 
 	bool pointCheck = point1 == point2;
 	if (!pointCheck) {
-		f32 rad2          = crGetRadius(_70 + 2);
-		f32 rad1          = crGetRadius(_70 + 1);
+		f32 rad2          = crGetRadius(mCurrGraphIdx + 2); // 1
+		f32 rad1          = crGetRadius(mCurrGraphIdx + 1); // 0
 		tube.mStartPos    = point1;
 		tube.mEndPos      = point2;
 		tube.mStartRadius = rad1;
 		tube.mEndRadius   = rad2;
 	}
 
-	collSphere.mPosition = _A4;
+	collSphere.mPosition = mStartPosition;
 	collSphere.mRadius   = 0.0f;
 	f32 collAmt;
-	if (!pointCheck && tube.collide(collSphere, collVec, collAmt) && crPointOpen(_70 + 2)) {
-		_70    = 0;
-		_74[0] = crGetPoint(-1);
-		_74[1] = crGetPoint(-1); // ?
-		_74[2] = crGetPoint(1);
-		_74[3] = crGetPoint(2);
+	if (!pointCheck && tube.collide(collSphere, collVec, collAmt) && crPointOpen(mCurrGraphIdx + 2)) { // 1
+		mCurrGraphIdx                = 0;                                                              // ready to start walk
+		mCRControls[CRMOVE_Prev]     = crGetPoint(-1);
+		mCRControls[CRMOVE_Curr]     = crGetPoint(-1);
+		mCRControls[CRMOVE_Next]     = crGetPoint(1);
+		mCRControls[CRMOVE_NextNext] = crGetPoint(2);
 		return;
 	}
 
 	Game::WayPoint* nextWp = nullptr;
-	Game::WayPoint* wp     = Game::mapMgr->mRouteMgr->getWayPoint(_44->mWpIndex);
-	if (_44->mNext) {
-		nextWp = Game::mapMgr->mRouteMgr->getWayPoint(_44->mNext->mWpIndex);
+	Game::WayPoint* wp     = Game::mapMgr->mRouteMgr->getWayPoint(mStartNode->mWpIndex);
+	if (mStartNode->mNext) {
+		nextWp = Game::mapMgr->mRouteMgr->getWayPoint(mStartNode->mNext->mWpIndex);
 	}
 
 	if (wp && nextWp) {
@@ -3988,7 +3610,7 @@ void ActPathMove::crInit()
 		}
 
 		crMakeRefs();
-		_74[2] = newPoint;
+		mCRControls[CRMOVE_Next] = newPoint;
 		return;
 	}
 
@@ -4002,8 +3624,8 @@ void ActPathMove::crInit()
  */
 void ActPathMove::crMakeRefs()
 {
-	for (int i = 0; i < 4; i++) {
-		_74[i] = crGetPoint(_70 + i - 1);
+	for (int i = 0; i < CRMOVE_Count; i++) {
+		mCRControls[i] = crGetPoint(mCurrGraphIdx + i - 1);
 	}
 }
 
@@ -4014,44 +3636,44 @@ void ActPathMove::crMakeRefs()
  */
 bool ActPathMove::crMove()
 {
-	Vector3f point0 = crGetPoint(_70); // 0x7c, f28, f27, f26
-	Vector3f point2 = _74[2];          // f31, f29, f22
-	if ((_70 == -1 && !crPointOpen(1)) || (_70 != -1 && !crPointOpen(_70 + 1))) {
-		if (_70 == -1) {
-			_64 = (_48->mNext) ? Game::mapMgr->mRouteMgr->getWayPoint(_48->mNext->mWpIndex) : nullptr;
+	Vector3f point0 = crGetPoint(mCurrGraphIdx); // 0x7c, f28, f27, f26
+	Vector3f point2 = mCRControls[CRMOVE_Next];  // f31, f29, f22
+	if ((mCurrGraphIdx == -1 && !crPointOpen(1)) || (mCurrGraphIdx != -1 && !crPointOpen(mCurrGraphIdx + 1))) {
+		if (mCurrGraphIdx == -1) {
+			mNextWayPoint = (mRootNode->mNext) ? Game::mapMgr->mRouteMgr->getWayPoint(mRootNode->mNext->mWpIndex) : nullptr;
 		} else {
-			_64 = getWayPoint(_70 + 1);
+			mNextWayPoint = getWayPoint(mCurrGraphIdx + 1);
 		}
 
-		mState = PATHMOVE_MoveGuru;
-		_58    = mPellet->getPosition();
-		_68    = 0.0f;
+		mState        = PATHMOVE_MoveGuru;
+		mPacePosition = mPellet->getPosition();
+		mPaceAngle    = 0.0f;
 	}
 
 	Vector3f pelletPos = mPellet->getPosition(); // f23, f25, f24
 	if (qdist2(point2.x, point2.z, pelletPos.x, pelletPos.z) < 6.0f) {
-		if (_70 >= _4C - 2) {
-			mState = PATHMOVE_MoveGoal;
-			_B0    = CRSplineTangent(1.0f, _74);
-			_B0.normalise();
+		if (mCurrGraphIdx >= mWayPointCount - 2) {
+			mState       = PATHMOVE_MoveGoal;
+			mNewVelocity = CRSplineTangent(1.0f, mCRControls);
+			mNewVelocity.normalise();
 			return true;
 		}
 
-		_70++;
+		mCurrGraphIdx++;
 		crMakeRefs();
 
 		Vector3f splinePoints[1]; // 0x4c
-		_B0 = CRSplineTangent(0.0f, _74);
-		_B0.normalise();
+		mNewVelocity = CRSplineTangent(0.0f, mCRControls);
+		mNewVelocity.normalise();
 		return true;
 	}
 
-	if (!contextCheck(_70)) {
-		_B0 = Vector3f(0.0f);
+	if (!contextCheck(mCurrGraphIdx)) {
+		mNewVelocity = Vector3f(0.0f);
 
-		if (_20) {
-			Game::testPathfinder->release(_20);
-			_20 = 0;
+		if (mContextHandle) {
+			Game::testPathfinder->release(mContextHandle);
+			mContextHandle = 0;
 		}
 		mOnyon = nullptr;
 		initPathfinding(true);
@@ -4082,8 +3704,8 @@ bool ActPathMove::crMove()
 	newPoint.y        = 0.0f;
 	f32 newDist       = newPoint.normalise(); // f28
 
-	f32 rad0 = crGetRadius(_70);     // f26
-	f32 rad1 = crGetRadius(_70 + 1); // f0
+	f32 rad0 = crGetRadius(mCurrGraphIdx);     // f26
+	f32 rad1 = crGetRadius(mCurrGraphIdx + 1); // f0
 
 	f32 lerp = (1.0f - factor) * rad0 + (factor * rad1);
 	if (lerp == 0.0f) {
@@ -4105,26 +3727,26 @@ bool ActPathMove::crMove()
 	}
 
 	if (factor >= 1.0f) {
-		if (_70 >= _4C - 2) {
-			mState = PATHMOVE_MoveGoal;
-			_B0    = CRSplineTangent(factor, _74);
-			_B0.normalise();
+		if (mCurrGraphIdx >= mWayPointCount - 2) {
+			mState       = PATHMOVE_MoveGoal;
+			mNewVelocity = CRSplineTangent(factor, mCRControls);
+			mNewVelocity.normalise();
 			return true;
 		}
-		_70++;
+		mCurrGraphIdx++;
 		crMakeRefs();
-		_B0 = CRSplineTangent(0.0f, _74);
-		_B0.normalise();
+		mNewVelocity = CRSplineTangent(0.0f, mCRControls);
+		mNewVelocity.normalise();
 		return true;
 	}
 
-	_B0 = CRSplineTangent(factor, _74);
-	_B0.normalise();
+	mNewVelocity = CRSplineTangent(factor, mCRControls);
+	mNewVelocity.normalise();
 
-	_B0 = _B0 * (1.0f - comp) + newPoint * comp;
+	mNewVelocity = mNewVelocity * (1.0f - comp) + newPoint * comp;
 
-	if (_B0.x * sep.x + _B0.z * sep.z <= 0.0f) {
-		_B0 = sep;
+	if (mNewVelocity.x * sep.x + mNewVelocity.z * sep.z <= 0.0f) {
+		mNewVelocity = sep;
 	}
 
 	return true;
@@ -5113,7 +4735,6 @@ ActStickAttack::ActStickAttack(Game::Piki* p)
 }
 
 /*
- * @todo replace constants with state enum
  * --INFO--
  * Address:	8019BD34
  * Size:	0001F0
@@ -5140,7 +4761,7 @@ void ActStickAttack::init(ActionArg* settings)
 
 	} else {
 		int animIdx = arg->mAnimIdx;
-		if (animIdx == -1) {
+		if (animIdx == Game::IPikiAnims::NULLANIM) {
 			mParent->startMotion(Game::IPikiAnims::KUTTUKU, Game::IPikiAnims::KUTTUKU, this, nullptr);
 			mIsInitialStick = false;
 		} else {

@@ -90,6 +90,13 @@ struct Vector3 {
 	// 	return vec;
 	// }
 
+	inline void set(const Vector3& vec)
+	{
+		x = vec.x;
+		y = vec.y;
+		z = vec.z;
+	}
+
 	/**
 	 * @fabricated
 	 */

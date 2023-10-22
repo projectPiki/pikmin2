@@ -8,7 +8,8 @@ namespace Game {
 enum PelletCarryState {
 	PCS_Idle = 0xFFFF,
 
-	PCS_Unk1 = 1,
+	PCS_Carry = 0,
+	PCS_Unk1  = 1,
 	PCS_Unk2,
 };
 
@@ -24,7 +25,7 @@ struct PelletCarry {
 	u16 mState;         // _00
 	f32 mCarryStrength; // _04, the amount of pikmin pulling force (amt of
 	                    // pikis) applied to the object
-	Vector3f mPosition; // _08
+	Vector3f mVelocity; // _08
 	f32 mTimer;         // _14, decremented by seconds per frame (deltaTime)
 };
 } // namespace Game

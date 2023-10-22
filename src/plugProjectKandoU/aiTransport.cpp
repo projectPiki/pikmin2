@@ -65,8 +65,9 @@ void ActTransport::init(ActionArg* settings)
 	mParent->mVelocity = Vector3f(0.0f);
 	mState             = TRANSPORT_Slot;
 
-	GotoSlotArg gotoSlotArg(mPellet, 1);
+	GotoSlotArg gotoSlotArg(mPellet, SLOTSEARCH_Nearest);
 	mGotoSlot->init(&gotoSlotArg);
+
 	mIsLiftAnimReady  = false;
 	mIsPathMoveActive = false;
 	mIsMoving         = false;
@@ -102,6 +103,7 @@ int ActTransport::exec()
 		P2DEBUG("dead pellet: %d", mParent->getCreatureID());
 		return ACTEXEC_Success;
 	}
+
 	bool isCaptured;
 	if (mPellet && mPellet->mCaptureMatrix) {
 		isCaptured = true;
