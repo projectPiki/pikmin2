@@ -2047,7 +2047,7 @@ if __name__ == "__main__":
                     inputs=path(asm_path / f"{object}.s"),
                     implicit=path(dtk),
                 )
-                unit_config["target_path"] = str(build_asm_path / f"{object}.o")
+            unit_config["target_path"] = str(build_asm_path / f"{object}.o")
             objdiff_config["units"].append(unit_config)
             if completed:
                 inputs.append(build_src_path / f"{object}.o")
@@ -2170,7 +2170,7 @@ if __name__ == "__main__":
             outputs=path(build_path / "main.dol.progress"),
             rule="progress",
             inputs=path([build_path / "main.dol", map_path]),
-            implicit=path([calc_progress]),
+            implicit=path([calc_progress, build_path / "main.dol.ok"]),
         )
         n.newline()
 
