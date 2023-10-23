@@ -88,8 +88,10 @@ void ActBreakRock::initStickAttack()
 
 	if (mRock->mObjectTypeID == OBJTYPE_Barrel || mRock->mObjectTypeID == OBJTYPE_BigFountain) {
 		stickAttackArg.mObjType = STICKATK_BreakStone;
+
 	} else if (mRock->mObjectTypeID == OBJTYPE_Treasure) {
 		stickAttackArg.mObjType = STICKATK_Treasure;
+
 	} else if (mRock->mObjectTypeID == OBJTYPE_Rock) {
 		stickAttackArg.mObjType = STICKATK_Rock;
 	}

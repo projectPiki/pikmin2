@@ -160,12 +160,21 @@
 #include "nans.h"
 
 #include "Game/Piki.h"
+#include "Game/Navi.h"
 #include "PikiAI.h"
 #include "Game/PikiMgr.h"
+#include "Game/PikiState.h"
 #include "Game/gamePlayData.h"
 #include "Game/MoviePlayer.h"
+#include "Game/Entities/ItemGate.h"
+#include "Game/Entities/ItemBridge.h"
+#include "Game/Entities/ItemRock.h"
+#include "Game/Entities/ItemWeed.h"
+#include "Game/Entities/ItemHoney.h"
 
 namespace Game {
+
+u8 Piki::sGraspSituationOptimise = 1;
 
 /*
  * --INFO--
@@ -174,7 +183,8 @@ namespace Game {
  */
 int Piki::graspSituation_Fast(Game::Creature** localCreatures)
 {
-	if (moviePlayer && moviePlayer->mDemoState && (localCreatures[0] = nullptr, !isZikatu()) || playData->isDemoFlag(39)) {
+	if (moviePlayer && moviePlayer->mDemoState != 0 && (localCreatures[0] = nullptr, !isZikatu())
+	    || playData->isDemoFlag(DEMO_Reunite_Captains)) {
 		return -1;
 	}
 
@@ -1049,7 +1059,7 @@ blr
  * Address:	801B1360
  * Size:	001A04
  */
-void Piki::graspSituation(Game::Creature**)
+int Piki::graspSituation(Game::Creature**)
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -3001,8 +3011,106 @@ blr
  * Address:	801B2DB0
  * Size:	0007D4
  */
-bool Piki::invokeAI(Game::CollEvent*, bool)
+bool Piki::invokeAI(Game::CollEvent* event, bool check)
 {
+	Creature* creature = event->mCollidingCreature;
+	bool formCheck     = true;
+	if (getCurrActionID() == PikiAI::ACT_Formation
+	    && static_cast<PikiAI::ActFormation*>(getCurrAction())->mSortState != FORMATION_SORT_FORMED) {
+		formCheck = false;
+	}
+
+	if (formCheck && creature->isAlive() && creature->getFlockMgr() && creature->getFlockMgr()->isAttackable()) {
+		PikiAI::ActWeedArg weedArg;
+		weedArg.mWeed = static_cast<ItemWeed::Item*>(creature);
+		return mBrain->start(PikiAI::ACT_Weed, &weedArg);
+	}
+
+	switch (creature->mObjectTypeID) {
+	case OBJTYPE_Navi:
+		if (check && gameSystem->isVersusMode() && creature->isAlive() && static_cast<Navi*>(creature)->mNaviIndex == mPikiKind) {
+			PikiAI::ActAttackArg attackArg;
+			attackArg.mCreature = creature;
+			attackArg.mCollPart = nullptr;
+
+			return mBrain->start(PikiAI::ACT_Bore, &attackArg);
+		}
+		break;
+
+	case OBJTYPE_Honey:
+		if ((int)mHappaKind != Flower && static_cast<ItemHoney::Item*>(creature)->mHoneyType == HONEY_Y
+		    && static_cast<ItemHoney::Item*>(creature)->absorbable()) {
+			AbsorbStateArg absorbArg;
+			absorbArg.mCreature = creature;
+			mFsm->transit(this, PIKISTATE_Absorb, &absorbArg);
+			return true;
+		}
+		break;
+
+	case OBJTYPE_Piki:
+		if (gameSystem->isVersusMode() && creature->isAlive() && static_cast<Piki*>(creature)->canVsBattle()
+		    && !static_cast<Piki*>(creature)->getVsBattlePiki() && (int)static_cast<Piki*>(creature)->mPikiKind != (int)mPikiKind) {
+			PikiAI::ActBattleArg battleArg(static_cast<Piki*>(creature));
+			return mBrain->start(PikiAI::ACT_Battle, &battleArg);
+		}
+		break;
+
+	case OBJTYPE_Pellet:
+		if (check && creature->isAlive() && !isZikatu()) {
+			Pellet* pellet = static_cast<Pellet*>(creature);
+			if (!gameSystem->isVersusMode() || pellet->getBedamaColor() != (int)mPikiKind) {
+				if (pellet->getTotalPikmins() < pellet->getPelletConfigMax() && !pellet->discoverDisabled()) {
+					bool upgradeReady = true;
+					if (pellet->getKind() == PELTYPE_UPGRADE && gameSystem->isStoryMode()
+					    && !playData->isFindItemDemoFlag(pellet->getConfigIndex())) {
+						upgradeReady = false;
+					}
+
+					if (upgradeReady) {
+						PikiAI::ActTransportArg transportArg;
+						setActTransportArg(transportArg);
+						transportArg.mPellet = pellet;
+
+						return mBrain->start(PikiAI::ACT_Transport, &transportArg);
+					}
+				}
+			}
+		}
+		break;
+
+	case OBJTYPE_Teki:
+		if (check && creature->isLivingThing() && creature->isAlive()) {
+			CollPart* part = event->mHitPart;
+			PikiAI::ActAttackArg attackArg;
+			attackArg.mCreature = creature;
+			attackArg.mCollPart = part;
+			return mBrain->start(PikiAI::ACT_Bore, &attackArg);
+		}
+
+		if (static_cast<EnemyBase*>(creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb) {
+			return creature->isAlive();
+		}
+		break;
+
+	case OBJTYPE_Gate:
+		break;
+
+	case OBJTYPE_Rock:
+	case OBJTYPE_Barrel:
+	case OBJTYPE_Treasure:
+		break;
+
+	case OBJTYPE_BigFountain:
+		break;
+
+	case OBJTYPE_Plant:
+		break;
+
+	case OBJTYPE_Bridge:
+		break;
+	}
+
+	return false;
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -3571,8 +3679,61 @@ bool Piki::invokeAI(Game::CollEvent*, bool)
  * Address:	801B3584
  * Size:	0002C4
  */
-bool Piki::invokeAI(Game::PlatEvent*)
+bool Piki::invokeAI(Game::PlatEvent* event)
 {
+	BaseItem* item = event->mInstance->_F4;
+
+	switch (item->mObjectTypeID) {
+	case OBJTYPE_Gate:
+		if (event->mInstance->mId.match('__s_', '*') || event->mInstance->mId.match('_t__', '*')) { // made up, fix with ghidra
+			if (gasInvicible()) {
+				return false;
+			}
+
+			if (gameSystem->isStoryMode() && !playData->hasMetPikmin(White) && (int)mPikiKind != White) {
+				Vector3f itemPos = item->getPosition();
+
+				Sys::Sphere sphere(itemPos, 128.0f);
+
+				CellIteratorArg iterArg(sphere);
+				CellIterator iter(iterArg);
+
+				CI_LOOP(iter)
+				{
+					Creature* creature = static_cast<Creature*>(*iter);
+					if (creature->isTeki() && creature->isAlive()
+					    && static_cast<EnemyBase*>(creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_GasHiba) {
+						return false;
+					}
+				}
+			}
+			PikiAI::ActBreakGateArg breakGateArg;
+			breakGateArg.mGate = static_cast<ItemGate*>(item);
+			return mBrain->start(PikiAI::ACT_BreakGate, &breakGateArg);
+		}
+		break;
+
+	case OBJTYPE_Bridge:
+		if (FABS(event->_08) < 0.2f) {
+			ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(item);
+			if (bridge->isAlive() && bridge->workable(mPosition)) {
+				PikiAI::ActBridgeArg bridgeArg;
+				bridgeArg.mBridge = bridge;
+				return mBrain->start(PikiAI::ACT_Bridge, &bridgeArg);
+			}
+		}
+		break;
+
+	case OBJTYPE_BigFountain:
+		if (item->isAlive()) {
+			PikiAI::ActBreakRockArg breakRockArg;
+			breakRockArg.mRock = item;
+			return mBrain->start(PikiAI::ACT_BreakRock, &breakRockArg);
+		}
+		break;
+	}
+
+	return false;
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -3800,8 +3961,82 @@ bool Piki::invokeAIFree(Game::Piki::InvokeAIFreeArg& arg)
  * Address:	801B38F8
  * Size:	000310
  */
-bool Piki::checkInvokeAI(bool)
+bool Piki::checkInvokeAI(bool check)
 {
+	Game::Creature* target = nullptr;
+	int graspResult;
+	if (sGraspSituationOptimise) {
+		graspResult = graspSituation_Fast(&target);
+	} else {
+		graspResult = graspSituation(&target);
+	}
+
+	if (check) {
+		return graspResult != -1;
+	}
+
+	if (!target) {
+		return false;
+	}
+
+	switch (graspResult) {
+	case PikiAI::ACT_Battle:
+		P2ASSERTLINE(1529, target->isPiki());
+
+		PikiAI::ActBattleArg battleArg(static_cast<Piki*>(target));
+		return mBrain->start(graspResult, &battleArg);
+
+	case PikiAI::ACT_Transport:
+		PikiAI::ActTransportArg transportArg;
+		if (setActTransportArg(transportArg)) {
+			transportArg.mPellet = static_cast<Pellet*>(target);
+			return mBrain->start(graspResult, &transportArg);
+		}
+
+		return true;
+	case PikiAI::ACT_Bore:
+		PikiAI::ActAttackArg attackArg;
+		attackArg.mCreature = target;
+		attackArg.mCollPart = nullptr;
+		return mBrain->start(graspResult, &attackArg);
+
+	case PikiAI::ACT_Teki:
+		PikiAI::CreatureActionArg creatureArg(target);
+		return mBrain->start(graspResult, &creatureArg);
+
+	case PikiAI::ACT_BreakGate:
+		PikiAI::ActBreakGateArg breakGateArg;
+		breakGateArg.mGate = static_cast<ItemGate*>(target);
+		return mBrain->start(PikiAI::ACT_BreakGate, &breakGateArg);
+
+	case PikiAI::ACT_Bridge:
+		ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(target);
+		if (target->isAlive() && bridge->workable(mPosition)) {
+			PikiAI::ActBridgeArg bridgeArg;
+			bridgeArg.mBridge = static_cast<ItemBridge::Item*>(target);
+			return mBrain->start(PikiAI::ACT_Bridge, &bridgeArg);
+		}
+
+		return true;
+
+	case PikiAI::ACT_BreakRock:
+		PikiAI::ActBreakRockArg rockArg;
+		rockArg.mRock = static_cast<ItemRock::Item*>(target);
+		return mBrain->start(PikiAI::ACT_BreakRock, &rockArg);
+
+	case PikiAI::ACT_Crop:
+		PikiAI::ActCropArg cropArg;
+		cropArg.mCreature = target;
+		return mBrain->start(PikiAI::ACT_Crop, &cropArg);
+
+	case PikiAI::ACT_Weed:
+		PikiAI::ActWeedArg weedArg;
+		weedArg.mWeed = static_cast<ItemWeed::Item*>(target);
+		return mBrain->start(PikiAI::ACT_Weed, &weedArg);
+	}
+
+	return false;
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -4061,33 +4296,6 @@ bool Piki::invokeAI()
 		return false;
 	}
 	return true;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       checkInvokeAI__Q24Game4PikiFb
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B3C44
-	lwz      r3, 0x294(r31)
-	li       r4, 1
-	li       r5, 0
-	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
-	li       r3, 0
-	b        lbl_801B3C48
-
-	lbl_801B3C44:
-	li       r3, 1
-
-	lbl_801B3C48:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -4097,22 +4305,10 @@ bool Piki::invokeAI()
  */
 bool Piki::setActTransportArg(PikiAI::ActTransportArg& actTransportArg)
 {
-	actTransportArg._08 = 0;
-	actTransportArg._0C = 0.0f;
-	actTransportArg._18 = -1;
+	actTransportArg.mGoal = nullptr;
+	actTransportArg._0C   = Vector3f(0.0f); // unused
+	actTransportArg._18   = -1;             // unused
 	return true;
-	/*
-	li       r0, 0
-	lfs      f0, lbl_8051935C@sda21(r2)
-	stw      r0, 8(r4)
-	li       r0, -1
-	li       r3, 1
-	stfs     f0, 0xc(r4)
-	stfs     f0, 0x10(r4)
-	stfs     f0, 0x14(r4)
-	sth      r0, 0x18(r4)
-	blr
-	*/
 }
 
 /*

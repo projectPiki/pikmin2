@@ -270,6 +270,8 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 struct ActBattleArg : public ActionArg {
 	virtual char* getName() { return "ActBattleArg"; } // _08 (weak)
 
+	inline ActBattleArg(Game::Piki* piki) { mAggressor = piki; }
+
 	inline ActBattleArg(Game::Piki* piki, bool start)
 	{
 		mAggressor     = piki;
@@ -391,7 +393,7 @@ struct ActBreakRockArg : public ActionArg {
 	virtual char* getName(); // _08 (weak)
 
 	// _00 = VTBL
-	Game::ItemRock::Item* mRock; // _04
+	Game::BaseItem* mRock; // _04
 };
 
 struct ActBreakRock : public Action, public virtual SysShape::MotionListener {
@@ -412,7 +414,7 @@ struct ActBreakRock : public Action, public virtual SysShape::MotionListener {
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	Game::ItemRock::Item* mRock;        // _10
+	Game::BaseItem* mRock;              // _10
 	u16 mState;                         // _14
 	ActStickAttack* mStickAttack;       // _18
 	ActGotoPos* mGotoPos;               // _1C

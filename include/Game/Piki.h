@@ -197,7 +197,7 @@ struct Piki : public FakePiki {
 	f32 getThrowHeight();
 	Piki* getVsBattlePiki();
 	int graspSituation_Fast(Creature**);
-	void graspSituation(Creature**);
+	int graspSituation(Creature**);
 	void initColor();
 	bool invokeAI();
 	bool invokeAI(CollEvent*, bool);
@@ -243,6 +243,7 @@ struct Piki : public FakePiki {
 
 	static Color4 pikiColors[PikiColorCount + 1];
 	static Color4 pikiColorsCursor[PikiColorCount + 1];
+	static u8 sGraspSituationOptimise;
 
 	// _000			 = VTBL
 	// _000-_24C = FakePiki
@@ -267,7 +268,7 @@ struct Piki : public FakePiki {
 	Color4 mOldDefaultColor;          // _2AB
 	Color4 mPikiColor;                // _2AF
 	f32 mColorFloat;                  // _2B4
-	u8 mPikiKind;                     // _2B8,  aka Piki kind (Blue, Yellow, Red, etc.)
+	u8 mPikiKind;                     // _2B8, aka Piki kind (Blue, Yellow, Red, etc.)
 	u8 mHappaKind;                    // _2B9, aka Happa kind (leaf, bud, flower)
 	SysShape::Model* mLeafModel;      // _2BC
 	int mMgrIndex;                    // _2C0
