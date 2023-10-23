@@ -217,7 +217,7 @@ J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialBlock& block)
 	_1C = JSUConvertOffsetToPtr<GXColor>(&block, block._2C);
 	_20 = JSUConvertOffsetToPtr<J3DLightInfo>(&block, block._30);
 	_24 = JSUConvertOffsetToPtr<u8>(&block, block._34);
-	_28 = JSUConvertOffsetToPtr<J3DTexCoordInfo>(&block, block._38);
+	_28 = JSUConvertOffsetToPtr<J3DTexCoord>(&block, block._38);
 	_2C = JSUConvertOffsetToPtr<J3DTexCoord2Info>(&block, block._3C);
 	_30 = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&block, block._40);
 	_34 = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&block, block._44);
@@ -1861,18 +1861,16 @@ void J3DMaterialFactory::modifyPatchedCurrentMtx(J3DMaterial* material, int p2) 
 	// }
 	u16 texGenNum = (texGenNumIndex != 0xFF) ? _24[texGenNumIndex] : 0;
 	for (int i = 1; i < 8; i++) {
-		coords[i]._04 = coords[i % 4]._04;
+		coords[i].mTexMtxReg = coords[i % 4].mTexMtxReg;
 	}
 	for (u8 i = 0; i < texGenNum; i++) {
 		J3DTexCoord newCoord = newTexCoord(p2, i);
-		coords[i]._00        = newCoord._00;
-		coords[i]._01        = newCoord._01;
-		coords[i]._02        = newCoord._02;
+		coords[i]            = newCoord;
 	}
-	material->mCurrentMtx.mMtxIdxRegA
-	    = (u32)(coords[3]._02) << 0x18 | (u32)(coords[2]._02) << 0x12 | (u32)(coords[1]._02) << 0xC | (u32)(coords[0]._02) << 0x6;
-	material->mCurrentMtx.mMtxIdxRegB
-	    = (u32)(coords[7]._02) << 0x12 | (u32)(coords[6]._02) << 0xC | (u32)(coords[5]._02) << 0x6 | (u32)(coords[4]._02);
+	material->mCurrentMtx.mMtxIdxRegA = (u32)(coords[3].mTexGenMtx) << 0x18 | (u32)(coords[2].mTexGenMtx) << 0x12
+	                                  | (u32)(coords[1].mTexGenMtx) << 0xC | (u32)(coords[0].mTexGenMtx) << 0x6;
+	material->mCurrentMtx.mMtxIdxRegB = (u32)(coords[7].mTexGenMtx) << 0x12 | (u32)(coords[6].mTexGenMtx) << 0xC
+	                                  | (u32)(coords[5].mTexGenMtx) << 0x6 | (u32)(coords[4].mTexGenMtx);
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -2004,7 +2002,7 @@ J3DLockedMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* materia
 	material->mTexGenBlock            = new J3DTexGenBlockNull();
 	material->mTevBlock               = new J3DTevBlockNull();
 	material->mIndBlock               = new J3DIndBlockNull();
-	material->mPeBlock                = new J3DPEBlockNull();
+	material->mPEBlock                = new J3DPEBlockNull();
 	material->mIndex                  = p2;
 	material->mMaterialMode           = _84[p2];
 	material->mCurrentMtx.mMtxIdxRegA = _80[p2].mMtxIdxRegA;
@@ -2014,7 +2012,7 @@ J3DLockedMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* materia
 	material->mTexGenBlock->setTexMtxOffset(_7C[p2]._04);
 	material->mTevBlock->setTexNoOffset(_7C[p2]._06);
 	material->mTevBlock->setTevRegOffset(_7C[p2]._08);
-	material->mPeBlock->setFogOffset(_7C[p2]._0A);
+	material->mPEBlock->setFogOffset(_7C[p2]._0A);
 	if (material->mSharedDLObj == nullptr) {
 		material->mSharedDLObj = new J3DDisplayListObj();
 		material->mSharedDLObj->setSingleDisplayList((u8*)(&_78[p2]) + _78[p2]._00, _78[p2]._04);
@@ -2879,7 +2877,7 @@ J3DTexCoord J3DMaterialFactory::newTexCoord(int p1, int p2) const
 	if (getMaterialInitData(p1).mTexCoordInfoIndices[p2] != 0xFFFF) {
 		return _28[getMaterialInitData(p1).mTexCoordInfoIndices[p2]];
 	}
-	return *(J3DTexCoordInfo*)&j3dDefaultTexCoordInfo[0];
+	return *(J3DTexCoord*)&j3dDefaultTexCoordInfo[0];
 	/*
 	lwz      r7, 8(r4)
 	slwi     r5, r5, 1

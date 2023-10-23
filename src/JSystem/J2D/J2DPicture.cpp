@@ -213,7 +213,7 @@ J2DPicture::J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial
 	u16 v1 = trailer._04;
 	for (int i = 0; i < 4; i++) {
 		mTexCoords[i] = trailer._10[i];
-		mCornerColors[i].set(trailer._20[i]);
+		// mCornerColors.mColor[i].set(trailer._20[i]);
 	}
 	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
 
@@ -910,13 +910,13 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* input
 
 	for (int i = 0; i < 4; i++) {
 		JUtility::TColor color(0xFFFFFFFF);
-		mCornerColors[i] = color;
+		// mCornerColors.mColor = color;
 	}
 	for (int i = 0; countdown != 0 && i < 4; i++) {
 		JUtility::TColor color;
 		input->read(&color, sizeof(JUtility::TColor));
 		countdown--;
-		mCornerColors[i] = color;
+		// mCornerColors[i] = color;
 	}
 
 	input->seek(headerPosition + header.mBlockLength, SEEK_SET);
@@ -1344,7 +1344,7 @@ void J2DPicture::initinfo()
 	setBlendRatio(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
 	mBlack = 0;
 	mWhite = 0xFFFFFFFF;
-	setCornerColor(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
+	setCornerColor(TCornerColor(0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff));
 }
 
 /*
@@ -2021,7 +2021,7 @@ ResTIMG* J2DPicture::changeTexture(const ResTIMG* img, u8 textureIndex)
 	ResTIMG* result;
 	if (textureIndex < mTextureCount) {
 		JUTTexture* texture = getTexture(textureIndex);
-		result              = texture->_20;
+		result              = texture->mTexInfo;
 		u8 v1               = 0;
 		if (img->mPaletteFormat != 0) {
 			v1 = getUsableTlut(textureIndex);
@@ -3462,7 +3462,7 @@ lbl_8003CCC8:
 void J2DPicture::getNewColor(JUtility::TColor* newColor)
 {
 	for (int i = 0; i < 4; i++) {
-		newColor[i] = mCornerColors[i];
+		// newColor[i] = mCornerColors.mColor[i];
 	}
 	if (mColorAlpha != 0xFF) {
 		newColor[0].a = newColor[0].a * mColorAlpha / 0xFF;
@@ -3782,7 +3782,7 @@ void J2DPicture::setTexCoord(JGeometry::TVec2<short>*, const JUTTexture*, J2DBin
 bool J2DPicture::isUsed(const ResTIMG* resource)
 {
 	for (u8 i = 0; i < mTextureCount; i++) {
-		if (mTextures[i] != nullptr && mTextures[i]->_20 == resource) {
+		if (mTextures[i] != nullptr && mTextures[i]->mTexInfo == resource) {
 			return true;
 		}
 	}

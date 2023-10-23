@@ -557,8 +557,8 @@ J3DMaterialTable* J3DModelLoader::loadMaterialTable(const void* stream)
 		}
 		nextBlock = nextBlock->getNext();
 	}
-	if (mMaterialTable->mTexture == nullptr) {
-		mMaterialTable->mTexture = new J3DTexture(0, nullptr);
+	if (mMaterialTable->mTextures == nullptr) {
+		mMaterialTable->mTextures = new J3DTexture(0, nullptr);
 	}
 	return mMaterialTable;
 }
@@ -865,22 +865,22 @@ void J3DModelLoader::setupBBoardInfo()
 			J3DShapeInitData* initData = JSUConvertOffsetToPtr<J3DShapeInitData>(mShapeBlock, mShapeBlock->_0C);
 			switch (initData[initDataIndexToIDMap[id]].mShapeMtxType) {
 			case J3DShapeMtx_Base:
-				mModelData->mJointTree.mJoints[i]->_16 &= 0x0F;
+				mModelData->mJointTree.mJoints[i]->mKind &= 0x0F;
 				break;
 			case J3DShapeMtx_BBoard:
 				// mModelData->mJointTree.mJoints[i]->_16 = (mModelData->mJointTree.mJoints[i]->_16
 				//                                              & (J3DJoint::J3DJ16_Unknown_01 | J3DJoint::J3DJ16_Unknown_02
 				//                                                 | J3DJoint::J3DJ16_Unknown_04 | J3DJoint::J3DJ16_Unknown_08))
 				//                                             | J3DJoint::J3DJ16_Unknown_10;
-				mModelData->mJointTree.mJoints[i]->_16 = mModelData->mJointTree.mJoints[i]->_16 & 0x0F | 0x10;
-				mModelData->mJointSet                  = 1;
+				mModelData->mJointTree.mJoints[i]->mKind = mModelData->mJointTree.mJoints[i]->mKind & 0x0F | 0x10;
+				mModelData->mBillboardFlag               = 1;
 				break;
 			case J3DShapeMtx_Y_BBoard:
-				mModelData->mJointTree.mJoints[i]->_16 = mModelData->mJointTree.mJoints[i]->_16 & 0x0F | 0x20;
-				mModelData->mJointSet                  = 1;
+				mModelData->mJointTree.mJoints[i]->mKind = mModelData->mJointTree.mJoints[i]->mKind & 0x0F | 0x20;
+				mModelData->mBillboardFlag               = 1;
 				break;
 			case J3DShapeMtx_Multi:
-				mModelData->mJointTree.mJoints[i]->_16 = mModelData->mJointTree.mJoints[i]->_16 & 0x0F;
+				mModelData->mJointTree.mJoints[i]->mKind = mModelData->mJointTree.mJoints[i]->mKind & 0x0F;
 				break;
 			default:
 				break;
@@ -999,7 +999,7 @@ void J3DModelLoader::readInformation(const J3DModelInfoBlock* block, unsigned lo
 {
 	J3DMtxCalc* calc              = nullptr;
 	mModelData->mModelLoaderFlags = flags | block->_08;
-	mModelData->mJointTree.m_08   = mModelData->mModelLoaderFlags;
+	mModelData->mJointTree.mFlags = mModelData->mModelLoaderFlags;
 	switch (mModelData->mModelLoaderFlags & (J3DMLF_MtxCalc_SoftImage | J3DMLF_MtxCalc_Maya | J3DMLF_03 | J3DMLF_04)) {
 	case 0:
 		calc = new J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic, J3DMtxCalcJ3DSysInitBasic>();
@@ -1012,8 +1012,8 @@ void J3DModelLoader::readInformation(const J3DModelInfoBlock* block, unsigned lo
 		break;
 	}
 	mModelData->mJointTree.mTransformCalc = calc;
-	mModelData->mVertexData._10           = block->_0C;
-	mModelData->mVertexData._00           = block->_10;
+	mModelData->mVertexData.mPacketNum    = block->_0C;
+	mModelData->mVertexData.mVtxNum       = block->_10;
 	mModelData->mJointTree.mHierarchy     = JSUConvertOffsetToPtr<J3DModelHierarchy>(block, block->_14);
 }
 
@@ -1226,11 +1226,11 @@ lbl_80070790:
  */
 void J3DModelLoader::readEnvelop(const J3DEnvelopeBlock* block)
 {
-	mModelData->mJointTree.mEnvelopeCnt     = block->mCount;
-	mModelData->mJointTree._20              = JSUConvertOffsetToPtr<u8>(block, block->_0C);
-	mModelData->mJointTree.mMaxBillBoardCnt = JSUConvertOffsetToPtr<u16>(block, block->_10);
-	mModelData->mJointTree._28              = JSUConvertOffsetToPtr<float>(block, block->_14);
-	mModelData->mJointTree._2C              = JSUConvertOffsetToPtr<Mtx>(block, block->_18);
+	mModelData->mJointTree.mEnvelopeCnt       = block->mCount;
+	mModelData->mJointTree.mEnvelopeMixCnt    = JSUConvertOffsetToPtr<u8>(block, block->_0C);
+	mModelData->mJointTree.mEnvelopeMixIdx    = JSUConvertOffsetToPtr<u16>(block, block->_10);
+	mModelData->mJointTree.mEnvelopeMixWeight = JSUConvertOffsetToPtr<f32>(block, block->_14);
+	mModelData->mJointTree.mInvJointMtx       = JSUConvertOffsetToPtr<Mtx>(block, block->_18);
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -1284,18 +1284,18 @@ void J3DModelLoader::readDraw(const J3DDrawBlock* block)
 	void* const* offset                    = &block->_0C;
 	mModelData->mJointTree.mMtxData.mCount = block->mCount - mModelData->mJointTree.mEnvelopeCnt;
 
-	mModelData->mJointTree.mMtxData._04 = JSUConvertOffsetToPtr<u8>(block, *offset++);
-	mModelData->mJointTree.mMtxData._08 = JSUConvertOffsetToPtr<u16>(block, *offset++);
+	mModelData->mJointTree.mMtxData.mDrawMtxFlag = JSUConvertOffsetToPtr<u8>(block, *offset++);
+	mModelData->mJointTree.mMtxData.mDrawMtxIdx  = JSUConvertOffsetToPtr<u16>(block, *offset++);
 
 	u16 i;
 	for (i = 0; mModelData->mJointTree.mMtxData.mCount > i; i++) {
-		if (mModelData->mJointTree.mMtxData._04[i] == 1) {
+		if (mModelData->mJointTree.mMtxData.mDrawMtxFlag[i] == 1) {
 			break;
 		}
 	}
-	mModelData->mJointTree.mMtxData._02 = i;
+	mModelData->mJointTree.mMtxData.mDrawMtxCount = i;
 
-	mModelData->mJointTree._30 = new u16[mModelData->mJointTree.mMtxData.mCount];
+	mModelData->mJointTree.mEnvelopeImptIdx = new u16[mModelData->mJointTree.mMtxData.mCount];
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1966,11 +1966,11 @@ void J3DModelLoader::readTexture(const J3DTextureBlock* block)
 	ResTIMG* resTextureImage = JSUConvertOffsetToPtr<ResTIMG>(block, block->_0C);
 	// TODO: I wonder if the rest of this is an inline from somewhere...
 	if (block->_10) {
-		mMaterialTable->_18 = new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(block, block->_10));
+		mMaterialTable->mTextureNames = new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(block, block->_10));
 	} else {
-		mMaterialTable->_18 = nullptr;
+		mMaterialTable->mTextureNames = nullptr;
 	}
-	mMaterialTable->mTexture = new J3DTexture(count, resTextureImage);
+	mMaterialTable->mTextures = new J3DTexture(count, resTextureImage);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2041,20 +2041,20 @@ lbl_800710C8:
 void J3DModelLoader_v26::readMaterialTable(const J3DMaterialBlock* block, u32 flags)
 {
 	J3DMaterialFactory factory(*block);
-	mMaterialTable->mCount1 = block->mCount;
+	mMaterialTable->mMaterialNum = block->mCount;
 	// TODO: I wonder if the rest of this is an inline from somewhere...
 	if (block->_14) {
-		mMaterialTable->_0C = new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(block, block->_14));
+		mMaterialTable->mMaterialNames = new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(block, block->_14));
 	} else {
-		mMaterialTable->_0C = nullptr;
+		mMaterialTable->mMaterialNames = nullptr;
 	}
-	mMaterialTable->mMaterials1 = new J3DMaterial*[mMaterialTable->mCount1];
-	for (u16 i = 0; i < mMaterialTable->mCount1; i++) {
-		mMaterialTable->mMaterials1[i] = factory.create(nullptr, J3DMaterialFactory::NORMAL, i, flags);
+	mMaterialTable->mMaterials = new J3DMaterial*[mMaterialTable->mMaterialNum];
+	for (u16 i = 0; i < mMaterialTable->mMaterialNum; i++) {
+		mMaterialTable->mMaterials[i] = factory.create(nullptr, J3DMaterialFactory::NORMAL, i, flags);
 	}
-	for (u16 i = 0; i < mMaterialTable->mCount1; i++) {
-		J3DMaterial** materials = mMaterialTable->mMaterials1;
-		materials[i]->_20       = (u32)(materials + (u32)factory._08[i]);
+	for (u16 i = 0; i < mMaterialTable->mMaterialNum; i++) {
+		J3DMaterial** materials = mMaterialTable->mMaterials;
+		materials[i]->mDiffFlag = (u32)(materials + (u32)factory._08[i]);
 	}
 
 	/*
@@ -2279,11 +2279,11 @@ void J3DModelLoader::readTextureTable(const J3DTextureBlock* block)
 	u16 count                = block->_08;
 	ResTIMG* resTextureImage = JSUConvertOffsetToPtr<ResTIMG>(block, block->_0C);
 	if (block->_10) {
-		mMaterialTable->_18 = new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(block, block->_10));
+		mMaterialTable->mTextureNames = new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(block, block->_10));
 	} else {
-		mMaterialTable->_18 = nullptr;
+		mMaterialTable->mTextureNames = nullptr;
 	}
-	mMaterialTable->mTexture = new J3DTexture(count, resTextureImage);
+	mMaterialTable->mTextures = new J3DTexture(count, resTextureImage);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2606,8 +2606,8 @@ void J3DModelLoader::modifyMaterial(u32 flags)
 {
 	if ((flags & 0x2000) != 0) {
 		J3DMaterialFactory factory(*mMaterialBlock);
-		for (u16 i = 0; i < mMaterialTable->mCount1; i++) {
-			factory.modifyPatchedCurrentMtx(mMaterialTable->mMaterials1[i], i);
+		for (u16 i = 0; i < mMaterialTable->mMaterialNum; i++) {
+			factory.modifyPatchedCurrentMtx(mMaterialTable->mMaterials[i], i);
 		}
 	}
 }

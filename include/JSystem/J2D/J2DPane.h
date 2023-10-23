@@ -451,11 +451,34 @@ struct J2DPicture : public J2DPane {
 	struct TCornerColor {
 		TCornerColor() { }
 
+		TCornerColor(u32 col1, u32 col2, u32 col3, u32 col4)
+		{
+			mColor0.set(col1);
+			mColor1.set(col2);
+			mColor2.set(col3);
+			mColor3.set(col4);
+		}
+
 		JUtility::TColor mColor0; // _00
 		JUtility::TColor mColor1; // _00
 		JUtility::TColor mColor2; // _00
 		JUtility::TColor mColor3; // _00
 	};
+
+	/*
+	    struct TCornerColor {
+	    TCornerColor(u32 col1, u32 col2, u32 col3, u32 col4)
+	    {
+	        mColor[0].set(col1);
+	        mColor[1].set(col2);
+	        mColor[2].set(col3);
+	        mColor[3].set(col4);
+	    }
+	    TCornerColor() { }
+
+	    JUtility::TColor mColor[4]; // _00
+	};
+	*/
 
 	J2DPicture();
 	J2DPicture(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive);

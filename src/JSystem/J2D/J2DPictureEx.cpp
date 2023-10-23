@@ -580,14 +580,14 @@ void J2DPictureEx::drawTexCoord(float p1, float p2, float p3, float p4, short p5
 {
 	Mtx v1;
 	PSMTXConcat(*p13, mGlobalMtx, v1);
-	if (mMaterial && mMaterial->_0E == 0) {
+	if (mMaterial && mMaterial->mIsVisible == 0) {
 		return;
 	}
 	GXLoadPosMtxImm(v1, 0);
-	JUtility::TColor colors[4] = { mCornerColors[0], mCornerColors[1], mCornerColors[2], mCornerColors[3] };
+	JUtility::TColor colors[4] = { mCornerColors.mColor0, mCornerColors.mColor1, mCornerColors.mColor2, mCornerColors.mColor3 };
 	if (mMaterial) {
 		if ((mMaterial->mColorBlock.mChannels[1].mData & 1) == 1) {
-			if (mMaterial->_0F == 1) {
+			if (mMaterial->mMaterialAlphaCalc == 1) {
 				for (int i = 0; i < 4; i++) {
 					colors[i].a *= mColorAlpha / 0xFF;
 				}
@@ -2278,9 +2278,9 @@ void J2DPictureEx::setTevStage(unsigned char p1, unsigned char p2, bool p3)
 		stage_enum v1       = Stage_0;
 		bool v2             = false;
 		if (texture != nullptr) {
-			if (texture->_20 != nullptr) {
-				if ((texture->_20->mTextureFormat == (s8)GX_TF_I4 || texture->_20->mTextureFormat == (s8)GX_TF_I8)
-				    && texture->_20->mTransparency == Transparency_0) {
+			if (texture->mTexInfo != nullptr) {
+				if ((texture->mTexInfo->mTextureFormat == (s8)GX_TF_I4 || texture->mTexInfo->mTextureFormat == (s8)GX_TF_I8)
+				    && texture->mTexInfo->mTransparency == Transparency_0) {
 					v1 = Stage_1;
 					v2 = true;
 				}
@@ -4438,7 +4438,7 @@ bool J2DPictureEx::isUsed(const ResTIMG* resource)
 	if (mMaterial != nullptr && mMaterial->mTevBlock != nullptr) {
 		for (u32 i = 0; i < 8; i++) {
 			JUTTexture* texture = mMaterial->mTevBlock->getTexture(i);
-			if (texture != nullptr && texture->_20 == resource) {
+			if (texture != nullptr && texture->mTexInfo == resource) {
 				return true;
 			}
 		}
@@ -4512,7 +4512,7 @@ void J2DPictureEx::setAnimation(J2DAnmVtxColor* animation)
 	mAnmVtxColor = animation;
 	_1A4         = 0;
 	if (animation != nullptr) {
-		u16 v1 = animation->_10;
+		u16 v1 = animation->mAnmTableNum[0];
 		for (u8 a = 0; a < 4; a++) {
 			// if (_170[a / 2][a % 2] != -1) {
 			if (_170[a] != 0xFFFF) {

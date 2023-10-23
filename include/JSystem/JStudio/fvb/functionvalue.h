@@ -14,14 +14,13 @@ namespace JStudio {
 typedef f64 (*ExtrapolateParameter)(f64, f64);
 
 class TFunctionValue;
-class TFunctionValueAttributeSet;
+struct TFunctionValueAttributeSet;
 
 class TFunctionValueAttribute_refer;
 class TFunctionValueAttribute_range;
 class TFunctionValueAttribute_interpolate;
 
-class TFunctionValue {
-public:
+struct TFunctionValue {
 	enum TEProgress { PROG_INIT };
 	enum TEAdjust { ADJ_INIT };
 	enum TEOutside { OUT_INIT };
@@ -41,8 +40,7 @@ public:
 	static ExtrapolateParameter toFunction(TFunctionValue::TEOutside outside) { return toFunction_outside(outside); }
 };
 
-class TFunctionValueAttributeSet_const {
-public:
+struct TFunctionValueAttributeSet_const {
 	TFunctionValueAttributeSet_const(TFunctionValueAttribute_refer* refer, TFunctionValueAttribute_range* range,
 	                                 TFunctionValueAttribute_interpolate* interp)
 	    : refer_(refer)
@@ -55,14 +53,12 @@ public:
 	TFunctionValueAttribute_range* range_get() const { return range_; }
 	TFunctionValueAttribute_interpolate* interpolate_get() const { return interp_; }
 
-private:
-	/* 0x00 */ TFunctionValueAttribute_refer* refer_;
-	/* 0x04 */ TFunctionValueAttribute_range* range_;
-	/* 0x08 */ TFunctionValueAttribute_interpolate* interp_;
+	TFunctionValueAttribute_refer* refer_;        // _00
+	TFunctionValueAttribute_range* range_;        // _04
+	TFunctionValueAttribute_interpolate* interp_; // _08
 };
 
-class TFunctionValueAttributeSet : public TFunctionValueAttributeSet_const {
-public:
+struct TFunctionValueAttributeSet : public TFunctionValueAttributeSet_const {
 	TFunctionValueAttributeSet(TFunctionValueAttribute_refer* refer, TFunctionValueAttribute_range* range,
 	                           TFunctionValueAttribute_interpolate* interp)
 	    : TFunctionValueAttributeSet_const(refer, range, interp)

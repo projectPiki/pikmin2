@@ -152,6 +152,10 @@ struct TAdaptor_fog : public TAdaptor {
 };
 
 struct TAdaptor_light : public TAdaptor {
+	TAdaptor_light(TVariableValue* values, int count)
+	    : TAdaptor(values, count)
+	{
+	}
 	// ~TAdaptor_light();
 
 	virtual ~TAdaptor_light()                                                                   = 0; // _08

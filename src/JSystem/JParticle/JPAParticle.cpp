@@ -93,24 +93,24 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* workData)
 {
 	JPAResource* resource           = workData->mResource;
 	JPABaseEmitter* emitter         = workData->mEmitter;
-	JPAExtraShape* extraShape       = resource->_20;
-	JPABaseShape* baseShape         = resource->_1C;
-	JPADynamicsBlock* dynamicsBlock = resource->_2C;
+	JPAExtraShape* extraShape       = resource->mExtraShape;
+	JPABaseShape* baseShape         = resource->mBaseShape;
+	JPADynamicsBlock* dynamicsBlock = resource->mDynamicsBlock;
 
-	_80        = 0xFFFF;
-	u32 random = emitter->mRng.next();
-	_82        = (float)emitter->_52 * -(dynamicsBlock->castData()->_54 * emitter->mRng.nextFloat_0_1() - 1.0f);
-	_84        = 0.0f;
-	_7C        = 0;
-	PSMTXMultVecSR(workData->_D8, (Vec*)&workData->_10, (Vec*)&mPosition);
-	if ((emitter->mResource->_2C->castData()->_08 & 8) != 0) {
-		_7C |= 0x20;
+	mAge       = 0xFFFF;
+	u32 random = emitter->mRandom.next();
+	mLifeTime  = (float)emitter->mLifeTime * -(dynamicsBlock->mData->mLifeTimeRndm * emitter->mRandom.nextFloat_0_1() - 1.0f);
+	mTime      = 0.0f;
+	mFlags     = 0;
+	PSMTXMultVecSR(workData->mGlobalSR, (Vec*)&workData->mVolumePos, (Vec*)&mPosition);
+	if ((emitter->mResource->mDynamicsBlock->mData->mFlags & 8) != 0) {
+		mFlags |= 0x20;
 	}
-	_18   = workData->_138;
-	_00.x = mPosition.x * workData->_12C.x + _18.x;
-	_00.y = mPosition.y * workData->_12C.y + _18.y;
-	_00.z = mPosition.z * workData->_12C.z + _18.z;
-	if (emitter->_34 != 0.0f) {
+	mOffsetPosition = workData->mGlobalPos;
+	mPosition.x     = mPosition.x * workData->mPublicScale.x + mOffsetPosition.x;
+	mPosition.y     = mPosition.y * workData->mPublicScale.y + mOffsetPosition.y;
+	mPosition.z     = mPosition.z * workData->mPublicScale.z + mOffsetPosition.z;
+	if (emitter->mAwayFromCenterSpeed != 0.0f) {
 		// float mag = SQUARE(workData->_24) + SQUARE(workData->_1C) + SQUARE(workData->_20);
 		// if (__float_epsilon * 32.0f < mag) {
 		// 	if (mag < 0.0f) {
@@ -1655,7 +1655,7 @@ lbl_80095574:
  */
 float JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter* emitter) const
 {
-	return emitter->mManager->_20->_12C.x * (mPosition.x + _24.x + _18.x);
+	return emitter->mManager->mWorkData->mPublicScale.x * (mPosition.x + mVelocity.x + mOffsetPosition.x);
 	/*
 	lwz      r4, 0xe4(r4)
 	lfs      f1, 0xc(r3)

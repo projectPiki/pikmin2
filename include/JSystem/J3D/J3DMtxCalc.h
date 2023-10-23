@@ -114,6 +114,20 @@ struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
 	f32 _20;              // _20
 };
 
+// not sure how these structs are used or if they inherit anything
+struct J3DMtxCalcBlend {
+	void calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*);
+};
+
+struct J3DMtxCalcBlendSharedMotionT {
+	void calcBlend(Vec*, Vec*, J3DAnmTransform**, f32*);
+};
+
+struct J3DMtxCalcScaleBlendMaya {
+	void calcBlend(const Vec&, const Vec&);
+	void calcScaleBlend(const Vec&, const Vec&);
+};
+
 template <typename Calc>
 struct J3DMtxCalcAnimationAdaptorDefault {
 	/** @fabricated */

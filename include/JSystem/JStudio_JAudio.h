@@ -10,8 +10,10 @@
 
 struct JAIBasic;
 struct JAISound;
-
 namespace JStudio_JAudio {
+
+void createObject_SOUND_JAI(const JStudio::stb::data::TParse_TBlock_object&, JAIBasic*, JStage::TSystem*);
+
 struct TAdaptor_sound : public JStudio::TAdaptor {
 	struct TVVOSetValue_ : public JStudio::TVariableValue::TOutput {
 		virtual void operator()(f32, JStudio::TAdaptor*) const; // _08

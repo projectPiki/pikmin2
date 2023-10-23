@@ -718,9 +718,9 @@ int J3DModelLoader::calcSizeShape(const J3DShapeBlock* block, u32 flags)
 	}
 	size += count * sizeof(J3DShape*);
 	size += factory.calcSizeVcdVatCmdBuffer(count);
-	for (J3DModelHierarchy* hierarchy = mHierarchy; hierarchy->_00 != 0; hierarchy = hierarchy + 1) {
-		if (hierarchy->_00 == 0x12) {
-			size += factory.calcSize(hierarchy->_02, flags);
+	for (J3DModelHierarchy* hierarchy = mHierarchy; hierarchy->mType != 0; hierarchy = hierarchy + 1) {
+		if (hierarchy->mType == 0x12) {
+			size += factory.calcSize(hierarchy->mValue, flags);
 		}
 	}
 	return size;

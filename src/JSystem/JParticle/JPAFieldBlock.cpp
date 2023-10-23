@@ -127,7 +127,7 @@
 void doTheThing(Vec& vec)
 {
 	f32 v1 = SQUARE(vec.x) + SQUARE(vec.y) + SQUARE(vec.z);
-	if (v1 <= __float_epsilon * 32.0f) {
+	if (v1 <= __float_epsilon[0] * 32.0f) {
 		return;
 	}
 	if (v1 > 0.0f) {
@@ -205,7 +205,7 @@ void JPAFieldGravity::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* block
 		_04.y          = block->_1C.y * multiplier;
 		_04.z          = block->_1C.z * multiplier;
 	} else {
-		PSMTXMultVecSR(workData->_78, (Vec*)&block->_1C, (Vec*)&_04);
+		PSMTXMultVecSR(workData->mRotationMtx, (Vec*)&block->_1C, (Vec*)&_04);
 		f32 multiplier = block->_28;
 		_04.x *= multiplier;
 		_04.y *= multiplier;
@@ -662,10 +662,10 @@ lbl_80091BA8:
  */
 void JPAFieldMagnet::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
-	_10.x = block->_10.x - data->_108.x;
-	_10.y = block->_10.y - data->_108.y;
-	_10.z = block->_10.z - data->_108.z;
-	PSMTXMultVecSR(data->_78, (Vec*)&_10, (Vec*)&_10);
+	_10.x = block->_10.x - data->mEmitterPos.x;
+	_10.y = block->_10.y - data->mEmitterPos.y;
+	_10.z = block->_10.z - data->mEmitterPos.z;
+	PSMTXMultVecSR(data->mRotationMtx, (Vec*)&_10, (Vec*)&_10);
 }
 
 /*
@@ -876,10 +876,10 @@ lbl_80091E90:
  */
 void JPAFieldNewton::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
-	_10.x = block->_10.x - data->_108.x;
-	_10.y = block->_10.y - data->_108.y;
-	_10.z = block->_10.z - data->_108.z;
-	PSMTXMultVecSR(data->_78, (Vec*)&_10, (Vec*)&_10);
+	_10.x = block->_10.x - data->mEmitterPos.x;
+	_10.y = block->_10.y - data->mEmitterPos.y;
+	_10.z = block->_10.z - data->mEmitterPos.z;
+	PSMTXMultVecSR(data->mRotationMtx, (Vec*)&_10, (Vec*)&_10);
 	_1C = SQUARE(*(f32*)(block->mData + 0x2C));
 }
 
@@ -2203,7 +2203,7 @@ lbl_80092FC8:
 void JPAFieldSpin::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
 	Vec v1;
-	PSMTXMultVecSR(data->_A8, (Vec*)&block->_1C, &v1);
+	PSMTXMultVecSR(data->mGlobalRot, (Vec*)&block->_1C, &v1);
 	doTheThing(v1);
 	Mtx v2;
 	PSMTXRotAxisRad(v2, &v1, block->_28);

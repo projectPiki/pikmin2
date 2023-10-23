@@ -1,8 +1,6 @@
 #include "JSystem/JStudio/fvb/fvb.h"
-// #include "JSystem/JStudio/fvb/functionvalue.h"
-#include "JSystem/JStudio/functionvalue.h"
+#include "JSystem/JStudio/fvb/functionvalue.h"
 #include "JSystem/JStudio/object.h"
-#include "types.h"
 
 /*
     Generated from dpostproc
@@ -206,8 +204,8 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 			}
 		case 0x15:
 			if (attr) {
-				attr->mBegin = *(TFunctionValue::TEOutside*)data.content;
-				attr->mEnd   = *(TFunctionValue::TEOutside*)(data.content + 1);
+				// attr->mBegin = (TFunctionValue::TEOutside)(data.content[0]);
+				// attr->mEnd   = (TFunctionValue::TEOutside)(data.content[1]);
 			}
 		case 0x16:
 			if (attr) {

@@ -426,7 +426,7 @@ u32 JAISe::getSeCategoryNumber() { return JAInter::SeMgr::changeIDToCategory(mSo
  * Address:	800B3B48
  * Size:	00000C
  */
-u32 JAISound::getSwBit() { return mSoundInfo->unk1; }
+u32 JAISound::getSwBit() { return mSoundInfo->mCount; }
 
 /*
  * --INFO--
@@ -440,7 +440,7 @@ u32 JAISound::checkSwBit(unsigned long p1) { return p1 & getSwBit(); }
  * Address:	800B3B64
  * Size:	00000C
  */
-u8 JAISound::getInfoPriority() { return mSoundInfo->count.v2[0]; }
+u8 JAISound::getInfoPriority() { return mSoundInfo->mCount; }
 
 /*
  * --INFO--
@@ -1641,7 +1641,7 @@ void JAISe::setSeDistanceParameters()
 	setSePositionDopplar();
 	setSeDistanceFxmix(v1);
 	setSeDistanceFir(v1);
-	if ((mSoundInfo->unk1 & 0x400) == 0) {
+	if ((mSoundInfo->mCount & 0x400) == 0) {
 		setFxmix(JAIBasic::msBasic->getMapInfoFxParameter(_30), 0, 3);
 	}
 	setSeDistanceDolby(v1);
@@ -1663,7 +1663,8 @@ void JAISe::setFxmix(float p1, unsigned long p2, unsigned char p3) { mSeParam._2
 void JAISe::setSeDistanceVolume(unsigned char p1)
 {
 	mSeParam._124[4].set(
-	    (mSoundInfo->unk1 & 2) == 0 ? setDistanceVolumeCommon(JAIGlobalParameter::distanceMax, (mSoundInfo->unk1 >> 0x10) & 7) : 1.0f, p1);
+	    (mSoundInfo->mCount & 2) == 0 ? setDistanceVolumeCommon(JAIGlobalParameter::distanceMax, (mSoundInfo->mCount >> 0x10) & 7) : 1.0f,
+	    p1);
 }
 
 /*
@@ -1718,14 +1719,14 @@ lbl_800B4C80:
 void JAISe::setSeDistancePitch(unsigned char p1)
 {
 	f32 pitch = 1.0f;
-	if ((mSoundInfo->unk1 & 0x10) != 0) {
+	if ((mSoundInfo->mCount & 0x10) != 0) {
 		// pitch = 1.0f - ((JAInter::Const::random.nextFloat_0_1() * 16.0f) / 192.0f;
 		// pitch = 1.0f - ((JAInter::Const::random.idkanymore() & 0xF) ^ 0x80000000) / 192.0f;
 		// pitch = 1.0f - JAInter::Const::random.idkanymore() / 192.0f;
 		pitch = JAInter::Const::random.idkanymore();
 	}
-	if ((mSoundInfo->unk1 & 0x4000) != 0) {
-		if ((mSoundInfo->unk1 & 2) == 0 && (mSoundInfo->unk1 & 0x300) == 0) {
+	if ((mSoundInfo->mCount & 0x4000) != 0) {
+		if ((mSoundInfo->mCount & 2) == 0 && (mSoundInfo->mCount & 0x300) == 0) {
 			if (JAIGlobalParameter::audioCameraMax == 1) {
 				if (_34->_18 >= JAIGlobalParameter::distanceMax) {
 					pitch += JAIGlobalParameter::seDistancepitchMax;
@@ -1735,7 +1736,7 @@ void JAISe::setSeDistancePitch(unsigned char p1)
 			}
 		}
 	}
-	if ((mSoundInfo->unk1 & 0xC0) != 0) {
+	if ((mSoundInfo->mCount & 0xC0) != 0) {
 		pitch += _17 / 192.0f;
 	}
 	mSeParam._224[4].set(pitch, p1);
@@ -1840,8 +1841,8 @@ void JAISe::setSePositionDopplar()
 	if (_15 == 2) {
 		moveTime = 1;
 	}
-	if ((mSoundInfo->unk1 & 0x300) != 0 && JAIGlobalParameter::audioCameraMax == 1) {
-		mSeParam._224[1].set(setPositionDopplarCommon(mSoundInfo->unk1 & 0x300), moveTime);
+	if ((mSoundInfo->mCount & 0x300) != 0 && JAIGlobalParameter::audioCameraMax == 1) {
+		mSeParam._224[1].set(setPositionDopplarCommon(mSoundInfo->mCount & 0x300), moveTime);
 	}
 }
 
@@ -1853,7 +1854,7 @@ void JAISe::setSePositionDopplar()
 void JAISe::setSeDistanceFxmix(unsigned char p1)
 {
 	u16 fx = JAIGlobalParameter::seDefaultFx;
-	if ((mSoundInfo->unk1 & 4) == 0 && JAIGlobalParameter::audioCameraMax == 1) {
+	if ((mSoundInfo->mCount & 4) == 0 && JAIGlobalParameter::audioCameraMax == 1) {
 		if (_34->_18 < JAIGlobalParameter::distanceMax) {
 			fx = (JAIGlobalParameter::seDistanceFxParameter * (_34->_18 / JAIGlobalParameter::distanceMax));
 		} else {
@@ -2617,7 +2618,7 @@ u32 JAISound::checkSoundHandle(unsigned long id, void* p2)
 	u32 result = 0;
 	if ((mSoundID & JAISoundID_TypeMask) != (id & JAISoundID_TypeMask)) {
 		stop(0);
-	} else if (mSoundInfo->count.v2[0] <= static_cast<JAInter::SoundInfo*>(p2)->count.v2[0]) {
+	} else if (mSoundInfo->mCount <= static_cast<JAInter::SoundInfo*>(p2)->mCount) {
 		stop(0);
 	} else {
 		result = 1;

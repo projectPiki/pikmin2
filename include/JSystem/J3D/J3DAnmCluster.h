@@ -50,6 +50,8 @@ struct J3DAnmClusterFullData : J3DAnmFullData {
 };
 
 struct J3DAnmClusterKeyTable : public J3DAnmKeyTableBase {
+	u16 _00;
+	u16 _02;
 };
 
 /**

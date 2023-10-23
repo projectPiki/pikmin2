@@ -70,7 +70,8 @@
  * Address:	800113C8
  * Size:	0000A8
  */
-JStudio_JStage::TAdaptor_light::TAdaptor_light(const JStage::TSystem*, JStage::TLight*)
+JStudio_JStage::TAdaptor_light::TAdaptor_light(const JStage::TSystem* sys, JStage::TLight* light)
+    : JStudio::TAdaptor_light(_0C, 0xd)
 {
 	/*
 	.loc_0x0:

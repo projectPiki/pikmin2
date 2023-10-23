@@ -118,12 +118,12 @@ JAISound* JAInter::ObjectBase::startSound(unsigned long id, unsigned long p2)
 	u8 v1       = 0xFF;
 	u8 handleNo = 0xFF;
 	for (u8 i = 0; i < mHandleCount; i++) {
-		if (mSounds[i]->mSoundInfo->count.v2[0] <= v1) {
-			v1       = mSounds[i]->mSoundInfo->count.v2[0];
+		if (mSounds[i]->mSoundInfo->mCount <= v1) {
+			v1       = mSounds[i]->mSoundInfo->mCount;
 			handleNo = i;
 		}
 	}
-	if (handleNo == 0xFF || SoundTable::getInfoPointer(id)->count.v2[0] < v1) {
+	if (handleNo == 0xFF || SoundTable::getInfoPointer(id)->mCount < v1) {
 		return nullptr;
 	}
 	handleStop(handleNo, 0);

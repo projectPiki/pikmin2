@@ -1,4 +1,4 @@
-#include "types.h"
+#include "JSystem/JStudio_JAudio.h"
 
 /*
     Generated from dpostproc
@@ -18,8 +18,7 @@
  * Address:	80015C44
  * Size:	0000CC
  */
-void createObject_SOUND_JAI___Q214JStudio_JAudio21 @unnamed @control_cpp
-    @FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem()
+void JStudio_JAudio::createObject_SOUND_JAI(const JStudio::stb::data::TParse_TBlock_object&, JAIBasic*, JStage::TSystem*)
 {
 	/*
 	.loc_0x0:
@@ -131,7 +130,7 @@ lbl_80015D54:
  * Address:	80015D70
  * Size:	000078
  */
-void JStudio_JAudio::TCreateObject::create((JStudio::TObject**, JStudio::stb::data::TParse_TBlock_object const&))
+bool JStudio_JAudio::TCreateObject::create(JStudio::TObject**, JStudio::stb::data::TParse_TBlock_object const&)
 {
 	/*
 	.loc_0x0:

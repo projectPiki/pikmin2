@@ -50,7 +50,7 @@ struct TParse_TParagraph {
 		const void* next;
 	};
 	TParse_TParagraph(const void* content);
-	const void* fvbData;
+	const int* fvbData;
 	void getData(JStudio::fvb::data::TParse_TParagraph::TData*) const;
 };
 

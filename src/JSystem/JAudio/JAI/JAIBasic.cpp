@@ -551,7 +551,7 @@ void JAIBasic::startSoundBasic(unsigned long id, JAISequence** handlePtr, JAInte
 {
 	if (_0E._1 != true && (JAInter::SeMgr::seHandle == nullptr || (JAInter::SeMgr::seHandle->mSoundID & 0x3FF) != (id & 0x3FF))) {
 		if (handlePtr == nullptr) {
-			handlePtr = &JAInter::SequenceMgr::FixSeqBufPointer[info->count.v2[1]];
+			handlePtr = &JAInter::SequenceMgr::FixSeqBufPointer[info->mCount];
 		}
 		JAInter::SequenceMgr::storeSeqBuffer(handlePtr, actor, id, p4, p5, info);
 	}
@@ -851,7 +851,7 @@ f32 JAIBasic::getMapInfoFxParameter(unsigned long p1) { return (p1 == 0) ? 0.0f 
 u16 JAIBasic::getSoundOffsetNumberFromID(unsigned long p1)
 {
 	// TODO: probably an inline here.
-	return ((JAInter::SoundTable::getInfoFormat(p1) & 1) != 0) ? JAInter::SoundTable::getInfoPointer(p1)->count.v3[1] : p1 & 0x3FF;
+	return ((JAInter::SoundTable::getInfoFormat(p1) & 1) != 0) ? JAInter::SoundTable::getInfoPointer(p1)->mCount : p1 & 0x3FF;
 	// u32 v1;
 	// if ((JAInter::SoundTable::getInfoFormat(p1) & 1) != 0) {
 	// 	JAInter::SoundInfo* info = JAInter::SoundTable::getInfoPointer(p1);
@@ -931,7 +931,7 @@ u16 JAIBasic::setParameterSeqSync(JASTrack* p1, unsigned short p2)
 					u32 v2 = JAInter::routeToTrack(p1->_348);
 					JAInter::SoundInfo* info
 					    = JAInter::SoundTable::getInfoPointer(JAInter::SequenceMgr::getPlayTrackInfo(i)->mSequence->mSoundID);
-					JAInter::SystemInterface::outerInit(JAInter::SequenceMgr::getPlayTrackInfo(i), v1, v2, info->unk1 >> 8, 0);
+					JAInter::SystemInterface::outerInit(JAInter::SequenceMgr::getPlayTrackInfo(i), v1, v2, info->mPitch >> 8, 0);
 					JAInter::SequenceMgr::getPlayTrackInfo(i)->_04 |= 1 << v2;
 					i = JAIGlobalParameter::seqPlayTrackMax;
 				}
@@ -1115,13 +1115,13 @@ void JAIBasic::setSeExtParameter(JAISound* handle)
 	}
 	u8 format = JAInter::SoundTable::getInfoFormat(handle->mSoundID);
 	if ((format & 4) != 0) {
-		handle->setVolume(handle->mSoundInfo->volume.v2[0] / 127.0f, 0, 1);
+		handle->setVolume(handle->mSoundInfo->mVolume.c / 127.0f, 0, 1);
 	}
 	if ((format & 8) != 0) {
-		handle->setFxmix(handle->mSoundInfo->volume.v2[1] / 127.0f, 0, 1);
+		handle->setFxmix(handle->mSoundInfo->mVolume.c / 127.0f, 0, 1);
 	}
 	if ((format & 2) != 0) {
-		handle->setPitch(handle->mSoundInfo->pitch, 0, 1);
+		handle->setPitch(handle->mSoundInfo->mPitch, 0, 1);
 	}
 }
 

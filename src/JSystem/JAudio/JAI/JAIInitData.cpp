@@ -4,6 +4,7 @@
 #include "JSystem/JAudio/JAI/JAInter/InitData.h"
 #include "JSystem/JAudio/JAI/JAIGlobalParameter.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"
+#include "Dolphin/stl.h"
 #include "types.h"
 
 /*

@@ -1104,7 +1104,7 @@ void JAInter::SequenceMgr::checkReadSeq()
 		JAISequence* seq    = info->mSequence;
 		if (seq != nullptr && seq->_15 == 2 && seq->mSeqParameter._27C == 0xFFFFFFFF && seq->mSeqParameter._2C0->_02 == 0
 		    && seq->mSeqParameter.mTrack._35B == 0) {
-			seq->mSeqParameter.mTrack.setSeqData(info->_40, JASResArcLoader::getResSize(arcPointer, seq->mSoundInfo->count.v3[1]));
+			seq->mSeqParameter.mTrack.setSeqData(info->_40, JASResArcLoader::getResSize(arcPointer, seq->mSoundInfo->mCount));
 		}
 		SeqUpdateData* v1 = seqTrackInfo + info->mSequence->_14;
 		v1->_0C           = 1.0f;
@@ -2878,12 +2878,12 @@ void JAInter::SequenceMgr::checkCustomDvdLoadArc(unsigned long p1, unsigned long
 	JAISequence* sequence   = seqTrackInfo[index].mSequence;
 	seqTrackInfo[index]._03 = 0;
 	u32 v1;
-	customHeapCallback(v1, 1, reinterpret_cast<JAISequence*>(sequence->mSoundInfo->count.v3[1]));
+	customHeapCallback(v1, 1, reinterpret_cast<JAISequence*>(sequence->mSoundInfo->mCount));
 	if (sequence != nullptr && sequence->_15 == 1) {
 		sequence->_15 = 2;
 	} else {
 		u32 v2;
-		customHeapCallback(v2, 2, reinterpret_cast<JAISequence*>(sequence->mSoundInfo->count.v3[1]));
+		customHeapCallback(v2, 2, reinterpret_cast<JAISequence*>(sequence->mSoundInfo->mCount));
 	}
 	/*
 	stwu     r1, -0x20(r1)

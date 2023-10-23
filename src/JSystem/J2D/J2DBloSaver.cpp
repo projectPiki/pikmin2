@@ -91,8 +91,8 @@ void J2DBloSaver::CTextureNameConnect::clear()
 J2DTevStage::J2DTevStage()
 {
 	setTevStageInfo(j2dDefaultTevStageInfo);
-	_04.asStruct._1 = j2dDefaultTevSwapMode._01 << 1;
-	_04.asStruct._0 = j2dDefaultTevSwapMode._00;
+	_04 = j2dDefaultTevSwapMode.mTexSel << 1;
+	_04 = j2dDefaultTevSwapMode.mRasSel;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -130,32 +130,32 @@ J2DTevStage::J2DTevStage()
  */
 void J2DTevStage::setTevStageInfo(const J2DTevStageInfo& info)
 {
-	_02    = info._01 << 4 | info._02;
-	_03    = info._03 << 4 | info._04;
-	_01._2 = info._05 % 1;
-	if (info._05 < 2) {
-		_01._4 = info._07;
-		_01._0 = info._06;
+	_02 = info.mColorA << 4 | info.mColorB;
+	_03 = info.mColorC << 4 | info.mColorD;
+	_01 = info.mCOp % 1;
+	if (info.mCOp < 2) {
+		_05 = info.mCScale;
+		_01 = info.mCBias;
 	} else {
-		_01._4 = (info._05 & 6) / 2;
-		_01._0 = 3;
+		_05 = (info.mCOp & 6) / 2;
+		_01 = 3;
 	}
-	_01._3           = info._08;
-	_01._6           = info._09;
-	_04.asStruct._D  = info._0A;
-	_04.asStruct._A  = info._0B;
-	_04.asStruct._7  = info._0C;
-	_04.asStruct._4  = info._0D;
-	_04.asStruct._12 = info._0E;
-	if (info._0E < 2) {
-		_04.asStruct._10 = info._0F;
-		_04.asStruct._14 = info._10;
+	_04 = info.mCClamp;
+	_07 = info.mCReg;
+	_04 = info.mAlphaA;
+	_05 = info.mAlphaB;
+	_06 = info.mAlphaC;
+	_07 = info.mAlphaD;
+	_01 = info.mAOp;
+	if (info.mAOp < 2) {
+		_05 = info.mABias;
+		_02 = info.mAScale;
 	} else {
-		_04.asStruct._14 = (info._0E & 6) / 2;
-		_04.asStruct._10 = 3;
+		_05 = (info.mAOp & 6) / 2;
+		_02 = 3;
 	}
-	_04.asStruct._13 = info._11;
-	_04.asStruct._16 = info._12;
+	_07 = info.mAClamp;
+	_05 = info.mAReg;
 	/*
 	stwu     r1, -0x10(r1)
 	lbz      r5, 1(r4)

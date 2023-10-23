@@ -4,6 +4,7 @@
 #include "JSystem/JGadget/binary.h"
 #include "JSystem/JGadget/linklist.h"
 #include "stl/algorithm.h"
+#include "mem.h"
 
 /*
     Generated from dpostproc
@@ -1061,7 +1062,7 @@ void stb::TControl::reset()
  * Address:	80010B18
  * Size:	0000F0
  */
-void stb::TControl::forward(u32)
+bool stb::TControl::forward(u32)
 {
 	/*
 	stwu     r1, -0x60(r1)

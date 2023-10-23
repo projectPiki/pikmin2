@@ -43,7 +43,7 @@ float JASInstRand::getY(int, int) const
 	// oRandom.value = oRandom.value * 1664525 + 1013904223;
 	// return -((1.0f - __float_epsilon) * 1.0f - ((float)(oRandom.value >> 9 | 0x3f800000) - 1.0f) * 2.0f) * _0C + _08;
 
-	float v = -((1.0f - __float_epsilon) * 1.0f - JALCalc::getRandom_0_1() * 2.0f);
+	float v = -((1.0f - __float_epsilon[0]) * 1.0f - JALCalc::getRandom_0_1() * 2.0f);
 	v *= _0C;
 	v += _08;
 	return v;

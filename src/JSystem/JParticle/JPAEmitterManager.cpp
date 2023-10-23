@@ -185,40 +185,17 @@ JPAEmitterManager::JPAEmitterManager(unsigned long, unsigned long, JKRHeap*, uns
  * Address:	........
  * Size:	00003C
  */
-JPARandom::~JPARandom()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	80090734
- * Size:	000030
- */
-void JSUList<JPABaseEmitter>::JSUList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       initiate__10JSUPtrListFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// JPARandom::~JPARandom()
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	80090764
  * Size:	00003C
  */
-void JPANode<JPABaseParticle>::~JPANode()
+JPANode<JPABaseParticle>::~JPANode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -246,7 +223,7 @@ lbl_80090788:
  * Address:	800907A0
  * Size:	000010
  */
-void JPANode<JPABaseParticle>::JPANode()
+JPANode<JPABaseParticle>::JPANode()
 {
 	/*
 	li       r0, 0
@@ -311,6 +288,8 @@ lbl_800907F4:
  * Size:	000058
  */
 JPABaseEmitter::JPABaseEmitter()
+    : mLink(this)
+    , mRandom(0)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -343,62 +322,62 @@ JPABaseEmitter::JPABaseEmitter()
  * Address:	........
  * Size:	000054
  */
-void JSULink<JPABaseEmitter>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
+// JSULink<JPABaseEmitter>::~JSULink()
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00003C
  */
-void JPAList<JPABaseParticle>::~JPAList()
-{
-	// UNUSED FUNCTION
-}
+// JPAList<JPABaseParticle>::~JPAList()
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	80090868
  * Size:	000054
  */
-void JSUList<JPABaseEmitter>::~JSUList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800908A0
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-	extsh.   r0, r31
-	ble      lbl_800908A0
-	mr       r3, r30
-	bl       __dl__FPv
+// JSUList<JPABaseEmitter>::~JSUList()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_800908A0
+li       r4, 0
+bl       __dt__10JSUPtrListFv
+extsh.   r0, r31
+ble      lbl_800908A0
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_800908A0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	800908BC
  * Size:	0000DC
  */
-void JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<float>&, unsigned short, unsigned char, unsigned char,
-                                              JPAEmitterCallBack*, JPAParticleCallBack*)
+JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<float>&, unsigned short, unsigned char, unsigned char,
+                                                         JPAEmitterCallBack*, JPAParticleCallBack*)
 {
 	/*
 	.loc_0x0:

@@ -194,7 +194,7 @@ struct J3DMaterialFactory {
 	GXColor* _1C;                 // _1C
 	J3DLightInfo* _20;            // _20
 	u8* _24;                      // _24
-	J3DTexCoordInfo* _28;         // _28
+	J3DTexCoord* _28;             // _28
 	J3DTexCoord2Info* _2C;        // _2C
 	J3DTexMtxInfo* _30;           // _30
 	J3DTexMtxInfo* _34;           // _34
@@ -228,6 +228,32 @@ struct J3DMaterialInitData_v21 {
 };
 
 struct J3DMaterialFactory_v21 {
+	J3DMaterialFactory_v21(const J3DMaterialBlock_v21&);
+	int countUniqueMaterials();
+	void create(J3DMaterial*, int, unsigned long) const;
+	void newMatColor(int, int) const;
+	void newColorChanNum(int) const;
+	void newColorChan(int, int) const;
+	u8 newTexGenNum(int) const;
+	J3DTexMtx newTexMtx(int, int) const;
+	u16 newTexNo(int, int) const;
+	u8 newZCompLoc(int) const;
+	J3DZMode newZMode(int) const;
+	void modifyPatchedCurrentMtx(J3DMaterial*, int) const;
+	void newTexCoord(int, int) const;
+	void newCullMode(int) const;
+	void newTevOrder(int, int) const;
+	void newTevColor(int, int) const;
+	void newTevKColor(int, int) const;
+	void newTevStageNum(int) const;
+	void newTevStage(int, int) const;
+	void newTevSwapModeTable(int, int) const;
+	void newFog(int) const;
+	void newAlphaComp(int) const;
+	void newBlend(int) const;
+	void newDither(int) const;
+	void newNBTScale(int) const;
+
 	u8 _00[4]; // _00
 
 	J3DMaterialInitData_v21* _04; // _04

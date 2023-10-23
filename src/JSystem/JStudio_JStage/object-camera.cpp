@@ -133,7 +133,7 @@ JStudio_JStage::TAdaptor_camera::~TAdaptor_camera() { adaptor_do_end(nullptr); }
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_prepare(const JStudio::TObject*)
 {
-	for (TVVOutput* output = saoVVOutput_; output->mValueIndex != -1; output++) {
+	for (const TVVOutput* output = saoVVOutput_; output->mValueIndex != -1; output++) {
 		_04[output->mValueIndex].setOutput(output);
 	}
 }

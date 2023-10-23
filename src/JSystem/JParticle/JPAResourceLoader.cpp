@@ -57,45 +57,45 @@ void JPAResourceLoader::load_jpc(const unsigned char* p1, JPAResourceManager* ma
 	u16 resourceSlotCount       = GetTypeFromByteStream(p1, u16, 0x08);
 	int resourceOffset          = 0x10;
 	for (int i = 0; i < resourceSlotCount; i++) {
-		const u8* resourceData = (p1 + resourceOffset);
-		JPAResource* resource  = new (heap, 0) JPAResource;
-		resource->_3E          = resourceData[4];
-		resource->_30          = (resource->_3E != 0 ? new (heap, 0) JPAFieldBlock*[resource->_3E] : nullptr);
-		resource->_3F          = resourceData[5];
-		resource->_34          = (resource->_3F != 0 ? new (heap, 0) JPAKeyBlock*[resource->_3F] : nullptr);
-		int fieldBlockIndex    = 0;
-		int keyBlockIndex      = fieldBlockIndex;
-		resource->_40          = resourceData[6];
-		resource->_38          = nullptr;
+		const u8* resourceData   = (p1 + resourceOffset);
+		JPAResource* resource    = new (heap, 0) JPAResource;
+		resource->mFieldBlockNum = resourceData[4];
+		resource->mFieldBlocks   = (resource->mFieldBlockNum != 0 ? new (heap, 0) JPAFieldBlock*[resource->mFieldBlockNum] : nullptr);
+		resource->mKeyBlockNum   = resourceData[5];
+		resource->mKeyBlocks     = (resource->mKeyBlockNum != 0 ? new (heap, 0) JPAKeyBlock*[resource->mKeyBlockNum] : nullptr);
+		int fieldBlockIndex      = 0;
+		int keyBlockIndex        = fieldBlockIndex;
+		resource->mTDB1Num       = resourceData[6];
+		resource->mTextureIDList = nullptr;
 		resourceOffset += 8;
-		resource->_3C = *(u16*)resourceData;
+		resource->mUsrIdx = *(u16*)resourceData;
 		for (int j = 0; j < GetTypeFromByteStream(resourceData, u16, 2); j++) {
 			const u8* blockData = (p1 + resourceOffset);
 			int blockLength     = GetTypeFromByteStream(blockData, int, 4);
 			switch (GetTypeFromByteStream(blockData, int, 0)) {
 			case 'FLD1':
-				resource->_30[fieldBlockIndex++] = new (heap, 0) JPAFieldBlock(blockData, heap);
+				resource->mFieldBlocks[fieldBlockIndex++] = new (heap, 0) JPAFieldBlock(blockData, heap);
 				break;
 			case 'KFA1':
-				resource->_34[keyBlockIndex++] = new (heap, 0) JPAKeyBlock(blockData);
+				resource->mKeyBlocks[keyBlockIndex++] = new (heap, 0) JPAKeyBlock(blockData);
 				break;
 			case 'BEM1':
-				resource->_2C = new (heap, 0) JPADynamicsBlock(blockData);
+				resource->mDynamicsBlock = new (heap, 0) JPADynamicsBlock(blockData);
 				break;
 			case 'BSP1':
-				resource->_1C = new (heap, 0) JPABaseShape(blockData, heap);
+				resource->mBaseShape = new (heap, 0) JPABaseShape(blockData, heap);
 				break;
 			case 'ESP1':
-				resource->_20 = new (heap, 0) JPAExtraShape(blockData);
+				resource->mExtraShape = new (heap, 0) JPAExtraShape(blockData);
 				break;
 			case 'SSP1':
-				resource->_24 = new (heap, 0) JPAChildShape(blockData);
+				resource->mChildShape = new (heap, 0) JPAChildShape(blockData);
 				break;
 			case 'ETX1':
-				resource->_28 = new (heap, 0) JPAExTexShape(blockData);
+				resource->mExTexShape = new (heap, 0) JPAExTexShape(blockData);
 				break;
 			case 'TDB1':
-				resource->_38 = (u16*)(blockData + 8);
+				resource->mTextureIDList = (u16*)(blockData + 8);
 				break;
 			}
 			resourceOffset += blockLength;

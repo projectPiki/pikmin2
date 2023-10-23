@@ -121,18 +121,6 @@ inline JADUtility::DataLoadMgrNode::DataLoadMgrNode()
 
 /*
  * --INFO--
- * Address:	800BA8B4
- * Size:	0000C8
- */
-JADUtility::DataLoadMgrNode::~DataLoadMgrNode()
-{
-	if (_08 == 3) {
-		_18 = nullptr;
-	}
-}
-
-/*
- * --INFO--
  * Address:	........
  * Size:	000050
  */
@@ -219,7 +207,7 @@ void JADUtility::DataLoadMgrNode::setFlagsAsExternal(void* p1)
  */
 JADUtility::DataMgrNode::DataMgrNode()
     : DataLoadMgrNode()
-    , _214()
+    , _214(0)
 {
 }
 

@@ -41,8 +41,8 @@ void J3DModelData::clear()
 {
 	mBmd              = nullptr;
 	mModelLoaderFlags = 0;
-	_0C               = 0;
-	mJointSet         = 0;
+	mBumpFlag         = 0;
+	mBillboardFlag    = 0;
 }
 
 /*
@@ -54,7 +54,6 @@ J3DModelData::J3DModelData()
     : mJointTree()
     , mMaterialTable()
     , mShapeTable()
-    , _84()
     , mVertexData()
 {
 	clear();
@@ -161,14 +160,14 @@ lbl_8008394C:
  */
 void J3DModelData::indexToPtr()
 {
-	j3dSys._58                = mMaterialTable.mTextures;
+	j3dSys.mTexture           = mMaterialTable.mTextures;
 	static int sInterruptFlag = OSDisableInterrupts();
 	OSDisableScheduler();
 	u16 count = mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
 		J3DMaterial* material = mMaterialTable.mMaterials[i];
 		GDCurrentDL currentDL;
-		GDInitGDLObj(&currentDL, material->_48->_00, material->_48->_08);
+		GDInitGDLObj(&currentDL, material->mSharedDLObj->mDisplayList[0], material->mSharedDLObj->mSize);
 		__GDCurrentDL = &currentDL;
 		material->mTevBlock->indexToPtr();
 	}
@@ -241,8 +240,8 @@ lbl_800839FC:
  */
 void J3DModelData::makeSharedDL()
 {
-	j3dSys._58 = mMaterialTable.mTextures;
-	u16 count  = mMaterialTable.mMaterialNum;
+	j3dSys.mTexture = mMaterialTable.mTextures;
+	u16 count       = mMaterialTable.mMaterialNum;
 	for (u16 i = 0; i < count; i++) {
 		J3DMaterial* material = mMaterialTable.mMaterials[i];
 		material->makeSharedDisplayList();
@@ -336,9 +335,9 @@ lbl_80083B54:
 void J3DModelData::syncJ3DSysFlags() const
 {
 	if (mModelLoaderFlags & J3DMLF_06) {
-		j3dSys._34 |= 0x40000000;
+		j3dSys.mFlags |= 0x40000000;
 	} else {
-		j3dSys._34 &= ~0x40000000;
+		j3dSys.mFlags &= ~0x40000000;
 	}
 }
 

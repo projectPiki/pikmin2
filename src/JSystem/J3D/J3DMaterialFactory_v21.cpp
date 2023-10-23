@@ -157,7 +157,7 @@ J3DMaterialFactory_v21::J3DMaterialFactory_v21(const J3DMaterialBlock_v21&)
  * Address:	80084BE0
  * Size:	00004C
  */
-void J3DMaterialFactory_v21::countUniqueMaterials()
+int J3DMaterialFactory_v21::countUniqueMaterials()
 {
 	/*
 	lhz      r5, 0(r3)
@@ -1014,7 +1014,7 @@ lbl_8008560C:
  * Address:	800856C0
  * Size:	000038
  */
-void J3DMaterialFactory_v21::newTexGenNum(int) const
+u8 J3DMaterialFactory_v21::newTexGenNum(int) const
 {
 	/*
 	lwz      r5, 8(r3)
@@ -1087,7 +1087,7 @@ lbl_80085754:
  * Address:	8008577C
  * Size:	000158
  */
-void J3DMaterialFactory_v21::newTexMtx(int, int) const
+J3DTexMtx J3DMaterialFactory_v21::newTexMtx(int, int) const
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1215,7 +1215,7 @@ lbl_8008590C:
  * Address:	80085914
  * Size:	000048
  */
-void J3DMaterialFactory_v21::newTexNo(int, int) const
+u16 J3DMaterialFactory_v21::newTexNo(int, int) const
 {
 	/*
 	lwz      r6, 8(r3)
@@ -1759,7 +1759,7 @@ lbl_80085F4C:
  * Address:	80085F74
  * Size:	000060
  */
-void J3DMaterialFactory_v21::newZMode(int) const
+J3DZMode J3DMaterialFactory_v21::newZMode(int) const
 {
 	/*
 	lwz      r6, 8(r4)
@@ -1796,7 +1796,7 @@ lbl_80085FC8:
  * Address:	80085FD4
  * Size:	000038
  */
-void J3DMaterialFactory_v21::newZCompLoc(int) const
+u8 J3DMaterialFactory_v21::newZCompLoc(int) const
 {
 	/*
 	lwz      r5, 8(r3)
@@ -1898,25 +1898,6 @@ lbl_800860C4:
 
 lbl_800860E4:
 	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	800860EC
- * Size:	000018
- */
-void JSUConvertOffsetToPtr<J3DMaterialInitData_v21>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800860FC
-	li       r3, 0
-	blr
-
-lbl_800860FC:
-	add      r3, r3, r4
 	blr
 	*/
 }

@@ -12,6 +12,7 @@
 #include "JSystem/JStudio/TVariableValue.h"
 
 namespace JStudio_JStage {
+struct TVariableValue;
 struct TCreateObject : JStudio::TCreateObject {
 	TCreateObject(JStage::TSystem* sys) { mSystem = sys; }
 
@@ -252,6 +253,8 @@ struct TAdaptor_light : public JStudio::TAdaptor_light {
 	virtual void adaptor_do_data(const JStudio::TObject*, const void*, unsigned long, const void*, unsigned long); // _1C
 	virtual void adaptor_do_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long);                    // _20
 	virtual void adaptor_do_FACULTY(JStudio::data::TEOperationData, const void*, unsigned long);                   // _24
+
+	JStudio::TVariableValue* _0C;
 };
 
 bool transform_toGlobalFromLocal(f32 (*)[4], const JStudio::TControl::TTransform_translation_rotation_scaling&, const JStage::TObject*,

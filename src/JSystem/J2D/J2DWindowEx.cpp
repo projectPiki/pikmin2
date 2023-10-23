@@ -1598,7 +1598,7 @@ void J2DWindowEx::draw(const JGeometry::TBox2<float>& p1, const JGeometry::TBox2
 	GXSetCurrentMtx(0);
 	draw_private(JGeometry::TBox2f(0.0f, 0.0f, p1.f.x - p1.i.x, p1.f.y - p1.i.y), p2);
 	for (int i = 0; i < 4; i++) {
-		GXSetTevSwapModeTable((GXTevSwapSel)i, 0, 1, 2, 3);
+		GXSetTevSwapModeTable((GXTevSwapSel)i, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
 	}
 	GXSetNumIndStages(0);
 	for (int i = 0; i < 0x10; i++) {
@@ -2713,7 +2713,7 @@ bool J2DWindowEx::isUsed(const ResTIMG* resource)
 		if (mFrameMaterials[i] != nullptr && mFrameMaterials[i]->mTevBlock != nullptr) {
 			for (u32 j = 0; j < 8; j++) {
 				JUTTexture* texture = mFrameMaterials[i]->mTevBlock->getTexture(j);
-				if (texture != nullptr && texture->_20 == resource) {
+				if (texture != nullptr && texture->mTexInfo == resource) {
 					return true;
 				}
 			}
@@ -2722,7 +2722,7 @@ bool J2DWindowEx::isUsed(const ResTIMG* resource)
 	if (mContentsMaterial != nullptr && mContentsMaterial->mTevBlock != nullptr) {
 		for (u32 j = 0; j < 8; j++) {
 			JUTTexture* texture = mContentsMaterial->mTevBlock->getTexture(j);
-			if (texture != nullptr && texture->_20 == resource) {
+			if (texture != nullptr && texture->mTexInfo == resource) {
 				return true;
 			}
 		}

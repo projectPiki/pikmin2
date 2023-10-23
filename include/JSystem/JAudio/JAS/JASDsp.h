@@ -198,7 +198,7 @@ struct JASDSPChannel {
 	static JASDSPChannel* sDspChannels;
 };
 
-void DSP_CreateMap2(u32);
+u16 DSP_CreateMap2(u32);
 
 // unused/inlined:
 void DSP_CreateMap();

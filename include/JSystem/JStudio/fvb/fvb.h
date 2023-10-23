@@ -5,6 +5,7 @@
 #include "types.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JStudio/fvb/fvb-data.h"
+#include "JSYstem/JStudio/fvb/functionvalue.h"
 
 struct TFunctionValue;
 
@@ -41,7 +42,7 @@ struct TObject : object::TObject_ID {
 
 	// VTBL _08
 	JGadget::TLinkListNode mNode; //_0C
-	TFunctionValue* pfv;          //_14
+	TFunctionValue_constant* pfv; //_14
 };
 
 struct TFactory {

@@ -9,6 +9,8 @@ void imixcopy(const short*, const short*, short*, unsigned long);
 void bcopy(const void*, void*, unsigned long);
 void bzero(void*, unsigned long);
 
+f32 clamp_0_1(f32);
+
 /*
  * --INFO--
  * Address:	800A64D8

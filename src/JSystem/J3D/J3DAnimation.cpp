@@ -1141,7 +1141,7 @@ lbl_80068590:
  * Size:	000084
  * getWeight__16J3DAnmClusterKeyCFUs
  */
-float J3DAnmClusterKey::getWeight(unsigned short p1) const
+float J3DAnmClusterKey::getWeight(u16 p1) const
 {
 	switch (mTables[p1]._00) {
 	case 0:
@@ -1149,7 +1149,7 @@ float J3DAnmClusterKey::getWeight(unsigned short p1) const
 	case 1:
 		return _0C[mTables[p1]._02];
 	default:
-		return J3DGetKeyFrameInterpolation<float>(mFTime, &_10[p1], &_0C[_10[p1]._02]);
+		return J3DGetKeyFrameInterpolation<float>(mCurrentFrame, &mTables[p1], &_0C[mTables[p1]._02]);
 	}
 }
 
@@ -1532,13 +1532,13 @@ lbl_80068A64:
  */
 void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
 {
-	for (u16 i = 0; i < _14; i++) {
+	for (u16 i = 0; i < mUpdateMaterialNum; i++) {
 		JUTNameTab* matNameTable = data->mMaterialTable.mMaterialNames;
 		int index                = matNameTable->getIndex(mNameTab.getName(i));
 		if (index != -1) {
-			_18[i] = index;
+			mUpdateMaterialID[i] = index;
 		} else {
-			_18[i] = 0xFFFF;
+			mUpdateMaterialID[i] = 0xFFFF;
 		}
 	}
 }
@@ -1550,14 +1550,14 @@ void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
  */
 void J3DAnmColorFull::getColor(unsigned short tableIndex, _GXColor* color) const
 {
-	J3DAnmColorFullTable* table = _3C + tableIndex;
-	if (mFTime < 0.0f) {
+	J3DAnmColorFullTable* table = mTable + tableIndex;
+	if (mCurrentFrame < 0.0f) {
 		color->r = _2C[table->mData[0][1]];
 		color->g = _30[table->mData[1][1]];
 		color->b = _34[table->mData[2][1]];
 		color->a = _38[table->mData[3][1]];
 	} else {
-		int v4 = 0.5f + mFTime;
+		int v4 = 0.5f + mCurrentFrame;
 		if (v4 >= table->mData[0][0]) {
 			color->r = _2C[table->mData[0][1] - 1 + table->mData[0][0]];
 		} else {
@@ -1836,17 +1836,17 @@ lbl_80068F48:
 void J3DAnmTexPattern::getTexNo(unsigned short p1, unsigned short* p2) const
 {
 	int index                     = p1;
-	J3DAnmTexPatternFullTable* v1 = _10;
-	if (mFTime < 0.0f) {
+	J3DAnmTexPatternFullTable* v1 = mAnmTable;
+	if (mCurrentFrame < 0.0f) {
 		*p2 = _0C[v1[index].mData[0][1]];
 		return;
 	}
-	if (mFTime >= v1[index].mData[0][0]) {
+	if (mCurrentFrame >= v1[index].mData[0][0]) {
 		int v2 = v1[index].mData[0][0] - 1 + v1[index].mData[0][1];
 		*p2    = _0C[v2];
 		return;
 	}
-	*p2 = _0C[v1[index].mData[0][1] + (int)mFTime];
+	*p2 = _0C[v1[index].mData[0][1] + (int)mCurrentFrame];
 	/*
 	lfs      f2, 8(r3)
 	rlwinm   r4, r4, 3, 0xd, 0x1c
@@ -2009,10 +2009,10 @@ lbl_80069110:
  */
 void J3DAnmTevRegKey::getTevColorReg(unsigned short p1, _GXColorS10* color) const
 {
-	_48[p1]._00[0].getColorField(mFTime, &color->r, _50);
-	_48[p1]._00[1].getColorField(mFTime, &color->g, _54);
-	_48[p1]._00[2].getColorField(mFTime, &color->b, _58);
-	_48[p1]._00[3].getColorField(mFTime, &color->a, _5C);
+	_48[p1].mTables[0].getColorField(mCurrentFrame, &color->r, _50);
+	_48[p1].mTables[1].getColorField(mCurrentFrame, &color->g, _54);
+	_48[p1].mTables[2].getColorField(mCurrentFrame, &color->b, _58);
+	_48[p1].mTables[3].getColorField(mCurrentFrame, &color->a, _5C);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2491,22 +2491,22 @@ lbl_800696B8:
 void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
 {
 	u16 i;
-	for (i = 0; i < mCountTevColorAnm; i++) {
+	for (i = 0; i < mCRegUpdateMaterialNum; i++) {
 		JUTNameTab* nameTable = data->mMaterialTable.mMaterialNames;
 		int index             = nameTable->getIndex(_24.getName(i));
 		if (index != -1) {
-			_20[i] = index;
+			mCRegUpdateMaterialID[i] = index;
 		} else {
-			_20[i] = 0xFFFF;
+			mCRegUpdateMaterialID[i] = 0xFFFF;
 		}
 	}
-	for (i = 0; i < mCountTevKColorAnm; i++) {
+	for (i = 0; i < mKRegUpdateMaterialNum; i++) {
 		JUTNameTab* nameTable = data->mMaterialTable.mMaterialNames;
 		int index             = nameTable->getIndex(_38.getName(i));
 		if (index != -1) {
-			_34[i] = index;
+			mKRegUpdateMaterialID[i] = index;
 		} else {
-			_34[i] = 0xFFFF;
+			mKRegUpdateMaterialID[i] = 0xFFFF;
 		}
 	}
 }

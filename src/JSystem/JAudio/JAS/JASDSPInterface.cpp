@@ -1331,7 +1331,7 @@ void JASDsp::TChannel::setBusConnect(u8 index, u8 p2)
  * Address:	800A5AF8
  * Size:	000090
  */
-void DSP_CreateMap2(u32 p1)
+u16 DSP_CreateMap2(u32 p1)
 {
 	/*
 	slwi     r0, r3, 4

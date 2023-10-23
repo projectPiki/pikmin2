@@ -398,7 +398,7 @@ void JAInter::StreamMgr::storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::
 		return;
 	}
 	if (streamSound->_15 != 0) {
-		if (info->count.v2[0] > streamSound->getInfoPriority()) {
+		if (info->mCount > streamSound->getInfoPriority()) {
 			return;
 		}
 		streamSound->stop(0);
@@ -2246,7 +2246,7 @@ void JAInter::StreamMgr::stopDirect()
  */
 void JAInter::StreamMgr::initChannel()
 {
-	u32 v1 = streamSound->mSoundInfo->unk1;
+	u32 v1 = streamSound->mSoundInfo->mCount;
 	if (v1 == 0) {
 		return;
 	}

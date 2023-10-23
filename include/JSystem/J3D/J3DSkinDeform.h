@@ -14,6 +14,9 @@ enum J3DSkinDeformFlags {
 struct J3DDeformData {
 	J3DDeformData();
 
+	void deform(J3DModel*);
+	void deform(J3DVertexBuffer*);
+
 	u16 mClusterNum;              // _00
 	u16 mClusterKeyNum;           // _02
 	u16 _04;                      // _04

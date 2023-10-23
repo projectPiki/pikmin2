@@ -63,7 +63,7 @@ bool JStudio_JStage::TCreateObject::create(JStudio::TObject** newObject, JStudio
 	*newObject = nullptr;
 	JStage::TEObject type;
 	CreateObjectFunction function;
-	switch (data.filedata[1]) {
+	switch (data.filedata->_04) {
 	case 'JACT':
 		type     = JStage::TEO_Actor;
 		function = &createObject_JSG_<TAdaptor_actor, JStage::TActor>;

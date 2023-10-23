@@ -299,7 +299,7 @@ bool J3DShapeMtx::sNBTFlag;
 bool J3DShapeMtx::sLODFlag;
 Mtx* J3DShapeMtxConcatView::sMtxPtrTbl[2];
 J3DTexGenBlock* J3DDifferedTexMtx::sTexGenBlock;
-J3DShapePacket_0x24* J3DDifferedTexMtx::sTexMtxObj;
+// J3DShapePacket* J3DDifferedTexMtx::sTexMtxObj;
 
 /*
  * --INFO--
@@ -371,7 +371,7 @@ void J3DShapeMtx::loadMtxIndx_PNGP(int p1, unsigned short p2) const
  */
 void J3DShapeMtx::loadMtxIndx_PCPU(int p1, unsigned short p2) const
 {
-	J3DFifoLoadPosMtxImm(*j3dSys.mShapePacket->_30, p1 * 3);
+	J3DFifoLoadPosMtxImm(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3);
 	j3dSys.loadNrmMtxIndx(p1, p2);
 }
 
@@ -383,7 +383,7 @@ void J3DShapeMtx::loadMtxIndx_PCPU(int p1, unsigned short p2) const
 void J3DShapeMtx::loadMtxIndx_NCPU(int p1, unsigned short p2) const
 {
 	j3dSys.loadPosMtxIndx(p1, p2);
-	J3DFifoLoadNrmMtxImm(*j3dSys.mShapePacket->_30, p1 * 3);
+	J3DFifoLoadNrmMtxImm(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3);
 }
 
 /*
@@ -393,8 +393,8 @@ void J3DShapeMtx::loadMtxIndx_NCPU(int p1, unsigned short p2) const
  */
 void J3DShapeMtx::loadMtxIndx_PNCPU(int p1, unsigned short p2) const
 {
-	J3DFifoLoadPosMtxImm(*j3dSys.mShapePacket->_30, p1 * 3);
-	J3DFifoLoadNrmMtxImm(*j3dSys.mShapePacket->_30, p1 * 3);
+	J3DFifoLoadPosMtxImm(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3);
+	J3DFifoLoadNrmMtxImm(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3);
 }
 
 /*
@@ -404,22 +404,22 @@ void J3DShapeMtx::loadMtxIndx_PNCPU(int p1, unsigned short p2) const
  */
 void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 {
-	J3DShapePacket_0x24* tmo = sTexMtxObj;
-	J3DTexGenBlock* block    = sTexGenBlock;
+	J3DShapePacket* tmo   = (J3DShapePacket*)sTexMtxObj;
+	J3DTexGenBlock* block = sTexGenBlock;
 	Mtx v88;
 	Mtx* mtxToLoad;
 	static Mtx qMtx  = { { 0.5f, 0.0f, 0.5f, 0.0f }, { 0.0f, -0.5f, 0.5f, 0.0f }, { 0.0f, 0.0f, 1.0f, 0.0f } };
 	static Mtx qMtx2 = { { 0.5f, 0.0f, 0.0f, 0.5f }, { 0.0f, -0.5f, 0.0f, 0.5f }, { 0.0f, 0.0f, 1.0f, 0.0f } };
 
-	if ((j3dSys._34 & 0x40000000) != 0) {
+	if ((j3dSys.mFlags & 0x40000000) != 0) {
 
 	} else {
-		for (u16 i = 0; i < tmo->_08; i++) {
+		for (u16 i = 0; i < tmo->mUserArea; i++) {
 			J3DTexMtx* blockTexMtx = block->getTexMtx(i);
 			switch (blockTexMtx->mFlags & 0x3F) {
 			case 3:
 			case 9:
-				PSMTXConcat(tmo->_00[i], p1, v88);
+				PSMTXConcat(tmo->mBaseMtxPtr[i], p1, v88);
 				mtxToLoad = &v88;
 				break;
 			case 1:
@@ -431,13 +431,13 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 				v152[2][3] = 0.0f;
 				v152[1][3] = 0.0f;
 				v152[0][3] = 0.0f;
-				PSMTXConcat(tmo->_00[i], v152, v88);
+				PSMTXConcat(tmo->mBaseMtxPtr[i], v152, v88);
 				mtxToLoad = &v88;
 				break;
 			}
 			case 2:
 			case 8:
-				mtxToLoad = tmo->_00 + i;
+				mtxToLoad = tmo->mBaseMtxPtr + i;
 				break;
 			case 5: {
 				Mtx v216;
@@ -446,9 +446,9 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 				} else if ((blockTexMtx->mFlags & 0x80) == 1) {
 					J3DGetTextureMtxMayaOld(blockTexMtx->mSrtInfo, v216);
 				}
-				J3DMtxProjConcat(v216, tmo->_04[i * 2], v88);
+				J3DMtxProjConcat(v216, tmo->mBaseMtxPtr[i * 2], v88);
 				Mtx v152;
-				PSMTXInverse(j3dSys._00, v152);
+				PSMTXInverse(j3dSys.mViewMtx, v152);
 				PSMTXConcat(v88, v152, v88);
 				PSMTXConcat(v88, p1, v88);
 				mtxToLoad = &v88;
@@ -465,9 +465,9 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 					J3DGetTextureMtxMaya(blockTexMtx->mSrtInfo, v216);
 				}
 				PSMTXConcat(v216, qMtx, v216);
-				J3DMtxProjConcat(v216, tmo->_04[i * 2], v88);
+				J3DMtxProjConcat(v216, tmo->mBaseMtxPtr[i * 2], v88);
 				Mtx v152;
-				PSMTXInverse(j3dSys._00, v152);
+				PSMTXInverse(j3dSys.mViewMtx, v152);
 				PSMTXConcat(v88, v152, v88);
 				PSMTXConcat(v88, p1, v88);
 				mtxToLoad = &v88;
@@ -484,9 +484,9 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 					J3DGetTextureMtxMaya(blockTexMtx->mSrtInfo, v216);
 				}
 				PSMTXConcat(v216, qMtx2, v216);
-				J3DMtxProjConcat(v216, tmo->_04[i * 2], v88);
+				J3DMtxProjConcat(v216, tmo->mBaseMtxPtr[i * 2], v88);
 				Mtx v152;
-				PSMTXInverse(j3dSys._00, v152);
+				PSMTXInverse(j3dSys.mViewMtx, v152);
 				PSMTXConcat(v88, v152, v88);
 				PSMTXConcat(v88, p1, v88);
 				mtxToLoad = &v88;
@@ -498,7 +498,7 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 			case 0:
 			case 4:
 			default:
-				mtxToLoad = tmo->_00 + i;
+				mtxToLoad = tmo->mBaseMtxPtr + i;
 				break;
 			}
 			GXLoadTexMtxImm(*mtxToLoad, i * 3 + 30, (GXTexMtxType)blockTexMtx->_00);
@@ -952,7 +952,7 @@ lbl_800867FC:
 void J3DShapeMtxConcatView::loadMtxConcatView_PNGP(int p1, unsigned short p2) const
 {
 	Mtx v1;
-	PSMTXConcat(*j3dSys.mShapePacket->_30, j3dSys._104[p2], v1);
+	PSMTXConcat(*j3dSys.mShapePacket->mBaseMtxPtr, j3dSys.mModelDrawMtx[p2], v1);
 	if (J3DDifferedTexMtx::sTexGenBlock != nullptr) {
 		J3DDifferedTexMtx::loadExecute(v1);
 	}
@@ -968,11 +968,11 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PNGP(int p1, unsigned short p2) co
 void J3DShapeMtxConcatView::loadMtxConcatView_PCPU(int p1, unsigned short p2) const
 {
 	Mtx v1;
-	PSMTXConcat(*j3dSys.mShapePacket->_30, j3dSys._104[p2], v1);
+	PSMTXConcat(*j3dSys.mShapePacket->mBaseMtxPtr, j3dSys.mModelDrawMtx[p2], v1);
 	if (J3DDifferedTexMtx::sTexGenBlock != nullptr) {
 		J3DDifferedTexMtx::loadExecute(v1);
 	}
-	J3DFifoLoadPosMtxImm(*j3dSys.mShapePacket->_30, p1 * 3);
+	J3DFifoLoadPosMtxImm(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3);
 	loadNrmMtx(p1, p2, v1);
 }
 
@@ -984,14 +984,14 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PCPU(int p1, unsigned short p2) co
 void J3DShapeMtxConcatView::loadMtxConcatView_NCPU(int p1, unsigned short p2) const
 {
 	Mtx v1;
-	PSMTXConcat(*j3dSys.mShapePacket->_30, j3dSys._104[p2], v1);
+	PSMTXConcat(*j3dSys.mShapePacket->mBaseMtxPtr, j3dSys.mModelDrawMtx[p2], v1);
 	if (J3DDifferedTexMtx::sTexGenBlock != nullptr) {
 		J3DDifferedTexMtx::loadExecute(v1);
 	}
 	J3DFifoLoadPosMtxImm(v1, p1 * 3);
-	J3DFifoLoadNrmMtxImm(*j3dSys.mShapePacket->_30, p1 * 3);
+	J3DFifoLoadNrmMtxImm(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3);
 	if (sTexMtxLoadType == 0x2000) {
-		J3DFifoLoadNrmMtxToTexMtx(*j3dSys.mShapePacket->_30, p1 * 3 + 0x1E);
+		J3DFifoLoadNrmMtxToTexMtx(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3 + 0x1E);
 	}
 }
 
@@ -1004,13 +1004,13 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PNCPU(int p1, unsigned short p2) c
 {
 	if (J3DDifferedTexMtx::sTexGenBlock != nullptr) {
 		Mtx v1;
-		PSMTXConcat(*j3dSys.mShapePacket->_30, j3dSys._104[p2], v1);
+		PSMTXConcat(*j3dSys.mShapePacket->mBaseMtxPtr, j3dSys.mModelDrawMtx[p2], v1);
 		J3DDifferedTexMtx::loadExecute(v1);
 	}
-	J3DFifoLoadPosMtxImm(*j3dSys.mShapePacket->_30, p1 * 3);
-	J3DFifoLoadNrmMtxImm(*j3dSys.mShapePacket->_30, p1 * 3);
+	J3DFifoLoadPosMtxImm(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3);
+	J3DFifoLoadNrmMtxImm(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3);
 	if (sTexMtxLoadType == 0x2000) {
-		J3DFifoLoadNrmMtxToTexMtx(*j3dSys.mShapePacket->_30, p1 * 3 + 0x1E);
+		J3DFifoLoadNrmMtxToTexMtx(*j3dSys.mShapePacket->mBaseMtxPtr, p1 * 3 + 0x1E);
 	}
 }
 
@@ -1022,8 +1022,8 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PNCPU(int p1, unsigned short p2) c
 void J3DShapeMtxConcatView::loadMtxConcatView_PNGP_LOD(int p1, unsigned short p2) const
 {
 	Mtx v1;
-	PSMTXConcat(*j3dSys.mShapePacket->_30, j3dSys._104[p2], v1);
-	PSMTXConcat(v1, j3dSys._38->mModelData->mJointTree._2C[p2], v1);
+	PSMTXConcat(*j3dSys.mShapePacket->mBaseMtxPtr, j3dSys.mModelDrawMtx[p2], v1);
+	PSMTXConcat(v1, j3dSys.mModel->mModelData->mJointTree.mInvJointMtx[p2], v1);
 	if (J3DDifferedTexMtx::sTexGenBlock != nullptr) {
 		J3DDifferedTexMtx::loadExecute(v1);
 	}
@@ -1106,10 +1106,10 @@ void J3DShapeMtx::load() const
  * Address:	80086BF8
  * Size:	000064
  */
-void J3DShapeMtx::calcNBTScale(const Vec& p1, Mtx33* p2, Mtx33* p3)
+void J3DShapeMtx::calcNBTScale(const Vec& p1, Mtx33 p2, Mtx33 p3)
 {
-	J3DPSMtx33Copy(*(p2 + mUseMtxIndex), *(p3 + mUseMtxIndex));
-	J3DScaleNrmMtx33(*(p3 + mUseMtxIndex), p1);
+	J3DPSMtx33Copy((p2 + mUseMtxIndex), (p3 + mUseMtxIndex));
+	J3DScaleNrmMtx33((p3 + mUseMtxIndex), p1);
 }
 
 /*
@@ -1119,12 +1119,12 @@ void J3DShapeMtx::calcNBTScale(const Vec& p1, Mtx33* p2, Mtx33* p3)
  */
 void J3DShapeMtxConcatView::load() const
 {
-	sMtxPtrTbl[0]                      = j3dSys._38->mMtxBuffer->mWorldMatrices;
-	sMtxPtrTbl[1]                      = j3dSys._38->mMtxBuffer->_10;
+	sMtxPtrTbl[0]                      = j3dSys.mModel->mMtxBuffer->mWorldMatrices;
+	sMtxPtrTbl[1]                      = j3dSys.mModel->mMtxBuffer->mWeightEnvelopeMatrices;
 	LoadMtxConcatViewFunction function = sMtxLoadPipeline[sCurrentPipeline];
-	j3dSys._104                        = sMtxPtrTbl[j3dSys._38->mModelData->mJointTree.mMtxData._04[mUseMtxIndex]];
-	GXSetArray(0x15, j3dSys._104, sizeof(Mtx));
-	(this->*function)(0, j3dSys._38->mModelData->mJointTree.mMtxData._08[mUseMtxIndex]);
+	j3dSys.mModelDrawMtx               = sMtxPtrTbl[j3dSys.mModel->mModelData->mJointTree.mMtxData.mDrawMtxFlag[mUseMtxIndex]];
+	GXSetArray(GX_POS_MTX_ARRAY, j3dSys.mModelDrawMtx, sizeof(Mtx));
+	(this->*function)(0, j3dSys.mModel->mModelData->mJointTree.mMtxData.mDrawMtxIdx[mUseMtxIndex]);
 }
 
 /*
@@ -1233,8 +1233,8 @@ void J3DShapeMtxMulti::load() const
 	LoadMtxIndxFunction function = sMtxLoadPipeline[sCurrentPipeline];
 	u16 count                    = mUseMtxNum;
 	for (int i = 0; i < count; i++) {
-		if (_0C[i] != 0xFFFF) {
-			(this->*function)(i, _0C[i]);
+		if (mUseMtxIndexTable[i] != 0xFFFF) {
+			(this->*function)(i, mUseMtxIndexTable[i]);
 		}
 	}
 }
@@ -1244,13 +1244,13 @@ void J3DShapeMtxMulti::load() const
  * Address:	80086F00
  * Size:	0000B0
  */
-void J3DShapeMtxMulti::calcNBTScale(const Vec& p1, Mtx33* p2, Mtx33* p3)
+void J3DShapeMtxMulti::calcNBTScale(const Vec& p1, Mtx33 p2, Mtx33 p3)
 {
 	u16 count = mUseMtxNum;
 	for (int i = 0; i < count; i++) {
-		if (_0C[i] != 0xFFFF) {
-			J3DPSMtx33Copy(*(p2 + _0C[i]), *(p3 + _0C[i]));
-			J3DScaleNrmMtx33(*(p3 + _0C[i]), p1);
+		if (mUseMtxIndexTable[i] != 0xFFFF) {
+			J3DPSMtx33Copy((p2 + mUseMtxIndexTable[i]), (p3 + mUseMtxIndexTable[i]));
+			J3DScaleNrmMtx33((p3 + mUseMtxIndexTable[i]), p1);
 		}
 	}
 }
@@ -1262,28 +1262,28 @@ void J3DShapeMtxMulti::calcNBTScale(const Vec& p1, Mtx33* p2, Mtx33* p3)
  */
 void J3DShapeMtxMultiConcatView::load() const
 {
-	sMtxPtrTbl[0] = j3dSys._38->mMtxBuffer->mWorldMatrices;
-	sMtxPtrTbl[1] = j3dSys._38->mMtxBuffer->_10;
+	sMtxPtrTbl[0] = j3dSys.mModel->mMtxBuffer->mWorldMatrices;
+	sMtxPtrTbl[1] = j3dSys.mModel->mMtxBuffer->mWeightEnvelopeMatrices;
 	if (sLODFlag == false) {
 		LoadMtxConcatViewFunction function = sMtxLoadPipeline[sCurrentPipeline];
 		u16 count                          = mUseMtxNum;
 		for (int i = 0; i < count; i++) {
-			if (_0C[i] != 0xFFFF) {
-				j3dSys._104 = sMtxPtrTbl[j3dSys._38->mModelData->mJointTree.mMtxData._04[_0C[i]]];
-				GXSetArray(0x15, j3dSys._104, sizeof(Mtx));
-				(this->*function)(i, _0C[i]);
+			if (mUseMtxIndexTable[i] != 0xFFFF) {
+				j3dSys.mModelDrawMtx = sMtxPtrTbl[j3dSys.mModel->mModelData->mJointTree.mMtxData.mDrawMtxFlag[mUseMtxIndexTable[i]]];
+				GXSetArray(GX_POS_MTX_ARRAY, j3dSys.mModelDrawMtx, sizeof(Mtx));
+				(this->*function)(i, mUseMtxIndexTable[i]);
 			}
 		}
 	} else {
-		u16* v1     = j3dSys._38->mModelData->mJointTree._30;
-		j3dSys._104 = sMtxPtrTbl[0];
-		GXSetArray(0x15, sMtxPtrTbl[0], sizeof(Mtx));
+		u16* v1              = j3dSys.mModel->mModelData->mJointTree.mEnvelopeImptIdx;
+		j3dSys.mModelDrawMtx = sMtxPtrTbl[0];
+		GXSetArray(GX_POS_MTX_ARRAY, sMtxPtrTbl[0], sizeof(Mtx));
 		u16 count = mUseMtxNum;
 		for (int i = 0; i < count; i++) {
 			LoadMtxConcatViewFunction function = sMtxLoadLODPipeline[sCurrentPipeline];
-			u16 v2                             = _0C[i];
+			u16 v2                             = mUseMtxIndexTable[i];
 			if (v2 != 0xFFFF && v1[v2] != sMtxLoadCache[i]) {
-				if (j3dSys._38->mModelData->mJointTree.mMtxData._04[v2] == 0) {
+				if (j3dSys.mModel->mModelData->mJointTree.mMtxData.mDrawMtxFlag[v2] == 0) {
 					function = sMtxLoadPipeline[sCurrentPipeline];
 				}
 				(this->*function)(i, v2);
@@ -1441,7 +1441,7 @@ lbl_80087188:
  * Address:	8008719C
  * Size:	000138
  */
-void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short, float (*)[4]) const
+void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short, Mtx*) const
 {
 	/*
 	.loc_0x0:
@@ -1546,11 +1546,11 @@ void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short, float (*)[4]) c
 void J3DShapeMtxBBoardConcatView::load() const
 {
 	Mtx v1;
-	u16 v2 = j3dSys._38->mModelData->mJointTree.mMtxData._08[mUseMtxIndex];
-	if (j3dSys._38->mModelData->mJointTree.mMtxData._04[mUseMtxIndex] == 0) {
-		PSMTXConcat(j3dSys._00, j3dSys._38->mMtxBuffer->mWorldMatrices[v2], v1);
+	u16 v2 = j3dSys.mModel->mModelData->mJointTree.mMtxData.mDrawMtxIdx[mUseMtxIndex];
+	if (j3dSys.mModel->mModelData->mJointTree.mMtxData.mDrawMtxFlag[mUseMtxIndex] == 0) {
+		PSMTXConcat(j3dSys.mViewMtx, j3dSys.mModel->mMtxBuffer->mWorldMatrices[v2], v1);
 	} else {
-		PSMTXConcat(j3dSys._00, j3dSys._38->mMtxBuffer->_10[v2], v1);
+		PSMTXConcat(j3dSys.mViewMtx, j3dSys.mModel->mMtxBuffer->mWeightEnvelopeMatrices[v2], v1);
 	}
 	J3DCalcBBoardMtx(v1);
 	J3DFifoLoadPosMtxImm(v1, 0);
@@ -1569,7 +1569,7 @@ void J3DShapeMtxBBoardConcatView::load() const
 	if (sNBTFlag == false) {
 		J3DFifoLoadNrmMtxImm(v1, 0);
 	} else {
-		J3DScaleNrmMtx(v1, *j3dSys._118);
+		J3DScaleNrmMtx(v1, *j3dSys.mNBTScale);
 		J3DFifoLoadNrmMtxImm(v1, 0);
 	}
 }
@@ -1582,11 +1582,11 @@ void J3DShapeMtxBBoardConcatView::load() const
 void J3DShapeMtxYBBoardConcatView::load() const
 {
 	Mtx v1;
-	u16 v2 = j3dSys._38->mModelData->mJointTree.mMtxData._08[mUseMtxIndex];
-	if (j3dSys._38->mModelData->mJointTree.mMtxData._04[mUseMtxIndex] == 0) {
-		PSMTXConcat(j3dSys._00, j3dSys._38->mMtxBuffer->mWorldMatrices[v2], v1);
+	u16 v2 = j3dSys.mModel->mModelData->mJointTree.mMtxData.mDrawMtxIdx[mUseMtxIndex];
+	if (j3dSys.mModel->mModelData->mJointTree.mMtxData.mDrawMtxFlag[mUseMtxIndex] == 0) {
+		PSMTXConcat(j3dSys.mViewMtx, j3dSys.mModel->mMtxBuffer->mWorldMatrices[v2], v1);
 	} else {
-		PSMTXConcat(j3dSys._00, j3dSys._38->mMtxBuffer->_10[v2], v1);
+		PSMTXConcat(j3dSys.mViewMtx, j3dSys.mModel->mMtxBuffer->mWeightEnvelopeMatrices[v2], v1);
 	}
 	J3DCalcYBBoardMtx(v1);
 	J3DFifoLoadPosMtxImm(v1, 0);
@@ -1594,7 +1594,7 @@ void J3DShapeMtxYBBoardConcatView::load() const
 		if (sNBTFlag == false) {
 			J3DFifoLoadNrmMtxImm(v1, 0);
 		} else {
-			J3DScaleNrmMtx(v1, *j3dSys._118);
+			J3DScaleNrmMtx(v1, *j3dSys.mNBTScale);
 			J3DFifoLoadNrmMtxImm(v1, 0);
 		}
 	} else {
@@ -1603,7 +1603,7 @@ void J3DShapeMtxYBBoardConcatView::load() const
 		if (sNBTFlag == false) {
 			J3DFifoLoadNrmMtxImm3x3(v3, 0);
 		} else {
-			J3DScaleNrmMtx33(v3, *j3dSys._118);
+			J3DScaleNrmMtx33(v3, *j3dSys.mNBTScale);
 			J3DFifoLoadNrmMtxImm3x3(v3, 0);
 		}
 	}
