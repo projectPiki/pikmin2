@@ -379,7 +379,7 @@ void Item::setCurrStage(int stageIdx)
 void Item::createWayPoints()
 {
 	Vector3f start = getStartPos();
-	WPSearchArg startArg(start, nullptr, 0, 10.0f);
+	WPSearchArg startArg(start, nullptr, false, 10.0f);
 	if (mapMgr && mapMgr->mRouteMgr) {
 		mBridgeWP            = mapMgr->mRouteMgr->getNearestWayPoint(startArg);
 		mBridgeWP->mPosition = start;
@@ -393,7 +393,7 @@ void Item::createWayPoints()
 	Vector3f zVec = getBridgeZVec() * 40.0f;
 	end += zVec;
 
-	WPSearchArg endArg(end, nullptr, 0, 10.0f);
+	WPSearchArg endArg(end, nullptr, false, 10.0f);
 	if (mapMgr && mapMgr->mRouteMgr) {
 		mEndWP            = mapMgr->mRouteMgr->getNearestWayPoint(endArg);
 		mEndWP->mPosition = end;

@@ -32,7 +32,7 @@ struct Rigid {
 	void integrate(f32, int);
 	bool resolveCollision(int, Vector3f&, Vector3f&, f32);
 
-	f32 _00;                 // _000
+	f32 mTimeStep;           // _000
 	Matrixf _04;             // _004
 	RigidConfig mConfigs[2]; // _034, [1] at _0BC
 	Matrixf _144;            // _144

@@ -26,12 +26,12 @@ struct TOptionParameter {
 	void loadRam();
 	void saveRam();
 
-	bool _00;          // _00
-	bool _01;          // _01
-	long mSoundMode;   // _04
-	long mBgmVolume;   // _08
-	long mSeVolume;    // _0C
-	bool mIsDeflicker; // _10
+	bool mIsRubyFont;   // _00
+	bool mIsRumble;     // _01
+	long mSoundMode;    // _04
+	long mBgmVolume;    // _08
+	long mSeVolume;     // _0C
+	bool mUseDeflicker; // _10
 };
 
 struct TOption : public TScreenBase {

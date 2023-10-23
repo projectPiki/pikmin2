@@ -64,7 +64,7 @@ void Game::Rigid::initPosition(Vector3f& posVec, Vector3f& quatVec)
 	PSMTXIdentity(mConfigs[0]._58.mMatrix.mtxView);
 	PSMTXIdentity(mConfigs[1]._58.mMatrix.mtxView);
 	PSMTXIdentity(_144.mMatrix.mtxView);
-	_00 = 1.0f;
+	mTimeStep = 1.0f;
 	updateMatrix(0);
 }
 
@@ -289,7 +289,7 @@ void getYDegree(Quat& quat, Vector3f& vec)
  * Address:	8013A4FC
  * Size:	000678
  */
-void Game::Rigid::integrate(f32 p1, int configIdx)
+void Game::Rigid::integrate(f32 timeStep, int configIdx)
 {
 	RigidConfig* thisConfig  = &mConfigs[configIdx]; // r31
 	RigidConfig* otherConfig = &mConfigs[1 - configIdx];
@@ -305,9 +305,9 @@ void Game::Rigid::integrate(f32 p1, int configIdx)
 	PSMTXConcat(matQ.mMatrix.mtxView, _144.mMatrix.mtxView, matC.mMatrix.mtxView);
 	PSMTXConcat(matC.mMatrix.mtxView, matT.mMatrix.mtxView, thisConfig->_58.mMatrix.mtxView);
 
-	thisConfig->mPosition += thisConfig->mVelocity * p1;
-	thisConfig->_30 += thisConfig->_3C * p1;
-	thisConfig->mVelocity += thisConfig->_18 * (p1 * _00);
+	thisConfig->mPosition += thisConfig->mVelocity * timeStep;
+	thisConfig->_30 += thisConfig->_3C * timeStep;
+	thisConfig->mVelocity += thisConfig->_18 * (timeStep * mTimeStep);
 
 	thisConfig->_24 = thisConfig->_58.mtxMult(thisConfig->_30);
 

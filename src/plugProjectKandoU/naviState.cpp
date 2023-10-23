@@ -2747,7 +2747,7 @@ int NaviPathMoveState::initPathfinding(Navi* navi)
 		}
 	}
 	releasePathfinder();
-	WPSearchArg wpSearchArg(mPosition, nullptr, 0, 10.0f);
+	WPSearchArg wpSearchArg(mPosition, nullptr, false, 10.0f);
 	WayPoint* searchResult = mapMgr->mRouteMgr->getNearestWayPoint(wpSearchArg);
 	if (searchResult == nullptr) {
 		return 2;

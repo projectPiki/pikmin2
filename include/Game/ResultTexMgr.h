@@ -53,7 +53,7 @@ struct Mgr : public JKRDisposer {
 	int getOtakaraNum();
 	int getItemNum();
 
-	JKRHeap* _18;                          // _18
+	JKRHeap* mHeap;                        // _18
 	LoadResource::Node* mLoadResourceNode; // _1C
 	Textures mCarcassTextures;             // _20
 	Textures mOtakaraTextures;             // _28

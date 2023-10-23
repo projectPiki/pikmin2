@@ -29,9 +29,9 @@ void Mgr::setDefault()
 	mSoundMode     = 0;
 	mMusicVol      = 0xFF;
 	mSeVol         = -1;
-	mRumble        = true;
-	mRubyFont      = true;
-	mDeflicker     = true;
+	mIsRumble      = true;
+	mIsRubyFont    = true;
+	mUseDeflicker  = true;
 	mRegion        = (u8)sys->mRegion;
 	_18            = 0;
 	mTime          = 0;
@@ -76,9 +76,9 @@ void CommonSaveData::Mgr::write(Stream& output)
 	output.writeByte(mSoundMode);
 	output.writeByte(mMusicVol);
 	output.writeByte(mSeVol);
-	output.writeByte(mRumble);
-	output.writeByte(mRubyFont);
-	output.writeByte(mDeflicker);
+	output.writeByte(mIsRumble);
+	output.writeByte(mIsRubyFont);
+	output.writeByte(mUseDeflicker);
 	output.writeByte(mRegion);
 	PlayCommonData::write(output);
 }
@@ -94,13 +94,13 @@ void CommonSaveData::Mgr::read(Stream& input)
 	if (input.mMode == STREAM_MODE_TEXT) {
 		input.mTabCount = 0;
 	}
-	mSoundMode = input.readByte();
-	mMusicVol  = input.readByte();
-	mSeVol     = input.readByte();
-	mRumble    = input.readByte();
-	mRubyFont  = input.readByte();
-	mDeflicker = input.readByte();
-	mRegion    = input.readByte();
+	mSoundMode    = input.readByte();
+	mMusicVol     = input.readByte();
+	mSeVol        = input.readByte();
+	mIsRumble     = input.readByte();
+	mIsRubyFont   = input.readByte();
+	mUseDeflicker = input.readByte();
+	mRegion       = input.readByte();
 	PlayCommonData::read(input);
 }
 
@@ -157,7 +157,7 @@ void CommonSaveData::Mgr::resetPlayer(s8 fileIndex)
  * Address:	80446FC8
  * Size:	000030
  */
-void CommonSaveData::Mgr::setDeflicker() { setDeflicker(mDeflicker); }
+void CommonSaveData::Mgr::setDeflicker() { setDeflicker(mUseDeflicker); }
 
 /*
  * --INFO--
@@ -167,7 +167,7 @@ void CommonSaveData::Mgr::setDeflicker() { setDeflicker(mDeflicker); }
 void CommonSaveData::Mgr::setDeflicker(bool deflicker)
 {
 	_GXRenderModeObj* obj = System::getRenderModeObj();
-	mDeflicker            = deflicker;
+	mUseDeflicker         = deflicker;
 
 	if ((u32)OSGetProgressiveMode() == 1) {
 		obj->vfilter[0] = 0;

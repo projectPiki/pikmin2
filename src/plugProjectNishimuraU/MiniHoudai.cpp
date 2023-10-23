@@ -43,10 +43,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 		enableEvent(0, EB_Constrained);
 	}
 
-	_2C8       = 128.0f;
-	_2CC       = 0.0f;
-	_2D0       = 0.0f;
-	mNextState = MINIHOUDAI_NULL;
+	mHealthGaugeTimer = 128.0f;
+	_2CC              = 0.0f;
+	mUpdateTimer      = 0.0f;
+	mNextState        = MINIHOUDAI_NULL;
 	resetWayPoint();
 	setNearestWayPoint();
 	setupShotGun();
@@ -279,8 +279,8 @@ WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
  */
 bool Obj::doBecomeCarcass()
 {
-	_2C8    = 0.0f;
-	mHealth = 0.0f;
+	mHealthGaugeTimer = 0.0f;
+	mHealth           = 0.0f;
 	return true;
 }
 
@@ -292,13 +292,13 @@ bool Obj::doBecomeCarcass()
 void Obj::doUpdateCarcass()
 {
 	if (mPellet->isAlive()) {
-		if (_2C8 < C_PROPERPARMS.mFp11.mValue) {
-			_2C8 += sys->mDeltaTime;
-			if (lifeGaugeMgr && _2C8 >= C_PROPERPARMS.mFp11.mValue) {
+		if (mHealthGaugeTimer < C_PROPERPARMS.mHealthGaugeTimer.mValue) {
+			mHealthGaugeTimer += sys->mDeltaTime;
+			if (lifeGaugeMgr && mHealthGaugeTimer >= C_PROPERPARMS.mHealthGaugeTimer.mValue) {
 				lifeGaugeMgr->activeLifeGauge(this, 0.0f);
 			}
 		} else if (mHealth < mMaxHealth) {
-			mHealth += (mMaxHealth / C_PROPERPARMS.mFp12.mValue) * sys->getFrameLength();
+			mHealth += (mMaxHealth / C_PROPERPARMS.mRespawnRate.mValue) * sys->getFrameLength();
 			if (mHealth >= mMaxHealth) {
 				mPellet->kill(nullptr);
 				f32 zx = mObjMatrix.mMatrix.structView.zx;
@@ -316,9 +316,9 @@ void Obj::doUpdateCarcass()
 				}
 			}
 		}
-	} else if (lifeGaugeMgr && _2C8 >= C_PROPERPARMS.mFp11.mValue) {
-		_2C8    = 0.0f;
-		mHealth = 0.0f;
+	} else if (lifeGaugeMgr && mHealthGaugeTimer >= C_PROPERPARMS.mHealthGaugeTimer.mValue) {
+		mHealthGaugeTimer = 0.0f;
+		mHealth           = 0.0f;
 		lifeGaugeMgr->inactiveLifeGauge(this);
 	}
 }
@@ -350,11 +350,11 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 void Obj::updateCaution()
 {
 	if (isEvent(0, EB_Colliding) || isEvent(0, EB_TakingDamage) || mStuckPikminCount != 0) {
-		_2C8 = 0.0f;
+		mHealthGaugeTimer = 0.0f;
 	}
 
-	if (_2C8 < C_PARMS->mGeneral.mAlertDuration.mValue) {
-		_2C8 += sys->mDeltaTime;
+	if (mHealthGaugeTimer < C_PARMS->mGeneral.mAlertDuration.mValue) {
+		mHealthGaugeTimer += sys->mDeltaTime;
 	}
 }
 
@@ -363,7 +363,7 @@ void Obj::updateCaution()
  * Address:	802EC958
  * Size:	000024
  */
-f32 Obj::getViewAngle() { return (_2C8 < C_PARMS->mGeneral.mAlertDuration()) ? 180.0f : C_PARMS->mGeneral.mViewAngle(); }
+f32 Obj::getViewAngle() { return (mHealthGaugeTimer < C_PARMS->mGeneral.mAlertDuration()) ? 180.0f : C_PARMS->mGeneral.mViewAngle(); }
 
 /*
  * --INFO--
@@ -372,8 +372,8 @@ f32 Obj::getViewAngle() { return (_2C8 < C_PARMS->mGeneral.mAlertDuration()) ? 1
  */
 void Obj::resetWayPoint()
 {
-	_2F0 = nullptr;
-	_2F4 = nullptr;
+	mNearestWaypoint    = nullptr;
+	mOldNearestWaypoint = nullptr;
 }
 
 /*
@@ -383,12 +383,12 @@ void Obj::resetWayPoint()
  */
 void Obj::setNearestWayPoint()
 {
-	_2F4 = _2F0;
-	WPSearchArg searchArg(mPosition, nullptr, 0, 10.0f);
-	_2F0 = mapMgr->mRouteMgr->getNearestWayPoint(searchArg);
+	mOldNearestWaypoint = mNearestWaypoint;
+	WPSearchArg searchArg(mPosition, nullptr, false, 10.0f);
+	mNearestWaypoint = mapMgr->mRouteMgr->getNearestWayPoint(searchArg);
 
-	if (_2F0) {
-		mWalkTargetPosition = Vector3f(_2F0->mPosition);
+	if (mNearestWaypoint) {
+		mWalkTargetPosition = Vector3f(mNearestWaypoint->mPosition);
 	} else {
 		mWalkTargetPosition = mHomePosition;
 	}
@@ -401,15 +401,15 @@ void Obj::setNearestWayPoint()
  */
 void Obj::setLinkWayPoint()
 {
-	if (_2F0) {
+	if (mNearestWaypoint) {
 		WayPoint* wpList[8];
 		int counter = 0;
 		int wpIdx   = -1;
-		if (_2F4) {
-			wpIdx = _2F4->mIndex;
+		if (mOldNearestWaypoint) {
+			wpIdx = mOldNearestWaypoint->mIndex;
 		}
 
-		WayPointIterator iter(_2F0, true);
+		WayPointIterator iter(mNearestWaypoint, true);
 		CI_LOOP(iter)
 		{
 			s16 currIdx = *iter;
@@ -423,17 +423,17 @@ void Obj::setLinkWayPoint()
 		}
 
 		if (counter != 0) {
-			_2F4                = _2F0;
-			_2F0                = wpList[(int)((f32)counter * randFloat())];
-			mWalkTargetPosition = Vector3f(_2F0->mPosition);
+			mOldNearestWaypoint = mNearestWaypoint;
+			mNearestWaypoint    = wpList[(int)((f32)counter * randFloat())];
+			mWalkTargetPosition = Vector3f(mNearestWaypoint->mPosition);
 			return;
 
 		} else if (wpIdx >= 0) {
 			WayPoint* wp = mapMgr->mRouteMgr->getWayPoint(wpIdx);
 			if (wp && !wp->isFlag(WPF_Closed)) {
-				_2F4                = _2F0;
-				_2F0                = wp;
-				mWalkTargetPosition = Vector3f(_2F0->mPosition);
+				mOldNearestWaypoint = mNearestWaypoint;
+				mNearestWaypoint    = wp;
+				mWalkTargetPosition = Vector3f(mNearestWaypoint->mPosition);
 				return;
 			}
 		}
@@ -453,7 +453,7 @@ Creature* Obj::getSearchedTarget()
 	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, viewAngle, C_PARMS->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
 
 	if (target) {
-		_2C8 = 0.0f;
+		mHealthGaugeTimer = 0.0f;
 	}
 
 	return target;
@@ -466,15 +466,15 @@ Creature* Obj::getSearchedTarget()
  */
 void Obj::updateTargetDistance()
 {
-	f32 radius = (_2F0) ? _2F0->mRadius : C_PARMS->mGeneral.mHomeRadius.mValue;
+	f32 radius = (mNearestWaypoint) ? mNearestWaypoint->mRadius : C_PARMS->mGeneral.mHomeRadius.mValue;
 
 	if (sqrDistanceXZ(mPosition, mWalkTargetPosition) < radius * radius) {
 		setLinkWayPoint();
-		_2D0 = 0.0f;
+		mUpdateTimer = 0.0f;
 	}
 
-	if (_2D0 > 5.0f) {
-		_2D0 = 0.0f;
+	if (mUpdateTimer > 5.0f) {
+		mUpdateTimer = 0.0f;
 		setNearestWayPoint();
 		updateHomePosition();
 	}

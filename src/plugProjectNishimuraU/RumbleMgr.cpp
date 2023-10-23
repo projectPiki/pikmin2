@@ -56,7 +56,7 @@ void RumbleMgr::loadResource()
 void RumbleMgr::init()
 {
 	if (sys->mPlayData) {
-		mIsRumbleActive = (sys->mPlayData->mRumble != 0);
+		mIsRumbleActive = (sys->mPlayData->mIsRumble != 0);
 	} else {
 		mIsRumbleActive = true;
 	}

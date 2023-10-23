@@ -114,7 +114,7 @@ void ItemGate::onSetPosition()
 	}
 	initPlanes();
 
-	WPSearchArg wpSearch(mPosition, nullptr, 0, 10.0f);
+	WPSearchArg wpSearch(mPosition, nullptr, false, 10.0f);
 	if (mapMgr && mapMgr->mRouteMgr) {
 		mWayPoint = mapMgr->mRouteMgr->getNearestWayPoint(wpSearch);
 		mWayPoint->setOpen(false);

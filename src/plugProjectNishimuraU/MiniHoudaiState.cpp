@@ -897,11 +897,11 @@ void StateLost::cleanup(EnemyBase* enemy) { }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* mini             = OBJ(enemy);
-	mini->mNextState      = MINIHOUDAI_NULL;
-	mini->_2CC            = 0.0f;
-	mini->_2C8            = 0.0f;
-	mini->mTargetVelocity = Vector3f(0.0f);
+	Obj* mini               = OBJ(enemy);
+	mini->mNextState        = MINIHOUDAI_NULL;
+	mini->_2CC              = 0.0f;
+	mini->mHealthGaugeTimer = 0.0f;
+	mini->mTargetVelocity   = Vector3f(0.0f);
 	mini->setEmotionExcitement();
 	mini->startMotion(MINIHOUDAIANIM_Attack, nullptr);
 }
@@ -1413,10 +1413,10 @@ void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* mini             = OBJ(enemy);
-	mini->mNextState      = MINIHOUDAI_NULL;
-	mini->_2C8            = 0.0f;
-	mini->mTargetVelocity = Vector3f(0.0f);
+	Obj* mini               = OBJ(enemy);
+	mini->mNextState        = MINIHOUDAI_NULL;
+	mini->mHealthGaugeTimer = 0.0f;
+	mini->mTargetVelocity   = Vector3f(0.0f);
 	mini->setEmotionExcitement();
 	mini->startMotion(MINIHOUDAIANIM_Flick, nullptr);
 	mini->setAnimSpeed(45.0f);
@@ -1814,7 +1814,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mini             = OBJ(enemy);
-	mini->_2D0            = 0.0f;
+	mini->mUpdateTimer    = 0.0f;
 	mini->mNextState      = MINIHOUDAI_NULL;
 	mini->mTargetVelocity = Vector3f(0.0f);
 	mini->setEmotionExcitement();
@@ -2861,9 +2861,9 @@ void StateTurnPath::cleanup(EnemyBase* enemy) { }
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* mini        = OBJ(enemy);
-	mini->_2D0       = 0.0f;
-	mini->mNextState = MINIHOUDAI_NULL;
+	Obj* mini          = OBJ(enemy);
+	mini->mUpdateTimer = 0.0f;
+	mini->mNextState   = MINIHOUDAI_NULL;
 	mini->setEmotionExcitement();
 	mini->startMotion(MINIHOUDAIANIM_Walk, nullptr);
 }

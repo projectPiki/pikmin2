@@ -1473,7 +1473,7 @@ void BootSection::updateLoadResourceFirst()
 	sys->mCardMgr->update();
 	if (!sys->dvdLoadSyncAllNoBlock()) {
 		if (Game::gGameConfig.mParms.mNintendoVersion.mData) {
-			sys->mPlayData->mRumble = false;
+			sys->mPlayData->mIsRumble = false;
 		} else if (!Game::gGameConfig.mParms.mE3version.mData) {
 			sys->mCardMgr->loadGameOption();
 		}

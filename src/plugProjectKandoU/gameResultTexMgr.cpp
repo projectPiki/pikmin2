@@ -20,7 +20,7 @@ static const char unusedName[] = "resultTexMgr";
  */
 ResultTexMgr::Mgr::Mgr()
     : JKRDisposer()
-    , _18(nullptr)
+    , mHeap(nullptr)
     , mLoadResourceNode(nullptr)
     , mOtakaraConfigList(nullptr)
     , mItemConfigList(nullptr)
@@ -46,10 +46,10 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 
 	mOtakaraConfigList  = arg.mOtakaraConfigList;
 	mItemConfigList     = arg.mItemConfigList;
-	_18                 = arg.mHeap;
+	mHeap               = arg.mHeap;
 	JKRHeap* poppedHeap = JKRHeap::sCurrentHeap;
 	JKRArchive* archive = nullptr;
-	_18->becomeCurrentHeap();
+	mHeap->becomeCurrentHeap();
 	if (arg.mRegionMode == REGIONID_Null) {
 		switch (sys->mRegion) {
 		case System::LANG_JAPANESE:
@@ -73,7 +73,7 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 		}
 	}
 	LoadResource::Arg loadResourceArg(pathBuffer);
-	loadResourceArg.mHeap = _18;
+	loadResourceArg.mHeap = mHeap;
 	mLoadResourceNode     = gLoadResourceMgr->mountArchive(loadResourceArg);
 	if (mLoadResourceNode) {
 		archive = mLoadResourceNode->getArchive();

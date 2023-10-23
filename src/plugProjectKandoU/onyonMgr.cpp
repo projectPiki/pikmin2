@@ -647,7 +647,7 @@ void Onyon::onSetPosition()
 	if (mapMgr) {
 		mPosition.y = mapMgr->getMinY(mPosition);
 	}
-	WPSearchArg wparg(mPosition, 0, 0, 10.0);
+	WPSearchArg wparg(mPosition, nullptr, false, 10.0);
 	if (mapMgr && mapMgr->mRouteMgr) {
 		mGoalWayPoint = mapMgr->mRouteMgr->getNearestWayPoint(wparg);
 	} else {

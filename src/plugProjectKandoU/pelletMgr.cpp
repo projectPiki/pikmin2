@@ -1909,7 +1909,7 @@ void Pellet::onSetPosition()
 	mObjMatrix           = mRigid._04;
 	mLodSphere.mPosition = mPelletPosition;
 	updateParticlePositions();
-	mRigid._00 = 1.0f;
+	mRigid.mTimeStep = 1.0f;
 
 	mMass = 0.0f;
 	if (mPelletFlag == FLAG_NAVI_NAPSACK) {
@@ -3577,7 +3577,7 @@ void Pellet::doSimulation(f32 constraint)
 		wpPosition.y        = 0.0f;
 
 		NotOff condition;
-		WPSearchArg searchArg(wpPosition, &condition, 0, 10.0f);
+		WPSearchArg searchArg(wpPosition, &condition, false, 10.0f);
 
 		WayPoint* wayPoint = mapMgr->mRouteMgr->getNearestWayPoint(searchArg);
 		if (wayPoint) {
@@ -4732,7 +4732,7 @@ void Pellet::doLoad(Stream& stream)
 	_3C4    = byte != 0;
 
 	Vector3f pelletPosition = getPosition();
-	WPSearchArg arg(pelletPosition, nullptr, 0, 10.0f);
+	WPSearchArg arg(pelletPosition, nullptr, false, 10.0f);
 	WayPoint* wayPoint = mapMgr->mRouteMgr->getNearestWayPoint(arg);
 
 	bool isOnyonNearest = false;
@@ -4748,7 +4748,7 @@ void Pellet::doLoad(Stream& stream)
 
 	if (isOnyonNearest) {
 		WPExcludeSpot exclude;
-		WPSearchArg arg(pelletPosition, &exclude, 0, 10.0f);
+		WPSearchArg arg(pelletPosition, &exclude, false, 10.0f);
 		WayPoint* wayPoint = mapMgr->mRouteMgr->getNearestWayPoint(arg);
 		if (wayPoint != nullptr) {
 			Vector3f newPosition = wayPoint->getPosition();

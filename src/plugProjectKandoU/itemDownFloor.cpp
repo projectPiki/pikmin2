@@ -137,7 +137,7 @@ void Item::onSetPosition()
 	mgr->setupPlatform(this);
 
 	if (mDownFloorType == DFTYPE_PaperBag || mIsDemoBlock) {
-		WPSearchArg searchArg(mPosition, nullptr, 0, 10.0f);
+		WPSearchArg searchArg(mPosition, nullptr, false, 10.0f);
 
 		if (mapMgr && mapMgr->mRouteMgr) {
 			mWayPoint = mapMgr->mRouteMgr->getNearestWayPoint(searchArg);

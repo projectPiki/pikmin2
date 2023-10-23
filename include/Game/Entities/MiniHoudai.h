@@ -117,14 +117,14 @@ struct Obj : public EnemyBase {
 	// _00-_2B8	= EnemyBase
 	FSM* mFsm;                           // _2BC
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;  // _2C0
-	f32 _2C8;                            // _2C8, caution?
+	f32 mHealthGaugeTimer;               // _2C8
 	f32 _2CC;                            // _2CC
-	f32 _2D0;                            // _2D0
+	f32 mUpdateTimer;                    // _2D0
 	StateID mNextState;                  // _2D4
 	Vector3f mTargetPosition;            // _2D8
 	Vector3f mWalkTargetPosition;        // _2E4, next point to walk to, either waypoint or home position
-	WayPoint* _2F0;                      // _2F0
-	WayPoint* _2F4;                      // _2F4
+	WayPoint* mNearestWaypoint;          // _2F0
+	WayPoint* mOldNearestWaypoint;       // _2F4
 	MiniHoudaiShotGunMgr* mShotgunMgr;   // _2F8
 	u8 _2FC[0x4];                        // _2FC, unknown
 	efx::TChibiCharge* mEfxCharge;       // _300
@@ -154,13 +154,15 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp11(this, 'fp11', "Ž€–S ` ƒQ[ƒWoŒ»", 30.0f, 1.0f, 500.0f) // 'death ~ appearance of gauge'
-		    , mFp12(this, 'fp12', "ƒQ[ƒWoŒ» ` •œŠˆ", 10.0f, 1.0f, 500.0f) // 'appearance of gauge ~ resurrection'
+		    , mHealthGaugeTimer(this, 'fp11', "Ž€–S ` ƒQ[ƒWoŒ»", 30.0f, 1.0f,
+		                        500.0f) // 'death ~ appearance of gauge' (Time from death -> health gauge)
+		    , mRespawnRate(this, 'fp12', "ƒQ[ƒWoŒ» ` •œŠˆ", 10.0f, 1.0f,
+		                   500.0f) // 'appearance of gauge ~ resurrection' (Time from health gauge -> alive)
 		{
 		}
 
-		Parm<f32> mFp11; // _804
-		Parm<f32> mFp12; // _82C
+		Parm<f32> mHealthGaugeTimer; // _804
+		Parm<f32> mRespawnRate;      // _82C
 	};
 
 	Parms() { }

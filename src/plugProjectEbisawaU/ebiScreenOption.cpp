@@ -177,6 +177,8 @@
  */
 void _Print(char* name, ...) { OSReport("ebiScreenOption"); }
 
+using namespace Game::CommonSaveData;
+
 namespace ebi {
 namespace Screen {
 
@@ -188,24 +190,24 @@ namespace Screen {
 void TOptionParameter::loadRam()
 {
 	Game::CommonSaveData::Mgr* mgr = sys->mPlayData;
-	_00                            = mgr->mRubyFont;
-	_01                            = mgr->mRumble;
+	mIsRubyFont                    = mgr->mIsRubyFont;
+	mIsRumble                      = mgr->mIsRumble;
 	switch (mgr->mSoundMode) {
-	case 0:
+	case Mgr::SM_Mono:
 		if (true) {
-			mSoundMode = 0;
+			mSoundMode = Game::CommonSaveData::Mgr::SM_Mono;
 		}
 		break;
-	case 1:
-		mSoundMode = 1;
+	case Mgr::SM_Stereo:
+		mSoundMode = Mgr::SM_Stereo;
 		break;
-	case 2:
-		mSoundMode = 2;
+	case Mgr::SM_SurroundSound:
+		mSoundMode = Mgr::SM_SurroundSound;
 		break;
 	}
-	mBgmVolume   = (f32)mgr->mMusicVol / 255.0f * 10.0f;
-	mSeVolume    = (f32)mgr->mSeVol / 255.0f * 10.0f;
-	mIsDeflicker = mgr->mDeflicker;
+	mBgmVolume    = (f32)mgr->mMusicVol / 255.0f * 10.0f;
+	mSeVolume     = (f32)mgr->mSeVol / 255.0f * 10.0f;
+	mUseDeflicker = mgr->mUseDeflicker;
 }
 
 /*
@@ -216,22 +218,22 @@ void TOptionParameter::loadRam()
 void TOptionParameter::saveRam()
 {
 	Game::CommonSaveData::Mgr* mgr = sys->mPlayData;
-	mgr->mRubyFont                 = _00;
-	mgr->mRumble                   = _01;
+	mgr->mIsRubyFont               = mIsRubyFont;
+	mgr->mIsRumble                 = mIsRumble;
 	switch (mSoundMode) {
-	case 0:
+	case Mgr::SM_Mono:
 		mgr->setSoundModeMono();
 		break;
-	case 1:
+	case Mgr::SM_Stereo:
 		mgr->setSoundModeStereo();
 		break;
-	case 2:
+	case Mgr::SM_SurroundSound:
 		mgr->setSoundModeSurround();
 		break;
 	}
 	mgr->setBgmVolume(mBgmVolume / 10.0f);
 	mgr->setSeVolume(mSeVolume / 10.0f);
-	mgr->setDeflicker(mIsDeflicker);
+	mgr->setDeflicker(mUseDeflicker);
 
 	/*
 stwu     r1, -0x20(r1)
@@ -317,12 +319,12 @@ blr
  */
 void TOptionParameter::initParamForTest()
 {
-	_00          = false;
-	_01          = false;
-	mSoundMode   = 0;
-	mBgmVolume   = 1;
-	mSeVolume    = 1;
-	mIsDeflicker = false;
+	mIsRubyFont   = false;
+	mIsRumble     = false;
+	mSoundMode    = Mgr::SM_Mono;
+	mBgmVolume    = 1;
+	mSeVolume     = 1;
+	mUseDeflicker = false;
 }
 
 /*
@@ -2676,7 +2678,7 @@ void TOption::setOptionParamToScreen_()
 	// 	break;
 	// }
 #else
-	if (_0C8._01) {
+	if (_0C8.mIsRumble) {
 		_110->mCharColor     = _1C4.mCol1;
 		_110->mGradientColor = _1C4.mCol2;
 		_110->setWhite(_1C4.mWhite);
@@ -2777,7 +2779,7 @@ void TOption::setOptionParamToScreen_()
 	// 	_128->setWhite(JUtility::TColor(_1C4.mWhite));
 	// 	_128->setBlack(JUtility::TColor(_1C4.mBlack));
 	// }
-	if (_0C8.mIsDeflicker) {
+	if (_0C8.mUseDeflicker) {
 		_124->mCharColor     = _1C4.mCol1;
 		_124->mGradientColor = _1C4.mCol2;
 		_124->setWhite(_1C4.mWhite);
@@ -2800,7 +2802,7 @@ void TOption::setOptionParamToScreen_()
 	case 0:
 		break;
 	case 1:
-		if (_0C8._01) {
+		if (_0C8.mIsRumble) {
 			_240.mPane = _110;
 		} else {
 			_240.mPane = _114;
@@ -2828,7 +2830,7 @@ void TOption::setOptionParamToScreen_()
 		}
 		break;
 	case 5:
-		if (_0C8.mIsDeflicker) {
+		if (_0C8.mUseDeflicker) {
 			_240.mPane = _124;
 		} else {
 			_240.mPane = _128;
