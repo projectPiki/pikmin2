@@ -158,9 +158,9 @@ struct Mgr : public PlayCommonData {
 	u8 mSoundMode;       // _38, TODO: Replace with Soundmode enum
 	u8 mMusicVol;        // _39
 	u8 mSeVol;           // _3A
-	bool mIsRumble;      // _3B
-	bool mIsRubyFont;    // _3C, japanese version leftover, mini font in cutscenes
-	bool mUseDeflicker;  // _3D
+	u8 mIsRumble;        // _3B
+	u8 mIsRubyFont;      // _3C, japanese version leftover, mini font in cutscenes
+	u8 mUseDeflicker;    // _3D
 	u8 mRegion;          // _3E
 	char _3F;            // _3F
 	BitFlag<u16> mFlags; // _40
