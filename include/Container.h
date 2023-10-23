@@ -128,13 +128,11 @@ struct ArrayContainer : public Container<T> {
 
 	virtual void addOne(T& object) // _40 (weak)
 	{
-		int index = mCount;
-		if (index >= mLimit) {
+		if (mCount >= mLimit) {
 			return;
 		}
-		T& arrayObject = mObjects[index];
-		mCount++;
-		arrayObject = object;
+
+		mObjects[mCount++] = object;
 	}
 
 	virtual void setArray(T* objects, int count) // _44 (weak)

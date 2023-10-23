@@ -185,9 +185,8 @@ T* MonoObjectMgr<T>::birth()
 	int index = getEmptyIndex();
 	T* result;
 	if (index != -1) {
-		T* array        = mArray;
-		mOpenIds[index] = false;
-		result          = &array[index];
+		result          = &mArray[index];
+		mOpenIds[index] = nullptr;
 		mActiveCount++;
 	} else {
 		result = nullptr;
