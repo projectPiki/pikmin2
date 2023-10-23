@@ -852,7 +852,7 @@ lbl_804714E0:
  */
 f32 SeSound::calcVolume(float p1, unsigned char p2, unsigned char p3)
 {
-	return PSGame::SoundTable::CategoryMgr::getInstance()->_04[p3]->getDistVol(p1, p2);
+	return PSGame::SoundTable::CategoryMgr::getInstance()->mPerspInfo[p3]->getDistVol(p1, p2);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

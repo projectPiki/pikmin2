@@ -151,11 +151,11 @@ void Demo::init(Vec* cam1pos, Vec* cam2pos, Mtx mtx, DemoArg arg)
 {
 	PSGame::SceneInfo* info = new PSGame::SceneInfo;
 	info->setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk1, PSGame::SceneInfo::SFBS_2);
-	info->mCameras      = 1;
-	info->mCam1Position = (Vector3f*)cam1pos;
-	info->mCam2Position = (Vector3f*)cam2pos;
-	info->mCameraMtx    = (Matrixf*)mtx;
-	info->mSceneType    = 255;
+	info->mCameras         = 1;
+	info->mCam1Position[0] = (Vector3f*)cam1pos;
+	info->mCam2Position[0] = (Vector3f*)cam2pos;
+	info->mCameraMtx[0]    = (Matrixf*)mtx;
+	info->mSceneType       = 255;
 
 	DemoArg demoarg       = arg;
 	u8 unk                = 255;

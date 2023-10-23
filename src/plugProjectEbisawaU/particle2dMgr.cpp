@@ -2,6 +2,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/ResTIMG.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 #include "Graphics.h"
 #include "P2Macros.h"
 #include "System.h"
@@ -97,8 +98,24 @@ void TParticle2dMgr::createHeap(u32 p1)
  * Address:	803B92C0
  * Size:	000154
  */
-void TParticle2dMgr::createMgr(char* a, u32 u1, u32 u2, u32 u3)
+void TParticle2dMgr::createMgr(char* path, u32 u1, u32 u2, u32 u3)
 {
+	JUT_ASSERTLINE(83, mSolidHeap, "effect heap not allocated !\n");
+
+	sys->heapStatusStart("TParticle2dMgr::createMgr", nullptr);
+	JKRHeap* backup = JKRGetCurrentHeap();
+	mSolidHeap->becomeCurrentHeap();
+	void* file = JKRDvdRipper::loadToMainRAM(path, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	JUT_ASSERTLINE(94, file, "ParticleResource (%s) not found\n", path);
+	backup->becomeCurrentHeap();
+
+	mResourceManager = new (mSolidHeap, 0) JPAResourceManager(file, mSolidHeap);
+	mEmitterManager  = new (mSolidHeap, 0) JPAEmitterManager(u1, u2, mSolidHeap, 8, 2);
+
+	mEmitterManager->entryResourceManager(mResourceManager, 0);
+	mSolidHeap->adjustSize();
+	sys->heapStatusEnd("TParticle2dMgr::createMgr");
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -429,7 +446,7 @@ void TParticle2dMgr::fade(JPABaseEmitter* emitter)
 {
 	if (emitter) {
 		emitter->mFlags |= 1;
-		emitter->_24 = 1;
+		emitter->mMaxFrame = 1;
 	}
 }
 

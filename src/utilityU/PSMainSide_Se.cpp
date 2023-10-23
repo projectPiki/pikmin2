@@ -330,7 +330,7 @@ namespace PSM {
 PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 {
 	PSSystem::ClusterSe::PartInitArg arg;
-	switch (_04->mPart->mInitArg.mSoundID) {
+	switch (_0C) {
 	case 0: {
 		switch (unknownID) {
 		case 0:

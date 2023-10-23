@@ -152,7 +152,7 @@ void TIndexPane::setIndex(int index)
 				offs += index;
 				const ResTIMG* timg = nullptr;
 				if (mOwner->isListShow(offs)) {
-					timg = mOwner->getTexInfo(offs);
+					timg = static_cast<TZukanBase*>(mOwner)->getTexInfo(offs);
 					P2ASSERTLINE(193, timg);
 					mIconInfos[i]->setInfo(offs, timg);
 				}

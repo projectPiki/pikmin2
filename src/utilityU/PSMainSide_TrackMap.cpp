@@ -133,7 +133,7 @@ lbl_8047195C:
  * Address:	80471978
  * Size:	00077C
  */
-void BgmTrackMapFile::readTrackMap(const char*)
+PSM::BgmTrackMap BgmTrackMapFile::readTrackMap(const char*)
 {
 	/*
 	stwu     r1, -0x490(r1)

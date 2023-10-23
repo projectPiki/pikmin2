@@ -154,6 +154,12 @@ struct Vector3 {
 		this->y -= other.y;
 		this->z -= other.z;
 	}
+	inline void operator/=(const Vector3& other)
+	{
+		this->x /= other.x;
+		this->y /= other.y;
+		this->z /= other.z;
+	}
 
 	inline void addXZ(const Vector3& other)
 	{

@@ -48,7 +48,7 @@ bool TTsuyuGrow0::create(Arg* arg)
 	mtxRot.setBasis(3, pos);
 
 	if (TSimple1::create(arg)) {
-		JPASetRMtxTVecfromMtx(mtxRot.mMatrix.mtxView, mEmitters[0]->mMatrix, &mEmitters[0]->mPosition);
+		mEmitters[0]->setGlobalRTMatrix(mtxRot.mMatrix.mtxView);
 		return true;
 	}
 	return false;
@@ -138,7 +138,7 @@ bool TEgateBC::create(Arg* arg)
 	if (TForever2::create(arg)) {
 		for (int i = 0; i < (int)ARRAY_SIZE(mItems); i++) {
 			if (mItems[i].mEmitter) {
-				JPASetRMtxTVecfromMtx(mtxRot.mMatrix.mtxView, mItems[i].mEmitter->mMatrix, &mItems[i].mEmitter->mPosition);
+				mItems[i].mEmitter->setGlobalRTMatrix(mtxRot.mMatrix.mtxView);
 			}
 		}
 		return true;
@@ -373,7 +373,7 @@ void WarpZone::setRateLOD(int id, bool flag)
 		};
 		for (int i = 0; i < 4; i++) {
 			if (mItems[i].mEmitter)
-				mItems[i].mEmitter->_28 = lods[i][id];
+				mItems[i].mEmitter->setRate(lods[i][id]);
 		}
 	} else {
 		f32 lods[4][3] = {
@@ -385,7 +385,7 @@ void WarpZone::setRateLOD(int id, bool flag)
 
 		for (int i = 0; i < 4; i++) {
 			if (mItems[i].mEmitter)
-				mItems[i].mEmitter->_28 = lods[i][id];
+				mItems[i].mEmitter->setRate(lods[i][id]);
 		}
 	}
 	/*

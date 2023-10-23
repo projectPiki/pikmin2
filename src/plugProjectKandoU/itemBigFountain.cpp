@@ -297,7 +297,7 @@ void Item::onInit(CreatureInitArg* initArg)
 	}
 
 	// weird but required for stack.
-	Vector3f(1.0f).setTVec(mModel->mJ3dModel->mModelScale);
+	Vector3f(1.0f).setVec(mModel->mJ3dModel->mModelScale);
 	mMass    = 0.0f;
 	mFaceDir = 0.0f;
 }

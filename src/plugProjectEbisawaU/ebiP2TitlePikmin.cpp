@@ -2016,15 +2016,15 @@ void Pikmin::TUnit::updateEnemyReaction_()
 				case 3:
 					mAngle = Vector2f(1.0f, 0.0f);
 
-					u32 time                  = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
-					mCounter                  = time;
-					mCounter2                 = time;
-					mFrameControlB.mCurrTime  = 5.0f * randEbisawaFloat();
-					mFrameControlB.mAnimSpeed = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
+					u32 time              = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
+					mCounter              = time;
+					mCounter2             = time;
+					mFrameControlB.mFrame = 5.0f * randEbisawaFloat();
+					mFrameControlB.mRate  = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
 					break;
 				case 1:
-					mParms[0]                 = 0.0f;
-					mFrameControlA.mAnimSpeed = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
+					mParms[0]            = 0.0f;
+					mFrameControlA.mRate = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
 					break;
 				}
 			}
@@ -2044,15 +2044,15 @@ void Pikmin::TUnit::updateEnemyReaction_()
 				case 3:
 					mAngle = Vector2f(1.0f, 0.0f);
 
-					u32 time                  = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
-					mCounter                  = time;
-					mCounter2                 = time;
-					mFrameControlB.mCurrTime  = 5.0f * randEbisawaFloat();
-					mFrameControlB.mAnimSpeed = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
+					u32 time              = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
+					mCounter              = time;
+					mCounter2             = time;
+					mFrameControlB.mFrame = 5.0f * randEbisawaFloat();
+					mFrameControlB.mRate  = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
 					break;
 				case 1:
-					mParms[0]                 = 0.0f;
-					mFrameControlA.mAnimSpeed = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
+					mParms[0]            = 0.0f;
+					mFrameControlA.mRate = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
 					break;
 				}
 			}

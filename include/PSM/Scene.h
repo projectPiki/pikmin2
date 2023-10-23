@@ -48,12 +48,12 @@ struct SceneBase : public PSGame::PikScene {
 struct SceneMgr : public PSGame::PikSceneMgr {
 	SceneMgr();
 
-	virtual void newMainBgm(const char*, JAInter::SoundInfo&);     // _14
-	virtual void newDirectedBgm(const char*, JAInter::SoundInfo&); // _18
-	virtual void newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, PSGame::SceneInfo&,
-	                        PSSystem::DirectorMgrBase*); // _1C
-	virtual bool curSceneIsBigBossFloor();               // _20
-	virtual void newGameScene(u8, PSGame::SceneInfo*);   // _24
+	virtual void newMainBgm(const char*, JAInter::SoundInfo&);                  // _14
+	virtual PSSystem::BgmSeq* newDirectedBgm(const char*, JAInter::SoundInfo&); // _18
+	virtual PSSystem::BgmSeq* newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, PSGame::SceneInfo&,
+	                                     PSSystem::DirectorMgrBase*); // _1C
+	virtual bool curSceneIsBigBossFloor();                            // _20
+	virtual PSSystem::Scene* newGameScene(u8, PSGame::SceneInfo*);    // _24
 
 	void initEnvironmentSe(Scene_Game*);
 

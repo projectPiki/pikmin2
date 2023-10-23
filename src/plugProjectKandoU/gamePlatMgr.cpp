@@ -228,9 +228,9 @@ void PlatInstance::setCollision(bool flag)
 Vector3f PlatInstance::getPosition()
 {
 	Vector3f result;
-	result.x = _B8->mMatrix.structView.tx;
-	result.y = _B8->mMatrix.structView.ty;
-	result.z = _B8->mMatrix.structView.tz;
+	result.x = mMatrix->mMatrix.structView.tx;
+	result.y = mMatrix->mMatrix.structView.ty;
+	result.z = mMatrix->mMatrix.structView.tz;
 	return result;
 }
 
@@ -877,7 +877,7 @@ void PlatInstanceAttacher::fixCollision(bool p1)
 			instance->_108 &= ~0x2;
 		} else {
 			instance->_108 |= 0x2;
-			PSMTXInverse(instance->_B8->mMatrix.mtxView, instance->_BC.mMatrix.mtxView);
+			PSMTXInverse(instance->mMatrix->mMatrix.mtxView, instance->_BC.mMatrix.mtxView);
 		}
 	}
 	/*
@@ -1365,7 +1365,7 @@ PlatAddInstanceArg::PlatAddInstanceArg()
 PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 {
 	PlatInstance* instance = new PlatInstance();
-	instance->_B8          = arg.mMatrix;
+	instance->mMatrix      = arg.mMatrix;
 	instance->mId          = arg.mId;
 	instance->_F4          = arg.mItem;
 	if (arg._18) {
@@ -1381,9 +1381,9 @@ PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 	node->mContents->constructor();
 	if (Game::platCellMgr) {
 		Sys::Sphere sphere;
-		sphere.mPosition.x = instance->_B8->mMatrix.structView.tx;
-		sphere.mPosition.y = instance->_B8->mMatrix.structView.ty;
-		sphere.mPosition.z = instance->_B8->mMatrix.structView.tz;
+		sphere.mPosition.x = instance->mMatrix->mMatrix.structView.tx;
+		sphere.mPosition.y = instance->mMatrix->mMatrix.structView.ty;
+		sphere.mPosition.z = instance->mMatrix->mMatrix.structView.tz;
 		Sys::OBBTree* div  = (Sys::OBBTree*)instance->_EC->getTriDivider();
 		sphere.mPosition.x += div->mRoot.mSphere.mPosition.x;
 		sphere.mPosition.y += div->mRoot.mSphere.mPosition.y;

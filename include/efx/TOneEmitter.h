@@ -66,9 +66,21 @@ struct TOneEmitterChasePos : public TBase, public JPAEmitterCallBack {
 	virtual void fade();       // _10
 	// vtable 2 (JPAEmitterCallBack + self)
 	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
-	virtual void startDemoDrawOff();            // _34 (weak)
-	virtual void endDemoDrawOn();               // _38 (weak)
-	virtual ~TOneEmitterChasePos();             // _3C (weak)
+	virtual void startDemoDrawOff()
+	{
+		if (mEmitter == nullptr) {
+			return;
+		}
+		mEmitter->mFlags |= 4;
+	} // _34 (weak)
+	virtual void endDemoDrawOn()
+	{
+		if (mEmitter == nullptr) {
+			return;
+		}
+		mEmitter->mFlags &= ~4;
+	}                                  // _38 (weak)
+	virtual ~TOneEmitterChasePos() { } // _3C (weak)
 
 	void add(ContextChasePos*);
 	void del(ContextChasePos*);

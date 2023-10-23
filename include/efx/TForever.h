@@ -6,7 +6,7 @@
 
 namespace efx {
 struct TForever : public TSync {
-	TForever();
+	TForever() { }
 
 	inline TForever(u16 effectID) // probably
 	    : TSync(effectID)

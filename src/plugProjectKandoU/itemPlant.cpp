@@ -1497,7 +1497,7 @@ void Plant::onInit(CreatureInitArg* initArg)
 		J3DMaterialAnm* anm = new J3DMaterialAnm();
 		J3DMaterial* mat    = data->getMaterialNodePointer(i);
 		mat->change();
-		mat->mAnm = anm;
+		mat->mMaterialAnm = anm;
 	}
 
 	data->mMaterialTable.entryMatColorAnimator(mgr->mAnmColor);

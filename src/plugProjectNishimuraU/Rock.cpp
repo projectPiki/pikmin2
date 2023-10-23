@@ -825,78 +825,12 @@ void Obj::startRollingWaterEffect()
 		f32 heightDiff = waterFX->mSeaHeight - mPosition.y;
 		if (8.0f <= heightDiff && heightDiff < 45.0f) {
 			efx::TRockWRun* waterFX = mEfxWaterRun;
-			waterFX->mPosition      = Vector3f(mPosition.x, heightDiff, mPosition.z);
+			waterFX->mPosition      = Vector3f(mPosition.x, waterFX->mSeaHeight, mPosition.z);
 			waterFX->mChasePos.create(nullptr);
 		} else {
 			waterFX->mChasePos.fade();
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051ADB0@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x280(r3)
-	cmplwi   r3, 0
-	beq      lbl_802641DC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0(r3)
-
-lbl_802641DC:
-	lwz      r3, 0x2e0(r31)
-	li       r4, 0
-	stfs     f0, 0x44(r3)
-	lwz      r3, 0x2e0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0x2e0(r31)
-	lbz      r0, 0x54(r5)
-	cmplwi   r0, 0
-	beq      lbl_80264278
-	lfs      f2, 0x44(r5)
-	lfs      f1, 0x190(r31)
-	lfs      f0, lbl_8051ADFC@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_80264264
-	lfs      f0, lbl_8051AE00@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80264264
-	lfs      f1, 0x194(r31)
-	addi     r3, r5, 4
-	lfs      f0, 0x18c(r31)
-	li       r4, 0
-	stfs     f0, 0x48(r5)
-	stfs     f2, 0x4c(r5)
-	stfs     f1, 0x50(r5)
-	lwz      r12, 4(r5)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80264278
-
-lbl_80264264:
-	addi     r3, r5, 4
-	lwz      r12, 4(r5)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80264278:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -917,59 +851,12 @@ void Obj::updateWaterEffectPosition()
 		f32 heightDiff = mEfxWaterRun->mSeaHeight - mPosition.y;
 		if (8.0f <= heightDiff && heightDiff < 45.0f) {
 			efx::TRockWRun* waterFX = mEfxWaterRun;
-			waterFX->mPosition      = Vector3f(mPosition.x, heightDiff, mPosition.z);
+			waterFX->mPosition      = Vector3f(mPosition.x, mEfxWaterRun->mSeaHeight, mPosition.z);
 			waterFX->mChasePos.create(nullptr);
 		} else {
 			mEfxWaterRun->mChasePos.fade();
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x280(r3)
-	cmplwi   r0, 0
-	beq      lbl_802643A4
-	lwz      r5, 0x2e0(r3)
-	lbz      r0, 0x54(r5)
-	cmplwi   r0, 0
-	beq      lbl_802643A4
-	lfs      f2, 0x44(r5)
-	lfs      f1, 0x190(r3)
-	lfs      f0, lbl_8051ADFC@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_80264390
-	lfs      f0, lbl_8051AE00@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80264390
-	lfs      f1, 0x194(r3)
-	li       r4, 0
-	lfs      f0, 0x18c(r3)
-	addi     r3, r5, 4
-	stfs     f0, 0x48(r5)
-	stfs     f2, 0x4c(r5)
-	stfs     f1, 0x50(r5)
-	lwz      r12, 4(r5)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802643A4
-
-lbl_80264390:
-	addi     r3, r5, 4
-	lwz      r12, 4(r5)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802643A4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

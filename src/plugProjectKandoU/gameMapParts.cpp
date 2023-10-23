@@ -3787,7 +3787,7 @@ lbl_801BA004:
  * Address:	801BA034
  * Size:	000128
  */
-void RoomMapMgr::findRoomIndex(Sys::Sphere&)
+s16 RoomMapMgr::findRoomIndex(Sys::Sphere&)
 {
 	/*
 	stwu     r1, -0x90(r1)

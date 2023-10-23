@@ -508,11 +508,11 @@ void WipeOutInFader::do_draw(float)
 BlackFader::BlackFader()
     : WipeBase()
 {
-	_24.r = 0;
-	_24.g = 0;
-	_24.b = 0;
-	_24.a = 0;
-	_28   = true;
+	_24.r    = 0;
+	_24.g    = 0;
+	_24.b    = 0;
+	_24.a    = 0;
+	mIsBlack = true;
 }
 
 /*
@@ -521,7 +521,7 @@ BlackFader::BlackFader()
  * Address:	8042C440
  * Size:	000010
  */
-bool BlackFader::isWhite() { return !_28; }
+bool BlackFader::isWhite() { return !mIsBlack; }
 
 /*
  * isBlack__10BlackFaderFv
@@ -529,7 +529,7 @@ bool BlackFader::isWhite() { return !_28; }
  * Address:	8042C450
  * Size:	000008
  */
-bool BlackFader::isBlack() { return _28; }
+bool BlackFader::isBlack() { return mIsBlack; }
 
 /*
  * do_draw__10BlackFaderFf
@@ -548,7 +548,7 @@ void BlackFader::do_draw(float)
 	gfx->mOrthoGraph.setPort();
 	JUtility::TColor color(_24.r, _24.g, _24.b, 0xFF);
 	J2DOrthoGraph* orthoGraph = &gfx->mOrthoGraph;
-	if (!_28) {
+	if (!mIsBlack) {
 		color.r = _24.r;
 		color.g = _24.g;
 		color.b = _24.b;

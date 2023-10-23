@@ -9,7 +9,10 @@
 #include "Game/cellPyramid.h"
 #include "nans.h"
 
-static const char name[] = "particleMgr";
+static const u32 padding[] = { 0, 0, 0 };
+static const char name[]   = "particleMgr";
+
+ParticleMgr* particleMgr;
 
 /*
     Generated from dpostproc
@@ -267,42 +270,6 @@ ParticleMgr::ParticleMgr()
  * Size:	000070
  */
 ModelEffectDataRoot::~ModelEffectDataRoot() { }
-
-/*
- * --INFO--
- * Address:	803BB180
- * Size:	0000C8
- */
-// NodeObjectMgr<ModelEffect>::~NodeObjectMgr()
-//{
-//}
-
-/*
- * --INFO--
- * Address:	803BB248
- * Size:	000060
- */
-// TObjectNode<ModelEffect>::~TObjectNode()
-//{
-//}
-
-/*
- * --INFO--
- * Address:	803BB2A8
- * Size:	000088
- */
-// ObjectMgr<ModelEffect>::~ObjectMgr()
-//{
-//}
-
-/*
- * --INFO--
- * Address:	803BB330
- * Size:	000070
- */
-// Container<ModelEffect>::~Container()
-//{
-//}
 
 /*
  * --INFO--
@@ -602,8 +569,8 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 	if (!mgr)
 		return;
 
-	if (!(emit->mResource->mDynamicsBlock->mData[0] & 2))
-		return; // needs file data struct
+	if (!(emit->mResource->mDynamicsBlock->mData->mDivNumber & 2))
+		return;
 
 	LightObj* obj = mgr->mMainLight;
 
@@ -715,7 +682,7 @@ void ParticleMgr::fade(JPABaseEmitter* emit)
 		return;
 
 	emit->mFlags |= 1;
-	emit->_24 = 1;
+	emit->mMaxFrame = 1;
 	emit->mFlags &= ~0x40;
 }
 
@@ -971,7 +938,7 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 		return false;
 
 	Sys::Sphere bound;
-	u32 flag = emit->mResource->mDynamicsBlock->mData[0]; // needs struct
+	u32 flag = emit->mResource->mDynamicsBlock->mData->mDivNumber;
 	if (flag & 0x20) {
 		bound.mRadius = mClipRadiusL;
 	} else if (flag & 0x10) {
@@ -979,7 +946,7 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 	} else {
 		bound.mRadius = mClipRadiusS;
 	}
-	bound.mPosition = (Vector3f)emit->mPosition;
+	bound.mPosition = (Vector3f)emit->mGlobalTrs;
 
 	bool ret = false;
 	for (int i = 0; i < mActiveViewportCount; i++) {

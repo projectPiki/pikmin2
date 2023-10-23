@@ -423,8 +423,8 @@ void SingleGame::GameState::init(Game::SingleGameSection* section, Game::StateAr
 		section->setPlayerMode(1);
 	}
 	section->setCamController();
-	if (section->_244 != nullptr) {
-		section->_244->create(nullptr);
+	if (section->mWeatherEfx) {
+		section->mWeatherEfx->create(nullptr);
 	}
 	section->setupMainMapGames();
 	pikiMgr->debugShapeDL("BGS::GAME START");
@@ -447,7 +447,7 @@ void SingleGame::GameState::init(Game::SingleGameSection* section, Game::StateAr
 		moviePlayArg.mDelegateStart = section->mMovieStartCallback;
 		moviePlayer->play(moviePlayArg);
 		gameSystem->mTimeMgr->setStartTime();
-		section->_244->fade();
+		section->mWeatherEfx->fade();
 	} break;
 	case 0: {
 		if (!playData->isDemoFlag(section->mCurrentCourseInfo->mCourseIndex + DEMO_Day_One_Start)) {

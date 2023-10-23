@@ -588,11 +588,15 @@ void THurryUp2D::init()
 
 	if (mDoDraw) {
 		mWhitePane->show();
-		static_cast<J2DPictureEx*>(mPaneSunW)->getMaterial()->mPeBlock.mBlendInfo.set(J2DBlend(1, 6, 7, 0));
-		mWhitePane->getMaterial()->mPeBlock.mBlendInfo.set(J2DBlend(1, 1, 0, 0));
+		J2DBlendInfo info1(1, 6, 7, 0);
+		static_cast<J2DPictureEx*>(mPaneSunW)->getMaterial()->mPeBlock.setBlend(info1);
+
+		J2DBlendInfo info2(1, 1, 0, 0);
+		mWhitePane->getMaterial()->mPeBlock.setBlend(info2);
 		mWhitePane->mAlpha = 0;
 	} else {
-		static_cast<J2DPictureEx*>(mScreen->search('sunw'))->getMaterial()->mPeBlock.mBlendInfo.set(J2DBlend(1, 4, 5, 0));
+		J2DBlendInfo info(1, 4, 5, 0);
+		static_cast<J2DPictureEx*>(mScreen->search('sunw'))->getMaterial()->mPeBlock.setBlend(info);
 		mWhitePane->hide();
 	}
 

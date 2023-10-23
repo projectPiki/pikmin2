@@ -30,7 +30,7 @@ bool TDangoCrash::create(Arg* arg)
 		// Vector3f vecAng (x, y, z);
 		mtx.setAngleMtx(vecDir, ang, Vector3f::zero);
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->mMatrix);
+			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		}
 		return true;
 	} else {
@@ -61,7 +61,7 @@ bool TDangoTurn::create(Arg* arg)
 
 	if (TSimple2::create(arg)) {
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
+			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		}
 		return true;
 	} else {
@@ -218,8 +218,8 @@ bool TOootaBombLeg::create(Arg* arg)
 		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
 		f32 dist = _distanceBetween(pos2, pos1);
 		dist /= 100.0f;
-		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[0]->mMatrix, &mEmitters[0]->mPosition);
-		mEmitters[0]->mScale.y *= dist;
+		mEmitters[0]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
+		mEmitters[0]->mLocalScl.y *= dist;
 		return true;
 	}
 	return false;
@@ -379,7 +379,7 @@ bool TKchFlickSand::create(Arg* arg)
 
 	if (TSimple2::create(arg)) {
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
+			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 			mEmitters[i]->setScale(scale);
 		}
 		return true;
@@ -412,7 +412,7 @@ bool TKchApSand::create(Arg* arg)
 
 	if (TSimple3::create(arg)) {
 		for (int i = 0; i < 3; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
+			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 			mEmitters[i]->setScale(scale);
 		}
 		return true;
@@ -445,7 +445,7 @@ bool TKchApWat::create(Arg* arg)
 
 	if (TSimple5::create(arg)) {
 		for (int i = 0; i < 5; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
+			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 			mEmitters[i]->setScale(scale);
 		}
 		return true;
@@ -670,7 +670,7 @@ void efx::THdamaSight::setPosNrm(Vector3f& pos, Vector3f& angle)
 		mtx.multTranspose(angle); // setAngleMtx maybe
 
 		mtx.setTranslation(pos);
-		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitter->mMatrix, &mEmitter->mPosition);
+		mEmitter->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 	}
 	/*
 	stwu     r1, -0x40(r1)
@@ -801,7 +801,7 @@ bool THdamaHit2W::create(efx::Arg* arg)
 		                Vector3f::zero); // not quite right for this one, needs something else to happen to vecAng first I think?
 
 		for (int i = 0; i < 3; i++) {
-			JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->mMatrix);
+			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		}
 		THdamaShootA effect;
 		effect.create(argd);
@@ -952,8 +952,8 @@ bool THdamaDeadHahen1::create(efx::Arg* arg)
 		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
 		f32 dist = _distanceBetween(pos2, pos1);
 		dist /= 100.0f;
-		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[0]->mMatrix, &mEmitters[0]->mPosition);
-		mEmitters[0]->mScale.y *= dist;
+		mEmitters[0]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
+		mEmitters[0]->mLocalScl.y *= dist;
 		return true;
 	}
 	return false;
@@ -1086,8 +1086,8 @@ bool THdamaDeadHahen2::create(efx::Arg* arg)
 		f32 dist = _distanceBetween(pos2, pos1);
 		dist /= 100.0f;
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
-			mEmitters[i]->mScale.y *= dist;
+			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
+			mEmitters[i]->mLocalScl.y *= dist;
 		}
 		return true;
 	}

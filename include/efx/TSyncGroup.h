@@ -8,53 +8,6 @@
 
 namespace efx {
 
-// #define DEF_SYNC_GROUP(N) \
-// template <typename T> struct TSyncGroup##N : TBase { \
-// 	/* VTABLE */\
-// 	virtual bool create(Arg* arg) /* _08 (weak) */\
-// 	{\
-// 		int itemCount = sizeof(mItems) / sizeof(T);\
-// 		for (u32 i = 0; i < itemCount; i++) {\
-// 			if (((TSync*)&mItems[i])->create(arg) == false) {\
-// 				return false;\
-// 			}\
-// 		}\
-// 		return true;\
-// 	}\
-// 	virtual void forceKill() /* _0C (weak) */\
-// 	{\
-// 		int itemCount = sizeof(mItems) / sizeof(T);\
-// 		for (u32 i = 0; i < itemCount; i++) {\
-// 			((TSync*)&mItems[i])->forceKill();\
-// 		}\
-// 	}\
-// 	virtual void fade() /* _10 (weak) */\
-// 	{\
-// 		int itemCount = sizeof(mItems) / sizeof(T);\
-// 		for (u32 i = 0; i < itemCount; i++) {\
-// 			((TSync*)&mItems[i])->fade();\
-// 		}\
-// 	}\
-// 	virtual void startDemoDrawOff() /* _14 (weak) */\
-// 	{\
-// 		int itemCount = sizeof(mItems) / sizeof(T);\
-// 		for (u32 i = 0; i < itemCount; i++) {\
-// 			((TSync*)&mItems[i])->startDemoDrawOff();\
-// 		}\
-// 	}\
-// 	virtual void endDemoDrawOn() /* _18 (weak) */\
-// 	{\
-// 		int itemCount = sizeof(mItems) / sizeof(T);\
-// 		for (u32 i = 0; i < itemCount; i++) {\
-// 			((TSync*)&mItems[i])->endDemoDrawOn();\
-// 		}\
-// 	}\
-// 	/* VTABLE END */\
-// \
-// 	/* _00 	= VTBL */\
-// 	T mItems[N]; /* _04 */\
-// }\
-
 #define DEF_SYNC_GROUP(N)                \
 	template <typename T>                \
 	struct TSyncGroup##N : TBase {       \
@@ -81,6 +34,43 @@ DEF_SYNC_GROUP(3);
 DEF_SYNC_GROUP(4);
 DEF_SYNC_GROUP(5);
 DEF_SYNC_GROUP(6);
+
+/*
+virtual bool create(Arg* arg)
+{
+    for (u32 i = 0; i < N; i++) {
+        if (!mItems[i].create(arg)) {
+            return false;
+        }
+    }
+    return true;
+}
+virtual void forceKill()
+{
+    for (u32 i = 0; i < N; i++) {
+        mItems[i].forceKill();
+    }
+}
+virtual void fade()
+{
+    for (u32 i = 0; i < N; i++) {
+        mItems[i].fade();
+    }
+}
+virtual void startDemoDrawOff()
+{
+    for (u32 i = 0; i < N; i++) {
+        mItems[i].startDemoDrawOff();
+    }
+}
+virtual void endDemoDrawOn()
+{
+    for (u32 i = 0; i < N; i++) {
+        mItems[i].endDemoDrawOn();
+    }
+}
+*/
+
 } // namespace efx
 
 #endif

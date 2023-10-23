@@ -410,7 +410,7 @@ bool THebiAphd_base::create(Arg* arg)
 	P2ASSERTLINE(358, arg != nullptr);
 	if (TSimple4::create(arg)) {
 		for (int i = 0; i < 4; i++) {
-			mEmitters[i]->_24 = _1C;
+			mEmitters[i]->mMaxFrame = _1C;
 		}
 		return true;
 	}
@@ -426,7 +426,7 @@ void TKechappyTest::setGlobalAlpha(u8 alpha)
 {
 	for (int i = 0; i < 3; i++) {
 		if (mItems[i].mEmitter) {
-			mItems[i].mEmitter->mColor1.a = alpha;
+			mItems[i].mEmitter->mGlobalPrmClr.a = alpha;
 		}
 	}
 }
@@ -440,7 +440,7 @@ void TKechappyTest::setGlobalParticleScale(f32 scale)
 {
 	for (int i = 1; i < 3; i++) {
 		if (mItems[i].mEmitter) {
-			mItems[i].mEmitter->_B4 = scale;
+			mItems[i].mEmitter->mGlobalPScl.y = scale;
 		}
 	}
 }
@@ -454,7 +454,7 @@ void TKechappyTest::setAwayFromCenterSpeed(f32 speed)
 {
 	for (int i = 1; i < 3; i++) {
 		if (mItems[i].mEmitter) {
-			mItems[i].mEmitter->_34 = speed;
+			mItems[i].mEmitter->mAwayFromCenterSpeed = speed;
 		}
 	}
 }
@@ -468,7 +468,7 @@ void TKechappyTest::setSpread(f32 spread)
 {
 	for (int i = 1; i < 3; i++) {
 		if (mItems[i].mEmitter) {
-			mItems[i].mEmitter->_40 = spread;
+			mItems[i].mEmitter->mSpread = spread;
 		}
 	}
 }
@@ -503,7 +503,7 @@ void TYakiBody::setRateLOD(int id)
 
 	for (int i = 0; i < 4; i++) {
 		if (mItems[i].mEmitter)
-			mItems[i].mEmitter->_28 = lods[i][id];
+			mItems[i].mEmitter->setRate(lods[i][id]);
 	}
 	/*
 	stwu     r1, -0x50(r1)
@@ -657,10 +657,10 @@ bool TBabaHe::create(Arg* arg)
 
 	if (TSimple2::create(arg)) {
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
+			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		}
 		Vector3f zVec = mtx.getBasis(2);
-		((zVec * -35.0f) + pos).setTVec(mEmitters[0]->mPosition);
+		((zVec * -35.0f) + pos).setTVec(mEmitters[0]->mGlobalTrs);
 		return true;
 	}
 	return false;
@@ -830,7 +830,7 @@ void TParticleCallBack_TankFire::execute(JPABaseEmitter* emit, JPABaseParticle* 
 	f32 x = particle->getCalcCurrentPositionX(emit);
 	Vector3f tgt(x, y, z);
 
-	if (tgt.distance(emit->mPosition) > _04) {
+	if (tgt.distance(emit->mGlobalTrs) > _04) {
 		particle->mFlags |= 2;
 
 		TTankFireHit* hit = mEfxHit;
@@ -1230,7 +1230,7 @@ void THibaFire::setRateLOD(int id)
 
 	for (int i = 0; i < 4; i++) {
 		if (mItems[i].mEmitter)
-			mItems[i].mEmitter->_28 = lods[i][id];
+			mItems[i].mEmitter->mRate = lods[i][id];
 	}
 	/*
 	stwu     r1, -0x50(r1)
@@ -1390,7 +1390,7 @@ void TGasuHiba::setRateLOD(int id)
 
 	for (int i = 0; i < 2; i++) {
 		if (mItems[i].mEmitter)
-			mItems[i].mEmitter->_28 = lods[i][id];
+			mItems[i].mEmitter->mRate = lods[i][id];
 	}
 	/*
 	stwu     r1, -0x20(r1)

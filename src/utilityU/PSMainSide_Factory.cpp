@@ -869,7 +869,7 @@ lbl_8045A28C:
  * Address:	8045A2D8
  * Size:	000014
  */
-void SceneMgr::curSceneIsBigBossFloor()
+bool SceneMgr::curSceneIsBigBossFloor()
 {
 	/*
 	lwz      r3, sBigBoss__Q23PSM12EnemyBigBoss@sda21(r13)
@@ -885,7 +885,7 @@ void SceneMgr::curSceneIsBigBossFloor()
  * Address:	8045A2EC
  * Size:	0001C0
  */
-void SceneMgr::newDirectedBgm(const char*, JAInter::SoundInfo&)
+PSSystem::BgmSeq* SceneMgr::newDirectedBgm(const char*, JAInter::SoundInfo&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1035,7 +1035,7 @@ lbl_8045A474:
  * Address:	8045A4AC
  * Size:	0001F4
  */
-void SceneMgr::newGameScene(unsigned char, PSGame::SceneInfo*)
+PSSystem::Scene* SceneMgr::newGameScene(unsigned char, PSGame::SceneInfo*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3314,41 +3314,13 @@ EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3<float> p1)
 	*/
 }
 
-} // namespace PSM
-
-/*
- * --INFO--
- * Address:	8045C0F8
- * Size:	000034
- */
-JGeometry::TBox3<float>::TBox3(const JGeometry::TBox3<float>&)
-{
-	/*
-	lfs      f1, 0(r4)
-	lfs      f0, 4(r4)
-	stfs     f1, 0(r3)
-	lfs      f1, 8(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f1, 8(r3)
-	lfs      f1, 0x10(r4)
-	stfs     f0, 0xc(r3)
-	lfs      f0, 0x14(r4)
-	stfs     f1, 0x10(r3)
-	stfs     f0, 0x14(r3)
-	blr
-	*/
-}
-
-namespace PSM {
-
 /*
  * --INFO--
  * Address:	8045C12C
  * Size:	000164
  */
-void SceneMgr::newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, PSGame::SceneInfo&,
-                          PSSystem::DirectorMgrBase*)
+PSSystem::BgmSeq* SceneMgr::newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, PSGame::SceneInfo&,
+                                       PSSystem::DirectorMgrBase*)
 {
 	/*
 	.loc_0x0:

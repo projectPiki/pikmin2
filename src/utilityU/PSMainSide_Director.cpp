@@ -809,10 +809,7 @@ void TrackOnDirector_Scaled::underDirection()
 		rate = JALCalc::linearTransform(_5C, _58, _54, 0.0f, 1.0f, false);
 	}
 
-	for (u8 i = 0; i < _41; i++) {
-		P2ASSERTLINE(51, i < _41); // "PSDirector.h" :moe:
-		static_cast<PSSystem::SeqTrackChild*>(mTracks[i])->fade(rate, _60, nullptr);
-	}
+	fadeAllTracks(rate, _60);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

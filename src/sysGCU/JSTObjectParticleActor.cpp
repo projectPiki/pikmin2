@@ -424,7 +424,7 @@ void ObjectParticleActor::emit()
 	if (mEmitter) {
 		mEmitter->mFlags |= 0x40;
 		mEmitter->mEmitterCallback = this;
-		JPASetRMtxTVecfromMtx(mMatrix.mMatrix.mtxView, mEmitter->mMatrix, &mEmitter->mPosition);
+		mEmitter->setGlobalRTMatrix(mMatrix.mMatrix.mtxView);
 	}
 }
 
@@ -455,7 +455,7 @@ void ObjectParticleActor::executeAfter(JPABaseEmitter* emit)
 		mMatrix.makeTR(mTranslation2, vec);
 	}
 
-	JPASetRMtxTVecfromMtx(mMatrix.mMatrix.mtxView, emit->mMatrix, &emit->mPosition);
+	mEmitter->setGlobalRTMatrix(mMatrix.mMatrix.mtxView);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

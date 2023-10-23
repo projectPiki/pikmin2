@@ -564,7 +564,7 @@ void ActBattle::initApproach()
 
 		// no time limit
 		PikiAI::ApproachPosActionArg arg(pos, 10.0f, -1.0f);
-		arg._18 = 1;
+		arg.mIsElasticSpeed = true;
 		mApproachPos->init(&arg);
 		mState = PIKIAI_ACTBATTLE_APPROACH;
 	}
@@ -613,7 +613,7 @@ int ActBattle::execBattle()
 
 			// no time limit
 			PikiAI::ApproachPosActionArg arg(pos, 10.0f, -1.0f);
-			arg._18 = 1;
+			arg.mIsElasticSpeed = true;
 			mApproachPos->init(&arg);
 			mState = PIKIAI_ACTBATTLE_APPROACH;
 		}
@@ -638,7 +638,7 @@ int ActBattle::execDamage()
 
 			// no time limit
 			PikiAI::ApproachPosActionArg arg(pos, 10.0f, -1.0f);
-			arg._18 = 1;
+			arg.mIsElasticSpeed = true;
 			mApproachPos->init(&arg);
 			mState = PIKIAI_ACTBATTLE_APPROACH;
 		}

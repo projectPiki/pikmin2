@@ -68,6 +68,14 @@ struct DirectorBase : public JADHioNode {
 		return false;
 	}
 
+	inline void fadeAllTracks(f32 rate, f32 a2)
+	{
+		for (u8 i = 0; i < mTrackNum; i++) {
+			P2ASSERTLINE(51, i < mTrackNum);
+			static_cast<PSSystem::SeqTrackChild*>(mTracks[i])->fade(rate, a2, nullptr);
+		}
+	}
+
 	inline void checkTrackNum(u8 trackNum) { P2ASSERTLINE(51, trackNum < mTrackNum); }
 
 	static u8 sToolMode;

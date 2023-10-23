@@ -1845,10 +1845,10 @@ void AgeCollPart::draw(Graphics& graphics)
 			makeMatrixTo(mtx);
 
 			if (mDrawFlags & ACP_DRAWFLAG_ENABLED) {
-				f32 zVal     = joint->mJ3d->mRadius;
+				f32 zVal     = joint->mJ3d->mBoundingSphereRadius;
 				f32 rotation = zVal;
 				if (zVal < 0.1f) {
-					rotation = 0.3f * (*static_cast<SysShape::Model*>(mModel)->mJoints).mJ3d->mRadius;
+					rotation = 0.3f * (*static_cast<SysShape::Model*>(mModel)->mJoints).mJ3d->mBoundingSphereRadius;
 				}
 				graphics.drawAxis(rotation, joint->getWorldMatrix());
 			}

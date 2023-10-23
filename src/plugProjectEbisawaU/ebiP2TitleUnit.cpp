@@ -122,12 +122,12 @@ void TMapBase::setArchive(JKRArchive* arc)
 	mModel = new J3DModel(mMainModelData, 0x20000, 1);
 
 	mFrameCtrlWait.init(mAnimWait->mMaxFrame);
-	mFrameCtrlWait.mAttr      = 2;
-	mFrameCtrlWait.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
+	mFrameCtrlWait.mAttribute = 2;
+	mFrameCtrlWait.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 
 	mFrameCtrlWind.init(mAnimWind->mMaxFrame);
-	mFrameCtrlWind.mAttr      = 2;
-	mFrameCtrlWind.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
+	mFrameCtrlWind.mAttribute = 2;
+	mFrameCtrlWind.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 }
 
 /*
@@ -159,14 +159,14 @@ void TMapBase::update()
 	switch (mState) {
 	case 0:
 		mFrameCtrlWait.update();
-		mAnimWait->mCurrentFrame                            = mFrameCtrlWait.mCurrTime;
+		mAnimWait->mCurrentFrame                            = mFrameCtrlWait.mFrame;
 		mModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimMtxCalcWait;
 		break;
 	case 1:
 		mFrameCtrlWait.update();
 		mFrameCtrlWind.update();
-		mAnimWait->mCurrentFrame = mFrameCtrlWait.mCurrTime;
-		mAnimWind->mCurrentFrame = mFrameCtrlWind.mCurrTime;
+		mAnimWait->mCurrentFrame = mFrameCtrlWait.mFrame;
+		mAnimWind->mCurrentFrame = mFrameCtrlWind.mFrame;
 		J3DMtxCalcAnmBase* anm   = mAnimMtxCalcWind;
 		if (mWindTimer) {
 			mWindTimer--;
@@ -224,8 +224,8 @@ void TBGEnemyBase::setArchive(JKRArchive* arc)
 void TBGEnemyBase::start()
 {
 	mFrameCtrl.init(mAnim->mMaxFrame);
-	mFrameCtrl.mAttr      = 0;
-	mFrameCtrl.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
+	mFrameCtrl.mAttribute = 0;
+	mFrameCtrl.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 }
 
 /*
@@ -238,7 +238,7 @@ void TBGEnemyBase::update()
 	calcModelBaseMtx_();
 
 	mFrameCtrl.update();
-	mAnim->mCurrentFrame                                = mFrameCtrl.mCurrTime;
+	mAnim->mCurrentFrame                                = mFrameCtrl.mFrame;
 	mModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimMtxCalc;
 
 	mModel->calc();
@@ -276,7 +276,7 @@ void TBlackPlane::setArchive(JKRArchive* arc)
 	for (u16 i = 0; i < (u16)(int)mModel->mModelData->getMaterialNum(); i++) {
 		J3DMaterialAnm* anm = new J3DMaterialAnm;
 		mModel->mModelData->getMaterialNodePointer(i)->change();
-		mModel->mModelData->getMaterialNodePointer(i)->mAnm = anm;
+		mModel->mModelData->getMaterialNodePointer(i)->mMaterialAnm = anm;
 	}
 
 	j3dSys.ErrorReport(mModel->mModelData->mMaterialTable.entryTevRegAnimator(mAnimColor));
@@ -488,12 +488,12 @@ blr
 void TBlackPlane::start()
 {
 	mFrameCtrl.init(mAnim->mMaxFrame - 2);
-	mFrameCtrl.mAttr      = 0;
-	mFrameCtrl.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
+	mFrameCtrl.mAttribute = 0;
+	mFrameCtrl.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 
 	mFrameCtrlColor.init(mAnimColor->mMaxFrame - 2);
-	mFrameCtrlColor.mAttr      = 0;
-	mFrameCtrlColor.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
+	mFrameCtrlColor.mAttribute = 0;
+	mFrameCtrlColor.mRate      = sys->mDeltaTime * 60.0f * 0.5f;
 }
 
 /*
@@ -508,8 +508,8 @@ void TBlackPlane::updateBeforeCamera()
 	mFrameCtrl.update();
 	mFrameCtrlColor.update();
 
-	mAnimColor->mCurrentFrame                           = mFrameCtrlColor.mCurrTime;
-	mAnim->mCurrentFrame                                = mFrameCtrl.mCurrTime;
+	mAnimColor->mCurrentFrame                           = mFrameCtrlColor.mFrame;
+	mAnim->mCurrentFrame                                = mFrameCtrl.mFrame;
 	mModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimMtxCalc;
 
 	mModel->calc();
@@ -533,8 +533,8 @@ void TBlackPlane::updateAfterCamera()
  */
 void TBlackPlane::setLogo()
 {
-	mFrameCtrl.mCurrTime      = mFrameCtrl.mEndFrame;
-	mFrameCtrlColor.mCurrTime = mFrameCtrlColor.mEndFrame;
+	mFrameCtrl.mFrame      = mFrameCtrl.mEnd;
+	mFrameCtrlColor.mFrame = mFrameCtrlColor.mEnd;
 }
 
 /*

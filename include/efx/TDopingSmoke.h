@@ -11,9 +11,9 @@ struct TDopingSmoke : public TSimple1 {
 	inline void setEmitterVector(Vector3f* vec)
 	{
 		JPABaseEmitter* emit = mEmitters[0];
-		emit->_18.x          = vec->x;
-		emit->_18.y          = vec->y;
-		emit->_18.z          = vec->z;
+		emit->mLocalDir.x    = vec->x;
+		emit->mLocalDir.y    = vec->y;
+		emit->mLocalDir.z    = vec->z;
 	}
 
 	// _00      = VTBL

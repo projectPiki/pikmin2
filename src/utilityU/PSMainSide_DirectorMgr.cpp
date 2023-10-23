@@ -153,12 +153,12 @@ void DirectorMgr_Scene::initTrackMap(::PSSystem::DirectedBgm& bgm)
 	}
 	case Director_Damage: {
 		damage = new DamageDirector;
-		damage->isBgmTrackValid();
+		// damage->isBgmTrackValid();
 		damage->setTrack(0, bgm.mRootTrack);
 		break;
 	case Director_Tempo:
 		actor = new ActorDirector_TempoChange;
-		actor->isBgmTrackValid();
+		// actor->isBgmTrackValid();
 		actor->setTrack(0, bgm.mRootTrack);
 		break;
 	}

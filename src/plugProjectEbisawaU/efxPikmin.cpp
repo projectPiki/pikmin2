@@ -57,7 +57,7 @@ void TTestYodareGen::create(Arg*)
  */
 bool TPkNageBlur::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgType", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgType", static_cast<ArgType*>(arg)->getName()) == 0;
 	P2ASSERTLINE(319, nameCheck);
 	ArgType* targ = static_cast<ArgType*>(arg);
 	switch (targ->mType) {
@@ -89,7 +89,7 @@ static void fakeFuncEfxPikmin(TParticleCallBack_Yodare* callback) { callback->_0
  */
 bool TDopingSmoke::create(Arg* arg)
 {
-	bool nameCheck = strcmp("ArgDopingSmoke", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgDopingSmoke", static_cast<ArgDopingSmoke*>(arg)->getName()) == 0;
 	P2ASSERTLINE(349, nameCheck);
 	ArgDopingSmoke* targ = static_cast<ArgDopingSmoke*>(arg);
 	switch (targ->mDopeType) {
@@ -111,9 +111,9 @@ bool TDopingSmoke::create(Arg* arg)
 			JPABaseEmitter* emit = particleMgr->create(PID_DopingSmoke_2, arg->mPosition, 0);
 			if (emit) {
 				emit->mEmitterCallback = &mCallBack_StaticClipping;
-				emit->_18.x            = vec.x;
-				emit->_18.y            = vec.y;
-				emit->_18.z            = vec.z;
+				emit->mLocalDir.x      = vec.x;
+				emit->mLocalDir.y      = vec.y;
+				emit->mLocalDir.z      = vec.z;
 			} else {
 				return false;
 			}
@@ -202,7 +202,7 @@ bool TCursor::create(Arg* arg)
 {
 	mAngleTimer = 0.0f;
 
-	bool nameCheck = strcmp("ArgCursor", arg->getName()) == 0;
+	bool nameCheck = strcmp("ArgCursor", static_cast<ArgCursor*>(arg)->getName()) == 0;
 	P2ASSERTLINE(459, nameCheck);
 	ArgCursor* targ = static_cast<ArgCursor*>(arg);
 
@@ -414,9 +414,9 @@ void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle* prt)
 		ang *= 175.0f;
 	}
 
-	prt->_18.x = ang.x;
-	prt->_18.x = ang.y;
-	prt->_18.x = ang.z;
+	prt->mOffsetPosition.x = ang.x;
+	prt->mOffsetPosition.y = ang.y;
+	prt->mOffsetPosition.z = ang.z;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -632,6 +632,7 @@ void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter* emit)
 	ang.normalise();
 	Matrixf mtx; // i cant even
 	JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mMtx->mMatrix.mtxView, mPos);
+	ang /= 100.0f;
 	emit->setAngle(ang.x, ang.y, ang.z);
 	/*
 	stwu     r1, -0x50(r1)
@@ -1081,7 +1082,7 @@ void TNaviEffect::setNaviType(enumNaviType type)
 	case 3:
 		mCursor.mContextNum           = WHISTLE_CONTEXT_NUM;
 		mCursor.mAngleSpeed           = TCursor::kAngleSpeed;
-		mCursor.mOneEmitter.mEffectID = PID_Cursor_Olimar;
+		mCursor.mOneEmitter.mEffectID = PID_Cursor_Louie;
 		mLight.mNaviType              = 1;
 		mLightAct.mNaviType           = 1;
 		break;
@@ -1198,7 +1199,7 @@ void TNaviEffect::updateHamon_()
 void TNaviEffect::createHamonA_(Vector3f* pos)
 {
 	P2ASSERTLINE(863, pos);
-	mHamonA.create(pos);
+	mHamonA->create(pos);
 }
 
 /*
@@ -1206,7 +1207,7 @@ void TNaviEffect::createHamonA_(Vector3f* pos)
  * Address:	803B8054
  * Size:	000024
  */
-void TNaviEffect::killHamonA_() { mHamonA.kill(); }
+void TNaviEffect::killHamonA_() { mHamonA->kill(); }
 
 /*
  * --INFO--
@@ -1216,7 +1217,7 @@ void TNaviEffect::killHamonA_() { mHamonA.kill(); }
 void TNaviEffect::createHamonB_(Vector3f* pos)
 {
 	P2ASSERTLINE(874, pos);
-	mHamonB.create(pos);
+	mHamonB->create(pos);
 }
 
 /*
@@ -1224,7 +1225,7 @@ void TNaviEffect::createHamonB_(Vector3f* pos)
  * Address:	803B80D8
  * Size:	000024
  */
-void TNaviEffect::killHamonB_() { mHamonB.kill(); }
+void TNaviEffect::killHamonB_() { mHamonB->kill(); }
 
 /*
  * --INFO--

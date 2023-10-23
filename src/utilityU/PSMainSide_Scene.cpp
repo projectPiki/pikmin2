@@ -10,7 +10,6 @@
 #include "PSM/PikiHumming.h"
 #include "PSM/Scene.h"
 #include "PSM/WorldMapRocket.h"
-#include "PSSystem/Director.h"
 #include "PSSystem/EnvSeBase.h"
 #include "PSSystem/PSSeq.h"
 #include "PSSystem/PSCommon.h"
@@ -826,7 +825,7 @@ lbl_80467998:
 void Scene_Global::startGlobalStream(unsigned long bgmID)
 {
 	PSSystem::StreamBgm* stream = getGlobalStream();
-	stream->setID(bgmID);
+	stream->setId(bgmID);
 	stream->startSeq();
 	/*
 	stwu     r1, -0x10(r1)
@@ -890,7 +889,7 @@ lbl_80467A34:
  */
 Scene_Demo::Scene_Demo(unsigned char p1, PSGame::SceneInfo* info)
     : SceneBase(p1, info)
-    , _28(0)
+    , mGate(0)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2487,14 +2486,7 @@ lbl_80468C00:
  * Address:	80468C28
  * Size:	000008
  */
-PSSystem::EnvSeBase* Scene_Game::getEnvSe()
-{
-	// return mEnvSeMgr;
-	/*
-	lwz      r3, 0x44(r3)
-	blr
-	*/
-}
+PSSystem::EnvSeMgr* Scene_Game::getEnvSe() { return mEnvSeMgr; }
 
 /*
  * --INFO--
@@ -4275,7 +4267,7 @@ void Scene_Cave::stopPollutionSe()
 	if (mEnvSeMgr != nullptr) {
 		for (JSULink<PSSystem::EnvSeBase>* link = mEnvSeMgr->mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
 			if (link->getObject()->mSoundID == PSSE_EV_POLUTION_MIX01 || link->getObject()->mSoundID == PSSE_EV_POLUTION_MIX02) {
-				link->getObject()->_39 = 0;
+				link->getObject()->mIsOn = false;
 			}
 		}
 	}

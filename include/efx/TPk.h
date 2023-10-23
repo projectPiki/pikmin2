@@ -361,15 +361,15 @@ struct TPkEffect {
 	TPkMoeA mMoeA;             // _48
 	TPkBlackDown mBlackDown;   // _5C
 	ToeKourin mOeKourin;       // _70
-	u8 _8C[4];                 // _8C, unknown
-	ToeDoping mOeDoping;       // _90
-	ToeNagekira mOeNagekira;   // _AC
-	ToeMoeBC mOeMoeBC;         // _C8
-	ToeChudoku mOeChudoku;     // _100
-	ToeWater mOeWater;         // _11C
-	ToeHamonA mOeHamonA;       // _154
-	ToeHamonB mOeHamonB;       // _170
-	ToeMoeSmoke mOeMoeSmoke;   // _18C
+	// u8 _8C[4];                 // _8C, unknown
+	ToeDoping mOeDoping;     // _90
+	ToeNagekira mOeNagekira; // _AC
+	ToeMoeBC mOeMoeBC;       // _C8
+	ToeChudoku mOeChudoku;   // _100
+	ToeWater mOeWater;       // _11C
+	ToeHamonA mOeHamonA;     // _154
+	ToeHamonB mOeHamonB;     // _170
+	ToeMoeSmoke mOeMoeSmoke; // _18C
 };
 
 struct TPkEffectMgr : public JKRDisposer {
