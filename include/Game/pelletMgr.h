@@ -427,6 +427,12 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		mDynParticle->getAt(idx)->_18 = height;
 	}
 
+	inline bool checkBedamaColor(int color)
+	{
+		int bedamaColor = getBedamaColor();
+		return bedamaColor != color;
+	}
+
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?

@@ -352,7 +352,7 @@ struct ActBore : public Action {
 };
 
 struct ActBreakGateArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ActBreakGateArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::ItemGate* mGate; // _04
@@ -390,7 +390,7 @@ struct ActBreakGate : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActBreakRockArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ActBreakRockArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::BaseItem* mRock; // _04
@@ -424,7 +424,7 @@ struct ActBreakRock : public Action, public virtual SysShape::MotionListener {
 };
 
 struct ActBridgeArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ActBridgeArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::ItemBridge::Item* mBridge; // _04
@@ -1173,7 +1173,7 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActTransportArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ActTransportArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
@@ -1227,7 +1227,7 @@ struct ActTransport : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActWeedArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ActWeedArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::ItemWeed::Item* mWeed; // _04
