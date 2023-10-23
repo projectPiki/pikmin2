@@ -124,7 +124,7 @@ enum ActionExitCode {
 struct ActionArg {
 	inline ActionArg() { }
 
-	virtual char* getName() // _08 (weak)
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ActionArg";
 	}
@@ -138,7 +138,7 @@ struct CreatureActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName() // _08 (weak)
+	virtual const char* getName() // _08 (weak)
 	{
 		return "CreatureActionArg";
 	}
@@ -190,7 +190,7 @@ struct ApproachPosActionArg : public ActionArg {
 		mIsCheck3D      = false;
 	}
 
-	virtual char* getName() { return "ApproachPosActionArg"; } // _08 (weak)
+	virtual const char* getName() { return "ApproachPosActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Vector3f mGoalPosition; // _04
@@ -218,7 +218,7 @@ struct ActApproachPos : public Action {
 };
 
 struct ActAttackArg : public ActionArg {
-	virtual char* getName() { return "ActAttackArg"; } // _08 (weak)
+	virtual const char* getName() { return "ActAttackArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::Creature* mCreature; // _04
@@ -268,7 +268,7 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActBattleArg : public ActionArg {
-	virtual char* getName() { return "ActBattleArg"; } // _08 (weak)
+	virtual const char* getName() { return "ActBattleArg"; } // _08 (weak)
 
 	inline ActBattleArg(Game::Piki* piki) { mAggressor = piki; }
 
@@ -352,7 +352,7 @@ struct ActBore : public Action {
 };
 
 struct ActBreakGateArg : public ActionArg {
-	virtual char* getName() { return "ActBreakGateArg"; } // _08 (weak)
+	virtual const char* getName() { return "ActBreakGateArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::ItemGate* mGate; // _04
@@ -390,7 +390,7 @@ struct ActBreakGate : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActBreakRockArg : public ActionArg {
-	virtual char* getName() { return "ActBreakRockArg"; } // _08 (weak)
+	virtual const char* getName() { return "ActBreakRockArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::BaseItem* mRock; // _04
@@ -424,7 +424,7 @@ struct ActBreakRock : public Action, public virtual SysShape::MotionListener {
 };
 
 struct ActBridgeArg : public ActionArg {
-	virtual char* getName() { return "ActBridgeArg"; } // _08 (weak)
+	virtual const char* getName() { return "ActBridgeArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::ItemBridge::Item* mBridge; // _04
@@ -473,7 +473,7 @@ struct ClimbActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName() { return "ClimbActionArg"; } // _08 (weak)
+	virtual const char* getName() { return "ClimbActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	CollPart* mCollPart;  // _04
@@ -497,7 +497,7 @@ struct ActClimb : public Action {
 };
 
 struct ActCropArg : public ActionArg {
-	virtual char* getName() { return "ActCropArg"; } // _08 (weak)
+	virtual const char* getName() { return "ActCropArg"; } // _08 (weak)
 
 	inline bool isOnyonOrShip()
 	{
@@ -635,7 +635,7 @@ struct FlockAttackActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName() { return "FlockAttackActionArg"; } // _08 (weak)
+	virtual const char* getName() { return "FlockAttackActionArg"; } // _08 (weak)
 
 	// _00-_04 = ActionArg
 	f32 mDamage;             // _04
@@ -683,7 +683,7 @@ struct FollowVectorFieldActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName() // _08 (weak) uncomment this when linking aiBreakGate.cpp
+	virtual const char* getName() // _08 (weak) uncomment this when linking aiBreakGate.cpp
 	{
 		return "FollowVectorFieldActionArg";
 	}
@@ -776,7 +776,7 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 };
 
 struct ActFreeArg : public ActionArg {
-	virtual char* getName() { return "ActFreeArg"; } // _08 (weak)
+	virtual const char* getName() { return "ActFreeArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	u8 mToGather;          // _04
@@ -817,7 +817,7 @@ struct GatherActionArg : public ActionArg {
 		mRadius        = arg->_14;
 	}
 
-	virtual char* getName() { return "GatherActionArg"; } // _08 (weak)
+	virtual const char* getName() { return "GatherActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Vector3f mDestination; // _04
@@ -839,7 +839,7 @@ struct ActGather : public Action {
 };
 
 struct GotoPosActionArg : public ActionArg {
-	virtual char* getName() { return "GotoPosActionArg"; } // _08 (weak)
+	virtual const char* getName() { return "GotoPosActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Vector3f mPosition; // _04
@@ -872,7 +872,7 @@ struct GotoSlotArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName() { return "GotoSlotArg"; } // _08 (weak)
+	virtual const char* getName() { return "GotoSlotArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
@@ -933,7 +933,7 @@ struct PathMoveArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName() { return "PathMoveArg"; } // _08 (weak)
+	virtual const char* getName() { return "PathMoveArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
@@ -1102,7 +1102,7 @@ struct StickAttackActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName() { return "StickAttackActionArg"; } // _08 (weak)
+	virtual const char* getName() { return "StickAttackActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	f32 mAttackDamage;         // _04
@@ -1173,7 +1173,7 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActTransportArg : public ActionArg {
-	virtual char* getName() { return "ActTransportArg"; } // _08 (weak)
+	virtual const char* getName() { return "ActTransportArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::Pellet* mPellet; // _04
@@ -1227,7 +1227,7 @@ struct ActTransport : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActWeedArg : public ActionArg {
-	virtual char* getName() { return "ActWeedArg"; } // _08 (weak)
+	virtual const char* getName() { return "ActWeedArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::ItemWeed::Item* mWeed; // _04

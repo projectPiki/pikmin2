@@ -226,8 +226,8 @@ struct Piki : public FakePiki {
 	void updateColor();
 
 	inline PikiParms* getParms() { return static_cast<PikiParms*>(mParms); }
-	inline u16 getKind() { return (u16)mPikiKind; }
-	inline u16 getHappa() { return (u16)mHappaKind; }
+	inline int getKind() const { return mPikiKind; }
+	inline int getHappa() const { return mHappaKind; }
 
 	inline bool isSearchable()
 	{

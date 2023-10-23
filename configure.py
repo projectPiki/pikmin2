@@ -931,7 +931,7 @@ LIBS = [
             ["plugProjectKandoU/genItem", True],
             ["plugProjectKandoU/gameStages", True],
             "plugProjectKandoU/gameSeaMgr",
-            "plugProjectKandoU/pikiAI",
+            ["plugProjectKandoU/pikiAI", True],
             ["plugProjectKandoU/pelletConfig", True],
             ["plugProjectKandoU/gameFootmark", True],
             ["plugProjectKandoU/gameSystem", True],
