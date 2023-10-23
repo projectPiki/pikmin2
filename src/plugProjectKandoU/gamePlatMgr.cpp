@@ -86,7 +86,7 @@ void PlatInstance::getCurrTri(CurrTriInfo& info)
 	mPlatform->getTriDivider()->getCurrTri(info);
 	info.mPosition = oldPos;
 
-	if (info._0D) {
+	if (info.mGetFullInfo) {
 		if (useFixCollision && isFlag(PLATFLAG_CollisionFixed)) {
 			info.mNormalVec = mtx.mult(info.mNormalVec);
 		} else {
@@ -94,10 +94,10 @@ void PlatInstance::getCurrTri(CurrTriInfo& info)
 		}
 	}
 
-	if (info._0D) {
-		info.mMinY = info.mMinY * mMatrix->mMatrix.structView.yy + mMatrix->mMatrix.structView.ty;
-		info.mMaxY = info.mMaxY * mMatrix->mMatrix.structView.yy + mMatrix->mMatrix.structView.ty;
-		info._0D   = 0;
+	if (info.mGetFullInfo) {
+		info.mMinY        = info.mMinY * mMatrix->mMatrix.structView.yy + mMatrix->mMatrix.structView.ty;
+		info.mMaxY        = info.mMaxY * mMatrix->mMatrix.structView.yy + mMatrix->mMatrix.structView.ty;
+		info.mGetFullInfo = false;
 	}
 }
 
@@ -114,7 +114,7 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 		Sys::Sphere sphere = mPlatform->getTriDivider()->mRoot.mSphere;
 		sphere.mPosition   = sphere.mPosition + mMatrix->getBasis(3);
 
-		if (!sphere.intersect(*info._00)) {
+		if (!sphere.intersect(*info.mMoveSphere)) {
 			return;
 		}
 	}
@@ -349,6 +349,7 @@ PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 	instance->mMatrix      = arg.mMatrix;
 	instance->mId          = arg.mId;
 	instance->mItem        = arg.mItem;
+
 	if (arg.mEnableGlobalPlat) {
 		instance->mPlatform       = arg.mPlatform;
 		instance->mGlobalPlatform = arg.mPlatform->clone(*arg.mMatrix);
@@ -356,26 +357,32 @@ PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 	} else {
 		instance->mPlatform = arg.mPlatform;
 	}
+
 	TObjectNode<PlatInstance>* node = new TObjectNode<PlatInstance>();
 	node->mContents                 = instance;
 	mNode.add(node);
 	node->mContents->constructor();
+
 	if (Game::platCellMgr) {
 		Sys::Sphere sphere;
 		sphere.mPosition.x = instance->mMatrix->mMatrix.structView.tx;
 		sphere.mPosition.y = instance->mMatrix->mMatrix.structView.ty;
 		sphere.mPosition.z = instance->mMatrix->mMatrix.structView.tz;
-		Sys::OBBTree* div  = (Sys::OBBTree*)instance->mPlatform->getTriDivider();
+
+		Sys::OBBTree* div = (Sys::OBBTree*)instance->mPlatform->getTriDivider();
 
 		sphere.mPosition = sphere.mPosition + div->mRoot.mSphere.mPosition;
 		sphere.mRadius   = div->mRoot.mSphere.mRadius;
+
 		if (arg.mRadius > 0.0f) {
 			sphere.mRadius = arg.mRadius;
 		}
+
 		int val;
 		Recti rect;
 		Game::platCellMgr->calcExtent(sphere, val, rect);
 		Game::platCellMgr->entry(instance, sphere);
+
 		if (instance->mItem) {
 			static_cast<Creature*>(instance->mItem)->getCreatureName();
 		}
@@ -398,7 +405,7 @@ void PlatMgr::delInstance(PlatInstance* instance) { NodeObjectMgr::delNode(insta
 void PlatMgr::traceMove(MoveInfo& info, f32 step)
 {
 	if (mUseCellMgr && platCellMgr) {
-		CellIteratorArg iterArg(*info._00);
+		CellIteratorArg iterArg(*info.mMoveSphere);
 		iterArg.mCellMgr                   = platCellMgr;
 		iterArg.mIsSphereCollisionDisabled = true;
 		CellIterator iter(iterArg);
@@ -432,10 +439,12 @@ void PlatMgr::getCurrTri(CurrTriInfo& info)
 		Sys::Sphere searchSphere;
 		searchSphere.mPosition = info.mPosition;
 		searchSphere.mRadius   = 0.0f;
+
 		CellIteratorArg iterArg(searchSphere);
 		iterArg.mCellMgr                   = platCellMgr;
 		iterArg.mIsSphereCollisionDisabled = true;
 		CellIterator iter(iterArg);
+
 		CI_LOOP(iter)
 		{
 			PlatInstance* instance = static_cast<PlatInstance*>(iter.getCellObject());

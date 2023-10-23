@@ -2138,8 +2138,8 @@ f32 ShapeMapMgr::getMinY(Vector3f& origin)
 
 	info.mNormalVec = Vector3f(0.0f, 1.0f, 0.0f);
 
-	info._0C = true;
-	info._0D = false;
+	info._0C          = true;
+	info.mGetFullInfo = false;
 	// TO HERE
 	// IS CONSTRUCTOR!!!
 

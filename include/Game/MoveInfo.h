@@ -18,7 +18,7 @@ struct TDispTriangleArray;
 
 struct MoveInfo {
 	inline MoveInfo(Sys::Sphere* sphere, Vector3f* vec, f32 a)
-	    : _00(sphere)
+	    : mMoveSphere(sphere)
 	    , mVelocity(vec)
 	    , mTraceRadius(a)
 	{
@@ -31,7 +31,7 @@ struct MoveInfo {
 		mWallTriangle   = nullptr;
 		mInfoOrigin     = nullptr;
 		_90             = 0;
-		_94             = nullptr;
+		mTriangleArray  = nullptr;
 		_2C             = JMath::sincosTable_.mTable[256].first; // pi/2
 		_30             = 0.6f;
 		_98             = -1;
@@ -39,7 +39,7 @@ struct MoveInfo {
 		_1A             = 0;
 	}
 
-	Sys::Sphere* _00;                                  // _00
+	Sys::Sphere* mMoveSphere;                          // _00
 	Vector3f* mVelocity;                               // _04
 	f32 mTraceRadius;                                  // _08
 	f32 _0C;                                           // _0C
@@ -48,8 +48,8 @@ struct MoveInfo {
 	u8 _18;                                            // _18
 	u8 _19;                                            // _19
 	u8 _1A;                                            // _1A
-	Vector3f _1C;                                      // _1C
-	f32 _28;                                           // _28
+	Vector3f mDirection;                               // _1C
+	f32 mDistance;                                     // _28
 	f32 _2C;                                           // _2C
 	f32 _30;                                           // _30
 	u8 _34[16];                                        // _34
@@ -65,7 +65,7 @@ struct MoveInfo {
 	f32 _80;                                           // _80
 	Vector3f _84;                                      // _84
 	u8 _90;                                            // _90
-	TDispTriangleArray* _94;                           // _94
+	TDispTriangleArray* mTriangleArray;                // _94
 	int _98;                                           // _98
 };
 } // namespace Game

@@ -19,7 +19,7 @@ void ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
 	_14++;
 	f32 len    = stepLength;
 	int steps  = 1;
-	f32 radius = info._00->mRadius;
+	f32 radius = info.mMoveSphere->mRadius;
 	f32 length = info.mVelocity->length();
 
 	do {
@@ -63,7 +63,7 @@ void MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f32 p1) { trace
  */
 Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game::MoveInfo& info, f32 p1)
 {
-	Sys::Sphere* sphere         = info._00;                    // r26
+	Sys::Sphere* sphere         = info.mMoveSphere;            // r26
 	Vector3f* vel               = info.mVelocity;              // r25
 	Sys::VertexTable* vertTable = coll.mDivider->mVertexTable; // r24
 	if (MapMgr::traceMoveDebug) {
@@ -104,7 +104,7 @@ Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game:
 
 			bool intersectCheck;
 			if (info._1A != 0) {
-				Sys::Cylinder cylinder(sphere->mPosition, info._1C, info._28, sphere->mRadius);
+				Sys::Cylinder cylinder(sphere->mPosition, info.mDirection, info.mDistance, sphere->mRadius);
 				f32 overlap;
 				intersectCheck = cylinder.intersect(*tri, overlap);
 			} else {
@@ -112,8 +112,8 @@ Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game:
 			}
 
 			if (intersectCheck) {
-				if (info._94) {
-					info._94->store(*tri, *vertTable, idx);
+				if (info.mTriangleArray) {
+					info.mTriangleArray->store(*tri, *vertTable, idx);
 				}
 				if (info._10) {
 					info._10->invoke(v1, v2);

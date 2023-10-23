@@ -2358,8 +2358,8 @@ void Pellet::update()
 				mWallTimer = 0;
 			}
 
-			f32 x                          = info3._00->mPosition.x;
-			f32 z                          = info3._00->mPosition.z;
+			f32 x                          = info3.mMoveSphere->mPosition.x;
+			f32 z                          = info3.mMoveSphere->mPosition.z;
 			mRigid.mConfigs[0].mPosition.x = x;
 			mRigid.mConfigs[0].mPosition.z = z;
 
