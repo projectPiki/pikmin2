@@ -357,7 +357,7 @@ int Piki::graspSituation(Game::Creature** outTarget)
 				}
 			}
 
-			if ((!gameSystem->isVersusMode() || pellet->checkBedamaColor((int)getKind())) && !pellet->discoverDisabled() && isGrabbable) {
+			if ((!gameSystem->isVersusMode() || getKind() != pellet->getBedamaColor()) && !pellet->discoverDisabled() && isGrabbable) {
 				f32 sphereDist = pellet->calcSphereDistance(this);
 				if (sphereDist < minPelDist) {
 					targetPellet = pellet;
