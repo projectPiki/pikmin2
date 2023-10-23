@@ -28,54 +28,66 @@ namespace Game {
 struct PlatAddInstanceArg {
 	PlatAddInstanceArg();
 
-	BaseItem* mItem;     // _00
-	ID32 mId;            // _04
-	Platform* mPlatform; // _10
-	Matrixf* mMatrix;    // _14
-	bool _18;            // _18
-	f32 mRadius;         // _1C
+	BaseItem* mItem;        // _00
+	ID32 mId;               // _04
+	Platform* mPlatform;    // _10
+	Matrixf* mMatrix;       // _14
+	bool mEnableGlobalPlat; // _18
+	f32 mRadius;            // _1C
+};
+
+enum PlatFlags {
+	PLATFLAG_CollisionActive   = 0x1,
+	PLATFLAG_CollisionFixed    = 0x2,
+	PLATFLAG_GlobalPlatEnabled = 0x80,
 };
 
 struct PlatInstance : public CellObject {
 	inline PlatInstance()
 	    : CellObject()
 	{
-		mMatrix = nullptr;
-		_EC     = nullptr;
-		_F4     = nullptr;
+		mMatrix   = nullptr;
+		mPlatform = nullptr;
+		mItem     = nullptr;
 		mId.setID('none');
-		_F0  = nullptr;
-		_108 = 1;
+		mGlobalPlatform = nullptr;
+		mFlags          = PLATFLAG_CollisionActive;
 	}
 
 	virtual Vector3f getPosition();                           // _08
-	virtual void checkCollision(CellObject* other);           // _0C (weak)
 	virtual void getBoundingSphere(Sys::Sphere& boundSphere); // _10
-	virtual bool collisionUpdatable();                        // _14 (weak)
-	virtual char* getTypeName();                              // _24 (weak)
-	virtual u16 getObjType();                                 // _28 (weak)
-	virtual void constructor();                               // _2C (weak)
-	virtual void doAnimation();                               // _30 (weak)
-	virtual void doEntry();                                   // _34 (weak)
-	virtual void doSetView(int viewportNumber);               // _38 (weak)
-	virtual void doViewCalc();                                // _3C (weak)
-	virtual void doSimulation(f32);                           // _40 (weak)
-	virtual void doDirectDraw(Graphics& gfx);                 // _44 (weak)
+	virtual void constructor() { }                            // _2C (weak)
+	virtual void checkCollision(CellObject* other) { }        // _0C (weak)
+	virtual void doAnimation() { }                            // _30 (weak)
+	virtual void doEntry() { }                                // _34 (weak)
+	virtual void doSetView(int viewportNumber) { }            // _38 (weak)
+	virtual void doViewCalc() { }                             // _3C (weak)
+	virtual void doSimulation(f32) { }                        // _40 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { }              // _44 (weak)
+	virtual char* getTypeName() { return "platinstance"; }    // _24 (weak)
+	virtual u16 getObjType() { return OBJTYPE_End; }          // _28 (weak)
+	virtual bool collisionUpdatable() { return false; }       // _14 (weak)
 
 	void setCollision(bool);
 	void getCurrTri(CurrTriInfo&);
 	void traceMove(MoveInfo&, f32);
 
+	inline void setFlag(u32 flag) { mFlags |= flag; }
+	inline void resetFlag(u32 flag) { mFlags &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags & flag; }
+
+	static bool useFixCollision;
+
 	// _00		 = VTBL
 	// _00-_B8 = CellObject
-	Matrixf* mMatrix; // _B8
-	Matrixf _BC;      // _BC
-	Platform* _EC;    // _EC
-	Platform* _F0;    // _F0
-	BaseItem* _F4;    // _F4
-	ID32 mId;         // _F8
-	u32 _104;         // _104
-	u8 _108;          // _108
+	Matrixf* mMatrix;            // _B8
+	Matrixf mFixCollisionMatrix; // _BC
+	Platform* mPlatform;         // _EC
+	Platform* mGlobalPlatform;   // _F0, for use with traceMove_global
+	BaseItem* mItem;             // _F4
+	ID32 mId;                    // _F8
+	int mOnCount;                // _104, increments each time traceMove gives a plat callback on a floor triangle
+	u8 mFlags;                   // _108
 };
 
 struct PlatInstanceAttacher {
@@ -100,9 +112,9 @@ struct PlatInstanceAttacher {
 struct PlatMgr : public NodeObjectMgr<PlatInstance> {
 	PlatMgr();
 
-	virtual ~PlatMgr();                                       // _08 (weak)
+	// virtual ~PlatMgr();                                       // _08 (weak)
 	virtual void doDirectDraw(Graphics& gfx);                 // _78 (weak)
-	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _80
+	virtual bool findRayIntersection(Sys::RayIntersectInfo&); // _80
 
 	PlatInstance* addInstance(PlatAddInstanceArg&);
 	void delInstance(PlatInstance*);
@@ -111,15 +123,15 @@ struct PlatMgr : public NodeObjectMgr<PlatInstance> {
 	void getCurrTri(CurrTriInfo&);
 	void resetOnCount();
 
+	static bool mUseCellMgr;
+
 	// _00		 = VTBL
 	// _00-_3C = NodeObjectMgr
 };
 
 struct PlatEvent {
 	PlatInstance* mInstance; // _00
-	f32 _04;                 // _04
-	f32 _08;                 // _08
-	f32 _0C;                 // _0C
+	Vector3f mPosition;      // _04
 	Creature* mObj;          // _10
 };
 

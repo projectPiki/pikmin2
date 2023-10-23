@@ -112,6 +112,9 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 		return nullptr;
 	}
 
+	// this has to be here for weak ordering in gamePlatMgr
+	void delNode(T* obj);
+
 	// second VTBL:
 	virtual void resetMgr() // _20
 	{
@@ -120,8 +123,6 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 		mNode.mPrev   = nullptr;
 		mNode.mNext   = nullptr;
 	}
-
-	void delNode(T* obj);
 
 	// _00     = VTBL
 	// _00-_20 = ObjectMgr

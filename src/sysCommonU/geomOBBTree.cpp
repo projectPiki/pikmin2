@@ -2325,7 +2325,7 @@ void OBBTree::traceMove_original(Matrixf&, Matrixf&, Game::MoveInfo&, float)
  * Address:	8041EA58
  * Size:	000214
  */
-void OBBTree::findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&)
+bool OBBTree::findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&)
 {
 	/*
 	stwu     r1, -0xc0(r1)

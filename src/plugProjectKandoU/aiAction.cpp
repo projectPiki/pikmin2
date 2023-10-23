@@ -89,8 +89,8 @@ void Brain::exec()
 		int code = action->exec();
 
 		if (code == ACTEXEC_Success) {
-			Game::Piki::InvokeAIFreeArg freeArg(0, 0);
-			freeArg._00 = 1;
+			Game::Piki::InvokeAIFreeArg freeArg;
+			freeArg.mDoForceInvoke = true;
 
 			if (!mPiki->invokeAIFree(freeArg)) {
 				switch (action->getNextAIType()) {
@@ -114,8 +114,8 @@ void Brain::exec()
 			action->emotion_success();
 
 		} else if (code == ACTEXEC_Fail) {
-			Game::Piki::InvokeAIFreeArg freeArg(0, 0);
-			freeArg._00 = 1;
+			Game::Piki::InvokeAIFreeArg freeArg;
+			freeArg.mDoForceInvoke = true;
 			if (!mPiki->invokeAIFree(freeArg)) {
 				switch (action->getNextAIType()) {
 				case ACT_Formation:

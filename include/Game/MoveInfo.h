@@ -58,9 +58,7 @@ struct MoveInfo {
 	Sys::Triangle* _4C;                                // _4C
 	Vector3f mPosition;                                // _50
 	Vector3f mReflectPosition;                         // _5C
-	f32 _68;                                           // _60
-	f32 _6C;                                           // _64
-	f32 _70;                                           // _68
+	Vector3f _68;                                      // _68, related to tri at _4C
 	u8 _74;                                            // _74
 	f32 _78;                                           // _78
 	f32 _7C;                                           // _7C

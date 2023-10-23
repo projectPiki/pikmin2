@@ -250,7 +250,7 @@ int Piki::graspSituation_Fast(Game::Creature** outTarget)
 					if (sphereDist < minDist && sphereDist < pikiMgr->mParms->mPikiParms.mEnemySearchRange() && heightCheck < 30.0f) {
 						minDist = sphereDist;
 						target  = navi;
-						action  = PikiAI::ACT_Bore;
+						action  = PikiAI::ACT_Attack;
 					}
 				}
 			}
@@ -266,7 +266,7 @@ int Piki::graspSituation_Fast(Game::Creature** outTarget)
 				if (sphereDist < minDist && sphereDist < pikiMgr->mParms->mPikiParms.mEnemySearchRange() && heightCheck < 30.0f) {
 					minDist = sphereDist;
 					target  = enemy;
-					action  = PikiAI::ACT_Bore;
+					action  = PikiAI::ACT_Attack;
 				}
 			}
 		} break;
@@ -584,7 +584,7 @@ int Piki::graspSituation(Game::Creature** outTarget)
 
 	if (targetTeki && minTekiDist < minDist) {
 		target = targetTeki;
-		action = PikiAI::ACT_Bore;
+		action = PikiAI::ACT_Attack;
 	}
 
 	*outTarget = target;
@@ -2561,7 +2561,7 @@ bool Piki::invokeAI(Game::CollEvent* event, bool check)
 			attackArg.mCreature = creature;
 			attackArg.mCollPart = nullptr;
 
-			return mBrain->start(PikiAI::ACT_Bore, &attackArg);
+			return mBrain->start(PikiAI::ACT_Attack, &attackArg);
 		}
 	} break;
 
@@ -2614,7 +2614,7 @@ bool Piki::invokeAI(Game::CollEvent* event, bool check)
 			PikiAI::ActAttackArg attackArg;
 			attackArg.mCreature = creature;
 			attackArg.mCollPart = part;
-			return mBrain->start(PikiAI::ACT_Bore, &attackArg);
+			return mBrain->start(PikiAI::ACT_Attack, &attackArg);
 		}
 
 		if (static_cast<EnemyBase*>(creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb) {
@@ -2708,7 +2708,7 @@ bool Piki::invokeAI(Game::CollEvent* event, bool check)
  */
 bool Piki::invokeAI(Game::PlatEvent* event)
 {
-	BaseItem* item = event->mInstance->_F4;
+	BaseItem* item = event->mInstance->mItem;
 
 	switch (item->mObjectTypeID) {
 	case OBJTYPE_Gate:
@@ -2741,7 +2741,7 @@ bool Piki::invokeAI(Game::PlatEvent* event)
 		break;
 
 	case OBJTYPE_Bridge:
-		if (FABS(event->_08) < 0.2f) {
+		if (FABS(event->mPosition.y) < 0.2f) {
 			ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(item);
 			if (bridge->isAlive() && bridge->workable(mPosition)) {
 				PikiAI::ActBridgeArg bridgeArg;
@@ -2771,8 +2771,8 @@ bool Piki::invokeAI(Game::PlatEvent* event)
 bool Piki::invokeAIFree(Game::Piki::InvokeAIFreeArg& arg)
 {
 	sys->mTimers->_start("invokeAI-f", true);
-	if (arg._00 != false || mPikiUpdateContext.updatable()) {
-		bool result = checkInvokeAI(arg._01);
+	if (arg.mDoForceInvoke || mPikiUpdateContext.updatable()) {
+		bool result = checkInvokeAI(arg.mDoSimpleCheck);
 		sys->mTimers->_stop("invokeAI-f");
 		return result;
 	}
@@ -2785,7 +2785,7 @@ bool Piki::invokeAIFree(Game::Piki::InvokeAIFreeArg& arg)
  * Address:	801B38F8
  * Size:	000310
  */
-bool Piki::checkInvokeAI(bool check)
+bool Piki::checkInvokeAI(bool isSimpleCheck)
 {
 	Game::Creature* target = nullptr;
 	int action;
@@ -2795,7 +2795,7 @@ bool Piki::checkInvokeAI(bool check)
 		action = graspSituation(&target);
 	}
 
-	if (check) {
+	if (isSimpleCheck) {
 		return action != PikiAI::ACT_NULL;
 	}
 
@@ -2818,7 +2818,7 @@ bool Piki::checkInvokeAI(bool check)
 		}
 
 		return true;
-	case PikiAI::ACT_Bore:
+	case PikiAI::ACT_Attack:
 		PikiAI::ActAttackArg attackArg;
 		attackArg.mCreature = target;
 		attackArg.mCollPart = nullptr;

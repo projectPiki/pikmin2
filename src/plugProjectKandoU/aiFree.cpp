@@ -53,8 +53,9 @@ void ActFree::init(ActionArg* settings)
 		GatherActionArg gatherArg(freeArg);
 		mGather->init(&gatherArg);
 		break;
+
 	default:
-		mParent->startMotion(31, 31, nullptr, nullptr);
+		mParent->startMotion(Game::IPikiAnims::WAIT, Game::IPikiAnims::WAIT, nullptr, nullptr);
 		mParent->mVelocity = Vector3f(0.0f);
 		break;
 	}
@@ -76,7 +77,7 @@ int ActFree::exec()
 	switch (mState) {
 	case PIKIAI_FREE_GATHER: {
 		// If we finished the gather state
-		if (mGather->exec() == 0) {
+		if (mGather->exec() == ACTEXEC_Success) {
 			mState = PIKIAI_FREE_DEFAULT;
 
 			// Wait for a bit of time to cool off
@@ -89,9 +90,9 @@ int ActFree::exec()
 	case PIKIAI_FREE_BORE: {
 		int status = mBore->exec();
 
-		// Let's try invoke the AI, and finish the boredom if we succeed
-		Game::Piki::InvokeAIFreeArg settings(0, 0);
-		settings._01 = 1;
+		// if another action is available, stop being bored.
+		Game::Piki::InvokeAIFreeArg settings;
+		settings.mDoSimpleCheck = true; // just check if something is available - don't start it yet
 		if (mParent->invokeAIFree(settings)) {
 			mBore->finish();
 		}
@@ -108,9 +109,10 @@ int ActFree::exec()
 		// We aren't moving anywhere anymore
 		mParent->mVelocity = Vector3f(0.0f);
 
-		Game::Piki::InvokeAIFreeArg settings(0, 0);
+		Game::Piki::InvokeAIFreeArg settings;
+		// this will start the next available action (if there is one, and if piki is updateable)
 		if (mParent->invokeAIFree(settings)) {
-			return 0;
+			return ACTEXEC_Success;
 		}
 
 		// If the delay timer is done we have a 50/50 chance of starting a boredom state
@@ -125,7 +127,7 @@ int ActFree::exec()
 	}
 	}
 
-	return 1;
+	return ACTEXEC_Continue;
 }
 
 /*
@@ -178,19 +180,5 @@ void ActFree::collisionCallback(Game::Piki* p, Game::CollEvent& event)
 	Game::InteractFue fue(event.mCollidingCreature, 0, 1);
 	p->stimulate(fue);
 }
-
-/*
- * --INFO--
- * Address:	801A04A4
- * Size:	00000C
- */
-char* GatherActionArg::getName() { return "GatherActionArg"; }
-
-/*
- * --INFO--
- * Address:	801A04B0
- * Size:	000008
- */
-u32 ActFree::getNextAIType() { return PIKIAI_FREE_BORE; }
 
 } // namespace PikiAI

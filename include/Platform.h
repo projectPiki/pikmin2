@@ -13,7 +13,7 @@ struct Platform : CNode {
 	Platform();
 	virtual ~Platform() { } // _08 (weak)
 
-	Sys::TriDivider* getTriDivider();
+	Sys::OBBTree* getTriDivider();
 	void setMapCodeAll(MapCode::Code&);
 	Platform* clone(Matrixf&);
 	void load(JKRFileLoader*, char*);

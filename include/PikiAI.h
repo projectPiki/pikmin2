@@ -103,7 +103,7 @@ enum PikiBrainAction {
 	ACT_Enter     = 2,
 	ACT_Exit      = 3,
 	ACT_Transport = 4,
-	ACT_Bore      = 5,
+	ACT_Attack    = 5,
 	ACT_BreakGate = 6,
 	ACT_BreakRock = 7,
 	ACT_Crop      = 8,
@@ -794,9 +794,9 @@ struct ActFree : public Action, virtual SysShape::MotionListener {
 	virtual void init(PikiAI::ActionArg* arg);                                // _08
 	virtual int exec();                                                       // _0C
 	virtual void cleanup();                                                   // _10
-	virtual u32 getNextAIType();                                              // _20 (weak)
+	virtual u32 getNextAIType() { return PIKIAI_FREE_BORE; }                  // _20 (weak)
 	virtual void collisionCallback(Game::Piki* piki, Game::CollEvent& event); // _28
-	virtual void onKeyEvent(const SysShape::KeyEvent& event);                 // _3C (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);                 // _3C
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -817,7 +817,7 @@ struct GatherActionArg : public ActionArg {
 		mRadius        = arg->_14;
 	}
 
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "GatherActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Vector3f mDestination; // _04

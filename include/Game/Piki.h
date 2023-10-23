@@ -119,14 +119,14 @@ struct PikiFSM : public StateMachine<Piki> {
 struct Piki : public FakePiki {
 	typedef PikiState StateType;
 	struct InvokeAIFreeArg {
-		InvokeAIFreeArg(u8 a, u8 b)
-		    : _00(a)
-		    , _01(b)
+		InvokeAIFreeArg()
+		    : mDoForceInvoke(false)
+		    , mDoSimpleCheck(false)
 		{
 		}
 
-		bool _00;
-		bool _01;
+		bool mDoForceInvoke; // _00, check whether piki is updateable or not
+		bool mDoSimpleCheck; // _01, just check if an action is available without actually starting it
 	};
 
 	Piki();

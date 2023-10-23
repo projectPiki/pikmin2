@@ -107,6 +107,15 @@ struct Matrixf {
 		return outVec;
 	}
 
+	inline Vector3f mult(Vector3f& vec)
+	{
+		Vector3f outVec;
+		outVec.x = vec.x * (*this)(0, 0) + vec.y * (*this)(0, 1) + vec.z * (*this)(0, 2);
+		outVec.y = vec.x * (*this)(1, 0) + vec.y * (*this)(1, 1) + vec.z * (*this)(1, 2);
+		outVec.z = vec.x * (*this)(2, 0) + vec.y * (*this)(2, 1) + vec.z * (*this)(2, 2);
+		return outVec;
+	}
+
 	// this needs a better name - used in TDangoCrash::create
 	inline void setAngleMtx(Vector3f& dir, Vector3f& ang, Vector3f& tr)
 	{
