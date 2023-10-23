@@ -38,7 +38,7 @@ struct PlatAddInstanceArg {
 
 enum PlatFlags {
 	PLATFLAG_CollisionActive   = 0x1,
-	PLATFLAG_CollisionFixed    = 0x2,
+	PLATFLAG_IsCollisionStatic = 0x2,
 	PLATFLAG_GlobalPlatEnabled = 0x80,
 };
 
@@ -80,14 +80,14 @@ struct PlatInstance : public CellObject {
 
 	// _00		 = VTBL
 	// _00-_B8 = CellObject
-	Matrixf* mMatrix;            // _B8
-	Matrixf mFixCollisionMatrix; // _BC
-	Platform* mPlatform;         // _EC
-	Platform* mGlobalPlatform;   // _F0, for use with traceMove_global
-	BaseItem* mItem;             // _F4
-	ID32 mId;                    // _F8
-	int mOnCount;                // _104, increments each time traceMove gives a plat callback on a floor triangle
-	u8 mFlags;                   // _108
+	Matrixf* mMatrix;          // _B8
+	Matrixf mStaticCollMtx;    // _BC
+	Platform* mPlatform;       // _EC
+	Platform* mGlobalPlatform; // _F0, for use with traceMove_global
+	BaseItem* mItem;           // _F4
+	ID32 mId;                  // _F8
+	int mOnCount;              // _104, increments each time traceMove gives a plat callback on a floor triangle
+	u8 mFlags;                 // _108
 };
 
 struct PlatInstanceAttacher {

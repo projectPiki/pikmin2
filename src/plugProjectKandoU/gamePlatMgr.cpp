@@ -69,13 +69,13 @@ void PlatInstance::getCurrTri(CurrTriInfo& info)
 	Matrixf invMtx;
 	PSMTXCopy(mMatrix->mMatrix.mtxView, mtx.mMatrix.mtxView);
 
-	if (!useFixCollision || !isFlag(PLATFLAG_CollisionFixed)) {
+	if (!useFixCollision || !isFlag(PLATFLAG_IsCollisionStatic)) {
 		PSMTXInverse(mtx.mMatrix.mtxView, invMtx.mMatrix.mtxView);
 	}
 
 	Vector3f newPos;
-	if (useFixCollision && isFlag(PLATFLAG_CollisionFixed)) {
-		newPos = mFixCollisionMatrix.mtxMult(info.mPosition);
+	if (useFixCollision && isFlag(PLATFLAG_IsCollisionStatic)) {
+		newPos = mStaticCollMtx.mtxMult(info.mPosition);
 	} else {
 		newPos = invMtx.mtxMult(info.mPosition);
 	}
@@ -87,7 +87,7 @@ void PlatInstance::getCurrTri(CurrTriInfo& info)
 	info.mPosition = oldPos;
 
 	if (info.mGetFullInfo) {
-		if (useFixCollision && isFlag(PLATFLAG_CollisionFixed)) {
+		if (useFixCollision && isFlag(PLATFLAG_IsCollisionStatic)) {
 			info.mNormalVec = mtx.mult(info.mNormalVec);
 		} else {
 			info.mNormalVec = mtx.mult(info.mNormalVec);
@@ -121,7 +121,7 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 
 	PSMTXCopy(mMatrix->mMatrix.mtxView, mtx.mMatrix.mtxView);
 
-	if (!useFixCollision || !isFlag(PLATFLAG_CollisionFixed)) {
+	if (!useFixCollision || !isFlag(PLATFLAG_IsCollisionStatic)) {
 		PSMTXInverse(mtx.mMatrix.mtxView, invMtx.mMatrix.mtxView);
 	}
 
@@ -137,8 +137,8 @@ void PlatInstance::traceMove(MoveInfo& info, f32 step)
 	Sys::OBBTree* triDivider = mPlatform->getTriDivider();
 	if (mGlobalPlatform && MapMgr::mTraceMoveOptLevel >= 3) {
 		mGlobalPlatform->getTriDivider()->traceMove_global(info, step);
-	} else if (useFixCollision && isFlag(PLATFLAG_CollisionFixed)) {
-		triDivider->traceMove(mtx, mFixCollisionMatrix, info, step);
+	} else if (useFixCollision && isFlag(PLATFLAG_IsCollisionStatic)) {
+		triDivider->traceMove(mtx, mStaticCollMtx, info, step);
 	} else {
 		triDivider->traceMove(mtx, invMtx, info, step);
 	}
@@ -275,10 +275,10 @@ void PlatInstanceAttacher::fixCollision(bool doFixCollision)
 	for (int i = 0; i < mInstanceCount; i++) {
 		PlatInstance* instance = mPlatInstances[i];
 		if (doFixCollision) {
-			instance->setFlag(PLATFLAG_CollisionFixed);
-			PSMTXInverse(instance->mMatrix->mMatrix.mtxView, instance->mFixCollisionMatrix.mMatrix.mtxView);
+			instance->setFlag(PLATFLAG_IsCollisionStatic);
+			PSMTXInverse(instance->mMatrix->mMatrix.mtxView, instance->mStaticCollMtx.mMatrix.mtxView);
 		} else {
-			instance->resetFlag(PLATFLAG_CollisionFixed);
+			instance->resetFlag(PLATFLAG_IsCollisionStatic);
 		}
 	}
 }
@@ -472,8 +472,9 @@ void PlatMgr::getCurrTri(CurrTriInfo& info)
 bool PlatMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 {
 	// unused (but annoying).
-	Vector3f edgeVec(info._00.mStartPos.y - info._00.mEndPos.y, info._00.mStartPos.z - info._00.mEndPos.z,
-	                 info._00.mStartPos.x - info._00.mEndPos.x);
+	Vector3f edgeVec(info.mIntersectEdge.mStartPos.y - info.mIntersectEdge.mEndPos.y,
+	                 info.mIntersectEdge.mStartPos.z - info.mIntersectEdge.mEndPos.z,
+	                 info.mIntersectEdge.mStartPos.x - info.mIntersectEdge.mEndPos.x);
 	_length2(edgeVec);
 
 	Iterator<PlatInstance> iter(this);
@@ -490,22 +491,22 @@ bool PlatMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 			Matrixf invMtx;
 			PSMTXCopy(instance->mMatrix->mMatrix.mtxView, mtx.mMatrix.mtxView);
 
-			if (!PlatInstance::useFixCollision || !instance->isFlag(PLATFLAG_CollisionFixed)) {
+			if (!PlatInstance::useFixCollision || !instance->isFlag(PLATFLAG_IsCollisionStatic)) {
 				PSMTXInverse(mtx.mMatrix.mtxView, invMtx.mMatrix.mtxView);
 			} else {
-				PSMTXCopy(instance->mFixCollisionMatrix.mMatrix.mtxView, invMtx.mMatrix.mtxView);
+				PSMTXCopy(instance->mStaticCollMtx.mMatrix.mtxView, invMtx.mMatrix.mtxView);
 			}
 
-			if (divider->findRayIntersection(info, mtx, invMtx) && info._40 < minDist) {
-				minDist = info._40;
-				pos     = info._34;
+			if (divider->findRayIntersection(info, mtx, invMtx) && info.mDistance < minDist) {
+				minDist = info.mDistance;
+				pos     = info.mIntersectPosition;
 				check   = true;
 			}
 		}
 	}
 
 	if (check) {
-		info._34 = pos;
+		info.mIntersectPosition = pos;
 		return true;
 	}
 
