@@ -4203,14 +4203,15 @@ u64 TEnemyZukan::getYMsgID(int id) { return mOffsetMsg_YDesc->getMsgID(id); }
  */
 int TEnemyZukan::getModelIndex(int index)
 {
-	int* data = eIDInfo[0];
-	for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
-		if (eIDInfo[i][0] == index) {
-			data = eIDInfo[i];
-			return data[1];
+	int i = 0;
+	int j = 1;
+	while (i < ENEMY_ZUKAN_COUNT) {
+		if (index == eIDInfo[i][0]) {
+			return eIDInfo[i][j];
 		}
+		i++;
 	}
-	return eIDInfo[0][1];
+	return eIDInfo[0][j];
 }
 
 /*
