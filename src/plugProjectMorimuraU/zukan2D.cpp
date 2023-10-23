@@ -1551,7 +1551,8 @@ void TZukanBase::doUpdateOut()
 			if (_234 >= 0) {
 				offs = _234;
 			}
-			offs2 = offs % 3 - 1;
+			offs2 = offs % 3;
+			offs2--;
 			if (offs2 < 0) {
 				offs2 = 0;
 			}
@@ -1565,7 +1566,7 @@ void TZukanBase::doUpdateOut()
 
 	J2DPane* panel = mIndexPaneList[mCurrentSelect]->mIconInfos[offs2]->mPane;
 	for (u8 i = 0; i < 4; i++) {
-		if (!mIsPreDebt || !mMaxPane) {
+		if (mIsPreDebt && !mMaxPane) {
 			mPaneCursorCorners[i]->hide();
 		} else {
 			f32 x = panel->getGlbVtx(i).x - panel->mGlobalMtx[0][3];
@@ -1583,11 +1584,11 @@ void TZukanBase::doUpdateOut()
 				if (id1 < 0 || mMaxSelectZukan <= 3) {
 					test = false;
 				} else if (id1 > id2) {
-					if (mIndexPaneList[i]->_1C > mIndexPaneList[mCurrentSelect]->_1C) {
+					if (mIndexPaneList[i]->_1C > mIndexPaneList[mCurrentSelect]->_1C) { // fcmpo swap
 						test = false;
 					}
 				} else {
-					if (mIndexPaneList[mCurrentSelect]->_1C < mIndexPaneList[i]->_1C) {
+					if (mIndexPaneList[i]->_1C < mIndexPaneList[mCurrentSelect]->_1C) { // fcmpo swap
 						test = false;
 					}
 				}
