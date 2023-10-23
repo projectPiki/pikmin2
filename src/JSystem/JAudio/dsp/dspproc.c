@@ -123,7 +123,7 @@ void DsaveBuffer(u16 p1, u32 p2, u32 p3)
  * Address:	800AA7C0
  * Size:	00000C
  */
-void setup_callback(u16 p1) { flag = 0; }
+static void setup_callback(u16 p1) { flag = 0; }
 
 /*
  * --INFO--

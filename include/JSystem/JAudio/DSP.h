@@ -6,15 +6,15 @@
 
 // dspproc.c
 void DSPReleaseHalt2(u32 msg);
-void setup_callback(u16 p1);
+static void setup_callback(u16 p1);
 void DsetupTable(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5);
 void DsetMixerLevel(f32 mixerLevel);
 void DsyncFrame(u32 p1, u32 p2, u32 p3);
 
 // dsptask.c
-void DspHandShake();
+static void DspHandShake();
 void DspBoot(DSPCallback callback);
-void DspInitWork();
+static void DspInitWork();
 int DspStartWork(u32 p1, void (*p2)(u16));
 void DspFinishWork(u16 p1);
 

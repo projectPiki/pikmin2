@@ -21,7 +21,7 @@ u16 jdsp[3728] ATTRIBUTE_ALIGN(32)
  * Address:	800AA900
  * Size:	000038
  */
-void DspHandShake(void* a1)
+static void DspHandShake(void* a1)
 {
 	do {
 		;
