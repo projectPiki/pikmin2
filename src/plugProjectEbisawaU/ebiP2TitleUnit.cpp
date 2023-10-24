@@ -64,7 +64,7 @@ bool TParamBase::loadSettingFile(JKRArchive* arc, char* path)
  * Address:	803C0B80
  * Size:	0000B0
  */
-void TObjBase::calcModelBaseMtx_() { E3DModel_set2DCoordToBaseTRMatrix_(mModel, mPos, mAngle, mParms[1]); }
+void TObjBase::calcModelBaseMtx_() { E3DModel_set2DCoordToBaseTRMatrix_(mModel, mPosition, mAngle, mParms[1]); }
 
 /*
  * --INFO--
@@ -86,8 +86,8 @@ void TObjBase::pushOut(TObjBase* otherObj)
 	if (isCalc() && otherObj->isCalc()) {
 		EGECircle2f bounds;
 		bounds.mRadius = mParms[2] + otherObj->mParms[2];
-		bounds.mCenter = mPos;
-		bounds.out(&otherObj->mPos);
+		bounds.mCenter = mPosition;
+		bounds.out(&otherObj->mPosition);
 	}
 }
 

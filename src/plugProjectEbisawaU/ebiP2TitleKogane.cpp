@@ -106,7 +106,7 @@ void Kogane::TUnit::init(TMgr* mgr)
 	mModel   = mManager->mAnimator->newJ3DModel();
 	mAnim.setAnimFolder(&mManager->mAnimator->mAnimFolder);
 
-	mPos      = titleMgr->getPosOutOfViewField();
+	mPosition = titleMgr->getPosOutOfViewField();
 	mParms[0] = mManager->mParams.mWalkSpeed.mValue;
 	mParms[1] = mManager->mParams.mScale.mValue;
 	mParms[4] = mManager->mParams.mCullRadius.mValue;
@@ -120,7 +120,7 @@ void Kogane::TUnit::init(TMgr* mgr)
  */
 void Kogane::TUnit::startZigzagWalk(Vector2f& pos, Vector2f& targetPos)
 {
-	mPos       = pos;
+	mPosition  = pos;
 	mTargetPos = targetPos;
 	mActionID  = KOGANEACT_NULL;
 	startState(KSTATE_ZigZagWalk);
@@ -170,7 +170,7 @@ void Kogane::TUnit::startState(enumState state)
 	mStateID = state;
 	switch (state) {
 	case KSTATE_Inactive:
-		mPos = title::titleMgr->getPosOutOfViewField();
+		mPosition = title::titleMgr->getPosOutOfViewField();
 
 	case KSTATE_Controlled:
 		u32 time  = mManager->mParams.mControlStateTime.mValue / sys->mDeltaTime;
@@ -187,7 +187,7 @@ void Kogane::TUnit::startState(enumState state)
 		break;
 	case KSTATE_Turn:
 		f32 angle    = mManager->mParams.mWalkRandomAngle.mValue;
-		f32 line     = JMath::atanTable_.atan2_(mTargetPos.y - mPos.y, mTargetPos.x - mPos.x);
+		f32 line     = JMath::atanTable_.atan2_(mTargetPos.y - mPosition.y, mTargetPos.x - mPosition.x);
 		f32 test     = angle * DEG2RAD * PI * (randEbisawaFloat() * 2.0f + -1.0f) + line;
 		mTargetAngle = Vector2f(pikmin2_cosf(test), pikmin2_sinf(test));
 		break;
@@ -202,7 +202,7 @@ void Kogane::TUnit::startState(enumState state)
 		break;
 
 	case KSTATE_ZigZagWalk:
-		Vector2f negPos(-mPos.x, -mPos.y);
+		Vector2f negPos(-mPosition.x, -mPosition.y);
 		f32 len = _sqrtf(negPos.x * negPos.x + negPos.y * negPos.y);
 		if (len != 0.0f) {
 			f32 norm = 1.0f / len;
@@ -250,7 +250,7 @@ void Kogane::TUnit::update()
 			f32 stickY = mControl->mSStick.mYPos;
 			if (stickY > 0.7f) {
 				f32 paramProd = stickY * mParms[0];
-				mPos          = mPos + mAngle * paramProd;
+				mPosition     = mPosition + mAngle * paramProd;
 				mActionID     = KOGANEACT_2;
 			}
 		}
@@ -292,7 +292,7 @@ void Kogane::TUnit::update()
 		if (mCounter == 0) {
 			startState(KSTATE_Wait);
 		} else {
-			mPos = mPos + mAngle * mParms[0];
+			mPosition = mPosition + mAngle * mParms[0];
 		}
 
 	} break;
@@ -301,19 +301,19 @@ void Kogane::TUnit::update()
 		mActionID = KOGANEACT_2;
 		mAngle.normalise();
 
-		mPos = mPos + mAngle * mParms[0];
+		mPosition = mPosition + mAngle * mParms[0];
 	} break;
 
 	case KSTATE_GoHome: {
 		mActionID = KOGANEACT_2;
 		mAngle.normalise();
-		mPos = mPos + mAngle * mParms[0];
+		mPosition = mPosition + mAngle * mParms[0];
 	} break;
 	}
 
 	switch (mStateID) {
 	case KSTATE_Inactive:
-		mPos = titleMgr->getPosOutOfViewField();
+		mPosition = titleMgr->getPosOutOfViewField();
 
 	case KSTATE_ZigZagWalk:
 		if (titleMgr->isInViewField(this)) {

@@ -243,8 +243,8 @@ void Pikmin::TMgr::forceArriveDest()
 	mCounter          = time;
 	mCounter2         = time;
 	for (int i = 0; i < 500; i++) {
-		TUnit* unit = &pUnits[i];
-		unit->mPos  = unit->destPos;
+		TUnit* unit     = &pUnits[i];
+		unit->mPosition = unit->destPos;
 		unit->startState((Pikmin::TUnit::enumState)1);
 	}
 }
@@ -344,7 +344,7 @@ void Pikmin::TMgr::startWindBlow(ebi::EGEBox2f& box)
 	for (int i = 0; i < 500; i++) {
 		TUnit* unit = &pUnits[i];
 		if (unit->isCalc()) {
-			Vector2f unitPos = Vector2f(unit->mPos.x, unit->mPos.y);
+			Vector2f unitPos = Vector2f(unit->mPosition.x, unit->mPosition.y);
 			if (!box.isOut(unitPos)) {
 				(pUnits[i]).startState((Pikmin::TUnit::enumState)3);
 			}
@@ -671,7 +671,7 @@ blr
  */
 void Pikmin::TUnit::goDestination()
 {
-	Vector2f Diff(destPos.x - mPos.x, destPos.y - mPos.y);
+	Vector2f Diff(destPos.x - mPosition.x, destPos.y - mPosition.y);
 	f32 comp = _lenVec2D(Diff);
 	if (comp < mManager->mParams.mStopDist.mValue) {
 		startState((enumState)1);
@@ -705,9 +705,9 @@ bool Pikmin::TUnit::beAttacked()
 	if (_94 != false) {
 		return 0;
 	}
-	_94  = true;
-	_84  = 0;
-	mPos = titleMgr->getPosOutOfViewField();
+	_94       = true;
+	_84       = 0;
+	mPosition = titleMgr->getPosOutOfViewField();
 	return 1;
 }
 
@@ -1920,9 +1920,9 @@ blr
 void Pikmin::TMgr::setStartPos(Vector2f* pos)
 {
 	for (int i = 0; i < 500; i++) {
-		TUnit* unit  = &pUnits[i];
-		unit->mPos.x = pos[i].x;
-		unit->mPos.y = pos[i].y;
+		TUnit* unit       = &pUnits[i];
+		unit->mPosition.x = pos[i].x;
+		unit->mPosition.y = pos[i].y;
 	}
 }
 
@@ -1987,7 +1987,7 @@ void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 
 	mAngle = mAngle + newpos;
 	mAngle.normalise();
-	mPos = mPos + mAngle * mParms[0];
+	mPosition = mPosition + mAngle * mParms[0];
 }
 
 /*
@@ -1998,7 +1998,7 @@ void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 void Pikmin::TUnit::updateEnemyReaction_()
 {
 	if (mEnemyObj != nullptr && mEnemyObj->isCalc()) {
-		Vector2f diff = mEnemyObj->mPos - mPos;
+		Vector2f diff = mEnemyObj->mPosition - mPosition;
 		f32 len       = _lenVec2D(diff);
 		switch (mEnemyObj->getCreatureType()) {
 		case 5: // Kogane
@@ -2011,7 +2011,7 @@ void Pikmin::TUnit::updateEnemyReaction_()
 				}
 				switch (_84) {
 				case 0:
-					mPos = destPos;
+					mPosition = destPos;
 					break;
 				case 3:
 					mAngle = Vector2f(1.0f, 0.0f);
@@ -2039,7 +2039,7 @@ void Pikmin::TUnit::updateEnemyReaction_()
 				}
 				switch (_84) {
 				case 0:
-					mPos = destPos;
+					mPosition = destPos;
 					break;
 				case 3:
 					mAngle = Vector2f(1.0f, 0.0f);

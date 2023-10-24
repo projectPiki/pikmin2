@@ -91,14 +91,14 @@ struct TMgr : public CNode {
 
 struct TUnit : public TObjBase {
 	enum enumAIState {
-		CHAPPYAI_Inactive   = 0,
-		CHAPPYAI_Wait       = 1,
-		CHAPPYAI_Turn       = 2,
-		CHAPPYAI_Walk       = 3,
-		CHAPPYAI_4          = 4,
-		CHAPPYAI_5          = 5,
-		CHAPPYAI_6          = 6,
-		CHAPPYAI_Controlled = 7,
+		CHAPPYAI_Inactive     = 0,
+		CHAPPYAI_Wait         = 1,
+		CHAPPYAI_Turn         = 2,
+		CHAPPYAI_Walk         = 3,
+		CHAPPYAI_4            = 4,
+		CHAPPYAI_EscapeScreen = 5,
+		CHAPPYAI_GoHome       = 6,
+		CHAPPYAI_Controlled   = 7,
 	};
 
 	enum enumAction {

@@ -81,6 +81,7 @@ void Chappy::TAnimator::setArchive(JKRArchive* arc)
 {
 	void* file = arc->getResource("chappy/swallow_model.bmd");
 	P2ASSERTLINE(122, file);
+
 	mModelData = J3DModelLoaderDataBase::load(file, 0x100000);
 	mModelData->newSharedDisplayList(0x40000);
 	mModelData->makeSharedDL();
@@ -113,7 +114,7 @@ void Chappy::TUnit::init(TMgr* mgr)
 	mModel   = mManager->mAnimator->newJ3DModel();
 	mAnim.setAnimFolder(&mManager->mAnimator->mAnimFolder);
 
-	mPos      = titleMgr->getPosOutOfViewField();
+	mPosition = titleMgr->getPosOutOfViewField();
 	mParms[0] = mManager->mParams.mWalkSpeed.mValue;
 	mParms[1] = mManager->mParams.mScale.mValue;
 	mParms[4] = mManager->mParams.mCullRadius.mValue;
@@ -126,13 +127,13 @@ void Chappy::TUnit::init(TMgr* mgr)
  * Address:	803E8A2C
  * Size:	000054
  */
-void Chappy::TUnit::startZigzagWalk(Vector2f& pos1, Vector2f& pos2)
+void Chappy::TUnit::startZigzagWalk(Vector2f& position, Vector2f& targetPosition)
 {
-	mPos       = pos1;
-	mTargetPos = pos2;
+	mPosition  = position;
+	mTargetPos = targetPosition;
 	mActionID  = CHAPPYACT_NULL;
 	_48        = 0;
-	startAIState_(CHAPPYAI_5);
+	startAIState_(CHAPPYAI_EscapeScreen);
 }
 
 /*
@@ -142,9 +143,11 @@ void Chappy::TUnit::startZigzagWalk(Vector2f& pos1, Vector2f& pos2)
  */
 void Chappy::TUnit::goHome()
 {
-	if (mStateID != 0) {
-		startAIState_(CHAPPYAI_6);
+	if (mStateID == CHAPPYAI_Inactive) {
+		return;
 	}
+
+	startAIState_(CHAPPYAI_GoHome);
 }
 
 /*
@@ -177,9 +180,9 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 {
 	if (mStateID == state) {
 		if (mStateID == CHAPPYAI_Controlled) {
-			u32 time  = mManager->mParams.mControlledTime.mValue / sys->mDeltaTime;
-			mCounter  = time;
-			mCounter2 = time;
+			u32 length = mManager->mParams.mControlledTime.mValue / sys->mDeltaTime;
+			mCounter   = length;
+			mCounter2  = length;
 		} else {
 			return;
 		}
@@ -188,43 +191,51 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 	mStateID = state;
 
 	switch (state) {
-	case CHAPPYAI_Inactive:
-		mPos = title::titleMgr->getPosOutOfViewField();
+	case CHAPPYAI_Inactive: {
+		mPosition = title::titleMgr->getPosOutOfViewField();
+	}
 
-	case CHAPPYAI_Controlled:
-		u32 time  = mManager->mParams.mControlledTime.mValue / sys->mDeltaTime;
+	case CHAPPYAI_Controlled: {
+		u32 time = mManager->mParams.mControlledTime.mValue / sys->mDeltaTime;
+
 		mCounter  = time;
 		mCounter2 = time;
 		break;
+	}
 
-	case CHAPPYAI_Wait:
+	case CHAPPYAI_Wait: {
 		f32 max, min;
-		min       = mManager->mParams.mMinWaitTime.mValue;
-		max       = mManager->mParams.mMaxWaitTime.mValue;
-		u32 time2 = ((max - min) * randEbisawaFloat() + min) / sys->mDeltaTime;
-		mCounter  = time2;
-		mCounter2 = time2;
+		min = mManager->mParams.mMinWaitTime.mValue;
+		max = mManager->mParams.mMaxWaitTime.mValue;
+
+		u32 time = ((max - min) * randEbisawaFloat() + min) / sys->mDeltaTime;
+
+		mCounter  = time;
+		mCounter2 = time;
 		break;
+	}
 
-	case CHAPPYAI_Turn:
-		f32 angle    = mManager->mParams.mWalkAngleRand.mValue;
-		f32 line     = JMath::atanTable_.atan2_(mTargetPos.y - mPos.y, mTargetPos.x - mPos.x);
-		f32 test     = angle * DEG2RAD * PI * (randEbisawaFloat() * 2.0f + -1.0f) + line;
-		mTargetAngle = Vector2f(pikmin2_cosf(test), pikmin2_sinf(test));
+	case CHAPPYAI_Turn: {
+		f32 angle           = mManager->mParams.mWalkAngleRand.mValue;
+		f32 angleBetweenPos = JMath::atanTable_.atan2_(mTargetPos.y - mPosition.y, mTargetPos.x - mPosition.x);
+		f32 final           = angle * DEG2RAD * PI * (randEbisawaFloat() * 2.0f + -1.0f) + angleBetweenPos;
+		mTargetAngle        = Vector2f(pikmin2_cosf(final), pikmin2_sinf(final));
 		break;
+	}
 
-	case CHAPPYAI_Walk:
-		f32 max2, min2;
-		max2 = mManager->mParams.mMaxWalkTime.mValue;
-		min2 = mManager->mParams.mMinWalkTime.mValue;
+	case CHAPPYAI_Walk: {
+		f32 max, min;
+		max = mManager->mParams.mMaxWalkTime.mValue;
+		min = mManager->mParams.mMinWalkTime.mValue;
 
-		u32 time3 = ((max2 - min2) * randEbisawaFloat() + min2) / sys->mDeltaTime;
-		mCounter  = time3;
-		mCounter2 = time3;
+		u32 time  = ((max - min) * randEbisawaFloat() + min) / sys->mDeltaTime;
+		mCounter  = time;
+		mCounter2 = time;
 		break;
+	}
 
-	case CHAPPYAI_5:
-		Vector2f negPos(-mPos.x, -mPos.y);
+	case CHAPPYAI_EscapeScreen: {
+		Vector2f negPos(-mPosition.x, -mPosition.y);
 		f32 len = _sqrtf(negPos.x * negPos.x + negPos.y * negPos.y);
 		if (len != 0.0f) {
 			f32 norm = 1.0f / len;
@@ -233,6 +244,7 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 		}
 		mAngle = negPos;
 		break;
+	}
 	}
 }
 
@@ -285,7 +297,7 @@ void Chappy::TUnit::update()
 		return;
 
 	int id = mStateID;
-	if (id != CHAPPYAI_Inactive && id != CHAPPYAI_6 && id != CHAPPYAI_5) {
+	if (id != CHAPPYAI_Inactive && id != CHAPPYAI_GoHome && id != CHAPPYAI_EscapeScreen) {
 		Controller* control = mControl;
 		bool check          = false;
 		if (control) {
@@ -317,7 +329,7 @@ void Chappy::TUnit::update()
 			buttonDown = (control->mButton.mButtonDown & Controller::PRESS_Z) == Controller::PRESS_Z;
 		}
 		if (mCounter == 0) {
-			startAIState_(CHAPPYAI_6);
+			startAIState_(CHAPPYAI_GoHome);
 		}
 		break;
 	}
@@ -370,8 +382,8 @@ void Chappy::TUnit::update()
 					EGECircle2f circle;
 					circle.mRadius = mManager->mParams.mHitRadius.mValue;
 					f32 factor     = mManager->mParams.mHitOffset.mValue;
-					circle.mCenter = mPos + (mAngle * factor);
-					Vector2f pos   = Vector2f(titleMgr->mPikminMgr.getUnit(i)->mPos);
+					circle.mCenter = mPosition + (mAngle * factor);
+					Vector2f pos   = Vector2f(titleMgr->mPikminMgr.getUnit(i)->mPosition);
 					if (!circle.isOut(pos)) {
 						check = true;
 						break;
@@ -396,13 +408,13 @@ void Chappy::TUnit::update()
 		}
 		break;
 
-	case CHAPPYAI_5:
+	case CHAPPYAI_EscapeScreen:
 		stickX     = 0.0f;
 		buttonDown = false;
 		stickY     = 1.0f;
 		break;
 
-	case CHAPPYAI_6:
+	case CHAPPYAI_GoHome:
 		stickX     = 0.0f;
 		buttonDown = false;
 		stickY     = 1.0f;
@@ -463,7 +475,7 @@ void Chappy::TUnit::update()
 			constant = 0.3f;
 		}
 		f32 cParm = constant * mParms[0];
-		mPos      = mPos + Vector2f(mAngle.x, mAngle.y) * cParm;
+		mPosition = mPosition + Vector2f(mAngle.x, mAngle.y) * cParm;
 	} break;
 	case CHAPPYACT_2: {
 		f32 anim00 = mAnim._00;
@@ -472,10 +484,10 @@ void Chappy::TUnit::update()
 			EGECircle2f circle;
 			circle.mRadius = mManager->mParams.mHitRadius.mValue;
 			f32 factor     = mManager->mParams.mHitOffset.mValue;
-			circle.mCenter = mPos + (mAngle * factor);
+			circle.mCenter = mPosition + (mAngle * factor);
 			for (int i = 0; i < 500; i++) {
 				Pikmin::TUnit* pikUnit = titleMgr->mPikminMgr.getUnit(i);
-				Vector2f pos           = Vector2f(pikUnit->mPos);
+				Vector2f pos           = Vector2f(pikUnit->mPosition);
 				if (!circle.isOut(pos)) {
 					if (pikUnit->beAttacked()) {
 						mAttacks++;
@@ -495,13 +507,13 @@ void Chappy::TUnit::update()
 
 	switch (mStateID) {
 	case CHAPPYAI_Inactive:
-		mPos = titleMgr->getPosOutOfViewField();
-	case CHAPPYAI_5:
+		mPosition = titleMgr->getPosOutOfViewField();
+	case CHAPPYAI_EscapeScreen:
 		if (titleMgr->isInViewField(this)) {
 			startAIState_(CHAPPYAI_Walk);
 		}
 		break;
-	case CHAPPYAI_6:
+	case CHAPPYAI_GoHome:
 		if (titleMgr->isOutViewField(this)) {
 			startAIState_(CHAPPYAI_Inactive);
 		}

@@ -19,7 +19,7 @@ namespace title {
 struct TObjBase {
 	inline TObjBase()
 	{
-		mPos      = Vector2f(0.0f);
+		mPosition = Vector2f(0.0f);
 		mAngle    = Vector2f(0.0f, -1.0f);
 		mParms[0] = 0.0f;
 		mParms[1] = 1.0f;
@@ -38,10 +38,10 @@ struct TObjBase {
 	void pushOut_(Vector2f&);
 
 	// _00 = VTBL
-	Vector2f mPos;    // _04
-	Vector2f mAngle;  // _0C
-	f32 mParms[5];    // _14
-	J3DModel* mModel; // _28
+	Vector2f mPosition; // _04
+	Vector2f mAngle;    // _0C
+	f32 mParms[5];      // _14
+	J3DModel* mModel;   // _28
 };
 
 struct TBGEnemyBase : public TObjBase {

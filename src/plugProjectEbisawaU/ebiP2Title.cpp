@@ -377,7 +377,7 @@ bool TTitleMgr::inField(TObjBase* obj)
 		EGECircle2f bounds;
 		bounds.mCenter = 0.0f;
 		bounds.mRadius = mTitleParms.mMaxPikminScatterRadius.mValue;
-		return bounds.in(&obj->mPos);
+		return bounds.in(&obj->mPosition);
 	}
 }
 
@@ -401,7 +401,7 @@ bool TTitleMgr::inViewField(TObjBase* obj)
 	if (obj->isCalc()) {
 		EGEBox2f bounds(mTitleParms.mBoundsMinX.mValue, mTitleParms.mBoundsMinY.mValue, mTitleParms.mBoundsMaxX.mValue,
 		                mTitleParms.mBoundsMaxY.mValue);
-		bounds.in(&obj->mPos, obj->mParms[4]);
+		bounds.in(&obj->mPosition, obj->mParms[4]);
 	}
 }
 
@@ -425,7 +425,7 @@ bool TTitleMgr::isInViewField(TObjBase* obj)
 	if (obj->isCalc()) {
 		EGEBox2f bounds(mTitleParms.mBoundsMinX.mValue, mTitleParms.mBoundsMinY.mValue, mTitleParms.mBoundsMaxX.mValue,
 		                mTitleParms.mBoundsMaxY.mValue);
-		return bounds.isIn(obj->mPos, obj->mParms[4]);
+		return bounds.isIn(obj->mPosition, obj->mParms[4]);
 	} else {
 		return false;
 	}
@@ -453,7 +453,7 @@ bool TTitleMgr::isOutViewField(TObjBase* obj)
 	if (obj->isCalc()) {
 		EGEBox2f bounds(mTitleParms.mBoundsMinX.mValue, mTitleParms.mBoundsMinY.mValue, mTitleParms.mBoundsMaxX.mValue,
 		                mTitleParms.mBoundsMaxY.mValue);
-		return bounds.isOut(obj->mPos, obj->mParms[4]);
+		return bounds.isOut(obj->mPosition, obj->mParms[4]);
 	} else {
 		return false;
 	}
@@ -953,14 +953,14 @@ void TTitleMgr::checkEncounter_()
 		if (piki->isCalc()) {
 			f32 distmax = 1000.0f;
 			if (mKoganeMgr.mObject->isCalc()) {
-				Vector2f dist = mKoganeMgr.mObject->mPos - piki->mPos;
+				Vector2f dist = mKoganeMgr.mObject->mPosition - piki->mPosition;
 				if (_lenVec2D(dist) < 1000.0f) {
 					distmax         = _lenVec2D(dist);
 					piki->mEnemyObj = mKoganeMgr.mObject;
 				}
 			}
 			if (mChappyMgr.mObject->isCalc()) {
-				Vector2f dist = mChappyMgr.mObject->mPos - piki->mPos;
+				Vector2f dist = mChappyMgr.mObject->mPosition - piki->mPosition;
 				if (_lenVec2D(dist) < distmax) {
 					piki->mEnemyObj = mChappyMgr.mObject;
 				}
