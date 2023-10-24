@@ -15,13 +15,13 @@ bool TSimple1::create(Arg* arg)
 {
 	P2ASSERTLINE(10, arg != nullptr);
 
-	Vector2f vec = *arg;
-
-	mEmitters[0] = particle2dMgr->create(mEffectIDs[0], vec, _05, _04);
+	Vector2f pos = *arg;
+	mEmitters[0] = particle2dMgr->create(mEffectIDs[0], pos, _05, _04);
 
 	if (mEmitters[0] == nullptr) {
 		return false;
 	}
+
 	return true;
 }
 
@@ -34,10 +34,9 @@ bool TSimple2::create(Arg* arg)
 {
 	P2ASSERTLINE(25, arg != nullptr);
 
-	Vector2f vec = *arg;
-
+	Vector2f pos = *arg;
 	for (int i = 0; i < 2; i++) {
-		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], vec, _05, _04);
+		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], pos, _05, _04);
 		if (mEmitters[i] == nullptr) {
 			return false;
 		}
@@ -54,14 +53,14 @@ bool TSimple3::create(Arg* arg)
 {
 	P2ASSERTLINE(40, arg != nullptr);
 
-	Vector2f vec = *arg;
-
+	Vector2f pos = *arg;
 	for (int i = 0; i < 3; i++) {
-		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], vec, _05, _04);
+		mEmitters[i] = particle2dMgr->create(mEffectIDs[i], pos, _05, _04);
 		if (mEmitters[i] == nullptr) {
 			return false;
 		}
 	}
+
 	return true;
 }
 
@@ -74,13 +73,13 @@ bool TForever::create(Arg* arg)
 {
 	P2ASSERTLINE(54, arg != nullptr);
 
-	Vector2f vec = *arg;
+	Vector2f pos = *arg;
 
 	if (mEmitter) {
 		return false;
 	}
 
-	mEmitter = particle2dMgr->create(mEfxID, vec, _05, _04);
+	mEmitter = particle2dMgr->create(mEfxID, pos, _05, _04);
 	return mEmitter != nullptr;
 }
 
@@ -131,11 +130,11 @@ void TForever::setGlobalScale(f32 scale)
  */
 void TForever::setGlobalEnvColor(JUtility::TColor& color)
 {
-	JPABaseEmitter* emitter = mEmitter;
-
-	if (emitter) {
-		mEmitter->mGlobalEnvClr.setRGB(color);
+	if (!mEmitter) {
+		return;
 	}
+
+	mEmitter->mGlobalEnvClr.setRGB(color);
 }
 
 /*
@@ -145,9 +144,11 @@ void TForever::setGlobalEnvColor(JUtility::TColor& color)
  */
 void TForever::setGlobalAlpha(u8 alpha)
 {
-	if (mEmitter) {
-		mEmitter->mGlobalPrmClr.a = alpha;
+	if (!mEmitter) {
+		return;
 	}
+
+	mEmitter->mGlobalPrmClr.a = alpha;
 }
 
 /*
@@ -180,11 +181,13 @@ TForever::TForever()
 bool TForeverN::create(Arg* arg)
 {
 	bool success = true;
+
 	for (u8 i = 0; i < mLength; i++) {
 		if (!mForevers[i].create(arg)) {
 			success = false;
 		}
 	}
+
 	return success;
 }
 
@@ -233,9 +236,12 @@ void TForeverN::setGlobalAlpha(u8 alpha)
 {
 	for (u8 i = 0; i < mLength; i++) {
 		JPABaseEmitter* emitter = mForevers[i].mEmitter;
-		if (emitter) {
-			emitter->mGlobalPrmClr.a = alpha;
+
+		if (!emitter) {
+			continue;
 		}
+
+		emitter->mGlobalPrmClr.a = alpha;
 	}
 }
 
@@ -250,7 +256,7 @@ bool TChasePos::create(Arg* arg)
 		return false;
 	}
 
-	mEmitter = particle2dMgr->create(mEfxID, *_14, _05, _04);
+	mEmitter = particle2dMgr->create(mEfxID, *mChasePosition, _05, _04);
 
 	if (mEmitter) {
 		mEmitter->mEmitterCallback = this;
@@ -268,10 +274,10 @@ bool TChasePos::create(Arg* arg)
  */
 void TChasePos::execute(JPABaseEmitter* emitter)
 {
-	P2ASSERTLINE(214, _14 != nullptr);
+	P2ASSERTLINE(214, mChasePosition != nullptr);
 
-	f32 x = _14->x;
-	f32 y = _14->y;
+	f32 x = mChasePosition->x;
+	f32 y = mChasePosition->y;
 
 	emitter->mGlobalTrs.x = x;
 	emitter->mGlobalTrs.y = y;
@@ -289,7 +295,7 @@ bool TChasePosDir::create(Arg* arg)
 		return false;
 	}
 
-	mEmitter = particle2dMgr->create(mEfxID, *_14, _05, _04);
+	mEmitter = particle2dMgr->create(mEfxID, *mChasePosition, _05, _04);
 
 	if (mEmitter) {
 		mEmitter->mEmitterCallback = this;
@@ -307,14 +313,14 @@ bool TChasePosDir::create(Arg* arg)
  */
 void TChasePosDir::execute(JPABaseEmitter* emitter)
 {
-	P2ASSERTLINE(244, _14 != nullptr);
-	P2ASSERTLINE(245, _18 != nullptr);
+	P2ASSERTLINE(244, mChasePosition != nullptr);
+	P2ASSERTLINE(245, mDirection != nullptr);
 
-	f32 x1 = _14->x;
-	f32 y1 = _14->y;
+	f32 x1 = mChasePosition->x;
+	f32 y1 = mChasePosition->y;
 
-	f32 x2 = _18->x;
-	f32 y2 = _18->y;
+	f32 x2 = mDirection->x;
+	f32 y2 = mDirection->y;
 
 	emitter->mGlobalTrs.x = x1;
 	emitter->mGlobalTrs.y = y1;

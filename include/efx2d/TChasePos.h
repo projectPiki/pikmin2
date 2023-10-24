@@ -12,7 +12,7 @@ struct TChasePos : public TForever {
 	}
 
 	inline TChasePos(u16 id, Vector2f* pos)
-	    : _14(pos)
+	    : mChasePosition(pos)
 	    , TForever(id)
 	{
 	}
@@ -25,15 +25,15 @@ struct TChasePos : public TForever {
 
 	// _00		= VTBL
 	// _00-_14	= TForever
-	Vector2f* _14; // _14
+	Vector2f* mChasePosition; // _14
 };
 
 struct TChasePosDir : public TForever {
 	TChasePosDir(u16 id, Vector2f& pos, Vector2f& pos2)
 	    : TForever(id)
 	{
-		_14 = &pos;
-		_18 = &pos2;
+		mChasePosition = &pos;
+		mDirection     = &pos2;
 	}
 	// vtable 1
 	virtual bool create(Arg*); // _08
@@ -43,8 +43,8 @@ struct TChasePosDir : public TForever {
 
 	// _00		= VTBL
 	// _00-_14	= TForever
-	Vector2f* _14; // _14
-	Vector2f* _18; // _18
+	Vector2f* mChasePosition; // _14
+	Vector2f* mDirection;     // _18
 };
 } // namespace efx2d
 
