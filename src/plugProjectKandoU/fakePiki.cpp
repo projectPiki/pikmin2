@@ -3009,6 +3009,27 @@ void FakePiki::endCaptureStomach() { mTargetCollObj = nullptr; }
  */
 void FakePiki::updateStomach()
 {
+	CollPart* stomach = mTargetCollObj;
+	if (!stomach) {
+		return;
+	}
+
+	Vector3f sep = mPosition - mTargetCollObj->mPosition;
+	f32 dist     = sep.normalise();
+
+	f32 rad = stomach->mRadius - 8.5f;
+
+	if (dist > rad) {
+		mPosition = stomach->mPosition + sep * rad;
+
+		Vector3f simVel = mSimVelocity;
+		// f32 factor = ;
+		mSimVelocity = simVel - sep * (1.1f * dot(simVel, sep));
+
+		Vector3f sep2 = Vector3f(mPosition.y - mTargetCollObj->mPosition.y, mPosition.z - mTargetCollObj->mPosition.z,
+		                         mPosition.x - mTargetCollObj->mPosition.x);
+		_length2(sep2);
+	}
 	/*
 	lwz      r4, 0x194(r3)
 	cmplwi   r4, 0

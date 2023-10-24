@@ -7,6 +7,7 @@
 #include "types.h"
 #include "Container.h"
 #include "Condition.h"
+#include "Game/Entities/ItemOnyon.h"
 
 struct Graphics;
 struct Plane;
@@ -252,7 +253,17 @@ struct GameRouteMgr : public RouteMgr {
 } // namespace Game
 
 struct WPExcludeSpot : public Game::WPCondition {
-	virtual bool satisfy(Game::WayPoint*); // _08 (weak)
+	virtual bool satisfy(Game::WayPoint* wp) // _08 (weak)
+	{
+		for (int i = 0; i < 3; i++) {
+			Game::Onyon* onyon = Game::ItemOnyon::mgr->getOnyon(i);
+			if (onyon && wp == onyon->mGoalWayPoint) {
+				return false;
+			}
+		}
+
+		return Game::ItemOnyon::mgr->mUfo->mGoalWayPoint != wp;
+	}
 
 	// _00 = VTBL
 };
