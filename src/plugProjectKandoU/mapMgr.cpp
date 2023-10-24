@@ -2338,7 +2338,7 @@ lbl_80163DA8:
  * Address:	80163DCC
  * Size:	000214
  */
-u32 ShapeMapMgr::findRayIntersection(::Sys::RayIntersectInfo&)
+bool ShapeMapMgr::findRayIntersection(::Sys::RayIntersectInfo&)
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -2607,7 +2607,7 @@ void MapMgr::doSimulation(f32) { }
  * Address:	80164100
  * Size:	000008
  */
-u32 MapMgr::findRayIntersection(::Sys::RayIntersectInfo&) { return 0x0; }
+bool MapMgr::findRayIntersection(::Sys::RayIntersectInfo&) { return 0x0; }
 
 /*
  * --INFO--

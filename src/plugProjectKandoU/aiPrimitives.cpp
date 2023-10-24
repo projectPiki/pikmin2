@@ -1496,7 +1496,7 @@ void ActGotoSlot::cleanup() { }
 ActPathMove::ActPathMove(Game::Piki* p)
     : Action(p)
 {
-	mHandles      = new SlotHandles;
+	mLinks        = new WayPointLinks;
 	mStartWPIndex = -1;
 }
 
@@ -1536,7 +1536,7 @@ void ActPathMove::init(ActionArg* settings)
 	mIsPickedUp = true;
 
 	// this seems to be more for debug than anything else
-	mPrevDisplacement = mPellet->getPosition();
+	mPrevPosition = mPellet->getPosition();
 
 	if (mPellet->isPellet()) {
 		Game::Pellet* pellet = mPellet;
@@ -1675,10 +1675,10 @@ lbl_801987F0:
  * Address:	80198810
  * Size:	0003AC
  */
-void ActPathMove::initPathfinding(bool check)
+void ActPathMove::initPathfinding(bool resetLinkCount)
 {
-	if (check) {
-		mHandles->_08 = 0;
+	if (resetLinkCount) {
+		mLinks->mCount = 0;
 	}
 
 	if (mPellet->isPellet()) {
@@ -1706,8 +1706,8 @@ void ActPathMove::initPathfinding(bool check)
 		roomIndex = static_cast<Game::RoomMapMgr*>(Game::mapMgr)->findRoomIndex(sphere);
 	}
 
-	searchArg.mRoomID  = roomIndex;
-	searchArg.mHandles = mHandles;
+	searchArg.mRoomID = roomIndex;
+	searchArg.mLinks  = mLinks;
 
 	if (mPellet->inWater()) {
 		searchArg.mInWater = true;
@@ -1721,7 +1721,7 @@ void ActPathMove::initPathfinding(bool check)
 			startWP = searchArg.mWp2;
 		}
 	} else {
-		searchArg.mHandles = nullptr;
+		searchArg.mLinks = nullptr;
 		if (Game::mapMgr->mRouteMgr->getNearestEdge(searchArg)) {
 			if (searchArg.mWp1->isFlag(Game::WPF_Closed)) {
 				startWP = searchArg.mWp2;
@@ -2285,11 +2285,10 @@ int ActPathMove::execMove()
 	}
 
 	if (mPellet->isPellet()) {
-		pellet = mPellet;
-		// Vector3f pelletPos = pellet->getPosition();
-		Vector3f sep      = pellet->getPosition() - mPrevDisplacement;
-		f32 dist          = sep.length(); // f30
-		mPrevDisplacement = sep;
+		pellet             = mPellet;
+		Vector3f pelletPos = pellet->getPosition();
+		f32 dist           = pelletPos.distance(mPrevPosition); // f30
+		mPrevPosition      = pelletPos;
 		if (pellet->getWallTimer() > 99 && dist < 1.0f) {
 			pellet->mWallTimer = 0;
 			mOnyon             = nullptr;
@@ -2298,29 +2297,15 @@ int ActPathMove::execMove()
 				mContextHandle = 0;
 			}
 
-			mHandles->_08        = 0;
-			SlotHandles* handles = mHandles;
-			s16 wpIdx            = mStartWPIndex;
-			bool handleCheck;
-			if (wpIdx != -1 && handles->_08 < 4) {
-				s16 prevHandle = handles->_08;
-				handles->_08++;
-				handleCheck              = true;
-				handles->_00[prevHandle] = wpIdx;
-			} else {
-				handleCheck = false;
-			}
-
-			if (!handleCheck) {
-				s16 prevHandle       = mHandles->_08;
-				mHandles->_08        = 0;
-				SlotHandles* handles = mHandles;
-				s16 wpIdx            = mStartWPIndex;
-				if (wpIdx != -1 && handles->_08 < 4) {
-					s16 prevHandle = handles->_08;
-					handles->_08++;
-					handles->_00[prevHandle] = wpIdx;
-				}
+			mLinks->mCount       = 0;
+			WayPointLinks* links = mLinks;
+			s16 idx              = mStartWPIndex;
+			if (!links->addLink(idx)) {
+				// if link didn't add, try EXTRA hard to add the link (literally does the same thing again lmao).
+				mLinks->mCount          = 0;
+				WayPointLinks* newLinks = mLinks;
+				s16 newIdx              = mStartWPIndex;
+				newLinks->addLink(newIdx);
 			}
 
 			initPathfinding(false);
@@ -5081,7 +5066,7 @@ void ActGather::init(ActionArg* settings)
 	P2ASSERTLINE(2669, strCheck);
 
 	GatherActionArg* arg = static_cast<GatherActionArg*>(settings);
-	mDestination         = arg->mDestination;
+	mGoalPosition        = arg->mGoalPosition;
 	mRadius              = arg->mRadius;
 	mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 	mTimer = 5.0f;
@@ -5096,7 +5081,7 @@ void ActGather::init(ActionArg* settings)
 int ActGather::exec()
 {
 	Vector3f pikiPos = mParent->getPosition();
-	Vector3f dir     = mDestination - pikiPos;
+	Vector3f dir     = mGoalPosition - pikiPos;
 	f32 dist         = dir.normalise();
 
 	mTimer -= sys->mDeltaTime;

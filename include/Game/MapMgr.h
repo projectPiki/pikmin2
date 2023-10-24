@@ -49,7 +49,7 @@ struct MapMgr : virtual public GenericObjectMgr {
 	virtual Matrixf* getDemoMatrix();                                           // _14
 	virtual void getBoundBox2d(BoundBox2d&) = 0;                                // _18
 	virtual void getBoundBox(BoundBox&)     = 0;                                // _1C
-	virtual u32 findRayIntersection(Sys::RayIntersectInfo&);                    // _20 (weak)
+	virtual bool findRayIntersection(Sys::RayIntersectInfo&);                   // _20 (weak)
 	virtual void traceMove(MoveInfo&, f32) = 0;                                 // _24
 	virtual f32 getMinY(Vector3f&)         = 0;                                 // _28
 	virtual void getCurrTri(CurrTriInfo&)  = 0;                                 // _2C
@@ -112,7 +112,7 @@ struct ShapeMapMgr : public MapMgr {
 
 	virtual void getBoundBox2d(BoundBox2d&);                                // _18 (weak)
 	virtual void getBoundBox(BoundBox&);                                    // _1C (weak)
-	virtual u32 findRayIntersection(Sys::RayIntersectInfo&);                // _20
+	virtual bool findRayIntersection(Sys::RayIntersectInfo&);               // _20
 	virtual void traceMove(MoveInfo&, f32);                                 // _24
 	virtual f32 getMinY(Vector3f&);                                         // _28
 	virtual void getCurrTri(CurrTriInfo&);                                  // _2C

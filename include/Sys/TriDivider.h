@@ -33,7 +33,7 @@ struct TriDivider : public CNode {
 	virtual TriDivider* do_clone(Matrixf&, VertexTable*, TriangleTable*); // _2C
 
 	void construct(VertexTable*, TriangleTable*, int, int);
-	void findRayIntersection(RayIntersectInfo&, Matrixf&, Matrixf&);
+	bool findRayIntersection(RayIntersectInfo&, Matrixf&, Matrixf&);
 	void traceMove_global(Game::MoveInfo&, f32);
 	void traceMove_new_global(Game::MoveInfo&, f32);
 	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, f32);

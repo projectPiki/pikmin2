@@ -10,7 +10,36 @@
 
 struct Graphics;
 struct Plane;
-struct SlotHandles;
+
+// fabricated
+struct WayPointLinks {
+	inline WayPointLinks() { mCount = 0; }
+
+	inline bool isLinkedTo(s16 idx)
+	{
+		for (int i = 0; i < mCount; i++) {
+			if (idx == mWPLinks[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	inline bool addLink(s16 idx)
+	{
+		if (idx != -1 && mCount < 4) {
+			s16 last = mCount;
+			mCount++;
+			mWPLinks[last] = idx;
+			return true;
+		}
+
+		return false;
+	}
+
+	s16 mWPLinks[4]; // _00, indices for linked waypoints
+	s16 mCount;      // _08, number of linked waypoints (<= 4)
+};
 
 namespace Game {
 enum WayPointFlags {
@@ -54,7 +83,7 @@ struct WayPoint : public JKRDisposer {
 
 	// Unused/inlined:
 	void getLink(int);
-	void includeRoom(s16);
+	bool includeRoom(s16 roomIdx);
 	void setVisit(bool);
 	void setVsColor(int);
 	bool hasLinkTo(s16);
@@ -69,6 +98,8 @@ struct WayPoint : public JKRDisposer {
 	inline bool isFlag(u32 flag) const { return mFlags & flag; }
 
 	inline Vector3f getPosition() { return mPosition; }
+
+	inline s16 getNumFromLinks() const { return mNumFromLinks; }
 
 	RoomList mRoomList; // _18
 	u8 mFlags;          // _34
@@ -108,18 +139,18 @@ struct WPCondition : public Condition<WayPoint> {
 };
 
 struct WPSearchArg {
-	WPSearchArg(Vector3f& position, WPCondition* condition, bool arg3, f32 arg4)
+	WPSearchArg(Vector3f& position, WPCondition* condition, bool doRayCheck, f32 radius)
 	{
-		mPosition  = position;
-		mCondition = condition;
-		_10        = arg3;
-		_14        = arg4;
+		mPosition   = position;
+		mCondition  = condition;
+		mDoRayCheck = doRayCheck;
+		mRadius     = radius;
 	}
 
 	Vector3f mPosition;      // _00
 	WPCondition* mCondition; // _0C
-	bool _10;                // _10
-	f32 _14;                 // _14, radius maybe?
+	bool mDoRayCheck;        // _10, check mapMgr and platMgr for ray intersection
+	f32 mRadius;             // _14, radius maybe?
 };
 
 struct WPEdgeSearchArg {
@@ -129,13 +160,13 @@ struct WPEdgeSearchArg {
 		mWp1           = nullptr;
 		mInWater       = 0;
 		mRoomID        = -1;
-		mHandles       = nullptr;
+		mLinks         = nullptr;
 		mStartPosition = startPos;
 	}
 
 	Vector3f mStartPosition; // _00
 	bool mInWater;           // _0C
-	SlotHandles* mHandles;   // _10
+	WayPointLinks* mLinks;   // _10
 	s16 mRoomID;             // _14
 	WayPoint* mWp1;          // _18
 	WayPoint* mWp2;          // _1C
@@ -177,7 +208,7 @@ struct EditorRouteMgr : public RouteMgr {
 		{
 		}
 
-		virtual ~WPNode(); // _08 (weak)
+		virtual ~WPNode() { } // _08 (weak)
 
 		// _00     = VTBL
 		// _00-_18 = CNode
@@ -186,7 +217,7 @@ struct EditorRouteMgr : public RouteMgr {
 
 	EditorRouteMgr();
 
-	virtual ~EditorRouteMgr();          // _08 (weak)
+	virtual ~EditorRouteMgr() { }       // _08 (weak)
 	virtual void* getNext(void*);       // _14
 	virtual void* getStart();           // _18
 	virtual void* getEnd();             // _1C

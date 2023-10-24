@@ -1905,56 +1905,6 @@ lbl_8041E640:
 	*/
 }
 
-} // namespace Sys
-
-/*
- * --INFO--
- * Address:	8041E65C
- * Size:	000030
- */
-f32 Plane::calcDist(const Vector3f&) const
-{
-	/*
-	lfs      f1, 4(r4)
-	lfs      f0, 4(r3)
-	lfs      f2, 0(r4)
-	fmuls    f0, f1, f0
-	lfs      f1, 0(r3)
-	lfs      f4, 8(r4)
-	lfs      f3, 8(r3)
-	fmadds   f1, f2, f1, f0
-	lfs      f0, 0xc(r3)
-	fmadds   f1, f4, f3, f1
-	fsubs    f1, f1, f0
-	blr
-	*/
-}
-
-namespace Sys {
-
-/*
- * --INFO--
- * Address:	8041E68C
- * Size:	000028
- */
-bool OBB::isLeaf()
-{
-	/*
-	lwz      r0, 0xc0(r3)
-	li       r4, 0
-	cmplwi   r0, 0
-	bne      lbl_8041E6AC
-	lwz      r0, 0xc4(r3)
-	cmplwi   r0, 0
-	bne      lbl_8041E6AC
-	li       r4, 1
-
-lbl_8041E6AC:
-	mr       r3, r4
-	blr
-	*/
-}
-
 /*
  * --INFO--
  * Address:	8041E6B4
@@ -4101,26 +4051,6 @@ lbl_8041FF64:
 	lwz      r0, 0x24(r1)
 	mtlr     r0
 	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8041FF78
- * Size:	000024
- */
-Sys::TriIndexList* OBBTree::findTriLists(Sys::Sphere&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x20
-	stw      r0, 0x14(r1)
-	bl       findTriLists__Q23Sys3OBBFRQ23Sys6Sphere
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
 	blr
 	*/
 }

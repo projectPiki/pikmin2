@@ -6,6 +6,7 @@
 #include "System.h"
 #include "trig.h"
 #include "Quat.h"
+#include "nans.h"
 
 /*
  * --INFO--
@@ -694,7 +695,7 @@ void Camera::setProjection()
 	Mtx44* matrix = &mProjectionMtx;
 	float near    = getNear();
 
-	C_MTXPerspective(mViewAngle, mAspectRatio, near, far, *matrix);
+	C_MTXPerspective(*matrix, mViewAngle, mAspectRatio, near, far);
 	GXSetProjection(mProjectionMtx, GX_PERSPECTIVE);
 }
 

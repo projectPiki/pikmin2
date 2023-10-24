@@ -2,6 +2,7 @@
 #define _GAME_PLATINSTANCE_H
 
 #include "ObjectMgr.h"
+#include "ObjectTypes.h"
 #include "types.h"
 #include "Game/cellPyramid.h"
 #include "Matrixf.h"

@@ -49,6 +49,7 @@ struct Item;
 } // namespace Game
 
 struct Graphics;
+struct WayPointLinks;
 
 struct FindCondition : public Condition<CollPart> {
 	virtual bool satisfy(CollPart* part) // _08 (weak)
@@ -60,13 +61,6 @@ struct FindCondition : public Condition<CollPart> {
 
 		return result;
 	}
-};
-
-struct SlotHandles {
-	inline SlotHandles() { _08 = 0; }
-
-	u16 _00[4]; // _00
-	s16 _08;    // _08
 };
 
 namespace PikiAI {
@@ -788,9 +782,9 @@ struct ActFreeArg : public ActionArg {
 	virtual const char* getName() { return "ActFreeArg"; } // _08 (weak)
 
 	// _00 = VTBL
-	u8 mToGather;          // _04
-	Vector3f mDestination; // _08
-	f32 _14;               // _14
+	u8 mToGather;           // _04
+	Vector3f mGoalPosition; // _08
+	f32 mRadius;            // _14
 };
 
 #define PIKIAI_FREE_DEFAULT 0
@@ -820,17 +814,15 @@ struct ActFree : public Action, virtual SysShape::MotionListener {
 struct GatherActionArg : public ActionArg {
 	inline GatherActionArg(ActFreeArg* arg)
 	{
-		mDestination.x = arg->mDestination.x;
-		mDestination.y = arg->mDestination.y;
-		mDestination.z = arg->mDestination.z;
-		mRadius        = arg->_14;
+		mGoalPosition = arg->mGoalPosition;
+		mRadius       = arg->mRadius;
 	}
 
 	virtual const char* getName() { return "GatherActionArg"; } // _08 (weak)
 
 	// _00 = VTBL
-	Vector3f mDestination; // _04
-	f32 mRadius;           // _10
+	Vector3f mGoalPosition; // _04
+	f32 mRadius;            // _10
 };
 
 struct ActGather : public Action {
@@ -842,9 +834,9 @@ struct ActGather : public Action {
 
 	// _00     = VTBL
 	// _00-_0C = Action
-	Vector3f mDestination; // _0C
-	f32 mRadius;           // _18
-	f32 mTimer;            // _1C
+	Vector3f mGoalPosition; // _0C
+	f32 mRadius;            // _18
+	f32 mTimer;             // _1C
 };
 
 struct GotoPosActionArg : public ActionArg {
@@ -1002,8 +994,8 @@ struct ActPathMove : public Action {
 
 	// _00     = VTBL
 	// _00-_0C = Action
-	SlotHandles* mHandles;              // _0C
-	Vector3f mPrevDisplacement;         // _10, vector we moved along, last frame to this frame - debug?
+	WayPointLinks* mLinks;              // _0C
+	Vector3f mPrevPosition;             // _10, pellet position on last execMove, also set on init
 	s16 mStartWPIndex;                  // _1C
 	u16 mState;                         // _1E
 	u32 mContextHandle;                 // _20, pathfinding context handle id

@@ -5565,7 +5565,7 @@ lbl_801BB7B4:
  * Address:	801BB7C8
  * Size:	0004F0
  */
-u32 RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo&)
+bool RoomMapMgr::findRayIntersection(Sys::RayIntersectInfo&)
 {
 	/*
 	stwu     r1, -0x160(r1)
