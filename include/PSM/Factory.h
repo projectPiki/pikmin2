@@ -6,7 +6,7 @@
 
 namespace PSM {
 struct Factory : PSGame::SysFactory {
-	virtual SceneMgr* newSceneMgr(); // _08 (weak)
+	virtual SceneMgr* newSceneMgr() { return new SceneMgr; } // _08 (weak)
 
 	// _00 = VTBL
 };

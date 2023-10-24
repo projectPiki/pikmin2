@@ -29,7 +29,64 @@
 #include "PSSystem/PSSystemIF.h"
 #include "LoadResource.h"
 
-_GXRenderModeObj* sRenderModeTable[4];
+GXRenderModeObj localNtsc608x448IntDfProg = { VI_TVMODE_NTSC_PROG,
+	                                          608, // fbWidth
+	                                          448, // efbHeight
+	                                          448, // xfbHeight
+	                                          27,  // viXOrigin
+	                                          16,  // viYOrigin
+	                                          666, // viWidth
+	                                          448, // viHeight
+	                                          VI_XFBMODE_SF,
+	                                          0, // field_rendering
+	                                          0, // aa
+	                                          { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+	                                          { 0, 0, 21, 22, 21, 0, 0 } };
+
+GXRenderModeObj localNtsc608x448IntDf = { VI_TVMODE_NTSC_INT,
+	                                      608, // fbWidth
+	                                      448, // efbHeight
+	                                      448, // xfbHeight
+	                                      27,  // viXOrigin
+	                                      16,  // viYOrigin
+	                                      666, // viWidth
+	                                      448, // viHeight
+	                                      VI_XFBMODE_DF,
+	                                      0, // field_rendering
+	                                      0, // aa
+	                                      { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+	                                      { 7, 7, 12, 12, 12, 7, 7 } };
+
+GXRenderModeObj localPal608x448IntDf = { VI_TVMODE_PAL_INT,
+	                                     608, // fbWidth
+	                                     448, // efbHeight
+	                                     538, // xfbHeight
+	                                     25,  // viXOrigin
+	                                     18,  // viYOrigin
+	                                     670, // viWidth
+	                                     538, // viHeight
+	                                     VI_XFBMODE_DF,
+	                                     0, // field_rendering
+	                                     0, // aa
+	                                     { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+	                                     { 7, 7, 12, 12, 12, 7, 7 } };
+
+GXRenderModeObj localPal60608x448IntDf = { VI_TVMODE_EURGB60_INT,
+	                                       608, // fbWidth
+	                                       448, // efbHeight
+	                                       448, // xfbHeight
+	                                       27,  // viXOrigin
+	                                       16,  // viYOrigin
+	                                       666, // viWidth
+	                                       448, // viHeight
+	                                       VI_XFBMODE_DF,
+	                                       0, // field_rendering
+	                                       0, // aa
+	                                       { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+	                                       { 7, 7, 12, 12, 12, 7, 7 } };
+
+GXRenderModeObj* sRenderModeTable[4]
+    = { &localNtsc608x448IntDfProg, &localNtsc608x448IntDf, &localPal608x448IntDf, &localPal60608x448IntDf };
 
 System::ERenderMode System::mRenderMode;
 System* sys;
@@ -66,11 +123,11 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 {
 	va_list list;
 	va_start(list, r6);
+	JUTConsole* console = JUTException::sConsole;
 
 	char buffer[0xFF];
 	vsnprintf(buffer, sizeof(buffer), r6, list);
-
-	if (!JUTException::sConsole) {
+	if (!console) {
 		OSPanic(r4, line, buffer);
 	}
 
@@ -81,8 +138,12 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 	JUTException::sErrorManager->mStackPointer = unknown;
 	exCallbackObject.funcPtr                   = (u32*)preUserCallback;
 
-	if (!JUTException::sErrorManager) {
+	if (!console || (console && !(console->mOutput & 2))) {
 		OSReport("%s in \"%s\" on line %d\n", buffer, r4, line);
+	}
+
+	if (console) {
+		console->print_f("%s in \"%s\" on\n line %d\n", buffer, r4, line);
 	}
 
 	OSSendMessage(&JUTException::sMessageQueue, (OSMessage*)&exCallbackObject, true);
@@ -201,7 +262,7 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 	  */
 }
 
-static const char unusedStrSystem[] = "%s in \"%s\" on\n line %d\n";
+// static const char unusedStrSystem[] = "%s in \"%s\" on\n line %d\n";
 
 /*
  * --INFO--
@@ -214,8 +275,8 @@ void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
 
 	u32 track;
 	// the inputs needed to open the crash log
-	u16 inputs[11] = { Controller::PRESS_B,
-		               Controller::PRESS_A,
+	u16 inputs[11] = { Controller::PRESS_A,
+		               Controller::PRESS_B,
 		               Controller::PRESS_X,
 		               Controller::PRESS_R,
 		               Controller::PRESS_L,
@@ -233,17 +294,16 @@ void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
 		JUTException::waitTime(100);
 		JUTException::sErrorManager->readPad(&input, nullptr);
 		if (input) {
-			i += (input == inputs[i]);
+			i += ((u8)input == (u8)inputs[i]);
 		}
 	}
 
-	if (!JUTException::sConsole) {
-		OSReport("コンソールがありません\n");
-	} else {
-		JUTException::sConsole->setVisible(true);
-		JUTException::sConsole->setOutput(3);
-		JUTException::sConsole->print("--- Game debug information ---\n");
+	sUseABXCommand = true;
+	if (JUTException::sConsole) {
+		JUTException::sConsole->startPrint(3, "--- Game debug information ---\n");
 		JUTConsoleManager::sManager->drawDirect(true);
+	} else {
+		OSReport("コンソールがありません\n");
 	}
 	/*
 	    stwu     r1, -0x40(r1)
@@ -427,7 +487,7 @@ System::System()
     , mGameFlow(nullptr)
     , mDvdStatus(nullptr)
     , mDisplay(nullptr)
-    , mDeltaTime(0.166667f)
+    , mDeltaTime(0.016666668f)
     , mPlayData(nullptr)
     , mFpsFactor(1.0f)
     , mRegion(System::LANG_ENGLISH)
@@ -604,8 +664,8 @@ void System::createSoundSystem()
 	P2ASSERTLINE(1165, newheap);
 	newheap->becomeCurrentHeap();
 
-	// JKRFileCache* arc = JKRFileCache::mount("/AudioRes", newheap, nullptr);
-	void* file = JKRFileLoader::getGlbResource("PSound.aaf", JKRFileCache::mount("/AudioRes", newheap, nullptr));
+	JKRFileCache* arc = JKRFileCache::mount("/AudioRes", newheap, nullptr);
+	void* file        = JKRFileLoader::getGlbResource("PSound.aaf", arc);
 
 	P2ASSERTLINE(1173, file);
 
@@ -764,7 +824,7 @@ void System::loadSoundResource()
 {
 	JKRHeap* old = JKRGetCurrentHeap();
 
-	JKRSolidHeap* newheap = JKRSolidHeap::create(JKRGetCurrentHeap()->getFreeSize(), old, true);
+	JKRSolidHeap* newheap = JKRSolidHeap::create(old->getFreeSize(), old, true);
 	newheap->becomeCurrentHeap();
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
@@ -881,8 +941,12 @@ void System::clearGXVerifyLevel()
  */
 void System::initialize()
 {
-	System::setRenderMode(mRenderMode);
-	System::setRenderMode(RENDERMODE_NULL);
+	// not whats actually being compared here but I have no clue
+	if (sys->_2C == 'vald') {
+		System::setRenderMode(mRenderMode);
+	} else {
+		System::setRenderMode(NTSC_Standard);
+	}
 
 	JFWSystem::CSetUpParam::maxStdHeaps      = 1;
 	JFWSystem::CSetUpParam::sysHeapSize      = 0xa0000;
@@ -890,16 +954,15 @@ void System::initialize()
 	JFWSystem::CSetUpParam::aramAudioBufSize = 0x900000;
 	JFWSystem::CSetUpParam::aramGraphBufSize = 0xffffffff;
 
-	// renderMode = getRenderModeObj();
+	JFWSystem::CSetUpParam::renderMode = getRenderModeObj();
 	JFWSystem::init();
-	JUTException::sErrorManager->mGamePad = nullptr;
-	JUTException::sErrorManager->mPadPort = JUTGamePad::PORT_INVALID;
-	// JUTException::setPreUserCallback(preUserCallback);
+	JUTException::sErrorManager->setGamePad((JUTGamePad*)-1); // wack
+	JUTException::setPreUserCallback(preUserCallback);
 	JUTException::sErrorManager->mPrintWaitTime1 = 0;
 	JUTException::sErrorManager->mPrintWaitTime0 = 0;
 	JKRHeap::setErrorHandler(Pikmin2DefaultMemoryErrorRoutine);
 	JKRHeap::sRootHeap->becomeCurrentHeap();
-	// JUTException::appendMapFile(cMapFileName);
+	JUTException::appendMapFile(cMapFileName);
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -980,47 +1043,6 @@ void System::loadResourceFirst()
 	Delegate<System>* delegate = new (mSysHeap, 0) Delegate<System>(this, &constructWithDvdAccessFirst);
 
 	dvdLoadUseCallBack(&mThreadCommand, delegate);
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    li       r5, 0
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    mr       r31, r3
-	    li       r3, 0x14
-	    lwz      r4, 0x38(r31)
-	    bl       __nw__FUlP7JKRHeapi
-	    or.      r5, r3, r3
-	    beq      lbl_80422DD0
-	    lis      r3, lbl_804EBB40@ha
-	    lis      r4, __vt__9IDelegate@ha
-	    addi     r8, r3, lbl_804EBB40@l
-	    lis      r3, "__vt__17Delegate<6System>"@ha
-	    lwz      r7, 0(r8)
-	    addi     r4, r4, __vt__9IDelegate@l
-	    lwz      r6, 4(r8)
-	    addi     r0, r3, "__vt__17Delegate<6System>"@l
-	    lwz      r3, 8(r8)
-	    stw      r7, 8(r1)
-	    stw      r4, 0(r5)
-	    stw      r0, 0(r5)
-	    stw      r31, 4(r5)
-	    stw      r7, 8(r5)
-	    stw      r6, 0xc(r5)
-	    stw      r6, 0xc(r1)
-	    stw      r3, 0x10(r1)
-	    stw      r3, 0x10(r5)
-
-	lbl_80422DD0:
-	    mr       r3, r31
-	    addi     r4, r31, 0x68
-	    bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	    lwz      r0, 0x24(r1)
-	    lwz      r31, 0x1c(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
 }
 
 /*
@@ -1033,47 +1055,6 @@ void System::loadResourceSecond()
 	Delegate<System>* delegate = new (mSysHeap, 0) Delegate<System>(this, &constructWithDvdAccessSecond);
 
 	dvdLoadUseCallBack(&mThreadCommand, delegate);
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    li       r5, 0
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    mr       r31, r3
-	    li       r3, 0x14
-	    lwz      r4, 0x38(r31)
-	    bl       __nw__FUlP7JKRHeapi
-	    or.      r5, r3, r3
-	    beq      lbl_80422E64
-	    lis      r3, lbl_804EBB4C@ha
-	    lis      r4, __vt__9IDelegate@ha
-	    addi     r8, r3, lbl_804EBB4C@l
-	    lis      r3, "__vt__17Delegate<6System>"@ha
-	    lwz      r7, 0(r8)
-	    addi     r4, r4, __vt__9IDelegate@l
-	    lwz      r6, 4(r8)
-	    addi     r0, r3, "__vt__17Delegate<6System>"@l
-	    lwz      r3, 8(r8)
-	    stw      r7, 8(r1)
-	    stw      r4, 0(r5)
-	    stw      r0, 0(r5)
-	    stw      r31, 4(r5)
-	    stw      r7, 8(r5)
-	    stw      r6, 0xc(r5)
-	    stw      r6, 0xc(r1)
-	    stw      r3, 0x10(r1)
-	    stw      r3, 0x10(r5)
-
-	lbl_80422E64:
-	    mr       r3, r31
-	    addi     r4, r31, 0x68
-	    bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	    lwz      r0, 0x24(r1)
-	    lwz      r31, 0x1c(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
 }
 
 /*
@@ -1094,7 +1075,7 @@ int System::run()
  */
 f32 System::getTime()
 {
-	return (f32)OSGetTick();
+	return (int)(OSGetTick() / 1000);
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -1160,35 +1141,9 @@ Game::CommonSaveData::Mgr* System::getPlayCommonData() { return mPlayData; }
 void System::dvdLoadUseCallBack(DvdThreadCommand* command, IDelegate* delegate)
 {
 	if (mDvdThread) {
-		// command->loadUseCallBack(delegate);
+		command->loadUseCallBack(delegate);
 		mDvdThread->sendCommand(command);
 	}
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r4
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    lwz      r0, 0x40(r3)
-	    cmplwi   r0, 0
-	    beq      lbl_80422F78
-	    mr       r3, r31
-	    mr       r4, r5
-	    bl       loadUseCallBack__16DvdThreadCommandFP9IDelegate
-	    lwz      r3, 0x40(r30)
-	    mr       r4, r31
-	    bl       sendCommand__9DvdThreadFP16DvdThreadCommand
-
-	lbl_80422F78:
-	    lwz      r0, 0x14(r1)
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
 }
 
 /*
@@ -1353,118 +1308,44 @@ System::ERenderMode System::setRenderMode(ERenderMode mode)
  * Address:	80423224
  * Size:	000018
  */
-_GXRenderModeObj* System::getRenderModeObj()
-{
-	return sRenderModeTable[mRenderMode];
-	/*
-	    lwz      r0, mRenderMode__6System@sda21(r13)
-	    lis      r3, sRenderModeTable@ha
-	    addi     r3, r3, sRenderModeTable@l
-	    slwi     r0, r0, 2
-	    lwzx     r3, r3, r0
-	    blr
-	*/
-}
+_GXRenderModeObj* System::getRenderModeObj() { return sRenderModeTable[mRenderMode]; }
 
 /*
  * --INFO--
  * Address:	8042323C
  * Size:	000120
  */
-void System::changeRenderMode(ERenderMode)
+void System::changeRenderMode(ERenderMode newmode)
 {
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    lis      r5, gStrSystem_CPP@ha
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    addi     r31, r5, gStrSystem_CPP@l
-	    stw      r30, 0x18(r1)
-	    stw      r29, 0x14(r1)
-	    mr       r29, r4
-	    stw      r28, 0x10(r1)
-	    mr       r28, r3
-	    lwz      r30, sManager__8JUTVideo@sda21(r13)
-	    cmplwi   r30, 0
-	    bne      lbl_80423288
-	    addi     r3, r31, 0
-	    addi     r5, r31, 0x174
-	    li       r4, 0x761
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
+	JUTVideo* mgr = JUTVideo::sManager;
+	P2ASSERTLINE(1889, mgr);
 
-	lbl_80423288:
-	    lwz      r0, mRenderMode__6System@sda21(r13)
-	    cmpw     r0, r29
-	    beq      lbl_804232C4
-	    stw      r29, mRenderMode__6System@sda21(r13)
-	    li       r3, 1
-	    bl       VISetBlack
-	    bl       VIFlush
-	    bl       VIWaitForRetrace
-	    lwz      r0, mRenderMode__6System@sda21(r13)
-	    lis      r3, sRenderModeTable@ha
-	    addi     r4, r3, sRenderModeTable@l
-	    mr       r3, r30
-	    slwi     r0, r0, 2
-	    lwzx     r4, r4, r0
-	    bl       setRenderMode__8JUTVideoFPC16_GXRenderModeObj
+	if (mRenderMode != newmode) {
+		mRenderMode = newmode;
+		VISetBlack(TRUE);
+		VIFlush();
+		VIWaitForRetrace();
+		mgr->setRenderMode(getRenderModeObj());
+	}
 
-	lbl_804232C4:
-	    cmpwi    r29, 2
-	    beq      lbl_80423304
-	    bge      lbl_804232E0
-	    cmpwi    r29, 0
-	    beq      lbl_804232EC
-	    bge      lbl_804232F8
-	    b        lbl_8042331C
+	switch (newmode) {
+	case NTSC_Standard:
+		OSSetProgressiveMode(0);
+		break;
+	case NTSC_Progressive:
+		OSSetProgressiveMode(1);
+		break;
+	case PAL_Standard:
+		OSSetEuRgb60Mode(0);
+		break;
+	case PAL_60Hz:
+		OSSetEuRgb60Mode(1);
+		break;
+	default:
+		JUT_PANICLINE(1921, "unknown renderMode:%d \n", newmode);
+	}
 
-	lbl_804232E0:
-	    cmpwi    r29, 4
-	    bge      lbl_8042331C
-	    b        lbl_80423310
-
-	lbl_804232EC:
-	    li       r3, 0
-	    bl       OSSetProgressiveMode
-	    b        lbl_80423334
-
-	lbl_804232F8:
-	    li       r3, 1
-	    bl       OSSetProgressiveMode
-	    b        lbl_80423334
-
-	lbl_80423304:
-	    li       r3, 0
-	    bl       OSSetEuRgb60Mode
-	    b        lbl_80423334
-
-	lbl_80423310:
-	    li       r3, 1
-	    bl       OSSetEuRgb60Mode
-	    b        lbl_80423334
-
-	lbl_8042331C:
-	    mr       r6, r29
-	    addi     r3, r31, 0
-	    addi     r5, r31, 0x204
-	    li       r4, 0x781
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80423334:
-	    lwz      r3, 0x60(r28)
-	    bl       setDeflicker__Q34Game14CommonSaveData3MgrFv
-	    lwz      r0, 0x24(r1)
-	    lwz      r31, 0x1c(r1)
-	    lwz      r30, 0x18(r1)
-	    lwz      r29, 0x14(r1)
-	    lwz      r28, 0x10(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
+	mPlayData->setDeflicker();
 }
 
 /*
@@ -1472,7 +1353,7 @@ void System::changeRenderMode(ERenderMode)
  * Address:	8042335C
  * Size:	000008
  */
-u32 System::heapStatusStart(char*, JKRHeap*) { return 0x0; }
+u32 System::heapStatusStart(char*, JKRHeap*) { return 0; }
 
 /*
  * --INFO--
@@ -1700,13 +1581,6 @@ void System::forceFinishSection()
 
 /*
  * --INFO--
- * Address:	804235CC
- * Size:	000008
- */
-// u32 ISectionMgr::getCurrentSection() { return 0x0; }
-
-/*
- * --INFO--
  * Address:	804235D4
  * Size:	000060
  */
@@ -1725,38 +1599,6 @@ bool System::dvdLoadSyncNoBlock(DvdThreadCommand* command)
 		check = !mDvdStatus->isErrorOccured();
 	}
 	return check;
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r3
-	    lwz      r3, 0x40(r3)
-	    cmplwi   r3, 0
-	    beq      lbl_80423600
-	    li       r5, 1
-	    bl       sync__9DvdThreadFP16DvdThreadCommandQ29DvdThread14ESyncBlockFlag
-	    b        lbl_80423604
-
-	lbl_80423600:
-	    li       r3, 1
-
-	lbl_80423604:
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80423620
-	    lwz      r3, 0x48(r31)
-	    bl       isErrorOccured__9DvdStatusFv
-	    clrlwi   r0, r3, 0x18
-	    cntlzw   r0, r0
-	    srwi     r3, r0, 5
-
-	lbl_80423620:
-	    lwz      r0, 0x14(r1)
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
 }
 
 /*
@@ -1775,58 +1617,4 @@ int System::dvdLoadSyncAllNoBlock()
 			return 0;
 		}
 	}
-}
-
-namespace PSM {
-
-/*
- * --INFO--
- * Address:	804236F0
- * Size:	000038
- */
-PSM::SceneMgr* Factory::newSceneMgr()
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    li       r3, 0x14
-	    stw      r0, 0x14(r1)
-	    bl       __nw__FUl
-	    or.      r0, r3, r3
-	    beq      lbl_80423714
-	    bl       __ct__Q23PSM8SceneMgrFv
-	    mr       r0, r3
-
-	lbl_80423714:
-	    mr       r3, r0
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
-
-} // namespace PSM
-
-/*
- * --INFO--
- * Address:	80423728
- * Size:	000030
- */
-void Delegate<System>::invoke()
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    mr       r4, r3
-	    stw      r0, 0x14(r1)
-	    addi     r12, r4, 8
-	    lwz      r3, 4(r3)
-	    bl       __ptmf_scall
-	    nop
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
 }

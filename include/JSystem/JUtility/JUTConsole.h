@@ -39,6 +39,13 @@ struct JUTConsole : public JKRDisposer {
 	int getUsedLine() const;
 	int getLineOffset() const;
 
+	void startPrint(int output, char* text)
+	{
+		setVisible(true);
+		setOutput(output);
+		print(text);
+	}
+
 	// unused/inlined:
 	void dumpToConsole(JUTConsole*, uint);
 

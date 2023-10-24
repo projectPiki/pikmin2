@@ -886,7 +886,7 @@ bool BootSection::doUpdate()
 			if (mProgressiveScreen->isFinish()) {
 				mFadeTimer = 0.0f;
 				setMode(SID_DOLBY_LOGO_2);
-				sys->changeRenderMode(System::RENDERMODE_NULL);
+				sys->changeRenderMode(System::NTSC_Standard);
 			}
 			break;
 		case JUTFader::Status_In:

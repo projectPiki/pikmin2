@@ -70,7 +70,7 @@ struct Mgr;
 } // namespace Game
 
 struct System : public OSMutex {
-	enum ERenderMode { RENDERMODE_NULL = 0, NTSC_Progressive };
+	enum ERenderMode { NTSC_Standard = 0, NTSC_Progressive, PAL_Standard, PAL_60Hz };
 
 #define SINGLE_FRAME_LENGTH (1.0f / 60.0f)
 	enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
