@@ -223,7 +223,7 @@ void Mgr::setImage(ImageGroup::EID group, int id, JUTTexture* tex)
  * Address:	80438770
  * Size:	0000B8
  */
-JUTTexture* Mgr::getImage(P2JME::ImageGroup::EID group, int id)
+JUTTexture* Mgr::getImage(ImageGroup::EID group, int id)
 {
 	P2ASSERTBOUNDSLINE(456, 0, group, 1);
 	P2ASSERTLINE(458, mMaxTextures[group] > id);

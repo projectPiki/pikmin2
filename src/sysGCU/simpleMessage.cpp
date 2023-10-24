@@ -28,7 +28,7 @@ void SimpleMessage::init()
  * Address:	8043DC5C
  * Size:	000080
  */
-void SimpleMessage::drawMessageID(Graphics& gfx, unsigned long lowerHalf, unsigned long upperHalf)
+void SimpleMessage::drawMessageID(Graphics& gfx, u32 lowerHalf, u32 upperHalf)
 {
 	mProcessor->preProcID(lowerHalf, upperHalf);
 

@@ -243,7 +243,7 @@ void MemoryCardMgr::releaseCurrentCommand()
  * Address:	8044082C
  * Size:	0002A0
  */
-bool MemoryCardMgr::cardFormat(MemoryCardMgr::ECardSlot slot)
+bool MemoryCardMgr::cardFormat(ECardSlot slot)
 {
 	bool result = false;
 	if (OSTryLockMutex(&mOsMutex)) {
@@ -617,7 +617,7 @@ bool MemoryCardMgr::isErrorOccured() { return (checkStatus() != 2); }
  * Address:	80441428
  * Size:	0001A0
  */
-bool MemoryCardMgr::fileOpen(CARDFileInfo* fileInfo, MemoryCardMgr::ECardSlot cardSlot, const char* fileName)
+bool MemoryCardMgr::fileOpen(CARDFileInfo* fileInfo, ECardSlot cardSlot, const char* fileName)
 {
 	bool result = false;
 	u32 cardRes = 11;
@@ -773,7 +773,7 @@ bool MemoryCardMgr::fileOpen(CARDFileInfo* fileInfo, MemoryCardMgr::ECardSlot ca
  * Address:	804415C8
  * Size:	000278
  */
-bool MemoryCardMgr::writeHeader(MemoryCardMgr::ECardSlot cardSlot, const char* fileName)
+bool MemoryCardMgr::writeHeader(ECardSlot cardSlot, const char* fileName)
 {
 	CARDFileInfo fileInfo;
 	bool result = false;
@@ -1038,7 +1038,7 @@ inline void checkSlot(MemoryCardMgr::ECardSlot cardSlot)
  * Address:	80441848
  * Size:	000254
  */
-bool MemoryCardMgr::writeCardStatus(MemoryCardMgr::ECardSlot cardSlot, const char* fileName)
+bool MemoryCardMgr::writeCardStatus(ECardSlot cardSlot, const char* fileName)
 {
 	CARDFileInfo fileInfo;
 	CARDStat cardStat;
@@ -1285,7 +1285,7 @@ lbl_80441A7C:
  * Address:	80441A9C
  * Size:	000204
  */
-bool MemoryCardMgr::write(MemoryCardMgr::ECardSlot cardSlot, const char* fileName, u8* buffer, s32 length, s32 offset)
+bool MemoryCardMgr::write(ECardSlot cardSlot, const char* fileName, u8* buffer, s32 length, s32 offset)
 {
 	CARDFileInfo fileInfo;
 	checkSlot(cardSlot);
@@ -1479,7 +1479,7 @@ bool MemoryCardMgr::write(MemoryCardMgr::ECardSlot cardSlot, const char* fileNam
  * Address:	80441CA0
  * Size:	0000C4
  */
-bool MemoryCardMgr::checkCardStat(MemoryCardMgr::ECardSlot cardSlot, CARDFileInfo* fileInfo)
+bool MemoryCardMgr::checkCardStat(ECardSlot cardSlot, CARDFileInfo* fileInfo)
 {
 	CARDStat stat;
 	bool result = false;
@@ -1506,7 +1506,7 @@ bool MemoryCardMgr::checkCardStat(MemoryCardMgr::ECardSlot cardSlot, CARDFileInf
  * Address:	80441D64
  * Size:	000280
  */
-bool MemoryCardMgr::read(MemoryCardMgr::ECardSlot cardSlot, const char* fileName, u8* buffer, s32 length, s32 offset)
+bool MemoryCardMgr::read(ECardSlot cardSlot, const char* fileName, u8* buffer, s32 length, s32 offset)
 {
 	CARDFileInfo fileInfo;
 	CARDStat cardStat;
@@ -1750,7 +1750,7 @@ bool MemoryCardMgr::read(MemoryCardMgr::ECardSlot cardSlot, const char* fileName
  * Address:	80441FE4
  * Size:	000088
  */
-void MemoryCardMgr::format(MemoryCardMgr::ECardSlot cardSlot)
+void MemoryCardMgr::format(ECardSlot cardSlot)
 {
 	CARDMount(cardSlot, &sCardWorkArea, nullptr);
 	setInsideStatusFlag(INSIDESTATUS_Unk11);
@@ -1769,7 +1769,7 @@ void MemoryCardMgr::format(MemoryCardMgr::ECardSlot cardSlot)
  * Address:	8044206C
  * Size:	000098
  */
-void MemoryCardMgr::attach(MemoryCardMgr::ECardSlot cardSlot)
+void MemoryCardMgr::attach(ECardSlot cardSlot)
 {
 	s32 memSize;
 	s32 sectorSize;
@@ -1789,7 +1789,7 @@ void MemoryCardMgr::attach(MemoryCardMgr::ECardSlot cardSlot)
  * Address:	80442104
  * Size:	00003C
  */
-void MemoryCardMgr::detach(MemoryCardMgr::ECardSlot cardSlot)
+void MemoryCardMgr::detach(ECardSlot cardSlot)
 {
 	CARDUnmount(cardSlot);
 	resetInsideStatusFlag(INSIDESTATUS_Unk);
@@ -1800,7 +1800,7 @@ void MemoryCardMgr::detach(MemoryCardMgr::ECardSlot cardSlot)
  * Address:	80442140
  * Size:	000168
  */
-bool MemoryCardMgr::mount(MemoryCardMgr::ECardSlot cardSlot)
+bool MemoryCardMgr::mount(ECardSlot cardSlot)
 {
 	bool result;
 	CARDMount(cardSlot, &sCardWorkArea, nullptr);
@@ -1992,7 +1992,7 @@ lbl_80442288:
  * Address:	804422A8
  * Size:	0000FC
  */
-s32 MemoryCardMgr::checkSpace(MemoryCardMgr::ECardSlot cardSlot, int requiredSpace)
+s32 MemoryCardMgr::checkSpace(ECardSlot cardSlot, int requiredSpace)
 {
 	s32 cardRes;
 	s32 freeBytes;
@@ -2266,7 +2266,7 @@ lbl_80442780:
  * Address:	80442788
  * Size:	0000B8
  */
-bool MemoryCardMgr::readCardSerialNo(u64* serial, MemoryCardMgr::ECardSlot cardSlot)
+bool MemoryCardMgr::readCardSerialNo(u64* serial, ECardSlot cardSlot)
 {
 	bool result = false;
 	s32 cardRes = CARDGetSerialNo(cardSlot, serial);
@@ -2294,7 +2294,7 @@ bool MemoryCardMgr::readCardSerialNo(u64* serial, MemoryCardMgr::ECardSlot cardS
  * Address:	80442840
  * Size:	000014
  */
-void MemoryCardMgr::setInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag status)
+void MemoryCardMgr::setInsideStatusFlag(EInsideStatusFlag status)
 {
 	if (mStatusFlag == 10) {
 		return;
@@ -2307,4 +2307,4 @@ void MemoryCardMgr::setInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag status)
  * Address:	80442854
  * Size:	000008
  */
-void MemoryCardMgr::resetInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag flag) { mStatusFlag = flag; }
+void MemoryCardMgr::resetInsideStatusFlag(EInsideStatusFlag flag) { mStatusFlag = flag; }

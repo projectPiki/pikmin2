@@ -31,8 +31,6 @@ struct Section {
 };
 } // namespace TitleDummy
 
-namespace Title {
-
 struct HIORootNode : public Game::HIORootNode {
 	HIORootNode(Section* sect, const char* name)
 	    : Game::HIORootNode(sect)
@@ -40,6 +38,8 @@ struct HIORootNode : public Game::HIORootNode {
 		mName = name;
 	}
 };
+
+namespace Title {
 
 // Size: 0x1B0
 struct Section : public Game::BaseHIOSection {

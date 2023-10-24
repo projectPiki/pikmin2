@@ -109,7 +109,7 @@ void SceneBase::update()
 	case Unknown4:
 		break;
 	default:
-		JUTException::panic_f(__FILE__, 226, "P2Assert");
+		JUT_PANICLINE(226, "P2Assert");
 		break;
 	}
 }
@@ -228,7 +228,7 @@ void SceneBase::createObj(JKRArchive* archive) { doCreateObj(archive); }
  * Address:	80451D74
  * Size:	00005C
  */
-void SceneBase::registObj(Screen::ObjBase* obj, JKRArchive* archive)
+void SceneBase::registObj(ObjBase* obj, JKRArchive* archive)
 {
 	mObjMgr->registObj(obj, this);
 	obj->create(archive);
@@ -239,21 +239,21 @@ void SceneBase::registObj(Screen::ObjBase* obj, JKRArchive* archive)
  * Address:	80451DD0
  * Size:	000078
  */
-bool SceneBase::confirmSetScene(Screen::SetSceneArg& arg) { return (mObjMgr->confirmSetScene(arg) && doConfirmSetScene(arg)); }
+bool SceneBase::confirmSetScene(SetSceneArg& arg) { return (mObjMgr->confirmSetScene(arg) && doConfirmSetScene(arg)); }
 
 /*
  * --INFO--
  * Address:	80451E48
  * Size:	000078
  */
-bool SceneBase::confirmStartScene(Screen::StartSceneArg* arg) { return (mObjMgr->confirmStartScene(arg) && doConfirmStartScene(arg)); }
+bool SceneBase::confirmStartScene(StartSceneArg* arg) { return (mObjMgr->confirmStartScene(arg) && doConfirmStartScene(arg)); }
 
 /*
  * --INFO--
  * Address:	80451EC0
  * Size:	000070
  */
-bool SceneBase::confirmEndScene(Screen::EndSceneArg* arg) { return (mObjMgr->confirmEndScene(arg) && doConfirmEndScene(arg)); }
+bool SceneBase::confirmEndScene(EndSceneArg* arg) { return (mObjMgr->confirmEndScene(arg) && doConfirmEndScene(arg)); }
 
 /*
  * setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
@@ -261,7 +261,7 @@ bool SceneBase::confirmEndScene(Screen::EndSceneArg* arg) { return (mObjMgr->con
  * Address:	80451F30
  * Size:	000030
  */
-bool SceneBase::setScene(Screen::SetSceneArg& arg) { return mScreenMgr->setScene(arg); }
+bool SceneBase::setScene(SetSceneArg& arg) { return mScreenMgr->setScene(arg); }
 
 /*
  * startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
@@ -269,7 +269,7 @@ bool SceneBase::setScene(Screen::SetSceneArg& arg) { return mScreenMgr->setScene
  * Address:	80451F60
  * Size:	000030
  */
-bool SceneBase::startScene(Screen::StartSceneArg* arg) { return mScreenMgr->startScene(arg); }
+bool SceneBase::startScene(StartSceneArg* arg) { return mScreenMgr->startScene(arg); }
 
 /*
  * endScene__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
@@ -277,7 +277,7 @@ bool SceneBase::startScene(Screen::StartSceneArg* arg) { return mScreenMgr->star
  * Address:	80451F90
  * Size:	000030
  */
-void SceneBase::endScene(Screen::EndSceneArg* arg) { mScreenMgr->endScene(arg); }
+void SceneBase::endScene(EndSceneArg* arg) { mScreenMgr->endScene(arg); }
 
 /*
  * setBackupScene__Q26Screen9SceneBaseFv

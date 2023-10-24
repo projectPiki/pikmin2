@@ -267,14 +267,6 @@ bool TSequenceProcessor::do_isReady()
 
 /*
  * --INFO--
- * Address:	80437B84
- * Size:	000004
- */
-// WEAK - in header.
-// void TSequenceProcessor::doFastForwardSE() { }
-
-/*
- * --INFO--
  * Address:	80437B88
  * Size:	000008
  */
@@ -337,22 +329,6 @@ void TSequenceProcessor::do_character(int arg0)
 
 /*
  * --INFO--
- * Address:	80437C5C
- * Size:	000004
- */
-// WEAK - in header.
-// void TSequenceProcessor::doCharacterSE(int) { }
-
-/*
- * --INFO--
- * Address:	80437C60
- * Size:	000004
- */
-// WEAK - in header.
-// void TSequenceProcessor::doCharacterSEStart() { }
-
-/*
- * --INFO--
  * Address:	80437C64
  * Size:	0000F4
  */
@@ -398,14 +374,6 @@ void TSequenceProcessor::setAbtnWait()
 
 /*
  * --INFO--
- * Address:	80437DA4
- * Size:	000004
- */
-// WEAK - in header.
-// void TSequenceProcessor::doCharacterSEEnd() { }
-
-/*
- * --INFO--
  * Address:	80437DA8
  * Size:	000060
  */
@@ -437,11 +405,4 @@ void TSequenceProcessor::reset()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80437E4C
- * Size:	000060
- */
-// WEAK - in header.
-// TSequenceProcessor::~TSequenceProcessor() { }
 } // namespace P2JME

@@ -1,6 +1,5 @@
 #include "ctype.h"
 #include "P2JME/P2JME.h"
-#include "types.h"
 
 namespace P2JME {
 

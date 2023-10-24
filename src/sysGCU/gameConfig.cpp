@@ -1,6 +1,5 @@
 #include "string.h"
 #include "System.h"
-#include "types.h"
 #include "Dolphin/print.h"
 #include "Game/GameConfig.h"
 
@@ -183,40 +182,5 @@ bool GameConfig::load(char*)
 	}
 	return false;
 }
-
-// /*
-//  * sinit
-//  * --INFO--
-//  * Address:	80432898
-//  * Size:	00003C
-//  */
-// void __sinit_gameConfig_cpp()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	lis      r3, gGameConfig__4Game@ha
-// 	stw      r0, 0x14(r1)
-// 	addi     r3, r3, gGameConfig__4Game@l
-// 	bl       __ct__Q24Game10GameConfigFv
-// 	lis      r4, __dt__Q24Game10GameConfigFv@ha
-// 	lis      r5, lbl_804F7C38@ha
-// 	addi     r4, r4, __dt__Q24Game10GameConfigFv@l
-// 	addi     r5, r5, lbl_804F7C38@l
-// 	bl       __register_global_object
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * __dt__Q24Game10GameConfigFv
- * --INFO--
- * Address:	804328D4
- * Size:	000074
- */
-// GameConfig::~GameConfig() {}
 
 } // namespace Game

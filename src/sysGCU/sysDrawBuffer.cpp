@@ -30,7 +30,7 @@ DrawBuffer::~DrawBuffer() { }
  * Address:	804557BC
  * Size:	0000DC
  */
-void DrawBuffer::create(Sys::DrawBuffer::CreateArg& arg)
+void DrawBuffer::create(CreateArg& arg)
 {
 	u32 bufferSize = arg.mSize;
 	setFlag(arg.mFlags.typeView);

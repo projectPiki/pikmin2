@@ -45,7 +45,7 @@ void Mgr::setDefault()
  * Address:	80446D24
  * Size:	000018
  */
-void CommonSaveData::Mgr::setCardSerialNo(u64 tag)
+void Mgr::setCardSerialNo(u64 tag)
 {
 	mCardSerialNo = tag;
 	mFlags.typeView |= 1;
@@ -56,7 +56,7 @@ void CommonSaveData::Mgr::setCardSerialNo(u64 tag)
  * Address:	80446D3C
  * Size:	000020
  */
-void CommonSaveData::Mgr::resetCardSerialNo()
+void Mgr::resetCardSerialNo()
 {
 	mCardSerialNo = 0xcdcdcdcdcdcdcdcd;
 	mFlags.typeView &= ~1;
@@ -67,7 +67,7 @@ void CommonSaveData::Mgr::resetCardSerialNo()
  * Address:	80446D5C
  * Size:	0000AC
  */
-void CommonSaveData::Mgr::write(Stream& output)
+void Mgr::write(Stream& output)
 {
 	output.mMode = STREAM_MODE_BINARY;
 	if (output.mMode == STREAM_MODE_TEXT) {
@@ -88,7 +88,7 @@ void CommonSaveData::Mgr::write(Stream& output)
  * Address:	80446E08
  * Size:	0000AC
  */
-void CommonSaveData::Mgr::read(Stream& input)
+void Mgr::read(Stream& input)
 {
 	input.mMode = STREAM_MODE_BINARY;
 	if (input.mMode == STREAM_MODE_TEXT) {
@@ -109,7 +109,7 @@ void CommonSaveData::Mgr::read(Stream& input)
  * Address:	80446EB4
  * Size:	000100
  */
-void CommonSaveData::Mgr::setup()
+void Mgr::setup()
 {
 	BOOL soundModeCheck = OSGetSoundMode();
 	switch (soundModeCheck) {
@@ -145,7 +145,7 @@ void CommonSaveData::Mgr::setup()
  * Address:	80446FB4
  * Size:	000014
  */
-void CommonSaveData::Mgr::resetPlayer(s8 fileIndex)
+void Mgr::resetPlayer(s8 fileIndex)
 {
 	mFileIndex = fileIndex;
 	mTime      = 0;
@@ -157,14 +157,14 @@ void CommonSaveData::Mgr::resetPlayer(s8 fileIndex)
  * Address:	80446FC8
  * Size:	000030
  */
-void CommonSaveData::Mgr::setDeflicker() { setDeflicker(mUseDeflicker); }
+void Mgr::setDeflicker() { setDeflicker(mUseDeflicker); }
 
 /*
  * --INFO--
  * Address:	80446FF8
  * Size:	0000D0
  */
-void CommonSaveData::Mgr::setDeflicker(bool deflicker)
+void Mgr::setDeflicker(bool deflicker)
 {
 	_GXRenderModeObj* obj = System::getRenderModeObj();
 	mUseDeflicker         = deflicker;
@@ -203,7 +203,7 @@ void CommonSaveData::Mgr::setDeflicker(bool deflicker)
  * Address:	804470C8
  * Size:	000034
  */
-void CommonSaveData::Mgr::setSoundModeMono()
+void Mgr::setSoundModeMono()
 {
 	mSoundMode = SM_Mono;
 	JAIGlobalParameter::setParamSoundOutputMode(SM_Mono);
@@ -215,7 +215,7 @@ void CommonSaveData::Mgr::setSoundModeMono()
  * Address:	804470FC
  * Size:	000034
  */
-void CommonSaveData::Mgr::setSoundModeStereo()
+void Mgr::setSoundModeStereo()
 {
 	mSoundMode = SM_Stereo;
 	JAIGlobalParameter::setParamSoundOutputMode(SM_Stereo);
@@ -227,7 +227,7 @@ void CommonSaveData::Mgr::setSoundModeStereo()
  * Address:	80447130
  * Size:	000034
  */
-void CommonSaveData::Mgr::setSoundModeSurround()
+void Mgr::setSoundModeSurround()
 {
 	mSoundMode = SM_SurroundSound;
 	JAIGlobalParameter::setParamSoundOutputMode(SM_SurroundSound);
@@ -239,7 +239,7 @@ void CommonSaveData::Mgr::setSoundModeSurround()
  * Address:	80447164
  * Size:	00012C
  */
-void CommonSaveData::Mgr::setBgmVolume(f32 volume)
+void Mgr::setBgmVolume(f32 volume)
 {
 	bool temp = OSDisableInterrupts();
 	OSDisableScheduler();
@@ -274,7 +274,7 @@ void CommonSaveData::Mgr::setBgmVolume(f32 volume)
  * Address:	80447290
  * Size:	00012C
  */
-void CommonSaveData::Mgr::setSeVolume(f32 volume)
+void Mgr::setSeVolume(f32 volume)
 {
 	bool temp = OSDisableInterrupts();
 	OSDisableScheduler();
@@ -304,5 +304,6 @@ void CommonSaveData::Mgr::setSeVolume(f32 volume)
 	OSEnableScheduler();
 	OSRestoreInterrupts(temp);
 }
+
 } // namespace CommonSaveData
 } // namespace Game

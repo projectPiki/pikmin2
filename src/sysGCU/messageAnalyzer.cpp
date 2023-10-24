@@ -1,41 +1,6 @@
 
-#include "types.h"
 #include "P2JME/Analyzer.h"
 #include "P2JME/P2JME.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q25P2JME8Analyzer
-    __vt__Q25P2JME8Analyzer:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q25P2JME8AnalyzerFv
-        .4byte do_reset__Q28JMessage10TProcessorFv
-        .4byte do_character__Q25P2JME8AnalyzerFi
-        .4byte do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl
-        .4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
-        .4byte do_select_begin__Q28JMessage10TProcessorFUl
-        .4byte do_select_end__Q28JMessage10TProcessorFv
-        .4byte do_select_separate__Q28JMessage10TProcessorFv
-        .4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
-        .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
-        .4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
-        .4byte do_end___Q28JMessage19TRenderingProcessorFv
-        .4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
-        .4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
-        .4byte do_begin__Q28JMessage19TRenderingProcessorFPCvPCc
-        .4byte do_end__Q28JMessage19TRenderingProcessorFv
-        .4byte tagColor__Q25P2JME8AnalyzerFPCvUl
-        .4byte tagSize__Q25P2JME8AnalyzerFPCvUl
-        .4byte tagRuby__Q25P2JME8AnalyzerFPCvUl
-        .4byte tagFont__Q25P2JME8AnalyzerFPCvUl
-        .4byte tagImage__Q25P2JME8AnalyzerFUsPCvUl
-        .4byte tagColorEX__Q25P2JME8AnalyzerFUsPCvUl
-        .4byte tagControl__Q25P2JME8AnalyzerFUsPCvUl
-        .4byte tagPosition__Q25P2JME8AnalyzerFUsPCvUl
-*/
 
 namespace P2JME {
 
@@ -94,4 +59,5 @@ void Analyzer::exec(char* msg)
 // {
 // 	// UNUSED FUNCTION
 // }
+
 } // namespace P2JME

@@ -6,8 +6,8 @@
 namespace Game {
 MovieList* movieList;
 
-static const int unusedMovieConfigArray[] = { 0, 0, 0 };
-static const char movieConfigName[]       = "movieConfig";
+static const int padding[]    = { 0, 0, 0 };
+static const char className[] = "movieConfig";
 
 /*
  * --INFO--

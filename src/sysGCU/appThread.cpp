@@ -1,5 +1,3 @@
-#include "types.h"
-
 #include "AppThread.h"
 
 /*

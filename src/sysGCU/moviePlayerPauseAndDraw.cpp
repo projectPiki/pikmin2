@@ -15,7 +15,7 @@ namespace Game {
  * Address:	80436ED0
  * Size:	000070
  */
-void MoviePlayer::setPauseAndDraw(Game::MovieConfig* config)
+void MoviePlayer::setPauseAndDraw(MovieConfig* config)
 {
 	pikiMgr->setMovieDraw(config->isDrawFlag(1));
 	naviMgr->setMovieDraw(config->isDrawFlag(8));

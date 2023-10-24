@@ -139,7 +139,7 @@ struct TMgr {
 	typedef FSMState StateType;
 	TMgr();
 
-	~TMgr();
+	~TMgr() { }
 
 	void draw();
 	int getStateID();

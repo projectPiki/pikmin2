@@ -80,17 +80,16 @@ void Section::doExit()
  */
 void Section::loadResident()
 {
-	JKRArchive* arc;
 	JKRHeap* backup = JKRGetCurrentHeap();
 	if (!(sys->mFlags.typeView & 1)) {
 		sys->mSysHeap->becomeCurrentHeap();
 		sys->heapStatusStart("titleSection::loadResident", nullptr);
 
-		arc = JKRArchive::mount("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		JKRArchive* arc = JKRArchive::mount("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 		JUT_ASSERTLINE(582, arc, "%s : mount failed !!\n", "/user/Kando/piki/pikis.szs");
 
-		arc = JKRArchive::mount("user/Kando/onyon/arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
-		JUT_ASSERTLINE(590, arc, "%s : mount failed !!\n", "user/Kando/onyon/arc.szs");
+		JKRArchive* arc2 = JKRArchive::mount("user/Kando/onyon/arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		JUT_ASSERTLINE(590, arc2, "%s : mount failed !!\n", "user/Kando/onyon/arc.szs");
 
 		sys->heapStatusEnd("titleSection::loadResident");
 		sys->mFlags.typeView |= 1;
@@ -114,7 +113,7 @@ void Section::init()
 	initHIO(new HIORootNode(this, "タイトルセクション"));
 
 	sys->heapStatusStart("frameBuffer", nullptr);
-	setDisplay(JFWDisplay::createManager(nullptr, mHeap, JUTXfb::DoubleBuffer, false), 1);
+	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);
 	sys->heapStatusEnd("frameBuffer");
 
 	mController1 = new Controller(JUTGamePad::PORT_0);
@@ -123,7 +122,6 @@ void Section::init()
 	sys->setFrameRate(1); // 60fps title screen
 
 	// this entire menu class seems to be for a scrapped debug menu
-	// Wouldnt be suprised if this was stolen from Double Dash. I know it has a whole debug menu, and it feels so out of place here
 	mMenu      = new Menu(mController1, JFWSystem::systemFont, false);
 	mMenu->_48 = 260;
 	mMenu->addKeyEvent(Menu::KeyEvent::UNK1, 512, new Delegate1<Section, Menu&>(this, &menuCancel));
@@ -148,7 +146,7 @@ void Section::init()
 	PSM::ObjMgr::newInstance();
 
 	mThpPlayer = new Game::THPPlayer;
-	mThpPlayer->init(mHeap);
+	mThpPlayer->init(mDisplayHeap);
 	addGenNode(mThpPlayer);
 	Screen::Game2DMgr::create();
 	Screen::gGame2DMgr->setGamePad(mController1);
@@ -614,7 +612,7 @@ bool Section::doLoading()
 		mgr->checkScene();
 		mgr->mScenes->mChild->startMainSeq();
 	}
-	return flag == 0;
+	return u8(flag == 0);
 }
 
 /*

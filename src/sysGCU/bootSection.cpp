@@ -18,10 +18,11 @@
 #include "PSSystem/PSGame.h"
 #include "Game/GameConfig.h"
 #include "PSM/Scene.h"
+#include "ebi/Progre.h"
 #include "trig.h"
 #include "nans.h"
 
-static const char idk[] = "\0\0\0\0\0\0\0\0\0";
+static const u32 padding[] = { 0, 0, 0 };
 
 /*
  * --INFO--
@@ -269,9 +270,19 @@ TinyPikminMgr::TinyPikminMgr()
  * Address:	........
  * Size:	000124
  */
-void TinyPikminMgr::loadResource(JKRArchive*)
+void TinyPikminMgr::loadResource(JKRArchive* arc)
 {
-	// UNUSED FUNCTION
+	char* pikipaths[5]
+	    = { "title_red_5a3.bti", "title_yellow_5a3.bti", "title_blue_5a3.bti", "title_white_5a3.bti", "title_violet_5a3.bti" };
+	for (int i = 0; i < 5; i++) {
+		char buf[256];
+		sprintf(buf, "timg/%s", pikipaths[i]);
+		ResTIMG* file = static_cast<ResTIMG*>(arc->getResource(buf));
+		P2ASSERTLINE(786, file); // 1031 in demo 1?
+		JUTTexture* tex              = new JUTTexture(file);
+		TinyPikminMgr::sPikminTex[i] = new J2DPicture(tex);
+		TinyPikminMgr::sPikminTex[i]->setBasePosition(J2DPOS_BottomCenter);
+	}
 }
 
 /*
@@ -423,7 +434,7 @@ BootSection::BootSection(JKRHeap* heap)
 	node->mName             = "ブートセクション";
 	initHIO(node);
 
-	setDisplay(JFWDisplay::createManager(nullptr, mHeap, JUTXfb::DoubleBuffer, false), 1);
+	setDisplay(JFWDisplay::createManager(nullptr, mDisplayHeap, JUTXfb::DoubleBuffer, false), 1);
 	sys->setFrameRate(1);
 	mButtonCallback = new Delegate<BootSection>(this, &BootSection::loadResident);
 	JUTProcBar::sManager->setVisible(false);
@@ -480,17 +491,7 @@ void BootSection::loadBootResource()
 	P2ASSERTLINE(1042, file);
 	mWarningPressStartTexture = new JUTTexture(file);
 
-	char* pikipaths[5]
-	    = { "title_red_5a3.bti", "title_yellow_5a3.bti", "title_blue_5a3.bti", "title_white_5a3.bti", "title_violet_5a3.bti" };
-	for (int i = 0; i < 5; i++) {
-		char buf[256];
-		sprintf(buf, "timg/%s", pikipaths[i]);
-		ResTIMG* file = static_cast<ResTIMG*>(arc->getResource(buf));
-		P2ASSERTLINE(1031, file);
-		JUTTexture* tex              = new JUTTexture(file);
-		TinyPikminMgr::sPikminTex[i] = new J2DPicture(tex);
-		TinyPikminMgr::sPikminTex[i]->setBasePosition(J2DPOS_BottomCenter);
-	}
+	sTinyPikminMgr->loadResource(arc);
 }
 
 /*

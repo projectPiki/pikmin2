@@ -14,7 +14,7 @@ namespace Screen {
 struct TOmake : public TScreenBase {
 	TOmake();
 
-	~TOmake() {};
+	~TOmake();
 
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
