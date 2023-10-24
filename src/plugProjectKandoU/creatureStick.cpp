@@ -45,19 +45,28 @@ void Creature::releaseAllStickers()
  */
 bool Creature::startStick(Creature* obj, CollPart* part)
 {
+	// If already sticking
 	if (isStickTo()) {
+		// If isn't stuck to mouth and part is a mouth
 		if (!isStickToMouth() && part->isMouth()) {
+			// End current stick so we can start a new one (mouth is higher priority)
 			endStick();
 		} else {
+			// Stick couldn't happen again
 			return false;
 		}
 	}
+
+	// Set the creature and part we're sticking to
 	mSticker       = obj;
 	mStuckCollPart = part;
+
+	// If sticking to a mouth part, update stuck creature
 	if (mStuckCollPart && mStuckCollPart->isMouth()) {
 		static_cast<MouthCollPart*>(mStuckCollPart)->mStuckCreature = this;
 	}
 
+	// Update the creature this object is sticking to, and handle any previously stuck creature
 	Creature* stick = obj->mSticked;
 	if (!stick) {
 		obj->mSticked = this;
@@ -70,11 +79,13 @@ bool Creature::startStick(Creature* obj, CollPart* part)
 		stick->mCapture = this;
 	}
 
+	// If sticking to a part, calculate the local position for the creature to stick to
 	if (mStuckCollPart) {
 		Vector3f pos = getPosition();
 		mStuckCollPart->calcStickLocal(pos, mClimbingPosition);
 	}
 
+	// Notify the creature and the object about the start of the sticking process
 	mSticker->onStickStart(this);
 	onStickStartSelf(mSticker);
 
@@ -99,21 +110,28 @@ bool Creature::startStickMouth(Creature* obj, CollPart* part)
  */
 bool Creature::startStick(Creature* obj, s16 id)
 {
+	// Ignore if already sticking
 	if (isStickTo()) {
 		return false;
 	}
 
-	if (startStick(obj, (CollPart*)nullptr)) { // sure.
+	// If we can start sticking
+	if (startStick(obj, (CollPart*)nullptr)) {
+		// Check if the stick slot is free
 		if (obj->isSlotFree(id)) {
+			// Take the stick slot and activate
 			obj->onSlotStickStart(this, id);
 			mStickSlot = id;
 			onStickStartSelf(obj);
+
 			return true;
 		} else {
+			// Not free, stop trying to stick
 			endStick();
 			return false;
 		}
 	}
+
 	return false;
 }
 
@@ -124,36 +142,41 @@ bool Creature::startStick(Creature* obj, s16 id)
  */
 void Creature::endStick()
 {
-	if (isStickTo()) {
-		onStickEndSelf(mSticker);
-		if (mStickSlot != -1) {
-			mSticker->onSlotStickEnd(this, mStickSlot);
-			mStickSlot = -1;
-		} else {
-			mSticker->onStickEnd(this);
-		}
+	if (!isStickTo()) {
+		return;
+	}
 
-		if (mStuckCollPart && mStuckCollPart->isMouth()) {
-			static_cast<MouthCollPart*>(mStuckCollPart)->mStuckCreature = nullptr;
-		}
+	onStickEndSelf(mSticker);
 
-		if (!mCapture && !mCaptured) {
-			mSticker->mSticked = nullptr;
-			mSticker           = nullptr;
-			mStuckCollPart     = nullptr;
-		} else if (!mCapture) {
-			mSticker->mSticked  = mCaptured;
-			mCaptured->mCapture = nullptr;
-			mSticker            = nullptr;
-			mStuckCollPart      = nullptr;
-			mCapture            = nullptr;
-			mCaptured           = nullptr;
-		} else {
-			mSticker            = nullptr;
-			mCapture->mCaptured = mCaptured;
-			if (mCaptured) {
-				mCaptured->mCapture = mCapture;
-			}
+	// Reset stick slot
+	if (mStickSlot != -1) {
+		mSticker->onSlotStickEnd(this, mStickSlot);
+		mStickSlot = -1;
+	} else {
+		mSticker->onStickEnd(this);
+	}
+
+	// Reset stuck creature
+	if (mStuckCollPart && mStuckCollPart->isMouth()) {
+		static_cast<MouthCollPart*>(mStuckCollPart)->mStuckCreature = nullptr;
+	}
+
+	if (!mCapture && !mCaptured) {
+		mSticker->mSticked = nullptr;
+		mSticker           = nullptr;
+		mStuckCollPart     = nullptr;
+	} else if (!mCapture) {
+		mSticker->mSticked  = mCaptured;
+		mCaptured->mCapture = nullptr;
+		mSticker            = nullptr;
+		mStuckCollPart      = nullptr;
+		mCapture            = nullptr;
+		mCaptured           = nullptr;
+	} else {
+		mSticker            = nullptr;
+		mCapture->mCaptured = mCaptured;
+		if (mCaptured) {
+			mCaptured->mCapture = mCapture;
 		}
 	}
 }
@@ -171,14 +194,7 @@ bool Creature::isStickTo() { return mSticker != nullptr; }
  * Address:	8019F588
  * Size:	000060
  */
-bool Creature::isStickToMouth()
-{
-	bool ret = false;
-	if (mSticker && mStuckCollPart && mStuckCollPart->isMouth()) {
-		ret = true;
-	}
-	return ret;
-}
+bool Creature::isStickToMouth() { return mSticker && mStuckCollPart && mStuckCollPart->isMouth(); }
 
 /*
  * --INFO--
@@ -190,6 +206,8 @@ bool Creature::isStickLeader()
 	// UNUSED FUNCTION
 }
 
+#include "Game/enemyInfo.h"
+
 /*
  * --INFO--
  * Address:	8019F5E8
@@ -197,92 +215,81 @@ bool Creature::isStickLeader()
  */
 void Creature::updateStick(Vector3f& pos)
 {
-
 	P2ASSERTLINE(295, mSticker);
+
 	setVelocity(Vector3f::zero);
 
+	// If stuck to a mouth part
 	if (mStuckCollPart && mStuckCollPart->isMouth()) {
-		// MouthCollPart* part = static_cast<MouthCollPart*>(mStuckCollPart);
-		Matrixf mtx, mtx2;
-		static_cast<MouthCollPart*>(mStuckCollPart)->copyMatrixTo(mtx);
+		Matrixf stuckMtx, resultMtx;
+
+		static_cast<MouthCollPart*>(mStuckCollPart)->copyMatrixTo(stuckMtx);
+
+		// Set the scale factor if the creature is a Navi
 		f32 scale = 1.0f;
 		if (static_cast<MouthCollPart*>(mStuckCollPart)->_6C) {
 			if (isNavi()) {
-				if (getCreatureID() == 0) {
+				if (getCreatureID() == Game::EnemyTypeID::EnemyID_Pelplant) {
 					scale = 1.3f;
 				} else {
 					scale = 1.5f;
 				}
 			}
+
 			Vector3f scalevec(scale);
 			Vector3f rotate(0.0f);
-			mtx2.makeSRT(scalevec, rotate, mStuckCollPart->mOffset);
+			resultMtx.makeSRT(scalevec, rotate, mStuckCollPart->mOffset);
 		} else {
 			Vector3f scalevec(scale);
 			Vector3f rotate(0.0f, 0.0f, HALF_PI);
-			mtx2.makeSR(scalevec, rotate);
+			resultMtx.makeSR(scalevec, rotate);
 		}
-		PSMTXConcat(mtx.mMatrix.mtxView, mtx2.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
-		Vector3f pos;
-		pos.x = mObjMatrix.mMatrix.structView.tx;
-		pos.y = mObjMatrix.mMatrix.structView.ty;
-		pos.z = mObjMatrix.mMatrix.structView.tz;
 
+		PSMTXConcat(stuckMtx.mMatrix.mtxView, resultMtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
+
+		Vector3f pos;
+		mObjMatrix.getTranslation(pos);
 		setPosition(pos, true);
-	} else {
+	} else { // If the creature is sticking to a non-mouth part
 		if (mStuckCollPart) {
+			// Calculate the global sticking position of the creature
 			Vector3f pos = getPosition();
 			mStuckCollPart->calcStickGlobal(mClimbingPosition, pos);
+
+			// Calculate the pose matrix based on part type (tubetree == climbing)
 			if (mStuckCollPart->mPartType == COLLTYPE_TUBETREE) {
 				Vector3f rotate;
 				rotate.x = getFaceDir();
 				rotate.y = mClimbingPosition.y;
 				mStuckCollPart->calcPoseMatrix(rotate, mObjMatrix);
+
 				if (isPiki()) {
-					mObjMatrix.mMatrix.structView.xx *= mScale.x;
-					mObjMatrix.mMatrix.structView.xy *= mScale.x;
-					mObjMatrix.mMatrix.structView.xz *= mScale.x;
-
-					mObjMatrix.mMatrix.structView.yx *= mScale.y;
-					mObjMatrix.mMatrix.structView.yy *= mScale.y;
-					mObjMatrix.mMatrix.structView.yz *= mScale.y;
-
-					mObjMatrix.mMatrix.structView.zx *= mScale.z;
-					mObjMatrix.mMatrix.structView.zy *= mScale.z;
-					mObjMatrix.mMatrix.structView.zz *= mScale.z;
+					scaleMatrix2(mObjMatrix, mScale);
 				}
 			} else {
 				mStuckCollPart->calcPoseMatrix(pos, mObjMatrix);
 				if (isPiki()) {
-					mObjMatrix.mMatrix.structView.xx *= mScale.x;
-					mObjMatrix.mMatrix.structView.xy *= mScale.x;
-					mObjMatrix.mMatrix.structView.xz *= mScale.x;
-
-					mObjMatrix.mMatrix.structView.yx *= mScale.y;
-					mObjMatrix.mMatrix.structView.yy *= mScale.y;
-					mObjMatrix.mMatrix.structView.yz *= mScale.y;
-
-					mObjMatrix.mMatrix.structView.zx *= mScale.z;
-					mObjMatrix.mMatrix.structView.zy *= mScale.z;
-					mObjMatrix.mMatrix.structView.zz *= mScale.z;
+					scaleMatrix2(mObjMatrix, mScale);
 				}
 			}
+
 			setPosition(pos, true);
-			mObjMatrix.mMatrix.structView.tx = pos.x;
-			mObjMatrix.mMatrix.structView.ty = pos.y;
-			mObjMatrix.mMatrix.structView.tz = pos.z;
-		} else {
-			if (mStickSlot != -1) {
-				Vector3f slotpos;
-				mSticker->calcStickSlotGlobal(mStickSlot, slotpos);
-				Vector3f pos  = mSticker->getPosition();
-				Vector3f diff = pos - slotpos;
-				_normaliseXZ(diff);
-				f32 dir = JMath::atanTable_.atan2_(diff.x, diff.z);
-				setPosition(slotpos, true);
-				Vector3f rotate(0.0f, dir, 0.0f);
-				mObjMatrix.makeTR(slotpos, rotate);
-			}
+			mObjMatrix.setTranslation(pos);
+		} else if (mStickSlot != -1) { // If the creature isn't stuck to any part, but stuck in a slot
+			Vector3f position;
+			mSticker->calcStickSlotGlobal(mStickSlot, position);
+
+			// Get direction from creature to slot, then calculate the angle on the Y axis
+			Vector3f direction = mSticker->getPosition() - position;
+			_normaliseXZ(direction);
+			f32 angleBetween = JMath::atanTable_.atan2_(direction.x, direction.z);
+
+			setPosition(position, true);
+
+			Vector3f rotation(0.0f, angleBetween, 0.0f);
+
+			// Rotate towards the slot position, and maintain positioning
+			mObjMatrix.makeTR(position, rotation);
 		}
 	}
 }
@@ -315,13 +322,12 @@ void Creature::updateCapture(Matrixf& mtx)
 {
 	if (mCaptureMatrix) {
 		PSMTXConcat(mCaptureMatrix->mMatrix.mtxView, mtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
+
 		Mtx newmtx;
 		PSMTXCopy(mObjMatrix.mMatrix.mtxView, newmtx);
 
 		Vector3f pos;
-		pos.x = mObjMatrix.mMatrix.structView.tx;
-		pos.y = mObjMatrix.mMatrix.structView.ty;
-		pos.z = mObjMatrix.mMatrix.structView.tz;
+		mObjMatrix.getTranslation(pos);
 
 		setPosition(pos, false);
 		PSMTXCopy(newmtx, mObjMatrix.mMatrix.mtxView);

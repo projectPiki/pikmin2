@@ -33,9 +33,9 @@ struct BaseHIOSection : public Section {
 	void createScreenRootNode();
 	void setDisplay(JFWDisplay*, int);
 
-	HIORootNode* mRootNode; // _3C
-	u8 _40[4];              // _40
-	Controller* _44;        // _44
+	HIORootNode* mRootNode;         // _3C
+	u8 _40[4];                      // _40
+	Controller* mPlayer4Controller; // _44
 };
 
 /**

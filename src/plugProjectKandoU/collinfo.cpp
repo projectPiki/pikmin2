@@ -1091,14 +1091,14 @@ void CollPart::calcStickGlobal(Vector3f& arg0, Vector3f& arg1)
  * Size:	0004C8
  */
 // WIP: https://decomp.me/scratch/rvuzC
-void CollPart::calcPoseMatrix(Vector3f& arg0, Matrixf& arg1)
+void CollPart::calcPoseMatrix(Vector3f& info, Matrixf& outputPose)
 {
 	switch (mPartType) {
 	case COLLTYPE_SPHERE:
 		Matrixf mtx;
 		makeMatrixTo(mtx);
 		Vector3f pos  = mtx.getBasis(3);
-		Vector3f diff = pos - arg0;
+		Vector3f diff = pos - info;
 		f32 len       = diff.normalise();
 		if (len == 0.0f) {
 			diff = Vector3f(0.0f, 0.0f, 1.0f);
@@ -1106,14 +1106,14 @@ void CollPart::calcPoseMatrix(Vector3f& arg0, Matrixf& arg1)
 		Vector3f zAxis(0.0f, 0.0f, 1.0f);
 		Vector3f crossProd = cross(diff, zAxis);
 		crossProd.normalise();
-		arg1.setBasis(0, crossProd);
+		outputPose.setBasis(0, crossProd);
 		f32 zVal = diff.y * crossProd.x;
 		Vector3f otherVec;
 		otherVec.x = diff.y * crossProd.z - diff.z * crossProd.y;
 		otherVec.y = diff.z * crossProd.x - diff.x * crossProd.z;
 		otherVec.z = diff.x * crossProd.y - diff.y * crossProd.x;
-		arg1.setBasis(1, otherVec);
-		arg1.setBasis(2, diff);
+		outputPose.setBasis(1, otherVec);
+		outputPose.setBasis(2, diff);
 		break;
 
 	case COLLTYPE_TUBETREE:
@@ -1132,11 +1132,11 @@ void CollPart::calcPoseMatrix(Vector3f& arg0, Matrixf& arg1)
 		} else {
 			controls[3] = controls[2];
 		}
-		Vector3f path = CRSplineTangent(arg0.y, controls);
+		Vector3f path = CRSplineTangent(info.y, controls);
 		path.normalise();
-		f32 returnVal = arg0.x;
+		f32 returnVal = info.x;
 
-		arg1.makeNaturalPosture(path, arg0.x);
+		outputPose.makeNaturalPosture(path, info.x);
 		break;
 
 	case COLLTYPE_TUBE:
@@ -1147,13 +1147,13 @@ void CollPart::calcPoseMatrix(Vector3f& arg0, Matrixf& arg1)
 		axis.x             = -axis.x;
 		axis.y             = -axis.y;
 		axis.z             = -axis.z;
-		Vector3f axisCross = cross(arg0, axis);
+		Vector3f axisCross = cross(info, axis);
 		axisCross.normalise();
 		Vector3f thirdAxis = cross(axisCross, axis);
 		thirdAxis.normalise();
-		arg1.setBasis(0, axisCross);
-		arg1.setBasis(1, axis);
-		arg1.setBasis(2, thirdAxis);
+		outputPose.setBasis(0, axisCross);
+		outputPose.setBasis(1, axis);
+		outputPose.setBasis(2, thirdAxis);
 		break;
 	}
 	/*

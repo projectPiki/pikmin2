@@ -197,12 +197,29 @@ inline void scaleMatrix(Matrixf* mtx, f32 scale)
 	mtx->mMatrix.structView.xx *= scale;
 	mtx->mMatrix.structView.yx *= scale;
 	mtx->mMatrix.structView.zx *= scale;
+
 	mtx->mMatrix.structView.xy *= scale;
 	mtx->mMatrix.structView.yy *= scale;
 	mtx->mMatrix.structView.zy *= scale;
+
 	mtx->mMatrix.structView.xz *= scale;
 	mtx->mMatrix.structView.yz *= scale;
 	mtx->mMatrix.structView.zz *= scale;
+}
+
+inline void scaleMatrix2(Matrixf& mtx, Vector3f& scale)
+{
+	mtx.mMatrix.structView.xx *= scale.x;
+	mtx.mMatrix.structView.xy *= scale.x;
+	mtx.mMatrix.structView.xz *= scale.x;
+
+	mtx.mMatrix.structView.yx *= scale.y;
+	mtx.mMatrix.structView.yy *= scale.y;
+	mtx.mMatrix.structView.yz *= scale.y;
+
+	mtx.mMatrix.structView.zx *= scale.z;
+	mtx.mMatrix.structView.zy *= scale.z;
+	mtx.mMatrix.structView.zz *= scale.z;
 }
 
 inline void MatrixMultiplyVec(Matrixf* mat, Vector3f& vec)
