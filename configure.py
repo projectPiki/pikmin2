@@ -408,7 +408,7 @@ LIBS = [
         "mw_version": "2.6",
         "host": True,
         "objects": [
-            "JSystem/JAudio/JAU/JAUData",
+            ["JSystem/JAudio/JAU/JAUData", True],
             "JSystem/JAudio/JAU/JAUDataMgr",
         ],
     },
