@@ -10,9 +10,9 @@
  */
 u32 KandoLib::getRandomChoice(KandoLib::Choice* choices, int choiceAmt)
 {
-	float rngChance             = randFloat();
+	f32 rngChance               = randFloat();
 	KandoLib::Choice* curChoice = choices;
-	float curChance             = 0.0f;
+	f32 curChance               = 0.0f;
 
 	for (int i = 0; i < choiceAmt; curChoice++, i++) {
 		curChance += curChoice->mChance;

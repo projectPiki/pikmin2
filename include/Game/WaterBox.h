@@ -21,11 +21,12 @@ struct Model;
 } // namespace SysShape
 
 namespace Game {
+enum WBFlags {
+	WBF_Unset    = 0x0,
+	WBF_Unknown1 = 0x1,
+};
+
 struct WaterBox {
-	enum Flags {
-		WBF_Unset    = 0x0,
-		WBF_Unknown1 = 0x1,
-	};
 	WaterBox();
 
 	/**
@@ -53,6 +54,11 @@ struct WaterBox {
 	                         f32); // _40 (weak)
 	virtual void calcMatrix() { }  // _44 (weak)
 
+	inline void setFlag(u32 flag) { mFlags |= flag; }
+	inline void resetFlag(u32 flag) { mFlags &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags & flag; }
+
+	// _00
 	u8 mFlags; // _04
 };
 

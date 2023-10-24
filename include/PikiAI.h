@@ -320,8 +320,7 @@ struct ActBoreBase : public Action, virtual SysShape::MotionListener {
 	{
 	}
 
-	virtual void finish()                                    = 0; // _3C
-	virtual void onKeyEvent(const SysShape::KeyEvent& event) = 0; // _40
+	virtual void finish() = 0; // _3C
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -329,6 +328,16 @@ struct ActBoreBase : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActBore : public Action {
+	enum BoreFlags {
+		BOREFLAG_Finished = 1,
+	};
+
+	enum BoreBehaviour {
+		BORE_Rest    = 0,
+		BORE_Oneshot = 1,
+		BORE_BehaviourCount, // 2
+	};
+
 	ActBore(Game::Piki* p);
 
 	virtual void init(ActionArg* settings); // _08
@@ -338,15 +347,15 @@ struct ActBore : public Action {
 	void startCurrAction();
 	void finish();
 
-	inline void setFlag(u32 flag) { mFlag.typeView |= flag; }
-	inline void resetFlag(u32 flag) { mFlag.typeView &= ~flag; }
-	inline bool isFlag(u32 flag) const { return mFlag.typeView & flag; }
+	inline void setFlag(u8 flag) { mFlag.typeView |= flag; }
+	inline void resetFlag(u8 flag) { mFlag.typeView &= ~flag; }
+	inline bool isFlag(u8 flag) const { return mFlag.typeView & flag; }
 
 	// _00     = VTBL
 	// _00-_0C = Action
 	u8 mRandBehaviorType;     // _0C
-	f32 _10;                  // _10
-	f32 mTimer;               // _14
+	f32 mForceFinishTimer;    // _10, counts down from between 6s and 12s, then forces action to finish
+	f32 mOneshotTimer;        // _14, must do oneshot while this timer is < 2.0f
 	BitFlag<u8> mFlag;        // _18
 	ActBoreBase* mActions[2]; // _1C
 };
@@ -907,6 +916,11 @@ struct ActOneshotArg : public ActionArg {
 };
 
 struct ActOneshot : public ActBoreBase {
+	enum OneshotFlags {
+		ONESHOTFLAG_AnimFinished = 0x1,
+		ONESHOTFLAG_ForceFinish  = 0x2,
+	};
+
 	ActOneshot(Game::Piki* p);
 
 	virtual void init(ActionArg* arg);                        // _08
@@ -915,10 +929,14 @@ struct ActOneshot : public ActBoreBase {
 	virtual void finish();                                    // _3C
 	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _40 (weak)
 
+	inline void setFlag(u8 flag) { mFlag.typeView |= flag; }
+	inline void resetFlag(u8 flag) { mFlag.typeView &= ~flag; }
+	inline bool isFlag(u8 flag) { return mFlag.typeView & flag; }
+
 	// _00     = VTBL
 	// _00-_10 = ActBoreBase
 	ActOneshotArg mOneshotArg; // _10
-	u8 mFlag;                  // _18
+	BitFlag<u8> mFlag;         // _18
 
 	// _1C = MotionListener
 };
@@ -1062,6 +1080,19 @@ struct ActRescue : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActRest : public ActBoreBase {
+	enum RestState {
+		REST_Start = 0, // starting state -> will sit
+		REST_Sit   = 1,
+		REST_Unk2  = 2, // unused
+		REST_Sleep = 3, // sleep?
+	};
+
+	enum RestFlags {
+		RESTFLAG_IsIdle       = 0x1,
+		RESTFLAG_CanInterrupt = 0x2,
+		RESTFLAG_ForceFinish  = 0x4,
+	};
+
 	ActRest(Game::Piki* p);
 
 	virtual void init(ActionArg* settings);                   // _08
@@ -1073,13 +1104,16 @@ struct ActRest : public ActBoreBase {
 	void sitDown();
 	void standUp();
 
+	inline void setFlag(u8 flag) { mFlag.typeView |= flag; }
+	inline void resetFlag(u8 flag) { mFlag.typeView &= ~flag; }
+	inline bool isFlag(u8 flag) { return mFlag.typeView & flag; }
+
 	// _00     = VTBL
 	// _00-_10 = ActBoreBase
-	u8 mState;  // _10
-	f32 mTimer; // _14
-	u8 mFlag;   // _18
-
-	// _1C = MotionListener
+	u8 mState;         // _10
+	f32 mTimer;        // _14
+	BitFlag<u8> mFlag; // _18
+	                   // _1C = MotionListener
 };
 
 enum StickAttackObjType {

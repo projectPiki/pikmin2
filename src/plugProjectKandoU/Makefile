@@ -113,7 +113,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameSoundEvent.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBattle.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameDeathCount.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiBore.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiBore.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/mapPartsView.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Ending.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameIconTexture.o\

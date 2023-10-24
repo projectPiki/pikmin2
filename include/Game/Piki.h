@@ -241,6 +241,8 @@ struct Piki : public FakePiki {
 
 	inline efx::TPkEffect* getEffectObj() { return mEffectsObj; }
 
+	inline f32 getAnimSpeed() const { return mAnimSpeed; }
+
 	static Color4 pikiColors[PikiColorCount + 1];
 	static Color4 pikiColorsCursor[PikiColorCount + 1];
 	static u8 sGraspSituationOptimise;

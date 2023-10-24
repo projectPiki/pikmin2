@@ -13,6 +13,7 @@
 #include "PSM/Se.h"
 #include "PSM/WorldMapRocket.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "PSSystem/PSGame.h"
 
 namespace PSM {
 struct Scene_Game;
@@ -277,5 +278,17 @@ struct Scene_Demo : public SceneBase {
 };
 
 } // namespace PSM
+
+inline PSM::Scene_Game* PSMGetGameScene()
+{
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(mgr->getChildScene());
+	if (scene->isGameScene()) {
+		return static_cast<PSM::Scene_Game*>(scene);
+	}
+
+	return nullptr;
+}
 
 #endif

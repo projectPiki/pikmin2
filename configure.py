@@ -1003,7 +1003,7 @@ LIBS = [
             ["plugProjectKandoU/gameSoundEvent", True],
             "plugProjectKandoU/aiBattle",
             ["plugProjectKandoU/gameDeathCount", True],
-            "plugProjectKandoU/aiBore",
+            ["plugProjectKandoU/aiBore", True],
             ["plugProjectKandoU/mapPartsView", True],
             ["plugProjectKandoU/singleGS_Ending", True],
             ["plugProjectKandoU/gameIconTexture", True],

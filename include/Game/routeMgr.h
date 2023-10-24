@@ -30,15 +30,15 @@ enum WayPointFlags {
 struct WayPoint : public JKRDisposer {
 	struct RoomList : public CNode {
 		inline RoomList()
-		    : _18(-1)
+		    : mRoomIdx(-1)
 		{
 		}
 
-		virtual ~RoomList(); // _08 (weak)
+		virtual ~RoomList() { } // _08 (weak)
 
 		// _00     = VTBL
 		// _00-_18 = CNode
-		s16 _18; // _18, possibly count?
+		s16 mRoomIdx; // _18
 	};
 
 	WayPoint();
@@ -64,14 +64,14 @@ struct WayPoint : public JKRDisposer {
 	void write(Stream&);
 	void createOffPlane(Plane&, WayPoint*);
 
-	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
-	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
-	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
+	inline void setFlag(u32 flag) { mFlags |= flag; }
+	inline void resetFlag(u32 flag) { mFlags &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags & flag; }
 
 	inline Vector3f getPosition() { return mPosition; }
 
 	RoomList mRoomList; // _18
-	BitFlag<u8> mFlags; // _34
+	u8 mFlags;          // _34
 	s16 mIndex;         // _36
 	s16 mNumFromLinks;  // _38
 	s16 mFromLinks[8];  // _3A
@@ -96,13 +96,15 @@ struct WayPointIterator {
 	void next();
 	bool isDone();
 
-	s32 mIndex;          // _00
+	int mIndex;          // _00
 	WayPoint* mWayPoint; // _04
 	bool _08;            // _08
 };
 
 struct WPCondition : public Condition<WayPoint> {
 	virtual bool satisfy(WayPoint*) = 0; // _08
+
+	// _00 = VTBL
 };
 
 struct WPSearchArg {
@@ -203,14 +205,16 @@ struct EditorRouteMgr : public RouteMgr {
 struct GameRouteMgr : public RouteMgr {
 	GameRouteMgr();
 
-	virtual ~GameRouteMgr();              // _08
-	virtual void* getNext(void*);         // _14
-	virtual void* getStart();             // _18
-	virtual void* getEnd();               // _1C
-	virtual WayPoint* get(void*);         // _20
-	virtual WayPoint* getWayPoint(short); // _2C
-	virtual void read(Stream&);           // _30
+	virtual ~GameRouteMgr();            // _08
+	virtual void* getNext(void*);       // _14
+	virtual void* getStart();           // _18
+	virtual void* getEnd();             // _1C
+	virtual WayPoint* get(void*);       // _20
+	virtual WayPoint* getWayPoint(s16); // _2C
+	virtual void read(Stream&);         // _30
 
+	// _00     = VTBL
+	// _00-_20 = RouteMgr
 	WayPoint* mWayPoints; // _20
 };
 
@@ -218,12 +222,16 @@ struct GameRouteMgr : public RouteMgr {
 
 struct WPExcludeSpot : public Game::WPCondition {
 	virtual bool satisfy(Game::WayPoint*); // _08 (weak)
+
+	// _00 = VTBL
 };
 
 struct WPFindCond : public Game::WPCondition {
-	virtual bool satisfy(Game::WayPoint* wp)
+	virtual bool satisfy(Game::WayPoint* wp) // _08 (weak)
 	{
-		return (!wp->mFlags.isSet(Game::WPF_Water) && !wp->mFlags.isSet(Game::WPF_Closed));
-	} // _08 (weak)
+		return (!wp->isFlag(Game::WPF_Water) && !wp->isFlag(Game::WPF_Closed));
+	}
+
+	// _00 = VTBL
 };
 #endif
