@@ -1163,7 +1163,7 @@ void PikiMgr::moveAllPikmins(Vector3f& pos, f32 range, Condition<Piki>* cond)
 	CI_LOOP(iterator)
 	{
 		Piki* piki = *iterator;
-		if (piki->mFlags.typeView & 2 && (!cond || cond->satisfy(piki))) {
+		if (piki->mFlags.isSet(2) && (!cond || cond->satisfy(piki))) {
 			f32 angle = randFloat() * TAU;
 			f32 dist  = randFloat() * range;
 			f32 x     = cos(angle) * dist;

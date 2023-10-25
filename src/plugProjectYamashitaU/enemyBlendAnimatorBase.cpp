@@ -60,7 +60,7 @@ void EnemyBlendAnimatorBase::endBlend() { mAnimator.endBlend(); }
  */
 void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, f32 p2, f32 p3, f32 p4)
 {
-	if (!(mFlags.typeView & 1)) {
+	if (!(mFlags.isSet(1))) {
 		mAnimator.animate(function, p2, p3, p4);
 	} else {
 		mAnimator.animate(function, 0.0f, 0.0f, 0.0f);
@@ -76,14 +76,14 @@ void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, f32 p2, 
 void EnemyBlendAnimatorBase::animate(f32 p1)
 {
 	SysShape::BlendLinearFun function;
-	if (!(mFlags.typeView & 1)) {
-		if (!(mFlags.typeView & 1)) {
+	if (!(mFlags.isSet(1))) {
+		if (!(mFlags.isSet(1))) {
 			mAnimator.animate(&function, p1, p1, p1);
 		} else {
 			mAnimator.animate(&function, 0.0f, 0.0f, 0.0f);
 		}
 	} else {
-		if (!(mFlags.typeView & 1)) {
+		if (!(mFlags.isSet(1))) {
 			mAnimator.animate(&function, 0.0f, 0.0f, 0.0f);
 		} else {
 			mAnimator.animate(&function, 0.0f, 0.0f, 0.0f);

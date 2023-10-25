@@ -2051,7 +2051,7 @@ void ZukanState::exec(SingleGameSection* game)
 		gameSystem->mTimeMgr->mSpeedFactor = 9.0f;
 	}
 
-	if (!(mDebugParms->mFlags.typeView & 2)) {
+	if (!(mDebugParms->mFlags.isSet(2))) {
 		if (mCurrMode == ModeTeki) {
 			// If in the enemy mode, and the conditions to need to load something are met
 			if (mCurrentEnemyIndex >= 0 && mCurrentEnemyIndex < EnemyTypeID::EnemyID_COUNT && mDoDraw
@@ -2840,7 +2840,7 @@ unknown ZukanState::execTeki(SingleGameSection* game)
 	int newID;
 	switch (Screen::gGame2DMgr->check_ZukanEnemyRequest(newID)) {
 	case 1:
-		if (newID != mCurrentEnemyIndex && !(mDebugParms->mFlags.typeView & 2)) {
+		if (newID != mCurrentEnemyIndex && !mDebugParms->mFlags.isSet(2)) {
 			createEnemy(newID);
 		}
 		break;
@@ -3327,7 +3327,7 @@ unknown ZukanState::execPellet(SingleGameSection* game)
 	case 0:
 		break;
 	case 1:
-		if (arg != mCurrentPelletIndex && !(mDebugParms->mFlags.typeView & 2) && mCurrMode == ModePellet) {
+		if (arg != mCurrentPelletIndex && !mDebugParms->mFlags.isSet(2) && mCurrMode == ModePellet) {
 			mCurrentPelletIndex = arg;
 			setMode(ModeChangePellet);
 			mChangeSelState   = 0;

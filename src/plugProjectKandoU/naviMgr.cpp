@@ -635,7 +635,7 @@ void NaviMgr::setMovieDraw(bool drawOn)
  */
 void NaviMgr::doAnimation()
 {
-	bool flag = mFlags.typeView & 1;
+	bool flag = mFlags.isSet(1);
 	for (int i = 0; i < mMax; i++) {
 		if (mOpenIds[i] == 0 && (flag == 0 || mArray[i].isMovieActor())) {
 			mArray[i].mFaceDirOffset = mArray[i].mFaceDir;
@@ -656,7 +656,7 @@ void NaviMgr::doEntry()
 	if (gameSystem->isVersusMode()) {
 		vs = true;
 	}
-	bool flag = mFlags.typeView & 1;
+	bool flag = mFlags.isSet(1);
 	for (int i = 0; i < mMax; i++) {
 		if (mOpenIds[i] != 0) {
 			continue;

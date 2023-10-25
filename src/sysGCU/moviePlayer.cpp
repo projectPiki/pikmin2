@@ -674,7 +674,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 				mTextControl->update(input1, input2);
 			}
 		}
-		if (mDemoState == 5 && mFlags.typeView & 0x80000000 && !mStudioControl->mObject_control._20) {
+		if (mDemoState == 5 && mFlags.isSet(0x80000000) && !mStudioControl->mObject_control._20) {
 			if ((input1->getButtonDown() & 0xf70) || (input2 && (input2->getButtonDown() & 0xf70)) && mCurrentConfig->isSkippable()) {
 				skip();
 			} else if ((input1->getButtonDown() & Controller::PRESS_START)

@@ -48,7 +48,7 @@ void Mgr::setDefault()
 void Mgr::setCardSerialNo(u64 tag)
 {
 	mCardSerialNo = tag;
-	mFlags.typeView |= 1;
+	mFlags.set(1);
 }
 
 /*

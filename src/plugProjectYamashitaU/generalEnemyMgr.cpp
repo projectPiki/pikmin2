@@ -406,8 +406,8 @@ GeneralEnemyMgr::GeneralEnemyMgr()
 	sys->heapStatusEnd("GeneralEnemyMgr");
 	resetEnemyNum();
 	mFlags.clear();
-	mFlags.typeView |= 0x1;
-	mFlags.typeView |= 0x2;
+	mFlags.set(1);
+	mFlags.set(2);
 }
 
 /*
@@ -449,7 +449,7 @@ void GeneralEnemyMgr::doAnimation()
 	mCullCount  = 0;
 	mTotalCount = 0;
 	sys->mTimers->_start("doaTEKI", true);
-	if (mFlags.typeView & 0x1) {
+	if (mFlags.isSet(1)) {
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doAnimation();
@@ -465,7 +465,7 @@ void GeneralEnemyMgr::doAnimation()
  */
 void GeneralEnemyMgr::doEntry()
 {
-	if (mFlags.typeView & 0x2) {
+	if (mFlags.isSet(2)) {
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doEntry();
@@ -480,7 +480,7 @@ void GeneralEnemyMgr::doEntry()
  */
 void GeneralEnemyMgr::doSetView(int viewportNumber)
 {
-	if (mFlags.typeView & 0x2) {
+	if (mFlags.isSet(2)) {
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doSetView(viewportNumber);
@@ -495,7 +495,7 @@ void GeneralEnemyMgr::doSetView(int viewportNumber)
  */
 void GeneralEnemyMgr::doViewCalc()
 {
-	if (mFlags.typeView & 0x2) {
+	if (mFlags.isSet(2)) {
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doViewCalc();
@@ -510,7 +510,7 @@ void GeneralEnemyMgr::doViewCalc()
  */
 void GeneralEnemyMgr::doSimulation(f32 constraint)
 {
-	if (mFlags.typeView & 0x1) {
+	if (mFlags.isSet(1)) {
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doSimulation(constraint);
@@ -525,7 +525,7 @@ void GeneralEnemyMgr::doSimulation(f32 constraint)
  */
 void GeneralEnemyMgr::doDirectDraw(Graphics& gfx)
 {
-	if (mFlags.typeView & 0x2) {
+	if (mFlags.isSet(2)) {
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doDirectDraw(gfx);
@@ -540,7 +540,7 @@ void GeneralEnemyMgr::doDirectDraw(Graphics& gfx)
  */
 void GeneralEnemyMgr::doSimpleDraw(Viewport* viewport)
 {
-	if (mFlags.typeView & 0x2) {
+	if (mFlags.isSet(2)) {
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
 			childNode->doSimpleDraw(viewport);

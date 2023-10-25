@@ -1402,9 +1402,9 @@ void System::heapStatusDumpNode()
 void System::resetOn(bool flag)
 {
 	ResetManager* mgr = mResetMgr;
-	mgr->mFlags.typeView |= 1;
+	mgr->mFlags.set(1);
 	if (flag) {
-		mgr->mFlags.typeView |= 8;
+		mgr->mFlags.set(8);
 	}
 }
 
@@ -1437,7 +1437,7 @@ bool System::isResetActive() { return mResetMgr->mState; }
  * Address:	804233C8
  * Size:	000014
  */
-void System::activeGP() { mResetMgr->mFlags.typeView |= 2; }
+void System::activeGP() { mResetMgr->mFlags.set(2); }
 
 /*
  * --INFO--

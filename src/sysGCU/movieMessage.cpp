@@ -1870,7 +1870,7 @@ void MessageWindowScreen::open(f32 duration) { mWindowPane->open(duration); }
 bool TControl::update(Controller* pad1, Controller* pad2)
 {
 	bool ret = Window::TControl::update(pad1, pad2); // matching bs when this is bool
-	if (mFlags.dwordView & 1 && Game::moviePlayer && (Game::moviePlayer->mFlags.typeView & 2)) {
+	if (mFlags.dwordView & 1 && Game::moviePlayer && (Game::moviePlayer->mFlags.isSet(2))) {
 		if (mIsActive) {
 			reset();
 			Game::moviePlayer->unsuspend(1, false);
@@ -1915,7 +1915,7 @@ bool TControl::update(Controller* pad1, Controller* pad2)
 			}
 		}
 
-		if (mSequenceProc->mFlags.typeView & 2) { // done writing, can press A
+		if (mSequenceProc->mFlags.isSet(2)) { // done writing, can press A
 			MessageWindowScreen* window = mMessageWindow;
 			window->mAButton->mState    = 1;
 			window->mArrowPane->mState  = 1;

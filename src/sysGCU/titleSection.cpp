@@ -81,7 +81,7 @@ void Section::doExit()
 void Section::loadResident()
 {
 	JKRHeap* backup = JKRGetCurrentHeap();
-	if (!(sys->mFlags.typeView & 1)) {
+	if (!(sys->mFlags.isSet(1))) {
 		sys->mSysHeap->becomeCurrentHeap();
 		sys->heapStatusStart("titleSection::loadResident", nullptr);
 
@@ -92,7 +92,7 @@ void Section::loadResident()
 		JUT_ASSERTLINE(590, arc2, "%s : mount failed !!\n", "user/Kando/onyon/arc.szs");
 
 		sys->heapStatusEnd("titleSection::loadResident");
-		sys->mFlags.typeView |= 1;
+		sys->mFlags.set(1);
 	}
 	gPikmin2AramMgr->load();
 	backup->becomeCurrentHeap();

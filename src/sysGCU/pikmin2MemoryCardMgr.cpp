@@ -895,7 +895,7 @@ void Mgr::readGameOption(Stream& stream) { sys->mPlayData->read(stream); }
 bool Mgr::checkSerialNo(bool param_1)
 {
 	bool result = false;
-	if (!(sys->mPlayData->mFlags.typeView & 1)) {
+	if (!(sys->mPlayData->mFlags.isSet(1))) {
 		if (param_1) {
 			_D8 = 3;
 		}
@@ -1225,7 +1225,7 @@ bool Mgr::savePlayerProc(s8 fileIndex, u8* param_2, bool param_3)
 bool Mgr::commandCheckSerialNo()
 {
 	bool result = false;
-	if (!(sys->mPlayData->mFlags.typeView & 1)) {
+	if (!(sys->mPlayData->mFlags.isSet(1))) {
 		result = true;
 		_D8    = 3;
 	} else {

@@ -801,7 +801,7 @@ lbl_8011C290:
  */
 void CarryInfoMgr::draw(Graphics& gfx)
 {
-	if (!Game::moviePlayer || !(Game::moviePlayer->mFlags.typeView & 1)) {
+	if (!Game::moviePlayer || !Game::moviePlayer->mFlags.isSet(1)) {
 		Graphics::clearInitGX();
 		GXSetNumChans(1);
 		GXSetTevDirect(GX_TEVSTAGE0);

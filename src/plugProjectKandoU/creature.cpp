@@ -58,11 +58,9 @@ Creature::Creature()
 
 	mObjectTypeID = OBJTYPE_INVALID_START;
 
-	for (int i = 0; i < 4; i++) {
-		mFlags.byteView[i] = 0;
-	}
+	mFlags.clear();
 
-	mFlags.typeView |= (CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
+	mFlags.set(CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
 	clearStick();
 }
 
@@ -78,7 +76,7 @@ void Creature::init(CreatureInitArg* arg)
 
 	mFlags.clear();
 
-	mFlags.typeView |= (CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
+	mFlags.set(CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
 	clearStick();
 
 	mUpdateContext.init(collisionUpdateMgr);
@@ -330,7 +328,7 @@ void Creature::doSetView(int viewportNumber)
 
 	mModel->setCurrentViewNo((u16)viewportNumber);
 	if (Creature::usePacketCulling) {
-		if (mLod.mFlags & (16 << viewportNumber)) {
+		if (mLod.mFlags & (16 << viewportNumber)) { // ??? more BitFlag<u8>, perhaps?
 			mModel->showPackets();
 			return;
 		}

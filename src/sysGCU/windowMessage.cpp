@@ -334,7 +334,7 @@ TSequenceProcessor::TSequenceProcessor(JMessage::TReference* ref, JMessage::TCon
  */
 void TSequenceProcessor::doCharacterSE(int)
 {
-	if ((!Game::moviePlayer) || (Game::moviePlayer && !(Game::moviePlayer->isFlag(Game::MVP_IsFinished))) && !(mFlags.typeView & 8)) {
+	if ((!Game::moviePlayer) || (Game::moviePlayer && !(Game::moviePlayer->isFlag(Game::MVP_IsFinished))) && !mFlags.isSet(8)) {
 		bool isfast        = isFastSE();
 		PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
 		mgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, isfast);
@@ -348,7 +348,7 @@ void TSequenceProcessor::doCharacterSE(int)
  */
 void TSequenceProcessor::doCharacterSEStart()
 {
-	if ((!Game::moviePlayer) || (Game::moviePlayer && !(Game::moviePlayer->isFlag(Game::MVP_IsFinished))) && !(mFlags.typeView & 8)) {
+	if ((!Game::moviePlayer) || (Game::moviePlayer && !(Game::moviePlayer->isFlag(Game::MVP_IsFinished))) && !mFlags.isSet(8)) {
 		PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
 		mgr->playMessageVoice(PSSE_MP_VOX_HEAD_A_FLAT, false);
 	}
@@ -361,7 +361,7 @@ void TSequenceProcessor::doCharacterSEStart()
  */
 void TSequenceProcessor::doCharacterSEEnd()
 {
-	if ((!Game::moviePlayer) || (Game::moviePlayer && !(Game::moviePlayer->isFlag(Game::MVP_IsFinished))) && !(mFlags.typeView & 8)) {
+	if ((!Game::moviePlayer) || (Game::moviePlayer && !(Game::moviePlayer->isFlag(Game::MVP_IsFinished))) && !mFlags.isSet(8)) {
 		PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
 		mgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
 	}

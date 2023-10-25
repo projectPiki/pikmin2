@@ -103,7 +103,7 @@ void ResetManager::update()
 			input = JUTGamePad::C3ButtonReset::sResetOccurredPort;
 		}
 
-		if ((JUTGamePad::C3ButtonReset::sResetOccurred || mFlags.typeView & 1) && !OSGetResetSwitchState()) {
+		if ((JUTGamePad::C3ButtonReset::sResetOccurred || mFlags.isSet(1)) && !OSGetResetSwitchState()) {
 			bool check2 = true;
 			if (!isFlag(RESETFLAG_1)) {
 				int currInput = input;
@@ -171,7 +171,7 @@ void ResetManager::draw()
  * Address:	8042A2BC
  * Size:	000014
  */
-bool ResetManager::isWritingMemoryCard() { return sys->mCardMgr->mFlags.typeView & 1; }
+bool ResetManager::isWritingMemoryCard() { return sys->mCardMgr->mFlags.isSet(1); }
 
 /*
  * --INFO--

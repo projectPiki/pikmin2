@@ -3081,7 +3081,7 @@ bool EnemyBase::isFinishMotion() { return mAnimator->getAnimator().mFlags >> 1 &
  * Address:	80107338
  * Size:	000010
  */
-bool EnemyBase::isStopMotion() { return mAnimator->mFlags.typeView & EANIM_FLAG_STOPPED; }
+bool EnemyBase::isStopMotion() { return mAnimator->mFlags.isSet(EANIM_FLAG_STOPPED); }
 
 /*
  * --INFO--
