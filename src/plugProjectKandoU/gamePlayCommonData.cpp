@@ -15,7 +15,7 @@ namespace Game {
  * Size:	0000FC
  */
 PlayCommonData::PlayCommonData()
-    : _00(0)
+    : mChallengeFlags()
     , mChallengeData()
 {
 	mHiScoreClear    = new Highscore*[16];
@@ -36,7 +36,7 @@ PlayCommonData::PlayCommonData()
  */
 void PlayCommonData::reset()
 {
-	_00 = 0;
+	mChallengeFlags.clear();
 	mChallengeData.reset();
 	for (int i = 0; i < 0x10; i++) {
 		mHiScoreClear[i]->clear();
@@ -52,12 +52,12 @@ void PlayCommonData::reset()
  */
 void PlayChallengeGameData::reset()
 {
-	mFlags = PCGDF_Unset;
+	mFlags.clear();
 	for (int i = 0; i < mCourseCount; i++) {
 		mCourses[i].clear();
 	}
 	for (int i = 0; i < 5; i++) {
-		mCourses[i].mFlags.typeView |= CourseState::CSF_IsOpen;
+		mCourses[i].mFlags.set(CourseState::CSF_IsOpen);
 	}
 }
 
@@ -70,7 +70,7 @@ void PlayChallengeGameData::reset()
 void PlayCommonData::write(Stream& output)
 {
 	output.writeInt(2);
-	output.writeBytes(&_00, 1);
+	output.writeBytes(&mChallengeFlags.typeView, 1);
 	for (int i = 0; i < 0x10; i++) {
 		mHiScoreClear[i]->write(output);
 		mHiScoreComplete[i]->write(output);
@@ -86,9 +86,9 @@ void PlayCommonData::write(Stream& output)
  */
 void PlayCommonData::read(Stream& stream)
 {
-	u32 fileInt = stream.readInt();
-	u8 fileByte = stream.readByte();
-	_00         = fileByte;
+	u32 fileInt              = stream.readInt();
+	u8 fileByte              = stream.readByte();
+	mChallengeFlags.typeView = fileByte;
 	if (fileInt >= 2) {
 		for (int i = 0; i < 0x10; i++) {
 			mHiScoreClear[i]->read(stream);
@@ -191,14 +191,14 @@ void PlayCommonData::entryHighscores_common(Game::Highscore** highscores, int ne
  * Address:	8023470C
  * Size:	00000C
  */
-bool PlayCommonData::isChallengeGamePlayable() { return mChallengeData.mFlags & PlayChallengeGameData::PCGDF_IsPlayable; }
+bool PlayCommonData::isChallengeGamePlayable() { return mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsPlayable); }
 
 /*
  * --INFO--
  * Address:	80234718
  * Size:	00000C
  */
-bool PlayCommonData::isLouieRescued() { return mChallengeData.mFlags & PlayChallengeGameData::PCGDF_IsLouieRescued; }
+bool PlayCommonData::isLouieRescued() { return mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsLouieRescued); }
 
 /*
  * --INFO--
@@ -207,7 +207,7 @@ bool PlayCommonData::isLouieRescued() { return mChallengeData.mFlags & PlayChall
  */
 bool PlayCommonData::isPerfectChallenge()
 {
-	if ((_00 & 4)) {
+	if ((mChallengeFlags.isSet(4))) {
 		return true;
 	}
 	for (int i = 0; i < mChallengeData.mCourseCount; i++) {
@@ -216,7 +216,7 @@ bool PlayCommonData::isPerfectChallenge()
 			return false;
 		}
 	}
-	_00 |= 4;
+	mChallengeFlags.set(4);
 	return true;
 }
 
@@ -227,7 +227,7 @@ bool PlayCommonData::isPerfectChallenge()
  */
 void PlayCommonData::enableChallengeGame()
 {
-	mChallengeData.mFlags |= PlayChallengeGameData::PCGDF_IsPlayable;
+	mChallengeData.mFlags.set(PlayChallengeGameData::PCGDF_IsPlayable);
 	sys->setOptionBlockSaveFlag();
 }
 
@@ -238,7 +238,7 @@ void PlayCommonData::enableChallengeGame()
  */
 void PlayCommonData::enableLouieRescue()
 {
-	mChallengeData.mFlags |= PlayChallengeGameData::PCGDF_IsLouieRescued;
+	mChallengeData.mFlags.set(PlayChallengeGameData::PCGDF_IsLouieRescued);
 	sys->setOptionBlockSaveFlag();
 }
 
@@ -249,8 +249,8 @@ void PlayCommonData::enableLouieRescue()
  */
 bool PlayCommonData::challenge_is_virgin()
 {
-	bool result = (u8)(mChallengeData.mFlags & PlayChallengeGameData::PCGDF_IsNotVirgin) == 0;
-	mChallengeData.mFlags |= PlayChallengeGameData::PCGDF_IsNotVirgin;
+	bool result = !mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsNotVirgin);
+	mChallengeData.mFlags.set(PlayChallengeGameData::PCGDF_IsNotVirgin);
 	return result;
 }
 
@@ -259,10 +259,7 @@ bool PlayCommonData::challenge_is_virgin()
  * Address:	8023482C
  * Size:	000014
  */
-bool PlayCommonData::challenge_is_virgin_check_only()
-{
-	return (u8)(mChallengeData.mFlags & PlayChallengeGameData::PCGDF_IsNotVirgin) == 0;
-}
+bool PlayCommonData::challenge_is_virgin_check_only() { return !mChallengeData.mFlags.isSet(PlayChallengeGameData::PCGDF_IsNotVirgin); }
 
 /*
  * --INFO--
@@ -289,7 +286,7 @@ int PlayCommonData::challenge_get_coursenum()
  */
 bool PlayCommonData::challenge_checkOpen(int index)
 {
-	return challenge_get_CourseState(index)->mFlags.typeView & PlayChallengeGameData::CourseState::CSF_IsOpen;
+	return challenge_get_CourseState(index)->mFlags.isSet(PlayChallengeGameData::CourseState::CSF_IsOpen);
 }
 
 /*
@@ -299,7 +296,7 @@ bool PlayCommonData::challenge_checkOpen(int index)
  */
 bool PlayCommonData::challenge_checkClear(int index)
 {
-	return challenge_get_CourseState(index)->mFlags.typeView & PlayChallengeGameData::CourseState::CSF_IsClear;
+	return challenge_get_CourseState(index)->mFlags.isSet(PlayChallengeGameData::CourseState::CSF_IsClear);
 }
 
 /*
@@ -309,7 +306,7 @@ bool PlayCommonData::challenge_checkClear(int index)
  */
 bool PlayCommonData::challenge_checkKunsho(int index)
 {
-	return challenge_get_CourseState(index)->mFlags.typeView & PlayChallengeGameData::CourseState::CSF_IsKunsho;
+	return challenge_get_CourseState(index)->mFlags.isSet(PlayChallengeGameData::CourseState::CSF_IsKunsho);
 }
 
 /*
@@ -413,7 +410,7 @@ void PlayCommonData::challenge_setKunsho(int index)
 			return;
 		}
 	}
-	_00 |= 4;
+	mChallengeFlags.set(4);
 }
 
 /*
@@ -439,14 +436,14 @@ Highscore* PlayCommonData::challenge_getHighscore(int courseIndex, int scoreType
  * Size:	0000C8
  */
 PlayChallengeGameData::PlayChallengeGameData()
-    : mFlags(PlayChallengeGameData::PCGDF_Unset)
+    : mFlags()
 {
 	mCourseCount = CHALLENGE_COURSE_COUNT;
 	mCourses     = new CourseState[mCourseCount];
 	for (int i = 0; i < 5; i++) {
 		mCourses[i].mFlags.typeView |= PlayChallengeGameData::CourseState::CSF_IsOpen;
 	}
-	mFlags = PlayChallengeGameData::PCGDF_Unset;
+	mFlags.clear();
 }
 
 /*
@@ -473,7 +470,7 @@ PlayChallengeGameData::CourseState* PlayChallengeGameData::getState(int index)
  */
 void PlayChallengeGameData::write(Stream& output)
 {
-	output.writeByte(mFlags);
+	output.writeByte(mFlags.typeView);
 	for (int i = 0; i < mCourseCount; i++) {
 		mCourses[i].write(output);
 	}
@@ -487,7 +484,7 @@ void PlayChallengeGameData::write(Stream& output)
  */
 void PlayChallengeGameData::read(Stream& input)
 {
-	mFlags = input.readByte();
+	mFlags.typeView = input.readByte();
 	for (int i = 0; i < mCourseCount; i++) {
 		mCourses[i].read(input);
 	}

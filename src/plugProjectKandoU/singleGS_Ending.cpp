@@ -203,7 +203,7 @@ void EndingState::exec(SingleGameSection* game)
 
 					playData->clearCurrentCave();
 					sys->mPlayData->mChallengeOpen = true;
-					sys->getPlayCommonData()->_00 |= 1;
+					sys->getPlayCommonData()->mChallengeFlags.set(1);
 					if (playData->courseOpen(2)) {
 						playData->openCourse(3);
 					}
@@ -271,7 +271,7 @@ void EndingState::exec(SingleGameSection* game)
 
 					playData->clearCurrentCave();
 					sys->mPlayData->mChallengeOpen = true;
-					sys->getPlayCommonData()->_00 |= 2;
+					sys->getPlayCommonData()->mChallengeFlags.set(2);
 					playData->mStoryFlags |= STORY_AllTreasuresCollected;
 					mStatus = EndingStatus_ShowFinalResultsComplete;
 					playData->setSaveFlag(1, nullptr);
@@ -298,7 +298,7 @@ void EndingState::exec(SingleGameSection* game)
 
 					playData->clearCurrentCave();
 					sys->mPlayData->mChallengeOpen = true;
-					sys->getPlayCommonData()->_00 |= 2;
+					sys->getPlayCommonData()->mChallengeFlags.set(2);
 					playData->mStoryFlags |= STORY_AllTreasuresCollected;
 					mStatus = EndingStatus_ShowFinalResultsComplete;
 					playData->setSaveFlag(1, nullptr);

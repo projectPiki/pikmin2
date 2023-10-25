@@ -33,7 +33,7 @@ void FSMState_OmakeScreen::do_init(TMgr* mgr, Game::StateArg*)
 {
 	if (!mgr->mStateMachine.mCurrentID) {
 
-		Screen::ArgOpenOmake arg(sys->getPlayCommonData()->_00 & 1, sys->getPlayCommonData()->_00 >> 1 & 1,
+		Screen::ArgOpenOmake arg(sys->getPlayCommonData()->mChallengeFlags.isSet(1), sys->getPlayCommonData()->mChallengeFlags.isSet(2),
 		                         sys->getPlayCommonData()->isPerfectChallenge());
 		arg._08 = -1;
 

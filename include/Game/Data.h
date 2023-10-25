@@ -70,7 +70,7 @@ struct PlayChallengeGameData {
 
 	int mCourseCount;      // _00
 	CourseState* mCourses; // _04
-	u8 mFlags;             // _08
+	BitFlag<u8> mFlags;    // _08
 };
 
 struct PlayCommonData {
@@ -116,7 +116,7 @@ struct PlayCommonData {
 	bool challenge_checkJustKunsho(int);
 	void challenge_setKunsho(int);
 
-	u8 _00;                               // _00
+	BitFlag<u8> mChallengeFlags;          // _00
 	Highscore** mHiScoreClear;            // _04 (for repay debt)
 	Highscore** mHiScoreComplete;         // _08 (for all treasures)
 	PlayChallengeGameData mChallengeData; // _0C

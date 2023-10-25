@@ -583,7 +583,7 @@ void THiScore::doCreate(JKRArchive* arc)
 	if (disp->isID(OWNER_MRMR, MEMBER_HIGH_SCORE)) {
 		mDisp = disp;
 		P2ASSERTLINE(287, mDisp);
-		mIsAllTreasures = sys->getPlayCommonData()->_00 & 2;
+		mIsAllTreasures = sys->getPlayCommonData()->mChallengeFlags.isSet(2);
 	} else {
 		mDisp      = new DispMemberHighScore;
 		mIsSection = true;
@@ -3318,7 +3318,7 @@ void THiScore::changePaneInfo()
 		mMainScreen->mScreenObj->search('Notakara')->show();
 	} else {
 		mHighScorePic->show();
-		if (!mIsSection && !(sys->getPlayCommonData()->_00 & 1)) {
+		if (!mIsSection && !(sys->getPlayCommonData()->mChallengeFlags.isSet(1))) {
 			mHighScorePic->hide();
 		}
 		mMainScreen->mScreenObj->search('Notakara')->hide();

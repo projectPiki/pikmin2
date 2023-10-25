@@ -1496,7 +1496,7 @@ LIBS = [
             "plugProjectEbisawaU/efxEnemyBoss",
             "plugProjectEbisawaU/ebiCardEReader",
             "plugProjectEbisawaU/ebiScreenOmake",
-            ["plugProjectEbisawaU/ebiOmakeMgr", False, {"cflags" : "$cflags_pikmin"}],
+            ["plugProjectEbisawaU/ebiOmakeMgr", False],
             "plugProjectEbisawaU/ebiScreenOmakeCardE",
             "plugProjectEbisawaU/ebiScreenOmakeGame",
             ["plugProjectEbisawaU/ebiScreenInfoWindow", True],

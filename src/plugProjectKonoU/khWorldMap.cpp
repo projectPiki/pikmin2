@@ -899,13 +899,15 @@ WorldMap::WorldMap()
 	mColorAnims[4]            = nullptr;
 	mColorAnim2               = nullptr;
 	mArrowBlink               = nullptr;
-	mCurrentState             = 0xd;
-	mRocketAngleMode          = 1;
-	mFlags                    = 4;
-	mInputState               = 1;
-	mCourseJustOpenFlags      = 0;
-	mOpenCourses              = 0;
-	mZukanFadeout             = 0;
+	// possibly a substruct?
+	mCurrentState    = 13;
+	mRocketAngleMode = 1;
+	mFlags           = 4;
+	// end possible substruct
+	mInputState          = 1;
+	mCourseJustOpenFlags = 0;
+	mOpenCourses         = 0;
+	mZukanFadeout        = 0;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1043,10 +1045,10 @@ void WorldMap::init(::Game::WorldMap::InitArg& arg)
 	mInitArg = arg;
 	do {
 		mOpenCourses += ::Game::playData->courseOpen(i);
-		mCourseJustOpenFlags |= ::Game::playData->courseJustOpen(i) << i;
+		SET_FLAG(mCourseJustOpenFlags, ::Game::playData->courseJustOpen(i) << i);
 		i++;
 	} while (i < 4);
-	mCourseJustOpenFlags |= (mCourseJustOpenFlags << 4);
+	SET_FLAG(mCourseJustOpenFlags, mCourseJustOpenFlags << 4);
 }
 
 /*
@@ -6191,7 +6193,7 @@ bool WorldMap::changeState()
 {
 	bool ret  = false;
 	u32 input = mInitArg.mController->mButton.mButtonDown;
-	if (input & Controller::PRESS_START) {
+	if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_START) {
 		::Screen::gGame2DMgr->mScreenMgr->reset();
 		og::Screen::DispMemberWorldMapInfoWin0 disp;
 		disp._20 = 0;
@@ -6231,166 +6233,6 @@ bool WorldMap::changeState()
 		mInputState = 0;
 	}
 	return ret;
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-stw      r31, 0x4c(r1)
-li       r31, 0
-stw      r30, 0x48(r1)
-mr       r30, r3
-lwz      r4, 0x20(r3)
-lwz      r3, 0x1c(r4)
-rlwinm.  r0, r3, 0, 0x13, 0x13
-beq      lbl_803F649C
-lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-lwz      r3, 0x18(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x18(r12)
-mtctr    r12
-bctrl
-lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-li       r8, 0
-addi     r9, r3, __vt__Q32og6Screen14DispMemberBase@l
-li       r0, 0xb4
-stb      r0, 0x38(r1)
-lis      r7, __vt__Q32og6Screen26DispMemberWorldMapInfoWin0@ha
-lis      r4, 0x305F3030@ha
-lis      r3, 0x00343731@ha
-addi     r5, r3, 0x00343731@l
-lis      r3, 0x315F3030@ha
-addi     r6, r4, 0x305F3030@l
-stw      r9, 0x18(r1)
-addi     r7, r7, __vt__Q32og6Screen26DispMemberWorldMapInfoWin0@l
-addi     r0, r3, 0x315F3030@l
-stw      r8, 0x1c(r1)
-addi     r4, r1, 0x18
-lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-stw      r7, 0x18(r1)
-stw      r8, 0x20(r1)
-stw      r6, 0x2c(r1)
-stw      r5, 0x28(r1)
-stw      r0, 0x34(r1)
-stw      r5, 0x30(r1)
-stb      r8, 0x39(r1)
-stb      r8, 0x38(r1)
-bl
-open_WorldMapInfoWin0__Q26Screen9Game2DMgrFRQ32og6Screen26DispMemberWorldMapInfoWin0
-clrlwi.  r0, r3, 0x18
-beq      lbl_803F65D4
-li       r0, 8
-stw      r0, 0x174(r30)
-bl       PSMGetWorldMapRocket__Fv
-li       r4, 6
-bl stateChange__Q23PSM14WorldMapRocketFQ33PSM14WorldMapRocket11rocketState
-lwz      r0, 0x17c(r30)
-li       r31, 1
-ori      r0, r0, 0x30
-stw      r0, 0x17c(r30)
-b        lbl_803F65D4
-
-lbl_803F649C:
-rlwinm.  r0, r3, 0, 0x17, 0x17
-beq      lbl_803F6528
-lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-lwz      r3, 0x18(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x18(r12)
-mtctr    r12
-bctrl
-lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-li       r5, 0
-addi     r4, r3, __vt__Q32og6Screen14DispMemberBase@l
-li       r0, 0xb4
-stb      r0, 0x14(r1)
-lis      r3, __vt__Q32og6Screen26DispMemberWorldMapInfoWin1@ha
-addi     r0, r3, __vt__Q32og6Screen26DispMemberWorldMapInfoWin1@l
-lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-stw      r4, 8(r1)
-addi     r4, r1, 8
-stw      r5, 0xc(r1)
-stw      r0, 8(r1)
-stw      r5, 0x10(r1)
-stb      r5, 0x14(r1)
-bl
-open_WorldMapInfoWin1__Q26Screen9Game2DMgrFRQ32og6Screen26DispMemberWorldMapInfoWin1
-clrlwi.  r0, r3, 0x18
-beq      lbl_803F65D4
-li       r0, 9
-stw      r0, 0x174(r30)
-bl       PSMGetWorldMapRocket__Fv
-li       r4, 6
-bl stateChange__Q23PSM14WorldMapRocketFQ33PSM14WorldMapRocket11rocketState
-lwz      r0, 0x17c(r30)
-li       r31, 1
-ori      r0, r0, 0x30
-stw      r0, 0x17c(r30)
-b        lbl_803F65D4
-
-lbl_803F6528:
-rlwinm.  r0, r3, 0, 0x19, 0x19
-beq      lbl_803F6550
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x181f
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-li       r0, 7
-li       r31, 1
-stw      r0, 0x174(r30)
-b        lbl_803F65D4
-
-lbl_803F6550:
-rlwinm.  r0, r3, 0, 0x1a, 0x1a
-beq      lbl_803F6578
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x181f
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-li       r0, 6
-li       r31, 1
-stw      r0, 0x174(r30)
-b        lbl_803F65D4
-
-lbl_803F6578:
-lfs      f1, 0x50(r4)
-lfs      f0, lbl_8051FF04@sda21(r2)
-fcmpo    cr0, f1, f0
-bgt      lbl_803F6594
-lwz      r0, 0x18(r4)
-clrlwi.  r0, r0, 0x1c
-beq      lbl_803F65CC
-
-lbl_803F6594:
-lbz      r3, 0x180(r30)
-cmplwi   r3, 0
-bne      lbl_803F65C0
-lis      r3, msVal__Q32kh6Screen8WorldMap@ha
-li       r0, 5
-addi     r3, r3, msVal__Q32kh6Screen8WorldMap@l
-li       r31, 1
-lbz      r3, 0x78(r3)
-stb      r3, 0x180(r30)
-stw      r0, 0x174(r30)
-b        lbl_803F65D4
-
-lbl_803F65C0:
-addi     r0, r3, -1
-stb      r0, 0x180(r30)
-b        lbl_803F65D4
-
-lbl_803F65CC:
-li       r0, 0
-stb      r0, 0x180(r30)
-
-lbl_803F65D4:
-lwz      r0, 0x54(r1)
-mr       r3, r31
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
 }
 
 /*
