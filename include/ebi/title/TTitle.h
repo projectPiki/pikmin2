@@ -145,59 +145,59 @@ struct TTitleLightSetting {
 	struct TMainParms : public Parameters {
 		TMainParms()
 		    : Parameters(nullptr, "TMainParms")
-		    , mTl04(this, 'tl04', "ライト色R", 255, 0, 255)
-		    , mTl05(this, 'tl05', "ライト色G", 255, 0, 255)
-		    , mTl06(this, 'tl06', "ライト色B", 255, 0, 255)
-		    , mTl07(this, 'tl07', "ライト色A", 255, 0, 255)
-		    , mTl50(this, 'tl50', "位置X", 0.0f, -10000.0f, 10000.0f)
-		    , mTl51(this, 'tl51', "位置Y", 1000.0f, -10000.0f, 50000.0f)
-		    , mTl52(this, 'tl52', "位置Z", 0.0f, -10000.0f, 10000.0f)
-		    , mTl53(this, 'tl53', "向きX", 0.0f, -1.0f, 1.0f)
-		    , mTl54(this, 'tl54', "向きY", -1.0f, -1.0f, 1.0f)
-		    , mTl55(this, 'tl55', "向きZ", 0.0f, -1.0f, 1.0f)
-		    , mTl56(this, 'tl56', "距離減衰-距離", 10000.0f, 1.0f, 50000.0f)
-		    , mTl57(this, 'tl57', "距離減衰-明るさ", 1.0f, 0.0f, 1.0f)
-		    , mTl58(this, 'tl58', "カットオフ角度", 25.0f, 1.0f, 180.0f)
+		    , mLightColR(this, 'tl04', "ライト色R", 255, 0, 255)
+		    , mLightColG(this, 'tl05', "ライト色G", 255, 0, 255)
+		    , mLightColB(this, 'tl06', "ライト色B", 255, 0, 255)
+		    , mLightColA(this, 'tl07', "ライト色A", 255, 0, 255)
+		    , mPosX(this, 'tl50', "位置X", 0.0f, -10000.0f, 10000.0f)
+		    , mPosY(this, 'tl51', "位置Y", 1000.0f, -10000.0f, 50000.0f)
+		    , mPosZ(this, 'tl52', "位置Z", 0.0f, -10000.0f, 10000.0f)
+		    , mRotX(this, 'tl53', "向きX", 0.0f, -1.0f, 1.0f)
+		    , mRotY(this, 'tl54', "向きY", -1.0f, -1.0f, 1.0f)
+		    , mRotZ(this, 'tl55', "向きZ", 0.0f, -1.0f, 1.0f)
+		    , mLightRange(this, 'tl56', "距離減衰-距離", 10000.0f, 1.0f, 50000.0f)
+		    , mLightBrightness(this, 'tl57', "距離減衰-明るさ", 1.0f, 0.0f, 1.0f)
+		    , mCutoffAngle(this, 'tl58', "カットオフ角度", 25.0f, 1.0f, 180.0f)
 		{
 		}
 
-		Parm<int> mTl04; // _0C, _BC
-		Parm<int> mTl05; // _34, _E4
-		Parm<int> mTl06; // _5C, _10C
-		Parm<int> mTl07; // _84, _134
-		Parm<f32> mTl50; // _AC, _15C
-		Parm<f32> mTl51; // _D4, _184
-		Parm<f32> mTl52; // _FC, _1AC
-		Parm<f32> mTl53; // _124, _1D4
-		Parm<f32> mTl54; // _14C, _1FC
-		Parm<f32> mTl55; // _174, _224
-		Parm<f32> mTl56; // _19C, _24C
-		Parm<f32> mTl57; // _1C4, _274
-		Parm<f32> mTl58; // _1EC, _29C
+		Parm<int> mLightColR;       // _0C, _BC
+		Parm<int> mLightColG;       // _34, _E4
+		Parm<int> mLightColB;       // _5C, _10C
+		Parm<int> mLightColA;       // _84, _134
+		Parm<f32> mPosX;            // _AC, _15C
+		Parm<f32> mPosY;            // _D4, _184
+		Parm<f32> mPosZ;            // _FC, _1AC
+		Parm<f32> mRotX;            // _124, _1D4
+		Parm<f32> mRotY;            // _14C, _1FC
+		Parm<f32> mRotZ;            // _174, _224
+		Parm<f32> mLightRange;      // _19C, _24C
+		Parm<f32> mLightBrightness; // _1C4, _274
+		Parm<f32> mCutoffAngle;     // _1EC, _29C
 	};
 
 	struct TSpecParms : public Parameters {
 		TSpecParms()
 		    : Parameters(nullptr, "TSpecParms")
-		    , mSp04(this, 'sp04', "ライト色R", 255, 0, 255)
-		    , mSp05(this, 'sp05', "ライト色G", 255, 0, 255)
-		    , mSp06(this, 'sp06', "ライト色B", 255, 0, 255)
-		    , mSp07(this, 'sp07', "ライト色A", 255, 0, 255)
-		    , mSp53(this, 'sp53', "向きX", 0.0f, -1.0f, 1.0f)
-		    , mSp54(this, 'sp54', "向きY", -1.0f, -1.0f, 1.0f)
-		    , mSp55(this, 'sp55', "向きZ", 0.0f, -1.0f, 1.0f)
-		    , mSp56(this, 'sp56', "光沢", 64.0f, 0.0f, 512.0f)
+		    , mLightColR(this, 'sp04', "ライト色R", 255, 0, 255)
+		    , mLightColG(this, 'sp05', "ライト色G", 255, 0, 255)
+		    , mLightColB(this, 'sp06', "ライト色B", 255, 0, 255)
+		    , mLightColA(this, 'sp07', "ライト色A", 255, 0, 255)
+		    , mRotX(this, 'sp53', "向きX", 0.0f, -1.0f, 1.0f)
+		    , mRotY(this, 'sp54', "向きY", -1.0f, -1.0f, 1.0f)
+		    , mRotZ(this, 'sp55', "向きZ", 0.0f, -1.0f, 1.0f)
+		    , mGlossAmount(this, 'sp56', "光沢", 64.0f, 0.0f, 512.0f) // Luster?
 		{
 		}
 
-		Parm<int> mSp04; // _0C, _2D4
-		Parm<int> mSp05; // _34, _2FC
-		Parm<int> mSp06; // _5C, _324
-		Parm<int> mSp07; // _84, _34C
-		Parm<f32> mSp53; // _AC, _374
-		Parm<f32> mSp54; // _D4, _39C
-		Parm<f32> mSp55; // _FC, _3C4
-		Parm<f32> mSp56; // _124, _3EC
+		Parm<int> mLightColR;   // _0C, _2D4
+		Parm<int> mLightColG;   // _34, _2FC
+		Parm<int> mLightColB;   // _5C, _324
+		Parm<int> mLightColA;   // _84, _34C
+		Parm<f32> mRotX;        // _AC, _374
+		Parm<f32> mRotY;        // _D4, _39C
+		Parm<f32> mRotZ;        // _FC, _3C4
+		Parm<f32> mGlossAmount; // _124, _3EC
 	};
 
 	TAmbParms mAmbParms;   // _00

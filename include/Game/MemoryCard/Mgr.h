@@ -58,7 +58,7 @@ struct Mgr : public MemoryCardMgr {
 
 	void loadResource(JKRHeap*);
 	void destroyResource();
-	u32 getCardStatus();
+	u32 getCardStatus(); // MemoryCardStatus
 	bool format();
 	bool checkBeforeSave();
 	bool checkError();
@@ -120,11 +120,11 @@ struct Mgr : public MemoryCardMgr {
 	inline bool checkCheckSum(u32* buffer);
 	inline bool checkInfo(u32* buffer);
 
-	inline bool isCardReady() { return (int)getCardStatus() == 0; }
+	inline bool isCardReady() { return (int)getCardStatus() == MCS_Ready; }
 
-	inline bool isCardNotReady() { return (int)getCardStatus() != 0; }
+	inline bool isCardNotReady() { return (int)getCardStatus() != MCS_Ready; }
 
-	inline bool isCardInvalid() { return !mIsCard && checkStatus() != 11; }
+	inline bool isCardInvalid() { return !mIsCard && checkStatus() != MCS_11; }
 
 	// _00-_E8 = MemoryCardMgr
 	u32 _D8;                // _D8

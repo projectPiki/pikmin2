@@ -245,7 +245,7 @@ struct TMgr : public JKRDisposer {
 	u32 _3CC;                                         // _3CC, unknown
 	Controller* mController;                          // _3D0
 	Game::MemoryCard::PlayerFileInfo mPlayerFileInfo; // _3D4
-	int mIsStoryGameSave;                             // _470
+	BOOL mIsStoryGameSave;                            // _470
 	int mCurrStateID;                                 // _474
 	u8 mSaveType;                                     // _478
 	bool mIsAutosaveOn;                               // _479

@@ -60,28 +60,30 @@ void FSMState_DoYouSave::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState_DoYouSave::do_exec(TMgr* mgr)
 {
-	if (mgr->mSaveMenu.isFinishMsg()) {
-		switch (mgr->mSaveMenu.mSelectState) {
-		case 0:
-			transit(mgr, MountCheck, nullptr);
-			break;
-		case 1:
-			if (mgr->mSaveType) {
-				mgr->mSaveMenu.closeScreen(nullptr);
-				if (mgr->mSaveMenu.isFinishScreen()) {
-					mgr->goEnd_(TMgr::End_2);
-				}
-			} else {
-				transit(mgr, DoYouContinue, nullptr);
-			}
-			break;
-		case 2:
+	if (!mgr->mSaveMenu.isFinishMsg()) {
+		return;
+	}
+
+	switch (mgr->mSaveMenu.mSelectState) {
+	case 0:
+		transit(mgr, MountCheck, nullptr);
+		break;
+	case 1:
+		if (mgr->mSaveType) {
 			mgr->mSaveMenu.closeScreen(nullptr);
 			if (mgr->mSaveMenu.isFinishScreen()) {
-				mgr->goEnd_(TMgr::End_1);
+				mgr->goEnd_(TMgr::End_2);
 			}
-			break;
+		} else {
+			transit(mgr, DoYouContinue, nullptr);
 		}
+		break;
+	case 2:
+		mgr->mSaveMenu.closeScreen(nullptr);
+		if (mgr->mSaveMenu.isFinishScreen()) {
+			mgr->goEnd_(TMgr::End_1);
+		}
+		break;
 	}
 }
 
@@ -99,24 +101,26 @@ void FSMState_DoYouContinue::do_init(TMgr* mgr, Game::StateArg*) { mgr->mSaveMen
  */
 void FSMState_DoYouContinue::do_exec(TMgr* mgr)
 {
-	if (mgr->mSaveMenu.isFinishMsg()) {
-		switch (mgr->mSaveMenu.mSelectState) {
-		case 0:
-			mgr->mSaveMenu.closeScreen(nullptr);
-			if (mgr->mSaveMenu.isFinishScreen()) {
-				mgr->goEnd_(TMgr::End_2);
-			}
-			break;
-		case 1:
-			mgr->mSaveMenu.closeScreen(nullptr);
-			if (mgr->mSaveMenu.isFinishScreen()) {
-				mgr->goEnd_(TMgr::End_3);
-			}
-			break;
-		case 2:
-			transit(mgr, DoYouSave, nullptr);
-			break;
+	if (!mgr->mSaveMenu.isFinishMsg()) {
+		return;
+	}
+
+	switch (mgr->mSaveMenu.mSelectState) {
+	case 0:
+		mgr->mSaveMenu.closeScreen(nullptr);
+		if (mgr->mSaveMenu.isFinishScreen()) {
+			mgr->goEnd_(TMgr::End_2);
 		}
+		break;
+	case 1:
+		mgr->mSaveMenu.closeScreen(nullptr);
+		if (mgr->mSaveMenu.isFinishScreen()) {
+			mgr->goEnd_(TMgr::End_3);
+		}
+		break;
+	case 2:
+		transit(mgr, DoYouSave, nullptr);
+		break;
 	}
 }
 
@@ -403,7 +407,7 @@ void FSMState_NowSave::do_init(TMgr* mgr, Game::StateArg* arg)
 	mIsErrorState    = sarg->mMesgType;
 
 	mgr->mSaveMenu.openScreen(nullptr);
-	if (mgr->mIsStoryGameSave == 1) {
+	if (mgr->mIsStoryGameSave == TRUE) {
 		mState = 2;
 	} else {
 		mState = 0;
@@ -430,82 +434,85 @@ void FSMState_NowSave::do_exec(TMgr* mgr)
 		CardErrorArg arg(CardError::TMgr::Start_FailToSave_NoCard);
 
 		transit(mgr, CardError, &arg);
-	} else {
-		switch (mState) {
-		case 0:
-			if (sys->mCardMgr->isSaveInvalid()) {
-				bool valid;
-				if (mIsErrorState) {
-					valid = sys->mCardMgr->savePlayerNoCheckSerialNumber(-1);
-				} else {
-					valid = sys->mCardMgr->savePlayer(-1);
-				}
-				P2ASSERTLINE(428, valid);
-				mState = 1;
+		return;
+	}
+
+	switch (mState) {
+	case 0:
+		if (sys->mCardMgr->isSaveInvalid()) {
+			bool valid;
+			if (mIsErrorState) {
+				valid = sys->mCardMgr->savePlayerNoCheckSerialNumber(-1);
+			} else {
+				valid = sys->mCardMgr->savePlayer(-1);
 			}
-			break;
-		case 1:
-			if (sys->mCardMgr->isSaveInvalid()) {
-				mCardStatus = sys->mCardMgr->getCardStatus();
-				sys->mCardMgr->getCardStatus();
-				switch (mCardStatus) {
-				case 2:
-					if (!mgr->mIsStoryGameSave) {
-						mState = 4;
-					} else {
-						mState = 2;
-					}
-					break;
-				case 14:
-					mState = 4;
-					break;
-				default:
-					mState = 4;
-					break;
-				}
-			}
-			break;
-		case 2:
-			if (sys->mCardMgr->isSaveInvalid()) {
-				P2ASSERTLINE(476, sys->mCardMgr->saveGameOption());
-				mState = 3;
-			}
-			break;
-		case 3:
-			if (sys->mCardMgr->isSaveInvalid()) {
-				mCardStatus = sys->mCardMgr->getCardStatus();
-				sys->mCardMgr->getCardStatus();
-				mState = 4;
-			}
-			break;
-		case 4:
-			if (mgr->mCounter * sys->mDeltaTime < 0.5f && mgr->mController->mButton.mButtonDown & Controller::PRESS_A) {
-				mgr->mSaveMenu.closeMsg();
-			}
-			if (mgr->mCounter == 0) {
-				mgr->mSaveMenu.closeMsg();
-			}
-			if (mgr->mSaveMenu.isFinishMsg()) {
-				switch (mCardStatus) {
-				case 2:
-					transit(mgr, AfterSave, nullptr);
-					break;
-				case 0:
-					CardErrorArg arg1(CardError::TMgr::Start_FailToSave_NoCard);
-					transit(mgr, CardError, &arg1);
-					break;
-				case 14:
-					CardErrorArg arg2(CardError::TMgr::Start_SerialNoError);
-					transit(mgr, CardError, &arg2);
-					break;
-				default:
-					CardErrorArg arg3(CardError::TMgr::Start_FailToSave_IOError);
-					transit(mgr, CardError, &arg3);
-					break;
-				}
-			}
-			break;
+			P2ASSERTLINE(428, valid);
+			mState = 1;
 		}
+		break;
+	case 1:
+		if (sys->mCardMgr->isSaveInvalid()) {
+			mCardStatus = sys->mCardMgr->getCardStatus();
+			sys->mCardMgr->getCardStatus();
+			switch (mCardStatus) {
+			case 2:
+				if (!mgr->mIsStoryGameSave) {
+					mState = 4;
+				} else {
+					mState = 2;
+				}
+				break;
+			case 14:
+				mState = 4;
+				break;
+			default:
+				mState = 4;
+				break;
+			}
+		}
+		break;
+	case 2:
+		if (sys->mCardMgr->isSaveInvalid()) {
+			P2ASSERTLINE(476, sys->mCardMgr->saveGameOption());
+			mState = 3;
+		}
+		break;
+	case 3:
+		if (sys->mCardMgr->isSaveInvalid()) {
+			mCardStatus = sys->mCardMgr->getCardStatus();
+			sys->mCardMgr->getCardStatus();
+			mState = 4;
+		}
+		break;
+	case 4:
+		if (mgr->mCounter * sys->mDeltaTime < 0.5f && mgr->mController->mButton.mButtonDown & Controller::PRESS_A) {
+			mgr->mSaveMenu.closeMsg();
+		}
+
+		if (mgr->mCounter == 0) {
+			mgr->mSaveMenu.closeMsg();
+		}
+
+		if (mgr->mSaveMenu.isFinishMsg()) {
+			switch (mCardStatus) {
+			case 2:
+				transit(mgr, AfterSave, nullptr);
+				break;
+			case 0:
+				CardErrorArg arg1(CardError::TMgr::Start_FailToSave_NoCard);
+				transit(mgr, CardError, &arg1);
+				break;
+			case 14:
+				CardErrorArg arg2(CardError::TMgr::Start_SerialNoError);
+				transit(mgr, CardError, &arg2);
+				break;
+			default:
+				CardErrorArg arg3(CardError::TMgr::Start_FailToSave_IOError);
+				transit(mgr, CardError, &arg3);
+				break;
+			}
+		}
+		break;
 	}
 }
 
@@ -533,12 +540,15 @@ void FSMState_AfterSave::do_exec(TMgr* mgr)
 	if (mgr->mCounter * sys->mDeltaTime < 0.5f && mgr->mController->mButton.mButtonDown & Controller::PRESS_A) {
 		mgr->mSaveMenu.closeMsg();
 	}
+
 	if (mgr->mCounter == 0) {
 		mgr->mSaveMenu.closeMsg();
 	}
+
 	if (mgr->mSaveMenu.isFinishMsg()) {
 		mgr->mSaveMenu.closeScreen(nullptr);
 	}
+
 	if (mgr->mSaveMenu.isFinishScreen()) {
 		mgr->goEnd_(TMgr::End_0);
 	}
@@ -564,24 +574,26 @@ void FSMState_CardError::do_init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_CardError::do_exec(TMgr* mgr)
 {
-	if (mgr->mMemCardErrorMgr.isGetEnd()) {
-		switch (mgr->mMemCardErrorMgr.mEndStat) {
-		case CardError::TMgr::End_3:
-			if (mgr->_47A) {
-				transit(mgr, DoYouSave, nullptr);
-				mgr->mMemCardErrorMgr.forceQuitSeq();
-			} else {
-				mgr->goEnd_(TMgr::End_4);
-			}
-			break;
-		case CardError::TMgr::End_4:
-			transit(mgr, MountCheck, nullptr);
-			break;
-		default:
-			JUT_PANICLINE(621, "想定外です。ありえねー\0"); // "Unexpected. Impossible"
-			JUT_PANICLINE(622, "P2Assert");
-			break;
+	if (!mgr->mMemCardErrorMgr.isGetEnd()) {
+		return;
+	}
+
+	switch (mgr->mMemCardErrorMgr.mEndStat) {
+	case CardError::TMgr::End_3:
+		if (mgr->_47A) {
+			transit(mgr, DoYouSave, nullptr);
+			mgr->mMemCardErrorMgr.forceQuitSeq();
+		} else {
+			mgr->goEnd_(TMgr::End_4);
 		}
+		break;
+	case CardError::TMgr::End_4:
+		transit(mgr, MountCheck, nullptr);
+		break;
+	default:
+		JUT_PANICLINE(621, "想定外です。ありえねー\0"); // "Unexpected. Impossible"
+		JUT_PANICLINE(622, "P2Assert");
+		break;
 	}
 }
 
@@ -608,8 +620,10 @@ namespace Save {
  */
 TMgr* TMgr::createInstance()
 {
-	if (!msInstance)
+	if (!msInstance) {
 		msInstance = new TMgr;
+	}
+
 	return msInstance;
 }
 
@@ -638,13 +652,15 @@ TMgr* TMgr::getInstance() { return msInstance; }
  */
 void TMgr::onDvdErrorOccured()
 {
-	if (msInstance) {
-		if (!msInstance->isFinish()) {
-			msInstance->mDVDErrorSuspended = true;
-			msInstance->forceQuit();
-		} else {
-			msInstance->mDVDErrorSuspended = false;
-		}
+	if (!msInstance) {
+		return;
+	}
+
+	if (!msInstance->isFinish()) {
+		msInstance->mDVDErrorSuspended = true;
+		msInstance->forceQuit();
+	} else {
+		msInstance->mDVDErrorSuspended = false;
 	}
 }
 
@@ -673,7 +689,7 @@ TMgr::TMgr()
 	mStateMachine.init(this);
 	mStateMachine.start(this, Standby, nullptr);
 
-	mIsStoryGameSave   = 0;
+	mIsStoryGameSave   = FALSE;
 	mSaveType          = 0;
 	mIsAutosaveOn      = false;
 	_47A               = true;
@@ -692,6 +708,7 @@ void TMgr::start()
 	} else {
 		mStateMachine.transit(this, MountCheck, nullptr);
 	}
+
 	update();
 }
 
@@ -717,6 +734,7 @@ bool TMgr::isFinish()
 	if (getStateID() == Standby && !mDVDErrorSuspended) {
 		return true;
 	}
+
 	return false;
 }
 
@@ -741,12 +759,15 @@ void TMgr::goEnd_(TMgr::enumEnd end)
 void TMgr::update()
 {
 	mStateMachine.exec(this);
-	if (getStateID() != Standby) {
-		sys->mCardMgr->update();
-		mMemCardErrorMgr.update();
-		mSaveMenu.update();
-		if (mCounter)
-			mCounter--;
+	if (getStateID() == Standby) {
+		return;
+	}
+
+	sys->mCardMgr->update();
+	mMemCardErrorMgr.update();
+	mSaveMenu.update();
+	if (mCounter) {
+		mCounter--;
 	}
 }
 
@@ -757,10 +778,12 @@ void TMgr::update()
  */
 void TMgr::draw()
 {
-	if (getStateID() != Standby) {
-		mSaveMenu.draw();
-		mMemCardErrorMgr.draw();
+	if (getStateID() == Standby) {
+		return;
 	}
+
+	mSaveMenu.draw();
+	mMemCardErrorMgr.draw();
 }
 
 /*
