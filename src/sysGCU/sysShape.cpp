@@ -1,4 +1,3 @@
-#include "CNode.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "P2Macros.h"
 #include "SysShape/AnimMgr.h"
@@ -8,107 +7,16 @@
 #include "SysShape/KeyEvent.h"
 #include "SysShape/Model.h"
 #include "SysShape/MtxObject.h"
+#include "SysShape/MotionListener.h"
+#include "JSystem/J3D/J3DAnmLoader.h"
 #include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_sysShape_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80499C58
-    lbl_80499C58:
-        .skip 0xC
-        .asciz "sysShape"
-        .skip 3
-    .global lbl_80499C70
-    lbl_80499C70:
-        .asciz "sysShape.cpp"
-        .skip 3
-    .global lbl_80499C80
-    lbl_80499C80:
-        .asciz "go to hell !\n"
-        .skip 2
-    .global lbl_80499C90
-    lbl_80499C90:
-        .asciz "ExMotionErr::setFrameByKeyType(%d)\n"
-    .global lbl_80499CB4
-    lbl_80499CB4:
-        .asciz "mismatch LOOP_START - LOOP_END\n"
-        .asciz "BlendAnimator : at least 1 motion is required!\n"
-    .global lbl_80499D04
-    lbl_80499D04:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80499D10
-    lbl_80499D10:
-        .asciz "reached eof\n"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EBDC8
-    lbl_804EBDC8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q28SysShape8AnimInfo
-    __vt__Q28SysShape8AnimInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28SysShape8AnimInfoFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q28SysShape7AnimMgr
-    __vt__Q28SysShape7AnimMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28SysShape7AnimMgrFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q28SysShape13BlendAnimator
-    __vt__Q28SysShape13BlendAnimator:
-        .4byte 0
-        .4byte 0
-        .4byte getCalc__Q28SysShape13BlendAnimatorFv
-    .global __vt__Q28SysShape8Animator
-    __vt__Q28SysShape8Animator:
-        .4byte 0
-        .4byte 0
-        .4byte getCalc__Q28SysShape8AnimatorFv
-        .4byte animate__Q28SysShape8AnimatorFf
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805161A0
-    lbl_805161A0:
-        .skip 0x4
-    .global lbl_805161A4
-    lbl_805161A4:
-        .skip 0x4
-    .global verbose__Q28SysShape8Animator
-    verbose__Q28SysShape8Animator:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520528
-    lbl_80520528:
-        .4byte 0x00000000
-    .global lbl_8052052C
-    lbl_8052052C:
-        .4byte 0x4F4B4F4B
-        .4byte 0x0A000000
-    .global lbl_80520534
-    lbl_80520534:
-        .float 1.0
-    .global lbl_80520538
-    lbl_80520538:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80520540
-    lbl_80520540:
-        .4byte 0x47FA0000
-        .4byte 0x00000000
-*/
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "sysShape";
 
 namespace SysShape {
+
+bool Animator::verbose;
 
 /*
  * --INFO--
@@ -120,26 +28,6 @@ void Model::clearAnimatorAll()
 	for (int i = 0; i < mJointCount; i++) {
 		mJ3dModel->getModelData()->getJointTree().getJointNodePointer(i)->mMtxCalc = nullptr;
 	}
-	/*
-	li       r6, 0
-	li       r5, 0
-	b        lbl_80428C78
-
-lbl_80428C5C:
-	lwz      r4, 8(r3)
-	rlwinm   r0, r6, 2, 0xe, 0x1d
-	addi     r6, r6, 1
-	lwz      r4, 4(r4)
-	lwz      r4, 0x28(r4)
-	lwzx     r4, r4, r0
-	stw      r5, 0x54(r4)
-
-lbl_80428C78:
-	lwz      r0, 0xc(r3)
-	cmpw     r6, r0
-	blt      lbl_80428C5C
-	blr
-	*/
 }
 
 /*
@@ -147,7 +35,7 @@ lbl_80428C78:
  * Address:	........
  * Size:	000080
  */
-void Model::setAnimatorAll(SysShape::BaseAnimator&)
+void Model::setAnimatorAll(BaseAnimator&)
 {
 	// UNUSED FUNCTION
 }
@@ -157,15 +45,8 @@ void Model::setAnimatorAll(SysShape::BaseAnimator&)
  * Address:	80428C88
  * Size:	0000C8
  */
-void Animator::startAnim(int animID, SysShape::MotionListener* listener)
+void Animator::startAnim(int animID, MotionListener* listener)
 {
-	// AnimInfo* info = static_cast<AnimInfo*>(mAnimMgr->mAnimInfo.mChild);
-	// while (info != nullptr) {
-	// 	if (animID == info->mId) {
-	// 		break;
-	// 	}
-	// 	info = static_cast<AnimInfo*>(info->mChild);
-	// }
 	mAnimInfo = mAnimMgr->getAnimByID(animID);
 	if (mAnimInfo == nullptr) {
 		mAnimMgr->dump();
@@ -179,72 +60,6 @@ void Animator::startAnim(int animID, SysShape::MotionListener* listener)
 		mListener = nullptr;
 	}
 	mFlags = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x10(r3)
-	lwz      r3, 0x2c(r3)
-	b        lbl_80428CC4
-
-lbl_80428CB0:
-	lha      r0, 0x20(r3)
-	cmpw     r4, r0
-	bne      lbl_80428CC0
-	b        lbl_80428CD0
-
-lbl_80428CC0:
-	lwz      r3, 4(r3)
-
-lbl_80428CC4:
-	cmplwi   r3, 0
-	bne      lbl_80428CB0
-	li       r3, 0
-
-lbl_80428CD0:
-	stw      r3, 0xc(r30)
-	lwz      r0, 0xc(r30)
-	cmplwi   r0, 0
-	bne      lbl_80428D04
-	lwz      r3, 0x10(r30)
-	bl       dump__Q28SysShape7AnimMgrFv
-	lis      r3, lbl_80499C70@ha
-	lis      r5, lbl_80499C80@ha
-	addi     r3, r3, lbl_80499C70@l
-	li       r4, 0xdc
-	addi     r5, r5, lbl_80499C80@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80428D04:
-	lfs      f1, lbl_80520528@sda21(r2)
-	stfs     f1, 8(r30)
-	lwz      r3, 0xc(r30)
-	bl       getLowestAnimKey__Q28SysShape8AnimInfoFf
-	cmplwi   r31, 0
-	stw      r3, 0x14(r30)
-	beq      lbl_80428D28
-	stw      r31, 4(r30)
-	b        lbl_80428D30
-
-lbl_80428D28:
-	li       r0, 0
-	stw      r0, 4(r30)
-
-lbl_80428D30:
-	li       r0, 0
-	stb      r0, 0x18(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -252,7 +67,7 @@ lbl_80428D30:
  * Address:	80428D50
  * Size:	000068
  */
-void Animator::startExAnim(SysShape::AnimInfo* info)
+void Animator::startExAnim(AnimInfo* info)
 {
 	mAnimInfo   = info;
 	mTimer      = 0.0f;
@@ -261,36 +76,6 @@ void Animator::startExAnim(SysShape::AnimInfo* info)
 	mCurAnimKey = nullptr;
 	mFlags |= 0x80;
 	JUT_ASSERTLINE(252, verbose == 0, "OKOK\n");
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_80520528@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r4, 0xc(r3)
-	stfs     f0, 8(r3)
-	stw      r0, 4(r3)
-	stb      r0, 0x18(r3)
-	stw      r0, 0x14(r3)
-	lbz      r0, 0x18(r3)
-	ori      r0, r0, 0x80
-	stb      r0, 0x18(r3)
-	lbz      r0, verbose__Q28SysShape8Animator@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80428DA8
-	lis      r3, lbl_80499C70@ha
-	li       r4, 0xfc
-	addi     r3, r3, lbl_80499C70@l
-	addi     r5, r2, lbl_8052052C@sda21
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80428DA8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -298,7 +83,7 @@ lbl_80428DA8:
  * Address:	80428DB8
  * Size:	000008
  */
-bool Animator::assertValid(SysShape::Model* model) { return true; }
+bool Animator::assertValid(Model* model) { return true; }
 
 /*
  * --INFO--
@@ -310,24 +95,6 @@ void Animator::setCurrFrame(f32 timer)
 	mTimer      = timer;
 	mCurAnimKey = mAnimInfo->getLowestAnimKey(timer);
 	mFlags      = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stfs     f1, 8(r3)
-	lwz      r3, 0xc(r3)
-	bl       getLowestAnimKey__Q28SysShape8AnimInfoFf
-	stw      r3, 0x14(r31)
-	li       r0, 0
-	stb      r0, 0x18(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -335,80 +102,18 @@ void Animator::setCurrFrame(f32 timer)
  * Address:	80428E00
  * Size:	000100
  */
-void Animator::setFrameByKeyType(unsigned long)
+void Animator::setFrameByKeyType(u32 id)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lbz      r0, 0x18(r3)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_80428E48
-	lis      r3, lbl_80499C70@ha
-	lis      r4, lbl_80499C90@ha
-	addi     r5, r4, lbl_80499C90@l
-	mr       r6, r30
-	addi     r3, r3, lbl_80499C70@l
-	li       r4, 0x12c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	JUT_ASSERTLINE(300, !(mFlags & 0x80), "ExMotionErr::setFrameByKeyType(%d)\n", id);
 
-lbl_80428E48:
-	cmplwi   r30, 0x3e8
-	bne      lbl_80428E9C
-	lwz      r3, 0xc(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lwz      r3, 0x18(r3)
-	lfd      f2, lbl_80520538@sda21(r2)
-	lha      r0, 6(r3)
-	lfs      f0, lbl_80520534@sda21(r2)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fsubs    f1, f1, f0
-	stfs     f1, 8(r31)
-	lwz      r3, 0xc(r31)
-	bl       getLowestAnimKey__Q28SysShape8AnimInfoFf
-	stw      r3, 0x14(r31)
-	li       r0, 0
-	stb      r0, 0x18(r31)
-	b        lbl_80428EE8
-
-lbl_80428E9C:
-	lwz      r3, 0xc(r31)
-	mr       r4, r30
-	bl       getAnimKeyByType__Q28SysShape8AnimInfoFUl
-	cmplwi   r3, 0
-	beq      lbl_80428EE8
-	lwz      r3, 0x18(r3)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f1, lbl_80520538@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f1
-	stfs     f1, 8(r31)
-	lwz      r3, 0xc(r31)
-	bl       getLowestAnimKey__Q28SysShape8AnimInfoFf
-	stw      r3, 0x14(r31)
-	li       r0, 0
-	stb      r0, 0x18(r31)
-
-lbl_80428EE8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (id == KEYEVENT_END) {
+		setCurrFrame(mAnimInfo->mAnm->mMaxFrame - 1.0f);
+	} else {
+		KeyEvent* evt = mAnimInfo->getAnimKeyByType(id);
+		if (evt) {
+			setCurrFrame(evt->mFrame);
+		}
+	}
 }
 
 /*
@@ -418,46 +123,9 @@ lbl_80428EE8:
  */
 void Animator::setLastFrame()
 {
-	if (mAnimInfo != nullptr) {
-		f32 lastFrame = mAnimInfo->mAnm->mMaxFrame - 1.0f;
-		mTimer        = lastFrame;
-		mCurAnimKey   = mAnimInfo->getLowestAnimKey(lastFrame);
-		mFlags        = 0;
+	if (mAnimInfo) {
+		setCurrFrame(mAnimInfo->mAnm->mMaxFrame - 1.0f);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 0xc(r3)
-	cmplwi   r3, 0
-	beq      lbl_80428F64
-	lwz      r3, 0x18(r3)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lha      r0, 6(r3)
-	lfd      f2, lbl_80520538@sda21(r2)
-	xoris    r0, r0, 0x8000
-	lfs      f0, lbl_80520534@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fsubs    f1, f1, f0
-	stfs     f1, 8(r31)
-	lwz      r3, 0xc(r31)
-	bl       getLowestAnimKey__Q28SysShape8AnimInfoFf
-	stw      r3, 0x14(r31)
-	li       r0, 0
-	stb      r0, 0x18(r31)
-
-lbl_80428F64:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -465,8 +133,58 @@ lbl_80428F64:
  * Address:	80428F78
  * Size:	0002AC
  */
-void Animator::animate(f32)
+void Animator::animate(f32 timeFactor)
 {
+	if (mAnimInfo) {
+		bool end = false;
+		mTimer += timeFactor;
+		while (true) {
+			KeyEvent* evt = mCurAnimKey;
+			if (mListener) {
+				evt->mAnimIdx = mAnimInfo->mId;
+				mListener->onKeyEvent(*mCurAnimKey);
+			}
+			evt = mCurAnimKey;
+			if (!evt) {
+				break;
+			}
+			switch (evt->mType) {
+			case 1:
+				if (!(mFlags & 2)) {
+					KeyEvent* start = mAnimInfo->getLastLoopStart(evt);
+					if (start) {
+						mTimer = start->mFrame;
+					} else {
+						mTimer = 0.0f;
+						JUT_PANICLINE(369, "mismatch LOOP_START - LOOP_END\n");
+					}
+				}
+				end = true;
+				break;
+			}
+			mCurAnimKey = (KeyEvent*)mCurAnimKey->mNext;
+			if (!mCurAnimKey || mCurAnimKey->mFrame < mTimer) {
+				break;
+			}
+		}
+		if (end) {
+			mCurAnimKey = mAnimInfo->getLowestAnimKey(mTimer);
+		}
+
+		int time = mAnimInfo->mAnm->mCurrentFrame;
+		if (time <= mTimer) {
+			mTimer = time - 1.0f;
+			if (mListener && !(mFlags & 1)) {
+				KeyEvent event;
+				event.mFrame   = (f32)mAnimInfo->mAnm->mMaxFrame;
+				event.mType    = KEYEVENT_END;
+				event.mAnimIdx = mAnimInfo->mId;
+				mFlags |= 1;
+				mListener->onKeyEvent(event);
+			}
+			mAnimInfo->mAnm->setFrame((int)mTimer);
+		}
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -670,49 +388,13 @@ lbl_8042920C:
  * Size:	000080
  */
 BlendAnimator::BlendAnimator()
-    : BaseAnimator()
-    , mAnimators()
-    , mMtxCalc(nullptr)
-    , _3C(0.0f)
-    , _40(0.0f)
-    , mMotionListener(nullptr)
 {
-	_49 = 0;
-	_48 = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q28SysShape12BaseAnimator@l
-	lis      r4, __ct__Q28SysShape8AnimatorFv@ha
-	li       r6, 0x1c
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__Q28SysShape13BlendAnimator@ha
-	addi     r4, r4, __ct__Q28SysShape8AnimatorFv@l
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q28SysShape13BlendAnimator@l
-	addi     r3, r31, 4
-	li       r7, 2
-	stw      r0, 0(r31)
-	bl       __construct_array
-	li       r0, 0
-	lfs      f0, lbl_80520528@sda21(r2)
-	stw      r0, 0x4c(r31)
-	mr       r3, r31
-	stfs     f0, 0x3c(r31)
-	stfs     f0, 0x40(r31)
-	stw      r0, 0x44(r31)
-	stb      r0, 0x49(r31)
-	stb      r0, 0x48(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mMtxCalc         = nullptr;
+	mTimer           = 0.0f;
+	mTimeMax         = 0.0f;
+	mMotionListener  = nullptr;
+	mIsBlendFinished = 0;
+	mIsBlendEnabled  = false;
 }
 
 /*
@@ -720,118 +402,28 @@ BlendAnimator::BlendAnimator()
  * Address:	804292A4
  * Size:	000154
  */
-void BlendAnimator::setAnimMgr(SysShape::AnimMgr*)
+void BlendAnimator::setAnimMgr(AnimMgr* mgr)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stmw     r27, 0xc(r1)
-	mr       r31, r3
-	li       r0, 0
-	lis      r3, lbl_80499C58@ha
-	stb      r0, 0x48(r31)
-	lfs      f31, lbl_80520528@sda21(r2)
-	mr       r27, r4
-	mr       r29, r31
-	addi     r30, r3, lbl_80499C58@l
-	li       r28, 0
+	mIsBlendEnabled = false;
 
-lbl_804292E0:
-	stw      r27, 0x14(r29)
-	lwz      r3, 0x14(r29)
-	lwz      r3, 0x2c(r3)
-	b        lbl_80429304
+	for (int i = 0; i < 2; i++) {
+		mAnimators[i].mAnimMgr  = mgr;
+		mAnimators[i].mAnimInfo = mAnimators[i].mAnimMgr->getAnimByID(0);
+		if (!mAnimators[i].mAnimInfo) {
+			mAnimators[i].mAnimMgr->dump();
+			JUT_PANICLINE(220, "go to hell !\n"); // so polite
+		}
+		mAnimators[i].mTimer      = 0.0f;
+		mAnimators[i].mCurAnimKey = mAnimators[i].mAnimInfo->getLowestAnimKey(0.0f);
+		mAnimators[i].mListener   = nullptr;
+		mAnimators[i].mFlags      = 0;
+	}
 
-lbl_804292F0:
-	lha      r0, 0x20(r3)
-	cmpwi    r0, 0
-	bne      lbl_80429300
-	b        lbl_80429310
+	AnimInfo* info = mgr->getAnimByID(0);
+	JUT_ASSERTLINE(442, info, "BlendAnimator : at least 1 motion is required!\n");
 
-lbl_80429300:
-	lwz      r3, 4(r3)
-
-lbl_80429304:
-	cmplwi   r3, 0
-	bne      lbl_804292F0
-	li       r3, 0
-
-lbl_80429310:
-	stw      r3, 0x10(r29)
-	lwz      r0, 0x10(r29)
-	cmplwi   r0, 0
-	bne      lbl_8042933C
-	lwz      r3, 0x14(r29)
-	bl       dump__Q28SysShape7AnimMgrFv
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x28
-	li       r4, 0xdc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8042933C:
-	stfs     f31, 0xc(r29)
-	fmr      f1, f31
-	lwz      r3, 0x10(r29)
-	bl       getLowestAnimKey__Q28SysShape8AnimInfoFf
-	stw      r3, 0x18(r29)
-	li       r0, 0
-	addi     r28, r28, 1
-	stw      r0, 8(r29)
-	cmpwi    r28, 2
-	stbu     r0, 0x1c(r29)
-	blt      lbl_804292E0
-	lwz      r29, 0x2c(r27)
-	b        lbl_80429384
-
-lbl_80429370:
-	lha      r0, 0x20(r29)
-	cmpwi    r0, 0
-	bne      lbl_80429380
-	b        lbl_80429390
-
-lbl_80429380:
-	lwz      r29, 4(r29)
-
-lbl_80429384:
-	cmplwi   r29, 0
-	bne      lbl_80429370
-	li       r29, 0
-
-lbl_80429390:
-	cmplwi   r29, 0
-	bne      lbl_804293AC
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x7c
-	li       r4, 0x1ba
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804293AC:
-	lwz      r3, 0x18(r27)
-	li       r6, 0
-	lwz      r4, 0x18(r29)
-	li       r7, 0
-	lwz      r3, 8(r3)
-	li       r8, 0
-	mr       r5, r4
-	lwz      r3, 4(r3)
-	lwz      r0, 0x18(r3)
-	clrlwi   r3, r0, 0x1c
-	bl
-J3DUNewMtxCalcAnm__FUlP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransform14J3DMtxCalcFlag
-	stw      r3, 0x4c(r31)
-	psq_l    f31, 40(r1), 0, qr0
-	lfd      f31, 0x20(r1)
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mMtxCalc = J3DUNewMtxCalcAnm(mgr->mModel->mJ3dModel->mModelData->mJointTree.mFlags & 0xf, info->mAnm, info->mAnm, nullptr, nullptr,
+	                             MTXCalc_0);
 }
 
 /*
@@ -839,9 +431,17 @@ J3DUNewMtxCalcAnm__FUlP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J
  * Address:	........
  * Size:	000124
  */
-void BlendAnimator::setWeight(f32)
+void BlendAnimator::setWeight(f32 weight)
 {
-	// UNUSED FUNCTION
+	P2ASSERTBOOLLINE(454, 0.0f <= weight && weight <= 1.0f);
+
+	// set animation A to the inverse of the weight
+	mMtxCalc->setAnmTransform(0, mAnimators[0].getAnimation());
+	mMtxCalc->setWeight(0, 1.0f - weight);
+
+	// set animation B to the weight directly
+	mMtxCalc->setAnmTransform(1, mAnimators[1].getAnimation());
+	mMtxCalc->setWeight(1, weight);
 }
 
 /*
@@ -849,110 +449,16 @@ void BlendAnimator::setWeight(f32)
  * Address:	804293F8
  * Size:	00015C
  */
-void BlendAnimator::startBlend(SysShape::BlendFunction*, f32, SysShape::MotionListener*)
+void BlendAnimator::startBlend(BlendFunction* func, f32 time, MotionListener* mlisten)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r5, 0x44(r3)
-	  mr        r31, r3
-	  lfs       f0, 0x21C8(r2)
-	  mr        r3, r4
-	  stfs      f0, 0x3C(r31)
-	  stfs      f1, 0x40(r31)
-	  fmr       f1, f0
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f31, f1
-	  lfs       f0, 0x21C8(r2)
-	  li        r0, 0
-	  fcmpo     cr0, f0, f31
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x70
-	  lfs       f0, 0x21D4(r2)
-	  fcmpo     cr0, f31, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x70
-	  li        r0, 0x1
+	mMotionListener = mlisten;
+	mTimer          = 0.0f;
+	mTimeMax        = time;
 
-	.loc_0x70:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x94
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x6390
-	  li        r4, 0x1C6
-	  subi      r5, r5, 0x62FC
-	  crclr     6, 0x6
-	  bl        -0x3FEE48
+	setWeight(func->getValue(0.0f));
 
-	.loc_0x94:
-	  lwz       r3, 0x10(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA8
-	  lwz       r5, 0x18(r3)
-	  b         .loc_0xAC
-
-	.loc_0xA8:
-	  li        r5, 0
-
-	.loc_0xAC:
-	  lwz       r3, 0x4C(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x4C(r31)
-	  li        r4, 0
-	  lfs       f0, 0x21D4(r2)
-	  lwz       r12, 0x0(r3)
-	  fsubs     f1, f0, f31
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xF8
-	  lwz       r5, 0x18(r3)
-	  b         .loc_0xFC
-
-	.loc_0xF8:
-	  li        r5, 0
-
-	.loc_0xFC:
-	  lwz       r3, 0x4C(r31)
-	  li        r4, 0x1
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x4C(r31)
-	  fmr       f1, f31
-	  li        r4, 0x1
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0
-	  li        r0, 0x1
-	  stb       r3, 0x49(r31)
-	  stb       r0, 0x48(r31)
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	mIsBlendFinished = false;
+	mIsBlendEnabled  = true;
 }
 
 /*
@@ -962,17 +468,9 @@ void BlendAnimator::startBlend(SysShape::BlendFunction*, f32, SysShape::MotionLi
  */
 void BlendAnimator::endBlend()
 {
-	_48 = 0;
-	_49 = 0;
-	_3C = 0.0f;
-	/*
-	li       r0, 0
-	lfs      f0, lbl_80520528@sda21(r2)
-	stb      r0, 0x48(r3)
-	stb      r0, 0x49(r3)
-	stfs     f0, 0x3c(r3)
-	blr
-	*/
+	mIsBlendEnabled  = false;
+	mIsBlendFinished = false;
+	mTimer           = 0.0f;
 }
 
 /*
@@ -980,186 +478,28 @@ void BlendAnimator::endBlend()
  * Address:	8042956C
  * Size:	000278
  */
-void BlendAnimator::animate(SysShape::BlendFunction*, f32, f32, f32)
+void BlendAnimator::animate(BlendFunction* func, f32 a1, f32 a2, f32 a3)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	lbz      r0, 0x48(r3)
-	fmr      f30, f1
-	fmr      f31, f3
-	mr       r31, r3
-	cmplwi   r0, 0
-	mr       r30, r4
-	beq      lbl_804297A4
-	addi     r3, r31, 4
-	fmr      f1, f2
-	lwz      r12, 4(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x20
-	fmr      f1, f31
-	lwz      r12, 0x20(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x3c(r31)
-	fadds    f0, f0, f30
-	stfs     f0, 0x3c(r31)
-	lfs      f0, 0x3c(r31)
-	lfs      f1, 0x40(r31)
-	fcmpo    cr0, f0, f1
-	cror     2, 1, 2
-	bne      lbl_80429694
-	stfs     f1, 0x3c(r31)
-	lbz      r0, 0x49(r31)
-	cmplwi   r0, 0
-	bne      lbl_80429694
-	li       r0, 1
-	stb      r0, 0x49(r31)
-	lwz      r0, 0x44(r31)
-	cmplwi   r0, 0
-	beq      lbl_80429694
-	addi     r3, r1, 8
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q28SysShape8KeyEvent@ha
-	li       r5, 0
-	addi     r0, r3, __vt__Q28SysShape8KeyEvent@l
-	li       r3, -1
-	stw      r0, 8(r1)
-	li       r0, 0x7d0
-	addi     r4, r1, 8
-	stw      r5, 0x20(r1)
-	stw      r5, 0x24(r1)
-	sth      r3, 0x28(r1)
-	lfs      f0, 0x40(r31)
-	fctiwz   f0, f0
-	stw      r0, 0x24(r1)
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	stw      r0, 0x20(r1)
-	lwz      r3, 0x44(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q28SysShape8KeyEvent@ha
-	addi     r3, r1, 8
-	addi     r0, r4, __vt__Q28SysShape8KeyEvent@l
-	li       r4, 0
-	stw      r0, 8(r1)
-	bl       __dt__5CNodeFv
-
-lbl_80429694:
-	lfs      f1, 0x3c(r31)
-	mr       r3, r30
-	lfs      f0, 0x40(r31)
-	lwz      r12, 0(r30)
-	fdivs    f1, f1, f0
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	fmr      f31, f1
-	lfs      f0, lbl_80520528@sda21(r2)
-	li       r0, 0
-	fcmpo    cr0, f0, f31
-	cror     2, 0, 2
-	bne      lbl_804296E0
-	lfs      f0, lbl_80520534@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_804296E0
-	li       r0, 1
-
-lbl_804296E0:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80429704
-	lis      r3, lbl_80499C70@ha
-	lis      r5, lbl_80499D04@ha
-	addi     r3, r3, lbl_80499C70@l
-	li       r4, 0x1c6
-	addi     r5, r5, lbl_80499D04@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80429704:
-	lwz      r3, 0x10(r31)
-	cmplwi   r3, 0
-	beq      lbl_80429718
-	lwz      r5, 0x18(r3)
-	b        lbl_8042971C
-
-lbl_80429718:
-	li       r5, 0
-
-lbl_8042971C:
-	lwz      r3, 0x4c(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x4c(r31)
-	li       r4, 0
-	lfs      f0, lbl_80520534@sda21(r2)
-	lwz      r12, 0(r3)
-	fsubs    f1, f0, f31
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2c(r31)
-	cmplwi   r3, 0
-	beq      lbl_80429768
-	lwz      r5, 0x18(r3)
-	b        lbl_8042976C
-
-lbl_80429768:
-	li       r5, 0
-
-lbl_8042976C:
-	lwz      r3, 0x4c(r31)
-	li       r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x4c(r31)
-	fmr      f1, f31
-	li       r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_804297BC
-
-lbl_804297A4:
-	addi     r3, r31, 4
-	fmr      f1, f2
-	lwz      r12, 4(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_804297BC:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	if (mIsBlendEnabled) {
+		mAnimators[0].animate(a2);
+		mAnimators[1].animate(a3);
+		mTimer += a1;
+		if (mTimer >= mTimeMax) {
+			mTimer = mTimeMax;
+			if (!mIsBlendFinished) {
+				mIsBlendFinished = true;
+				if (mMotionListener) {
+					KeyEvent event;
+					event.mFrame = mTimeMax;
+					event.mType  = KEYEVENT_END_BLEND;
+					mMotionListener->onKeyEvent(event);
+				}
+			}
+		}
+		setWeight(func->getValue(mTimer / mTimeMax));
+	} else {
+		mAnimators[0].animate(a2);
+	}
 }
 
 /*
@@ -1169,32 +509,10 @@ lbl_804297BC:
  */
 J3DMtxCalc* BlendAnimator::getCalc()
 {
-	if (_48 != 0) {
+	if (mIsBlendEnabled) {
 		return mMtxCalc;
 	}
 	return mAnimators[0].getCalc();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beq      lbl_80429804
-	lwz      r3, 0x4c(r3)
-	b        lbl_80429814
-
-lbl_80429804:
-	lwzu     r12, 4(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80429814:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1202,51 +520,18 @@ lbl_80429814:
  * Address:	80429824
  * Size:	00007C
  */
-void Joint::init(unsigned short index, SysShape::Model* model, J3DJoint* j3dJoint)
+void Joint::init(u16 index, Model* model, J3DJoint* j3dJoint)
 {
 	mJointIndex = index;
 	mModel      = model;
 	mJ3d        = j3dJoint;
-	_1C.x       = j3dJoint->mMin.x;
-	_1C.y       = j3dJoint->mMin.y;
-	_1C.z       = j3dJoint->mMin.z;
-	_28.x       = j3dJoint->mMax.x;
-	_28.y       = j3dJoint->mMax.y;
-	_28.z       = j3dJoint->mMax.z;
+	mMin.x      = j3dJoint->mMin.x;
+	mMin.y      = j3dJoint->mMin.y;
+	mMin.z      = j3dJoint->mMin.z;
+	mMax.x      = j3dJoint->mMax.x;
+	mMax.y      = j3dJoint->mMax.y;
+	mMax.z      = j3dJoint->mMax.z;
 	mName       = model->mJ3dModel->mModelData->mJointTree.mNametab->getName(mJointIndex);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	sth      r4, 0x38(r3)
-	stw      r5, 0x34(r3)
-	stw      r6, 0x18(r3)
-	lfs      f0, 0x3c(r6)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 0x40(r6)
-	stfs     f0, 0x20(r3)
-	lfs      f0, 0x44(r6)
-	stfs     f0, 0x24(r3)
-	lfs      f0, 0x48(r6)
-	stfs     f0, 0x28(r3)
-	lfs      f0, 0x4c(r6)
-	stfs     f0, 0x2c(r3)
-	lfs      f0, 0x50(r6)
-	stfs     f0, 0x30(r3)
-	lwz      r3, 8(r5)
-	lhz      r4, 0x38(r31)
-	lwz      r3, 4(r3)
-	lwz      r3, 0x54(r3)
-	bl       getName__10JUTNameTabCFUs
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1254,27 +539,14 @@ void Joint::init(unsigned short index, SysShape::Model* model, J3DJoint* j3dJoin
  * Address:	804298A0
  * Size:	000020
  */
-Matrixf* Joint::getWorldMatrix()
-{
-	return mModel->getJ3DModel()->mMtxBuffer->getWorldMatrix(mJointIndex);
-	/*
-	lwz      r4, 0x34(r3)
-	lhz      r0, 0x38(r3)
-	lwz      r3, 8(r4)
-	mulli    r0, r0, 0x30
-	lwz      r3, 0x84(r3)
-	lwz      r3, 0xc(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+Matrixf* Joint::getWorldMatrix() { return mModel->getJ3DModel()->mMtxBuffer->getWorldMatrix(mJointIndex); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void Joint::setCallback(SysShape::JointCallback* cb)
+void Joint::setCallback(JointCallback* cb)
 {
 	// UNUSED FUNCTION
 }
@@ -1294,7 +566,7 @@ void JointCallback::calc()
  * Address:	........
  * Size:	00005C
  */
-void AnimInfo::attach(SysShape::Model*, void*)
+void AnimInfo::attach(Model*, void*)
 {
 	// UNUSED FUNCTION
 }
@@ -1311,8 +583,8 @@ KeyEvent* AnimInfo::getLowestAnimKey(f32 minimumFrame)
 	KeyEvent* lowestKey = nullptr;
 	FOREACH_NODE(KeyEvent, mKeyEvent.mChild, key)
 	{
-		f32 frame = key->mFrame;
-		if (frame > minimumFrame && frame < lowestFrame) {
+		f32 frame = key->mFrame; // I have no clue
+		if ((int)minimumFrame > (int)frame && frame < lowestFrame) {
 			lowestKey   = key;
 			lowestFrame = frame;
 		}
@@ -1380,7 +652,7 @@ void AnimInfo::getLastLoopStart(f32)
  * Address:	8042992C
  * Size:	000028
  */
-KeyEvent* AnimInfo::getLastLoopStart(SysShape::KeyEvent* key)
+KeyEvent* AnimInfo::getLastLoopStart(KeyEvent* key)
 {
 	FOREACH_NODE_REVERSE(KeyEvent, key->mPrev, prev)
 	{
@@ -1389,22 +661,6 @@ KeyEvent* AnimInfo::getLastLoopStart(SysShape::KeyEvent* key)
 		}
 	}
 	return nullptr;
-	/*
-	lwz      r3, 8(r4)
-	b        lbl_80429944
-
-lbl_80429934:
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	beqlr
-	lwz      r3, 8(r3)
-
-lbl_80429944:
-	cmplwi   r3, 0
-	bne      lbl_80429934
-	li       r3, 0
-	blr
-	*/
 }
 
 /*
@@ -1412,7 +668,7 @@ lbl_80429944:
  * Address:	80429954
  * Size:	000028
  */
-KeyEvent* AnimInfo::getAnimKeyByType(unsigned long type)
+KeyEvent* AnimInfo::getAnimKeyByType(u32 type)
 {
 	FOREACH_NODE(KeyEvent, mKeyEvent.mChild, next)
 	{
@@ -1421,22 +677,6 @@ KeyEvent* AnimInfo::getAnimKeyByType(unsigned long type)
 		}
 	}
 	return nullptr;
-	/*
-	lwz      r3, 0x38(r3)
-	b        lbl_8042996C
-
-lbl_8042995C:
-	lwz      r0, 0x1c(r3)
-	cmplw    r0, r4
-	beqlr
-	lwz      r3, 4(r3)
-
-lbl_8042996C:
-	cmplwi   r3, 0
-	bne      lbl_8042995C
-	li       r3, 0
-	blr
-	*/
 }
 
 /*
@@ -1444,20 +684,7 @@ lbl_8042996C:
  * Address:	8042997C
  * Size:	000020
  */
-void AnimInfo::read(Stream& input)
-{
-	readEditor(input);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       readEditor__Q28SysShape8AnimInfoFR6Stream
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void AnimInfo::read(Stream& input) { readEditor(input); }
 
 /*
  * --INFO--
@@ -1466,8 +693,8 @@ void AnimInfo::read(Stream& input)
  */
 void AnimInfo::readEditor(Stream& input)
 {
-	_4C   = input.readString(nullptr, 0);
-	mName = input.readString(nullptr, 0);
+	mDevelopPath = input.readString(nullptr, 0);
+	mName        = input.readString(nullptr, 0);
 	while (input.eof() == 0) {
 		int frame = input.readInt();
 		if (frame == -1) {
@@ -1479,83 +706,6 @@ void AnimInfo::readEditor(Stream& input)
 		mKeyEvent.add(key);
 	}
 	JUT_PANICLINE(841, "reached eof\n");
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	li       r4, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl       readString__6StreamFPci
-	stw      r3, 0x4c(r28)
-	mr       r3, r29
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x14(r28)
-	b        lbl_80429A50
-
-lbl_804299EC:
-	mr       r3, r29
-	bl       readInt__6StreamFv
-	mr       r31, r3
-	cmpwi    r31, -1
-	beq      lbl_80429A88
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80429A34
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q28SysShape8KeyEvent@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q28SysShape8KeyEvent@l
-	li       r0, -1
-	stw      r4, 0(r30)
-	stw      r3, 0x18(r30)
-	stw      r3, 0x1c(r30)
-	sth      r0, 0x20(r30)
-
-lbl_80429A34:
-	stw      r31, 0x18(r30)
-	mr       r3, r29
-	bl       readInt__6StreamFv
-	stw      r3, 0x1c(r30)
-	mr       r4, r30
-	addi     r3, r28, 0x28
-	bl       add__5CNodeFP5CNode
-
-lbl_80429A50:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804299EC
-	lis      r3, lbl_80499C70@ha
-	lis      r5, lbl_80499D10@ha
-	addi     r3, r3, lbl_80499C70@l
-	li       r4, 0x349
-	addi     r5, r5, lbl_80499D10@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80429A88:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1576,144 +726,6 @@ AnimMgr* AnimMgr::load(char* path, J3DModelData* modelData, JKRFileLoader* fileL
 	mgr->load(input, modelData, fileLoader, nullptr);
 	delete[] data;
 	return mgr;
-	/*
-	stwu     r1, -0x450(r1)
-	mflr     r0
-	li       r6, 0
-	li       r8, 2
-	stw      r0, 0x454(r1)
-	li       r0, 0
-	li       r9, 0
-	li       r10, 0
-	stmw     r26, 0x438(r1)
-	mr       r28, r4
-	mr       r29, r5
-	li       r4, 0
-	li       r5, 0
-	stw      r0, 8(r1)
-	lwz      r7, sSystemHeap__7JKRHeap@sda21(r13)
-	bl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	or.      r30, r3, r3
-	bne      lbl_80429AF8
-	li       r3, 0
-	b        lbl_80429BD0
-
-lbl_80429AF8:
-	mr       r4, r30
-	addi     r3, r1, 0x10
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x1c(r1)
-	bne      lbl_80429B20
-	li       r0, 0
-	stw      r0, 0x424(r1)
-
-lbl_80429B20:
-	li       r3, 0x74
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80429BAC
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q28SysShape7AnimMgr@ha
-	addi     r27, r31, 0x1c
-	addi     r0, r3, __vt__Q28SysShape7AnimMgr@l
-	stw      r0, 0(r31)
-	mr       r3, r27
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q28SysShape8AnimInfo@ha
-	addi     r26, r27, 0x28
-	addi     r0, r3, __vt__Q28SysShape8AnimInfo@l
-	stw      r0, 0(r27)
-	mr       r3, r26
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q28SysShape8KeyEvent@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q28SysShape8KeyEvent@l
-	li       r0, -1
-	stw      r4, 0(r26)
-	stw      r3, 0x18(r26)
-	stw      r3, 0x1c(r26)
-	sth      r0, 0x20(r26)
-	stw      r3, 0x18(r27)
-	stw      r3, 0x1c(r27)
-	stw      r3, 0x50(r27)
-	stw      r3, 0x24(r27)
-	sth      r3, 0x70(r31)
-	stw      r3, 0x18(r31)
-	stw      r3, 0x2c(r31)
-	stw      r3, 0x28(r31)
-	stw      r3, 0x24(r31)
-	stw      r3, 0x20(r31)
-
-lbl_80429BAC:
-	mr       r3, r31
-	mr       r5, r28
-	mr       r6, r29
-	addi     r4, r1, 0x10
-	li       r7, 0
-	bl       load__Q28SysShape7AnimMgrFR6StreamP12J3DModelDataP13JKRFileLoaderPc
-	mr       r3, r30
-	bl       __dla__FPv
-	mr       r3, r31
-
-lbl_80429BD0:
-	lmw      r26, 0x438(r1)
-	lwz      r0, 0x454(r1)
-	mtlr     r0
-	addi     r1, r1, 0x450
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80429BE4
- * Size:	000084
- */
-AnimInfo::~AnimInfo()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80429C4C
-	lis      r3, __vt__Q28SysShape8AnimInfo@ha
-	addic.   r0, r30, 0x28
-	addi     r0, r3, __vt__Q28SysShape8AnimInfo@l
-	stw      r0, 0(r30)
-	beq      lbl_80429C30
-	lis      r4, __vt__Q28SysShape8KeyEvent@ha
-	addi     r3, r30, 0x28
-	addi     r0, r4, __vt__Q28SysShape8KeyEvent@l
-	li       r4, 0
-	stw      r0, 0x28(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80429C30:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80429C4C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80429C4C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1726,52 +738,6 @@ void AnimMgr::dump()
 	for (int i = 0; i < mCount; i++) {
 		getAnimByID(i)->mKeyEvent.getChildCount();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	b        lbl_80429CC4
-
-lbl_80429C88:
-	lwz      r3, 0x2c(r30)
-	b        lbl_80429CA4
-
-lbl_80429C90:
-	lha      r0, 0x20(r3)
-	cmpw     r31, r0
-	bne      lbl_80429CA0
-	b        lbl_80429CB0
-
-lbl_80429CA0:
-	lwz      r3, 4(r3)
-
-lbl_80429CA4:
-	cmplwi   r3, 0
-	bne      lbl_80429C90
-	li       r3, 0
-
-lbl_80429CB0:
-	lwzu     r12, 0x28(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-
-lbl_80429CC4:
-	lhz      r0, 0x70(r30)
-	cmpw     r31, r0
-	blt      lbl_80429C88
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1779,66 +745,9 @@ lbl_80429CC4:
  * Address:	........
  * Size:	0000CC
  */
-AnimMgr* AnimMgr::load(Stream&, SysShape::Model*, JKRFileLoader*, char*)
+AnimMgr* AnimMgr::load(Stream&, Model*, JKRFileLoader*, char*)
 {
 	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	80429CE8
- * Size:	0000A0
- */
-AnimMgr::~AnimMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80429D6C
-	lis      r3, __vt__Q28SysShape7AnimMgr@ha
-	addic.   r0, r30, 0x1c
-	addi     r0, r3, __vt__Q28SysShape7AnimMgr@l
-	stw      r0, 0(r30)
-	beq      lbl_80429D50
-	lis      r4, __vt__Q28SysShape8AnimInfo@ha
-	addic.   r3, r30, 0x44
-	addi     r0, r4, __vt__Q28SysShape8AnimInfo@l
-	stw      r0, 0x1c(r30)
-	beq      lbl_80429D44
-	lis      r4, __vt__Q28SysShape8KeyEvent@ha
-	addi     r0, r4, __vt__Q28SysShape8KeyEvent@l
-	stw      r0, 0x44(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_80429D44:
-	addi     r3, r30, 0x1c
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_80429D50:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80429D6C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80429D6C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1856,30 +765,9 @@ JointCallback::~JointCallback()
  * Address:	........
  * Size:	000004
  */
-void JointCallback::init(Vec const&, f32 const (&)[3][4])
+void JointCallback::init(Vec const&, const Mtx&)
 {
 	// UNUSED FUNCTION
 }
 
 } // namespace SysShape
-
-/*
- * --INFO--
- * Address:	80429D88
- * Size:	000028
- */
-void __sinit_sysShape_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EBDC8@ha
-	stw      r0, lbl_805161A0@sda21(r13)
-	stfsu    f0, lbl_804EBDC8@l(r3)
-	stfs     f0, lbl_805161A4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

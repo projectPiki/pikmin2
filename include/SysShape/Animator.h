@@ -48,6 +48,15 @@ struct Animator : public BaseAnimator {
 		}
 	}
 
+	inline J3DAnmTransform* getAnimation()
+	{
+		if (mAnimInfo) {
+			return mAnimInfo->mAnm;
+		} else {
+			return nullptr;
+		}
+	}
+
 	MotionListener* mListener; // _04
 	f32 mTimer;                // _08
 	AnimInfo* mAnimInfo;       // _0C
@@ -55,7 +64,7 @@ struct Animator : public BaseAnimator {
 	KeyEvent* mCurAnimKey;     // _14
 	u8 mFlags;                 // _18
 
-	static u8 verbose;
+	static bool verbose;
 };
 
 struct BlendFunction {
@@ -95,11 +104,11 @@ struct BlendAnimator : public BaseAnimator {
 	void setModelCalc(SysShape::Model* model) { model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = getCalc(); }
 
 	Animator mAnimators[2];          // _04
-	f32 _3C;                         // _3C
-	f32 _40;                         // _40
+	f32 mTimer;                      // _3C
+	f32 mTimeMax;                    // _40
 	MotionListener* mMotionListener; // _44
-	u8 _48;                          // _48
-	u8 _49;                          // _49
+	bool mIsBlendEnabled;            // _48
+	bool mIsBlendFinished;           // _49
 	J3DMtxCalc* mMtxCalc;            // _4C
 };
 

@@ -34,7 +34,7 @@ struct AnimInfo : public CNode {
 		mBasFile = nullptr;
 	}
 
-	virtual ~AnimInfo(); // _08 (weak)
+	virtual ~AnimInfo() { } // _08 (weak)
 
 	KeyEvent* getLowestAnimKey(f32 minimumFrame);
 	KeyEvent* getLastLoopStart(KeyEvent* key);
@@ -66,7 +66,7 @@ struct AnimInfo : public CNode {
 	s16 mId;                          // _20, anim ID
 	JAIAnimeFrameSoundData* mBasFile; // _24
 	KeyEvent mKeyEvent;               // _28
-	char* _4C;                        // _4C
+	char* mDevelopPath;               // _4C
 	AnimMgr* mMgr;                    // _50
 };
 } // namespace SysShape

@@ -20,7 +20,7 @@ struct J3DAnmLoaderDataBase {
 	void setResource(J3DAnmBase*, const void*);
 };
 
-enum J3DMtxCalcFlag {};
+enum J3DMtxCalcFlag { MTXCalc_0 };
 
 J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32, J3DAnmTransform*);
 J3DMtxCalc* J3DUNewMtxCalcAnm(unsigned long, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DMtxCalcFlag);

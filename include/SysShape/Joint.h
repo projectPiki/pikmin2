@@ -17,7 +17,7 @@ struct JointCallback;
 struct Joint : public CNode {
 	Joint();
 
-	virtual ~Joint(); // _08 (weak)
+	virtual ~Joint() { } // _08 (weak)
 
 	Matrixf* getWorldMatrix();
 	void init(u16 index, Model* model, J3DJoint* j3dJoint);
@@ -28,8 +28,8 @@ struct Joint : public CNode {
 	void setCallback(SysShape::JointCallback* cb);
 
 	J3DJoint* mJ3d;  // _18
-	Vector3f _1C;    // _1C
-	Vector3f _28;    // _28
+	Vector3f mMin;   // _1C
+	Vector3f mMax;   // _28
 	Model* mModel;   // _34
 	u16 mJointIndex; // _38
 };

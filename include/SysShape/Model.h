@@ -22,9 +22,9 @@ struct Model : public MtxObject {
 	Model(J3DModelData* data, u32 p2, u32 modelType);
 
 	virtual Matrixf* getMatrix(int jointIndex);                    // _08
-	virtual bool isModel();                                        // _0C (weak)
+	virtual bool isModel() { return true; }                        // _0C (weak)
 	virtual bool isVisible(Sys::Sphere& sphere);                   // _10
-	virtual bool isVisible();                                      // _14 (weak)
+	virtual bool isVisible() { return mIsVisible; }                // _14 (weak)
 	virtual void hide();                                           // _18
 	virtual void show();                                           // _1C
 	virtual void hidePackets();                                    // _20
@@ -44,7 +44,7 @@ struct Model : public MtxObject {
 	static void setViewCalcModeInd();
 	void viewCalc();
 	void setCurrentViewNo(u32 viewportNumber);
-	void isMtxImmediate();
+	u8 isMtxImmediate();
 
 	static void enableMaterialAnim(J3DModelData* data, int p2);
 

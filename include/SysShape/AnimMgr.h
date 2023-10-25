@@ -27,7 +27,7 @@ struct AnimMgr : public CNode {
 		mAnimInfo.clearRelations();
 	}
 
-	virtual ~AnimMgr(); // _08 (weak)
+	virtual ~AnimMgr() { } // _08 (weak)
 
 	void dump();
 	void load(Stream&, J3DModelData*, JKRFileLoader*, char*);
