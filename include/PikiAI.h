@@ -264,11 +264,11 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 struct ActBattleArg : public ActionArg {
 	virtual const char* getName() { return "ActBattleArg"; } // _08 (weak)
 
-	inline ActBattleArg(Game::Piki* piki) { mAggressor = piki; }
+	inline ActBattleArg(Game::Piki* p) { mAggressor = p; }
 
-	inline ActBattleArg(Game::Piki* piki, bool start)
+	inline ActBattleArg(Game::Piki* p, bool start)
 	{
-		mAggressor     = piki;
+		mAggressor     = p;
 		mIsAttackStart = start;
 	}
 
@@ -309,8 +309,8 @@ struct ActBattle : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActBoreBase : public Action, virtual SysShape::MotionListener {
-	ActBoreBase(Game::Piki* piki)
-	    : Action(piki)
+	ActBoreBase(Game::Piki* p)
+	    : Action(p)
 	{
 	}
 
@@ -440,7 +440,7 @@ struct ActBridgeArg : public ActionArg {
 struct ActBridge : public Action, virtual SysShape::MotionListener {
 	ActBridge(Game::Piki* p);
 
-	virtual void init(PikiAI::ActionArg*);                                 // _08
+	virtual void init(PikiAI::ActionArg* settings);                        // _08
 	virtual int exec();                                                    // _0C
 	virtual void cleanup();                                                // _10
 	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24
@@ -828,9 +828,9 @@ struct GatherActionArg : public ActionArg {
 struct ActGather : public Action {
 	ActGather(Game::Piki* p);
 
-	virtual void cleanup();                // _08
-	virtual int exec();                    // _0C
-	virtual void init(PikiAI::ActionArg*); // _10
+	virtual void cleanup();                         // _08
+	virtual int exec();                             // _0C
+	virtual void init(PikiAI::ActionArg* settings); // _10
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -850,9 +850,9 @@ struct GotoPosActionArg : public ActionArg {
 struct ActGotoPos : public Action {
 	ActGotoPos(Game::Piki* p);
 
-	virtual void init(PikiAI::ActionArg*); // _08
-	virtual int exec();                    // _0C
-	virtual void cleanup();                // _10
+	virtual void init(PikiAI::ActionArg* settings); // _08
+	virtual int exec();                             // _0C
+	virtual void cleanup();                         // _10
 
 	// _00     = VTBL
 	// _00-_0C = Action

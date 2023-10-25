@@ -69,10 +69,11 @@ struct Mgr;
 }
 } // namespace Game
 
+#define SINGLE_FRAME_LENGTH (1.0f / 60.0f) // 0.016666668f
+
 struct System : public OSMutex {
 	enum ERenderMode { NTSC_Standard = 0, NTSC_Progressive, PAL_Standard, PAL_60Hz };
 
-#define SINGLE_FRAME_LENGTH (1.0f / 60.0f)
 	enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
 	struct FragmentationChecker {
 		FragmentationChecker(char*, bool);
@@ -104,7 +105,7 @@ struct System : public OSMutex {
 	void construct();
 	void constructWithDvdAccessFirst();
 	void constructWithDvdAccessSecond();
-	void createRomFont(struct JKRHeap*);
+	void createRomFont(struct JKRHeap* heap);
 	void destroyRomFont();
 	void loadResourceFirst();
 	void loadResourceSecond();
@@ -113,10 +114,10 @@ struct System : public OSMutex {
 	void clearOptionBlockSaveFlag();
 	void setOptionBlockSaveFlag();
 	Game::CommonSaveData::Mgr* getPlayCommonData();
-	void dvdLoadUseCallBack(struct DvdThreadCommand*, struct IDelegate*);
+	void dvdLoadUseCallBack(struct DvdThreadCommand* cmd, struct IDelegate* delegate);
 	void deleteThreads();
-	struct JFWDisplay* setCurrentDisplay(struct JFWDisplay*);
-	u32 clearCurrentDisplay(struct JFWDisplay*);
+	struct JFWDisplay* setCurrentDisplay(struct JFWDisplay* currentDisplay);
+	struct JFWDisplay* clearCurrentDisplay(struct JFWDisplay* display);
 	bool beginFrame();
 	void endFrame();
 	void beginRender();

@@ -487,7 +487,7 @@ System::System()
     , mGameFlow(nullptr)
     , mDvdStatus(nullptr)
     , mDisplay(nullptr)
-    , mDeltaTime(0.016666668f)
+    , mDeltaTime(SINGLE_FRAME_LENGTH)
     , mPlayData(nullptr)
     , mFpsFactor(1.0f)
     , mRegion(System::LANG_ENGLISH)
@@ -1226,12 +1226,13 @@ JFWDisplay* System::setCurrentDisplay(JFWDisplay* display)
  * Address:	80423080
  * Size:	00001C
  */
-u32 System::clearCurrentDisplay(JFWDisplay* display)
+JFWDisplay* System::clearCurrentDisplay(JFWDisplay* display)
 {
 	if (mDisplay == display) {
 		mDisplay = nullptr;
 	}
-	return 0;
+
+	return nullptr;
 }
 
 /*
