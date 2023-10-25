@@ -1,4 +1,5 @@
 #include "ebi/Screen/TScreenBase.h"
+#include "ebi/Progre.h"
 #include "types.h"
 
 /*

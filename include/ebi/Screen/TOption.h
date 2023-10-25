@@ -67,7 +67,7 @@ struct TOption : public TScreenBase {
 	virtual void doDraw();                  // _44
 	virtual char* getName();                // _48
 
-	void initScreen_() const;
+	void initScreen_();
 	void setOptionParamToScreen_();
 	void loadResource();
 	void setController(Controller*);
@@ -77,9 +77,9 @@ struct TOption : public TScreenBase {
 	Controller* mController;                // _00C
 	u8 _010;                                // _010
 	EUTPadInterface_countNum mInputBgmVol;  // _014
-	EUTPadInterface_countNum mInputSfxVol;  // _014
-	EUTPadInterface_countNum mInputStereo;  // _014
-	EUTPadInterface_countNum mInputMainSel; // _014
+	EUTPadInterface_countNum mInputSfxVol;  // _040
+	EUTPadInterface_countNum mInputStereo;  // _06C
+	EUTPadInterface_countNum mInputMainSel; // _098
 	int _0C4;                               // _0C4
 	TOptionParameter mOptionParamA;         // _0C8
 	TOptionParameter mOptionParamB;         // _0DC

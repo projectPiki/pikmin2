@@ -2209,10 +2209,10 @@ void TOption::loadResource()
 void TOption::setController(Controller* controller)
 {
 	mController = controller;
-	mPadInterfaces[0].init(controller, 0, 10, &_0C8.mBgmVolume, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
-	mPadInterfaces[1].init(controller, 0, 10, &_0C8.mSeVolume, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
-	mPadInterfaces[2].init(controller, 0, 2, &_0C8.mSoundMode, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
-	mPadInterfaces[3].init(controller, 0, 6, &_104, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
+	mInputBgmVol.init(controller, 0, 10, &mOptionParamA.mBgmVolume, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
+	mInputSfxVol.init(controller, 0, 10, &mOptionParamA.mSeVolume, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
+	mInputStereo.init(controller, 0, 2, &mOptionParamA.mSoundMode, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
+	mInputMainSel.init(controller, 0, 6, &_104, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -2273,7 +2273,7 @@ blr
  * Address:	803CC8BC
  * Size:	000174
  */
-void TOption::initScreen_() const
+void TOption::initScreen_()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -2678,7 +2678,7 @@ void TOption::setOptionParamToScreen_()
 	// 	break;
 	// }
 #else
-	if (_0C8.mIsRumble) {
+	if (mOptionParamA.mIsRumble) {
 		_110->mCharColor     = _1C4.mCol1;
 		_110->mGradientColor = _1C4.mCol2;
 		_110->setWhite(_1C4.mWhite);
@@ -2697,7 +2697,7 @@ void TOption::setOptionParamToScreen_()
 		_114->setWhite(_1C4.mWhite);
 		_114->setBlack(_1C4.mBlack);
 	}
-	switch (_0C8.mSoundMode) {
+	switch (mOptionParamA.mSoundMode) {
 	case 0:
 		_118->mCharColor     = _1C4.mCol1;
 		_118->mGradientColor = _1C4.mCol2;
@@ -2745,7 +2745,7 @@ void TOption::setOptionParamToScreen_()
 	}
 #endif
 	for (int i = 0; i < 10; i++) {
-		if (i < _0C8.mBgmVolume) {
+		if (i < mOptionParamA.mBgmVolume) {
 			_154[i]->mIsVisible = true;
 			_154[i]->setAlpha(0xff);
 		} else {
@@ -2753,14 +2753,14 @@ void TOption::setOptionParamToScreen_()
 		}
 	}
 	for (int i = 0; i < 10; i++) {
-		if (i < _0C8.mSeVolume) {
+		if (i < mOptionParamA.mSeVolume) {
 			_12C[i]->mIsVisible = true;
 			_12C[i]->setAlpha(0xff);
 		} else {
 			_12C[i]->mIsVisible = false;
 		}
 	}
-	// if (_0C8.mIsDeflicker) {
+	// if (mOptionParamA.mIsDeflicker) {
 	// 	_124->_104.channels = JUtility::TColor(_1C4._00).channels;
 	// 	_124->_108.channels = JUtility::TColor(_1C4._04).channels;
 	// 	_124->setWhite(JUtility::TColor(_1C4.mWhite));
@@ -2779,7 +2779,7 @@ void TOption::setOptionParamToScreen_()
 	// 	_128->setWhite(JUtility::TColor(_1C4.mWhite));
 	// 	_128->setBlack(JUtility::TColor(_1C4.mBlack));
 	// }
-	if (_0C8.mUseDeflicker) {
+	if (mOptionParamA.mUseDeflicker) {
 		_124->mCharColor     = _1C4.mCol1;
 		_124->mGradientColor = _1C4.mCol2;
 		_124->setWhite(_1C4.mWhite);
@@ -2802,7 +2802,7 @@ void TOption::setOptionParamToScreen_()
 	case 0:
 		break;
 	case 1:
-		if (_0C8.mIsRumble) {
+		if (mOptionParamA.mIsRumble) {
 			_240.mPane = _110;
 		} else {
 			_240.mPane = _114;
@@ -2810,27 +2810,27 @@ void TOption::setOptionParamToScreen_()
 		_28C.mPane = nullptr;
 		break;
 	case 2:
-		_240.mPane = _118 + _0C8.mSoundMode;
+		_240.mPane = _118 + mOptionParamA.mSoundMode;
 		_28C.mPane = nullptr;
 		break;
 	case 3:
 		_240.mPane = nullptr;
-		if (_0C8.mBgmVolume == 0) {
+		if (mOptionParamA.mBgmVolume == 0) {
 			_28C.mPane = nullptr;
 		} else {
-			_28C.mPane = _12C[9 + _0C8.mBgmVolume];
+			_28C.mPane = _12C[9 + mOptionParamA.mBgmVolume];
 		}
 		break;
 	case 4:
 		_240.mPane = nullptr;
-		if (_0C8.mSeVolume == 0) {
+		if (mOptionParamA.mSeVolume == 0) {
 			_28C.mPane = nullptr;
 		} else {
-			_28C.mPane = _128 + _0C8.mSeVolume;
+			_28C.mPane = _128 + mOptionParamA.mSeVolume;
 		}
 		break;
 	case 5:
-		if (_0C8.mUseDeflicker) {
+		if (mOptionParamA.mUseDeflicker) {
 			_240.mPane = _124;
 		} else {
 			_240.mPane = _128;
