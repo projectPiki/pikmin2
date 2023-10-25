@@ -26,6 +26,20 @@ void FSMStateMachine::init(TMgr* mgr)
 
 /*
  * --INFO--
+ * Address:	803EEDB8
+ * Size:	00002C
+ */
+void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
+
+/*
+ * --INFO--
+ * Address:	803EEDE4
+ * Size:	00002C
+ */
+void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
+
+/*
+ * --INFO--
  * Address:	803EEE10
  * Size:	0000DC
  */
