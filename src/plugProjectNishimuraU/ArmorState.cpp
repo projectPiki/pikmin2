@@ -883,8 +883,8 @@ void StateAttack1::cleanup(EnemyBase* enemy) { }
  */
 void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	static_cast<Obj*>(enemy)->mAttackLoopTime = 0.0f;
-	enemy->mTargetVelocity                    = Vector3f(0.0f);
+	OBJ(enemy)->mAttackLoopTime = 0.0f;
+	enemy->mTargetVelocity      = Vector3f(0.0f);
 	enemy->startMotion(ARMORANIM_Attack2, nullptr);
 }
 

@@ -111,7 +111,7 @@ Obj* Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count, Vector3f& vel
 {
 	EnemyBase* enemy = EnemyMgrBase::birth(birthArg);
 	if (enemy) {
-		Obj* leader = static_cast<Obj*>(enemy);
+		Obj* leader = OBJ(enemy);
 		leader->init(nullptr);
 		leader->setTypeBall();
 		leader->setVelocity(velocity);
@@ -172,7 +172,7 @@ void Mgr::createGroup(Obj* leader, int count, bool check)
 
 		EnemyBase* enemy = EnemyMgrBase::birth(birthArg);
 		if (enemy) {
-			Obj* tamagomushi = static_cast<Obj*>(enemy);
+			Obj* tamagomushi = OBJ(enemy);
 			tamagomushi->init(nullptr);
 			if (check) {
 				Vector3f leaderVelocity = leader->getVelocity();

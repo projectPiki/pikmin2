@@ -33,7 +33,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	houdai->forceFinishIKMotion();
 	houdai->deathProcedure();
 	houdai->mTargetVelocity = Vector3f(0.0f);
@@ -54,7 +54,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	if (houdai->mCurAnim->mIsPlaying && (u32)houdai->mCurAnim->mType == KEYEVENT_END) {
 		houdai->throwupItem();
 		houdai->finishChimneyEffect();
@@ -80,7 +80,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai        = static_cast<Obj*>(enemy);
+	Obj* houdai        = OBJ(enemy);
 	houdai->mNextState = HOUDAI_NULL;
 	houdai->enableEvent(0, EB_BitterImmune);
 	houdai->disableEvent(0, EB_Animating);
@@ -97,7 +97,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateStay::exec(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	if (!houdai->isEvent(0, EB_TakingDamage)) {
 		bool isTarget;
 		f32 detectRadius = static_cast<Parms*>(houdai->mParms)->mGeneral.mPrivateRadius.mValue;
@@ -131,7 +131,7 @@ void StateStay::cleanup(EnemyBase* enemy) { }
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai        = static_cast<Obj*>(enemy);
+	Obj* houdai        = OBJ(enemy);
 	houdai->mNextState = HOUDAI_NULL;
 	houdai->enableEvent(0, EB_BitterImmune);
 	houdai->enableEvent(0, EB_Animating);
@@ -155,7 +155,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateLand::exec(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	if (houdai->isStopMotion()) {
 		bool isTarget;
 		f32 detectRadius = static_cast<Parms*>(houdai->mParms)->mGeneral.mPrivateRadius.mValue;
@@ -224,7 +224,7 @@ void StateLand::exec(EnemyBase* enemy)
  */
 void StateLand::cleanup(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	houdai->disableEvent(0, EB_BitterImmune);
 	houdai->startProgramedIK();
 	houdai->startSteamEffect(true);
@@ -238,7 +238,7 @@ void StateLand::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai             = static_cast<Obj*>(enemy);
+	Obj* houdai             = OBJ(enemy);
 	houdai->mNextState      = HOUDAI_NULL;
 	houdai->mStateTimer     = 0.0f;
 	houdai->mStateDuration  = 1.5f + randWeightFloat(1.5f);
@@ -254,7 +254,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	houdai->mStateTimer += sys->mDeltaTime;
 
 	if (houdai->mHealth <= 0.0f) {
@@ -290,7 +290,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai             = static_cast<Obj*>(enemy);
+	Obj* houdai             = OBJ(enemy);
 	houdai->mNextState      = HOUDAI_NULL;
 	houdai->mStateTimer     = 0.0f;
 	houdai->mTargetCreature = nullptr;
@@ -306,7 +306,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	if (houdai->mCurAnim->mIsPlaying) {
 		if ((u32)houdai->mCurAnim->mType == KEYEVENT_2) {
 			houdai->startChimneyEffect();
@@ -339,7 +339,7 @@ void StateFlick::exec(EnemyBase* enemy)
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	houdai->finishBlendMotion();
 }
 
@@ -350,7 +350,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai             = static_cast<Obj*>(enemy);
+	Obj* houdai             = OBJ(enemy);
 	houdai->mNextState      = HOUDAI_NULL;
 	houdai->mStateTimer     = 0.0f;
 	houdai->mStateDuration  = 3.5f + randWeightFloat(3.5f);
@@ -367,7 +367,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	houdai->getTargetPosition();
 	houdai->mStateTimer += sys->mDeltaTime;
 
@@ -400,7 +400,7 @@ void StateWalk::cleanup(EnemyBase* enemy) { }
  */
 void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* houdai         = static_cast<Obj*>(enemy);
+	Obj* houdai         = OBJ(enemy);
 	houdai->mNextState  = HOUDAI_NULL;
 	houdai->mStateTimer = 0.0f;
 	houdai->setTargetPattern();
@@ -422,7 +422,7 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateShot::exec(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 
 	if (houdai->isStopMotion()) {
 		if (houdai->mShotGunState != 0) {
@@ -524,7 +524,7 @@ void StateShot::exec(EnemyBase* enemy)
  */
 void StateShot::cleanup(EnemyBase* enemy)
 {
-	Obj* houdai = static_cast<Obj*>(enemy);
+	Obj* houdai = OBJ(enemy);
 	houdai->finishBlendMotion();
 	houdai->finishBossAttackLoopBGM();
 }

@@ -40,7 +40,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	kurage->disableEvent(0, EB_Cullable);
 	kurage->disableEvent(0, EB_DamageAnimEnabled);
 	kurage->mTargetVelocity = Vector3f(0.0f);
@@ -65,7 +65,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	f32 frame   = kurage->getMotionFrame();
 	if (frame > 30.0f) {
 		kurage->flickStickNavi(true);
@@ -110,7 +110,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	kurage->mNextState  = ONIKURAGE_NULL;
 	kurage->mStateTimer = 0.0f;
 	kurage->enableEvent(0, EB_Untargetable);
@@ -126,7 +126,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	f32 movePitchOffset = kurage->getMovePitchOffset();
 	f32 val             = kurage->setHeightVelocity(movePitchOffset, 0.0f);
 
@@ -172,7 +172,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	kurage->mNextState  = ONIKURAGE_NULL;
 	kurage->mStateTimer = 0.0f;
 	kurage->setRandTarget();
@@ -189,7 +189,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	f32 movePitchOffset = kurage->getMovePitchOffset();
 	f32 val             = kurage->setHeightVelocity(movePitchOffset, 0.0f);
 
@@ -248,7 +248,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	kurage->enableEvent(0, EB_Untargetable);
 	kurage->mNextState = ONIKURAGE_NULL;
 	kurage->setEmotionExcitement();
@@ -264,7 +264,7 @@ void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateChase::exec(EnemyBase* enemy)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	f32 movePitchOffset = kurage->getMovePitchOffset();
 	f32 val             = kurage->setHeightVelocity(movePitchOffset, 0.0f);
 
@@ -313,7 +313,7 @@ void StateChase::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	kurage->enableEvent(0, EB_Untargetable);
 	kurage->mNextState  = ONIKURAGE_NULL;
 	kurage->mStateTimer = 0.0f;
@@ -332,7 +332,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	if ((kurage->mHealth <= 0.0f || kurage->isFinishNaviSuck())
 	    && (kurage->isNaviSucked() || kurage->mStateTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mSuckTime.mValue
 	        || kurage->mFallTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mShakeTime.mValue)) {
@@ -406,7 +406,7 @@ void StateAttack::exec(EnemyBase* enemy)
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	Obj* kurage        = static_cast<Obj*>(enemy);
+	Obj* kurage        = OBJ(enemy);
 	kurage->mIsSucking = false;
 	kurage->disableEvent(0, EB_NoInterrupt);
 	kurage->enableEvent(0, EB_Cullable);
@@ -420,7 +420,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	kurage->mNextState  = ONIKURAGE_NULL;
 	kurage->mStateTimer = 0.0f;
 	kurage->enableEvent(0, EB_Untargetable);
@@ -436,7 +436,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	if (kurage->isFlying()) {
 		f32 timer = kurage->mStateTimer;
 		kurage->setHeightVelocity(kurage->getFallPitchOffset(timer), 0.0f);
@@ -477,7 +477,7 @@ void StateFall::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	kurage->mNextState  = ONIKURAGE_NULL;
 	kurage->mStateTimer = 0.0f;
 	kurage->disableEvent(0, EB_Untargetable);
@@ -494,7 +494,7 @@ void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDrop::exec(EnemyBase* enemy)
 {
-	Obj* kurage       = static_cast<Obj*>(enemy);
+	Obj* kurage       = OBJ(enemy);
 	Vector3f position = kurage->getPosition();
 	Vector3f velocity = kurage->getVelocity();
 
@@ -527,7 +527,7 @@ void StateDrop::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	kurage->mStateTimer = 0.0f;
 	kurage->disableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
@@ -547,7 +547,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateLand::exec(EnemyBase* enemy)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	if (kurage->mCurAnim->mIsPlaying && (u32)kurage->mCurAnim->mType == KEYEVENT_END) {
 		if (kurage->mHealth <= 0.0f) {
 			transit(kurage, ONIKURAGE_Dead, nullptr);
@@ -571,7 +571,7 @@ void StateLand::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	kurage->mNextState  = ONIKURAGE_NULL;
 	kurage->mStateTimer = 0.0f;
 	kurage->disableEvent(0, EB_Untargetable);
@@ -587,7 +587,7 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTakeOff::exec(EnemyBase* enemy)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	if (kurage->isFlying()) {
 		kurage->setHeightVelocity(kurage->getTakeOffPitchOffset(), 0.0f);
 	}
@@ -620,7 +620,7 @@ void StateTakeOff::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	kurage->mStateTimer = 0.0f;
 	kurage->disableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
@@ -635,7 +635,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateGround::exec(EnemyBase* enemy)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	if (kurage->mHealth <= 0.0f || kurage->mStuckPikminCount == 0
 	    || kurage->mStateTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mGroundTime.mValue) {
 		kurage->finishMotion();
@@ -668,7 +668,7 @@ void StateGround::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	kurage->enableEvent(0, EB_Untargetable);
 	kurage->mNextState      = ONIKURAGE_NULL;
 	kurage->mTargetVelocity = Vector3f(0.0f);
@@ -688,7 +688,7 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlyFlick::exec(EnemyBase* enemy)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	f32 val     = kurage->setHeightVelocity(kurage->getFlickPitchOffset(), 0.0f);
 	if (kurage->mCurAnim->mIsPlaying) {
 		if ((u32)kurage->mCurAnim->mType == KEYEVENT_2) {
@@ -728,7 +728,7 @@ void StateFlyFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kurage         = static_cast<Obj*>(enemy);
+	Obj* kurage         = OBJ(enemy);
 	kurage->mStateTimer = 0.0f;
 	kurage->disableEvent(0, EB_Untargetable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
@@ -748,7 +748,7 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateGroundFlick::exec(EnemyBase* enemy)
 {
-	Obj* kurage = static_cast<Obj*>(enemy);
+	Obj* kurage = OBJ(enemy);
 	if (kurage->getMotionFrame() > 25.0f) {
 		kurage->flickStickNavi(false);
 	}

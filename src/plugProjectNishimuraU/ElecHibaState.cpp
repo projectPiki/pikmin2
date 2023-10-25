@@ -27,7 +27,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* elecHiba = static_cast<Obj*>(enemy);
+	Obj* elecHiba = OBJ(enemy);
 
 	elecHiba->enableEvent(0, EB_Untargetable);
 	elecHiba->disableEvent(0, EB_LifegaugeVisible);
@@ -93,7 +93,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* elecHiba     = static_cast<Obj*>(enemy);
+	Obj* elecHiba     = OBJ(enemy);
 	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
 
 	if (arg) {
@@ -117,7 +117,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* elecHiba = static_cast<Obj*>(enemy);
+	Obj* elecHiba = OBJ(enemy);
 
 	elecHiba->mWaitTimer += sys->mDeltaTime;
 
@@ -146,7 +146,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* elecHiba = static_cast<Obj*>(enemy);
+	Obj* elecHiba = OBJ(enemy);
 
 	elecHiba->mWaitTimer = 0.0f;
 	elecHiba->disableEvent(0, EB_Cullable);
@@ -167,7 +167,7 @@ void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSign::exec(EnemyBase* enemy)
 {
-	Obj* elecHiba = static_cast<Obj*>(enemy);
+	Obj* elecHiba = OBJ(enemy);
 
 	elecHiba->mWaitTimer += sys->mDeltaTime;
 	elecHiba->getJAIObject()->startSound(PSSE_EN_ELEC_HIBA_CHARGE, 0);
@@ -191,7 +191,7 @@ void StateSign::exec(EnemyBase* enemy)
  */
 void StateSign::cleanup(EnemyBase* enemy)
 {
-	Obj* elecHiba = static_cast<Obj*>(enemy);
+	Obj* elecHiba = OBJ(enemy);
 
 	elecHiba->enableEvent(0, EB_Cullable);
 
@@ -208,7 +208,7 @@ void StateSign::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* elecHiba = static_cast<Obj*>(enemy);
+	Obj* elecHiba = OBJ(enemy);
 
 	elecHiba->mWaitTimer = 0.0f;
 	elecHiba->disableEvent(0, EB_Cullable);
@@ -230,7 +230,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	Obj* elecHiba = static_cast<Obj*>(enemy);
+	Obj* elecHiba = OBJ(enemy);
 
 	elecHiba->mWaitTimer += sys->mDeltaTime;
 
@@ -261,7 +261,7 @@ void StateAttack::exec(EnemyBase* enemy)
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	Obj* elecHiba = static_cast<Obj*>(enemy);
+	Obj* elecHiba = OBJ(enemy);
 
 	elecHiba->enableEvent(0, EB_Cullable);
 

@@ -73,7 +73,7 @@ void StateDead::cleanup(EnemyBase*) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->_2C4            = 0.0f;
 	ota->mEscapeSfxTimer = 0.0f;
@@ -92,7 +92,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 	if (ota->_2C4 > static_cast<Parms*>(ota->mParms)->mProperParms.mFp10.mValue) {
 		ota->finishMotion();
 	}
@@ -153,7 +153,7 @@ void StateFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->mEscapeSfxTimer = 0.0f;
 	ota->mTargetVelocity = Vector3f(0.0f);
@@ -168,7 +168,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 	if (ota->isMovePositionSet(false)) {
 		Vector3f movePos = ota->mMovePosition;
 		Vector3f pos     = ota->getPosition();
@@ -216,7 +216,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota        = static_cast<Obj*>(enemy);
+	Obj* ota        = OBJ(enemy);
 	ota->mNextState = OTA_Null;
 	ota->setEmotionExcitement();
 	ota->startMotion(OTAKARAANIM_Move, nullptr);
@@ -229,7 +229,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 	if (ota->isMovePositionSet(false)) {
 		Vector3f movePos = Vector3f(ota->mMovePosition);
 		Vector3f pos     = ota->getPosition();
@@ -287,7 +287,7 @@ void StateMove::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->mTargetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
@@ -301,7 +301,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 	if (ota->isMovePositionSet(false)) {
 		Vector2f XZ;
 		XZ.x          = ota->mMovePosition.x;
@@ -354,7 +354,7 @@ void StateTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateTake::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->mEscapeSfxTimer = 0.0f;
 	ota->setEmotionExcitement();
@@ -368,7 +368,7 @@ void StateTake::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTake::exec(EnemyBase* enemy)
 {
-	Obj* ota         = static_cast<Obj*>(enemy);
+	Obj* ota         = OBJ(enemy);
 	Vector3f movePos = Vector3f(ota->mMovePosition);
 	Parms* parms     = static_cast<Parms*>(ota->mParms);
 	EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
@@ -407,7 +407,7 @@ void StateTake::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateItemWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->mEscapeSfxTimer = 0.0f;
 	ota->mTargetVelocity = Vector3f(0.0f);
@@ -421,7 +421,7 @@ void StateItemWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateItemWait::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 	if (ota->isMovePositionSet(true)) {
 		Vector3f movePos = ota->mMovePosition;
 		Vector3f pos     = ota->getPosition();
@@ -469,7 +469,7 @@ void StateItemWait::cleanup(EnemyBase* enemy) { }
  */
 void StateItemMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota        = static_cast<Obj*>(enemy);
+	Obj* ota        = OBJ(enemy);
 	ota->mNextState = OTA_Null;
 	ota->setEmotionExcitement();
 	ota->startMotion(OTAKARAANIM_ItemMove, nullptr);
@@ -482,7 +482,7 @@ void StateItemMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateItemMove::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 
 	if (ota->isMovePositionSet(true)) {
 		Vector3f movePos = Vector3f(ota->mMovePosition);
@@ -544,7 +544,7 @@ void StateItemMove::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateItemTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->mTargetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
@@ -558,7 +558,7 @@ void StateItemTurn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateItemTurn::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 
 	if (ota->isMovePositionSet(true)) {
 		Vector2f XZ;
@@ -613,7 +613,7 @@ void StateItemTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateItemFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->_2C4            = 0.0f;
 	ota->mEscapeSfxTimer = 0.0f;
@@ -631,7 +631,7 @@ void StateItemFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateItemFlick::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 	if (ota->_2C4 > static_cast<Parms*>(ota->mParms)->mProperParms.mFp11.mValue) {
 		ota->finishMotion();
 	}
@@ -688,7 +688,7 @@ void StateItemFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateItemDrop::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->mEscapeSfxTimer = 0.0f;
 	ota->mTargetVelocity = Vector3f(0.0f);
@@ -703,7 +703,7 @@ void StateItemDrop::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateItemDrop::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 
 	EnemyAnimKeyEvent* event = ota->mCurAnim;
 	if (event->mIsPlaying) {
@@ -743,7 +743,7 @@ void StateItemDrop::exec(EnemyBase* enemy)
  */
 void StateItemDrop::cleanup(EnemyBase* enemy)
 {
-	Obj* ota  = static_cast<Obj*>(enemy);
+	Obj* ota  = OBJ(enemy);
 	ota->_2E8 = 0.0f;
 	ota->setEmotionCaution();
 }
@@ -755,7 +755,7 @@ void StateItemDrop::cleanup(EnemyBase* enemy)
  */
 void StateBombWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->_2E8            = 0.0f;
 	ota->mTargetVelocity = Vector3f(0.0f);
@@ -769,7 +769,7 @@ void StateBombWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBombWait::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 
 	if (ota->mTargetCreature == nullptr) {
 		ota->kill(nullptr);
@@ -812,7 +812,7 @@ void StateBombWait::cleanup(EnemyBase* enemy) { }
  */
 void StateBombMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota        = static_cast<Obj*>(enemy);
+	Obj* ota        = OBJ(enemy);
 	ota->mNextState = OTA_Null;
 	ota->setEmotionExcitement();
 	ota->startMotion(OTAKARAANIM_ItemMove, nullptr);
@@ -825,7 +825,7 @@ void StateBombMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBombMove::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 
 	if (ota->mTargetCreature == nullptr) {
 		ota->kill(nullptr);
@@ -875,7 +875,7 @@ void StateBombMove::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateBombTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota             = static_cast<Obj*>(enemy);
+	Obj* ota             = OBJ(enemy);
 	ota->mNextState      = OTA_Null;
 	ota->mTargetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
@@ -889,7 +889,7 @@ void StateBombTurn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBombTurn::exec(EnemyBase* enemy)
 {
-	Obj* ota = static_cast<Obj*>(enemy);
+	Obj* ota = OBJ(enemy);
 
 	if (ota->mTargetCreature == nullptr) {
 		ota->kill(nullptr);

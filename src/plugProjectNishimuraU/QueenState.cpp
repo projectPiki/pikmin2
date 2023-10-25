@@ -31,7 +31,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	queen->createDeadEffect();
 	queen->mTargetVelocity = Vector3f(0.0f);
 	queen->deathProcedure();
@@ -45,7 +45,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	if (queen->mCurAnim->mIsPlaying != 0) {
 		if ((u32)queen->mCurAnim->mType == KEYEVENT_2) {
 			Vector3f position = queen->getPosition();
@@ -72,7 +72,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* queen              = static_cast<Obj*>(enemy);
+	Obj* queen              = OBJ(enemy);
 	queen->mNextState       = QUEEN_NULL;
 	queen->mIsAttackLoopBGM = false;
 	queen->mWaitTimer       = 0.0f;
@@ -89,7 +89,7 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSleep::exec(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	if ((queen->mHealth <= 0.0f) || (queen->isHitCounterUp()) || (queen->isCreateBaby())) {
 		queen->finishMotion();
 	}
@@ -126,7 +126,7 @@ void StateSleep::exec(EnemyBase* enemy)
  */
 void StateSleep::cleanup(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	queen->hardConstraintOff();
 	queen->finishSleepEffect();
 	queen->setMidBossAppearBGM();
@@ -139,7 +139,7 @@ void StateSleep::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* queen              = static_cast<Obj*>(enemy);
+	Obj* queen              = OBJ(enemy);
 	queen->mNextState       = QUEEN_NULL;
 	queen->mIsAttackLoopBGM = false;
 	queen->mWaitTimer       = 0.0f;
@@ -156,7 +156,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	if (!queen->isCreateBaby() && (queen->mWaitTimer > 30.0f)) {
 		queen->mNextState = QUEEN_Sleep;
 		queen->finishMotion();
@@ -203,7 +203,7 @@ void StateWait::cleanup(EnemyBase* enemy) { enemy->hardConstraintOff(); }
  */
 void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* queen              = static_cast<Obj*>(enemy);
+	Obj* queen              = OBJ(enemy);
 	queen->mNextState       = QUEEN_NULL;
 	queen->mIsAttackLoopBGM = false;
 	queen->mWaitTimer       = 0.0f;
@@ -221,7 +221,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDamage::exec(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 
 	if (queen->isCreateBaby()) {
 		queen->mNextState = QUEEN_Born;
@@ -255,7 +255,7 @@ void StateDamage::exec(EnemyBase* enemy)
  */
 void StateDamage::cleanup(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	queen->hardConstraintOff();
 	queen->finishDamageEffect();
 	queen->setEmotionCaution();
@@ -268,7 +268,7 @@ void StateDamage::cleanup(EnemyBase* enemy)
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* queen              = static_cast<Obj*>(enemy);
+	Obj* queen              = OBJ(enemy);
 	queen->mNextState       = QUEEN_NULL;
 	queen->mIsAttackLoopBGM = false;
 	queen->mWaitTimer       = 0.0f;
@@ -287,7 +287,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	if (queen->mCurAnim->mIsPlaying != 0) {
 		if ((u32)queen->mCurAnim->mType == KEYEVENT_2) {
 			queen->flickPikmin(queen->getFaceDir());
@@ -321,7 +321,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
  */
 void StateRolling::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* queen             = static_cast<Obj*>(enemy);
+	Obj* queen             = OBJ(enemy);
 	queen->mNextState      = QUEEN_NULL;
 	queen->mIsRolling      = false;
 	queen->mTargetVelocity = Vector3f(0.0f);
@@ -341,8 +341,8 @@ void StateRolling::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateRolling::exec(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
-	if (static_cast<Obj*>(enemy)->mIsRolling) {
+	Obj* queen = OBJ(enemy);
+	if (OBJ(enemy)->mIsRolling) {
 
 		f32 initAngle;
 		if (queen->getCurrAnimIndex() == 5) {
@@ -888,7 +888,7 @@ lbl_80288C44:
  */
 void StateRolling::cleanup(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	queen->setEmotionCaution();
 	queen->forceFinishRollingEffect();
 	queen->mFlickTimer = 0.0f;
@@ -903,7 +903,7 @@ void StateRolling::cleanup(EnemyBase* enemy)
  */
 void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* queen              = static_cast<Obj*>(enemy);
+	Obj* queen              = OBJ(enemy);
 	queen->mNextState       = QUEEN_NULL;
 	queen->mIsAttackLoopBGM = false;
 	queen->mWaitTimer       = 0.0f;
@@ -920,7 +920,7 @@ void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBorn::exec(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	if (queen->mCurAnim->mIsPlaying != 0) {
 		if ((u32)queen->mCurAnim->mType == KEYEVENT_2) {
 			queen->createBabyChappy();
@@ -942,7 +942,7 @@ void StateBorn::exec(EnemyBase* enemy)
  */
 void StateBorn::cleanup(EnemyBase* enemy)
 {
-	Obj* queen = static_cast<Obj*>(enemy);
+	Obj* queen = OBJ(enemy);
 	queen->hardConstraintOff();
 	queen->setEmotionCaution();
 	queen->mBirthTimer = 0.0f;

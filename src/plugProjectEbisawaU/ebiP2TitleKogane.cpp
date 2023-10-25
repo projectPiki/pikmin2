@@ -353,20 +353,20 @@ void Kogane::TUnit::update()
 	}
 
 	calcModelBaseMtx_();
-	if (mAnim._0C != nullptr) {
-		switch (mAnim._08) {
+	if (mAnim.mAnimRes != nullptr) {
+		switch (mAnim.mState) {
 		case 1:
-			mAnim._00 += mAnim._04 * mAnim._0C->float_0x18;
-			if (mAnim._00 > mAnim._0C->mLoopEnd) {
-				mAnim._00 -= mAnim._0C->mLoopEnd - mAnim._0C->mLoopStart;
+			mAnim.mAnimStartTime += mAnim.mTimeStep * mAnim.mAnimRes->mTimeScale;
+			if (mAnim.mAnimStartTime > mAnim.mAnimRes->mLoopEnd) {
+				mAnim.mAnimStartTime -= mAnim.mAnimRes->mLoopEnd - mAnim.mAnimRes->mLoopStart;
 			}
 			break;
 
 		case 2:
-			mAnim._00 += mAnim._04 * mAnim._0C->float_0x18;
-			if (mAnim._00 >= mAnim._0C->float_0xC) {
-				mAnim._00 = mAnim._0C->float_0xC;
-				mAnim._08 = 3;
+			mAnim.mAnimStartTime += mAnim.mTimeStep * mAnim.mAnimRes->mTimeScale;
+			if (mAnim.mAnimStartTime >= mAnim.mAnimRes->_0C) {
+				mAnim.mAnimStartTime = mAnim.mAnimRes->_0C;
+				mAnim.mState         = 3;
 			}
 			break;
 
@@ -378,9 +378,9 @@ void Kogane::TUnit::update()
 	}
 
 	J3DModel* model = mModel;
-	if (mAnim._0C != nullptr) {
-		mAnim._0C->pAnmTransform_0x0->mCurrentFrame        = mAnim._00;
-		model->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnim._0C->pMtxCalcAnm_0x4;
+	if (mAnim.mAnimRes != nullptr) {
+		mAnim.mAnimRes->mAnimTransform->mCurrentFrame      = mAnim.mAnimStartTime;
+		model->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnim.mAnimRes->mAnmCalcMtx;
 	}
 
 	mModel->calc();

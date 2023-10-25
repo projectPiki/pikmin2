@@ -42,7 +42,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->setAttackMaterialColor(false);
 	titan->forceFinishIKMotion();
 	titan->checkJointScaleOn();
@@ -60,7 +60,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	f32 frame  = titan->getMotionFrame();
 	if (frame > 280.0f) {
 		titan->subShadowScale();
@@ -134,7 +134,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = 0.0f;
 	titan->setAttackMaterialColor(false);
@@ -152,7 +152,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateStay::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	if (titan->mStateTimer < 0.01f) {
 		bool isTarget;
 		f32 detectRadius = static_cast<Parms*>(titan->mParms)->mGeneral.mPrivateRadius.mValue;
@@ -193,7 +193,7 @@ void StateStay::cleanup(EnemyBase* enemy) { }
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan        = static_cast<Obj*>(enemy);
+	Obj* titan        = OBJ(enemy);
 	titan->mNextState = BIGTREASURE_NULL;
 	titan->setAttackMaterialColor(false);
 	titan->mTargetVelocity = Vector3f(0.0f);
@@ -216,7 +216,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateLand::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	if (titan->mCurAnim->mIsPlaying) {
 		if ((u32)titan->mCurAnim->mType == KEYEVENT_2) {
 			titan->createOnGroundEffect(1, titan->mWaterBox);
@@ -289,7 +289,7 @@ void StateLand::exec(EnemyBase* enemy)
  */
 void StateLand::cleanup(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->disableEvent(0, EB_BitterImmune);
 	titan->startProgramedIK();
 }
@@ -301,7 +301,7 @@ void StateLand::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = randWeightFloat(5.0f);
 	titan->setAttackMaterialColor(false);
@@ -320,7 +320,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->mStateTimer += sys->mDeltaTime;
 
 	if (titan->mHealth <= 0.0f) {
@@ -352,7 +352,7 @@ void StateWait::exec(EnemyBase* enemy)
  */
 void StateWait::cleanup(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->finishBlendMotion();
 }
 
@@ -363,7 +363,7 @@ void StateWait::cleanup(EnemyBase* enemy)
  */
 void StateItemWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = randWeightFloat(5.0f);
 	titan->setAttackMaterialColor(false);
@@ -382,7 +382,7 @@ void StateItemWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateItemWait::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	if (!titan->isCapturedTreasure()) {
 		transit(titan, BIGTREASURE_DropItem, nullptr);
 		return;
@@ -415,7 +415,7 @@ void StateItemWait::exec(EnemyBase* enemy)
  */
 void StateItemWait::cleanup(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->finishBlendMotion();
 }
 
@@ -426,7 +426,7 @@ void StateItemWait::cleanup(EnemyBase* enemy)
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = 0.0f;
 	titan->setAttackMaterialColor(false);
@@ -445,7 +445,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 
 	if (titan->mCurAnim->mIsPlaying) {
 		if ((u32)titan->mCurAnim->mType == KEYEVENT_END_BLEND) {
@@ -476,7 +476,7 @@ void StateFlick::exec(EnemyBase* enemy)
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->finishBlendMotion();
 }
 
@@ -487,7 +487,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
  */
 void StatePreAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = 0.0f;
 	titan->resetAttackLimitTimer();
@@ -510,7 +510,7 @@ void StatePreAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StatePreAttack::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	if (!titan->isCapturedTreasure()) {
 		transit(titan, BIGTREASURE_DropItem, nullptr);
 		return;
@@ -558,7 +558,7 @@ void StatePreAttack::exec(EnemyBase* enemy)
  */
 void StatePreAttack::cleanup(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->finishBlendMotion();
 }
 
@@ -569,7 +569,7 @@ void StatePreAttack::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = 0.0f;
 
@@ -589,7 +589,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	if (!titan->isCapturedTreasure()) {
 		transit(titan, BIGTREASURE_DropItem, nullptr);
 		return;
@@ -628,7 +628,7 @@ void StateAttack::exec(EnemyBase* enemy)
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->finishBlendMotion();
 	titan->finishAttack();
 	titan->finishBossAttackBGM();
@@ -641,7 +641,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
  */
 void StatePutItem::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = 0.0f;
 	titan->setAttackMaterialColor(false);
@@ -661,7 +661,7 @@ void StatePutItem::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StatePutItem::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	if (!titan->isCapturedTreasure()) {
 		transit(titan, BIGTREASURE_DropItem, nullptr);
 		return;
@@ -692,7 +692,7 @@ void StatePutItem::exec(EnemyBase* enemy)
  */
 void StatePutItem::cleanup(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->finishBlendMotion();
 }
 
@@ -703,7 +703,7 @@ void StatePutItem::cleanup(EnemyBase* enemy)
  */
 void StateDropItem::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = 0.0f;
 	titan->setAttackMaterialColor(false);
@@ -721,7 +721,7 @@ void StateDropItem::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDropItem::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	if (titan->mCurAnim->mIsPlaying) {
 		if ((u32)titan->mCurAnim->mType == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
@@ -745,7 +745,7 @@ void StateDropItem::exec(EnemyBase* enemy)
  */
 void StateDropItem::cleanup(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->finishBlendMotion();
 }
 
@@ -756,7 +756,7 @@ void StateDropItem::cleanup(EnemyBase* enemy)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = randWeightFloat(10.0f);
 	titan->setAttackMaterialColor(false);
@@ -776,7 +776,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->getTargetPosition();
 
 	if (titan->mHealth <= 0.0f) {
@@ -823,7 +823,7 @@ void StateWalk::cleanup(EnemyBase* enemy) { }
  */
 void StateItemWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* titan         = static_cast<Obj*>(enemy);
+	Obj* titan         = OBJ(enemy);
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = randWeightFloat(10.0f);
 	titan->setAttackMaterialColor(false);
@@ -843,7 +843,7 @@ void StateItemWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateItemWalk::exec(EnemyBase* enemy)
 {
-	Obj* titan = static_cast<Obj*>(enemy);
+	Obj* titan = OBJ(enemy);
 	titan->getTargetPosition();
 
 	if (titan->mHealth <= 0.0f) {

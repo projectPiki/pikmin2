@@ -39,7 +39,7 @@ StateWait::StateWait(int stateID)
  */
 void Bomb::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bomb = static_cast<Obj*>(enemy);
+	Obj* bomb = OBJ(enemy);
 	bomb->startMotion(BOMBANIM_HitStart, nullptr);
 	bomb->stopMotion();
 	bomb->setEmotionCaution();
@@ -53,7 +53,7 @@ void Bomb::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Bomb::StateWait::exec(EnemyBase* enemy)
 {
-	Obj* bomb = static_cast<Obj*>(enemy);
+	Obj* bomb = OBJ(enemy);
 	if ((bomb->_2BC != 0) && (bomb->mCaptureMatrix == nullptr)) {
 		_10++;
 		if (_10 > 200) {
@@ -134,11 +134,11 @@ void StateBomb::exec(EnemyBase* enemy)
 			if (abcdPtr->create(&fxArg)) {
 				efghPtr->create(&fxArg);
 			}
-			static_cast<Obj*>(enemy)->mEfxLight->forceKill();
+			OBJ(enemy)->mEfxLight->forceKill();
 			enemy->mSoundObj->startSound(PSSE_PK_SE_BOMB, 0);
 
 			if (enemy->mWaterBox) {
-				static_cast<Obj*>(enemy)->bombEffInWater();
+				OBJ(enemy)->bombEffInWater();
 			}
 
 			cameraMgr->startVibration(12, effectPos, 2);
@@ -172,9 +172,9 @@ void StateBomb::exec(EnemyBase* enemy)
 							creature->stimulate(interBomb);
 
 						} else if (creature->isNavi() || creature->isPiki()) {
-							Creature* target = static_cast<Obj*>(enemy)->mCarrier;
+							Creature* target = OBJ(enemy)->mCarrier;
 
-							if (static_cast<Obj*>(enemy)->mCarrier == nullptr) {
+							if (OBJ(enemy)->mCarrier == nullptr) {
 								target = enemy;
 							}
 

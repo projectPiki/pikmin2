@@ -1010,7 +1010,7 @@ StateWalk::StateWalk(int stateID)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kochappy = static_cast<Obj*>(enemy);
+	Obj* kochappy = OBJ(enemy);
 	kochappy->setEmotionExcitement();
 	Parms* parms = kochappy->getParms();
 	kochappy->setAnimationSpeed(40.0f * (parms->mGeneral.mMoveSpeed.mValue / 50.0f));
@@ -1988,7 +1988,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 
 	enemy->startMotion(KOCHAPPYANIM_Flick, nullptr);
 	enemy->disableEvent(0, EB_FlickEnabled);
-	static_cast<Obj*>(enemy)->resetEnemyNonStone();
+	OBJ(enemy)->resetEnemyNonStone();
 }
 
 /*
@@ -2040,7 +2040,7 @@ void StateFlick::exec(EnemyBase* enemy)
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
-	Obj* kochappy = static_cast<Obj*>(enemy);
+	Obj* kochappy = OBJ(enemy);
 	kochappy->setEmotionCaution();
 	kochappy->enableEvent(0, EB_FlickEnabled);
 	kochappy->resetEnemyNonStone();
@@ -2520,7 +2520,7 @@ StateGoHome::StateGoHome(int stateID)
  */
 void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kochappy = static_cast<Obj*>(enemy);
+	Obj* kochappy = OBJ(enemy);
 	kochappy->setAnimationSpeed(40.0f);
 	kochappy->startMotion(KOCHAPPYANIM_Move, nullptr);
 	mNextState = -1;

@@ -44,7 +44,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	int p1;
 	int diff;
-	Obj* mitite = static_cast<Obj*>(enemy);
+	Obj* mitite = OBJ(enemy);
 	mitite->startMotion(TAMAGOANIM_Move, nullptr);
 	mitite->resetWalkParm();
 	Parms* parms = static_cast<Parms*>(mitite->mParms);
@@ -65,7 +65,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	Obj* mitite = static_cast<Obj*>(enemy);
+	Obj* mitite = OBJ(enemy);
 	_10++;
 	if (mitite->mBounceTriangle) {
 		mitite->walkFunc();
@@ -115,7 +115,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
-	Obj* mitite = static_cast<Obj*>(enemy);
+	Obj* mitite = OBJ(enemy);
 	if (mitite->turnFunc()) {
 		mitite->finishMotion();
 	}
@@ -150,7 +150,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->stopMotion();
 	enemy->enableEvent(0, EB_BitterImmune);
 
-	Obj* mitite  = static_cast<Obj*>(enemy);
+	Obj* mitite  = OBJ(enemy);
 	Parms* parms = static_cast<Parms*>(mitite->mParms);
 	p1           = parms->mProperParms.mIp03.mValue;
 	diff         = parms->mProperParms.mIp04.mValue - p1;
@@ -176,7 +176,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
-	Obj* mitite = static_cast<Obj*>(enemy);
+	Obj* mitite = OBJ(enemy);
 	if (!_10 && mitite->isFound()) {
 		_10 = true;
 		mitite->createFellow();
@@ -238,7 +238,7 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->hardConstraintOn();
 	enemy->setEmotionCaution();
 
-	Obj* mitite = static_cast<Obj*>(enemy);
+	Obj* mitite = OBJ(enemy);
 	mitite->createHideEffect();
 }
 
@@ -294,7 +294,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* mitite = static_cast<Obj*>(enemy);
+	Obj* mitite = OBJ(enemy);
 	if (mitite->mCurAnim->mIsPlaying && (u32)mitite->mCurAnim->mType == KEYEVENT_END) {
 		mitite->genItem();
 		mitite->kill(nullptr);
@@ -333,7 +333,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->disableEvent(0, EB_Cullable);
 	enemy->setAtari(false);
 
-	Obj* mitite  = static_cast<Obj*>(enemy);
+	Obj* mitite  = OBJ(enemy);
 	mitite->_300 = 1;
 }
 
@@ -344,7 +344,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* mitite = static_cast<Obj*>(enemy);
+	Obj* mitite = OBJ(enemy);
 	if (mitite->_300 == 0) {
 		mitite->setAlive(true);
 		mitite->setAtari(true);

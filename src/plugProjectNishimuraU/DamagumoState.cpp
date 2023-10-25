@@ -32,7 +32,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* damagumo = static_cast<Obj*>(enemy);
+	Obj* damagumo = OBJ(enemy);
 	damagumo->forceFinishIKMotion();
 	damagumo->startDeadEffect();
 	damagumo->deathProcedure();
@@ -54,7 +54,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* damagumo = static_cast<Obj*>(enemy);
+	Obj* damagumo = OBJ(enemy);
 	if (damagumo->mCurAnim->mIsPlaying) {
 		if ((u32)damagumo->mCurAnim->mType == KEYEVENT_2) {
 			damagumo->throwupItem();
@@ -81,7 +81,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* damagumo        = static_cast<Obj*>(enemy);
+	Obj* damagumo        = OBJ(enemy);
 	damagumo->mNextState = DAMAGUMO_NULL;
 	damagumo->enableEvent(0, EB_BitterImmune);
 	damagumo->disableEvent(0, EB_Animating);
@@ -100,7 +100,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateStay::exec(EnemyBase* enemy)
 {
-	Obj* damagumo = static_cast<Obj*>(enemy);
+	Obj* damagumo = OBJ(enemy);
 	bool isTarget;
 	f32 detectRadius = static_cast<Parms*>(damagumo->mParms)->mGeneral.mPrivateRadius.mValue;
 	if (EnemyFunc::isThereOlimar(damagumo, detectRadius, nullptr)) {
@@ -130,7 +130,7 @@ void StateStay::cleanup(EnemyBase* enemy) { }
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* damagumo          = static_cast<Obj*>(enemy);
+	Obj* damagumo          = OBJ(enemy);
 	damagumo->mNextState   = DAMAGUMO_NULL;
 	damagumo->mShadowScale = 0.001f;
 
@@ -156,7 +156,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateLand::exec(EnemyBase* enemy)
 {
-	Obj* damagumo = static_cast<Obj*>(enemy);
+	Obj* damagumo = OBJ(enemy);
 	damagumo->addShadowScale();
 
 	if (damagumo->mCurAnim->mIsPlaying) {
@@ -202,7 +202,7 @@ void StateLand::exec(EnemyBase* enemy)
  */
 void StateLand::cleanup(EnemyBase* enemy)
 {
-	Obj* damagumo = static_cast<Obj*>(enemy);
+	Obj* damagumo = OBJ(enemy);
 	damagumo->startProgramedIK();
 	damagumo->setBossAppearBGM();
 	damagumo->enableEvent(0, EB_Cullable);
@@ -217,7 +217,7 @@ void StateLand::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* damagumo             = static_cast<Obj*>(enemy);
+	Obj* damagumo             = OBJ(enemy);
 	damagumo->mNextState      = DAMAGUMO_NULL;
 	damagumo->mStateTimer     = 0.0f;
 	damagumo->mStateDuration  = 1.75f + randWeightFloat(1.75f);
@@ -233,7 +233,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* damagumo = static_cast<Obj*>(enemy);
+	Obj* damagumo = OBJ(enemy);
 	damagumo->mStateTimer += sys->mDeltaTime;
 
 	if (damagumo->mHealth <= 0.0f) {
@@ -266,7 +266,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* damagumo             = static_cast<Obj*>(enemy);
+	Obj* damagumo             = OBJ(enemy);
 	damagumo->mNextState      = DAMAGUMO_NULL;
 	damagumo->mStateTimer     = 0.0f;
 	damagumo->mTargetCreature = nullptr;
@@ -283,7 +283,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	Obj* damagumo = static_cast<Obj*>(enemy);
+	Obj* damagumo = OBJ(enemy);
 	if (damagumo->mCurAnim->mIsPlaying) {
 		if ((u32)damagumo->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(damagumo->mParms);
@@ -308,7 +308,7 @@ void StateFlick::exec(EnemyBase* enemy)
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
-	Obj* damagumo = static_cast<Obj*>(enemy);
+	Obj* damagumo = OBJ(enemy);
 	damagumo->finishBlendMotion();
 }
 
@@ -319,7 +319,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* damagumo             = static_cast<Obj*>(enemy);
+	Obj* damagumo             = OBJ(enemy);
 	damagumo->mNextState      = DAMAGUMO_NULL;
 	damagumo->mStateTimer     = 0.0f;
 	damagumo->mStateDuration  = 3.25f + randWeightFloat(3.25f);
@@ -336,7 +336,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	Obj* damagumo = static_cast<Obj*>(enemy);
+	Obj* damagumo = OBJ(enemy);
 	damagumo->getTargetPosition();
 	damagumo->mStateTimer += sys->mDeltaTime;
 

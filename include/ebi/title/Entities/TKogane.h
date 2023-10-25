@@ -104,19 +104,19 @@ struct TUnit : public TObjBase {
 
 	inline TUnit()
 	{
-		mCounter               = 0;
-		mCounter2              = 0;
-		mAnim._0C              = nullptr;
-		mAnim.pAnimFolder_0x10 = nullptr;
-		mTargetPos             = Vector2f(0.0f);
-		mTargetAngle           = Vector2f(1.0f, 0.0f);
-		u32 time               = 0.0f / sys->mDeltaTime;
-		mCounter               = time;
-		mCounter2              = time;
-		mControl               = nullptr;
-		mManager               = nullptr;
-		mStateID               = KSTATE_Inactive;
-		mActionID              = KOGANEACT_NULL;
+		mCounter          = 0;
+		mCounter2         = 0;
+		mAnim.mAnimRes    = nullptr;
+		mAnim.mAnimFolder = nullptr;
+		mTargetPos        = Vector2f(0.0f);
+		mTargetAngle      = Vector2f(1.0f, 0.0f);
+		u32 time          = 0.0f / sys->mDeltaTime;
+		mCounter          = time;
+		mCounter2         = time;
+		mControl          = nullptr;
+		mManager          = nullptr;
+		mStateID          = KSTATE_Inactive;
+		mActionID         = KOGANEACT_NULL;
 	}
 
 	virtual u32 getCreatureType() { return 5; } // _08 (weak)

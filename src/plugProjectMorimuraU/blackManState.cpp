@@ -48,7 +48,7 @@ StateWalk::StateWalk(int stateID)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	bool check;
 	if (wraith->mTyre == nullptr || wraith->_2E0 == 2) {
 		check = false;
@@ -72,7 +72,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->walkFunc();
 	if (wraith->mHealth <= 0.0f) {
 		transit(wraith, WRAITH_Dead, nullptr);
@@ -121,7 +121,7 @@ void StateWalk::exec(EnemyBase* enemy)
  */
 void StateWalk::cleanup(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->fadeTraceEffect();
 }
 
@@ -147,7 +147,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->startMotion(WRAITHANIM_Dead, nullptr);
 
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->deadTraceEffect();
 	wraith->deathProcedure();
 }
@@ -159,7 +159,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	if (wraith->mCurAnim->mIsPlaying) {
 		Vector3f position = wraith->getPosition();
 		switch (wraith->mCurAnim->mType) {
@@ -199,7 +199,7 @@ StateFreeze::StateFreeze(int stateID)
  */
 void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->collisionStOn();
 
 	bool check = false;
@@ -222,7 +222,7 @@ void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFreeze::exec(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->mFreezeTimer++;
 	if (wraith->mHealth <= 0.0f) {
 		transit(wraith, WRAITH_Dead, nullptr);
@@ -262,7 +262,7 @@ void StateFreeze::exec(EnemyBase* enemy)
  */
 void StateFreeze::cleanup(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->collisionStOff();
 }
 
@@ -284,7 +284,7 @@ StateBend::StateBend(int stateID)
  */
 void StateBend::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->collisionStOn();
 
 	bool check = false;
@@ -306,7 +306,7 @@ void StateBend::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBend::exec(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	if (wraith->mHealth <= 0.0f) {
 		transit(wraith, WRAITH_Dead, nullptr);
 		return;
@@ -354,7 +354,7 @@ void StateBend::exec(EnemyBase* enemy)
  */
 void StateBend::cleanup(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->collisionStOff();
 }
 
@@ -378,7 +378,7 @@ void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(WRAITHANIM_GetOff, nullptr);
 
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->escape();
 	wraith->collisionStOff();
 
@@ -396,7 +396,7 @@ void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateEscape::exec(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	Vector3f position;
 	if (wraith->mCurAnim->mIsPlaying) {
 		switch (wraith->mCurAnim->mType) {
@@ -461,13 +461,13 @@ void StateFall::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying) {
 		if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
-			static_cast<Obj*>(enemy)->appearFanfare();
+			OBJ(enemy)->appearFanfare();
 			Vector3f position = enemy->getPosition();
 			cameraMgr->startVibration(17, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
 
 		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
-			if (static_cast<Obj*>(enemy)->isFallEnd()) {
+			if (OBJ(enemy)->isFallEnd()) {
 				enemy->disableEvent(0, EB_NoInterrupt);
 				transit(enemy, WRAITH_Recover, nullptr);
 			}
@@ -479,7 +479,7 @@ void StateFall::exec(EnemyBase* enemy)
 	position.y += 20.0f;
 
 	f32 minY     = mapMgr->getMinY(position);
-	f32 someParm = static_cast<Obj*>(enemy)->getParms()->_A48;
+	f32 someParm = OBJ(enemy)->getParms()->_A48;
 	someParm += minY;
 
 	if (initY < someParm) {
@@ -515,7 +515,7 @@ void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	enemy->startMotion(WRAITHANIM_Recover, nullptr);
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->recoverFlick();
 	wraith->tyreUpEffect();
 }
@@ -527,7 +527,7 @@ void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateRecover::exec(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->recover();
 	if (wraith->isTyreDead()) {
 		transit(wraith, WRAITH_Escape, nullptr);
@@ -585,7 +585,7 @@ StateFlick::StateFlick(int stateID)
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	bool check;
-	if (static_cast<Obj*>(enemy)->mTyre == nullptr || static_cast<Obj*>(enemy)->_2E0 == 2) {
+	if (OBJ(enemy)->mTyre == nullptr || OBJ(enemy)->_2E0 == 2) {
 		check = false;
 	} else {
 		check = true;
@@ -607,7 +607,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 		}
 	}
 
-	static_cast<Obj*>(enemy)->createFlickEffect();
+	OBJ(enemy)->createFlickEffect();
 }
 
 /*
@@ -617,17 +617,17 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	if (static_cast<Obj*>(enemy)->isTyreDead()) {
+	if (OBJ(enemy)->isTyreDead()) {
 		transit(enemy, WRAITH_Escape, nullptr);
 		return;
 	}
 
 	if (enemy->mCurAnim->mIsPlaying) {
 		if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
-			static_cast<Obj*>(enemy)->flick();
+			OBJ(enemy)->flick();
 
 		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
-			transit(enemy, static_cast<Obj*>(enemy)->mPostFlickState, nullptr);
+			transit(enemy, OBJ(enemy)->mPostFlickState, nullptr);
 		}
 	}
 }
@@ -639,7 +639,7 @@ void StateFlick::exec(EnemyBase* enemy)
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	wraith->fadeFlickEffect();
 }
 
@@ -678,14 +678,14 @@ void StateTired::exec(EnemyBase* enemy)
 
 	if (enemy->mCurAnim->mIsPlaying) {
 		if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
-			static_cast<Obj*>(enemy)->flick();
+			OBJ(enemy)->flick();
 			transit(enemy, WRAITH_Walk, nullptr);
 		}
 		return;
 	}
 
 	_10++;
-	Obj* wraith = static_cast<Obj*>(enemy);
+	Obj* wraith = OBJ(enemy);
 	if (_10 > wraith->getParms()->mProperParms.mStandStillTimerLength.mValue) {
 		enemy->finishMotion();
 	}

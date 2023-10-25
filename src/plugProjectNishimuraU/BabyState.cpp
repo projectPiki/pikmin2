@@ -26,7 +26,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* baby = static_cast<Obj*>(enemy);
+	Obj* baby = OBJ(enemy);
 	baby->createHoney();
 	baby->deathProcedure();
 	baby->mTargetVelocity = Vector3f(0.0f);
@@ -59,7 +59,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* baby = static_cast<Obj*>(enemy);
+	Obj* baby = OBJ(enemy);
 	baby->createHoney();
 	baby->mHealth = 0.0f;
 	baby->deathProcedure();
@@ -99,7 +99,7 @@ void StatePress::cleanup(EnemyBase* enemy) { }
  */
 void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* baby = static_cast<Obj*>(enemy);
+	Obj* baby = OBJ(enemy);
 	baby->createBornEffect();
 	baby->startMotion(BABYANIM_Born, nullptr);
 }
@@ -144,7 +144,7 @@ void StateBorn::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* baby             = static_cast<Obj*>(enemy);
+	Obj* baby             = OBJ(enemy);
 	baby->mTargetCreature = nullptr;
 	baby->startMotion(BABYANIM_Move, nullptr);
 }
@@ -157,7 +157,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 // NON-MATCHING
 void StateMove::exec(EnemyBase* enemy)
 {
-	Obj* baby = static_cast<Obj*>(enemy);
+	Obj* baby = OBJ(enemy);
 	if (baby->mHealth <= 0.0f) {
 		transit(baby, BABY_Dead, nullptr);
 		return;
@@ -535,7 +535,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	Obj* baby = static_cast<Obj*>(enemy);
+	Obj* baby = OBJ(enemy);
 	if (baby->mCurAnim->mIsPlaying) {
 		if ((u32)baby->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(baby->mParms);

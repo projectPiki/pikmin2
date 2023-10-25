@@ -26,7 +26,7 @@ void FSM::init(EnemyBase* enemy)
 
 void StateDead::init(EnemyBase* enemy, StateArg* Args)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	tank->finishEffect();
 	tank->disableEvent(0, EB_Cullable);
 	tank->mTargetVelocity = Vector3f(0.0f);
@@ -60,7 +60,7 @@ void StateDead::cleanup(EnemyBase*) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank             = static_cast<Obj*>(enemy);
+	Obj* tank             = OBJ(enemy);
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->mTargetCreature = nullptr;
 	tank->startMotion(TANKANIM_Wait, nullptr);
@@ -73,7 +73,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	f32 view  = tank->getViewAngle();
 	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
@@ -116,7 +116,7 @@ void StateWait::exec(EnemyBase* enemy)
  */
 void StateWait::cleanup(EnemyBase* enemy)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	tank->setAnimSpeed(30.0f);
 }
 
@@ -127,7 +127,7 @@ void StateWait::cleanup(EnemyBase* enemy)
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank             = static_cast<Obj*>(enemy);
+	Obj* tank             = OBJ(enemy);
 	tank->_2F0            = 0.0f;
 	tank->mTargetCreature = nullptr;
 	tank->startMotion(TANKANIM_Move, nullptr);
@@ -530,7 +530,7 @@ lbl_80274948:
  */
 void StateMove::cleanup(EnemyBase* enemy)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	tank->setAnimSpeed(30.0f);
 }
 
@@ -623,7 +623,7 @@ lbl_80274A8C:
  */
 void StateMoveTurn::exec(EnemyBase* enemy)
 {
-	Obj* tank      = static_cast<Obj*>(enemy);
+	Obj* tank      = OBJ(enemy);
 	f32 view       = tank->getViewAngle();
 	Vector3f thing = tank->_2F8;
 	f32 deltaDir   = tank->changeFaceDir(thing);
@@ -673,7 +673,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
  */
 void StateMoveTurn::cleanup(EnemyBase* enemy)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	tank->setAnimSpeed(30.0f);
 }
 
@@ -684,7 +684,7 @@ void StateMoveTurn::cleanup(EnemyBase* enemy)
  */
 void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank             = static_cast<Obj*>(enemy);
+	Obj* tank             = OBJ(enemy);
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
 	tank->startMotion(TANKANIM_Turn, nullptr);
@@ -1126,7 +1126,7 @@ lbl_80275444:
  */
 void StateChaseTurn::cleanup(EnemyBase* enemy)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	tank->setEmotionCaution();
 	tank->setAnimSpeed(30.0f);
 }
@@ -1138,7 +1138,7 @@ void StateChaseTurn::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank           = static_cast<Obj*>(enemy);
+	Obj* tank           = OBJ(enemy);
 	tank->mIsBlowing    = false;
 	tank->_2E4          = 0.0f;
 	tank->mCautionTimer = 0.0f;
@@ -1164,7 +1164,7 @@ void Obj::createChargeSE() { }
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	f32 view  = tank->getViewAngle();
 	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
@@ -1224,7 +1224,7 @@ void Obj::createDisChargeSE() { }
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	tank->enableEvent(0, EB_Cullable);
 	tank->mIsBlowing = false;
 	tank->startYodare();
@@ -1245,7 +1245,7 @@ void Obj::startYodare() { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank             = static_cast<Obj*>(enemy);
+	Obj* tank             = OBJ(enemy);
 	tank->mTargetCreature = nullptr;
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
@@ -1259,7 +1259,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
 		return;
@@ -1296,7 +1296,7 @@ void StateFlick::exec(EnemyBase* enemy)
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
-	Obj* tank = static_cast<Obj*>(enemy);
+	Obj* tank = OBJ(enemy);
 	tank->setEmotionCaution();
 }
 } // namespace Tank

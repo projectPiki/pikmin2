@@ -115,8 +115,8 @@ struct TUnit : public TObjBase {
 		mCounter  = 0;
 		mCounter2 = 0;
 
-		mAnim._0C              = 0;
-		mAnim.pAnimFolder_0x10 = 0;
+		mAnim.mAnimRes    = 0;
+		mAnim.mAnimFolder = 0;
 
 		mTargetPos   = Vector2f(0.0f);
 		mTargetAngle = Vector2f(1.0f, 0.0f);

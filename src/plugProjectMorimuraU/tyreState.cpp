@@ -37,7 +37,7 @@ void Tyre::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(TYREANIM_Move, nullptr);
 
-	Obj* tyre = static_cast<Obj*>(enemy);
+	Obj* tyre = OBJ(enemy);
 	tyre->collisionStOff();
 	tyre->createSmokeEffect();
 }
@@ -49,7 +49,7 @@ void Tyre::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateMove::exec(EnemyBase* enemy)
 {
-	Obj* tyre    = static_cast<Obj*>(enemy);
+	Obj* tyre    = OBJ(enemy);
 	f32 p1       = tyre->_30C;
 	Parms* parms = static_cast<Parms*>(tyre->mParms);
 	p1 *= parms->mProperParms.mTyreRotationSpeed.mValue;
@@ -77,7 +77,7 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
  * Address:	803ABA64
  * Size:	000024
  */
-void Tyre::StateMove::cleanup(EnemyBase* enemy) { static_cast<Obj*>(enemy)->fadeSmokeEffect(); }
+void Tyre::StateMove::cleanup(EnemyBase* enemy) { OBJ(enemy)->fadeSmokeEffect(); }
 
 /*
  * --INFO--
@@ -108,7 +108,7 @@ void Tyre::StateLand::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateLand::exec(EnemyBase* enemy)
 {
-	Obj* tyre = static_cast<Obj*>(enemy);
+	Obj* tyre = OBJ(enemy);
 	if (tyre->mBounceTriangle) {
 		tyre->flick();
 		Vector3f position = tyre->getPosition();
@@ -136,7 +136,7 @@ StateFreeze::StateFreeze(int stateID)
  */
 void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tyre = static_cast<Obj*>(enemy);
+	Obj* tyre = OBJ(enemy);
 	tyre->stopMotion();
 	_10                    = 0;
 	tyre->mCurrentVelocity = Vector3f(0.0f);
@@ -152,7 +152,7 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateFreeze::exec(EnemyBase* enemy)
 {
-	Obj* tyre              = static_cast<Obj*>(enemy);
+	Obj* tyre              = OBJ(enemy);
 	tyre->mCurrentVelocity = Vector3f(0.0f);
 	tyre->mTargetVelocity  = Vector3f(0.0f);
 	_10++;
@@ -189,7 +189,7 @@ Tyre::StateDead::StateDead(int stateID)
 void Tyre::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(TYREANIM_GetOff, nullptr);
-	Obj* tyre = static_cast<Obj*>(enemy);
+	Obj* tyre = OBJ(enemy);
 	tyre->deathProcedure();
 	tyre->deadEffect();
 }

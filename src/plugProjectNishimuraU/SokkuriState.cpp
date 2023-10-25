@@ -34,7 +34,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 	sokkuri->deathProcedure();
 	sokkuri->disableEvent(0, EB_Cullable);
 	sokkuri->mTargetVelocity = Vector3f(0.0f);
@@ -49,7 +49,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 	if (sokkuri->mCurAnim->mIsPlaying) {
 		if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.5f, 0.55f);
@@ -74,7 +74,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri     = static_cast<Obj*>(enemy);
+	Obj* sokkuri     = OBJ(enemy);
 	sokkuri->mHealth = 0.0f;
 	sokkuri->deathProcedure();
 	sokkuri->mTargetVelocity = Vector3f(0.0f);
@@ -90,7 +90,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StatePress::exec(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 	if (sokkuri->mCurAnim->mIsPlaying) {
 		if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.0f, 0.55f);
@@ -115,7 +115,7 @@ void StatePress::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	Obj* sokkuri        = OBJ(enemy);
 	sokkuri->mTimer     = 0.0f;
 	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
@@ -143,7 +143,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateStay::exec(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 	if (sokkuri->isAppear()) {
 		transit(sokkuri, SOKKURI_Appear, nullptr);
 	}
@@ -156,7 +156,7 @@ void StateStay::exec(EnemyBase* enemy)
  */
 void StateStay::cleanup(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 	sokkuri->enableEvent(0, EB_LifegaugeVisible);
 	sokkuri->disableEvent(0, EB_BitterImmune);
 	sokkuri->mIsHiding = false;
@@ -175,7 +175,7 @@ void StateStay::cleanup(EnemyBase* enemy)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	Obj* sokkuri        = OBJ(enemy);
 	sokkuri->mTimer     = 0.0f;
 	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
@@ -192,7 +192,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 
 	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
@@ -219,7 +219,7 @@ void StateAppear::cleanup(EnemyBase* enemy) { }
  */
 void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	Obj* sokkuri        = OBJ(enemy);
 	sokkuri->mTimer     = 0.0f;
 	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
@@ -236,7 +236,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDisappear::exec(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 
@@ -264,7 +264,7 @@ void StateDisappear::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	Obj* sokkuri        = OBJ(enemy);
 	sokkuri->mTimer     = 0.0f;
 	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
@@ -280,7 +280,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 
@@ -325,7 +325,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateMoveGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	Obj* sokkuri        = OBJ(enemy);
 	sokkuri->mTimer     = 0.0f;
 	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->setNextMoveInfo();
@@ -340,7 +340,7 @@ void StateMoveGround::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMoveGround::exec(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 	sokkuri->updateMoveState();
 
 	if (sokkuri->mHealth <= 0.0f) {
@@ -408,7 +408,7 @@ void StateMoveGround::cleanup(EnemyBase* enemy) { }
  */
 void StateMoveWater::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	Obj* sokkuri        = OBJ(enemy);
 	sokkuri->mTimer     = 0.0f;
 	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->setNextMoveInfo();
@@ -422,7 +422,7 @@ void StateMoveWater::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMoveWater::exec(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 	sokkuri->updateMoveState();
 
 	if (sokkuri->mHealth <= 0.0f) {
@@ -485,7 +485,7 @@ void StateMoveWater::cleanup(EnemyBase* enemy) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* sokkuri        = static_cast<Obj*>(enemy);
+	Obj* sokkuri        = OBJ(enemy);
 	sokkuri->mTimer     = 0.0f;
 	sokkuri->mNextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
@@ -501,7 +501,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	Obj* sokkuri = static_cast<Obj*>(enemy);
+	Obj* sokkuri = OBJ(enemy);
 
 	if (sokkuri->mHealth <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);

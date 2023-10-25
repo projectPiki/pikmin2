@@ -31,7 +31,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	bigfoot->forceFinishIKMotion();
 	bigfoot->startDeadEffect();
 	bigfoot->deathProcedure();
@@ -53,7 +53,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	bigfoot->updateDeadFurEffect();
 
 	if (bigfoot->mCurAnim->mIsPlaying) {
@@ -82,7 +82,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot        = static_cast<Obj*>(enemy);
+	Obj* bigfoot        = OBJ(enemy);
 	bigfoot->mNextState = BIGFOOT_NULL;
 	bigfoot->enableEvent(0, EB_BitterImmune);
 	bigfoot->disableEvent(0, EB_Animating);
@@ -101,7 +101,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateStay::exec(EnemyBase* enemy)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	bool isTarget;
 	f32 detectRadius = static_cast<Parms*>(bigfoot->mParms)->mGeneral.mPrivateRadius.mValue;
 	if (EnemyFunc::isThereOlimar(bigfoot, detectRadius, nullptr)) {
@@ -131,7 +131,7 @@ void StateStay::cleanup(EnemyBase* enemy) { }
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot          = static_cast<Obj*>(enemy);
+	Obj* bigfoot          = OBJ(enemy);
 	bigfoot->mNextState   = BIGFOOT_NULL;
 	bigfoot->mShadowScale = 0.001f;
 
@@ -157,7 +157,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateLand::exec(EnemyBase* enemy)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	bigfoot->addShadowScale();
 
 	if (bigfoot->mCurAnim->mIsPlaying) {
@@ -191,7 +191,7 @@ void StateLand::exec(EnemyBase* enemy)
  */
 void StateLand::cleanup(EnemyBase* enemy)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	bigfoot->startProgramedIK();
 	bigfoot->setBossAppearBGM();
 	bigfoot->enableEvent(0, EB_Cullable);
@@ -206,7 +206,7 @@ void StateLand::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot         = static_cast<Obj*>(enemy);
+	Obj* bigfoot         = OBJ(enemy);
 	bigfoot->mNextState  = BIGFOOT_NULL;
 	bigfoot->mStateTimer = 0.0f;
 	bigfoot->resetFlickWalkTimeMax();
@@ -223,7 +223,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	bigfoot->mStateTimer += sys->mDeltaTime;
 
 	if (bigfoot->mHealth <= 0.0f) {
@@ -256,7 +256,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot             = static_cast<Obj*>(enemy);
+	Obj* bigfoot             = OBJ(enemy);
 	bigfoot->mNextState      = BIGFOOT_NULL;
 	bigfoot->mStateTimer     = 0.0f;
 	bigfoot->mTargetCreature = nullptr;
@@ -274,7 +274,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	if (bigfoot->mCurAnim->mIsPlaying) {
 		if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(bigfoot->mParms);
@@ -298,7 +298,7 @@ void StateFlick::exec(EnemyBase* enemy)
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	bigfoot->finishBlendMotion();
 	bigfoot->setFlickWalkTimeMax();
 	bigfoot->mIsEnraged = true;
@@ -312,7 +312,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot             = static_cast<Obj*>(enemy);
+	Obj* bigfoot             = OBJ(enemy);
 	bigfoot->mNextState      = BIGFOOT_NULL;
 	bigfoot->mStateTimer     = 0.0f;
 	bigfoot->mTargetCreature = nullptr;
@@ -332,7 +332,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	bigfoot->getTargetPosition();
 	bigfoot->mStateTimer += sys->mDeltaTime;
 	if (bigfoot->mHealth <= 0.0f) {
@@ -359,7 +359,7 @@ void StateWalk::exec(EnemyBase* enemy)
  */
 void StateWalk::cleanup(EnemyBase* enemy)
 {
-	Obj* bigfoot = static_cast<Obj*>(enemy);
+	Obj* bigfoot = OBJ(enemy);
 	if (bigfoot->mIsEnraged) {
 		bigfoot->mIsEnraged = false;
 		bigfoot->finishBossAttackLoopBGM();

@@ -49,7 +49,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	if (enemy->mHealth <= 0.0f) {
-		static_cast<Obj*>(enemy)->genItem();
+		OBJ(enemy)->genItem();
 
 		Vector3f fxPos;
 		enemy->getCommonEffectPos(fxPos);

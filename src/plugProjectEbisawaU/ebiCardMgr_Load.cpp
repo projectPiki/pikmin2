@@ -13,9 +13,9 @@ namespace CardError {
  */
 void FSMState_W00_NoCard::do_open(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_NoCard);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveNoCard);
 	}
 }
@@ -27,9 +27,9 @@ void FSMState_W00_NoCard::do_open(TMgr* mgr)
  */
 void FSMState_W00_NoCard::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_DoYouStartGameWithoutSave, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_3);
 	}
 }
@@ -41,9 +41,9 @@ void FSMState_W00_NoCard::do_transit(TMgr* mgr)
  */
 void FSMState_W00_NoCard::do_transitOnCard(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_4);
 	}
 }
@@ -56,9 +56,9 @@ void FSMState_W00_NoCard::do_transitOnCard(TMgr* mgr)
 void FSMState_W01_IOError::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CardDamaged);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveCardDamaged);
 	}
 }
@@ -70,9 +70,9 @@ void FSMState_W01_IOError::do_open(TMgr* mgr)
  */
 void FSMState_W01_IOError::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_DoYouStartGameWithoutSave, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_3);
 	}
 }
@@ -85,9 +85,9 @@ void FSMState_W01_IOError::do_transit(TMgr* mgr)
 void FSMState_W02_WrongDevice::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_WrongDevice);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveWrongDevice);
 	}
 }
@@ -99,9 +99,9 @@ void FSMState_W02_WrongDevice::do_open(TMgr* mgr)
  */
 void FSMState_W02_WrongDevice::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_DoYouStartGameWithoutSave, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_3);
 	}
 }
@@ -114,9 +114,9 @@ void FSMState_W02_WrongDevice::do_transit(TMgr* mgr)
 void FSMState_W03_WrongSector::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantUseCard);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveCantUseCard);
 	}
 }
@@ -128,9 +128,9 @@ void FSMState_W03_WrongSector::do_open(TMgr* mgr)
  */
 void FSMState_W03_WrongSector::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_DoYouStartGameWithoutSave, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_3);
 	}
 }
@@ -143,9 +143,9 @@ void FSMState_W03_WrongSector::do_transit(TMgr* mgr)
 void FSMState_W04_OverCapacity::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_NotEnoughSpace);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveNoSpace);
 	}
 }
@@ -157,9 +157,9 @@ void FSMState_W04_OverCapacity::do_open(TMgr* mgr)
  */
 void FSMState_W04_OverCapacity::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_InitCardOnIPL, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		transit(mgr, CARDERROR_InitCardOnIPL, nullptr);
 	}
 }
@@ -172,9 +172,9 @@ void FSMState_W04_OverCapacity::do_transit(TMgr* mgr)
 void FSMState_W05_InitCardOnIPL::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_GoToIPL);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_InsertOriginalCard);
 	}
 }
@@ -186,9 +186,9 @@ void FSMState_W05_InitCardOnIPL::do_open(TMgr* mgr)
  */
 void FSMState_W05_InitCardOnIPL::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_DoYouOpenIPL, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		transit(mgr, CARDERROR_DoYouOpenIPL, nullptr);
 	}
 }
@@ -201,9 +201,9 @@ void FSMState_W05_InitCardOnIPL::do_transit(TMgr* mgr)
 void FSMState_W06_CardNotUsable::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantUseCard2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveCantUseCard2);
 	}
 }
@@ -215,9 +215,9 @@ void FSMState_W06_CardNotUsable::do_open(TMgr* mgr)
  */
 void FSMState_W06_CardNotUsable::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_DoYouStartGameWithoutSave, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_3);
 	}
 }
@@ -230,9 +230,9 @@ void FSMState_W06_CardNotUsable::do_transit(TMgr* mgr)
 void FSMState_W07_NoFileForSave::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_NoFileFound);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveNoFile);
 	}
 }
@@ -244,9 +244,9 @@ void FSMState_W07_NoFileForSave::do_open(TMgr* mgr)
  */
 void FSMState_W07_NoFileForSave::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_DoYouStartGameWithoutSave, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_3);
 	}
 }
@@ -259,9 +259,9 @@ void FSMState_W07_NoFileForSave::do_transit(TMgr* mgr)
 void FSMState_W08_FinishFormat::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CardFormatted);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_FormatSuccess);
 	}
 }
@@ -273,9 +273,9 @@ void FSMState_W08_FinishFormat::do_open(TMgr* mgr)
  */
 void FSMState_W08_FinishFormat::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_4);
 	}
 }
@@ -288,9 +288,9 @@ void FSMState_W08_FinishFormat::do_transit(TMgr* mgr)
 void FSMState_W09_FinishCreateNewFile::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_FileCreated);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_FileCreated2);
 	}
 }
@@ -302,9 +302,9 @@ void FSMState_W09_FinishCreateNewFile::do_open(TMgr* mgr)
  */
 void FSMState_W09_FinishCreateNewFile::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_4);
 	}
 }
@@ -317,9 +317,9 @@ void FSMState_W09_FinishCreateNewFile::do_transit(TMgr* mgr)
 void FSMState_W10_SerialNoError::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(236, "P2Assert");
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveInsertOriginalCard);
 	}
 }
@@ -331,9 +331,9 @@ void FSMState_W10_SerialNoError::do_open(TMgr* mgr)
  */
 void FSMState_W10_SerialNoError::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(245, "P2Assert");
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_3);
 	}
 }
@@ -346,9 +346,9 @@ void FSMState_W10_SerialNoError::do_transit(TMgr* mgr)
 void FSMState_WF0_FailToFormat_NoCard::do_open(TMgr* mgr)
 {
 	mDoCheckCard = false;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantFormat);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantFormat2);
 	}
 }
@@ -360,9 +360,9 @@ void FSMState_WF0_FailToFormat_NoCard::do_open(TMgr* mgr)
  */
 void FSMState_WF0_FailToFormat_NoCard::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_4);
 	}
 }
@@ -375,9 +375,9 @@ void FSMState_WF0_FailToFormat_NoCard::do_transit(TMgr* mgr)
 void FSMState_WF1_FailToFormat_IOError::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantFormat);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantFormat2);
 	}
 }
@@ -389,9 +389,9 @@ void FSMState_WF1_FailToFormat_IOError::do_open(TMgr* mgr)
  */
 void FSMState_WF1_FailToFormat_IOError::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_4);
 	}
 }
@@ -404,9 +404,9 @@ void FSMState_WF1_FailToFormat_IOError::do_transit(TMgr* mgr)
 void FSMState_WF2_FailToCreateNewFile_NoCard::do_open(TMgr* mgr)
 {
 	mDoCheckCard = false;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantCreateFile);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantCreateFile2);
 	}
 }
@@ -418,9 +418,9 @@ void FSMState_WF2_FailToCreateNewFile_NoCard::do_open(TMgr* mgr)
  */
 void FSMState_WF2_FailToCreateNewFile_NoCard::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_4);
 	}
 }
@@ -433,9 +433,9 @@ void FSMState_WF2_FailToCreateNewFile_NoCard::do_transit(TMgr* mgr)
 void FSMState_WF3_FailToCreateNewFile_IOError::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantCreateFile);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantCreateFile2);
 	}
 }
@@ -447,9 +447,9 @@ void FSMState_WF3_FailToCreateNewFile_IOError::do_open(TMgr* mgr)
  */
 void FSMState_WF3_FailToCreateNewFile_IOError::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_4);
 	}
 }
@@ -462,9 +462,9 @@ void FSMState_WF3_FailToCreateNewFile_IOError::do_transit(TMgr* mgr)
 void FSMState_WF4_FailToSave_NoCard::do_open(TMgr* mgr)
 {
 	mDoCheckCard = false;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(342, "P2Assert");
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_SaveFail);
 	}
 }
@@ -476,9 +476,9 @@ void FSMState_WF4_FailToSave_NoCard::do_open(TMgr* mgr)
  */
 void FSMState_WF4_FailToSave_NoCard::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_4);
 	}
 }
@@ -491,9 +491,9 @@ void FSMState_WF4_FailToSave_NoCard::do_transit(TMgr* mgr)
 void FSMState_WF5_FailToSave_IOError::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(363, "P2Assert");
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_SaveFail);
 	}
 }
@@ -505,9 +505,9 @@ void FSMState_WF5_FailToSave_IOError::do_open(TMgr* mgr)
  */
 void FSMState_WF5_FailToSave_IOError::do_transit(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_4);
 	}
 }
@@ -520,9 +520,9 @@ void FSMState_WF5_FailToSave_IOError::do_transit(TMgr* mgr)
 void FSMState_Q00_DataBrokenAndDoYouFormat::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_DoFormat);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveDoFormat);
 	}
 }
@@ -534,9 +534,9 @@ void FSMState_Q00_DataBrokenAndDoYouFormat::do_open(TMgr* mgr)
  */
 void FSMState_Q00_DataBrokenAndDoYouFormat::do_transitYes(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_DoYouFormat, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		transit(mgr, CARDERROR_DoYouFormat, nullptr);
 	}
 }
@@ -548,9 +548,9 @@ void FSMState_Q00_DataBrokenAndDoYouFormat::do_transitYes(TMgr* mgr)
  */
 void FSMState_Q00_DataBrokenAndDoYouFormat::do_transitNo(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_CardNotUsable, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		transit(mgr, CARDERROR_CardNotUsable, nullptr);
 	}
 }
@@ -563,9 +563,9 @@ void FSMState_Q00_DataBrokenAndDoYouFormat::do_transitNo(TMgr* mgr)
 void FSMState_Q01_DoYouOpenIPL::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_DoGotoIPL);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_DoGotoIPL2);
 	}
 }
@@ -577,9 +577,9 @@ void FSMState_Q01_DoYouOpenIPL::do_open(TMgr* mgr)
  */
 void FSMState_Q01_DoYouOpenIPL::do_transitYes(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		sys->resetOn(true);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		transit(mgr, CARDERROR_GameCantSave, nullptr);
 	}
 }
@@ -591,9 +591,9 @@ void FSMState_Q01_DoYouOpenIPL::do_transitYes(TMgr* mgr)
  */
 void FSMState_Q01_DoYouOpenIPL::do_transitNo(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_DoYouStartGameWithoutSave, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_3);
 	}
 }
@@ -606,9 +606,9 @@ void FSMState_Q01_DoYouOpenIPL::do_transitNo(TMgr* mgr)
 void FSMState_Q02_DoYouFormat::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_DoFormatConfirm);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_DoFormat2);
 	}
 }
@@ -620,9 +620,9 @@ void FSMState_Q02_DoYouFormat::do_open(TMgr* mgr)
  */
 void FSMState_Q02_DoYouFormat::do_transitYes(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_NowFormat, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		transit(mgr, CARDERROR_NowFormat, nullptr);
 	}
 }
@@ -634,9 +634,9 @@ void FSMState_Q02_DoYouFormat::do_transitYes(TMgr* mgr)
  */
 void FSMState_Q02_DoYouFormat::do_transitNo(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_CardNotUsable, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		transit(mgr, CARDERROR_CardNotUsable, nullptr);
 	}
 }
@@ -649,9 +649,9 @@ void FSMState_Q02_DoYouFormat::do_transitNo(TMgr* mgr)
 void FSMState_Q03_DoYouCreateNewFile::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_DoCreateFile);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_DoCreateFile2);
 	}
 }
@@ -663,9 +663,9 @@ void FSMState_Q03_DoYouCreateNewFile::do_open(TMgr* mgr)
  */
 void FSMState_Q03_DoYouCreateNewFile::do_transitYes(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_NowCreateNewFile, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		transit(mgr, CARDERROR_NowCreateNewFile, nullptr);
 	}
 }
@@ -677,9 +677,9 @@ void FSMState_Q03_DoYouCreateNewFile::do_transitYes(TMgr* mgr)
  */
 void FSMState_Q03_DoYouCreateNewFile::do_transitNo(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		transit(mgr, CARDERROR_NoFileForSave, nullptr);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		transit(mgr, CARDERROR_NoFileForSave, nullptr);
 	}
 }
@@ -692,9 +692,9 @@ void FSMState_Q03_DoYouCreateNewFile::do_transitNo(TMgr* mgr)
 void FSMState_Q04_DoYouStartGameWithoutSave::do_open(TMgr* mgr)
 {
 	mDoCheckCard = false;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_DoPlayNoSaving);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		JUT_PANICLINE(509, "P2Assert");
 	}
 }
@@ -706,9 +706,9 @@ void FSMState_Q04_DoYouStartGameWithoutSave::do_open(TMgr* mgr)
  */
 void FSMState_Q04_DoYouStartGameWithoutSave::do_transitYes(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_1);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		JUT_PANICLINE(518, "P2Assert");
 	}
 }
@@ -720,9 +720,9 @@ void FSMState_Q04_DoYouStartGameWithoutSave::do_transitYes(TMgr* mgr)
  */
 void FSMState_Q04_DoYouStartGameWithoutSave::do_transitNo(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->goEnd_(TMgr::End_2);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		JUT_PANICLINE(527, "P2Assert");
 	}
 }
@@ -735,9 +735,9 @@ void FSMState_Q04_DoYouStartGameWithoutSave::do_transitNo(TMgr* mgr)
 void FSMState_Q05_GameCantSave::do_open(TMgr* mgr)
 {
 	mDoCheckCard = false;
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(537, "P2Assert");
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CantSaveGotoIPL);
 	}
 }
@@ -749,9 +749,9 @@ void FSMState_Q05_GameCantSave::do_open(TMgr* mgr)
  */
 void FSMState_Q05_GameCantSave::do_transitYes(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(546, "P2Assert");
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		sys->resetOn(true);
 	}
 }
@@ -763,9 +763,9 @@ void FSMState_Q05_GameCantSave::do_transitYes(TMgr* mgr)
  */
 void FSMState_Q05_GameCantSave::do_transitNo(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(555, "P2Assert");
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->goEnd_(TMgr::End_3);
 	}
 }
@@ -784,9 +784,9 @@ bool FSMState_WN0_NowFormat::do_cardRequest() { return static_cast<Game::MemoryC
  */
 void FSMState_WN0_NowFormat::do_open(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_Formatting);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_Formatting2);
 	}
 }
@@ -819,9 +819,9 @@ void FSMState_WN0_NowFormat::do_transitCardIOError(TMgr* mgr) { transit(mgr, CAR
  */
 void FSMState_WN1_NowCreateNewFile::do_open(TMgr* mgr)
 {
-	if (mgr->mIsBroken == 0) {
+	if (mgr->mIsBroken == FALSE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CreatingFile);
-	} else if (mgr->mIsBroken == 1) {
+	} else if (mgr->mIsBroken == TRUE) {
 		mgr->open(Screen::TMemoryCard::OPEN_CreatingFile2);
 	}
 }

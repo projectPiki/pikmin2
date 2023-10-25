@@ -78,7 +78,7 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 {
 	Obj* enemy = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
 	if (enemy) {
-		Obj* leader = static_cast<Obj*>(enemy);
+		Obj* leader = OBJ(enemy);
 		birthArg.mPosition.y += CG_PROPERPARMS(leader).mFlightHeight.mValue;
 
 		leader->mHomePosition = birthArg.mPosition;
@@ -175,7 +175,7 @@ void Mgr::createGroup(Obj* leader, int count)
 
 		EnemyBase* enemy = EnemyMgrBase::birth(birthArg);
 		if (enemy) {
-			Obj* chou          = static_cast<Obj*>(enemy);
+			Obj* chou          = OBJ(enemy);
 			chou->mSpawnSource = leader->mSpawnSource;
 
 			f32 typeCheck = randFloat();
@@ -212,7 +212,7 @@ void Mgr::createGroupByBigFoot(EnemyBirthArg& birthArg, int count)
 {
 	EnemyBase* enemy = EnemyMgrBase::birth(birthArg);
 	if (enemy) {
-		Obj* chou    = static_cast<Obj*>(enemy);
+		Obj* chou    = OBJ(enemy);
 		mGroupLeader = chou;
 
 		chou->mHomePosition = birthArg.mPosition;
@@ -235,7 +235,7 @@ void Mgr::createGroupByPlants(EnemyBirthArg& birthArg, int count)
 {
 	EnemyBase* enemy = EnemyMgrBase::birth(birthArg);
 	if (enemy) {
-		Obj* chou    = static_cast<Obj*>(enemy);
+		Obj* chou    = OBJ(enemy);
 		mGroupLeader = chou;
 
 		chou->mHomePosition = birthArg.mPosition;

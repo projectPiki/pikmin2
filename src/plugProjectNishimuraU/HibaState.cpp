@@ -27,7 +27,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* hiba = static_cast<Obj*>(enemy);
+	Obj* hiba = OBJ(enemy);
 
 	hiba->enableEvent(0, EB_Untargetable);
 	hiba->disableEvent(0, EB_LifegaugeVisible);
@@ -70,7 +70,7 @@ void StateDead::cleanup(EnemyBase*) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* hiba         = static_cast<Obj*>(enemy);
+	Obj* hiba         = OBJ(enemy);
 	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
 	if (stateArg) {
 		hiba->mTimer = arg->mWaitTimer;
@@ -88,7 +88,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* hiba = static_cast<Obj*>(enemy);
+	Obj* hiba = OBJ(enemy);
 	hiba->mTimer += sys->mDeltaTime;
 
 	if (hiba->mHealth <= 0.0f) {
@@ -116,7 +116,7 @@ void StateWait::cleanup(EnemyBase*) { }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* hiba    = static_cast<Obj*>(enemy);
+	Obj* hiba    = OBJ(enemy);
 	hiba->mTimer = 0.0f;
 	hiba->startMotion(HIBAANIM_Attack, nullptr);
 	hiba->startFireEffect();
@@ -129,7 +129,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	Obj* hiba = static_cast<Obj*>(enemy);
+	Obj* hiba = OBJ(enemy);
 
 	// If dead or we're done being active, then finish
 	if ((hiba->mHealth <= 0.0f) || (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mActiveTime.mValue)) {
@@ -159,7 +159,7 @@ void StateAttack::exec(EnemyBase* enemy)
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	Obj* hiba = static_cast<Obj*>(enemy);
+	Obj* hiba = OBJ(enemy);
 	hiba->finishFireEffect();
 }
 

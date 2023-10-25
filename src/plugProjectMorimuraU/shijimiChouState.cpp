@@ -61,28 +61,27 @@ void StateWait::exec(EnemyBase* enemy)
 	mWaitTimer++;
 
 	if (mWaitTimer > 10) {
-		if (static_cast<Obj*>(enemy)->mSpawnSource == SHIJIMISOURCE_Enemy) {
-			if (static_cast<Obj*>(enemy)->mGroupLeader != enemy) {
+		if (OBJ(enemy)->mSpawnSource == SHIJIMISOURCE_Enemy) {
+			if (OBJ(enemy)->mGroupLeader != enemy) {
 				transit(enemy, SHIJIMICHOU_Rest, nullptr);
 				return;
 			}
 
-			EnemyBase* spawnEnemy = static_cast<Obj*>(enemy)->mSpawningEnemy;
+			EnemyBase* spawnEnemy = OBJ(enemy)->mSpawningEnemy;
 			if (spawnEnemy && !spawnEnemy->isConstrained()) {
 				transit(enemy, SHIJIMICHOU_Fly, nullptr);
 				return;
 			}
 
-		} else if (static_cast<Obj*>(enemy)->mGroupLeader != enemy
-		           || EnemyFunc::getNearestPikmin(enemy, 180.0f, 150.0f, nullptr, nullptr)) {
+		} else if (OBJ(enemy)->mGroupLeader != enemy || EnemyFunc::getNearestPikmin(enemy, 180.0f, 150.0f, nullptr, nullptr)) {
 			transit(enemy, SHIJIMICHOU_Fly, nullptr);
 			return;
 		}
-	} else if (static_cast<Obj*>(enemy)->mGroupLeader == enemy) {
-		static_cast<Obj*>(enemy)->leaderInit();
+	} else if (OBJ(enemy)->mGroupLeader == enemy) {
+		OBJ(enemy)->leaderInit();
 	}
 
-	static_cast<Obj*>(enemy)->fly();
+	OBJ(enemy)->fly();
 }
 
 /*
@@ -103,8 +102,8 @@ StateFly::StateFly(int stateID)
  */
 void StateFly::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	static_cast<Obj*>(enemy)->setNextGoal();
-	static_cast<Obj*>(enemy)->mFlyTime = 0;
+	OBJ(enemy)->setNextGoal();
+	OBJ(enemy)->mFlyTime = 0;
 	enemy->disableEvent(0, EB_Cullable);
 	mFlyTimer = 0;
 }

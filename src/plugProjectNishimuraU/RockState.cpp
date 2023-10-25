@@ -31,7 +31,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	rock->setAtari(false);
 	rock->enableEvent(0, EB_Untargetable);
 	rock->hardConstraintOn();
@@ -50,7 +50,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	if (rock->mExistDuration != 0.0f) {
 		rock->mTimer += sys->mDeltaTime;
 		if (rock->mTimer > 1.5f) {
@@ -80,7 +80,7 @@ void StateWait::exec(EnemyBase* enemy)
  */
 void StateWait::cleanup(EnemyBase* enemy)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	rock->hardConstraintOff();
 	rock->enableEvent(0, EB_Animating);
 	rock->disableEvent(0, EB_ModelHidden);
@@ -93,7 +93,7 @@ void StateWait::cleanup(EnemyBase* enemy)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* rock         = static_cast<Obj*>(enemy);
+	Obj* rock         = OBJ(enemy);
 	Vector3f position = rock->getPosition();
 	position.y += rock->mFallOffset;
 	rock->onSetPosition(position);
@@ -118,7 +118,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	if (rock->fallRockScaleUp()) {
 		transit(rock, ROCK_Fall, nullptr);
 	}
@@ -131,7 +131,7 @@ void StateAppear::exec(EnemyBase* enemy)
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	rock->setAtari(true);
 	rock->disableEvent(0, EB_Untargetable);
 	rock->disableEvent(0, EB_ModelHidden);
@@ -144,7 +144,7 @@ void StateAppear::cleanup(EnemyBase* enemy)
  */
 void StateDropWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	rock->startMotion(ROCKANIM_Run, nullptr);
 }
 
@@ -162,7 +162,7 @@ void StateDropWait::exec(EnemyBase* enemy) { transit(enemy, ROCK_Fall, nullptr);
  */
 void StateDropWait::cleanup(EnemyBase* enemy)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	rock->disableEvent(0, EB_Cullable);
 	rock->disableEvent(0, EB_14);
 
@@ -177,7 +177,7 @@ void StateDropWait::cleanup(EnemyBase* enemy)
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	Vector3f velocity(0.0f, -rock->mFallSpeed, 0.0f);
 	rock->setVelocity(velocity);
 	rock->startFallEffect();
@@ -204,7 +204,7 @@ void StateFall::exec(EnemyBase* enemy)
  */
 void StateFall::cleanup(EnemyBase* enemy)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	shadowMgr->setForceVisible(rock, false);
 	rock->finishFallEffect();
 
@@ -220,7 +220,7 @@ void StateFall::cleanup(EnemyBase* enemy)
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	rock->disableEvent(0, EB_Cullable);
 	rock->disableEvent(0, EB_14);
 	rock->startMotion(ROCKANIM_Run, nullptr);
@@ -240,7 +240,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	rock->updateMoveVelocity();
 	rock->moveRockScaleUp();
 	rock->mTimer += sys->mDeltaTime;
@@ -259,7 +259,7 @@ void StateMove::exec(EnemyBase* enemy)
  */
 void StateMove::cleanup(EnemyBase* enemy)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	rock->finishRollingGroundEffect();
 	rock->finishRollingWaterEffect();
 
@@ -274,7 +274,7 @@ void StateMove::cleanup(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* rock             = static_cast<Obj*>(enemy);
+	Obj* rock             = OBJ(enemy);
 	rock->mTargetVelocity = Vector3f(0.0f);
 	rock->startMotion(ROCKANIM_Dead, nullptr);
 	shadowMgr->delShadow(rock);
@@ -289,7 +289,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* rock = static_cast<Obj*>(enemy);
+	Obj* rock = OBJ(enemy);
 	if (rock->isAtari()) {
 		rock->setAtari(false);
 		rock->hardConstraintOn();

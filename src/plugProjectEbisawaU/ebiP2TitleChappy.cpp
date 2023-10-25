@@ -259,7 +259,7 @@ void Chappy::TUnit::startAction_(Chappy::TUnit::enumAction actionID)
 	switch (mActionID) {
 	case CHAPPYACT_0:
 		mAnim.init(1, 1.0f);
-		mAnim._04 = 0.1f;
+		mAnim.mTimeStep = 0.1f;
 		mAnim.play();
 		break;
 
@@ -377,7 +377,7 @@ void Chappy::TUnit::update()
 			stickX       = 0.0f;
 			stickY       = 0.0f;
 			isButtonDown = 0;
-			if (mAnim._08 == 3) {
+			if (mAnim.mState == 3) {
 				bool check = false;
 				for (int i = 0; i < 500; i++) {
 					EGECircle2f circle;
@@ -404,7 +404,7 @@ void Chappy::TUnit::update()
 		stickX       = 0.0f;
 		stickY       = 0.0f;
 		isButtonDown = true;
-		if (mAnim._08 == 3) {
+		if (mAnim.mState == 3) {
 			startAIState_(CHAPPYAI_Turn);
 		}
 		break;
@@ -446,7 +446,7 @@ void Chappy::TUnit::update()
 		case CHAPPYACT_4: {
 			mAnim.playStopEnd();
 			_48 = true;
-			if (mAnim._08 == 3) {
+			if (mAnim.mState == 3) {
 				_48 = false;
 				if (mActionID != 0) {
 					startAction_(CHAPPYACT_0);
@@ -479,7 +479,7 @@ void Chappy::TUnit::update()
 		mPosition = mPosition + Vector2f(mAngle.x, mAngle.y) * cParm;
 	} break;
 	case CHAPPYACT_2: {
-		f32 anim00 = mAnim._00;
+		f32 anim00 = mAnim.mAnimStartTime;
 		if (8.0f < anim00 && anim00 < 10.f) {
 			int idx = 0;
 			EGECircle2f circle;
@@ -524,20 +524,20 @@ void Chappy::TUnit::update()
 		break;
 	}
 	calcModelBaseMtx_();
-	if (mAnim._0C != nullptr) {
-		switch (mAnim._08) {
+	if (mAnim.mAnimRes != nullptr) {
+		switch (mAnim.mState) {
 		case 1:
-			mAnim._00 += mAnim._04 * mAnim._0C->float_0x18;
-			if (mAnim._00 > mAnim._0C->mLoopEnd) {
-				mAnim._00 -= mAnim._0C->mLoopEnd - mAnim._0C->mLoopStart;
+			mAnim.mAnimStartTime += mAnim.mTimeStep * mAnim.mAnimRes->mTimeScale;
+			if (mAnim.mAnimStartTime > mAnim.mAnimRes->mLoopEnd) {
+				mAnim.mAnimStartTime -= mAnim.mAnimRes->mLoopEnd - mAnim.mAnimRes->mLoopStart;
 			}
 			break;
 
 		case 2:
-			mAnim._00 += mAnim._04 * mAnim._0C->float_0x18;
-			if (mAnim._00 >= mAnim._0C->float_0xC) {
-				mAnim._00 = mAnim._0C->float_0xC;
-				mAnim._08 = 3;
+			mAnim.mAnimStartTime += mAnim.mTimeStep * mAnim.mAnimRes->mTimeScale;
+			if (mAnim.mAnimStartTime >= mAnim.mAnimRes->_0C) {
+				mAnim.mAnimStartTime = mAnim.mAnimRes->_0C;
+				mAnim.mState         = 3;
 			}
 			break;
 
@@ -549,9 +549,9 @@ void Chappy::TUnit::update()
 	}
 
 	J3DModel* model = mModel;
-	if (mAnim._0C != nullptr) {
-		mAnim._0C->pAnmTransform_0x0->mCurrentFrame        = mAnim._00;
-		model->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnim._0C->pMtxCalcAnm_0x4;
+	if (mAnim.mAnimRes != nullptr) {
+		mAnim.mAnimRes->mAnimTransform->mCurrentFrame      = mAnim.mAnimStartTime;
+		model->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnim.mAnimRes->mAnmCalcMtx;
 	}
 	mModel->calc();
 	mModel->entry();

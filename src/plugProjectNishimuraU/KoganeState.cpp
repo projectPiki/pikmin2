@@ -28,7 +28,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 	kogane->setAtari(false);
 	kogane->enableEvent(0, EB_BitterImmune);
 	kogane->hardConstraintOn();
@@ -47,7 +47,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 	if (kogane->isAppear()) {
 		transit(kogane, KOGANE_Move, nullptr);
 	}
@@ -60,7 +60,7 @@ void StateAppear::exec(EnemyBase* enemy)
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 	kogane->setAtari(true);
 
 	kogane->disableEvent(0, EB_BitterImmune);
@@ -88,7 +88,7 @@ void StateAppear::cleanup(EnemyBase* enemy)
  */
 void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 
 	kogane->enableEvent(0, EB_BitterImmune);
 
@@ -107,7 +107,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDisappear::exec(EnemyBase* enemy)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 
 	if (kogane->koganeScaleDown()) {
 		if (kogane->transitDisappear()) {
@@ -133,7 +133,7 @@ void StateDisappear::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 
 	Parms* parms = static_cast<Parms*>(kogane->mParms);
 	kogane->resetMoveTimer(parms->mProperParms.mMinTravelTime.mValue, parms->mProperParms.mMaxTravelTime.mValue);
@@ -149,7 +149,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 
 	kogane->koganeScaleUp();
 	Vector3f targetPos = Vector3f(kogane->mTargetPosition);
@@ -188,7 +188,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 
 	Parms* parms = static_cast<Parms*>(kogane->mParms);
 	kogane->resetMoveTimer(parms->mProperParms.mMinStopTime.mValue, parms->mProperParms.mMaxStopTime.mValue);
@@ -204,7 +204,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 
 	kogane->koganeScaleUp();
 	if (kogane->mMoveTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxStopTime.mValue) {
@@ -233,7 +233,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 
 	kogane->disableEvent(0, EB_NoInterrupt);
 
@@ -252,7 +252,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StatePress::exec(EnemyBase* enemy)
 {
-	Obj* kogane = static_cast<Obj*>(enemy);
+	Obj* kogane = OBJ(enemy);
 
 	kogane->koganeScaleUp();
 	kogane->mAppearTimer += sys->mDeltaTime;

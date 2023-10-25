@@ -26,7 +26,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* hiba = static_cast<Obj*>(enemy);
+	Obj* hiba = OBJ(enemy);
 
 	hiba->enableEvent(0, EB_Untargetable);
 	hiba->disableEvent(0, EB_LifegaugeVisible);
@@ -69,7 +69,7 @@ void StateDead::cleanup(Game::EnemyBase*) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* hiba         = static_cast<Obj*>(enemy);
+	Obj* hiba         = OBJ(enemy);
 	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
 	if (arg) {
 		hiba->mTimer = arg->mWaitTimer;
@@ -87,7 +87,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* hiba = static_cast<Obj*>(enemy);
+	Obj* hiba = OBJ(enemy);
 	hiba->mTimer += sys->mDeltaTime;
 
 	hiba->setInitLivingThing();
@@ -118,7 +118,7 @@ void StateWait::cleanup(Game::EnemyBase*) { }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* hiba    = static_cast<Obj*>(enemy);
+	Obj* hiba    = OBJ(enemy);
 	hiba->mTimer = 0.0f;
 	hiba->startMotion(GASHIBAANIM_Attack, nullptr);
 	hiba->startGasEffect();
@@ -131,7 +131,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	Obj* hiba = static_cast<Obj*>(enemy);
+	Obj* hiba = OBJ(enemy);
 
 	// If dead or we're done attacking, then finish
 	if ((hiba->mHealth <= 0.0f)
@@ -169,7 +169,7 @@ void StateAttack::exec(EnemyBase* enemy)
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	Obj* hiba = static_cast<Obj*>(enemy);
+	Obj* hiba = OBJ(enemy);
 	hiba->finishGasEffect();
 }
 } // namespace GasHiba

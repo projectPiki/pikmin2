@@ -70,7 +70,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bug         = static_cast<Obj*>(enemy);
+	Obj* bug         = OBJ(enemy);
 	bug->mStateTimer = 0.0f;
 	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
@@ -84,7 +84,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* bug = static_cast<Obj*>(enemy);
+	Obj* bug = OBJ(enemy);
 	if (bug->mStateTimer > CG_PROPERPARMS(bug).mWaitTime) {
 		bug->finishMotion();
 	}
@@ -108,7 +108,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bug = static_cast<Obj*>(enemy);
+	Obj* bug = OBJ(enemy);
 	bug->setTargetPosition();
 	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
@@ -122,7 +122,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
-	Obj* bug           = static_cast<Obj*>(enemy);
+	Obj* bug           = OBJ(enemy);
 	Vector3f targetPos = bug->mTargetPosition;
 	Vector2f XZ;
 	XZ.x = targetPos.x;
@@ -162,7 +162,7 @@ void StateTurn::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bug = static_cast<Obj*>(enemy);
+	Obj* bug = OBJ(enemy);
 	bug->enableEvent(0, EB_Cullable);
 	bug->startMotion(ELECBUGANIM_Move, nullptr);
 }
@@ -174,7 +174,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	Obj* bug           = static_cast<Obj*>(enemy);
+	Obj* bug           = OBJ(enemy);
 	Vector3f targetPos = Vector3f(bug->mTargetPosition);
 
 	Vector3f currentPos = bug->getPosition();
@@ -211,7 +211,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateCharge::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bug               = static_cast<Obj*>(enemy);
+	Obj* bug               = OBJ(enemy);
 	bug->mHasStartedSearch = false;
 	bug->mStateTimer       = 0.0f;
 	bug->resetPartnerPtr();
@@ -229,7 +229,7 @@ void StateCharge::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateCharge::exec(EnemyBase* enemy)
 {
-	Obj* bug = static_cast<Obj*>(enemy);
+	Obj* bug = OBJ(enemy);
 	Obj* seachingBugs[32];
 
 	if (!bug->mHasStartedSearch && bug->mStateTimer > 2.0f) {
@@ -289,7 +289,7 @@ void StateCharge::exec(EnemyBase* enemy)
  */
 void StateCharge::cleanup(EnemyBase* enemy)
 {
-	Obj* bug = static_cast<Obj*>(enemy);
+	Obj* bug = OBJ(enemy);
 	bug->setEmotionCaution();
 	bug->mInactiveTimer = randWeightFloat(10.0f);
 }
@@ -377,7 +377,7 @@ void StateChildCharge::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateChildCharge::exec(EnemyBase* enemy)
 {
-	Obj* bug     = static_cast<Obj*>(enemy);
+	Obj* bug     = OBJ(enemy);
 	Obj* partner = bug->mPartner;
 	if (partner) {
 		Vector3f bugPos     = bug->getPosition();

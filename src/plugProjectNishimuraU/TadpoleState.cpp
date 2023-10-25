@@ -44,7 +44,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	Obj* tadpole = static_cast<Obj*>(enemy);
+	Obj* tadpole = OBJ(enemy);
 	if (tadpole->mCurAnim->mIsPlaying) {
 		if (tadpole->mCurAnim->mType == KEYEVENT_2) {
 			tadpole->createLeapEffect();
@@ -68,7 +68,7 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tadpole             = static_cast<Obj*>(enemy);
+	Obj* tadpole             = OBJ(enemy);
 	tadpole->mStateTimer     = 0.0f;
 	tadpole->mNextState      = TADPOLE_Move;
 	tadpole->mTargetVelocity = Vector3f(0.0f);
@@ -82,7 +82,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* tadpole = static_cast<Obj*>(enemy);
+	Obj* tadpole = OBJ(enemy);
 	if (tadpole->mStateTimer > 3.0f) {
 		tadpole->finishMotion();
 	}
@@ -125,7 +125,7 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tadpole         = static_cast<Obj*>(enemy);
+	Obj* tadpole         = OBJ(enemy);
 	tadpole->mStateTimer = 0.0f;
 	tadpole->setRandTarget(false);
 	tadpole->mNextState = TADPOLE_Wait;
@@ -139,7 +139,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	Obj* tadpole        = static_cast<Obj*>(enemy);
+	Obj* tadpole        = OBJ(enemy);
 	Vector3f tadpolePos = tadpole->getPosition();
 	Vector3f targetPos  = Vector3f(tadpole->mTargetPosition);
 
@@ -203,7 +203,7 @@ void StateAmaze::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAmaze::exec(EnemyBase* enemy)
 {
-	Obj* tadpole = static_cast<Obj*>(enemy);
+	Obj* tadpole = OBJ(enemy);
 	if (tadpole->mCurAnim->mIsPlaying) {
 		if (tadpole->mCurAnim->mType == KEYEVENT_2) {
 			tadpole->enableEvent(0, EB_NoInterrupt);
@@ -250,7 +250,7 @@ void StateEscape::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateEscape::exec(EnemyBase* enemy)
 {
-	Obj* tadpole = static_cast<Obj*>(enemy);
+	Obj* tadpole = OBJ(enemy);
 
 	Navi* navi = EnemyFunc::getNearestNavi(tadpole, CG_PARMS(tadpole)->mGeneral.mViewAngle.mValue,
 	                                       CG_PARMS(tadpole)->mGeneral.mSightRadius.mValue, nullptr, nullptr);
@@ -293,7 +293,7 @@ void StateEscape::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateLeap::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tadpole         = static_cast<Obj*>(enemy);
+	Obj* tadpole         = OBJ(enemy);
 	tadpole->mStateTimer = 0.0f;
 	tadpole->setRandTarget(true);
 	if (randWeightFloat(1.0f) < 0.5f) {
@@ -315,7 +315,7 @@ void StateLeap::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateLeap::exec(EnemyBase* enemy)
 {
-	Obj* tadpole = static_cast<Obj*>(enemy);
+	Obj* tadpole = OBJ(enemy);
 
 	if (tadpole->isFinishMotion()) {
 		tadpole->mTargetVelocity = Vector3f(0.0f);
