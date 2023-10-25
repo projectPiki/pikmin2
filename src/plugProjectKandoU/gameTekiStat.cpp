@@ -11,7 +11,7 @@ void TekiStat::Info::incKilled()
 {
 	if (gameSystem && gameSystem->isStoryMode()) {
 		mKilledTekiCount++;
-		mState |= TEKISTAT_STATE_UPDATED;
+		mState.set(TEKISTAT_STATE_UPDATED);
 	}
 }
 
@@ -47,7 +47,7 @@ bool TekiStat::Mgr::whatsNew()
 {
 	for (int i = 0; i < mCount; i++) {
 		// If the stat is updated and isn't out of date, there is new data to review
-		if (getTekiInfo(i)->mState & TEKISTAT_STATE_UPDATED && !(getTekiInfo(i)->mState & TEKISTAT_STATE_OUT_OF_DATE)) {
+		if (getTekiInfo(i)->mState.isSet(TEKISTAT_STATE_UPDATED) && !(getTekiInfo(i)->mState.isSet(TEKISTAT_STATE_OUT_OF_DATE))) {
 			return true;
 		}
 	}
@@ -63,9 +63,9 @@ bool TekiStat::Mgr::whatsNew()
 void TekiStat::Mgr::setOutOfDateAll()
 {
 	for (int i = 0; i < mCount; i++) {
-		if (getTekiInfo(i)->mState & TEKISTAT_STATE_UPDATED) {
+		if (getTekiInfo(i)->mState.isSet(TEKISTAT_STATE_UPDATED)) {
 			// Invalidate all new updated data
-			getTekiInfo(i)->mState |= TEKISTAT_STATE_OUT_OF_DATE;
+			getTekiInfo(i)->mState.set(TEKISTAT_STATE_OUT_OF_DATE);
 		}
 	}
 }
@@ -82,7 +82,7 @@ void TekiStat::Mgr::clear()
 	for (int i = 0; i < mCount; i++) {
 		getTekiInfo(i)->mKilledTekiCount   = 0;
 		getTekiInfo(i)->mKilledPikminCount = 0;
-		getTekiInfo(i)->mState             = 0;
+		getTekiInfo(i)->mState.clear();
 	}
 }
 
@@ -104,11 +104,9 @@ void TekiStat::Mgr::allocate(int amount)
  */
 TekiStat::Info::Info()
 {
-	mState             = 0;
 	mKilledPikminCount = 0;
 	mKilledTekiCount   = 0;
-
-	mState = 0;
+	mState.clear();
 }
 
 /*
@@ -132,7 +130,7 @@ void TekiStat::Info::write(Stream& stream)
 {
 	stream.writeInt(mKilledTekiCount);
 	stream.writeInt(mKilledPikminCount);
-	stream.writeBytes(&mState, 1);
+	stream.writeBytes(&mState.typeView, 1);
 }
 
 /*
@@ -144,7 +142,7 @@ void TekiStat::Info::read(Stream& stream)
 {
 	mKilledTekiCount   = stream.readInt();
 	mKilledPikminCount = stream.readInt();
-	mState             = stream.readByte();
+	mState.typeView    = stream.readByte();
 }
 
 /*

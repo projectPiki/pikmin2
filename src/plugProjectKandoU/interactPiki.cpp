@@ -157,7 +157,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 	if (!mCreature->isNavi()) {
 		return false;
 	}
-	if (!(piki->mFlags.typeView & 0x2)) {
+	if (!piki->mFlags.isSet(0x2)) {
 		return false;
 	}
 
@@ -176,8 +176,8 @@ bool InteractFue::actPiki(Game::Piki* piki)
 			return false;
 		}
 		callable = true;
-		if (BaseHIOParms::sTekiChappyFlag && piki->mFakePikiFlags.typeView & 0x100) {
-			RESET_FLAG(piki->mFakePikiFlags.typeView, 0x100);
+		if (BaseHIOParms::sTekiChappyFlag && piki->mFakePikiFlags.isSet(0x100)) {
+			piki->mFakePikiFlags.unset(0x100);
 			GameStat::alivePikis.inc(piki);
 		}
 

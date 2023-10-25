@@ -2620,7 +2620,7 @@ bool TEnemyZukan::isListShow(int index)
 			}
 		}
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
-		if (info->mState & TEKISTAT_STATE_UPDATED) {
+		if (info->mState.isSet(TEKISTAT_STATE_UPDATED)) {
 			return true;
 		} else {
 			return false;
@@ -4273,7 +4273,7 @@ bool TEnemyZukan::isNewSupply(int index, bool flag)
 			}
 		}
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
-		if (info && info->mState & TEKISTAT_STATE_UPDATED && !(info->mState & TEKISTAT_STATE_OUT_OF_DATE)) {
+		if (info && info->mState.isSet(TEKISTAT_STATE_UPDATED) && !(info->mState.isSet(TEKISTAT_STATE_OUT_OF_DATE))) {
 			return true;
 		} else {
 			return false;
@@ -4345,7 +4345,7 @@ u32 TEnemyZukan::getPrice(int index)
 			}
 		}
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
-		if (!(info->mState & TEKISTAT_STATE_UPDATED)) {
+		if (!(info->mState.isSet(TEKISTAT_STATE_UPDATED))) {
 			return 0;
 		}
 
@@ -4378,7 +4378,7 @@ u32 TEnemyZukan::getDefeatNum(int index)
 			}
 		}
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
-		if (info && info->mState & TEKISTAT_STATE_UPDATED) {
+		if (info && info->mState.isSet(TEKISTAT_STATE_UPDATED)) {
 			return info->mKilledTekiCount;
 		}
 		return 0;
@@ -4406,7 +4406,7 @@ u32 TEnemyZukan::getKilledNum(int index)
 			}
 		}
 		Game::TekiStat::Info* info = Game::playData->mTekiStatMgr.getTekiInfo(data[1]);
-		if (info && info->mState & TEKISTAT_STATE_UPDATED) {
+		if (info && info->mState.isSet(TEKISTAT_STATE_UPDATED)) {
 			return info->mKilledPikminCount;
 		}
 		return 0;

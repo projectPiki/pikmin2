@@ -396,13 +396,13 @@ bool Creature::sound_culling() { return !(mLod.isFlag(AILOD_PikiInCell) || mLod.
  */
 void Creature::movie_begin(bool required)
 {
-	SET_FLAG(mFlags.typeView, CF_IS_MOVIE_ACTOR);
+	mFlags.set(CF_IS_MOVIE_ACTOR);
 
 	if (!required) {
-		SET_FLAG(mFlags.typeView, CF_IS_MOVIE_EXTRA);
+		mFlags.set(CF_IS_MOVIE_EXTRA);
 		isPiki();
 	} else {
-		RESET_FLAG(mFlags.typeView, CF_IS_MOVIE_EXTRA);
+		mFlags.unset(CF_IS_MOVIE_EXTRA);
 		isPiki();
 	}
 	on_movie_begin(required);
@@ -417,8 +417,8 @@ void Creature::movie_begin(bool required)
 void Creature::movie_end(bool required)
 {
 	on_movie_end(required);
-	RESET_FLAG(mFlags.typeView, CF_IS_MOVIE_ACTOR);
-	RESET_FLAG(mFlags.typeView, CF_IS_MOVIE_EXTRA);
+	mFlags.unset(CF_IS_MOVIE_ACTOR);
+	mFlags.unset(CF_IS_MOVIE_EXTRA);
 }
 
 /*

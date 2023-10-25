@@ -172,7 +172,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushi.cpp">umiMushi.cpp</a> | 77775 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappy.cpp">kingChappy.cpp</a> | 86592 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModoki.cpp">panModoki.cpp</a> | 99675 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hiScore2D.cpp">hiScore2D.cpp</a> | 122691 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/blackMan.cpp">blackMan.cpp</a> | 129172 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeResult2D.cpp">challengeResult2D.cpp</a> | 146750 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeSelect2D.cpp">challengeSelect2D.cpp</a> | 169988 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/zukan2D.cpp">zukan2D.cpp</a> | 174237 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/challengeSelect2D.cpp">challengeSelect2D.cpp</a> | 169988 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/zukan2D.cpp">zukan2D.cpp</a> | 174267 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/vsSelect2D.cpp">vsSelect2D.cpp</a> | 233792 |  |  |
 
 ### <section id="plugProjectNishimuraU">plugProjectNishimuraU</section>
@@ -225,7 +225,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneDrawInfo.cpp">enemyStoneDrawInfo.cpp</a> | 18852 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 19404 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/singleGS_ZukanParms.cpp">singleGS_ZukanParms.cpp</a> | 21455 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 25420 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">carryInfoMgr.cpp</a> | 25900 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyAction.cpp">enemyAction.cpp</a> | 51330 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/generalEnemyMgr.cpp">generalEnemyMgr.cpp</a> | 55112 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 66683 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/generalEnemyMgr.cpp">generalEnemyMgr.cpp</a> | 55115 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 66683 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/chappyState.cpp">chappyState.cpp</a> | 72749 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/gameLightMgr.cpp">gameLightMgr.cpp</a> | 74737 |
 
 ### <section id="sysBootupU">sysBootupU</section>

@@ -36,10 +36,10 @@ GenObjectEnemy::GenObjectEnemy()
     , mEnemySize(0)
     , mOtakaraItemCode(0)
     , mEnemyGenerator(nullptr)
-    , _4C(false)
+    , mFlagBit()
 {
 	createEnemyGenerator();
-	_4C |= true;
+	mFlagBit.set(1);
 }
 
 /*
@@ -631,7 +631,7 @@ void GenObjectEnemy::updateUseList(Game::Generator* gen, int listIdx)
  */
 void GenObjectEnemy::render(Graphics& gfx, Game::Generator* gen)
 {
-	if (IS_FLAG(_4C, 1)) {
+	if (mFlagBit.isSet(1)) {
 		Vector3f position = gen->mPosition + gen->mOffset;
 
 		gfx.initPrimDraw(nullptr);

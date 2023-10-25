@@ -337,7 +337,7 @@ struct GenObjectEnemy : public GenObject {
 	PelletMgr::OtakaraItemCode mOtakaraItemCode; // _38
 	EnemyPelletInfo mPelletInfo;                 // _3C
 	EnemyGeneratorBase* mEnemyGenerator;         // _48
-	u8 _4C;                                      // _4C
+	BitFlag<u8> mFlagBit;                        // _4C, set during constuction
 };
 
 /**

@@ -1005,7 +1005,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 				TekiStat::Info* tekiInfo = playData->mTekiStatMgr.getTekiInfo(randomID);
 				P2ASSERTLINE(2203, tekiInfo != nullptr);
 
-				if ((randomInfo->mFlags & 0x10) && (tekiInfo->mState & 0x1)) {
+				if ((randomInfo->mFlags & 0x10) && (tekiInfo->mState.isSet(1))) {
 					EnemyBirthArg birthArg;
 					birthArg.mIsInPiklopedia = 0;
 

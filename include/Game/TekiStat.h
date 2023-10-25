@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "stream.h"
+#include "BitFlag.h"
 
 namespace Game {
 namespace TekiStat {
@@ -25,7 +26,7 @@ struct Info {
 	int mKilledPikminCount; // _04
 
 	// 1 is ORed to this in incKilled
-	u8 mState; // _08
+	BitFlag<u8> mState; // _08
 };
 
 struct Mgr {
