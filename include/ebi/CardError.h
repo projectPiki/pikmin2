@@ -13,34 +13,34 @@ namespace CardError {
 struct TMgr;
 
 enum StateID {
-	CARDERROR_Standby,
-	CARDERROR_EmptyScreen,
-	CARDERROR_NoCard,
-	CARDERROR_IOError,
-	CARDERROR_WrongDevice,
-	CARDERROR_WrongSector,
-	CARDERROR_OverCapacity,
-	CARDERROR_InitCardOnIPL,
-	CARDERROR_CardNotUsable,
-	CARDERROR_NoFileForSave,
-	CARDERROR_FinishFormat,
-	CARDERROR_FinishCreateNewFile,
-	CARDERROR_SerialNoError,
-	CARDERROR_FailToFormat_NoCard,
-	CARDERROR_FailToFormat_IOError,
-	CARDERROR_FailToCreateNewFile_NoCard,
-	CARDERROR_FailToCreateNewFile_IOError,
-	CARDERROR_FailToSave_NoCard,
-	CARDERROR_FailToSave_IOError,
-	CARDERROR_DataBrokenAndDoYouFormat,
-	CARDERROR_DoYouOpenIPL,
-	CARDERROR_DoYouFormat,
-	CARDERROR_DoYouCreateNewFile,
-	CARDERROR_DoYouStartGameWithoutSave,
-	CARDERROR_GameCantSave,
-	CARDERROR_NowFormat,
-	CARDERROR_NowCreateNewFile,
-	CARDERROR_StateCount // NOT A REAL STATE
+	CARDERROR_Standby,                     // 0
+	CARDERROR_EmptyScreen,                 // 1
+	CARDERROR_NoCard,                      // 2
+	CARDERROR_IOError,                     // 3
+	CARDERROR_WrongDevice,                 // 4
+	CARDERROR_WrongSector,                 // 5
+	CARDERROR_OverCapacity,                // 6
+	CARDERROR_InitCardOnIPL,               // 7
+	CARDERROR_CardNotUsable,               // 8
+	CARDERROR_NoFileForSave,               // 9
+	CARDERROR_FinishFormat,                // 10
+	CARDERROR_FinishCreateNewFile,         // 11
+	CARDERROR_SerialNoError,               // 12
+	CARDERROR_FailToFormat_NoCard,         // 13
+	CARDERROR_FailToFormat_IOError,        // 14
+	CARDERROR_FailToCreateNewFile_NoCard,  // 15
+	CARDERROR_FailToCreateNewFile_IOError, // 16
+	CARDERROR_FailToSave_NoCard,           // 17
+	CARDERROR_FailToSave_IOError,          // 18
+	CARDERROR_DataBrokenAndDoYouFormat,    // 19
+	CARDERROR_DoYouOpenIPL,                // 20
+	CARDERROR_DoYouFormat,                 // 21
+	CARDERROR_DoYouCreateNewFile,          // 22
+	CARDERROR_DoYouStartGameWithoutSave,   // 23
+	CARDERROR_GameCantSave,                // 24
+	CARDERROR_NowFormat,                   // 25
+	CARDERROR_NowCreateNewFile,            // 26
+	CARDERROR_StateCount                   // 27 (NOT A REAL STATE)
 };
 
 struct FSMStateMachine : public Game::StateMachine<TMgr> {

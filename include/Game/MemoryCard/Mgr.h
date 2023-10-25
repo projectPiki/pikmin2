@@ -124,6 +124,8 @@ struct Mgr : public MemoryCardMgr {
 
 	inline bool isCardNotReady() { return (int)getCardStatus() != 0; }
 
+	inline bool isCardInvalid() { return !mIsCard && checkStatus() != 11; }
+
 	// _00-_E8 = MemoryCardMgr
 	u32 _D8;                // _D8
 	void* mBannerImageFile; // _DC

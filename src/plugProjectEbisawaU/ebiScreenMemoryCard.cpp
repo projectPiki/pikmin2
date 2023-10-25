@@ -757,9 +757,9 @@ void TMemoryCard::killScreen() { startState(MEMCARD_Disabled); }
  */
 void TMemoryCard::setSelect_(bool sel)
 {
-	mCurrSel = sel;
+	mSelectionIdx = sel;
 
-	if (mCurrSel) {
+	if (mSelectionIdx) {
 		doSetSelect(1.0f, true); // needs tweaking
 
 	} else {
@@ -1149,7 +1149,7 @@ void TMemoryCard::startState(enumState state)
 		mPaneMsg1->setAlpha(255);
 		mPaneMsg2->show();
 		mPaneMsg2->setAlpha(255);
-		if (mCurrSel == 1) {
+		if (mSelectionIdx == 1) {
 			mBlinkFont1.mIsEnabled      = true;
 			mBlinkFont1.mSpeed          = sys->mDeltaTime * 3.333333f;
 			mBlinkFont1.mColor1Weight   = 0.0f;
@@ -1560,8 +1560,8 @@ void TMemoryCard::update()
 		}
 		if (!mInputDelay && mCanExit) {
 			if (mController->mButton.mButtonDown & Controller::PRESS_DPAD_RIGHT || mController->mButton.mAnalogL > 0.5f) {
-				if (mCurrSel == 1) {
-					mCurrSel                    = 0;
+				if (mSelectionIdx == 1) {
+					mSelectionIdx               = 0;
 					mBlinkFont1.mIsTowardColor1 = false;
 					mBlinkFont1._49             = true;
 					mBlinkFont2.mIsEnabled      = true;
@@ -1573,8 +1573,8 @@ void TMemoryCard::update()
 					mCursor2.mSelected          = false;
 				}
 			} else if (mController->mButton.mButtonDown & Controller::PRESS_DPAD_RIGHT || mController->mButton.mAnalogL > 0.5f) {
-				if (mCurrSel == 0) {
-					mCurrSel                    = 1;
+				if (mSelectionIdx == 0) {
+					mSelectionIdx               = 1;
 					mBlinkFont1.mIsEnabled      = true;
 					mBlinkFont1.mSpeed          = sys->mDeltaTime * 3.333333f;
 					mBlinkFont1.mColor1Weight   = 0.0f;
@@ -1586,7 +1586,7 @@ void TMemoryCard::update()
 					mCursor2.mSelected          = true;
 				}
 			} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
-				if (mCurrSel) {
+				if (mSelectionIdx) {
 					mBlinkFont1.mIsEnabled = false;
 					J2DTextBox* pane       = static_cast<J2DTextBox*>(mBlinkFont1.mPane);
 					if (pane) {

@@ -102,7 +102,7 @@ struct TMemoryCard {
 	uint _0C;                               // _0C
 	u32 mMsgAlpha;                          // _10
 	int mAlphaMod;                          // _14
-	u8 mCurrSel;                            // _18
+	u8 mSelectionIdx;                       // _18
 	u8 mCanExit;                            // _19
 	P2DScreen::Mgr_tuning* mScreenMain;     // _1C
 	J2DTextBox* mPaneMsg1;                  // _20

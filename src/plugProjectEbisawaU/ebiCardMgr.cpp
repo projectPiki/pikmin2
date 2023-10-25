@@ -67,11 +67,13 @@ void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
  */
 void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 {
-	mIsClosed     = false;
-	mCanClose     = false;
+	mIsClosed = false;
+	mCanClose = false;
+
 	u32 rate      = 0.0f / sys->mDeltaTime;
 	mgr->mCounter = rate;
 	mgr->_29C     = rate;
+
 	mDoCheckCard  = false;
 	mgr->mCanExit = true;
 	do_open(mgr);
@@ -122,7 +124,7 @@ void FSMState_Question::do_exec(TMgr* mgr)
 	}
 
 	if (mgr->TMemoryCard::isFinish()) {
-		if (mgr->mCurrSel == 1) {
+		if (mgr->mSelectionIdx == 1) {
 			do_transitYes(mgr);
 		} else {
 			do_transitNo(mgr);
@@ -139,9 +141,11 @@ void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg*)
 {
 	mgr->mCanExit = false;
 	mState        = 0;
+
 	u32 rate      = 3.0f / sys->mDeltaTime;
 	mgr->mCounter = rate;
 	mgr->_29C     = rate;
+
 	do_open(mgr);
 }
 
@@ -152,24 +156,23 @@ void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState_CardRequest::do_exec(TMgr* mgr)
 {
-	bool check = (!sys->mCardMgr->mIsCard) && (sys->mCardMgr->checkStatus() != 11);
+	bool check = sys->mCardMgr->isCardInvalid();
 
-	if (check && (int)static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus() == 0) {
+	if (check && (int)sys->mCardMgr->getCardStatus() == 0) {
 		check = true;
 	} else {
 		check = false;
 	}
 
 	if (check) {
-		mCardStatus = static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();
+		mCardStatus = sys->mCardMgr->getCardStatus();
 		mgr->close();
 	}
 
 	switch (mState) // todo: enums for both of these switches
 	{
 	case 0:
-		bool check2 = (!sys->mCardMgr->mIsCard) && (sys->mCardMgr->checkStatus() != 11);
-		if (check2) {
+		if (sys->mCardMgr->isCardInvalid()) {
 			if (do_cardRequest()) {
 				mState = 1;
 			} else {
@@ -178,12 +181,12 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 		}
 		break;
 	case 1:
-		bool check3 = (!sys->mCardMgr->mIsCard) && (sys->mCardMgr->checkStatus() != 11);
-		if (check3) {
-			mCardStatus = (int)static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();
-			if (mCardStatus != 2) {
-				static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();
+		if (sys->mCardMgr->isCardInvalid()) {
+			mCardStatus = (int)sys->mCardMgr->getCardStatus();
+			if (mCardStatus != CARDERROR_NoCard) {
+				sys->mCardMgr->getCardStatus();
 			}
+
 			mState = 2;
 		}
 		break;
@@ -191,46 +194,50 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 		if (!mgr->mCounter) {
 			mgr->close();
 		}
-		if (mgr->TMemoryCard::isFinish()) {
-			mgr->mCanExit = true;
-			switch (mCardStatus) {
-			case Game::MemoryCard::Mgr::MCS_IOError:
-				do_transitCardReady(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_Ready:
-				do_transitCardNoCard(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_Broken:
-				do_transitCardIOError(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_Encoding:
-				do_transitCardWrongDevice(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_NoFileSpace:
-				do_transitCardWrongSector(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_WrongDevice:
-				do_transitCardBroken(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_WrongSector:
-				do_transitCardEncoding(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_NoFileEntry:
-				do_transitCardNoFileSpace(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_FileOpenError:
-				do_transitCardNoFileEntry(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_NoCard:
-				do_transitCardFileOpenError(mgr);
-				break;
-			case Game::MemoryCard::Mgr::MCS_PlayerDataBroken:
-				do_transitCardSerialNoError(mgr);
-				break;
-			default:
-				JUT_PANICLINE(266, "P2Assert");
-				break;
-			}
+
+		if (!mgr->TMemoryCard::isFinish()) {
+			break;
+		}
+
+		mgr->mCanExit = true;
+
+		switch (mCardStatus) {
+		case Game::MemoryCard::Mgr::MCS_IOError:
+			do_transitCardReady(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_Ready:
+			do_transitCardNoCard(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_Broken:
+			do_transitCardIOError(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_Encoding:
+			do_transitCardWrongDevice(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_NoFileSpace:
+			do_transitCardWrongSector(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_WrongDevice:
+			do_transitCardBroken(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_WrongSector:
+			do_transitCardEncoding(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_NoFileEntry:
+			do_transitCardNoFileSpace(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_FileOpenError:
+			do_transitCardNoFileEntry(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_NoCard:
+			do_transitCardFileOpenError(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_PlayerDataBroken:
+			do_transitCardSerialNoError(mgr);
+			break;
+		default:
+			JUT_PANICLINE(266, "P2Assert");
+			break;
 		}
 	}
 }
@@ -248,30 +255,6 @@ void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 		transit(mgr, CARDERROR_NoCard, nullptr);
 	}
 }
-
-/*
- * --INFO--
- * Address:	803D21B4
- * Size:	000030
- */
-// void Game::FSMState<ebi::CardError::TMgr>::transit(ebi::CardError::TMgr*, int, Game::StateArg*)
-//{
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, 0x8(r3)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
-//}
 
 /*
  * --INFO--
@@ -417,7 +400,7 @@ void FSMState_NoCard::do_init(TMgr* mgr, Game::StateArg*)
  */
 void FSMState_NoCard::do_exec(TMgr* mgr)
 {
-	u8 stat = static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus() != 0;
+	u8 stat = sys->mCardMgr->isCardNotReady();
 	if (stat) {
 		mgr->close();
 		mIsClosed = true;
@@ -486,9 +469,8 @@ namespace CardError {
  */
 void TMgr::startSeq(enumStart id)
 {
-	mEndStat   = 0;
-	bool check = (int)id >= 0 && (int)id < 17;
-	P2ASSERTLINE(412, check);
+	mEndStat = 0;
+	P2ASSERTBOUNDSLINE(412, 0, id, 17);
 	switch (id) {
 	case Start_NoCard:
 		mIsBroken = 0;
@@ -590,15 +572,14 @@ void TMgr::goEnd_(enumEnd end)
  */
 void TMgr::checkAndTransitNoCard_()
 {
-	bool otherCheck;
-	bool check = (!sys->mCardMgr->mIsCard) && (sys->mCardMgr->checkStatus() != 11);
-	if (check && (int)sys->mCardMgr->getCardStatus() == 0) {
-		otherCheck = true;
+	bool check = sys->mCardMgr->isCardInvalid();
+	if (check && (int)sys->mCardMgr->isCardReady()) {
+		check = true;
 	} else {
-		otherCheck = false;
+		check = false;
 	}
 
-	if (otherCheck) {
+	if (check) {
 		if (mIsBroken == 0) {
 			mStateMachine.transit(this, CARDERROR_NoCard, nullptr);
 		} else if (mIsBroken == 1) {
@@ -615,11 +596,13 @@ void TMgr::checkAndTransitNoCard_()
 void TMgr::update()
 {
 	mStateMachine.exec(this);
-	if (getStateID() != CARDERROR_Standby) {
-		TMemoryCard::update();
-		if (mCounter) {
-			mCounter--;
-		}
+	if (getStateID() == CARDERROR_Standby) {
+		return;
+	}
+
+	TMemoryCard::update();
+	if (mCounter) {
+		mCounter--;
 	}
 }
 
