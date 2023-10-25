@@ -222,6 +222,12 @@ struct TMgr : public JKRDisposer {
 	static void onDvdErrorOccured();
 	static void onDvdErrorRecovered();
 
+	inline void doLoadMenuResource()
+	{
+		mSaveMenu.loadResource();
+		doLoadResource(JKRGetCurrentHeap());
+	}
+
 	inline void doLoadResource(JKRHeap* heap)
 	{
 		mMemCardErrorMgr.mScreen.loadResource(heap);

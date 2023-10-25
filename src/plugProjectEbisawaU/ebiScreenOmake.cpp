@@ -3,109 +3,9 @@
 #include "ebi/E2DGraph.h"
 #include "System.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80497A18
-    lbl_80497A18:
-        .asciz "ebiScreenOmake"
-        .skip 1
-        .asciz "Screen_newScreen_of_TOmake"
-        .skip 1
-        .asciz "omake.blo"
-        .skip 2
-        .asciz "Screen_setCallBackMessage_of_TOmake"
-        .asciz "omake.bck"
-        .skip 2
-    .global lbl_80497A80
-    lbl_80497A80:
-        .asciz "ebiScreenOmake.cpp"
-        .skip 1
-    .global lbl_80497A94
-    lbl_80497A94:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EA198
-    lbl_804EA198:
-        .4byte lbl_803EE28C
-        .4byte lbl_803EE674
-        .4byte lbl_803EE520
-        .4byte lbl_803EE5BC
-        .4byte lbl_803EE674
-        .4byte lbl_803EE648
-        .4byte lbl_803EE660
-    .global __vt__Q33ebi6Screen6TOmake
-    __vt__Q33ebi6Screen6TOmake:
-        .4byte 0
-        .4byte 0
-        .4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
-        .4byte openScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen
-        .4byte closeScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose
-        .4byte killScreen__Q33ebi6Screen11TScreenBaseFv
-        .4byte update__Q33ebi6Screen11TScreenBaseFv
-        .4byte draw__Q33ebi6Screen11TScreenBaseFv
-        .4byte isFinishScreen__Q33ebi6Screen11TScreenBaseFv
-        .4byte doSetArchive__Q33ebi6Screen6TOmakeFP10JKRArchive
-        .4byte doOpenScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen7ArgOpen
-        .4byte doCloseScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen8ArgClose
-        .4byte doKillScreen__Q33ebi6Screen11TScreenBaseFv
-        .4byte doInitWaitState__Q33ebi6Screen6TOmakeFv
-        .4byte doUpdateStateOpen__Q33ebi6Screen6TOmakeFv
-        .4byte doUpdateStateWait__Q33ebi6Screen6TOmakeFv
-        .4byte doUpdateStateClose__Q33ebi6Screen6TOmakeFv
-        .4byte doDraw__Q33ebi6Screen6TOmakeFv
-        .4byte getName__Q33ebi6Screen6TOmakeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FE60
-    lbl_8051FE60:
-        .float 1.0
-    .global lbl_8051FE64
-    lbl_8051FE64:
-        .4byte 0x00000000
-    .global lbl_8051FE68
-    lbl_8051FE68:
-        .4byte 0x3D08850A
-    .global lbl_8051FE6C
-    lbl_8051FE6C:
-        .4byte 0x42700000
-    .global lbl_8051FE70
-    lbl_8051FE70:
-        .float 0.1
-    .global lbl_8051FE74
-    lbl_8051FE74:
-        .4byte 0x40555555
-    .global lbl_8051FE78
-    lbl_8051FE78:
-        .4byte 0x41F00000
-    .global lbl_8051FE7C
-    lbl_8051FE7C:
-        .4byte 0x3F19999A
-    .global lbl_8051FE80
-    lbl_8051FE80:
-        .4byte 0x437F0000
-        .4byte 0x00000000
-    .global lbl_8051FE88
-    lbl_8051FE88:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051FE90
-    lbl_8051FE90:
-        .4byte 0x3F28F5C3
-    .global lbl_8051FE94
-    lbl_8051FE94:
-        .float 0.15
-    .global lbl_8051FE98
-    lbl_8051FE98:
-        .4byte 0x544F6D61
-        .4byte 0x6B650000
-*/
+static const char className[] = "ebiScreenOmake";
 
 namespace ebi {
-
 namespace Screen {
 
 /*
@@ -114,190 +14,14 @@ namespace Screen {
  * Size:	000274
  */
 TOmake::TOmake()
+    : mController(nullptr)
+    , mColorBase(0, 0, 0, 255)
+    , mAlpha(255)
+    , mState(0)
+    , mCounter(0)
+    , mCounterMax(0)
+    , mScreenMain(nullptr)
 {
-	mController = nullptr;
-	mColor1.set(0, 0, 0, 255);
-	mAlpha      = 255;
-	mState      = 0;
-	mCounter    = 0;
-	_54         = 0;
-	mScreenMain = nullptr;
-	_194        = true;
-	_1B8        = 0;
-	_1BC        = 0;
-	_1DC        = 0.0f;
-	_1E0        = nullptr;
-	mColors[0].set(0xffffffff);
-	mColors[1].set(0xffffffff);
-	mColors[2].set(0xffffffff);
-	mColors[3].set(0xffffffff);
-	mColors[4].set(0xffffffff);
-	mColors[5].set(0xffffffff);
-	mColors[6].set(0xffffffff);
-	mColors[7].set(0xffffffff);
-	mColors[8].set(0xffffffff);
-	mColors[9].set(0xffffffff);
-	mColors[10].set(0xffffffff);
-	mColors[11].set(0xffffffff);
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
-li       r5, 0
-stw      r0, 0x24(r1)
-addi     r0, r4, __vt__Q33ebi6Screen20TScreenBaseInterface@l
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-mr       r30, r3
-lis      r3, __vt__Q33ebi6Screen11TScreenBase@ha
-stw      r29, 0x14(r1)
-addi     r31, r30, 0xe0
-stw      r0, 0(r30)
-addi     r0, r3, __vt__Q33ebi6Screen11TScreenBase@l
-lis      r3, __vt__Q33ebi6Screen6TOmake@ha
-stw      r0, 0(r30)
-addi     r4, r3, __vt__Q33ebi6Screen6TOmake@l
-li       r0, 0xff
-mr       r3, r31
-stw      r5, 4(r30)
-stw      r5, 8(r30)
-stw      r4, 0(r30)
-stw      r5, 0x14(r30)
-stw      r5, 0x18(r30)
-stw      r5, 0x40(r30)
-stb      r5, 0x44(r30)
-stb      r5, 0x45(r30)
-stb      r5, 0x46(r30)
-stb      r0, 0x47(r30)
-stb      r0, 0x48(r30)
-stw      r5, 0x4c(r30)
-stw      r5, 0x50(r30)
-stw      r5, 0x54(r30)
-stw      r5, 0x58(r30)
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r31)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r31)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r31)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r31, 0x20
-stw      r7, 0(r31)
-li       r4, 0
-stb      r6, 0x1c(r31)
-stw      r5, 0(r31)
-stw      r0, 0x20(r31)
-bl       init__12J3DFrameCtrlFs
-addi     r31, r30, 0x11c
-mr       r3, r31
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r31)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r31)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r31)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r31, 0x20
-stw      r7, 0(r31)
-li       r4, 0
-stb      r6, 0x1c(r31)
-stw      r5, 0(r31)
-stw      r0, 0x20(r31)
-bl       init__12J3DFrameCtrlFs
-addi     r29, r30, 0x158
-mr       r3, r29
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r5, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r4, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r29)
-li       r0, 0
-lis      r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
-addi     r31, r30, 0x178
-stw      r0, 0x18(r29)
-addi     r0, r5, __vt__Q29P2DScreen12CallBackNode@l
-addi     r5, r4, __vt__Q23ebi16E2DCallBack_Base@l
-li       r4, 1
-stw      r0, 0(r29)
-addi     r0, r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
-mr       r3, r31
-stw      r5, 0(r29)
-stb      r4, 0x1c(r29)
-stw      r0, 0(r29)
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r5, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r4, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r31)
-li       r7, 0
-lis      r3, __vt__Q23ebi24E2DCallBack_WindowCursor@ha
-addi     r6, r5, __vt__Q29P2DScreen12CallBackNode@l
-stw      r7, 0x18(r31)
-addi     r5, r4, __vt__Q23ebi16E2DCallBack_Base@l
-li       r4, 1
-addi     r0, r3, __vt__Q23ebi24E2DCallBack_WindowCursor@l
-stw      r6, 0(r31)
-addi     r3, r31, 0x48
-stw      r5, 0(r31)
-stb      r4, 0x1c(r31)
-stw      r0, 0(r31)
-stw      r7, 0x40(r31)
-stw      r7, 0x44(r31)
-bl       __ct__Q32og6Screen8ScaleMgrFv
-lfs      f0, lbl_8051FE60@sda21(r2)
-lis      r4, __ct__Q23ebi26E2DCallBack_BlinkFontColorFv@ha
-lis      r3, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@ha
-li       r0, 0
-stfs     f0, 0x64(r31)
-addi     r5, r3, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@l
-addi     r4, r4, __ct__Q23ebi26E2DCallBack_BlinkFontColorFv@l
-addi     r3, r30, 0x1e4
-stw      r0, 0x68(r31)
-li       r6, 0x4c
-li       r7, 7
-bl       __construct_array
-li       r0, -1
-mr       r3, r30
-stw      r0, 0x430(r30)
-stw      r0, 0x434(r30)
-stw      r0, 0x438(r30)
-stw      r0, 0x43c(r30)
-stw      r0, 0x440(r30)
-stw      r0, 0x444(r30)
-stw      r0, 0x448(r30)
-stw      r0, 0x44c(r30)
-stw      r0, 0x450(r30)
-stw      r0, 0x454(r30)
-stw      r0, 0x458(r30)
-stw      r0, 0x45c(r30)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
 }
 
 /*
@@ -309,7 +33,7 @@ void TOmake::doSetArchive(JKRArchive* arc)
 {
 	sys->heapStatusStart("Screen_newScreen_of_TOmake", nullptr);
 	mScreenMain = new P2DScreen::Mgr_tuning;
-	mScreenMain->set("memory_card.blo", 0x1100000, arc);
+	mScreenMain->set("omake.blo", 0x1100000, arc);
 	sys->heapStatusEnd("Screen_newScreen_of_TOmake");
 
 	mPaneWindow  = E2DScreen_searchAssert(mScreenMain, 'Nwin0');
@@ -322,20 +46,20 @@ void TOmake::doSetArchive(JKRArchive* arc)
 	E2DPane_setTreeInfluencedAlpha(mPaneBButton, true);
 
 	for (int i = 0; i < 7; i++) {
-		mPaneList1[i] = E2DScreen_searchAssert(mScreenMain, i + 'Nn00');
-		mPaneList2[i] = E2DScreen_searchAssert(mScreenMain, i + 'Ww00');
-		mPaneList3[i] = E2DScreen_searchAssert(mScreenMain, i + 'Tt00');
-		mPaneList4[i] = E2DScreen_searchAssert(mScreenMain, i + 'ts00');
+		mPaneList1[i]          = E2DScreen_searchAssert(mScreenMain, i + 'Nn00');
+		mPaneList2[i]          = E2DScreen_searchAssert(mScreenMain, i + 'Ww00');
+		mPaneListMesg[i]       = static_cast<J2DPicture*>(E2DScreen_searchAssert(mScreenMain, i + 'Tt00'));
+		mPaneListMesgShadow[i] = E2DScreen_searchAssert(mScreenMain, i + 'ts00');
 	}
 	mPaneSelect = E2DScreen_searchAssert(mScreenMain, 'Wselctw');
 
-	mMesgTags[0] = mPaneList3[0]->mMessageID;
-	mMesgTags[1] = mPaneList3[1]->mMessageID;
-	mMesgTags[2] = mPaneList3[2]->mMessageID;
-	mMesgTags[3] = mPaneList3[3]->mMessageID;
-	mMesgTags[4] = mPaneList3[4]->mMessageID;
-	mMesgTags[5] = mPaneList3[5]->mMessageID;
-	mMesgTags[6] = mPaneList3[6]->mMessageID;
+	mMesgTags[0] = mPaneListMesg[0]->mMessageID;
+	mMesgTags[1] = mPaneListMesg[1]->mMessageID;
+	mMesgTags[2] = mPaneListMesg[2]->mMessageID;
+	mMesgTags[3] = mPaneListMesg[3]->mMessageID;
+	mMesgTags[4] = mPaneListMesg[4]->mMessageID;
+	mMesgTags[5] = mPaneListMesg[5]->mMessageID;
+	mMesgTags[6] = mPaneListMesg[6]->mMessageID;
 
 	E2DScreen_searchAssert(mScreenMain, 'DATA')->hide();
 
@@ -343,38 +67,39 @@ void TOmake::doSetArchive(JKRArchive* arc)
 	E2DPane_setTreeCallBackMessage(mScreenMain, mScreenMain);
 	sys->heapStatusEnd("Screen_setCallBackMessage_of_TOmake");
 
-	mScreenMain->addCallBackPane(mScreenMain, &mAnims[0]);
-	mScreenMain->addCallBackPane(mScreenMain, &mAnims[1]);
-	mScreenMain->addCallBackPane(mScreenMain, &mAnims[2]);
+	mScreenMain->addCallBackPane(mScreenMain, &mAnims1);
+	mScreenMain->addCallBackPane(mScreenMain, &mAnims2);
+	mScreenMain->addCallBackPane(mScreenMain, &mAnims3);
 
-	mAnims[0].loadAnm("omake.bck", arc, 21, 40);
-	mAnims[1].loadAnm("omake.bck", arc, 0, 20);
-	mScreenMain->addCallBack('Wselctw', &mAnims[2]);
+	mAnims1.loadAnm("omake.bck", arc, 21, 40);
+	mAnims2.loadAnm("omake.bck", arc, 0, 20);
+	mScreenMain->addCallBack('Wselctw', &mCursor);
 
 	for (int i = 0; i < 7; i++) {
+
 		J2DTextBox* pane1 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor'));
 		J2DTextBox* pane2 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00'));
 		mFonts[i].set(pane1, pane2);
-		mScreenMain->addCallBackPane(mPaneList3[i], &mFonts[i]);
+		mScreenMain->addCallBackPane(mPaneListMesg[i], &mFonts[i]);
 	}
 
 	J2DTextBox* cPane = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor'));
-	mColors[0]        = cPane->mCharColor;
-	mColors[1]        = cPane->mGradientColor;
-	mColors[2]        = cPane->getWhite();
-	mColors[3]        = cPane->getBlack();
+	mColor0           = cPane->mCharColor;
+	mColor1           = cPane->mGradientColor;
+	mColor2           = cPane->getWhite();
+	mColor3           = cPane->getBlack();
 
-	cPane      = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00'));
-	mColors[4] = cPane->mCharColor;
-	mColors[5] = cPane->mGradientColor;
-	mColors[6] = cPane->getWhite();
-	mColors[7] = cPane->getBlack();
+	cPane   = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00'));
+	mColor4 = cPane->mCharColor;
+	mColor5 = cPane->mGradientColor;
+	mColor6 = cPane->getWhite();
+	mColor7 = cPane->getBlack();
 
-	cPane       = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Thscolor'));
-	mColors[8]  = cPane->mCharColor;
-	mColors[9]  = cPane->mGradientColor;
-	mColors[10] = cPane->getWhite();
-	mColors[11] = cPane->getBlack();
+	cPane    = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Thscolor'));
+	mColor8  = cPane->mCharColor;
+	mColor9  = cPane->mGradientColor;
+	mColor10 = cPane->getWhite();
+	mColor11 = cPane->getBlack();
 
 	/*
 stwu     r1, -0x60(r1)
@@ -771,8 +496,31 @@ blr
  * Address:	803EDB0C
  * Size:	0005F0
  */
-void TOmake::doOpenScreen(ebi::Screen::ArgOpen* arg)
+void TOmake::doOpenScreen(ArgOpen* arg)
 {
+	P2ASSERTLINE(109, arg);
+
+	if (sys->mRegion != System::LANG_JAPANESE) {
+		J2DPicture::TCornerColor color(mColor8.toUInt32(), mColor9.toUInt32(), mColor10.toUInt32(), mColor11.toUInt32());
+		mPaneListMesg[6]->setCornerColor(color);
+		mPaneListMesg[6]->setBlack(mColor10.toUInt32());
+		mPaneListMesg[6]->setWhite(mColor11.toUInt32());
+		mPaneListMesg[6]->setMsgID('4844_00');
+		mPaneListMesgShadow[6]->setMsgID('4844_00');
+		mPaneList1[6]->hide();
+	}
+
+	mAnims1.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
+	mCounter    = count;
+	mCounterMax = count;
+	mState      = 1;
+	showPanes_();
+	mPaneTitle->setAlpha(255);
+	mPaneAButton->setAlpha(255);
+	mPaneBButton->setAlpha(255);
+
+	mPaneList2[mCurrSel]->getBounds();
 	/*
 stwu     r1, -0xc0(r1)
 mflr     r0
@@ -1178,29 +926,12 @@ blr
  * Address:	803EE0FC
  * Size:	00004C
  */
-void TOmake::doCloseScreen(ebi::Screen::ArgClose* arg)
+void TOmake::doCloseScreen(ArgClose* arg)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f1, kFadeTime__Q23ebi8E2DFader@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r4, sys@sda21(r13)
-lfs      f0, 0x54(r4)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x50(r31)
-li       r0, 2
-stw      r3, 0x54(r31)
-stw      r0, 0x4c(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
+	mCounter    = count;
+	mCounterMax = count;
+	mState      = 2;
 }
 
 /*
@@ -1217,26 +948,6 @@ void TOmake::doInitWaitState()
 	font->mIsTowardColor1            = true;
 	font->_49                        = false;
 	mState2                          = 0;
-	/*
-lwz      r4, 0x3c(r3)
-li       r5, 1
-lfs      f2, lbl_8051FE74@sda21(r2)
-li       r0, 0
-mulli    r4, r4, 0x4c
-lfs      f0, lbl_8051FE64@sda21(r2)
-addi     r6, r4, 0x1e4
-add      r6, r3, r6
-stb      r5, 0x1c(r6)
-lwz      r4, sys@sda21(r13)
-lfs      f1, 0x54(r4)
-fmuls    f1, f2, f1
-stfs     f1, 0x44(r6)
-stfs     f0, 0x40(r6)
-stb      r5, 0x48(r6)
-stb      r0, 0x49(r6)
-stw      r0, 0xc(r3)
-blr
-	*/
 }
 
 /*
@@ -1253,7 +964,7 @@ bool TOmake::doUpdateStateOpen()
 		}
 	}
 
-	if (mAnims[0].isFinish() && !mCounter) {
+	if (mAnims1.isFinish() && !mCounter) {
 		return true;
 	} else {
 		return false;
@@ -1267,6 +978,16 @@ bool TOmake::doUpdateStateOpen()
  */
 bool TOmake::doUpdateStateWait()
 {
+	mScreenMain->update();
+	if (mState != 0 && mCounter) {
+		mCounter--;
+	}
+
+	switch (mState2) {
+	case 0:
+		mInput.update();
+		break;
+	}
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -1614,9 +1335,10 @@ bool TOmake::doUpdateStateClose()
 	mScreenMain->update();
 	if (mState != 0 && mCounter) {
 		mCounter--;
+		if (mCounter == 0)
+			return true;
 	}
-
-	return mCounter == 0;
+	return false;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1663,6 +1385,11 @@ blr
  */
 void TOmake::doDraw()
 {
+	Graphics* gfx        = sys->mGfx;
+	J2DPerspGraph* persp = &gfx->mPerspGraph;
+	persp->setPort();
+	mScreenMain->draw(*gfx, *persp);
+	if (mState != 0) { }
 	/*
 stwu     r1, -0x60(r1)
 mflr     r0
@@ -1838,26 +1565,6 @@ void TOmake::setController(Controller* in)
 {
 	mController = in;
 	mInput.init(in, 0, 6, (long*)&mCurrSel, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-mr       r5, r3
-lfs      f1, lbl_8051FE90@sda21(r2)
-stw      r0, 0x14(r1)
-addi     r7, r5, 0x3c
-lfs      f2, lbl_8051FE94@sda21(r2)
-li       r6, 6
-stw      r4, 0x40(r3)
-addi     r3, r5, 0x10
-li       r5, 0
-li       r8, 3
-bl
-init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -1865,35 +1572,15 @@ blr
  * Address:	803EE994
  * Size:	000064
  */
-void TOmake::showPanes_() const
+void TOmake::showPanes_()
 {
-	/*
-lwz      r4, 0x5c(r3)
-li       r5, 1
-li       r0, 0
-stb      r5, 0xb0(r4)
-lwz      r4, 0x60(r3)
-stb      r5, 0xb0(r4)
-lwz      r4, 0x64(r3)
-stb      r5, 0xb0(r4)
-lwz      r4, 0x68(r3)
-stb      r5, 0xb0(r4)
-lwz      r4, 0x8c(r3)
-stb      r0, 0xb0(r4)
-lwz      r4, 0x90(r3)
-stb      r0, 0xb0(r4)
-lwz      r4, 0x94(r3)
-stb      r0, 0xb0(r4)
-lwz      r4, 0x98(r3)
-stb      r0, 0xb0(r4)
-lwz      r4, 0x9c(r3)
-stb      r0, 0xb0(r4)
-lwz      r4, 0xa0(r3)
-stb      r0, 0xb0(r4)
-lwz      r3, 0xa4(r3)
-stb      r0, 0xb0(r3)
-blr
-	*/
+	mPaneWindow->show();
+	mPaneTitle->show();
+	mPaneAButton->show();
+	mPaneBButton->show();
+	for (int i = 0; i < 7; i++) {
+		mPaneList2[i]->hide();
+	}
 }
 
 /*
@@ -1901,20 +1588,12 @@ blr
  * Address:	803EE9F8
  * Size:	000028
  */
-void TOmake::hidePanes_() const
+void TOmake::hidePanes_()
 {
-	/*
-lwz      r4, 0x5c(r3)
-li       r0, 0
-stb      r0, 0xb0(r4)
-lwz      r4, 0x60(r3)
-stb      r0, 0xb0(r4)
-lwz      r4, 0x64(r3)
-stb      r0, 0xb0(r4)
-lwz      r3, 0x68(r3)
-stb      r0, 0xb0(r3)
-blr
-	*/
+	mPaneWindow->hide();
+	mPaneTitle->hide();
+	mPaneAButton->hide();
+	mPaneBButton->hide();
 }
 
 /*
@@ -1924,29 +1603,11 @@ blr
  */
 void TOmake::openFromMovie_()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f1, kFadeTime__Q23ebi8E2DFader@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r4, sys@sda21(r13)
-lfs      f0, 0x54(r4)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x50(r31)
-li       r4, 1
-li       r0, 6
-stw      r3, 0x54(r31)
-stw      r4, 0x4c(r31)
-stw      r0, 0xc(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
+	mCounter    = count;
+	mCounterMax = count;
+	mState      = 1;
+	mState2     = 6;
 }
 
 /*
@@ -1956,66 +1617,10 @@ blr
  */
 void TOmake::openFromCardE_()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-li       r7, 1
-lfs      f1, lbl_8051FE6C@sda21(r2)
-stw      r0, 0x14(r1)
-li       r0, 0
-li       r5, 1
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r4, 0x5c(r3)
-addi     r3, r31, 0xe0
-stb      r7, 0xb0(r4)
-li       r4, 0
-lwz      r6, 0x60(r31)
-stb      r7, 0xb0(r6)
-lwz      r6, 0x64(r31)
-stb      r7, 0xb0(r6)
-lwz      r6, 0x68(r31)
-stb      r7, 0xb0(r6)
-lwz      r6, 0x8c(r31)
-stb      r0, 0xb0(r6)
-lwz      r6, 0x90(r31)
-stb      r0, 0xb0(r6)
-lwz      r6, 0x94(r31)
-stb      r0, 0xb0(r6)
-lwz      r6, 0x98(r31)
-stb      r0, 0xb0(r6)
-lwz      r6, 0x9c(r31)
-stb      r0, 0xb0(r6)
-lwz      r6, 0xa0(r31)
-stb      r0, 0xb0(r6)
-lwz      r6, 0xa4(r31)
-stb      r0, 0xb0(r6)
-lwz      r6, sys@sda21(r13)
-lfs      f0, 0x54(r6)
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-li       r0, 3
-stw      r0, 0xc(r31)
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	showPanes_();
+	mAnims1.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	mState2 = 3;
 }
 
-/*
- * --INFO--
- * Address:	803EEBE0
- * Size:	000008
- */
-char* TOmake::getName()
-{
-	return "TOmake";
-	/*
-addi     r3, r2, lbl_8051FE98@sda21
-blr
-	*/
-}
 } // namespace Screen
 } // namespace ebi

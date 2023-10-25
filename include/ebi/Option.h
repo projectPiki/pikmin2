@@ -12,7 +12,17 @@ namespace ebi {
 namespace Option {
 struct TMgr;
 
-enum StateID { Standby = 0, LoadOption, ScreenOpen, ScreenWait, ScreenClose, SaveMgr, WaitCloseForNoCard, WorldMapInfoWindow };
+enum StateID {
+	Standby = 0,
+	LoadOption,
+	ScreenOpen,
+	ScreenWait,
+	ScreenClose,
+	SaveMgr,
+	WaitCloseForNoCard,
+	WorldMapInfoWindow,
+	StateNum,
+};
 
 struct FSMStateMachine : public Game::StateMachine<TMgr> {
 	virtual void init(TMgr*); // _08

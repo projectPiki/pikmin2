@@ -17,11 +17,21 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 	{
 	}
 
-	virtual ~E2DCallBack_Base() { }                   // _08 (weak)
-	virtual void update();                            // _10 (weak)
-	virtual void draw(Graphics&, J2DGrafContext&);    // _14 (weak)
-	virtual void do_update();                         // _1C (weak)
-	virtual void do_draw(Graphics&, J2DGrafContext&); // _20 (weak)
+	virtual ~E2DCallBack_Base() { } // _08 (weak)
+	virtual void update()
+	{
+		if (mIsEnabled) {
+			do_update();
+		}
+	} // _10 (weak)
+	virtual void draw(Graphics& gfx, J2DGrafContext& graf)
+	{
+		if (mIsEnabled) {
+			do_draw(gfx, graf);
+		}
+	}                                                    // _14 (weak)
+	virtual void do_update() { }                         // _1C (weak)
+	virtual void do_draw(Graphics&, J2DGrafContext&) { } // _20 (weak)
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
@@ -56,6 +66,15 @@ struct E2DCallBack_AnmBase : public E2DCallBack_Base {
 };
 
 struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {
+	E2DCallBack_BlinkAlpha()
+	{
+		mWeight         = 0.0f;
+		mSpeed          = 0.03333f;
+		mIsTowardAlpha0 = true;
+		_29             = false;
+		mAlpha0         = 255;
+		mAlpha1         = 0;
+	}
 	virtual ~E2DCallBack_BlinkAlpha() { } // _08 (weak)
 	virtual void do_update();             // _1C
 
@@ -135,7 +154,12 @@ struct E2DCallBack_CalcAnimation : public E2DCallBack_Base {
 	E2DCallBack_CalcAnimation() { }
 
 	virtual ~E2DCallBack_CalcAnimation() { } // _08 (weak)
-	virtual void do_update();                // _1C (weak)
+	virtual void do_update()
+	{
+		if (mPane->getTypeID() == 8) {
+			static_cast<J2DScreen*>(mPane)->animation();
+		}
+	} // _1C (weak)
 
 	// _00     = VTBL
 	// _00-_20 = E2DCallBack_Base
@@ -143,7 +167,7 @@ struct E2DCallBack_CalcAnimation : public E2DCallBack_Base {
 
 // Size: 0x40
 struct E2DCallBack_Purupuru : public E2DCallBack_Base {
-	E2DCallBack_Purupuru();
+	E2DCallBack_Purupuru() { mScale = 1.0f; }
 
 	virtual ~E2DCallBack_Purupuru() { } // _08 (weak)
 	virtual void do_update();           // _1C
