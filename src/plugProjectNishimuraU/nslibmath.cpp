@@ -40,8 +40,40 @@ void calcLagrange(const Vector3f* p_vec, float p2, Vector3f& new_vec)
  * Address:	8023D858
  * Size:	0001D8
  */
-void calcJointPos(const Vector3f&, const Vector3f&, float, float, Vector3f&, Vector3f&)
+void calcJointPos(const Vector3f& inPos1, const Vector3f& inPos2, f32 p1, f32 p2, Vector3f& outPos1, Vector3f& outPos2)
 {
+	f32 p1Sqr    = p1 * p1;
+	f32 p2Sqr    = p2 * p2;
+	Vector3f vec = inPos2;
+
+	Vector3f sep = inPos2 - inPos1;
+	f32 sqrDist  = sep.sqrMagnitude(); // f11
+	if (!(sqrDist < 1.0E-6f)) {
+		f32 factor = (0.5f / sqrDist) * (sqrDist + (p1Sqr - p2Sqr)); // f3
+		Vector3f vec1(factor * sep.x + inPos1.x, factor * sep.y + inPos1.y, factor * sep.z + inPos1.z);
+		Vector3f vec2 = vec1 - inPos1;
+		f32 val1      = p1Sqr - SQUARE(vec2.x) - SQUARE(vec2.y) - SQUARE(vec2.z); // f30
+		if (!(val1 <= 0.0f)) {
+			Vector3f cross1 = cross(outPos1, sep);
+			outPos1         = cross(cross1, sep);
+			f32 outSqr      = outPos1.sqrMagnitude();
+			if (outSqr != 0.0f) {
+				f32 len   = _sqrtf2(val1 / outSqr);
+				outPos2.x = len * outPos1.x + cross1.x;
+				outPos2.y = len * outPos1.y + cross1.y;
+				outPos2.z = len * outPos1.z + cross1.z;
+				return;
+			}
+		}
+	}
+
+	f32 p1new = _sqrtf2(p1Sqr); // f7
+	f32 p2new = _sqrtf2(p2Sqr); // f3
+
+	f32 radSum = p1new / (p1new + p2new); // f6
+
+	outPos2 = Vector3f(radSum * vec.x + inPos1.x, radSum * vec.y + inPos1.y, radSum * vec.z + inPos1.z);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
