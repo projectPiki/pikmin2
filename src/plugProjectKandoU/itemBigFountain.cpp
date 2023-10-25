@@ -358,7 +358,7 @@ void Item::makeTrMatrix()
 	Vector3f rotation    = Vector3f(0.0f, mFaceDir, 0.0f);
 	Vector3f translation = mPosition;
 	translation.y -= mBuryDepth;
-	mObjMatrix.makeTR(translation, rotation);
+	mBaseTrMatrix.makeTR(translation, rotation);
 }
 
 /*
@@ -375,7 +375,7 @@ void Item::onSetPosition()
 	Radar::Mgr::entry(this, Radar::MAP_GEYSER, 0);
 
 	makeTrMatrix();
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 
 	Matrixf* worldMat = mModel->mJoints[0].getWorldMatrix();

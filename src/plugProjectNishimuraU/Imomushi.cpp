@@ -99,9 +99,9 @@ void Obj::doAnimationStick()
 	crossVec.normalise();
 	_2E4.normalise();
 
-	mObjMatrix.setBasis(0, crossVec);
-	mObjMatrix.setBasis(1, _2E4);
-	mObjMatrix.setBasis(2, _2D8);
+	mBaseTrMatrix.setBasis(0, crossVec);
+	mBaseTrMatrix.setBasis(1, _2E4);
+	mBaseTrMatrix.setBasis(2, _2D8);
 
 	if (_2C1) {
 		Vector3f pos = mPosition;
@@ -130,9 +130,9 @@ void Obj::doAnimationStick()
 		}
 
 		_2C2 = true;
-		mObjMatrix.newTranslation(pos);
+		mBaseTrMatrix.newTranslation(pos);
 	} else {
-		mObjMatrix.newTranslation(mPosition);
+		mBaseTrMatrix.newTranslation(mPosition);
 	}
 
 	mFaceDir    = JMAAtan2Radian(_2D8.x, _2D8.z);

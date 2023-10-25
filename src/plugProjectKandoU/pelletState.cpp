@@ -1472,7 +1472,7 @@ void PelletAppearState::exec(Pellet* pelt)
 		} else {
 			if (!mEfxMade) {
 				Vector3f translation;
-				pelt->mObjMatrix.getBasis(3, translation);
+				pelt->mBaseTrMatrix.getBasis(3, translation);
 				efx::TTsuyuGrowon growOnFX;
 				efx::Arg arg(translation);
 				growOnFX.create(&arg);
@@ -1615,7 +1615,7 @@ void PelletZukanState::exec(Pellet* pelt)
 		mTimer = 0.0f;
 	}
 	Vector3f pos = pelt->getPosition();
-	pelt->mObjMatrix.makeT(pos);
+	pelt->mBaseTrMatrix.makeT(pos);
 }
 
 /*
@@ -1685,8 +1685,8 @@ void PelletReturnState::init(Pellet* pelt, StateArg* arg)
 		if (mEfx && mEfxAct) {
 			mEfx->mNaviType    = 0;
 			mEfxAct->mNaviType = 0;
-			mEfx->setMtxptr(pelt->mObjMatrix.mMatrix.mtxView);
-			mEfxAct->setMtxptr(pelt->mObjMatrix.mMatrix.mtxView);
+			mEfx->setMtxptr(pelt->mBaseTrMatrix.mMatrix.mtxView);
+			mEfxAct->setMtxptr(pelt->mBaseTrMatrix.mMatrix.mtxView);
 			mEfx->create(nullptr);
 			mEfxAct->create(nullptr);
 		}

@@ -54,7 +54,7 @@ Creature::Creature()
 
 	mScale = Vector3f(1.0f);
 
-	PSMTXIdentity(mObjMatrix.mMatrix.mtxView);
+	PSMTXIdentity(mBaseTrMatrix.mMatrix.mtxView);
 
 	mObjectTypeID = OBJTYPE_INVALID_START;
 
@@ -119,7 +119,7 @@ void Creature::setPosition(Vector3f& position, bool skipPostProc)
 	updateTrMatrix();
 
 	if (mModel) {
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mModel->mJ3dModel->calc();
 		if (mCollTree) {
 			mCollTree->update();
@@ -140,7 +140,7 @@ void Creature::initPosition(Vector3f& position)
 	updateTrMatrix();
 
 	if (mModel) {
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mModel->mJ3dModel->calc();
 		if (mCollTree) {
 			mCollTree->update();
@@ -158,9 +158,9 @@ void Creature::initPosition(Vector3f& position)
  */
 void Creature::getYVector(Vector3f& outVector)
 {
-	outVector.x = mObjMatrix.mMatrix.structView.yx;
-	outVector.y = mObjMatrix.mMatrix.structView.yy;
-	outVector.z = mObjMatrix.mMatrix.structView.yz;
+	outVector.x = mBaseTrMatrix.mMatrix.structView.yx;
+	outVector.y = mBaseTrMatrix.mMatrix.structView.yy;
+	outVector.z = mBaseTrMatrix.mMatrix.structView.yz;
 	outVector.normalise();
 }
 

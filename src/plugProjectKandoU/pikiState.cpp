@@ -232,10 +232,10 @@ void PikiCarrotState::exec(Piki* piki)
 		Matrixf concatMtx;
 		Vector3f translation(0.0f, -10.0f, 0.0f);
 		natMatrix.setTranslation(translation);
-		piki->mObjMatrix = concatMatrixf(natMatrix, matST);
+		piki->mBaseTrMatrix = concatMatrixf(natMatrix, matST);
 
 		Vector3f newPos = piki->getPosition();
-		piki->mObjMatrix.setTranslation(newPos);
+		piki->mBaseTrMatrix.setTranslation(newPos);
 	}
 	/*
 	stwu     r1, -0x120(r1)
@@ -2020,7 +2020,7 @@ void PikiPressedState::init(Piki* piki, StateArg* stateArg)
 	Vector3f translation = piki->getPosition();
 	translation.y += 2.0f;
 
-	piki->mObjMatrix.makeSRT(piki->mScale, rotation, translation);
+	piki->mBaseTrMatrix.makeSRT(piki->mScale, rotation, translation);
 }
 
 /*
@@ -2034,7 +2034,7 @@ void PikiPressedState::exec(Piki* piki)
 	Vector3f translation = piki->getPosition();
 	translation.y += 2.0f;
 
-	piki->mObjMatrix.makeSRT(piki->mScale, rotation, translation);
+	piki->mBaseTrMatrix.makeSRT(piki->mScale, rotation, translation);
 
 	_10 -= sys->mDeltaTime;
 	if (_10 <= 0.0f) {

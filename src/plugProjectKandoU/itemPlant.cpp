@@ -276,7 +276,7 @@ void GrowUpState::onKeyEvent(Item* item, const SysShape::KeyEvent& event)
 	plant->mGrowState++;
 
 	if (plant->mGrowState == PLANTGROW_Large) {
-		PSMTXCopy(plant->mObjMatrix.mMatrix.mtxView, plant->mModel->mJ3dModel->mPosMtx);
+		PSMTXCopy(plant->mBaseTrMatrix.mMatrix.mtxView, plant->mModel->mJ3dModel->mPosMtx);
 		plant->mModel->mJ3dModel->calc();
 		plant->mProcAnimator.update(plant->mFaceDir, 0.0f);
 	}
@@ -512,7 +512,7 @@ void Item::onSetPosition() { Farm::farmMgr->addPlant(this); }
 void Item::updateTrMatrix()
 {
 	Vector3f rot(0.0f, mFaceDir, 0.0f);
-	mObjMatrix.makeTR(mPosition, rot);
+	mBaseTrMatrix.makeTR(mPosition, rot);
 }
 
 /**
@@ -2085,11 +2085,11 @@ void Plant::startMotion(int motionState)
 
 		// trigger correct growth efx based on stage size
 		if (mGrowState == PLANTGROW_Small) { // small -> medium
-			efx::TTsuyuGrow1 grow1(&mObjMatrix);
+			efx::TTsuyuGrow1 grow1(&mBaseTrMatrix);
 			grow1.create(nullptr);
 
 		} else if (mGrowState == PLANTGROW_Medium) { // medium -> large
-			efx::TTsuyuGrow2 grow2(&mObjMatrix);
+			efx::TTsuyuGrow2 grow2(&mBaseTrMatrix);
 			grow2.create(nullptr);
 		}
 		break;
@@ -2165,7 +2165,7 @@ void Plant::doAnimation()
 	mBlendAnimator.setModelCalc(mModel);
 
 	if (mModel) {
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mModel->mJ3dModel->calc();
 		f32 ratios = ((f32)mStuckCount / 10.0f) + ((f32)getFruitsNum() / 20.0f);
 		if (ratios > 1.0f) {

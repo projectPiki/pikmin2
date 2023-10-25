@@ -491,6 +491,12 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return constraint / static_cast<EnemyParmsBase*>(mParms)->mCreatureProps.mProps.mAccel.mValue;
 	}
 
+	inline void setScale(f32 scale)
+	{
+		mScaleModifier = scale;
+		mScale         = Vector3f(scale);
+	}
+
 	inline void getDistance2D(Vector3f& point, Vector2f& sep)
 	{
 		sep.x = mPosition.x - point.x;

@@ -173,7 +173,7 @@ Item::Item()
 {
 	mCollTree               = new CollTree();
 	mBoundingSphere.mRadius = 75.0f;
-	mDummyShape.mMatrix     = &mObjMatrix;
+	mDummyShape.mMatrix     = &mBaseTrMatrix;
 	mCollTree->createSingleSphere(&mDummyShape, 0, mBoundingSphere, nullptr);
 	setCollisionFlick(false);
 	mWeedType = WEEDTYPE_Stone;
@@ -203,7 +203,7 @@ void Item::onInit(CreatureInitArg* initArg)
  */
 void Item::onSetPosition()
 {
-	mObjMatrix.makeT(mPosition);
+	mBaseTrMatrix.makeT(mPosition);
 	Sys::Sphere sphere(mPosition, mBoundingSphere.mRadius);
 	mFlockMgr->init(sphere, (cWeedType)mWeedType);
 	/*

@@ -1443,7 +1443,7 @@ void Piki::changeShape(int color)
 
 	mEffectsObj->mPikiColor   = color;
 	mEffectsObj->mHamonPosPtr = &mPosition;
-	mEffectsObj->_1C          = &mObjMatrix;
+	mEffectsObj->_1C          = &mBaseTrMatrix;
 
 	mLeafStemJoint           = mModel->getJoint("happajnt3");
 	mHappaJoint1             = mModel->getJoint("happajnt1");

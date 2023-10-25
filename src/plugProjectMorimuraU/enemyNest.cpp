@@ -40,7 +40,7 @@ void Obj::onInit(Game::CreatureInitArg* arg)
 	if (shadowMgr) {
 		shadowMgr->killShadow(this);
 	}
-	_2BC                       = mObjMatrix;
+	_2BC                       = mBaseTrMatrix;
 	_2BC.mMatrix.structView.ty = mPosition.y - 10.0f;
 }
 

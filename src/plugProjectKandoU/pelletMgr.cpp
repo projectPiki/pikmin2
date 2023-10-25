@@ -126,7 +126,7 @@ s32 Pellet::getCreatureID()
 void Pellet::getShadowParam(ShadowParam& shadow)
 {
 	Vector3f col;
-	mObjMatrix.getBasis(1, col);
+	mBaseTrMatrix.getBasis(1, col);
 
 	if (-(SQUARE(FABS(col.y)) - 1.0f) > 0.0f) {
 		col.y = col.y;
@@ -394,7 +394,7 @@ void PelletView::viewMakeMatrix(Matrixf& outMat)
 	Vector3f translation(0.0f, -0.5f * mPellet->getCylinderHeight(), 0.0f);
 	Matrixf srtMatrix;
 	srtMatrix.makeSRT(mPellet->mScale, Vector3f::zero, translation);
-	PSMTXConcat(mPellet->mObjMatrix.mMatrix.mtxView, srtMatrix.mMatrix.mtxView, outMat.mMatrix.mtxView);
+	PSMTXConcat(mPellet->mBaseTrMatrix.mMatrix.mtxView, srtMatrix.mMatrix.mtxView, outMat.mMatrix.mtxView);
 }
 
 /*
@@ -852,13 +852,13 @@ void Pellet::onKill(CreatureKillArg* killArg)
 	Vector3f scale(1.0f);
 	Vector3f rotation(0.0f);
 	Vector3f translation(0.0f);
-	mObjMatrix.makeSRT(scale, rotation, translation);
+	mBaseTrMatrix.makeSRT(scale, rotation, translation);
 
 	if (mModel) {
 		mLodSphere.mPosition = Vector3f(0.0f);
 		mLodSphere.mRadius   = 128000.0f;
 		mScale               = Vector3f(1.0f);
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mScale.setVec(mModel->mJ3dModel->mModelScale);
 		mModel->clearAnimatorAll();
 		mModel->mJ3dModel->calc();
@@ -1876,7 +1876,7 @@ void Pellet::onSetPosition()
 	}
 
 	mRigid.initPosition(mPelletPosition, Vector3f::zero);
-	mObjMatrix           = mRigid._04;
+	mBaseTrMatrix        = mRigid._04;
 	mLodSphere.mPosition = mPelletPosition;
 	updateParticlePositions();
 	mRigid.mTimeStep = 1.0f;
@@ -1917,16 +1917,16 @@ void Pellet::setPanModokiRotation(f32 direction)
 	mFaceDir = direction;
 
 	Vector3f yVec;
-	mObjMatrix.getBasis(1, yVec);
+	mBaseTrMatrix.getBasis(1, yVec);
 	yVec.normalise();
 
 	Matrixf mat;
 	mat.makeNaturalPosture(yVec, direction);
-	mObjMatrix = mat;
-	mRigid.mConfigs[0]._48.fromMatrixf(mObjMatrix);
+	mBaseTrMatrix = mat;
+	mRigid.mConfigs[0]._48.fromMatrixf(mBaseTrMatrix);
 	mRigid.mConfigs[0]._48.normalise();
-	mObjMatrix.setTranslation(mPelletPosition);
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mRigid._04.mMatrix.mtxView);
+	mBaseTrMatrix.setTranslation(mPelletPosition);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mRigid._04.mMatrix.mtxView);
 }
 
 /*
@@ -1941,18 +1941,18 @@ void Pellet::setOrientation(Matrixf& mat)
 	quat.normalise();
 	mRigid.mConfigs[0]._48 = quat;
 
-	mObjMatrix.makeQ(quat);
-	mObjMatrix.setTranslation(mPelletPosition);
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mRigid._04.mMatrix.mtxView);
+	mBaseTrMatrix.makeQ(quat);
+	mBaseTrMatrix.setTranslation(mPelletPosition);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mRigid._04.mMatrix.mtxView);
 
 	f32 x;
 	f32 z;
-	if (mObjMatrix(1, 1) > 0.0f) {
-		x = mObjMatrix(0, 2);
-		z = mObjMatrix(2, 2);
+	if (mBaseTrMatrix(1, 1) > 0.0f) {
+		x = mBaseTrMatrix(0, 2);
+		z = mBaseTrMatrix(2, 2);
 	} else {
-		x = mObjMatrix(0, 0);
-		z = mObjMatrix(2, 0);
+		x = mBaseTrMatrix(0, 0);
+		z = mBaseTrMatrix(2, 0);
 	}
 
 	if (z < -1.0f) {
@@ -3536,7 +3536,7 @@ void Pellet::updateTrMatrix()
 		PSMTXConcat(Q.mMatrix.mtxView, T.mMatrix.mtxView, mat.mMatrix.mtxView);
 
 		mat.setTranslation(mPelletPosition);
-		mObjMatrix = mat;
+		mBaseTrMatrix = mat;
 	}
 }
 
@@ -3592,7 +3592,7 @@ void Pellet::doAnimation()
 			PSMTXConcat(matQ.mMatrix.mtxView, matT.mMatrix.mtxView, outMat.mMatrix.mtxView);
 			outMat.setTranslation(mPelletPosition);
 
-			mObjMatrix = outMat;
+			mBaseTrMatrix = outMat;
 
 			updateParticlePositions();
 		} else {
@@ -3670,7 +3670,7 @@ void Pellet::entryShape()
 {
 	if (mPelletView == nullptr) {
 		if (mModel) {
-			PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+			PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 			mScale.setVec(mModel->mJ3dModel->mModelScale);
 			mModel->mJ3dModel->calc();
 			mCollTree->update();
@@ -4288,7 +4288,7 @@ void Pellet::calcStickSlotGlobal(s16 slot, Vector3f& stickPosition)
 	}
 
 	Vector3f outVec;
-	PSMTXMultVec(mObjMatrix.mMatrix.mtxView, (Vec*)&pos, (Vec*)&outVec);
+	PSMTXMultVec(mBaseTrMatrix.mMatrix.mtxView, (Vec*)&pos, (Vec*)&outVec);
 	stickPosition = Vector3f(outVec);
 	/*
 	stwu     r1, -0x60(r1)
@@ -4666,8 +4666,8 @@ void Pellet::onStartCapture()
 	mPelletPosition              = captureVec;
 
 	if (mModel) {
-		mObjMatrix.makeT(mPelletPosition);
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mBaseTrMatrix.makeT(mPelletPosition);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 
 		mScale.setVec(mModel->mJ3dModel->mModelScale);
 		mModel->mJ3dModel->calc();
@@ -4710,7 +4710,7 @@ void Pellet::onUpdateCapture(Matrixf& matrix)
 
 	if (mPelletView == nullptr) {
 		if (mModel) {
-			PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+			PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 			J3DModel* j3dModel = mModel->mJ3dModel;
 			mScale.setVec(mModel->mJ3dModel->mModelScale);
 			mModel->mJ3dModel->calc();
@@ -4733,7 +4733,7 @@ void Pellet::onUpdateCapture(Matrixf& matrix)
 void Pellet::onEndCapture()
 {
 	Matrixf mtx;
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
 	_3C4 = 1;
 	shadowOn();
 	setPosition(mRigid.mConfigs[0].mPosition, false);

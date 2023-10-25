@@ -1377,7 +1377,7 @@ void Navi::doAnimation()
 		mAnimator.mBoundAnimator.animate(calc);
 		updateTrMatrix();
 		mModel->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimator.mSelfAnimator.getCalc();
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mModel->mJ3dModel->calc();
 		mCollTree->update();
 		updateCursor();
@@ -1394,7 +1394,7 @@ void Navi::doAnimation()
 			updateTrMatrix();
 			moveVelocity();
 			moveRotation();
-			PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+			PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 			mModel->mJ3dModel->calc();
 			mCollTree->update();
 		}

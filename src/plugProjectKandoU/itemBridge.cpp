@@ -229,7 +229,7 @@ void Item::doSave(Stream& output)
 void Item::onSetPosition()
 {
 	Vector3f rot = Vector3f(0.0f, mFaceDir, 0.0f);
-	mObjMatrix.makeTR(mPosition, rot);
+	mBaseTrMatrix.makeTR(mPosition, rot);
 	doAnimation();
 	mgr->setupPlatInstanceAttacher(this, mPlatInstanceAttacher);
 	mPlatInstanceAttacher.fixCollision(true);

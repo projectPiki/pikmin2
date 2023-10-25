@@ -124,7 +124,7 @@ void Item::onInit(CreatureInitArg* arg)
 void Item::makeTrMatrix()
 {
 	Vector3f angle(0.0f, mFaceDir, 0.0f);
-	mObjMatrix.makeTR(mPosition, angle);
+	mBaseTrMatrix.makeTR(mPosition, angle);
 }
 
 /*
@@ -155,7 +155,7 @@ void Item::onSetPosition()
 		mBoundingSphere.mRadius = 65.0f;
 	}
 	makeTrMatrix();
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 
 	Matrixf* mtx = mModel->mJoints->getWorldMatrix();
@@ -605,7 +605,7 @@ void Item::doDirectDraw(Graphics& gfx)
 {
 	gfx.initPrimDraw(nullptr);
 	Matrixf mtx;
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
 	mtx.mMatrix.structView.tx += 0.0f;
 	mtx.mMatrix.structView.ty += 10.0f;
 	GXSetLineWidth(40, GX_TO_ZERO);

@@ -1082,7 +1082,7 @@ void EnemyBase::setCarcassArg(PelletViewArg& carcassArg)
 	Vector3f pos          = getPosition();
 	carcassArg.mEnemyName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 	carcassArg.mPosition  = pos;
-	carcassArg.mMatrix    = &mObjMatrix;
+	carcassArg.mMatrix    = &mBaseTrMatrix;
 	carcassArg.mEnemy     = this;
 }
 
@@ -1360,7 +1360,7 @@ void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 void EnemyBase::updateTrMatrix()
 {
 	Vector3f rot = mRotation + mDamageAnimRotation + mStunAnimRotation;
-	mObjMatrix.makeTR(mPosition, rot);
+	mBaseTrMatrix.makeTR(mPosition, rot);
 }
 
 /*
@@ -1516,13 +1516,13 @@ void EnemyBase::doAnimationCullingOff()
 	doAnimationUpdateAnimator();
 
 	if (mPellet) {
-		viewMakeMatrix(mObjMatrix);
+		viewMakeMatrix(mBaseTrMatrix);
 		Matrixf mtx;
 		PSMTXScale(mtx.mMatrix.mtxView, mScale.x, mScale.y, mScale.z);
-		PSMTXConcat(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
+		PSMTXConcat(mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mBaseTrMatrix.mMatrix.mtxView);
 
 		Vector3f pos;
-		mObjMatrix.getTranslation(pos);
+		mBaseTrMatrix.getTranslation(pos);
 		onSetPosition(pos);
 		onSetPositionPost(pos);
 
@@ -1531,11 +1531,11 @@ void EnemyBase::doAnimationCullingOff()
 
 	} else {
 		Vector3f rot = mRotation + mDamageAnimRotation + mStunAnimRotation;
-		mObjMatrix.makeSRT(mScale, rot, mPosition);
+		mBaseTrMatrix.makeSRT(mScale, rot, mPosition);
 	}
 
 	sys->mTimers->_start("e-calc", true);
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 	sys->mTimers->_stop("e-calc");
 	mCollTree->update();
@@ -1553,7 +1553,7 @@ void EnemyBase::doAnimationCullingOff()
 void EnemyBase::doAnimationStick()
 {
 	Vector3f rot = mRotation + mDamageAnimRotation + mStunAnimRotation;
-	mObjMatrix.makeSRT(mScale, rot, mPosition);
+	mBaseTrMatrix.makeSRT(mScale, rot, mPosition);
 }
 
 /*

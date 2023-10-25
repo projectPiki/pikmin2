@@ -598,7 +598,7 @@ TMgr::~TMgr() { msInstance = nullptr; }
  * Address:	803DC6D0
  * Size:	00014C
  */
-CardError::TMgr::~TMgr() { } // this should be weak?
+CardError::TMgr::~TMgr() { } // TODO: this should be weak as per map, but inlines in above dtor if made weak
 
 namespace Save {
 /*

@@ -2206,9 +2206,9 @@ void FakePiki::doAnimation()
 	}
 	updateTrMatrix();
 	if (isNavi()) {
-		static_cast<Navi*>(this)->viewMakeMatrix(mObjMatrix);
-		mPosition = mObjMatrix.getPosition();
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->getJ3DModel()->mPosMtx);
+		static_cast<Navi*>(this)->viewMakeMatrix(mBaseTrMatrix);
+		mPosition = mBaseTrMatrix.getPosition();
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->getJ3DModel()->mPosMtx);
 		sCurrNeckTheta = mNeckTheta;
 		sCurrNeckPhi   = mNeckPhi;
 		sys->mTimers->_start("calc-coll", true);
@@ -2569,7 +2569,7 @@ void FakePiki::updateTrMatrix()
 {
 	if (useUpdateTrMatrix() && !isStickTo()) {
 		Vector3f rotation(0.0f, mFaceDir, 0.0f);
-		mObjMatrix.makeSRT(mScale, rotation, mPosition);
+		mBaseTrMatrix.makeSRT(mScale, rotation, mPosition);
 	}
 }
 

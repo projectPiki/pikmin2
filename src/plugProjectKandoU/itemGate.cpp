@@ -104,8 +104,8 @@ void ItemGate::onInit(CreatureInitArg* arg)
 void ItemGate::onSetPosition()
 {
 	Vector3f rotation(0.0f, mFaceDir, 0.0f);
-	mObjMatrix.makeTR(mPosition, rotation);
-	PSMTXCopy((PSQuaternion*)&mObjMatrix, mModel->mJ3dModel->mPosMtx);
+	mBaseTrMatrix.makeTR(mPosition, rotation);
+	PSMTXCopy((PSQuaternion*)&mBaseTrMatrix, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 	if (mIsElectric) {
 		ItemDengekiGate::mgr->setupPlatform(this);
@@ -1430,10 +1430,10 @@ void GateDownState::init(Game::ItemGate* gate, Game::StateArg* arg)
 	gate->mAnimator.startAnim(gate->mSegmentsDown + 3, gate);
 	gate->mAnimSpeed = 30.0f;
 	if (gate->mColor == 0) {
-		efx::TGate1Down gateDown(&gate->mObjMatrix);
+		efx::TGate1Down gateDown(&gate->mBaseTrMatrix);
 		gateDown.create(nullptr);
 	} else {
-		efx::TGate2Down gateDown(&gate->mObjMatrix);
+		efx::TGate2Down gateDown(&gate->mBaseTrMatrix);
 		gateDown.create(nullptr);
 	}
 	gate->mMabiki.mBuffer += 200;

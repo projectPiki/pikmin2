@@ -219,8 +219,8 @@ void Obj::doUpdateCarcass()
 				mHealth += (mMaxHealth / C_PARMS->mProperParms.mFp12()) * sys->getFrameLength();
 				if (mHealth >= mMaxHealth) {
 					mPellet->kill(nullptr);
-					f32 x = mObjMatrix.mMatrix.structView.zx;
-					f32 z = mObjMatrix.mMatrix.structView.zz;
+					f32 x = mBaseTrMatrix.mMatrix.structView.zx;
+					f32 z = mBaseTrMatrix.mMatrix.structView.zz;
 					EnemyBirthArg arg;
 					arg.mPosition        = mPosition;
 					arg.mFaceDir         = JMath::atanTable_.atan2_(x, z);

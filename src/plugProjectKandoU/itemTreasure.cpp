@@ -163,7 +163,7 @@ Item::Item()
     : WorkItem(OBJTYPE_Treasure)
 {
 	mMass               = 0.0f;
-	mDummyShape.mMatrix = &mObjMatrix;
+	mDummyShape.mMatrix = &mBaseTrMatrix;
 	mPellet             = nullptr;
 }
 
@@ -195,7 +195,7 @@ void Item::onInit(CreatureInitArg*)
 void Item::onSetPosition()
 {
 	updateBoundSphere();
-	mObjMatrix.makeT(mPosition);
+	mBaseTrMatrix.makeT(mPosition);
 }
 
 /*
@@ -228,7 +228,7 @@ void Item::doAI()
 		f32 depth   = halfMax - mTotalLife;
 
 		Matrixf mtx;
-		PSMTXCopy(mPellet->mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
+		PSMTXCopy(mPellet->mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
 		mtx.mMatrix.structView.ty = depth;
 		mtx.mMatrix.structView.tx = 0.0f;
 		mtx.mMatrix.structView.tz = 0.0f;

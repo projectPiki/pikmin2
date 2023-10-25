@@ -201,21 +201,21 @@ void Obj::doAnimationCullingOff()
 	mCurAnim->mIsPlaying = false;
 	doAnimationUpdateAnimator();
 	if (mPellet) {
-		viewMakeMatrix(mObjMatrix);
+		viewMakeMatrix(mBaseTrMatrix);
 		Matrixf mtx;
 		PSMTXScale(mtx.mMatrix.mtxView, mScale.x, mScale.y, mScale.z);
-		PSMTXConcat(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
+		PSMTXConcat(mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mBaseTrMatrix.mMatrix.mtxView);
 		Vector3f pos;
-		mObjMatrix.getTranslation(pos);
+		mBaseTrMatrix.getTranslation(pos);
 		onSetPosition(pos);
 		onSetPositionPost(pos);
 
 	} else {
-		mObjMatrix.makeTR(mPosition, mRotation);
+		mBaseTrMatrix.makeTR(mPosition, mRotation);
 	}
 
 	if (isCullingOff()) {
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 
 		if (C_PARMS->mDoUpdateAnimation && getCurrAnimIndex() == 2 && getStateID() != SHIJIMICHOU_Rest) {
 			J3DModel* model = mModel->getJ3DModel();

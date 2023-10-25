@@ -524,7 +524,7 @@ void Item::makeTrMatrix()
 	};
 
 	Vector3f scale = Vector3f(scaleVals[mHoneyType]);
-	mObjMatrix.makeST(scale, mPosition);
+	mBaseTrMatrix.makeST(scale, mPosition);
 }
 
 /*
@@ -541,7 +541,7 @@ void Item::onStartCapture() { mFsm->start(this, HONEY_Fall, nullptr); }
  */
 void Item::onUpdateCapture(Matrixf& mtx)
 {
-	mObjMatrix.getBasis(3, mPosition);
+	mBaseTrMatrix.getBasis(3, mPosition);
 	mVelocity = Vector3f(0.0f);
 	entryShape();
 }

@@ -423,7 +423,7 @@ void Item::onInit(CreatureInitArg* settings)
 	mEfxTane->mPikiColor = mColor;
 	mEfxTane->_08        = &mPosition;
 	mEfxTane->mPos       = &mEfxPosition;
-	mEfxTane->_10        = &mObjMatrix;
+	mEfxTane->_10        = &mBaseTrMatrix;
 	mEfxTane->_0C        = mModel->getJoint("happajnt3")->getWorldMatrix();
 	if (itemInitArg && itemInitArg->mIsAlreadyBuried) {
 		mFsm->start(this, PIKIHEAD_Hatuga, nullptr);
@@ -510,10 +510,10 @@ void Item::makeTrMatrix()
 			Vector3f zVec = cross(yVec, xAxis);
 			zVec.normalise();
 
-			mObjMatrix.setBasis(0, xVec);
-			mObjMatrix.setBasis(1, yVec);
-			mObjMatrix.setBasis(2, zVec);
-			mObjMatrix.setTranslation(mPosition);
+			mBaseTrMatrix.setBasis(0, xVec);
+			mBaseTrMatrix.setBasis(1, yVec);
+			mBaseTrMatrix.setBasis(2, zVec);
+			mBaseTrMatrix.setTranslation(mPosition);
 		}
 	} else {
 		BaseItem::makeTrMatrix();

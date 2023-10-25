@@ -390,18 +390,18 @@ void ActExit::init(ActionArg* arg)
 	mClimb->init(&climbArg);
 
 	mParent->startSound(cropArg->mCreature, PSSE_PK_VC_ONY_EXIT, true);
-	mParent->mScale                           = Vector3f::zero;
-	mParent->mObjMatrix.mMatrix.structView.xx = 0.0f;
-	mParent->mObjMatrix.mMatrix.structView.yx = 0.0f;
-	mParent->mObjMatrix.mMatrix.structView.zx = 0.0f;
-	mParent->mObjMatrix.mMatrix.structView.xy = 0.0f;
-	mParent->mObjMatrix.mMatrix.structView.yy = 0.0f;
-	mParent->mObjMatrix.mMatrix.structView.zy = 0.0f;
-	mParent->mObjMatrix.mMatrix.structView.xz = 0.0f;
-	mParent->mObjMatrix.mMatrix.structView.yz = 0.0f;
-	mParent->mObjMatrix.mMatrix.structView.zz = 0.0f;
+	mParent->mScale                              = Vector3f::zero;
+	mParent->mBaseTrMatrix.mMatrix.structView.xx = 0.0f;
+	mParent->mBaseTrMatrix.mMatrix.structView.yx = 0.0f;
+	mParent->mBaseTrMatrix.mMatrix.structView.zx = 0.0f;
+	mParent->mBaseTrMatrix.mMatrix.structView.xy = 0.0f;
+	mParent->mBaseTrMatrix.mMatrix.structView.yy = 0.0f;
+	mParent->mBaseTrMatrix.mMatrix.structView.zy = 0.0f;
+	mParent->mBaseTrMatrix.mMatrix.structView.xz = 0.0f;
+	mParent->mBaseTrMatrix.mMatrix.structView.yz = 0.0f;
+	mParent->mBaseTrMatrix.mMatrix.structView.zz = 0.0f;
 
-	PSMTXCopy(mParent->mObjMatrix.mMatrix.mtxView, mParent->mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mParent->mBaseTrMatrix.mMatrix.mtxView, mParent->mModel->mJ3dModel->mPosMtx);
 	mParent->mModel->mJ3dModel->calc();
 }
 

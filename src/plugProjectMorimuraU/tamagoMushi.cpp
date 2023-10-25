@@ -107,20 +107,20 @@ void Obj::doAnimationCullingOff()
 	doAnimationUpdateAnimator();
 
 	if (mPellet) {
-		viewMakeMatrix(mObjMatrix);
+		viewMakeMatrix(mBaseTrMatrix);
 		Matrixf mtx;
 		PSMTXScale(mtx.mMatrix.mtxView, mScale.x, mScale.y, mScale.z);
-		PSMTXConcat(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
+		PSMTXConcat(mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mBaseTrMatrix.mMatrix.mtxView);
 
 		Vector3f pos;
-		mObjMatrix.getTranslation(pos);
+		mBaseTrMatrix.getTranslation(pos);
 		onSetPosition(pos);
 		onSetPositionPost(pos);
 	} else {
-		mObjMatrix.makeTR(mPosition, mRotation);
+		mBaseTrMatrix.makeTR(mPosition, mRotation);
 	}
 
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 
 	if (C_PARMS->_923 && getCurrAnimIndex() == 2) {
 		J3DModel* model = mModel->getJ3DModel();

@@ -238,7 +238,7 @@ void ItemHole::Item::onSetPosition()
 	mBoundingSphere.mRadius   = 50.0f;
 	mEfxWarpZone              = new efx::WarpZone();
 	makeTrMatrix();
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 	Matrixf* worldMatrix = mModel->mJoints[0].getWorldMatrix();
 
@@ -306,7 +306,7 @@ void ItemHole::Item::makeTrMatrix()
 	Vector3f rot(0.0f, mFaceDir, 0.0f);
 	Vector3f translation = mPosition;
 	translation.y -= mBuryDepth;
-	mObjMatrix.makeTR(translation, rot);
+	mBaseTrMatrix.makeTR(translation, rot);
 }
 
 /*
@@ -366,7 +366,7 @@ void ItemHole::Item::doDirectDraw(Graphics& gfx)
 {
 	Matrixf v1;
 	gfx.initPrimDraw(nullptr);
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, v1.mMatrix.mtxView);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, v1.mMatrix.mtxView);
 
 	// WHAT.
 	Vector2f translation(v1.mMatrix.structView.tx, v1.mMatrix.structView.ty);

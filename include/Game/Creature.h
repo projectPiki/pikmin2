@@ -439,7 +439,7 @@ struct Creature : public CellObject {
 	Vector3f mAcceleration;         // _11C
 	u16 mObjectTypeID;              // _128
 	UpdateContext mUpdateContext;   // _12C
-	Matrixf mObjMatrix;             // _138
+	Matrixf mBaseTrMatrix;          // _138
 	Vector3f mScale;                // _168 /* Not sure if just model scale. */
 	SysShape::Model* mModel;        // _174
 };

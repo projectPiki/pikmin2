@@ -245,10 +245,10 @@ void Creature::updateStick(Vector3f& pos)
 			resultMtx.makeSR(scalevec, rotate);
 		}
 
-		PSMTXConcat(stuckMtx.mMatrix.mtxView, resultMtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
+		PSMTXConcat(stuckMtx.mMatrix.mtxView, resultMtx.mMatrix.mtxView, mBaseTrMatrix.mMatrix.mtxView);
 
 		Vector3f pos;
-		mObjMatrix.getTranslation(pos);
+		mBaseTrMatrix.getTranslation(pos);
 		setPosition(pos, true);
 	} else { // If the creature is sticking to a non-mouth part
 		if (mStuckCollPart) {
@@ -261,20 +261,20 @@ void Creature::updateStick(Vector3f& pos)
 				Vector3f rotate;
 				rotate.x = getFaceDir();
 				rotate.y = mClimbingPosition.y;
-				mStuckCollPart->calcPoseMatrix(rotate, mObjMatrix);
+				mStuckCollPart->calcPoseMatrix(rotate, mBaseTrMatrix);
 
 				if (isPiki()) {
-					scaleMatrix2(mObjMatrix, mScale);
+					scaleMatrix2(mBaseTrMatrix, mScale);
 				}
 			} else {
-				mStuckCollPart->calcPoseMatrix(pos, mObjMatrix);
+				mStuckCollPart->calcPoseMatrix(pos, mBaseTrMatrix);
 				if (isPiki()) {
-					scaleMatrix2(mObjMatrix, mScale);
+					scaleMatrix2(mBaseTrMatrix, mScale);
 				}
 			}
 
 			setPosition(pos, true);
-			mObjMatrix.setTranslation(pos);
+			mBaseTrMatrix.setTranslation(pos);
 		} else if (mStickSlot != -1) { // If the creature isn't stuck to any part, but stuck in a slot
 			Vector3f position;
 			mSticker->calcStickSlotGlobal(mStickSlot, position);
@@ -289,7 +289,7 @@ void Creature::updateStick(Vector3f& pos)
 			Vector3f rotation(0.0f, angleBetween, 0.0f);
 
 			// Rotate towards the slot position, and maintain positioning
-			mObjMatrix.makeTR(position, rotation);
+			mBaseTrMatrix.makeTR(position, rotation);
 		}
 	}
 }
@@ -321,16 +321,16 @@ void Creature::startCapture(Matrixf* mtx)
 void Creature::updateCapture(Matrixf& mtx)
 {
 	if (mCaptureMatrix) {
-		PSMTXConcat(mCaptureMatrix->mMatrix.mtxView, mtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
+		PSMTXConcat(mCaptureMatrix->mMatrix.mtxView, mtx.mMatrix.mtxView, mBaseTrMatrix.mMatrix.mtxView);
 
 		Mtx newmtx;
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, newmtx);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, newmtx);
 
 		Vector3f pos;
-		mObjMatrix.getTranslation(pos);
+		mBaseTrMatrix.getTranslation(pos);
 
 		setPosition(pos, false);
-		PSMTXCopy(newmtx, mObjMatrix.mMatrix.mtxView);
+		PSMTXCopy(newmtx, mBaseTrMatrix.mMatrix.mtxView);
 		onUpdateCapture(mtx);
 	}
 }

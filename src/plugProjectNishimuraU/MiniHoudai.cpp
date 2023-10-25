@@ -301,8 +301,8 @@ void Obj::doUpdateCarcass()
 			mHealth += (mMaxHealth / C_PROPERPARMS.mRespawnRate.mValue) * sys->getFrameLength();
 			if (mHealth >= mMaxHealth) {
 				mPellet->kill(nullptr);
-				f32 zx = mObjMatrix.mMatrix.structView.zx;
-				f32 zz = mObjMatrix.mMatrix.structView.zz;
+				f32 zx = mBaseTrMatrix.mMatrix.structView.zx;
+				f32 zz = mBaseTrMatrix.mMatrix.structView.zz;
 				EnemyBirthArg birthArg;
 				birthArg.mPosition        = mPosition;
 				birthArg.mFaceDir         = JMAAtan2Radian(zx, zz);

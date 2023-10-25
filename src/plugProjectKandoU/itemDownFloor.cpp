@@ -130,8 +130,8 @@ void Item::initDependency()
 void Item::onSetPosition()
 {
 	Vector3f rot(0.0f, mFaceDir, 0.0f);
-	mObjMatrix.makeTR(mPosition, rot);
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	mBaseTrMatrix.makeTR(mPosition, rot);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 
 	mgr->setupPlatform(this);
@@ -212,15 +212,15 @@ void Item::startDamageMotion()
 	if (water) {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1WOn water1On(&mObjMatrix);
+			efx::TDownf1WOn water1On(&mBaseTrMatrix);
 			water1On.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2WOn water2On(&mObjMatrix);
+			efx::TDownf2WOn water2On(&mBaseTrMatrix);
 			water2On.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TDownf3WOn water3On(&mObjMatrix);
+			efx::TDownf3WOn water3On(&mBaseTrMatrix);
 			water3On.create(nullptr);
 			break;
 		}
@@ -228,15 +228,15 @@ void Item::startDamageMotion()
 	} else {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1On land1On(&mObjMatrix);
+			efx::TDownf1On land1On(&mBaseTrMatrix);
 			land1On.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2On land2On(&mObjMatrix);
+			efx::TDownf2On land2On(&mBaseTrMatrix);
 			land2On.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TPbagOn land3On(&mObjMatrix);
+			efx::TPbagOn land3On(&mBaseTrMatrix);
 			land3On.create(nullptr);
 			break;
 		}
@@ -266,15 +266,15 @@ void Item::startDownMotion()
 	if (water) {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1WUpdown water1Updown(&mObjMatrix);
+			efx::TDownf1WUpdown water1Updown(&mBaseTrMatrix);
 			water1Updown.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2WUpdown water2Updown(&mObjMatrix);
+			efx::TDownf2WUpdown water2Updown(&mBaseTrMatrix);
 			water2Updown.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TDownf3WUpdown water3Updown(&mObjMatrix);
+			efx::TDownf3WUpdown water3Updown(&mBaseTrMatrix);
 			water3Updown.create(nullptr);
 			break;
 		}
@@ -282,15 +282,15 @@ void Item::startDownMotion()
 	} else {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1Updown land1Updown(&mObjMatrix);
+			efx::TDownf1Updown land1Updown(&mBaseTrMatrix);
 			land1Updown.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2Updown land2Updown(&mObjMatrix);
+			efx::TDownf2Updown land2Updown(&mBaseTrMatrix);
 			land2Updown.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TPbagDown land3Updown(&mObjMatrix);
+			efx::TPbagDown land3Updown(&mBaseTrMatrix);
 			land3Updown.create(nullptr);
 			break;
 		}
@@ -315,15 +315,15 @@ void Item::startUpMotion()
 	if (water) {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1WUpdown water1Updown(&mObjMatrix);
+			efx::TDownf1WUpdown water1Updown(&mBaseTrMatrix);
 			water1Updown.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2WUpdown water2Updown(&mObjMatrix);
+			efx::TDownf2WUpdown water2Updown(&mBaseTrMatrix);
 			water2Updown.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TDownf3WUpdown water3Updown(&mObjMatrix);
+			efx::TDownf3WUpdown water3Updown(&mBaseTrMatrix);
 			water3Updown.create(nullptr);
 			break;
 		}
@@ -331,15 +331,15 @@ void Item::startUpMotion()
 	} else {
 		switch (mModelType) {
 		case DFMODEL_SmallBlock:
-			efx::TDownf1Updown land1Updown(&mObjMatrix);
+			efx::TDownf1Updown land1Updown(&mBaseTrMatrix);
 			land1Updown.create(nullptr);
 			break;
 		case DFMODEL_LargeBlock:
-			efx::TDownf2Updown land2Updown(&mObjMatrix);
+			efx::TDownf2Updown land2Updown(&mBaseTrMatrix);
 			land2Updown.create(nullptr);
 			break;
 		case DFMODEL_PaperBag:
-			efx::TDownf3Updown land3Updown(&mObjMatrix);
+			efx::TDownf3Updown land3Updown(&mBaseTrMatrix);
 			land3Updown.create(nullptr);
 			break;
 		}

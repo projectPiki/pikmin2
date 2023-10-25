@@ -403,7 +403,7 @@ void ObjectParticleActor::emit()
 			pos = mMatrix.getBasis(3);
 		} else {
 			if (mModelJointIndex == -1) {
-				PSMTXCopy(mGameObject->mObjMatrix.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
+				PSMTXCopy(mGameObject->mBaseTrMatrix.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
 				pos = mMatrix.getBasis(3);
 			} else {
 				Vector3f pos(mTranslation2.x, mTranslation2.y, mTranslation2.z);
@@ -443,7 +443,7 @@ void ObjectParticleActor::executeAfter(JPABaseEmitter* emit)
 			}
 		}
 		if (mModelJointIndex == -1) {
-			PSMTXCopy(obj->mObjMatrix.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
+			PSMTXCopy(obj->mBaseTrMatrix.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
 			return;
 		} else {
 			Vector3f vec(0.0f, moviePlayer->mTransformAngle, 0.0f);

@@ -51,7 +51,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 	hardConstraintOn();
 	_2BC = 0;
 	_2BD = 0;
-	mObjMatrix.makeSRT(mScale, mRotation, mPosition);
+	mBaseTrMatrix.makeSRT(mScale, mRotation, mPosition);
 
 	P2ASSERTLINE(83, mModel);
 
@@ -60,7 +60,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 	SysShape::Animator* animator                                  = &mAnimator->getAnimator();
 	SysShape::Model* model                                        = mModel;
 	model->mJ3dModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 
 	setCollisionFlick(false);
@@ -120,8 +120,8 @@ void Plants::Obj::doAnimationCullingOff()
 		mCurAnim->mIsPlaying = false;
 		doAnimationUpdateAnimator();
 		if (mLod.isFlag(AILOD_IsVisible)) {
-			mObjMatrix.makeSRT(mScale, mRotation, mPosition);
-			PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+			mBaseTrMatrix.makeSRT(mScale, mRotation, mPosition);
+			PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 			mModel->mJ3dModel->calc();
 		}
 	}

@@ -51,9 +51,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 		mCurAnim->mIsPlaying = false;
 		doAnimationUpdateAnimator();
 
-		mObjMatrix.makeSRT(mScale, mRotation, mPosition);
+		mBaseTrMatrix.makeSRT(mScale, mRotation, mPosition);
 
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mModel->mJ3dModel->calc();
 	}
 }
@@ -125,24 +125,24 @@ void Obj::doAnimationCullingOff()
 	mCurAnim->mIsPlaying = false;
 	doAnimationUpdateAnimator();
 	bool check;
-	Vector3f vec = mObjMatrix.getBasis(3);
+	Vector3f vec = mBaseTrMatrix.getBasis(3);
 	if (mCaptureMatrix) {
 		check             = false;
 		Vector3f checkVec = mCaptureMatrix->getBasis(3);
 		if (vec.x != checkVec.x || vec.y != checkVec.y || vec.z != checkVec.z) {
 			check = true;
-			PSMTXCopy(mCaptureMatrix->mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
+			PSMTXCopy(mCaptureMatrix->mMatrix.mtxView, mBaseTrMatrix.mMatrix.mtxView);
 		}
 	} else {
 		check = false;
 		if (mPosition.x != vec.x || mPosition.y != vec.y || mPosition.z != vec.z) {
 			check = true;
-			mObjMatrix.makeSRT(mScale, mRotation, mPosition);
+			mBaseTrMatrix.makeSRT(mScale, mRotation, mPosition);
 		}
 	}
 
 	if (check || !isStopMotion()) {
-		PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 		mModel->mJ3dModel->calc();
 		mCollTree->update();
 	}

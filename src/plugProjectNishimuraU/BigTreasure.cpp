@@ -166,7 +166,7 @@ void Obj::doAnimationCullingOff()
 	doAnimationUpdateAnimator();
 	doAnimationIKSystem();
 
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 
 	mCollTree->update();
@@ -515,7 +515,7 @@ void Obj::doAnimationIKSystem()
 {
 	mIkSystemMgr->setAnimationCallBack();
 	Vector3f translation = Vector3f(mIkSystemMgr->mTraceCentrePosition);
-	mObjMatrix.makeSRT(mScale, mRotation, translation);
+	mBaseTrMatrix.makeSRT(mScale, mRotation, translation);
 }
 
 /*

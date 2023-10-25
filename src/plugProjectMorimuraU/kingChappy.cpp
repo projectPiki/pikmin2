@@ -347,21 +347,21 @@ void Obj::doAnimationCullingOff()
 	doAnimationUpdateAnimator();
 
 	if (mPellet) {
-		viewMakeMatrix(mObjMatrix);
+		viewMakeMatrix(mBaseTrMatrix);
 
 		Matrixf mtx;
 		PSMTXScale(mtx.mMatrix.mtxView, mScale.x, mScale.y, mScale.z);
-		PSMTXConcat(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
+		PSMTXConcat(mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mBaseTrMatrix.mMatrix.mtxView);
 
 		Vector3f pos;
-		mObjMatrix.getTranslation(pos);
+		mBaseTrMatrix.getTranslation(pos);
 		onSetPosition(pos);
 		onSetPositionPost(pos);
 	} else {
-		mObjMatrix.makeSRT(mScale, mRotation, mPosition);
+		mBaseTrMatrix.makeSRT(mScale, mRotation, mPosition);
 	}
 
-	PSMTXCopy(mObjMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->calc();
 
 	// this is a really complicated way to adjust the world matrices when eating pikmin
