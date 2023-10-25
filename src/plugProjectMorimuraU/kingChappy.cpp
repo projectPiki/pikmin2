@@ -301,7 +301,7 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 void Obj::doAnimationUpdateAnimator()
 {
 	ProperAnimator* animator = static_cast<ProperAnimator*>(mAnimator);
-	if (animator->mAnimator._48) {
+	if (animator->mAnimator.mIsBlendEnabled) {
 		f32 frameRate = sys->mDeltaTime;
 		frameRate     = EnemyAnimatorBase::defaultAnimSpeed * frameRate;
 		SysShape::BlendLinearFun linearBlend;

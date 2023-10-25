@@ -131,7 +131,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAppear::exec(EnemyBase* enemy)
 {
 	mAppearTimer++;
-	if (mAppearTimer > CG_PROPERPARMS(enemy).mIp01.mValue) {
+	if (mAppearTimer > CG_PROPERPARMS(enemy).mHidingTime.mValue) {
 		if (enemy->isStopMotion()) {
 			f32 terrRad = CG_PARMS(enemy)->mGeneral.mTerritoryRadius.mValue;
 			bool check;

@@ -170,7 +170,7 @@ Game::WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr
 bool Obj::isAttackStart()
 {
 	f32 atkRadius    = SQUARE(C_PARMS->mGeneral.mAttackRadius.mValue);
-	f32 minAtkRange  = SQUARE(C_PROPERPARMS.mFp08.mValue);
+	f32 minAtkRange  = SQUARE(C_PROPERPARMS.mMinAttackRange.mValue);
 	f32 contAtkAngle = PI * (DEG2RAD * (C_PROPERPARMS.mContinuousPressAngle.mValue));
 
 	if (mTargetCreature) {
