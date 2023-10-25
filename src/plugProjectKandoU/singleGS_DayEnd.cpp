@@ -73,7 +73,7 @@ void DayEndState::init(SingleGameSection* game, StateArg* arg)
 	if (navi->isAlive()) {
 		navi->mFsm->transit(navi, NSID_Walk, nullptr);
 		efx::TNaviEffect* effectsObj = navi->mEffectsObj;
-		effectsObj->mFlags.typeView &= ~efx::NAVIFX_InWater;
+		effectsObj->mFlags.unset(efx::NAVIFX_InWater);
 		effectsObj->killHamonA_();
 		effectsObj->killHamonB_();
 	}
@@ -81,7 +81,7 @@ void DayEndState::init(SingleGameSection* game, StateArg* arg)
 	if (navi->isAlive()) {
 		navi->mFsm->transit(navi, NSID_Walk, nullptr);
 		efx::TNaviEffect* effectsObj = navi->mEffectsObj;
-		effectsObj->mFlags.typeView &= ~efx::NAVIFX_InWater;
+		effectsObj->mFlags.unset(efx::NAVIFX_InWater);
 		effectsObj->killHamonA_();
 		effectsObj->killHamonB_();
 	}

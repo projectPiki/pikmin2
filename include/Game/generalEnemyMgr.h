@@ -209,7 +209,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 
 	// _00		= (GenericObjectMgr) VTABLE
 	// _04-_1C	= CNode
-	u8 _1C;                     // _1C
+	u8 _1C;                     // _1C, BitFlag
 	EnemyMgrNode mEnemyMgrNode; // _20
 	EnemyNumInfo mEnemyNumInfo; // _44
 	JKRHeap* mHeap;             // _4C

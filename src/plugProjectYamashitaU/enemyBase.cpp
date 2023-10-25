@@ -2168,7 +2168,7 @@ void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
 	}
 
 	EnemyAnimatorBase* animator = mAnimator;
-	animator->mFlags.typeView &= ~(EANIM_FLAG_STOPPED | EANIM_FLAG_FINISHED);
+	animator->mFlags.unset(EANIM_FLAG_STOPPED | EANIM_FLAG_FINISHED);
 	animator->mNormalizedTime = 1.0f;
 
 	animator->getAnimator(0).startAnim(p1, inputListener);

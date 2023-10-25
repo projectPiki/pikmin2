@@ -486,7 +486,7 @@ void SingleGame::GameState::init(Game::SingleGameSection* section, Game::StateAr
 		return;
 	}
 	sys->heapStatusDump(true);
-	gameSystem->mTimeMgr->mFlags.typeView &= ~TIMEFLAG_Stopped;
+	gameSystem->mTimeMgr->mFlags.unset(TIMEFLAG_Stopped);
 	if (v1 != 3) {
 		bool noPikisLeft = false;
 		for (int i = 0; i < 3; i++) {

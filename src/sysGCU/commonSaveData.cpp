@@ -59,7 +59,7 @@ void Mgr::setCardSerialNo(u64 tag)
 void Mgr::resetCardSerialNo()
 {
 	mCardSerialNo = 0xcdcdcdcdcdcdcdcd;
-	mFlags.typeView &= ~1;
+	mFlags.unset(1);
 }
 
 /*

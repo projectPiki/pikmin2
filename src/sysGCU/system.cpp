@@ -1444,7 +1444,7 @@ void System::activeGP() { mResetMgr->mFlags.set(2); }
  * Address:	804233DC
  * Size:	000014
  */
-void System::inactiveGP() { mResetMgr->mFlags.typeView &= ~2; }
+void System::inactiveGP() { mResetMgr->mFlags.unset(2); }
 
 /*
  * --INFO--

@@ -1488,16 +1488,16 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 	case MODEFLAG_Inactive:
 		mIsActive = false;
 		mMessageWindow->mWindowPane->mPane->hide();
-		mSequenceProc->mFlags.typeView |= 1;
+		mSequenceProc->mFlags.set(1);
 		break;
 	case MODEFLAG_Start:
 		PSSystem::spSysIF->playSystemSe(PSSE_MP_SHIP_CALLING_01, 0);
 		mMessageWindow->open(0.5f);
 		mPodIcon->appear();
-		mSequenceProc->mFlags.typeView |= 1;
+		mSequenceProc->mFlags.set(1);
 		break;
 	case MODEFLAG_Writing:
-		mSequenceProc->mFlags.typeView &= ~1;
+		mSequenceProc->mFlags.unset(1);
 		break;
 	case MODEFLAG_Finish:
 		PSSystem::spSysIF->playSystemSe(PSSE_MP_SHIP_PERIOD_01, 0);
