@@ -355,7 +355,7 @@ int PikiAI::ActFormation::exec()
 	Vector3f movieSep = mParent->mPositionBeforeMovie - mParent->getPosition();
 	_50 += movieSep.length();
 
-	if ((int)mParent->mPikiKind != Game::Bulbmin && _50 >= 100.0f && mParent->mSimVelocity.length() > 110.0f) {
+	if (mParent->getKind() != Game::Bulbmin && _50 >= 100.0f && mParent->mSimVelocity.length() > 110.0f) {
 		if (randFloat() >= 0.99f && randFloat() > 0.7f) {
 			if (mParent->getStateID() == Game::PIKISTATE_Walk) {
 				mParent->mFsm->transit(mParent, Game::PIKISTATE_Koke, nullptr);
