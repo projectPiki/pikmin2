@@ -32,8 +32,8 @@ struct TPanHide : public TForever {
 };
 
 struct TPanSmoke : public TChasePos {
-	inline TPanSmoke()
-	    : TChasePos(PID_PanSmoke)
+	inline TPanSmoke(Vector3f* pos)
+	    : TChasePos(pos, PID_PanSmoke)
 	{
 	}
 

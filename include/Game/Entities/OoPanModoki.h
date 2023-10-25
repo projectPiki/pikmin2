@@ -12,13 +12,13 @@ namespace OoPanModoki {
 struct Obj : public PanModokiBase::Obj {
 	Obj();
 
-	virtual ~Obj() { }                                     // _1BC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();    // _258 (weak)
-	virtual bool pressCallBack(Creature*, f32, CollPart*); // _27C
-	virtual f32 getDownSmokeScale();                       // _2EC (weak)
-	virtual void appearRumble();                           // _2F8
-	virtual void hideRumble();                             // _2FC
-	virtual bool canTarget(int, int);                      // _308 (weak)
+	virtual ~Obj() { }                                                                              // _1BC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_OoPanModoki; } // _258 (weak)
+	virtual bool pressCallBack(Creature*, f32, CollPart*);                                          // _27C
+	virtual f32 getDownSmokeScale() { return 1.0f; }                                                // _2EC (weak)
+	virtual void appearRumble();                                                                    // _2F8
+	virtual void hideRumble();                                                                      // _2FC
+	virtual bool canTarget(int param1, int param2) { return (u8)(param2 <= param1); }               // _308 (weak)
 
 	// _00 		= VTBL
 	// _00-_3C8	= PanModokiBase

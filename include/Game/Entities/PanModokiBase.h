@@ -156,7 +156,7 @@ struct Obj : public EnemyBase {
 	s16 _2E6;                           // _2E6
 	s16 _2E8;                           // _2E8
 	s16 _2EA;                           // _2EA
-	u32 _2EC;                           // _2EC
+	u32 mPathID;                        // _2EC
 	u8 _2F0;                            // _2F0
 	u8 _2F1;                            // _2F1
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2F4
@@ -164,7 +164,7 @@ struct Obj : public EnemyBase {
 	efx::TPanSmoke* mEfxSmoke;          // _300
 	int _304;                           // _304
 	Vector3f _308;                      // _308, some position?
-	u8 _314[0x4];                       // _314, unknown
+	int _314;                           // _314, unknown
 	int _318;                           // _318
 	u8 _31C;                            // _31C
 	Vector3f _320;                      // _320
@@ -179,10 +179,9 @@ struct Obj : public EnemyBase {
 	Nest::Obj* mNest;                   // _378
 	f32 _37C;                           // _37C
 	FSM* mFsm;                          // _380
-	u32 _384;                           // _384, unknown
-	int _388;                           // _388
-	Pellet* _38C[1];                    // _38C, size unknown, probably some (all?) of below
-	u8 _390[0x38];                      // _390, unknown/may be part of array above
+	PathNode* _384;                     // _384, unknown
+	int mPelletCount;                   // _388, number of pellets collected in array
+	Pellet* mPelletArray[15];           // _38C
 	                                    // _3C8 = PelletView
 };
 
@@ -190,7 +189,7 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp00(this, 'fp00', "巣スケール", 1.0f, 0.0f, 5.0f)             // 'nest scale'
+		    , mNestScale(this, 'fp00', "巣スケール", 1.0f, 0.0f, 5.0f)        // 'nest scale'
 		    , mFp16(this, 'fp16', "歩きモーションスピード", 1.0f, 0.0f, 5.0f) // 'walking motion speed'
 		    , mFp02(this, 'fp02', "急回転速度率", 0.1f, 0.0f, 1.0f)           // 'rapid rotation speed rate'
 		    , mFp05(this, 'fp05', "急回転速度最大", 1.0f, 0.0f, 180.0f)       // 'rapid rotation speed max'
@@ -203,16 +202,16 @@ struct Parms : public EnemyParmsBase {
 		{
 		}
 
-		Parm<f32> mFp00; // _804
-		Parm<f32> mFp16; // _82C
-		Parm<f32> mFp02; // _854
-		Parm<f32> mFp05; // _87C
-		Parm<f32> mFp03; // _8A4
-		Parm<f32> mFp04; // _8CC
-		Parm<f32> mFp06; // _8F4
-		Parm<f32> mFp14; // _91C
-		Parm<f32> mFp15; // _944
-		Parm<int> mIp01; // _96C
+		Parm<f32> mNestScale; // _804, fp00
+		Parm<f32> mFp16;      // _82C
+		Parm<f32> mFp02;      // _854
+		Parm<f32> mFp05;      // _87C
+		Parm<f32> mFp03;      // _8A4
+		Parm<f32> mFp04;      // _8CC
+		Parm<f32> mFp06;      // _8F4
+		Parm<f32> mFp14;      // _91C
+		Parm<f32> mFp15;      // _944
+		Parm<int> mIp01;      // _96C
 	};
 
 	Parms()

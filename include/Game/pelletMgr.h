@@ -187,6 +187,14 @@ struct PelletNumberInitArg : public PelletInitArg {
 };
 
 struct PelletKillArg : public CreatureKillArg {
+	inline PelletKillArg()
+	    : CreatureKillArg(0)
+	{
+		_08 = 1;
+	}
+
+	// _00     = VTBL
+	// _00-_08 = CreatureKillArg
 	u8 _08; // _08
 };
 
