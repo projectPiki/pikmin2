@@ -80,7 +80,7 @@ struct EnemyParmsBase : public CreatureParms {
 		    , mShakeKnockback(this, 'fp17', "U‚è•¥‚¢—Í", 300.0f, 0.0f, 1000.0f)           // shake off power
 		    , mShakeDamage(this, 'fp18', "U‚è•¥‚¢ƒ_ƒ[ƒW", 0.0f, 0.0f, 1000.0f)          // shake off damage
 		    , mShakeRange(this, 'fp19', "U‚è•¥‚¢”ÍˆÍ", 120.0f, 0.0f, 1000.0f)             // shake off range
-		    , mShakeRateMaybe(this, 'fp16', "U‚è•¥‚¢—¦", 1.0f, 0.0f, 1.0f)                // shake off rate
+		    , mShakeChance(this, 'fp16', "U‚è•¥‚¢—¦", 1.0f, 0.0f, 1.0f)                   // shake off rate
 		    , mMaxAttackRange(this, 'fp20', "UŒ‚‰Â”\\”ÍˆÍ", 70.0f, 0.0f, 1000.0f)         // attack range - SHIFT-JIS IS WRONG
 		    , mMinAttackRange(this, 'fp21', "UŒ‚‰Â”\\Šp“x", 15.0f, 0.0f,
 		                      180.0f)                                              // 'possible attack angle' - SHIFT-JIS IS WRONG
@@ -129,7 +129,7 @@ struct EnemyParmsBase : public CreatureParms {
 		Parm<f32> mShakeKnockback;         // _4AC, fp17
 		Parm<f32> mShakeDamage;            // _4D4, fp18
 		Parm<f32> mShakeRange;             // _4FC, fp19
-		Parm<f32> mShakeRateMaybe;         // _524, fp16
+		Parm<f32> mShakeChance;            // _524, fp16
 		Parm<f32> mMaxAttackRange;         // _54C, fp20 'attack range'
 		Parm<f32> mMinAttackRange;         // _574, fp21 'possibly attack angle'
 		Parm<f32> mAttackRadius;           // _59C, fp22 'attack hit range'

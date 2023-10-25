@@ -909,7 +909,7 @@ void StateFlick::exec(EnemyBase* enemy)
 				}
 			}
 
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
 			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue * enemy->mScaleModifier;
@@ -919,7 +919,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			if (naviCheck) {
 				EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
 			}
-			enemy->mToFlick = 0.0f;
+			enemy->mFlickTimer = 0.0f;
 			if (!enemy->isEvent(0, EB_PS3)) {
 				enemy->disableEvent(0, EB_NoInterrupt);
 			}
@@ -1652,7 +1652,7 @@ void StateWarCry::exec(EnemyBase* enemy)
 				}
 			}
 
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
 			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue * enemy->mScaleModifier;
@@ -1661,7 +1661,7 @@ void StateWarCry::exec(EnemyBase* enemy)
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
 			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
 
-			enemy->mToFlick = 0.0f;
+			enemy->mFlickTimer = 0.0f;
 			break;
 
 		case KEYEVENT_5:
@@ -2232,7 +2232,7 @@ void StateDamage::exec(EnemyBase* enemy)
 		case KEYEVENT_4:
 			int pikiNum = OBJ(enemy)->getPikminInMouth(true);
 			enemy->addDamage(pikiNum * CG_PROPERPARMS(enemy).mFp05.mValue, 1.0f);
-			enemy->mToFlick = 0.0f;
+			enemy->mFlickTimer = 0.0f;
 			break;
 
 		case KEYEVENT_5:

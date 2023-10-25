@@ -467,7 +467,7 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
 			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
@@ -475,7 +475,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
 			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
-			enemy->mToFlick = 0.0f;
+			enemy->mFlickTimer = 0.0f;
 
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
 			if (enemy->mHealth <= 0.0f) {
@@ -578,7 +578,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_6:
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
 			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
@@ -586,8 +586,8 @@ void StateAttack::exec(EnemyBase* enemy)
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
 			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
-			enemy->mToFlick = 0.0f;
-			mIsTongueActive = false;
+			enemy->mFlickTimer = 0.0f;
+			mIsTongueActive    = false;
 			break;
 
 		case KEYEVENT_END:

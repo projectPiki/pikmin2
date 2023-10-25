@@ -984,9 +984,9 @@ void Obj::doFinishStoneState()
 	backPart->mSpecialID = '_t__';
 	CollPart* buttPart   = mCollTree->getCollPart('ketu');
 	buttPart->mSpecialID = '_t__';
-	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeRateMaybe.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
+	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeChance.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
 	                            C_PARMS->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
-	mToFlick = 0.0f;
+	mFlickTimer = 0.0f;
 	createEffect(0);
 }
 
@@ -1688,7 +1688,7 @@ bool Obj::forceTransit(int stateID)
 		}
 		return false;
 	case KINGCHAPPY_WarCry:
-		if (currStateID == KINGCHAPPY_Walk && mToFlick > 0.0f) {
+		if (currStateID == KINGCHAPPY_Walk && mFlickTimer > 0.0f) {
 			_2E4 = 1;
 			mFsm->transit(this, stateID, nullptr);
 			break;

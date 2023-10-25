@@ -784,7 +784,7 @@ void Obj::damageIncrement(f32 damage)
 	if (!isEvent(0, EB_FlickEnabled)) {
 		return;
 	}
-	mToFlick += 1.0f;
+	mFlickTimer += 1.0f;
 }
 
 /*

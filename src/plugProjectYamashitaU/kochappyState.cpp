@@ -1070,7 +1070,7 @@ void StateWalk::exec(EnemyBase* enemy)
 				}
 			}
 		} else {
-			if (obj->mToFlick != 0.0f) {
+			if (obj->mFlickTimer != 0.0f) {
 				mNextState = KOCHAPPY_Flick;
 			} else {
 				mNextState = KOCHAPPY_TurnToHome;
@@ -1640,7 +1640,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				obj->startMotion(KOCHAPPYANIM_Eat, nullptr);
 			}
 			f32 dir = obj->getFaceDir();
-			EnemyFunc::flickStickPikmin(obj, CG_PARMS(obj)->mGeneral.mShakeRateMaybe, CG_PARMS(obj)->mGeneral.mShakeKnockback,
+			EnemyFunc::flickStickPikmin(obj, CG_PARMS(obj)->mGeneral.mShakeChance, CG_PARMS(obj)->mGeneral.mShakeKnockback,
 			                            CG_PARMS(obj)->mGeneral.mShakeDamage, dir, nullptr);
 			break;
 		case 3:
@@ -2004,7 +2004,7 @@ void StateFlick::exec(EnemyBase* enemy)
 		switch (obj->mCurAnim->mType) {
 		case 2:
 			EnemyParmsBase* parm = CG_PARMS(obj);
-			EnemyFunc::flickStickPikmin(obj, parm->mGeneral.mShakeRateMaybe, parm->mGeneral.mShakeKnockback, parm->mGeneral.mShakeDamage,
+			EnemyFunc::flickStickPikmin(obj, parm->mGeneral.mShakeChance, parm->mGeneral.mShakeKnockback, parm->mGeneral.mShakeDamage,
 			                            -1000.0f, nullptr);
 			parm = CG_PARMS(obj);
 			EnemyFunc::flickNearbyPikmin(obj, parm->mGeneral.mShakeRange, parm->mGeneral.mShakeKnockback, parm->mGeneral.mShakeDamage,
@@ -2012,7 +2012,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			parm = CG_PARMS(obj);
 			EnemyFunc::flickNearbyNavi(obj, parm->mGeneral.mShakeRange, parm->mGeneral.mShakeKnockback, parm->mGeneral.mShakeDamage,
 			                           -1000.0f, nullptr);
-			obj->mToFlick = 0.0f;
+			obj->mFlickTimer = 0.0f;
 			obj->setEnemyNonStone();
 			break;
 		case 3:

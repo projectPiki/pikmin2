@@ -68,9 +68,9 @@ void StateWait::exec(EnemyBase* enemy)
 		enemy->kill(nullptr);
 	}
 
-	if (enemy->mToFlick >= 1.0f) {
+	if (enemy->mFlickTimer >= 1.0f) {
 		enemy->startMotion();
-		enemy->mToFlick = 0.0f;
+		enemy->mFlickTimer = 0.0f;
 	}
 
 	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {

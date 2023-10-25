@@ -47,10 +47,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 	EnemyBase::onInit(initArg);
 	mKoshiJoint = mModel->getJoint("jnt_koshi");
 	P2ASSERTLINE(74, mKoshiJoint);
-	_2D0 = 0;
-	_2D4 = mHomePosition;
-	_2E0 = 0;
-	_2E4 = false;
+	_2D0       = 0;
+	_2D4       = mHomePosition;
+	_2E0       = 0;
+	mHasTarget = false;
 	mFsm->start(this, MIULIN_Wait, nullptr);
 }
 
@@ -171,7 +171,7 @@ bool Obj::isAttackStart()
 {
 	f32 atkRadius    = SQUARE(C_PARMS->mGeneral.mAttackRadius.mValue);
 	f32 minAtkRange  = SQUARE(C_PROPERPARMS.mFp08.mValue);
-	f32 contAtkAngle = PI * (DEG2RAD * (C_PROPERPARMS.mFp03.mValue));
+	f32 contAtkAngle = PI * (DEG2RAD * (C_PROPERPARMS.mContinuousPressAngle.mValue));
 
 	if (mTargetCreature) {
 		if (FABS(getAngDist(mTargetCreature)) <= contAtkAngle) {
@@ -620,7 +620,7 @@ bool Obj::isFindTarget()
 
 	if (mTargetCreature) {
 		mGoalPosition = mTargetCreature->getPosition();
-		_2E4          = true;
+		mHasTarget    = true;
 		return true;
 	}
 
@@ -973,12 +973,12 @@ bool Obj::isProhibitedSearch()
 		return true;
 	}
 
-	if (_2E4) {
+	if (mHasTarget) {
 		f32 radius = C_PARMS->mGeneral.mTerritoryRadius.mValue;
 		radius *= 0.7f;
 
-		if (mToFlick > 0.0f) {
-			mToFlick = 0.0f;
+		if (mFlickTimer > 0.0f) {
+			mFlickTimer = 0.0f;
 			return false;
 		}
 
@@ -998,9 +998,9 @@ bool Obj::isProhibitedSearch()
 bool Obj::isStartWalk()
 {
 	f32 viewAngle = C_PARMS->mGeneral.mViewAngle.mValue;
-	if (mToFlick > 0.0f) {
-		viewAngle = 180.0f;
-		mToFlick  = 0.0f;
+	if (mFlickTimer > 0.0f) {
+		viewAngle   = 180.0f;
+		mFlickTimer = 0.0f;
 	}
 
 	mTargetCreature
@@ -1022,7 +1022,7 @@ bool Obj::isStartWalk()
 void Obj::setReturnState()
 {
 	mTargetCreature = nullptr;
-	_2E4            = true;
+	mHasTarget      = true;
 	mGoalPosition   = mHomePosition;
 }
 
@@ -1038,9 +1038,9 @@ void Obj::walkFunc()
 	f32 dashSpeedMultiplier = 1.0f;
 	f32 dashAnimScale       = 1.0f;
 
-	if (mTargetCreature && FABS(getAngDist(mTargetCreature)) < PI * (DEG2RAD * C_PROPERPARMS.mFp07.mValue)) {
-		dashSpeedMultiplier = C_PROPERPARMS.mFp04.mValue;
-		dashAnimScale       = C_PROPERPARMS.mFp05.mValue;
+	if (mTargetCreature && FABS(getAngDist(mTargetCreature)) < PI * (DEG2RAD * C_PROPERPARMS.mDashableAngle.mValue)) {
+		dashSpeedMultiplier = C_PROPERPARMS.mDashSpeedMultiplier.mValue;
+		dashAnimScale       = C_PROPERPARMS.mDashAnimationScale.mValue;
 		setEmotionExcitement();
 	} else {
 		setEmotionCaution();
@@ -1253,13 +1253,13 @@ f32 Obj::turnFunc(f32 factor)
  * Address:	803658F8
  * Size:	000050
  */
-bool Obj::isReachToGoal(f32 radius)
+bool Obj::isReachToGoal(f32 distance)
 {
-	if (_2E4) {
-		radius = C_PARMS->mGeneral.mHomeRadius.mValue;
+	if (mHasTarget) {
+		distance = C_PARMS->mGeneral.mHomeRadius.mValue;
 	}
 
-	if (sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(radius)) {
+	if (sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(distance)) {
 		return true;
 	}
 
@@ -1281,7 +1281,7 @@ static void fixData(f32& p1, f32& p2, f32& p3)
  */
 void Obj::setNextGoal()
 {
-	if (_2E4) {
+	if (mHasTarget) {
 		mGoalPosition = mHomePosition;
 		return;
 	}
@@ -1306,7 +1306,7 @@ bool Obj::nextTargetTurnCheck()
 	}
 
 	// SHOULD match when turnFunc matches, but turnFunc might need tweaking to make sure this matches.
-	if (turnFunc(0.1f) < PI * (DEG2RAD * C_PROPERPARMS.mFp06())) {
+	if (turnFunc(0.1f) < PI * (DEG2RAD * C_PROPERPARMS.mMaxTurnAngle())) {
 		return false;
 	}
 

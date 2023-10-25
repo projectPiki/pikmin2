@@ -1012,10 +1012,10 @@ void StateFlick::exec(EnemyBase* enemy)
 			EnemyFunc::flickNearbyPikmin(armor, CG_PARMS(armor)->mGeneral.mShakeRange.mValue,
 			                             CG_PARMS(armor)->mGeneral.mShakeKnockback.mValue, CG_PARMS(armor)->mGeneral.mShakeDamage.mValue,
 			                             armor->getFaceDir(), nullptr);
-			EnemyFunc::flickStickPikmin(armor, CG_PARMS(armor)->mGeneral.mShakeRateMaybe.mValue,
+			EnemyFunc::flickStickPikmin(armor, CG_PARMS(armor)->mGeneral.mShakeChance.mValue,
 			                            CG_PARMS(armor)->mGeneral.mShakeKnockback.mValue, CG_PARMS(armor)->mGeneral.mShakeDamage.mValue,
 			                            armor->getFaceDir(), nullptr);
-			armor->mToFlick = 0.0f;
+			armor->mFlickTimer = 0.0f;
 
 		} else if (armor->mCurAnim->mType == KEYEVENT_END) {
 			transit(armor, ARMOR_Move, nullptr);

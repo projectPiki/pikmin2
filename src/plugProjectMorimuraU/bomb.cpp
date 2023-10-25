@@ -362,7 +362,7 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 			damageCallBack(creature, 0.0f, nullptr);
 		}
 
-		mToFlick = 0.0f;
+		mFlickTimer = 0.0f;
 		return true;
 	}
 
@@ -461,7 +461,7 @@ bool Obj::canEat()
 bool Obj::isAnimStart()
 {
 	bool check;
-	if (isBirthTypeDropGroup() || !(mToFlick >= C_PROPERPARMS.mDamageLimit.mValue)) {
+	if (isBirthTypeDropGroup() || !(mFlickTimer >= C_PROPERPARMS.mDamageLimit.mValue)) {
 		if (!_2BC || !mBounceTriangle) {
 			if (!_2C0) {
 				check = false;

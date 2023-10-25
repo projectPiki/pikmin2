@@ -216,7 +216,7 @@ void StateJump::exec(EnemyBase* enemy)
 
 		fuefuki->mTargetVelocity = Vector3f(1500.0f * sinTheta, y, 1500.0f * cosTheta);
 
-		EnemyFunc::flickStickPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeRateMaybe.mValue,
+		EnemyFunc::flickStickPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeChance.mValue,
 		                            CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue, CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue,
 		                            -1000.0f, nullptr);
 	}
@@ -251,11 +251,11 @@ void StateJump::exec(EnemyBase* enemy)
 			EnemyFunc::flickNearbyPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeRange.mValue,
 			                             CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue,
 			                             CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
-			EnemyFunc::flickStickPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeRateMaybe.mValue,
+			EnemyFunc::flickStickPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeChance.mValue,
 			                            CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue, CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue,
 			                            -1000.0f, nullptr);
 
-			fuefuki->mToFlick = 0.0f;
+			fuefuki->mFlickTimer = 0.0f;
 			fuefuki->createDownEffect(0.7f);
 
 			if (fuefuki->mWaterBox) {

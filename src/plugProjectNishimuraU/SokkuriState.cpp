@@ -533,9 +533,9 @@ void StateFlick::exec(EnemyBase* enemy)
 			                             parms2->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
 			Parms* parms3 = static_cast<Parms*>(sokkuri->mParms);
-			EnemyFunc::flickStickPikmin(sokkuri, parms3->mGeneral.mShakeRateMaybe.mValue, parms3->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(sokkuri, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
 			                            parms3->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
-			sokkuri->mToFlick = 0.0f;
+			sokkuri->mFlickTimer = 0.0f;
 		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_4) {
 			sokkuri->disableEvent(0, EB_NoInterrupt);
 

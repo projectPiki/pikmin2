@@ -603,9 +603,9 @@ void Obj::doFinishStoneState()
 	mCollTree->getCollPart('head')->mSpecialID = '____';
 	mCollTree->getCollPart('kuti')->mSpecialID = '____';
 	mCollTree->getCollPart('ketu')->mSpecialID = '____';
-	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeRateMaybe.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
+	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeChance.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
 	                            C_PARMS->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
-	mToFlick = 0.0f;
+	mFlickTimer = 0.0f;
 	createColorEffect();
 }
 

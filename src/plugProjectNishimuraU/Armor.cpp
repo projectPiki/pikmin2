@@ -173,7 +173,7 @@ void Obj::doStartStoneState()
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	mToFlick = 0.0f;
+	mFlickTimer = 0.0f;
 }
 
 /*

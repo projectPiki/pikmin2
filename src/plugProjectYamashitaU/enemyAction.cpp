@@ -1222,10 +1222,10 @@ bool isStartFlick(EnemyBase* enemy, bool doResetFlickCounter)
 	EnemyParmsBase* parms;
 	bool result  = false;
 	f32 flickVal = 0.0f;
-	if (enemy->mToFlick >= 0.0f) {
-		flickVal = enemy->mToFlick + 0.5f;
+	if (enemy->mFlickTimer >= 0.0f) {
+		flickVal = enemy->mFlickTimer + 0.5f;
 	} else {
-		flickVal = enemy->mToFlick - 0.5f;
+		flickVal = enemy->mFlickTimer - 0.5f;
 	}
 
 	parms       = static_cast<EnemyParmsBase*>(enemy->mParms);
@@ -1248,7 +1248,7 @@ bool isStartFlick(EnemyBase* enemy, bool doResetFlickCounter)
 	}
 
 	if (result && doResetFlickCounter) {
-		enemy->mToFlick = 0.0f;
+		enemy->mFlickTimer = 0.0f;
 	}
 
 	return result;

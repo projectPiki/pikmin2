@@ -101,7 +101,7 @@ J3DModel* Chappy::TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x2
  * Address:	803E8930
  * Size:	000008
  */
-void Chappy::TUnit::setController(Controller* control) { mControl = control; }
+void Chappy::TUnit::setController(Controller* control) { mController = control; }
 
 /*
  * --INFO--
@@ -298,7 +298,7 @@ void Chappy::TUnit::update()
 
 	int id = mStateID;
 	if (id != CHAPPYAI_Inactive && id != CHAPPYAI_GoHome && id != CHAPPYAI_EscapeScreen) {
-		Controller* control = mControl;
+		Controller* control = mController;
 		bool check          = false;
 		if (control) {
 			if (control->mSStick.mStickMag > 0.7f) {
@@ -312,9 +312,9 @@ void Chappy::TUnit::update()
 		}
 	}
 
-	bool buttonDown = false;
-	f32 stickX      = 0.0f;
-	f32 stickY      = stickX;
+	bool isButtonDown = false;
+	f32 stickX        = 0.0f;
+	f32 stickY        = stickX;
 
 	if (mCounter) {
 		mCounter--;
@@ -322,12 +322,13 @@ void Chappy::TUnit::update()
 
 	switch (mStateID) {
 	case CHAPPYAI_Controlled: {
-		Controller* control = mControl;
+		Controller* control = mController;
 		if (control) {
-			stickX     = control->mSStick.mXPos;
-			stickY     = control->mSStick.mYPos;
-			buttonDown = (control->mButton.mButtonDown & Controller::PRESS_Z) == Controller::PRESS_Z;
+			stickX       = control->mSStick.mXPos;
+			stickY       = control->mSStick.mYPos;
+			isButtonDown = (control->mButton.mButtonDown & Controller::PRESS_Z) == Controller::PRESS_Z;
 		}
+
 		if (mCounter == 0) {
 			startAIState_(CHAPPYAI_GoHome);
 		}
@@ -335,9 +336,9 @@ void Chappy::TUnit::update()
 	}
 
 	case CHAPPYAI_Wait:
-		stickX     = 0.0f;
-		buttonDown = false;
-		stickY     = stickX;
+		stickX       = 0.0f;
+		isButtonDown = false;
+		stickY       = stickX;
 		if (mCounter == 0) {
 			startAIState_(CHAPPYAI_Turn);
 		}
@@ -357,25 +358,25 @@ void Chappy::TUnit::update()
 		if (FABS(angle) < 0.09817477f) {
 			startAIState_(CHAPPYAI_Walk);
 		} else if (angle > 0.0f) {
-			stickY     = 0.0f;
-			stickX     = 1.0f;
-			buttonDown = false;
+			stickY       = 0.0f;
+			stickX       = 1.0f;
+			isButtonDown = false;
 		} else {
-			stickY     = 0.0f;
-			stickX     = -1.0f;
-			buttonDown = false;
+			stickY       = 0.0f;
+			stickX       = -1.0f;
+			isButtonDown = false;
 		}
 		break;
 
 	case CHAPPYAI_Walk:
 		if (mCounter != 0) {
-			stickX     = 0.0f;
-			buttonDown = false;
-			stickY     = 1.0f;
+			stickX       = 0.0f;
+			isButtonDown = false;
+			stickY       = 1.0f;
 		} else {
-			stickX     = 0.0f;
-			stickY     = 0.0f;
-			buttonDown = 0;
+			stickX       = 0.0f;
+			stickY       = 0.0f;
+			isButtonDown = 0;
 			if (mAnim._08 == 3) {
 				bool check = false;
 				for (int i = 0; i < 500; i++) {
@@ -400,24 +401,24 @@ void Chappy::TUnit::update()
 		break;
 
 	case CHAPPYAI_4:
-		stickX     = 0.0f;
-		stickY     = 0.0f;
-		buttonDown = true;
+		stickX       = 0.0f;
+		stickY       = 0.0f;
+		isButtonDown = true;
 		if (mAnim._08 == 3) {
 			startAIState_(CHAPPYAI_Turn);
 		}
 		break;
 
 	case CHAPPYAI_EscapeScreen:
-		stickX     = 0.0f;
-		buttonDown = false;
-		stickY     = 1.0f;
+		stickX       = 0.0f;
+		isButtonDown = false;
+		stickY       = 1.0f;
 		break;
 
 	case CHAPPYAI_GoHome:
-		stickX     = 0.0f;
-		buttonDown = false;
-		stickY     = 1.0f;
+		stickX       = 0.0f;
+		isButtonDown = false;
+		stickY       = 1.0f;
 		break;
 	}
 
@@ -432,7 +433,7 @@ void Chappy::TUnit::update()
 		if (stickY > 0.7f) {
 			actionID = CHAPPYACT_4;
 		}
-		if (buttonDown == 1) {
+		if (isButtonDown == 1) {
 			actionID = CHAPPYACT_2;
 		}
 	}

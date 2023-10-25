@@ -902,7 +902,7 @@ void StateDisappear::exec(EnemyBase* enemy)
 			                             parms2->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
 			Parms* parms3 = static_cast<Parms*>(snagret->mParms);
-			EnemyFunc::flickStickPikmin(snagret, parms3->mGeneral.mShakeRateMaybe.mValue, parms3->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(snagret, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
 			                            parms3->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 			snagret->enableEvent(0, EB_NoInterrupt);
 			snagret->startBossFlickBGM();
@@ -922,7 +922,7 @@ void StateDisappear::exec(EnemyBase* enemy)
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_5) {
 			snagret->mIsUnderground = true;
 			snagret->enableEvent(0, EB_BitterImmune);
-			snagret->mToFlick = 0.0f;
+			snagret->mFlickTimer = 0.0f;
 			snagret->finishJointShadow();
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {

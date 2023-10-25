@@ -262,7 +262,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 		for (int i = 0; i < 4; i++) {
 			if (mTreasureCollParts[i] == collpart) {
 				addTreasureDamage(i, adjustedDamage);
-				mToFlick++;
+				mFlickTimer++;
 				return true;
 			}
 		}

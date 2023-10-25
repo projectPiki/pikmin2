@@ -648,7 +648,7 @@ void Obj::flick()
 		}
 	}
 
-	f32 range     = C_PARMS->mGeneral.mShakeRateMaybe.mValue;
+	f32 range     = C_PARMS->mGeneral.mShakeChance.mValue;
 	f32 knockback = C_PARMS->mGeneral.mShakeKnockback.mValue;
 	f32 damage    = C_PARMS->mGeneral.mShakeDamage.mValue;
 

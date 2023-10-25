@@ -1528,10 +1528,10 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 
 	if (hanachirashi->mCurAnim->mIsPlaying) {
 		if (hanachirashi->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(hanachirashi, CG_PARMS(hanachirashi)->mGeneral.mShakeRateMaybe.mValue,
+			EnemyFunc::flickStickPikmin(hanachirashi, CG_PARMS(hanachirashi)->mGeneral.mShakeChance.mValue,
 			                            CG_PARMS(hanachirashi)->mGeneral.mShakeKnockback.mValue,
 			                            CG_PARMS(hanachirashi)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
-			hanachirashi->mToFlick = 0.0f;
+			hanachirashi->mFlickTimer = 0.0f;
 
 		} else if (hanachirashi->mCurAnim->mType == KEYEVENT_END) {
 			transit(hanachirashi, HANACHIRASHI_Wait, nullptr);

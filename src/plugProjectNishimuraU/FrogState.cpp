@@ -981,7 +981,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
  */
 void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->mToFlick        = 0.0f;
+	enemy->mFlickTimer     = 0.0f;
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(FROGANIM_Fail, nullptr);

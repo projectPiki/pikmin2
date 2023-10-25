@@ -107,7 +107,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->hardConstraintOn();
 	enemy->setAtari(false);
 	enemy->setAlive(false);
-	enemy->mToFlick = 0.0f;
+	enemy->mFlickTimer = 0.0f;
 	enemy->enableEvent(0, EB_BitterImmune);
 	enemy->mPosition                                  = enemy->mHomePosition;
 	OBJ(enemy)->_2E8                                  = 0;
@@ -211,7 +211,7 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->_384                                  = 0;
 	enemy->disableEvent(0, EB_LifegaugeVisible);
 
-	EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue, CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue,
+	EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeChance.mValue, CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue,
 	                            CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
 	enemy->setEmotionCaution();
@@ -1078,14 +1078,14 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
 			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
-			enemy->mToFlick = 0.0f;
+			enemy->mFlickTimer = 0.0f;
 			return;
 		}
 

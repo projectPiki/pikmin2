@@ -703,7 +703,7 @@ bool Obj::isCreateBaby()
  * Address:	8028AC58
  * Size:	000018
  */
-bool Obj::isHitCounterUp() { return mToFlick > _2D0; }
+bool Obj::isHitCounterUp() { return mFlickTimer > _2D0; }
 
 /*
  * --INFO--

@@ -287,9 +287,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	if (damagumo->mCurAnim->mIsPlaying) {
 		if ((u32)damagumo->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(damagumo->mParms);
-			EnemyFunc::flickStickPikmin(damagumo, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(damagumo, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
-			damagumo->mToFlick = 0.0f;
+			damagumo->mFlickTimer = 0.0f;
 			damagumo->startBossFlickBGM();
 		} else if ((u32)damagumo->mCurAnim->mType == KEYEVENT_END) {
 			if (damagumo->mHealth <= 0.0f) {

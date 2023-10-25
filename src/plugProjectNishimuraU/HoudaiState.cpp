@@ -313,9 +313,9 @@ void StateFlick::exec(EnemyBase* enemy)
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_3) {
 			Parms* parms = static_cast<Parms*>(houdai->mParms);
-			EnemyFunc::flickStickPikmin(houdai, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(houdai, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
-			houdai->mToFlick = 0.0f;
+			houdai->mFlickTimer = 0.0f;
 			houdai->startBossFlickBGM();
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_4) {
@@ -484,9 +484,9 @@ void StateShot::exec(EnemyBase* enemy)
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_3) {
 			if (!houdai->isFinishMotion()) {
 				Parms* parms = static_cast<Parms*>(houdai->mParms);
-				EnemyFunc::flickStickPikmin(houdai, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+				EnemyFunc::flickStickPikmin(houdai, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 				                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
-				houdai->mToFlick = 0.0f;
+				houdai->mFlickTimer = 0.0f;
 				houdai->emitShotGun();
 			}
 

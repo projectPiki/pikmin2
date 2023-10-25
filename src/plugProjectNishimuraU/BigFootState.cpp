@@ -278,9 +278,9 @@ void StateFlick::exec(EnemyBase* enemy)
 	if (bigfoot->mCurAnim->mIsPlaying) {
 		if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(bigfoot->mParms);
-			EnemyFunc::flickStickPikmin(bigfoot, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(bigfoot, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
-			bigfoot->mToFlick = 0.0f;
+			bigfoot->mFlickTimer = 0.0f;
 		} else if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_END) {
 			if (bigfoot->mHealth <= 0.0f) {
 				transit(bigfoot, BIGFOOT_Dead, nullptr);

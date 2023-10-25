@@ -310,7 +310,7 @@ void Obj::setCollEvent(CollEvent& collEvent)
 void Obj::flickStatePikmin()
 {
 	Parms* stickParms = C_PARMS;
-	EnemyFunc::flickStickPikmin(this, stickParms->mGeneral.mShakeRateMaybe.mValue, stickParms->mGeneral.mShakeKnockback.mValue,
+	EnemyFunc::flickStickPikmin(this, stickParms->mGeneral.mShakeChance.mValue, stickParms->mGeneral.mShakeKnockback.mValue,
 	                            stickParms->mGeneral.mShakeDamage.mValue, getFaceDir(), nullptr);
 
 	Parms* nearPikiParms = C_PARMS;
@@ -355,7 +355,7 @@ void Obj::flickAttackBomb()
 void Obj::flickAttackFail()
 {
 	Parms* parms = C_PARMS;
-	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 	                            parms->mGeneral.mShakeDamage.mValue, getFaceDir(), nullptr);
 }
 

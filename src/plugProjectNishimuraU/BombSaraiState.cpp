@@ -1308,7 +1308,7 @@ void StateFall::cleanup(EnemyBase* enemy)
  */
 void StateTakeOff1::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->mToFlick = 0.0f;
+	enemy->mFlickTimer = 0.0f;
 	enemy->disableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(BOMBSARAIANIM_TakeOff1, nullptr);
@@ -1357,7 +1357,7 @@ void StateTakeOff1::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateTakeOff2::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->mToFlick = 0.0f;
+	enemy->mFlickTimer = 0.0f;
 	enemy->disableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(BOMBSARAIANIM_TakeOff2, nullptr);
@@ -1423,10 +1423,10 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(sarai, CG_PARMS(sarai)->mGeneral.mShakeRateMaybe.mValue,
+			EnemyFunc::flickStickPikmin(sarai, CG_PARMS(sarai)->mGeneral.mShakeChance.mValue,
 			                            CG_PARMS(sarai)->mGeneral.mShakeKnockback.mValue, CG_PARMS(sarai)->mGeneral.mShakeDamage.mValue,
 			                            -1000.0f, nullptr);
-			sarai->mToFlick = 0.0f;
+			sarai->mFlickTimer = 0.0f;
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {
 			StateID stateID = sarai->getNextStateOnHeight();
@@ -1477,10 +1477,10 @@ void StateBombFlick::exec(EnemyBase* enemy)
 
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(sarai, CG_PARMS(sarai)->mGeneral.mShakeRateMaybe.mValue,
+			EnemyFunc::flickStickPikmin(sarai, CG_PARMS(sarai)->mGeneral.mShakeChance.mValue,
 			                            CG_PARMS(sarai)->mGeneral.mShakeKnockback.mValue, CG_PARMS(sarai)->mGeneral.mShakeDamage.mValue,
 			                            -1000.0f, nullptr);
-			sarai->mToFlick = 0.0f;
+			sarai->mFlickTimer = 0.0f;
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {
 			StateID stateID = sarai->getNextStateOnHeight();

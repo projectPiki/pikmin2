@@ -204,7 +204,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->createAppearBodyEffect();
 	titan->createAppearLegEffect(1);
 	Parms* parms = static_cast<Parms*>(titan->mParms);
-	EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 	                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 	titan->setBossAppearBGM();
 }
@@ -221,7 +221,7 @@ void StateLand::exec(EnemyBase* enemy)
 		if ((u32)titan->mCurAnim->mType == KEYEVENT_2) {
 			titan->createOnGroundEffect(1, titan->mWaterBox);
 			Parms* parms = static_cast<Parms*>(titan->mParms);
-			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_3) {
@@ -230,7 +230,7 @@ void StateLand::exec(EnemyBase* enemy)
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_4) {
 			titan->createOnGroundEffect(2, titan->mWaterBox);
 			Parms* parms = static_cast<Parms*>(titan->mParms);
-			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_5) {
@@ -239,7 +239,7 @@ void StateLand::exec(EnemyBase* enemy)
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_6) {
 			titan->createOnGroundEffect(0, titan->mWaterBox);
 			Parms* parms = static_cast<Parms*>(titan->mParms);
-			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_7) {
@@ -248,7 +248,7 @@ void StateLand::exec(EnemyBase* enemy)
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_8) {
 			titan->createOnGroundEffect(3, titan->mWaterBox);
 			Parms* parms = static_cast<Parms*>(titan->mParms);
-			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_9) {
@@ -256,7 +256,7 @@ void StateLand::exec(EnemyBase* enemy)
 			cameraMgr->startVibration(2, position, 2);
 			rumbleMgr->startRumble(5, position, 2);
 			Parms* parms = static_cast<Parms*>(titan->mParms);
-			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_10) {
@@ -453,9 +453,9 @@ void StateFlick::exec(EnemyBase* enemy)
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(titan->mParms);
-			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
-			titan->mToFlick = 0.0f;
+			titan->mFlickTimer = 0.0f;
 			titan->startBossFlickBGM();
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_END) {
@@ -535,9 +535,9 @@ void StatePreAttack::exec(EnemyBase* enemy)
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_2) {
 			titan->setAttackMaterialColor(true);
 			Parms* parms = static_cast<Parms*>(titan->mParms);
-			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(titan, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
-			titan->mToFlick = 0.0f;
+			titan->mFlickTimer = 0.0f;
 
 		} else if ((u32)titan->mCurAnim->mType == KEYEVENT_3) {
 			int fireIdx = titan->getFireAttackAnimIndex();

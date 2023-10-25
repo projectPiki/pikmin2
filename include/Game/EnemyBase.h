@@ -330,7 +330,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		SysShape::MotionListener* listener = this;
 
 		EnemyAnimatorBase* animator = mAnimator;
-		animator->mFlags.typeView &= ~0x3;
+		animator->mFlags.unset(EANIM_FLAG_STOPPED | EANIM_FLAG_FINISHED);
 		animator->mNormalizedTime = 1.0f;
 		animator->getAnimator(0).startAnim(0, listener);
 
@@ -339,7 +339,6 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 		if (isEvent(0, EB_PS1)) {
 			int idx = getCurrAnimIndex();
-			// SysShape::Animator anim      = mAnimator->getAnimator(0);
 			SysShape::AnimInfo* info
 			    = static_cast<SysShape::AnimInfo*>(mAnimator->getAnimator(0).mAnimMgr->mAnimInfo.mChild)->getInfoByID(idx);
 			JAIAnimeFrameSoundData* file = info->mBasFile;
@@ -590,7 +589,6 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline f32 changeFaceDir(Vector3f& XYZ)
 	{
-		// f32 approxSpeed;
 		f32 rotAccel;
 		f32 rotSpeed;
 
@@ -605,18 +603,10 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		x            = XYZ.x;
 		z            = XYZ.z;
 
-		f32 angleDist = angDist(_angXZ(x, z, pos.x, pos.z), getFaceDir());
-
+		f32 angleDist   = angDist(_angXZ(x, z, pos.x, pos.z), getFaceDir());
 		f32 approxSpeed = clamp(angleDist * rotAccel, PI * (DEG2RAD * rotSpeed));
-		// f32 limit   = (DEG2RAD * rotSpeed) * PI;
-		// approxSpeed = angleDist * rotAccel;
-		// if (FABS(approxSpeed) > limit) {
-		// 	approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
-		// }
 
 		updateFaceDir(roundAng(approxSpeed + getFaceDir()));
-		// mFaceDir    = roundAng(approxSpeed + getFaceDir());
-		// mRotation.y = mFaceDir;
 		return angleDist;
 	}
 
@@ -639,11 +629,6 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		f32 angleDist = angDist(_angXZ(x, z, pos.x, pos.z), getFaceDir());
 
 		approxSpeed = clamp(angleDist * rotAccel, PI * (DEG2RAD * rotSpeed));
-		// f32 limit   = (DEG2RAD * rotSpeed) * PI;
-		// approxSpeed = angleDist * rotAccel;
-		// if (FABS(approxSpeed) > limit) {
-		// 	approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
-		// }
 
 		mFaceDir    = roundAng(approxSpeed + getFaceDir());
 		mRotation.y = mFaceDir;
@@ -666,11 +651,6 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		f32 angleDist = angDist(angXZ(targetPos, pos), getFaceDir());
 
 		approxSpeed = clamp(angleDist * rotAccel, PI * (DEG2RAD * rotSpeed));
-		// f32 limit   = (DEG2RAD * rotSpeed) * PI;
-		// approxSpeed = angleDist * rotAccel;
-		// if (FABS(approxSpeed) > limit) {
-		// 	approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
-		// }
 
 		mFaceDir    = roundAng(approxSpeed + getFaceDir());
 		mRotation.y = mFaceDir;
@@ -769,7 +749,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	f32 mHealth;                                // _200
 	f32 mMaxHealth;                             // _204
 	f32 mInstantDamage;                         // _208
-	f32 mToFlick;                               // _20C,
+	f32 mFlickTimer;                            // _20C,
 	f32 mDamageAnimTimer;                       // _210, timer of the damage animation
 	f32 mStunAnimTimer;                         // _214, timer of the stun animation
 	f32 mFriction;                              // _218, related to mass

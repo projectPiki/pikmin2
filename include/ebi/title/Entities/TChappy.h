@@ -125,8 +125,8 @@ struct TUnit : public TObjBase {
 		mCounter  = time;
 		mCounter2 = time;
 
-		mControl = nullptr;
-		_48      = false;
+		mController = nullptr;
+		_48         = false;
 
 		mManager = nullptr;
 		mStateID = CHAPPYAI_Inactive;
@@ -150,17 +150,17 @@ struct TUnit : public TObjBase {
 
 	// _00     = VTBL
 	// _00-_2C = TObjBase
-	Vector2f mTargetPos;   // _2C
-	Vector2f mTargetAngle; // _34
-	u32 mCounter;          // _3C
-	u32 mCounter2;         // _40
-	Controller* mControl;  // _44
-	bool _48;              // _48
-	TMgr* mManager;        // _4C
-	E3DAnimCtrl mAnim;     // _50
-	int mAttacks;          // _64
-	enumAIState mStateID;  // _68
-	int mActionID;         // _6C
+	Vector2f mTargetPos;     // _2C
+	Vector2f mTargetAngle;   // _34
+	u32 mCounter;            // _3C
+	u32 mCounter2;           // _40
+	Controller* mController; // _44
+	bool _48;                // _48
+	TMgr* mManager;          // _4C
+	E3DAnimCtrl mAnim;       // _50
+	int mAttacks;            // _64
+	enumAIState mStateID;    // _68
+	int mActionID;           // _6C
 };
 } // namespace Chappy
 } // namespace title

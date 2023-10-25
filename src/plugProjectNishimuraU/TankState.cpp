@@ -1275,9 +1275,9 @@ void StateFlick::exec(EnemyBase* enemy)
 		EnemyFunc::flickNearbyPikmin(tank, parms->mGeneral.mShakeRange.mValue, parms->mGeneral.mShakeKnockback.mValue,
 		                             parms->mGeneral.mShakeDamage.mValue, tank->getFaceDir(), nullptr);
 		parms = CG_PARMS(tank);
-		EnemyFunc::flickStickPikmin(tank, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+		EnemyFunc::flickStickPikmin(tank, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 		                            parms->mGeneral.mShakeDamage.mValue, tank->getFaceDir(), nullptr);
-		tank->mToFlick = 0.0f;
+		tank->mFlickTimer = 0.0f;
 	}
 
 	if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {

@@ -450,9 +450,8 @@ void StateAttack::exec(EnemyBase* enemy)
                                                 CG_PARMS(kuma)->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
 			int totalEat = naviEat + EnemyFunc::eatPikmin(kuma, nullptr);
 
-			EnemyFunc::flickStickPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeRateMaybe.mValue,
-			                            CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue,
-			                            kuma->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeChance.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
+			                            CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
 
 			if (!totalEat) {
 				kuma->startMotion(KUMAKOCHAPPYANIM_Eat, nullptr);
@@ -865,14 +864,13 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	if (kuma->mCurAnim->mIsPlaying) {
 		if (kuma->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeRateMaybe.mValue,
-			                            CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue,
-			                            kuma->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeChance.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
+			                            CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
 			EnemyFunc::flickNearbyPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeRange.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
 			                             CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
 			EnemyFunc::flickNearbyNavi(kuma, CG_PARMS(kuma)->mGeneral.mShakeRange.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
 			                           CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
-			kuma->mToFlick = 0.0f;
+			kuma->mFlickTimer = 0.0f;
 
 		} else if (kuma->mCurAnim->mType == KEYEVENT_END) {
 			if (kuma->mHealth <= 0.0f) {

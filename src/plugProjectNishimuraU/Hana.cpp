@@ -111,7 +111,7 @@ bool Obj::isWakeup()
 void Obj::flickStatePikmin()
 {
 	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
-	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
 	parms = static_cast<ChappyBase::Parms*>(mParms);
@@ -131,7 +131,7 @@ void Obj::flickStatePikmin()
 void Obj::flickAttackBomb()
 {
 	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
-	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 	efx::THanaMiss efx(mModel->getJoint("kuti2")->getWorldMatrix());
 	efx.create(nullptr);
@@ -175,7 +175,7 @@ void Obj::resetUnderGround()
 void Obj::setUnderGround()
 {
 	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
-	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
 	mBuried = true;

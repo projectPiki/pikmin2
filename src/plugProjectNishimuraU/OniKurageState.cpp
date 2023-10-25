@@ -693,10 +693,10 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 	if (kurage->mCurAnim->mIsPlaying) {
 		if ((u32)kurage->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(kurage->mParms);
-			EnemyFunc::flickStickPikmin(kurage, parms->mGeneral.mShakeRateMaybe.mValue, parms->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(kurage, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
 			                            parms->mGeneral.mShakeDamage.mValue, -1000.0, nullptr);
-			kurage->mToFlick  = 0.0f;
-			Vector3f position = kurage->getPosition();
+			kurage->mFlickTimer = 0.0f;
+			Vector3f position   = kurage->getPosition();
 			rumbleMgr->startRumble(12, position, 2);
 
 		} else if ((u32)kurage->mCurAnim->mType == KEYEVENT_END) {
@@ -767,9 +767,9 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 			                             parms2->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
 			Parms* parms3 = static_cast<Parms*>(kurage->mParms);
-			EnemyFunc::flickStickPikmin(kurage, parms3->mGeneral.mShakeRateMaybe.mValue, parms3->mGeneral.mShakeKnockback.mValue,
+			EnemyFunc::flickStickPikmin(kurage, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
 			                            parms3->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
-			kurage->mToFlick = 0.0f;
+			kurage->mFlickTimer = 0.0f;
 
 		} else if ((u32)kurage->mCurAnim->mType == KEYEVENT_END) {
 			if (kurage->mHealth <= 0.0f) {

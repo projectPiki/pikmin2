@@ -799,7 +799,7 @@ EnemyBase::EnemyBase()
 	mCurAnim->mIsPlaying = false;
 	mInstantDamage       = 0.0f;
 	disableEvent(0, EB_TakingDamage);
-	mToFlick     = 0.0f;
+	mFlickTimer  = 0.0f;
 	mBitterTimer = 0.0f;
 
 	mEvents.clear();
@@ -952,7 +952,7 @@ void EnemyBase::onInit(CreatureInitArg* arg)
 	mCurAnim->mIsPlaying = false;
 	mInstantDamage       = 0.0f;
 	disableEvent(0, EB_TakingDamage);
-	mToFlick     = 0.0f;
+	mFlickTimer  = 0.0f;
 	mBitterTimer = 0.0f;
 
 	resetEvents();
@@ -2635,7 +2635,7 @@ void EnemyBase::addDamage(f32 damageAmt, f32 flickSpeed)
 
 	mInstantDamage += damageAmt;
 	if (isEvent(0, EB_FlickEnabled)) {
-		mToFlick += flickSpeed;
+		mFlickTimer += flickSpeed;
 	}
 
 	enableEvent(0, EB_TakingDamage);
@@ -2652,7 +2652,7 @@ bool EnemyBase::damageCallBack(Creature* sourceCreature, f32 damage, CollPart* p
 		mInstantDamage += damage;
 
 		if (isEvent(0, EB_FlickEnabled)) {
-			mToFlick += 1.0f;
+			mFlickTimer += 1.0f;
 		}
 
 		enableEvent(0, EB_TakingDamage);
@@ -2688,7 +2688,7 @@ bool EnemyBase::hipdropCallBack(Creature* sourceCreature, f32 damage, CollPart* 
 		mInstantDamage += purpleDamage;
 
 		if (isEvent(0, EB_FlickEnabled)) {
-			mToFlick += 1.0f;
+			mFlickTimer += 1.0f;
 		}
 
 		enableEvent(0, EB_TakingDamage);
@@ -2795,7 +2795,7 @@ bool EnemyBase::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 		mInstantDamage += damage;
 
 		if (isEvent(0, EB_FlickEnabled)) {
-			mToFlick += 1.0f;
+			mFlickTimer += 1.0f;
 		}
 
 		enableEvent(0, EB_TakingDamage);

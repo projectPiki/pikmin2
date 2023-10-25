@@ -50,7 +50,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->setEmotionCaution();
 	enemy->hardConstraintOn();
-	static_cast<Obj*>(enemy)->_2E4 = false;
+	OBJ(enemy)->mHasTarget = false;
 	enemy->disableEvent(0, EB_LifegaugeVisible);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 }
@@ -62,20 +62,22 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	if (static_cast<Obj*>(enemy)->isStartWalk()) {
-		if (enemy->mHealth <= 0.0f) {
-			transit(enemy, MIULIN_Dead, nullptr);
-		} else if (static_cast<Obj*>(enemy)->isAttackStart()) {
-			transit(enemy, MIULIN_AttackStart, nullptr);
-		} else if (static_cast<Obj*>(enemy)->nextTargetTurnCheck()) {
-			transit(enemy, MIULIN_Turn, nullptr);
-		} else {
-			transit(enemy, MIULIN_Walk, nullptr);
-		}
-
-		enemy->hardConstraintOff();
-		enemy->enableEvent(0, EB_LifegaugeVisible);
+	if (!OBJ(enemy)->isStartWalk()) {
+		return;
 	}
+
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, MIULIN_Dead, nullptr);
+	} else if (OBJ(enemy)->isAttackStart()) {
+		transit(enemy, MIULIN_AttackStart, nullptr);
+	} else if (OBJ(enemy)->nextTargetTurnCheck()) {
+		transit(enemy, MIULIN_Turn, nullptr);
+	} else {
+		transit(enemy, MIULIN_Walk, nullptr);
+	}
+
+	enemy->hardConstraintOff();
+	enemy->enableEvent(0, EB_LifegaugeVisible);
 }
 
 /*
@@ -97,16 +99,19 @@ StateWalk::StateWalk(int stateID)
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+
 	OBJ(enemy)->mNextState = MIULIN_NULL;
 	enemy->startMotion(MIULINANIM_Move, nullptr);
-	_14 = 0;
+	mTurnTimer = 0;
+
 	if (enemy->mTargetCreature) {
-		_10                = 0;
+		mReturnTimer = 0;
+
 		Vector3f targetPos = enemy->mTargetCreature->getPosition();
 		Vector3f pos       = enemy->getPosition();
 
-		f32 angle = angDist(angXZ(targetPos.x, targetPos.z, pos), enemy->getFaceDir());
-		if (FABS(angle) > 3.0f * (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mFp06.mValue))) {
+		f32 angleToTarget = angDist(angXZ(targetPos.x, targetPos.z, pos), enemy->getFaceDir());
+		if (FABS(angleToTarget) > 3.0f * (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mMaxTurnAngle.mValue))) {
 			transit(enemy, MIULIN_Turn, nullptr);
 		}
 	}
@@ -119,21 +124,22 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	if (OBJ(enemy)->mNextState < 0) {
-		_14++;
+	if (OBJ(enemy)->mNextState < MIULIN_Wait) {
+		mTurnTimer++;
 		OBJ(enemy)->walkFunc();
-		if (OBJ(enemy)->_2E4) {
+
+		if (OBJ(enemy)->mHasTarget) {
 			OBJ(enemy)->turnFunc(1.0f);
 		}
 
-		if (!OBJ(enemy)->_2E4 && (OBJ(enemy)->isOutOfTerritory() || _10 > CG_PROPERPARMS(OBJ(enemy)).mIp01.mValue)) {
+		if (!OBJ(enemy)->mHasTarget && (OBJ(enemy)->isOutOfTerritory() || mReturnTimer > CG_PROPERPARMS(OBJ(enemy)).mReturnTime.mValue)) {
 			OBJ(enemy)->setReturnState();
 			enemy->finishMotion();
 			OBJ(enemy)->mNextState = MIULIN_Turn;
-			_10                    = 0;
+			mReturnTimer           = 0;
 
 		} else if (OBJ(enemy)->isReachToGoal(10.0f)) {
-			if (OBJ(enemy)->_2E4) {
+			if (OBJ(enemy)->mHasTarget) {
 				enemy->finishMotion();
 				OBJ(enemy)->mNextState = MIULIN_Wait;
 
@@ -141,12 +147,12 @@ void StateWalk::exec(EnemyBase* enemy)
 				enemy->finishMotion();
 				OBJ(enemy)->mNextState = MIULIN_Turn;
 			}
-		} else if (_14 > 30) {
+		} else if (mTurnTimer > 30) {
 			f32 x;
 			f32 z;
 			Creature* creature = enemy->mTargetCreature;
 			if (creature) {
-				_10                  = 0;
+				mReturnTimer         = 0;
 				Vector3f creaturePos = creature->getPosition();
 				x                    = creaturePos.x;
 				z                    = creaturePos.z;
@@ -156,12 +162,12 @@ void StateWalk::exec(EnemyBase* enemy)
 					x                = goalPos.x;
 					z                = goalPos.z;
 				}
-				_10++;
+				mReturnTimer++;
 			}
 
 			Vector3f pos = enemy->getPosition();
 			f32 angle    = angDist(angXZ(x, z, pos), enemy->getFaceDir());
-			if (FABS(angle) > 3.0f * (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mFp06.mValue))) {
+			if (FABS(angle) > 3.0f * (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mMaxTurnAngle.mValue))) {
 				enemy->finishMotion();
 				OBJ(enemy)->mNextState = MIULIN_Turn;
 			}
@@ -249,7 +255,7 @@ void StateAttacking::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	enemy->startMotion(MIULINANIM_Attacking, nullptr);
-	_10 = 1;
+	mIsTransitioning = true;
 }
 
 /*
@@ -259,7 +265,7 @@ void StateAttacking::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttacking::exec(EnemyBase* enemy)
 {
-	if (_10) {
+	if (mIsTransitioning) {
 		OBJ(enemy)->turnFunc(0.5f);
 	}
 
@@ -269,14 +275,13 @@ void StateAttacking::exec(EnemyBase* enemy)
 	if (enemy->mCurAnim->mIsPlaying) {
 		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_2:
-			_10             = 0;
-			pos             = enemy->getPosition();
-			const f32 theta = enemy->getFaceDir();
-			f32 weight      = CG_PROPERPARMS(OBJ(enemy)).mFp08.mValue;
-			effectPos       = Vector3f(weight * pikmin2_sinf(theta), 0.0f, weight * pikmin2_cosf(theta));
-			pos.x += effectPos.x;
-			pos.y += effectPos.y;
-			pos.z += effectPos.z;
+			mIsTransitioning = false;
+			pos              = enemy->getPosition();
+			const f32 theta  = enemy->getFaceDir();
+
+			f32 weight = CG_PROPERPARMS(OBJ(enemy)).mMinAttackRange.mValue;
+			effectPos  = Vector3f(weight * pikmin2_sinf(theta), 0.0f, weight * pikmin2_cosf(theta));
+			pos += effectPos;
 
 			f32 maxY   = 20.0f + pos.y;
 			f32 minY   = pos.y - 20.0f;
@@ -287,15 +292,18 @@ void StateAttacking::exec(EnemyBase* enemy)
 			CI_LOOP(iterPiki)
 			{
 				Piki* piki = *iterPiki;
-				if (piki->isAlive() && piki->mSticker != enemy) {
-					Vector3f pikiPos = piki->getPosition();
-					if (maxY > pikiPos.y && minY < pikiPos.y && sqrDistanceXZ(pos, pikiPos) < radius) {
-						if (enemy->mTargetCreature == piki) {
-							enemy->mTargetCreature = nullptr;
-						}
-						InteractBury bury(enemy, 0.0f);
-						piki->stimulate(bury);
+				if (!piki->isAlive() || piki->mSticker == enemy) {
+					continue;
+				}
+
+				Vector3f pikiPos = piki->getPosition();
+				if (maxY > pikiPos.y && minY < pikiPos.y && sqrDistanceXZ(pos, pikiPos) < radius) {
+					if (enemy->mTargetCreature == piki) {
+						enemy->mTargetCreature = nullptr;
 					}
+
+					InteractBury bury(enemy, 0.0f);
+					piki->stimulate(bury);
 				}
 			}
 
@@ -304,37 +312,40 @@ void StateAttacking::exec(EnemyBase* enemy)
 			CI_LOOP(iterNavi)
 			{
 				Navi* navi = *iterNavi;
-				if (navi->isAlive()) {
-					Vector3f naviPos = navi->getPosition();
-					if (maxY > naviPos.y && minY < naviPos.y && sqrDistanceXZ(pos, naviPos) < radius) {
-						if (enemy->mTargetCreature == navi) {
-							enemy->mTargetCreature = nullptr;
-						}
-						InteractBury bury(enemy, 5.0f);
-						navi->stimulate(bury);
+				if (!navi->isAlive()) {
+					continue;
+				}
+
+				Vector3f naviPos = navi->getPosition();
+				if (maxY > naviPos.y && minY < naviPos.y && sqrDistanceXZ(pos, naviPos) < radius) {
+					if (enemy->mTargetCreature == navi) {
+						enemy->mTargetCreature = nullptr;
 					}
+
+					InteractBury bury(enemy, 5.0f);
+					navi->stimulate(bury);
 				}
 			}
 
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
+			f32 chance    = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
 			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
 			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, chance, knockback, damage, -1000.0f, nullptr);
 			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
 
-			enemy->mToFlick = 0.0f;
-			effectPos       = Vector3f(-20.0f, 0.0f, 31.0f);
+			enemy->mFlickTimer = 0.0f;
+			effectPos          = Vector3f(-20.0f, 0.0f, 31.0f);
 			OBJ(enemy)->attackEffect(effectPos);
-			rumbleMgr->startRumble(12, pos, 2);
+			rumbleMgr->startRumble(12, pos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_3:
 			effectPos = Vector3f(11.0f, 0.0f, 56.0f);
 			OBJ(enemy)->attackEffect(effectPos);
-			rumbleMgr->startRumble(12, pos, 2);
+			rumbleMgr->startRumble(12, pos, RUMBLEID_Both);
 			break;
 
 		case KEYEVENT_END:
@@ -369,7 +380,7 @@ void StateAttackEnd::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	enemy->startMotion(MIULINANIM_AttackEnd, nullptr);
-	static_cast<Obj*>(enemy)->mNextState = MIULIN_Turn;
+	OBJ(enemy)->mNextState = MIULIN_Turn;
 	enemy->setEmotionCaution();
 }
 
@@ -381,12 +392,13 @@ void StateAttackEnd::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttackEnd::exec(EnemyBase* enemy)
 {
 	if (enemy->mHealth <= 0.0f) {
-		static_cast<Obj*>(enemy)->mNextState = MIULIN_Dead;
+		OBJ(enemy)->mNextState = MIULIN_Dead;
 	} else if (EnemyFunc::isStartFlick(enemy, false)) {
-		static_cast<Obj*>(enemy)->mNextState = MIULIN_Flick;
+		OBJ(enemy)->mNextState = MIULIN_Flick;
 	}
+
 	if (enemy->mCurAnim->mIsPlaying && (u32)enemy->mCurAnim->mType == KEYEVENT_END) {
-		transit(enemy, static_cast<Obj*>(enemy)->mNextState, nullptr);
+		transit(enemy, OBJ(enemy)->mNextState, nullptr);
 	}
 }
 
@@ -413,8 +425,8 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 		OBJ(enemy)->setNextGoal();
 	}
 
-	f32 maxAngle = (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mFp06.mValue));
-	if (OBJ(enemy)->_2E4) {
+	f32 maxAngle = (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mMaxTurnAngle.mValue));
+	if (OBJ(enemy)->mHasTarget) {
 		maxAngle = 0.01f;
 	}
 
@@ -453,7 +465,7 @@ void StateTurn::exec(EnemyBase* enemy)
 			OBJ(enemy)->isFindTarget();
 		}
 
-		if (OBJ(enemy)->turnFunc(1.0f) < (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mFp06.mValue))) {
+		if (OBJ(enemy)->turnFunc(1.0f) < (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mMaxTurnAngle.mValue))) {
 			enemy->finishMotion();
 			OBJ(enemy)->mNextState = MIULIN_Walk;
 		}
@@ -495,29 +507,31 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	if (enemy->mCurAnim->mIsPlaying) {
-		if (enemy->mCurAnim->mType == KEYEVENT_3) {
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue;
-			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
-			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
-			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
+	if (!enemy->mCurAnim->mIsPlaying) {
+		return;
+	}
 
-			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
+	if (enemy->mCurAnim->mType == KEYEVENT_3) {
+		f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
+		f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
+		f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
+		f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
-			enemy->mToFlick = 0.0f;
+		EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
+		EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
+		EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
 
-		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
-			if (enemy->mHealth <= 0.0f) {
-				transit(enemy, MIULIN_Dead, nullptr);
+		enemy->mFlickTimer = 0.0f;
 
-			} else if (OBJ(enemy)->isAttackStart()) {
-				transit(enemy, MIULIN_AttackStart, nullptr);
+	} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
+		if (enemy->mHealth <= 0.0f) {
+			transit(enemy, MIULIN_Dead, nullptr);
 
-			} else {
-				transit(enemy, MIULIN_Turn, nullptr);
-			}
+		} else if (OBJ(enemy)->isAttackStart()) {
+			transit(enemy, MIULIN_AttackStart, nullptr);
+
+		} else {
+			transit(enemy, MIULIN_Turn, nullptr);
 		}
 	}
 }
@@ -556,7 +570,7 @@ void StateDead::exec(EnemyBase* enemy)
 	if (enemy->mCurAnim->mIsPlaying) {
 		switch (enemy->mCurAnim->mType) {
 		case KEYEVENT_2:
-			static_cast<Obj*>(enemy)->landEffect();
+			OBJ(enemy)->landEffect();
 			break;
 
 		case KEYEVENT_END:
