@@ -74,8 +74,8 @@ void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 	mgr->mCounter = rate;
 	mgr->_29C     = rate;
 
-	mDoCheckCard  = false;
-	mgr->mCanExit = true;
+	mDoCheckCard          = false;
+	mgr->mScreen.mCanExit = true;
 	do_open(mgr);
 }
 
@@ -91,11 +91,11 @@ void FSMState_Warning::do_exec(TMgr* mgr)
 	}
 
 	if (!mgr->mCounter && mCanClose && !mIsClosed) {
-		mgr->close();
+		mgr->mScreen.close();
 		mIsClosed = true;
 	}
 
-	if (mgr->TMemoryCard::isFinish()) {
+	if (mgr->mScreen.isFinish()) {
 		do_transit(mgr);
 	}
 }
@@ -107,8 +107,8 @@ void FSMState_Warning::do_exec(TMgr* mgr)
  */
 void FSMState_Question::do_init(TMgr* mgr, Game::StateArg*)
 {
-	mDoCheckCard  = false;
-	mgr->mCanExit = true;
+	mDoCheckCard          = false;
+	mgr->mScreen.mCanExit = true;
 	do_open(mgr);
 }
 
@@ -123,8 +123,8 @@ void FSMState_Question::do_exec(TMgr* mgr)
 		mgr->checkAndTransitNoCard_();
 	}
 
-	if (mgr->TMemoryCard::isFinish()) {
-		if (mgr->mSelectionIdx == 1) {
+	if (mgr->mScreen.isFinish()) {
+		if (mgr->mScreen.mSelectionIdx == 1) {
 			do_transitYes(mgr);
 		} else {
 			do_transitNo(mgr);
@@ -139,8 +139,8 @@ void FSMState_Question::do_exec(TMgr* mgr)
  */
 void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg*)
 {
-	mgr->mCanExit = false;
-	mState        = 0;
+	mgr->mScreen.mCanExit = false;
+	mState                = 0;
 
 	u32 rate      = 3.0f / sys->mDeltaTime;
 	mgr->mCounter = rate;
@@ -166,7 +166,7 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 
 	if (check) {
 		mCardStatus = sys->mCardMgr->getCardStatus();
-		mgr->close();
+		mgr->mScreen.close();
 	}
 
 	switch (mState) // todo: enums for both of these switches
@@ -192,14 +192,14 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 		break;
 	case 2:
 		if (!mgr->mCounter) {
-			mgr->close();
+			mgr->mScreen.close();
 		}
 
-		if (!mgr->TMemoryCard::isFinish()) {
+		if (!mgr->mScreen.isFinish()) {
 			break;
 		}
 
-		mgr->mCanExit = true;
+		mgr->mScreen.mCanExit = true;
 
 		switch (mCardStatus) {
 		case Game::MemoryCard::Mgr::MCS_IOError:
@@ -402,11 +402,11 @@ void FSMState_NoCard::do_exec(TMgr* mgr)
 {
 	u8 stat = sys->mCardMgr->isCardNotReady();
 	if (stat) {
-		mgr->close();
+		mgr->mScreen.close();
 		mIsClosed = true;
 	}
 
-	if (mgr->TMemoryCard::isFinish()) {
+	if (mgr->mScreen.isFinish()) {
 		if (mIsClosed) {
 			do_transitOnCard(mgr);
 		} else {
@@ -551,7 +551,7 @@ void TMgr::startSeq(enumStart id)
 void TMgr::forceQuitSeq()
 {
 	mStateMachine.start(this, CARDERROR_Standby, nullptr);
-	killScreen();
+	mScreen.killScreen();
 }
 
 /*
@@ -600,7 +600,7 @@ void TMgr::update()
 		return;
 	}
 
-	TMemoryCard::update();
+	mScreen.update();
 	if (mCounter) {
 		mCounter--;
 	}
@@ -614,7 +614,7 @@ void TMgr::update()
 void TMgr::draw()
 {
 	if (getStateID() != CARDERROR_Standby) {
-		TMemoryCard::draw();
+		mScreen.draw();
 	}
 }
 

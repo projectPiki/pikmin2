@@ -224,15 +224,15 @@ struct TMgr : public JKRDisposer {
 
 	inline void doLoadResource(JKRHeap* heap)
 	{
-		mMemCardErrorMgr.loadResource(heap);
+		mMemCardErrorMgr.mScreen.loadResource(heap);
 		static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->loadResource(heap);
 	}
 
 	inline void setControllers(Controller* pad)
 	{
-		mController                  = pad;
-		mSaveMenu.mController        = pad;
-		mMemCardErrorMgr.mController = pad;
+		mController                          = pad;
+		mSaveMenu.mController                = pad;
+		mMemCardErrorMgr.mScreen.mController = pad;
 	}
 
 	static TMgr* msInstance;

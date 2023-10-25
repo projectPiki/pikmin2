@@ -14,9 +14,9 @@ namespace CardError {
 void FSMState_W00_NoCard::do_open(TMgr* mgr)
 {
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_NoCard);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_NoCard);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveNoCard);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveNoCard);
 	}
 }
 
@@ -57,9 +57,9 @@ void FSMState_W01_IOError::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CardDamaged);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CardDamaged);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveCardDamaged);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveCardDamaged);
 	}
 }
 
@@ -86,9 +86,9 @@ void FSMState_W02_WrongDevice::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_WrongDevice);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_WrongDevice);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveWrongDevice);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveWrongDevice);
 	}
 }
 
@@ -115,9 +115,9 @@ void FSMState_W03_WrongSector::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantUseCard);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantUseCard);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveCantUseCard);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveCantUseCard);
 	}
 }
 
@@ -144,9 +144,9 @@ void FSMState_W04_OverCapacity::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_NotEnoughSpace);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_NotEnoughSpace);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveNoSpace);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveNoSpace);
 	}
 }
 
@@ -173,9 +173,9 @@ void FSMState_W05_InitCardOnIPL::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_GoToIPL);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_GoToIPL);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_InsertOriginalCard);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_InsertOriginalCard);
 	}
 }
 
@@ -202,9 +202,9 @@ void FSMState_W06_CardNotUsable::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantUseCard2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantUseCard2);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveCantUseCard2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveCantUseCard2);
 	}
 }
 
@@ -231,9 +231,9 @@ void FSMState_W07_NoFileForSave::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_NoFileFound);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_NoFileFound);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveNoFile);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveNoFile);
 	}
 }
 
@@ -260,9 +260,9 @@ void FSMState_W08_FinishFormat::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CardFormatted);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CardFormatted);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_FormatSuccess);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_FormatSuccess);
 	}
 }
 
@@ -289,9 +289,9 @@ void FSMState_W09_FinishCreateNewFile::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_FileCreated);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_FileCreated);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_FileCreated2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_FileCreated2);
 	}
 }
 
@@ -320,7 +320,7 @@ void FSMState_W10_SerialNoError::do_open(TMgr* mgr)
 	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(236, "P2Assert");
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveInsertOriginalCard);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveInsertOriginalCard);
 	}
 }
 
@@ -347,9 +347,9 @@ void FSMState_WF0_FailToFormat_NoCard::do_open(TMgr* mgr)
 {
 	mDoCheckCard = false;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantFormat);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantFormat);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantFormat2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantFormat2);
 	}
 }
 
@@ -376,9 +376,9 @@ void FSMState_WF1_FailToFormat_IOError::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantFormat);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantFormat);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantFormat2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantFormat2);
 	}
 }
 
@@ -405,9 +405,9 @@ void FSMState_WF2_FailToCreateNewFile_NoCard::do_open(TMgr* mgr)
 {
 	mDoCheckCard = false;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantCreateFile);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantCreateFile);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantCreateFile2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantCreateFile2);
 	}
 }
 
@@ -434,9 +434,9 @@ void FSMState_WF3_FailToCreateNewFile_IOError::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantCreateFile);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantCreateFile);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantCreateFile2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantCreateFile2);
 	}
 }
 
@@ -465,7 +465,7 @@ void FSMState_WF4_FailToSave_NoCard::do_open(TMgr* mgr)
 	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(342, "P2Assert");
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_SaveFail);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_SaveFail);
 	}
 }
 
@@ -494,7 +494,7 @@ void FSMState_WF5_FailToSave_IOError::do_open(TMgr* mgr)
 	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(363, "P2Assert");
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_SaveFail);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_SaveFail);
 	}
 }
 
@@ -521,9 +521,9 @@ void FSMState_Q00_DataBrokenAndDoYouFormat::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_DoFormat);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_DoFormat);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveDoFormat);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveDoFormat);
 	}
 }
 
@@ -564,9 +564,9 @@ void FSMState_Q01_DoYouOpenIPL::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_DoGotoIPL);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_DoGotoIPL);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_DoGotoIPL2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_DoGotoIPL2);
 	}
 }
 
@@ -607,9 +607,9 @@ void FSMState_Q02_DoYouFormat::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_DoFormatConfirm);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_DoFormatConfirm);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_DoFormat2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_DoFormat2);
 	}
 }
 
@@ -650,9 +650,9 @@ void FSMState_Q03_DoYouCreateNewFile::do_open(TMgr* mgr)
 {
 	mDoCheckCard = true;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_DoCreateFile);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_DoCreateFile);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_DoCreateFile2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_DoCreateFile2);
 	}
 }
 
@@ -693,7 +693,7 @@ void FSMState_Q04_DoYouStartGameWithoutSave::do_open(TMgr* mgr)
 {
 	mDoCheckCard = false;
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_DoPlayNoSaving);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_DoPlayNoSaving);
 	} else if (mgr->mIsBroken == TRUE) {
 		JUT_PANICLINE(509, "P2Assert");
 	}
@@ -738,7 +738,7 @@ void FSMState_Q05_GameCantSave::do_open(TMgr* mgr)
 	if (mgr->mIsBroken == FALSE) {
 		JUT_PANICLINE(537, "P2Assert");
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CantSaveGotoIPL);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CantSaveGotoIPL);
 	}
 }
 
@@ -785,9 +785,9 @@ bool FSMState_WN0_NowFormat::do_cardRequest() { return static_cast<Game::MemoryC
 void FSMState_WN0_NowFormat::do_open(TMgr* mgr)
 {
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_Formatting);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_Formatting);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_Formatting2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_Formatting2);
 	}
 }
 
@@ -820,9 +820,9 @@ void FSMState_WN0_NowFormat::do_transitCardIOError(TMgr* mgr) { transit(mgr, CAR
 void FSMState_WN1_NowCreateNewFile::do_open(TMgr* mgr)
 {
 	if (mgr->mIsBroken == FALSE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CreatingFile);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CreatingFile);
 	} else if (mgr->mIsBroken == TRUE) {
-		mgr->open(Screen::TMemoryCard::OPEN_CreatingFile2);
+		mgr->mScreen.open(Screen::TMemoryCard::OPEN_CreatingFile2);
 	}
 }
 

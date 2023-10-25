@@ -72,12 +72,12 @@ void FileState::dvdload()
 	ebi::FileSelect::TMgr* tmgr = mFSMgr;
 	tmgr->mMgrFS.mMainScreen.loadResource();
 	JKRHeap* heap = JKRGetCurrentHeap();
-	tmgr->mCardErrorMgr.loadResource(heap);
+	tmgr->mCardErrorMgr.mScreen.loadResource(heap);
 	static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->loadResource(heap);
 	Controller* input            = mMainController;
 	ebi::FileSelect::TMgr* tmgr2 = mFSMgr;
 	tmgr2->mMgrFS.setController(input);
-	tmgr2->mCardErrorMgr.mController = input;
+	tmgr2->mCardErrorMgr.mScreen.mController = input;
 	playData->reset();
 }
 

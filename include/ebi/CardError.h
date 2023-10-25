@@ -500,7 +500,7 @@ struct FSMState_WN1_NowCreateNewFile : public FSMState_CardRequest {
 };
 ////////////////////////////////////////////////////////////
 
-struct TMgr : Screen::TMemoryCard {
+struct TMgr {
 	typedef FSMState StateType;
 
 	enum enumStart {
@@ -541,7 +541,7 @@ struct TMgr : Screen::TMemoryCard {
 	TMgr();
 	~TMgr();
 
-	// _00-_298 = TMemoryCard
+	Screen::TMemoryCard mScreen;   // _000
 	u32 mCounter;                  // _298
 	int _29C;                      // _29C
 	u32 mEndStat;                  // _2A0, unknown

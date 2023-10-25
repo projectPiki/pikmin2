@@ -576,10 +576,7 @@ void FSMState_CardError::do_exec(TMgr* mgr)
  * Address:	803DC6D0
  * Size:	00014C
  */
-TMgr::~TMgr()
-{ // fake inheritence happening perchance?
-	msInstance = nullptr;
-}
+TMgr::~TMgr() { msInstance = nullptr; }
 } // namespace Save
 
 /*
@@ -587,7 +584,7 @@ TMgr::~TMgr()
  * Address:	803DC6D0
  * Size:	00014C
  */
-CardError::TMgr::~TMgr() { }
+CardError::TMgr::~TMgr() { } // this should be weak?
 
 namespace Save {
 /*

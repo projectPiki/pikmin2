@@ -1137,7 +1137,7 @@ void Option::TMgr::loadResource()
 	mOptionScreen.loadResource();
 	sys->heapStatusEnd("Option::TMgr::loadResource");
 	mSaveMgr->mSaveMenu.loadResource();
-	mSaveMgr->mMemCardErrorMgr.loadResource(JKRHeap::sCurrentHeap);
+	mSaveMgr->mMemCardErrorMgr.mScreen.loadResource(JKRHeap::sCurrentHeap);
 	sys->mCardMgr->loadResource(JKRHeap::sCurrentHeap);
 	/*
 	stwu     r1, -0x10(r1)
@@ -1187,9 +1187,9 @@ void Option::TMgr::setController(Controller* controller)
 	mController = controller;
 	mOptionScreen.setController(controller);
 	// TODO: Did Save::TMgr have an inlined setController?
-	mSaveMgr->mController                  = controller;
-	mSaveMgr->mSaveMenu.mController        = controller;
-	mSaveMgr->mMemCardErrorMgr.mController = controller;
+	mSaveMgr->mController                          = controller;
+	mSaveMgr->mSaveMenu.mController                = controller;
+	mSaveMgr->mMemCardErrorMgr.mScreen.mController = controller;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
