@@ -27,7 +27,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenPushStart.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTitleMenu.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiSaveMgr.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiSaveMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenSaveMenu.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect_Mgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiFileSelectMgr.o\
@@ -51,6 +51,7 @@ $(EBISAWA_FILES): CFLAGS += -sym on
 
 $(BUILD_DIR)/src/plugProjectEbisawaU/efxTPkEffectMgr.o: CFLAGS += -sym off
 $(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr.o: CFLAGS += -sym off
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiSaveMgr.o: CFLAGS += -sym off
 $(BUILD_DIR)/src/plugProjectEbisawaU/ebiFileSelectMgr.o: CFLAGS += -sym off
 
 
