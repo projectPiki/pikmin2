@@ -494,7 +494,7 @@ void JUTException::showGPRMap(OSContext* context)
 	sConsole->print("-------------------------------- GPRMAP\n");
 
 	for (int i = 0; i < 31; i++) {
-		u32 address = context->gpr[i];
+		const u32 address = context->gpr[i];
 
 		if (address >= 0x80000000 && address <= 0x83000000 - 1) {
 			found_address_register = true;
@@ -1668,11 +1668,3 @@ void JUTException::disableFpuException()
 {
 	// UNUSED FUNCTION
 }
-
-/*
- * --INFO--
- * Address:	8002CD60
- * Size:	000060
- * __dt__12JUTExceptionFv
- */
-JUTException::~JUTException() { }

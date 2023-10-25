@@ -59,8 +59,8 @@ struct JUTException : public JKRThread {
 
 	JUTException(JUTDirectPrint*); // unused/inlined
 
-	virtual ~JUTException(); // _08 (weak)
-	virtual void* run();     // _0C
+	virtual ~JUTException() { } // _08 (weak)
+	virtual void* run();        // _0C
 
 	void showFloat(OSContext*);
 	void showStack(OSContext*);

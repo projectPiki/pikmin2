@@ -106,8 +106,8 @@ bool InteractFue::actPiki(Game::Piki* piki)
 		} else if (!(moviePlayer->mDemoState || (u32)pikiKind - 1 > Red && (int)pikiKind != Blue)) {
 
 			piki->setZikatu(false);
-			GameStat::zikatuPikis.dec((int)piki->mPikiKind);
-			if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && (int)piki->mPikiKind == Red) {
+			GameStat::zikatuPikis.dec(piki->getKind());
+			if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && (piki->getKind() == Red)) {
 				if (gameSystem->mSection->getTimerType() != 4) {
 					gameSystem->mSection->enableTimer(1.2f, 4);
 				}
@@ -116,12 +116,12 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				char* cutscenes[3] = { "g21_meet_bluepikmin", "g03_meet_redpikmin", "g1F_meet_yellowpikmin" };
 				MoviePlayArg movieArg(cutscenes[piki->mPikiKind], nullptr, nullptr, 0);
 				movieArg.setTarget(piki);
-				if ((int)piki->mPikiKind == Red) {
+				if (piki->getKind() == Red) {
 					Iterator<Piki> iPiki = pikiMgr;
 					CI_LOOP(iPiki)
 					{
 						Piki* currPiki = *iPiki;
-						if ((int)currPiki->mPikiKind == (int)piki->mPikiKind) {
+						if (currPiki->getKind() == piki->getKind()) {
 							currPiki->movie_begin(false);
 						}
 					}

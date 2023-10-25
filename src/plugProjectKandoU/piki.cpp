@@ -182,7 +182,7 @@ void Piki::onInit(CreatureInitArg* initArg)
 void Piki::onKill(CreatureKillArg* killArg)
 {
 	if (gameSystem->isVersusMode() && killArg && killArg->isFlag(CKILL_Unk32)) {
-		Onyon* onyon = ItemOnyon::mgr->getOnyon(mPikiKind);
+		Onyon* onyon = ItemOnyon::mgr->getOnyon(getKind());
 		if (onyon) {
 			onyon->vsChargePikmin();
 		}
@@ -202,7 +202,7 @@ void Piki::onKill(CreatureKillArg* killArg)
 		mSoundObj->startFreePikiSound(PSSE_PK_VC_GHOST, 90, 0);
 
 		if (gameSystem && !gameSystem->isFlag(GAMESYS_Unk5)) {
-			int pikiType = mPikiKind;
+			int pikiType = getKind();
 			if (pikiType < Bulbmin && !isZikatu() && !isPikmin()) {
 				DeathMgr::inc(DeathCounter::COD_All);
 			}
@@ -214,7 +214,7 @@ void Piki::onKill(CreatureKillArg* killArg)
 	}
 
 	bool isBulbmin = false;
-	if (!isPikmin() && (int)mPikiKind == Bulbmin) {
+	if (!isPikmin() && getKind() == Bulbmin) {
 		isBulbmin = true;
 	}
 
@@ -281,7 +281,7 @@ void Piki::update()
 
 		if (isAlive() && mWaterBox) {
 			int stateID  = getStateID();
-			int pikiType = mPikiKind;
+			int pikiType = getKind();
 			if (stateID != PIKISTATE_WaterHanged && stateID != PIKISTATE_Drown && !mCurrentState->dead() && pikiType != Blue
 			    && pikiType != Bulbmin && moviePlayer->mDemoState == 0 && mSimVelocity.y <= 0.1f) {
 				mFsm->transit(this, PIKISTATE_Drown, nullptr);
@@ -472,7 +472,7 @@ Piki* Piki::getVsBattlePiki()
  */
 void Piki::attachRadar(bool)
 {
-	switch ((int)mPikiKind) {
+	switch (getKind()) {
 	case Blue:
 		Radar::Mgr::entry(this, Radar::MAP_BLUE_PIKMIN, 0);
 		break;
@@ -503,7 +503,7 @@ void Piki::attachRadar(bool)
 void Piki::inWaterCallback(WaterBox* wbox)
 {
 	int stateID  = getStateID();
-	int pikiType = mPikiKind;
+	int pikiType = getKind();
 	if (stateID != PIKISTATE_WaterHanged && stateID != PIKISTATE_Drown && !mCurrentState->dead() && pikiType != Blue
 	    && pikiType != Bulbmin) {
 		if (moviePlayer->mDemoState == 0 && mSimVelocity.y <= 0.1f) {
@@ -708,7 +708,7 @@ f32 Piki::getSpeed(f32 multiplier)
 		baseSpeed = pikiMgr->mParms->mPikiParms.mBudRunSpeed.mValue;
 	}
 
-	int pikiType = mPikiKind;
+	int pikiType = getKind();
 	f32 drag     = scaleValue(1.0f, pikiMgr->mParms->mPikiParms.mWalkSpeed.mValue);
 	f32 speed    = multiplier * (baseSpeed - drag) + drag;
 
@@ -869,7 +869,7 @@ int Piki::getDownfloorMass()
 		return 0;
 	}
 
-	return ((int)mPikiKind == Purple) ? 10 : 1;
+	return (getKind() == Purple) ? 10 : 1;
 }
 
 /*
@@ -913,7 +913,7 @@ f32 Piki::getAttackDamage()
 		return pikiMgr->mParms->mPikiParms.mRedAttackDamage.mValue;
 	}
 
-	switch ((int)mPikiKind) {
+	switch (getKind()) {
 	case Red:
 		return pikiMgr->mParms->mPikiParms.mRedAttackDamage.mValue;
 	case Blue:
@@ -942,7 +942,7 @@ f32 Piki::getThrowHeight()
 
 	P2ASSERTLINE(1403, mNavi);
 
-	switch ((int)mPikiKind) {
+	switch (getKind()) {
 	case Yellow:
 		return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mP054.mValue;
 	case Purple:
@@ -962,7 +962,7 @@ f32 Piki::getThrowHeight()
 f32 Piki::getPelletCarryPower()
 {
 	f32 carryPower;
-	switch ((int)mPikiKind) {
+	switch (getKind()) {
 	case White:
 		carryPower = pikiMgr->mParms->mPikiParms.mWhiteCarryPower.mValue;
 		break;
@@ -974,9 +974,9 @@ f32 Piki::getPelletCarryPower()
 		break;
 	}
 
-	if (doped() || (int)mHappaKind == Flower) {
+	if (doped() || getHappa() == Flower) {
 		carryPower += pikiMgr->mParms->mPikiParms.mFlowerCarrySpeedBonus.mValue;
-	} else if ((int)mHappaKind == Bud) {
+	} else if (getHappa() == Bud) {
 		carryPower += pikiMgr->mParms->mPikiParms.mBudCarrySpeedBonus.mValue;
 	}
 
@@ -1092,7 +1092,7 @@ void Piki::platCallback(PlatEvent& event)
 		getCurrAction()->platCallback(this, event);
 	}
 
-	if (isAlive() && !mCurrentState->dead() && event.mInstance->mId.match('elec', '*') && (int)mPikiKind != Yellow) {
+	if (isAlive() && !mCurrentState->dead() && event.mInstance->mId.match('elec', '*') && getKind() != Yellow) {
 		mTekiKillID = -1;
 		InteractDenki zap(this, 0.0f, &Vector3f::zero);
 		stimulate(zap);
@@ -1223,7 +1223,7 @@ void Piki::updateDope()
 void Piki::initColor()
 {
 	mColorFloat   = 1.0f;
-	mDefaultColor = pikiColors[mPikiKind];
+	mDefaultColor = pikiColors[getKind()];
 }
 
 /*
@@ -1244,7 +1244,7 @@ void Piki::updateColor()
 void Piki::setPastel(bool isBright)
 {
 	mColorFloat   = 0.0f;
-	Color4* color = &pikiColors[mPikiKind];
+	Color4* color = &pikiColors[getKind()];
 
 	if (!isBright) {
 		mPikiColor       = *color;
@@ -1421,7 +1421,7 @@ f32 Piki::getBaseScale()
  */
 void Piki::changeShape(int color)
 {
-	int oldColor = mPikiKind;
+	int oldColor = getKind();
 	if (color != Bulbmin) {
 		mBoundingSphere.mRadius = 4.0f;
 	} else {
