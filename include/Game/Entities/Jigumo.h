@@ -89,47 +89,116 @@ struct ConditionHeightCheckPiki : public Condition<Piki> {
 	f32 mMaxHeight;       // _0C
 };
 
+struct Parms : public EnemyParmsBase {
+	struct ProperParms : public Parameters {
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , mCarrySpeed(this, 'fp01', "運搬速度", 100.0f, 0.0f, 300.0f)      // 'transport speed'
+		    , mReturnSpeed(this, 'fp02', "戻り速度", 100.0f, 0.0f, 300.0f)     // 'return speed'
+		    , mMinScale(this, 'fp03', "スケール最小", 1.0f, 0.0f, 3.0f)        // 'scale minimum'
+		    , mMaxScale(this, 'fp04', "スケール最大", 1.2f, 0.0f, 3.0f)        // 'scale maximum'
+		    , mPoisonDamage(this, 'fp05', "白ピクミン", 300.0f, 0.0f, 1000.0f) // 'white pikmin'
+		    , mHidingTime(this, 'ip01', "隠れている時間", 30, 0, 120)          // 'hiding time'
+		{
+		}
+
+		Parm<f32> mCarrySpeed;   // _804, fp01
+		Parm<f32> mReturnSpeed;  // _82C, fp02
+		Parm<f32> mMinScale;     // _854, fp03
+		Parm<f32> mMaxScale;     // _87C, fp04
+		Parm<f32> mPoisonDamage; // _8A4, fp05
+		Parm<int> mHidingTime;   // _8CC, ip01
+	};
+
+	Parms()
+	{
+		_8F8         = 1;
+		_8F9         = 1;
+		_8FA         = 1;
+		_8FB         = 1;
+		_8FC         = 0;
+		_8FD         = 1;
+		mIsPressKill = false;
+		_900         = 0.75f;
+		_904         = 20.0f;
+		_908         = 0.05f;
+		_90C         = 30.0f;
+		_910         = 8;
+		_914         = 35.0f;
+		_918         = 0.15f;
+		_91C         = 1.0f;
+		_920         = 0.15f;
+		_924         = 13.0f;
+		_928         = 18.0f;
+		_92C         = 1.4f;
+		_930         = 20.0f;
+	}
+
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
+	}
+
+	// _00-_7F8	= EnemyParmsBase
+	ProperParms mProperParms; // _7F8
+	u8 _8F8;                  // _8F8, unknown
+	u8 _8F9;                  // _8F9, unknown
+	u8 _8FA;                  // _8FA, unknown
+	u8 _8FB;                  // _8FB, unknown
+	u8 _8FC;                  // _8FC, unknown
+	u8 _8FD;                  // _8FD, unknown
+	bool mIsPressKill;        // _8FE, kills if hit from above with a piki, like a kochappy
+	f32 _900;                 // _900
+	f32 _904;                 // _904
+	f32 _908;                 // _908
+	f32 _90C;                 // _90C
+	u8 _910;                  // _910
+	f32 _914;                 // _914
+	f32 _918;                 // _918
+	f32 _91C;                 // _91C
+	f32 _920;                 // _920
+	f32 _924;                 // _924
+	f32 _928;                 // _928
+	f32 _92C;                 // _92C
+	f32 _930;                 // _930
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                // _30
-	virtual void onKill(CreatureKillArg* settings);                // _34
-	virtual void doDirectDraw(Graphics& gfx);                      // _50
-	virtual f32 getBodyRadius();                                   // _54 (weak)
-	virtual f32 getCellRadius();                                   // _58 (weak)
-	virtual void inWaterCallback(WaterBox* wb);                    // _84
-	virtual void outWaterCallback();                               // _88
-	virtual bool isLivingThing();                                  // _D4
-	virtual void collisionCallback(CollEvent& event);              // _EC
-	virtual void getShadowParam(ShadowParam& settings);            // _134
-	virtual bool needShadow();                                     // _138
-	virtual Vector3f getGoalPos() { return mGoalPosition; }        // _198 (weak)
-	virtual ~Obj() { }                                             // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                            // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4 (weak)
-	virtual void doUpdate();                                       // _1CC
-	virtual void doAnimationCullingOff();                          // _1DC
-	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
-	virtual void doSimulationGround(f32);                          // _1F4
-	virtual Vector3f getOffsetForMapCollision();                   // _224
-	virtual void setParameters();                                  // _228
-	virtual void initMouthSlots();                                 // _22C
-	virtual void createEfxHamon();                                 // _250 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()             // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);         // _30
+	virtual void onKill(CreatureKillArg* settings);         // _34
+	virtual void doDirectDraw(Graphics& gfx);               // _50
+	virtual void inWaterCallback(WaterBox* wb);             // _84
+	virtual void outWaterCallback();                        // _88
+	virtual bool isLivingThing();                           // _D4
+	virtual void collisionCallback(CollEvent& event);       // _EC
+	virtual void getShadowParam(ShadowParam& settings);     // _134
+	virtual bool needShadow();                              // _138
+	virtual Vector3f getGoalPos() { return mGoalPosition; } // _198 (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                     // _1C0
+	virtual void doUpdate();                                // _1CC
+	virtual void doAnimationCullingOff();                   // _1DC
+	virtual void doDebugDraw(Graphics& gfx);                // _1EC
+	virtual void doSimulationGround(f32);                   // _1F4
+	virtual Vector3f getOffsetForMapCollision();            // _224
+	virtual void setParameters();                           // _228
+	virtual void initMouthSlots();                          // _22C
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Jigumo;
 	}
-	virtual MouthSlots* getMouthSlots();                                       // _25C (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                         // _260
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
 	virtual bool pressCallBack(Creature*, f32, CollPart*);                     // _27C
 	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);       // _28C
-	virtual bool eatWhitePikminCallBack(Creature* source, f32 damage);         // _298 (weak)
 	virtual void doStartStoneState();                                          // _2A4
 	virtual void doFinishStoneState();                                         // _2A8
 	virtual void startCarcassMotion();                                         // _2C4
-	virtual f32 getDownSmokeScale();                                           // _2EC (weak)
 	virtual void doStartMovie();                                               // _2F0
 	virtual void doEndMovie();                                                 // _2F4
 	virtual void setFSM(FSM* fsm)                                              // _2F8 (weak)
@@ -138,13 +207,28 @@ struct Obj : public EnemyBase {
 		mFsm->init(this);
 		mCurrentLifecycleState = nullptr;
 	}
+	virtual void setInitialSetting(EnemyInitialParamBase* params) { }                        // _1C4 (weak)
+	virtual f32 getCellRadius() { return mScaleModifier * C_PARMS->mGeneral.mCellRadius(); } // _58 (weak)
+	virtual f32 getBodyRadius() { return _2F0; }                                             // _54 (weak)
+	virtual bool eatWhitePikminCallBack(Creature* source, f32 damage)                        // _298 (weak)
+	{
+		return EnemyBase::eatWhitePikminCallBack(source, C_PROPERPARMS.mPoisonDamage());
+	}
+	virtual f32 getDownSmokeScale() { return 0.65f; }            // _2EC (weak)
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; } // _25C (weak)
+	virtual void createEfxHamon()                                // _250 (weak)
+	{
+		if (!isStopMotion()) {
+			EnemyBase::createEfxHamon();
+		}
+	}
 	//////////////// VTABLE END
 
 	f32 getGoalDist();
 	void walkFunc();
 	void calcBaseTrMatrix();
 	void revisionAnimPos(f32);
-	void getWalkSpeed();
+	f32 getWalkSpeed();
 	void velocityControl();
 	FakePiki* getNearestPikiOrNavi(f32, f32);
 	void effectStart();
@@ -228,82 +312,6 @@ struct Mgr : public EnemyMgrBase {
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	Obj* mObj; // _44, array of Objs
-};
-
-struct Parms : public EnemyParmsBase {
-	struct ProperParms : public Parameters {
-		inline ProperParms()
-		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mCarrySpeed(this, 'fp01', "運搬速度", 100.0f, 0.0f, 300.0f)      // 'transport speed'
-		    , mReturnSpeed(this, 'fp02', "戻り速度", 100.0f, 0.0f, 300.0f)     // 'return speed'
-		    , mMinScale(this, 'fp03', "スケール最小", 1.0f, 0.0f, 3.0f)        // 'scale minimum'
-		    , mMaxScale(this, 'fp04', "スケール最大", 1.2f, 0.0f, 3.0f)        // 'scale maximum'
-		    , mPoisonDamage(this, 'fp05', "白ピクミン", 300.0f, 0.0f, 1000.0f) // 'white pikmin'
-		    , mHidingTime(this, 'ip01', "隠れている時間", 30, 0, 120)          // 'hiding time'
-		{
-		}
-
-		Parm<f32> mCarrySpeed;   // _804, fp01
-		Parm<f32> mReturnSpeed;  // _82C, fp02
-		Parm<f32> mMinScale;     // _854, fp03
-		Parm<f32> mMaxScale;     // _87C, fp04
-		Parm<f32> mPoisonDamage; // _8A4, fp05
-		Parm<int> mHidingTime;   // _8CC, ip01
-	};
-
-	Parms()
-	{
-		_8F8         = 1;
-		_8F9         = 1;
-		_8FA         = 1;
-		_8FB         = 1;
-		_8FC         = 0;
-		_8FD         = 1;
-		mIsPressKill = false;
-		_900         = 0.75f;
-		_904         = 20.0f;
-		_908         = 0.05f;
-		_90C         = 30.0f;
-		_910         = 8;
-		_914         = 35.0f;
-		_918         = 0.15f;
-		_91C         = 1.0f;
-		_920         = 0.15f;
-		_924         = 13.0f;
-		_928         = 18.0f;
-		_92C         = 1.4f;
-		_930         = 20.0f;
-	}
-
-	virtual void read(Stream& stream) // _08 (weak)
-	{
-		CreatureParms::read(stream);
-		mGeneral.read(stream);
-		mProperParms.read(stream);
-	}
-
-	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms; // _7F8
-	u8 _8F8;                  // _8F8, unknown
-	u8 _8F9;                  // _8F9, unknown
-	u8 _8FA;                  // _8FA, unknown
-	u8 _8FB;                  // _8FB, unknown
-	u8 _8FC;                  // _8FC, unknown
-	u8 _8FD;                  // _8FD, unknown
-	bool mIsPressKill;        // _8FE, kills if hit from above with a piki, like a kochappy
-	f32 _900;                 // _900
-	f32 _904;                 // _904
-	f32 _908;                 // _908
-	f32 _90C;                 // _90C
-	u8 _910;                  // _910
-	f32 _914;                 // _914
-	f32 _918;                 // _918
-	f32 _91C;                 // _91C
-	f32 _920;                 // _920
-	f32 _924;                 // _924
-	f32 _928;                 // _928
-	f32 _92C;                 // _92C
-	f32 _930;                 // _930
 };
 
 enum AnimID {

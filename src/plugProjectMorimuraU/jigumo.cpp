@@ -2,6 +2,9 @@
 #include "Game/Entities/Nest.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/generalEnemyMgr.h"
+#include "Game/EnemyFunc.h"
+#include "Game/Navi.h"
+#include "Game/AIConstants.h"
 #include "Dolphin/rand.h"
 
 namespace Game {
@@ -467,117 +470,40 @@ bool Obj::needShadow()
  * Address:	8036A2F4
  * Size:	000174
  */
-void Obj::doSimulationGround(f32)
+void Obj::doSimulationGround(f32 step)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stfd     f29, 0x10(r1)
-	psq_st   f29, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	fmr      f30, f1
-	lwz      r0, 0x334(r3)
-	cmpwi    r0, 0
-	ble      lbl_8036A358
-	lwz      r4, 0x1e4(r31)
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	bne      lbl_8036A358
-	clrlwi.  r0, r4, 0x1f
-	bne      lbl_8036A358
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1f8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036A43C
+	if (_334 > 0 && !isEvent(1, EB2_Stunned) && !isEvent(1, EB2_Earthquake)) {
+		doSimulationFlying(step);
+		return;
+	}
 
-lbl_8036A358:
-	lwz      r4, 0xc0(r31)
-	mr       r3, r31
-	lfs      f5, 0x1cc(r31)
-	lfs      f0, 0x9c(r4)
-	lfs      f1, 0x1d4(r31)
-	fsubs    f3, f5, f5
-	fdivs    f4, f30, f0
-	lfs      f7, 0x1c8(r31)
-	lfs      f0, 0x1dc(r31)
-	lfs      f6, 0x1d0(r31)
-	lfs      f31, lbl_8051E97C@sda21(r2)
-	fsubs    f2, f1, f7
-	fsubs    f0, f0, f6
-	fmuls    f1, f3, f4
-	fmuls    f2, f2, f4
-	fmuls    f0, f0, f4
-	fadds    f1, f5, f1
-	fadds    f2, f7, f2
-	fadds    f0, f6, f0
-	stfs     f2, 0x1c8(r31)
-	stfs     f1, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-	lwz      r4, 0xc0(r31)
-	lfs      f29, 0x90c(r4)
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	bne      lbl_8036A3CC
-	lfs      f29, lbl_8051E978@sda21(r2)
-	lfs      f31, lbl_8051E990@sda21(r2)
+	Vector3f targetVel = mTargetVelocity;
+	targetVel.y        = mCurrentVelocity.y;
+	Vector3f currVel   = mCurrentVelocity;
 
-lbl_8036A3CC:
-	lfs      f1, lbl_8051E97C@sda21(r2)
-	lfs      f0, 0x2fc(r31)
-	fcmpu    cr0, f1, f0
-	beq      lbl_8036A3FC
-	lfs      f1, 0x2f8(r31)
-	lfs      f0, 0x1c8(r31)
-	fnmsubs  f0, f1, f29, f0
-	stfs     f0, 0x1c8(r31)
-	lfs      f1, 0x300(r31)
-	lfs      f0, 0x1d0(r31)
-	fnmsubs  f0, f1, f29, f0
-	stfs     f0, 0x1d0(r31)
+	Vector3f change  = targetVel - currVel;
+	mCurrentVelocity = mCurrentVelocity + (change) * (step / C_PARMS->mCreatureProps.mProps.mAccel());
 
-lbl_8036A3FC:
-	lwz      r4, 0x1e4(r31)
-	li       r3, 0
-	clrlwi.  r0, r4, 0x1f
-	bne      lbl_8036A414
-	rlwinm.  r0, r4, 0, 0x1b, 0x1b
-	beq      lbl_8036A418
+	f32 vertFactor  = 1.0f;
+	f32 horizFactor = C_PARMS->_90C;
 
-lbl_8036A414:
-	li       r3, 1
+	if (getStateID() == JIGUMO_Attack) {
+		horizFactor = 0.0f;
+		vertFactor  = 2.5f;
+	}
 
-lbl_8036A418:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8036A424
-	lfs      f31, lbl_8051E994@sda21(r2)
+	if (_2F8.y != 1.0f) {
+		mCurrentVelocity.x -= _2F8.x * horizFactor;
+		mCurrentVelocity.z -= _2F8.z * horizFactor;
+	}
 
-lbl_8036A424:
-	lwz      r3, _aiConstants__4Game@sda21(r13)
-	lfs      f0, 0x1cc(r31)
-	lfs      f1, 0x28(r3)
-	fmuls    f1, f30, f1
-	fnmsubs  f0, f31, f1, f0
-	stfs     f0, 0x1cc(r31)
+	bool check = (isEvent(1, EB2_Earthquake) || isEvent(1, EB2_Dropping));
 
-lbl_8036A43C:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	psq_l    f29, 24(r1), 0, qr0
-	lfd      f29, 0x10(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	if (check) {
+		vertFactor = 3.0f;
+	}
+
+	mCurrentVelocity.y -= vertFactor * (step * _aiConstants->mGravity.mData);
 }
 
 /*
@@ -634,66 +560,16 @@ void Obj::doEndMovie()
 void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	lis      r4, 0x626F6479@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x626F6479@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x68656164@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x68656164@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F745F5F@l
-	bl       __as__4ID32FUl
-	mr       r3, r31
-	bl       effectStop__Q34Game6Jigumo3ObjFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	li       r4, 1
-	ori      r0, r0, 0x800
-	stw      r0, 0x1e0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmplwi   r3, 2
-	ble      lbl_8036A670
-	cmpwi    r3, 0xa
-	bne      lbl_8036A680
-
-lbl_8036A670:
-	lfs      f1, lbl_8051E998@sda21(r2)
-	lfs      f0, 0x1f8(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x2f0(r31)
-
-lbl_8036A680:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCollTree->getCollPart('body')->mSpecialID = 'st__';
+	mCollTree->getCollPart('head')->mSpecialID = '_t__';
+	effectStop();
+	enableEvent(0, EB_LifegaugeVisible);
+	setAlive(true);
+	setAtari(true);
+	int stateID = getStateID();
+	if (stateID == JIGUMO_Wait || stateID == JIGUMO_Appear || stateID == JIGUMO_Hide || stateID == JIGUMO_Search) {
+		_2F0 = 30.0f * mScaleModifier;
+	}
 }
 
 /*
@@ -703,72 +579,20 @@ lbl_8036A680:
  */
 void Obj::doFinishStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishStoneState__Q24Game9EnemyBaseFv
-	lbz      r0, 0x384(r31)
-	cmplwi   r0, 0
-	bne      lbl_8036A6F8
-	lis      r4, 0x626F6479@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x626F6479@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x68656164@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x68656164@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
+	EnemyBase::doFinishStoneState();
+	if (!_384) {
+		mCollTree->getCollPart('body')->mSpecialID = '____';
+		mCollTree->getCollPart('head')->mSpecialID = '____';
+	}
 
-lbl_8036A6F8:
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmplwi   r3, 2
-	ble      lbl_8036A710
-	cmpwi    r3, 0xa
-	bne      lbl_8036A74C
-
-lbl_8036A710:
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	li       r4, 0
-	rlwinm   r0, r0, 0, 0x15, 0x13
-	stw      r0, 0x1e0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036A74C:
-	lwz      r4, 0xc0(r31)
-	mr       r3, r31
-	lfs      f1, 0x1f8(r31)
-	lfs      f0, 0x1f4(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x2f0(r31)
-	bl       effectStart__Q34Game6Jigumo3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int stateID = getStateID();
+	if (stateID == JIGUMO_Wait || stateID == JIGUMO_Appear || stateID == JIGUMO_Hide || stateID == JIGUMO_Search) {
+		disableEvent(0, EB_LifegaugeVisible);
+		setAlive(false);
+		setAtari(false);
+	}
+	_2F0 = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
+	effectStart();
 }
 
 /*
@@ -2114,34 +1938,18 @@ bool Obj::isUnitePos()
  * Address:	8036B948
  * Size:	000058
  */
-void Obj::revisionAnimPos(float)
+void Obj::revisionAnimPos(f32 val)
 {
-	/*
-	lfs      f0, lbl_8051E97C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8036B970
-	lfs      f0, 0x198(r3)
-	stfs     f0, 0x18c(r3)
-	lfs      f0, 0x19c(r3)
-	stfs     f0, 0x190(r3)
-	lfs      f0, 0x1a0(r3)
-	stfs     f0, 0x194(r3)
-	blr
+	if (val > 1.0f) {
+		mPosition = mHomePosition;
+		return;
+	}
 
-lbl_8036B970:
-	lfs      f2, 0x198(r3)
-	lfs      f4, 0x2bc(r3)
-	lfs      f3, 0x1a0(r3)
-	fsubs    f2, f2, f4
-	lfs      f0, 0x2c4(r3)
-	fsubs    f3, f3, f0
-	fmadds   f0, f2, f1, f4
-	stfs     f0, 0x18c(r3)
-	lfs      f0, 0x2c4(r3)
-	fmadds   f0, f3, f1, f0
-	stfs     f0, 0x194(r3)
-	blr
-	*/
+	Vector3f sep = mHomePosition;
+	sep -= _2BC;
+
+	mPosition.x = sep.x * val + _2BC.x;
+	mPosition.z = sep.z * val + _2BC.z;
 }
 
 /*
@@ -2149,54 +1957,20 @@ lbl_8036B970:
  * Address:	8036B9A0
  * Size:	000080
  */
-void Obj::getWalkSpeed()
+f32 Obj::getWalkSpeed()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 8
-	beq      lbl_8036BA04
-	bge      lbl_8036B9D8
-	cmpwi    r3, 7
-	bge      lbl_8036B9E4
-	cmpwi    r3, 5
-	bge      lbl_8036B9F0
-	b        lbl_8036BA04
+	switch (getStateID()) {
+	case JIGUMO_Carry:
+		return C_PROPERPARMS.mCarrySpeed();
 
-lbl_8036B9D8:
-	cmpwi    r3, 0xa
-	bge      lbl_8036BA04
-	b        lbl_8036B9FC
+	case JIGUMO_Miss:
+	case JIGUMO_Return:
+		return C_PROPERPARMS.mReturnSpeed();
+	case JIGUMO_Eat:
+		return 0.0f;
+	}
 
-lbl_8036B9E4:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x81c(r3)
-	b        lbl_8036BA0C
-
-lbl_8036B9F0:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x844(r3)
-	b        lbl_8036BA0C
-
-lbl_8036B9FC:
-	lfs      f1, lbl_8051E978@sda21(r2)
-	b        lbl_8036BA0C
-
-lbl_8036BA04:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2e4(r3)
-
-lbl_8036BA0C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return C_PARMS->mGeneral.mMoveSpeed();
 }
 
 /*
@@ -2206,39 +1980,10 @@ lbl_8036BA0C:
  */
 void Obj::velocityControl()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getMotionFrameMax__Q24Game9EnemyBaseFv
-	fmr      f31, f1
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	fdivs    f1, f1, f31
-	lfs      f0, lbl_8051E9AC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8036BA78
-	lfs      f0, 0x1c8(r31)
-	lfs      f1, lbl_8051E984@sda21(r2)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x1c8(r31)
-	lfs      f0, 0x1d0(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x1d0(r31)
-
-lbl_8036BA78:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (getMotionFrame() / getMotionFrameMax() < 0.1f) {
+		mCurrentVelocity.x *= 2.0f;
+		mCurrentVelocity.z *= 2.0f;
+	}
 }
 
 /*
@@ -2246,56 +1991,20 @@ lbl_8036BA78:
  * Address:	8036BA94
  * Size:	0000A8
  */
-FakePiki* Obj::getNearestPikiOrNavi(f32, f32)
+FakePiki* Obj::getNearestPikiOrNavi(f32 angle, f32 radius)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	fmr      f31, f2
-	mr       r30, r3
-	fmr      f30, f1
-	addi     r4, r1, 0xc
-	li       r5, 0
-	frsp     f0, f31
-	stfs     f31, 0xc(r1)
-	fmuls    f0, f0, f31
-	stfs     f0, 0xc(r1)
-	stfs     f0, 8(r1)
-	bl
-"getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
-	fmr      f1, f30
-	mr       r31, r3
-	fmr      f2, f31
-	mr       r3, r30
-	addi     r4, r1, 8
-	li       r5, 0
-	bl
-"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
-	lfs      f1, 0xc(r1)
-	lfs      f0, 8(r1)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8036BB14
-	mr       r3, r31
+	f32 pikiDist = radius;
+	pikiDist *= radius;
+	f32 naviDist = pikiDist;
+	Piki* piki   = EnemyFunc::getNearestPikmin(this, angle, radius, &pikiDist, nullptr);
 
-lbl_8036BB14:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	Navi* navi = EnemyFunc::getNearestNavi(this, angle, radius, &naviDist, nullptr);
+
+	if (pikiDist < naviDist) {
+		return piki;
+	}
+
+	return navi;
 }
 
 /*
@@ -2305,130 +2014,43 @@ lbl_8036BB14:
  */
 void Obj::effectStart()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lfs      f0, lbl_8051E978@sda21(r2)
-	lis      r4, __vt__Q23efx3Arg@ha
-	stw      r0, 0x44(r1)
-	addi     r5, r4, __vt__Q23efx3Arg@l
-	lis      r4, __vt__Q23efx8ArgScale@ha
-	stw      r31, 0x3c(r1)
-	addi     r0, r4, __vt__Q23efx8ArgScale@l
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	lfs      f3, 0x1f8(r3)
-	stfs     f0, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	lwz      r7, 0x14(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r6, 0x18(r1)
-	lwz      r4, 0x1c(r1)
-	stw      r7, 8(r1)
-	stw      r6, 0xc(r1)
-	lfs      f2, 8(r1)
-	stw      r4, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	stw      r5, 0x20(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	stw      r0, 0x20(r1)
-	stfs     f3, 0x30(r1)
-	bl       getStateID__Q24Game9EnemyBaseFv
-	mr       r31, r3
-	cmpwi    r31, 4
-	bne      lbl_8036BC48
-	lwz      r0, 0x280(r30)
-	cmplwi   r0, 0
-	beq      lbl_8036BC28
-	lwz      r3, 0x374(r30)
-	cmplwi   r3, 0
-	beq      lbl_8036BC48
-	lwz      r12, 0(r3)
-	addi     r4, r1, 0x20
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x18c(r30)
-	stfs     f0, 0x364(r30)
-	lfs      f0, 0x190(r30)
-	stfs     f0, 0x368(r30)
-	lfs      f0, 0x194(r30)
-	stfs     f0, 0x36c(r30)
-	lwz      r3, 0x280(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0(r3)
-	stfs     f0, 0x368(r30)
-	b        lbl_8036BC48
+	Vector3f pos(0.0f);
+	efx::ArgScale fxArg(pos, mScaleModifier);
 
-lbl_8036BC28:
-	lwz      r3, 0x370(r30)
-	cmplwi   r3, 0
-	beq      lbl_8036BC48
-	lwz      r12, 0(r3)
-	addi     r4, r1, 0x20
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
+	int stateID = getStateID();
+	if (stateID == JIGUMO_Attack) {
+		if (mWaterBox) {
+			if (mEfxAttackW) {
+				mEfxAttackW->create(&fxArg);
+				mEffectPosition   = mPosition;
+				mEffectPosition.y = *mWaterBox->getSeaHeightPtr();
+			}
+		} else {
+			if (mEfxAttack) {
+				mEfxAttack->create(&fxArg);
+			}
+		}
+	}
 
-lbl_8036BC48:
-	cmpwi    r31, 7
-	bne      lbl_8036BCA8
-	lfs      f0, lbl_8051E978@sda21(r2)
-	stfs     f0, 0x344(r30)
-	lwz      r0, 0x280(r30)
-	cmplwi   r0, 0
-	beq      lbl_8036BC88
-	lwz      r3, 0x37c(r30)
-	cmplwi   r3, 0
-	beq      lbl_8036BCA8
-	lwz      r12, 0(r3)
-	addi     r4, r1, 0x20
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036BCA8
+	if (stateID == JIGUMO_Carry) {
+		_344 = 0.0f;
+		if (mWaterBox) {
+			if (mEfxBackW) {
+				mEfxBackW->create(&fxArg);
+			}
+		} else {
+			if (mEfxBack) {
+				mEfxBack->create(&fxArg);
+			}
+		}
+	}
 
-lbl_8036BC88:
-	lwz      r3, 0x378(r30)
-	cmplwi   r3, 0
-	beq      lbl_8036BCA8
-	lwz      r12, 0(r3)
-	addi     r4, r1, 0x20
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036BCA8:
-	cmpwi    r31, 6
-	bne      lbl_8036BCE4
-	lwz      r0, 0x280(r30)
-	cmplwi   r0, 0
-	bne      lbl_8036BCE4
-	lfs      f1, lbl_8051E9DC@sda21(r2)
-	addi     r4, r1, 0x20
-	lfs      f0, 0x1f8(r30)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x30(r1)
-	lwz      r3, 0x380(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036BCE4:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	if (stateID == JIGUMO_Return) {
+		if (!mWaterBox) {
+			fxArg.mScale = 1.625f * mScaleModifier;
+			mEfxSmoke->create(&fxArg);
+		}
+	}
 }
 
 /*
@@ -2438,43 +2060,11 @@ lbl_8036BCE4:
  */
 void Obj::effectStop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x374(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x370(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x37c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x378(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x380(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEfxAttackW->fade();
+	mEfxAttack->fade();
+	mEfxBackW->fade();
+	mEfxBack->fade();
+	mEfxSmoke->fade();
 }
 
 /*
@@ -2502,21 +2092,7 @@ void Obj::appearEffectStop()
  * Address:	8036BD88
  * Size:	000028
  */
-void Obj::boundEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051E9E0@sda21(r2)
-	addi     r4, r3, 0x18c
-	stw      r0, 0x14(r1)
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::boundEffect() { createBounceEffect(mPosition, 0.75f); }
 
 /*
  * --INFO--
@@ -2611,18 +2187,11 @@ lbl_8036BEC0:
  */
 void Obj::killNest()
 {
-	/*
-	lwz      r4, 0x2e4(r3)
-	cmplwi   r4, 0
-	beq      lbl_8036BEE8
-	li       r0, 1
-	stw      r0, 0x2f0(r4)
+	if (mHouse) {
+		mHouse->_2F0 = 1;
+	}
 
-lbl_8036BEE8:
-	li       r0, 0
-	stw      r0, 0x2e4(r3)
-	blr
-	*/
+	mHouse = nullptr;
 }
 
 /*
@@ -2757,115 +2326,5 @@ lbl_8036C03C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8036C088
- * Size:	000004
- */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
-
-/*
- * --INFO--
- * Address:	8036C08C
- * Size:	000014
- */
-f32 Obj::getCellRadius()
-{
-	/*
-	lwz      r4, 0xc0(r3)
-	lfs      f1, 0x1f8(r3)
-	lfs      f0, 0x1cc(r4)
-	fmuls    f1, f1, f0
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C0A0
- * Size:	000008
- */
-f32 Obj::getBodyRadius()
-{
-	/*
-	lfs      f1, 0x2f0(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C0A8
- * Size:	000028
- */
-bool Obj::eatWhitePikminCallBack(Creature*, float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0xc0(r3)
-	lfs      f1, 0x8bc(r5)
-	bl       eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C0D0
- * Size:	000008
- */
-f32 Obj::getDownSmokeScale()
-{
-	/*
-	lfs      f1, lbl_8051E9E8@sda21(r2)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C0D8
- * Size:	000008
- */
-MouthSlots* Obj::getMouthSlots()
-{
-	/*
-	addi     r3, r3, 0x2d8
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C0E0
- * Size:	00003C
- */
-void Obj::createEfxHamon()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       isStopMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8036C108
-	mr       r3, r31
-	bl       createEfxHamon__Q24Game9EnemyBaseFv
-
-lbl_8036C108:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 } // namespace Jigumo
 } // namespace Game
