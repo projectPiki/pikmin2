@@ -1602,7 +1602,7 @@ void Obj::flickStickNavi(bool check)
 			if (absVal(slot->mOffset.x - offset) < 1.0f && absVal(slot->mOffset.y - val) < 1.0f) {
 				Creature* navi = slot->mStuckCreature;
 				if (navi) {
-					InteractFlick flick(this, 0.0f, 0.0f, -1000.0f);
+					InteractFlick flick(this, 0.0f, 0.0f, FLICK_BACKWARD_ANGLE);
 					navi->stimulate(flick);
 
 					Vector3f naviPos = navi->getPosition();

@@ -70,8 +70,9 @@ void Obj::doUpdate()
  * Address:	80258784
  * Size:	000280
  */
-void Obj::doSimulationFlying(f32 p1)
+void Obj::doSimulationFlying(f32 step)
 {
+
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

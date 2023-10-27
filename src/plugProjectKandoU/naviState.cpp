@@ -6,6 +6,7 @@
 #include "Game/MoviePlayer.h"
 #include "Game/AIConstants.h"
 #include "Game/Entities/ItemOnyon.h"
+#include "Game/EnemyFunc.h"
 #include "Dolphin/rand.h"
 #include "Game/rumble.h"
 #include "PSM/Navi.h"
@@ -300,7 +301,7 @@ void NaviStuckState::exec(Navi* navi)
 					if (creature) {
 						if (randFloat() > 0.05f) {
 							f32 knockback = 120.0f + 100.0f * randFloat();
-							f32 angle     = -1000.0f;
+							f32 angle     = FLICK_BACKWARD_ANGLE;
 							if (randFloat() > 0.1f) {
 								angle = JMath::atanTable_.atan2_(stickVals.x, stickVals.z);
 								angle = roundAng(0.9424779f * (randFloat() - 0.5f) + angle);
@@ -850,10 +851,10 @@ void NaviWalkState::initAI_animation(Navi* navi)
 {
 	mAIState = WALKAI_Animation;
 
-	KandoLib::Choice choiceListIdle[4]    = { KandoLib::Choice(IPikiAnims::AKUBI, 0.25f), KandoLib::Choice(IPikiAnims::FURIMUKU, 0.25f),
-                                           KandoLib::Choice(IPikiAnims::SAGASU2, 0.25f), KandoLib::Choice(IPikiAnims::JUMP, 0.25f) };
-	KandoLib::Choice choiceListControl[4] = { KandoLib::Choice(IPikiAnims::AKUBI, 0.25f), KandoLib::Choice(IPikiAnims::FURIMUKU, 0.25f),
-		                                      KandoLib::Choice(IPikiAnims::SAGASU2, 0.25f), KandoLib::Choice(IPikiAnims::GATTU, 0.25f) };
+	KandoLib::Choice choiceListIdle[4]
+	    = { { IPikiAnims::AKUBI, 0.25f }, { IPikiAnims::FURIMUKU, 0.25f }, { IPikiAnims::SAGASU2, 0.25f }, { IPikiAnims::JUMP, 0.25f } };
+	KandoLib::Choice choiceListControl[4]
+	    = { { IPikiAnims::AKUBI, 0.25f }, { IPikiAnims::FURIMUKU, 0.25f }, { IPikiAnims::SAGASU2, 0.25f }, { IPikiAnims::GATTU, 0.25f } };
 
 	int animIdx;
 	if (navi->mController1) {
@@ -2738,10 +2739,10 @@ int NaviPathMoveState::initPathfinding(Navi* navi)
 		edgeSearchArg.mInWater = true;
 	}
 	if (mapMgr->mRouteMgr->getNearestEdge(edgeSearchArg)) {
-		wp = !edgeSearchArg.mWp1->mFlags.isSet(WPF_Closed) ? edgeSearchArg.mWp1 : edgeSearchArg.mWp2;
+		wp = !edgeSearchArg.mWp1->isFlag(WPF_Closed) ? edgeSearchArg.mWp1 : edgeSearchArg.mWp2;
 	} else {
 		if (mapMgr->mRouteMgr->getNearestEdge(edgeSearchArg)) {
-			wp = edgeSearchArg.mWp1->mFlags.isSet(WPF_Closed) ? edgeSearchArg.mWp2 : edgeSearchArg.mWp1;
+			wp = edgeSearchArg.mWp1->isFlag(WPF_Closed) ? edgeSearchArg.mWp2 : edgeSearchArg.mWp1;
 		} else {
 			return 2;
 		}

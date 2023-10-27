@@ -527,14 +527,14 @@ void StateFlick::exec(EnemyBase* enemy)
 		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_3) {
 			Parms* parms1 = static_cast<Parms*>(sokkuri->mParms);
 			EnemyFunc::flickNearbyNavi(sokkuri, parms1->mGeneral.mShakeRange.mValue, parms1->mGeneral.mShakeKnockback.mValue,
-			                           parms1->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                           parms1->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			Parms* parms2 = static_cast<Parms*>(sokkuri->mParms);
 			EnemyFunc::flickNearbyPikmin(sokkuri, parms2->mGeneral.mShakeRange.mValue, parms2->mGeneral.mShakeKnockback.mValue,
-			                             parms2->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                             parms2->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 			Parms* parms3 = static_cast<Parms*>(sokkuri->mParms);
 			EnemyFunc::flickStickPikmin(sokkuri, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
-			                            parms3->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                            parms3->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			sokkuri->mFlickTimer = 0.0f;
 		} else if ((u32)sokkuri->mCurAnim->mType == KEYEVENT_4) {
 			sokkuri->disableEvent(0, EB_NoInterrupt);

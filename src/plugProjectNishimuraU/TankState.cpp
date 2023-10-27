@@ -1270,7 +1270,7 @@ void StateFlick::exec(EnemyBase* enemy)
 	if ((u32)enemy->mCurAnim->mType == KEYEVENT_2) {
 		EnemyParmsBase* parms = CG_PARMS(tank);
 		EnemyFunc::flickNearbyNavi(tank, parms->mGeneral.mShakeRange.mValue, parms->mGeneral.mShakeKnockback.mValue,
-		                           parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+		                           parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 		parms = CG_PARMS(tank);
 		EnemyFunc::flickNearbyPikmin(tank, parms->mGeneral.mShakeRange.mValue, parms->mGeneral.mShakeKnockback.mValue,
 		                             parms->mGeneral.mShakeDamage.mValue, tank->getFaceDir(), nullptr);

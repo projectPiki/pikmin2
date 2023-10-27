@@ -218,7 +218,7 @@ void StateJump::exec(EnemyBase* enemy)
 
 		EnemyFunc::flickStickPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeChance.mValue,
 		                            CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue, CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue,
-		                            -1000.0f, nullptr);
+		                            FLICK_BACKWARD_ANGLE, nullptr);
 	}
 
 	if (fuefuki->mStateTimer > CG_PROPERPARMS(fuefuki).mJumpTime.mValue) {
@@ -247,13 +247,13 @@ void StateJump::exec(EnemyBase* enemy)
 
 			EnemyFunc::flickNearbyNavi(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeRange.mValue,
 			                           CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue, CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue,
-			                           -1000.0f, nullptr);
+			                           FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickNearbyPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeRange.mValue,
 			                             CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue,
-			                             CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                             CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickStickPikmin(fuefuki, CG_PARMS(fuefuki)->mGeneral.mShakeChance.mValue,
 			                            CG_PARMS(fuefuki)->mGeneral.mShakeKnockback.mValue, CG_PARMS(fuefuki)->mGeneral.mShakeDamage.mValue,
-			                            -1000.0f, nullptr);
+			                            FLICK_BACKWARD_ANGLE, nullptr);
 
 			fuefuki->mFlickTimer = 0.0f;
 			fuefuki->createDownEffect(0.7f);

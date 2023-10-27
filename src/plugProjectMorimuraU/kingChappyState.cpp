@@ -914,10 +914,10 @@ void StateFlick::exec(EnemyBase* enemy)
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue * enemy->mScaleModifier;
 
-			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, enemy->getFaceDir(), nullptr);
 			if (naviCheck) {
-				EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
+				EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			}
 			enemy->mFlickTimer = 0.0f;
 			if (!enemy->isEvent(0, EB_PS3)) {
@@ -1658,8 +1658,8 @@ void StateWarCry::exec(EnemyBase* enemy)
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue * enemy->mScaleModifier;
 
 			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, enemy->getFaceDir(), nullptr);
-			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 
 			enemy->mFlickTimer = 0.0f;
 			break;
@@ -2596,8 +2596,8 @@ void StateAppear::exec(EnemyBase* enemy)
 			f32 shakeDamage = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 shakeRange  = CG_PROPERPARMS(enemy).mFp09.mValue;
 
-			EnemyFunc::flickNearbyPikmin(enemy, shakeRange, shakePower, shakeDamage, -1000.0f, nullptr);
-			EnemyFunc::flickNearbyNavi(enemy, shakeRange, shakePower, shakeDamage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, shakeRange, shakePower, shakeDamage, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, shakeRange, shakePower, shakeDamage, FLICK_BACKWARD_ANGLE, nullptr);
 			break;
 
 		case KEYEVENT_4:

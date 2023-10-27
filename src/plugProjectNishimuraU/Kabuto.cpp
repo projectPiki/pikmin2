@@ -132,7 +132,7 @@ void Obj::doStartStoneState()
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_Fkabuto) {
 		int stateID = getStateID();

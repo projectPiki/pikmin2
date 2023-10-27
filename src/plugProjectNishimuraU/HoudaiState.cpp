@@ -181,29 +181,29 @@ void StateLand::exec(EnemyBase* enemy)
 
 	if (houdai->mCurAnim->mIsPlaying) {
 		if ((u32)houdai->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 			houdai->startChimneyEffect();
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_3) {
 			houdai->finishChimneyEffect();
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_4) {
-			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 			houdai->createAppearFootEffect(0);
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_5) {
-			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 			houdai->createOnGroundEffect(0, houdai->mWaterBox);
 			houdai->createAppearFootEffect(2);
 			houdai->createAppearFootEffect(1);
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_6) {
-			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 			houdai->createAppearHahenEffect();
 			houdai->createAppearFootEffect(3);
 
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_END) {
-			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 			if (houdai->mHealth <= 0.0f) {
 				transit(houdai, HOUDAI_Dead, nullptr);
 

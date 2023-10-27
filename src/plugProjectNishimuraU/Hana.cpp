@@ -112,15 +112,15 @@ void Obj::flickStatePikmin()
 {
 	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
 	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
-	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	                            parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 	parms = static_cast<ChappyBase::Parms*>(mParms);
 	EnemyFunc::flickNearbyPikmin(this, parms->mGeneral.mShakeRange.mValue, parms->mGeneral.mShakeKnockback.mValue,
-	                             parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	                             parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 	parms = static_cast<ChappyBase::Parms*>(mParms);
 	EnemyFunc::flickNearbyNavi(this, parms->mGeneral.mShakeRange.mValue, parms->mGeneral.mShakeKnockback.mValue,
-	                           parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	                           parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
 /*
@@ -132,7 +132,7 @@ void Obj::flickAttackBomb()
 {
 	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
 	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
-	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	                            parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 	efx::THanaMiss efx(mModel->getJoint("kuti2")->getWorldMatrix());
 	efx.create(nullptr);
 
@@ -176,7 +176,7 @@ void Obj::setUnderGround()
 {
 	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
 	EnemyFunc::flickStickPikmin(this, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
-	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	                            parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 	mBuried = true;
 	enableEvent(0, EB_BitterImmune);
@@ -205,11 +205,11 @@ void Obj::createSmokeEffect()
 
 		ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(mParms);
 		EnemyFunc::flickNearbyPikmin(this, parms->mGeneral.mPrivateRadius.mValue, parms->mGeneral.mShakeKnockback.mValue,
-		                             parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+		                             parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 		parms = static_cast<ChappyBase::Parms*>(mParms);
 		EnemyFunc::flickNearbyNavi(this, parms->mGeneral.mPrivateRadius.mValue, parms->mGeneral.mShakeKnockback.mValue,
-		                           parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+		                           parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 		rumbleMgr->startRumble(10, pos, 2);
 
 	} else {

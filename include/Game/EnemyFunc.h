@@ -6,6 +6,8 @@
 #include "Condition.h"
 #include "types.h"
 
+#define FLICK_BACKWARD_ANGLE (-1000.0f)
+
 namespace Game {
 struct Creature;
 struct EnemyBase;
@@ -47,23 +49,23 @@ Creature* getNearestPikminOrNavi(Creature* creature, f32 searchAngle, f32 search
                                  Condition<Piki>* pikiCond);
 
 void flickCreature(Creature* flicker, Creature* toFlick, f32 knockback, f32 damage, f32 angle);
-void flickStickPikmin(Creature* creature, f32 flickChance, f32 knockback, f32 damage, f32 angle, Condition<Piki>* condition);
-void flickNearbyPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
-void flickNearbyNavi(Creature*, f32, f32, f32, f32, Condition<Navi>*);
+void flickStickPikmin(Creature* flicker, f32 flickChance, f32 knockback, f32 damage, f32 angle, Condition<Piki>* condition);
+void flickNearbyPikmin(Creature* flicker, f32 searchRadius, f32 knockback, f32 damage, f32 angle, Condition<Piki>* condition);
+void flickNearbyNavi(Creature* flicker, f32 searchRadius, f32 knockback, f32 damage, f32 angle, Condition<Navi>* condition);
 
-int eatPikmin(EnemyBase*, Condition<Piki>*);
-void swallowPikmin(Creature*, f32, Condition<Piki>*);
-int attackNavi(Creature*, f32, f32, f32, CollPart*, Condition<Navi>*);
+int eatPikmin(EnemyBase* eater, Condition<Piki>* condition);
+void swallowPikmin(Creature* eater, f32 poisonDamage, Condition<Piki>* condition);
+int attackNavi(Creature* attacker, f32 searchRadius, f32 searchAngle, f32 damage, CollPart* part, Condition<Navi>* condition);
 
-bool isStartFlick(EnemyBase*, bool);
-bool isTherePikmin(Creature*, f32, Condition<Piki>*);
-bool isThereOlimar(Creature*, f32, Condition<Navi>*);
+bool isStartFlick(EnemyBase* flicker, bool doResetFlickTimer);
+bool isTherePikmin(Creature* creature, f32 searchRadius, Condition<Piki>* condition);
+bool isThereOlimar(Creature* creature, f32 searchRadius, Condition<Navi>* condition);
 
-int getSurroundPikminNum(Creature*, f32, Condition<Piki>*);
-int getStickPikminColorNum(Creature*, int);
+int getSurroundPikminNum(Creature* creature, f32 searchRadius, Condition<Piki>* condition);
+int getStickPikminColorNum(Creature* creature, int color);
 
-void walkToTarget(EnemyBase*, Creature*, f32, f32, f32);
-void walkToTarget(EnemyBase*, Vector3f&, f32, f32, f32);
+void walkToTarget(EnemyBase* walker, Creature* target, f32 speed, f32 turnFactor, f32 maxTurnSpeed);
+void walkToTarget(EnemyBase* walker, Vector3f& targetPos, f32 speed, f32 turnFactor, f32 maxTurnSpeed);
 
 inline bool isPikminOrNaviInRange(EnemyBase* enemy, f32 range)
 {

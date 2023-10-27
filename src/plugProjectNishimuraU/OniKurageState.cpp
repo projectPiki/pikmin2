@@ -78,7 +78,7 @@ void StateDead::exec(EnemyBase* enemy)
 
 	if (kurage->mCurAnim->mIsPlaying) {
 		if ((u32)kurage->mCurAnim->mType == KEYEVENT_2) {
-			EnemyFunc::flickStickPikmin(kurage, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(kurage, 1.0f, 100.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 
 		} else if ((u32)kurage->mCurAnim->mType == KEYEVENT_3) {
 			kurage->deathProcedure();
@@ -761,14 +761,14 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 		} else if ((u32)kurage->mCurAnim->mType == KEYEVENT_3) {
 			Parms* parms1 = static_cast<Parms*>(kurage->mParms);
 			EnemyFunc::flickNearbyNavi(kurage, parms1->mGeneral.mShakeRange.mValue, parms1->mGeneral.mShakeKnockback.mValue,
-			                           parms1->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                           parms1->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			Parms* parms2 = static_cast<Parms*>(kurage->mParms);
 			EnemyFunc::flickNearbyPikmin(kurage, parms2->mGeneral.mShakeRange.mValue, parms2->mGeneral.mShakeKnockback.mValue,
-			                             parms2->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                             parms2->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 			Parms* parms3 = static_cast<Parms*>(kurage->mParms);
 			EnemyFunc::flickStickPikmin(kurage, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
-			                            parms3->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                            parms3->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			kurage->mFlickTimer = 0.0f;
 
 		} else if ((u32)kurage->mCurAnim->mType == KEYEVENT_END) {

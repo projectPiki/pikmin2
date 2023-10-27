@@ -21,7 +21,7 @@ Obj* curJ;
  */
 static bool mouthScaleCallBack(J3DJoint* joint, int jointIdx)
 {
-	if (jointIdx == 0 && curJ) {
+	if (jointIdx == JIGUMO_MOUTH_JOINT && curJ) {
 		curJ->mouthScaleMtxCalc();
 	}
 
@@ -37,6 +37,7 @@ void Obj::setParameters()
 {
 	EnemyBase::setParameters();
 
+	// scale = randomly between min and max, but in 5 equal steps, so 5 options
 	// this is a dumb way to do this but sure
 	f32 scale     = C_PROPERPARMS.mMinScale();
 	f32 scaleDiff = C_PROPERPARMS.mMaxScale();
@@ -46,13 +47,16 @@ void Obj::setParameters()
 	scale = scaleDiff * randNum + scale;
 	setScale(scale);
 
+	// nest/house scales with size of crawmad
 	if (mHouse) {
 		mHouse->setScale(scale);
 		mHouse->mCollTree->mPart->setScale(scale);
 	}
 
+	// mouth collision also scales with size of crawmad (but has a minimum size)
+	// there's only one mouth slot so this loop is kinda pointless
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 rad = C_PARMS->_928 * mScaleModifier;
+		f32 rad = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
 		if (rad < 25.0f) {
 			rad = 25.0f;
 		}
@@ -61,7 +65,7 @@ void Obj::setParameters()
 	}
 
 	mCurLodSphere.mRadius = mScaleModifier * C_PARMS->mGeneral.mOffCameraRadius();
-	_2F0                  = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
+	mBodyRadius           = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
 }
 
 /*
@@ -94,7 +98,7 @@ void Obj::birth(Vector3f& pos, f32 faceDir)
 	}
 
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 rad = C_PARMS->_928 * mScaleModifier;
+		f32 rad = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
 		if (rad < 25.0f) {
 			rad = 25.0f;
 		}
@@ -113,25 +117,25 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, JIGUMO_Appear, nullptr);
 	EnemyBase::onInit(initArg);
 	fadeEfxHamon();
-	_2EC = mFaceDir;
-	_334 = 0;
-	_2F8 = Vector3f(0.0f, 1.0f, 0.0f);
-	_304 = _2F8;
-	_33C = 0.0f;
-	_338 = 0.0f;
-	_340 = 1;
+	mNextFaceDir      = mFaceDir;
+	_334              = 0;
+	_2F8              = Vector3f(0.0f, 1.0f, 0.0f);
+	_304              = _2F8;
+	mPauseTriggerTime = 0.0f;
+	mPauseTimer       = 0.0f;
+	mDoPauseAnim      = true;
 	_310.set(1.0f, 0.0f, 0.0f, 0.0f);
-	_320            = _310;
-	_330            = 0.0f;
-	_2BC            = Vector3f(0.0f);
-	_344            = 0.0f;
-	_2E9            = 0;
-	_384            = 0;
-	_350            = mHomePosition;
-	_35C            = 0;
-	mEffectPosition = mPosition;
-	_2F4            = 1.0f;
-	_34C            = 0;
+	_320                     = _310;
+	_330                     = 0.0f;
+	mHideAnimPosition        = Vector3f(0.0f);
+	_344                     = 0.0f;
+	mDoScaleDownMouth        = false;
+	mIsOutsideHouse          = false;
+	mPrevReturnCheckPosition = mHomePosition;
+	mReturnTimer             = 0;
+	mEffectPosition          = mPosition;
+	_2F4                     = 1.0f;
+	_34C                     = 0;
 
 	mBodyJoint = mModel->getJoint("body_joint1");
 	P2ASSERTLINE(151, mBodyJoint); // okay.
@@ -144,7 +148,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	P2ASSERTLINE(163, mKamuJointIdx); // S I R.
 
 	data->mJointTree.mJoints[mKamuJointIdx]->mFunction = &mouthScaleCallBack;
-	_2F0                                               = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
+	mBodyRadius                                        = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
 }
 
 /*
@@ -154,7 +158,7 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 Obj::Obj()
     : mHouse(nullptr)
-    , _385(1)
+    , mCanBeEarthquaked(true)
     , mFsm(nullptr)
 {
 	mAnimator = new ProperAnimator;
@@ -258,7 +262,7 @@ void Obj::initMouthSlots()
 
 	// kinda dumb to do this for one mouth slot but go off
 	for (int i = 0; i < mMouthSlots.getMax(); i++) {
-		f32 rad = C_PARMS->_928 * mScaleModifier;
+		f32 rad = C_PARMS->mMouthSlotSizeModifier * mScaleModifier;
 		if (rad < 25.0f) {
 			rad = 25.0f;
 		}
@@ -425,7 +429,7 @@ void Obj::inWaterCallback(WaterBox* wb)
  */
 bool Obj::earthquakeCallBack(Creature* source, f32 damage)
 {
-	if (_385 && getStateID() != JIGUMO_Flick && !_334) {
+	if (mCanBeEarthquaked && getStateID() != JIGUMO_Flick && _334 == 0) {
 		return EnemyBase::earthquakeCallBack(source, damage);
 	}
 
@@ -570,7 +574,7 @@ void Obj::doStartStoneState()
 	setAtari(true);
 	int stateID = getStateID();
 	if (stateID == JIGUMO_Wait || stateID == JIGUMO_Appear || stateID == JIGUMO_Hide || stateID == JIGUMO_Search) {
-		_2F0 = 30.0f * mScaleModifier;
+		mBodyRadius = 30.0f * mScaleModifier;
 	}
 }
 
@@ -582,7 +586,7 @@ void Obj::doStartStoneState()
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	if (!_384) {
+	if (!mIsOutsideHouse) {
 		mCollTree->getCollPart('body')->mSpecialID = '____';
 		mCollTree->getCollPart('head')->mSpecialID = '____';
 	}
@@ -593,7 +597,7 @@ void Obj::doFinishStoneState()
 		setAlive(false);
 		setAtari(false);
 	}
-	_2F0 = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
+	mBodyRadius = mScaleModifier * C_PARMS->mGeneral.mPikminDamageRadius();
 	effectStart();
 }
 
@@ -615,46 +619,54 @@ void Obj::walkFunc()
 	if (mWaterBox) {
 		mEffectPosition.y = *mWaterBox->getSeaHeightPtr();
 	}
-	f32 val, terrRad;
+	f32 angleWeight, terrRad;
 	f32 walkSpeed = getWalkSpeed();                       // f29
 	terrRad       = C_PARMS->mGeneral.mTerritoryRadius(); // f30
-	val           = C_PARMS->_904;                        // f31
+	angleWeight   = C_PARMS->_904;                        // f31, 20.0f by default
 	f32 rotRate   = C_PARMS->mGeneral.mRotationalAccel(); // f28
 	f32 rotSpeed  = C_PARMS->mGeneral.mRotationalSpeed(); // f27
 
 	int stateID = getStateID();
-	if (stateID == JIGUMO_Carry || (!C_PARMS->_8FC && (stateID == JIGUMO_Return || stateID == JIGUMO_Miss))) {
-		f32 dist   = mGoalPosition.distance(mPosition);
-		f32 factor = dist;
-		if (dist < 0.0f) {
-			factor = 0.0f;
-		}
-		f32 angle    = (C_PARMS->_908 * factor * 360.0f * (1.0f / terrRad));
-		f32 sinTheta = val * (f32)sin(180.0f + angle); // f2
 
-		if (!C_PARMS->_8FB) {
+	// if we're outside and not attacking (assuming a flag is not set, which is the default)
+	if (stateID == JIGUMO_Carry || (!C_PARMS->_8FC && (stateID == JIGUMO_Return || stateID == JIGUMO_Miss))) {
+		Vector3f sep = mGoalPosition;
+		sep -= mPosition;
+
+		f32 dist = sep.length();
+		// f32 dist = mGoalPosition.distance(mPosition);
+		if (dist < 0.0f) {
+			dist = 0.0f;
+		}
+
+		f32 preAngle = (C_PARMS->_908 * (dist * (360.0f * (1.0f / terrRad)))); // _908 is 0.05f by default
+		f32 sinTheta = angleWeight * (f32)sin(180.0f + preAngle);              // f2
+
+		if (!C_PARMS->_8FB) { // does not run by default, but forces angle to 0
 			sinTheta = 0.0f;
 		}
 
-		sinTheta *= _344;
-		_344 += 0.1f;
-
+		sinTheta *= _344;                 // angle goes from 0 to whatever the sinTheta factor is over time
 		f32 newAng = TORADIANS(sinTheta); // f30
 
+		_344 += 0.1f;
+
+		// cap out weighting at 1
 		if (_344 > 1.0f) {
 			_344 = 1.0f;
 		}
 
+		// do this just if we're transporting a piki
 		if (getStateID() == JIGUMO_Carry) {
-			if (C_PARMS->_8F9) {
-				_338 += 1.0f;
-				if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_1 && _338 > _33C) {
-					_340 = !_340;
-					if (_334 > 0) {
-						_340 = false;
+			if (C_PARMS->_8F9) { // runs by default
+				mPauseTimer += 1.0f;
+				if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_1 && mPauseTimer > mPauseTriggerTime) {
+					mDoPauseAnim = !mDoPauseAnim; // change from pausing to running, or vice versa
+					if (_334 > 0) {               // if we're climbing (?), don't pause
+						mDoPauseAnim = false;
 					}
 
-					if (_340) {
+					if (mDoPauseAnim) {
 						startMotion(JIGUMOANIM_BackWait, nullptr);
 						effectStop();
 					} else {
@@ -662,12 +674,12 @@ void Obj::walkFunc()
 						effectStart();
 					}
 
-					_33C = C_PARMS->_914 * randFloat();
-					_338 = 0.0f;
+					mPauseTriggerTime = C_PARMS->mMaxPauseTime * randFloat(); // 0-35 by default
+					mPauseTimer       = 0.0f;
 				}
 
-				if (_340 && _338 < _33C) {
-					walkSpeed *= C_PARMS->_918 * (1.0f - _338 / _33C);
+				if (mDoPauseAnim && mPauseTimer < mPauseTriggerTime) {
+					walkSpeed *= C_PARMS->mPauseSpeedModifier * (1.0f - mPauseTimer / mPauseTriggerTime);
 				}
 			}
 			if (C_PARMS->_8FA) {
@@ -679,12 +691,16 @@ void Obj::walkFunc()
 				walkSpeed *= (1.0f - val2);
 			}
 		}
-		mFaceDir = _2EC;
-		_35C++;
-		if (_35C > 60) {
-			if (mPosition.sqrDistance(_350) < 400.0f) {
+
+		mFaceDir = mNextFaceDir;
+		mReturnTimer++;
+
+		if (mReturnTimer > 60) {
+
+			// if we haven't moved very far in the last two seconds, shift a little to hopefully get us unstuck
+			if (mPosition.sqrDistance(mPrevReturnCheckPosition) < 400.0f) {
 				f32 val3 = 2.0f;
-				if (_2E8) {
+				if (mIsReversing) {
 					val3 *= -1.0f;
 				}
 
@@ -698,31 +714,33 @@ void Obj::walkFunc()
 				}
 			}
 
-			_350 = mPosition;
-			_35C = 0;
+			mPrevReturnCheckPosition = mPosition;
+			mReturnTimer             = 0;
 		}
 
 		turnToTarget2(mGoalPosition, rotRate, rotSpeed);
 
-		f32 dir   = mFaceDir;
-		f32 theta = dir + newAng;
-		f32 x     = walkSpeed * pikmin2_sinf(theta);
-		f32 y     = getTargetVelocity().y;
-		f32 z     = walkSpeed * pikmin2_cosf(theta);
-		_2EC      = dir;
+		f32 prevFaceDir = mFaceDir;
+		f32 theta       = prevFaceDir + newAng;
+		f32 x           = walkSpeed * pikmin2_sinf(theta);
+		f32 y           = getTargetVelocity().y;
+		f32 z           = walkSpeed * pikmin2_cosf(theta);
+		mNextFaceDir    = prevFaceDir;
 		if (absF(newAng) > rotSpeed) {
 			newAng = (newAng > 0.0f) ? rotSpeed : -rotSpeed;
 		}
-		f32 val4 = 1.0f;
+		f32 flipFaceDir = 1.0f;
 		if (stateID == JIGUMO_Return || stateID == JIGUMO_Miss) {
-			val4 = 0.0f;
+			flipFaceDir = 0.0f;
 		}
 
-		mFaceDir += roundAng(PI * val4 + newAng);
+		mFaceDir += roundAng(PI * flipFaceDir + newAng);
 		mRotation.y     = mFaceDir;
 		mTargetVelocity = Vector3f(x, y, z);
 
-		if (_340 && C_PARMS->_918 == 0.0f) {
+		// mPauseSpeedModifier is 0.15f by default, so this doesn't run
+		// but if modifier is meant to make speed 0... make speed HARD 0.
+		if (mDoPauseAnim && C_PARMS->mPauseSpeedModifier == 0.0f) {
 			mTargetVelocity  = Vector3f(0.0f);
 			mCurrentVelocity = Vector3f(0.0f);
 		}
@@ -1321,14 +1339,17 @@ lbl_8036AF4C:
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
+	// we're stationary, don't offset collision
 	if (isConstrained()) {
 		return Vector3f(0.0f);
 	}
 
-	if (_2E8) {
+	// we're going backwards, offset collision behind us 2 units
+	if (mIsReversing) {
 		return Vector3f(-2.0f * pikmin2_sinf(mFaceDir), 0.0f, -2.0f * pikmin2_cosf(mFaceDir));
 	}
 
+	// we're going forwards, offset collision in front of us 2 units
 	return Vector3f(2.0f * pikmin2_sinf(mFaceDir), 0.0f, 2.0f * pikmin2_cosf(mFaceDir));
 }
 
@@ -1339,7 +1360,7 @@ Vector3f Obj::getOffsetForMapCollision()
  */
 void Obj::calcBaseTrMatrix()
 {
-	if (!C_PARMS->_8F8) {
+	if (!C_PARMS->mDoFullScaleCalc) {
 		Vector3f scale(1.0f);
 		mBaseTrMatrix.makeSRT(scale, mRotation, mPosition);
 		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
@@ -1396,13 +1417,13 @@ void Obj::calcBaseTrMatrix()
 			_304.y = C_PARMS->_900;
 			_304.normalise();
 		}
-		_2F8       = _304;
-		f32 factor = 1.0f;
+		_2F8         = _304;
+		f32 isMoving = 1.0f;
 		if (isConstrained()) {
-			factor = 0.0f;
+			isMoving = 0.0f;
 		}
 
-		mPosition.y += _2F4 * (factor * C_PARMS->_91C);
+		mPosition.y += _2F4 * (isMoving * C_PARMS->_91C);
 
 	} else {
 		if (info.mBounceTriangle) {
@@ -1447,7 +1468,7 @@ void Obj::calcBaseTrMatrix()
 
 	_320.fromMatrixf(mBaseTrMatrix);
 
-	Quat newQuat(_310);
+	Quat unusedQuat(_310); // why?
 
 	if (_330 < 1.0f) {
 		_330 += 0.1f;
@@ -1492,10 +1513,10 @@ void Obj::revisionAnimPos(f32 val)
 	}
 
 	Vector3f sep = mHomePosition;
-	sep -= _2BC;
+	sep -= mHideAnimPosition;
 
-	mPosition.x = sep.x * val + _2BC.x;
-	mPosition.z = sep.z * val + _2BC.z;
+	mPosition.x = sep.x * val + mHideAnimPosition.x;
+	mPosition.z = sep.z * val + mHideAnimPosition.z;
 }
 
 /*
@@ -1666,7 +1687,7 @@ void Obj::eatWaterEffect()
 void Obj::killNest()
 {
 	if (mHouse) {
-		mHouse->_2F0 = 1;
+		mHouse->mDeathTimer = 1; // will now start nest death sequence
 	}
 
 	mHouse = nullptr;
@@ -1687,8 +1708,8 @@ void Obj::mouthScaleMtxCalc()
 	Vector3f zVec = mtx->getBasis(2);
 	zVec.normalise();
 
-	f32 scale = C_PARMS->_92C;
-	if (_2E9) {
+	f32 scale = C_PARMS->mMouthMtxScale;
+	if (mDoScaleDownMouth) {
 		scale = 0.01f;
 	}
 	Vector3f newXVec = xVec * scale;

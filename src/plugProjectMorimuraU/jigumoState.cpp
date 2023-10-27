@@ -74,8 +74,8 @@ void StateWait::exec(EnemyBase* enemy)
 			OBJ(enemy)->mNextState    = JIGUMO_Search;
 		} else {
 			enemy->finishMotion();
-			OBJ(enemy)->_2E8       = 1;
-			OBJ(enemy)->mNextState = JIGUMO_Hide;
+			OBJ(enemy)->mIsReversing = true;
+			OBJ(enemy)->mNextState   = JIGUMO_Hide;
 		}
 	}
 
@@ -110,10 +110,10 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mFlickTimer = 0.0f;
 	enemy->enableEvent(0, EB_BitterImmune);
 	enemy->mPosition                                  = enemy->mHomePosition;
-	OBJ(enemy)->_2E8                                  = 0;
+	OBJ(enemy)->mIsReversing                          = false;
 	enemy->mCollTree->getCollPart('body')->mSpecialID = '____';
 	enemy->mCollTree->getCollPart('head')->mSpecialID = '____';
-	OBJ(enemy)->_384                                  = 0;
+	OBJ(enemy)->mIsOutsideHouse                       = false;
 	if (enemy->mHealth < 1.0f) {
 		enemy->mHealth += 5.0f;
 		enemy->mInstantDamage = 0.0f;
@@ -152,8 +152,8 @@ void StateAppear::exec(EnemyBase* enemy)
 				FakePiki* target       = OBJ(enemy)->getNearestPikiOrNavi(360.0f, terrRad);
 				enemy->mTargetCreature = target;
 				if (target) {
-					f32 angleDist    = enemy->turnToTarget(target, 1.0f, TAU);
-					OBJ(enemy)->_2EC = enemy->mFaceDir;
+					f32 angleDist            = enemy->turnToTarget(target, 1.0f, TAU);
+					OBJ(enemy)->mNextFaceDir = enemy->mFaceDir;
 				}
 			}
 
@@ -195,24 +195,24 @@ StateHide::StateHide(int stateID)
  */
 void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	if (OBJ(enemy)->_2E8) {
+	if (OBJ(enemy)->mIsReversing) {
 		enemy->startMotion(JIGUMOANIM_Hide, nullptr);
 	} else {
 		enemy->startMotion(JIGUMOANIM_RDive, nullptr);
 	}
 
-	OBJ(enemy)->_2BC        = enemy->mPosition;
-	enemy->mCurrentVelocity = Vector3f(0.0f);
-	enemy->mTargetVelocity  = Vector3f(0.0f);
+	OBJ(enemy)->mHideAnimPosition = enemy->mPosition;
+	enemy->mCurrentVelocity       = Vector3f(0.0f);
+	enemy->mTargetVelocity        = Vector3f(0.0f);
 	enemy->hardConstraintOn();
 	enemy->setAtari(false);
 	enemy->mCollTree->getCollPart('body')->mSpecialID = '____';
 	enemy->mCollTree->getCollPart('head')->mSpecialID = '____';
-	OBJ(enemy)->_384                                  = 0;
+	OBJ(enemy)->mIsOutsideHouse                       = false;
 	enemy->disableEvent(0, EB_LifegaugeVisible);
 
 	EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeChance.mValue, CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue,
-	                            CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	                            CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 	enemy->setEmotionCaution();
 }
@@ -224,7 +224,7 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateHide::exec(EnemyBase* enemy)
 {
-	if (!OBJ(enemy)->_2E8) {
+	if (!OBJ(enemy)->mIsReversing) {
 		OBJ(enemy)->revisionAnimPos(0.05f * enemy->getMotionFrame());
 	}
 
@@ -237,7 +237,7 @@ void StateHide::exec(EnemyBase* enemy)
 			bubbleFX.create(&fxArg);
 		}
 
-		OBJ(enemy)->_2EC = roundAng(PI + enemy->mFaceDir);
+		OBJ(enemy)->mNextFaceDir = roundAng(PI + enemy->mFaceDir);
 
 		OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
 		OBJ(enemy)->_344          = 0.0f;
@@ -311,12 +311,12 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(JIGUMOANIM_Attack, nullptr);
 	enemy->disableEvent(0, EB_Cullable);
 	OBJ(enemy)->mNextState                            = JIGUMO_Miss;
-	OBJ(enemy)->_2E8                                  = 0;
+	OBJ(enemy)->mIsReversing                          = false;
 	_10                                               = 0;
 	_11                                               = 1;
 	enemy->mCollTree->getCollPart('body')->mSpecialID = 'st__';
 	enemy->mCollTree->getCollPart('head')->mSpecialID = '_t__';
-	OBJ(enemy)->_384                                  = 1;
+	OBJ(enemy)->mIsOutsideHouse                       = true;
 	enemy->setEmotionExcitement();
 }
 
@@ -354,7 +354,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			_10                       = 0;
 			enemy->mCurrentVelocity   = Vector3f(0.0f);
 			enemy->mTargetVelocity    = Vector3f(0.0f);
-			OBJ(enemy)->_2EC          = roundAng(PI + enemy->mFaceDir);
+			OBJ(enemy)->mNextFaceDir  = roundAng(PI + enemy->mFaceDir);
 			OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
 			OBJ(enemy)->_344          = 0.0f;
 			transit(enemy, OBJ(enemy)->mNextState, nullptr);
@@ -368,9 +368,9 @@ void StateAttack::exec(EnemyBase* enemy)
 
 		ConditionHeightCheckPiki heightCheck(enemy);
 		if (EnemyFunc::eatPikmin(enemy, &heightCheck) > 0) {
-			OBJ(enemy)->mNextState = JIGUMO_Carry;
-			OBJ(enemy)->_2E8       = 1;
-			_10                    = 0;
+			OBJ(enemy)->mNextState   = JIGUMO_Carry;
+			OBJ(enemy)->mIsReversing = true;
+			_10                      = 0;
 			OBJ(enemy)->effectStop();
 			enemy->mTargetVelocity = Vector3f(0.0f);
 		}
@@ -727,7 +727,7 @@ StateMiss::StateMiss(int stateID)
  */
 void StateMiss::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->_2EC = enemy->mFaceDir;
+	OBJ(enemy)->mNextFaceDir = enemy->mFaceDir;
 	enemy->startMotion(JIGUMOANIM_Miss, nullptr);
 	_10 = 0;
 }
@@ -936,7 +936,7 @@ void StateReturn::exec(EnemyBase* enemy)
 		transit(enemy, JIGUMO_Flick, nullptr);
 
 	} else if (OBJ(enemy)->getGoalDist() < SQUARE(20.0f * enemy->mScaleModifier)) {
-		OBJ(enemy)->_385 = 0;
+		OBJ(enemy)->mCanBeEarthquaked = false;
 		enemy->finishMotion();
 	}
 
@@ -959,7 +959,7 @@ void StateReturn::exec(EnemyBase* enemy)
  */
 void StateReturn::cleanup(EnemyBase* enemy)
 {
-	OBJ(enemy)->_385 = 1;
+	OBJ(enemy)->mCanBeEarthquaked = true;
 	OBJ(enemy)->effectStop();
 }
 
@@ -1010,7 +1010,7 @@ void StateCarry::exec(EnemyBase* enemy)
 	limit *= limit;
 	if (goalDist < 1.1f * limit) {
 		enemy->finishMotion();
-		OBJ(enemy)->_385 = 0;
+		OBJ(enemy)->mCanBeEarthquaked = false;
 	}
 
 	if (goalDist < limit) {
@@ -1034,7 +1034,7 @@ void StateCarry::exec(EnemyBase* enemy)
  */
 void StateCarry::cleanup(EnemyBase* enemy)
 {
-	OBJ(enemy)->_385 = 1;
+	OBJ(enemy)->mCanBeEarthquaked = true;
 	OBJ(enemy)->effectStop();
 }
 
@@ -1058,7 +1058,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
-	if (OBJ(enemy)->_2E8) {
+	if (OBJ(enemy)->mIsReversing) {
 		enemy->startMotion(JIGUMOANIM_Flick, nullptr);
 	} else {
 		enemy->startMotion(JIGUMOANIM_RFlick, nullptr);
@@ -1078,13 +1078,13 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	if (enemy->mCurAnim->mIsPlaying) {
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
-			f32 rate      = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
+			f32 chance    = CG_PARMS(enemy)->mGeneral.mShakeChance.mValue;
 			f32 knockback = CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue;
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
-			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, chance, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			enemy->mFlickTimer = 0.0f;
 			return;
 		}
@@ -1118,7 +1118,7 @@ StateEat::StateEat(int stateID)
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	OBJ(enemy)->_2BC = enemy->mPosition;
+	OBJ(enemy)->mHideAnimPosition = enemy->mPosition;
 	enemy->startMotion(JIGUMOANIM_Eat, nullptr);
 	enemy->hardConstraintOn();
 }
@@ -1144,11 +1144,11 @@ void StateEat::exec(EnemyBase* enemy)
 			}
 			break;
 		case KEYEVENT_7:
-			OBJ(enemy)->_2E9 = 1;
+			OBJ(enemy)->mDoScaleDownMouth = true;
 			break;
 		case KEYEVENT_8:
 			EnemyFunc::swallowPikmin(enemy, 300.0f, nullptr);
-			OBJ(enemy)->_2E9 = 0;
+			OBJ(enemy)->mDoScaleDownMouth = false;
 			break;
 		case KEYEVENT_END:
 			if (enemy->mHealth == 0.0f) {
@@ -1182,9 +1182,9 @@ void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(JIGUMOANIM_Turn, nullptr);
 	enemy->setAtari(false);
 	enemy->setAlive(false);
-	enemy->mTargetCreature = nullptr;
-	OBJ(enemy)->_2E9       = 0;
-	_10                    = -1;
+	enemy->mTargetCreature        = nullptr;
+	OBJ(enemy)->mDoScaleDownMouth = false;
+	_10                           = -1;
 }
 
 /*
@@ -1691,12 +1691,12 @@ void StateSAttack::exec(EnemyBase* enemy)
 			break;
 
 		case KEYEVENT_9:
-			OBJ(enemy)->_2E9 = 1;
+			OBJ(enemy)->mDoScaleDownMouth = true;
 			break;
 
 		case KEYEVENT_10:
 			EnemyFunc::swallowPikmin(enemy, 300.0f, nullptr);
-			OBJ(enemy)->_2E9 = 0;
+			OBJ(enemy)->mDoScaleDownMouth = false;
 			break;
 
 		case KEYEVENT_END:

@@ -17,27 +17,6 @@ f32 angDist(f32 x, f32 y);
 
 f32 qdist2(f32, f32, f32, f32);
 
-// TODO: This should be in the cpp file. Move it there when libraries are a thing.
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- * 17(dec) instructions
- */
-inline f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
-{
-	f32 xdiff = (x2 - x1);
-	f32 ydiff = (y2 - y1);
-	f32 zdiff = (z2 - z1);
-
-	f32 dist = ((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff));
-	if (dist > 0.0f) {
-		volatile f32 calcDist = dist * (__frsqrte(dist));
-		dist                  = calcDist;
-	}
-	return dist;
-}
-
 inline f32 log(f32& a, f64 b)
 {
 	f32 divisor  = log10(b);

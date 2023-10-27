@@ -10,6 +10,7 @@
 #include "Game/gameStat.h"
 #include "Game/PikiState.h"
 #include "Game/Footmark.h"
+#include "Game/EnemyFunc.h"
 #include "Dolphin/rand.h"
 #include "utilityU.h"
 
@@ -169,7 +170,7 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 						if (battle->mOther && randFloat() > 0.9f) {
 							battle->initApproach();
 
-							Game::InteractFlick flick(battle->mOther, 60.0f, 0.0f, -1000.0f);
+							Game::InteractFlick flick(battle->mOther, 60.0f, 0.0f, FLICK_BACKWARD_ANGLE);
 							battle->mParent->stimulate(flick);
 						} else {
 							battle->initApproach();

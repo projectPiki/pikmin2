@@ -1428,7 +1428,7 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 	if (mar->mCurAnim->mIsPlaying) {
 		if (mar->mCurAnim->mType == KEYEVENT_2) {
 			EnemyFunc::flickStickPikmin(mar, CG_PARMS(mar)->mGeneral.mShakeChance.mValue, CG_PARMS(mar)->mGeneral.mShakeKnockback.mValue,
-			                            CG_PARMS(mar)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                            CG_PARMS(mar)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			mar->mFlickTimer = 0.0f;
 
 		} else if (mar->mCurAnim->mType == KEYEVENT_END) {
@@ -1474,13 +1474,13 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 		if (enemy->mCurAnim->mType == KEYEVENT_2) {
 			EnemyFunc::flickNearbyNavi(enemy, CG_PARMS(enemy)->mGeneral.mShakeRange.mValue,
 			                           CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
-			                           -1000.0f, nullptr);
+			                           FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickNearbyPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeRange.mValue,
 			                             CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
-			                             -1000.0f, nullptr);
+			                             FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeChance.mValue,
 			                            CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
-			                            -1000.0f, nullptr);
+			                            FLICK_BACKWARD_ANGLE, nullptr);
 
 			enemy->mFlickTimer = 0.0f;
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {

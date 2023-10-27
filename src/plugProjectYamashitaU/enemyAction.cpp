@@ -1154,7 +1154,7 @@ int eatPikmin(EnemyBase* enemy, Condition<Piki>* condition)
  * Address:	80113E84
  * Size:	0003DC
  */
-void swallowPikmin(Creature* creature, f32 damage, Condition<Piki>* condition)
+void swallowPikmin(Creature* creature, f32 poisonDamage, Condition<Piki>* condition)
 {
 	Stickers stickers(creature);
 	Iterator<Creature> iter(&stickers);
@@ -1165,8 +1165,8 @@ void swallowPikmin(Creature* creature, f32 damage, Condition<Piki>* condition)
 			Piki* piki = static_cast<Piki*>(*iter);
 			if ((!condition || (condition && condition->satisfy(piki))) && piki->isStickToMouth()) {
 				InteractKill kill(creature, nullptr);
-				if (piki->stimulate(kill) && (int)piki->getKind() == White) {
-					static_cast<EnemyBase*>(creature)->eatWhitePikminCallBack(piki, damage);
+				if (piki->stimulate(kill) && piki->getKind() == White) {
+					static_cast<EnemyBase*>(creature)->eatWhitePikminCallBack(piki, poisonDamage);
 
 					if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_Eat_White_Pikmin) && moviePlayer) {
 						MoviePlayArg movie("g2B_white_poison", nullptr, nullptr, 0);
@@ -1217,7 +1217,7 @@ int attackNavi(Creature* creature, f32 searchRadius, f32 searchAngle, f32 damage
  * Address:	80114658
  * Size:	0000DC
  */
-bool isStartFlick(EnemyBase* enemy, bool doResetFlickCounter)
+bool isStartFlick(EnemyBase* enemy, bool doResetFlickTimer)
 {
 	EnemyParmsBase* parms;
 	bool result  = false;
@@ -1247,7 +1247,7 @@ bool isStartFlick(EnemyBase* enemy, bool doResetFlickCounter)
 		result = true;
 	}
 
-	if (result && doResetFlickCounter) {
+	if (result && doResetFlickTimer) {
 		enemy->mFlickTimer = 0.0f;
 	}
 

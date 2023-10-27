@@ -1114,9 +1114,9 @@ void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
 
 		Piki* piki = static_cast<Piki*>(collCreature);
 
-		if ((int)piki->mPikiKind != Purple) {
+		if (piki->getKind() != Purple) {
 			f32 knockback = C_PARMS->mGeneral.mShakeKnockback;
-			InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback, -1000.0f, 0.0f);
+			InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback, FLICK_BACKWARD_ANGLE, 0.0f);
 			piki->stimulate(flick);
 			mSoundObj->startSound(PSSE_EN_KAGE_REJECT, 0);
 		} else if (stateID == WRAITH_Walk || stateID == WRAITH_Tired) {

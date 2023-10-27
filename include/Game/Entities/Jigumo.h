@@ -24,6 +24,8 @@ struct Obj;
 
 namespace Jigumo {
 
+#define JIGUMO_MOUTH_JOINT (0)
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -112,26 +114,26 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_8F8         = 1;
-		_8F9         = 1;
-		_8FA         = 1;
-		_8FB         = 1;
-		_8FC         = 0;
-		_8FD         = 1;
-		mIsPressKill = false;
-		_900         = 0.75f;
-		_904         = 20.0f;
-		_908         = 0.05f;
-		_90C         = 30.0f;
-		_910         = 8;
-		_914         = 35.0f;
-		_918         = 0.15f;
-		_91C         = 1.0f;
-		_920         = 0.15f;
-		_924         = 13.0f;
-		_928         = 18.0f;
-		_92C         = 1.4f;
-		_930         = 20.0f;
+		mDoFullScaleCalc       = true;
+		_8F9                   = 1;
+		_8FA                   = 1;
+		_8FB                   = 1;
+		_8FC                   = 0;
+		_8FD                   = 1;
+		mIsPressKill           = false;
+		_900                   = 0.75f;
+		_904                   = 20.0f;
+		_908                   = 0.05f;
+		_90C                   = 30.0f;
+		_910                   = 8;
+		mMaxPauseTime          = 35.0f;
+		mPauseSpeedModifier    = 0.15f;
+		_91C                   = 1.0f;
+		_920                   = 0.15f;
+		_924                   = 13.0f;
+		mMouthSlotSizeModifier = 18.0f;
+		mMouthMtxScale         = 1.4f;
+		_930                   = 20.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -142,27 +144,27 @@ struct Parms : public EnemyParmsBase {
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms; // _7F8
-	u8 _8F8;                  // _8F8, unknown
-	u8 _8F9;                  // _8F9, unknown
-	u8 _8FA;                  // _8FA, unknown
-	u8 _8FB;                  // _8FB, unknown
-	u8 _8FC;                  // _8FC, unknown
-	u8 _8FD;                  // _8FD, unknown
-	bool mIsPressKill;        // _8FE, kills if hit from above with a piki, like a kochappy
-	f32 _900;                 // _900
-	f32 _904;                 // _904
-	f32 _908;                 // _908
-	f32 _90C;                 // _90C
-	u8 _910;                  // _910
-	f32 _914;                 // _914
-	f32 _918;                 // _918
-	f32 _91C;                 // _91C
-	f32 _920;                 // _920
-	f32 _924;                 // _924
-	f32 _928;                 // _928
-	f32 _92C;                 // _92C
-	f32 _930;                 // _930
+	ProperParms mProperParms;   // _7F8
+	bool mDoFullScaleCalc;      // _8F8, recalculate base tr matrix with full scale calculation
+	u8 _8F9;                    // _8F9, unknown
+	u8 _8FA;                    // _8FA, unknown
+	u8 _8FB;                    // _8FB, unknown
+	u8 _8FC;                    // _8FC, unknown
+	u8 _8FD;                    // _8FD, unknown
+	bool mIsPressKill;          // _8FE, kills if hit from above with a piki, like a kochappy
+	f32 _900;                   // _900
+	f32 _904;                   // _904
+	f32 _908;                   // _908
+	f32 _90C;                   // _90C
+	u8 _910;                    // _910
+	f32 mMaxPauseTime;          // _914, max time to pause (in frames) when carrying back piki
+	f32 mPauseSpeedModifier;    // _918, alters walk speed when 'pausing' while carrying piki
+	f32 _91C;                   // _91C
+	f32 _920;                   // _920
+	f32 _924;                   // _924
+	f32 mMouthSlotSizeModifier; // _928
+	f32 mMouthMtxScale;         // _92C
+	f32 _930;                   // _930
 };
 
 struct Obj : public EnemyBase {
@@ -209,7 +211,7 @@ struct Obj : public EnemyBase {
 	}
 	virtual void setInitialSetting(EnemyInitialParamBase* params) { }                        // _1C4 (weak)
 	virtual f32 getCellRadius() { return mScaleModifier * C_PARMS->mGeneral.mCellRadius(); } // _58 (weak)
-	virtual f32 getBodyRadius() { return _2F0; }                                             // _54 (weak)
+	virtual f32 getBodyRadius() { return mBodyRadius; }                                      // _54 (weak)
 	virtual bool eatWhitePikminCallBack(Creature* source, f32 damage)                        // _298 (weak)
 	{
 		return EnemyBase::eatWhitePikminCallBack(source, C_PROPERPARMS.mPoisonDamage());
@@ -245,42 +247,42 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f _2BC;                 // _2BC
-	Vector3f mGoalPosition;        // _2C8
-	StateID mNextState;            // _2D4
-	MouthSlots mMouthSlots;        // _2D8
-	SysShape::Joint* mBodyJoint;   // _2E0
-	Nest::Obj* mHouse;             // _2E4
-	u8 _2E8;                       // _2E8, unknown
-	u8 _2E9;                       // _2E9, unknown
-	f32 _2EC;                      // _2EC
-	f32 _2F0;                      // _2F0
-	f32 _2F4;                      // _2F4
-	Vector3f _2F8;                 // _2F8
-	Vector3f _304;                 // _304
-	Quat _310;                     // _310
-	Quat _320;                     // _320
-	f32 _330;                      // _330
-	int _334;                      // _334
-	f32 _338;                      // _338
-	f32 _33C;                      // _33C
-	bool _340;                     // _340
-	f32 _344;                      // _344
-	u8 _348[0x4];                  // _348, unknown
-	int _34C;                      // _34C
-	Vector3f _350;                 // _350
-	int _35C;                      // _35C
-	u16 mKamuJointIdx;             // _360
-	Vector3f mEffectPosition;      // _364
-	efx::TJgmAttack* mEfxAttack;   // _370
-	efx::TJgmAttackW* mEfxAttackW; // _374
-	efx::TJgmBack* mEfxBack;       // _378
-	efx::TJgmBackW* mEfxBackW;     // _37C
-	efx::TImoSmoke* mEfxSmoke;     // _380
-	u8 _384;                       // _384, unknown
-	u8 _385;                       // _385, unknown
-	FSM* mFsm;                     // _388
-	                               // _38C = PelletView
+	Vector3f mHideAnimPosition;        // _2BC, moves crawmad from position to home position while eating or hiding
+	Vector3f mGoalPosition;            // _2C8
+	StateID mNextState;                // _2D4
+	MouthSlots mMouthSlots;            // _2D8
+	SysShape::Joint* mBodyJoint;       // _2E0
+	Nest::Obj* mHouse;                 // _2E4
+	bool mIsReversing;                 // _2E8, has piki to eat (or is hiding after getting bored, technically "reversing")
+	bool mDoScaleDownMouth;            // _2E9, just before swallowing piki, reduce mouth matrix size to 1%
+	f32 mNextFaceDir;                  // _2EC, flips face direction when hiding/appearing and when missing an attack
+	f32 mBodyRadius;                   // _2F0, scales with crawmad size, changes with state
+	f32 _2F4;                          // _2F4
+	Vector3f _2F8;                     // _2F8
+	Vector3f _304;                     // _304
+	Quat _310;                         // _310
+	Quat _320;                         // _320
+	f32 _330;                          // _330
+	int _334;                          // _334
+	f32 mPauseTimer;                   // _338, timer for pausing when carrying back piki
+	f32 mPauseTriggerTime;             // _33C, time to pause when carrying back piki (random between 0 and 35 frames)
+	bool mDoPauseAnim;                 // _340, alternates pausing and moving when carrying back piki
+	f32 _344;                          // _344
+	u8 _348[0x4];                      // _348, unknown
+	int _34C;                          // _34C
+	Vector3f mPrevReturnCheckPosition; // _350, stores every 60 frames to help check if we're stuck
+	int mReturnTimer;                  // _35C, checks every 60 frames if we're stuck
+	u16 mKamuJointIdx;                 // _360
+	Vector3f mEffectPosition;          // _364
+	efx::TJgmAttack* mEfxAttack;       // _370
+	efx::TJgmAttackW* mEfxAttackW;     // _374
+	efx::TJgmBack* mEfxBack;           // _378
+	efx::TJgmBackW* mEfxBackW;         // _37C
+	efx::TImoSmoke* mEfxSmoke;         // _380
+	bool mIsOutsideHouse;              // _384, set when attacking, reset when hiding or appearing
+	bool mCanBeEarthquaked;            // _385, turned off when close enough to house when returning (w/ or w/o piki)
+	FSM* mFsm;                         // _388
+	                                   // _38C = PelletView
 };
 
 extern Obj* curJ;

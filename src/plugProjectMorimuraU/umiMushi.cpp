@@ -604,7 +604,7 @@ void Obj::doFinishStoneState()
 	mCollTree->getCollPart('kuti')->mSpecialID = '____';
 	mCollTree->getCollPart('ketu')->mSpecialID = '____';
 	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeChance.mValue, C_PARMS->mGeneral.mShakeKnockback.mValue,
-	                            C_PARMS->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	                            C_PARMS->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 	mFlickTimer = 0.0f;
 	createColorEffect();
 }

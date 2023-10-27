@@ -335,7 +335,7 @@ void Obj::flickStickTarget()
 		Creature* creature = mMouthSlots.getSlot(i)->mStuckCreature;
 
 		if (creature) {
-			InteractFlick flick(this, 10.0f, 0.0f, -1000.0f);
+			InteractFlick flick(this, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE);
 			creature->stimulate(flick);
 		}
 	}

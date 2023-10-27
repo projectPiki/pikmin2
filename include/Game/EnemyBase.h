@@ -525,30 +525,30 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		mRotation.y = mFaceDir;
 	}
 
-	inline f32 turnToTarget(Vector3f& targetPos, f32 turnFactor, f32 maxTurnSpeed)
+	inline f32 turnToTarget(Vector3f& targetPos, f32 turnSpeed, f32 maxTurnAngle)
 	{
 		f32 angleDist = getAngDist(targetPos);
-		f32 turnSpeed = clamp(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
-		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+		f32 angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
+		updateFaceDir(roundAng(angle + getFaceDir()));
 
 		return angleDist;
 	}
 
-	inline f32 turnToTarget2(Vector3f& targetPos, f32 turnFactor, f32 maxTurnSpeed)
+	inline f32 turnToTarget2(Vector3f& targetPos, f32 turnSpeed, f32 maxTurnAngle)
 	{
 		f32 angleDist = getAngDist2(targetPos);
-		f32 turnSpeed = clamp(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
-		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+		f32 angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
+		updateFaceDir(roundAng(angle + getFaceDir()));
 
 		return angleDist;
 	}
 
-	inline f32 turnToTarget(Creature* target, f32 turnFactor, f32 maxTurnSpeed)
+	inline f32 turnToTarget(Creature* target, f32 turnSpeed, f32 maxTurnAngle)
 	{
 		f32 angleDist = getAngDist(target);
-		f32 turnSpeed = clamp(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
+		f32 angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
 
-		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+		updateFaceDir(roundAng(angle + getFaceDir()));
 
 		return angleDist;
 	}
@@ -556,13 +556,13 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline f32 turnToTarget(Vector3f& targetPos)
 	{
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		f32 maxTurnSpeed      = parms->mGeneral.mRotationalSpeed.mValue;
-		f32 turnFactor        = parms->mGeneral.mRotationalAccel.mValue;
+		f32 maxTurnAngle      = parms->mGeneral.mRotationalSpeed.mValue;
+		f32 turnSpeed         = parms->mGeneral.mRotationalAccel.mValue;
 
 		f32 angleDist = getAngDist(targetPos);
-		f32 turnSpeed = clamp(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
+		f32 angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
 
-		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+		updateFaceDir(roundAng(angle + getFaceDir()));
 
 		return angleDist;
 	}
@@ -570,12 +570,12 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline f32 turnToTarget(Creature* creature)
 	{
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		f32 maxTurnSpeed      = parms->mGeneral.mRotationalSpeed.mValue;
-		f32 turnFactor        = parms->mGeneral.mRotationalAccel.mValue;
+		f32 maxTurnAngle      = parms->mGeneral.mRotationalSpeed.mValue;
+		f32 turnSpeed         = parms->mGeneral.mRotationalAccel.mValue;
 		f32 angleDist         = getAngDist(creature);
-		f32 turnSpeed         = clamp(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
+		f32 angle             = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
 
-		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+		updateFaceDir(roundAng(angle + getFaceDir()));
 
 		return angleDist;
 	}

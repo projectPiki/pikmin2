@@ -4,6 +4,7 @@
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/PikiMgr.h"
 #include "Game/generalEnemyMgr.h"
+#include "Game/EnemyFunc.h"
 #include "System.h"
 #include "Game/Data.h"
 #include "Game/AIConstants.h"
@@ -1718,7 +1719,7 @@ void PelletReturnState::flick(Pellet* pelt)
 	Stickers stick(pelt);
 	Iterator<Creature> it(&stick);
 	f32 dmg   = 100.0f;
-	f32 ang   = -1000.0f;
+	f32 ang   = FLICK_BACKWARD_ANGLE;
 	f32 intes = 0.0f;
 	CI_LOOP(it)
 	{

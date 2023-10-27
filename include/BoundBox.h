@@ -24,7 +24,7 @@ struct BoundBox {
 
 	void makeBoundSphere(Sys::Sphere&);
 	void read(struct Stream&);
-	void transform(struct Matrixf&);
+	int transform(struct Matrixf&);
 
 	/**
 	 * @fabricated

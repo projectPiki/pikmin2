@@ -303,7 +303,7 @@ void Obj::doStartStoneState() { EnemyBase::doStartStoneState(); }
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
 /*
@@ -884,7 +884,7 @@ void Obj::flickStickCollPartPikmin(CollPart* collpart)
 	{
 		Creature* creature = (*iter);
 		if (creature->isAlive() && creature->mStuckCollPart == collpart) {
-			InteractFlick flick(this, 10.0f, 0.0f, -1000.0f);
+			InteractFlick flick(this, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE);
 			creature->stimulate(flick);
 		}
 	}

@@ -374,7 +374,7 @@ void StateRolling::exec(EnemyBase* enemy)
 			queen->mTargetVelocity = newSep;
 		}
 
-		queen->flickPikmin(-1000.0f);
+		queen->flickPikmin(FLICK_BACKWARD_ANGLE);
 		queen->rollingAttack();
 		queen->mWaitTimer += sys->mDeltaTime;
 

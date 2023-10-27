@@ -1,117 +1,24 @@
 #include "sysMath.h"
 #include "types.h"
 #include "Vector3.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_sysMath_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80499648
-    lbl_80499648:
-        .asciz "sysMath.cpp"
-    .global lbl_80499654
-    lbl_80499654:
-        .asciz "acosf %f\n"
-        .skip 0x2
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global "zero__10Vector3<f>"
-    "zero__10Vector3<f>":
-        .skip 0xC
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global "__init__zero__10Vector3<f>"
-    "__init__zero__10Vector3<f>":
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520268
-    lbl_80520268:
-        .float -325.9493
-    .global lbl_8052026C
-    lbl_8052026C:
-        .float 325.9493
-    .global lbl_80520270
-    lbl_80520270:
-        .float 0.0
-    .global lbl_80520274
-    lbl_80520274:
-        .float -1.0
-    .global lbl_80520278
-    lbl_80520278:
-        .float 1.0
-    .global lbl_8052027C
-    lbl_8052027C:
-        .float 3.1415927
-    .global lbl_80520280
-    lbl_80520280:
-        .float 1023.5
-    .global lbl_80520284
-    lbl_80520284:
-        .float 1.5707964
-    .global lbl_80520288
-    lbl_80520288:
-        .float 0.5
-    .global lbl_8052028C
-    lbl_8052028C:
-        .float 1.5
-    .global lbl_80520290
-    lbl_80520290:
-        .float -1.5
-    .global lbl_80520294
-    lbl_80520294:
-        .float 2.0
-    .global lbl_80520298
-    lbl_80520298:
-        .float 4.5
-    .global lbl_8052029C
-    lbl_8052029C:
-        .float 5.0
-    .global lbl_805202A0
-    lbl_805202A0:
-        .float -4.5
-    .global lbl_805202A4
-    lbl_805202A4:
-        .float 4.0
-    .global lbl_805202A8
-    lbl_805202A8:
-        .float 6.2831855
-    .global lbl_805202AC
-    lbl_805202AC:
-        .float 0.01
-    .global lbl_805202B0
-    lbl_805202B0:
-        .double 0.0
-    .global lbl_805202B8
-    lbl_805202B8:
-        .4byte 0x3727C5AC
-    .global lbl_805202BC
-    lbl_805202BC:
-        .float 0.25
-    .global lbl_805202C0
-    lbl_805202C0:
-        .float 32768.0
-    .global lbl_805202C4
-    lbl_805202C4:
-        .float -32768.0
-*/
-
-// TODO: Matrix3f::calcEigenMatrix
+#include "BoundBox.h"
+#include "Plane.h"
+#include "Matrix3f.h"
+#include "Color4.h"
+#include "Quat.h"
+#include "Sys/Sphere.h"
 
 /*
  * --INFO--
  * Address:	80411730
  * Size:	000068
  */
-float pikmin2_sinf(float x)
+f32 pikmin2_sinf(f32 x)
 {
 	if (x < 0.0f) {
-		return -JMath::sincosTable_.mTable[((int)(x * -325.9493f) & 0x7ffU)].first;
+		return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first;
 	}
-	return JMath::sincosTable_.mTable[((int)(x * 325.9493f) & 0x7ffU)].first;
+	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first;
 }
 
 /*
@@ -119,12 +26,59 @@ float pikmin2_sinf(float x)
  * Address:	80411798
  * Size:	000044
  */
-float pikmin2_cosf(float x)
+f32 pikmin2_cosf(f32 x)
 {
 	if (x < 0.0f) {
 		x = -x;
 	}
-	return JMath::sincosTable_.mTable[((int)(x * 325.9493f) & 0x7ffU)].second;
+	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].second;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000F4
+ */
+f32 pikmin2_acosf(f32 x)
+{
+	if (x <= -1.0f) {
+		return 0.0f;
+	}
+	if (x >= 1.0f) {
+		return PI;
+	}
+
+	if (x < 0.0f) {
+		f32 dumb = HALF_PI;
+		f32 acos = JMath::asinAcosTable_.mTable[(u32)(-x * 1023.5f)];
+		return acos + dumb;
+	} else {
+		return HALF_PI - JMath::asinAcosTable_.mTable[(u32)(x * 1023.5f)];
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000FC
+ */
+f32 pikmin2_asinf(f32 x)
+{
+	if (x >= 1.0f) {
+		return 0.0f;
+	}
+	if (x <= -1.0f) {
+		return PI;
+	}
+
+	// this is wrong, but it'll be a small modification on the acos one
+	if (x < 0.0f) {
+		f32 dumb = HALF_PI;
+		f32 acos = JMath::asinAcosTable_.mTable[(u32)(-x * 1023.5f)];
+		return acos + dumb;
+	} else {
+		return HALF_PI - JMath::asinAcosTable_.mTable[(u32)(x * 1023.5f)];
+	}
 }
 
 /*
@@ -132,7 +86,7 @@ float pikmin2_cosf(float x)
  * Address:	804117DC
  * Size:	000028
  */
-float pikmin2_atan2f(float x, float y) { return JMath::atanTable_.atan2_(x, y); }
+f32 pikmin2_atan2f(f32 x, f32 y) { return JMath::atanTable_.atan2_(x, y); }
 
 /*
  * --INFO--
@@ -141,12 +95,12 @@ float pikmin2_atan2f(float x, float y) { return JMath::atanTable_.atan2_(x, y); 
  * The asm seems necessary to match, but why would they do this?
  * Perhaps they didn't want to call the intrinsic.
  */
-float pikmin2_sqrtf(register float x)
+f32 pikmin2_sqrtf(register f32 x)
 {
 	if (x > 0.0f) {
-		register float reg_f0;
+		register f32 reg_f0;
 		asm {
-            frsqrte reg_f0, x
+			frsqrte reg_f0, x
 		}
 		return reg_f0 * x;
 	}
@@ -158,39 +112,52 @@ float pikmin2_sqrtf(register float x)
  * Address:	8041181C
  * Size:	00003C
  */
-
-// thanks to GibHaltmannKill for the volatile idea
-
-float qdist2(float x1, float y1, float x2, float y2)
+f32 qdist2(f32 x1, f32 y1, f32 x2, f32 y2)
 {
 
-	float xdiff = (x2 - x1);
-	float ydiff = (y2 - y1);
+	f32 xdiff = (x2 - x1);
+	f32 ydiff = (y2 - y1);
 
-	float dist = ((xdiff * xdiff) + (ydiff * ydiff));
+	f32 dist = ((xdiff * xdiff) + (ydiff * ydiff));
 	if (dist > 0.0f) {
-		volatile float calcDist = dist * (__frsqrte(dist));
-		dist                    = calcDist;
+		volatile f32 calcDist = dist * (__frsqrte(dist));
+		dist                  = calcDist;
 	}
 	return dist;
 }
 
-float _qdist3(float x1, float y1, float z1, float x2, float y2, float z2)
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000044
+ */
+f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 {
-	float xdiff = (x2 - x1);
-	float ydiff = (y2 - y1);
-	float zdiff = (z2 - z1);
+	f32 xdiff = (x2 - x1);
+	f32 ydiff = (y2 - y1);
+	f32 zdiff = (z2 - z1);
 
 	return pikmin2_sqrtf(((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff)));
-	// float dist = ((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff));
+	// f32 dist = ((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff));
 	// if (dist > 0.0f) {
-	// 	volatile float calcDist = dist * (__frsqrte(dist));
+	// 	volatile f32 calcDist = dist * (__frsqrte(dist));
 	// 	dist                    = calcDist;
 	// }
 	// return dist;
 }
 
-// extern float lbl_805201D4; // 0.0
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00010C
+ */
+Vector3f CRSpline(f32 t, Vector3f* controls)
+{
+	// 1.5f gets used in here somewhere - where isn't exactly important for now
+	controls[0].y = 0.5f;
+	controls[0].x = 1.5f;
+	// UNUSED FUNCTION
+}
 
 /*
  * --INFO--
@@ -211,10 +178,10 @@ Outputs tangent vector of desired point, given:
 
 	// set coefficients - the floats are from centripetal CR matrices, assuming no tension
 	// (this is actually just drawn out matrix multiplication)
-	float f0 = (-1.5f * tSqr) + (2.0f * t) - 0.5f;
-	float f1 = (4.5f * tSqr) - 5.0f * t;
-	float f2 = (-4.5f * tSqr) + (4.0f * t) + 0.5f;
-	float f3 = (1.5f * tSqr) - t;
+	f32 f0 = (-1.5f * tSqr) + (2.0f * t) - 0.5f;
+	f32 f1 = (4.5f * tSqr) - 5.0f * t;
+	f32 f2 = (-4.5f * tSqr) + (4.0f * t) + 0.5f;
+	f32 f3 = (1.5f * tSqr) - t;
 
 	Vector3f ctr0 = controls[0] * f0;
 	Vector3f ctr1 = controls[1] * f1;
@@ -224,8 +191,6 @@ Outputs tangent vector of desired point, given:
 
 	return out;
 }
-
-#include "BoundBox.h"
 
 /*
  * --INFO--
@@ -262,8 +227,6 @@ void Vector3f::write(Stream& stream)
 	stream.writeFloat(z);
 }
 
-#include "Plane.h"
-
 /*
  * --INFO--
  * Address:	80411A40
@@ -289,8 +252,6 @@ void Plane::read(Stream& stream)
 	c = stream.readFloat();
 	d = stream.readFloat();
 }
-
-#include "Color4.h"
 
 /*
  * --INFO--
@@ -324,7 +285,7 @@ void Color4::read(Stream& stream)
  * Size:	00002C
  */
 // NOTE: angle needs to be in radians!
-float roundAng(float angle)
+f32 roundAng(f32 angle)
 {
 	// if < 0, add 2PI
 	if (angle < 0.0f) {
@@ -354,8 +315,6 @@ f32 angDist(f32 angle1, f32 angle2)
 	return angle;
 }
 
-#include "Matrix3f.h"
-
 /*
  * --INFO--
  * Address:	80411C70
@@ -367,22 +326,17 @@ void Matrix3f::makeIdentity()
 	// [1, 0, 0]
 	// [0, 1, 0]
 	// [0, 0, 1]
-	// [0, 0], [1, 1], [2, 2] = 1, else = 0
 
-	// lbl_80520270 = 0
-	// lbl_80520278 = 1
 	mMatrix[0][0] = 1.0f;
-
 	mMatrix[0][1] = 0.0f;
 	mMatrix[0][2] = 0.0f;
+
 	mMatrix[1][0] = 0.0f;
-
 	mMatrix[1][1] = 1.0f;
-
 	mMatrix[1][2] = 0.0f;
+
 	mMatrix[2][0] = 0.0f;
 	mMatrix[2][1] = 0.0f;
-
 	mMatrix[2][2] = 1.0f;
 }
 
@@ -415,7 +369,7 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 	// 0x2c, 0x98 = side-products of MM2
 	// 0x8, 0x74 = side-products of MM3
 
-	float conv_thresh = 0.01f; // want off-diags to be smaller than this, effectively
+	f32 conv_thresh = 0.01f; // want off-diags to be smaller than this, effectively
 	bool hasConverged;
 
 	// actual Jacobi algorithm - repeat this 50x or until convergence threshold is reached
@@ -429,8 +383,8 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 			// THIS SECTION ONWARD IS STILL DODGY REG-WISE
 
 			// int row_col = 0; // r24
-			// float *D_r19 = &D.mMatrix[0][0];
-			// float *J_r25 = &J.mMatrix[0][0];
+			// f32 *D_r19 = &D.mMatrix[0][0];
+			// f32 *J_r25 = &J.mMatrix[0][0];
 			// int row_OD = 0; // r3
 			// int row_row = row_col; // r23
 
@@ -439,17 +393,17 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 				// for (row_OD; row_OD < 2; row_OD++) {
 
 				// int col_OD = row_OD + 1; // r6
-				// float *J_r27 = &J.mMatrix[0][0];
+				// f32 *J_r27 = &J.mMatrix[0][0];
 				// int col_row = col_OD * (0xc); // r21
 				// int col_col = col_OD; // r22
-				// float *D_r28 = D_r19 + col_col;
-				// float *J_r26 = J_r25 + col_col;
+				// f32 *D_r28 = D_r19 + col_col;
+				// f32 *J_r26 = J_r25 + col_col;
 				// J_r27 += col_row;
 
 				// col_OD = col of off-diagonal we're looking at (col 1 for first, col 2 for second and third)
 				for (int col_OD = row_OD + 1; col_OD < 3; col_OD++) {
 					// for (col_OD; col_OD < 3; col_OD++) {
-					// float D_row_col = *(D_r28);
+					// f32 D_row_col = *(D_r28);
 					if (!(D.mMatrix[row_OD][col_OD] < conv_thresh)) { // if this off-diagonal element is still too big
 						// if (!(D_row_col < conv_thresh)) { // if this off-diagonal element is still too big
 						J = D; // start with the attempted 'diagonal' matrix
@@ -459,25 +413,25 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 						// the main things about this calc are c_theta and s_theta, most of this is just
 						// to make sure we're not doing dumb complex number math
 
-						// float y = (*(J_r27 + col_col) - *(J_r25 + row_col)) / (2.0f * *(&J_r26[0]));
-						// float y = (J.mMatrix[col_OD][col_OD] - J.mMatrix[row_OD][row_OD]) / (2.0f *
+						// f32 y = (*(J_r27 + col_col) - *(J_r25 + row_col)) / (2.0f * *(&J_r26[0]));
+						// f32 y = (J.mMatrix[col_OD][col_OD] - J.mMatrix[row_OD][row_OD]) / (2.0f *
 						// J.mMatrix[row_OD][col_OD]);
-						float y = J.calcJacobi(row_OD, col_OD);
+						f32 y = J.calcJacobi(row_OD, col_OD);
 						f32 r, t, d;
-						t = (y > 0.0f) ? 1.0f / (y + pikmin2_sqrtf(y * y + 1.0f)) : (-1.0f / (-y + pikmin2_sqrtf(y * y + 1.0f)));
-						d = pikmin2_sqrtf(t * t + 1.0f);
-						float c_theta = 1.0f / d;    //  cos(theta), for the diagonals
-						float s_theta = t * c_theta; // (minus?) sin(theta), for the off-diagonals
+						t           = (y > 0.0f) ? 1.0f / (y + pikmin2_sqrtf(y * y + 1.0f)) : (-1.0f / (-y + pikmin2_sqrtf(y * y + 1.0f)));
+						d           = pikmin2_sqrtf(t * t + 1.0f);
+						f32 c_theta = 1.0f / d;    //  cos(theta), for the diagonals
+						f32 s_theta = t * c_theta; // (minus?) sin(theta), for the off-diagonals
 
 						// Construct Jacobi rotation matrix
 						// make J identity first
 						J.makeIdentity();
-						// float *J_ptr_row = &J.mMatrix[row_OD][0];
-						// float *J_ptr_col = &J.mMatrix[col_OD][0];
+						// f32 *J_ptr_row = &J.mMatrix[row_OD][0];
+						// f32 *J_ptr_col = &J.mMatrix[col_OD][0];
 
-						// float *J_r30 = &J.mMatrix[0][0];
-						// float *J_r9 = J_r30 + row_row;
-						// float *J_r10 = J_r30 + col_row;
+						// f32 *J_r30 = &J.mMatrix[0][0];
+						// f32 *J_r9 = J_r30 + row_row;
+						// f32 *J_r10 = J_r30 + col_row;
 
 						// replace 'inset' elements with cos or sin as required
 						J.createJacobi(row_OD, col_OD, c_theta, s_theta);
@@ -535,8 +489,6 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 	}
 }
 
-#include "Quat.h"
-
 /*
  * --INFO--
  * Address:	804123C8
@@ -556,7 +508,7 @@ Quat::Quat()
  * Address:	804123E0
  * Size:	000020
  */
-Quat::Quat(float _w, Vector3f vec)
+Quat::Quat(f32 _w, Vector3f vec)
 {
 	w = _w;
 	x = vec.x;
@@ -566,11 +518,53 @@ Quat::Quat(float _w, Vector3f vec)
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000268
+ */
+Quat::Quat(RPY& rpy)
+{
+	// this needs to spawn the operator* weak function somehow
+	// probably is recursive?
+}
+
+/*
+ * --INFO--
  * Address:	80412400
  * Size:	0000FC
  */
-void operator*(Quat&, Quat&)
+Quat operator*(Quat& q1, Quat& q2)
 {
+	// this needs to be weak.
+
+	Quat tmp;
+	Quat* tmpPtr = &tmp;
+
+	f32 x1 = (q1.y * q2.z);
+	f32 x2 = (q1.z * q2.y) - x1;
+	f32 x3 = q1.w * q2.x;
+	f32 x4 = q1.x * q2.w + x3 + x2;
+
+	f32 y1 = (q1.z * q2.x);
+	f32 y2 = (q1.x * q2.z) - y1;
+	f32 y3 = q1.w * q2.y;
+	f32 y4 = q1.y * q2.w + y3 + y2;
+
+	f32 z1 = q1.x * q2.y;
+	f32 z2 = q1.y * q2.x - z1;
+	f32 z3 = q1.w * q2.z;
+	f32 z4 = q1.z * q2.w + z3 + z2;
+
+	f32 w1 = q1.w * q2.w;
+	f32 w2 = q1.x * q2.x - w1;
+	f32 w3 = q1.y * q2.y;
+	f32 w4 = q1.z * q2.z + w3 + w2;
+
+	tmp.w = w4;
+	tmp.x = x4;
+	tmp.y = y4;
+	tmp.z = z4;
+	Quat out(tmp);
+	return out;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -644,187 +638,37 @@ void operator*(Quat&, Quat&)
  * Address:	804124FC
  * Size:	000264
  */
-void Quat::set(Vector3f&)
+void Quat::set(Vector3f& vec)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  lfs       f0, 0x1F10(r2)
-	  stw       r0, 0x94(r1)
-	  lfs       f1, 0x1F28(r2)
-	  stw       r31, 0x8C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x88(r1)
-	  mr        r30, r3
-	  stfs      f0, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  stfs      f0, 0x50(r1)
-	  stfs      f0, 0x54(r1)
-	  stfs      f0, 0x38(r1)
-	  stfs      f0, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  stfs      f0, 0x44(r1)
-	  stfs      f0, 0x28(r1)
-	  stfs      f0, 0x2C(r1)
-	  stfs      f0, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  lfs       f0, 0x0(r4)
-	  fmuls     f1, f1, f0
-	  bl        -0x3432A4
-	  lfs       f3, 0x1F28(r2)
-	  frsp      f1, f1
-	  lfs       f2, 0x0(r31)
-	  addi      r3, r1, 0x48
-	  lfs       f0, 0x1F10(r2)
-	  fmuls     f2, f3, f2
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0xAC
-	  lfs       f0, 0x1F08(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x58(r1)
-	  lwz       r0, 0x5C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f2, f0
-	  b         .loc_0xD0
+	Quat q1; // 0x48
+	Quat q2; // 0x38
+	Quat q3; // 0x28
 
-	.loc_0xAC:
-	  lfs       f0, 0x1F0C(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x60(r1)
-	  lwz       r0, 0x64(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f2, r4, r0
+	f32 cos_x = cos(0.5f * vec.x);
+	f32 sin_x = pikmin2_sinf(0.5f * vec.x);
+	q1.set(cos_x, sin_x, 0.0f, 0.0f);
 
-	.loc_0xD0:
-	  lfs       f3, 0x1F10(r2)
-	  fmr       f4, f3
-	  bl        0x1B0
-	  lfs       f1, 0x1F28(r2)
-	  lfs       f0, 0x4(r31)
-	  fmuls     f1, f1, f0
-	  bl        -0x343330
-	  lfs       f3, 0x1F28(r2)
-	  frsp      f1, f1
-	  lfs       f0, 0x4(r31)
-	  addi      r3, r1, 0x38
-	  lfs       f2, 0x1F10(r2)
-	  fmuls     f3, f3, f0
-	  fcmpo     cr0, f3, f2
-	  bge-      .loc_0x138
-	  lfs       f0, 0x1F08(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f3, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x68(r1)
-	  lwz       r0, 0x6C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f3, f0
-	  b         .loc_0x15C
+	f32 cos_y = cos(0.5f * vec.y);
+	f32 sin_y = pikmin2_sinf(0.5f * vec.y);
+	q2.set(cos_y, 0.0f, sin_y, 0.0f);
 
-	.loc_0x138:
-	  lfs       f0, 0x1F0C(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f3, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x70(r1)
-	  lwz       r0, 0x74(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f3, r4, r0
+	f32 cos_z = cos(0.5f * vec.z);
+	f32 sin_z = pikmin2_sinf(0.5f * vec.z);
+	q3.set(cos_z, 0.0f, 0.0f, sin_z);
 
-	.loc_0x15C:
-	  lfs       f4, 0x1F10(r2)
-	  bl        0x128
-	  lfs       f1, 0x1F28(r2)
-	  lfs       f0, 0x8(r31)
-	  fmuls     f1, f1, f0
-	  bl        -0x3433B8
-	  lfs       f3, 0x1F28(r2)
-	  frsp      f1, f1
-	  lfs       f0, 0x8(r31)
-	  addi      r3, r1, 0x28
-	  lfs       f2, 0x1F10(r2)
-	  fmuls     f4, f3, f0
-	  fmr       f3, f2
-	  fcmpo     cr0, f4, f2
-	  bge-      .loc_0x1C4
-	  lfs       f0, 0x1F08(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f4, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x78(r1)
-	  lwz       r0, 0x7C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f4, f0
-	  b         .loc_0x1E8
-
-	.loc_0x1C4:
-	  lfs       f0, 0x1F0C(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f4, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x80(r1)
-	  lwz       r0, 0x84(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f4, r4, r0
-
-	.loc_0x1E8:
-	  bl        0xA0
-	  addi      r3, r1, 0x18
-	  addi      r4, r1, 0x28
-	  addi      r5, r1, 0x38
-	  bl        -0x2F4
-	  lfs       f0, 0x18(r1)
-	  mr        r4, r30
-	  addi      r3, r1, 0x8
-	  addi      r5, r1, 0x48
-	  stfs      f0, 0x0(r30)
-	  lfs       f0, 0x1C(r1)
-	  stfs      f0, 0x4(r30)
-	  lfs       f0, 0x20(r1)
-	  stfs      f0, 0x8(r30)
-	  lfs       f0, 0x24(r1)
-	  stfs      f0, 0xC(r30)
-	  bl        -0x324
-	  lfs       f0, 0x8(r1)
-	  stfs      f0, 0x0(r30)
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x4(r30)
-	  lfs       f0, 0x10(r1)
-	  stfs      f0, 0x8(r30)
-	  lfs       f0, 0x14(r1)
-	  stfs      f0, 0xC(r30)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  lwz       r0, 0x94(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
-	*/
+	*this = q3 * q2;
+	*this = *this * q1;
 }
 
-// /*
-// * --INFO--
-// * Address:	........
-// * Size:	000264
-// */
-// void Quat::set(RPY&)
-// {
-//    // UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000264
+ */
+void Quat::set(RPY&)
+{
+	// UNUSED FUNCTION
+}
 
 /*
  * --INFO--
@@ -844,7 +688,7 @@ Quat::Quat(Quat& quat)
  * Address:	80412784
  * Size:	000014
  */
-void Quat::set(float a, float b, float c, float d)
+void Quat::set(f32 a, f32 b, f32 c, f32 d)
 {
 	w = a;
 	x = b;
@@ -857,7 +701,7 @@ void Quat::set(float a, float b, float c, float d)
  * Address:	........
  * Size:	000020
  */
-void Quat::set(float, Vector3f&)
+void Quat::set(f32, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -889,6 +733,24 @@ void Quat::conjugate()
  */
 Quat Quat::inverse()
 {
+	Quat inv(*this);
+
+	Vector3f inVec(inv.x, inv.y, inv.z);
+	inVec *= -1.0f;
+
+	f32 sq_mag = (inv.w * inv.w) + ((inv.x * inv.x) + (inv.y * inv.y) + (inv.z * inv.z));
+	if (sq_mag > 0.0f) {
+		f32 sq_norm = 1.0f / sq_mag;
+		f32 wOut    = inv.w * sq_norm;
+		Vector3f vec(inVec.x * sq_norm, inVec.y * sq_norm, inVec.z * sq_norm);
+		Quat quat(wOut, vec);
+		return quat;
+	}
+
+	inv.x = inVec.x;
+	inv.y = inVec.y;
+	inv.z = inVec.z;
+	return inv;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -960,6 +822,17 @@ void rotate(Quat&, Vector3f&)
  */
 void Quat::normalise()
 {
+	f32 X = x * x;
+	f32 Y = y * y;
+	f32 Z = z * z;
+	f32 W = w * w;
+
+	f32 len    = pikmin2_sqrtf(X + Y + Z + W);
+	f32 invlen = 1.0f / len;
+	Vector3f vec(x * invlen, y * invlen, z * invlen);
+	Quat quat(w * invlen, vec);
+	*this = quat;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1013,8 +886,71 @@ void Quat::normalise()
  * Address:	804128F0
  * Size:	000348
  */
-void Quat::slerp(Quat&, float, Quat&)
+void Quat::slerp(Quat& q1, f32 t, Quat& qout)
 {
+	// S_pherical L_inear int_ERP_olation
+	// does 3D rotations, basically
+	//     (*this) is the start point of the path
+	//     q1 is the end point of the path
+	//     t is the linear interpolation parameter (how far from start to end do we want to be)
+	//     qout is (output) interpolated quat on the path, fraction t from start
+	int flipDirection;
+	f32 omega;
+	f32 a;
+
+	// take dot product between start and end - this is cos(omega)
+	// these inputs really should be unit quats, so this should never be > |1|
+	f32 cos_omega = (w * q1.w) + ((z * q1.z) + ((x * q1.x) + (y * q1.y))); // var_f30
+
+	// acos is gonna throw errors if we put in > |1|, so don't do that
+	if (cos_omega > 1.0f) {
+		cos_omega = 1.0f;
+	} else {
+		if (cos_omega < -1.0f) {
+			cos_omega = -1.0f;
+		}
+	}
+
+	// calculate omega based on positive, but need to remember to flip back later if negative
+	if (cos_omega < 0.0) {
+		cos_omega     = -cos_omega;
+		flipDirection = 1;
+	} else {
+		flipDirection = 0;
+	}
+
+	// if something's gone drastically wrong, panic bc we can't do acos math on stuff that's outside -1 to 1
+	if ((cos_omega < -1.0f) || (cos_omega > 1.0f)) {
+		JUT_PANICLINE(65, "acosf %f\n", cos_omega);
+	}
+
+	// call acos to get omega
+	omega = pikmin2_asinf(cos_omega);
+
+	// calculate sin(omega)
+	f32 sin_omega = pikmin2_sinf(omega);
+
+	// work out what the linear interpolation factors should be
+	// if sin_omega is super tiny, just use an approximation
+	if (FABS(sin_omega) < 0.00001f) {
+		a = 1.0f - t;
+	} else {
+		f32 t_omega = t * omega;
+		f32 denom   = 1.0f / sin_omega;
+		a           = pikmin2_sinf(omega - t_omega) * denom;
+		t           = pikmin2_sinf(t_omega) * denom;
+	}
+
+	// remember to flip back if cos(omega) was negative before!
+	if (flipDirection != 0) {
+		t = -t;
+	}
+
+	// do the actual linear interpolation based on factors above
+	qout.x = (a * x) + (t * q1.x);
+	qout.y = (a * y) + (t * q1.y);
+	qout.z = (a * z) + (t * q1.z);
+	qout.w = (a * w) + (t * q1.w);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -1283,266 +1219,82 @@ void Quat::toMatrix(Matrix3f&)
  * Address:	80412C38
  * Size:	00033C
  */
-void Quat::fromMatrixf(Matrixf&)
+void Quat::fromMatrixf(Matrixf& mtx)
 {
-	/*
-	.loc_0x0:
-	  lfs       f6, 0x0(r4)
-	  lfs       f0, 0x14(r4)
-	  lfs       f3, 0x28(r4)
-	  fadds     f7, f6, f0
-	  lfs       f4, 0x1F18(r2)
-	  lfs       f5, 0x1F5C(r2)
-	  fadds     f1, f0, f3
-	  lfs       f2, 0x1F28(r2)
-	  fadds     f0, f3, f6
-	  fadds     f3, f3, f7
-	  fadds     f3, f4, f3
-	  fmuls     f3, f5, f3
-	  fnmsubs   f1, f2, f1, f3
-	  fnmsubs   f4, f2, f0, f3
-	  fnmsubs   f2, f2, f7, f3
-	  fcmpo     cr0, f3, f1
-	  ble-      .loc_0x7C
-	  fcmpo     cr0, f3, f4
-	  ble-      .loc_0x64
-	  fcmpo     cr0, f3, f2
-	  ble-      .loc_0x5C
-	  li        r0, 0
-	  b         .loc_0xB0
+	int case_var;
+	f32 temp_norm;
 
-	.loc_0x5C:
-	  li        r0, 0x3
-	  b         .loc_0xB0
+	f32 avg_elem = 0.25f * (1.0f + (mtx.mMatrix.mtxView[2][2] + (mtx.mMatrix.mtxView[0][0] + mtx.mMatrix.mtxView[1][1])));
+	f32 var_00   = -((0.5f * (mtx.mMatrix.mtxView[1][1] + mtx.mMatrix.mtxView[2][2])) - avg_elem);
+	f32 var_11   = -((0.5f * (mtx.mMatrix.mtxView[2][2] + mtx.mMatrix.mtxView[0][0])) - avg_elem);
+	f32 var_22   = -((0.5f * (mtx.mMatrix.mtxView[0][0] + mtx.mMatrix.mtxView[1][1])) - avg_elem);
 
-	.loc_0x64:
-	  fcmpo     cr0, f4, f2
-	  ble-      .loc_0x74
-	  li        r0, 0x2
-	  b         .loc_0xB0
+	if (avg_elem > var_00) {
+		if (avg_elem > var_11) {
+			if (avg_elem > var_22) {
+				case_var = 0; // w norm
+			} else {
+				case_var = 3; // z norm
+			}
+		} else if (var_11 > var_22) {
+			case_var = 2; // y norm
+		} else {
+			case_var = 3; // z norm
+		}
+	} else if (var_00 > var_11) {
+		if (var_00 > var_22) {
+			case_var = 1; // x norm
+		} else {
+			case_var = 3; // z norm
+		}
+	} else if (var_11 > var_22) {
+		case_var = 2; // y norm
+	} else {
+		case_var = 3; // z norm
+	}
 
-	.loc_0x74:
-	  li        r0, 0x3
-	  b         .loc_0xB0
-
-	.loc_0x7C:
-	  fcmpo     cr0, f1, f4
-	  ble-      .loc_0x9C
-	  fcmpo     cr0, f1, f2
-	  ble-      .loc_0x94
-	  li        r0, 0x1
-	  b         .loc_0xB0
-
-	.loc_0x94:
-	  li        r0, 0x3
-	  b         .loc_0xB0
-
-	.loc_0x9C:
-	  fcmpo     cr0, f4, f2
-	  ble-      .loc_0xAC
-	  li        r0, 0x2
-	  b         .loc_0xB0
-
-	.loc_0xAC:
-	  li        r0, 0x3
-
-	.loc_0xB0:
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x1B0
-	  bge-      .loc_0xCC
-	  cmpwi     r0, 0
-	  beq-      .loc_0xD8
-	  bge-      .loc_0x144
-	  b         .loc_0x284
-
-	.loc_0xCC:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x284
-	  b         .loc_0x21C
-
-	.loc_0xD8:
-	  lfs       f0, 0x1F10(r2)
-	  fcmpo     cr0, f3, f0
-	  ble-      .loc_0xF0
-	  fsqrte    f0, f3
-	  fmuls     f0, f0, f3
-	  b         .loc_0xF4
-
-	.loc_0xF0:
-	  fmr       f0, f3
-
-	.loc_0xF4:
-	  stfs      f0, 0x0(r3)
-	  lfs       f2, 0x1F5C(r2)
-	  lfs       f0, 0x0(r3)
-	  lfs       f1, 0x24(r4)
-	  fdivs     f2, f2, f0
-	  lfs       f0, 0x18(r4)
-	  fsubs     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x4(r3)
-	  lfs       f1, 0x8(r4)
-	  lfs       f0, 0x20(r4)
-	  fsubs     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x8(r3)
-	  lfs       f1, 0x10(r4)
-	  lfs       f0, 0x4(r4)
-	  fsubs     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0xC(r3)
-	  b         .loc_0x284
-
-	.loc_0x144:
-	  lfs       f0, 0x1F10(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x15C
-	  fsqrte    f0, f1
-	  fmuls     f0, f0, f1
-	  b         .loc_0x160
-
-	.loc_0x15C:
-	  fmr       f0, f1
-
-	.loc_0x160:
-	  stfs      f0, 0x4(r3)
-	  lfs       f2, 0x1F5C(r2)
-	  lfs       f0, 0x4(r3)
-	  lfs       f1, 0x24(r4)
-	  fdivs     f2, f2, f0
-	  lfs       f0, 0x18(r4)
-	  fsubs     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x0(r3)
-	  lfs       f1, 0x4(r4)
-	  lfs       f0, 0x10(r4)
-	  fadds     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x8(r3)
-	  lfs       f1, 0x8(r4)
-	  lfs       f0, 0x20(r4)
-	  fadds     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0xC(r3)
-	  b         .loc_0x284
-
-	.loc_0x1B0:
-	  lfs       f0, 0x1F10(r2)
-	  fcmpo     cr0, f4, f0
-	  ble-      .loc_0x1C8
-	  fsqrte    f0, f4
-	  fmuls     f0, f0, f4
-	  b         .loc_0x1CC
-
-	.loc_0x1C8:
-	  fmr       f0, f4
-
-	.loc_0x1CC:
-	  stfs      f0, 0x8(r3)
-	  lfs       f2, 0x1F5C(r2)
-	  lfs       f0, 0x8(r3)
-	  lfs       f1, 0x8(r4)
-	  fdivs     f2, f2, f0
-	  lfs       f0, 0x20(r4)
-	  fsubs     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x0(r3)
-	  lfs       f1, 0x18(r4)
-	  lfs       f0, 0x24(r4)
-	  fadds     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0xC(r3)
-	  lfs       f1, 0x10(r4)
-	  lfs       f0, 0x4(r4)
-	  fadds     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x4(r3)
-	  b         .loc_0x284
-
-	.loc_0x21C:
-	  lfs       f0, 0x1F10(r2)
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x234
-	  fsqrte    f0, f2
-	  fmuls     f0, f0, f2
-	  b         .loc_0x238
-
-	.loc_0x234:
-	  fmr       f0, f2
-
-	.loc_0x238:
-	  stfs      f0, 0xC(r3)
-	  lfs       f2, 0x1F5C(r2)
-	  lfs       f0, 0xC(r3)
-	  lfs       f1, 0x10(r4)
-	  fdivs     f2, f2, f0
-	  lfs       f0, 0x4(r4)
-	  fsubs     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x0(r3)
-	  lfs       f1, 0x20(r4)
-	  lfs       f0, 0x8(r4)
-	  fadds     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x4(r3)
-	  lfs       f1, 0x24(r4)
-	  lfs       f0, 0x18(r4)
-	  fadds     f0, f1, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x8(r3)
-
-	.loc_0x284:
-	  lfs       f1, 0x0(r3)
-	  lfs       f0, 0x1F10(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x2C0
-	  fneg      f0, f1
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x4(r3)
-	  fneg      f0, f0
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x8(r3)
-	  fneg      f0, f0
-	  stfs      f0, 0x8(r3)
-	  lfs       f0, 0xC(r3)
-	  fneg      f0, f0
-	  stfs      f0, 0xC(r3)
-
-	.loc_0x2C0:
-	  lfs       f1, 0x0(r3)
-	  lfs       f0, 0x4(r3)
-	  fmuls     f2, f1, f1
-	  lfs       f3, 0x8(r3)
-	  fmuls     f1, f0, f0
-	  lfs       f4, 0xC(r3)
-	  fmuls     f3, f3, f3
-	  lfs       f0, 0x1F10(r2)
-	  fadds     f1, f2, f1
-	  fmuls     f2, f4, f4
-	  fadds     f1, f3, f1
-	  fadds     f2, f2, f1
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x300
-	  fsqrte    f0, f2
-	  fmuls     f2, f0, f2
-
-	.loc_0x300:
-	  lfs       f1, 0x1F18(r2)
-	  lfs       f0, 0x0(r3)
-	  fdivs     f1, f1, f2
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x4(r3)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x8(r3)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x8(r3)
-	  lfs       f0, 0xC(r3)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0xC(r3)
-	  blr
-	*/
+	switch (case_var) {
+	case 0: // w norm
+		w         = pikmin2_sqrtf(avg_elem);
+		temp_norm = 0.25f / w;
+		x         = temp_norm * (mtx.mMatrix.mtxView[2][1] - mtx.mMatrix.mtxView[1][2]);
+		y         = temp_norm * (mtx.mMatrix.mtxView[0][2] - mtx.mMatrix.mtxView[2][0]);
+		z         = temp_norm * (mtx.mMatrix.mtxView[1][0] - mtx.mMatrix.mtxView[0][1]);
+		break;
+	case 1: // x norm
+		x         = pikmin2_sqrtf(var_00);
+		temp_norm = 0.25f / x;
+		w         = temp_norm * (mtx.mMatrix.mtxView[2][1] - mtx.mMatrix.mtxView[1][2]);
+		y         = temp_norm * (mtx.mMatrix.mtxView[0][1] + mtx.mMatrix.mtxView[1][0]);
+		z         = temp_norm * (mtx.mMatrix.mtxView[0][2] + mtx.mMatrix.mtxView[2][0]);
+		break;
+	case 2: // y norm
+		y         = pikmin2_sqrtf(var_11);
+		temp_norm = 0.25f / y;
+		w         = temp_norm * (mtx.mMatrix.mtxView[0][2] - mtx.mMatrix.mtxView[2][0]);
+		z         = temp_norm * (mtx.mMatrix.mtxView[1][2] + mtx.mMatrix.mtxView[2][1]);
+		x         = temp_norm * (mtx.mMatrix.mtxView[1][0] + mtx.mMatrix.mtxView[0][1]);
+		break;
+	case 3: // z norm
+		z         = pikmin2_sqrtf(var_22);
+		temp_norm = 0.25f / z;
+		w         = temp_norm * (mtx.mMatrix.mtxView[1][0] - mtx.mMatrix.mtxView[0][1]);
+		x         = temp_norm * (mtx.mMatrix.mtxView[2][0] + mtx.mMatrix.mtxView[0][2]);
+		y         = temp_norm * (mtx.mMatrix.mtxView[2][1] + mtx.mMatrix.mtxView[1][2]);
+		break;
+	}
+	if (w < 0.0f) {
+		w = -w;
+		x = -x;
+		y = -y;
+		z = -z;
+	}
+	f32 len_q = pikmin2_sqrtf(w * w + x * x + y * y + z * z);
+	f32 norm  = 1.0f / len_q;
+	w *= norm;
+	x *= norm;
+	y *= norm;
+	z *= norm;
 }
 
 /*
@@ -1580,8 +1332,16 @@ void Plane::intersectRay(Vector3f&, Vector3f&)
  * Address:	80412F74
  * Size:	0000C8
  */
-void BoundBox::makeBoundSphere(Sys::Sphere&)
+void BoundBox::makeBoundSphere(Sys::Sphere& sphere)
 {
+	Vector3f mid((mMin.x + mMax.x) / 2, (mMin.y + mMax.y) / 2, (mMin.z + mMax.z) / 2);
+	sphere.mPosition = mid;
+
+	f32 len_min = qdist3(mid.x, mid.y, mid.z, mMin.x, mMin.y, mMin.z);
+	f32 len_max = qdist3(mid.x, mid.y, mid.z, mMax.x, mMax.y, mMax.z);
+	// f32 len_max = dist(mid, mMax);
+
+	sphere.mRadius = (len_min > len_max) ? len_min : len_max;
 	/*
 	.loc_0x0:
 	  lfs       f1, 0x0(r3)
@@ -1650,172 +1410,54 @@ void BoundBox::makeBoundSphere(Sys::Sphere&)
  * Address:	8041303C
  * Size:	0001EC
  */
-void BoundBox::transform(Matrixf&)
+int BoundBox::transform(Matrixf& mtx)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stmw      r27, 0x7C(r1)
-	  addi      r30, r1, 0x14
-	  mr        r27, r3
-	  mr        r28, r4
-	  li        r29, 0
-	  mr        r31, r30
+	// takes a 3x3 matrix M and transforms a BoundBox
+	// by acting as a linear operator on each vertex
+	// also spits out 3 lol
 
-	.loc_0x24:
-	  rlwinm.   r0,r29,0,31,31
-	  bne-      .loc_0x38
-	  lfs       f0, 0x0(r27)
-	  stfs      f0, 0x0(r31)
-	  b         .loc_0x40
+	Vector3f store[8]; // this is gonna hold a whole bunch of vertex information
+	Vector3f mult_out; // vector to store matrix multiplication output
+	// loop over all 8 vertices of the box
+	for (int vertex = 0; vertex < 8; vertex++) {
+		// bitwise operators put the right stuff in for the right vertex
+		if ((vertex & 1) == 0) {
+			store[vertex].x = mMin.x;
+		} else {
+			store[vertex].x = mMax.x;
+		}
+		if ((vertex & 2) == 0) {
+			store[vertex].y = mMin.y;
+		} else {
+			store[vertex].y = mMax.y;
+		}
+		if ((vertex & 4) == 0) {
+			store[vertex].z = mMin.z;
+		} else {
+			store[vertex].z = mMax.z;
+		}
+		// multiply M and vertex, store result in mult_out
+		PSMTXMultVec(mtx.mMatrix.mtxView, (Vec*)&store[vertex], (Vec*)&mult_out);
+		store[vertex] = mult_out; // hold onto result in store
+	}
 
-	.loc_0x38:
-	  lfs       f0, 0xC(r27)
-	  stfs      f0, 0x0(r31)
+	// now we need to work out new bounds for the box?
+	// initially set max and min to... well, max and min possible
+	mMin.x = 32768.0f;
+	mMin.y = 32768.0f;
+	mMin.z = 32768.0f;
 
-	.loc_0x40:
-	  rlwinm.   r0,r29,0,30,30
-	  bne-      .loc_0x54
-	  lfs       f0, 0x4(r27)
-	  stfs      f0, 0x4(r31)
-	  b         .loc_0x5C
+	mMax.x = -32768.0f;
+	mMax.y = -32768.0f;
+	mMax.z = -32768.0f;
 
-	.loc_0x54:
-	  lfs       f0, 0x10(r27)
-	  stfs      f0, 0x4(r31)
+	// loop over stuff in pairs?
+	// I don't get why this is in pairs tbqh but so be it
+	int count = 0; // idk why we're returning this tbh
 
-	.loc_0x5C:
-	  rlwinm.   r0,r29,0,29,29
-	  bne-      .loc_0x70
-	  lfs       f0, 0x8(r27)
-	  stfs      f0, 0x8(r31)
-	  b         .loc_0x78
-
-	.loc_0x70:
-	  lfs       f0, 0x14(r27)
-	  stfs      f0, 0x8(r31)
-
-	.loc_0x78:
-	  mr        r3, r28
-	  mr        r4, r31
-	  addi      r5, r1, 0x8
-	  bl        -0x3284E8
-	  lfs       f0, 0x8(r1)
-	  addi      r29, r29, 0x1
-	  lfs       f1, 0xC(r1)
-	  cmpwi     r29, 0x8
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x10(r1)
-	  stfs      f1, 0x4(r31)
-	  stfs      f0, 0x8(r31)
-	  addi      r31, r31, 0xC
-	  blt+      .loc_0x24
-	  lfs       f1, 0x1F60(r2)
-	  li        r0, 0x4
-	  lfs       f0, 0x1F64(r2)
-	  li        r3, 0
-	  stfs      f1, 0x0(r27)
-	  stfs      f1, 0x4(r27)
-	  stfs      f1, 0x8(r27)
-	  stfs      f0, 0xC(r27)
-	  stfs      f0, 0x10(r27)
-	  stfs      f0, 0x14(r27)
-	  mtctr     r0
-
-	.loc_0xDC:
-	  lfs       f1, 0x0(r30)
-	  lfs       f0, 0x0(r27)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xF0
-	  stfs      f1, 0x0(r27)
-
-	.loc_0xF0:
-	  lfs       f1, 0x4(r30)
-	  lfs       f0, 0x4(r27)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x104
-	  stfs      f1, 0x4(r27)
-
-	.loc_0x104:
-	  lfs       f1, 0x8(r30)
-	  lfs       f0, 0x8(r27)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x118
-	  stfs      f1, 0x8(r27)
-
-	.loc_0x118:
-	  lfs       f1, 0x0(r30)
-	  lfs       f0, 0xC(r27)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x12C
-	  stfs      f1, 0xC(r27)
-
-	.loc_0x12C:
-	  lfs       f1, 0x4(r30)
-	  lfs       f0, 0x10(r27)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x140
-	  stfs      f1, 0x10(r27)
-
-	.loc_0x140:
-	  lfs       f1, 0x8(r30)
-	  lfs       f0, 0x14(r27)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x154
-	  stfs      f1, 0x14(r27)
-
-	.loc_0x154:
-	  lfs       f1, 0xC(r30)
-	  lfs       f0, 0x0(r27)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x168
-	  stfs      f1, 0x0(r27)
-
-	.loc_0x168:
-	  lfs       f1, 0x10(r30)
-	  lfs       f0, 0x4(r27)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x17C
-	  stfs      f1, 0x4(r27)
-
-	.loc_0x17C:
-	  lfs       f1, 0x14(r30)
-	  lfs       f0, 0x8(r27)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x190
-	  stfs      f1, 0x8(r27)
-
-	.loc_0x190:
-	  lfs       f1, 0xC(r30)
-	  lfs       f0, 0xC(r27)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1A4
-	  stfs      f1, 0xC(r27)
-
-	.loc_0x1A4:
-	  lfs       f1, 0x10(r30)
-	  lfs       f0, 0x10(r27)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1B8
-	  stfs      f1, 0x10(r27)
-
-	.loc_0x1B8:
-	  lfs       f1, 0x14(r30)
-	  lfs       f0, 0x14(r27)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1CC
-	  stfs      f1, 0x14(r27)
-
-	.loc_0x1CC:
-	  addi      r30, r30, 0x18
-	  addi      r3, r3, 0x1
-	  bdnz+     .loc_0xDC
-	  lmw       r27, 0x7C(r1)
-	  lwz       r0, 0x94(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
-	*/
+	for (int i = 0; i < 4; i++, count++) {
+		include(store[2 * i]);
+		include(store[2 * i + 1]);
+	}
+	return count;
 }

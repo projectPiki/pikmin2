@@ -159,7 +159,7 @@ void Obj::doStartStoneState()
 	{
 		Creature* stuck = *iter;
 		if (stuck->isStickToMouth()) {
-			InteractFlick flick(this, 0.0f, 0.0f, -1000.0f);
+			InteractFlick flick(this, 0.0f, 0.0f, FLICK_BACKWARD_ANGLE);
 			stuck->stimulate(flick);
 		}
 	}

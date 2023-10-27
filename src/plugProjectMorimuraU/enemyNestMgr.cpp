@@ -15,15 +15,15 @@ J2DGXColorS10 mMatColor;
  * Address:	8036C194
  * Size:	000070
  */
-Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBase(p1, p2)
+Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBase(objLimit, modelType)
 {
-	mHouseModelData = nullptr;
-	mName           = "巣マネージャ"; // 'nest manager'
-	mMatColor.a     = 0xFF;
-	mMatColor.b     = 0xFF;
-	mMatColor.g     = 0xFF;
-	mMatColor.r     = 0xFF;
+	mJigumoHouseData = nullptr;
+	mName            = "巣マネージャ"; // 'nest manager'
+	mMatColor.a      = 0xFF;
+	mMatColor.b      = 0xFF;
+	mMatColor.g      = 0xFF;
+	mMatColor.r      = 0xFF;
 }
 
 /*
@@ -57,18 +57,18 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 	}
 
 	LoadResource::ArgAramOnly loadArg("/enemy/data/JigumoHouse/model.szs");
-	LoadResource::Node* loadNode = gLoadResourceMgr->mountArchive(loadArg);
+	LoadResource::Node* jigumoLoadNode = gLoadResourceMgr->mountArchive(loadArg);
 
-	P2ASSERTLINE(73, loadNode);
-	JKRArchive* nodeArchive = loadNode->mArchive;
-	P2ASSERTLINE(75, nodeArchive);
+	P2ASSERTLINE(73, jigumoLoadNode);
+	JKRArchive* jigumoArc = jigumoLoadNode->mArchive;
+	P2ASSERTLINE(75, jigumoArc);
 
-	enemyBMD = JKRFileLoader::getGlbResource("enemy.bmd", nodeArchive);
+	enemyBMD = JKRFileLoader::getGlbResource("enemy.bmd", jigumoArc);
 	if (enemyBMD) {
-		mHouseModelData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
-		mHouseModelData->newSharedDisplayList(0x40000);
-		mHouseModelData->simpleCalcMaterial(0, j3dDefaultMtx);
-		mHouseModelData->makeSharedDL();
+		mJigumoHouseData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
+		mJigumoHouseData->newSharedDisplayList(0x40000);
+		mJigumoHouseData->simpleCalcMaterial(0, j3dDefaultMtx);
+		mJigumoHouseData->makeSharedDL();
 	}
 
 	return mModelData;
@@ -82,13 +82,13 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 // regswaps
 void Mgr::doSimpleDraw(Viewport* viewport)
 {
-	Mtx mtx1 = { { 1.0f, 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 1.0f, 0.0f } };
-	Mtx mtx2;
+	Mtx matMtx = { { 1.0f, 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 1.0f, 0.0f } };
+	Mtx gxMtx;
 	GXColorS10 color;
-	color.a = 0xFF;
-	color.b = 0xFF;
-	color.g = 0xFF;
-	color.r = 0xFF;
+	color.a = 255;
+	color.b = 255;
+	color.g = 255;
+	color.r = 255;
 
 	for (int i = 0; i < getMaxObjects(); i++) {
 		Obj* nest = static_cast<Obj*>(getEnemy(i));
@@ -98,18 +98,19 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 		f32 scaleMod = nest->mScaleModifier;
 		if (nest->isAlive() && nest->isCullingOff()) {
 			Vector3f homePos = nest->mHomePosition;
-			mtx1[0][0]       = scaleMod;
-			mtx1[1][1]       = scaleMod;
-			mtx1[2][2]       = scaleMod;
-			mtx1[0][3]       = homePos.x;
-			mtx1[1][3]       = homePos.y;
-			mtx1[2][3]       = homePos.z;
+			matMtx[0][0]     = scaleMod;
+			matMtx[1][1]     = scaleMod;
+			matMtx[2][2]     = scaleMod;
+			matMtx[0][3]     = homePos.x;
+			matMtx[1][3]     = homePos.y;
+			matMtx[2][3]     = homePos.z;
 
-			PSMTXConcat(viewport->getMatrix(true)->mMatrix.mtxView, mtx1, mtx2);
-			GXLoadPosMtxImm(mtx2, 0);
-			GXLoadNrmMtxImm(mtx2, 0);
+			PSMTXConcat(viewport->getMatrix(true)->mMatrix.mtxView, matMtx, gxMtx);
+			GXLoadPosMtxImm(gxMtx, 0);
+			GXLoadNrmMtxImm(gxMtx, 0);
 
-			J3DModelData* modelData = (nest->mHouseType) ? mModelData : mHouseModelData;
+			// if we're a breadbug nest, use base model; if we're a crawmad nest, use special model
+			J3DModelData* modelData = (nest->mHouseType) ? mModelData : mJigumoHouseData;
 			J3DJoint* joint         = modelData->getJointNodePointer(0);
 			P2ASSERTLINE(134, joint);
 
@@ -123,22 +124,24 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 			J3DShape::sOldVcdVatCmd = nullptr;
 			material->loadSharedDL();
 			material->mShape->loadPreDrawSetting();
-			material->calc(mtx1);
+			material->calc(matMtx);
 
-			color.a = nest->_2EE;
+			color.a = nest->mAlpha;
 			color.a -= 10;
-			if (color.a < -0xFF) {
-				color.a = -0xFF;
+			if (color.a < -255) {
+				color.a = -255;
 				nest->kill(nullptr);
 				nest->setAlive(false);
 				nest->setAtari(false);
 			}
 
 			s16 alpha = color.a;
-			if (nest->_2F0 > 0) {
-				nest->_2F0++;
-				if (nest->_2F0 > 80) {
-					nest->_2EE = alpha;
+			if (nest->mDeathTimer > 0) {
+				nest->mDeathTimer++; // if we've started dying, keep dying
+
+				// if we're sufficiently 'dead', start decrementing alpha value to make nest invisible
+				if (nest->mDeathTimer > 80) {
+					nest->mAlpha = alpha;
 					nest->setAtari(false);
 				}
 			}

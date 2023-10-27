@@ -234,7 +234,7 @@ void Obj::doStartStoneState()
 void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 
 	int stateID = getStateID();
 	if (stateID == QUEEN_Damage) {
@@ -345,7 +345,7 @@ void Obj::flickPikmin(f32 angle)
 					stuck->stimulate(flick);
 
 				} else {
-					InteractFlick flick(this, 0.0f, 0.0f, -1000.0f);
+					InteractFlick flick(this, 0.0f, 0.0f, FLICK_BACKWARD_ANGLE);
 					stuck->stimulate(flick);
 				}
 			}

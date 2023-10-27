@@ -1620,7 +1620,7 @@ void StateTurn::exec(EnemyBase* enemy)
 void StateTurn::cleanup(EnemyBase* enemy)
 {
 	Obj* crab = OBJ(enemy);
-	EnemyFunc::flickStickPikmin(crab, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(crab, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 	crab->enableEvent(0, EB_Invulnerable);
 	crab->disableEvent(0, EB_NoInterrupt);
 	crab->setBodyCollision(true);

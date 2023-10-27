@@ -806,9 +806,9 @@ void StateJump::exec(EnemyBase* enemy)
 			frog->startJumpAttack();
 
 			EnemyFunc::flickNearbyNavi(frog, CG_PARMS(frog)->mGeneral.mShakeRange.mValue, 0.0f,
-			                           CG_PARMS(frog)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                           CG_PARMS(frog)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickNearbyPikmin(frog, CG_PARMS(frog)->mGeneral.mShakeRange.mValue, 0.0f,
-			                             CG_PARMS(frog)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                             CG_PARMS(frog)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 			if (frog->mWaterBox) {
 				frog->getJAIObject()->startSound(PSSE_EN_FROG_WATERJUMP, 0);

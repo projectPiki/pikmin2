@@ -1,5 +1,6 @@
 #include "Game/Entities/BigTreasure.h"
 #include "Game/MapMgr.h"
+#include "Game/EnemyFunc.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
 
@@ -118,7 +119,7 @@ bool BigTreasureFireAttack::update()
 				if (creature->isNavi()) {
 					if (!creature->stimulate(fire)) {
 						if (randWeightFloat(1.0f) < 0.33f) {
-							InteractFlick flick(mOwner, 0.0f, 0.0f, -1000.0f);
+							InteractFlick flick(mOwner, 0.0f, 0.0f, FLICK_BACKWARD_ANGLE);
 							creature->stimulate(flick);
 						} else {
 							InteractAttack attack(mOwner, 0.0f, nullptr);

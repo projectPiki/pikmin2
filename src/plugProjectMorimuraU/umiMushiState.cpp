@@ -472,9 +472,9 @@ void StateFlick::exec(EnemyBase* enemy)
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
-			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			enemy->mFlickTimer = 0.0f;
 
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
@@ -583,9 +583,9 @@ void StateAttack::exec(EnemyBase* enemy)
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
-			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 			enemy->mFlickTimer = 0.0f;
 			mIsTongueActive    = false;
 			break;

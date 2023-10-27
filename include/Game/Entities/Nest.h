@@ -15,6 +15,11 @@
 
 namespace Game {
 namespace Nest {
+enum HouseType {
+	NEST_Jigumo   = 0,
+	NEST_Breadbug = 1,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -42,15 +47,15 @@ struct Obj : public EnemyBase {
 	virtual void birth(Vector3f&, f32);                   // _1C0
 	//////////////// VTABLE END
 
-	void setHouseType(int);
+	void setHouseType(int type);
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Matrixf _2BC;  // _2BC
-	u8 mHouseType; // _2EC
-	s16 _2EE;      // _2EE
-	int _2F0;      // _2F0
-	               // _2F4 = PelletView
+	Matrixf mHouseTrMatrix; // _2BC, specific TR matrix for nest (height lower than base tr matrix)
+	u8 mHouseType;          // _2EC
+	s16 mAlpha;             // _2EE, alpha value for nest color, will decrement to -255 as nest dies
+	int mDeathTimer;        // _2F0, if non-zero, will begin death sequence for nest (takes 80 frames)
+	                        // _2F4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -80,8 +85,8 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	J3DModelData* mHouseModelData; // _44
-	Obj* mObj;                     // _48, array of Objs
+	J3DModelData* mJigumoHouseData; // _44
+	Obj* mObj;                      // _48, array of Objs
 };
 } // namespace Nest
 } // namespace Game

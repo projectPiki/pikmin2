@@ -332,9 +332,9 @@ void StateAttacking::exec(EnemyBase* enemy)
 			f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 			f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
-			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickStickPikmin(enemy, chance, knockback, damage, -1000.0f, nullptr);
-			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, chance, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 
 			enemy->mFlickTimer = 0.0f;
 			effectPos          = Vector3f(-20.0f, 0.0f, 31.0f);
@@ -517,9 +517,9 @@ void StateFlick::exec(EnemyBase* enemy)
 		f32 damage    = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
 		f32 range     = CG_PARMS(enemy)->mGeneral.mShakeRange.mValue;
 
-		EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, -1000.0f, nullptr);
-		EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, -1000.0f, nullptr);
-		EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, -1000.0f, nullptr);
+		EnemyFunc::flickNearbyPikmin(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+		EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+		EnemyFunc::flickNearbyNavi(enemy, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 
 		enemy->mFlickTimer = 0.0f;
 

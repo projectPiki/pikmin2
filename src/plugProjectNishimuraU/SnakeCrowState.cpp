@@ -858,14 +858,14 @@ void StateDisappear::exec(EnemyBase* enemy)
 		if ((u32)snagret->mCurAnim->mType == KEYEVENT_2) {
 			Parms* parms1 = static_cast<Parms*>(snagret->mParms);
 			EnemyFunc::flickNearbyNavi(snagret, parms1->mGeneral.mShakeRange.mValue, parms1->mGeneral.mShakeKnockback.mValue,
-			                           parms1->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                           parms1->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			Parms* parms2 = static_cast<Parms*>(snagret->mParms);
 			EnemyFunc::flickNearbyPikmin(snagret, parms2->mGeneral.mShakeRange.mValue, parms2->mGeneral.mShakeKnockback.mValue,
-			                             parms2->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                             parms2->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 			Parms* parms3 = static_cast<Parms*>(snagret->mParms);
 			EnemyFunc::flickStickPikmin(snagret, parms3->mGeneral.mShakeChance.mValue, parms3->mGeneral.mShakeKnockback.mValue,
-			                            parms3->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                            parms3->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			snagret->finishWaitEffect();
 			snagret->startBossFlickBGM();
 
@@ -889,7 +889,7 @@ void StateDisappear::exec(EnemyBase* enemy)
 void StateDisappear::cleanup(EnemyBase* enemy)
 {
 	Obj* snagret = OBJ(enemy);
-	EnemyFunc::flickStickPikmin(snagret, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(snagret, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 	snagret->mIsUnderground = false;
 	snagret->disableEvent(0, EB_BitterImmune);
 	snagret->enableEvent(0, EB_Cullable);

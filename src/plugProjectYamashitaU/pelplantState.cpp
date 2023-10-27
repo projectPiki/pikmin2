@@ -108,7 +108,7 @@ void StateWither::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startBlend(mStartAnimIdx, mEndAnimIdx, &EnemyBlendAnimatorBase::sBlendQuadraticFun, 30.0f, nullptr);
 	enemy->enableEvent(0, EB_Invulnerable);
-	EnemyFunc::flickStickPikmin(enemy, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(enemy, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
 /*

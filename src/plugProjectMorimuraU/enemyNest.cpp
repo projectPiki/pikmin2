@@ -16,7 +16,7 @@ namespace Nest {
 void Obj::birth(Vector3f& position, float p2)
 {
 	EnemyBase::birth(position, p2);
-	mHouseType = 1;
+	mHouseType = NEST_Breadbug;
 }
 
 /*
@@ -27,8 +27,8 @@ void Obj::birth(Vector3f& position, float p2)
 void Obj::onInit(Game::CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
-	_2EE          = 0xFF;
-	_2F0          = 0;
+	mAlpha        = 255;
+	mDeathTimer   = 0;
 	mHomePosition = mPosition;
 	disableEvent(0, EB_LeaveCarcass);
 	disableEvent(0, EB_DamageAnimEnabled);
@@ -40,8 +40,8 @@ void Obj::onInit(Game::CreatureInitArg* arg)
 	if (shadowMgr) {
 		shadowMgr->killShadow(this);
 	}
-	_2BC                       = mBaseTrMatrix;
-	_2BC.mMatrix.structView.ty = mPosition.y - 10.0f;
+	mHouseTrMatrix                       = mBaseTrMatrix;
+	mHouseTrMatrix.mMatrix.structView.ty = mPosition.y - 10.0f;
 }
 
 /*
@@ -52,7 +52,7 @@ void Obj::onInit(Game::CreatureInitArg* arg)
  */
 Obj::Obj()
     : EnemyBase()
-    , mHouseType(1)
+    , mHouseType(NEST_Breadbug)
 {
 }
 
@@ -64,9 +64,9 @@ Obj::Obj()
 void Obj::setHouseType(int enemyID)
 {
 	if (enemyID == EnemyTypeID::EnemyID_Jigumo) {
-		mHouseType = 0;
+		mHouseType = NEST_Jigumo;
 	} else {
-		mHouseType = 1;
+		mHouseType = NEST_Breadbug;
 	}
 }
 } // namespace Nest

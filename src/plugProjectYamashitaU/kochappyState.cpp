@@ -2005,13 +2005,13 @@ void StateFlick::exec(EnemyBase* enemy)
 		case 2:
 			EnemyParmsBase* parm = CG_PARMS(obj);
 			EnemyFunc::flickStickPikmin(obj, parm->mGeneral.mShakeChance, parm->mGeneral.mShakeKnockback, parm->mGeneral.mShakeDamage,
-			                            -1000.0f, nullptr);
+			                            FLICK_BACKWARD_ANGLE, nullptr);
 			parm = CG_PARMS(obj);
 			EnemyFunc::flickNearbyPikmin(obj, parm->mGeneral.mShakeRange, parm->mGeneral.mShakeKnockback, parm->mGeneral.mShakeDamage,
-			                             -1000.0f, nullptr);
+			                             FLICK_BACKWARD_ANGLE, nullptr);
 			parm = CG_PARMS(obj);
 			EnemyFunc::flickNearbyNavi(obj, parm->mGeneral.mShakeRange, parm->mGeneral.mShakeKnockback, parm->mGeneral.mShakeDamage,
-			                           -1000.0f, nullptr);
+			                           FLICK_BACKWARD_ANGLE, nullptr);
 			obj->mFlickTimer = 0.0f;
 			obj->setEnemyNonStone();
 			break;

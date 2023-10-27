@@ -251,7 +251,7 @@ void Obj::doFinishStoneState()
 	mCollTree->getCollPart('tyr4')->mSpecialID = '____';
 	mCollTree->getCollPart('tyr5')->mSpecialID = '____';
 	mCollTree->getCollPart('tyr6')->mSpecialID = '____';
-	EnemyFunc::flickStickPikmin(this, 1.0f, C_PARMS->mGeneral.mShakeKnockback.mValue, 0.0f, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(this, 1.0f, C_PARMS->mGeneral.mShakeKnockback.mValue, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 	if (getStateID() == TYRE_Move) {
 		createSmokeEffect();
 	}
@@ -609,7 +609,7 @@ void Obj::collisionStOff()
 	mCollTree->getCollPart('tyr4')->mSpecialID = '____';
 	mCollTree->getCollPart('tyr5')->mSpecialID = '____';
 	mCollTree->getCollPart('tyr6')->mSpecialID = '____';
-	EnemyFunc::flickStickPikmin(this, 1.0f, C_PARMS->mGeneral.mShakeKnockback.mValue, 0.0f, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(this, 1.0f, C_PARMS->mGeneral.mShakeKnockback.mValue, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
 /*
@@ -652,8 +652,8 @@ void Obj::flick()
 	f32 knockback = C_PARMS->mGeneral.mShakeKnockback.mValue;
 	f32 damage    = C_PARMS->mGeneral.mShakeDamage.mValue;
 
-	EnemyFunc::flickNearbyPikmin(this, C_PARMS->mGeneral.mShakeRange.mValue, knockback, damage, -1000.0f, nullptr);
-	EnemyFunc::flickStickPikmin(this, range, knockback, damage, -1000.0f, nullptr);
+	EnemyFunc::flickNearbyPikmin(this, C_PARMS->mGeneral.mShakeRange.mValue, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+	EnemyFunc::flickStickPikmin(this, range, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0

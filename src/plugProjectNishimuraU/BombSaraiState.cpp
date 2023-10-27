@@ -1425,7 +1425,7 @@ void StateFlick::exec(EnemyBase* enemy)
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
 			EnemyFunc::flickStickPikmin(sarai, CG_PARMS(sarai)->mGeneral.mShakeChance.mValue,
 			                            CG_PARMS(sarai)->mGeneral.mShakeKnockback.mValue, CG_PARMS(sarai)->mGeneral.mShakeDamage.mValue,
-			                            -1000.0f, nullptr);
+			                            FLICK_BACKWARD_ANGLE, nullptr);
 			sarai->mFlickTimer = 0.0f;
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {
@@ -1479,7 +1479,7 @@ void StateBombFlick::exec(EnemyBase* enemy)
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
 			EnemyFunc::flickStickPikmin(sarai, CG_PARMS(sarai)->mGeneral.mShakeChance.mValue,
 			                            CG_PARMS(sarai)->mGeneral.mShakeKnockback.mValue, CG_PARMS(sarai)->mGeneral.mShakeDamage.mValue,
-			                            -1000.0f, nullptr);
+			                            FLICK_BACKWARD_ANGLE, nullptr);
 			sarai->mFlickTimer = 0.0f;
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {

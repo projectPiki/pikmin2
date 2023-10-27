@@ -107,7 +107,7 @@ void StateFlick::exec(EnemyBase* enemy)
 		if ((u32)event->mType == 2) {
 			Parms* parms = static_cast<Parms*>(ota->mParms);
 			EnemyFunc::flickStickPikmin(ota, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
-			                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                            parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			ota->mFlickTimer = 0.0f;
 
 		} else if ((u32)event->mType == 3) {
@@ -642,7 +642,7 @@ void StateItemFlick::exec(EnemyBase* enemy)
 		if ((u32)event->mType == 2) {
 			Parms* parms = static_cast<Parms*>(ota->mParms);
 			EnemyFunc::flickStickPikmin(ota, parms->mGeneral.mShakeChance.mValue, parms->mGeneral.mShakeKnockback.mValue,
-			                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                            parms->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			ota->mFlickTimer = 0.0f;
 
 		} else if ((u32)event->mType == 3) {

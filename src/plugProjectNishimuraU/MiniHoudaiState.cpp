@@ -107,11 +107,11 @@ void StateRebirth::exec(EnemyBase* enemy)
 	if (mini->mCurAnim->mIsPlaying) {
 		if (mini->mCurAnim->mType == KEYEVENT_2) {
 			EnemyFunc::flickStickPikmin(mini, CG_PARMS(mini)->mGeneral.mShakeChance.mValue, CG_PARMS(mini)->mGeneral.mShakeKnockback.mValue,
-			                            CG_PARMS(mini)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                            CG_PARMS(mini)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickNearbyPikmin(mini, CG_PARMS(mini)->mGeneral.mShakeRange.mValue, CG_PARMS(mini)->mGeneral.mShakeKnockback.mValue,
-			                             CG_PARMS(mini)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                             CG_PARMS(mini)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickNearbyNavi(mini, CG_PARMS(mini)->mGeneral.mShakeRange.mValue, CG_PARMS(mini)->mGeneral.mShakeKnockback.mValue,
-			                           CG_PARMS(mini)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                           CG_PARMS(mini)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 			mini->mFlickTimer = 0.0f;
 			mini->enableEvent(0, EB_NoInterrupt);
 

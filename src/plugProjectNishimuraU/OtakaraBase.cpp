@@ -475,7 +475,7 @@ void Obj::resetTreasure()
 	basepart->mRadius   = 20.0f;
 	basepart->mOffset.y = 0.0f;
 
-	EnemyFunc::flickStickPikmin(this, 1.0f, 0.0f, 0.0f, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(this, 1.0f, 0.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
 }
 
 /*

@@ -210,7 +210,7 @@ void StateAmaze::exec(EnemyBase* enemy)
 			tadpole->createLeapEffect();
 			EnemyFunc::flickNearbyPikmin(tadpole, CG_PARMS(tadpole)->mGeneral.mShakeRange.mValue,
 			                             CG_PARMS(tadpole)->mGeneral.mShakeKnockback.mValue,
-			                             CG_PARMS(tadpole)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			                             CG_PARMS(tadpole)->mGeneral.mShakeDamage.mValue, FLICK_BACKWARD_ANGLE, nullptr);
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_3) {
 			tadpole->disableEvent(0, EB_NoInterrupt);
