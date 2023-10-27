@@ -4,7 +4,9 @@
 #include "Game/generalEnemyMgr.h"
 #include "Game/EnemyFunc.h"
 #include "Game/Navi.h"
+#include "Game/MapMgr.h"
 #include "Game/AIConstants.h"
+#include "efx/TEnemyDive.h"
 #include "Dolphin/rand.h"
 
 namespace Game {
@@ -609,6 +611,136 @@ f32 Obj::getGoalDist() { return mPosition.sqrDistance(mGoalPosition); }
  */
 void Obj::walkFunc()
 {
+	mEffectPosition = mPosition;
+	if (mWaterBox) {
+		mEffectPosition.y = *mWaterBox->getSeaHeightPtr();
+	}
+	f32 val, terrRad;
+	f32 walkSpeed = getWalkSpeed();                       // f29
+	terrRad       = C_PARMS->mGeneral.mTerritoryRadius(); // f30
+	val           = C_PARMS->_904;                        // f31
+	f32 rotRate   = C_PARMS->mGeneral.mRotationalAccel(); // f28
+	f32 rotSpeed  = C_PARMS->mGeneral.mRotationalSpeed(); // f27
+
+	int stateID = getStateID();
+	if (stateID == JIGUMO_Carry || (!C_PARMS->_8FC && (stateID == JIGUMO_Return || stateID == JIGUMO_Miss))) {
+		f32 dist   = mGoalPosition.distance(mPosition);
+		f32 factor = dist;
+		if (dist < 0.0f) {
+			factor = 0.0f;
+		}
+		f32 angle    = (C_PARMS->_908 * factor * 360.0f * (1.0f / terrRad));
+		f32 sinTheta = val * (f32)sin(180.0f + angle); // f2
+
+		if (!C_PARMS->_8FB) {
+			sinTheta = 0.0f;
+		}
+
+		sinTheta *= _344;
+		_344 += 0.1f;
+
+		f32 newAng = TORADIANS(sinTheta); // f30
+
+		if (_344 > 1.0f) {
+			_344 = 1.0f;
+		}
+
+		if (getStateID() == JIGUMO_Carry) {
+			if (C_PARMS->_8F9) {
+				_338 += 1.0f;
+				if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_1 && _338 > _33C) {
+					_340 = !_340;
+					if (_334 > 0) {
+						_340 = false;
+					}
+
+					if (_340) {
+						startMotion(JIGUMOANIM_BackWait, nullptr);
+						effectStop();
+					} else {
+						startMotion(JIGUMOANIM_BackRun, nullptr);
+						effectStart();
+					}
+
+					_33C = C_PARMS->_914 * randFloat();
+					_338 = 0.0f;
+				}
+
+				if (_340 && _338 < _33C) {
+					walkSpeed *= C_PARMS->_918 * (1.0f - _338 / _33C);
+				}
+			}
+			if (C_PARMS->_8FA) {
+				f32 val2 = 0.2f * (f32)mStuckPikminCount;
+				if (val2 > 0.8f) {
+					val2 = 0.8f;
+				}
+
+				walkSpeed *= (1.0f - val2);
+			}
+		}
+		mFaceDir = _2EC;
+		_35C++;
+		if (_35C > 60) {
+			if (mPosition.sqrDistance(_350) < 400.0f) {
+				f32 val3 = 2.0f;
+				if (_2E8) {
+					val3 *= -1.0f;
+				}
+
+				mPosition.x -= val3 * pikmin2_sinf(mFaceDir);
+				mPosition.z -= val3 * pikmin2_cosf(mFaceDir);
+				if ((f32)_334 != 0.0f) {
+					_2F4 = 2.0f;
+				} else {
+					_2F4 = 1.0f;
+					_334 = C_PARMS->_910;
+				}
+			}
+
+			_350 = mPosition;
+			_35C = 0;
+		}
+
+		turnToTarget2(mGoalPosition, rotRate, rotSpeed);
+
+		f32 dir   = mFaceDir;
+		f32 theta = dir + newAng;
+		f32 x     = walkSpeed * pikmin2_sinf(theta);
+		f32 y     = getTargetVelocity().y;
+		f32 z     = walkSpeed * pikmin2_cosf(theta);
+		_2EC      = dir;
+		if (absF(newAng) > rotSpeed) {
+			newAng = (newAng > 0.0f) ? rotSpeed : -rotSpeed;
+		}
+		f32 val4 = 1.0f;
+		if (stateID == JIGUMO_Return || stateID == JIGUMO_Miss) {
+			val4 = 0.0f;
+		}
+
+		mFaceDir += roundAng(PI * val4 + newAng);
+		mRotation.y     = mFaceDir;
+		mTargetVelocity = Vector3f(x, y, z);
+
+		if (_340 && C_PARMS->_918 == 0.0f) {
+			mTargetVelocity  = Vector3f(0.0f);
+			mCurrentVelocity = Vector3f(0.0f);
+		}
+		return;
+	}
+
+	if (stateID == JIGUMO_Attack) {
+		f32 x = (f32)sin(getFaceDir());
+		f32 y = getTargetVelocity().y;
+		f32 z = (f32)cos(getFaceDir());
+
+		mTargetVelocity = Vector3f(walkSpeed * x, y, walkSpeed * z);
+
+		return;
+	}
+
+	EnemyFunc::walkToTarget(this, mGoalPosition, walkSpeed, rotRate, rotSpeed);
+
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -1189,133 +1321,15 @@ lbl_8036AF4C:
  */
 Vector3f Obj::getOffsetForMapCollision()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	li       r5, 0
-	lwz      r6, 0x1e0(r4)
-	rlwinm.  r0, r6, 0, 0x15, 0x15
-	bne      lbl_8036AFA8
-	rlwinm.  r0, r6, 0, 0xd, 0xd
-	beq      lbl_8036AFAC
+	if (isConstrained()) {
+		return Vector3f(0.0f);
+	}
 
-lbl_8036AFA8:
-	li       r5, 1
+	if (_2E8) {
+		return Vector3f(-2.0f * pikmin2_sinf(mFaceDir), 0.0f, -2.0f * pikmin2_cosf(mFaceDir));
+	}
 
-lbl_8036AFAC:
-	clrlwi.  r0, r5, 0x18
-	beq      lbl_8036AFC8
-	lfs      f0, lbl_8051E978@sda21(r2)
-	stfs     f0, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	b        lbl_8036B120
-
-lbl_8036AFC8:
-	lbz      r0, 0x2e8(r4)
-	cmplwi   r0, 0
-	beq      lbl_8036B07C
-	lfs      f5, 0x1fc(r4)
-	lfs      f0, lbl_8051E978@sda21(r2)
-	fmr      f1, f5
-	fcmpo    cr0, f5, f0
-	bge      lbl_8036AFEC
-	fneg     f1, f5
-
-lbl_8036AFEC:
-	lfs      f2, lbl_8051E9C4@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051E978@sda21(r2)
-	addi     r5, r4, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	lfs      f3, lbl_8051E9C8@sda21(r2)
-	fcmpo    cr0, f5, f0
-	fctiwz   f0, f1
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r5, r0
-	lfs      f0, 4(r4)
-	fmuls    f4, f3, f0
-	bge      lbl_8036B04C
-	lfs      f0, lbl_8051E9C0@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f0, f0
-	b        lbl_8036B064
-
-lbl_8036B04C:
-	fmuls    f0, f5, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-
-lbl_8036B064:
-	fmuls    f1, f3, f0
-	lfs      f0, lbl_8051E978@sda21(r2)
-	stfs     f1, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f4, 8(r3)
-	b        lbl_8036B120
-
-lbl_8036B07C:
-	lfs      f5, 0x1fc(r4)
-	lfs      f0, lbl_8051E978@sda21(r2)
-	fmr      f1, f5
-	fcmpo    cr0, f5, f0
-	bge      lbl_8036B094
-	fneg     f1, f5
-
-lbl_8036B094:
-	lfs      f2, lbl_8051E9C4@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051E978@sda21(r2)
-	addi     r5, r4, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	lfs      f3, lbl_8051E984@sda21(r2)
-	fcmpo    cr0, f5, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r5, r0
-	lfs      f0, 4(r4)
-	fmuls    f4, f3, f0
-	bge      lbl_8036B0F4
-	lfs      f0, lbl_8051E9C0@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f0, f0
-	b        lbl_8036B10C
-
-lbl_8036B0F4:
-	fmuls    f0, f5, f2
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-
-lbl_8036B10C:
-	fmuls    f1, f3, f0
-	lfs      f0, lbl_8051E978@sda21(r2)
-	stfs     f1, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f4, 8(r3)
-
-lbl_8036B120:
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return Vector3f(2.0f * pikmin2_sinf(mFaceDir), 0.0f, 2.0f * pikmin2_cosf(mFaceDir));
 }
 
 /*
@@ -1325,602 +1339,134 @@ lbl_8036B120:
  */
 void Obj::calcBaseTrMatrix()
 {
-	/*
-	stwu     r1, -0x160(r1)
-	mflr     r0
-	stw      r0, 0x164(r1)
-	stfd     f31, 0x150(r1)
-	psq_st   f31, 344(r1), 0, qr0
-	stfd     f30, 0x140(r1)
-	psq_st   f30, 328(r1), 0, qr0
-	stfd     f29, 0x130(r1)
-	psq_st   f29, 312(r1), 0, qr0
-	stfd     f28, 0x120(r1)
-	psq_st   f28, 296(r1), 0, qr0
-	stfd     f27, 0x110(r1)
-	psq_st   f27, 280(r1), 0, qr0
-	stw      r31, 0x10c(r1)
-	mr       r31, r3
-	lwz      r4, 0xc0(r3)
-	lbz      r0, 0x8f8(r4)
-	cmplwi   r0, 0
-	bne      lbl_8036B1D0
-	lfs      f0, lbl_8051E97C@sda21(r2)
-	addi     r3, r31, 0x138
-	addi     r4, r1, 0x58
-	addi     r5, r31, 0x1a4
-	stfs     f0, 0x58(r1)
-	addi     r6, r31, 0x18c
-	stfs     f0, 0x5c(r1)
-	stfs     f0, 0x60(r1)
-	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-	lwz      r4, 0x174(r31)
-	addi     r3, r31, 0x138
-	lwz      r4, 8(r4)
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 0x174(r31)
-	lfs      f0, 0x168(r31)
-	lwz      r3, 8(r3)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x16c(r31)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 0x170(r31)
-	stfs     f0, 0x20(r3)
-	b        lbl_8036B90C
+	if (!C_PARMS->_8F8) {
+		Vector3f scale(1.0f);
+		mBaseTrMatrix.makeSRT(scale, mRotation, mPosition);
+		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+		mModel->mJ3dModel->mModelScale = *((Vec*)&mScale);
+		return;
+	}
 
-lbl_8036B1D0:
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lwz      r3, sys@sda21(r13)
-	cmplwi   r5, 0
-	lfs      f27, 0x1a4(r4)
-	lfs      f31, 0x54(r3)
-	beq      lbl_8036B230
-	lbz      r0, 0x48(r5)
-	cmplwi   r0, 0
-	beq      lbl_8036B230
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r31, 0x18c
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051E9CC@sda21(r2)
-	lfs      f2, 0x190(r31)
-	fadds    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	ble      lbl_8036B230
-	li       r3, 0
-	li       r0, 0x1e
-	stw      r3, 0x334(r31)
-	stw      r0, 0x34c(r31)
+	f32 frameLen;
+	Vector3f pos;
+	f32 rotX;
 
-lbl_8036B230:
-	lwz      r3, 0x34c(r31)
-	cmpwi    r3, 0
-	ble      lbl_8036B258
-	addi     r0, r3, -1
-	stw      r0, 0x34c(r31)
-	lwz      r0, 0x34c(r31)
-	cmpwi    r0, 0
-	bge      lbl_8036B258
-	li       r0, 0
-	stw      r0, 0x34c(r31)
+	rotX     = C_PARMS->mGeneral.mHeightOffsetFromFloor();
+	frameLen = sys->getFrameLength();
 
-lbl_8036B258:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lfs      f30, 0x18c(r31)
-	lwz      r12, 0x224(r12)
-	lfs      f29, 0x190(r31)
-	lfs      f28, 0x194(r31)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	lfs      f3, lbl_8051E978@sda21(r2)
-	stfs     f0, 0x240(r31)
-	addi     r7, r1, 0x48
-	lfs      f0, lbl_8051E9D0@sda21(r2)
-	addi     r6, r31, 0x1c8
-	lfs      f2, 0xc(r1)
-	li       r5, 0
-	li       r0, -1
-	fmr      f1, f31
-	stfs     f2, 0x244(r31)
-	addi     r4, r1, 0x64
-	lfs      f2, 0x10(r1)
-	stfs     f2, 0x248(r31)
-	lfs      f2, 0x244(r31)
-	lfs      f5, 0x240(r31)
-	fadds    f29, f29, f2
-	lfs      f4, 0x248(r31)
-	fadds    f30, f30, f5
-	lfs      f2, 0x800(r3)
-	fadds    f28, f28, f4
-	stfs     f27, 0x54(r1)
-	fadds    f29, f29, f27
-	stfs     f30, 0x48(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f28, 0x50(r1)
-	stfs     f29, 0x4c(r1)
-	lwz      r8, 0xc0(r31)
-	lfs      f4, 0x4c(r8)
-	stw      r7, 0x64(r1)
-	stw      r6, 0x68(r1)
-	stfs     f4, 0x6c(r1)
-	stfs     f3, 0x70(r1)
-	stw      r5, 0x74(r1)
-	stw      r5, 0xa8(r1)
-	stb      r5, 0xd8(r1)
-	stb      r5, 0x7d(r1)
-	stb      r5, 0x7c(r1)
-	stw      r5, 0xac(r1)
-	stw      r5, 0x78(r1)
-	stb      r5, 0xf4(r1)
-	stw      r5, 0xf8(r1)
-	stfs     f2, 0x90(r1)
-	stfs     f0, 0x94(r1)
-	stw      r0, 0xfc(r1)
-	stw      r5, 0xb0(r1)
-	stb      r5, 0x7e(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	beq      lbl_8036B510
-	lwz      r0, 0x34c(r31)
-	cmpwi    r0, 0
-	bne      lbl_8036B510
-	lwz      r0, 0x334(r31)
-	cmpwi    r0, 0
-	bgt      lbl_8036B384
-	lwz      r0, 0xac(r1)
-	cmplwi   r0, 0
-	beq      lbl_8036B510
+	if (gameSystem && gameSystem->mIsInCave) {
+		f32 minY = mapMgr->getMinY(mPosition);
+		if (mPosition.y > 100.0f + minY) {
+			_334 = 0;
+			_34C = 30;
+		}
+	}
 
-lbl_8036B384:
-	lwz      r0, 0xac(r1)
-	cmplwi   r0, 0
-	beq      lbl_8036B3D8
-	lfs      f1, lbl_8051E978@sda21(r2)
-	lfs      f2, 0xc0(r1)
-	fcmpu    cr0, f1, f2
-	bne      lbl_8036B3B8
-	lfs      f0, 0xc4(r1)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8036B3B8
-	lfs      f0, 0xc8(r1)
-	fcmpu    cr0, f1, f0
-	beq      lbl_8036B3D8
+	if (_34C > 0) {
+		_34C--;
+		if (_34C < 0) {
+			_34C = 0;
+		}
+	}
 
-lbl_8036B3B8:
-	stfs     f2, 0x304(r31)
-	lfs      f0, 0xc4(r1)
-	stfs     f0, 0x308(r31)
-	lfs      f0, 0xc8(r1)
-	stfs     f0, 0x30c(r31)
-	lwz      r3, 0xc0(r31)
-	lbz      r0, 0x910(r3)
-	stw      r0, 0x334(r31)
+	pos           = mPosition;
+	mEffectOffset = getOffsetForMapCollision();
 
-lbl_8036B3D8:
-	lfs      f1, 0x2f8(r31)
-	lfs      f0, 0x304(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8036B408
-	lfs      f1, 0x2fc(r31)
-	lfs      f0, 0x308(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8036B408
-	lfs      f1, 0x300(r31)
-	lfs      f0, 0x30c(r31)
-	fcmpu    cr0, f1, f0
-	beq      lbl_8036B410
+	pos += mEffectOffset;
+	pos.y += rotX;
+	Sys::Sphere sphere;
+	sphere.mRadius   = rotX;
+	sphere.mPosition = pos;
 
-lbl_8036B408:
-	lfs      f0, lbl_8051E978@sda21(r2)
-	stfs     f0, 0x330(r31)
+	MoveInfo info(&sphere, &mCurrentVelocity, C_PARMS->mCreatureProps.mProps.mWallReflection());
 
-lbl_8036B410:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x308(r31)
-	lfs      f1, 0x900(r3)
-	fcmpo    cr0, f0, f1
-	bge      lbl_8036B4AC
-	stfs     f1, 0x308(r31)
-	lfs      f1, lbl_8051E978@sda21(r2)
-	lfs      f3, 0x304(r31)
-	lfs      f2, 0x308(r31)
-	fmuls    f0, f3, f3
-	lfs      f4, 0x30c(r31)
-	fmuls    f2, f2, f2
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f2
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8036B470
-	fmadds   f0, f3, f3, f2
-	fadds    f2, f4, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_8036B474
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_8036B474
+	mapMgr->traceMove(info, frameLen);
 
-lbl_8036B470:
-	fmr      f2, f1
+	if (getStateID() != JIGUMO_Attack && !_34C && (_334 > 0 || info.mWallTriangle)) {
+		if (info.mWallTriangle && (info.mReflectPosition.x != 0.0f || info.mReflectPosition.y != 0.0f || info.mReflectPosition.z != 0.0f)) {
+			_304 = info.mReflectPosition;
+			_334 = C_PARMS->_910;
+		}
 
-lbl_8036B474:
-	lfs      f0, lbl_8051E978@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_8036B4AC
-	lfs      f1, lbl_8051E97C@sda21(r2)
-	lfs      f0, 0x304(r31)
-	fdivs    f1, f1, f2
-	fmuls    f0, f0, f1
-	stfs     f0, 0x304(r31)
-	lfs      f0, 0x308(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x308(r31)
-	lfs      f0, 0x30c(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x30c(r31)
+		if (_2F8.x != _304.x || _2F8.y != _304.y || _2F8.z != _304.z) {
+			_330 = 0.0f;
+		}
 
-lbl_8036B4AC:
-	lfs      f0, 0x304(r31)
-	li       r3, 0
-	lfs      f3, lbl_8051E97C@sda21(r2)
-	stfs     f0, 0x2f8(r31)
-	lfs      f0, 0x308(r31)
-	stfs     f0, 0x2fc(r31)
-	lfs      f0, 0x30c(r31)
-	stfs     f0, 0x300(r31)
-	lwz      r4, 0x1e0(r31)
-	rlwinm.  r0, r4, 0, 0x15, 0x15
-	bne      lbl_8036B4E0
-	rlwinm.  r0, r4, 0, 0xd, 0xd
-	beq      lbl_8036B4E4
+		if (_304.y < C_PARMS->_900) {
+			_304.y = C_PARMS->_900;
+			_304.normalise();
+		}
+		_2F8       = _304;
+		f32 factor = 1.0f;
+		if (isConstrained()) {
+			factor = 0.0f;
+		}
 
-lbl_8036B4E0:
-	li       r3, 1
+		mPosition.y += _2F4 * (factor * C_PARMS->_91C);
 
-lbl_8036B4E4:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8036B4F0
-	lfs      f3, lbl_8051E978@sda21(r2)
+	} else {
+		if (info.mBounceTriangle) {
+			_304 = info.mPosition;
+		}
+		if (isConstrained()) {
+			_304 = Vector3f(0.0f, 1.0f, 0.0f);
+		}
 
-lbl_8036B4F0:
-	lwz      r3, 0xc0(r31)
-	lfs      f2, 0x2f4(r31)
-	lfs      f1, 0x91c(r3)
-	lfs      f0, 0x190(r31)
-	fmuls    f1, f3, f1
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x190(r31)
-	b        lbl_8036B5CC
+		if (_2F8.x != _304.x || _2F8.y != _304.y || _2F8.z != _304.z) {
+			_330 = 0.0f;
+		}
+		_2F8 = _304;
+		_2F4 *= 0.95f;
+	}
 
-lbl_8036B510:
-	lwz      r0, 0xa8(r1)
-	cmplwi   r0, 0
-	beq      lbl_8036B534
-	lfs      f0, 0xb4(r1)
-	stfs     f0, 0x304(r31)
-	lfs      f0, 0xb8(r1)
-	stfs     f0, 0x308(r31)
-	lfs      f0, 0xbc(r1)
-	stfs     f0, 0x30c(r31)
+	if (_2F4 < 1.1f) {
+		_2F4 = 1.0f;
+	}
 
-lbl_8036B534:
-	lwz      r4, 0x1e0(r31)
-	li       r3, 0
-	rlwinm.  r0, r4, 0, 0x15, 0x15
-	bne      lbl_8036B54C
-	rlwinm.  r0, r4, 0, 0xd, 0xd
-	beq      lbl_8036B550
+	_334--;
+	if (_334 < 0) {
+		_334 = 0;
+	}
 
-lbl_8036B54C:
-	li       r3, 1
+	Vector3f zVec = Vector3f((f32)sin(mFaceDir), 0.0f, (f32)cos(mFaceDir)); // 0x3c
 
-lbl_8036B550:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8036B56C
-	lfs      f1, lbl_8051E978@sda21(r2)
-	lfs      f0, lbl_8051E97C@sda21(r2)
-	stfs     f1, 0x304(r31)
-	stfs     f0, 0x308(r31)
-	stfs     f1, 0x30c(r31)
+	zVec.normalise();
 
-lbl_8036B56C:
-	lfs      f1, 0x2f8(r31)
-	lfs      f0, 0x304(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8036B59C
-	lfs      f1, 0x2fc(r31)
-	lfs      f0, 0x308(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8036B59C
-	lfs      f1, 0x300(r31)
-	lfs      f0, 0x30c(r31)
-	fcmpu    cr0, f1, f0
-	beq      lbl_8036B5A4
+	Vector3f yVec = _2F8; // 0x30
+	Vector3f xVec;        // 0x24
+	PSVECCrossProduct((Vec*)&yVec, (Vec*)&zVec, (Vec*)&xVec);
 
-lbl_8036B59C:
-	lfs      f0, lbl_8051E978@sda21(r2)
-	stfs     f0, 0x330(r31)
+	xVec.normalise();
 
-lbl_8036B5A4:
-	lfs      f1, 0x304(r31)
-	lfs      f0, lbl_8051E9D4@sda21(r2)
-	stfs     f1, 0x2f8(r31)
-	lfs      f1, 0x308(r31)
-	stfs     f1, 0x2fc(r31)
-	lfs      f1, 0x30c(r31)
-	stfs     f1, 0x300(r31)
-	lfs      f1, 0x2f4(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x2f4(r31)
+	PSVECCrossProduct((Vec*)&xVec, (Vec*)&yVec, (Vec*)&zVec);
+	zVec.normalise();
 
-lbl_8036B5CC:
-	lfs      f1, 0x2f4(r31)
-	lfs      f0, lbl_8051E9D8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8036B5E4
-	lfs      f0, lbl_8051E97C@sda21(r2)
-	stfs     f0, 0x2f4(r31)
+	mBaseTrMatrix.setBasis(0, xVec);
+	mBaseTrMatrix.setBasis(1, yVec);
+	mBaseTrMatrix.setBasis(2, zVec);
 
-lbl_8036B5E4:
-	lwz      r3, 0x334(r31)
-	addi     r0, r3, -1
-	stw      r0, 0x334(r31)
-	lwz      r0, 0x334(r31)
-	cmpwi    r0, 0
-	bge      lbl_8036B604
-	li       r0, 0
-	stw      r0, 0x334(r31)
+	_320.fromMatrixf(mBaseTrMatrix);
 
-lbl_8036B604:
-	lfs      f1, 0x1fc(r31)
-	bl       cos
-	frsp     f31, f1
-	lfs      f1, 0x1fc(r31)
-	bl       sin
-	frsp     f2, f1
-	lfs      f1, lbl_8051E978@sda21(r2)
-	fmuls    f4, f31, f31
-	stfs     f31, 0x44(r1)
-	fmuls    f3, f1, f1
-	fmuls    f0, f2, f2
-	stfs     f2, 0x3c(r1)
-	fadds    f0, f0, f3
-	stfs     f1, 0x40(r1)
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8036B664
-	fmadds   f0, f2, f2, f3
-	fadds    f3, f4, f0
-	fcmpo    cr0, f3, f1
-	ble      lbl_8036B668
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_8036B668
+	Quat newQuat(_310);
 
-lbl_8036B664:
-	fmr      f3, f1
+	if (_330 < 1.0f) {
+		_330 += 0.1f;
+		if (_330 > 1.0f) {
+			_330 = 1.0f;
+		}
 
-lbl_8036B668:
-	lfs      f0, lbl_8051E978@sda21(r2)
-	fcmpo    cr0, f3, f0
-	ble      lbl_8036B6A0
-	lfs      f0, lbl_8051E97C@sda21(r2)
-	lfs      f2, 0x3c(r1)
-	fdivs    f3, f0, f3
-	lfs      f1, 0x40(r1)
-	lfs      f0, 0x44(r1)
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	stfs     f0, 0x44(r1)
+		_310.slerp(_320, _330, _310);
 
-lbl_8036B6A0:
-	lfs      f0, 0x2f8(r31)
-	addi     r3, r1, 0x30
-	addi     r4, r1, 0x3c
-	addi     r5, r1, 0x24
-	stfs     f0, 0x30(r1)
-	lfs      f0, 0x2fc(r31)
-	stfs     f0, 0x34(r1)
-	lfs      f0, 0x300(r31)
-	stfs     f0, 0x38(r1)
-	bl       PSVECCrossProduct
-	lfs      f2, 0x24(r1)
-	lfs      f1, 0x28(r1)
-	fmuls    f0, f2, f2
-	lfs      f3, 0x2c(r1)
-	fmuls    f4, f1, f1
-	lfs      f1, lbl_8051E978@sda21(r2)
-	fmuls    f3, f3, f3
-	fadds    f0, f0, f4
-	fadds    f0, f3, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8036B710
-	fmadds   f0, f2, f2, f4
-	fadds    f3, f3, f0
-	fcmpo    cr0, f3, f1
-	ble      lbl_8036B714
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_8036B714
+	} else {
+		_330 = 0.0f;
+		_310 = _320;
+	}
 
-lbl_8036B710:
-	fmr      f3, f1
-
-lbl_8036B714:
-	lfs      f0, lbl_8051E978@sda21(r2)
-	fcmpo    cr0, f3, f0
-	ble      lbl_8036B74C
-	lfs      f0, lbl_8051E97C@sda21(r2)
-	lfs      f2, 0x24(r1)
-	fdivs    f3, f0, f3
-	lfs      f1, 0x28(r1)
-	lfs      f0, 0x2c(r1)
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-
-lbl_8036B74C:
-	addi     r3, r1, 0x24
-	addi     r4, r1, 0x30
-	addi     r5, r1, 0x3c
-	bl       PSVECCrossProduct
-	lfs      f2, 0x3c(r1)
-	lfs      f1, 0x40(r1)
-	fmuls    f0, f2, f2
-	lfs      f3, 0x44(r1)
-	fmuls    f4, f1, f1
-	lfs      f1, lbl_8051E978@sda21(r2)
-	fmuls    f3, f3, f3
-	fadds    f0, f0, f4
-	fadds    f0, f3, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8036B7A4
-	fmadds   f0, f2, f2, f4
-	fadds    f3, f3, f0
-	fcmpo    cr0, f3, f1
-	ble      lbl_8036B7A8
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_8036B7A8
-
-lbl_8036B7A4:
-	fmr      f3, f1
-
-lbl_8036B7A8:
-	lfs      f0, lbl_8051E978@sda21(r2)
-	fcmpo    cr0, f3, f0
-	ble      lbl_8036B7E0
-	lfs      f0, lbl_8051E97C@sda21(r2)
-	lfs      f2, 0x3c(r1)
-	fdivs    f3, f0, f3
-	lfs      f1, 0x40(r1)
-	lfs      f0, 0x44(r1)
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	stfs     f0, 0x44(r1)
-
-lbl_8036B7E0:
-	lfs      f0, 0x24(r1)
-	addi     r3, r31, 0x320
-	addi     r4, r31, 0x138
-	stfs     f0, 0x138(r31)
-	lfs      f0, 0x28(r1)
-	stfs     f0, 0x148(r31)
-	lfs      f0, 0x2c(r1)
-	stfs     f0, 0x158(r31)
-	lfs      f0, 0x30(r1)
-	stfs     f0, 0x13c(r31)
-	lfs      f0, 0x34(r1)
-	stfs     f0, 0x14c(r31)
-	lfs      f0, 0x38(r1)
-	stfs     f0, 0x15c(r31)
-	lfs      f0, 0x3c(r1)
-	stfs     f0, 0x140(r31)
-	lfs      f0, 0x40(r1)
-	stfs     f0, 0x150(r31)
-	lfs      f0, 0x44(r1)
-	stfs     f0, 0x160(r31)
-	bl       fromMatrixf__4QuatFR7Matrixf
-	addi     r3, r1, 0x14
-	addi     r4, r31, 0x310
-	bl       __ct__4QuatFR4Quat
-	lfs      f2, 0x330(r31)
-	lfs      f1, lbl_8051E97C@sda21(r2)
-	fcmpo    cr0, f2, f1
-	bge      lbl_8036B884
-	lfs      f0, lbl_8051E9AC@sda21(r2)
-	fadds    f0, f2, f0
-	stfs     f0, 0x330(r31)
-	lfs      f0, 0x330(r31)
-	fcmpo    cr0, f0, f1
-	ble      lbl_8036B86C
-	stfs     f1, 0x330(r31)
-
-lbl_8036B86C:
-	addi     r3, r31, 0x310
-	lfs      f1, 0x330(r31)
-	mr       r5, r3
-	addi     r4, r31, 0x320
-	bl       slerp__4QuatFR4QuatfR4Quat
-	b        lbl_8036B8AC
-
-lbl_8036B884:
-	lfs      f0, lbl_8051E978@sda21(r2)
-	stfs     f0, 0x330(r31)
-	lfs      f0, 0x320(r31)
-	stfs     f0, 0x310(r31)
-	lfs      f0, 0x324(r31)
-	stfs     f0, 0x314(r31)
-	lfs      f0, 0x328(r31)
-	stfs     f0, 0x318(r31)
-	lfs      f0, 0x32c(r31)
-	stfs     f0, 0x31c(r31)
-
-lbl_8036B8AC:
-	addi     r3, r31, 0x310
-	bl       normalise__4QuatFv
-	addi     r3, r31, 0x138
-	addi     r4, r31, 0x310
-	bl       makeQ__7MatrixfFR4Quat
-	lfs      f0, 0x18c(r31)
-	addi     r3, r31, 0x138
-	stfs     f0, 0x144(r31)
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0x154(r31)
-	lfs      f0, 0x194(r31)
-	stfs     f0, 0x164(r31)
-	lwz      r4, 0x174(r31)
-	lwz      r4, 8(r4)
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 0x174(r31)
-	lfs      f0, 0x168(r31)
-	lwz      r3, 8(r3)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x16c(r31)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 0x170(r31)
-	stfs     f0, 0x20(r3)
-
-lbl_8036B90C:
-	psq_l    f31, 344(r1), 0, qr0
-	lfd      f31, 0x150(r1)
-	psq_l    f30, 328(r1), 0, qr0
-	lfd      f30, 0x140(r1)
-	psq_l    f29, 312(r1), 0, qr0
-	lfd      f29, 0x130(r1)
-	psq_l    f28, 296(r1), 0, qr0
-	lfd      f28, 0x120(r1)
-	psq_l    f27, 280(r1), 0, qr0
-	lfd      f27, 0x110(r1)
-	lwz      r0, 0x164(r1)
-	lwz      r31, 0x10c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x160
-	blr
-	*/
+	_310.normalise();
+	mBaseTrMatrix.makeQ(_310);
+	mBaseTrMatrix.setBasis(3, mPosition);
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+	mModel->mJ3dModel->mModelScale = *(Vec*)&mScale;
 }
 
 /*
@@ -2101,83 +1647,15 @@ void Obj::boundEffect() { createBounceEffect(mPosition, 0.75f); }
  */
 void Obj::eatWaterEffect()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x2d8
-	bl       getSlot__10MouthSlotsFi
-	lwz      r4, 0x64(r3)
-	cmplwi   r4, 0
-	beq      lbl_8036BEC0
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r5, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	li       r7, 0x159
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x2c(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple2@l
-	li       r6, 0x15a
-	lis      r3, __vt__Q23efx10TEnemyDive@ha
-	stw      r0, 0x2c(r1)
-	addi     r0, r3, __vt__Q23efx10TEnemyDive@l
-	sth      r7, 0x30(r1)
-	addi     r3, r1, 0x14
-	sth      r6, 0x32(r1)
-	stw      r5, 0x34(r1)
-	stw      r5, 0x38(r1)
-	stw      r0, 0x2c(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x280(r31)
-	lfs      f2, 0x14(r1)
-	lwz      r12, 0(r3)
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	lwz      r12, 0x14(r12)
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0(r3)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lwz      r8, 0x20(r1)
-	lis      r3, __vt__Q23efx8ArgScale@ha
-	stfs     f0, 0x24(r1)
-	addi     r5, r4, __vt__Q23efx3Arg@l
-	lfs      f3, 0x1f8(r31)
-	addi     r0, r3, __vt__Q23efx8ArgScale@l
-	lwz      r7, 0x24(r1)
-	addi     r3, r1, 0x2c
-	lwz      r6, 0x28(r1)
-	addi     r4, r1, 0x3c
-	stw      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	lfs      f2, 8(r1)
-	stw      r6, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	stw      r5, 0x3c(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x40(r1)
-	stfs     f1, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	stw      r0, 0x3c(r1)
-	stfs     f3, 0x4c(r1)
-	bl       create__Q23efx10TEnemyDiveFPQ23efx3Arg
+	Creature* stuck = mMouthSlots.getSlot(0)->mStuckCreature;
+	if (stuck) {
+		efx::TEnemyDive diveFX;
+		Vector3f fxPos = stuck->getPosition();
+		fxPos.y        = *mWaterBox->getSeaHeightPtr();
+		efx::ArgScale fxArg(fxPos, mScaleModifier);
 
-lbl_8036BEC0:
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+		diveFX.create(&fxArg);
+	}
 }
 
 /*
@@ -2201,129 +1679,24 @@ void Obj::killNest()
  */
 void Obj::mouthScaleMtxCalc()
 {
-	/*
-	lwz      r4, 0x174(r3)
-	lhz      r0, 0x360(r3)
-	lwz      r4, 8(r4)
-	mulli    r0, r0, 0x30
-	lfs      f3, lbl_8051E978@sda21(r2)
-	lwz      r4, 0x84(r4)
-	lwz      r4, 0xc(r4)
-	add      r4, r4, r0
-	lfs      f1, 0x10(r4)
-	lfs      f2, 0x20(r4)
-	fmuls    f4, f1, f1
-	lfs      f0, 0(r4)
-	fmuls    f5, f2, f2
-	fmadds   f4, f0, f0, f4
-	fadds    f4, f5, f4
-	fcmpo    cr0, f4, f3
-	ble      lbl_8036BF48
-	ble      lbl_8036BF4C
-	frsqrte  f3, f4
-	fmuls    f4, f3, f4
-	b        lbl_8036BF4C
+	Matrixf* mtx  = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mKamuJointIdx);
+	Vector3f xVec = mtx->getBasis(0);
+	xVec.normalise();
+	Vector3f yVec = mtx->getBasis(1);
+	yVec.normalise();
+	Vector3f zVec = mtx->getBasis(2);
+	zVec.normalise();
 
-lbl_8036BF48:
-	fmr      f4, f3
-
-lbl_8036BF4C:
-	lfs      f3, lbl_8051E978@sda21(r2)
-	fcmpo    cr0, f4, f3
-	ble      lbl_8036BF6C
-	lfs      f3, lbl_8051E97C@sda21(r2)
-	fdivs    f3, f3, f4
-	fmuls    f0, f0, f3
-	fmuls    f1, f1, f3
-	fmuls    f2, f2, f3
-
-lbl_8036BF6C:
-	lfs      f3, 0x14(r4)
-	lfs      f4, 0x24(r4)
-	fmuls    f6, f3, f3
-	lfs      f7, 4(r4)
-	fmuls    f8, f4, f4
-	lfs      f5, lbl_8051E978@sda21(r2)
-	fmadds   f6, f7, f7, f6
-	fadds    f6, f8, f6
-	fcmpo    cr0, f6, f5
-	ble      lbl_8036BFA4
-	ble      lbl_8036BFA8
-	frsqrte  f5, f6
-	fmuls    f6, f5, f6
-	b        lbl_8036BFA8
-
-lbl_8036BFA4:
-	fmr      f6, f5
-
-lbl_8036BFA8:
-	lfs      f5, lbl_8051E978@sda21(r2)
-	fcmpo    cr0, f6, f5
-	ble      lbl_8036BFC8
-	lfs      f5, lbl_8051E97C@sda21(r2)
-	fdivs    f5, f5, f6
-	fmuls    f7, f7, f5
-	fmuls    f3, f3, f5
-	fmuls    f4, f4, f5
-
-lbl_8036BFC8:
-	lfs      f9, 0x18(r4)
-	lfs      f10, 0x28(r4)
-	fmuls    f6, f9, f9
-	lfs      f8, 8(r4)
-	fmuls    f11, f10, f10
-	lfs      f5, lbl_8051E978@sda21(r2)
-	fmadds   f6, f8, f8, f6
-	fadds    f6, f11, f6
-	fcmpo    cr0, f6, f5
-	ble      lbl_8036C000
-	ble      lbl_8036C004
-	frsqrte  f5, f6
-	fmuls    f6, f5, f6
-	b        lbl_8036C004
-
-lbl_8036C000:
-	fmr      f6, f5
-
-lbl_8036C004:
-	lfs      f5, lbl_8051E978@sda21(r2)
-	fcmpo    cr0, f6, f5
-	ble      lbl_8036C024
-	lfs      f5, lbl_8051E97C@sda21(r2)
-	fdivs    f5, f5, f6
-	fmuls    f8, f8, f5
-	fmuls    f9, f9, f5
-	fmuls    f10, f10, f5
-
-lbl_8036C024:
-	lbz      r0, 0x2e9(r3)
-	lwz      r3, 0xc0(r3)
-	cmplwi   r0, 0
-	lfs      f11, 0x92c(r3)
-	beq      lbl_8036C03C
-	lfs      f11, lbl_8051E9E4@sda21(r2)
-
-lbl_8036C03C:
-	fmuls    f5, f0, f11
-	fmuls    f1, f1, f11
-	fmuls    f0, f2, f11
-	stfs     f5, 0(r4)
-	fmuls    f6, f7, f11
-	fmuls    f5, f3, f11
-	stfs     f1, 0x10(r4)
-	fmuls    f3, f4, f11
-	fmuls    f2, f8, f11
-	stfs     f0, 0x20(r4)
-	fmuls    f1, f9, f11
-	fmuls    f0, f10, f11
-	stfs     f6, 4(r4)
-	stfs     f5, 0x14(r4)
-	stfs     f3, 0x24(r4)
-	stfs     f2, 8(r4)
-	stfs     f1, 0x18(r4)
-	stfs     f0, 0x28(r4)
-	blr
-	*/
+	f32 scale = C_PARMS->_92C;
+	if (_2E9) {
+		scale = 0.01f;
+	}
+	Vector3f newXVec = xVec * scale;
+	Vector3f newYVec = yVec * scale;
+	Vector3f newZVec = zVec * scale;
+	mtx->setBasis(0, newXVec);
+	mtx->setBasis(1, newYVec);
+	mtx->setBasis(2, newZVec);
 }
 
 } // namespace Jigumo

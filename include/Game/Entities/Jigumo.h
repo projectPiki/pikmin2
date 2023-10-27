@@ -245,31 +245,31 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f _2BC;               // _2BC
-	Vector3f mGoalPosition;      // _2C8
-	StateID mNextState;          // _2D4
-	MouthSlots mMouthSlots;      // _2D8
-	SysShape::Joint* mBodyJoint; // _2E0
-	Nest::Obj* mHouse;           // _2E4
-	u8 _2E8;                     // _2E8, unknown
-	u8 _2E9;                     // _2E9, unknown
-	f32 _2EC;                    // _2EC
-	f32 _2F0;                    // _2F0
-	f32 _2F4;                    // _2F4
-	Vector3f _2F8;               // _2F8
-	Vector3f _304;               // _304
-	Quat _310;                   // _310
-	Quat _320;                   // _320
-	f32 _330;                    // _330
-	int _334;                    // _334
-	f32 _338;                    // _338
-	f32 _33C;                    // _33C
-	u8 _340;                     // _340
-	f32 _344;                    // _344
-	u8 _348[0x4];                // _348, unknown
-	u32 _34C;                    // _34C
-	Vector3f _350;               // _350
-	u32 _35C;
+	Vector3f _2BC;                 // _2BC
+	Vector3f mGoalPosition;        // _2C8
+	StateID mNextState;            // _2D4
+	MouthSlots mMouthSlots;        // _2D8
+	SysShape::Joint* mBodyJoint;   // _2E0
+	Nest::Obj* mHouse;             // _2E4
+	u8 _2E8;                       // _2E8, unknown
+	u8 _2E9;                       // _2E9, unknown
+	f32 _2EC;                      // _2EC
+	f32 _2F0;                      // _2F0
+	f32 _2F4;                      // _2F4
+	Vector3f _2F8;                 // _2F8
+	Vector3f _304;                 // _304
+	Quat _310;                     // _310
+	Quat _320;                     // _320
+	f32 _330;                      // _330
+	int _334;                      // _334
+	f32 _338;                      // _338
+	f32 _33C;                      // _33C
+	bool _340;                     // _340
+	f32 _344;                      // _344
+	u8 _348[0x4];                  // _348, unknown
+	int _34C;                      // _34C
+	Vector3f _350;                 // _350
+	int _35C;                      // _35C
 	u16 mKamuJointIdx;             // _360
 	Vector3f mEffectPosition;      // _364
 	efx::TJgmAttack* mEfxAttack;   // _370
