@@ -124,11 +124,11 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mPauseTriggerTime = 0.0f;
 	mPauseTimer       = 0.0f;
 	mDoPauseAnim      = true;
-	_310.set(1.0f, 0.0f, 0.0f, 0.0f);
-	_320                     = _310;
-	_330                     = 0.0f;
+	mMoveQuat.set(1.0f, 0.0f, 0.0f, 0.0f);
+	mBaseQuat                = mMoveQuat;
+	mSlerpParam              = 0.0f;
 	mHideAnimPosition        = Vector3f(0.0f);
-	_344                     = 0.0f;
+	mCarryAngleModifier      = 0.0f;
 	mDoScaleDownMouth        = false;
 	mIsOutsideHouse          = false;
 	mPrevReturnCheckPosition = mHomePosition;
@@ -280,8 +280,8 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
 	bool isVisible = false;
 
-	param.mPosition
-	    = Vector3f(mPosition.x, C_PARMS->_930 * mScaleModifier + (C_PARMS->mGeneral.mLifeMeterHeight() + mPosition.y), mPosition.z);
+	param.mPosition = Vector3f(
+	    mPosition.x, C_PARMS->mLifeGaugeOffset * mScaleModifier + (C_PARMS->mGeneral.mLifeMeterHeight() + mPosition.y), mPosition.z);
 	param.mCurHealthPercentage = (mHealth / mMaxHealth);
 	param.mRadius              = 10.0f;
 
@@ -490,12 +490,12 @@ void Obj::doSimulationGround(f32 step)
 	Vector3f change  = targetVel - currVel;
 	mCurrentVelocity = mCurrentVelocity + (change) * (step / C_PARMS->mCreatureProps.mProps.mAccel());
 
-	f32 vertFactor  = 1.0f;
-	f32 horizFactor = C_PARMS->_90C;
+	f32 dropMass    = 1.0f;
+	f32 horizFactor = C_PARMS->mTiltDrag;
 
 	if (getStateID() == JIGUMO_Attack) {
 		horizFactor = 0.0f;
-		vertFactor  = 2.5f;
+		dropMass    = 2.5f;
 	}
 
 	if (_2F8.y != 1.0f) {
@@ -503,13 +503,13 @@ void Obj::doSimulationGround(f32 step)
 		mCurrentVelocity.z -= _2F8.z * horizFactor;
 	}
 
-	bool check = (isEvent(1, EB2_Earthquake) || isEvent(1, EB2_Dropping));
+	bool isAirborne = (isEvent(1, EB2_Earthquake) || isEvent(1, EB2_Dropping));
 
-	if (check) {
-		vertFactor = 3.0f;
+	if (isAirborne) {
+		dropMass = 3.0f;
 	}
 
-	mCurrentVelocity.y -= vertFactor * (step * _aiConstants->mGravity.mData);
+	mCurrentVelocity.y -= dropMass * (step * _aiConstants->mGravity.mData);
 }
 
 /*
@@ -615,14 +615,16 @@ f32 Obj::getGoalDist() { return mPosition.sqrDistance(mGoalPosition); }
  */
 void Obj::walkFunc()
 {
+	// update position to use for effects
 	mEffectPosition = mPosition;
 	if (mWaterBox) {
 		mEffectPosition.y = *mWaterBox->getSeaHeightPtr();
 	}
+
 	f32 angleWeight, terrRad;
 	f32 walkSpeed = getWalkSpeed();                       // f29
 	terrRad       = C_PARMS->mGeneral.mTerritoryRadius(); // f30
-	angleWeight   = C_PARMS->_904;                        // f31, 20.0f by default
+	angleWeight   = C_PARMS->mTurnWeight;                 // f31, 20.0f by default
 	f32 rotRate   = C_PARMS->mGeneral.mRotationalAccel(); // f28
 	f32 rotSpeed  = C_PARMS->mGeneral.mRotationalSpeed(); // f27
 
@@ -639,26 +641,26 @@ void Obj::walkFunc()
 			dist = 0.0f;
 		}
 
-		f32 preAngle = (C_PARMS->_908 * (dist * (360.0f * (1.0f / terrRad)))); // _908 is 0.05f by default
-		f32 sinTheta = angleWeight * (f32)sin(180.0f + preAngle);              // f2
+		f32 preAngle = (C_PARMS->mTurnModifier * (dist * (360.0f * (1.0f / terrRad)))); // mTurnModifier is 0.05f by default
+		f32 degAngle = angleWeight * (f32)sin(180.0f + preAngle);                       // f2
 
-		if (!C_PARMS->_8FB) { // does not run by default, but forces angle to 0
-			sinTheta = 0.0f;
+		if (!C_PARMS->mIsGradualTurnActive) { // does not run by default, but forces angle to 0
+			degAngle = 0.0f;
 		}
 
-		sinTheta *= _344;                 // angle goes from 0 to whatever the sinTheta factor is over time
-		f32 newAng = TORADIANS(sinTheta); // f30
+		degAngle *= mCarryAngleModifier;     // angle goes from 0 to whatever the degAngle factor is over time
+		f32 turnAngle = TORADIANS(degAngle); // f30
 
-		_344 += 0.1f;
+		mCarryAngleModifier += 0.1f;
 
 		// cap out weighting at 1
-		if (_344 > 1.0f) {
-			_344 = 1.0f;
+		if (mCarryAngleModifier > 1.0f) {
+			mCarryAngleModifier = 1.0f;
 		}
 
 		// do this just if we're transporting a piki
 		if (getStateID() == JIGUMO_Carry) {
-			if (C_PARMS->_8F9) { // runs by default
+			if (C_PARMS->mIsWalkPauseActive) { // runs by default
 				mPauseTimer += 1.0f;
 				if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_1 && mPauseTimer > mPauseTriggerTime) {
 					mDoPauseAnim = !mDoPauseAnim; // change from pausing to running, or vice versa
@@ -678,36 +680,46 @@ void Obj::walkFunc()
 					mPauseTimer       = 0.0f;
 				}
 
+				// gradually ease into pause
 				if (mDoPauseAnim && mPauseTimer < mPauseTriggerTime) {
 					walkSpeed *= C_PARMS->mPauseSpeedModifier * (1.0f - mPauseTimer / mPauseTriggerTime);
 				}
 			}
-			if (C_PARMS->_8FA) {
-				f32 val2 = 0.2f * (f32)mStuckPikminCount;
-				if (val2 > 0.8f) {
-					val2 = 0.8f;
+
+			// slow down if we have pikmin attached
+			if (C_PARMS->mIsStuckPikiDragActive) {
+				f32 pikiDrag = 0.2f * (f32)mStuckPikminCount;
+
+				// don't slow down *too* much
+				if (pikiDrag > 0.8f) {
+					pikiDrag = 0.8f;
 				}
 
-				walkSpeed *= (1.0f - val2);
+				walkSpeed *= (1.0f - pikiDrag);
 			}
 		}
 
 		mFaceDir = mNextFaceDir;
 		mReturnTimer++;
 
+		// every 60 frames, check we're not stuck?
 		if (mReturnTimer > 60) {
 
-			// if we haven't moved very far in the last two seconds, shift a little to hopefully get us unstuck
+			// if we haven't moved very far in the last two seconds, shift a little to hopefully get us unstuck?
 			if (mPosition.sqrDistance(mPrevReturnCheckPosition) < 400.0f) {
-				f32 val3 = 2.0f;
+
+				// shift away from nest
+				f32 shiftMag = 2.0f; // shift backwards by default
 				if (mIsReversing) {
-					val3 *= -1.0f;
+					shiftMag *= -1.0f; // if we're reversing, shift "forwards"
 				}
 
-				mPosition.x -= val3 * pikmin2_sinf(mFaceDir);
-				mPosition.z -= val3 * pikmin2_cosf(mFaceDir);
-				if ((f32)_334 != 0.0f) {
+				mPosition.x -= shiftMag * pikmin2_sinf(mFaceDir);
+				mPosition.z -= shiftMag * pikmin2_cosf(mFaceDir);
+
+				if ((f32)_334 != 0.0f) { // idk why this is checking this as a float.
 					_2F4 = 2.0f;
+
 				} else {
 					_2F4 = 1.0f;
 					_334 = C_PARMS->_910;
@@ -721,20 +733,22 @@ void Obj::walkFunc()
 		turnToTarget2(mGoalPosition, rotRate, rotSpeed);
 
 		f32 prevFaceDir = mFaceDir;
-		f32 theta       = prevFaceDir + newAng;
-		f32 x           = walkSpeed * pikmin2_sinf(theta);
-		f32 y           = getTargetVelocity().y;
-		f32 z           = walkSpeed * pikmin2_cosf(theta);
-		mNextFaceDir    = prevFaceDir;
-		if (absF(newAng) > rotSpeed) {
-			newAng = (newAng > 0.0f) ? rotSpeed : -rotSpeed;
+
+		// adjust target velocity
+		f32 theta    = prevFaceDir + turnAngle;
+		f32 x        = walkSpeed * pikmin2_sinf(theta);
+		f32 y        = getTargetVelocity().y;
+		f32 z        = walkSpeed * pikmin2_cosf(theta);
+		mNextFaceDir = prevFaceDir;
+		if (absF(turnAngle) > rotSpeed) {
+			turnAngle = (turnAngle > 0.0f) ? rotSpeed : -rotSpeed;
 		}
 		f32 flipFaceDir = 1.0f;
 		if (stateID == JIGUMO_Return || stateID == JIGUMO_Miss) {
 			flipFaceDir = 0.0f;
 		}
 
-		mFaceDir += roundAng(PI * flipFaceDir + newAng);
+		mFaceDir += roundAng(PI * flipFaceDir + turnAngle);
 		mRotation.y     = mFaceDir;
 		mTargetVelocity = Vector3f(x, y, z);
 
@@ -1410,7 +1424,7 @@ void Obj::calcBaseTrMatrix()
 		}
 
 		if (_2F8.x != _304.x || _2F8.y != _304.y || _2F8.z != _304.z) {
-			_330 = 0.0f;
+			mSlerpParam = 0.0f;
 		}
 
 		if (_304.y < C_PARMS->_900) {
@@ -1434,7 +1448,7 @@ void Obj::calcBaseTrMatrix()
 		}
 
 		if (_2F8.x != _304.x || _2F8.y != _304.y || _2F8.z != _304.z) {
-			_330 = 0.0f;
+			mSlerpParam = 0.0f;
 		}
 		_2F8 = _304;
 		_2F4 *= 0.95f;
@@ -1466,25 +1480,25 @@ void Obj::calcBaseTrMatrix()
 	mBaseTrMatrix.setBasis(1, yVec);
 	mBaseTrMatrix.setBasis(2, zVec);
 
-	_320.fromMatrixf(mBaseTrMatrix);
+	mBaseQuat.fromMatrixf(mBaseTrMatrix);
 
-	Quat unusedQuat(_310); // why?
+	Quat unusedQuat(mMoveQuat); // why?
 
-	if (_330 < 1.0f) {
-		_330 += 0.1f;
-		if (_330 > 1.0f) {
-			_330 = 1.0f;
+	if (mSlerpParam < 1.0f) {
+		mSlerpParam += 0.1f;
+		if (mSlerpParam > 1.0f) {
+			mSlerpParam = 1.0f;
 		}
 
-		_310.slerp(_320, _330, _310);
+		mMoveQuat.slerp(mBaseQuat, mSlerpParam, mMoveQuat);
 
 	} else {
-		_330 = 0.0f;
-		_310 = _320;
+		mSlerpParam = 0.0f;
+		mMoveQuat   = mBaseQuat;
 	}
 
-	_310.normalise();
-	mBaseTrMatrix.makeQ(_310);
+	mMoveQuat.normalise();
+	mBaseTrMatrix.makeQ(mMoveQuat);
 	mBaseTrMatrix.setBasis(3, mPosition);
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
 	mModel->mJ3dModel->mModelScale = *(Vec*)&mScale;
@@ -1600,7 +1614,7 @@ void Obj::effectStart()
 	}
 
 	if (stateID == JIGUMO_Carry) {
-		_344 = 0.0f;
+		mCarryAngleModifier = 0.0f;
 		if (mWaterBox) {
 			if (mEfxBackW) {
 				mEfxBackW->create(&fxArg);

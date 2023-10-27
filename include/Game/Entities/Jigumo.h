@@ -115,16 +115,16 @@ struct Parms : public EnemyParmsBase {
 	Parms()
 	{
 		mDoFullScaleCalc       = true;
-		_8F9                   = 1;
-		_8FA                   = 1;
-		_8FB                   = 1;
+		mIsWalkPauseActive     = true;
+		mIsStuckPikiDragActive = true;
+		mIsGradualTurnActive   = true;
 		_8FC                   = 0;
 		_8FD                   = 1;
 		mIsPressKill           = false;
 		_900                   = 0.75f;
-		_904                   = 20.0f;
-		_908                   = 0.05f;
-		_90C                   = 30.0f;
+		mTurnWeight            = 20.0f;
+		mTurnModifier          = 0.05f;
+		mTiltDrag              = 30.0f;
 		_910                   = 8;
 		mMaxPauseTime          = 35.0f;
 		mPauseSpeedModifier    = 0.15f;
@@ -133,7 +133,7 @@ struct Parms : public EnemyParmsBase {
 		_924                   = 13.0f;
 		mMouthSlotSizeModifier = 18.0f;
 		mMouthMtxScale         = 1.4f;
-		_930                   = 20.0f;
+		mLifeGaugeOffset       = 20.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -144,27 +144,27 @@ struct Parms : public EnemyParmsBase {
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms;   // _7F8
-	bool mDoFullScaleCalc;      // _8F8, recalculate base tr matrix with full scale calculation
-	u8 _8F9;                    // _8F9, unknown
-	u8 _8FA;                    // _8FA, unknown
-	u8 _8FB;                    // _8FB, unknown
-	u8 _8FC;                    // _8FC, unknown
-	u8 _8FD;                    // _8FD, unknown
-	bool mIsPressKill;          // _8FE, kills if hit from above with a piki, like a kochappy
-	f32 _900;                   // _900
-	f32 _904;                   // _904
-	f32 _908;                   // _908
-	f32 _90C;                   // _90C
-	u8 _910;                    // _910
-	f32 mMaxPauseTime;          // _914, max time to pause (in frames) when carrying back piki
-	f32 mPauseSpeedModifier;    // _918, alters walk speed when 'pausing' while carrying piki
-	f32 _91C;                   // _91C
-	f32 _920;                   // _920
-	f32 _924;                   // _924
-	f32 mMouthSlotSizeModifier; // _928
-	f32 mMouthMtxScale;         // _92C
-	f32 _930;                   // _930
+	ProperParms mProperParms;    // _7F8
+	bool mDoFullScaleCalc;       // _8F8, recalculate base tr matrix with full scale calculation
+	bool mIsWalkPauseActive;     // _8F9, do pauses when carrying back a piki
+	bool mIsStuckPikiDragActive; // _8FA, slow down carry speed when pikis are stuck on
+	bool mIsGradualTurnActive;   // _8FB, whether to turn gradually after attacking or just flip direction
+	u8 _8FC;                     // _8FC, unknown
+	u8 _8FD;                     // _8FD, unknown
+	bool mIsPressKill;           // _8FE, kills if hit from above with a piki, like a kochappy
+	f32 _900;                    // _900
+	f32 mTurnWeight;             // _904
+	f32 mTurnModifier;           // _908
+	f32 mTiltDrag;               // _90C, modify XZ speed if not perfectly horizontal (going up or down ledges)
+	u8 _910;                     // _910
+	f32 mMaxPauseTime;           // _914, max time to pause (in frames) when carrying back piki
+	f32 mPauseSpeedModifier;     // _918, alters walk speed when 'pausing' while carrying piki
+	f32 _91C;                    // _91C
+	f32 _920;                    // _920
+	f32 _924;                    // _924
+	f32 mMouthSlotSizeModifier;  // _928
+	f32 mMouthMtxScale;          // _92C
+	f32 mLifeGaugeOffset;        // _930
 };
 
 struct Obj : public EnemyBase {
@@ -260,14 +260,14 @@ struct Obj : public EnemyBase {
 	f32 _2F4;                          // _2F4
 	Vector3f _2F8;                     // _2F8
 	Vector3f _304;                     // _304
-	Quat _310;                         // _310
-	Quat _320;                         // _320
-	f32 _330;                          // _330
+	Quat mMoveQuat;                    // _310
+	Quat mBaseQuat;                    // _320
+	f32 mSlerpParam;                   // _330, weighting parameter used by slerp calc when adjusting base Tr matrix
 	int _334;                          // _334
 	f32 mPauseTimer;                   // _338, timer for pausing when carrying back piki
 	f32 mPauseTriggerTime;             // _33C, time to pause when carrying back piki (random between 0 and 35 frames)
 	bool mDoPauseAnim;                 // _340, alternates pausing and moving when carrying back piki
-	f32 _344;                          // _344
+	f32 mCarryAngleModifier;           // _344
 	u8 _348[0x4];                      // _348, unknown
 	int _34C;                          // _34C
 	Vector3f mPrevReturnCheckPosition; // _350, stores every 60 frames to help check if we're stuck

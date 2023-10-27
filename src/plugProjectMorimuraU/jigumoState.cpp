@@ -239,8 +239,8 @@ void StateHide::exec(EnemyBase* enemy)
 
 		OBJ(enemy)->mNextFaceDir = roundAng(PI + enemy->mFaceDir);
 
-		OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
-		OBJ(enemy)->_344          = 0.0f;
+		OBJ(enemy)->mGoalPosition       = enemy->mHomePosition;
+		OBJ(enemy)->mCarryAngleModifier = 0.0f;
 		transit(enemy, JIGUMO_Appear, nullptr);
 	}
 }
@@ -351,12 +351,12 @@ void StateAttack::exec(EnemyBase* enemy)
 			}
 
 		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
-			_10                       = 0;
-			enemy->mCurrentVelocity   = Vector3f(0.0f);
-			enemy->mTargetVelocity    = Vector3f(0.0f);
-			OBJ(enemy)->mNextFaceDir  = roundAng(PI + enemy->mFaceDir);
-			OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
-			OBJ(enemy)->_344          = 0.0f;
+			_10                             = 0;
+			enemy->mCurrentVelocity         = Vector3f(0.0f);
+			enemy->mTargetVelocity          = Vector3f(0.0f);
+			OBJ(enemy)->mNextFaceDir        = roundAng(PI + enemy->mFaceDir);
+			OBJ(enemy)->mGoalPosition       = enemy->mHomePosition;
+			OBJ(enemy)->mCarryAngleModifier = 0.0f;
 			transit(enemy, OBJ(enemy)->mNextState, nullptr);
 		}
 	}
