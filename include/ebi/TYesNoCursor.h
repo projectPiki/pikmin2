@@ -25,6 +25,18 @@ struct TYesNoCursor {
 		mPane2 = pane2;
 	}
 
+	inline void start()
+	{
+		mTimer    = 1.0f;
+		mSelected = true;
+	}
+
+	inline void stop()
+	{
+		mTimer    = 0.0f;
+		mSelected = false;
+	}
+
 	efx2d::T2DCursor mCursor; // _00
 	Vector2f mPos;            // _1C
 	f32 mSpeed;               // _24

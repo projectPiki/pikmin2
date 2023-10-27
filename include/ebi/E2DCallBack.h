@@ -120,10 +120,16 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 	inline void enable()
 	{
 		mIsEnabled      = true;
-		mSpeed          = sys->mDeltaTime * 3.333333f;
+		mSpeed          = sys->mDeltaTime * 3.3333333f;
 		mColor1Weight   = 0.0f;
 		mIsTowardColor1 = true;
 		_49             = 0;
+	}
+
+	inline void disable()
+	{
+		mIsTowardColor1 = false;
+		_49             = 1;
 	}
 
 	// needs tweaking

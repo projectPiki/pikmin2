@@ -1,81 +1,12 @@
-#include "ebi/Screen/TScreenBase.h"
 #include "ebi/Progre.h"
-#include "types.h"
+#include "ebi/E2DGraph.h"
+#include "og/newScreen/ogUtil.h"
+#include "PSSystem/PSSystemIF.h"
+#include "Controller.h"
+#include "System.h"
+#include "SoundID.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80496520
-    lbl_80496520:
-        .4byte 0x65626953
-        .4byte 0x63726565
-        .4byte 0x6E50726F
-        .4byte 0x67726500
-        .4byte 0x54536372
-        .4byte 0x65656E50
-        .4byte 0x726F6772
-        .4byte 0x653A3A6C
-        .4byte 0x6F616452
-        .4byte 0x65736F75
-        .4byte 0x72636500
-        .4byte 0x70726F67
-        .4byte 0x72652E73
-        .4byte 0x7A730000
-        .4byte 0x65626953
-        .4byte 0x63726565
-        .4byte 0x6E50726F
-        .4byte 0x6772652E
-        .4byte 0x63707000
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80496578
-    lbl_80496578:
-        .4byte 0x54536372
-        .4byte 0x65656E50
-        .4byte 0x726F6772
-        .4byte 0x653A3A73
-        .4byte 0x65744172
-        .4byte 0x63686976
-        .4byte 0x65000000
-    .global lbl_80496594
-    lbl_80496594:
-        .4byte 0x70726F67
-        .4byte 0x72652E62
-        .4byte 0x6C6F0000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23ebi13TScreenProgre
-    __vt__Q23ebi13TScreenProgre:
-        .4byte 0
-        .4byte 0
-        .4byte setArchive__Q23ebi13TScreenProgreFP10JKRArchive
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FA58
-    lbl_8051FA58:
-        .4byte 0x40555555
-    .global lbl_8051FA5C
-    lbl_8051FA5C:
-        .4byte 0x00000000
-    .global lbl_8051FA60
-    lbl_8051FA60:
-        .float 1.0
-    .global lbl_8051FA64
-    lbl_8051FA64:
-        .4byte 0x437F0000
-    .global lbl_8051FA68
-    lbl_8051FA68:
-        .float 0.5
-    .global lbl_8051FA6C
-    lbl_8051FA6C:
-        .4byte 0xBF000000
-    .global lbl_8051FA70
-    lbl_8051FA70:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
+static const char className[] = "ebiScreenProgre";
 
 namespace ebi {
 
@@ -86,55 +17,13 @@ namespace ebi {
  */
 void TScreenProgre::loadResource()
 {
-	/*
-	stwu     r1, -0x120(r1)
-	mflr     r0
-	lis      r4, lbl_80496520@ha
-	li       r5, 0
-	stw      r0, 0x124(r1)
-	stw      r31, 0x11c(r1)
-	addi     r31, r4, lbl_80496520@l
-	addi     r4, r31, 0x10
-	stw      r30, 0x118(r1)
-	stw      r29, 0x114(r1)
-	mr       r29, r3
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	addi     r3, r1, 8
-	addi     r4, r31, 0x2c
-	bl       makeLanguageResName__Q22og9newScreenFPcPCc
-	addi     r3, r1, 8
-	li       r4, 1
-	li       r5, 0
-	li       r6, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	or.      r30, r3, r3
-	bne      lbl_803CD748
-	addi     r3, r31, 0x38
-	addi     r5, r31, 0x4c
-	li       r4, 0x25
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803CD748:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x10
-	bl       heapStatusEnd__6SystemFPc
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x124(r1)
-	lwz      r31, 0x11c(r1)
-	lwz      r30, 0x118(r1)
-	lwz      r29, 0x114(r1)
-	mtlr     r0
-	addi     r1, r1, 0x120
-	blr
-	*/
+	sys->heapStatusStart("TScreenProgre::loadResource", nullptr);
+	char path[256];
+	og::newScreen::makeLanguageResName(path, "progre.szs");
+	JKRArchive* arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	P2ASSERTLINE(37, arc);
+	sys->heapStatusEnd("TScreenProgre::loadResource");
+	setArchive(arc);
 }
 
 /*
@@ -142,210 +31,54 @@ lbl_803CD748:
  * Address:	803CD788
  * Size:	000318
  */
-void TScreenProgre::setArchive(JKRArchive*)
+void TScreenProgre::setArchive(JKRArchive* arc)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_80496578@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r5, lbl_80496578@l
-	li       r5, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	mr       r4, r0
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x148
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803CD7D4
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	mr       r0, r3
+	sys->heapStatusStart("TScreenProgre::setArchive", nullptr);
+	mScreenObj = new P2DScreen::Mgr_tuning;
+	mScreenObj->set("progre.blo", 0x1100000, arc);
+	E2DPane_setTreeCallBackMessage(mScreenObj, mScreenObj);
+	mPaneMg00  = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenObj, 'mg_00'));
+	mPaneMg01  = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenObj, 'mg_01'));
+	mPaneMg02  = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenObj, 'mg_02'));
+	mPaneWin00 = E2DScreen_searchAssert(mScreenObj, 'win_00');
+	mPaneYes   = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenObj, 'yes'));
+	mPaneNo    = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenObj, 'no'));
+	mPane_il00 = E2DScreen_searchAssert(mScreenObj, 'il00');
+	mPane_ir00 = E2DScreen_searchAssert(mScreenObj, 'ir00');
+	mPane_il01 = E2DScreen_searchAssert(mScreenObj, 'il01');
+	mPane_ir01 = E2DScreen_searchAssert(mScreenObj, 'ir01');
 
-lbl_803CD7D4:
-	stw      r0, 0x24(r31)
-	lis      r3, lbl_80496594@ha
-	addi     r4, r3, lbl_80496594@l
-	mr       r6, r30
-	lwz      r3, 0x24(r31)
-	lis      r5, 0x110
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	lwz      r3, 0x24(r31)
-	mr       r4, r3
-	bl       E2DPane_setTreeCallBackMessage__3ebiFPQ29P2DScreen3MgrP7J2DPane
-	lis      r4, 0x675F3030@ha
-	lwz      r3, 0x24(r31)
-	addi     r6, r4, 0x675F3030@l
-	li       r5, 0x6d
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x28(r31)
-	lis      r3, 0x675F3031@ha
-	addi     r6, r3, 0x675F3031@l
-	li       r5, 0x6d
-	lwz      r3, 0x24(r31)
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x2c(r31)
-	lis      r3, 0x675F3032@ha
-	addi     r6, r3, 0x675F3032@l
-	li       r5, 0x6d
-	lwz      r3, 0x24(r31)
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x30(r31)
-	lis      r3, 0x6E5F3030@ha
-	addi     r6, r3, 0x6E5F3030@l
-	li       r5, 0x7769
-	lwz      r3, 0x24(r31)
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x34(r31)
-	lis      r3, 0x00796573@ha
-	addi     r6, r3, 0x00796573@l
-	li       r5, 0
-	lwz      r3, 0x24(r31)
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x38(r31)
-	li       r6, 0x6e6f
-	li       r5, 0
-	lwz      r3, 0x24(r31)
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x3c(r31)
-	lis      r3, 0x696C3030@ha
-	addi     r6, r3, 0x696C3030@l
-	li       r5, 0
-	lwz      r3, 0x24(r31)
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x40(r31)
-	lis      r3, 0x69723030@ha
-	addi     r6, r3, 0x69723030@l
-	li       r5, 0
-	lwz      r3, 0x24(r31)
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x44(r31)
-	lis      r3, 0x696C3031@ha
-	addi     r6, r3, 0x696C3031@l
-	li       r5, 0
-	lwz      r3, 0x24(r31)
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x48(r31)
-	lis      r3, 0x69723031@ha
-	addi     r6, r3, 0x69723031@l
-	li       r5, 0
-	lwz      r3, 0x24(r31)
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	stw      r3, 0x4c(r31)
-	li       r4, 1
-	lwz      r3, 0x28(r31)
-	bl       E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb
-	lwz      r3, 0x28(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2c(r31)
-	li       r4, 1
-	bl       E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb
-	lwz      r3, 0x2c(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x30(r31)
-	li       r4, 1
-	bl       E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb
-	lwz      r3, 0x30(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x34(r31)
-	li       r4, 1
-	bl       E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb
-	lwz      r3, 0x34(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lis      r5, 0x6F6C6F72@ha
-	lis      r4, 0x00735F63@ha
-	lwz      r3, 0x24(r31)
-	addi     r6, r5, 0x6F6C6F72@l
-	addi     r5, r4, 0x00735F63@l
-	bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-	mr       r30, r3
-	lwz      r4, 0x3c(r31)
-	addi     r3, r31, 0x50
-	mr       r5, r30
-	bl       set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox
-	lwz      r4, 0x3c(r31)
-	mr       r5, r30
-	addi     r3, r31, 0x9c
-	bl       set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox
-	lwz      r3, 0x24(r31)
-	addi     r5, r31, 0x50
-	lwz      r4, 0x38(r31)
-	bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-	lwz      r3, 0x24(r31)
-	addi     r5, r31, 0x9c
-	lwz      r4, 0x3c(r31)
-	bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-	lwz      r3, 0x24(r31)
-	bl       E2DPane_setTreeShow__3ebiFP7J2DPane
-	li       r0, 0
-	li       r4, 0
-	stb      r0, 0xb0(r30)
-	lwz      r3, 0x40(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x44(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x48(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x4c(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	lis      r3, lbl_80496578@ha
-	stw      r0, 0xc(r31)
-	addi     r4, r3, lbl_80496578@l
-	stw      r0, 0x10(r31)
-	stw      r0, 0x14(r31)
-	stw      r0, 0x18(r31)
-	lwz      r3, 0x48(r31)
-	lwz      r0, 0x40(r31)
-	stw      r0, 0x118(r31)
-	stw      r3, 0x11c(r31)
-	lwz      r3, 0x4c(r31)
-	lwz      r0, 0x44(r31)
-	stw      r0, 0x150(r31)
-	stw      r3, 0x154(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	E2DPane_setTreeInfluencedAlpha(mPaneMg00, true);
+	mPaneMg00->setAlpha(0);
+
+	E2DPane_setTreeInfluencedAlpha(mPaneMg01, true);
+	mPaneMg01->setAlpha(0);
+
+	E2DPane_setTreeInfluencedAlpha(mPaneMg02, true);
+	mPaneMg02->setAlpha(0);
+
+	E2DPane_setTreeInfluencedAlpha(mPaneWin00, true);
+	mPaneWin00->setAlpha(0);
+
+	J2DTextBox* color = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenObj, 's_color'));
+	mBlinkFont[0].set(mPaneNo, color);
+	mBlinkFont[1].set(mPaneNo, color);
+	mScreenObj->addCallBackPane(mPaneYes, &mBlinkFont[0]);
+	mScreenObj->addCallBackPane(mPaneNo, &mBlinkFont[1]);
+	E2DPane_setTreeShow(mScreenObj);
+	color->hide();
+	mPane_il00->setAlpha(0);
+	mPane_ir00->setAlpha(0);
+	mPane_il01->setAlpha(0);
+	mPane_ir01->setAlpha(0);
+	mCounterFadein     = 0;
+	mCounterFadeinMax  = 0;
+	mCounterFadeout    = 0;
+	mCounterFadeoutMax = 0;
+	mCursor[0].setPanes(mPane_il00, mPane_il01);
+	mCursor[1].setPanes(mPane_ir00, mPane_ir01);
+
+	sys->heapStatusEnd("TScreenProgre::setArchive");
 }
 
 /*
@@ -353,8 +86,50 @@ lbl_803CD7D4:
  * Address:	803CDAA0
  * Size:	0003E4
  */
-void TScreenProgre::startScreen(long, unsigned long)
+void TScreenProgre::startScreen(long state, u32 timer)
 {
+	mStateScreen = state;
+	switch (mStateScreen) {
+	case ProgreScreen_Msg00:
+		mSelected = false;
+		mPaneMg00->setAlpha(0);
+		mPaneMg01->setAlpha(0);
+		mPaneMg02->setAlpha(0);
+		mPaneWin00->setAlpha(0);
+		if (mSelect == 1) {
+			mBlinkFont[0].enable();
+			mBlinkFont[1].mIsEnabled = false;
+			// color hell
+			mCursor[0].start();
+			mCursor[1].start();
+		} else {
+			mBlinkFont[0].mIsEnabled = false;
+			// color hell
+			mBlinkFont[1].enable();
+			mCursor[0].stop();
+			mCursor[1].stop();
+		}
+		mCursor[0].update();
+		mCursor[1].update();
+		mCursor[0].mCursor.create(nullptr);
+		mCursor[1].mCursor.create(nullptr);
+		break;
+	case ProgreScreen_Msg01:
+		mSelected = false;
+		mPaneMg00->setAlpha(0);
+		mPaneMg01->setAlpha(0);
+		mPaneMg02->setAlpha(0);
+		mPaneWin00->setAlpha(255);
+		break;
+	case ProgreScreen_Msg02:
+		mSelected = false;
+		mPaneMg00->setAlpha(0);
+		mPaneMg01->setAlpha(0);
+		mPaneMg02->setAlpha(0);
+		mPaneWin00->setAlpha(255);
+		break;
+	}
+	startState(Progre_Fadein, timer);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -631,37 +406,17 @@ lbl_803CDE58:
  * Address:	803CDE84
  * Size:	000054
  */
-bool TScreenProgre::fadeout(unsigned long)
+bool TScreenProgre::fadeout(u32 timer)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 9(r3)
-	cmplwi   r0, 0
-	bne      lbl_803CDEA4
-	li       r3, 0
-	b        lbl_803CDEC8
+	if (!mSelected) {
+		return false;
+	}
 
-lbl_803CDEA4:
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 3
-	beq      lbl_803CDEC4
-	mr       r5, r4
-	li       r4, 3
-	bl       startState__Q23ebi13TScreenProgreFQ33ebi13TScreenProgre9enumStateUl
-	li       r3, 1
-	b        lbl_803CDEC8
-
-lbl_803CDEC4:
-	li       r3, 0
-
-lbl_803CDEC8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mState != Progre_Fadeout) {
+		startState(Progre_Fadeout, timer);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -671,20 +426,10 @@ lbl_803CDEC8:
  */
 bool TScreenProgre::isFinish()
 {
-	/*
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 3
-	bne      lbl_803CDEF8
-	lwz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	bne      lbl_803CDEF8
-	li       r3, 1
-	blr
-
-lbl_803CDEF8:
-	li       r3, 0
-	blr
-	*/
+	if (mState == Progre_Fadeout && mCounterFadeout == 0) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -702,68 +447,25 @@ void TScreenProgre::killScreen()
  * Address:	803CDF00
  * Size:	0000C0
  */
-void TScreenProgre::startState(ebi::TScreenProgre::enumState, unsigned long)
+void TScreenProgre::startState(enumState state, u32 timer)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x1c(r3)
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 2
-	beq      lbl_803CDFAC
-	bge      lbl_803CDF38
-	cmpwi    r0, 0
-	beq      lbl_803CDF44
-	bge      lbl_803CDF70
-	b        lbl_803CDFAC
-
-lbl_803CDF38:
-	cmpwi    r0, 4
-	bge      lbl_803CDFAC
-	b        lbl_803CDF7C
-
-lbl_803CDF44:
-	addi     r3, r31, 0xe8
-	lwz      r12, 0xe8(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x120
-	lwz      r12, 0x120(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CDFAC
-
-lbl_803CDF70:
-	stw      r5, 0xc(r31)
-	stw      r5, 0x10(r31)
-	b        lbl_803CDFAC
-
-lbl_803CDF7C:
-	stw      r5, 0x14(r31)
-	addi     r3, r31, 0xe8
-	stw      r5, 0x18(r31)
-	lwz      r12, 0xe8(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x120
-	lwz      r12, 0x120(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803CDFAC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mState = state;
+	switch (mState) {
+	case Progre_NULL:
+		mCursor[0].mCursor.fade();
+		mCursor[1].mCursor.fade();
+		break;
+	case Progre_Fadein:
+		mCounterFadein    = timer;
+		mCounterFadeinMax = timer;
+		break;
+	case Progre_Fadeout:
+		mCounterFadeout    = timer;
+		mCounterFadeoutMax = timer;
+		mCursor[0].mCursor.fade();
+		mCursor[1].mCursor.fade();
+		break;
+	}
 }
 
 /*
@@ -773,427 +475,112 @@ lbl_803CDFAC:
  */
 void TScreenProgre::update()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 2
-	beq      lbl_803CE284
-	bge      lbl_803CDFF8
-	cmpwi    r0, 0
-	beq      lbl_803CE4FC
-	bge      lbl_803CE004
-	b        lbl_803CE4FC
+	switch (mState) {
+	case Progre_NULL:
+		break;
+	case Progre_Fadein:
+		if (mCounterFadein)
+			mCounterFadein--;
+		switch (mStateScreen) {
+		case ProgreScreen_Msg00:
+			f32 calc;
+			if (mCounterFadeinMax) {
+				calc = (f32)mCounterFadein / (f32)mCounterFadeinMax;
+			} else {
+				calc = 0.0f;
+			}
+			u8 alpha = (1.0f - calc) * 255.0f;
+			mPaneMg00->setAlpha(alpha);
+			mPaneWin00->setAlpha(alpha);
+			mCursor[0].update();
+			mCursor[1].update();
+			break;
+		case ProgreScreen_Msg01:
+			f32 calc2;
+			if (mCounterFadeinMax) {
+				calc2 = (f32)mCounterFadein / (f32)mCounterFadeinMax;
+			} else {
+				calc2 = 0.0f;
+			}
+			calc2 = (1.0f - calc2) * 255.0f;
+			mPaneMg01->setAlpha(calc2);
+			break;
+		case ProgreScreen_Msg02:
+			f32 calc3;
+			if (mCounterFadeinMax) {
+				calc3 = (f32)mCounterFadein / (f32)mCounterFadeinMax;
+			} else {
+				calc3 = 0.0f;
+			}
+			calc3 = (1.0f - calc3) * 255.0f;
+			mPaneMg02->setAlpha(calc3);
+			break;
+		}
+		if (mCounterFadein == 0) {
+			startState(Progre_Select, 0);
+		}
+		break;
 
-lbl_803CDFF8:
-	cmpwi    r0, 4
-	bge      lbl_803CE4FC
-	b        lbl_803CE424
+	case Progre_Select:
+		mScreenObj->update();
+		switch (mStateScreen) {
+		case ProgreScreen_Msg00:
+			if (mCounterFadein == 0 && !mSelected) {
+				if (mController->isMoveRight()) {
+					if (mSelect == 1) {
+						mSelect = 0;
+						mBlinkFont[0].disable();
+						mBlinkFont[1].enable();
+						mCursor[0].mSelected = false;
+						mCursor[1].mSelected = false;
+						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+					}
+				} else if (mController->isMoveLeft()) {
+					if (mSelect == 0) {
+						mSelect = 1;
+						mBlinkFont[0].enable();
+						mBlinkFont[1].disable();
+						mCursor[0].mSelected = true;
+						mCursor[1].mSelected = true;
+						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+					}
+				} else if (mController->getButtonDown() & Controller::PRESS_A) {
+					setDecide();
+					return;
+				}
+			}
+			mCursor[0].update();
+			mCursor[1].update();
+			break;
+		default:
+			mSelected = true;
+		}
+		break;
 
-lbl_803CE004:
-	lwz      r3, 0xc(r31)
-	cmplwi   r3, 0
-	beq      lbl_803CE018
-	addi     r0, r3, -1
-	stw      r0, 0xc(r31)
+	case Progre_Fadeout:
+		if (mCounterFadeout)
+			mCounterFadeout--;
 
-lbl_803CE018:
-	lwz      r0, 0x20(r31)
-	cmpwi    r0, 1
-	beq      lbl_803CE0E4
-	bge      lbl_803CE034
-	cmpwi    r0, 0
-	bge      lbl_803CE040
-	b        lbl_803CE1D0
-
-lbl_803CE034:
-	cmpwi    r0, 3
-	bge      lbl_803CE1D0
-	b        lbl_803CE15C
-
-lbl_803CE040:
-	lwz      r4, 0x10(r31)
-	cmplwi   r4, 0
-	beq      lbl_803CE080
-	lwz      r3, 0xc(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lfd      f2, lbl_8051FA70@sda21(r2)
-	stw      r3, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fdivs    f1, f1, f0
-	b        lbl_803CE084
-
-lbl_803CE080:
-	lfs      f1, lbl_8051FA5C@sda21(r2)
-
-lbl_803CE084:
-	lfs      f0, lbl_8051FA60@sda21(r2)
-	lwz      r3, 0x28(r31)
-	fsubs    f0, f0, f1
-	lfs      f1, lbl_8051FA64@sda21(r2)
-	lwz      r12, 0(r3)
-	fmuls    f0, f1, f0
-	lwz      r12, 0x24(r12)
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r30, 0x1c(r1)
-	mr       r4, r30
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x34(r31)
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0xe8
-	bl       update__Q23ebi12TYesNoCursorFv
-	addi     r3, r31, 0x120
-	bl       update__Q23ebi12TYesNoCursorFv
-	b        lbl_803CE1D0
-
-lbl_803CE0E4:
-	lwz      r4, 0x10(r31)
-	cmplwi   r4, 0
-	beq      lbl_803CE124
-	lwz      r3, 0xc(r31)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	lfd      f2, lbl_8051FA70@sda21(r2)
-	stw      r3, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fdivs    f1, f1, f0
-	b        lbl_803CE128
-
-lbl_803CE124:
-	lfs      f1, lbl_8051FA5C@sda21(r2)
-
-lbl_803CE128:
-	lfs      f0, lbl_8051FA60@sda21(r2)
-	lwz      r3, 0x2c(r31)
-	fsubs    f0, f0, f1
-	lfs      f1, lbl_8051FA64@sda21(r2)
-	lwz      r12, 0(r3)
-	fmuls    f0, f1, f0
-	lwz      r12, 0x24(r12)
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	mtctr    r12
-	bctrl
-	b        lbl_803CE1D0
-
-lbl_803CE15C:
-	lwz      r4, 0x10(r31)
-	cmplwi   r4, 0
-	beq      lbl_803CE19C
-	lwz      r3, 0xc(r31)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	lfd      f2, lbl_8051FA70@sda21(r2)
-	stw      r3, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fdivs    f1, f1, f0
-	b        lbl_803CE1A0
-
-lbl_803CE19C:
-	lfs      f1, lbl_8051FA5C@sda21(r2)
-
-lbl_803CE1A0:
-	lfs      f0, lbl_8051FA60@sda21(r2)
-	lwz      r3, 0x30(r31)
-	fsubs    f0, f0, f1
-	lfs      f1, lbl_8051FA64@sda21(r2)
-	lwz      r12, 0(r3)
-	fmuls    f0, f1, f0
-	lwz      r12, 0x24(r12)
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	mtctr    r12
-	bctrl
-
-lbl_803CE1D0:
-	lwz      r0, 0xc(r31)
-	cmplwi   r0, 0
-	bne      lbl_803CE4FC
-	li       r0, 2
-	stw      r0, 0x1c(r31)
-	lwz      r0, 0x1c(r31)
-	cmpwi    r0, 2
-	beq      lbl_803CE4FC
-	bge      lbl_803CE204
-	cmpwi    r0, 0
-	beq      lbl_803CE210
-	bge      lbl_803CE23C
-	b        lbl_803CE4FC
-
-lbl_803CE204:
-	cmpwi    r0, 4
-	bge      lbl_803CE4FC
-	b        lbl_803CE24C
-
-lbl_803CE210:
-	addi     r3, r31, 0xe8
-	lwz      r12, 0xe8(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x120
-	lwz      r12, 0x120(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CE4FC
-
-lbl_803CE23C:
-	li       r0, 0
-	stw      r0, 0xc(r31)
-	stw      r0, 0x10(r31)
-	b        lbl_803CE4FC
-
-lbl_803CE24C:
-	li       r0, 0
-	addi     r3, r31, 0xe8
-	stw      r0, 0x14(r31)
-	stw      r0, 0x18(r31)
-	lwz      r12, 0xe8(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x120
-	lwz      r12, 0x120(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CE4FC
-
-lbl_803CE284:
-	lwz      r3, 0x24(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x20(r31)
-	cmpwi    r0, 0
-	beq      lbl_803CE2A8
-	b        lbl_803CE418
-
-lbl_803CE2A8:
-	lwz      r0, 0xc(r31)
-	cmplwi   r0, 0
-	bne      lbl_803CE404
-	lbz      r0, 9(r31)
-	cmplwi   r0, 0
-	bne      lbl_803CE404
-	lwz      r3, 4(r31)
-	lwz      r0, 0x18(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_803CE2E0
-	lfs      f1, 0x48(r3)
-	lfs      f0, lbl_8051FA68@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_803CE2E8
-
-lbl_803CE2E0:
-	li       r0, 1
-	b        lbl_803CE2EC
-
-lbl_803CE2E8:
-	li       r0, 0
-
-lbl_803CE2EC:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803CE358
-	lbz      r0, 8(r31)
-	cmplwi   r0, 1
-	bne      lbl_803CE404
-	li       r6, 0
-	li       r0, 1
-	stb      r6, 8(r31)
-	li       r4, 0x1802
-	lfs      f2, lbl_8051FA58@sda21(r2)
-	li       r5, 0
-	stb      r6, 0x98(r31)
-	lfs      f0, lbl_8051FA5C@sda21(r2)
-	stb      r0, 0x99(r31)
-	stb      r0, 0xb8(r31)
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x54(r3)
-	fmuls    f1, f2, f1
-	stfs     f1, 0xe0(r31)
-	stfs     f0, 0xdc(r31)
-	stb      r0, 0xe4(r31)
-	stb      r6, 0xe5(r31)
-	stb      r6, 0x114(r31)
-	stb      r6, 0x14c(r31)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	b        lbl_803CE404
-
-lbl_803CE358:
-	lwz      r0, 0x18(r3)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_803CE374
-	lfs      f1, 0x48(r3)
-	lfs      f0, lbl_8051FA6C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803CE37C
-
-lbl_803CE374:
-	li       r0, 1
-	b        lbl_803CE380
-
-lbl_803CE37C:
-	li       r0, 0
-
-lbl_803CE380:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803CE3EC
-	lbz      r0, 8(r31)
-	cmplwi   r0, 0
-	bne      lbl_803CE404
-	li       r6, 1
-	lfs      f2, lbl_8051FA58@sda21(r2)
-	stb      r6, 8(r31)
-	li       r0, 0
-	lfs      f0, lbl_8051FA5C@sda21(r2)
-	li       r4, 0x1802
-	stb      r6, 0x6c(r31)
-	li       r5, 0
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x54(r3)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x94(r31)
-	stfs     f0, 0x90(r31)
-	stb      r6, 0x98(r31)
-	stb      r0, 0x99(r31)
-	stb      r0, 0xe4(r31)
-	stb      r6, 0xe5(r31)
-	stb      r6, 0x114(r31)
-	stb      r6, 0x14c(r31)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	b        lbl_803CE404
-
-lbl_803CE3EC:
-	lwz      r0, 0x1c(r3)
-	rlwinm.  r0, r0, 0, 0x17, 0x17
-	beq      lbl_803CE404
-	mr       r3, r31
-	bl       setDecide__Q23ebi13TScreenProgreFv
-	b        lbl_803CE4FC
-
-lbl_803CE404:
-	addi     r3, r31, 0xe8
-	bl       update__Q23ebi12TYesNoCursorFv
-	addi     r3, r31, 0x120
-	bl       update__Q23ebi12TYesNoCursorFv
-	b        lbl_803CE4FC
-
-lbl_803CE418:
-	li       r0, 1
-	stb      r0, 9(r31)
-	b        lbl_803CE4FC
-
-lbl_803CE424:
-	lwz      r3, 0x14(r31)
-	cmplwi   r3, 0
-	beq      lbl_803CE438
-	addi     r0, r3, -1
-	stw      r0, 0x14(r31)
-
-lbl_803CE438:
-	lwz      r4, 0x18(r31)
-	cmplwi   r4, 0
-	beq      lbl_803CE478
-	lwz      r3, 0x14(r31)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	lfd      f2, lbl_8051FA70@sda21(r2)
-	stw      r3, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fdivs    f1, f1, f0
-	b        lbl_803CE47C
-
-lbl_803CE478:
-	lfs      f1, lbl_8051FA5C@sda21(r2)
-
-lbl_803CE47C:
-	lfs      f0, lbl_8051FA64@sda21(r2)
-	lwz      r0, 0x20(r31)
-	fmuls    f0, f0, f1
-	cmpwi    r0, 1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	beq      lbl_803CE4D0
-	bge      lbl_803CE4AC
-	cmpwi    r0, 0
-	bge      lbl_803CE4B8
-	b        lbl_803CE4FC
-
-lbl_803CE4AC:
-	cmpwi    r0, 3
-	bge      lbl_803CE4FC
-	b        lbl_803CE4E8
-
-lbl_803CE4B8:
-	lwz      r3, 0x28(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CE4FC
-
-lbl_803CE4D0:
-	lwz      r3, 0x2c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CE4FC
-
-lbl_803CE4E8:
-	lwz      r3, 0x30(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803CE4FC:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		f32 calc;
+		if (mCounterFadeoutMax) {
+			calc = (f32)mCounterFadeout / (f32)mCounterFadeoutMax;
+		} else {
+			calc = 0.0f;
+		}
+		u8 alpha = calc * 255.0f;
+		switch (mStateScreen) {
+		case ProgreScreen_Msg00:
+			mPaneMg00->setAlpha(alpha);
+			break;
+		case ProgreScreen_Msg01:
+			mPaneMg01->setAlpha(alpha);
+			break;
+		case ProgreScreen_Msg02:
+			mPaneMg02->setAlpha(alpha);
+			break;
+		}
+		break;
+	}
 }
 
 /*
@@ -1203,67 +590,12 @@ lbl_803CE4FC:
  */
 void TScreenProgre::draw()
 {
-	/*
-	stwu     r1, -0x2b0(r1)
-	mflr     r0
-	stw      r0, 0x2b4(r1)
-	stw      r31, 0x2ac(r1)
-	stw      r30, 0x2a8(r1)
-	mr       r30, r3
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 0
-	beq      lbl_803CE5D8
-	lwz      r4, sys@sda21(r13)
-	addi     r3, r1, 8
-	lwz      r4, 0x24(r4)
-	addi     r31, r4, 0x190
-	bl       __ct__8GraphicsFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x24(r30)
-	mr       r5, r31
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x9c(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, __vt__8Graphics@ha
-	addic.   r4, r1, 0x198
-	addi     r0, r3, __vt__8Graphics@l
-	stw      r0, 0x274(r1)
-	beq      lbl_803CE5B0
-	lis      r3, __vt__13J2DPerspGraph@ha
-	cmplwi   r4, 0
-	addi     r0, r3, __vt__13J2DPerspGraph@l
-	stw      r0, 0(r4)
-	beq      lbl_803CE5B0
-	lis      r3, __vt__14J2DGrafContext@ha
-	addi     r0, r3, __vt__14J2DGrafContext@l
-	stw      r0, 0(r4)
-
-lbl_803CE5B0:
-	addic.   r4, r1, 0xc4
-	beq      lbl_803CE5D8
-	lis      r3, __vt__13J2DOrthoGraph@ha
-	cmplwi   r4, 0
-	addi     r0, r3, __vt__13J2DOrthoGraph@l
-	stw      r0, 0(r4)
-	beq      lbl_803CE5D8
-	lis      r3, __vt__14J2DGrafContext@ha
-	addi     r0, r3, __vt__14J2DGrafContext@l
-	stw      r0, 0(r4)
-
-lbl_803CE5D8:
-	lwz      r0, 0x2b4(r1)
-	lwz      r31, 0x2ac(r1)
-	lwz      r30, 0x2a8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x2b0
-	blr
-	*/
+	if (mState != Progre_NULL) {
+		J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
+		Graphics gfx;
+		graf->setPort();
+		mScreenObj->draw(gfx, *graf);
+	}
 }
 
 /*
@@ -1273,6 +605,9 @@ lbl_803CE5D8:
  */
 void TScreenProgre::setDecide()
 {
+	// a LOT of color hell
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+	mSelected = true;
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0

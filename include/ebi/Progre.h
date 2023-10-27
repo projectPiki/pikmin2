@@ -11,7 +11,8 @@ struct Controller;
 
 namespace ebi {
 struct TScreenProgre {
-	enum enumState { UNKNOWN };
+	enum enumState { Progre_NULL, Progre_Fadein, Progre_Select, Progre_Fadeout };
+	enum screenState { ProgreScreen_Msg00, ProgreScreen_Msg01, ProgreScreen_Msg02 };
 
 	TScreenProgre();
 
@@ -30,28 +31,28 @@ struct TScreenProgre {
 	void killScreen();
 
 	// _00 = VTBL
-	Controller* mController; // _04
-	u8 mSelect;
-	bool mSelected;
-	u32 mCounter1;
-	u32 mCounter1Max;
-	u32 mCounter2;
-	u32 mCounter2Max;
-	int mState;
-	int mState2;
-	P2DScreen::Mgr_tuning* mScreenObj;
-	J2DPane* mPaneMg00;
-	J2DPane* mPaneMg01;
-	J2DPane* mPaneMg02;
-	J2DPane* mPaneWin00;
-	J2DPane* mPaneYes;
-	J2DPane* mPaneNo;
-	J2DPane* mPane_il00;
-	J2DPane* mPane_ir00;
-	J2DPane* mPane_il01;
-	J2DPane* mPane_ir01;
-	E2DCallBack_BlinkFontColor mBlinkFont[2];
-	TYesNoCursor mCursor[2];
+	Controller* mController;                  // _04
+	u8 mSelect;                               // _08, (currently selected option)
+	bool mSelected;                           // _09, (has picked an option)
+	u32 mCounterFadein;                       // _0C
+	u32 mCounterFadeinMax;                    // _10
+	u32 mCounterFadeout;                      // _14
+	u32 mCounterFadeoutMax;                   // _18
+	int mState;                               // _1C
+	int mStateScreen;                         // _20
+	P2DScreen::Mgr_tuning* mScreenObj;        // _24
+	J2DTextBox* mPaneMg00;                    // _28
+	J2DTextBox* mPaneMg01;                    // _2C
+	J2DTextBox* mPaneMg02;                    // _30
+	J2DPane* mPaneWin00;                      // _34
+	J2DTextBox* mPaneYes;                     // _38
+	J2DTextBox* mPaneNo;                      // _3C
+	J2DPane* mPane_il00;                      // _40
+	J2DPane* mPane_ir00;                      // _44
+	J2DPane* mPane_il01;                      // _48
+	J2DPane* mPane_ir01;                      // _4C
+	E2DCallBack_BlinkFontColor mBlinkFont[2]; // _50
+	TYesNoCursor mCursor[2];                  // _E8
 };
 } // namespace ebi
 
