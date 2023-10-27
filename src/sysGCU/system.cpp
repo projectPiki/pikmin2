@@ -687,7 +687,7 @@ void System::createSoundSystem()
 	resHeap->destroy();
 
 	sys->heapStatusEnd("SoundSystem");
-	gResMgr2D->_0C = gResMgr2D->_08;
+	gResMgr2D->mRemainingSize = gResMgr2D->mHeapSize;
 
 	/*
 	    stwu     r1, -0x20(r1)

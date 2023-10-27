@@ -34,8 +34,8 @@ struct World {
 
 	struct ResolveArg {
 		Callback* mCallback;
-		u32 _04;
-		u32 _08;
+		u32 mComparisonCount;
+		u32 mCollisionCount;
 	};
 
 	World();

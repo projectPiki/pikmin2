@@ -75,29 +75,11 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 				}
 			}
 			return;
-			// Interesting differences between the above loop and this one:
-			// Node* iNode = mNext;
-			// while (true) {
-			// 	if (iNode == nullptr) {
-			// 		return;
-			// 	}
-			// 	if (iNode->mRadius <= mRadius) break;
-			// 	iNode = iNode->mNext;
-			// }
-			// if (mNext ) {
-			// 	mNext->mPrev = mPrev;
-			// }
-			// if (mPrev ) {
-			// 	mPrev->mNext = mNext;
-			// }
-			// mNext = nullptr;
-			// mPrev = nullptr;
-			// insertAfter(iNode);
-			// return;
 		}
 		if (mPrev == nullptr) {
 			return;
 		}
+
 		if (mPrev->mRadius < mRadius) {
 			for (Node* iNode = mPrev; iNode != nullptr; iNode = iNode->mPrev) {
 				if (iNode->mRadius >= mRadius) {
@@ -114,12 +96,15 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 				}
 			}
 		}
+
 		return;
 	}
+
 	if (chain.mPrev == nullptr) {
 		insertAfter(&chain);
 		return;
 	}
+
 	Node* next = nullptr;
 	for (Node* prev = chain.mPrev; prev != nullptr; prev = prev->mPrev) {
 		next = prev;
@@ -128,9 +113,11 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 			return;
 		}
 	}
+
 	if (next == nullptr) {
 		return;
 	}
+
 	insertAfter(next);
 }
 
@@ -205,8 +192,8 @@ SweepPrune::World::~World()
  */
 void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 {
-	arg._08 = 0;
-	arg._04 = 0;
+	arg.mCollisionCount  = 0;
+	arg.mComparisonCount = 0;
 
 	Object* o1;
 	Node* n1 = mXNode.mPrev;
@@ -216,7 +203,7 @@ void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 		prev = nullptr;
 		o1   = n1->mObject;
 		for (Node* n2 = n1->mPrev; n2 != nullptr; n2 = n2->mPrev) {
-			arg._04++;
+			arg.mComparisonCount++;
 			Object* o2 = n2->mObject;
 			if ((o1 == o2) && (n2->mFlags == 1))
 				break;
@@ -231,7 +218,7 @@ void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 				if (((((min1 <= min2) && (min2 <= max1)) || ((min1 <= max2 && (max2 <= max1)))) || ((min2 <= min1 && (min1 <= max2))))
 				    || ((min2 <= max1 && (max1 <= max2)))) {
 					arg.mCallback->invoke(o1, o2);
-					arg._08++;
+					arg.mCollisionCount++;
 				}
 			}
 		}

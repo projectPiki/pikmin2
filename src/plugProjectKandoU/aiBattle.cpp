@@ -25,7 +25,7 @@ static const char unusedAiBattleName[] = "aiBattle";
 ActBattle::ActBattle(Game::Piki* p)
     : Action(p)
 {
-	_1C          = 0;
+	mFlags       = 0;
 	mName        = "Battle";
 	mApproachPos = new ActApproachPos(p);
 }
@@ -66,14 +66,14 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	Game::InteractBattle battle(mParent);
 	mOther->stimulate(battle);
 	if (battleArg->mIsAttackStart) {
-		SET_FLAG(_1C, 2);
+		SET_FLAG(mFlags, 2);
 	} else if (mOther == mOther->getVsBattlePiki()) {
-		SET_FLAG(_1C, 2);
+		SET_FLAG(mFlags, 2);
 	} else {
-		RESET_FLAG(_1C, 2);
+		RESET_FLAG(mFlags, 2);
 	}
 	initApproach();
-	_1D = 0;
+	mHitCount = 0;
 
 	Vector3f midPoint = (mParent->getPosition() + mOther->getPosition());
 	midPoint *= 0.5f;
@@ -111,7 +111,7 @@ int ActBattle::exec()
 		return 0;
 	}
 
-	if (!(_1C & 2)) {
+	if (!(mFlags & 2)) {
 		return 2;
 	}
 
@@ -195,7 +195,7 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 			initApproach();
 
 			f32 rngChance = randFloat() * 2.2f;
-			u8 old        = ++_1D;
+			u8 old        = ++mHitCount;
 			if (old >= (int)rngChance + 6) {
 				if (mOther && mOther->getVsBattlePiki() == mParent) {
 					f32 oh = 0.5f * mOther->mHappaKind + 1.0f;
@@ -217,7 +217,7 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 						mOther->mFsm->transit(mOther, Game::PIKISTATE_Dying, &arg);
 					}
 				} else {
-					RESET_FLAG(_1C, 2);
+					RESET_FLAG(mFlags, 2);
 				}
 				return;
 			}

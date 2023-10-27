@@ -142,7 +142,7 @@ void ActTeki::makeTarget()
 	}
 
 	mFollowMark = fm->get(0);
-	for (int i = fm->_08 - 1; i >= 0; i--) {
+	for (int i = fm->mCapacity - 1; i >= 0; i--) {
 		Game::Footmark* curMark = fm->get(i);
 
 		Vector3f sep3 = curMark->mPosition - sourcePos;

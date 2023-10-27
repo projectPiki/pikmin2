@@ -49,7 +49,7 @@ IObjBase* SceneBase::searchObj(char* name) { return mObjMgr->search(this, name);
  */
 void SceneBase::destroy()
 {
-	if (mCommand._30 != -1) {
+	if (mCommand.mMode != -1) {
 		gResMgr2D->destroy(&mCommand);
 	}
 }
@@ -61,7 +61,7 @@ void SceneBase::destroy()
  */
 void SceneBase::create()
 {
-	if (mCommand._30 == -1) {
+	if (mCommand.mMode == -1) {
 		mSomeTime              = sys->getTime();
 		mCommand.mUserCallback = &_10C;
 		if (getResName()[0] != '\0') {

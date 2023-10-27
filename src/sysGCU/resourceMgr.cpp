@@ -178,7 +178,7 @@ lbl_80433388:
  */
 void MgrCommand::becomeCurrentHeap()
 {
-	P2ASSERTLINE(187, _30 != -1);
+	P2ASSERTLINE(187, mMode != -1);
 	mActiveHeap = JKRHeap::sCurrentHeap;
 	mNode1->becomeCurrentHeap();
 }
@@ -190,7 +190,7 @@ void MgrCommand::becomeCurrentHeap()
  */
 void MgrCommand::releaseCurrentHeap()
 {
-	P2ASSERTLINE(199, _30 != -1);
+	P2ASSERTLINE(199, mMode != -1);
 	P2ASSERTLINE(201, mActiveHeap);
 	mActiveHeap->becomeCurrentHeap();
 	mActiveHeap = nullptr;
@@ -250,7 +250,7 @@ void MgrCommand::setModeDvd(Node*)
  */
 void MgrCommand::setModeInvalid()
 {
-	_30           = -1;
+	mMode         = -1;
 	mNode1        = nullptr;
 	_34           = 0;
 	mUserCallback = nullptr;
@@ -334,10 +334,10 @@ bool MgrCommand::destroy()
 {
 	// UNUSED FUNCTION
 	bool result = false;
-	if (_30 != -1) {
+	if (mMode != -1) {
 		if (mNode1) {
 			Node::destroy(mNode1);
-			_30           = -1;
+			mMode         = -1;
 			result        = true;
 			mNode1        = nullptr;
 			_34           = 0;
@@ -355,8 +355,8 @@ bool MgrCommand::destroy()
  */
 Mgr::Mgr(JKRHeap* parentHeap, u32 size)
     : mHeap(nullptr)
-    , _08(0)
-    , _0C(0)
+    , mHeapSize(0)
+    , mRemainingSize(0)
     , mNodes()
     , mLoadingNodes()
 {
@@ -366,8 +366,8 @@ Mgr::Mgr(JKRHeap* parentHeap, u32 size)
 	}
 	mHeap = JKRExpHeap::create(size, parentHeap, true);
 	P2ASSERTLINE(487, mHeap != nullptr);
-	_08 = size;
-	_0C = _08;
+	mHeapSize      = size;
+	mRemainingSize = mHeapSize;
 	mFlags.clear();
 	mFlags.typeView &= -2;
 	existingCurrentHeap->becomeCurrentHeap();
@@ -577,7 +577,7 @@ lbl_80433964:
  */
 void Mgr::loadResource(MgrCommand* command, char const* path, bool)
 {
-	if (command->_30 == -1) {
+	if (command->mMode == -1) {
 		delFinishCommand();
 		P2ASSERTLINE(674, searchCommand(command));
 
@@ -590,7 +590,7 @@ void Mgr::loadResource(MgrCommand* command, char const* path, bool)
 		}
 
 		if (node) {
-			command->_30    = 0;
+			command->mMode  = 0;
 			command->mNode1 = nullptr;
 			command->_34    = true;
 			sys->dvdLoadUseCallBack(&command->mDvdThread, &command->mDelegateMemory);
@@ -599,9 +599,9 @@ void Mgr::loadResource(MgrCommand* command, char const* path, bool)
 			ARAM::Node* aram = gAramMgr->search(path);
 			if (aram) {
 				node            = createNewNode(path);
-				command->_30    = 1;
+				command->mMode  = 1;
 				command->mNode1 = node;
-				command->_34    = 1;
+				command->_34    = true;
 				command->mNode2 = node;
 				sys->dvdLoadUseCallBack(&command->mDvdThread, &command->mDelegateMemory);
 				mLoadingNodes.add(command);
@@ -610,7 +610,7 @@ void Mgr::loadResource(MgrCommand* command, char const* path, bool)
 
 		if (!node) {
 			node            = createNewNode(path);
-			command->_30    = 0;
+			command->mMode  = 0;
 			command->mNode1 = nullptr;
 			command->_34    = true;
 			sys->dvdLoadUseCallBack(&command->mDvdThread, &command->mDelegateMemory);

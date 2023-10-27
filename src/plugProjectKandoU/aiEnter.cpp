@@ -197,9 +197,9 @@ void ActEnter::initSuck()
 
 	mSuckGoalPos.y = pikiPos.y;
 
-	mTimer     = -mHorizSuckDist;
-	_4C        = 0;
-	mBaseScale = 1.0f;
+	mTimer       = -mHorizSuckDist;
+	mInsideOnyon = 0;
+	mBaseScale   = 1.0f;
 
 	mParent->startSound(PSSE_PK_VC_JUMP_INTO_UFO, true);
 	mParent->startMotion(Game::IPikiAnims::ROLLJUMP, Game::IPikiAnims::ROLLJUMP, nullptr, nullptr);
@@ -326,7 +326,7 @@ lbl_801A2FD0:
  */
 int ActEnter::execSuck()
 {
-	if (_4C) {
+	if (mInsideOnyon) {
 		mParent->setPosition(mSuckPos, false);
 		return ACTEXEC_Success;
 	}
@@ -339,8 +339,8 @@ int ActEnter::execSuck()
 	mParent->mScale = Vector3f(mBaseScale);
 	mTimer += sys->mDeltaTime * 110.0f;
 	if (mTimer >= 0.0f) {
-		_4C      = 1;
-		mSuckPos = newPos;
+		mInsideOnyon = 1;
+		mSuckPos     = newPos;
 		mParent->startSound(PSSE_PK_SE_ONY_ENTER, true);
 		return ACTEXEC_Success;
 	}

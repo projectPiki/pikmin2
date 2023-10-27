@@ -304,8 +304,8 @@ struct ActBattle : public Action, virtual SysShape::MotionListener {
 	Game::Piki* mOther;           // _10, vs battle piki attack
 	u8 mState;                    // _14
 	ActApproachPos* mApproachPos; // _18
-	s8 _1C;                       // _1C
-	s8 _1D;                       // _1D
+	s8 mFlags;                    // _1C
+	s8 mHitCount;                 // _1D
 };
 
 struct ActBoreBase : public Action, virtual SysShape::MotionListener {
@@ -386,7 +386,7 @@ struct ActBreakGate : public Action, virtual SysShape::MotionListener {
 	ActStickAttack* mStickAttack;       // _18
 	ActGotoPos* mGotoPos;               // _1C
 	ActFollowVectorField* mFollowField; // _20
-	u8 _24;                             // _24
+	bool mResetStateAfter;              // _24
 	u8 _25[0x3];                        // _25, unknown/probably padding
 	u8 _28[0xC];                        // _28, unknown
 	                                    // _34 = MotionListener
@@ -464,7 +464,7 @@ struct ActBridge : public Action, virtual SysShape::MotionListener {
 	u32 _24;                            // _24
 	u32 _28;                            // _28
 	u32 _2C;                            // _2C
-	u8 _30;                             // _30
+	u8 mCollPartType;                   // _30
 	                                    // _34 = MotionListener
 };
 
@@ -550,7 +550,7 @@ struct ActCrop : public Action, virtual SysShape::MotionListener {
 	ActGotoPos* mGotoPos;         // _30
 	u32 _34;                      // _34, unknown
 	f32 mAttackDir;               // _38
-	bool _3C;                     // _3C
+	bool mIsDirectionReversed;    // _3C
 	                              // _40 = MotionListener
 };
 
@@ -592,7 +592,7 @@ struct ActEnter : public Action, virtual SysShape::MotionListener {
 	f32 mTimer;            // _40, timer for pikis entering ship, reused by stay and suck
 	f32 mVertSuckDist;     // _44, distance left to travel before entering ship, Y
 	f32 mHorizSuckDist;    // _48, distance left to travel before entering ship, XZ
-	u8 _4C;                // _4C
+	u8 mInsideOnyon;       // _4C
 	Vector3f mSuckPos;     // _50, current suck position
 	f32 mBaseScale;        // _54
 	                       // _58 = MotionListener
@@ -752,30 +752,30 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 	// _00-_0C = Action
 	// _0C-_10 = SlotChangeListener*
 	// _10-_14 = MotionListener*
-	Game::Navi* mNavi;            // _14
-	ActFormationInitArg mInitArg; // _18
-	int mNextAIType;              // _24
-	u16 mSortState;               // _28, use FORMATION_SORT_ enum
-	u16 _2A;                      // _2A
-	u16 _2C;                      // _2C
-	u16 _2E;                      // _2E
-	u8 _30;                       // _30
-	u8 _31;                       // _31
-	int mSlotID;                  // _34
-	u8 _38;                       // _38
-	Game::Footmark* mFootmark;    // _3C
-	u8 _40;                       // _40
-	int mFrameTimer;              // _44
-	int _48;                      // _48
-	int _4C;                      // _4C
-	f32 _50;                      // _50
-	u8 _54;                       // _54
-	f32 _58;                      // _58, timer?
-	Game::CPlate* mCPlate;        // _5C
-	bool _60;                     // _60
-	bool _61;                     // _61
-	                              // _64 = SlotChangeListener
-	                              // _6C = MotionListener
+	Game::Navi* mNavi;             // _14
+	ActFormationInitArg mInitArg;  // _18
+	int mNextAIType;               // _24
+	u16 mSortState;                // _28, use FORMATION_SORT_ enum
+	u16 mDistanceType;             // _2A
+	u16 mOldDistanceType;          // _2C
+	u16 mDistanceCounter;          // _2E
+	u8 _30;                        // _30
+	u8 _31;                        // _31
+	int mSlotID;                   // _34
+	u8 mTouchingNaviCooldownTimer; // _38
+	Game::Footmark* mFootmark;     // _3C
+	u8 mTouchingWallTimer;         // _40
+	int mFrameTimer;               // _44
+	int mFootmarkFlags;            // _48
+	int mAnimationTimer;           // _4C
+	f32 _50;                       // _50
+	u8 mIsAnimating;               // _54
+	f32 mLostPikiTimer;            // _58, timer?
+	Game::CPlate* mCPlate;         // _5C
+	bool _60;                      // _60
+	bool _61;                      // _61
+	                               // _64 = SlotChangeListener
+	                               // _6C = MotionListener
 };
 
 struct ActFreeArg : public ActionArg {

@@ -24,7 +24,7 @@ Obj::Obj() { createFootmarks(); }
 void Obj::doUpdate()
 {
 	KumaChappy::Obj::doUpdate();
-	f32 timer = (mFootmarks->_10 - (int)gameSystem->mFrameTimer);
+	f32 timer = (mFootmarks->mLastUpdateTime - (int)gameSystem->mFrameTimer);
 
 	timer = (timer > 0.0f) ? timer : -timer;
 

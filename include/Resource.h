@@ -59,7 +59,7 @@ struct MgrCommand : public CNode, JKRDisposer {
 
 	// CNode _00 - _18
 	// JKRDisposer _18 - _30
-	s32 _30;                                // _30
+	s32 mMode;                              // _30
 	u8 _34;                                 // _34
 	Node* mNode1;                           // _38
 	DvdThreadCommand mDvdThread;            // _3C
@@ -92,8 +92,8 @@ struct Mgr {
 
 	// _00 = VTBL
 	JKRHeap* mHeap;      // _04
-	u32 _08;             // _08
-	u32 _0C;             // _0C
+	u32 mHeapSize;       // _08
+	u32 mRemainingSize;  // _0C, guessed name
 	CNode mNodes;        // _10
 	CNode mLoadingNodes; // _28
 	BitFlag<u32> mFlags; // _40

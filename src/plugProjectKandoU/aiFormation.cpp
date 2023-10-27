@@ -72,9 +72,9 @@ void ActFormation::init(ActionArg* initArg)
 	mInitArg._09       = formationArg->_09;
 
 	if (mInitArg._09) {
-		_38 = 45;
+		mTouchingNaviCooldownTimer = 45;
 	} else {
-		_38 = 0;
+		mTouchingNaviCooldownTimer = 0;
 	}
 
 	Game::Navi* initNavi = static_cast<Game::Navi*>(formationArg->mCreature);
@@ -85,11 +85,11 @@ void ActFormation::init(ActionArg* initArg)
 		return;
 	}
 
-	_2A = 5;
-	_2C = 5;
-	_2E = 0;
-	_60 = false;
-	_61 = false;
+	mDistanceType    = 5;
+	mOldDistanceType = 5;
+	mDistanceCounter = 0;
+	_60              = false;
+	_61              = false;
 
 	mCPlate = initNavi->mCPlateMgr;
 	mSlotID = mCPlate->getSlot(mParent, this, initCheck);
@@ -99,17 +99,17 @@ void ActFormation::init(ActionArg* initArg)
 
 	mParent->startMotion(Game::IPikiAnims::RUN2, Game::IPikiAnims::RUN2, nullptr, nullptr);
 
-	_30        = 0;
-	_31        = 0;
-	mSortState = 0;
-	_4C        = 0;
-	_50        = 0.0f;
-	_54        = 0;
-	mFootmark  = nullptr;
+	_30             = 0;
+	_31             = 0;
+	mSortState      = 0;
+	mAnimationTimer = 0;
+	_50             = 0.0f;
+	mIsAnimating    = 0;
+	mFootmark       = nullptr;
 
 	mParent->setPastel(false);
-	_40 = 0;
-	_48 = -1;
+	mTouchingWallTimer = 0;
+	mFootmarkFlags     = -1;
 	mParent->setFreeLightEffect(false);
 }
 
@@ -121,16 +121,16 @@ void ActFormation::init(ActionArg* initArg)
 void ActFormation::wallCallback(Vector3f&)
 {
 	mFrameTimer = Game::gameSystem->mFrameTimer;
-	if (_40 < 30) {
-		_40++;
+	if (mTouchingWallTimer < 30) {
+		mTouchingWallTimer++;
 	}
 
-	if (_40 > 8 && mSortState != 1) {
-		_40 = 0;
+	if (mTouchingWallTimer > 8 && mSortState != 1) {
+		mTouchingWallTimer = 0;
 	}
 
-	if (_40 > 20) {
-		_40 = 0;
+	if (mTouchingWallTimer > 20) {
+		mTouchingWallTimer = 0;
 	}
 }
 
@@ -216,16 +216,16 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
 	switch (keyEvent.mType) {
 	case KEYEVENT_2:
-		if (_54) {
+		if (mIsAnimating) {
 			mParent->mSimVelocity = Vector3f(0.0f);
 			mParent->mVelocity    = Vector3f(0.0f);
 		}
 		break;
 
 	case KEYEVENT_1:
-		if (_54) {
-			_4C--;
-			if (_4C <= 0) {
+		if (mIsAnimating) {
+			mAnimationTimer--;
+			if (mAnimationTimer <= 0) {
 				mParent->mAnimator.mSelfAnimator.mFlags |= EANIM_FLAG_FINISHED;
 				mParent->mAnimator.mBoundAnimator.mFlags |= EANIM_FLAG_FINISHED;
 			}
@@ -233,8 +233,8 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 		break;
 
 	case KEYEVENT_END:
-		if (_54) {
-			_54 = 0;
+		if (mIsAnimating) {
+			mIsAnimating = 0;
 			mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 		}
 		break;
@@ -272,8 +272,8 @@ void ActFormation::cleanup()
  */
 int PikiAI::ActFormation::exec()
 {
-	if (_38) {
-		_38--;
+	if (mTouchingNaviCooldownTimer) {
+		mTouchingNaviCooldownTimer--;
 	}
 
 	if (mSlotID == -1) {
@@ -296,9 +296,9 @@ int PikiAI::ActFormation::exec()
 	}
 
 	mParent->setMoveRotation(true);
-	_2C = _2A;
-	_2A = 5;
-	if (_54) {
+	mOldDistanceType = mDistanceType;
+	mDistanceType    = 5;
+	if (mIsAnimating) {
 		int animId;
 		if (mParent->mAnimator.mSelfAnimator.mAnimInfo) {
 			animId = mParent->mAnimator.mSelfAnimator.mAnimInfo->mId;
@@ -307,7 +307,7 @@ int PikiAI::ActFormation::exec()
 		}
 
 		if (animId != Game::IPikiAnims::KOROBU) {
-			_54 = 0;
+			mIsAnimating = 0;
 			mParent->startMotion(Game::IPikiAnims::WALK, Game::IPikiAnims::WALK, nullptr, nullptr);
 		}
 
@@ -331,12 +331,12 @@ int PikiAI::ActFormation::exec()
 		f32 dist         = sep.length();                     // f26
 		Vector3f pikiPos = mParent->getPosition();           // 0x120
 		if ((Game::gameSystem->mFrameTimer - mFrameTimer) < 0x32 && dist > 60.0f) {
-			if (_40 > 3) {
-				mFootmark = mParent->mNavi->mFootmarks->findNearest2(pikiPos, _48);
+			if (mTouchingWallTimer > 3) {
+				mFootmark = mParent->mNavi->mFootmarks->findNearest2(pikiPos, mFootmarkFlags);
 				if (mFootmark) {
 					sep = mFootmark->mPosition - pikiPos;
 					if (sep.normalise() < 20.0f) {
-						_48 = mFootmark->mFlags;
+						mFootmarkFlags = mFootmark->mFlags;
 					}
 
 					mParent->setSpeed(1.0f, sep);
@@ -344,12 +344,12 @@ int PikiAI::ActFormation::exec()
 				}
 			}
 		} else {
-			_40 = 0;
-			_48 = -1;
+			mTouchingWallTimer = 0;
+			mFootmarkFlags     = -1;
 		}
 	} else {
-		_40 = 0;
-		_48 = -1;
+		mTouchingWallTimer = 0;
+		mFootmarkFlags     = -1;
 	}
 
 	Vector3f movieSep = mParent->mPositionBeforeMovie - mParent->getPosition();
@@ -381,7 +381,7 @@ int PikiAI::ActFormation::exec()
 		}
 
 		if (mSortState == FORMATION_SORT_NONE) {
-			_2A = 0;
+			mDistanceType = 0;
 			Iterator<Game::Creature> iter(mParent->mNavi->mCPlateMgr);
 			CI_LOOP(iter)
 			{
@@ -408,7 +408,7 @@ int PikiAI::ActFormation::exec()
 			return ACTEXEC_Continue;
 		}
 
-		_2A                  = 1;
+		mDistanceType        = 1;
 		mParent->mVelocity   = Vector3f(0.0f);
 		Vector3f naviPikiSep = mParent->mNavi->getPosition() - mParent->getPosition();
 		f32 angle            = JMAAtan2Radian(naviPikiSep.x, naviPikiSep.z); // f26
@@ -418,22 +418,22 @@ int PikiAI::ActFormation::exec()
 	}
 
 	if (dist <= 7.0f) {
-		_2E = 0;
+		mDistanceCounter = 0;
 	} else if (dist < 15.0f) {
-		_2E++;
-		if (_2C == 2 && mParent->mNavi->mSceneAnimationTimer > 0.1f) {
-			_2E = 0;
+		mDistanceCounter++;
+		if (mOldDistanceType == 2 && mParent->mNavi->mSceneAnimationTimer > 0.1f) {
+			mDistanceCounter = 0;
 		}
 
-		if (_2E >= 6) {
-			_2E = 6;
+		if (mDistanceCounter >= 6) {
+			mDistanceCounter = 6;
 		}
 	} else {
-		_2E = 0;
+		mDistanceCounter = 0;
 	}
 
-	if (dist <= 7.0f || (_2E < 6 && dist <= 15.0f)) {
-		_2A                = 2;
+	if (dist <= 7.0f || (mDistanceCounter < 6 && dist <= 15.0f)) {
+		mDistanceType      = 2;
 		mParent->mVelocity = Vector3f(0.0f);
 
 		sep = mParent->mNavi->getPosition() - mParent->getPosition(); // 0x114
@@ -446,7 +446,7 @@ int PikiAI::ActFormation::exec()
 		}
 
 	} else if (dist < 15.0f) {
-		_2A = 3;
+		mDistanceType = 3;
 		mParent->setMoveRotation(false);
 
 		if (_60 && dist < 10.0f) {
@@ -497,7 +497,7 @@ int PikiAI::ActFormation::exec()
 			mParent->mVelocity *= currSpeed;
 		}
 	} else {
-		_2A = 4;
+		mDistanceType = 4;
 		mParent->setSpeed(1.0f, sep);
 
 		Vector3f naviPikiSep = mParent->getPosition() - mParent->mNavi->getPosition(); // f30, f29, f28
@@ -525,10 +525,10 @@ int PikiAI::ActFormation::exec()
 	}
 
 	if (dist < static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mWhiteDistance.mValue) {
-		_58 = 0.0f;
-		_30 = 0;
+		mLostPikiTimer = 0.0f;
+		_30            = 0;
 	} else if (dist < static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mGrayDistance.mValue) {
-		_58 += sys->mDeltaTime;
+		mLostPikiTimer += sys->mDeltaTime;
 		if (!_30) {
 			if (mSlotID != -1) {
 				mCPlate->releaseSlot(mParent, mSlotID);
@@ -536,7 +536,8 @@ int PikiAI::ActFormation::exec()
 			}
 			_30 = 1;
 		}
-		if ((!mInitArg._08 && mSlotID == -1) || _58 > static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mLostChildTime.mValue) {
+		if ((!mInitArg._08 && mSlotID == -1)
+		    || mLostPikiTimer > static_cast<Game::PikiParms*>(mParent->mParms)->mPikiParms.mLostChildTime.mValue) {
 			return ACTEXEC_Fail;
 		}
 
@@ -2237,7 +2238,7 @@ void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 	Game::Navi* navi      = p->mNavi;
 	if (navi) {
 		isBeingCommanded = navi->commandOn();
-		if (_38) {
+		if (mTouchingNaviCooldownTimer) {
 			isBeingCommanded = false;
 		}
 	}

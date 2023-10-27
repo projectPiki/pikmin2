@@ -42,8 +42,8 @@ void ActBreakGate::init(ActionArg* actionArg)
 
 	Game::GameStat::workPikis.inc(mParent);
 
-	mGate = static_cast<ActBreakGateArg*>(actionArg)->mGate;
-	_24   = 0;
+	mGate            = static_cast<ActBreakGateArg*>(actionArg)->mGate;
+	mResetStateAfter = 0;
 
 	initFollow();
 }
@@ -87,7 +87,7 @@ void ActBreakGate::initStickAttack()
 		type = STICKATK_ElecGate;
 	}
 
-	if (_24 == 0) {
+	if (mResetStateAfter == 0) {
 		f32 attackDamage = mParent->getAttackDamage();
 		StickAttackActionArg stickAttackArg(attackDamage, mGate, Game::IPikiAnims::NULLANIM, type);
 		mStickAttack->init(&stickAttackArg);
@@ -523,10 +523,10 @@ void ActBreakGate::emotion_success()
  */
 void ActBreakGate::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
-	if (platEvent._08 > 0.7f) {
-		_24 = 1;
+	if (platEvent.mPosition.y > 0.7f) {
+		mResetStateAfter = 1;
 	} else {
-		_24 = 0;
+		mResetStateAfter = 0;
 	}
 
 	if (mState == 1) {

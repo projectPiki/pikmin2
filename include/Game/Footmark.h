@@ -20,12 +20,12 @@ struct Footmarks {
 	Footmark* get(int index);
 	Footmark* findNearest2(Vector3f&, int);
 
-	Footmark* mMarks;   // _00
-	int _04;            // _04
-	int _08;            // _08
-	int mCount;         // _0C
-	int _10;            // _10
-	Vector3f mPosition; // _14
+	Footmark* mMarks;    // _00
+	int mCurrentIndex;   // _04
+	int mCapacity;       // _08
+	int mCount;          // _0C
+	int mLastUpdateTime; // _10
+	Vector3f mPosition;  // _14
 };
 
 } // namespace Game

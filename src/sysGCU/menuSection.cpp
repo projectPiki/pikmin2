@@ -11,7 +11,7 @@ MenuSection::MenuSection(JFWDisplay* display, JKRHeap* heap, bool b)
     : Section(display, heap, b)
 {
 	mCurrentSection = nullptr;
-	_3C             = false;
+	mIsDone         = false;
 }
 
 /*
@@ -21,11 +21,11 @@ MenuSection::MenuSection(JFWDisplay* display, JKRHeap* heap, bool b)
  */
 void MenuSection::run()
 {
-	_3C = false;
+	mIsDone = false;
 	do {
 		mIsMainActive = true;
 		MenuSection::runChildSection();
-	} while (!_3C);
+	} while (!mIsDone);
 }
 
 /*

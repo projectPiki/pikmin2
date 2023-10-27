@@ -145,8 +145,8 @@ void ActCrop::initAttack()
 	f32 damage = mParent->getAttackDamage();
 	StickAttackActionArg stickAttackArg(damage, mCreature, Game::IPikiAnims::NULLANIM, 0);
 	mStickAttack->init(&stickAttackArg);
-	mState = CROP_Attack;
-	_3C    = true;
+	mState               = CROP_Attack;
+	mIsDirectionReversed = true;
 }
 
 /*
@@ -176,13 +176,13 @@ int ActCrop::exec()
 		f32 negYComp  = -yComp;
 		mParent->endStick();
 
-		if (_3C) {
+		if (mIsDirectionReversed) {
 			if (yComp > 0.9f) {
-				_3C = false;
+				mIsDirectionReversed = false;
 			}
 		} else {
 			if (yComp < -0.9f) {
-				_3C = true;
+				mIsDirectionReversed = true;
 			}
 			horizComp = -horizComp;
 		}
