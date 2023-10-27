@@ -86,9 +86,8 @@ struct TMemoryCard {
 
 	inline void doSetSelect(f32 p1, bool check)
 	{
-		// needs tweaking
-		mBlinkFont1.setPaneColors();
-		mBlinkFont2.setPaneColors();
+		mBlinkFont1.setPaneColors(0);
+		mBlinkFont2.setPaneColors(0);
 
 		mCursor1.mTimer    = p1;
 		mCursor1.mSelected = check;

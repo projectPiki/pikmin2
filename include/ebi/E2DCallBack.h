@@ -132,7 +132,6 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 		_49             = 1;
 	}
 
-	// needs tweaking
 	inline void setPaneColors(int colorID)
 	{
 		mIsEnabled       = false;

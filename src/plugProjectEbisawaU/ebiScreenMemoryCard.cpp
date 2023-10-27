@@ -1156,13 +1156,13 @@ void TMemoryCard::startState(enumState state)
 			mBlinkFont1.mIsTowardColor1 = true;
 			mBlinkFont1._49             = false;
 
-			mBlinkFont2.setPaneColors();
+			mBlinkFont2.setPaneColors(0);
 			mCursor1.mTimer    = 1.0f;
 			mCursor1.mSelected = true;
 			mCursor2.mTimer    = 1.0f;
 			mCursor2.mSelected = true;
 		} else {
-			mBlinkFont1.setPaneColors();
+			mBlinkFont1.setPaneColors(0);
 
 			mBlinkFont2.mIsEnabled      = true;
 			mBlinkFont2.mSpeed          = sys->mDeltaTime * 3.333333f;
