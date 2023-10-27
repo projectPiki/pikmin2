@@ -102,21 +102,13 @@ void TScreenProgre::startScreen(long state, u32 timer)
 
 			if (mBlinkFont[1].mPane)
 			{
-				// definitely wrong, but in the right direction
-				JUtility::TColor c1 = mBlinkFont[1].mFonts[0].mCol1.toUInt32();
-				*(JUtility::TColor*)(((u8*)mBlinkFont[1].mPane)+0x104) = c1;
+				static_cast<J2DTextBox*>(mBlinkFont[1].mPane)->mCharColor = mBlinkFont[1].mFonts[0].mCol1.toUInt32();
 
-				JUtility::TColor c2 = mBlinkFont[1].mFonts[0].mCol2.toUInt32();
-				*(JUtility::TColor*)(((u8*)mBlinkFont[1].mPane)+0x108) = c2;
+				static_cast<J2DTextBox*>(mBlinkFont[1].mPane)->mGradientColor = mBlinkFont[1].mFonts[0].mCol2.toUInt32();
 
-
-				// wrong func
-				// a8 offset into the vtable?
 				mPaneMg02->setWhite(mBlinkFont[1].mFonts[0].mWhite);
 
 				mPaneMg02->setBlack(mBlinkFont[1].mFonts[0].mBlack);
-
-				// call some `this->` func, a4 offset into the vtable?
 			}
 			
 			// color hell
@@ -127,14 +119,10 @@ void TScreenProgre::startScreen(long state, u32 timer)
 
 			if (mBlinkFont[0].mPane)
 			{
-				// definitely wrong, but in the right direction
-				JUtility::TColor c1 = mBlinkFont[0].mFonts[0].mCol1.toUInt32();
-				*(JUtility::TColor*)(((u8*)mBlinkFont[0].mPane)+0x104) = c1;
+				static_cast<J2DTextBox*>(mBlinkFont[0].mPane)->mCharColor = mBlinkFont[1].mFonts[0].mCol1.toUInt32();
 
-				JUtility::TColor c2 = mBlinkFont[0].mFonts[0].mCol2.toUInt32();
-				*(JUtility::TColor*)(((u8*)mBlinkFont[0].mPane)+0x108) = c2;
+				static_cast<J2DTextBox*>(mBlinkFont[0].mPane)->mGradientColor = mBlinkFont[1].mFonts[0].mCol2.toUInt32();
 
-				// wrong func
 				mPaneMg02->setWhite(mBlinkFont[0].mFonts[0].mWhite);
 
 				mPaneMg02->setBlack(mBlinkFont[0].mFonts[0].mBlack);
