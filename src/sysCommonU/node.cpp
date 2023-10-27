@@ -23,15 +23,15 @@ void Node::displayInfo(int whitespaceAmt)
 
 	OSReport("[%s]\n", mName);
 
-	Node* next = mNext;
+	Node* next = mParent;
 	if (next) {
 		next = (Node*)(((u8*)next) - 12);
 	}
 
 	while (next) {
-		next->_0C->displayInfo(whitespaceAmt + 1);
+		next->mNext->displayInfo(whitespaceAmt + 1);
 
-		next = next->_18;
+		next = next->mChild;
 		if (next) {
 			next = (Node*)(((u8*)next) - 12);
 		}
@@ -45,15 +45,15 @@ void Node::displayInfo(int whitespaceAmt)
  */
 void Node::update()
 {
-	Node* next = mNext;
+	Node* next = mParent;
 	if (next) {
 		next = (Node*)(((u8*)next) - 12);
 	}
 
 	while (next) {
-		next->_0C->update();
+		next->mNext->update();
 
-		next = next->_18;
+		next = next->mChild;
 		if (next) {
 			next = (Node*)(((u8*)next) - 12);
 		}
@@ -67,15 +67,15 @@ void Node::update()
  */
 void Node::draw(Graphics& gfx)
 {
-	Node* next = mNext;
+	Node* next = mParent;
 	if (next) {
 		next = (Node*)(((u8*)next) - 12);
 	}
 
 	while (next) {
-		next->_0C->draw(gfx);
+		next->mNext->draw(gfx);
 
-		next = next->_18;
+		next = next->mChild;
 		if (next) {
 			next = (Node*)(((u8*)next) - 12);
 		}

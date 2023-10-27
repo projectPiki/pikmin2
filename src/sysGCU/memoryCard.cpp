@@ -21,12 +21,12 @@ static CARDMemoryCard sCardWorkArea;
  */
 MemoryCardMgr::MemoryCardMgr()
 {
-	_A4         = 0;
-	mIsCard     = 0;
-	mHeap       = 0;
-	_D0         = 0;
-	mStatusFlag = INSIDESTATUS_Unk;
-	mHeap       = JKRHeap::getSystemHeap();
+	mCurrentCommandIdx = 0;
+	mIsCard            = 0;
+	mHeap              = 0;
+	_D0                = 0;
+	mStatusFlag        = INSIDESTATUS_Unk;
+	mHeap              = JKRHeap::getSystemHeap();
 	resetCommandFlagQueue();
 }
 
@@ -37,13 +37,13 @@ MemoryCardMgr::MemoryCardMgr()
  */
 void MemoryCardMgr::resetCommandFlagQueue()
 {
-	mCommands[0]._00 = 0;
-	mCommands[1]._00 = 0;
-	mCommands[2]._00 = 0;
-	mCommands[3]._00 = 0;
-	mCommands[4]._00 = 0;
-	_A4              = 0;
-	mIsCard          = 0;
+	mCommands[0]._00   = 0;
+	mCommands[1]._00   = 0;
+	mCommands[2]._00   = 0;
+	mCommands[3]._00   = 0;
+	mCommands[4]._00   = 0;
+	mCurrentCommandIdx = 0;
+	mIsCard            = 0;
 }
 
 /*
@@ -56,7 +56,7 @@ MemoryCardMgrCommand* MemoryCardMgr::getCurrentCommand()
 	// this is placeholder for what needs to be here. assert is correct.
 	// should get used in cardProc()
 	bool check                = false;
-	MemoryCardMgrCommand* cmd = &mCommands[_A4];
+	MemoryCardMgrCommand* cmd = &mCommands[mCurrentCommandIdx];
 	if (cmd->_00 || (!cmd->_00 && (int)mIsCard == 0)) {
 		check = true;
 	}
@@ -100,7 +100,7 @@ bool MemoryCardMgr::setCommand(MemoryCardMgrCommandBase* command)
 	}
 
 	if (check) {
-		u32 j = _A4;
+		u32 j = mCurrentCommandIdx;
 		while (true) {
 			int* dumbPtr = (int*)&((MemoryCardMgrCommand*)(this))[j];
 			if (!dumbPtr[1]) {
@@ -223,18 +223,18 @@ lbl_80440804:
 void MemoryCardMgr::releaseCurrentCommand()
 {
 	P2ASSERTLINE(285, (int)mIsCard >= 0);
-	if (++_A4 == 5) {
-		_A4 = 0;
+	if (++mCurrentCommandIdx == 5) {
+		mCurrentCommandIdx = 0;
 	}
 
 	if (isErrorOccured()) {
-		mCommands[0]._00 = 0;
-		mCommands[1]._00 = 0;
-		mCommands[2]._00 = 0;
-		mCommands[3]._00 = 0;
-		mCommands[4]._00 = 0;
-		_A4              = 0;
-		mIsCard          = 0;
+		mCommands[0]._00   = 0;
+		mCommands[1]._00   = 0;
+		mCommands[2]._00   = 0;
+		mCommands[3]._00   = 0;
+		mCommands[4]._00   = 0;
+		mCurrentCommandIdx = 0;
+		mIsCard            = 0;
 	}
 }
 
@@ -269,13 +269,13 @@ bool MemoryCardMgr::cardFormat(ECardSlot slot)
 void MemoryCardMgr::init()
 {
 	CARDInit();
-	mCommands[0]._00 = 0;
-	mCommands[1]._00 = 0;
-	mCommands[2]._00 = 0;
-	mCommands[3]._00 = 0;
-	mCommands[4]._00 = 0;
-	_A4              = 0;
-	mIsCard          = 0;
+	mCommands[0]._00   = 0;
+	mCommands[1]._00   = 0;
+	mCommands[2]._00   = 0;
+	mCommands[3]._00   = 0;
+	mCommands[4]._00   = 0;
+	mCurrentCommandIdx = 0;
+	mIsCard            = 0;
 	setInsideStatusFlag(INSIDESTATUS_Unk);
 	OSInitMutex(&mOsMutex);
 	OSInitCond(&mCond);
@@ -409,8 +409,8 @@ void MemoryCardMgr::cardProc(void* data)
 			doCardProc(data, currCmd);
 		}
 
-		memset(&mCommands[_A4], 205, sizeof(MemoryCardMgrCommand));
-		mCommands[_A4]._00 = 0;
+		memset(&mCommands[mCurrentCommandIdx], 205, sizeof(MemoryCardMgrCommand));
+		mCommands[mCurrentCommandIdx]._00 = 0;
 		mIsCard--;
 		releaseCurrentCommand();
 		OSUnlockMutex(&mOsMutex);

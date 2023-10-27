@@ -6,14 +6,14 @@
 struct Graphics;
 
 struct Node {
-	char* mName; // _00
-	Node* mNext; // _04
-	u32 _08;     // _08
-	Node* _0C;   // _0C
-	Node* _10;   // _10
-	u32 _14;     // _14
-	Node* _18;   // _18
-	u32 _1C;     // _1C
+	char* mName;   // _00
+	Node* mParent; // _04
+	u32 _08;       // _08
+	Node* mNext;   // _0C
+	Node* mPrev;   // _10
+	u32 _14;       // _14
+	Node* mChild;  // _18
+	u32 _1C;       // _1C
 
 	Node() { init(); }
 

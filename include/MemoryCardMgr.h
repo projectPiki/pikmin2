@@ -102,13 +102,12 @@ struct MemoryCardMgr {
 	void resetInsideStatusFlag(EInsideStatusFlag);
 
 	MemoryCardMgrCommand mCommands[5]; // _04
-	u32 _A4;                           // _A4
+	u32 mCurrentCommandIdx;            // _A4
 	int mIsCard;                       // _A8
 	OSMutex mOsMutex;                  // _AC
 	OSCond mCond;                      // _C4
 	JKRHeap* mHeap;                    // _C8
 	u8 _D0;                            // _D0
-	u8 _D1[3];                         // _D1
 	EInsideStatusFlag mStatusFlag;     // _D4
 };
 
