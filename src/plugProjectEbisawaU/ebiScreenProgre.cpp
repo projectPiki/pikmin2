@@ -98,37 +98,11 @@ void TScreenProgre::startScreen(long state, u32 timer)
 		mPaneWin00->setAlpha(0);
 		if (mSelect == 1) {
 			mBlinkFont[0].enable();
-			mBlinkFont[1].mIsEnabled = false;
-
-			if (mBlinkFont[1].mPane)
-			{
-				static_cast<J2DTextBox*>(mBlinkFont[1].mPane)->mCharColor = mBlinkFont[1].mFonts[0].mCol1.toUInt32();
-
-				static_cast<J2DTextBox*>(mBlinkFont[1].mPane)->mGradientColor = mBlinkFont[1].mFonts[0].mCol2.toUInt32();
-
-				mPaneMg02->setWhite(mBlinkFont[1].mFonts[0].mWhite);
-
-				mPaneMg02->setBlack(mBlinkFont[1].mFonts[0].mBlack);
-			}
-			
-			// color hell
+			mBlinkFont[1].setPaneColors();
 			mCursor[0].start();
 			mCursor[1].start();
 		} else {
-			mBlinkFont[0].mIsEnabled = false;
-
-			if (mBlinkFont[0].mPane)
-			{
-				static_cast<J2DTextBox*>(mBlinkFont[0].mPane)->mCharColor = mBlinkFont[1].mFonts[0].mCol1.toUInt32();
-
-				static_cast<J2DTextBox*>(mBlinkFont[0].mPane)->mGradientColor = mBlinkFont[1].mFonts[0].mCol2.toUInt32();
-
-				mPaneMg02->setWhite(mBlinkFont[0].mFonts[0].mWhite);
-
-				mPaneMg02->setBlack(mBlinkFont[0].mFonts[0].mBlack);
-			}
-
-			// color hell
+			mBlinkFont[0].setPaneColors();
 			mBlinkFont[1].enable();
 			mCursor[0].stop();
 			mCursor[1].stop();
@@ -629,7 +603,17 @@ void TScreenProgre::draw()
  */
 void TScreenProgre::setDecide()
 {
-	// a LOT of color hell
+	if (mSelect == 1) {
+		mBlinkFont[0].mIsEnabled = false;
+		mBlinkFont[0].setPaneColors();
+		mBlinkFont[1].mIsEnabled = false;
+		mBlinkFont[1].setPaneColors();
+	} else {
+		mBlinkFont[0].mIsEnabled = false;
+		mBlinkFont[0].setPaneColors();
+		mBlinkFont[1].mIsEnabled = false;
+		mBlinkFont[1].setPaneColors();
+	}
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 	mSelected = true;
 	/*

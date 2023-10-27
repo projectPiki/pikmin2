@@ -120,7 +120,7 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 	inline void enable()
 	{
 		mIsEnabled      = true;
-		mSpeed          = sys->mDeltaTime * 3.3333333f;
+		mSpeed          = sys->mDeltaTime * 3.333333f;
 		mColor1Weight   = 0.0f;
 		mIsTowardColor1 = true;
 		_49             = 0;
@@ -138,12 +138,10 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 		mIsEnabled       = false;
 		J2DTextBox* pane = static_cast<J2DTextBox*>(mPane);
 		if (pane) {
-			pane->mCharColor.set(mFonts[0].mCol1);
-			pane->mGradientColor.set(mFonts[0].mCol2);
-			JUtility::TColor white = mFonts[0].mWhite;
-			pane->setWhite(white);
-			JUtility::TColor black = mFonts[0].mBlack;
-			pane->setBlack(black);
+			pane->setCharColor(mFonts[0].mCol1);
+			pane->setGradientColor(mFonts[0].mCol2);
+			pane->setWhite(mFonts[0].mWhite);
+			pane->setBlack(mFonts[0].mBlack);
 		}
 	}
 
