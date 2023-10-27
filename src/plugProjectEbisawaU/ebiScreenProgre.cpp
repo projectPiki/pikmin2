@@ -99,11 +99,47 @@ void TScreenProgre::startScreen(long state, u32 timer)
 		if (mSelect == 1) {
 			mBlinkFont[0].enable();
 			mBlinkFont[1].mIsEnabled = false;
+
+			if (mBlinkFont[1].mPane)
+			{
+				// definitely wrong, but in the right direction
+				JUtility::TColor c1 = mBlinkFont[1].mFonts[0].mCol1.toUInt32();
+				*(JUtility::TColor*)(((u8*)mBlinkFont[1].mPane)+0x104) = c1;
+
+				JUtility::TColor c2 = mBlinkFont[1].mFonts[0].mCol2.toUInt32();
+				*(JUtility::TColor*)(((u8*)mBlinkFont[1].mPane)+0x108) = c2;
+
+
+				// wrong func
+				// a8 offset into the vtable?
+				mPaneMg02->setWhite(mBlinkFont[1].mFonts[0].mWhite);
+
+				mPaneMg02->setBlack(mBlinkFont[1].mFonts[0].mBlack);
+
+				// call some `this->` func, a4 offset into the vtable?
+			}
+			
 			// color hell
 			mCursor[0].start();
 			mCursor[1].start();
 		} else {
 			mBlinkFont[0].mIsEnabled = false;
+
+			if (mBlinkFont[0].mPane)
+			{
+				// definitely wrong, but in the right direction
+				JUtility::TColor c1 = mBlinkFont[0].mFonts[0].mCol1.toUInt32();
+				*(JUtility::TColor*)(((u8*)mBlinkFont[0].mPane)+0x104) = c1;
+
+				JUtility::TColor c2 = mBlinkFont[0].mFonts[0].mCol2.toUInt32();
+				*(JUtility::TColor*)(((u8*)mBlinkFont[0].mPane)+0x108) = c2;
+
+				// wrong func
+				mPaneMg02->setWhite(mBlinkFont[0].mFonts[0].mWhite);
+
+				mPaneMg02->setBlack(mBlinkFont[0].mFonts[0].mBlack);
+			}
+
 			// color hell
 			mBlinkFont[1].enable();
 			mCursor[0].stop();
