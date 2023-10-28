@@ -17,7 +17,7 @@ TMgr* TMgr::msInstance;
  */
 void FSMStateMachine::init(TMgr* mgr)
 {
-	create(6);
+	create(FSStateCount);
 	registerState(new FSMState(FSSTATE_Standby, "Standby"));
 	registerState(new FSMState_EmptyUpdate);
 	registerState(new FSMState_MountCheck);

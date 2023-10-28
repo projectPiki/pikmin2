@@ -429,8 +429,7 @@ void FSMState_NowSave::do_init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_NowSave::do_exec(TMgr* mgr)
 {
-
-	if (isSaveError()) { // surely all of the above can be condensed into this line
+	if (isSaveError()) {
 		CardErrorArg arg(CardError::TMgr::Start_FailToSave_NoCard);
 
 		transit(mgr, CardError, &arg);

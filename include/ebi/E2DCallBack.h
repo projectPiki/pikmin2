@@ -187,8 +187,8 @@ struct E2DCallBack_WindowCursor : public E2DCallBack_Base {
 	    : _40(0)
 	    , _44(0)
 	{
-		mScale = 1.0f;
-		_68    = nullptr;
+		mScale      = 1.0f;
+		mWindowPane = nullptr;
 	}
 
 	virtual ~E2DCallBack_WindowCursor() { } // _08 (weak)
@@ -202,7 +202,7 @@ struct E2DCallBack_WindowCursor : public E2DCallBack_Base {
 	u32 _44;                        // _44
 	og::Screen::ScaleMgr mScaleMgr; // _48
 	f32 mScale;                     // _64
-	J2DPane* _68;                   // _68
+	J2DPane* mWindowPane;           // _68
 };
 } // namespace ebi
 

@@ -180,7 +180,7 @@ void TSaveMenu::doDraw()
 		J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
 		graf->setPort();
 		u8 alpha = _14;
-
+		JUtility::TColor color(0);
 		switch (mDrawState) {
 		case 1:
 			if (mOpenCloseCounterMax) {
@@ -188,7 +188,7 @@ void TSaveMenu::doDraw()
 			} else {
 				factor = 0.0f;
 			}
-			alpha = mAlpha * factor;
+			color.a = mAlpha * factor;
 			break;
 		case 2:
 			if (mOpenCloseCounterMax) {
@@ -196,11 +196,10 @@ void TSaveMenu::doDraw()
 			} else {
 				factor = 0.0f;
 			}
-			alpha = mAlpha * (1.0f - factor);
+			color.a = mAlpha * (1.0f - factor);
 			break;
 		}
-		JUtility::TColor c(0, 0, 0, alpha);
-		graf->setColor(c);
+		graf->setColor(color);
 		u32 y    = System::getRenderModeObj()->efbHeight;
 		u32 x    = System::getRenderModeObj()->fbWidth;
 		f32 zero = 0.0f;
@@ -391,7 +390,7 @@ void TSaveMenu::updateMsg_()
 			index2 = 1;
 		}
 
-		if (mController->mButton.mButton & Controller::PRESS_DPAD_DOWN || mController->mMStick.mYPos > 0.5f) {
+		if (mController->isMoveUp()) {
 			if (!mSelectedOption) {
 				mSelectedOption = true;
 				mAnimScreen[index1]->blink(0.6f, 0.0f);
@@ -400,7 +399,7 @@ void TSaveMenu::updateMsg_()
 				mCursor2.mSelected = mSelectedOption;
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 			}
-		} else if (mController->mButton.mButton & Controller::PRESS_DPAD_UP || mController->mMStick.mYPos < -0.5f) {
+		} else if (mController->isMoveDown()) {
 			if (mSelectedOption == true) {
 				mSelectedOption = false;
 				mAnimScreen[index1]->blink(0.0f, 0.0f);

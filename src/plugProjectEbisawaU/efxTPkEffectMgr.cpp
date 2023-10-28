@@ -1,6 +1,5 @@
 #include "efx/TPk.h"
 #include "Game/Piki.h"
-#include "types.h"
 
 efx::TPkEffectMgr* pkEffectMgr;
 

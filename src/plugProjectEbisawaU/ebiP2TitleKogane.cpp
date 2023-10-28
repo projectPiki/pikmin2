@@ -1,4 +1,3 @@
-#include "types.h"
 #include "ebi/title/Entities/TKogane.h"
 #include "ebi/title/TTitle.h"
 #include "JSystem/J3D/J3DModelLoader.h"
@@ -9,16 +8,17 @@
 
 namespace ebi {
 namespace title {
+namespace Kogane {
 
-static const int unusedTitleKoganeArray[] = { 0, 0, 0 };
-static const char ebiP2TitleKoganeName[]  = "ebiP2TitleKogane";
+static const int padding[]    = { 0, 0, 0 };
+static const char className[] = "ebiP2TitleKogane";
 
 /*
  * --INFO--
  * Address:	803E7358
  * Size:	000148
  */
-Kogane::TMgr::TMgr()
+TMgr::TMgr()
     : CNode("KoganeMgr")
 {
 	mAnimator = new TAnimator;
@@ -30,7 +30,7 @@ Kogane::TMgr::TMgr()
  * Address:	803E74A0
  * Size:	000050
  */
-void Kogane::TMgr::setArchive(JKRArchive* arc)
+void TMgr::setArchive(JKRArchive* arc)
 {
 	mParams.loadSettingFile(arc, "param/param_kogane.txt");
 	mAnimator->setArchive(arc);
@@ -41,14 +41,14 @@ void Kogane::TMgr::setArchive(JKRArchive* arc)
  * Address:	803E74F0
  * Size:	000028
  */
-void Kogane::TMgr::initUnit() { mObject->init(this); }
+void TMgr::initUnit() { mObject->init(this); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000078
  */
-void Kogane::TAnimFolder::load(J3DModelData* modelData, JKRArchive* arc)
+void TAnimFolder::load(J3DModelData* modelData, JKRArchive* arc)
 {
 	mAnims[0].load(modelData, arc, "kogane/kogane_move.bck");
 	mAnims[0].mMode = 1;
@@ -61,13 +61,13 @@ void Kogane::TAnimFolder::load(J3DModelData* modelData, JKRArchive* arc)
  * Address:	803E7518
  * Size:	000068
  */
-Kogane::TAnimator::TAnimator() { mModelData = nullptr; }
+TAnimator::TAnimator() { mModelData = nullptr; }
 /*
  * --INFO--
  * Address:	803E7580
  * Size:	00011C
  */
-void Kogane::TAnimator::setArchive(JKRArchive* arc)
+void TAnimator::setArchive(JKRArchive* arc)
 {
 	void* file = arc->getResource("kogane/kogane_title.bmd");
 	P2ASSERTLINE(0x75, file);
@@ -87,20 +87,20 @@ void Kogane::TAnimator::setArchive(JKRArchive* arc)
  * Address:	........
  * Size:	000078
  */
-J3DModel* Kogane::TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x20000, 1); }
+J3DModel* TAnimator::newJ3DModel() { return new J3DModel(mModelData, 0x20000, 1); }
 
 /*
  * --INFO--
  * Address:	803E769C
  * Size:	000008
  */
-void Kogane::TUnit::setController(Controller* ctrl) { mControl = ctrl; }
+void TUnit::setController(Controller* ctrl) { mControl = ctrl; }
 /*
  * --INFO--
  * Address:	803E76A4
  * Size:	0000F4
  */
-void Kogane::TUnit::init(TMgr* mgr)
+void TUnit::init(TMgr* mgr)
 {
 	mManager = mgr;
 	mModel   = mManager->mAnimator->newJ3DModel();
@@ -118,7 +118,7 @@ void Kogane::TUnit::init(TMgr* mgr)
  * Address:	803E7798
  * Size:	00004C
  */
-void Kogane::TUnit::startZigzagWalk(Vector2f& pos, Vector2f& targetPos)
+void TUnit::startZigzagWalk(Vector2f& pos, Vector2f& targetPos)
 {
 	mPosition  = pos;
 	mTargetPos = targetPos;
@@ -131,7 +131,7 @@ void Kogane::TUnit::startZigzagWalk(Vector2f& pos, Vector2f& targetPos)
  * Address:	803E77E4
  * Size:	000030
  */
-void Kogane::TUnit::goHome()
+void TUnit::goHome()
 {
 	if (mStateID != KSTATE_Inactive) {
 		startState(KSTATE_GoHome);
@@ -143,28 +143,28 @@ void Kogane::TUnit::goHome()
  * Address:	803E7814
  * Size:	000024
  */
-void Kogane::TUnit::outOfCalc() { startState(KSTATE_Inactive); }
+void TUnit::outOfCalc() { startState(KSTATE_Inactive); }
 
 /*
  * --INFO--
  * Address:	803E7838
  * Size:	000014
  */
-bool Kogane::TUnit::isCalc() { return (bool)mStateID != 0; }
+bool TUnit::isCalc() { return (bool)mStateID != 0; }
 
 /*
  * --INFO--
  * Address:	803E784C
  * Size:	000014
  */
-bool Kogane::TUnit::isController() { return (u8)(mStateID == KSTATE_Controlled); };
+bool TUnit::isController() { return (u8)(mStateID == KSTATE_Controlled); };
 
 /*
  * --INFO--
  * Address:	803E7860
  * Size:	0002D0
  */
-void Kogane::TUnit::startState(enumState state)
+void TUnit::startState(enumState state)
 {
 
 	mStateID = state;
@@ -219,7 +219,7 @@ void Kogane::TUnit::startState(enumState state)
  * Address:	803E7B30
  * Size:	000734
  */
-void Kogane::TUnit::update()
+void TUnit::update()
 {
 	if (!isCalc())
 		return;
@@ -388,5 +388,6 @@ void Kogane::TUnit::update()
 	return mModel->viewCalc();
 }
 
+} // namespace Kogane
 } // namespace title
 } // namespace ebi

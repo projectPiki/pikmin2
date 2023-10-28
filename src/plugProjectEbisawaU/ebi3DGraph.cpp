@@ -1,4 +1,3 @@
-#include "types.h"
 #include "ebi/E3DGraph.h"
 
 namespace ebi {

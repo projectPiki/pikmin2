@@ -71,7 +71,7 @@ void TTitleMenu::doSetArchive(JKRArchive* arc)
 
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 6; j++) {
-			mMainScreen->addCallBackPane(mCategoryPanes[j], &mAnims1[j * i]);
+			mMainScreen->addCallBackPane(mCategoryPanes[j], &mAnims1[i][j]);
 		}
 	}
 
@@ -84,18 +84,18 @@ void TTitleMenu::doSetArchive(JKRArchive* arc)
 
 	mMainScreen->addCallBackPane(mMainScreen, &mAnim8);
 
-	mAnims1[0].loadAnm("title_menu_5.bck", arc, 100, 221);
-	mAnims1[1].loadAnm("title_menu_5.bck", arc, 295, 421);
-	mAnims1[2].loadAnm("title_menu_5.bck", arc, 495, 621);
-	mAnims1[3].loadAnm("title_menu_5.bck", arc, 695, 821);
-	mAnims1[4].loadAnm("title_menu_5.bck", arc, 895, 1021);
-	mAnims1[5].loadAnm("title_menu_5.bck", arc, 1095, 1221);
-	mAnims1[6].loadAnm("title_menu_6.bck", arc, 100, 221);
-	mAnims1[7].loadAnm("title_menu_6.bck", arc, 295, 421);
-	mAnims1[8].loadAnm("title_menu_6.bck", arc, 495, 621);
-	mAnims1[9].loadAnm("title_menu_6.bck", arc, 695, 821);
-	mAnims1[10].loadAnm("title_menu_6.bck", arc, 895, 1021);
-	mAnims1[11].loadAnm("title_menu_6.bck", arc, 1095, 1221);
+	mAnims1[0][0].loadAnm("title_menu_5.bck", arc, 100, 221);
+	mAnims1[0][1].loadAnm("title_menu_5.bck", arc, 295, 421);
+	mAnims1[0][2].loadAnm("title_menu_5.bck", arc, 495, 621);
+	mAnims1[0][3].loadAnm("title_menu_5.bck", arc, 695, 821);
+	mAnims1[0][4].loadAnm("title_menu_5.bck", arc, 895, 1021);
+	mAnims1[0][5].loadAnm("title_menu_5.bck", arc, 1095, 1221);
+	mAnims1[1][0].loadAnm("title_menu_6.bck", arc, 100, 221);
+	mAnims1[1][1].loadAnm("title_menu_6.bck", arc, 295, 421);
+	mAnims1[1][2].loadAnm("title_menu_6.bck", arc, 495, 621);
+	mAnims1[1][3].loadAnm("title_menu_6.bck", arc, 695, 821);
+	mAnims1[1][4].loadAnm("title_menu_6.bck", arc, 895, 1021);
+	mAnims1[1][5].loadAnm("title_menu_6.bck", arc, 1095, 1221);
 
 	mAnims2[0].loadAnm("title_menu_6.bck", arc, 95, 109);
 	mAnims4[0].loadAnm("title_menu_6.bck", arc, 110, 229);
@@ -202,18 +202,18 @@ void TTitleMenu::doInitWaitState()
 	case 0:
 		mAnim7.setEndFrame();
 		for (int i = 0; i < 6; i++) {
-			mAnims1[i + 6].stop();
+			mAnims1[1][i].stop();
 		}
 		break;
 	case 1:
 		mAnim6.setEndFrame();
 		for (int i = 0; i < 6; i++) {
-			mAnims1[i].stop();
+			mAnims1[0][i].stop();
 		}
 		break;
 	}
 
-	mAnims1[mSelectID + (mState * 6)].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	mAnims1[mState][mSelectID].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 	showPika_(mSelectID);
 
 	for (int i = 0; i < 6; i++) {
@@ -293,12 +293,12 @@ bool TTitleMenu::doUpdateStateWait()
 		// skip over challenge mode if its not unlocked
 		if (mState == 0 && mSelectID == 2) {
 			if (id < 2) {
-				mSelectID = 1;
+				mSelectID++;
 			} else {
-				mSelectID = 3;
+				mSelectID--;
 			}
 		}
-		mAnims1[mSelectID + (mState * 6)].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnims1[mState][mSelectID].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 		showPika_(mSelectID);
 		mObjIcon[mSelectID].start();
 		mObjIcon2[mSelectID].start();
@@ -310,13 +310,13 @@ bool TTitleMenu::doUpdateStateWait()
 		mMenuCloseCounter    = count;
 		mMenuCloseCounterMax = count;
 	}
-	if (mAnims1[mSelectID + (mState * 6)].isFinish()) {
+	if (mAnims1[mState][mSelectID].isFinish()) {
 		if (randFloat() < 0.2f) {
 			showPika_(mSelectID);
 		} else {
 			hidePika_(mSelectID);
 		}
-		mAnims1[mSelectID + (mState * 6)].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnims1[mState][mSelectID].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 	}
 
 	if (mController->mButton.mButtonDown & Controller::PRESS_A || mController->mButton.mButtonDown & Controller::PRESS_START) {

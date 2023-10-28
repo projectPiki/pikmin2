@@ -464,8 +464,8 @@ void E2DCallBack_WindowCursor::do_update()
 		mScale = mScaleMgr.calc();
 		mPane->updateScale(mScale);
 
-		if (_68) {
-			_68->updateScale(mScale * 1.1f);
+		if (mWindowPane) {
+			mWindowPane->updateScale(mScale * 1.1f);
 		}
 	}
 }

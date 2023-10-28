@@ -45,10 +45,7 @@ void TTitleFogMgr::loadSettingFile(JKRArchive* archive, char* file)
 	void* resource = archive->getResource(file);
 	if (resource) {
 		RamStream stream(resource, -1);
-		stream.mMode = 1;
-		if (stream.mMode == 1) {
-			stream.mTabCount = 0;
-		};
+		stream.resetPosition(true, 1);
 		mParms.read(stream);
 	}
 }

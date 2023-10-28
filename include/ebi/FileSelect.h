@@ -20,7 +20,8 @@ enum StateID {
 	FSSTATE_MountCheck,
 	FSState_GetPlayerHeader,
 	FSSTATE_CardError,
-	FSState_ScreenFileSelect
+	FSState_ScreenFileSelect,
+	FSStateCount = 6,
 };
 
 struct FSMStateMachine : public Game::StateMachine<TMgr> {

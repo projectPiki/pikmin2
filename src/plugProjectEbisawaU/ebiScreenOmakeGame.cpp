@@ -81,31 +81,17 @@ void TOmakeGame::doOpenScreen(ArgOpen*)
 	mIsChangedGameSel = true;
 	mSelection        = 0;
 
-	JGeometry::TBox2f* box = mPaneGameSel[mSelection]->getBounds();
-	mCursor._40            = 0.1f / sys->mDeltaTime;
-	mCursor._44            = 0.1f / sys->mDeltaTime;
-	/*
-	mCursor.mBounds1.i.x   = box->i.x;
-	mCursor.mBounds1.i.y   = box->i.y;
-	mCursor.mBounds1.f.x   = box->f.x;
-	mCursor.mBounds1.f.y   = box->f.y;
-	mCursor.mBounds2.i.x   = box->i.x;
-	mCursor.mBounds2.i.y   = box->i.y;
-	mCursor.mBounds2.f.x   = box->f.x;
-	mCursor.mBounds2.f.y   = box->f.y;
-	*/
-	mCursor.mIsEnabled = true;
-	mCursor.mPane      = mPaneGameSel[mSelection];
+	JGeometry::TBox2f box = *mPaneSelectBox[mSelection]->getBounds();
+	u32 time              = 0.1f / sys->mDeltaTime;
+	mCursor._40           = time;
+	mCursor._44           = time;
+	mCursor.mBounds1      = box;
+	mCursor.mBounds2      = box;
+	mCursor.mIsEnabled    = true;
+	mCursor.mWindowPane   = mPaneGameSel[mSelection];
 
 	for (int i = 0; i < GameCount; i++) {
-		mBlinkFont[i].mIsEnabled = false;
-		J2DPicture::TCornerColor color;
-		color.mColor0 = mBlinkFont[i].mFonts[0].mCol1;
-		color.mColor1 = mBlinkFont[i].mFonts[0].mCol2;
-		color.mColor2 = mBlinkFont[i].mFonts[0].mWhite;
-		color.mColor3 = mBlinkFont[i].mFonts[0].mBlack;
-
-		// static_cast<J2DPicture*>(mBlinkFont[i].mPane)->setCornerColor(color);
+		mBlinkFont[i].setPaneColors(0);
 	}
 
 	mBlinkFont[mSelection].enable();
@@ -320,11 +306,13 @@ bool TOmakeGame::doUpdateStateWait()
 	if (mExitState) {
 		mPad.update();
 		if (mPad.mIsChanging) {
-			int oldsel = mPad.mLastIndex;
-			mPaneGameSel[mSelection]->getBounds();
-			mCursor._40 = mCursor._44;
+			int oldsel            = mPad.mLastIndex;
+			JGeometry::TBox2f box = *mPaneSelectBox[mSelection]->getBounds();
+			mCursor.mBounds1      = mCursor.mBounds2;
+			mCursor.mBounds2      = box;
+			mCursor._40           = mCursor._44;
 			mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
-			mCursor.mPane = mPaneGameSel[mSelection];
+			mCursor.mWindowPane = mPaneGameSel[mSelection];
 
 			mBlinkFont[oldsel].mIsTowardColor1 = false;
 			mBlinkFont[oldsel]._49             = true;

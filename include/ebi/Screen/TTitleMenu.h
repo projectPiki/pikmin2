@@ -92,7 +92,7 @@ struct TTitleMenu : public TScreenBase {
 	J2DPane* mCategoryPanes[6];          // _E4
 	int mPikiCounts[6];                  // _FC
 	J2DPane* mPikaPanes[6][100];         // _114
-	E2DCallBack_AnmBase mAnims1[12];     // _A74
+	E2DCallBack_AnmBase mAnims1[2][6];   // _A74
 	E2DCallBack_AnmBase mAnims2[6];      // _D44
 	E2DCallBack_AnmBase mAnims3[6];      // _EAC
 	E2DCallBack_AnmBase mAnims4[6];      // _1014
