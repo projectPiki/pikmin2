@@ -84,21 +84,10 @@ struct TMemoryCard {
 	// unused/inlined:
 	bool isDecide();
 
-	inline void doSetSelect(f32 p1, bool check)
-	{
-		mBlinkFont1.setPaneColors(0);
-		mBlinkFont2.setPaneColors(0);
-
-		mCursor1.mTimer    = p1;
-		mCursor1.mSelected = check;
-		mCursor2.mTimer    = p1;
-		mCursor2.mSelected = check;
-	}
-
 	int mState;                             // _00, unknown
 	Controller* mController;                // _04
-	uint mInputDelay;                       // _08
-	uint _0C;                               // _0C
+	u32 mInputDelay;                        // _08
+	u32 _0C;                                // _0C
 	u32 mMsgAlpha;                          // _10
 	int mAlphaMod;                          // _14
 	u8 mSelectionIdx;                       // _18
