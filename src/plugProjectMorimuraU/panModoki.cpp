@@ -7,7 +7,9 @@
 #include "Game/rumble.h"
 #include "Game/MapMgr.h"
 #include "Game/routeMgr.h"
+#include "Game/Stickers.h"
 #include "Game/pathfinder.h"
+#include "Dolphin/rand.h"
 #include "efx/TPan.h"
 #include "nans.h"
 
@@ -166,7 +168,7 @@ void PanModokiBase::Obj::doAnimation()
 			updateCaptureMatrix();
 		}
 		if (mPelletArray[0] && mNest) {
-			mPelletArray[0]->startCapture(&mNest->_2BC);
+			mPelletArray[0]->startCapture(&mNest->mHouseTrMatrix);
 			Vector3f scale = Vector3f(0.1f);
 			matrix.makeST(scale, Vector3f::zero);
 			mPelletArray[0]->updateCapture(matrix);
@@ -181,6 +183,37 @@ void PanModokiBase::Obj::doAnimation()
  */
 void PanModokiBase::Obj::doAnimationStick()
 {
+	Pellet* carryTarget = getCarryTarget();
+	if (carryTarget && !mCaptureMatrix) {
+		Vector3f yVec;
+		carryTarget->getYVector(yVec);
+		yVec.normalise();
+		Vector3f faceVec = Vector3f(sin(mFaceDir), 0.0f, cos(mFaceDir));
+		faceVec.normalise();
+		Vector3f resVec;
+		PSVECCrossProduct((Vec*)&yVec, (Vec*)&faceVec, (Vec*)&resVec);
+		resVec.normalise();
+		PSVECCrossProduct((Vec*)&resVec, (Vec*)&yVec, (Vec*)&faceVec);
+		faceVec.normalise();
+
+		mBaseTrMatrix.mMatrix.mtxView[0][0] = resVec.x;
+		mBaseTrMatrix.mMatrix.mtxView[1][0] = resVec.y;
+		mBaseTrMatrix.mMatrix.mtxView[2][0] = resVec.z;
+
+		mBaseTrMatrix.mMatrix.mtxView[0][1] = yVec.x;
+		mBaseTrMatrix.mMatrix.mtxView[1][1] = yVec.y;
+		mBaseTrMatrix.mMatrix.mtxView[2][1] = yVec.z;
+
+		mBaseTrMatrix.mMatrix.mtxView[0][2] = faceVec.x;
+		mBaseTrMatrix.mMatrix.mtxView[1][2] = faceVec.y;
+		mBaseTrMatrix.mMatrix.mtxView[2][2] = faceVec.z;
+
+		mBaseTrMatrix.mMatrix.mtxView[0][3] = mPosition.x;
+		mBaseTrMatrix.mMatrix.mtxView[1][3] = mPosition.y;
+		mBaseTrMatrix.mMatrix.mtxView[2][3] = mPosition.z;
+	} else {
+		mBaseTrMatrix.makeSRT(mScale, mRotation, mPosition);
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1130,8 +1163,83 @@ WalkSmokeEffect::Mgr* PanModokiBase::Obj::getWalkSmokeEffectMgr() { return &mWal
  * Address:	80350CD4
  * Size:	0004B4
  */
-void PanModokiBase::Obj::findNextRoutePoint(bool)
+void PanModokiBase::Obj::findNextRoutePoint(bool cond)
 {
+	RouteMgr* routeMgr = mapMgr->mRouteMgr;
+	_31C = 0;
+	if (_304 > 0 && cond) {
+		if (_2EA == _2E8 && _2E8 == _2E6) {
+			mNextWayPointPosition = mHomePosition;
+			return;
+		}
+		WPEdgeSearchArg args(mPosition);
+		if (routeMgr->getNearestEdge(args)) {
+			s16 something_2e8 = _2E8;
+			s16 something_2ea = _2EA;
+			if (!(args.mWp1->mFlags & 1)) {
+				if(routeMgr->getWayPoint(args.mWp1->mIndex)->mNumFromLinks == 1 
+					&& !(args.mWp1->mFlags & 1)) {
+					_2EA = _2E8;
+					_2E8 = args.mWp1->mIndex;
+				} else {
+					_2E8 = args.mWp2->mIndex;
+					if (routeMgr->getWayPoint(args.mWp2->mIndex)->mNumFromLinks <= 1 
+						|| !(args.mWp2->mFlags & 1)) {
+						_2EA = _2E8;
+					} else {
+						_2EA = args.mWp2->mIndex;
+					}
+				}
+			} else {
+				_2E8 = args.mWp2->mIndex;
+				if (routeMgr->getWayPoint(args.mWp1->mIndex)->mNumFromLinks <= 1 
+					|| !(args.mWp1->mFlags & 1)) {
+					_2EA = _2E8;
+				} else {
+					_2EA = args.mWp2->mIndex;
+				}
+			}
+			if (_2E8 == something_2e8 && _2EA == something_2ea) {
+				mNextWayPointPosition = mPosition;
+				mNextWayPointPosition.x = -(pikmin2_sinf(mFaceDir) * 100.0f - mNextWayPointPosition.x);
+				mNextWayPointPosition.z = -(pikmin2_cosf(mFaceDir) * 100.0f - mNextWayPointPosition.z);
+				return;
+			}
+		}
+	}
+	//P2ASSERTLINE(993, false); This should be somewhere around here
+	if (routeMgr->getWayPoint(_2E8)) {
+		u32 iterator = 0;
+		WayPointIterator iteratorWP(routeMgr->getWayPoint(_2E8), true);
+		iteratorWP.first();
+		s16 array[8];
+		s16* arrPoint = array;
+		while (!iteratorWP.isDone()) {
+			s16 something = iteratorWP.operator*();
+			if (routeMgr->getWayPoint(something) && !(routeMgr->getWayPoint(something)->mFlags & 1)
+				&& routeMgr->getWayPoint(something)->mNumToLinks + routeMgr->getWayPoint(something)->mNumFromLinks > 1) {
+				*arrPoint = something;
+				arrPoint++;
+				iterator++;
+			}
+			iteratorWP.next();
+		}
+		if (iterator) {
+			s16 randVal = randFloat();
+			if (iterator <= randVal) {
+				randVal = iterator - 1;
+			}
+			routeMgr->getWayPoint(array[randVal]);
+			if (iterator == 1 || array[randVal] != _2EA) {
+				_2EA = _2E8;
+				_2E8 = array[randVal];
+			}
+		}
+		if (routeMgr->getWayPoint(_2E8)) {
+			mNextWayPointPosition = mPosition;
+		}
+		return;
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1744,209 +1852,71 @@ lbl_803513B4:
  */
 void PanModokiBase::Obj::walkFunc()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stfd     f28, 0x20(r1)
-	psq_st   f28, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r4, 0xc0(r3)
-	lwz      r12, 0x258(r12)
-	lfs      f31, 0x2e4(r4)
-	lfs      f30, 0x334(r4)
-	lfs      f29, 0x30c(r4)
-	lfs      f28, lbl_8051E4F4@sda21(r2)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x28
-	bne      lbl_80351460
-	lfs      f28, lbl_8051E514@sda21(r2)
-
-lbl_80351460:
-	lfs      f1, 0x2bc(r31)
-	lfs      f0, 0x18c(r31)
-	fsubs    f0, f1, f0
-	fabs     f0, f0
-	frsp     f0, f0
-	fcmpo    cr0, f0, f28
-	bge      lbl_803514CC
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x194(r31)
-	fsubs    f0, f1, f0
-	fabs     f0, f0
-	frsp     f0, f0
-	fcmpo    cr0, f0, f28
-	bge      lbl_803514CC
-	lwz      r3, 0x318(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x318(r31)
-	lwz      r0, 0x318(r31)
-	cmpwi    r0, 0x64
-	ble      lbl_803514B8
-	lfs      f0, lbl_8051E4D0@sda21(r2)
-	fmuls    f31, f31, f0
-
-lbl_803514B8:
-	cmpwi    r0, 0xc8
-	ble      lbl_803514D4
-	li       r0, 0
-	stw      r0, 0x318(r31)
-	b        lbl_803514D4
-
-lbl_803514CC:
-	li       r0, 0
-	stw      r0, 0x318(r31)
-
-lbl_803514D4:
-	lwz      r0, 0x304(r31)
-	cmpwi    r0, 0
-	bne      lbl_80351528
-	mr       r3, r31
-	bl       findNearestPellet__Q34Game13PanModokiBase3ObjFv
-	stw      r3, 0x230(r31)
-	lwz      r4, 0x230(r31)
-	cmplwi   r4, 0
-	beq      lbl_80351534
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	stfs     f0, 0x2bc(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x2c4(r31)
-	b        lbl_80351534
-
-lbl_80351528:
-	lwz      r3, 0xc0(r31)
-	lfs      f30, 0x894(r3)
-	lfs      f29, 0x86c(r3)
-
-lbl_80351534:
-	fmr      f1, f31
-	mr       r3, r31
-	fmr      f2, f29
-	addi     r4, r31, 0x2bc
-	fmr      f3, f30
-	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff" lwz
-r0, 0xc8(r31) cmplwi   r0, 0 beq      lbl_80351608 lfs      f1, 0xcc(r31) lfs
-f0, lbl_8051E4B8@sda21(r2) fcmpo    cr0, f1, f0 ble      lbl_80351578 lfs f0,
-lbl_8051E518@sda21(r2) fneg     f0, f0 stfs     f0, 0x320(r31) b lbl_803515A0
-
-lbl_80351578:
-	lfs      f0, lbl_8051E51C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80351590
-	lfs      f0, lbl_8051E518@sda21(r2)
-	stfs     f0, 0x320(r31)
-	b        lbl_803515A0
-
-lbl_80351590:
-	lfs      f1, 0x320(r31)
-	lfs      f0, lbl_8051E520@sda21(r2)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x320(r31)
-
-lbl_803515A0:
-	lfs      f2, 0x1c8(r31)
-	lfs      f1, 0x320(r31)
-	lfs      f0, lbl_8051E4B8@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x1c8(r31)
-	lfs      f1, 0xd4(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_803515D0
-	lfs      f0, lbl_8051E518@sda21(r2)
-	fneg     f0, f0
-	stfs     f0, 0x328(r31)
-	b        lbl_803515F8
-
-lbl_803515D0:
-	lfs      f0, lbl_8051E51C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803515E8
-	lfs      f0, lbl_8051E518@sda21(r2)
-	stfs     f0, 0x328(r31)
-	b        lbl_803515F8
-
-lbl_803515E8:
-	lfs      f1, 0x328(r31)
-	lfs      f0, lbl_8051E520@sda21(r2)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x328(r31)
-
-lbl_803515F8:
-	lfs      f1, 0x1d0(r31)
-	lfs      f0, 0x328(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x1d0(r31)
-
-lbl_80351608:
-	lwz      r0, 0x304(r31)
-	cmpwi    r0, 0
-	bne      lbl_80351694
-	lwz      r3, 0x314(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x314(r31)
-	lwz      r0, 0x314(r31)
-	cmpwi    r0, 0x3c
-	ble      lbl_80351694
-	lfs      f1, 0x194(r31)
-	lfs      f0, 0x310(r31)
-	lfs      f2, 0x18c(r31)
-	fsubs    f3, f1, f0
-	lfs      f1, 0x308(r31)
-	lfs      f0, lbl_8051E4F4@sda21(r2)
-	fsubs    f2, f2, f1
-	fmuls    f1, f3, f3
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80351674
-	li       r3, 0x78
-	li       r0, 0
-	stw      r3, 0x304(r31)
-	mr       r3, r31
-	li       r4, 1
-	stw      r0, 0x230(r31)
-	bl       findNextRoutePoint__Q34Game13PanModokiBase3ObjFb
-
-lbl_80351674:
-	lfs      f0, 0x18c(r31)
-	li       r0, 0
-	stfs     f0, 0x308(r31)
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0x30c(r31)
-	lfs      f0, 0x194(r31)
-	stfs     f0, 0x310(r31)
-	stw      r0, 0x314(r31)
-
-lbl_80351694:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	psq_l    f28, 40(r1), 0, qr0
-	lfd      f28, 0x20(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	f32 moveSpeed = static_cast<Parms*>(mParms)->mGeneral.mMoveSpeed.mValue;
+	f32 rotSpeed = static_cast<Parms*>(mParms)->mGeneral.mRotationalSpeed.mValue;
+	f32 rotAccel = static_cast<Parms*>(mParms)->mGeneral.mRotationalAccel.mValue;
+	f32 something = 100.0f;
+	if (getEnemyTypeID() == EnemyTypeID::EnemyID_OoPanModoki) {
+		something = 150.0f;
+	}
+	if (absF(mNextWayPointPosition.x - mPosition.x) < something && 
+		absF(mNextWayPointPosition.z - mPosition.z) < something) {
+		_318 += 1;
+		if (100 < _318) {
+			moveSpeed *= 0.5f;
+		}
+		if (200 < _318) {
+			_318 = 0;
+		}
+	} else {
+		_318 = 0;
+	}
+	if (!_304) {
+		mTargetCreature = static_cast<Creature*>(findNearestPellet());
+		if (mTargetCreature) {
+			mNextWayPointPosition = mTargetCreature->getPosition();
+		}
+	} else {
+		rotSpeed = static_cast<Parms*>(mParms)->mProperParms.mFp05.mValue;
+		rotAccel = static_cast<Parms*>(mParms)->mProperParms.mFp02.mValue;
+	}
+	EnemyFunc::walkToTarget(this, mNextWayPointPosition, moveSpeed, rotAccel, rotSpeed);
+	if (mBounceTriangle) {
+		f32 collPos = mCollisionPosition.x;
+		f32 ten = 10.0f;
+		if (collPos > 0.1f) {
+			_320.x = -ten;
+		} else {
+			if (collPos < -0.1f) {
+				_320.x = ten;
+			} else {
+				_320.x *= 0.9f;
+			}
+		}
+		mCurrentVelocity.x += _320.x;
+		f32 collPosZ = mCollisionPosition.z;
+		if (collPosZ > 0.1f) {
+			_320.z = -ten;
+		} else {
+			if (collPosZ < -0.1f) {
+				_320.z = ten;
+			} else {
+				_320.z *= 0.9f;
+			}
+		}
+		mCurrentVelocity.z += _320.z;
+	}
+	if (!_304 && (_314 += 1, _314 > 0x3c)) {
+		f32 posZCross = mPosition.z - _308.z;
+		f32 posXCross = mPosition.x - _308.x;
+		if (((posXCross * posXCross) + (posZCross * posZCross)) < 100.0f) {
+			_304 = 0x78;
+			mTargetCreature = nullptr;
+			findNextRoutePoint(true);
+		}
+		_308 = mPosition;
+		_314 = 0;
+	}
 }
 
 /*
@@ -2126,8 +2096,42 @@ bool PanModokiBase::Obj::canBack()
  * Address:	803518C0
  * Size:	000344
  */
-void PanModokiBase::Obj::findNearestPellet()
+Pellet* PanModokiBase::Obj::findNearestPellet()
 {
+	Pellet* resPellet = nullptr;
+	f32 fp14 = CG_PROPERPARMS(this).mFp14.mValue;
+	f32 fp15 = CG_PROPERPARMS(this).mFp15.mValue * 0.0055555557f * PI;
+	f32 something = __float_max[0];
+	if (0.0f <= fp14) {
+		something = fp14 * fp14;
+	}
+	f32 something2 = something;
+	PelletIterator iterator;
+	CI_LOOP(iterator)
+	{
+		Pellet* pelt = *iterator;
+		if (pelt->isPickable() && pelt->isAlive() && pelt->getKind() != PELTYPE_UPGRADE
+			&& pelt->mCaptureMatrix == nullptr && isTargetable(pelt)
+			&& viewGetCollTreeJointIndex()) { // Last cond should be viewGetCollTreeJointIndex(pelt->mConfig->mParams.mMin.mData, CG_PARMS(pelt)->mProperParms.mIp01.mValue)
+				Vector3f pelPos = pelt->getPosition();
+				f32 angle = roundAng(pikmin2_atan2f(pelPos.x - mPosition.x, pelPos.z - mPosition.z));
+				angDist(getFaceDir(), angle);
+				if (absF(angle) <= fp15) {
+					s32 id = pelt->getCreatureID();
+					if (pelt->getKind() == PELTYPE_CARCASS && (id == 0 || id == 1)) {
+						if (strcmp("orima", pelt->getCreatureName())) {
+							continue;
+						}
+						Vector3f pelPos2 = pelt->getPosition();
+						f32 dist = sqrDistanceXZ(pelPos2, pelPos2);
+						if (dist < something2) {
+							resPellet = pelt;
+							something2 = dist;
+						}
+					}
+				}
+			}
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -2779,8 +2783,82 @@ void PanModokiBase::Obj::clearCarryVelocity()
  * Address:	803520D4
  * Size:	000518
  */
-void PanModokiBase::Obj::carryTarget(f32)
+void PanModokiBase::Obj::carryTarget(f32 param)
 {
+	f32 rotAccel = CG_PARMS(this)->mGeneral.mRotationalAccel.mValue;
+	rotAccel *= 0.5;
+	f32 fp03 = param * CG_PARMS(this)->mProperParms.mFp03.mValue;
+	f32 rotSpeed = CG_PARMS(this)->mGeneral.mRotationalSpeed.mValue;
+	Pellet* pelt = getCarryTarget();
+	if (getStateID() == PANMODOKI_Pulled && pelt && pelt->getStateID() != 1) {
+		mNextWayPointPosition = pelt->getPosition();
+		mNextWayPointPosition.x = -(pelt->getVelocity().x * 10.0f - mNextWayPointPosition.x);
+		mNextWayPointPosition.z = -(pelt->getVelocity().z * 10.0f - mNextWayPointPosition.z);
+	}
+	Vector3f wpPos = mNextWayPointPosition;
+	if (sqrDistanceXZ(mPosition, mNextWayPointPosition) < 10000.0f) {
+		rotAccel = CG_PARMS(this)->mProperParms.mFp02.mValue;
+		rotSpeed = CG_PARMS(this)->mProperParms.mFp05.mValue;
+	}
+	if (pelt) {
+		mFaceDir = mCarryDir;
+		EnemyFunc::walkToTarget(this, wpPos, fp03, rotAccel, rotSpeed);
+		mCarryDir = mFaceDir;
+		Creature* target = mTargetCreature;
+		rotAccel = mCurrentVelocity.x;
+		fp03 = mCurrentVelocity.z;
+		Pellet* newPelt = getCarryTarget();
+		Vector3f peltVel = newPelt->getVelocity();
+		Vector3f resultVec(peltVel.y + (0.0f - peltVel.y) * (sys->mFpsFactor / 0.15f) + 0.0f, rotAccel, fp03);
+		if (CG_PARMS(this)->_99C && pelt) {
+			if (!_31C && _314 > 0x5A) {
+				if (100.0f <= sqrDistanceXZ(mPosition, _308)) {
+					_314 = 0;
+				} else {
+					_31C = 1;
+				}
+				_308 = mPosition;
+			}
+			if (!_31C) {
+				f32 collPos = mCollisionPosition.x;
+				f32 ten = 10.0f;
+				if (collPos > 0.1f) {
+					_320.x = -ten;
+				} else {
+					if (collPos < -0.1f) {
+						_320.x = ten;
+					} else {
+						_320.x *= 0.99f;
+					}
+				}
+				f32 collPosZ = mCollisionPosition.z;
+				if (collPosZ > 0.1f) {
+					_320.z = -ten;
+				} else {
+					if (collPosZ < -0.1f) {
+						_320.z = ten;
+					} else {
+						_320.z *= 0.99f;
+					}
+				}
+			} else {
+				_320.x = resultVec.x * 0.5f;
+				_320.z = resultVec.z * 0.5f;
+			}
+			resultVec.x += _320.x;
+			resultVec.z += _320.z;
+		}
+		pelt->mPelletCarry->pull(2, resultVec, _37C);
+		Vector3f peltPos = pelt->getPosition();
+		Vector3f thisPos = getPosition();
+		f32 angle = roundAng(pikmin2_atan2f(peltPos.x - thisPos.x, peltPos.z - thisPos.z));
+		f32 angleOld = angle;
+		angDist(angle, getFaceDir());
+		angle = roundAng(mFaceDir + angleOld);
+		mFaceDir = angle;
+		mRotation.x = mFaceDir;
+		pelt->setPanModokiRotation(roundAng((mCarryDir + _2DC) - _2E0));
+	}
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -3321,6 +3399,35 @@ lbl_803527CC:
  */
 void PanModokiBase::Obj::endCarry()
 {
+	Pellet* pelt = getCarryTarget();
+	hardConstraintOn();
+	if (pelt) {
+		Stickers stick(pelt);
+		Iterator<Creature> it(&stick);
+		CI_LOOP(it)
+		{
+			Creature* obj = *it;
+			InteractKill interactKill(this, nullptr);
+			obj->stimulate(interactKill);
+		}
+		endStick();
+		pelt->mPelletCarry->giveup(2);
+		bool result = true;
+		if (pelt->getKind() == PELTYPE_TREASURE) {
+			mPelletArray[mPelletCount] = pelt;
+			result = (mPelletCount != 0);
+			if (!result) {
+				pelt->setAlive(false);
+				pelt->startCapture(mNest->mCaptureMatrix);
+			}
+			mPelletCount += 1;
+		}
+		if (result) {
+			PelletKillArg arg;
+			pelt->kill(static_cast<CreatureKillArg*>(&arg));
+		}
+		mTargetCreature = nullptr;
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -3662,8 +3769,49 @@ bool PanModokiBase::Obj::isEndPathFinder()
  * Address:	80352DE8
  * Size:	0002BC
  */
-void PanModokiBase::Obj::setPathFinder(bool)
+bool PanModokiBase::Obj::setPathFinder(bool cond)
 {
+	s16 waypoint1Index, waypoint2Index;
+	releasePathFinder();
+	_320 = Vector3f(0);
+	WPEdgeSearchArg args(mPosition);
+	RouteMgr* routeMgr = mapMgr->mRouteMgr;
+	P2ASSERTLINE(1756, routeMgr);
+	if (routeMgr->getNearestEdge(args)) {
+		waypoint1Index = args.mWp1->mIndex;
+		waypoint2Index = args.mWp2->mIndex;
+		if (sqrDistanceXZ(mHomePosition, args.mWp1->mPosition) 
+			> sqrDistanceXZ(mHomePosition, args.mWp2->mPosition)) {
+			waypoint2Index = args.mWp1->mIndex;
+			waypoint1Index = args.mWp2->mIndex;
+		}
+		if (routeMgr->getWayPoint(waypoint1Index)->mFlags & 1) {
+			waypoint1Index = waypoint2Index;
+		}
+		if (!(routeMgr->getWayPoint(args.mWp1->mIndex)->mFlags & 1) 
+			&& !(routeMgr->getWayPoint(args.mWp2->mIndex)->mFlags & 1)) {
+			if (waypoint1Index == args.mWp1->mIndex) {
+				if (15.0f < absF(args.mWp1->mPosition.y - mPosition.y)) {
+					waypoint1Index = args.mWp2->mIndex;
+				}
+			} else if (15.0f < absF(args.mWp2->mPosition.y - mPosition.y)) {
+				waypoint1Index = args.mWp1->mIndex;
+			}
+		}
+		_2EA = _2E8;
+		_2E8 = waypoint1Index;
+		if (mPathID) {
+			testPathfinder->release(mPathID);
+		}
+		PathfindRequest request(_2E6, _2E8, cond);
+		mPathID = testPathfinder->start(request);
+		Vector3f wpPos = routeMgr->getWayPoint(_2E8)->mPosition;
+		mNextWayPointPosition.x = wpPos.x;
+		mNextWayPointPosition.y = wpPos.y;
+		mNextWayPointPosition.z = wpPos.z;
+		return true;
+	}
+	JUT_PANICLINE(1810, nullptr);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -3880,7 +4028,7 @@ void PanModokiBase::Obj::releasePathFinder()
 void PanModokiBase::Obj::killNest()
 {
 	if (mNest) {
-		mNest->_2F0 = 1;
+		mNest->mDeathTimer = 1;
 	}
 	mNest = nullptr;
 }
@@ -3890,241 +4038,38 @@ void PanModokiBase::Obj::killNest()
  * Address:	80353108
  * Size:	000324
  */
-bool PanModokiBase::Obj::isTargetable(Game::Pellet*)
+bool PanModokiBase::Obj::isTargetable(Game::Pellet* pellet)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_80353150
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	bne      lbl_80353150
-	lbz      r0, 0x32c(r31)
-	cmplwi   r0, 3
-	bne      lbl_80353150
-	li       r3, 0
-	b        lbl_80353414
-
-lbl_80353150:
-	cmplwi   r31, 0
-	beq      lbl_80353410
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	blt      lbl_8035318C
-	lwz      r0, 0x388(r30)
-	cmpwi    r0, 0xf
-	blt      lbl_8035318C
-	li       r3, 0
-	b        lbl_80353414
-
-lbl_8035318C:
-	mr       r3, r31
-	bl       panmodokiCarryable__Q24Game6PelletFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803531A4
-	li       r3, 0
-	b        lbl_80353414
-
-lbl_803531A4:
-	mr       r4, r31
-	addi     r3, r1, 0x18
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x18
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_803531F0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80353378
-
-lbl_803531F0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8035325C
-
-lbl_80353208:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80353378
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8035325C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80353208
-	b        lbl_80353378
-
-lbl_8035327C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803532BC
-	addi     r3, r1, 0x18
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	li       r3, 0
-	b        lbl_80353414
-
-lbl_803532BC:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_803532E8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80353378
-
-lbl_803532E8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8035335C
-
-lbl_80353308:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80353378
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8035335C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80353308
-
-lbl_80353378:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8035327C
-	mr       r3, r31
-	bl       getPelletConfigMax__Q24Game6PelletFv
-	mr       r30, r3
-	mr       r3, r31
-	bl       getPelletConfigMin__Q24Game6PelletFv
-	add      r3, r3, r30
-	lis      r0, 0x4330
-	xoris    r3, r3, 0x8000
-	stw      r0, 0x38(r1)
-	lfd      f2, lbl_8051E500@sda21(r2)
-	li       r4, 2
-	stw      r3, 0x3c(r1)
-	lfs      f0, lbl_8051E4D0@sda21(r2)
-	lfd      f1, 0x38(r1)
-	lwz      r3, 0x334(r31)
-	fsubs    f1, f1, f2
-	fmuls    f1, f0, f1
-	bl       pullable__Q24Game11PelletCarryFUsf
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803533FC
-	addi     r3, r1, 0x18
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	li       r3, 0
-	b        lbl_80353414
-
-lbl_803533FC:
-	addi     r3, r1, 0x18
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	li       r3, 1
-	b        lbl_80353414
-
-lbl_80353410:
-	li       r3, 0
-
-lbl_80353414:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (gameSystem && gameSystem->isVersusMode() && pellet->mPelletFlag == 3) {
+		return false;
+	} else {
+		if (pellet) {
+			if (pellet->getKind() >= PELTYPE_TREASURE && mPelletCount >= 15) {
+				return false;
+			} else {
+				if (!pellet->panmodokiCarryable()) {
+					return false;
+				} else {
+					Stickers stick(pellet);
+					Iterator<Creature> it(&stick);
+					CI_LOOP(it) 
+					{
+						Creature* obj = *it;
+						if (obj->isTeki()) {
+							return false;
+						}
+					}
+					if (!pellet->mPelletCarry->pullable(Game::PCS_Unk2, (pellet->getPelletConfigMin() + pellet->getPelletConfigMax()) * 0.5f)) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			}
+		} else {
+			return false;
+		}	
+	}
 }
 
 /*
@@ -4451,12 +4396,15 @@ void OoPanModoki::Obj::hideRumble() { rumbleMgr->startRumble(10, mPosition, 2); 
  */
 bool OoPanModoki::Obj::pressCallBack(Game::Creature* creature, f32 param2, CollPart* collPart)
 {
-	if (creature == nullptr || !creature->isPiki() || (s32) static_cast<Piki*>(creature)->mPikiKind == Purple) {
-		goto troll;
+	// TODO: At somepoint, the pressCallback call started inlining again, it needs to be fixed.
+	if (creature) {
+		if (creature->isPiki()) {
+			if (static_cast<Piki*>(creature)->getKind() == Purple) {
+				return PanModokiBase::Obj::pressCallBack(creature, param2, collPart);
+			}
+		}
 	}
 	return false;
-troll:
-	return PanModokiBase::Obj::pressCallBack(creature, param2, collPart);
 }
 
 } // namespace Game

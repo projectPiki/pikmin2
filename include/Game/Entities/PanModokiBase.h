@@ -116,7 +116,7 @@ struct Obj : public EnemyBase {
 	bool isCarryToGoal();
 	bool isReachToGoal(f32);
 	bool canBack();
-	void findNearestPellet();
+	Pellet* findNearestPellet();
 	Pellet* getCarryTarget();
 	void releaseCarryTarget();
 	void checkNearHomeGraphIndex();
@@ -127,7 +127,7 @@ struct Obj : public EnemyBase {
 	void checkSucked();
 	void suckFinish();
 	bool isEndPathFinder();
-	void setPathFinder(bool);
+	bool setPathFinder(bool);
 	void releasePathFinder();
 	void killNest();
 	bool isTargetable(Pellet*);
