@@ -260,6 +260,66 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
+	Obj* tobi        = OBJ(enemy);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mViewAngle(),
+	                                                     CG_PARMS(tobi)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+	if (target) {
+		tobi->mTargetCreature = target;
+		f32 angleDist         = tobi->changeFaceDir2(target);
+		f32 x, y, z;
+		f32 speed = CG_PARMS(tobi)->mGeneral.mMoveSpeed();
+		x         = (f32)sin(tobi->getFaceDir());
+		y         = tobi->getTargetVelocity().y;
+		z         = (f32)cos(tobi->getFaceDir());
+
+		tobi->mTargetVelocity = Vector3f(speed * x, y, speed * z);
+
+		if (tobi->checkDistAndAngle(target, angleDist, CG_PARMS(tobi)->mGeneral.mMaxAttackRange(),
+		                            CG_PARMS(tobi)->mGeneral.mMinAttackRange())) {
+			tobi->mNextState = TOBI_Attack2;
+			tobi->finishMotion();
+		} else {
+			Vector3f homePos = tobi->mHomePosition;
+			Vector3f tobiPos = tobi->getPosition();
+
+			f32 dist = tobiPos.distance(homePos);
+
+			if (dist > CG_PARMS(tobi)->mGeneral.mTerritoryRadius()) {
+				tobi->mNextState = TOBI_GoHome;
+				tobi->finishMotion();
+			} else {
+				Creature* newTarget
+				    = EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mMinAttackRange(),
+				                                        CG_PARMS(tobi)->mGeneral.mMaxAttackRange(), nullptr, nullptr, nullptr);
+				if (newTarget) {
+					tobi->mNextState = TOBI_Attack2;
+					tobi->finishMotion();
+				}
+			}
+		}
+	} else if (tobi->isBreakBridge()) {
+		tobi->mNextState = (Tobi::StateID)tobi->checkBreakOrMove();
+		tobi->finishMotion();
+	} else {
+		tobi->mNextState = TOBI_GoHome;
+		tobi->finishMotion();
+	}
+
+	if (tobi->isFlyingLife()) {
+		tobi->mNextState = TOBI_Fly;
+		tobi->finishMotion();
+	}
+
+	tobi->setInWaterDamage();
+
+	if (tobi->mHealth <= 0.0f) {
+		transit(tobi, TOBI_Dead, nullptr);
+		return;
+	}
+
+	if (tobi->mCurAnim->mIsPlaying && tobi->mCurAnim->mType == KEYEVENT_END) {
+		transit(tobi, tobi->mNextState, nullptr);
+	}
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0

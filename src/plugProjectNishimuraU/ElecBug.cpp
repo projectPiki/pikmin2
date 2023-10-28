@@ -110,143 +110,28 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 void Obj::collisionCallback(CollEvent& event)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r31, r4
-	mr       r30, r3
-	lwz      r0, 0(r4)
-	cmplwi   r0, 0
-	beq      lbl_8027B180
-	lwz      r0, 0x1e0(r30)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_8027B180
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 5
-	beq      lbl_8027B044
-	cmpwi    r3, 7
-	bne      lbl_8027B180
+	if (event.mCollidingCreature && !isEvent(0, EB_Bittered)) {
+		int stateID = getStateID();
+		if (stateID == ELECBUG_Discharge || stateID == ELECBUG_ChildDischarge) {
+			if (event.mCollidingCreature->isPiki() || event.mCollidingCreature->isNavi()) {
+				Vector3f sep = event.mCollidingCreature->getPosition();
+				sep -= mPosition;
+				sep.y = 0.0f;
+				sep.normalise();
+				Vector3f dir = Vector3f(sep.x * C_PARMS->mGeneral.mSearchDistance(), C_PARMS->mGeneral.mSearchHeight(),
+				                        sep.z * C_PARMS->mGeneral.mSearchDistance());
 
-lbl_8027B044:
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8027B07C
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027B180
+				if (event.mCollidingCreature->isNavi()) {
+					dir.y = 0.0f;
+				}
 
-lbl_8027B07C:
-	lwz      r4, 0(r31)
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 8(r1)
-	lfs      f1, 0x18c(r30)
-	lfs      f4, 0x10(r1)
-	lfs      f0, 0x194(r30)
-	fsubs    f3, f3, f1
-	lfs      f1, lbl_8051B4E8@sda21(r2)
-	fsubs    f4, f4, f0
-	fmadds   f0, f3, f3, f1
-	fmuls    f2, f4, f4
-	fadds    f2, f2, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_8027B0D4
-	ble      lbl_8027B0D8
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_8027B0D8
+				InteractDenki denki(this, C_PARMS->mGeneral.mAttackDamage(), &dir);
+				event.mCollidingCreature->stimulate(denki);
+			}
+		}
+	}
 
-lbl_8027B0D4:
-	fmr      f2, f1
-
-lbl_8027B0D8:
-	lfs      f0, lbl_8051B4E8@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_8027B0F4
-	lfs      f0, lbl_8051B504@sda21(r2)
-	fdivs    f0, f0, f2
-	fmuls    f3, f3, f0
-	fmuls    f4, f4, f0
-
-lbl_8027B0F4:
-	lwz      r3, 0(r31)
-	lwz      r4, 0xc0(r30)
-	lwz      r12, 0(r3)
-	lfs      f0, 0x44c(r4)
-	lwz      r12, 0x1c(r12)
-	fmuls    f30, f4, f0
-	lfs      f29, 0x474(r4)
-	fmuls    f31, f3, f0
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027B128
-	lfs      f29, lbl_8051B4E8@sda21(r2)
-
-lbl_8027B128:
-	lwz      r6, 0xc0(r30)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game12InteractWind@ha
-	lis      r3, __vt__Q24Game13InteractDenki@ha
-	lfs      f0, 0x604(r6)
-	addi     r6, r5, __vt__Q24Game11Interaction@l
-	addi     r5, r4, __vt__Q24Game12InteractWind@l
-	addi     r0, r3, __vt__Q24Game13InteractDenki@l
-	stw      r6, 0x14(r1)
-	addi     r4, r1, 0x14
-	stw      r5, 0x14(r1)
-	stw      r30, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	stfs     f31, 0x20(r1)
-	stfs     f29, 0x24(r1)
-	stfs     f30, 0x28(r1)
-	stw      r0, 0x14(r1)
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8027B180:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x240(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	setCollEvent(event);
 }
 
 /*
@@ -254,135 +139,29 @@ lbl_8027B180:
  * Address:	8027B1C8
  * Size:	0001BC
  */
-bool Obj::pressCallBack(Creature*, f32, CollPart*)
+bool Obj::pressCallBack(Creature* source, f32 damage, CollPart* part)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r4
-	stw      r29, 0x34(r1)
-	mr       r29, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027B364
-	lwz      r0, 0x1e0(r29)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_8027B364
-	cmplwi   r30, 0
-	beq      lbl_8027B364
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027B364
-	mr       r3, r29
-	bl       getStateID__Q24Game9EnemyBaseFv
-	mr       r31, r3
-	cmpwi    r31, 1
-	blt      lbl_8027B364
-	cmpwi    r31, 7
-	bgt      lbl_8027B364
-	lwz      r3, 0x2bc(r29)
-	mr       r4, r29
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r31, 5
-	beq      lbl_8027B27C
-	cmpwi    r31, 7
-	bne      lbl_8027B35C
+	if (isAlive() && !isEvent(0, EB_Bittered) && source && source->isPiki()) {
+		int stateID = getStateID();
+		if (stateID >= ELECBUG_Wait && stateID <= ELECBUG_ChildDischarge) {
+			mFsm->transit(this, ELECBUG_Reverse, nullptr);
 
-lbl_8027B27C:
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f4, 8(r1)
-	lfs      f1, 0x18c(r29)
-	lfs      f5, 0x10(r1)
-	lfs      f0, 0x194(r29)
-	fsubs    f4, f4, f1
-	lfs      f1, lbl_8051B4E8@sda21(r2)
-	fsubs    f5, f5, f0
-	fmadds   f0, f4, f4, f1
-	fmuls    f2, f5, f5
-	fadds    f2, f2, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_8027B2D4
-	ble      lbl_8027B2D8
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_8027B2D8
+			if (stateID == ELECBUG_Discharge || stateID == ELECBUG_ChildDischarge) {
+				Vector3f sep = source->getPosition();
+				sep -= mPosition;
+				sep.y = 0.0f;
+				sep.normalise();
+				Vector3f dir(sep.x * C_PARMS->mGeneral.mSearchDistance(), C_PARMS->mGeneral.mSearchHeight(),
+				             sep.z * C_PARMS->mGeneral.mSearchDistance());
+				InteractDenki denki(this, C_PARMS->mGeneral.mAttackDamage(), &dir);
+				source->stimulate(denki);
+			}
 
-lbl_8027B2D4:
-	fmr      f2, f1
+			return true;
+		}
+	}
 
-lbl_8027B2D8:
-	lfs      f0, lbl_8051B4E8@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_8027B2F4
-	lfs      f0, lbl_8051B504@sda21(r2)
-	fdivs    f0, f0, f2
-	fmuls    f4, f4, f0
-	fmuls    f5, f5, f0
-
-lbl_8027B2F4:
-	lwz      r7, 0xc0(r29)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game12InteractWind@ha
-	lis      r3, __vt__Q24Game13InteractDenki@ha
-	lfs      f0, 0x44c(r7)
-	addi     r6, r5, __vt__Q24Game11Interaction@l
-	lfs      f1, 0x474(r7)
-	addi     r5, r4, __vt__Q24Game12InteractWind@l
-	lfs      f3, 0x604(r7)
-	fmuls    f2, f5, f0
-	fmuls    f0, f4, f0
-	addi     r0, r3, __vt__Q24Game13InteractDenki@l
-	stw      r6, 0x14(r1)
-	mr       r3, r30
-	addi     r4, r1, 0x14
-	stw      r5, 0x14(r1)
-	stw      r29, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8027B35C:
-	li       r3, 1
-	b        lbl_8027B368
-
-lbl_8027B364:
-	li       r3, 0
-
-lbl_8027B368:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -397,62 +176,17 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { 
  * Address:	8027B3B0
  * Size:	0000C0
  */
-bool Obj::earthquakeCallBack(Creature*, f32)
+bool Obj::earthquakeCallBack(Creature* source, f32 damage)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027B454
-	lwz      r0, 0x1e0(r30)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_8027B454
-	cmplwi   r31, 0
-	beq      lbl_8027B454
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027B454
-	mr       r3, r30
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 1
-	blt      lbl_8027B454
-	cmpwi    r3, 7
-	bgt      lbl_8027B454
-	lwz      r3, 0x2bc(r30)
-	mr       r4, r30
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_8027B458
+	if (isAlive() && !isEvent(0, EB_Bittered) && source && source->isPiki()) {
+		int stateID = getStateID();
+		if (stateID >= ELECBUG_Wait && stateID <= ELECBUG_ChildDischarge) {
+			mFsm->transit(this, ELECBUG_Reverse, nullptr);
+			return true;
+		}
+	}
 
-lbl_8027B454:
-	li       r3, 0
-
-lbl_8027B458:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -529,119 +263,13 @@ void Obj::doEndMovie() { effectDrawOn(); }
  */
 void Obj::setTargetPosition()
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stfd     f28, 0x50(r1)
-	psq_st   f28, 88(r1), 0, qr0
-	stfd     f27, 0x40(r1)
-	psq_st   f27, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lfs      f30, 0x198(r3)
-	lfs      f29, 0x19c(r3)
-	lfs      f28, 0x1a0(r3)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lwz      r3, 0xc0(r31)
-	stw      r0, 8(r1)
-	lfd      f1, lbl_8051B4F0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f3, lbl_8051B50C@sda21(r2)
-	fsubs    f4, f0, f1
-	lfs      f2, lbl_8051B4E4@sda21(r2)
-	lfs      f1, 0x35c(r3)
-	lfs      f0, 0x384(r3)
-	fmuls    f3, f3, f4
-	fsubs    f27, f1, f0
-	fdivs    f31, f3, f2
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lwz      r3, 0xc0(r31)
-	stw      r0, 0x10(r1)
-	lfd      f2, lbl_8051B4F0@sda21(r2)
-	lfd      f1, 0x10(r1)
-	lfs      f0, lbl_8051B4E8@sda21(r2)
-	fsubs    f3, f1, f2
-	lfs      f2, lbl_8051B4E4@sda21(r2)
-	lfs      f1, 0x384(r3)
-	fcmpo    cr0, f31, f0
-	fmuls    f0, f27, f3
-	fdivs    f0, f0, f2
-	fadds    f2, f1, f0
-	bge      lbl_8027B6B8
-	lfs      f0, lbl_8051B510@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f31, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_8027B6DC
-
-lbl_8027B6B8:
-	lfs      f0, lbl_8051B514@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f31, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_8027B6DC:
-	fmadds   f1, f2, f0, f30
-	lfs      f0, lbl_8051B4E8@sda21(r2)
-	fcmpo    cr0, f31, f0
-	stfs     f1, 0x2c8(r31)
-	stfs     f29, 0x2cc(r31)
-	bge      lbl_8027B6F8
-	fneg     f31, f31
-
-lbl_8027B6F8:
-	lfs      f0, lbl_8051B514@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f31, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r3, r0
-	lfs      f0, 4(r3)
-	fmadds   f0, f2, f0, f28
-	stfs     f0, 0x2d0(r31)
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	psq_l    f28, 88(r1), 0, qr0
-	lfd      f28, 0x50(r1)
-	psq_l    f27, 72(r1), 0, qr0
-	lfd      f27, 0x40(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	Vector3f homePos  = mHomePosition;
+	f32 randAngle     = randWeightFloat(TAU);
+	f32 radDiff       = C_PARMS->mGeneral.mTerritoryRadius() - C_PARMS->mGeneral.mHomeRadius();
+	f32 randDist      = C_PARMS->mGeneral.mHomeRadius() + randWeightFloat(radDiff);
+	mTargetPosition.x = randDist * pikmin2_sinf(randAngle) + homePos.x;
+	mTargetPosition.y = homePos.y;
+	mTargetPosition.z = randDist * pikmin2_cosf(randAngle) + homePos.z;
 }
 
 /*
@@ -664,40 +292,14 @@ void Obj::resetPartnerPtr()
  */
 bool Obj::isBecomeChargeState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027B7D8
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_8027B7D8
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 1
-	blt      lbl_8027B7D8
-	cmpwi    r3, 3
-	bgt      lbl_8027B7D8
-	li       r3, 1
-	b        lbl_8027B7DC
+	if (isAlive() && !isEvent(0, EB_Bittered)) {
+		int stateID = getStateID();
+		if (stateID >= ELECBUG_Wait && stateID <= ELECBUG_Move) {
+			return true;
+		}
+	}
 
-lbl_8027B7D8:
-	li       r3, 0
-
-lbl_8027B7DC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -809,8 +411,56 @@ void Obj::effectDrawOff() { mEffectObj->effectDrawOff(); }
  * Address:	8027BF1C
  * Size:	0004D0
  */
-void Obj::checkInteract(Obj*)
+void Obj::checkInteract(Obj* partner)
 {
+	Vector3f pos        = getPosition();          // f19, f20, f22
+	Vector3f partnerPos = partner->getPosition(); // f2, f1, f0
+
+	Vector3f sep = partnerPos - pos; // f30, f29, f31
+	sep.normalise();
+
+	Vector3f yAxis(0.0f, 1.0f, 0.0f);
+
+	Vector3f crossVec = cross(yAxis, sep); // f28, f27, f26
+	crossVec.normalise();
+
+	Vector3f vec3 = cross(sep, crossVec);
+	vec3.normalise(); // f23, f24, f25
+
+	f32 dist = pos.distance(partnerPos); // f21
+
+	Vector3f denkiDir = crossVec * C_PARMS->mGeneral.mSearchDistance();
+	denkiDir.y        = C_PARMS->mGeneral.mSearchHeight();
+
+	Sys::Sphere searchSphere;
+	searchSphere.mPosition = Vector3f(0.5f * (pos.x + partnerPos.x), 0.5f * (pos.y + partnerPos.y), 0.5f * (pos.z + partnerPos.z));
+	searchSphere.mRadius   = dist;
+
+	CellIteratorArg iterArg(searchSphere);
+	iterArg.mIsSphereCollisionDisabled = true;
+	CellIterator iter(iterArg);
+	CI_LOOP(iter)
+	{
+		Creature* creature = static_cast<Creature*>(*iter);
+		if (creature->isAlive() && (creature->isNavi() || creature->isPiki())) {
+			Vector3f creatureSep = creature->getPosition();
+			creatureSep -= pos;
+
+			f32 creatureDot = dot(crossVec, creatureSep); // f3
+			f32 absDot      = absVal(creatureDot);        // f4
+
+			if (absDot < 10.0f) {
+				f32 sepDot = dot(sep, creatureSep); // f6
+				if (sepDot < dist && sepDot > 0.0f && absVal(dot(vec3, creatureSep)) < 15.0f) {
+					f32 factor = creatureDot / absDot;
+					Vector3f dir(factor * denkiDir.x, denkiDir.y, factor * denkiDir.z);
+					InteractDenki denki(this, C_PARMS->mGeneral.mAttackDamage(), &dir);
+					creature->stimulate(denki);
+				}
+			}
+		}
+	}
+
 	/*
 	stwu     r1, -0x1d0(r1)
 	mflr     r0

@@ -196,6 +196,11 @@ struct ArgImoEat : public Arg {
 	{
 	}
 
+	ArgImoEat(Game::EnemyBase* enemy)
+	    : Arg(enemy)
+	{
+	}
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgImoEat";

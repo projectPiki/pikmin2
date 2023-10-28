@@ -99,7 +99,7 @@ struct Obj : public EnemyBase {
 	bool _2C2;                     // _2C2
 	StateID mNextState;            // _2C4
 	f32 mStateTimer;               // _2C8
-	Vector3f _2CC;                 // _2CC
+	Vector3f mClimbAxis;           // _2CC, axis vector of tube currently climbing
 	Vector3f _2D8;                 // _2D8
 	Vector3f _2E4;                 // _2E4
 	Vector3f mZukanTargetPosition; // _2F0
