@@ -39,7 +39,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_LeaveCarcass);
 	enableEvent(0, EB_Untargetable);
 
-	_2C0         = -1;
+	mNextState   = HANACHIRASHI_NULL;
 	mAirWaitTime = 0.0f;
 	mFallTimer   = 0.0f;
 
