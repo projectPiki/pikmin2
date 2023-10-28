@@ -1473,7 +1473,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebiGeometry", True],
             ["plugProjectEbisawaU/ebi2DGraph", False, {"cflags" : "$cflags_pikmin"}], 
             "plugProjectEbisawaU/ebiScreenOption",
-            "plugProjectEbisawaU/ebiScreenProgre",
+            ["plugProjectEbisawaU/ebiScreenProgre", True],
             ["plugProjectEbisawaU/ebiOptionMgr", False, {"cflags" : "$cflags_pikmin"}], 
             "plugProjectEbisawaU/ebi2DCallBack",
             ["plugProjectEbisawaU/ebiCardMgr", True, {"cflags" : "$cflags_pikmin"}],
