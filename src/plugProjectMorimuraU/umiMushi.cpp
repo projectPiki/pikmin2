@@ -6,6 +6,8 @@
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "Game/EnemyFunc.h"
 #include "JSystem/JMath.h"
+#include "Dolphin/rand.h"
+#include "PS.h"
 
 namespace Game {
 namespace UmiMushi {
@@ -98,17 +100,17 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_DeathEffectEnabled);
 	mHeadJoint = mModel->getJoint("head_joint1");
 	P2ASSERTLINE(124, mHeadJoint);
-	mTargetNavi = nullptr;
-	_2BC        = mHomePosition;
-	_2E0        = 0;
-	_2E4        = mHomePosition;
-	_2F0        = 0;
-	_2F4        = 0;
-	_2FC        = 0.0f;
-	mTargetNavi = nullptr; // second null initialization of targetNavi
-	_2DC        = 0;
-	_300        = 0;
-	mNextState  = UMIMUSHI_NULL;
+	mTargetNavi   = nullptr;
+	mGoalPosition = mHomePosition;
+	_2E0          = 0;
+	_2E4          = mHomePosition;
+	_2F0          = 0;
+	_2F4          = 0;
+	_2FC          = 0.0f;
+	mTargetNavi   = nullptr; // second null initialization of targetNavi
+	_2DC          = 0;
+	_300          = 0;
+	mNextState    = UMIMUSHI_NULL;
 
 	mNormalColor2.r = -25;
 	mNormalColor2.g = -100;
@@ -641,7 +643,7 @@ bool Obj::isReachToGoal(f32 radius)
 		_2F4 = 0;
 		return true;
 	}
-	return sqrDistanceXZ(mPosition, _2BC) < SQUARE(radius); // how is this not matching >:O
+	return sqrDistanceXZ(mPosition, mGoalPosition) < SQUARE(radius); // how is this not matching >:O
 }
 
 /*
@@ -651,6 +653,7 @@ bool Obj::isReachToGoal(f32 radius)
  */
 void Obj::walkFunc()
 {
+	f32 faceDirRads;
 	f32 speed         = C_PARMS->mGeneral.mMoveSpeed.mValue;
 	f32 inA1C         = C_PARMS->_A1C;
 	f32 rotationAccel = C_PARMS->mGeneral.mRotationalAccel.mValue;
@@ -667,43 +670,20 @@ void Obj::walkFunc()
 		rotationDelta = 0.0f;
 	}
 
-	mFaceDir              = _2F8;
-	f32 faceDirRads       = rotationDelta * PI * DEG2RAD;
-	Vector3f position     = getPosition();
-	Vector2f positionDiff = Vector2f(position.x - _2BC.x, position.z - _2BC.z);
+	faceDirRads = TORADIANS(rotationDelta);
+	mFaceDir    = _2F8;
+	turnToTarget2(mGoalPosition, rotationAccel, rotationSpeed);
 
-	f32 targetRotation = JMath::atanTable_.atan2_(positionDiff.x, positionDiff.y);
-	targetRotation     = roundAng(targetRotation);
+	f32 deltaFaceDir = mFaceDir + faceDirRads;
 
-	f32 faceDir = getFaceDir();
-	angDist(targetRotation, faceDir);
+	f32 x = pikmin2_sinf(deltaFaceDir) * speed;
+	f32 y = getTargetVelocity().y;
+	f32 z = pikmin2_cosf(deltaFaceDir);
 
-	f32 totalRotation           = targetRotation * rotationAccel;
-	f32 maxRotationSpeedRadians = rotationSpeed * PI * DEG2RAD;
-	f32 rotationAmount          = totalRotation;
-	if (maxRotationSpeedRadians < FABS(totalRotation)) {
-		rotationAmount = maxRotationSpeedRadians;
-		if (totalRotation <= 0.0f) {
-			totalRotation = -totalRotation;
-		}
-	}
-
-	faceDir  = getFaceDir();
-	mFaceDir = roundAng(faceDir + totalRotation);
-
-	mRotation.y = mFaceDir;
-
-	f32 deltaFaceDir = faceDirRads + mFaceDir;
-
-	f32 sinSmth = pikmin2_sinf(deltaFaceDir) * speed;
-	f32 cosSmth = pikmin2_cosf(deltaFaceDir) * speed;
-
-	_2F8 = mFaceDir;
-
-	mFaceDir += faceDirRads;
-	mRotation.y = mFaceDir;
-
-	mTargetVelocity = Vector3f(sinSmth, mTargetVelocity.y, cosSmth);
+	_2F8              = mFaceDir;
+	f32 faceDirOffset = roundAng(faceDirRads);
+	updateFaceDir(mFaceDir + faceDirOffset);
+	mTargetVelocity = Vector3f(x, y, speed * z); // sure
 
 	_2F0++;
 
@@ -711,7 +691,7 @@ void Obj::walkFunc()
 		if (sqrDistanceXZ(mPosition, _2E4) < SQUARE(30.0f)) {
 			_2E0            = 120;
 			mTargetCreature = nullptr;
-			_2BC            = mHomePosition;
+			mGoalPosition   = mHomePosition;
 		}
 		_2E4 = mPosition;
 		_2F0 = 0;
@@ -726,100 +706,15 @@ void Obj::walkFunc()
  */
 void Obj::setNextGoal()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r4, 0xc0(r31)
-	cmplwi   r3, 0
-	lfs      f31, 0x35c(r4)
-	beq      lbl_80384FD8
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beq      lbl_80384FD8
-	lfs      f31, 0x934(r4)
+	f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+	if (gameSystem && gameSystem->mIsInCave) {
+		rad = C_PROPERPARMS.mCaveTerritory();
+	}
 
-lbl_80384FD8:
-	lfs      f0, 0x198(r31)
-	stfs     f0, 0x2bc(r31)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x2c4(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051EDE8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_8051EDE0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051EDE4@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051EDA0@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f3, f1, f2
-	fcmpo    cr0, f3, f0
-	bge      lbl_80385058
-	lfs      f0, lbl_8051EDD4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f2, f0
-	b        lbl_8038507C
-
-lbl_80385058:
-	lfs      f0, lbl_8051EDD8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r3, r0
-
-lbl_8038507C:
-	lfs      f1, 0x2bc(r31)
-	lfs      f0, lbl_8051EDA0@sda21(r2)
-	fmadds   f1, f31, f2, f1
-	fcmpo    cr0, f3, f0
-	stfs     f1, 0x2bc(r31)
-	bge      lbl_80385098
-	fneg     f3, f3
-
-lbl_80385098:
-	lfs      f1, lbl_8051EDD8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	lfs      f0, 0x2c4(r31)
-	fmuls    f1, f3, f1
-	fctiwz   f1, f1
-	stfd     f1, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	fmadds   f0, f31, f1, f0
-	stfs     f0, 0x2c4(r31)
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	mGoalPosition = mHomePosition;
+	f32 randAngle = TAU * randFloat();
+	mGoalPosition.x += rad * pikmin2_sinf(randAngle);
+	mGoalPosition.z += rad * pikmin2_cosf(randAngle);
 }
 
 /*
@@ -1392,6 +1287,7 @@ lbl_803858CC:
  */
 void Obj::resetColor()
 {
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1521,6 +1417,7 @@ lbl_803859AC:
  */
 f32 Obj::turnFunc()
 {
+
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2817,79 +2714,20 @@ void Obj::fadeColorEffect()
  */
 void Obj::createColorEffect()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r0, 0x2d8(r3)
-	cmplwi   r0, 0
-	beq      lbl_80386D18
-	lis      r4, __vt__Q23efx3Arg@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx3Arg@l
-	li       r0, 1
-	stw      r4, 8(r1)
-	lfs      f0, 0x18c(r31)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x194(r31)
-	stfs     f0, 0x14(r1)
-	stw      r3, 0x300(r31)
-	stb      r0, 0x2dc(r31)
-	lwz      r3, 0x2d8(r31)
-	lhz      r0, 0x2dc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80386CD0
-	lwz      r3, 0x368(r31)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x370(r31)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x374(r31)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80386D18
-
-lbl_80386CD0:
-	lwz      r3, 0x36c(r31)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x378(r31)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x37c(r31)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80386D18:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mTargetNavi) {
+		efx::Arg fxArg(mPosition);
+		_300 = 0;
+		_2DC = true;
+		if (mTargetNavi->mNaviIndex == NAVIID_Olimar) {
+			mEfxWeakRed->create(&fxArg);
+			mEfxEyeRed[0]->create(&fxArg);
+			mEfxEyeRed[1]->create(&fxArg);
+		} else {
+			mEfxWeakBlue->create(&fxArg);
+			mEfxEyeBlue[0]->create(&fxArg);
+			mEfxEyeBlue[1]->create(&fxArg);
+		}
+	}
 }
 
 /*
@@ -2899,56 +2737,10 @@ lbl_80386D18:
  */
 void Obj::attackEffect()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__Q23efx11TSimpleMtx1@ha
-	stw      r0, 0x44(r1)
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	li       r8, 0x1d3
-	lwz      r9, 0x388(r3)
-	li       r7, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple1@l
-	lis      r4, __vt__Q23efx10TUmiAttack@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r5, __vt__Q23efx11TSimpleMtx1@l
-	addi     r6, r4, __vt__Q23efx10TUmiAttack@l
-	lis      r5, __vt__Q23efx3Arg@ha
-	stw      r0, 0x14(r1)
-	lis      r4, __vt__Q23efx8ArgScale@ha
-	addi     r0, r4, __vt__Q23efx8ArgScale@l
-	addi     r5, r5, __vt__Q23efx3Arg@l
-	sth      r8, 0x18(r1)
-	addi     r4, r1, 0x24
-	stw      r7, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r6, 0x14(r1)
-	lwz      r8, 0x18c(r3)
-	lwz      r7, 0x190(r3)
-	lwz      r6, 0x194(r3)
-	lfs      f3, 0x1f8(r3)
-	addi     r3, r1, 0x14
-	stw      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	lfs      f2, 8(r1)
-	stw      r6, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	stw      r5, 0x24(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x28(r1)
-	stfs     f1, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	stw      r0, 0x24(r1)
-	stfs     f3, 0x34(r1)
-	bl       create__Q23efx10TUmiAttackFPQ23efx3Arg
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	efx::TUmiAttack attackFX(_388);
+	efx::ArgScale fxArg(mPosition, mScaleModifier);
+
+	attackFX.create(&fxArg);
 }
 
 /*
@@ -2958,56 +2750,11 @@ void Obj::attackEffect()
  */
 void Obj::meltEffect()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r5, __vt__Q23efx8TSimple1@ha
-	lis      r4, __vt__Q23efx5TBase@ha
-	stw      r0, 0x44(r1)
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	addi     r6, r5, __vt__Q23efx8TSimple1@l
-	lis      r4, __vt__Q23efx12TUmiDeadmelt@ha
-	stw      r31, 0x3c(r1)
-	li       r5, 0x1d5
-	mr       r31, r3
-	lis      r3, __vt__Q23efx3Arg@ha
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r6, 0x14(r1)
-	addi     r6, r4, __vt__Q23efx12TUmiDeadmelt@l
-	lis      r4, __vt__Q23efx8ArgScale@ha
-	sth      r5, 0x18(r1)
-	addi     r5, r3, __vt__Q23efx3Arg@l
-	addi     r3, r1, 0x14
-	stw      r0, 0x1c(r1)
-	addi     r0, r4, __vt__Q23efx8ArgScale@l
-	addi     r4, r1, 0x20
-	stw      r6, 0x14(r1)
-	lwz      r8, 0x38c(r31)
-	lwz      r7, 0x390(r31)
-	lwz      r6, 0x394(r31)
-	lfs      f3, 0x1f8(r31)
-	stw      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	lfs      f2, 8(r1)
-	stw      r6, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	stw      r5, 0x20(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	stw      r0, 0x20(r1)
-	stfs     f3, 0x30(r1)
-	bl       create__Q23efx12TUmiDeadmeltFPQ23efx3Arg
-	li       r0, 1
-	stb      r0, 0x2dd(r31)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	efx::TUmiDeadmelt meltFX;
+	efx::ArgScale fxArg(mHamonPosition, mScaleModifier);
+
+	meltFX.create(&fxArg);
+	_2DD = 1;
 }
 
 /*
@@ -3017,77 +2764,17 @@ void Obj::meltEffect()
  */
 void Obj::flickEffect()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lwz      r0, 0x280(r3)
-	cmplwi   r0, 0
-	beq      lbl_80386FA4
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r7, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple3@ha
-	stw      r0, 0x28(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple3@l
-	lis      r3, __vt__Q23efx9TUmiFlick@ha
-	li       r4, 0x1db
-	stw      r0, 0x28(r1)
-	addi     r6, r3, __vt__Q23efx9TUmiFlick@l
-	li       r0, 0x1dc
-	li       r8, 0x1dd
-	sth      r4, 0x2c(r1)
-	lis      r5, __vt__Q23efx3Arg@ha
-	lis      r4, __vt__Q23efx8ArgScale@ha
-	addi     r3, r1, 0x28
-	sth      r0, 0x2e(r1)
-	addi     r5, r5, __vt__Q23efx3Arg@l
-	addi     r0, r4, __vt__Q23efx8ArgScale@l
-	addi     r4, r1, 0x14
-	sth      r8, 0x30(r1)
-	stw      r7, 0x34(r1)
-	stw      r7, 0x38(r1)
-	stw      r7, 0x3c(r1)
-	stw      r6, 0x28(r1)
-	lwz      r8, 0x38c(r31)
-	lwz      r7, 0x390(r31)
-	lwz      r6, 0x394(r31)
-	lfs      f3, 0x1f8(r31)
-	stw      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	lfs      f2, 8(r1)
-	stw      r6, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	stw      r5, 0x14(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	stw      r0, 0x14(r1)
-	stfs     f3, 0x24(r1)
-	bl       create__Q23efx9TUmiFlickFPQ23efx3Arg
-	addi     r4, r31, 0x38c
-	li       r3, 0x3849
-	bl       PSStartSoundVec__FUlP3Vec
-	cmplwi   r3, 0
-	beq      lbl_80386FA4
-	lwz      r12, 0x10(r3)
-	li       r4, 0
-	lfs      f1, lbl_8051EE08@sda21(r2)
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
+	if (mWaterBox) {
+		efx::TUmiFlick flickFX;
+		efx::ArgScale fxArg(mHamonPosition, mScaleModifier);
 
-lbl_80386FA4:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+		flickFX.create(&fxArg);
+
+		PSM::SeSound* sound = PSStartSoundVec(PSSE_EV_ITEM_LAND_WATER1_XL, (Vec*)&mHamonPosition);
+		if (sound) {
+			sound->setPitch(0.8f, 0, 0);
+		}
+	}
 }
 
 /*

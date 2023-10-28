@@ -221,7 +221,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f _2BC;                           // _2BC
+	Vector3f mGoalPosition;                  // _2BC
 	StateID mNextState;                      // _2C8
 	MouthSlots mMouthSlots;                  // _2CC
 	SysShape::Joint* mHeadJoint;             // _2D4

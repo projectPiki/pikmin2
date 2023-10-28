@@ -732,7 +732,7 @@ void StateLost::exec(EnemyBase* enemy)
 {
 	OBJ(enemy)->resetColor();
 	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
-		OBJ(enemy)->_2BC = enemy->mHomePosition;
+		OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
 		transit(enemy, UMIMUSHI_Walk, nullptr);
 	}
 }

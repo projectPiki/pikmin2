@@ -30,7 +30,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FrogState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FrogAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FrogMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Frog.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Frog.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/UjibMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ujib.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjibState.o\

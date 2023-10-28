@@ -1063,7 +1063,7 @@ LIBS = [
             "plugProjectNishimuraU/FrogState",
             ["plugProjectNishimuraU/FrogAnimator", True],
             ["plugProjectNishimuraU/FrogMgr", True],
-            "plugProjectNishimuraU/Frog",
+            ["plugProjectNishimuraU/Frog", True],
             ["plugProjectNishimuraU/UjibMgr", True],
             "plugProjectNishimuraU/Ujib",
             "plugProjectNishimuraU/UjibState",

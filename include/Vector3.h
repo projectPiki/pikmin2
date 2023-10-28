@@ -178,6 +178,8 @@ struct Vector3 {
 
 	// Squared magnitude
 	inline f32 sqrMagnitude() const { return x * x + y * y + z * z; }
+	// 2D magnitude
+	inline f32 sqrMagnitude2D() const { return x * x + z * z; }
 	// Quick length
 	inline f32 qLength() { return pikmin2_sqrtf(sqrMagnitude()); }
 
@@ -186,6 +188,8 @@ struct Vector3 {
 	f32 sqrDistance(Vector3&);
 	f32 distance(JGeometry::TVec3f&);
 	f32 normalise();
+	f32 length2D() const;
+	f32 normalise2D();
 
 	void read(Stream&);
 	void write(Stream&);
@@ -250,6 +254,18 @@ inline f32 Vector3f::length() const
 }
 
 template <>
+inline f32 Vector3f::length2D() const
+{
+	if (sqrMagnitude2D() > 0.0f) {
+		Vector3f vec = Vector3f(x, y, z);
+		f32 sqrLen   = SQUARE(vec.x) + SQUARE(z);
+		return sqrtf(sqrLen);
+	} else {
+		return 0.0f;
+	}
+}
+
+template <>
 inline f32 Vector3f::normalise()
 {
 	f32 len = length();
@@ -262,6 +278,21 @@ inline f32 Vector3f::normalise()
 		return len;
 	}
 	return 0.0f;
+}
+
+template <>
+inline f32 Vector3f::normalise2D()
+{
+	f32 len = length2D();
+
+	if (len > 0.0f) {
+		x /= len;
+		z /= len;
+	} else {
+		x = z = 0.0f;
+	}
+
+	return len;
 }
 
 inline f32 _lenVec(Vector3f& vec)

@@ -7,8 +7,8 @@
 
 namespace efx {
 struct TUmiAttack : public TSimpleMtx1 {
-	inline TUmiAttack()
-	    : TSimpleMtx1(nullptr, PID_UmiAttack)
+	inline TUmiAttack(Matrixf* mtx)
+	    : TSimpleMtx1(mtx, PID_UmiAttack)
 	{
 	}
 

@@ -66,7 +66,7 @@ struct Obj : public EnemyBase {
 	virtual void doStartMovie();                                                             // _2F0
 	virtual void doEndMovie();                                                               // _2F4
 	virtual void setFSM(FSM* fsm);                                                           // _2F8
-	virtual Vector3f viewGetCollTreeOffset() { return Vector3f(20.0f, 15.0f, 0.0f); }        // _2FC (weak)
+	virtual Vector3f viewGetCollTreeOffset();                                                // _2FC
 	virtual void attackNaviPosition() { }                                                    // _300 (weak)
 	//////////////// VTABLE END
 
@@ -87,7 +87,7 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                // _2BC
 	f32 mAirTimer;            // _2C0
-	f32 _2C4;                 // _2C4
+	f32 mAlertTimer;          // _2C4
 	Vector3f mTargetPosition; // _2C8
 	StateID mNextState;       // _2D4
 	bool mIsInAir;            // _2D8
