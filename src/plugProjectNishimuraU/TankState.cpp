@@ -141,6 +141,77 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
+	Obj* tank     = OBJ(enemy);
+	f32 viewAngle = tank->getViewAngle();
+
+	Vector3f pos       = tank->getPosition();
+	Vector3f targetPos = tank->_2F8;
+
+	if (sqrDistanceXZ(pos, targetPos) > 2500.0f && tank->_2F0 < 3.0f) {
+		EnemyFunc::walkToTarget(tank, targetPos, CG_PARMS(tank)->mGeneral.mMoveSpeed(), CG_PARMS(tank)->mGeneral.mRotationalAccel(),
+		                        CG_PARMS(tank)->mGeneral.mRotationalSpeed());
+	} else {
+		tank->mTargetVelocity = Vector3f(0.0f);
+		tank->finishMotion();
+	}
+
+	if (tank->mHealth <= 0.0f) {
+		transit(tank, TANK_Dead, nullptr);
+		return;
+	}
+
+	if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false)) {
+		tank->mTargetVelocity = Vector3f(0.0f);
+		tank->finishMotion();
+	} else {
+		Creature* target
+		    = EnemyFunc::getNearestPikminOrNavi(tank, viewAngle, CG_PARMS(tank)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+		if (target) {
+			tank->mTargetCreature = target;
+			tank->mCautionTimer   = 0.0f;
+			tank->mTargetVelocity = Vector3f(0.0f);
+			tank->finishMotion();
+		}
+	}
+
+	tank->_2F0 += sys->mDeltaTime;
+
+	if (tank->mCurAnim->mIsPlaying && tank->mCurAnim->mType == KEYEVENT_END) {
+		if (tank->mHealth <= 0.0f) {
+			transit(tank, TANK_Dead, nullptr);
+			return;
+		}
+
+		if (EnemyFunc::isStartFlick(tank, false)) {
+			transit(tank, TANK_Flick, nullptr);
+			return;
+		}
+
+		if (tank->isAttackable(false)) {
+			transit(tank, TANK_Attack, nullptr);
+			return;
+		}
+
+		Creature* target = tank->mTargetCreature;
+		if (target) {
+			f32 fov      = CG_PARMS(tank)->mGeneral.mFov();           // f29
+			f32 sightRad = CG_PARMS(tank)->mGeneral.mSightRadius();   // f30
+			f32 privRad  = CG_PARMS(tank)->mGeneral.mPrivateRadius(); // f31
+
+			f32 angleDist = tank->getAngDist(target); // f26
+
+			if (tank->checkDistAndAngle(target, angleDist, privRad, sightRad)) { // slightly different inline?
+				transit(tank, TANK_Wait, nullptr);
+				return;
+			}
+
+			transit(tank, TANK_ChaseTurn, nullptr);
+			return;
+		}
+
+		transit(tank, TANK_Wait, nullptr);
+	}
+
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0
@@ -541,6 +612,14 @@ void StateMove::cleanup(EnemyBase* enemy)
  */
 void StateMoveTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
+	Obj* tank = OBJ(enemy);
+	tank->_2F4 += PI / 3;
+	Vector3f homePos(tank->mHomePosition);
+	tank->_2F8            = Vector3f(CG_PARMS(tank)->mGeneral.mTerritoryRadius() * pikmin2_sinf(tank->_2F4) + homePos.x, homePos.y,
+                          CG_PARMS(tank)->mGeneral.mTerritoryRadius() * pikmin2_cosf(tank->_2F4) + homePos.z);
+	tank->mTargetCreature = nullptr;
+	tank->mTargetVelocity = Vector3f(0.0f);
+	tank->startMotion(TANKANIM_Turn, nullptr);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -623,10 +702,10 @@ lbl_80274A8C:
  */
 void StateMoveTurn::exec(EnemyBase* enemy)
 {
-	Obj* tank      = OBJ(enemy);
-	f32 view       = tank->getViewAngle();
-	Vector3f thing = tank->_2F8;
-	f32 deltaDir   = tank->changeFaceDir(thing);
+	Obj* tank          = OBJ(enemy);
+	f32 view           = tank->getViewAngle();
+	Vector3f targetPos = tank->_2F8;
+	f32 deltaDir = tank->turnToTarget2(targetPos, CG_PARMS(tank)->mGeneral.mRotationalAccel(), CG_PARMS(tank)->mGeneral.mRotationalSpeed());
 	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
 		return;
@@ -695,8 +774,68 @@ void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
  * Address:	80274EAC
  * Size:	0005F4
  */
-void StateChaseTurn::exec(EnemyBase*)
+void StateChaseTurn::exec(EnemyBase* enemy)
 {
+	Obj* tank     = OBJ(enemy);
+	f32 viewAngle = tank->getViewAngle(); // f31
+
+	if (tank->mHealth <= 0.0f) {
+		transit(tank, TANK_Dead, nullptr);
+		return;
+	}
+
+	if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false)) {
+		tank->finishMotion();
+		tank->setAnimSpeed(60.0f);
+	} else {
+		Creature* target = tank->mTargetCreature;
+		if (target) {
+			tank->mCautionTimer = 0.0f;
+			f32 angleDist       = tank->changeFaceDir2(target);
+			if (target->isAlive()) {
+				if (tank->checkDistAndAngle(target, angleDist, CG_PARMS(tank)->mGeneral.mTerritoryRadius(),
+				                            viewAngle)) { // not the right inline
+					tank->mTargetCreature = nullptr;
+					tank->finishMotion();
+				}
+			}
+		} else {
+			Vector3f targetPos = tank->_2F8;
+			f32 angleDist      = tank->changeFaceDir(targetPos);
+			if (absF(angleDist) <= 10.0f * PI / 180) {
+				tank->finishMotion();
+			}
+		}
+	}
+
+	if (tank->mCurAnim->mIsPlaying && tank->mCurAnim->mType == KEYEVENT_END) {
+		if (tank->mHealth <= 0.0f) {
+			transit(tank, TANK_Dead, nullptr);
+			return;
+		}
+
+		if (EnemyFunc::isStartFlick(tank, false)) {
+			transit(tank, TANK_Flick, nullptr);
+			return;
+		}
+
+		if (tank->isAttackable(false)) {
+			transit(tank, TANK_Attack, nullptr);
+			return;
+		}
+
+		Creature* target
+		    = EnemyFunc::getNearestPikminOrNavi(tank, viewAngle, CG_PARMS(tank)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+		if (target) {
+			tank->mTargetCreature = target;
+			tank->mCautionTimer   = 0.0f;
+			transit(tank, TANK_ChaseTurn, nullptr);
+			return;
+		}
+
+		transit(tank, TANK_Wait, nullptr);
+	}
+
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0

@@ -593,6 +593,30 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return result;
 	}
 
+	inline f32 changeFaceDir2(Creature* target)
+	{
+		f32 rotAccel;
+		f32 rotSpeed;
+
+		f32 x;
+		f32 z;
+
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		rotSpeed              = parms->mGeneral.mRotationalSpeed();
+		rotAccel              = parms->mGeneral.mRotationalAccel();
+
+		Vector3f targetPos = target->getPosition();
+		Vector3f pos       = getPosition();
+		x                  = targetPos.x;
+		z                  = targetPos.z;
+
+		f32 angleDist   = angDist(_angXZ(x, z, pos.x, pos.z), getFaceDir());
+		f32 approxSpeed = clamp(angleDist * rotAccel, PI * (DEG2RAD * rotSpeed));
+
+		updateFaceDir(roundAng(approxSpeed + getFaceDir()));
+		return angleDist;
+	}
+
 	inline f32 changeFaceDir(Vector3f& XYZ)
 	{
 		f32 rotAccel;
