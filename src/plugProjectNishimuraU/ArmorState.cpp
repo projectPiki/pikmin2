@@ -226,7 +226,58 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	// drought just skip this one lol
+	Obj* armor       = OBJ(enemy);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(armor, CG_PARMS(armor)->mGeneral.mViewAngle(),
+	                                                     CG_PARMS(armor)->mGeneral.mSightRadius(), nullptr, nullptr, nullptr);
+	if (target) {
+		armor->mTargetCreature = target;
+		f32 angleDist          = armor->changeFaceDir2(target);
+
+		armor->setTargetVelocity();
+
+		if (armor->checkDistAndAngle(target, angleDist, CG_PARMS(armor)->mGeneral.mTerritoryRadius(), CG_PARMS(armor)->mGeneral.mFov())) {
+			armor->mNextState = ARMOR_Attack2;
+			armor->finishMotion();
+		} else {
+			Vector3f homePos = armor->mHomePosition;
+			Vector3f pos     = armor->getPosition();
+			f32 homeDist     = pos.distance(homePos);
+
+			if (homeDist > CG_PARMS(armor)->mGeneral.mTerritoryRadius()) {
+				armor->mNextState = ARMOR_GoHome;
+				armor->finishMotion();
+			} else {
+				Creature* newTarget
+				    = EnemyFunc::getNearestPikminOrNavi(armor, CG_PARMS(armor)->mGeneral.mMinAttackRange(),
+				                                        CG_PARMS(armor)->mGeneral.mMaxAttackRange(), nullptr, nullptr, nullptr);
+				if (newTarget) {
+					armor->mNextState = ARMOR_Attack2;
+					armor->finishMotion();
+				}
+			}
+		}
+
+	} else if (armor->isBreakBridge()) {
+		armor->mNextState = armor->checkBreakOrMove();
+		armor->finishMotion();
+	} else {
+		armor->mNextState = ARMOR_GoHome;
+		armor->finishMotion();
+	}
+
+	if (armor->mHealth <= 0.0f) {
+		transit(armor, ARMOR_Dead, nullptr);
+		return;
+	}
+
+	if (EnemyFunc::isStartFlick(armor, true)) {
+		transit(armor, ARMOR_Flick, nullptr);
+		return;
+	}
+
+	if (armor->mCurAnim->mIsPlaying && armor->mCurAnim->mType == KEYEVENT_END) {
+		transit(armor, armor->mNextState, nullptr);
+	}
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0

@@ -439,9 +439,74 @@ void StateAttack::exec(EnemyBase* enemy)
 		f32 frame = sarai->getMotionFrame();
 		if (frame <= 10.0f) {
 			sarai->setHeightVelocity();
-			Vector3f pos = sarai->getPosition();
+			sarai->changeFaceDir2(target);
+		} else if (frame <= 30.0f) {
+			if (sarai->mBounceTriangle) {
+				sarai->_2C0 = 30.0f;
+			}
 
-			// atan2 nonsense.
+			if (sarai->_2C0 < 30.0f) {
+				f32 targetHeight = target->getPosition().y + 17.5f; // f28
+				f32 saraiHeight  = sarai->getPosition().y;          // f29
+
+				Vector3f vel = sarai->getVelocity(); // 0x80
+				f32 factor   = ((targetHeight - saraiHeight) / sys->mDeltaTime) * CG_PROPERPARMS(sarai).mFp31();
+
+				f32 vertSpeed;
+				if (factor < -2500.0f) {
+					vertSpeed = -2500.0f;
+				} else if (factor > 1000.0f) {
+					vertSpeed = 1000.0f;
+				} else {
+					vertSpeed = factor;
+				}
+				vel.y = vertSpeed;
+				sarai->setVelocity(vel);
+				if (frame > 16.0f) {
+					sarai->catchTarget();
+				}
+				sarai->changeFaceDir2(target);
+			}
+		} else {
+			sarai->setHeightVelocity();
+			f32 decayRate          = CG_PROPERPARMS(sarai).mFp32();
+			sarai->mTargetVelocity = sarai->mTargetVelocity * decayRate;
+		}
+	} else {
+		transit(sarai, SARAI_Move, nullptr);
+	}
+
+	if (sarai->mCurAnim->mIsPlaying) {
+		if (sarai->mCurAnim->mType == KEYEVENT_2) {
+			if (sarai->mTargetCreature) {
+				Vector3f targetPos = sarai->mTargetCreature->getPosition(); // f28, f29, f30
+				Vector3f saraiPos  = sarai->getPosition();                  // f1, f0, f2
+
+				Vector3f sep = targetPos - saraiPos; // 0x74
+				Vector3f dir = sep;
+				dir.normalise();
+				dir *= 25.0f;
+				sep -= dir;
+				sep.y = 0.0f;
+				sep *= (0.06666667f / sys->mDeltaTime);
+				sarai->setVelocity(sep);
+				sarai->mTargetVelocity = sep;
+			}
+		} else if (sarai->mCurAnim->mType == KEYEVENT_3) {
+			sarai->disableEvent(0, EB_NoInterrupt);
+
+		} else if (sarai->mCurAnim->mType == KEYEVENT_4) {
+			if (sarai->getCatchTargetNum() == 0) {
+				transit(sarai, SARAI_Fail, nullptr);
+			}
+
+		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {
+			if (sarai->getCatchTargetNum() != 0) {
+				transit(sarai, SARAI_CatchFly, nullptr);
+				return;
+			}
+
+			transit(sarai, SARAI_Move, nullptr);
 		}
 	}
 	/*
@@ -916,9 +981,10 @@ void StateFail::exec(EnemyBase* enemy)
 	sarai->setHeightVelocity();
 
 	// regswaps here
-	f32 decayRate          = CG_PROPERPARMS(sarai).mFp32.mValue;
-	Vector3f vel           = sarai->mTargetVelocity;
-	sarai->mTargetVelocity = vel * decayRate;
+	f32 decayRate = CG_PROPERPARMS(sarai).mFp32();
+	// Vector3f vel = sarai->getTargetVelocity();
+	// Vector3f vel           = sarai->mTargetVelocity * CG_PROPERPARMS(sarai).mFp32();
+	sarai->mTargetVelocity = sarai->mTargetVelocity * decayRate;
 
 	if (sarai->mCurAnim->mIsPlaying && sarai->mCurAnim->mType == KEYEVENT_END) {
 		if (sarai->getCatchTargetNum()) {

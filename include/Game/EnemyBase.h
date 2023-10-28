@@ -721,6 +721,17 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		mTargetVelocity = Vector3f(speed * x, y, speed * z);
 	}
 
+	inline void setTargetVelocity()
+	{
+		f32 x, y, z;
+		f32 speed = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed();
+		x         = (f32)sin(getFaceDir());
+		y         = getTargetVelocity().y;
+		z         = (f32)cos(getFaceDir());
+
+		mTargetVelocity = Vector3f(speed * x, y, speed * z);
+	}
+
 	inline bool isAlertLife() { return bool(mHealth < static_cast<EnemyParmsBase*>(mParms)->mGeneral.mLifeBeforeAlert); }
 
 	inline bool isLongLegs()
