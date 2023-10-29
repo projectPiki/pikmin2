@@ -236,8 +236,8 @@ void StateMove::exec(EnemyBase* enemy)
 		f32 angle        = angXZ(movePos.x, movePos.z, pos);
 		if (FABS(angDist(angle, ota->getFaceDir())) <= THIRD_PI) {
 			Parms* parms = static_cast<Parms*>(ota->mParms);
-			EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-			                        parms->mGeneral.mRotationalSpeed.mValue);
+			EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
+			                        parms->mGeneral.mMaxTurnAngle.mValue);
 			if (ota->isTakeTreasure()) {
 				ota->mNextState      = OTA_Take;
 				ota->mTargetVelocity = Vector3f(0.0f);
@@ -371,8 +371,8 @@ void StateTake::exec(EnemyBase* enemy)
 	Obj* ota         = OBJ(enemy);
 	Vector3f movePos = Vector3f(ota->mMovePosition);
 	Parms* parms     = static_cast<Parms*>(ota->mParms);
-	EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-	                        parms->mGeneral.mRotationalSpeed.mValue);
+	EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
+	                        parms->mGeneral.mMaxTurnAngle.mValue);
 	EnemyAnimKeyEvent* event = ota->mCurAnim;
 	if (event->mIsPlaying) {
 		if ((u32)event->mType == 2) {
@@ -490,8 +490,8 @@ void StateItemMove::exec(EnemyBase* enemy)
 		f32 angle        = angXZ(movePos.x, movePos.z, pos);
 		if (FABS(angDist(angle, ota->getFaceDir())) <= THIRD_PI) {
 			Parms* parms = static_cast<Parms*>(ota->mParms);
-			EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-			                        parms->mGeneral.mRotationalSpeed.mValue);
+			EnemyFunc::walkToTarget(ota, movePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
+			                        parms->mGeneral.mMaxTurnAngle.mValue);
 		} else {
 			ota->mNextState      = OTA_ItemTurn;
 			ota->mTargetVelocity = Vector3f(0.0f);
@@ -841,8 +841,8 @@ void StateBombMove::exec(EnemyBase* enemy)
 		f32 angle            = angXZ(creaturePos.x, creaturePos.z, pos);
 		if (FABS(angDist(angle, ota->getFaceDir())) <= THIRD_PI) {
 			Parms* parms = static_cast<Parms*>(ota->mParms);
-			EnemyFunc::walkToTarget(ota, creaturePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-			                        parms->mGeneral.mRotationalSpeed.mValue);
+			EnemyFunc::walkToTarget(ota, creaturePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
+			                        parms->mGeneral.mMaxTurnAngle.mValue);
 		} else {
 			ota->mNextState      = OTA_BombTurn;
 			ota->mTargetVelocity = Vector3f(0.0f);

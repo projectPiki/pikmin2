@@ -26,7 +26,7 @@ void Obj::attackNaviPosition()
 		Navi* navi = (*iter);
 		if (navi->isAlive()) {
 			f32 attackDist, attackAngle;
-			attackAngle = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMinAttackRange();
+			attackAngle = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMaxAttackAngle();
 			attackDist  = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMaxAttackRange();
 
 			f32 angledist = getCreatureViewAngle(navi);

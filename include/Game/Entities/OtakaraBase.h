@@ -108,7 +108,7 @@ struct Obj : public EnemyBase {
 	inline void getScaledRadius(f32 scale, f32* radius) { *radius = scale * (mCellRadius - 10.0f); }
 
 	inline f32 getMaxAttackHeight() const { return mPosition.y + static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMaxAttackRange.mValue; }
-	inline f32 getMinAttackHeight() const { return mPosition.y - static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMinAttackRange.mValue; }
+	inline f32 getMinAttackHeight() const { return mPosition.y - static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMaxAttackAngle.mValue; }
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase

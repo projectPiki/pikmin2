@@ -377,8 +377,8 @@ void StateMove::exec(EnemyBase* enemy)
 		sarai->mTargetVelocity = Vector3f(0.0f);
 		sarai->finishMotion();
 	} else {
-		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mFp04.mValue, CG_PARMS(sarai)->mGeneral.mRotationalAccel.mValue,
-		                        CG_PARMS(sarai)->mGeneral.mRotationalSpeed.mValue);
+		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mFp04.mValue, CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue,
+		                        CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
 	}
 
 	if (height > CG_PROPERPARMS(sarai).mFp03.mValue || sarai->_2C0 > 3.0f) {
@@ -1100,8 +1100,8 @@ void StateCatchFly::exec(EnemyBase* enemy)
 		sarai->mTargetVelocity = Vector3f(0.0f);
 		sarai->finishMotion();
 	} else {
-		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mFp05.mValue, CG_PARMS(sarai)->mGeneral.mRotationalAccel.mValue,
-		                        CG_PARMS(sarai)->mGeneral.mRotationalSpeed.mValue);
+		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mFp05.mValue, CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue,
+		                        CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
 	}
 
 	if (!sarai->getCatchTargetNum()) {

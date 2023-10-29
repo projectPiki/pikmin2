@@ -183,8 +183,7 @@ void StateMove::exec(EnemyBase* enemy)
 		hanachirashi->finishMotion();
 	} else {
 		EnemyFunc::walkToTarget(hanachirashi, targetPos, CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed.mValue,
-		                        CG_PARMS(hanachirashi)->mGeneral.mRotationalAccel.mValue,
-		                        CG_PARMS(hanachirashi)->mGeneral.mRotationalSpeed.mValue);
+		                        CG_PARMS(hanachirashi)->mGeneral.mTurnSpeed.mValue, CG_PARMS(hanachirashi)->mGeneral.mMaxTurnAngle.mValue);
 	}
 
 	hanachirashi->mAirWaitTime += sys->mDeltaTime;
@@ -360,8 +359,8 @@ void StateChase::exec(EnemyBase* enemy)
 			Vector3f newPos = targetPos + sep;                                                            // f24, f23
 			f32 angle       = JMAAtan2Radian(newPos.x - hanachirashiPos.x, newPos.z - hanachirashiPos.z); // f29
 
-			hanachirashi->turnToTarget(target, CG_PARMS(hanachirashi)->mGeneral.mRotationalAccel(),
-			                           CG_PARMS(hanachirashi)->mGeneral.mRotationalSpeed());
+			hanachirashi->turnToTarget(target, CG_PARMS(hanachirashi)->mGeneral.mTurnSpeed(),
+			                           CG_PARMS(hanachirashi)->mGeneral.mMaxTurnAngle());
 
 			if (sqrDistanceXZ(hanachirashiPos, newPos) > 225.0f) {
 				f32 x = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * pikmin2_sinf(angle);
@@ -828,8 +827,8 @@ void StateChaseInside::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = hanachirashi->mTargetCreature;
 		if (target) {
-			hanachirashi->turnToTarget(target, CG_PARMS(hanachirashi)->mGeneral.mRotationalAccel(),
-			                           CG_PARMS(hanachirashi)->mGeneral.mRotationalSpeed());
+			hanachirashi->turnToTarget(target, CG_PARMS(hanachirashi)->mGeneral.mTurnSpeed(),
+			                           CG_PARMS(hanachirashi)->mGeneral.mMaxTurnAngle());
 		}
 
 		f32 angle = JMAAtan2Radian(targetPos.x - hanachirashiPos.x, targetPos.z - hanachirashiPos.z);

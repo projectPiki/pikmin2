@@ -656,8 +656,8 @@ void Obj::walkFunc()
 	f32 faceDirRads;
 	f32 speed         = C_PARMS->mGeneral.mMoveSpeed.mValue;
 	f32 inA1C         = C_PARMS->_A1C;
-	f32 rotationAccel = C_PARMS->mGeneral.mRotationalAccel.mValue;
-	f32 rotationSpeed = C_PARMS->mGeneral.mRotationalSpeed.mValue;
+	f32 rotationAccel = C_PARMS->mGeneral.mTurnSpeed.mValue;
+	f32 rotationSpeed = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
 
 	_2FC += C_PARMS->_A20;
 	if (_2FC > 360.0f) {

@@ -113,7 +113,7 @@ void StateWait::exec(EnemyBase* enemy)
 			f32 angdist = frog->getCreatureViewAngle(target);
 
 			if (frog->checkDistAndAngle(target, angdist, CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
-			                            CG_PARMS(frog)->mGeneral.mMinAttackRange())) {
+			                            CG_PARMS(frog)->mGeneral.mMaxAttackAngle())) {
 				Vector3f targetPos2   = target->getPosition();
 				frog->mTargetPosition = targetPos2;
 				frog->attackNaviPosition();
@@ -458,11 +458,10 @@ void StateTurn::exec(EnemyBase* enemy)
 
 	if (target) {
 		frog->_2C4  = 0.0f;
-		f32 angdist = frog->turnToTarget(target, CG_PARMS(frog)->mGeneral.mRotationalAccel.mValue,
-		                                 CG_PARMS(frog)->mGeneral.mRotationalSpeed.mValue);
+		f32 angdist = frog->turnToTarget(target, CG_PARMS(frog)->mGeneral.mTurnSpeed.mValue, CG_PARMS(frog)->mGeneral.mMaxTurnAngle.mValue);
 
 		if (frog->checkDistAndAngle(target, angdist, CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
-		                            CG_PARMS(frog)->mGeneral.mMinAttackRange())) {
+		                            CG_PARMS(frog)->mGeneral.mMaxAttackAngle())) {
 			frog->mTargetCreature = target;
 			frog->mNextState      = FROG_Jump;
 			frog->finishMotion();
@@ -1048,9 +1047,8 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 {
 	Obj* frog        = OBJ(enemy);
 	Vector3f homePos = frog->mHomePosition;
-	f32 maxAngle     = CG_PARMS(frog)->mGeneral.mMinAttackRange();
-	f32 angdist
-	    = frog->turnToTarget(homePos, CG_PARMS(frog)->mGeneral.mRotationalAccel.mValue, CG_PARMS(frog)->mGeneral.mRotationalSpeed.mValue);
+	f32 maxAngle     = CG_PARMS(frog)->mGeneral.mMaxAttackAngle();
+	f32 angdist = frog->turnToTarget(homePos, CG_PARMS(frog)->mGeneral.mTurnSpeed.mValue, CG_PARMS(frog)->mGeneral.mMaxTurnAngle.mValue);
 
 	if (FABS(angdist) <= PI * (DEG2RAD * maxAngle)) {
 		frog->mNextState = FROG_GoHome;
@@ -1264,8 +1262,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 	if (frog->mIsInAir) {
 		Vector3f pos     = frog->getPosition();
 		Vector3f homePos = Vector3f(frog->mHomePosition);
-		EnemyFunc::walkToTarget(frog, homePos, CG_PARMS(frog)->mGeneral.mMoveSpeed.mValue, CG_PARMS(frog)->mGeneral.mRotationalAccel.mValue,
-		                        CG_PARMS(frog)->mGeneral.mRotationalSpeed.mValue);
+		EnemyFunc::walkToTarget(frog, homePos, CG_PARMS(frog)->mGeneral.mMoveSpeed.mValue, CG_PARMS(frog)->mGeneral.mTurnSpeed.mValue,
+		                        CG_PARMS(frog)->mGeneral.mMaxTurnAngle.mValue);
 
 		if (sqrDistanceXZ(pos, homePos) < SQUARE(CG_PARMS(frog)->mGeneral.mHomeRadius())) {
 			frog->mNextState = FROG_Wait;

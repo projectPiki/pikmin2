@@ -248,7 +248,7 @@ void StateMove::exec(EnemyBase* enemy)
 				armor->finishMotion();
 			} else {
 				Creature* newTarget
-				    = EnemyFunc::getNearestPikminOrNavi(armor, CG_PARMS(armor)->mGeneral.mMinAttackRange(),
+				    = EnemyFunc::getNearestPikminOrNavi(armor, CG_PARMS(armor)->mGeneral.mMaxAttackAngle(),
 				                                        CG_PARMS(armor)->mGeneral.mMaxAttackRange(), nullptr, nullptr, nullptr);
 				if (newTarget) {
 					armor->mNextState = ARMOR_Attack2;
@@ -827,11 +827,11 @@ void StateGoHome::exec(EnemyBase* enemy)
 	Vector3f pos     = armor->getPosition();
 	Vector3f homePos = Vector3f(armor->mHomePosition);
 
-	EnemyFunc::walkToTarget(armor, homePos, CG_PARMS(armor)->mGeneral.mMoveSpeed.mValue, CG_PARMS(armor)->mGeneral.mRotationalAccel.mValue,
-	                        CG_PARMS(armor)->mGeneral.mRotationalSpeed.mValue);
+	EnemyFunc::walkToTarget(armor, homePos, CG_PARMS(armor)->mGeneral.mMoveSpeed.mValue, CG_PARMS(armor)->mGeneral.mTurnSpeed.mValue,
+	                        CG_PARMS(armor)->mGeneral.mMaxTurnAngle.mValue);
 
 	if (EnemyFunc::getNearestPikminOrNavi(armor, CG_PARMS(armor)->mGeneral.mMaxAttackRange.mValue,
-	                                      CG_PARMS(armor)->mGeneral.mMinAttackRange.mValue, nullptr, nullptr, nullptr)) {
+	                                      CG_PARMS(armor)->mGeneral.mMaxAttackAngle.mValue, nullptr, nullptr, nullptr)) {
 		armor->mNextState = ARMOR_Attack2;
 		armor->finishMotion();
 	} else {

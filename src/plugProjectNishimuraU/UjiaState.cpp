@@ -271,8 +271,8 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = uji->mTargetCreature;
 		if (target && target->isAlive()) {
-			f32 rotSpeed = CG_PARMS(uji)->mGeneral.mRotationalSpeed();
-			f32 rotAccel = CG_PARMS(uji)->mGeneral.mRotationalAccel();
+			f32 rotSpeed = CG_PARMS(uji)->mGeneral.mMaxTurnAngle();
+			f32 rotAccel = CG_PARMS(uji)->mGeneral.mTurnSpeed();
 
 			Vector3f ujiPos    = uji->getPosition();
 			Vector3f targetPos = target->getPosition();
@@ -288,8 +288,8 @@ void StateMove::exec(EnemyBase* enemy)
 
 			uji->mFaceDir    = roundAng(turnSpeed + uji->getFaceDir());
 			uji->mRotation.y = uji->mFaceDir;
-			// uji->turnToTarget(target, CG_PARMS(uji)->mGeneral.mRotationalAccel.mValue,
-			// CG_PARMS(uji)->mGeneral.mRotationalSpeed.mValue); uji->changeFaceDir(target);
+			// uji->turnToTarget(target, CG_PARMS(uji)->mGeneral.mTurnSpeed.mValue,
+			// CG_PARMS(uji)->mGeneral.mMaxTurnAngle.mValue); uji->changeFaceDir(target);
 			f32 speed = CG_PARMS(uji)->mGeneral.mMoveSpeed.mValue;
 
 			f32 sinTheta = (f32)sin(uji->getFaceDir());
@@ -866,8 +866,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 {
 	Obj* uji         = OBJ(enemy);
 	Vector3f homePos = Vector3f(uji->mHomePosition);
-	EnemyFunc::walkToTarget(uji, homePos, CG_PARMS(uji)->mGeneral.mMoveSpeed.mValue, CG_PARMS(uji)->mGeneral.mRotationalAccel.mValue,
-	                        CG_PARMS(uji)->mGeneral.mRotationalSpeed.mValue);
+	EnemyFunc::walkToTarget(uji, homePos, CG_PARMS(uji)->mGeneral.mMoveSpeed.mValue, CG_PARMS(uji)->mGeneral.mTurnSpeed.mValue,
+	                        CG_PARMS(uji)->mGeneral.mMaxTurnAngle.mValue);
 
 	Vector3f homePos2 = uji->mHomePosition;
 	Vector3f position = uji->getPosition();

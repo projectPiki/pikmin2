@@ -175,8 +175,8 @@ void StateMove::exec(EnemyBase* enemy)
 		mar->mTargetVelocity = Vector3f(0.0f);
 		mar->finishMotion();
 	} else {
-		EnemyFunc::walkToTarget(mar, targetPos, CG_PARMS(mar)->mGeneral.mMoveSpeed.mValue, CG_PARMS(mar)->mGeneral.mRotationalAccel.mValue,
-		                        CG_PARMS(mar)->mGeneral.mRotationalSpeed.mValue);
+		EnemyFunc::walkToTarget(mar, targetPos, CG_PARMS(mar)->mGeneral.mMoveSpeed.mValue, CG_PARMS(mar)->mGeneral.mTurnSpeed.mValue,
+		                        CG_PARMS(mar)->mGeneral.mMaxTurnAngle.mValue);
 	}
 
 	mar->_2C0 += sys->mDeltaTime;
@@ -352,7 +352,7 @@ void StateChase::exec(EnemyBase* enemy)
 			Vector3f newPos = targetPos + sep;                                          // f24, f23
 			f32 angle       = JMAAtan2Radian(newPos.x - marPos.x, newPos.z - marPos.z); // f29
 
-			mar->turnToTarget(target, CG_PARMS(mar)->mGeneral.mRotationalAccel(), CG_PARMS(mar)->mGeneral.mRotationalSpeed());
+			mar->turnToTarget(target, CG_PARMS(mar)->mGeneral.mTurnSpeed(), CG_PARMS(mar)->mGeneral.mMaxTurnAngle());
 
 			if (sqrDistanceXZ(marPos, newPos) > 225.0f) {
 				f32 x = CG_PARMS(mar)->mGeneral.mMoveSpeed() * pikmin2_sinf(angle);
@@ -819,7 +819,7 @@ void StateChaseInside::exec(EnemyBase* enemy)
 	} else {
 		Creature* target = mar->mTargetCreature;
 		if (target) {
-			mar->turnToTarget(target, CG_PARMS(mar)->mGeneral.mRotationalAccel(), CG_PARMS(mar)->mGeneral.mRotationalSpeed());
+			mar->turnToTarget(target, CG_PARMS(mar)->mGeneral.mTurnSpeed(), CG_PARMS(mar)->mGeneral.mMaxTurnAngle());
 		}
 
 		f32 angle = JMAAtan2Radian(targetPos.x - marPos.x, targetPos.z - marPos.z);

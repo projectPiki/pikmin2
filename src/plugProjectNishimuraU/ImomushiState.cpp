@@ -355,8 +355,7 @@ void StateMove::exec(EnemyBase* enemy)
 			}
 
 			EnemyFunc::walkToTarget(imomushi, creaturePos, CG_PARMS(imomushi)->mGeneral.mMoveSpeed.mValue,
-			                        CG_PARMS(imomushi)->mGeneral.mRotationalAccel.mValue,
-			                        CG_PARMS(imomushi)->mGeneral.mRotationalSpeed.mValue);
+			                        CG_PARMS(imomushi)->mGeneral.mTurnSpeed.mValue, CG_PARMS(imomushi)->mGeneral.mMaxTurnAngle.mValue);
 		}
 
 	} else {
@@ -432,7 +431,7 @@ void StateGoHome::exec(EnemyBase* enemy)
 			imomushi->finishMotion();
 		}
 		EnemyFunc::walkToTarget(imomushi, homePos, CG_PARMS(imomushi)->mGeneral.mMoveSpeed.mValue,
-		                        CG_PARMS(imomushi)->mGeneral.mRotationalAccel.mValue, CG_PARMS(imomushi)->mGeneral.mRotationalSpeed.mValue);
+		                        CG_PARMS(imomushi)->mGeneral.mTurnSpeed.mValue, CG_PARMS(imomushi)->mGeneral.mMaxTurnAngle.mValue);
 	}
 
 	if ((imomushi->mCurAnim->mIsPlaying) && ((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {
@@ -771,7 +770,7 @@ void StateZukanMove::exec(EnemyBase* enemy)
 	Obj* imomushi   = OBJ(enemy);
 	Vector3f target = Vector3f(imomushi->mZukanTargetPosition);
 	EnemyFunc::walkToTarget(imomushi, target, CG_PARMS(imomushi)->mGeneral.mMoveSpeed.mValue,
-	                        CG_PARMS(imomushi)->mGeneral.mRotationalAccel.mValue, CG_PARMS(imomushi)->mGeneral.mRotationalSpeed.mValue);
+	                        CG_PARMS(imomushi)->mGeneral.mTurnSpeed.mValue, CG_PARMS(imomushi)->mGeneral.mMaxTurnAngle.mValue);
 	if (imomushi->isInZukanTargetArea()) {
 		imomushi->setZukanTargetPosition();
 	}

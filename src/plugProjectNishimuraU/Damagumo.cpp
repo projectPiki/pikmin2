@@ -379,7 +379,7 @@ void Obj::setupIKSystem()
 void Obj::setIKParameter()
 {
 	mIkSystemParms->_28           = 0.67f;
-	mIkSystemParms->_38           = C_PARMS->mGeneral.mRotationalSpeed.mValue;
+	mIkSystemParms->_38           = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
 	mIkSystemParms->_2C           = C_PARMS->mGeneral.mMoveSpeed.mValue;
 	mIkSystemParms->_14           = C_PROPERPARMS.mFp01.mValue;
 	mIkSystemParms->_18           = C_PROPERPARMS.mFp02.mValue;

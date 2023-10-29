@@ -1705,8 +1705,8 @@ void BlackMan::Obj::walkFunc()
 			}
 		}
 		moveSpeed     = C_PARMS->mGeneral.mMoveSpeed;
-		rotationSpeed = C_PARMS->mGeneral.mRotationalSpeed;
-		rotationAccel = C_PARMS->mGeneral.mRotationalAccel;
+		rotationSpeed = C_PARMS->mGeneral.mMaxTurnAngle;
+		rotationAccel = C_PARMS->mGeneral.mTurnSpeed;
 		if (C_PARMS->_A1A >= 0) {
 			_2F0 = C_PARMS->_A1A;
 		} else {

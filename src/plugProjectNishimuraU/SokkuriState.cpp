@@ -382,8 +382,8 @@ void StateMoveGround::exec(EnemyBase* enemy)
 
 	} else {
 		Vector3f targetPos = Vector3f(sokkuri->mTargetPosition);
-		EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->mMoveVelocity, parms->mGeneral.mRotationalAccel.mValue,
-		                        parms->mGeneral.mRotationalSpeed.mValue);
+		EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->mMoveVelocity, parms->mGeneral.mTurnSpeed.mValue,
+		                        parms->mGeneral.mMaxTurnAngle.mValue);
 	}
 
 	sokkuri->mTimer += sys->mDeltaTime;

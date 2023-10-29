@@ -144,7 +144,7 @@ void StateMove::exec(EnemyBase* enemy)
 	Vector3f targetPos  = Vector3f(tadpole->mTargetPosition);
 
 	EnemyFunc::walkToTarget(tadpole, targetPos, CG_PARMS(tadpole)->mGeneral.mMoveSpeed.mValue,
-	                        CG_PARMS(tadpole)->mGeneral.mRotationalAccel.mValue, CG_PARMS(tadpole)->mGeneral.mRotationalSpeed.mValue);
+	                        CG_PARMS(tadpole)->mGeneral.mTurnSpeed.mValue, CG_PARMS(tadpole)->mGeneral.mMaxTurnAngle.mValue);
 
 	if (tadpole->mStateTimer > 3.0f || sqrDistanceXZ(tadpolePos, targetPos) < 100.0f) {
 		tadpole->mTargetVelocity = Vector3f(0.0f);
@@ -259,7 +259,7 @@ void StateEscape::exec(EnemyBase* enemy)
 		Vector3f targetPos  = tadpole->getTargetPosition(navi);
 
 		EnemyFunc::walkToTarget(tadpole, targetPos, CG_PARMS(tadpole)->mGeneral.mMoveSpeed.mValue,
-		                        CG_PARMS(tadpole)->mGeneral.mRotationalAccel.mValue, CG_PARMS(tadpole)->mGeneral.mRotationalSpeed.mValue);
+		                        CG_PARMS(tadpole)->mGeneral.mTurnSpeed.mValue, CG_PARMS(tadpole)->mGeneral.mMaxTurnAngle.mValue);
 
 	} else {
 		tadpole->finishMotion();

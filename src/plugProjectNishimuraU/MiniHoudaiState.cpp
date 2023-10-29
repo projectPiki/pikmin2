@@ -143,7 +143,7 @@ void StateRebirth::exec(EnemyBase* enemy)
 
 				f32 dist = angDist(angle, mini->getFaceDir());
 
-				if (FABS(dist) <= PI * (DEG2RAD * CG_PARMS(mini)->mGeneral.mMinAttackRange.mValue)) {
+				if (FABS(dist) <= PI * (DEG2RAD * CG_PARMS(mini)->mGeneral.mMaxAttackAngle.mValue)) {
 					transit(mini, MINIHOUDAI_Walk, nullptr);
 					return;
 				}
@@ -495,7 +495,7 @@ void StateLost::exec(EnemyBase* enemy)
 
 			f32 dist = angDist(angle, mini->getFaceDir());
 
-			if (FABS(dist) <= PI * (DEG2RAD * CG_PARMS(mini)->mGeneral.mMinAttackRange.mValue)) {
+			if (FABS(dist) <= PI * (DEG2RAD * CG_PARMS(mini)->mGeneral.mMaxAttackAngle.mValue)) {
 				transit(mini, MINIHOUDAI_Walk, nullptr);
 				return;
 			}

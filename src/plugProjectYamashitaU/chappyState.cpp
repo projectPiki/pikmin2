@@ -295,8 +295,8 @@ void StateTurn::exec(EnemyBase* enemy)
 
 			Vector3f targetPos = enemy->mTargetCreature->getPosition();
 
-			f32 turnSpeed  = CG_PARMS(enemy)->mGeneral.mRotationalSpeed.mValue;
-			f32 turnFactor = CG_PARMS(enemy)->mGeneral.mRotationalAccel.mValue;
+			f32 turnSpeed  = CG_PARMS(enemy)->mGeneral.mMaxTurnAngle.mValue;
+			f32 turnFactor = CG_PARMS(enemy)->mGeneral.mTurnSpeed.mValue;
 
 			Vector3f pos = enemy->getPosition();
 
@@ -304,7 +304,7 @@ void StateTurn::exec(EnemyBase* enemy)
 
 			bool check     = false;
 			f32 radius     = CG_PARMS(enemy)->mGeneral.mMaxAttackRange.mValue;
-			f32 angleLimit = CG_PARMS(enemy)->mGeneral.mMinAttackRange.mValue;
+			f32 angleLimit = CG_PARMS(enemy)->mGeneral.mMaxAttackAngle.mValue;
 
 			f32 x = enemy->mTargetCreature->getPosition().x - enemy->getPosition().x;
 			f32 y = enemy->mTargetCreature->getPosition().y - enemy->getPosition().y;

@@ -152,7 +152,7 @@ void Obj::interactFireAttack()
 {
 	Parms* parms = C_PARMS;
 	f32 max      = mPosition.y + parms->mGeneral.mMaxAttackRange.mValue;
-	f32 min      = mPosition.y - parms->mGeneral.mMinAttackRange.mValue;
+	f32 min      = mPosition.y - parms->mGeneral.mMaxAttackAngle.mValue;
 	f32 radSqr   = SQUARE(parms->mGeneral.mAttackRadius.mValue);
 
 	Sys::Sphere sphere(mPosition);

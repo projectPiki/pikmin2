@@ -156,7 +156,7 @@ void Kabuto::StateTurn::exec(EnemyBase* enemy)
 		if (target) {
 			kabuto->mAlertTimer = 0.0f;
 			Vector3f targetPos  = target->getPosition();
-			kabuto->turnToTarget(targetPos, CG_PARMS(kabuto)->mGeneral.mRotationalAccel(), CG_PARMS(kabuto)->mGeneral.mRotationalSpeed());
+			kabuto->turnToTarget(targetPos, CG_PARMS(kabuto)->mGeneral.mTurnSpeed(), CG_PARMS(kabuto)->mGeneral.mMaxTurnAngle());
 			if (kabuto->isAttackableTarget()) {
 				kabuto->mNextState = KABUTO_Attack;
 				kabuto->finishMotion();
@@ -996,7 +996,7 @@ void Kabuto::StateFixAppear::exec(EnemyBase* enemy)
 		Creature* target = kabuto->getSearchedTarget();
 		if (target) {
 			f32 angle = kabuto->getCreatureViewAngle(target);
-			f32 limit = CG_PARMS(kabuto)->mGeneral.mMinAttackRange();
+			f32 limit = CG_PARMS(kabuto)->mGeneral.mMaxAttackAngle();
 			if (FABS(angle) <= PI * (DEG2RAD * limit)) {
 				transit(kabuto, KABUTO_FixWait, nullptr);
 				return;
@@ -1106,7 +1106,7 @@ void Kabuto::StateFixWait::exec(EnemyBase* enemy)
 		Creature* target = kabuto->getSearchedTarget();
 		if (target) {
 			f32 angle = kabuto->getCreatureViewAngle(target);
-			f32 limit = CG_PARMS(kabuto)->mGeneral.mMinAttackRange();
+			f32 limit = CG_PARMS(kabuto)->mGeneral.mMaxAttackAngle();
 			if (FABS(angle) <= PI * (DEG2RAD * limit)) {
 				kabuto->mNextState = KABUTO_FixWait;
 			} else {
@@ -1170,7 +1170,7 @@ void Kabuto::StateFixTurn::exec(EnemyBase* enemy)
 				kabuto->mNextState = KABUTO_FixAttack;
 				kabuto->finishMotion();
 			} else {
-				f32 limit = CG_PARMS(kabuto)->mGeneral.mMinAttackRange();
+				f32 limit = CG_PARMS(kabuto)->mGeneral.mMaxAttackAngle();
 				if (FABS(angle) <= PI * (DEG2RAD * limit)) {
 					kabuto->mNextState = KABUTO_FixWait;
 					kabuto->finishMotion();
@@ -1247,7 +1247,7 @@ void Kabuto::StateFixAttack::exec(EnemyBase* enemy)
 			Creature* target = kabuto->getSearchedTarget();
 			if (target) {
 				f32 angle = kabuto->getCreatureViewAngle(target);
-				f32 limit = CG_PARMS(kabuto)->mGeneral.mMinAttackRange();
+				f32 limit = CG_PARMS(kabuto)->mGeneral.mMaxAttackAngle();
 				if (FABS(angle) <= PI * (DEG2RAD * limit)) {
 					transit(kabuto, KABUTO_FixWait, nullptr);
 				} else {

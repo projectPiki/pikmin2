@@ -584,10 +584,10 @@ void Obj::fly()
 
 	f32 moveSpeed = C_PARMS->mGeneral.mMoveSpeed();
 	if (!C_PARMS->mDoManualFlight) {
-		EnemyFunc::walkToTarget(this, mGoalPosition, moveSpeed, C_PARMS->mGeneral.mRotationalAccel(), C_PARMS->mGeneral.mRotationalSpeed());
+		EnemyFunc::walkToTarget(this, mGoalPosition, moveSpeed, C_PARMS->mGeneral.mTurnSpeed(), C_PARMS->mGeneral.mMaxTurnAngle());
 	} else {
-		f32 rotAccel = C_PARMS->mGeneral.mRotationalAccel();
-		f32 rotSpeed = C_PARMS->mGeneral.mRotationalSpeed();
+		f32 rotAccel = C_PARMS->mGeneral.mTurnSpeed();
+		f32 rotSpeed = C_PARMS->mGeneral.mMaxTurnAngle();
 
 		mYawRate += C_PARMS->mYawRate;
 		if (mYawRate > 360.0f) {
@@ -916,8 +916,8 @@ void Obj::restFly()
 	if (sqrDistanceXZ(mPosition, mGoalPosition) < 1000.0f) {
 		setNextGoal();
 	} else {
-		EnemyFunc::walkToTarget(this, mGoalPosition, C_PARMS->mGeneral.mMoveSpeed(), C_PARMS->mGeneral.mRotationalAccel(),
-		                        C_PARMS->mGeneral.mRotationalSpeed());
+		EnemyFunc::walkToTarget(this, mGoalPosition, C_PARMS->mGeneral.mMoveSpeed(), C_PARMS->mGeneral.mTurnSpeed(),
+		                        C_PARMS->mGeneral.mMaxTurnAngle());
 	}
 
 	mPosition.y += 0.05f * (mGoalPosition.y - mPosition.y);
@@ -1482,8 +1482,8 @@ void Obj::leave()
 			setTraceGoal();
 		}
 
-		EnemyFunc::walkToTarget(this, mGoalPosition, C_PARMS->mGeneral.mMoveSpeed(), C_PARMS->mGeneral.mRotationalAccel(),
-		                        C_PARMS->mGeneral.mRotationalSpeed());
+		EnemyFunc::walkToTarget(this, mGoalPosition, C_PARMS->mGeneral.mMoveSpeed(), C_PARMS->mGeneral.mTurnSpeed(),
+		                        C_PARMS->mGeneral.mMaxTurnAngle());
 		mPosition.y += 0.02f * (mGoalPosition.y - mPosition.y);
 		mPitchRate += C_PROPERPARMS.mPitchRate();
 

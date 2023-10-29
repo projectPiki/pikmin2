@@ -451,13 +451,13 @@ void StateTurn::exec(EnemyBase* enemy)
 			Vector3f targetpos   = enemy->mTargetCreature->getPosition();
 			f32 angle            = obj->getCreatureViewAngle(targetpos);
 			if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-			                           CG_PARMS(obj)->mGeneral.mMinAttackRange)) {
+			                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
 				mNextState = KOCHAPPY_Attack;
 				obj->finishMotion();
 				obj->setAnimationSpeed(60.0f);
 			} else {
 				if (!obj->checkDistAndAngle(obj->mTargetCreature, CG_PARMS(obj)->mGeneral.mPrivateRadius, searchAngle,
-				                            CG_PARMS(obj)->mGeneral.mMinAttackRange)) {
+				                            CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
 					if (!obj->isWithinHomeRadius()) {
 						mNextState = KOCHAPPY_TurnToHome;
 						obj->finishMotion();
@@ -1046,13 +1046,13 @@ void StateWalk::exec(EnemyBase* enemy)
 			Vector3f targetpos   = obj->mTargetCreature->getPosition();
 			f32 angle            = obj->getCreatureViewAngle(targetpos);
 			if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-			                           CG_PARMS(obj)->mGeneral.mMinAttackRange)) {
+			                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
 				mNextState = KOCHAPPY_Attack;
 				obj->finishMotion();
 				obj->mTargetVelocity = 0.0f;
 				obj->setAnimationSpeed(60.0f);
 			} else if (!obj->checkDistAndAngle(obj->mTargetCreature, CG_PARMS(obj)->mGeneral.mPrivateRadius, searchAngle,
-			                                   CG_PARMS(obj)->mGeneral.mMinAttackRange)) {
+			                                   CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
 				if (!obj->isWithinHomeRadius()) {
 					mNextState = KOCHAPPY_TurnToHome;
 					obj->finishMotion();
@@ -1061,7 +1061,7 @@ void StateWalk::exec(EnemyBase* enemy)
 					f32 max = CG_PARMS(obj)->mProperParms.mFp03;
 					if (angle <= (max * DEG2RAD) * PI) {
 						EnemyFunc::walkToTarget(obj, obj->mTargetCreature, CG_PARMS(obj)->mGeneral.mMoveSpeed,
-						                        CG_PARMS(obj)->mGeneral.mRotationalAccel, CG_PARMS(obj)->mGeneral.mRotationalSpeed);
+						                        CG_PARMS(obj)->mGeneral.mTurnSpeed, CG_PARMS(obj)->mGeneral.mMaxTurnAngle);
 					} else {
 						mNextState = KOCHAPPY_Turn;
 						obj->finishMotion();
@@ -1654,7 +1654,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				Vector3f targetpos   = obj->mTargetCreature->getPosition();
 				f32 angle            = obj->getCreatureViewAngle(targetpos);
 				if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-				                           CG_PARMS(obj)->mGeneral.mMinAttackRange)) {
+				                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
 					transit(obj, KOCHAPPY_Attack, nullptr);
 				} else {
 					transit(obj, KOCHAPPY_Turn, nullptr);
@@ -2167,7 +2167,7 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 		transit(enemy, KOCHAPPY_Flick, nullptr);
 	} else {
 		f32 dir = obj->changeFaceDir(obj->mHomePosition);
-		if (dir < CG_PARMS(obj)->mGeneral.mMinAttackRange * DEG2RAD) {
+		if (dir < CG_PARMS(obj)->mGeneral.mMaxAttackAngle * DEG2RAD) {
 			obj->finishMotion();
 		}
 		if (obj->mCurAnim->mIsPlaying && (u32)obj->mCurAnim->mType == KEYEVENT_END) {
@@ -2180,7 +2180,7 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 			Vector3f targetpos   = obj->mTargetCreature->getPosition();
 			f32 angle            = obj->getCreatureViewAngle(targetpos);
 			if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-			                           CG_PARMS(obj)->mGeneral.mMinAttackRange)) {
+			                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
 				transit(obj, KOCHAPPY_Attack, nullptr);
 			}
 		}
@@ -2537,8 +2537,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 	if (EnemyFunc::isStartFlick(obj, true)) {
 		transit(obj, KOCHAPPY_Flick, nullptr);
 	} else {
-		EnemyFunc::walkToTarget(obj, obj->mHomePosition, CG_PARMS(obj)->mGeneral.mMoveSpeed, CG_PARMS(obj)->mGeneral.mRotationalAccel,
-		                        CG_PARMS(obj)->mGeneral.mRotationalSpeed);
+		EnemyFunc::walkToTarget(obj, obj->mHomePosition, CG_PARMS(obj)->mGeneral.mMoveSpeed, CG_PARMS(obj)->mGeneral.mTurnSpeed,
+		                        CG_PARMS(obj)->mGeneral.mMaxTurnAngle);
 		if (obj->getSqrHomeRadius() < CG_PARMS(obj)->mGeneral.mHomeRadius) {
 			obj->finishMotion();
 			obj->mTargetVelocity = 0.0f;
@@ -2551,7 +2551,7 @@ void StateGoHome::exec(EnemyBase* enemy)
 			Vector3f targetpos   = obj->mTargetCreature->getPosition();
 			f32 angle            = obj->getCreatureViewAngle(targetpos);
 			if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-			                           CG_PARMS(obj)->mGeneral.mMinAttackRange)) {
+			                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
 				obj->finishMotion();
 				obj->setAnimationSpeed(60.0f);
 				mNextState = KOCHAPPY_Attack;

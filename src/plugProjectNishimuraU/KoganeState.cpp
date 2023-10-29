@@ -154,8 +154,8 @@ void StateMove::exec(EnemyBase* enemy)
 	kogane->koganeScaleUp();
 	Vector3f targetPos = Vector3f(kogane->mTargetPosition);
 	Parms* parms       = static_cast<Parms*>(kogane->mParms);
-	EnemyFunc::walkToTarget(kogane, targetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-	                        parms->mGeneral.mRotationalSpeed.mValue);
+	EnemyFunc::walkToTarget(kogane, targetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
+	                        parms->mGeneral.mMaxTurnAngle.mValue);
 
 	if ((kogane->mAppearTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxAppearTime.mValue)
 	    || (kogane->mMoveTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxTravelTime.mValue)) {

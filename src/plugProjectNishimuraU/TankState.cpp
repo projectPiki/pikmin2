@@ -148,8 +148,8 @@ void StateMove::exec(EnemyBase* enemy)
 	Vector3f targetPos = tank->_2F8;
 
 	if (sqrDistanceXZ(pos, targetPos) > 2500.0f && tank->_2F0 < 3.0f) {
-		EnemyFunc::walkToTarget(tank, targetPos, CG_PARMS(tank)->mGeneral.mMoveSpeed(), CG_PARMS(tank)->mGeneral.mRotationalAccel(),
-		                        CG_PARMS(tank)->mGeneral.mRotationalSpeed());
+		EnemyFunc::walkToTarget(tank, targetPos, CG_PARMS(tank)->mGeneral.mMoveSpeed(), CG_PARMS(tank)->mGeneral.mTurnSpeed(),
+		                        CG_PARMS(tank)->mGeneral.mMaxTurnAngle());
 	} else {
 		tank->mTargetVelocity = Vector3f(0.0f);
 		tank->finishMotion();
@@ -705,7 +705,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 	Obj* tank          = OBJ(enemy);
 	f32 view           = tank->getViewAngle();
 	Vector3f targetPos = tank->_2F8;
-	f32 deltaDir = tank->turnToTarget2(targetPos, CG_PARMS(tank)->mGeneral.mRotationalAccel(), CG_PARMS(tank)->mGeneral.mRotationalSpeed());
+	f32 deltaDir       = tank->turnToTarget2(targetPos, CG_PARMS(tank)->mGeneral.mTurnSpeed(), CG_PARMS(tank)->mGeneral.mMaxTurnAngle());
 	if (tank->mHealth <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
 		return;

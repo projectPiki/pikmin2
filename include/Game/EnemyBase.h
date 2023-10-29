@@ -556,8 +556,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline f32 turnToTarget(Vector3f& targetPos)
 	{
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		f32 maxTurnAngle      = parms->mGeneral.mRotationalSpeed.mValue;
-		f32 turnSpeed         = parms->mGeneral.mRotationalAccel.mValue;
+		f32 maxTurnAngle      = parms->mGeneral.mMaxTurnAngle.mValue;
+		f32 turnSpeed         = parms->mGeneral.mTurnSpeed.mValue;
 
 		f32 angleDist = getAngDist(targetPos);
 		f32 angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
@@ -570,8 +570,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline f32 turnToTarget(Creature* creature)
 	{
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		f32 maxTurnAngle      = parms->mGeneral.mRotationalSpeed.mValue;
-		f32 turnSpeed         = parms->mGeneral.mRotationalAccel.mValue;
+		f32 maxTurnAngle      = parms->mGeneral.mMaxTurnAngle.mValue;
+		f32 turnSpeed         = parms->mGeneral.mTurnSpeed.mValue;
 		f32 angleDist         = getAngDist(creature);
 		f32 angle             = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
 
@@ -608,8 +608,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		f32 rotAccel;
 
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		rotSpeed              = parms->mGeneral.mRotationalSpeed();
-		rotAccel              = parms->mGeneral.mRotationalAccel();
+		rotSpeed              = parms->mGeneral.mMaxTurnAngle();
+		rotAccel              = parms->mGeneral.mTurnSpeed();
 
 		Vector3f targetPos = target->getPosition();
 		Vector3f pos       = getPosition();
@@ -630,8 +630,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		f32 z;
 
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		rotSpeed              = parms->mGeneral.mRotationalSpeed();
-		rotAccel              = parms->mGeneral.mRotationalAccel();
+		rotSpeed              = parms->mGeneral.mMaxTurnAngle();
+		rotAccel              = parms->mGeneral.mTurnSpeed();
 
 		Vector3f pos = getPosition();
 		x            = XYZ.x;
@@ -653,8 +653,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		f32 z;
 
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		rotSpeed              = parms->mGeneral.mRotationalSpeed.mValue;
-		rotAccel              = parms->mGeneral.mRotationalAccel.mValue;
+		rotSpeed              = parms->mGeneral.mMaxTurnAngle.mValue;
+		rotAccel              = parms->mGeneral.mTurnSpeed.mValue;
 
 		Vector3f pos = getPosition();
 		x            = XZ.x;
@@ -676,8 +676,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		f32 rotAccel;
 
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		rotSpeed              = parms->mGeneral.mRotationalSpeed.mValue;
-		rotAccel              = parms->mGeneral.mRotationalAccel.mValue;
+		rotSpeed              = parms->mGeneral.mMaxTurnAngle.mValue;
+		rotAccel              = parms->mGeneral.mTurnSpeed.mValue;
 
 		Vector3f targetPos = target->getPosition();
 		Vector3f pos       = getPosition();

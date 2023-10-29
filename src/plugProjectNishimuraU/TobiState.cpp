@@ -275,7 +275,7 @@ void StateMove::exec(EnemyBase* enemy)
 		tobi->mTargetVelocity = Vector3f(speed * x, y, speed * z);
 
 		if (tobi->checkDistAndAngle(target, angleDist, CG_PARMS(tobi)->mGeneral.mMaxAttackRange(),
-		                            CG_PARMS(tobi)->mGeneral.mMinAttackRange())) {
+		                            CG_PARMS(tobi)->mGeneral.mMaxAttackAngle())) {
 			tobi->mNextState = TOBI_Attack2;
 			tobi->finishMotion();
 		} else {
@@ -289,7 +289,7 @@ void StateMove::exec(EnemyBase* enemy)
 				tobi->finishMotion();
 			} else {
 				Creature* newTarget
-				    = EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mMinAttackRange(),
+				    = EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mMaxAttackAngle(),
 				                                        CG_PARMS(tobi)->mGeneral.mMaxAttackRange(), nullptr, nullptr, nullptr);
 				if (newTarget) {
 					tobi->mNextState = TOBI_Attack2;
@@ -871,11 +871,11 @@ void StateGoHome::exec(EnemyBase* enemy)
 {
 	Obj* tobi        = OBJ(enemy);
 	Vector3f homePos = Vector3f(tobi->mHomePosition);
-	EnemyFunc::walkToTarget(tobi, homePos, CG_PARMS(tobi)->mGeneral.mMoveSpeed.mValue, CG_PARMS(tobi)->mGeneral.mRotationalAccel.mValue,
-	                        CG_PARMS(tobi)->mGeneral.mRotationalSpeed.mValue);
+	EnemyFunc::walkToTarget(tobi, homePos, CG_PARMS(tobi)->mGeneral.mMoveSpeed.mValue, CG_PARMS(tobi)->mGeneral.mTurnSpeed.mValue,
+	                        CG_PARMS(tobi)->mGeneral.mMaxTurnAngle.mValue);
 
 	if (EnemyFunc::getNearestPikminOrNavi(tobi, CG_PARMS(tobi)->mGeneral.mMaxAttackRange.mValue,
-	                                      CG_PARMS(tobi)->mGeneral.mMinAttackRange.mValue, nullptr, nullptr, nullptr)) {
+	                                      CG_PARMS(tobi)->mGeneral.mMaxAttackAngle.mValue, nullptr, nullptr, nullptr)) {
 		tobi->mNextState = TOBI_Attack2;
 		tobi->finishMotion();
 	} else {
@@ -939,8 +939,8 @@ void StateFly::exec(EnemyBase* enemy)
 	Obj* tobi = OBJ(enemy);
 	tobi->randomFlyingTarget();
 	Vector3f targetPos = Vector3f(tobi->mTargetPosition);
-	EnemyFunc::walkToTarget(tobi, targetPos, CG_PARMS(tobi)->mGeneral.mMoveSpeed.mValue, CG_PARMS(tobi)->mGeneral.mRotationalAccel.mValue,
-	                        CG_PARMS(tobi)->mGeneral.mRotationalSpeed.mValue);
+	EnemyFunc::walkToTarget(tobi, targetPos, CG_PARMS(tobi)->mGeneral.mMoveSpeed.mValue, CG_PARMS(tobi)->mGeneral.mTurnSpeed.mValue,
+	                        CG_PARMS(tobi)->mGeneral.mMaxTurnAngle.mValue);
 
 	if (tobi->mHealth / CG_PARMS(tobi)->mGeneral.mHealth.mValue > CG_PROPERPARMS(tobi).mLandHealthRatio.mValue) {
 		tobi->disableEvent(0, EB_Untargetable);

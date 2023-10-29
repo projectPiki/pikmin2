@@ -694,7 +694,7 @@ Creature* Obj::isAttackable()
 	Vector3f vec      = Vector3f(parms->mGeneral.mMaxAttackRange.mValue * pikmin2_sinf(faceDir), 0.0f,
                             parms->mGeneral.mMaxAttackRange.mValue * pikmin2_cosf(faceDir));
 	vec += getPosition();
-	f32 radius = SQUARE(C_PARMS->mGeneral.mMinAttackRange.mValue);
+	f32 radius = SQUARE(C_PARMS->mGeneral.mMaxAttackAngle.mValue);
 
 	Iterator<Piki> iter(pikiMgr);
 	CI_LOOP(iter)

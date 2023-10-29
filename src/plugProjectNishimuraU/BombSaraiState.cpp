@@ -251,7 +251,7 @@ void StateBombWait::exec(EnemyBase* enemy)
 		sarai->mNextState = BOMBSARAI_Release;
 		sarai->finishMotion();
 	} else if (target) {
-		f32 minRange  = CG_PARMS(sarai)->mGeneral.mMinAttackRange.mValue; // f29
+		f32 minRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackAngle.mValue; // f29
 		f32 maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange.mValue; // f30
 		f32 angleDist = sarai->getAngDist(target);
 
@@ -647,7 +647,7 @@ void StateMove::exec(EnemyBase* enemy)
 			}
 
 			EnemyFunc::walkToTarget(sarai, targetPos, CG_PARMS(sarai)->mGeneral.mMoveSpeed.mValue,
-			                        CG_PARMS(sarai)->mGeneral.mRotationalAccel.mValue, CG_PARMS(sarai)->mGeneral.mRotationalSpeed.mValue);
+			                        CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue, CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
 		}
 	} else {
 		sarai->mTargetVelocity = Vector3f(0.0f);
@@ -707,7 +707,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 		sarai->mNextState = BOMBSARAI_Release;
 		sarai->finishMotion();
 	} else if (target) {
-		f32 minRange  = CG_PARMS(sarai)->mGeneral.mMinAttackRange.mValue; // f29
+		f32 minRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackAngle.mValue; // f29
 		f32 maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange.mValue; // f30
 		f32 angleDist = sarai->getAngDist(target);
 
@@ -735,8 +735,8 @@ void StateBombMove::exec(EnemyBase* enemy)
 	if (sarai->isFinishMotion()) {
 		sarai->mTargetVelocity = Vector3f(0.0f);
 	} else {
-		EnemyFunc::walkToTarget(sarai, targetPos, CG_PARMS(sarai)->mGeneral.mMoveSpeed.mValue,
-		                        CG_PARMS(sarai)->mGeneral.mRotationalAccel.mValue, CG_PARMS(sarai)->mGeneral.mRotationalSpeed.mValue);
+		EnemyFunc::walkToTarget(sarai, targetPos, CG_PARMS(sarai)->mGeneral.mMoveSpeed.mValue, CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue,
+		                        CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
 	}
 
 	if (sarai->isEvent(0, EB_BitterQueued)) {

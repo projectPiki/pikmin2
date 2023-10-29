@@ -198,7 +198,7 @@ void StateAppear::exec(EnemyBase* enemy)
 			Creature* target = crab->getSearchedTarget();
 			if (target && gameSystem && !gameSystem->isZukanMode()) {
 				f32 maxAttackRange, minAttackRange;
-				minAttackRange = CG_PARMS(crab)->mGeneral.mMinAttackRange();
+				minAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackAngle();
 				maxAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackRange();
 
 				f32 viewAngle = crab->getCreatureViewAngle(target);
@@ -541,7 +541,7 @@ void StateWait::exec(EnemyBase* enemy)
 	Creature* target = crab->getSearchedTarget();
 	if (target && gameSystem && !gameSystem->isZukanMode()) {
 		f32 maxAttackRange, minAttackRange;
-		minAttackRange = CG_PARMS(crab)->mGeneral.mMinAttackRange();
+		minAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackAngle();
 		maxAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackRange();
 
 		f32 viewAngle = crab->getCreatureViewAngle(target);
@@ -844,13 +844,13 @@ void StateMove::exec(EnemyBase* enemy)
 		f32 viewAngle = crab->getCreatureViewAngle(target);
 
 		if (crab->checkDistAndAngle(target, viewAngle, CG_PARMS(crab)->mGeneral.mMaxAttackRange(),
-		                            CG_PARMS(crab)->mGeneral.mMinAttackRange())) {
+		                            CG_PARMS(crab)->mGeneral.mMaxAttackAngle())) {
 			crab->mNextState = DANGOMUSHI_Attack;
 			crab->finishMotion();
 
 		} else {
-			crab->turnToTarget(target, CG_PARMS(crab)->mGeneral.mRotationalAccel(), CG_PARMS(crab)->mGeneral.mRotationalSpeed());
-			if (FABS(viewAngle) <= PI * (DEG2RAD * CG_PARMS(crab)->mGeneral.mMinAttackRange())) {
+			crab->turnToTarget(target, CG_PARMS(crab)->mGeneral.mTurnSpeed(), CG_PARMS(crab)->mGeneral.mMaxTurnAngle());
+			if (FABS(viewAngle) <= PI * (DEG2RAD * CG_PARMS(crab)->mGeneral.mMaxAttackAngle())) {
 				f32 moveSpeed = CG_PARMS(crab)->mGeneral.mMoveSpeed();
 				f32 x         = sin(crab->getFaceDir());
 				f32 y         = crab->getTargetVelocity().y;
@@ -872,7 +872,7 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Vector3f targetPos = crab->mTargetPosition;
 		f32 viewAngle      = crab->getCreatureViewAngle(targetPos);
-		crab->turnToTarget(targetPos, CG_PARMS(crab)->mGeneral.mRotationalAccel(), CG_PARMS(crab)->mGeneral.mRotationalSpeed());
+		crab->turnToTarget(targetPos, CG_PARMS(crab)->mGeneral.mTurnSpeed(), CG_PARMS(crab)->mGeneral.mMaxTurnAngle());
 
 		if (FABS(viewAngle) <= HALF_PI) {
 			f32 moveSpeed = CG_PARMS(crab)->mGeneral.mMoveSpeed();

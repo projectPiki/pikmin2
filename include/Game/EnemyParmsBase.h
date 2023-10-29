@@ -66,8 +66,8 @@ struct EnemyParmsBase : public CreatureParms {
 		    , mDamageScaleDuration(this, 'fp04', "ダメージフレーム", 0.35f, 0.0f, 1.0f)    // 'damage frame'
 		    , mMass(this, 'fp05', "質量", 1.0f, 0.0f, 100.0f)                              // mass
 		    , mMoveSpeed(this, 'fp06', "速度", 80.0f, 0.0f, 1000.0f)                       // speed
-		    , mRotationalAccel(this, 'fp08', "回転速度率", 0.1f, 0.0f, 1.0f)               // rotation speed rate
-		    , mRotationalSpeed(this, 'fp28', "回転最大速度", 10.0f, 0.0f, 360.0f)          // maximum rotation speed
+		    , mTurnSpeed(this, 'fp08', "回転速度率", 0.1f, 0.0f, 1.0f)                     // rotation speed rate
+		    , mMaxTurnAngle(this, 'fp28', "回転最大速度", 10.0f, 0.0f, 360.0f)             // maximum rotation speed
 		    , mTerritoryRadius(this, 'fp09', "テリトリー", 200.0f, 1.0f, 1000.0f)          // territory
 		    , mHomeRadius(this, 'fp10', "ホーム範囲", 15.0f, 1.0f, 1000.0f)                // home range
 		    , mPrivateRadius(this, 'fp11', "プライベート距離", 70.0f, 0.0f, 1000.0f)       // private distance
@@ -82,7 +82,7 @@ struct EnemyParmsBase : public CreatureParms {
 		    , mShakeRange(this, 'fp19', "振り払い範囲", 120.0f, 0.0f, 1000.0f)             // shake off range
 		    , mShakeChance(this, 'fp16', "振り払い率", 1.0f, 0.0f, 1.0f)                   // shake off rate
 		    , mMaxAttackRange(this, 'fp20', "攻撃可能\範囲", 70.0f, 0.0f, 1000.0f)         // attack range - SHIFT-JIS IS WRONG
-		    , mMinAttackRange(this, 'fp21', "攻撃可能\角度", 15.0f, 0.0f,
+		    , mMaxAttackAngle(this, 'fp21', "攻撃可能\角度", 15.0f, 0.0f,
 		                      180.0f)                                              // 'possible attack angle' - SHIFT-JIS IS WRONG
 		    , mAttackRadius(this, 'fp22', "攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)  // attack hit range
 		    , mAttackHitAngle(this, 'fp23', "攻撃ヒット角度", 15.0f, 0.0f, 180.0f) // attack hit angle
@@ -115,8 +115,8 @@ struct EnemyParmsBase : public CreatureParms {
 		Parm<f32> mDamageScaleDuration;    // _27C, fp04
 		Parm<f32> mMass;                   // _2A4, fp05 'mass'
 		Parm<f32> mMoveSpeed;              // _2CC, fp06
-		Parm<f32> mRotationalAccel;        // _2F4, fp08
-		Parm<f32> mRotationalSpeed;        // _31C, fp28
+		Parm<f32> mTurnSpeed;              // _2F4, fp08
+		Parm<f32> mMaxTurnAngle;           // _31C, fp28
 		Parm<f32> mTerritoryRadius;        // _344, fp09
 		Parm<f32> mHomeRadius;             // _36C, fp10
 		Parm<f32> mPrivateRadius;          // _394, fp11
@@ -131,7 +131,7 @@ struct EnemyParmsBase : public CreatureParms {
 		Parm<f32> mShakeRange;             // _4FC, fp19
 		Parm<f32> mShakeChance;            // _524, fp16
 		Parm<f32> mMaxAttackRange;         // _54C, fp20 'attack range'
-		Parm<f32> mMinAttackRange;         // _574, fp21 'possibly attack angle'
+		Parm<f32> mMaxAttackAngle;         // _574, fp21 'possibly attack angle'
 		Parm<f32> mAttackRadius;           // _59C, fp22 'attack hit range'
 		Parm<f32> mAttackHitAngle;         // _5C4, fp23 'attack hit angle'
 		Parm<f32> mAttackDamage;           // _5EC, fp24

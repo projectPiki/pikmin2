@@ -171,7 +171,7 @@ void StateMove::exec(EnemyBase* enemy)
 		// Vector3f targetPos = creature->getPosition();
 		f32 angleDist = baby->turnToTarget(creature);
 
-		f32 limit   = PI * (DEG2RAD * CG_PARMS(baby)->mGeneral.mMinAttackRange());
+		f32 limit   = PI * (DEG2RAD * CG_PARMS(baby)->mGeneral.mMaxAttackAngle());
 		f32 absDist = FABS(angleDist);
 
 		if (absDist <= limit) {
@@ -192,7 +192,7 @@ void StateMove::exec(EnemyBase* enemy)
 		}
 
 		if (baby->checkDistAndAngle(creature, angleDist, CG_PARMS(baby)->mGeneral.mMaxAttackRange.mValue,
-		                            CG_PARMS(baby)->mGeneral.mMinAttackRange.mValue)) {
+		                            CG_PARMS(baby)->mGeneral.mMaxAttackAngle.mValue)) {
 			transit(baby, BABY_Attack, nullptr);
 		}
 

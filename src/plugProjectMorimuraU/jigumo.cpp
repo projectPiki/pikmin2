@@ -625,8 +625,8 @@ void Obj::walkFunc()
 	f32 walkSpeed = getWalkSpeed();                       // f29
 	terrRad       = C_PARMS->mGeneral.mTerritoryRadius(); // f30
 	angleWeight   = C_PARMS->mTurnWeight;                 // f31, 20.0f by default
-	f32 rotRate   = C_PARMS->mGeneral.mRotationalAccel(); // f28
-	f32 rotSpeed  = C_PARMS->mGeneral.mRotationalSpeed(); // f27
+	f32 rotRate   = C_PARMS->mGeneral.mTurnSpeed();       // f28
+	f32 rotSpeed  = C_PARMS->mGeneral.mMaxTurnAngle();    // f27
 
 	int stateID = getStateID();
 

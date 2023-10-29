@@ -121,11 +121,10 @@ void StateWait::exec(EnemyBase* enemy)
 	Creature* target = kuma->getSearchedTarget();
 	if (target) {
 		// more nonsense going on in here than this
-		f32 dist = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
-		                              CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+		f32 dist = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mMaxTurnAngle.mValue, CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue);
 
 		// this isn't the comparison, probably a bool spat out from an inline
-		if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue) {
+		if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue) {
 			kuma->mNextState = KUMAKOCHAPPY_Attack;
 			kuma->finishMotion();
 		} else {
@@ -474,11 +473,11 @@ void StateAttack::exec(EnemyBase* enemy)
 			Creature* target = kuma->getSearchedTarget();
 			if (target) {
 				// more nonsense going on in here than this
-				f32 dist = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
-				                              CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+				f32 dist
+				    = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mMaxTurnAngle.mValue, CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue);
 
 				// this isn't the comparison, probably a bool spat out from an inline
-				if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue) {
+				if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue) {
 					transit(kuma, KUMAKOCHAPPY_Attack, nullptr);
 					return;
 				} else {
@@ -886,11 +885,11 @@ void StateFlick::exec(EnemyBase* enemy)
 			Creature* target = kuma->getSearchedTarget();
 			if (target) {
 				// more nonsense going on in here than this
-				f32 dist = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
-				                              CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+				f32 dist
+				    = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mMaxTurnAngle.mValue, CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue);
 
 				// this isn't the comparison, probably a bool spat out from an inline
-				if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue) {
+				if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue) {
 					transit(kuma, KUMAKOCHAPPY_Attack, nullptr);
 					return;
 				} else {
@@ -1291,15 +1290,14 @@ void StateWalk::exec(EnemyBase* enemy)
 	Creature* target = kuma->getSearchedTarget();
 	if (target) {
 		// more nonsense going on in here than this
-		f32 dist = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
-		                              CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+		f32 dist = kuma->turnToTarget(target, CG_PARMS(kuma)->mGeneral.mMaxTurnAngle.mValue, CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue);
 
 		// this isn't the comparison, probably a bool spat out from an inline
-		if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue) {
+		if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mTurnSpeed.mValue) {
 			kuma->mNextState = KUMAKOCHAPPY_Attack;
 			kuma->finishMotion();
 			kuma->setAnimSpeed(60.0f);
-		} else if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mMinAttackRange.mValue) {
+		} else if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mMaxAttackAngle.mValue) {
 			check = false;
 			// transit(kuma, KUMAKOCHAPPY_Walk, nullptr);
 			// return;
@@ -1747,7 +1745,7 @@ void StateWalkPath::exec(EnemyBase* enemy)
 
 	Creature* target = kuma->getSearchedTarget();
 	if (target) {
-		f32 minRange = CG_PARMS(kuma)->mGeneral.mMinAttackRange();
+		f32 minRange = CG_PARMS(kuma)->mGeneral.mMaxAttackAngle();
 		f32 maxRange = CG_PARMS(kuma)->mGeneral.mMaxAttackRange();
 		f32 dist     = kuma->getAngDist(target);
 		if (kuma->checkDistAndAngle(target, dist, minRange, maxRange)) {
@@ -1767,8 +1765,7 @@ void StateWalkPath::exec(EnemyBase* enemy)
 				kuma->mNextState = KUMAKOCHAPPY_Wait;
 				kuma->finishMotion();
 			} else {
-				f32 dist = kuma->turnToTarget(*parentPos, CG_PARMS(kuma)->mGeneral.mRotationalAccel(),
-				                              CG_PARMS(kuma)->mGeneral.mRotationalSpeed());
+				f32 dist = kuma->turnToTarget(*parentPos, CG_PARMS(kuma)->mGeneral.mTurnSpeed(), CG_PARMS(kuma)->mGeneral.mMaxTurnAngle());
 			}
 		} else {
 			kuma->mNextState = KUMAKOCHAPPY_Wait;

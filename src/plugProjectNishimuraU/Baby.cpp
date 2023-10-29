@@ -271,8 +271,8 @@ void Obj::moveNoTarget()
 			mTargetPos.z = randomAngle * pikmin2_cosf(angleToHome) + mHomePosition.z;
 		}
 		Parms* parms = static_cast<Parms*>(mParms);
-		EnemyFunc::walkToTarget(this, mTargetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-		                        parms->mGeneral.mRotationalSpeed.mValue);
+		EnemyFunc::walkToTarget(this, mTargetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
+		                        parms->mGeneral.mMaxTurnAngle.mValue);
 	} else {
 		mTargetVelocity = Vector3f(0.0f);
 	}

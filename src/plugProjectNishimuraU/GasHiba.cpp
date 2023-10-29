@@ -111,7 +111,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 		position.y -= mPosition.y;
 
 		Parms* parms = C_PARMS;
-		if ((position.y < parms->mGeneral.mMaxAttackRange.mValue) && (position.y > -parms->mGeneral.mMinAttackRange.mValue)) {
+		if ((position.y < parms->mGeneral.mMaxAttackRange.mValue) && (position.y > -parms->mGeneral.mMaxAttackAngle.mValue)) {
 			addDamage(damage, 1.0f);
 			return true;
 		}
@@ -161,7 +161,7 @@ void Obj::interactGasAttack()
 {
 	Parms* parms = C_PARMS;
 	f32 max      = mPosition.y + parms->mGeneral.mMaxAttackRange.mValue;
-	f32 min      = mPosition.y - parms->mGeneral.mMinAttackRange.mValue;
+	f32 min      = mPosition.y - parms->mGeneral.mMaxAttackAngle.mValue;
 	f32 radSqr   = SQUARE(parms->mGeneral.mAttackRadius.mValue);
 
 	Sys::Sphere sphere(mPosition);

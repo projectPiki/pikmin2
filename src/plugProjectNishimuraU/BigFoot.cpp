@@ -419,7 +419,7 @@ void Obj::setIKParameter()
 	mIkSystemParms->_04 = 10.0f;
 	mIkSystemParms->_08 = 40.0f;
 	mIkSystemParms->_28 = 0.5f;
-	mIkSystemParms->_38 = C_PARMS->mGeneral.mRotationalSpeed.mValue;
+	mIkSystemParms->_38 = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
 	mIkSystemParms->_2C = C_PARMS->mGeneral.mMoveSpeed.mValue;
 
 	if (mIsEnraged) {

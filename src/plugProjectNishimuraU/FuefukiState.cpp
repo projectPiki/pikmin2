@@ -420,7 +420,7 @@ void StateWalk::exec(EnemyBase* enemy)
 	Vector3f targetPos = Vector3f(fuefuki->mTargetPosition);
 	if (!fuefuki->isFinishMotion()) {
 		EnemyFunc::walkToTarget(fuefuki, targetPos, CG_PARMS(fuefuki)->mGeneral.mMoveSpeed.mValue,
-		                        CG_PARMS(fuefuki)->mGeneral.mRotationalAccel.mValue, CG_PARMS(fuefuki)->mGeneral.mRotationalSpeed.mValue);
+		                        CG_PARMS(fuefuki)->mGeneral.mTurnSpeed.mValue, CG_PARMS(fuefuki)->mGeneral.mMaxTurnAngle.mValue);
 		if (fuefuki->isArriveTarget()) {
 			if (fuefuki->mSquadTimer > 0.0f) {
 				fuefuki->mNextState = FUEFUKI_Turn;

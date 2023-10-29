@@ -1243,7 +1243,7 @@ f32 Obj::turnFunc(f32 factor)
 		targetPos = mTargetCreature->getPosition();
 	}
 
-	f32 angleDist = turnToTarget2(targetPos, factor * C_PARMS->mGeneral.mRotationalAccel(), factor * C_PARMS->mGeneral.mRotationalSpeed());
+	f32 angleDist = turnToTarget2(targetPos, factor * C_PARMS->mGeneral.mTurnSpeed(), factor * C_PARMS->mGeneral.mMaxTurnAngle());
 
 	return FABS(angleDist);
 }

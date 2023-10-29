@@ -100,7 +100,7 @@ void Obj::doSimulationFlying(f32 step)
 
 	mCurrentVelocity.y -= step * _aiConstants->mGravity.mData;
 	if (mCurrentVelocity.y > 0.0f) {
-		turnToTarget2(mTargetPosition, C_PARMS->mGeneral.mRotationalAccel(), C_PARMS->mGeneral.mRotationalSpeed());
+		turnToTarget2(mTargetPosition, C_PARMS->mGeneral.mTurnSpeed(), C_PARMS->mGeneral.mMaxTurnAngle());
 	} else {
 		mCurrentVelocity.y = 0.0f;
 	}

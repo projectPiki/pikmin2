@@ -212,8 +212,8 @@ void StateMove::exec(EnemyBase* enemy)
 
 		} else {
 			Parms* parms = static_cast<Parms*>(kurage->mParms);
-			EnemyFunc::walkToTarget(kurage, targetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-			                        parms->mGeneral.mRotationalSpeed.mValue);
+			EnemyFunc::walkToTarget(kurage, targetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
+			                        parms->mGeneral.mMaxTurnAngle.mValue);
 		}
 	}
 
@@ -275,8 +275,8 @@ void StateChase::exec(EnemyBase* enemy)
 
 		} else {
 			Parms* parms = static_cast<Parms*>(kurage->mParms);
-			EnemyFunc::walkToTarget(kurage, target, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-			                        parms->mGeneral.mRotationalSpeed.mValue);
+			EnemyFunc::walkToTarget(kurage, target, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,
+			                        parms->mGeneral.mMaxTurnAngle.mValue);
 		}
 
 	} else {
