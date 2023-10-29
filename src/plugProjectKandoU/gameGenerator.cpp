@@ -166,7 +166,7 @@ Generator::Generator()
     , mVersion()
     , mPosition(0.0f, 0.0f, 0.0f)
 {
-	_18          = nullptr;
+	mObject      = nullptr;
 	_1C          = '____';
 	mReservedNum = 0;
 	_40.setID('    ');
@@ -212,8 +212,8 @@ Generator::~Generator() { _64 = nullptr; }
  */
 void Generator::updateUseList()
 {
-	if (!isExpired() && (_18 != nullptr)) {
-		_18->updateUseList(this, 1);
+	if (!isExpired() && (mObject != nullptr)) {
+		mObject->updateUseList(this, 1);
 	}
 }
 
@@ -240,8 +240,8 @@ bool Generator::isExpired()
  */
 bool Generator::loadCreature(Stream& input)
 {
-	if (_18) {
-		mCreature = _18->generate(this);
+	if (mObject) {
+		mCreature = mObject->generate(this);
 		if (mCreature) {
 			mCreature->getTypeName();
 		}
@@ -324,12 +324,12 @@ void Generator::generate()
 			return;
 		}
 		mCreature = nullptr;
-		if (_18) {
+		if (mObject) {
 			if (ramMode != 0 && (mReservedNum & 4) != 0 && (int)gameSystem->mTimeMgr->mDayCount >= (int)(_78 + mDaysTillResurrection)) {
 				_78 = gameSystem->mTimeMgr->mDayCount;
 				_74 = 0;
 			}
-			mCreature = _18->generate(this);
+			mCreature = mObject->generate(this);
 			if (mCreature) {
 				mCreature->mGenerator = this;
 			}
@@ -429,14 +429,14 @@ void Generator::read(Stream& input)
 		mOffset.y = input.readFloat();
 		mOffset.z = input.readFloat();
 	}
-	_18 = nullptr;
+	mObject = nullptr;
 	ID32 temp;
 	temp.read(input);
 	int id = temp.getID();
 
-	_18 = GenObjectFactory::factory->make(id);
-	if (_18) {
-		_18->read(input);
+	mObject = GenObjectFactory::factory->make(id);
+	if (mObject) {
+		mObject->read(input);
 		_1C = id;
 	} else {
 		temp.print();
@@ -496,8 +496,8 @@ void Generator::write(Stream& output)
 		output.writeFloat(mOffset.z);
 		output.textWriteText("\t# offset\r\n");
 	}
-	if (_18) {
-		_18->write(output);
+	if (mObject) {
+		mObject->write(output);
 	} else {
 		output.writeInt(0);
 	}
@@ -712,14 +712,14 @@ void GeneratorMgr::write(Stream& output)
  */
 void Generator::doAnimation()
 {
-	GenObject* obj = _18;
-	if (_18 && _18->mModel) {
+	GenObject* obj = mObject;
+	if (mObject && mObject->mModel) {
 		Matrixf mat;
 		Vector3f pos = mPosition + mOffset;
-		_18->generatorMakeMatrix(mat, pos);
+		mObject->generatorMakeMatrix(mat, pos);
 
-		PSMTXCopy(mat.mMatrix.mtxView, _18->mModel->mJ3dModel->mPosMtx);
-		_18->mModel->mJ3dModel->calc();
+		PSMTXCopy(mat.mMatrix.mtxView, mObject->mModel->mJ3dModel->mPosMtx);
+		mObject->mModel->mJ3dModel->calc();
 	}
 
 	if (_64) {
@@ -734,8 +734,8 @@ void Generator::doAnimation()
  */
 void Generator::doEntry()
 {
-	if (_18 && _18->mModel) {
-		_18->mModel->mJ3dModel->entry();
+	if (mObject && mObject->mModel) {
+		mObject->mModel->mJ3dModel->entry();
 	}
 
 	if (_64) {
@@ -750,8 +750,8 @@ void Generator::doEntry()
  */
 void Generator::doSetView(int viewportNumber)
 {
-	if (_18 && _18->mModel) {
-		_18->mModel->setCurrentViewNo(viewportNumber);
+	if (mObject && mObject->mModel) {
+		mObject->mModel->setCurrentViewNo(viewportNumber);
 	}
 
 	if (_64) {
@@ -766,8 +766,8 @@ void Generator::doSetView(int viewportNumber)
  */
 void Generator::doViewCalc()
 {
-	if (_18 && _18->mModel) {
-		_18->mModel->viewCalc();
+	if (mObject && mObject->mModel) {
+		mObject->mModel->viewCalc();
 	}
 
 	if (_64) {

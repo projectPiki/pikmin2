@@ -21,7 +21,7 @@ struct CourseCache : public CNode {
 	u32 mSize;           // _20
 	int mGeneratorCount; // _24
 	int mGeneratorSize;  // _28
-	u32 mCreatureCount;  // _2C
+	int mCreatureCount;  // _2C
 	int mCreatureSize;   // _30
 	int mPikiheadCount;  // _34
 	int mPikiheadSize;   // _38
@@ -42,7 +42,7 @@ struct GeneratorCache {
 	void destroyHeap();
 	void endSave();
 	CourseCache* findCache(CourseCache&, int);
-	void findRamGenerator(int);
+	Generator* findRamGenerator(int);
 	int getColorMePikmins(int);
 	Generator* getFirstGenerator();
 	int getTotalMePikmins();
@@ -59,14 +59,14 @@ struct GeneratorCache {
 
 	inline int getHeapUsedSize() const { return mHeapSize - mFreeSize; }
 
-	CourseCache _00;      // _00
-	CourseCache _3C;      // _3C
-	CourseCache* _78;     // _78
-	u8* mHeapBuffer;      // _7C
-	int mHeapSize;        // _80
-	u32 mFreeOffset;      // _84
-	int mFreeSize;        // _88
-	Generator mGenerator; // _8C
+	CourseCache mRootCache;     // _00
+	CourseCache mFreeCache;     // _3C
+	CourseCache* mCurrentCache; // _78
+	u8* mHeapBuffer;            // _7C
+	int mHeapSize;              // _80
+	u32 mFreeOffset;            // _84
+	int mFreeSize;              // _88
+	Generator mGenerator;       // _8C
 };
 
 extern GeneratorCache* generatorCache;

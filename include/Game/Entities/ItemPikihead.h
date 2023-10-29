@@ -22,6 +22,16 @@ enum StateID {
 };
 
 struct InitArg : public ItemInitArg {
+
+	inline InitArg()
+	{
+		mPikminType      = (EPikiKind)-1;
+		mVelocity        = Vector3f::zero;
+		mIsAlreadyBuried = false;
+		mHeadType        = Leaf;
+		_1C              = -1.0f;
+	}
+
 	inline InitArg(EPikiKind pikiKind, Vector3f& vel)
 	{
 		mPikminType      = pikiKind;

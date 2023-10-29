@@ -54,7 +54,7 @@ struct Generator : public CNode {
 		}
 	}
 
-	GenObject* _18;            // _18
+	GenObject* mObject;        // _18
 	u32 _1C;                   // _1C /* Initialized to '____' */
 	char mGenObjName[32];      // _20 /* shift-jis name given in generator files */
 	ID32 _40;                  // _40
@@ -75,7 +75,7 @@ struct Generator : public CNode {
 	Vector3f mPosition;        // _94
 	Vector3f mOffset;          // _A0
 	u8 _AC;                    // _AC
-	int mGeneratorIndexMaybe;  // _B0
+	int mIndex;                // _B0
 
 	//  0: format of the generator files on disc
 	// !0: format of the gencache?
