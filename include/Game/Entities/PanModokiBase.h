@@ -42,6 +42,8 @@ enum StateID {
 	PANMODOKI_StateCount,
 };
 
+#define PANMODOKI_MaxHeldTreasures (15)
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -145,44 +147,44 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f mNextWayPointPosition;     // _2BC
-	f32 mCarryDir;                      // _2C8
-	MouthSlots mMouthSlots;             // _2CC
-	SysShape::Joint* mBodyJoint;        // _2D4
-	SysShape::Joint* mKamuJoint;        // _2D8
-	f32 _2DC;                           // _2DC
-	f32 _2E0;                           // _2E0
-	u8 _2E4;                            // _2E4
-	s16 _2E6;                           // _2E6
-	s16 _2E8;                           // _2E8
-	s16 _2EA;                           // _2EA
-	u32 mPathID;                        // _2EC
-	u8 _2F0;                            // _2F0
-	u8 _2F1;                            // _2F1
-	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2F4
-	efx::TPanHide* mEfxHide;            // _2FC
-	efx::TPanSmoke* mEfxSmoke;          // _300
-	int _304;                           // _304
-	Vector3f _308;                      // _308, some position?
-	int _314;                           // _314, unknown
-	int _318;                           // _318
-	u8 _31C;                            // _31C
-	Vector3f _320;                      // _320
-	f32 _32C;                           // _32C
-	f32 _330;                           // _330
-	f32 _334;                           // _334
-	f32 _338;                           // _338
-	f32 _33C;                           // _33C
-	f32 _340;                           // _340
-	StateID mNextState;                 // _344
-	Matrixf _348;                       // _348, capture matrix?
-	Nest::Obj* mNest;                   // _378
-	f32 _37C;                           // _37C
-	FSM* mFsm;                          // _380
-	PathNode* _384;                     // _384, unknown
-	int mPelletCount;                   // _388, number of pellets collected in array
-	Pellet* mPelletArray[15];           // _38C
-	                                    // _3C8 = PelletView
+	Vector3f mNextWayPointPosition;                     // _2BC
+	f32 mCarryDir;                                      // _2C8
+	MouthSlots mMouthSlots;                             // _2CC
+	SysShape::Joint* mBodyJoint;                        // _2D4
+	SysShape::Joint* mKamuJoint;                        // _2D8
+	f32 mCarryRotationOffset;                           // _2DC (normally Pi to make breadbug face the treasure)
+	f32 mAlsoRotationOffset;                            // _2E0
+	u8 _2E4;                                            // _2E4
+	s16 mWpIndex1;                                      // _2E6
+	s16 mWpIndex2;                                      // _2E8
+	s16 mWpIndex3;                                      // _2EA
+	u32 mPathID;                                        // _2EC
+	bool mIsPathfinding;                                // _2F0
+	u8 _2F1;                                            // _2F1
+	WalkSmokeEffect::Mgr mWalkSmokeMgr;                 // _2F4
+	efx::TPanHide* mEfxHide;                            // _2FC
+	efx::TPanSmoke* mEfxSmoke;                          // _300
+	int _304;                                           // _304
+	Vector3f mPrevCheckPosition;                        // _308
+	int mMoveToWpTimer;                                 // _314
+	int mMoveSpeedTimer;                                // _318
+	u8 _31C;                                            // _31C
+	Vector3f mPelletCarryVelocity;                      // _320
+	f32 mCarrySizeDiff;                                 // _32C
+	f32 mShadowSize;                                    // _330
+	f32 mCarryingYPosition;                             // _334
+	f32 _338;                                           // _338
+	f32 mBounceEffectSize;                              // _33C
+	f32 mAppearEffectSize;                              // _340
+	StateID mNextState;                                 // _344
+	Matrixf mCarryMatrix;                               // _348
+	Nest::Obj* mNest;                                   // _378
+	f32 mCarryStrength;                                 // _37C
+	FSM* mFsm;                                          // _380
+	PathNode* mPathNode;                                // _384
+	int mHeldTreasureNum;                               // _388, number of pellets collected in array
+	Pellet* mHeldTreasures[PANMODOKI_MaxHeldTreasures]; // _38C
+	                                                    // _3C8 = PelletView
 };
 
 struct Parms : public EnemyParmsBase {
@@ -216,10 +218,10 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_998 = 0;
-		_999 = 0;
-		_99A = 1;
-		_99C = 20.0f;
+		_998          = 0;
+		mCanPressType = 0;
+		_99A          = 1;
+		_99C          = 20.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -232,7 +234,7 @@ struct Parms : public EnemyParmsBase {
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms mProperParms; // _7F8
 	u8 _998;                  // _998
-	u8 _999;                  // _999
+	u8 mCanPressType;         // _999
 	u8 _99A;                  // _99A
 	f32 _99C;                 // _99C
 };

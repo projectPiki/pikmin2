@@ -115,7 +115,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (OBJ(enemy)->isReachToGoal(OBJ(enemy)->_32C)) {
+	if (OBJ(enemy)->isReachToGoal(OBJ(enemy)->mCarrySizeDiff)) {
 		OBJ(enemy)->findNextRoutePoint(false);
 	}
 
@@ -619,7 +619,7 @@ void StateStick::exec(EnemyBase* enemy)
 	f32 x              = targetPos.x - enemy->getPosition().x;
 	f32 stickRadius    = target->getStickRadius();
 	f32 dist           = x * x + z * z;
-	if (dist < SQUARE(1.2f * OBJ(enemy)->_32C + stickRadius)) {
+	if (dist < SQUARE(1.2f * OBJ(enemy)->mCarrySizeDiff + stickRadius)) {
 		if (OBJ(enemy)->isTargetable(target) && target->isSlotFree(9999)) {
 			enemy->mCurrentVelocity = Vector3f(0.0f);
 			enemy->mTargetVelocity  = Vector3f(0.0f);
@@ -638,7 +638,7 @@ void StateStick::exec(EnemyBase* enemy)
 		enemy->changeFaceDir(targetPos);
 
 		_10++;
-		f32 rad = 2.5f * OBJ(enemy)->_32C;
+		f32 rad = 2.5f * OBJ(enemy)->mCarrySizeDiff;
 		if (_10 > 200 || dist > SQUARE(rad) || !target || !OBJ(enemy)->isTargetable(target)) {
 			transit(enemy, OBJ(enemy)->mNextState, nullptr);
 		}
