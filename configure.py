@@ -1078,7 +1078,7 @@ LIBS = [
             ["plugProjectNishimuraU/QurioneAnimator", True],
             ["plugProjectNishimuraU/RumbleData", True],
             ["plugProjectNishimuraU/MaroFrogMgr", True],
-            "plugProjectNishimuraU/MaroFrog",
+            ["plugProjectNishimuraU/MaroFrog", True],
             ["plugProjectNishimuraU/RockState", True],
             ["plugProjectNishimuraU/RockAnimator", True],
             ["plugProjectNishimuraU/RockMgr", True],

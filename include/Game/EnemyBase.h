@@ -593,6 +593,15 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return result;
 	}
 
+	inline Vector3f getTargetSeparation(Creature* target)
+	{
+		f32 x, y, z;
+		x = target->getPosition().x - getPosition().x;
+		y = target->getPosition().y - getPosition().y;
+		z = target->getPosition().z - getPosition().z;
+		return Vector3f(x, y, z);
+	}
+
 	inline f32 changeFaceDir2(Creature* target)
 	{
 		f32 rotSpeed;
