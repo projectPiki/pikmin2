@@ -9,36 +9,43 @@ namespace Screen {
 namespace FileSelect {
 struct TScreenDataWindow_data {
 	TScreenDataWindow_data()
-	    : _00(nullptr)
+	    : mScreenObj(nullptr)
 	    , _0C(0)
-	    , _10(0)
-	    , _14(0)
-	    , _18(0)
-	    , _24(0)
-	    , _28(0)
+	    , mPokos(0)
+	    , mTreasures(0)
+	    , mTreasureMax(0)
+	    , mCaveID(0)
+	    , mCaveFloor(0)
 	{
 	}
 
 	void setArchive(JKRArchive*);
 	void setData(s32, u32, u32, u32, u32, u32, u32);
 
-	P2DScreen::Mgr* _00;                 // _00
-	og::Screen::CallBack_CounterRV* _04; // _04
-	og::Screen::CallBack_CounterRV* _08; // _08
-	u8 _0C;                              // _0C
-	u32 _10;                             // _10
-	u32 _14;                             // _14
-	int _18;                             // _18
-	u32 _1C;                             // _1C
-	u32 _20;                             // _20
-	u32 _24;                             // _24
-	u32 _28;                             // _28
+	P2DScreen::Mgr* mScreenObj;                // _00
+	og::Screen::CallBack_CounterRV* mCounterA; // _04
+	og::Screen::CallBack_CounterRV* mCounterB; // _08
+	u8 _0C;                                    // _0C
+	u32 mPokos;                                // _10
+	u32 mTreasures;                            // _14
+	u32 mTreasureMax;                          // _18
+	u32 mPlayTimeHours;                        // _1C
+	u32 mPlayTimeMinutes;                      // _20
+	u32 mCaveID;                               // _24
+	u32 mCaveFloor;                            // _28
 };
 
-// unused struct
 struct TScreenDataWindow_new {
+	TScreenDataWindow_new()
+	{
+		mScreenObj = nullptr;
+		_04        = 0;
+	}
 	void setArchive(JKRArchive*);
 	void setData(s32, u64);
+
+	P2DScreen::Mgr* mScreenObj; // _00
+	bool _04;                   // _04
 };
 } // namespace FileSelect
 } // namespace Screen

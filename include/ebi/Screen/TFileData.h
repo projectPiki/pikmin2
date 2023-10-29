@@ -7,7 +7,24 @@ namespace ebi {
 namespace Screen {
 namespace FileSelect {
 struct TFileData {
-	TFileData();
+	TFileData()
+	{
+		mIsNewFile  = false;
+		mCurrentDay = 77777;
+		// someone thought the pikmin were from hell apparently
+		mRedPikis        = 666;
+		mBluePikis       = 666;
+		mYellowPikis     = 666;
+		mWhitePikis      = 666;
+		mPurplePikis     = 666;
+		mPokos           = 88888;
+		mTreasure        = 88;
+		mCaveID          = 0;
+		mCaveFloor       = 666;
+		mPlayTimeHours   = 11;
+		mPlayTimeMinutes = 11;
+		mIsBrokenFile    = false;
+	}
 
 	bool mIsBrokenFile;   // _00
 	bool mIsNewFile;      // _01

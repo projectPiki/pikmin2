@@ -9,7 +9,13 @@
 namespace efx2d {
 namespace FileSelect {
 struct ArgFilecopy : public Arg {
-	virtual const char* getName(); // _08 (weak)
+	ArgFilecopy(Vector2f posA, Vector2f posB, JUtility::TColor color)
+	    : Arg(posA)
+	    , mAltPosition(posB)
+	    , mColor(color)
+	{
+	}
+	virtual const char* getName() { return "ArgFilecopy"; } // _08 (weak)
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
@@ -58,6 +64,12 @@ struct T2DFilecopyM : public T2DFilecopyBase {
 };
 
 struct T2DFilecopied : public TSimple1 {
+	inline T2DFilecopied()
+	    : TSimple1(9)
+	{
+		_04 = 1;
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00     = VTBL
@@ -65,11 +77,23 @@ struct T2DFilecopied : public TSimple1 {
 };
 
 struct T2DFiledecide : public TSimple2 {
+	inline T2DFiledecide()
+	    : TSimple2(2, 3)
+	{
+		_04 = 1;
+	}
+
 	// _00     = VTBL
 	// _00-_14 = TSimple2
 };
 
 struct T2DFiledelete : public TSimple1 {
+	inline T2DFiledelete()
+	    : TSimple1(4)
+	{
+		_04 = 1;
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00     = VTBL
@@ -77,6 +101,12 @@ struct T2DFiledelete : public TSimple1 {
 };
 
 struct T2DFiledeleteM : public TSimple1 {
+	inline T2DFiledeleteM()
+	    : TSimple1(5)
+	{
+		_04 = 1;
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00     = VTBL
@@ -116,7 +146,7 @@ struct T2DFilesel : public TChasePos {
 		_04 = 1;
 	}
 
-	virtual ~T2DFilesel(); // _34 (weak)
+	virtual ~T2DFilesel() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePos
@@ -129,7 +159,7 @@ struct T2DFileselM : public TChasePos {
 		_04 = 1;
 	}
 
-	virtual ~T2DFileselM(); // _34 (weak)
+	virtual ~T2DFileselM() { } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePos

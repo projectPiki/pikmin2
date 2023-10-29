@@ -1,212 +1,144 @@
 #include "ebi/Screen/TMainScreen.h"
 #include "ebi/Screen/TScreenDataWindow.h"
 #include "ebi/Screen/TFileData.h"
+#include "ebi/E2DGraph.h"
 #include "efx2d/FileSelect.h"
+#include "og/newScreen/ogUtil.h"
+#include "ebi/Utility.h"
+#include "TParticle2dMgr.h"
+#include "PSSystem/PSSystemIF.h"
+#include "og/Screen/ogScreen.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 
 namespace ebi {
 namespace Screen {
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000B8
-//  */
-// void FileSelect::TScreenDataWindow_new::setArchive(JKRArchive*)
-// {
-// 	// UNUSED FUNCTION
-// }
+namespace FileSelect {
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000130
-//  */
-// void FileSelect::TScreenDataWindow_new::setData(s32, u64)
-// {
-// 	// UNUSED FUNCTION
-// }
+static const char className[] = "ebiScreenFileSelect";
+
+/*  * --INFO--
+ * Address:	........
+ * Size:	0000B8
+ */
+void TScreenDataWindow_new::setArchive(JKRArchive* arc)
+{
+	sys->heapStatusStart("TScreenDataWindow::setArchive--set__blo", nullptr);
+	mScreenObj = new P2DScreen::Mgr;
+	mScreenObj->set("file_select_dw_new.blo", 0x1100000, arc);
+	sys->heapStatusEnd("TScreenDataWindow::setArchive--set__blo");
+
+	sys->heapStatusStart("TScreen_FS_scene_open::setArchive--callback_message", nullptr);
+	E2DPane_setTreeCallBackMessage(mScreenObj, mScreenObj);
+	sys->heapStatusEnd("TScreen_FS_scene_open::setArchive--callback_message");
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000130
+ */
+void TScreenDataWindow_new::setData(s32 fileID, u64 mesg)
+{
+	P2ASSERTBOUNDSLINE(57, 0, fileID, 3);
+
+	J2DPane* panes[3];
+	panes[0] = E2DScreen_searchAssert(mScreenObj, 'Pdata1');
+	panes[1] = E2DScreen_searchAssert(mScreenObj, 'Pdata2');
+	panes[2] = E2DScreen_searchAssert(mScreenObj, 'Pdata3');
+	panes[0]->hide();
+	panes[1]->hide();
+	panes[2]->hide();
+	panes[fileID]->show();
+
+	E2DScreen_searchAssert(mScreenObj, 'Tnewd')->setMsgID(mesg);
+	E2DScreen_searchAssert(mScreenObj, 'Tnewds')->setMsgID(mesg);
+}
 
 // /*
 //  * --INFO--
 //  * Address:	........
 //  * Size:	0002E4
 //  */
-// void FileSelect::TScreenDataWindow_data::setArchive(JKRArchive*)
-// {
-// 	// UNUSED FUNCTION
-// }
+void TScreenDataWindow_data::setArchive(JKRArchive* arc)
+{
+	sys->heapStatusStart("TScreenDataWindow::setArchive--set__blo", nullptr);
+	mScreenObj = new P2DScreen::Mgr;
+	mScreenObj->set("file_select_dw_data.blo", 0x1100000, arc);
+	sys->heapStatusEnd("TScreenDataWindow::setArchive--set__blo");
+
+	sys->heapStatusStart("TScreen_FS_scene_open::setArchive--callback_message", nullptr);
+	E2DPane_setTreeCallBackMessage(mScreenObj, mScreenObj);
+	sys->heapStatusEnd("TScreen_FS_scene_open::setArchive--callback_message");
+
+	og::Screen::setCallBack_CounterRV(mScreenObj, 'Pln01', 'Pln02', 'Pln05', &mPokos, 10, 1, false, arc);
+	mCounterA = og::Screen::setCallBack_CounterRV(mScreenObj, 'Ptr01', 'Ptr02', 'Ptr03', &mTreasures, 3, 1, false, arc);
+	mCounterB = og::Screen::setCallBack_CounterRV(mScreenObj, 'Ptrt01', 'Ptrt02', 'Ptrt03', &mTreasureMax, 3, 1, false, arc);
+	og::Screen::setCallBack_CounterDay(mScreenObj, 'Pfr2_1', 'Pfr2_2', 'Pfr1', &mCaveFloor, 3, arc);
+	og::Screen::setCallBack_CounterRV(mScreenObj, 'Ptime01', 'Ptime02', 'Ptime03', &mPlayTimeHours, 5, 1, false, arc);
+	og::Screen::setCallBack_CounterRV(mScreenObj, 'Ptimem01', 'Ptimem02', 'Ptimem02', &mPlayTimeMinutes, 2, 2, false, arc)
+	    ->setZeroAlpha(255);
+
+	E2DScreen_searchAssert(mScreenObj, 'Pln03')->setAlpha(0);
+	E2DScreen_searchAssert(mScreenObj, 'Pln04')->setAlpha(0);
+
+	mPokos           = 0;
+	mTreasures       = 0;
+	mTreasureMax     = 201; // Yes they really hardcode this
+	mPlayTimeHours   = 0;
+	mPlayTimeMinutes = 0;
+	mCaveID          = 0;
+	mCaveFloor       = 0;
+}
 
 /*
  * --INFO--
  * Address:	803D4244
  * Size:	000254
  */
-void FileSelect::TScreenDataWindow_data::setData(s32, u32, u32, u32, u32, u32, u32)
+void TScreenDataWindow_data::setData(s32 fileID, u32 pokos, u32 treasures, u32 cave, u32 floor, u32 hours, u32 minutes)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  li        r0, 0
-	  stmw      r24, 0x30(r1)
-	  mr.       r25, r4
-	  mr        r24, r3
-	  mr        r26, r5
-	  mr        r27, r6
-	  mr        r28, r7
-	  mr        r29, r8
-	  mr        r30, r9
-	  mr        r31, r10
-	  blt-      .loc_0x44
-	  cmpwi     r25, 0x3
-	  bge-      .loc_0x44
-	  li        r0, 0x1
+	P2ASSERTBOUNDSLINE(129, 0, fileID, 3);
 
-	.loc_0x44:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x68
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x6B70
-	  li        r4, 0x81
-	  addi      r5, r5, 0x6B88
-	  crclr     6, 0x6
-	  bl        -0x3A9C68
+	J2DPane* panes[4];
+	panes[1] = E2DScreen_searchAssert(mScreenObj, 'Pdata1');
+	panes[2] = E2DScreen_searchAssert(mScreenObj, 'Pdata2');
+	panes[3] = E2DScreen_searchAssert(mScreenObj, 'Pdata3');
+	panes[1]->hide();
+	panes[2]->hide();
+	panes[3]->hide();
+	panes[fileID + 1]->show();
 
-	.loc_0x68:
-	  lis       r4, 0x6174
-	  lwz       r3, 0x0(r24)
-	  addi      r6, r4, 0x6131
-	  li        r5, 0x5064
-	  bl        -0x9F64
-	  stw       r3, 0x1C(r1)
-	  lis       r4, 0x6174
-	  lwz       r3, 0x0(r24)
-	  addi      r6, r4, 0x6132
-	  li        r5, 0x5064
-	  bl        -0x9F7C
-	  stw       r3, 0x20(r1)
-	  lis       r4, 0x6174
-	  lwz       r3, 0x0(r24)
-	  addi      r6, r4, 0x6133
-	  li        r5, 0x5064
-	  bl        -0x9F94
-	  lwz       r4, 0x1C(r1)
-	  li        r7, 0
-	  lwz       r6, 0x20(r1)
-	  rlwinm    r0,r25,2,0,29
-	  stb       r7, 0xB0(r4)
-	  addi      r4, r1, 0x1C
-	  li        r5, 0x1
-	  stw       r3, 0x24(r1)
-	  stb       r7, 0xB0(r6)
-	  lwzx      r4, r4, r0
-	  stb       r7, 0xB0(r3)
-	  stb       r5, 0xB0(r4)
-	  stw       r26, 0x10(r24)
-	  stw       r27, 0x14(r24)
-	  lwz       r0, 0x10(r24)
-	  cmplwi    r0, 0x2710
-	  bge-      .loc_0x144
-	  lis       r4, 0x7273
-	  lwz       r3, 0x0(r24)
-	  addi      r6, r4, 0x6C61
-	  li        r5, 0x5074
-	  bl        -0x9FEC
-	  li        r0, 0
-	  stb       r0, 0xB0(r3)
-	  lwz       r3, 0x8(r24)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x4(r24)
-	  bl        -0xC8BA8
-	  lwz       r12, 0x0(r3)
-	  lfs       f1, 0x17B8(r2)
-	  lwz       r12, 0x10(r12)
-	  lfs       f2, 0x17BC(r2)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x194
+	mPokos     = pokos;
+	mTreasures = treasures;
 
-	.loc_0x144:
-	  lis       r4, 0x7273
-	  lwz       r3, 0x0(r24)
-	  addi      r6, r4, 0x6C61
-	  li        r5, 0x5074
-	  bl        -0xA040
-	  li        r0, 0x1
-	  stb       r0, 0xB0(r3)
-	  lwz       r3, 0x8(r24)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x4(r24)
-	  bl        -0xC8BFC
-	  lwz       r12, 0x0(r3)
-	  lfs       f1, 0x17BC(r2)
-	  lwz       r12, 0x10(r12)
-	  fmr       f2, f1
-	  mtctr     r12
-	  bctrl
+	if (mPokos < 10000) {
+		E2DScreen_searchAssert(mScreenObj, 'Ptrsla')->hide();
+		mCounterB->hide();
+		mCounterA->getMotherPane()->move(50.0f, 0.0f);
+	} else {
+		E2DScreen_searchAssert(mScreenObj, 'Ptrsla')->show();
+		mCounterB->show();
+		mCounterA->getMotherPane()->move(0.0f, 0.0f);
+	}
+	mCaveID          = cave;
+	mCaveFloor       = floor;
+	mPlayTimeHours   = hours;
+	mPlayTimeMinutes = minutes;
 
-	.loc_0x194:
-	  stw       r28, 0x24(r24)
-	  lis       r3, 0x616E
-	  addi      r6, r3, 0x6163
-	  li        r5, 0x50
-	  stw       r29, 0x28(r24)
-	  stw       r30, 0x1C(r24)
-	  stw       r31, 0x20(r24)
-	  lwz       r3, 0x0(r24)
-	  bl        -0xA0A0
-	  mr        r26, r3
-	  lis       r5, 0x6E61
-	  lis       r4, 0x5461
-	  lwz       r3, 0x0(r24)
-	  addi      r6, r5, 0x6D65
-	  addi      r5, r4, 0x6E61
-	  bl        -0xA0BC
-	  mr        r25, r3
-	  lwz       r3, 0x24(r24)
-	  bl        -0xB76A0
-	  mr        r0, r3
-	  lwz       r3, 0x24(r24)
-	  mr        r27, r4
-	  addi      r4, r1, 0x8
-	  mr        r24, r0
-	  bl        -0x12580
-	  mr        r4, r27
-	  mr        r3, r24
-	  addi      r5, r1, 0x10
-	  bl        -0x12594
-	  li        r4, 0
-	  xor       r3, r27, r4
-	  xor       r0, r24, r4
-	  or.       r0, r3, r0
-	  bne-      .loc_0x224
-	  stb       r4, 0xB0(r26)
-	  b         .loc_0x240
-
-	.loc_0x224:
-	  li        r3, 0x1
-	  li        r0, 0x2
-	  stb       r3, 0xB0(r26)
-	  addc      r3, r27, r0
-	  adde      r0, r24, r4
-	  stw       r3, 0x1C(r25)
-	  stw       r0, 0x18(r25)
-
-	.loc_0x240:
-	  lmw       r24, 0x30(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
+	J2DPane* cavetreasure = E2DScreen_searchAssert(mScreenObj, 'Panac');
+	J2DPane* cavename     = E2DScreen_searchAssert(mScreenObj, 'Tananame');
+	u64 tag               = og::newScreen::caveIDtoMsgID(mCaveID);
+	char buf2[8];
+	char buf[8];
+	EUTDebug_Tag32ToName(mCaveID, buf);
+	EUTDebug_Tag64ToName(tag, buf2);
+	if (tag == 0) {
+		cavetreasure->hide();
+	} else {
+		cavetreasure->show();
+		cavename->setMsgID(tag + 2);
+	}
 }
 
 /*
@@ -214,57 +146,53 @@ void FileSelect::TScreenDataWindow_data::setData(s32, u32, u32, u32, u32, u32, u
  * Address:	803D4498
  * Size:	000EB0
  */
-FileSelect::TMainScreen::TMainScreen()
-    : _AFC(0, 0, 0, 0)
-    , _BA0(nullptr)
-    , _BA4(0)
-    , _BD4(0, 0, 0, 255)
+TMainScreen::TMainScreen()
+    : _BD4(0, 0, 0, 255)
     , _BD8(255)
-    , _BDC(0)
-    , _BE0(0)
-    , _BE4(0)
-    , _BE8(0)
-    , _BEC(0)
-    , _BF0(0)
-    , _BF4(0)
+    , mState(0)
+    , mCounter(0)
+    , mCounterMax(0)
+    , mOpenCounter(0)
+    , mOpenCounterMax(0)
+    , mMesgCounter(0)
+    , mMesgCounterMax(0)
 {
-	_0C = nullptr;
+	mMainScreen = nullptr;
 	for (int i = 0; i < 3; i++) {
-		_10[i] = nullptr;
+		mPaneND[i] = nullptr;
 	}
 
-	_1C = nullptr;
+	mPaneDataWindow = nullptr;
 
 	for (int i = 0; i < 3; i++) {
-		_38[i] = nullptr;
-		_44[i] = nullptr;
-		_50[i] = nullptr;
-		_5C[i] = nullptr;
-		_68[i] = nullptr;
-		_74[i] = nullptr;
-		_80[i] = nullptr;
-		_8C[i] = nullptr;
+		mPaneSelE0[i]       = nullptr;
+		mPaneSelE1[i]       = nullptr;
+		mPanePdc[i]         = nullptr;
+		mPaneMdc[i]         = nullptr;
+		mPaneIconColorA[i]  = nullptr;
+		mPaneIconColorB[i]  = nullptr;
+		mPaneCopyCursorL[i] = nullptr;
+		mPaneCopyCursorR[i] = nullptr;
 	}
 
-	_98 = nullptr;
-	_9C = nullptr;
-	_A0 = nullptr;
-	_A4 = nullptr;
-	_A8 = nullptr;
-	_AC = nullptr;
-	_B0 = nullptr;
-	_B4 = nullptr;
-	_B8 = nullptr;
-	_BC = nullptr;
-	_AFC.set(0, 0, 0, 0);
-	_B9C = 0;
+	mPaneMesgYes        = nullptr;
+	mPaneMesgYesShadow  = nullptr;
+	mPaneMesgNo         = nullptr;
+	mPaneMesgNoShadow   = nullptr;
+	mPaneButton         = nullptr;
+	mPaneButtonShadow   = nullptr;
+	mPaneButtonB        = nullptr;
+	mPaneButtonBShadow  = nullptr;
+	mPaneMesgMain       = nullptr;
+	mPaneMesgMainShadow = nullptr;
+	mFlags.clear();
+	mCurrFileInfoId = 0;
 
 	for (int i = 0; i < 3; i++) {
-		_A84[i] = new efx2d::FileSelect::T2DFilesel(&_AC4[i]);
-		_A90[i] = new efx2d::FileSelect::T2DFileselM(&_ADC[i]);
+		mEfxFileSel[i]  = new efx2d::FileSelect::T2DFilesel(&mCursorSelPos[i]);
+		mEfxFileSelM[i] = new efx2d::FileSelect::T2DFileselM(&mCursorSelPosM[i]);
 	}
-
-	_AF4 = nullptr;
+	mParticleResource = nullptr;
 }
 
 /*
@@ -272,57 +200,15 @@ FileSelect::TMainScreen::TMainScreen()
  * Address:	803D5348
  * Size:	0000B0
  */
-void FileSelect::TMainScreen::loadResource()
+void TMainScreen::loadResource()
 {
-	/*
-stwu     r1, -0x120(r1)
-mflr     r0
-lis      r4, lbl_80496AE8@ha
-li       r5, 0
-stw      r0, 0x124(r1)
-stw      r31, 0x11c(r1)
-addi     r31, r4, lbl_80496AE8@l
-addi     r4, r31, 0xc4
-stw      r30, 0x118(r1)
-stw      r29, 0x114(r1)
-mr       r29, r3
-lwz      r3, sys@sda21(r13)
-bl       heapStatusStart__6SystemFPcP7JKRHeap
-addi     r3, r1, 8
-addi     r4, r31, 0xe4
-bl       makeLanguageResName__Q22og9newScreenFPcPCc
-addi     r3, r1, 8
-li       r4, 1
-li       r5, 0
-li       r6, 1
-bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-or.      r30, r3, r3
-bne      lbl_803D53B8
-addi     r3, r31, 0x88
-addi     r5, r31, 0xa0
-li       r4, 0xff
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D53B8:
-lwz      r3, sys@sda21(r13)
-addi     r4, r31, 0xc4
-bl       heapStatusEnd__6SystemFPc
-mr       r3, r29
-mr       r4, r30
-lwz      r12, 0(r29)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x124(r1)
-lwz      r31, 0x11c(r1)
-lwz      r30, 0x118(r1)
-lwz      r29, 0x114(r1)
-mtlr     r0
-addi     r1, r1, 0x120
-blr
-	*/
+	sys->heapStatusStart("TScreenFileSelect::loadResource", nullptr);
+	char path[256];
+	og::newScreen::makeLanguageResName(path, "file_select.szs");
+	JKRArchive* arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	P2ASSERTLINE(255, arc);
+	sys->heapStatusEnd("TScreenFileSelect::loadResource");
+	setArchive(arc);
 }
 
 /*
@@ -330,8 +216,198 @@ blr
  * Address:	803D53F8
  * Size:	0012E4
  */
-void FileSelect::TMainScreen::doSetArchive(JKRArchive*)
+void TMainScreen::doSetArchive(JKRArchive* arc)
 {
+	sys->heapStatusStart("TScreenFileSelect::setArchive", nullptr);
+
+	sys->heapStatusStart("TScreenFileSelect::setArchive--set__blo", nullptr);
+	mMainScreen = new P2DScreen::Mgr_tuning;
+	mMainScreen->set("file_select.blo", 0x1100000, arc);
+	sys->heapStatusEnd("TScreenFileSelect::setArchive--set__blo");
+
+	mNewScreen.setArchive(arc);
+	mDataScreen.setArchive(arc);
+
+	mMainScreen->makeAnmPointer();
+
+	mPaneMesgYes        = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'T_y'));
+	mPaneMesgYesShadow  = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Ts_y'));
+	mPaneMesgNo         = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'T_n'));
+	mPaneMesgNoShadow   = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Ts_n'));
+	mPaneButton         = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Tbt0'));
+	mPaneButtonShadow   = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Tbt0s'));
+	mPaneButtonB        = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Tbt1'));
+	mPaneButtonBShadow  = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Tbt1s'));
+	mPaneMesgMain       = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Tmsg'));
+	mPaneMesgMainShadow = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Tmsgs'));
+
+	mPaneND[0]      = static_cast<J2DPictureEx*>(E2DScreen_searchAssert(mMainScreen, 'ND1'));
+	mPaneND[1]      = static_cast<J2DPictureEx*>(E2DScreen_searchAssert(mMainScreen, 'ND2'));
+	mPaneND[2]      = static_cast<J2DPictureEx*>(E2DScreen_searchAssert(mMainScreen, 'ND3'));
+	mPaneDataWindow = E2DScreen_searchAssert(mMainScreen, 'Ndataw');
+
+	mPaneSelE0[0] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pd1selE0'));
+	mPaneSelE0[1] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pd2selE0'));
+	mPaneSelE0[2] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pd3selE0'));
+
+	mPaneSelE1[0] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pmd1seE1'));
+	mPaneSelE1[1] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pmd2seE1'));
+	mPaneSelE1[2] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pmd3seE1'));
+
+	mPanePdc[0] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pd1c'));
+	mPanePdc[1] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pd2c'));
+	mPanePdc[2] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pd3c'));
+
+	mPaneMdc[0] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pmd1c'));
+	mPaneMdc[1] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pmd2c'));
+	mPaneMdc[2] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pmd3c'));
+
+	mPaneIconColorA[0] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pd1pika'));
+	mPaneIconColorA[1] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pd2pika'));
+	mPaneIconColorA[2] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pd3_pika'));
+
+	mPaneIconColorB[0] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pmd1pika'));
+	mPaneIconColorB[1] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pmd2pika'));
+	mPaneIconColorB[2] = static_cast<J2DPicture*>(E2DScreen_searchAssert(mMainScreen, 'Pmd3pika'));
+
+	mPaneSel[0][0] = E2DScreen_searchAssert(mMainScreen, 'Pd1sel');
+	mPaneSel[1][0] = E2DScreen_searchAssert(mMainScreen, 'Pmd1sel');
+	mPaneSel[0][1] = E2DScreen_searchAssert(mMainScreen, 'Pd2sel');
+	mPaneSel[1][1] = E2DScreen_searchAssert(mMainScreen, 'Pmd2sel');
+	mPaneSel[0][2] = E2DScreen_searchAssert(mMainScreen, 'Pd3sel');
+	mPaneSel[1][2] = E2DScreen_searchAssert(mMainScreen, 'Pmd3sel');
+
+	mPaneCopyCursorL[0] = E2DScreen_searchAssert(mMainScreen, 'Pposd1l');
+	mPaneCopyCursorR[0] = E2DScreen_searchAssert(mMainScreen, 'Pposd1r');
+	mPaneCopyCursorL[1] = E2DScreen_searchAssert(mMainScreen, 'Pposd2l');
+	mPaneCopyCursorR[1] = E2DScreen_searchAssert(mMainScreen, 'Pposd2r');
+	mPaneCopyCursorL[2] = E2DScreen_searchAssert(mMainScreen, 'Pposd3l');
+	mPaneCopyCursorR[2] = E2DScreen_searchAssert(mMainScreen, 'Pposd3r');
+
+	J2DTextBox* text = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mMainScreen, 'Tcol'));
+	mFontColor2.setColors(text);
+	text = static_cast<J2DTextBox*>(mPaneMesgNo);
+	mFontColor1.setColors(text);
+
+	for (int i = 0; i < 3; i++) {
+		mPaneCopyCursorL[i]->setAlpha(0);
+		mPaneCopyCursorR[i]->setAlpha(0);
+	}
+
+	E2DScreen_searchAssert(mMainScreen, 'Popen1')->show();
+	E2DScreen_searchAssert(mMainScreen, 'Popenp1')->show();
+
+	setMsgID_('5479_00', '5479_00', '5479_00'); // "Choose a Ship's Log."
+
+	sys->heapStatusStart("TScreen_FS_scene_open::setArchive--callback_message", nullptr);
+	E2DPane_setTreeCallBackMessage(mMainScreen, mMainScreen);
+	sys->heapStatusEnd("TScreen_FS_scene_open::setArchive--callback_message");
+	mMainScreen->addCallBackPane(mMainScreen, &mAnimOpenScreenA);
+	mMainScreen->addCallBackPane(mMainScreen, &mAnimOpenScreenB);
+	for (int i = 0; i < 3; i++) {
+		mMainScreen->addCallBackPane(mPaneSelE0[i], &mAnimOpenScreenC[i]);
+		mMainScreen->addCallBackPane(mPaneSelE1[i], &mAnimOpenScreenD[i]);
+	}
+
+	mMainScreen->addCallBackPane(mMainScreen, &mAnimOpenScreenE);
+	mMainScreen->addCallBackPane(mMainScreen, &mAnimOpenScreenF);
+	mMainScreen->addCallBackPane(mMainScreen, &mAnimOpenScreenG);
+	mMainScreen->addCallBackPane(mMainScreen, &mAnimOpenScreenH);
+
+	for (int i = 0; i < 3; i++) {
+		mMainScreen->addCallBackPane(mPaneND[i], &mAnimFileBallIn[i]);
+		mMainScreen->addCallBackPane(mPaneND[i], &mAnimFileBallOut[i]);
+		mMainScreen->addCallBackPane(mPaneND[i], &mAnimFileBallDecide[i]);
+	}
+
+	mMainScreen->addCallBack('Ngrpbt0', &mAnimInCopyEraseA);
+	mMainScreen->addCallBack('Ngrpbt0', &mAnimOutCopyEraseA);
+	mMainScreen->addCallBack('Ngrpbt1', &mAnimInCopyEraseB);
+	mMainScreen->addCallBack('Ngrpbt1', &mAnimOutCopyEraseB);
+
+	mMainScreen->addCallBack('N_y', &mAnimInYesNoA);
+	mMainScreen->addCallBack('N_y', &mAnimOutYesNoA);
+	mMainScreen->addCallBack('N_n', &mAnimInYesNoB);
+	mMainScreen->addCallBack('N_n', &mAnimOutYesNoB);
+
+	mMainScreen->addCallBack('NmainMG', &mAnimWaitScreen);
+	mMainScreen->addCallBack('Ndataw', &mAnimOpenDataWindow);
+	mMainScreen->addCallBack('Ndataw', &mAnimCloseDataWindow);
+	mMainScreen->addCallBack('Ndataw', &mAnimDecideDataWindow);
+
+	mMainScreen->addCallBackPane(mMainScreen, &mCalcAnim);
+
+	u32* day0       = &mFileData[0].mCurrentDay;
+	mCounterDay[0]  = og::Screen::setCallBack_CounterDay(mMainScreen, 'Pd1nor', 'Pd1nol', 'Pd1noc', day0, 6, arc);
+	mCounterDayM[0] = og::Screen::setCallBack_CounterDay(mMainScreen, 'Pmd1nor', 'Pmd1nol', 'Pmd1noc', day0, 6, arc);
+	u32* day1       = &mFileData[1].mCurrentDay;
+	mCounterDay[1]  = og::Screen::setCallBack_CounterDay(mMainScreen, 'Pd2nor', 'Pd2nol', 'Pd2noc', day1, 6, arc);
+	mCounterDayM[1] = og::Screen::setCallBack_CounterDay(mMainScreen, 'Pmd2nor', 'Pmd2nol', 'Pmd2noc', day1, 6, arc);
+	u32* day2       = &mFileData[2].mCurrentDay;
+	mCounterDay[2]  = og::Screen::setCallBack_CounterDay(mMainScreen, 'Pd3nor', 'Pd3nol', 'Pd3noc', day2, 6, arc);
+	mCounterDayM[2] = og::Screen::setCallBack_CounterDay(mMainScreen, 'Pmd3nor', 'Pmd3nol', 'Pmd3noc', day2, 6, arc);
+
+	mMainScreen->addCallBackPane(mPaneMesgYes, &mBlinkFontYes);
+	mMainScreen->addCallBackPane(mPaneMesgNo, &mBlinkFontNo);
+	mBlinkFontYes.set(mFontColor2, mFontColor1);
+	mBlinkFontNo.set(mFontColor2, mFontColor1);
+	mMainScreen->addCallBack('N_y', &mPurupuru[0]);
+	mMainScreen->addCallBack('N_n', &mPurupuru[1]);
+
+	mAnimOpenScreenA.loadAnm("file_select.bck", arc, 0, 80);
+
+	mAnimFileBallIn[0].loadAnm("file_select.bck", arc, 80, 106);
+	mAnimFileBallOut[0].loadAnm("file_select.bck", arc, 130, 164);
+	mAnimFileBallDecide[0].loadAnm("file_select.bck", arc, 420, 456);
+
+	mAnimFileBallIn[1].loadAnm("file_select.bck", arc, 136, 169);
+	mAnimFileBallOut[1].loadAnm("file_select.bck", arc, 209, 235);
+	mAnimFileBallDecide[1].loadAnm("file_select.bck", arc, 420, 456);
+
+	mAnimFileBallIn[2].loadAnm("file_select.bck", arc, 215, 248);
+	mAnimFileBallOut[2].loadAnm("file_select.bck", arc, 309, 332);
+	mAnimFileBallDecide[2].loadAnm("file_select.bck", arc, 420, 456);
+
+	mAnimInCopyEraseA.loadAnm("file_select.bck", arc, 90, 106);
+	mAnimInCopyEraseB.loadAnm("file_select.bck", arc, 90, 106);
+	mAnimOutCopyEraseA.loadAnm("file_select.bck", arc, 289, 304);
+	mAnimOutCopyEraseB.loadAnm("file_select.bck", arc, 289, 304);
+
+	mAnimInYesNoA.loadAnm("file_select.bck", arc, 520, 543);
+	mAnimInYesNoB.loadAnm("file_select.bck", arc, 520, 543);
+	mAnimOutYesNoA.loadAnm("file_select.bck", arc, 420, 546);
+	mAnimOutYesNoB.loadAnm("file_select.bck", arc, 720, 733);
+
+	mAnimWaitScreen.loadAnm("file_select.bck", arc, 80, 92);
+	mAnimOpenDataWindow.loadAnm("file_select.bck", arc, 80, 90);
+	mAnimCloseDataWindow.loadAnm("file_select.bck", arc, 138, 146);
+	mAnimDecideDataWindow.loadAnm("file_select.bck", arc, 438, 468);
+
+	mAnimOpenScreenB.loadAnm("file_select.bpk", arc, 0, 80);
+	mAnimOpenScreenC[0].loadAnm("file_select_03.btk", arc, 0, 99999);
+	mAnimOpenScreenC[1].loadAnm("file_select_03.btk", arc, 0, 99999);
+	mAnimOpenScreenC[2].loadAnm("file_select_03.btk", arc, 0, 99999);
+	mAnimOpenScreenD[0].loadAnm("file_select_03.btk", arc, 0, 99999);
+	mAnimOpenScreenD[1].loadAnm("file_select_03.btk", arc, 0, 99999);
+	mAnimOpenScreenD[2].loadAnm("file_select_03.btk", arc, 0, 99999);
+	mAnimOpenScreenE.loadAnm("file_select_02.btk", arc, 0, 99999);
+	mAnimOpenScreenF.loadAnm("file_select.btk", arc, 0, 99999);
+	mAnimOpenScreenG.loadAnm("file_select_04.btk", arc, 0, 99999);
+	mAnimOpenScreenH.loadAnm("file_select.brk", arc, 0, 99999);
+
+	for (int i = 0; i < 3; i++) {
+		mAnimOpenScreenC[i].mAnim->searchUpdateMaterialID(mMainScreen);
+		mAnimOpenScreenD[i].mAnim->searchUpdateMaterialID(mMainScreen);
+	}
+	E2DPane_setTreeInfluencedAlpha(mPaneDataWindow, true);
+	mPaneDataWindow->setAlpha(0);
+
+	void* file = JKRDvdRipper::loadToMainRAM("user/Ebisawa/effect/eff2d_file_select.jpc", nullptr, Switch_0, 0, nullptr,
+	                                         JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
+	P2ASSERTLINE(518, file);
+	mParticleResource = new JPAResourceManager(file, JKRGetCurrentHeap());
+
+	sys->heapStatusEnd("TScreenFileSelect::setArchive");
 	/*
 stwu     r1, -0x60(r1)
 mflr     r0
@@ -1587,76 +1663,22 @@ blr
  * Address:	803D66DC
  * Size:	000100
  */
-void FileSelect::TMainScreen::doKillScreen()
+void TMainScreen::doKillScreen()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r3
-addi     r3, r29, 0x9ec
-lwz      r12, 0x9ec(r29)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-addi     r3, r29, 0xa24
-lwz      r12, 0xa24(r29)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-addi     r3, r29, 0xa5c
-lwz      r12, 0xa5c(r29)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-addi     r3, r29, 0xa70
-lwz      r12, 0xa70(r29)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-li       r30, 0
-mr       r31, r29
+	mCursorA.mCursor.kill();
+	mCursorB.mCursor.kill();
+	mEfxFileCopy.kill();
+	mEfxFileCopyM.kill();
 
-lbl_803D6750:
-lwz      r3, 0xa84(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xa90(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-addi     r30, r30, 1
-addi     r31, r31, 4
-cmpwi    r30, 3
-blt      lbl_803D6750
-addi     r3, r29, 0xa9c
-lwz      r12, 0xa9c(r29)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-addi     r3, r29, 0xab0
-lwz      r12, 0xab0(r29)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-lwz      r3, particle2dMgr@sda21(r13)
-bl       clearSceneResourceManager__14TParticle2dMgrFv
-li       r0, 0
-stb      r0, 0xaf8(r29)
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		mEfxFileSel[i]->kill();
+		mEfxFileSelM[i]->kill();
+	}
+
+	mEfxDelete.kill();
+	mEfxDeleteM.kill();
+	particle2dMgr->clearSceneResourceManager();
+	mIsCardSeActive = false;
 }
 
 /*
@@ -1664,177 +1686,47 @@ blr
  * Address:	803D67DC
  * Size:	000284
  */
-void FileSelect::TMainScreen::doOpenScreen(ebi::Screen::ArgOpen*)
+void TMainScreen::doOpenScreen(ArgOpen*)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-lwz      r0, 0xaf4(r3)
-cmplwi   r0, 0
-bne      lbl_803D6820
-lis      r3, lbl_80496B70@ha
-lis      r5, lbl_80496B88@ha
-addi     r3, r3, lbl_80496B70@l
-li       r4, 0x231
-addi     r5, r5, lbl_80496B88@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(561, mParticleResource);
+	particle2dMgr->setSceneResourceManager(mParticleResource);
 
-lbl_803D6820:
-lwz      r3, particle2dMgr@sda21(r13)
-lwz      r4, 0xaf4(r31)
-bl       setSceneResourceManager__14TParticle2dMgrFP18JPAResourceManager
-lwz      r3, 0xc(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x54(r12)
-mtctr    r12
-bctrl
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0xe0
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x11c
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-li       r29, 0
-mr       r30, r31
+	mMainScreen->clearAnmTransform();
+	mAnimOpenScreenA.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	mAnimOpenScreenB.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 
-lbl_803D6888:
-addi     r3, r30, 0x158
-bl       setRandFrame__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r30, 0x20c
-bl       setRandFrame__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r29, r29, 1
-addi     r30, r30, 0x3c
-cmpwi    r29, 3
-blt      lbl_803D6888
-lfs      f1, lbl_8051FB30@sda21(r2)
-addi     r3, r31, 0x158
-li       r4, 2
-li       r5, 0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lfs      f1, lbl_8051FB34@sda21(r2)
-addi     r3, r31, 0x194
-li       r4, 2
-li       r5, 0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lfs      f1, lbl_8051FB38@sda21(r2)
-addi     r3, r31, 0x1d0
-li       r4, 2
-li       r5, 0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lfs      f1, lbl_8051FB30@sda21(r2)
-addi     r3, r31, 0x20c
-li       r4, 2
-li       r5, 0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lfs      f1, lbl_8051FB34@sda21(r2)
-addi     r3, r31, 0x248
-li       r4, 2
-li       r5, 0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lfs      f1, lbl_8051FB38@sda21(r2)
-addi     r3, r31, 0x284
-li       r4, 2
-li       r5, 0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x2c0
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 2
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x2fc
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 2
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x338
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 2
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x374
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 2
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r3, sys@sda21(r13)
-lfs      f1, kFadeTime__Q23ebi8E2DFader@sda21(r2)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0xbe0(r31)
-li       r0, 1
-mr       r30, r31
-li       r29, 0
-stw      r3, 0xbe4(r31)
-stw      r0, 0xbdc(r31)
+	for (int i = 0; i < 3; i++) {
+		mAnimOpenScreenC[i].setRandFrame();
+		mAnimOpenScreenD[i].setRandFrame();
+	}
 
-lbl_803D69CC:
-lwz      r3, 0x20(r30)
-li       r4, 0xff
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x2c(r30)
-li       r4, 0xff
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-addi     r29, r29, 1
-addi     r30, r30, 4
-cmpwi    r29, 3
-blt      lbl_803D69CC
-li       r0, 0
-mr       r3, r31
-stb      r0, 0xba4(r31)
-stb      r0, 0xbb4(r31)
-bl       initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv
-mr       r3, r31
-li       r4, 0x1e
-bl       setIconColorAlpha___Q43ebi6Screen10FileSelect11TMainScreenFUc
-li       r0, 0
-stb      r0, 0xafc(r31)
-stb      r0, 0xafd(r31)
-stb      r0, 0xafe(r31)
-stb      r0, 0xaff(r31)
-stb      r0, 0xaf8(r31)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	mAnimOpenScreenC[0].play(0.5f, J3DAA_UNKNOWN_2, false);
+	mAnimOpenScreenC[1].play(0.25f, J3DAA_UNKNOWN_2, false);
+	mAnimOpenScreenC[2].play(0.4f, J3DAA_UNKNOWN_2, false);
+	mAnimOpenScreenD[0].play(0.5f, J3DAA_UNKNOWN_2, false);
+	mAnimOpenScreenD[1].play(0.25f, J3DAA_UNKNOWN_2, false);
+	mAnimOpenScreenD[2].play(0.4f, J3DAA_UNKNOWN_2, false);
+	mAnimOpenScreenE.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true);
+	mAnimOpenScreenF.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true);
+	mAnimOpenScreenG.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true);
+	mAnimOpenScreenH.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_2, true);
+
+	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
+	mCounter    = count;
+	mCounterMax = count;
+	mState      = 1;
+
+	for (int i = 0; i < 3; i++) {
+		mPaneSel[0][i]->setAlpha(255);
+		mPaneSel[1][i]->setAlpha(255);
+	}
+
+	mNewScreen._04  = false;
+	mDataScreen._0C = false;
+	initDataBalls_();
+	setIconColorAlpha_(30);
+	mFlags.clear();
+	mIsCardSeActive = false;
 }
 
 /*
@@ -1842,122 +1734,32 @@ blr
  * Address:	803D6A60
  * Size:	0001B0
  */
-void FileSelect::TMainScreen::doInitWaitState()
+void TMainScreen::doInitWaitState()
 {
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-stw      r31, 0x4c(r1)
-stw      r30, 0x48(r1)
-stw      r29, 0x44(r1)
-stw      r28, 0x40(r1)
-mr       r28, r3
-lwz      r3, 0xc(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x54(r12)
-mtctr    r12
-bctrl
-addi     r3, r28, 0xe0
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r28, 0x11c
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r5, sys@sda21(r13)
-addi     r3, r28, 0x7ac
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-li       r30, 0
-mr       r31, r28
+	mMainScreen->clearAnmTransform();
+	mAnimOpenScreenA.stop();
+	mAnimOpenScreenB.stop();
+	mAnimWaitScreen.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 
-lbl_803D6ACC:
-lwz      r3, 0x20(r31)
-li       r4, 0xff
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x2c(r31)
-li       r4, 0xff
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-addi     r30, r30, 1
-addi     r31, r31, 4
-cmpwi    r30, 3
-blt      lbl_803D6ACC
-lwz      r3, sys@sda21(r13)
-lfs      f1, lbl_8051FB30@sda21(r2)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0xbe8(r28)
-lis      r4, __vt__Q25efx2d3Arg@ha
-mr       r30, r28
-li       r29, 0
-stw      r3, 0xbec(r28)
-addi     r31, r4, __vt__Q25efx2d3Arg@l
+	for (int i = 0; i < 3; i++) {
+		mPaneSel[0][i]->setAlpha(255);
+		mPaneSel[1][i]->setAlpha(255);
+	}
 
-lbl_803D6B38:
-mr       r4, r28
-mr       r5, r29
-addi     r3, r1, 8
-bl       getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-lwz      r0, 8(r1)
-addi     r3, r1, 0x18
-stw      r0, 0xc(r1)
-lwz      r4, 0x20(r30)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x18(r1)
-addi     r4, r1, 0x28
-lfs      f0, 0x1c(r1)
-stfs     f1, 0x20(r1)
-stfs     f0, 0x24(r1)
-lwz      r3, 0x20(r1)
-lwz      r0, 0x24(r1)
-stw      r3, 0x10(r1)
-stw      r0, 0x14(r1)
-lfs      f1, 0x10(r1)
-lfs      f0, 0x14(r1)
-stw      r31, 0x30(r1)
-stfs     f1, 0x28(r1)
-stfs     f0, 0x2c(r1)
-lwz      r3, 0xa84(r30)
-lwz      r12, 0(r3)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xa84(r30)
-addi     r4, r1, 0xc
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-lwz      r3, 0xa90(r30)
-addi     r4, r1, 0x28
-lwz      r12, 0(r3)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xa90(r30)
-addi     r4, r1, 0xc
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-addi     r29, r29, 1
-addi     r30, r30, 4
-cmpwi    r29, 3
-blt      lbl_803D6B38
-li       r0, 0
-stw      r0, 0xbdc(r28)
-lwz      r0, 0x54(r1)
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-lwz      r29, 0x44(r1)
-lwz      r28, 0x40(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
+	u32 count       = 0.5f / sys->mDeltaTime;
+	mOpenCounter    = count;
+	mOpenCounterMax = count;
+
+	for (int i = 0; i < 3; i++) {
+		JUtility::TColor color = getDataBallColor_(i);
+		Vector2f pos           = E2DPane_getGlbCenter(mPaneSel[0][i]);
+		efx2d::Arg arg(pos);
+		mEfxFileSel[i]->create(&arg);
+		mEfxFileSel[i]->setGlobalEnvColor(color);
+		mEfxFileSelM[i]->create(&arg);
+		mEfxFileSelM[i]->setGlobalEnvColor(color);
+	}
+	mState = 0;
 }
 
 /*
@@ -1965,50 +1767,16 @@ blr
  * Address:	803D6C10
  * Size:	000098
  */
-void FileSelect::TMainScreen::doCloseScreen(ebi::Screen::ArgClose*)
+void TMainScreen::doCloseScreen(ArgClose*)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f1, kFadeTime__Q23ebi8E2DFader@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-stw      r30, 8(r1)
-lwz      r4, sys@sda21(r13)
-lfs      f0, 0x54(r4)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0xbe0(r31)
-li       r0, 2
-li       r30, 0
-stw      r3, 0xbe4(r31)
-stw      r0, 0xbdc(r31)
-
-lbl_803D6C50:
-lwz      r3, 0x20(r31)
-li       r4, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x2c(r31)
-li       r4, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-addi     r30, r30, 1
-addi     r31, r31, 4
-cmpwi    r30, 3
-blt      lbl_803D6C50
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	u32 count   = E2DFader::kFadeTime / sys->mDeltaTime;
+	mCounter    = count;
+	mCounterMax = count;
+	mState      = 2;
+	for (int i = 0; i < 3; i++) {
+		mPaneSel[0][i]->setAlpha(0);
+		mPaneSel[1][i]->setAlpha(0);
+	}
 }
 
 /*
@@ -2016,50 +1784,19 @@ blr
  * Address:	803D6CA8
  * Size:	000088
  */
-bool FileSelect::TMainScreen::doUpdateStateOpen()
+bool TMainScreen::doUpdateStateOpen()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xc(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0xbdc(r31)
-cmpwi    r0, 0
-beq      lbl_803D6CF0
-lwz      r3, 0xbe0(r31)
-cmplwi   r3, 0
-beq      lbl_803D6CF0
-addi     r0, r3, -1
-stw      r0, 0xbe0(r31)
+	mMainScreen->update();
+	if (mState) {
+		if (mCounter) {
+			mCounter--;
+		}
+	}
 
-lbl_803D6CF0:
-addi     r3, r31, 0xe0
-bl       isFinish__Q23ebi19E2DCallBack_AnmBaseFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_803D6D18
-addi     r3, r31, 0x11c
-bl       isFinish__Q23ebi19E2DCallBack_AnmBaseFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_803D6D18
-li       r3, 1
-b        lbl_803D6D1C
-
-lbl_803D6D18:
-li       r3, 0
-
-lbl_803D6D1C:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (mAnimOpenScreenA.isFinish() && mAnimOpenScreenB.isFinish()) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2067,8 +1804,29 @@ blr
  * Address:	803D6D30
  * Size:	00031C
  */
-bool FileSelect::TMainScreen::doUpdateStateWait()
+bool TMainScreen::doUpdateStateWait()
 {
+	mMainScreen->update();
+	mCursorA.update();
+	mCursorB.update();
+	if (mState && mCounter) {
+		mCounter--;
+	}
+	if (mOpenCounter) {
+		mOpenCounter--;
+	}
+
+	updateMsg_();
+	for (int i = 0; i < 3; i++) {
+		mCursorSelPos[i]  = E2DPane_getGlbCenter(mPaneSel[0][i]);
+		mCursorSelPosM[i] = E2DPane_getGlbCenter(mPaneSel[1][i]);
+		mEfxFileSel[i]->setGlobalScale(mPaneND[i]->mScale.x / 1.2f);
+		mEfxFileSelM[i]->setGlobalScale(mPaneND[i]->mScale.x / 1.2f);
+	}
+	if (mIsCardSeActive) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0);
+	}
+	return false;
 	/*
 stwu     r1, -0x70(r1)
 mflr     r0
@@ -2301,8 +2059,21 @@ blr
  * Address:	803D704C
  * Size:	0000CC
  */
-bool FileSelect::TMainScreen::doUpdateStateClose()
+bool TMainScreen::doUpdateStateClose()
 {
+	mMainScreen->update();
+	if (mState) {
+		if (mCounter) {
+			mCounter--;
+		}
+	}
+
+	for (int i = 0; i < 3; i++) {
+		mPaneSel[0][i]->setAlpha(0);
+		mPaneSel[1][i]->setAlpha(0);
+	}
+
+	return (mCounter == 0) ? true : false;
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -2371,7 +2142,7 @@ blr
  * Address:	803D7118
  * Size:	000374
  */
-void FileSelect::TMainScreen::doDraw()
+void TMainScreen::doDraw()
 {
 	/*
 stwu     r1, -0x5a0(r1)
@@ -2628,130 +2399,32 @@ blr
  * Address:	803D748C
  * Size:	0001B0
  */
-void FileSelect::TMainScreen::inDataBall(s32)
+void TMainScreen::inDataBall(s32 fileID)
 {
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-li       r0, 0
-stmw     r27, 0x3c(r1)
-or.      r31, r4, r4
-mr       r30, r3
-blt      lbl_803D74B8
-cmpwi    r31, 3
-bge      lbl_803D74B8
-li       r0, 1
+	P2ASSERTBOUNDSLINE(759, 0, fileID, 3);
+	mAnimFileBallIn[fileID].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	mAnimFileBallOut[fileID].stop();
+	mAnimFileBallDecide[fileID].stop();
 
-lbl_803D74B8:
-clrlwi.  r0, r0, 0x18
-bne      lbl_803D74DC
-lis      r3, lbl_80496B70@ha
-lis      r5, lbl_80496B88@ha
-addi     r3, r3, lbl_80496B70@l
-li       r4, 0x2f7
-addi     r5, r5, lbl_80496B88@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	for (int i = 0; i < 3; i++) {
+		JUtility::TColor color = getDataBallColor_(i);
+		Vector2f pos           = E2DPane_getGlbCenter(mPaneSel[0][i]);
+		efx2d::Arg arg(pos);
+		mEfxFileSel[i]->create(&arg);
+		mEfxFileSel[i]->setGlobalEnvColor(color);
+		mEfxFileSelM[i]->create(&arg);
+		mEfxFileSelM[i]->setGlobalEnvColor(color);
+	}
 
-lbl_803D74DC:
-lwz      r3, sys@sda21(r13)
-mulli    r0, r31, 0x3c
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r3)
-li       r5, 1
-add      r28, r30, r0
-fmuls    f1, f1, f0
-addi     r3, r28, 0x3b0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-addi     r3, r28, 0x464
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r28, 0x518
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-lis      r3, __vt__Q25efx2d3Arg@ha
-mr       r28, r30
-addi     r29, r3, __vt__Q25efx2d3Arg@l
-li       r27, 0
-
-lbl_803D7524:
-mr       r4, r30
-mr       r5, r27
-addi     r3, r1, 8
-bl       getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-lwz      r0, 8(r1)
-addi     r3, r1, 0x18
-stw      r0, 0xc(r1)
-lwz      r4, 0x20(r28)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x18(r1)
-addi     r4, r1, 0x28
-lfs      f0, 0x1c(r1)
-stfs     f1, 0x20(r1)
-stfs     f0, 0x24(r1)
-lwz      r3, 0x20(r1)
-lwz      r0, 0x24(r1)
-stw      r3, 0x10(r1)
-stw      r0, 0x14(r1)
-lfs      f1, 0x10(r1)
-lfs      f0, 0x14(r1)
-stw      r29, 0x30(r1)
-stfs     f1, 0x28(r1)
-stfs     f0, 0x2c(r1)
-lwz      r3, 0xa84(r28)
-lwz      r12, 0(r3)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xa84(r28)
-addi     r4, r1, 0xc
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-lwz      r3, 0xa90(r28)
-addi     r4, r1, 0x28
-lwz      r12, 0(r3)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xa90(r28)
-addi     r4, r1, 0xc
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-addi     r27, r27, 1
-addi     r28, r28, 4
-cmpwi    r27, 3
-blt      lbl_803D7524
-li       r27, 0
-mr       r28, r30
-
-lbl_803D75DC:
-cmpw     r31, r27
-bne      lbl_803D7600
-lwz      r3, 0xa84(r28)
-li       r4, 0xff
-bl       setGlobalAlpha__Q25efx2d8TForeverFUc
-lwz      r3, 0xa90(r28)
-li       r4, 0xff
-bl       setGlobalAlpha__Q25efx2d8TForeverFUc
-b        lbl_803D7618
-
-lbl_803D7600:
-lwz      r3, 0xa84(r28)
-li       r4, 0x50
-bl       setGlobalAlpha__Q25efx2d8TForeverFUc
-lwz      r3, 0xa90(r28)
-li       r4, 0x50
-bl       setGlobalAlpha__Q25efx2d8TForeverFUc
-
-lbl_803D7618:
-addi     r27, r27, 1
-addi     r28, r28, 4
-cmpwi    r27, 3
-blt      lbl_803D75DC
-lmw      r27, 0x3c(r1)
-lwz      r0, 0x54(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		if (fileID == i) {
+			mEfxFileSel[i]->setGlobalAlpha(255);
+			mEfxFileSelM[i]->setGlobalAlpha(255);
+		} else {
+			mEfxFileSel[i]->setGlobalAlpha(80);
+			mEfxFileSelM[i]->setGlobalAlpha(80);
+		}
+	}
 }
 
 /*
@@ -2759,55 +2432,12 @@ blr
  * Address:	803D763C
  * Size:	0000A4
  */
-void FileSelect::TMainScreen::outDataBall(s32)
+void TMainScreen::outDataBall(s32 fileID)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-li       r0, 0
-stw      r31, 0xc(r1)
-or.      r31, r4, r4
-stw      r30, 8(r1)
-mr       r30, r3
-blt      lbl_803D766C
-cmpwi    r31, 3
-bge      lbl_803D766C
-li       r0, 1
-
-lbl_803D766C:
-clrlwi.  r0, r0, 0x18
-bne      lbl_803D7690
-lis      r3, lbl_80496B70@ha
-lis      r5, lbl_80496B88@ha
-addi     r3, r3, lbl_80496B70@l
-li       r4, 0x31c
-addi     r5, r5, lbl_80496B88@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D7690:
-mulli    r0, r31, 0x3c
-add      r31, r30, r0
-addi     r3, r31, 0x3b0
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x464
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-addi     r3, r31, 0x518
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	P2ASSERTBOUNDSLINE(796, 0, fileID, 3);
+	mAnimFileBallIn[fileID].stop();
+	mAnimFileBallOut[fileID].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	mAnimFileBallDecide[fileID].stop();
 }
 
 /*
@@ -2815,55 +2445,12 @@ blr
  * Address:	803D76E0
  * Size:	0000A4
  */
-void FileSelect::TMainScreen::decideDataBall(s32)
+void TMainScreen::decideDataBall(s32 fileID)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-li       r0, 0
-stw      r31, 0xc(r1)
-or.      r31, r4, r4
-stw      r30, 8(r1)
-mr       r30, r3
-blt      lbl_803D7710
-cmpwi    r31, 3
-bge      lbl_803D7710
-li       r0, 1
-
-lbl_803D7710:
-clrlwi.  r0, r0, 0x18
-bne      lbl_803D7734
-lis      r3, lbl_80496B70@ha
-lis      r5, lbl_80496B88@ha
-addi     r3, r3, lbl_80496B70@l
-li       r4, 0x327
-addi     r5, r5, lbl_80496B88@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D7734:
-mulli    r0, r31, 0x3c
-add      r31, r30, r0
-addi     r3, r31, 0x3b0
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r31, 0x464
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x518
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	P2ASSERTBOUNDSLINE(807, 0, fileID, 3);
+	mAnimFileBallIn[fileID].stop();
+	mAnimFileBallOut[fileID].stop();
+	mAnimFileBallDecide[fileID].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 }
 
 /*
@@ -2871,85 +2458,17 @@ blr
  * Address:	803D7784
  * Size:	000124
  */
-void FileSelect::TMainScreen::createFiledecide(s32)
+void TMainScreen::createFiledecide(s32 id)
 {
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-slwi     r0, r4, 2
-stw      r31, 0x4c(r1)
-mr       r31, r3
-add      r4, r31, r0
-addi     r3, r1, 0x10
-stw      r30, 0x48(r1)
-lwz      r4, 0x20(r4)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x10(r1)
-li       r9, 0
-lfs      f0, 0x14(r1)
-lis      r3, __vt__Q25efx2d7TBaseIF@ha
-stfs     f1, 0x18(r1)
-addi     r0, r3, __vt__Q25efx2d7TBaseIF@l
-lis      r3, __vt__Q25efx2d5TBase@ha
-lis      r4, __vt__Q25efx2d8TSimple2@ha
-stfs     f0, 0x1c(r1)
-lis      r5, __vt__Q25efx2d3Arg@ha
-lwz      r6, 0x18(r1)
-addi     r10, r3, __vt__Q25efx2d5TBase@l
-stw      r0, 0x2c(r1)
-lis      r3, __vt__Q35efx2d10FileSelect13T2DFiledecide@ha
-lwz      r0, 0x1c(r1)
-addi     r8, r4, __vt__Q25efx2d8TSimple2@l
-stw      r6, 8(r1)
-addi     r11, r5, __vt__Q25efx2d3Arg@l
-li       r7, 2
-li       r6, 3
-stw      r0, 0xc(r1)
-addi     r5, r3, __vt__Q35efx2d10FileSelect13T2DFiledecide@l
-lfs      f1, 8(r1)
-li       r0, 1
-stw      r10, 0x2c(r1)
-addi     r3, r1, 0x2c
-lfs      f0, 0xc(r1)
-addi     r4, r1, 0x20
-stb      r9, 0x30(r1)
-stw      r8, 0x2c(r1)
-stw      r11, 0x28(r1)
-stfs     f1, 0x20(r1)
-stfs     f0, 0x24(r1)
-stb      r9, 0x31(r1)
-sth      r7, 0x34(r1)
-sth      r6, 0x36(r1)
-stw      r9, 0x38(r1)
-stw      r9, 0x3c(r1)
-stw      r5, 0x2c(r1)
-stb      r0, 0x30(r1)
-bl       create__Q25efx2d8TSimple2FPQ25efx2d3Arg
-li       r30, 0
+	Vector2f pos = E2DPane_getGlbCenter(mPaneSel[0][id]);
+	efx2d::Arg arg(pos);
+	efx2d::FileSelect::T2DFiledecide efx;
+	efx.create(&arg);
 
-lbl_803D7858:
-lwz      r3, 0xa84(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xa90(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-addi     r30, r30, 1
-addi     r31, r31, 4
-cmpwi    r30, 3
-blt      lbl_803D7858
-lwz      r0, 0x54(r1)
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		mEfxFileSel[i]->fade();
+		mEfxFileSelM[i]->fade();
+	}
 }
 
 /*
@@ -2957,127 +2476,47 @@ blr
  * Address:	803D78A8
  * Size:	000030
  */
-bool FileSelect::TMainScreen::isFinishOutDataBall(s32)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-mulli    r4, r4, 0x3c
-stw      r0, 0x14(r1)
-mr       r0, r3
-addi     r3, r4, 0x464
-add      r3, r0, r3
-bl       isFinish__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+bool TMainScreen::isFinishOutDataBall(s32 fileID) { return mAnimFileBallOut[fileID].isFinish(); }
 
 /*
  * --INFO--
  * Address:	803D78D8
  * Size:	000030
  */
-bool FileSelect::TMainScreen::isFinishDecideDataBall(s32)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-mulli    r4, r4, 0x3c
-stw      r0, 0x14(r1)
-mr       r0, r3
-addi     r3, r4, 0x518
-add      r3, r0, r3
-bl       isFinish__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+bool TMainScreen::isFinishDecideDataBall(s32 fileID) { return mAnimFileBallDecide[fileID].isFinish(); }
 
 /*
  * --INFO--
  * Address:	803D7908
  * Size:	0000F4
  */
-void FileSelect::TMainScreen::createCopyCursor(s32)
+void TMainScreen::createCopyCursor(s32 fileID)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-cmpwi    r4, 1
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-beq      lbl_803D794C
-bge      lbl_803D7934
-cmpwi    r4, 0
-bge      lbl_803D7940
-b        lbl_803D7960
+	int id1, id2;
+	switch (fileID) {
+	case 0:
+		id1 = 1;
+		id2 = 2;
+		break;
+	case 1:
+		id1 = 0;
+		id2 = 2;
+		break;
+	case 2:
+		id1 = 0;
+		id2 = 1;
+		break;
+	}
 
-lbl_803D7934:
-cmpwi    r4, 3
-bge      lbl_803D7960
-b        lbl_803D7958
+	mCursorA.setPanes(mPaneCopyCursorL[id1], mPaneCopyCursorL[id2]);
+	mCursorB.setPanes(mPaneCopyCursorR[id1], mPaneCopyCursorR[id2]);
 
-lbl_803D7940:
-li       r3, 1
-li       r0, 2
-b        lbl_803D7960
-
-lbl_803D794C:
-li       r3, 0
-li       r0, 2
-b        lbl_803D7960
-
-lbl_803D7958:
-li       r3, 0
-li       r0, 1
-
-lbl_803D7960:
-slwi     r0, r0, 2
-slwi     r3, r3, 2
-add      r6, r31, r0
-lfs      f0, lbl_8051FB24@sda21(r2)
-add      r5, r31, r3
-lwz      r7, 0x80(r6)
-lwz      r4, 0x80(r5)
-li       r0, 1
-addi     r3, r31, 0x9ec
-stw      r4, 0xa1c(r31)
-stw      r7, 0xa20(r31)
-lwz      r6, 0x8c(r6)
-lwz      r4, 0x8c(r5)
-stw      r4, 0xa54(r31)
-stw      r6, 0xa58(r31)
-stfs     f0, 0xa14(r31)
-stb      r0, 0xa18(r31)
-stfs     f0, 0xa4c(r31)
-stb      r0, 0xa50(r31)
-bl       update__Q23ebi12TYesNoCursorFv
-addi     r3, r31, 0xa24
-bl       update__Q23ebi12TYesNoCursorFv
-addi     r3, r31, 0x9ec
-li       r4, 0
-lwz      r12, 0x9ec(r31)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0xa24
-li       r4, 0
-lwz      r12, 0xa24(r31)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mCursorA.start();
+	mCursorB.start();
+	mCursorA.update();
+	mCursorB.update();
+	mCursorA.mCursor.create(nullptr);
+	mCursorB.mCursor.create(nullptr);
 }
 
 /*
@@ -3085,30 +2524,10 @@ blr
  * Address:	803D79FC
  * Size:	000050
  */
-void FileSelect::TMainScreen::fadeCopyCursor()
+void TMainScreen::fadeCopyCursor()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-addi     r3, r31, 0x9ec
-lwz      r12, 0x9ec(r31)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0xa24
-lwz      r12, 0xa24(r31)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mCursorA.mCursor.fade();
+	mCursorB.mCursor.fade();
 }
 
 // /*
@@ -3116,7 +2535,7 @@ blr
 //  * Address:	........
 //  * Size:	000050
 //  */
-// void FileSelect::TMainScreen::killCopyCursor()
+// void TMainScreen::killCopyCursor()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -3126,14 +2545,10 @@ blr
  * Address:	803D7A4C
  * Size:	000010
  */
-void FileSelect::TMainScreen::moveLeftCopyCursor()
+void TMainScreen::moveLeftCopyCursor()
 {
-	/*
-li       r0, 1
-stb      r0, 0xa18(r3)
-stb      r0, 0xa50(r3)
-blr
-	*/
+	mCursorA.mIsLeft = true;
+	mCursorB.mIsLeft = true;
 }
 
 /*
@@ -3141,14 +2556,10 @@ blr
  * Address:	803D7A5C
  * Size:	000010
  */
-void FileSelect::TMainScreen::moveRightCopyCursor()
+void TMainScreen::moveRightCopyCursor()
 {
-	/*
-li       r0, 0
-stb      r0, 0xa18(r3)
-stb      r0, 0xa50(r3)
-blr
-	*/
+	mCursorA.mIsLeft = false;
+	mCursorB.mIsLeft = false;
 }
 
 /*
@@ -3156,130 +2567,22 @@ blr
  * Address:	803D7A6C
  * Size:	0001E0
  */
-void FileSelect::TMainScreen::createFilecopyEffect(s32, s32)
+void TMainScreen::createFilecopyEffect(s32 idFrom, s32 idTo)
 {
-	/*
-stwu     r1, -0xc0(r1)
-mflr     r0
-stw      r0, 0xc4(r1)
-stw      r31, 0xbc(r1)
-mr       r31, r3
-addi     r3, r1, 0x10
-stw      r30, 0xb8(r1)
-mr       r30, r4
-mr       r4, r31
-stw      r29, 0xb4(r1)
-mr       r29, r5
-mr       r5, r30
-bl       getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-slwi     r30, r30, 2
-lwz      r0, 0x10(r1)
-add      r4, r31, r30
-addi     r3, r1, 0x50
-stw      r0, 0x14(r1)
-lwz      r4, 0x20(r4)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-slwi     r29, r29, 2
-lfs      f1, 0x50(r1)
-lfs      f0, 0x54(r1)
-add      r4, r31, r29
-stfs     f1, 0x70(r1)
-addi     r3, r1, 0x48
-lwz      r4, 0x20(r4)
-stfs     f0, 0x74(r1)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x48(r1)
-lis      r3, __vt__Q25efx2d3Arg@ha
-lfs      f0, 0x4c(r1)
-addi     r5, r3, __vt__Q25efx2d3Arg@l
-stfs     f1, 0x68(r1)
-lis      r3, __vt__Q35efx2d10FileSelect11ArgFilecopy@ha
-lwz      r10, 0x14(r1)
-addi     r0, r3, __vt__Q35efx2d10FileSelect11ArgFilecopy@l
-stfs     f0, 0x6c(r1)
-addi     r3, r31, 0xa5c
-lwz      r9, 0x68(r1)
-addi     r4, r1, 0x90
-lwz      r8, 0x6c(r1)
-lwz      r7, 0x70(r1)
-lwz      r6, 0x74(r1)
-stw      r9, 0x40(r1)
-stw      r8, 0x44(r1)
-lfs      f1, 0x40(r1)
-stw      r7, 0x20(r1)
-lfs      f0, 0x44(r1)
-stw      r6, 0x24(r1)
-lfs      f3, 0x20(r1)
-stw      r5, 0x98(r1)
-lfs      f2, 0x24(r1)
-stfs     f3, 0x90(r1)
-stfs     f2, 0x94(r1)
-stw      r0, 0x98(r1)
-stfs     f1, 0x9c(r1)
-stfs     f0, 0xa0(r1)
-stw      r10, 0xa4(r1)
-lwz      r12, 0xa5c(r31)
-stw      r10, 0xc(r1)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-add      r4, r31, r30
-addi     r3, r1, 0x38
-lwz      r4, 0x2c(r4)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x38(r1)
-add      r4, r31, r29
-lfs      f0, 0x3c(r1)
-addi     r3, r1, 0x30
-stfs     f1, 0x60(r1)
-lwz      r4, 0x2c(r4)
-stfs     f0, 0x64(r1)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x30(r1)
-lis      r3, __vt__Q25efx2d3Arg@ha
-lfs      f0, 0x34(r1)
-addi     r5, r3, __vt__Q25efx2d3Arg@l
-stfs     f1, 0x58(r1)
-lis      r3, __vt__Q35efx2d10FileSelect11ArgFilecopy@ha
-lwz      r10, 0x14(r1)
-addi     r0, r3, __vt__Q35efx2d10FileSelect11ArgFilecopy@l
-stfs     f0, 0x5c(r1)
-addi     r3, r31, 0xa70
-lwz      r9, 0x58(r1)
-addi     r4, r1, 0x78
-lwz      r8, 0x5c(r1)
-lwz      r7, 0x60(r1)
-lwz      r6, 0x64(r1)
-stw      r9, 0x28(r1)
-stw      r8, 0x2c(r1)
-lfs      f1, 0x28(r1)
-stw      r7, 0x18(r1)
-lfs      f0, 0x2c(r1)
-stw      r6, 0x1c(r1)
-lfs      f3, 0x18(r1)
-stw      r5, 0x80(r1)
-lfs      f2, 0x1c(r1)
-stfs     f3, 0x78(r1)
-stfs     f2, 0x7c(r1)
-stw      r0, 0x80(r1)
-stfs     f1, 0x84(r1)
-stfs     f0, 0x88(r1)
-stw      r10, 0x8c(r1)
-lwz      r12, 0xa70(r31)
-stw      r10, 8(r1)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-stb      r0, 0xaf8(r31)
-lwz      r0, 0xc4(r1)
-lwz      r31, 0xbc(r1)
-lwz      r30, 0xb8(r1)
-lwz      r29, 0xb4(r1)
-mtlr     r0
-addi     r1, r1, 0xc0
-blr
-	*/
+	JUtility::TColor color = getDataBallColor_(idFrom);
+	Vector2f pos1          = E2DPane_getGlbCenter(mPaneSel[0][idFrom]);
+	Vector2f pos2          = E2DPane_getGlbCenter(mPaneSel[0][idTo]);
+
+	efx2d::FileSelect::ArgFilecopy arg(pos1, pos2, color);
+	mEfxFileCopy.create(&arg);
+
+	Vector2f pos3 = E2DPane_getGlbCenter(mPaneSel[1][idFrom]);
+	Vector2f pos4 = E2DPane_getGlbCenter(mPaneSel[1][idTo]);
+
+	efx2d::FileSelect::ArgFilecopy arg2(pos3, pos4, color);
+	mEfxFileCopyM.create(&arg2);
+
+	mIsCardSeActive = true;
 }
 
 /*
@@ -3287,32 +2590,11 @@ blr
  * Address:	803D7C4C
  * Size:	000058
  */
-void FileSelect::TMainScreen::fadeFilecopyEffect()
+void TMainScreen::fadeFilecopyEffect()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-addi     r3, r31, 0xa5c
-lwz      r12, 0xa5c(r31)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0xa70
-lwz      r12, 0xa70(r31)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-stb      r0, 0xaf8(r31)
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mEfxFileCopy.fade();
+	mEfxFileCopyM.fade();
+	mIsCardSeActive = false;
 }
 
 /*
@@ -3320,80 +2602,18 @@ blr
  * Address:	803D7CA4
  * Size:	000118
  */
-void FileSelect::TMainScreen::createFiledeletingEffect(s32)
+void TMainScreen::createFiledeletingEffect(s32 fileID)
 {
-	/*
-stwu     r1, -0x60(r1)
-mflr     r0
-stw      r0, 0x64(r1)
-stw      r31, 0x5c(r1)
-mr       r31, r4
-mr       r5, r31
-stw      r30, 0x58(r1)
-mr       r30, r3
-mr       r4, r30
-addi     r3, r1, 8
-bl       getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-slwi     r31, r31, 2
-addi     r3, r1, 0x24
-add      r4, r30, r31
-lwz      r4, 0x20(r4)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x24(r1)
-lis      r3, __vt__Q25efx2d3Arg@ha
-lfs      f0, 0x28(r1)
-addi     r0, r3, __vt__Q25efx2d3Arg@l
-stfs     f1, 0x34(r1)
-addi     r3, r30, 0xa9c
-addi     r4, r1, 0x48
-stfs     f0, 0x38(r1)
-lwz      r6, 0x34(r1)
-lwz      r5, 0x38(r1)
-stw      r6, 0x1c(r1)
-stw      r5, 0x20(r1)
-lfs      f1, 0x1c(r1)
-lfs      f0, 0x20(r1)
-stw      r0, 0x50(r1)
-stfs     f1, 0x48(r1)
-stfs     f0, 0x4c(r1)
-lwz      r12, 0xa9c(r30)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-add      r4, r30, r31
-addi     r3, r1, 0x14
-lwz      r4, 0x2c(r4)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x14(r1)
-lis      r3, __vt__Q25efx2d3Arg@ha
-lfs      f0, 0x18(r1)
-addi     r0, r3, __vt__Q25efx2d3Arg@l
-stfs     f1, 0x2c(r1)
-addi     r3, r30, 0xab0
-addi     r4, r1, 0x3c
-stfs     f0, 0x30(r1)
-lwz      r6, 0x2c(r1)
-lwz      r5, 0x30(r1)
-stw      r6, 0xc(r1)
-stw      r5, 0x10(r1)
-lfs      f1, 0xc(r1)
-lfs      f0, 0x10(r1)
-stw      r0, 0x44(r1)
-stfs     f1, 0x3c(r1)
-stfs     f0, 0x40(r1)
-lwz      r12, 0xab0(r30)
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-stb      r0, 0xaf8(r30)
-lwz      r0, 0x64(r1)
-lwz      r31, 0x5c(r1)
-lwz      r30, 0x58(r1)
-mtlr     r0
-addi     r1, r1, 0x60
-blr
-	*/
+	getDataBallColor_(fileID);
+
+	Vector2f pos = E2DPane_getGlbCenter(mPaneSel[0][fileID]);
+	efx2d::Arg arg(pos);
+	mEfxDelete.create(&arg);
+
+	Vector2f pos2 = E2DPane_getGlbCenter(mPaneSel[1][fileID]);
+	efx2d::Arg arg2(pos2);
+	mEfxDeleteM.create(&arg2);
+	mIsCardSeActive = true;
 }
 
 /*
@@ -3401,32 +2621,11 @@ blr
  * Address:	803D7DBC
  * Size:	000058
  */
-void FileSelect::TMainScreen::fadeFiledeletingEffect()
+void TMainScreen::fadeFiledeletingEffect()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-addi     r3, r31, 0xa9c
-lwz      r12, 0xa9c(r31)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0xab0
-lwz      r12, 0xab0(r31)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-stb      r0, 0xaf8(r31)
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mEfxDelete.fade();
+	mEfxDeleteM.fade();
+	mIsCardSeActive = false;
 }
 
 // /*
@@ -3434,7 +2633,7 @@ blr
 //  * Address:	........
 //  * Size:	0000F0
 //  */
-// void FileSelect::TMainScreen::killAllEffect()
+// void TMainScreen::killAllEffect()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -3444,228 +2643,30 @@ blr
  * Address:	803D7E14
  * Size:	000318
  */
-void FileSelect::TMainScreen::openDataWindow(s32)
+void TMainScreen::openDataWindow(s32 fileID)
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-li       r0, 0
-stw      r31, 0x2c(r1)
-or.      r31, r4, r4
-stw      r30, 0x28(r1)
-mr       r30, r3
-blt      lbl_803D7E44
-cmpwi    r31, 3
-bge      lbl_803D7E44
-li       r0, 1
+	P2ASSERTBOUNDSLINE(1008, 0, fileID, 3);
 
-lbl_803D7E44:
-clrlwi.  r0, r0, 0x18
-bne      lbl_803D7E68
-lis      r3, lbl_80496B70@ha
-lis      r5, lbl_80496B88@ha
-addi     r3, r3, lbl_80496B70@l
-li       r4, 0x3f0
-addi     r5, r5, lbl_80496B88@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	// weird but works
+	mCurrFileInfoId = fileID;
+	fileID          = mCurrFileInfoId;
+	TFileData* data = getFileData(fileID);
 
-lbl_803D7E68:
-stw      r31, 0xb9c(r30)
-lwz      r31, 0xb9c(r30)
-mulli    r3, r31, 0x34
-addi     r10, r3, 0xb00
-add      r10, r30, r10
-lbz      r0, 0(r10)
-cmplwi   r0, 0
-beq      lbl_803D7F94
-cmpwi    r31, 0
-li       r0, 0
-blt      lbl_803D7EA0
-cmpwi    r31, 3
-bge      lbl_803D7EA0
-li       r0, 1
+	if (data->mIsBrokenFile) {
+		mNewScreen.setData(fileID, '5508_00'); // "This Ship's Log is corrupted."
+	} else if (data->mIsNewFile) {
+		mNewScreen.setData(fileID, '5484_00'); // "This is a new Ship's Log."
+	} else {
+		mDataScreen.setData(fileID, data->mPokos, data->mTreasure, data->mCaveID, data->mCaveFloor, data->mPlayTimeHours,
+		                    data->mPlayTimeMinutes);
+	}
 
-lbl_803D7EA0:
-clrlwi.  r0, r0, 0x18
-bne      lbl_803D7EC4
-lis      r3, lbl_80496B70@ha
-lis      r5, lbl_80496B88@ha
-addi     r3, r3, lbl_80496B70@l
-li       r4, 0x39
-addi     r5, r5, lbl_80496B88@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D7EC4:
-lis      r4, 0x61746131@ha
-lwz      r3, 0xba0(r30)
-addi     r6, r4, 0x61746131@l
-li       r5, 0x5064
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x14(r1)
-lis      r4, 0x61746132@ha
-lwz      r3, 0xba0(r30)
-addi     r6, r4, 0x61746132@l
-li       r5, 0x5064
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x18(r1)
-lis      r4, 0x61746133@ha
-lwz      r3, 0xba0(r30)
-addi     r6, r4, 0x61746133@l
-li       r5, 0x5064
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-lwz      r5, 0x14(r1)
-li       r10, 0
-lis      r4, 0x6E657764@ha
-lwz      r9, 0x18(r1)
-stb      r10, 0xb0(r5)
-slwi     r0, r31, 2
-addi     r7, r1, 0x14
-li       r8, 1
-stw      r3, 0x1c(r1)
-addi     r6, r4, 0x6E657764@l
-li       r5, 0x54
-stb      r10, 0xb0(r9)
-lwzx     r4, r7, r0
-stb      r10, 0xb0(r3)
-stb      r8, 0xb0(r4)
-lwz      r3, 0xba0(r30)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-lis      r4, 0x385F3030@ha
-lis      r5, 0x00353530@ha
-addi     r0, r4, 0x385F3030@l
-lis      r4, 0x65776473@ha
-stw      r0, 0x1c(r3)
-addi     r0, r5, 0x00353530@l
-addi     r6, r4, 0x65776473@l
-li       r5, 0x546e
-stw      r0, 0x18(r3)
-lwz      r3, 0xba0(r30)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-lis      r5, 0x385F3030@ha
-lis      r4, 0x00353530@ha
-addi     r0, r5, 0x385F3030@l
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00353530@l
-stw      r0, 0x18(r3)
-b        lbl_803D80D0
-
-lbl_803D7F94:
-lbz      r0, 1(r10)
-cmplwi   r0, 0
-beq      lbl_803D80AC
-cmpwi    r31, 0
-li       r0, 0
-blt      lbl_803D7FB8
-cmpwi    r31, 3
-bge      lbl_803D7FB8
-li       r0, 1
-
-lbl_803D7FB8:
-clrlwi.  r0, r0, 0x18
-bne      lbl_803D7FDC
-lis      r3, lbl_80496B70@ha
-lis      r5, lbl_80496B88@ha
-addi     r3, r3, lbl_80496B70@l
-li       r4, 0x39
-addi     r5, r5, lbl_80496B88@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D7FDC:
-lis      r4, 0x61746131@ha
-lwz      r3, 0xba0(r30)
-addi     r6, r4, 0x61746131@l
-li       r5, 0x5064
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 8(r1)
-lis      r4, 0x61746132@ha
-lwz      r3, 0xba0(r30)
-addi     r6, r4, 0x61746132@l
-li       r5, 0x5064
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0xc(r1)
-lis      r4, 0x61746133@ha
-lwz      r3, 0xba0(r30)
-addi     r6, r4, 0x61746133@l
-li       r5, 0x5064
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-lwz      r5, 8(r1)
-li       r10, 0
-lis      r4, 0x6E657764@ha
-lwz      r9, 0xc(r1)
-stb      r10, 0xb0(r5)
-slwi     r0, r31, 2
-addi     r7, r1, 8
-li       r8, 1
-stw      r3, 0x10(r1)
-addi     r6, r4, 0x6E657764@l
-li       r5, 0x54
-stb      r10, 0xb0(r9)
-lwzx     r4, r7, r0
-stb      r10, 0xb0(r3)
-stb      r8, 0xb0(r4)
-lwz      r3, 0xba0(r30)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-lis      r4, 0x345F3030@ha
-lis      r5, 0x00353438@ha
-addi     r0, r4, 0x345F3030@l
-lis      r4, 0x65776473@ha
-stw      r0, 0x1c(r3)
-addi     r0, r5, 0x00353438@l
-addi     r6, r4, 0x65776473@l
-li       r5, 0x546e
-stw      r0, 0x18(r3)
-lwz      r3, 0xba0(r30)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-lis      r5, 0x345F3030@ha
-lis      r4, 0x00353438@ha
-addi     r0, r5, 0x345F3030@l
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00353438@l
-stw      r0, 0x18(r3)
-b        lbl_803D80D0
-
-lbl_803D80AC:
-lwz      r5, 0x1c(r10)
-mr       r4, r31
-lwz      r6, 0x20(r10)
-addi     r3, r30, 0xba8
-lwz      r7, 0x24(r10)
-lwz      r8, 0x28(r10)
-lwz      r9, 0x2c(r10)
-lwz      r10, 0x30(r10)
-bl setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl
-
-lbl_803D80D0:
-lwz      r3, 0xafc(r30)
-rlwinm.  r0, r3, 0, 0x1c, 0x1c
-bne      lbl_803D8114
-ori      r0, r3, 8
-lfs      f1, lbl_8051FB2C@sda21(r2)
-stw      r0, 0xafc(r30)
-addi     r3, r30, 0x7e8
-li       r4, 0
-li       r5, 1
-lwz      r6, sys@sda21(r13)
-lfs      f0, 0x54(r6)
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-addi     r3, r30, 0x824
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r30, 0x860
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-
-lbl_803D8114:
-lwz      r0, 0x34(r1)
-lwz      r31, 0x2c(r1)
-lwz      r30, 0x28(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	if (!mFlags.isSet(FileSelectScreen_Decided)) {
+		mFlags.set(FileSelectScreen_Decided);
+		mAnimOpenDataWindow.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnimCloseDataWindow.stop();
+		mAnimDecideDataWindow.stop();
+	}
 }
 
 /*
@@ -3673,39 +2674,14 @@ blr
  * Address:	803D812C
  * Size:	00006C
  */
-void FileSelect::TMainScreen::closeDataWindow()
+void TMainScreen::closeDataWindow()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xafc(r3)
-rlwinm.  r0, r3, 0, 0x1c, 0x1c
-beq      lbl_803D8184
-rlwinm   r0, r3, 0, 0x1d, 0x1b
-addi     r3, r31, 0x7e8
-stw      r0, 0xafc(r31)
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x824
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-addi     r3, r31, 0x860
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-
-lbl_803D8184:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (mFlags.isSet(FileSelectScreen_Decided)) {
+		mFlags.unset(FileSelectScreen_Decided);
+		mAnimOpenDataWindow.stop();
+		mAnimCloseDataWindow.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnimDecideDataWindow.stop();
+	}
 }
 
 /*
@@ -3713,39 +2689,14 @@ blr
  * Address:	803D8198
  * Size:	00006C
  */
-void FileSelect::TMainScreen::decideDataWindow()
+void TMainScreen::decideDataWindow()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xafc(r3)
-rlwinm.  r0, r3, 0, 0x1c, 0x1c
-beq      lbl_803D81F0
-rlwinm   r0, r3, 0, 0x1d, 0x1b
-addi     r3, r31, 0x7e8
-stw      r0, 0xafc(r31)
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r31, 0x824
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x860
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-
-lbl_803D81F0:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (mFlags.isSet(FileSelectScreen_Decided)) {
+		mFlags.unset(FileSelectScreen_Decided);
+		mAnimOpenDataWindow.stop();
+		mAnimCloseDataWindow.stop();
+		mAnimDecideDataWindow.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	}
 }
 
 /*
@@ -3753,233 +2704,69 @@ blr
  * Address:	803D8204
  * Size:	000024
  */
-bool FileSelect::TMainScreen::isFinishCloseDataWindow()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-addi     r3, r3, 0x824
-stw      r0, 0x14(r1)
-bl       isFinish__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+bool TMainScreen::isFinishCloseDataWindow() { return mAnimCloseDataWindow.isFinish(); }
 
 /*
  * --INFO--
  * Address:	803D8228
  * Size:	0002A0
  */
-void FileSelect::TMainScreen::openMSG(s32)
+void TMainScreen::openMSG(s32 mesgID)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f1, lbl_8051FB50@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-stw      r30, 8(r1)
-mr       r30, r4
-lwz      r0, 0xafc(r3)
-ori      r0, r0, 4
-stw      r0, 0xafc(r3)
-lwz      r3, sys@sda21(r13)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0xbf0(r31)
-cmplwi   r30, 0xa
-stw      r3, 0xbf4(r31)
-bgt      lbl_803D84B0
-lis      r3, lbl_804E8D30@ha
-slwi     r0, r30, 2
-addi     r3, r3, lbl_804E8D30@l
-lwzx     r0, r3, r0
-mtctr    r0
-bctr
-.global  lbl_803D828C
+	mFlags.set(FileSelectScreen_MsgOpen);
+	u32 time        = 0.2f / sys->mDeltaTime;
+	mMesgCounter    = time;
+	mMesgCounterMax = time;
 
-lbl_803D828C:
-lis      r3, 0x395F3030@ha
-lis      r4, 0x00353437@ha
-addi     r6, r3, 0x395F3030@l
-mr       r3, r31
-addi     r5, r4, 0x00353437@l
-mr       r8, r6
-mr       r10, r6
-mr       r7, r5
-mr       r9, r5
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-b        lbl_803D84B0
-.global  lbl_803D82B8
-
-lbl_803D82B8:
-lis      r3, 0x00353438@ha
-lis      r6, 0x355F3030@ha
-addi     r5, r3, 0x00353438@l
-lis      r8, 0x365F3030@ha
-lis      r4, 0x375F3030@ha
-mr       r3, r31
-mr       r7, r5
-mr       r9, r5
-addi     r6, r6, 0x355F3030@l
-addi     r8, r8, 0x365F3030@l
-addi     r10, r4, 0x375F3030@l
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-mr       r3, r31
-bl       inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv
-b        lbl_803D84B0
-.global  lbl_803D82F4
-
-lbl_803D82F4:
-lis      r4, 0x00353437@ha
-lis      r3, 0x395F3030@ha
-addi     r6, r3, 0x395F3030@l
-mr       r3, r31
-addi     r7, r4, 0x00353437@l
-addi     r5, r4, 0x3438
-mr       r8, r6
-mr       r10, r6
-mr       r9, r7
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-b        lbl_803D84B0
-.global  lbl_803D8320
-
-lbl_803D8320:
-lis      r3, 0x00353439@ha
-lis      r6, 0x325F3030@ha
-addi     r5, r3, 0x00353439@l
-lis      r8, 0x335F3030@ha
-lis      r4, 0x345F3030@ha
-mr       r3, r31
-mr       r7, r5
-mr       r9, r5
-addi     r6, r6, 0x325F3030@l
-addi     r8, r8, 0x335F3030@l
-addi     r10, r4, 0x345F3030@l
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-mr       r3, r31
-bl       inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv
-b        lbl_803D84B0
-.global  lbl_803D835C
-
-lbl_803D835C:
-lis      r4, 0x00353437@ha
-lis      r3, 0x395F3030@ha
-addi     r8, r3, 0x395F3030@l
-lis      r5, 0x355F3030@ha
-addi     r7, r4, 0x00353437@l
-mr       r3, r31
-mr       r10, r8
-addi     r6, r5, 0x355F3030@l
-mr       r9, r7
-addi     r5, r4, 0x3530
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-b        lbl_803D84B0
-.global  lbl_803D838C
-
-lbl_803D838C:
-lis      r4, 0x00353437@ha
-lis      r3, 0x395F3030@ha
-addi     r8, r3, 0x395F3030@l
-lis      r5, 0x385F3030@ha
-addi     r7, r4, 0x00353437@l
-mr       r3, r31
-mr       r10, r8
-addi     r6, r5, 0x385F3030@l
-mr       r9, r7
-addi     r5, r4, 0x3438
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-b        lbl_803D84B0
-.global  lbl_803D83BC
-
-lbl_803D83BC:
-lis      r4, 0x00353437@ha
-lis      r3, 0x395F3030@ha
-addi     r8, r3, 0x395F3030@l
-lis      r5, 0x305F3030@ha
-addi     r7, r4, 0x00353437@l
-mr       r3, r31
-mr       r10, r8
-addi     r6, r5, 0x305F3030@l
-mr       r9, r7
-addi     r5, r4, 0x3439
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-b        lbl_803D84B0
-.global  lbl_803D83EC
-
-lbl_803D83EC:
-lis      r3, 0x00353439@ha
-lis      r6, 0x355F3030@ha
-addi     r5, r3, 0x00353439@l
-lis      r8, 0x365F3030@ha
-lis      r4, 0x375F3030@ha
-mr       r3, r31
-mr       r7, r5
-mr       r9, r5
-addi     r6, r6, 0x355F3030@l
-addi     r8, r8, 0x365F3030@l
-addi     r10, r4, 0x375F3030@l
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-mr       r3, r31
-bl       inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv
-b        lbl_803D84B0
-.global  lbl_803D8428
-
-lbl_803D8428:
-lis      r4, 0x00353437@ha
-lis      r3, 0x395F3030@ha
-addi     r8, r3, 0x395F3030@l
-lis      r5, 0x315F3030@ha
-addi     r7, r4, 0x00353437@l
-mr       r3, r31
-mr       r10, r8
-addi     r6, r5, 0x315F3030@l
-mr       r9, r7
-addi     r5, r4, 0x3439
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-b        lbl_803D84B0
-.global  lbl_803D8458
-
-lbl_803D8458:
-lis      r4, 0x00353437@ha
-lis      r3, 0x395F3030@ha
-addi     r8, r3, 0x395F3030@l
-lis      r5, 0x385F3030@ha
-addi     r7, r4, 0x00353437@l
-mr       r3, r31
-mr       r10, r8
-addi     r6, r5, 0x385F3030@l
-mr       r9, r7
-addi     r5, r4, 0x3439
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-b        lbl_803D84B0
-.global  lbl_803D8488
-
-lbl_803D8488:
-lis      r4, 0x00353437@ha
-lis      r3, 0x395F3030@ha
-addi     r6, r3, 0x395F3030@l
-mr       r3, r31
-addi     r7, r4, 0x00353437@l
-addi     r5, r4, 0x3439
-mr       r8, r6
-mr       r10, r6
-mr       r9, r7
-bl       setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx
-
-lbl_803D84B0:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	switch (mesgID) {
+	case MessageType_SelectAFile:
+		// "Choose a Ship's Log."
+		setMsgID_('5479_00', '5479_00', '5479_00');
+		break;
+	case MessageType_FileCorrupted:
+		// "This Ship's Log is corrupted. Erase this Ship's Log?" "Yes" "No"
+		setMsgID_('5485_00', '5486_00', '5487_00');
+		inYesNo_();
+		break;
+	case MessageType_ErasingFile:
+		// "Erasing the file... Do not touch the Memory Card in Slot A or the POWER Button."
+		setMsgID_('5489_00', '5479_00', '5479_00');
+		break;
+	case MessageType_DoYouErase:
+		// "Erase the contents of this Ship's Log?" "Yes" "No"
+		setMsgID_('5492_00', '5493_00', '5494_00');
+		inYesNo_();
+		break;
+	case MessageType_CopyWhere:
+		// "Erase the contents of this Ship's Log?"
+		setMsgID_('5505_00', '5479_00', '5479_00');
+		break;
+	case MessageType_FileDeleteFail:
+		// "The file could not be erased."
+		setMsgID_('5488_00', '5479_00', '5479_00');
+		break;
+	case MessageType_FileDeleted:
+		// "The file has been erased."
+		setMsgID_('5490_00', '5479_00', '5479_00');
+		break;
+	case MessageType_DoYouOverwrite:
+		// "Copy over the contents of this Ship's Log?" "Yes" "No"
+		setMsgID_('5495_00', '5496_00', '5497_00');
+		inYesNo_();
+		break;
+	case MessageType_FileCopyFail:
+		// "The file could not be copied."
+		setMsgID_('5491_00', '5479_00', '5479_00');
+		break;
+	case MessageType_CopyingFile:
+		// "Copying... Do not touch the Memory Card in Slot A or the POWER Button."
+		setMsgID_('5498_00', '5479_00', '5479_00');
+		break;
+	case MessageType_FileCopied:
+		// "The file has been copied."
+		setMsgID_('5499_00', '5479_00', '5479_00');
+		break;
+	}
 }
 
 /*
@@ -3987,36 +2774,15 @@ blr
  * Address:	803D84C8
  * Size:	000060
  */
-void FileSelect::TMainScreen::closeMSG()
+void TMainScreen::closeMSG()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xafc(r3)
-rlwinm.  r0, r3, 0, 0x1d, 0x1d
-beq      lbl_803D850C
-rlwinm   r0, r3, 0, 0x1e, 0x1c
-lfs      f1, lbl_8051FB50@sda21(r2)
-stw      r0, 0xafc(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0xbf0(r31)
-stw      r3, 0xbf4(r31)
-
-lbl_803D850C:
-mr       r3, r31
-bl       outYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (mFlags.isSet(FileSelectScreen_MsgOpen)) {
+		mFlags.unset(FileSelectScreen_MsgOpen);
+		u32 time        = 0.2f / sys->mDeltaTime;
+		mMesgCounter    = time;
+		mMesgCounterMax = time;
+	}
+	outYesNo_();
 }
 
 /*
@@ -4024,22 +2790,12 @@ blr
  * Address:	803D8528
  * Size:	000028
  */
-bool FileSelect::TMainScreen::isFinishCloseMSG()
+bool TMainScreen::isFinishCloseMSG()
 {
-	/*
-lwz      r0, 0xafc(r3)
-rlwinm.  r0, r0, 0, 0x1d, 0x1d
-bne      lbl_803D8548
-lwz      r0, 0xbf0(r3)
-cmplwi   r0, 0
-bne      lbl_803D8548
-li       r3, 1
-blr
-
-lbl_803D8548:
-li       r3, 0
-blr
-	*/
+	if (!mFlags.isSet(FileSelectScreen_MsgOpen) && mMesgCounter == 0) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -4047,63 +2803,17 @@ blr
  * Address:	803D8550
  * Size:	0000C4
  */
-void FileSelect::TMainScreen::setYesNo(bool)
+void TMainScreen::setYesNo(bool isYes)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-mr       r6, r3
-stw      r0, 0x14(r1)
-clrlwi.  r0, r4, 0x18
-beq      lbl_803D85B8
-li       r5, 1
-lfs      f3, lbl_8051FB54@sda21(r2)
-stb      r5, 0x8d8(r6)
-li       r0, 0
-lfs      f4, lbl_8051FB1C@sda21(r2)
-addi     r3, r6, 0x974
-lwz      r4, sys@sda21(r13)
-lfs      f1, lbl_8051FB50@sda21(r2)
-lfs      f0, 0x54(r4)
-lfs      f2, lbl_8051FB58@sda21(r2)
-fmuls    f0, f3, f0
-lfs      f3, lbl_8051FB5C@sda21(r2)
-stfs     f0, 0x900(r6)
-stfs     f4, 0x8fc(r6)
-stb      r5, 0x904(r6)
-stb      r0, 0x905(r6)
-stb      r0, 0x950(r6)
-stb      r5, 0x951(r6)
-bl       up__Q32og6Screen8ScaleMgrFffff
-b        lbl_803D8604
-
-lbl_803D85B8:
-li       r5, 0
-li       r0, 1
-stb      r5, 0x904(r6)
-addi     r3, r6, 0x9b4
-lfs      f5, lbl_8051FB54@sda21(r2)
-stb      r0, 0x905(r6)
-lfs      f4, lbl_8051FB1C@sda21(r2)
-stb      r0, 0x924(r6)
-lfs      f1, lbl_8051FB50@sda21(r2)
-lwz      r4, sys@sda21(r13)
-lfs      f2, lbl_8051FB58@sda21(r2)
-lfs      f0, 0x54(r4)
-lfs      f3, lbl_8051FB5C@sda21(r2)
-fmuls    f0, f5, f0
-stfs     f0, 0x94c(r6)
-stfs     f4, 0x948(r6)
-stb      r0, 0x950(r6)
-stb      r5, 0x951(r6)
-bl       up__Q32og6Screen8ScaleMgrFffff
-
-lbl_803D8604:
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (isYes) {
+		mBlinkFontYes.enable();
+		mBlinkFontNo.disable();
+		mPurupuru[0].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+	} else {
+		mBlinkFontYes.disable();
+		mBlinkFontNo.enable();
+		mPurupuru[1].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+	}
 }
 
 /*
@@ -4111,105 +2821,32 @@ blr
  * Address:	803D8614
  * Size:	000144
  */
-void FileSelect::TMainScreen::updateMsg_()
+void TMainScreen::updateMsg_()
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stw      r31, 0x2c(r1)
-stw      r30, 0x28(r1)
-lwz      r4, 0xbf0(r3)
-cmplwi   r4, 0
-beq      lbl_803D863C
-addi     r0, r4, -1
-stw      r0, 0xbf0(r3)
+	if (mMesgCounter) {
+		mMesgCounter--;
+	}
 
-lbl_803D863C:
-lwz      r0, 0xafc(r3)
-rlwinm.  r0, r0, 0, 0x1d, 0x1d
-beq      lbl_803D86AC
-lwz      r5, 0xbf4(r3)
-cmplwi   r5, 0
-beq      lbl_803D8688
-lwz      r4, 0xbf0(r3)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lfd      f2, lbl_8051FB48@sda21(r2)
-stw      r4, 0xc(r1)
-lfd      f0, 8(r1)
-stw      r5, 0x14(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x10(r1)
-lfd      f0, 0x10(r1)
-fsubs    f0, f0, f2
-fdivs    f2, f1, f0
-b        lbl_803D868C
-
-lbl_803D8688:
-lfs      f2, lbl_8051FB1C@sda21(r2)
-
-lbl_803D868C:
-lfs      f0, lbl_8051FB24@sda21(r2)
-lfs      f1, lbl_8051FB3C@sda21(r2)
-fsubs    f0, f0, f2
-fmuls    f0, f1, f0
-fctiwz   f0, f0
-stfd     f0, 0x18(r1)
-lwz      r31, 0x1c(r1)
-b        lbl_803D8704
-
-lbl_803D86AC:
-lwz      r5, 0xbf4(r3)
-cmplwi   r5, 0
-beq      lbl_803D86EC
-lwz      r4, 0xbf0(r3)
-lis      r0, 0x4330
-stw      r0, 0x18(r1)
-lfd      f2, lbl_8051FB48@sda21(r2)
-stw      r4, 0x1c(r1)
-lfd      f0, 0x18(r1)
-stw      r5, 0x14(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x10(r1)
-lfd      f0, 0x10(r1)
-fsubs    f0, f0, f2
-fdivs    f1, f1, f0
-b        lbl_803D86F0
-
-lbl_803D86EC:
-lfs      f1, lbl_8051FB1C@sda21(r2)
-
-lbl_803D86F0:
-lfs      f0, lbl_8051FB3C@sda21(r2)
-fmuls    f0, f0, f1
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r31, 0xc(r1)
-
-lbl_803D8704:
-lis      r5, 0x696E4D47@ha
-lis      r4, 0x004E6D61@ha
-lwz      r3, 0xc(r3)
-addi     r6, r5, 0x696E4D47@l
-addi     r5, r4, 0x004E6D61@l
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-li       r4, 1
-mr       r30, r3
-bl       E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb
-mr       r3, r30
-mr       r4, r31
-lwz      r12, 0(r30)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x34(r1)
-lwz      r31, 0x2c(r1)
-lwz      r30, 0x28(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	f32 calc;
+	u8 alpha;
+	if (mFlags.isSet(FileSelectScreen_MsgOpen)) {
+		if (mMesgCounterMax) {
+			calc = (f32)mMesgCounter / (f32)mMesgCounterMax;
+		} else {
+			calc = 0.0f;
+		}
+		alpha = (1.0f - calc) * 255.0f;
+	} else {
+		if (mMesgCounterMax) {
+			calc = (f32)mMesgCounter / (f32)mMesgCounterMax;
+		} else {
+			calc = 0.0f;
+		}
+		alpha = calc * 255.0f;
+	}
+	J2DPane* mesg = E2DScreen_searchAssert(mMainScreen, 'NmainMG');
+	E2DPane_setTreeInfluencedAlpha(mesg, true);
+	mesg->setAlpha(alpha);
 }
 
 /*
@@ -4217,30 +2854,16 @@ blr
  * Address:	803D8758
  * Size:	00004C
  */
-void FileSelect::TMainScreen::setMsgID_(u64, u64, u64)
+void TMainScreen::setMsgID_(u64 mesgMain, u64 mesgYes, u64 mesgNo)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, 0x98(r3)
-	  stw       r8, 0x1C(r4)
-	  stw       r7, 0x18(r4)
-	  lwz       r4, 0x9C(r3)
-	  stw       r8, 0x1C(r4)
-	  stw       r7, 0x18(r4)
-	  lwz       r4, 0xA0(r3)
-	  stw       r10, 0x1C(r4)
-	  stw       r9, 0x18(r4)
-	  lwz       r4, 0xA4(r3)
-	  stw       r10, 0x1C(r4)
-	  stw       r9, 0x18(r4)
-	  lwz       r4, 0xB8(r3)
-	  stw       r6, 0x1C(r4)
-	  stw       r5, 0x18(r4)
-	  lwz       r3, 0xBC(r3)
-	  stw       r6, 0x1C(r3)
-	  stw       r5, 0x18(r3)
-	  blr
-	*/
+	mPaneMesgYes->setMsgID(mesgYes);
+	mPaneMesgYesShadow->setMsgID(mesgYes);
+
+	mPaneMesgNo->setMsgID(mesgNo);
+	mPaneMesgNoShadow->setMsgID(mesgNo);
+
+	mPaneMesgMain->setMsgID(mesgMain);
+	mPaneMesgMainShadow->setMsgID(mesgMain);
 }
 
 // /*
@@ -4258,47 +2881,15 @@ void FileSelect::TMainScreen::setMsgID_(u64, u64, u64)
  * Address:	803D87A4
  * Size:	00008C
  */
-void FileSelect::TMainScreen::inCopyErase()
+void TMainScreen::inCopyErase()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xafc(r3)
-rlwinm.  r0, r3, 0, 0x1e, 0x1e
-bne      lbl_803D881C
-ori      r0, r3, 2
-lfs      f1, lbl_8051FB2C@sda21(r2)
-stw      r0, 0xafc(r31)
-addi     r3, r31, 0x5cc
-li       r4, 0
-li       r5, 1
-lwz      r6, sys@sda21(r13)
-lfs      f0, 0x54(r6)
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x608
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-addi     r3, r31, 0x644
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r31, 0x680
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-
-lbl_803D881C:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (!mFlags.isSet(FileSelectScreen_Copy)) {
+		mFlags.set(FileSelectScreen_Copy);
+		mAnimInCopyEraseA.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnimInCopyEraseB.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnimOutCopyEraseA.stop();
+		mAnimOutCopyEraseB.stop();
+	}
 }
 
 /*
@@ -4306,47 +2897,15 @@ blr
  * Address:	803D8830
  * Size:	00008C
  */
-void FileSelect::TMainScreen::outCopyErase()
+void TMainScreen::outCopyErase()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xafc(r3)
-rlwinm.  r0, r3, 0, 0x1e, 0x1e
-beq      lbl_803D88A8
-rlwinm   r0, r3, 0, 0x1f, 0x1d
-addi     r3, r31, 0x5cc
-stw      r0, 0xafc(r31)
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r31, 0x608
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x644
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x680
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-
-lbl_803D88A8:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (mFlags.isSet(FileSelectScreen_Copy)) {
+		mFlags.unset(FileSelectScreen_Copy);
+		mAnimInCopyEraseA.stop();
+		mAnimInCopyEraseB.stop();
+		mAnimOutCopyEraseA.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnimOutCopyEraseB.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	}
 }
 
 /*
@@ -4354,47 +2913,15 @@ blr
  * Address:	803D88BC
  * Size:	00008C
  */
-void FileSelect::TMainScreen::inYesNo_()
+void TMainScreen::inYesNo_()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xafc(r3)
-clrlwi.  r0, r3, 0x1f
-bne      lbl_803D8934
-ori      r0, r3, 1
-lfs      f1, lbl_8051FB2C@sda21(r2)
-stw      r0, 0xafc(r31)
-addi     r3, r31, 0x6bc
-li       r4, 0
-li       r5, 1
-lwz      r6, sys@sda21(r13)
-lfs      f0, 0x54(r6)
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x6f8
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-addi     r3, r31, 0x734
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r31, 0x770
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-
-lbl_803D8934:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (!mFlags.isSet(FileSelectScreen_YesNoOpen)) {
+		mFlags.set(FileSelectScreen_YesNoOpen);
+		mAnimInYesNoA.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnimInYesNoB.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnimOutYesNoA.stop();
+		mAnimOutYesNoB.stop();
+	}
 }
 
 /*
@@ -4402,47 +2929,15 @@ blr
  * Address:	803D8948
  * Size:	00008C
  */
-void FileSelect::TMainScreen::outYesNo_()
+void TMainScreen::outYesNo_()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xafc(r3)
-clrlwi.  r0, r3, 0x1f
-beq      lbl_803D89C0
-rlwinm   r0, r3, 0, 0, 0x1e
-addi     r3, r31, 0x6bc
-stw      r0, 0xafc(r31)
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r31, 0x6f8
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x734
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r5, sys@sda21(r13)
-addi     r3, r31, 0x770
-lfs      f1, lbl_8051FB2C@sda21(r2)
-li       r4, 0
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-
-lbl_803D89C0:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (mFlags.isSet(FileSelectScreen_YesNoOpen)) {
+		mFlags.unset(FileSelectScreen_YesNoOpen);
+		mAnimInYesNoA.stop();
+		mAnimInYesNoB.stop();
+		mAnimOutYesNoA.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+		mAnimOutYesNoB.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	}
 }
 
 // /*
@@ -4450,7 +2945,7 @@ blr
 //  * Address:	........
 //  * Size:	00005C
 //  */
-// void FileSelect::TMainScreen::isFinishOutYesNo_()
+// void TMainScreen::isFinishOutYesNo_()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -4460,122 +2955,20 @@ blr
  * Address:	803D89D4
  * Size:	0001C0
  */
-void FileSelect::TMainScreen::setDataBallCopyResult(s32, s32)
+void TMainScreen::setDataBallCopyResult(s32 idFrom, s32 idTo)
 {
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-mulli    r0, r4, 0x34
-stw      r31, 0x4c(r1)
-mr       r31, r5
-mulli    r4, r31, 0x34
-stw      r30, 0x48(r1)
-mr       r30, r3
-add      r5, r30, r0
-lbz      r0, 0xb00(r5)
-add      r4, r30, r4
-stb      r0, 0xb00(r4)
-lbz      r0, 0xb01(r5)
-stb      r0, 0xb01(r4)
-lwz      r0, 0xb04(r5)
-stw      r0, 0xb04(r4)
-lwz      r0, 0xb08(r5)
-stw      r0, 0xb08(r4)
-lwz      r0, 0xb0c(r5)
-stw      r0, 0xb0c(r4)
-lwz      r0, 0xb10(r5)
-stw      r0, 0xb10(r4)
-lwz      r0, 0xb14(r5)
-stw      r0, 0xb14(r4)
-lwz      r0, 0xb18(r5)
-stw      r0, 0xb18(r4)
-lwz      r0, 0xb1c(r5)
-stw      r0, 0xb1c(r4)
-lwz      r0, 0xb20(r5)
-stw      r0, 0xb20(r4)
-lwz      r0, 0xb24(r5)
-stw      r0, 0xb24(r4)
-lwz      r0, 0xb28(r5)
-stw      r0, 0xb28(r4)
-lwz      r0, 0xb2c(r5)
-stw      r0, 0xb2c(r4)
-lwz      r0, 0xb30(r5)
-stw      r0, 0xb30(r4)
-bl       initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv
-mr       r4, r30
-mr       r5, r31
-addi     r3, r1, 8
-bl       getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-lwz      r0, 8(r1)
-slwi     r31, r31, 2
-add      r4, r30, r31
-addi     r3, r1, 0x18
-stw      r0, 0xc(r1)
-lwz      r4, 0x20(r4)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x18(r1)
-li       r8, 0
-lfs      f0, 0x1c(r1)
-lis      r3, __vt__Q25efx2d7TBaseIF@ha
-stfs     f1, 0x20(r1)
-addi     r5, r3, __vt__Q25efx2d7TBaseIF@l
-lis      r4, __vt__Q25efx2d5TBase@ha
-lis      r6, __vt__Q25efx2d3Arg@ha
-stfs     f0, 0x24(r1)
-lis      r3, __vt__Q25efx2d8TSimple1@ha
-lwz      r9, 0x20(r1)
-addi     r0, r4, __vt__Q25efx2d5TBase@l
-stw      r5, 0x28(r1)
-addi     r11, r6, __vt__Q25efx2d3Arg@l
-lwz      r5, 0x24(r1)
-addi     r7, r3, __vt__Q25efx2d8TSimple1@l
-stw      r9, 0x10(r1)
-lis      r4, __vt__Q25efx2d8ArgColor@ha
-lwz      r9, 0xc(r1)
-lis      r3, __vt__Q35efx2d10FileSelect13T2DFilecopied@ha
-stw      r5, 0x14(r1)
-li       r6, 9
-lfs      f1, 0x10(r1)
-addi     r10, r4, __vt__Q25efx2d8ArgColor@l
-stw      r0, 0x28(r1)
-addi     r5, r3, __vt__Q35efx2d10FileSelect13T2DFilecopied@l
-lfs      f0, 0x14(r1)
-li       r0, 1
-stw      r11, 0x40(r1)
-addi     r3, r1, 0x28
-addi     r4, r1, 0x38
-stb      r8, 0x2c(r1)
-stw      r7, 0x28(r1)
-stfs     f1, 0x38(r1)
-stfs     f0, 0x3c(r1)
-stw      r10, 0x40(r1)
-stw      r9, 0x44(r1)
-stb      r8, 0x2d(r1)
-sth      r6, 0x30(r1)
-stw      r8, 0x34(r1)
-stw      r5, 0x28(r1)
-stb      r0, 0x2c(r1)
-bl       create__Q35efx2d10FileSelect13T2DFilecopiedFPQ25efx2d3Arg
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180c
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-add      r3, r30, r31
-addi     r4, r1, 0xc
-lwz      r3, 0xa84(r3)
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-add      r3, r30, r31
-addi     r4, r1, 0xc
-lwz      r3, 0xa90(r3)
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-lwz      r0, 0x54(r1)
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
+	mFileData[idTo] = mFileData[idFrom];
+	initDataBalls_();
+
+	JUtility::TColor color = getDataBallColor_(idTo);
+	Vector2f pos           = E2DPane_getGlbCenter(mPaneSel[0][idTo]);
+	efx2d::ArgColor arg(pos, color);
+	efx2d::FileSelect::T2DFilecopied efx;
+	efx.create(&arg);
+
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
+	mEfxFileSel[idTo]->setGlobalEnvColor(color);
+	mEfxFileSelM[idTo]->setGlobalEnvColor(color);
 }
 
 /*
@@ -4583,158 +2976,27 @@ blr
  * Address:	803D8B94
  * Size:	000250
  */
-void FileSelect::TMainScreen::setDataBallNew(s32)
+void TMainScreen::setDataBallNew(s32 fileID)
 {
-	/*
-stwu     r1, -0xa0(r1)
-mflr     r0
-stw      r0, 0xa4(r1)
-stw      r31, 0x9c(r1)
-stw      r30, 0x98(r1)
-mr       r30, r4
-mr       r5, r30
-stw      r29, 0x94(r1)
-mr       r29, r3
-mr       r4, r29
-addi     r3, r1, 0xc
-bl       getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-lwz      r0, 0xc(r1)
-slwi     r31, r30, 2
-add      r4, r29, r31
-addi     r3, r1, 0x2c
-stw      r0, 0x10(r1)
-lwz      r4, 0x20(r4)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x2c(r1)
-li       r8, 0
-lfs      f0, 0x30(r1)
-lis      r3, __vt__Q25efx2d7TBaseIF@ha
-stfs     f1, 0x3c(r1)
-addi     r5, r3, __vt__Q25efx2d7TBaseIF@l
-lis      r4, __vt__Q25efx2d5TBase@ha
-lis      r6, __vt__Q25efx2d3Arg@ha
-stfs     f0, 0x40(r1)
-lis      r3, __vt__Q25efx2d8TSimple1@ha
-lwz      r9, 0x3c(r1)
-addi     r0, r4, __vt__Q25efx2d5TBase@l
-stw      r5, 0x64(r1)
-addi     r11, r6, __vt__Q25efx2d3Arg@l
-lwz      r5, 0x40(r1)
-addi     r7, r3, __vt__Q25efx2d8TSimple1@l
-stw      r9, 0x1c(r1)
-lis      r4, __vt__Q25efx2d8ArgColor@ha
-lwz      r9, 0x10(r1)
-lis      r3, __vt__Q35efx2d10FileSelect13T2DFiledelete@ha
-stw      r5, 0x20(r1)
-li       r6, 4
-lfs      f1, 0x1c(r1)
-addi     r10, r4, __vt__Q25efx2d8ArgColor@l
-stw      r0, 0x64(r1)
-addi     r5, r3, __vt__Q35efx2d10FileSelect13T2DFiledelete@l
-lfs      f0, 0x20(r1)
-li       r0, 1
-stw      r11, 0x7c(r1)
-addi     r3, r1, 0x64
-addi     r4, r1, 0x74
-stb      r8, 0x68(r1)
-stw      r7, 0x64(r1)
-stfs     f1, 0x74(r1)
-stfs     f0, 0x78(r1)
-stw      r10, 0x7c(r1)
-stw      r9, 0x80(r1)
-stb      r8, 0x69(r1)
-sth      r6, 0x6c(r1)
-stw      r8, 0x70(r1)
-stw      r5, 0x64(r1)
-stb      r0, 0x68(r1)
-bl       create__Q35efx2d10FileSelect13T2DFiledeleteFPQ25efx2d3Arg
-add      r4, r29, r31
-addi     r3, r1, 0x24
-lwz      r4, 0x2c(r4)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f1, 0x24(r1)
-li       r8, 0
-lfs      f0, 0x28(r1)
-lis      r3, __vt__Q25efx2d7TBaseIF@ha
-stfs     f1, 0x34(r1)
-addi     r5, r3, __vt__Q25efx2d7TBaseIF@l
-lis      r4, __vt__Q25efx2d5TBase@ha
-lis      r6, __vt__Q25efx2d3Arg@ha
-stfs     f0, 0x38(r1)
-lis      r3, __vt__Q25efx2d8TSimple1@ha
-lwz      r9, 0x34(r1)
-addi     r0, r4, __vt__Q25efx2d5TBase@l
-stw      r5, 0x44(r1)
-addi     r11, r6, __vt__Q25efx2d3Arg@l
-lwz      r5, 0x38(r1)
-addi     r7, r3, __vt__Q25efx2d8TSimple1@l
-stw      r9, 0x14(r1)
-lis      r4, __vt__Q25efx2d8ArgColor@ha
-lwz      r9, 0x10(r1)
-lis      r3, __vt__Q35efx2d10FileSelect14T2DFiledeleteM@ha
-stw      r5, 0x18(r1)
-li       r6, 5
-lfs      f1, 0x14(r1)
-addi     r10, r4, __vt__Q25efx2d8ArgColor@l
-stw      r0, 0x44(r1)
-addi     r5, r3, __vt__Q35efx2d10FileSelect14T2DFiledeleteM@l
-lfs      f0, 0x18(r1)
-li       r0, 1
-stw      r11, 0x5c(r1)
-addi     r3, r1, 0x44
-addi     r4, r1, 0x54
-stb      r8, 0x48(r1)
-stw      r7, 0x44(r1)
-stfs     f1, 0x54(r1)
-stfs     f0, 0x58(r1)
-stw      r10, 0x5c(r1)
-stw      r9, 0x60(r1)
-stb      r8, 0x49(r1)
-sth      r6, 0x4c(r1)
-stw      r8, 0x50(r1)
-stw      r5, 0x44(r1)
-stb      r0, 0x48(r1)
-bl       create__Q35efx2d10FileSelect14T2DFiledeleteMFPQ25efx2d3Arg
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180c
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-mulli    r4, r30, 0x34
-li       r5, 1
-li       r0, 0
-mr       r3, r29
-add      r4, r29, r4
-stb      r5, 0xb01(r4)
-stb      r0, 0xb00(r4)
-bl       initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv
-mr       r4, r29
-mr       r5, r30
-addi     r3, r1, 8
-bl       getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-lbz      r7, 8(r1)
-add      r3, r29, r31
-lbz      r6, 9(r1)
-addi     r4, r1, 0x10
-lbz      r5, 0xa(r1)
-lbz      r0, 0xb(r1)
-stb      r7, 0x10(r1)
-stb      r6, 0x11(r1)
-stb      r5, 0x12(r1)
-stb      r0, 0x13(r1)
-lwz      r3, 0xa84(r3)
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-add      r3, r29, r31
-addi     r4, r1, 0x10
-lwz      r3, 0xa90(r3)
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-lwz      r0, 0xa4(r1)
-lwz      r31, 0x9c(r1)
-lwz      r30, 0x98(r1)
-lwz      r29, 0x94(r1)
-mtlr     r0
-addi     r1, r1, 0xa0
-blr
-	*/
+	JUtility::TColor color = getDataBallColor_(fileID);
+	Vector2f pos           = E2DPane_getGlbCenter(mPaneSel[0][fileID]);
+	efx2d::ArgColor arg(pos, color);
+	efx2d::FileSelect::T2DFiledelete efx;
+	efx.create(&arg);
+
+	Vector2f pos2 = E2DPane_getGlbCenter(mPaneSel[1][fileID]);
+	efx2d::ArgColor arg2(pos2, color);
+	efx2d::FileSelect::T2DFiledeleteM efx2;
+	efx2.create(&arg2);
+
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
+	mFileData[fileID].mIsNewFile    = true;
+	mFileData[fileID].mIsBrokenFile = false;
+	initDataBalls_();
+
+	color = getDataBallColor_(fileID);
+	mEfxFileSel[fileID]->setGlobalEnvColor(color);
+	mEfxFileSelM[fileID]->setGlobalEnvColor(color);
 }
 
 /*
@@ -4742,48 +3004,14 @@ blr
  * Address:	803D8DE4
  * Size:	000098
  */
-void FileSelect::TMainScreen::setDataBallBroken(s32)
+void TMainScreen::setDataBallBroken(s32 fileID)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-li       r5, 0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r4
-li       r4, 0x180d
-stw      r30, 0x18(r1)
-mr       r30, r3
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-mulli    r0, r31, 0x34
-li       r5, 1
-mr       r3, r30
-add      r4, r30, r0
-stb      r5, 0xb00(r4)
-bl       initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv
-mr       r4, r30
-mr       r5, r31
-addi     r3, r1, 8
-bl       getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl
-lwz      r0, 8(r1)
-slwi     r31, r31, 2
-add      r3, r30, r31
-addi     r4, r1, 0xc
-stw      r0, 0xc(r1)
-lwz      r3, 0xa84(r3)
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-add      r3, r30, r31
-addi     r4, r1, 0xc
-lwz      r3, 0xa90(r3)
-bl       setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+	mFileData[fileID].mIsBrokenFile = true;
+	initDataBalls_();
+	JUtility::TColor color2 = getDataBallColor_(fileID);
+	mEfxFileSel[fileID]->setGlobalEnvColor(color2);
+	mEfxFileSelM[fileID]->setGlobalEnvColor(color2);
 }
 
 /*
@@ -4791,31 +3019,11 @@ blr
  * Address:	803D8E7C
  * Size:	00004C
  */
-void FileSelect::TMainScreen::initDataBalls_()
+void TMainScreen::initDataBalls_()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-li       r31, 0
-stw      r30, 8(r1)
-mr       r30, r3
-
-lbl_803D8E98:
-mr       r3, r30
-mr       r4, r31
-bl       setColorTimgDataBall___Q43ebi6Screen10FileSelect11TMainScreenFl
-addi     r31, r31, 1
-cmpwi    r31, 3
-blt      lbl_803D8E98
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		setColorTimgDataBall_(i);
+	}
 }
 
 /*
@@ -4823,8 +3031,42 @@ blr
  * Address:	803D8EC8
  * Size:	000550
  */
-void FileSelect::TMainScreen::setColorTimgDataBall_(s32)
+void TMainScreen::setColorTimgDataBall_(s32 fileID)
 {
+	if (mFileData[fileID].mIsBrokenFile) {
+		ResTIMG* time = mPanePdc[fileID]->changeTexture("break_new_icon.bti", 0);
+		P2ASSERTLINE(1363, time);
+		time = mPaneMdc[fileID]->changeTexture("break_new_icon.bti", 0);
+		P2ASSERTLINE(1367, time);
+		mPanePdc[fileID]->hide();
+		mPaneMdc[fileID]->hide();
+		P2ASSERTLINE(1373, mCounterDay[fileID]);
+		mCounterDay[fileID]->hide();
+		P2ASSERTLINE(1373, mCounterDayM[fileID]);
+		mCounterDayM[fileID]->hide();
+	} else if (mFileData[fileID].mIsNewFile) {
+		ResTIMG* time = mPanePdc[fileID]->changeTexture("new_icon.bti", 0);
+		P2ASSERTLINE(1382, time);
+		time = mPaneMdc[fileID]->changeTexture("new_icon.bti", 0);
+		P2ASSERTLINE(1386, time);
+		mPanePdc[fileID]->hide();
+		mPaneMdc[fileID]->hide();
+		P2ASSERTLINE(1392, mCounterDay[fileID]);
+		mCounterDay[fileID]->hide();
+		P2ASSERTLINE(1394, mCounterDayM[fileID]);
+		mCounterDayM[fileID]->hide();
+	} else {
+		ResTIMG* time = mPanePdc[fileID]->changeTexture("dicon_icon.bti", 0);
+		P2ASSERTLINE(1400, time);
+		time = mPaneMdc[fileID]->changeTexture("dicon_icon.bti", 0);
+		P2ASSERTLINE(1404, time);
+		mPanePdc[fileID]->show();
+		mPaneMdc[fileID]->show();
+		mCounterDay[fileID]->show();
+		mCounterDayM[fileID]->show();
+	}
+
+	getDataBallColor_(fileID);
 	/*
 stwu     r1, -0x80(r1)
 mflr     r0
@@ -5200,64 +3442,25 @@ blr
  * Address:	803D9418
  * Size:	0000CC
  */
-void FileSelect::TMainScreen::getDataBallColor_(s32)
+JUtility::TColor TMainScreen::getDataBallColor_(s32 fileID)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-li       r0, 0
-stw      r31, 0x1c(r1)
-or.      r31, r5, r5
-stw      r30, 0x18(r1)
-mr       r30, r4
-stw      r29, 0x14(r1)
-mr       r29, r3
-blt      lbl_803D9450
-cmpwi    r31, 3
-bge      lbl_803D9450
-li       r0, 1
+	P2ASSERTBOUNDSLINE(1445, 0, fileID, 3);
 
-lbl_803D9450:
-clrlwi.  r0, r0, 0x18
-bne      lbl_803D9474
-lis      r3, lbl_80496B70@ha
-lis      r5, lbl_80496B88@ha
-addi     r3, r3, lbl_80496B70@l
-li       r4, 0x5a5
-addi     r5, r5, lbl_80496B88@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	int blues   = getFileData(fileID)->mBluePikis;
+	int reds    = getFileData(fileID)->mRedPikis;
+	int yellows = getFileData(fileID)->mYellowPikis;
+	int purples = getFileData(fileID)->mPurplePikis;
+	int whites  = getFileData(fileID)->mWhitePikis;
 
-lbl_803D9474:
-mulli    r0, r31, 0x34
-add      r3, r30, r0
-lbz      r0, 0xb01(r3)
-lwz      r5, 0xb08(r3)
-cmplwi   r0, 0
-lwz      r6, 0xb0c(r3)
-lwz      r7, 0xb10(r3)
-lwz      r8, 0xb18(r3)
-lwz      r9, 0xb14(r3)
-bne      lbl_803D94A8
-lbz      r0, 0xb00(r3)
-cmplwi   r0, 0
-beq      lbl_803D94BC
+	if (getFileData(fileID)->mIsNewFile || getFileData(fileID)->mIsBrokenFile) {
+		blues   = 0;
+		reds    = 0;
+		yellows = 0;
+		purples = 0;
+		whites  = 0;
+	}
 
-lbl_803D94A8:
-li       r5, 0
-li       r6, 0
-li       r7, 0
-li       r8, 0
-li       r9, 0
-
-lbl_803D94BC:
-mr       r3, r29
-mr       r4, r30
-bl calcDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFUlUlUlUlUl lwz
-r0, 0x24(r1) lwz      r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29,
-0x14(r1) mtlr     r0 addi     r1, r1, 0x20 blr
-	*/
+	return calcDataBallColor_(blues, reds, yellows, purples, whites);
 }
 
 /*
@@ -5265,7 +3468,7 @@ r0, 0x24(r1) lwz      r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29,
  * Address:	803D94E4
  * Size:	0001C0
  */
-void FileSelect::TMainScreen::calcDataBallColor_(u32, u32, u32, u32, u32)
+JUtility::TColor TMainScreen::calcDataBallColor_(u32, u32, u32, u32, u32)
 {
 	/*
 	.loc_0x0:
@@ -5407,340 +3610,14 @@ void FileSelect::TMainScreen::calcDataBallColor_(u32, u32, u32, u32, u32)
  * Address:	803D96A4
  * Size:	000080
  */
-void FileSelect::TMainScreen::setIconColorAlpha_(unsigned char)
+void TMainScreen::setIconColorAlpha_(u8 alpha)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-stw      r30, 0x18(r1)
-li       r30, 0
-stw      r29, 0x14(r1)
-mr       r29, r4
-
-lbl_803D96C8:
-lwz      r3, 0x68(r31)
-mr       r4, r29
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x74(r31)
-mr       r4, r29
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-addi     r30, r30, 1
-addi     r31, r31, 4
-cmpwi    r30, 3
-blt      lbl_803D96C8
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		mPaneIconColorA[i]->setAlpha(alpha);
+		mPaneIconColorB[i]->setAlpha(alpha);
+	}
 }
 
-/*
- * --INFO--
- * Address:	803D9724
- * Size:	000058
- */
-FileSelect::TFileData::TFileData()
-{
-	/*
-li       r7, 0
-lis      r4, 0x00012FD1@ha
-stb      r7, 1(r3)
-addi     r0, r4, 0x00012FD1@l
-li       r6, 0x29a
-addi     r5, r4, 0x5b38
-stw      r0, 4(r3)
-li       r4, 0x58
-li       r0, 0xb
-stw      r6, 0xc(r3)
-stw      r6, 8(r3)
-stw      r6, 0x10(r3)
-stw      r6, 0x14(r3)
-stw      r6, 0x18(r3)
-stw      r5, 0x1c(r3)
-stw      r4, 0x20(r3)
-stw      r7, 0x24(r3)
-stw      r6, 0x28(r3)
-stw      r0, 0x2c(r3)
-stw      r0, 0x30(r3)
-stb      r7, 0(r3)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D977C
- * Size:	00000C
- */
-char* FileSelect::TMainScreen::getName()
-{
-	/*
-lis      r3, lbl_80496D28@ha
-addi     r3, r3, lbl_80496D28@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D9788
- * Size:	00009C
- */
-efx2d::FileSelect::T2DFileselM::~T2DFileselM()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803D9808
-lis      r3, __vt__Q35efx2d10FileSelect11T2DFileselM@ha
-addi     r3, r3, __vt__Q35efx2d10FileSelect11T2DFileselM@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x18
-stw      r0, 8(r30)
-beq      lbl_803D97F8
-lis      r3, __vt__Q25efx2d9TChasePos@ha
-addi     r3, r3, __vt__Q25efx2d9TChasePos@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x18
-stw      r0, 8(r30)
-beq      lbl_803D97F8
-lis      r4, __vt__Q25efx2d8TForever@ha
-addi     r3, r30, 8
-addi     r5, r4, __vt__Q25efx2d8TForever@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x18
-stw      r0, 8(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803D97F8:
-extsh.   r0, r31
-ble      lbl_803D9808
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803D9808:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-// /*
-//  * --INFO--
-//  * Address:	803D9A64
-//  * Size:	000094
-//  */
-// E2DCallBack_AnmBase::E2DCallBack_AnmBase()
-// {
-// 	/*
-// stwu     r1, -0x10(r1)
-// mflr     r0
-// stw      r0, 0x14(r1)
-// stw      r31, 0xc(r1)
-// stw      r30, 8(r1)
-// mr       r30, r3
-// mr       r31, r30
-// bl       __ct__5CNodeFv
-// lis      r3, __vt__Q29P2DScreen4Node@ha
-// lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-// addi     r0, r3, __vt__Q29P2DScreen4Node@l
-// lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-// stw      r0, 0(r31)
-// li       r0, 0
-// lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-// lis      r3, __vt__12J3DFrameCtrl@ha
-// stw      r0, 0x18(r31)
-// addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-// addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-// li       r6, 1
-// stw      r0, 0(r31)
-// addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-// addi     r0, r3, __vt__12J3DFrameCtrl@l
-// addi     r3, r30, 0x20
-// stw      r7, 0(r31)
-// li       r4, 0
-// stb      r6, 0x1c(r31)
-// stw      r5, 0(r30)
-// stw      r0, 0x20(r30)
-// bl       init__12J3DFrameCtrlFs
-// lwz      r0, 0x14(r1)
-// mr       r3, r30
-// lwz      r31, 0xc(r1)
-// lwz      r30, 8(r1)
-// mtlr     r0
-// addi     r1, r1, 0x10
-// blr
-// 	*/
-// }
-
+} // namespace FileSelect
 } // namespace Screen
-
-/*
- * --INFO--
- * Address:	803D9AF8
- * Size:	000104
- */
-void E2DCallBack_BlinkFontColor::set(ebi::E2DFullFontColor&, ebi::E2DFullFontColor&)
-{
-	/*
-	.loc_0x0:
-	  lbz       r0, 0x0(r4)
-	  stb       r0, 0x20(r3)
-	  lbz       r0, 0x1(r4)
-	  stb       r0, 0x21(r3)
-	  lbz       r0, 0x2(r4)
-	  stb       r0, 0x22(r3)
-	  lbz       r0, 0x3(r4)
-	  stb       r0, 0x23(r3)
-	  lbz       r0, 0x4(r4)
-	  stb       r0, 0x24(r3)
-	  lbz       r0, 0x5(r4)
-	  stb       r0, 0x25(r3)
-	  lbz       r0, 0x6(r4)
-	  stb       r0, 0x26(r3)
-	  lbz       r0, 0x7(r4)
-	  stb       r0, 0x27(r3)
-	  lbz       r0, 0x8(r4)
-	  stb       r0, 0x28(r3)
-	  lbz       r0, 0x9(r4)
-	  stb       r0, 0x29(r3)
-	  lbz       r0, 0xA(r4)
-	  stb       r0, 0x2A(r3)
-	  lbz       r0, 0xB(r4)
-	  stb       r0, 0x2B(r3)
-	  lbz       r0, 0xC(r4)
-	  stb       r0, 0x2C(r3)
-	  lbz       r0, 0xD(r4)
-	  stb       r0, 0x2D(r3)
-	  lbz       r0, 0xE(r4)
-	  stb       r0, 0x2E(r3)
-	  lbz       r0, 0xF(r4)
-	  stb       r0, 0x2F(r3)
-	  lbz       r0, 0x0(r5)
-	  stb       r0, 0x30(r3)
-	  lbz       r0, 0x1(r5)
-	  stb       r0, 0x31(r3)
-	  lbz       r0, 0x2(r5)
-	  stb       r0, 0x32(r3)
-	  lbz       r0, 0x3(r5)
-	  stb       r0, 0x33(r3)
-	  lbz       r0, 0x4(r5)
-	  stb       r0, 0x34(r3)
-	  lbz       r0, 0x5(r5)
-	  stb       r0, 0x35(r3)
-	  lbz       r0, 0x6(r5)
-	  stb       r0, 0x36(r3)
-	  lbz       r0, 0x7(r5)
-	  stb       r0, 0x37(r3)
-	  lbz       r0, 0x8(r5)
-	  stb       r0, 0x38(r3)
-	  lbz       r0, 0x9(r5)
-	  stb       r0, 0x39(r3)
-	  lbz       r0, 0xA(r5)
-	  stb       r0, 0x3A(r3)
-	  lbz       r0, 0xB(r5)
-	  stb       r0, 0x3B(r3)
-	  lbz       r0, 0xC(r5)
-	  stb       r0, 0x3C(r3)
-	  lbz       r0, 0xD(r5)
-	  stb       r0, 0x3D(r3)
-	  lbz       r0, 0xE(r5)
-	  stb       r0, 0x3E(r3)
-	  lbz       r0, 0xF(r5)
-	  stb       r0, 0x3F(r3)
-	  blr
-	*/
-}
-
 } // namespace ebi
-
-/*
- * --INFO--
- * Address:	803D9C08
- * Size:	00000C
- */
-const char* efx2d::FileSelect::ArgFilecopy::getName()
-{
-	/*
-	lis      r3, lbl_80496D1C@ha
-	addi     r3, r3, lbl_80496D1C@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D9C14
- * Size:	00009C
- */
-efx2d::FileSelect::T2DFilesel::~T2DFilesel()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803D9C94
-	lis      r3, __vt__Q35efx2d10FileSelect10T2DFilesel@ha
-	addi     r3, r3, __vt__Q35efx2d10FileSelect10T2DFilesel@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803D9C84
-	lis      r3, __vt__Q25efx2d9TChasePos@ha
-	addi     r3, r3, __vt__Q25efx2d9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803D9C84
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803D9C84:
-	extsh.   r0, r31
-	ble      lbl_803D9C94
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803D9C94:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}

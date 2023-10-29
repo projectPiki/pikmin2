@@ -306,10 +306,8 @@ void TSaveMenu::startMsgState_(enumMsgState state)
 			mAnimScreen[1]->blink(0.0f, 0.0f);
 			mCursor1.setPanes(mCursorEfxPane[0], mCursorEfxPane[2]);
 			mCursor2.setPanes(mCursorEfxPane[1], mCursorEfxPane[3]);
-			mCursor1.mTimer    = 1.0f;
-			mCursor1.mSelected = true;
-			mCursor2.mTimer    = 1.0f;
-			mCursor2.mSelected = true;
+			mCursor1.start();
+			mCursor2.start();
 			mCursor1.mCursor.create(nullptr);
 			mCursor2.mCursor.create(nullptr);
 		} else if (mMesgState == MESSAGE_NoSaveOption) {
@@ -323,10 +321,8 @@ void TSaveMenu::startMsgState_(enumMsgState state)
 			mAnimScreen[1]->blink(0.0f, 0.0f);
 			mCursor1.setPanes(mCursorEfxPane[0], mCursorEfxPane[2]);
 			mCursor2.setPanes(mCursorEfxPane[1], mCursorEfxPane[3]);
-			mCursor1.mTimer    = 1.0f;
-			mCursor1.mSelected = true;
-			mCursor2.mTimer    = 1.0f;
-			mCursor2.mSelected = true;
+			mCursor1.start();
+			mCursor2.start();
 			mCursor1.mCursor.create(nullptr);
 			mCursor2.mCursor.create(nullptr);
 		} else if (mMesgState == MESSAGE_Saving) {
@@ -395,8 +391,8 @@ void TSaveMenu::updateMsg_()
 				mSelectedOption = true;
 				mAnimScreen[index1]->blink(0.6f, 0.0f);
 				mAnimScreen[index2]->blink(0.0f, 0.0f);
-				mCursor1.mSelected = mSelectedOption;
-				mCursor2.mSelected = mSelectedOption;
+				mCursor1.mIsLeft = mSelectedOption;
+				mCursor2.mIsLeft = mSelectedOption;
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 			}
 		} else if (mController->isMoveDown()) {
@@ -404,24 +400,20 @@ void TSaveMenu::updateMsg_()
 				mSelectedOption = false;
 				mAnimScreen[index1]->blink(0.0f, 0.0f);
 				mAnimScreen[index2]->blink(0.6f, 0.0f);
-				mCursor1.mSelected = mSelectedOption;
-				mCursor2.mSelected = mSelectedOption;
+				mCursor1.mIsLeft = mSelectedOption;
+				mCursor2.mIsLeft = mSelectedOption;
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 			}
 		} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
 			mPressedA = true;
 			if (mSelectedOption) {
-				mSelectState       = 0;
-				mCursor1.mTimer    = 1.0f;
-				mCursor1.mSelected = true;
-				mCursor2.mTimer    = 1.0f;
-				mCursor2.mSelected = true;
+				mSelectState = 0;
+				mCursor1.start();
+				mCursor2.start();
 			} else {
-				mSelectState       = 1;
-				mCursor1.mTimer    = 0.0f;
-				mCursor1.mSelected = false;
-				mCursor2.mTimer    = 0.0f;
-				mCursor2.mSelected = false;
+				mSelectState = 1;
+				mCursor1.stop();
+				mCursor2.stop();
 			}
 			startMsgState_(MSG_Close);
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);

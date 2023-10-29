@@ -260,8 +260,8 @@ void TScreenProgre::update()
 						mSelect = 0;
 						mBlinkFont[0].disable();
 						mBlinkFont[1].enable();
-						mCursor[0].mSelected = false;
-						mCursor[1].mSelected = false;
+						mCursor[0].mIsLeft = false;
+						mCursor[1].mIsLeft = false;
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 					}
 				} else if (mController->isMoveLeft()) {
@@ -269,8 +269,8 @@ void TScreenProgre::update()
 						mSelect = 1;
 						mBlinkFont[0].enable();
 						mBlinkFont[1].disable();
-						mCursor[0].mSelected = true;
-						mCursor[1].mSelected = true;
+						mCursor[0].mIsLeft = true;
+						mCursor[1].mIsLeft = true;
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 					}
 				} else if (mController->getButtonDown() & Controller::PRESS_A) {

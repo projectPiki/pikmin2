@@ -26,6 +26,11 @@ struct Arg : Vector2f {
 };
 
 struct ArgColor : public Arg {
+	ArgColor(Vector2f& pos, JUtility::TColor& color)
+	    : Arg(pos)
+	    , mColor(color)
+	{
+	}
 
 	virtual const char* getName() // _08 (weak)
 	{

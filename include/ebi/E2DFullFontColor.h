@@ -2,6 +2,7 @@
 #define _EBI_E2DFULLFONTCOLOR_H
 
 #include "JSystem/JUtility/TColor.h"
+#include "JSystem/J2D/J2DPane.h"
 
 namespace ebi {
 // @size{0x10}
@@ -12,6 +13,14 @@ struct E2DFullFontColor {
 	    , mWhite(0xFFFFFFFF)
 	    , mBlack(0xFFFFFFFF)
 	{
+	}
+
+	inline void setColors(J2DTextBox* pane)
+	{
+		mCol1.set(pane->mCharColor);
+		mCol2.set(pane->mGradientColor);
+		mWhite = pane->getWhite();
+		mBlack = pane->getBlack();
 	}
 
 	JUtility::TColor mCol1;  // _00

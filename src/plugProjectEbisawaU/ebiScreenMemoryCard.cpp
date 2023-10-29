@@ -627,7 +627,7 @@ void TYesNoCursor::update()
 		Vector2f pos1 = E2DPane_getGlbCenter(mPane1);
 		Vector2f pos2 = E2DPane_getGlbCenter(mPane2);
 
-		if (mSelected) {
+		if (mIsLeft) {
 			mTimer += mSpeed;
 			if (mTimer > 1.0f) {
 				mTimer = 1.0f;
@@ -836,8 +836,8 @@ void TMemoryCard::update()
 					mSelectionIdx = 0;
 					mBlinkFont1.disable();
 					mBlinkFont2.enable();
-					mCursor1.mSelected = false;
-					mCursor2.mSelected = false;
+					mCursor1.mIsLeft = false;
+					mCursor2.mIsLeft = false;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 				}
 			} else if (mController->isMoveLeft()) {
@@ -845,8 +845,8 @@ void TMemoryCard::update()
 					mSelectionIdx = 1;
 					mBlinkFont1.enable();
 					mBlinkFont2.disable();
-					mCursor1.mSelected = true;
-					mCursor2.mSelected = true;
+					mCursor1.mIsLeft = true;
+					mCursor2.mIsLeft = true;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 				}
 			} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
