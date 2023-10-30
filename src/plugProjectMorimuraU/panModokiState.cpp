@@ -96,7 +96,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	if (enemy->getCurrAnimIndex() != PANMODOKIANIM_Walk) {
 		enemy->startMotion(PANMODOKIANIM_Walk, nullptr);
-		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
+		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mWalkAnimSpeed.mValue);
 	}
 
 	OBJ(enemy)->mNextState = PANMODOKI_NULL;
@@ -155,7 +155,7 @@ void StateBack::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->startMotion(PANMODOKIANIM_Back, nullptr);
 	}
 
-	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mWalkAnimSpeed.mValue);
 
 	if (animIdx == PANMODOKIANIM_Pulled) {
 		enemy->setMotionFrame(enemy->getFirstKeyFrame());
@@ -268,7 +268,7 @@ void StatePulled::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	int animIdx = enemy->getCurrAnimIndex();
 	enemy->startMotion(PANMODOKIANIM_Pulled, nullptr);
-	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mWalkAnimSpeed.mValue);
 
 	if (animIdx == PANMODOKIANIM_Back) {
 		enemy->setMotionFrame(enemy->getFirstKeyFrame());
@@ -446,7 +446,7 @@ void StateHide::exec(EnemyBase* enemy)
 
 	if (!OBJ(enemy)->getCarryTarget()) {
 		mHideTimer++;
-		if (mHideTimer > CG_PROPERPARMS(enemy).mFp15.mValue) {
+		if (mHideTimer > CG_PROPERPARMS(enemy).mHideTime.mValue) {
 			transit(enemy, PANMODOKI_Appear, nullptr);
 			enemy->disableEvent(0, EB_BitterImmune);
 		}
@@ -482,9 +482,9 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->mTargetCreature = nullptr;
 	}
 
-	f32 damage = CG_PROPERPARMS(enemy).mFp06.mValue;
+	f32 damage = CG_PROPERPARMS(enemy).mPressDamage.mValue;
 	if (OBJ(enemy)->_2F1) {
-		damage = CG_PROPERPARMS(enemy).mFp04.mValue;
+		damage = CG_PROPERPARMS(enemy).mSuckDamage.mValue;
 		OBJ(enemy)->damageRumble();
 
 		if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_OoPanModoki) {
@@ -551,7 +551,7 @@ void StateWait::exec(EnemyBase* enemy)
 
 	mWaitTimer++;
 
-	if (mWaitTimer > CG_PROPERPARMS(enemy).mFp14.mValue && !enemy->isFinishMotion()) {
+	if (mWaitTimer > CG_PROPERPARMS(enemy).mWaitTime.mValue && !enemy->isFinishMotion()) {
 		enemy->finishMotion();
 	}
 
@@ -580,7 +580,7 @@ void StateStick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	if (enemy->getCurrAnimIndex() != PANMODOKIANIM_Walk) {
 		enemy->startMotion(PANMODOKIANIM_Walk, nullptr);
-		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp16.mValue);
+		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mWalkAnimSpeed.mValue);
 	}
 
 	enemy->mTargetVelocity  = Vector3f(0.0f);
@@ -631,8 +631,8 @@ void StateStick::exec(EnemyBase* enemy)
 			transit(enemy, PANMODOKI_Walk, nullptr);
 		}
 	} else {
-		EnemyFunc::walkToTarget(enemy, targetPos, CG_PARMS(enemy)->mGeneral.mMoveSpeed.mValue / 2, CG_PROPERPARMS(enemy).mFp02.mValue,
-		                        CG_PROPERPARMS(enemy).mFp05.mValue);
+		EnemyFunc::walkToTarget(enemy, targetPos, CG_PARMS(enemy)->mGeneral.mMoveSpeed.mValue / 2,
+		                        CG_PROPERPARMS(enemy).mFastTurnSpeed.mValue, CG_PROPERPARMS(enemy).mMaxFastTurnAngle.mValue);
 
 		// this needs fixing (surprise surprise)
 		enemy->changeFaceDir(targetPos);

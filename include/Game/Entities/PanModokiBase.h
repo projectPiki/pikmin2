@@ -87,7 +87,7 @@ struct Obj : public EnemyBase {
 	virtual void hideRumble() { }                                               // _2FC (weak)
 	virtual void damageRumble();                                                // _300
 	virtual void walkFunc();                                                    // _304
-	virtual bool canTarget(int, int) = 0;                                       // _308
+	virtual bool canTarget(int pelMinWeight, int weightLimit) = 0;              // _308
 	virtual void setInitialSetting(EnemyInitialParamBase*) { }                  // _1C4 (weak)
 	virtual void applyImpulse(Vector3f&, Vector3f&) { }                         // _18C (weak)
 	virtual bool isLivingThing()                                                // _D4 (weak)
@@ -122,7 +122,7 @@ struct Obj : public EnemyBase {
 	Pellet* getCarryTarget();
 	void releaseCarryTarget();
 	void checkNearHomeGraphIndex();
-	void carryTarget(f32);
+	bool carryTarget(f32);
 	void changeCarryDir(bool);
 	void setCarryDir(bool);
 	void endCarry();
@@ -191,29 +191,29 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mNestScale(this, 'fp00', "巣スケール", 1.0f, 0.0f, 5.0f)        // 'nest scale'
-		    , mFp16(this, 'fp16', "歩きモーションスピード", 1.0f, 0.0f, 5.0f) // 'walking motion speed'
-		    , mFp02(this, 'fp02', "急回転速度率", 0.1f, 0.0f, 1.0f)           // 'rapid rotation speed rate'
-		    , mFp05(this, 'fp05', "急回転速度最大", 1.0f, 0.0f, 180.0f)       // 'rapid rotation speed max'
-		    , mFp03(this, 'fp03', "戻り速度", 10.0f, 0.0f, 100.0f)            // 'return speed'
-		    , mFp04(this, 'fp04', "コンテナダメージ", 10.0f, 0.0f, 1000.0f)   // 'container [onyon/ship] damage'
-		    , mFp06(this, 'fp06', "プレスダメージ", 10.0f, 0.0f, 1000.0f)     // 'press damage'
-		    , mFp14(this, 'fp14', "待機時間", 20.0f, 0.0f, 500.0f)            // 'wait time'
-		    , mFp15(this, 'fp15', "潜伏時間", 50.0f, 0.0f, 300.0f)            // 'incubation time'
-		    , mIp01(this, 'ip01', "ターゲットスロット数境界", 5, 1, 20)       // 'target slot limit'
+		    , mNestScale(this, 'fp00', "巣スケール", 1.0f, 0.0f, 5.0f)                 // 'nest scale'
+		    , mWalkAnimSpeed(this, 'fp16', "歩きモーションスピード", 1.0f, 0.0f, 5.0f) // 'walking motion speed'
+		    , mFastTurnSpeed(this, 'fp02', "急回転速度率", 0.1f, 0.0f, 1.0f)           // 'rapid rotation speed rate'
+		    , mMaxFastTurnAngle(this, 'fp05', "急回転速度最大", 1.0f, 0.0f, 180.0f)    // 'rapid rotation speed max'
+		    , mCarrySpeed(this, 'fp03', "戻り速度", 10.0f, 0.0f, 100.0f)               // 'return speed'
+		    , mSuckDamage(this, 'fp04', "コンテナダメージ", 10.0f, 0.0f, 1000.0f)      // 'container [onyon/ship] damage'
+		    , mPressDamage(this, 'fp06', "プレスダメージ", 10.0f, 0.0f, 1000.0f)       // 'press damage'
+		    , mWaitTime(this, 'fp14', "待機時間", 20.0f, 0.0f, 500.0f)                 // 'wait time'
+		    , mHideTime(this, 'fp15', "潜伏時間", 50.0f, 0.0f, 300.0f)                 // 'incubation time'
+		    , mMaxCarryWeight(this, 'ip01', "ターゲットスロット数境界", 5, 1, 20)      // 'target slot limit'
 		{
 		}
 
-		Parm<f32> mNestScale; // _804, fp00
-		Parm<f32> mFp16;      // _82C
-		Parm<f32> mFp02;      // _854
-		Parm<f32> mFp05;      // _87C
-		Parm<f32> mFp03;      // _8A4
-		Parm<f32> mFp04;      // _8CC
-		Parm<f32> mFp06;      // _8F4
-		Parm<f32> mFp14;      // _91C
-		Parm<f32> mFp15;      // _944
-		Parm<int> mIp01;      // _96C
+		Parm<f32> mNestScale;        // _804, fp00
+		Parm<f32> mWalkAnimSpeed;    // _82C, fp16
+		Parm<f32> mFastTurnSpeed;    // _854, fp02
+		Parm<f32> mMaxFastTurnAngle; // _87C, fp05
+		Parm<f32> mCarrySpeed;       // _8A4, fp03
+		Parm<f32> mSuckDamage;       // _8CC, fp04
+		Parm<f32> mPressDamage;      // _8F4, fp06
+		Parm<f32> mWaitTime;         // _91C, fp14
+		Parm<f32> mHideTime;         // _944, fp15
+		Parm<int> mMaxCarryWeight;   // _96C, ip01
 	};
 
 	Parms()

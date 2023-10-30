@@ -12,10 +12,10 @@ namespace PanModoki {
 struct Obj : public PanModokiBase::Obj {
 	Obj() { }
 
-	virtual ~Obj() { }                       // _1BC (weak)
-	virtual bool canTarget(int id1, int id2) // _308 (weak)
+	virtual ~Obj() { }                                        // _1BC (weak)
+	virtual bool canTarget(int pelMinWeight, int weightLimit) // _308 (weak)
 	{
-		return id2 > id1;
+		return weightLimit > pelMinWeight;
 	}
 	virtual f32 getDownSmokeScale() { return 0.6f; }   // _2EC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
