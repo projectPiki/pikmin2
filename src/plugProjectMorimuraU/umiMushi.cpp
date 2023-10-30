@@ -1,10 +1,10 @@
-#include "types.h"
 #include "Game/Entities/UmiMushi.h"
+#include "Game/Navi.h"
+#include "Game/EnemyFunc.h"
+#include "Game/EnemyAnimKeyEvent.h"
 #include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
-#include "Game/Navi.h"
 #include "JSystem/J3D/J3DMtxBuffer.h"
-#include "Game/EnemyFunc.h"
 #include "JSystem/JMath.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
@@ -51,7 +51,7 @@ static bool weakScaleCallBack(J3DJoint* joint, int t)
 void Obj::setParameters()
 {
 	EnemyBase::setParameters();
-	float scale = 1.0f;
+	f32 scale = 1.0f;
 	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
 		scale = 0.5f;
 	}
@@ -164,10 +164,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 		bossSoundObj->_118 = true;
 	} else {
 		setParameters();
-		float health = C_PROPERPARMS.mBlindHealth.mValue;
-		mHealth      = health;
-		mMaxHealth   = health;
-		_35C         = 0.45f;
+		f32 health = C_PROPERPARMS.mBlindHealth.mValue;
+		mHealth    = health;
+		mMaxHealth = health;
+		_35C       = 0.45f;
 		P2ASSERTLINE(189, mModel);
 		J3DModelData* modelData                                 = mModel->mJ3dModel->mModelData;
 		mEyeJointIdx                                            = mModel->getJointIndex("eyes_joint1");
@@ -340,7 +340,7 @@ void Obj::doAnimationCullingOff()
 			Vector3f vec2(worldMtx[0][2], worldMtx[1][2], worldMtx[2][2]);
 			// Vector3f vec3 (worldMtx[0][3], worldMtx[1][3], worldMtx[2][3]);
 
-			float mtxFactor = vec1.normalise();
+			f32 mtxFactor = vec1.normalise();
 			mtxFactor *= 2.0f;
 			if (mtxFactor > 2.0f) {
 				mtxFactor = 2.0f;
@@ -724,560 +724,82 @@ void Obj::setNextGoal()
  */
 void Obj::changeColor()
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	mr       r31, r3
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051ED90@sda21(r2)
-	mr       r3, r31
-	fsubs    f31, f1, f0
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 2
-	bne      lbl_80385580
-	lfs      f30, lbl_8051EDA0@sda21(r2)
-	mr       r3, r31
-	lfs      f29, lbl_8051ED90@sda21(r2)
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0xa
-	bne      lbl_803851EC
-	mr       r3, r31
-	bl       getMotionFrameMax__Q24Game9EnemyBaseFv
-	lfs      f2, lbl_8051ED90@sda21(r2)
-	lwz      r3, 0x188(r31)
-	fsubs    f0, f1, f2
-	lwz      r0, 0x1c(r3)
-	fdivs    f31, f31, f0
-	cmplwi   r0, 0x3e8
-	bne      lbl_80385170
-	fmr      f31, f2
+	f32 frame = getMotionFrame() - 1.0f; // f31
 
-lbl_80385170:
-	lfs      f1, lbl_8051EDF0@sda21(r2)
-	lfs      f0, lbl_8051EDA0@sda21(r2)
-	fmuls    f1, f1, f31
-	fcmpo    cr0, f1, f0
-	bge      lbl_803851B0
-	lfs      f0, lbl_8051EDD4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_803851D4
+	if (getStateID() == UMIMUSHI_Find) {
+		f32 weight2 = 0.0f; // f30
+		f32 weight1 = 1.0f; // f29
+		if (getCurrAnimIndex() == 10) {
+			frame /= (getMotionFrameMax() - 1.0f);
+			if (mCurAnim->mType == KEYEVENT_END) {
+				frame = 1.0f;
+			}
 
-lbl_803851B0:
-	lfs      f0, lbl_8051EDD8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
+			f32 sinTheta = pikmin2_sinf((3.0f * PI / 2.0f) * frame);
+			weight2      = absF(sinTheta);
+			weight1      = 1.0f - weight2;
+		} else if (mTargetNavi) {
+			if (frame < 10.0f) {
+				frame /= 10.0f;
+				_314.r = ((f32)mNormalColor1.r) * frame + ((f32)_31C.r) * (1.0f - frame);
+				_314.g = ((f32)mNormalColor1.g) * frame + ((f32)_31C.g) * (1.0f - frame);
+				_314.b = ((f32)mNormalColor1.b) * frame + ((f32)_31C.b) * (1.0f - frame);
+			}
 
-lbl_803851D4:
-	fabs     f1, f0
-	lfs      f0, lbl_8051ED90@sda21(r2)
-	frsp     f1, f1
-	fmr      f30, f1
-	fsubs    f29, f0, f1
-	b        lbl_803853A8
+			if (frame < 48.0f) {
+				return;
+			}
 
-lbl_803851EC:
-	lwz      r0, 0x2d8(r31)
-	cmplwi   r0, 0
-	beq      lbl_803853A8
-	lfs      f0, lbl_8051EDB4@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_803852F0
-	fdivs    f31, f31, f0
-	lis      r3, 0x4330
-	lha      r0, 0x31c(r31)
-	lha      r4, 0x344(r31)
-	xoris    r0, r0, 0x8000
-	lfs      f0, lbl_8051ED90@sda21(r2)
-	xoris    r4, r4, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f2, lbl_8051EDE8@sda21(r2)
-	fsubs    f3, f0, f31
-	stw      r3, 8(r1)
-	lfd      f0, 8(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f0, f0, f2
-	stw      r3, 0x10(r1)
-	lfd      f1, 0x10(r1)
-	fmuls    f0, f0, f3
-	stw      r3, 0x28(r1)
-	fsubs    f1, f1, f2
-	stw      r3, 0x20(r1)
-	fmadds   f0, f1, f31, f0
-	stw      r3, 0x40(r1)
-	stw      r3, 0x38(r1)
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	sth      r0, 0x314(r31)
-	lha      r0, 0x31e(r31)
-	lha      r3, 0x346(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x2c(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f0, 0x28(r1)
-	stw      r0, 0x24(r1)
-	fsubs    f0, f0, f2
-	lfd      f1, 0x20(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f3
-	fmadds   f0, f1, f31, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	sth      r0, 0x316(r31)
-	lha      r0, 0x320(r31)
-	lha      r3, 0x348(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x44(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f0, 0x40(r1)
-	stw      r0, 0x3c(r1)
-	fsubs    f0, f0, f2
-	lfd      f1, 0x38(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f3
-	fmadds   f0, f1, f31, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x48(r1)
-	lwz      r0, 0x4c(r1)
-	sth      r0, 0x318(r31)
+			frame -= 48.0f;
+			frame /= (getMotionFrameMax() - 48.0f) - 1.0f;
+			if (mCurAnim->mType == KEYEVENT_END) {
+				frame = 1.0f;
+			}
 
-lbl_803852F0:
-	lfs      f0, lbl_8051EDF4@sda21(r2)
-	fcmpo    cr0, f31, f0
-	blt      lbl_803858CC
-	fsubs    f31, f31, f0
-	mr       r3, r31
-	bl       getMotionFrameMax__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051EDF4@sda21(r2)
-	lwz      r3, 0x188(r31)
-	fsubs    f0, f1, f0
-	lfs      f1, lbl_8051ED90@sda21(r2)
-	lwz      r0, 0x1c(r3)
-	fsubs    f0, f0, f1
-	cmplwi   r0, 0x3e8
-	fdivs    f31, f31, f0
-	bne      lbl_80385330
-	fmr      f31, f1
+			f32 sinTheta = pikmin2_sinf((3.0f * PI / 2.0f) * frame);
+			weight2      = absF(sinTheta);
+			weight1      = 1.0f - weight2;
+		}
 
-lbl_80385330:
-	lfs      f1, lbl_8051EDF0@sda21(r2)
-	lfs      f0, lbl_8051EDA0@sda21(r2)
-	fmuls    f1, f1, f31
-	fcmpo    cr0, f1, f0
-	bge      lbl_80385370
-	lfs      f0, lbl_8051EDD4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x48(r1)
-	lwz      r0, 0x4c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_80385394
+		if (mTargetNavi->mNaviIndex == NAVIID_Olimar) { // red
+			_314.r = weight2 * ((f32)mOlimarColor2.r) + weight1 * ((f32)mOlimarColor1.r);
+			_314.g = weight2 * ((f32)mOlimarColor2.g) + weight1 * ((f32)mOlimarColor1.g);
+			_314.b = weight2 * ((f32)mOlimarColor2.b) + weight1 * ((f32)mOlimarColor1.b);
+			return;
+		}
+		// blue
+		_314.r = weight2 * ((f32)mLouieColor2.r) + weight1 * ((f32)mLouieColor1.r);
+		_314.g = weight2 * ((f32)mLouieColor2.g) + weight1 * ((f32)mLouieColor1.g);
+		_314.b = weight2 * ((f32)mLouieColor2.b) + weight1 * ((f32)mLouieColor1.b);
+		return;
+	}
 
-lbl_80385370:
-	lfs      f0, lbl_8051EDD8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
+	if (frame <= 100.0f) {
+		frame *= 0.01f;
+	} else {
+		frame = 1.0f;
+	}
 
-lbl_80385394:
-	fabs     f1, f0
-	lfs      f0, lbl_8051ED90@sda21(r2)
-	frsp     f1, f1
-	fmr      f30, f1
-	fsubs    f29, f0, f1
+	f32 weight2 = pikmin2_sinf((PI / 2.0f) * frame);
+	f32 weight1 = 1.0f - weight2;
 
-lbl_803853A8:
-	lwz      r3, 0x2d8(r31)
-	lhz      r0, 0x2dc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8038549C
-	lha      r0, 0x324(r31)
-	lis      r3, 0x4330
-	lha      r4, 0x32c(r31)
-	xoris    r0, r0, 0x8000
-	stw      r3, 0x40(r1)
-	xoris    r4, r4, 0x8000
-	lfd      f2, lbl_8051EDE8@sda21(r2)
-	stw      r0, 0x44(r1)
-	lfd      f0, 0x40(r1)
-	stw      r4, 0x4c(r1)
-	fsubs    f0, f0, f2
-	stw      r3, 0x48(r1)
-	lfd      f1, 0x48(r1)
-	fmuls    f0, f29, f0
-	stw      r3, 0x28(r1)
-	fsubs    f1, f1, f2
-	stw      r3, 0x30(r1)
-	fmadds   f0, f30, f1, f0
-	stw      r3, 0x10(r1)
-	stw      r3, 0x18(r1)
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	sth      r0, 0x314(r31)
-	lha      r0, 0x326(r31)
-	lha      r3, 0x32e(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x2c(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f0, 0x28(r1)
-	stw      r0, 0x34(r1)
-	fsubs    f0, f0, f2
-	lfd      f1, 0x30(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f29, f0
-	fmadds   f0, f30, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	sth      r0, 0x316(r31)
-	lha      r0, 0x328(r31)
-	lha      r3, 0x330(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f0, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	fsubs    f0, f0, f2
-	lfd      f1, 0x18(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f29, f0
-	fmadds   f0, f30, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, 0x318(r31)
-	b        lbl_803858CC
+	if (mTargetNavi) {
+		if (mTargetNavi->mNaviIndex == NAVIID_Olimar) {
+			_314.r = weight2 * ((f32)mNormalColor2.r) + weight1 * ((f32)mOlimarColor2.r);
+			_314.g = weight2 * ((f32)mNormalColor2.g) + weight1 * ((f32)mOlimarColor2.g);
+			_314.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mOlimarColor2.b);
+			return;
+		}
 
-lbl_8038549C:
-	lha      r0, 0x334(r31)
-	lis      r3, 0x4330
-	lha      r4, 0x33c(r31)
-	xoris    r0, r0, 0x8000
-	stw      r3, 0x40(r1)
-	xoris    r4, r4, 0x8000
-	lfd      f2, lbl_8051EDE8@sda21(r2)
-	stw      r0, 0x44(r1)
-	lfd      f0, 0x40(r1)
-	stw      r4, 0x4c(r1)
-	fsubs    f0, f0, f2
-	stw      r3, 0x48(r1)
-	lfd      f1, 0x48(r1)
-	fmuls    f0, f29, f0
-	stw      r3, 0x28(r1)
-	fsubs    f1, f1, f2
-	stw      r3, 0x30(r1)
-	fmadds   f0, f30, f1, f0
-	stw      r3, 0x10(r1)
-	stw      r3, 0x18(r1)
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	sth      r0, 0x314(r31)
-	lha      r0, 0x336(r31)
-	lha      r3, 0x33e(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x2c(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f0, 0x28(r1)
-	stw      r0, 0x34(r1)
-	fsubs    f0, f0, f2
-	lfd      f1, 0x30(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f29, f0
-	fmadds   f0, f30, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	sth      r0, 0x316(r31)
-	lha      r0, 0x338(r31)
-	lha      r3, 0x340(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f0, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	fsubs    f0, f0, f2
-	lfd      f1, 0x18(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f29, f0
-	fmadds   f0, f30, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, 0x318(r31)
-	b        lbl_803858CC
+		_314.r = weight2 * ((f32)mNormalColor2.r) + weight1 * ((f32)mLouieColor2.r);
+		_314.g = weight2 * ((f32)mNormalColor2.g) + weight1 * ((f32)mLouieColor2.g);
+		_314.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mLouieColor2.b);
+		return;
+	}
 
-lbl_80385580:
-	lfs      f0, lbl_8051ED9C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	cror     2, 0, 2
-	bne      lbl_8038559C
-	lfs      f0, lbl_8051EDF8@sda21(r2)
-	fmuls    f31, f31, f0
-	b        lbl_803855A0
-
-lbl_8038559C:
-	lfs      f31, lbl_8051ED90@sda21(r2)
-
-lbl_803855A0:
-	lfs      f1, lbl_8051EDFC@sda21(r2)
-	lfs      f0, lbl_8051EDA0@sda21(r2)
-	fmuls    f1, f1, f31
-	fcmpo    cr0, f1, f0
-	bge      lbl_803855E0
-	lfs      f0, lbl_8051EDD4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x48(r1)
-	lwz      r0, 0x4c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_80385604
-
-lbl_803855E0:
-	lfs      f0, lbl_8051EDD8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_80385604:
-	lfs      f1, lbl_8051ED90@sda21(r2)
-	lwz      r3, 0x2d8(r31)
-	fsubs    f1, f1, f0
-	cmplwi   r3, 0
-	beq      lbl_803857EC
-	lhz      r0, 0x2dc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80385708
-	lha      r0, 0x32c(r31)
-	lis      r3, 0x4330
-	lha      r4, 0x34c(r31)
-	xoris    r0, r0, 0x8000
-	stw      r3, 0x40(r1)
-	xoris    r4, r4, 0x8000
-	lfd      f4, lbl_8051EDE8@sda21(r2)
-	stw      r0, 0x44(r1)
-	lfd      f2, 0x40(r1)
-	stw      r4, 0x4c(r1)
-	fsubs    f2, f2, f4
-	stw      r3, 0x48(r1)
-	lfd      f3, 0x48(r1)
-	fmuls    f2, f1, f2
-	stw      r3, 0x28(r1)
-	fsubs    f3, f3, f4
-	stw      r3, 0x30(r1)
-	fmadds   f2, f0, f3, f2
-	stw      r3, 0x10(r1)
-	stw      r3, 0x18(r1)
-	fctiwz   f2, f2
-	stfd     f2, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	sth      r0, 0x314(r31)
-	lha      r0, 0x32e(r31)
-	lha      r3, 0x34e(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x2c(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, 0x28(r1)
-	stw      r0, 0x34(r1)
-	fsubs    f2, f2, f4
-	lfd      f3, 0x30(r1)
-	fsubs    f3, f3, f4
-	fmuls    f2, f1, f2
-	fmadds   f2, f0, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	sth      r0, 0x316(r31)
-	lha      r0, 0x330(r31)
-	lha      r3, 0x350(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	fsubs    f2, f2, f4
-	lfd      f3, 0x18(r1)
-	fsubs    f3, f3, f4
-	fmuls    f1, f1, f2
-	fmadds   f0, f0, f3, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, 0x318(r31)
-	b        lbl_803858CC
-
-lbl_80385708:
-	lha      r0, 0x33c(r31)
-	lis      r3, 0x4330
-	lha      r4, 0x34c(r31)
-	xoris    r0, r0, 0x8000
-	stw      r3, 0x40(r1)
-	xoris    r4, r4, 0x8000
-	lfd      f4, lbl_8051EDE8@sda21(r2)
-	stw      r0, 0x44(r1)
-	lfd      f2, 0x40(r1)
-	stw      r4, 0x4c(r1)
-	fsubs    f2, f2, f4
-	stw      r3, 0x48(r1)
-	lfd      f3, 0x48(r1)
-	fmuls    f2, f1, f2
-	stw      r3, 0x28(r1)
-	fsubs    f3, f3, f4
-	stw      r3, 0x30(r1)
-	fmadds   f2, f0, f3, f2
-	stw      r3, 0x10(r1)
-	stw      r3, 0x18(r1)
-	fctiwz   f2, f2
-	stfd     f2, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	sth      r0, 0x314(r31)
-	lha      r0, 0x33e(r31)
-	lha      r3, 0x34e(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x2c(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, 0x28(r1)
-	stw      r0, 0x34(r1)
-	fsubs    f2, f2, f4
-	lfd      f3, 0x30(r1)
-	fsubs    f3, f3, f4
-	fmuls    f2, f1, f2
-	fmadds   f2, f0, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	sth      r0, 0x316(r31)
-	lha      r0, 0x340(r31)
-	lha      r3, 0x350(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	fsubs    f2, f2, f4
-	lfd      f3, 0x18(r1)
-	fsubs    f3, f3, f4
-	fmuls    f1, f1, f2
-	fmadds   f0, f0, f3, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, 0x318(r31)
-	b        lbl_803858CC
-
-lbl_803857EC:
-	lha      r0, 0x344(r31)
-	lis      r3, 0x4330
-	lha      r4, 0x34c(r31)
-	xoris    r0, r0, 0x8000
-	stw      r3, 0x40(r1)
-	xoris    r4, r4, 0x8000
-	lfd      f4, lbl_8051EDE8@sda21(r2)
-	stw      r0, 0x44(r1)
-	lfd      f2, 0x40(r1)
-	stw      r4, 0x4c(r1)
-	fsubs    f2, f2, f4
-	stw      r3, 0x48(r1)
-	lfd      f3, 0x48(r1)
-	fmuls    f2, f1, f2
-	stw      r3, 0x28(r1)
-	fsubs    f3, f3, f4
-	stw      r3, 0x30(r1)
-	fmadds   f2, f0, f3, f2
-	stw      r3, 0x10(r1)
-	stw      r3, 0x18(r1)
-	fctiwz   f2, f2
-	stfd     f2, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	sth      r0, 0x314(r31)
-	lha      r0, 0x346(r31)
-	lha      r3, 0x34e(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x2c(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, 0x28(r1)
-	stw      r0, 0x34(r1)
-	fsubs    f2, f2, f4
-	lfd      f3, 0x30(r1)
-	fsubs    f3, f3, f4
-	fmuls    f2, f1, f2
-	fmadds   f2, f0, f3, f2
-	fctiwz   f2, f2
-	stfd     f2, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	sth      r0, 0x316(r31)
-	lha      r0, 0x348(r31)
-	lha      r3, 0x350(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x14(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	fsubs    f2, f2, f4
-	lfd      f3, 0x18(r1)
-	fsubs    f3, f3, f4
-	fmuls    f1, f1, f2
-	fmadds   f0, f0, f3, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, 0x318(r31)
-
-lbl_803858CC:
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x5c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	_314.r = weight2 * ((f32)mNormalColor2.r) + weight1 * ((f32)mNormalColor1.r);
+	_314.g = weight2 * ((f32)mNormalColor2.g) + weight1 * ((f32)mNormalColor1.g);
+	_314.b = weight2 * ((f32)mNormalColor2.b) + weight1 * ((f32)mNormalColor1.b);
 }
 
 /*
@@ -1287,127 +809,18 @@ lbl_803858CC:
  */
 void Obj::resetColor()
 {
+	f32 frame = getMotionFrame() - 1.0f; // f31
+	frame /= (getMotionFrameMax() - 1.0f);
+	if (mCurAnim->mType == KEYEVENT_END) {
+		frame = 1.0f;
+	}
 
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	mr       r31, r3
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051ED90@sda21(r2)
-	mr       r3, r31
-	fsubs    f31, f1, f0
-	bl       getMotionFrameMax__Q24Game9EnemyBaseFv
-	lfs      f2, lbl_8051ED90@sda21(r2)
-	lwz      r3, 0x188(r31)
-	fsubs    f0, f1, f2
-	lwz      r0, 0x1c(r3)
-	fdivs    f31, f31, f0
-	cmplwi   r0, 0x3e8
-	bne      lbl_80385948
-	fmr      f31, f2
+	f32 weight2 = absF(pikmin2_sinf((3.0f * PI / 2.0f) * frame));
+	f32 weight1 = 1.0f - weight2;
 
-lbl_80385948:
-	lfs      f1, lbl_8051EDF0@sda21(r2)
-	lfs      f0, lbl_8051EDA0@sda21(r2)
-	fmuls    f1, f1, f31
-	fcmpo    cr0, f1, f0
-	bge      lbl_80385988
-	lfs      f0, lbl_8051EDD4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_803859AC
-
-lbl_80385988:
-	lfs      f0, lbl_8051EDD8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_803859AC:
-	lha      r0, 0x31c(r31)
-	lis      r3, 0x4330
-	fabs     f0, f0
-	lha      r4, 0x344(r31)
-	xoris    r0, r0, 0x8000
-	stw      r3, 0x20(r1)
-	xoris    r4, r4, 0x8000
-	lfs      f1, lbl_8051ED90@sda21(r2)
-	stw      r0, 0x24(r1)
-	frsp     f3, f0
-	lfd      f2, lbl_8051EDE8@sda21(r2)
-	lfd      f0, 0x20(r1)
-	stw      r4, 0x1c(r1)
-	fsubs    f4, f1, f3
-	fsubs    f0, f0, f2
-	stw      r3, 0x18(r1)
-	lfd      f1, 0x18(r1)
-	fmuls    f0, f4, f0
-	stw      r3, 0x38(r1)
-	fsubs    f1, f1, f2
-	stw      r3, 0x30(r1)
-	fmadds   f0, f3, f1, f0
-	stw      r3, 0x50(r1)
-	stw      r3, 0x48(r1)
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	sth      r0, 0x314(r31)
-	lha      r0, 0x31e(r31)
-	lha      r3, 0x346(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x3c(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f0, 0x38(r1)
-	stw      r0, 0x34(r1)
-	fsubs    f0, f0, f2
-	lfd      f1, 0x30(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f4, f0
-	fmadds   f0, f3, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	sth      r0, 0x316(r31)
-	lha      r0, 0x320(r31)
-	lha      r3, 0x348(r31)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x54(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f0, 0x50(r1)
-	stw      r0, 0x4c(r1)
-	fsubs    f0, f0, f2
-	lfd      f1, 0x48(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f4, f0
-	fmadds   f0, f3, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x58(r1)
-	lwz      r0, 0x5c(r1)
-	sth      r0, 0x318(r31)
-	psq_l    f31, 120(r1), 0, qr0
-	lwz      r0, 0x84(r1)
-	lfd      f31, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	_314.r = weight2 * ((f32)mNormalColor1.r) + weight1 * ((f32)_31C.r);
+	_314.g = weight2 * ((f32)mNormalColor1.g) + weight1 * ((f32)_31C.g);
+	_314.b = weight2 * ((f32)mNormalColor1.b) + weight1 * ((f32)_31C.b);
 }
 
 /*
@@ -1417,7 +830,23 @@ lbl_803859AC:
  */
 f32 Obj::turnFunc()
 {
+	if (mTargetNavi) {
+		mGoalPosition = mTargetNavi->getPosition();
+	}
 
+	mSoundObj->startSound(PSSE_EN_UMI_ZURUZURU, 0);
+
+	Vector3f targetPos = mGoalPosition;
+	f32 factor         = 1.0f;
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		factor = C_PARMS->_A2C;
+	}
+
+	f32 maxAngle  = factor * C_PROPERPARMS.mRotateSpeedMax();
+	f32 turnSpeed = factor * C_PROPERPARMS.mRotateSpeed();
+
+	f32 angleDist = turnToTarget2(targetPos, turnSpeed, maxAngle);
+	return absF(angleDist);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1559,6 +988,48 @@ void Obj::resetWalkParm()
  */
 bool Obj::isChangeNavi()
 {
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		return false;
+	}
+
+	Navi* navi;
+	if (gameSystem && gameSystem->isTwoPlayerMode()) {
+		navi = EnemyFunc::getNearestNavi(this, 360.0f, C_PARMS->mGeneral.mSearchDistance(), nullptr, nullptr);
+	} else {
+		navi = naviMgr->getActiveNavi();
+	}
+
+	if (navi) {
+		f32 dist = C_PARMS->mGeneral.mSearchDistance();
+		if (mTargetNavi) {
+			dist *= 1.2f;
+		}
+
+		dist *= dist;
+		if (navi->isAlive()) {
+			Vector3f naviPos(navi->getPosition().x, navi->getPosition().y, navi->getPosition().z);
+			if (mPosition.sqrDistance(naviPos) < dist) {
+				if (mTargetNavi != navi) {
+					_31C            = _314;
+					mTargetNavi     = navi;
+					mTargetCreature = mTargetNavi;
+					mGoalPosition   = mTargetNavi->getPosition();
+					_2DC            = false;
+					return true;
+				}
+				return false;
+			}
+		}
+
+		if (mTargetNavi || mTargetNavi == navi) {
+			mTargetNavi = nullptr;
+			_31C        = _314;
+			_2DC        = false;
+			return true;
+		}
+	}
+
+	return false;
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1735,6 +1206,41 @@ lbl_80385EA0:
  */
 bool Obj::isFindTarget()
 {
+	mTargetCreature = nullptr;
+	if (_2E0 > 0) {
+		return false;
+	}
+
+	f32 minDist = C_PARMS->mGeneral.mSearchDistance();
+	minDist *= minDist;
+
+	if (mTargetNavi) {
+		f32 searchDist = C_PARMS->mGeneral.mSearchDistance();
+		searchDist *= searchDist;
+		Vector3f pos     = mPosition;
+		Vector3f naviPos = Vector3f(mTargetNavi->getPosition().x, 0.0f, mTargetNavi->getPosition().z);
+		if (sqrDistanceXZ(naviPos, pos) < searchDist) {
+			mTargetCreature = mTargetNavi;
+			mGoalPosition   = mTargetCreature->getPosition();
+			return true;
+		}
+	}
+
+	mTargetCreature
+	    = EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mSearchAngle(), C_PARMS->mGeneral.mSearchDistance(), &minDist, nullptr);
+	f32 naviDist = minDist;
+	Piki* piki
+	    = EnemyFunc::getNearestPikmin(this, C_PARMS->mGeneral.mSearchAngle(), C_PARMS->mGeneral.mSearchDistance(), &minDist, nullptr);
+	if (minDist < naviDist) {
+		mTargetCreature = piki;
+	}
+
+	if (mTargetCreature) {
+		mGoalPosition = mTargetCreature->getPosition();
+		return true;
+	}
+
+	return false;
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1876,6 +1382,33 @@ lbl_80386074:
  */
 bool Obj::isAttackStart()
 {
+	f32 attackDist  = SQUARE(C_PARMS->mGeneral.mAttackRadius());      // f31
+	f32 attackAngle = TORADIANS(C_PARMS->mGeneral.mAttackHitAngle()); // f30
+
+	if (mTargetNavi && mTargetNavi->isAlive()) {
+		f32 angle = getCreatureViewAngle(mTargetNavi);
+		if (absF(angle) <= attackAngle) {
+			Vector3f pos     = mPosition;
+			Vector3f naviPos = Vector3f(mTargetNavi->getPosition().x, 0.0f, mTargetNavi->getPosition().z);
+			if (sqrDistanceXZ(naviPos, pos) < attackDist) {
+				return true;
+			}
+		}
+	}
+
+	Piki* piki = EnemyFunc::getNearestPikmin(this, attackAngle, C_PARMS->mGeneral.mAttackRadius(), nullptr, nullptr);
+	if (piki) {
+		mTargetCreature = piki;
+		return true;
+	}
+
+	if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		Navi* navi = EnemyFunc::getNearestNavi(this, attackAngle, C_PARMS->mGeneral.mAttackRadius(), nullptr, nullptr);
+		if (navi) {
+			return true;
+		}
+	}
+	return false;
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -2041,123 +1574,20 @@ lbl_803862AC:
  */
 bool Obj::isNeedTurn()
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	addi     r3, r1, 0x2c
-	mr       r4, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x2c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x34(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0x2bc(r31)
-	lfs      f0, 0x2c4(r31)
-	lfs      f4, 0x30(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x20(r1)
-	stfs     f4, 0x24(r1)
-	stfs     f3, 0x28(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	lwz      r3, 0xc0(r31)
-	fabs     f3, f1
-	lfs      f1, lbl_8051EDD0@sda21(r2)
-	lfs      f0, 0x844(r3)
-	lfs      f2, lbl_8051EDCC@sda21(r2)
-	frsp     f3, f3
-	fmuls    f0, f1, f0
-	fmuls    f0, f2, f0
-	fcmpo    cr0, f3, f0
-	ble      lbl_803863B0
-	li       r3, 1
-	b        lbl_80386478
+	f32 angle = getCreatureViewAngle(mGoalPosition);
+	if (absF(angle) > TORADIANS(C_PROPERPARMS.mTurnStartAngle())) {
+		return true;
+	}
 
-lbl_803863B0:
-	lwz      r4, 0x2d8(r31)
-	cmplwi   r4, 0
-	beq      lbl_80386474
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0x38
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lfs      f31, 0x38(r1)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x40(r1)
-	mtctr    r12
-	bctrl
-	lfs      f4, 0x14(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x1c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f3, 0x18(r1)
-	fsubs    f1, f31, f4
-	fsubs    f2, f30, f0
-	stfs     f4, 8(r1)
-	stfs     f3, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	lwz      r3, 0xc0(r31)
-	fabs     f3, f1
-	lfs      f1, lbl_8051EDD0@sda21(r2)
-	lfs      f0, 0x844(r3)
-	lfs      f2, lbl_8051EDCC@sda21(r2)
-	frsp     f3, f3
-	fmuls    f0, f1, f0
-	fmuls    f0, f2, f0
-	fcmpo    cr0, f3, f0
-	ble      lbl_80386474
-	li       r3, 1
-	b        lbl_80386478
+	if (mTargetNavi) {
+		Vector3f naviPos = mTargetNavi->getPosition();
+		f32 naviAngle    = getCreatureViewAngle(naviPos);
+		if (absF(naviAngle) > TORADIANS(C_PROPERPARMS.mTurnStartAngle())) {
+			return true;
+		}
+	}
 
-lbl_80386474:
-	li       r3, 0
-
-lbl_80386478:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -2165,35 +1595,16 @@ lbl_80386478:
  * Address:	8038649C
  * Size:	00005C
  */
-bool Obj::isOutOfTerritory(f32)
+bool Obj::isOutOfTerritory(f32 scale)
 {
-	/*
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lwz      r5, 0xc0(r3)
-	cmplwi   r4, 0
-	lfs      f0, 0x35c(r5)
-	beq      lbl_803864C0
-	lbz      r0, 0x48(r4)
-	cmplwi   r0, 0
-	beq      lbl_803864C0
-	lfs      f0, 0x934(r5)
+	f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+	if (gameSystem && gameSystem->mIsInCave) {
+		rad = C_PROPERPARMS.mCaveTerritory();
+	}
 
-lbl_803864C0:
-	fmuls    f4, f0, f1
-	lfs      f2, 0x1a0(r3)
-	lfs      f0, 0x194(r3)
-	lfs      f3, 0x198(r3)
-	fsubs    f2, f2, f0
-	lfs      f1, 0x18c(r3)
-	fmuls    f0, f4, f4
-	fsubs    f3, f3, f1
-	fmuls    f1, f2, f2
-	fmadds   f1, f3, f3, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	rlwinm   r3, r0, 2, 0x1f, 0x1f
-	blr
-	*/
+	// needs tweaking to inline correctly in next function
+	f32 scaledRad = SQUARE(rad * scale);
+	return (u8)(sqrDistanceXZ(mHomePosition, mPosition) > scaledRad);
 }
 
 /*
@@ -2213,6 +1624,24 @@ void Obj::returnHome()
  */
 bool Obj::canMove()
 {
+	if (isOutOfTerritory(1.0f) && mTargetNavi) {
+		f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+		if (gameSystem && gameSystem->mIsInCave) {
+			rad = C_PROPERPARMS.mCaveTerritory();
+		}
+
+		Vector3f naviPos = mTargetNavi->getPosition();
+		f32 sqrDist      = sqrDistanceXZ(mHomePosition, naviPos);
+		mGoalPosition    = naviPos;
+		mTargetCreature  = mTargetNavi;
+
+		if (sqrDist > SQUARE(rad)) {
+			mTargetVelocity = Vector3f(0.0f);
+			return false;
+		}
+	}
+
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2307,6 +1736,56 @@ lbl_80386608:
  */
 bool Obj::outMove()
 {
+	if (mTargetNavi) {
+		Vector3f naviPos = mTargetNavi->getPosition(); // f29, f31
+		Vector3f dir     = naviPos - mHomePosition;
+		dir.y            = 0.0f;
+		dir.normalise(); // f2, f3, f4
+
+		f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+		if (gameSystem && gameSystem->mIsInCave) {
+			rad = C_PROPERPARMS.mCaveTerritory();
+		}
+
+		rad = 1.5f * rad; // f5
+
+		f32 moveSpeed = 0.5f * C_PROPERPARMS.mMoveSpeed(); // f28
+		_304          = mHomePosition + (dir * rad);
+
+		f32 angle1 = roundAng(JMAAtan2Radian(_304.x - mPosition.x, _304.z - mPosition.z));
+		f32 angle2 = roundAng(JMAAtan2Radian(naviPos.x - mPosition.x, naviPos.z - mPosition.z));
+
+		f32 angleDist = angDist(angle2, angle1);
+
+		if (absF(angleDist) < 1.0f) {
+			Vector3f pos = mPosition;
+			Vector3f vec = _304;
+			if (sqrDistanceXZ(pos, vec) < 100.0f) {
+				mTargetVelocity = Vector3f(0.0f);
+				return true;
+			}
+			Vector3f sep = vec - pos;
+			sep.y        = 0.0f;
+			sep.normalise();
+
+			Vector3f vel = sep * moveSpeed; // f30, f29
+
+			f32 maxAngle  = 0.5f * C_PROPERPARMS.mRotateSpeedMax(); // f27
+			f32 turnSpeed = 0.5f * C_PROPERPARMS.mRotateSpeed();    // f28
+			f32 velY      = getTargetVelocity().y;
+			turnToTarget2(_304, turnSpeed, maxAngle);
+
+			mTargetVelocity = Vector3f(vel.x, velY, vel.z);
+		} else {
+			f32 maxAngle  = 0.5f * C_PROPERPARMS.mRotateSpeedMax(); // f27
+			f32 turnSpeed = 0.5f * C_PROPERPARMS.mRotateSpeed();    // f28
+
+			turnToTarget2(naviPos, turnSpeed, maxAngle);
+		}
+	}
+
+	mSoundObj->startSound(PSSE_EN_UMI_ZURUZURU, 0);
+	return false;
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -2640,44 +2119,13 @@ lbl_80386A70:
  */
 void Obj::setFindAnim()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lha      r4, 0x314(r3)
-	lha      r0, 0x344(r3)
-	cmpw     r4, r0
-	bne      lbl_80386B08
-	lha      r4, 0x316(r31)
-	lha      r0, 0x346(r31)
-	cmpw     r4, r0
-	bne      lbl_80386B08
-	lha      r4, 0x318(r31)
-	lha      r0, 0x348(r31)
-	cmpw     r4, r0
-	bne      lbl_80386B08
-	li       r4, 0xa
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	b        lbl_80386B20
+	if (_314.r == mNormalColor1.r && _314.g == mNormalColor1.g && _314.b == mNormalColor1.b) {
+		startMotion(UMIANIM_FSearch, nullptr);
+		return;
+	}
 
-lbl_80386B08:
-	mr       r3, r31
-	bl       fadeColorEffect__Q34Game8UmiMushi3ObjFv
-	mr       r3, r31
-	li       r4, 5
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-
-lbl_80386B20:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	fadeColorEffect();
+	startMotion(UMIANIM_Search, nullptr);
 }
 
 /*
@@ -2815,6 +2263,47 @@ void Obj::delShadow() { shadowMgr->delNormalShadow(this); }
  */
 void Obj::eyeScaleMtxCalc()
 {
+	if (_2DD) {
+		return;
+	}
+
+	Matrixf* mtx = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mEyeJointIdx);
+	if (C_PARMS->_A15) {
+		_35C = C_PARMS->_A30;
+	} else {
+		_35C = 0.45f;
+	}
+	Vector3f xVec = mtx->getBasis(0);
+	xVec.normalise();
+	Vector3f yVec = mtx->getBasis(1);
+	yVec.normalise();
+	Vector3f zVec = mtx->getBasis(2);
+	zVec.normalise();
+
+	f32 scale        = _35C;
+	Vector3f newXVec = xVec * scale;
+	Vector3f newYVec = yVec * scale;
+	Vector3f newZVec = zVec * scale;
+	mtx->setBasis(0, newXVec);
+	mtx->setBasis(1, newYVec);
+	mtx->setBasis(2, newZVec);
+
+	f32 y = mtx->mMatrix.structView.ty; // f30
+
+	f32 y2 = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mModel->getJointIndex("kuti_joint1"))->mMatrix.structView.ty; // f29
+
+	Matrixf* mtx2 = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mModel->getJointIndex("kuti_joint1"));
+
+	f32 val                    = y * scale + y2 * (1.0f - scale);
+	mtx->mMatrix.structView.ty = C_PARMS->_A28 * (1.0f - scale) + val;
+	mtx->mMatrix.structView.ty = val - 5.0f * (1.0f - scale);
+
+	if (C_PARMS->_A15) {
+		mtx->mMatrix.structView.tx = mtx2->mMatrix.structView.tx;
+		mtx->mMatrix.structView.ty = y2 + C_PARMS->_A28;
+		mtx->mMatrix.structView.tz = mtx2->mMatrix.structView.tz;
+	}
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3028,123 +2517,21 @@ lbl_80387358:
  */
 void Obj::weakScaleMtxCalc()
 {
-	/*
-	lwz      r4, 0x174(r3)
-	lhz      r0, 0x362(r3)
-	lwz      r4, 8(r4)
-	mulli    r0, r0, 0x30
-	lfs      f3, lbl_8051EDA0@sda21(r2)
-	lwz      r4, 0x84(r4)
-	lwz      r4, 0xc(r4)
-	add      r4, r4, r0
-	lfs      f1, 0x10(r4)
-	lfs      f2, 0x20(r4)
-	fmuls    f4, f1, f1
-	lfs      f0, 0(r4)
-	fmuls    f5, f2, f2
-	fmadds   f4, f0, f0, f4
-	fadds    f4, f5, f4
-	fcmpo    cr0, f4, f3
-	ble      lbl_803873DC
-	ble      lbl_803873E0
-	frsqrte  f3, f4
-	fmuls    f4, f3, f4
-	b        lbl_803873E0
+	Matrixf* mtx  = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mWeakJointIdx);
+	Vector3f xVec = mtx->getBasis(0);
+	xVec.normalise();
+	Vector3f yVec = mtx->getBasis(1);
+	yVec.normalise();
+	Vector3f zVec = mtx->getBasis(2);
+	zVec.normalise();
 
-lbl_803873DC:
-	fmr      f4, f3
-
-lbl_803873E0:
-	lfs      f3, lbl_8051EDA0@sda21(r2)
-	fcmpo    cr0, f4, f3
-	ble      lbl_80387400
-	lfs      f3, lbl_8051ED90@sda21(r2)
-	fdivs    f3, f3, f4
-	fmuls    f0, f0, f3
-	fmuls    f1, f1, f3
-	fmuls    f2, f2, f3
-
-lbl_80387400:
-	lfs      f3, 0x14(r4)
-	lfs      f4, 0x24(r4)
-	fmuls    f6, f3, f3
-	lfs      f7, 4(r4)
-	fmuls    f8, f4, f4
-	lfs      f5, lbl_8051EDA0@sda21(r2)
-	fmadds   f6, f7, f7, f6
-	fadds    f6, f8, f6
-	fcmpo    cr0, f6, f5
-	ble      lbl_80387438
-	ble      lbl_8038743C
-	frsqrte  f5, f6
-	fmuls    f6, f5, f6
-	b        lbl_8038743C
-
-lbl_80387438:
-	fmr      f6, f5
-
-lbl_8038743C:
-	lfs      f5, lbl_8051EDA0@sda21(r2)
-	fcmpo    cr0, f6, f5
-	ble      lbl_8038745C
-	lfs      f5, lbl_8051ED90@sda21(r2)
-	fdivs    f5, f5, f6
-	fmuls    f7, f7, f5
-	fmuls    f3, f3, f5
-	fmuls    f4, f4, f5
-
-lbl_8038745C:
-	lfs      f9, 0x18(r4)
-	lfs      f10, 0x28(r4)
-	fmuls    f6, f9, f9
-	lfs      f8, 8(r4)
-	fmuls    f11, f10, f10
-	lfs      f5, lbl_8051EDA0@sda21(r2)
-	fmadds   f6, f8, f8, f6
-	fadds    f6, f11, f6
-	fcmpo    cr0, f6, f5
-	ble      lbl_80387494
-	ble      lbl_80387498
-	frsqrte  f5, f6
-	fmuls    f6, f5, f6
-	b        lbl_80387498
-
-lbl_80387494:
-	fmr      f6, f5
-
-lbl_80387498:
-	lfs      f5, lbl_8051EDA0@sda21(r2)
-	fcmpo    cr0, f6, f5
-	ble      lbl_803874B8
-	lfs      f5, lbl_8051ED90@sda21(r2)
-	fdivs    f5, f5, f6
-	fmuls    f8, f8, f5
-	fmuls    f9, f9, f5
-	fmuls    f10, f10, f5
-
-lbl_803874B8:
-	lwz      r3, 0xc0(r3)
-	lfs      f11, 0xa34(r3)
-	fmuls    f5, f0, f11
-	fmuls    f1, f1, f11
-	fmuls    f0, f2, f11
-	stfs     f5, 0(r4)
-	fmuls    f6, f7, f11
-	fmuls    f5, f3, f11
-	stfs     f1, 0x10(r4)
-	fmuls    f3, f4, f11
-	fmuls    f2, f8, f11
-	stfs     f0, 0x20(r4)
-	fmuls    f1, f9, f11
-	fmuls    f0, f10, f11
-	stfs     f6, 4(r4)
-	stfs     f5, 0x14(r4)
-	stfs     f3, 0x24(r4)
-	stfs     f2, 8(r4)
-	stfs     f1, 0x18(r4)
-	stfs     f0, 0x28(r4)
-	blr
-	*/
+	f32 scale        = C_PARMS->_A34;
+	Vector3f newXVec = xVec * scale;
+	Vector3f newYVec = yVec * scale;
+	Vector3f newZVec = zVec * scale;
+	mtx->setBasis(0, newXVec);
+	mtx->setBasis(1, newYVec);
+	mtx->setBasis(2, newZVec);
 }
 
 } // namespace UmiMushi
