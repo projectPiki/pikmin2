@@ -55,11 +55,11 @@ void TScreenDataWindow_new::setData(s32 fileID, u64 mesg)
 	E2DScreen_searchAssert(mScreenObj, 'Tnewds')->setMsgID(mesg);
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0002E4
-//  */
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0002E4
+ */
 void TScreenDataWindow_data::setArchive(JKRArchive* arc)
 {
 	sys->heapStatusStart("TScreenDataWindow::setArchive--set__blo", nullptr);

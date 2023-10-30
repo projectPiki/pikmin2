@@ -70,7 +70,7 @@ void FSMState_SelectYesNo::do_init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_SelectYesNo::do_exec(TMgr* mgr)
 {
 	if (mIsSelected) {
-		goto twenty;
+		goto close;
 	}
 
 	if (mgr->mController->isMoveUp()) {
@@ -95,7 +95,7 @@ void FSMState_SelectYesNo::do_exec(TMgr* mgr)
 		mIsSelected = true;
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 	} else {
-	twenty:
+	close:
 		if (!mClosedMsg) {
 			mClosedMsg = true;
 			do_decide(mgr);
@@ -365,7 +365,7 @@ void FSMState_Warning::do_exec(TMgr* mgr)
 		mgr->mMainScreen.closeMSG();
 	}
 
-	if (mgr->mMainScreen.isFinishCloseMSG() && mForceFinish) {
+	if (mgr->mMainScreen.isFinishCloseMSG() && mCounterFinished) {
 		do_transit(mgr);
 	}
 }
