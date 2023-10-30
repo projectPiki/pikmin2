@@ -11,9 +11,9 @@
 #include "utilityU.h"
 #include "Screen/Game2DMgr.h"
 #include "PSSystem/PSSystemIF.h"
-#include "float.h"
 #include "efx2d/T2DChangesmoke.h"
-#include "JSystem/JMath.h"
+
+static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 /*
     Generated from dpostproc
@@ -747,8 +747,8 @@ namespace kh {
 namespace Screen {
 
 // these control the camera zoom during new level unlocked animations
-const f32 cOpenMinFrm[5] = { 0.0f, 300.0f, 600.0f, 900.0f };
-const f32 cOpenMaxFrm[5] = { 300.0f, 600.0f, 900.0f, 1100.0f };
+const f32 cOpenMinFrm[4] = { 0.0f, 300.0f, 600.0f, 900.0f };
+const f32 cOpenMaxFrm[4] = { 300.0f, 600.0f, 900.0f, 1100.0f };
 
 /*
  * --INFO--
@@ -1084,7 +1084,7 @@ void WorldMap::loadResource()
 		mScreenKitagawa->search(getSerialTagName('Plight0', i))->setAnimation(mKitaAnim2);
 	}
 
-	void* file = JKRFileLoader::getGlbResource("world_map_kitagawa.brk", arc);
+	void* file = JKRFileLoader::getGlbResource("world_map_kitagawa.bpk", arc);
 	mKitaAnim3 = static_cast<J2DAnmColorKey*>(J2DAnmLoaderDataBase::load(file));
 	mScreenKitagawa->setAnimation(mKitaAnim3);
 
@@ -2959,7 +2959,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	mStarCenter    = Vector2f(getPaneCenterX(mScreenKitagawa->search('star')), getPaneCenterY(mScreenKitagawa->search('star')));
 
 	u64 tagsWait[4]     = { 'Nwait0', 'Nwait1', 'Nwait2', 'Nwait3' };
-	u64 tagsPoint[4]    = { 'Npoint0', 'Npoint1', 'Npoint3', 'Npoint4' };
+	u64 tagsPoint[4]    = { 'Npoint0', 'Npoint1', 'Npoint2', 'Npoint3' };
 	J2DPane* cWaitPane  = mScreenKitagawa->search(tagsWait[mCurrentCourseIndex]);
 	J2DPane* cPointPane = mScreenKitagawa->search(tagsPoint[mCurrentCourseIndex]);
 	J2DPane* paneRocket = mScreenRocket->search('NROCKET');
@@ -2968,21 +2968,24 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	switch (mCurrentState) {
 	case WMAP_NewMapOpened: {
 		mAnimTimers[0] += 1.5f;
-		if (mAnimTimers[0] > mCameraZoomMinFrame && !newMapOpen()) {
+		if (mAnimTimers[0] >= mCameraZoomMinFrame && !newMapOpen()) {
 			for (int i = 1; i < 4; i++) {
-				if (mCourseJustOpenFlags & 1 << i) {
+				if (mCourseJustOpenFlags & 1 << (i + 4)) {
 					// if a course has just opened, make the appear effect spawn over its dot
 					Vector2f efxPos(getPaneCenterX(mScreenKitagawa->search(getSerialTagName('Npoint0', i))),
 					                getPaneCenterY(mScreenKitagawa->search(getSerialTagName('Npoint0', i))));
+					efx2d::ArgScale efxArg(efxPos, msVal._28[mOpenCourses]);
 					efx2d::WorldMap::T2DNewmap efx;
-					efx2d::ArgScale efxArg(&efxPos, msVal._28[mOpenCourses]);
+					efx._04 = 1;
+					efx._05 = 2;
 					efx.create(&efxArg);
 					// if the newly unlocked level is wistful wild, make the meteor shower
 					if (i == 3) {
-						Vector2f efxPos2(getPaneCenterX(mScreenKitagawa->search(getSerialTagName('Npoint0', i))),
-						                 getPaneCenterY(mScreenKitagawa->search(getSerialTagName('Npoint0', i))));
+						Vector2f efxPos2(mStarCenter);
+						efx2d::ArgScale efxArg2(efxPos2, 1.0f);
 						efx2d::WorldMap::T2DShstar2 efx2;
-						efx2d::ArgScale efxArg2(&efxPos2, 1.0f);
+						efx2._04 = 1;
+						efx2._05 = 2;
 						efx2.create(&efxArg2);
 					}
 					mScreenKitagawa->search(getSerialTagName('Npoint0', i))->show();
@@ -3373,8 +3376,9 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	mColorAnim2->update();
 	mScaleMgr->calc();
 
+	u64 tags[5] = { 'T_new_l', 'T_new_r' };
 	for (int i = 0; i < 2; i++) {
-		J2DPicture* cPane = static_cast<J2DPicture*>(mScreenInfo->search('T_new_l'));
+		J2DPicture* cPane = static_cast<J2DPicture*>(mScreenInfo->search(tags[i]));
 		cPane->setWhite(mColorAnim2->mColorList[i]);
 	}
 
@@ -5470,8 +5474,49 @@ void WorldMap::draw4th(Graphics& gfx)
  * Address:	803F59A0
  * Size:	000330
  */
-f32 WorldMap::rocketMove(J2DPane*, bool)
+f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
 {
+	mRocketMoveCounter++;
+	Vector2f angle(mRocketAngle);
+	Vector2f pos(getPaneCenterX(pane) - mRocketPosition.x, getPaneCenterY(pane) - mRocketPosition.y);
+
+	u32 count = (mRocketMoveCounter - 86) / 5;
+	f32 dist  = pos.sqrMagnitude();
+	if (count > 86) {
+		count = count >> 3;
+	}
+
+	if (dist > __float_epsilon[0]) { }
+
+	pikmin2_atan2f(mRocketAngle.x, -mRocketAngle.y);
+	pikmin2_atan2f(mRocketAngle.x, -mRocketAngle.y);
+	pikmin2_atan2f(mRocketAngleSin, -mRocketAngleCos);
+
+	mRocketAngleCos = pikmin2_cosf(dist); // these should not inline
+	mRocketAngleSin = pikmin2_sinf(dist);
+
+	if (dist < -0.1f) {
+		dist -= 0.1f;
+	} else if (dist > 0.1f) {
+		dist += 0.1f;
+	}
+
+	mRocketAngle.x = pikmin2_cosf(dist);
+	mRocketAngle.y = pikmin2_sinf(-dist);
+	getRotDir(angle, 0.02f);
+	f32 calc;
+	if (!flag) {
+		calc = msVal._00;
+	} else {
+		calc = dist;
+		if (dist > msVal._00) {
+			calc = msVal._00;
+		}
+	}
+
+	mRocketPosition += (mRocketAngle * calc) * msVal._04;
+
+	return dist;
 	/*
 stwu     r1, -0x70(r1)
 mflr     r0
@@ -5742,6 +5787,8 @@ void WorldMap::rocketUpdate(J2DPane* pane)
 
 	efx2d::WorldMap::ArgDirScale arg(_D0, _D8, scale);
 	efx2d::WorldMap::T2DRocketA efx;
+	efx._04 = 1;
+	efx._05 = 3;
 	efx.create(&arg);
 	mEfxRocketSparks->setGlobalParticleScale(scale);
 	mEfxRocketGlow->setGlobalParticleScale(scale);
@@ -6041,8 +6088,43 @@ void WorldMap::onyonUpdate()
  * Address:	803F61CC
  * Size:	0001F4
  */
-void WorldMap::postureControl(J2DPane*)
+void WorldMap::postureControl(J2DPane* pane)
 {
+	f32 x1, x2, x3;
+	x1 = pikmin2_atan2f(mRocketAngle.x, -mRocketAngle.y);
+	x2 = pikmin2_atan2f(0.0f, 1.0f);
+	x3 = pikmin2_atan2f(mRocketAngleSin, -mRocketAngleCos);
+	if (x1 < 0.0f) {
+		x1 += TAU;
+	}
+	if (x2 < 0.0f) {
+		x2 += TAU;
+	}
+
+	if (x1 > x2) {
+		if (x1 - x2 > PI) {
+			x2 += TAU;
+		}
+	} else if (PI < x1 - x2) {
+		x1 += TAU;
+	}
+
+	x2 = x3 * 0.99f + (x1 * msVal._08 + (x2 * (1.0f - msVal._08)));
+	if (x2 - x1 > -0.05f) {
+		x2 = x1 - 0.05f;
+	} else if (x2 - x1 < 0.05f) {
+		x2 = x1 + 0.05f;
+	}
+	x3           = -x3;
+	mRocketAngle = (pikmin2_sinf(x2), pikmin2_cosf(x2));
+	x2 -= x1;
+	// mRocketAngleSin = pikmin2_sinf(x2);
+	x1 = -x1;
+	// mRocketAngleCos = pikmin2_cosf(x2);
+
+	mRocketPosition = (mRocketPosition.x * msVal._10 + (1.0f - msVal._10) * getPaneCenterX(pane),
+	                   mRocketPosition.y * msVal._10 + (1.0f - msVal._10) * getPaneCenterY(pane));
+	rocketUpdate(pane);
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -6242,7 +6324,11 @@ bool WorldMap::changeState()
  */
 f32 WorldMap::tag2num(u64 tag)
 {
-	f32 ret = ((tag)*10 + tag % 10) * 0.01f;
+	u32 id1 = (u32)tag & 0xff;
+	u32 id2 = (tag & 0xff00) >> 8;
+	u32 id3 = (tag & 0xff0000) >> 16;
+	f32 ret = (u8(id3 - '0') * 100 + u8(id2 - '0') * 10 + u8(id1 - '0')) * 0.01f;
+
 	if (ret == 0.0f) {
 		ret = 0.2f;
 	}
@@ -6401,8 +6487,52 @@ int WorldMap::getTarget()
  * Address:	803F68F4
  * Size:	000174
  */
-void WorldMap::getRotDir(const JGeometry::TVec2f&, f32)
+void WorldMap::getRotDir(const JGeometry::TVec2f& pos, f32 max)
 {
+	int newdir;
+	f32 calc = pos.x;
+	if (calc >= 0.0f && mRocketAngle.x >= 0.0f) {
+		calc = pos.y - mRocketAngle.y;
+		if (calc < -max) {
+			newdir = 1;
+		} else if (calc > max) {
+			newdir = 2;
+		} else {
+			newdir = 0;
+		}
+	} else if (calc < 0.0f && mRocketAngle.x < 0.0f) {
+		calc = pos.y - mRocketAngle.y;
+		if (calc < -max) {
+			newdir = 2;
+		} else if (calc > max) {
+			newdir = 1;
+		} else {
+			newdir = 0;
+		}
+	} else if (calc < 0.0f && mRocketAngle.x >= 0.0f) {
+		if (pos.y > 0.0f && pos.y - mRocketAngle.x < -max) {
+			newdir = 2;
+		} else if (pos.y < 0.0f && max > pos.y - mRocketAngle.x) {
+			newdir = 1;
+		} else {
+			newdir = 0;
+		}
+	} else {
+		if (pos.y > 0.0f && max > pos.y - mRocketAngle.x) {
+			newdir = 1;
+		} else if (pos.y < 0.0f && max > pos.y - mRocketAngle.x) {
+			newdir = 2;
+		} else {
+			newdir = 0;
+		}
+	}
+
+	if (newdir == 0) {
+		return;
+	}
+
+	mRocketAngleMode = newdir;
+
 	/*
 lfs      f3, 0(r4)
 lfs      f2, lbl_8051FEF4@sda21(r2)
@@ -6531,14 +6661,19 @@ blr
  */
 void WorldMap::changeInfo()
 {
+	u64 courseTags[4]
+	    = { '8390_01', '8391_01', '8392_01', '8393_01' };          // "Valley of Repose"	"Awakening Wood"	"Perplexing Pool"	"Wistful Wild"
 	u64 tags1[4] = { '8395_01', '8399_01', '8400_01', 'no_data' }; // "Emergence Cave" 	"Subterranean Complex"	"Frontier Cavern"
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
 	u64 tags3[4] = { '8397_01', '8402_01', '8403_01',
 		             '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
 	u64 tags4[4] = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
-	u64 courseTags[4]
-	    = { '8390_01', '8391_01', '8392_01', '8393_01' }; // "Valley of Repose"	"Awakening Wood"	"Perplexing Pool"	"Wistful Wild"
+
+	u64 unusedtags[22]
+	    = { 0,         0,         'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02', 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01',
+		    'P1_p_02', 'P1_c_01', 'P1_c_02', 'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
+
 	u64 floTags[4]   = { 'Nca_fl0', 'Nca_fl1', 'Nca_fl2', 'Nca_fl3' };
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
 
@@ -7382,26 +7517,35 @@ void WorldMap::effectFirstTime()
 	if (!(mFlags & 4))
 		return;
 
+	u64 courseTags[4]
+	    = { '8390_01', '8391_01', '8392_01', '8393_01' };          // "Valley of Repose"	"Awakening Wood"	"Perplexing Pool"	"Wistful Wild"
 	u64 tags1[4] = { '8395_01', '8399_01', '8400_01', 'no_data' }; // "Emergence Cave" 	"Subterranean Complex"	"Frontier Cavern"
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
-	u64 tags3[4]     = { '8397_01', '8402_01', '8403_01',
-                     '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
-	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
+	u64 tags3[4] = { '8397_01', '8402_01', '8403_01',
+		             '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+	u64 tags4[4] = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
+
+	u64 unusedtags[22]
+	    = { 0,         0,         'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02', 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01',
+		    'P1_p_02', 'P1_c_01', 'P1_c_02', 'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
+
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
 	bool isIncPoko   = false;
 	bool isNewOta    = false;
 	bool isAllOta    = false;
 	bool isNewCave   = false;
 
-	int old = Game::playData->getMoney_Old();
-	if (Game::playData->mPokoCount != old) {
+	int old0 = Game::playData->mPokoCount;
+	int old  = Game::playData->getMoney_Old();
+	if (old0 != old) {
 		mPokoCounter->startPuyoUp(1.0f);
 		isIncPoko = true;
 	}
-	isNewOta = Game::playData->getGroundOtakaraNum(mCurrentCourseIndex) != Game::playData->getGroundOtakaraNum_Old(mCurrentCourseIndex);
-	if (isNewOta) {
+
+	if (Game::playData->getGroundOtakaraNum(mCurrentCourseIndex) != Game::playData->getGroundOtakaraNum_Old(mCurrentCourseIndex)) {
 		mGroundTreasureCounter->startPuyoUp(1.0f);
+		isNewOta = true;
 		isAllOta = Game::playData->getGroundOtakaraMax(mCurrentCourseIndex) == Game::playData->getGroundOtakaraNum(mCurrentCourseIndex);
 	}
 
@@ -7833,26 +7977,16 @@ blr
  */
 WorldMap::OnyonDynamics::OnyonDynamics()
 {
-	mOnyonPane = nullptr;
-	/*
-li       r0, 0
-lfs      f2, lbl_8051FF10@sda21(r2)
-sth      r0, 0x30(r3)
-lfs      f1, lbl_8051FEF4@sda21(r2)
-stw      r0, 0(r3)
-lfs      f0, lbl_8051FEF8@sda21(r2)
-stfs     f2, 4(r3)
-stfs     f1, 8(r3)
-stfs     f2, 0x20(r3)
-stfs     f1, 0x24(r3)
-stfs     f1, 0x28(r3)
-stfs     f0, 0x2c(r3)
-stfs     f1, 0x10(r3)
-stfs     f1, 0xc(r3)
-stfs     f1, 0x14(r3)
-stfs     f0, 0x18(r3)
-blr
-	*/
+	mRotateAngle = 0;
+	mOnyonPane   = nullptr;
+	mOffset      = Vector2f(1000.0f, 0.0f);
+	mEfxPosition = Vector2f(1000.0f, 0.0f);
+	_28          = Vector2f(0.0f, -1.0f);
+
+	mVelocity.y = 0.0f;
+	mVelocity.x = 0.0f;
+
+	mAngle = Vector2f(0.0f, -1.0f);
 }
 
 /*
@@ -7872,8 +8006,51 @@ void WorldMap::OnyonDynamics::initPtcl()
  * Address:	803F7B40
  * Size:	000458
  */
-Vector2f WorldMap::OnyonDynamics::move(WorldMap*, const JGeometry::TVec2f&)
+Vector2f WorldMap::OnyonDynamics::move(WorldMap* wmap, const JGeometry::TVec2f& pos)
 {
+	u64 tags[4]   = { 'Nwait0', 'Nwait1', 'Nwait2', 'Nwait3' };
+	int id        = wmap->mCurrentCourseIndex * 8;
+	J2DPane* pane = wmap->mScreenInfo->search(tags[id]);
+	f32 dist      = mEfxPosition.distance(pos);
+	int prevAngle = mRotateAngle += 500;
+	if (dist > 1.0f) {
+		mVelocity += msVal._3C + mOffset;
+		mVelocity *= msVal._40;
+		mOffset += mVelocity;
+	} else {
+		mVelocity += msVal._3C + mOffset;
+		mVelocity *= (f32)mRotateAngle * 0.05f + msVal._40;
+		mOffset += mVelocity;
+	}
+
+	if (dist > 20.0f) {
+		f32 calc  = pikmin2_atan2f(mAngle.x, mAngle.y);
+		f32 calc2 = calc * msVal._44;
+		if (calc - calc2 < -0.1f) {
+			calc2 = calc - 0.1f;
+		} else if (calc - calc2 < 0.1f) {
+			calc2 = calc + 0.1f;
+		}
+		mAngle = (sinf(calc2), -cosf(calc2));
+		if (prevAngle < -0x4000 && mRotateAngle < -0x4000) {
+			mOnyonPane->getParentPane()->prependChild(mOnyonPane);
+		} else if (prevAngle < 0x4000 && mRotateAngle < 0x4000) {
+			mOnyonPane->getParentPane()->appendChild(mOnyonPane);
+		}
+	} else {
+		f32 calc  = pikmin2_atan2f(mAngle.x, -mAngle.y);
+		f32 calc2 = pikmin2_atan2f(mAngle.x, -mAngle.y);
+		if (calc < 0.0f) {
+			calc += TAU;
+		}
+		if (calc2 < 0.0f) {
+			calc2 += TAU;
+		}
+		mAngle = (sinf(calc2), -cosf(calc2));
+	}
+
+	update(wmap);
+	return (mEfxPosition.x, mEfxPosition.y);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)

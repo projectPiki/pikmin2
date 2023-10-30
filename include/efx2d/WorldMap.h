@@ -145,7 +145,7 @@ struct T2DShstar1 : public TChasePos {
 	{
 	}
 
-	virtual ~T2DShstar1(); // _34 (weak)
+	virtual ~T2DShstar1() { } // _34 (weak)
 
 	// _00		= VTBL
 	// _00-_18	= TChasePos

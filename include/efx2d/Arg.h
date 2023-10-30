@@ -44,8 +44,8 @@ struct ArgColor : public Arg {
 
 struct ArgScale : public Arg {
 
-	ArgScale(Vector2f* pos, f32 scale)
-	    : Arg(pos->x, pos->y)
+	ArgScale(Vector2f& pos, f32 scale)
+	    : Arg(pos)
 	{
 		mScale = scale;
 	}

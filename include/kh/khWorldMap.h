@@ -123,7 +123,7 @@ struct WorldMap : public Game::WorldMap::Base {
 
 		J2DPane* mOnyonPane;                       // _00
 		Vector2f mOffset;                          // _04
-		u8 _0C[8];                                 // _0C
+		Vector2f mVelocity;                        // _0C
 		Vector2f mAngle;                           // _14
 		efx2d::WorldMap::T2DOnyonKira* mOnyonKira; // _1C
 		Vector2f mEfxPosition;                     // _20
@@ -158,37 +158,37 @@ struct WorldMap : public Game::WorldMap::Base {
 
 	// _00     = VTBL
 	// _00-_18 = Game::WorldMap::Base
-	Game::WorldMap::InitArg mInitArg;               // _18
-	P2DScreen::Mgr_tuning* mScreenKitagawa;         // _30
-	J2DAnmTransform* mKitaAnim1;                    // _34
-	J2DAnmTransformKey* mKitaAnim2;                 // _38
-	J2DAnmColorKey* mKitaAnim3;                     // _3C
-	J2DAnmTextureSRTKey* mKitaAnim4;                // _40
-	J2DAnmTextureSRTKey* mKitaAnim5;                // _44
-	P2DScreen::Mgr* mScreenRocket;                  // _48
-	J2DAnmTransformKey* mRocketAnim1;               // _4C
-	J2DAnmTexPattern* mRocketAnim2;                 // _50
-	P2DScreen::Mgr_tuning* mScreenInfo;             // _54
-	J2DAnmTextureSRTKey* mInfoAnim1;                // _58
-	J2DAnmTextureSRTKey* mInfoAnim2;                // _5C
-	J2DAnmTextureSRTKey* mInfoAnim3;                // _60
-	og::Screen::ScaleMgr* mScaleMgr;                // _64
-	f32 mAnimTimers[10];                            // _68
-	f32 mCameraZoomMinFrame;                        // _90
-	f32 mCameraZoomX;                               // _94
-	f32 _98;                                        // _98
-	Vector2f mRocketPosition;                       // _9C
-	Vector2f mRocketPosition2;                      // _A4
-	Vector2f mRocketAngle;                          // _AC
-	f32 mRocketAngleSin;                            // _B4
-	f32 mRocketAngleCos;                            // _B8
-	f32 mRocketScale;                               // _BC
-	efx2d::WorldMap::T2DRocketGlow* mEfxRocketGlow; // _C0
-	efx2d::WorldMap::T2DRocketB* mEfxRocketSparks;  // _C4
-	efx2d::WorldMap::T2DMapFlare* mEfxMapFlare;     // _C8
-	efx2d::WorldMap::T2DShstar1* mEfxShstar1;       // _CC
-	Vector2f _D0;                                   // _D0
-	Vector2f _D8;
+	Game::WorldMap::InitArg mInitArg;                          // _18
+	P2DScreen::Mgr_tuning* mScreenKitagawa;                    // _30
+	J2DAnmTransform* mKitaAnim1;                               // _34
+	J2DAnmTransformKey* mKitaAnim2;                            // _38
+	J2DAnmColorKey* mKitaAnim3;                                // _3C
+	J2DAnmTextureSRTKey* mKitaAnim4;                           // _40
+	J2DAnmTextureSRTKey* mKitaAnim5;                           // _44
+	P2DScreen::Mgr* mScreenRocket;                             // _48
+	J2DAnmTransformKey* mRocketAnim1;                          // _4C
+	J2DAnmTexPattern* mRocketAnim2;                            // _50
+	P2DScreen::Mgr_tuning* mScreenInfo;                        // _54
+	J2DAnmTextureSRTKey* mInfoAnim1;                           // _58
+	J2DAnmTextureSRTKey* mInfoAnim2;                           // _5C
+	J2DAnmTextureSRTKey* mInfoAnim3;                           // _60
+	og::Screen::ScaleMgr* mScaleMgr;                           // _64
+	f32 mAnimTimers[10];                                       // _68
+	f32 mCameraZoomMinFrame;                                   // _90
+	f32 mCameraZoomX;                                          // _94
+	f32 _98;                                                   // _98
+	Vector2f mRocketPosition;                                  // _9C
+	Vector2f mRocketPosition2;                                 // _A4
+	Vector2f mRocketAngle;                                     // _AC
+	f32 mRocketAngleSin;                                       // _B4
+	f32 mRocketAngleCos;                                       // _B8
+	f32 mRocketScale;                                          // _BC
+	efx2d::WorldMap::T2DRocketGlow* mEfxRocketGlow;            // _C0
+	efx2d::WorldMap::T2DRocketB* mEfxRocketSparks;             // _C4
+	efx2d::WorldMap::T2DMapFlare* mEfxMapFlare;                // _C8
+	efx2d::WorldMap::T2DShstar1* mEfxShstar1;                  // _CC
+	Vector2f _D0;                                              // _D0
+	Vector2f _D8;                                              // _D8
 	Vector2f mLight01Center;                                   // _E0
 	Vector2f mStarCenter;                                      // _E8
 	OnyonDynamics* mOnyonArray;                                // _F0

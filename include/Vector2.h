@@ -54,6 +54,7 @@ struct Vector2 {
 	inline f32 length() const;
 	inline f32 normalise();
 	inline f32 distance(Vector2&);
+	inline f32 distance(const JGeometry::TVec2f&);
 
 	T x, y;
 };
@@ -104,6 +105,15 @@ inline f32 Vector2f::normalise()
 
 template <>
 inline f32 Vector2f::distance(Vector2f& them)
+{
+	f32 diffX = this->x - them.x;
+	f32 diffY = this->y - them.y;
+
+	return Vector2f(diffX, diffY).length();
+}
+
+template <>
+inline f32 Vector2f::distance(const JGeometry::TVec2f& them)
 {
 	f32 diffX = this->x - them.x;
 	f32 diffY = this->y - them.y;
