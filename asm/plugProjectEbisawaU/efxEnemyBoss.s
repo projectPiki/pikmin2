@@ -1855,6 +1855,7 @@
 /* 803ECA90 003E99D0  4E 80 00 20 */	blr 
 .endfn setGlobalScale__Q23efx10TOdamaFur2Ff
 
+.section .text, "ax", unique, 1
 .fn __dt__Q23efx11THdamaShellFv, weak
 /* 803ECA94 003E99D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803ECA98 003E99D8  7C 08 02 A6 */	mflr r0

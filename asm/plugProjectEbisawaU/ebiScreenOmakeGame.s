@@ -1003,6 +1003,7 @@
 /* 803F1A70 003EE9B0  4E 80 00 20 */	blr 
 .endfn openMsg__Q33ebi6Screen10TOmakeGameFl
 
+.section .text, "ax", unique, 1
 .fn getName__Q33ebi6Screen10TOmakeGameFv, weak
 /* 803F1A74 003EE9B4  3C 60 80 49 */	lis r3, lbl_80497C64@ha
 /* 803F1A78 003EE9B8  38 63 7C 64 */	addi r3, r3, lbl_80497C64@l

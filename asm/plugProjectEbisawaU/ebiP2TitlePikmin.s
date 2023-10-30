@@ -3642,6 +3642,7 @@ lbl_constructor:
 /* 803E6BD8 003E3B18  4E 80 00 20 */	blr 
 .endfn updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv
 
+.section .text, "ax", unique, 1
 .fn __ct__Q43ebi5title6Pikmin10TBoidParamFv, weak
 /* 803E6BDC 003E3B1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E6BE0 003E3B20  7C 08 02 A6 */	mflr r0
@@ -4125,6 +4126,7 @@ lbl_constructor:
 /* 803E732C 003E426C  4E 80 00 20 */	blr 
 .endfn getCreatureType__Q43ebi5title6Pikmin5TUnitFv
 
+.section .text, "ax", unique, 2
 .fn __sinit_ebiP2TitlePikmin_cpp, local
 /* 803E7330 003E4270  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803E7334 003E4274  38 00 FF FF */	li r0, -1

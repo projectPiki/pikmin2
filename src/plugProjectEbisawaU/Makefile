@@ -47,13 +47,19 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 
-$(EBISAWA_FILES): CFLAGS += -sym on
-
-$(BUILD_DIR)/src/plugProjectEbisawaU/efxTPkEffectMgr.o: CFLAGS += -sym off
-$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr.o: CFLAGS += -sym off
-$(BUILD_DIR)/src/plugProjectEbisawaU/ebiSaveMgr.o: CFLAGS += -sym off
-$(BUILD_DIR)/src/plugProjectEbisawaU/ebiFileSelectMgr.o: CFLAGS += -sym off
-
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenFileSelect.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenFileSelect_Mgr.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitlePikmin.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleKogane.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleChappy.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenTMBack.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiMainTitleMgr.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/efxEnemyBoss.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOmake.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiOmakeMgr.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOmakeCardE.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOmakeGame.o: CFLAGS += -sym on
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenInfoWindow.o: CFLAGS += -sym on
 
 DEPENDS += $(EBISAWA_FILES:.o=.d)
 

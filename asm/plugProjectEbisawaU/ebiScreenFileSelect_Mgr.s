@@ -2831,6 +2831,7 @@
 /* 803E049C 003DD3DC  4E 80 00 20 */	blr 
 .endfn getStateID__Q33ebi2FS4TMgrFv
 
+.section .text, "ax", unique, 1
 .fn do_init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg, weak
 /* 803E04A0 003DD3E0  4E 80 00 20 */	blr 
 .endfn do_init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
@@ -2851,6 +2852,7 @@
 /* 803E04B0 003DD3F0  4E 80 00 20 */	blr 
 .endfn do_close__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr
 
+.section .text, "ax", unique, 2
 .fn "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg", weak
 /* 803E04B4 003DD3F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803E04B8 003DD3F8  7C 08 02 A6 */	mflr r0

@@ -1180,6 +1180,7 @@ lbl_constructor:
 /* 803EB0F0 003E8030  4E 80 00 20 */	blr 
 .endfn draw__Q23ebi13TMainTitleMgrFv
 
+.section .text, "ax", unique, 1
 .fn __ct__Q23ebi25E2DCallBack_CalcAnimationFv, weak
 /* 803EB0F4 003E8034  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EB0F8 003E8038  7C 08 02 A6 */	mflr r0
@@ -1211,10 +1212,12 @@ lbl_constructor:
 /* 803EB160 003E80A0  4E 80 00 20 */	blr 
 .endfn __ct__Q23ebi25E2DCallBack_CalcAnimationFv
 
+.section .text, "ax", unique, 2
 .fn __ct__Q33ebi6Screen22TTitleMenu_Object_IconFv, weak
 /* 803EB164 003E80A4  4E 80 00 20 */	blr 
 .endfn __ct__Q33ebi6Screen22TTitleMenu_Object_IconFv
 
+.section .text, "ax", unique, 3
 .fn getName__Q33ebi6Screen8ArgCloseFv, weak
 /* 803EB168 003E80A8  3C 60 80 49 */	lis r3, lbl_80497900@ha
 /* 803EB16C 003E80AC  38 63 79 00 */	addi r3, r3, lbl_80497900@l
@@ -1226,6 +1229,7 @@ lbl_constructor:
 /* 803EB178 003E80B8  4E 80 00 20 */	blr 
 .endfn getName__Q33ebi6Screen7ArgOpenFv
 
+.section .text, "ax", unique, 4
 .fn __sinit_ebiMainTitleMgr_cpp, local
 /* 803EB17C 003E80BC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803EB180 003E80C0  38 00 FF FF */	li r0, -1

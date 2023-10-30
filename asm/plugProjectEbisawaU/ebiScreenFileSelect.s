@@ -6036,6 +6036,7 @@
 /* 803D9720 003D6660  4E 80 00 20 */	blr 
 .endfn setIconColorAlpha___Q43ebi6Screen10FileSelect11TMainScreenFUc
 
+.section .text, "ax", unique, 1
 .fn __ct__Q43ebi6Screen10FileSelect9TFileDataFv, weak
 /* 803D9724 003D6664  38 E0 00 00 */	li r7, 0
 /* 803D9728 003D6668  3C 80 00 01 */	lis r4, 0x00012FD1@ha
@@ -6111,6 +6112,7 @@
 /* 803D9820 003D6760  4E 80 00 20 */	blr 
 .endfn __dt__Q35efx2d10FileSelect11T2DFileselMFv
 
+.section .text, "ax", unique, 2
 .fn __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv, weak
 /* 803D9824 003D6764  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D9828 003D6768  7C 08 02 A6 */	mflr r0
@@ -6275,6 +6277,7 @@
 /* 803D9A60 003D69A0  4E 80 00 20 */	blr 
 .endfn __dt__Q35efx2d10FileSelect11T2DFilecopyFv
 
+.section .text, "ax", unique, 3
 .fn __ct__Q23ebi19E2DCallBack_AnmBaseFv, weak
 /* 803D9A64 003D69A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D9A68 003D69A8  7C 08 02 A6 */	mflr r0
@@ -6383,6 +6386,7 @@
 /* 803D9BF8 003D6B38  4E 80 00 20 */	blr 
 .endfn set__Q23ebi26E2DCallBack_BlinkFontColorFRQ23ebi16E2DFullFontColorRQ23ebi16E2DFullFontColor
 
+.section .text, "ax", unique, 4
 .fn getName__Q25efx2d8ArgColorFv, weak
 /* 803D9BFC 003D6B3C  3C 60 80 49 */	lis r3, lbl_80496D10@ha
 /* 803D9C00 003D6B40  38 63 6D 10 */	addi r3, r3, lbl_80496D10@l
@@ -6395,6 +6399,7 @@
 /* 803D9C10 003D6B50  4E 80 00 20 */	blr 
 .endfn getName__Q35efx2d10FileSelect11ArgFilecopyFv
 
+.section .text, "ax", unique, 5
 .fn __dt__Q35efx2d10FileSelect10T2DFileselFv, weak
 /* 803D9C14 003D6B54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D9C18 003D6B58  7C 08 02 A6 */	mflr r0
@@ -6439,6 +6444,7 @@
 /* 803D9CAC 003D6BEC  4E 80 00 20 */	blr 
 .endfn __dt__Q35efx2d10FileSelect10T2DFileselFv
 
+.section .text, "ax", unique, 6
 .fn "@8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv", weak
 /* 803D9CB0 003D6BF0  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CB4 003D6BF4  4B FF FD 14 */	b __dt__Q35efx2d10FileSelect11T2DFilecopyFv

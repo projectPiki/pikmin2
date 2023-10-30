@@ -780,6 +780,7 @@
 /* 803F0CE4 003EDC24  4E 80 00 20 */	blr 
 .endfn doDraw__Q33ebi6Screen11TOmakeCardEFv
 
+.section .text, "ax", unique, 1
 .fn getName__Q33ebi6Screen11TOmakeCardEFv, weak
 /* 803F0CE8 003EDC28  3C 60 80 49 */	lis r3, lbl_80497BDC@ha
 /* 803F0CEC 003EDC2C  38 63 7B DC */	addi r3, r3, lbl_80497BDC@l

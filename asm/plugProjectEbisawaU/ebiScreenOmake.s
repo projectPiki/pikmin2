@@ -1760,6 +1760,7 @@
 /* 803EEB20 003EBA60  4E 80 00 20 */	blr 
 .endfn openFromCardE___Q33ebi6Screen6TOmakeFv
 
+.section .text, "ax", unique, 1
 .fn __ct__Q23ebi26E2DCallBack_BlinkFontColorFv, weak
 /* 803EEB24 003EBA64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EEB28 003EBA68  7C 08 02 A6 */	mflr r0
@@ -1810,6 +1811,7 @@
 /* 803EEBDC 003EBB1C  4E 80 00 20 */	blr 
 .endfn __ct__Q23ebi26E2DCallBack_BlinkFontColorFv
 
+.section .text, "ax", unique, 2
 .fn getName__Q33ebi6Screen6TOmakeFv, weak
 /* 803EEBE0 003EBB20  38 62 1B 38 */	addi r3, r2, lbl_8051FE98@sda21
 /* 803EEBE4 003EBB24  4E 80 00 20 */	blr 

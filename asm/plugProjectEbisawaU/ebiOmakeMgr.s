@@ -1068,6 +1068,7 @@
 /* 803EF8F0 003EC830  4E 80 00 20 */	blr 
 .endfn getStateID__Q33ebi5Omake4TMgrFv
 
+.section .text, "ax", unique, 1
 .fn do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg, weak
 /* 803EF8F4 003EC834  4E 80 00 20 */	blr 
 .endfn do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
@@ -1076,6 +1077,7 @@
 /* 803EF8F8 003EC838  4E 80 00 20 */	blr 
 .endfn do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
 
+.section .text, "ax", unique, 2
 .fn "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg", weak
 /* 803EF8FC 003EC83C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF900 003EC840  7C 08 02 A6 */	mflr r0
@@ -1771,6 +1773,7 @@
 /* 803F0294 003ED1D4  4E 80 00 20 */	blr 
 .endfn "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>"
 
+.section .text, "ax", unique, 3
 .fn getName__Q33ebi6Screen12ArgOpenOmakeFv, weak
 /* 803F0298 003ED1D8  3C 60 80 49 */	lis r3, lbl_80497B30@ha
 /* 803F029C 003ED1DC  38 63 7B 30 */	addi r3, r3, lbl_80497B30@l
