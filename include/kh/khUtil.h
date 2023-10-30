@@ -81,6 +81,9 @@ struct khUtilFadePaneWM : public khUtilFadePane {
 	virtual ~khUtilFadePaneWM() { } // _08 (weak)
 	virtual void fadeout_finish();  // _20
 
+	void create(P2DScreen::Mgr*, u64, u8);      // UNUSED
+	void create(P2DScreen::Mgr*, J2DPane*, u8); // UNUSED
+
 	// _00     = VTBL
 	// _00-_30 = khUtilFadePane
 	kh::Screen::WorldMap* mMapObj; // _34
@@ -122,6 +125,11 @@ struct khUtilColorAnmWM : public khUtilColorAnm {
 	}
 	virtual ~khUtilColorAnmWM() { } // _08 (weak)
 	virtual void do_update();       // _14
+
+	khUtilColorAnmWM(P2DScreen::Mgr*, u64, int, int);             // UNUSED
+	void my_init(J2DPicture**, og::Screen::CallBack_CounterRV**); // UNUSED
+	void effect_on(u32);                                          // UNUSED
+	void effect_off();                                            // UNUSED
 
 	// _00     = VTBL
 	// _00-_38 = khUtilColorAnm

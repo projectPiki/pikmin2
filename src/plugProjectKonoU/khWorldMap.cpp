@@ -752,6 +752,26 @@ const f32 cOpenMaxFrm[4] = { 300.0f, 600.0f, 900.0f, 1100.0f };
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0000B8
+ */
+void khUtilFadePaneWM::create(P2DScreen::Mgr*, u64, u8)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000B8
+ */
+void khUtilFadePaneWM::create(P2DScreen::Mgr*, J2DPane*, u8)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	803F1BA0
  * Size:	000058
  */
@@ -765,6 +785,48 @@ void khUtilFadePaneWM::fadeout_finish()
 		mState = 2;
 	}
 }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+khUtilColorAnmWM::khUtilColorAnmWM(P2DScreen::Mgr* screen, u64 tag, int i1, int i2)
+    : khUtilColorAnm(screen, tag, i1, i2)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00010C
+ */
+void khUtilColorAnmWM::my_init(J2DPicture**, og::Screen::CallBack_CounterRV**)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000110
+ */
+void khUtilColorAnmWM::effect_on(u32)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000084
+ */
+void khUtilColorAnmWM::effect_off()
+{
+	// UNUSED FUNCTION
+}
+
 /*
  * --INFO--
  * Address:	803F1C78
