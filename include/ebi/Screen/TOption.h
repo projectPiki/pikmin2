@@ -45,27 +45,27 @@ struct TOptionParameter {
 
 struct TOption : public TScreenBase {
 	TOption()
-	    : _010(1)
+	    : mEnabled(1)
 	    , mColor(0, 0, 0, 255)
 	    , _0F4(255)
-	    , _0F8(0)
-	    , _0FC(0)
-	    , _100(0)
+	    , mState(0)
+	    , mCounterOpen(0)
+	    , mCounterOpenMax(0)
 	{
 		mOptionParamA.initParamForTest();
 	}
 
 	~TOption() { }
 
-	virtual void doSetArchive(JKRArchive*); // _24
-	virtual void doOpenScreen(ArgOpen*);    // _28
-	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual void doInitWaitState();         // _34
-	virtual bool doUpdateStateOpen();       // _38
-	virtual bool doUpdateStateWait();       // _3C
-	virtual bool doUpdateStateClose();      // _40
-	virtual void doDraw();                  // _44
-	virtual char* getName();                // _48
+	virtual void doSetArchive(JKRArchive*);       // _24
+	virtual void doOpenScreen(ArgOpen*);          // _28
+	virtual void doCloseScreen(ArgClose*);        // _2C
+	virtual void doInitWaitState();               // _34
+	virtual bool doUpdateStateOpen();             // _38
+	virtual bool doUpdateStateWait();             // _3C
+	virtual bool doUpdateStateClose();            // _40
+	virtual void doDraw();                        // _44
+	virtual char* getName() { return "TOption"; } // _48
 
 	void initScreen_();
 	void setOptionParamToScreen_();
@@ -74,62 +74,46 @@ struct TOption : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
-	Controller* mController;                // _00C
-	u8 _010;                                // _010
-	EUTPadInterface_countNum mInputBgmVol;  // _014
-	EUTPadInterface_countNum mInputSfxVol;  // _040
-	EUTPadInterface_countNum mInputStereo;  // _06C
-	EUTPadInterface_countNum mInputMainSel; // _098
-	int _0C4;                               // _0C4
-	TOptionParameter mOptionParamA;         // _0C8
-	TOptionParameter mOptionParamB;         // _0DC
-	JUtility::TColor mColor;                // _0F0
-	u8 _0F4;                                // _0F4
-	int _0F8;                               // _0F8
-	u32 _0FC;                               // _0FC
-	u32 _100;                               // _100
-	long _104;                              // _104
-	int _108;                               // _108
-	P2DScreen::Mgr_tuning* _10C;            // _10C
-	J2DTextBox* _110;                       // _110
-	J2DTextBox* _114;                       // _114
-	J2DTextBox* _118;                       // _118
-	J2DTextBox* _11C;                       // _11C
-	J2DTextBox* _120;                       // _120
-	J2DTextBox* _124;                       // _124
-	J2DTextBox* _128;                       // _128
-	J2DPane* _12C[10];                      // _12C
-	J2DPane* _154[10];                      // _154
-	J2DPane* _17C;                          // _17C
-	J2DPane* _180[10];                      // _180
-	J2DPane* _1A8;                          // _1A8
-	J2DPane* _1AC;                          // _1AC
-	J2DPane* _1B0;                          // _1B0
-	J2DPane* _1B4;                          // _1B4
-	J2DPane* _1B8;                          // _1B8
-	J2DPane* _1BC;                          // _1BC
-	J2DPane* _1C0;                          // _1C0
-	E2DFullFontColor _1C4;                  // _1C4
-	E2DFullFontColor _1D4;                  // _1D4
-	// JUtility::TColor _1C4;                       // _1C4
-	// JUtility::TColor _1C8;                       // _1C8
-	// JUtility::TColor mWhite1;                    // _1CC
-	// JUtility::TColor mBlack1;                    // _1D0
-	// JUtility::TColor _1D4;                       // _1D4
-	// JUtility::TColor _1D8;                       // _1D8
-	// JUtility::TColor mWhite2;                    // _1DC
-	// JUtility::TColor mBlack2;                    // _1E0
-	E2DCallBack_AnmBase _1E4;        // _1E4
-	E2DCallBack_CalcAnimation _220;  // _220
-	E2DCallBack_BlinkFontColor _240; // _240
-	E2DCallBack_BlinkAlpha _28C;     // _28C
-	E2DCallBack_BlinkAlpha _2BC;     // _2BC
-	E2DCallBack_Purupuru _2EC[7];    // _2EC
-	E2DCallBack_Purupuru _4AC[10];   // _4AC
-	E2DCallBack_Purupuru _72C[10];   // _72C
-	E2DCallBack_Purupuru _9AC[10];   // _9AC
-	E2DCallBack_Purupuru _C2C[10];   // _C2C
-	E2DCallBack_WindowCursor _EAC;   // __EAC
+	Controller* mController;                   // _00C
+	u8 mEnabled;                               // _010
+	EUTPadInterface_countNum mInputBgmVol;     // _014
+	EUTPadInterface_countNum mInputSfxVol;     // _040
+	EUTPadInterface_countNum mInputStereo;     // _06C
+	EUTPadInterface_countNum mInputMainSel;    // _098
+	int mExitStatus;                           // _0C4
+	TOptionParameter mOptionParamA;            // _0C8
+	TOptionParameter mOptionParamB;            // _0DC
+	JUtility::TColor mColor;                   // _0F0
+	u8 _0F4;                                   // _0F4
+	int mState;                                // _0F8
+	u32 mCounterOpen;                          // _0FC
+	u32 mCounterOpenMax;                       // _100
+	long mCurrMainSelection;                   // _104
+	int _108;                                  // _108
+	P2DScreen::Mgr_tuning* mMainScreen;        // _10C
+	J2DTextBox* mPaneRumbleYes;                // _110
+	J2DTextBox* mPaneRumbleNo;                 // _114
+	J2DTextBox* mPaneSoundType[3];             // _118, 0 = mono, 1 = stereo, 2 = surround
+	J2DTextBox* mPaneDeflickerYes;             // _124
+	J2DTextBox* mPaneDeflickerNo;              // _128
+	J2DPane* mPaneSfxVolume[10];               // _12C
+	J2DPane* mPaneBgmVolume[10];               // _154
+	J2DPane* mDeflickerScreen;                 // _17C
+	J2DPane* _180[10];                         // _180
+	J2DPane* mButtonPaneList[7];               // _1A8
+	E2DFullFontColor mFontColorActiveSel;      // _1C4
+	E2DFullFontColor mFontColorInactiveSel;    // _1D4
+	E2DCallBack_AnmBase mAnimOpenScreen;       // _1E4
+	E2DCallBack_CalcAnimation mAnimCalc;       // _220
+	E2DCallBack_BlinkFontColor mBlinkColor;    // _240
+	E2DCallBack_BlinkAlpha mBlinkAlphaA;       // _28C
+	E2DCallBack_BlinkAlpha mBlinkAlphaB;       // _2BC
+	E2DCallBack_Purupuru mButtonPuruAnim[7];   // _2EC
+	E2DCallBack_Purupuru mBgmSelPuruAnimA[10]; // _4AC
+	E2DCallBack_Purupuru mBgmSelPuruAnimB[10]; // _72C
+	E2DCallBack_Purupuru mSfxSelPuruAnimA[10]; // _9AC
+	E2DCallBack_Purupuru mSfxSelPuruAnimB[10]; // _C2C
+	E2DCallBack_WindowCursor mWindowCursor;    // _EAC
 };
 } // namespace Screen
 } // namespace ebi

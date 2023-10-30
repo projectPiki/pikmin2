@@ -95,7 +95,7 @@ struct TScreenBase : public TScreenBaseInterface {
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
 	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual void doKillScreen();            // _30 (weak)
+	virtual void doKillScreen() { }         // _30 (weak)
 	virtual void doInitWaitState();         // _34 (weak)
 	virtual bool doUpdateStateOpen();       // _38 (weak)
 	virtual bool doUpdateStateWait();       // _3C

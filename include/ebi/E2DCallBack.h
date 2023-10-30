@@ -80,6 +80,17 @@ struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {
 
 	inline f32 getAlphaWeight() { return mWeight; }
 
+	inline void enable()
+	{
+		mAlpha0         = 255;
+		mAlpha1         = 85;
+		mIsEnabled      = true;
+		mSpeed          = sys->mDeltaTime * 3.33333333f;
+		mWeight         = 0.0f;
+		mIsTowardAlpha0 = true;
+		_29             = false;
+	}
+
 	// _00     = VTBL
 	// _00-_20 = E2DCallBack_Base
 	f32 mWeight;          // _20, weight to give alpha0 when calcing blend
@@ -188,8 +199,8 @@ struct E2DCallBack_Purupuru : public E2DCallBack_Base {
 struct E2DCallBack_WindowCursor : public E2DCallBack_Base {
 
 	E2DCallBack_WindowCursor()
-	    : _40(0)
-	    , _44(0)
+	    : mCounter(0)
+	    , mCounterMax(0)
 	{
 		mScale      = 1.0f;
 		mWindowPane = nullptr;
@@ -202,8 +213,8 @@ struct E2DCallBack_WindowCursor : public E2DCallBack_Base {
 	// _00-_20 = E2DCallBack_Base
 	JGeometry::TBox2f mBounds1;     // _20
 	JGeometry::TBox2f mBounds2;     // _30
-	u32 _40;                        // _40
-	u32 _44;                        // _44
+	u32 mCounter;                   // _40
+	u32 mCounterMax;                // _44
 	og::Screen::ScaleMgr mScaleMgr; // _48
 	f32 mScale;                     // _64
 	J2DPane* mWindowPane;           // _68

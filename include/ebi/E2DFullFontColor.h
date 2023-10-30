@@ -23,6 +23,14 @@ struct E2DFullFontColor {
 		mBlack = pane->getBlack();
 	}
 
+	inline void applyColorsToPane(J2DTextBox* pane)
+	{
+		pane->setCharColor(mCol1);
+		pane->setGradientColor(mCol2);
+		pane->setWhite(mWhite);
+		pane->setBlack(mBlack);
+	}
+
 	JUtility::TColor mCol1;  // _00
 	JUtility::TColor mCol2;  // _04
 	JUtility::TColor mWhite; // _08

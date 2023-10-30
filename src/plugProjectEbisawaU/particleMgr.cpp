@@ -301,7 +301,7 @@ void ParticleMgr::createHeap(u32 size)
 void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
 {
 	JUT_ASSERTLINE(209, mHeap, "effect heap not allocated !\n");
-	sys->heapStatusStart("particleMgr", mHeap);
+	sys->heapStatusStart("ParticleMgr", mHeap);
 	JKRHeap* oldheap = JKRGetCurrentHeap();
 	mHeap->becomeCurrentHeap();
 
@@ -314,7 +314,7 @@ void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
 	mEmitterManager  = new (mHeap, 0) JPAEmitterManager(flag1, flag2, mHeap, 9, 8);
 	mEmitterManager->entryResourceManager(mResourceManager, 0);
 
-	sys->heapStatusEnd("particleMgr");
+	sys->heapStatusEnd("ParticleMgr");
 
 	/*
 	stwu     r1, -0x30(r1)
@@ -565,32 +565,40 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 	if (!emit)
 		return;
 
+	JPAResource* res = emit->mResource;
+
 	Game::GameLightMgr* mgr = mLightMgr;
 	if (!mgr)
 		return;
 
-	if (!(emit->mResource->mDynamicsBlock->mData->mDivNumber & 2))
+	if (!(res->mDynamicsBlock->mData->mDivNumber & 2))
 		return;
 
 	LightObj* obj = mgr->mMainLight;
+	u8 r2         = mgr->mAmbientLight.mColor.r;
+	u8 r          = obj->mColor.r;
+	u8 g2         = mgr->mAmbientLight.mColor.g;
+	u8 b2         = mgr->mAmbientLight.mColor.b;
+	u8 g          = obj->mColor.g;
+	u8 b          = obj->mColor.b;
 
-	int red = (obj->mColor.r + mgr->mAmbientLight.mColor.r) * 2;
+	int red = (r + r2) * 2;
 	if (red > 255) {
 		red = 255;
 	}
 
-	int green = (obj->mColor.g + mgr->mAmbientLight.mColor.g) * 2;
+	int green = (g + g2) * 2;
 	if (green > 255) {
 		green = 255;
 	}
 
-	int blue = (obj->mColor.b + mgr->mAmbientLight.mColor.b) * 2;
+	int blue = (b + b2) * 2;
 	if (blue > 255) {
 		blue = 255;
 	}
 
 	emit->setColorRGB(red, green, blue);
-	emit->setPrmColorRGB(red, green, blue);
+	emit->setGlobalEnvColor(red, green, blue);
 
 	/*
 	cmplwi   r4, 0
@@ -654,21 +662,6 @@ void ParticleMgr::forceKill(JPABaseEmitter* emit)
 	if (emit) {
 		mEmitterManager->forceDeleteEmitter(emit);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	beq      lbl_803BBA9C
-	lwz      r3, 0x98(r3)
-	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
-
-lbl_803BBA9C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -698,22 +691,7 @@ void ParticleMgr::setDemoResourceManager(JPAResourceManager* mgr) { mEmitterMana
  * Address:	803BBB00
  * Size:	000028
  */
-void ParticleMgr::clearDemoResourceManager()
-{
-	mEmitterManager->clearResourceManager(7);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 7
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x98(r3)
-	bl       clearResourceManager__17JPAEmitterManagerFUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::clearDemoResourceManager() { mEmitterManager->clearResourceManager(7); }
 
 /*
  * --INFO--
@@ -809,28 +787,33 @@ bool ParticleMgr::cullByResFlg(Vector3f& pos, u16 id)
 
 	Sys::Sphere bound;
 	u32 flag = (u32)mResourceManager->getResUserWork(id);
+	f32 radius;
 	if (flag & 0x20) {
-		bound.mRadius = mClipRadiusL;
+		if (flag & 0x10) {
+			radius = mClipRadiusL;
+		} else {
+			radius = mClipRadiusM;
+		}
 	} else if (flag & 0x10) {
-		bound.mRadius = mClipRadiusM;
+		radius = mClipRadiusS;
 	} else {
-		bound.mRadius = mClipRadiusS;
+		return false;
 	}
-
 	bound.mPosition = pos;
+	bound.mRadius   = radius;
 
 	if (disableCulling)
 		return false;
 
-	bool ret = false;
-	for (int i = 0; i < mActiveViewportCount; i++) {
+	u8 ret = 0;
+	for (int i = 0; i < mReferencedViewportCount; i++) {
 		CullPlane* plane = mViewports[i]->mCamera;
 		if (mViewports[i]->viewable() && plane->isVisible(bound)) {
 			ret = true;
 			break;
 		}
 	}
-	return ret;
+	return bool(ret);
 
 	/*
 	stwu     r1, -0x30(r1)
@@ -938,25 +921,33 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 		return false;
 
 	Sys::Sphere bound;
-	u32 flag = emit->mResource->mDynamicsBlock->mData->mDivNumber;
+	u32 flag = emit->mResource->mDynamicsBlock->mData->mResUserWork;
+	float radius;
 	if (flag & 0x20) {
-		bound.mRadius = mClipRadiusL;
+		if (flag & 0x10) {
+			radius = mClipRadiusL;
+		} else {
+			radius = mClipRadiusM;
+		}
 	} else if (flag & 0x10) {
-		bound.mRadius = mClipRadiusM;
+		radius = mClipRadiusS;
 	} else {
-		bound.mRadius = mClipRadiusS;
+		return false;
 	}
-	bound.mPosition = (Vector3f)emit->mGlobalTrs;
 
-	bool ret = false;
-	for (int i = 0; i < mActiveViewportCount; i++) {
+	bound.mPosition.setTVec(emit->mGlobalTrs);
+	bound.mRadius = radius;
+	volatile Vector3f what(0.0f);
+
+	u8 ret = false;
+	for (int i = 0; i < mReferencedViewportCount; i++) {
 		CullPlane* plane = mViewports[i]->mCamera;
 		if (mViewports[i]->viewable() && plane->isVisible(bound)) {
 			ret = true;
 			break;
 		}
 	}
-	if (ret) {
+	if (bool(ret)) {
 		emit->mFlags &= ~4;
 		emit->mFlags &= ~1;
 	} else {

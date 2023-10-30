@@ -93,15 +93,33 @@ void FSMState_ScreenOpen::do_exec(TMgr* obj)
  * Address:	803CED14
  * Size:	00000C
  */
-void FSMState_ScreenWait::do_init(TMgr* obj, Game::StateArg* arg) { obj->mOptionScreen._010 = 1; }
+void FSMState_ScreenWait::do_init(TMgr* obj, Game::StateArg* arg) { obj->mOptionScreen.mEnabled = 1; }
 
 /*
  * --INFO--
  * Address:	803CED20
  * Size:	000144
  */
-void FSMState_ScreenWait::do_exec(TMgr*)
+void FSMState_ScreenWait::do_exec(TMgr* mgr)
 {
+	switch (mgr->mOptionScreen.mExitStatus) {
+	case 9:
+		mgr->mOptionScreen.mOptionParamA.saveRam();
+		break;
+	case 8:
+		mgr->mOptionScreen.mOptionParamA.saveRam();
+		mgr->mOptionScreen.mEnabled = false;
+		if (sys->mCardMgr->isSaveValid() && sys->mCardMgr->isCardReady()) {
+			transit(mgr, WaitCloseForNoCard, 0);
+			return;
+		}
+		transit(mgr, SaveMgr, 0);
+		return;
+	case 7:
+		mgr->mOptionScreen.mEnabled = false;
+		transit(mgr, WorldMapInfoWindow, 0);
+		break;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -352,9 +370,30 @@ void FSMState_LoadOption::do_init(TMgr* obj, Game::StateArg* arg) { _10 = 0; }
  * Address:	803CF118
  * Size:	0001A0
  */
-void FSMState_LoadOption::do_exec(TMgr* obj)
+void FSMState_LoadOption::do_exec(TMgr* mgr)
 {
-	JUT_PANICLINE(239, "fail to memory card Request even if finish task\n");
+	switch (_10) {
+	case 0:
+		if (sys->mCardMgr->isSaveValid() && sys->mCardMgr->isCardReady()) {
+			transit(mgr, ScreenOpen, 0);
+		} else {
+			if (sys->mCardMgr->isSaveValid()) {
+				bool check = sys->mCardMgr->loadGameOption();
+				if (check) {
+					_10 = 1;
+				} else {
+					JUT_PANICLINE(239, "fail to memory card Request even if finish task\n");
+				}
+			}
+		}
+		break;
+	case 1:
+		if (sys->mCardMgr->isSaveValid()) {
+			sys->mCardMgr->getCardStatus();
+			transit(mgr, ScreenOpen, 0);
+		}
+		break;
+	}
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -491,7 +530,7 @@ lbl_803CF29C:
  */
 void FSMState_SaveMgr::do_init(TMgr* obj, Game::StateArg* arg)
 {
-	obj->mOptionScreen._010 = 0;
+	obj->mOptionScreen.mEnabled = 0;
 	obj->mSaveMgr->start();
 }
 

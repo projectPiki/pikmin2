@@ -659,8 +659,12 @@ bool TBabaHe::create(Arg* arg)
 		for (int i = 0; i < 2; i++) {
 			mEmitters[i]->setGlobalRTMatrix(mtx.mMatrix.mtxView);
 		}
-		Vector3f zVec = mtx.getBasis(2);
-		((zVec * -35.0f) + pos).setTVec(mEmitters[0]->mGlobalTrs);
+		Vector3f trs;
+		mtx.getTranslation(trs);
+		trs *= -35.0f;
+		trs += pos;
+		volatile Vector3f dumb = trs;
+		trs.setTVec(mEmitters[0]->mGlobalTrs);
 		return true;
 	}
 	return false;
@@ -985,7 +989,7 @@ bool TTankFire::create(Arg* arg)
  */
 bool TTankWat::create(Arg* arg)
 {
-	mParticleCallBack.mEfxHit = (TTankFireHit*)&mEfxHit; // something sus here
+	mParticleCallBack.mEfxHit = (TTankFireHit*)&mEfxHit;
 	mParticleCallBack.mEfxHit->create(nullptr);
 	mParticleCallBack._04 = 1000.0f;
 	if (TSyncGroup4<TChaseMtx>::create(arg)) {
@@ -1003,6 +1007,18 @@ bool TTankWat::create(Arg* arg)
  */
 void TDnkmsThunderA::doExecuteEmitterOperation(JPABaseEmitter* emit)
 {
+	P2ASSERTLINE(644, mPosition);
+	P2ASSERTLINE(645, mPartnerPosition);
+
+	Vector3f pos1 = *mPosition;
+	Vector3f pos2 = *mPartnerPosition;
+	Mtx mtx;
+	makeMtxZAxisAlongPosPos(mtx, pos1, pos2);
+	JPASetRMtxTVecfromMtx(mtx, emit->mGlobalRot, &emit->mGlobalTrs);
+
+	f32 z = (*mPosition).distance(*mPartnerPosition);
+	volatile Vector3f test(z);
+	emit->setScaleMain(emit->mLocalScl.x, emit->mLocalScl.y, z / 120.0f);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1110,8 +1126,21 @@ lbl_803B4800:
  * Address:	803B4848
  * Size:	000168
  */
-void TDnkmsThunderB::doExecuteEmitterOperation(JPABaseEmitter*)
+void TDnkmsThunderB::doExecuteEmitterOperation(JPABaseEmitter* emit)
 {
+	P2ASSERTLINE(666, mPosition);
+	P2ASSERTLINE(667, mPartnerPosition);
+
+	Vector3f pos1 = *mPosition;
+	Vector3f pos2 = *mPartnerPosition;
+	Mtx mtx;
+	makeMtxZAxisAlongPosPos(mtx, pos1, pos2);
+	JPASetRMtxTVecfromMtx(mtx, emit->mGlobalRot, &emit->mGlobalTrs);
+
+	f32 z = (*mPosition).distance(*mPartnerPosition);
+	volatile Vector3f test(z);
+	emit->setScaleMain(emit->mLocalScl.x, emit->mLocalScl.y, z / 120.0f);
+
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1308,72 +1337,15 @@ bool TGasuHiba::create(Arg* arg)
 {
 	bool nameCheck = strcmp("ArgGasuHiba", arg->getName()) == 0;
 	P2ASSERTLINE(714, nameCheck);
-
-	if (static_cast<ArgGasuHiba*>(arg)->mIsUnderground) {
+	ArgGasuHiba* gasarg = static_cast<ArgGasuHiba*>(arg);
+	if (gasarg->mIsUnderground) {
 		mItems[0].mEffectID = PID_GasuHiba_3;
 		mItems[1].mEffectID = PID_GasuHiba_4;
 	} else {
 		mItems[0].mEffectID = PID_GasuHiba_1;
 		mItems[1].mEffectID = PID_GasuHiba_2;
 	}
-
-	return TSyncGroup2<TForever>::create(arg);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lis      r4, lbl_80495898@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_80495898@l
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x94
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B4AF4
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x2ca
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B4AF4:
-	lbz      r0, 0x10(r30)
-	mr       r4, r30
-	cmplwi   r0, 0
-	beq      lbl_803B4B18
-	li       r3, 0x2b4
-	li       r0, 0x2b5
-	sth      r3, 0x10(r29)
-	sth      r0, 0x20(r29)
-	b        lbl_803B4B28
-
-lbl_803B4B18:
-	li       r3, 0x74
-	li       r0, 0x75
-	sth      r3, 0x10(r29)
-	sth      r0, 0x20(r29)
-
-lbl_803B4B28:
-	mr       r3, r29
-	bl       "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return TSyncGroup2<TForever>::create(gasarg);
 }
 
 /*
@@ -1435,8 +1407,47 @@ lbl_803B4BBC:
  * Address:	803B4BC4
  * Size:	000218
  */
-bool TDenkiHiba::create(Arg*)
+bool TDenkiHiba::create(Arg* arg)
 {
+	bool nameCheck = strcmp("ArgDenkiHiba", arg->getName()) == 0;
+	P2ASSERTLINE(751, nameCheck);
+	ArgDenkiHiba* denarg = static_cast<ArgDenkiHiba*>(arg);
+
+	Vector3f pos1 = denarg->mOwnerPos;
+	Vector3f pos2 = denarg->mTargetPos;
+
+	bool made = TSyncGroup3<TForever>::create(denarg);
+	if (made) {
+		Mtx mtx;
+		makeMtxZAxisAlongPosPos(mtx, pos1, pos2);
+		for (int i = 0; i < 3; i++) {
+			TForever* efx = &mItems[i];
+			if (efx) {
+				JPABaseEmitter* emit = efx->mEmitter;
+				JPASetRMtxTVecfromMtx(mtx, emit->mGlobalRot, &emit->mLocalTrs);
+				if (denarg->mType == 1) {
+					emit->setGlobalPrmColor(255, 0, 0);
+					emit->setGlobalEnvColor(255, 0, 0);
+				} else if (denarg->mType == 2) {
+					emit->setGlobalPrmColor(0, 0, 255);
+					emit->setGlobalEnvColor(0, 0, 255);
+				}
+			}
+		}
+		f32 dist = pos1.distance(pos2);
+		dist /= 120.0f;
+		mItems[0].mEmitter->setScaleMain(1.0f, 1.0f, dist);
+		mItems[1].mEmitter->setScaleMain(1.0f, dist, 1.0);
+
+		JGeometry::TVec3f* vec = &mItems[2].mEmitter->mLocalScl;
+		volatile JGeometry::TVec3f vec2(*vec);
+		vec->x = vec->x;
+		vec->y = vec->y * dist;
+		vec->z = vec->z;
+		return true;
+	}
+	return false;
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1606,8 +1617,23 @@ void TDenkiHiba::setRateLOD(int)
  * Address:	803B4DDC
  * Size:	000128
  */
-bool TDenkiHibaMgr::create(Arg*)
+bool TDenkiHibaMgr::create(Arg* arg)
 {
+	bool nameCheck = strcmp("ArgDenkiHiba", arg->getName()) == 0;
+	P2ASSERTLINE(832, nameCheck);
+	ArgDenkiHiba* denarg = static_cast<ArgDenkiHiba*>(arg);
+
+	mOwnerPosition          = denarg->mOwnerPos;
+	mTargetCreaturePosition = denarg->mTargetPos;
+
+	Arg arg2(mOwnerPosition);
+	Arg arg3(mTargetCreaturePosition);
+
+	mPolesigns[0].create(&arg2);
+	mPolesigns[1].create(&arg3);
+
+	return true;
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1693,104 +1719,21 @@ lbl_803B4E44:
  * Address:	803B4F04
  * Size:	000178
  */
-void TDenkiHibaMgr::createHiba(int)
+bool TDenkiHibaMgr::createHiba(int type)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	lis      r6, __vt__Q23efx3Arg@ha
-	stw      r0, 0x84(r1)
-	addi     r6, r6, __vt__Q23efx3Arg@l
-	stw      r31, 0x7c(r1)
-	mr       r31, r3
-	lwz      r12, 0xac(r3)
-	lis      r3, "zero__10Vector3<f>"@ha
-	lwz      r11, 0xb0(r31)
-	addi     r5, r3, "zero__10Vector3<f>"@l
-	lwz      r10, 0xb4(r31)
-	lis      r3, __vt__Q23efx12ArgDenkiHiba@ha
-	lwz      r9, 0xa0(r31)
-	addi     r0, r3, __vt__Q23efx12ArgDenkiHiba@l
-	lwz      r8, 0xa4(r31)
-	addi     r3, r31, 4
-	lwz      r7, 0xa8(r31)
-	stw      r12, 8(r1)
-	lfs      f8, 0(r5)
-	stw      r11, 0xc(r1)
-	lfs      f7, 4(r5)
-	stw      r10, 0x10(r1)
-	lfs      f6, 8(r5)
-	stw      r9, 0x14(r1)
-	lfs      f2, 8(r1)
-	stw      r8, 0x18(r1)
-	lfs      f5, 0x14(r1)
-	stw      r7, 0x1c(r1)
-	lfs      f4, 0x18(r1)
-	stw      r6, 0x40(r1)
-	lfs      f3, 0x1c(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stw      r4, 0x68(r1)
-	addi     r4, r1, 0x40
-	stfs     f8, 0x44(r1)
-	stfs     f7, 0x48(r1)
-	stfs     f6, 0x4c(r1)
-	stw      r0, 0x40(r1)
-	stfs     f5, 0x50(r1)
-	stfs     f4, 0x54(r1)
-	stfs     f3, 0x58(r1)
-	stfs     f2, 0x5c(r1)
-	stfs     f1, 0x60(r1)
-	stfs     f0, 0x64(r1)
-	lwz      r12, 4(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r3, r31, 0x38
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r4, r1, 0x30
-	stw      r0, 0x30(r1)
-	lfs      f0, 0xa0(r31)
-	stfs     f0, 0x34(r1)
-	lfs      f0, 0xa4(r31)
-	stfs     f0, 0x38(r1)
-	lfs      f0, 0xa8(r31)
-	stfs     f0, 0x3c(r1)
-	stw      r0, 0x20(r1)
-	lfs      f0, 0xac(r31)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0xb0(r31)
-	stfs     f0, 0x28(r1)
-	lfs      f0, 0xb4(r31)
-	stfs     f0, 0x2c(r1)
-	lwz      r12, 0x38(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x5c
-	addi     r4, r1, 0x20
-	lwz      r12, 0x5c(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x80
-	lwz      r12, 0x80(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x90
-	lwz      r12, 0x90(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x84(r1)
-	li       r3, 1
-	lwz      r31, 0x7c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	ArgDenkiHiba arg(mOwnerPosition, mTargetCreaturePosition);
+	arg.mType = type;
+	mHiba.create(&arg);
+
+	Arg arg2(mOwnerPosition);
+	Arg arg3(mTargetCreaturePosition);
+
+	mPoles[0].create(&arg2);
+	mPoles[1].create(&arg3);
+
+	mPolesigns[0].fade();
+	mPolesigns[1].fade();
+	return true;
 }
 
 /*
@@ -1836,8 +1779,18 @@ void TDenkiHibaMgr::fade()
  * Address:	803B5194
  * Size:	0000B4
  */
-void TDenkiHibaMgr::setRateLOD(int)
+void TDenkiHibaMgr::setRateLOD(int id)
 {
+	f32 lods[3][3] = {
+		{ 1.0f, 1.0f, 1.0f },
+		{ 1.0f, 1.0f, 1.0f },
+		{ 0.15f, 0.07f, 0.02f },
+	};
+
+	for (int i = 0; i < 3; i++) {
+		if (mHiba.mItems[i].mEmitter)
+			mHiba.mItems[i].mEmitter->mRate = lods[i][id];
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	lis      r5, lbl_80495960@ha

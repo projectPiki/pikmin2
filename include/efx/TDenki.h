@@ -50,7 +50,7 @@ struct TDenkiHibaMgr : public TBase {
 	virtual void forceKill();  // _0C
 	virtual void fade();       // _10
 
-	void createHiba(int);
+	bool createHiba(int);
 	void setRateLOD(int);
 
 	// unused/inlined:

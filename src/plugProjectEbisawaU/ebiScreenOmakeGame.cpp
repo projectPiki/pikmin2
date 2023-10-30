@@ -83,8 +83,8 @@ void TOmakeGame::doOpenScreen(ArgOpen*)
 
 	JGeometry::TBox2f box = *mPaneSelectBox[mSelection]->getBounds();
 	u32 time              = 0.1f / sys->mDeltaTime;
-	mCursor._40           = time;
-	mCursor._44           = time;
+	mCursor.mCounter      = time;
+	mCursor.mCounterMax   = time;
 	mCursor.mBounds1      = box;
 	mCursor.mBounds2      = box;
 	mCursor.mIsEnabled    = true;
@@ -310,7 +310,7 @@ bool TOmakeGame::doUpdateStateWait()
 			JGeometry::TBox2f box = *mPaneSelectBox[mSelection]->getBounds();
 			mCursor.mBounds1      = mCursor.mBounds2;
 			mCursor.mBounds2      = box;
-			mCursor._40           = mCursor._44;
+			mCursor.mCounter      = mCursor.mCounterMax;
 			mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
 			mCursor.mWindowPane = mPaneGameSel[mSelection];
 
@@ -323,7 +323,7 @@ bool TOmakeGame::doUpdateStateWait()
 			mIsChangedGameSel = false;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 		}
-		if (!mCursor._40) {
+		if (!mCursor.mCounter) {
 			if (mInput->mButton.mButtonDown & Controller::PRESS_A) {
 				mExitState = false;
 			}

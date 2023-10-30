@@ -98,11 +98,11 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efx2dEffect.cpp">efx2dEffect.cpp</a> | 10345 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/particle2dMgr.cpp">particle2dMgr.cpp</a> | 10556 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebi2DCallBack.cpp">ebi2DCallBack.cpp</a> | 10719 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxObject.cpp">efxObject.cpp</a> | 11231 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenSaveMenu.cpp">ebiScreenSaveMenu.cpp</a> | 11470 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenTitleMenu.cpp">ebiScreenTitleMenu.cpp</a> | 11999 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiOptionMgr.cpp">ebiOptionMgr.cpp</a> | 13198 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleUnit.cpp">ebiP2TitleUnit.cpp</a> | 13369 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleUnit.cpp">ebiP2TitleUnit.cpp</a> | 13369 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiOptionMgr.cpp">ebiOptionMgr.cpp</a> | 14141 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2Title.cpp">ebiP2Title.cpp</a> | 24414 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxPikmin.cpp">efxPikmin.cpp</a> | 33313 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxBase.cpp">efxBase.cpp</a> | 35387 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxEnemy.cpp">efxEnemy.cpp</a> | 39573 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/particleMgr.cpp">particleMgr.cpp</a> | 48543 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenMemoryCard.cpp">ebiScreenMemoryCard.cpp</a> | 48597 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenOption.cpp">ebiScreenOption.cpp</a> | 94749 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxBase.cpp">efxBase.cpp</a> | 35387 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxEnemy.cpp">efxEnemy.cpp</a> | 39178 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenOption.cpp">ebiScreenOption.cpp</a> | 39466 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/particleMgr.cpp">particleMgr.cpp</a> | 48370 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenMemoryCard.cpp">ebiScreenMemoryCard.cpp</a> | 48597 |  |  |
 
 ### <section id="plugProjectHikinoU">plugProjectHikinoU</section>
 | File | Size (bytes) | File | Size (bytes) |

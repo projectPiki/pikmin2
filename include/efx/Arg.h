@@ -144,7 +144,7 @@ struct ArgDenkiHiba : public Arg {
 	// _00-_10 = Arg
 	Vector3f mOwnerPos;  // _10
 	Vector3f mTargetPos; // _1C
-	int _28;             // _28
+	int mType;           // _28
 };
 
 struct ArgDir : public Arg {
