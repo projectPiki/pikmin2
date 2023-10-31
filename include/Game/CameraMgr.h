@@ -248,14 +248,14 @@ struct PlayCamera : public LookAtCamera {
 	void otherVibFinished(int id);
 	bool isModCameraFinished();
 	void setCollisionCameraTargetPhi(int);
-	void getCollisionCameraTargetPhi(f32, f32);
+	f32 getCollisionCameraTargetPhi(f32, f32);
 
 	// _00 		= VTBL
 	// _00-_198	= LookAtCamera
 	Navi* mTargetObj;                // _198
 	int mChangePlayerState;          // _19C (is 1 during a player transition, 0 otherwise)
 	int mCameraZoomLevel;            // _1A0 (what's toggled between when you press R)
-	u32 mCameraSelAngle;             // _1A4 (what's toggled between when you press Z)
+	int mCameraSelAngle;             // _1A4 (what's toggled between when you press Z)
 	f32 mCurrTargetDistance;         // _1A8
 	f32 mGoalTargetDistance;         // _1AC
 	f32 mCameraAngleCurrent;         // _1B0
