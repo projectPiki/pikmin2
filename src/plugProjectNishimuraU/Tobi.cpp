@@ -266,7 +266,7 @@ void Obj::randomFlyingTarget()
 		f32 randAngle = randWeightFloat(TAU);
 		f32 randDist  = randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius.mValue);
 
-		targetPos = Vector3f(randDist * pikmin2_sinf(randAngle), 0.0f, randDist * pikmin2_cosf(randAngle));
+		targetPos = Vector3f(randDist * sinf(randAngle), 0.0f, randDist * cosf(randAngle));
 		targetPos += mHomePosition;
 	}
 

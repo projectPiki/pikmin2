@@ -1480,8 +1480,8 @@ void ObjSMenuMap::transMap()
 	}
 
 	f32 angle    = (mMapAngle * TAU) / 360.0f;
-	f32 anglesin = pikmin2_sinf(angle) * 2.0f;
-	f32 anglecos = pikmin2_cosf(angle) * 2.0f;
+	f32 anglesin = sinf(angle) * 2.0f;
+	f32 anglecos = cosf(angle) * 2.0f;
 	int buttons  = mController->getButton();
 	f32 inputx   = mController->mMStick.mXPos;
 	f32 inputz   = mController->mMStick.mXPos;
@@ -2652,10 +2652,10 @@ void ObjSMenuMap::updateMap()
 		arrowAlphaTimer = 1.0f;
 
 	f32 angle    = arrowAlphaTimer * TAU;
-	f32 angleSin = pikmin2_sinf(angle * 2.0f);
+	f32 angleSin = sinf(angle * 2.0f);
 	angle += PI;
 	u8 louieArrowAlpha  = ((angleSin + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;
-	f32 angleCos        = pikmin2_cosf(angle * 2.0f);
+	f32 angleCos        = cosf(angle * 2.0f);
 	u8 alpha            = 255;
 	f32 defaultZoom     = mStartZoom;
 	u8 olimarArrowAlpha = ((angleCos + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;

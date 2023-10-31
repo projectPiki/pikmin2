@@ -189,7 +189,7 @@ void TUnit::startState(enumState state)
 		f32 angle    = mManager->mParams.mWalkRandomAngle.mValue;
 		f32 line     = JMath::atanTable_.atan2_(mTargetPos.y - mPosition.y, mTargetPos.x - mPosition.x);
 		f32 test     = angle * DEG2RAD * PI * (randEbisawaFloat() * 2.0f + -1.0f) + line;
-		mTargetAngle = Vector2f(pikmin2_cosf(test), pikmin2_sinf(test));
+		mTargetAngle = Vector2f(cosf(test), sinf(test));
 		break;
 	case KSTATE_Walk:
 		f32 max2, min2;

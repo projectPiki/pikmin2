@@ -466,8 +466,8 @@ void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->startMotion(IMOMUSHIANIM_Climb, nullptr);
 
 	const f32 faceDir = imomushi->getFaceDir();
-	f32 cos           = pikmin2_cosf(faceDir);
-	f32 sin           = pikmin2_sinf(faceDir);
+	f32 cos           = cosf(faceDir);
+	f32 sin           = sinf(faceDir);
 
 	imomushi->_2D8 = Vector3f(sin, 0.01f, cos);
 	imomushi->_2E4 = Vector3f(-sin, 0.0f, -cos);

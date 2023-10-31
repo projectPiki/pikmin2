@@ -987,7 +987,7 @@ void TDayEndCount::reset()
 		P2ASSERTLINE(374, pane);
 		if (mMode) {
 			pane->setBasePosition(J2DPOS_Center);
-			pane->setOffset(pikmin2_sinf(pos) * 80.0f + mNumberPanePos.x, -(pikmin2_cosf(pos) * 80.0f - mNumberPanePos.y));
+			pane->setOffset(sinf(pos) * 80.0f + mNumberPanePos.x, -(cosf(pos) * 80.0f - mNumberPanePos.y));
 			pane->show();
 			pane->updateScale(mWaitScale * mScale);
 			pane->setAlpha(0);

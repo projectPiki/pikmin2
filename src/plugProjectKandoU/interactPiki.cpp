@@ -628,8 +628,8 @@ bool InteractFlick::actPiki(Game::Piki* piki)
 	if (angle < -10.0f) {
 		angle = piki->getFaceDir();
 	}
-	f32 cosVal = -pikmin2_cosf(angle);
-	f32 sinVal = -pikmin2_sinf(angle);
+	f32 cosVal = -cosf(angle);
+	f32 sinVal = -sinf(angle);
 
 	f32 magnitude = mKnockback * 0.1f * randFloat() + mKnockback;
 

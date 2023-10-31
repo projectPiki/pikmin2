@@ -128,7 +128,7 @@ void ObjGround::commonUpdate()
 	u16 height = System::getRenderModeObj()->efbHeight;
 
 	mBloGroup->rotate((f32)width / 2, (f32)height / 2, J2DROTATE_Z, 0.0f);
-	f32 cosTheta = -(pikmin2_cosf((mScale + 1.0f) * PI / 2));
+	f32 cosTheta = -(cosf((mScale + 1.0f) * PI / 2));
 	mBloGroup->scale((1.0f - cosTheta) * 0.4f + 1.0f);
 	mBloGroup->update();
 

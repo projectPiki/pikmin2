@@ -41,7 +41,7 @@ f32 ArrowAlphaBlink::calc()
 	}
 
 	// Place the sine wave in a range of 0 - 2 * blinkMag (sin returns between -1 and 1)
-	f32 factor = mMagnitude * (1.0f + pikmin2_sinf(mTimer));
+	f32 factor = mMagnitude * (1.0f + sinf(mTimer));
 
 	return (factor / 2) + mStart;
 }
@@ -162,7 +162,7 @@ f32 calcSmooth0to1(f32 start, f32 end)
 	}
 
 	f32 theta = ((1.0 / (1.0 - (f64)limit)) * (f64)(HALF_PI * (ratio - limit)));
-	return (0.19999999f * pikmin2_sinf(theta)) + 0.8f;
+	return (0.19999999f * sinf(theta)) + 0.8f;
 }
 
 /*

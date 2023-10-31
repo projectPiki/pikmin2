@@ -1290,8 +1290,8 @@ void Obj::setNextGoal()
 	mGoalPosition = mHomePosition;
 
 	f32 angle = TAU * randFloat();
-	mGoalPosition.x += radius * pikmin2_sinf(angle);
-	mGoalPosition.z += radius * pikmin2_cosf(angle);
+	mGoalPosition.x += radius * sinf(angle);
+	mGoalPosition.z += radius * cosf(angle);
 }
 
 /*

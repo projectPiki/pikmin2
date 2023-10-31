@@ -881,8 +881,7 @@ void Obj::setZukanTargetPosition()
 	f32 angleDist = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 
 	f32 randAngle = (angleDist + randWeightFloat(PI)) + HALF_PI;
-	Vector3f pos  = Vector3f(randDist * pikmin2_sinf(randAngle) + mHomePosition.x, mHomePosition.y,
-                            randDist * pikmin2_cosf(randAngle) + mHomePosition.z);
+	Vector3f pos  = Vector3f(randDist * sinf(randAngle) + mHomePosition.x, mHomePosition.y, randDist * cosf(randAngle) + mHomePosition.z);
 
 	mZukanTargetPosition = pos;
 }

@@ -294,9 +294,9 @@ void Uja::updateScale(f32 scale)
 		_70 -= TAU;
 	}
 
-	_64.x = 0.14f * pikmin2_sinf(_70) + 1.0f;
-	_64.z = 0.14f * pikmin2_cosf(_70) + 1.0f;
-	_64.y = 0.14f * pikmin2_cosf(_70) + 1.0f;
+	_64.x = 0.14f * sinf(_70) + 1.0f;
+	_64.z = 0.14f * cosf(_70) + 1.0f;
+	_64.y = 0.14f * cosf(_70) + 1.0f;
 	/*
 	lfs      f0, lbl_80519E38@sda21(r2)
 	stwu     r1, -0x30(r1)

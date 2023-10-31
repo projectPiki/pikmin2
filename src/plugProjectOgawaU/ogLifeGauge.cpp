@@ -198,10 +198,10 @@ void CallBack_LifeGauge::moveIcon()
 	}
 
 	_30 = mAngleMgr->calc();
-	_34 = pikmin2_sinf(_30) * 50.0f;
-	_38 = pikmin2_cosf(_30) * 30.0f;
+	_34 = sinf(_30) * 50.0f;
+	_38 = cosf(_30) * 30.0f;
 
-	f32 scale = (pikmin2_cosf(_30) + 1.0f) / 2.0f;
+	f32 scale = (cosf(_30) + 1.0f) / 2.0f;
 	scale     = ((1.0f - scale) * 0.7f + scale);
 	scale     = scale * mScaleMgr->calc();
 

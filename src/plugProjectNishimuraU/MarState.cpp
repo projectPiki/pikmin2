@@ -355,9 +355,9 @@ void StateChase::exec(EnemyBase* enemy)
 			mar->turnToTarget(target, CG_PARMS(mar)->mGeneral.mTurnSpeed(), CG_PARMS(mar)->mGeneral.mMaxTurnAngle());
 
 			if (sqrDistanceXZ(marPos, newPos) > 225.0f) {
-				f32 x = CG_PARMS(mar)->mGeneral.mMoveSpeed() * pikmin2_sinf(angle);
+				f32 x = CG_PARMS(mar)->mGeneral.mMoveSpeed() * sinf(angle);
 				f32 y = mar->getTargetVelocity().y;
-				f32 z = CG_PARMS(mar)->mGeneral.mMoveSpeed() * pikmin2_cosf(angle);
+				f32 z = CG_PARMS(mar)->mGeneral.mMoveSpeed() * cosf(angle);
 
 				mar->mTargetVelocity = Vector3f(x, y, z);
 			} else {
@@ -823,9 +823,9 @@ void StateChaseInside::exec(EnemyBase* enemy)
 		}
 
 		f32 angle = JMAAtan2Radian(targetPos.x - marPos.x, targetPos.z - marPos.z);
-		f32 x     = CG_PARMS(mar)->mGeneral.mMoveSpeed() * pikmin2_sinf(angle);
+		f32 x     = CG_PARMS(mar)->mGeneral.mMoveSpeed() * sinf(angle);
 		f32 y     = mar->getTargetVelocity().y;
-		f32 z     = CG_PARMS(mar)->mGeneral.mMoveSpeed() * pikmin2_cosf(angle);
+		f32 z     = CG_PARMS(mar)->mGeneral.mMoveSpeed() * cosf(angle);
 
 		mar->mTargetVelocity = Vector3f(x, y, z);
 	}

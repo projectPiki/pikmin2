@@ -572,8 +572,8 @@ struct Obj : public Plants::Obj {
 		Vector3f pos = mPosition;
 		Vector3f vec1, vec2;
 
-		pos.x -= 50.0f * pikmin2_sinf(mFaceDir);
-		pos.z -= 50.0f * pikmin2_cosf(mFaceDir);
+		pos.x -= 50.0f * sinf(mFaceDir);
+		pos.z -= 50.0f * cosf(mFaceDir);
 		vec2 = pos;
 		vec1 = vec2;
 		vec1.y += static_cast<EnemyParmsBase*>(mParms)->mGeneral.mPrivateRadius.mValue;

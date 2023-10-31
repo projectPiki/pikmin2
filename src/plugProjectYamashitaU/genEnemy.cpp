@@ -1,4 +1,4 @@
-#include "trigNoInline.h"
+#include "trig.h"
 #include "Game/generalEnemyMgr.h"
 
 #include "Game/Entities/Pelplant.h"
@@ -150,7 +150,7 @@ Creature* GenObjectEnemy::generate(Game::Generator* gen)
 		for (int i = 0; i < tekicount; i++) {
 			for (int k = i + 1; k < tekicount; k++) {
 				// loop over all unique pairings of teki
-				Vector3f& position            = posVector[i];  // position of teki  i
+				Vector3f& position            = posVector[i];  // position of teki i
 				Vector3f& position2           = posVector[k];  // position of teki k
 				Vector3f& positionCorrection  = corrVector[i]; // correction for teki i
 				Vector3f& positionCorrection2 = corrVector[k]; // correction for teki k

@@ -254,8 +254,8 @@ void TCursor::update(Arg* arg)
 void TCursor::calcPos_(Vector3f* pos, f32 mag, long id)
 {
 	f32 angle = mAngleTimer + ((f32)id * 2.0f * PI) / (f32)mContextNum;
-	pos->x    = mag * pikmin2_cosf(angle) + mPosition.x;
-	pos->z    = mag * pikmin2_sinf(angle) + mPosition.z;
+	pos->x    = mag * cosf(angle) + mPosition.x;
+	pos->z    = mag * sinf(angle) + mPosition.z;
 	if (Game::mapMgr) {
 		pos->y = Game::mapMgr->getMinY(*pos);
 	} else {

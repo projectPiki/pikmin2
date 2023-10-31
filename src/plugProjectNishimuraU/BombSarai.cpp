@@ -216,7 +216,7 @@ f32 BombSarai::Obj::setHeightVelocity(bool isFastTakeOff)
 	if (mPosition.y - minY > newHeight - C_PROPERPARMS.mPitchAmp.mValue) {
 		addPitchRatio();
 
-		newHeight += C_PROPERPARMS.mPitchAmp.mValue * pikmin2_sinf(mPitchRatio);
+		newHeight += C_PROPERPARMS.mPitchAmp.mValue * sinf(mPitchRatio);
 	}
 
 	mCurrentVelocity.y = riseFactor * ((minY + newHeight) - mPosition.y);
@@ -243,8 +243,7 @@ void BombSarai::Obj::setRandTarget()
 
 	f32 theta = HALF_PI + (angleToHome + randWeightFloat(PI));
 
-	mTargetPosition
-	    = Vector3f(randAmp * pikmin2_sinf(theta) + mHomePosition.x, mHomePosition.y, randAmp * pikmin2_cosf(theta) + mHomePosition.z);
+	mTargetPosition = Vector3f(randAmp * sinf(theta) + mHomePosition.x, mHomePosition.y, randAmp * cosf(theta) + mHomePosition.z);
 }
 
 /*

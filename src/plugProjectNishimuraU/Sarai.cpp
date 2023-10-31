@@ -223,8 +223,7 @@ void Obj::setRandTarget()
 
 	// Randomise the angle a bit and set the target position
 	f32 rngAngle = HALF_PI + (dirToSarai + randWeightFloat(PI));
-	mTargetPos   = Vector3f((radius * pikmin2_sinf(rngAngle)) + mHomePosition.x, mHomePosition.y,
-                          (radius * pikmin2_cosf(rngAngle)) + mHomePosition.z);
+	mTargetPos   = Vector3f((radius * sinf(rngAngle)) + mHomePosition.x, mHomePosition.y, (radius * cosf(rngAngle)) + mHomePosition.z);
 }
 
 /*

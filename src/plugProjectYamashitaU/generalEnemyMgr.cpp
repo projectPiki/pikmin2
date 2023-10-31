@@ -1072,8 +1072,8 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 								radDiff = 0.0f;
 							}
 
-							Vector3f pos(radDiff * pikmin2_sinf(randAngle) + sphere.mPosition.x, 0.0f,
-							             radDiff * pikmin2_cosf(randAngle) + sphere.mPosition.z);
+							Vector3f pos(radDiff * sinf(randAngle) + sphere.mPosition.x, 0.0f,
+							             radDiff * cosf(randAngle) + sphere.mPosition.z);
 							pos.y = mapMgr->getMinY(pos);
 							enemy->setPosition(pos, false);
 							enemy->mHomePosition = pos;
@@ -1127,8 +1127,8 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 								f32 randomRad = (0.5f * radDiff) * randFloat() + (0.5f * radDiff);
 
-								Vector3f pos(randomRad * pikmin2_sinf(randAngle) + sphere.mPosition.x, 0.0f,
-								             randomRad * pikmin2_cosf(randAngle) + sphere.mPosition.z);
+								Vector3f pos(randomRad * sinf(randAngle) + sphere.mPosition.x, 0.0f,
+								             randomRad * cosf(randAngle) + sphere.mPosition.z);
 								pos.y = mapMgr->getMinY(pos);
 								enemy->setPosition(pos, false);
 								enemy->mHomePosition = pos;
@@ -1186,8 +1186,8 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 								f32 randomRad = (0.5f * radDiff) * randFloat() + (0.5f * radDiff);
 
-								Vector3f pos(randomRad * pikmin2_sinf(randAngle) + sphere.mPosition.x, 0.0f,
-								             randomRad * pikmin2_cosf(randAngle) + sphere.mPosition.z);
+								Vector3f pos(randomRad * sinf(randAngle) + sphere.mPosition.x, 0.0f,
+								             randomRad * cosf(randAngle) + sphere.mPosition.z);
 								pos.y = mapMgr->getMinY(pos);
 								enemy->setPosition(pos, false);
 								enemy->mHomePosition = pos;

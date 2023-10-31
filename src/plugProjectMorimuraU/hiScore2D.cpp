@@ -2083,7 +2083,7 @@ bool THiScore::doUpdate()
 		if (mPaneAngle2 > TAU) {
 			mPaneAngle2 -= TAU;
 		}
-		_19C          = _194 * pikmin2_sinf(mPaneAngle2) + 0.85f;
+		_19C          = _194 * sinf(mPaneAngle2) + 0.85f;
 		f32 test      = 0.0f;
 		J2DPane* pane = mIndexPaneList[mCurrentSelect]->mPane->getFirstChildPane();
 		if (mIsAllTreasures) {

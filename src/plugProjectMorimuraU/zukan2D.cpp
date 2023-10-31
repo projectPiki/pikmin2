@@ -1534,7 +1534,7 @@ void TZukanBase::doUpdateOut()
 	if (mCursorAnimTimer > TAU) {
 		mCursorAnimTimer -= TAU;
 	}
-	mCursorScale = pikmin2_sinf(mCursorAnimTimer) * mCursorAnimMagnitude + 0.85f;
+	mCursorScale = sinf(mCursorAnimTimer) * mCursorAnimMagnitude + 0.85f;
 
 	for (int i = 0; i < mMaxSelect; i++) {
 		mIndexPaneList[i]->update();
@@ -6878,7 +6878,7 @@ void TZukanWindow::update()
 		f32 y = mScrollPosition;
 		if (TZukanBase::mIconMove) {
 			mPaneIcon->setOffset(mCharacterIconXOffset + mPaneIcon->mOffset.x,
-			                     ((15.0f - FABS(y)) / 15.0f) * pikmin2_sinf(mIconYHeightSin) + mScrollPosition + mPaneIcon->mOffset.y);
+			                     ((15.0f - FABS(y)) / 15.0f) * sinf(mIconYHeightSin) + mScrollPosition + mPaneIcon->mOffset.y);
 		}
 	}
 	Vector3f pos1             = mPaneWinCap->getGlbVtx(0);

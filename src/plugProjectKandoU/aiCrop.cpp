@@ -161,7 +161,7 @@ int ActCrop::exec()
 		// if no berries to attack, fall off plant in some random direction
 		if (!static_cast<Game::ItemPlant::Plant*>(mCreature)->hasFruits()) {
 			f32 randAngle         = TAU * randFloat();
-			mParent->mSimVelocity = Vector3f(pikmin2_sinf(randAngle) * 40.0f, 200.0f, pikmin2_cosf(randAngle) * 40.0f);
+			mParent->mSimVelocity = Vector3f(sinf(randAngle) * 40.0f, 200.0f, cosf(randAngle) * 40.0f);
 			return ACTEXEC_Fail;
 		}
 

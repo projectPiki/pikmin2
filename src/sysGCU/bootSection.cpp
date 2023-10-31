@@ -212,8 +212,8 @@ void TinyPikmin::draw()
 			x = 1.0f;
 		}
 		f32 angle = mTimer2 * TAU;
-		x *= pikmin2_sinf(angle) * 0.1f + 1.0f;
-		y *= -(pikmin2_sinf(angle) * 0.08f - 1.0f);
+		x *= sinf(angle) * 0.1f + 1.0f;
+		y *= -(sinf(angle) * 0.08f - 1.0f);
 		f32 xoffs       = _08 + mPosX;
 		f32 yoffs       = _0C + mPosY;
 		J2DPicture* pic = sTinyPikminMgr->sPikminTex[mColor];
@@ -686,7 +686,7 @@ void BootSection::drawEpilepsy(Graphics& gfx)
 	J2DPicture pic(mWarningTexture);
 	pic.draw(189.0f, 150.0f, -2.5f, -3.5f, false, false, false);
 
-	f32 calc = pikmin2_sinf(1.00f);
+	f32 calc = sinf(1.00f);
 
 	J2DPicture pic2(mWarningPressStartTexture);
 	JUtility::TColor color;

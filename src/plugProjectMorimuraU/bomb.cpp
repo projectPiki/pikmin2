@@ -230,7 +230,7 @@ void Obj::doAnimationCullingOn()
 void Obj::doSimulation(f32 simSpeed)
 {
 	if (isStickTo()) {
-		Vector3f dir = Vector3f(pikmin2_sinf(mFaceDir), 0.0f, pikmin2_cosf(mFaceDir));
+		Vector3f dir = Vector3f(sinf(mFaceDir), 0.0f, cosf(mFaceDir));
 		updateStick(dir);
 		updateCell();
 	} else if (mCaptureMatrix) {

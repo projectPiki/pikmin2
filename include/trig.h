@@ -9,7 +9,7 @@
 
 inline bool checkASinCosBounds(f32 x) { return (x >= -1.0f) && (x <= 1.0f); }
 
-inline f32 pikmin2_sinf(f32 x)
+inline f32 sinf(f32 x)
 {
 	if (x < 0.0f) {
 		return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first;
@@ -17,7 +17,7 @@ inline f32 pikmin2_sinf(f32 x)
 	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first;
 }
 
-inline f32 pikmin2_cosf(f32 x)
+inline f32 cosf(f32 x)
 {
 	if (x < 0.0f) {
 		x = -x;
@@ -25,7 +25,7 @@ inline f32 pikmin2_cosf(f32 x)
 	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].second;
 }
 
-inline f32 pikmin2_acos(f32 x)
+inline f32 acosf(f32 x)
 {
 	if (x >= 1.0f) {
 		return 0.0f;
@@ -92,12 +92,9 @@ inline int adjustValInt(int current, int dest, const int delta)
 	return (absVal(current - dest) < delta) ? dest : (current < dest ? current += delta : current -= delta);
 }
 
-inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle)
-{
-	return Vector3f(scale * pikmin2_sinf(angle), y, scale * pikmin2_cosf(angle));
-}
+inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle) { return Vector3f(scale * sinf(angle), y, scale * cosf(angle)); }
 
-inline Vector3f getRotation(f32 angle) { return Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle)); }
+inline Vector3f getRotation(f32 angle) { return Vector3f(sinf(angle), 0.0f, cosf(angle)); }
 
 inline f32 clamp(f32 val, f32 limit)
 {
@@ -119,14 +116,14 @@ inline void clampAngle(f32& angle)
 
 inline Vector3f getDirection(f32 angle)
 {
-	Vector3f vec = Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle));
+	Vector3f vec = Vector3f(sinf(angle), 0.0f, cosf(angle));
 	return vec;
 }
-inline Vector3f getPerpDirection(f32 angle) { return Vector3f(pikmin2_cosf(angle), 0.0f, -pikmin2_sinf(angle)); }
+inline Vector3f getPerpDirection(f32 angle) { return Vector3f(cosf(angle), 0.0f, -sinf(angle)); }
 
 inline Vector3f getDirectionMori(f32 angle)
 {
-	Vector3f vec = Vector3f(pikmin2_cosf(angle), 0.0f, pikmin2_sinf(angle));
+	Vector3f vec = Vector3f(cosf(angle), 0.0f, sinf(angle));
 	return vec;
 }
 

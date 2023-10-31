@@ -66,8 +66,8 @@ void EnemyNode::makeGlobalData(MapNode* mapTile)
 		mDirection = randWeightFloat(TAU);
 
 		// move 2D position according to random radius and random direction
-		mBirthPos.x += radius * pikmin2_sinf(mDirection);
-		mBirthPos.z += radius * pikmin2_cosf(mDirection);
+		mBirthPos.x += radius * sinf(mDirection);
+		mBirthPos.z += radius * cosf(mDirection);
 	}
 }
 

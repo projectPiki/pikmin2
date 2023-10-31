@@ -364,8 +364,8 @@ bool Obj::moveRockScaleUp()
 void Obj::initMoveVelocity()
 {
 	f32 theta    = mFaceDir;
-	f32 cosTheta = pikmin2_cosf(theta);
-	f32 sinTheta = pikmin2_sinf(theta);
+	f32 cosTheta = cosf(theta);
+	f32 sinTheta = sinf(theta);
 
 	Vector3f vel(sinTheta, 0.0f, cosTheta);
 	vel *= C_PARMS->mGeneral.mMoveSpeed();

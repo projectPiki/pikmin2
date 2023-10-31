@@ -1062,7 +1062,7 @@ void DayEndState::onMovieCommand(SingleGameSection* game, int id)
 						piki->init(&arg);
 						f32 angle = randFloat() * TAU;
 						f32 zero  = 0.0f;
-						Vector3f pos(pikmin2_cosf(angle) * 30.0f, origin.y + zero, pikmin2_sinf(angle) * 30.0f);
+						Vector3f pos(cosf(angle) * 30.0f, origin.y + zero, sinf(angle) * 30.0f);
 						if (mapMgr) {
 							pos.y = mapMgr->getMinY(pos);
 						}

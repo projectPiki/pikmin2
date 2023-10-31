@@ -194,7 +194,7 @@ void OtakaraSensor::adjPos(f32 x, f32 y)
 	f32 offs = 0.0f;
 	if (mEfxActive) {
 		f32 temp = mAngleMgr->calc();
-		offs     = pikmin2_cosf(temp) * 100.0f;
+		offs     = cosf(temp) * 100.0f;
 	}
 	mPane2->setOffset(mPanePos.x + x, mPanePos.y + y + offs);
 }
@@ -305,7 +305,7 @@ void OtakaraSensor::calcGrayColor()
 			if (mNoiseTimer > TAU) {
 				mNoiseTimer -= TAU;
 			}
-			mNoiseLevel  = (pikmin2_sinf(mNoiseTimer) + 1.0f) * 0.3f / 2;
+			mNoiseLevel  = (sinf(mNoiseTimer) + 1.0f) * 0.3f / 2;
 			mCanIncNoise = true;
 			break;
 
@@ -315,7 +315,7 @@ void OtakaraSensor::calcGrayColor()
 			mNoiseTimer += newScreen::ObjCave::msVal._44 * timeFactor;
 			if (mNoiseTimer > TAU)
 				mNoiseTimer -= TAU;
-			mNoiseLevel  = (pikmin2_sinf(mNoiseTimer) + 1.0f) * newScreen::ObjCave::msVal._48 / 2;
+			mNoiseLevel  = (sinf(mNoiseTimer) + 1.0f) * newScreen::ObjCave::msVal._48 / 2;
 			mCanIncNoise = true;
 			break;
 

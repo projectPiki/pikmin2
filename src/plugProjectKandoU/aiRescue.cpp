@@ -227,7 +227,7 @@ int ActRescue::execThrow()
 
 		f32 throwDist = dist / (2.0f * factor);
 
-		mTargetPiki->mSimVelocity = Vector3f(pikmin2_sinf(angleDist) * throwDist, yVel, pikmin2_cosf(angleDist) * throwDist);
+		mTargetPiki->mSimVelocity = Vector3f(sinf(angleDist) * throwDist, yVel, cosf(angleDist) * throwDist);
 		mTargetPiki->mVelocity    = mTargetPiki->mSimVelocity;
 
 	} else if (mThrowFlag & THROW_Stop) {

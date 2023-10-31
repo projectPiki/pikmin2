@@ -298,7 +298,7 @@ void Obj::setRandTarget()
 
 	f32 theta = HALF_PI + (randWeightFloat(PI) + ang);
 
-	mTargetPosition = Vector3f(randRadius * pikmin2_sinf(theta) + homePos.x, homePos.y, randRadius * pikmin2_cosf(theta) + homePos.z);
+	mTargetPosition = Vector3f(randRadius * sinf(theta) + homePos.x, homePos.y, randRadius * cosf(theta) + homePos.z);
 }
 
 /*
@@ -314,7 +314,7 @@ f32 Obj::getMovePitchOffset()
 		_2C8 -= TAU;
 	}
 
-	return 20.0f * pikmin2_sinf(_2C8);
+	return 20.0f * sinf(_2C8);
 }
 
 /*

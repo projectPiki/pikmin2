@@ -53,7 +53,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2FC = 0.0f;
 	_300 = false;
 
-	Vector3f dir = Vector3f(pikmin2_sinf(mFaceDir), 0.0f, pikmin2_cosf(mFaceDir));
+	Vector3f dir = Vector3f(sinf(mFaceDir), 0.0f, cosf(mFaceDir));
 	setGoalDirect(dir);
 	mInPiklopedia = 0;
 
@@ -261,7 +261,7 @@ void Obj::bounceCallback(Sys::Triangle* tri)
 	if (_300) {
 		f32 velY     = 0.7f + 0.3f * randFloat();
 		f32 speed    = C_PARMS->_938;
-		Vector3f vel = Vector3f(pikmin2_sinf(mFaceDir) * speed, C_PARMS->_934 * velY, pikmin2_cosf(mFaceDir) * speed);
+		Vector3f vel = Vector3f(sinf(mFaceDir) * speed, C_PARMS->_934 * velY, cosf(mFaceDir) * speed);
 		setVelocity(vel);
 		mTargetVelocity = vel;
 		mPosition.y += 10.0f;
@@ -326,8 +326,7 @@ void Obj::genItem()
 		mInPiklopedia = 1;
 
 		if (!(randFloat() > C_PROPERPARMS.mFp03())) {
-			Vector3f nectarVel
-			    = Vector3f(pikmin2_sinf(mFaceDir) * 50.0f, 200.0f, pikmin2_sinf(mFaceDir) * 50.0f); // why are these both sines smh
+			Vector3f nectarVel = Vector3f(sinf(mFaceDir) * 50.0f, 200.0f, sinf(mFaceDir) * 50.0f); // why are these both sines smh
 			Vector3f nectarPos = mPosition;
 			nectarPos.y += 2.0f;
 
@@ -394,9 +393,9 @@ void Obj::walkFunc()
 	mFaceDir = _2EC;
 
 	f32 angle = mFaceDir + faceDirOffset;
-	x         = targetSpeed * pikmin2_sinf(angle);
+	x         = targetSpeed * sinf(angle);
 	y         = getTargetVelocity().y;
-	z         = targetSpeed * pikmin2_cosf(angle);
+	z         = targetSpeed * cosf(angle);
 	_2EC      = mFaceDir;
 	if (absF(faceDirOffset) > dirChangeLimit) {
 		if (faceDirOffset > 0.0f) {
@@ -425,8 +424,8 @@ void Obj::setGoalRandom()
 
 	f32 randAngle = TAU * randFloat();
 
-	mGoalPosition.x += val * pikmin2_sinf(randAngle);
-	mGoalPosition.z += val * pikmin2_cosf(randAngle);
+	mGoalPosition.x += val * sinf(randAngle);
+	mGoalPosition.z += val * cosf(randAngle);
 }
 
 /*

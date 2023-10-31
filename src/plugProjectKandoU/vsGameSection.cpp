@@ -704,7 +704,7 @@ void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int param_2)
 				f32 angle  = randFloat() * TAU;
 				f32 height = (randFloat() * 120.0f + 850.0f) + 770.0f;
 
-				Vector3f spawn = Vector3f(radius * pikmin2_sinf(angle), height, radius * pikmin2_cosf(angle));
+				Vector3f spawn = Vector3f(radius * sinf(angle), height, radius * cosf(angle));
 
 				Piki* piki = pikiMgr->birth();
 				spawn += start;
@@ -762,7 +762,7 @@ void VsGameSection::createVsPikmins()
 				f32 angle  = randFloat() * TAU;
 				f32 height = 0.0f;
 
-				Vector3f spawn = Vector3f(radius * pikmin2_sinf(angle), height, radius * pikmin2_cosf(angle));
+				Vector3f spawn = Vector3f(radius * sinf(angle), height, radius * cosf(angle));
 
 				Piki* piki = pikiMgr->birth();
 				spawn += spawnOnyonPos;
@@ -1239,7 +1239,7 @@ void VsGameSection::dropCard(VsGameSection::DropCardArg& arg)
 	f32 radius = (randFloat() * 20.0f);
 	f32 angle  = randFloat() * TAU;
 
-	spawn += Vector3f(radius * pikmin2_sinf(angle), 0.0f, radius * pikmin2_cosf(angle));
+	spawn += Vector3f(radius * sinf(angle), 0.0f, radius * cosf(angle));
 
 	Pellet* pellet = createCardPellet();
 

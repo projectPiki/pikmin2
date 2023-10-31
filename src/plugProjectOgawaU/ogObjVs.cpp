@@ -2265,7 +2265,7 @@ void ObjVs::checkObake()
 	}
 
 	f32 calc = mObakeMovePos * 2.0f;
-	calc     = (pikmin2_sinf(calc) + 1.0f) * 0.5f;
+	calc     = (sinf(calc) + 1.0f) * 0.5f;
 
 	f32 mod1 = 1.0f;
 	f32 mod2 = 1.0f;
@@ -2299,15 +2299,15 @@ void ObjVs::checkObake()
 	if (mObakeMovePos > TAU) {
 		mObakeMovePos -= TAU;
 	}
-	f32 sin = pikmin2_sinf(mObakeMovePos);
-	f32 cos = pikmin2_cosf(mObakeMovePos);
+	f32 sin = sinf(mObakeMovePos);
+	f32 cos = cosf(mObakeMovePos);
 	mPaneObake1P->rotate(angle1 * sin * 20.0f);
 	mPaneObake2P->rotate(angle2 * cos * 20.0f);
 
-	mPaneObake1P->setOffset(msVal.mRouletteXOffs + (pikmin2_sinf(mObakeMovePos) * angle1) * msVal._2C,
-	                        msVal.mRouletteP1YOffs + (pikmin2_cosf(mObakeMovePos) * angle1) * msVal._30);
-	mPaneObake2P->setOffset(msVal.mRouletteXOffs + (pikmin2_sinf(mObakeMovePos) * angle2) * msVal._2C,
-	                        msVal.mRouletteP2YOffs + (pikmin2_cosf(mObakeMovePos) * angle2) * msVal._30);
+	mPaneObake1P->setOffset(msVal.mRouletteXOffs + (sinf(mObakeMovePos) * angle1) * msVal._2C,
+	                        msVal.mRouletteP1YOffs + (cosf(mObakeMovePos) * angle1) * msVal._30);
+	mPaneObake2P->setOffset(msVal.mRouletteXOffs + (sinf(mObakeMovePos) * angle2) * msVal._2C,
+	                        msVal.mRouletteP2YOffs + (cosf(mObakeMovePos) * angle2) * msVal._30);
 
 	mPaneObake1P->updateScale(msVal.mRouletteScale);
 	mPaneObake2P->updateScale(msVal.mRouletteScale);
@@ -2718,7 +2718,7 @@ void ObjVs::doUpdateCommon()
 	if (scale < 0.0f)
 		scale = -scale;
 
-	scale = pikmin2_sinf(scale);
+	scale = sinf(scale);
 	setOnOffBdama(mSetBedamaFlag);
 	checkObake();
 	if (mDoneState == 1) {

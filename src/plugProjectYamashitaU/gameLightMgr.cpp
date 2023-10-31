@@ -1,4 +1,4 @@
-#include "trigNoInline.h"
+#include "trig.h"
 #include "Game/GameLight.h"
 #include "Game/shadowMgr.h"
 #include "Game/CameraMgr.h"

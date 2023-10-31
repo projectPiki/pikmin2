@@ -193,7 +193,7 @@ void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 			case 1:
 				f32 x    = 7.0f;
 				f32 temp = (f32)mCounter * TAU * 0.03125;
-				temp     = pikmin2_sinf(temp);
+				temp     = sinf(temp);
 				temp     = (temp + 1.0f) * 0.5f;
 				Color4 color2, color;
 				color2.a = mAlpha;

@@ -342,9 +342,9 @@ void Obj::getTargetPosition()
 			f32 adjustAngle = (randWeightFloat(2.0f * mIkSystemParms->_34) - mIkSystemParms->_34) * DEG2RAD * PI;
 			f32 randAngle   = mFaceDir + adjustAngle;
 			// different stomping behavior if enraged
-			mTargetPosition.x = C_PROPERPARMS.mMovementOffset() * pikmin2_sinf(randAngle) + mPosition.x;
+			mTargetPosition.x = C_PROPERPARMS.mMovementOffset() * sinf(randAngle) + mPosition.x;
 			mTargetPosition.y = mPosition.y;
-			mTargetPosition.z = C_PROPERPARMS.mMovementOffset() * pikmin2_cosf(randAngle) + mPosition.z;
+			mTargetPosition.z = C_PROPERPARMS.mMovementOffset() * cosf(randAngle) + mPosition.z;
 
 		} else {
 			ConditionNotStickClient condition(this);
@@ -361,9 +361,9 @@ void Obj::getTargetPosition()
 				f32 ang3      = HALF_PI;
 				f32 randAngle = ang2 + ang1 + ang3; // dumb fix for regswap
 				// they're both sin??????? -EpochFlame
-				mTargetPosition.x = randDist * pikmin2_sinf(randAngle) + mHomePosition.x;
+				mTargetPosition.x = randDist * sinf(randAngle) + mHomePosition.x;
 				mTargetPosition.y = mHomePosition.y;
-				mTargetPosition.z = randDist * pikmin2_sinf(randAngle) + mHomePosition.z;
+				mTargetPosition.z = randDist * sinf(randAngle) + mHomePosition.z;
 			}
 		}
 	} else {

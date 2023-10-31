@@ -242,8 +242,8 @@ void StateFreeze::exec(EnemyBase* enemy)
 			rumbleMgr->startRumble(14, position, 2);
 
 			f32 faceDir = wraith->getFaceDir();
-			position.x += 32.0f * pikmin2_sinf(faceDir) - 4.0f * pikmin2_cosf(faceDir);
-			position.z += 32.0f * pikmin2_cosf(faceDir) - 4.0f * pikmin2_sinf(faceDir);
+			position.x += 32.0f * sinf(faceDir) - 4.0f * cosf(faceDir);
+			position.z += 32.0f * cosf(faceDir) - 4.0f * sinf(faceDir);
 			wraith->createBounceEffect(position, 0.42f);
 
 		} else if ((u32)wraith->mCurAnim->mType == KEYEVENT_END) {
@@ -411,8 +411,8 @@ void StateEscape::exec(EnemyBase* enemy)
 			rumbleMgr->startRumble(16, position, 2);
 
 			f32 faceDir = wraith->getFaceDir();
-			position.x += -22.0f * pikmin2_sinf(faceDir) - 30.0f * pikmin2_cosf(faceDir);
-			position.z += -22.0f * pikmin2_cosf(faceDir) - 30.0f * pikmin2_sinf(faceDir);
+			position.x += -22.0f * sinf(faceDir) - 30.0f * cosf(faceDir);
+			position.z += -22.0f * cosf(faceDir) - 30.0f * sinf(faceDir);
 			wraith->createBounceEffect(position, 0.85f);
 			break;
 

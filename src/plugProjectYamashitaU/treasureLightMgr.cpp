@@ -1,4 +1,5 @@
 #include "nans.h"
+#include "sysMath.h"
 #include "Light.h"
 
 // Fix rodata mismatch with null bytes

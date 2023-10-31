@@ -585,7 +585,7 @@ int ActGotoSlot::exec()
 			f32 crossThing = (slotPos.z * sep.x) - (slotPos.x * sep.z);
 			f32 factor     = (dotProd >= 1.0f) ? 1.0f : (dotProd <= -1.0f) ? -1.0f : dotProd; // f3
 
-			pellet->_3E0 = (crossThing > 0.0f) ? pikmin2_acos(factor) : roundAng(-pikmin2_acos(factor));
+			pellet->_3E0 = (crossThing > 0.0f) ? acosf(factor) : roundAng(-acosf(factor));
 
 			mParent->startStick(mPellet, mSlotId);
 			return ACTEXEC_Success;

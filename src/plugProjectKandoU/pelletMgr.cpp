@@ -1127,8 +1127,8 @@ void Pellet::setupParticles()
 				f32 mid       = mConfig->mParams.mHeight.mData / 2;
 				f32 midRadius = radius - mid;
 				f32 theta     = (TAU / (f32)particleCount) * (f32)i;
-				f32 cos       = midRadius * pikmin2_cosf(theta);
-				f32 sin       = midRadius * pikmin2_sinf(theta);
+				f32 cos       = midRadius * cosf(theta);
+				f32 sin       = midRadius * sinf(theta);
 				Vector3f rotation(sin, 0.0f, cos);
 				// _2F4                        = _2F4 + rotation;
 				setupDynParticle(i, mid, rotation);
@@ -1401,7 +1401,7 @@ void Pellet::setupParticles_simple()
 
 	for (int i = 0; i < _360; i++) {
 		f32 theta = (TAU / endIndex) * (f32)i;
-		Vector3f rotation(diff * pikmin2_sinf(theta), 0.0f, diff * pikmin2_cosf(theta));
+		Vector3f rotation(diff * sinf(theta), 0.0f, diff * cosf(theta));
 		// _2F4                        = _2F4 + rotation;
 		setupDynParticle(i, mid, rotation);
 		// mDynParticle->getAt(i)->_00 = rotation;
@@ -1581,7 +1581,7 @@ void Pellet::setupParticles_tall()
 
 	for (int i = 0; i < count; i++) {
 		f32 theta = (TAU / endIndex) * (f32)i;
-		Vector3f rotation(mid * pikmin2_sinf(theta), heightDiff, mid * pikmin2_cosf(theta));
+		Vector3f rotation(mid * sinf(theta), heightDiff, mid * cosf(theta));
 		setupDynParticle(i, height, rotation);
 	}
 	/*
@@ -1963,10 +1963,10 @@ void Pellet::setOrientation(Matrixf& mat)
 
 	if (x > 0.0f) {
 		P2ASSERTLINE(2504, checkASinCosBounds(z));
-		mFaceDir = pikmin2_acos(z);
+		mFaceDir = acosf(z);
 	} else {
 		P2ASSERTLINE(2507, checkASinCosBounds(z));
-		mFaceDir = -pikmin2_acos(z);
+		mFaceDir = -acosf(z);
 	}
 
 	mFaceDir = roundAng(mFaceDir);
@@ -4269,7 +4269,7 @@ void Pellet::calcStickSlotGlobal(s16 slot, Vector3f& stickPosition)
 		P2ASSERTLINE(4016, validSlot);
 		f32 radius = mConfig->mParams.mPRadius.mData;
 		f32 theta  = ((TAU / (f32)mSlotCount) * slot) + _3E0;
-		pos        = Vector3f(radius * pikmin2_sinf(theta), 0.0f, radius * pikmin2_cosf(theta));
+		pos        = Vector3f(radius * sinf(theta), 0.0f, radius * cosf(theta));
 		int face   = getFace();
 		f32 mid    = (0.5f * mConfig->mParams.mHeight.mData) + 1.0f;
 

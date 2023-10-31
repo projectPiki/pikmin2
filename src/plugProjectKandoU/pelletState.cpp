@@ -528,7 +528,7 @@ void PelletGoalState::exec(Pellet* pelt)
 
 		// weird regswap and also loading the sin values (325.whatever) too late??
 		f32 angle    = 8.0f * (TAU * (1.0f - mSuckTime));
-		f32 sinTheta = pikmin2_sinf(angle);
+		f32 sinTheta = sinf(angle);
 		sinTheta *= 0.03f;
 		scale += sinTheta;
 		pelt->mScale = Vector3f(scale);
@@ -1483,7 +1483,7 @@ void PelletAppearState::exec(Pellet* pelt)
 
 			mAngle       = roundAng(_28 * frameTime + mAngle);
 			f32 rad      = 0.2f * mGoalScale;
-			f32 sinTheta = pikmin2_sinf(mAngle);
+			f32 sinTheta = sinf(mAngle);
 			f32 idk      = (mTime - (_1C + _20)) / _24;
 			mGoalScale   = -(idk * idk - 1.0f);
 			scale        = rad * sinTheta + 1.0f;
@@ -1548,7 +1548,7 @@ void PelletScaleAppearState::exec(Pellet* pelt)
 
 			mAngle       = roundAng(_28 * frameTime + mAngle);
 			f32 rad      = 0.1f * mGoalScale;
-			f32 sinTheta = pikmin2_sinf(mAngle);
+			f32 sinTheta = sinf(mAngle);
 			f32 idk      = (mTime - (_1C + _20)) / _24;
 			mGoalScale   = -(idk * idk - 1.0f);
 			scale        = rad * sinTheta + 1.0f;
@@ -1886,7 +1886,7 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 	if (time < 0.1f) {
 		yoffs        = 0.0f;
 		f32 scale    = (time / 0.1f) * PI * 0.5f;
-		f32 sinTheta = pikmin2_sinf(scale);
+		f32 sinTheta = sinf(scale);
 		f32 factor   = 0.3f;
 		// not quite right either - multiplication needs to be in the other order
 		// might be similar to the regswap in that one enemyBase function?
@@ -1900,9 +1900,9 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 		}
 
 		f32 angle     = PI * ((mTimer - 0.1f) / 0.9f);
-		f32 sinTheta1 = pikmin2_sinf(angle);
+		f32 sinTheta1 = sinf(angle);
 		yoffs         = (sinTheta1 *= 50.0f);
-		mPeltYScale   = 0.50000006f * pikmin2_sinf(angle) + 0.7f;
+		mPeltYScale   = 0.50000006f * sinf(angle) + 0.7f;
 	} else {
 		if (!mDoEfx && !pelt->inWater()) {
 			pelt->mSoundMgr->startSound(PSSE_EN_FROG_LAND, 0);
@@ -1915,7 +1915,7 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 		}
 		mDoEfx       = true;
 		f32 scale    = (mTimer - 0.9f) / 0.1f * PI * 0.5f;
-		f32 sinTheta = pikmin2_sinf(scale);
+		f32 sinTheta = sinf(scale);
 		// again, regswap
 		mPeltYScale = (sinTheta *= 0.3f) + 0.7f;
 		yoffs       = 0.0f;

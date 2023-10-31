@@ -267,9 +267,9 @@ void Obj::setTargetPosition()
 	f32 randAngle     = randWeightFloat(TAU);
 	f32 radDiff       = C_PARMS->mGeneral.mTerritoryRadius() - C_PARMS->mGeneral.mHomeRadius();
 	f32 randDist      = C_PARMS->mGeneral.mHomeRadius() + randWeightFloat(radDiff);
-	mTargetPosition.x = randDist * pikmin2_sinf(randAngle) + homePos.x;
+	mTargetPosition.x = randDist * sinf(randAngle) + homePos.x;
 	mTargetPosition.y = homePos.y;
-	mTargetPosition.z = randDist * pikmin2_cosf(randAngle) + homePos.z;
+	mTargetPosition.z = randDist * cosf(randAngle) + homePos.z;
 }
 
 /*

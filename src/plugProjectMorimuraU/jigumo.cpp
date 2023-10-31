@@ -714,8 +714,8 @@ void Obj::walkFunc()
 					shiftMag *= -1.0f; // if we're reversing, shift "forwards"
 				}
 
-				mPosition.x -= shiftMag * pikmin2_sinf(mFaceDir);
-				mPosition.z -= shiftMag * pikmin2_cosf(mFaceDir);
+				mPosition.x -= shiftMag * sinf(mFaceDir);
+				mPosition.z -= shiftMag * cosf(mFaceDir);
 
 				if ((f32)_334 != 0.0f) { // idk why this is checking this as a float.
 					_2F4 = 2.0f;
@@ -736,9 +736,9 @@ void Obj::walkFunc()
 
 		// adjust target velocity
 		f32 theta    = prevFaceDir + turnAngle;
-		f32 x        = walkSpeed * pikmin2_sinf(theta);
+		f32 x        = walkSpeed * sinf(theta);
 		f32 y        = getTargetVelocity().y;
-		f32 z        = walkSpeed * pikmin2_cosf(theta);
+		f32 z        = walkSpeed * cosf(theta);
 		mNextFaceDir = prevFaceDir;
 		if (absF(turnAngle) > rotSpeed) {
 			turnAngle = (turnAngle > 0.0f) ? rotSpeed : -rotSpeed;
@@ -1360,11 +1360,11 @@ Vector3f Obj::getOffsetForMapCollision()
 
 	// we're going backwards, offset collision behind us 2 units
 	if (mIsReversing) {
-		return Vector3f(-2.0f * pikmin2_sinf(mFaceDir), 0.0f, -2.0f * pikmin2_cosf(mFaceDir));
+		return Vector3f(-2.0f * sinf(mFaceDir), 0.0f, -2.0f * cosf(mFaceDir));
 	}
 
 	// we're going forwards, offset collision in front of us 2 units
-	return Vector3f(2.0f * pikmin2_sinf(mFaceDir), 0.0f, 2.0f * pikmin2_cosf(mFaceDir));
+	return Vector3f(2.0f * sinf(mFaceDir), 0.0f, 2.0f * cosf(mFaceDir));
 }
 
 /*

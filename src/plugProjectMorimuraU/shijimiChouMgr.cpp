@@ -146,8 +146,8 @@ void Mgr::createGroup(Obj* leader, int count)
 
 	rand();
 
-	birthArg.mPosition.x = factor * pikmin2_sinf(birthArg.mFaceDir) + birthArg.mPosition.x;
-	birthArg.mPosition.z = factor * pikmin2_cosf(birthArg.mFaceDir) + birthArg.mPosition.z;
+	birthArg.mPosition.x = factor * sinf(birthArg.mFaceDir) + birthArg.mPosition.x;
+	birthArg.mPosition.z = factor * cosf(birthArg.mFaceDir) + birthArg.mPosition.z;
 
 	leader->mFaceDir    = birthArg.mFaceDir;
 	leader->mRotation.y = leader->mFaceDir;
@@ -165,8 +165,8 @@ void Mgr::createGroup(Obj* leader, int count)
 		birthArg.mFaceDir  = (TAU * (i + 1)) / count;
 
 		if (leader->mSpawnSource == SHIJIMISOURCE_Null) {
-			birthArg.mPosition.x += factor * pikmin2_sinf(birthArg.mFaceDir);
-			birthArg.mPosition.z += factor * pikmin2_cosf(birthArg.mFaceDir);
+			birthArg.mPosition.x += factor * sinf(birthArg.mFaceDir);
+			birthArg.mPosition.z += factor * cosf(birthArg.mFaceDir);
 		}
 		birthArg.mPosition.y += 50.0f * randFloat() - 25.0f;
 
@@ -260,8 +260,8 @@ void Mgr::createGroupByEnemy(EnemyBirthArg& birthArg, EnemyBase* enemy, int coun
 	if (chou) {
 		Vector3f birthPos = birthArg.mPosition;
 		if (!check && enemy) {
-			birthPos.x = -(75.0f * pikmin2_sinf(enemy->getFaceDir()) - birthPos.x);
-			birthPos.z = -(75.0f * pikmin2_cosf(enemy->getFaceDir()) - birthPos.z);
+			birthPos.x = -(75.0f * sinf(enemy->getFaceDir()) - birthPos.x);
+			birthPos.z = -(75.0f * cosf(enemy->getFaceDir()) - birthPos.z);
 		}
 		mGroupLeader = chou;
 

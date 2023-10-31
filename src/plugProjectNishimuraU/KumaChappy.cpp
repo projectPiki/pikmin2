@@ -409,8 +409,8 @@ void Obj::updateTargetDistance()
 void Obj::updateHomePosition()
 {
 
-	mHomePosition = Vector3f(C_PARMS->mGeneral.mHomeRadius.mValue * pikmin2_sinf(mFaceDir) + mPosition.x, mPosition.y,
-	                         C_PARMS->mGeneral.mHomeRadius.mValue * pikmin2_cosf(mFaceDir) + mPosition.z);
+	mHomePosition = Vector3f(C_PARMS->mGeneral.mHomeRadius.mValue * sinf(mFaceDir) + mPosition.x, mPosition.y,
+	                         C_PARMS->mGeneral.mHomeRadius.mValue * cosf(mFaceDir) + mPosition.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lfs      f0, lbl_8051BB68@sda21(r2)

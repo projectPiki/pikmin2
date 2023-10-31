@@ -108,11 +108,11 @@ void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
 	_F0       = angle;
 	mPosition = position;
 
-	Vector3f dir = Vector3f(rad * pikmin2_sinf(angle), 0.0f, rad * pikmin2_cosf(angle));
+	Vector3f dir = Vector3f(rad * sinf(angle), 0.0f, rad * cosf(angle));
 	_D8          = mPosition + dir;
 	mVelocity    = velocity;
 
-	Vector3f secondDir = Vector3f(_B8 * pikmin2_sinf(angle), 0.0f, _B8 * pikmin2_cosf(angle));
+	Vector3f secondDir = Vector3f(_B8 * sinf(angle), 0.0f, _B8 * cosf(angle));
 	_A4                = position + secondDir;
 	_111               = 0;
 	/*

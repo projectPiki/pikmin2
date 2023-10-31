@@ -1671,7 +1671,7 @@ void PikiPanicState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
  */
 void PikiPanicState::panicRun(Piki* piki)
 {
-	Vector3f direction = Vector3f(pikmin2_sinf(mAngle), 0.0f, pikmin2_cosf(mAngle));
+	Vector3f direction = Vector3f(sinf(mAngle), 0.0f, cosf(mAngle));
 	piki->setSpeed(mSpeed, direction);
 	mDeathTimer -= sys->mDeltaTime;
 	mDramaTimer -= sys->mDeltaTime;
@@ -1730,7 +1730,7 @@ void PikiPanicState::panicLobster(Piki* piki)
 		f32 newAngle    = roundAng(oldAngle);
 		f32 factor      = 20.0f * randFloat() + 120.0f;
 		f32 randHeight  = 80.0f * randFloat() + 100.0f;
-		Vector3f newPos = Vector3f(factor * pikmin2_sinf(newAngle), randHeight, factor * pikmin2_cosf(newAngle));
+		Vector3f newPos = Vector3f(factor * sinf(newAngle), randHeight, factor * cosf(newAngle));
 
 		piki->mFaceDir     = newAngle;
 		piki->mSimVelocity = newPos;
@@ -4445,8 +4445,8 @@ void PikiFlickState::exec(Piki* piki)
 	JUT_PANICLINE(3092, "flick:exec:erase\n");
 	if (mState == FLICK_Start) { // yeet the piki.
 		f32 speed            = mKnockBackSpeed;
-		piki->mSimVelocity.x = -speed * pikmin2_sinf(mKnockBackAngle);
-		piki->mSimVelocity.z = -speed * pikmin2_cosf(mKnockBackAngle);
+		piki->mSimVelocity.x = -speed * sinf(mKnockBackAngle);
+		piki->mSimVelocity.z = -speed * cosf(mKnockBackAngle);
 
 		piki->mFaceDir = roundAng(piki->mFaceDir + mFaceDirOffset);
 		return;
@@ -4960,7 +4960,7 @@ void PikiDrownState::exec(Piki* piki)
 			piki->mFaceDir   = JMath::atanTable_.atan2_(naviPos.x - pikiPos.x, naviPos.z - pikiPos.z);
 		}
 
-		piki->mSimVelocity = Vector3f(100.0f * pikmin2_sinf(piki->mFaceDir), 160.0f, 100.0f * pikmin2_cosf(piki->mFaceDir));
+		piki->mSimVelocity = Vector3f(100.0f * sinf(piki->mFaceDir), 160.0f, 100.0f * cosf(piki->mFaceDir));
 		EmotionStateArg emotionArg(5);
 		transit(piki, PIKISTATE_Emotion, &emotionArg);
 		return;

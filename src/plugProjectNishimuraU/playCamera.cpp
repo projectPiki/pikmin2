@@ -786,7 +786,7 @@ void PlayCamera::updateVibration(int id)
 	}
 
 	f32 angle             = mVibrateAngle[id];
-	mVibrateRollAngle[id] = (test2 * mVibrateScaleParm[id]) * mVibrateAzimuthParm[id] * pikmin2_sinf(angle);
+	mVibrateRollAngle[id] = (test2 * mVibrateScaleParm[id]) * mVibrateAzimuthParm[id] * sinf(angle);
 }
 
 /*

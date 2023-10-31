@@ -344,10 +344,10 @@ void Obj::getTargetPosition()
 			f32 ang3      = HALF_PI;
 			f32 randAngle = ang2 + ang1 + ang3; // dumb fix for regswap
 
-			f32 sinTheta      = pikmin2_sinf(randAngle);
-			mTargetPosition.x = randDist * pikmin2_sinf(randAngle) + mHomePosition.x;
+			f32 sinTheta      = sinf(randAngle);
+			mTargetPosition.x = randDist * sinf(randAngle) + mHomePosition.x;
 			mTargetPosition.y = mHomePosition.y;
-			mTargetPosition.z = randDist * pikmin2_cosf(randAngle) + mHomePosition.z;
+			mTargetPosition.z = randDist * cosf(randAngle) + mHomePosition.z;
 		}
 	} else {
 		mTargetPosition = mHomePosition;
@@ -382,8 +382,7 @@ void Obj::setShotGunTargetPosition()
 		f32 randAngle      = randWeightFloat(TAU);
 		f32 randDist       = randWeightFloat(C_PARMS->mGeneral.mSearchDistance.mValue);
 
-		mShotGunTargetPosition
-		    = Vector3f(randDist * pikmin2_sinf(randAngle) + mPosition.x, mPosition.y, randDist * pikmin2_cosf(randAngle) + mPosition.z);
+		mShotGunTargetPosition = Vector3f(randDist * sinf(randAngle) + mPosition.x, mPosition.y, randDist * cosf(randAngle) + mPosition.z);
 	}
 
 	setShotGunTarget(mShotGunTargetPosition);

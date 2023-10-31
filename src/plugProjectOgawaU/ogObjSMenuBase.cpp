@@ -325,7 +325,7 @@ void ObjSMenuBase::updateYaji()
 		if (angle > TAU) {
 			angle -= TAU;
 		}
-		newxpos = msBaseVal._0C * pikmin2_sinf(angle);
+		newxpos = msBaseVal._0C * sinf(angle);
 
 		f32 temp = angle - HALF_PI;
 		if (temp > 0.0f && temp < PI) {

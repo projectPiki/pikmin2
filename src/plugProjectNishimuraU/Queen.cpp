@@ -365,7 +365,7 @@ bool Obj::isRollingAttackLeft()
 		Navi* navi  = naviMgr->getActiveNavi();
 		if (navi) {
 			f32 angle       = HALF_PI + getFaceDir();
-			Vector3f angles = Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle));
+			Vector3f angles = Vector3f(sinf(angle), 0.0f, cosf(angle));
 			Vector3f sep    = navi->getPosition() - mPosition;
 			sep.y           = 0.0f;
 
@@ -634,8 +634,7 @@ void Obj::createBabyChappy()
 		if (baby) {
 			f32 angle           = birthArg.mFaceDir;
 			Queen::Parms* parms = C_PARMS;
-			Vector3f vel        = Vector3f(parms->mGeneral.mSearchDistance() * pikmin2_sinf(angle), 0.0f,
-                                    parms->mGeneral.mSearchDistance() * pikmin2_cosf(angle));
+			Vector3f vel = Vector3f(parms->mGeneral.mSearchDistance() * sinf(angle), 0.0f, parms->mGeneral.mSearchDistance() * cosf(angle));
 			baby->init(nullptr);
 			baby->setVelocity(vel);
 			baby->mTargetVelocity = vel;

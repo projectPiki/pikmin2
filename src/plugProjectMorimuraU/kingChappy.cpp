@@ -270,8 +270,8 @@ void Obj::doUpdate()
 
 	_300 = mPosition;
 
-	_300.x -= 10.0f * pikmin2_sinf(mFaceDir);
-	_300.z -= 10.0f * pikmin2_cosf(mFaceDir);
+	_300.x -= 10.0f * sinf(mFaceDir);
+	_300.z -= 10.0f * cosf(mFaceDir);
 
 	mScale = Vector3f(mScaleModifier);
 	mCollTree->mPart->setScale(mScaleModifier);

@@ -324,10 +324,10 @@ void Obj::getTargetPosition()
 			f32 fixedAngle  = HALF_PI;
 			f32 randAngle   = angleToHome + randomAngle + fixedAngle; // dumb fix for regswap
 
-			f32 sinTheta      = pikmin2_sinf(randAngle);
-			mTargetPosition.x = randDist * pikmin2_sinf(randAngle) + mHomePosition.x;
+			f32 sinTheta      = sinf(randAngle);
+			mTargetPosition.x = randDist * sinf(randAngle) + mHomePosition.x;
 			mTargetPosition.y = mHomePosition.y;
-			mTargetPosition.z = randDist * pikmin2_cosf(randAngle) + mHomePosition.z;
+			mTargetPosition.z = randDist * cosf(randAngle) + mHomePosition.z;
 		}
 	} else {
 		mTargetPosition = mHomePosition;

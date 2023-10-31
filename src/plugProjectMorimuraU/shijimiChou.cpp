@@ -151,7 +151,7 @@ Obj::Obj()
 void Obj::doUpdate()
 {
 	mFsm->exec(this);
-	mPitchAmp = pikmin2_sinf(TAU * mPitchRate);
+	mPitchAmp = sinf(TAU * mPitchRate);
 }
 
 /*
@@ -519,7 +519,7 @@ void Obj::genItem()
 				}
 			}
 
-			Vector3f nectarVel = Vector3f(pikmin2_sinf(mFaceDir) * 50.0f, 200.0f, pikmin2_sinf(mFaceDir) * 50.0f);
+			Vector3f nectarVel = Vector3f(sinf(mFaceDir) * 50.0f, 200.0f, sinf(mFaceDir) * 50.0f);
 			Vector3f nectarPos = mPosition;
 			nectarPos.y += 2.0f;
 
@@ -601,9 +601,9 @@ void Obj::fly()
 		turnToTarget2(mGoalPosition, rotAccel, rotSpeed);
 
 		f32 angle = mFaceDir + faceDirOffset;
-		f32 x     = moveSpeed * pikmin2_sinf(angle);
+		f32 x     = moveSpeed * sinf(angle);
 		f32 y     = getTargetVelocity().y;
-		f32 z     = moveSpeed * pikmin2_cosf(angle);
+		f32 z     = moveSpeed * cosf(angle);
 
 		mTargetFaceDir = angle;
 		if (absF(faceDirOffset) > rotSpeed) {
@@ -1623,8 +1623,8 @@ void Obj::leaveInit()
 			// run 'away' from navi
 			Vector3f targetPos = navi->getPosition();
 			f32 angle          = navi->getFaceDir();
-			targetPos.x -= 500.0f * pikmin2_sinf(angle);
-			targetPos.z -= 500.0f * pikmin2_cosf(angle);
+			targetPos.x -= 500.0f * sinf(angle);
+			targetPos.z -= 500.0f * cosf(angle);
 
 			EnemyFunc::walkToTarget(this, targetPos, C_PARMS->mLeaveInitSpeedFactor * C_PARMS->mGeneral.mMoveSpeed(), 1.0f, 180.0f);
 			Vector3f targetVel = getTargetVelocity();
@@ -1659,10 +1659,10 @@ void Obj::setNextGoal()
 
 	f32 randAngle = TAU * randFloat();
 
-	f32 sinVal = pikmin2_sinf(randAngle);
+	f32 sinVal = sinf(randAngle);
 	mGoalPosition.x += radius * sinVal;
 	mGoalPosition.y += 50.0f * sinVal; // sure.
-	mGoalPosition.z += radius * pikmin2_cosf(randAngle);
+	mGoalPosition.z += radius * cosf(randAngle);
 }
 
 /*
@@ -1795,7 +1795,7 @@ void Obj::fallBehavior()
 			mFallDir -= TAU;
 		}
 
-		f32 sinVal  = pikmin2_sinf(mFallDir);
+		f32 sinVal  = sinf(mFallDir);
 		f32 dist    = C_PARMS->mHorizFallScatter;
 		mPosition.x = dist * sinVal + mFallStartPosition.x;
 		mPosition.z = (0.5f * dist) * sinVal + mFallStartPosition.z;

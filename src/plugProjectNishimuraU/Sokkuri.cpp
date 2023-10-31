@@ -264,9 +264,9 @@ void Obj::setNextMoveInfo()
 		randAngle -= mFaceDir;
 	}
 
-	mTargetPosition.x = 1000.0f * pikmin2_sinf(randAngle) + mPosition.x;
+	mTargetPosition.x = 1000.0f * sinf(randAngle) + mPosition.x;
 	mTargetPosition.y = mPosition.y;
-	mTargetPosition.z = 1000.0f * pikmin2_cosf(randAngle) + mPosition.z;
+	mTargetPosition.z = 1000.0f * cosf(randAngle) + mPosition.z;
 }
 
 /*

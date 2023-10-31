@@ -821,8 +821,8 @@ void Obj::findNextRoutePoint(bool cond)
 			}
 			if (mWpIndex2 == wpID1 && mWpIndex3 == wpID2) {
 				mNextWayPointPosition   = mPosition;
-				mNextWayPointPosition.x = -(pikmin2_sinf(mFaceDir) * 100.0f - mNextWayPointPosition.x);
-				mNextWayPointPosition.z = -(pikmin2_cosf(mFaceDir) * 100.0f - mNextWayPointPosition.z);
+				mNextWayPointPosition.x = -(sinf(mFaceDir) * 100.0f - mNextWayPointPosition.x);
+				mNextWayPointPosition.z = -(cosf(mFaceDir) * 100.0f - mNextWayPointPosition.z);
 				return;
 			}
 
@@ -2098,7 +2098,7 @@ void Obj::calcSlotGlobalPos(Vector3f& pos)
 	P2ASSERTLINE(1903, pellet);
 	f32 rad      = pellet->getPickRadius();
 	f32 angle    = mAlsoRotationOffset;
-	Vector3f dir = Vector3f(rad * pikmin2_sinf(angle), 0.0f, rad * pikmin2_cosf(angle));
+	Vector3f dir = Vector3f(rad * sinf(angle), 0.0f, rad * cosf(angle));
 	PSMTXCopy(pellet->mBaseTrMatrix.mMatrix.mtxView, matrix.mMatrix.mtxView);
 	pos = matrix.mtxMult(dir);
 }
@@ -2199,8 +2199,8 @@ void Obj::throwUpEatItem()
 
 				f32 angle = (TAU * (f32)i) / (f32)mHeldTreasureNum;
 				if (mHeldTreasureNum != 1) {
-					vel.x += pikmin2_sinf(angle) * 50.0f;
-					vel.z += pikmin2_cosf(angle) * 50.0f;
+					vel.x += sinf(angle) * 50.0f;
+					vel.z += cosf(angle) * 50.0f;
 				}
 
 				pellet->setPosition(pos, false);

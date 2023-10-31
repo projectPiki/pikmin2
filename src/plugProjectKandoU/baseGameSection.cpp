@@ -1349,9 +1349,9 @@ void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
 			piki->mNavi   = aliveOrima;
 			f32 randAngle = randFloat() * TAU;
 
-			Vector3f suroundCircle(pikmin2_sinf(randAngle), 0, pikmin2_cosf(randAngle));
+			Vector3f suroundCircle(sinf(randAngle), 0, cosf(randAngle));
 
-			Vector3f vec = Vector3f(pikmin2_sinf(randAngle) * 50.0f, 0.0f, pikmin2_cosf(randAngle) * 50.0f);
+			Vector3f vec = Vector3f(sinf(randAngle) * 50.0f, 0.0f, cosf(randAngle) * 50.0f);
 			vec += suroundPos;
 			vec.y = mapMgr->getMinY(vec);
 			piki->setPosition(vec, false);

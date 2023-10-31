@@ -199,8 +199,7 @@ void Obj::setRandTarget()
 	f32 angledist = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 	f32 angle     = HALF_PI + (angledist + randWeightFloat(PI));
 
-	mTargetPosition
-	    = Vector3f(randRadius * pikmin2_sinf(angle) + mHomePosition.x, mHomePosition.y, randRadius * pikmin2_cosf(angle) + mHomePosition.z);
+	mTargetPosition = Vector3f(randRadius * sinf(angle) + mHomePosition.x, mHomePosition.y, randRadius * cosf(angle) + mHomePosition.z);
 }
 
 /*

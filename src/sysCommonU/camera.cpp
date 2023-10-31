@@ -767,8 +767,8 @@ f32 Camera::calcProperDistance(f32 f1, f32 f2)
 	}
 
 	angle       = PI * (mViewAngle * 0.5f / 180.0f);
-	cos         = pikmin2_cosf(angle);
-	sin         = pikmin2_sinf(angle);
+	cos         = cosf(angle);
+	sin         = sinf(angle);
 	returnMax   = (-(mProjectionFar - mProjectionNear)) / ((mProjectionFar * 2.0f) * mProjectionNear);
 	pct         = f1 / 100.0f;
 	new_var2    = cos / sin;
@@ -786,8 +786,8 @@ f32 Camera::calcProperDistance(f32 f1, f32 f2)
 void Camera::updateScreenConstants()
 {
 	_134      = ((mViewAngle * 0.5f) / 180.0f) * PI;
-	float cos = pikmin2_cosf(_134);
-	float sin = pikmin2_sinf(_134);
+	float cos = cosf(_134);
+	float sin = sinf(_134);
 
 	_138 = cos / sin;
 
@@ -832,7 +832,7 @@ float Camera::calcScreenSize(Sys::Sphere& ball)
 // WIP: https://decomp.me/scratch/4nLm6
 void Camera::updateSoundCamera(float angle)
 {
-	float cotan = pikmin2_cosf(angle) / pikmin2_sinf(angle);
+	float cotan = cosf(angle) / sinf(angle);
 
 	Vector3f targetPos = getTargetDistance(); // wrong func call
 	Vector3f pos       = getPosition();

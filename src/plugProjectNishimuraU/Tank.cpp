@@ -272,7 +272,7 @@ bool Obj::isAttackable(bool check)
 	Vector3f targetPos = Vector3f(_2CC);
 	const f32 theta    = getFaceDir();
 
-	Vector3f dir = Vector3f(pikmin2_sinf(theta), 0.0f, pikmin2_cosf(theta));
+	Vector3f dir = Vector3f(sinf(theta), 0.0f, cosf(theta));
 
 	f32 cosTheta, sinTheta;
 	sinTheta = dir.x;

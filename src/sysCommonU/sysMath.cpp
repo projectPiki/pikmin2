@@ -1,5 +1,6 @@
-#include "sysMath.h"
 #include "types.h"
+#include "sysMath.h"
+#include "trig.h"
 #include "Vector3.h"
 #include "BoundBox.h"
 #include "Plane.h"
@@ -13,49 +14,21 @@
  * Address:	80411730
  * Size:	000068
  */
-f32 pikmin2_sinf(f32 x)
-{
-	if (x < 0.0f) {
-		return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first;
-	}
-	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first;
-}
+f32 pikmin2_sinf(f32 x) { return sinf(x); }
 
 /*
  * --INFO--
  * Address:	80411798
  * Size:	000044
  */
-f32 pikmin2_cosf(f32 x)
-{
-	if (x < 0.0f) {
-		x = -x;
-	}
-	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].second;
-}
+f32 pikmin2_cosf(f32 x) { return cosf(x); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000F4
  */
-f32 pikmin2_acosf(f32 x)
-{
-	if (x <= -1.0f) {
-		return 0.0f;
-	}
-	if (x >= 1.0f) {
-		return PI;
-	}
-
-	if (x < 0.0f) {
-		f32 dumb = HALF_PI;
-		f32 acos = JMath::asinAcosTable_.mTable[(u32)(-x * 1023.5f)];
-		return acos + dumb;
-	} else {
-		return HALF_PI - JMath::asinAcosTable_.mTable[(u32)(x * 1023.5f)];
-	}
-}
+f32 pikmin2_acosf(f32 x) { return acosf(x); }
 
 /*
  * --INFO--

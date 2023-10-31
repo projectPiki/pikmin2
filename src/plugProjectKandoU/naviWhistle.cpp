@@ -35,7 +35,7 @@ void NaviWhistle::init()
 	const f32 faceDir = mNavi->getFaceDir();
 	NaviParms* parms  = static_cast<NaviParms*>(mNavi->mParms);
 	f32 v1            = parms->mNaviParms.mP046.mValue * 0.5f;
-	mNaviOffsetVec    = Vector3f(pikmin2_sinf(faceDir) * v1, 0.0f, pikmin2_cosf(faceDir) * v1);
+	mNaviOffsetVec    = Vector3f(sinf(faceDir) * v1, 0.0f, cosf(faceDir) * v1);
 
 	updatePosition();
 }
@@ -136,7 +136,7 @@ void NaviWhistle::setFaceDir(f32 dir)
 {
 	f32 dist = mNaviOffsetVec.length();
 
-	mNaviOffsetVec = Vector3f(dist * pikmin2_sinf(dir), 0.0f, dist * pikmin2_cosf(dir));
+	mNaviOffsetVec = Vector3f(dist * sinf(dir), 0.0f, dist * cosf(dir));
 }
 
 /*

@@ -1160,7 +1160,7 @@ void TChallengePlayModeScreen::update()
 			if (mAngleTimers[i] > TAU) {
 				mAngleTimers[i] -= TAU;
 			}
-			sin = FABS(pikmin2_sinf(mAngleTimers[i]) * 75.0f);
+			sin = FABS(sinf(mAngleTimers[i]) * 75.0f);
 		}
 		mPaneList1[i]->setAlpha(255.0f * scale - sin);
 	}

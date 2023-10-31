@@ -337,9 +337,9 @@ void Kogane::Obj::setTargetPosition(Vector3f* goal)
 			angle -= C_PARMS->mProperParms.mTurnAngle.mValue;
 		}
 		f32 theta         = PI * (DEG2RAD * angle) + getFaceDir();
-		mTargetPosition.x = 1000.0f * pikmin2_sinf(theta) + mPosition.x;
+		mTargetPosition.x = 1000.0f * sinf(theta) + mPosition.x;
 		mTargetPosition.y = mPosition.y;
-		mTargetPosition.z = 1000.0f * pikmin2_cosf(theta) + mPosition.z;
+		mTargetPosition.z = 1000.0f * cosf(theta) + mPosition.z;
 	}
 }
 
@@ -452,7 +452,7 @@ void Kogane::Obj::createPellet(int type, int num)
 
 			Vector3f vel;
 			angle += offs;
-			vel = Vector3f(1000.0f * pikmin2_sinf(angle), 250.0f, 1000.0f * pikmin2_cosf(angle));
+			vel = Vector3f(1000.0f * sinf(angle), 250.0f, 1000.0f * cosf(angle));
 			pelt->setVelocity(vel);
 		}
 	}
@@ -662,7 +662,7 @@ void Kogane::Obj::createDoping(u8 type, int num)
 			honey->setPosition(pos, false);
 
 			angle += offs;
-			Vector3f vel = Vector3f(50.0f * pikmin2_sinf(angle), 250.0f, 50.0f * pikmin2_cosf(angle));
+			Vector3f vel = Vector3f(50.0f * sinf(angle), 250.0f, 50.0f * cosf(angle));
 			honey->setVelocity(vel);
 		}
 	}

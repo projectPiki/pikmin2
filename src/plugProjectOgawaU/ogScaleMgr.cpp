@@ -101,7 +101,7 @@ f32 ScaleMgr::calc()
 			mScale          = 1.0f;
 			mElapsedSeconds = 0.0f;
 		} else {
-			f32 sin = pikmin2_sinf(mElapsedSeconds * mPeriodModifier);
+			f32 sin = sinf(mElapsedSeconds * mPeriodModifier);
 			mScale  = (mDurationInSeconds - mElapsedSeconds) * (_0C * sin + _0C) + 1.0f;
 		}
 		break;
@@ -113,7 +113,7 @@ f32 ScaleMgr::calc()
 			mScale          = 1.0f;
 			mElapsedSeconds = 0.0f;
 		} else {
-			f32 sin = pikmin2_sinf(mElapsedSeconds * mPeriodModifier);
+			f32 sin = sinf(mElapsedSeconds * mPeriodModifier);
 			mScale  = -((mDurationInSeconds - mElapsedSeconds) * (_0C * sin + _0C) - 1.0f);
 		}
 		break;

@@ -676,9 +676,9 @@ void Obj::walkFunc()
 
 	f32 deltaFaceDir = mFaceDir + faceDirRads;
 
-	f32 x = pikmin2_sinf(deltaFaceDir) * speed;
+	f32 x = sinf(deltaFaceDir) * speed;
 	f32 y = getTargetVelocity().y;
-	f32 z = pikmin2_cosf(deltaFaceDir);
+	f32 z = cosf(deltaFaceDir);
 
 	_2F8              = mFaceDir;
 	f32 faceDirOffset = roundAng(faceDirRads);
@@ -713,8 +713,8 @@ void Obj::setNextGoal()
 
 	mGoalPosition = mHomePosition;
 	f32 randAngle = TAU * randFloat();
-	mGoalPosition.x += rad * pikmin2_sinf(randAngle);
-	mGoalPosition.z += rad * pikmin2_cosf(randAngle);
+	mGoalPosition.x += rad * sinf(randAngle);
+	mGoalPosition.z += rad * cosf(randAngle);
 }
 
 /*
@@ -735,7 +735,7 @@ void Obj::changeColor()
 				frame = 1.0f;
 			}
 
-			f32 sinTheta = pikmin2_sinf((3.0f * PI / 2.0f) * frame);
+			f32 sinTheta = sinf((3.0f * PI / 2.0f) * frame);
 			weight2      = absF(sinTheta);
 			weight1      = 1.0f - weight2;
 		} else if (mTargetNavi) {
@@ -756,7 +756,7 @@ void Obj::changeColor()
 				frame = 1.0f;
 			}
 
-			f32 sinTheta = pikmin2_sinf((3.0f * PI / 2.0f) * frame);
+			f32 sinTheta = sinf((3.0f * PI / 2.0f) * frame);
 			weight2      = absF(sinTheta);
 			weight1      = 1.0f - weight2;
 		}
@@ -780,7 +780,7 @@ void Obj::changeColor()
 		frame = 1.0f;
 	}
 
-	f32 weight2 = pikmin2_sinf((PI / 2.0f) * frame);
+	f32 weight2 = sinf((PI / 2.0f) * frame);
 	f32 weight1 = 1.0f - weight2;
 
 	if (mTargetNavi) {
@@ -815,7 +815,7 @@ void Obj::resetColor()
 		frame = 1.0f;
 	}
 
-	f32 weight2 = absF(pikmin2_sinf((3.0f * PI / 2.0f) * frame));
+	f32 weight2 = absF(sinf((3.0f * PI / 2.0f) * frame));
 	f32 weight1 = 1.0f - weight2;
 
 	_314.r = weight2 * ((f32)mNormalColor1.r) + weight1 * ((f32)_31C.r);

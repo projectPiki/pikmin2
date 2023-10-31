@@ -264,9 +264,8 @@ void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
 	f32 theta        = HALF_PI + getFaceDir();
 	f32 halfFactor   = param->_00 / 2;
 
-	Vector3f finalPos
-	    = Vector3f((p1 * halfFactor) * pikmin2_sinf(theta) + initPos.x, initPos.y, (p1 * halfFactor) * pikmin2_cosf(theta) + initPos.z);
-	finalPos.y = mapMgr->getMinY(finalPos);
+	Vector3f finalPos = Vector3f((p1 * halfFactor) * sinf(theta) + initPos.x, initPos.y, (p1 * halfFactor) * cosf(theta) + initPos.z);
+	finalPos.y        = mapMgr->getMinY(finalPos);
 	setPosition(finalPos, false);
 }
 
@@ -280,7 +279,7 @@ void Obj::interactDenkiAttack(Vector3f& position)
 	Vector3f sep     = position - mPosition;
 	Vector3f normSep = sep;
 	f32 theta        = mFaceDir;
-	Vector3f dirXZ   = Vector3f(pikmin2_sinf(theta), 0.0f, pikmin2_cosf(theta));
+	Vector3f dirXZ   = Vector3f(sinf(theta), 0.0f, cosf(theta));
 	normSep.normalise();
 
 	// Vector3f crossProd = normSep cross dirXZ

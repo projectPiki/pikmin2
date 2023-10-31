@@ -219,7 +219,7 @@ void Chappy::TUnit::startAIState_(enumAIState state)
 		f32 angle           = mManager->mParams.mWalkAngleRand.mValue;
 		f32 angleBetweenPos = JMath::atanTable_.atan2_(mTargetPos.y - mPosition.y, mTargetPos.x - mPosition.x);
 		f32 final           = angle * DEG2RAD * PI * (randEbisawaFloat() * 2.0f + -1.0f) + angleBetweenPos;
-		mTargetAngle        = Vector2f(pikmin2_cosf(final), pikmin2_sinf(final));
+		mTargetAngle        = Vector2f(cosf(final), sinf(final));
 		break;
 	}
 

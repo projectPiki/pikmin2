@@ -158,8 +158,8 @@ void BirthTypeDropState::init(EnemyBase* enemy, StateArg* arg)
 		    && typeID != EnemyTypeID::EnemyID_YellowPom && typeID != EnemyTypeID::EnemyID_BlackPom //
 		    && typeID != EnemyTypeID::EnemyID_WhitePom && typeID != EnemyTypeID::EnemyID_RandPom) {
 			f32 theta = randFloat() * TAU;
-			enemy->mPosition.x += pikmin2_sinf(theta) * 50.0f;
-			enemy->mPosition.z += pikmin2_cosf(theta) * 50.0f;
+			enemy->mPosition.x += sinf(theta) * 50.0f;
+			enemy->mPosition.z += cosf(theta) * 50.0f;
 		}
 	}
 
@@ -329,7 +329,7 @@ void AppearState::update(EnemyBase* enemy)
 		enemy->mScale.x = 1.0f;
 	}
 
-	enemy->mScale.x += 0.2f * pikmin2_sinf(TAU * enemy->mStunAnimTimer);
+	enemy->mScale.x += 0.2f * sinf(TAU * enemy->mStunAnimTimer);
 	f32 newScale    = enemy->mScale.x;
 	enemy->mScale.z = newScale;
 	enemy->mScale.y = newScale;
@@ -518,16 +518,16 @@ void FitState::updateAlways(EnemyBase* enemy)
 		enemy->mStunAnimTimer = 0.0f;
 		transit(enemy, EBS_Living, nullptr);
 	} else {
-		f32 sinStun = 4.0f * pikmin2_sinf((PI * enemy->mStunAnimTimer) / enemy->getParms().mPurplePikiStunDuration.mValue);
+		f32 sinStun = 4.0f * sinf((PI * enemy->mStunAnimTimer) / enemy->getParms().mPurplePikiStunDuration.mValue);
 		if (sinStun > 1.0f) {
 			sinStun = 1.0f;
 		}
 
 		f32 theta = (TAU * enemy->mStunAnimTimer) / 0.25f;
 
-		enemy->mStunAnimRotation.x = sinStun * ((PI * DEG2RAD) * pikmin2_sinf(theta));
+		enemy->mStunAnimRotation.x = sinStun * ((PI * DEG2RAD) * sinf(theta));
 		enemy->mStunAnimRotation.y = 0.0f;
-		enemy->mStunAnimRotation.z = sinStun * ((PI * DEG2RAD) * pikmin2_cosf(theta));
+		enemy->mStunAnimRotation.z = sinStun * ((PI * DEG2RAD) * cosf(theta));
 	}
 
 	mEnemyPiyo.mPosition = enemy->getFitEffectPos();
@@ -1228,8 +1228,8 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 						drop->setPosition(ball.mPosition, false);
 						f32 theta    = TAU * randFloat();
 						f32 scale    = 1.0f + ((f32)dropRolls / 10.0f);
-						f32 cosTheta = scale * (50.0f * pikmin2_cosf(theta));
-						f32 sinTheta = scale * (50.0f * pikmin2_sinf(theta));
+						f32 cosTheta = scale * (50.0f * cosf(theta));
+						f32 sinTheta = scale * (50.0f * sinf(theta));
 
 						Vector3f dropVelocity; // sp58
 						dropVelocity.x = sinTheta;
@@ -1975,7 +1975,7 @@ void EnemyBase::collisionMapAndPlat(f32 frameRate)
 
 	mPosition += mCurrentVelocity;
 
-	Vector3f stick(pikmin2_sinf(mFaceDir), 0.0f, pikmin2_cosf(mFaceDir));
+	Vector3f stick(sinf(mFaceDir), 0.0f, cosf(mFaceDir));
 	updateStick(stick);
 	updateSpheres();
 	updateCell();

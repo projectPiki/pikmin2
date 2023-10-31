@@ -129,7 +129,7 @@ void Obj::birthChildren(EnemyBirthArg& birthArg)
 	f32 angle          = birthArg.mFaceDir + PI;
 	Vector3f motherPos = birthArg.mPosition;
 
-	Vector3f vec(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle));
+	Vector3f vec(sinf(angle), 0.0f, cosf(angle));
 
 	for (int i = 0; i < 10; i++) {
 		f32 modifier        = 2.5f * i + 17.5f;

@@ -809,7 +809,7 @@ void ProcAnimator::calcAngles()
 			sep.y = 1.0f;
 		}
 
-		f32 aCosY = pikmin2_acos(sep.y);
+		f32 aCosY = acosf(sep.y);
 		mAngle[i] = aCosY;
 		mXRot[i]  = aCosY;
 
@@ -825,7 +825,7 @@ void ProcAnimator::calcAngles()
 			posX.y = 1.0f;
 		}
 
-		mAngle[i] = pikmin2_acos(posX.y);
+		mAngle[i] = acosf(posX.y);
 	}
 
 	mAngle[0] = 0.0f;
@@ -940,9 +940,9 @@ void ProcAnimator::update(f32 faceDir, f32 p2)
 		Vector3f posX = currMat->getBasis(0);
 		f32 scale     = posX.length(); // f2
 
-		Vector3f xVec = Vector3f(0.0f, scale * pikmin2_cosf(theta), scale * pikmin2_sinf(theta));  // 0x50
-		Vector3f yVec = Vector3f(0.0f, scale * -pikmin2_sinf(theta), scale * pikmin2_cosf(theta)); // 0x44
-		Vector3f zVec = Vector3f(scale, 0.0f, 0.0f);                                               // 0x38
+		Vector3f xVec = Vector3f(0.0f, scale * cosf(theta), scale * sinf(theta));  // 0x50
+		Vector3f yVec = Vector3f(0.0f, scale * -sinf(theta), scale * cosf(theta)); // 0x44
+		Vector3f zVec = Vector3f(scale, 0.0f, 0.0f);                               // 0x38
 
 		xVec = originMat.mtxMult(xVec); // 0xBC, 0x50, (0x20) -> (0x50)
 		yVec = originMat.mtxMult(yVec); // 0xBC, 0x44, (0x14) -> (0x44)

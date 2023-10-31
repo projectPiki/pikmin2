@@ -280,7 +280,7 @@ void StateAttacking::exec(EnemyBase* enemy)
 			const f32 theta  = enemy->getFaceDir();
 
 			f32 weight = CG_PROPERPARMS(OBJ(enemy)).mMinAttackRange.mValue;
-			effectPos  = Vector3f(weight * pikmin2_sinf(theta), 0.0f, weight * pikmin2_cosf(theta));
+			effectPos  = Vector3f(weight * sinf(theta), 0.0f, weight * cosf(theta));
 			pos += effectPos;
 
 			f32 maxY   = 20.0f + pos.y;

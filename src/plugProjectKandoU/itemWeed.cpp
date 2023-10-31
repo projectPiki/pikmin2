@@ -122,7 +122,7 @@ void WeedMgr::createWeeds(cWeedType weedType)
 			// }
 			f32 randRadius   = _0C.mRadius * randFloat();
 			f32 randTheta    = randFloat() * TAU;
-			Vector3f weedPos = Vector3f(randRadius * pikmin2_sinf(randTheta), 0.0f, randRadius * pikmin2_cosf(randTheta)) + _0C.mPosition;
+			Vector3f weedPos = Vector3f(randRadius * sinf(randTheta), 0.0f, randRadius * cosf(randTheta)) + _0C.mPosition;
 			weed->init(this, weedPos);
 		}
 	}
@@ -423,7 +423,7 @@ bool Item::interactFlockAttack(InteractFlockAttack& attack)
 				Vector3f nectarPos = flockPos;
 				nectarPos.y += 10.0f;
 				f32 angle    = 2 * (PI * randFloat());
-				Vector3f vel = Vector3f(30.0f * pikmin2_sinf(angle), 200.0f, 30.0f * pikmin2_cosf(angle));
+				Vector3f vel = Vector3f(30.0f * sinf(angle), 200.0f, 30.0f * cosf(angle));
 				nectar->setPosition(nectarPos, false);
 				nectar->setVelocity(vel);
 			}

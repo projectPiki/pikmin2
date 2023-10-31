@@ -195,7 +195,7 @@ void Obj::createSmokeEffect()
 	Vector3f pos = mPosition;
 	int id       = getCurrAnimIndex();
 	if (id == ChappyBase::CHAPPYANIM_WaitAct2) {
-		pos -= Vector3f(pikmin2_sinf(mFaceDir) * 60.0f, 0.0f, pikmin2_cosf(mFaceDir) * 60.0f);
+		pos -= Vector3f(sinf(mFaceDir) * 60.0f, 0.0f, cosf(mFaceDir) * 60.0f);
 
 		cameraMgr->startVibration(3, pos, 2);
 		rumbleMgr->startRumble(11, pos, 2);

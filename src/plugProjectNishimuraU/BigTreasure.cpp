@@ -422,10 +422,10 @@ void Obj::getTargetPosition()
 			f32 ang3      = HALF_PI;
 			f32 randAngle = ang2 + ang1 + ang3; // dumb fix for regswap
 
-			f32 sinTheta      = pikmin2_sinf(randAngle);
-			mTargetPosition.x = randDist * pikmin2_sinf(randAngle) + mHomePosition.x;
+			f32 sinTheta      = sinf(randAngle);
+			mTargetPosition.x = randDist * sinf(randAngle) + mHomePosition.x;
 			mTargetPosition.y = mHomePosition.y;
-			mTargetPosition.z = randDist * pikmin2_cosf(randAngle) + mHomePosition.z;
+			mTargetPosition.z = randDist * cosf(randAngle) + mHomePosition.z;
 		}
 	} else {
 		mTargetPosition = mHomePosition;
@@ -743,7 +743,7 @@ void Obj::updateTreasure()
 				}
 
 				Matrixf rotRad;
-				PSMTXRotRad(rotRad.mMatrix.mtxView, 'Y', 0.15f * pikmin2_sinf(mTreasureShakeAngle[i]));
+				PSMTXRotRad(rotRad.mMatrix.mtxView, 'Y', 0.15f * sinf(mTreasureShakeAngle[i]));
 				PSMTXConcat(captureMtx.mMatrix.mtxView, rotRad.mMatrix.mtxView, captureMtx.mMatrix.mtxView);
 			}
 

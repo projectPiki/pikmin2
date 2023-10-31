@@ -1008,8 +1008,7 @@ void Camera::resetControl()
 	_284                  = 0.0f;
 	_280                  = 0.0f;
 
-	_1A0 = Vector3f(_1B8.x + mObjectRadius * pikmin2_sinf(mHorizontalAngle), _1B8.y,
-	                _1B8.z + mObjectRadius * pikmin2_cosf(mHorizontalAngle));
+	_1A0 = Vector3f(_1B8.x + mObjectRadius * sinf(mHorizontalAngle), _1B8.y, _1B8.z + mObjectRadius * cosf(mHorizontalAngle));
 	if (mapMgr) {
 		_1A0.y = mapMgr->getMinY(_1A0) + mCurrentHeight;
 	}

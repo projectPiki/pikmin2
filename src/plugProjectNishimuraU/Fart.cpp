@@ -231,7 +231,7 @@ void Obj::createFartEffect()
 	Kogane::Parms* parms = static_cast<Kogane::Parms*>(mParms);
 	f32 scale            = (parms->mProperParms.mScale.mValue * parms->mGeneral.mMaxAttackRange.mValue);
 
-	Vector3f temp_vec(scale * pikmin2_sinf(mFaceDir), 0.0f, scale * pikmin2_cosf(mFaceDir));
+	Vector3f temp_vec(scale * sinf(mFaceDir), 0.0f, scale * cosf(mFaceDir));
 
 	mFartPosition = getBodyJointPos();
 	mFartPosition -= temp_vec;

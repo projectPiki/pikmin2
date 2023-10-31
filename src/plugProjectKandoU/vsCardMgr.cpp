@@ -379,7 +379,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 			float angle  = randFloat() * TAU;
 			float height = 0.0f;
 
-			Vector3f spawnOffset = Vector3f(radius * pikmin2_sinf(angle), height, radius * pikmin2_cosf(angle));
+			Vector3f spawnOffset = Vector3f(radius * sinf(angle), height, radius * cosf(angle));
 
 			onyonPos += spawnOffset;
 		}
@@ -413,7 +413,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 				float angle  = randFloat() * TAU;
 				float height = enemyHeight;
 
-				Vector3f spawnOffset = Vector3f(radius * pikmin2_sinf(angle), height, radius * pikmin2_cosf(angle));
+				Vector3f spawnOffset = Vector3f(radius * sinf(angle), height, radius * cosf(angle));
 
 				spawnNaviPos += spawnOffset;
 			}
@@ -438,7 +438,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 
 			angle = faceDir;
 
-			Vector3f spawnOffset = Vector3f(radius * pikmin2_sinf(angle), height, radius * pikmin2_cosf(angle));
+			Vector3f spawnOffset = Vector3f(radius * sinf(angle), height, radius * cosf(angle));
 
 			onyonPos += spawnOffset;
 		}
@@ -902,7 +902,7 @@ void VsGame::CardMgr::initDraw()
 	_FC        = new Vector3f[_F8];
 	_100       = new Vector3f[_F8];
 	float phi  = TAU / countA;
-	float s    = pikmin2_sinf(phi / 2.0f);
+	float s    = sinf(phi / 2.0f);
 	float x, y, z;
 
 	x = 20.0f;
@@ -910,14 +910,14 @@ void VsGame::CardMgr::initDraw()
 	for (int i = 0; i < countA * countB; i++) {
 		float theta = i * TAU / countA / countB;
 
-		z = x / s * pikmin2_cosf(theta);
-		y = x / s * pikmin2_sinf(theta);
+		z = x / s * cosf(theta);
+		y = x / s * sinf(theta);
 
 		_FC[2 * i]  = Vector3f(-x, y, z);
-		_100[2 * i] = Vector3f(0.0f, pikmin2_sinf(theta), pikmin2_cosf(theta));
+		_100[2 * i] = Vector3f(0.0f, sinf(theta), cosf(theta));
 
 		_FC[2 * i + 1]  = Vector3f(x, y, z);
-		_100[2 * i + 1] = Vector3f(0.0f, pikmin2_sinf(theta), pikmin2_cosf(theta));
+		_100[2 * i + 1] = Vector3f(0.0f, sinf(theta), cosf(theta));
 	}
 }
 
@@ -1192,9 +1192,9 @@ void VsGame::CardMgr::SlotMachine::updateZoomIn()
 			_3C -= 1.0f;
 		}
 
-		_44 = pikmin2_sinf(_3C * TAU) * 5.0f + 30.0f;
-		_48 = pikmin2_sinf(_3C * TAU * 2.0f) * 5.0f + 30.0f;
-		_40 = pikmin2_cosf(_3C * TAU) * 10.0f * DEG2RAD * PI;
+		_44 = sinf(_3C * TAU) * 5.0f + 30.0f;
+		_48 = sinf(_3C * TAU * 2.0f) * 5.0f + 30.0f;
+		_40 = cosf(_3C * TAU) * 10.0f * DEG2RAD * PI;
 	}
 }
 /*
@@ -1209,9 +1209,9 @@ void VsGame::CardMgr::SlotMachine::updateZoomUse()
 		_3C -= 1.0f;
 	}
 
-	_44 = pikmin2_sinf(_3C * TAU) * 5.0f + 30.0f;
+	_44 = sinf(_3C * TAU) * 5.0f + 30.0f;
 	_48 = -(_3C * 30.0f - 30.0f);
-	_40 = (pikmin2_cosf(_3C * TAU) * 5.0f + 5.0f) * 360.0f * DEG2RAD * PI;
+	_40 = (cosf(_3C * TAU) * 5.0f + 5.0f) * 360.0f * DEG2RAD * PI;
 }
 } // namespace VsGame
 } // namespace Game

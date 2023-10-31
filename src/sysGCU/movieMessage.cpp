@@ -83,7 +83,7 @@ void WindowPane::moveWindow(bool flag)
 	Vector3f vec = mInitialPosition;
 	vec.x += 500.0f;
 
-	Vector3f offset = Vector3f(pikmin2_sinf(angle) * 500.0f + vec.x, pikmin2_cosf(angle) * 500.0f + vec.y, 0.0f);
+	Vector3f offset = Vector3f(sinf(angle) * 500.0f + vec.x, cosf(angle) * 500.0f + vec.y, 0.0f);
 	if (flag) {
 		mNewPosition  = offset;
 		mCurrPosition = Vector3f(0.0f);
@@ -336,7 +336,7 @@ void AbtnPane::update()
 {
 	f32 one   = 1.0f;
 	f32 alpha = (mTimer1 * TAU) / one;
-	alpha     = pikmin2_cosf(alpha);
+	alpha     = cosf(alpha);
 	alpha     = (1.0f - alpha) * 0.5f;
 	switch (mState) {
 	case 0:

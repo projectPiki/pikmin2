@@ -1189,7 +1189,7 @@ void StateRelease::exec(EnemyBase* enemy)
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
 			const f32 angle = sarai->getFaceDir();
-			Vector3f vel(50.0f * pikmin2_sinf(angle), 100.0f, 50.0f * pikmin2_cosf(angle));
+			Vector3f vel(50.0f * sinf(angle), 100.0f, 50.0f * cosf(angle));
 			sarai->throwBomb(vel);
 
 			sarai->disableEvent(0, EB_NoInterrupt);
@@ -1256,7 +1256,7 @@ void StateFall::exec(EnemyBase* enemy)
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
 			const f32 angle = sarai->getFaceDir();
-			Vector3f vel(100.0f * pikmin2_sinf(angle), 300.0f, 100.0f * pikmin2_cosf(angle));
+			Vector3f vel(100.0f * sinf(angle), 300.0f, 100.0f * cosf(angle));
 			sarai->throwBomb(vel);
 			sarai->disableEvent(0, EB_NoInterrupt);
 

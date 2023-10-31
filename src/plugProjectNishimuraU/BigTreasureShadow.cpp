@@ -151,8 +151,8 @@ void BigTreasureShadowMgr::update()
 
 	// this section needs fixing
 	const f32 theta = mObj->getFaceDir();
-	f32 cosTheta    = pikmin2_cosf(theta);
-	f32 sinTheta    = pikmin2_sinf(theta);
+	f32 cosTheta    = cosf(theta);
+	f32 sinTheta    = sinf(theta);
 	Vector3f vec1(20.0f * sinTheta, 0.0f, 20.0f * cosTheta);
 	Vector3f vec2(-10.0f * sinTheta, -0.0f, -10.0f * cosTheta);
 

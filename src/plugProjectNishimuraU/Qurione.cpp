@@ -193,12 +193,12 @@ void Obj::setQurioneStartPos(f32 slideDist)
 	mSpawnPositions[QSPAWN_Start].y = mPosition.y + C_PROPERPARMS.mFlightHeight.mValue;
 	mSpawnPositions[QSPAWN_Start].z = mPosition.z;
 
-	f32 flyX = mFlyDist * pikmin2_sinf(mFaceDir);
-	f32 flyZ = mFlyDist * pikmin2_cosf(mFaceDir);
+	f32 flyX = mFlyDist * sinf(mFaceDir);
+	f32 flyZ = mFlyDist * cosf(mFaceDir);
 
 	f32 orthAngle = mFaceDir - HALF_PI;
-	f32 slideX    = slideDist * pikmin2_sinf(orthAngle);
-	f32 slideZ    = slideDist * pikmin2_cosf(orthAngle);
+	f32 slideX    = slideDist * sinf(orthAngle);
+	f32 slideZ    = slideDist * cosf(orthAngle);
 
 	mSpawnPositions[QSPAWN_End].x = slideX + (mSpawnPositions[QSPAWN_Start].x + flyX);
 	mSpawnPositions[QSPAWN_End].y = mSpawnPositions[QSPAWN_Start].y;
@@ -224,7 +224,7 @@ void Obj::moveFaceDir()
 	addPitchRatio();
 
 	mCurrentVelocity.y
-	    = 2.5f * ((minY + (C_PROPERPARMS.mPitchAmp() * pikmin2_sinf(mPitchRatio) + C_PROPERPARMS.mFlightHeight.mValue)) - mPosition.y);
+	    = 2.5f * ((minY + (C_PROPERPARMS.mPitchAmp() * sinf(mPitchRatio) + C_PROPERPARMS.mFlightHeight.mValue)) - mPosition.y);
 }
 
 /*

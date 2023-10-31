@@ -280,7 +280,7 @@ f32 Obj::setHeightVelocity()
 
 	if (mPosition.y - groundY > idealHeight - C_PROPERPARMS.mVerticalSwingWidth.mValue) {
 		addPitchRatio();
-		idealHeight += C_PROPERPARMS.mVerticalSwingWidth.mValue * pikmin2_sinf(mPitchRatio);
+		idealHeight += C_PROPERPARMS.mVerticalSwingWidth.mValue * sinf(mPitchRatio);
 	}
 
 	f32 totalHeight = groundY + idealHeight;
@@ -305,7 +305,7 @@ void Obj::setRandTarget()
 
 	f32 theta = aboutTheta + randWeightFloat(PI) + HALF_PI;
 
-	mTargetPosition = Vector3f(radius * pikmin2_sinf(theta) + homePos.x, homePos.y, radius * pikmin2_cosf(theta) + homePos.z);
+	mTargetPosition = Vector3f(radius * sinf(theta) + homePos.x, homePos.y, radius * cosf(theta) + homePos.z);
 }
 
 /*
@@ -691,8 +691,8 @@ Creature* Obj::isAttackable()
 {
 	const f32 faceDir = getFaceDir();
 	Parms* parms      = C_PARMS;
-	Vector3f vec      = Vector3f(parms->mGeneral.mMaxAttackRange.mValue * pikmin2_sinf(faceDir), 0.0f,
-                            parms->mGeneral.mMaxAttackRange.mValue * pikmin2_cosf(faceDir));
+	Vector3f vec
+	    = Vector3f(parms->mGeneral.mMaxAttackRange.mValue * sinf(faceDir), 0.0f, parms->mGeneral.mMaxAttackRange.mValue * cosf(faceDir));
 	vec += getPosition();
 	f32 radius = SQUARE(C_PARMS->mGeneral.mMaxAttackAngle.mValue);
 
@@ -977,7 +977,7 @@ void Obj::updateEmit()
 		mEfxMatrix->getTranslation(mEfxPosition);
 	}
 
-	mFaceDirection = Vector3f(pikmin2_sinf(getFaceDir()), -0.85f, pikmin2_cosf(getFaceDir()));
+	mFaceDirection = Vector3f(sinf(getFaceDir()), -0.85f, cosf(getFaceDir()));
 	mFaceDirection.normalise();
 }
 

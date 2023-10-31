@@ -328,8 +328,8 @@ void Obj::genItem()
 			if (doubleNectarItem) {
 				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(doubleNectarItem);
 				f32 theta               = PI * i + angle;
-				sprayVelocity.x         = 50.0f * pikmin2_sinf(theta);
-				sprayVelocity.z         = 50.0f * pikmin2_cosf(theta);
+				sprayVelocity.x         = 50.0f * sinf(theta);
+				sprayVelocity.z         = 50.0f * cosf(theta);
 				nectar->init(nullptr);
 				nectar->mHoneyType = HONEY_Y;
 				nectar->setPosition(position, false);

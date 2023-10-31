@@ -314,7 +314,7 @@ void Obj::shotPikmin()
 		if (sprout) {
 			f32 randAngle = randWeightFloat(TAU);
 
-			Vector3f initPos = Vector3f(110.0f * pikmin2_cosf(randAngle), 750.0f, 110.0f * pikmin2_sinf(randAngle));
+			Vector3f initPos = Vector3f(110.0f * cosf(randAngle), 750.0f, 110.0f * sinf(randAngle));
 			ItemPikihead::InitArg initArg((EPikiKind)mPikiKind, initPos);
 
 			sprout->init(&initArg);

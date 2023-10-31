@@ -3088,14 +3088,14 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		f32 x, y;
 		if (mRocketAngleMode == 1) {
 			// it looks like all these trig functions specifically arent inlined, so we dont include trig.h? idk how that works
-			x = pikmin2_cosf(0.1f);
+			x = cosf(0.1f);
 		} else {
-			x = pikmin2_cosf(-0.1f);
+			x = cosf(-0.1f);
 		}
 		if (mRocketAngleMode == 1) {
-			y = pikmin2_sinf(0.1f);
+			y = sinf(0.1f);
 		} else {
-			y = pikmin2_sinf(-0.1f);
+			y = sinf(-0.1f);
 		}
 		Vector2f temp  = mRocketAngle;
 		mRocketAngle.x = temp.x * x - temp.y * y;
@@ -3304,8 +3304,8 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		} else {
 			offs = -0.1f;
 		}
-		mRocketAngle.x = pikmin2_sinf(angle + offs);
-		mRocketAngle.y = pikmin2_cosf(angle + offs);
+		mRocketAngle.x = sinf(angle + offs);
+		mRocketAngle.y = cosf(angle + offs);
 		f32 dist       = mRocketAngle.x * mRocketAngle.x + mRocketAngle.y * mRocketAngle.y;
 		if (dist > __float_epsilon[0]) {
 			mRocketAngle = mRocketAngle * dist;
@@ -5554,8 +5554,8 @@ f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
 	pikmin2_atan2f(mRocketAngle.x, -mRocketAngle.y);
 	pikmin2_atan2f(mRocketAngleSin, -mRocketAngleCos);
 
-	mRocketAngleCos = pikmin2_cosf(dist); // these should not inline
-	mRocketAngleSin = pikmin2_sinf(dist);
+	mRocketAngleCos = cosf(dist); // these should not inline
+	mRocketAngleSin = sinf(dist);
 
 	if (dist < -0.1f) {
 		dist -= 0.1f;
@@ -5563,8 +5563,8 @@ f32 WorldMap::rocketMove(J2DPane* pane, bool flag)
 		dist += 0.1f;
 	}
 
-	mRocketAngle.x = pikmin2_cosf(dist);
-	mRocketAngle.y = pikmin2_sinf(-dist);
+	mRocketAngle.x = cosf(dist);
+	mRocketAngle.y = sinf(-dist);
 	getRotDir(angle, 0.02f);
 	f32 calc;
 	if (!flag) {
@@ -6178,7 +6178,7 @@ void WorldMap::postureControl(J2DPane* pane)
 		x2 = x1 + 0.05f;
 	}
 	x3           = -x3;
-	mRocketAngle = (pikmin2_sinf(x2), pikmin2_cosf(x2));
+	mRocketAngle = (sinf(x2), cosf(x2));
 	x2 -= x1;
 	// mRocketAngleSin = pikmin2_sinf(x2);
 	x1 = -x1;

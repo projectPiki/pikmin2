@@ -738,7 +738,7 @@ lbl_802CF754:
 void Obj::setAttackPosition()
 {
 	f32 angle         = mFaceDir;
-	Vector3f dir      = Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle));
+	Vector3f dir      = Vector3f(sinf(angle), 0.0f, cosf(angle));
 	Vector3f orthoDir = Vector3f(-dir.z, 0.0f, dir.x);
 
 	f32 array1[5] = { 40.0f, 120.0f, 190.0f, 90.0f, 90.0f };

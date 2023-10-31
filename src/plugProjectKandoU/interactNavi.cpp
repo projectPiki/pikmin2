@@ -129,8 +129,8 @@ bool InteractFlick::actNavi(Game::Navi* navi)
 			dir = navi->getFaceDir();
 		}
 
-		f32 zRot = -pikmin2_cosf(dir);
-		f32 xRot = -pikmin2_sinf(dir);
+		f32 zRot = -cosf(dir);
+		f32 xRot = -sinf(dir);
 
 		f32 knockBack = (mKnockback * 0.1f) * randFloat() + mKnockback;
 

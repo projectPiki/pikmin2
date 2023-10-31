@@ -289,7 +289,7 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 	f32 p3;
 	switch (_10) {
 	case 0:
-		p1 = (1.0f - pikmin2_cosf(theta * TAU)) * 0.1f;
+		p1 = (1.0f - cosf(theta * TAU)) * 0.1f;
 		p2 = 62.83185577392578f;
 		p3 = p1 * 30.0f;
 		break;
@@ -305,13 +305,13 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 		p3 = 0.0f;
 		break;
 	case 4:
-		p1 = (1.0f - pikmin2_cosf(theta * PI * 2.5f)) * 0.15f;
+		p1 = (1.0f - cosf(theta * PI * 2.5f)) * 0.15f;
 		p2 = 201.0619354248047f;
 		p3 = theta * 4.0f;
 		break;
 	}
 
-	Vector3f translation(p1 * pikmin2_sinf(p2 * theta), 0.0f, p1 * pikmin2_cosf(p2 * theta));
+	Vector3f translation(p1 * pikmin2_sinf(p2 * theta), 0.0f, p1 * cosf(p2 * theta));
 	f32 sinTheta = (f32)sin(p2 * theta);
 	Vector3f rotation(PI * (DEG2RAD * (p3 * sinTheta)), 0.0f, 0.0f);
 	mtx->makeTR(translation, rotation);
@@ -545,7 +545,7 @@ void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 void FSMStateBreakable::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
 	f32 theta            = drawInfo->_38 * 15.2f * TAU;
-	Vector3f translation = Vector3f(0.2f * pikmin2_sinf(theta), 0.0f, 0.2f * pikmin2_cosf(theta));
+	Vector3f translation = Vector3f(0.2f * pikmin2_sinf(theta), 0.0f, 0.2f * cosf(theta));
 	f32 sinTheta         = (f32)sin(theta);
 	Vector3f rotation    = Vector3f(PI * (DEG2RAD * (4.0f * sinTheta)), 0.0f, 0.0f);
 	mtx->makeTR(translation, rotation);

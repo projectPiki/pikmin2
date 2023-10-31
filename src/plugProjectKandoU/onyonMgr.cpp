@@ -418,7 +418,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 			Vector3f pos = item->getPosition();
 
 			const f32 theta = item->getFaceDir();
-			pos += Vector3f(20.0f * pikmin2_sinf(theta), 117.0f, 20.0f * pikmin2_cosf(theta));
+			pos += Vector3f(20.0f * sinf(theta), 117.0f, 20.0f * cosf(theta));
 			int money = pellet->mConfig->mParams.mMoney.mData;
 			if (money > 0) {
 				carryInfoMgr->appearPoko(pos, money);
@@ -806,8 +806,8 @@ Vector3f Onyon::getGoalPos()
 {
 	Vector3f goalPos = mPosition;
 	if (mObjectTypeID == OBJTYPE_Ufo) {
-		goalPos.x = 135.0f * pikmin2_sinf(mFaceDir) + goalPos.x;
-		goalPos.z = 135.0f * pikmin2_cosf(mFaceDir) + goalPos.z;
+		goalPos.x = 135.0f * sinf(mFaceDir) + goalPos.x;
+		goalPos.z = 135.0f * cosf(mFaceDir) + goalPos.z;
 	}
 	return goalPos;
 }
@@ -1110,7 +1110,7 @@ void Onyon::onKeyEvent_UFO(const SysShape::KeyEvent& event)
 Vector3f Onyon::getFlagSetPos()
 {
 	const f32 dir   = getFaceDir();
-	Vector3f offset = Vector3f(100.0f * pikmin2_sinf(dir), 0.0f, 100.0f * pikmin2_cosf(dir));
+	Vector3f offset = Vector3f(100.0f * sinf(dir), 0.0f, 100.0f * cosf(dir));
 	Vector3f pos    = getPosition();
 	pos += offset;
 	return pos;
@@ -1286,7 +1286,7 @@ void Onyon::doEmit(Creature* seed, bool isSetAngle)
 		angle = randFloat() * TAU;
 	}
 
-	Vector3f velocity(pikmin2_sinf(angle) * 130.0f, 700.0f, pikmin2_cosf(angle) * 130.0f);
+	Vector3f velocity(sinf(angle) * 130.0f, 700.0f, cosf(angle) * 130.0f);
 	seed->setVelocity(velocity);
 }
 

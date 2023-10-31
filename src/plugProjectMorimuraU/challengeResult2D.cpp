@@ -236,8 +236,8 @@ void TMovePane::update()
 void TMovePane::move()
 {
 	turn();
-	mAngleSin = pikmin2_sinf(mAngle) * TChallengeResult::mMoveSpeed * TChallengeResult::mDemoSpeedUpRate;
-	mAngleCos = -pikmin2_cosf(mAngle) * TChallengeResult::mMoveSpeed * TChallengeResult::mDemoSpeedUpRate;
+	mAngleSin = sinf(mAngle) * TChallengeResult::mMoveSpeed * TChallengeResult::mDemoSpeedUpRate;
+	mAngleCos = -cosf(mAngle) * TChallengeResult::mMoveSpeed * TChallengeResult::mDemoSpeedUpRate;
 
 	f32 x = (mAngleSin - mVelocity.x) * TChallengeResult::mAccel * TChallengeResult::mDemoSpeedUpRate;
 	f32 y = (mAngleCos - mVelocity.y) * TChallengeResult::mAccel * TChallengeResult::mDemoSpeedUpRate;
@@ -1529,7 +1529,7 @@ bool TChallengeResult::doUpdate()
 			mTimer = 0.0f;
 		}
 		f32 calc = (mTimer / 40.0f) * TAU;
-		calc     = FABS(pikmin2_sinf(calc));
+		calc     = FABS(sinf(calc));
 
 		f32 calc1 = 1.0f - calc;
 		f32 calc2 = calc * 255.0f;

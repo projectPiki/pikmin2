@@ -62,7 +62,7 @@ Creature* GenObjectPiki::generate(Generator* gen)
 			randRadius = 0.0f;
 		}
 
-		Vector3f offsetPos = Vector3f(randRadius * pikmin2_sinf(randRot), 0.0f, randRadius * pikmin2_cosf(randRot));
+		Vector3f offsetPos = Vector3f(randRadius * sinf(randRot), 0.0f, randRadius * cosf(randRot));
 		Game::GenArg genArg;
 		genArg.mPosition = offsetPos + pos;
 		birth(&genArg);

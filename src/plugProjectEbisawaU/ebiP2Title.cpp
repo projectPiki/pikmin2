@@ -486,8 +486,8 @@ void TTitleMgr::start()
 		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
 		f32 scale = (max - min) * (randFloat() + max);
 
-		mPikiPosList[i] = Vector2f(scale * pikmin2_cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
-		                           scale * pikmin2_sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
+		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
+		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
 	}
 	mPikminMgr.setStartPos(mPikiPosList);
 
@@ -497,8 +497,8 @@ void TTitleMgr::start()
 		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
 		f32 scale = (max - min) * (randFloat() + max);
 
-		mPikiPosList[i] = Vector2f(scale * pikmin2_cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
-		                           scale * pikmin2_sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
+		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
+		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
 	}
 	mCoordMgr[0].copyCoordinate(mPikiPosList);
 	mPikminMgr.setDestPos(mPikiPosList);
@@ -553,8 +553,8 @@ bool TTitleMgr::breakup()
 		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
 		f32 scale = (max - min) * (randFloat() + max);
 
-		mPikiPosList[i] = Vector2f(scale * pikmin2_cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
-		                           scale * pikmin2_sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
+		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
+		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
 	}
 	mPikminMgr.setDestPos(mPikiPosList);
 	mPikminMgr.quickAssemble();
@@ -577,7 +577,7 @@ bool TTitleMgr::startKogane()
 		f32 angle = randFloat() * TAU;
 
 		// spawn beetle somewhere on the outer radius of the map
-		Vector2f pos1(mTitleParms.mMaxPikminScatterRadius * pikmin2_cosf(angle), mTitleParms.mMaxPikminScatterRadius * pikmin2_sinf(angle));
+		Vector2f pos1(mTitleParms.mMaxPikminScatterRadius * cosf(angle), mTitleParms.mMaxPikminScatterRadius * sinf(angle));
 		Vector2f pos2(0.0f);
 		mKoganeMgr.mObject->startZigzagWalk(pos1, pos2);
 		startState(Enemy);
@@ -598,7 +598,7 @@ bool TTitleMgr::startChappy()
 		f32 angle = randFloat() * TAU;
 
 		// spawn beetle somewhere on the outer radius of the map
-		Vector2f pos1(mTitleParms.mMaxPikminScatterRadius * pikmin2_cosf(angle), mTitleParms.mMaxPikminScatterRadius * pikmin2_sinf(angle));
+		Vector2f pos1(mTitleParms.mMaxPikminScatterRadius * cosf(angle), mTitleParms.mMaxPikminScatterRadius * sinf(angle));
 		Vector2f pos2(0.0f);
 		mChappyMgr.mObject->startZigzagWalk(pos1, pos2);
 		startState(Enemy);
@@ -622,8 +622,8 @@ void TTitleMgr::boidToAssemble(long id)
 		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
 		f32 scale = (max - min) * (randFloat() + max);
 
-		mPikiPosList[i] = Vector2f(scale * pikmin2_cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
-		                           scale * pikmin2_sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
+		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
+		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
 	}
 	if (id == 0) {
 		mCoordMgr[0].copyCoordinate(mPikiPosList);

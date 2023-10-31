@@ -266,9 +266,9 @@ void Obj::moveNoTarget()
 			f32 angleToHome = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 			angleToHome     = randWeightFloat(PI) + angleToHome + HALF_PI;
 
-			mTargetPos.x = randomAngle * pikmin2_sinf(angleToHome) + mHomePosition.x;
+			mTargetPos.x = randomAngle * sinf(angleToHome) + mHomePosition.x;
 			mTargetPos.y = mHomePosition.y;
-			mTargetPos.z = randomAngle * pikmin2_cosf(angleToHome) + mHomePosition.z;
+			mTargetPos.z = randomAngle * cosf(angleToHome) + mHomePosition.z;
 		}
 		Parms* parms = static_cast<Parms*>(mParms);
 		EnemyFunc::walkToTarget(this, mTargetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mTurnSpeed.mValue,

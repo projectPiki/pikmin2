@@ -130,7 +130,7 @@ void Obj::setRandTarget(bool check)
 	f32 angle           = JMath::atanTable_.atan2_(tadpolePos.x - homePos.x, tadpolePos.z - homePos.z);
 	angle               = randWeightFloat(PI) + angle + HALF_PI;
 
-	mTargetPosition = Vector3f(radius * pikmin2_sinf(angle) + homePos.x, homePos.y, radius * pikmin2_cosf(angle) + homePos.z);
+	mTargetPosition = Vector3f(radius * sinf(angle) + homePos.x, homePos.y, radius * cosf(angle) + homePos.z);
 }
 
 /*

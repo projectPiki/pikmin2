@@ -440,8 +440,7 @@ void Obj::setTargetPosition(bool check)
 		randAngle = ang2 + ang1 + ang3; // dumb fix for regswap
 	}
 
-	mTargetPosition = Vector3f(randDist * pikmin2_sinf(randAngle) + mHomePosition.x, mHomePosition.y,
-	                           randDist * pikmin2_cosf(randAngle) + mHomePosition.z);
+	mTargetPosition = Vector3f(randDist * sinf(randAngle) + mHomePosition.x, mHomePosition.y, randDist * cosf(randAngle) + mHomePosition.z);
 
 	if (check) {
 		mTargetPosition.y = mapMgr->getMinY(mTargetPosition);

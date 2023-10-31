@@ -377,9 +377,9 @@ void Obj::startJumpAttack()
 void Obj::resetHomePosition()
 {
 	f32 dist        = 0.5f * C_PARMS->mGeneral.mHomeRadius();
-	mHomePosition.x = dist * pikmin2_sinf(mFaceDir) + mPosition.x;
+	mHomePosition.x = dist * sinf(mFaceDir) + mPosition.x;
 	mHomePosition.y = mPosition.y;
-	mHomePosition.z = dist * pikmin2_cosf(mFaceDir) + mPosition.z;
+	mHomePosition.z = dist * cosf(mFaceDir) + mPosition.z;
 }
 
 /*

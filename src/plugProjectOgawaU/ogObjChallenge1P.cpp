@@ -147,14 +147,14 @@ void ObjChallenge1P::commonUpdate()
 	}
 
 	P2DScreen::Mgr_tuning* screen = mPokoScreen;
-	mPokoScreen->setXY((pikmin2_cosf(mScale * PI) + 1.0f) / 2 * 300.0f, 0.0f);
+	mPokoScreen->setXY((cosf(mScale * PI) + 1.0f) / 2 * 300.0f, 0.0f);
 
 	u16 width  = System::getRenderModeObj()->fbWidth;
 	u16 height = System::getRenderModeObj()->efbHeight;
 
 	mBloGroup->rotate((f32)width / 2, (f32)height / 2, J2DROTATE_Z, 0.0f);
 
-	f32 cosTheta = -(pikmin2_cosf((mScale + 1.0f) * PI / 2));
+	f32 cosTheta = -(cosf((mScale + 1.0f) * PI / 2));
 	mBloGroup->scale((1.0f - cosTheta) * 0.4f + 1.0f);
 	mBloGroup->update();
 }

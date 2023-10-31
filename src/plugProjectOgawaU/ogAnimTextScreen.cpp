@@ -171,7 +171,7 @@ void AnimText_Screen::update()
 					}
 				}
 
-				f32 t = (1.0f + pikmin2_sinf((mBlinkTimer * TAU) / mBlinkFactor)) / 2;
+				f32 t = (1.0f + sinf((mBlinkTimer * TAU) / mBlinkFactor)) / 2;
 				_64 += (t - _64) / 3.0f;
 
 			} else if (mBlinkLevel < 1.0f) {
@@ -277,7 +277,7 @@ void AnimText_Screen::blink(f32 factor, f32 timer)
 	}
 	mBlinkFactor = factor;
 	mBlinkTimer  = timer;
-	f32 calc     = pikmin2_sinf((mBlinkTimer * TAU) / mBlinkFactor);
+	f32 calc     = sinf((mBlinkTimer * TAU) / mBlinkFactor);
 	_64          = (calc + 1.0f) / 2;
 }
 } // namespace Screen

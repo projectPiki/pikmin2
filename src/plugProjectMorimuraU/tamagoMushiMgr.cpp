@@ -161,9 +161,9 @@ void Mgr::createGroup(Obj* leader, int count, bool check)
 		birthArg.mPosition = leaderPos;
 		birthArg.mFaceDir  = (TAU * (i)) / ((f32)count);
 
-		f32 sinComp = factor1 * pikmin2_sinf(birthArg.mFaceDir);
+		f32 sinComp = factor1 * sinf(birthArg.mFaceDir);
 		birthArg.mPosition.x += factor2 * sinComp;
-		f32 cosComp = factor1 * pikmin2_cosf(birthArg.mFaceDir);
+		f32 cosComp = factor1 * cosf(birthArg.mFaceDir);
 		birthArg.mPosition.z += factor2 * cosComp;
 
 		if (check || (int)(i % 2) == 1) {
@@ -212,8 +212,8 @@ void Mgr::createGroupByBigFoot(Obj* leader, int count, bool check, f32 p1)
 		birthArg.mPosition = leaderPos;
 		angle /= count;
 
-		birthArg.mPosition.x += (factor * pikmin2_sinf(angle)) / 2;
-		birthArg.mPosition.z += (factor * pikmin2_cosf(angle)) / 2;
+		birthArg.mPosition.x += (factor * sinf(angle)) / 2;
+		birthArg.mPosition.z += (factor * cosf(angle)) / 2;
 
 		Obj* tamagomushi = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
 		if (tamagomushi) {

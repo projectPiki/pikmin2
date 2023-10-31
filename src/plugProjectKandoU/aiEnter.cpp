@@ -45,7 +45,7 @@ void ActEnter::init(ActionArg* arg)
 		Vector3f startPos = mOnyon->getInStart_UFO();
 		f32 randDist      = (PIKI_ENTERSHIP_RADIUS + 4.0f) * randFloat();
 		f32 randAngle     = TAU * randFloat();
-		Vector3f offset   = Vector3f(pikmin2_sinf(randAngle) * randDist, 0.0f, pikmin2_cosf(randAngle) * randDist);
+		Vector3f offset   = Vector3f(sinf(randAngle) * randDist, 0.0f, cosf(randAngle) * randDist);
 		Vector3f gotoPos  = startPos + offset;
 		GotoPosActionArg gotoArg;
 		gotoArg.mPosition = gotoPos;

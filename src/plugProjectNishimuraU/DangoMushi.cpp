@@ -379,8 +379,7 @@ void Obj::setRandTarget()
 	f32 ang1    = angDiff + randWeightFloat(PI);
 	f32 angle   = ang1 + HALF_PI;
 
-	mTargetPosition
-	    = Vector3f(randDist * pikmin2_sinf(angle) + mHomePosition.x, mHomePosition.y, randDist * pikmin2_cosf(angle) + mHomePosition.z);
+	mTargetPosition = Vector3f(randDist * sinf(angle) + mHomePosition.x, mHomePosition.y, randDist * cosf(angle) + mHomePosition.z);
 }
 
 /*
@@ -1078,9 +1077,9 @@ void Obj::setBodyCollision(bool check)
 	if (check && mStuckPikminCount != 0 && !(mHealth <= 0.0f)) {
 		f32 angle = PI + mFaceDir;
 		Vector3f vec;
-		vec.x = 150.0f * pikmin2_sinf(mFaceDir);
+		vec.x = 150.0f * sinf(mFaceDir);
 		vec.y = 150.0f;
-		vec.z = 150.0f * pikmin2_cosf(mFaceDir);
+		vec.z = 150.0f * cosf(mFaceDir);
 
 		Stickers stickers(this);
 		Iterator<Creature> iter(&stickers);

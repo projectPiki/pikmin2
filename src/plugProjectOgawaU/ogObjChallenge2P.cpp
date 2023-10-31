@@ -183,7 +183,7 @@ void ObjChallenge2P::commonUpdate()
 	mScreenP1->update(mDisp->mOlimarData);
 	mScreenP2->update(mDisp->mLouieData);
 
-	f32 calc = (pikmin2_cosf(mScale * PI) + 1.0f) / 2;
+	f32 calc = (cosf(mScale * PI) + 1.0f) / 2;
 	mScreenP1->mScreen->setXY(0.0f, calc * -300.0f);
 	mScreenP2->mScreen->setXY(0.0f, calc * 300.0f);
 	mPokoScreen->setXY(calc * 300.0f, 0.0f);

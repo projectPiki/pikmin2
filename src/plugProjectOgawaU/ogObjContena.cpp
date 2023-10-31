@@ -2357,7 +2357,7 @@ void ObjContena::commonUpdate()
 		if (contenaAngle > TAU) {
 			contenaAngle -= TAU;
 		}
-		f32 angle       = pikmin2_cosf(contenaAngle) * msVal._28;
+		f32 angle       = cosf(contenaAngle) * msVal._28;
 		J2DPane* pane   = mPaneArrowUp;
 		pane->mOffset.x = mPaneArrowUpPos.x;
 		pane->mOffset.y = -1.0f + mPaneArrowUpPos.y + angle;
@@ -2411,7 +2411,7 @@ void ObjContena::commonUpdate()
 	if (mTimer > TAU) {
 		time = 0.0f;
 	}
-	mPaneSpot->setOffset(msVal._00 * 2.0f * pikmin2_cosf(time), mSpotX + msVal._04, msVal._00 * pikmin2_sinf(time), mSpotY);
+	mPaneSpot->setOffset(msVal._00 * 2.0f * cosf(time), mSpotX + msVal._04, msVal._00 * sinf(time), mSpotY);
 	mPaneSpot->setAlpha(mScreenAngle * 255.0f * msVal._10);
 	mPaneSpot->updateScale(msVal._0C * ((1.0f - mScreenAngle) * 2.0f + 1.0f) * _104);
 	mScreenSpot->update();

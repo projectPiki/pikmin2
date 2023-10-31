@@ -615,8 +615,8 @@ void StateMoveTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* tank = OBJ(enemy);
 	tank->_2F4 += PI / 3;
 	Vector3f homePos(tank->mHomePosition);
-	tank->_2F8            = Vector3f(CG_PARMS(tank)->mGeneral.mTerritoryRadius() * pikmin2_sinf(tank->_2F4) + homePos.x, homePos.y,
-                          CG_PARMS(tank)->mGeneral.mTerritoryRadius() * pikmin2_cosf(tank->_2F4) + homePos.z);
+	tank->_2F8            = Vector3f(CG_PARMS(tank)->mGeneral.mTerritoryRadius() * sinf(tank->_2F4) + homePos.x, homePos.y,
+                          CG_PARMS(tank)->mGeneral.mTerritoryRadius() * cosf(tank->_2F4) + homePos.z);
 	tank->mTargetCreature = nullptr;
 	tank->mTargetVelocity = Vector3f(0.0f);
 	tank->startMotion(TANKANIM_Turn, nullptr);

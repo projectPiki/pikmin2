@@ -363,9 +363,9 @@ void StateChase::exec(EnemyBase* enemy)
 			                           CG_PARMS(hanachirashi)->mGeneral.mMaxTurnAngle());
 
 			if (sqrDistanceXZ(hanachirashiPos, newPos) > 225.0f) {
-				f32 x = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * pikmin2_sinf(angle);
+				f32 x = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * sinf(angle);
 				f32 y = hanachirashi->getTargetVelocity().y;
-				f32 z = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * pikmin2_cosf(angle);
+				f32 z = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * cosf(angle);
 
 				hanachirashi->mTargetVelocity = Vector3f(x, y, z);
 			} else {
@@ -832,9 +832,9 @@ void StateChaseInside::exec(EnemyBase* enemy)
 		}
 
 		f32 angle = JMAAtan2Radian(targetPos.x - hanachirashiPos.x, targetPos.z - hanachirashiPos.z);
-		f32 x     = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * pikmin2_sinf(angle);
+		f32 x     = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * sinf(angle);
 		f32 y     = hanachirashi->getTargetVelocity().y;
-		f32 z     = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * pikmin2_cosf(angle);
+		f32 z     = CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed() * cosf(angle);
 
 		hanachirashi->mTargetVelocity = Vector3f(x, y, z);
 	}
