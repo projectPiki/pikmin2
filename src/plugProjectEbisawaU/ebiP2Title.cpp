@@ -516,11 +516,11 @@ void TTitleMgr::start()
 	_F70         = 0;
 	_F71         = 0;
 
-	count              = mTitleParms.mCanOpenMenuDelay / sys->mDeltaTime;
+	count              = mTitleParms.mCanOpenMenuDelay.mValue / sys->mDeltaTime;
 	mCounterControl    = count;
 	mCounterControlMax = count;
 
-	count                 = mTitleParms.mPressStartDelay / sys->mDeltaTime;
+	count                 = mTitleParms.mPressStartDelay.mValue / sys->mDeltaTime;
 	mCounterPressStart    = count;
 	mCounterPressStartMax = count;
 
@@ -692,30 +692,30 @@ void TTitleMgr::startState(enumState state)
 	switch (state) {
 	case BoidDisperse:
 		mPikminMgr.startBoid1(mTitleParms.mBoidDurationDisperse);
-		count             = mTitleParms.mBoidDurationDisperse / sys->mDeltaTime;
+		count             = mTitleParms.mBoidDurationDisperse.mValue / sys->mDeltaTime;
 		mCounterCommon    = count;
 		mCounterCommonMax = count;
 		break;
 	case BoidRegroup:
 		mPikminMgr.startBoid2(mTitleParms.mBoidDurationRegroup);
-		count             = mTitleParms.mBoidDurationRegroup / sys->mDeltaTime;
+		count             = mTitleParms.mBoidDurationRegroup.mValue / sys->mDeltaTime;
 		mCounterCommon    = count;
 		mCounterCommonMax = count;
 		break;
 	case BoidSwirl:
 		mPikminMgr.startBoid3(mTitleParms.mBoidDurationSwirl);
-		count             = mTitleParms.mBoidDurationSwirl / sys->mDeltaTime;
+		count             = mTitleParms.mBoidDurationSwirl.mValue / sys->mDeltaTime;
 		mCounterCommon    = count;
 		mCounterCommonMax = count;
 		break;
 	case StartWind:
-		count             = mTitleParms.mWindMoveDuration / sys->mDeltaTime;
+		count             = mTitleParms.mWindMoveDuration.mValue / sys->mDeltaTime;
 		mCounterCommon    = count;
 		mCounterCommonMax = count;
 		mMapBase.startWind(mTitleParms.mPlantMoveDuration.mValue);
 		break;
 	case Enemy:
-		count             = mTitleParms.mEnemyStayDuration / sys->mDeltaTime;
+		count             = mTitleParms.mEnemyStayDuration.mValue / sys->mDeltaTime;
 		mCounterCommon    = count;
 		mCounterCommonMax = count;
 		break;
@@ -838,8 +838,8 @@ void TTitleMgr::updateState()
 		}
 		if (!mCounterCommon) {
 			mState = 5;
-			mPikminMgr.startBoid2(mTitleParms.mBoidDurationRegroup);
-			u32 count         = mTitleParms.mBoidDurationRegroup / sys->mDeltaTime;
+			mPikminMgr.startBoid2(mTitleParms.mBoidDurationRegroup.mValue);
+			u32 count         = mTitleParms.mBoidDurationRegroup.mValue / sys->mDeltaTime;
 			mCounterCommon    = count;
 			mCounterCommonMax = count;
 		}
@@ -850,8 +850,8 @@ void TTitleMgr::updateState()
 		}
 		if (!mCounterCommon) {
 			mState = 6;
-			mPikminMgr.startBoid3(mTitleParms.mBoidDurationSwirl);
-			u32 count         = mTitleParms.mBoidDurationSwirl / sys->mDeltaTime;
+			mPikminMgr.startBoid3(mTitleParms.mBoidDurationSwirl.mValue);
+			u32 count         = mTitleParms.mBoidDurationSwirl.mValue / sys->mDeltaTime;
 			mCounterCommon    = count;
 			mCounterCommonMax = count;
 		}
