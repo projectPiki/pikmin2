@@ -111,7 +111,7 @@ void TOmakeCardE::doInitWaitState() { mAnimationIdle.play(sys->mDeltaTime * 60.0
 bool TOmakeCardE::doUpdateStateOpen()
 {
 	mScreenObj->update();
-	return u8(mAnimationEnter.isFinish() != 0);
+	return !!mAnimationEnter.isFinish();
 }
 
 /*
@@ -207,7 +207,7 @@ bool TOmakeCardE::doUpdateStateWait()
 bool TOmakeCardE::doUpdateStateClose()
 {
 	mScreenObj->update();
-	return u8(mAnimationExit.isFinish() != 0);
+	return !!mAnimationExit.isFinish();
 }
 
 /*
