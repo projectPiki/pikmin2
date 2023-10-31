@@ -85,23 +85,23 @@ struct TScreenBase : public TScreenBaseInterface {
 	{
 	}
 
-	virtual void setArchive(JKRArchive*);   // _08
-	virtual bool openScreen(ArgOpen*);      // _0C
-	virtual bool closeScreen(ArgClose*);    // _10
-	virtual void killScreen();              // _14
-	virtual void update();                  // _18
-	virtual void draw();                    // _1C
-	virtual u8 isFinishScreen();            // _20
-	virtual void doSetArchive(JKRArchive*); // _24
-	virtual void doOpenScreen(ArgOpen*);    // _28
-	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual void doKillScreen() { }         // _30 (weak)
-	virtual void doInitWaitState();         // _34 (weak)
-	virtual bool doUpdateStateOpen();       // _38 (weak)
-	virtual bool doUpdateStateWait();       // _3C
-	virtual bool doUpdateStateClose();      // _40
-	virtual void doDraw();                  // _44
-	virtual char* getName();                // _48 (weak) [not actually weak?]
+	virtual void setArchive(JKRArchive*);              // _08
+	virtual bool openScreen(ArgOpen*);                 // _0C
+	virtual bool closeScreen(ArgClose*);               // _10
+	virtual void killScreen();                         // _14
+	virtual void update();                             // _18
+	virtual void draw();                               // _1C
+	virtual u8 isFinishScreen();                       // _20
+	virtual void doSetArchive(JKRArchive*) { }         // _24 (weak)
+	virtual void doOpenScreen(ArgOpen*) { }            // _28 (weak)
+	virtual void doCloseScreen(ArgClose*) { }          // _2C (weak)
+	virtual void doKillScreen() { }                    // _30 (weak)
+	virtual void doInitWaitState() { }                 // _34 (weak)
+	virtual bool doUpdateStateOpen() { return true; }  // _38 (weak)
+	virtual bool doUpdateStateWait() { return true; }  // _3C (weak)
+	virtual bool doUpdateStateClose() { return true; } // _40 (weak) (weak)
+	virtual void doDraw() { }                          // _44 (weak)
+	virtual char* getName() { return "NoNameScreen"; } // _48 (weak)
 
 	u8 isOpenScreen();
 	u8 isWaitScreen();

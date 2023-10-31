@@ -18,13 +18,13 @@ struct TPressStart : public TScreenBase {
 	{
 	}
 
-	virtual void doSetArchive(JKRArchive*); // _24
-	virtual void doOpenScreen(ArgOpen*);    // _28
-	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual bool doUpdateStateWait();       // _3C
-	virtual bool doUpdateStateClose();      // _40
-	virtual void doDraw();                  // _44
-	virtual char* getName();                // _48 (weak)
+	virtual void doSetArchive(JKRArchive*);           // _24
+	virtual void doOpenScreen(ArgOpen*);              // _28
+	virtual void doCloseScreen(ArgClose*);            // _2C
+	virtual bool doUpdateStateWait();                 // _3C
+	virtual bool doUpdateStateClose();                // _40
+	virtual void doDraw();                            // _44
+	virtual char* getName() { return "TPressStart"; } // _48 (weak)
 
 	void startLoop_();
 

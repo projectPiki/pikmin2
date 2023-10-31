@@ -17,13 +17,6 @@ void TScreenBase::setArchive(JKRArchive* newArchive)
 
 /*
  * --INFO--
- * Address:	803D388C
- * Size:	000004
- */
-void TScreenBase::doSetArchive(JKRArchive*) { }
-
-/*
- * --INFO--
  * Address:	803D3890
  * Size:	000058
  */
@@ -40,13 +33,6 @@ bool TScreenBase::openScreen(ArgOpen* arg)
 
 /*
  * --INFO--
- * Address:	803D38E8
- * Size:	000004
- */
-void TScreenBase::doOpenScreen(ArgOpen*) { }
-
-/*
- * --INFO--
  * Address:	803D38EC
  * Size:	000058
  */
@@ -60,13 +46,6 @@ bool TScreenBase::closeScreen(ArgClose* arg)
 
 	return false;
 }
-
-/*
- * --INFO--
- * Address:	803D3944
- * Size:	000004
- */
-void TScreenBase::doCloseScreen(ArgClose*) { }
 
 /*
  * --INFO--
@@ -140,34 +119,6 @@ void TScreenBase::update()
 
 /*
  * --INFO--
- * Address:	803D3AAC
- * Size:	000008
- */
-bool TScreenBase::doUpdateStateClose() { return true; }
-
-/*
- * --INFO--
- * Address:	803D3AB4
- * Size:	000008
- */
-bool TScreenBase::doUpdateStateWait() { return true; }
-
-/*
- * --INFO--
- * Address:	803D3ABC
- * Size:	000004
- */
-void TScreenBase::doInitWaitState() { }
-
-/*
- * --INFO--
- * Address:	803D3AC0
- * Size:	000008
- */
-bool TScreenBase::doUpdateStateOpen() { return true; }
-
-/*
- * --INFO--
  * Address:	803D3AC8
  * Size:	000038
  */
@@ -177,19 +128,5 @@ void TScreenBase::draw()
 		doDraw();
 	}
 }
-
-/*
- * --INFO--
- * Address:	803D3B00
- * Size:	000004
- */
-void TScreenBase::doDraw() { }
-
-/*
- * --INFO--
- * Address:	803D3B04
- * Size:	00000C
- */
-char* TScreenBase::getName() { return "NoNameScreen"; }
 } // namespace Screen
 } // namespace ebi

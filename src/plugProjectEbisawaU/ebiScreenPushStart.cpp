@@ -177,12 +177,5 @@ void TPressStart::startLoop_()
 	mAnims2[mCurrentScreen].play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
 	mScreens[mCurrentScreen]->animation();
 }
-
-/*
- * --INFO--
- * Address:	803D4238
- * Size:	00000C
- */
-char* TPressStart::getName() { return "TPressStart"; }
 } // namespace Screen
 } // namespace ebi
