@@ -292,7 +292,7 @@ void TOmakeGame::doCloseScreen(ArgClose*) { mAnimationExit.play(sys->mDeltaTime 
 bool TOmakeGame::doUpdateStateOpen()
 {
 	mScreenObj->update();
-	return mAnimationEnter.isFinish() != 0;
+	return !!mAnimationEnter.isFinish();
 }
 
 /*
@@ -352,7 +352,7 @@ bool TOmakeGame::doUpdateStateWait()
 bool TOmakeGame::doUpdateStateClose()
 {
 	mScreenObj->update();
-	return mAnimationExit.isFinish() != 0;
+	return !!mAnimationExit.isFinish();
 }
 
 /*
