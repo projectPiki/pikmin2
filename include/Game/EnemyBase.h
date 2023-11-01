@@ -714,6 +714,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline f32 getMoveSpeed(f32 speedFactor) { return speedFactor * static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMoveSpeed(); }
 
+	inline f32 getScaleMod() const { return mScaleModifier; }
+
 	inline void setTargetVelocity(f32 speedFactor)
 	{
 		f32 x, y, z;

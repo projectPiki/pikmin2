@@ -317,6 +317,7 @@ struct Mgr : public EnemyMgrBase {
 };
 
 enum AnimID {
+	JIGUMOANIM_NULL     = -1,
 	JIGUMOANIM_Appear   = 0,  // 'appear1'
 	JIGUMOANIM_Attack   = 1,  // 'attack1'
 	JIGUMOANIM_BackRun  = 2,  // 'backrun1', while carrying piki
@@ -478,7 +479,7 @@ struct StateSearch : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u32 _10; // _10, unknown
+	int mAnimIdx; // _10
 };
 
 struct StateSMiss : public State {

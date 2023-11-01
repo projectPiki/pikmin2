@@ -25,7 +25,7 @@ MORIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/miulinAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/miulinMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulin.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoState.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/jigumoState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/jigumoAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/jigumoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumo.o\

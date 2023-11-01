@@ -1411,7 +1411,7 @@ LIBS = [
             ["plugProjectMorimuraU/miulinAnimator", True],
             ["plugProjectMorimuraU/miulinMgr", True],
             "plugProjectMorimuraU/miulin",
-            "plugProjectMorimuraU/jigumoState",
+            ["plugProjectMorimuraU/jigumoState", True],
             ["plugProjectMorimuraU/jigumoAnimator", True],
             ["plugProjectMorimuraU/jigumoMgr", True],
             "plugProjectMorimuraU/jigumo",

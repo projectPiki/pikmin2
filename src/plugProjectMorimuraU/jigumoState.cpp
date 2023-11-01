@@ -152,7 +152,9 @@ void StateAppear::exec(EnemyBase* enemy)
 				FakePiki* target       = OBJ(enemy)->getNearestPikiOrNavi(360.0f, terrRad);
 				enemy->mTargetCreature = target;
 				if (target) {
-					f32 angleDist            = enemy->turnToTarget(target, 1.0f, TAU);
+					f32 turnSpeed = 1.0f;
+					f32 maxAngle  = 360.0f; // becomes TAU during inline
+					enemy->turnToTarget(target, turnSpeed, maxAngle);
 					OBJ(enemy)->mNextFaceDir = enemy->mFaceDir;
 				}
 			}
@@ -377,8 +379,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 		Vector3f pos     = OBJ(enemy)->getPosition();
 		Vector3f goalPos = OBJ(enemy)->getGoalPos();
-		Vector3f diff    = pos - goalPos;
-		if (diff.sqrMagnitude() < 100.0f) {
+		if (pos.sqrDistance(goalPos) < 100.0f) {
 			_10 = 0;
 			OBJ(enemy)->effectStop();
 			enemy->mTargetVelocity = Vector3f(0.0f);
@@ -386,316 +387,6 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 
 	OBJ(enemy)->velocityControl();
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stfd     f31, 0xc0(r1)
-	psq_st   f31, 200(r1), 0, qr0
-	stfd     f30, 0xb0(r1)
-	psq_st   f30, 184(r1), 0, qr0
-	stfd     f29, 0xa0(r1)
-	psq_st   f29, 168(r1), 0, qr0
-	stw      r31, 0x9c(r1)
-	stw      r30, 0x98(r1)
-	stw      r29, 0x94(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lbz      r0, 0x11(r3)
-	cmplwi   r0, 0
-	beq      lbl_80366EF4
-	lwz      r4, 0xc0(r31)
-	mr       r3, r31
-	lfs      f1, 0x49c(r4)
-	lfs      f2, 0x44c(r4)
-	bl       getNearestPikiOrNavi__Q34Game6Jigumo3ObjFff
-	or.      r29, r3, r3
-	beq      lbl_80366EF4
-	mr       r4, r29
-	lwz      r5, 0xc0(r31)
-	lwz      r12, 0(r29)
-	addi     r3, r1, 0x20
-	lfs      f30, 0x334(r5)
-	lwz      r12, 8(r12)
-	lfs      f31, 0x30c(r5)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x20(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x2c
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x2c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x34(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 8(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f4, 0x30(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f29, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f29
-	bl       angDist__Fff
-	fmuls    f31, f1, f31
-	lfs      f0, lbl_8051E8BC@sda21(r2)
-	lfs      f1, lbl_8051E8A8@sda21(r2)
-	fmuls    f0, f0, f30
-	fabs     f2, f31
-	fmuls    f1, f1, f0
-	frsp     f0, f2
-	fcmpo    cr0, f0, f1
-	ble      lbl_80366E9C
-	lfs      f0, lbl_8051E880@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80366E98
-	fmr      f31, f1
-	b        lbl_80366E9C
-
-lbl_80366E98:
-	fneg     f31, f1
-
-lbl_80366E9C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f31, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	mr       r4, r29
-	addi     r3, r1, 0x68
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x1a8(r31)
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x6c(r1)
-	lfs      f2, 0x70(r1)
-	lfs      f0, 0x68(r1)
-	stfs     f0, 0x2c8(r31)
-	stfs     f1, 0x2cc(r31)
-	stfs     f2, 0x2d0(r31)
-
-lbl_80366EF4:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036702C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80366FAC
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x10(r30)
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x11(r30)
-	bl       effectStart__Q34Game6Jigumo3ObjFv
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_80366F8C
-	lwz      r3, 0x28c(r31)
-	li       r4, 0x58d2
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036702C
-
-lbl_80366F8C:
-	lwz      r3, 0x28c(r31)
-	li       r4, 0x58d1
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036702C
-
-lbl_80366FAC:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8036702C
-	li       r0, 0
-	lfs      f0, lbl_8051E880@sda21(r2)
-	stb      r0, 0x10(r30)
-	lfs      f1, lbl_8051E8A8@sda21(r2)
-	stfs     f0, 0x1c8(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	lfs      f0, 0x1fc(r31)
-	fadds    f1, f1, f0
-	bl       roundAng__Ff
-	stfs     f1, 0x2ec(r31)
-	mr       r3, r30
-	lfs      f0, lbl_8051E880@sda21(r2)
-	mr       r4, r31
-	lfs      f1, 0x198(r31)
-	li       r6, 0
-	stfs     f1, 0x2c8(r31)
-	lfs      f1, 0x19c(r31)
-	stfs     f1, 0x2cc(r31)
-	lfs      f1, 0x1a0(r31)
-	stfs     f1, 0x2d0(r31)
-	stfs     f0, 0x344(r31)
-	lwz      r12, 0(r30)
-	lwz      r5, 0x2d4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036702C:
-	lbz      r0, 0x10(r30)
-	cmplwi   r0, 0
-	beq      lbl_8036719C
-	lwz      r6, 0xc0(r31)
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	lfs      f1, 0x5b4(r6)
-	lfs      f2, 0x5dc(r6)
-	lfs      f3, 0x604(r6)
-	bl
-"attackNavi__Q24Game9EnemyFuncFPQ24Game8CreaturefffP8CollPartP23Condition<Q24Game4Navi>"
-	mr       r3, r31
-	bl       walkFunc__Q34Game6Jigumo3ObjFv
-	lis      r4, "__vt__23Condition<Q24Game4Piki>"@ha
-	lis      r3, __vt__Q34Game6Jigumo24ConditionHeightCheckPiki@ha
-	addi     r5, r4, "__vt__23Condition<Q24Game4Piki>"@l
-	stw      r31, 0x78(r1)
-	addi     r0, r3, __vt__Q34Game6Jigumo24ConditionHeightCheckPiki@l
-	mr       r4, r31
-	stw      r5, 0x74(r1)
-	addi     r3, r1, 0x38
-	stw      r0, 0x74(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x3c(r1)
-	mr       r4, r31
-	lfs      f0, lbl_8051E8C0@sda21(r2)
-	addi     r3, r1, 0x44
-	fsubs    f0, f1, f0
-	stfs     f0, 0x7c(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x48(r1)
-	mr       r3, r31
-	lfs      f0, lbl_8051E8C4@sda21(r2)
-	addi     r4, r1, 0x74
-	fadds    f0, f0, f1
-	stfs     f0, 0x80(r1)
-	bl
-"eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Q24Game4Piki>"
-	cmpwi    r3, 0
-	ble      lbl_80367110
-	li       r0, 7
-	li       r4, 1
-	stw      r0, 0x2d4(r31)
-	li       r0, 0
-	mr       r3, r31
-	stb      r4, 0x2e8(r31)
-	stb      r0, 0x10(r30)
-	bl       effectStop__Q34Game6Jigumo3ObjFv
-	lfs      f0, lbl_8051E880@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-
-lbl_80367110:
-	mr       r4, r31
-	addi     r3, r1, 0x5c
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x50
-	lwz      r12, 0(r31)
-	lfs      f29, 0x5c(r1)
-	lwz      r12, 0x198(r12)
-	lfs      f30, 0x60(r1)
-	lfs      f31, 0x64(r1)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x54(r1)
-	lfs      f2, 0x50(r1)
-	fsubs    f3, f30, f0
-	lfs      f1, 0x58(r1)
-	fsubs    f4, f29, f2
-	lfs      f0, lbl_8051E8C8@sda21(r2)
-	fsubs    f2, f31, f1
-	fmuls    f1, f3, f3
-	fmadds   f1, f4, f4, f1
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8036719C
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x10(r30)
-	bl       effectStop__Q34Game6Jigumo3ObjFv
-	lfs      f0, lbl_8051E880@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-
-lbl_8036719C:
-	mr       r3, r31
-	bl       velocityControl__Q34Game6Jigumo3ObjFv
-	psq_l    f31, 200(r1), 0, qr0
-	lfd      f31, 0xc0(r1)
-	psq_l    f30, 184(r1), 0, qr0
-	lfd      f30, 0xb0(r1)
-	psq_l    f29, 168(r1), 0, qr0
-	lfd      f29, 0xa0(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r30, 0x98(r1)
-	lwz      r0, 0xd4(r1)
-	lwz      r29, 0x94(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
 }
 
 /*
@@ -741,8 +432,8 @@ void StateMiss::exec(EnemyBase* enemy)
 {
 	if (CG_PARMS(enemy)->_8FC) {
 		Vector3f goalPos = OBJ(enemy)->getGoalPos();
-		f32 angleDist    = enemy->changeFaceDir(goalPos);
-		if (FABS(angleDist) < 0.05f) {
+		f32 angleDist    = enemy->turnToTarget2(goalPos, CG_PARMS(enemy)->mGeneral.mTurnSpeed(), CG_PARMS(enemy)->mGeneral.mMaxTurnAngle());
+		if (absF(angleDist) < 0.05f) {
 			enemy->finishMotion();
 		}
 
@@ -753,146 +444,6 @@ void StateMiss::exec(EnemyBase* enemy)
 	} else if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
 		transit(enemy, JIGUMO_Return, nullptr);
 	}
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stfd     f28, 0x30(r1)
-	psq_st   f28, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r31, r4
-	mr       r30, r3
-	lwz      r5, 0xc0(r4)
-	lbz      r0, 0x8fc(r5)
-	cmplwi   r0, 0
-	beq      lbl_80367448
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0x14
-	lwz      r12, 0x198(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lwz      r5, 0xc0(r31)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 8
-	lfs      f31, 0x14(r1)
-	lwz      r12, 8(r12)
-	lfs      f28, 0x1c(r1)
-	lfs      f29, 0x334(r5)
-	lfs      f30, 0x30c(r5)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x10(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	fsubs    f1, f31, f1
-	fsubs    f2, f28, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	fmr      f31, f1
-	lfs      f0, lbl_8051E8BC@sda21(r2)
-	lfs      f1, lbl_8051E8A8@sda21(r2)
-	fmuls    f0, f0, f29
-	fmuls    f29, f31, f30
-	fmuls    f1, f1, f0
-	fabs     f0, f29
-	frsp     f0, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_803673C4
-	lfs      f0, lbl_8051E880@sda21(r2)
-	fcmpo    cr0, f29, f0
-	ble      lbl_803673C0
-	fmr      f29, f1
-	b        lbl_803673C4
-
-lbl_803673C0:
-	fneg     f29, f1
-
-lbl_803673C4:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f29, f1
-	bl       roundAng__Ff
-	fabs     f3, f31
-	stfs     f1, 0x1fc(r31)
-	lfs      f0, lbl_8051E8A4@sda21(r2)
-	lfs      f2, 0x1fc(r31)
-	frsp     f1, f3
-	stfs     f2, 0x1a8(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80367408
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_80367408:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036747C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8036747C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8036747C
-
-lbl_80367448:
-	lwz      r5, 0x188(r31)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_8036747C
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8036747C
-	lwz      r12, 0(r3)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036747C:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	psq_l    f28, 56(r1), 0, qr0
-	lfd      f28, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -1184,7 +735,7 @@ void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setAlive(false);
 	enemy->mTargetCreature        = nullptr;
 	OBJ(enemy)->mDoScaleDownMouth = false;
-	_10                           = -1;
+	mAnimIdx                      = JIGUMOANIM_NULL;
 }
 
 /*
@@ -1194,425 +745,59 @@ void StateSearch::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateSearch::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x130(r1)
-	mflr     r0
-	stw      r0, 0x134(r1)
-	stfd     f31, 0x120(r1)
-	psq_st   f31, 296(r1), 0, qr0
-	stfd     f30, 0x110(r1)
-	psq_st   f30, 280(r1), 0, qr0
-	stfd     f29, 0x100(r1)
-	psq_st   f29, 264(r1), 0, qr0
-	stw      r31, 0xfc(r1)
-	stw      r30, 0xf8(r1)
-	stw      r29, 0xf4(r1)
-	stw      r28, 0xf0(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	lwz      r4, 0xc0(r31)
-	mr       r29, r3
-	mr       r3, r31
-	lfs      f1, 0x49c(r4)
-	lfs      f2, 0x44c(r4)
-	bl       getNearestPikiOrNavi__Q34Game6Jigumo3ObjFff
-	or.      r28, r3, r3
-	stw      r28, 0x230(r31)
-	beq      lbl_8036801C
-	mr       r4, r28
-	addi     r3, r1, 0xb0
-	lwz      r12, 0(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0xb0(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0xbc
-	lfs      f1, 0xb4(r1)
-	lfs      f0, 0xb8(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 0x98(r1)
-	stfs     f1, 0x9c(r1)
-	stfs     f0, 0xa0(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0xbc(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0xc4(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0x98(r1)
-	lfs      f0, 0xa0(r1)
-	lfs      f4, 0xc0(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0xa4(r1)
-	stfs     f4, 0xa8(r1)
-	stfs     f3, 0xac(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f30, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f30
-	bl       angDist__Fff
-	fabs     f1, f1
-	lfs      f0, lbl_8051E908@sda21(r2)
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80367EE8
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r0, -1
-	mr       r4, r28
-	stw      r0, 0x10(r30)
-	addi     r3, r1, 0xe0
-	lwz      r12, 0(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xe4(r1)
-	lfs      f2, 0xe8(r1)
-	lfs      f0, 0xe0(r1)
-	stfs     f0, 0x2c8(r31)
-	stfs     f1, 0x2cc(r31)
-	stfs     f2, 0x2d0(r31)
-	b        lbl_80368268
+	int animIdx = enemy->getCurrAnimIndex(); // r29
+	FakePiki* target
+	    = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mSearchAngle(), CG_PARMS(enemy)->mGeneral.mSearchDistance()); // r28
+	enemy->mTargetCreature = target;
+	if (target) {
+		f32 angleDist = enemy->getCreatureViewAngle(target);
+		if (absF(angleDist) < 0.01f) {
+			enemy->finishMotion();
+			mAnimIdx                  = JIGUMOANIM_NULL;
+			OBJ(enemy)->mGoalPosition = Vector3f(target->getPosition());
+		} else if (animIdx == JIGUMOANIM_Wait) {
+			enemy->finishMotion();
+			mAnimIdx = JIGUMOANIM_Turn;
+		} else {
+			enemy->turnToTarget(target);
+		}
+	} else {
+		target = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mViewAngle(), CG_PARMS(enemy)->mGeneral.mSightRadius());
+		if (target) {
+			f32 angleDist = enemy->getCreatureViewAngle(target);
+			if (absF(angleDist) < 0.1f) {
+				if (animIdx == JIGUMOANIM_Turn) {
+					mAnimIdx = JIGUMOANIM_Wait;
+					enemy->finishMotion();
+				}
+			} else if (enemy->getCurrAnimIndex() == JIGUMOANIM_Wait) {
+				mAnimIdx = JIGUMOANIM_Turn;
+				enemy->finishMotion();
+			} else {
+				enemy->turnToTarget(target);
+			}
+		} else {
+			transit(enemy, JIGUMO_Wait, nullptr);
+		}
+	}
 
-lbl_80367EE8:
-	cmpwi    r29, 0xf
-	bne      lbl_80367F04
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	li       r0, 0xd
-	stw      r0, 0x10(r30)
-	b        lbl_80368268
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		if (mAnimIdx < 0) {
+			Vector3f pos     = enemy->getPosition();
+			Vector3f goalPos = enemy->getGoalPos();
+			f32 dist         = pos.sqrDistance(goalPos);
+			f32 rad          = CG_PARMS(enemy)->mGeneral.mAttackRadius() * enemy->getScaleMod();
+			rad *= rad;
+			if (dist < rad) {
+				transit(enemy, JIGUMO_SAttack, nullptr);
+				return;
+			}
+			transit(enemy, JIGUMO_Attack, nullptr);
+			return;
+		}
 
-lbl_80367F04:
-	mr       r4, r28
-	lwz      r5, 0xc0(r31)
-	lwz      r12, 0(r28)
-	addi     r3, r1, 0x50
-	lfs      f30, 0x334(r5)
-	lwz      r12, 8(r12)
-	lfs      f31, 0x30c(r5)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x50(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x5c
-	lfs      f1, 0x54(r1)
-	lfs      f0, 0x58(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 0x38(r1)
-	stfs     f1, 0x3c(r1)
-	stfs     f0, 0x40(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x5c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x64(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0x38(r1)
-	lfs      f0, 0x40(r1)
-	lfs      f4, 0x60(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x44(r1)
-	stfs     f4, 0x48(r1)
-	stfs     f3, 0x4c(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f29, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f29
-	bl       angDist__Fff
-	fmuls    f31, f1, f31
-	lfs      f0, lbl_8051E8BC@sda21(r2)
-	lfs      f1, lbl_8051E8A8@sda21(r2)
-	fmuls    f0, f0, f30
-	fabs     f2, f31
-	fmuls    f1, f1, f0
-	frsp     f0, f2
-	fcmpo    cr0, f0, f1
-	ble      lbl_80367FF0
-	lfs      f0, lbl_8051E880@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80367FEC
-	fmr      f31, f1
-	b        lbl_80367FF0
-
-lbl_80367FEC:
-	fneg     f31, f1
-
-lbl_80367FF0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f31, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x1a8(r31)
-	b        lbl_80368268
-
-lbl_8036801C:
-	lwz      r4, 0xc0(r31)
-	mr       r3, r31
-	lfs      f1, 0x424(r4)
-	lfs      f2, 0x3d4(r4)
-	bl       getNearestPikiOrNavi__Q34Game6Jigumo3ObjFff
-	or.      r28, r3, r3
-	beq      lbl_80368248
-	mr       r4, r28
-	addi     r3, r1, 0x80
-	lwz      r12, 0(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x80(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x8c
-	lfs      f1, 0x84(r1)
-	lfs      f0, 0x88(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 0x68(r1)
-	stfs     f1, 0x6c(r1)
-	stfs     f0, 0x70(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x8c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x94(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0x68(r1)
-	lfs      f0, 0x70(r1)
-	lfs      f4, 0x90(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x74(r1)
-	stfs     f4, 0x78(r1)
-	stfs     f3, 0x7c(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f29, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f29
-	bl       angDist__Fff
-	fabs     f1, f1
-	lfs      f0, lbl_8051E8F8@sda21(r2)
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8036810C
-	cmpwi    r29, 0xd
-	bne      lbl_80368268
-	li       r0, 0xf
-	mr       r3, r31
-	stw      r0, 0x10(r30)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80368268
-
-lbl_8036810C:
-	mr       r3, r31
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0xf
-	bne      lbl_80368130
-	li       r0, 0xd
-	mr       r3, r31
-	stw      r0, 0x10(r30)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80368268
-
-lbl_80368130:
-	mr       r4, r28
-	lwz      r5, 0xc0(r31)
-	lwz      r12, 0(r28)
-	addi     r3, r1, 0x20
-	lfs      f31, 0x334(r5)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x30c(r5)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x20(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x2c
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x2c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x34(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 8(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f4, 0x30(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f29, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f29
-	bl       angDist__Fff
-	fmuls    f30, f1, f30
-	lfs      f0, lbl_8051E8BC@sda21(r2)
-	lfs      f1, lbl_8051E8A8@sda21(r2)
-	fmuls    f0, f0, f31
-	fabs     f2, f30
-	fmuls    f1, f1, f0
-	frsp     f0, f2
-	fcmpo    cr0, f0, f1
-	ble      lbl_8036821C
-	lfs      f0, lbl_8051E880@sda21(r2)
-	fcmpo    cr0, f30, f0
-	ble      lbl_80368218
-	fmr      f30, f1
-	b        lbl_8036821C
-
-lbl_80368218:
-	fneg     f30, f1
-
-lbl_8036821C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f30, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x1a8(r31)
-	b        lbl_80368268
-
-lbl_80368248:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80368268:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80368360
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80368360
-	lwz      r4, 0x10(r30)
-	cmpwi    r4, 0
-	bge      lbl_80368354
-	mr       r4, r31
-	addi     r3, r1, 0xd4
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0xc8
-	lwz      r12, 0(r31)
-	lfs      f29, 0xd4(r1)
-	lwz      r12, 0x198(r12)
-	lfs      f30, 0xd8(r1)
-	lfs      f31, 0xdc(r1)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xcc(r1)
-	lfs      f1, 0xc8(r1)
-	fsubs    f0, f30, f0
-	lwz      r3, 0xc0(r31)
-	lfs      f3, 0xd0(r1)
-	fsubs    f4, f29, f1
-	lfs      f2, 0x5b4(r3)
-	fmuls    f0, f0, f0
-	lfs      f1, 0x1f8(r31)
-	fsubs    f3, f31, f3
-	fmuls    f1, f2, f1
-	fmadds   f0, f4, f4, f0
-	fmuls    f1, f1, f1
-	fmadds   f0, f3, f3, f0
-	fcmpo    cr0, f0, f1
-	bge      lbl_80368330
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xb
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80368360
-
-lbl_80368330:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80368360
-
-lbl_80368354:
-	mr       r3, r31
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-
-lbl_80368360:
-	psq_l    f31, 296(r1), 0, qr0
-	lfd      f31, 0x120(r1)
-	psq_l    f30, 280(r1), 0, qr0
-	lfd      f30, 0x110(r1)
-	psq_l    f29, 264(r1), 0, qr0
-	lfd      f29, 0x100(r1)
-	lwz      r31, 0xfc(r1)
-	lwz      r30, 0xf8(r1)
-	lwz      r29, 0xf4(r1)
-	lwz      r0, 0x134(r1)
-	lwz      r28, 0xf0(r1)
-	mtlr     r0
-	addi     r1, r1, 0x130
-	blr
-	*/
+		enemy->startMotion(mAnimIdx, nullptr);
+	}
 }
 
 /*
