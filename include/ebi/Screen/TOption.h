@@ -47,7 +47,7 @@ struct TOption : public TScreenBase {
 	TOption()
 	    : mEnabled(1)
 	    , mColor(0, 0, 0, 255)
-	    , _0F4(255)
+	    , mAlpha(255)
 	    , mState(0)
 	    , mCounterOpen(0)
 	    , mCounterOpenMax(0)
@@ -84,12 +84,12 @@ struct TOption : public TScreenBase {
 	TOptionParameter mOptionParamA;            // _0C8
 	TOptionParameter mOptionParamB;            // _0DC
 	JUtility::TColor mColor;                   // _0F0
-	u8 _0F4;                                   // _0F4
+	u8 mAlpha;                                 // _0F4
 	int mState;                                // _0F8
 	u32 mCounterOpen;                          // _0FC
 	u32 mCounterOpenMax;                       // _100
 	long mCurrMainSelection;                   // _104
-	int _108;                                  // _108
+	long mNextSelection;                       // _108
 	P2DScreen::Mgr_tuning* mMainScreen;        // _10C
 	J2DTextBox* mPaneRumbleYes;                // _110
 	J2DTextBox* mPaneRumbleNo;                 // _114

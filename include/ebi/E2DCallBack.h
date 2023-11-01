@@ -91,6 +91,21 @@ struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {
 		_29             = false;
 	}
 
+	inline void startToward0()
+	{
+		mIsEnabled      = true;
+		mSpeed          = sys->mDeltaTime * 1.6666666f;
+		mWeight         = 0.0f;
+		mIsTowardAlpha0 = true;
+		_29             = false;
+	}
+
+	inline void disable()
+	{
+		mIsTowardAlpha0 = false;
+		_29             = true;
+	}
+
 	// _00     = VTBL
 	// _00-_20 = E2DCallBack_Base
 	f32 mWeight;          // _20, weight to give alpha0 when calcing blend

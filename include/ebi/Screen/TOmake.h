@@ -51,7 +51,7 @@ struct TOmake : public TScreenBase {
 	J2DPane* mPaneList1[7];               // _6C
 	J2DPane* mPaneSelect;                 // _88
 	J2DPane* mPaneList2[7];               // _8C
-	J2DPicture* mPaneListMesg[7];         // _A8
+	J2DTextBox* mPaneListMesg[7];         // _A8
 	J2DPane* mPaneListMesgShadow[7];      // _C4
 	E2DCallBack_AnmBase mAnims1;          // _E0
 	E2DCallBack_AnmBase mAnims2;          // _11C

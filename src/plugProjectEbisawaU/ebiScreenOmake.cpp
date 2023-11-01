@@ -2,6 +2,7 @@
 #include "ebi/E2DCallBack.h"
 #include "ebi/E2DGraph.h"
 #include "System.h"
+#include "PSSystem/PSSystemIF.h"
 
 static const char className[] = "ebiScreenOmake";
 
@@ -48,7 +49,7 @@ void TOmake::doSetArchive(JKRArchive* arc)
 	for (int i = 0; i < 7; i++) {
 		mPaneList1[i]          = E2DScreen_searchAssert(mScreenMain, i + 'Nn00');
 		mPaneList2[i]          = E2DScreen_searchAssert(mScreenMain, i + 'Ww00');
-		mPaneListMesg[i]       = static_cast<J2DPicture*>(E2DScreen_searchAssert(mScreenMain, i + 'Tt00'));
+		mPaneListMesg[i]       = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, i + 'Tt00'));
 		mPaneListMesgShadow[i] = E2DScreen_searchAssert(mScreenMain, i + 'ts00');
 	}
 	mPaneSelect = E2DScreen_searchAssert(mScreenMain, 'Wselctw');
@@ -500,13 +501,61 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 {
 	P2ASSERTLINE(109, arg);
 
+	ArgOpenOmake* oarg = static_cast<ArgOpenOmake*>(arg);
+	u8 flag1           = oarg->mFlag1;
+	u8 flag2           = oarg->mFlag2;
+	u8 flag3           = oarg->mFlag3;
+
+	for (int i = 0; i < 7; i++) {
+		mFonts[i].setPaneColors(0);
+		mPaneListMesg[i]->setMsgID(mMesgTags[i]);
+		mPaneListMesgShadow[i]->setMsgID(mMesgTags[i]);
+	}
+
+	if (!flag1) {
+		for (int i = 0; i < 4; i++) {
+			J2DTextBox* pane = mPaneListMesg[i];
+			pane->setCharColor(mColor8);
+			pane->setGradientColor(mColor9);
+			pane->setWhite(mColor10);
+			pane->setBlack(mColor11);
+
+			mPaneListMesg[i]->setMsgID('4844_00');
+			mPaneListMesgShadow[i]->setMsgID('4844_00');
+		}
+	}
+
+	if (!flag2) {
+		J2DTextBox* pane = mPaneListMesg[4];
+		pane->setCharColor(mColor8);
+		pane->setGradientColor(mColor9);
+		pane->setWhite(mColor10);
+		pane->setBlack(mColor11);
+
+		mPaneListMesg[4]->setMsgID('4844_00');
+		mPaneListMesgShadow[4]->setMsgID('4844_00');
+	}
+
+	if (!flag3) {
+		J2DTextBox* pane = mPaneListMesg[5];
+		pane->setCharColor(mColor8);
+		pane->setGradientColor(mColor9);
+		pane->setWhite(mColor10);
+		pane->setBlack(mColor11);
+
+		mPaneListMesg[5]->setMsgID('4844_00');
+		mPaneListMesgShadow[5]->setMsgID('4844_00');
+	}
+
 	if (sys->mRegion != System::LANG_JAPANESE) {
-		J2DPicture::TCornerColor color(mColor8.toUInt32(), mColor9.toUInt32(), mColor10.toUInt32(), mColor11.toUInt32());
-		mPaneListMesg[6]->setCornerColor(color);
-		mPaneListMesg[6]->setBlack(mColor10.toUInt32());
-		mPaneListMesg[6]->setWhite(mColor11.toUInt32());
-		mPaneListMesg[6]->setMsgID('4844_00');
-		mPaneListMesgShadow[6]->setMsgID('4844_00');
+		J2DTextBox* pane = mPaneListMesg[6];
+		pane->setCharColor(mColor8);
+		pane->setGradientColor(mColor9);
+		pane->setWhite(mColor10);
+		pane->setBlack(mColor11);
+
+		mPaneListMesg[6]->setMsgID('4844_00');       // "?"
+		mPaneListMesgShadow[6]->setMsgID('4844_00'); // "?"
 		mPaneList1[6]->hide();
 	}
 
@@ -520,7 +569,19 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 	mPaneAButton->setAlpha(255);
 	mPaneBButton->setAlpha(255);
 
-	mPaneList2[mCurrSel]->getBounds();
+	mCurrSel = 0;
+
+	JGeometry::TBox2f bounds = *mPaneList2[mCurrSel]->getBounds();
+
+	count               = (0.1f / sys->mDeltaTime);
+	mCursor.mCounter    = count;
+	mCursor.mCounterMax = count;
+
+	mCursor.mBounds1    = bounds;
+	mCursor.mBounds2    = bounds;
+	mCursor.mIsEnabled  = true;
+	mCursor.mWindowPane = mPaneList1[mCurrSel];
+
 	/*
 stwu     r1, -0xc0(r1)
 mflr     r0
@@ -986,8 +1047,86 @@ bool TOmake::doUpdateStateWait()
 	switch (mState2) {
 	case 0:
 		mInput.update();
+		if (mInput._0D) {
+			int id = mInput.mLastIndex;
+			if (id >= mCurrSel) {
+				for (int i = 0; i < 7; i++) {
+					if (mPaneList1[mCurrSel]->mMessageID == '4844_00') {
+						mCurrSel++;
+					}
+				}
+			} else {
+				for (int i = 0; i < mCurrSel; i++) {
+					if (mPaneList1[mCurrSel]->mMessageID == '4844_00') {
+						mCurrSel++;
+					}
+				}
+			}
+			if (id != mCurrSel) {
+				JGeometry::TBox2f bounds = *mPaneList2[mCurrSel]->getBounds();
+				mCursor.mBounds1         = bounds;
+				mCursor.mBounds2         = bounds;
+				mCursor.mCounter         = mCursor.mCounterMax;
+				mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
+				mCursor.mWindowPane = mPaneList1[mCurrSel];
+				mFonts[id].disable();
+				mFonts[mCurrSel].enable();
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+			}
+		}
+		if (!mCursor.mIsEnabled) {
+			u32 input = mController->getButtonDown();
+			if (input & Controller::PRESS_A) {
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+				if (mCurrSel == 6) {
+					mAnims2.play(sys->mDeltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+					mState2 = 2;
+				} else {
+					u32 count   = 0.5f / sys->mDeltaTime;
+					mCounter    = count;
+					mCounterMax = count;
+					mState      = 2;
+					mState2     = 5;
+				}
+			} else if (input & Controller::PRESS_B) {
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
+				return true;
+			}
+		}
+		break;
+	case 2:
+		f32 calc  = mAnims2.getPlayFinRate();
+		f32 alpha = (1.0f - calc) * 255.0f;
+		mPaneTitle->setAlpha(alpha);
+		mPaneAButton->setAlpha(alpha);
+		mPaneBButton->setAlpha(alpha);
+		if (mAnims2.isFinish()) {
+			hidePanes_();
+			mState2 = 1;
+		}
+		break;
+	case 3:
+		calc  = mAnims1.getPlayFinRate();
+		alpha = calc * 255.0f;
+		mPaneTitle->setAlpha(alpha);
+		mPaneAButton->setAlpha(alpha);
+		mPaneBButton->setAlpha(alpha);
+		if (mAnims1.isFinish()) {
+			mState2 = 0;
+		}
+		break;
+	case 5:
+		if (mCounter == 0) {
+			mState2 = 4;
+		}
+		break;
+	case 6:
+		if (mCounter == 0) {
+			mState2 = 0;
+		}
 		break;
 	}
+	return false;
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -1385,11 +1524,42 @@ blr
  */
 void TOmake::doDraw()
 {
-	Graphics* gfx        = sys->mGfx;
-	J2DPerspGraph* persp = &gfx->mPerspGraph;
-	persp->setPort();
-	mScreenMain->draw(*gfx, *persp);
-	if (mState != 0) { }
+	Graphics* gfx       = sys->mGfx;
+	J2DPerspGraph* graf = &gfx->mPerspGraph;
+	graf->setPort();
+	mScreenMain->draw(*gfx, *graf);
+
+	if (mState) {
+		f32 factor;
+		graf = &sys->mGfx->mPerspGraph;
+		graf->setPort();
+		JUtility::TColor color(mColor1);
+		switch (mState) {
+		case 1:
+			if (mCounterMax) {
+				factor = (f32)mCounter / (f32)mCounterMax;
+			} else {
+				factor = 0.0f;
+			}
+			color.a = mAlpha * factor;
+			break;
+		case 2:
+			if (mCounterMax) {
+				factor = (f32)mCounter / (f32)mCounterMax;
+			} else {
+				factor = 0.0f;
+			}
+			color.a = mAlpha * (1.0f - factor);
+			break;
+		}
+		graf->setColor(color);
+		u32 y    = System::getRenderModeObj()->efbHeight;
+		u32 x    = System::getRenderModeObj()->fbWidth;
+		f32 zero = 0.0f;
+		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+		graf->fillBox(box);
+	}
+
 	/*
 stwu     r1, -0x60(r1)
 mflr     r0

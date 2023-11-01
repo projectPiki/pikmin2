@@ -162,8 +162,8 @@ struct TMainScreen : public TScreenBase {
 	int mCurrFileInfoId;                             // _B9C
 	TScreenDataWindow_new mNewScreen;                // _BA0
 	TScreenDataWindow_data mDataScreen;              // _BA8
-	JUtility::TColor _BD4;                           // _BD4
-	u8 _BD8;                                         // _BD8
+	JUtility::TColor mDrawColor;                     // _BD4
+	u8 mDrawAlpha;                                   // _BD8
 	int mState;                                      // _BDC
 	u32 mCounter;                                    // _BE0
 	u32 mCounterMax;                                 // _BE4

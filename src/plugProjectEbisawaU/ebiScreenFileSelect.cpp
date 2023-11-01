@@ -147,8 +147,8 @@ void TScreenDataWindow_data::setData(s32 fileID, u32 pokos, u32 treasures, u32 c
  * Size:	000EB0
  */
 TMainScreen::TMainScreen()
-    : _BD4(0, 0, 0, 255)
-    , _BD8(255)
+    : mDrawColor(0, 0, 0, 255)
+    , mDrawAlpha(255)
     , mState(0)
     , mCounter(0)
     , mCounterMax(0)
@@ -2144,6 +2144,54 @@ blr
  */
 void TMainScreen::doDraw()
 {
+	Graphics* gfx       = sys->mGfx;
+	J2DPerspGraph* graf = &gfx->mPerspGraph;
+	graf->setPort();
+	mMainScreen->draw(*gfx, *graf);
+
+	if (mNewScreen._04) {
+		J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
+		Graphics gfx;
+		mNewScreen.mScreenObj->draw(gfx, *graf);
+	}
+
+	if (mDataScreen._0C) {
+		J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
+		Graphics gfx;
+		mDataScreen.mScreenObj->draw(gfx, *graf);
+	}
+
+	if (mState) {
+		Graphics* gfx       = sys->mGfx;
+		J2DPerspGraph* graf = &gfx->mPerspGraph;
+		f32 factor;
+		graf->setPort();
+		JUtility::TColor color(mDrawColor);
+		switch (mState) {
+		case 1:
+			if (mCounterMax) {
+				factor = (f32)mCounter / (f32)mCounterMax;
+			} else {
+				factor = 0.0f;
+			}
+			color.a = mDrawAlpha * factor;
+			break;
+		case 2:
+			if (mCounterMax) {
+				factor = (f32)mCounter / (f32)mCounterMax;
+			} else {
+				factor = 0.0f;
+			}
+			color.a = mDrawAlpha * (1.0f - factor);
+			break;
+		}
+		graf->setColor(color);
+		u32 y    = System::getRenderModeObj()->efbHeight;
+		u32 x    = System::getRenderModeObj()->fbWidth;
+		f32 zero = 0.0f;
+		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+		graf->fillBox(box);
+	}
 	/*
 stwu     r1, -0x5a0(r1)
 mflr     r0

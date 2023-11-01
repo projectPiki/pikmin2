@@ -58,11 +58,7 @@ void E2DCallBack_BlinkFontColor::do_update()
 		EUTColor_complement(mFonts[0].mWhite, mFonts[1].mWhite, weight0, weight1, &white);
 		EUTColor_complement(mFonts[0].mBlack, mFonts[1].mBlack, weight0, weight1, &black);
 
-		// will need inlines for these color setting things but not sure how to tweak yet
-		static_cast<J2DTextBox*>(mPane)->setCharColor(color1);
-		static_cast<J2DTextBox*>(mPane)->setGradientColor(color2);
-		static_cast<J2DTextBox*>(mPane)->setWhite(white);
-		static_cast<J2DTextBox*>(mPane)->setBlack(black);
+		setPaneColors(0);
 	}
 	/*
 	stwu     r1, -0x90(r1)
@@ -449,11 +445,11 @@ bool E2DCallBack_AnmBase::isFinish() { return mIsFinished; }
 void E2DCallBack_WindowCursor::do_update()
 {
 	if (mPane) {
-		if (_40) {
-			_40--;
+		if (mCounter) {
+			mCounter--;
 		}
 
-		f32 val = (_44) ? (f32)_40 / (f32)_44 : 0.0f;
+		f32 val = (mCounterMax) ? (f32)mCounter / (f32)mCounterMax : 0.0f;
 
 		JGeometry::TBox2f box;
 		box.i.x = (1.0f - val) * (mBounds2.i.x - mBounds1.i.x) + mBounds1.i.x;

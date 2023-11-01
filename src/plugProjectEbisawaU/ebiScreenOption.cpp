@@ -1,11 +1,11 @@
-#include "JSystem/JGeometry.h"
-#include "ebi/E2DGraph.h"
 #include "ebi/Screen/TOption.h"
+#include "ebi/E2DGraph.h"
 #include "Game/Data.h"
 #include "og/newScreen/ogUtil.h"
 #include "P2Macros.h"
-#include "P2DScreen.h"
 #include "System.h"
+#include "PSSystem/PSSystemIF.h"
+#include "SoundID.h"
 
 /*
  * --INFO--
@@ -197,7 +197,7 @@ void TOption::doOpenScreen(ArgOpen*)
 
 	mState             = 1;
 	mCurrMainSelection = 1;
-	_108               = 1;
+	mNextSelection     = 1;
 	_180[0]->hide();
 	JGeometry::TBox2f bounds = *mButtonPaneList[mCurrMainSelection]->getBounds();
 
@@ -357,6 +357,189 @@ bool TOption::doUpdateStateOpen()
  */
 bool TOption::doUpdateStateWait()
 {
+	setOptionParamToScreen_();
+	mMainScreen->update();
+	if (mEnabled) {
+		mInputMainSel.update();
+		if (mInputMainSel._0D) {
+			mNextSelection = mInputMainSel.mLastIndex;
+			if (mCurrMainSelection == 0) {
+				mCurrMainSelection = 1;
+			}
+
+			if (mNextSelection != mCurrMainSelection) {
+				JGeometry::TBox2f bounds = *mButtonPaneList[mCurrMainSelection]->getBounds();
+				mWindowCursor.mBounds1   = bounds;
+				mWindowCursor.mBounds2   = bounds;
+				mWindowCursor.mCounter   = mWindowCursor.mCounterMax;
+				mWindowCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
+				mWindowCursor.mWindowPane = _180[mCurrMainSelection];
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
+			}
+
+			if (mCurrMainSelection == 6) {
+				mBlinkAlphaB.startToward0();
+			} else if (mNextSelection == 6) {
+				mBlinkAlphaB.disable();
+			}
+		}
+	}
+	mExitStatus = 0;
+
+	if (mEnabled && !mWindowCursor.mCounter) {
+		if (mController->getButtonDown() & Controller::PRESS_B) {
+			mExitStatus = 9;
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
+		}
+		switch (mCurrMainSelection) {
+		case 0: // language
+			break;
+
+		case 1: // Rumble
+			if (mController->isMoveRight()) {
+				if (mOptionParamA.mIsRumble == true) {
+					mOptionParamA.mIsRumble = false;
+					mButtonPuruAnim[1].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+					mExitStatus = 2;
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+				}
+			} else if (mController->isMoveLeft()) {
+				if (!mOptionParamA.mIsRumble) {
+					mOptionParamA.mIsRumble = true;
+					mButtonPuruAnim[0].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+					mExitStatus = 2;
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+				}
+			}
+			break;
+
+		case 2: // Sound Mode
+			mInputStereo.update();
+			if (mInputStereo._0D) {
+				mExitStatus = 3;
+				switch (mOptionParamA.mSoundMode) {
+				case 0:
+					mButtonPuruAnim[2].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+					break;
+				case 1:
+					mButtonPuruAnim[3].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+					break;
+				case 2:
+					mButtonPuruAnim[4].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+					break;
+				}
+			}
+			break;
+
+		case 3: // music volume
+			mInputBgmVol.update();
+			if (mInputBgmVol._0D) {
+				mExitStatus = 4;
+				int prev    = mOptionParamA.mBgmVolume;
+				if (prev != 0) {
+					mBgmSelPuruAnimA[prev - 1].mScaleMgr.up(0.5f, 30.0f, 0.6f, 0.0f);
+					mBgmSelPuruAnimB[mOptionParamA.mBgmVolume - 1].mScaleMgr.up(0.5f, 30.0f, 0.6f, 0.0f);
+				}
+				for (int i = 0; i < mOptionParamA.mBgmVolume - 1; i++) {
+					mPaneBgmVolume[i]->setAlpha(255);
+				}
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+			}
+			break;
+
+		case 4: // sound volume
+			mInputSfxVol.update();
+			if (mInputSfxVol._0D) {
+				mExitStatus = 5;
+				int prev    = mOptionParamA.mSeVolume;
+				if (prev != 0) {
+					mSfxSelPuruAnimA[prev - 1].mScaleMgr.up(0.5f, 30.0f, 0.6f, 0.0f);
+					mSfxSelPuruAnimB[mOptionParamA.mSeVolume - 1].mScaleMgr.up(0.5f, 30.0f, 0.6f, 0.0f);
+				}
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+			}
+			break;
+
+		case 5: // Deflicker
+			if (mController->isMoveRight()) {
+				if (mOptionParamA.mUseDeflicker == true) {
+					mOptionParamA.mUseDeflicker = false;
+					mButtonPuruAnim[6].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+					mExitStatus = 6;
+				}
+			} else if (mController->isMoveLeft()) {
+				if (!mOptionParamA.mUseDeflicker) {
+					mOptionParamA.mUseDeflicker = true;
+					mButtonPuruAnim[5].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
+					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
+					mExitStatus = 6;
+				}
+			}
+			break;
+
+		case 6: // Save Game
+			if (mController->getButtonDown() & Controller::PRESS_A) {
+				mExitStatus = 7;
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+			}
+			break;
+		}
+	}
+
+	u64 mesg;
+	if (mOptionParamA.mUseDeflicker == true) {
+		mesg = '8335_00'; // When On
+	} else {
+		mesg = '8336_00'; // When Off
+	}
+
+	_180[7]->setMsgID(mesg);
+	_180[8]->setMsgID(mesg);
+	if (mCurrMainSelection == 5) {
+		_180[0]->hide();
+		_180[1]->hide();
+		_180[2]->hide();
+		_180[3]->hide();
+		_180[4]->hide();
+		f32 calc;
+		if (mWindowCursor.mCounterMax) {
+			calc = (f32)mWindowCursor.mCounter / (f32)mWindowCursor.mCounterMax;
+		} else {
+			calc = 0.0f;
+		}
+		u8 alpha = (1.0f - calc) * 255.0f;
+		mDeflickerScreen->setAlpha(alpha);
+	} else if (mNextSelection == 5) {
+		_180[0]->show();
+		_180[1]->show();
+		_180[2]->show();
+		_180[3]->show();
+		_180[4]->show();
+		_180[6]->show();
+		f32 calc;
+		if (mWindowCursor.mCounterMax) {
+			calc = (f32)mWindowCursor.mCounter / (f32)mWindowCursor.mCounterMax;
+		} else {
+			calc = 0.0f;
+		}
+		u8 alpha = calc * 255.0f;
+		mDeflickerScreen->setAlpha(alpha);
+	} else {
+		mDeflickerScreen->setAlpha(0);
+	}
+
+	mPaneRumbleYes->updateScale(mButtonPuruAnim[0].mScale);
+	mPaneRumbleNo->updateScale(mButtonPuruAnim[1].mScale);
+	mPaneSoundType[0]->updateScale(mButtonPuruAnim[2].mScale);
+	mPaneSoundType[1]->updateScale(mButtonPuruAnim[3].mScale);
+	mPaneSoundType[2]->updateScale(mButtonPuruAnim[4].mScale);
+	mPaneDeflickerYes->updateScale(mButtonPuruAnim[5].mScale);
+	mPaneDeflickerNo->updateScale(mButtonPuruAnim[6].mScale);
+	return false;
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -1163,6 +1346,43 @@ blr
  */
 void TOption::doDraw()
 {
+
+	Graphics* gfx       = sys->mGfx;
+	J2DPerspGraph* graf = &gfx->mPerspGraph;
+	graf->setPort();
+	mMainScreen->draw(*gfx, *graf);
+
+	if (mState) {
+		f32 factor;
+		graf = &sys->mGfx->mPerspGraph;
+		graf->setPort();
+		JUtility::TColor color(mColor);
+		switch (mState) {
+		case 1:
+			if (mCounterOpenMax) {
+				factor = (f32)mCounterOpen / (f32)mCounterOpenMax;
+			} else {
+				factor = 0.0f;
+			}
+			color.a = mAlpha * factor;
+			break;
+		case 2:
+			if (mCounterOpenMax) {
+				factor = (f32)mCounterOpen / (f32)mCounterOpenMax;
+			} else {
+				factor = 0.0f;
+			}
+			color.a = mAlpha * (1.0f - factor);
+			break;
+		}
+		graf->setColor(color);
+		u32 y    = System::getRenderModeObj()->efbHeight;
+		u32 x    = System::getRenderModeObj()->fbWidth;
+		f32 zero = 0.0f;
+		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+		graf->fillBox(box);
+	}
+
 	/*
 stwu     r1, -0x60(r1)
 mflr     r0
@@ -1353,63 +1573,10 @@ void TOption::loadResource()
 void TOption::setController(Controller* controller)
 {
 	mController = controller;
-	mInputBgmVol.init(controller, 0, 10, &mOptionParamA.mBgmVolume, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
-	mInputSfxVol.init(controller, 0, 10, &mOptionParamA.mSeVolume, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
-	mInputStereo.init(controller, 0, 2, &mOptionParamA.mSoundMode, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
-	mInputMainSel.init(controller, 0, 6, &mCurrMainSelection, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f1, lbl_8051FA44@sda21(r2)
-li       r5, 0
-stw      r0, 0x14(r1)
-li       r6, 0xa
-lfs      f2, lbl_8051FA48@sda21(r2)
-li       r8, 1
-stw      r31, 0xc(r1)
-mr       r31, r3
-addi     r7, r31, 0xd0
-stw      r4, 0xc(r3)
-addi     r3, r31, 0x14
-lwz      r4, 0xc(r31)
-bl
-init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff
-lwz      r4, 0xc(r31)
-addi     r3, r31, 0x40
-lfs      f1, lbl_8051FA44@sda21(r2)
-addi     r7, r31, 0xd4
-lfs      f2, lbl_8051FA48@sda21(r2)
-li       r5, 0
-li       r6, 0xa
-li       r8, 1
-bl
-init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff
-lwz      r4, 0xc(r31)
-addi     r3, r31, 0x6c
-lfs      f1, lbl_8051FA44@sda21(r2)
-addi     r7, r31, 0xcc
-lfs      f2, lbl_8051FA48@sda21(r2)
-li       r5, 0
-li       r6, 2
-li       r8, 1
-bl
-init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff
-lwz      r4, 0xc(r31)
-addi     r3, r31, 0x98
-lfs      f1, lbl_8051FA44@sda21(r2)
-addi     r7, r31, 0x104
-lfs      f2, lbl_8051FA48@sda21(r2)
-li       r5, 0
-li       r6, 6
-li       r8, 3
-bl
-init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mInputBgmVol.init(mController, 0, 10, &mOptionParamA.mBgmVolume, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
+	mInputSfxVol.init(mController, 0, 10, &mOptionParamA.mSeVolume, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
+	mInputStereo.init(mController, 0, 2, &mOptionParamA.mSoundMode, EUTPadInterface_countNum::MODE_RIGHTLEFT, 0.66f, 0.15f);
+	mInputMainSel.init(mController, 0, 6, &mCurrMainSelection, EUTPadInterface_countNum::MODE_DOWNUP, 0.66f, 0.15f);
 }
 
 /*
