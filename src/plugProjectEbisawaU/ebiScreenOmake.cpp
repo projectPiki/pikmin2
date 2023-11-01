@@ -50,17 +50,15 @@ void TOmake::doSetArchive(JKRArchive* arc)
 		mPaneList1[i]          = E2DScreen_searchAssert(mScreenMain, i + 'Nn00');
 		mPaneList2[i]          = E2DScreen_searchAssert(mScreenMain, i + 'Ww00');
 		mPaneListMesg[i]       = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, i + 'Tt00'));
-		mPaneListMesgShadow[i] = E2DScreen_searchAssert(mScreenMain, i + 'ts00');
+		mPaneListMesgShadow[i] = E2DScreen_searchAssert(mScreenMain, i + 'Tts00');
 	}
+	
 	mPaneSelect = E2DScreen_searchAssert(mScreenMain, 'Wselctw');
 
-	mMesgTags[0] = mPaneListMesg[0]->mMessageID;
-	mMesgTags[1] = mPaneListMesg[1]->mMessageID;
-	mMesgTags[2] = mPaneListMesg[2]->mMessageID;
-	mMesgTags[3] = mPaneListMesg[3]->mMessageID;
-	mMesgTags[4] = mPaneListMesg[4]->mMessageID;
-	mMesgTags[5] = mPaneListMesg[5]->mMessageID;
-	mMesgTags[6] = mPaneListMesg[6]->mMessageID;
+	for (int i = 0; i < 7; i++)
+	{
+		mMesgTags[i] = mPaneListMesg[i]->mMessageID;
+	}
 
 	E2DScreen_searchAssert(mScreenMain, 'DATA')->hide();
 
@@ -78,27 +76,27 @@ void TOmake::doSetArchive(JKRArchive* arc)
 
 	for (int i = 0; i < 7; i++) {
 
-		J2DTextBox* pane1 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor'));
-		J2DTextBox* pane2 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00'));
-		mFonts[i].set(pane1, pane2);
+		// J2DTextBox* pane1 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor'));
+		// J2DTextBox* pane2 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00'));
+		mFonts[i].set(static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00')), static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor')));
 		mScreenMain->addCallBackPane(mPaneListMesg[i], &mFonts[i]);
 	}
 
 	J2DTextBox* cPane = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor'));
-	mColor0           = cPane->mCharColor;
-	mColor1           = cPane->mGradientColor;
+	mColor0           = cPane->mCharColor.toUInt32();
+	mColor1           = cPane->mGradientColor.toUInt32();
 	mColor2           = cPane->getWhite();
 	mColor3           = cPane->getBlack();
 
 	cPane   = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00'));
-	mColor4 = cPane->mCharColor;
-	mColor5 = cPane->mGradientColor;
+	mColor4 = cPane->mCharColor.toUInt32();
+	mColor5 = cPane->mGradientColor.toUInt32();
 	mColor6 = cPane->getWhite();
 	mColor7 = cPane->getBlack();
 
 	cPane    = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Thscolor'));
-	mColor8  = cPane->mCharColor;
-	mColor9  = cPane->mGradientColor;
+	mColor8  = cPane->mCharColor.toUInt32();
+	mColor9  = cPane->mGradientColor.toUInt32();
 	mColor10 = cPane->getWhite();
 	mColor11 = cPane->getBlack();
 
