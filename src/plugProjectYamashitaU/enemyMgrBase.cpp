@@ -168,12 +168,11 @@ void EnemyMgrBase::doSimulation(f32 arg)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
+
 		if (enemy->mPellet) {
 			enemy->doSimulationCarcass(arg);
-		} else {
-			if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
-				enemy->doSimulation(arg);
-			}
+		} else if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+			enemy->doSimulation(arg);
 		}
 	}
 }

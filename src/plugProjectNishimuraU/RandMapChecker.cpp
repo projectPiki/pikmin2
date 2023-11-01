@@ -201,18 +201,16 @@ bool RandMapChecker::isInnerBox(int outerX1, int outerY1, int outerX2, int outer
 		if (outerY1 < innerY1) {
 			if (outerX2 > innerX1 && outerY2 > innerY1)
 				return true;
-		} else {
-			if (outerY1 < innerY2 && outerX2 > innerX1)
-				return true;
+		} else if (outerY1 < innerY2 && outerX2 > innerX1) {
+			return true;
 		}
 	} else {
 		if (outerX1 < innerX2) {
 			if (outerY1 < innerY1) {
 				if (outerY2 > innerY1)
 					return true;
-			} else {
-				if (outerY1 < innerY2)
-					return true;
+			} else if (outerY1 < innerY2) {
+				return true;
 			}
 		}
 	}

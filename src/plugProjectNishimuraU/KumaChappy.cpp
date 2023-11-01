@@ -214,32 +214,29 @@ void Obj::doUpdateCarcass()
 			if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mFp11) {
 				lifeGaugeMgr->activeLifeGauge(this, 0.0f);
 			}
-		} else {
-			if (mHealth < mMaxHealth) {
-				mHealth += (mMaxHealth / C_PARMS->mProperParms.mFp12()) * sys->getFrameLength();
-				if (mHealth >= mMaxHealth) {
-					mPellet->kill(nullptr);
-					f32 x = mBaseTrMatrix.mMatrix.structView.zx;
-					f32 z = mBaseTrMatrix.mMatrix.structView.zz;
-					EnemyBirthArg arg;
-					arg.mPosition        = mPosition;
-					arg.mFaceDir         = JMath::atanTable_.atan2_(x, z);
-					arg.mExistenceLength = mExistDuration;
-					arg.mIsInPiklopedia  = (u8)mInPiklopedia;
-					EnemyBase* obj       = generalEnemyMgr->birth(getEnemyTypeID(), arg);
-					if (obj) {
-						obj->init(nullptr);
-						mFsm->transit(this, KUMACHAPPY_Rebirth, nullptr);
-					}
+
+		} else if (mHealth < mMaxHealth) {
+			mHealth += (mMaxHealth / C_PARMS->mProperParms.mFp12()) * sys->getFrameLength();
+			if (mHealth >= mMaxHealth) {
+				mPellet->kill(nullptr);
+				f32 x = mBaseTrMatrix.mMatrix.structView.zx;
+				f32 z = mBaseTrMatrix.mMatrix.structView.zz;
+				EnemyBirthArg arg;
+				arg.mPosition        = mPosition;
+				arg.mFaceDir         = JMath::atanTable_.atan2_(x, z);
+				arg.mExistenceLength = mExistDuration;
+				arg.mIsInPiklopedia  = (u8)mInPiklopedia;
+				EnemyBase* obj       = generalEnemyMgr->birth(getEnemyTypeID(), arg);
+				if (obj) {
+					obj->init(nullptr);
+					mFsm->transit(this, KUMACHAPPY_Rebirth, nullptr);
 				}
 			}
 		}
-	} else {
-		if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mFp11) {
-			mReviveTimer = 0.0f;
-			mHealth      = 0.0f;
-			lifeGaugeMgr->inactiveLifeGauge(this);
-		}
+	} else if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mFp11) {
+		mReviveTimer = 0.0f;
+		mHealth      = 0.0f;
+		lifeGaugeMgr->inactiveLifeGauge(this);
 	}
 }
 

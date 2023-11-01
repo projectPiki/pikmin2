@@ -117,16 +117,16 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, JIGUMO_Appear, nullptr);
 	EnemyBase::onInit(initArg);
 	fadeEfxHamon();
-	mNextFaceDir      = mFaceDir;
-	_334              = 0;
-	_2F8              = Vector3f(0.0f, 1.0f, 0.0f);
-	_304              = _2F8;
-	mPauseTriggerTime = 0.0f;
-	mPauseTimer       = 0.0f;
-	mDoPauseAnim      = true;
-	mMoveQuat.set(1.0f, 0.0f, 0.0f, 0.0f);
-	mBaseQuat                = mMoveQuat;
-	mSlerpParam              = 0.0f;
+	mNextFaceDir       = mFaceDir;
+	mClimbingTimer     = 0;
+	mCurrentFaceNormal = Vector3f(0.0f, 1.0f, 0.0f);
+	mWantedFaceNormal  = mCurrentFaceNormal;
+	mPauseTriggerTime  = 0.0f;
+	mPauseTimer        = 0.0f;
+	mDoPauseAnim       = true;
+	mCurrRotation.set(1.0f, 0.0f, 0.0f, 0.0f);
+	mDestRotation            = mCurrRotation;
+	mSlerpTime               = 0.0f;
 	mHideAnimPosition        = Vector3f(0.0f);
 	mCarryAngleModifier      = 0.0f;
 	mDoScaleDownMouth        = false;
@@ -134,8 +134,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mPrevReturnCheckPosition = mHomePosition;
 	mReturnTimer             = 0;
 	mEffectPosition          = mPosition;
-	_2F4                     = 1.0f;
-	_34C                     = 0;
+	mClimbingAccel           = 1.0f;
+	mWalkBounceTimer         = 0;
 
 	mBodyJoint = mModel->getJoint("body_joint1");
 	P2ASSERTLINE(151, mBodyJoint); // okay.
@@ -429,7 +429,7 @@ void Obj::inWaterCallback(WaterBox* wb)
  */
 bool Obj::earthquakeCallBack(Creature* source, f32 damage)
 {
-	if (mCanBeEarthquaked && getStateID() != JIGUMO_Flick && _334 == 0) {
+	if (mCanBeEarthquaked && getStateID() != JIGUMO_Flick && mClimbingTimer == 0) {
 		return EnemyBase::earthquakeCallBack(source, damage);
 	}
 
@@ -478,7 +478,7 @@ bool Obj::needShadow()
  */
 void Obj::doSimulationGround(f32 step)
 {
-	if (_334 > 0 && !isEvent(1, EB2_Stunned) && !isEvent(1, EB2_Earthquake)) {
+	if (mClimbingTimer > 0 && !isEvent(1, EB2_Stunned) && !isEvent(1, EB2_Earthquake)) {
 		doSimulationFlying(step);
 		return;
 	}
@@ -498,9 +498,9 @@ void Obj::doSimulationGround(f32 step)
 		dropMass    = 2.5f;
 	}
 
-	if (_2F8.y != 1.0f) {
-		mCurrentVelocity.x -= _2F8.x * horizFactor;
-		mCurrentVelocity.z -= _2F8.z * horizFactor;
+	if (mCurrentFaceNormal.y != 1.0f) {
+		mCurrentVelocity.x -= mCurrentFaceNormal.x * horizFactor;
+		mCurrentVelocity.z -= mCurrentFaceNormal.z * horizFactor;
 	}
 
 	bool isAirborne = (isEvent(1, EB2_Earthquake) || isEvent(1, EB2_Dropping));
@@ -664,7 +664,7 @@ void Obj::walkFunc()
 				mPauseTimer += 1.0f;
 				if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_1 && mPauseTimer > mPauseTriggerTime) {
 					mDoPauseAnim = !mDoPauseAnim; // change from pausing to running, or vice versa
-					if (_334 > 0) {               // if we're climbing (?), don't pause
+					if (mClimbingTimer > 0) {     // if we're climbing (?), don't pause
 						mDoPauseAnim = false;
 					}
 
@@ -717,12 +717,12 @@ void Obj::walkFunc()
 				mPosition.x -= shiftMag * sinf(mFaceDir);
 				mPosition.z -= shiftMag * cosf(mFaceDir);
 
-				if ((f32)_334 != 0.0f) { // idk why this is checking this as a float.
-					_2F4 = 2.0f;
+				if ((f32)mClimbingTimer != 0.0f) { // idk why this is checking this as a float.
+					mClimbingAccel = 2.0f;
 
 				} else {
-					_2F4 = 1.0f;
-					_334 = C_PARMS->_910;
+					mClimbingAccel = 1.0f;
+					mClimbingTimer = C_PARMS->_910;
 				}
 			}
 
@@ -1392,23 +1392,23 @@ void Obj::calcBaseTrMatrix()
 	if (gameSystem && gameSystem->mIsInCave) {
 		f32 minY = mapMgr->getMinY(mPosition);
 		if (mPosition.y > 100.0f + minY) {
-			_334 = 0;
-			_34C = 30;
+			mClimbingTimer   = 0;
+			mWalkBounceTimer = 30;
 		}
 	}
 
-	if (_34C > 0) {
-		_34C--;
-		if (_34C < 0) {
-			_34C = 0;
+	if (mWalkBounceTimer > 0) {
+		mWalkBounceTimer--;
+		if (mWalkBounceTimer < 0) {
+			mWalkBounceTimer = 0;
 		}
 	}
 
 	pos           = mPosition;
 	mEffectOffset = getOffsetForMapCollision();
-
 	pos += mEffectOffset;
 	pos.y += rotX;
+
 	Sys::Sphere sphere;
 	sphere.mRadius   = rotX;
 	sphere.mPosition = pos;
@@ -1417,90 +1417,98 @@ void Obj::calcBaseTrMatrix()
 
 	mapMgr->traceMove(info, frameLen);
 
-	if (getStateID() != JIGUMO_Attack && !_34C && (_334 > 0 || info.mWallTriangle)) {
+	if (getStateID() != JIGUMO_Attack && !mWalkBounceTimer && (mClimbingTimer > 0 || info.mWallTriangle)) {
 		if (info.mWallTriangle && (info.mReflectPosition.x != 0.0f || info.mReflectPosition.y != 0.0f || info.mReflectPosition.z != 0.0f)) {
-			_304 = info.mReflectPosition;
-			_334 = C_PARMS->_910;
+			mWantedFaceNormal = info.mReflectPosition;
+			mClimbingTimer    = C_PARMS->_910;
 		}
 
-		if (_2F8.x != _304.x || _2F8.y != _304.y || _2F8.z != _304.z) {
-			mSlerpParam = 0.0f;
+		if (mCurrentFaceNormal.x != mWantedFaceNormal.x || mCurrentFaceNormal.y != mWantedFaceNormal.y
+		    || mCurrentFaceNormal.z != mWantedFaceNormal.z) {
+			mSlerpTime = 0.0f;
 		}
 
-		if (_304.y < C_PARMS->_900) {
-			_304.y = C_PARMS->_900;
-			_304.normalise();
+		if (mWantedFaceNormal.y < C_PARMS->mFaceNormalMin) {
+			mWantedFaceNormal.y = C_PARMS->mFaceNormalMin;
+			mWantedFaceNormal.normalise();
 		}
-		_2F8         = _304;
-		f32 isMoving = 1.0f;
+
+		mCurrentFaceNormal = mWantedFaceNormal;
+		f32 isMoving       = 1.0f;
 		if (isConstrained()) {
 			isMoving = 0.0f;
 		}
 
-		mPosition.y += _2F4 * (isMoving * C_PARMS->_91C);
+		mPosition.y += mClimbingAccel * (isMoving * C_PARMS->_91C);
 
 	} else {
 		if (info.mBounceTriangle) {
-			_304 = info.mPosition;
+			mWantedFaceNormal = info.mPosition;
 		}
+
 		if (isConstrained()) {
-			_304 = Vector3f(0.0f, 1.0f, 0.0f);
+			mWantedFaceNormal = Vector3f(0.0f, 1.0f, 0.0f);
 		}
 
-		if (_2F8.x != _304.x || _2F8.y != _304.y || _2F8.z != _304.z) {
-			mSlerpParam = 0.0f;
-		}
-		_2F8 = _304;
-		_2F4 *= 0.95f;
-	}
-
-	if (_2F4 < 1.1f) {
-		_2F4 = 1.0f;
-	}
-
-	_334--;
-	if (_334 < 0) {
-		_334 = 0;
-	}
-
-	Vector3f zVec = Vector3f((f32)sin(mFaceDir), 0.0f, (f32)cos(mFaceDir)); // 0x3c
-
-	zVec.normalise();
-
-	Vector3f yVec = _2F8; // 0x30
-	Vector3f xVec;        // 0x24
-	PSVECCrossProduct((Vec*)&yVec, (Vec*)&zVec, (Vec*)&xVec);
-
-	xVec.normalise();
-
-	PSVECCrossProduct((Vec*)&xVec, (Vec*)&yVec, (Vec*)&zVec);
-	zVec.normalise();
-
-	mBaseTrMatrix.setBasis(0, xVec);
-	mBaseTrMatrix.setBasis(1, yVec);
-	mBaseTrMatrix.setBasis(2, zVec);
-
-	mBaseQuat.fromMatrixf(mBaseTrMatrix);
-
-	Quat unusedQuat(mMoveQuat); // why?
-
-	if (mSlerpParam < 1.0f) {
-		mSlerpParam += 0.1f;
-		if (mSlerpParam > 1.0f) {
-			mSlerpParam = 1.0f;
+		if (mCurrentFaceNormal.x != mWantedFaceNormal.x || mCurrentFaceNormal.y != mWantedFaceNormal.y
+		    || mCurrentFaceNormal.z != mWantedFaceNormal.z) {
+			mSlerpTime = 0.0f;
 		}
 
-		mMoveQuat.slerp(mBaseQuat, mSlerpParam, mMoveQuat);
+		mCurrentFaceNormal = mWantedFaceNormal;
+		mClimbingAccel *= 0.95f;
+	}
+
+	if (mClimbingAccel < 1.1f) {
+		mClimbingAccel = 1.0f;
+	}
+
+	mClimbingTimer--;
+	if (mClimbingTimer < 0) {
+		mClimbingTimer = 0;
+	}
+
+	Vector3f direction = Vector3f((f32)sin(mFaceDir), 0.0f, (f32)cos(mFaceDir)); // 0x3c
+	direction.normalise();
+
+	Vector3f angle = mCurrentFaceNormal; // 0x30
+	Vector3f translation;                // 0x24
+
+	PSVECCrossProduct((Vec*)&angle, (Vec*)&direction, (Vec*)&translation);
+	translation.normalise();
+
+	PSVECCrossProduct((Vec*)&translation, (Vec*)&angle, (Vec*)&direction);
+	direction.normalise();
+
+	mBaseTrMatrix.setBasis(0, translation);
+	mBaseTrMatrix.setBasis(1, angle);
+	mBaseTrMatrix.setBasis(2, direction);
+
+	mDestRotation.fromMatrixf(mBaseTrMatrix);
+
+	Quat unusedQuat(mCurrRotation);
+
+	if (mSlerpTime < 1.0f) {
+		mSlerpTime += 0.1f;
+		if (mSlerpTime > 1.0f) {
+			mSlerpTime = 1.0f;
+		}
+
+		mCurrRotation.slerp(mDestRotation, mSlerpTime, mCurrRotation);
 
 	} else {
-		mSlerpParam = 0.0f;
-		mMoveQuat   = mBaseQuat;
+		mSlerpTime    = 0.0f;
+		mCurrRotation = mDestRotation;
 	}
 
-	mMoveQuat.normalise();
-	mBaseTrMatrix.makeQ(mMoveQuat);
+	// Normalize quaternion and set transformation matrix
+	mCurrRotation.normalise();
+	mBaseTrMatrix.makeQ(mCurrRotation);
 	mBaseTrMatrix.setBasis(3, mPosition);
+
+	// Copy transformation matrix to model position matrix
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+
 	mModel->mJ3dModel->mModelScale = *(Vec*)&mScale;
 }
 
@@ -1576,6 +1584,7 @@ FakePiki* Obj::getNearestPikiOrNavi(f32 angle, f32 radius)
 {
 	f32 pikiDist = radius;
 	pikiDist *= radius;
+
 	f32 naviDist = pikiDist;
 	Piki* piki   = EnemyFunc::getNearestPikmin(this, angle, radius, &pikiDist, nullptr);
 
@@ -1606,10 +1615,8 @@ void Obj::effectStart()
 				mEffectPosition   = mPosition;
 				mEffectPosition.y = *mWaterBox->getSeaHeightPtr();
 			}
-		} else {
-			if (mEfxAttack) {
-				mEfxAttack->create(&fxArg);
-			}
+		} else if (mEfxAttack) {
+			mEfxAttack->create(&fxArg);
 		}
 	}
 
@@ -1619,10 +1626,8 @@ void Obj::effectStart()
 			if (mEfxBackW) {
 				mEfxBackW->create(&fxArg);
 			}
-		} else {
-			if (mEfxBack) {
-				mEfxBack->create(&fxArg);
-			}
+		} else if (mEfxBack) {
+			mEfxBack->create(&fxArg);
 		}
 	}
 

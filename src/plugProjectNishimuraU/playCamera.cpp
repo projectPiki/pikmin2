@@ -818,10 +818,8 @@ bool PlayCamera::isModCameraFinished()
 			if (TAU - (anglein - angleout) < (anglein - angleout)) {
 				anglein -= TAU;
 			}
-		} else {
-			if (TAU - (angleout - anglein) < (angleout - anglein)) {
-				anglein += TAU;
-			}
+		} else if (TAU - (angleout - anglein) < (angleout - anglein)) {
+			anglein += TAU;
 		}
 
 		f32 anglediff = anglein - angleout;

@@ -166,12 +166,10 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 		u16 sujiVal = (mInitialDisplayValue / power) % 10;
 		if (mIsBlind) {
 			mCounters[i]->setSuji(mImgResources, 10);
+		} else if (_89) {
+			mCounters[i]->setSuji(mImgResources, (u16)(randFloat() * 9.0f));
 		} else {
-			if (_89) {
-				mCounters[i]->setSuji(mImgResources, (u16)(randFloat() * 9.0f));
-			} else {
-				mCounters[i]->setSuji(mImgResources, sujiVal);
-			}
+			mCounters[i]->setSuji(mImgResources, sujiVal);
 		}
 		J2DPicture* keta = mCounters[i]->mPicture;
 		if (keta) {

@@ -393,11 +393,9 @@ bool ObjSMenuBase::updateFadeIn()
 		mFadeLevel += sys->mDeltaTime;
 		if (mFadeLevel > msBaseVal._08) {
 			ret = true;
-		} else {
-			if (pad->mButton.mButtonDown & mButtonStates[1]) {
-				mCancelToState = MENUCLOSE_R;
-				mExiting       = true;
-			}
+		} else if (pad->mButton.mButtonDown & mButtonStates[1]) {
+			mCancelToState = MENUCLOSE_R;
+			mExiting       = true;
 		}
 		f32 calc2 = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal._08));
 		mMovePos  = 800.0f * calc2;
@@ -407,11 +405,9 @@ bool ObjSMenuBase::updateFadeIn()
 		mFadeLevel += sys->mDeltaTime;
 		if (mFadeLevel > msBaseVal._08) {
 			ret = true;
-		} else {
-			if (pad->mButton.mButtonDown & mButtonStates[0]) {
-				mCancelToState = MENUCLOSE_L;
-				mExiting       = true;
-			}
+		} else if (pad->mButton.mButtonDown & mButtonStates[0]) {
+			mCancelToState = MENUCLOSE_L;
+			mExiting       = true;
 		}
 		f32 calc = (1.0f - og::Screen::calcSmooth0to1(mFadeLevel, msBaseVal._08));
 		mMovePos = -800.0f * calc;

@@ -1469,10 +1469,8 @@ bool TChallengeResult::doUpdate()
 			}
 		} else if (mControls->getButton() & Controller::PRESS_A) {
 			mDemoSpeedUpRate = mDemoSpeedUpMax;
-		} else {
-			if (2.0f < mSpeed) {
-				mDemoSpeedUpRate = mSpeed;
-			}
+		} else if (2.0f < mSpeed) {
+			mDemoSpeedUpRate = mSpeed;
 		}
 	}
 

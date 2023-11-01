@@ -401,15 +401,13 @@ void ObjectParticleActor::emit()
 		if (mGameObject->mModel && mModelJointIndex > -1) {
 			PSMTXCopy(mGameObject->mModel->mJoints[mModelJointIndex].getWorldMatrix()->mMatrix.mtxView, mMatrix.mMatrix.mtxView);
 			pos = mMatrix.getBasis(3);
+		} else if (mModelJointIndex == -1) {
+			PSMTXCopy(mGameObject->mBaseTrMatrix.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
+			pos = mMatrix.getBasis(3);
 		} else {
-			if (mModelJointIndex == -1) {
-				PSMTXCopy(mGameObject->mBaseTrMatrix.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
-				pos = mMatrix.getBasis(3);
-			} else {
-				Vector3f pos(mTranslation2.x, mTranslation2.y, mTranslation2.z);
-				Vector3f vec2(0.0f, moviePlayer->mTransformAngle, 0.0f);
-				mMatrix.makeTR(pos, vec2);
-			}
+			Vector3f pos(mTranslation2.x, mTranslation2.y, mTranslation2.z);
+			Vector3f vec2(0.0f, moviePlayer->mTransformAngle, 0.0f);
+			mMatrix.makeTR(pos, vec2);
 		}
 	} else {
 		if (mModelJointIndex == -2)

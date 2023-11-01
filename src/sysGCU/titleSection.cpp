@@ -417,10 +417,8 @@ void Section::doUpdateOmake()
 			}
 			mThpPlayer->load((Game::THPPlayer::EMovieIndex)mMovieIndex);
 			mThpPlayer->pause();
-		} else {
-			if (mThpPlayer->isFinishLoading()) {
-				mThpPlayer->play();
-			}
+		} else if (mThpPlayer->isFinishLoading()) {
+			mThpPlayer->play();
 		}
 		mThpPlayer->update();
 		if (mThpPlayer->isFinishLoading()) {

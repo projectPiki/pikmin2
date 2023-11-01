@@ -1169,23 +1169,19 @@ void Obj::walkFunc()
 		f32 ten     = 10.0f;
 		if (collPos > 0.1f) {
 			mPelletCarryVelocity.x = -ten;
+		} else if (collPos < -0.1f) {
+			mPelletCarryVelocity.x = ten;
 		} else {
-			if (collPos < -0.1f) {
-				mPelletCarryVelocity.x = ten;
-			} else {
-				mPelletCarryVelocity.x *= 0.9f;
-			}
+			mPelletCarryVelocity.x *= 0.9f;
 		}
 		mCurrentVelocity.x += mPelletCarryVelocity.x;
 		f32 collPosZ = mCollisionPosition.z;
 		if (collPosZ > 0.1f) {
 			mPelletCarryVelocity.z = -ten;
+		} else if (collPosZ < -0.1f) {
+			mPelletCarryVelocity.z = ten;
 		} else {
-			if (collPosZ < -0.1f) {
-				mPelletCarryVelocity.z = ten;
-			} else {
-				mPelletCarryVelocity.z *= 0.9f;
-			}
+			mPelletCarryVelocity.z *= 0.9f;
 		}
 		mCurrentVelocity.z += mPelletCarryVelocity.z;
 	}

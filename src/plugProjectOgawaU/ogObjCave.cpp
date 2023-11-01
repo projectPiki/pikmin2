@@ -157,13 +157,11 @@ void ObjCave::commonUpdate()
 				mTotalPokoTimer = 0.0f;
 			}
 
-		} else {
-			if (mDisp->mDataGame.mPokoCount != mPokos) {
-				mTotalPokoActive = true;
-				mPokos           = mDisp->mDataGame.mPokoCount;
-				mTotalPoko->setTotalPoko(mPokos);
-				mTotalPokoTimer = 0.0f;
-			}
+		} else if (mDisp->mDataGame.mPokoCount != mPokos) {
+			mTotalPokoActive = true;
+			mPokos           = mDisp->mDataGame.mPokoCount;
+			mTotalPoko->setTotalPoko(mPokos);
+			mTotalPokoTimer = 0.0f;
 		}
 
 		if (mTotalPokoActive) {

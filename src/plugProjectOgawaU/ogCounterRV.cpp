@@ -670,12 +670,10 @@ void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
 		temp     = u16((mInitialDisplayValue / temp) % 10);
 		if (mIsBlind) {
 			mCounters[i]->setSuji(mImgResources, 10);
+		} else if (_89) {
+			mCounters[i]->setSuji(mImgResources, (u16)(randFloat() * 9.0f));
 		} else {
-			if (_89) {
-				mCounters[i]->setSuji(mImgResources, (u16)(randFloat() * 9.0f));
-			} else {
-				mCounters[i]->setSuji(mImgResources, temp);
-			}
+			mCounters[i]->setSuji(mImgResources, temp);
 		}
 
 		if (i < count) {

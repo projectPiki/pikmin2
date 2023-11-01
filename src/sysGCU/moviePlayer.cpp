@@ -635,9 +635,8 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			if (mDemoState == 2 || mDemoState == 1) {
 				PSMCancelToPauseOffMainBgm();
 			}
-		} else {
-			if (mFadeTimer < 0.0f)
-				mDemoState = 0;
+		} else if (mFadeTimer < 0.0f) {
+			mDemoState = 0;
 		}
 		break;
 	}

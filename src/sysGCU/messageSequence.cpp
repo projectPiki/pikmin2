@@ -246,15 +246,13 @@ bool TSequenceProcessor::do_isReady()
 		float frameCount = 1.0f;
 		if (flags & 8) {
 			frameCount = 10.0f;
-		} else {
-			if ((mController1 && (mController1->mButton.mButtonDown & PAD_BUTTON_B))
-			    || (mController2 && (mController2->mButton.mButtonDown & PAD_BUTTON_B))) {
-				doFastForwardSE();
-				mFlags.typeView |= 8;
-			} else if ((mController1 && (mController1->getButton() & PAD_BUTTON_A))
-			           || (mController2 && (mController2->getButton() & PAD_BUTTON_A))) {
-				frameCount = 2.5f;
-			}
+		} else if ((mController1 && (mController1->mButton.mButtonDown & PAD_BUTTON_B))
+		           || (mController2 && (mController2->mButton.mButtonDown & PAD_BUTTON_B))) {
+			doFastForwardSE();
+			mFlags.typeView |= 8;
+		} else if ((mController1 && (mController1->getButton() & PAD_BUTTON_A))
+		           || (mController2 && (mController2->getButton() & PAD_BUTTON_A))) {
+			frameCount = 2.5f;
 		}
 
 		_50 = -((frameCount * sys->mDeltaTime) - _50);

@@ -379,22 +379,20 @@ bool ObjKantei::doUpdate()
 	case Kantei_Idle:
 		if (mIdleStateTimer > 0.0f) {
 			mIdleStateTimer -= sys->mDeltaTime;
-		} else {
-			if (pad && pad->mButton.mButtonDown & Controller::PRESS_A
-			    || (mDisp->mSecondaryController && mDisp->mSecondaryController->mButton.mButtonDown & Controller::PRESS_A)) {
-				mShipMessageBoxID = mDisp->mPelletMessageID;
-				// if the tagID exists, open ship message box, unless in E3 mode
-				if (mShipMessageBoxID != 0 && !Game::gGameConfig.mParms.mE3version.mData) {
-					u32 tagid  = 0;
-					u32 tagid2 = 0;
-					P2JME::convertU64ToMessageID(mShipMessageBoxID, &tagid, &tagid2);
-					mTControl->setMessageID(tagid, tagid2);
-					mInTextBox = true;
-					mState     = Kantei_MessageBox;
+		} else if (pad && pad->mButton.mButtonDown & Controller::PRESS_A
+		           || (mDisp->mSecondaryController && mDisp->mSecondaryController->mButton.mButtonDown & Controller::PRESS_A)) {
+			mShipMessageBoxID = mDisp->mPelletMessageID;
+			// if the tagID exists, open ship message box, unless in E3 mode
+			if (mShipMessageBoxID != 0 && !Game::gGameConfig.mParms.mE3version.mData) {
+				u32 tagid  = 0;
+				u32 tagid2 = 0;
+				P2JME::convertU64ToMessageID(mShipMessageBoxID, &tagid, &tagid2);
+				mTControl->setMessageID(tagid, tagid2);
+				mInTextBox = true;
+				mState     = Kantei_MessageBox;
 
-				} else {
-					finishKantei();
-				}
+			} else {
+				finishKantei();
 			}
 		}
 		break;

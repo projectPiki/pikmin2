@@ -118,22 +118,20 @@ void ObjectGameActor::update()
 	for (int i = 0; i < mCurrCommandCount; i++) {
 		if (mCommandIDs[i] >= 100) {
 			mGameObject->movieUserCommand(mCommandIDs[i], mMoviePlayer);
-		} else {
-			if (mCommandIDs[i] == 0) {
-				mGameObject->movieStartAnimation(mMovieCommandData[i]);
-			} else if (mCommandIDs[i] == 1) {
-				void* file = mActorArchive->getIdxResource(mMovieCommandData[i]);
-				if (file) {
-					sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
-					SysShape::AnimInfo* anim = new SysShape::AnimInfo;
-					anim->attach(mGameObject->mModel->mJ3dModel->mModelData, file);
-					mGameObject->movieStartDemoAnimation(anim);
-					mGameObject->setMovieMotion(true);
-					if (mMoviePlayer && mMoviePlayer->isFlag(MVP_IsFinished)) {
-						mGameObject->movieSetAnimationLastFrame();
-					}
-					sys->endChangeCurrentHeap();
+		} else if (mCommandIDs[i] == 0) {
+			mGameObject->movieStartAnimation(mMovieCommandData[i]);
+		} else if (mCommandIDs[i] == 1) {
+			void* file = mActorArchive->getIdxResource(mMovieCommandData[i]);
+			if (file) {
+				sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
+				SysShape::AnimInfo* anim = new SysShape::AnimInfo;
+				anim->attach(mGameObject->mModel->mJ3dModel->mModelData, file);
+				mGameObject->movieStartDemoAnimation(anim);
+				mGameObject->setMovieMotion(true);
+				if (mMoviePlayer && mMoviePlayer->isFlag(MVP_IsFinished)) {
+					mGameObject->movieSetAnimationLastFrame();
 				}
+				sys->endChangeCurrentHeap();
 			}
 		}
 	}
@@ -158,11 +156,9 @@ void ObjectGameActor::update()
 			mGameObject->movieSetTranslation(mTranslation, 0.0f);
 			moviePlayer->unsuspend(1, false);
 			mSRTCommand = 0;
-		} else {
-			if (mGameObject->movieGotoPosition(mTranslation)) {
-				moviePlayer->unsuspend(1, false);
-				mSRTCommand = 0;
-			}
+		} else if (mGameObject->movieGotoPosition(mTranslation)) {
+			moviePlayer->unsuspend(1, false);
+			mSRTCommand = 0;
 		}
 		break;
 	case 3:

@@ -616,10 +616,8 @@ bool Mgr::commandSaveHeader()
 			if (!isErrorOccured()) {
 				result = true;
 			}
-		} else {
-			if (!isErrorOccured()) {
-				setInsideStatusFlag(INSIDESTATUS_Unk3);
-			}
+		} else if (!isErrorOccured()) {
+			setInsideStatusFlag(INSIDESTATUS_Unk3);
 		}
 	}
 	return result;

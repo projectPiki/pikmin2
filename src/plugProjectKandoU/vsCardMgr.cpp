@@ -730,12 +730,10 @@ void VsGame::CardMgr::SlotMachine::update()
 				mSpinState = SPIN_DECELERATE_END;
 				_2C        = 0.0f;
 			}
-		} else {
-			if (mSpinSpeed > -0.44f * PI) {
-				mSpinAccel = 0.0f;
-				mSpinState = SPIN_DECELERATE_END;
-				_2C        = 0.0f;
-			}
+		} else if (mSpinSpeed > -0.44f * PI) {
+			mSpinAccel = 0.0f;
+			mSpinState = SPIN_DECELERATE_END;
+			_2C        = 0.0f;
 		}
 		break;
 	case SPIN_DECELERATE_END:                                              // on decelerate end

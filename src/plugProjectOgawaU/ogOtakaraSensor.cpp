@@ -272,20 +272,18 @@ void OtakaraSensor::calcGrayColor()
 				mIsPoweredOff = true;
 				mSetGrayTimer = 1.5f;
 			}
+		} else if (mDoIncNoise) {
+			mNoiseLevel += 0.05f;
+			if (mNoiseLevel > 1.0f) {
+				mNoiseLevel = 1.0f;
+			}
+			if (mState != 0) {
+				mDoIncNoise = false;
+			}
 		} else {
-			if (mDoIncNoise) {
-				mNoiseLevel += 0.05f;
-				if (mNoiseLevel > 1.0f) {
-					mNoiseLevel = 1.0f;
-				}
-				if (mState != 0) {
-					mDoIncNoise = false;
-				}
-			} else {
-				mNoiseLevel -= 0.05f;
-				if (mNoiseLevel < 0.0f) {
-					mNoiseLevel = 0.0f;
-				}
+			mNoiseLevel -= 0.05f;
+			if (mNoiseLevel < 0.0f) {
+				mNoiseLevel = 0.0f;
 			}
 		}
 

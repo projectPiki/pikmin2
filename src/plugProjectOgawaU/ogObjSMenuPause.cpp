@@ -381,17 +381,13 @@ bool ObjSMenuPause::doUpdate()
 	commonUpdate();
 	if (mExiting) {
 		ret = true;
-	} else {
-		if (mState == MENUSTATE_Default) {
-			if (mMenuState == PAUSEMENU_Normal && !mMenuPause->mIsCursorActive) {
-				mMenuPause->startCursor(0.2f);
-			}
-			ret = menu();
-		} else {
-			if (mMenuPause->mIsCursorActive) {
-				mMenuPause->killCursor();
-			}
+	} else if (mState == MENUSTATE_Default) {
+		if (mMenuState == PAUSEMENU_Normal && !mMenuPause->mIsCursorActive) {
+			mMenuPause->startCursor(0.2f);
 		}
+		ret = menu();
+	} else if (mMenuPause->mIsCursorActive) {
+		mMenuPause->killCursor();
 	}
 	return ret;
 }

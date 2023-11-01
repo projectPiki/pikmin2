@@ -324,11 +324,10 @@ void TinyPikminMgr::init()
 			color = TinyPikmin::Purple;
 		} else if (!changecolor) {
 			color = randFloat() * 4.0f;
-		} else {
-			if (!changecolor) {
-				color = randFloat() * 5.0f;
-			}
+		} else if (!changecolor) {
+			color = randFloat() * 5.0f;
 		}
+
 		f32 x;
 		if (i == 0) {
 			x = 0.0f;
@@ -1525,10 +1524,8 @@ void BootSection::updateNintendoLogo()
 	if (!Game::gGameConfig.mParms.mNintendoVersion.mData && sys->mRenderMode != System::NTSC_Progressive) {
 		if ((OSGetProgressiveMode() == 1 || mController->mButton.mButton & Controller::PRESS_B) && VIGetDTVStatus() == 1) {
 			mDoOpenProgressive = true;
-		} else {
-			if (VIGetDTVStatus() != 1) {
-				OSSetProgressiveMode(0);
-			}
+		} else if (VIGetDTVStatus() != 1) {
+			OSSetProgressiveMode(0);
 		}
 	}
 

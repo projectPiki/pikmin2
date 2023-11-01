@@ -2148,15 +2148,13 @@ void ZukanState::exec(SingleGameSection* game)
 			disp.mPrevSelection = &_114;
 			Screen::gGame2DMgr->open_ZukanItem(disp);
 			startWipe(0.0f);
-		} else {
-			if (mDvdThread.mMode == 2) {
-				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-				PSSystem::checkSceneMgr(mgr);
-				PSM::Scene_Objects* scene = static_cast<PSM::Scene_Objects*>(mgr->getChildScene());
-				scene->adaptObjMgr();
-				mDoDraw = true;
-				gameSystem->mTimeMgr->resetFlag(1);
-			}
+		} else if (mDvdThread.mMode == 2) {
+			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+			PSSystem::checkSceneMgr(mgr);
+			PSM::Scene_Objects* scene = static_cast<PSM::Scene_Objects*>(mgr->getChildScene());
+			scene->adaptObjMgr();
+			mDoDraw = true;
+			gameSystem->mTimeMgr->resetFlag(1);
 		}
 
 		return;
@@ -5331,13 +5329,11 @@ void ZukanState::dvdloadB_common()
 	if (mCurrObjHeap) {
 		if (generalEnemyMgr) {
 			clearHeapB_teki();
+		} else if (mCurrentPellet) {
+			clearHeapB_pellet();
 		} else {
-			if (mCurrentPellet) {
-				clearHeapB_pellet();
-			} else {
-				clearHeapB_common();
-				mMainHeap->becomeCurrentHeap();
-			}
+			clearHeapB_common();
+			mMainHeap->becomeCurrentHeap();
 		}
 	}
 	mHeapSize = mMainHeap->getFreeSize();

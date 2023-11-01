@@ -377,27 +377,25 @@ bool TZukanBase::doUpdate()
 			}
 			mIsBigWindowOpened = false;
 			mRequestTimer      = 0;
-		} else {
-			if (isListShow(mIndexPaneList[mCurrentSelect]->getIndex()) && mIndexPaneList[mCurrentSelect]->getIndex() == mCurrIndex) {
-				if (!mIsEffectRequired) {
-					if (mRequestTimer > mRequestTimerMax) {
-						mState = 1;
-						if (mIsSection) {
-							mIsEffectRequired = true;
-						}
-					} else {
-						mRequestTimer++;
+		} else if (isListShow(mIndexPaneList[mCurrentSelect]->getIndex()) && mIndexPaneList[mCurrentSelect]->getIndex() == mCurrIndex) {
+			if (!mIsEffectRequired) {
+				if (mRequestTimer > mRequestTimerMax) {
+					mState = 1;
+					if (mIsSection) {
+						mIsEffectRequired = true;
 					}
+				} else {
+					mRequestTimer++;
 				}
-			} else {
-				mCurrIndex        = mIndexPaneList[mCurrentSelect]->getIndex();
-				mIsEffectRequired = false;
-				if (mIsBigWindowOpened) {
-					PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
-				}
-				mIsBigWindowOpened = false;
-				mRequestTimer      = 0;
 			}
+		} else {
+			mCurrIndex        = mIndexPaneList[mCurrentSelect]->getIndex();
+			mIsEffectRequired = false;
+			if (mIsBigWindowOpened) {
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
+			}
+			mIsBigWindowOpened = false;
+			mRequestTimer      = 0;
 		}
 	}
 
@@ -1945,11 +1943,9 @@ void TZukanBase::windowOpenClose(u64 mesg)
 			mPaneMessageDemo->setMsgID(mesg);
 			mMessageBoxBGAlpha = 0;
 			mWindow->windowOpen();
-		} else {
-			if (flag != 3) {
-				PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
-				mWindow->windowClose();
-			}
+		} else if (flag != 3) {
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+			mWindow->windowClose();
 		}
 	}
 }
@@ -5066,12 +5062,10 @@ void TItemZukan::doUpdateOut()
 			if (mDemoStateButtonAlpha < 0.0f) {
 				mDemoStateButtonAlpha = 0.0f;
 			}
+		} else if ((f32)mEfxTimer == 0.0f) {
+			mDemoStateButtonAlpha = 0.0f;
 		} else {
-			if ((f32)mEfxTimer == 0.0f) {
-				mDemoStateButtonAlpha = 0.0f;
-			} else {
-				mDemoStateButtonAlpha = 1.0f;
-			}
+			mDemoStateButtonAlpha = 1.0f;
 		}
 		mYButtonAlpha = mDemoStateButtonAlpha;
 		mYButtonPane->setAlpha(mDemoStateButtonAlpha * 255.0f);

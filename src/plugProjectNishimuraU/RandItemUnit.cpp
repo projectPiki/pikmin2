@@ -258,15 +258,13 @@ MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 					}
 				}
 			}
-		} else {
-			if (!strncmp(currMapNode->getUnitName(), "item", 4)) {
-				if (!isItemSetDone(currMapNode, nullptr)) {
-					mapNodeList[counter]   = currMapNode;
-					baseGenList[counter]   = nullptr;
-					nodeScoreList[counter] = (currMapNode->getNodeScore() * 10) + 1;
-					totalScore += nodeScoreList[counter];
-					counter++;
-				}
+		} else if (!strncmp(currMapNode->getUnitName(), "item", 4)) {
+			if (!isItemSetDone(currMapNode, nullptr)) {
+				mapNodeList[counter]   = currMapNode;
+				baseGenList[counter]   = nullptr;
+				nodeScoreList[counter] = (currMapNode->getNodeScore() * 10) + 1;
+				totalScore += nodeScoreList[counter];
+				counter++;
 			}
 		}
 	}
@@ -323,19 +321,17 @@ MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 				}
 			}
 
-		} else {
-			if (!strncmp(currMapNode->getUnitName(), "item", 4)) {
-				int currScore = currMapNode->getNodeScore() + 1;
-				if (!isItemSetDone(currMapNode, nullptr)) {
-					if (currScore >= totalScore) {
-						if (currScore > totalScore) {
-							counter    = 0;
-							totalScore = currScore;
-						}
-						mapNodeList[counter] = currMapNode;
-						baseGenList[counter] = nullptr;
-						counter++;
+		} else if (!strncmp(currMapNode->getUnitName(), "item", 4)) {
+			int currScore = currMapNode->getNodeScore() + 1;
+			if (!isItemSetDone(currMapNode, nullptr)) {
+				if (currScore >= totalScore) {
+					if (currScore > totalScore) {
+						counter    = 0;
+						totalScore = currScore;
 					}
+					mapNodeList[counter] = currMapNode;
+					baseGenList[counter] = nullptr;
+					counter++;
 				}
 			}
 		}

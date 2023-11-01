@@ -121,7 +121,7 @@ struct Parms : public EnemyParmsBase {
 		_8FC                   = 0;
 		_8FD                   = 1;
 		mIsPressKill           = false;
-		_900                   = 0.75f;
+		mFaceNormalMin         = 0.75f;
 		mTurnWeight            = 20.0f;
 		mTurnModifier          = 0.05f;
 		mTiltDrag              = 30.0f;
@@ -152,7 +152,7 @@ struct Parms : public EnemyParmsBase {
 	u8 _8FC;                     // _8FC, unknown
 	u8 _8FD;                     // _8FD, unknown
 	bool mIsPressKill;           // _8FE, kills if hit from above with a piki, like a kochappy
-	f32 _900;                    // _900
+	f32 mFaceNormalMin;          // _900
 	f32 mTurnWeight;             // _904
 	f32 mTurnModifier;           // _908
 	f32 mTiltDrag;               // _90C, modify XZ speed if not perfectly horizontal (going up or down ledges)
@@ -257,19 +257,19 @@ struct Obj : public EnemyBase {
 	bool mDoScaleDownMouth;            // _2E9, just before swallowing piki, reduce mouth matrix size to 1%
 	f32 mNextFaceDir;                  // _2EC, flips face direction when hiding/appearing and when missing an attack
 	f32 mBodyRadius;                   // _2F0, scales with crawmad size, changes with state
-	f32 _2F4;                          // _2F4
-	Vector3f _2F8;                     // _2F8
-	Vector3f _304;                     // _304
-	Quat mMoveQuat;                    // _310
-	Quat mBaseQuat;                    // _320
-	f32 mSlerpParam;                   // _330, weighting parameter used by slerp calc when adjusting base Tr matrix
-	int _334;                          // _334
+	f32 mClimbingAccel;                // _2F4
+	Vector3f mCurrentFaceNormal;       // _2F8, used for the crawmad's crawling, when up a slope it rotates up/down
+	Vector3f mWantedFaceNormal;        // _304
+	Quat mCurrRotation;                // _310
+	Quat mDestRotation;                // _320
+	f32 mSlerpTime;                    // _330, weighting parameter used by slerp calc when adjusting base Tr matrix
+	int mClimbingTimer;                // _334
 	f32 mPauseTimer;                   // _338, timer for pausing when carrying back piki
 	f32 mPauseTriggerTime;             // _33C, time to pause when carrying back piki (random between 0 and 35 frames)
 	bool mDoPauseAnim;                 // _340, alternates pausing and moving when carrying back piki
 	f32 mCarryAngleModifier;           // _344
 	u8 _348[0x4];                      // _348, unknown
-	int _34C;                          // _34C
+	int mWalkBounceTimer;              // _34C
 	Vector3f mPrevReturnCheckPosition; // _350, stores every 60 frames to help check if we're stuck
 	int mReturnTimer;                  // _35C, checks every 60 frames if we're stuck
 	u16 mKamuJointIdx;                 // _360

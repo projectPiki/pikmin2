@@ -921,23 +921,21 @@ f32 J2DGetKeyFrameInterpolation(f32 p1, J3DAnmKeyTableBase* table, T* values)
 				}
 				return J2DHermiteInterpolation<T>(p1, &values[0], &values[1], &values[2], &values[3], &values[4], &values[5]);
 			}
+		} else if (values[(table->mMaxFrame - 1) * 4] <= p1) {
+			return values[(table->mMaxFrame - 1) * 4 + 1];
 		} else {
-			if (values[(table->mMaxFrame - 1) * 4] <= p1) {
-				return values[(table->mMaxFrame - 1) * 4 + 1];
-			} else {
-				u32 tmp = table->mMaxFrame;
-				while (tmp > 1) {
-					u32 halfTmp = tmp / 2;
-					u32 upIdx   = halfTmp * 4;
-					if (p1 >= values[upIdx]) {
-						values = values + upIdx;
-						tmp -= halfTmp;
-					} else {
-						tmp = halfTmp;
-					}
+			u32 tmp = table->mMaxFrame;
+			while (tmp > 1) {
+				u32 halfTmp = tmp / 2;
+				u32 upIdx   = halfTmp * 4;
+				if (p1 >= values[upIdx]) {
+					values = values + upIdx;
+					tmp -= halfTmp;
+				} else {
+					tmp = halfTmp;
 				}
-				return J2DHermiteInterpolation<T>(p1, &values[0], &values[1], &values[3], &values[4], &values[5], &values[6]);
 			}
+			return J2DHermiteInterpolation<T>(p1, &values[0], &values[1], &values[3], &values[4], &values[5], &values[6]);
 		}
 	}
 }
