@@ -72,6 +72,14 @@ struct TOption : public TScreenBase {
 	void loadResource();
 	void setController(Controller*);
 
+	inline bool isClosed()
+	{
+		if (mCounterOpen == 0) {
+			return true;
+		}
+		return false;
+	}
+
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
 	Controller* mController;                   // _00C

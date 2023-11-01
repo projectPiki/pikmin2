@@ -245,7 +245,7 @@ bool TOption::doUpdateStateOpen()
 		mCounterOpen--;
 	}
 	mMainScreen->update();
-	if (mAnimOpenScreen.isFinish() && mCounterOpen == 0) {
+	if (mAnimOpenScreen.isFinish() && isClosed()) {
 		return true;
 	}
 	return false;
@@ -457,48 +457,10 @@ bool TOption::doUpdateStateClose()
 		mCounterOpen--;
 	}
 
-	if (!mCounterOpen) {
+	if (isClosed()) {
 		return true;
 	}
 	return false;
-
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0x10c(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0xf8(r31)
-cmpwi    r0, 0
-beq      lbl_803CC4E0
-lwz      r3, 0xfc(r31)
-cmplwi   r3, 0
-beq      lbl_803CC4E0
-addi     r0, r3, -1
-stw      r0, 0xfc(r31)
-
-lbl_803CC4E0:
-lwz      r0, 0xfc(r31)
-cmplwi   r0, 0
-bne      lbl_803CC4F4
-li       r3, 1
-b        lbl_803CC4F8
-
-lbl_803CC4F4:
-li       r3, 0
-
-lbl_803CC4F8:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*

@@ -1472,7 +1472,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebi3DGraph", True],
             ["plugProjectEbisawaU/ebiGeometry", True],
             ["plugProjectEbisawaU/ebi2DGraph", False], 
-            "plugProjectEbisawaU/ebiScreenOption",
+            ["plugProjectEbisawaU/ebiScreenOption", True],
             ["plugProjectEbisawaU/ebiScreenProgre", True],
             ["plugProjectEbisawaU/ebiOptionMgr", False], 
             "plugProjectEbisawaU/ebi2DCallBack",

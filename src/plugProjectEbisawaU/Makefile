@@ -18,7 +18,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebi3DGraph.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiGeometry.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DGraph.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOption.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOption.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenProgre.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOptionMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DCallBack.o\
