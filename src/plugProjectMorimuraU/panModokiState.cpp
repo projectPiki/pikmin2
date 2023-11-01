@@ -615,11 +615,12 @@ void StateStick::exec(EnemyBase* enemy)
 
 	// this needs fixing
 	Vector3f targetPos = target->getPosition();
-	f32 z              = targetPos.z - enemy->getPosition().z;
-	f32 x              = targetPos.x - enemy->getPosition().x;
-	f32 stickRadius    = target->getStickRadius();
-	f32 dist           = x * x + z * z;
-	if (dist < SQUARE(1.2f * OBJ(enemy)->mCarrySizeDiff + stickRadius)) {
+	Vector2f sep(targetPos.x - enemy->getPosition().x, targetPos.z - enemy->getPosition().z);
+	f32 dist        = sep.sqrMagnitude();
+	f32 stickRadius = target->getStickRadius();
+	stickRadius += 1.2f * OBJ(enemy)->mCarrySizeDiff;
+	stickRadius *= stickRadius;
+	if (dist < stickRadius) {
 		if (OBJ(enemy)->isTargetable(target) && target->isSlotFree(9999)) {
 			enemy->mCurrentVelocity = Vector3f(0.0f);
 			enemy->mTargetVelocity  = Vector3f(0.0f);
@@ -631,11 +632,10 @@ void StateStick::exec(EnemyBase* enemy)
 			transit(enemy, PANMODOKI_Walk, nullptr);
 		}
 	} else {
-		EnemyFunc::walkToTarget(enemy, targetPos, CG_PARMS(enemy)->mGeneral.mMoveSpeed.mValue / 2,
-		                        CG_PROPERPARMS(enemy).mFastTurnSpeed.mValue, CG_PROPERPARMS(enemy).mMaxFastTurnAngle.mValue);
+		EnemyFunc::walkToTarget(enemy, targetPos, 0.5f * CG_PARMS(enemy)->mGeneral.mMoveSpeed(), CG_PROPERPARMS(enemy).mFastTurnSpeed(),
+		                        CG_PROPERPARMS(enemy).mMaxFastTurnAngle());
 
-		// this needs fixing (surprise surprise)
-		enemy->changeFaceDir(targetPos);
+		enemy->turnToTarget2(targetPos, CG_PROPERPARMS(enemy).mFastTurnSpeed(), CG_PROPERPARMS(enemy).mMaxFastTurnAngle());
 
 		_10++;
 		f32 rad = 2.5f * OBJ(enemy)->mCarrySizeDiff;
@@ -643,256 +643,6 @@ void StateStick::exec(EnemyBase* enemy)
 			transit(enemy, OBJ(enemy)->mNextState, nullptr);
 		}
 	}
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stfd     f29, 0x70(r1)
-	psq_st   f29, 120(r1), 0, qr0
-	stfd     f28, 0x60(r1)
-	psq_st   f28, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	mr       r30, r4
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	lfs      f1, 0x200(r4)
-	mr       r29, r3
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8034E1B0
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034E4C0
-
-lbl_8034E1B0:
-	mr       r3, r30
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	or.      r31, r3, r3
-	bne      lbl_8034E1E4
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034E4C0
-
-lbl_8034E1E4:
-	mr       r4, r31
-	addi     r3, r1, 0x38
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x38(r1)
-	mr       r4, r30
-	lfs      f1, 0x3c(r1)
-	addi     r3, r1, 0x20
-	lfs      f0, 0x40(r1)
-	stfs     f2, 0x44(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r30
-	lfs      f1, 0x28(r1)
-	lwz      r12, 0(r30)
-	addi     r3, r1, 0x2c
-	lfs      f0, 0x4c(r1)
-	lwz      r12, 8(r12)
-	fsubs    f31, f0, f1
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x35c(r31)
-	fmuls    f2, f31, f31
-	lfs      f1, 0x2c(r1)
-	lfs      f0, 0x44(r1)
-	lfs      f4, 0xa0(r3)
-	fsubs    f3, f0, f1
-	lfs      f1, lbl_8051E430@sda21(r2)
-	lfs      f0, 0x32c(r30)
-	fmadds   f4, f1, f0, f4
-	fmadds   f31, f3, f3, f2
-	fmuls    f4, f4, f4
-	fcmpo    cr0, f31, f4
-	bge      lbl_8034E34C
-	mr       r3, r30
-	mr       r4, r31
-	bl       isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034E328
-	mr       r3, r31
-	li       r4, 0x270f
-	lwz      r12, 0(r31)
-	lwz      r12, 0x168(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034E328
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	mr       r3, r30
-	mr       r4, r31
-	li       r5, 0x270f
-	stfs     f0, 0x1c8(r30)
-	stfs     f0, 0x1cc(r30)
-	stfs     f0, 0x1d0(r30)
-	stfs     f0, 0x1d4(r30)
-	stfs     f0, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	bl       startStick__Q24Game8CreatureFPQ24Game8Creatures
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x148(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	li       r4, 0
-	bl       setCarryDir__Q34Game13PanModokiBase3ObjFb
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034E4C0
-
-lbl_8034E328:
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8034E4C0
-
-lbl_8034E34C:
-	lwz      r5, 0xc0(r30)
-	mr       r3, r30
-	lfs      f1, lbl_8051E434@sda21(r2)
-	addi     r4, r1, 0x44
-	lfs      f0, 0x2e4(r5)
-	lfs      f2, 0x86c(r5)
-	fmuls    f1, f1, f0
-	lfs      f3, 0x894(r5)
-	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff" mr
-r4, r30 lwz      r5, 0xc0(r30) lwz      r12, 0(r30) addi     r3, r1, 0x14 lfs
-f29, 0x894(r5) lwz      r12, 8(r12) lfs      f30, 0x86c(r5) mtctr    r12 bctrl
-	lfs      f5, 0x14(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x1c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0x44(r1)
-	lfs      f0, 0x4c(r1)
-	lfs      f4, 0x18(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 8(r1)
-	stfs     f4, 0xc(r1)
-	stfs     f3, 0x10(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r30)
-	fmr      f28, f1
-	mr       r3, r30
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f28
-	bl       angDist__Fff
-	fmuls    f30, f1, f30
-	lfs      f0, lbl_8051E43C@sda21(r2)
-	lfs      f1, lbl_8051E438@sda21(r2)
-	fmuls    f0, f0, f29
-	fabs     f2, f30
-	fmuls    f1, f1, f0
-	frsp     f0, f2
-	fcmpo    cr0, f0, f1
-	ble      lbl_8034E42C
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	fcmpo    cr0, f30, f0
-	ble      lbl_8034E428
-	fmr      f30, f1
-	b        lbl_8034E42C
-
-lbl_8034E428:
-	fneg     f30, f1
-
-lbl_8034E42C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f30, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r30)
-	lfs      f1, lbl_8051E440@sda21(r2)
-	lfs      f0, 0x1fc(r30)
-	stfs     f0, 0x1a8(r30)
-	lwz      r3, 0x10(r29)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r29)
-	lfs      f0, 0x32c(r30)
-	lwz      r0, 0x10(r29)
-	fmuls    f0, f1, f0
-	cmpwi    r0, 0xc8
-	bgt      lbl_8034E4A0
-	fmuls    f0, f0, f0
-	fcmpo    cr0, f31, f0
-	bgt      lbl_8034E4A0
-	cmplwi   r31, 0
-	beq      lbl_8034E4A0
-	mr       r3, r30
-	mr       r4, r31
-	bl       isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034E4C0
-
-lbl_8034E4A0:
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r6, 0
-	lwz      r5, 0x344(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8034E4C0:
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	psq_l    f29, 120(r1), 0, qr0
-	lfd      f29, 0x70(r1)
-	psq_l    f28, 104(r1), 0, qr0
-	lfd      f28, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r0, 0xa4(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
 }
 
 /*
@@ -964,9 +714,9 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 		transit(enemy, PANMODOKI_Dead, nullptr);
 
 	} else {
-		Vector3f enemyPos = enemy->getPosition();
-		Vector3f diff     = enemy->mHomePosition - enemyPos;
-		if (FABS(diff.x) < 2.0f && FABS(diff.z) < 2.0f) {
+		Vector3f diff = enemy->mHomePosition - enemy->getPosition();
+
+		if (absF(diff.x) < 2.0f && absF(diff.z) < 2.0f) {
 			Vector3f homePos = enemy->mHomePosition;
 			enemy->onSetPosition(homePos);
 			if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_1) {
@@ -974,7 +724,7 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 			}
 
 		} else {
-			enemy->turnToTarget(_10, CG_PARMS(enemy)->mGeneral.mTurnSpeed(), CG_PARMS(enemy)->mGeneral.mMaxTurnAngle());
+			enemy->turnToTarget2(_10, CG_PARMS(enemy)->mGeneral.mTurnSpeed(), CG_PARMS(enemy)->mGeneral.mMaxTurnAngle());
 			diff *= 0.05f;
 			enemy->forceMovePosition(diff);
 		}
