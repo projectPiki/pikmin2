@@ -108,7 +108,7 @@ void StateWait::exec(EnemyBase* enemy)
 		                                                     nullptr, nullptr, nullptr);
 		if (target) {
 			frog->mTargetCreature = target;
-			frog->_2C4            = 0.0f;
+			frog->mAlertTimer     = 0.0f;
 
 			f32 angdist = frog->getCreatureViewAngle(target);
 
@@ -457,11 +457,17 @@ void StateTurn::exec(EnemyBase* enemy)
 	                                                     nullptr, nullptr);
 
 	if (target) {
-		frog->_2C4  = 0.0f;
+		frog->mAlertTimer = 0.0f;
 		f32 angdist = frog->turnToTarget(target, CG_PARMS(frog)->mGeneral.mTurnSpeed.mValue, CG_PARMS(frog)->mGeneral.mMaxTurnAngle.mValue);
+		f32 attackAngle = CG_PARMS(frog)->mGeneral.mMaxAttackAngle();
+		f32 attackDist  = CG_PARMS(frog)->mGeneral.mMaxAttackRange();
 
-		if (frog->checkDistAndAngle(target, angdist, CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
-		                            CG_PARMS(frog)->mGeneral.mMaxAttackAngle())) {
+		bool check   = false;
+		Vector3f sep = frog->getTargetSeparation(target);
+		if ((sep.sqrMagnitude() < SQUARE(attackDist)) && FABS(angdist) <= TORADIANS(attackAngle)) {
+			check = true;
+		}
+		if (check) {
 			frog->mTargetCreature = target;
 			frog->mNextState      = FROG_Jump;
 			frog->finishMotion();
@@ -926,7 +932,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* frog        = OBJ(enemy);
 	frog->mIsFalling = false;
 	frog->pressOnGround();
-	frog->_2C4 = 0.0f;
+	frog->mAlertTimer = 0.0f;
 	frog->disableEvent(0, EB_Cullable);
 	frog->setEmotionExcitement();
 	frog->mTargetVelocity = Vector3f(0.0f);
