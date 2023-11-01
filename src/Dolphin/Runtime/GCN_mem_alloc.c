@@ -27,7 +27,7 @@ inline static void InitDefaultHeap()
  * Address:	800C23A8
  * Size:	0000B8
  */
-__declspec(weak) extern void __sys_free(void* ptr)
+WEAKFUNC extern void __sys_free(void* ptr)
 {
 	if (__OSCurrHeap == -1) {
 		InitDefaultHeap();

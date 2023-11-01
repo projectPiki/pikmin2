@@ -63,7 +63,7 @@ struct ObjCourseName : public ::Screen::ObjBase {
 	virtual void doUpdateFadeoutFinish();                 // _64
 	virtual void doDraw(Graphics& gfx);                   // _68
 
-	inline void drawBG(Graphics&);
+	void drawBG(Graphics&);
 
 	// unused/inline
 	bool commonUpdate();

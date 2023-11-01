@@ -47,7 +47,7 @@ struct ObjFinalMsg : public ::Screen::ObjBase {
 	virtual void doUpdateFadeoutFinish();                 // _64
 	virtual void doDraw(Graphics& gfx);                   // _68
 
-	inline void blink_Menu(int);
+	void blink_Menu(int);
 	bool menu();
 	void wait();
 

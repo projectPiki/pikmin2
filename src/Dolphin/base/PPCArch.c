@@ -133,7 +133,7 @@ asm void PPCMtl2cr (register u32 newL2cr)
  * Address:	800D4588
  * Size:	000008
  */
-__declspec ( weak ) asm void PPCMtdec ( register u32 newDec )
+WEAKFUNC asm void PPCMtdec ( register u32 newDec )
 {
     nofralloc
     mtdec newDec
@@ -177,7 +177,7 @@ void PPCEieio(void)
  * Address:	800D4598
  * Size:	000014
  */
-__declspec ( weak ) asm void PPCHalt (void) //spins infinitely
+WEAKFUNC asm void PPCHalt (void) //spins infinitely
 {
     nofralloc
 

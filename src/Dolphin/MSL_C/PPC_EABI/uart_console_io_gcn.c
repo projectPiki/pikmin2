@@ -11,7 +11,7 @@ static BOOL initialized;
  * Address:	800CC2E0
  * Size:	0000D0
  */
-BOOL __write_console(s32 arg0, s32 arg1, s32* arg2, s32 arg3)
+WEAKFUNC BOOL __write_console(s32 arg0, s32 arg1, s32* arg2, s32 arg3)
 {
 
 	if ((OSGetConsoleType() & 0x20000000) == 0) {

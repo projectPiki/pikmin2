@@ -52,11 +52,10 @@ void TOmake::doSetArchive(JKRArchive* arc)
 		mPaneListMesg[i]       = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, i + 'Tt00'));
 		mPaneListMesgShadow[i] = E2DScreen_searchAssert(mScreenMain, i + 'Tts00');
 	}
-	
+
 	mPaneSelect = E2DScreen_searchAssert(mScreenMain, 'Wselctw');
 
-	for (int i = 0; i < 7; i++)
-	{
+	for (int i = 0; i < 7; i++) {
 		mMesgTags[i] = mPaneListMesg[i]->mMessageID;
 	}
 
@@ -78,7 +77,8 @@ void TOmake::doSetArchive(JKRArchive* arc)
 
 		// J2DTextBox* pane1 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor'));
 		// J2DTextBox* pane2 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00'));
-		mFonts[i].set(static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00')), static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor')));
+		mFonts[i].set(static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tt00')),
+		              static_cast<J2DTextBox*>(E2DScreen_searchAssert(mScreenMain, 'Tscolor')));
 		mScreenMain->addCallBackPane(mPaneListMesg[i], &mFonts[i]);
 	}
 

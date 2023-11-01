@@ -435,7 +435,7 @@
 /* 803CEBFC 003CBB3C  4E 80 00 20 */	blr 
 .endfn do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
 
-.fn exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr, weak
+.fn exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr, global
 /* 803CEC00 003CBB40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CEC04 003CBB44  7C 08 02 A6 */	mflr r0
 /* 803CEC08 003CBB48  90 01 00 14 */	stw r0, 0x14(r1)

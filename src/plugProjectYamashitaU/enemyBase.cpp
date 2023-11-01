@@ -832,7 +832,7 @@ void EnemyBase::constructor()
  * Address:	801017CC
  * Size:	00005C
  */
-inline void EnemyBase::createEffects()
+void EnemyBase::createEffects()
 {
 	EnemyEffectNodeHamon* next;
 
@@ -847,7 +847,7 @@ inline void EnemyBase::createEffects()
  * Address:	80101828
  * Size:	00005C
  */
-inline void EnemyBase::fadeEffects()
+void EnemyBase::fadeEffects()
 {
 	EnemyEffectNodeHamon* next;
 
@@ -1729,7 +1729,7 @@ void EnemyBase::doSimulationStick(f32 frameRate)
  * Address:	801038D0
  * Size:	000070
  */
-inline void EnemyBase::updateSpheres()
+void EnemyBase::updateSpheres()
 {
 	Sys::Sphere sphere;
 	mCollTree->mPart->getSphere(sphere);
@@ -2931,7 +2931,7 @@ void EnemyBase::getCommonEffectPos(Vector3f& commonEffectPos)
  * Address:	80106B60
  * Size:	000040
  */
-inline void EnemyBase::getWaterSphere(Sys::Sphere* sphere)
+void EnemyBase::getWaterSphere(Sys::Sphere* sphere)
 {
 	sphere->mPosition.x = mPosition.x + mEffectOffset.x;
 	sphere->mPosition.y = mPosition.y + mEffectOffset.y;

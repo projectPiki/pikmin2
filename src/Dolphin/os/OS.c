@@ -84,7 +84,7 @@ static DVDCommandBlock DriveBlock;
 static OSBootInfo* BootInfo;
 static volatile u32* BI2DebugFlag;
 static u32* BI2DebugFlagHolder;
-__declspec(weak) BOOL __OSIsGcam = FALSE;
+WEAKFUNC BOOL __OSIsGcam = FALSE;
 static f64 ZeroF;
 static f32 ZeroPS[2];
 static BOOL AreWeInitialized = FALSE;

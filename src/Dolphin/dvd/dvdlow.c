@@ -45,7 +45,7 @@ static DVDBuffer Curr;
  * Address:	800DB2B0
  * Size:	000040
  */
-__declspec(weak) void __DVDInitWA()
+WEAKFUNC void __DVDInitWA()
 {
 	NextCommandNumber  = 0;
 	CommandList[0].cmd = -1;
@@ -82,7 +82,7 @@ static BOOL ProcessNextCommand()
  * Address:	800DB2F0
  * Size:	0002E0
  */
-__declspec(weak) void __DVDInterruptHandler(__OSInterrupt interrupt, OSContext* context)
+WEAKFUNC void __DVDInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
 	DVDLowCallback cb;
 	OSContext exceptionContext;
@@ -338,7 +338,7 @@ static void WaitBeforeRead(void* addr, u32 length, u32 offset, DVDLowCallback ca
  * Address:	800DB854
  * Size:	000298
  */
-__declspec(weak) BOOL DVDLowRead(void* addr, u32 length, u32 offset, DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowRead(void* addr, u32 length, u32 offset, DVDLowCallback callback)
 {
 	OSTime diff;
 	u32 prev;
@@ -379,7 +379,7 @@ __declspec(weak) BOOL DVDLowRead(void* addr, u32 length, u32 offset, DVDLowCallb
  * Address:	800DBAEC
  * Size:	000094
  */
-__declspec(weak) BOOL DVDLowSeek(u32 offset, DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowSeek(u32 offset, DVDLowCallback callback)
 {
 	StopAtNextInt = FALSE;
 	Callback      = callback;
@@ -395,7 +395,7 @@ __declspec(weak) BOOL DVDLowSeek(u32 offset, DVDLowCallback callback)
  * Address:	800DBB80
  * Size:	00002C
  */
-__declspec(weak) BOOL DVDLowWaitCoverClose(DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowWaitCoverClose(DVDLowCallback callback)
 {
 	Callback          = callback;
 	WaitingCoverClose = TRUE;
@@ -409,7 +409,7 @@ __declspec(weak) BOOL DVDLowWaitCoverClose(DVDLowCallback callback)
  * Address:	800DBBAC
  * Size:	0000A4
  */
-__declspec(weak) BOOL DVDLowReadDiskID(DVDDiskID* diskID, DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowReadDiskID(DVDDiskID* diskID, DVDLowCallback callback)
 {
 	StopAtNextInt = FALSE;
 	Callback      = callback;
@@ -428,7 +428,7 @@ __declspec(weak) BOOL DVDLowReadDiskID(DVDDiskID* diskID, DVDLowCallback callbac
  * Address:	800DBC50
  * Size:	00008C
  */
-__declspec(weak) BOOL DVDLowStopMotor(DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowStopMotor(DVDLowCallback callback)
 {
 	StopAtNextInt = FALSE;
 	Callback      = callback;
@@ -443,7 +443,7 @@ __declspec(weak) BOOL DVDLowStopMotor(DVDLowCallback callback)
  * Address:	800DBCDC
  * Size:	00008C
  */
-__declspec(weak) BOOL DVDLowRequestError(DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowRequestError(DVDLowCallback callback)
 {
 	StopAtNextInt = FALSE;
 	Callback      = callback;
@@ -458,7 +458,7 @@ __declspec(weak) BOOL DVDLowRequestError(DVDLowCallback callback)
  * Address:	800DBD68
  * Size:	00009C
  */
-__declspec(weak) BOOL DVDLowInquiry(DVDDriveInfo* info, DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowInquiry(DVDDriveInfo* info, DVDLowCallback callback)
 {
 	StopAtNextInt = FALSE;
 	Callback      = callback;
@@ -476,7 +476,7 @@ __declspec(weak) BOOL DVDLowInquiry(DVDDriveInfo* info, DVDLowCallback callback)
  * Address:	800DBE04
  * Size:	000098
  */
-__declspec(weak) BOOL DVDLowAudioStream(u32 subcmd, u32 length, u32 offset, DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowAudioStream(u32 subcmd, u32 length, u32 offset, DVDLowCallback callback)
 {
 	StopAtNextInt = FALSE;
 	Callback      = callback;
@@ -493,7 +493,7 @@ __declspec(weak) BOOL DVDLowAudioStream(u32 subcmd, u32 length, u32 offset, DVDL
  * Address:	800DBE9C
  * Size:	00008C
  */
-__declspec(weak) BOOL DVDLowRequestAudioStatus(u32 subcmd, DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowRequestAudioStatus(u32 subcmd, DVDLowCallback callback)
 {
 	StopAtNextInt = FALSE;
 	Callback      = callback;
@@ -508,7 +508,7 @@ __declspec(weak) BOOL DVDLowRequestAudioStatus(u32 subcmd, DVDLowCallback callba
  * Address:	800DBF28
  * Size:	00009C
  */
-__declspec(weak) BOOL DVDLowAudioBufferConfig(BOOL enable, u32 size, DVDLowCallback callback)
+WEAKFUNC BOOL DVDLowAudioBufferConfig(BOOL enable, u32 size, DVDLowCallback callback)
 {
 	StopAtNextInt = FALSE;
 	Callback      = callback;
@@ -523,7 +523,7 @@ __declspec(weak) BOOL DVDLowAudioBufferConfig(BOOL enable, u32 size, DVDLowCallb
  * Address:	800DBFC4
  * Size:	0000BC
  */
-__declspec(weak) void DVDLowReset()
+WEAKFUNC void DVDLowReset()
 {
 	u32 reg;
 	OSTime resetStart;
@@ -586,7 +586,7 @@ void SetBreakAlarm(void)
  * Address:	800DC080
  * Size:	000014
  */
-__declspec(weak) BOOL DVDLowBreak()
+WEAKFUNC BOOL DVDLowBreak()
 {
 	StopAtNextInt = TRUE;
 	Breaking      = TRUE;
@@ -598,7 +598,7 @@ __declspec(weak) BOOL DVDLowBreak()
  * Address:	800DC094
  * Size:	00001C
  */
-__declspec(weak) DVDLowCallback DVDLowClearCallback()
+WEAKFUNC DVDLowCallback DVDLowClearCallback()
 {
 	DVDLowCallback old;
 	__DIRegs[1]       = 0;
@@ -624,7 +624,7 @@ void DVDLowGetCoverStatus(void)
  * Size:	000044
  */
 
-__declspec(weak) void __DVDLowSetWAType(u32 type, u32 location)
+WEAKFUNC void __DVDLowSetWAType(u32 type, u32 location)
 {
 	BOOL enabled;
 	enabled                = OSDisableInterrupts();

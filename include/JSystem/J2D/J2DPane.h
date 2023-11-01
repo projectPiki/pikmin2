@@ -460,9 +460,9 @@ struct J2DPicture : public J2DPane {
 		}
 
 		JUtility::TColor mColor0; // _00
-		JUtility::TColor mColor1; // _00
-		JUtility::TColor mColor2; // _00
-		JUtility::TColor mColor3; // _00
+		JUtility::TColor mColor1; // _04
+		JUtility::TColor mColor2; // _08
+		JUtility::TColor mColor3; // _0C
 	};
 
 	/*

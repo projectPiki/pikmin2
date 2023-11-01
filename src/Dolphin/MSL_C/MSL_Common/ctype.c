@@ -169,7 +169,7 @@ unsigned char __upper_map[256] = {
  * Address:	800C6264
  * Size:	000024
  */
-int tolower(int __c) { return _tolower(__c); }
+WEAKFUNC int tolower(int __c) { return _tolower(__c); }
 
 /*
  * --INFO--

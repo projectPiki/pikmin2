@@ -83,7 +83,7 @@ struct ObjAnaDemo : public ::Screen::ObjBase {
 	virtual void doDraw(Graphics&);                       // _68
 
 	void setBlinkMenu();
-	inline void commonUpdate();
+	void commonUpdate();
 
 	// unused/inined
 	inline void setWindowMsg(u64, u64, u64);

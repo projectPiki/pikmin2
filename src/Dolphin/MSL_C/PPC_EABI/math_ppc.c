@@ -576,21 +576,21 @@ void atan2f(void)
  * Address:	800CFC98
  * Size:	000024
  */
-__declspec(weak) f32 cosf(f32 __x) { return cos((f64)__x); }
+WEAKFUNC f32 cosf(f32 __x) { return cos((f64)__x); }
 
 /*
  * --INFO--
  * Address:	800CFC74
  * Size:	000024
  */
-__declspec(weak) f32 sinf(f32 __x) { return sin((f64)__x); }
+WEAKFUNC f32 sinf(f32 __x) { return sin((f64)__x); }
 
 /*
  * --INFO--
  * Address:	800CFC50
  * Size:	000024
  */
-__declspec(weak) f32 tanf(f32 __x) { return tan((f64)__x); }
+WEAKFUNC f32 tanf(f32 __x) { return tan((f64)__x); }
 
 /*
  * --INFO--
