@@ -19,13 +19,15 @@
 #include "JSystem/J3D/J3DTexMtx.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/Entities/ItemOnyon.h"
+#include "Game/mapParts.h"
 #include "Game/EnemyFunc.h"
+#include "PS.h"
 #include "nans.h"
 
 namespace Game {
 namespace BlackMan {
 
-static Obj* curB;
+Obj* curB;
 
 enum JointID {
 	lHand = 0,
@@ -34,8 +36,8 @@ enum JointID {
 	rFoot = 3,
 };
 
-const int unusedArray[]    = { 0, 0, 0 };
-const char* unusedBlackMan = "blackMan";
+static const int unusedArray[]     = { 0, 0, 0 };
+static const char unusedBlackMan[] = "blackMan";
 
 /*
  * --INFO--
@@ -261,7 +263,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	_37C = modelData->mMaterialTable.mMaterials[kageMatIdx];
 
 	if (gameSystem && gameSystem->isZukanMode()) {
-		_33C = 0.0f;
+		mWraithTimer = 0.0f;
 	}
 
 	mEfxDead->mMtx = mModel->mJoints[mChestJointIndex].getWorldMatrix();
@@ -281,7 +283,7 @@ Obj::Obj()
     , _2F4(0)
     , _334(0)
     , _338(false)
-    , _33C(10.0f)
+    , mWraithTimer(10.0f)
     , _340(-1)
     , _342(-1)
     , _344(-1)
@@ -308,7 +310,7 @@ Obj::Obj()
 
 	setFSM(new FSM);
 
-	mEfxMove       = new efx::TKageMove(&mPosition, &mFaceDir);
+	mEfxMove       = new efx::TKageMove(&mChestJointPosition, &mFaceDir);
 	mEfxRun        = new efx::TKageRun(&mChestJointPosition, &mFaceDir);
 	mEfxDead       = new efx::TKageDead1;
 	mEfxTyreup     = new efx::TKageTyreup(&_328, &mFaceDir);
@@ -332,30 +334,30 @@ void BlackMan::Obj::doUpdate()
 		if (_378 > 1.0f) {
 			_378 = 1.0f;
 		}
+
+		f32 someVal = 1.0f - _378;
+
+		CollPart* kosi = mCollTree->getCollPart('kosi');
+		if (kosi->mSpecialID == 'st__' || getStateID() == WRAITH_Dead) {
+			_38C.a = _378 * 0xff;
+		} else {
+			_38C.a        = _38C.a * someVal;
+			mUsingColor.r = mUsingColor.r * someVal + mTargetColor.r * _378;
+			mUsingColor.g = mUsingColor.g * someVal + mTargetColor.g * _378;
+			mUsingColor.b = mUsingColor.b * someVal + mTargetColor.b * _378;
+		}
 	}
 
-	f32 someVal = 1.0f - _378;
-
-	CollPart* kosi = mCollTree->getCollPart('kosi');
-	if (kosi->mSpecialID == 'st__' || getStateID() == WRAITH_Dead) {
-		_38C.a = _378 * 0xff;
-	} else {
-		_38C.a        = someVal * _38C.a;
-		mUsingColor.r = mUsingColor.r * someVal + mTargetColor.r * _378;
-		mUsingColor.g = mUsingColor.g * someVal + mTargetColor.g * _378;
-		mUsingColor.b = mUsingColor.b * someVal + mTargetColor.b * _378;
-	}
-
-	_33C -= sys->mDeltaTime;
+	mWraithTimer -= sys->mDeltaTime;
 	if (isEvent(0, EB_HardConstrained) && getStateID() == WRAITH_Fall) {
 		f32 unkFallTimer = -C_PARMS->_A4C;
-		if (!mTyre || _33C < unkFallTimer) {
+		if (!mTyre || mWraithTimer < unkFallTimer) {
 			hardConstraintOff();
 			mModel->showPackets();
 			mSoundObj->startSound(PSSE_EN_TIRE_FALL, 0);
 		} else {
 			f32 someTimer = C_PARMS->_A58;
-			if (!_3A9 && _33C < someTimer) {
+			if (!_3A9 && mWraithTimer < someTimer) {
 				if (gameSystem && gameSystem->isZukanMode()) {
 					_3A9                   = true;
 					mTyre->mIsShadowActive = true;
@@ -363,18 +365,17 @@ void BlackMan::Obj::doUpdate()
 				Navi* activeNavi = naviMgr->getActiveNavi();
 				if (!_3A9 && activeNavi && activeNavi->isAlive()) {
 
-					// some fuckery is going on here
-					Vector3f ourPos = getPosition();
-					ourPos          = mPosition;
+					// regswaps here
+					Vector3f pos     = Vector3f(mPosition.x, 0.0f, mPosition.z);
+					Vector3f naviPos = Vector3f(activeNavi->getPosition().x, 0.0f, activeNavi->getPosition().z);
 
-					Vector3f naviPos = activeNavi->getPosition();
-					f32 sqrDist      = sqrDistanceXZ(ourPos, naviPos);
+					f32 sqrDist = sqrDistanceXZ(naviPos, pos);
 					if (isFinalFloor()) {
 						f32 fallRadius = C_PARMS->_A54;
 						if (sqrDist < SQUARE(fallRadius)) {
 							_3A9 = true;
 						}
-					} else if (sqrDist < SQUARE(1000.0f)) {
+					} else if (sqrDist > 10000.0f) {
 						_3A9 = true;
 					}
 					if (_3A9) {
@@ -382,50 +383,45 @@ void BlackMan::Obj::doUpdate()
 					}
 				}
 				if (!_3A9) {
-					_33C = someTimer;
+					mWraithTimer = someTimer;
 				}
 			}
 		}
-	}
 
-	if (mTyre && mTyre->isEvent(0, EB_HardConstrained) && _33C < 0.0f) {
-		if (gameSystem && !gameSystem->isZukanMode() && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
-			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
-			PSM::Scene_Game* scene     = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-			PSSystem::SeqBase* seqBase = PSSystem::getSeqFromScene(scene, 0);
-			P2ASSERTLINE(489, seqBase);
-			seqBase->stopSeq(5);
-			if (!isFinalFloor() && !playData->isDemoFlag(DEMO_Waterwraith_Appears) && moviePlayer) {
+		if (mTyre && mTyre->isEvent(0, EB_HardConstrained) && mWraithTimer < 0.0f) {
+			if (gameSystem && !gameSystem->isZukanMode() && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
+				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+				PSSystem::checkSceneMgr(mgr);
+				mgr->checkScene();
+				PSSystem::SeqBase* seqBase = PSSystem::getSeqData(mgr, 0);
+				P2ASSERTLINE(489, seqBase);
+				seqBase->stopSeq(5);
+				if (!isFinalFloor() && !playData->isDemoFlag(DEMO_Waterwraith_Appears) && moviePlayer) {
 
-				Vector3f origin = mPosition;
+					MoviePlayArg wraithMovieArg("x20_blackman", nullptr, nullptr, 0);
+					Vector3f origin        = getPosition();
+					origin.y               = mapMgr->getMinY(mPosition);
+					wraithMovieArg.mOrigin = origin;
+					wraithMovieArg.mAngle  = getFaceDir();
 
-				MoviePlayArg wraithMovieArg("x20_blackman", nullptr, nullptr, 0);
+					moviePlayer->mTargetObject = this;
 
-				// this is not right
-				f32 faceDir            = getFaceDir();
-				origin.y               = mapMgr->getMinY(origin);
-				wraithMovieArg.mOrigin = origin;
-				wraithMovieArg.mAngle  = faceDir;
-
-				moviePlayer->mTargetObject = this;
-
-				moviePlayer->play(wraithMovieArg);
-				mTyre->movie_begin(false);
-				playData->setDemoFlag(DEMO_Waterwraith_Appears);
-				_3AB = true;
-				_3AA = true;
+					moviePlayer->play(wraithMovieArg);
+					mTyre->movie_begin(false);
+					playData->setDemoFlag(DEMO_Waterwraith_Appears);
+					_3AB = true;
+					_3AA = true;
+				}
 			}
+			if (!_3AB) {
+				mTyre->mSoundObj->startSound(PSSE_EN_TIRE_FALL, 0);
+			}
+			mTyre->hardConstraintOff();
+			mTyre->mModel->showPackets();
 		}
-		if (!_3AB) {
-			mTyre->mSoundObj->startSound(PSSE_EN_TIRE_FALL, 0);
-		}
-		mTyre->hardConstraintOff();
-		mTyre->mModel->showPackets();
-
-		if (_3A9 && _33C < -1.0f && mTyre) {
-			mTyre->scaleUpShadow();
-		}
+	}
+	if (_3A9 && mWraithTimer < -1.0f && mTyre) {
+		mTyre->scaleUpShadow();
 	}
 
 	/*
@@ -1115,8 +1111,7 @@ void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
 		Piki* piki = static_cast<Piki*>(collCreature);
 
 		if (piki->getKind() != Purple) {
-			f32 knockback = C_PARMS->mGeneral.mShakeKnockback;
-			InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback, FLICK_BACKWARD_ANGLE, 0.0f);
+			InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback(), 0.0f, FLICK_BACKWARD_ANGLE);
 			piki->stimulate(flick);
 			mSoundObj->startSound(PSSE_EN_KAGE_REJECT, 0);
 		} else if (stateID == WRAITH_Walk || stateID == WRAITH_Tired) {
@@ -1136,129 +1131,6 @@ void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
 	if (_2E0 != 2) {
 		EnemyBase::collisionCallback(collEvent);
 	}
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r4
-	stw      r28, 0x30(r1)
-	mr       r28, r3
-	lwz      r30, 0(r4)
-	bl       getStateID__Q24Game9EnemyBaseFv
-	mr       r31, r3
-	cmpwi    r31, 3
-	beq      lbl_803A7AE4
-	cmpwi    r31, 2
-	beq      lbl_803A7AE4
-	lwz      r0, 0x1e0(r28)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_803A7AE4
-	cmplwi   r30, 0
-	beq      lbl_803A7AE4
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803A7AE4
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x2b8(r30)
-	mr       r4, r30
-	cmpwi    r0, 3
-	beq      lbl_803A7AB4
-	lwz      r5, 0xc0(r28)
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game13InteractFlick@ha
-	lfs      f1, lbl_8051F438@sda21(r2)
-	lfs      f2, 0x4c4(r5)
-	addi     r4, r4, __vt__Q24Game11Interaction@l
-	lfs      f0, lbl_8051F49C@sda21(r2)
-	addi     r0, r3, __vt__Q24Game13InteractFlick@l
-	stw      r4, 0x14(r1)
-	mr       r3, r30
-	addi     r4, r1, 0x14
-	stw      r28, 0x18(r1)
-	stw      r0, 0x14(r1)
-	stfs     f2, 0x1c(r1)
-	stfs     f1, 0x20(r1)
-	stfs     f0, 0x24(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x28c(r28)
-	li       r4, 0x5977
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803A7AE4
-
-lbl_803A7AB4:
-	cmpwi    r31, 0
-	beq      lbl_803A7AC4
-	cmpwi    r31, 8
-	bne      lbl_803A7AE4
-
-lbl_803A7AC4:
-	lwz      r3, 0x364(r28)
-	cmplwi   r3, 0
-	beq      lbl_803A7AE4
-	lwz      r12, 0(r3)
-	lfs      f1, lbl_8051F438@sda21(r2)
-	lwz      r12, 0x28c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803A7AE4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803A7B2C
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x62
-	bne      lbl_803A7B2C
-	lfs      f0, lbl_8051F438@sda21(r2)
-	stfs     f0, 0x11c(r28)
-	stfs     f0, 0x120(r28)
-	stfs     f0, 0x124(r28)
-
-lbl_803A7B2C:
-	lwz      r0, 0x2e0(r28)
-	cmpwi    r0, 2
-	beq      lbl_803A7B44
-	mr       r3, r28
-	mr       r4, r29
-	bl       collisionCallback__Q24Game9EnemyBaseFRQ24Game9CollEvent
-
-lbl_803A7B44:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r28, 0x30(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -1279,7 +1151,7 @@ bool BlackMan::Obj::damageCallBack(Game::Creature* creature, f32 damage, CollPar
 		}
 	}
 	if (stateID == WRAITH_Freeze || stateID == WRAITH_Bend || isEvent(0, EB_Bittered)) {
-		if (isEvent(0, EB_Bittered)) { // ???????
+		if (isEvent(0, EB_Bittered)) { // wraith doesn't take damage while bittered
 			return false;
 		}
 		if (mTyre) {
@@ -1381,8 +1253,8 @@ void BlackMan::Obj::changeMaterial()
 	copyMatrix[3][2] = 0.0f;
 	copyMatrix[3][3] = 1.0f;
 
-	J3DModel* j3dModel      = mModel->getJ3DModel();
-	J3DModelData* modelData = j3dModel->mModelData;
+	J3DModel* j3dModel      = mModel->mJ3dModel;
+	J3DModelData* modelData = j3dModel->getModelData();
 
 	_37C->mTevBlock->setTevKColor(0, mUsingColor);
 
@@ -1398,11 +1270,11 @@ void BlackMan::Obj::changeMaterial()
 	texMtx->_24[3][0] = texMtx->_24[3][1] = texMtx->_24[3][2] = 0.0f;
 	texMtx->_24[3][3]                                         = 1.0f;
 
-	J3DTexture* wraithMain = &modelData->mMaterialTable.mTextures[0];
+	J3DTexture* wraithMain = modelData->getTexture();
+	JUTTexture* xfbTex     = gameSystem->getXfbTexture();
+	ResTIMG* img           = wraithMain->mRes;
 
-	ResTIMG* img = wraithMain->mRes;
-
-	*img = *gameSystem->mXfbTexture->mImage;
+	*img = *xfbTex->mTexInfo;
 
 	wraithMain->setImageOffset((int)img);
 	wraithMain->setPaletteOffset((int)img);
@@ -1626,34 +1498,11 @@ lbl_803A8234:
  */
 void BlackMan::Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	// ????? why does this have a regswap too???
-	shadowParam.mPosition = mChestJointPosition;
-	shadowParam.mPosition.y += 2.0f;
+	shadowParam.mPosition                 = mChestJointPosition;
+	shadowParam.mPosition.y               = mPosition.y + 2.0f;
 	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	shadowParam.mBoundingSphere.mRadius   = 50.0f;
 	shadowParam.mSize                     = 30.0f;
-	/*
-	lfs      f0, 0x304(r3)
-	lfs      f5, lbl_8051F4A8@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f3, lbl_8051F438@sda21(r2)
-	lfs      f0, 0x308(r3)
-	lfs      f2, lbl_8051F480@sda21(r2)
-	stfs     f0, 4(r4)
-	lfs      f1, lbl_8051F4AC@sda21(r2)
-	lfs      f4, 0x30c(r3)
-	lfs      f0, lbl_8051F4A4@sda21(r2)
-	stfs     f4, 8(r4)
-	lfs      f4, 0x190(r3)
-	fadds    f4, f5, f4
-	stfs     f4, 4(r4)
-	stfs     f3, 0xc(r4)
-	stfs     f2, 0x10(r4)
-	stfs     f3, 0x14(r4)
-	stfs     f1, 0x18(r4)
-	stfs     f0, 0x1c(r4)
-	blr
-	*/
 }
 
 /*
@@ -1688,123 +1537,125 @@ WalkSmokeEffect::Mgr* BlackMan::Obj::getWalkSmokeEffectMgr()
  */
 void BlackMan::Obj::walkFunc()
 {
-	f32 moveSpeed;
-	f32 rotationSpeed;
-	f32 rotationAccel;
-	if (!mTyre || isEvent(0, EB_Bittered)) {
-		if (isTyreFreeze()) {
-			mFSM->transit(this, WRAITH_Bend, nullptr);
-			mFreezeTimer = 0;
-			return;
+	if (mTyre && mTyre->isEvent(0, EB_Bittered)) {
+		return;
+	}
+
+	if (isTyreFreeze()) {
+		mFSM->transit(this, WRAITH_Bend, nullptr);
+		mFreezeTimer = 0;
+		return;
+	}
+
+	if (isOnTyres()) {
+		mHealth += 5.0f;
+		if (mHealth > mMaxHealth) {
+			mHealth = mMaxHealth;
 		}
+	}
 
-		if (isOnTyres()) {
-			mHealth += 5.0f;
-			if (mHealth > mMaxHealth) {
-				mHealth = mMaxHealth;
-			}
+	f32 moveSpeed, rotationSpeed, turnSpeed;
+	moveSpeed     = C_PARMS->mGeneral.mMoveSpeed();
+	rotationSpeed = C_PARMS->mGeneral.mMaxTurnAngle();
+	turnSpeed     = C_PARMS->mGeneral.mTurnSpeed();
+
+	if (C_PARMS->_A1A >= 0) {
+		_2F0 = C_PARMS->_A1A;
+	} else {
+		_2EC++;
+	}
+
+	if (_2F0 == 0) {
+		if (_2EC > C_PARMS->mProperParms.mTimerToTwoStep) {
+			_2F0 = 1;
+			_2EC = 0;
+			_378 = 0.0f;
 		}
-		moveSpeed     = C_PARMS->mGeneral.mMoveSpeed;
-		rotationSpeed = C_PARMS->mGeneral.mMaxTurnAngle;
-		rotationAccel = C_PARMS->mGeneral.mTurnSpeed;
-		if (C_PARMS->_A1A >= 0) {
-			_2F0 = C_PARMS->_A1A;
-		} else {
-			_2EC++;
-		}
+	} else {
+		moveSpeed     = C_PROPERPARMS.mTravelSpeed();
+		rotationSpeed = C_PROPERPARMS.mMaxRotationStep();
+		turnSpeed     = C_PROPERPARMS.mRotationSpeed();
+	}
 
-		if (_2F0 == 0) {
-			if (_2EC > C_PARMS->mProperParms.mTimerToTwoStep) {
-				_2F0 = 1;
-				_2EC = 0;
-				_378 = 0.0f;
-			}
-		} else {
-			moveSpeed     = C_PROPERPARMS.mTravelSpeed;
-			rotationSpeed = C_PROPERPARMS.mMaxRotationStep;
-			rotationAccel = C_PROPERPARMS.mRotationSpeed;
-		}
+	if (_2E0 == 2) {
+		Navi* targetNavi = naviMgr->getActiveNavi();
+		turnSpeed        = C_PROPERPARMS.mEscapeSpeed();
+		if (targetNavi) {
+			Vector3f naviPosition = targetNavi->getPosition();
 
-		if (_2E0 == 2) {
-			Navi* targetNavi = naviMgr->getActiveNavi();
-			rotationAccel    = C_PROPERPARMS.mEscapeSpeed;
-			if (targetNavi) {
-				Vector3f naviPosition = targetNavi->getPosition();
+			bool isAnimEnd = false;
 
-				bool isAnimEnd = false;
-
-				f32 sqrDist = sqrDistanceXZ(mPosition, naviPosition);
-
-				if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_END) {
-					isAnimEnd = true;
-				}
-
-				if (sqrDist > SQUARE(800.0f)) {
-					_2F4 = 0;
-					if (getCurrAnimIndex() != WRAITHANIM_Wait) {
-						finishMotion();
-					}
-					if (isAnimEnd) {
-						startMotion(WRAITHANIM_Wait, nullptr);
-					}
-				} else if (sqrDist > SQUARE(400.0f)) {
-					_2F4 = 0;
-					if (getCurrAnimIndex() != WRAITHANIM_Walk) {
-						finishMotion();
-					}
-					if (isAnimEnd) {
-						startMotion(WRAITHANIM_Walk, nullptr);
-					}
-				} else {
-					_2F4++;
-					if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength || getCurrAnimIndex() != WRAITHANIM_Run) {
-						finishMotion();
-					}
-					if (isAnimEnd) {
-						if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength) {
-							_2F4 = 0;
-							mFSM->transit(this, WRAITH_Tired, nullptr);
-						} else {
-							startMotion(WRAITHANIM_Run, nullptr);
-						}
-					}
-				}
-			}
-			if (getCurrAnimIndex() == WRAITHANIM_Wait) {
-				rotationAccel = 0.0f;
-			}
-
-			if (getCurrAnimIndex() == WRAITHANIM_Walk) {
-				rotationAccel = C_PROPERPARMS.mWalkingSpeed;
-			}
-
-			_374 += (rotationAccel - _374) * 0.2f;
-			moveSpeed     = _374;
-			rotationSpeed = C_PROPERPARMS.mMaxEscapeRotationStep;
-			rotationAccel = C_PROPERPARMS.mEscapeRotationSpeed;
-		} else if (ItemOnyon::mgr && ItemOnyon::mgr->mPod) {
-			Vector3f podPos = ItemOnyon::mgr->mPod->getPosition();
-			bool isAnimEnd  = false;
-			f32 sqrDist     = sqrDistanceXZ(mPosition, podPos);
+			f32 sqrDist = sqrDistanceXZ(mPosition, naviPosition);
 
 			if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_END) {
 				isAnimEnd = true;
 			}
 
-			if (sqrDist < SQUARE(100.0f)) {
-				if (getCurrAnimIndex() == WRAITHANIM_Move) {
+			if (sqrDist > SQUARE(800.0f)) {
+				_2F4 = 0;
+				if (getCurrAnimIndex() != WRAITHANIM_Wait) {
 					finishMotion();
 				}
 				if (isAnimEnd) {
-					startMotion(WRAITHANIM_Through, nullptr);
+					startMotion(WRAITHANIM_Wait, nullptr);
+				}
+			} else if (sqrDist > SQUARE(400.0f)) {
+				_2F4 = 0;
+				if (getCurrAnimIndex() != WRAITHANIM_Walk) {
+					finishMotion();
+				}
+				if (isAnimEnd) {
+					startMotion(WRAITHANIM_Walk, nullptr);
 				}
 			} else {
-				if (getCurrAnimIndex() == WRAITHANIM_Through) {
+				_2F4++;
+				if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength() || getCurrAnimIndex() != WRAITHANIM_Run) {
 					finishMotion();
 				}
 				if (isAnimEnd) {
-					startMotion(WRAITHANIM_Move, nullptr);
+					if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength()) {
+						_2F4 = 0;
+						mFSM->transit(this, WRAITH_Tired, nullptr);
+					} else {
+						startMotion(WRAITHANIM_Run, nullptr);
+					}
 				}
+			}
+		}
+		if (getCurrAnimIndex() == WRAITHANIM_Wait) {
+			turnSpeed = 0.0f;
+		}
+
+		if (getCurrAnimIndex() == WRAITHANIM_Walk) {
+			turnSpeed = C_PROPERPARMS.mWalkingSpeed();
+		}
+
+		_374 += (turnSpeed - _374) * 0.2f;
+		moveSpeed     = _374;
+		rotationSpeed = C_PROPERPARMS.mMaxEscapeRotationStep();
+		turnSpeed     = C_PROPERPARMS.mEscapeRotationSpeed();
+	} else if (ItemOnyon::mgr && ItemOnyon::mgr->mPod) {
+		Vector3f podPos = ItemOnyon::mgr->mPod->getPosition();
+		bool isAnimEnd  = false;
+		f32 sqrDist     = sqrDistanceXZ(mPosition, podPos);
+
+		if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_END) {
+			isAnimEnd = true;
+		}
+
+		if (sqrDist < SQUARE(100.0f)) {
+			if (getCurrAnimIndex() == WRAITHANIM_Move) {
+				finishMotion();
+			}
+			if (isAnimEnd) {
+				startMotion(WRAITHANIM_Through, nullptr);
+			}
+		} else {
+			if (getCurrAnimIndex() == WRAITHANIM_Through) {
+				finishMotion();
+			}
+			if (isAnimEnd) {
+				startMotion(WRAITHANIM_Move, nullptr);
 			}
 		}
 	}
@@ -1822,12 +1673,11 @@ void BlackMan::Obj::walkFunc()
 
 	if (_2E0 == 4) {
 		if (!isEndPathFinder()) {
-
+			return;
 		} else {
-			moveSpeed = C_PROPERPARMS.mPodMoveSpeed;
+			moveSpeed = C_PROPERPARMS.mPodMoveSpeed();
+			// should be an unreachable return here
 		}
-	} else {
-		return;
 	}
 
 	Vector3f deltaPosition = mTargetPosition - mPosition;
@@ -1841,10 +1691,11 @@ void BlackMan::Obj::walkFunc()
 		mTyre->_314 = mFaceDir;
 	}
 	f32 prevFaceDir = mFaceDir;
-	EnemyFunc::walkToTarget(this, mTargetPosition, moveSpeed, rotationAccel, rotationSpeed);
+	EnemyFunc::walkToTarget(this, mTargetPosition, moveSpeed, turnSpeed, rotationSpeed);
 
 	if (mTyre) {
-		f32 distance      = _distanceXZflag(mPosition, mTyre->mWraithPosition);
+		Vector3f sep      = mPosition - mTyre->mWraithPosition;
+		f32 distance      = sep.length2D();
 		mTyre->_30C       = distance / WRAITH_ROLLER_CIRCUMFERENCE;
 		EnemyBase* tyre   = mTyre;
 		tyre->mFaceDir    = mFaceDir;
@@ -1863,19 +1714,24 @@ void BlackMan::Obj::walkFunc()
 		}
 	}
 
+	bool isInTurn = false; // lets the wraith do SICK DRIFTS
 	// turn inline hell is here
 	f32 angleDist = getAngDist2(mTargetPosition);
-	f32 turnSpeed = clamp(angleDist - prevFaceDir, 0.25f);
 
-	bool isInTurn = false; // lets the wraith do SICK DRIFTS
-
-	if (turnSpeed > 0.0f && angleDist > 0.05f) {
+	if (fabs((int)(angleDist > 0.25f))) {
 		isInTurn = true;
+	}
+	if (!isInTurn) {
+		// f32 turnSpeed2 = clamp(angleDist - prevFaceDir, 0.25f);
+
+		if (absF(prevFaceDir - mFaceDir) > 0.05f) {
+			isInTurn = true;
+		}
 	}
 
 	if (isInTurn) {
-		mTargetVelocity.x *= 0.5f;
-		mTargetVelocity.z *= 0.5f;
+		mCurrentVelocity.x *= 0.5f;
+		mCurrentVelocity.z *= 0.5f;
 	}
 
 	if (mTyre) {
@@ -1886,7 +1742,7 @@ void BlackMan::Obj::walkFunc()
 		} else {
 			JAISound* zuruzuru = mSoundObj->startSound(PSSE_EN_KAGE_ZURUZURU, 0);
 			if (zuruzuru) {
-				zuruzuru->setPitch(2.0f, 0, 0);
+				zuruzuru->setPitch(1.4f, 0, 0);
 			}
 			mTyre->mSoundObj->startSound(PSSE_EN_KAGE_ROLLER, 0);
 			mTyre->mSoundObj->startSound(PSSE_EN_KAGE_MELODYLOOP, 0);
@@ -2514,24 +2370,7 @@ lbl_803A8B4C:
  * Address:	803A8B7C
  * Size:	000034
  */
-bool BlackMan::Obj::isReachToGoal(f32)
-{
-	/*
-	fmuls    f0, f1, f1
-	lfs      f2, 0x194(r3)
-	lfs      f1, 0x2d8(r3)
-	lfs      f3, 0x18c(r3)
-	fsubs    f2, f2, f1
-	lfs      f1, 0x2d0(r3)
-	fsubs    f3, f3, f1
-	fmuls    f1, f2, f2
-	fmadds   f1, f3, f3, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool BlackMan::Obj::isReachToGoal(f32 rad) { return (u8)(sqrDistanceXZ(mPosition, mTargetPosition) < SQUARE(rad)); }
 
 /*
  * --INFO--
@@ -3949,27 +3788,10 @@ lbl_803A9E28:
  */
 void BlackMan::Obj::releasePathFinder()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stb      r0, 0x34c(r3)
-	lwz      r0, testPathfinder__4Game@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_803A9E70
-	lwz      r4, 0x348(r3)
-	cmplwi   r4, 0
-	beq      lbl_803A9E70
-	mr       r3, r0
-	bl       release__Q24Game10PathfinderFUl
-
-lbl_803A9E70:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_34C = 0;
+	if (testPathfinder && _348) {
+		testPathfinder->release(_348);
+	}
 }
 
 /*
@@ -4572,28 +4394,11 @@ lbl_803AA684:
  */
 bool BlackMan::Obj::isTyreFreeze()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x364(r3)
-	cmplwi   r3, 0
-	beq      lbl_803AA6C8
-	bl       isFreeze__Q34Game4Tyre3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803AA6C8
-	li       r3, 1
-	b        lbl_803AA6CC
+	if (mTyre && mTyre->isFreeze()) {
+		return true;
+	}
 
-lbl_803AA6C8:
-	li       r3, 0
-
-lbl_803AA6CC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -4603,53 +4408,18 @@ lbl_803AA6CC:
  */
 bool BlackMan::Obj::isTyreDead()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x364(r3)
-	cmplwi   r3, 0
-	beq      lbl_803AA760
-	lfs      f1, 0x200(r3)
-	lfs      f0, lbl_8051F438@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_803AA760
-	lwz      r3, 0x184(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x18(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_803AA758
-	lwz      r6, 0x364(r31)
-	li       r4, 0
-	li       r0, 2
-	li       r3, 1
-	lwz      r5, 0x1e0(r6)
-	ori      r5, r5, 1
-	stw      r5, 0x1e0(r6)
-	stw      r4, 0x364(r31)
-	stw      r0, 0x2e0(r31)
-	b        lbl_803AA764
+	if (mTyre && mTyre->mHealth <= 0.0f) {
+		if (mAnimator->getAnimator().mFlags & 0x1) {
+			mTyre->enableEvent(0, EB_Invulnerable);
+			mTyre = nullptr;
+			_2E0  = 2;
+			return true;
+		}
 
-lbl_803AA758:
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+		finishMotion();
+	}
 
-lbl_803AA760:
-	li       r3, 0
-
-lbl_803AA764:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -4659,43 +4429,16 @@ lbl_803AA764:
  */
 bool BlackMan::Obj::isFallEnd()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0xc8(r3)
-	cmplwi   r0, 0
-	beq      lbl_803AA7A4
-	li       r31, 1
+	bool result = false;
+	if (mBounceTriangle) {
+		result = true;
+	}
 
-lbl_803AA7A4:
-	lwz      r3, 0x364(r30)
-	cmplwi   r3, 0
-	beq      lbl_803AA7D0
-	bl       isFreeze__Q34Game4Tyre3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803AA7CC
-	lwz      r3, 0x364(r30)
-	lbz      r0, 0x322(r3)
-	cmplwi   r0, 0
-	beq      lbl_803AA7D0
+	if (mTyre && (mTyre->isFreeze() || mTyre->_322)) {
+		result = true;
+	}
 
-lbl_803AA7CC:
-	li       r31, 1
-
-lbl_803AA7D0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return result;
 }
 
 /*
@@ -4857,14 +4600,14 @@ void BlackMan::Obj::escape() { }
  * Address:	803AA9C4
  * Size:	000008
  */
-void BlackMan::Obj::setTimer(f32 time) { _33C = time; }
+void BlackMan::Obj::setTimer(f32 time) { mWraithTimer = time; }
 
 /*
  * --INFO--
  * Address:	803AA9CC
  * Size:	000008
  */
-f32 BlackMan::Obj::getTimer() { return _33C; }
+f32 BlackMan::Obj::getTimer() { return mWraithTimer; }
 
 /*
  * --INFO--
@@ -4873,50 +4616,13 @@ f32 BlackMan::Obj::getTimer() { return _33C; }
  */
 void BlackMan::Obj::collisionStOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x6B6F7369@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, 0x6B6F7369@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x114(r3)
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x6D756E65@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x6D756E65@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x68656164@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x68656164@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	mr       r3, r31
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0xa
-	beq      lbl_803AAA60
-	lfs      f0, lbl_8051F438@sda21(r2)
-	stfs     f0, 0x378(r31)
+	mCollTree->getCollPart('kosi')->mSpecialID = 'st__';
+	mCollTree->getCollPart('mune')->mSpecialID = 'st__';
+	mCollTree->getCollPart('head')->mSpecialID = 'st__';
 
-lbl_803AAA60:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getCurrAnimIndex() != WRAITHANIM_Wait2) {
+		_378 = 0.0f;
+	}
 }
 
 /*
@@ -4926,46 +4632,12 @@ lbl_803AAA60:
  */
 void BlackMan::Obj::collisionStOff()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x6B6F7369@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, 0x6B6F7369@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x114(r3)
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x6D756E65@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x6D756E65@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x68656164@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x68656164@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lfs      f0, lbl_8051F438@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x378(r31)
-	bl       flick__Q34Game8BlackMan3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCollTree->getCollPart('kosi')->mSpecialID = '____';
+	mCollTree->getCollPart('mune')->mSpecialID = '____';
+	mCollTree->getCollPart('head')->mSpecialID = '____';
+
+	_378 = 0.0f;
+	flick();
 }
 
 /*
@@ -4975,28 +4647,9 @@ void BlackMan::Obj::collisionStOff()
  */
 void BlackMan::Obj::flick()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f4, lbl_8051F49C@sda21(r2)
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r5, 0xc0(r3)
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f0, lbl_8051F438@sda21(r2)
-	stfs     f0, 0x20c(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyFunc::flickStickPikmin(this, C_PARMS->mGeneral.mShakeChance(), C_PARMS->mGeneral.mShakeKnockback(),
+	                            C_PARMS->mGeneral.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
+	mFlickTimer = 0.0f;
 }
 
 /*
@@ -5200,60 +4853,12 @@ void BlackMan::Obj::tyreFlick()
  */
 void BlackMan::Obj::deadEffect()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	bl       createDeadBombEffect__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x264(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051F438@sda21(r2)
-	mr       r3, r31
-	bl       PSStartEnemyFatalHitSE__FPQ24Game9EnemyBasef
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__Q23efx8TSimple1@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx10TKageDead2@ha
-	stw      r0, 8(r1)
-	addi     r5, r3, __vt__Q23efx8TSimple1@l
-	lis      r3, __vt__Q23efx3Arg@ha
-	li       r0, 0x298
-	stw      r5, 8(r1)
-	addi     r7, r4, __vt__Q23efx10TKageDead2@l
-	addi     r6, r3, __vt__Q23efx3Arg@l
-	li       r4, 0
-	sth      r0, 0xc(r1)
-	lis      r3, __vt__Q23efx11ArgPrmColor@ha
-	addi     r5, r3, __vt__Q23efx11ArgPrmColor@l
-	li       r0, 0xff
-	stw      r4, 0x10(r1)
-	addi     r3, r1, 8
-	addi     r4, r1, 0x14
-	stw      r7, 8(r1)
-	stw      r6, 0x14(r1)
-	lfs      f0, 0x304(r31)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0x308(r31)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 0x30c(r31)
-	stfs     f0, 0x20(r1)
-	stw      r5, 0x14(r1)
-	stb      r0, 0x24(r1)
-	stb      r0, 0x25(r1)
-	stb      r0, 0x26(r1)
-	stb      r0, 0x27(r1)
-	bl       create__Q23efx10TKageDead2FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	EnemyBase::createDeadBombEffect();
+	throwupItem();
+	PSStartEnemyFatalHitSE(this, 0.0f);
+	efx::TKageDead2 deadFX;
+	efx::ArgPrmColor fxArg(mChestJointPosition);
+	deadFX.create(&fxArg);
 }
 
 /*
@@ -5261,24 +4866,7 @@ void BlackMan::Obj::deadEffect()
  * Address:	803AAE9C
  * Size:	000034
  */
-void BlackMan::Obj::deadTraceEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x39c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void BlackMan::Obj::deadTraceEffect() { mEfxDead->create(nullptr); }
 
 /*
  * --INFO--
@@ -5287,41 +4875,10 @@ void BlackMan::Obj::deadTraceEffect()
  */
 void BlackMan::Obj::tyreUpEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x364(r3)
-	cmplwi   r3, 0
-	beq      lbl_803AAF30
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_803AAF08
-	lwz      r0, 0x1e0(r3)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_803AAF30
-
-lbl_803AAF08:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x254(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x398(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803AAF30:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mTyre && (isEvent(0, EB_Bittered) || !mTyre->isEvent(0, EB_Bittered))) {
+		mTyre->fadeEfxHamon();
+		mEfxTyreup->create(nullptr);
+	}
 }
 
 /*
@@ -5331,30 +4888,10 @@ lbl_803AAF30:
  */
 void BlackMan::Obj::tyreDownEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x364(r3)
-	cmplwi   r3, 0
-	beq      lbl_803AAF80
-	addi     r4, r31, 0x328
-	bl       "landEffect__Q34Game4Tyre3ObjFR10Vector3<f>"
-	lwz      r3, 0x364(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x250(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803AAF80:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mTyre) {
+		mTyre->landEffect(_328);
+		mTyre->createEfxHamon();
+	}
 }
 
 /*
@@ -5364,47 +4901,10 @@ lbl_803AAF80:
  */
 void BlackMan::Obj::bendEffect()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lwz      r0, 0x364(r3)
-	cmplwi   r0, 0
-	beq      lbl_803AB018
-	lwz      r3, 0x174(r3)
-	addi     r4, r2, lbl_8051F560@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx8TSimple2@ha
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple2@l
-	lis      r5, __vt__Q23efx11TSimpleMtx2@ha
-	lis      r4, __vt__Q23efx10TKageBend1@ha
-	stw      r0, 8(r1)
-	addi     r0, r5, __vt__Q23efx11TSimpleMtx2@l
-	li       r7, 0x295
-	li       r5, 0x296
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q23efx10TKageBend1@l
-	li       r4, 0
-	stw      r3, 0x18(r1)
-	addi     r3, r1, 8
-	sth      r7, 0xc(r1)
-	sth      r5, 0xe(r1)
-	stw      r6, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-
-lbl_803AB018:
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mTyre) {
+		efx::TKageBend1 bendFX(mModel->getJoint("head")->getWorldMatrix());
+		bendFX.create(nullptr);
+	}
 }
 
 /*
@@ -5414,35 +4914,11 @@ lbl_803AB018:
  */
 void BlackMan::Obj::createTraceEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x364(r3)
-	cmplwi   r0, 0
-	beq      lbl_803AB05C
-	lwz      r3, 0x390(r3)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803AB074
-
-lbl_803AB05C:
-	lwz      r3, 0x394(r3)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803AB074:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mTyre) {
+		mEfxMove->create(nullptr);
+	} else {
+		mEfxRun->create(nullptr);
+	}
 }
 
 /*
@@ -5463,30 +4939,8 @@ void BlackMan::Obj::fadeTraceEffect()
  */
 void BlackMan::Obj::createFlickEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x3a0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x3a4(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEfxFrontFlick->create(nullptr);
+	mEfxBackFlick->create(nullptr);
 }
 
 /*
@@ -5507,63 +4961,20 @@ void BlackMan::Obj::fadeFlickEffect()
  */
 bool BlackMan::Obj::isFinalFloor()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803AB1B0
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_803AB1B0
-	li       r3, 0
-	b        lbl_803AB228
+	if (gameSystem && gameSystem->isZukanMode()) {
+		return false;
+	}
 
-lbl_803AB1B0:
-	lwz      r30, 0x58(r3)
-	cmplwi   r30, 0
-	beq      lbl_803AB224
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	addis    r0, r3, 0x86a1
-	cmplwi   r0, 0x3034
-	bne      lbl_803AB224
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803AB224
-	lwz      r3, 0x28(r3)
-	cmplwi   r3, 0
-	beq      lbl_803AB224
-	bl       getFloorMax__Q34Game4Cave8CaveInfoFv
-	mr       r31, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r3, 1
-	cmpw     r0, r31
-	bne      lbl_803AB224
-	li       r3, 1
-	b        lbl_803AB228
-
-lbl_803AB224:
-	li       r3, 0
-
-lbl_803AB228:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	BaseGameSection* section = gameSystem->getSection();
+	if (section && section->getCaveID() == 'y_04') { // submerged castle
+		RoomMapMgr* roomMgr = static_cast<RoomMapMgr*>(mapMgr);
+		if (roomMgr && roomMgr->mCaveInfo) {
+			if (section->getCurrFloor() + 1 == roomMgr->mCaveInfo->getFloorMax()) {
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 /*
@@ -5710,53 +5121,6 @@ lbl_803AB3E8:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	803AB718
- * Size:	000004
- */
-void BlackMan::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
-
-/*
- * --INFO--
- * Address:	803AB71C
- * Size:	000004
- */
-void BlackMan::Obj::throwupItemInDeathProcedure() { }
-
-/*
- * --INFO--
- * Address:	803AB720
- * Size:	00002C
- */
-void BlackMan::Obj::createEfxHamon()
-{
-	if (!mTyre) {
-		EnemyBase::createEfxHamon();
-	}
-}
-
-/*
- * --INFO--
- * Address:	803AB74C
- * Size:	000040
- */
-void BlackMan::Obj::updateEfxHamon()
-{
-	if (mTyre) {
-		fadeEfxHamon();
-	} else {
-		EnemyBase::updateEfxHamon();
-	}
-}
-
-/*
- * --INFO--
- * Address:	803AB78C
- * Size:	000008
- */
-bool BlackMan::Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 f) { return false; }
 
 } // namespace BlackMan
 } // namespace Game

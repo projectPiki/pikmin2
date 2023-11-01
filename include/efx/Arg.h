@@ -281,9 +281,10 @@ struct ArgPosPos : public Arg {
 };
 
 struct ArgPrmColor : public Arg {
-	ArgPrmColor(Vector3f position)
+	ArgPrmColor(Vector3f& position)
 	    : Arg(position)
 	{
+		mColor = Color4(255, 255, 255, 255);
 	}
 
 	virtual const char* getName() // _08 (weak)

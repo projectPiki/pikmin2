@@ -53,7 +53,6 @@ struct Obj : public EnemyBase {
 	virtual void getShadowParam(ShadowParam& settings);                         // _134
 	virtual ~Obj() { }                                                          // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                                         // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase* params);              // _1C4 (weak)
 	virtual void doUpdate();                                                    // _1CC
 	virtual void doAnimationCullingOff();                                       // _1DC
 	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
@@ -61,15 +60,10 @@ struct Obj : public EnemyBase {
 	virtual void setParameters();                                               // _228
 	virtual void initWalkSmokeEffect();                                         // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                      // _234
-	virtual void updateEfxHamon();                                              // _24C (weak)
-	virtual void createEfxHamon();                                              // _250 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                         // _258 (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                          // _260
-	virtual void throwupItemInDeathProcedure();                                 // _270 (weak)
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
 	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);        // _28C
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294 (weak)
 	virtual void doStartStoneState();                                           // _2A4
 	virtual void doFinishStoneState();                                          // _2A8
 	virtual void setFSM(FSM* fsm)
@@ -77,7 +71,28 @@ struct Obj : public EnemyBase {
 		mFSM = fsm;
 		mFSM->init(this);
 		mCurrentLifecycleState = nullptr;
-	}; // _2F8 (weak)
+	};                                                                // _2F8 (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params) { } // _1C4 (weak)
+	virtual void throwupItemInDeathProcedure() { }                    // _270 (weak)
+	virtual void createEfxHamon()                                     // _250 (weak)
+	{
+		if (!mTyre) {
+			EnemyBase::createEfxHamon();
+		}
+	}
+	virtual void updateEfxHamon() // _24C (weak)
+	{
+		if (mTyre) {
+			fadeEfxHamon();
+		} else {
+			EnemyBase::updateEfxHamon();
+		}
+	}
+	virtual bool bombCallBack(Creature*, Vector3f&, f32) { return false; } // _294 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                     // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_BlackMan;
+	}
 	//////////////// VTABLE END
 
 	void walkFunc();
@@ -145,7 +160,7 @@ struct Obj : public EnemyBase {
 	Vector3f _328;                          // _328
 	int _334;                               // _334
 	bool _338;                              // _338
-	f32 _33C;                               // _33C, timer?
+	f32 mWraithTimer;                       // _33C
 	s16 _340;                               // _340, next or current waypoint idx?
 	s16 _342;                               // _342, next or current waypoint idx?
 	s16 _344;                               // _344, unknown

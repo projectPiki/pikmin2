@@ -80,6 +80,8 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 
 	inline BaseGameSection* getSection() { return mSection; }
 
+	inline JUTTexture* getXfbTexture() { return mXfbTexture; }
+
 	// _00     = VTBL
 	// _00-_3C = NodeObjectMgr
 	BitFlag<u8> mFlags;        // _3C
