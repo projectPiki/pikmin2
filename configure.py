@@ -1498,7 +1498,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebiScreenOmake", False, {"cflags" : "$cflags_pikmin -sym on"}],
             ["plugProjectEbisawaU/ebiOmakeMgr", False, {"cflags" : "$cflags_pikmin -sym on"}],
             ["plugProjectEbisawaU/ebiScreenOmakeCardE", False, {"cflags" : "$cflags_pikmin -sym on"}],
-            ["plugProjectEbisawaU/ebiScreenOmakeGame", False, {"cflags" : "$cflags_pikmin -sym on"}],
+            ["plugProjectEbisawaU/ebiScreenOmakeGame", True, {"cflags" : "$cflags_pikmin -sym on"}],
             ["plugProjectEbisawaU/ebiScreenInfoWindow", True, {"cflags" : "$cflags_pikmin -sym on"}],
         ],
     },

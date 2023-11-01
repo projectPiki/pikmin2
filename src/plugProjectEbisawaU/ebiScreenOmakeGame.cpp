@@ -81,14 +81,15 @@ void TOmakeGame::doOpenScreen(ArgOpen*)
 	mIsChangedGameSel = true;
 	mSelection        = 0;
 
-	JGeometry::TBox2f box = *mPaneSelectBox[mSelection]->getBounds();
-	u32 time              = 0.1f / sys->mDeltaTime;
-	mCursor.mCounter      = time;
-	mCursor.mCounterMax   = time;
-	mCursor.mBounds1      = box;
-	mCursor.mBounds2      = box;
-	mCursor.mIsEnabled    = true;
-	mCursor.mWindowPane   = mPaneGameSel[mSelection];
+	JGeometry::TBox2f box;
+	box                 = *mPaneSelectBox[mSelection]->getBounds();
+	u32 time            = 0.1f / sys->mDeltaTime;
+	mCursor.mCounter    = time;
+	mCursor.mCounterMax = time;
+	mCursor.mBounds1    = box;
+	mCursor.mBounds2    = box;
+	mCursor.mIsEnabled  = true;
+	mCursor.mWindowPane = mPaneGameSel[mSelection];
 
 	for (int i = 0; i < GameCount; i++) {
 		mBlinkFont[i].setPaneColors(0);
@@ -305,12 +306,13 @@ bool TOmakeGame::doUpdateStateWait()
 	mScreenObj->update();
 	if (mExitState) {
 		mPad.update();
-		if (mPad.mIsChanging) {
-			int oldsel            = mPad.mLastIndex;
-			JGeometry::TBox2f box = *mPaneSelectBox[mSelection]->getBounds();
-			mCursor.mBounds1      = mCursor.mBounds2;
-			mCursor.mBounds2      = box;
-			mCursor.mCounter      = mCursor.mCounterMax;
+		if (mPad._0D) {
+			int oldsel = mPad.mLastIndex;
+			JGeometry::TBox2f box;
+			box              = *mPaneSelectBox[mSelection]->getBounds();
+			mCursor.mBounds1 = mCursor.mBounds2;
+			mCursor.mBounds2 = box;
+			mCursor.mCounter = mCursor.mCounterMax;
 			mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
 			mCursor.mWindowPane = mPaneGameSel[mSelection];
 
