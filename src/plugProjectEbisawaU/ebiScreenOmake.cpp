@@ -569,7 +569,8 @@ void TOmake::doOpenScreen(ArgOpen* arg)
 
 	mCurrSel = 0;
 
-	JGeometry::TBox2f bounds = *mPaneList2[mCurrSel]->getBounds();
+	JGeometry::TBox2f bounds;
+	bounds = *mPaneList2[mCurrSel]->getBounds();
 
 	count               = (0.1f / sys->mDeltaTime);
 	mCursor.mCounter    = count;
@@ -1061,10 +1062,11 @@ bool TOmake::doUpdateStateWait()
 				}
 			}
 			if (id != mCurrSel) {
-				JGeometry::TBox2f bounds = *mPaneList2[mCurrSel]->getBounds();
-				mCursor.mBounds1         = bounds;
-				mCursor.mBounds2         = bounds;
-				mCursor.mCounter         = mCursor.mCounterMax;
+				JGeometry::TBox2f bounds;
+				bounds           = *mPaneList2[mCurrSel]->getBounds();
+				mCursor.mBounds1 = bounds;
+				mCursor.mBounds2 = bounds;
+				mCursor.mCounter = mCursor.mCounterMax;
 				mCursor.mScaleMgr.up(0.1f, 30.0f, 0.6f, 0.0f);
 				mCursor.mWindowPane = mPaneList1[mCurrSel];
 				mFonts[id].disable();
