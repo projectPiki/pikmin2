@@ -171,41 +171,46 @@ bool TSaveMenu::doUpdateStateClose()
  */
 void TSaveMenu::doDraw()
 {
+	J2DPerspGraph* graf2;
 	Graphics* gfx       = sys->mGfx;
 	J2DPerspGraph* graf = &gfx->mPerspGraph;
 	graf->setPort();
 
 	if (mDrawState) {
-		f32 factor;
-		J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
-		graf->setPort();
+		graf2 = &sys->mGfx->mPerspGraph;
+		graf2->setPort();
 		u8 alpha = _14;
-		JUtility::TColor color(0);
+		JUtility::TColor color(_14);
 		switch (mDrawState) {
-		case 1:
+		case 1: {
+			f32 calc;
 			if (mOpenCloseCounterMax) {
-				factor = (f32)mOpenCloseCounter / (f32)mOpenCloseCounterMax;
+				calc = (f32)mOpenCloseCounter / (f32)mOpenCloseCounterMax;
 			} else {
-				factor = 0.0f;
+				calc = 0.0f;
 			}
-			color.a = mAlpha * factor;
+			color.a = mAlpha * calc;
 			break;
-		case 2:
+		}
+		case 2: {
+			f32 calc;
 			if (mOpenCloseCounterMax) {
-				factor = (f32)mOpenCloseCounter / (f32)mOpenCloseCounterMax;
+				calc = (f32)mOpenCloseCounter / (f32)mOpenCloseCounterMax;
 			} else {
-				factor = 0.0f;
+				calc = 0.0f;
 			}
-			color.a = mAlpha * (1.0f - factor);
+			color.a = mAlpha * (1.0f - calc);
 			break;
+		}
 		}
 		graf->setColor(color);
 		u32 y    = System::getRenderModeObj()->efbHeight;
 		u32 x    = System::getRenderModeObj()->fbWidth;
 		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
-		graf->fillBox(box);
+		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
+		graf2->fillBox(box);
 	}
+
 	mScreenObj->draw(*gfx, *graf);
 }
 

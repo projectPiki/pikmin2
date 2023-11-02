@@ -26,7 +26,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenFramework.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenPushStart.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTitleMenu.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenTitleMenu.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiSaveMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenSaveMenu.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect_Mgr.o\

@@ -23,6 +23,8 @@ struct TTitleMenu_Object_Icon {
 	inline void update()
 	{
 		switch (mStatus) {
+		case 0:
+			break;
 		case 1:
 			if (mAnimA->isFinish()) {
 				mStatus = 2;

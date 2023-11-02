@@ -1480,7 +1480,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebiScreenFramework", True],
             ["plugProjectEbisawaU/ebiScreenPushStart", True],
             ["plugProjectEbisawaU/ebiScreenFileSelect", False, {"cflags" : "$cflags_pikmin -sym on"}],
-            "plugProjectEbisawaU/ebiScreenTitleMenu",
+            ["plugProjectEbisawaU/ebiScreenTitleMenu", True],
             ["plugProjectEbisawaU/ebiSaveMgr", True],
             "plugProjectEbisawaU/ebiScreenSaveMenu",
             ["plugProjectEbisawaU/ebiScreenFileSelect_Mgr", False, {"cflags" : "$cflags_pikmin -sym on"}],

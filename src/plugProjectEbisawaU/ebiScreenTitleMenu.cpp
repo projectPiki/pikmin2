@@ -97,33 +97,34 @@ void TTitleMenu::doSetArchive(JKRArchive* arc)
 	mAnims1[1][4].loadAnm("title_menu_6.bck", arc, 895, 1021);
 	mAnims1[1][5].loadAnm("title_menu_6.bck", arc, 1095, 1221);
 
-	mAnims2[0].loadAnm("title_menu_6.bck", arc, 95, 109);
-	mAnims4[0].loadAnm("title_menu_6.bck", arc, 110, 229);
-	mAnims2[1].loadAnm("title_menu_6.bck", arc, 295, 309);
-	mAnims4[1].loadAnm("title_menu_6.bck", arc, 310, 429);
-	mAnims2[2].loadAnm("title_menu_6.bck", arc, 494, 509);
-	mAnims4[2].loadAnm("title_menu_6.bck", arc, 510, 629);
-	mAnims2[3].loadAnm("title_menu_6.bck", arc, 694, 709);
-	mAnims4[3].loadAnm("title_menu_6.bck", arc, 710, 829);
-	mAnims2[4].loadAnm("title_menu_6.bck", arc, 894, 909);
-	mAnims4[4].loadAnm("title_menu_6.bck", arc, 910, 1029);
-	mAnims2[5].loadAnm("title_menu_6.bck", arc, 1094, 1109);
-	mAnims4[5].loadAnm("title_menu_6.bck", arc, 1110, 1229);
+	char* path = "title_menu_6.bck";
+	mAnims2[0].loadAnm(path, arc, 95, 109);
+	mAnims4[0].loadAnm(path, arc, 110, 229);
+	mAnims2[1].loadAnm(path, arc, 295, 309);
+	mAnims4[1].loadAnm(path, arc, 310, 429);
+	mAnims2[2].loadAnm(path, arc, 494, 509);
+	mAnims4[2].loadAnm(path, arc, 510, 629);
+	mAnims2[3].loadAnm(path, arc, 694, 709);
+	mAnims4[3].loadAnm(path, arc, 710, 829);
+	mAnims2[4].loadAnm(path, arc, 894, 909);
+	mAnims4[4].loadAnm(path, arc, 910, 1029);
+	mAnims2[5].loadAnm(path, arc, 1094, 1109);
+	mAnims4[5].loadAnm(path, arc, 1110, 1229);
 
-	mAnims3[0].loadAnm("title_menu_6.bck", arc, 95, 109);
-	mAnims5[0].loadAnm("title_menu_6.bck", arc, 110, 229);
-	mAnims3[1].loadAnm("title_menu_6.bck", arc, 295, 309);
-	mAnims5[1].loadAnm("title_menu_6.bck", arc, 310, 429);
-	mAnims3[2].loadAnm("title_menu_6.bck", arc, 494, 509);
-	mAnims5[2].loadAnm("title_menu_6.bck", arc, 510, 629);
-	mAnims3[3].loadAnm("title_menu_6.bck", arc, 694, 709);
-	mAnims5[3].loadAnm("title_menu_6.bck", arc, 710, 829);
-	mAnims3[4].loadAnm("title_menu_6.bck", arc, 894, 909);
-	mAnims5[4].loadAnm("title_menu_6.bck", arc, 910, 1029);
-	mAnims3[5].loadAnm("title_menu_6.bck", arc, 1094, 1109);
-	mAnims5[5].loadAnm("title_menu_6.bck", arc, 1110, 1229);
+	mAnims3[0].loadAnm(path, arc, 95, 109);
+	mAnims5[0].loadAnm(path, arc, 110, 229);
+	mAnims3[1].loadAnm(path, arc, 295, 309);
+	mAnims5[1].loadAnm(path, arc, 310, 429);
+	mAnims3[2].loadAnm(path, arc, 494, 509);
+	mAnims5[2].loadAnm(path, arc, 510, 629);
+	mAnims3[3].loadAnm(path, arc, 694, 709);
+	mAnims5[3].loadAnm(path, arc, 710, 829);
+	mAnims3[4].loadAnm(path, arc, 894, 909);
+	mAnims5[4].loadAnm(path, arc, 910, 1029);
+	mAnims3[5].loadAnm(path, arc, 1094, 1109);
+	mAnims5[5].loadAnm(path, arc, 1110, 1229);
 
-	mAnim6.loadAnm("title_menu_6.bck", arc, 0, 100);
+	mAnim6.loadAnm(path, arc, 0, 100);
 	mAnim7.loadAnm("title_menu_5.bck", arc, 0, 100);
 	E2DPane_setTreeInfluencedAlpha(mMainScreen, true);
 
@@ -151,9 +152,13 @@ void TTitleMenu::doOpenScreen(ArgOpen* arg)
 	P2ASSERTLINE(197, arg);
 
 	ArgOpenTitleMenu* sarg = static_cast<ArgOpenTitleMenu*>(arg);
+	bool check             = false;
 	mState                 = sarg->_04;
 	mSelectID              = sarg->mSelectID;
-	P2ASSERTBOUNDSLINE(203, 0, mState, 2);
+	if (mState >= 0 && mState < 2) {
+		check = true;
+	}
+	P2ASSERTLINE(203, check);
 
 	E2DPane_setTreeShow(mMainScreen);
 
@@ -239,11 +244,11 @@ void TTitleMenu::doInitWaitState()
 void TTitleMenu::doCloseScreen(ArgClose*)
 {
 	if (mDoCloseMenu) {
-		u32 count            = 1.0f / sys->mDeltaTime;
+		u32 count            = 0.2f / sys->mDeltaTime;
 		mMenuCloseCounter    = count;
 		mMenuCloseCounterMax = count;
 	} else {
-		u32 count            = 0.2f / sys->mDeltaTime;
+		u32 count            = 1.0f / sys->mDeltaTime;
 		mMenuCloseCounter    = count;
 		mMenuCloseCounterMax = count;
 	}
@@ -292,7 +297,7 @@ bool TTitleMenu::doUpdateStateWait()
 		int id = mPad.mLastIndex;
 		// skip over challenge mode if its not unlocked
 		if (mState == 0 && mSelectID == 2) {
-			if (id < 2) {
+			if (id < mSelectID) {
 				mSelectID++;
 			} else {
 				mSelectID--;
@@ -311,7 +316,7 @@ bool TTitleMenu::doUpdateStateWait()
 		mMenuCloseCounterMax = count;
 	}
 	if (mAnims1[mState][mSelectID].isFinish()) {
-		if (randFloat() < 0.2f) {
+		if (randEbisawaFloat() < 0.2f) {
 			showPika_(mSelectID);
 		} else {
 			hidePika_(mSelectID);
@@ -374,8 +379,9 @@ bool TTitleMenu::doUpdateStateClose()
  */
 void TTitleMenu::doDraw()
 {
-	Graphics* gfx       = sys->mGfx;
-	J2DPerspGraph* graf = &gfx->mPerspGraph;
+	J2DPerspGraph* graf;
+	Graphics* gfx = sys->mGfx;
+	graf          = &gfx->mPerspGraph;
 
 	graf->setPort();
 	mMainScreen->draw(*gfx, *graf);
