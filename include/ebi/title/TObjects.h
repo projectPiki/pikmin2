@@ -105,6 +105,20 @@ struct TMapBase : public TObjBase {
 		mWindTimerMax    = count;
 	}
 
+	f32 determineAnimRate(f32 calc)
+	{
+		if (calc <= 0.2f) {
+			return calc / 0.2f;
+		}
+
+		if (calc <= 0.8f) {
+			return 1.0f;
+		}
+
+		f32 factor = -5.0000005f;
+		return factor * calc + -(factor);
+	}
+
 	void setArchive(JKRArchive*);
 	void startWind(f32);
 	void update();

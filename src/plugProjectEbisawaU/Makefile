@@ -8,7 +8,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dEffect.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/particleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2Title.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleUnit.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleUnit.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiUtility.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleCamera.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleLight.o\

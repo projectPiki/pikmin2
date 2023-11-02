@@ -1462,7 +1462,7 @@ LIBS = [
             "plugProjectEbisawaU/efx2dEffect",
             "plugProjectEbisawaU/particleMgr",
             ["plugProjectEbisawaU/ebiP2Title", False],
-            "plugProjectEbisawaU/ebiP2TitleUnit",
+            ["plugProjectEbisawaU/ebiP2TitleUnit", True],
             ["plugProjectEbisawaU/ebiUtility", True],
             ["plugProjectEbisawaU/ebiP2TitleCamera", True],
             ["plugProjectEbisawaU/ebiP2TitleLight", True],
