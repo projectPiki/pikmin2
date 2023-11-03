@@ -80,6 +80,20 @@ struct TOption : public TScreenBase {
 		return false;
 	}
 
+	// values assigned to mExitStatus, used in ebi::Option::FSMState_ScreenWait::do_exec
+	enum updateStatus {
+		OptionState_NULL         = 0,
+		OptionState_Unk1         = 1,
+		OptionState_SelRumble    = 2,
+		OptionState_SelSoundMode = 3,
+		OptionState_SelBgmVol    = 4,
+		OptionState_SelSfxVol    = 5,
+		OptionState_SelDeflicker = 6,
+		OptionState_SelSaveGame  = 7,
+		OptionState_Unk8         = 8,
+		OptionState_Exit         = 9,
+	};
+
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
 	Controller* mController;                   // _00C

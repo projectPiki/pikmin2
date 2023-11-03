@@ -185,7 +185,7 @@ void TTitleMgr::setPosToPiki(long)
  * Address:	........
  * Size:	00003C
  */
-void TTitleMgr::setStartPosToPiki()
+Vector2f TTitleMgr::setStartPosToPiki()
 {
 	// UNUSED FUNCTION
 }
@@ -211,7 +211,15 @@ void TTitleMgr::setLogo()
  */
 void TTitleMgr::calcBreakupDestination()
 {
-	// UNUSED FUNCTION
+	for (int i = 0; i < 500; i++) {
+		f32 angle = 4.712388f * randEbisawaFloat() + -0.785398f;
+		f32 max   = mTitleParms.mMaxPikminScatterRadius.mValue;
+		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
+		f32 scale = (max - min) * randEbisawaFloat() + min;
+
+		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
+		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
+	}
 }
 
 /*
@@ -229,9 +237,17 @@ void TTitleMgr::calcDestination(long)
  * Address:	........
  * Size:	000084
  */
-void TTitleMgr::isAssemble()
+bool TTitleMgr::isAssemble()
 {
-	// UNUSED FUNCTION
+	if (!mPikminMgr.isAssemble()) {
+		return false;
+	} else if (mKoganeMgr.mObject->isCalc()) {
+		return false;
+	} else if (mChappyMgr.mObject->isCalc()) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 /*
@@ -361,8 +377,13 @@ void TTitleMgr::setDrawBufferToJ3DSys()
  * Address:	........
  * Size:	000038
  */
-void TTitleMgr::inField(Vector2f&)
+void TTitleMgr::inField(Vector2f& pos)
 {
+	// This may or may not be correct, I was just trying to get startChappy/startKogane to not inline in update
+	f32 angle = randEbisawaFloat() * TAU;
+	f32 x     = mTitleParms.mMaxPikminScatterRadius.mValue;
+
+	pos = Vector2f(x * cosf(angle), mTitleParms.mMaxPikminScatterRadius.mValue * sinf(angle));
 	// UNUSED FUNCTION
 }
 
@@ -426,9 +447,8 @@ bool TTitleMgr::isInViewField(TObjBase* obj)
 		EGEBox2f bounds(mTitleParms.mBoundsMinX.mValue, mTitleParms.mBoundsMinY.mValue, mTitleParms.mBoundsMaxX.mValue,
 		                mTitleParms.mBoundsMaxY.mValue);
 		return bounds.isIn(obj->mPosition, obj->mParms[4]);
-	} else {
-		return false;
 	}
+	return false;
 }
 
 /*
@@ -480,26 +500,12 @@ void TTitleMgr::start()
 	mDrawBufferA->frameInit();
 	mDrawBufferB->frameInit();
 
-	for (int i = 0; i < 500; i++) {
-		f32 angle = 4.712388f * randFloat() + -0.785398f;
-		f32 max   = mTitleParms.mMaxPikminScatterRadius.mValue;
-		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
-		f32 scale = (max - min) * (randFloat() + max);
+	calcBreakupDestination();
 
-		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
-		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
-	}
 	mPikminMgr.setStartPos(mPikiPosList);
 
-	for (int i = 0; i < 500; i++) {
-		f32 angle = 4.712388f * randFloat() + -0.785398f;
-		f32 max   = mTitleParms.mMaxPikminScatterRadius.mValue;
-		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
-		f32 scale = (max - min) * (randFloat() + max);
+	calcBreakupDestination();
 
-		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
-		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
-	}
 	mCoordMgr[0].copyCoordinate(mPikiPosList);
 	mPikminMgr.setDestPos(mPikiPosList);
 
@@ -547,15 +553,7 @@ void TTitleMgr::windBlow()
  */
 bool TTitleMgr::breakup()
 {
-	for (int i = 0; i < 500; i++) {
-		f32 angle = 4.712388f * randFloat() + -0.785398f;
-		f32 max   = mTitleParms.mMaxPikminScatterRadius.mValue;
-		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
-		f32 scale = (max - min) * (randFloat() + max);
-
-		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
-		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
-	}
+	calcBreakupDestination();
 	mPikminMgr.setDestPos(mPikiPosList);
 	mPikminMgr.quickAssemble();
 	mKoganeMgr.mObject->goHome();
@@ -571,14 +569,16 @@ bool TTitleMgr::breakup()
  */
 bool TTitleMgr::startKogane()
 {
-	if (!isIdleState()) {
+	if (!isAssemble()) {
 		return false;
 	} else {
-		f32 angle = randFloat() * TAU;
-
-		// spawn beetle somewhere on the outer radius of the map
-		Vector2f pos1(mTitleParms.mMaxPikminScatterRadius * cosf(angle), mTitleParms.mMaxPikminScatterRadius * sinf(angle));
-		Vector2f pos2(0.0f);
+		f32 angle = randEbisawaFloat() * TAU;
+		f32 x     = mTitleParms.mMaxPikminScatterRadius.mValue;
+		// this and startChappy refuse to not inline in update
+		Vector2f pos1(x * cosf(angle), mTitleParms.mMaxPikminScatterRadius.mValue * sinf(angle));
+		Vector2f pos2;
+		pos2.x = 0.0f;
+		pos2.y = 0.0f;
 		mKoganeMgr.mObject->startZigzagWalk(pos1, pos2);
 		startState(Enemy);
 		return true;
@@ -592,14 +592,16 @@ bool TTitleMgr::startKogane()
  */
 bool TTitleMgr::startChappy()
 {
-	if (!isIdleState()) {
+	if (!isAssemble()) {
 		return false;
 	} else {
-		f32 angle = randFloat() * TAU;
+		f32 angle = randEbisawaFloat() * TAU;
+		f32 x     = mTitleParms.mMaxPikminScatterRadius.mValue;
 
-		// spawn beetle somewhere on the outer radius of the map
-		Vector2f pos1(mTitleParms.mMaxPikminScatterRadius * cosf(angle), mTitleParms.mMaxPikminScatterRadius * sinf(angle));
-		Vector2f pos2(0.0f);
+		Vector2f pos1(x * cosf(angle), mTitleParms.mMaxPikminScatterRadius.mValue * sinf(angle));
+		Vector2f pos2;
+		pos2.x = 0.0f;
+		pos2.y = 0.0f;
 		mChappyMgr.mObject->startZigzagWalk(pos1, pos2);
 		startState(Enemy);
 		return true;
@@ -611,20 +613,13 @@ bool TTitleMgr::startChappy()
  * Address:	803BF9EC
  * Size:	00023C
  */
-void TTitleMgr::boidToAssemble(long id)
+bool TTitleMgr::boidToAssemble(long id)
 {
 	mKoganeMgr.mObject->goHome();
 	mChappyMgr.mObject->goHome();
 
-	for (int i = 0; i < 500; i++) {
-		f32 angle = 4.712388f * randFloat() + -0.785398f;
-		f32 max   = mTitleParms.mMaxPikminScatterRadius.mValue;
-		f32 min   = mTitleParms.mMinPikminScatterRadius.mValue;
-		f32 scale = (max - min) * (randFloat() + max);
+	calcBreakupDestination();
 
-		mPikiPosList[i] = Vector2f(scale * cosf(angle) + mTitleParms.mPikiScatterOriginX.mValue,
-		                           scale * sinf(angle) + mTitleParms.mPikiScatterOriginY.mValue);
-	}
 	if (id == 0) {
 		mCoordMgr[0].copyCoordinate(mPikiPosList);
 	} else if (id == 1) {
@@ -634,6 +629,7 @@ void TTitleMgr::boidToAssemble(long id)
 
 	startState(BoidDisperse);
 	_F70 = 0;
+	return true;
 }
 
 /*
@@ -653,8 +649,10 @@ void TTitleMgr::boid3ToAssemble()
  */
 bool TTitleMgr::isControllerOK()
 {
-	bool result = (!mCounterControl ? TRUE : FALSE);
-	return result;
+	if (controllerOK()) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -664,7 +662,7 @@ bool TTitleMgr::isControllerOK()
  */
 bool TTitleMgr::isPressStart()
 {
-	if (!mCounterPressStart) {
+	if (pressStartOK()) {
 		return true;
 	}
 	return false;
@@ -740,7 +738,7 @@ bool TTitleMgr::update()
 			mCounterPressStart--;
 		}
 
-		if (isIdleState()) {
+		if (isAssemble()) {
 			_F71 = true;
 		}
 		if (_F71 && mController) {
@@ -762,9 +760,9 @@ bool TTitleMgr::update()
 		if (!mCounter2) {
 			bool flag = false;
 			if (!_F70) {
-				if (isIdleState()) {
+				if (isAssemble()) {
 					mState            = StartWind;
-					u32 count         = mTitleParms.mWindMoveDuration / sys->mDeltaTime;
+					u32 count         = mTitleParms.mWindMoveDuration.mValue / sys->mDeltaTime;
 					mCounterCommon    = count;
 					mCounterCommonMax = count;
 					mMapBase.startWind(mTitleParms.mPlantMoveDuration.mValue);
@@ -772,7 +770,7 @@ bool TTitleMgr::update()
 					flag = true;
 				}
 			} else {
-				f32 test = randFloat();
+				f32 test = randEbisawaFloat();
 				if (test < 0.2f) {
 					if (startKogane()) {
 						flag = true;
@@ -791,16 +789,16 @@ bool TTitleMgr::update()
 					if (mState != Enemy) {
 						mState = BoidSwirl;
 						mPikminMgr.startBoid3(mTitleParms.mBoidDurationSwirl.mValue);
-						u32 count         = mTitleParms.mBoidDurationSwirl / sys->mDeltaTime;
+						u32 count         = mTitleParms.mBoidDurationSwirl.mValue / sys->mDeltaTime;
 						mCounterCommon    = count;
 						mCounterCommonMax = count;
 						_F70              = false;
 						flag              = true;
 					}
 				} else {
-					if (isIdleState()) {
+					if (isAssemble()) {
 						mState            = StartWind;
-						u32 count         = mTitleParms.mWindMoveDuration / sys->mDeltaTime;
+						u32 count         = mTitleParms.mWindMoveDuration.mValue / sys->mDeltaTime;
 						mCounterCommon    = count;
 						mCounterCommonMax = count;
 						mMapBase.startWind(mTitleParms.mPlantMoveDuration);
@@ -880,6 +878,7 @@ void TTitleMgr::updateState()
 		             mTitleParms.mBoundsMaxY.mValue,
 		             mTitleParms.mBoundsMinY.mValue + (mTitleParms.mBoundsMaxX.mValue - mTitleParms.mBoundsMinX.mValue) / test,
 		             mTitleParms.mBoundsMaxY.mValue);
+
 		mPikminMgr.startWindBlow(box);
 		if (!mCounterCommon) {
 			mState = 1;
@@ -979,21 +978,23 @@ void TTitleMgr::draw()
 	if (mState != 0) {
 		if (mLevelSetting == Winter) {
 			J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
+			graf->setPort();
 			JUtility::TColor c(255, 255, 255, 255);
 			graf->setColor(c);
 			u32 y    = System::getRenderModeObj()->efbHeight;
 			u32 x    = System::getRenderModeObj()->fbWidth;
 			f32 zero = 0.0f;
-			JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+			JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 			graf->fillBox(box);
 		} else {
 			J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
+			graf->setPort();
 			JUtility::TColor c(0, 0, 0, 255);
 			graf->setColor(c);
 			u32 y    = System::getRenderModeObj()->efbHeight;
 			u32 x    = System::getRenderModeObj()->fbWidth;
 			f32 zero = 0.0f;
-			JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+			JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 			graf->fillBox(box);
 		}
 		Viewport* vp = sys->mGfx->getViewport(0);

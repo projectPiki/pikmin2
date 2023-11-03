@@ -291,11 +291,11 @@ bool TOption::doUpdateStateWait()
 			}
 		}
 	}
-	mExitStatus = 0;
+	mExitStatus = OptionState_NULL;
 
 	if (mEnabled && !mWindowCursor.mCounter) {
 		if (mController->getButtonDown() & Controller::PRESS_B) {
-			mExitStatus = 9;
+			mExitStatus = OptionState_Exit;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 		}
 		switch (mCurrMainSelection) {
@@ -307,14 +307,14 @@ bool TOption::doUpdateStateWait()
 				if (mOptionParamA.mIsRumble == true) {
 					mOptionParamA.mIsRumble = false;
 					mButtonPuruAnim[1].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
-					mExitStatus = 2;
+					mExitStatus = OptionState_SelRumble;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
 				}
 			} else if (mController->isMoveLeft()) {
 				if (!mOptionParamA.mIsRumble) {
 					mOptionParamA.mIsRumble = true;
 					mButtonPuruAnim[0].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
-					mExitStatus = 2;
+					mExitStatus = OptionState_SelRumble;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
 				}
 			}
@@ -323,7 +323,7 @@ bool TOption::doUpdateStateWait()
 		case 2: // Sound Mode
 			mInputStereo.update();
 			if (mInputStereo._0D) {
-				mExitStatus = 3;
+				mExitStatus = OptionState_SelSoundMode;
 				switch (mOptionParamA.mSoundMode) {
 				case 0:
 					mButtonPuruAnim[2].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
@@ -344,7 +344,7 @@ bool TOption::doUpdateStateWait()
 		case 3: // music volume
 			mInputBgmVol.update();
 			if (mInputBgmVol._0D) {
-				mExitStatus = 4;
+				mExitStatus = OptionState_SelBgmVol;
 				int prev    = mOptionParamA.mBgmVolume;
 				if (prev != 0) {
 					mBgmSelPuruAnimA[prev - 1].mScaleMgr.up(0.5f, 30.0f, 0.6f, 0.0f);
@@ -360,7 +360,7 @@ bool TOption::doUpdateStateWait()
 		case 4: // sound volume
 			mInputSfxVol.update();
 			if (mInputSfxVol._0D) {
-				mExitStatus = 5;
+				mExitStatus = OptionState_SelSfxVol;
 				int prev    = mOptionParamA.mSeVolume;
 				if (prev != 0) {
 					mSfxSelPuruAnimA[prev - 1].mScaleMgr.up(0.5f, 30.0f, 0.6f, 0.0f);
@@ -376,21 +376,21 @@ bool TOption::doUpdateStateWait()
 					mOptionParamA.mUseDeflicker = false;
 					mButtonPuruAnim[6].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
-					mExitStatus = 6;
+					mExitStatus = OptionState_SelDeflicker;
 				}
 			} else if (mController->isMoveLeft()) {
 				if (!mOptionParamA.mUseDeflicker) {
 					mOptionParamA.mUseDeflicker = true;
 					mButtonPuruAnim[5].mScaleMgr.up(0.2f, 30.0f, 0.6f, 0.0f);
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_SOUND_CONFIG, 0);
-					mExitStatus = 6;
+					mExitStatus = OptionState_SelDeflicker;
 				}
 			}
 			break;
 
 		case 6: // Save Game
 			if (mController->getButtonDown() & Controller::PRESS_A) {
-				mExitStatus = 7;
+				mExitStatus = OptionState_SelSaveGame;
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 			}
 			break;

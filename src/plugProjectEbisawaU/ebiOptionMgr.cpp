@@ -103,124 +103,29 @@ void FSMState_ScreenWait::do_init(TMgr* obj, Game::StateArg* arg) { obj->mOption
 void FSMState_ScreenWait::do_exec(TMgr* mgr)
 {
 	switch (mgr->mOptionScreen.mExitStatus) {
-	case 9:
+	case Screen::TOption::OptionState_Unk1:
+	case Screen::TOption::OptionState_SelRumble:
+	case Screen::TOption::OptionState_SelSoundMode:
+	case Screen::TOption::OptionState_SelBgmVol:
+	case Screen::TOption::OptionState_SelSfxVol:
+	case Screen::TOption::OptionState_SelDeflicker:
+	case Screen::TOption::OptionState_Unk8:
 		mgr->mOptionScreen.mOptionParamA.saveRam();
 		break;
-	case 8:
+	case Screen::TOption::OptionState_SelSaveGame:
 		mgr->mOptionScreen.mOptionParamA.saveRam();
 		mgr->mOptionScreen.mEnabled = false;
-		if (sys->mCardMgr->isSaveValid() && sys->mCardMgr->isCardReady()) {
+		if (isSaveError()) {
 			transit(mgr, WaitCloseForNoCard, 0);
 			return;
 		}
 		transit(mgr, SaveMgr, 0);
 		return;
-	case 7:
+	case Screen::TOption::OptionState_Exit:
 		mgr->mOptionScreen.mEnabled = false;
 		transit(mgr, WorldMapInfoWindow, 0);
 		break;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0xc4(r4)
-	cmpwi    r0, 8
-	beq      lbl_803CED70
-	bge      lbl_803CED64
-	cmpwi    r0, 7
-	bge      lbl_803CED7C
-	cmpwi    r0, 1
-	bge      lbl_803CED70
-	b        lbl_803CEE48
-
-lbl_803CED64:
-	cmpwi    r0, 0xa
-	bge      lbl_803CEE48
-	b        lbl_803CEE28
-
-lbl_803CED70:
-	addi     r3, r30, 0xc8
-	bl       saveRam__Q33ebi6Screen16TOptionParameterFv
-	b        lbl_803CEE48
-
-lbl_803CED7C:
-	addi     r3, r30, 0xc8
-	bl       saveRam__Q33ebi6Screen16TOptionParameterFv
-	li       r31, 0
-	stb      r31, 0x10(r30)
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803CEDB0
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803CEDB0
-	li       r31, 1
-
-lbl_803CEDB0:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_803CEDD4
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
-	cmpwi    r3, 0
-	bne      lbl_803CEDD4
-	li       r0, 1
-	b        lbl_803CEDD8
-
-lbl_803CEDD4:
-	li       r0, 0
-
-lbl_803CEDD8:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803CEE04
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CEE48
-
-lbl_803CEE04:
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CEE48
-
-lbl_803CEE28:
-	li       r0, 0
-	li       r5, 7
-	stb      r0, 0x10(r30)
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803CEE48:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -283,59 +188,9 @@ void FSMState_WorldMapInfoWindow::do_init(TMgr* obj, Game::StateArg* arg)
 {
 	::Screen::gGame2DMgr->mScreenMgr->reset();
 	og::Screen::DispMemberWorldMapInfoWin0 disp;
-	disp.mMsgIDYes       = '6017_00';
 	disp.mMsgIDNo        = '6017_00';
 	disp.mStartSelection = 1;
 	::Screen::gGame2DMgr->open_WorldMapInfoWin0(disp);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  lwz       r3, -0x6560(r13)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r5, 0x804B
-	  lis       r4, 0x34
-	  li        r11, 0
-	  lis       r3, 0x315F
-	  addi      r8, r4, 0x3731
-	  addi      r10, r5, 0x1148
-	  addi      r0, r3, 0x3030
-	  lis       r6, 0x804E
-	  lis       r5, 0x305F
-	  lis       r4, 0x375F
-	  lis       r3, 0x36
-	  li        r7, 0xB4
-	  addi      r9, r5, 0x3030
-	  stw       r10, 0x8(r1)
-	  subi      r10, r6, 0x61F8
-	  addi      r6, r4, 0x3030
-	  stw       r0, 0x24(r1)
-	  addi      r5, r3, 0x3031
-	  li        r0, 0x1
-	  lwz       r3, -0x6560(r13)
-	  stw       r8, 0x20(r1)
-	  addi      r4, r1, 0x8
-	  stb       r11, 0x29(r1)
-	  stw       r11, 0xC(r1)
-	  stw       r10, 0x8(r1)
-	  stw       r11, 0x10(r1)
-	  stw       r9, 0x1C(r1)
-	  stw       r8, 0x18(r1)
-	  stb       r7, 0x28(r1)
-	  stw       r6, 0x24(r1)
-	  stw       r5, 0x20(r1)
-	  stb       r0, 0x29(r1)
-	  bl        0x2E000
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /*
@@ -353,8 +208,6 @@ void FSMState_WorldMapInfoWindow::do_exec(TMgr* obj)
 		obj->mOptionScreen.mOptionParamB.saveRam();
 		transit(obj, ScreenClose, nullptr);
 		break;
-	default:
-		break;
 	}
 }
 
@@ -363,7 +216,7 @@ void FSMState_WorldMapInfoWindow::do_exec(TMgr* obj)
  * Address:	803CF10C
  * Size:	00000C
  */
-void FSMState_LoadOption::do_init(TMgr* obj, Game::StateArg* arg) { _10 = 0; }
+void FSMState_LoadOption::do_init(TMgr* obj, Game::StateArg* arg) { mStatus = 0; }
 
 /*
  * --INFO--
@@ -372,15 +225,15 @@ void FSMState_LoadOption::do_init(TMgr* obj, Game::StateArg* arg) { _10 = 0; }
  */
 void FSMState_LoadOption::do_exec(TMgr* mgr)
 {
-	switch (_10) {
+	switch (mStatus) {
 	case 0:
-		if (sys->mCardMgr->isSaveValid() && sys->mCardMgr->isCardReady()) {
+		if (isSaveError()) {
 			transit(mgr, ScreenOpen, 0);
 		} else {
-			if (sys->mCardMgr->isSaveValid()) {
+			if (sys->mCardMgr->isCardInvalid()) {
 				bool check = sys->mCardMgr->loadGameOption();
 				if (check) {
-					_10 = 1;
+					mStatus = 1;
 				} else {
 					JUT_PANICLINE(239, "fail to memory card Request even if finish task\n");
 				}
@@ -388,139 +241,12 @@ void FSMState_LoadOption::do_exec(TMgr* mgr)
 		}
 		break;
 	case 1:
-		if (sys->mCardMgr->isSaveValid()) {
+		if (sys->mCardMgr->isCardInvalid()) {
 			sys->mCardMgr->getCardStatus();
 			transit(mgr, ScreenOpen, 0);
 		}
 		break;
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r0, 0x10(r3)
-	cmpwi    r0, 1
-	beq      lbl_803CF240
-	bge      lbl_803CF29C
-	cmpwi    r0, 0
-	bge      lbl_803CF154
-	b        lbl_803CF29C
-
-lbl_803CF154:
-	lwz      r3, sys@sda21(r13)
-	li       r30, 0
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803CF17C
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803CF17C
-	li       r30, 1
-
-lbl_803CF17C:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_803CF1A0
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
-	cmpwi    r3, 0
-	bne      lbl_803CF1A0
-	li       r0, 1
-	b        lbl_803CF1A4
-
-lbl_803CF1A0:
-	li       r0, 0
-
-lbl_803CF1A4:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803CF1D0
-	mr       r3, r31
-	mr       r4, r29
-	lwz      r12, 0(r31)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CF29C
-
-lbl_803CF1D0:
-	lwz      r3, sys@sda21(r13)
-	li       r30, 0
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803CF1F8
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803CF1F8
-	li       r30, 1
-
-lbl_803CF1F8:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_803CF29C
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       loadGameOption__Q34Game10MemoryCard3MgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803CF220
-	li       r0, 1
-	stw      r0, 0x10(r31)
-	b        lbl_803CF29C
-
-lbl_803CF220:
-	lis      r3, lbl_80496608@ha
-	lis      r5, lbl_8049661C@ha
-	addi     r3, r3, lbl_80496608@l
-	li       r4, 0xef
-	addi     r5, r5, lbl_8049661C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_803CF29C
-
-lbl_803CF240:
-	lwz      r3, sys@sda21(r13)
-	li       r30, 0
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803CF268
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803CF268
-	li       r30, 1
-
-lbl_803CF268:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_803CF29C
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
-	mr       r3, r31
-	mr       r4, r29
-	lwz      r12, 0(r31)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803CF29C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*

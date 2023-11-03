@@ -30,7 +30,7 @@ struct TTitleParameters : public Parameters {
 	    , mPikiScatterOriginY(this, 'tp09', "ƒsƒNƒ~ƒ“‰ðŽU’†SÀ•WY", 0.0f, -480.0f, 480.0f)
 	    , mMinPikminScatterRadius(this, 'tp10', "ƒsƒNƒ~ƒ“‰ðŽU”¼ŒaÅ¬", 500.0f, 0.0f, 1000.0f)
 	    , mMaxPikminScatterRadius(this, 'tp11', "ƒsƒNƒ~ƒ“‰ðŽU”¼ŒaÅ‘å(ƒIƒuƒWƒFƒNƒg”z’uŒÀŠE”¼Œa)", 600.0f, 0.0f, 1000.0f)
-	    , mWindProbability(this, 'tp13', "•—‚ ‚½‚è”ÍˆÍ‚Ì—”", 3.0f, 0.0f, 100.0f)
+	    , mWindProbability(this, 'tp13', "•—‚ ‚½‚è”ÍˆÍ‚Ì—”", 30.0f, 0.0f, 100.0f)
 	    , mPlantMoveDuration(this, 'tp50', "BG•—ó‘ÔŽžŠÔ(•b)", 8.0f, 0.0f, 100.0f)
 	    , mBoidDurationDisperse(this, 'tp15', "BOID1ó‘ÔŽžŠÔ(•b)", 3.0f, 0.0f, 60.0f)
 	    , mBoidDurationRegroup(this, 'tp16', "BOID2ó‘ÔŽžŠÔ(•b)", 3.0f, 0.0f, 60.0f)
@@ -244,19 +244,20 @@ struct TTitleMgr : public CNode, JKRDisposer {
 
 	TTitleMgr();
 
-	inline bool isIdleState()
+	inline bool controllerOK()
 	{
-		bool good;
-		if (!mPikminMgr.isAssemble()) {
-			good = false;
-		} else if (mKoganeMgr.mObject->isCalc()) {
-			good = false;
-		} else if (mChappyMgr.mObject->isCalc()) {
-			good = false;
-		} else {
-			good = true;
+		if (mCounterControl == 0) {
+			return true;
 		}
-		return good;
+		return false;
+	}
+
+	inline bool pressStartOK()
+	{
+		if (mCounterPressStart == 0) {
+			return true;
+		}
+		return false;
 	}
 
 	virtual ~TTitleMgr(); // _08 (weak)
@@ -279,7 +280,7 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	bool breakup();
 	bool startKogane();
 	bool startChappy();
-	void boidToAssemble(long);
+	bool boidToAssemble(long);
 	bool isControllerOK();
 	bool isPressStart();
 	void startState(enumState);
@@ -290,10 +291,10 @@ struct TTitleMgr : public CNode, JKRDisposer {
 	void readTitleParam(JKRArchive*, char*);
 	void setDestToPiki(long);
 	void setPosToPiki(long);
-	void setStartPosToPiki();
+	Vector2f setStartPosToPiki();
 	void calcBreakupDestination();
 	void calcDestination(long);
-	void isAssemble();
+	bool isAssemble();
 	void setDrawBufferToJ3DSys();
 	void inField(Vector2f&);
 	void inViewField(Vector2f&, f32);
