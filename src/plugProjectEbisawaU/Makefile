@@ -20,7 +20,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DGraph.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenOption.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenProgre.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOptionMgr.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiOptionMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DCallBack.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenFramework.o\

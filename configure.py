@@ -1474,7 +1474,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebi2DGraph", False], 
             ["plugProjectEbisawaU/ebiScreenOption", True],
             ["plugProjectEbisawaU/ebiScreenProgre", True],
-            ["plugProjectEbisawaU/ebiOptionMgr", False], 
+            ["plugProjectEbisawaU/ebiOptionMgr", True], 
             "plugProjectEbisawaU/ebi2DCallBack",
             ["plugProjectEbisawaU/ebiCardMgr", True],
             ["plugProjectEbisawaU/ebiScreenFramework", True],
