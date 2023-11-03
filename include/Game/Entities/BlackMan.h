@@ -100,7 +100,7 @@ struct Obj : public EnemyBase {
 	void findNextRoutePoint();
 	void findNextTraceRoutePoint();
 	bool isEndPathFinder();
-	void setPathFinder(bool);
+	bool setPathFinder(bool);
 	void releasePathFinder();
 	void jointMtxCalc(int);
 	void bodyMtxCalc();

@@ -21,6 +21,8 @@
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/mapParts.h"
 #include "Game/EnemyFunc.h"
+#include "Game/PikiMgr.h"
+#include "Dolphin/rand.h"
 #include "PS.h"
 #include "nans.h"
 
@@ -2379,6 +2381,268 @@ bool BlackMan::Obj::isReachToGoal(f32 rad) { return (u8)(sqrDistanceXZ(mPosition
  */
 void BlackMan::Obj::findNextRoutePoint()
 {
+	if (_34C || _2E0 == 4) {
+		findNextTraceRoutePoint();
+		return;
+	}
+
+	RouteMgr* routeMgr = mapMgr->mRouteMgr;
+	if (_2E8 > 0) {
+		if (_342 == _340 && _340 == _344) {
+			mTargetPosition = mHomePosition;
+			return;
+		}
+
+		_2E8 = 0;
+
+		WPEdgeSearchArg edgeArg(mPosition);
+		if (routeMgr->getNearestEdge(edgeArg)) {
+			s16 nextIdx = _340; // r24
+			s16 prevIdx = _342; // r25
+			if (!edgeArg.mWp1->isFlag(WPF_Closed)) {
+				if (routeMgr->getWayPoint(edgeArg.mWp1->mIndex)->mNumFromLinks == 1 && !edgeArg.mWp2->isFlag(WPF_Closed)) {
+					_342 = _340;
+					_340 = edgeArg.mWp2->mIndex;
+				} else {
+					_340 = edgeArg.mWp1->mIndex;
+					if (routeMgr->getWayPoint(edgeArg.mWp2->mIndex)->mNumFromLinks > 1 && !edgeArg.mWp2->isFlag(WPF_Closed)) {
+						_342 = edgeArg.mWp2->mIndex;
+					} else {
+						_342 = _340;
+					}
+				}
+			} else {
+				_340 = edgeArg.mWp2->mIndex;
+				if (routeMgr->getWayPoint(edgeArg.mWp1->mIndex)->mNumFromLinks > 1 && !edgeArg.mWp1->isFlag(WPF_Closed)) {
+					_342 = edgeArg.mWp1->mIndex;
+				} else {
+					_342 = _340;
+				}
+			}
+
+			if (_340 == nextIdx && _342 == prevIdx) {
+				mTargetPosition = mPosition;
+				mTargetPosition.x -= 100.0f * sinf(mFaceDir);
+				mTargetPosition.z -= 100.0f * cosf(mFaceDir);
+				return;
+			}
+
+			_342            = _340;
+			mTargetPosition = Vector3f(routeMgr->getWayPoint(_340)->mPosition);
+			return;
+		}
+	}
+
+	WayPoint* currWP = routeMgr->getWayPoint(_340);
+
+	P2ASSERTLINE(1557, currWP);
+
+	int counter = 0;
+	s16 indices[8];
+	WayPointIterator wpIter(currWP, true);
+	CI_LOOP(wpIter)
+	{
+		s16 index        = *wpIter;
+		WayPoint* wp     = routeMgr->getWayPoint(index);
+		Vector3f pos     = wp->mPosition;
+		Vector3f* posPtr = &pos;
+
+		if (wp && !wp->isFlag(WPF_Closed) && wp->mNumToLinks + wp->mNumFromLinks > 1) {
+			indices[counter] = index;
+			counter++;
+		}
+	}
+
+	if (counter == 0) {
+		WayPointIterator wpIter(currWP, true);
+		CI_LOOP(wpIter)
+		{
+			s16 index    = *wpIter;
+			WayPoint* wp = routeMgr->getWayPoint(index);
+
+			if (wp && !wp->isFlag(WPF_Closed)) {
+				indices[counter] = index;
+				counter++;
+			}
+		}
+	}
+
+	if (counter) {
+		int val     = -1;                                          // r28
+		bool check  = false;                                       // r27
+		f32 minDist = SQUARE(C_PARMS->mGeneral.mSearchDistance()); // f31
+		int targetWPIdx;                                           // r26
+		switch (_2E0) {
+		case 0: {
+			targetWPIdx = (f32)counter * randFloat();
+		} break;
+		case 1: {
+			for (int i = 0; i < counter; i++) {
+				Iterator<Piki> iter(pikiMgr);
+				s16 idx = indices[i];
+				if (_342 == idx) {
+					if (_338 || !C_PARMS->_A15) {
+						continue;
+					}
+
+					check = true;
+				}
+
+				WayPoint* wp = routeMgr->getWayPoint(idx);
+
+				CI_LOOP(iter)
+				{
+					Piki* piki = *iter;
+					if (piki->isAlive() && piki->isStickTo()) {
+						Vector3f wpPos      = Vector3f(wp->mPosition);
+						Vector3f wpPos1     = wpPos;
+						Vector3f* wpPosPtr  = &wpPos1;
+						Vector3f wpPos2     = wpPos;
+						Vector3f* wpPosPtr2 = &wpPos2;
+						Vector3f pikiPos    = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
+
+						f32 sqrDist = sqrDistanceXZ(pikiPos, wpPos);
+						if (sqrDist < minDist) {
+							minDist = sqrDist;
+							val     = i;
+						}
+					}
+				}
+
+				Navi* activeNavi = naviMgr->getActiveNavi();
+				if (activeNavi && activeNavi->isAlive()) {
+					Vector3f wpPos      = Vector3f(wp->mPosition);
+					Vector3f wpPos1     = wpPos;
+					Vector3f* wpPosPtr  = &wpPos1;
+					Vector3f wpPos2     = wpPos;
+					Vector3f* wpPosPtr2 = &wpPos2;
+					Vector3f naviPos    = Vector3f(activeNavi->getPosition().x, 0.0f, activeNavi->getPosition().z);
+					f32 sqrDist         = sqrDistanceXZ(naviPos, wpPos);
+					if (sqrDist < minDist) {
+						minDist = sqrDist;
+						val     = i;
+					}
+				}
+			}
+
+			if (val < 0) {
+				for (int i = 0; i < 100; i++) {
+					targetWPIdx = (f32)counter * randFloat();
+					if (_342 != indices[targetWPIdx]) {
+						break;
+					}
+				}
+			} else {
+				targetWPIdx = val;
+			}
+		} break;
+		case 2: {
+			f32 minNaviDist = 1000000.0f;
+			for (int i = 0; i < counter; i++) {
+				s16 idx = indices[i];
+				if (_342 != idx) {
+					WayPoint* wp     = routeMgr->getWayPoint(idx);
+					Navi* activeNavi = naviMgr->getActiveNavi();
+					if (activeNavi) {
+						Vector3f wpPos      = Vector3f(wp->mPosition);
+						Vector3f wpPos1     = wpPos;
+						Vector3f* wpPosPtr  = &wpPos1;
+						Vector3f wpPos2     = wpPos;
+						Vector3f* wpPosPtr2 = &wpPos2;
+						Vector3f wpPos3     = wpPos;
+						Vector3f* wpPosPtr3 = &wpPos3;
+						Vector3f naviPos = Vector3f(activeNavi->getPosition().x, activeNavi->getPosition().y, activeNavi->getPosition().z);
+						f32 dist         = naviPos.sqrDistance(wpPos);
+						if (dist < minNaviDist) {
+							minNaviDist = dist;
+							val         = i;
+						}
+					}
+				}
+			}
+
+			if (val < 0 || counter <= 2) {
+				targetWPIdx = (f32)counter * randFloat();
+			} else {
+				for (int i = 0; i < 10; i++) {
+					targetWPIdx = (f32)counter * randFloat();
+					if (targetWPIdx != val) {
+						break;
+					}
+
+					targetWPIdx = -1;
+				}
+
+				if (targetWPIdx < 0) {
+					targetWPIdx = val;
+				}
+			}
+		} break;
+		case 3: {
+			f32 maxDot = 0.0f;
+			for (int i = 0; i < counter; i++) {
+				s16 idx = indices[i];
+				if (_342 == idx) {
+					continue;
+				}
+
+				WayPoint* wp1   = routeMgr->getWayPoint(_340);
+				Vector3f wp1Pos = wp1->mPosition;
+				WayPoint* wp2   = routeMgr->getWayPoint(_342);
+				Vector3f wp2Pos = wp2->mPosition;
+				Vector3f sep    = Vector3f(wp1Pos.x - wp2Pos.x, 0.0f, wp1Pos.z - wp2Pos.z); // 0xd4
+
+				sep.normalise();
+
+				Vector3f yAxis(0.0f, 1.0f, 0.0f);
+				Vector3f crossVec; // 0xbc
+				PSVECCrossProduct((Vec*)&yAxis, (Vec*)&sep, (Vec*)&crossVec);
+
+				crossVec.normalise();
+
+				WayPoint* wp = routeMgr->getWayPoint(idx);
+
+				Vector3f sep2 = wp->mPosition - mPosition;
+				sep2.normalise();
+
+				f32 dotProd = dot(crossVec, sep2);
+				if (dotProd > maxDot) {
+					maxDot = dotProd;
+					val    = i;
+				}
+			}
+
+			if (val < 0) {
+				targetWPIdx = (f32)counter * randFloat();
+			} else {
+				targetWPIdx = val;
+			}
+		} break;
+		}
+
+		if (targetWPIdx >= counter) {
+			targetWPIdx = counter - 1;
+		}
+
+		s16 idx            = indices[targetWPIdx];
+		WayPoint* targetWP = routeMgr->getWayPoint(idx);
+		if (check || counter == 1 || idx != _342) {
+			if (_342 == idx) {
+				_338 = true;
+			} else {
+				_338 = false;
+			}
+
+			_342 = _340;
+			_340 = idx;
+		}
+	}
+
+	WayPoint* wp = routeMgr->getWayPoint(_340);
+	if (wp) {
+		mTargetPosition = Vector3f(wp->mPosition);
+	}
+
 	/*
 	stwu     r1, -0x1e0(r1)
 	mflr     r0
@@ -3474,72 +3738,29 @@ lbl_803A9A3C:
  */
 void BlackMan::Obj::findNextTraceRoutePoint()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x35c(r3)
-	cmplwi   r0, 0
-	beq      lbl_803A9B3C
-	mr       r4, r0
-	b        lbl_803A9B18
+	if (!_35C) {
+		return;
+	}
+	FOREACH_NODE(PathNode, _35C, node)
+	{
+		if (node->mWpIndex != _340) {
+			continue;
+		}
 
-lbl_803A9AA8:
-	lha      r0, 0x20(r4)
-	lha      r3, 0x340(r31)
-	cmpw     r0, r3
-	bne      lbl_803A9B14
-	sth      r3, 0x342(r31)
-	lwz      r3, 0xc(r4)
-	cmplwi   r3, 0
-	beq      lbl_803A9AD4
-	lha      r0, 0x20(r3)
-	sth      r0, 0x340(r31)
-	b        lbl_803A9ADC
+		_342 = _340;
 
-lbl_803A9AD4:
-	lha      r0, 0x344(r31)
-	sth      r0, 0x340(r31)
+		PathNode* nextNode = node->mNext;
+		if (nextNode) {
+			_340 = nextNode->mWpIndex;
+		} else {
+			_340 = _344;
+		}
 
-lbl_803A9ADC:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lha      r4, 0x340(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x50(r3)
-	lfs      f2, 0x54(r3)
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x2d0(r31)
-	stfs     f1, 0x2d4(r31)
-	stfs     f2, 0x2d8(r31)
-	b        lbl_803A9B3C
+		mTargetPosition = Vector3f(mapMgr->mRouteMgr->getWayPoint(_340)->mPosition);
+		return;
+	}
 
-lbl_803A9B14:
-	lwz      r4, 0xc(r4)
-
-lbl_803A9B18:
-	cmplwi   r4, 0
-	bne      lbl_803A9AA8
-	lis      r3, lbl_80495688@ha
-	lis      r5, lbl_80495708@ha
-	addi     r3, r3, lbl_80495688@l
-	li       r4, 0x72e
-	addi     r5, r5, lbl_80495708@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803A9B3C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JUT_PANICLINE(1838, "failed traceRoutePoint\n");
 }
 
 /*
@@ -3549,95 +3770,34 @@ lbl_803A9B3C:
  */
 bool BlackMan::Obj::isEndPathFinder()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, lbl_80495670@ha
-	lbz      r0, 0x34c(r30)
-	addi     r31, r3, lbl_80495670@l
-	cmplwi   r0, 0
-	beq      lbl_803A9B84
-	li       r3, 1
-	b        lbl_803A9C4C
+	if (_34C) {
+		return true;
+	}
 
-lbl_803A9B84:
-	lwz      r0, testPathfinder__4Game@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803A9BA4
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0x73a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(1850, testPathfinder);
 
-lbl_803A9BA4:
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	lwz      r4, 0x348(r30)
-	bl       check__Q24Game10PathfinderFUl
-	cmpwi    r3, 2
-	beq      lbl_803A9BF8
-	bge      lbl_803A9BCC
-	cmpwi    r3, 0
-	beq      lbl_803A9BD8
-	bge      lbl_803A9C08
-	b        lbl_803A9C48
+	switch (testPathfinder->check(_348)) {
+	case PATHFIND_MakePath:
+		testPathfinder->makepath(_348, &_35C);
+		_34C = 1;
+		return true;
 
-lbl_803A9BCC:
-	cmpwi    r3, 4
-	bge      lbl_803A9C48
-	b        lbl_803A9C24
+	case PATHFIND_Busy:
+		_34C = 0;
+		return false;
 
-lbl_803A9BD8:
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	addi     r5, r30, 0x35c
-	lwz      r4, 0x348(r30)
-	bl       makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode
-	li       r0, 1
-	li       r3, 1
-	stb      r0, 0x34c(r30)
-	b        lbl_803A9C4C
+	case PATHFIND_Start:
+		_34C = 0;
+		setPathFinder(true);
+		return false;
 
-lbl_803A9BF8:
-	li       r0, 0
-	li       r3, 0
-	stb      r0, 0x34c(r30)
-	b        lbl_803A9C4C
+	case PATHFIND_NoHandle:
+		JUT_PANICLINE(1870, "no handle pathFinder\n");
+		_34C = 0;
+		return false;
+	}
 
-lbl_803A9C08:
-	li       r0, 0
-	mr       r3, r30
-	stb      r0, 0x34c(r30)
-	li       r4, 1
-	bl       setPathFinder__Q34Game8BlackMan3ObjFb
-	li       r3, 0
-	b        lbl_803A9C4C
-
-lbl_803A9C24:
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0xb0
-	li       r4, 0x74e
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r0, 0
-	li       r3, 0
-	stb      r0, 0x34c(r30)
-	b        lbl_803A9C4C
-
-lbl_803A9C48:
-	li       r3, 0
-
-lbl_803A9C4C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -3645,8 +3805,46 @@ lbl_803A9C4C:
  * Address:	803A9C64
  * Size:	0001D8
  */
-void BlackMan::Obj::setPathFinder(bool)
+bool BlackMan::Obj::setPathFinder(bool check)
 {
+	releasePathFinder();
+	WPEdgeSearchArg edgeArg(mPosition);
+	RouteMgr* routeMgr = mapMgr->mRouteMgr;
+	P2ASSERTLINE(1893, routeMgr);
+
+	if (routeMgr->getNearestEdge(edgeArg)) {
+		Vector3f wp1Pos  = edgeArg.mWp1->mPosition;
+		Vector3f wp2Pos  = edgeArg.mWp2->mPosition;
+		Vector3f homePos = mHomePosition;
+		f32 wp2Dist      = sqrDistanceXZ(wp2Pos, homePos);
+		f32 wp1Dist      = sqrDistanceXZ(wp1Pos, homePos);
+		s16 idx1         = edgeArg.mWp1->mIndex;
+		s16 idx2         = edgeArg.mWp2->mIndex;
+		if (wp1Dist > wp2Dist) {
+			idx2 = edgeArg.mWp1->mIndex;
+			idx1 = edgeArg.mWp2->mIndex;
+		}
+
+		if (routeMgr->getWayPoint(idx1)->isFlag(WPF_Closed)) {
+			idx1 = idx2;
+		}
+
+		_342 = _340;
+		_340 = idx1;
+
+		u32 flag = (check > 0) + 0xC3;
+		if (_348) {
+			testPathfinder->release(_348);
+		}
+
+		PathfindRequest request(_340, _344, flag);
+		_348            = testPathfinder->start(request);
+		mTargetPosition = Vector3f(routeMgr->getWayPoint(_340)->mPosition);
+		return true;
+	}
+
+	JUT_PANICLINE(1934, nullptr);
+	return false;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -4659,6 +4857,22 @@ void BlackMan::Obj::flick()
  */
 void BlackMan::Obj::recover()
 {
+	if (!mTyre) {
+		return;
+	}
+
+	if (!isEvent(0, EB_Bittered) && mTyre->isEvent(0, EB_Bittered)) {
+		if (getMotionFrame() >= 5.0f) {
+			setAnimSpeed((EnemyAnimatorBase::defaultAnimSpeed / 2));
+		} else if (getMotionFrame() < 1.0f) {
+			setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+		}
+	} else {
+		resetAnimSpeed();
+	}
+
+	mTyre->_2D0 = 1;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4762,76 +4976,18 @@ lbl_803AAC94:
  */
 void BlackMan::Obj::recoverFlick()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stfd     f28, 0x10(r1)
-	psq_st   f28, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x364(r3)
-	lwz      r4, 0xc0(r31)
-	cmplwi   r3, 0
-	lfs      f31, 0x53c(r4)
-	lfs      f30, 0x4c4(r4)
-	lfs      f29, 0x4ec(r4)
-	lfs      f28, 0x514(r4)
-	beq      lbl_803AAD18
-	lfs      f0, lbl_8051F4A8@sda21(r2)
-	fmr      f1, f31
-	fmr      f3, f29
-	lfs      f4, 0x1fc(r31)
-	fmuls    f2, f0, f30
-	li       r4, 0
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	f32 chance    = C_PARMS->mGeneral.mShakeChance();
+	f32 knockback = C_PARMS->mGeneral.mShakeKnockback();
+	f32 damage    = C_PARMS->mGeneral.mShakeDamage();
+	f32 range     = C_PARMS->mGeneral.mShakeRange();
 
-lbl_803AAD18:
-	fmr      f1, f31
-	lfs      f4, 0x1fc(r31)
-	fmr      f2, f30
-	mr       r3, r31
-	fmr      f3, f29
-	li       r4, 0
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	fmr      f1, f28
-	lfs      f4, 0x1fc(r31)
-	fmr      f2, f30
-	mr       r3, r31
-	fmr      f3, f29
-	li       r4, 0
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	fmr      f1, f28
-	lfs      f4, 0x1fc(r31)
-	fmr      f2, f30
-	mr       r3, r31
-	fmr      f3, f29
-	li       r4, 0
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	psq_l    f28, 24(r1), 0, qr0
-	lfd      f28, 0x10(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (mTyre) {
+		EnemyFunc::flickStickPikmin(mTyre, chance, 2.0f * knockback, damage, mFaceDir, nullptr);
+	}
+
+	EnemyFunc::flickStickPikmin(this, chance, knockback, damage, mFaceDir, nullptr);
+	EnemyFunc::flickNearbyPikmin(this, range, knockback, damage, mFaceDir, nullptr);
+	EnemyFunc::flickNearbyNavi(this, range, knockback, damage, mFaceDir, nullptr);
 }
 
 /*
