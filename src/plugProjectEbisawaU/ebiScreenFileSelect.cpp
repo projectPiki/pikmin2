@@ -1816,6 +1816,44 @@ bool TMainScreen::doUpdateStateWait()
 		mOpenCounter--;
 	}
 
+	Matrixf* mtx    = (Matrixf*)&mPaneDataWindow->mGlobalMtx;
+	TFileData* data = &mFileData[mCurrFileInfoId];
+	if (data->mIsBrokenFile || data->mIsNewFile) {
+		mNewScreen._04  = 1;
+		mDataScreen._0C = 0;
+		J2DPane* pane   = E2DScreen_searchAssert(mNewScreen.mScreenObj, 'Ndataw');
+		PSMTXCopy(mtx->mMatrix.mtxView, pane->mPositionMtx);
+		if (mNewScreen._04) {
+			mNewScreen.mScreenObj->update();
+		}
+	} else {
+		mDataScreen._0C = 1;
+		mNewScreen._04  = 0;
+		J2DPane* pane   = E2DScreen_searchAssert(mDataScreen.mScreenObj, 'Ndataw');
+		PSMTXCopy(mtx->mMatrix.mtxView, pane->mPositionMtx);
+		if (mDataScreen._0C) {
+			mDataScreen.mScreenObj->update();
+		}
+	}
+
+	for (int i = 0; i < 3; i++) {
+		f32 factor;
+		if (mOpenCounterMax) {
+			factor = (f32)mOpenCounter / (f32)mOpenCounterMax;
+		} else {
+			factor = 0.0f;
+		}
+		u8 alpha = factor * 255.0f;
+		mPaneSel[0][i]->setAlpha(alpha);
+		if (mOpenCounterMax) {
+			factor = (f32)mOpenCounter / (f32)mOpenCounterMax;
+		} else {
+			factor = 0.0f;
+		}
+		alpha = factor * 255.0f;
+		mPaneSel[1][i]->setAlpha(alpha);
+	}
+
 	updateMsg_();
 	for (int i = 0; i < 3; i++) {
 		mCursorSelPos[i]  = E2DPane_getGlbCenter(mPaneSel[0][i]);
@@ -1827,231 +1865,6 @@ bool TMainScreen::doUpdateStateWait()
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0);
 	}
 	return false;
-	/*
-stwu     r1, -0x70(r1)
-mflr     r0
-stw      r0, 0x74(r1)
-stfd     f31, 0x60(r1)
-psq_st   f31, 104(r1), 0, qr0
-stw      r31, 0x5c(r1)
-stw      r30, 0x58(r1)
-stw      r29, 0x54(r1)
-stw      r28, 0x50(r1)
-mr       r31, r3
-lwz      r3, 0xc(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0x9ec
-bl       update__Q23ebi12TYesNoCursorFv
-addi     r3, r31, 0xa24
-bl       update__Q23ebi12TYesNoCursorFv
-lwz      r0, 0xbdc(r31)
-cmpwi    r0, 0
-beq      lbl_803D6D9C
-lwz      r3, 0xbe0(r31)
-cmplwi   r3, 0
-beq      lbl_803D6D9C
-addi     r0, r3, -1
-stw      r0, 0xbe0(r31)
-
-lbl_803D6D9C:
-lwz      r3, 0xbe8(r31)
-cmplwi   r3, 0
-beq      lbl_803D6DB0
-addi     r0, r3, -1
-stw      r0, 0xbe8(r31)
-
-lbl_803D6DB0:
-lwz      r0, 0xb9c(r31)
-lwz      r4, 0x1c(r31)
-mulli    r3, r0, 0x34
-addi     r29, r4, 0x80
-addi     r3, r3, 0xb00
-add      r3, r31, r3
-lbz      r0, 0(r3)
-cmplwi   r0, 0
-bne      lbl_803D6DE0
-lbz      r0, 1(r3)
-cmplwi   r0, 0
-beq      lbl_803D6E38
-
-lbl_803D6DE0:
-li       r0, 1
-lis      r3, 0x61746177@ha
-stb      r0, 0xba4(r31)
-li       r0, 0
-addi     r6, r3, 0x61746177@l
-li       r5, 0x4e64
-stb      r0, 0xbb4(r31)
-lwz      r3, 0xba0(r31)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-mr       r4, r3
-mr       r3, r29
-addi     r4, r4, 0x50
-bl       PSMTXCopy
-lbz      r0, 0xba4(r31)
-cmplwi   r0, 0
-beq      lbl_803D6E8C
-lwz      r3, 0xba0(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-b        lbl_803D6E8C
-
-lbl_803D6E38:
-li       r0, 1
-lis      r3, 0x61746177@ha
-stb      r0, 0xbb4(r31)
-li       r0, 0
-addi     r6, r3, 0x61746177@l
-li       r5, 0x4e64
-stb      r0, 0xba4(r31)
-lwz      r3, 0xba8(r31)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-mr       r4, r3
-mr       r3, r29
-addi     r4, r4, 0x50
-bl       PSMTXCopy
-lbz      r0, 0xbb4(r31)
-cmplwi   r0, 0
-beq      lbl_803D6E8C
-lwz      r3, 0xba8(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-
-lbl_803D6E8C:
-lfs      f31, lbl_8051FB3C@sda21(r2)
-mr       r30, r31
-li       r29, 0
-
-lbl_803D6E98:
-lwz      r4, 0xbec(r31)
-cmplwi   r4, 0
-beq      lbl_803D6ED8
-lwz      r3, 0xbe8(r31)
-lis      r0, 0x4330
-stw      r0, 0x18(r1)
-lfd      f2, lbl_8051FB48@sda21(r2)
-stw      r3, 0x1c(r1)
-lfd      f0, 0x18(r1)
-stw      r4, 0x24(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x20(r1)
-lfd      f0, 0x20(r1)
-fsubs    f0, f0, f2
-fdivs    f0, f1, f0
-b        lbl_803D6EDC
-
-lbl_803D6ED8:
-lfs      f0, lbl_8051FB1C@sda21(r2)
-
-lbl_803D6EDC:
-fmuls    f0, f31, f0
-lwz      r3, 0x20(r30)
-lwz      r12, 0(r3)
-fctiwz   f0, f0
-lwz      r12, 0x24(r12)
-stfd     f0, 0x28(r1)
-lwz      r4, 0x2c(r1)
-mtctr    r12
-bctrl
-lwz      r4, 0xbec(r31)
-cmplwi   r4, 0
-beq      lbl_803D6F40
-lwz      r3, 0xbe8(r31)
-lis      r0, 0x4330
-stw      r0, 0x30(r1)
-lfd      f2, lbl_8051FB48@sda21(r2)
-stw      r3, 0x34(r1)
-lfd      f0, 0x30(r1)
-stw      r4, 0x3c(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x38(r1)
-lfd      f0, 0x38(r1)
-fsubs    f0, f0, f2
-fdivs    f0, f1, f0
-b        lbl_803D6F44
-
-lbl_803D6F40:
-lfs      f0, lbl_8051FB1C@sda21(r2)
-
-lbl_803D6F44:
-fmuls    f0, f31, f0
-lwz      r3, 0x2c(r30)
-lwz      r12, 0(r3)
-fctiwz   f0, f0
-lwz      r12, 0x24(r12)
-stfd     f0, 0x40(r1)
-lwz      r4, 0x44(r1)
-mtctr    r12
-bctrl
-addi     r29, r29, 1
-addi     r30, r30, 4
-cmpwi    r29, 3
-blt      lbl_803D6E98
-mr       r3, r31
-bl       updateMsg___Q43ebi6Screen10FileSelect11TMainScreenFv
-lfs      f31, lbl_8051FB40@sda21(r2)
-mr       r30, r31
-mr       r29, r31
-li       r28, 0
-
-lbl_803D6F90:
-lwz      r4, 0x20(r30)
-addi     r3, r1, 0x10
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f0, 0x10(r1)
-addi     r3, r1, 8
-stfs     f0, 0xac4(r29)
-lfs      f0, 0x14(r1)
-stfs     f0, 0xac8(r29)
-lwz      r4, 0x2c(r30)
-bl       E2DPane_getGlbCenter__3ebiFP7J2DPane
-lfs      f0, 8(r1)
-stfs     f0, 0xadc(r29)
-lfs      f0, 0xc(r1)
-stfs     f0, 0xae0(r29)
-lwz      r4, 0x10(r30)
-lwz      r3, 0xa84(r30)
-lfs      f0, 0xcc(r4)
-fdivs    f1, f0, f31
-bl       setGlobalScale__Q25efx2d8TForeverFf
-lwz      r4, 0x10(r30)
-lwz      r3, 0xa90(r30)
-lfs      f0, 0xcc(r4)
-fdivs    f1, f0, f31
-bl       setGlobalScale__Q25efx2d8TForeverFf
-addi     r28, r28, 1
-addi     r29, r29, 8
-cmpwi    r28, 3
-addi     r30, r30, 4
-blt      lbl_803D6F90
-lbz      r0, 0xaf8(r31)
-cmplwi   r0, 0
-beq      lbl_803D7020
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x100b
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_803D7020:
-li       r3, 0
-psq_l    f31, 104(r1), 0, qr0
-lwz      r0, 0x74(r1)
-lfd      f31, 0x60(r1)
-lwz      r31, 0x5c(r1)
-lwz      r30, 0x58(r1)
-lwz      r29, 0x54(r1)
-lwz      r28, 0x50(r1)
-mtlr     r0
-addi     r1, r1, 0x70
-blr
-	*/
 }
 
 /*
@@ -2073,68 +1886,10 @@ bool TMainScreen::doUpdateStateClose()
 		mPaneSel[1][i]->setAlpha(0);
 	}
 
-	return (mCounter == 0) ? true : false;
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r3
-lwz      r3, 0xc(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0xbdc(r29)
-cmpwi    r0, 0
-beq      lbl_803D709C
-lwz      r3, 0xbe0(r29)
-cmplwi   r3, 0
-beq      lbl_803D709C
-addi     r0, r3, -1
-stw      r0, 0xbe0(r29)
-
-lbl_803D709C:
-li       r30, 0
-mr       r31, r29
-
-lbl_803D70A4:
-lwz      r3, 0x20(r31)
-li       r4, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x2c(r31)
-li       r4, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-addi     r30, r30, 1
-addi     r31, r31, 4
-cmpwi    r30, 3
-blt      lbl_803D70A4
-lwz      r0, 0xbe0(r29)
-cmplwi   r0, 0
-bne      lbl_803D70F8
-li       r3, 1
-b        lbl_803D70FC
-
-lbl_803D70F8:
-li       r3, 0
-
-lbl_803D70FC:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	if (checkClose()) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2150,20 +1905,20 @@ void TMainScreen::doDraw()
 	mMainScreen->draw(*gfx, *graf);
 
 	if (mNewScreen._04) {
-		J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
+		graf = &sys->mGfx->mPerspGraph;
 		Graphics gfx;
 		mNewScreen.mScreenObj->draw(gfx, *graf);
 	}
 
 	if (mDataScreen._0C) {
-		J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
+		graf = &sys->mGfx->mPerspGraph;
 		Graphics gfx;
 		mDataScreen.mScreenObj->draw(gfx, *graf);
 	}
 
 	if (mState) {
-		Graphics* gfx       = sys->mGfx;
-		J2DPerspGraph* graf = &gfx->mPerspGraph;
+		gfx  = sys->mGfx;
+		graf = &gfx->mPerspGraph;
 		f32 factor;
 		graf->setPort();
 		JUtility::TColor color(mDrawColor);
@@ -2189,7 +1944,7 @@ void TMainScreen::doDraw()
 		u32 y    = System::getRenderModeObj()->efbHeight;
 		u32 x    = System::getRenderModeObj()->fbWidth;
 		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 		graf->fillBox(box);
 	}
 	/*
@@ -3516,8 +3271,54 @@ JUtility::TColor TMainScreen::getDataBallColor_(s32 fileID)
  * Address:	803D94E4
  * Size:	0001C0
  */
-JUtility::TColor TMainScreen::calcDataBallColor_(u32, u32, u32, u32, u32)
+JUtility::TColor TMainScreen::calcDataBallColor_(u32 blue, u32 red, u32 yellow, u32 purple, u32 white)
 {
+	int type = 1;
+	if (type < red) {
+		type = red;
+	}
+	if (type < blue) {
+		type = blue;
+	}
+	if (type < yellow) {
+		type = yellow;
+	}
+
+	f32 mod = (f32(white) - f32(purple)) * 60.0f;
+	mod /= f32(blue + red + yellow + purple + white + 1);
+
+	f32 r = f32(red) / f32(type);
+	f32 g = f32(yellow) / f32(type);
+	f32 b = f32(blue) / f32(type);
+	r *= 190.0f;
+	g *= 190.0f;
+	b *= 190.0f;
+	r += mod;
+	g += mod;
+	b += mod;
+
+	if (r > 255.0f) {
+		r = 255.0f;
+	}
+	if (g > 255.0f) {
+		g = 255.0f;
+	}
+	if (b > 255.0f) {
+		b = 255.0f;
+	}
+	if (r < 0.0f) {
+		r = 0.0f;
+	}
+	if (g < 0.0f) {
+		g = 0.0f;
+	}
+	if (b < 0.0f) {
+		b = 0.0f;
+	}
+
+	JUtility::TColor color;
+	color.set(r, g, b, 255);
+	return color;
 	/*
 	.loc_0x0:
 	  add       r0, r6, r7

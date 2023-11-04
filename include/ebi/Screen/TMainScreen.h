@@ -87,6 +87,14 @@ struct TMainScreen : public TScreenBase {
 
 	TFileData* getFileData(int id) { return &mFileData[id]; }
 
+	inline bool checkClose()
+	{
+		if (mCounter == 0) {
+			return true;
+		}
+		return false;
+	}
+
 	// _00     = VTBL
 	// _00-_0C = TScreenBase
 	P2DScreen::Mgr_tuning* mMainScreen;              // _00C
