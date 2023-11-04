@@ -48,8 +48,8 @@ struct Mgr : public J2DScreen {
 
 	// _00      = VTBL
 	// _00-_118 = J2DScreen
-	Node _118;  // _118
-	u8 _134[4]; // _134
+	Node mScreenNode; // _118
+	u8 _134[4];      // _134
 };
 
 // Size: 0x148
