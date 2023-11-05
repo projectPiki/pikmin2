@@ -60,7 +60,7 @@ struct ParticleMgr : public CNode {
 	void cull(Sys::Sphere&);           // Might return bool?
 	void cullCylinder(Sys::Cylinder&); // Might return bool?
 	void draw2d();
-	void getModelEffectData(u64);
+	ModelEffectData* getModelEffectData(u64);
 	void testCreateModelEffect(int, int, Vector3f&);
 
 	Game::GameLightMgr* mLightMgr;              // _18

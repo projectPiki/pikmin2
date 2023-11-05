@@ -77,6 +77,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 
 template <typename T>
 struct TObjectNode : public CNode {
+	TObjectNode() { }
+	TObjectNode(T* obj) { mContents = obj; }
 	virtual ~TObjectNode() { } // _08 (weak)
 
 	TObjectNode<T>* getNext() { return static_cast<TObjectNode<T>*>(mNext); }

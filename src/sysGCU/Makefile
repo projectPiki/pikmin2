@@ -38,7 +38,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/asm/sysGCU/messageObj.o\
 	$(BUILD_DIR)/asm/sysGCU/messageRendering.o\
 	$(BUILD_DIR)/src/sysGCU/message.o\
-	$(BUILD_DIR)/asm/sysGCU/modelEffect.o\
+	$(BUILD_DIR)/src/sysGCU/modelEffect.o\
 	$(BUILD_DIR)/src/sysGCU/messageReference.o\
 	$(BUILD_DIR)/src/sysGCU/simpleMessage.o\
 	$(BUILD_DIR)/src/sysGCU/sysShapeAnimation.o\

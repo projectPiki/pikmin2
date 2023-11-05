@@ -21,7 +21,7 @@ struct ModelEffectData : public CNode {
 	virtual ModelEffect* onCreate(ModelEffectCreateArg* arg) = 0; // _18
 
 	void entry();
-	void create(ModelEffectCreateArg*);
+	ModelEffect* create(ModelEffectCreateArg*);
 	void allocModelData(int count);
 
 	// _00		= VTBL
@@ -41,9 +41,9 @@ struct ModelEffect {
 
 	inline ModelEffect()
 	{
-		_38[1]  = 1;
-		_38[0]  = 1;
-		mCulled = 0;
+		mViewportVisibleFlag[1] = 1;
+		mViewportVisibleFlag[0] = 1;
+		mCulled                 = 0;
 	}
 
 	virtual void constructor() { }               // _08 (weak)
@@ -59,10 +59,10 @@ struct ModelEffect {
 	virtual void doDirectDraw(Graphics& gfx) { } // _30 (weak)
 
 	// _00 VTBL
-	SysShape::Model* mModel; // _04
-	Matrixf mMtx;            // _08
-	u8 _38[2];               // _38
-	bool mCulled;            // _3A
+	SysShape::Model* mModel;    // _04
+	Matrixf mMtx;               // _08
+	u8 mViewportVisibleFlag[2]; // _38
+	bool mCulled;               // _3A
 };
 
 #endif

@@ -1602,7 +1602,7 @@ LIBS = [
             "sysGCU/messageObj",
             "sysGCU/messageRendering",
             ["sysGCU/message", True],
-            "sysGCU/modelEffect",
+            ["sysGCU/modelEffect", True],
             ["sysGCU/messageReference", True],
             ["sysGCU/simpleMessage", True],
             ["sysGCU/sysShapeAnimation", True],

@@ -20,7 +20,7 @@ Mgr::Mgr() { }
 J2DPane* Mgr::addCallBack(u64 tag, Node* node)
 {
 	P2ASSERTLINE(73, node);
-	J2DPane* pane        = search(tag);
+	J2DPane* pane = search(tag);
 	if (pane) {
 		node->mPane = pane;
 		node->doInit();
