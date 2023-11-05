@@ -166,11 +166,11 @@ struct ColorSetting : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Color4 _18[5][2];     // _18
-	Color4 _40[5];        // _40
-	JUtility::TColor _54; // _54
-	JUtility::TColor _58; // _58
-	Color4 _5C;           // _5C
+	Color4 _18[5][2]; // _18
+	Color4 _40[5];    // _40
+	GXColor _54;      // _54
+	GXColor _58;      // _58
+	Color4 _5C;       // _5C
 };
 
 struct DebugParms : public CNode {
