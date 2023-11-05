@@ -4091,6 +4091,7 @@
 /* 80333FAC 00330EEC  4E 80 00 20 */	blr 
 .endfn __dt__Q28PSSystem10JumpBgmSeqFv
 
+.section .text, "ax", unique, 1
 .fn "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv", weak
 /* 80333FB0 00330EF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333FB4 00330EF4  7C 08 02 A6 */	mflr r0
@@ -4159,6 +4160,7 @@
 /* 8033406C 00330FAC  4B FF D1 50 */	b stopInner__Q28PSSystem11StreamSoundFUl
 .endfn "@472@stopInner__Q28PSSystem11StreamSoundFUl"
 
+.section .text, "ax", unique, 2
 .fn seqLoadAfter__Q28PSSystem7SeqBaseFv, weak
 /* 80334070 00330FB0  4E 80 00 20 */	blr 
 .endfn seqLoadAfter__Q28PSSystem7SeqBaseFv
@@ -4295,6 +4297,7 @@
 /* 803341B4 003310F4  4E 80 00 20 */	blr 
 .endfn read__Q28PSSystem11SeqDataListFR6Stream
 
+.section .text, "ax", unique, 3
 .fn getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc, weak
 /* 803341B8 003310F8  3C A0 80 49 */	lis r5, sTable__Q28PSSystem20TriangleTableModTask@ha
 /* 803341BC 003310FC  54 80 15 BA */	rlwinm r0, r4, 2, 0x16, 0x1d
@@ -4343,6 +4346,7 @@
 /* 8033422C 0033116C  4E 80 00 20 */	blr 
 .endfn getPreParam__Q28PSSystem12BankRandTaskFR8JASTrack
 
+.section .text, "ax", unique, 4
 .fn update__Q28PSSystem12SeqTrackRootFv, weak
 /* 80334230 00331170  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80334234 00331174  7C 08 02 A6 */	mflr r0

@@ -1783,6 +1783,7 @@
 /* 8034076C 0033D6AC  4E 80 00 20 */	blr 
 .endfn __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv
 
+.section .text, "ax", unique, 1
 .fn "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv", weak
 /* 80340770 0033D6B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80340774 0033D6B4  7C 08 02 A6 */	mflr r0
@@ -1807,10 +1808,12 @@
 /* 803407BC 0033D6FC  4E 80 00 20 */	blr 
 .endfn "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv"
 
+.section .text, "ax", unique, 2
 .fn onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase, weak
 /* 803407C0 0033D700  4E 80 00 20 */	blr 
 .endfn onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase
 
+.section .text, "ax", unique, 3
 .fn getCastType__Q28PSSystem9EnvSeBaseFv, weak
 /* 803407C4 0033D704  3C 60 62 61 */	lis r3, 0x62617365@ha
 /* 803407C8 0033D708  38 63 73 65 */	addi r3, r3, 0x62617365@l

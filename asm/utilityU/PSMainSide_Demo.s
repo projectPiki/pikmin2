@@ -4272,6 +4272,7 @@
 /* 80467518 00464458  4E 80 00 20 */	blr 
 .endfn PSMCancelToPauseOffMainBgm__Fv
 
+.section .text, "ax", unique, 1
 .fn PSMGetGameSceneA__Fv, weak
 /* 8046751C 0046445C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80467520 00464460  7C 08 02 A6 */	mflr r0
@@ -4353,6 +4354,7 @@
 /* 80467624 00464564  4E 80 00 20 */	blr 
 .endfn getEnvSe__Q23PSM9SceneBaseFv
 
+.section .text, "ax", unique, 2
 .fn setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode, weak
 /* 80467628 00464568  90 83 00 04 */	stw r4, 4(r3)
 /* 8046762C 0046456C  4E 80 00 20 */	blr 

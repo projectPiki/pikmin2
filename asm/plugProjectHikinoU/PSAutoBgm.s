@@ -4201,6 +4201,7 @@
 /* 8033C564 003394A4  4E 80 00 20 */	blr 
 .endfn pauseOff__Q29PSAutoBgm7AutoBgmFv
 
+.section .text, "ax", unique, 1
 .fn "__dt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv", weak
 /* 8033C568 003394A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033C56C 003394AC  7C 08 02 A6 */	mflr r0
@@ -5054,6 +5055,7 @@
 /* 8033D0D8 0033A018  4E 80 00 20 */	blr 
 .endfn "__ct__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
 
+.section .text, "ax", unique, 2
 .fn avoidCheck__Q29PSAutoBgm9CycleBaseFv, weak
 /* 8033D0DC 0033A01C  38 60 00 00 */	li r3, 0
 /* 8033D0E0 0033A020  4E 80 00 20 */	blr 
@@ -5334,10 +5336,12 @@
 /* 8033D468 0033A3A8  4E 80 00 20 */	blr 
 .endfn getEraseLink__Q29PSAutoBgm9ConductorFv
 
+.section .text, "ax", unique, 3
 .fn onBeatTop__Q28PSSystem12SeqTrackRootFv, weak
 /* 8033D46C 0033A3AC  4E 80 00 20 */	blr 
 .endfn onBeatTop__Q28PSSystem12SeqTrackRootFv
 
+.section .text, "ax", unique, 4
 .fn "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv", weak
 /* 8033D470 0033A3B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033D474 0033A3B4  7C 08 02 A6 */	mflr r0

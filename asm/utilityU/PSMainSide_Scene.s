@@ -5771,6 +5771,7 @@ lbl_constructor:
 /* 8046C04C 00468F8C  4E 80 00 20 */	blr 
 .endfn PSMuteOffSE_on2D__Fv
 
+.section .text, "ax", unique, 1
 .fn __dt__Q23PSM10Scene_DemoFv, weak
 /* 8046C050 00468F90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C054 00468F94  7C 08 02 A6 */	mflr r0
@@ -5804,6 +5805,7 @@ lbl_constructor:
 /* 8046C0BC 00468FFC  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM10Scene_DemoFv
 
+.section .text, "ax", unique, 2
 .fn isCave__Q23PSM10Scene_CaveFv, weak
 /* 8046C0C0 00469000  38 60 00 01 */	li r3, 1
 /* 8046C0C4 00469004  4E 80 00 20 */	blr 
@@ -5982,6 +5984,7 @@ lbl_constructor:
 /* 8046C2D0 00469210  4E 80 00 20 */	blr 
 .endfn getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl
 
+.section .text, "ax", unique, 3
 .fn __dt__Q23PSM14Scene_WorldMapFv, weak
 /* 8046C2D4 00469214  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C2D8 00469218  7C 08 02 A6 */	mflr r0
@@ -6207,6 +6210,7 @@ lbl_constructor:
 /* 8046C5EC 0046952C  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM15Scene_ChallengeFv
 
+.section .text, "ax", unique, 4
 .fn "__dt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>Fv", weak
 /* 8046C5F0 00469530  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C5F4 00469534  7C 08 02 A6 */	mflr r0

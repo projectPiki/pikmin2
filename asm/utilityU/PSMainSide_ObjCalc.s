@@ -434,6 +434,7 @@
 /* 80472DF0 0046FD30  4E 80 00 20 */	blr 
 .endfn getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature
 
+.section .text, "ax", unique, 1
 .fn __dt__Q23PSM18ObjCalc_SingleGameFv, weak
 /* 80472DF4 0046FD34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472DF8 0046FD38  7C 08 02 A6 */	mflr r0
@@ -468,6 +469,7 @@
 /* 80472E64 0046FDA4  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM18ObjCalc_SingleGameFv
 
+.section .text, "ax", unique, 2
 .fn __dt__Q23PSM14ObjCalc_2PGameFv, weak
 /* 80472E68 0046FDA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472E6C 0046FDAC  7C 08 02 A6 */	mflr r0
@@ -502,6 +504,7 @@
 /* 80472ED8 0046FE18  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM14ObjCalc_2PGameFv
 
+.section .text, "ax", unique, 3
 .fn is1PGame__Q23PSM14ObjCalc_2PGameFv, weak
 /* 80472EDC 0046FE1C  38 60 00 00 */	li r3, 0
 /* 80472EE0 0046FE20  4E 80 00 20 */	blr 

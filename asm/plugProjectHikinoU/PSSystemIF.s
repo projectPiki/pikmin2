@@ -639,6 +639,7 @@ lbl_constructor:
 /* 80338B14 00335A54  4E 80 00 20 */	blr 
 .endfn onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection
 
+.section .text, "ax", unique, 1
 .fn start1stSeq__Q28PSSystem5SysIFFv, weak
 /* 80338B18 00335A58  38 00 00 00 */	li r0, 0
 /* 80338B1C 00335A5C  90 0D 8B E0 */	stw r0, seHandle__Q27JAInter5SeMgr@sda21(r13)
@@ -765,6 +766,7 @@ lbl_constructor:
 /* 80338CB0 00335BF0  4E 80 00 20 */	blr 
 .endfn __ct__Q28PSSystem11StreamSoundFv
 
+.section .text, "ax", unique, 2
 .fn "startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc", weak
 /* 80338CB4 00335BF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338CB8 00335BF8  7C 08 02 A6 */	mflr r0

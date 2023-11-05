@@ -451,6 +451,7 @@
 /* 8033DCDC 0033AC1C  4E 80 00 20 */	blr 
 .endfn waveLoadCallback__Q38PSSystem9WaveScene8WaveAreaFUl
 
+.section .text, "ax", unique, 1
 .fn __dt__Q28PSSystem7BankMgrFv, weak
 /* 8033DCE0 0033AC20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033DCE4 0033AC24  7C 08 02 A6 */	mflr r0

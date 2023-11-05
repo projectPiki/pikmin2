@@ -2156,6 +2156,7 @@
 /* 80470D44 0046DC84  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
 
+.section .text, "ax", unique, 1
 .fn isSlave__Q23PSM17DirectorMgr_SceneFv, weak
 /* 80470D48 0046DC88  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 80470D4C 0046DC8C  7C 03 00 D0 */	neg r0, r3
@@ -2164,6 +2165,7 @@
 /* 80470D58 0046DC98  4E 80 00 20 */	blr 
 .endfn isSlave__Q23PSM17DirectorMgr_SceneFv
 
+.section .text, "ax", unique, 2
 .fn __dt__Q23PSM15BgmTrackMapFileFv, weak
 /* 80470D5C 0046DC9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470D60 0046DCA0  7C 08 02 A6 */	mflr r0
@@ -2203,6 +2205,7 @@
 /* 80470DE0 0046DD20  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM15BgmTrackMapFileFv
 
+.section .text, "ax", unique, 3
 .fn __dt__Q23PSM19GroundDirector_CaveFv, weak
 /* 80470DE4 0046DD24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470DE8 0046DD28  7C 08 02 A6 */	mflr r0
@@ -2252,6 +2255,7 @@
 /* 80470E90 0046DDD0  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM19GroundDirector_CaveFv
 
+.section .text, "ax", unique, 4
 .fn directOn__Q23PSM19GroundDirector_CaveFv, weak
 /* 80470E94 0046DDD4  4E 80 00 20 */	blr 
 .endfn directOn__Q23PSM19GroundDirector_CaveFv
@@ -2260,6 +2264,7 @@
 /* 80470E98 0046DDD8  4E 80 00 20 */	blr 
 .endfn directOff__Q23PSM19GroundDirector_CaveFv
 
+.section .text, "ax", unique, 5
 .fn __dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv, weak
 /* 80470E9C 0046DDDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470EA0 0046DDE0  7C 08 02 A6 */	mflr r0

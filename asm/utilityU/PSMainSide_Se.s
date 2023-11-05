@@ -2607,6 +2607,7 @@
 /* 8046F218 0046C158  4E 80 00 20 */	blr 
 .endfn PSPlayCaveHoleSound__FPQ23PSM8Creature
 
+.section .text, "ax", unique, 1
 .fn identifyPart__Q23PSM14ClusterFactoryFUc, weak
 /* 8046F21C 0046C15C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046F220 0046C160  7C 08 02 A6 */	mflr r0
@@ -2622,6 +2623,7 @@
 /* 8046F248 0046C188  4E 80 00 20 */	blr 
 .endfn identifyPart__Q23PSM14ClusterFactoryFUc
 
+.section .text, "ax", unique, 2
 .fn "startSoundVecReturnHandleT<8JAISound>__8JAIBasicFPP8JAISoundUlP3VecUlUlUc", weak
 /* 8046F24C 0046C18C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8046F250 0046C190  7C 08 02 A6 */	mflr r0

@@ -8421,6 +8421,7 @@
 /* 804633A0 004602E0  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM7ClusterFv
 
+.section .text, "ax", unique, 1
 .fn getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl, weak
 /* 804633A4 004602E4  38 60 00 01 */	li r3, 1
 /* 804633A8 004602E8  4E 80 00 20 */	blr 
@@ -8431,6 +8432,7 @@
 /* 804633B0 004602F0  4E 80 00 20 */	blr 
 .endfn isDemoScene__Q23PSM9SceneBaseFv
 
+.section .text, "ax", unique, 2
 .fn onDisappear__Q23PSM9EnemyBossFv, weak
 /* 804633B4 004602F4  4E 80 00 20 */	blr 
 .endfn onDisappear__Q23PSM9EnemyBossFv
@@ -9173,6 +9175,7 @@
 /* 80463D8C 00460CCC  4E 80 00 20 */	blr 
 .endfn getCastType__Q23PSM13CreatureAnimeFv
 
+.section .text, "ax", unique, 3
 .fn __dt__Q23PSM4NaviFv, weak
 /* 80463D90 00460CD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80463D94 00460CD4  7C 08 02 A6 */	mflr r0
@@ -9240,6 +9243,7 @@
 /* 80463E84 00460DC4  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM4NaviFv
 
+.section .text, "ax", unique, 4
 .fn "@16@__dt__Q23PSM7ObjBaseFv", weak
 /* 80463E88 00460DC8  38 63 FF F0 */	addi r3, r3, -16
 /* 80463E8C 00460DCC  4B FF 8F D8 */	b __dt__Q23PSM7ObjBaseFv

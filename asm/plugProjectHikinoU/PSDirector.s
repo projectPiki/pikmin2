@@ -1285,6 +1285,7 @@
 /* 80343EC4 00340E04  4E 80 00 20 */	blr 
 .endfn exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase
 
+.section .text, "ax", unique, 1
 .fn underDirection__Q28PSSystem12DirectorBaseFv, weak
 /* 80343EC8 00340E08  4E 80 00 20 */	blr 
 .endfn underDirection__Q28PSSystem12DirectorBaseFv

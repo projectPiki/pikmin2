@@ -3873,6 +3873,7 @@ lbl_constructor:
 /* 8045CD24 00459C64  4E 80 00 20 */	blr 
 .endfn getCastType__Q23PSM12Env_PollutinFv
 
+.section .text, "ax", unique, 1
 .fn __dt__Q23PSM9SceneBaseFv, weak
 /* 8045CD28 00459C68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CD2C 00459C6C  7C 08 02 A6 */	mflr r0
@@ -3901,6 +3902,7 @@ lbl_constructor:
 /* 8045CD84 00459CC4  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM9SceneBaseFv
 
+.section .text, "ax", unique, 2
 .fn __ct__Q28PSSystem8EnvSeMgrFv, weak
 /* 8045CD88 00459CC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CD8C 00459CCC  7C 08 02 A6 */	mflr r0
@@ -3953,6 +3955,7 @@ lbl_constructor:
 /* 8045CE38 00459D78  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM15EnvSeObjBuilderFv
 
+.section .text, "ax", unique, 3
 .fn __sinit_PSMainSide_Factory_cpp, local
 /* 8045CE3C 00459D7C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8045CE40 00459D80  38 00 FF FF */	li r0, -1

@@ -479,6 +479,7 @@ lbl_constructor:
 /* 804727B0 0046F6F0  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM11CreaturePrmFv
 
+.section .text, "ax", unique, 1
 .fn __dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv, weak
 /* 804727B4 0046F6F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804727B8 0046F6F8  7C 08 02 A6 */	mflr r0

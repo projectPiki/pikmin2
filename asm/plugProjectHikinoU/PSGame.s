@@ -5061,6 +5061,7 @@
 /* 803380A8 00334FE8  4E 80 00 20 */	blr 
 .endfn PSGetDirectedMainBgmA__Fv
 
+.section .text, "ax", unique, 1
 .fn "__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv", weak
 /* 803380AC 00334FEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803380B0 00334FF0  7C 08 02 A6 */	mflr r0
@@ -5159,6 +5160,7 @@
 /* 803381E8 00335128  4B FF C0 A8 */	b __dt__Q26PSGame13ConductorListFv
 .endfn "@28@__dt__Q26PSGame13ConductorListFv"
 
+.section .text, "ax", unique, 2
 .fn isCaveFloor__Q26PSGame9SceneInfoFv, weak
 /* 803381EC 0033512C  38 60 00 00 */	li r3, 0
 /* 803381F0 00335130  4E 80 00 20 */	blr 
@@ -5169,6 +5171,7 @@
 /* 803381F8 00335138  4E 80 00 20 */	blr 
 .endfn curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv
 
+.section .text, "ax", unique, 3
 .fn exec__Q28PSSystem8SceneMgrFv, weak
 /* 803381FC 0033513C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338200 00335140  7C 08 02 A6 */	mflr r0
@@ -5191,6 +5194,7 @@
 /* 80338234 00335174  4E 80 00 20 */	blr 
 .endfn init__Q28PSSystem5SceneFv
 
+.section .text, "ax", unique, 4
 .fn __dt__Q29PSAutoBgm15ConductorArcMgrFv, weak
 /* 80338238 00335178  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033823C 0033517C  7C 08 02 A6 */	mflr r0
@@ -5245,6 +5249,7 @@
 /* 803382E8 00335228  4E 80 00 20 */	blr 
 .endfn __dt__Q36PSGame10SoundTable11CategoryMgrFv
 
+.section .text, "ax", unique, 5
 .fn "__dt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>Fv", weak
 /* 803382EC 0033522C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803382F0 00335230  7C 08 02 A6 */	mflr r0

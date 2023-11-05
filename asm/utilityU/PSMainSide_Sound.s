@@ -985,6 +985,7 @@ lbl_constructor:
 /* 804718A4 0046E7E4  4E 80 00 20 */	blr 
 .endfn calcDolby__Q23PSM7SeSoundFRC3Vecf
 
+.section .text, "ax", unique, 1
 .fn __sinit_PSMainSide_Sound_cpp, local
 /* 804718A8 0046E7E8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 804718AC 0046E7EC  38 00 FF FF */	li r0, -1

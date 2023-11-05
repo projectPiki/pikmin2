@@ -857,6 +857,7 @@
 /* 80472384 0046F2C4  4E 80 00 20 */	blr 
 .endfn read__Q23PSM15BgmTrackMapFileFR6Stream
 
+.section .text, "ax", unique, 1
 .fn __ct__Q23PSM11BgmTrackMapFv, weak
 /* 80472388 0046F2C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8047238C 0046F2CC  7C 08 02 A6 */	mflr r0
@@ -930,6 +931,7 @@
 /* 80472494 0046F3D4  4E 80 00 20 */	blr 
 .endfn __ct__Q23PSM11BgmTrackMapFv
 
+.section .text, "ax", unique, 2
 .fn @28@__dt__Q23PSM15BgmTrackMapFileFv, weak
 /* 80472498 0046F3D8  38 63 FF E4 */	addi r3, r3, -28
 /* 8047249C 0046F3DC  4B FF E8 C0 */	b __dt__Q23PSM15BgmTrackMapFileFv

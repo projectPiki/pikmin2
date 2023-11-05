@@ -3482,20 +3482,24 @@
 /* 804595AC 004564EC  4E 80 00 20 */	blr 
 .endfn __dt__Q23PSM13ExiteDirectorFv
 
+.section .text, "ax", unique, 1
 .fn onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature, weak
 /* 804595B0 004564F0  4E 80 00 20 */	blr 
 .endfn onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature
 
+.section .text, "ax", unique, 2
 .fn is1PGame__Q23PSM11ObjCalcBaseFv, weak
 /* 804595B4 004564F4  38 60 00 01 */	li r3, 1
 /* 804595B8 004564F8  4E 80 00 20 */	blr 
 .endfn is1PGame__Q23PSM11ObjCalcBaseFv
 
+.section .text, "ax", unique, 3
 .fn is2PBattle__Q23PSM16OtakaraEventLinkFv, weak
 /* 804595BC 004564FC  38 60 00 00 */	li r3, 0
 /* 804595C0 00456500  4E 80 00 20 */	blr 
 .endfn is2PBattle__Q23PSM16OtakaraEventLinkFv
 
+.section .text, "ax", unique, 4
 .fn __dt__Q23PSM17PikAttackDirectorFv, weak
 /* 804595C4 00456504  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804595C8 00456508  7C 08 02 A6 */	mflr r0
