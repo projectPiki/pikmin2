@@ -480,8 +480,8 @@ struct PlayData : public CNode {
 	// Previous day's Poko count.
 	int mPokoCountOld; // _FC
 
-	int mPikminYesterday[6]; // _100
-	int mPikminToday[6];     // _118
+	int mPikminYesterday[StoredPikiCount + 1]; // _100
+	int mPikminToday[StoredPikiCount + 1];     // _118
 
 	static u32 mVersion;
 	static int sCurrPlayDataSize;

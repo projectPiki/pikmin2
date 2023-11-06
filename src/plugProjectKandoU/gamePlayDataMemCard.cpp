@@ -191,7 +191,7 @@ void PlayData::write(Stream& output)
 
 	int dataSize = getDataSize(output, startPosition);
 	output.textBeginGroup("* DayEndResult—p *"); // 'for DayEndResult'
-	for (int i = 0; i < 6; i++) {
+	for (int i = FirstPikmin; i < StoredPikiCount + 1; i++) {
 		output.writeInt(mPikminYesterday[i]);
 		output.writeInt(mPikminToday[i]);
 		output.textWriteText("\r\n");
@@ -792,7 +792,7 @@ void PlayData::read(Stream& input)
 		read_CaveOtakara_Old(input);
 	}
 
-	for (int i = 0; i < 6; i++) {
+	for (int i = FirstPikmin; i < StoredPikiCount + 1; i++) {
 		mPikminYesterday[i] = input.readInt();
 		mPikminToday[i]     = input.readInt();
 	}
