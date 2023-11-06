@@ -94,12 +94,12 @@ struct CarryInfoList : public InfoListBase<CarryInfoOwner, CarryInfoList> {
 struct CarryInfoMgr : public InfoMgr<CarryInfoOwner, CarryInfoList> {
 	CarryInfoMgr(int);
 
-	virtual ~CarryInfoMgr();                                                                                        // _08
-	virtual void loadResource();                                                                                    // _0C
-	virtual void update();                                                                                          // _10
-	virtual void draw(Graphics&);                                                                                   // _14
-	virtual CarryInfoList* regist(CarryInfoOwner* owner) { InfoMgr<CarryInfoOwner, CarryInfoList>::regist(owner); } // _18 (weak)
-	virtual void scratch(CarryInfoOwner* owner) { InfoMgr<CarryInfoOwner, CarryInfoList>::scratch(owner); }         // _1C (weak)
+	virtual ~CarryInfoMgr();                                                                                               // _08
+	virtual void loadResource();                                                                                           // _0C
+	virtual void update();                                                                                                 // _10
+	virtual void draw(Graphics&);                                                                                          // _14
+	virtual CarryInfoList* regist(CarryInfoOwner* owner) { return InfoMgr<CarryInfoOwner, CarryInfoList>::regist(owner); } // _18 (weak)
+	virtual void scratch(CarryInfoOwner* owner) { InfoMgr<CarryInfoOwner, CarryInfoList>::scratch(owner); }                // _1C (weak)
 
 	CarryInfoList* appear(CarryInfoOwner*);
 	void appearPoko(const Vector3f&, int);

@@ -54,7 +54,7 @@ void LifeGauge::update(f32 newFullness)
 		mTimer += delta;
 
 		if (mTimer > 1.0f) {
-			mSegmentCount += (mSegmentCount < newAdjustedValue) ? 1 : -1;
+			mSegmentCount += (newAdjustedValue > mSegmentCount) ? 1 : -1;
 			mTimer -= static_cast<int>(mTimer);
 		}
 
@@ -63,22 +63,21 @@ void LifeGauge::update(f32 newFullness)
 		}
 	}
 
-	if (newFullness < 0.2f) {
-		if (newFullness < 0.5f) {
-			mLifeGaugeColor.r = 255;
-			mLifeGaugeColor.g = 0;
-		} else {
-			mLifeGaugeColor.r = 255;
-			mLifeGaugeColor.g = 255;
-		}
-
+	if (newFullness < 0.2f) { // lifegauge red
+		mLifeGaugeColor.r = 255;
+		mLifeGaugeColor.g = 0;
 		mLifeGaugeColor.b = 0;
 		mLifeGaugeColor.a = 255;
-
-	} else {
+	} else if (newFullness < 0.5f) { // lifegauge yellow
+		mLifeGaugeColor.r = 255;
+		mLifeGaugeColor.g = 255;
+		mLifeGaugeColor.b = 0;
+		mLifeGaugeColor.a = 255;
+	} else { // lifegauge green
 		mLifeGaugeColor.r = 0;
 		mLifeGaugeColor.g = 255;
 		mLifeGaugeColor.b = 0;
+		mLifeGaugeColor.a = 255;
 	}
 }
 
@@ -774,8 +773,7 @@ lbl_8011AE6C:
 void LifeGaugeMgr::draw(Graphics& gfx)
 {
 	if (!Game::moviePlayer || !Game::moviePlayer->isFlag(1)) {
-		LifeGaugeList* list = mListA.mNext;
-		if (list) {
+		if (LifeGaugeList* list = mListA.mNext) {
 			mTexture->load(GX_TEXMAP0);
 			for (list; list; list = list->mNext) {
 				list->draw(gfx);
@@ -834,9 +832,8 @@ lbl_8011AEF8:
 void LifeGaugeMgr::loadResource()
 {
 	JKRArchive* arc = JKRArchive::mount("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
-	ResTIMG* timg   = (ResTIMG*)JKRFileLoader::getGlbResource("lifeGauge.bti", arc);
-	JUTTexture* tex = new JUTTexture(timg);
-	mTexture        = tex;
+	ResTIMG* timg   = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("lifeGauge.bti", arc));
+	mTexture        = new JUTTexture(timg);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

@@ -6,6 +6,9 @@
 namespace Game {
 namespace IllustratedBook {
 
+Game::SingleGame::ZukanState* Parms::sZukanState;
+Camera* Parms::sCamera;
+
 static const int unusedIllustratedBookArray[] = { 0, 0, 0 };
 
 #define COMPLEMENT(src, dest, proportion) (proportion) * ((f32)(dest) - (f32)(src)) + (f32)(src)
