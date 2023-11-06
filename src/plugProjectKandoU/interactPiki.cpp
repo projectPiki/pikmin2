@@ -103,8 +103,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				piki->mFsm->transit(piki, PIKISTATE_Holein, &holeInArg);
 				return false;
 			}
-		} else if (!(moviePlayer->mDemoState || (u32)pikiKind - 1 > Red && (int)pikiKind != Blue)) {
-
+		} else if (!(moviePlayer->mDemoState || (u32)pikiKind - 1 > Red && pikiKind != Blue)) {
 			piki->setZikatu(false);
 			GameStat::zikatuPikis.dec(piki->getKind());
 			if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && (piki->getKind() == Red)) {
@@ -112,7 +111,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 					gameSystem->mSection->enableTimer(1.2f, 4);
 				}
 			}
-			if (!playData->hasBootContainer((u32)piki->mPikiKind)) { // might be u32 param then
+			if (!playData->hasBootContainer(piki->mPikiKind)) {
 				char* cutscenes[3] = { "g21_meet_bluepikmin", "g03_meet_redpikmin", "g1F_meet_yellowpikmin" };
 				MoviePlayArg movieArg(cutscenes[piki->mPikiKind], nullptr, nullptr, 0);
 				movieArg.setTarget(piki);

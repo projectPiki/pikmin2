@@ -428,31 +428,30 @@ bool Kogane::Obj::createTreasureItem()
  */
 void Kogane::Obj::createPellet(int type, int num)
 {
-	int colors       = 0;
-	int hasColors[3] = { 1, 1, 1 };
-	for (int i = 0; i < 3; i++) {
+	int colors                = 0;
+	int hasColors[OnyonCount] = {};
+	for (int i = 0; i < OnyonCount; i++) {
 		if (playData->hasMetPikmin(i)) {
 			hasColors[colors] = i;
 			colors++;
 		}
 	}
 
-	f32 angle = getFaceDir() + 2.0943952f;
-	f32 offs  = 2.0943952f / (f32)(num + 1);
+	f32 angle = getFaceDir() + TAU / 3;
+	f32 offs  = TAU / 3 / (num + 1);
 
 	Matrixf* mtx = mModel->getJoint("body")->getWorldMatrix();
 	Vector3f pos = mtx->getBasis(3);
 
 	for (int i = 0; i < num; i++) {
-		PelletNumberInitArg arg(type, hasColors[(int)(randFloat() * colors)]);
+		PelletNumberInitArg arg(type, hasColors[randInt(colors)]);
 		Pellet* pelt = pelletMgr->birth(&arg);
 		if (pelt) {
 			pelt->init(&arg);
 			pelt->onSetPosition(pos);
 
-			Vector3f vel;
 			angle += offs;
-			vel = Vector3f(1000.0f * sinf(angle), 250.0f, 1000.0f * cosf(angle));
+			Vector3f vel = Vector3f(1000.0f * sinf(angle), 250.0f, 1000.0f * cosf(angle));
 			pelt->setVelocity(vel);
 		}
 	}
@@ -648,8 +647,8 @@ lbl_8025ED3C:
  */
 void Kogane::Obj::createDoping(u8 type, int num)
 {
-	f32 angle = getFaceDir() + 2.0943952f;
-	f32 offs  = 2.0943952f / (f32)(num + 1);
+	f32 angle = getFaceDir() + TAU / 3;
+	f32 offs  = TAU / 3 / (num + 1);
 
 	Matrixf* mtx = mModel->getJoint("body")->getWorldMatrix();
 	Vector3f pos = mtx->getBasis(3);

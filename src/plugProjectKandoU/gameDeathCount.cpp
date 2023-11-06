@@ -50,7 +50,7 @@ void BirthCounter::reset()
 int& BirthCounter::operator()(int pikiColor)
 {
 	// UNUSED FUNCTION
-	if (pikiColor == LastStoredPikiColor + 1) {
+	if (pikiColor == AllPikmin) {
 		int& v = mTotal;
 		mTotal = 0;
 		for (int i = 0; i <= LastStoredPikiColor; i++) {
@@ -156,8 +156,8 @@ void BirthMgr::dec(int pikiColor)
 void BirthMgr::inc_today(int pikiColor)
 {
 	mToday(pikiColor)++;
-	if (pikiColor != LastStoredPikiColor + 1) {
-		mToday(LastStoredPikiColor + 1)++;
+	if (pikiColor != AllPikmin) {
+		mToday(AllPikmin)++;
 	}
 }
 
@@ -169,8 +169,8 @@ void BirthMgr::inc_today(int pikiColor)
 void BirthMgr::inc_cave(int pikiColor)
 {
 	mCave(pikiColor)++;
-	if (pikiColor != LastStoredPikiColor + 1) {
-		mCave(LastStoredPikiColor + 1)++;
+	if (pikiColor != AllPikmin) {
+		mCave(AllPikmin)++;
 	}
 }
 
@@ -182,8 +182,8 @@ void BirthMgr::inc_cave(int pikiColor)
 void BirthMgr::dec_today(int pikiColor)
 {
 	mToday(pikiColor)--;
-	if (pikiColor != LastStoredPikiColor + 1) {
-		mToday(LastStoredPikiColor + 1)--;
+	if (pikiColor != AllPikmin) {
+		mToday(AllPikmin)--;
 	}
 }
 
@@ -195,8 +195,8 @@ void BirthMgr::dec_today(int pikiColor)
 void BirthMgr::dec_cave(int pikiColor)
 {
 	mCave(pikiColor)--;
-	if (pikiColor != LastStoredPikiColor + 1) {
-		mCave(LastStoredPikiColor + 1)--;
+	if (pikiColor != AllPikmin) {
+		mCave(AllPikmin)--;
 	}
 }
 
@@ -207,7 +207,7 @@ void BirthMgr::dec_cave(int pikiColor)
  */
 void BirthMgr::account_cave()
 {
-	for (int i = 0; i < 6; i++) {
+	for (int i = FirstPikmin; i < PikiColorCount - 1; i++) {
 		mToday(i) += mCave(i);
 	}
 	mCave.reset();
@@ -220,17 +220,17 @@ void BirthMgr::account_cave()
  */
 void BirthMgr::account_today_adjust()
 {
-	for (int i = 0; i < 5; i++) {
+	for (int i = FirstPikmin; i < StoredPikiCount; i++) {
 		if (mToday(i) < 0) {
 			mTotal(i) += mToday(i);
 			mToday(i) = 0;
 		}
 	}
 	int a = 0;
-	for (int i = 0; i < 5; i++) {
+	for (int i = FirstPikmin; i < StoredPikiCount; i++) {
 		a += mToday(i);
 	}
-	mToday(5) = a;
+	mToday(AllPikmin) = a;
 }
 
 /*
@@ -241,14 +241,14 @@ void BirthMgr::account_today_adjust()
  */
 void BirthMgr::account_today()
 {
-	for (int i = 0; i < 6; i++) {
+	for (int i = FirstPikmin; i < PikiColorCount - 1; i++) {
 		mTotal(i) += mToday(i);
 	}
 	int a = 0;
-	for (int i = 0; i < 5; i++) {
+	for (int i = FirstPikmin; i < StoredPikiCount; i++) {
 		a += mTotal(i);
 	}
-	mToday(5) = a;
+	mToday(AllPikmin) = a;
 	mToday.reset();
 }
 

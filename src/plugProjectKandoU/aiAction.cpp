@@ -222,10 +222,10 @@ Game::Navi* Brain::searchOrima()
 				// If we're in versus mode, make sure it's the correct captain
 				if (Game::gameSystem->mMode == Game::GSM_VERSUS_MODE) {
 					if (currentPlayer->mNaviIndex == NAVIID_Olimar) { // Olimar is on red team
-						if ((int)mPiki->getKind() != Game::Red) {
+						if (mPiki->getKind() != Game::Red) {
 							continue;
 						}
-					} else if ((int)mPiki->getKind() != Game::Blue) { // Louie/President is on blue team
+					} else if (mPiki->getKind() != Game::Blue) { // Louie/President is on blue team
 						continue;
 					}
 				}

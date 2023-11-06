@@ -1082,7 +1082,7 @@ void PlayData::resetContainerFlag()
  */
 bool PlayData::hasContainer(int pikminColor)
 {
-	P2ASSERTBOUNDSLINE(1002, 0, pikminColor, 5);
+	P2ASSERTBOUNDSLINE(1002, FirstPikmin, pikminColor, StoredPikiCount);
 	return mHasContainerFlags & (1 << pikminColor);
 	/*
 	stwu     r1, -0x10(r1)
@@ -1151,7 +1151,7 @@ bool PlayData::hasBootContainer(int pikminColor)
 		return false;
 	} else {
 		isValidIndex = false;
-		if (0 <= pikminColor && pikminColor <= 2) {
+		if (FirstPikmin <= pikminColor && pikminColor <= LastOnyon) {
 			isValidIndex = true;
 		}
 		P2ASSERTLINE(1018, isValidIndex);
@@ -1167,7 +1167,7 @@ bool PlayData::hasBootContainer(int pikminColor)
 void PlayData::setContainer(int pikminColor)
 {
 	bool isValidIndex = false;
-	if (0 <= pikminColor && pikminColor < 5) {
+	if (FirstPikmin <= pikminColor && pikminColor < StoredPikiCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1024, isValidIndex);
@@ -1220,7 +1220,7 @@ lbl_801E71D0:
 void PlayData::setMeetPikmin(int pikminColor)
 {
 	bool isValidIndex = false;
-	if (0 <= pikminColor && pikminColor < 5) {
+	if (FirstPikmin <= pikminColor && pikminColor < StoredPikiCount) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1030, isValidIndex);
@@ -1235,7 +1235,7 @@ void PlayData::setMeetPikmin(int pikminColor)
 void PlayData::setBootContainer(int pikminColor)
 {
 	bool isValidIndex = false;
-	if (0 <= pikminColor && pikminColor <= 2) {
+	if (FirstPikmin <= pikminColor && pikminColor <= LastOnyon) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(1036, isValidIndex);
@@ -3193,7 +3193,7 @@ lbl_801E9D68:
  */
 int PlayData::getPikminCount_Today(int pikminColor)
 {
-	P2ASSERTBOUNDSLINE(2114, Blue, pikminColor, Carrot);
+	P2ASSERTBOUNDSLINE(2114, FirstPikmin, pikminColor, StoredPikiCount + 1);
 	return mPikminToday[pikminColor];
 }
 
@@ -3204,7 +3204,7 @@ int PlayData::getPikminCount_Today(int pikminColor)
  */
 int PlayData::getPikminCount_Yesterday(int pikminColor)
 {
-	P2ASSERTBOUNDSLINE(2121, Blue, pikminColor, Carrot);
+	P2ASSERTBOUNDSLINE(2121, FirstPikmin, pikminColor, StoredPikiCount + 1);
 	return mPikminYesterday[pikminColor];
 }
 

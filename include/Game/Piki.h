@@ -39,16 +39,19 @@ struct PikiState;
 struct PikiParms;
 
 typedef enum EPikiKind {
-	Blue                = 0,
-	Red                 = 1,
-	Yellow              = 2,
-	OnyonCount          = 2,
+	FirstPikmin = 0,
+	Blue        = 0,
+	Red         = 1,
+	Yellow      = 2,
+	LastOnyon   = 2,
+	OnyonCount,
 	Purple              = 3,
 	White               = 4,
 	LastStoredPikiColor = White,
-	AllPikmin           = 5,
-	Bulbmin             = 5,
-	Carrot              = 6,
+	StoredPikiCount,
+	AllPikmin = StoredPikiCount,
+	Bulbmin   = 5,
+	Carrot    = 6,
 	PikiColorCount, // 7
 } EPikiKind;
 

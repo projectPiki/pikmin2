@@ -696,7 +696,7 @@ void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int param_2)
 	Navi* orima = naviMgr->getAt(0);
 	start       = orima->getPosition();
 	start.y     = mapMgr->getMinY(start);
-	for (int color = Blue; color < PikiColorCount; color++) {
+	for (int color = FirstPikmin; color < PikiColorCount; color++) {
 		for (int happa = Leaf; happa < PikiGrowthStageCount; happa++) {
 			for (int i = 0; i < setPikmin.getCount(color, happa); i++) {
 				// Gets Random in cylindrical geometry for some reason
@@ -748,7 +748,7 @@ void VsGameSection::createVsPikmins()
 	blues      = mLouieHandicap * 5;
 	Vector3f spawnOnyonPos;
 
-	for (int color = Blue; color < PikiColorCount; color++) {
+	for (int color = FirstPikmin; color < PikiColorCount; color++) {
 		if (color == Red) {
 			spawnOnyonPos = redOnyonPos;
 		} else if (color == Blue) {

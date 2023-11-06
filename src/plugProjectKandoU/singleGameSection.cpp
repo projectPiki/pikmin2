@@ -1396,7 +1396,7 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 		iterator.first();
 		while (!iterator.isDone()) {
 			Piki* piki = (*iterator);
-			if (piki->isAlive() && (int)piki->mPikiKind != Blue) {
+			if (piki->isAlive() && piki->mPikiKind != Blue) {
 				playData->mPikiContainer.getCount(piki->mPikiKind, piki->mHappaKind)++;
 				PikiKillArg killArg(0x10001);
 				piki->kill(&killArg);
