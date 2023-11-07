@@ -137,6 +137,15 @@ struct Matrixf {
 		(*this)(2, 3) = tr.z;
 	}
 
+	inline Vector3f getScaledTranslation(Vector2f& vec)
+	{
+		Vector3f result;
+		result.x = mMatrix.structView.xx * vec.x + (mMatrix.structView.yx * vec.y + mMatrix.structView.tx);
+		result.y = mMatrix.structView.xy * vec.x + (mMatrix.structView.yy * vec.y + mMatrix.structView.ty);
+		result.z = mMatrix.structView.xz * vec.x + (mMatrix.structView.yz * vec.y + mMatrix.structView.tz);
+		return result;
+	}
+
 	inline void getTranslationXY(Vector2f& vec)
 	{
 		vec.x = (*this)(0, 3);

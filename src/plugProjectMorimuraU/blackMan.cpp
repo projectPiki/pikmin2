@@ -3997,8 +3997,115 @@ void BlackMan::Obj::releasePathFinder()
  * Address:	803A9E80
  * Size:	000590
  */
-void BlackMan::Obj::jointMtxCalc(int)
+void BlackMan::Obj::jointMtxCalc(int jointIdx)
 {
+	int stateID = getStateID();
+	if (jointIdx < 2 && (stateID == WRAITH_Flick || stateID == WRAITH_Recover)) {
+		if (isEvent(0, EB_Bittered) || !mTyre->isEvent(0, EB_Bittered)) {
+			return;
+		}
+	}
+
+	Tyre::Obj* tyre = mTyre;
+	if (!tyre) {
+		return;
+	}
+
+	if (jointIdx >= 4) {
+		return;
+	}
+
+	char* tyreJoints[4]     = { "tyreFL", "TyreFR", "TyreBL", "tyreBR" };         // 0x48; the capitalisation here annoys me so much
+	char* handJoints[4]     = { "handLend", "handRend", "footL", "footR" };       // 0x38
+	char* wristJoints[4]    = { "handL", "handR", "legBL", "legBR" };             // 0x28
+	char* armJoints[4]      = { "armBL", "armBR", "legTL", "legTR" };             // 0x18
+	char* shoulderJoints[4] = { "shoulderL", "shoulderR", "clouchL", "clouchR" }; // 0x8
+
+	Matrixf* tyreMat = tyre->mModel->getJoint(tyreJoints[jointIdx])->getWorldMatrix(); // r29
+	Matrixf* handMat = mModel->getJoint(handJoints[jointIdx])->getWorldMatrix();
+
+	f32 val = 15.0f; // f7
+	if (_2F0 < 1) {
+		val = 0.0f;
+	}
+
+	if (jointIdx < 2) {
+		val = 0.0f;
+	}
+
+	if (jointIdx % 2 != 0) {
+		val = -val;
+	}
+
+	Vector2f yScale(0.0f, val);
+	Vector3f newPos  = tyreMat->getScaledTranslation(yScale);
+	Vector3f handPos = handMat->getBasis(3);
+	Vector3f diff    = newPos - handPos; // f31, f30, f29
+	handMat->setTranslation(newPos);
+
+	PSMTXCopy(handMat->mMatrix.mtxView, J3DSys::mCurrentMtx);
+
+	Matrixf* wristMat = mModel->getJoint(wristJoints[jointIdx])->getWorldMatrix(); // r30
+	Matrixf* armMat   = mModel->getJoint(armJoints[jointIdx])->getWorldMatrix();   // r31
+
+	f32 scale1 = C_PARMS->_A30;
+	f32 scale2 = C_PARMS->_A34;
+
+	Vector3f vec1 = diff * scale1; // f28, f27, f26
+	if (jointIdx < 2) {
+		scale2 = 0.1f;
+	}
+
+	Vector3f vec2 = diff * scale2;   // f25, f24, f23
+	Vector3f vec3(0.0f, 0.0f, 0.0f); // f22, f21, f20
+
+	if (jointIdx < 2 && C_PARMS->_A18) {
+		f32 sinVal1 = C_PARMS->_A40 * absF(sinf(mTyre->_2CC)); // f23
+		f32 sinVal2 = C_PARMS->_A44 * absF(sinf(mTyre->_2CC)); // f24
+		getStateID();                                          // unused
+
+		if (mTyre->_2CC < 0.0f) {
+			if (jointIdx == 0) {
+				vec3.y = sinVal2;
+				vec3.x = tyreMat->mMatrix.structView.xx * sinVal1;
+				vec3.z = tyreMat->mMatrix.structView.xz * sinVal1;
+			}
+		} else if (jointIdx == 1) {
+			vec3.y = sinVal2;
+			vec3.x = -tyreMat->mMatrix.structView.xx * sinVal1;
+			vec3.z = -tyreMat->mMatrix.structView.xz * sinVal1;
+		}
+
+		if (!C_PARMS->_A11) {
+			vec2.x = vec3.x;
+			vec2.z = vec3.z;
+		} else {
+			Vector3f tyreMatPos = tyreMat->getBasis(3);
+			Vector3f tyrePos    = mTyre->mTyrePositions[jointIdx];
+			vec2                = vec3 + (tyreMatPos - tyrePos);
+		}
+	}
+
+	wristMat->mMatrix.structView.tx += vec1.x;
+	wristMat->mMatrix.structView.ty += vec1.y;
+	wristMat->mMatrix.structView.tz += vec1.z;
+
+	armMat->mMatrix.structView.tx += vec2.x;
+	armMat->mMatrix.structView.ty += vec2.y;
+	armMat->mMatrix.structView.tz += vec2.z;
+
+	Matrixf* shoulderMat = mModel->getJoint(shoulderJoints[jointIdx])->getWorldMatrix();
+
+	Vector3f vec4 = diff * C_PARMS->_A38;
+
+	if (jointIdx < 2) {
+		vec2 *= C_PARMS->_A38;
+		vec4 = vec2;
+	}
+
+	shoulderMat->mMatrix.structView.tx += vec4.x;
+	shoulderMat->mMatrix.structView.ty += vec4.y;
+	shoulderMat->mMatrix.structView.tz += vec4.z;
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -4398,6 +4505,39 @@ lbl_803AA39C:
  */
 void BlackMan::Obj::bodyMtxCalc()
 {
+	if (!C_PARMS->_A18) {
+		return;
+	}
+
+	Matrixf* chestMtx = mModel->mJoints[mChestJointIndex].getWorldMatrix(); // r31
+
+	Vector3f pos; // f4, f5, f0
+
+	char* tyreJoints[2] = { "tyreFL", "TyreFR" };
+	if (mTyre->_2CC > 0.0f) {
+		pos = mTyre->mModel->getJoint(tyreJoints[0])->getWorldMatrix()->getBasis(3);
+	} else {
+		pos = mTyre->mModel->getJoint(tyreJoints[1])->getWorldMatrix()->getBasis(3);
+	}
+
+	pos -= mPosition;
+	pos.normalise();
+
+	f32 sinVal = absF(sinf(mTyre->_2CC));
+	chestMtx->mMatrix.structView.tx += sinVal * (C_PARMS->_A28 * pos.x);
+	chestMtx->mMatrix.structView.tz += sinVal * (C_PARMS->_A28 * pos.z);
+
+	PSMTXCopy(chestMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
+
+	Vector3f translation(0.0f, 0.0f, 0.0f); // 0x1c
+	f32 yRot = -C_PARMS->_A2C * sinf(mTyre->_2CC);
+	Vector3f rotation(0.0f, yRot, 0.0f);
+
+	Matrixf mat;
+	mat.makeTR(translation, rotation);
+
+	PSMTXConcat(chestMtx->mMatrix.mtxView, mat.mMatrix.mtxView, chestMtx->mMatrix.mtxView);
+	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -4646,144 +4786,28 @@ bool BlackMan::Obj::isFallEnd()
  */
 void BlackMan::Obj::moveRestart()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_80495670@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	addi     r30, r4, lbl_80495670@l
-	stw      r29, 0x14(r1)
-	lwz      r3, 0x364(r3)
-	cmplwi   r3, 0
-	beq      lbl_803AA9A4
-	bl       moveStart__Q34Game4Tyre3ObjFv
-	lwz      r3, 0x364(r31)
-	li       r4, 0
-	stb      r4, 0x2d0(r3)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803AA84C
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_803AA84C
-	stb      r4, 0x3a8(r31)
-	b        lbl_803AA984
+	if (!mTyre) {
+		return;
+	}
 
-lbl_803AA84C:
-	mr       r3, r31
-	bl       isFinalFloor__Q34Game8BlackMan3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803AA984
-	lbz      r0, 0x3a8(r31)
-	cmplwi   r0, 0
-	bne      lbl_803AA984
-	lbz      r0, 0x3ab(r31)
-	cmplwi   r0, 0
-	bne      lbl_803AA984
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x58(r3)
-	cmplwi   r3, 0
-	beq      lbl_803AA984
-	lwz      r12, 0(r3)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	addis    r0, r3, 0x86a1
-	cmplwi   r0, 0x3034
-	bne      lbl_803AA984
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803AA8C0
-	addi     r3, r30, 0x70
-	addi     r5, r30, 0x28
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	mTyre->moveStart();
+	mTyre->_2D0 = 0;
 
-lbl_803AA8C0:
-	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r29, 0
-	bne      lbl_803AA8E0
-	addi     r3, r30, 0x70
-	addi     r5, r30, 0x28
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (gameSystem && gameSystem->isZukanMode()) {
+		_3A8 = 0;
 
-lbl_803AA8E0:
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	bne      lbl_803AA900
-	addi     r3, r30, 0x7c
-	addi     r5, r30, 0x28
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	} else if (!isFinalFloor() && !_3A8 && !_3AB && gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		mgr->checkScene();
+		PSSystem::SeqBase* seqBase = PSSystem::getSeqData(mgr, 1);
+		P2ASSERTLINE(2221, seqBase);
+		seqBase->startSeq();
+		_3A8 = 1;
+	}
 
-lbl_803AA900:
-	lwz      r3, 4(r29)
-	lwz      r29, 4(r3)
-	cmplwi   r29, 0
-	bne      lbl_803AA924
-	addi     r3, r30, 0x70
-	addi     r5, r30, 0x28
-	li       r4, 0x1e5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AA924:
-	addi     r3, r29, 0x10
-	li       r4, 1
-	bl       getSeq__Q28PSSystem6SeqMgrFUl
-	or.      r29, r3, r3
-	bne      lbl_803AA94C
-	addi     r3, r30, 0x70
-	addi     r5, r30, 0x28
-	li       r4, 0x1e7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AA94C:
-	cmplwi   r29, 0
-	bne      lbl_803AA968
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x28
-	li       r4, 0x8ad
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AA968:
-	mr       r3, r29
-	lwz      r12, 0x10(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stb      r0, 0x3a8(r31)
-
-lbl_803AA984:
-	lwz      r5, 0xc0(r31)
-	li       r4, 0
-	lwz      r3, 0x364(r31)
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	lfs      f4, lbl_8051F49C@sda21(r2)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-
-lbl_803AA9A4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	EnemyFunc::flickStickPikmin(mTyre, C_PARMS->mGeneral.mShakeChance(), C_PARMS->mGeneral.mShakeKnockback(),
+	                            C_PARMS->mGeneral.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
 }
 
 /*
@@ -4863,7 +4887,8 @@ void BlackMan::Obj::recover()
 
 	if (!isEvent(0, EB_Bittered) && mTyre->isEvent(0, EB_Bittered)) {
 		if (getMotionFrame() >= 5.0f) {
-			setAnimSpeed((EnemyAnimatorBase::defaultAnimSpeed / 2));
+			f32 animScale = 0.5f;
+			setAnimSpeed(getReverseAnimSpeed(animScale));
 		} else if (getMotionFrame() < 1.0f) {
 			setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 		}
@@ -4873,6 +4898,19 @@ void BlackMan::Obj::recover()
 
 	mTyre->_2D0 = 1;
 
+	Matrixf* leftMtx  = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mLeftHandJointIndex);  // r4
+	Matrixf* rightMtx = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mRightHandJointIndex); // r5
+
+	Vector3f pos;
+	pos.x = leftMtx->mMatrix.structView.tx + rightMtx->mMatrix.structView.tx;
+	pos.y = leftMtx->mMatrix.structView.ty + rightMtx->mMatrix.structView.ty;
+	pos.z = leftMtx->mMatrix.structView.tz + rightMtx->mMatrix.structView.tz;
+
+	mTyre->_2D4 = Vector3f(pos.x * 0.5f, pos.y * 0.5f, pos.z * 0.5f);
+
+	_328 = mTyre->_2D4;
+
+	mTyre->_2CC *= 0.8f;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5140,142 +5178,26 @@ bool BlackMan::Obj::isFinalFloor()
  */
 void BlackMan::Obj::appearFanfare()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_80495670@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r5, lbl_80495670@l
-	stw      r30, 8(r1)
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x1f0(r4)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_803AB3E8
-	lbz      r0, 0x3aa(r3)
-	cmplwi   r0, 0
-	beq      lbl_803AB3E8
-	li       r0, 0
-	stb      r0, 0x3aa(r3)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803AB2A0
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x28
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (!moviePlayer->isFlag(MVP_IsActive)) {
+		return;
+	}
 
-lbl_803AB2A0:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_803AB2C0
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x28
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (!_3AA) {
+		return;
+	}
 
-lbl_803AB2C0:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_803AB2E0
-	addi     r3, r31, 0x7c
-	addi     r5, r31, 0x28
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	_3AA = 0;
 
-lbl_803AB2E0:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_803AB304
-	addi     r3, r31, 0x7c
-	addi     r5, r31, 0x130
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSSystem::Scene* scene = mgr->getChildScene();
 
-lbl_803AB304:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_803AB324
-	addi     r3, r31, 0x7c
-	addi     r5, r31, 0x28
-	li       r4, 0x5a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AB324:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	beq      lbl_803AB3E8
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803AB350
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x28
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AB350:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_803AB370
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x28
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AB370:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_803AB390
-	addi     r3, r31, 0x7c
-	addi     r5, r31, 0x28
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AB390:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_803AB3B4
-	addi     r3, r31, 0x7c
-	addi     r5, r31, 0x130
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AB3B4:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_803AB3D4
-	addi     r3, r31, 0x7c
-	addi     r5, r31, 0x28
-	li       r4, 0x5a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AB3D4:
-	lwz      r3, 4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803AB3E8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSSystem::checkChildScene(scene)) {
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSSystem::Scene* scene = mgr->getChildScene();
+		PSSystem::checkChildScene(scene)->startMainSeq();
+	}
 }
 
 } // namespace BlackMan
