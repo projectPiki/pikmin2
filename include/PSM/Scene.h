@@ -291,4 +291,12 @@ inline PSM::Scene_Game* PSMGetGameScene()
 	return nullptr;
 }
 
+inline PSSystem::SeqBase* PSSystemGetSeq(int id)
+{
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	mgr->checkScene();
+	return PSSystem::getSeqData(mgr, id);
+}
+
 #endif

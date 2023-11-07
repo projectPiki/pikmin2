@@ -18,7 +18,7 @@ struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 	TRenderingProcessorBase(const JMessage::TReference* ref);
 
 	virtual ~TRenderingProcessorBase() { }           // _08 (weak)
-	virtual void do_character(int);                  // _10 (weak)
+	virtual void do_character(int) { }               // _10 (weak)
 	virtual bool do_tag(u32, const void*, u32);      // _14
 	virtual bool tagColor(const void*, u32);         // _48 (weak)
 	virtual bool tagSize(const void*, u32);          // _4C (weak)
@@ -56,8 +56,8 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	virtual void reset();                                      // _6C
 	virtual void newParagraph();                               // _70
 	virtual void doDrawImage(JUTTexture*, f32, f32, f32, f32); // _74
-	virtual void doDrawRuby(f32, f32, f32, f32, int, bool);    // _78
-	virtual void doDrawLetter(f32, f32, f32, f32, int, bool);  // _7C
+	virtual f32 doDrawRuby(f32, f32, f32, f32, int, bool);     // _78
+	virtual f32 doDrawLetter(f32, f32, f32, f32, int, bool);   // _7C
 	virtual bool doTagControlAbtnWait();                       // _80 (weak)
 
 	void setDrawLocate();
@@ -103,34 +103,34 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor
-	f32 _38;                       // _38
-	f32 _3C;                       // _3C
-	int _40;                       // _40
-	Matrixf* mMtx1;                // _44
-	Matrixf* mMtx2;                // _48
-	JUTFont* _4C;                  // _4C
-	JUTFont* mRubyFont;            // _50
-	f32 _54;                       // _54
-	f32 _58;                       // _58
-	int _5C;                       // _5C
-	u32 _60;                       // _60
-	u8 mColorData[0x14];           // _64
-	f32 _78;                       // _78
-	JGeometry::TBox2f mMesgBounds; // _7C
-	u32 mFlags;                    // _8C
-	JGeometry::TBox2f mLocate;     // _90
+	f32 _38;                        // _38
+	f32 _3C;                        // _3C
+	int _40;                        // _40
+	Matrixf* mMtx1;                 // _44
+	Matrixf* mMtx2;                 // _48
+	JUTFont* mMainFont;             // _4C
+	JUTFont* mRubyFont;             // _50
+	f32 _54;                        // _54
+	f32 _58;                        // _58
+	int _5C;                        // _5C
+	u32 _60;                        // _60
+	JUtility::TColor mColorData[5]; // _64
+	f32 _78;                        // _78
+	JGeometry::TBox2f mMesgBounds;  // _7C
+	u32 mFlags;                     // _8C
+	JGeometry::TBox2f mLocate;      // _90
 	// union {
 	// 	u32 u32View;
 	// 	u8 u8View[4];
 	// } _A0;                // _A0
 	u32 _A0;              // _A0
-	u8 _A4;               // _A4
+	u8 mCurrLine;         // _A4
 	u8 _A5;               // _A5
-	u8 _A6;               // _A6
+	u8 mPageInfoNum;      // _A6
 	u8 _A7;               // _A7
-	f32* _A8;             // _A8
-	u8* _AC;              // _AC
-	u8* _B0;              // _B0
+	f32* mLineWidths;     // _A8
+	u8* mOnePageLines;    // _AC
+	u8* mPageInfoCounts;  // _B0
 	f32 _B4;              // _B4
 	s32 _B8;              // _B8
 	f32 _BC;              // _BC
@@ -141,7 +141,7 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	JUtility::TColor _D0; // _D0
 	JUtility::TColor _D4; // _D4
 	JUtility::TColor _D8; // _D8
-	u8 _DC;               // _DC
+	u8 mMatrixType;       // _DC
 	f32 _E0;              // _E0
 	f32 _E4;              // _E4
 	f32 mFontWidth;       // _E8
@@ -152,7 +152,7 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	u32 _F4;              // _F4
 	u8 _F8;               // _F8
 	u32 _FC;              // _FC
-	u8* _100;             // _100
+	u8* mRubyBuffer;      // _100
 	f32 _104;             // _104
 	f32 _108;             // _108
 	u32 _10C;             // _10C

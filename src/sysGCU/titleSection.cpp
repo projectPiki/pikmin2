@@ -85,11 +85,13 @@ void Section::loadResident()
 		sys->mSysHeap->becomeCurrentHeap();
 		sys->heapStatusStart("titleSection::loadResident", nullptr);
 
-		JKRArchive* arc = JKRArchive::mount("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
-		JUT_ASSERTLINE(582, arc, "%s : mount failed !!\n", "/user/Kando/piki/pikis.szs");
+		char* path      = "/user/Kando/piki/pikis.szs";
+		JKRArchive* arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		JUT_ASSERTLINE(582, arc, "%s : mount failed !!\n", path);
 
-		JKRArchive* arc2 = JKRArchive::mount("user/Kando/onyon/arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
-		JUT_ASSERTLINE(590, arc2, "%s : mount failed !!\n", "user/Kando/onyon/arc.szs");
+		path = "user/Kando/onyon/arc.szs";
+		arc  = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		JUT_ASSERTLINE(590, arc, "%s : mount failed !!\n", path);
 
 		sys->heapStatusEnd("titleSection::loadResident");
 		sys->mFlags.set(1);
@@ -286,7 +288,7 @@ void Section::doUpdateMainTitle()
 
 	if (mController1->mButton.mButtonDown & Controller::PRESS_Y) {
 		OSReport("code size           %dKB\n", (JKRHeap::mCodeEnd - JKRHeap::mCodeStart) / 1024);
-		OSReport("GameSystemHeap Free %dKB\n", sys->mSysHeap->getTotalFreeSize() / 1024);
+		OSReport("GameSystemHeap Free %dKB\n", (int)sys->mSysHeap->getTotalFreeSize() / 1024);
 	}
 
 	PSSystem::SceneMgr* mgr;
@@ -296,16 +298,15 @@ void Section::doUpdateMainTitle()
 		PSSystem::checkSceneMgr(mgr);
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
-		f32 rate               = ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime;
-		if (rate >= 0.0f)
-			rate += 0.5f;
-		else
-			rate -= 0.5f;
+		f32 rate               = (ebi::TMainTitleMgr::kFadeOutTime / sys->mDeltaTime);
+		rate                   = (rate >= 0.0f) ? rate + 0.5f : rate - 0.5f;
 		seq->stopSeq((int)rate);
 	}
 
 	if (mMainTitleMgr.isFinish()) {
-		switch (mMainTitleMgr.getSelectedMenu()) {
+		int id        = mMainTitleMgr.getSelectedMenu();
+		mIsMainActive = false;
+		switch (id) {
 		case ebi::TMainTitleMgr::Select_Story:
 			GameFlow::mActiveSectionFlag = GameFlow::SingleGame;
 			break;
@@ -397,10 +398,7 @@ void Section::doUpdateOmake()
 		mgr->checkScene();
 		PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Bonus);
 		f32 rate               = ebi::TMainTitleMgr::kFadeTime / sys->mDeltaTime;
-		if (rate >= 0.0f)
-			rate += 0.5f;
-		else
-			rate -= 0.5f;
+		rate                   = (rate >= 0.0f) ? rate + 0.5f : rate - 0.5f;
 		seq->stopSeq((int)rate);
 	}
 
@@ -496,7 +494,6 @@ void Section::run()
  */
 bool Section::doUpdate()
 {
-	PSSystem::SceneMgr* mgr;
 	PSSystem::SeqBase* seq;
 
 	sys->mCardMgr->update();
@@ -513,25 +510,17 @@ bool Section::doUpdate()
 		if (isFinishable()) {
 			mOptionMgr.update();
 			if (mOptionMgr.mIsFinished) {
-				mgr = PSSystem::getSceneMgr();
-				PSSystem::checkSceneMgr(mgr);
-				mgr->checkScene();
-				PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Options);
+
+				PSSystem::SeqBase* seq = PSSystemGetSeq(BGM_Options);
 				f32 rate               = ebi::TMainTitleMgr::kFadeTime / sys->mDeltaTime;
-				if (rate >= 0.0f)
-					rate += 0.5f;
-				else
-					rate -= 0.5f;
+				rate                   = (rate >= 0.0f) ? rate + 0.5f : rate - 0.5f;
 				seq->stopSeq((int)rate);
 			}
 			if (mOptionMgr.isFinish()) {
 				mState = State_MainTitle;
 				int idk;
 				mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
-				mgr = PSSystem::getSceneMgr();
-				PSSystem::checkSceneMgr(mgr);
-				mgr->checkScene();
-				seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
+				PSSystem::SeqBase* seq = PSSystemGetSeq(BGM_MainTheme);
 				seq->startSeq();
 			}
 		}
@@ -542,18 +531,13 @@ bool Section::doUpdate()
 	case State_HiScore:
 		Screen::gGame2DMgr->update();
 		if (Screen::gGame2DMgr->isEndHighScore()) {
-			mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
-			mgr->checkScene();
-			PSSystem::SeqBase* seq = PSSystem::getSeqData(mgr, BGM_Options);
+
+			PSSystem::SeqBase* seq = PSSystemGetSeq(BGM_HiScore);
 			seq->stopSeq(0);
 			mState = State_MainTitle;
 			int idk;
 			mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_HiScore);
-			mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
-			mgr->checkScene();
-			seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
+			seq = PSSystemGetSeq(BGM_MainTheme);
 			seq->startSeq();
 			Screen::gGame2DMgr->mScreenMgr->reset();
 		}
@@ -563,10 +547,7 @@ bool Section::doUpdate()
 			mState = State_MainTitle;
 			int idk;
 			mMainTitleMgr.startMenuSet(idk, ebi::TMainTitleMgr::Select_Options);
-			mgr = PSSystem::getSceneMgr();
-			PSSystem::checkSceneMgr(mgr);
-			mgr->checkScene();
-			seq = PSSystem::getSeqData(mgr, BGM_MainTheme);
+			PSSystem::SeqBase* seq = PSSystemGetSeq(BGM_MainTheme);
 			seq->startSeq();
 		}
 		break;
