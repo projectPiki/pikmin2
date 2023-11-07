@@ -184,7 +184,7 @@ struct Obj : public EnemyBase {
 	int _2D0;                           // _2D0
 	Vector3f _2D4;                      // _2D4
 	int _2E0;                           // _2E0
-	bool mHasTarget;                    // _2E4
+	bool mIsSearching;                  // _2E4
 	f32 mAlertTimer;                    // _2E8
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2EC
 	FSM* mFsm;                          // _2F4

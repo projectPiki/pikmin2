@@ -47,10 +47,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 	EnemyBase::onInit(initArg);
 	mKoshiJoint = mModel->getJoint("jnt_koshi");
 	P2ASSERTLINE(74, mKoshiJoint);
-	_2D0       = 0;
-	_2D4       = mHomePosition;
-	_2E0       = 0;
-	mHasTarget = false;
+	_2D0         = 0;
+	_2D4         = mHomePosition;
+	_2E0         = 0;
+	mIsSearching = false;
 	mFsm->start(this, MIULIN_Wait, nullptr);
 }
 
@@ -620,7 +620,7 @@ bool Obj::isFindTarget()
 
 	if (mTargetCreature) {
 		mGoalPosition = mTargetCreature->getPosition();
-		mHasTarget    = true;
+		mIsSearching  = false;
 		return true;
 	}
 
@@ -973,7 +973,7 @@ bool Obj::isProhibitedSearch()
 		return true;
 	}
 
-	if (mHasTarget) {
+	if (mIsSearching) {
 		f32 radius = C_PARMS->mGeneral.mTerritoryRadius.mValue;
 		radius *= 0.7f;
 
@@ -1022,7 +1022,7 @@ bool Obj::isStartWalk()
 void Obj::setReturnState()
 {
 	mTargetCreature = nullptr;
-	mHasTarget      = true;
+	mIsSearching    = true;
 	mGoalPosition   = mHomePosition;
 }
 
@@ -1255,7 +1255,7 @@ f32 Obj::turnFunc(f32 factor)
  */
 bool Obj::isReachToGoal(f32 distance)
 {
-	if (mHasTarget) {
+	if (mIsSearching) {
 		distance = C_PARMS->mGeneral.mHomeRadius.mValue;
 	}
 
@@ -1281,7 +1281,7 @@ static void fixData(f32& p1, f32& p2, f32& p3)
  */
 void Obj::setNextGoal()
 {
-	if (mHasTarget) {
+	if (mIsSearching) {
 		mGoalPosition = mHomePosition;
 		return;
 	}

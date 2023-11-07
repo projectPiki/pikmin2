@@ -2,6 +2,9 @@
 #include "Morimura/Zukan.h"
 
 namespace Morimura {
+int TScrollList::mRightOffset;
+bool TScrollList::mForceResetParm;
+bool TScrollList::mWideWindow = true;
 /*
  * --INFO--
  * Address:	803A2154
@@ -338,20 +341,14 @@ lbl_803A25A8:
  */
 int TIndexPane::getIndex()
 {
+	int id;
 	if (mIconInfos) {
 		if (mSizeType == 0) {
-			int id = mIconInfos[TScrollList::mRightOffset]->mParentIndex - 1;
-			if (id < 0) {
-				return id;
-			}
-			return -1;
+			id = mIconInfos[TScrollList::mRightOffset]->mParentIndex - 1;
+			return (id < 0) ? id : -1;
 		}
-
-		int id = mIconInfos[1]->mParentIndex - 1;
-		if (id < 0) {
-			return id;
-		}
-		return -1;
+		id = mIconInfos[1]->mParentIndex - 1;
+		return (id < 0) ? id : -1;
 	}
 	return mIndex;
 

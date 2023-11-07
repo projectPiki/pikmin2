@@ -50,7 +50,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->setEmotionCaution();
 	enemy->hardConstraintOn();
-	OBJ(enemy)->mHasTarget = false;
+	OBJ(enemy)->mIsSearching = false;
 	enemy->disableEvent(0, EB_LifegaugeVisible);
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 }
@@ -128,18 +128,18 @@ void StateWalk::exec(EnemyBase* enemy)
 		mTurnTimer++;
 		OBJ(enemy)->walkFunc();
 
-		if (OBJ(enemy)->mHasTarget) {
+		if (OBJ(enemy)->mIsSearching) {
 			OBJ(enemy)->turnFunc(1.0f);
 		}
 
-		if (!OBJ(enemy)->mHasTarget && (OBJ(enemy)->isOutOfTerritory() || mReturnTimer > CG_PROPERPARMS(OBJ(enemy)).mReturnTime.mValue)) {
+		if (!OBJ(enemy)->mIsSearching && (OBJ(enemy)->isOutOfTerritory() || mReturnTimer > CG_PROPERPARMS(OBJ(enemy)).mReturnTime.mValue)) {
 			OBJ(enemy)->setReturnState();
 			enemy->finishMotion();
 			OBJ(enemy)->mNextState = MIULIN_Turn;
 			mReturnTimer           = 0;
 
 		} else if (OBJ(enemy)->isReachToGoal(10.0f)) {
-			if (OBJ(enemy)->mHasTarget) {
+			if (OBJ(enemy)->mIsSearching) {
 				enemy->finishMotion();
 				OBJ(enemy)->mNextState = MIULIN_Wait;
 
@@ -426,7 +426,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	f32 maxAngle = (PI * (DEG2RAD * CG_PROPERPARMS(OBJ(enemy)).mMaxTurnAngle.mValue));
-	if (OBJ(enemy)->mHasTarget) {
+	if (OBJ(enemy)->mIsSearching) {
 		maxAngle = 0.01f;
 	}
 

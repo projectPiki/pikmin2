@@ -1556,7 +1556,7 @@ void BlackMan::Obj::walkFunc()
 		}
 	}
 
-	f32 moveSpeed, rotationSpeed, turnSpeed;
+	f32 rotationSpeed, moveSpeed, turnSpeed; // should be f31, f30, f29
 	moveSpeed     = C_PARMS->mGeneral.mMoveSpeed();
 	rotationSpeed = C_PARMS->mGeneral.mMaxTurnAngle();
 	turnSpeed     = C_PARMS->mGeneral.mTurnSpeed();
@@ -1674,11 +1674,10 @@ void BlackMan::Obj::walkFunc()
 	}
 
 	if (_2E0 == 4) {
-		if (!isEndPathFinder()) {
-			return;
-		} else {
+		if (isEndPathFinder()) {
 			moveSpeed = C_PROPERPARMS.mPodMoveSpeed();
-			// should be an unreachable return here
+		} else {
+			return;
 		}
 	}
 
