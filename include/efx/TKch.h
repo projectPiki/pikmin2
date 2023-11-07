@@ -189,7 +189,12 @@ struct TKchYodareBaseChaseMtx : public TChaseMtx {
 		mParticleCallBack.mHitGround.forceKill();
 		mParticleCallBack.mHitWater.forceKill();
 	}
-	virtual void fade();            // _10 (weak)
+	virtual void fade() // _10 (weak)
+	{
+		TChaseMtx::fade();
+		mParticleCallBack.mHitGround.fade();
+		mParticleCallBack.mHitWater.fade();
+	}
 	virtual void startDemoDrawOff() // _40 (weak)
 	{
 		mFlags |= 1;

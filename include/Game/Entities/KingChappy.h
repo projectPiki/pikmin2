@@ -231,7 +231,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f _2BC;                       // _2BC, initialised as mHomePosition
+	Vector3f mGoalPosition;              // _2BC, initialised as mHomePosition
 	MouthSlots mMouthSlots;              // _2C8
 	SysShape::Joint* mMouthJoint1;       // _2D0, 'kuti'
 	SysShape::Joint* mBodyJoint;         // _2D4, 'kosijnt'
@@ -246,11 +246,10 @@ struct Obj : public EnemyBase {
 	Vector3f _300;                       // _300
 	int _30C;                            // _30C
 	u16 mLFootJointIndex;                // _310, index for 'asiL'
-	u8 _312[0x2];                        // _312, padding probably
-	u8 _314[0xC];                        // _314, unknown
+	Vector3f mLFootPosition;             // _314
 	f32 _320;                            // _320
 	u16 mRFootJointIndex;                // _324, index for 'asiR'
-	Vector3f _328;                       // _328
+	Vector3f mRFootPosition;             // _328
 	f32 _334;                            // _334
 	u8 _338;                             // _338
 	u8 _339[0x3];                        // _339, padding probably

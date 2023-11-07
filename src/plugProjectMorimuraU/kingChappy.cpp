@@ -7,9 +7,12 @@
 #include "Game/EnemyFunc.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/Stickers.h"
+#include "Game/Navi.h"
+#include "Game/PikiMgr.h"
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
+#include "Dolphin/rand.h"
 #include "nans.h"
 
 namespace Game {
@@ -104,7 +107,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, KINGCHAPPY_HideWait, nullptr);
 
 	mHomePosition   = mPosition;
-	_2BC            = mHomePosition;
+	mGoalPosition   = mHomePosition;
 	mHomePosition.y = 0.0f;
 	_2EC            = 1;
 	_2F0            = 0;
@@ -1149,144 +1152,26 @@ void Obj::getTonguePosVel(Vector3f& pos, Vector3f& vel)
  */
 void Obj::setNextGoal()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lfs      f1, 0x194(r3)
-	lfs      f0, 0x1a0(r3)
-	lwz      r4, 0xc0(r3)
-	fsubs    f1, f1, f0
-	lfs      f0, 0x18c(r3)
-	lfs      f3, 0x198(r3)
-	lfs      f31, 0x35c(r4)
-	fsubs    f2, f0, f3
-	fmuls    f1, f1, f1
-	fmuls    f0, f31, f31
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8035F868
-	stfs     f3, 0x2bc(r31)
-	li       r4, 1
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x2c4(r31)
-	bl       checkTurn__Q34Game10KingChappy3ObjFb
-	b        lbl_8035F9CC
+	f32 rad = C_PARMS->mGeneral.mTerritoryRadius();
+	if (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(rad)) {
+		mGoalPosition = mHomePosition;
+		checkTurn(true);
+		return;
+	}
 
-lbl_8035F868:
-	lwz      r4, 0x230(r31)
-	cmplwi   r4, 0
-	beq      lbl_8035F8A4
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	stfs     f0, 0x2bc(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x2c4(r31)
-	b        lbl_8035F9CC
+	if (mTargetCreature) {
+		mGoalPosition = mTargetCreature->getPosition();
+		return;
+	}
 
-lbl_8035F8A4:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lfs      f0, 0x198(r31)
-	stw      r0, 0x18(r1)
-	lfd      f3, lbl_8051E740@sda21(r2)
-	lfd      f1, 0x18(r1)
-	lfs      f2, lbl_8051E730@sda21(r2)
-	fsubs    f3, f1, f3
-	stfs     f0, 0x2bc(r31)
-	lfs      f1, lbl_8051E734@sda21(r2)
-	lfs      f0, 0x19c(r31)
-	fdivs    f2, f3, f2
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x2c4(r31)
-	fadds    f0, f1, f2
-	fmuls    f31, f31, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x24(r1)
-	lfd      f3, lbl_8051E740@sda21(r2)
-	stw      r0, 0x20(r1)
-	lfs      f2, lbl_8051E730@sda21(r2)
-	lfd      f0, 0x20(r1)
-	lfs      f1, lbl_8051E738@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051E68C@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f3, f1, f2
-	fcmpo    cr0, f3, f0
-	bge      lbl_8035F958
-	lfs      f0, lbl_8051E6B0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f2, f0
-	b        lbl_8035F97C
+	rad *= 0.3f + randFloat();
 
-lbl_8035F958:
-	lfs      f0, lbl_8051E6B4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r3, r0
+	mGoalPosition = mHomePosition;
 
-lbl_8035F97C:
-	lfs      f1, 0x2bc(r31)
-	lfs      f0, lbl_8051E68C@sda21(r2)
-	fmadds   f1, f31, f2, f1
-	fcmpo    cr0, f3, f0
-	stfs     f1, 0x2bc(r31)
-	bge      lbl_8035F998
-	fneg     f3, f3
+	f32 randAngle = TAU * randFloat();
 
-lbl_8035F998:
-	lfs      f1, lbl_8051E6B4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	lfs      f0, 0x2c4(r31)
-	fmuls    f1, f3, f1
-	fctiwz   f1, f1
-	stfd     f1, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	fmadds   f0, f31, f1, f0
-	stfs     f0, 0x2c4(r31)
-
-lbl_8035F9CC:
-	psq_l    f31, 88(r1), 0, qr0
-	lwz      r0, 0x64(r1)
-	lfd      f31, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	mGoalPosition.x += rad * sinf(randAngle);
+	mGoalPosition.z += rad * cosf(randAngle);
 }
 
 /*
@@ -1296,6 +1181,57 @@ lbl_8035F9CC:
  */
 void Obj::searchTarget()
 {
+	mTargetCreature = nullptr;
+
+	if (_2F0 > 0) {
+		return;
+	}
+
+	if (C_PARMS->_BC9) {
+		return;
+	}
+
+	if (mHomePosition.x == mGoalPosition.x && mHomePosition.z == mGoalPosition.z && isOutOfTerritory(0.8f)) {
+		return;
+	}
+
+	f32 searchAngle = TORADIANS(C_PARMS->mGeneral.mSearchAngle()); // f31
+	f32 searchDist  = C_PARMS->mGeneral.mSearchDistance();
+	searchDist *= searchDist;
+
+	mTargetCreature
+	    = EnemyFunc::getNearestNavi(this, C_PARMS->mGeneral.mSearchAngle(), C_PARMS->mGeneral.mSearchDistance(), &searchDist, nullptr);
+
+	f32 range = SQUARE(C_PROPERPARMS.mFp06()); // f30
+	f32 maxY, minY;
+	minY = mPosition.y - 50.0f; // f28
+	maxY = 50.0f + mPosition.y; // f29
+
+	Iterator<Piki> iter(pikiMgr);
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		if (piki->isSearchable()) {
+			Vector3f pikiPos = piki->getPosition();
+			if (pikiPos.y < minY || pikiPos.y > maxY) {
+				continue;
+			}
+			f32 angle = getCreatureViewAngle(piki);
+			if (absF(angle) <= searchAngle) {
+				Vector3f pos      = mPosition;
+				Vector3f pikiPos2 = Vector3f(piki->getPosition().x, 0.0f, piki->getPosition().z);
+				f32 dist          = sqrDistanceXZ(pikiPos2, pos);
+				if (dist < searchDist && dist > range) {
+					mTargetCreature = piki;
+					searchDist      = dist;
+				}
+			}
+		}
+	}
+
+	if (mTargetCreature) {
+		mGoalPosition = mTargetCreature->getPosition();
+	}
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -1650,26 +1586,11 @@ lbl_8035FE94:
  * Address:	8035FEE8
  * Size:	000040
  */
-bool Obj::isOutOfTerritory(f32)
+bool Obj::isOutOfTerritory(f32 rangeScale)
 {
-	/*
-	lfs      f2, 0x1a0(r3)
-	lfs      f0, 0x194(r3)
-	lwz      r4, 0xc0(r3)
-	fsubs    f4, f2, f0
-	lfs      f2, 0x198(r3)
-	lfs      f3, 0x35c(r4)
-	lfs      f0, 0x18c(r3)
-	fmuls    f3, f1, f3
-	fsubs    f2, f2, f0
-	fmuls    f1, f4, f4
-	fmuls    f0, f3, f3
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	rlwinm   r3, r0, 2, 0x1f, 0x1f
-	blr
-	*/
+	f32 radius = rangeScale * C_PARMS->mGeneral.mTerritoryRadius();
+	f32 dist   = sqrDistanceXZ(mHomePosition, mPosition);
+	return (dist > SQUARE(radius));
 }
 
 /*
@@ -1715,70 +1636,28 @@ void Obj::requestTransit(int stateID) { static_cast<Mgr*>(mMgr)->requestState(th
  */
 void Obj::walkFunc()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stfd     f29, 0x10(r1)
-	psq_st   f29, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x394(r3)
-	lwz      r3, 0xc0(r3)
-	cmplwi   r0, 0
-	lfs      f31, 0x2e4(r3)
-	lfs      f30, 0x334(r3)
-	lfs      f29, 0x30c(r3)
-	beq      lbl_80360088
-	lfs      f31, 0xa9c(r3)
-	lfs      f30, 0xaec(r3)
-	lfs      f29, 0xac4(r3)
+	f32 speed        = C_PARMS->mGeneral.mMoveSpeed();
+	f32 maxTurnAngle = C_PARMS->mGeneral.mMaxTurnAngle();
+	f32 turnSpeed    = C_PARMS->mGeneral.mTurnSpeed();
+	if (_394) {
+		speed        = C_PROPERPARMS.mFp17();
+		maxTurnAngle = C_PROPERPARMS.mFp19();
+		turnSpeed    = C_PROPERPARMS.mFp18();
+	}
 
-lbl_80360088:
-	mr       r3, r31
-	bl       searchTarget__Q34Game10KingChappy3ObjFv
-	fmr      f1, f31
-	mr       r3, r31
-	fmr      f2, f29
-	addi     r4, r31, 0x2bc
-	fmr      f3, f30
-	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff" lwz
-r3, 0x30c(r31) addi     r0, r3, 1 stw      r0, 0x30c(r31) lwz      r0,
-0x30c(r31) cmpwi    r0, 0x78 ble      lbl_80360134 lfs      f1, 0x194(r31) lfs
-f0, 0x2fc(r31) lfs      f2, 0x18c(r31) fsubs    f3, f1, f0 lfs      f1,
-0x2f4(r31) lfs      f0, lbl_8051E758@sda21(r2) fsubs    f2, f2, f1 fmuls    f1,
-f3, f3 fmadds   f1, f2, f2, f1 fcmpo    cr0, f1, f0 bge      lbl_80360114 li r3,
-0x78 li       r0, 0 stw      r3, 0x2f0(r31) stw      r0, 0x230(r31) lfs      f0,
-0x198(r31) stfs     f0, 0x2bc(r31) lfs      f0, 0x19c(r31) stfs     f0,
-0x2c0(r31) lfs      f0, 0x1a0(r31) stfs     f0, 0x2c4(r31)
+	searchTarget();
+	EnemyFunc::walkToTarget(this, mGoalPosition, speed, turnSpeed, maxTurnAngle);
+	_30C++;
+	if (_30C > 120) {
+		if (sqrDistanceXZ(mPosition, _2F4) < 900.0f) {
+			_2F0            = 120;
+			mTargetCreature = nullptr;
+			mGoalPosition   = mHomePosition;
+		}
 
-lbl_80360114:
-	lfs      f0, 0x18c(r31)
-	li       r0, 0
-	stfs     f0, 0x2f4(r31)
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0x2f8(r31)
-	lfs      f0, 0x194(r31)
-	stfs     f0, 0x2fc(r31)
-	stw      r0, 0x30c(r31)
-
-lbl_80360134:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	psq_l    f29, 24(r1), 0, qr0
-	lfd      f29, 0x10(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		_2F4 = mPosition;
+		_30C = 0;
+	}
 }
 
 /*
@@ -1786,8 +1665,22 @@ lbl_80360134:
  * Address:	80360160
  * Size:	0001AC
  */
-f32 Obj::turnFunc(float)
+f32 Obj::turnFunc(f32 scale)
 {
+	Vector3f targetPos = mGoalPosition;
+	if (mTargetCreature) {
+		targetPos = mTargetCreature->getPosition();
+	}
+
+	f32 maxAngle  = C_PARMS->mGeneral.mMaxTurnAngle();
+	f32 turnSpeed = C_PARMS->mGeneral.mTurnSpeed();
+
+	if (_394) {
+		maxAngle  = C_PROPERPARMS.mFp19();
+		turnSpeed = C_PROPERPARMS.mFp18();
+	}
+
+	return turnToTarget2(targetPos, turnSpeed * scale, maxAngle * scale);
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1912,23 +1805,11 @@ lbl_803602A4:
  * Address:	8036030C
  * Size:	000034
  */
-bool Obj::isReachToGoal(f32)
+bool Obj::isReachToGoal(f32 radius)
 {
-	/*
-	fmuls    f0, f1, f1
-	lfs      f2, 0x194(r3)
-	lfs      f1, 0x2c4(r3)
-	lfs      f3, 0x18c(r3)
-	fsubs    f2, f2, f1
-	lfs      f1, 0x2bc(r3)
-	fsubs    f3, f3, f1
-	fmuls    f1, f2, f2
-	fmadds   f1, f3, f3, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
+	f32 rad  = SQUARE(radius);
+	f32 dist = sqrDistanceXZ(mPosition, mGoalPosition);
+	return (u8)(dist < rad);
 }
 
 // /*
@@ -3149,56 +3030,14 @@ lbl_80361350:
  * Address:	80361398
  * Size:	000044
  */
-void Obj::leftFootMtxCalc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r5, r3, 0x314
-	addi     r6, r3, 0x320
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x174(r3)
-	lhz      r0, 0x310(r3)
-	lwz      r4, 8(r4)
-	mulli    r0, r0, 0x30
-	lwz      r4, 0x84(r4)
-	lwz      r4, 0xc(r4)
-	add      r4, r4, r0
-	bl       "footMtxCalc__Q34Game10KingChappy3ObjFPA4_fP10Vector3<f>Pf"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::leftFootMtxCalc() { footMtxCalc(mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mLFootJointIndex], &mLFootPosition, &_320); }
 
 /*
  * --INFO--
  * Address:	803613DC
  * Size:	000044
  */
-void Obj::rightFootMtxCalc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r5, r3, 0x328
-	addi     r6, r3, 0x334
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x174(r3)
-	lhz      r0, 0x324(r3)
-	lwz      r4, 8(r4)
-	mulli    r0, r0, 0x30
-	lwz      r4, 0x84(r4)
-	lwz      r4, 0xc(r4)
-	add      r4, r4, r0
-	bl       "footMtxCalc__Q34Game10KingChappy3ObjFPA4_fP10Vector3<f>Pf"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::rightFootMtxCalc() { footMtxCalc(mModel->mJ3dModel->mMtxBuffer->mWorldMatrices[mRFootJointIndex], &mRFootPosition, &_334); }
 
 /*
  * --INFO--
@@ -3328,38 +3167,10 @@ lbl_80361590:
  */
 void Obj::resetFootPos()
 {
-	/*
-	lwz      r4, 0x174(r3)
-	lhz      r0, 0x310(r3)
-	lwz      r4, 8(r4)
-	mulli    r0, r0, 0x30
-	lfs      f1, lbl_8051E68C@sda21(r2)
-	lwz      r4, 0x84(r4)
-	lwz      r4, 0xc(r4)
-	add      r4, r4, r0
-	lfs      f3, 0x2c(r4)
-	lfs      f2, 0x1c(r4)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0x314(r3)
-	stfs     f2, 0x318(r3)
-	stfs     f3, 0x31c(r3)
-	stfs     f1, 0x320(r3)
-	lwz      r4, 0x174(r3)
-	lhz      r0, 0x324(r3)
-	lwz      r4, 8(r4)
-	mulli    r0, r0, 0x30
-	lwz      r4, 0x84(r4)
-	lwz      r4, 0xc(r4)
-	add      r4, r4, r0
-	lfs      f3, 0x2c(r4)
-	lfs      f2, 0x1c(r4)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0x328(r3)
-	stfs     f2, 0x32c(r3)
-	stfs     f3, 0x330(r3)
-	stfs     f1, 0x334(r3)
-	blr
-	*/
+	mLFootPosition = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mLFootJointIndex)->getBasis(3);
+	_320           = 0.0f;
+	mRFootPosition = mModel->mJ3dModel->mMtxBuffer->getWorldMatrix(mRFootJointIndex)->getBasis(3);
+	_334           = 0.0f;
 }
 
 /*
@@ -3369,106 +3180,16 @@ void Obj::resetFootPos()
  */
 void Obj::fadeAllEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x350(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x358(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x354(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x35c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x360(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x364(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x368(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x36c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x370(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEfxYodare->fade();
+	mEfxDiveWater->fade();
+	mEfxDiveSand->fade();
+	mEfxCryAB->fade();
+	mEfxCryInd->fade();
+	mEfxSmoke->fade();
+	mEfxAttack->fade();
+	mEfxDeadYodare->fade();
+	mEfxDeadHana->fade();
 }
-
-} // namespace KingChappy
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	80361704
- * Size:	000054
- */
-void TKchYodareBaseChaseMtx::fade()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       fade__Q23efx5TSyncFv
-	addi     r3, r31, 0x18
-	lwz      r12, 0x18(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x34
-	lwz      r12, 0x34(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
-
-namespace Game {
-namespace KingChappy {
 
 /*
  * --INFO--

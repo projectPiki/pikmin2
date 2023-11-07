@@ -80,8 +80,8 @@ void StateWalk::exec(EnemyBase* enemy)
 		}
 
 		if (OBJ(enemy)->isOutOfTerritory(1.0f) || CG_PARMS(enemy)->_BC9 || _10 > CG_PROPERPARMS(enemy).mIp01.mValue) {
-			OBJ(enemy)->_2BC = enemy->mHomePosition;
-			_10              = CG_PROPERPARMS(enemy).mIp01.mValue;
+			OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
+			_10                       = CG_PROPERPARMS(enemy).mIp01.mValue;
 			if (OBJ(enemy)->isReachToGoal(CG_PARMS(enemy)->mGeneral.mHomeRadius.mValue)) {
 				OBJ(enemy)->mNextState = KINGCHAPPY_Hide;
 				_10                    = 0;
