@@ -34,11 +34,11 @@ void TyreTubeShadowNode::makeShadowSRT(JointShadowParm& shadowParm, Matrixf* mat
 		matVecs[1].y = (matVecs[3].y - minY) * 5.0f;
 	}
 
-	_1C->setBasis(0, matVecs[0]);
+	mMainMtx->setBasis(0, matVecs[0]);
 
-	_1C->setBasis(1, matVecs[1]);
-	_1C->setBasis(2, matVecs[2]);
-	_1C->setBasis(3, matVecs[3]);
+	mMainMtx->setBasis(1, matVecs[1]);
+	mMainMtx->setBasis(2, matVecs[2]);
+	mMainMtx->setBasis(3, matVecs[3]);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -223,12 +223,12 @@ TyreShadowMgr::TyreShadowMgr(Obj* obj)
 	mGlobalScale = 1.0f;
 	mRootNode    = new JointShadowRootNode(obj);
 
-	mFrontShadow      = new TyreTubeShadowNode;
-	mFrontShadow->_18 = 2;
+	mFrontShadow              = new TyreTubeShadowNode;
+	mFrontShadow->mCylinderID = 2;
 	mRootNode->add(mFrontShadow);
 
-	mBackShadow      = new TyreTubeShadowNode;
-	mBackShadow->_18 = 2;
+	mBackShadow              = new TyreTubeShadowNode;
+	mBackShadow->mCylinderID = 2;
 	mRootNode->add(mBackShadow);
 }
 

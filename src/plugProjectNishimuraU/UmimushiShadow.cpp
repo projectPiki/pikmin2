@@ -24,7 +24,7 @@ void UmimushiTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, 
 	diff.normalise();
 
 	// more stuff here
-	_1C->setBasis(2, diff);
+	mMainMtx->setBasis(2, diff);
 
 	/*
 	.loc_0x0:
@@ -179,10 +179,10 @@ void UmimushiSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat
 
 	Vector3f yVec(0.0f, (vec.y - parm.mPosition.y) + 25.0f, 0.0f);
 
-	_1C->setBasis(0, xVec);
-	_1C->setBasis(1, yVec);
-	_1C->setBasis(2, zVec);
-	_1C->setBasis(3, pos);
+	mMainMtx->setBasis(0, xVec);
+	mMainMtx->setBasis(1, yVec);
+	mMainMtx->setBasis(2, zVec);
+	mMainMtx->setBasis(3, pos);
 	/*
 	.loc_0x0:
 	  rlwinm.   r0,r7,0,24,31
