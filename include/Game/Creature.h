@@ -381,6 +381,15 @@ struct Creature : public CellObject {
 		return angDist(angBetween, getFaceDir());
 	}
 
+	inline Vector3f getTargetSeparation(Creature* target)
+	{
+		f32 x, y, z;
+		x = target->getPosition().x - getPosition().x;
+		y = target->getPosition().y - getPosition().y;
+		z = target->getPosition().z - getPosition().z;
+		return Vector3f(x, y, z);
+	}
+
 	void applyAirDrag(f32, f32, f32);
 	f32 calcSphereDistance(Creature*);
 	int checkHell(Creature::CheckHellArg& hellArg);

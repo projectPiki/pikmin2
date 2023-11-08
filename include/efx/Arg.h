@@ -215,11 +215,20 @@ struct ArgKchYodare : public Arg {
 	{
 	}
 
+	ArgKchYodare(Vector3f position, f32 scale)
+	    : Arg(position)
+	{
+		mScale = scale;
+	}
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgKchYodare";
 	}
-	f32 mScale;
+
+	// _00     = VTBL
+	// _00-_10 = Arg
+	f32 mScale; // _10
 };
 
 struct ArgKouhai : public Arg {

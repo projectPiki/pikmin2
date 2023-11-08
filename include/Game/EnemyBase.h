@@ -593,13 +593,43 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return result;
 	}
 
-	inline Vector3f getTargetSeparation(Creature* target)
+	inline bool checkDistAndAngle2(Creature* target)
 	{
-		f32 x, y, z;
-		x = target->getPosition().x - getPosition().x;
-		y = target->getPosition().y - getPosition().y;
-		z = target->getPosition().z - getPosition().z;
-		return Vector3f(x, y, z);
+		f32 viewAngle  = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mViewAngle();     // f28
+		f32 fov        = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mFov();           // f29
+		f32 sightRad   = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mSightRadius();   // f30
+		f32 privateRad = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mPrivateRadius(); // f31
+
+		f32 angle = getCreatureViewAngle(target);
+
+		Vector3f sep;
+		sep.x = target->getPosition().x - getPosition().x;
+		sep.y = target->getPosition().y - getPosition().y;
+		sep.z = target->getPosition().z - getPosition().z;
+
+		// Vector3f sep = getTargetSeparation(target);
+		f32 rad1 = SQUARE(privateRad);
+		f32 rad2 = SQUARE(sightRad);
+
+		bool check1 = true;  // r3
+		bool check2 = false; // r4
+		bool check3;
+		f32 dist2D = sep.sqrMagnitude2D();
+		if (dist2D > rad1) {
+			check3 = false;
+			if (dist2D > rad2 && absF(sep.y) < fov) {
+				check3 = true;
+			}
+
+			if (check3) {
+				check2 = true;
+			}
+		}
+
+		if (!check2 && absF(angle) <= TORADIANS(viewAngle)) {
+			check1 = false;
+		}
+		return check1;
 	}
 
 	inline f32 changeFaceDir2(Creature* target)

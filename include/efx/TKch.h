@@ -59,8 +59,8 @@ struct TKchCryInd : public TChaseMtxT {
 };
 
 struct TKchDamage : public TSimpleMtx4 {
-	inline TKchDamage()
-	    : TSimpleMtx4(nullptr, PID_KchDamage_1, PID_KchDamage_2, PID_KchDamage_3, PID_KchDamage_4)
+	inline TKchDamage(Matrixf* mtx)
+	    : TSimpleMtx4(mtx, PID_KchDamage_1, PID_KchDamage_2, PID_KchDamage_3, PID_KchDamage_4)
 	{
 	}
 
@@ -107,6 +107,11 @@ struct TKchDiveWat : public TChasePosYRot3 {
 };
 
 struct TKchDownsmoke : public TSimple1 {
+	inline TKchDownsmoke()
+	    : TSimple1(PID_KchDownSmoke)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
