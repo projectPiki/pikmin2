@@ -222,6 +222,17 @@ void THurryUp2D::doDraw(Graphics& gfx)
 		GXSetNumTevStages(1);
 		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
 		GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+		u32 flag = mParams[5].mAlpha1;
+		if (flag > 0x80) {
+			flag = 0x80;
+		}
+		f32 calc = flag * mFadeFraction;
+		JUtility::TColor color(255, 255, 255, calc);
+		GXSetChanMatColor(GX_COLOR_NULL, color);
+		GXSetCullMode(GX_CULL_NONE);
+		GXLoadPosMtxImm(mWhitePane->mMatrix.mMatrix.mtxView, 0);
+
+		GXBegin(GX_TRIANGLES, GX_VTXFMT0, 216);
 	}
 	/*
 	stwu     r1, -0xa0(r1)
@@ -589,40 +600,28 @@ void THurryUp2D::init()
 	if (mDoDraw) {
 		mWhitePane->show();
 		J2DBlendInfo info1(1, 6, 7, 0);
-		static_cast<J2DPictureEx*>(mPaneSunW)->getMaterial()->mPeBlock.setBlend(info1);
+		J2DBlend blend(info1);
+		static_cast<J2DPictureEx*>(mPaneSunW)->getMaterial()->mPeBlock.setBlend(blend);
 
 		J2DBlendInfo info2(1, 1, 0, 0);
-		mWhitePane->getMaterial()->mPeBlock.setBlend(info2);
+		J2DBlend blend2(info2);
+		mWhitePane->getMaterial()->mPeBlock.setBlend(blend2);
 		mWhitePane->mAlpha = 0;
 	} else {
 		J2DBlendInfo info(1, 4, 5, 0);
-		static_cast<J2DPictureEx*>(mScreen->search('sunw'))->getMaterial()->mPeBlock.setBlend(info);
+		J2DBlend blend(info);
+		J2DPictureEx* pane = static_cast<J2DPictureEx*>(mScreen->search('sunw'));
+		pane->getMaterial()->mPeBlock.setBlend(blend);
 		mWhitePane->hide();
 	}
 
-	f32 test = 0.000004f;
-	if (mIsSection) {
-		test = 0.0001f;
-	}
-	int check = (mDisp->mCurrSunRatio - mDisp->mDuration) / test;
-	mState    = StatePlaySE;
-	int time  = check;
-	if (check >= 74) {
-		time   = check - 75;
-		mState = StateScaleUp1;
-		if (time >= 8) {
-			time   = check - 84;
-			mState = StateColorUp;
-			if (time >= 63) {
-				time   = check - 148;
-				mState = StateScaleUp2;
-				if (time >= 5) {
-					time = check - 154;
-				}
-			}
-		}
-	}
-	mTimer = f32(time);
+	// These values need to be treated as variables and not constants, somehow
+	int numA = 75;
+	int numB = 9;
+	int numC = 64;
+	int numD = 6;
+	mTimer   = calcTimer(numA, numB, numC, numD);
+
 	changeState(mState, mTimer);
 
 	/*
@@ -1050,7 +1049,7 @@ void THurryUp2D::scaleUp2()
 {
 	f32 goal = mParams[mState].mGoalScale;
 	if (mPaneSunL->mScale.x < goal) {
-		f32 factor = mTimer * mScaleSp1 * 60.0f;
+		f32 factor = mTimer * mScaleSp2 * 60.0f;
 		f32 scale  = factor * sys->mDeltaTime + mParams[mState].mScale;
 		if (scale > goal) {
 			scale = goal;

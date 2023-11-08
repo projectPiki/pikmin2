@@ -47,6 +47,33 @@ struct THurryUp2D : public TTestBase {
 	void changeState(int, f32);
 	void calcCount();
 
+	inline f32 calcTimer(int numA, int numB, int numC, int numD)
+	{
+		f32 test = 0.000004f;
+		if (mIsSection) {
+			test = 0.0001f;
+		}
+		int check = (mDisp->mCurrSunRatio - mDisp->mDuration) / test;
+		mState    = StatePlaySE;
+		int time  = check;
+		if (check >= numA) {
+			time   = check - numA;
+			mState = StateScaleUp1;
+			if (time >= numB) {
+				time   = check - numB;
+				mState = StateColorUp;
+				if (time >= numC) {
+					time   = check - numC;
+					mState = StateScaleUp2;
+					if (time >= numD) {
+						time = check - numD;
+					}
+				}
+			}
+		}
+		return time;
+	}
+
 	JKRArchive* mArchive;                 // _78
 	P2DScreen::Mgr_tuning* mScreen;       // _7C
 	J2DPane* mPaneHurry;                  // _80

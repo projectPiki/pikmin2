@@ -274,6 +274,14 @@ struct TZukanBase : public TScrollList {
 	bool _243;                                       // _243
 	bool mIsInDemo;                                  // _244 (used when in sales pitch complete state )
 
+	inline bool checkMemoWindow()
+	{
+		if (mWindow->mStatus != TZukanWindow::STATE_Inactive) {
+			return true;
+		}
+		return false;
+	}
+
 	static struct StaticValues {
 		inline StaticValues()
 		{

@@ -246,7 +246,7 @@ void TZukanBase::doCreate(JKRArchive*)
 {
 	mIconScreen = new P2DScreen::Mgr_tuning;
 	mIconScreen->set("newicon.blo", 0x20000, mArchive);
-	mPaneNew1 = static_cast<J2DTextBoxEx*>(mPaneNew1->search('Pnew'));
+	mPaneNew1 = static_cast<J2DTextBoxEx*>(mIconScreen->search('Pnew'));
 	P2ASSERTLINE(258, mPaneNew1);
 	mPaneNew1->setOffset(-300.0f, 0.0f);
 
@@ -321,7 +321,7 @@ void TZukanBase::doCreate(JKRArchive*)
 	}
 	model->show();
 
-	mPaneModelPos.set(*model->getBounds());
+	mPaneModelPos = *model->getBounds();
 
 	J2DPane* model2 = mMainScreen->mScreenObj->search('Pmodel_l');
 	if (mEffectScreen->mScreenObj->search('Pmodel_l')) {
@@ -329,12 +329,12 @@ void TZukanBase::doCreate(JKRArchive*)
 	}
 	P2ASSERTLINE(363, model2);
 
-	mPaneModelLPos.set(*model2->getBounds());
+	mPaneModelLPos = *model2->getBounds();
 
-	mPaneModelOffs  = mPaneModel->mOffset;
-	mPaneModelLOffs = model2->mOffset;
+	mPaneModelOffs  = mPaneModel->getTranslate();
+	mPaneModelLOffs = model2->getTranslate();
 
-	P2DScreen::Mgr_tuning* screen = mMainScreen->mScreenObj;
+	P2DScreen::Mgr_tuning* screen = mListScreen->mScreenObj;
 	P2ASSERTLINE(375, screen);
 	mRequestTimer = 0xffffffce;
 	indexPaneInit(screen);
@@ -432,8 +432,7 @@ bool TZukanBase::doUpdate()
 		mIsInFadeInOut = false;
 		if (!mIsBigWindowOpened && !mWindow->mStatus) {
 			Controller* pad = mController;
-			u32 input       = pad->mButton.mButton;
-			if (input & Controller::ANALOG_UP) {
+			if (pad->getButton() & Controller::ANALOG_UP) {
 				if (!mIsPreDebt || !mCanScroll) {
 					if (mCurrentSelect > 0) {
 						mIndexGroup->upIndex();
@@ -446,7 +445,7 @@ bool TZukanBase::doUpdate()
 				} else {
 					mIndexGroup->upIndex();
 				}
-			} else if (input & Controller::ANALOG_DOWN) {
+			} else if (pad->getButton() & Controller::ANALOG_DOWN) {
 				if (!mIsPreDebt || !mCanScroll) {
 					bool cantScroll = true;
 					if (_234 < 0) {
@@ -469,7 +468,7 @@ bool TZukanBase::doUpdate()
 				} else {
 					mIndexGroup->downIndex();
 				}
-			} else if (pad->mButton.mButtonDown & Controller::ANALOG_RIGHT) {
+			} else if (pad->getButtonDown() & Controller::ANALOG_RIGHT) {
 				if (mIndexPaneList[mCurrentSelect]->mSizeType == 0 && isPanelExist()) {
 					mRightOffset++;
 					if (mRightOffset > 2) {
@@ -478,7 +477,7 @@ bool TZukanBase::doUpdate()
 						isHorizontalScroll = true;
 					}
 				}
-			} else if (pad->mButton.mButtonDown & Controller::ANALOG_LEFT) {
+			} else if (pad->getButtonDown() & Controller::ANALOG_LEFT) {
 				if (mIndexPaneList[mCurrentSelect]->mSizeType == 0) {
 					mRightOffset--;
 					if (mRightOffset < 0) {
@@ -492,14 +491,13 @@ bool TZukanBase::doUpdate()
 
 		if (!mIndexGroup->mStateID && !isHorizontalScroll) {
 			Controller* pad = mController;
-			u32 input       = pad->mButton.mButton;
-			if (input & Controller::PRESS_X) {
+			if (pad->getButtonDown() & Controller::PRESS_X) {
 				mState = 1;
 				doPushXButton();
-			} else if (input & Controller::PRESS_Y) {
+			} else if (pad->getButtonDown() & Controller::PRESS_Y) {
 				mState = 1;
 				doPushYButton();
-			} else if (input & (Controller::PRESS_L | Controller::PRESS_R)) {
+			} else if (pad->getButtonDown() & (Controller::PRESS_L | Controller::PRESS_R)) {
 				if (mIsBigWindowOpened) {
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
 					mIsBigWindowOpened = false;
@@ -508,9 +506,9 @@ bool TZukanBase::doUpdate()
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 					mWindow->windowClose();
 				}
-			} else if (input & Controller::PRESS_B) {
+			} else if (pad->getButtonDown() & Controller::PRESS_B) {
 				doPushBButton();
-			} else if (input & Controller::PRESS_A) {
+			} else if (pad->getButtonDown() & Controller::PRESS_A) {
 				mState = 1;
 				if (mCameraFadeInLevel < 0.5f) {
 					if (!mIsBigWindowOpened) {
@@ -522,7 +520,7 @@ bool TZukanBase::doUpdate()
 					windowOpenClose(getXMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
 				}
 			} else {
-				if (mWindow->mStatus) {
+				if (!(u8)mWindow->mStatus) {
 					// scroll through message box with analog stick
 					f32 z = pad->mMStick.mYPos;
 					if (z >= 0.5f || z <= -0.5f) {
@@ -597,8 +595,8 @@ bool TZukanBase::doUpdate()
 	}
 
 	JGeometry::TBox2f box;
-	box.set(mPaneModelLPos);
 	f32 scale = mBigWindowScale - 1.0f;
+	box       = mPaneModelPos;
 	mScaleMgr->calc();
 	f32 scale2 = 1.0f;
 	box.i.x += scale * (mPaneModelLPos.i.x - mPaneModelPos.i.x) * scale2;
@@ -629,8 +627,10 @@ bool TZukanBase::doUpdate()
 	}
 
 	mYajiScreen->mScreenObj->setAlpha(calc * 255.0f);
-	mPaneNew1->setAlpha(mColorAnm->mColor.a);
-	mPaneNew1->setBlack(mColorAnm->mColor);
+	JUtility::TColor color = mColorAnm->mColor;
+	mPaneNew1->setAlpha(color.a);
+	color.a = 0;
+	mPaneNew1->setBlack(color);
 	static_cast<J2DPicture*>(mWindow->mPaneIconLight)->setAlpha(mWindow->getAnimColor().a);
 
 	if (!mIsEffectRequired) {
@@ -646,7 +646,7 @@ bool TZukanBase::doUpdate()
 	}
 
 	// manage fade out of cstick/arrow when near bottom of scroll list
-	if (mWindow->mStatus != 1) {
+	if ((u8)mWindow->mStatus != 1) {
 		f32 calc = mWindow->getPosRate();
 		if (calc < 0.2f) {
 			calc *= 5.0f;
@@ -814,7 +814,7 @@ void TZukanBase::doDraw(Graphics& gfx)
 
 	if (!(mWindow->mStatus & 4)) {
 		if (mWindow->mStatus == 3) {
-			if (mMessageBoxBGAlpha > 21) {
+			if (mMessageBoxBGAlpha > 20) {
 				mMessageBoxBGAlpha -= 20;
 			} else {
 				mMessageBoxBGAlpha = 0;
@@ -825,17 +825,19 @@ void TZukanBase::doDraw(Graphics& gfx)
 				mMessageBoxBGAlpha = 200;
 			}
 		}
-		JUtility::TColor c(0, 0, 0, mMessageBoxBGAlpha);
+		JUtility::TColor c;
+		c.set(0, 0, 0, 0);
+		c.a = mMessageBoxBGAlpha;
 		graf->setColor(c);
 		GXSetAlphaUpdate(GX_FALSE);
 		u32 y    = System::getRenderModeObj()->efbHeight;
 		u32 x    = System::getRenderModeObj()->fbWidth;
 		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 		graf->fillBox(box);
 		GXSetAlphaUpdate(GX_TRUE);
 		mPaneEnemyName->setAlpha(mMessageBoxBGAlpha);
-		mMessageItemName->draw(gfx, *graf); // this makes the enemy name appear over the background fade
+		mMessageCallback3->draw(gfx, *graf); // this makes the enemy name appear over the background fade
 	}
 
 	if (mIsInDemo) {
@@ -848,6 +850,8 @@ void TZukanBase::doDraw(Graphics& gfx)
 	mYajiScreen->draw(gfx, graf);
 	mPaneSelectIcon->show();
 	graf->setPort();
+	JUtility::TColor color;
+	color.set(0, 0, 0, 0);
 	if (static_cast<TDEnemyScene*>(getOwner())->mConfirmEndWindow->mHasDrawn) {
 		if (static_cast<TDEnemyScene*>(getOwner())->mConfirmEndWindow->mIsActive) {
 			if (mMessageBoxBGAlpha > 21) {
@@ -861,13 +865,13 @@ void TZukanBase::doDraw(Graphics& gfx)
 				mMessageBoxBGAlpha = 200;
 			}
 		}
-		JUtility::TColor c(0, 0, 0, mMessageBoxBGAlpha);
-		graf->setColor(c);
+		color.a = mMessageBoxBGAlpha;
+		graf->setColor(color);
 		GXSetAlphaUpdate(GX_FALSE);
 		u32 y    = System::getRenderModeObj()->efbHeight;
 		u32 x    = System::getRenderModeObj()->fbWidth;
 		f32 zero = 0.0f;
-		JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+		JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 		graf->fillBox(box);
 		GXSetAlphaUpdate(GX_TRUE);
 	}
@@ -878,7 +882,7 @@ void TZukanBase::doDraw(Graphics& gfx)
 	u32 y    = System::getRenderModeObj()->efbHeight;
 	u32 x    = System::getRenderModeObj()->fbWidth;
 	f32 zero = 0.0f;
-	JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+	JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 	graf->fillBox(box);
 	GXSetAlphaUpdate(GX_TRUE);
 }
@@ -917,7 +921,7 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 	_A4 = pane2->mOffset.y;
 
 	// clang-format off
-	u64 panetags[144] = {	'Pn00_0_1', 'Pn00_1_1', 'Pn00_2_1',
+	u64 panetags[10][4][3] = {	'Pn00_0_1', 'Pn00_1_1', 'Pn00_2_1',
 							'Pn00_0_2', 'Pn00_1_2', 'Pn00_2_2',
 							'Pim00_00', 'Pim00_01', 'Pim00_02',
 							'Pme00_00', 'Pme00_01', 'Pme00_02',
@@ -947,36 +951,25 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 							'Pim05_00', 'Pim05_01', 'Pim05_02',
 							'Pme05_00', 'Pme05_01', 'Pme05_02',
 							
-							'Pn06_0_1', 'Pn06_1_1', 'Pn06_2_1',
-							'Pn06_0_2', 'Pn06_1_2', 'Pn06_2_2',
-							'Pim06_00', 'Pim06_01', 'Pim06_02',
-							'Pme06_00', 'Pme06_01', 'Pme06_02',
-							
 							'Pn07_0_1', 'Pn07_1_1', 'Pn07_2_1',
 							'Pn07_0_2', 'Pn07_1_2', 'Pn07_2_2',
 							'Pim07_00', 'Pim07_01', 'Pim07_02',
 							'Pme07_00', 'Pme07_01', 'Pme07_02',
-							
+
+							'Pn06_0_1', 'Pn06_1_1', 'Pn06_2_1',
+							'Pn06_0_2', 'Pn06_1_2', 'Pn06_2_2',
+							'Pim06_00', 'Pim06_01', 'Pim06_02',
+							'Pme06_00', 'Pme06_01', 'Pme06_02',
+						
 							'Pn08_0_1', 'Pn08_1_1', 'Pn08_2_1',
 							'Pn08_0_2', 'Pn08_1_2', 'Pn08_2_2',
 							'Pim08_00', 'Pim08_01', 'Pim08_02',
-							'Pme08_00', 'Pme08_01', 'Pme08_02',
+							'Pme08_00', 'Pme08_01', 'Pme07_05',
 							
 							'Pn09_0_1', 'Pn09_1_1', 'Pn09_2_1',
 							'Pn09_0_2', 'Pn09_1_2', 'Pn09_2_2',
 							'Pim09_00', 'Pim09_01', 'Pim09_02',
-							'Pme09_00', 'Pme09_01', 'Pme09_02',
-
-							'Pn10_0_1', 'Pn10_1_1', 'Pn10_2_1',
-							'Pn10_0_2', 'Pn10_1_2', 'Pn10_2_2',
-							'Pim10_00', 'Pim10_01', 'Pim10_02',
-							'Pme10_00', 'Pme10_01', 'Pme10_02',
-							
-
-							'Pn11_0_1', 'Pn11_1_1', 'Pn11_2_1',
-							'Pn11_0_2', 'Pn11_1_2', 'Pn11_2_2',
-							'Pim11_00', 'Pim11_01', 'Pim11_02',
-							'Pme11_00', 'Pme11_01', 'Pme11_02' };
+							'Pme09_00', 'Pme09_01', 'Pme09_02' };
 	// clang-format on
 
 	bool flag = false;
@@ -994,47 +987,46 @@ void TZukanBase::indexPaneInit(J2DScreen* screen)
 		mIndexPaneList[i] = new TIndexPane(this, static_cast<P2DScreen::Mgr_tuning*>(screen), tags[i]);
 		mIndexPaneList[i]->createIconInfo(3, getIdMax());
 		for (int j = 0; j < 3; j++) {
-			TIconInfo* icon          = mIndexPaneList[i]->mIconInfos[j];
-			J2DPane* pane1           = screen->search(panetags[i * 12] + 9 + j);
-			J2DPane* pane2           = screen->search(panetags[i * 12] + 6 + j);
-			TScaleUpCounter* counter = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i * 12] + j, panetags[i * 12] + 3 + j,
-			                                              &icon->mParentIndex, 3, mArchive);
+			TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
+			J2DPane* pane1  = screen->search(panetags[i][3][j]);
+			J2DPane* pane2  = screen->search(panetags[i][2][j]);
+			TScaleUpCounter* counter
+			    = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i][0][j], panetags[i][1][j], &icon->mParentIndex, 3, mArchive);
 			icon->init(counter, pane1, pane2);
 			if (mCanComplete) {
-				J2DPictureEx* pic
-				    = new J2DPictureEx('test', *screen->search(panetags[i * 12] + j)->getBounds(), "w08_48_gra.bti", 0x1100000);
+				J2DPictureEx* pic = new J2DPictureEx('test', *screen->search(panetags[i][0][j])->getBounds(), "w08_48_gra.bti", 0x1100000);
 				P2ASSERTLINE(1129, pic);
 				mIndexPaneList[i]->mIconInfos[j]->mPic = pic;
 				screen->search(tags[i])->appendChild(pic);
-				screen->search(tags[i])->appendChild(screen->search(panetags[i * 12] + j + 9));
+				screen->search(tags[i])->appendChild(screen->search(panetags[i][3][j]));
 				pic->setBasePosition(J2DPOS_Center);
 			}
-			J2DPane* pane = mIndexPaneList[i]->mPane;
-			int test      = i * mRowSize;
-			if (mIsPreDebt) {
-				test = idk;
-			}
+		}
+		J2DPane* pane = mIndexPaneList[i]->mPane;
+		int test      = i * mRowSize;
+		if (mIsPreDebt) {
+			test = idk;
+		}
 
-			if (mIsPreDebt) {
-				if (flag) {
-					setShortenIndex(i, -1, true);
-				} else {
-					getUpdateIndex(test, true);
-					setShortenIndex(i, idk, true);
-					if (!test && idk) {
-						flag = true;
-					}
-					idk = test;
-					if (mMaxPane < 3) {
-						flag = true;
-					}
-				}
+		if (mIsPreDebt) {
+			if (flag) {
+				setShortenIndex(i, -1, true);
 			} else {
-				setShortenIndex(i, test, true);
+				getUpdateIndex(test, true);
+				setShortenIndex(i, idk, true);
+				if (!test && idk) {
+					flag = true;
+				}
+				idk = test;
+				if (mMaxPane < 3) {
+					flag = true;
+				}
 			}
-			if (idk > -1 && _B0) {
-				pane->setMsgID(getNameID(idk));
-			}
+		} else {
+			setShortenIndex(i, test, true);
+		}
+		if (idk > -1 && _B0) {
+			pane->setMsgID(getNameID(idk));
 		}
 	}
 
@@ -1938,7 +1930,7 @@ void TZukanBase::windowOpenClose(u64 mesg)
 {
 	if (mIsCurrentSelUnlocked) {
 		int flag = mWindow->mStatus;
-		if (flag & 5) {
+		if ((u8)flag & 5) {
 
 			mPaneMessageDemo->setMsgID(mesg);
 			mMessageBoxBGAlpha = 0;
@@ -1996,7 +1988,7 @@ bool TZukanBase::isEnlargedWindow()
  */
 bool TZukanBase::isMemoWindow()
 {
-	if (mWindow->mStatus != TZukanWindow::STATE_Inactive) {
+	if (checkMemoWindow()) {
 		return true;
 	}
 	return false;
@@ -2639,7 +2631,8 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 	mCurrentSelect = 6;
 	_98            = mMaxSelect - 1;
 
-	u64 tags[10] = { 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04', 'Tmenu05', 'Tmenu06', 'Tmenu07', 'Tmenu08', 'Tmenu09' };
+	u64 tags[14] = { 'Tmenu12', 'Tmenu13', 'Tmenu00', 'Tmenu01', 'Tmenu02', 'Tmenu03', 'Tmenu04',
+		             'Tmenu05', 'Tmenu07', 'Tmenu06', 'Tmenu08', 'Tmenu09', 'Tmenu10', 'Tmenu11' };
 
 	J2DPane* pane = screen->search(tags[_90]);
 	P2ASSERTLINE(1083, pane);
@@ -2650,7 +2643,18 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 	_A4 = pane2->mOffset.y;
 
 	// clang-format off
-	u64 panetags[120] = {	'Pn00_0_1', 'Pn00_1_1', 'Pn00_2_1',
+	u64 panetags[14][4][3] = {
+							'Pn12_0_1', 'Pn12_1_1', 'Pn12_2_1',
+							'Pn12_0_2', 'Pn12_1_2', 'Pn12_2_2',
+							'Pim12_00', 'Pim12_01', 'Pim12_02',
+							'Pme12_00', 'Pme12_01', 'Pme12_02',
+
+							'Pn13_0_1', 'Pn13_1_1', 'Pn13_2_1',
+							'Pn13_0_2', 'Pn13_1_2', 'Pn13_2_2',
+							'Pim13_00', 'Pim13_01', 'Pim13_02',
+							'Pme13_00', 'Pme13_01', 'Pme13_02',
+		
+							'Pn00_0_1', 'Pn00_1_1', 'Pn00_2_1',
 							'Pn00_0_2', 'Pn00_1_2', 'Pn00_2_2',
 							'Pim00_00', 'Pim00_01', 'Pim00_02',
 							'Pme00_00', 'Pme00_01', 'Pme00_02',
@@ -2680,25 +2684,35 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 							'Pim05_00', 'Pim05_01', 'Pim05_02',
 							'Pme05_00', 'Pme05_01', 'Pme05_02',
 							
+							'Pn07_0_1', 'Pn07_1_1', 'Pn07_2_1',
+							'Pn07_0_2', 'Pn07_1_2', 'Pn07_2_2',
+							'Pim07_00', 'Pim07_01', 'Pim07_02',
+							'Pme07_00', 'Pme07_01', 'Pme07_02',
+
 							'Pn06_0_1', 'Pn06_1_1', 'Pn06_2_1',
 							'Pn06_0_2', 'Pn06_1_2', 'Pn06_2_2',
 							'Pim06_00', 'Pim06_01', 'Pim06_02',
 							'Pme06_00', 'Pme06_01', 'Pme06_02',
 							
-							'Pn07_0_1', 'Pn07_1_1', 'Pn07_2_1',
-							'Pn07_0_2', 'Pn07_1_2', 'Pn07_2_2',
-							'Pim07_00', 'Pim07_01', 'Pim07_02',
-							'Pme07_00', 'Pme07_01', 'Pme07_02',
-							
 							'Pn08_0_1', 'Pn08_1_1', 'Pn08_2_1',
 							'Pn08_0_2', 'Pn08_1_2', 'Pn08_2_2',
 							'Pim08_00', 'Pim08_01', 'Pim08_02',
-							'Pme08_00', 'Pme08_01', 'Pme08_02',
+							'Pme08_00', 'Pme08_01', 'Pme07_05',
 							
 							'Pn09_0_1', 'Pn09_1_1', 'Pn09_2_1',
 							'Pn09_0_2', 'Pn09_1_2', 'Pn09_2_2',
 							'Pim09_00', 'Pim09_01', 'Pim09_02',
-							'Pme09_00', 'Pme09_01', 'Pme09_02'	 };
+							'Pme09_00', 'Pme09_01', 'Pme09_02',
+							
+							'Pn10_0_1', 'Pn10_1_1', 'Pn10_2_1',
+							'Pn10_0_2', 'Pn10_1_2', 'Pn10_2_2',
+							'Pim10_00', 'Pim10_01', 'Pim09_03',
+							'Pme10_00', 'Pme10_01', 'Pme10_02',
+							
+							'Pn11_0_1', 'Pn11_1_1', 'Pn11_2_1',
+							'Pn11_0_2', 'Pn11_1_2', 'Pn11_2_2',
+							'Pim09_08', 'Pim11_01', 'Pim11_02',
+							'Pme11_00', 'Pme11_01', 'Pme11_02'	 };
 	// clang-format on
 
 	bool flag = false;
@@ -2716,19 +2730,18 @@ void TEnemyZukan::indexPaneInit(J2DScreen* screen)
 		mIndexPaneList[i] = new TIndexPane(this, static_cast<P2DScreen::Mgr_tuning*>(screen), tags[i]);
 		mIndexPaneList[i]->createIconInfo(3, getIdMax());
 		for (int j = 0; j < 3; j++) {
-			TIconInfo* icon          = mIndexPaneList[i]->mIconInfos[j];
-			J2DPane* pane1           = screen->search(panetags[i * 12] + 9 + j);
-			J2DPane* pane2           = screen->search(panetags[i * 12] + 6 + j);
-			TScaleUpCounter* counter = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i * 12] + j, panetags[i * 12] + 3 + j,
-			                                              &icon->mParentIndex, 3, mArchive);
+			TIconInfo* icon = mIndexPaneList[i]->mIconInfos[j];
+			J2DPane* pane1  = screen->search(panetags[i][3][j]);
+			J2DPane* pane2  = screen->search(panetags[i][2][j]);
+			TScaleUpCounter* counter
+			    = setScaleUpCounter2(mListScreen->mScreenObj, panetags[i][0][j], panetags[i][1][j], &icon->mParentIndex, 3, mArchive);
 			icon->init(counter, pane1, pane2);
 			if (mCanComplete) {
-				J2DPictureEx* pic
-				    = new J2DPictureEx('test', *screen->search(panetags[i * 12] + j)->getBounds(), "w08_48_gra.bti", 0x1100000);
+				J2DPictureEx* pic = new J2DPictureEx('test', *screen->search(panetags[i][0][j])->getBounds(), "w08_48_gra.bti", 0x1100000);
 				P2ASSERTLINE(1129, pic);
 				mIndexPaneList[i]->mIconInfos[j]->mPic = pic;
 				screen->search(tags[i])->appendChild(pic);
-				screen->search(tags[i])->appendChild(screen->search(panetags[i * 12] + j + 9));
+				screen->search(tags[i])->appendChild(screen->search(panetags[i][3][j]));
 				pic->setBasePosition(J2DPOS_Center);
 			}
 		}
@@ -5585,7 +5598,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	mOrimaMesgIconColor2.b = 200;
 	mOrimaMesgIconColor2.a = 255;
 
-	mOrimaIconTexture = static_cast<ResTIMG*>(mArchive->getResource("timg/orima_icon.bti"));
+	mOrimaIconTexture = static_cast<ResTIMG*>(mArchive->getResource("timg/olimar_icon.bti"));
 	P2ASSERTLINE(4363, mOrimaIconTexture);
 
 	mListScreen = new TListScreen(arc, 0);
@@ -5637,7 +5650,7 @@ void TItemZukan::doCreate(JKRArchive* arc)
 	P2ASSERTLINE(4442, mPaneMesgWindowStickCap);
 
 	mYajiScreen = new TScreenBase(arc, 0);
-	mYajiScreen->create("new_otakarazukan_yajirushi.blo", 0x20000);
+	mYajiScreen->create("new_otakarazukan_yajirusi.blo", 0x20000);
 
 	if (mShowAllObjects || (Game::playData && Game::playData->mStoryFlags & Game::STORY_DebtPaid)) {
 		mCurrCharacterIconID = 0;
