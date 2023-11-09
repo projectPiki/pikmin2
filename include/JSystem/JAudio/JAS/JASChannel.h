@@ -35,7 +35,7 @@ struct JASChannel : JSULink<JASChannel>,
 	void setPauseFlag(bool);
 	void setPanPower(f32, f32, f32);
 	BOOL play();
-	bool playForce();
+	BOOL playForce();
 	void release(unsigned short);
 	void updateEffectorParam(JASDsp::TChannel*, unsigned short*, const EffectOscParam&);
 	static long dspUpdateCallback(unsigned long, JASDsp::TChannel*, void*);

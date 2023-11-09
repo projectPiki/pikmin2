@@ -230,7 +230,7 @@ void JKRSolidHeap::do_fillFreeArea() { }
  * Address:	80025380
  * Size:	000030
  */
-int JKRSolidHeap::do_resize(void* p1, unsigned long p2)
+int JKRSolidHeap::do_resize(void* p1, u32 p2)
 {
 	JUTWarningConsole_f("resize: cannot resize memory block (%08x: %d)\n", p1, p2);
 	return -1;

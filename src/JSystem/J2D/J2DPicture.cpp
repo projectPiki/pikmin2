@@ -673,21 +673,21 @@ lbl_8003A14C:
  * Address:	8003A25C
  * Size:	000008
  */
-// JUtility::TColor* J2DTevBlock::getTevKColor(unsigned long index) { return nullptr; }
+// JUtility::TColor* J2DTevBlock::getTevKColor(u32 index) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	8003A264
  * Size:	000004
  */
-// void J2DTevBlock::setUndeleteFlag(unsigned char flag) { }
+// void J2DTevBlock::setUndeleteFlag(u8 flag) { }
 
 /*
  * --INFO--
  * Address:	8003A268
  * Size:	000008
  */
-// JUtility::TColor* J2DTevBlock::getTevColor(unsigned long index) { return 0x0; }
+// JUtility::TColor* J2DTevBlock::getTevColor(u32 index) { return 0x0; }
 
 /*
  * --INFO--
@@ -2046,17 +2046,14 @@ JUTTexture* J2DPicture::getTexture(u8 index) const { return (index < 4) ? mTextu
  * Size:	000058
  * changeTexture__10J2DPictureFPCcUc
  */
-ResTIMG* J2DPicture::changeTexture(const char* name, unsigned char index)
-{
-	return changeTexture((ResTIMG*)J2DScreen::getNameResource(name), index);
-}
+ResTIMG* J2DPicture::changeTexture(const char* name, u8 index) { return changeTexture((ResTIMG*)J2DScreen::getNameResource(name), index); }
 
 /*
  * --INFO--
  * Address:	8003B8CC
  * Size:	000108
  */
-ResTIMG* J2DPicture::changeTexture(const ResTIMG*, unsigned char, JUTPalette*)
+ResTIMG* J2DPicture::changeTexture(const ResTIMG*, u8, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2152,7 +2149,7 @@ bool J2DPicture::append(const ResTIMG* img, JUTPalette* palette, float p3) { ret
  * Size:	000068
  * changeTexture__10J2DPictureFPCcUcP10JUTPalette
  */
-ResTIMG* J2DPicture::changeTexture(const char* name, unsigned char index, JUTPalette* palette)
+ResTIMG* J2DPicture::changeTexture(const char* name, u8 index, JUTPalette* palette)
 {
 	return changeTexture((ResTIMG*)J2DScreen::getNameResource(name), index, palette);
 }
@@ -2408,7 +2405,7 @@ lbl_8003BE74:
  * Size:	000034
  * load__10J2DPictureFUc
  */
-void J2DPicture::load(unsigned char p1) { load((GXTexMapID)p1, p1); }
+void J2DPicture::load(u8 p1) { load((GXTexMapID)p1, p1); }
 
 /*
  * --INFO--
@@ -3871,7 +3868,7 @@ lbl_8003D2E0:
  * Address:	8003D2F0
  * Size:	000034
  */
-u8 J2DPicture::getTlutID(const ResTIMG* img, unsigned char index)
+u8 J2DPicture::getTlutID(const ResTIMG* img, u8 index)
 {
 	if (0x100 < img->mPaletteEntryCount) {
 		return (index & 3) + GX_BIGTLUT0;
@@ -3965,7 +3962,7 @@ int J2DPicture::remove() { return remove(mTextureCount - 1); }
  * Size:	000098
  * draw__10J2DPictureFffUcbbb
  */
-void J2DPicture::draw(float p1, float p2, unsigned char textureIndex, bool p4, bool p5, bool p6)
+void J2DPicture::draw(float p1, float p2, u8 textureIndex, bool p4, bool p5, bool p6)
 {
 	if (textureIndex < mTextureCount && mTextures[textureIndex] != nullptr) {
 		// ResTIMG* img = mTextures[textureIndex]->_20;

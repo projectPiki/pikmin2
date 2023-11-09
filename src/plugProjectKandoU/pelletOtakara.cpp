@@ -1416,7 +1416,7 @@ void PelletOtakara::Mgr::generatorWrite(Stream&, Game::GenPelletParm*)
  * Address:	80200CE0
  * Size:	000038
  */
-void PelletOtakara::Mgr::generatorRead(Stream&, Game::GenPelletParm*, unsigned long)
+void PelletOtakara::Mgr::generatorRead(Stream&, Game::GenPelletParm*, u32)
 {
 	/*
 	.loc_0x0:

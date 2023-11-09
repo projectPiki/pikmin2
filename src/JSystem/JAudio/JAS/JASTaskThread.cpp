@@ -25,7 +25,7 @@
  * Address:	800A8840
  * Size:	000060
  */
-JASTaskThread::JASTaskThread(int threadPriority, int msgCount, unsigned long stackSize)
+JASTaskThread::JASTaskThread(int threadPriority, int msgCount, u32 stackSize)
     : JKRThread(JASDram, stackSize, msgCount, threadPriority)
     , _84(0)
 {
@@ -140,7 +140,7 @@ lbl_800A89B0:
  * Address:	........
  * Size:	000198
  */
-JASCmdHeap::Header* JASTaskThread::allocCallStack(void (*cmd)(void*), const void* msg, unsigned long msgLength)
+JASCmdHeap::Header* JASTaskThread::allocCallStack(void (*cmd)(void*), const void* msg, u32 msgLength)
 {
 	// UNUSED FUNCTION
 	// TODO: Wrong.
@@ -169,7 +169,7 @@ void* JASTaskThread::allocCallStack(void (*)(void*), void*)
  * Address:	800A89C8
  * Size:	000260
  */
-int JASTaskThread::sendCmdMsg(void (*cmd)(void*), const void* msg, unsigned long msgLength)
+int JASTaskThread::sendCmdMsg(void (*cmd)(void*), const void* msg, u32 msgLength)
 {
 	JASCmdHeap::Header* header = allocCallStack(cmd, msg, msgLength);
 	if (header == nullptr) {

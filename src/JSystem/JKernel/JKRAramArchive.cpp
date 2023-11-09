@@ -175,7 +175,7 @@ cleanup:
  * Address:	80018EEC
  * Size:	000124
  */
-void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* entry, unsigned long* p2)
+void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* p2)
 {
 	u32 standInForP2;
 	if (p2 == nullptr) {

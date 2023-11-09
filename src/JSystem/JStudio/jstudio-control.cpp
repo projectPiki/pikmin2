@@ -160,7 +160,7 @@ void TControl::transformOnGet_setOrigin(Vec const& p1, float p2)
  * Address:	........
  * Size:	000090
  */
-void TControl::forward_value(unsigned long)
+void TControl::forward_value(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -362,7 +362,7 @@ TParse::~TParse() { }
  * Size:	000078
  * parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
  */
-bool TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, unsigned long)
+bool TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, u32)
 {
 	/*
 	.loc_0x0:
@@ -411,7 +411,7 @@ bool TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, unsigned lon
  * Size:	000044
  * parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
  */
-void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, unsigned long)
+void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32)
 {
 	/*
 	.loc_0x0:
@@ -449,7 +449,7 @@ void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, unsigned
  * Size:	000060
  * parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
  */
-void TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&, unsigned long)
+void TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&, u32)
 {
 	/*
 	.loc_0x0:

@@ -728,7 +728,7 @@ PSM::Creature* BaseItem::getPSCreature() { return mSoundObj; }
  * Address:	801CC150
  * Size:	00008C
  */
-void BaseItem::startSound(unsigned long soundID)
+void BaseItem::startSound(u32 soundID)
 {
 	JUT_ASSERTLINE(262, mSoundObj != nullptr, "(%s) no mSoundCreature\n", getCreatureName());
 	mSoundObj->startSound(soundID, 0);
@@ -1019,7 +1019,7 @@ lbl_801CC7C0:
  * Address:	801CC80C
  * Size:	00007C
  */
-void BaseItem::movieStartAnimation(unsigned long p1)
+void BaseItem::movieStartAnimation(u32 p1)
 {
 	if (mAnimator.mAnimMgr) {
 		getCreatureName();
@@ -1335,7 +1335,7 @@ void BaseItemMgr::loadArchive(char* fileName)
  * Address:	801CCF50
  * Size:	0000AC
  */
-void BaseItemMgr::loadBmd(char* path, int shapeID, unsigned long flags)
+void BaseItemMgr::loadBmd(char* path, int shapeID, u32 flags)
 {
 	P2ASSERTBOUNDSLINE(702, 0, shapeID, mModelDataMax);
 	J3DModelData* modelData = J3DModelLoaderDataBase::load(JKRFileLoader::getGlbResource(path, nullptr), flags);

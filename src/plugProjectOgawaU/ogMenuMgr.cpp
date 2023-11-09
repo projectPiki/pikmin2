@@ -105,7 +105,7 @@ void MenuMgr::killCursor()
 //  * Address:	........
 //  * Size:	0002F4
 //  */
-// void MenuMgr::initSub(J2DScreen*, unsigned short, u64, u64, u64)
+// void MenuMgr::initSub(J2DScreen*, u16, u64, u64, u64)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -201,7 +201,7 @@ void MenuMgr::init2takuTitle(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u6
 //  * Address:	........
 //  * Size:	0002F0
 //  */
-// void MenuMgr::init(J2DScreen*, unsigned short, u64, u64, u64)
+// void MenuMgr::init(J2DScreen*, u16, u64, u64, u64)
 // {
 // 	// UNUSED FUNCTION
 // }

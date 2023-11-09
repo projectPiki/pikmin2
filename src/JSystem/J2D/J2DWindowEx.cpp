@@ -162,7 +162,7 @@
  * Address:	80044E34
  * Size:	0002E8
  */
-J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, unsigned long flags, J2DMaterial* materials)
+J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials)
 {
 	/*
 	.loc_0x0:
@@ -366,42 +366,42 @@ J2DWindowEx::J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, unsigned 
  * Address:	8004511C
  * Size:	000008
  */
-// J2DTevStage* J2DTevBlock::getTevStage(unsigned long index) { return nullptr; }
+// J2DTevStage* J2DTevBlock::getTevStage(u32 index) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80045124
  * Size:	000004
  */
-// void J2DTevBlock::setTevOrder(unsigned long index, J2DTevOrder order) { }
+// void J2DTevBlock::setTevOrder(u32 index, J2DTevOrder order) { }
 
 /*
  * --INFO--
  * Address:	80045128
  * Size:	000008
  */
-// bool J2DTevBlock::insertTexture(unsigned long index, const ResTIMG* img) { return false; }
+// bool J2DTevBlock::insertTexture(u32 index, const ResTIMG* img) { return false; }
 
 /*
  * --INFO--
  * Address:	80045130
  * Size:	000004
  */
-// void J2DTevBlock::setTevKAlphaSel(unsigned long index, unsigned char sel) { }
+// void J2DTevBlock::setTevKAlphaSel(u32 index, u8 sel) { }
 
 /*
  * --INFO--
  * Address:	80045134
  * Size:	000004
  */
-// void J2DTevBlock::setTevKColorSel(unsigned long index, unsigned char sel) { }
+// void J2DTevBlock::setTevKColorSel(u32 index, u8 sel) { }
 
 /*
  * --INFO--
  * Address:	80045138
  * Size:	000004
  */
-// void J2DTevBlock::setTevStageNum(unsigned char) { }
+// void J2DTevBlock::setTevStageNum(u8) { }
 
 /*
  * --INFO--
@@ -1288,8 +1288,7 @@ lbl_80045F78:
  * Address:	80045FB4
  * Size:	000264
  */
-void J2DWindowEx::drawFrameTexture(float, float, float, float, unsigned short, unsigned short, unsigned short, unsigned short, J2DMaterial*,
-                                   bool)
+void J2DWindowEx::drawFrameTexture(float, float, float, float, u16, u16, u16, u16, J2DMaterial*, bool)
 {
 	/*
 	.loc_0x0:
@@ -2323,7 +2322,7 @@ lbl_80046C9C:
  * Address:	80046CB0
  * Size:	000004
  */
-// void J2DTevBlock::setTevColor(unsigned long index, J2DGXColorS10 color) { }
+// void J2DTevBlock::setTevColor(u32 index, J2DGXColorS10 color) { }
 
 /*
  * --INFO--
@@ -2585,7 +2584,7 @@ lbl_80046F8C:
  * Address:	80046FA0
  * Size:	000084
  */
-void J2DWindowEx::setAlpha(unsigned char alpha)
+void J2DWindowEx::setAlpha(u8 alpha)
 {
 	mAlpha = alpha;
 	J2DColorBlock* block;
@@ -2665,7 +2664,7 @@ void J2DWindowEx::rewriteAlpha()
  * Address:	800470B4
  * Size:	000068
  */
-JUTTexture* J2DWindowEx::getFrameTexture(unsigned char frameMaterialIndex, unsigned char textureIndex) const
+JUTTexture* J2DWindowEx::getFrameTexture(u8 frameMaterialIndex, u8 textureIndex) const
 {
 	J2DMaterial* material = getFrameMaterial(frameMaterialIndex);
 	if (material != nullptr && material->mTevBlock != nullptr) {
@@ -2679,14 +2678,14 @@ JUTTexture* J2DWindowEx::getFrameTexture(unsigned char frameMaterialIndex, unsig
  * Address:	8004711C
  * Size:	000024
  */
-// J2DMaterial* J2DWindowEx::getFrameMaterial(unsigned char index) const { return (index >= 4) ? nullptr : _148[index]; }
+// J2DMaterial* J2DWindowEx::getFrameMaterial(u8 index) const { return (index >= 4) ? nullptr : _148[index]; }
 
 /*
  * --INFO--
  * Address:	80047140
  * Size:	000068
  */
-JUTTexture* J2DWindowEx::getContentsTexture(unsigned char textureIndex) const
+JUTTexture* J2DWindowEx::getContentsTexture(u8 textureIndex) const
 {
 	J2DMaterial* material = getContentsMaterial();
 	if (material != nullptr && material->mTevBlock != nullptr) {
@@ -2807,7 +2806,7 @@ void J2DWindowEx::setAnimation(J2DAnmTevRegKey* animation)
  * Address:	80047508
  * Size:	00005C
  */
-bool J2DWindowEx::isNeedSetAnm(unsigned char frameMaterialIndex)
+bool J2DWindowEx::isNeedSetAnm(u8 frameMaterialIndex)
 {
 	for (u8 i = 0; i < frameMaterialIndex; i++) {
 		if (mFrameMaterials[i] == mFrameMaterials[frameMaterialIndex]) {
@@ -3056,7 +3055,7 @@ lbl_800477CC:
  * Address:	800477F8
  * Size:	000004
  */
-// void J2DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const { }
+// void J2DAnmVtxColor::getColor(u8, u16, _GXColor*) const { }
 
 /*
  * --INFO--

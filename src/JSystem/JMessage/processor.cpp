@@ -92,7 +92,7 @@ JMessage::TReference::~TReference() { }
  * Address:	80006D54
  * Size:	000008
  */
-char* JMessage::TReference::do_word(unsigned long) const { return 0x0; }
+char* JMessage::TReference::do_word(u32) const { return 0x0; }
 
 /*
  * --INFO--
@@ -107,7 +107,7 @@ JMessage::TProcessor::~TProcessor() { }
  * Size:	0000BC
  * setBegin_messageCode__Q28JMessage10TProcessorFUsUs
  */
-void JMessage::TProcessor::setBegin_messageCode(unsigned short p1, unsigned short p2)
+void JMessage::TProcessor::setBegin_messageCode(u16 p1, u16 p2)
 {
 	TResource* resource = getResource_groupID(p1);
 	u32 datOffset;
@@ -190,7 +190,7 @@ lbl_80006E44:
  * Address:	80006E60
  * Size:	000044
  */
-void JMessage::TProcessor::setBegin_messageID(unsigned long p1, unsigned long p2, bool* p3)
+void JMessage::TProcessor::setBegin_messageID(u32 p1, u32 p2, bool* p3)
 {
 	u32 code = toMessageCode_messageID(p1, p2, p3);
 	if (code != 0xFFFFFFFF) {
@@ -204,7 +204,7 @@ void JMessage::TProcessor::setBegin_messageID(unsigned long p1, unsigned long p2
  * Size:	0000C0
  * setBegin_messageCode__Q28JMessage10TProcessorFUl
  */
-void JMessage::TProcessor::setBegin_messageCode(unsigned long p1)
+void JMessage::TProcessor::setBegin_messageCode(u32 p1)
 {
 	setBegin_messageCode(p1 >> 0x10, p1 & 0xFFFF);
 	/*
@@ -299,7 +299,7 @@ const char* JMessage::TProcessor::popCurrent()
  * Address:	80006F64
  * Size:	000080
  */
-JMessage::TResource* JMessage::TProcessor::getResource_groupID(unsigned short) const
+JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16) const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -352,7 +352,7 @@ lbl_80006FD0:
  * Address:	80006FE4
  * Size:	000150
  */
-u32 JMessage::TProcessor::toMessageCode_messageID(unsigned long, unsigned long, bool*) const
+u32 JMessage::TProcessor::toMessageCode_messageID(u32, u32, bool*) const
 {
 	/*
 	.loc_0x0:
@@ -509,21 +509,21 @@ void JMessage::TProcessor::do_character(int) { }
  * Address:	8000713C
  * Size:	000008
  */
-bool JMessage::TProcessor::do_tag(unsigned long, const void*, unsigned long) { return false; }
+bool JMessage::TProcessor::do_tag(u32, const void*, u32) { return false; }
 
 /*
  * --INFO--
  * Address:	80007144
  * Size:	000008
  */
-bool JMessage::TProcessor::do_systemTagCode(unsigned short, const void*, unsigned long) { return false; }
+bool JMessage::TProcessor::do_systemTagCode(u16, const void*, u32) { return false; }
 
 /*
  * --INFO--
  * Address:	8000714C
  * Size:	000004
  */
-void JMessage::TProcessor::do_select_begin(unsigned long) { }
+void JMessage::TProcessor::do_select_begin(u32) { }
 
 /*
  * --INFO--
@@ -578,7 +578,7 @@ bool JMessage::TProcessor::do_setBegin_isReady_() const { return true; }
  * Size:	000260
  * do_tag___Q28JMessage10TProcessorFUlPCvUl
  */
-bool JMessage::TProcessor::do_tag_(unsigned long p1, const void* p2, unsigned long p3)
+bool JMessage::TProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
 {
 	u8 v1  = p1 >> 0x10 & 0xFF;
 	u16 v2 = p1 & 0xFFFF;
@@ -804,7 +804,7 @@ lbl_80007404:
  * Address:	80007424
  * Size:	000050
  */
-char* JMessage::TProcessor::on_message_limited(unsigned short) const
+char* JMessage::TProcessor::on_message_limited(u16) const
 {
 	/*
 	lwz      r3, 8(r3)
@@ -842,7 +842,7 @@ lbl_80007464:
  * Size:	0000D0
  * do_systemTagCode___Q28JMessage10TProcessorFUsPCvUl
  */
-void JMessage::TProcessor::do_systemTagCode_(unsigned short p1, const void* p2, unsigned long p3)
+void JMessage::TProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 {
 	switch (p1) {
 	case 4:
@@ -929,14 +929,14 @@ void JMessage::TProcessor::do_systemTagCode_(unsigned short p1, const void* p2, 
  * Size:	000020
  * on_message__Q28JMessage10TProcessorCFUl
  */
-char* JMessage::TProcessor::on_message(unsigned long p1) const { return getMessageText_messageCode(p1); }
+char* JMessage::TProcessor::on_message(u32 p1) const { return getMessageText_messageCode(p1); }
 
 /*
  * --INFO--
  * Address:	80007564
  * Size:	0000EC
  */
-char* JMessage::TProcessor::getMessageText_messageCode(unsigned long) const
+char* JMessage::TProcessor::getMessageText_messageCode(u32) const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1573,7 +1573,7 @@ void JMessage::TSequenceProcessor::do_jump(const void*, const char*) { }
  * Address:	80007CD4
  * Size:	000004
  */
-void JMessage::TSequenceProcessor::do_branch_query(unsigned short) { }
+void JMessage::TSequenceProcessor::do_branch_query(u16) { }
 
 /*
  * --INFO--
@@ -1640,7 +1640,7 @@ void JMessage::TSequenceProcessor::do_end_()
  * Address:	80007D70
  * Size:	000140
  */
-bool JMessage::TSequenceProcessor::do_tag_(unsigned long, const void*, unsigned long)
+bool JMessage::TSequenceProcessor::do_tag_(u32, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -1751,7 +1751,7 @@ bool JMessage::TSequenceProcessor::do_tag_(unsigned long, const void*, unsigned 
  * Size:	000064
  * do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
  */
-void JMessage::TSequenceProcessor::do_systemTagCode_(unsigned short p1, const void* p2, unsigned long p3)
+void JMessage::TSequenceProcessor::do_systemTagCode_(u16 p1, const void* p2, u32 p3)
 {
 	switch (p1) {
 	case 6:
@@ -1927,7 +1927,7 @@ void* JMessage::TSequenceProcessor::process_onJump_(const JMessage::TSequencePro
  * Address:	80007FE4
  * Size:	000070
  */
-void JMessage::TSequenceProcessor::process_onBranch_limited_(const JMessage::TSequenceProcessor*, unsigned long)
+void JMessage::TSequenceProcessor::process_onBranch_limited_(const JMessage::TSequenceProcessor*, u32)
 {
 	/*
 	.loc_0x0:
@@ -1973,7 +1973,7 @@ void JMessage::TSequenceProcessor::process_onBranch_limited_(const JMessage::TSe
  * Address:	80008054
  * Size:	00006C
  */
-void JMessage::TSequenceProcessor::process_onBranch_(const JMessage::TSequenceProcessor*, unsigned long)
+void JMessage::TSequenceProcessor::process_onBranch_(const JMessage::TSequenceProcessor*, u32)
 {
 	/*
 	.loc_0x0:
@@ -2244,7 +2244,7 @@ void JMessage::TRenderingProcessor::do_end_() { do_end(); }
  * Size:	000034
  * do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
  */
-bool JMessage::TRenderingProcessor::do_tag_(unsigned long p1, const void* p2, unsigned long p3)
+bool JMessage::TRenderingProcessor::do_tag_(u32 p1, const void* p2, u32 p3)
 {
 	u8 v1 = p1 >> 0x10 & 0xFF;
 	if ((0xFC < v1) || (v1 < 0xF7)) {
@@ -2277,7 +2277,7 @@ bool JMessage::TRenderingProcessor::do_tag_(unsigned long p1, const void* p2, un
  * Address:	80008364
  * Size:	000040
  */
-void JMessage::TRenderingProcessor::do_systemTagCode_(unsigned short, const void*, unsigned long)
+void JMessage::TRenderingProcessor::do_systemTagCode_(u16, const void*, u32)
 {
 	/*
 	.loc_0x0:

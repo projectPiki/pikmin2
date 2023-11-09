@@ -427,7 +427,7 @@ WorldMapRocket::~WorldMapRocket() { }
 JAISe* WorldMapRocket::startRocketSE(float transform1, float transform2)
 {
 	JAISe* se = PSSystem::spSysIF->playSystemSe(PSSE_SY_ROCKET_SMOKE, 0);
-	unsigned char r6;
+	u8 r6;
 
 	static f32 tmpVol;
 	static bool init;
@@ -1129,7 +1129,7 @@ lbl_8046E09C:
  * Address:	8046E0B4
  * Size:	00015C
  */
-PSM::SeSound* PSStartSoundVec(unsigned long soundID, Vec* vec)
+PSM::SeSound* PSStartSoundVec(u32 soundID, Vec* vec)
 {
 
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
@@ -2081,7 +2081,7 @@ lbl_8046EC70:
  * Address:	8046ECA0
  * Size:	000450
  */
-void PSStartTresureLaderNoiseSE(unsigned char, float, float)
+void PSStartTresureLaderNoiseSE(u8, float, float)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2510,7 +2510,7 @@ namespace PSM {
  * Address:	8046F21C
  * Size:	000030
  */
-void ClusterFactory::identifyPart(unsigned char)
+void ClusterFactory::identifyPart(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)

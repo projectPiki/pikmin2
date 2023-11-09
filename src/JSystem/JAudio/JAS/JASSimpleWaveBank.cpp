@@ -63,7 +63,7 @@ JASSimpleWaveBank::TWaveHandle::~TWaveHandle() { }
  * Address:	8009B854
  * Size:	000084
  */
-void JASSimpleWaveBank::setWaveTableSize(unsigned long tableSize)
+void JASSimpleWaveBank::setWaveTableSize(u32 tableSize)
 {
 	delete[] mHandles;
 	mHandles     = new (getCurrentHeap(), 0) TWaveHandle[tableSize];
@@ -83,7 +83,7 @@ JASSimpleWaveBank::TWaveHandle::TWaveHandle() { mHeap = nullptr; }
  * Address:	8009B8FC
  * Size:	000024
  */
-JASWaveHandle* JASSimpleWaveBank::getWaveHandle(unsigned long handleIndex) const
+JASWaveHandle* JASSimpleWaveBank::getWaveHandle(u32 handleIndex) const
 {
 	if (handleIndex >= mHandleCount) {
 		return nullptr;
@@ -96,7 +96,7 @@ JASWaveHandle* JASSimpleWaveBank::getWaveHandle(unsigned long handleIndex) const
  * Address:	8009B920
  * Size:	000094
  */
-void JASSimpleWaveBank::setWaveInfo(unsigned long handleIndex, const JASWaveInfo& info)
+void JASSimpleWaveBank::setWaveInfo(u32 handleIndex, const JASWaveInfo& info)
 {
 	mHandles[handleIndex].mInfo     = info;
 	mHandles[handleIndex].mInfo._24 = &_48;

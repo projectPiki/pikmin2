@@ -520,7 +520,7 @@
  * Address:	8009CAB8
  * Size:	000058
  */
-void JASSeqParser::cmdOpenTrack(JASTrack*, unsigned long*)
+void JASSeqParser::cmdOpenTrack(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -553,7 +553,7 @@ void JASSeqParser::cmdOpenTrack(JASTrack*, unsigned long*)
  * Address:	8009CB10
  * Size:	000068
  */
-void JASSeqParser::cmdOpenTrackBros(JASTrack*, unsigned long*)
+void JASSeqParser::cmdOpenTrackBros(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -594,7 +594,7 @@ lbl_8009CB60:
  * Address:	8009CB78
  * Size:	000108
  */
-void JASSeqParser::cmdCall(JASTrack*, unsigned long*)
+void JASSeqParser::cmdCall(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -681,7 +681,7 @@ lbl_8009CC68:
  * Address:	8009CC80
  * Size:	000084
  */
-void JASSeqParser::cmdRet(JASTrack*, unsigned long*)
+void JASSeqParser::cmdRet(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -733,7 +733,7 @@ lbl_8009CCF0:
  * Address:	8009CD04
  * Size:	000144
  */
-void JASSeqParser::cmdJmp(JASTrack*, unsigned long*)
+void JASSeqParser::cmdJmp(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -841,7 +841,7 @@ lbl_8009CE30:
  * Address:	8009CE48
  * Size:	00003C
  */
-void JASSeqParser::cmdLoopS(JASTrack*, unsigned long*)
+void JASSeqParser::cmdLoopS(JASTrack*, u32*)
 {
 	/*
 	lwz      r0, 0x18(r4)
@@ -867,7 +867,7 @@ void JASSeqParser::cmdLoopS(JASTrack*, unsigned long*)
  * Address:	8009CE84
  * Size:	000028
  */
-void JASSeqParser::cmdLoopE(JASTrack*, unsigned long*)
+void JASSeqParser::cmdLoopE(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -888,7 +888,7 @@ void JASSeqParser::cmdLoopE(JASTrack*, unsigned long*)
  * Address:	8009CEAC
  * Size:	000058
  */
-void JASSeqParser::cmdReadPort(JASTrack*, unsigned long*)
+void JASSeqParser::cmdReadPort(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -921,7 +921,7 @@ void JASSeqParser::cmdReadPort(JASTrack*, unsigned long*)
  * Address:	8009CF04
  * Size:	000034
  */
-void JASSeqParser::cmdWritePort(JASTrack*, unsigned long*)
+void JASSeqParser::cmdWritePort(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -945,7 +945,7 @@ void JASSeqParser::cmdWritePort(JASTrack*, unsigned long*)
  * Address:	8009CF38
  * Size:	000038
  */
-void JASSeqParser::cmdParentWritePort(JASTrack*, unsigned long*)
+void JASSeqParser::cmdParentWritePort(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -970,7 +970,7 @@ void JASSeqParser::cmdParentWritePort(JASTrack*, unsigned long*)
  * Address:	8009CF70
  * Size:	000044
  */
-void JASSeqParser::cmdChildWritePort(JASTrack*, unsigned long*)
+void JASSeqParser::cmdChildWritePort(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -998,7 +998,7 @@ void JASSeqParser::cmdChildWritePort(JASTrack*, unsigned long*)
  * Address:	8009CFB4
  * Size:	000018
  */
-void JASSeqParser::cmdCheckPortImport(JASTrack*, unsigned long*)
+void JASSeqParser::cmdCheckPortImport(JASTrack*, u32*)
 {
 	/*
 	lwz      r0, 0(r5)
@@ -1015,7 +1015,7 @@ void JASSeqParser::cmdCheckPortImport(JASTrack*, unsigned long*)
  * Address:	8009CFCC
  * Size:	000018
  */
-void JASSeqParser::cmdCheckPortExport(JASTrack*, unsigned long*)
+void JASSeqParser::cmdCheckPortExport(JASTrack*, u32*)
 {
 	/*
 	lwz      r0, 0(r5)
@@ -1032,7 +1032,7 @@ void JASSeqParser::cmdCheckPortExport(JASTrack*, unsigned long*)
  * Address:	8009CFE4
  * Size:	000018
  */
-void JASSeqParser::cmdWait(JASTrack*, unsigned long*)
+void JASSeqParser::cmdWait(JASTrack*, u32*)
 {
 	/*
 	lwz      r3, 0(r5)
@@ -1049,7 +1049,7 @@ void JASSeqParser::cmdWait(JASTrack*, unsigned long*)
  * Address:	8009CFFC
  * Size:	000048
  */
-void JASSeqParser::cmdSetLastNote(JASTrack*, unsigned long*)
+void JASSeqParser::cmdSetLastNote(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1078,7 +1078,7 @@ void JASSeqParser::cmdSetLastNote(JASTrack*, unsigned long*)
  * Address:	8009D044
  * Size:	00001C
  */
-void JASSeqParser::cmdTimeRelate(JASTrack*, unsigned long*)
+void JASSeqParser::cmdTimeRelate(JASTrack*, u32*)
 {
 	/*
 	lwz      r5, 0(r5)
@@ -1096,7 +1096,7 @@ void JASSeqParser::cmdTimeRelate(JASTrack*, unsigned long*)
  * Address:	8009D060
  * Size:	000030
  */
-void JASSeqParser::cmdSimpleOsc(JASTrack*, unsigned long*)
+void JASSeqParser::cmdSimpleOsc(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1119,7 +1119,7 @@ void JASSeqParser::cmdSimpleOsc(JASTrack*, unsigned long*)
  * Address:	8009D090
  * Size:	000034
  */
-void JASSeqParser::cmdSimpleEnv(JASTrack*, unsigned long*)
+void JASSeqParser::cmdSimpleEnv(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1143,7 +1143,7 @@ void JASSeqParser::cmdSimpleEnv(JASTrack*, unsigned long*)
  * Address:	8009D0C4
  * Size:	000070
  */
-void JASSeqParser::cmdSimpleADSR(JASTrack*, unsigned long*)
+void JASSeqParser::cmdSimpleADSR(JASTrack*, u32*)
 {
 	/*
 	lis      r3, sAdsrDef__9JASPlayer@ha
@@ -1182,7 +1182,7 @@ void JASSeqParser::cmdSimpleADSR(JASTrack*, unsigned long*)
  * Address:	8009D134
  * Size:	000010
  */
-void JASSeqParser::cmdTranspose(JASTrack*, unsigned long*)
+void JASSeqParser::cmdTranspose(JASTrack*, u32*)
 {
 	/*
 	lwz      r0, 0(r5)
@@ -1197,7 +1197,7 @@ void JASSeqParser::cmdTranspose(JASTrack*, unsigned long*)
  * Address:	8009D144
  * Size:	000054
  */
-void JASSeqParser::cmdCloseTrack(JASTrack*, unsigned long*)
+void JASSeqParser::cmdCloseTrack(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1233,7 +1233,7 @@ lbl_8009D184:
  * Address:	8009D198
  * Size:	000054
  */
-void JASSeqParser::cmdOutSwitch(JASTrack*, unsigned long*)
+void JASSeqParser::cmdOutSwitch(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1267,7 +1267,7 @@ lbl_8009D1D4:
  * Address:	8009D1EC
  * Size:	00002C
  */
-void JASSeqParser::cmdUpdateSync(JASTrack*, unsigned long*)
+void JASSeqParser::cmdUpdateSync(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1289,7 +1289,7 @@ void JASSeqParser::cmdUpdateSync(JASTrack*, unsigned long*)
  * Address:	8009D218
  * Size:	000030
  */
-void JASSeqParser::cmdBusConnect(JASTrack*, unsigned long*)
+void JASSeqParser::cmdBusConnect(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1312,7 +1312,7 @@ void JASSeqParser::cmdBusConnect(JASTrack*, unsigned long*)
  * Address:	8009D248
  * Size:	000010
  */
-void JASSeqParser::cmdPauseStatus(JASTrack*, unsigned long*)
+void JASSeqParser::cmdPauseStatus(JASTrack*, u32*)
 {
 	/*
 	lwz      r0, 0(r5)
@@ -1327,7 +1327,7 @@ void JASSeqParser::cmdPauseStatus(JASTrack*, unsigned long*)
  * Address:	8009D258
  * Size:	000010
  */
-void JASSeqParser::cmdVolumeMode(JASTrack*, unsigned long*)
+void JASSeqParser::cmdVolumeMode(JASTrack*, u32*)
 {
 	/*
 	lwz      r0, 0(r5)
@@ -1342,7 +1342,7 @@ void JASSeqParser::cmdVolumeMode(JASTrack*, unsigned long*)
  * Address:	8009D268
  * Size:	000038
  */
-void JASSeqParser::cmdSetInterrupt(JASTrack*, unsigned long*)
+void JASSeqParser::cmdSetInterrupt(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1367,7 +1367,7 @@ void JASSeqParser::cmdSetInterrupt(JASTrack*, unsigned long*)
  * Address:	8009D2A0
  * Size:	00002C
  */
-void JASSeqParser::cmdDisInterrupt(JASTrack*, unsigned long*)
+void JASSeqParser::cmdDisInterrupt(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1389,7 +1389,7 @@ void JASSeqParser::cmdDisInterrupt(JASTrack*, unsigned long*)
  * Address:	8009D2CC
  * Size:	000018
  */
-void JASSeqParser::cmdClrI(JASTrack*, unsigned long*)
+void JASSeqParser::cmdClrI(JASTrack*, u32*)
 {
 	/*
 	li       r3, 1
@@ -1406,7 +1406,7 @@ void JASSeqParser::cmdClrI(JASTrack*, unsigned long*)
  * Address:	8009D2E4
  * Size:	000010
  */
-void JASSeqParser::cmdSetI(JASTrack*, unsigned long*)
+void JASSeqParser::cmdSetI(JASTrack*, u32*)
 {
 	/*
 	li       r0, 0
@@ -1421,7 +1421,7 @@ void JASSeqParser::cmdSetI(JASTrack*, unsigned long*)
  * Address:	8009D2F4
  * Size:	000050
  */
-void JASSeqParser::cmdRetI(JASTrack*, unsigned long*)
+void JASSeqParser::cmdRetI(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1452,7 +1452,7 @@ void JASSeqParser::cmdRetI(JASTrack*, unsigned long*)
  * Address:	8009D344
  * Size:	00001C
  */
-void JASSeqParser::cmdIntTimer(JASTrack*, unsigned long*)
+void JASSeqParser::cmdIntTimer(JASTrack*, u32*)
 {
 	/*
 	lwz      r0, 0(r5)
@@ -1470,7 +1470,7 @@ void JASSeqParser::cmdIntTimer(JASTrack*, unsigned long*)
  * Address:	8009D360
  * Size:	000058
  */
-void JASSeqParser::cmdSyncCPU(JASTrack*, unsigned long*)
+void JASSeqParser::cmdSyncCPU(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1505,21 +1505,21 @@ lbl_8009D39C:
  * Address:	8009D3B8
  * Size:	000008
  */
-u32 JASSeqParser::cmdFlushAll(JASTrack*, unsigned long*) { return 0x0; }
+u32 JASSeqParser::cmdFlushAll(JASTrack*, u32*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8009D3C0
  * Size:	000008
  */
-u32 JASSeqParser::cmdFlushRelease(JASTrack*, unsigned long*) { return 0x0; }
+u32 JASSeqParser::cmdFlushRelease(JASTrack*, u32*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8009D3C8
  * Size:	000030
  */
-void JASSeqParser::cmdTimeBase(JASTrack*, unsigned long*)
+void JASSeqParser::cmdTimeBase(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1542,7 +1542,7 @@ void JASSeqParser::cmdTimeBase(JASTrack*, unsigned long*)
  * Address:	8009D3F8
  * Size:	000030
  */
-void JASSeqParser::cmdTempo(JASTrack*, unsigned long*)
+void JASSeqParser::cmdTempo(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1565,21 +1565,21 @@ void JASSeqParser::cmdTempo(JASTrack*, unsigned long*)
  * Address:	8009D428
  * Size:	000008
  */
-u32 JASSeqParser::cmdFinish(JASTrack*, unsigned long*) { return 0x3; }
+u32 JASSeqParser::cmdFinish(JASTrack*, u32*) { return 0x3; }
 
 /*
  * --INFO--
  * Address:	8009D430
  * Size:	000008
  */
-u32 JASSeqParser::cmdNop(JASTrack*, unsigned long*) { return 0x0; }
+u32 JASSeqParser::cmdNop(JASTrack*, u32*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8009D438
  * Size:	000084
  */
-void JASSeqParser::cmdPanPowSet(JASTrack*, unsigned long*)
+void JASSeqParser::cmdPanPowSet(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1623,7 +1623,7 @@ void JASSeqParser::cmdPanPowSet(JASTrack*, unsigned long*)
  * Address:	8009D4BC
  * Size:	000034
  */
-void JASSeqParser::cmdFIRSet(JASTrack*, unsigned long*)
+void JASSeqParser::cmdFIRSet(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1647,7 +1647,7 @@ void JASSeqParser::cmdFIRSet(JASTrack*, unsigned long*)
  * Address:	8009D4F0
  * Size:	000054
  */
-void JASSeqParser::cmdEXTSet(JASTrack*, unsigned long*)
+void JASSeqParser::cmdEXTSet(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1679,7 +1679,7 @@ void JASSeqParser::cmdEXTSet(JASTrack*, unsigned long*)
  * Address:	8009D544
  * Size:	0000F8
  */
-void JASSeqParser::cmdPanSwSet(JASTrack*, unsigned long*)
+void JASSeqParser::cmdPanSwSet(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1752,7 +1752,7 @@ void JASSeqParser::cmdPanSwSet(JASTrack*, unsigned long*)
  * Address:	8009D63C
  * Size:	00001C
  */
-void JASSeqParser::cmdOscRoute(JASTrack*, unsigned long*)
+void JASSeqParser::cmdOscRoute(JASTrack*, u32*)
 {
 	/*
 	lwz      r5, 0(r5)
@@ -1770,7 +1770,7 @@ void JASSeqParser::cmdOscRoute(JASTrack*, unsigned long*)
  * Address:	8009D658
  * Size:	000048
  */
-void JASSeqParser::cmdVibDepth(JASTrack*, unsigned long*)
+void JASSeqParser::cmdVibDepth(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1799,7 +1799,7 @@ void JASSeqParser::cmdVibDepth(JASTrack*, unsigned long*)
  * Address:	8009D6A0
  * Size:	000038
  */
-void JASSeqParser::cmdVibDepthMidi(JASTrack*, unsigned long*)
+void JASSeqParser::cmdVibDepthMidi(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1824,7 +1824,7 @@ void JASSeqParser::cmdVibDepthMidi(JASTrack*, unsigned long*)
  * Address:	8009D6D8
  * Size:	000048
  */
-void JASSeqParser::cmdVibPitch(JASTrack*, unsigned long*)
+void JASSeqParser::cmdVibPitch(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1853,7 +1853,7 @@ void JASSeqParser::cmdVibPitch(JASTrack*, unsigned long*)
  * Address:	8009D720
  * Size:	0000F4
  */
-void JASSeqParser::cmdIIRSet(JASTrack*, unsigned long*)
+void JASSeqParser::cmdIIRSet(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1925,7 +1925,7 @@ void JASSeqParser::cmdIIRSet(JASTrack*, unsigned long*)
  * Address:	8009D814
  * Size:	0000F8
  */
-void JASSeqParser::cmdIIRCutOff(JASTrack*, unsigned long*)
+void JASSeqParser::cmdIIRCutOff(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1998,7 +1998,7 @@ void JASSeqParser::cmdIIRCutOff(JASTrack*, unsigned long*)
  * Address:	8009D90C
  * Size:	00003C
  */
-void JASSeqParser::cmdOscFull(JASTrack*, unsigned long*)
+void JASSeqParser::cmdOscFull(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2024,7 +2024,7 @@ void JASSeqParser::cmdOscFull(JASTrack*, unsigned long*)
  * Address:	8009D948
  * Size:	000010
  */
-void JASSeqParser::cmdCheckWave(JASTrack*, unsigned long*)
+void JASSeqParser::cmdCheckWave(JASTrack*, u32*)
 {
 	/*
 	li       r0, 0
@@ -2039,7 +2039,7 @@ void JASSeqParser::cmdCheckWave(JASTrack*, unsigned long*)
  * Address:	8009D958
  * Size:	000214
  */
-void JASSeqParser::cmdPrintf(JASTrack*, unsigned long*)
+void JASSeqParser::cmdPrintf(JASTrack*, u32*)
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -2221,7 +2221,7 @@ lbl_8009DB4C:
  * Address:	........
  * Size:	00014C
  */
-void JASSeqParser::Cmd_Process(JASTrack*, unsigned char, unsigned short)
+void JASSeqParser::Cmd_Process(JASTrack*, u8, u16)
 {
 	// UNUSED FUNCTION
 }
@@ -2241,7 +2241,7 @@ void JASSeqParser::RegCmd_Process(JASTrack*, int, int)
  * Address:	8009DB6C
  * Size:	00018C
  */
-void JASSeqParser::cmdSetParam(JASTrack*, unsigned char)
+void JASSeqParser::cmdSetParam(JASTrack*, u8)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2380,7 +2380,7 @@ lbl_8009DCAC:
  * Address:	........
  * Size:	00014C
  */
-void JASSeqParser::cmdWait(JASTrack*, unsigned char)
+void JASSeqParser::cmdWait(JASTrack*, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -2390,7 +2390,7 @@ void JASSeqParser::cmdWait(JASTrack*, unsigned char)
  * Address:	........
  * Size:	0000B4
  */
-void JASSeqParser::cmdNoteOff(JASTrack*, unsigned char)
+void JASSeqParser::cmdNoteOff(JASTrack*, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -2400,7 +2400,7 @@ void JASSeqParser::cmdNoteOff(JASTrack*, unsigned char)
  * Address:	8009DCF8
  * Size:	0003D4
  */
-void JASSeqParser::cmdNoteOn(JASTrack*, unsigned char)
+void JASSeqParser::cmdNoteOn(JASTrack*, u8)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2708,7 +2708,7 @@ lbl_8009E0B8:
  * Address:	8009E0CC
  * Size:	0000B4
  */
-void JASSeqParser::conditionCheck(JASTrack*, unsigned char)
+void JASSeqParser::conditionCheck(JASTrack*, u8)
 {
 	/*
 	clrlwi   r0, r5, 0x1c

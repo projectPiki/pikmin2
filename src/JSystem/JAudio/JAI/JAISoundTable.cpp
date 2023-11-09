@@ -150,7 +150,7 @@ JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
  * Address:	800B75DC
  * Size:	000058
  */
-u32 JAInter::SoundTable::getInfoFormat(unsigned long id)
+u32 JAInter::SoundTable::getInfoFormat(u32 id)
 {
 	switch (id & JAISoundID_TypeMask) {
 	case 0x00000000:
@@ -199,7 +199,7 @@ lbl_800B7628:
  * Address:	........
  * Size:	0000E4
  */
-void JAInter::SoundTable::setInfoTrack(unsigned long, unsigned char)
+void JAInter::SoundTable::setInfoTrack(u32, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -216,7 +216,7 @@ u8 JAInter::SoundTable::getCategotyMax() { return mCategotyMax; }
  * Address:	800B763C
  * Size:	000010
  */
-u16 JAInter::SoundTable::getSoundMax(unsigned char p1) { return mSoundMax[p1]; }
+u16 JAInter::SoundTable::getSoundMax(u8 p1) { return mSoundMax[p1]; }
 
 /*
  * --INFO--

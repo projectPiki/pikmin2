@@ -990,7 +990,7 @@ char* P2JST::ObjectSystem::JSGGetName() const
  * Address:	80431350
  * Size:	000008
  */
-void P2JST::ObjectSystem::JSGSetFlag(unsigned long a1)
+void P2JST::ObjectSystem::JSGSetFlag(u32 a1)
 {
 	// Generated from stw r4, 0x10(r3)
 	mFlags = a1;
@@ -1014,7 +1014,7 @@ u32 P2JST::ObjectSystem::JSGGetFlag() const
  * Address:	80431360
  * Size:	000010
  */
-void P2JST::ObjectSystem::JSGSetData(unsigned long, void const*, unsigned long)
+void P2JST::ObjectSystem::JSGSetData(u32, void const*, u32)
 {
 	/*
 	stw      r4, 0x14(r3)

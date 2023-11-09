@@ -636,7 +636,7 @@ lbl_800625FC:
  * Address:	80062658
  * Size:	000050
  */
-u32 J3DMaterial::calcSizeColorBlock(unsigned long flags)
+u32 J3DMaterial::calcSizeColorBlock(u32 flags)
 {
 	u32 size = 0;
 	switch (flags) {
@@ -736,7 +736,7 @@ u32 J3DMaterial::calcSizeIndBlock(int count)
  * Size:	000068
  * TODO: Sizeofs with the correct types
  */
-u32 J3DMaterial::calcSizePEBlock(unsigned long flags, unsigned long p2)
+u32 J3DMaterial::calcSizePEBlock(u32 flags, u32 p2)
 {
 	u32 size = 0;
 	if (flags == 0) {

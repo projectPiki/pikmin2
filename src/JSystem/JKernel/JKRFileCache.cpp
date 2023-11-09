@@ -336,7 +336,7 @@ void* JKRFileCache::getRelResource(const char* path)
  * Size:	000090
  * getResource__12JKRFileCacheFUlPCc
  */
-void* JKRFileCache::getResource(unsigned long p1, const char* fileName)
+void* JKRFileCache::getResource(u32 p1, const char* fileName)
 {
 	char directoryPath[256];
 	size_t len = strlen(mRootPath);
@@ -353,7 +353,7 @@ void* JKRFileCache::getResource(unsigned long p1, const char* fileName)
  * Address:	80021F90
  * Size:	0000D4
  */
-size_t JKRFileCache::readResource(void* resourceBuffer, unsigned long bufferSize, const char* path)
+size_t JKRFileCache::readResource(void* resourceBuffer, u32 bufferSize, const char* path)
 {
 	char* dvdPathName = getDvdPathName(path);
 	JKRDvdFile file(dvdPathName);
@@ -393,7 +393,7 @@ size_t JKRFileCache::readRelResource(void* p1, u32 p2, const char* p3)
  * Address:	80022064
  * Size:	000090
  */
-size_t JKRFileCache::readResource(void* resourceBuffer, unsigned long bufferSize, unsigned long type, const char* fileName)
+size_t JKRFileCache::readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* fileName)
 {
 	char directoryPath[256];
 	size_t len = strlen(mRootPath);
@@ -525,7 +525,7 @@ JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(const void* data) const
  * Size:	00002C
  * findCacheBlock__12JKRFileCacheCFUl
  */
-JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(unsigned long id) const
+JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(u32 id) const
 {
 	for (JSULink<CCacheBlock>* link = mCacheBlockList.getFirst(); link != nullptr; link = link->getNext()) {
 		if (link->getObject()->mFileID == id) {
@@ -963,7 +963,7 @@ void JKRFileCache::convStrLower(char* str) const
  * Size:	00006C
  * __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv
  */
-JKRFileCache::CCacheBlock::CCacheBlock(unsigned long p1, unsigned long dataLength, const void* data)
+JKRFileCache::CCacheBlock::CCacheBlock(u32 p1, u32 dataLength, const void* data)
     : JSULink(this)
     , mRefCount(1)
     , mFileID(p1)
@@ -984,7 +984,7 @@ void* JKRFileCache::getFsResource(const char* path) { return getResource(path); 
  * Address:	80022A58
  * Size:	00002C
  */
-void* JKRFileCache::getNameResource(unsigned long p1, const char* fileName) { return getResource(p1, fileName); }
+void* JKRFileCache::getNameResource(u32 p1, const char* fileName) { return getResource(p1, fileName); }
 
 /*
  * --INFO--

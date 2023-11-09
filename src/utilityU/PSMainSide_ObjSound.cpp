@@ -1935,14 +1935,14 @@ lbl_8045D78C:
  * Address:	8045D7A0
  * Size:	000004
  */
-void Creature::onPlayingSe(unsigned long, JAISound*) { }
+void Creature::onPlayingSe(u32, JAISound*) { }
 
 /*
  * --INFO--
  * Address:	8045D7A4
  * Size:	00010C
  */
-CreatureObj::CreatureObj(Game::Creature* gameObj, unsigned char p2)
+CreatureObj::CreatureObj(Game::Creature* gameObj, u8 p2)
     : Creature(gameObj)
     , JAInter::Object(reinterpret_cast<Vec*>(gameObj->getSound_PosPtr()), JKRHeap::sCurrentHeap, p2)
 {
@@ -2079,7 +2079,7 @@ lbl_8045D850:
  * Address:	8045D948
  * Size:	00003C
  */
-JAISound* CreatureObj::startSound(unsigned long, unsigned long)
+JAISound* CreatureObj::startSound(u32, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2105,7 +2105,7 @@ JAISound* CreatureObj::startSound(unsigned long, unsigned long)
  * Address:	8045D984
  * Size:	00008C
  */
-void CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
+void CreatureObj::startSound(u8, u32, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2148,7 +2148,7 @@ void CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
  * Address:	8045DA10
  * Size:	0000A8
  */
-void CreatureObj::startSound(JAISound**, unsigned long, unsigned long)
+void CreatureObj::startSound(JAISound**, u32, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2231,7 +2231,7 @@ inline CreatureAnime::CreatureAnime(Game::Creature* gameObj, u8 p2)
  * Address:	8045DB04
  * Size:	000148
  */
-void CreatureAnime::startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
+void CreatureAnime::startAnimSound(u32, JAISound**, JAInter::Actor*, u8)
 {
 	/*
 	.loc_0x0:
@@ -2335,7 +2335,7 @@ void CreatureAnime::startAnimSound(unsigned long, JAISound**, JAInter::Actor*, u
  * Address:	8045DC4C
  * Size:	00003C
  */
-JAISound* CreatureAnime::startSound(unsigned long, unsigned long)
+JAISound* CreatureAnime::startSound(u32, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2361,7 +2361,7 @@ JAISound* CreatureAnime::startSound(unsigned long, unsigned long)
  * Address:	8045DC88
  * Size:	0000B0
  */
-void CreatureAnime::startSound(unsigned char, unsigned long, unsigned long)
+void CreatureAnime::startSound(u8, u32, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2401,7 +2401,7 @@ void CreatureAnime::startSound(unsigned char, unsigned long, unsigned long)
  * Address:	8045DD38
  * Size:	0000A8
  */
-void CreatureAnime::startSound(JAISound**, unsigned long, unsigned long)
+void CreatureAnime::startSound(JAISound**, u32, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2440,7 +2440,7 @@ void CreatureAnime::startSound(JAISound**, unsigned long, unsigned long)
  * Address:	8045DDE0
  * Size:	000040
  */
-void CreatureAnime::setAnime(JAIAnimeSoundData*, unsigned long, float, float)
+void CreatureAnime::setAnime(JAIAnimeSoundData*, u32, float, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2471,7 +2471,7 @@ lbl_8045DE10:
  * Address:	8045DE20
  * Size:	000304
  */
-void CreatureAnime::playActorAnimSound(JAInter::Actor*, float, unsigned char)
+void CreatureAnime::playActorAnimSound(JAInter::Actor*, float, u8)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -3011,7 +3011,7 @@ lbl_8045E430:
  * Address:	8045E444
  * Size:	000180
  */
-EnemyBase::EnemyBase(Game::EnemyBase* gameObj, unsigned char p2)
+EnemyBase::EnemyBase(Game::EnemyBase* gameObj, u8 p2)
     : CreatureAnime(gameObj, p2)
     , BattleLink(gameObj)
     , KehaiLink(gameObj)
@@ -3197,7 +3197,7 @@ lbl_8045E4F4:
  * Address:	8045E6A0
  * Size:	000174
  */
-void EnemyBase::startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
+void EnemyBase::startAnimSound(u32, JAISound**, JAInter::Actor*, u8)
 {
 	/*
 	.loc_0x0:
@@ -3931,7 +3931,7 @@ lbl_8045EF64:
  * Address:	8045EF6C
  * Size:	0001AC
  */
-EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase* gameObj, unsigned char p2)
+EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase* gameObj, u8 p2)
     : EnemyBase(gameObj, p2)
 {
 	/*
@@ -4350,7 +4350,7 @@ inline EnemyBoss::EnemyBoss(Game::EnemyBase* gameObj)
  * Address:	8045F458
  * Size:	000074
  */
-void EnemyBoss::onPlayingSe(unsigned long, JAISound*)
+void EnemyBoss::onPlayingSe(u32, JAISound*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -5749,7 +5749,7 @@ lbl_80460578:
  * Address:	80460594
  * Size:	0000EC
  */
-void EnemyMidBoss::jumpRequest(unsigned short)
+void EnemyMidBoss::jumpRequest(u16)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6199,7 +6199,7 @@ lbl_80460AB0:
  * Address:	80460ACC
  * Size:	0000E8
  */
-void EnemyBigBoss::jumpRequest(unsigned short)
+void EnemyBigBoss::jumpRequest(u16)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6397,7 +6397,7 @@ lbl_80460CDC:
  * Address:	80460CF8
  * Size:	0000BC
  */
-void Enemy_SpecialChappy::onPlayingSe(unsigned long, JAISound*)
+void Enemy_SpecialChappy::onPlayingSe(u32, JAISound*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8534,7 +8534,7 @@ void Piki::becomeNotFree()
  * Address:	80462580
  * Size:	000144
  */
-void Piki::startFreePikiSound(unsigned long, unsigned long, unsigned long)
+void Piki::startFreePikiSound(u32, u32, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8642,7 +8642,7 @@ lbl_804626B0:
  * Address:	804626C4
  * Size:	000070
  */
-void Piki::startPikiSound(JAInter::Object*, unsigned long, unsigned long)
+void Piki::startPikiSound(JAInter::Object*, u32, u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8685,7 +8685,7 @@ lbl_8046271C:
  * Address:	80462734
  * Size:	0000B4
  */
-void Piki::startPikiSetSound(JAInter::Object*, unsigned long, PSGame::SeMgr::SetSeId, unsigned long)
+void Piki::startPikiSetSound(JAInter::Object*, u32, PSGame::SeMgr::SetSeId, u32)
 {
 	/*
 	.loc_0x0:
@@ -8748,7 +8748,7 @@ void Piki::startPikiSetSound(JAInter::Object*, unsigned long, PSGame::SeMgr::Set
  * Address:	804627E8
  * Size:	0001D4
  */
-void Piki::startFreePikiSetSound(unsigned long, PSGame::SeMgr::SetSeId, unsigned long, unsigned long)
+void Piki::startFreePikiSetSound(u32, PSGame::SeMgr::SetSeId, u32, u32)
 {
 	/*
 	.loc_0x0:
@@ -8905,7 +8905,7 @@ void Piki::startFreePikiSetSound(unsigned long, PSGame::SeMgr::SetSeId, unsigned
  * Address:	804629BC
  * Size:	000104
  */
-void Piki::checkHappaChappySE(unsigned long)
+void Piki::checkHappaChappySE(u32)
 {
 	/*
 	lwz      r3, 0x2c(r3)
@@ -9161,7 +9161,7 @@ lbl_80462B6C:
  * Address:	80462BF8
  * Size:	000024
  */
-void Navi::init(unsigned short)
+void Navi::init(u16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9235,7 +9235,7 @@ lbl_80462C80:
  * Address:	80462C94
  * Size:	000108
  */
-JAISound* Navi::startSound(unsigned long, unsigned long)
+JAISound* Navi::startSound(u32, u32)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -9671,7 +9671,7 @@ lbl_80463164:
  * Address:	8046318C
  * Size:	000060
  */
-void Cluster::startClusterSound(unsigned char)
+void Cluster::startClusterSound(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9710,7 +9710,7 @@ lbl_804631C8:
  * Address:	804631EC
  * Size:	000058
  */
-void PSSetCurCameraNo(unsigned char)
+void PSSetCurCameraNo(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9872,7 +9872,7 @@ lbl_80463388:
  * Address:	804633A4
  * Size:	000008
  */
-bool SceneBase::getSeSceneGate(PSM::ObjBase*, unsigned long) { return true; }
+bool SceneBase::getSeSceneGate(PSM::ObjBase*, u32) { return true; }
 
 /*
  * --INFO--

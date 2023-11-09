@@ -246,7 +246,7 @@ void JGadget::TList_pointer_void::remove(void* const&)
  * Address:	........
  * Size:	000020
  */
-void JGadget::TList_pointer_void::assign(unsigned long, void* const&)
+void JGadget::TList_pointer_void::assign(u32, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -267,7 +267,7 @@ void JGadget::TList<void*, JGadget::TAllocator<void*>>::assign(u32, void* const&
  * Address:	........
  * Size:	0000FC
  */
-void JGadget::TList_pointer_void::resize(unsigned long, void* const&)
+void JGadget::TList_pointer_void::resize(u32, void* const&)
 {
 	// UNUSED FUNCTION
 }

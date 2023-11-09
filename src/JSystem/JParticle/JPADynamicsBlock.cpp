@@ -806,7 +806,7 @@ void JPAVolumeTorus(JPAEmitterWorkData*)
  * Address:	8008F9CC
  * Size:	000034
  */
-JPADynamicsBlock::JPADynamicsBlock(const unsigned char*)
+JPADynamicsBlock::JPADynamicsBlock(const u8*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -830,7 +830,7 @@ JPADynamicsBlock::JPADynamicsBlock(const unsigned char*)
  * Address:	........
  * Size:	0001E0
  */
-void JPADynamicsBlock::init_jpa(const unsigned char*, JKRHeap*)
+void JPADynamicsBlock::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }

@@ -391,8 +391,8 @@ lbl_800B7954:
  * Address:	800B7968
  * Size:	000358
  */
-void JAInter::StreamMgr::storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, unsigned long soundID, unsigned long p4,
-                                           unsigned char p5, JAInter::SoundInfo* info)
+void JAInter::StreamMgr::storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::Actor* actor, u32 soundID, u32 p4, u8 p5,
+                                           JAInter::SoundInfo* info)
 {
 	if (soundHandlePtr != nullptr && *soundHandlePtr != nullptr && (*soundHandlePtr)->checkSoundHandle(soundID, info)) {
 		return;
@@ -700,7 +700,7 @@ void JAInter::StreamMgr::storeStreamBuffer(JAIStream** soundHandlePtr, JAInter::
  * Address:	800B7CC0
  * Size:	000088
  */
-void JAInter::StreamMgr::releaseStreamBuffer(JAIStream* stream, unsigned long p2)
+void JAInter::StreamMgr::releaseStreamBuffer(JAIStream* stream, u32 p2)
 {
 	if (p2 == 0 || stream->_15 < 4) {
 		stopDirect();
@@ -1964,7 +1964,7 @@ lbl_800B8AA0:
  * Address:	800B8AB4
  * Size:	000070
  */
-void JAInter::StreamMgr::systemCallBack(unsigned long status, JASAramStream* stream, void* p3)
+void JAInter::StreamMgr::systemCallBack(u32 status, JASAramStream* stream, void* p3)
 {
 	systemStatus = status;
 	if (status == 0) {
@@ -2397,7 +2397,7 @@ u32 JAInter::StreamMgr::getDecodedBufferBlocks() { return decodedBufferBlocks; }
  * Address:	........
  * Size:	000008
  */
-void JAInter::StreamMgr::setDecodedBufferBlocks(unsigned long count)
+void JAInter::StreamMgr::setDecodedBufferBlocks(u32 count)
 {
 	// UNUSED FUNCTION
 	decodedBufferBlocks = count;
@@ -2408,7 +2408,7 @@ void JAInter::StreamMgr::setDecodedBufferBlocks(unsigned long count)
  * Address:	800B8EC4
  * Size:	000018
  */
-u32 JAInter::StreamMgr::getDecodedBufferSize(unsigned long p1) { return decodedBufferBlocks * p1 * sChannelMax >> 1; }
+u32 JAInter::StreamMgr::getDecodedBufferSize(u32 p1) { return decodedBufferBlocks * p1 * sChannelMax >> 1; }
 
 /*
  * --INFO--
@@ -2426,7 +2426,7 @@ JAIStream* JAInter::StreamMgr::getStreamSound()
  * Address:	........
  * Size:	000008
  */
-void JAInter::StreamMgr::setChannelMax(unsigned long max)
+void JAInter::StreamMgr::setChannelMax(u32 max)
 {
 	// UNUSED FUNCTION
 	sChannelMax = max;

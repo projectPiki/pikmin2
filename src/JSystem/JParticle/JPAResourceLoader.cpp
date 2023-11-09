@@ -15,7 +15,7 @@
  * Address:	........
  * Size:	000050
  */
-JPAResourceLoader::JPAResourceLoader(const unsigned char*, JPAResourceManager*, unsigned short)
+JPAResourceLoader::JPAResourceLoader(const u8*, JPAResourceManager*, u16)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ JPAResourceLoader::JPAResourceLoader(const unsigned char*, JPAResourceManager*, 
  * Address:	800980D8
  * Size:	000040
  */
-JPAResourceLoader::JPAResourceLoader(const unsigned char* p1, JPAResourceManager* manager)
+JPAResourceLoader::JPAResourceLoader(const u8* p1, JPAResourceManager* manager)
 {
 	if (*(int*)(p1 + 4) == '2-10') {
 		load_jpc(p1, manager);
@@ -37,7 +37,7 @@ JPAResourceLoader::JPAResourceLoader(const unsigned char* p1, JPAResourceManager
  * Address:	........
  * Size:	000390
  */
-void JPAResourceLoader::load_jpa(const unsigned char*, JPAResourceManager*, unsigned short)
+void JPAResourceLoader::load_jpa(const u8*, JPAResourceManager*, u16)
 {
 	// UNUSED FUNCTION
 }
@@ -47,7 +47,7 @@ void JPAResourceLoader::load_jpa(const unsigned char*, JPAResourceManager*, unsi
  * Address:	80098118
  * Size:	0003B8
  */
-void JPAResourceLoader::load_jpc(const unsigned char* p1, JPAResourceManager* manager)
+void JPAResourceLoader::load_jpc(const u8* p1, JPAResourceManager* manager)
 {
 	JKRHeap* heap               = manager->mHeap;
 	manager->mResourceSlotCount = GetTypeFromByteStream(p1, u16, 0x08);

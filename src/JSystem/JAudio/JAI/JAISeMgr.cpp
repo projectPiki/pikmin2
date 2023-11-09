@@ -1528,7 +1528,7 @@ lbl_800AF248:
  * Size:	000030
  * setVolume__5JAISeFfUlUc
  */
-void JAISe::setVolume(float p1, unsigned long p2, unsigned char p3) { setSeInterVolume(p3, p1, p2, 0); }
+void JAISe::setVolume(float p1, u32 p2, u8 p3) { setSeInterVolume(p3, p1, p2, 0); }
 
 /*
  * --INFO--
@@ -1622,7 +1622,7 @@ lbl_800AF360:
  * Size:	00002C
  * setVolume__11JAISequenceFfUlUc
  */
-void JAISequence::setVolume(float p1, unsigned long p2, unsigned char p3) { setSeqInterVolume(p3, p1, p2); }
+void JAISequence::setVolume(float p1, u32 p2, u8 p3) { setSeqInterVolume(p3, p1, p2); }
 
 /*
  * --INFO--
@@ -1846,8 +1846,7 @@ lbl_800AF5D4:
  * Size:	00010C
  * checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf
  */
-void JAInter::SeMgr::checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float,
-                                                        unsigned char, float*)
+void JAInter::SeMgr::checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float, u8, float*)
 {
 	/*
 	.loc_0x0:
@@ -1935,8 +1934,7 @@ void JAInter::SeMgr::checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpda
  * Size:	00014C
  * checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff
  */
-void JAInter::SeMgr::checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, unsigned char, float*,
-                                                  float)
+void JAInter::SeMgr::checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, u8, float*, float)
 {
 	/*
 	.loc_0x0:
@@ -2041,7 +2039,7 @@ void JAInter::SeMgr::checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData
  * Address:	800AF84C
  * Size:	000008
  */
-u32 JAInter::SeMgr::changeIDToCategory(unsigned long id) { return id >> 0xC & 0xFF; }
+u32 JAInter::SeMgr::changeIDToCategory(u32 id) { return id >> 0xC & 0xFF; }
 
 /*
  * --INFO--
@@ -2191,7 +2189,7 @@ lbl_800AF9D0:
  * Address:	800AFA24
  * Size:	0006EC
  */
-void JAInter::SeMgr::storeSeBuffer(JAISe**, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*)
+void JAInter::SeMgr::storeSeBuffer(JAISe**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2721,14 +2719,14 @@ void JAInter::SeMgr::storeSeBuffer(JAISe**, JAInter::Actor*, unsigned long, unsi
  * Size:	000020
  * stop__5JAISeFUl
  */
-void JAISe::stop(unsigned long p1) { JAInter::SeMgr::releaseSeBuffer(this, p1); }
+void JAISe::stop(u32 p1) { JAInter::SeMgr::releaseSeBuffer(this, p1); }
 
 /*
  * --INFO--
  * Address:	800B0130
  * Size:	000208
  */
-void JAInter::SeMgr::releaseSeBuffer(JAISe*, unsigned long)
+void JAInter::SeMgr::releaseSeBuffer(JAISe*, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)

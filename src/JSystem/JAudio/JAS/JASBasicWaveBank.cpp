@@ -103,7 +103,7 @@ JASBasicWaveBank::TWaveGroup* JASBasicWaveBank::getWaveGroup(int groupIndex)
  * Address:	80099FE8
  * Size:	0000E8
  */
-void JASBasicWaveBank::setGroupCount(unsigned long count)
+void JASBasicWaveBank::setGroupCount(u32 count)
 {
 	for (int i = 0; i < mGroupCount; i++) {
 		delete mGroups[i];
@@ -121,7 +121,7 @@ void JASBasicWaveBank::setGroupCount(unsigned long count)
  * Address:	8009A0D0
  * Size:	000064
  */
-void JASBasicWaveBank::setWaveTableSize(unsigned long tableSize)
+void JASBasicWaveBank::setWaveTableSize(u32 tableSize)
 {
 	delete[] mHandles;
 	mHandles = new (JASWaveBank::getCurrentHeap(), 0) TWaveHandle*[tableSize];
@@ -164,7 +164,7 @@ void JASBasicWaveBank::decWaveTable(const JASBasicWaveBank::TWaveGroup*)
  * Address:	8009A134
  * Size:	000030
  */
-JASWaveHandle* JASBasicWaveBank::getWaveHandle(unsigned long handleIndex) const
+JASWaveHandle* JASBasicWaveBank::getWaveHandle(u32 handleIndex) const
 {
 	if (handleIndex >= mTableSize) {
 		return nullptr;
@@ -221,7 +221,7 @@ JASBasicWaveBank::TWaveGroup::~TWaveGroup() { delete[] mInfo; }
  * Address:	8009A2D0
  * Size:	0001BC
  */
-void JASBasicWaveBank::TWaveGroup::setWaveCount(unsigned long count)
+void JASBasicWaveBank::TWaveGroup::setWaveCount(u32 count)
 {
 	delete[] mInfo;
 	mInfoCount = count;
@@ -266,7 +266,7 @@ JASBasicWaveBank::TWaveInfo::TWaveInfo()
  * Address:	8009A560
  * Size:	000090
  */
-void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, unsigned long p2, JASWaveInfo const& info)
+void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, u32 p2, JASWaveInfo const& info)
 {
 	mInfo[infoIndex].mHandle._30       = p2;
 	mInfo[infoIndex].mHandle.mInfo     = info;

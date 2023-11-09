@@ -1210,7 +1210,7 @@ void Mgr::generatorWrite(Stream& output, GenItemParm* genParm)
  * Address:	801F0040
  * Size:	000088
  */
-void Mgr::generatorRead(Stream& input, GenItemParm* genParm, unsigned long version)
+void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 {
 	GenBridgeParm* genBridgeParm = static_cast<GenBridgeParm*>(genParm);
 	P2ASSERTLINE(950, genBridgeParm);

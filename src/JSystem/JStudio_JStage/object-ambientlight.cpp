@@ -72,7 +72,7 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_end(const JStudio::TObjec
  * Address:	80013388
  * Size:	00006C
  */
-void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update(const JStudio::TObject*, unsigned long)
+void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update(const JStudio::TObject*, u32)
 {
 	_GXColor color;
 	adaptor_getVariableValue_GXColor(&color, sauVariableValue_4_COLOR_RGBA);
@@ -85,8 +85,7 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update(const JStudio::TOb
  * Address:	800133F4
  * Size:	000034
  */
-void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_data(const JStudio::TObject* p1, const void* p2, unsigned long p3, const void* p4,
-                                                            unsigned long p5)
+void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_data(const JStudio::TObject* p1, const void* p2, u32 p3, const void* p4, u32 p5)
 {
 	TAdaptor_object_::adaptor_data_(mLight, p2, p3, p4, p5);
 }

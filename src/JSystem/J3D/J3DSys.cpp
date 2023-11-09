@@ -59,7 +59,7 @@ J3DSys::J3DSys()
  * Address:	8005DBC0
  * Size:	000024
  */
-void J3DSys::loadPosMtxIndx(int p1, unsigned short p2) const
+void J3DSys::loadPosMtxIndx(int p1, u16 p2) const
 {
 	GXWGFifo.u8  = 0x20;
 	GXWGFifo.u16 = p2;
@@ -71,7 +71,7 @@ void J3DSys::loadPosMtxIndx(int p1, unsigned short p2) const
  * Address:	8005DBE4
  * Size:	000028
  */
-void J3DSys::loadNrmMtxIndx(int p1, unsigned short p2) const
+void J3DSys::loadNrmMtxIndx(int p1, u16 p2) const
 {
 	GXWGFifo.u8  = 0x28;
 	GXWGFifo.u16 = p2;

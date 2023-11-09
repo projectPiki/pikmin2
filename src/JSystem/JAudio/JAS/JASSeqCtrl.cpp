@@ -167,7 +167,7 @@ u32 JASSeqCtrl::get16(u32 p1) const
  * Address:	8009C9EC
  * Size:	000028
  */
-u32 JASSeqCtrl::get24(unsigned long p1) const
+u32 JASSeqCtrl::get24(u32 p1) const
 {
 	return (_00[p1] << 0x10) | get16(p1 + 1);
 	// return (_00[p1] << 0x10) | (_00[p1 + 1] << 0x8) | _00[p1 + 2];
@@ -191,7 +191,7 @@ u32 JASSeqCtrl::get24(unsigned long p1) const
  * Address:	8009CA14
  * Size:	000038
  */
-u32 JASSeqCtrl::get32(unsigned long) const
+u32 JASSeqCtrl::get32(u32) const
 {
 	/*
 	lwz      r6, 0(r3)

@@ -706,7 +706,7 @@ bool JASTrack::tryInterrupt()
  * Address:	........
  * Size:	000028
  */
-void JASTrack::setBankNumber(unsigned char)
+void JASTrack::setBankNumber(u8)
 {
 	// UNUSED FUNCTION
 }
@@ -727,7 +727,7 @@ void JASTrack::assignExtBuffer(JASOuterParam* a1)
  * Address:	........
  * Size:	00000C
  */
-void JASTrack::setPanSwitchExt(unsigned char, int)
+void JASTrack::setPanSwitchExt(u8, int)
 {
 	// UNUSED FUNCTION
 }
@@ -737,7 +737,7 @@ void JASTrack::setPanSwitchExt(unsigned char, int)
  * Address:	........
  * Size:	00000C
  */
-void JASTrack::setPanSwitchParent(unsigned char, int)
+void JASTrack::setPanSwitchParent(u8, int)
 {
 	// UNUSED FUNCTION
 }
@@ -747,7 +747,7 @@ void JASTrack::setPanSwitchParent(unsigned char, int)
  * Address:	........
  * Size:	00000C
  */
-void JASTrack::setPanSwitchJcs(unsigned char, int)
+void JASTrack::setPanSwitchJcs(u8, int)
 {
 	// UNUSED FUNCTION
 }
@@ -1033,7 +1033,7 @@ void JASTrack::overwriteOsc(JASChannel* channel)
 				channel->copyOsc(v2, _2A8 + i);
 			} else {
 				if ((v1 & 4) != 0) {
-					s16* v3 = _2A8[i]._0C;
+					const s16* v3 = _2A8[i]._0C;
 					channel->copyOsc(v2, _2A8 + i);
 					_2A8[i]._0C = v3;
 				}
@@ -1099,7 +1099,7 @@ lbl_8009F9D4:
  * Address:	8009F9FC
  * Size:	000068
  */
-bool JASTrack::noteOff(unsigned char channelIndex, unsigned short p2)
+bool JASTrack::noteOff(u8 channelIndex, u16 p2)
 {
 
 	if (_C0[channelIndex] == nullptr) {
@@ -1164,7 +1164,7 @@ lbl_8009FAE4:
  * Address:	8009FAF4
  * Size:	0000E0
  */
-void JASTrack::oscSetupFull(unsigned char, unsigned long, unsigned long)
+void JASTrack::oscSetupFull(u8, u32, u32)
 {
 	/*
 	rlwinm.  r0, r4, 0x19, 0x1f, 0x1f
@@ -1241,7 +1241,7 @@ lbl_8009FBBC:
  * Address:	8009FBD4
  * Size:	000070
  */
-void JASTrack::oscSetupSimpleEnv(unsigned char p1, unsigned long p2)
+void JASTrack::oscSetupSimpleEnv(u8 p1, u32 p2)
 {
 	switch (p1) {
 	case 0:
@@ -1271,7 +1271,7 @@ void JASTrack::updateOscParam(int, f32)
  * Address:	8009FC44
  * Size:	0000DC
  */
-void JASTrack::oscSetupSimple(unsigned char p1)
+void JASTrack::oscSetupSimple(u8 p1)
 {
 	switch (p1) {
 	case 0:
@@ -1623,7 +1623,7 @@ lbl_800A01A8:
  * Address:	800A01F0
  * Size:	0004E0
  */
-void JASTrack::updateTrack(unsigned long)
+void JASTrack::updateTrack(u32)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -2287,7 +2287,7 @@ f32 JASOuterParam::getTempo() const { return _18; }
  * Address:	800A0A8C
  * Size:	000294
  */
-void JASTrack::updateSeq(unsigned long p1, bool recursive)
+void JASTrack::updateSeq(u32 p1, bool recursive)
 {
 	p1 |= _34C;
 	if (mExtBuffer != nullptr) {
@@ -2522,7 +2522,7 @@ lbl_800A0CFC:
  * Address:	800A0D20
  * Size:	0000D8
  */
-void JASTrack::seqTimeToDspTime(long, unsigned char)
+void JASTrack::seqTimeToDspTime(long, u8)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3308,7 +3308,7 @@ lbl_800A14F4:
  * Address:	........
  * Size:	000068
  */
-void JASTrack::muteChildTracks(unsigned short)
+void JASTrack::muteChildTracks(u16)
 {
 	// UNUSED FUNCTION
 }
@@ -3350,7 +3350,7 @@ bool JASTrack::start(void* p1, u32 p2)
  * Address:	800A155C
  * Size:	0001DC
  */
-void JASTrack::openChild(unsigned char, unsigned char)
+void JASTrack::openChild(u8, u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3494,7 +3494,7 @@ lbl_800A1724:
  * Address:	........
  * Size:	0000B8
  */
-void JASTrack::loadTbl(unsigned long, unsigned long, unsigned long)
+void JASTrack::loadTbl(u32, u32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -3504,7 +3504,7 @@ void JASTrack::loadTbl(unsigned long, unsigned long, unsigned long)
  * Address:	800A1738
  * Size:	000040
  */
-void JASTrack::exchangeRegisterValue(unsigned char)
+void JASTrack::exchangeRegisterValue(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3535,7 +3535,7 @@ lbl_800A1768:
  * Address:	800A1778
  * Size:	000094
  */
-void JASTrack::readReg32(unsigned char)
+void JASTrack::readReg32(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3591,7 +3591,7 @@ lbl_800A17F0:
  * Address:	800A180C
  * Size:	000218
  */
-u32 JASTrack::readReg16(unsigned char)
+u32 JASTrack::readReg16(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3787,7 +3787,7 @@ lbl_800A1A08:
  * Address:	800A1A24
  * Size:	0000D0
  */
-void JASTrack::writeRegDirect(unsigned char, unsigned short)
+void JASTrack::writeRegDirect(u8, u16)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3862,7 +3862,7 @@ lbl_800A1AD4:
  * Address:	........
  * Size:	000008
  */
-void JASRegisterParam::setFlag(unsigned short)
+void JASRegisterParam::setFlag(u16)
 {
 	// UNUSED FUNCTION
 }
@@ -3872,7 +3872,7 @@ void JASRegisterParam::setFlag(unsigned short)
  * Address:	........
  * Size:	000008
  */
-void JSULoByte(unsigned short)
+void JSULoByte(u16)
 {
 	// UNUSED FUNCTION
 }
@@ -3882,7 +3882,7 @@ void JSULoByte(unsigned short)
  * Address:	800A1AF4
  * Size:	0005B0
  */
-void JASTrack::writeRegParam(unsigned char)
+void JASTrack::writeRegParam(u8)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4427,7 +4427,7 @@ bool JASTrack::readPortAppDirect(u32 p1, u16* value)
  * Address:	........
  * Size:	000038
  */
-void JASTrack::routeTrack(unsigned long)
+void JASTrack::routeTrack(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -4437,7 +4437,7 @@ void JASTrack::routeTrack(unsigned long)
  * Address:	........
  * Size:	000038
  */
-void JASTrack::routeTrack(unsigned long) const
+void JASTrack::routeTrack(u32) const
 {
 	// UNUSED FUNCTION
 }
@@ -4447,7 +4447,7 @@ void JASTrack::routeTrack(unsigned long) const
  * Address:	800A218C
  * Size:	0000B4
  */
-void JASTrack::writePortApp(unsigned long, unsigned short)
+void JASTrack::writePortApp(u32, u16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4521,7 +4521,7 @@ lbl_800A2228:
  * Address:	800A2240
  * Size:	000084
  */
-void JASTrack::readPortApp(unsigned long, unsigned short*)
+void JASTrack::readPortApp(u32, u16*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4575,7 +4575,7 @@ lbl_800A22B0:
  * Address:	........
  * Size:	000058
  */
-void JASTrack::checkExportApp(unsigned long) const
+void JASTrack::checkExportApp(u32) const
 {
 	// UNUSED FUNCTION
 }
@@ -4585,7 +4585,7 @@ void JASTrack::checkExportApp(unsigned long) const
  * Address:	........
  * Size:	000058
  */
-void JASTrack::checkImportApp(unsigned long) const
+void JASTrack::checkImportApp(u32) const
 {
 	// UNUSED FUNCTION
 }
@@ -4858,7 +4858,7 @@ long JASTrack::rootCallback(void* obj)
  * Address:	800A274C
  * Size:	000008
  */
-void JASTrack::registerSeqCallback(unsigned short (*cb)(JASTrack*, unsigned short))
+void JASTrack::registerSeqCallback(u16 (*cb)(JASTrack*, u16))
 {
 	sCallBackFunc = cb;
 	/*

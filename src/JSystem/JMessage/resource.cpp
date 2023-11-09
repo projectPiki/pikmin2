@@ -57,7 +57,7 @@
  * Address:	800063C4
  * Size:	0001E4
  */
-s16 JMessage::TResource::toMessageIndex_messageID(unsigned long, unsigned long, bool*) const
+s16 JMessage::TResource::toMessageIndex_messageID(u32, u32, bool*) const
 {
 	/*
 	.loc_0x0:
@@ -285,7 +285,7 @@ lbl_80006600:
  * Address:	8000661C
  * Size:	000084
  */
-void JMessage::TResourceContainer::TCResource::Get_groupID(unsigned short)
+void JMessage::TResourceContainer::TCResource::Get_groupID(u16)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -518,7 +518,7 @@ lbl_80006804:
  * Address:	80006820
  * Size:	00018C
  */
-bool JMessage::TParse::parseHeader_next(const void**, unsigned long*, unsigned long)
+bool JMessage::TParse::parseHeader_next(const void**, u32*, u32)
 {
 	/*
 	.loc_0x0:
@@ -651,7 +651,7 @@ bool JMessage::TParse::parseHeader_next(const void**, unsigned long*, unsigned l
  * Address:	800069AC
  * Size:	00017C
  */
-bool JMessage::TParse::parseBlock_next(const void**, unsigned long*, unsigned long)
+bool JMessage::TParse::parseBlock_next(const void**, u32*, u32)
 {
 	/*
 	.loc_0x0:
@@ -836,7 +836,7 @@ lbl_80006B8C:
  * Address:	80006BA8
  * Size:	0000BC
  */
-bool JMessage::TParse_color::parseHeader_next(const void**, unsigned long*, unsigned long)
+bool JMessage::TParse_color::parseHeader_next(const void**, u32*, u32)
 {
 	/*
 	.loc_0x0:
@@ -903,7 +903,7 @@ bool JMessage::TParse_color::parseHeader_next(const void**, unsigned long*, unsi
  * Address:	80006C64
  * Size:	000054
  */
-bool JMessage::TParse_color::parseBlock_next(const void**, unsigned long*, unsigned long)
+bool JMessage::TParse_color::parseBlock_next(const void**, u32*, u32)
 {
 	/*
 	.loc_0x0:
@@ -942,7 +942,7 @@ bool JMessage::TParse_color::parseBlock_next(const void**, unsigned long*, unsig
 //  * Address:	80006CB8
 //  * Size:	000054
 //  */
-// void std::lower_bound<const unsigned long*, unsigned long>(const unsigned long*, const unsigned long*, const unsigned long&)
+// void std::lower_bound<const u32*, u32>(const u32*, const u32*, const u32&)
 // {
 // 	/*
 // 	.loc_0x0:

@@ -212,7 +212,7 @@ void J2DPictureEx::initiate(const ResTIMG* img, const ResTLUT* lut)
  * Size:	0000D0
  * initialize__12J2DPictureExFUl
  */
-void J2DPictureEx::initialize(unsigned long p1)
+void J2DPictureEx::initialize(u32 p1)
 {
 	mBloBlockType = 'PIC2';
 	mMaterial     = new J2DMaterial(p1);
@@ -241,7 +241,7 @@ void J2DPictureEx::initialize(unsigned long p1)
  * Size:	00029C
  * __ct__12J2DPictureExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
  */
-J2DPictureEx::J2DPictureEx(J2DPane* parent, JSURandomInputStream* input, unsigned long flags, J2DMaterial* materials)
+J2DPictureEx::J2DPictureEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials)
 {
 	/*
 	.loc_0x0:
@@ -465,7 +465,7 @@ J2DPictureEx::~J2DPictureEx()
  * Address:	800552DC
  * Size:	0000F8
  */
-void J2DPictureEx::prepareTexture(unsigned char)
+void J2DPictureEx::prepareTexture(u8)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -835,7 +835,7 @@ bool J2DPictureEx::append(JUTTexture* texture, float p2)
  * Size:	0000B4
  * insert__12J2DPictureExFPC7ResTIMGP10JUTPaletteUcf
  */
-bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, unsigned char p3, float p4)
+bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, u8 p3, float p4)
 {
 	if (!img) {
 		return false;
@@ -854,7 +854,7 @@ bool J2DPictureEx::insert(const ResTIMG* img, JUTPalette* palette, unsigned char
  * Size:	000078
  * insert__12J2DPictureExFPCcP10JUTPaletteUcf
  */
-bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, unsigned char p3, float p4)
+bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, u8 p3, float p4)
 {
 	return insert((ResTIMG*)J2DScreen::getNameResource(p1), palette, p3, p4);
 }
@@ -865,7 +865,7 @@ bool J2DPictureEx::insert(const char* p1, JUTPalette* palette, unsigned char p3,
  * Size:	0000A4
  * insert__12J2DPictureExFP10JUTTextureUcf
  */
-bool J2DPictureEx::insert(JUTTexture* texture, unsigned char p2, float p3)
+bool J2DPictureEx::insert(JUTTexture* texture, u8 p2, float p3)
 {
 	if (!texture) {
 		return false;
@@ -884,7 +884,7 @@ bool J2DPictureEx::insert(JUTTexture* texture, unsigned char p2, float p3)
  * Size:	000334
  * insertCommon__12J2DPictureExFUcf
  */
-void J2DPictureEx::insertCommon(unsigned char, float)
+void J2DPictureEx::insertCommon(u8, float)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1120,7 +1120,7 @@ lbl_80055D08:
  * Address:	80055D8C
  * Size:	0000F8
  */
-bool J2DPictureEx::isInsert(unsigned char p1) const
+bool J2DPictureEx::isInsert(u8 p1) const
 {
 	if (!mMaterial) {
 		return false;
@@ -1226,7 +1226,7 @@ lbl_80055E68:
  * Size:	0001AC
  * remove__12J2DPictureExFUc
  */
-int J2DPictureEx::remove(unsigned char p1)
+int J2DPictureEx::remove(u8 p1)
 {
 	if (!isRemove(p1)) {
 		return 0;
@@ -1527,7 +1527,7 @@ bool J2DPictureEx::isRemove(u8 p1) const
  * Size:	000124
  * draw__12J2DPictureExFffUcbbb
  */
-void J2DPictureEx::draw(float p1, float p2, unsigned char p3, bool p4, bool p5, bool p6)
+void J2DPictureEx::draw(float p1, float p2, u8 p3, bool p4, bool p5, bool p6)
 {
 	if (mMaterial && mMaterial->mTevBlock && mIsVisible && p3 < mMaterial->mTexGenBlock.mTexGenNum) {
 		JUTTexture* texture = mMaterial->mTevBlock->getTexture(p3);
@@ -2226,7 +2226,7 @@ void J2DPictureEx::drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox
  * Address:	80056DCC
  * Size:	000048
  */
-void J2DPictureEx::load(GXTexMapID p1, unsigned char p2)
+void J2DPictureEx::load(GXTexMapID p1, u8 p2)
 {
 	if (mMaterial && mMaterial->mTevBlock) {
 		mMaterial->mTevBlock->loadTexture(p1, p2);
@@ -2238,7 +2238,7 @@ void J2DPictureEx::load(GXTexMapID p1, unsigned char p2)
  * Address:	80056E14
  * Size:	0001FC
  */
-void J2DPictureEx::setTevOrder(unsigned char p1, unsigned char p2, bool p3)
+void J2DPictureEx::setTevOrder(u8 p1, u8 p2, bool p3)
 {
 	u16 data[16];
 	if (p1 == 1) {
@@ -2270,7 +2270,7 @@ void J2DPictureEx::setTevOrder(unsigned char p1, unsigned char p2, bool p3)
  * Address:	80057010
  * Size:	0002BC
  */
-void J2DPictureEx::setTevStage(unsigned char p1, unsigned char p2, bool p3)
+void J2DPictureEx::setTevStage(u8 p1, u8 p2, bool p3)
 {
 	if (p1 == 1) {
 		J2DTevStage* stage  = mMaterial->mTevBlock->getTevStage(0);
@@ -2725,7 +2725,7 @@ lbl_8005759C:
  * Address:	800575CC
  * Size:	0004A4
  */
-void J2DPictureEx::setTevKColor(unsigned char)
+void J2DPictureEx::setTevKColor(u8)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -3069,7 +3069,7 @@ lbl_80057A5C:
  * Address:	80057A70
  * Size:	0000B0
  */
-void J2DPictureEx::setTevKColorSel(unsigned char p1)
+void J2DPictureEx::setTevKColorSel(u8 p1)
 {
 	for (u8 i = 0; i < p1; i++) {
 		if (i < 4) {
@@ -3139,7 +3139,7 @@ lbl_80057AF8:
  * Address:	80057B20
  * Size:	0000B0
  */
-void J2DPictureEx::setTevKAlphaSel(unsigned char)
+void J2DPictureEx::setTevKAlphaSel(u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3202,7 +3202,7 @@ lbl_80057BA8:
  * Address:	80057BD0
  * Size:	000118
  */
-void J2DPictureEx::shiftSetBlendRatio(unsigned char, float, bool, bool)
+void J2DPictureEx::shiftSetBlendRatio(u8, float, bool, bool)
 {
 	/*
 	clrlwi.  r0, r5, 0x18
@@ -3396,7 +3396,7 @@ void J2DPictureEx::setBlendAlphaRatio(float, float, float, float, float, float, 
  * Address:	80057D98
  * Size:	000140
  */
-ResTIMG* J2DPictureEx::changeTexture(const ResTIMG*, unsigned char)
+ResTIMG* J2DPictureEx::changeTexture(const ResTIMG*, u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3512,7 +3512,7 @@ ResTIMG* J2DPictureEx::changeTexture(const char* name, u8 p2) { return changeTex
  * Size:	000160
  * changeTexture__12J2DPictureExFPC7ResTIMGUcP10JUTPalette
  */
-ResTIMG* J2DPictureEx::changeTexture(const ResTIMG*, unsigned char, JUTPalette*)
+ResTIMG* J2DPictureEx::changeTexture(const ResTIMG*, u8, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3628,7 +3628,7 @@ lbl_8005807C:
  * Size:	000068
  * changeTexture__12J2DPictureExFPCcUcP10JUTPalette
  */
-ResTIMG* J2DPictureEx::changeTexture(const char* name, unsigned char p2, JUTPalette* palette)
+ResTIMG* J2DPictureEx::changeTexture(const char* name, u8 p2, JUTPalette* palette)
 {
 	return changeTexture((ResTIMG*)J2DScreen::getNameResource(name), p2, palette);
 }
@@ -3638,7 +3638,7 @@ ResTIMG* J2DPictureEx::changeTexture(const char* name, unsigned char p2, JUTPale
  * Address:	800580F8
  * Size:	000058
  */
-JUTTexture* J2DPictureEx::getTexture(unsigned char) const
+JUTTexture* J2DPictureEx::getTexture(u8) const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4378,7 +4378,7 @@ lbl_80058A20:
  * Address:	80058A34
  * Size:	000020
  */
-void J2DPictureEx::setAlpha(unsigned char alpha)
+void J2DPictureEx::setAlpha(u8 alpha)
 {
 	mAlpha = alpha;
 	if (mMaterial == nullptr) {
@@ -4938,7 +4938,7 @@ bool J2DPictureEx::prepend(const ResTIMG*, float)
  * Address:	80059040
  * Size:	000034
  */
-bool J2DPictureEx::insert(const char*, unsigned char, float)
+bool J2DPictureEx::insert(const char*, u8, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4962,7 +4962,7 @@ bool J2DPictureEx::insert(const char*, unsigned char, float)
  * Address:	80059074
  * Size:	000034
  */
-bool J2DPictureEx::insert(const ResTIMG*, unsigned char, float)
+bool J2DPictureEx::insert(const ResTIMG*, u8, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5005,7 +5005,7 @@ void J2DPictureEx::drawOut(float p1, float p2, float p3, float p4, float p5, flo
  * Address:	8005914C
  * Size:	000034
  */
-void J2DPictureEx::load(unsigned char)
+void J2DPictureEx::load(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)

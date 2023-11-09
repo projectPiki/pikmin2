@@ -1232,7 +1232,7 @@ lbl_803999CC:
  * Address:	80399B40
  * Size:	00003C
  */
-void Morimura::TVsSelectExplanationWindow::create(char const*, unsigned long)
+void Morimura::TVsSelectExplanationWindow::create(char const*, u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1678,7 +1678,7 @@ lbl_80399F04:
  * Address:	........
  * Size:	000068
  */
-void Morimura::TVsPiki::setAlpha(unsigned char)
+void Morimura::TVsPiki::setAlpha(u8)
 {
 	// UNUSED FUNCTION
 }
@@ -1985,7 +1985,7 @@ void Morimura::TVsSelectOnyon::draw()
  * Address:	8039A450
  * Size:	0002B0
  */
-void Morimura::TVsSelectScreen::create(char const*, unsigned long)
+void Morimura::TVsSelectScreen::create(char const*, u32)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -5176,7 +5176,7 @@ lbl_8039D184:
  * Address:	8039D1C0
  * Size:	000020
  */
-void Morimura::TVsSelectListScreen::create(char const*, unsigned long)
+void Morimura::TVsSelectListScreen::create(char const*, u32)
 {
 	/*
 	stwu     r1, -0x10(r1)

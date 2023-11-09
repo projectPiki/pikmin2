@@ -23,28 +23,28 @@ J2DBloSaver::CTextureNameConnect* J2DBloSaver::TextureNameConnect = nullptr;
  * Address:	800494E4
  * Size:	00000C
  */
-// u16 J2DTevBlock::getTexNo(unsigned long index) const { return 0xFFFF; }
+// u16 J2DTevBlock::getTexNo(u32 index) const { return 0xFFFF; }
 
 /*
  * --INFO--
  * Address:	800494F0
  * Size:	000004
  */
-// void J2DTevBlock::setTexNo(unsigned long index, unsigned short texNo) { }
+// void J2DTevBlock::setTexNo(u32 index, u16 texNo) { }
 
 /*
  * --INFO--
  * Address:	800494F4
  * Size:	000008
  */
-// J2DTevSwapModeTable* J2DTevBlock::getTevSwapModeTable(unsigned long index) { return nullptr; }
+// J2DTevSwapModeTable* J2DTevBlock::getTevSwapModeTable(u32 index) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	800494FC
  * Size:	000008
  */
-// J2DTevOrder* J2DTevBlock::getTevOrder(unsigned long index) { return nullptr; }
+// J2DTevOrder* J2DTevBlock::getTevOrder(u32 index) { return nullptr; }
 
 /*
  * --INFO--

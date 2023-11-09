@@ -650,7 +650,7 @@ lbl_8001C320:
  * Address:	8001C334
  * Size:	000190
  */
-void* JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry*, u32*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -779,7 +779,7 @@ lbl_8001C4A0:
  * Address:	8001C4C4
  * Size:	000194
  */
-void* JKRCompArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRCompArchive::fetchResource(void*, u32, JKRArchive::SDIFileEntry*, u32*)
 {
 	/*
 	.loc_0x0:

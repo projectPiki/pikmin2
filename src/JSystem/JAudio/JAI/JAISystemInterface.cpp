@@ -62,7 +62,7 @@ u8 JAInter::SystemInterface::checkSeqActiveFlag(JASTrack* track)
  * Address:	800B9000
  * Size:	00004C
  */
-JASTrack* JAInter::SystemInterface::trackToSeqp(JAISequence* seq, unsigned char p2)
+JASTrack* JAInter::SystemInterface::trackToSeqp(JAISequence* seq, u8 p2)
 {
 	JASTrack* result = nullptr;
 	if ((seq->mSoundID & 0x800) != 0) {
@@ -81,7 +81,7 @@ JASTrack* JAInter::SystemInterface::trackToSeqp(JAISequence* seq, unsigned char 
  * Size:	000048
  * trackToSeqp__Q27JAInter15SystemInterfaceFP8JASTrackUcUl
  */
-JASTrack* JAInter::SystemInterface::trackToSeqp(JASTrack* track, unsigned char p2, unsigned long p3)
+JASTrack* JAInter::SystemInterface::trackToSeqp(JASTrack* track, u8 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 	JASTrack* result = nullptr;
@@ -100,8 +100,7 @@ JASTrack* JAInter::SystemInterface::trackToSeqp(JASTrack* track, unsigned char p
  * Address:	800B904C
  * Size:	00001C
  */
-void JAInter::SystemInterface::setSeqPortargsF32(JAInter::SeqUpdateData* updateData, unsigned long playerParameterIndex,
-                                                 unsigned char portArgIndex, float value)
+void JAInter::SystemInterface::setSeqPortargsF32(JAInter::SeqUpdateData* updateData, u32 playerParameterIndex, u8 portArgIndex, float value)
 {
 	updateData->_4C[playerParameterIndex].mPortArgs.asArray[portArgIndex].f32 = value;
 }
@@ -111,8 +110,8 @@ void JAInter::SystemInterface::setSeqPortargsF32(JAInter::SeqUpdateData* updateD
  * Address:	........
  * Size:	00001C
  */
-void JAInter::SystemInterface::setSeqPortargsPS16(JAInter::SeqUpdateData* updateData, unsigned long playerParameterIndex,
-                                                  unsigned char portArgIndex, short* value)
+void JAInter::SystemInterface::setSeqPortargsPS16(JAInter::SeqUpdateData* updateData, u32 playerParameterIndex, u8 portArgIndex,
+                                                  short* value)
 {
 	// UNUSED FUNCTION
 	updateData->_4C[playerParameterIndex].mPortArgs.asArray[portArgIndex].ps16 = value;
@@ -123,8 +122,7 @@ void JAInter::SystemInterface::setSeqPortargsPS16(JAInter::SeqUpdateData* update
  * Address:	800B9068
  * Size:	00001C
  */
-void JAInter::SystemInterface::setSeqPortargsU32(JAInter::SeqUpdateData* updateData, unsigned long playerParameterIndex,
-                                                 unsigned char portArgIndex, unsigned long value)
+void JAInter::SystemInterface::setSeqPortargsU32(JAInter::SeqUpdateData* updateData, u32 playerParameterIndex, u8 portArgIndex, u32 value)
 {
 	updateData->_4C[playerParameterIndex].mPortArgs.asArray[portArgIndex].u32 = value;
 }
@@ -164,8 +162,7 @@ void JAInter::SystemInterface::trackInit(JAInter::SeqUpdateData* updateData)
  * Address:	800B9164
  * Size:	000288
  */
-void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData* updateData, JASTrack* p2, unsigned long p3, unsigned short p4,
-                                         unsigned char p5)
+void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData* updateData, JASTrack* p2, u32 p3, u16 p4, u8 p5)
 {
 	JASTrack* seqP = p2;
 	if (p3 != JAIGlobalParameter::getParamSeqTrackMax()) {
@@ -459,7 +456,7 @@ void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData* updateData, JAS
  * Address:	........
  * Size:	000068
  */
-void JAInter::SystemInterface::setPortParameter(JASPortArgs*, JASTrack*, unsigned long, unsigned long)
+void JAInter::SystemInterface::setPortParameter(JASPortArgs*, JASTrack*, u32, u32)
 {
 	// UNUSED FUNCTION
 }

@@ -76,7 +76,7 @@ void JASDSPChannel::initAll()
  * Address:	800A4CA0
  * Size:	0000DC
  */
-JASDSPChannel* JASDSPChannel::alloc(u8 index, long (*cb)(unsigned long, JASDsp::TChannel*, void*), void* p3)
+JASDSPChannel* JASDSPChannel::alloc(u8 index, long (*cb)(u32, JASDsp::TChannel*, void*), void* p3)
 {
 	JASDSPChannel* channel = getLowestChannel(index);
 	if (!channel) {
@@ -105,7 +105,7 @@ JASDSPChannel* JASDSPChannel::alloc(u8 index, long (*cb)(unsigned long, JASDsp::
  * Address:	800A4D7C
  * Size:	0000E4
  */
-JASDSPChannel* JASDSPChannel::allocForce(u8 index, long (*cb)(unsigned long, JASDsp::TChannel*, void*), void* p3)
+JASDSPChannel* JASDSPChannel::allocForce(u8 index, long (*cb)(u32, JASDsp::TChannel*, void*), void* p3)
 {
 	JASDSPChannel* channel = getLowestChannel(index);
 	if (!channel) {

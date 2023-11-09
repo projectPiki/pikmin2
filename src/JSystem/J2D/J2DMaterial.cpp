@@ -186,7 +186,7 @@ J2DTexCoord::J2DTexCoord()
  * Address:	8005203C
  * Size:	00014C
  */
-J2DMaterial::J2DMaterial(unsigned long)
+J2DMaterial::J2DMaterial(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1377,7 +1377,7 @@ lbl_8005323C:
  * Address:	80053278
  * Size:	000004
  */
-void J2DAnmColor::getColor(unsigned short, GXColor*) const { }
+void J2DAnmColor::getColor(u16, GXColor*) const { }
 
 /*
  * --INFO--

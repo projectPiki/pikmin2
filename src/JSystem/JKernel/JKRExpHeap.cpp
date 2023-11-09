@@ -110,7 +110,7 @@ JKRExpHeap::~JKRExpHeap() { dispose(); }
  * Size:	00011C
  * TODO: Needs JUTWarningConsole_f, probably changes to conditions
  */
-void* JKRExpHeap::do_alloc(unsigned long byteCount, int padding)
+void* JKRExpHeap::do_alloc(u32 byteCount, int padding)
 {
 	OSLockMutex(&mMutex);
 	if (byteCount < 4) {
@@ -450,7 +450,7 @@ void JKRExpHeap::do_fillFreeArea() { }
  * Address:	800209D4
  * Size:	000058
  */
-u8 JKRExpHeap::do_changeGroupID(unsigned char groupID)
+u8 JKRExpHeap::do_changeGroupID(u8 groupID)
 {
 	lock();
 	u8 oldGroupID   = mCurrentGroupID;
@@ -996,8 +996,7 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocFore(u32 size, u8 groupId1, u
  * Address:	800217B8
  * Size:	000058
  */
-JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocBack(unsigned long size, unsigned char groupID, unsigned char p3,
-                                                        unsigned char allocGroupID, unsigned char p5)
+JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocBack(u32 size, u8 groupID, u8 p3, u8 allocGroupID, u8 p5)
 {
 	CMemBlock* newBlock = nullptr;
 	if (mAllocatedSpace >= size + sizeof(CMemBlock)) {

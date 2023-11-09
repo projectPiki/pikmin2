@@ -53,14 +53,14 @@ JAInter::InitData::InitCallback JAInter::InitData::bnkInitCallback = initBnkList
  * Address:	800ADBA4
  * Size:	000008
  */
-void JAInter::InitData::setWsInitCallback(void (*callback)(unsigned long*)) { wsInitCallback = callback; }
+void JAInter::InitData::setWsInitCallback(void (*callback)(u32*)) { wsInitCallback = callback; }
 
 /*
  * --INFO--
  * Address:	800ADBAC
  * Size:	000008
  */
-void JAInter::InitData::setBnkInitCallback(void (*callback)(unsigned long*)) { bnkInitCallback = callback; }
+void JAInter::InitData::setBnkInitCallback(void (*callback)(u32*)) { bnkInitCallback = callback; }
 
 /*
  * --INFO--
@@ -358,7 +358,7 @@ lbl_800ADEC8:
  * Address:	800ADEFC
  * Size:	0000CC
  */
-void JAInter::InitData::initBnkList(unsigned long* p1)
+void JAInter::InitData::initBnkList(u32* p1)
 {
 	// TODO: This is still very rough and not right.
 	u32 count  = 0;
@@ -441,7 +441,7 @@ lbl_800ADF90:
  * Address:	800ADFC8
  * Size:	0000D8
  */
-void JAInter::InitData::initWsList(unsigned long*)
+void JAInter::InitData::initWsList(u32*)
 {
 	/*
 	stwu     r1, -0x10(r1)

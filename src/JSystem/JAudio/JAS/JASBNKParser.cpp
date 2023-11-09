@@ -841,7 +841,7 @@ u32 JASBNKParser::getUsedHeapSize()
  * Address:	8009AFE0
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASBNKParser::TPmap>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<JASBNKParser::TPmap>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0
@@ -860,7 +860,7 @@ u32 JASBNKParser::getUsedHeapSize()
  * Address:	8009AFF8
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASBNKParser::TPerc>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<JASBNKParser::TPerc>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0
@@ -879,7 +879,7 @@ u32 JASBNKParser::getUsedHeapSize()
  * Address:	8009B010
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASBNKParser::TVmap>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<JASBNKParser::TVmap>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0
@@ -898,7 +898,7 @@ u32 JASBNKParser::getUsedHeapSize()
  * Address:	8009B028
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASBNKParser::TKeymap>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<JASBNKParser::TKeymap>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0
@@ -917,7 +917,7 @@ u32 JASBNKParser::getUsedHeapSize()
  * Address:	8009B040
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASBNKParser::TSense>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<JASBNKParser::TSense>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0
@@ -936,7 +936,7 @@ u32 JASBNKParser::getUsedHeapSize()
  * Address:	8009B058
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASBNKParser::TRand>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<JASBNKParser::TRand>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0
@@ -955,7 +955,7 @@ u32 JASBNKParser::getUsedHeapSize()
  * Address:	8009B070
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<short>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<short>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0
@@ -974,7 +974,7 @@ u32 JASBNKParser::getUsedHeapSize()
  * Address:	8009B088
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASBNKParser::TOsc>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<JASBNKParser::TOsc>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0
@@ -993,7 +993,7 @@ u32 JASBNKParser::getUsedHeapSize()
  * Address:	8009B0A0
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASBNKParser::TInst>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<JASBNKParser::TInst>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0

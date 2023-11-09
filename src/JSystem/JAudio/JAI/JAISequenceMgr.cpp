@@ -658,8 +658,7 @@ JKRArchive* JAInter::SequenceMgr::getArchivePointer() { return arcPointer; }
  * Address:	800B10A4
  * Size:	000008
  */
-void JAInter::SequenceMgr::setCustomHeapCallback(JAInter::SequenceMgr::CustomHeapInfo (*callback)(unsigned long, unsigned short,
-                                                                                                  JAISequence*))
+void JAInter::SequenceMgr::setCustomHeapCallback(JAInter::SequenceMgr::CustomHeapInfo (*callback)(u32, u16, JAISequence*))
 {
 	customHeapCallback = callback;
 }
@@ -1032,7 +1031,7 @@ void JAInter::SequenceMgr::checkFadeoutSeq()
  * Address:	800B15CC
  * Size:	000020
  */
-// float JAISequence::getVolume(unsigned char p1) { return getSeqInterVolume(p1); }
+// float JAISequence::getVolume(u8 p1) { return getSeqInterVolume(p1); }
 
 /*
  * --INFO--
@@ -1372,8 +1371,7 @@ lbl_800B1AF4:
  * Address:	........
  * Size:	000138
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*,
-                                                               unsigned long*, unsigned char, float*)
+void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, float*)
 {
 	// UNUSED FUNCTION
 }
@@ -1383,8 +1381,7 @@ void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(unsigned long, un
  * Address:	........
  * Size:	000178
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*, unsigned long*,
-                                                         unsigned char, float*, float)
+void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, float*, float)
 {
 	// UNUSED FUNCTION
 }
@@ -1394,8 +1391,7 @@ void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(unsigned long, unsigned
  * Address:	........
  * Size:	000118
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack(unsigned long, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char,
-                                                      float*)
+void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack(u32, u32, JAInter::MoveParaSet*, u32*, u8, float*)
 {
 	// UNUSED FUNCTION
 }
@@ -1405,7 +1401,7 @@ void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack(unsigned long, unsigned lo
  * Address:	800B1B18
  * Size:	001078
  */
-void JAInter::SequenceMgr::checkPlayingSeqTrack(unsigned long)
+void JAInter::SequenceMgr::checkPlayingSeqTrack(u32)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2682,14 +2678,14 @@ lbl_800B2B5C:
  * Address:	800B2B90
  * Size:	00002C
  */
-void JAISequence::setPitch(float p1, unsigned long p2, unsigned char p3) { setSeqInterPitch(p3, p1, p2); }
+void JAISequence::setPitch(float p1, u32 p2, u8 p3) { setSeqInterPitch(p3, p1, p2); }
 
 /*
  * --INFO--
  * Address:	800B2BBC
  * Size:	00002C
  */
-void JAISequence::setPan(float p1, unsigned long p2, unsigned char p3) { setSeqInterPan(p3, p1, p2); }
+void JAISequence::setPan(float p1, u32 p2, u8 p3) { setSeqInterPan(p3, p1, p2); }
 
 /*
  * --INFO--
@@ -2795,7 +2791,7 @@ lbl_800B2CCC:
  * Address:	800B2D18
  * Size:	0000E4
  */
-void JAInter::SequenceMgr::checkDvdLoadArc(unsigned long, unsigned long)
+void JAInter::SequenceMgr::checkDvdLoadArc(u32, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2873,7 +2869,7 @@ lbl_800B2DDC:
  * Address:	800B2DFC
  * Size:	00009C
  */
-void JAInter::SequenceMgr::checkCustomDvdLoadArc(unsigned long p1, unsigned long index)
+void JAInter::SequenceMgr::checkCustomDvdLoadArc(u32 p1, u32 index)
 {
 	JAISequence* sequence   = seqTrackInfo[index].mSequence;
 	seqTrackInfo[index]._03 = 0;
@@ -2937,7 +2933,7 @@ lbl_800B2E84:
  * Address:	........
  * Size:	00003C
  */
-void JAInter::SequenceMgr::checkCustomDvdPreloadArc(unsigned long, unsigned long)
+void JAInter::SequenceMgr::checkCustomDvdPreloadArc(u32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -2947,7 +2943,7 @@ void JAInter::SequenceMgr::checkCustomDvdPreloadArc(unsigned long, unsigned long
  * Address:	800B2E98
  * Size:	000430
  */
-void JAInter::SequenceMgr::storeSeqBuffer(JAISequence**, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*)
+void JAInter::SequenceMgr::storeSeqBuffer(JAISequence**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -3575,7 +3571,7 @@ lbl_800B3608:
  * Address:	800B3650
  * Size:	0001D8
  */
-void JAInter::SequenceMgr::releaseSeqBuffer(JAISequence*, unsigned long)
+void JAInter::SequenceMgr::releaseSeqBuffer(JAISequence*, u32)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3728,7 +3724,7 @@ lbl_800B3808:
  * Address:	........
  * Size:	0000A0
  */
-void JAInter::SequenceMgr::stopPlayingSeq(unsigned long)
+void JAInter::SequenceMgr::stopPlayingSeq(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -3738,7 +3734,7 @@ void JAInter::SequenceMgr::stopPlayingSeq(unsigned long)
  * Address:	........
  * Size:	00007C
  */
-void JAInter::SequenceMgr::checkPlayingSoundTrack(unsigned long)
+void JAInter::SequenceMgr::checkPlayingSoundTrack(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -3748,14 +3744,14 @@ void JAInter::SequenceMgr::checkPlayingSoundTrack(unsigned long)
  * Address:	800B3828
  * Size:	000010
  */
-JAInter::SeqUpdateData* JAInter::SequenceMgr::getPlayTrackInfo(unsigned long index) { return &seqTrackInfo[index]; }
+JAInter::SeqUpdateData* JAInter::SequenceMgr::getPlayTrackInfo(u32 index) { return &seqTrackInfo[index]; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0001B0
  */
-void JAInter::SequenceMgr::loadArcSeqData(unsigned long, bool)
+void JAInter::SequenceMgr::loadArcSeqData(u32, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -3765,7 +3761,7 @@ void JAInter::SequenceMgr::loadArcSeqData(unsigned long, bool)
  * Address:	........
  * Size:	0000B0
  */
-void JAInter::SequenceMgr::loadCustomArcSeqData(unsigned short, bool)
+void JAInter::SequenceMgr::loadCustomArcSeqData(u16, bool)
 {
 	// UNUSED FUNCTION
 }

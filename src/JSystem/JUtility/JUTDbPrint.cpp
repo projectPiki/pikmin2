@@ -108,7 +108,7 @@ void JUTDbPrint::flush(int p1, int p2, int p3, int p4)
  * Address:	80029744
  * Size:	0000E8
  */
-void JUTDbPrint::drawString(int p1, int p2, int p3, const unsigned char* p4)
+void JUTDbPrint::drawString(int p1, int p2, int p3, const u8* p4)
 {
 	JUTFont* font = getFont();
 	font->drawString_size_scale(p1, p2, font->getWidth(), font->getHeight(), reinterpret_cast<const char*>(p4), p3, true);

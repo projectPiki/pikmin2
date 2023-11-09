@@ -1711,7 +1711,7 @@ ExiteDirector::ExiteDirector(int p1)
  * Address:	804584B0
  * Size:	000068
  */
-DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, unsigned char p2, PSM::DirectorUpdator::Type type)
+DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, u8 p2, PSM::DirectorUpdator::Type type)
     : _00(p2)
     , mType(type)
     , _08(0)

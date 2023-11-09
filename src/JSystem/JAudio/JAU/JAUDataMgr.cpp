@@ -195,7 +195,7 @@ void JADUtility::DataLoadMgrNode::setFlagsAsExternal(void* p1)
  * Address:	........
  * Size:	0000C4
  */
-// void JADUtility::DataLoadMgrNode::loadDvd(unsigned long*)
+// void JADUtility::DataLoadMgrNode::loadDvd(u32*)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -262,7 +262,7 @@ JADUtility::DataMgrNode::DataMgrNode()
  * Address:	........
  * Size:	0000FC
  */
-// JADUtility::DataLoadMgrVirNode::DataLoadMgrVirNode(unsigned long)
+// JADUtility::DataLoadMgrVirNode::DataLoadMgrVirNode(u32)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -272,7 +272,7 @@ JADUtility::DataMgrNode::DataMgrNode()
  * Address:	........
  * Size:	0000FC
  */
-// JADUtility::DataMgrVirNode::DataMgrVirNode(unsigned long)
+// JADUtility::DataMgrVirNode::DataMgrVirNode(u32)
 // {
 // 	// UNUSED FUNCTION
 // }

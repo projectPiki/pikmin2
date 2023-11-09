@@ -605,7 +605,7 @@ void Mgr::generatorWrite(Stream& output, GenItemParm* genItemParm)
  * Address:	80210358
  * Size:	00008C
  */
-void Mgr::generatorRead(Stream& input, GenItemParm* genItemParm, unsigned long version)
+void Mgr::generatorRead(Stream& input, GenItemParm* genItemParm, u32 version)
 {
 	GenWeedParm* genWeedParm = static_cast<GenWeedParm*>(genItemParm);
 	P2ASSERTLINE(474, genWeedParm != nullptr);

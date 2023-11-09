@@ -11,7 +11,7 @@ namespace data {
  * Address:	........
  * Size:	000050
  */
-void toString_block(char*, unsigned long)
+void toString_block(char*, u32)
 {
 	// UNUSED FUNCTION
 }

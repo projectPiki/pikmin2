@@ -328,7 +328,7 @@ void JAInter::BankWave::setSceneSetFinishCallback(JAInter::BankWave::SceneSetFin
  * Address:	800AC0CC
  * Size:	000018
  */
-void JAInter::BankWave::finishSceneSet(unsigned long flag)
+void JAInter::BankWave::finishSceneSet(u32 flag)
 {
 	SceneSetFlag               = flag;
 	wsLoadStatus[flag >> 0x10] = 2;

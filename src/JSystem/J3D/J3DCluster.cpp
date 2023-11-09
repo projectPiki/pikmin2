@@ -133,7 +133,7 @@ lbl_8006A62C:
  * Address:	8006A694
  * Size:	000168
  */
-void J3DDeformer::deform(J3DVertexBuffer*, unsigned short)
+void J3DDeformer::deform(J3DVertexBuffer*, u16)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -783,7 +783,7 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*
  * Address:	8006AED8
  * Size:	0001CC
  */
-void J3DDeformer::deform(J3DVertexBuffer*, unsigned short, float*)
+void J3DDeformer::deform(J3DVertexBuffer*, u16, float*)
 {
 	/*
 	stwu     r1, -0x20(r1)

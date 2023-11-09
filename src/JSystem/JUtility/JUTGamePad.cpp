@@ -672,8 +672,7 @@ lbl_8002D90C:
  * Address:	........
  * Size:	000088
  */
-void JUTGamePad::setStatus(unsigned long, char, char, char, char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned long,
-                           PADStatus*)
+void JUTGamePad::setStatus(u32, char, char, char, char, u8, u8, u8, u8, u32, PADStatus*)
 {
 	// UNUSED FUNCTION
 }
@@ -683,7 +682,7 @@ void JUTGamePad::setStatus(unsigned long, char, char, char, char, unsigned char,
  * Address:	........
  * Size:	0000F0
  */
-void JUTGamePad::setStatus_PADStatus(const PADStatus*, unsigned long, PADStatus*, unsigned long)
+void JUTGamePad::setStatus_PADStatus(const PADStatus*, u32, PADStatus*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -693,7 +692,7 @@ void JUTGamePad::setStatus_PADStatus(const PADStatus*, unsigned long, PADStatus*
  * Address:	........
  * Size:	00012C
  */
-void JUTGamePad::setStatus_data(const void*, unsigned long, PADStatus*)
+void JUTGamePad::setStatus_data(const void*, u32, PADStatus*)
 {
 	// UNUSED FUNCTION
 }
@@ -1140,7 +1139,7 @@ void JUTGamePad::CButton::clear()
  * Size:	000190
  * update__Q210JUTGamePad7CButtonFPC9PADStatusUl
  */
-void JUTGamePad::CButton::update(PADStatus const* status, unsigned long p2)
+void JUTGamePad::CButton::update(PADStatus const* status, u32 p2)
 {
 	p2 |= ((status != nullptr) ? status->button : 0);
 	mRepeat = 0;
@@ -1320,7 +1319,7 @@ void JUTGamePad::CStick::clear()
  * Size:	0002B8
  * update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
  */
-u32 JUTGamePad::CStick::update(signed char, signed char, JUTGamePad::EStickMode, JUTGamePad::EWhichStick, unsigned long)
+u32 JUTGamePad::CStick::update(signed char, signed char, JUTGamePad::EStickMode, JUTGamePad::EWhichStick, u32)
 {
 	/*
 	.loc_0x0:
@@ -1758,7 +1757,7 @@ lbl_8002E438:
  * Address:	........
  * Size:	00002C
  */
-// void getNumBit(unsigned char*, int)
+// void getNumBit(u8*, int)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -1948,7 +1947,7 @@ lbl_8002E690:
  * Address:	........
  * Size:	000028
  */
-void JUTGamePad::CRumble::triggerPatternedRumble(unsigned long)
+void JUTGamePad::CRumble::triggerPatternedRumble(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1958,7 +1957,7 @@ void JUTGamePad::CRumble::triggerPatternedRumble(unsigned long)
  * Address:	........
  * Size:	00005C
  */
-void JUTGamePad::CRumble::setPatternedRumble(short, unsigned short, void*)
+void JUTGamePad::CRumble::setPatternedRumble(short, u16, void*)
 {
 	// UNUSED FUNCTION
 }
@@ -1968,7 +1967,7 @@ void JUTGamePad::CRumble::setPatternedRumble(short, unsigned short, void*)
  * Address:	........
  * Size:	0000BC
  */
-void JUTGamePad::CRumble::startPatternedRumble(void*, JUTGamePad::CRumble::ERumble, unsigned long)
+void JUTGamePad::CRumble::startPatternedRumble(void*, JUTGamePad::CRumble::ERumble, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -2008,7 +2007,7 @@ JUTGamePad* JUTGamePad::getGamePad(int)
  * Address:	8002E6A8
  * Size:	000124
  */
-void JUTGamePad::CRumble::setEnabled(unsigned long)
+void JUTGamePad::CRumble::setEnabled(u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2144,7 +2143,7 @@ void JUTGamePad::resetButtonRepeat()
  * Address:	........
  * Size:	000038
  */
-void JUTGamePad::addButtonRepeat(unsigned long)
+void JUTGamePad::addButtonRepeat(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -2154,7 +2153,7 @@ void JUTGamePad::addButtonRepeat(unsigned long)
  * Address:	........
  * Size:	000040
  */
-void JUTGamePad::removeButtonRepeat(unsigned long)
+void JUTGamePad::removeButtonRepeat(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -2256,7 +2255,7 @@ JUTGamePadLongPress::JUTGamePadLongPress()
  * Address:	........
  * Size:	0000CC
  */
-void JUTGamePadLongPress::add(unsigned long, unsigned long, unsigned long, void (*)(int, JUTGamePadLongPress*, void*), void*, JKRHeap*)
+void JUTGamePadLongPress::add(u32, u32, u32, void (*)(int, JUTGamePadLongPress*, void*), void*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -2276,7 +2275,7 @@ void JUTGamePadLongPress::remove(JUTGamePadLongPress*)
  * Address:	8002E8C0
  * Size:	000064
  */
-void JUTGamePadLongPress::checkCallback(int p1, unsigned long p2)
+void JUTGamePadLongPress::checkCallback(int p1, u32 p2)
 {
 	if (0 <= p1 && p2 >= _1C) {
 		_11     = 1;
@@ -2322,7 +2321,7 @@ JUTGamePadRecordFixed::JUTGamePadRecordFixed()
  * Address:	........
  * Size:	00004C
  */
-void JUTGamePadRecordFixed::setBuffer(void*, unsigned long)
+void JUTGamePadRecordFixed::setBuffer(void*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -2342,7 +2341,7 @@ void JUTGamePadRecordFixed::setDataEnd(void*)
  * Address:	........
  * Size:	000010
  */
-void JUTGamePadRecordFixed::setDataSize(unsigned long)
+void JUTGamePadRecordFixed::setDataSize(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -2422,7 +2421,7 @@ JUTGamePadRecordFixed::~JUTGamePadRecordFixed()
  * Address:	........
  * Size:	000048
  */
-void JUTGamePadRecord::calculateDataSizePerFrame(unsigned char)
+void JUTGamePadRecord::calculateDataSizePerFrame(u8)
 {
 	// UNUSED FUNCTION
 }

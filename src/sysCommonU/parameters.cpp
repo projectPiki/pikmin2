@@ -126,7 +126,7 @@ void Parm<int>::write(Stream& stream)
  * Size:	000034
  */
 template <>
-void Parm<unsigned char>::read(Stream& stream)
+void Parm<u8>::read(Stream& stream)
 {
 	mValue = stream.readByte();
 }
@@ -137,7 +137,7 @@ void Parm<unsigned char>::read(Stream& stream)
  * Size:	00002C
  */
 template <>
-void Parm<unsigned char>::write(Stream& stream)
+void Parm<u8>::write(Stream& stream)
 {
 	stream.writeByte((u8)mValue);
 }

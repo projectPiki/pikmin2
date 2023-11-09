@@ -195,7 +195,7 @@ lbl_80084C1C:
  * Address:	80084C2C
  * Size:	000838
  */
-void J3DMaterialFactory_v21::create(J3DMaterial*, int, unsigned long) const
+void J3DMaterialFactory_v21::create(J3DMaterial*, int, u32) const
 {
 	/*
 	stwu     r1, -0xf0(r1)

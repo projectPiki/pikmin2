@@ -711,7 +711,7 @@ void PelletItem::Mgr::generatorWrite(Stream&, Game::GenPelletParm*)
  * Address:	80203604
  * Size:	000038
  */
-void PelletItem::Mgr::generatorRead(Stream&, Game::GenPelletParm*, unsigned long)
+void PelletItem::Mgr::generatorRead(Stream&, Game::GenPelletParm*, u32)
 {
 	/*
 	.loc_0x0:

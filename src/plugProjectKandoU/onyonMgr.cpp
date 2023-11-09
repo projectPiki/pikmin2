@@ -1967,7 +1967,7 @@ void ItemOnyon::Mgr::generatorWrite(Stream& ram, Game::GenItemParm* parm)
  * Address:	8017A74C
  * Size:	000078
  */
-void ItemOnyon::Mgr::generatorRead(Stream& ram, Game::GenItemParm* parm, unsigned long flag)
+void ItemOnyon::Mgr::generatorRead(Stream& ram, Game::GenItemParm* parm, u32 flag)
 {
 	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
 	onyonparm->mOnyonIndex  = ram.readInt();

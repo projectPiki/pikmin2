@@ -125,7 +125,7 @@ JADUtility::PrmSetBase::PrmSetBase(bool p1)
  * Address:	........
  * Size:	000014
  */
-// void JADUtility::PrmSetBase::appendDummy(unsigned char)
+// void JADUtility::PrmSetBase::appendDummy(u8)
 // {
 // 	// UNUSED FUNCTION
 // }

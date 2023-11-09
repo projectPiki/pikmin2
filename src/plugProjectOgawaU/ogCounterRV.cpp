@@ -137,7 +137,7 @@ void CallBack_CounterRV::setRandMode(bool)
  * Address:	........
  * Size:	000018
  */
-void CallBack_CounterRV::setValPtr(unsigned long*)
+void CallBack_CounterRV::setValPtr(u32*)
 {
 	// UNUSED FUNCTION
 }
@@ -147,7 +147,7 @@ void CallBack_CounterRV::setValPtr(unsigned long*)
  * Address:	8030B7F0
  * Size:	000008
  */
-void CallBack_CounterRV::setZeroAlpha(unsigned char a1) { mZeroAlpha = a1; }
+void CallBack_CounterRV::setZeroAlpha(u8 a1) { mZeroAlpha = a1; }
 
 /*
  * --INFO--

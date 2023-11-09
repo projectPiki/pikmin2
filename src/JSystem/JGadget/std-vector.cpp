@@ -14,7 +14,7 @@ namespace JGadget {
  * Address:	8002766C
  * Size:	000008
  */
-u32 vector::extend_default(unsigned long, unsigned long, unsigned long)
+u32 vector::extend_default(u32, u32, u32)
 {
 	/*
 	.loc_0x0:
@@ -660,7 +660,7 @@ void TVPVBase::insert(void**, void* const&)
 //  * Address:	........
 //  * Size:	000020
 //  */
-// void TVector_pointer_void::insert(void**, unsigned long, void* const&)
+// void TVector_pointer_void::insert(void**, u32, void* const&)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -749,7 +749,7 @@ lbl_80027DAC:
 //  * Address:	........
 //  * Size:	000020
 //  */
-// void TVector_pointer_void::assign(unsigned long, void* const&)
+// void TVector_pointer_void::assign(u32, void* const&)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -770,7 +770,7 @@ void TVPVBase::assign(u32, void* const&)
 //  * Address:	........
 //  * Size:	000020
 //  */
-// void TVector_pointer_void::resize(unsigned long, void* const&)
+// void TVector_pointer_void::resize(u32, void* const&)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -802,7 +802,7 @@ void TVPVBase::Resize_raw(u32)
 //  * Address:	........
 //  * Size:	00013C
 //  */
-// void JGadget::TVector_pointer_void::reserve(unsigned long)
+// void JGadget::TVector_pointer_void::reserve(u32)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -833,7 +833,7 @@ void TVPVBase::operator=(const TVPVBase& rhs)
 //  * Address:	........
 //  * Size:	000020
 //  */
-// void JGadget::TVector_pointer_void::Insert_raw(void**, unsigned long)
+// void JGadget::TVector_pointer_void::Insert_raw(void**, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -843,7 +843,7 @@ void TVPVBase::operator=(const TVPVBase& rhs)
 //  * Address:	........
 //  * Size:	000020
 //  */
-// void JGadget::TVector_pointer_void::Resize_raw(unsigned long)
+// void JGadget::TVector_pointer_void::Resize_raw(u32)
 // {
 // 	// UNUSED FUNCTION
 // }

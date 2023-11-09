@@ -102,7 +102,7 @@ bool JASAramStream::sFatalErrorFlag;
  * Address:	800A8FA4
  * Size:	000090
  */
-void JASAramStream::initSystem(unsigned long blockSize, unsigned long channelMax)
+void JASAramStream::initSystem(u32 blockSize, u32 channelMax)
 {
 	if (JASDriver::registerSubFrameCallback(dvdErrorCheck, nullptr)) {
 		if (sLoadThread == nullptr) {
@@ -273,7 +273,7 @@ JASAramStream::JASAramStream()
  * Address:	800A918C
  * Size:	0000F8
  */
-void JASAramStream::init(unsigned long p1, unsigned long p2, void (*callback)(unsigned long, JASAramStream*, void*), void* p4)
+void JASAramStream::init(u32 p1, u32 p2, void (*callback)(u32, JASAramStream*, void*), void* p4)
 {
 	_238 = p1;
 	_23C = p2;
@@ -369,7 +369,7 @@ void JASAramStream::init(unsigned long p1, unsigned long p2, void (*callback)(un
  * Address:	........
  * Size:	000010
  */
-void JASAramStream::setBusSetting(unsigned long, unsigned short)
+void JASAramStream::setBusSetting(u32, u16)
 {
 	// UNUSED FUNCTION
 }
@@ -419,7 +419,7 @@ BOOL JASAramStream::start() { return OSSendMessage(&mMsgQueueA, nullptr, OS_MESS
  * Address:	800A9370
  * Size:	000038
  */
-int JASAramStream::stop(unsigned short p1) { return OSSendMessage(&mMsgQueueA, (void*)((u32)p1 << 0x10 | 1), OS_MESSAGE_NOBLOCK) != FALSE; }
+int JASAramStream::stop(u16 p1) { return OSSendMessage(&mMsgQueueA, (void*)((u32)p1 << 0x10 | 1), OS_MESSAGE_NOBLOCK) != FALSE; }
 
 /*
  * --INFO--
@@ -542,7 +542,7 @@ void JASAramStream::prepareFinishTask(void* args)
  * Address:	800A9618
  * Size:	0001CC
  */
-bool JASAramStream::headerLoad(unsigned long p1, int p2)
+bool JASAramStream::headerLoad(u32 p1, int p2)
 {
 	if (sFatalErrorFlag) {
 		return false;
@@ -895,7 +895,7 @@ lbl_800A9B00:
  * Address:	800A9B14
  * Size:	00003C
  */
-void JASAramStream::channelCallback(unsigned long p1, JASChannel* p2, JASDsp::TChannel* p3, void* p4)
+void JASAramStream::channelCallback(u32 p1, JASChannel* p2, JASDsp::TChannel* p3, void* p4)
 {
 	static_cast<JASAramStream*>(p4)->updateChannel(p1, p2, p3);
 }
@@ -905,7 +905,7 @@ void JASAramStream::channelCallback(unsigned long p1, JASChannel* p2, JASDsp::TC
  * Address:	800A9B50
  * Size:	000758
  */
-void JASAramStream::updateChannel(unsigned long, JASChannel*, JASDsp::TChannel*)
+void JASAramStream::updateChannel(u32, JASChannel*, JASDsp::TChannel*)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1829,7 +1829,7 @@ lbl_800AA69C:
  * Address:	800AA6CC
  * Size:	000078
  */
-void JASAramStream::channelStop(unsigned short p1)
+void JASAramStream::channelStop(u16 p1)
 {
 	for (int i = 0; i < _24A; i++) {
 		if (_180[i] != nullptr) {

@@ -961,7 +961,7 @@ JUtility::TColor J2DTextBoxEx::getWhite() const
  * Address:	8005AC34
  * Size:	000020
  */
-void J2DTextBoxEx::setAlpha(unsigned char)
+void J2DTextBoxEx::setAlpha(u8)
 {
 	/*
 	.loc_0x0:

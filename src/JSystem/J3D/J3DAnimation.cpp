@@ -305,7 +305,7 @@ void J3DAnmTransformFull::getTransform(u16 p1, J3DTransformInfo* info) const
  * Size:	000420
  * TODO: Needs J3DGetKeyFrameAnimation to be defined.
  */
-void J3DAnmTransformKey::calcTransform(float p1, unsigned short p2, J3DTransformInfo* info) const
+void J3DAnmTransformKey::calcTransform(float p1, u16 p2, J3DTransformInfo* info) const
 {
 	/*
 	u16 v0                 = p2 * 3;
@@ -767,7 +767,7 @@ void J3DAnmTransformKey::calcTransform(float p1, unsigned short p2, J3DTransform
  * Address:	8006829C
  * Size:	000268
  */
-void J3DAnmTextureSRTKey::calcTransform(float p1, unsigned short p2, J3DTextureSRTInfo* info) const
+void J3DAnmTextureSRTKey::calcTransform(float p1, u16 p2, J3DTextureSRTInfo* info) const
 {
 	/*
 	u16 v0                 = p2 * 3;
@@ -1039,7 +1039,7 @@ void J3DAnmTextureSRTKey::calcTransform(float p1, unsigned short p2, J3DTextureS
  * Address:	80068504
  * Size:	000094
  */
-float J3DAnmClusterFull::getWeight(unsigned short p1) const
+float J3DAnmClusterFull::getWeight(u16 p1) const
 {
 	/*
 	    int v4                     = (int)(0.5f + mFTime);
@@ -1158,7 +1158,7 @@ float J3DAnmClusterKey::getWeight(u16 p1) const
  * Address:	8006861C
  * Size:	000178
  */
-void J3DAnmVtxColorFull::getColor(unsigned char, unsigned short, _GXColor*) const
+void J3DAnmVtxColorFull::getColor(u8, u16, _GXColor*) const
 {
 	/*
 	.loc_0x0:
@@ -1282,7 +1282,7 @@ void J3DAnmVtxColorFull::getColor(unsigned char, unsigned short, _GXColor*) cons
  * Address:	80068794
  * Size:	0002F4
  */
-void J3DAnmVtxColorKey::getColor(unsigned char, unsigned short, _GXColor*) const
+void J3DAnmVtxColorKey::getColor(u8, u16, _GXColor*) const
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1548,7 +1548,7 @@ void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
  * Address:	80068B30
  * Size:	000170
  */
-void J3DAnmColorFull::getColor(unsigned short tableIndex, _GXColor* color) const
+void J3DAnmColorFull::getColor(u16 tableIndex, _GXColor* color) const
 {
 	J3DAnmColorFullTable* table = mTable + tableIndex;
 	if (mCurrentFrame < 0.0f) {
@@ -1595,7 +1595,7 @@ void J3DAnmColorFull::getColor(unsigned short tableIndex, _GXColor* color) const
  * Address:	80068CA0
  * Size:	0002CC
  */
-void J3DAnmColorKey::getColor(unsigned short, _GXColor*) const
+void J3DAnmColorKey::getColor(u16, _GXColor*) const
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1833,7 +1833,7 @@ lbl_80068F48:
  * Address:	80068F6C
  * Size:	0000B4
  */
-void J3DAnmTexPattern::getTexNo(unsigned short p1, unsigned short* p2) const
+void J3DAnmTexPattern::getTexNo(u16 p1, u16* p2) const
 {
 	int index                     = p1;
 	J3DAnmTexPatternFullTable* v1 = mAnmTable;
@@ -2007,7 +2007,7 @@ lbl_80069110:
  * Address:	80069144
  * Size:	0002CC
  */
-void J3DAnmTevRegKey::getTevColorReg(unsigned short p1, _GXColorS10* color) const
+void J3DAnmTevRegKey::getTevColorReg(u16 p1, _GXColorS10* color) const
 {
 	_48[p1].mTables[0].getColorField(mCurrentFrame, &color->r, _50);
 	_48[p1].mTables[1].getColorField(mCurrentFrame, &color->g, _54);
@@ -2249,7 +2249,7 @@ lbl_800693EC:
  * Address:	80069410
  * Size:	0002CC
  */
-void J3DAnmTevRegKey::getTevKonstReg(unsigned short, _GXColor*) const
+void J3DAnmTevRegKey::getTevKonstReg(u16, _GXColor*) const
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2554,7 +2554,7 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
  * Address:	80069938
  * Size:	000004
  */
-// void J3DAnmColor::getColor(unsigned short, _GXColor*) const { }
+// void J3DAnmColor::getColor(u16, _GXColor*) const { }
 
 /*
  * --INFO--
@@ -2606,7 +2606,7 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
  * Address:	80069AA0
  * Size:	000004
  */
-// void J3DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const { }
+// void J3DAnmVtxColor::getColor(u8, u16, _GXColor*) const { }
 
 /*
  * --INFO--
@@ -2658,7 +2658,7 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* data)
  * Address:	80069BF0
  * Size:	000008
  */
-float J3DAnmCluster::getWeight(unsigned short) const
+float J3DAnmCluster::getWeight(u16) const
 {
 	/*
 	lfs      f1, lbl_80516A18@sda21(r2)

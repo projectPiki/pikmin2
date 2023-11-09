@@ -791,7 +791,7 @@ void find_if(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator,
  * Address:	8000C0A0
  * Size:	00007C
  */
-TObject* TControl::getObject_index(unsigned long)
+TObject* TControl::getObject_index(u32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1208,7 +1208,7 @@ blr
  * Address:	8000C528
  * Size:	000098
  */
-bool TParse::parseHeader_next(const void**, unsigned long*, unsigned long)
+bool TParse::parseHeader_next(const void**, u32*, u32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1265,7 +1265,7 @@ blr
  * Address:	8000C5C0
  * Size:	000118
  */
-bool TParse::parseBlock_next(const void**, unsigned long*, unsigned long)
+bool TParse::parseBlock_next(const void**, u32*, u32)
 {
 	/*
 stwu     r1, -0x40(r1)

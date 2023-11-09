@@ -328,7 +328,7 @@ lbl_80015238:
  * Address:	80015248
  * Size:	00014C
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_update(const JStudio::TObject*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_update(const JStudio::TObject*, u32)
 {
 	/*
 	.loc_0x0:
@@ -439,7 +439,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_update(const JStudio::TObject*, 
  * Address:	80015394
  * Size:	0000A4
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_SOUND(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_SOUND(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -498,7 +498,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_SOUND(JStudio::data::TEOperation
  * Address:	80015438
  * Size:	000030
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -526,7 +526,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN(JStudio::data::TEOperation
  * Address:	80015468
  * Size:	000048
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -560,7 +560,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEO
  * Address:	800154B0
  * Size:	000030
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_END(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_END(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -588,7 +588,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_END(JStudio::data::TEOperationDa
  * Address:	800154E0
  * Size:	000048
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -622,7 +622,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_END_FADE_OUT(JStudio::data::TEOp
  * Address:	80015528
  * Size:	000068
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -664,7 +664,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT(JStudio::data::TEOperatio
  * Address:	80015590
  * Size:	000080
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -714,7 +714,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_NODE(JStudio::data::TEOpe
  * Address:	80015610
  * Size:	000020
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -734,7 +734,7 @@ void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_ENABLE(JStudio::data::TEO
  * Address:	80015630
  * Size:	000028
  */
-void JStudio_JAudio::TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -786,7 +786,7 @@ void JStudio_JAudio::TAdaptor_sound::TVVOSetValue_::operator()(float, JStudio::T
  * Address:	80015698
  * Size:	0000D8
  */
-void JStudio_JAudio::TAdaptor_sound::beginSound_fadeIn_(unsigned long)
+void JStudio_JAudio::TAdaptor_sound::beginSound_fadeIn_(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -859,7 +859,7 @@ lbl_80015758:
  * Address:	80015770
  * Size:	000050
  */
-void JStudio_JAudio::TAdaptor_sound::endSound_fadeOut_(unsigned long)
+void JStudio_JAudio::TAdaptor_sound::endSound_fadeOut_(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)

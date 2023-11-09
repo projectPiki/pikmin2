@@ -430,7 +430,7 @@ lbl_80471014:
  * Address:	8047102C
  * Size:	000154
  */
-void SeSound::initParameter(void*, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*)
+void SeSound::initParameter(void*, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -545,7 +545,7 @@ void SeSound::initParameter(void*, JAInter::Actor*, unsigned long, unsigned long
  * Address:	80471180
  * Size:	0002D8
  */
-f32 SeSound::setDistanceVolumeCommon(float, unsigned char)
+f32 SeSound::setDistanceVolumeCommon(float, u8)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -850,7 +850,7 @@ lbl_804714E0:
  * Address:	80471508
  * Size:	00008C
  */
-f32 SeSound::calcVolume(float p1, unsigned char p2, unsigned char p3)
+f32 SeSound::calcVolume(float p1, u8 p2, u8 p3)
 {
 	return PSGame::SoundTable::CategoryMgr::getInstance()->mPerspInfo[p3]->getDistVol(p1, p2);
 	/*
@@ -900,7 +900,7 @@ lbl_80471560:
  * Address:	80471594
  * Size:	0000B8
  */
-void SeSound::setSeDistancePan(unsigned char)
+void SeSound::setSeDistancePan(u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1038,7 +1038,7 @@ lbl_8047170C:
  * Address:	80471714
  * Size:	000088
  */
-void SeSound::setSeDistanceDolby(unsigned char)
+void SeSound::setSeDistanceDolby(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)

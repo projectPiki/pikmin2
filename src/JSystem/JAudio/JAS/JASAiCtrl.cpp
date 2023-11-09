@@ -469,7 +469,7 @@ lbl_800A7D0C:
  * Address:	800A7D30
  * Size:	000310
  */
-void readDspBuffer(short*, unsigned long)
+void readDspBuffer(short*, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -840,7 +840,7 @@ lbl_800A81C8:
  * Address:	........
  * Size:	000008
  */
-void setSubFrames(unsigned long subframes)
+void setSubFrames(u32 subframes)
 {
 	// UNUSED FUNCTION
 	// sSubFrames = subframes;
@@ -851,7 +851,7 @@ void setSubFrames(unsigned long subframes)
  * Address:	........
  * Size:	000008
  */
-void setNumDSPBuffer(unsigned char)
+void setNumDSPBuffer(u8)
 {
 	// UNUSED FUNCTION
 }
@@ -877,7 +877,7 @@ void registerMixCallback(short* (*mixCallback)(long), JASMixMode mode)
  * Address:	........
  * Size:	000008
  */
-void registerDacCallback(void (*)(short*, unsigned long))
+void registerDacCallback(void (*)(short*, u32))
 {
 	// UNUSED FUNCTION
 }
@@ -887,7 +887,7 @@ void registerDacCallback(void (*)(short*, unsigned long))
  * Address:	........
  * Size:	000008
  */
-void registDSPBufCallback(void (*)(short*, unsigned long))
+void registDSPBufCallback(void (*)(short*, u32))
 {
 	// UNUSED FUNCTION
 }
@@ -955,7 +955,7 @@ int getFrameSamples()
  * Address:	800A8218
  * Size:	0000C0
  */
-void mixMonoTrack(short* p1, unsigned long p2, short* (*callback)(long))
+void mixMonoTrack(short* p1, u32 p2, short* (*callback)(long))
 {
 	JASKernel::probeStart(5, "MONO-MIX");
 	s16* cbResult = callback(p2);
@@ -1031,7 +1031,7 @@ lbl_800A82B8:
  * Address:	800A82D8
  * Size:	0000C0
  */
-void mixMonoTrackWide(short*, unsigned long, short* (*)(long))
+void mixMonoTrackWide(short*, u32, short* (*)(long))
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1096,7 +1096,7 @@ lbl_800A8378:
  * Address:	800A8398
  * Size:	0000E0
  */
-void mixExtraTrack(short*, unsigned long, short* (*)(long))
+void mixExtraTrack(short*, u32, short* (*)(long))
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1169,7 +1169,7 @@ lbl_800A8458:
  * Address:	800A8478
  * Size:	00008C
  */
-void mixInterleaveTrack(short*, unsigned long, short* (*)(long))
+void mixInterleaveTrack(short*, u32, short* (*)(long))
 {
 	/*
 	stwu     r1, -0x20(r1)

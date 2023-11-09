@@ -1137,7 +1137,7 @@ void JKRHeap::dispose()
  * Address:	80023DC4
  * Size:	00008C
  */
-void JKRHeap::copyMemory(void*, void*, unsigned long)
+void JKRHeap::copyMemory(void*, void*, u32)
 {
 	/*
 	addi     r0, r5, 3

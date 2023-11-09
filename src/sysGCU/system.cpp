@@ -269,7 +269,7 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
  * Address:	804220EC
  * Size:	000118
  */
-void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
+void preUserCallback(u16, OSContext*, u32, u32)
 {
 	sys->disableCPULockDetector();
 
@@ -463,7 +463,7 @@ static const char aramStrmName[] = "aramStrm";
  * Address:	80422344
  * Size:	0000A4
  */
-void retraceCallback(unsigned long)
+void retraceCallback(u32)
 {
 	sys->mCpuRetraceCount++;
 	if (DVDGetDriveStatus() == 1) {

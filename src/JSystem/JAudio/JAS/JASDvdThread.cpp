@@ -27,7 +27,7 @@ JASTaskThread* JASDvd::getThreadPointer() { return sThread; }
  * Address:	800A6994
  * Size:	00007C
  */
-bool JASDvd::createThread(long priority, int p2, unsigned long p3)
+bool JASDvd::createThread(long priority, int p2, u32 p3)
 {
 	sThread = new (JASDram, 0) JASTaskThread(priority, p2, p3);
 	OSResumeThread(sThread->mThread);
@@ -39,7 +39,7 @@ bool JASDvd::createThread(long priority, int p2, unsigned long p3)
  * Address:	800A6A10
  * Size:	000044
  */
-void JASDvd::checkPassDvdT(unsigned long p1, unsigned long* p2, JASDvdCallback p3)
+void JASDvd::checkPassDvdT(u32 p1, u32* p2, JASDvdCallback p3)
 {
 	DVDThreadCheckBackArgs args;
 	args._00 = p1;

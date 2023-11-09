@@ -795,7 +795,7 @@ void J3DMtxProjConcat(float (*)[4], float (*)[4], float (*)[4])
  * Address:	8005F750
  * Size:	0000DC
  */
-void J3DPSMtxArrayConcat(float (*)[4], float (*)[4], float (*)[4], unsigned long)
+void J3DPSMtxArrayConcat(float (*)[4], float (*)[4], float (*)[4], u32)
 {
 	/*
 	.loc_0x0:

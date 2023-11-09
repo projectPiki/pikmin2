@@ -359,28 +359,28 @@ bool TRenderingProcessorBase::tagColor(void const*, u32) { return true; }
  * Address:	804393C0
  * Size:	000008
  */
-bool TRenderingProcessorBase::tagPosition(unsigned short, void const*, u32) { return true; }
+bool TRenderingProcessorBase::tagPosition(u16, void const*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	804393C8
  * Size:	000008
  */
-bool TRenderingProcessorBase::tagControl(unsigned short, void const*, u32) { return true; }
+bool TRenderingProcessorBase::tagControl(u16, void const*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	804393D0
  * Size:	000008
  */
-bool TRenderingProcessorBase::tagColorEX(unsigned short, void const*, u32) { return true; }
+bool TRenderingProcessorBase::tagColorEX(u16, void const*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	804393D8
  * Size:	000008
  */
-bool TRenderingProcessorBase::tagImage(unsigned short, void const*, u32) { return true; }
+bool TRenderingProcessorBase::tagImage(u16, void const*, u32) { return true; }
 
 /*
  * --INFO--
@@ -2350,7 +2350,7 @@ lbl_8043AF18:
  * Address:	8043AF54
  * Size:	000438
  */
-bool TRenderingProcessor::tagImage(unsigned short, void const*, u32)
+bool TRenderingProcessor::tagImage(u16, void const*, u32)
 {
 	/*
 	stwu     r1, -0x70(r1)

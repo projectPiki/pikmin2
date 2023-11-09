@@ -684,7 +684,7 @@ lbl_8045A0A8:
  * Address:	8045A0C8
  * Size:	0000A0
  */
-PSGame::EnvSe_Perspective* EnvSeObjBuilder::newSeObj(unsigned long, float, Vec)
+PSGame::EnvSe_Perspective* EnvSeObjBuilder::newSeObj(u32, float, Vec)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1035,7 +1035,7 @@ lbl_8045A474:
  * Address:	8045A4AC
  * Size:	0001F4
  */
-PSSystem::Scene* SceneMgr::newGameScene(unsigned char, PSGame::SceneInfo*)
+PSSystem::Scene* SceneMgr::newGameScene(u8, PSGame::SceneInfo*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3159,7 +3159,7 @@ lbl_8045BF30:
  * Address:	8045BF5C
  * Size:	00008C
  */
-void SetBossBgmMuteVol(PSSystem::EnvSeMgr*, unsigned long, float)
+void SetBossBgmMuteVol(PSSystem::EnvSeMgr*, u32, float)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3471,7 +3471,7 @@ MiddleBossSeq::MiddleBossSeq(const char* p1, const JAInter::SoundInfo& info, PSS
  * Address:	8045C2F0
  * Size:	000094
  */
-void MiddleBossSeq::onJump(unsigned short)
+void MiddleBossSeq::onJump(u16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3558,7 +3558,7 @@ lbl_8045C3B0:
  * Address:	8045C3C4
  * Size:	00005C
  */
-void MiddleBossSeq::requestJumpBgmQuickly(unsigned short)
+void MiddleBossSeq::requestJumpBgmQuickly(u16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3594,7 +3594,7 @@ lbl_8045C40C:
  * Address:	8045C420
  * Size:	00005C
  */
-void MiddleBossSeq::requestJumpBgmOnBeat(unsigned short)
+void MiddleBossSeq::requestJumpBgmOnBeat(u16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3630,7 +3630,7 @@ lbl_8045C468:
  * Address:	8045C47C
  * Size:	00005C
  */
-void MiddleBossSeq::requestJumpBgmEveryBeat(unsigned short)
+void MiddleBossSeq::requestJumpBgmEveryBeat(u16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3666,7 +3666,7 @@ lbl_8045C4C4:
  * Address:	8045C4D8
  * Size:	000214
  */
-void MiddleBossSeq::jumpCheck(unsigned short)
+void MiddleBossSeq::jumpCheck(u16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3937,7 +3937,7 @@ lbl_8045C7BC:
  * Address:	8045C7D8
  * Size:	0001B4
  */
-void BigBossSeq::jumpCheck(unsigned short)
+void BigBossSeq::jumpCheck(u16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4095,7 +4095,7 @@ lbl_8045C974:
  * Address:	8045C98C
  * Size:	000098
  */
-void BigBossSeq::onJump(unsigned short)
+void BigBossSeq::onJump(u16)
 {
 	/*
 	stwu     r1, -0x10(r1)

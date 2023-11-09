@@ -589,7 +589,7 @@ lbl_803412A8:
  * Address:	803412D8
  * Size:	0001A4
  */
-void ClusterSe::Mgr::play(unsigned char, JAInter::Object*)
+void ClusterSe::Mgr::play(u8, JAInter::Object*)
 {
 	/*
 	stwu     r1, -0x40(r1)

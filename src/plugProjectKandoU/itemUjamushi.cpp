@@ -4086,7 +4086,7 @@ lbl_8020A1C0:
  * Address:	8020A208
  * Size:	000064
  */
-void Mgr::generatorRead(Stream&, GenItemParm*, unsigned long)
+void Mgr::generatorRead(Stream&, GenItemParm*, u32)
 {
 	/*
 	.loc_0x0:

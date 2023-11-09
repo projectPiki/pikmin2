@@ -45,7 +45,7 @@ void Analyzer::exec(char* msg)
  * Address:	........
  * Size:	000064
  */
-// void Analyzer::exec(unsigned short, unsigned short)
+// void Analyzer::exec(u16, u16)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -55,7 +55,7 @@ void Analyzer::exec(char* msg)
  * Address:	........
  * Size:	000058
  */
-// void Analyzer::exec(unsigned long)
+// void Analyzer::exec(u32)
 // {
 // 	// UNUSED FUNCTION
 // }

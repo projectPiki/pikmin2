@@ -1219,4 +1219,4 @@ void VsGame::CardMgr::SlotMachine::updateZoomUse()
  * Address:	80238E6C
  * Size:	000008
  */
-void efx2d::TBase::setGroup(unsigned char a1) { _05 = a1; }
+void efx2d::TBase::setGroup(u8 a1) { _05 = a1; }

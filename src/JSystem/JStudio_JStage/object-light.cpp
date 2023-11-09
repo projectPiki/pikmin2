@@ -434,7 +434,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_end(const JStudio::TObject*)
  * Address:	80011830
  * Size:	0001C8
  */
-void JStudio_JStage::TAdaptor_light::adaptor_do_update(const JStudio::TObject*, unsigned long)
+void JStudio_JStage::TAdaptor_light::adaptor_do_update(const JStudio::TObject*, u32)
 {
 	/*
 	.loc_0x0:
@@ -570,7 +570,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_update(const JStudio::TObject*, 
  * Address:	800119F8
  * Size:	000034
  */
-void JStudio_JStage::TAdaptor_light::adaptor_do_data(const JStudio::TObject*, const void*, unsigned long, const void*, unsigned long)
+void JStudio_JStage::TAdaptor_light::adaptor_do_data(const JStudio::TObject*, const void*, u32, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -595,7 +595,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_data(const JStudio::TObject*, co
  * Address:	80011A2C
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_light::adaptor_do_FACULTY(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JStage::TAdaptor_light::adaptor_do_FACULTY(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:
@@ -651,7 +651,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_FACULTY(JStudio::data::TEOperati
  * Address:	80011AA4
  * Size:	000024
  */
-void JStudio_JStage::TAdaptor_light::adaptor_do_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JStage::TAdaptor_light::adaptor_do_ENABLE(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:

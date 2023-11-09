@@ -353,14 +353,14 @@ void JASChannel::setOscInit(int index, const JASOscillator::Data* data) { _30[in
  * Address:	800A3578
  * Size:	000010
  */
-void JASChannel::setMixConfig(int index, unsigned short mixConfig) { _B0[index] = mixConfig; }
+void JASChannel::setMixConfig(int index, u16 mixConfig) { _B0[index] = mixConfig; }
 
 /*
  * --INFO--
  * Address:	800A3588
  * Size:	000008
  */
-void JASChannel::directReleaseOsc(unsigned short a1)
+void JASChannel::directReleaseOsc(u16 a1)
 {
 	// Generated from sth r4, 0x4A(r3)
 	_30[0]._1A = a1;
@@ -407,7 +407,7 @@ void JASChannel::overwriteOsc(int index, JASOscillator::Data* data) { _30[index]
  * Address:	800A360C
  * Size:	000088
  */
-void JASChannel::setKeySweepTarget(unsigned char p1, unsigned long p2)
+void JASChannel::setKeySweepTarget(u8 p1, u32 p2)
 {
 	u32 v1;
 	if (_E4 == 2 || _E8 == nullptr) {
@@ -454,17 +454,17 @@ void JASChannel::setPanPower(f32 p1, f32 p2, f32 p3)
  * Address:	800A36C0
  * Size:	000084
  */
-bool JASChannel::play()
+BOOL JASChannel::play()
 {
 	JASDSPChannel* dspChannel = JASDSPChannel::alloc(_BC, dspUpdateCallback, this);
 	if (dspChannel == nullptr) {
 		delete this;
-		return false;
+		return FALSE;
 	}
 	_20 = dspChannel;
 	dspChannel->start();
 	_18 = 1;
-	return true;
+	return TRUE;
 }
 
 /*
@@ -472,17 +472,17 @@ bool JASChannel::play()
  * Address:	800A3744
  * Size:	000084
  */
-bool JASChannel::playForce()
+BOOL JASChannel::playForce()
 {
 	JASDSPChannel* dspChannel = JASDSPChannel::allocForce(_BC, dspUpdateCallback, this);
 	if (dspChannel == nullptr) {
 		delete this;
-		return false;
+		return FALSE;
 	}
 	_20 = dspChannel;
 	dspChannel->start();
 	_18 = 1;
-	return true;
+	return TRUE;
 }
 
 /*
@@ -490,7 +490,7 @@ bool JASChannel::playForce()
  * Address:	800A37C8
  * Size:	000098
  */
-void JASChannel::release(unsigned short p1)
+void JASChannel::release(u16 p1)
 {
 	if (_18 != 1) {
 		return;
@@ -512,7 +512,7 @@ void JASChannel::release(unsigned short p1)
  * Address:	800A3860
  * Size:	00025C
  */
-void JASChannel::updateEffectorParam(JASDsp::TChannel*, unsigned short*, const JASChannel::EffectOscParam&)
+void JASChannel::updateEffectorParam(JASDsp::TChannel*, u16*, const JASChannel::EffectOscParam&)
 {
 	/*
 	.loc_0x0:
@@ -715,7 +715,7 @@ void JASChannel::updateEffectorParam(JASDsp::TChannel*, unsigned short*, const J
  * Address:	800A3ABC
  * Size:	0000A0
  */
-long JASChannel::dspUpdateCallback(unsigned long p1, JASDsp::TChannel* p2, void* p3)
+long JASChannel::dspUpdateCallback(u32 p1, JASDsp::TChannel* p2, void* p3)
 {
 	JASChannel* channel = static_cast<JASChannel*>(p3);
 	switch (p1) {
@@ -1183,7 +1183,7 @@ lbl_800A409C:
  * Address:	800A40BC
  * Size:	0000C0
  */
-f32 JASChannel::calcEffect(const JASChannel::PanVector* vectorA, const JASChannel::PanVector* vectorB, unsigned char p3)
+f32 JASChannel::calcEffect(const JASChannel::PanVector* vectorA, const JASChannel::PanVector* vectorB, u8 p3)
 {
 	f32 value     = 0.0f;
 	const u8* row = calc_sw_table[p3];
@@ -1305,7 +1305,7 @@ f32 JASChannel::calcEffect(const JASChannel::PanVector* vectorA, const JASChanne
  * Address:	800A417C
  * Size:	0000FC
  */
-f32 JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVector*, unsigned char)
+f32 JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVector*, u8)
 {
 	/*
 	.loc_0x0:
@@ -1503,7 +1503,7 @@ lbl_800A42EC:
  * Address:	800A4398
  * Size:	0003D4
  */
-void JASChannel::updateMixer(f32, f32, f32, f32, unsigned short*)
+void JASChannel::updateMixer(f32, f32, f32, f32, u16*)
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -1846,7 +1846,7 @@ void JASChannel::sweepProc()
 	if (_C4 == 0) {
 		return;
 	}
-	_F8 = _F8 + (_C0 - _F8) / _C4;
+	_F8 += (_C0 - _F8) / _C4;
 	_C4--;
 	/*
 	stwu     r1, -0x10(r1)
@@ -1885,16 +1885,3 @@ void JASChannel::free()
 	_24 = nullptr;
 	_28 = nullptr;
 }
-
-/*
- * --INFO--
- * Address:	800A47D0
- * Size:	000008
- */
-// void JASChannel::@16 @__dt()
-// {
-// 	/*
-// 	addi     r3, r3, -16
-// 	b        __dt__10JASChannelFv
-// 	*/
-// }

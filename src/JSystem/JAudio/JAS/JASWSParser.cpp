@@ -437,46 +437,46 @@ size_t JASWSParser::getUsedHeapSize()
  * Address:	80098E8C
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrlWave>(const void*, unsigned long) { }
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrlWave>(const void*, u32) { }
 
 /*
  * --INFO--
  * Address:	80098EA4
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TWave>(const void*, unsigned long) { }
+// void JSUConvertOffsetToPtr<JASWSParser::TWave>(const void*, u32) { }
 
 /*
  * --INFO--
  * Address:	80098EBC
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*, unsigned long) { }
+// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*, u32) { }
 
 /*
  * --INFO--
  * Address:	80098ED4
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*, unsigned long) { }
+// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*, u32) { }
 
 /*
  * --INFO--
  * Address:	80098EEC
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrl>(const void*, unsigned long) { }
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrl>(const void*, u32) { }
 
 /*
  * --INFO--
  * Address:	80098F04
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrlScene>(const void*, unsigned long) { }
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrlScene>(const void*, u32) { }
 
 /*
  * --INFO--
  * Address:	80098F1C
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrlGroup>(const void*, unsigned long) { }
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrlGroup>(const void*, u32) { }

@@ -18,7 +18,7 @@ TRandom_fast_::TRandom_fast_(u32 param_0) { value = param_0; }
  * Address:	........
  * Size:	0000C8
  */
-// void TRandomEnough_::setSeed(unsigned long)
+// void TRandomEnough_::setSeed(u32)
 //{
 // UNUSED FUNCTION
 //}

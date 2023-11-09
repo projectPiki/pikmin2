@@ -830,7 +830,7 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
  * Address:	8003FF48
  * Size:	000030
  */
-// J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* input, J2DPane* parent, unsigned long flags)
+// J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* input, J2DPane* parent, u32 flags)
 // {
 // 	return createPane(header, input, parent, flags, nullptr);
 // }
@@ -840,7 +840,7 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, 
  * Address:	8003FF78
  * Size:	000334
  */
-J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* input, J2DPane* parent, unsigned long flags,
+J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* input, J2DPane* parent, u32 flags,
                                JKRArchive* archive)
 {
 	// can't just do direct returns here...

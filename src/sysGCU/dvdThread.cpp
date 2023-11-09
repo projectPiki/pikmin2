@@ -215,7 +215,7 @@ void DvdThreadCommand::checkExp(const char*) const
  * Address:	804248B8
  * Size:	00004C
  */
-DvdThread::DvdThread(unsigned long p1, int p2, int p3)
+DvdThread::DvdThread(u32 p1, int p2, int p3)
     : AppThread(p1, p2, p3)
     , _7C()
 {

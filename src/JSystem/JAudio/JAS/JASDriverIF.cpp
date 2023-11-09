@@ -288,7 +288,7 @@ float JASDriver::getDSPLevel_f32() { return JASDsp::getDSPMixerLevel(); }
  * Address:	800A4938
  * Size:	000008
  */
-void JASDriver::setOutputMode(unsigned long outputMode) { JAS_SYSTEM_OUTPUT_MODE = outputMode; }
+void JASDriver::setOutputMode(u32 outputMode) { JAS_SYSTEM_OUTPUT_MODE = outputMode; }
 
 /*
  * --INFO--

@@ -72,7 +72,7 @@
  * Address:	........
  * Size:	0000C8
  */
-JAInter::ObjectBase::ObjectBase(Vec* p1, JKRHeap* heap, unsigned char handleCount)
+JAInter::ObjectBase::ObjectBase(Vec* p1, JKRHeap* heap, u8 handleCount)
     : JKRDisposer()
 {
 	// UNUSED FUNCTION
@@ -102,7 +102,7 @@ JAInter::ObjectBase::~ObjectBase() { dispose(); }
  * Address:	800B9670
  * Size:	000164
  */
-JAISound* JAInter::ObjectBase::startSound(unsigned long id, unsigned long p2)
+JAISound* JAInter::ObjectBase::startSound(u32 id, u32 p2)
 {
 	JAISound** handlePtr = nullptr;
 	if (IsJAISoundIDInUse(id)) {
@@ -243,7 +243,7 @@ lbl_800B97C0:
  * Address:	800B97D4
  * Size:	000044
  */
-void JAInter::ObjectBase::handleStop(unsigned char handleNo, unsigned long p2)
+void JAInter::ObjectBase::handleStop(u8 handleNo, u32 p2)
 {
 	if (mSounds[handleNo] != nullptr) {
 		mSounds[handleNo]->stop(p2);
@@ -255,7 +255,7 @@ void JAInter::ObjectBase::handleStop(unsigned char handleNo, unsigned long p2)
  * Address:	800B9818
  * Size:	000048
  */
-void JAInter::ObjectBase::startSound(unsigned char handleNo, unsigned long id, unsigned long p3)
+void JAInter::ObjectBase::startSound(u8 handleNo, u32 id, u32 p3)
 {
 	JAIBasic::msBasic->startSoundVecT(id, mSounds + handleNo, _24, p3, 0, 4);
 	/*
@@ -286,7 +286,7 @@ void JAInter::ObjectBase::startSound(unsigned char handleNo, unsigned long id, u
  * Address:	800B9860
  * Size:	000044
  */
-void JAInter::ObjectBase::startSound(JAISound** handlePtr, unsigned long id, unsigned long p3)
+void JAInter::ObjectBase::startSound(JAISound** handlePtr, u32 id, u32 p3)
 {
 	JAIBasic::msBasic->startSoundVecT(id, handlePtr, _24, p3, 0, 4);
 	/*
@@ -315,7 +315,7 @@ void JAInter::ObjectBase::startSound(JAISound** handlePtr, unsigned long id, uns
  * Address:	800B98A4
  * Size:	000060
  */
-void JAInter::ObjectBase::stopSound(unsigned long id, unsigned long p2)
+void JAInter::ObjectBase::stopSound(u32 id, u32 p2)
 {
 	u8 handleNo = getUseSoundHandleNo(id);
 	if (handleNo != 0xFF) {
@@ -394,7 +394,7 @@ u8 JAInter::ObjectBase::getFreeSoundHandleNo()
  * Address:	800B9A4C
  * Size:	000054
  */
-JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(unsigned long id)
+JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(u32 id)
 {
 	for (u32 i = 0; i < mHandleCount; i++) {
 		if (mSounds[i] != nullptr && id == mSounds[i]->mSoundID) {
@@ -409,7 +409,7 @@ JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(unsigned long id)
  * Address:	800B9AA0
  * Size:	00004C
  */
-u8 JAInter::ObjectBase::getUseSoundHandleNo(unsigned long id)
+u8 JAInter::ObjectBase::getUseSoundHandleNo(u32 id)
 {
 	for (u8 i = 0; i < mHandleCount; i++) {
 		if (mSounds[i] != nullptr && id == mSounds[i]->mSoundID) {
@@ -424,7 +424,7 @@ u8 JAInter::ObjectBase::getUseSoundHandleNo(unsigned long id)
  * Address:	........
  * Size:	000038
  */
-void JAInter::ObjectBase::reserveSoundHandle(unsigned char)
+void JAInter::ObjectBase::reserveSoundHandle(u8)
 {
 	// UNUSED FUNCTION
 }
@@ -434,7 +434,7 @@ void JAInter::ObjectBase::reserveSoundHandle(unsigned char)
  * Address:	........
  * Size:	00001C
  */
-void JAInter::ObjectBase::cancelSoundHandle(unsigned char)
+void JAInter::ObjectBase::cancelSoundHandle(u8)
 {
 	// UNUSED FUNCTION
 }
@@ -445,7 +445,7 @@ void JAInter::ObjectBase::cancelSoundHandle(unsigned char)
  * Size:	0000F4
  * __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
  */
-JAInter::Object::Object(Vec* p1, JKRHeap* heap, unsigned char handleCount)
+JAInter::Object::Object(Vec* p1, JKRHeap* heap, u8 handleCount)
     : ObjectBase(p1, heap, handleCount)
 {
 	_28.x = 0.0f;
@@ -469,7 +469,7 @@ JAInter::Object::~Object() { }
  * Address:	800B9C64
  * Size:	00021C
  */
-JAISound* JAInter::Object::startSound(unsigned long, unsigned long)
+JAISound* JAInter::Object::startSound(u32, u32)
 {
 	/*
 	stwu     r1, -0x50(r1)

@@ -289,7 +289,7 @@ void TAdaptor_actor::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagO
  * Address:	800124E8
  * Size:	000044
  */
-void TAdaptor_actor::adaptor_do_update(const JStudio::TObject* object, unsigned long p2)
+void TAdaptor_actor::adaptor_do_update(const JStudio::TObject* object, u32 p2)
 {
 	setJSG_SRT_(static_cast<JStudio::TControl*>(object->pControl));
 	mObject->JSGUpdate();
@@ -300,7 +300,7 @@ void TAdaptor_actor::adaptor_do_update(const JStudio::TObject* object, unsigned 
  * Address:	8001252C
  * Size:	000034
  */
-void TAdaptor_actor::adaptor_do_data(const JStudio::TObject* object, const void* p2, unsigned long p3, const void* p4, unsigned long p5)
+void TAdaptor_actor::adaptor_do_data(const JStudio::TObject* object, const void* p2, u32 p3, const void* p4, u32 p5)
 {
 	TAdaptor_object_::adaptor_data_(mObject, p2, p3, p4, p5);
 }
@@ -310,7 +310,7 @@ void TAdaptor_actor::adaptor_do_data(const JStudio::TObject* object, const void*
  * Address:	80012560
  * Size:	000054
  */
-void TAdaptor_actor::adaptor_do_SHAPE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_SHAPE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	setJSG_ID_(&JStage::TActor::JSGSetShape, operation, p2, p3);
 }
@@ -320,7 +320,7 @@ void TAdaptor_actor::adaptor_do_SHAPE(JStudio::data::TEOperationData operation, 
  * Address:	800125B4
  * Size:	000054
  */
-void TAdaptor_actor::adaptor_do_ANIMATION(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_ANIMATION(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	setJSG_ID_(&JStage::TActor::JSGSetAnimation, operation, p2, p3);
 }
@@ -330,7 +330,7 @@ void TAdaptor_actor::adaptor_do_ANIMATION(JStudio::data::TEOperationData operati
  * Address:	80012608
  * Size:	000014
  */
-void TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	if (operation != JStudio::data::TEOD_Unknown_02) {
 		return;
@@ -343,7 +343,7 @@ void TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData op
  * Address:	8001261C
  * Size:	000054
  */
-void TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	setJSG_ID_(&JStage::TActor::JSGSetTextureAnimation, operation, p2, p3);
 }
@@ -353,7 +353,7 @@ void TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOperationData
  * Address:	80012670
  * Size:	000014
  */
-void TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	if (operation != JStudio::data::TEOD_Unknown_02) {
 		return;
@@ -366,7 +366,7 @@ void TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::data::TEOperatio
  * Address:	80012684
  * Size:	000044
  */
-void TAdaptor_actor::adaptor_do_PARENT(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_PARENT(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -380,7 +380,7 @@ void TAdaptor_actor::adaptor_do_PARENT(JStudio::data::TEOperationData operation,
  * Address:	800126C8
  * Size:	00005C
  */
-void TAdaptor_actor::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -397,7 +397,7 @@ void TAdaptor_actor::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData opera
  * Address:	80012724
  * Size:	000088
  */
-void TAdaptor_actor::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_02:
@@ -427,7 +427,7 @@ void TAdaptor_actor::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData ope
  * Address:	800127AC
  * Size:	000014
  */
-void TAdaptor_actor::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	if (operation != JStudio::data::TEOD_Unknown_02) {
 		return;
@@ -440,7 +440,7 @@ void TAdaptor_actor::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData o
  * Address:	800127C0
  * Size:	000044
  */
-void TAdaptor_actor::adaptor_do_RELATION(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_RELATION(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -454,7 +454,7 @@ void TAdaptor_actor::adaptor_do_RELATION(JStudio::data::TEOperationData operatio
  * Address:	80012804
  * Size:	00005C
  */
-void TAdaptor_actor::adaptor_do_RELATION_NODE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_RELATION_NODE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -471,7 +471,7 @@ void TAdaptor_actor::adaptor_do_RELATION_NODE(JStudio::data::TEOperationData ope
  * Address:	80012860
  * Size:	000058
  */
-void TAdaptor_actor::adaptor_do_RELATION_ENABLE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void TAdaptor_actor::adaptor_do_RELATION_ENABLE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_02:
@@ -486,7 +486,7 @@ void TAdaptor_actor::adaptor_do_RELATION_ENABLE(JStudio::data::TEOperationData o
  * Size:	00003C
  * setJSG_ID___Q214JStudio_JStage14TAdaptor_actorFMQ26JStage6TActorFPCvPvUl_vQ37JStudio4data15TEOperationDataPCvUl
  */
-void TAdaptor_actor::setJSG_ID_(IDFunction function, JStudio::data::TEOperationData operation, const void* p3, unsigned long p4)
+void TAdaptor_actor::setJSG_ID_(IDFunction function, JStudio::data::TEOperationData operation, const void* p3, u32 p4)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_19:

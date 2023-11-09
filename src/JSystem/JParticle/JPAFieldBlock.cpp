@@ -2510,7 +2510,7 @@ lbl_80093378:
  * Address:	80093394
  * Size:	000038
  */
-JPAFieldBlock::JPAFieldBlock(const unsigned char* data, JKRHeap* heap)
+JPAFieldBlock::JPAFieldBlock(const u8* data, JKRHeap* heap)
 {
 	mData = data;
 	init(heap);
@@ -2521,7 +2521,7 @@ JPAFieldBlock::JPAFieldBlock(const unsigned char* data, JKRHeap* heap)
  * Address:	........
  * Size:	000114
  */
-void JPAFieldBlock::init_jpa(const unsigned char*, JKRHeap*)
+void JPAFieldBlock::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }

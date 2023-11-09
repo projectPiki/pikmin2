@@ -135,7 +135,7 @@ void TSequenceProcessor::do_end() { }
  * Address:	........
  * Size:	000008
  */
-// void TSequenceProcessor::tagColor(void const*, unsigned long)
+// void TSequenceProcessor::tagColor(void const*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -145,7 +145,7 @@ void TSequenceProcessor::do_end() { }
  * Address:	........
  * Size:	000008
  */
-// void TSequenceProcessor::tagSize(void const*, unsigned long)
+// void TSequenceProcessor::tagSize(void const*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -155,7 +155,7 @@ void TSequenceProcessor::do_end() { }
  * Address:	........
  * Size:	000008
  */
-// void TSequenceProcessor::tagRuby(void const*, unsigned long)
+// void TSequenceProcessor::tagRuby(void const*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -165,7 +165,7 @@ void TSequenceProcessor::do_end() { }
  * Address:	........
  * Size:	000008
  */
-// void TSequenceProcessor::tagFont(void const*, unsigned long)
+// void TSequenceProcessor::tagFont(void const*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }

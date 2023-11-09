@@ -225,7 +225,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_end(const JStudio::TObject*) { 
  * Address:	800136E8
  * Size:	00005C
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_update(const JStudio::TObject* object, unsigned long p2)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_update(const JStudio::TObject* object, u32 p2)
 {
 	const JStudio::TControl* control = static_cast<JStudio::TControl*>(object->pControl);
 	setJSG_position_(control);
@@ -238,8 +238,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_update(const JStudio::TObject* 
  * Address:	80013744
  * Size:	000034
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_data(const JStudio::TObject* object, const void* p2, unsigned long p3, const void* p4,
-                                                      unsigned long p5)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_data(const JStudio::TObject* object, const void* p2, u32 p3, const void* p4, u32 p5)
 {
 	TAdaptor_object_::adaptor_data_(mCamera, p2, p3, p4, p5);
 }
@@ -249,7 +248,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_data(const JStudio::TObject* ob
  * Address:	80013778
  * Size:	000044
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -263,7 +262,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT(JStudio::data::TEOperati
  * Address:	800137BC
  * Size:	00005C
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -280,7 +279,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_NODE(JStudio::data::TEOp
  * Address:	80013818
  * Size:	000080
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	/*
 	.loc_0x0:
@@ -332,7 +331,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_ENABLE(JStudio::data::TE
  * Address:	80013898
  * Size:	000014
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	if (operation != JStudio::data::TEOD_Unknown_02) {
 		return;
@@ -345,7 +344,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_FUNCTION(JStudio::data::
  * Address:	800138AC
  * Size:	000044
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -359,8 +358,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT(JStudio::data::TE
  * Address:	800138F0
  * Size:	00005C
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2,
-                                                                    unsigned long p3)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2, u32 p3)
 {
 	switch (operation) {
 	case JStudio::data::TEOD_Unknown_18:
@@ -377,7 +375,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_NODE(JStudio::dat
  * Address:	8001394C
  * Size:	000020
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32)
 {
 	/*
 	.loc_0x0:

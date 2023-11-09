@@ -29,7 +29,7 @@ JPAKeyBlock::JPAKeyBlock(const u8* data)
  * Address:	........
  * Size:	0000C4
  */
-void JPAKeyBlock::init_jpa(const unsigned char*, JKRHeap*)
+void JPAKeyBlock::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }

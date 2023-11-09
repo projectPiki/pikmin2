@@ -31,7 +31,7 @@ u32 JAInter::HeapMgr::sStayHeapCount;
  * Address:	800B0340
  * Size:	000254
  */
-void JAInter::HeapMgr::init(unsigned char p1, unsigned long p2, unsigned char p3, unsigned long p4)
+void JAInter::HeapMgr::init(u8 p1, u32 p2, u8 p3, u32 p4)
 {
 	sAutoHeap = new (JAIBasic::msCurrentHeap, 0x20) HeapBlock[p3];
 	for (u32 i = 0; i < p3; i++) {
@@ -260,7 +260,7 @@ u32 JAInter::HeapMgr::getStayHeapCount()
  * Address:	800B059C
  * Size:	000100
  */
-void JAInter::HeapMgr::checkOnMemory(unsigned long, unsigned char*)
+void JAInter::HeapMgr::checkOnMemory(u32, u8*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -355,7 +355,7 @@ lbl_800B0680:
  * Address:	800B069C
  * Size:	000024
  */
-void JAInter::HeapMgr::releaseAutoHeapPointer(unsigned char index)
+void JAInter::HeapMgr::releaseAutoHeapPointer(u8 index)
 {
 	if (index == 0xFF) {
 		return;
@@ -379,7 +379,7 @@ void JAInter::HeapMgr::releaseAutoHeapPointer(unsigned char index)
  * Address:	........
  * Size:	000074
  */
-void JAInter::HeapMgr::changeAutoHeapPointerToPosition(unsigned char*)
+void JAInter::HeapMgr::changeAutoHeapPointerToPosition(u8*)
 {
 	// UNUSED FUNCTION
 }
@@ -472,7 +472,7 @@ lbl_800B0784:
  * Address:	800B07A8
  * Size:	000048
  */
-void* JAInter::HeapMgr::getFreeAutoHeapPointer(unsigned char index, unsigned long p2)
+void* JAInter::HeapMgr::getFreeAutoHeapPointer(u8 index, u32 p2)
 {
 	sAutoHeap[index]._08 = p2;
 	void* ptr            = sAutoHeap[index]._04;
@@ -514,7 +514,7 @@ u32 JAInter::HeapMgr::checkUsefulStayHeapPosition() { return sStayHeapCount & 0x
  * Address:	800B07FC
  * Size:	000108
  */
-void* JAInter::HeapMgr::getFreeStayHeapPointer(unsigned long, unsigned long)
+void* JAInter::HeapMgr::getFreeStayHeapPointer(u32, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -611,7 +611,7 @@ void JAInter::HeapMgr::clearAutoHeap(JAInter::HeapBlock*)
  * Address:	........
  * Size:	000054
  */
-void JAInter::HeapMgr::clearAutoHeap(unsigned long)
+void JAInter::HeapMgr::clearAutoHeap(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -621,7 +621,7 @@ void JAInter::HeapMgr::clearAutoHeap(unsigned long)
  * Address:	........
  * Size:	00006C
  */
-void JAInter::HeapMgr::clearStayHeap(unsigned long)
+void JAInter::HeapMgr::clearStayHeap(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -631,7 +631,7 @@ void JAInter::HeapMgr::clearStayHeap(unsigned long)
  * Address:	........
  * Size:	00007C
  */
-void JAInter::HeapMgr::getAutoHeapPointer(unsigned long)
+void JAInter::HeapMgr::getAutoHeapPointer(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -641,14 +641,14 @@ void JAInter::HeapMgr::getAutoHeapPointer(unsigned long)
  * Address:	800B0904
  * Size:	000014
  */
-void JAInter::HeapMgr::setAutoHeapLoadedFlag(unsigned char index, unsigned char flag) { sAutoHeap[index]._00 = flag; }
+void JAInter::HeapMgr::setAutoHeapLoadedFlag(u8 index, u8 flag) { sAutoHeap[index]._00 = flag; }
 
 /*
  * --INFO--
  * Address:	800B0918
  * Size:	000014
  */
-void JAInter::HeapMgr::setStayHeapLoadedFlag(unsigned char index, unsigned char flag) { sStayHeap[index]._00 = flag; }
+void JAInter::HeapMgr::setStayHeapLoadedFlag(u8 index, u8 flag) { sStayHeap[index]._00 = flag; }
 
 /*
  * --INFO--

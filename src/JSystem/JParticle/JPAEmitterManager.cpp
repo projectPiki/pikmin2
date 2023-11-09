@@ -28,7 +28,7 @@
  * Address:	80090538
  * Size:	0001FC
  */
-JPAEmitterManager::JPAEmitterManager(unsigned long, unsigned long, JKRHeap*, unsigned char, unsigned char)
+JPAEmitterManager::JPAEmitterManager(u32, u32, JKRHeap*, u8, u8)
 {
 	/*
 	.loc_0x0:
@@ -376,8 +376,8 @@ blr
  * Address:	800908BC
  * Size:	0000DC
  */
-JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<float>&, unsigned short, unsigned char, unsigned char,
-                                                         JPAEmitterCallBack*, JPAParticleCallBack*)
+JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<float>&, u16, u8, u8, JPAEmitterCallBack*,
+                                                         JPAParticleCallBack*)
 {
 	/*
 	.loc_0x0:
@@ -448,7 +448,7 @@ JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<
  * Address:	........
  * Size:	0000C8
  */
-void JPAEmitterManager::createSimpleEmitter(const JGeometry::TVec3<float>&, unsigned short, JPAEmitterCallBack*, JPAParticleCallBack*)
+void JPAEmitterManager::createSimpleEmitter(const JGeometry::TVec3<float>&, u16, JPAEmitterCallBack*, JPAParticleCallBack*)
 {
 	// UNUSED FUNCTION
 }
@@ -458,7 +458,7 @@ void JPAEmitterManager::createSimpleEmitter(const JGeometry::TVec3<float>&, unsi
  * Address:	........
  * Size:	000090
  */
-void JPAEmitterManager::calc(unsigned char)
+void JPAEmitterManager::calc(u8)
 {
 	// UNUSED FUNCTION
 }
@@ -531,7 +531,7 @@ lbl_80090A18:
  * Address:	80090A48
  * Size:	000200
  */
-void JPAEmitterManager::draw(const JPADrawInfo*, unsigned char)
+void JPAEmitterManager::draw(const JPADrawInfo*, u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -676,7 +676,7 @@ lbl_80090C24:
  * Address:	........
  * Size:	00005C
  */
-void JPAEmitterManager::draw(float (*)[4], unsigned char)
+void JPAEmitterManager::draw(float (*)[4], u8)
 {
 	// UNUSED FUNCTION
 }
@@ -743,7 +743,7 @@ lbl_80090C78:
  * Address:	80090CA0
  * Size:	000060
  */
-void JPAEmitterManager::forceDeleteGroupEmitter(unsigned char)
+void JPAEmitterManager::forceDeleteGroupEmitter(u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -820,7 +820,7 @@ void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter*)
  * Address:	80090D6C
  * Size:	000010
  */
-void JPAEmitterManager::entryResourceManager(JPAResourceManager*, unsigned char)
+void JPAEmitterManager::entryResourceManager(JPAResourceManager*, u8)
 {
 	/*
 	lwz      r3, 0x1c(r3)
@@ -835,7 +835,7 @@ void JPAEmitterManager::entryResourceManager(JPAResourceManager*, unsigned char)
  * Address:	80090D7C
  * Size:	0000C8
  */
-void JPAEmitterManager::clearResourceManager(unsigned char)
+void JPAEmitterManager::clearResourceManager(u8)
 {
 	/*
 	stwu     r1, -0x20(r1)

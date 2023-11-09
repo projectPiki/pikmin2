@@ -2177,7 +2177,7 @@ lbl_80009FD4:
  * Address:	80009FE8
  * Size:	000030
  */
-void TFunctionValue_list_parameter::data_set(const float*, unsigned long)
+void TFunctionValue_list_parameter::data_set(const float*, u32)
 {
 	/*
 	stw      r4, 0x44(r3)
@@ -3330,7 +3330,7 @@ lbl_8000AD0C:
  * Address:	8000AD20
  * Size:	000050
  */
-void JStudio::TFunctionValue_hermite::data_set(const float*, unsigned long, unsigned long)
+void JStudio::TFunctionValue_hermite::data_set(const float*, u32, u32)
 {
 	/*
 	.loc_0x0:

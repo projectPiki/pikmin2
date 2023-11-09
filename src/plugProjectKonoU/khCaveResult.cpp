@@ -2113,7 +2113,7 @@ blr
  * Address:	803FB04C
  * Size:	000078
  */
-void ObjCaveResult::setAlpha(int index, unsigned char alpha)
+void ObjCaveResult::setAlpha(int index, u8 alpha)
 {
 	u64 tag[2] = { 'Nicon00', 'Nicon01' };
 	mScreenMain->search(tag[index])->setAlpha(alpha);

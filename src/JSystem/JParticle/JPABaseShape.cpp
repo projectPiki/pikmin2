@@ -4377,7 +4377,7 @@ lbl_8008ECE4:
  * Address:	........
  * Size:	0003F4
  */
-void JPABaseShape::init_jpa(const unsigned char*, JKRHeap*)
+void JPABaseShape::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }

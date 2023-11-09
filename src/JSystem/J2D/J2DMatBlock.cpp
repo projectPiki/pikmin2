@@ -1001,7 +1001,7 @@ lbl_8004B30C:
  * Size:	0000E0
  * prepareTexture__12J2DTevBlock2FUc
  */
-bool J2DTevBlock2::prepareTexture(unsigned char count)
+bool J2DTevBlock2::prepareTexture(u8 count)
 {
 	for (u8 i = 0; i < count; i++) {
 		if (i >= 2) {
@@ -1589,7 +1589,7 @@ void J2DTevBlock2::setGX()
  * Size:	000048
  * loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
  */
-void J2DTevBlock2::loadTexture(_GXTexMapID id, unsigned long index)
+void J2DTevBlock2::loadTexture(_GXTexMapID id, u32 index)
 {
 	if (index < 2 && mTextures[index] != nullptr && mTextures[index]->mTexInfo != nullptr) {
 		mTextures[index]->load(id);
@@ -3196,7 +3196,7 @@ bool J2DTevBlock8::prepareTexture(u8 count)
  * Address:	8004E284
  * Size:	0003C8
  */
-bool J2DTevBlock8::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
+bool J2DTevBlock8::insertTexture(u32, const ResTIMG*, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -5098,7 +5098,7 @@ bool J2DTevBlock16::setFont(JUTFont* font)
  * Size:	0000D0
  * setPalette__13J2DTevBlock16FUlPC7ResTLUT
  */
-bool J2DTevBlock16::setPalette(unsigned long index, const ResTLUT* lut)
+bool J2DTevBlock16::setPalette(u32 index, const ResTLUT* lut)
 {
 	if (index >= 8) {
 		return false;

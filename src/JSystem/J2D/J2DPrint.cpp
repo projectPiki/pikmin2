@@ -477,7 +477,7 @@ lbl_8003DBC0:
  * Address:	8003DBD8
  * Size:	00006C
  */
-void J2DPrint::setBuffer(unsigned long)
+void J2DPrint::setBuffer(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -674,7 +674,7 @@ lbl_8003DDF4:
  * Address:	8003DE0C
  * Size:	000120
  */
-void J2DPrint::print(float, float, unsigned char, const char*, ...)
+void J2DPrint::print(float, float, u8, const char*, ...)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -841,7 +841,7 @@ lbl_8003DFD8:
  * Address:	8003E018
  * Size:	00031C
  */
-void J2DPrint::printReturn(const char*, float, float, J2DTextBoxHBinding, J2DTextBoxVBinding, float, float, unsigned char)
+void J2DPrint::printReturn(const char*, float, float, J2DTextBoxHBinding, J2DTextBoxVBinding, float, float, u8)
 {
 	/*
 	.loc_0x0:
@@ -1076,7 +1076,7 @@ void J2DPrint::printReturn(const char*, float, float, J2DTextBoxHBinding, J2DTex
  * Address:	8003E334
  * Size:	0007BC
  */
-void J2DPrint::parse(const unsigned char*, int, int, unsigned short*, J2DPrint::TSize&, unsigned char, bool)
+void J2DPrint::parse(const u8*, int, int, u16*, J2DPrint::TSize&, u8, bool)
 {
 	/*
 	.loc_0x0:
@@ -1761,7 +1761,7 @@ lbl_8003EC10:
  * Address:	8003EC18
  * Size:	0005A0
  */
-void J2DPrint::doEscapeCode(const unsigned char**, unsigned char)
+void J2DPrint::doEscapeCode(const u8**, u8)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2236,7 +2236,7 @@ void J2DPrint::initchar()
  * Address:	8003F22C
  * Size:	000114
  */
-void J2DPrint::getNumberS32(const unsigned char**, long, long, int)
+void J2DPrint::getNumberS32(const u8**, long, long, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2330,7 +2330,7 @@ lbl_8003F320:
  * Address:	8003F340
  * Size:	000134
  */
-void J2DPrint::getNumberF32(const unsigned char**, float, float, int)
+void J2DPrint::getNumberF32(const u8**, float, float, int)
 {
 	/*
 	stwu     r1, -0x40(r1)

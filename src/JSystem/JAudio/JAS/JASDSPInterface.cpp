@@ -528,7 +528,7 @@ void JASDsp::getDSPHandleNc(int)
  * Address:	........
  * Size:	0000A4
  */
-void JASDsp::setFilterTable(short*, short*, unsigned long)
+void JASDsp::setFilterTable(short*, short*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -594,7 +594,7 @@ void JASDsp::initBuffer()
  * Address:	........
  * Size:	000010
  */
-JASDsp::Fxline& JASDsp::getFXHandle(unsigned char index)
+JASDsp::Fxline& JASDsp::getFXHandle(u8 index)
 {
 	// UNUSED FUNCTION
 	return FX_BUF[index];
@@ -605,7 +605,7 @@ JASDsp::Fxline& JASDsp::getFXHandle(unsigned char index)
  * Address:	........
  * Size:	000014
  */
-void JASDsp::getFXHandleNc(unsigned char)
+void JASDsp::getFXHandleNc(u8)
 {
 	// UNUSED FUNCTION
 }
@@ -615,7 +615,7 @@ void JASDsp::getFXHandleNc(unsigned char)
  * Address:	800A54E4
  * Size:	000154
  */
-bool JASDsp::setFXLine(unsigned char lineIndex, short* p2, JASDsp::FxlineConfig_* config)
+bool JASDsp::setFXLine(u8 lineIndex, short* p2, JASDsp::FxlineConfig_* config)
 {
 	Fxline& fx = getFXHandle(lineIndex);
 	JASCriticalSection criticalSection;
@@ -762,7 +762,7 @@ lbl_800A560C:
  * Address:	........
  * Size:	0000E8
  */
-void JASDsp::changeFXLineParam(unsigned char, unsigned char, unsigned long)
+void JASDsp::changeFXLineParam(u8, u8, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -930,7 +930,7 @@ u16 JASDsp::TChannel::getRemainSamples() const
  * Address:	800A5750
  * Size:	000150
  */
-void JASDsp::TChannel::setWaveInfo(JASWaveInfo const& info, unsigned long p2, unsigned long p3)
+void JASDsp::TChannel::setWaveInfo(JASWaveInfo const& info, u32 p2, u32 p3)
 {
 	static const u8 COMP_BLOCKSAMPLES[8] = { 0x10, 0x10, 0x01, 0x01, 0x01, 0x10, 0x10, 0x01 };
 	static const u8 COMP_BLOCKBYTES[8]   = { 0x9, 0x5, 0x8, 0x10, 0x1, 0x1, 0x1, 0x1 };
@@ -1132,7 +1132,7 @@ void JASDsp::TChannel::setAutoMixer(u16 p1, u8 p2, u8 p3, u8 p4, u8 p5)
  * Address:	........
  * Size:	000008
  */
-void JASDsp::TChannel::updateAMVolume(unsigned short)
+void JASDsp::TChannel::updateAMVolume(u16)
 {
 	// UNUSED FUNCTION
 }
@@ -1142,7 +1142,7 @@ void JASDsp::TChannel::updateAMVolume(unsigned short)
  * Address:	........
  * Size:	000010
  */
-void JASDsp::TChannel::updateAMPan(unsigned char, unsigned char)
+void JASDsp::TChannel::updateAMPan(u8, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -1152,7 +1152,7 @@ void JASDsp::TChannel::updateAMPan(unsigned char, unsigned char)
  * Address:	........
  * Size:	00000C
  */
-void JASDsp::TChannel::updateAMFX(unsigned char)
+void JASDsp::TChannel::updateAMFX(u8)
 {
 	// UNUSED FUNCTION
 }
@@ -1266,7 +1266,7 @@ void JASDsp::TChannel::initFilter()
  * Address:	800A5A30
  * Size:	000038
  */
-void JASDsp::TChannel::setFilterMode(unsigned short p1)
+void JASDsp::TChannel::setFilterMode(u16 p1)
 {
 	u8 v1 = p1 & 0x1F;
 	if ((p1 & 0x20) != 0) {

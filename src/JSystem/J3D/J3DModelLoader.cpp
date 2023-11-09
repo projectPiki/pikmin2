@@ -152,7 +152,7 @@
  * Address:	8006F894
  * Size:	000154
  */
-J3DModelData* J3DModelLoaderDataBase::load(const void* stream, unsigned long flags)
+J3DModelData* J3DModelLoaderDataBase::load(const void* stream, u32 flags)
 {
 	if (stream == nullptr) {
 		return nullptr;
@@ -520,14 +520,14 @@ lbl_8006FE48:
  * Address:	8006FE60
  * Size:	000004
  */
-void J3DModelLoader::readMaterial_v21(const J3DMaterialBlock_v21*, unsigned long) { }
+void J3DModelLoader::readMaterial_v21(const J3DMaterialBlock_v21*, u32) { }
 
 /*
  * --INFO--
  * Address:	8006FE64
  * Size:	000004
  */
-void J3DModelLoader::readMaterial(const J3DMaterialBlock*, unsigned long) { }
+void J3DModelLoader::readMaterial(const J3DMaterialBlock*, u32) { }
 
 /*
  * --INFO--
@@ -568,14 +568,14 @@ J3DMaterialTable* J3DModelLoader::loadMaterialTable(const void* stream)
  * Address:	8006FFB0
  * Size:	000004
  */
-void J3DModelLoader::readMaterialTable_v21(const J3DMaterialBlock_v21*, unsigned long) { }
+void J3DModelLoader::readMaterialTable_v21(const J3DMaterialBlock_v21*, u32) { }
 
 /*
  * --INFO--
  * Address:	8006FFB4
  * Size:	000004
  */
-void J3DModelLoader::readMaterialTable(const J3DMaterialBlock*, unsigned long) { }
+void J3DModelLoader::readMaterialTable(const J3DMaterialBlock*, u32) { }
 
 /*
  * --INFO--
@@ -995,7 +995,7 @@ lbl_80070380:
  * Address:	800703A8
  * Size:	000168
  */
-void J3DModelLoader::readInformation(const J3DModelInfoBlock* block, unsigned long flags)
+void J3DModelLoader::readInformation(const J3DModelInfoBlock* block, u32 flags)
 {
 	J3DMtxCalc* calc              = nullptr;
 	mModelData->mModelLoaderFlags = flags | block->_08;
@@ -1437,7 +1437,7 @@ lbl_800709B0:
  * Address:	800709E0
  * Size:	000274
  */
-void J3DModelLoader_v26::readMaterial(const J3DMaterialBlock*, unsigned long)
+void J3DModelLoader_v26::readMaterial(const J3DMaterialBlock*, u32)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -1671,7 +1671,7 @@ lbl_80070C40:
  * Address:	80070CA8
  * Size:	00025C
  */
-void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21*, unsigned long)
+void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21*, u32)
 {
 	/*
 	.loc_0x0:
@@ -1866,7 +1866,7 @@ void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21*, unsigned 
  * Address:	80070F04
  * Size:	00011C
  */
-void J3DModelLoader::readShape(const J3DShapeBlock*, unsigned long)
+void J3DModelLoader::readShape(const J3DShapeBlock*, u32)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2164,7 +2164,7 @@ void J3DModelLoader_v26::readMaterialTable(const J3DMaterialBlock* block, u32 fl
  * Address:	80071230
  * Size:	00014C
  */
-void J3DModelLoader_v21::readMaterialTable_v21(const J3DMaterialBlock_v21*, unsigned long)
+void J3DModelLoader_v21::readMaterialTable_v21(const J3DMaterialBlock_v21*, u32)
 {
 	/*
 	.loc_0x0:
@@ -2350,7 +2350,7 @@ lbl_80071424:
  * Address:	80071440
  * Size:	000150
  */
-void J3DModelLoader::readPatchedMaterial(const J3DMaterialBlock*, unsigned long)
+void J3DModelLoader::readPatchedMaterial(const J3DMaterialBlock*, u32)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2456,7 +2456,7 @@ lbl_8007155C:
  * Address:	80071590
  * Size:	0001BC
  */
-void J3DModelLoader::readMaterialDL(const J3DMaterialDLBlock*, unsigned long)
+void J3DModelLoader::readMaterialDL(const J3DMaterialDLBlock*, u32)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2617,14 +2617,14 @@ void J3DModelLoader::modifyMaterial(u32 flags)
  * Address:	800717C8
  * Size:	000008
  */
-u32 J3DModelLoader::calcSizeMaterial(const J3DMaterialBlock*, unsigned long) { return 0x0; }
+u32 J3DModelLoader::calcSizeMaterial(const J3DMaterialBlock*, u32) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	800717D0
  * Size:	000008
  */
-u32 J3DModelLoader::calcSizeMaterialTable(const J3DMaterialBlock*, unsigned long) { return 0x0; }
+u32 J3DModelLoader::calcSizeMaterialTable(const J3DMaterialBlock*, u32) { return 0x0; }
 
 /*
  * --INFO--
@@ -3027,7 +3027,7 @@ lbl_80071808:
 //  * Address:	80071AF0
 //  * Size:	000018
 //  */
-// void JSUConvertOffsetToPtr<J3DShapeInitData>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<J3DShapeInitData>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0
@@ -3046,7 +3046,7 @@ lbl_80071808:
 //  * Address:	80071B08
 //  * Size:	000018
 //  */
-// void JSUConvertOffsetToPtr<unsigned short>(const void*, unsigned long)
+// void JSUConvertOffsetToPtr<u16>(const void*, u32)
 // {
 // 	/*
 // 	cmplwi   r4, 0

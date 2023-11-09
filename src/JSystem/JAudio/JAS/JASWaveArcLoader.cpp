@@ -135,7 +135,7 @@ JASWaveArc::JASWaveArc()
  * Address:	........
  * Size:	000084
  */
-bool JASWaveArc::loadSetup(unsigned long p1)
+bool JASWaveArc::loadSetup(u32 p1)
 {
 	// UNUSED FUNCTION
 	JASCriticalSection criticalSection;

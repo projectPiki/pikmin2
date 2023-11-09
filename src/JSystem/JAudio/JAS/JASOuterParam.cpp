@@ -94,7 +94,7 @@ u16 JASOuterParam::getOuterUpdate() { return mOuterUpdate; }
  * Address:	........
  * Size:	000010
  */
-void JASOuterParam::setIntFirFilter(short newValue, unsigned char index)
+void JASOuterParam::setIntFirFilter(short newValue, u8 index)
 {
 	// UNUSED FUNCTION
 	mFirFilter[index] = newValue;
