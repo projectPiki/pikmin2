@@ -870,21 +870,17 @@ void JASTrack::connectBus(int p1, int p2) { mChannelUpdater._36[p1] = p2; }
  */
 int JASTrack::noteOn(u8 channelIndex, long p2, long p3, long p4, u32 p5)
 {
-	if (_363 != 0 && (_358 & 0x40) == 0) {
+	if (_363 && (_358 & 0x40)) {
 		return -1;
 	}
-	if ((_35A & 1 << channelIndex) != 0) {
+	if ((_35A & 1 << channelIndex)) {
 		return -1;
 	}
 	noteOff(channelIndex, 0);
-	u16 physicalNumber = JASBankMgr::getPhysicalNumber(mRegisterParam.getBankNumber());
-	u8 programNumber   = mRegisterParam.getProgramNumber();
-	JASChannel* channel;
-	if (_144 != nullptr) {
-		channel = _144(this, physicalNumber, programNumber, p2, p3, mRegisterParam._1A);
-	} else {
-		channel = JASBankMgr::noteOn(physicalNumber, programNumber, p2, p3, mRegisterParam._1A, channelUpdateCallback, this);
-	}
+	u8 physicalNumber   = JASBankMgr::getPhysicalNumber(mRegisterParam.getBankNumber());
+	u8 programNumber    = mRegisterParam.getProgramNumber();
+	JASChannel* channel = !_144 ? JASBankMgr::noteOn(physicalNumber, programNumber, p2, p3, mRegisterParam._1A, channelUpdateCallback, this)
+	                            : _144(this, physicalNumber, programNumber, p2, p3, mRegisterParam._1A);
 	if (channel == nullptr) {
 		return -1;
 	}
@@ -894,128 +890,10 @@ int JASTrack::noteOn(u8 channelIndex, long p2, long p3, long p4, u32 p5)
 	channel->_C8      = p5;
 	channel->setPanPower(mRegisterParam._10, mRegisterParam._12, mRegisterParam._14);
 	overwriteOsc(channel);
-	if (_350 != 0) {
+	if (_350) {
 		channel->directReleaseOsc(_350);
 	}
 	return 0;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r25, 0x24(r1)
-	mr       r26, r3
-	mr       r27, r4
-	mr       r28, r5
-	mr       r29, r6
-	mr       r30, r7
-	mr       r31, r8
-	lbz      r0, 0x363(r3)
-	cmplwi   r0, 0
-	beq      lbl_8009F7FC
-	lbz      r0, 0x358(r26)
-	rlwinm.  r0, r0, 0, 0x19, 0x19
-	beq      lbl_8009F7FC
-	li       r3, -1
-	b        lbl_8009F944
-
-lbl_8009F7FC:
-	clrlwi   r0, r27, 0x18
-	li       r3, 1
-	lbz      r4, 0x35a(r26)
-	slw      r0, r3, r0
-	and.     r0, r4, r0
-	beq      lbl_8009F81C
-	li       r3, -1
-	b        lbl_8009F944
-
-lbl_8009F81C:
-	mr       r3, r26
-	mr       r4, r27
-	li       r5, 0
-	bl       noteOff__8JASTrackFUcUs
-	addi     r3, r26, 0x268
-	bl       getBankNumber__16JASRegisterParamCFv
-	clrlwi   r3, r3, 0x18
-	bl       getPhysicalNumber__10JASBankMgrFUs
-	clrlwi   r25, r3, 0x18
-	addi     r3, r26, 0x268
-	bl       getProgramNumber__16JASRegisterParamCFv
-	lwz      r12, 0x144(r26)
-	mr       r5, r3
-	cmplwi   r12, 0
-	bne      lbl_8009F884
-	lis      r3,
-channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv@ha lhz r7,
-0x282(r26) addi     r8, r3,
-channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv@l clrlwi
-r4, r5, 0x18 mr       r3, r25 mr       r9, r26 clrlwi   r5, r28, 0x18 clrlwi r6,
-r29, 0x18 bl
-noteOn__10JASBankMgrFiiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv mr r28,
-r3 b        lbl_8009F8A4
-
-lbl_8009F884:
-	mr       r3, r26
-	mr       r4, r25
-	clrlwi   r6, r28, 0x18
-	clrlwi   r7, r29, 0x18
-	lhz      r8, 0x282(r26)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
-
-lbl_8009F8A4:
-	cmplwi   r28, 0
-	bne      lbl_8009F8B4
-	li       r3, -1
-	b        lbl_8009F944
-
-lbl_8009F8B4:
-	stw      r30, 0x2c(r28)
-	mr       r3, r26
-	mr       r4, r28
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	rlwinm   r0, r27, 2, 0x16, 0x1d
-	lis      r5, 0x4330
-	add      r4, r26, r0
-	stw      r5, 8(r1)
-	lfd      f3, lbl_80516D80@sda21(r2)
-	mr       r3, r28
-	stw      r28, 0xc0(r4)
-	stw      r31, 0xc8(r28)
-	lhz      r6, 0x278(r26)
-	lhz      r4, 0x27a(r26)
-	stw      r6, 0xc(r1)
-	lhz      r0, 0x27c(r26)
-	lfd      f0, 8(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f1, f0, f3
-	stw      r5, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	fsubs    f2, f0, f3
-	stw      r5, 0x18(r1)
-	lfd      f0, 0x18(r1)
-	fsubs    f3, f0, f3
-	bl       setPanPower__10JASChannelFfff
-	mr       r3, r26
-	mr       r4, r28
-	bl       overwriteOsc__8JASTrackFP10JASChannel
-	lhz      r4, 0x350(r26)
-	cmplwi   r4, 0
-	beq      lbl_8009F940
-	mr       r3, r28
-	bl       directReleaseOsc__10JASChannelFUs
-
-lbl_8009F940:
-	li       r3, 0
-
-lbl_8009F944:
-	lmw      r25, 0x24(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -1026,9 +904,9 @@ lbl_8009F944:
 void JASTrack::overwriteOsc(JASChannel* channel)
 {
 	for (int i = 0; i < 2; i++) {
-		u32 v1 = _2D8[i];
+		const u32 v1 = _2D8[i];
 		if (v1 != 15) {
-			u32 v2 = v1 & 3;
+			const u32 v2 = v1 & 3;
 			if ((v1 & 8) != 0) {
 				channel->copyOsc(v2, _2A8 + i);
 			} else {
@@ -1101,7 +979,6 @@ lbl_8009F9D4:
  */
 bool JASTrack::noteOff(u8 channelIndex, u16 p2)
 {
-
 	if (_C0[channelIndex] == nullptr) {
 		return false;
 	}
@@ -1118,7 +995,6 @@ bool JASTrack::noteOff(u8 channelIndex, u16 p2)
  * --INFO--
  * Address:	8009FA64
  * Size:	000064
- * TODO: Requires JASBankMgr.
  */
 int JASTrack::gateOn(u8 p1, long p2, long p3, long p4)
 {
@@ -1136,27 +1012,12 @@ int JASTrack::gateOn(u8 p1, long p2, long p3, long p4)
  * Address:	8009FAC8
  * Size:	00002C
  */
-bool JASTrack::checkNoteStop(long p1)
+BOOL JASTrack::checkNoteStop(long p1)
 {
 	if (_C0[p1] == nullptr) {
 		return true;
 	}
 	return _C0[p1]->_18 == 0;
-	/*
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0xc0(r3)
-	cmplwi   r3, 0
-	bne      lbl_8009FAE4
-	li       r3, 1
-	blr
-
-lbl_8009FAE4:
-	lwz      r0, 0x18(r3)
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	blr
-	*/
 }
 
 /*

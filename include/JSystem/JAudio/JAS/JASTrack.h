@@ -172,7 +172,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void overwriteOsc(JASChannel*);
 	bool noteOff(u8, u16);
 	int gateOn(u8, long, long, long);
-	bool checkNoteStop(long);
+	BOOL checkNoteStop(long);
 	void oscSetupFull(u8, u32, u32);
 	void oscSetupSimpleEnv(u8, u32);
 	void oscSetupSimple(u8);
