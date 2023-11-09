@@ -128,7 +128,7 @@ struct DispMemberCave : public DispMemberBase {
 		mTreasureDist      = 900.0f;
 		mDrawSensor        = false;
 		mRadarState        = 1;
-		_5F                = false;
+		mAppearRadar       = false;
 		mIsBitterUnlocked  = false;
 		mIsSpicyUnlocked   = false;
 		mRadarEnabled      = false;
@@ -149,7 +149,7 @@ struct DispMemberCave : public DispMemberBase {
 	u8 mDrawSensor;          // _5C
 	u8 mPayDebt;             // _5D
 	u8 mIsFinalFloor;        // _5E
-	u8 _5F;                  // _5F
+	u8 mAppearRadar;         // _5F
 	bool mRadarEnabled;      // _60
 	bool mAllTreasureGotten; // _61
 	bool mIsBitterUnlocked;  // _62, have made first bitter spray from berries
@@ -166,7 +166,6 @@ struct DispMemberCaveMore : public DispMemberAnaDemo {
 		mCaveOtakaraNum = 4;
 		mCaveOtakaraMax = 4;
 		mPikis          = 10;
-		mCaveID         = '2p_c';
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCaveMore); } // _08 (weak)

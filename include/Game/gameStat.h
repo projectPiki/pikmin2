@@ -36,21 +36,6 @@ struct PikiCounter {
 	u32 mPikiCounts[PikiColorCount]; // 04
 };
 
-struct PikiNaviCounter {
-	PikiNaviCounter();
-
-	void clear();
-	void inc(Piki*);
-	void dec(Piki*);
-
-	PikiCounter mCounter[PikiColorCount]; // _00
-};
-
-int getMapPikmins(int);
-int getAllPikmins(int);
-int getMapPikmins_exclude_Me(int);
-int getZikatuPikmins(int);
-
 inline void checkNaviIndex(int index)
 {
 	bool check = false;
@@ -60,6 +45,37 @@ inline void checkNaviIndex(int index)
 
 	P2ASSERTLINE(119, check);
 }
+
+struct PikiNaviCounter {
+	PikiNaviCounter();
+
+	void clear();
+	void inc(Piki*);
+	void dec(Piki*);
+
+	PikiCounter mCounter[PikiColorCount]; // _00
+
+	inline operator int()
+	{
+		int total = 0;
+		for (int i = 0; i < PikiColorCount; i++) {
+			total += mCounter[i];
+		}
+		return total;
+	}
+
+	inline int getCount(int id, int color)
+	{
+		checkNaviIndex(id);
+		PikiCounter& counter = mCounter[id];
+		return counter(color);
+	}
+};
+
+int getMapPikmins(int);
+int getAllPikmins(int);
+int getMapPikmins_exclude_Me(int);
+int getZikatuPikmins(int);
 
 extern PikiNaviCounter workPikis;
 extern PikiNaviCounter formationPikis;

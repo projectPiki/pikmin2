@@ -27,622 +27,17 @@
 #include "Game/NaviParms.h"
 #include "Dolphin/rand.h"
 #include "Game/PikiState.h"
+#include "Game/AIConstants.h"
+#include "Game/Entities/PelletOtakara.h"
+#include "Game/Entities/PelletItem.h"
+#include "Game/Entities/PelletCarcass.h"
 #include "PikiAI.h"
 #include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_singleGameSection_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047CD98
-    lbl_8047CD98:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x53696E67
-        .4byte 0x6C654761
-        .4byte 0x6D655365
-        .4byte 0x6374696F
-        .4byte 0x6E000000
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-    .global lbl_8047CDC4
-    lbl_8047CDC4:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x50535363
-        .4byte 0x656E652E
-        .4byte 0x68000000
-        .4byte 0x67657420
-        .4byte 0x736F756E
-        .4byte 0x64207363
-        .4byte 0x656E6520
-        .4byte 0x61740A69
-        .4byte 0x6E76616C
-        .4byte 0x69642074
-        .4byte 0x696D6D69
-        .4byte 0x6E670A00
-        .4byte 0x50534D61
-        .4byte 0x696E5369
-        .4byte 0x64655F53
-        .4byte 0x63656E65
-        .4byte 0x2E680000
-    .global lbl_8047CE14
-    lbl_8047CE14:
-        .4byte 0x63617665
-        .4byte 0x64617965
-        .4byte 0x6E640000
-        .4byte 0x5347533A
-        .4byte 0x3A6F6E49
-        .4byte 0x6E697400
-        .4byte 0x5347533A
-        .4byte 0x3A46534D
-        .4byte 0x00000000
-        .4byte 0x5347533A
-        .4byte 0x3A736574
-        .4byte 0x75704669
-        .4byte 0x78000000
-    .global lbl_8047CE48
-    lbl_8047CE48:
-        .4byte 0x73696E67
-        .4byte 0x6C654761
-        .4byte 0x6D655365
-        .4byte 0x6374696F
-        .4byte 0x6E2E6370
-        .4byte 0x70000000
-    .global lbl_8047CE60
-    lbl_8047CE60:
-        .4byte 0x43757272
-        .4byte 0x54696D65
-        .4byte 0x72202825
-        .4byte 0x6429203A
-        .4byte 0x20646973
-        .4byte 0x61626C65
-        .4byte 0x54696D65
-        .4byte 0x72282564
-        .4byte 0x290A0000
-        .4byte 0x6730325F
-        .4byte 0x626F6F74
-        .4byte 0x5F6F6E79
-        .4byte 0x6F6E5200
-        .4byte 0x6731455F
-        .4byte 0x626F6F74
-        .4byte 0x5F6F6E79
-        .4byte 0x6F6E5900
-        .4byte 0x6732305F
-        .4byte 0x626F6F74
-        .4byte 0x5F6F6E79
-        .4byte 0x6F6E4200
-        .4byte 0x6730335F
-        .4byte 0x6D656574
-        .4byte 0x5F726564
-        .4byte 0x70696B6D
-        .4byte 0x696E0000
-        .4byte 0x4E6F2052
-        .4byte 0x4544204F
-        .4byte 0x4E594F4E
-        .4byte 0x00000000
-        .4byte 0x6731465F
-        .4byte 0x6D656574
-        .4byte 0x5F79656C
-        .4byte 0x6C6F7770
-        .4byte 0x696B6D69
-        .4byte 0x6E000000
-        .4byte 0x6732315F
-        .4byte 0x6D656574
-        .4byte 0x5F626C75
-        .4byte 0x6570696B
-        .4byte 0x6D696E00
-        .4byte 0x6732345F
-        .4byte 0x6D656574
-        .4byte 0x5F626C61
-        .4byte 0x636B7069
-        .4byte 0x6B6D696E
-        .4byte 0x00000000
-        .4byte 0x6732375F
-        .4byte 0x6D656574
-        .4byte 0x5F776869
-        .4byte 0x74657069
-        .4byte 0x6B6D696E
-        .4byte 0x00000000
-    .global lbl_8047CF34
-    lbl_8047CF34:
-        .4byte 0x6F70656E
-        .4byte 0x5F636176
-        .4byte 0x65496E00
-    .global lbl_8047CF40
-    lbl_8047CF40:
-        .4byte 0x6F70656E
-        .4byte 0x43617665
-        .4byte 0x4D6F7265
-        .4byte 0x00000000
-    .global lbl_8047CF50
-    lbl_8047CF50:
-        .4byte 0x6F70656E
-        .4byte 0x4B616E6B
-        .4byte 0x65747500
-        .4byte 0x63617665
-        .4byte 0x2D796573
-        .4byte 0x00000000
-        .4byte 0x63617665
-        .4byte 0x2D7A656E
-        .4byte 0x6B616900
-        .4byte 0x6D6F7265
-        .4byte 0x2D796573
-        .4byte 0x00000000
-        .4byte 0x6D6F7265
-        .4byte 0x2D7A656E
-        .4byte 0x6B616900
-        .4byte 0x6B616E6B
-        .4byte 0x2D796573
-        .4byte 0x00000000
-    .global lbl_8047CF98
-    lbl_8047CF98:
-        .4byte 0x63726561
-        .4byte 0x74654661
-        .4byte 0x6C6C5069
-        .4byte 0x6B6D696E
-        .4byte 0x73000000
-    .global lbl_8047CFAC
-    lbl_8047CFAC:
-        .4byte 0x67616D65
-        .4byte 0x53746174
-        .4byte 0x2E680000
-    .global lbl_8047CFB8
-    lbl_8047CFB8:
-        .4byte 0x50696B69
-        .4byte 0x496E6974
-        .4byte 0x41726700
-    .global lbl_8047CFC4
-    lbl_8047CFC4:
-        .4byte 0x50696B69
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804B1070
-    lbl_804B1070:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804B107C
-    lbl_804B107C:
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte saveCaveMore__Q24Game17SingleGameSectionFv
-    .global lbl_804B1088
-    lbl_804B1088:
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte setupFloatMemory__Q24Game15BaseGameSectionFv
-    .global __vt__Q32og6Screen14DispMemberCave
-    __vt__Q32og6Screen14DispMemberCave:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen14DispMemberCaveFv
-        .4byte getOwnerID__Q32og6Screen14DispMemberCaveFv
-        .4byte getMemberID__Q32og6Screen14DispMemberCaveFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32og6Screen17DispMemberHurryUp
-    __vt__Q32og6Screen17DispMemberHurryUp:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen17DispMemberHurryUpFv
-        .4byte getOwnerID__Q32og6Screen17DispMemberHurryUpFv
-        .4byte getMemberID__Q32og6Screen17DispMemberHurryUpFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32og6Screen21DispMemberDayEndCount
-    __vt__Q32og6Screen21DispMemberDayEndCount:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen21DispMemberDayEndCountFv
-        .4byte getOwnerID__Q32og6Screen21DispMemberDayEndCountFv
-        .4byte getMemberID__Q32og6Screen21DispMemberDayEndCountFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32og6Screen16DispMemberGround
-    __vt__Q32og6Screen16DispMemberGround:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen16DispMemberGroundFv
-        .4byte getOwnerID__Q32og6Screen16DispMemberGroundFv
-        .4byte getMemberID__Q32og6Screen16DispMemberGroundFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q24Game11PikiInitArg
-    __vt__Q24Game11PikiInitArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q24Game11PikiInitArgFv
-    .global __vt__Q32og6Screen21DispMemberKanketuMenu
-    __vt__Q32og6Screen21DispMemberKanketuMenu:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen21DispMemberKanketuMenuFv
-        .4byte getOwnerID__Q32og6Screen21DispMemberKanketuMenuFv
-        .4byte getMemberID__Q32og6Screen21DispMemberKanketuMenuFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32og6Screen18DispMemberCaveMore
-    __vt__Q32og6Screen18DispMemberCaveMore:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen18DispMemberCaveMoreFv
-        .4byte getOwnerID__Q32og6Screen18DispMemberCaveMoreFv
-        .4byte getMemberID__Q32og6Screen18DispMemberCaveMoreFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32og6Screen17DispMemberAnaDemo
-    __vt__Q32og6Screen17DispMemberAnaDemo:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen17DispMemberAnaDemoFv
-        .4byte getOwnerID__Q32og6Screen17DispMemberAnaDemoFv
-        .4byte getMemberID__Q32og6Screen17DispMemberAnaDemoFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32og6Screen14DispMemberBase
-    __vt__Q32og6Screen14DispMemberBase:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q24Game11PikiKillArg
-    __vt__Q24Game11PikiKillArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q24Game11PikiKillArgFv
-    .global __vt__Q23efx11TLastMomiji
-    __vt__Q23efx11TLastMomiji:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx11TLastMomijiFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx11TLastMomijiFv
-    .global __vt__Q23efx13TForestSakura
-    __vt__Q23efx13TForestSakura:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx13TForestSakuraFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx13TForestSakuraFv
-    .global __vt__Q23efx13TTutorialSnow
-    __vt__Q23efx13TTutorialSnow:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx13TTutorialSnowFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx13TTutorialSnowFv
-    .global __vt__Q26PSGame13CaveFloorInfo
-    __vt__Q26PSGame13CaveFloorInfo:
-        .4byte 0
-        .4byte 0
-        .4byte isCaveFloor__Q26PSGame13CaveFloorInfoFv
-        .4byte isBossFloor__Q26PSGame13CaveFloorInfoFv
-        .4byte isRelaxFloor__Q26PSGame13CaveFloorInfoFv
-    .global "__vt__Q24Game40StateMachine<Q24Game17SingleGameSection>"
-    "__vt__Q24Game40StateMachine<Q24Game17SingleGameSection>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "start__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-    .global "__vt__36Delegate<Q24Game17SingleGameSection>"
-    "__vt__36Delegate<Q24Game17SingleGameSection>":
-        .4byte 0
-        .4byte 0
-        .4byte "invoke__36Delegate<Q24Game17SingleGameSection>Fv"
-    .global __vt__Q34Game10SingleGame15CaveDayEndState
-    __vt__Q34Game10SingleGame15CaveDayEndState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-        .4byte
-   exec__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSection .4byte
-   cleanup__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSection
-        .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSectionR8Graphics
-        .4byte
-   onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-        .4byte
-   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-        .4byte
-   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-        .4byte
-   on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
-        .4byte
-   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-    .global __vt__Q34Game10SingleGame5State
-    __vt__Q34Game10SingleGame5State:
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectionPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "cleanup__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionR8Graphics .4byte
-   onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-        .4byte
-   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-        .4byte
-   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-        .4byte
-   on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
-        .4byte
-   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-    .global "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"
-    "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectionPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "cleanup__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-    .global __vt__Q34Game10SingleGame3FSM
-    __vt__Q34Game10SingleGame3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSection
-        .4byte
-   "start__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   transit__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSectioniPQ24Game8StateArg
-    .global __vt__Q24Game17SingleGameSection
-    __vt__Q24Game17SingleGameSection:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game17SingleGameSectionFv
-        .4byte run__7SectionFv
-        .4byte update__7SectionFv
-        .4byte draw__7SectionFR8Graphics
-        .4byte init__Q24Game15BaseGameSectionFv
-        .4byte drawInit__7SectionFR8Graphics
-        .4byte
-   drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode .4byte
-   doExit__7SectionFv .4byte forceFinish__Q24Game15BaseGameSectionFv .4byte
-   forceReset__7SectionFv .4byte getCurrentSection__7SectionFv .4byte
-   doLoadingStart__7SectionFv .4byte doLoading__7SectionFv .4byte
-   doUpdate__Q24Game17SingleGameSectionFv .4byte
-   doDraw__Q24Game17SingleGameSectionFR8Graphics .4byte isFinishable__7SectionFv
-        .4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
-        .4byte refreshHIO__Q24Game14BaseHIOSectionFv
-        .4byte sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage
-        .4byte pre2dDraw__Q24Game15BaseGameSectionFR8Graphics
-        .4byte getCurrFloor__Q24Game17SingleGameSectionFv
-        .4byte isDevelopSection__Q24Game17SingleGameSectionFv
-        .4byte addChallengeScore__Q24Game15BaseGameSectionFi
-        .4byte startMainBgm__Q24Game17SingleGameSectionFv
-        .4byte section_fadeout__Q24Game17SingleGameSectionFv
-        .4byte goNextFloor__Q24Game17SingleGameSectionFPQ34Game8ItemHole4Item
-        .4byte goCave__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Item
-        .4byte
-   goMainMap__Q24Game17SingleGameSectionFPQ34Game15ItemBigFountain4Item .4byte
-   getCaveID__Q24Game17SingleGameSectionFv .4byte
-   getCurrentCourseInfo__Q24Game17SingleGameSectionFv .4byte
-   challengeDisablePelplant__Q24Game15BaseGameSectionFv .4byte
-   getCaveFilename__Q24Game17SingleGameSectionFv .4byte
-   getEditorFilename__Q24Game15BaseGameSectionFv .4byte
-   getVsEditNumber__Q24Game15BaseGameSectionFv .4byte
-   openContainerWindow__Q24Game15BaseGameSectionFv .4byte
-   closeContainerWindow__Q24Game15BaseGameSectionFv .4byte
-   playMovie_firstexperience__Q24Game17SingleGameSectionFiPQ24Game8Creature
-        .4byte playMovie_bootup__Q24Game17SingleGameSectionFPQ24Game5Onyon
-        .4byte playMovie_helloPikmin__Q24Game17SingleGameSectionFPQ24Game4Piki
-        .4byte enableTimer__Q24Game17SingleGameSectionFfUl
-        .4byte disableTimer__Q24Game17SingleGameSectionFUl
-        .4byte getTimerType__Q24Game17SingleGameSectionFv
-        .4byte
-   onMovieStart__Q24Game17SingleGameSectionFPQ24Game11MovieConfigUlUl .4byte
-   onMovieDone__Q24Game17SingleGameSectionFPQ24Game11MovieConfigUlUl .4byte
-   onMovieCommand__Q24Game17SingleGameSectionFi .4byte
-   startFadeout__Q24Game15BaseGameSectionFf .4byte
-   startFadein__Q24Game15BaseGameSectionFf .4byte
-   startFadeoutin__Q24Game15BaseGameSectionFf .4byte
-   startFadeblack__Q24Game15BaseGameSectionFv .4byte
-   startFadewhite__Q24Game15BaseGameSectionFv .4byte
-   gmOrimaDown__Q24Game17SingleGameSectionFi .4byte
-   gmPikminZero__Q24Game17SingleGameSectionFv .4byte
-   openCaveInMenu__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Itemi .4byte
-   openCaveMoreMenu__Q24Game17SingleGameSectionFPQ34Game8ItemHole4ItemP10Controller
-        .4byte
-   openKanketuMenu__Q24Game17SingleGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller
-        .4byte on_setCamController__Q24Game17SingleGameSectionFi
-        .4byte onTogglePlayer__Q24Game15BaseGameSectionFv
-        .4byte onPlayerJoin__Q24Game15BaseGameSectionFv
-        .4byte onInit__Q24Game17SingleGameSectionFv
-        .4byte onUpdate__Q24Game15BaseGameSectionFv
-        .4byte initJ3D__Q24Game15BaseGameSectionFv
-        .4byte initViewports__Q24Game15BaseGameSectionFR8Graphics
-        .4byte initResources__Q24Game15BaseGameSectionFv
-        .4byte initGenerators__Q24Game15BaseGameSectionFv
-        .4byte initLights__Q24Game15BaseGameSectionFv
-        .4byte draw3D__Q24Game15BaseGameSectionFR8Graphics
-        .4byte draw2D__Q24Game15BaseGameSectionFR8Graphics
-        .4byte drawParticle__Q24Game15BaseGameSectionFR8Graphicsi
-        .4byte draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics
-        .4byte do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
-        .4byte onSetupFloatMemory__Q24Game17SingleGameSectionFv
-        .4byte postSetupFloatMemory__Q24Game15BaseGameSectionFv
-        .4byte onSetSoundScene__Q24Game17SingleGameSectionFv
-        .4byte onStartHeap__Q24Game17SingleGameSectionFv
-        .4byte onClearHeap__Q24Game17SingleGameSectionFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515940
-    lbl_80515940:
-        .skip 0x4
-    .global lbl_80515944
-    lbl_80515944:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805185C0
-    lbl_805185C0:
-        .4byte 0x79657300
-    .global lbl_805185C4
-    lbl_805185C4:
-        .4byte 0x40200000
-    .global lbl_805185C8
-    lbl_805185C8:
-        .4byte 0x00000000
-    .global lbl_805185CC
-    lbl_805185CC:
-        .4byte 0x63617665
-        .4byte 0x2D6E6F00
-    .global lbl_805185D4
-    lbl_805185D4:
-        .4byte 0x6D6F7265
-        .4byte 0x2D6E6F00
-    .global lbl_805185DC
-    lbl_805185DC:
-        .4byte 0x6B616E6B
-        .4byte 0x2D6E6F00
-    .global lbl_805185E4
-    lbl_805185E4:
-        .4byte 0x47000000
-    .global lbl_805185E8
-    lbl_805185E8:
-        .4byte 0x41700000
-    .global lbl_805185EC
-    lbl_805185EC:
-        .4byte 0x42200000
-    .global lbl_805185F0
-    lbl_805185F0:
-        .4byte 0x40C90FDB
-    .global lbl_805185F4
-    lbl_805185F4:
-        .4byte 0x44408000
-    .global lbl_805185F8
-    lbl_805185F8:
-        .4byte 0x44548000
-    .global lbl_805185FC
-    lbl_805185FC:
-        .4byte 0x42F00000
-    .global lbl_80518600
-    lbl_80518600:
-        .4byte 0x43A2F983
-    .global lbl_80518604
-    lbl_80518604:
-        .4byte 0xC3A2F983
-    .global lbl_80518608
-    lbl_80518608:
-        .4byte 0x4528C000
-    .global lbl_8051860C
-    lbl_8051860C:
-        .4byte 0x43160000
-    .global lbl_80518610
-    lbl_80518610:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80518618
-    lbl_80518618:
-        .float 900.0
-    .global lbl_8051861C
-    lbl_8051861C:
-        .float 1.0
-    .global lbl_80518620
-    lbl_80518620:
-        .float 0.9
-    .global lbl_80518624
-    lbl_80518624:
-        .float 0.8
-*/
-
 namespace Game {
 
-static const int unusedSGSArray[] = { 0, 0, 0 };
-static const char sgsName[]       = "SingleGameSection";
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "SingleGameSection";
 
 /*
  * --INFO--
@@ -659,15 +54,10 @@ SingleGameSection::~SingleGameSection() { Radar::mgr = nullptr; }
 void SingleGameSection::startMainBgm()
 {
 	gameSystem->setFlag(GAMESYS_IsPlaying);
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	mgr->checkScene();
-	mgr->mScenes->mChild->startMainSeq();
+	PSMGetSceneMgr()->mScenes->mChild->startMainSeq();
 
 	if (Radar::mgr && !Radar::mgr->getNumOtakaraItems() && gameSystem->mIsInCave) {
-		PSSystem::SceneMgr* mgr2 = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr2);
-
-		PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr2->getChildScene());
+		PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(PSMGetChildScene());
 		PSSystem::checkGameScene(scene);
 		scene->stopPollutionSe();
 	}
@@ -724,7 +114,7 @@ void SingleGame::FSM::transit(SingleGameSection* game, int sceneNum, Game::State
 SingleGame::State* SingleGame::FSM::getState(int index)
 {
 	if (assertValidID(index))
-		return (State*)mStates[index];
+		return static_cast<State*>(mStates[index]);
 	return nullptr;
 }
 
@@ -733,8 +123,65 @@ SingleGame::State* SingleGame::FSM::getState(int index)
  * Address:	80152588
  * Size:	000200
  */
-SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, PelletCropMemory*, bool)
+SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* game, PelletCropMemory* pelletMem, bool flag)
 {
+	PelletOtakara::Mgr* omgr = PelletOtakara::mgr;
+	KindCounter& ocounter    = pelletMem->mOtakara;
+	for (int i = 0; i < ocounter.mNumKinds; i++) {
+		PelletConfig* config = omgr->getPelletConfig(i);
+		if (config) {
+			int money = config->mParams.mMoney.mData;
+			u8* num   = ocounter(i);
+			// Increase poko count by quantity of the item * its value
+			playData->mPokoCount += *num * money;
+
+			num = ocounter(i);
+			if (*num) {
+				playData->obtainPellet(omgr, i);
+				if (flag) {
+					if (!strcmp("yes", config->mParams.mUnique.mData)) {
+						playData->incCaveOtakara(game->mCurrentCourseInfo->mCourseIndex, game->mCaveID);
+					}
+				}
+			}
+		}
+	}
+
+	if (!game->mDoTrackCarcass) {
+		PelletCarcass::Mgr* cmgr = PelletCarcass::mgr;
+		KindCounter& ccounter    = pelletMem->mCarcass;
+		for (int i = 0; i < ccounter.mNumKinds; i++) {
+			PelletConfig* config = cmgr->getPelletConfig(i);
+			if (config) {
+				int money = config->mParams.mMoney.mData;
+				u8* num   = ccounter(i);
+				// Increase poko count by quantity of the item * its value
+				playData->mPokoCount += *num * money;
+			}
+		}
+	}
+
+	PelletItem::Mgr* imgr = PelletItem::mgr;
+	KindCounter& icounter = pelletMem->mItem;
+	for (int i = 0; i < icounter.mNumKinds; i++) {
+		PelletConfig* config = imgr->getPelletConfig(i);
+		if (config) {
+			int money = config->mParams.mMoney.mData;
+			u8* num   = icounter(i);
+			// Increase poko count by quantity of the item * its value
+			playData->mPokoCount += *num * money;
+
+			num = icounter(i);
+			if (*num) {
+				playData->obtainPellet(imgr, i);
+				if (flag) {
+					if (!strcmp("yes", config->mParams.mUnique.mData)) {
+						playData->incCaveOtakara(game->mCurrentCourseInfo->mCourseIndex, game->mCaveID);
+					}
+				}
+			}
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -904,14 +351,11 @@ void SingleGame::CaveDayEndState::init(SingleGameSection* game, StateArg* arg)
 
 	gameSystem->setPause(1, "cavedayend", 3);
 
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	if (!mgr) {
+	if (!PSMGetSceneMgrCheck()) {
 		return;
 	}
 
-	mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
 	mgr->checkScene();
 	PSSystem::Scene* scene = mgr->mScenes->mChild;
 	if (scene) {
@@ -1096,9 +540,8 @@ void SingleGameSection::onSetSoundScene()
 		setDefaultPSSceneInfo(info);
 		info.setStageFlag(PSGame::SceneInfo::SCENEFLAG_Unk0, PSGame::SceneInfo::SFBS_1);
 		P2ASSERTLINE(1157, (int)mCurrentCourseInfo->mCourseIndex < 4);
-		info.mSceneType          = mCurrentCourseInfo->mCourseIndex + 1;
-		PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-		mgr->newAndSetCurrentScene(info);
+		info.mSceneType = mCurrentCourseInfo->mCourseIndex + 1;
+		PSMSetSceneInfo(info);
 	} else {
 		PSGame::SceneInfo info;
 		setDefaultPSSceneInfo(info);
@@ -1113,13 +556,10 @@ void SingleGameSection::onSetSoundScene()
 				info.mSceneType = id + 1;
 			}
 		}
-		PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-		mgr->newAndSetCurrentScene(info);
+		PSMSetSceneInfo(info);
 	}
 
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	mgr->checkScene();
-	mgr->mScenes->mChild->scene1stLoadSync();
+	PSMGetSceneMgr()->mScenes->mChild->scene1stLoadSync();
 	if (gameSystem->isStoryMode()) {
 		PSSetCurCameraNo(0);
 	}
@@ -1396,8 +836,8 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 		iterator.first();
 		while (!iterator.isDone()) {
 			Piki* piki = (*iterator);
-			if (piki->isAlive() && piki->mPikiKind != Blue) {
-				playData->mPikiContainer.getCount(piki->mPikiKind, piki->mHappaKind)++;
+			if (piki->isAlive() && piki->getKind() != Blue) {
+				playData->mPikiContainer.getCount(piki->getKind(), piki->getHappa())++;
 				PikiKillArg killArg(0x10001);
 				piki->kill(&killArg);
 			}
@@ -1783,8 +1223,8 @@ void SingleGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* input
 	if (!_194 && !(mOpenMenuFlags & 2)) {
 		og::Screen::DispMemberCaveMore disp;
 		disp.mCaveID = mCaveIndex;
-		int pikis    = GameStat::mePikis(-1);
-		if (pikis) {
+		int pikis    = GameStat::mePikis;
+		if (pikis > 0) {
 			disp.mPikiInDanger = true;
 			if (pikis == GameStat::getMapPikmins(-1)) {
 				disp.mCantProceed = true;
@@ -1805,119 +1245,6 @@ void SingleGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* input
 			gameSystem->setMoviePause(true, "openCaveMore");
 		}
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	stw      r29, 0x34(r1)
-	lbz      r0, 0x194(r3)
-	cmplwi   r0, 0
-	bne      lbl_80154550
-	lbz      r0, 0x180(r30)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_80154550
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r9, 0
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	li       r7, 1
-	lis      r3, __vt__Q32og6Screen17DispMemberAnaDemo@ha
-	stw      r0, 8(r1)
-	addi     r5, r3, __vt__Q32og6Screen17DispMemberAnaDemo@l
-	li       r0, 0x18
-	li       r8, 0x45
-	stw      r9, 0x28(r1)
-	lis      r4, 0x745F3031@ha
-	lis      r3, __vt__Q32og6Screen18DispMemberCaveMore@ha
-	addi     r6, r4, 0x745F3031@l
-	stw      r5, 8(r1)
-	addi     r5, r3, __vt__Q32og6Screen18DispMemberCaveMore@l
-	li       r4, 4
-	stw      r0, 0x10(r1)
-	li       r0, 0xa
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	stw      r8, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r9, 0xc(r1)
-	stb      r7, 0x27(r1)
-	stw      r7, 0x1c(r1)
-	stw      r6, 0x20(r1)
-	stb      r9, 0x24(r1)
-	stb      r9, 0x25(r1)
-	stw      r5, 8(r1)
-	stb      r9, 0x2c(r1)
-	stb      r9, 0x2d(r1)
-	stw      r9, 0x28(r1)
-	stw      r4, 0x10(r1)
-	stw      r4, 0x14(r1)
-	stw      r0, 0x18(r1)
-	lwz      r0, 0x190(r30)
-	stw      r0, 0x20(r1)
-	lwzu     r12, mePikis__Q24Game8GameStat@l(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	or.      r29, r3, r3
-	ble      lbl_801544E0
-	li       r0, 1
-	li       r3, -1
-	stb      r0, 0x2c(r1)
-	bl       getMapPikmins__Q24Game8GameStatFi
-	cmpw     r29, r3
-	bne      lbl_801544D4
-	li       r0, 1
-	stb      r0, 0x2d(r1)
-	b        lbl_801544EC
-
-lbl_801544D4:
-	li       r0, 0
-	stb      r0, 0x2d(r1)
-	b        lbl_801544EC
-
-lbl_801544E0:
-	li       r0, 0
-	stb      r0, 0x2d(r1)
-	stb      r0, 0x2c(r1)
-
-lbl_801544EC:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 8
-	bl open_CaveMoreMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberCaveMore
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80154550
-	lwz      r6, playData__4Game@sda21(r13)
-	li       r4, 3
-	lis      r3, lbl_8047CF40@ha
-	li       r0, 0
-	stb      r4, 0x19(r6)
-	addi     r5, r3, lbl_8047CF40@l
-	li       r4, 1
-	stw      r0, 0x1c(r6)
-	li       r6, 3
-	stw      r31, 0x188(r30)
-	lbz      r0, 0x180(r30)
-	ori      r0, r0, 2
-	stb      r0, 0x180(r30)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       setPause__Q24Game10GameSystemFbPci
-	lis      r4, lbl_8047CF40@ha
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r4, lbl_8047CF40@l
-	li       r4, 1
-	bl       setMoviePause__Q24Game10GameSystemFbPc
-
-lbl_80154550:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -1936,9 +1263,8 @@ void SingleGameSection::openKanketuMenu(ItemBigFountain::Item* geyser, Controlle
 {
 	if (!_194 && !(mOpenMenuFlags & 4)) {
 		og::Screen::DispMemberKanketuMenu disp;
-		disp.mCaveID = mCaveIndex;
-		int pikis    = GameStat::mePikis(-1);
-		if (pikis) {
+		int pikis = GameStat::mePikis;
+		if (pikis > 0) {
 			disp.mPikiInDanger = true;
 			if (pikis == GameStat::getMapPikmins(-1)) {
 				disp.mCantProceed = true;
@@ -1958,114 +1284,6 @@ void SingleGameSection::openKanketuMenu(ItemBigFountain::Item* geyser, Controlle
 			gameSystem->setMoviePause(true, "openKanketu");
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  stw       r29, 0x34(r1)
-	  lbz       r0, 0x194(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x168
-	  lbz       r0, 0x180(r30)
-	  rlwinm.   r0,r0,0,29,29
-	  bne-      .loc_0x168
-	  lis       r3, 0x804B
-	  li        r9, 0
-	  addi      r0, r3, 0x1148
-	  li        r7, 0x1
-	  lis       r3, 0x804B
-	  stw       r0, 0x8(r1)
-	  addi      r5, r3, 0x1130
-	  li        r0, 0x18
-	  li        r8, 0x45
-	  stw       r9, 0x28(r1)
-	  lis       r3, 0x745F
-	  lis       r4, 0x804B
-	  addi      r6, r3, 0x3031
-	  stw       r5, 0x8(r1)
-	  addi      r5, r4, 0x1100
-	  li        r4, 0x4
-	  stw       r0, 0x10(r1)
-	  li        r0, 0xA
-	  lis       r3, 0x8051
-	  stw       r8, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r9, 0xC(r1)
-	  stb       r7, 0x27(r1)
-	  stw       r7, 0x1C(r1)
-	  stw       r6, 0x20(r1)
-	  stb       r9, 0x24(r1)
-	  stb       r9, 0x25(r1)
-	  stw       r5, 0x8(r1)
-	  stb       r9, 0x2C(r1)
-	  stb       r9, 0x2D(r1)
-	  stb       r9, 0x2E(r1)
-	  stw       r9, 0x28(r1)
-	  stw       r4, 0x10(r1)
-	  stw       r4, 0x14(r1)
-	  stw       r0, 0x18(r1)
-	  lwzu      r12, 0x260C(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r29, r3
-	  ble-      .loc_0x10C
-	  li        r0, 0x1
-	  li        r3, -0x1
-	  stb       r0, 0x2C(r1)
-	  bl        0x7C7E0
-	  cmpw      r29, r3
-	  bne-      .loc_0x100
-	  li        r0, 0x1
-	  stb       r0, 0x2D(r1)
-	  b         .loc_0x118
-
-	.loc_0x100:
-	  li        r0, 0
-	  stb       r0, 0x2D(r1)
-	  b         .loc_0x118
-
-	.loc_0x10C:
-	  li        r0, 0
-	  stb       r0, 0x2D(r1)
-	  stb       r0, 0x2C(r1)
-
-	.loc_0x118:
-	  lwz       r3, -0x6560(r13)
-	  addi      r4, r1, 0x8
-	  bl        0x2A9714
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x168
-	  stw       r31, 0x18C(r30)
-	  lis       r3, 0x8048
-	  subi      r5, r3, 0x30B0
-	  li        r4, 0x1
-	  lbz       r0, 0x180(r30)
-	  li        r6, 0x3
-	  ori       r0, r0, 0x4
-	  stb       r0, 0x180(r30)
-	  lwz       r3, -0x6C18(r13)
-	  bl        0x608AC
-	  lis       r4, 0x8048
-	  lwz       r3, -0x6C18(r13)
-	  subi      r5, r4, 0x30B0
-	  li        r4, 0x1
-	  bl        0x60888
-
-	.loc_0x168:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
 }
 
 /*
@@ -2127,7 +1345,7 @@ bool SingleGameSection::updateCaveMenus()
 		case 2:
 			gameSystem->setPause(false, "kank-no", 3);
 			gameSystem->setMoviePause(false, "kank-no");
-			mOpenMenuFlags &= ~2;
+			mOpenMenuFlags &= ~4;
 			break;
 		}
 	}
@@ -2773,8 +1991,68 @@ lbl_80154F20:
  * Address:	80154FD8
  * Size:	000504
  */
-void SingleGameSection::setDispMemberSMenu(og::Screen::DispMemberSMenuAll&)
+void SingleGameSection::setDispMemberSMenu(og::Screen::DispMemberSMenuAll& disp)
 {
+	// General data
+	Navi* navi = naviMgr->getActiveNavi();
+	int id     = 0;
+	if (navi) {
+		id = navi->mNaviIndex;
+	}
+	if (gameSystem->mTimeMgr->mDayCount == 0) {
+		disp.mIsDay1 = true;
+	}
+
+	// what even is this
+	disp.mSMenuMap.mDataMap.mNapsackDetectorFlags
+	    = OlimarData::getMapType(playData->mOlimarData[0].hasItem(OlimarData::ODII_PrototypeDetector),
+	                             playData->mOlimarData[0].hasItem(OlimarData::ODII_FiveManNapsack));
+
+	// Map screen data
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[0]   = playData->mPikiContainer.getColorSum(1);
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[1]   = playData->mPikiContainer.getColorSum(2);
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[2]   = playData->mPikiContainer.getColorSum(0);
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[3]   = playData->mPikiContainer.getColorSum(4);
+	disp.mSMenuMap.mDataMap.mOnyonPikminCounts[4]   = playData->mPikiContainer.getColorSum(3);
+	GameStat::PikiNaviCounter& formation            = GameStat::formationPikis;
+	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[0] = formation.getCount(id, 1);
+	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[1] = formation.getCount(id, 2);
+	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[2] = formation.getCount(id, 0);
+	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[3] = formation.getCount(id, 4);
+	disp.mSMenuMap.mDataMap.mCurrentPikminCounts[4] = formation.getCount(id, 3);
+	int form                                        = GameStat::formationPikis;
+	int work                                        = GameStat::workPikis;
+	int alive                                       = GameStat::alivePikis;
+	disp.mSMenuMap.mDataMap.mFreePikmin             = alive - form - work;
+	disp.mSMenuMap.mDataMap.mPokos                  = _aiConstants->mDebt.mData - playData->mPokoCount;
+	disp.mSMenuMap.mInCave                          = gameSystem->mIsInCave;
+	disp.mSMenuMap.mActiveNavi                      = gameSystem->mIsInCave == 0; // ?
+	disp.mSMenuMap.mUnlockedReds                    = playData->hasContainer(Red);
+	disp.mSMenuMap.mUnlockedYellows                 = playData->hasContainer(Yellow);
+	disp.mSMenuMap.mUnlockedBlues                   = playData->hasContainer(Blue);
+	disp.mSMenuMap.mUnlockedWhites                  = playData->hasContainer(White);
+	disp.mSMenuMap.mUnlockedPurples                 = playData->hasContainer(Purple);
+	disp.mSMenuMap.mCurrentCave                     = mCaveIndex;
+	disp.mSMenuMap.mCourseIndex                     = mCurrentCourseInfo->mCourseIndex;
+
+	// Items screen data
+	disp.mSMenuItem.mSpicySprayCount  = playData->getDopeCount(SPRAY_TYPE_BITTER);
+	disp.mSMenuItem.mSpicyBerryCount  = playData->getDopeFruitCount(SPRAY_TYPE_BITTER);
+	disp.mSMenuItem.mBitterSprayCount = playData->getDopeCount(SPRAY_TYPE_SPICY);
+	disp.mSMenuItem.mBitterBerryCount = playData->getDopeFruitCount(SPRAY_TYPE_SPICY);
+	for (int i = 0; i < OlimarData::ODII_FIRST_NON_EXPLORATION_KIT_ITEM; i++) {
+		disp.mSMenuItem.mExplorationKitInventory[i] = playData->mOlimarData[0].hasItem(i);
+	}
+
+	// Pause Screen
+	disp.mSMenuPause.mDebtRemaining        = _aiConstants->mDebt.mData - playData->mPokoCount;
+	disp.mSMenuPause.mPokoCount            = playData->mPokoCount;
+	disp.mSMenuPauseDoukutu.mCavePokos     = playData->mCavePokoCount;
+	disp.mSMenuPauseDoukutu.mPikisInDanger = GameStat::mePikis != 0;
+
+	disp.mSMenuItem.mIsBitterUnlocked = playData->isDemoFlag(DEMO_First_Bitter_Spray_Made);
+	disp.mSMenuItem.mIsSpicyUnlocked  = playData->isDemoFlag(DEMO_First_Spicy_Spray_Made);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3165,6 +2443,116 @@ lbl_80155430:
  */
 void SingleGameSection::updateMainMapScreen()
 {
+	og::Screen::DispMemberGround disp;
+
+	Navi* navi = naviMgr->getActiveNavi();
+
+	int otastate = 5;
+	f32 dist     = 900.0f;
+	if (navi) {
+		Vector3f pos = navi->getPosition();
+		Vector3f out;
+		otastate = Radar::mgr->calcNearestTreasure(pos, 900.0f, out, dist);
+		if (otastate != 2) { // some garbage
+			rand();
+		}
+	}
+
+	bool flag          = false;
+	disp.mTreasureDist = dist;
+	disp.mRadarState   = otastate;
+	if (!mNeedTreasureCalc && otastate == 0 && Screen::gGame2DMgr->is_GameGround()) {
+		flag              = true;
+		mNeedTreasureCalc = true;
+	}
+	if (!mTreasureRadarActive && otastate == 0) {
+		mTreasureRadarActive = true;
+	}
+
+	if (mTreasureRadarActive && otastate != 0 && otastate != 5) {
+		mTreasureRadarActive = false;
+		mNeedTreasureCalc    = false;
+	}
+
+	disp.mRadarEnabled       = mTreasureRadarActive;
+	disp.mAllTreasuresGotten = flag;
+	disp.mHasRadar           = playData->mOlimarData[0].hasItem(OlimarData::ODII_PrototypeDetector);
+	disp.mIsNotDay1          = gameSystem->mTimeMgr->mDayCount;
+
+	disp.mDataGame.mMapPikminCount   = GameStat::getMapPikmins(-1) - GameStat::getZikatuPikmins(-1);
+	disp.mDataGame.mTotalPikminCount = GameStat::getAllPikmins(-1) - GameStat::getZikatuPikmins(-1);
+	disp.mDataGame.mDayNum           = gameSystem->mTimeMgr->mDayCount + 1;
+	disp.mDataGame.mSunGaugeRatio    = gameSystem->mTimeMgr->getSunGaugeRatio();
+	disp.mDataGame.mPokoCount        = playData->mPokoCount;
+
+	bool bitter = playData->isDemoFlag(DEMO_First_Bitter_Spray_Made);
+	bool spicy  = playData->isDemoFlag(DEMO_First_Spicy_Spray_Made);
+
+	// somethings wrong with spicy/bitter here
+	if (playData->isDemoFlag(DEMO_BITTER_ENABLED)) {
+		disp.mUnlockedSpicy = true;
+	} else {
+		disp.mUnlockedSpicy = false;
+	}
+	if (playData->isDemoFlag(DEMO_SPICY_ENABLED)) {
+		disp.mUnlockedBitter = true;
+	} else {
+		disp.mUnlockedBitter = false;
+	}
+
+	if (Screen::gGame2DMgr->is_GameGround() && !moviePlayer->mDemoState && bitter && !playData->isDemoFlag(DEMO_BITTER_ENABLED)) {
+		playData->setDemoFlag(DEMO_BITTER_ENABLED);
+		disp.mHasBitter = true;
+	} else {
+		disp.mHasBitter = false;
+	}
+
+	if (Screen::gGame2DMgr->is_GameGround() && !moviePlayer->mDemoState && spicy && !playData->isDemoFlag(DEMO_SPICY_ENABLED)) {
+		playData->setDemoFlag(DEMO_SPICY_ENABLED);
+		disp.mHasSpicy = true;
+	} else {
+		disp.mHasSpicy = false;
+	}
+
+	if (playData->mStoryFlags & STORY_DebtPaid) {
+		disp.mPayDebt = true;
+	}
+
+	navi   = naviMgr->getActiveNavi();
+	int id = 2;
+	if (navi) {
+		id = navi->mNaviIndex;
+	}
+
+	disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
+	disp.mOlimarData.mDope1Count    = playData->getDopeCount(1);
+	disp.mOlimarData.mDope0Count    = playData->getDopeCount(0);
+	navi                            = naviMgr->getAt(0);
+	disp.mOlimarData.mNaviLifeRatio = navi->getLifeRatio();
+	disp.mOlimarData.mNextThrowPiki = navi->ogGetNextThrowPiki();
+
+	if (id == 0) {
+		disp.mOlimarData.mActiveNaviID = 1;
+		disp.mLouieData.mActiveNaviID  = 0;
+	} else if (id == 1) {
+		disp.mOlimarData.mActiveNaviID = 0;
+		disp.mLouieData.mActiveNaviID  = 1;
+	} else if (mPrevNaviIdx == 0) {
+		disp.mOlimarData.mActiveNaviID = 0;
+		disp.mLouieData.mActiveNaviID  = 1;
+	} else {
+		disp.mOlimarData.mActiveNaviID = 1;
+		disp.mLouieData.mActiveNaviID  = 0;
+	}
+
+	disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
+	disp.mLouieData.mDope1Count    = playData->getDopeCount(1);
+	disp.mLouieData.mDope0Count    = playData->getDopeCount(0);
+	navi                           = naviMgr->getAt(1);
+	disp.mLouieData.mNaviLifeRatio = navi->getLifeRatio();
+	disp.mLouieData.mNextThrowPiki = navi->ogGetNextThrowPiki();
+
+	Screen::gGame2DMgr->setDispMember(&disp);
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -3564,11 +2952,115 @@ lbl_801559E4:
 
 /*
  * --INFO--
+ * Address:	80155A78
+ * Size:	000004
+ */
+void Game::SingleGameSection::drawMainMapScreen(void) { }
+
+/*
+ * --INFO--
  * Address:	80155A7C
  * Size:	0004D8
  */
 void SingleGameSection::updateCaveScreen()
 {
+	og::Screen::DispMemberCave disp;
+
+	Navi* navi = naviMgr->getActiveNavi();
+
+	int otastate = 5;
+	f32 dist     = 900.0f;
+	if (navi) {
+		Vector3f pos = navi->getPosition();
+		Vector3f out;
+		otastate = Radar::mgr->calcNearestTreasure(pos, 900.0f, out, dist);
+		if (otastate != 2) { // some garbage
+			rand();
+		}
+	}
+
+	bool flag          = false;
+	disp.mTreasureDist = dist;
+	disp.mRadarState   = otastate;
+	if (!mNeedTreasureCalc && otastate == 0 && Screen::gGame2DMgr->is_GameCave()) {
+		flag              = true;
+		mNeedTreasureCalc = true;
+	}
+	if (!mTreasureRadarActive && otastate == 0) {
+		mTreasureRadarActive = true;
+	}
+
+	if (mTreasureRadarActive && otastate != 0 && otastate != 5) {
+		mTreasureRadarActive = false;
+		mNeedTreasureCalc    = false;
+	}
+
+	disp.mAllTreasureGotten = mTreasureRadarActive;
+	disp.mRadarEnabled      = flag;
+
+	if (Screen::gGame2DMgr->is_GameCave() && moviePlayer->mDemoState == 0) {
+		disp.mAppearRadar = false;
+		if (!playData->isDemoFlag(DEMO_RADAR_ENABLED) && playData->mOlimarData[0].hasItem(OlimarData::ODII_PrototypeDetector)) {
+			playData->setDemoFlag(DEMO_RADAR_ENABLED);
+			disp.mAppearRadar = true;
+		}
+	}
+
+	bool draw = false;
+	if (playData->mOlimarData[0].hasItem(OlimarData::ODII_PrototypeDetector) && playData->isDemoFlag(DEMO_RADAR_ENABLED)) {
+		draw = true;
+	}
+	disp.mDrawSensor = draw;
+
+	disp.mDataGame.mFloorNum         = getCurrFloor() + 1;
+	disp.mIsBitterUnlocked           = playData->isDemoFlag(DEMO_First_Bitter_Spray_Made);
+	disp.mIsSpicyUnlocked            = playData->isDemoFlag(DEMO_First_Spicy_Spray_Made);
+	disp.mIsFinalFloor               = (static_cast<RoomMapMgr*>(mapMgr)->mCaveInfo->getFloorMax() == disp.mDataGame.mFloorNum);
+	disp.mDataGame.mMapPikminCount   = GameStat::getMapPikmins(-1);
+	disp.mDataGame.mTotalPikminCount = GameStat::getAllPikmins(-1);
+	disp.mDataGame.mDayNum           = gameSystem->mTimeMgr->mDayCount + 1;
+	disp.mDataGame.mSunGaugeRatio    = gameSystem->mTimeMgr->getSunGaugeRatio();
+	disp.mDataGame.mPokoCount        = playData->mCavePokoCount + playData->mPokoCount;
+
+	if (playData->mStoryFlags & STORY_DebtPaid) {
+		disp.mPayDebt = true;
+	}
+
+	navi   = naviMgr->getActiveNavi();
+	int id = 2;
+	if (navi) {
+		id = navi->mNaviIndex;
+	}
+
+	disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
+	disp.mOlimarData.mDope1Count    = playData->getDopeCount(1);
+	disp.mOlimarData.mDope0Count    = playData->getDopeCount(0);
+	navi                            = naviMgr->getAt(0);
+	disp.mOlimarData.mNaviLifeRatio = navi->getLifeRatio();
+	disp.mOlimarData.mNextThrowPiki = navi->ogGetNextThrowPiki();
+
+	if (id == 0) {
+		disp.mOlimarData.mActiveNaviID = 1;
+		disp.mLouieData.mActiveNaviID  = 0;
+	} else if (id == 1) {
+		disp.mOlimarData.mActiveNaviID = 0;
+		disp.mLouieData.mActiveNaviID  = 1;
+	} else if (mPrevNaviIdx == 0) {
+		disp.mOlimarData.mActiveNaviID = 0;
+		disp.mLouieData.mActiveNaviID  = 1;
+	} else {
+		disp.mOlimarData.mActiveNaviID = 1;
+		disp.mLouieData.mActiveNaviID  = 0;
+	}
+
+	disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
+	disp.mLouieData.mDope1Count    = playData->getDopeCount(1);
+	disp.mLouieData.mDope0Count    = playData->getDopeCount(0);
+	navi                           = naviMgr->getAt(1);
+	disp.mLouieData.mNaviLifeRatio = navi->getLifeRatio();
+	disp.mLouieData.mNextThrowPiki = navi->ogGetNextThrowPiki();
+
+	Screen::gGame2DMgr->setDispMember(&disp);
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -3929,7 +3421,7 @@ void SingleGameSection::newCaveOtakaraEarningsAndDrops()
 	_25C.alloc(itemCount);
 	mOtakaraCounter.alloc(otakaraCount);
 	mItemCounter.alloc(itemCount);
-	_274 = 0;
+	mDoTrackCarcass = 0;
 }
 
 /*
@@ -3943,7 +3435,7 @@ void SingleGameSection::clearCaveOtakaraEarningsAndDrops()
 	_25C.clear();
 	mOtakaraCounter.clear();
 	mItemCounter.clear();
-	_274 = 0;
+	mDoTrackCarcass = 0;
 }
 
 } // namespace Game

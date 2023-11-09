@@ -99,7 +99,7 @@ struct SingleGameSection : public BaseGameSection {
 	Game::CourseInfo* mCurrentCourseInfo;          // _22C
 	ID32 mCaveID;                                  // _230
 	bool mInCave;                                  // _23C
-	u8 _23D;                                       // _23D
+	u8 mTreasureRadarActive;                       // _23D
 	bool mNeedTreasureCalc;                        // _23E
 	Delegate<Game::SingleGameSection>* _240;       // _240
 	efx::TChasePos* mWeatherEfx;                   // _244
@@ -110,7 +110,7 @@ struct SingleGameSection : public BaseGameSection {
 	KindCounter _25C;                              // _25C
 	KindCounter mOtakaraCounter;                   // _264
 	KindCounter mItemCounter;                      // _26C
-	u8 _274;                                       // _274
+	u8 mDoTrackCarcass;                            // _274
 #if BUILDTARGET == USADEMO1
 	u8 _DemoPadding2[0x4];
 #endif

@@ -512,7 +512,8 @@ void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controlle
 	}
 
 	og::Screen::DispMemberCaveMore cave;
-	int mePikis = GameStat::mePikis;
+	cave.mCaveID = '2p_c';
+	int mePikis  = GameStat::mePikis;
 	if (mePikis > 0) {
 		cave.mPikiInDanger = true;
 		int map_pikis      = GameStat::getMapPikmins(-1);

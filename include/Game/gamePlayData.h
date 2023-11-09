@@ -76,9 +76,9 @@ enum DemoFlags {
 	DEMO_Pikmin_In_Danger_Water  = 51,
 	DEMO_Pikmin_In_Danger_Poison = 52,
 	DEMO_UNK_53                  = 53,
-	DEMO_UNK_54                  = 54, // cave screen?
-	DEMO_UNK_55                  = 55, // cave screen?
-	DEMO_UNK_56                  = 56, // cave screen?
+	DEMO_RADAR_ENABLED           = 54, // these arent even for cutscenes, they're specifically for hud stuff
+	DEMO_SPICY_ENABLED           = 55,
+	DEMO_BITTER_ENABLED          = 56,
 };
 
 // What to load into after file select, i.e. where did we last save?
@@ -177,6 +177,25 @@ struct OlimarData {
 
 	void write(Stream&);
 	void read(Stream&);
+
+	// Not sure what the purpose of this even is, might not be used for anything
+	static inline int getMapType(bool item1, bool item2)
+	{
+		bool flag = false;
+		if (item1 && item2) {
+			flag = true;
+		}
+		if (flag) {
+			return 3;
+		}
+		if (item2) {
+			return 1;
+		}
+		if (item1) {
+			return 0;
+		}
+		return 2;
+	}
 
 	u8 mFlags[2]; // _00
 };

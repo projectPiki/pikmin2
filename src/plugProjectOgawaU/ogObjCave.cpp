@@ -190,7 +190,7 @@ void ObjCave::commonUpdate()
 	mBloGroup->scale((1.0f - cosTheta) * 0.4f + 1.0f);
 	mBloGroup->update();
 
-	if (mDisp->mDrawSensor && mDoSensorEff && mDisp->_5F) {
+	if (mDisp->mDrawSensor && mDoSensorEff && mDisp->mAppearRadar) {
 		mOtakara->startSensorEff();
 		mDoSensorEff = false;
 	}

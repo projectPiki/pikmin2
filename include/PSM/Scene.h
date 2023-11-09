@@ -274,16 +274,35 @@ struct Scene_Demo : public SceneBase {
 
 	// _00      = VTBL
 	// _00-_28  = SceneBase
-	u8 mGate; // _28, unknown
+	u8 mGate; // _28
 };
 
 } // namespace PSM
 
-inline PSM::Scene_Game* PSMGetGameScene()
+inline PSSystem::SceneMgr* PSMGetSceneMgr()
+{
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	mgr->checkScene();
+	return mgr;
+}
+
+inline PSSystem::SceneMgr* PSMGetSceneMgrCheck()
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
-	PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(mgr->getChildScene());
+	return mgr;
+}
+
+inline PSSystem::Scene* PSMGetChildScene()
+{
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+	return mgr->getChildScene();
+}
+
+inline PSM::Scene_Game* PSMGetGameScene()
+{
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+	PSM::SceneBase* scene   = static_cast<PSM::SceneBase*>(mgr->getChildScene());
 	if (scene->isGameScene()) {
 		return static_cast<PSM::Scene_Game*>(scene);
 	}
@@ -291,11 +310,15 @@ inline PSM::Scene_Game* PSMGetGameScene()
 	return nullptr;
 }
 
+inline void PSMSetSceneInfo(PSGame::SceneInfo& info)
+{
+	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+	mgr->newAndSetCurrentScene(info);
+}
+
 inline PSSystem::SeqBase* PSSystemGetSeq(int id)
 {
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	mgr->checkScene();
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgr();
 	return PSSystem::getSeqData(mgr, id);
 }
 
