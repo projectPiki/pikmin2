@@ -327,7 +327,7 @@ LIBS = [
             "JSystem/JAudio/JAS/JASSeqCtrl",
             "JSystem/JAudio/JAS/JASSeqParser",
             "JSystem/JAudio/JAS/JASTrack",
-            "JSystem/JAudio/JAS/JASTrackInterrupt",
+            ["JSystem/JAudio/JAS/JASTrackInterrupt", True],
             "JSystem/JAudio/JAS/JASOscillator",
             "JSystem/JAudio/JAS/JASChannel",
             "JSystem/JAudio/JAS/JASDriverIF",
