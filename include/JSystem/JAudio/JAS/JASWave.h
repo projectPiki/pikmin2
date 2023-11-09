@@ -92,7 +92,13 @@ struct JASBasicWaveBank : public JASWaveBank {
 
 		virtual ~TWaveHandle() { }                                        // _08 (weak)
 		virtual const JASWaveInfo* getWaveInfo() const { return &mInfo; } // _0C (weak)
-		virtual void* getWavePtr() const;                                 // _10 (weak)
+		virtual void* getWavePtr() const
+		{
+			if (mHeap->_38 == nullptr) {
+				return nullptr;
+			}
+			return mHeap->_38 + mInfo._08;
+		} // _10 (weak)
 
 		JASWaveInfo mInfo; // _04
 		JASHeap* mHeap;    // _2C
@@ -103,7 +109,13 @@ struct JASBasicWaveBank : public JASWaveBank {
 	 * @size{0x3C}
 	 */
 	struct TWaveInfo {
-		TWaveInfo();
+		TWaveInfo()
+		    : mHandle()
+		    , _34(nullptr)
+		    , _38(0)
+		{
+		}
+
 		~TWaveInfo() { }
 
 		TWaveHandle mHandle; // _00
@@ -134,7 +146,13 @@ struct JASBasicWaveBank : public JASWaveBank {
 
 	virtual ~JASBasicWaveBank();                     // _08
 	virtual JASWaveHandle* getWaveHandle(u32) const; // _0C
-	virtual JASWaveArc* getWaveArc(int);             // _10 (weak)
+	virtual JASWaveArc* getWaveArc(int groupIndex)
+	{
+		if (groupIndex >= mGroupCount) {
+			return nullptr;
+		}
+		return mGroups[groupIndex];
+	} // _10 (weak)
 
 	TWaveGroup* getWaveGroup(int);
 	void setGroupCount(u32);

@@ -5,38 +5,6 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__12JASBasicInst
-    __vt__12JASBasicInst:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__12JASBasicInstFv
-        .4byte getParam__12JASBasicInstCFiiP12JASInstParam
-        .4byte getType__12JASBasicInstCFv
-        .4byte getKeymapIndex__12JASBasicInstCFi
-    .global __vt__7JASInst
-    __vt__7JASInst:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__7JASInstFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516CA8
-    lbl_80516CA8:
-        .float 1.0
-        .4byte 0x00000000
-    .global lbl_80516CB0
-    lbl_80516CB0:
-        .4byte 0x3FE00000
-        .4byte 0x00000000
-*/
-
-/*
  * --INFO--
  * Address:	80099888
  * Size:	000044
@@ -307,10 +275,3 @@ JASBasicInst::TVeloRegion* JASBasicInst::TKeymap::getVeloRegion(int index) const
 {
 	return (index >= mVeloRegionCount) ? nullptr : mVeloRegions + index;
 }
-
-/*
- * --INFO--
- * Address:	80099E54
- * Size:	00000C
- */
-// u32 JASBasicInst::getType() const { }

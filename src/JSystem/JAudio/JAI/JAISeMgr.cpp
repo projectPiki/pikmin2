@@ -98,13 +98,27 @@
         .float -1.0
         .4byte 0x00000000
 */
+namespace JAInter {
+namespace SeMgr {
+
+StartCallback seStartCallback = startSeSequence;
+
+TrackUpdate* seTrackUpdate;
+u16** categoryInfoTable;
+JAISound*** sePlaySound;
+LinkSound* seRegist;
+JAISequence* seHandle;
+u8 seScene;
+u32 seqMuteFlagFromSe;
+f32* seCategoryVolume;
+u8* seEntryCancel;
 
 /*
  * --INFO--
  * Address:	800AE0A0
  * Size:	0003A4
  */
-void JAInter::SeMgr::init()
+void init()
 {
 	if (JAIBasic::msBasic->_1C != nullptr) {
 		JAIGlobalParameter::setParamSeTrackMax(0);
@@ -479,7 +493,7 @@ lbl_800AE40C:
  * Address:	800AE57C
  * Size:	000050
  */
-void JAInter::SeMgr::startSeSequence()
+void startSeSequence()
 {
 	seHandle = nullptr;
 	SequenceMgr::storeSeqBuffer(&seHandle, nullptr, 0x80000800, 1, 4, SoundTable::getInfoPointer(0x80000800));
@@ -513,7 +527,7 @@ void JAInter::SeMgr::startSeSequence()
  * Address:	800AE5CC
  * Size:	000034
  */
-void JAInter::SeMgr::processGFrameSe()
+void processGFrameSe()
 {
 	if (seHandle == nullptr) {
 		return;
@@ -528,7 +542,7 @@ void JAInter::SeMgr::processGFrameSe()
  * Address:	800AE600
  * Size:	0007E4
  */
-void JAInter::SeMgr::checkNextFrameSe()
+void checkNextFrameSe()
 {
 	/*
 	stwu     r1, -0x140(r1)
@@ -1172,7 +1186,7 @@ lbl_800AEDB8:
  * Address:	800AEDE4
  * Size:	000488
  */
-void JAInter::SeMgr::checkPlayingSe()
+void checkPlayingSe()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1524,18 +1538,10 @@ lbl_800AF248:
 
 /*
  * --INFO--
- * Address:	800AF26C
- * Size:	000030
- * setVolume__5JAISeFfUlUc
- */
-void JAISe::setVolume(float p1, u32 p2, u8 p3) { setSeInterVolume(p3, p1, p2, 0); }
-
-/*
- * --INFO--
  * Address:	800AF29C
  * Size:	0000F0
  */
-void JAInter::SeMgr::setSeqMuteFromSeStart(JAISound* p1)
+void setSeqMuteFromSeStart(JAISound* p1)
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = SequenceMgr::getPlayTrackInfo(i);
@@ -1618,18 +1624,10 @@ lbl_800AF360:
 
 /*
  * --INFO--
- * Address:	800AF38C
- * Size:	00002C
- * setVolume__11JAISequenceFfUlUc
- */
-void JAISequence::setVolume(float p1, u32 p2, u8 p3) { setSeqInterVolume(p3, p1, p2); }
-
-/*
- * --INFO--
  * Address:	........
  * Size:	0000E4
  */
-void JAInter::SeMgr::clearSeqMuteFromSeStop(JAISound*)
+void clearSeqMuteFromSeStop(JAISound*)
 {
 	// UNUSED FUNCTION
 }
@@ -1639,7 +1637,7 @@ void JAInter::SeMgr::clearSeqMuteFromSeStop(JAISound*)
  * Address:	800AF3B8
  * Size:	0000D4
  */
-void JAInter::SeMgr::checkSeMovePara()
+void checkSeMovePara()
 {
 	if (seHandle == nullptr || seHandle->mSeqParameter._279 == 2) {
 		return;
@@ -1736,7 +1734,7 @@ lbl_800AF478:
  * Address:	800AF48C
  * Size:	000168
  */
-void JAInter::SeMgr::sendSeAllParameter(JAISe*)
+void sendSeAllParameter(JAISe*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1846,7 +1844,7 @@ lbl_800AF5D4:
  * Size:	00010C
  * checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf
  */
-void JAInter::SeMgr::checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float, u8, float*)
+void checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float, u8, float*)
 {
 	/*
 	.loc_0x0:
@@ -1934,7 +1932,7 @@ void JAInter::SeMgr::checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpda
  * Size:	00014C
  * checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff
  */
-void JAInter::SeMgr::checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, u8, float*, float)
+void checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, u8, float*, float)
 {
 	/*
 	.loc_0x0:
@@ -2039,14 +2037,14 @@ void JAInter::SeMgr::checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData
  * Address:	800AF84C
  * Size:	000008
  */
-u32 JAInter::SeMgr::changeIDToCategory(u32 id) { return id >> 0xC & 0xFF; }
+u32 changeIDToCategory(u32 id) { return id >> 0xC & 0xFF; }
 
 /*
  * --INFO--
  * Address:	800AF854
  * Size:	0001D0
  */
-void JAInter::SeMgr::releaseSeRegist(JAISe*)
+void releaseSeRegist(JAISe*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2189,7 +2187,7 @@ lbl_800AF9D0:
  * Address:	800AFA24
  * Size:	0006EC
  */
-void JAInter::SeMgr::storeSeBuffer(JAISe**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*)
+void storeSeBuffer(JAISe**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2715,18 +2713,10 @@ void JAInter::SeMgr::storeSeBuffer(JAISe**, JAInter::Actor*, u32, u32, u8, JAInt
 
 /*
  * --INFO--
- * Address:	800B0110
- * Size:	000020
- * stop__5JAISeFUl
- */
-void JAISe::stop(u32 p1) { JAInter::SeMgr::releaseSeBuffer(this, p1); }
-
-/*
- * --INFO--
  * Address:	800B0130
  * Size:	000208
  */
-void JAInter::SeMgr::releaseSeBuffer(JAISe*, u32)
+void releaseSeBuffer(JAISe*, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2889,11 +2879,6 @@ lbl_800B031C:
  * Address:	800B0338
  * Size:	000008
  */
-void JAInter::SeMgr::setSeSequenceStartCallback(JAInter::SeMgr::StartCallback callback)
-{
-	seStartCallback = callback;
-	/*
-	stw      r3, seStartCallback__Q27JAInter5SeMgr@sda21(r13)
-	blr
-	*/
-}
+void setSeSequenceStartCallback(StartCallback callback) { seStartCallback = callback; }
+} // namespace SeMgr
+} // namespace JAInter

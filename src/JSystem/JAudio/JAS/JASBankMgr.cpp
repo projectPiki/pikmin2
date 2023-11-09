@@ -182,7 +182,7 @@ JASChannel* noteOn(int bankIndex, int instIndex, u8 p3, u8 p4, u16 p5, void (*p6
 	channel->_CC = instParam._18;
 	channel->_D4 = instParam._1C;
 	channel->_DC = instParam._20;
-	for (u32 i = 0; i < instParam.mOscCount; i++) {
+	for (int i = 0; i < instParam.mOscCount; i++) {
 		channel->setOscInit(i, instParam.mOscData[i]);
 	}
 	channel->directReleaseOsc(instParam._26);

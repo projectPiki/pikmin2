@@ -234,35 +234,6 @@ void JASBasicWaveBank::TWaveGroup::setWaveCount(u32 count)
 
 /*
  * --INFO--
- * Address:	8009A48C
- * Size:	000030
- * __ct__Q216JASBasicWaveBank9TWaveInfoFv
- */
-JASBasicWaveBank::TWaveInfo::TWaveInfo()
-    : mHandle()
-    , _34(nullptr)
-    , _38(0)
-{
-}
-
-/*
- * --INFO--
- * Address:	8009A4BC
- * Size:	00005C
- * __dt__Q216JASBasicWaveBank11TWaveHandleFv
- */
-// JASBasicWaveBank::TWaveHandle::~TWaveHandle() { }
-
-/*
- * --INFO--
- * Address:	8009A518
- * Size:	000048
- * __dt__13JASWaveHandleFv
- */
-// JASWaveHandle::~JASWaveHandle() { }
-
-/*
- * --INFO--
  * Address:	8009A560
  * Size:	000090
  */
@@ -431,36 +402,3 @@ lbl_8009A744:
  * Size:	000014
  */
 u32 JASBasicWaveBank::TWaveGroup::getWaveID(int infoIndex) const { return mInfo[infoIndex].mHandle._30; }
-
-/*
- * --INFO--
- * Address:	8009A78C
- * Size:	000008
- */
-// const JASWaveInfo* JASBasicWaveBank::TWaveHandle::getWaveInfo() const { return &mInfo; }
-
-/*
- * --INFO--
- * Address:	8009A794
- * Size:	000024
- */
-void* JASBasicWaveBank::TWaveHandle::getWavePtr() const
-{
-	if (mHeap->_38 == nullptr) {
-		return nullptr;
-	}
-	return mHeap->_38 + mInfo._08;
-}
-
-/*
- * --INFO--
- * Address:	8009A7B8
- * Size:	000024
- */
-JASWaveArc* JASBasicWaveBank::getWaveArc(int groupIndex)
-{
-	if (groupIndex >= mGroupCount) {
-		return nullptr;
-	}
-	return mGroups[groupIndex];
-}

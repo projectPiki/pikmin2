@@ -53,7 +53,7 @@
 JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 {
 	JKRHeap* heap      = JASBank::getCurrentHeap();
-	u32 freeSize       = heap->getFreeSize();
+	const u32 freeSize = heap->getFreeSize();
 	JASBasicBank* bank = new (heap, 0) JASBasicBank();
 	if (bank == nullptr) {
 		return nullptr;
@@ -63,7 +63,7 @@ JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 
 	/// Populate insts:
 	for (int i = 0; i < 0x80; i++) {
-		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->mInstOffsets[i]);
+		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->mInstOffsets[i]); // problem with mInstOffsets again
 		if (instRaw != nullptr) {
 			JASBasicInst* inst = new (heap, 0) JASBasicInst();
 			inst->_04          = instRaw->_08;
@@ -706,7 +706,7 @@ lbl_8009AE98:
 JASOscillator::Data* JASBNKParser::findOscPtr(JASBasicBank* bank, JASBNKParser::THeader* header, JASBNKParser::TOsc* oscPtr)
 {
 	for (int i = 0; i < 128; i++) {
-		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->mInstOffsets[i]);
+		TInst* instRaw = JSUConvertOffsetToPtr<TInst>(header, header->mInstOffsets[i]); // mismatch here
 		if (instRaw != nullptr) {
 			for (int j = 0; j < 2; j++) {
 				TOsc* oscRaw = JSUConvertOffsetToPtr<TOsc>(header, instRaw->mOscOffsets[j]);
@@ -825,184 +825,3 @@ short* JASBNKParser::getOscTableEndPtr(short* p1)
 	} while (v1 <= 0xa);
 	return p1;
 }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-u32 JASBNKParser::getUsedHeapSize()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	8009AFE0
- * Size:	000018
- */
-// void JSUConvertOffsetToPtr<JASBNKParser::TPmap>(const void*, u32)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_8009AFF0
-// 	li       r3, 0
-// 	blr
-
-// lbl_8009AFF0:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8009AFF8
- * Size:	000018
- */
-// void JSUConvertOffsetToPtr<JASBNKParser::TPerc>(const void*, u32)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_8009B008
-// 	li       r3, 0
-// 	blr
-
-// lbl_8009B008:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8009B010
- * Size:	000018
- */
-// void JSUConvertOffsetToPtr<JASBNKParser::TVmap>(const void*, u32)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_8009B020
-// 	li       r3, 0
-// 	blr
-
-// lbl_8009B020:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8009B028
- * Size:	000018
- */
-// void JSUConvertOffsetToPtr<JASBNKParser::TKeymap>(const void*, u32)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_8009B038
-// 	li       r3, 0
-// 	blr
-
-// lbl_8009B038:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8009B040
- * Size:	000018
- */
-// void JSUConvertOffsetToPtr<JASBNKParser::TSense>(const void*, u32)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_8009B050
-// 	li       r3, 0
-// 	blr
-
-// lbl_8009B050:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8009B058
- * Size:	000018
- */
-// void JSUConvertOffsetToPtr<JASBNKParser::TRand>(const void*, u32)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_8009B068
-// 	li       r3, 0
-// 	blr
-
-// lbl_8009B068:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8009B070
- * Size:	000018
- */
-// void JSUConvertOffsetToPtr<short>(const void*, u32)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_8009B080
-// 	li       r3, 0
-// 	blr
-
-// lbl_8009B080:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8009B088
- * Size:	000018
- */
-// void JSUConvertOffsetToPtr<JASBNKParser::TOsc>(const void*, u32)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_8009B098
-// 	li       r3, 0
-// 	blr
-
-// lbl_8009B098:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	8009B0A0
- * Size:	000018
- */
-// void JSUConvertOffsetToPtr<JASBNKParser::TInst>(const void*, u32)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_8009B0B0
-// 	li       r3, 0
-// 	blr
-
-// lbl_8009B0B0:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }

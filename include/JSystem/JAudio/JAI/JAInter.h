@@ -304,7 +304,7 @@ void getSoundTablePointer();
 extern u8 mVersion;
 extern u8 mCategotyMax;
 extern u16* mSoundMax;
-extern u32 mDataSize;
+extern u32 mDatasize;
 extern SoundInfo** mPointerCategory;
 extern u8* mAddress;
 }; // namespace SoundTable

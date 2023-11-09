@@ -82,7 +82,7 @@ struct JASInstParam {
 	u8 _00;                         // _00
 	u32 _04;                        // _04
 	JASOscillator::Data** mOscData; // _08
-	int mOscCount;                  // _0C - possibly oscillator count?
+	u32 mOscCount;                  // _0C - possibly oscillator count?
 	f32 _10;                        // _10
 	f32 _14;                        // _14
 	f32 _18;                        // _18
