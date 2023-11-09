@@ -2,9 +2,12 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 .obj OSC_RELEASE_TABLE__10JASBankMgr, local
-	.4byte 0x0001000A
-	.4byte 0x0000000F
-	.4byte 0x00000000
+	.2byte 0x0001
+	.2byte 0x000A
+	.2byte 0x0000
+	.2byte 0x000F
+	.2byte 0x0000
+	.2byte 0x0000
 .endobj OSC_RELEASE_TABLE__10JASBankMgr
 .obj OSC_ENV__10JASBankMgr, local
 	.4byte 0

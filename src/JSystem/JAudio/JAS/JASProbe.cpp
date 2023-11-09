@@ -4,31 +4,6 @@
 #include "JSystem/JAudio/JAS/JASProbe.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sProbes
-    sProbes:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516E68
-    lbl_80516E68:
-        .4byte 0x426FC28F
-    .global lbl_80516E6C
-    lbl_80516E6C:
-        .4byte 0x3F75C28F
-    .global lbl_80516E70
-    lbl_80516E70:
-        .float 0.04
-        .4byte 0x00000000
-    .global lbl_80516E78
-    lbl_80516E78:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
-
 static JASProbe* sProbes;
 static u32 sProbeCount; // unused
 
@@ -91,12 +66,13 @@ void JASProbe::stop()
 	OSRestoreInterrupts(interrupts);
 }
 
+namespace JASKernel {
 /*
  * --INFO--
  * Address:	........
  * Size:	000068
  */
-void JASKernel::initProbe(long)
+void initProbe(long)
 {
 	// UNUSED FUNCTION
 }
@@ -106,7 +82,7 @@ void JASKernel::initProbe(long)
  * Address:	........
  * Size:	000190
  */
-void JASKernel::resetProbe()
+void resetProbe()
 {
 	// UNUSED FUNCTION
 }
@@ -116,7 +92,7 @@ void JASKernel::resetProbe()
  * Address:	800A74D4
  * Size:	000060
  */
-void JASKernel::probeStart(long index, char* name)
+void probeStart(long index, char* name)
 {
 	if (sProbes != nullptr) {
 		sProbes[index].start(name);
@@ -128,7 +104,7 @@ void JASKernel::probeStart(long index, char* name)
  * Address:	800A7534
  * Size:	00013C
  */
-void JASKernel::probeFinish(long index)
+void probeFinish(long index)
 {
 	if (sProbes != nullptr) {
 		sProbes[index].stop();
@@ -140,7 +116,7 @@ void JASKernel::probeFinish(long index)
  * Address:	........
  * Size:	000010
  */
-const char* JASKernel::getProbeName(long index)
+const char* getProbeName(long index)
 {
 	// UNUSED FUNCTION
 	return sProbes[index].mName;
@@ -151,7 +127,7 @@ const char* JASKernel::getProbeName(long index)
  * Address:	........
  * Size:	000014
  */
-void JASKernel::getProbeLast(long)
+void getProbeLast(long)
 {
 	// UNUSED FUNCTION
 }
@@ -161,7 +137,7 @@ void JASKernel::getProbeLast(long)
  * Address:	........
  * Size:	000014
  */
-void JASKernel::getProbeAvg(long)
+void getProbeAvg(long)
 {
 	// UNUSED FUNCTION
 }
@@ -171,7 +147,7 @@ void JASKernel::getProbeAvg(long)
  * Address:	........
  * Size:	00001C
  */
-void JASKernel::getProbeTotalAvg(long)
+void getProbeTotalAvg(long)
 {
 	// UNUSED FUNCTION
 }
@@ -181,7 +157,8 @@ void JASKernel::getProbeTotalAvg(long)
  * Address:	........
  * Size:	000014
  */
-void JASKernel::getProbeMax(long)
+void getProbeMax(long)
 {
 	// UNUSED FUNCTION
 }
+} // namespace JASKernel

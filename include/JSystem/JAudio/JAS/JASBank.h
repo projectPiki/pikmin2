@@ -57,18 +57,13 @@ u16 getPhysicalNumber(u16 virtualNumber);
 void setVir2PhyTable(u32 virtualNumber, int physicalNumber);
 bool assignWaveBank(int, int);
 JASChannel* noteOn(int, int, u8, u8, u16, void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
-JASChannel* noteOnOsc(int, u8, u8, u16, void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
+static JASChannel* noteOnOsc(int, u8, u8, u16, void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
 void gateOn(JASChannel*, u8, u8);
 
 // unused/inlined:
 bool registBank(int bankIndex, JASBank* bank);
 JASBank* getBank(int bankIndex);
 size_t getUsedHeapSize();
-
-extern int sTableSize;
-extern JASBank** sBankArray;
-extern u16* sVir2PhyTable;
-extern const JASOscillator::Data OSC_ENV;
 } // namespace JASBankMgr
 
 #endif

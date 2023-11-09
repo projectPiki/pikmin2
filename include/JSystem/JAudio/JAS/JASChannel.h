@@ -34,7 +34,7 @@ struct JASChannel : JSULink<JASChannel>,
 	void setKeySweepTarget(unsigned char, unsigned long);
 	void setPauseFlag(bool);
 	void setPanPower(f32, f32, f32);
-	bool play();
+	BOOL play();
 	bool playForce();
 	void release(unsigned short);
 	void updateEffectorParam(JASDsp::TChannel*, unsigned short*, const EffectOscParam&);

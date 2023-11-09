@@ -20,7 +20,7 @@ void probeFinish(long);
 void probeStart(long, char*);
 
 // unused/inlined:
-void getRootHeap();
+JKRSolidHeap* getRootHeap();
 int getAramFreeSize();
 int getAramSize();
 void initProbe(long);
@@ -30,10 +30,6 @@ void getProbeLast(long);
 void getProbeAvg(long);
 void getProbeTotalAvg(long);
 void getProbeMax(long);
-
-extern JKRExpHeap* sSystemHeap;
-extern JASCmdHeap* sCommandHeap;
-extern JASHeap* audioAramHeap;
 
 }; // namespace JASKernel
 

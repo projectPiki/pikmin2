@@ -1,4 +1,5 @@
 #include "Dolphin/OS/OSUtil.h"
+#include "Dolphin/ai.h"
 #include "JSystem/JAudio/JAS/JASAudioThread.h"
 #include "JSystem/JAudio/JAS/JASCalc.h"
 #include "JSystem/JAudio/JAS/JASDriver.h"
@@ -132,12 +133,19 @@
         .4byte 0x4E470000
 */
 
+namespace JASDriver {
+
+static u8 sDspDacBufferCount = 3;
+static int sSubFrames        = 7;
+static JASMixMode sMixMode   = MixMode_Extra;
+static f32 sDacRate          = 32028.5f;
+
 /*
  * --INFO--
  * Address:	800A7968
  * Size:	00013C
  */
-void JASDriver::initAI(void (*)())
+void initAI(void (*)())
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -233,47 +241,21 @@ lbl_800A7A38:
  * Address:	800A7AA4
  * Size:	000020
  */
-void JASDriver::startDMA()
-{
-	// AIStartDMA();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       AIStartDMA
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void startDMA() { AIStartDMA(); }
 
 /*
  * --INFO--
  * Address:	800A7AC4
  * Size:	000020
  */
-void JASDriver::stopDMA()
-{
-	// AIStopDMA();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       AIStopDMA
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void stopDMA() { AIStopDMA(); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000034
  */
-void JASDriver::setOutputRate(JASOutputRate)
+void setOutputRate(JASOutputRate)
 {
 	// UNUSED FUNCTION
 }
@@ -283,7 +265,7 @@ void JASDriver::setOutputRate(JASOutputRate)
  * Address:	800A7AE4
  * Size:	00015C
  */
-void JASDriver::updateDac()
+void updateDac()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -393,9 +375,9 @@ lbl_800A7C2C:
  * Address:	800A7C40
  * Size:	0000F0
  */
-void JASDriver::updateDSP()
+void updateDSP()
 {
-	static u32 history[10] = { 0xF4240, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	static u32 history[10] = { 1000000, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	JASKernel::probeStart(3, "SFR-UPDATE");
 	JASDsp::invalChannelAll();
 	JASPortCmd::execAllCommand();
@@ -407,7 +389,7 @@ void JASDriver::updateDSP()
 	int subframes                                   = getSubFrames();
 	bool v1                                         = subframes != JASAudioThread::snIntCount;
 	history[subframes - JASAudioThread::snIntCount] = delta;
-	if (v1 && (((f32)history[0] / (f32)delta) < 1.1f)) {
+	if (v1 && ((history[0] / (f32)delta) < 1.1f)) {
 		JASReport("kill DSP channel");
 		JASDSPChannel::killActiveChannel();
 	}
@@ -487,7 +469,7 @@ lbl_800A7D0C:
  * Address:	800A7D30
  * Size:	000310
  */
-void JASDriver::readDspBuffer(short*, unsigned long)
+void readDspBuffer(short*, unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -714,7 +696,7 @@ lbl_800A8008:
  * Address:	800A8040
  * Size:	0001A4
  */
-void JASDriver::finishDSPFrame()
+void finishDSPFrame()
 {
 	u32 v1 = sDspDacWriteBuffer + 1;
 	if (v1 == sDspDacBufferCount) {
@@ -858,7 +840,7 @@ lbl_800A81C8:
  * Address:	........
  * Size:	000008
  */
-void JASDriver::setSubFrames(unsigned long subframes)
+void setSubFrames(unsigned long subframes)
 {
 	// UNUSED FUNCTION
 	// sSubFrames = subframes;
@@ -869,7 +851,7 @@ void JASDriver::setSubFrames(unsigned long subframes)
  * Address:	........
  * Size:	000008
  */
-void JASDriver::setNumDSPBuffer(unsigned char)
+void setNumDSPBuffer(unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -879,7 +861,7 @@ void JASDriver::setNumDSPBuffer(unsigned char)
  * Address:	800A81E4
  * Size:	00000C
  */
-void JASDriver::registerMixCallback(short* (*mixCallback)(long), JASMixMode mode)
+void registerMixCallback(short* (*mixCallback)(long), JASMixMode mode)
 {
 	extMixCallback = mixCallback;
 	sMixMode       = mode;
@@ -895,7 +877,7 @@ void JASDriver::registerMixCallback(short* (*mixCallback)(long), JASMixMode mode
  * Address:	........
  * Size:	000008
  */
-void JASDriver::registerDacCallback(void (*)(short*, unsigned long))
+void registerDacCallback(void (*)(short*, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -905,7 +887,7 @@ void JASDriver::registerDacCallback(void (*)(short*, unsigned long))
  * Address:	........
  * Size:	000008
  */
-void JASDriver::registDSPBufCallback(void (*)(short*, unsigned long))
+void registDSPBufCallback(void (*)(short*, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -915,7 +897,7 @@ void JASDriver::registDSPBufCallback(void (*)(short*, unsigned long))
  * Address:	800A81F0
  * Size:	000008
  */
-f32 JASDriver::getDacRate()
+f32 getDacRate()
 {
 	return sDacRate;
 	/*
@@ -929,7 +911,7 @@ f32 JASDriver::getDacRate()
  * Address:	800A81F8
  * Size:	000008
  */
-int JASDriver::getSubFrames()
+int getSubFrames()
 {
 	return sSubFrames;
 	/*
@@ -943,7 +925,7 @@ int JASDriver::getSubFrames()
  * Address:	800A8200
  * Size:	00000C
  */
-int JASDriver::getDacSize()
+int getDacSize()
 {
 	return sSubFrames * 0xA0;
 	/*
@@ -958,7 +940,7 @@ int JASDriver::getDacSize()
  * Address:	800A820C
  * Size:	00000C
  */
-int JASDriver::getFrameSamples()
+int getFrameSamples()
 {
 	return sSubFrames * 0x50;
 	/*
@@ -973,7 +955,7 @@ int JASDriver::getFrameSamples()
  * Address:	800A8218
  * Size:	0000C0
  */
-void JASDriver::mixMonoTrack(short* p1, unsigned long p2, short* (*callback)(long))
+void mixMonoTrack(short* p1, unsigned long p2, short* (*callback)(long))
 {
 	JASKernel::probeStart(5, "MONO-MIX");
 	s16* cbResult = callback(p2);
@@ -1049,7 +1031,7 @@ lbl_800A82B8:
  * Address:	800A82D8
  * Size:	0000C0
  */
-void JASDriver::mixMonoTrackWide(short*, unsigned long, short* (*)(long))
+void mixMonoTrackWide(short*, unsigned long, short* (*)(long))
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1114,7 +1096,7 @@ lbl_800A8378:
  * Address:	800A8398
  * Size:	0000E0
  */
-void JASDriver::mixExtraTrack(short*, unsigned long, short* (*)(long))
+void mixExtraTrack(short*, unsigned long, short* (*)(long))
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1187,7 +1169,7 @@ lbl_800A8458:
  * Address:	800A8478
  * Size:	00008C
  */
-void JASDriver::mixInterleaveTrack(short*, unsigned long, short* (*)(long))
+void mixInterleaveTrack(short*, unsigned long, short* (*)(long))
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1233,3 +1215,4 @@ lbl_800A84E8:
 	blr
 	*/
 }
+} // namespace JASDriver

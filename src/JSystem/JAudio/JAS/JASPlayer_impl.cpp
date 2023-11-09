@@ -438,21 +438,12 @@
  * Address:	8009C5B4
  * Size:	00001C
  */
-s16 JASPlayer::extend8to16(unsigned char value)
+s16 JASPlayer::extend8to16(u8 value)
 {
 	if ((value & 0x80) != 0) {
-		return value - 0x100;
+		return value + 0xFF00;
 	}
 	return value;
-	/*
-	rlwinm.  r0, r3, 0, 0x18, 0x18
-	clrlwi   r3, r3, 0x18
-	beqlr
-	addis    r3, r3, 1
-	addi     r0, r3, -256
-	extsh    r3, r0
-	blr
-	*/
 }
 
 /*
@@ -460,7 +451,7 @@ s16 JASPlayer::extend8to16(unsigned char value)
  * Address:	8009C5D0
  * Size:	0000D4
  */
-f32 JASPlayer::pitchToCent(float, float)
+f32 JASPlayer::pitchToCent(f32, f32)
 {
 	/*
 	stwu     r1, -0x30(r1)

@@ -28,6 +28,8 @@
         .skip 0x4
 */
 
+JKRSolidHeap* JASDram;
+
 /*
  * --INFO--
  * Address:	800A6A9C
@@ -88,7 +90,7 @@ void JASHeap::adjustSize()
  * Address:	........
  * Size:	000078
  */
-void JASHeap::initRootHeap(void*, unsigned long)
+void JASHeap::initRootHeap(void*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -98,7 +100,7 @@ void JASHeap::initRootHeap(void*, unsigned long)
  * Address:	800A6B10
  * Size:	0001D0
  */
-bool JASHeap::alloc(JASHeap*, unsigned long)
+bool JASHeap::alloc(JASHeap*, u32)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -247,7 +249,7 @@ lbl_800A6CCC:
  * Address:	800A6CE0
  * Size:	0000E8
  */
-bool JASHeap::allocTail(JASHeap*, unsigned long)
+bool JASHeap::allocTail(JASHeap*, u32)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -600,7 +602,7 @@ void JASHeap::dump(int)
  * Address:	800A6EEC
  * Size:	0000E0
  */
-void JASHeap::insertChild(JASHeap*, JASHeap*, void*, unsigned long, bool)
+void JASHeap::insertChild(JASHeap*, JASHeap*, void*, u32, bool)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -858,7 +860,7 @@ lbl_800A7164:
  * Address:	........
  * Size:	000030
  */
-// JASSolidHeap::JASSolidHeap(unsigned char*, unsigned long)
+// JASSolidHeap::JASSolidHeap(u8*, u32)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -868,7 +870,7 @@ lbl_800A7164:
  * Address:	........
  * Size:	000034
  */
-void JASSolidHeap::init(unsigned char*, unsigned long)
+void JASSolidHeap::init(u8*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -878,7 +880,7 @@ void JASSolidHeap::init(unsigned char*, unsigned long)
  * Address:	........
  * Size:	000050
  */
-void* JASSolidHeap::alloc(unsigned long)
+void* JASSolidHeap::alloc(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -920,13 +922,9 @@ void JASSolidHeap::getRemain()
  */
 JASGenericMemPool::JASGenericMemPool()
 {
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	blr
-	*/
+	_00 = 0;
+	_04 = 0;
+	_08 = 0;
 }
 
 /*
@@ -944,7 +942,7 @@ JASGenericMemPool::~JASGenericMemPool()
  * Address:	800A7198
  * Size:	000094
  */
-void JASGenericMemPool::newMemPool(unsigned long, int)
+void JASGenericMemPool::newMemPool(u32, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -998,7 +996,7 @@ lbl_800A71F8:
  * Address:	800A722C
  * Size:	000044
  */
-void* JASGenericMemPool::alloc(unsigned long)
+void* JASGenericMemPool::alloc(u32)
 {
 	/*
 	lwz      r5, 0(r3)
@@ -1030,7 +1028,7 @@ lbl_800A7268:
  * Address:	800A7270
  * Size:	000034
  */
-void JASGenericMemPool::free(void*, unsigned long)
+void JASGenericMemPool::free(void*, u32)
 {
 	/*
 	li       r0, 0
@@ -1053,12 +1051,19 @@ lbl_800A7290:
 	*/
 }
 
+namespace JASKernel {
+
+static JASHeap audioAramHeap(nullptr);
+static u32 sAramBase; // TODO: learn its actual type
+static JKRExpHeap* sSystemHeap;
+static JASCmdHeap* sCommandHeap;
+
 /*
  * --INFO--
  * Address:	800A72A4
  * Size:	000118
  */
-void JASKernel::setupRootHeap(JKRSolidHeap*, unsigned long)
+void setupRootHeap(JKRSolidHeap*, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1147,9 +1152,9 @@ lbl_800A7398:
  * Address:	........
  * Size:	000008
  */
-void JASKernel::getRootHeap()
+JKRSolidHeap* getRootHeap()
 {
-	// UNUSED FUNCTION
+	return JASDram; // speculation
 }
 
 /*
@@ -1157,36 +1162,28 @@ void JASKernel::getRootHeap()
  * Address:	800A73BC
  * Size:	000008
  */
-JKRExpHeap* JASKernel::getSystemHeap()
-{
-	return sSystemHeap;
-	/*
-	lwz      r3, sSystemHeap__9JASKernel@sda21(r13)
-	blr
-	*/
-}
+JKRExpHeap* getSystemHeap() { return sSystemHeap; }
 
 /*
  * --INFO--
  * Address:	800A73C4
  * Size:	000008
  */
-JASCmdHeap* JASKernel::getCommandHeap()
-{
-	return sCommandHeap;
-	/*
-	lwz      r3, sCommandHeap__9JASKernel@sda21(r13)
-	blr
-	*/
-}
+JASCmdHeap* getCommandHeap() { return sCommandHeap; }
 
 /*
  * --INFO--
  * Address:	800A73CC
  * Size:	00007C
  */
-void JASKernel::setupAramHeap(unsigned long, unsigned long)
+void setupAramHeap(u32 u1, u32 u2)
 {
+	sAramBase = u1;
+	OSLockMutex(&audioAramHeap.mMutexObject);
+	audioAramHeap._38 = (u8*)(u1 + 31 & ~31);
+	audioAramHeap._40 = 0;
+	audioAramHeap._3C = u2 - ((u32)audioAramHeap._38 - u1);
+	OSUnlockMutex(&audioAramHeap.mMutexObject);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1227,22 +1224,14 @@ void JASKernel::setupAramHeap(unsigned long, unsigned long)
  * Address:	800A7448
  * Size:	00000C
  */
-JASHeap* JASKernel::getAramHeap()
-{
-	return audioAramHeap;
-	/*
-	lis      r3, audioAramHeap__9JASKernel@ha
-	addi     r3, r3, audioAramHeap__9JASKernel@l
-	blr
-	*/
-}
+JASHeap* getAramHeap() { return &audioAramHeap; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000C4
  */
-int JASKernel::getAramFreeSize()
+int getAramFreeSize()
 {
 	// UNUSED FUNCTION
 }
@@ -1252,50 +1241,9 @@ int JASKernel::getAramFreeSize()
  * Address:	........
  * Size:	000010
  */
-int JASKernel::getAramSize()
+int getAramSize()
 {
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	800A7454
- * Size:	000080
- */
-void __sinit_JASHeapCtrl_cpp()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, audioAramHeap__9JASKernel@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, audioAramHeap__9JASKernel@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       initiate__10JSUPtrListFv
-	mr       r4, r30
-	addi     r3, r31, 0xc
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0
-	addi     r3, r30, 0x1c
-	stw      r0, 0x34(r30)
-	stw      r0, 0x38(r30)
-	stw      r0, 0x3c(r30)
-	stw      r0, 0x40(r30)
-	bl       OSInitMutex
-	lis      r3, __dt__7JASHeapFv@ha
-	lis      r5, lbl_804F0700@ha
-	addi     r4, r3, __dt__7JASHeapFv@l
-	mr       r3, r30
-	addi     r5, r5, lbl_804F0700@l
-	bl       __register_global_object
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+} // namespace JASKernel
