@@ -221,6 +221,7 @@ void* JKRDvdArchive::fetchResource(void* data, u32 compressedSize, JKRArchive::S
 u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, u8* data, u32 expandSize, int fileCompression,
                                             int archiveCompression)
 {
+	u8* bufPtr;
 	u32 prevAlignedSize, alignedSize;
 
 	alignedSize     = ALIGN_NEXT(size, 32);
@@ -233,8 +234,7 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
 			if (alignedSize > prevAlignedSize) {
 				alignedSize = prevAlignedSize;
 			}
-			JKRDvdRipper::loadToMainRAM(entryNum, data, Switch_0, alignedSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, offset, nullptr,
-			                            nullptr);
+			JKRDvdToMainRam(entryNum, data, Switch_0, alignedSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, offset, nullptr, nullptr);
 			DCInvalidateRange(data, alignedSize);
 			return alignedSize;
 
@@ -242,25 +242,23 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
 		case COMPRESSION_YAZ0:
 			u8 buf[64];
 			u8* bufPtr = (u8*)ALIGN_NEXT((u32)buf, 32);
-			JKRDvdRipper::loadToMainRAM(entryNum, bufPtr, Switch_2, sizeof(buf) / 2, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, offset, nullptr,
-			                            nullptr);
+			JKRDvdToMainRam(entryNum, bufPtr, Switch_2, sizeof(buf) / 2, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, offset, nullptr, nullptr);
 			DCInvalidateRange(bufPtr, sizeof(buf) / 2);
-			u32 expandFileSize = JKRDecompExpandSize(bufPtr);
-			alignedSize        = ALIGN_NEXT(expandFileSize, 32);
-			if (alignedSize > prevAlignedSize) {
-				alignedSize = prevAlignedSize;
+			expandSize = JKRDecompExpandSize(bufPtr);
+			size       = ALIGN_NEXT(expandSize, 32);
+			if (size > prevAlignedSize) {
+				size = prevAlignedSize;
 			}
-			JKRDvdRipper::loadToMainRAM(entryNum, data, Switch_1, alignedSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, offset, nullptr,
-			                            nullptr);
-			DCInvalidateRange(data, alignedSize);
-			return expandFileSize;
+			JKRDvdToMainRam(entryNum, data, Switch_1, size, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, offset, nullptr, nullptr);
+			DCInvalidateRange(data, size);
+			return expandSize;
 		}
 	}
 	case COMPRESSION_YAZ0: {
 		if (size > prevAlignedSize) {
 			size = prevAlignedSize;
 		}
-		JKRDvdRipper::loadToMainRAM(entryNum, data, Switch_1, size, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, offset, nullptr, nullptr);
+		JKRDvdToMainRam(entryNum, data, Switch_1, size, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, offset, nullptr, nullptr);
 		DCInvalidateRange(data, size);
 		return size;
 	}
