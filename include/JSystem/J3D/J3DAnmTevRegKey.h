@@ -46,8 +46,8 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 		return J3DAnmKind_TevRegKey;
 	}
 
-	void getTevColorReg(unsigned short, GXColorS10*) const;
-	void getTevKonstReg(unsigned short, GXColor*) const;
+	void getTevColorReg(u16, GXColorS10*) const;
+	void getTevKonstReg(u16, GXColor*) const;
 	void searchUpdateMaterialID(struct J3DModelData*);
 
 	u16 getCRegUpdateMaterialNum() const { return mCRegUpdateMaterialNum; }

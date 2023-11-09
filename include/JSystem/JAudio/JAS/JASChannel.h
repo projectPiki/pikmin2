@@ -27,24 +27,24 @@ struct JASChannel : JSULink<JASChannel>,
 	virtual ~JASChannel(); // _14 (weak)
 
 	void setOscInit(int, const JASOscillator::Data*);
-	void setMixConfig(int, unsigned short);
-	void directReleaseOsc(unsigned short);
+	void setMixConfig(int, u16);
+	void directReleaseOsc(u16);
 	void copyOsc(int, JASOscillator::Data*);
 	void overwriteOsc(int, JASOscillator::Data*);
-	void setKeySweepTarget(unsigned char, unsigned long);
+	void setKeySweepTarget(u8, u32);
 	void setPauseFlag(bool);
 	void setPanPower(f32, f32, f32);
 	BOOL play();
 	BOOL playForce();
-	void release(unsigned short);
-	void updateEffectorParam(JASDsp::TChannel*, unsigned short*, const EffectOscParam&);
-	static long dspUpdateCallback(unsigned long, JASDsp::TChannel*, void*);
+	void release(u16);
+	void updateEffectorParam(JASDsp::TChannel*, u16*, const EffectOscParam&);
+	static long dspUpdateCallback(u32, JASDsp::TChannel*, void*);
 	void initialUpdateDSPChannel(JASDsp::TChannel*);
 	long updateDSPChannel(JASDsp::TChannel*);
-	f32 calcEffect(const PanVector*, const PanVector*, unsigned char);
-	f32 calcPan(const PanVector*, const PanVector*, unsigned char);
+	f32 calcEffect(const PanVector*, const PanVector*, u8);
+	f32 calcPan(const PanVector*, const PanVector*, u8);
 	void updateAutoMixer(JASDsp::TChannel*, f32, f32, f32, f32);
-	void updateMixer(f32, f32, f32, f32, unsigned short*);
+	void updateMixer(f32, f32, f32, f32, u16*);
 	void sweepProc();
 	void free();
 

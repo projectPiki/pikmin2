@@ -64,7 +64,7 @@ struct Radar {
 		static void entry(Game::TPositionObject*, Radar::cRadarType, u32);
 		static bool exit(Game::TPositionObject*);
 
-		void attach(Game::TPositionObject*, Radar::cRadarType, unsigned long);
+		void attach(Game::TPositionObject*, Radar::cRadarType, u32);
 		void bornFuefuki();
 		int calcNearestTreasure(Vector3f&, f32, Vector3f&, f32&);
 		void clear();

@@ -139,23 +139,23 @@ struct J3DIndBlock {
 struct J3DIndBlockFull : public J3DIndBlock {
 	inline J3DIndBlockFull() { initialize(); }
 
-	virtual void reset(J3DIndBlock*);                                            // _08
-	virtual void diff(unsigned long);                                            // _0C
-	virtual void load();                                                         // _10
-	virtual u32 countDLSize();                                                   // _14
-	virtual JBlockType getType();                                                // _18 (weak)
-	virtual void setIndTexStageNum(unsigned char);                               // _1C (weak)
-	virtual u8 getIndTexStageNum() const;                                        // _20 (weak)
-	virtual void setIndTexOrder(unsigned long, J3DIndTexOrder);                  // _24 (weak)
-	virtual void setIndTexOrder(unsigned long, const J3DIndTexOrder*);           // _28 (weak)
-	virtual J3DIndTexOrder* getIndTexOrder(unsigned long);                       // _2C (weak)
-	virtual void setIndTexMtx(unsigned long, const J3DIndTexMtx*);               // _30 (weak)
-	virtual void setIndTexMtx(unsigned long, J3DIndTexMtx);                      // _34 (weak)
-	virtual J3DIndTexMtx* getIndTexMtx(unsigned long);                           // _38 (weak)
-	virtual void setIndTexCoordScale(unsigned long, const J3DIndTexCoordScale*); // _3C (weak)
-	virtual void setIndTexCoordScale(unsigned long, J3DIndTexCoordScale);        // _40 (weak)
-	virtual J3DIndTexCoordScale* getIndTexCoordScale(unsigned long);             // _44 (weak)
-	virtual ~J3DIndBlockFull();                                                  // _48 (weak)
+	virtual void reset(J3DIndBlock*);                                  // _08
+	virtual void diff(u32);                                            // _0C
+	virtual void load();                                               // _10
+	virtual u32 countDLSize();                                         // _14
+	virtual JBlockType getType();                                      // _18 (weak)
+	virtual void setIndTexStageNum(u8);                                // _1C (weak)
+	virtual u8 getIndTexStageNum() const;                              // _20 (weak)
+	virtual void setIndTexOrder(u32, J3DIndTexOrder);                  // _24 (weak)
+	virtual void setIndTexOrder(u32, const J3DIndTexOrder*);           // _28 (weak)
+	virtual J3DIndTexOrder* getIndTexOrder(u32);                       // _2C (weak)
+	virtual void setIndTexMtx(u32, const J3DIndTexMtx*);               // _30 (weak)
+	virtual void setIndTexMtx(u32, J3DIndTexMtx);                      // _34 (weak)
+	virtual J3DIndTexMtx* getIndTexMtx(u32);                           // _38 (weak)
+	virtual void setIndTexCoordScale(u32, const J3DIndTexCoordScale*); // _3C (weak)
+	virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale);        // _40 (weak)
+	virtual J3DIndTexCoordScale* getIndTexCoordScale(u32);             // _44 (weak)
+	virtual ~J3DIndBlockFull();                                        // _48 (weak)
 
 	void initialize();
 
@@ -168,7 +168,7 @@ struct J3DIndBlockFull : public J3DIndBlock {
 
 struct J3DIndBlockNull : public J3DIndBlock {
 	virtual void reset(J3DIndBlock*) { }                 // _08 (weak)
-	virtual void diff(unsigned long) { }                 // _0C (weak)
+	virtual void diff(u32) { }                           // _0C (weak)
 	virtual void load() { }                              // _10 (weak)
 	virtual JBlockType getType() { return JBT_IndNull; } // _18 (weak)
 	virtual ~J3DIndBlockNull() { }                       // _48 (weak)

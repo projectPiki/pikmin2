@@ -27,9 +27,9 @@ struct MiddleBossSeq : public PSSystem::JumpBgmSeq {
 struct BigBossSeq : public MiddleBossSeq {
 	BigBossSeq(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*);
 
-	virtual ~BigBossSeq();                  // _08 (weak)
-	virtual void onJump(unsigned short);    // _60
-	virtual void jumpCheck(unsigned short); // _64
+	virtual ~BigBossSeq();       // _08 (weak)
+	virtual void onJump(u16);    // _60
+	virtual void jumpCheck(u16); // _64
 
 	// _10      = VTBL
 	// _00-_144 = MiddleBossSeq

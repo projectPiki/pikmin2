@@ -13,9 +13,9 @@ struct J3DTexMtx {
 	void calcTexMtx(const f32 (*)[4]);
 	void calcPostTexMtx(const f32 (*)[4]);
 
-	void load(unsigned long) const;
-	void loadTexMtx(unsigned long) const;
-	void loadPostTexMtx(unsigned long) const;
+	void load(u32) const;
+	void loadTexMtx(u32) const;
+	void loadPostTexMtx(u32) const;
 
 	u8 _00;                     // _00
 	s8 mFlags;                  // _01

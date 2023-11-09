@@ -264,8 +264,8 @@ struct JKRDvdArchive : public JKRArchive {
 	virtual void* fetchResource(void* resourceBuffer, u32 bufferSize, SDIFileEntry* entry, u32* resSize); // _3C
 
 	bool open(long);
-	static u32 fetchResource_subroutine(long, u32, u32, unsigned char*, u32, int, int);
-	static u32 fetchResource_subroutine(long, u32, u32, JKRHeap*, int, int, unsigned char**);
+	static u32 fetchResource_subroutine(long, u32, u32, u8*, u32, int, int);
+	static u32 fetchResource_subroutine(long, u32, u32, JKRHeap*, int, int, u8**);
 
 	// Unused/inlined:
 	unknown fixedInit(long, EMountDirection);

@@ -48,7 +48,7 @@ struct JPADynamicsBlockData {
  */
 struct JPADynamicsBlock {
 
-	JPADynamicsBlock(const unsigned char*);
+	JPADynamicsBlock(const u8*);
 	void init();
 	void create(JPAEmitterWorkData*);
 

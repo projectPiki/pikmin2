@@ -2102,7 +2102,7 @@ void J3DGDLoadTlut(void*, u32, _GXTlutSize)
  * Address:	80075F38
  * Size:	0002D8
  */
-void J3DGDSetIndTexMtx(_GXIndTexMtxID, f32 (*)[3], signed char)
+void J3DGDSetIndTexMtx(_GXIndTexMtxID, f32 (*)[3], s8)
 {
 	/*
 	stwu     r1, -0x60(r1)

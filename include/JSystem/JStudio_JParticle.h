@@ -29,18 +29,18 @@ struct TAdaptor_particle : JStudio::TAdaptor_particle {
 
 	TAdaptor_particle(JPAEmitterManager*, const JStage::TSystem*);
 
-	virtual ~TAdaptor_particle();                                                                      // _08
-	virtual void adaptor_do_prepare(const JStudio::TObject*);                                          // _0C
-	virtual void adaptor_do_end(const JStudio::TObject*);                                              // _14
-	virtual void adaptor_do_update(const JStudio::TObject*, unsigned long);                            // _18
-	virtual void adaptor_do_PARTICLE(JStudio::data::TEOperationData, const void*, unsigned long);      // _20
-	virtual void adaptor_do_BEGIN(JStudio::data::TEOperationData, const void*, unsigned long);         // _24
-	virtual void adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, const void*, unsigned long); // _28
-	virtual void adaptor_do_END(JStudio::data::TEOperationData, const void*, unsigned long);           // _2C
-	virtual void adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData, const void*, unsigned long);  // _30
-	virtual void adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, unsigned long);        // _34
-	virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, unsigned long);   // _38
-	virtual void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long); // _3C
+	virtual ~TAdaptor_particle();                                                            // _08
+	virtual void adaptor_do_prepare(const JStudio::TObject*);                                // _0C
+	virtual void adaptor_do_end(const JStudio::TObject*);                                    // _14
+	virtual void adaptor_do_update(const JStudio::TObject*, u32);                            // _18
+	virtual void adaptor_do_PARTICLE(JStudio::data::TEOperationData, const void*, u32);      // _20
+	virtual void adaptor_do_BEGIN(JStudio::data::TEOperationData, const void*, u32);         // _24
+	virtual void adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, const void*, u32); // _28
+	virtual void adaptor_do_END(JStudio::data::TEOperationData, const void*, u32);           // _2C
+	virtual void adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData, const void*, u32);  // _30
+	virtual void adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, u32);        // _34
+	virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, u32);   // _38
+	virtual void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32); // _3C
 
 	void beginParticle_fadeIn_(u32);
 	void endParticle_fadeOut_(u32);

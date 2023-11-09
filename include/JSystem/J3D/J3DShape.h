@@ -219,17 +219,17 @@ struct J3DShapeMtxConcatView : public J3DShapeMtx {
 	{
 	}
 
-	virtual ~J3DShapeMtxConcatView() { }                            // _08 (weak)
-	virtual int getType() const { return 'SMCV'; }                  // _0C (weak)
-	virtual void load() const;                                      // _18
-	virtual void loadNrmMtx(int, unsigned short) const;             // _20 (weak)
-	virtual void loadNrmMtx(int, unsigned short, f32 (*)[4]) const; // _24
+	virtual ~J3DShapeMtxConcatView() { }                 // _08 (weak)
+	virtual int getType() const { return 'SMCV'; }       // _0C (weak)
+	virtual void load() const;                           // _18
+	virtual void loadNrmMtx(int, u16) const;             // _20 (weak)
+	virtual void loadNrmMtx(int, u16, f32 (*)[4]) const; // _24
 
-	void loadMtxConcatView_PNGP(int, unsigned short) const;
-	void loadMtxConcatView_PCPU(int, unsigned short) const;
-	void loadMtxConcatView_NCPU(int, unsigned short) const;
-	void loadMtxConcatView_PNCPU(int, unsigned short) const;
-	void loadMtxConcatView_PNGP_LOD(int, unsigned short) const;
+	void loadMtxConcatView_PNGP(int, u16) const;
+	void loadMtxConcatView_PCPU(int, u16) const;
+	void loadMtxConcatView_NCPU(int, u16) const;
+	void loadMtxConcatView_PNCPU(int, u16) const;
+	void loadMtxConcatView_PNGP_LOD(int, u16) const;
 
 	static LoadMtxConcatViewFunction sMtxLoadPipeline[4];
 	static LoadMtxConcatViewFunction sMtxLoadLODPipeline[4];

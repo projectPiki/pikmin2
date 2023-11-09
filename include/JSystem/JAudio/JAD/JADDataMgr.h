@@ -62,7 +62,7 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 	}
 	// void load(JADUtility::DataLoadMgrNode::ObjStatus, bool);
 	// bool initInstanceExt();
-	// void loadDvd(unsigned long*);
+	// void loadDvd(u32*);
 
 	/** @fabricated */
 	inline void setPath(char const* path)
@@ -125,14 +125,14 @@ struct PrmDataMgrNode : public DataMgrNode {
 };
 
 struct DataLoadMgrVirNode {
-	DataLoadMgrVirNode(unsigned long);
+	DataLoadMgrVirNode(u32);
 	~DataLoadMgrVirNode();
 	void init();
 	const char* getPath();
 };
 
 struct DataMgrVirNode {
-	DataMgrVirNode(unsigned long);
+	DataMgrVirNode(u32);
 	~DataMgrVirNode();
 	void init();
 	const char* getPath();

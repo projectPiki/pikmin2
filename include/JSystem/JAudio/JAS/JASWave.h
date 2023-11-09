@@ -28,7 +28,7 @@ struct JASWaveArc : public JASDisposer {
 
 	// unused/inlined:
 	~JASWaveArc() { }
-	bool loadSetup(unsigned long);
+	bool loadSetup(u32);
 	bool eraseSetup();
 	bool sendLoadCmd();
 	void execLoad();
@@ -133,8 +133,8 @@ struct JASBasicWaveBank : public JASWaveBank {
 		virtual void onLoadDone();  // _0C
 		virtual void onEraseDone(); // _10
 
-		void setWaveCount(unsigned long);
-		void setWaveInfo(int, unsigned long, const JASWaveInfo&);
+		void setWaveCount(u32);
+		void setWaveInfo(int, u32, const JASWaveInfo&);
 		u32 getWaveID(int) const;
 
 		JASBasicWaveBank* mBank; // _5C

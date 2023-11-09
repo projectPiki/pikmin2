@@ -95,10 +95,10 @@ struct TFactory {
 struct TParse {
 	TParse(TControl*);
 	virtual ~TParse(); // _00
-	virtual void parseHeader_next(const void**, unsigned long*,
-	                              unsigned long); // _04
-	virtual void parseBlock_next(const void**, unsigned long*,
-	                             unsigned long); // _08
+	virtual void parseHeader_next(const void**, u32*,
+	                              u32); // _04
+	virtual void parseBlock_next(const void**, u32*,
+	                             u32); // _08
 };
 } // namespace fvb
 } // namespace JStudio

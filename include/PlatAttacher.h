@@ -15,7 +15,7 @@ struct PlatAttacher {
 	Platform* getPlatform(int);
 
 	// Unused/inlined:
-	void alloc(int, unsigned short*);
+	void alloc(int, u16*);
 	void write(Stream&);
 	void draw(Graphics&, int);
 

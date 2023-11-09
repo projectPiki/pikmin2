@@ -90,12 +90,12 @@ struct Scene_Global : public SceneBase {
 struct Scene_Objects : public SceneBase {
 	Scene_Objects(u8, PSGame::SceneInfo*);
 
-	virtual ~Scene_Objects();                             // _0C
-	virtual void exec();                                  // _18
-	virtual void startMainSeq();                          // _1C
-	virtual f32 getCamDistVol(unsigned char);             // _28
-	virtual bool getSeSceneGate(ObjBase*, unsigned long); // _38
-	virtual void onStartMainSeq();                        // _54
+	virtual ~Scene_Objects();                   // _0C
+	virtual void exec();                        // _18
+	virtual void startMainSeq();                // _1C
+	virtual f32 getCamDistVol(u8);              // _28
+	virtual bool getSeSceneGate(ObjBase*, u32); // _38
+	virtual void onStartMainSeq();              // _54
 
 	void adaptObjMgr();
 	void detachObjMgr();

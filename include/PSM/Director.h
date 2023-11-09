@@ -258,7 +258,7 @@ struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
  * @size{0x6C}
  */
 struct ActorDirector_Enemy : public ActorDirector_Scaled {
-	ActorDirector_Enemy(const char*, int, long, long, unsigned long);
+	ActorDirector_Enemy(const char*, int, long, long, u32);
 
 	virtual ~ActorDirector_Enemy() { }                // _08 (weak)
 	virtual void underDirection();                    // _18

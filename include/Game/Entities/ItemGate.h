@@ -169,7 +169,7 @@ struct ItemGateMgr : public BaseItemMgr {
 	virtual u32 generatorGetID();                                         // _58 (weak)
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
 	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
-	virtual void generatorRead(Stream&, GenItemParm*, unsigned long);     // _64
+	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
 	virtual u32 generatorLocalVersion();                                  // _68 (weak)
 	virtual GenItemParm* generatorNewItemParm();                          // _70
 	virtual char* getCaveName(int);                                       // _74

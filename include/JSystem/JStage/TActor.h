@@ -17,16 +17,16 @@ struct TActor : public TObject {
 	virtual void JSGGetRotation(Vec*) const;            // _4C
 	virtual void JSGSetRotation(const Vec&);            // _50
 	virtual int JSGGetShape() const;                    // _54
-	virtual void JSGSetShape(unsigned long);            // _58
+	virtual void JSGSetShape(u32);                      // _58
 	virtual int JSGGetAnimation() const;                // _5C
-	virtual void JSGSetAnimation(unsigned long);        // _60
+	virtual void JSGSetAnimation(u32);                  // _60
 	virtual f32 JSGGetAnimationFrame() const;           // _64
 	virtual void JSGSetAnimationFrame(f32);             // _68
 	virtual f32 JSGGetAnimationFrameMax() const;        // _6C
 	virtual f32 JSGGetAnimationTransition() const;      // _70
 	virtual void JSGSetAnimationTransition(f32);        // _74
 	virtual int JSGGetTextureAnimation() const;         // _78
-	virtual void JSGSetTextureAnimation(unsigned long); // _7C
+	virtual void JSGSetTextureAnimation(u32);           // _7C
 	virtual f32 JSGGetTextureAnimationFrame() const;    // _80
 	virtual void JSGSetTextureAnimationFrame(f32);      // _84
 	virtual f32 JSGGetTextureAnimationFrameMax() const; // _88

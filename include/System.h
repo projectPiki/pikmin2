@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "node.h"
 #include "BitFlag.h"
+#include "types.h"
 
 struct Graphics;
 struct OSContext;
@@ -15,7 +16,7 @@ struct HeapStatus;
 
 void Pikmin2DefaultMemoryErrorRoutine(void*, u32, s32);
 void kando_panic_f(bool, const char*, s32, const char*, ...);
-extern void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long);
+extern void preUserCallback(u16, OSContext*, u32, u32);
 
 // const char* cMapFileName = "/pikmin2UP.map";
 

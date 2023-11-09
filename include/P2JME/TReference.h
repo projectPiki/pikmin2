@@ -6,8 +6,8 @@
 
 namespace P2JME {
 struct TReference : public JMessage::TReference {
-	virtual ~TReference() { }                   // _08
-	virtual char* do_word(unsigned long) const; // _0C
+	virtual ~TReference() { }         // _08
+	virtual char* do_word(u32) const; // _0C
 };
 } // namespace P2JME
 

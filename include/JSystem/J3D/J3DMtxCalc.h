@@ -95,13 +95,13 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 };
 
 struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
-	virtual ~J3DMtxCalcBlendAnmBase();                             // _08 (weak)
-	virtual void setAnmTransform(J3DAnmTransform*);                // _0C (weak)
-	virtual J3DAnmTransform* getAnmTransform();                    // _10 (weak)
-	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14 (weak)
-	virtual J3DAnmTransform* getAnmTransform(unsigned char);       // _18 (weak)
-	virtual void setWeight(unsigned char, f32);                    // _1C (weak)
-	virtual void getWeight(unsigned char) const;                   // _20 (weak)
+	virtual ~J3DMtxCalcBlendAnmBase();                  // _08 (weak)
+	virtual void setAnmTransform(J3DAnmTransform*);     // _0C (weak)
+	virtual J3DAnmTransform* getAnmTransform();         // _10 (weak)
+	virtual void setAnmTransform(u8, J3DAnmTransform*); // _14 (weak)
+	virtual J3DAnmTransform* getAnmTransform(u8);       // _18 (weak)
+	virtual void setWeight(u8, f32);                    // _1C (weak)
+	virtual void getWeight(u8) const;                   // _20 (weak)
 
 	// _00 = VTBL
 	// _04 = J3DAnmTransform*

@@ -46,13 +46,13 @@ struct JAISe : public JAISound {
 	void setSeInterDolby(u8, f32, u32, u8);
 
 	// unused/inlined:
-	void setSeInterRandomPara(f32*, unsigned long, f32, f32);
-	void setSeInterPitch(unsigned char, f32, unsigned long, f32);
-	void setSeInterFxmix(unsigned char, f32, unsigned long, unsigned char);
-	void setSeInterFir(unsigned char, unsigned char, unsigned long, unsigned char);
-	void setSePortData(unsigned char, unsigned short);
-	void getSePortData(unsigned char);
-	void getSeParametermeterF32(unsigned char, unsigned char);
+	void setSeInterRandomPara(f32*, u32, f32, f32);
+	void setSeInterPitch(u8, f32, u32, f32);
+	void setSeInterFxmix(u8, f32, u32, u8);
+	void setSeInterFir(u8, u8, u32, u8);
+	void setSePortData(u8, u16);
+	void getSePortData(u8);
+	void getSeParametermeterF32(u8, u8);
 	void getSeInfoPointer();
 
 	// _00      = VTABLE

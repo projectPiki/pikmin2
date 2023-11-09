@@ -46,7 +46,7 @@ struct Factory {
  */
 struct Mgr {
 	void constructParts(PSSystem::ClusterSe::Factory& factory);
-	void play(unsigned char, JAInter::Object*);
+	void play(u8, JAInter::Object*);
 
 	u8 _00[0x4]; // _00 - unknown
 	Part* mPart; // _04

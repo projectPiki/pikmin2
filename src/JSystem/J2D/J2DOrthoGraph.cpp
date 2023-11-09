@@ -121,7 +121,7 @@ void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1)
  * Address:	80035B0C
  * Size:	00006C
  */
-void J2DFillBox(float x0, float y0, float x1, float y1, JUtility::TColor c1, JUtility::TColor c2, JUtility::TColor c3, JUtility::TColor c4)
+void J2DFillBox(f32 x0, f32 y0, f32 x1, f32 y1, JUtility::TColor c1, JUtility::TColor c2, JUtility::TColor c3, JUtility::TColor c4)
 {
 	J2DFillBox(JGeometry::TBox2<f32>(x0, y0, x0 + x1, y0 + y1), c1, c2, c3, c4);
 }

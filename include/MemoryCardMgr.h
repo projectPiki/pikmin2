@@ -66,7 +66,7 @@ struct MemoryCardMgr {
 	virtual void doInit() { }                                              // _10 (weak)
 	virtual bool doCardProc(void*, MemoryCardMgrCommand*) { return true; } // _14 (weak)
 	virtual u32 getHeaderSize() { return 0x2000; }                         // _18 (weak)
-	virtual void doMakeHeader(unsigned char*);                             // _1C
+	virtual void doMakeHeader(u8*);                                        // _1C
 	virtual void doSetCardStat(CARDStat*);                                 // _20
 	virtual bool doCheckCardStat(CARDStat*);                               // _24
 	virtual bool isErrorOccured();                                         // _28

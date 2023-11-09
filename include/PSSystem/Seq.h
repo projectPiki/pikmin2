@@ -63,7 +63,7 @@ struct SeqBase : JSULink<SeqBase> {
  * @size 0x18
  */
 struct SeqHeap {
-	SeqHeap(unsigned long, PSSystem::SeqBase*); // unused/inlined
+	SeqHeap(u32, PSSystem::SeqBase*); // unused/inlined
 
 	virtual ~SeqHeap();                      // _08
 	virtual void loadSeqAsync(TaskChecker*); // _0C

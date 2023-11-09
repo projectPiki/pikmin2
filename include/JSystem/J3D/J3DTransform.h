@@ -18,7 +18,7 @@ void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo&, f32 (*)[4]);
 void J3DScaleNrmMtx(f32 (*)[4], const Vec&);
 void J3DScaleNrmMtx33(f32 (*)[3], const Vec&);
 void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
-void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], unsigned long);
+void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], u32);
 
 // clang-format off
 /**

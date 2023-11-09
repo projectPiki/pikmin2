@@ -11,7 +11,7 @@ struct JKRHeap;
 
 namespace JAInter {
 struct ObjectBase : public JKRDisposer {
-	ObjectBase(Vec*, JKRHeap*, unsigned char); // unused/inlined
+	ObjectBase(Vec*, JKRHeap*, u8); // unused/inlined
 
 	virtual ~ObjectBase();                            // _08
 	virtual JAISound* startSound(u32, u32);           // _0C

@@ -89,10 +89,10 @@ struct Mgr : public MemoryCardMgr {
 	bool getPlayerInfo(s8, PlayerInfoHeader*, bool*);
 	int getIndexPlayerInfo(s8, PlayerInfoHeader*, bool*);
 	bool commandLoadPlayer(s8);
-	bool loadPlayerForNoCard(signed char);
-	bool loadPlayerProc(s8, unsigned char*);
+	bool loadPlayerForNoCard(s8);
+	bool loadPlayerProc(s8, u8*);
 	bool commandDeletePlayer(s8);
-	bool savePlayerProc(s8, unsigned char*, bool);
+	bool savePlayerProc(s8, u8*, bool);
 	bool commandCheckSerialNo();
 	bool commandCopyPlayer(s8, s8);
 	void writePlayer(Stream&);
@@ -108,9 +108,9 @@ struct Mgr : public MemoryCardMgr {
 	bool writeInvalidPlayerInfoAll();
 	bool writeInvalidPlayerInfo(int, s8);
 	bool checkPlayerNoPlayerInfo(int, s8, PlayerInfoHeader*);
-	bool getIndexInvalidPlayerInfo(int*, s8*, s8, unsigned long, bool);
+	bool getIndexInvalidPlayerInfo(int*, s8*, s8, u32, bool);
 	bool modifyPlayerInfo(s8, bool*);
-	bool verifyCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot);
+	bool verifyCardSerialNo(u64*, MemoryCardMgr::ECardSlot);
 	bool resetError();
 
 	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }

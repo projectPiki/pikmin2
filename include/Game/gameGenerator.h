@@ -272,7 +272,7 @@ struct GenPellet : public GenObject {
 	virtual void doWrite(Stream&);                                            // _08
 	virtual void ramSaveParameters(Stream&);                                  // _0C
 	virtual void ramLoadParameters(Stream&);                                  // _10
-	virtual void doEvent(unsigned long);                                      // _14
+	virtual void doEvent(u32);                                                // _14
 	virtual void doRead(Stream&);                                             // _18
 	virtual J3DModelData* getShape();                                         // _28
 	virtual void updateUseList(Generator*, int);                              // _2C

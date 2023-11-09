@@ -48,31 +48,31 @@ struct JAISequence : public JAISound {
 	f32 getSeqInterVolume(u8);
 
 	// unused/inlined:
-	void setSeqInterFxmix(unsigned char, f32, unsigned long);
-	void setSeqInterDolby(unsigned char, f32, unsigned long);
-	void setSeqTempoProportion(f32, unsigned long);
-	void setSeqPortData(unsigned char, unsigned short, unsigned long);
+	void setSeqInterFxmix(u8, f32, u32);
+	void setSeqInterDolby(u8, f32, u32);
+	void setSeqTempoProportion(f32, u32);
+	void setSeqPortData(u8, u16, u32);
 	void setWaveReadMode(long, long);
-	void setTrackVolume(unsigned char, f32, unsigned long);
-	void setTrackVolumeMulti(unsigned char, unsigned long, f32, unsigned long);
-	void setTrackMuteSwitch(unsigned char, unsigned char);
-	void setTrackMuteSwitchMulti(unsigned long, unsigned char);
-	void setTrackPan(unsigned char, f32, unsigned long);
-	void setTrackPanMulti(unsigned char, unsigned long, f32, unsigned long);
-	void setTrackPitch(unsigned char, f32, unsigned long);
-	void setTrackPitchMulti(unsigned char, unsigned long, f32, unsigned long);
-	void setTrackFxmixMulti(unsigned char, unsigned long, f32, unsigned long);
-	void setTrackDolby(unsigned char, f32, unsigned long);
-	void setTrackDolbyMulti(unsigned char, unsigned long, f32, unsigned long);
-	void getSeqInterPan(unsigned char);
-	void getSeqInterPitch(unsigned char);
-	void getSeqInterFxmix(unsigned char);
-	void getSeqInterDolby(unsigned char);
+	void setTrackVolume(u8, f32, u32);
+	void setTrackVolumeMulti(u8, u32, f32, u32);
+	void setTrackMuteSwitch(u8, u8);
+	void setTrackMuteSwitchMulti(u32, u8);
+	void setTrackPan(u8, f32, u32);
+	void setTrackPanMulti(u8, u32, f32, u32);
+	void setTrackPitch(u8, f32, u32);
+	void setTrackPitchMulti(u8, u32, f32, u32);
+	void setTrackFxmixMulti(u8, u32, f32, u32);
+	void setTrackDolby(u8, f32, u32);
+	void setTrackDolbyMulti(u8, u32, f32, u32);
+	void getSeqInterPan(u8);
+	void getSeqInterPitch(u8);
+	void getSeqInterFxmix(u8);
+	void getSeqInterDolby(u8);
 	void getSeqTempoProportion();
-	void getSeqPortData(unsigned char);
-	void getTrackParameterU7(unsigned char, char);
-	void getTrackParameterF32(unsigned char, char);
-	void getTrackPortData(unsigned char, unsigned char);
+	void getSeqPortData(u8);
+	void getTrackParameterU7(u8, char);
+	void getTrackParameterF32(u8, char);
+	void getTrackPortData(u8, u8);
 
 	JAInter::SeqParameter mSeqParameter; // _48
 };

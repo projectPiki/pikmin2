@@ -142,7 +142,7 @@ struct J3DMaterialFactory {
 	J3DMaterial* create(J3DMaterial*, MaterialType, int, u32) const;
 	J3DMaterial* createNormalMaterial(J3DMaterial*, int, u32) const;
 	J3DLockedMaterial* createLockedMaterial(J3DMaterial*, int, u32) const;
-	J3DPatchedMaterial* createPatchedMaterial(J3DMaterial*, int, unsigned long) const;
+	J3DPatchedMaterial* createPatchedMaterial(J3DMaterial*, int, u32) const;
 	J3DAlphaComp newAlphaComp(int) const;
 	J3DGXColor newAmbColor(int, int) const;
 	J3DBlend newBlend(int) const;
@@ -230,7 +230,7 @@ struct J3DMaterialInitData_v21 {
 struct J3DMaterialFactory_v21 {
 	J3DMaterialFactory_v21(const J3DMaterialBlock_v21&);
 	int countUniqueMaterials();
-	void create(J3DMaterial*, int, unsigned long) const;
+	void create(J3DMaterial*, int, u32) const;
 	void newMatColor(int, int) const;
 	void newColorChanNum(int) const;
 	void newColorChan(int, int) const;

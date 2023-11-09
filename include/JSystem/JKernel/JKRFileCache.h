@@ -21,7 +21,7 @@ struct JKRFileCache : public JKRFileLoader {
 	virtual ~JKRFileCache();                                                                         // _08
 	virtual bool becomeCurrent(const char*);                                                         // _10
 	virtual void* getResource(const char*);                                                          // _14
-	virtual void* getResource(unsigned long, const char*);                                           // _18
+	virtual void* getResource(u32, const char*);                                                     // _18
 	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, const char* path);             // _1C
 	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name);   // _20
 	virtual void removeResourceAll();                                                                // _24
@@ -31,14 +31,14 @@ struct JKRFileCache : public JKRFileLoader {
 	virtual u32 countFile(const char*) const;                                                        // _34
 	virtual JKRFileFinder* getFirstFile(const char*) const;                                          // _38
 	virtual void* getFsResource(const char*);                                                        // _3C (weak)
-	virtual void* getNameResource(unsigned long, const char*);                                       // _40 (weak)
+	virtual void* getNameResource(u32, const char*);                                                 // _40 (weak)
 	virtual long readFsResource(void* resourceBuffer, u32 bufferSize, const char* path);             // _44 (weak)
 	virtual long readNameResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name); // _48 (weak)
 
 	// +4 bytes vtable padding
 
 	CCacheBlock* findCacheBlock(const void*) const;
-	CCacheBlock* findCacheBlock(unsigned long) const;
+	CCacheBlock* findCacheBlock(u32) const;
 	bool findFile(char*, const char*) const;
 	char* getDvdPathName(const char*) const;
 	void convStrLower(char*) const;

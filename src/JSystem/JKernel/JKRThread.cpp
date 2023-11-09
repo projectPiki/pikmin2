@@ -311,7 +311,7 @@ lbl_80025BA8:
  * Size:	000154
  * __ct__7JKRTaskFiiUl
  */
-JKRTask::JKRTask(int msgCount, int threadPriority, u32 stackSize)
+JKRTask::JKRTask(int msgCount, int threadPriority, size_t stackSize)
     : JKRThread(stackSize, msgCount, threadPriority)
     , _7C(this)
     , _94(nullptr)
@@ -333,7 +333,7 @@ JKRTask::~JKRTask() { sTaskList.remove(&_7C); }
  * Address:	80025CD8
  * Size:	0002A4
  */
-JKRTask* JKRTask::create(int msgCount, int threadPriority, u32 stackSize, JKRHeap* heap)
+JKRTask* JKRTask::create(int msgCount, int threadPriority, size_t stackSize, JKRHeap* heap)
 {
 	if (heap == nullptr) {
 		heap = JKRHeap::sCurrentHeap;

@@ -16,7 +16,7 @@ struct MoveParaSet {
 		_0C = 0;
 	}
 
-	int set(f32, unsigned long);
+	int set(f32, u32);
 	BOOL move();
 
 	/** @fabricated */

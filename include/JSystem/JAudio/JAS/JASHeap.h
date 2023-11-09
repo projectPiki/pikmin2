@@ -11,17 +11,17 @@ struct JASHeap {
 	JASHeap(JASDisposer*);
 	~JASHeap() { }
 
-	bool alloc(JASHeap*, unsigned long);
-	bool allocTail(JASHeap*, unsigned long);
+	bool alloc(JASHeap*, u32);
+	bool allocTail(JASHeap*, u32);
 	bool free();
-	void insertChild(JASHeap*, JASHeap*, void*, unsigned long, bool);
+	void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
 	void getTailHeap();
 	int getTailOffset();
 	int getCurOffset();
 
 	// unused/inlined:
 	void adjustSize();
-	void initRootHeap(void*, unsigned long);
+	void initRootHeap(void*, u32);
 	void* allocAll(JASHeap*);
 	void freeTail();
 	void freeAll();
@@ -41,8 +41,8 @@ struct JASHeap {
 struct JASSolidHeap : public JASHeap {
 	// unused/inlined:
 	JASSolidHeap();
-	JASSolidHeap(unsigned char*, unsigned long);
-	void init(unsigned char*, unsigned long);
+	JASSolidHeap(u8*, u32);
+	void init(u8*, u32);
 	void* alloc(u32);
 	void freeLast();
 	void freeAll();

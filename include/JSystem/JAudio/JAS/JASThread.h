@@ -18,7 +18,7 @@ struct JASTaskThread : public JKRThread {
 	int sendCmdMsg(void (*)(void*), void*);
 
 	// unused/inlined:
-	JASCmdHeap::Header* allocCallStack(void (*)(void*), const void*, unsigned long);
+	JASCmdHeap::Header* allocCallStack(void (*)(void*), const void*, u32);
 	void* allocCallStack(void (*)(void*), void*);
 	void pause(bool);
 

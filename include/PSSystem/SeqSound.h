@@ -30,7 +30,7 @@ struct SeqSound : public JAISequence, public SeqSoundBase {
 
 	// vtable 1 (JAISequence) (no changes) 	- _08-_D0
 	// vtable 2 (SeqSoundBase + self)		- _DC-_E0 (thunk)
-	virtual void stopInner(unsigned long); // _E4 (weak)
+	virtual void stopInner(u32); // _E4 (weak)
 
 	// _00 - _6A0: JAISequence
 	// _6A0 - _6A8: SeqSoundBase

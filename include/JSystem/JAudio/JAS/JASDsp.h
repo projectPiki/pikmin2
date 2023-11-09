@@ -166,15 +166,15 @@ extern const u16 DSPRES_FILTER[640];
 } // namespace JASDsp
 
 struct JASDSPChannel {
-	typedef long (*Callback)(unsigned long, JASDsp::TChannel*, void*);
+	typedef long (*Callback)(u32, JASDsp::TChannel*, void*);
 	JASDSPChannel();
 	void free();
 	void start();
 	void drop();
 	static void initAll();
-	static JASDSPChannel* alloc(unsigned char, Callback, void*);
-	static JASDSPChannel* allocForce(unsigned char, Callback, void*);
-	void setPriority(unsigned char);
+	static JASDSPChannel* alloc(u8, Callback, void*);
+	static JASDSPChannel* allocForce(u8, Callback, void*);
+	void setPriority(u8);
 	static JASDSPChannel* getLowestChannel(int);
 	void updateProc();
 	static void updateAll();

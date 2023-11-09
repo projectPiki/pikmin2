@@ -25,7 +25,7 @@ struct MoveParamSet {
 };
 
 struct EnvSeBase : public JSULink<EnvSeBase> {
-	EnvSeBase(unsigned long, f32);
+	EnvSeBase(u32, f32);
 
 	virtual void exec();                         // _08
 	virtual JAISound* play();                    // _0C

@@ -5,26 +5,26 @@
 
 namespace JAInter {
 namespace HeapMgr {
-void init(unsigned char, unsigned long, unsigned char, unsigned long);
+void init(u8, u32, u8, u32);
 HeapBlock* getAutoHeapPointer();
-void checkOnMemory(unsigned long, unsigned char*);
-void releaseAutoHeapPointer(unsigned char);
+void checkOnMemory(u32, u8*);
+void releaseAutoHeapPointer(u8);
 void checkUsefulAutoHeapPosition();
-void* getFreeAutoHeapPointer(unsigned char, unsigned long);
+void* getFreeAutoHeapPointer(u8, u32);
 u32 checkUsefulStayHeapPosition();
-void* getFreeStayHeapPointer(unsigned long, unsigned long);
-void setAutoHeapLoadedFlag(unsigned char, unsigned char);
-void setStayHeapLoadedFlag(unsigned char, unsigned char);
+void* getFreeStayHeapPointer(u32, u32);
+void setAutoHeapLoadedFlag(u8, u8);
+void setStayHeapLoadedFlag(u8, u8);
 
 // unused/inlined:
 HeapBlock* getStayHeapPointer();
 u32 getAutoHeapCount();
 u32 getStayHeapCount();
-void changeAutoHeapPointerToPosition(unsigned char*);
+void changeAutoHeapPointerToPosition(u8*);
 void clearAutoHeap(JAInter::HeapBlock*);
-void clearAutoHeap(unsigned long);
-void clearStayHeap(unsigned long);
-void getAutoHeapPointer(unsigned long);
+void clearAutoHeap(u32);
+void clearStayHeap(u32);
+void getAutoHeapPointer(u32);
 
 extern HeapBlock* sAutoHeap;
 extern HeapBlock* sStayHeap;

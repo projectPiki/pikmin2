@@ -77,30 +77,30 @@ struct JAIBasic {
 	}
 
 	template <typename T>
-	void startSoundActorReturnHandleT(T**, unsigned long, JAInter::Actor*, unsigned long, unsigned char);
+	void startSoundActorReturnHandleT(T**, u32, JAInter::Actor*, u32, u8);
 
 	// unused/inlined:
 	void bootDSP();
-	void getPlayingSoundHandle(JAISound**, unsigned long);
+	void getPlayingSoundHandle(JAISound**, u32);
 	void stopPlayingObjectSe(void*);
-	void stopPlayingIDObjectSe(unsigned long, void*);
-	void stopPlayingCategorySe(unsigned char);
-	void stopPlayingCategoryObjectSe(unsigned char, void*);
+	void stopPlayingIDObjectSe(u32, void*);
+	void stopPlayingCategorySe(u8);
+	void stopPlayingCategoryObjectSe(u8, void*);
 	void stopAllSe(void*);
-	void stopAllSe(unsigned char, void*);
+	void stopAllSe(u8, void*);
 	void stopAllSeq(void*);
 	void stopActorSoundOneBuffer(void*, JSULink<JAISound>*);
-	void stopIDSoundOneBuffer(unsigned long, JSULink<JAISound>*);
-	void stopIDActorSoundOneBuffer(unsigned long, void*, JSULink<JAISound>*);
+	void stopIDSoundOneBuffer(u32, JSULink<JAISound>*);
+	void stopIDActorSoundOneBuffer(u32, void*, JSULink<JAISound>*);
 	void stopAllSound(void*);
-	void getPlayingSoundLinkHeadPointer(unsigned long);
-	void stopAllSound(unsigned long);
-	void stopAllSound(unsigned long, void*);
+	void getPlayingSoundLinkHeadPointer(u32);
+	void stopAllSound(u32);
+	void stopAllSound(u32, void*);
 	void deleteObject(void*);
-	void setPauseFlagAll(unsigned char);
-	void changeSoundScene(unsigned long);
-	void setSeCancelSwitch(unsigned char, unsigned char);
-	void setSeCategoryVolume(unsigned char, unsigned char);
+	void setPauseFlagAll(u8);
+	void changeSoundScene(u32);
+	void setSeCancelSwitch(u8, u8);
+	void setSeCategoryVolume(u8, u8);
 	void allocStreamBuffer(void*, long);
 	void deallocStreamBuffer();
 	void resumeAudio();

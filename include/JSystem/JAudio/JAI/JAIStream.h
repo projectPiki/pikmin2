@@ -49,23 +49,23 @@ struct JAIStream : public JAISound {
 	void setChannelPan(u8, f32, u32);
 
 	// unused/inlined:
-	void setStreamMode(unsigned long);
-	void setStreamInterVolume(unsigned char, f32, unsigned long);
-	void setStreamInterPan(unsigned char, f32, unsigned long);
-	void setStreamInterPitch(unsigned char, f32, unsigned long);
-	void setStreamInterFxmix(unsigned char, f32, unsigned long);
-	void setStreamInterDolby(unsigned char, f32, unsigned long);
-	void setChannelFxmix(unsigned char, f32, unsigned long);
-	void setChannelDolby(unsigned char, f32, unsigned long);
-	void getChannelVolume(unsigned char);
-	void getChannelPan(unsigned char);
-	void getChannelFxmix(unsigned char);
-	void getChannelDolby(unsigned char);
-	void getStreamInterVolume(unsigned char);
-	void getStreamInterPan(unsigned char);
-	void getStreamInterPitch(unsigned char);
-	void getStreamInterFxmix(unsigned char);
-	void getStreamInterDolby(unsigned char);
+	void setStreamMode(u32);
+	void setStreamInterVolume(u8, f32, u32);
+	void setStreamInterPan(u8, f32, u32);
+	void setStreamInterPitch(u8, f32, u32);
+	void setStreamInterFxmix(u8, f32, u32);
+	void setStreamInterDolby(u8, f32, u32);
+	void setChannelFxmix(u8, f32, u32);
+	void setChannelDolby(u8, f32, u32);
+	void getChannelVolume(u8);
+	void getChannelPan(u8);
+	void getChannelFxmix(u8);
+	void getChannelDolby(u8);
+	void getStreamInterVolume(u8);
+	void getStreamInterPan(u8);
+	void getStreamInterPitch(u8);
+	void getStreamInterFxmix(u8);
+	void getStreamInterDolby(u8);
 
 	// _00-_10  = JSULink
 	// _10      = VTABLE

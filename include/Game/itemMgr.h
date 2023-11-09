@@ -61,7 +61,7 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 
 	void loadAnimMgr(JKRFileLoader*, char*);
 	void loadArchive(char*);
-	void loadBmd(char*, int, unsigned long);
+	void loadBmd(char*, int, u32);
 	void loadCollision(JKRFileLoader*, char*);
 	PlatAttacher* loadPlatAttacher(JKRFileLoader*, char*);
 	Platform* loadPlatform(JKRFileLoader*, char*);

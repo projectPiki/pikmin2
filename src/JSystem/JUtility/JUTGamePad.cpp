@@ -1319,7 +1319,7 @@ void JUTGamePad::CStick::clear()
  * Size:	0002B8
  * update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
  */
-u32 JUTGamePad::CStick::update(signed char, signed char, JUTGamePad::EStickMode, JUTGamePad::EWhichStick, u32)
+u32 JUTGamePad::CStick::update(s8, s8, JUTGamePad::EStickMode, JUTGamePad::EWhichStick, u32)
 {
 	/*
 	.loc_0x0:

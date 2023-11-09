@@ -63,21 +63,21 @@ struct J3DPEBlock {
 	virtual void setZMode(const J3DZMode*) { }         // _4C (weak)
 	virtual void setZMode(J3DZMode) { }                // _50 (weak)
 	virtual J3DZMode* getZMode() { }                   // _54 (weak)
-	virtual void setZCompLoc(const unsigned char*) { } // _58 (weak)
-	virtual void setZCompLoc(unsigned char) { }        // _5C (weak)
+	virtual void setZCompLoc(const u8*) { }            // _58 (weak)
+	virtual void setZCompLoc(u8) { }                   // _5C (weak)
 	virtual u8 getZCompLoc() const { }                 // _60 (weak)
-	virtual void setDither(const unsigned char*) { }   // _64 (weak)
-	virtual void setDither(unsigned char) { }          // _68 (weak)
+	virtual void setDither(const u8*) { }              // _64 (weak)
+	virtual void setDither(u8) { }                     // _68 (weak)
 	virtual u8 getDither() const { }                   // _6C (weak)
 	virtual u32 getFogOffset() const { }               // _70 (weak)
-	virtual void setFogOffset(unsigned long) { }       // _74 (weak)
+	virtual void setFogOffset(u32) { }                 // _74 (weak)
 	virtual ~J3DPEBlock() { }                          // _78 (weak)
 };
 
 struct J3DPEBlockFogOff : public J3DPEBlock {
 	virtual void reset(J3DPEBlock*);                // _08
 	virtual void load();                            // _0C
-	virtual void diff(unsigned long);               // _14 (weak)
+	virtual void diff(u32);                         // _14 (weak)
 	virtual void diffBlend();                       // _1C
 	virtual u32 countDLSize();                      // _20
 	virtual JBlockType getType();                   // _24 (weak)
@@ -90,11 +90,11 @@ struct J3DPEBlockFogOff : public J3DPEBlock {
 	virtual void setZMode(const J3DZMode*);         // _4C (weak)
 	virtual void setZMode(J3DZMode);                // _50 (weak)
 	virtual J3DZMode* getZMode();                   // _54 (weak)
-	virtual void setZCompLoc(const unsigned char*); // _58 (weak)
-	virtual void setZCompLoc(unsigned char);        // _5C (weak)
+	virtual void setZCompLoc(const u8*);            // _58 (weak)
+	virtual void setZCompLoc(u8);                   // _5C (weak)
 	virtual u8 getZCompLoc() const;                 // _60 (weak)
-	virtual void setDither(const unsigned char*);   // _64 (weak)
-	virtual void setDither(unsigned char);          // _68 (weak)
+	virtual void setDither(const u8*);              // _64 (weak)
+	virtual void setDither(u8);                     // _68 (weak)
 	virtual u8 getDither() const;                   // _6C (weak)
 	virtual ~J3DPEBlockFogOff() { }                 // _78 (weak)
 
@@ -108,13 +108,13 @@ struct J3DPEBlockFogOff : public J3DPEBlock {
 };
 
 struct J3DPEBlockFull : public J3DPEBlock {
-	virtual void reset(J3DPEBlock*);  // _08
-	virtual void load();              // _0C
-	virtual void patch();             // _10
-	virtual void diff(unsigned long); // _14
-	virtual void diffFog();           // _18
-	virtual void diffBlend();         // _1C
-	virtual u32 countDLSize();        // _20
+	virtual void reset(J3DPEBlock*); // _08
+	virtual void load();             // _0C
+	virtual void patch();            // _10
+	virtual void diff(u32);          // _14
+	virtual void diffFog();          // _18
+	virtual void diffBlend();        // _1C
+	virtual u32 countDLSize();       // _20
 	/**
 	 * @reifiedAddress{800816D0}
 	 * @reifiedFile{JSystem/J3D/J3DMatBlock.cpp}
@@ -135,14 +135,14 @@ struct J3DPEBlockFull : public J3DPEBlock {
 	virtual void setZMode(const J3DZMode*);         // _4C (weak)
 	virtual void setZMode(J3DZMode);                // _50 (weak)
 	virtual J3DZMode* getZMode();                   // _54 (weak)
-	virtual void setZCompLoc(const unsigned char*); // _58 (weak)
-	virtual void setZCompLoc(unsigned char);        // _5C (weak)
+	virtual void setZCompLoc(const u8*);            // _58 (weak)
+	virtual void setZCompLoc(u8);                   // _5C (weak)
 	virtual u8 getZCompLoc() const;                 // _60 (weak)
 	/**
 	 * @reifiedAddress{80081910}
 	 * @reifiedFile{JSystem/J3D/J3DMatBlock.cpp}
 	 */
-	virtual void setDither(const unsigned char* dither) // _64 (weak)
+	virtual void setDither(const u8* dither) // _64 (weak)
 	{
 		mDither = *dither;
 	}
@@ -150,7 +150,7 @@ struct J3DPEBlockFull : public J3DPEBlock {
 	 * @reifiedAddress{80081908}
 	 * @reifiedFile{JSystem/J3D/J3DMatBlock.cpp}
 	 */
-	virtual void setDither(unsigned char dither) // _68 (weak)
+	virtual void setDither(u8 dither) // _68 (weak)
 	{
 		mDither = dither;
 	}
@@ -174,7 +174,7 @@ struct J3DPEBlockFull : public J3DPEBlock {
 	 * @reifiedAddress{8008192C}
 	 * @reifiedFile{JSystem/J3D/J3DMatBlock.cpp}
 	 */
-	virtual void setFogOffset(unsigned long fogOffset) // _74 (weak)
+	virtual void setFogOffset(u32 fogOffset) // _74 (weak)
 	{
 		mFogOffset = fogOffset;
 	}

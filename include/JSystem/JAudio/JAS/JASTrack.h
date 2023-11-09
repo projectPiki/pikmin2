@@ -210,7 +210,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void muteTrack(bool);
 
 	static long rootCallback(void*);
-	static void channelUpdateCallback(unsigned long, JASChannel*, JASDsp::TChannel*, void*);
+	static void channelUpdateCallback(u32, JASChannel*, JASDsp::TChannel*, void*);
 	static void newMemPool(int);
 	static void registerSeqCallback(SeqCallback);
 

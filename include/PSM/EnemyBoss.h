@@ -16,16 +16,16 @@ struct EnemyBoss : public EnemyBase {
 	virtual void exec();                    // _20
 	virtual void onCalcOn();                // _28
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, f32,
-	                                 f32);              // _34
-	virtual void onPlayingSe(unsigned long, JAISound*); // _38
-	virtual void setKilled();                           // _C8
-	virtual void jumpRequest(u16)     = 0;              // _D4
-	virtual void postPikiAttack(bool) = 0;              // _D8
-	virtual void updateDisappearing();                  // _DC
-	virtual void onDeathMotionTop();                    // _E0
-	virtual void onAppear();                            // _E4 (weak)
-	virtual void onAppear1st();                         // _E8 (weak)
-	virtual void onDisappear();                         // _EC (weak)
+	                                 f32);    // _34
+	virtual void onPlayingSe(u32, JAISound*); // _38
+	virtual void setKilled();                 // _C8
+	virtual void jumpRequest(u16)     = 0;    // _D4
+	virtual void postPikiAttack(bool) = 0;    // _D8
+	virtual void updateDisappearing();        // _DC
+	virtual void onDeathMotionTop();          // _E0
+	virtual void onAppear();                  // _E4 (weak)
+	virtual void onAppear1st();               // _E8 (weak)
+	virtual void onDisappear();               // _EC (weak)
 
 	void calcDistance();
 	void setAppearFlag(bool);

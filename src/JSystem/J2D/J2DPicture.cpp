@@ -729,7 +729,7 @@ J2DPicture::J2DPicture(const ResTIMG* img)
  * Size:	000030
  * append__10J2DPictureFPC7ResTIMGf
  */
-bool J2DPicture::append(const ResTIMG* resource, float p2) { return insert(resource, mTextureCount, p2); }
+bool J2DPicture::append(const ResTIMG* resource, f32 p2) { return insert(resource, mTextureCount, p2); }
 
 /*
  * --INFO--
@@ -737,7 +737,7 @@ bool J2DPicture::append(const ResTIMG* resource, float p2) { return insert(resou
  * Size:	000034
  * insert__10J2DPictureFPC7ResTIMGUcf
  */
-bool J2DPicture::insert(const ResTIMG* resource, u8 textureCount, float p3) { return insert(resource, nullptr, textureCount, p3); }
+bool J2DPicture::insert(const ResTIMG* resource, u8 textureCount, f32 p3) { return insert(resource, nullptr, textureCount, p3); }
 
 /*
  * --INFO--
@@ -772,7 +772,7 @@ J2DPicture::J2DPicture(const char* p1)
  * Size:	000030
  * append__10J2DPictureFPCcf
  */
-bool J2DPicture::append(const char* p1, float p2) { return insert(p1, mTextureCount, p2); }
+bool J2DPicture::append(const char* p1, f32 p2) { return insert(p1, mTextureCount, p2); }
 
 /*
  * --INFO--
@@ -780,7 +780,7 @@ bool J2DPicture::append(const char* p1, float p2) { return insert(p1, mTextureCo
  * Size:	000034
  * insert__10J2DPictureFPCcUcf
  */
-bool J2DPicture::insert(const char* p1, u8 p2, float p3) { return insert(p1, nullptr, p2, p3); }
+bool J2DPicture::insert(const char* p1, u8 p2, f32 p3) { return insert(p1, nullptr, p2, p3); }
 
 /*
  * --INFO--
@@ -815,7 +815,7 @@ J2DPicture::J2DPicture(JUTTexture* texture)
  * Size:	000030
  * append__10J2DPictureFP10JUTTexturef
  */
-bool J2DPicture::append(JUTTexture* texture, float p2) { return insert(texture, mTextureCount, p2); }
+bool J2DPicture::append(JUTTexture* texture, f32 p2) { return insert(texture, mTextureCount, p2); }
 
 /*
  * --INFO--
@@ -848,7 +848,7 @@ J2DPicture::J2DPicture(u64 id, const JGeometry::TBox2f& bounds)
  * Size:	00009C
  * setBlendRatio__10J2DPictureFffffffff
  */
-void J2DPicture::setBlendRatio(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
+void J2DPicture::setBlendRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
 {
 	setBlendColorRatio(p1, p2, p3, p4, p5, p6, p7, p8);
 	setBlendAlphaRatio(p1, p2, p3, p4, p5, p6, p7, p8);
@@ -1449,7 +1449,7 @@ lbl_8003B03C:
  * Address:	8003B05C
  * Size:	00032C
  */
-bool J2DPicture::insert(const ResTIMG*, JUTPalette*, u8, float)
+bool J2DPicture::insert(const ResTIMG*, JUTPalette*, u8, f32)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1700,7 +1700,7 @@ lbl_8003B36C:
  * Size:	000078
  * insert__10J2DPictureFPCcP10JUTPaletteUcf
  */
-bool J2DPicture::insert(const char* p1, JUTPalette* palette, u8 p3, float p4)
+bool J2DPicture::insert(const char* p1, JUTPalette* palette, u8 p3, f32 p4)
 {
 	return insert((ResTIMG*)J2DScreen::getNameResource(p1), palette, p3, p4);
 }
@@ -1710,7 +1710,7 @@ bool J2DPicture::insert(const char* p1, JUTPalette* palette, u8 p3, float p4)
  * Address:	8003B400
  * Size:	0001D8
  */
-bool J2DPicture::insert(JUTTexture*, u8, float)
+bool J2DPicture::insert(JUTTexture*, u8, f32)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2141,7 +2141,7 @@ lbl_8003B9C0:
  * Size:	000030
  * append__10J2DPictureFPC7ResTIMGP10JUTPalettef
  */
-bool J2DPicture::append(const ResTIMG* img, JUTPalette* palette, float p3) { return insert(img, palette, mTextureCount, p3); }
+bool J2DPicture::append(const ResTIMG* img, JUTPalette* palette, f32 p3) { return insert(img, palette, mTextureCount, p3); }
 
 /*
  * --INFO--
@@ -2159,7 +2159,7 @@ ResTIMG* J2DPicture::changeTexture(const char* name, u8 index, JUTPalette* palet
  * Address:	8003BA6C
  * Size:	000068
  */
-void J2DPicture::drawSelf(float p1, float p2)
+void J2DPicture::drawSelf(f32 p1, f32 p2)
 {
 	Mtx mtx;
 	PSMTXIdentity(mtx);
@@ -2172,7 +2172,7 @@ void J2DPicture::drawSelf(float p1, float p2)
  * Size:	00006C
  * drawSelf__10J2DPictureFffPA3_A4_f
  */
-void J2DPicture::drawSelf(float p1, float p2, float (*mtx)[3][4])
+void J2DPicture::drawSelf(f32 p1, f32 p2, f32 (*mtx)[3][4])
 {
 	if (mTextures[0] != nullptr && mTextureCount != 0) {
 		drawFullSet(mGlobalBounds.i.x + p1, mGlobalBounds.i.y + p2, mBounds.getWidth(), mBounds.getHeight(), mtx);
@@ -2184,7 +2184,7 @@ void J2DPicture::drawSelf(float p1, float p2, float (*mtx)[3][4])
  * Address:	8003BB40
  * Size:	000074
  */
-void J2DPicture::drawFullSet(float p1, float p2, float width, float height, float (*mtx)[3][4])
+void J2DPicture::drawFullSet(f32 p1, f32 p2, f32 width, f32 height, f32 (*mtx)[3][4])
 {
 	if (mTextures[0] != nullptr && mTextureCount != 0) {
 		drawTexCoord(mBounds.i.x, mBounds.i.y, width, height, mTexCoords[0].x, mTexCoords[0].y, mTexCoords[1].x, mTexCoords[1].y,
@@ -2197,7 +2197,7 @@ void J2DPicture::drawFullSet(float p1, float p2, float width, float height, floa
  * Address:	8003BBB4
  * Size:	0002F4
  */
-void J2DPicture::draw(float, float, float, float, bool, bool, bool)
+void J2DPicture::draw(f32, f32, f32, f32, bool, bool, bool)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -2425,7 +2425,7 @@ void J2DPicture::load(_GXTexMapID texMapID, u8 textureIndex)
  * Address:	8003BF28
  * Size:	0003FC
  */
-void J2DPicture::drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
+void J2DPicture::drawOut(const JGeometry::TBox2<f32>&, const JGeometry::TBox2<f32>&)
 {
 	/*
 	.loc_0x0:
@@ -2698,7 +2698,7 @@ void J2DPicture::drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox2<
  * Address:	8003C324
  * Size:	00023C
  */
-void J2DPicture::drawTexCoord(float, float, float, float, short, short, short, short, short, short, short, short, float (*)[3][4])
+void J2DPicture::drawTexCoord(f32, f32, f32, f32, short, short, short, short, short, short, short, short, f32 (*)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -3202,7 +3202,7 @@ lbl_8003C9CC:
  * Address:	8003CA00
  * Size:	000030
  */
-void J2DPicture::setBlendColorRatio(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
+void J2DPicture::setBlendColorRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
 {
 	_124[0] = p1;
 	_124[1] = p2;
@@ -3216,7 +3216,7 @@ void J2DPicture::setBlendColorRatio(float p1, float p2, float p3, float p4, floa
  * Address:	8003CA30
  * Size:	000030
  */
-void J2DPicture::setBlendAlphaRatio(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
+void J2DPicture::setBlendAlphaRatio(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
 {
 	_134[0] = p1;
 	_134[1] = p2;
@@ -3906,7 +3906,7 @@ lbl_8003D31C:
  * Size:	000030
  * append__10J2DPictureFPCcP10JUTPalettef
  */
-bool J2DPicture::append(const char* p1, JUTPalette* palette, float p3) { return insert(p1, palette, mTextureCount, p3); }
+bool J2DPicture::append(const char* p1, JUTPalette* palette, f32 p3) { return insert(p1, palette, mTextureCount, p3); }
 
 /*
  * --INFO--
@@ -3914,7 +3914,7 @@ bool J2DPicture::append(const char* p1, JUTPalette* palette, float p3) { return 
  * Size:	000030
  * prepend__10J2DPictureFP10JUTTexturef
  */
-bool J2DPicture::prepend(JUTTexture* texture, float p2) { return insert(texture, 0, p2); }
+bool J2DPicture::prepend(JUTTexture* texture, f32 p2) { return insert(texture, 0, p2); }
 
 /*
  * --INFO--
@@ -3922,7 +3922,7 @@ bool J2DPicture::prepend(JUTTexture* texture, float p2) { return insert(texture,
  * Size:	000030
  * prepend__10J2DPictureFPCcP10JUTPalettef
  */
-bool J2DPicture::prepend(const char* p1, JUTPalette* palette, float p3) { return insert(p1, palette, 0, p3); }
+bool J2DPicture::prepend(const char* p1, JUTPalette* palette, f32 p3) { return insert(p1, palette, 0, p3); }
 
 /*
  * --INFO--
@@ -3930,7 +3930,7 @@ bool J2DPicture::prepend(const char* p1, JUTPalette* palette, float p3) { return
  * Size:	000030
  * prepend__10J2DPictureFPCcf
  */
-bool J2DPicture::prepend(const char* p1, float p2) { return insert(p1, 0, p2); }
+bool J2DPicture::prepend(const char* p1, f32 p2) { return insert(p1, 0, p2); }
 
 /*
  * --INFO--
@@ -3938,7 +3938,7 @@ bool J2DPicture::prepend(const char* p1, float p2) { return insert(p1, 0, p2); }
  * Size:	000030
  * prepend__10J2DPictureFPC7ResTIMGP10JUTPalettef
  */
-bool J2DPicture::prepend(const ResTIMG* img, JUTPalette* palette, float p3) { return insert(img, palette, 0, p3); }
+bool J2DPicture::prepend(const ResTIMG* img, JUTPalette* palette, f32 p3) { return insert(img, palette, 0, p3); }
 
 /*
  * --INFO--
@@ -3946,7 +3946,7 @@ bool J2DPicture::prepend(const ResTIMG* img, JUTPalette* palette, float p3) { re
  * Size:	000030
  * prepend__10J2DPictureFPC7ResTIMGf
  */
-bool J2DPicture::prepend(const ResTIMG* img, float p2) { return insert(img, 0, p2); }
+bool J2DPicture::prepend(const ResTIMG* img, f32 p2) { return insert(img, 0, p2); }
 
 /*
  * --INFO--
@@ -3962,7 +3962,7 @@ int J2DPicture::remove() { return remove(mTextureCount - 1); }
  * Size:	000098
  * draw__10J2DPictureFffUcbbb
  */
-void J2DPicture::draw(float p1, float p2, u8 textureIndex, bool p4, bool p5, bool p6)
+void J2DPicture::draw(f32 p1, f32 p2, u8 textureIndex, bool p4, bool p5, bool p6)
 {
 	if (textureIndex < mTextureCount && mTextures[textureIndex] != nullptr) {
 		// ResTIMG* img = mTextures[textureIndex]->_20;
@@ -3978,7 +3978,7 @@ void J2DPicture::draw(float p1, float p2, u8 textureIndex, bool p4, bool p5, boo
  * Size:	000040
  * draw__10J2DPictureFffbbb
  */
-void J2DPicture::draw(float p1, float p2, bool p3, bool p4, bool p5) { draw(p1, p2, 0, p3, p4, p5); }
+void J2DPicture::draw(f32 p1, f32 p2, bool p3, bool p4, bool p5) { draw(p1, p2, 0, p3, p4, p5); }
 
 /*
  * --INFO--
@@ -3986,7 +3986,7 @@ void J2DPicture::draw(float p1, float p2, bool p3, bool p4, bool p5) { draw(p1, 
  * Size:	000064
  * drawOut__10J2DPictureFffffffff
  */
-void J2DPicture::drawOut(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
+void J2DPicture::drawOut(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7, f32 p8)
 {
 	drawOut(JGeometry::TBox2f(p1, p2, p1 + p3, p2 + p4), JGeometry::TBox2f(p5, p6, p5 + p7, p6 + p8));
 }
@@ -3998,7 +3998,7 @@ void J2DPicture::drawOut(float p1, float p2, float p3, float p4, float p5, float
  * drawOut__10J2DPictureFffffff
  * TODO: Check if this is correct. The mangled name of it is a substring of another one, and thus isn't checkable by vanilla genasm.sh
  */
-void J2DPicture::drawOut(float p1, float p2, float p3, float p4, float p5, float p6)
+void J2DPicture::drawOut(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6)
 {
 	if (mTextures[0] == nullptr) {
 		return;

@@ -9,9 +9,9 @@
 struct JASGenericMemPool {
 	JASGenericMemPool(); // unused/inlined
 
-	void newMemPool(unsigned long, int);
-	void* alloc(unsigned long);
-	void free(void*, unsigned long);
+	void newMemPool(u32, int);
+	void* alloc(u32);
+	void free(void*, u32);
 
 	// unused/inlined:
 	~JASGenericMemPool();

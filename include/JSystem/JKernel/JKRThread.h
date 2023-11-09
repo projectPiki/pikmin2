@@ -156,14 +156,14 @@ struct JKRTask : public JKRThread {
 		void* _08;
 	};
 
-	JKRTask(int msgCount, int threadPriority, u32 stackSize); // unused/inlined
+	JKRTask(int msgCount, int threadPriority, size_t stackSize); // unused/inlined
 
 	virtual ~JKRTask();  // _08
 	virtual void* run(); // _0C
 
 	bool request(RequestCallback, void*, void*);
 
-	static JKRTask* create(int, int, unsigned long, JKRHeap*);
+	static JKRTask* create(int, int, size_t, JKRHeap*);
 
 	// unused/inlined:
 	Message* searchBlank();

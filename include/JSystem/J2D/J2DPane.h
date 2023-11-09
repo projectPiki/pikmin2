@@ -1035,7 +1035,7 @@ struct J2DWindowEx : public J2DWindow {
 	virtual ~J2DWindowEx();                                                                                           // _08
 	virtual void setCullBack(bool shouldCullBack);                                                                    // _1C (weak)
 	virtual void setCullBack(GXCullMode cullMode);                                                                    // _20
-	virtual void setAlpha(unsigned char);                                                                             // _24
+	virtual void setAlpha(u8);                                                                                        // _24
 	virtual void drawSelf(f32, f32, f32 (*)[3][4]);                                                                   // _38
 	virtual bool isUsed(const ResTIMG* resource);                                                                     // _4C
 	virtual bool isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); }                                // _50 (weak)

@@ -47,25 +47,23 @@ void checkPlayingSeq();
 void checkStartedSeq();
 void checkReadSeq();
 void checkSeqWave();
-void checkPlayingSeqTrack(unsigned long);
+void checkPlayingSeqTrack(u32);
 void stopSeq(JAISequence*);
-void checkDvdLoadArc(unsigned long, unsigned long);
-void checkCustomDvdLoadArc(unsigned long, unsigned long);
-void storeSeqBuffer(JAISequence**, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*);
-void releaseSeqBuffer(JAISequence*, unsigned long);
-SeqUpdateData* getPlayTrackInfo(unsigned long);
+void checkDvdLoadArc(u32, u32);
+void checkCustomDvdLoadArc(u32, u32);
+void storeSeqBuffer(JAISequence**, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*);
+void releaseSeqBuffer(JAISequence*, u32);
+SeqUpdateData* getPlayTrackInfo(u32);
 
 // unused/inlined:
-void checkPlayingSeqUpdateMultiplication(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char,
-                                         f32*);
-void checkPlayingSeqUpdateAddition(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char, f32*,
-                                   f32);
-void checkPlayingSeqUpdateTrack(unsigned long, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char, f32*);
-void checkCustomDvdPreloadArc(unsigned long, unsigned long);
-void stopPlayingSeq(unsigned long);
-void checkPlayingSoundTrack(unsigned long);
-void loadArcSeqData(unsigned long, bool);
-void loadCustomArcSeqData(unsigned short, bool);
+void checkPlayingSeqUpdateMultiplication(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, f32*);
+void checkPlayingSeqUpdateAddition(u32, u8, u32, JAInter::MoveParaSet*, u32*, u8, f32*, f32);
+void checkPlayingSeqUpdateTrack(u32, u32, JAInter::MoveParaSet*, u32*, u8, f32*);
+void checkCustomDvdPreloadArc(u32, u32);
+void stopPlayingSeq(u32);
+void checkPlayingSoundTrack(u32);
+void loadArcSeqData(u32, bool);
+void loadCustomArcSeqData(u16, bool);
 
 extern SeqUpdateData* seqTrackInfo;
 extern JAISequence** FixSeqBufPointer;
@@ -321,9 +319,9 @@ void outerInit(SeqUpdateData*, JASTrack*, u32, u16, u8);
 void setSePortParameter(JASPortArgs*);
 
 // unused/inlined:
-void setSeqPortargsPS16(JAInter::SeqUpdateData*, unsigned long, unsigned char, short*);
-JASTrack* trackToSeqp(JASTrack*, unsigned char, unsigned long);
-void setPortParameter(JASPortArgs*, JASTrack*, unsigned long, unsigned long);
+void setSeqPortargsPS16(JAInter::SeqUpdateData*, u32, u8, short*);
+JASTrack* trackToSeqp(JASTrack*, u8, u32);
+void setPortParameter(JASPortArgs*, JASTrack*, u32, u32);
 void JAIouterP(void*);
 void JAIouterSW(void*);
 void setAudioFrameParameter(JASPortArgs*);

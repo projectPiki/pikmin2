@@ -10,11 +10,11 @@
 struct JASCmdHeap;
 
 namespace JASKernel {
-void setupRootHeap(JKRSolidHeap*, unsigned long);
+void setupRootHeap(JKRSolidHeap*, u32);
 JKRExpHeap* getSystemHeap();
 JASCmdHeap* getCommandHeap();
 JASHeap* getAramHeap();
-void setupAramHeap(unsigned long, unsigned long);
+void setupAramHeap(u32, u32);
 
 void probeFinish(long);
 void probeStart(long, char*);
