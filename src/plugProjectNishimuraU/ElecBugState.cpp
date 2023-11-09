@@ -388,7 +388,7 @@ void StateChildCharge::exec(EnemyBase* enemy)
 	}
 	if (bug->mStateTimer > 3.0f) {
 		if (partner) {
-			transit(bug, ELECBUG_Discharge, nullptr);
+			transit(bug, ELECBUG_ChildDischarge, nullptr);
 		} else {
 			bug->finishPartnerAndEffect();
 			transit(bug, ELECBUG_Turn, nullptr);
