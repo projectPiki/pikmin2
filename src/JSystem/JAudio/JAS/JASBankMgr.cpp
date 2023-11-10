@@ -219,7 +219,7 @@ static JASChannel* noteOnOsc(int p1, u8 p2, u8 p3, u16 p4, void (*p5)(u32, JASCh
 	channel->_BC = p4;
 	channel->_EC = (void*)p1;
 	channel->_E4 = 2;
-	channel->_F0 = 16736.02f / JASDriver::getDacRate();
+	channel->_F0 = 16736.015f / JASDriver::getDacRate();
 	channel->_F8 = channel->_F0;
 	channel->_F8 *= JASDriver::key2pitch_c5(p2);
 	channel->_F4 = 1.0f;
@@ -254,3 +254,8 @@ size_t getUsedHeapSize()
 	// UNUSED FUNCTION
 }
 } // namespace JASBankMgr
+
+// TODO: this probably should spawn automatically from a template header thing somehow but idk how yet - HP.
+WEAKFUNC
+JASMemPool<JASChannel, JASThreadingModel::SingleThreaded>*
+    JASSingletonHolder<JASMemPool<JASChannel, JASThreadingModel::SingleThreaded>, JASCreationPolicy::NewFromRootHeap>::sInstance;

@@ -306,7 +306,7 @@ LIBS = [
         "host": True,
         "objects": [
             "JSystem/JAudio/JAS/JASWSParser",
-            "JSystem/JAudio/JAS/JASBankMgr",
+            ["JSystem/JAudio/JAS/JASBankMgr", True],
             ["JSystem/JAudio/JAS/JASBasicBank", True],
             ["JSystem/JAudio/JAS/JASBasicInst", True],
             "JSystem/JAudio/JAS/JASBasicWaveBank",
