@@ -301,8 +301,7 @@ inline PSSystem::Scene* PSMGetChildScene()
 
 inline PSM::Scene_Game* PSMGetGameScene()
 {
-	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
-	PSM::SceneBase* scene   = static_cast<PSM::SceneBase*>(mgr->getChildScene());
+	PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(PSMGetChildScene());
 	if (scene->isGameScene()) {
 		return static_cast<PSM::Scene_Game*>(scene);
 	}

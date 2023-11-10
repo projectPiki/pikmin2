@@ -307,14 +307,14 @@ struct FileState : public State {
 };
 
 struct GameArg : public StateArg {
-	inline GameArg(bool check, u16 val)
+	inline GameArg(bool check, u16 startType)
 	    : _00(check)
-	    , _02(val)
+	    , mStartType(startType)
 	{
 	}
 
-	bool _00; // _00
-	u16 _02;  // _02
+	bool _00;       // _00
+	u16 mStartType; // _02
 };
 
 /**
@@ -324,7 +324,9 @@ struct GameState : public State {
 	/**
 	 * @fabricated
 	 */
-	enum RepayDemoState { RDS_0 = 0, RRD_1, RDS_2, RDS_3, RDS_4 };
+	enum RepayDemoState { RDS_0 = 0, RDS_1, RDS_2, RDS_3, RDS_4 };
+
+	enum startType { Start_NormalLand = 0, Start_ReturnCave = 1, Start_EndDay = 2, Start_Unk3 = 3, Start_Unk4 = 4, Start_NewGame = 5 };
 
 	inline GameState()
 	    : State(SGS_Game)
@@ -354,14 +356,13 @@ struct GameState : public State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	u8 _10;  // _10
-	u8 _11;  // _11
-	f32 _14; // _14
-	u8 _18;  // _18
-	u8 _19;  // _19
-	u32 : 0;
-	u8 _1C[4]; // _1C
-	u8 _20;    // _20
+	bool mIsPostExtinct; // _10
+	u8 _11;              // _11
+	f32 _14;             // _14
+	u8 mDoExit;          // _18
+	u8 mCheckRepay;      // _19
+	f32 mRepayTimer;     // _1C
+	u8 mInSaveScreen;    // _20
 };
 
 struct LoadArg : public StateArg {

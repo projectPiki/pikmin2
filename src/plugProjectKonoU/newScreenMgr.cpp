@@ -297,14 +297,14 @@ void Mgr::drawBG(Graphics& gfx)
 bool Mgr::reset()
 {
 	if (::Screen::Mgr::reset()) {
-		_90        = 0;
-		mInCave    = false;
-		mInDemo    = false;
-		_94        = 0;
-		_98        = 0;
-		mBgColor.a = 0;
-		mColor2.a  = 0;
-		mBgMode    = 0;
+		_90          = 0;
+		mInCave      = false;
+		mInDemo      = false;
+		mCourseIndex = 0;
+		_98          = 0;
+		mBgColor.a   = 0;
+		mColor2.a    = 0;
+		mBgMode      = 0;
 		return true;
 	}
 	return false;

@@ -84,7 +84,7 @@ struct Mgr : public MgrBase {
 	u8 _90;                    // _90
 	bool mInCave;              // _91
 	bool mInDemo;              // _92
-	u32 _94;                   // _94
+	u32 mCourseIndex;          // _94
 	u32 _98;                   // _98
 	JUtility::TColor mBgColor; // _9C, I think the type of these are wrong as its messing up the ctor
 	JUtility::TColor mColor2;  // _A0
@@ -110,11 +110,11 @@ struct Mgr : public Screen::Mgr {
 	{
 		mBgColor.set(-1);
 		mColor2.set(-1);
-		_90     = 0;
-		mInCave = false;
-		mInDemo = false;
-		_94     = 0;
-		_98     = 0;
+		_90          = 0;
+		mInCave      = false;
+		mInDemo      = false;
+		mCourseIndex = 0;
+		_98          = 0;
 	}
 
 	virtual ~Mgr() { }                                                 // _08 (weak)

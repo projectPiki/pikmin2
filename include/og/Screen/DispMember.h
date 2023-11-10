@@ -90,7 +90,7 @@ struct DispMemberDayEndCount : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberDayEndCount); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
+	virtual u32 getOwnerID() { return OWNER_MRMR; }                 // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_DAY_END_COUNT; }      // _10 (weak)
 
 	// _00     = VTBL
@@ -109,7 +109,7 @@ struct DispMemberHurryUp : public DispMemberBase {
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberHurryUp); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_OGA; }              // _0C (weak)
+	virtual u32 getOwnerID() { return OWNER_MRMR; }             // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_HURRY_UP; }       // _10 (weak)
 
 	// _00     = VTBL

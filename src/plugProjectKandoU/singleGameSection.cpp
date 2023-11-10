@@ -1643,7 +1643,7 @@ void SingleGameSection::createFallPikmins()
 	origin.y = mapMgr->getMinY(origin);
 	naviMgr->getDeadOrima(0);
 
-	for (int color = 0; color < 7; color++) {
+	for (int color = 0; color < PikiColorCount; color++) {
 		for (int happa = 0; happa < 3; happa++) {
 			for (int i = 0; i < playData->mCaveSaveData.mCavePikis.getCount(color, happa); i++) {
 				PikiMgr::mBirthMode = 2;
