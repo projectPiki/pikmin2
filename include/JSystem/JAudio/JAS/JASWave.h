@@ -86,7 +86,7 @@ struct JASBasicWaveBank : public JASWaveBank {
 		    : JASWaveHandle()
 		    , mInfo()
 		    , mHeap(nullptr)
-		    , _30(0)
+		    , mWaveID(0)
 		{
 		}
 
@@ -102,7 +102,7 @@ struct JASBasicWaveBank : public JASWaveBank {
 
 		JASWaveInfo mInfo; // _04
 		JASHeap* mHeap;    // _2C
-		u32 _30;           // _30
+		u32 mWaveID;       // _30
 	};
 
 	/**
@@ -111,16 +111,16 @@ struct JASBasicWaveBank : public JASWaveBank {
 	struct TWaveInfo {
 		TWaveInfo()
 		    : mHandle()
-		    , _34(nullptr)
-		    , _38(0)
+		    , mNext(nullptr)
+		    , mPrev(nullptr)
 		{
 		}
 
 		~TWaveInfo() { }
 
 		TWaveHandle mHandle; // _00
-		TWaveHandle* _34;    // _34
-		u32 _38;             // _38
+		TWaveInfo* mNext;    // _34
+		TWaveInfo* mPrev;    // _38
 	};
 
 	/**
@@ -163,7 +163,7 @@ struct JASBasicWaveBank : public JASWaveBank {
 	void decWaveTable(const JASBasicWaveBank::TWaveGroup*);
 
 	OSMutex mMutex;         // _04
-	TWaveHandle** mHandles; // _1C
+	TWaveInfo** mWaveTable; // _1C
 	u32 mTableSize;         // _20
 	TWaveGroup** mGroups;   // _24
 	u32 mGroupCount;        // _28

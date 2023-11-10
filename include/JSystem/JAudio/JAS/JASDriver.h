@@ -6,7 +6,9 @@
 
 struct JASTaskThread;
 
-typedef s32 JASOutputRate;
+enum JASOutputRate {
+	JASOUTRATE_0, // 0
+};
 
 enum JASMixMode {
 	MixMode_Mono       = 0,
@@ -16,8 +18,10 @@ enum JASMixMode {
 };
 
 namespace JASDriver {
-typedef void (*DspDacCallback)(u32, s32);
-typedef short* (*MixCallback)(s32);
+typedef s32 (*DriverCallback)(void*);
+typedef void (*DspDacCallback)(s16*, u32);
+typedef s16* (*MixCallback)(s32);
+typedef void (*MixFunc)(s16*, u32, MixCallback);
 
 f32 key2pitch_c5(int);
 void setLevel(f32, f32, f32);
@@ -30,9 +34,9 @@ f32 getAutoLevel_f32();
 f32 getDSPLevel_f32();
 void setOutputMode(u32);
 u32 getOutputMode();
-bool rejectCallback(long (*)(void*), void*);
-bool registerDspSyncCallback(long (*)(void*), void*);
-bool registerSubFrameCallback(long (*)(void*), void*);
+bool rejectCallback(DriverCallback, void*);
+bool registerDspSyncCallback(DriverCallback, void*);
+bool registerSubFrameCallback(DriverCallback, void*);
 void subframeCallback();
 void DSPSyncCallback();
 void updateDacCallback();
@@ -42,28 +46,28 @@ void startDMA();
 void stopDMA();
 void updateDac();
 void updateDSP();
-void readDspBuffer(short*, u32);
+void readDspBuffer(s16*, u32);
 void finishDSPFrame();
-void registerMixCallback(short* (*)(long), JASMixMode);
+void registerMixCallback(MixCallback, JASMixMode);
 f32 getDacRate();
 int getSubFrames();
-int getDacSize();
-int getFrameSamples();
-void mixMonoTrack(short*, u32, short* (*)(long));
-void mixMonoTrackWide(short*, u32, short* (*)(long));
-void mixExtraTrack(short*, u32, short* (*)(long));
-void mixInterleaveTrack(short*, u32, short* (*)(long));
+static int getDacSize();
+static int getFrameSamples();
+static void mixMonoTrack(s16*, u32, MixCallback);
+static void mixMonoTrackWide(s16*, u32, MixCallback);
+static void mixExtraTrack(s16*, u32, MixCallback);
+static void mixInterleaveTrack(s16*, u32, MixCallback);
 
 // unused/inlined:
 void setChannelLevel(f32);
 s16 getDSPLevel();
 f32 getChannelLevel_f32();
-bool registerUpdateDacCallback(long (*)(void*), void*);
+bool registerUpdateDacCallback(DriverCallback, void*);
 void setOutputRate(JASOutputRate);
 void setSubFrames(u32);
 void setNumDSPBuffer(u8);
-void registerDacCallback(void (*)(short*, u32));
-void registDSPBufCallback(void (*)(short*, u32));
+void registerDacCallback(DspDacCallback);
+void registDSPBufCallback(DspDacCallback);
 
 extern u16 MAX_MIXERLEVEL;
 extern u16 MAX_AUTOMIXERLEVEL;
@@ -75,13 +79,6 @@ extern JASCallbackMgr sDspSyncCallback;
 extern JASCallbackMgr sSubFrameCallback;
 extern JASCallbackMgr sUpdateDacCallback;
 
-extern u32* sDspDacBuffer;
-extern u32 sDspDacReadBuffer;
-extern u32 sDspDacWriteBuffer;
-extern u32 sDspStatus;
-extern DspDacCallback sDspDacCallback;
-
-extern MixCallback extMixCallback;
 } // namespace JASDriver
 
 #endif

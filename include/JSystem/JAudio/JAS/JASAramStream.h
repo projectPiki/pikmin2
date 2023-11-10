@@ -101,7 +101,7 @@ struct JASAramStream {
 	f32 _264;                        // _264
 	f32 _268;                        // _268
 	f32 _26C[4][6];                  // _26C
-	s16 _2CC[6];                     // _2CC
+	u16 _2CC[6];                     // _2CC
 	u8 _2D8;                         // _2D8
 
 	static JASTaskThread* sLoadThread;

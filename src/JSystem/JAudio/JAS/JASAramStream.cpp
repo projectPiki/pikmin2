@@ -8,88 +8,6 @@
 #include "JSystem/JAudio/JAS/JASAramStream.h"
 #include "JSystem/JAudio/JAS/JASThread.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global OSC_RELEASE_TABLE
-    OSC_RELEASE_TABLE:
-        .4byte 0x00000002
-        .4byte 0x0000000F
-        .4byte 0x00000000
-    .global OSC_ENV
-    OSC_ENV:
-        .4byte 0x00000000
-        .float 1.0
-        .4byte 0x00000000
-        .4byte OSC_RELEASE_TABLE
-        .float 1.0
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804A44A0
-    lbl_804A44A0:
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AEC
-        .4byte lbl_800A9B00
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AF8
-        .4byte lbl_800A9AF8
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sLoadThread__13JASAramStream
-    sLoadThread__13JASAramStream:
-        .skip 0x4
-    .global sReadBuffer__13JASAramStream
-    sReadBuffer__13JASAramStream:
-        .skip 0x4
-    .global sBlockSize__13JASAramStream
-    sBlockSize__13JASAramStream:
-        .skip 0x4
-    .global sChannelMax__13JASAramStream
-    sChannelMax__13JASAramStream:
-        .skip 0x4
-    .global sSystemPauseFlag__13JASAramStream
-    sSystemPauseFlag__13JASAramStream:
-        .skip 0x1
-    .global sFatalErrorFlag__13JASAramStream
-    sFatalErrorFlag__13JASAramStream:
-        .skip 0x7
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516EB0
-    lbl_80516EB0:
-        .4byte 0x00000000
-    .global lbl_80516EB4
-    lbl_80516EB4:
-        .float 1.0
-    .global lbl_80516EB8
-    lbl_80516EB8:
-        .float 0.5
-    .global lbl_80516EBC
-    lbl_80516EBC:
-        .4byte 0x42FE0000
-    .global lbl_80516EC0
-    lbl_80516EC0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global one$870
-    one$870:
-        .4byte 0x00000001
-        .4byte 0x00000000
-*/
-
 JASTaskThread* JASAramStream::sLoadThread;
 u8* JASAramStream::sReadBuffer;
 u32 JASAramStream::sBlockSize;
@@ -595,6 +513,18 @@ bool JASAramStream::headerLoad(u32 p1, int p2)
  */
 bool JASAramStream::load()
 {
+	{
+		JASCriticalSection cs;
+		_208--;
+	}
+
+	if (sFatalErrorFlag) {
+		return false;
+	}
+
+	if (_204) {
+		return false;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -832,11 +762,12 @@ long JASAramStream::channelProcCallback(void* p1) { static_cast<JASAramStream*>(
  */
 long JASAramStream::dvdErrorCheck(void*)
 {
-	long status = DVDGetDriveStatus();
+	u32 status = DVDGetDriveStatus();
 	switch (status) {
 	case 0:
 		sSystemPauseFlag = false;
 		break;
+	case 1:
 	case 2:
 	case 3:
 	case 4:
@@ -848,9 +779,8 @@ long JASAramStream::dvdErrorCheck(void*)
 	case 10:
 	case 11:
 	case -1:
+		// default:
 		sSystemPauseFlag = true;
-		break;
-	case 1:
 		break;
 	}
 	return 0;
