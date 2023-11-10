@@ -296,41 +296,17 @@ bool JKRSolidHeap::dump()
  * --INFO--
  * Address:	80025570
  * Size:	00005C
+ * Matches on 1.3.2
  */
 void JKRSolidHeap::state_register(JKRHeap::TState* state, u32 id) const
 {
 	getState_(state);
 	setState_u32ID_(state, id);
-	setState_uUsedSize_(state, getUsedSize((JKRSolidHeap*)this));
+	setState_uUsedSize_(state, getUsedSize(const_cast<JKRSolidHeap*>(this)));
 
 	u32 sum = (u32)mSolidHead;
 	sum += (u32)mSolidTail * 3;
 	setState_u32CheckCode_(state, sum);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r5, 0x14(r4)
-	bl       getTotalFreeSize__7JKRHeapFv
-	lwz      r0, 0x38(r30)
-	subf     r0, r3, r0
-	stw      r0, 0(r31)
-	lwz      r0, 0x74(r30)
-	lwz      r3, 0x70(r30)
-	mulli    r0, r0, 3
-	add      r3, r3, r0
-	stw      r3, 4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

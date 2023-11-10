@@ -21,8 +21,10 @@ JKERNEL_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRFileLoader.o\
 	$(BUILD_DIR)/asm/JSystem/JKernel/JKRHeap.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRMemArchive.o\
-	$(BUILD_DIR)/asm/JSystem/JKernel/JKRSolidHeap.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRSolidHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKernel/JKRThread.o\
+
+$(BUILD_DIR)/src/JSystem/JKernel/JKRSolidHeap.o: MWCC_VERSION := 1.3.2
 
 DEPENDS += $(JKERNEL_FILES:.o=.d)
 
