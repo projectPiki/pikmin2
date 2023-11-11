@@ -134,21 +134,21 @@ struct CaveResultState : public State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	u16 _10;                        //_10
-	u16 _12;                        //_12
-	unknown _14;                    //_14
-	f32 _18;                        //_18
-	Controller* _1C;                //_1C
-	Result::TNode _20;              //_20
-	ResultTexMgr::Mgr* _70;         //_70
-	JKRHeap* _74;                   //_74
-	u8 _78[4];                      // _78
-	Delegate<CaveResultState>* _7C; // _7C
-	DvdThreadCommand _80;           // _80
-	SingleGameSection* mSection;    // _EC
-	JKRHeap* _F0;                   // _F0
-	JKRHeap* _F4;                   // _F4
-	u8 _F8;                         // _F8
+	u16 mGameState;                           //_10, what to do following the result state
+	u16 mStatus;                              //_12
+	unknown _14;                              //_14
+	f32 mStartTimer;                          //_18
+	Controller* mController;                  //_1C
+	Result::TNode mResultNodes;               //_20
+	ResultTexMgr::Mgr* mResultTextures;       //_70
+	JKRHeap* mResultTexHeap;                  //_74
+	u8 _78[4];                                // _78
+	Delegate<CaveResultState>* mLoadCallback; // _7C
+	DvdThreadCommand mDvdThread;              // _80
+	SingleGameSection* mSection;              // _EC
+	JKRHeap* mMainHeap;                       // _F0
+	JKRHeap* mBackupHeap;                     // _F4
+	u8 mIsCaveComplete;                       // _F8
 	u32 : 0;
 	u8 _FC[4]; // _FC
 };

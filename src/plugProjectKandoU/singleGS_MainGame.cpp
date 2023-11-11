@@ -506,7 +506,7 @@ void GameState::exec(SingleGameSection* game)
 	// Check open pause menu
 	if (!gameSystem->isFlag(GAMESYS_Unk4) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
 	    && game->mControllerP1->getButtonDown() & Controller::PRESS_START) {
-		og::Screen::DispMemberSMenuAll disp;
+		og::Screen::DispMemberSMenuAll disp; // this ctor should be weak, but needs to not inline here?
 		game->setDispMemberSMenu(disp);
 		if (Screen::gGame2DMgr->open_SMenu(disp)) {
 			gameSystem->setPause(true, "open-sm", 3);

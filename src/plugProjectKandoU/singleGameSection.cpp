@@ -2416,25 +2416,43 @@ lbl_80155430:
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000E0
-//  */
-// void SingleGameSection::setDispMemberNavi(og::Screen::DataNavi&, int)
-// {
-// 	// UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E0
+ */
+void SingleGameSection::setDispMemberNavi(og::Screen::DataNavi& data, int id)
+{
+	data.mFollowPikis   = GameStat::formationPikis.mCounter[id];
+	data.mDope1Count    = playData->getDopeCount(1);
+	data.mDope0Count    = playData->getDopeCount(0);
+	Navi* navi          = naviMgr->getAt(id);
+	data.mNaviLifeRatio = navi->getLifeRatio();
+	data.mNextThrowPiki = navi->ogGetNextThrowPiki();
+}
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000148
-//  */
-// void SingleGameSection::calcOtakaraLevel(float&)
-// {
-// 	// UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000148
+ */
+int SingleGameSection::calcOtakaraLevel(f32& dist)
+{
+	Navi* navi = naviMgr->getActiveNavi();
+
+	int otastate = 5;
+	dist         = 900.0f;
+	if (navi) {
+		Vector3f pos = navi->getPosition();
+		Vector3f out;
+		otastate = Radar::mgr->calcNearestTreasure(pos, 900.0f, out, dist);
+		if (otastate != 2) { // some garbage
+			rand();
+		}
+	}
+	return otastate;
+	// UNUSED FUNCTION
+}
 
 /*
  * --INFO--
@@ -2445,18 +2463,8 @@ void SingleGameSection::updateMainMapScreen()
 {
 	og::Screen::DispMemberGround disp;
 
-	Navi* navi = naviMgr->getActiveNavi();
-
-	int otastate = 5;
-	f32 dist     = 900.0f;
-	if (navi) {
-		Vector3f pos = navi->getPosition();
-		Vector3f out;
-		otastate = Radar::mgr->calcNearestTreasure(pos, 900.0f, out, dist);
-		if (otastate != 2) { // some garbage
-			rand();
-		}
-	}
+	f32 dist;
+	int otastate = calcOtakaraLevel(dist);
 
 	bool flag          = false;
 	disp.mTreasureDist = dist;
@@ -2518,18 +2526,13 @@ void SingleGameSection::updateMainMapScreen()
 		disp.mPayDebt = true;
 	}
 
-	navi   = naviMgr->getActiveNavi();
-	int id = 2;
+	Navi* navi = naviMgr->getActiveNavi();
+	int id     = 2;
 	if (navi) {
 		id = navi->mNaviIndex;
 	}
 
-	disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
-	disp.mOlimarData.mDope1Count    = playData->getDopeCount(1);
-	disp.mOlimarData.mDope0Count    = playData->getDopeCount(0);
-	navi                            = naviMgr->getAt(0);
-	disp.mOlimarData.mNaviLifeRatio = navi->getLifeRatio();
-	disp.mOlimarData.mNextThrowPiki = navi->ogGetNextThrowPiki();
+	setDispMemberNavi(disp.mOlimarData, 0);
 
 	if (id == 0) {
 		disp.mOlimarData.mActiveNaviID = 1;
@@ -2545,12 +2548,7 @@ void SingleGameSection::updateMainMapScreen()
 		disp.mLouieData.mActiveNaviID  = 0;
 	}
 
-	disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
-	disp.mLouieData.mDope1Count    = playData->getDopeCount(1);
-	disp.mLouieData.mDope0Count    = playData->getDopeCount(0);
-	navi                           = naviMgr->getAt(1);
-	disp.mLouieData.mNaviLifeRatio = navi->getLifeRatio();
-	disp.mLouieData.mNextThrowPiki = navi->ogGetNextThrowPiki();
+	setDispMemberNavi(disp.mLouieData, 1);
 
 	Screen::gGame2DMgr->setDispMember(&disp);
 	/*
@@ -2955,7 +2953,7 @@ lbl_801559E4:
  * Address:	80155A78
  * Size:	000004
  */
-void Game::SingleGameSection::drawMainMapScreen(void) { }
+void SingleGameSection::drawMainMapScreen() { }
 
 /*
  * --INFO--
@@ -2966,18 +2964,8 @@ void SingleGameSection::updateCaveScreen()
 {
 	og::Screen::DispMemberCave disp;
 
-	Navi* navi = naviMgr->getActiveNavi();
-
-	int otastate = 5;
-	f32 dist     = 900.0f;
-	if (navi) {
-		Vector3f pos = navi->getPosition();
-		Vector3f out;
-		otastate = Radar::mgr->calcNearestTreasure(pos, 900.0f, out, dist);
-		if (otastate != 2) { // some garbage
-			rand();
-		}
-	}
+	f32 dist;
+	int otastate = calcOtakaraLevel(dist);
 
 	bool flag          = false;
 	disp.mTreasureDist = dist;
@@ -3026,18 +3014,13 @@ void SingleGameSection::updateCaveScreen()
 		disp.mPayDebt = true;
 	}
 
-	navi   = naviMgr->getActiveNavi();
-	int id = 2;
+	Navi* navi = naviMgr->getActiveNavi();
+	int id     = 2;
 	if (navi) {
 		id = navi->mNaviIndex;
 	}
 
-	disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
-	disp.mOlimarData.mDope1Count    = playData->getDopeCount(1);
-	disp.mOlimarData.mDope0Count    = playData->getDopeCount(0);
-	navi                            = naviMgr->getAt(0);
-	disp.mOlimarData.mNaviLifeRatio = navi->getLifeRatio();
-	disp.mOlimarData.mNextThrowPiki = navi->ogGetNextThrowPiki();
+	setDispMemberNavi(disp.mOlimarData, 0);
 
 	if (id == 0) {
 		disp.mOlimarData.mActiveNaviID = 1;
@@ -3053,12 +3036,7 @@ void SingleGameSection::updateCaveScreen()
 		disp.mLouieData.mActiveNaviID  = 0;
 	}
 
-	disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
-	disp.mLouieData.mDope1Count    = playData->getDopeCount(1);
-	disp.mLouieData.mDope0Count    = playData->getDopeCount(0);
-	navi                           = naviMgr->getAt(1);
-	disp.mLouieData.mNaviLifeRatio = navi->getLifeRatio();
-	disp.mLouieData.mNextThrowPiki = navi->ogGetNextThrowPiki();
+	setDispMemberNavi(disp.mLouieData, 1);
 
 	Screen::gGame2DMgr->setDispMember(&disp);
 	/*

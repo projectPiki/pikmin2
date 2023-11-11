@@ -90,6 +90,8 @@ struct SingleGameSection : public BaseGameSection {
 	void updateMainMapScreen();
 	void drawCaveScreen();
 	void drawMainMapScreen();
+	void setDispMemberNavi(og::Screen::DataNavi&, int);
+	int calcOtakaraLevel(f32&);
 
 	inline void setCurrState(StateType* state) { mCurrentState = state; }
 
