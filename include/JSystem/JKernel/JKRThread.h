@@ -184,6 +184,7 @@ struct JKRTask : public JKRThread {
 	static void destroy(JKRTask*);
 
 	static JSUList<JKRTask> sTaskList;
+	static OSMessageQueue sEndMsgQueue;
 
 	// _00     = VTBL
 	// _00-_7C = JKRThread

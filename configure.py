@@ -118,7 +118,7 @@ LIBS = [
             "JSystem/JKernel/JKRHeap",
             ["JSystem/JKernel/JKRMemArchive", True],
             ["JSystem/JKernel/JKRSolidHeap", True, {"mw_version" : "1.3.2"}],
-            "JSystem/JKernel/JKRThread",
+            ["JSystem/JKernel/JKRThread", True],
         ],
     },
     {
