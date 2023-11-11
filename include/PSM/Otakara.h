@@ -19,12 +19,20 @@ namespace PSM {
 struct Otakara : public EventBase {
 	inline Otakara(Game::Creature* gameObj)
 	    : EventBase(gameObj, 2)
-	    , _70(0)
+	    , mBedamaType(PSMBedama_None)
 	    , _74(0)
 	    , mEventLink(gameObj)
 	    , _8C(nullptr)
 	{
 	}
+
+	enum BedamaType {
+		PSMBedama_None   = 0,
+		PSMBedama_Cherry = 1,
+		PSMBedama_Red    = 2,
+		PSMBedama_Blue   = 3,
+		PSMBedama_Yellow = 4,
+	};
 
 	// vtable 1 (JSUPtrLink, _10)
 	// vtable 2 (JKRDisposer -> ObjBase -> Creature, _28)
@@ -41,7 +49,7 @@ struct Otakara : public EventBase {
 
 	// _00      = VTABLE
 	// _04-_70  = CreatureObj
-	u32 _70;               // _70, unknown
+	u32 mBedamaType;       // _70
 	u32 _74;               // _74, unknown
 	EventLink mEventLink;  // _78
 	OtakaraEventLink* _8C; // _8C, probably this? possibly some related pointer

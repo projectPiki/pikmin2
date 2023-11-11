@@ -902,12 +902,12 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	clearDiscoverDisable();
 
 	mClaim          = 0;
-	_3E0            = 0.0f;
+	mAngleOffset    = 0.0f;
 	mBounceTriangle = nullptr;
 	_311            = 0;
 	mFaceDir        = 0.0f;
 	mAnimSpeed      = 0.0f;
-	_3C4            = 0;
+	mIsCaptured     = 0;
 	_3D0            = 0;
 	mCarryInfoList  = nullptr;
 
@@ -938,7 +938,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	mPikminCount[4] = 0;
 	mPikminCount[5] = 0;
 	mPikminCount[6] = 0;
-	_414            = 0;
+	mTotalCarriers  = 0;
 	mPelletSizeType = (u16) static_cast<PelletInitArg*>(initArg)->mPelletIndex;
 
 	mConfig = mMgr->mConfigList->getPelletConfig(static_cast<PelletInitArg*>(initArg)->mTextIdentifier);
@@ -1011,15 +1011,16 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	mMgr->setCollTree(this, mPelletSizeType);
 
 	if (strcmp(mConfig->mParams.mDynamics.mData, "never") == 0) {
-		_364                                 = 2;
-		_39C                                 = 0;
+		mDynamicType = 2;
+		mIsDynamic   = false;
+
 		mConfig->mParams.mNumParticles.mData = 0;
 	} else if (strcmp(mConfig->mParams.mDynamics.mData, "lod") == 0) {
-		_364 = 1;
-		_39C = 1;
+		mDynamicType = 1;
+		mIsDynamic   = true;
 	} else {
-		_364 = 0;
-		_39C = 1;
+		mDynamicType = 0;
+		mIsDynamic   = true;
 	}
 
 	mSlots.mSlots[0]  = 0;
@@ -1103,12 +1104,12 @@ int Pellet::getPelletConfigMax()
 // WIP: https://decomp.me/scratch/SWcqK
 void Pellet::setupParticles()
 {
-	f32 radius = mConfig->mParams.mRadius.mData; // 35C->A0
-	f32 nil    = 0.0f;
-	_2F4       = nil;
-	_360       = mConfig->mParams.mNumParticles.mData;
+	f32 radius       = mConfig->mParams.mRadius.mData; // 35C->A0
+	f32 nil          = 0.0f;
+	_2F4             = nil;
+	mMaxCollParticle = mConfig->mParams.mNumParticles.mData;
 
-	if (_360 != 0) {
+	if (mMaxCollParticle != 0) {
 		if (strcmp("simple", mConfig->mParams.mParticleType.mData) == 0) {
 			if (2.0f * (0.5f * mConfig->mParams.mHeight.mData) > radius) {
 				setupParticles_tall();
@@ -1116,12 +1117,12 @@ void Pellet::setupParticles()
 				setupParticles_simple();
 			}
 		} else {
-			_364              = false;
-			_39C              = true;
-			int particleCount = _360;
-			_360++;
+			mDynamicType      = 0;
+			mIsDynamic        = true;
+			int particleCount = mMaxCollParticle;
+			mMaxCollParticle++;
 
-			createParticles(_360);
+			createParticles(mMaxCollParticle);
 
 			for (int i = 0; i < particleCount; i++) {
 				f32 mid       = mConfig->mParams.mHeight.mData / 2;
@@ -1146,7 +1147,7 @@ void Pellet::setupParticles()
 			// mDynParticle->getAt(particleCount)->_18 = configHeight;
 		}
 
-		f32 inverse = 1.0f / _360;
+		f32 inverse = 1.0f / mMaxCollParticle;
 		_2F4        = _2F4 * inverse;
 	}
 	/*
@@ -1393,13 +1394,13 @@ lbl_801678C8:
 void Pellet::setupParticles_simple()
 {
 	f32 radius = mConfig->mParams.mRadius.mData;
-	createParticles(_360);
+	createParticles(mMaxCollParticle);
 
-	f32 endIndex = (f32)_360;
+	f32 endIndex = (f32)mMaxCollParticle;
 	f32 mid      = 0.5f * mConfig->mParams.mHeight.mData;
 	f32 diff     = radius - mid;
 
-	for (int i = 0; i < _360; i++) {
+	for (int i = 0; i < mMaxCollParticle; i++) {
 		f32 theta = (TAU / endIndex) * (f32)i;
 		Vector3f rotation(diff * sinf(theta), 0.0f, diff * cosf(theta));
 		// _2F4                        = _2F4 + rotation;
@@ -1573,7 +1574,7 @@ void Pellet::setupParticles_tall()
 		height = 10.0f;
 	}
 
-	int count = _360;
+	int count = mMaxCollParticle;
 	createParticles(count);
 	f32 heightDiff = -(mid - height);
 	f32 endIndex   = (f32)count;
@@ -2124,9 +2125,9 @@ void Pellet::update()
 		}
 		bool check;
 		int type = 2;
-		if (_364 == 0) {
+		if (mDynamicType == 0) {
 			check = true;
-		} else if (_364 == 2) {
+		} else if (mDynamicType == 2) {
 			check = false;
 		} else if ((mLod.isFlag(AILOD_IsMid | AILOD_IsFar)) >= 2) {
 			check = false;
@@ -2137,9 +2138,9 @@ void Pellet::update()
 		if (!(mLod.isFlag(AILOD_IsVisible)) || ((mLod.isFlag(AILOD_IsMid | AILOD_IsFar)) >= 1)) {
 			type = 1;
 		}
-		_39C = check;
+		mIsDynamic = check;
 
-		if ((PelletMgr::disableDynamics != 0) || (!_39C)) {
+		if ((PelletMgr::disableDynamics != 0) || (!mIsDynamic)) {
 			f32 frametime = sys->mDeltaTime;
 			Sys::Sphere ball2;
 			ball2.mPosition = mPelletPosition;
@@ -3711,9 +3712,9 @@ void Pellet::init_pmotions()
 {
 	int numPMotions = mConfig->mParams.mNumPMotions.mData;
 	if (numPMotions > 0) {
-		mNumPMotions  = numPMotions;
-		_33C.mAnimMgr = mCarryAnim.mAnimMgr;
-		_33C.startAnim(0, nullptr);
+		mNumPMotions          = numPMotions;
+		mPmotionAnim.mAnimMgr = mCarryAnim.mAnimMgr;
+		mPmotionAnim.startAnim(0, nullptr);
 	} else {
 		mNumPMotions = 0;
 	}
@@ -3726,7 +3727,7 @@ void Pellet::init_pmotions()
  */
 void Pellet::update_pmotions()
 {
-	SysShape::Animator* animator = &_33C;
+	SysShape::Animator* animator = &mPmotionAnim;
 	animate_pmotions(animator);
 }
 
@@ -3738,7 +3739,7 @@ void Pellet::update_pmotions()
 void Pellet::start_pmotions()
 {
 	if (mNumPMotions > 0) {
-		SysShape::Animator* animator = &_33C;
+		SysShape::Animator* animator = &mPmotionAnim;
 		animator->startAnim(1, this);
 	}
 }
@@ -4197,7 +4198,7 @@ void Pellet::onSlotStickStart(Creature* creature, short slot)
 		mPikminCount[pikminType]++;
 		mCarryPower += static_cast<Piki*>(creature)->getPelletCarryPower();
 	} else {
-		_414++;
+		mTotalCarriers++;
 	}
 
 	int max = mMaxCarriers > 0 ? mMaxCarriers : mConfig->mParams.mMax.mData;
@@ -4231,7 +4232,7 @@ void Pellet::onSlotStickEnd(Creature* creature, short slot)
 		mPikminCount[pikminType]--;
 		mCarryPower -= static_cast<Piki*>(creature)->getPelletCarryPower();
 	} else {
-		_414--;
+		mTotalCarriers--;
 	}
 
 	if (getTotalPikmins() == 0) {
@@ -4268,7 +4269,7 @@ void Pellet::calcStickSlotGlobal(s16 slot, Vector3f& stickPosition)
 		bool validSlot = (slot >= 0) && (slot < mSlotCount);
 		P2ASSERTLINE(4016, validSlot);
 		f32 radius = mConfig->mParams.mPRadius.mData;
-		f32 theta  = ((TAU / (f32)mSlotCount) * slot) + _3E0;
+		f32 theta  = ((TAU / (f32)mSlotCount) * slot) + mAngleOffset;
 		pos        = Vector3f(radius * sinf(theta), 0.0f, radius * cosf(theta));
 		int face   = getFace();
 		f32 mid    = (0.5f * mConfig->mParams.mHeight.mData) + 1.0f;
@@ -4452,7 +4453,7 @@ lbl_8016AFE8:
  */
 int Pellet::getFace()
 {
-	if (_364 == 2) {
+	if (mDynamicType == 2) {
 		return 0;
 	}
 	Vector3f yVec;
@@ -4491,7 +4492,7 @@ void Pellet::startPick()
 		Vector3f vec1;
 		int ySign;
 
-		if (_364 != 2) {
+		if (mDynamicType != 2) {
 			getYVector(vec1);
 		}
 
@@ -4550,7 +4551,7 @@ void Pellet::endPick(bool b)
 		_3D0 &= ~0x1;
 
 		Vector3f yVec;
-		if (_364 != 2) {
+		if (mDynamicType != 2) {
 			getYVector(yVec);
 		}
 
@@ -4611,7 +4612,7 @@ bool Pellet::discoverDisabled()
  * Address:	8016B51C
  * Size:	00002C
  */
-void Pellet::doSave(Stream& stream) { stream.writeByte((u8)_3C4); }
+void Pellet::doSave(Stream& stream) { stream.writeByte((u8)mIsCaptured); }
 
 /*
  * --INFO--
@@ -4620,8 +4621,8 @@ void Pellet::doSave(Stream& stream) { stream.writeByte((u8)_3C4); }
  */
 void Pellet::doLoad(Stream& stream)
 {
-	u8 byte = stream.readByte();
-	_3C4    = byte != 0;
+	u8 byte     = stream.readByte();
+	mIsCaptured = byte != 0;
 
 	Vector3f pelletPosition = getPosition();
 	WPSearchArg arg(pelletPosition, nullptr, false, 10.0f);
@@ -4734,11 +4735,11 @@ void Pellet::onEndCapture()
 {
 	Matrixf mtx;
 	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView);
-	_3C4 = 1;
+	mIsCaptured = 1;
 	shadowOn();
 	setPosition(mRigid.mConfigs[0].mPosition, false);
 	createKiraEffect(mPelletPosition);
-	if (_364 == 2) {
+	if (mDynamicType == 2) {
 		PSMTXIdentity(mtx.mMatrix.mtxView);
 	}
 	setOrientation(mtx);

@@ -210,6 +210,8 @@ struct GenItemParm {
 };
 
 struct GenPelletParm {
+	GenPelletParm() { }
+
 	GenPelletParm(int color, int size)
 	{
 		mColor = color;

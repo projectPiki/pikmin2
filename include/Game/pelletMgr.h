@@ -143,7 +143,7 @@ struct PelletInitArg : public CreatureInitArg {
 		_1C                   = 0;
 		mState                = 0;
 		mPelletType           = PELTYPE_INVALID;
-		_18                   = nullptr;
+		mPelView              = nullptr;
 		_17                   = 0;
 		_04                   = true;
 		mAdjustWeightForSquad = 0;
@@ -169,7 +169,7 @@ struct PelletInitArg : public CreatureInitArg {
 	u16 mState;               // _14
 	u8 mPelletType;           // _16
 	u8 _17;                   // _17
-	PelletView* _18;          // _18
+	PelletView* mPelView;     // _18
 	u8 _1C;                   // _1C
 	u8 mAdjustWeightForSquad; // _1D, should Item decrease weight for piki squads that are less than minimum carry weight
 	u8 _1E;                   // _1E
@@ -399,10 +399,10 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	inline bool isTreasurePosition() // this probably needs a better name; used in Pellet::onSetPosition
 	{
 		bool check = false;
-		if ((mCaptureMatrix == nullptr) && (PelletMgr::mDebug == false) && (mConfig->mParams.mDepth.mData > 0.0f) && (_3C4 == 0)) {
+		if ((mCaptureMatrix == nullptr) && (PelletMgr::mDebug == false) && (mConfig->mParams.mDepth.mData > 0.0f) && (mIsCaptured == 0)) {
 			check = true;
 		}
-		if (gameSystem->isVersusMode() && (mCaptureMatrix == nullptr) && (_3C4 == 0)) {
+		if (gameSystem->isVersusMode() && (mCaptureMatrix == nullptr) && (mIsCaptured == 0)) {
 			u8 test = mPelletFlag;
 			if (test == FLAG_VS_BEDAMA_RED) {
 				check = false;
@@ -439,56 +439,50 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?
-	f32 mRadius;                   // _31C
-	f32 mDepth;                    // _320
-	u8 _324;                       // _324 - unknown
-	bool mIsInWater;               // _325
-	u8 _326[0x2];                  // _326 - could be padding
-	TexCaster::Caster* mCaster;    // _328
-	u8 mPelletFlag;                // _32C
-	u8 mDiscoverDisable;           // _32D
-	u8 _32E[0x2];                  //  _32E - could be padding
-	PSM::EventBase* mSoundMgr;     // _330
-	PelletCarry* mPelletCarry;     // _334
-	u8 mNumPMotions;               // _338
-	u8 _339[0x3];                  // _339, unknown/padding
-	SysShape::Animator _33C;       // _33C
-	PelletView* mPelletView;       // _358
-	PelletConfig* mConfig;         // _35C
-	int _360;                      // _360
-	u8 _364;                       // _364
-	u8 _365[0x33];                 // _365 - unknown
-	CarryInfoList* mCarryInfoList; // _398
-	u8 _39C;                       // _39C - unknown
-	u8 _39D[0xF];                  // _39D - unknown
-	Vector3f mPelletPosition;      // _3AC
-	f32 mFaceDir;                  // _3B8
-	u8 mWallTimer;                 // _3BC
-	u8 _3BD[0x3];                  // _3BD - possibly padding
-	int mClaim;                    // _3C0
-	bool _3C4;                     // _3C4
-	u8 _3C5[0x3];                  // _3C5 - unknown
-	PelletFSM* mPelletSM;          // _3C8
-	PelletState* mCurrentState;    // _3CC
-	u8 _3D0;                       // _3D0
-	int mCarryColor;               // _3D4
-	int mMinCarriers;              // _3D8, to do with pikmin number
-	int mMaxCarriers;              // _3DC
-	f32 _3E0;                      // _3E0
-	PelletSlots mSlots;            // _3E4
-	short mSlotCount;              // _3F4
-	u8 _3F6;                       // _3F6
-	u8 _3F7;                       // _3F7 - unknown, maybe padding
-	u32 mPikminCount[7];           // _3F8, TODO: likely [PikiColorCount]
-	u32 _414;                      // _414 - unknown
-	f32 mCarryPower;               // _418
-	SysShape::Animator mCarryAnim; // _41C
-	f32 mAnimSpeed;                // _438
-	u16 mPelletSizeType;           // _43C, used for number pellets
-	u16 mPelletColor;              // _43E, this reflects pellet color for Number pellets, and the color of berries
-	int mSlotIndex;                // _440
-	Sys::Sphere mLodSphere;        // _444
-	BasePelletMgr* mMgr;           // _454
+	f32 mRadius;                      // _31C
+	f32 mDepth;                       // _320
+	u8 _324;                          // _324 - unknown
+	bool mIsInWater;                  // _325
+	TexCaster::Caster* mCaster;       // _328
+	u8 mPelletFlag;                   // _32C
+	u8 mDiscoverDisable;              // _32D
+	PSM::EventBase* mSoundMgr;        // _330
+	PelletCarry* mPelletCarry;        // _334
+	u8 mNumPMotions;                  // _338
+	SysShape::Animator mPmotionAnim;  // _33C
+	PelletView* mPelletView;          // _358
+	PelletConfig* mConfig;            // _35C
+	int mMaxCollParticle;             // _360
+	u8 mDynamicType;                  // _364, 2 = never, 1 = lod, 0 = always
+	u8 _365[0x33];                    // _365 - unknown
+	CarryInfoList* mCarryInfoList;    // _398
+	u8 mIsDynamic;                    // _39C - unknown
+	u8 _39D[0xF];                     // _39D - unknown
+	Vector3f mPelletPosition;         // _3AC
+	f32 mFaceDir;                     // _3B8
+	u8 mWallTimer;                    // _3BC
+	int mClaim;                       // _3C0
+	bool mIsCaptured;                 // _3C4, might be more like "is alive"
+	PelletFSM* mPelletSM;             // _3C8
+	PelletState* mCurrentState;       // _3CC
+	u8 _3D0;                          // _3D0
+	int mCarryColor;                  // _3D4
+	int mMinCarriers;                 // _3D8, to do with pikmin number
+	int mMaxCarriers;                 // _3DC
+	f32 mAngleOffset;                 // _3E0
+	PelletSlots mSlots;               // _3E4
+	short mSlotCount;                 // _3F4
+	u8 _3F6;                          // _3F6
+	u32 mPikminCount[PikiColorCount]; // _3F8
+	u32 mTotalCarriers;               // _414, might be for non-pikmin carriers?
+	f32 mCarryPower;                  // _418
+	SysShape::Animator mCarryAnim;    // _41C
+	f32 mAnimSpeed;                   // _438
+	u16 mPelletSizeType;              // _43C, used for number pellets
+	u16 mPelletColor;                 // _43E, this reflects pellet color for Number pellets, and the color of berries
+	int mSlotIndex;                   // _440
+	Sys::Sphere mLodSphere;           // _444
+	BasePelletMgr* mMgr;              // _454
 
 	static bool sFromTekiEnable;
 };
