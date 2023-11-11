@@ -167,4 +167,11 @@ struct JUTException : public JKRThread {
 	}                                                                                          \
 	JUT_ASSERTLINE(line, check##line, __VA_ARGS__, var)
 
+#if DEBUG
+// TODO: Reasonable definition of a debug print function
+#define JUT_LOG(...) JUT_PANIC(__VA_ARGS__)
+#else
+#define JUT_LOG(...) __VA_ARGS__
+#endif
+
 #endif

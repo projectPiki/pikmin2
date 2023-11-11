@@ -4,90 +4,7 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "Dolphin/os.h"
 #include "JSystem/JKernel/JKRDisposer.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80473A68
-    lbl_80473A68:
-        .asciz "JKRHeap.cpp"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__7JKRHeap
-    __vt__7JKRHeap:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__7JKRHeapFv
-        .4byte callAllDisposer__7JKRHeapFv
-        .4byte 0
-        .4byte 0
-        .4byte dump_sort__7JKRHeapFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte do_changeGroupID__7JKRHeapFUc
-        .4byte do_getCurrentGroupId__7JKRHeapFv
-        .4byte state_register__7JKRHeapCFPQ27JKRHeap6TStateUl
-        .4byte state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
-        .4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global sDefaultFillFlag__7JKRHeap
-    sDefaultFillFlag__7JKRHeap:
-        .byte 1
-        .skip 3
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sSystemHeap__7JKRHeap
-    sSystemHeap__7JKRHeap:
-        .skip 0x4
-    .global sCurrentHeap__7JKRHeap
-    sCurrentHeap__7JKRHeap:
-        .skip 0x4
-    .global sRootHeap__7JKRHeap
-    sRootHeap__7JKRHeap:
-        .skip 0x4
-    .global mErrorHandler__7JKRHeap
-    mErrorHandler__7JKRHeap:
-        .skip 0x4
-    .global sDefaultFillCheckFlag__7JKRHeap
-    sDefaultFillCheckFlag__7JKRHeap:
-        .skip 0x4
-    .global mCodeStart__7JKRHeap
-    mCodeStart__7JKRHeap:
-        .skip 0x4
-    .global mCodeEnd__7JKRHeap
-    mCodeEnd__7JKRHeap:
-        .skip 0x4
-    .global mUserRamStart__7JKRHeap
-    mUserRamStart__7JKRHeap:
-        .skip 0x4
-    .global mUserRamEnd__7JKRHeap
-    mUserRamEnd__7JKRHeap:
-        .skip 0x4
-    .global mMemorySize__7JKRHeap
-    mMemorySize__7JKRHeap:
-        .skip 0x4
-    .global bVerbose____Q27JKRHeap6TState
-    bVerbose____Q27JKRHeap6TState:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516530
-    lbl_80516530:
-        .4byte 0x61626F72
-        .4byte 0x740A0000
-*/
+#include "JSystem/JUtility/JUTException.h"
 
 // TODO: This is stupid-hacky. Fix pls.
 typedef void Destructor(void*, short);
@@ -98,10 +15,10 @@ JKRHeap* JKRHeap::sCurrentHeap;
 JKRHeap* JKRHeap::sRootHeap;
 JKRHeapErrorHandler* JKRHeap::mErrorHandler;
 u8 JKRHeap::sDefaultFillCheckFlag;
-u8* JKRHeap::mCodeStart;
-u8* JKRHeap::mCodeEnd;
-u8* JKRHeap::mUserRamStart;
-u8* JKRHeap::mUserRamEnd;
+void* JKRHeap::mCodeStart;
+void* JKRHeap::mCodeEnd;
+void* JKRHeap::mUserRamStart;
+void* JKRHeap::mUserRamEnd;
 u32 JKRHeap::mMemorySize;
 bool JKRHeap::TState::bVerbose_;
 
@@ -119,7 +36,7 @@ JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetEr
 {
 	OSInitMutex(&mMutex);
 	mHeapSize     = size;
-	mStartAddress = startPtr;
+	mStartAddress = (u8*)startPtr;
 	mEndAddress   = (u8*)startPtr + size;
 
 	if (parentHeap == nullptr) {
@@ -151,102 +68,15 @@ JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetEr
 JKRHeap::~JKRHeap()
 {
 	mTree.getParent()->removeChild(&mTree);
-	//  TODO: The rest
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800234D0
-	lis      r3, __vt__7JKRHeap@ha
-	addic.   r4, r30, 0x40
-	addi     r0, r3, __vt__7JKRHeap@l
-	stw      r0, 0(r30)
-	lwz      r3, 0x50(r30)
-	beq      lbl_80023414
-	addi     r4, r4, 0xc
+	JSUTree<JKRHeap>* nextRootHeap = sRootHeap->mTree.getFirstChild();
 
-lbl_80023414:
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	lwz      r4, sRootHeap__7JKRHeap@sda21(r13)
-	lwz      r3, 0x40(r4)
-	cmplwi   r3, 0
-	beq      lbl_8002342C
-	addi     r3, r3, -12
+	if (sCurrentHeap == this) {
+		sCurrentHeap = !nextRootHeap ? sRootHeap : nextRootHeap->getObject();
+	}
 
-lbl_8002342C:
-	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-	cmplw    r0, r30
-	bne      lbl_80023450
-	cmplwi   r3, 0
-	bne      lbl_80023448
-	mr       r0, r4
-	b        lbl_8002344C
-
-lbl_80023448:
-	lwz      r0, 0xc(r3)
-
-lbl_8002344C:
-	stw      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-
-lbl_80023450:
-	lwz      r0, sSystemHeap__7JKRHeap@sda21(r13)
-	cmplw    r0, r30
-	bne      lbl_80023470
-	cmplwi   r3, 0
-	bne      lbl_80023468
-	b        lbl_8002346C
-
-lbl_80023468:
-	lwz      r4, 0xc(r3)
-
-lbl_8002346C:
-	stw      r4, sSystemHeap__7JKRHeap@sda21(r13)
-
-lbl_80023470:
-	addic.   r0, r30, 0x5c
-	beq      lbl_80023484
-	addi     r3, r30, 0x5c
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_80023484:
-	addic.   r0, r30, 0x40
-	beq      lbl_800234B4
-	addic.   r0, r30, 0x4c
-	beq      lbl_800234A0
-	addi     r3, r30, 0x4c
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_800234A0:
-	addic.   r0, r30, 0x40
-	beq      lbl_800234B4
-	addi     r3, r30, 0x40
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_800234B4:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_800234D0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800234D0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sSystemHeap == this) {
+		sSystemHeap = !nextRootHeap ? sRootHeap : nextRootHeap->getObject();
+	}
 }
 
 /*
@@ -254,77 +84,35 @@ lbl_800234D0:
  * Address:	800234EC
  * Size:	0000A8
  */
-bool JKRHeap::initArena(char** outUserRamStart, u32* outUserRamSize, int numHeaps)
+bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps)
 {
+	void* ram_start;
+	void* ram_end;
+	void* arenaStart;
+
 	void* arenaLo = OSGetArenaLo();
 	void* arenaHi = OSGetArenaHi();
-	if (arenaLo == arenaHi) {
+	if (arenaLo == arenaHi)
 		return false;
-	}
-	OSInitAlloc(arenaLo, arenaHi, numHeaps);
-	u8* userRamEnd   = (u8*)((u32)arenaHi & ~0x1f);
-	u8* userRamStart = (u8*)(((u32)arenaLo + 0x1f) & ~0x1f);
-	// TODO: Remove hardcoding of start of memory?
-	mCodeStart    = (u8*)0x80000000;
-	mCodeEnd      = userRamStart;
-	mUserRamStart = userRamStart;
-	mUserRamEnd   = userRamEnd;
-	// TODO: Remove hardcoding of what I've called OS::PhysicalMemorySize.
-	mMemorySize = *(u32*)0x80000028;
-	OSSetArenaLo(userRamEnd);
-	OSSetArenaHi(userRamEnd);
-	*outUserRamStart = (char*)userRamStart;
-	*outUserRamSize  = (u32)userRamEnd - (u32)userRamStart;
+
+	arenaStart = OSInitAlloc(arenaLo, arenaHi, maxHeaps);
+	ram_start  = (void*)OSRoundUp32B(arenaStart);
+	ram_end    = (void*)OSRoundDown32B(arenaHi);
+
+	OSBootInfo* codeStart = (OSBootInfo*)OSPhysicalToCached(0);
+	mCodeStart            = codeStart;
+	mCodeEnd              = ram_start;
+
+	mUserRamStart = ram_start;
+	mUserRamEnd   = ram_end;
+	mMemorySize   = codeStart->memorySize;
+
+	OSSetArenaLo(ram_end);
+	OSSetArenaHi(ram_end);
+
+	*memory = (char*)ram_start;
+	*size   = (u32)ram_end - (u32)ram_start;
 	return true;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  bl        0xC8F24
-	  mr        r30, r3
-	  bl        0xC8F14
-	  mr        r31, r3
-	  cmplw     r30, r31
-	  bne-      .loc_0x3C
-	  li        r3, 0
-	  b         .loc_0x94
-
-	.loc_0x3C:
-	  mr        r3, r30
-	  mr        r4, r31
-	  mr        r5, r29
-	  bl        0xC8E14
-	  addi      r0, r3, 0x1F
-	  rlwinm    r30,r31,0,0,26
-	  rlwinm    r31,r0,0,0,26
-	  lis       r4, 0x8000
-	  stw       r4, -0x77C4(r13)
-	  mr        r3, r30
-	  stw       r31, -0x77C0(r13)
-	  stw       r31, -0x77BC(r13)
-	  stw       r30, -0x77B8(r13)
-	  lwz       r0, 0x28(r4)
-	  stw       r0, -0x77B4(r13)
-	  bl        0xC8ED8
-	  mr        r3, r30
-	  bl        0xC8EC8
-	  stw       r31, 0x0(r27)
-	  sub       r0, r30, r31
-	  li        r3, 0x1
-	  stw       r0, 0x0(r28)
-
-	.loc_0x94:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -381,24 +169,7 @@ void* JKRHeap::alloc(u32 byteCount, int padding, JKRHeap* heap)
  * Address:	80023640
  * Size:	00002C
  */
-void* JKRHeap::alloc(u32 byteCount, int padding)
-{
-	return do_alloc(byteCount, padding);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void* JKRHeap::alloc(u32 byteCount, int padding) { return do_alloc(byteCount, padding); }
 
 /*
  * --INFO--
@@ -417,24 +188,7 @@ void JKRHeap::free(void* memory, JKRHeap* heap)
  * Address:	800236B4
  * Size:	00002C
  */
-void JKRHeap::free(void* memory)
-{
-	do_free(memory);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void JKRHeap::free(void* memory) { do_free(memory); }
 
 /*
  * --INFO--
@@ -479,6 +233,13 @@ u32 JKRHeap::getFreeSize() { return do_getFreeSize(); }
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00002C
+ */
+void* JKRHeap::getMaxFreeBlock() { return do_getMaxFreeBlock(); }
+
+/*
+ * --INFO--
  * Address:	800237E0
  * Size:	00002C
  */
@@ -493,24 +254,10 @@ u8 JKRHeap::changeGroupID(u8 newGroupID) { return do_changeGroupID(newGroupID); 
 
 /*
  * --INFO--
- * Address:	80023838
- * Size:	000008
- */
-u8 JKRHeap::do_changeGroupID(u8 newGroupID) { return 0; }
-
-/*
- * --INFO--
  * Address:	80023840
  * Size:	00002C
  */
 u8 JKRHeap::getCurrentGroupId() { return do_getCurrentGroupId(); }
-
-/*
- * --INFO--
- * Address:	8002386C
- * Size:	000008
- */
-u8 JKRHeap::do_getCurrentGroupId() { return 0; }
 
 /*
  * TODO: What does p1 mean? Alignment?
@@ -520,46 +267,11 @@ u8 JKRHeap::do_getCurrentGroupId() { return 0; }
  * Address:	80023874
  * Size:	000080
  */
-u32 JKRHeap::getMaxAllocatableSize(int p1)
+u32 JKRHeap::getMaxAllocatableSize(int alignment)
 {
-	// u8* maxFreeBlock = do_getMaxFreeBlock();
-	// u32 freeSize = do_getFreeSize();
-	return ~(p1 - 1) & do_getFreeSize() - (p1 - 1 & p1 - (u32)do_getMaxFreeBlock() & 0xf);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r31,0,28,31
-	  subi      r4, r30, 0x1
-	  sub       r0, r30, r0
-	  and       r0, r4, r0
-	  not       r4, r4
-	  sub       r0, r3, r0
-	  and       r3, r4, r0
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	u32 maxFreeBlock = (u32)getMaxFreeBlock();
+	u32 ptrOffset    = (alignment - 1) & alignment - (maxFreeBlock & 0xf);
+	return ~(alignment - 1) & (getFreeSize() - ptrOffset);
 }
 
 /*
@@ -567,18 +279,7 @@ u32 JKRHeap::getMaxAllocatableSize(int p1)
  * Address:	800238F4
  * Size:	00003C
  */
-JKRHeap* JKRHeap::findFromRoot(void* memory)
-{
-	// JKRHeap* findings;
-	// if (sRootHeap) {
-	// 	findings = sRootHeap->find(memory);
-	// } else {
-	// 	findings = nullptr;
-	// }
-	// return findings;
-	// // Above isn't tested, but this is cleaner:
-	return (sRootHeap) ? sRootHeap->find(memory) : nullptr;
-}
+JKRHeap* JKRHeap::findFromRoot(void* memory) { return (sRootHeap) ? sRootHeap->find(memory) : nullptr; }
 
 /*
  * --INFO--
@@ -588,17 +289,19 @@ JKRHeap* JKRHeap::findFromRoot(void* memory)
  */
 JKRHeap* JKRHeap::find(void* memory) const
 {
-	if ((mStartAddress <= memory) && (memory < mEndAddress)) {
+	if (mStartAddress <= memory && memory < mEndAddress) {
 		if (mTree.getNumChildren() != 0) {
 			for (JSUTreeIterator<JKRHeap> iterator(mTree.getFirstChild()); iterator != mTree.getEndChild(); ++iterator) {
 				JKRHeap* result = iterator->find(memory);
-				if (result != nullptr) {
+				if (result) {
 					return result;
 				}
 			}
 		}
+
 		return const_cast<JKRHeap*>(this);
 	}
+
 	return nullptr;
 	/*
 	.loc_0x0:
@@ -826,208 +529,45 @@ JKRHeap* JKRHeap::find(void* memory) const
 }
 
 /*
- * TODO: This feels WRONG.
- *
  * --INFO--
- * Address:	80023BA0
- * Size:	000014
+ * Address:	........
+ * Size:	0000A4
  */
-// template <> JKRHeap* JSUTree<JKRHeap>::getNextChild() const
-// {
-// 	JSUPtrLink* next = mLink.mNext;
-// 	return (next) ? (JKRHeap*)next[-1].mList : nullptr;
-// 	/*
-// 	.loc_0x0:
-// 	  lwz       r3, 0x18(r3)
-// 	  cmplwi    r3, 0
-// 	  beqlr-
-// 	  subi      r3, r3, 0xC
-// 	  blr
-// 	*/
-// }
+void JKRHeap::dispose_subroutine(u32 begin, u32 end)
+{
+	JSUListIterator<JKRDisposer> last_iterator;
+	JSUListIterator<JKRDisposer> next_iterator;
+	JSUListIterator<JKRDisposer> iterator;
 
-/*
- * --INFO--
- * Address:	80023BB4
- * Size:	000018
- */
-// template <>
-// bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) const
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  lwz       r0, 0x0(r3)
-// 	  sub       r3, r4, r0
-// 	  sub       r0, r0, r4
-// 	  or        r0, r3, r0
-// 	  rlwinm    r3,r0,1,31,31
-// 	  blr
-// 	*/
-// }
+	for (iterator = mDisposerList.getFirst(); iterator != mDisposerList.getEnd(); iterator = next_iterator) {
+		JKRDisposer* disposer = iterator.getObject();
 
-/*
- * --INFO--
- * Address:	80023BCC
- * Size:	000008
- */
-// template <>
-// JSUTree<JKRHeap>* JSUTree<JKRHeap>::getEndChild() const
-// {
-// 	return nullptr;
-// }
+		if ((void*)begin <= disposer && disposer < (void*)end) {
+			disposer->~JKRDisposer();
 
-/*
- * --INFO--
- * Address:	80023BD4
- * Size:	00001C
- */
-// template <>
-// JSUTreeIterator<JKRHeap>& JSUTreeIterator<JKRHeap>::operator++()
-// {
-// 	/*
-// 	lwz      r4, 0(r3)
-// 	lwz      r4, 0x18(r4)
-// 	cmplwi   r4, 0
-// 	beq      lbl_80023BE8
-// 	addi     r4, r4, -12
-
-// lbl_80023BE8:
-// 	stw      r4, 0(r3)
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80023BF0
- * Size:	00000C
- */
-// template <>
-// JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const
-// {
-// 	return getObject();
-// }
-
-/*
- * --INFO--
- * Address:	80023BFC
- * Size:	000008
- */
-// template <>
-// JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
-//     : mTree(tree)
-// {
-// }
-
-/*
- * --INFO--
- * Address:	80023C04
- * Size:	000008
- */
-// template <>
-// int JSUTree<JKRHeap>::getNumChildren() const
-// {
-// 	return getNumLinks();
-// }
-
-/*
- * --INFO--
- * Address:	80023C0C
- * Size:	000014
- */
-// template <>
-// JSUTree<JKRHeap>* JSUTree<JKRHeap>::getFirstChild() const
-// {
-// 	/*
-// 	lwz      r3, 0(r3)
-// 	cmplwi   r3, 0
-// 	beqlr
-// 	addi     r3, r3, -12
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80023C20
- * Size:	000008
- */
-// JSUPtrLink* JSUPtrList::getFirstLink() const { return mHead; }
+			if (last_iterator == nullptr) {
+				next_iterator = mDisposerList.getFirst();
+			} else {
+				next_iterator = last_iterator;
+				next_iterator++;
+			}
+		} else {
+			last_iterator = iterator;
+			next_iterator = iterator;
+			next_iterator++;
+		}
+	}
+}
 
 /*
  * --INFO--
  * Address:	80023C28
  * Size:	0000A8
  */
-u32 JKRHeap::dispose(void* memory, u32 p2)
+u32 JKRHeap::dispose(void* memory, u32 size)
 {
-	JSULink<JKRDisposer>* link1 = mDisposerList.getFirst();
-	JSULink<JKRDisposer>* link2;
-	JSULink<JKRDisposer>* link3;
-	while (link2 = link1, link2) {
-		JKRDisposer* value = link2->getObject();
-		if ((memory <= value) && ((u8*)value < (u8*)memory + p2)) {
-			INVOKE_VIRT_DTOR(value, -1);
-			link1 = (link3 == nullptr) ? mDisposerList.getFirst() : link3->getNext();
-		} else {
-			link1 = link2->getNext();
-			link3 = link2;
-		}
-	}
-	return 0;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  add       r30, r29, r5
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r4, 0x5C(r3)
-	  b         .loc_0x7C
-
-	.loc_0x34:
-	  lwz       r3, 0x0(r4)
-	  cmplw     r29, r3
-	  bgt-      .loc_0x74
-	  cmplw     r3, r30
-	  bge-      .loc_0x74
-	  lwz       r12, 0x0(r3)
-	  li        r4, -0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r31, 0
-	  bne-      .loc_0x6C
-	  lwz       r4, 0x5C(r28)
-	  b         .loc_0x7C
-
-	.loc_0x6C:
-	  lwz       r4, 0xC(r31)
-	  b         .loc_0x7C
-
-	.loc_0x74:
-	  mr        r31, r4
-	  lwz       r4, 0xC(r4)
-
-	.loc_0x7C:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x34
-	  lwz       r0, 0x24(r1)
-	  li        r3, 0
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	dispose_subroutine((u32)memory, (u32)memory + size);
+	return false;
 }
 
 /*
@@ -1035,60 +575,7 @@ u32 JKRHeap::dispose(void* memory, u32 p2)
  * Address:	80023CD0
  * Size:	0000A4
  */
-void JKRHeap::dispose(void*, void*)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r4, 0x5c(r3)
-	b        lbl_80023D4C
-
-lbl_80023D04:
-	lwz      r3, 0(r4)
-	cmplw    r29, r3
-	bgt      lbl_80023D44
-	cmplw    r3, r30
-	bge      lbl_80023D44
-	lwz      r12, 0(r3)
-	li       r4, -1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r31, 0
-	bne      lbl_80023D3C
-	lwz      r4, 0x5c(r28)
-	b        lbl_80023D4C
-
-lbl_80023D3C:
-	lwz      r4, 0xc(r31)
-	b        lbl_80023D4C
-
-lbl_80023D44:
-	mr       r31, r4
-	lwz      r4, 0xc(r4)
-
-lbl_80023D4C:
-	cmplwi   r4, 0
-	bne      lbl_80023D04
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+void JKRHeap::dispose(void* begin, void* end) { dispose_subroutine((u32)begin, (u32)end); }
 
 /*
  * --INFO--
@@ -1098,38 +585,10 @@ lbl_80023D4C:
  */
 void JKRHeap::dispose()
 {
-	JSUPtrLink* link;
-	// Not endless loop. The dtor will remove link from list.
-	while (link = mDisposerList.mHead, link) {
-		INVOKE_VIRT_DTOR(link->mValue, -1);
+	JSUListIterator<JKRDisposer> iterator;
+	while ((iterator = mDisposerList.getFirst()) != mDisposerList.getEnd()) {
+		iterator->~JKRDisposer();
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  b         .loc_0x30
-
-	.loc_0x18:
-	  lwz       r3, 0x0(r3)
-	  li        r4, -0x1
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x30:
-	  lwz       r3, 0x5C(r31)
-	  cmplwi    r3, 0
-	  bne+      .loc_0x18
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1137,51 +596,18 @@ void JKRHeap::dispose()
  * Address:	80023DC4
  * Size:	00008C
  */
-void JKRHeap::copyMemory(void*, void*, u32)
+void JKRHeap::copyMemory(void* dst, void* src, u32 size)
 {
-	/*
-	addi     r0, r5, 3
-	rlwinm.  r0, r0, 0x1e, 2, 0x1f
-	mr       r5, r0
-	beqlr
-	rlwinm.  r0, r0, 0x1d, 3, 0x1f
-	mtctr    r0
-	beq      lbl_80023E34
+	u32 count = (size + 3) / 4;
 
-lbl_80023DE0:
-	lwz      r0, 0(r4)
-	stw      r0, 0(r3)
-	lwz      r0, 4(r4)
-	stw      r0, 4(r3)
-	lwz      r0, 8(r4)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r4)
-	stw      r0, 0xc(r3)
-	lwz      r0, 0x10(r4)
-	stw      r0, 0x10(r3)
-	lwz      r0, 0x14(r4)
-	stw      r0, 0x14(r3)
-	lwz      r0, 0x18(r4)
-	stw      r0, 0x18(r3)
-	lwz      r0, 0x1c(r4)
-	addi     r4, r4, 0x20
-	stw      r0, 0x1c(r3)
-	addi     r3, r3, 0x20
-	bdnz     lbl_80023DE0
-	andi.    r5, r5, 7
-	beqlr
-
-lbl_80023E34:
-	mtctr    r5
-
-lbl_80023E38:
-	lwz      r0, 0(r4)
-	addi     r4, r4, 4
-	stw      r0, 0(r3)
-	addi     r3, r3, 4
-	bdnz     lbl_80023E38
-	blr
-	*/
+	u32* dst_32 = (u32*)dst;
+	u32* src_32 = (u32*)src;
+	while (count > 0) {
+		*dst_32 = *src_32;
+		dst_32++;
+		src_32++;
+		count--;
+	}
 }
 
 /*
@@ -1274,22 +700,7 @@ void* operator new[](u32 byteCount, JKRHeap* heap, int p3)
  * Size:	000024
  * __dl__FPv
  */
-void operator delete(void* memory)
-{
-	JKRHeap::free(memory, nullptr);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  bl        -0xA58
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void operator delete(void* memory) { JKRHeap::free(memory, nullptr); }
 
 /*
  * --INFO--
@@ -1297,32 +708,17 @@ void operator delete(void* memory)
  * Size:	000024
  * __dla__FPv
  */
-void operator delete[](void* memory)
-{
-	JKRHeap::free(memory, nullptr);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  bl        -0xA7C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void operator delete[](void* memory) { JKRHeap::free(memory, nullptr); }
 
-///*
+// /*
 // * --INFO--
 // * Address:	........
 // * Size:	00007C
 // */
 // JKRHeap::TState::TState(const JKRHeap::TState::TArgument& arg, const JKRHeap::TState::TLocation& location)
-//{
-//	// UNUSED FUNCTION
-//}
+// {
+// 	// UNUSED FUNCTION
+// }
 //
 ///*
 // * --INFO--
@@ -1352,6 +748,29 @@ void operator delete[](void* memory)
  */
 JKRHeap::TState::~TState()
 {
+	// NB: strings are from mkdd, should be in this location, makes sense w/ function
+	// JUT_LOG as constructed doesn't put them in rodata so :)
+	if (isCompareOnDestructed()) {
+		TState state(getHeap(), getId(), false);
+		if (mArgument.mHeap->state_compare(*this, state)) {
+			if (this->isVerbose()) {
+				// having this makes this check work correctly lol
+				JUT_LOG("heap unchanged");
+			}
+		} else {
+			state_dumpDifference(*this, state);
+			if (isVerbose()) {
+				JUT_LOG("**** heap changed ****");
+				JUT_LOG("location   : [%s:%d]", mLocation._00, mLocation._04);
+				JUT_LOG("**** heap changed : old ****");
+				dump();
+				JUT_LOG("**** heap changed : new ****");
+				state.dump();
+			}
+		}
+
+		// error on clear
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1668,3 +1087,31 @@ lbl_800244F8:
 	blr
 	*/
 }
+
+/*
+ * --INFO--
+ * Address:	80024618
+ * Size:	000004
+ */
+void JKRHeap::state_register(TState*, u32) const { }
+
+/*
+ * --INFO--
+ * Address:	8002461C
+ * Size:	000018
+ */
+bool JKRHeap::state_compare(const TState& state1, const TState& state2) const { return state1.getCheckCode() == state2.getCheckCode(); }
+
+/*
+ * --INFO--
+ * Address:	80024634
+ * Size:	000004
+ */
+void JKRHeap::state_dumpDifference(const TState&, const TState&) { }
+
+/*
+ * --INFO--
+ * Address:	80024634
+ * Size:	000004
+ */
+void JKRHeap::state_dump(const TState&) const { }

@@ -21,8 +21,8 @@ struct JKRHeap : public JKRDisposer {
 			{
 			}
 
-			void* _00; // _00
-			int _04;   // _04
+			const char* _00; // _00
+			int _04;         // _04
 		};
 
 		struct TArgument {
@@ -84,7 +84,7 @@ struct JKRHeap : public JKRDisposer {
 	virtual void callAllDisposer();                                 // _0C
 	virtual u32 getHeapType() = 0;                                  // _10
 	virtual bool check()      = 0;                                  // _14
-	virtual bool dump_sort();                                       // _18 (weak)
+	virtual bool dump_sort() { return true; }                       // _18 (weak)
 	virtual bool dump()                = 0;                         // _1C
 	virtual void do_destroy()          = 0;                         // _20
 	virtual void* do_alloc(u32, int)   = 0;                         // _24
@@ -97,8 +97,8 @@ struct JKRHeap : public JKRDisposer {
 	virtual u32 do_getFreeSize()       = 0;                         // _40
 	virtual void* do_getMaxFreeBlock() = 0;                         // _44
 	virtual u32 do_getTotalFreeSize()  = 0;                         // _48
-	virtual u8 do_changeGroupID(u8);                                // _4C (weak)
-	virtual u8 do_getCurrentGroupId();                              // _50 (weak)
+	virtual u8 do_changeGroupID(u8) { return 0; }                   // _4C (weak)
+	virtual u8 do_getCurrentGroupId() { return 0; }                 // _50 (weak)
 	virtual void state_register(TState*, u32) const;                // _54
 	virtual bool state_compare(const TState&, const TState&) const; // _58
 	virtual void state_dump(const TState&) const;                   // _5C
@@ -115,11 +115,13 @@ struct JKRHeap : public JKRDisposer {
 	void freeTail();
 	int resize(void*, u32);
 	u32 getFreeSize();
+	void* getMaxFreeBlock();
 	u32 getTotalFreeSize();
 	u8 changeGroupID(u8);
 	u8 getCurrentGroupId();
 	u32 getMaxAllocatableSize(int);
 	JKRHeap* find(void*) const;
+	void dispose_subroutine(u32 begin, u32 end);
 	u32 dispose(void*, u32);
 	void dispose(void*, void*);
 	void dispose();
@@ -188,10 +190,10 @@ struct JKRHeap : public JKRDisposer {
 	static JKRHeap* sCurrentHeap;
 	static JKRHeap* sRootHeap;
 	static JKRHeapErrorHandler* mErrorHandler;
-	static u8* mCodeStart;
-	static u8* mCodeEnd;
-	static u8* mUserRamStart;
-	static u8* mUserRamEnd;
+	static void* mCodeStart;
+	static void* mCodeEnd;
+	static void* mUserRamStart;
+	static void* mUserRamEnd;
 	static u32 mMemorySize;
 	static u32 sParentHeapFreeSize_Last;
 	static u32 sParentHeapFreeSize;
@@ -199,8 +201,8 @@ struct JKRHeap : public JKRDisposer {
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
 	OSMutex mMutex;                     // _18
-	void* mStartAddress;                // _30
-	void* mEndAddress;                  // _34
+	u8* mStartAddress;                  // _30
+	u8* mEndAddress;                    // _34
 	u32 mHeapSize;                      // _38
 	u8 mFillFlag;                       // _3C
 	u8 mFillCheckFlag;                  // _3D
