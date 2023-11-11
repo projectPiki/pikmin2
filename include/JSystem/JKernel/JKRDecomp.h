@@ -126,12 +126,22 @@ struct JKRDecomp : public JKRThread {
 	static JKRDecomp* sDecompObject;
 };
 
+int JKRDecompressFromDVDToAram(JKRDvdFile*, u32, u32, u32, u32, u32, u32*);
+
 inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength)
 {
 	JKRDecomp::orderSync(srcBuffer, dstBuffer, srcLength, dstLength);
 }
 
 inline JKRDecomp* JKRCreateDecompManager(long priority) { return JKRDecomp::create(priority); }
+
+inline int JKRCheckCompressed_noASR(u8* buf)
+{
+	int compression = JKRDecomp::checkCompressed(buf);
+	if (compression == COMPRESSION_ASR)
+		compression = COMPRESSION_None;
+	return compression;
+}
 
 inline JKRCompression JKRCheckCompressed(u8* buffer)
 {

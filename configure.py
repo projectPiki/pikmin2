@@ -107,7 +107,7 @@ LIBS = [
             ["JSystem/JKernel/JKRDecomp", True],
             ["JSystem/JKernel/JKRDisposer", True],
             ["JSystem/JKernel/JKRDvdFile", True],
-            "JSystem/JKernel/JKRDvdAramRipper",
+            ["JSystem/JKernel/JKRDvdAramRipper", True],
             ["JSystem/JKernel/JKRDvdArchive", True],
             ["JSystem/JKernel/JKRDvdRipper", True],
             ["JSystem/JKernel/JKRExpHeap", True],

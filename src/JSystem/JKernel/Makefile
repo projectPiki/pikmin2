@@ -11,7 +11,7 @@ JKERNEL_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRDecomp.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRDisposer.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRDvdFile.o\
-	$(BUILD_DIR)/asm/JSystem/JKernel/JKRDvdAramRipper.o\
+	$(BUILD_DIR)/src/JSystem/JKernel/JKRDvdAramRipper.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRDvdArchive.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRDvdRipper.o\
 	$(BUILD_DIR)/src/JSystem/JKernel/JKRExpHeap.o\

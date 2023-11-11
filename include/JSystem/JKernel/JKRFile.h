@@ -24,14 +24,14 @@ struct JKRFile : public JKRDisposer {
 	{
 	}
 
-	virtual ~JKRFile() { }                              // _08 (weak)
-	virtual bool open(const char*)                 = 0; // _0C
-	virtual void close()                           = 0; // _10
-	virtual int readData(void*, long, long)        = 0; // _14
-	virtual int writeData(const void*, long, long) = 0; // _18
-	virtual int getFileSize() const                = 0; // _1C
+	virtual ~JKRFile() { }                                               // _08 (weak)
+	virtual bool open(const char* path)                             = 0; // _0C
+	virtual void close()                                            = 0; // _10
+	virtual int readData(void* addr, s32 length, s32 offset)        = 0; // _14
+	virtual int writeData(const void* addr, s32 length, s32 offset) = 0; // _18
+	virtual int getFileSize() const                                 = 0; // _1C
 
-	void read(void* a1, long a2, long a3);
+	void read(void* data, s32 length, s32 offset);
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
@@ -41,22 +41,22 @@ struct JKRFile : public JKRDisposer {
 // Size: 0xF8
 struct JKRDvdFile : public JKRFile {
 	JKRDvdFile();
-	JKRDvdFile(const char*);
-	JKRDvdFile(long);
-	virtual ~JKRDvdFile();                                        // _08
-	virtual bool open(const char*);                               // _0C
-	virtual void close();                                         // _10
-	virtual int readData(void*, long, long);                      // _14
-	virtual int writeData(const void*, long, long);               // _18
-	virtual int getFileSize() const { return mDvdPlayer.length; } // _1C (weak)
-	virtual bool open(long);                                      // _20
+	JKRDvdFile(const char* path);
+	JKRDvdFile(s32 entryNum);
+	virtual ~JKRDvdFile();                                           // _08
+	virtual bool open(const char* path);                             // _0C
+	virtual void close();                                            // _10
+	virtual int readData(void* addr, s32 length, s32 offset);        // _14
+	virtual int writeData(const void* addr, s32 length, s32 offset); // _18
+	virtual int getFileSize() const { return mDvdPlayer.length; }    // _1C (weak)
+	virtual bool open(s32 entryNum);                                 // _20
 
 	inline int readDataAsync(void* addr, s32 length, s32 offset)
 	{
-		OSLockMutex(&mMutex1);
+		OSLockMutex(&mDvdMutex);
 		s32 retAddr;
 		if (mThread != nullptr) {
-			OSUnlockMutex(&mMutex1);
+			OSUnlockMutex(&mDvdMutex);
 			retAddr = -1;
 		} else {
 			mThread = OSGetCurrentThread();
@@ -65,12 +65,12 @@ struct JKRDvdFile : public JKRFile {
 				retAddr = (s32)sync();
 			}
 			mThread = nullptr;
-			OSUnlockMutex(&mMutex1);
+			OSUnlockMutex(&mDvdMutex);
 		}
 		return retAddr;
 	}
 
-	inline int writeDataAsync(const void*, long, long) { return -1; }
+	inline int writeDataAsync(const void* addr, s32 length, s32 offset) { return -1; }
 
 	inline DVDFileInfo* getFileInfo() { return &mDvdPlayer; }
 
@@ -83,10 +83,10 @@ struct JKRDvdFile : public JKRFile {
 
 	// _00     = VTBL
 	// _00-_1C = JKRFile
-	OSMutex mMutex1;                  // _1C
-	OSMutex mMutex2;                  // _34
+	OSMutex mDvdMutex;                // _1C
+	OSMutex mAramMutex;               // _34
 	JKRAramBlock* mBlock;             // _4C
-	OSThread* _50;                    // _50
+	OSThread* mCommandThread;         // _50
 	JSUFileInputStream* mInputStream; // _54
 	u32 _58;                          // _58
 	DVDFileInfo mDvdPlayer;           // _5C

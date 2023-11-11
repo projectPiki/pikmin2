@@ -20,12 +20,12 @@ struct JSUIosBase {
 };
 
 struct JSUInputStream : public JSUIosBase {
-	virtual ~JSUInputStream();             // _08
-	virtual int getAvailable() const = 0;  // _0C
-	virtual s32 skip(long);                // _10
-	virtual int readData(void*, long) = 0; // _14
+	virtual ~JSUInputStream();            // _08
+	virtual int getAvailable() const = 0; // _0C
+	virtual s32 skip(s32);                // _10
+	virtual int readData(void*, s32) = 0; // _14
 
-	s32 read(void*, long);
+	s32 read(void*, s32);
 	char* read(char*);
 
 	/** @fabricated */
@@ -97,15 +97,15 @@ struct JSUInputStream : public JSUIosBase {
 struct JSURandomInputStream : public JSUInputStream {
 	virtual ~JSURandomInputStream() { }                                      // _08 (weak)
 	virtual int getAvailable() const { return getLength() - getPosition(); } // _0C (weak)
-	virtual s32 skip(long);                                                  // _10
-	virtual int readData(void*, long)            = 0;                        // _14
-	virtual int getLength() const                = 0;                        // _18
-	virtual int getPosition() const              = 0;                        // _1C
-	virtual int seekPos(long, JSUStreamSeekFrom) = 0;                        // _20
+	virtual s32 skip(s32);                                                   // _10
+	virtual int readData(void*, s32)            = 0;                         // _14
+	virtual int getLength() const               = 0;                         // _18
+	virtual int getPosition() const             = 0;                         // _1C
+	virtual int seekPos(s32, JSUStreamSeekFrom) = 0;                         // _20
 
 	u32 align(s32);
-	size_t peek(void*, long);
-	void seek(long, JSUStreamSeekFrom);
+	size_t peek(void*, s32);
+	void seek(s32, JSUStreamSeekFrom);
 
 	// _00		= VTBL
 	// _00-_08	= JSUIosBase
@@ -113,17 +113,17 @@ struct JSURandomInputStream : public JSUInputStream {
 
 struct JSUMemoryInputStream : public JSURandomInputStream {
 	virtual ~JSUMemoryInputStream() { }                   // _08 (weak)
-	virtual int readData(void*, long);                    // _14
+	virtual int readData(void*, s32);                     // _14
 	virtual int getLength() const { return mLength; }     // _18 (weak)
 	virtual int getPosition() const { return mPosition; } // _1C (weak)
-	virtual int seekPos(long, JSUStreamSeekFrom);         // _20
+	virtual int seekPos(s32, JSUStreamSeekFrom);          // _20
 
-	void setBuffer(const void*, long);
+	void setBuffer(const void*, s32);
 
 	// _00		= VTBL
 	// _00-_08	= JSUIosBase
 	const void* mObject; // _08
-	long mLength;        // _0C
+	s32 mLength;         // _0C
 	int mPosition;       // _10
 };
 
@@ -132,16 +132,15 @@ struct JSUFileInputStream : public JSURandomInputStream {
 	JSUFileInputStream(JKRFile*);
 
 	virtual ~JSUFileInputStream() { }                                            // _08 (weak)
-	virtual int readData(void*, long);                                           // _14
+	virtual int readData(void*, s32);                                            // _14
 	virtual int getLength() const { return ((JKRFile*)mObject)->getFileSize(); } // _18 (weak)
 	virtual int getPosition() const { return mLength; }                          // _1C (weak)
-	virtual int seekPos(long, JSUStreamSeekFrom);                                // _20
+	virtual int seekPos(s32, JSUStreamSeekFrom);                                 // _20
 
 	// _00		= VTBL
 	// _00-_08	= JSUIosBase
 	const void* mObject; // _08
-	long mLength;        // _0C
-	int mPosition;       // _10
+	s32 mLength;         // _0C
 };
 
 /* Not much remains of this. */
@@ -150,9 +149,9 @@ struct JSUOutputStream : public JSUIosBase {
 	/* No calls to this appear to have survived. */
 	virtual void _0C(); // _0C
 	/* Just a guess. No instances of this survived in vanilla. */
-	virtual long writeData(const void*, long) = 0; // _10
+	virtual s32 writeData(const void*, s32) = 0; // _10
 
-	int write(const void*, long);
+	int write(const void*, s32);
 	void write(const char*);
 
 	/** @fabricated */
@@ -169,13 +168,13 @@ struct JSUOutputStream : public JSUIosBase {
 // TODO: this.
 struct JSUMemoryOutputStream : public JSUOutputStream {
 	// Unused/inlined:
-	virtual ~JSUMemoryOutputStream();             // _08
-	virtual long writeData(const void*, long);    // _10
-	virtual int getLength() const;                // _14?
-	virtual int getPosition() const;              // _18?
-	virtual int seekPos(long, JSUStreamSeekFrom); // _1C?
+	virtual ~JSUMemoryOutputStream();            // _08
+	virtual s32 writeData(const void*, s32);     // _10
+	virtual int getLength() const;               // _14?
+	virtual int getPosition() const;             // _18?
+	virtual int seekPos(s32, JSUStreamSeekFrom); // _1C?
 
-	void setBuffer(void*, long);
+	void setBuffer(void*, s32);
 };
 
 #endif
