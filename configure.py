@@ -103,7 +103,7 @@ LIBS = [
             ["JSystem/JKernel/JKRAramStream", True],
             ["JSystem/JKernel/JKRArchivePri", True],
             ["JSystem/JKernel/JKRArchivePub", True],
-            "JSystem/JKernel/JKRCompArchive",
+            ["JSystem/JKernel/JKRCompArchive", True],
             ["JSystem/JKernel/JKRDecomp", True],
             ["JSystem/JKernel/JKRDisposer", True],
             ["JSystem/JKernel/JKRDvdFile", True],

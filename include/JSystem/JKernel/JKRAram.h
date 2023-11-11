@@ -284,7 +284,11 @@ inline JKRAramBlock* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMod
 
 inline void JKRFreeToAram(JKRAramBlock* block) { JKRAram::getAramHeap()->free(block); }
 
-inline JKRAramBlock* JKRMainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap* heap, int, u32);
+inline JKRAramBlock* JKRMainRamToAram(u8* buf, u32 bufSize, u32 alignedSize, JKRExpandSwitch expandSwitch, u32 fileSize, JKRHeap* heap,
+                                      int id, u32* pSize)
+{
+	return JKRAram::mainRamToAram(buf, bufSize, alignedSize, expandSwitch, fileSize, heap, id, pSize);
+}
 
 inline void JKRAramToMainRam(u32 addr, u8* buf, u32 size, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap, int id,
                              u32* pSize)

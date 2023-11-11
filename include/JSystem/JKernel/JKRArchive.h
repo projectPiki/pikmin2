@@ -95,6 +95,18 @@ struct JKRArchive : public JKRFileLoader {
 		u8 _1B[5];            // _1B, unknown
 	};
 
+	// NB: Fabricated name
+	struct SArcHeader {
+		u32 mSignature;      // _00
+		u32 mFileLength;     // _04
+		u32 mHeaderLength;   // _08
+		u32 mFileDataOffset; // _0C
+		u32 mFileDataLength; // _10
+		u32 _14;             // _14, unknown
+		u32 _18;             // _18, unknown
+		u32 _1C;             // _1C, unknown
+	};
+
 	JKRArchive(s32 entryNum, EMountMode mountMode);
 
 	virtual bool becomeCurrent(const char* path);                                                             // _10
@@ -249,7 +261,7 @@ struct JKRCompArchive : public JKRArchive {
 	u32 _64;                         // _64
 	JKRAramBlock* mAramPart;         // _68
 	unknown _6C;                     // _6C
-	JKRDvdFile* mDvdFile;            // _70
+	JKRFile* mDvdFile;               // _70
 	u32 mMemSize;                    // _74
 	u32 mAramSize;                   // _78
 	u32 _7C;                         // _7C
