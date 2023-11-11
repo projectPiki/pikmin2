@@ -16,7 +16,7 @@ int abs(int);
  * Size:	0000B0
  * __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection
  */
-JKRDvdArchive::JKRDvdArchive(long entryNum, JKRArchive::EMountDirection mountDirection)
+JKRDvdArchive::JKRDvdArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(entryNum, EMM_Dvd)
 {
 	mMountDirection = mountDirection;

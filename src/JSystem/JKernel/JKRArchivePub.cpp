@@ -11,7 +11,7 @@
  * Address:	........
  * Size:	000054
  */
-JKRArchive* JKRArchive::check_mount_already(long entryNum)
+JKRArchive* JKRArchive::check_mount_already(s32 entryNum)
 {
 	// UNUSED FUNCTION
 }
@@ -21,7 +21,7 @@ JKRArchive* JKRArchive::check_mount_already(long entryNum)
  * Address:	........
  * Size:	00006C
  */
-JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* pHeap)
+JKRArchive* JKRArchive::check_mount_already(s32 entryNum, JKRHeap* pHeap)
 {
 	// UNUSED FUNCTION
 	JKRHeap* heap = pHeap;
@@ -59,13 +59,13 @@ JKRArchive* JKRArchive::mount(const char* path, EMountMode mode, JKRHeap* heap, 
  * Address:	8001B194
  * Size:	0000D8
  */
-JKRArchive* JKRArchive::mount(void* p1, JKRHeap* heap, EMountDirection mountDirection)
+JKRArchive* JKRArchive::mount(void* mem, JKRHeap* heap, EMountDirection mountDirection)
 {
-	JKRArchive* archive = check_mount_already((long)p1, heap);
+	JKRArchive* archive = check_mount_already((s32)mem, heap);
 	if (archive != nullptr) {
 		return archive;
 	}
-	return new (heap, (mountDirection == EMD_Head) ? 4 : -4) JKRMemArchive(p1, 0xFFFF, MBF_0);
+	return new (heap, (mountDirection == EMD_Head) ? 4 : -4) JKRMemArchive(mem, 0xFFFF, MBF_0);
 }
 
 /*
@@ -73,7 +73,7 @@ JKRArchive* JKRArchive::mount(void* p1, JKRHeap* heap, EMountDirection mountDire
  * Address:	8001B26C
  * Size:	0001D8
  */
-JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* heap, EMountDirection mountDirection)
+JKRArchive* JKRArchive::mount(s32 entryNum, EMountMode mountMode, JKRHeap* heap, EMountDirection mountDirection)
 {
 	JKRArchive* archive = check_mount_already(entryNum, heap);
 	if (archive) {
@@ -133,9 +133,9 @@ bool JKRArchive::becomeCurrent(const char* path)
  * Address:	8001B4CC
  * Size:	000078
  */
-bool JKRArchive::getDirEntry(JKRArchive::SDirEntry* dirEntry, u32 p2) const
+bool JKRArchive::getDirEntry(JKRArchive::SDirEntry* dirEntry, u32 index) const
 {
-	SDIFileEntry* fileEntry = findIdxResource(p2);
+	SDIFileEntry* fileEntry = findIdxResource(index);
 	if (!fileEntry) {
 		return false;
 	}

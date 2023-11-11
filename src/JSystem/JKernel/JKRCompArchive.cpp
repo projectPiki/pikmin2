@@ -68,11 +68,11 @@
  * Size:	0000B0
  * __ct
  */
-JKRCompArchive::JKRCompArchive(long p1, JKRArchive::EMountDirection mountDirection)
-    : JKRArchive(p1, EMM_Comp)
+JKRCompArchive::JKRCompArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
+    : JKRArchive(entryNum, EMM_Comp)
     , mMountDirection(mountDirection)
 {
-	if (!open(p1)) {
+	if (!open(entryNum)) {
 		return;
 	}
 	mMagicWord  = 'RARC';

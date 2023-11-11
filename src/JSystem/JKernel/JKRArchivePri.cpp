@@ -21,7 +21,7 @@ u32 JKRArchive::sCurrentDirID;
  * Address:	8001A4BC
  * Size:	0000A8
  */
-JKRArchive::JKRArchive(long entryNum, JKRArchive::EMountMode mountMode)
+JKRArchive::JKRArchive(s32 entryNum, JKRArchive::EMountMode mountMode)
     : JKRFileLoader()
 {
 	mIsMounted  = false;
@@ -328,7 +328,7 @@ void JKRArchive::CArcName::store(const char* name)
 		}
 		name++;
 	}
-	_02            = count;
+	mLength        = count;
 	mString[count] = '\0';
 }
 
@@ -348,7 +348,7 @@ const char* JKRArchive::CArcName::store(const char* name, char endChar)
 			mString[count++] = lower;
 		}
 	}
-	_02            = count;
+	mLength        = count;
 	mString[count] = '\0';
 
 	if (*name == 0)

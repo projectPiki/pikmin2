@@ -27,11 +27,11 @@ JKRAramArchive::JKRAramArchive()
  * Size:	0000B0
  * __ct
  */
-JKRAramArchive::JKRAramArchive(long p1, JKRArchive::EMountDirection mountDirection)
-    : JKRArchive(p1, EMM_Aram)
+JKRAramArchive::JKRAramArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
+    : JKRArchive(entryNum, EMM_Aram)
     , mMountDirection(mountDirection)
 {
-	if (!open(p1)) {
+	if (!open(entryNum)) {
 		return;
 	} else {
 		mMagicWord  = 'RARC';
@@ -84,7 +84,7 @@ JKRAramArchive::~JKRAramArchive()
  * Address:	80018BB8
  * Size:	000334
  */
-bool JKRAramArchive::open(long entryNum)
+bool JKRAramArchive::open(s32 entryNum)
 {
 	mDataInfo    = nullptr;
 	mDirectories = nullptr;
@@ -175,11 +175,11 @@ cleanup:
  * Address:	80018EEC
  * Size:	000124
  */
-void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* p2)
+void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* pSize)
 {
-	u32 standInForP2;
-	if (p2 == nullptr) {
-		p2 = &standInForP2;
+	u32 tempSize;
+	if (pSize == nullptr) {
+		pSize = &tempSize;
 	}
 	int sequence;
 	if (!entry->getFlag04()) {
@@ -190,20 +190,20 @@ void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* entry, u32* p2)
 		sequence = 1;
 	}
 	if (entry->mData == nullptr) {
-		u8* v2;
-		u32 v3 = fetchResource_subroutine(entry->mDataOffset + ((int*)mBlock)[5], entry->getSize(), mHeap, sequence, &v2);
-		*p2    = v3;
-		if (v3 == 0) {
+		u8* dataBuf;
+		u32 size = fetchResource_subroutine(entry->mDataOffset + ((int*)mBlock)[5], entry->getSize(), mHeap, sequence, &dataBuf);
+		*pSize   = size;
+		if (size == 0) {
 			return nullptr;
 		}
-		entry->mData = v2;
+		entry->mData = dataBuf;
 		if (sequence == 2) {
-			setExpandSize(entry, *p2);
+			setExpandSize(entry, *pSize);
 		}
 	} else if (sequence == 2) {
-		*p2 = getExpandSize(entry);
+		*pSize = getExpandSize(entry);
 	} else {
-		*p2 = entry->getSize();
+		*pSize = entry->getSize();
 	}
 	return entry->mData;
 }
@@ -249,22 +249,22 @@ void* JKRAramArchive::fetchResource(void* data, u32 compressedSize, SDIFileEntry
  * Address:	80019108
  * Size:	0000BC
  */
-u32 JKRAramArchive::fetchResource_subroutine(u32 p1, u32 p2, u8* p3, u32 p4, int p5)
+u32 JKRAramArchive::fetchResource_subroutine(u32 srcAram, u32 size, u8* buf, u32 expandSize, int compression)
 {
-	u32 v1 = ALIGN_PREV(p4, 0x20);
-	u32 v2 = ALIGN_NEXT(p2, 0x20);
-	u32 v3;
-	switch (p5) {
+	u32 alignedExpSize = ALIGN_PREV(expandSize, 0x20);
+	u32 alignedSize    = ALIGN_NEXT(size, 0x20);
+	u32 outSize;
+	switch (compression) {
 	case COMPRESSION_None:
-		if (v2 > v1) {
-			v2 = v1;
+		if (alignedSize > alignedExpSize) {
+			alignedSize = alignedExpSize;
 		}
-		JKRAram::aramToMainRam(p1, p3, v2, Switch_0, v1, nullptr, -1, &v3);
-		return v3;
+		JKRAram::aramToMainRam(srcAram, buf, alignedSize, Switch_0, alignedExpSize, nullptr, -1, &outSize);
+		return outSize;
 	case COMPRESSION_YAY0:
 	case COMPRESSION_YAZ0:
-		JKRAram::aramToMainRam(p1, p3, v2, Switch_1, v1, nullptr, -1, &v3);
-		return v3;
+		JKRAram::aramToMainRam(srcAram, buf, alignedSize, Switch_1, alignedExpSize, nullptr, -1, &outSize);
+		return outSize;
 	}
 	OSErrorLine(655, ":::??? bad sequence\n");
 	return 0;

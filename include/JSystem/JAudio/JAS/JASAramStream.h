@@ -76,7 +76,7 @@ struct JASAramStream {
 	u8 _1B0;                         // _1B0
 	u32 _1B4;                        // _1B4
 	f32 _1B8;                        // _1B8
-	DVDFileInfo _1BC;                // _1BC
+	DVDFileInfo mFileInfo;           // _1BC
 	u32 _1F8;                        // _1F8
 	int _1FC;                        // _1FC
 	int _200;                        // _200
@@ -90,7 +90,7 @@ struct JASAramStream {
 	u32 _23C;                        // _23C
 	JASAramStreamCallback mCallback; // _240
 	void* _244;                      // _244
-	s16 _248;                        // _248
+	u16 _248;                        // _248
 	u16 _24A;                        // _24A
 	u32 _24C;                        // _24C
 	int _250;                        // _250

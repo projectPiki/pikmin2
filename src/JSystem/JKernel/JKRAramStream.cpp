@@ -17,10 +17,10 @@ JKRHeap* JKRAramStream::transHeap               = nullptr;
  * Size:	000070
  */
 
-JKRAramStream* JKRAramStream::create(s32 param)
+JKRAramStream* JKRAramStream::create(s32 prio)
 {
 	if (JKRAramStream::sAramStreamObject == nullptr) {
-		JKRAramStream::sAramStreamObject = new (JKRHeap::sSystemHeap, 0) JKRAramStream(param);
+		JKRAramStream::sAramStreamObject = new (JKRHeap::sSystemHeap, 0) JKRAramStream(prio);
 		setTransBuffer(nullptr, 0, nullptr);
 	}
 	return JKRAramStream::sAramStreamObject;
@@ -31,8 +31,8 @@ JKRAramStream* JKRAramStream::create(s32 param)
  * Address:	80019F90
  * Size:	000050
  */
-JKRAramStream::JKRAramStream(s32 priority)
-    : JKRThread(0x4000, 0x10, priority)
+JKRAramStream::JKRAramStream(s32 prio)
+    : JKRThread(0x4000, 0x10, prio)
 {
 	OSResumeThread(mThread);
 }
@@ -42,7 +42,7 @@ JKRAramStream::JKRAramStream(s32 priority)
  * Address:	80019FE0
  * Size:	000060
  */
-JKRAramStream::~JKRAramStream() {};
+JKRAramStream::~JKRAramStream() { }
 
 /*
  * --INFO--

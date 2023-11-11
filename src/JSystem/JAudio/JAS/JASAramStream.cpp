@@ -7,6 +7,7 @@
 #include "types.h"
 #include "JSystem/JAudio/JAS/JASAramStream.h"
 #include "JSystem/JAudio/JAS/JASThread.h"
+#include "JSystem/JKernel/JKRAram.h"
 
 JASTaskThread* JASAramStream::sLoadThread;
 u8* JASAramStream::sReadBuffer;
@@ -191,7 +192,7 @@ JASAramStream::JASAramStream()
  * Address:	800A918C
  * Size:	0000F8
  */
-void JASAramStream::init(u32 p1, u32 p2, void (*callback)(u32, JASAramStream*, void*), void* p4)
+void JASAramStream::init(u32 p1, u32 p2, JASAramStreamCallback callback, void* p4)
 {
 	_238 = p1;
 	_23C = p2;
@@ -307,9 +308,9 @@ void JASAramStream::prepare(const char*, int)
  * Address:	800A9284
  * Size:	0000B8
  */
-BOOL JASAramStream::prepare(long inode, int p2)
+BOOL JASAramStream::prepare(s32 entryNum, int p2)
 {
-	if (!DVDFastOpen(inode, &_1BC)) {
+	if (!DVDFastOpen(entryNum, &mFileInfo)) {
 		return FALSE;
 	}
 	if (!JASDriver::registerSubFrameCallback(channelProcCallback, this)) {
@@ -468,7 +469,7 @@ bool JASAramStream::headerLoad(u32 p1, int p2)
 	if (_204 != 0) {
 		return false;
 	}
-	if (DVDReadPrio(&_1BC, sReadBuffer, 0x40, 0, 1) < 0) {
+	if (DVDReadPrio(&mFileInfo, sReadBuffer, 0x40, 0, 1) < 0) {
 		sFatalErrorFlag = true;
 		return false;
 	}
@@ -525,6 +526,45 @@ bool JASAramStream::load()
 	if (_204) {
 		return false;
 	}
+
+	u32 val;
+	if (_248 == 0) {
+		val = sBlockSize * 16 / 9;
+	} else {
+		val = sBlockSize / 2;
+	}
+
+	u32 val2 = (_260 - 1) / val;
+
+	u32 val3;
+	if (_248 == 0) {
+		val3 = sBlockSize * 16 / 9;
+	} else {
+		val3 = sBlockSize / 2;
+	}
+
+	u32 val4 = (_25C) / val3;
+
+	if (_200 > val2) {
+		return false;
+	}
+
+	u32 length = sBlockSize * _24A + 0x20;
+	u32 offset = _200 * _24A + 0x40;
+
+	if (_200 == val2) {
+		length = mFileInfo.length - offset;
+	}
+
+	if (DVDReadPrio(&mFileInfo, sReadBuffer, length, offset, 1) < 0) {
+		sFatalErrorFlag = true;
+		return false;
+	}
+
+	// u32
+	// for (int i = 0; i < _24A; i++) {
+	// 	if (JKRAram::mainRamToAram(sReadBuffer, ))
+	// }
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -753,14 +793,14 @@ lbl_800A9A84:
  * Address:	800A9A98
  * Size:	000020
  */
-long JASAramStream::channelProcCallback(void* p1) { static_cast<JASAramStream*>(p1)->channelProc(); }
+s32 JASAramStream::channelProcCallback(void* stream) { return static_cast<JASAramStream*>(stream)->channelProc(); }
 
 /*
  * --INFO--
  * Address:	800A9AB8
  * Size:	00005C
  */
-long JASAramStream::dvdErrorCheck(void*)
+s32 JASAramStream::dvdErrorCheck(void*)
 {
 	u32 status = DVDGetDriveStatus();
 	switch (status) {
@@ -825,9 +865,9 @@ lbl_800A9B00:
  * Address:	800A9B14
  * Size:	00003C
  */
-void JASAramStream::channelCallback(u32 p1, JASChannel* p2, JASDsp::TChannel* p3, void* p4)
+void JASAramStream::channelCallback(u32 p1, JASChannel* chan, JASDsp::TChannel* dspChan, void* stream)
 {
-	static_cast<JASAramStream*>(p4)->updateChannel(p1, p2, p3);
+	static_cast<JASAramStream*>(stream)->updateChannel(p1, chan, dspChan);
 }
 
 /*
@@ -835,7 +875,7 @@ void JASAramStream::channelCallback(u32 p1, JASChannel* p2, JASDsp::TChannel* p3
  * Address:	800A9B50
  * Size:	000758
  */
-void JASAramStream::updateChannel(u32, JASChannel*, JASDsp::TChannel*)
+void JASAramStream::updateChannel(u32 p1, JASChannel* chan, JASDsp::TChannel* dspChan)
 {
 	/*
 	stwu     r1, -0x50(r1)
