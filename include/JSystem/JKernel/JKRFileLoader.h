@@ -11,7 +11,7 @@ struct JKRFileLoader : public JKRDisposer {
 
 	virtual ~JKRFileLoader();                                                                          // _08
 	virtual void unmount();                                                                            // _0C
-	virtual bool becomeCurrent(const char*)                                                       = 0; // _10
+	virtual bool becomeCurrent(const char* path)                                                  = 0; // _10
 	virtual void* getResource(const char* path)                                                   = 0; // _14
 	virtual void* getResource(u32 type, const char* name)                                         = 0; // _18
 	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, const char* path)           = 0; // _1C
@@ -30,6 +30,7 @@ struct JKRFileLoader : public JKRDisposer {
 
 	bool isMounted() const { return mIsMounted; }
 	u32 getVolumeType() const { return mMagicWord; }
+	static JSUList<JKRFileLoader>& getVolumeList() { return sVolumeList; }
 
 	static JKRFileLoader* sCurrentVolume;
 	static JSUList<JKRFileLoader> sVolumeList;

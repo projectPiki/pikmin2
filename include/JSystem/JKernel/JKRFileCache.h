@@ -7,7 +7,7 @@
 struct JKRArchive;
 struct JKRFileCache : public JKRFileLoader {
 	struct CCacheBlock : public JSULink<CCacheBlock> {
-		CCacheBlock(u32, u32, const void*);
+		CCacheBlock(u32 fileID, u32 size, const void* resource);
 
 		// _00-_10 = JSULink<CCacheBlock>
 		int mRefCount;        // _10
@@ -16,39 +16,45 @@ struct JKRFileCache : public JKRFileLoader {
 		const void* mFilePtr; // _1C
 	};
 
-	JKRFileCache(const char*, const char*);
+	JKRFileCache(const char* path, const char* volume);
 
-	virtual ~JKRFileCache();                                                                         // _08
-	virtual bool becomeCurrent(const char*);                                                         // _10
-	virtual void* getResource(const char*);                                                          // _14
-	virtual void* getResource(u32, const char*);                                                     // _18
-	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, const char* path);             // _1C
-	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name);   // _20
-	virtual void removeResourceAll();                                                                // _24
-	virtual bool removeResource(void*);                                                              // _28
-	virtual bool detachResource(void*);                                                              // _2C
-	virtual long getResSize(const void*) const;                                                      // _30
-	virtual u32 countFile(const char*) const;                                                        // _34
-	virtual JKRFileFinder* getFirstFile(const char*) const;                                          // _38
-	virtual void* getFsResource(const char*);                                                        // _3C (weak)
-	virtual void* getNameResource(u32, const char*);                                                 // _40 (weak)
-	virtual long readFsResource(void* resourceBuffer, u32 bufferSize, const char* path);             // _44 (weak)
-	virtual long readNameResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name); // _48 (weak)
+	virtual ~JKRFileCache();                                                                       // _08
+	virtual bool becomeCurrent(const char* path);                                                  // _10
+	virtual void* getResource(const char* path);                                                   // _14
+	virtual void* getResource(u32 type, const char* name);                                         // _18
+	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, const char* path);           // _1C
+	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name); // _20
+	virtual void removeResourceAll();                                                              // _24
+	virtual bool removeResource(void* resource);                                                   // _28
+	virtual bool detachResource(void* resource);                                                   // _2C
+	virtual s32 getResSize(const void* resource) const;                                            // _30
+	virtual u32 countFile(const char* path) const;                                                 // _34
+	virtual JKRFileFinder* getFirstFile(const char* path) const;                                   // _38
+	virtual void* getFsResource(const char* path) { return getResource(path); }                    // _3C (weak)
+	virtual void* getNameResource(u32 type, const char* name) { return getResource(type, name); }  // _40 (weak)
+	virtual s32 readFsResource(void* resourceBuffer, u32 bufferSize, const char* path)             // _44 (weak)
+	{
+		return readResource(resourceBuffer, bufferSize, path);
+	}
+	virtual s32 readNameResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name) // _48 (weak)
+	{
+		return readResource(resourceBuffer, bufferSize, type, name);
+	}
 
-	// +4 bytes vtable padding
+	CCacheBlock* findCacheBlock(const void* resource) const;
+	CCacheBlock* findCacheBlock(u32 id) const;
+	bool findFile(char* dirPath, const char* fileName) const;
+	char* getDvdPathName(const char* path) const;
+	void convStrLower(char* str) const;
 
-	CCacheBlock* findCacheBlock(const void*) const;
-	CCacheBlock* findCacheBlock(u32) const;
-	bool findFile(char*, const char*) const;
-	char* getDvdPathName(const char*) const;
-	void convStrLower(char*) const;
-
-	static JKRFileCache* mount(char const*, JKRHeap*, const char*);
+	static JKRFileCache* mount(char const* path, JKRHeap* heap, const char* volume);
 
 	// unused/inlined:
 	void* getRelResource(const char*);
 	u32 readRelResource(void* p1, u32 p2, const char* p3);
 
+	// _00     = VTBL
+	// _00-_38 = JKRFileLoader
 	JKRHeap* mParentHeap;                 // _38
 	JSUList<CCacheBlock> mCacheBlockList; // _3C
 	char* mRootPath;                      // _48
@@ -56,9 +62,9 @@ struct JKRFileCache : public JKRFileLoader {
 	char* mVolumePath;                    // _50
 };
 
-inline JKRFileCache* JKRMountDvdDrive(const char* path, JKRHeap* heap, const char* param_2)
+inline JKRFileCache* JKRMountDvdDrive(const char* path, JKRHeap* heap, const char* volume)
 {
-	return JKRFileCache::mount(path, heap, param_2);
+	return JKRFileCache::mount(path, heap, volume);
 }
 
 #endif

@@ -26,7 +26,8 @@ struct JKRFileFinder : public JKRFileFinderBase {
 	{
 	}
 
-	virtual ~JKRFileFinder() { } // _08 (weak)
+	virtual ~JKRFileFinder() { }     // _08 (weak)
+	virtual bool findNextFile() = 0; // _0C
 
 	// _00     = VTBL
 	// _00-_10 = JKRFileFinderBase
