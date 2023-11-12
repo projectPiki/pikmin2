@@ -24,6 +24,8 @@ struct TIndexGroup {
 		mStateID = 0;
 	}
 
+	inline f32 getHeight() { return mHeight; }
+
 	f32 mMaxRollSpeed; // _00
 	f32 _04;           // _04
 	f32 mRollSpeedMod; // _08
@@ -77,6 +79,8 @@ struct TIndexPane {
 	void update();
 
 	void doIconOffsetY();
+
+	inline void setPaneOffset(f32 offset) { mPane->setOffsetY(_1C + offset); }
 
 	int mIndex;             // _00
 	J2DPane* mPane;         // _04

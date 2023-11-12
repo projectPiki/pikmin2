@@ -70,9 +70,15 @@ bool TIndexGroup::downIndex()
  * Address:	........
  * Size:	000064
  */
-void TIndexGroup::speedUpdate(bool)
+void TIndexGroup::speedUpdate(bool check)
 {
-	// UNUSED FUNCTION
+	if (mRollSpeed > _10 && !_24) {
+		if (FABS(_14) < 0.7f * mHeight) {
+			mRollSpeed *= _0C;
+		} else {
+			mRollSpeed *= _04;
+		}
+	}
 }
 
 /*
@@ -80,8 +86,9 @@ void TIndexGroup::speedUpdate(bool)
  * Address:	........
  * Size:	000088
  */
-void TIndexGroup::offsetUpdate(f32)
+void TIndexGroup::offsetUpdate(f32 offset)
 {
+
 	// UNUSED FUNCTION
 }
 
@@ -146,19 +153,19 @@ void TIndexPane::setIndex(int index)
 			if (mSizeType) {
 				offs = 0;
 			}
-			if (mSizeType == 1 || mMaxTextureId > index + i) {
+			if (mSizeType == 1 || index + i > mMaxTextureId) {
 				mIconInfos[i]->setInfo(-1, nullptr);
 				if (i == 1) {
 					mIconInfos[i]->mParentIndex = mIndex + 1;
 				}
 			} else {
-				offs += index;
+				int infoIdx         = index + offs;
 				const ResTIMG* timg = nullptr;
-				if (mOwner->isListShow(offs)) {
-					timg = static_cast<TZukanBase*>(mOwner)->getTexInfo(offs);
+				if (mOwner->isListShow(infoIdx)) {
+					timg = static_cast<TZukanBase*>(mOwner)->getTexInfo(infoIdx);
 					P2ASSERTLINE(193, timg);
-					mIconInfos[i]->setInfo(offs, timg);
 				}
+				mIconInfos[i]->setInfo(infoIdx, timg);
 			}
 		}
 		switch (mSizeType) {
@@ -181,157 +188,6 @@ void TIndexPane::setIndex(int index)
 		}
 		doIconOffsetY();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r29, r4
-	mr       r28, r3
-	stw      r29, 0(r3)
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_803A25A8
-	lwz      r0, 0x24(r28)
-	cmplwi   r0, 0
-	beq      lbl_803A25A8
-	li       r30, 0
-	li       r31, 0
-	b        lbl_803A24EC
-
-lbl_803A2418:
-	lwz      r0, 0xc(r28)
-	mr       r4, r30
-	cmpwi    r0, 0
-	beq      lbl_803A242C
-	li       r4, 0
-
-lbl_803A242C:
-	cmpwi    r0, 1
-	beq      lbl_803A2444
-	lwz      r0, 0x14(r28)
-	add      r3, r29, r30
-	cmpw     r3, r0
-	ble      lbl_803A2478
-
-lbl_803A2444:
-	lwz      r3, 0x20(r28)
-	li       r4, -1
-	li       r5, 0
-	lwzx     r3, r3, r31
-	bl       setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG
-	cmpwi    r30, 1
-	bne      lbl_803A24E4
-	lwz      r3, 0x20(r28)
-	lwz      r4, 0(r28)
-	lwzx     r3, r3, r31
-	addi     r0, r4, 1
-	stw      r0, 0x18(r3)
-	b        lbl_803A24E4
-
-lbl_803A2478:
-	lwz      r3, 0x24(r28)
-	add      r27, r29, r4
-	mr       r4, r27
-	li       r26, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803A24D0
-	lwz      r3, 0x24(r28)
-	mr       r4, r27
-	bl       getTexInfo__Q28Morimura10TZukanBaseFi
-	or.      r26, r3, r3
-	bne      lbl_803A24D0
-	lis      r3, lbl_80495210@ha
-	lis      r5, lbl_80495220@ha
-	addi     r3, r3, lbl_80495210@l
-	li       r4, 0xc1
-	addi     r5, r5, lbl_80495220@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803A24D0:
-	lwz      r3, 0x20(r28)
-	mr       r4, r27
-	mr       r5, r26
-	lwzx     r3, r3, r31
-	bl       setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG
-
-lbl_803A24E4:
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_803A24EC:
-	lwz      r0, 0x10(r28)
-	cmpw     r30, r0
-	blt      lbl_803A2418
-	lwz      r0, 0xc(r28)
-	cmpwi    r0, 2
-	beq      lbl_803A2564
-	bge      lbl_803A2518
-	cmpwi    r0, 0
-	beq      lbl_803A2524
-	bge      lbl_803A2598
-	b        lbl_803A25A0
-
-lbl_803A2518:
-	cmpwi    r0, 4
-	bge      lbl_803A25A0
-	b        lbl_803A2530
-
-lbl_803A2524:
-	lfs      f0, lbl_8051F2F8@sda21(r2)
-	stfs     f0, 0x18(r28)
-	b        lbl_803A25A0
-
-lbl_803A2530:
-	lwz      r3, 0x20(r28)
-	li       r4, -1
-	li       r5, 0
-	lwz      r3, 0(r3)
-	bl       setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG
-	lwz      r3, 0x20(r28)
-	li       r4, -1
-	li       r5, 0
-	lwz      r3, 8(r3)
-	bl       setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG
-	lfs      f0, lbl_8051F31C@sda21(r2)
-	stfs     f0, 0x18(r28)
-	b        lbl_803A25A0
-
-lbl_803A2564:
-	lwz      r3, 0x20(r28)
-	li       r4, -1
-	li       r5, 0
-	lwz      r3, 0(r3)
-	bl       setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG
-	lwz      r3, 0x20(r28)
-	li       r4, -1
-	li       r5, 0
-	lwz      r3, 8(r3)
-	bl       setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG
-	lfs      f0, lbl_8051F320@sda21(r2)
-	stfs     f0, 0x18(r28)
-	b        lbl_803A25A0
-
-lbl_803A2598:
-	lfs      f0, lbl_8051F324@sda21(r2)
-	stfs     f0, 0x18(r28)
-
-lbl_803A25A0:
-	mr       r3, r28
-	bl       doIconOffsetY__Q28Morimura10TIndexPaneFv
-
-lbl_803A25A8:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -345,41 +201,18 @@ int TIndexPane::getIndex()
 	if (mIconInfos) {
 		if (mSizeType == 0) {
 			id = mIconInfos[TScrollList::mRightOffset]->mParentIndex - 1;
-			return (id < 0) ? id : -1;
+			if (id < 0) {
+				id = -1;
+			}
+			return id;
 		}
 		id = mIconInfos[1]->mParentIndex - 1;
-		return (id < 0) ? id : -1;
+		if (id < 0) {
+			id = -1;
+		}
+		return id;
 	}
 	return mIndex;
-
-	/*
-	lwz      r4, 0x20(r3)
-	cmplwi   r4, 0
-	beq      lbl_803A260C
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 0
-	bne      lbl_803A25F4
-	lwz      r0, mRightOffset__Q28Morimura11TScrollList@sda21(r13)
-	slwi     r0, r0, 2
-	lwzx     r3, r4, r0
-	lwz      r3, 0x18(r3)
-	addic.   r3, r3, -1
-	bgelr
-	li       r3, -1
-	blr
-
-lbl_803A25F4:
-	lwz      r3, 4(r4)
-	lwz      r3, 0x18(r3)
-	addic.   r3, r3, -1
-	bgelr
-	li       r3, -1
-	blr
-
-lbl_803A260C:
-	lwz      r3, 0(r3)
-	blr
-	*/
 }
 
 /*
@@ -397,83 +230,16 @@ int TIndexPane::getListIndex() { return mIndex; }
 void TIndexPane::doIconOffsetY()
 {
 	if (mIconInfos) {
-		J2DPane* pane = mIconInfos[1]->mPane2;
-		pane->addOffsetY(_18);
+		J2DPane* pane = mIconInfos[1]->mPane;
+		pane->setOffset(pane->mOffset.x, _18 + mIconInfos[0]->mPane->mOffset.y);
 		pane->updateScale(1.0f);
 		if (_18 != 0.0f) {
 			pane->updateScale(2.0f);
 		}
 		if (mIconInfos[1]->mPic) {
-			mIconInfos[1]->mPic->setOffsetY(_18 - 13.5f);
+			mIconInfos[1]->mPic->setOffset(mIconInfos[1]->mPic->mOffset.x, _18 - 13.5f);
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r4, 0x20(r3)
-	cmplwi   r4, 0
-	beq      lbl_803A26F8
-	lwz      r3, 0(r4)
-	lwz      r4, 4(r4)
-	lwz      r3, 0x10(r3)
-	lfs      f2, 0x18(r30)
-	lfs      f1, 0xd8(r3)
-	lwz      r31, 0x10(r4)
-	fadds    f1, f2, f1
-	mr       r3, r31
-	stfs     f1, 0xd8(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051F310@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0xcc(r31)
-	stfs     f0, 0xd0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051F2F8@sda21(r2)
-	lfs      f0, 0x18(r30)
-	fcmpu    cr0, f1, f0
-	beq      lbl_803A26C4
-	lfs      f0, lbl_8051F30C@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0xcc(r31)
-	stfs     f0, 0xd0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803A26C4:
-	lwz      r3, 0x20(r30)
-	lwz      r3, 4(r3)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	beq      lbl_803A26F8
-	lfs      f2, 0x18(r30)
-	lfs      f1, lbl_8051F328@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0xd8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803A26F8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -521,9 +287,9 @@ void TIconInfo::update(f32 base)
 		if (TScrollList::mWideWindow) {
 			if (base == 2.0f) {
 				mPane->updateScale(calc * 3.0f, base * calc);
-				mPane2->updateScale(2 / 3, 1.0f);
+				mPane2->updateScale(0.66666667f, 1.0f);
 				mCounter->getMotherPane()->setOffset(-30.5f, mCounter->getMotherPane()->mOffset.y);
-				mCounter->setScale(2 / 3, 1.0f);
+				mCounter->setScale(0.66666667f, 1.0f);
 			} else {
 				mPane->updateScale(base * calc, base * calc);
 				mPane2->updateScale(1.0f, 1.0f);
@@ -638,8 +404,96 @@ TScrollList::TScrollList(char* name)
  * Address:	803A2D48
  * Size:	000428
  */
-void TScrollList::updateIndex(bool)
+void TScrollList::updateIndex(bool check)
 {
+	int idx = -1;
+	for (int i = 0; i < mMaxSelect; i++) {
+		// TIndexPane* indexPane = mIndexPaneList[i];
+		J2DPane* pane          = mIndexPaneList[i]->mPane;
+		mIndexPaneList[i]->_1C = pane->mOffset.y;
+		if (mIndexPaneList[i]->_1C < _AC && mIndexPaneList[i]->_1C > mYOffset) {
+			idx = i;
+		}
+	}
+
+	if (mDoEnableBigIcon) {
+		if (idx < 0) {
+			for (int i = 0; i < mMaxSelect; i++) {
+				if (mIndexPaneList[i]->_1C < _AC + 20.0f && mIndexPaneList[i]->_1C > mYOffset - 20.0f) {
+					idx = i;
+				}
+			}
+		}
+		P2ASSERTLINE(517, idx >= 0);
+		mCurrentSelect = idx;
+	}
+
+	getIdMax();
+
+	while (true) {
+		bool check2 = false;
+		if (!mDoEnableBigIcon) {
+			check2 = true;
+		}
+		if (check) {
+			mIndexPaneList[_90]->_1C = mIndexPaneList[_98]->mPane->mOffset.y + mIndexGroup->getHeight();
+			if (mIndexPaneList[_90]->_1C >= _A4) {
+				check2 = true;
+			}
+
+			mIndexPaneList[_90]->setPaneOffset(0.0f);
+
+			int updateIdx = mIndexPaneList[_98]->mIndex;
+			getUpdateIndex(updateIdx, check);
+			setShortenIndex(_90, updateIdx, check);
+			setPaneCharacter(_90);
+			_98 = _90;
+			_90++;
+			if (_90 >= mMaxSelect) {
+				_90 = 0;
+			}
+
+			if (!mDoEnableBigIcon) {
+				mCurrentSelect++;
+				if (mCurrentSelect >= mMaxSelect) {
+					mCurrentSelect = 0;
+				}
+			}
+			if (!check2) {
+				continue;
+			}
+			break;
+		} else {
+			mIndexPaneList[_98]->_1C = mIndexPaneList[_90]->mPane->mOffset.y - mIndexGroup->getHeight();
+			if (mIndexPaneList[_90]->_1C - 1.25 * mIndexGroup->getHeight() <= _A0) {
+				check2 = true;
+			}
+
+			mIndexPaneList[_98]->setPaneOffset(0.0f);
+
+			int updateIdx = mIndexPaneList[_90]->mIndex;
+			getUpdateIndex(updateIdx, check);
+			setShortenIndex(_98, updateIdx, check);
+			setPaneCharacter(_98);
+			_90 = _98;
+			_98--;
+			if (_98 < 0) {
+				_98 = mMaxSelect - 1;
+			}
+
+			if (!mDoEnableBigIcon) {
+				mCurrentSelect--;
+				if (mCurrentSelect < 0) {
+					mCurrentSelect = mMaxSelect - 1;
+				}
+			}
+			if (!check2) {
+				continue;
+			}
+			break;
+		}
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -975,6 +829,22 @@ void TScrollList::getUpdateIndex(int& id, bool flag)
  */
 bool TScrollList::updateList()
 {
+	int check = (mIndexGroup->mStateID == 0);
+	if ((bool)check) {
+		mIndexGroup->mRollSpeed = mIndexGroup->_10;
+	}
+
+	mIndexGroup->speedUpdate(true);
+
+	f32 val               = 1.0f;
+	TIndexPane* indexPane = mIndexPaneList[mCurrentSelect];
+	if (indexPane->mSizeType != 0) {
+		val += 0.5f;
+	}
+
+	TIndexGroup* group = mIndexGroup;
+
+	group->_14 = val;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
