@@ -6,13 +6,15 @@
 #include "TagParm.h"
 #include "types.h"
 
-#define PC_INDIRECTSTATE_NO  0x0
-#define PC_INDIRECTSTATE_USE 0x1
-#define PC_INDIRECTSTATE_YES 0x2
-
 namespace Game {
 
 struct PelletConfig : public CNode {
+
+	enum IndirectType {
+		Indirect_No  = 0,
+		Indirect_Use = 1,
+		Indirect_Yes = 2,
+	};
 	struct TParms : public TagParameters { // _18
 		TParms();
 		virtual ~TParms() { }

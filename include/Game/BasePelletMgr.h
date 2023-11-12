@@ -78,7 +78,7 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	CollPart** mCollParts;         // _14
 	CollPartMgr mCollPartMgr;      // _18
 	SysShape::ModelMgr* mModelMgr; // _48
-	bool* _4C;                     // _4C
+	bool* mIsUsedList;             // _4C
 	int mEntries;                  // _50
 	                               // _54 - virtual NotSure
 };

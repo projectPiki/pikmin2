@@ -2,31 +2,27 @@
 #include "Game/MoviePlayer.h"
 #include "Game/gamePlayData.h"
 #include "Game/Entities/ItemOnyon.h"
+#include "Game/Entities/ItemHoney.h"
 #include "Game/PikiMgr.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/EnemyFunc.h"
-#include "System.h"
 #include "Game/Data.h"
 #include "Game/AIConstants.h"
-#include "Game/Entities/ItemHoney.h"
-#include "trig.h"
 #include "Game/Stickers.h"
-#include "Radar.h"
-#include "PSSystem/PSGame.h"
-#include "PSSystem/PSScene.h"
+#include "Game/pathfinder.h"
+#include "Game/MapMgr.h"
 #include "PSSystem/PSMainSide_Scene.h"
 #include "PSM/EventBase.h"
 #include "Dolphin/rand.h"
-#include "Game/pathfinder.h"
 #include "efx/TTsuyuGrow.h"
-#include "Game/MapMgr.h"
 #include "efx/TEnemyDownSmoke.h"
+#include "Radar.h"
 #include "nans.h"
 
 namespace Game {
 
-static const int unusedPelletArray[]      = { 0, 0, 0 };
-static const char unusedPelletStateName[] = "pelletState";
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "pelletState";
 
 /*
  * --INFO--
@@ -126,7 +122,7 @@ void PelletGoalState::init(Pellet* pellet, StateArg* arg)
 	// check if a new upgrade is acquired
 	if (pellet->getKind() == PELTYPE_UPGRADE && gameSystem->isStoryMode()) {
 		int id = pellet->getConfigIndex();
-		if (id >= 0 && id < 12) {
+		if (id >= 0 && id < OlimarData::ODII_LAST_NON_EXPLORATION_KIT_ITEM) {
 			playData->mOlimarData->getItem(id);
 		}
 	}
@@ -200,7 +196,8 @@ void PelletGoalState::init(Pellet* pellet, StateArg* arg)
 		}
 
 		GeneralMgrIterator<EnemyBase> it2(generalEnemyMgr);
-		for (it2.first(); it2.mContainer; it2.next()) {
+		CI_LOOP(it2)
+		{
 			EnemyBase* enemy = it2.getObject();
 			enemy->movie_end(false);
 		}
@@ -253,6 +250,7 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 		sys->mPlayData->mChallengeOpen = true;
 		playData->mStoryFlags |= STORY_LouieRescued;
 	}
+
 	bool draw2d = false;
 	bool doPlay = false;
 	if (isGot) {
@@ -520,96 +518,96 @@ void PelletGoalState::exec(Pellet* pelt)
 		pelt->setVelocity(velocity);
 		mSuckDelay -= sys->mDeltaTime;
 		mStartSuck = true;
+		return;
+	}
 
-	} else {
-		pelt->mRigid.mConfigs[0].mPosition = test;
-		pelt->mPelletPosition              = test;
-		f32 scale                          = (1.0f - mSuckTime) * mScale;
+	pelt->mRigid.mConfigs[0].mPosition = test;
+	pelt->mPelletPosition              = test;
+	f32 scale                          = (1.0f - mSuckTime) * mScale;
 
-		// weird regswap and also loading the sin values (325.whatever) too late??
-		f32 angle    = 8.0f * (TAU * (1.0f - mSuckTime));
-		f32 sinTheta = sinf(angle);
-		sinTheta *= 0.03f;
-		scale += sinTheta;
-		pelt->mScale = Vector3f(scale);
+	// weird regswap and also loading the sin values (325.whatever) too late??
+	f32 angle    = 8.0f * (TAU * (1.0f - mSuckTime));
+	f32 sinTheta = sinf(angle);
+	sinTheta *= 0.03f;
+	scale += sinTheta;
+	pelt->mScale = Vector3f(scale);
 
-		mSuckTime += (mTimer * sys->mDeltaTime) / mDistance;
-		mTimer += sys->mDeltaTime * 720.0f;
-		if (mSuckTime >= 1.0f) {
-			Stickers stick(pelt);
-			Iterator<Creature> it(&stick);
-			InteractSuckFinish suckFinish(pelt);
-			CI_LOOP(it)
-			{
-				Creature* obj = *it;
-				obj->stimulate(suckFinish);
-			}
+	mSuckTime += (mTimer * sys->mDeltaTime) / mDistance;
+	mTimer += sys->mDeltaTime * 720.0f;
+	if (!(mSuckTime >= 1.0f)) {
+		return;
+	}
 
-			InteractSuckDone suckDone(pelt, 0);
-			mOnyon->stimulate(suckDone);
+	Stickers stick(pelt);
+	Iterator<Creature> it(&stick);
+	InteractSuckFinish suckFinish(pelt);
+	CI_LOOP(it)
+	{
+		Creature* obj = *it;
+		obj->stimulate(suckFinish);
+	}
 
-			if (Radar::mgr) {
-				Radar::Mgr::getNumOtakaraItems();
-				Radar::Mgr::getNumOtakaraItems();
-				bool check = pelt->getKind() == PELTYPE_TREASURE;
-				if (!check) {
-					pelt->getKind();
-				}
-			}
+	InteractSuckDone suckDone(pelt, 0);
+	mOnyon->stimulate(suckDone);
 
-			if (!gameSystem->isVersusMode() && (pelt->getKind() == PELTYPE_TREASURE || pelt->getKind() == PELTYPE_UPGRADE)
-			    && Radar::Mgr::getNumOtakaraItems() <= 1) {
-				if (gameSystem->mIsInCave) {
+	if (Radar::mgr) {
+		Radar::Mgr::getNumOtakaraItems();
+		Radar::Mgr::getNumOtakaraItems();
+		bool check = pelt->getKind() == PELTYPE_TREASURE;
+		if (!check) {
+			pelt->getKind();
+		}
+	}
+
+	if (!gameSystem->isVersusMode() && (pelt->getKind() == PELTYPE_TREASURE || pelt->getKind() == PELTYPE_UPGRADE)
+	    && Radar::Mgr::getNumOtakaraItems() <= 1) {
+		if (gameSystem->mIsInCave) {
+			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+			PSSystem::checkSceneMgr(mgr);
+			PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
+			PSSystem::checkGameScene(scene);
+			scene->stopPollutionSe();
+			if (gameSystem->isChallengeMode()) {
+				if (strcmp(pelt->mConfig->mParams.mName.mData, "key")) {
 					PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 					PSSystem::checkSceneMgr(mgr);
 					PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
 					PSSystem::checkGameScene(scene);
-					scene->stopPollutionSe();
-					if (gameSystem->isChallengeMode()) {
-						if (strcmp(pelt->mConfig->mParams.mName.mData, "key")) {
-							PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-							PSSystem::checkSceneMgr(mgr);
-							PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
-							PSSystem::checkGameScene(scene);
-							if (scene->isCave()) {
-								scene->startPollutUpSe();
-							}
-						}
+					if (scene->isCave()) {
+						scene->startPollutUpSe();
 					}
-				} else {
-					PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-					PSSystem::checkSceneMgr(mgr);
-					PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
-					PSSystem::checkGameScene(scene);
-					scene->setPollutUp();
 				}
 			}
-
-			if (gameSystem->isVersusMode() && suckDone._08) {
-				return;
-			} else {
-				if (!mInDemo) {
-					if (!strcmp("orima", pelt->mConfig->mParams.mName.mData)) {
-						pelt->mSoundMgr->startSound(PSSE_EV_ONYON_BOUND_PLAYER, 0);
-					}
-					pelt->kill(nullptr);
-				} else {
-					if (pelt->getKind() == PELTYPE_CARCASS || pelt->getKind() == PELTYPE_NUMBER) {
-						pelt->kill(nullptr);
-					} else {
-						if (pelt->getKind() == PELTYPE_UPGRADE || pelt->getKind() == PELTYPE_TREASURE) {
-							pelt->mAnimSpeed = sys->mDeltaTime * 30.0f;
-							pelt->mCarryAnim.setFrameByKeyType(0);
-						}
-					}
-				}
-				if (shadowMgr) {
-					shadowMgr->delShadow(pelt);
-				}
-				transit(pelt, PELSTATE_Normal, nullptr);
-			}
+		} else {
+			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+			PSSystem::checkSceneMgr(mgr);
+			PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
+			PSSystem::checkGameScene(scene);
+			scene->setPollutUp();
 		}
 	}
+
+	if (gameSystem->isVersusMode() && suckDone._08) {
+		return;
+	}
+	if (!mInDemo) {
+		if (!strcmp("orima", pelt->mConfig->mParams.mName.mData)) {
+			pelt->mSoundMgr->startSound(PSSE_EV_ONYON_BOUND_PLAYER, 0);
+		}
+		pelt->kill(nullptr);
+	} else {
+		if (pelt->getKind() == PELTYPE_CARCASS || pelt->getKind() == PELTYPE_NUMBER) {
+			pelt->kill(nullptr);
+		} else if (pelt->getKind() == PELTYPE_UPGRADE || pelt->getKind() == PELTYPE_TREASURE) {
+			pelt->mAnimSpeed = sys->mDeltaTime * 30.0f;
+			pelt->mCarryAnim.setFrameByKeyType(0);
+		}
+	}
+	if (shadowMgr) {
+		shadowMgr->delShadow(pelt);
+	}
+	transit(pelt, PELSTATE_Normal, nullptr);
+
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -2551,111 +2549,6 @@ u32 PelletReturnState::execMoveGoal(Pellet*) { return 0; }
 void PelletReturnState::getWayPont(int)
 {
 	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	801A7DEC
- * Size:	000008
- */
-bool PelletState::isBuried() { return false; }
-
-/*
- * --INFO--
- * Address:	801A7DF4
- * Size:	000008
- */
-bool PelletState::appeared() { return true; }
-
-/*
- * --INFO--
- * Address:	801A7DFC
- * Size:	000008
- */
-bool PelletUpState::isBuried() { return true; }
-
-/*
- * --INFO--
- * Address:	801A7E04
- * Size:	000008
- */
-bool PelletBuryState::isBuried() { return true; }
-
-/*
- * --INFO--
- * Address:	801A7E0C
- * Size:	000008
- */
-bool PelletScaleAppearState::appeared() { return false; }
-
-/*
- * --INFO--
- * Address:	801A7E14
- * Size:	000008
- */
-bool PelletAppearState::appeared() { return false; }
-
-/*
- * --INFO--
- * Address:	801A7E1C
- * Size:	000008
- */
-bool PelletNormalState::isPickable() { return true; }
-
-/*
- * --INFO--
- * Address:	801A7E24
- * Size:	000004
- */
-void FSMState<Game::Pellet>::resume(Pellet*) { }
-
-/*
- * --INFO--
- * Address:	801A7E28
- * Size:	000004
- */
-void FSMState<Game::Pellet>::restart(Pellet*) { }
-
-/*
- * --INFO--
- * Address:	801A7E2C
- * Size:	000064
- */
-void StateMachine<Game::Pellet>::create(int count)
-{
-	mLimit          = count;
-	mCount          = 0;
-	mStates         = new FSMState<Game::Pellet>*[mLimit];
-	mIndexToIDArray = new int[mLimit];
-	mIdToIndexArray = new int[mLimit];
-}
-
-/*
- * --INFO--
- * Address:	801A7E90
- * Size:	000084
- */
-void StateMachine<Game::Pellet>::registerState(FSMState<Game::Pellet>* newState)
-{
-	// copied all this from enemyFSM.cpp, do we actually need it here? no idea
-	bool check;
-	if (mCount >= mLimit) {
-		return;
-	}
-	mStates[mCount] = newState;
-	// TODO: This looks weird. How would they really have written it?
-	if (!(0 <= newState->mId && newState->mId < mLimit)) {
-		check = false;
-	} else {
-		check = true;
-	}
-	if (check == false) {
-		return;
-	}
-	newState->mStateMachine        = this;
-	mIndexToIDArray[mCount]        = newState->mId;
-	mIdToIndexArray[newState->mId] = mCount;
-	mCount++;
 }
 
 } // namespace Game

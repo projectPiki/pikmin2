@@ -5,15 +5,16 @@
 #include "PSM/Otakara.h"
 #include "nans.h"
 namespace Game {
+namespace PelletOtakara {
 
-PelletOtakara::Mgr* mgr;
+Mgr* mgr;
 
 /*
  * --INFO--
  * Address:	801FFE64
  * Size:	000094
  */
-void PelletOtakara::Object::constructor()
+void Object::constructor()
 {
 	bool isVS = false;
 	if (gameSystem && gameSystem->isVersusMode()) {
@@ -31,7 +32,7 @@ void PelletOtakara::Object::constructor()
  * Address:	801FFEF8
  * Size:	0000F4
  */
-void PelletOtakara::Object::do_onInit(Game::CreatureInitArg*)
+void Object::do_onInit(CreatureInitArg*)
 {
 	P2ASSERTLINE(171, mSoundMgr->getCastType() == 12);
 	PSM::PelletOtakara* psm = static_cast<PSM::PelletOtakara*>(mSoundMgr);
@@ -61,14 +62,14 @@ void PelletOtakara::Object::do_onInit(Game::CreatureInitArg*)
  * Address:	801FFFEC
  * Size:	000020
  */
-void PelletOtakara::Object::getShadowParam(Game::ShadowParam& shadowParam) { Pellet::getShadowParam(shadowParam); }
+void Object::getShadowParam(ShadowParam& shadowParam) { Pellet::getShadowParam(shadowParam); }
 
 /*
  * --INFO--
  * Address:	8020000C
  * Size:	000148
  */
-void PelletOtakara::Object::sound_otakaraEventStart()
+void Object::sound_otakaraEventStart()
 {
 	P2ASSERTLINE(253, mSoundMgr->getCastType() == 12);
 
@@ -112,7 +113,7 @@ void PelletOtakara::Object::sound_otakaraEventStart()
  * Address:	80200154
  * Size:	000148
  */
-void PelletOtakara::Object::sound_otakaraEventRestart()
+void Object::sound_otakaraEventRestart()
 {
 	P2ASSERTLINE(309, mSoundMgr->getCastType() == 12);
 
@@ -156,7 +157,7 @@ void PelletOtakara::Object::sound_otakaraEventRestart()
  * Address:	8020029C
  * Size:	000074
  */
-void PelletOtakara::Object::sound_otakaraEventStop()
+void Object::sound_otakaraEventStop()
 {
 	P2ASSERTLINE(360, mSoundMgr->getCastType() == 12);
 
@@ -169,7 +170,7 @@ void PelletOtakara::Object::sound_otakaraEventStop()
  * Address:	80200310
  * Size:	000074
  */
-void PelletOtakara::Object::sound_otakaraEventFinish()
+void Object::sound_otakaraEventFinish()
 {
 	P2ASSERTLINE(373, mSoundMgr->getCastType() == 12);
 
@@ -182,9 +183,9 @@ void PelletOtakara::Object::sound_otakaraEventFinish()
  * Address:	80200384
  * Size:	0000D8
  */
-void PelletOtakara::Object::onCreateShape()
+void Object::onCreateShape()
 {
-	if (mConfig->mParams.mIndirectState == 2) {
+	if (mConfig->mParams.mIndirectState == PelletConfig::Indirect_Yes) {
 		u16 id      = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterialNames->getIndex("indirect_tex");
 		mFbMaterial = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[id];
 
@@ -206,10 +207,10 @@ void PelletOtakara::Object::onCreateShape()
  * Address:	8020045C
  * Size:	0000B8
  */
-void PelletOtakara::Object::theEntry()
+void Object::theEntry()
 {
 	BaseGameSection* game = gameSystem->mSection;
-	if (game->mDraw2DCreature != this && mConfig->mParams.mIndirectState == 2) {
+	if (game->mDraw2DCreature != this && mConfig->mParams.mIndirectState == PelletConfig::Indirect_Yes) {
 		game->setDrawBuffer(8);
 		mModel->mJ3dModel->entry();
 		game->setDrawBuffer(0);
@@ -224,7 +225,7 @@ void PelletOtakara::Object::theEntry()
  * Address:	80200514
  * Size:	000268
  */
-void PelletOtakara::Object::changeMaterial()
+void Object::changeMaterial()
 {
 	if (mFbMaterial && !gameSystem->isMultiplayerMode()) {
 		Mtx44 copyMatrix;
@@ -426,7 +427,7 @@ lbl_80200768:
  * Address:	8020077C
  * Size:	0000B0
  */
-PelletOtakara::Mgr::Mgr()
+Mgr::Mgr()
     : FixedSizePelletMgr<Object>(PelletList::OTAKARA)
 {
 }
@@ -436,7 +437,7 @@ PelletOtakara::Mgr::Mgr()
  * Address:	80200AD8
  * Size:	00006C
  */
-void PelletOtakara::Mgr::setupResources()
+void Mgr::setupResources()
 {
 	sys->heapStatusStart("Otakara", nullptr);
 	alloc(32); // definitely should have defines for these
@@ -450,7 +451,7 @@ void PelletOtakara::Mgr::setupResources()
  * Address:	80200B44
  * Size:	000024
  */
-GenPelletParm* PelletOtakara::Mgr::generatorNewPelletParm()
+GenPelletParm* Mgr::generatorNewPelletParm()
 {
 	// something weird here (should it return something else?)
 	return new GenPelletParm;
@@ -461,7 +462,7 @@ GenPelletParm* PelletOtakara::Mgr::generatorNewPelletParm()
  * Address:	80200B68
  * Size:	000148
  */
-Pellet* PelletOtakara::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm)
+Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm)
 {
 	PelletConfig* config = mgr->getPelletConfig(genParm->mIndex);
 	PelletInitArg arg;
@@ -489,13 +490,14 @@ Pellet* PelletOtakara::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPell
  * Address:	80200CB0
  * Size:	000030
  */
-void PelletOtakara::Mgr::generatorWrite(Stream& data, GenPelletParm* parm) { data.writeShort((u16)parm->mIndex); }
+void Mgr::generatorWrite(Stream& data, GenPelletParm* parm) { data.writeShort((u16)parm->mIndex); }
 
 /*
  * --INFO--
  * Address:	80200CE0
  * Size:	000038
  */
-void PelletOtakara::Mgr::generatorRead(Stream& data, GenPelletParm* parm, u32 flag) { parm->mIndex = (u16)data.readShort(); }
+void Mgr::generatorRead(Stream& data, GenPelletParm* parm, u32 flag) { parm->mIndex = (u16)data.readShort(); }
 
+} // namespace PelletOtakara
 } // namespace Game

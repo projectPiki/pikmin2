@@ -4,20 +4,23 @@
 #include "Game/MapMgr.h"
 
 namespace Game {
+namespace PelletItem {
+
+Mgr* mgr;
 
 /*
  * --INFO--
  * Address:	80202E14
  * Size:	000004
  */
-void PelletItem::Object::do_onInit(CreatureInitArg*) { }
+void Object::do_onInit(CreatureInitArg*) { }
 
 /*
  * --INFO--
  * Address:	80202E18
  * Size:	00005C
  */
-void PelletItem::Object::onBounce()
+void Object::onBounce()
 {
 	if (strcmp("key", mConfig->mParams.mName.mData) == 0) {
 		mSoundMgr->startSound(PSSE_EV_KEY_BOUND, 0);
@@ -29,7 +32,7 @@ void PelletItem::Object::onBounce()
  * Address:	80202E74
  * Size:	000054
  */
-void PelletItem::Object::constructor()
+void Object::constructor()
 {
 	mSoundMgr = new PSM::PelletItem(this);
 	shadowMgr->createShadow(this);
@@ -40,7 +43,7 @@ void PelletItem::Object::constructor()
  * Address:	80202EC8
  * Size:	000074
  */
-void PelletItem::Object::sound_otakaraEventStart()
+void Object::sound_otakaraEventStart()
 {
 	P2ASSERTLINE(102, mSoundMgr->getCastType() == PSM::CCT_PelletItem);
 	static_cast<PSM::PelletItem*>(mSoundMgr)->otakaraEventStart();
@@ -62,7 +65,7 @@ void PelletItem::Object::sound_otakaraEventRestart()
  * Address:	80202FB0
  * Size:	000074
  */
-void PelletItem::Object::sound_otakaraEventStop()
+void Object::sound_otakaraEventStop()
 {
 	P2ASSERTLINE(116, mSoundMgr->getCastType() == PSM::CCT_PelletItem);
 	static_cast<PSM::PelletItem*>(mSoundMgr)->otakaraEventStop();
@@ -73,7 +76,7 @@ void PelletItem::Object::sound_otakaraEventStop()
  * Address:	80203024
  * Size:	000074
  */
-void PelletItem::Object::sound_otakaraEventFinish()
+void Object::sound_otakaraEventFinish()
 {
 	P2ASSERTLINE(123, mSoundMgr->getCastType() == PSM::CCT_PelletItem);
 	static_cast<PSM::PelletItem*>(mSoundMgr)->otakaraEventFinish();
@@ -84,7 +87,7 @@ void PelletItem::Object::sound_otakaraEventFinish()
  * Address:	80203098
  * Size:	0000B0
  */
-PelletItem::Mgr::Mgr()
+Mgr::Mgr()
     : FixedSizePelletMgr<Object>(PelletList::ITEM)
 {
 }
@@ -94,7 +97,7 @@ PelletItem::Mgr::Mgr()
  * Address:	802033F4
  * Size:	000074
  */
-void PelletItem::Mgr::setupResources()
+void Mgr::setupResources()
 {
 	sys->heapStatusStart("Equipment", nullptr);
 	alloc(11);
@@ -108,14 +111,14 @@ void PelletItem::Mgr::setupResources()
  * Address:	80203468
  * Size:	000024
  */
-GenPelletParm* PelletItem::Mgr::generatorNewPelletParm() { return new GenPelletParm; }
+GenPelletParm* Mgr::generatorNewPelletParm() { return new GenPelletParm; }
 
 /*
  * --INFO--
  * Address:	8020348C
  * Size:	000148
  */
-Pellet* PelletItem::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm)
+Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletParm* genParm)
 {
 	PelletConfig* config = mgr->getPelletConfig(genParm->mIndex);
 	PelletInitArg arg;
@@ -143,13 +146,14 @@ Pellet* PelletItem::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenPelletP
  * Address:	802035D4
  * Size:	000030
  */
-void PelletItem::Mgr::generatorWrite(Stream& data, GenPelletParm* genParm) { data.writeShort((u16)genParm->mIndex); }
+void Mgr::generatorWrite(Stream& data, GenPelletParm* genParm) { data.writeShort((u16)genParm->mIndex); }
 
 /*
  * --INFO--
  * Address:	80203604
  * Size:	000038
  */
-void PelletItem::Mgr::generatorRead(Stream& data, GenPelletParm* parm, u32 flag) { parm->mIndex = (u16)data.readShort(); }
+void Mgr::generatorRead(Stream& data, GenPelletParm* parm, u32 flag) { parm->mIndex = (u16)data.readShort(); }
 
+} // namespace PelletItem
 } // namespace Game

@@ -1,5 +1,3 @@
-#include "types.h"
-
 #include "Game/PelletCarry.h"
 #include "System.h"
 

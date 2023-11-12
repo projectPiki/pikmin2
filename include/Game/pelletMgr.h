@@ -301,7 +301,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void createKiraEffect(Vector3f&) { }                 // _1FC (weak)
 	virtual void getCarryInfoParam(CarryInfoParam& infoParam);   // _200 (not weak, thunk at _1C8)
 	virtual bool isCarried();                                    // _204
-	virtual bool isPicked() { return _3D0 & 1; }                 // _208 (weak)
+	virtual bool isPicked() { return mPickFlags & 1; }           // _208 (weak)
 	virtual void sound_otakaraEventStart() { }                   // _20C (weak)
 	virtual void sound_otakaraEventRestart() { }                 // _210 (weak)
 	virtual void sound_otakaraEventStop() { }                    // _214 (weak)
@@ -441,7 +441,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	// _318 	= VTABLE 2? 3?
 	f32 mRadius;                      // _31C
 	f32 mDepth;                       // _320
-	u8 _324;                          // _324 - unknown
+	bool mIsBounced;                  // _324
 	bool mIsInWater;                  // _325
 	TexCaster::Caster* mCaster;       // _328
 	u8 mPelletFlag;                   // _32C
@@ -465,7 +465,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	bool mIsCaptured;                 // _3C4, might be more like "is alive"
 	PelletFSM* mPelletSM;             // _3C8
 	PelletState* mCurrentState;       // _3CC
-	u8 _3D0;                          // _3D0
+	u8 mPickFlags;                    // _3D0
 	int mCarryColor;                  // _3D4
 	int mMinCarriers;                 // _3D8, to do with pikmin number
 	int mMaxCarriers;                 // _3DC
@@ -528,8 +528,8 @@ struct PelletState : public FSMState<Pellet> {
 	{
 	}
 
-	virtual bool isBuried();                    // _20 (weak)
-	virtual bool appeared();                    // _24 (weak)
+	virtual bool isBuried() { return false; }   // _20 (weak)
+	virtual bool appeared() { return true; }    // _24 (weak)
 	virtual bool isPickable() { return false; } // _28 (weak)
 
 	u8 _0C[0x4]; // _0C
@@ -541,10 +541,10 @@ struct PelletAppearState : public PelletState {
 	{
 	}
 
-	virtual void init(Pellet*, StateArg*); // _08
-	virtual void exec(Pellet*);            // _0C
-	virtual void cleanup(Pellet*);         // _10
-	virtual bool appeared();               // _24 (weak)
+	virtual void init(Pellet*, StateArg*);    // _08
+	virtual void exec(Pellet*);               // _0C
+	virtual void cleanup(Pellet*);            // _10
+	virtual bool appeared() { return false; } // _24 (weak)
 
 	f32 mTime;      // _10
 	f32 mAngle;     // _14
@@ -562,10 +562,10 @@ struct PelletBuryState : public PelletState {
 	{
 	}
 
-	virtual void init(Pellet*, StateArg*); // _08
-	virtual void exec(Pellet*);            // _0C
-	virtual void cleanup(Pellet*);         // _10
-	virtual bool isBuried();               // _20 (weak)
+	virtual void init(Pellet*, StateArg*);   // _08
+	virtual void exec(Pellet*);              // _0C
+	virtual void cleanup(Pellet*);           // _10
+	virtual bool isBuried() { return true; } // _20 (weak)
 };
 
 struct PelletGoalState : public PelletState {
@@ -613,10 +613,10 @@ struct PelletNormalState : public PelletState {
 	{
 	}
 
-	virtual void init(Pellet*, StateArg*); // _08
-	virtual void exec(Pellet*);            // _0C
-	virtual void cleanup(Pellet*);         // _10
-	virtual bool isPickable();             // _28 (weak)
+	virtual void init(Pellet*, StateArg*);     // _08
+	virtual void exec(Pellet*);                // _0C
+	virtual void cleanup(Pellet*);             // _10
+	virtual bool isPickable() { return true; } // _28 (weak)
 };
 
 struct PelletReturnArg : StateArg {
@@ -661,10 +661,10 @@ struct PelletScaleAppearState : public PelletState {
 	}
 
 	// might inherit PelletAppearState or vice versa?
-	virtual void init(Pellet*, StateArg*); // _08
-	virtual void exec(Pellet*);            // _0C
-	virtual void cleanup(Pellet*);         // _10
-	virtual bool appeared();               // _24 (weak)
+	virtual void init(Pellet*, StateArg*);    // _08
+	virtual void exec(Pellet*);               // _0C
+	virtual void cleanup(Pellet*);            // _10
+	virtual bool appeared() { return false; } // _24 (weak)
 
 	f32 mTime;      // _10
 	f32 mAngle;     // _14
@@ -682,10 +682,10 @@ struct PelletUpState : public PelletState {
 	{
 	}
 
-	virtual void init(Pellet*, StateArg*); // _08
-	virtual void exec(Pellet*);            // _0C
-	virtual void cleanup(Pellet*);         // _10
-	virtual bool isBuried();               // _20 (weak)
+	virtual void init(Pellet*, StateArg*);   // _08
+	virtual void exec(Pellet*);              // _0C
+	virtual void cleanup(Pellet*);           // _10
+	virtual bool isBuried() { return true; } // _20 (weak)
 };
 
 struct PelletZukanState : public PelletState {

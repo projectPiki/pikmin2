@@ -37,7 +37,7 @@ struct Rigid {
 	RigidConfig mConfigs[2]; // _034, [1] at _0BC
 	Matrixf _144;            // _144
 	u8 _174;                 // _174
-	BitFlag<u8> _175;        // _175
+	BitFlag<u8> mFlags;      // _175
 };
 } // namespace Game
 

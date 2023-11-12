@@ -1,20 +1,17 @@
-#include "stdlib.h"
-#include "Dolphin/rand.h"
 #include "Game/GameConfig.h"
 #include "Game/gamePlayData.h"
 #include "Game/GameSystem.h"
 #include "Game/pelletMgr.h"
-#include "Game/PelletView.h"
 #include "Game/shadowMgr.h"
 #include "Game/EnemyBase.h"
 #include "Game/Stickers.h"
 #include "Game/GameMessage.h"
 #include "Game/gameStat.h"
 #include "Game/DynParticle.h"
-#include "Game/Entities/ItemOnyon.h"
-#include "Game/Entities/ItemTreasure.h"
 #include "Game/MapMgr.h"
 #include "Game/routeMgr.h"
+#include "Game/Entities/ItemOnyon.h"
+#include "Game/Entities/ItemTreasure.h"
 #include "Game/Entities/PelletCarcass.h"
 #include "Game/Entities/PelletFruit.h"
 #include "Game/Entities/PelletItem.h"
@@ -27,14 +24,11 @@
 #include "Game/MoviePlayer.h"
 #include "Game/AIConstants.h"
 #include "Game/BaseHIO.h"
+#include "Dolphin/rand.h"
 #include "efx/TFruitsDown.h"
 #include "efx/TOtakara.h"
 #include "PSM/Otakara.h"
-#include "PSM/Scene.h"
-#include "PSSystem/PSGame.h"
 #include "PSSystem/PSMainSide_Scene.h"
-#include "Iterator.h"
-#include "System.h"
 #include "ObjectTypes.h"
 #include "CollInfo.h"
 #include "Radar.h"
@@ -89,8 +83,8 @@ bool PelletMgr::mDebug          = false;
 bool PelletMgr::disableDynamics = false;
 bool Pellet::sFromTekiEnable    = true;
 
-static const int unusedPelletMgrArray[] = { 0, 0, 0 };
-static const char unusedPelletMgrName[] = "pelletMgr";
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "pelletMgr";
 
 /*
  * --INFO--
@@ -198,7 +192,7 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 	initArg.mPelletColor    = 0;
 	initArg.mPelletIndex    = -1;
 	initArg.mPelletType     = PELTYPE_CARCASS;
-	initArg._18             = this;
+	initArg.mPelView        = this;
 
 	Pellet* newPellet = pelletMgr->birth(&initArg);
 	if (newPellet) {
@@ -225,7 +219,7 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 		newPellet->setPosition(position, false);
 		mPellet = newPellet;
 
-		newPellet->_324 = 1;
+		newPellet->mIsBounced = true;
 		newPellet->setOrientation(*viewArg->mMatrix);
 		newPellet->mScale = viewArg->_18;
 		newPellet->mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
@@ -233,7 +227,7 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 		viewStartPreCarryMotion();
 
 		mCreature = static_cast<Creature*>(viewArg->mEnemy);
-		P2ASSERTLINE(895, mCreature != nullptr);
+		P2ASSERTLINE(895, mCreature);
 	} else {
 		mPellet   = nullptr;
 		mCreature = nullptr;
@@ -616,7 +610,6 @@ bool InteractEat::actPellet(Pellet* pellet)
 
 		efx::Arg arg(position2);
 
-		// mPelletColor apparently isn't just for onyon destination? maybe mislabeled.
 		if (pellet->mPelletColor == 0) {
 			efx::TFruitsDownR spicy;
 			spicy.create(&arg);
@@ -643,7 +636,7 @@ bool InteractSuck::actPellet(Pellet* pellet)
 	if (mCreature) {
 		mCreature->getTypeName();
 	}
-	pellet->mPelletSM->transit(pellet, 7, &pelletGoalArg);
+	pellet->mPelletSM->transit(pellet, PELSTATE_GoalWait, &pelletGoalArg);
 	pellet->finishDisplayCarryInfo();
 	return true;
 }
@@ -661,7 +654,7 @@ void Pellet::doDirectDraw(Graphics&) { }
  * Size:	0001B0
  */
 Pellet::Pellet()
-    : _3D0(0)
+    : mPickFlags(0)
     , mSlots()
 {
 	mCaster       = nullptr;
@@ -750,7 +743,7 @@ f32 Pellet::getCylinderHeight() { return mConfig->mParams.mHeight.mData; }
  */
 int Pellet::getConfigIndex()
 {
-	P2ASSERTLINE(1433, mConfig != nullptr);
+	P2ASSERTLINE(1433, mConfig);
 	return mConfig->mParams.mIndex;
 }
 
@@ -772,7 +765,7 @@ PelletIndexInitArg::PelletIndexInitArg(int idx)
 	pelletMgr->decode(idx, mPelletType, code);
 
 	BasePelletMgr* newPelletMgr = pelletMgr->getMgrByID(mPelletType);
-	P2ASSERTLINE(1465, newPelletMgr != nullptr);
+	P2ASSERTLINE(1465, newPelletMgr);
 	PelletConfig* config = newPelletMgr->getPelletConfig(code);
 
 	mTextIdentifier = config->mParams.mName.mData;
@@ -896,7 +889,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	mMaxCarriers = -1;
 	mMinCarriers = -1;
 	mWallTimer   = 0;
-	_324         = 0;
+	mIsBounced   = false;
 	mIsInWater   = false;
 
 	clearDiscoverDisable();
@@ -908,38 +901,38 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	mFaceDir        = 0.0f;
 	mAnimSpeed      = 0.0f;
 	mIsCaptured     = 0;
-	_3D0            = 0;
+	mPickFlags      = 0;
 	mCarryInfoList  = nullptr;
 
 	clearCapture();
 
 	mCarryPower = 0.0f;
 
-	P2ASSERTLINE(1632, initArg != nullptr);
+	P2ASSERTLINE(1632, initArg);
 
 	u16 stateType = static_cast<PelletInitArg*>(initArg)->mState;
 	if (stateType == 0) {
-		mPelletSM->start(this, 0, nullptr);
+		mPelletSM->start(this, PELSTATE_Normal, nullptr);
 		mScale = Vector3f(1.0f);
 	} else if (stateType == 3) {
-		mPelletSM->start(this, 6, nullptr);
+		mPelletSM->start(this, PELSTATE_Zukan, nullptr);
 	} else if (stateType == 1) {
-		mPelletSM->start(this, 4, nullptr);
+		mPelletSM->start(this, PELSTATE_Appear, nullptr);
 		mScale = Vector3f(0.01f);
 	} else {
-		mPelletSM->start(this, 5, nullptr);
+		mPelletSM->start(this, PELSTATE_ScaleAppear, nullptr);
 		mScale = Vector3f(0.01f);
 	}
 
-	mPikminCount[0] = 0;
-	mPikminCount[1] = 0;
-	mPikminCount[2] = 0;
-	mPikminCount[3] = 0;
-	mPikminCount[4] = 0;
-	mPikminCount[5] = 0;
-	mPikminCount[6] = 0;
-	mTotalCarriers  = 0;
-	mPelletSizeType = (u16) static_cast<PelletInitArg*>(initArg)->mPelletIndex;
+	mPikminCount[Blue]    = 0;
+	mPikminCount[Red]     = 0;
+	mPikminCount[Yellow]  = 0;
+	mPikminCount[Purple]  = 0;
+	mPikminCount[White]   = 0;
+	mPikminCount[Bulbmin] = 0;
+	mPikminCount[Carrot]  = 0;
+	mTotalCarriers        = 0;
+	mPelletSizeType       = (u16) static_cast<PelletInitArg*>(initArg)->mPelletIndex;
 
 	mConfig = mMgr->mConfigList->getPelletConfig(static_cast<PelletInitArg*>(initArg)->mTextIdentifier);
 
@@ -957,31 +950,30 @@ void Pellet::onInit(CreatureInitArg* initArg)
 		mMinCarriers = -1;
 	}
 
-	// temp_r3_6 = arg0->unk20;
 	if ((static_cast<PelletInitArg*>(initArg)->mMinCarriers != -1) && (static_cast<PelletInitArg*>(initArg)->mMaxCarriers != -1)) {
 		mMinCarriers = static_cast<PelletInitArg*>(initArg)->mMinCarriers;
 		mMaxCarriers = static_cast<PelletInitArg*>(initArg)->mMaxCarriers;
 	}
 
-	mRigid._175.unset(0x01);
-	mRigid._175.unset(0x80);
+	mRigid.mFlags.unset(0x01);
+	mRigid.mFlags.unset(0x80);
 	mPelletColor = static_cast<PelletInitArg*>(initArg)->mPelletColor;
 
-	if (strcmp(mConfig->mParams.mName.mData, "loozy") == 0) {
+	if (!strcmp(mConfig->mParams.mName.mData, "loozy")) {
 		mPelletFlag = FLAG_LOOZY;
-	} else if (strcmp(mConfig->mParams.mName.mData, "orima") == 0) {
+	} else if (!strcmp(mConfig->mParams.mName.mData, "orima")) {
 		mPelletFlag = FLAG_NAVI_NAPSACK;
 	} else {
 		mPelletFlag = FLAG_NONE;
 	}
 
-	if (strcmp(mConfig->mParams.mName.mData, VsOtakaraName::cBedamaYellow) == 0) {
+	if (!strcmp(mConfig->mParams.mName.mData, VsOtakaraName::cBedamaYellow)) {
 		mPelletFlag = FLAG_VS_BEDAMA_YELLOW;
-	} else if (strcmp(mConfig->mParams.mName.mData, VsOtakaraName::cBedamaRed) == 0) {
+	} else if (!strcmp(mConfig->mParams.mName.mData, VsOtakaraName::cBedamaRed)) {
 		mPelletFlag = FLAG_VS_BEDAMA_RED;
-	} else if (strcmp(mConfig->mParams.mName.mData, VsOtakaraName::cBedamaBlue) == 0) {
+	} else if (!strcmp(mConfig->mParams.mName.mData, VsOtakaraName::cBedamaBlue)) {
 		mPelletFlag = FLAG_VS_BEDAMA_BLUE;
-	} else if (strcmp(mConfig->mParams.mName.mData, VsOtakaraName::cCoin) == 0) {
+	} else if (!strcmp(mConfig->mParams.mName.mData, VsOtakaraName::cCoin)) {
 		mPelletFlag = FLAG_VS_CHERRY;
 	}
 
@@ -1047,6 +1039,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 		mSlotCount = 128;
 	}
 
+	// For Doomsday Apparatus (because it couldnt just have 1000 in the config... apparently)
 	if (mConfig->mParams.mMin.mData == 128) {
 		mMinCarriers = 1000;
 		mMaxCarriers = 1000;
@@ -1905,7 +1898,7 @@ void Pellet::onSetPosition()
 	mRigid._144(2, 1) *= horizontal;
 	mRigid._144(2, 2) *= horizontal;
 	mLodSphere.mPosition = mPelletPosition;
-	mRigid._175.set(true);
+	mRigid.mFlags.set(1);
 }
 
 /*
@@ -2005,9 +1998,9 @@ void Pellet::bounceCallback(Sys::Triangle* triangle)
 
 	WaterBox* wbox = checkWater(nullptr, ball);
 
-	if (checkWater(nullptr, ball) != nullptr) {
-		if (_324 == 0) {
-			efx::TOtakaraDive diveEffect; // sp44
+	if (checkWater(nullptr, ball)) {
+		if (!mIsBounced) {
+			efx::TOtakaraDive diveEffect;
 			ball.mPosition.y = *wbox->getSeaHeightPtr();
 
 			f32 scale = mConfig->mParams.mPRadius.mData;
@@ -2016,12 +2009,12 @@ void Pellet::bounceCallback(Sys::Triangle* triangle)
 			mSoundMgr->startSound(fallType + 0x380B, 0);
 			onBounce();
 		}
-		_324 = 1;
+		mIsBounced = true;
 		return;
 	}
-	if ((_324 == 0) && (getKind() != PELTYPE_CARCASS)) {
+	if (!mIsBounced && (getKind() != PELTYPE_CARCASS)) {
 		mSoundMgr->startSound(fallType + 0x3808, 0);
-		_324 = 1;
+		mIsBounced = 1;
 		onBounce();
 	}
 }
@@ -2042,7 +2035,7 @@ void Pellet::update()
 	ball.mRadius     = height;
 	ball.mPosition.y = position.y - height;
 
-	if (checkWater(nullptr, ball) != nullptr) {
+	if (checkWater(nullptr, ball)) {
 		mIsInWater = true;
 	} else {
 		mIsInWater = false;
@@ -2050,7 +2043,7 @@ void Pellet::update()
 
 	updateDiscoverDisable();
 
-	if (mSoundMgr != nullptr) {
+	if (mSoundMgr) {
 		mSoundMgr->exec();
 		if ((gameSystem->isStoryMode()) && !(moviePlayer->isFlag(MVP_IsActive)) && (!isPicked())
 		    && (getKind() == PELTYPE_TREASURE || getKind() == PELTYPE_UPGRADE)) {
@@ -2061,7 +2054,7 @@ void Pellet::update()
 			PSSystem::checkGameScene(currScene);
 
 			if (!currScene->isCave()) {
-				mSoundMgr->startSound(0x4002, 0);
+				mSoundMgr->startSound(PSSE_MP_INSECT_OTAKARA_01, 0);
 			}
 		}
 	}
@@ -2077,11 +2070,11 @@ void Pellet::update()
 		}
 	}
 
-	if (!(_3D0 & 1)) {
+	if (!(mPickFlags & 1)) {
 		updateClaim();
 	}
 
-	if (_3D0 & 1) {
+	if (mPickFlags & 1) {
 		if (getTotalCarryPikmins() < getPelletConfigMin()) {
 			endPick(false);
 			mPelletCarry->reset();
@@ -2093,14 +2086,14 @@ void Pellet::update()
 
 	mCollTree->getBoundingSphere(mLodSphere);
 	updateCell();
-	if (mPelletView != nullptr) {
+	if (mPelletView) {
 		mCollTree->update();
 		mCollTree->getBoundingSphere(mLodSphere);
 		mCollTree->mPart->mModel->getMatrix(0);
 	}
 
 	mPelletSM->exec(this);
-	if (mPelletSM->getCurrID(this) == 6) {
+	if (mPelletSM->getCurrID(this) == PELSTATE_Zukan) {
 		AILODParm parm1;
 		updateLOD(parm1);
 		return;
@@ -2112,235 +2105,238 @@ void Pellet::update()
 		if (isMovieActor()) {
 			mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
 		}
-	} else {
-		if (mCaptureMatrix != nullptr) {
-			AILODParm parm3;
-			updateLOD(parm3);
-			return;
-		}
-		AILODParm parm4;
-		updateLOD(parm4);
-		if (isMovieActor()) {
-			mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
-		}
-		bool check;
-		int type = 2;
-		if (mDynamicType == 0) {
-			check = true;
-		} else if (mDynamicType == 2) {
-			check = false;
-		} else if ((mLod.isFlag(AILOD_IsMid | AILOD_IsFar)) >= 2) {
-			check = false;
-		} else {
-			check = true;
-		}
-
-		if (!(mLod.isFlag(AILOD_IsVisible)) || ((mLod.isFlag(AILOD_IsMid | AILOD_IsFar)) >= 1)) {
-			type = 1;
-		}
-		mIsDynamic = check;
-
-		if ((PelletMgr::disableDynamics != 0) || (!mIsDynamic)) {
-			f32 frametime = sys->mDeltaTime;
-			Sys::Sphere ball2;
-			ball2.mPosition = mPelletPosition;
-			if (_3D0 & 1) {
-				ball2.mPosition.y -= 4.0f;
-			}
-			Vector3f* velocityPtr  = &mRigid.mConfigs[0].mVelocity;
-			ball2.mRadius          = 0.5f * mConfig->mParams.mHeight.mData;
-			mRigid.mConfigs[0]._30 = Vector3f(0.0f);
-			mRigid.mConfigs[0]._24 = Vector3f(0.0f);
-
-			if (((_3F6 == 0) && !(_3D0 & 1)) || (mBounceTriangle == nullptr)) {
-				velocityPtr->y = -((frametime * _aiConstants->mGravity.mData) - velocityPtr->y);
-			}
-			mAcceleration.y = 0.0f;
-			Vector3f vec    = *velocityPtr;
-			if (isCollisionFlick() && (mPelletFlag != 1) && !(_3D0 & 1) && (_3F6 == 0)) {
-				vec += mAcceleration;
-			}
-
-			mAcceleration = Vector3f(0.0f);
-
-			MoveInfo info(&ball2, &vec, 0.5f);
-			info.mInfoOrigin = (BaseItem*)this;
-			mapMgr->traceMove(info, frametime);
-
-			if (_3D0 & 1) {
-				bool check = (info.mWallTriangle != nullptr);
-				if (check && (dot(vec, info.mReflectPosition) > 0.5f)) {
-					check = false;
-				}
-				if (check) {
-					if (mWallTimer < 100) {
-						mWallTimer += 2;
-					}
-				} else {
-					if (mWallTimer != 0) {
-						mWallTimer--;
-					}
-				}
-			} else {
-				mWallTimer = 0;
-			}
-			*velocityPtr   = vec;
-			info.mVelocity = velocityPtr;
-			info._19       = 0;
-			if (platMgr != nullptr) {
-				platMgr->traceMove(info, frametime);
-			}
-
-			if (info.mBounceTriangle != nullptr) {
-				if (mBounceTriangle == nullptr) {
-					bounceCallback(info.mBounceTriangle);
-				}
-
-				mBounceTriangle = info.mBounceTriangle;
-
-				if (!(_3D0 & 1) && (_3F6 == 0)) {
-					/////// this bit is full of regswaps
-					Vector3f currVel = *velocityPtr;
-					f32 dotVelocity  = dot(currVel, info.mPosition);
-					Vector3f impulse(0.0f, -(_aiConstants->mGravity.mData * sys->mDeltaTime), 0.0f);
-					f32 dotImpulse = dot(impulse, info.mPosition);
-
-					Vector3f res = info.mPosition * dotVelocity;
-					res          = currVel - res;
-					res          = res * frametime * 10.0f;
-					*velocityPtr = currVel - res;
-
-					Vector3f res2 = info.mPosition * dotImpulse;
-					res2          = impulse - res2;
-					res2.x        = -res2.x;
-					res2.y        = -res2.y;
-					res2.z        = -res2.z;
-					res2          = res2 * 1.0f;
-					velocityPtr->x += res2.x;
-					velocityPtr->y += res2.y;
-					velocityPtr->z += res2.z;
-				}
-			} else {
-				mBounceTriangle = nullptr;
-			}
-
-			if (_3D0 & 1) {
-				ball2.mPosition.y += 4.0f;
-			}
-
-			mPelletPosition              = ball2.mPosition;
-			mRigid.mConfigs[0].mPosition = mPelletPosition;
-		} else if (type > 0) {
-			mRigid.computeForces(0);
-
-			if (!(_3D0 & 1) && (_3F6 == 0)) {
-				computeForces(mConfig->mParams.mFriction.mData);
-			}
-
-			bool someCheck           = true;
-			mRigid.mConfigs[0]._18.y = -_aiConstants->mGravity.mData;
-			if ((mPelletSM->getCurrID(this) == 0) && (_311 != 0) && !isPicked()) {
-				Vector3f rigidVelocity = mRigid.mConfigs[0].mVelocity;
-				f32 mag                = rigidVelocity.length();
-
-				if (mag < 10.0f) {
-					Vector3f anotherVec = mRigid.mConfigs[0]._30;
-					f32 anotherMag      = anotherVec.length();
-
-					if ((anotherMag < 100.0f) && (_3F6 == 0)) {
-						f32 time = sys->mDeltaTime;
-
-						Sys::Sphere ball3;
-						ball3.mPosition = mRigid.mConfigs[0].mPosition;
-						f32 halfHeight  = 0.5f * mConfig->mParams.mHeight.mData;
-						ball3.mRadius   = halfHeight;
-						ball3.mPosition.y -= halfHeight;
-
-						Vector3f anotherImpulse(0.0f, -_aiConstants->mGravity.mData, 0.0f);
-
-						MoveInfo info2(&ball3, &anotherImpulse, 0.0f);
-						mapMgr->traceMove(info2, time);
-						if (info2.mBounceTriangle == nullptr) {
-							if (platMgr != nullptr) {
-								platMgr->traceMove(info2, time);
-							}
-						}
-
-						if (info2.mBounceTriangle != nullptr) {
-							someCheck = false;
-						}
-					}
-				}
-			}
-
-			Vector3f someVec = mRigid.mConfigs[0].mPosition;
-			f32 halfFrame    = sys->mDeltaTime / 2;
-
-			if (someCheck) {
-				if (isCollisionFlick() && !(_3D0 & 1) && (_3F6 == 0)) {
-					mAcceleration.y = 0.0f;
-					mRigid.mConfigs[0].mVelocity += mAcceleration;
-				}
-				for (int i = 0; i < 2; i++) {
-					simulate(halfFrame);
-				}
-			}
-			f32 frametimeagain = sys->mDeltaTime;
-			f32 frames         = 1.0f / frametimeagain;
-			Sys::Sphere ball4;
-			ball4.mPosition = someVec;
-			ball4.mRadius   = 0.5f * mConfig->mParams.mHeight.mData;
-
-			Vector3f anotherMoveVec = mRigid.mConfigs[0].mPosition;
-			anotherMoveVec          = anotherMoveVec - someVec;
-			anotherMoveVec          = anotherMoveVec * frames;
-
-			MoveInfo info3(&ball4, &anotherMoveVec, 0.5f);
-
-			mapMgr->traceMove(info3, frametimeagain);
-			if (platMgr != nullptr) {
-				platMgr->traceMove(info3, frametimeagain);
-			}
-
-			if (_3D0 & 1) {
-				bool check = (info3.mWallTriangle != nullptr);
-				if (check && (dot(anotherMoveVec, info3.mReflectPosition) > 0.5f)) {
-					check = false;
-				}
-				if (check) {
-					if (mWallTimer < 100) {
-						mWallTimer += 2;
-					}
-				} else {
-					if (mWallTimer != 0) {
-						mWallTimer--;
-					}
-				}
-			} else {
-				mWallTimer = 0;
-			}
-
-			f32 x                          = info3.mMoveSphere->mPosition.x;
-			f32 z                          = info3.mMoveSphere->mPosition.z;
-			mRigid.mConfigs[0].mPosition.x = x;
-			mRigid.mConfigs[0].mPosition.z = z;
-
-			f32 anotherVelMag = mRigid.mConfigs[0].mVelocity.normalise();
-
-			f32 reallyAnotherMag = mAcceleration.length();
-
-			if (anotherVelMag > reallyAnotherMag) {
-				f32 diff = anotherVelMag - reallyAnotherMag;
-				mRigid.mConfigs[0].mVelocity *= diff;
-			} else {
-				mRigid.mConfigs[0].mVelocity *= anotherVelMag;
-			}
-
-			mAcceleration = Vector3f(0.0f);
-		}
-
-		do_update();
+		return;
 	}
+
+	if (mCaptureMatrix) {
+		AILODParm parm3;
+		updateLOD(parm3);
+		return;
+	}
+
+	AILODParm parm4;
+	updateLOD(parm4);
+	if (isMovieActor()) {
+		mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
+	}
+	bool check;
+	int type = 2;
+	if (mDynamicType == 0) {
+		check = true;
+	} else if (mDynamicType == 2) {
+		check = false;
+	} else if ((mLod.isFlag(AILOD_IsMid | AILOD_IsFar)) >= 2) {
+		check = false;
+	} else {
+		check = true;
+	}
+
+	if (!(mLod.isFlag(AILOD_IsVisible)) || ((mLod.isFlag(AILOD_IsMid | AILOD_IsFar)) >= 1)) {
+		type = 1;
+	}
+	mIsDynamic = check;
+
+	if ((PelletMgr::disableDynamics != 0) || (!mIsDynamic)) {
+		f32 frametime = sys->mDeltaTime;
+		Sys::Sphere ball2;
+		ball2.mPosition = mPelletPosition;
+		if (mPickFlags & 1) {
+			ball2.mPosition.y -= 4.0f;
+		}
+		Vector3f* velocityPtr  = &mRigid.mConfigs[0].mVelocity;
+		ball2.mRadius          = 0.5f * mConfig->mParams.mHeight.mData;
+		mRigid.mConfigs[0]._30 = Vector3f(0.0f);
+		mRigid.mConfigs[0]._24 = Vector3f(0.0f);
+
+		if (((_3F6 == 0) && !(mPickFlags & 1)) || (mBounceTriangle == nullptr)) {
+			velocityPtr->y = -((frametime * _aiConstants->mGravity.mData) - velocityPtr->y);
+		}
+		mAcceleration.y = 0.0f;
+		Vector3f vec    = *velocityPtr;
+		if (isCollisionFlick() && (mPelletFlag != 1) && !(mPickFlags & 1) && (_3F6 == 0)) {
+			vec += mAcceleration;
+		}
+
+		mAcceleration = Vector3f(0.0f);
+
+		MoveInfo info(&ball2, &vec, 0.5f);
+		info.mInfoOrigin = this;
+		mapMgr->traceMove(info, frametime);
+
+		if (mPickFlags & 1) {
+			bool check = (info.mWallTriangle != nullptr);
+			if (check && (dot(vec, info.mReflectPosition) > 0.5f)) {
+				check = false;
+			}
+			if (check) {
+				if (mWallTimer < 100) {
+					mWallTimer += 2;
+				}
+			} else {
+				if (mWallTimer != 0) {
+					mWallTimer--;
+				}
+			}
+		} else {
+			mWallTimer = 0;
+		}
+		*velocityPtr   = vec;
+		info.mVelocity = velocityPtr;
+		info._19       = 0;
+		if (platMgr) {
+			platMgr->traceMove(info, frametime);
+		}
+
+		if (info.mBounceTriangle) {
+			if (mBounceTriangle == nullptr) {
+				bounceCallback(info.mBounceTriangle);
+			}
+
+			mBounceTriangle = info.mBounceTriangle;
+
+			if (!(mPickFlags & 1) && (_3F6 == 0)) {
+				/////// this bit is full of regswaps
+				Vector3f currVel = *velocityPtr;
+				f32 dotVelocity  = dot(currVel, info.mPosition);
+				Vector3f impulse(0.0f, -(_aiConstants->mGravity.mData * sys->mDeltaTime), 0.0f);
+				f32 dotImpulse = dot(impulse, info.mPosition);
+
+				Vector3f res = info.mPosition * dotVelocity;
+				res          = currVel - res;
+				res          = res * frametime * 10.0f;
+				*velocityPtr = currVel - res;
+
+				Vector3f res2 = info.mPosition * dotImpulse;
+				res2          = impulse - res2;
+				res2.x        = -res2.x;
+				res2.y        = -res2.y;
+				res2.z        = -res2.z;
+				res2          = res2 * 1.0f;
+				velocityPtr->x += res2.x;
+				velocityPtr->y += res2.y;
+				velocityPtr->z += res2.z;
+			}
+		} else {
+			mBounceTriangle = nullptr;
+		}
+
+		if (mPickFlags & 1) {
+			ball2.mPosition.y += 4.0f;
+		}
+
+		mPelletPosition              = ball2.mPosition;
+		mRigid.mConfigs[0].mPosition = mPelletPosition;
+	} else if (type > 0) {
+		mRigid.computeForces(0);
+
+		if (!(mPickFlags & 1) && (_3F6 == 0)) {
+			computeForces(mConfig->mParams.mFriction.mData);
+		}
+
+		bool someCheck           = true;
+		mRigid.mConfigs[0]._18.y = -_aiConstants->mGravity.mData;
+		if ((mPelletSM->getCurrID(this) == 0) && (_311 != 0) && !isPicked()) {
+			Vector3f rigidVelocity = mRigid.mConfigs[0].mVelocity;
+			f32 mag                = rigidVelocity.length();
+
+			if (mag < 10.0f) {
+				Vector3f anotherVec = mRigid.mConfigs[0]._30;
+				f32 anotherMag      = anotherVec.length();
+
+				if ((anotherMag < 100.0f) && (_3F6 == 0)) {
+					f32 time = sys->mDeltaTime;
+
+					Sys::Sphere ball3;
+					ball3.mPosition = mRigid.mConfigs[0].mPosition;
+					f32 halfHeight  = 0.5f * mConfig->mParams.mHeight.mData;
+					ball3.mRadius   = halfHeight;
+					ball3.mPosition.y -= halfHeight;
+
+					Vector3f anotherImpulse(0.0f, -_aiConstants->mGravity.mData, 0.0f);
+
+					MoveInfo info2(&ball3, &anotherImpulse, 0.0f);
+					mapMgr->traceMove(info2, time);
+					if (info2.mBounceTriangle == nullptr) {
+						if (platMgr) {
+							platMgr->traceMove(info2, time);
+						}
+					}
+
+					if (info2.mBounceTriangle) {
+						someCheck = false;
+					}
+				}
+			}
+		}
+
+		Vector3f someVec = mRigid.mConfigs[0].mPosition;
+		f32 halfFrame    = sys->mDeltaTime / 2;
+
+		if (someCheck) {
+			if (isCollisionFlick() && !(mPickFlags & 1) && (_3F6 == 0)) {
+				mAcceleration.y = 0.0f;
+				mRigid.mConfigs[0].mVelocity += mAcceleration;
+			}
+			for (int i = 0; i < 2; i++) {
+				simulate(halfFrame);
+			}
+		}
+		f32 frametimeagain = sys->mDeltaTime;
+		f32 frames         = 1.0f / frametimeagain;
+		Sys::Sphere ball4;
+		ball4.mPosition = someVec;
+		ball4.mRadius   = 0.5f * mConfig->mParams.mHeight.mData;
+
+		Vector3f anotherMoveVec = mRigid.mConfigs[0].mPosition;
+		anotherMoveVec          = anotherMoveVec - someVec;
+		anotherMoveVec          = anotherMoveVec * frames;
+
+		MoveInfo info3(&ball4, &anotherMoveVec, 0.5f);
+
+		mapMgr->traceMove(info3, frametimeagain);
+		if (platMgr != nullptr) {
+			platMgr->traceMove(info3, frametimeagain);
+		}
+
+		if (mPickFlags & 1) {
+			bool check = (info3.mWallTriangle != nullptr);
+			if (check && (dot(anotherMoveVec, info3.mReflectPosition) > 0.5f)) {
+				check = false;
+			}
+			if (check) {
+				if (mWallTimer < 100) {
+					mWallTimer += 2;
+				}
+			} else {
+				if (mWallTimer != 0) {
+					mWallTimer--;
+				}
+			}
+		} else {
+			mWallTimer = 0;
+		}
+
+		f32 x                          = info3.mMoveSphere->mPosition.x;
+		f32 z                          = info3.mMoveSphere->mPosition.z;
+		mRigid.mConfigs[0].mPosition.x = x;
+		mRigid.mConfigs[0].mPosition.z = z;
+
+		f32 anotherVelMag = mRigid.mConfigs[0].mVelocity.normalise();
+
+		f32 reallyAnotherMag = mAcceleration.length();
+
+		if (anotherVelMag > reallyAnotherMag) {
+			f32 diff = anotherVelMag - reallyAnotherMag;
+			mRigid.mConfigs[0].mVelocity *= diff;
+		} else {
+			mRigid.mConfigs[0].mVelocity *= anotherVelMag;
+		}
+
+		mAcceleration = Vector3f(0.0f);
+	}
+
+	do_update();
+
 	/*
 	stwu     r1, -0x2f0(r1)
 	mflr     r0
@@ -3787,7 +3783,7 @@ void Pellet::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
 	if ((keyEvent.mType == KEYEVENT_END) && (mCarryAnim.mFlags & 2)) {
 		mCarryAnim.startAnim(0, this);
-		if (_3D0 & 1) {
+		if (mPickFlags & 1) {
 			mAnimSpeed = 30.0f * sys->mDeltaTime;
 			return;
 		}
@@ -4277,12 +4273,12 @@ void Pellet::calcStickSlotGlobal(s16 slot, Vector3f& stickPosition)
 		if (face == 0) {
 			f32 negMid = -mid;
 			pos.y      = negMid;
-			if (_3D0 & 1) {
+			if (mPickFlags & 1) {
 				pos.y -= 4.0f;
 			}
 		} else {
 			pos.y = mid;
-			if (_3D0 & 1) {
+			if (mPickFlags & 1) {
 				pos.y += 4.0f;
 			}
 		}
@@ -4474,7 +4470,7 @@ int Pellet::getFace()
  */
 void Pellet::startPick()
 {
-	if (!(_3D0 & 1)) {
+	if (!(mPickFlags & 1)) {
 		if (mConfig->mParams.mCode.mData & 1) {
 			shadowOn();
 		}
@@ -4515,13 +4511,13 @@ void Pellet::startPick()
 			particle = static_cast<DynParticle*>(particle->mNext);
 		}
 
-		if (_3D0 & 2) {
+		if (mPickFlags & 2) {
 			sound_otakaraEventRestart();
 		} else {
 			sound_otakaraEventStart();
-			_3D0 |= 2;
+			mPickFlags |= 2;
 		}
-		_3D0 |= 1;
+		mPickFlags |= 1;
 	}
 }
 
@@ -4532,7 +4528,7 @@ void Pellet::startPick()
  */
 void Pellet::endPick(bool b)
 {
-	if (_3D0 & 1) {
+	if (mPickFlags & 1) {
 		mPelletCarry->reset();
 		mCarryColor = 5;
 		sound_otakaraEventStop();
@@ -4548,7 +4544,7 @@ void Pellet::endPick(bool b)
 			}
 		}
 
-		_3D0 &= ~0x1;
+		mPickFlags &= ~0x1;
 
 		Vector3f yVec;
 		if (mDynamicType != 2) {
@@ -4756,16 +4752,16 @@ BasePelletMgr::BasePelletMgr(PelletList::cKind kind)
 	int count   = mConfigList->mConfigCnt;
 	mEntries    = count;
 
-	mModelData = new J3DModelData*[count];
-	mAnimMgr   = new SysShape::AnimMgr*[count];
-	mCollParts = new CollPart*[count];
-	_4C        = new bool[count];
+	mModelData  = new J3DModelData*[count];
+	mAnimMgr    = new SysShape::AnimMgr*[count];
+	mCollParts  = new CollPart*[count];
+	mIsUsedList = new bool[count];
 
 	for (int i = 0; i < count; i++) {
 		if (PelletMgr::mDebug) {
-			_4C[i] = true;
+			mIsUsedList[i] = true;
 		} else {
-			_4C[i] = false;
+			mIsUsedList[i] = false;
 		}
 	}
 
@@ -4798,12 +4794,8 @@ PelletConfig* BasePelletMgr::getPelletConfig(int i)
  */
 void BasePelletMgr::setUse(int i)
 {
-	bool validIndex = false;
-	if (i >= 0 && i < mEntries) {
-		validIndex = true;
-	}
-	P2ASSERTLINE(4419, validIndex);
-	_4C[i] = true;
+	P2ASSERTBOUNDSLINE(4419, 0, i, mEntries);
+	mIsUsedList[i] = true;
 }
 
 /*
@@ -4817,7 +4809,7 @@ bool BasePelletMgr::used(int i)
 	if (i >= 0 && i < mEntries) {
 		validIndex = true;
 	}
-	P2ASSERTLINE(4425, validIndex);
+	P2ASSERTBOUNDSLINE(4425, 0, validIndex, mEntries);
 	return validIndex;
 }
 
@@ -4955,16 +4947,14 @@ void BasePelletMgr::load_texArc(char* filename)
 	sprintf(path, "%s%s", directory, filename);
 
 	JKRArchive* textArc = openTextArc(path);
-	if (textArc == nullptr) {
-		JUT_PANICLINE(4728, "%s: not found !\n", path);
-	}
+	JUT_ASSERTLINE(4728, textArc, "%s: not found !\n", path);
 
 	for (int i = 0; i < mConfigList->mConfigCnt; i++) {
 		PelletConfig* config = &mConfigList->mConfigs[i];
 
 		used(i);
 
-		if (_4C[i]) {
+		if (mIsUsedList[i]) {
 			config->mParams.mIndex = i;
 
 			JKRArchive* archive = nullptr;
@@ -4978,10 +4968,7 @@ void BasePelletMgr::load_texArc(char* filename)
 			if (strcmp("null", config->mParams.mBmd.mData) == 0) {
 				mModelData[i] = nullptr;
 			} else {
-				if (archive == nullptr) {
-					JUT_PANICLINE(4776, "archive not found\n");
-				}
-
+				JUT_ASSERTLINE(4776, archive, "archive not found\n");
 				sprintf(path, "%s", config->mParams.mBmd.mData);
 				void* resourceLoad = JKRFileLoader::getGlbResource(path, nullptr);
 				void* resource     = resourceLoad;
@@ -4990,7 +4977,7 @@ void BasePelletMgr::load_texArc(char* filename)
 					JUT_PANICLINE(4786, "%s : is not foun !\n", path);
 				}
 
-				if (config->mParams.mIndirectState != 0) {
+				if (config->mParams.mIndirectState != PelletConfig::Indirect_No) {
 					u32 flags = 0x21020010;
 					if (config->mParams.mCode.mData & 2) {
 						flags |= 0x20;
@@ -5383,7 +5370,7 @@ void BasePelletMgr::closeTextArc(JKRArchive* archive) { archive->unmount(); }
 void BasePelletMgr::useModelMgr(int arg1, u32 arg2)
 {
 	int modelType = 2;
-	if (gameSystem != nullptr && gameSystem->mSection->mPlayerMode == 1) {
+	if (gameSystem && gameSystem->mSection->mPlayerMode == 1) {
 		modelType = 1;
 	}
 
@@ -5399,7 +5386,7 @@ void BasePelletMgr::useModelMgr(int arg1, u32 arg2)
 SysShape::Model* BasePelletMgr::createShape(int modelDataIndex, int arg2)
 {
 	int modelType = 2;
-	if (gameSystem != nullptr && gameSystem->mSection->mPlayerMode == 1) {
+	if (gameSystem && gameSystem->mSection->mPlayerMode == 1) {
 		modelType = 1;
 	}
 
@@ -5411,7 +5398,7 @@ SysShape::Model* BasePelletMgr::createShape(int modelDataIndex, int arg2)
 			JUT_PANICLINE(5061, "bpmgr:no modelData!%d\n", modelDataIndex);
 		}
 		model = new SysShape::Model(mModelData[modelDataIndex], 0, modelType);
-		model->mJ3dModel->newDifferedTexMtx((J3DTexDiffFlag)0);
+		model->mJ3dModel->newDifferedTexMtx(TexDiff_0);
 	}
 	return model;
 }
@@ -5496,7 +5483,7 @@ void PelletIterator::first()
  */
 Pellet* PelletIterator::operator*()
 {
-	P2ASSERTLINE(5197, mMgr != nullptr);
+	P2ASSERTLINE(5197, mMgr);
 	return mMgr->getObjectPtr((void*)mIndex);
 }
 
@@ -5660,14 +5647,10 @@ void PelletMgr::calcNearestTreasure(Vector3f&, f32)
  */
 Pellet* PelletMgr::birth(PelletInitArg* arg)
 {
-	bool validType = false;
-	if (arg != nullptr && arg->mPelletType != 0xFF) {
-		validType = true;
-	}
-	P2ASSERTLINE(5394, validType);
+	P2ASSERTBOOLLINE(5394, arg && arg->mPelletType != 255);
 
 	BasePelletMgr* mgr = getMgrByID(arg->mPelletType);
-	P2ASSERTLINE(5396, mgr != nullptr);
+	P2ASSERTLINE(5396, mgr);
 
 	PelletConfig* config;
 	if (!gameSystem->isZukanMode() && !gameSystem->isVersusMode() && !PelletMgr::mDebug && !arg->_17) {
@@ -5704,7 +5687,7 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 	} else {
 		pellet = mgr->birth();
 		if (pellet) {
-			pellet->mPelletView = arg->_18;
+			pellet->mPelletView = arg->mPelView;
 			pellet->mMgr        = mgr;
 			pellet->init(arg);
 		}
@@ -5719,14 +5702,10 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
  */
 bool PelletMgr::setUse(PelletInitArg* arg)
 {
-	bool validType = false;
-	if (arg != nullptr && arg->mPelletType != 0xFF) {
-		validType = true;
-	}
-	P2ASSERTLINE(5531, validType);
+	P2ASSERTBOOLLINE(5531, arg && arg->mPelletType != 255);
 
 	BasePelletMgr* mgr = getMgrByID(arg->mPelletType);
-	P2ASSERTLINE(5533, mgr != nullptr);
+	P2ASSERTLINE(5533, mgr);
 
 	PelletConfig* config;
 	if (!gameSystem->isZukanMode() && !arg->_17) {
@@ -5750,14 +5729,8 @@ bool PelletMgr::setUse(PelletInitArg* arg)
 	}
 
 	int index = arg->mPelletIndex;
-
-	bool validIndex = false;
-	if (index >= 0 && index < mgr->mEntries) {
-		validIndex = true;
-	}
-	P2ASSERTLINE(4419, validIndex);
-
-	mgr->_4C[index] = true;
+	P2ASSERTBOUNDSLINE(4419, 0, index, mgr->mEntries);
+	mgr->mIsUsedList[index] = true;
 	return true;
 }
 
@@ -5781,9 +5754,8 @@ bool PelletMgr::OtakaraItemCode::isNull()
 	} else if (code == 4) {
 		mgr = PelletItem::mgr;
 	}
-	if (mgr == nullptr) {
-		JUT_PANICLINE(5574, "illegal code (%x)\n", mValue);
-	}
+
+	JUT_ASSERTLINE(5574, mgr, "illegal code (%x)\n", mValue);
 
 	code = mValue;
 	if ((mValue & 0xFF) < 0 || code >= mgr->mConfigList->mConfigCnt) {
@@ -5792,9 +5764,7 @@ bool PelletMgr::OtakaraItemCode::isNull()
 		config = mgr->mConfigList->mConfigs + code;
 	}
 
-	if (config == nullptr) {
-		JUT_PANICLINE(5578, "illegal code no config found (%x) index %d\n", mValue, code);
-	}
+	JUT_ASSERTLINE(5578, config, "illegal code no config found (%x) index %d\n", mValue, code);
 
 	if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 		u8 code = mValue;
@@ -5829,14 +5799,12 @@ bool PelletMgr::makePelletInitArg(PelletInitArg& arg, char* identifier)
 		config = mgr->mConfigList->getPelletConfig(identifier);
 	}
 
-	if (config == nullptr) {
-		JUT_PANICLINE(5614, "no config found(%s)\n", identifier);
-	}
+	JUT_ASSERTLINE(5614, config, "no config found(%s)\n", identifier);
 
 	arg.mTextIdentifier = identifier;
 	arg.mPelletType     = mgr->getMgrID();
 	arg.mPelletIndex    = config->mParams.mIndex;
-	arg._18             = 0;
+	arg.mPelView        = 0;
 
 	makeVsCarryMinMax(arg, identifier);
 	return true;
@@ -5887,9 +5855,8 @@ bool PelletMgr::makePelletInitArg(PelletInitArg& arg, PelletMgr::OtakaraItemCode
 	} else if (code == 4) {
 		mgr = PelletItem::mgr;
 	}
-	if (mgr == nullptr) {
-		JUT_PANICLINE(5672, "illegal code (%x)\n", itemCode.mValue);
-	}
+
+	JUT_ASSERTLINE(5672, mgr, "illegal code (%x)\n", itemCode.mValue);
 
 	code = itemCode.mValue;
 	if ((itemCode.mValue & 0xFF) < 0 || code >= mgr->mConfigList->mConfigCnt) {
@@ -5898,14 +5865,12 @@ bool PelletMgr::makePelletInitArg(PelletInitArg& arg, PelletMgr::OtakaraItemCode
 		config = mgr->mConfigList->mConfigs + code;
 	}
 
-	if (config == nullptr) {
-		JUT_PANICLINE(5676, "illegal code no config found (%x) index %d\n", itemCode.mValue, code);
-	}
+	JUT_ASSERTLINE(5676, config, "illegal code no config found (%x) index %d\n", itemCode.mValue, code);
 
 	arg.mTextIdentifier = config->mParams.mName.mData;
 	arg.mPelletType     = itemCode.mValue >> 8;
 	arg.mPelletIndex    = itemCode.mValue & 0xFF;
-	arg._18             = 0;
+	arg.mPelView        = 0;
 	makeVsCarryMinMax(arg, arg.mTextIdentifier);
 	return true;
 }
@@ -5915,7 +5880,7 @@ bool PelletMgr::makePelletInitArg(PelletInitArg& arg, PelletMgr::OtakaraItemCode
  * Address:	8016DE7C
  * Size:	000060
  */
-void PelletMgr::makeOtakaraItemCode(char* configName, PelletMgr::OtakaraItemCode& code)
+void PelletMgr::makeOtakaraItemCode(char* configName, OtakaraItemCode& code)
 {
 	PelletList::cKind kind;
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(configName, kind);
@@ -5952,7 +5917,7 @@ void PelletMgr::OtakaraItemCode::write(Stream& stream)
  */
 void PelletMgr::addMgr(BasePelletMgr* mgr)
 {
-	TObjectNode<GenericObjectMgr>* node = new TObjectNode<GenericObjectMgr>();
+	TObjectNode<GenericObjectMgr>* node = new TObjectNode<GenericObjectMgr>;
 	node->mContents                     = mgr;
 	mNode.add(node);
 }
@@ -5965,11 +5930,7 @@ void PelletMgr::addMgr(BasePelletMgr* mgr)
 void PelletMgr::doAnimation()
 {
 	Iterator<GenericObjectMgr> iter(this);
-	iter.first();
-	while (iter.mIndex != iter.mContainer->getEnd()) {
-		iter.mContainer->get(iter.mIndex)->doAnimation();
-		iter.next();
-	}
+	CI_LOOP(iter) { (*iter)->doAnimation(); }
 }
 
 /*
@@ -5980,11 +5941,7 @@ void PelletMgr::doAnimation()
 void PelletMgr::doEntry()
 {
 	Iterator<GenericObjectMgr> iter(this);
-	iter.first();
-	while (iter.mIndex != iter.mContainer->getEnd()) {
-		iter.mContainer->get(iter.mIndex)->doEntry();
-		iter.next();
-	}
+	CI_LOOP(iter) { (*iter)->doEntry(); }
 }
 
 /*
@@ -5995,11 +5952,7 @@ void PelletMgr::doEntry()
 void PelletMgr::doSetView(int viewportNumber)
 {
 	Iterator<GenericObjectMgr> iter(this);
-	iter.first();
-	while (iter.mIndex != iter.mContainer->getEnd()) {
-		iter.mContainer->get(iter.mIndex)->doSetView(viewportNumber);
-		iter.next();
-	}
+	CI_LOOP(iter) { (*iter)->doSetView(viewportNumber); }
 }
 
 /*
@@ -6010,11 +5963,7 @@ void PelletMgr::doSetView(int viewportNumber)
 void PelletMgr::doViewCalc()
 {
 	Iterator<GenericObjectMgr> iter(this);
-	iter.first();
-	while (iter.mIndex != iter.mContainer->getEnd()) {
-		iter.mContainer->get(iter.mIndex)->doViewCalc();
-		iter.next();
-	}
+	CI_LOOP(iter) { (*iter)->doViewCalc(); }
 }
 
 /*
@@ -6025,11 +5974,7 @@ void PelletMgr::doViewCalc()
 void PelletMgr::doSimulation(f32 constraint)
 {
 	Iterator<GenericObjectMgr> iter(this);
-	iter.first();
-	while (iter.mIndex != iter.mContainer->getEnd()) {
-		iter.mContainer->get(iter.mIndex)->doSimulation(constraint);
-		iter.next();
-	}
+	CI_LOOP(iter) { (*iter)->doSimulation(constraint); }
 }
 
 /*
@@ -6047,11 +5992,7 @@ void PelletMgr::doDirectDraw(Graphics&) { }
 void PelletMgr::doSimpleDraw(Viewport* viewport)
 {
 	Iterator<GenericObjectMgr> iter(this);
-	iter.first();
-	while (iter.mIndex != iter.mContainer->getEnd()) {
-		iter.mContainer->get(iter.mIndex)->doSimpleDraw(viewport);
-		iter.next();
-	}
+	CI_LOOP(iter) { (*iter)->doSimpleDraw(viewport); }
 }
 
 /*
@@ -6062,11 +6003,7 @@ void PelletMgr::doSimpleDraw(Viewport* viewport)
 void PelletMgr::setupSoundViewerAndBas()
 {
 	Iterator<GenericObjectMgr> iter(this);
-	iter.first();
-	while (iter.mIndex != iter.mContainer->getEnd()) {
-		iter.mContainer->get(iter.mIndex);
-		iter.next();
-	}
+	CI_LOOP(iter) { *iter; }
 }
 
 /*
@@ -6096,9 +6033,9 @@ char* PelletMgr::getCaveName(int caveID)
 {
 	int idx            = caveID & 0xFFFFFF;
 	BasePelletMgr* mgr = getMgrByID((caveID >> 24) & 0xFF);
-	P2ASSERTLINE(5881, mgr != nullptr);
+	P2ASSERTLINE(5881, mgr);
 	PelletConfig* config = mgr->getPelletConfig(idx);
-	P2ASSERTLINE(5883, config != nullptr);
+	P2ASSERTLINE(5883, config);
 	return config->mParams.mName.mData;
 }
 
@@ -6110,10 +6047,9 @@ char* PelletMgr::getCaveName(int caveID)
 int PelletMgr::getCaveID(char* name)
 {
 	Iterator<GenericObjectMgr> iter(this);
-	iter.first();
-
-	while (iter.mIndex != iter.mContainer->getEnd()) {
-		BasePelletMgr* mgr = (BasePelletMgr*)iter.mContainer->get(iter.mIndex);
+	CI_LOOP(iter)
+	{
+		BasePelletMgr* mgr = (BasePelletMgr*)*iter;
 
 		for (int i = 0; i < mgr->mConfigList->mConfigCnt; i++) {
 			PelletConfig* config = mgr->getPelletConfig(i);
@@ -6125,7 +6061,6 @@ int PelletMgr::getCaveID(char* name)
 				return id;
 			}
 		}
-		iter.next();
 	}
 	return -1;
 	/*

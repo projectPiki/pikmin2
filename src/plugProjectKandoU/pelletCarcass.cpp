@@ -6,6 +6,8 @@
 namespace Game {
 namespace PelletCarcass {
 
+Mgr* mgr;
+
 /*
  * --INFO--
  * Address:	801FB8CC

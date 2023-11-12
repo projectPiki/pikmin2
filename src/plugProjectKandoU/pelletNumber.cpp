@@ -6,6 +6,8 @@
 namespace Game {
 namespace PelletNumber {
 
+Mgr* mgr;
+
 /*
  * --INFO--
  * Address:	801F90D4

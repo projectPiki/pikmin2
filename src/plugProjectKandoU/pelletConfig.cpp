@@ -40,7 +40,7 @@ PelletConfig::PelletConfig()
 	mParams.mOffset.mData.z                            = 0.0f;
 	mParams.mCode.mData                                = 0;
 	mParams.mDictionary.mData                          = 0;
-	mParams.mIndirectState                             = PC_INDIRECTSTATE_NO;
+	mParams.mIndirectState                             = Indirect_No;
 }
 
 /*
@@ -151,11 +151,11 @@ void PelletConfigList::read(Stream& stream)
 
 		// Set indirect state
 		if (!strcmp("yes", mConfigs[i].mParams.mIndirect.mData)) {
-			mConfigs[i].mParams.mIndirectState = PC_INDIRECTSTATE_YES;
+			mConfigs[i].mParams.mIndirectState = PelletConfig::Indirect_Yes;
 		} else if (!strcmp("use", mConfigs[i].mParams.mIndirect.mData)) {
-			mConfigs[i].mParams.mIndirectState = PC_INDIRECTSTATE_USE;
+			mConfigs[i].mParams.mIndirectState = PelletConfig::Indirect_Use;
 		} else {
-			mConfigs[i].mParams.mIndirectState = PC_INDIRECTSTATE_NO;
+			mConfigs[i].mParams.mIndirectState = PelletConfig::Indirect_No;
 		}
 	}
 }
