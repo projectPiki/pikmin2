@@ -182,9 +182,9 @@ void BaseGameSection::restoreFBTexture()
  */
 BaseGameSection::~BaseGameSection()
 {
-	theExpHeap                   = nullptr;
-	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(sceneMgr);
+	theExpHeap = nullptr;
+	PSSystem::SceneMgr* sceneMgr;
+	PSSystem::checkSceneMgr(sceneMgr = PSSystem::getSceneMgr());
 	sceneMgr->deleteCurrentScene();
 	TParticle2dMgr::deleteInstance();
 	particleMgr->deleteInstance_TPkEffectMgr();
@@ -1338,27 +1338,29 @@ void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
 	CI_LOOP(iPiki)
 	{
 		Piki* piki = *iPiki;
-		if ((int)piki->mPikiKind == Bulbmin && piki->isPikmin() && !piki->isZikatu()) {
-			if ((int)piki->mPikiKind == Bulbmin) {
-				piki->getCurrActionID();
-				piki->getStateID();
+		if (piki->getKind() != Bulbmin || piki->isPikmin()) {
+			if (!piki->isZikatu()) {
+				if (piki->getKind() == Bulbmin) {
+					piki->getCurrActionID();
+					piki->getStateID();
+				}
+				piki->endStick();
+				piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
+				piki->getCreatureID();
+				piki->mNavi   = aliveOrima;
+				f32 randAngle = randFloat() * TAU;
+
+				Vector3f suroundCircle(sinf(randAngle), 0, cosf(randAngle));
+
+				Vector3f vec = Vector3f(sinf(randAngle) * 50.0f, 0.0f, cosf(randAngle) * 50.0f);
+				vec += suroundPos;
+				vec.y = mapMgr->getMinY(vec);
+				piki->setPosition(vec, false);
+				PikiAI::ActFormationInitArg arg(aliveOrima, 1);
+				arg._09 = false;
+				piki->mBrain->start(PikiAI::ACT_Formation, &arg);
+				piki->movie_begin(false);
 			}
-			piki->endStick();
-			piki->mFsm->transitForce(piki, PIKISTATE_Walk, nullptr);
-			piki->getCreatureID();
-			piki->mNavi   = aliveOrima;
-			f32 randAngle = randFloat() * TAU;
-
-			Vector3f suroundCircle(sinf(randAngle), 0, cosf(randAngle));
-
-			Vector3f vec = Vector3f(sinf(randAngle) * 50.0f, 0.0f, cosf(randAngle) * 50.0f);
-			vec += suroundPos;
-			vec.y = mapMgr->getMinY(vec);
-			piki->setPosition(vec, false);
-			PikiAI::ActFormationInitArg arg(aliveOrima, 1);
-			arg._09 = false;
-			piki->mBrain->start(PikiAI::ACT_Formation, &arg);
-			piki->movie_begin(false);
 		}
 	}
 	if (aliveOrima) {
@@ -1402,7 +1404,7 @@ void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
 	CI_LOOP(iPiki)
 	{
 		Piki* piki = *iPiki;
-		if ((int)piki->mPikiKind == Bulbmin) {
+		if (piki->getKind() == Bulbmin) {
 			piki->movie_begin(false);
 		} else {
 			piki->endStick();
@@ -1450,32 +1452,30 @@ void BaseGameSection::drawParticle(Graphics& gfx, int viewport)
 {
 	if (BaseHIOParms::sDrawParticle) {
 		Viewport* port = gfx.getViewport(viewport);
-		if (port) {
-			if (!port->viewable()) {
-				return;
-			}
-
-			port->setProjection();
-			port->setViewport();
-			if (!gameSystem->isMultiplayerMode() && mPrevNaviIdx != 2) {
-				mLightMgr->mFogMgr->off(gfx);
-				particleMgr->draw(port, 0);
-				mLightMgr->mFogMgr->set(gfx);
-			}
-			if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
-				for (u8 i = 3; i <= 5; i++) {
-					particleMgr->draw(port, i);
-				}
-			}
-			particleMgr->draw(port, 1);
-			mLightMgr->mFogMgr->off(gfx);
-			if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
-				for (u8 i = 6; i <= 8; i++) {
-					particleMgr->draw(port, i);
-				}
-			}
-			particleMgr->draw(port, 2);
+		if (!port || !port->viewable()) {
+			return;
 		}
+
+		port->setProjection();
+		port->setViewport();
+		if (!gameSystem->isMultiplayerMode() && mPrevNaviIdx != 2) {
+			mLightMgr->mFogMgr->off(gfx);
+			particleMgr->draw(port, 0);
+			mLightMgr->mFogMgr->set(gfx);
+		}
+		if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
+			for (u8 i = 3; i <= 5; i++) {
+				particleMgr->draw(port, i);
+			}
+		}
+		particleMgr->draw(port, 1);
+		mLightMgr->mFogMgr->off(gfx);
+		if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
+			for (u8 i = 6; i <= 8; i++) {
+				particleMgr->draw(port, i);
+			}
+		}
+		particleMgr->draw(port, 2);
 	}
 }
 
