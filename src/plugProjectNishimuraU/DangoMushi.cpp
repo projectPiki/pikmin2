@@ -948,6 +948,8 @@ void Obj::updateMapCollisionSize()
  * --INFO--
  * Address:	802FE29C
  * Size:	0003AC
+ * Collision of flicking hand after crab rights itself.
+ * https://tenor.com/view/segmented-crawbster-crawbster-pikmin-pikmin-2-gif-13837251029309082326
  */
 bool Obj::flickHandCollision()
 {
@@ -1473,6 +1475,7 @@ void Obj::createFlickAttackEffect() { mEfxAttack2->create(nullptr); }
  * --INFO--
  * Address:	802FF0C8
  * Size:	00007C
+ * Creates the rainbow damage particles from the crab's guts when pikmin attack.
  */
 void Obj::createBodyDamageEffect()
 {
@@ -1485,6 +1488,7 @@ void Obj::createBodyDamageEffect()
  * --INFO--
  * Address:	802FF144
  * Size:	0000CC
+ * Creates particle effect when the enemy crashes into a wall.
  */
 void Obj::createBodyWallCrashEffect(Vector3f vec)
 {

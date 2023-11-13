@@ -317,7 +317,7 @@ int ActTransport::execLift()
 		if (creature->isPiki()) {
 			Game::Piki* piki = static_cast<Game::Piki*>(creature);
 			if (piki->getCurrActionID() == ACT_Transport && static_cast<ActTransport*>(piki->getCurrAction())->mIsLiftAnimReady) {
-				carryCapacity += Game::pikiMgr->getColorTransportScale(piki->mPikiKind);
+				carryCapacity += Game::pikiMgr->getColorTransportScale(piki->getKind());
 			}
 		}
 	}

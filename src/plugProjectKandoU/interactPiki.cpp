@@ -58,8 +58,8 @@ inline bool vsFlute(Piki* p, Navi* n)
 {
 	bool val = false;
 	if (gameSystem->isVersusMode()) {
-		int pikiKind = p->mPikiKind;
-		// piki->mPikiKind == navi->mNaviIndex; ????????????
+		int pikiKind = p->getKind();
+		// piki->getKind() == navi->mNaviIndex; ????????????
 		val = ((pikiKind == Red && n->mNaviIndex == 1) || (pikiKind == Blue && n->mNaviIndex == 0));
 	}
 	return val;
@@ -81,7 +81,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 	}
 
 	if (piki->isZikatu()) {
-		int pikiKind = piki->mPikiKind;
+		int pikiKind = piki->getKind();
 		if (pikiKind == Purple) {
 			if (piki->getStateID() != PIKISTATE_Holein) {
 				Vector3f pikiPos = piki->getPosition();
@@ -111,9 +111,9 @@ bool InteractFue::actPiki(Game::Piki* piki)
 					gameSystem->mSection->enableTimer(1.2f, 4);
 				}
 			}
-			if (!playData->hasBootContainer(piki->mPikiKind)) {
+			if (!playData->hasBootContainer(piki->getKind())) {
 				char* cutscenes[3] = { "g21_meet_bluepikmin", "g03_meet_redpikmin", "g1F_meet_yellowpikmin" };
-				MoviePlayArg movieArg(cutscenes[piki->mPikiKind], nullptr, nullptr, 0);
+				MoviePlayArg movieArg(cutscenes[piki->getKind()], nullptr, nullptr, 0);
 				movieArg.setTarget(piki);
 				if (piki->getKind() == Red) {
 					Iterator<Piki> iPiki = pikiMgr;
@@ -127,16 +127,16 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				}
 
 				moviePlayer->mTargetObject = piki;
-				if ((int)piki->mPikiKind != Red) {
+				if (piki->getKind() != Red) {
 					moviePlayer->play(movieArg);
-					playData->setMeetPikmin(piki->mPikiKind);
+					playData->setMeetPikmin(piki->getKind());
 				}
 
-				playData->setContainer(piki->mPikiKind);
-				playData->setBootContainer(piki->mPikiKind);
+				playData->setContainer(piki->getKind());
+				playData->setBootContainer(piki->getKind());
 			}
 
-		} else if ((int)pikiKind == Bulbmin) {
+		} else if (pikiKind == Bulbmin) {
 			if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) { // broken demo likely
 				playData->setDemoFlag(DEMO_Discover_Bulbmin);
 				MoviePlayArg bulbminArg("X13_exp_leafchappy", nullptr, nullptr, 0);
@@ -192,7 +192,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 		    || (_08 && piki->mNavi != mCreature && actionID == 0)) {
 			Navi* vsNavi = (Navi*)mCreature;
 			if (gameSystem->isVersusMode()) {
-				int pikiColor = piki->mPikiKind;
+				int pikiColor = piki->getKind();
 				if ((pikiColor == Red && vsNavi->mNaviIndex == 1) || (pikiColor == Blue && vsNavi->mNaviIndex == 0)) {
 					return false;
 				}
@@ -203,7 +203,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 			}
 			piki->mNavi = (Navi*)mCreature;
 			piki->mFsm->transit(piki, PIKISTATE_LookAt, nullptr);
-			if ((int)piki->mPikiKind == Bulbmin && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) {
+			if (piki->getKind() == Bulbmin && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) {
 				playData->setDemoFlag(DEMO_Discover_Bulbmin);
 				MoviePlayArg bulbminArg("x13_exp_leafchappy", nullptr, nullptr, 0);
 				bulbminArg.setTarget(piki);
@@ -233,7 +233,7 @@ bool InteractDope::actPiki(Game::Piki* piki)
 	if (gameSystem->isVersusMode() && mSprayType == SPRAY_TYPE_BITTER) {
 		if (mCreature->isNavi()) {
 			Navi* navi = static_cast<Navi*>(mCreature);
-			if (piki->mPikiKind == navi->mNaviIndex && !currState->dead()) {
+			if (piki->mPikiKind == navi->mNaviIndex && !currState->dead()) { // regswap if getKind() is used
 				FallMeckStateArg bitterArg;
 				bitterArg._00 = true;
 				piki->mFsm->transit(piki, PIKISTATE_FallMeck, &bitterArg);
@@ -256,7 +256,7 @@ bool InteractWind::actPiki(Game::Piki* piki)
 	if (piki->mCurrentState->invincible(piki)) {
 		return false;
 	}
-	int pikiKind = piki->mPikiKind;
+	int pikiKind = piki->getKind();
 	if (pikiKind == Purple) {
 		return false;
 	}
@@ -281,7 +281,7 @@ bool InteractHanaChirashi::actPiki(Game::Piki* piki)
 	if (piki->mCurrentState->invincible(piki)) {
 		return false;
 	}
-	int pikiKind = piki->mPikiKind;
+	int pikiKind = piki->getKind();
 	if (pikiKind == Purple) {
 		int pikiHappa = piki->mHappaKind;
 		if (pikiHappa >= Bud) {
@@ -347,7 +347,7 @@ bool InteractDenki::actPiki(Game::Piki* piki)
 	} else {
 		piki->mTekiKillID = -1;
 	}
-	int pikiKind = piki->mPikiKind;
+	int pikiKind = piki->getKind();
 	if (pikiKind != Yellow && pikiKind != Bulbmin) {
 		if (currState && currState->transittable(PIKISTATE_DenkiDying)) {
 			piki->mFsm->transit(piki, PIKISTATE_DenkiDying, nullptr);
@@ -451,7 +451,7 @@ bool InteractFire::actPiki(Game::Piki* piki)
 		return false;
 	}
 	PikiState* currState = piki->mCurrentState;
-	int pikiKind         = piki->mPikiKind;
+	int pikiKind         = piki->getKind();
 	if (currState && currState->transittable(PIKISTATE_Panic)) {
 		if (pikiKind != Red && pikiKind != Bulbmin) {
 			if (mCreature->isTeki()) {
@@ -483,7 +483,7 @@ bool InteractAstonish::actPiki(Game::Piki* piki)
 	}
 	PikiState* currState = piki->mCurrentState;
 	if (currState && currState->transittable(PIKISTATE_Panic)) {
-		int pikiKind = piki->mPikiKind;
+		int pikiKind = piki->getKind();
 		if (pikiKind != Purple) {
 			PanicStateArg panicAstonish;
 			panicAstonish.mPanicType = PIKIPANIC_Panic; // should probably get renamed to astonish
@@ -512,7 +512,7 @@ bool InteractBubble::actPiki(Game::Piki* piki)
 		return false;
 	}
 	PikiState* currState = piki->mCurrentState;
-	int pikiKind         = piki->mPikiKind;
+	int pikiKind         = piki->getKind();
 	if (currState && currState->transittable(PIKISTATE_Panic)) {
 		if (pikiKind != Blue && pikiKind != Bulbmin) {
 			if (mCreature->isTeki()) {
@@ -545,7 +545,7 @@ bool InteractGas::actPiki(Game::Piki* piki)
 	}
 
 	PikiState* currState = piki->mCurrentState;
-	int pikiKind         = piki->mPikiKind;
+	int pikiKind         = piki->getKind();
 	if (currState && currState->transittable(PIKISTATE_Panic)) {
 		if (pikiKind != White && pikiKind != Bulbmin) {
 			if (mCreature && mCreature->isTeki()) {

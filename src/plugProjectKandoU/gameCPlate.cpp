@@ -21,7 +21,7 @@ Creature* CPlate::get(void* index) { return mSlots[(int)index].mCreature; }
 void* CPlate::getNext(void* index)
 {
 	getEnd();
-	return (void*)((int)index + 1);
+	return (void*)((int)index + 1); // the void* pointer cast stuff is for Container compatibility.
 }
 
 /*
@@ -66,24 +66,24 @@ CPlate::CPlate(int slotLimit)
     , mParms()
     , mSlotLimit(slotLimit)
 {
-	_B4          = 10.0f;
-	_B0          = 10.0f;
-	mPosition    = Vector3f(0.0f);
-	_F0          = 0.0f;
-	mSlots       = new Slot[mSlotLimit];
-	_BC          = 0;
-	mSlotCount   = 0;
-	_110         = 0;
-	_111         = 1;
-	_F4          = 0.0f;
-	_F8          = 0.0f;
-	_FC          = 0.0f;
-	_104[Leaf]   = 0;
-	_104[Bud]    = 0;
-	_104[Flower] = 0;
-	mVelocity    = Vector3f(0.0f);
-	_D8          = Vector3f(0.0f);
-	_100         = 0;
+	_B4        = 10.0f;
+	_B0        = 10.0f;
+	mPosition  = Vector3f(0.0f);
+	_F0        = 0.0f;
+	mSlots     = new Slot[mSlotLimit];
+	_BC        = 0;
+	mSlotCount = 0;
+	_110       = 0;
+	_111       = 1;
+	_F4        = 0.0f;
+	_F8        = 0.0f;
+	_FC        = 0.0f;
+	for (int i = 0; i < ARRAY_SIZE(_104); i++) {
+		_104[i] = 0;
+	}
+	mVelocity = Vector3f(0.0f);
+	_D8       = Vector3f(0.0f);
+	_100      = 0;
 }
 
 /*
@@ -183,7 +183,13 @@ void CPlate::changeFlower(Creature* creature)
 {
 	P2ASSERTLINE(312, creature->isPiki());
 	int happa     = static_cast<Piki*>(creature)->mHappaKind;
-	int prevHappa = (happa + 2) % 3;
+	int prevHappa = (happa + (PikiGrowthStageCount - 1)) % PikiGrowthStageCount;
+	/* EpochFlame explains:
+	 * PikiGrowthStageCount is 3 in vanilla, so here's how this code works. Hopefully this scales as I thought.
+	 * Let's say happa is 2 (flower), so (happa + (PikiGrowthStageCount-1)) resolves to 2 + 3-1 = 4
+	 * 4 % PikiGrowthStageCount is 4 % 3. 4/3 has a remainder of 1, which is Bud, so the previous happa is Bud.
+	 * I think
+	 */
 	_104[happa]++;
 	_104[prevHappa]--;
 }
@@ -612,7 +618,7 @@ lbl_80195E34:
  * Address:	80195E54
  * Size:	0001E0
  */
-void CPlate::rearrangeSlot(Vector3f& p1, float p2, Vector3f& p3)
+void CPlate::rearrangeSlot(Vector3f& p1, f32 p2, Vector3f& p3)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -830,7 +836,7 @@ lbl_8019609C:
  * Address:	801960F8
  * Size:	0001B8
  */
-void CPlate::refresh(int, float)
+void CPlate::refresh(int, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -975,7 +981,7 @@ lbl_8019629C:
  * Address:	801962B0
  * Size:	0002EC
  */
-void CPlate::refreshSlot(float)
+void CPlate::refreshSlot(f32)
 {
 	/*
 	stwu     r1, -0x150(r1)

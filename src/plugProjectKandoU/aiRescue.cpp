@@ -219,7 +219,7 @@ int ActRescue::execThrow()
 		f32 height = mTargetPiki->getThrowHeight();
 		height     = height + (f32)test;
 		height     = height + 50.0f;
-		if ((int)mTargetPiki->mPikiKind == Game::Purple) {
+		if (mTargetPiki->getKind() == Game::Purple) {
 			factor *= 0.5f;
 		}
 

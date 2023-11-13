@@ -108,7 +108,7 @@ void PikiCounter::clear()
  */
 void PikiCounter::inc(Piki* piki)
 {
-	int id = piki->mPikiKind;
+	int id = piki->getKind();
 	P2ASSERTBOUNDSLINE(147, 0, id, PikiColorCount);
 	mPikiCounts[id]++;
 }
@@ -120,7 +120,7 @@ void PikiCounter::inc(Piki* piki)
  */
 void PikiCounter::dec(Piki* piki)
 {
-	int id = piki->mPikiKind;
+	int id = piki->getKind();
 	P2ASSERTBOUNDSLINE(156, 0, id, PikiColorCount);
 	mPikiCounts[id]--;
 }
@@ -181,7 +181,7 @@ void PikiNaviCounter::inc(Piki* piki)
 	}
 
 	// this should be a PikiCounter::inc inline judging from the error line, but it makes a regswap
-	int type = piki->mPikiKind;
+	int type = piki->mPikiKind; // regswap if getKind() is used
 	P2ASSERTBOUNDSLINE(147, 0, type, PikiColorCount);
 	mCounter[id].mPikiCounts[type]++;
 }
@@ -201,7 +201,7 @@ void PikiNaviCounter::dec(Game::Piki* piki)
 	}
 
 	// this should be a PikiCounter::dec inline judging from the error line, but it makes a regswap
-	int type = piki->mPikiKind;
+	int type = piki->mPikiKind; // regswap if getKind() is used
 	P2ASSERTBOUNDSLINE(156, 0, type, PikiColorCount);
 	mCounter[id].mPikiCounts[type]--;
 }

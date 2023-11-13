@@ -135,7 +135,7 @@ bool Navi::demoCheck()
 					CI_LOOP(pikiIter)
 					{
 						cPiki = *pikiIter;
-						if (cPiki->mPikiKind == Yellow) {
+						if (cPiki->getKind() == Yellow) {
 							break;
 						}
 					}

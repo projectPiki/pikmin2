@@ -510,7 +510,7 @@ bool Obj::pressCallBack(Creature* creature, f32 strength, CollPart* part)
 	if (creature->isPiki()) {
 		Piki* piki = static_cast<Piki*>(creature);
 
-		if ((int)piki->mPikiKind == Purple) {
+		if (piki->getKind() == Purple) {
 			strength *= C_PROPERPARMS.mPurpleDamageRate.mValue;
 		}
 	}
@@ -528,7 +528,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 strength, CollPart* part)
 	if (creature->isPiki()) {
 		Piki* piki = static_cast<Piki*>(creature);
 
-		if ((int)piki->mPikiKind == Purple) {
+		if (piki->getKind() == Purple) {
 			strength *= C_PROPERPARMS.mPurpleDamageRate.mValue;
 		}
 	}

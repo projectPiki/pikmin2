@@ -1327,7 +1327,7 @@ void Navi::doEntry()
 
 	J3DGXColorS10 cursorCols;
 	if (mNextThrowPiki) {
-		Color4& col  = Piki::pikiColorsCursor[mNextThrowPiki->mPikiKind];
+		Color4& col  = Piki::pikiColorsCursor[mNextThrowPiki->getKind()];
 		cursorCols.r = col.r;
 		cursorCols.g = col.g;
 		cursorCols.b = col.b;

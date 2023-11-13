@@ -74,7 +74,7 @@ void NormalState::onDamage(Item* item, f32 damage)
 			CI_LOOP(itPiki)
 			{
 				Piki* piki = *itPiki;
-				if ((int)piki->mPikiKind == White) {
+				if (piki->getKind() == White) {
 					piki->movie_begin(false);
 				}
 			}
@@ -417,7 +417,7 @@ bool Item::ignoreAtari(Creature* obj)
 
 	if (!check) {
 		Piki* piki = static_cast<Piki*>(obj);
-		if (piki->isPiki() && (int)piki->mPikiKind == White) {
+		if (piki->isPiki() && piki->getKind() == White) {
 			return false;
 		} else {
 			return true;

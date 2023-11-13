@@ -3933,7 +3933,7 @@ void PikiFlyingState::init(Piki* piki, StateArg* stateArg)
 
 	Navi* navi = piki->mNavi;
 	if (navi) {
-		if ((int)piki->mPikiKind == Bulbmin) {
+		if (piki->getKind() == Bulbmin) {
 			navi->mSoundObj->stopSound(PSSE_PK_HAPPA_THROW_WAIT, 0);
 		} else {
 			navi->mSoundObj->stopSound(PSSE_PK_VC_THROW_WAIT, 0);
@@ -4058,7 +4058,7 @@ void PikiFlyingState::exec(Piki* piki)
 		return;
 	}
 
-	if ((int)piki->mPikiKind == Purple && piki->mSimVelocity.y <= 0.0f) {
+	if (piki->getKind() == Purple && piki->mSimVelocity.y <= 0.0f) {
 		transit(piki, PIKISTATE_HipDrop, nullptr);
 		return;
 	}
@@ -4069,12 +4069,12 @@ void PikiFlyingState::exec(Piki* piki)
 	f32 fallDiff = gravityFactor - flowerFallFactor;
 	f32 thing    = (gravityFactor * 0.15f - 0.075f * fallDiff) - flowerFallFactor * 0.15f; // f28
 
-	if (_14 == 0 && (int)piki->mHappaKind == Flower && piki->mSimVelocity.y <= 0.0f) {
+	if (_14 == 0 && piki->getHappa() == Flower && piki->mSimVelocity.y <= 0.0f) {
 		_14 = 1;
 		piki->startMotion(IPikiAnims::HANG, IPikiAnims::HANG, nullptr, nullptr);
 
 		f32 throwHeight;
-		if ((int)piki->mPikiKind == Yellow) {
+		if (piki->getKind() == Yellow) {
 			throwHeight = naviMgr->mNaviParms->mNaviParms.mP054.mValue;
 		} else {
 			throwHeight = naviMgr->mNaviParms->mNaviParms.mP024.mValue;
@@ -4548,7 +4548,7 @@ void PikiBlowState::init(Piki* piki, StateArg* stateArg)
 	piki->mFaceDir       = roundAng(JMath::atanTable_.atan2_(mBlowDirection.x, mBlowDirection.z) + PI);
 
 	if (_2A & 0x4) {
-		if ((int)piki->mHappaKind >= Bud) {
+		if (piki->getHappa() >= Bud) {
 			efx::TPkEffect* effectObj = piki->mEffectsObj;
 			efx::createSimpleChiru(*effectObj->_0C, effectObj->mPikiColor);
 			piki->startSound(PSSE_PK_FLOWER_FALL_VOICE, true);
@@ -4636,7 +4636,7 @@ void PikiBlowState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 	u16 flag = (mIsWhistled ? 0x8000 : 0) | _2A;
 	KokeDamageStateArg kokeArg(flag, 1.0f);
 	if (randFloat() < mChanceToLeaf) {
-		if ((int)piki->mHappaKind >= Bud) {
+		if (piki->getHappa() >= Bud) {
 			efx::TPkEffect* effectsObj = piki->mEffectsObj;
 			efx::createSimpleChiru(*effectsObj->_0C, effectsObj->mPikiColor);
 			piki->mHappaKind = Leaf;
@@ -4739,7 +4739,7 @@ void PikiKokeDamageState::cleanup(Piki* piki)
 			formArg._09 = 1;
 			piki->mBrain->start(PikiAI::ACT_Formation, &formArg);
 		} else if (mFlags & 0x2) {
-			if ((int)piki->mPikiKind != Bulbmin) {
+			if (piki->getKind() != Bulbmin) {
 				piki->mBrain->start(PikiAI::ACT_Free, nullptr);
 			}
 		} else {
@@ -5958,7 +5958,7 @@ void PikiGrowupState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
 	switch (event.mType) {
 	case KEYEVENT_2:
-		if ((int)piki->mHappaKind != Flower) {
+		if (piki->getHappa() != Flower) {
 			piki->changeHappa(Flower);
 			piki->startSound(PSSE_PK_FLOWER_VOICE, true);
 			if (piki->getCurrActionID() == 0) {

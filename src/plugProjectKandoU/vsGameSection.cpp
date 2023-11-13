@@ -952,9 +952,9 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 		if (cell->isPiki()) {
 			Piki* piki = (Piki*)cell;
 			if (piki->isAlive()) {
-				if ((int)piki->mPikiKind == Red) {
+				if (piki->getKind() == Red) {
 					redPikis++;
-				} else if ((int)piki->mPikiKind == Blue) {
+				} else if (piki->getKind() == Blue) {
 					bluePikis++;
 				}
 			}

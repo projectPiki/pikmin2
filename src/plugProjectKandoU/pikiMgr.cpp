@@ -2386,7 +2386,7 @@ void PikiMgr::caveSaveAllPikmins(bool check1, bool check2)
 	CI_LOOP(iterator)
 	{
 		Piki* piki = *iterator;
-		if (piki->isAlive() && (!check2 || (int)piki->getKind() != Bulbmin) && ((int)piki->getKind() != Bulbmin || piki->isPikmin())) {
+		if (piki->isAlive() && (!check2 || piki->getKind() != Bulbmin) && (piki->getKind() != Bulbmin || piki->isPikmin())) {
 			list[i++] = piki;
 		}
 	}
