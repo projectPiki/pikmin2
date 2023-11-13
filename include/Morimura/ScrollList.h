@@ -15,7 +15,7 @@ struct TIndexGroup {
 
 	// unused/inlined
 	void speedUpdate(bool);
-	void offsetUpdate(f32);
+	bool offsetUpdate(f32);
 	void rollSpUp();
 
 	inline void reset()
@@ -37,7 +37,7 @@ struct TIndexGroup {
 	int mStateID;      // _20
 	u8 _24;            // _24
 	f32 mMoveTimer;    // _28
-	u8 _2C[0x4];       // _2C, unknown
+	f32 _2C;           // _2C
 };
 
 struct TIconInfo {

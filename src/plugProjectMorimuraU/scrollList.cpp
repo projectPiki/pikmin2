@@ -86,10 +86,33 @@ void TIndexGroup::speedUpdate(bool check)
  * Address:	........
  * Size:	000088
  */
-void TIndexGroup::offsetUpdate(f32 offset)
+bool TIndexGroup::offsetUpdate(f32 offset)
 {
+	if (mStateID != 0) {
+		f32 val;
+		if (mStateID == 2) {
+			val = mRollSpeed;
+		} else {
+			val = -mRollSpeed;
+		}
 
-	// UNUSED FUNCTION
+		_14 += val;
+
+		if (_14 > offset) {
+			_2C = _14 - offset;
+			_14 = offset;
+			return true;
+		}
+
+		val = -offset;
+		if (_14 < val) {
+			_2C = _14 + offset;
+			_14 = val;
+			return true;
+		}
+	}
+
+	return false;
 }
 
 /*
@@ -829,8 +852,7 @@ void TScrollList::getUpdateIndex(int& id, bool flag)
  */
 bool TScrollList::updateList()
 {
-	int check = (mIndexGroup->mStateID == 0);
-	if ((bool)check) {
+	if (mIndexGroup->mStateID == 0) {
 		mIndexGroup->mRollSpeed = mIndexGroup->_10;
 	}
 
@@ -844,7 +866,85 @@ bool TScrollList::updateList()
 
 	TIndexGroup* group = mIndexGroup;
 
-	group->_14 = val;
+	if (group->mStateID == 1) {
+		int idx = mCurrentSelect + 1;
+		if (idx >= mMaxSelect) {
+			idx = 0;
+		}
+
+		TIndexPane* nextPane = mIndexPaneList[idx];
+		if (nextPane->mSizeType != 0) {
+			val += 0.5f;
+			if (indexPane->mIndex == nextPane->mIndex) {
+				idx++;
+				val -= 0.5f;
+				if (idx >= mMaxSelect) {
+					idx = 0;
+				}
+
+				if (mIndexPaneList[idx]->mSizeType != 0) {
+					val += 0.5f;
+				}
+			}
+		}
+	} else if (group->mStateID != 0) {
+		int idx = mCurrentSelect - 1;
+		if (idx < 0) {
+			idx = mMaxSelect - 1;
+		}
+
+		TIndexPane* prevPane = mIndexPaneList[idx];
+		if (prevPane->mSizeType != 0) {
+			val += 0.5f;
+			if (indexPane->mIndex == prevPane->mIndex) {
+				val -= 0.5f;
+				idx--;
+				if (idx < 0) {
+					idx = mMaxSelect - 1;
+				}
+
+				if (mIndexPaneList[idx]->mSizeType != 0) {
+					val += 0.5f;
+				}
+			}
+		}
+	}
+
+	group->_2C = 0.0f;
+
+	val         = group->mHeight * val;
+	bool result = group->offsetUpdate(val);
+
+	f32 val2 = mIndexGroup->_14;
+	for (int i = 0; i < mMaxSelect; i++) {
+		TIndexPane* pane = mIndexPaneList[i];
+		pane->mPane->setOffsetY(pane->_1C + val2);
+		changeTextTevBlock(i);
+	}
+
+	if (result) {
+		if (mIndexGroup->_24) {
+			val2 = mIndexGroup->_2C;
+		} else {
+			val2 = 0.0f;
+		}
+
+		changeIndex();
+	} else if (mIndexGroup->mStateID == 0) {
+		f32 val3 = -0.5f * mIndexGroup->_14;
+		val2     = mIndexGroup->_14 + val3;
+	}
+
+	mIndexGroup->_14 = val2;
+	for (int i = 0; i < mMaxSelect; i++) {
+		TIndexPane* pane = mIndexPaneList[i];
+		pane->mPane->setOffsetY(pane->_1C + val2);
+	}
+
+	mIndexGroup->_24 = 0;
+
+	return result;
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
