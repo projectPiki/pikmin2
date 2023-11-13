@@ -100,9 +100,7 @@ TSequenceProcessor::TSequenceProcessor(const JMessage::TReference* ref, JMessage
     , _60(0)
     , _64(0)
 {
-	for (int i = 0; i < 4; i++) {
-		mFlags.byteView[i] = 0;
-	}
+	mFlags.clear();
 
 	_4C = 0.11f;
 }

@@ -10,18 +10,16 @@ namespace P2JME {
  */
 TControl::TControl()
 {
-	mSequenceProc       = nullptr;
-	mTextRenderProc     = nullptr;
-	mResContainer       = nullptr;
-	mTimer              = 0.0f;
-	mStatus.byteView[0] = 0;
-	mStatus.byteView[1] = 0;
-	mStatus.byteView[2] = 0;
-	mStatus.byteView[3] = 0;
-	mStatus.byteView[0] = 0;
-	mStatus.byteView[1] = 0;
-	mStatus.byteView[2] = 0;
-	mStatus.byteView[3] = 0;
+	mSequenceProc   = nullptr;
+	mTextRenderProc = nullptr;
+	mResContainer   = nullptr;
+	mTimer          = 0.0f;
+	for (int i = 0; i < sizeof(mStatus); i++) {
+		mStatus.byteView[i] = 0;
+	}
+	for (int i = 0; i < sizeof(mStatus); i++) {
+		mStatus.byteView[i] = 0;
+	}
 }
 
 /*
@@ -105,11 +103,10 @@ bool TControl::init()
 void TControl::reset()
 {
 	JMessage::TControl::reset();
-	mTimer              = 0.0f;
-	mStatus.byteView[0] = 0;
-	mStatus.byteView[1] = 0;
-	mStatus.byteView[2] = 0;
-	mStatus.byteView[3] = 0;
+	mTimer = 0.0f;
+	for (int i = 0; i < sizeof(mStatus); i++) {
+		mStatus.byteView[i] = 0;
+	}
 	mSequenceProc->reset();
 	mTextRenderProc->reset();
 }
@@ -125,12 +122,12 @@ bool TControl::update()
 	if (mTextRenderProc) {
 		mTextRenderProc->update();
 	}
-	if (mStatus.typeView & 1) {
+	if (IS_FLAG(mStatus.typeView, 1)) {
 		if (!ret)
-			mStatus.typeView |= 2;
+			SET_FLAG(mStatus.typeView, 2);
 	} else {
 		if (ret)
-			mStatus.typeView |= 1;
+			SET_FLAG(mStatus.typeView, 1);
 	}
 	return ret;
 }
@@ -177,7 +174,7 @@ void TControl::draw(Mtx a, Mtx b)
  * Address:	80438F7C
  * Size:	000050
  */
-void TControl::setLocate(int x, int y)
+void TControl::setLocate(int x, int y) // JGeometry::TBox2f shenanigans
 {
 	f32 xpos                  = x;
 	f32 ypos                  = y;
@@ -222,7 +219,7 @@ BOOL TControl::setMessageCode(u16 id1, u16 id2)
 {
 	reset();
 	bool ret = JMessage::TControl::setMessageCode(id1, id2);
-	mTextRenderProc->preProcCode(_0C & _0E);
+	mTextRenderProc->preProcCode(_0C << 16 | _0E);
 	return ret;
 }
 
