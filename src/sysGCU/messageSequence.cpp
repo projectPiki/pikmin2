@@ -114,7 +114,7 @@ TSequenceProcessor::TSequenceProcessor(const JMessage::TReference* ref, JMessage
  */
 void TSequenceProcessor::do_begin(const void* arg0, const char* arg1)
 {
-	mFlags.typeView &= 0xFFFFFFF7;
+	mFlags.unset(8);
 	_4C = 0.11f;
 	_50 = _4C;
 	_5C = 0;
@@ -223,14 +223,13 @@ bool TSequenceProcessor::do_systemTagCode(u16, const void*, u32) { return false;
  */
 bool TSequenceProcessor::do_isReady()
 {
-	u32 flags  = mFlags.typeView;
 	bool check = false;
 
-	if (flags & 1) {
+	if (mFlags.isSet(1)) {
 		return false;
 	}
 
-	if (flags & 2) {
+	if (mFlags.isSet(2)) {
 		_50 -= sys->mDeltaTime;
 		if (_50 <= 0.0f) {
 			bool checkVars = (mController1 || mController2);
@@ -239,17 +238,17 @@ bool TSequenceProcessor::do_isReady()
 			if ((mController1 && (mController1->mButton.mButtonDown & PAD_BUTTON_A))
 			    || (mController2 && (mController2->mButton.mButtonDown & PAD_BUTTON_A))) {
 				resetAbtnWait();
-				mFlags.typeView &= 0xFFFFFFF7;
+				mFlags.unset(8);
 			}
 		}
 	} else {
-		float frameCount = 1.0f;
-		if (flags & 8) {
+		f32 frameCount = 1.0f;
+		if (mFlags.isSet(8)) {
 			frameCount = 10.0f;
 		} else if ((mController1 && (mController1->mButton.mButtonDown & PAD_BUTTON_B))
 		           || (mController2 && (mController2->mButton.mButtonDown & PAD_BUTTON_B))) {
 			doFastForwardSE();
-			mFlags.typeView |= 8;
+			mFlags.set(8);
 		} else if ((mController1 && (mController1->getButton() & PAD_BUTTON_A))
 		           || (mController2 && (mController2->getButton() & PAD_BUTTON_A))) {
 			frameCount = 2.5f;
@@ -364,9 +363,9 @@ bool TSequenceProcessor::tagControl(u16 arg0, const void* arg1, u32 arg2)
  */
 void TSequenceProcessor::setAbtnWait()
 {
-	mFlags.typeView |= 2;
+	mFlags.set(2);
 	_50 = 0.5f;
-	mFlags.typeView &= 0xFFFFFFFB;
+	mFlags.unset(4);
 	doCharacterSEEnd();
 }
 
@@ -378,9 +377,9 @@ void TSequenceProcessor::setAbtnWait()
 void TSequenceProcessor::resetAbtnWait()
 {
 	doResetAbtnWaitSE();
-	mFlags.typeView &= 0xFFFFFFFD;
+	mFlags.unset(2);
 	_50 = _4C;
-	mFlags.typeView |= 4;
+	mFlags.set(4);
 	_5C = 0;
 }
 

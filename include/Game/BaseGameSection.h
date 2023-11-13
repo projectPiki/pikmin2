@@ -7,12 +7,12 @@
 #include "DvdThreadCommand.h"
 #include "IDelegate.h"
 #include "Vector3.h"
+#include "Splitter.h"
 #include "Rect.h"
 #include "Game/GameMessage.h"
 
 struct BlackFader;
 struct Controller;
-struct HorizonalSplitter;
 struct WipeInFader;
 struct WipeOutFader;
 struct WipeOutInFader;
@@ -257,7 +257,7 @@ struct BaseGameSection : public BaseHIOSection {
 	Controller* mControllerP1;                                // _10C
 	Controller* mControllerP2;                                // _110
 	int mPlayerMode;                                          // _114
-	HorizonalSplitter* mSplitter;                             // _118
+	Splitter* mSplitter;                                      // _118
 	u8 _11C;                                                  // _11C
 	int _120;                                                 // _120
 	u32 _124;                                                 // _124

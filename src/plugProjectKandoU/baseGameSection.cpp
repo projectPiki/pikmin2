@@ -31,7 +31,6 @@
 #include "nans.h"
 #include "SysTimers.h"
 #include "Game/PelletBirthBuffer.h"
-#include "Splitter.h"
 #include "PSSystem/PSCommon.h"
 #include "Sys/DrawBuffers.h"
 #include "Game/Entities/ItemBigFountain.h"
@@ -1146,7 +1145,7 @@ void BaseGameSection::setPlayerMode(int mode)
 	case NAVIID_President: {
 		mSecondViewportHeight = 0.5f;
 		mSplit                = 0.0f;
-		static_cast<Splitter*>(mSplitter)->split2(0.5f); // mSplitter probably should just be Splitter* not HorizonalSplitter*
+		mSplitter->split2(0.5f);
 		cameraMgr->changePlayerMode(2, cameraMgrCallback);
 		break;
 	}
@@ -2095,8 +2094,6 @@ void BaseGameSection::startFadewhite()
  */
 void BaseGameSection::setupFixMemory()
 {
-	static s8 init;
-	static int col;
 	Delegate<BaseGameSection>* delegate = new Delegate<BaseGameSection>(this, setupFixMemory_dvdload);
 
 	beginFrame();
@@ -2106,27 +2103,7 @@ void BaseGameSection::setupFixMemory()
 	GXSetScissor(0, 16, 608, 448);
 	endRender();
 	sys->dvdLoadUseCallBack(&mDvdThreadCommand, delegate);
-	if (!init) {
-		col  = 0;
-		init = true;
-	}
-	col++;
-	endFrame();
-	gameSystem->setPause(true, "waitSyncLoad", 3);
-
-	while (0 != 1) {
-		beginFrame();
-		beginRender();
-		j3dSys.drawInit();
-		GXSetViewport(0.0f, 0.0f, 608.0f, 480.0f, 0.0f, 1.0f);
-		GXSetScissor(0, 16, 608, 448);
-		endRender();
-		if (mDvdThreadCommand.mMode == 2) {
-			gameSystem->setPause(false, "waitSyncLoad", 3);
-			break;
-		}
-		endFrame();
-	}
+	waitSyncLoad(false); // inlines waitSyncLoad
 }
 
 /*
@@ -2139,7 +2116,7 @@ void BaseGameSection::setupFixMemory_dvdload()
 	sys->heapStatusStart("setupFixMemory", nullptr);
 
 	ResTIMG* file = static_cast<ResTIMG*>(JKRDvdRipper::loadToMainRAM("user/Kando/mizu.bti", nullptr, Switch_0, 0, nullptr,
-	                                                                  JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr));
+	                                                                  JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr));
 	mMizuTexture  = new JUTTexture(file);
 	sys->heapStatusStart("fbTexture", nullptr);
 
@@ -2154,6 +2131,7 @@ void BaseGameSection::setupFixMemory_dvdload()
 	particleMgr->createMgr("user/Ebisawa/effect/game.jpc", 2000, 300, 0x80);
 	addGenNode(particleMgr);
 
+	TParticle2dMgr::globalInstance();
 	particle2dMgr->createHeap(0x3e800);
 	particle2dMgr->createMgr("user/Ebisawa/effect/eff2d_game2d.jpc", 0x1d4, 0x28, 0x80);
 	addGenNode(particle2dMgr);
@@ -2162,7 +2140,7 @@ void BaseGameSection::setupFixMemory_dvdload()
 	efx::OnyonSpotData* spot = new efx::OnyonSpotData;
 	spot->entry();
 	particleMgr->endEntryModelEffect();
-
+	// reload particleMgr here
 	particleMgr->Instance_TPkEffectMgr();
 
 	sys->heapStatusEnd("particle");
@@ -2466,7 +2444,8 @@ bool BaseGameSection::isAllocHalt()
 void BaseGameSection::setupFloatMemory()
 {
 	bool cave = false;
-	gameSystem->setFlag(GAMESYS_IsGameWorldActive);
+	gameSystem->mFlags.typeView &= 0xFE; // this matches, but it's a bit odd
+	// gameSystem->resetFlag(0xFFFFFF01); // this matches, but it's extraordinarily stupid
 
 	PSSystem::SingletonBase<PSM::ObjMgr>::newInstance();
 	PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::newInstance();

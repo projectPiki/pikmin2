@@ -2327,12 +2327,12 @@ lbl_801E8F78:
  * Address:	801E8F80
  * Size:	000044
  */
-float PlayData::getRepayLevelPercent(int state)
+f32 PlayData::getRepayLevelPercent(int state)
 {
 	if (state >= 0) {
 		return repay_levs[state];
 	} else {
-		return (float)state;
+		return (f32)state;
 	}
 }
 
@@ -3221,8 +3221,8 @@ void PlayData::setPikminCounts_Today()
 	GameStat::PikiCounter* cont1 = &GameStat::zikatuPikis;
 	GameStat::PikiCounter* cont2 = &GameStat::alivePikis;
 
-	for (int i = 0; i < 6; i++) {
-		if (i == 5) {
+	for (int i = FirstPikmin; i < StoredPikiCount + 1; i++) {
+		if (i == AllPikmin) {
 			int pikiheads = generatorCache->getTotalMePikmins();
 			int pikis     = GameStat::alivePikis;
 			int pikidiff  = pikis - GameStat::zikatuPikis;
@@ -3248,7 +3248,7 @@ void PlayData::setPikminCounts_Today()
  */
 void PlayData::setPikminCounts_Yesterday()
 {
-	for (int i = 0; i < 6; i++) {
+	for (int i = FirstPikmin; i < StoredPikiCount + 1; i++) {
 		mPikminYesterday[i] = mPikminToday[i];
 	}
 }
