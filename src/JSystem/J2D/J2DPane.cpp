@@ -48,7 +48,7 @@ void J2DPane::calcMtx()
  * Address:	80036BF0
  * Size:	00003C
  */
-void J2DPane::makeMatrix(float f1, float f2) { makeMatrix(f1, f2, -mBounds.i.x, -mBounds.i.y); }
+void J2DPane::makeMatrix(f32 f1, f32 f2) { makeMatrix(f1, f2, -mBounds.i.x, -mBounds.i.y); }
 
 /*
  * --INFO--
@@ -438,7 +438,7 @@ void J2DPane::draw(f32 x, f32 y, const J2DGrafContext* grafContext, bool isOrtho
  * Address:	80037F30
  * Size:	000004
  */
-// void J2DPane::drawSelf(float, float, float (*)[3][4]) { }
+// void J2DPane::drawSelf(f32, f32, Mtx*) { }
 
 /*
  * --INFO--
@@ -508,7 +508,7 @@ void J2DPane::place(const JGeometry::TBox2f& box)
  * Address:	80038180
  * Size:	000054
  */
-void J2DPane::move(float x, float y)
+void J2DPane::move(f32 x, f32 y)
 {
 	f32 width  = getWidth();
 	f32 height = getHeight();
@@ -520,7 +520,7 @@ void J2DPane::move(float x, float y)
  * Address:	800381D4
  * Size:	000044
  */
-void J2DPane::add(float x, float y)
+void J2DPane::add(f32 x, f32 y)
 {
 	mOffset.add(JGeometry::TVec2f(x, y));
 	calcMtx();
@@ -586,7 +586,7 @@ void J2DPane::rotate(f32 anchorX, f32 anchorY, J2DRotateAxis axis, f32 angle)
  * rotate__7J2DPaneFf
  * TODO: Can't verify this with genasm.sh
  */
-void J2DPane::rotate(float f1)
+void J2DPane::rotate(f32 f1)
 {
 	s8 axis = mRotationAxis;
 	if (axis == J2DROTATE_X) {
@@ -606,7 +606,7 @@ void J2DPane::rotate(float f1)
  * Address:	........
  * Size:	000030
  */
-float J2DPane::getRotate() const
+f32 J2DPane::getRotate() const
 {
 	// UNUSED FUNCTION
 }
@@ -727,7 +727,7 @@ bool J2DPane::isUsed(const ResFONT* resource)
  * Address:	80038B04
  * Size:	000140
  */
-void J2DPane::makeMatrix(float x, float y, float xAngOff, float yAngOff)
+void J2DPane::makeMatrix(f32 x, f32 y, f32 xAngOff, f32 yAngOff)
 {
 	f32 tmpX = mAnchorPoint.x - xAngOff;
 	f32 tmpY = mAnchorPoint.y - yAngOff;
@@ -1498,4 +1498,4 @@ bool J2DPane::setConnectParent(bool connectParent)
  * Address:	80039ABC
  * Size:	000004
  */
-// void J2DPane::drawSelf(float, float) { }
+// void J2DPane::drawSelf(f32, f32) { }

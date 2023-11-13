@@ -124,10 +124,10 @@
         .4byte 0x00000000
     .global lbl_8052030C
     lbl_8052030C:
-        .f32 1.0
+        .float 1.0
     .global lbl_80520310
     lbl_80520310:
-        .f32 0.5
+        .float 0.5
     .global lbl_80520314
     lbl_80520314:
         .4byte 0x3EAAAAAB

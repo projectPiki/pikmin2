@@ -1542,8 +1542,8 @@ void Obj::createMoveHandEffect()
 		armY.normalise();
 
 		armX *= 42.5f;
-		armPos += armX;
 		armY *= -12.5f;
+		armPos += armX;
 		armPos += armY;
 
 		f32 yDiff = armPos.y - mapMgr->getMinY(armPos);
@@ -1557,148 +1557,6 @@ void Obj::createMoveHandEffect()
 			createBounceEffect(armPos, 0.68f);
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	beq      lbl_802FF2E8
-	cmpwi    r3, 5
-	bne      lbl_802FF494
-
-lbl_802FF2E8:
-	lwz      r3, 0x174(r31)
-	addi     r4, r2, lbl_8051D488@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f0, 0x10(r3)
-	lfs      f1, 0x20(r3)
-	fmuls    f4, f0, f0
-	lfs      f9, 0(r3)
-	lfs      f2, 4(r3)
-	fmuls    f7, f1, f1
-	lfs      f3, 0x14(r3)
-	fmadds   f5, f9, f9, f4
-	lfs      f4, 0x24(r3)
-	lfs      f6, 0xc(r3)
-	fadds    f7, f7, f5
-	lfs      f5, lbl_8051D3A8@sda21(r2)
-	stfs     f6, 8(r1)
-	lfs      f6, 0x1c(r3)
-	fcmpo    cr0, f7, f5
-	stfs     f6, 0xc(r1)
-	lfs      f6, 0x2c(r3)
-	stfs     f6, 0x10(r1)
-	ble      lbl_802FF354
-	ble      lbl_802FF358
-	frsqrte  f5, f7
-	fmuls    f7, f5, f7
-	b        lbl_802FF358
-
-lbl_802FF354:
-	fmr      f7, f5
-
-lbl_802FF358:
-	lfs      f5, lbl_8051D3A8@sda21(r2)
-	fcmpo    cr0, f7, f5
-	ble      lbl_802FF378
-	lfs      f5, lbl_8051D3B8@sda21(r2)
-	fdivs    f5, f5, f7
-	fmuls    f9, f9, f5
-	fmuls    f0, f0, f5
-	fmuls    f1, f1, f5
-
-lbl_802FF378:
-	fmuls    f6, f3, f3
-	lfs      f5, lbl_8051D3A8@sda21(r2)
-	fmuls    f7, f4, f4
-	fmadds   f6, f2, f2, f6
-	fadds    f6, f7, f6
-	fcmpo    cr0, f6, f5
-	ble      lbl_802FF3A4
-	ble      lbl_802FF3A8
-	frsqrte  f5, f6
-	fmuls    f6, f5, f6
-	b        lbl_802FF3A8
-
-lbl_802FF3A4:
-	fmr      f6, f5
-
-lbl_802FF3A8:
-	lfs      f5, lbl_8051D3A8@sda21(r2)
-	fcmpo    cr0, f6, f5
-	ble      lbl_802FF3C8
-	lfs      f5, lbl_8051D3B8@sda21(r2)
-	fdivs    f5, f5, f6
-	fmuls    f2, f2, f5
-	fmuls    f3, f3, f5
-	fmuls    f4, f4, f5
-
-lbl_802FF3C8:
-	lfs      f5, lbl_8051D4AC@sda21(r2)
-	addi     r4, r1, 8
-	lfs      f8, lbl_8051D4B0@sda21(r2)
-	fmuls    f9, f9, f5
-	lfs      f7, 8(r1)
-	fmuls    f0, f0, f5
-	lfs      f6, 0xc(r1)
-	fmuls    f1, f1, f5
-	lfs      f5, 0x10(r1)
-	fadds    f7, f7, f9
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	fmuls    f2, f2, f8
-	fadds    f6, f6, f0
-	fmuls    f3, f3, f8
-	stfs     f7, 8(r1)
-	fadds    f0, f5, f1
-	fmuls    f4, f4, f8
-	stfs     f6, 0xc(r1)
-	fadds    f2, f7, f2
-	fadds    f1, f6, f3
-	stfs     f0, 0x10(r1)
-	fadds    f0, f0, f4
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lbz      r0, 0x2c3(r31)
-	fsubs    f1, f0, f1
-	cmplwi   r0, 0
-	beq      lbl_802FF468
-	lfs      f0, lbl_8051D3B0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802FF494
-	li       r0, 0
-	stb      r0, 0x2c3(r31)
-	b        lbl_802FF494
-
-lbl_802FF468:
-	lfs      f0, lbl_8051D4B4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802FF494
-	li       r0, 1
-	lfs      f1, lbl_8051D4B8@sda21(r2)
-	stb      r0, 0x2c3(r31)
-	mr       r3, r31
-	addi     r4, r1, 8
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0xc(r1)
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-
-lbl_802FF494:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
