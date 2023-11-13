@@ -17,15 +17,15 @@ struct CPlate : public Container<Creature> {
 		Slot()
 		{
 			mCreature = nullptr;
-			_1C       = 0;
+			mListener = nullptr;
 			_00       = Vector3f(0.0f);
 			_0C       = Vector3f(0.0f);
 		}
 
-		Vector3f _00;        // _00
-		Vector3f _0C;        // _0C
-		Creature* mCreature; // _18
-		u32 _1C;             // _1C
+		Vector3f _00;                  // _00
+		Vector3f _0C;                  // _0C
+		Creature* mCreature;           // _18
+		SlotChangeListener* mListener; // _1C
 	};
 
 	// @fabricatedName
@@ -68,6 +68,8 @@ struct CPlate : public Container<Creature> {
 	void updateShrink();
 	bool validSlot(int);
 
+	// _00     = VTBL
+	// _00-_1C = Container
 	Parms mParms;       // _1C
 	Vector3f _A4;       // _A4
 	f32 _B0;            // _B0
@@ -85,9 +87,7 @@ struct CPlate : public Container<Creature> {
 	f32 _F8;            // _F8
 	f32 _FC;            // _FC
 	u8 _100;            // _100
-	u32* _104;          // _104
-	u32 _108;           // _108
-	u32 _10C;           // _10C
+	int _104[3];        // _104, indexed by happakind?
 	u8 _110;            // _110
 	u8 _111;            // _111
 };

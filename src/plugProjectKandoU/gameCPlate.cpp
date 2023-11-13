@@ -66,24 +66,24 @@ CPlate::CPlate(int slotLimit)
     , mParms()
     , mSlotLimit(slotLimit)
 {
-	_B4        = 10.0f;
-	_B0        = 10.0f;
-	mPosition  = Vector3f(0.0f);
-	_F0        = 0.0f;
-	mSlots     = new Slot[mSlotLimit];
-	_BC        = 0;
-	mSlotCount = 0;
-	_110       = 0;
-	_111       = 1;
-	_F4        = 0.0f;
-	_F8        = 0.0f;
-	_FC        = 0.0f;
-	_104       = nullptr;
-	_108       = 0;
-	_10C       = 0;
-	mVelocity  = Vector3f(0.0f);
-	_D8        = Vector3f(0.0f);
-	_100       = 0;
+	_B4          = 10.0f;
+	_B0          = 10.0f;
+	mPosition    = Vector3f(0.0f);
+	_F0          = 0.0f;
+	mSlots       = new Slot[mSlotLimit];
+	_BC          = 0;
+	mSlotCount   = 0;
+	_110         = 0;
+	_111         = 1;
+	_F4          = 0.0f;
+	_F8          = 0.0f;
+	_FC          = 0.0f;
+	_104[Leaf]   = 0;
+	_104[Bud]    = 0;
+	_104[Flower] = 0;
+	mVelocity    = Vector3f(0.0f);
+	_D8          = Vector3f(0.0f);
+	_100         = 0;
 }
 
 /*
@@ -91,19 +91,16 @@ CPlate::CPlate(int slotLimit)
  * Address:	801952EC
  * Size:	000210
  */
-// void setPos__Q24Game6CPlateFR10Vector3f fR10Vector3f f()
 void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
 {
-	// something wacky happening with length comparison
-	Vector3f vel = mVelocity;
-	vel.y        = 0.0f;
-	f32 val      = p4 * mParms.p000.mValue;
+	f32 offset = mParms.p000();
+	offset *= p4;
 
-	if (vel.length() > 5.0f) {
-		val = 0.0f;
+	if (mVelocity.length2D() > 5.0f) {
+		offset = 0.0f;
 	}
 
-	f32 rad = _B0 + val;
+	f32 rad = _B0 + offset;
 
 	_F0       = angle;
 	mPosition = position;
@@ -115,158 +112,6 @@ void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
 	Vector3f secondDir = Vector3f(_B8 * sinf(angle), 0.0f, _B8 * cosf(angle));
 	_A4                = position + secondDir;
 	_111               = 0;
-	/*
-	stwu     r1, -0x40(r1)
-	lfs      f4, 0xe4(r3)
-	lfs      f0, 0xec(r3)
-	fmuls    f3, f4, f4
-	lfs      f6, 0x40(r3)
-	fmuls    f5, f0, f0
-	lfs      f0, lbl_80518EF4@sda21(r2)
-	fmuls    f6, f6, f2
-	fadds    f2, f3, f5
-	fcmpo    cr0, f2, f0
-	ble      lbl_80195330
-	fmadds   f2, f4, f4, f5
-	fcmpo    cr0, f2, f0
-	ble      lbl_80195334
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_80195334
-
-lbl_80195330:
-	fmr      f2, f0
-
-lbl_80195334:
-	lfs      f0, lbl_80518F14@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80195344
-	lfs      f6, lbl_80518EF4@sda21(r2)
-
-lbl_80195344:
-	lfs      f2, 0xb0(r3)
-	fmr      f4, f1
-	lfs      f0, lbl_80518EF4@sda21(r2)
-	stfs     f1, 0xf0(r3)
-	fadds    f6, f2, f6
-	fcmpo    cr0, f1, f0
-	lfs      f0, 0(r4)
-	stfs     f0, 0xcc(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0xd0(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0xd4(r3)
-	bge      lbl_8019537C
-	fneg     f4, f1
-
-lbl_8019537C:
-	lfs      f3, lbl_80518F18@sda21(r2)
-	lis      r6, sincosTable___5JMath@ha
-	lfs      f0, lbl_80518EF4@sda21(r2)
-	addi     r6, r6, sincosTable___5JMath@l
-	fmuls    f2, f4, f3
-	addi     r7, r6, 4
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r7, r0
-	fmuls    f5, f6, f0
-	bge      lbl_801953D8
-	lfs      f0, lbl_80518F1C@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r6, r0
-	fneg     f0, f0
-	b        lbl_801953F0
-
-lbl_801953D8:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r6, r0
-
-lbl_801953F0:
-	fmuls    f0, f6, f0
-	lfs      f2, 0xcc(r3)
-	lfs      f3, lbl_80518EF4@sda21(r2)
-	fmr      f6, f1
-	lfs      f4, 0xd0(r3)
-	fadds    f0, f2, f0
-	lfs      f2, 0xd4(r3)
-	fadds    f4, f4, f3
-	fcmpo    cr0, f1, f3
-	stfs     f0, 0xd8(r3)
-	fadds    f0, f2, f5
-	stfs     f4, 0xdc(r3)
-	stfs     f0, 0xe0(r3)
-	lfs      f0, 0(r5)
-	stfs     f0, 0xe4(r3)
-	lfs      f0, 4(r5)
-	stfs     f0, 0xe8(r3)
-	lfs      f0, 8(r5)
-	stfs     f0, 0xec(r3)
-	bge      lbl_80195444
-	fneg     f6, f1
-
-lbl_80195444:
-	lfs      f3, lbl_80518F18@sda21(r2)
-	lfs      f0, lbl_80518EF4@sda21(r2)
-	fmuls    f2, f6, f3
-	lfs      f5, 0xb8(r3)
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r7, r0
-	fmuls    f4, f5, f0
-	bge      lbl_801954A0
-	lfs      f0, lbl_80518F1C@sda21(r2)
-	lis      r5, sincosTable___5JMath@ha
-	addi     r5, r5, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f0, f0
-	b        lbl_801954C0
-
-lbl_801954A0:
-	fmuls    f0, f1, f3
-	lis      r5, sincosTable___5JMath@ha
-	addi     r5, r5, sincosTable___5JMath@l
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-
-lbl_801954C0:
-	fmuls    f0, f5, f0
-	lfs      f1, 0(r4)
-	lfs      f3, 8(r4)
-	li       r0, 0
-	lfs      f2, 4(r4)
-	fadds    f0, f1, f0
-	lfs      f1, lbl_80518EF4@sda21(r2)
-	fadds    f3, f3, f4
-	fadds    f1, f2, f1
-	stfs     f0, 0xa4(r3)
-	stfs     f1, 0xa8(r3)
-	stfs     f3, 0xac(r3)
-	stb      r0, 0x111(r3)
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -274,160 +119,26 @@ lbl_801954C0:
  * Address:	801954FC
  * Size:	00020C
  */
-// void setPosGray__Q24Game6CPlateFR10Vector3f fR10Vector3f f()
-void CPlate::setPosGray(Vector3f& p1, f32 p2, Vector3f& p3, f32 p4)
+void CPlate::setPosGray(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	lfs      f4, 0xe4(r3)
-	lfs      f0, 0xec(r3)
-	fmuls    f3, f4, f4
-	lfs      f6, 0x40(r3)
-	fmuls    f5, f0, f0
-	lfs      f0, lbl_80518EF4@sda21(r2)
-	fmuls    f6, f6, f2
-	fadds    f2, f3, f5
-	fcmpo    cr0, f2, f0
-	ble      lbl_80195540
-	fmadds   f2, f4, f4, f5
-	fcmpo    cr0, f2, f0
-	ble      lbl_80195544
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_80195544
+	f32 offset = mParms.p000();
+	offset *= p4;
 
-lbl_80195540:
-	fmr      f2, f0
+	if (mVelocity.length2D() > 5.0f) {
+		offset = 0.0f;
+	}
 
-lbl_80195544:
-	lfs      f0, lbl_80518F14@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80195554
-	lfs      f6, lbl_80518EF4@sda21(r2)
+	f32 rad = _B0 + offset;
 
-lbl_80195554:
-	lfs      f3, 0xb0(r3)
-	fmr      f4, f1
-	lfs      f2, 0(r4)
-	lfs      f0, lbl_80518EF4@sda21(r2)
-	fadds    f6, f3, f6
-	stfs     f2, 0xcc(r3)
-	fcmpo    cr0, f1, f0
-	lfs      f0, 4(r4)
-	stfs     f0, 0xd0(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0xd4(r3)
-	bge      lbl_80195588
-	fneg     f4, f1
+	mPosition = position;
 
-lbl_80195588:
-	lfs      f3, lbl_80518F18@sda21(r2)
-	lis      r6, sincosTable___5JMath@ha
-	lfs      f0, lbl_80518EF4@sda21(r2)
-	addi     r6, r6, sincosTable___5JMath@l
-	fmuls    f2, f4, f3
-	addi     r7, r6, 4
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r7, r0
-	fmuls    f5, f6, f0
-	bge      lbl_801955E4
-	lfs      f0, lbl_80518F1C@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r6, r0
-	fneg     f0, f0
-	b        lbl_801955FC
+	Vector3f dir = Vector3f(rad * sinf(angle), 0.0f, rad * cosf(angle));
+	_D8          = mPosition + dir;
+	mVelocity    = velocity;
 
-lbl_801955E4:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r6, r0
-
-lbl_801955FC:
-	fmuls    f0, f6, f0
-	lfs      f2, 0xcc(r3)
-	lfs      f3, lbl_80518EF4@sda21(r2)
-	fmr      f6, f1
-	lfs      f4, 0xd0(r3)
-	fadds    f0, f2, f0
-	lfs      f2, 0xd4(r3)
-	fadds    f4, f4, f3
-	fcmpo    cr0, f1, f3
-	stfs     f0, 0xd8(r3)
-	fadds    f0, f2, f5
-	stfs     f4, 0xdc(r3)
-	stfs     f0, 0xe0(r3)
-	lfs      f0, 0(r5)
-	stfs     f0, 0xe4(r3)
-	lfs      f0, 4(r5)
-	stfs     f0, 0xe8(r3)
-	lfs      f0, 8(r5)
-	stfs     f0, 0xec(r3)
-	bge      lbl_80195650
-	fneg     f6, f1
-
-lbl_80195650:
-	lfs      f3, lbl_80518F18@sda21(r2)
-	lfs      f0, lbl_80518EF4@sda21(r2)
-	fmuls    f2, f6, f3
-	lfs      f5, 0xb8(r3)
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r7, r0
-	fmuls    f4, f5, f0
-	bge      lbl_801956AC
-	lfs      f0, lbl_80518F1C@sda21(r2)
-	lis      r5, sincosTable___5JMath@ha
-	addi     r5, r5, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f0, f0
-	b        lbl_801956CC
-
-lbl_801956AC:
-	fmuls    f0, f1, f3
-	lis      r5, sincosTable___5JMath@ha
-	addi     r5, r5, sincosTable___5JMath@l
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-
-lbl_801956CC:
-	fmuls    f0, f5, f0
-	lfs      f1, 0(r4)
-	lfs      f3, 8(r4)
-	li       r0, 0
-	lfs      f2, 4(r4)
-	fadds    f0, f1, f0
-	lfs      f1, lbl_80518EF4@sda21(r2)
-	fadds    f3, f3, f4
-	fadds    f1, f2, f1
-	stfs     f0, 0xa4(r3)
-	stfs     f1, 0xa8(r3)
-	stfs     f3, 0xac(r3)
-	stb      r0, 0x111(r3)
-	addi     r1, r1, 0x40
-	blr
-	*/
+	Vector3f secondDir = Vector3f(_B8 * sinf(angle), 0.0f, _B8 * cosf(angle));
+	_A4                = position + secondDir;
+	_111               = 0;
 }
 
 /*
@@ -435,7 +146,6 @@ lbl_801956CC:
  * Address:	........
  * Size:	00004C
  */
-// void setPosNeutral__Q24Game6CPlateFR10Vector3f fR10Vector3f f()
 void CPlate::setPosNeutral(Vector3f& p1, f32 p2, Vector3f& p3, f32 p4)
 {
 	// UNUSED FUNCTION
@@ -446,70 +156,22 @@ void CPlate::setPosNeutral(Vector3f& p1, f32 p2, Vector3f& p3, f32 p4)
  * Address:	80195708
  * Size:	0000A8
  */
-int CPlate::getSlot(Game::Creature* p1, Game::SlotChangeListener* p2, bool p3)
+int CPlate::getSlot(Creature* piki, SlotChangeListener* listener, bool p3)
 {
 	if (!p3) {
-		static_cast<Piki*>(p1)->mNavi->getOlimarData();
+		static_cast<Piki*>(piki)->mNavi->getOlimarData();
 		if (mSlotCount >= 100) {
 			return -1;
 		}
 	}
 
-	u32* ptr = &_104[static_cast<Piki*>(p1)->mHappaKind];
-	(*ptr)++;
-
-	int ret = mSlotCount;
+	_104[static_cast<Piki*>(piki)->mHappaKind]++;
+	int slot               = mSlotCount;
+	mSlots[slot].mCreature = piki;
+	mSlots[slot].mListener = listener;
 	mSlotCount++;
 
-	return ret;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	clrlwi.  r0, r6, 0x18
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_80195750
-	lwz      r3, 0x2c4(r30)
-	bl       getOlimarData__Q24Game4NaviFv
-	lwz      r0, 0xc8(r29)
-	cmpwi    r0, 0x64
-	blt      lbl_80195750
-	li       r3, -1
-	b        lbl_80195794
-
-lbl_80195750:
-	lbz      r0, 0x2b9(r30)
-	slwi     r0, r0, 2
-	add      r4, r29, r0
-	lwz      r3, 0x104(r4)
-	addi     r0, r3, 1
-	stw      r0, 0x104(r4)
-	lwz      r3, 0xc8(r29)
-	lwz      r0, 0xc0(r29)
-	slwi     r5, r3, 5
-	add      r4, r0, r5
-	stw      r30, 0x18(r4)
-	lwz      r0, 0xc0(r29)
-	add      r4, r0, r5
-	stw      r31, 0x1c(r4)
-	lwz      r4, 0xc8(r29)
-	addi     r0, r4, 1
-	stw      r0, 0xc8(r29)
-
-lbl_80195794:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return slot;
 }
 
 /*
@@ -517,62 +179,13 @@ lbl_80195794:
  * Address:	801957B0
  * Size:	0000B8
  */
-void CPlate::changeFlower(Game::Creature* creature)
+void CPlate::changeFlower(Creature* creature)
 {
 	P2ASSERTLINE(312, creature->isPiki());
-	_104[static_cast<Piki*>(creature)->mHappaKind]++;
-	_104[(static_cast<Piki*>(creature)->mHappaKind + 2) % 3]--;
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80195804
-	lis      r3, lbl_8047EFF0@ha
-	lis      r5, lbl_8047F000@ha
-	addi     r3, r3, lbl_8047EFF0@l
-	li       r4, 0x138
-	addi     r5, r5, lbl_8047F000@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80195804:
-	lbz      r5, 0x2b9(r30)
-	lis      r3, 0x55555556@ha
-	addi     r0, r3, 0x55555556@l
-	addi     r4, r5, 2
-	slwi     r5, r5, 2
-	mulhw    r3, r0, r4
-	add      r6, r31, r5
-	lwz      r5, 0x104(r6)
-	addi     r5, r5, 1
-	srwi     r0, r3, 0x1f
-	stw      r5, 0x104(r6)
-	add      r0, r3, r0
-	mulli    r0, r0, 3
-	subf     r0, r0, r4
-	slwi     r0, r0, 2
-	add      r4, r31, r0
-	lwz      r3, 0x104(r4)
-	addi     r0, r3, -1
-	stw      r0, 0x104(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int happa     = static_cast<Piki*>(creature)->mHappaKind;
+	int prevHappa = (happa + 2) % 3;
+	_104[happa]++;
+	_104[prevHappa]--;
 }
 
 /*
@@ -580,92 +193,24 @@ lbl_80195804:
  * Address:	80195868
  * Size:	000128
  */
-void CPlate::releaseSlot(Game::Creature*, int)
+void CPlate::releaseSlot(Creature* creature, int idx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	slwi     r31, r5, 5
-	mr       r29, r4
-	mr       r28, r3
-	mr       r30, r5
-	lwz      r0, 0xc0(r3)
-	add      r27, r0, r31
-	lwz      r0, 0x18(r27)
-	cmplw    r0, r29
-	beq      lbl_801958B8
-	lis      r3, lbl_8047EFF0@ha
-	lis      r5, lbl_8047F00C@ha
-	addi     r3, r3, lbl_8047EFF0@l
-	li       r4, 0x14b
-	addi     r5, r5, lbl_8047F00C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	Slot& slot = mSlots[idx];
+	JUT_ASSERTLINE(331, slot.mCreature == creature, " sorry ...\n");
+	_104[static_cast<Piki*>(creature)->mHappaKind]--;
+	slot.mCreature = nullptr;
+	mSlotCount--;
+	_BC--;
+	if (mSlotCount < 0) {
+		creature->getTypeName();
+	}
 
-lbl_801958B8:
-	lbz      r3, 0x2b9(r29)
-	li       r0, 0
-	slwi     r3, r3, 2
-	add      r4, r28, r3
-	lwz      r3, 0x104(r4)
-	addi     r3, r3, -1
-	stw      r3, 0x104(r4)
-	stw      r0, 0x18(r27)
-	lwz      r3, 0xc8(r28)
-	addi     r0, r3, -1
-	stw      r0, 0xc8(r28)
-	lwz      r3, 0xbc(r28)
-	addi     r0, r3, -1
-	stw      r0, 0xbc(r28)
-	lwz      r0, 0xc8(r28)
-	cmpwi    r0, 0
-	bge      lbl_80195910
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80195910:
-	mr       r27, r30
-	li       r29, 0
-	b        lbl_80195970
-
-lbl_8019591C:
-	lwz      r5, 0xc0(r28)
-	addi     r3, r31, 0x18
-	addi     r0, r31, 0x1c
-	mr       r4, r27
-	stwx     r29, r5, r3
-	lwz      r3, 0xc0(r28)
-	add      r5, r3, r31
-	lwz      r3, 0x38(r5)
-	stw      r3, 0x18(r5)
-	lwz      r3, 0xc0(r28)
-	add      r5, r3, r31
-	lwz      r3, 0x3c(r5)
-	stw      r3, 0x1c(r5)
-	lwz      r3, 0xc0(r28)
-	lwzx     r3, r3, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 0x20
-	addi     r27, r27, 1
-
-lbl_80195970:
-	lwz      r0, 0xc8(r28)
-	cmpw     r27, r0
-	blt      lbl_8019591C
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = idx; i < mSlotCount; i++) {
+		mSlots[i].mCreature = nullptr;
+		mSlots[i].mCreature = mSlots[i + 1].mCreature;
+		mSlots[i].mListener = mSlots[i + 1].mListener;
+		mSlots[i].mListener->inform(i);
+	}
 }
 
 /*
@@ -710,7 +255,7 @@ namespace Game {
  * Address:	801959B4
  * Size:	0004A0
  */
-void CPlate::sortByColor(Game::Creature*, int)
+void CPlate::sortByColor(Creature*, int)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1067,7 +612,6 @@ lbl_80195E34:
  * Address:	80195E54
  * Size:	0001E0
  */
-// void rearrangeSlot__Q24Game6CPlateFR10Vector3f fR10Vector3f()
 void CPlate::rearrangeSlot(Vector3f& p1, float p2, Vector3f& p3)
 {
 	/*
