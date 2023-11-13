@@ -6,8 +6,13 @@
 #include "Game/Navi.h"
 #include "Game/CPlate.h"
 #include "Game/Stickers.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/MapMgr.h"
 #include "Dolphin/rand.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
+
+#define DANGO_FALLING_ROCK_COUNT (10)
+#define DANGO_FALLING_EGG_COUNT  (1)
 
 namespace Game {
 namespace DangoMushi {
@@ -53,7 +58,7 @@ void Obj::onInit(CreatureInitArg* arg)
 	setBodyCollision(false);
 	mIsArmSwinging = false;
 	resetMapCollisionSize(false);
-	_2C3 = false;
+	mIsMoveHandEffectActive = false;
 	resetBossAppearBGM();
 	setupEffect();
 	shadowMgr->delShadow(this);
@@ -209,10 +214,13 @@ bool Obj::needShadow()
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
 	if (creature && creature->isPiki()) {
+		// if bittered, can attack anywhere
 		if (isEvent(0, EB_Bittered)) {
 			addDamage(damage, 1.0f);
 			return true;
 		}
+
+		// if not bittered, can only attack bod0 or bod1 parts
 		if (part && (part->mCurrentID == 'bod0' || part->mCurrentID == 'bod1')) {
 			createBodyDamageEffect();
 			addDamage(damage, 1.0f);
@@ -237,10 +245,13 @@ bool Obj::earthquakeCallBack(Creature*, f32) { return false; }
 void Obj::collisionCallback(CollEvent& evt)
 {
 	if (!isEvent(0, EB_Bittered) && evt.mCollidingCreature) {
+
+		// if rolling and we hit a piki, crush it.
 		if (mIsRolling && evt.mCollidingCreature->mBounceTriangle) {
-			InteractPress press(this, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
+			InteractPress press(this, C_PARMS->mGeneral.mAttackDamage(), nullptr);
 			evt.mCollidingCreature->stimulate(press);
 
+			// if we're swinging our arm and our arm hits something, do our arm effect (flick or wither)
 		} else if (mIsArmSwinging) {
 			CollPart* part = evt.mHitPart;
 			if (part && part->mCurrentID.match('haR*', '*')) {
@@ -260,7 +271,9 @@ void Obj::wallCallback(const MoveInfo& mvInfo)
 {
 	if (mIsRolling) {
 		Vector3f velocity = mRollingVelocity;
-		f32 speed         = _normalise2(velocity);
+		f32 speed         = velocity.normalise();
+
+		// if we're rolling fast enough and hit the wall at a 30 degree angle or more (90 degree = head-on), crash
 		if (speed > 100.0f && dot(velocity, mvInfo.mReflectPosition) < -0.5f) {
 			createBodyWallCrashEffect(mvInfo.mReflectPosition);
 			mFsm->transit(this, DANGOMUSHI_Turn, nullptr);
@@ -288,6 +301,7 @@ void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
 	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, FLICK_BACKWARD_ANGLE, nullptr);
+
 	if (getStateID() != DANGOMUSHI_Turn || isNoDamageCollision()) {
 		enableEvent(0, EB_Invulnerable);
 	}
@@ -351,9 +365,8 @@ void Obj::getCommonEffectPos(Vector3f& vec)
  */
 bool Obj::addShadowScale()
 {
-	f32 scale = mShadowScale;
-	if (scale < 1.0f) {
-		mShadowScale = 0.6f * sys->mDeltaTime + scale;
+	if (mShadowScale < 1.0f) {
+		mShadowScale += 0.6f * sys->mDeltaTime;
 		if (mShadowScale >= 1.0f) {
 			mShadowScale = 1.0f;
 			return true;
@@ -362,6 +375,7 @@ bool Obj::addShadowScale()
 		return true;
 	}
 
+	// we haven't hit max scale (1) yet
 	return false;
 }
 
@@ -372,10 +386,10 @@ bool Obj::addShadowScale()
  */
 void Obj::setRandTarget()
 {
-	f32 randDist = C_PARMS->mGeneral.mHomeRadius.mValue
-	             + randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
+	f32 randDist
+	    = C_PARMS->mGeneral.mHomeRadius() + randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius() - C_PARMS->mGeneral.mHomeRadius());
 
-	f32 angDiff = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
+	f32 angDiff = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 	f32 ang1    = angDiff + randWeightFloat(PI);
 	f32 angle   = ang1 + HALF_PI;
 
@@ -396,8 +410,8 @@ bool Obj::isReachedTarget() { return sqrDistanceXZ(mPosition, mTargetPosition) <
  */
 Creature* Obj::getSearchedTarget()
 {
-	return EnemyFunc::getNearestPikminOrNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
-	                                         nullptr, nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, C_PARMS->mGeneral.mViewAngle(), C_PARMS->mGeneral.mSightRadius(), nullptr, nullptr,
+	                                         nullptr);
 }
 
 /*
@@ -411,19 +425,17 @@ void Obj::rollingMove()
 	Navi* navi = naviMgr->getActiveNavi();
 	if (!navi) {
 		navi = static_cast<Navi*>(
-		    EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr));
+		    EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_PARMS->mGeneral.mSightRadius(), nullptr, nullptr, nullptr));
 	}
 	if (navi) {
 		targetPos = navi->getPosition();
 	} else {
-		targetPos.x = mPosition.x + mTargetVelocity.x;
-		targetPos.z = mPosition.z + mTargetVelocity.z;
+		targetPos = mPosition + mTargetVelocity;
 	}
-	Parms* parms = static_cast<Parms*>(mParms);
 
-	turnToTarget(targetPos, C_PROPERPARMS.mRollingTurnAccel.mValue, C_PROPERPARMS.mRollingTurnSpeed.mValue);
+	turnToTarget2(targetPos, C_PROPERPARMS.mRollingTurnAccel(), C_PROPERPARMS.mRollingTurnSpeed());
 
-	f32 rollSpeed = C_PROPERPARMS.mRollingMoveSpeed.mValue;
+	f32 rollSpeed = C_PROPERPARMS.mRollingMoveSpeed();
 	f32 x         = (f32)sin(getFaceDir());
 	f32 y         = getTargetVelocity().y;
 	f32 z         = (f32)cos(getFaceDir());
@@ -649,352 +661,81 @@ lbl_802FD358:
  */
 void Obj::createCrashEnemy()
 {
-	/*
-	stwu     r1, -0x160(r1)
-	mflr     r0
-	stw      r0, 0x164(r1)
-	stfd     f31, 0x150(r1)
-	psq_st   f31, 344(r1), 0, qr0
-	stfd     f30, 0x140(r1)
-	psq_st   f30, 328(r1), 0, qr0
-	stfd     f29, 0x130(r1)
-	psq_st   f29, 312(r1), 0, qr0
-	stfd     f28, 0x120(r1)
-	psq_st   f28, 296(r1), 0, qr0
-	stfd     f27, 0x110(r1)
-	psq_st   f27, 280(r1), 0, qr0
-	stfd     f26, 0x100(r1)
-	psq_st   f26, 264(r1), 0, qr0
-	stfd     f25, 0xf0(r1)
-	psq_st   f25, 248(r1), 0, qr0
-	stfd     f24, 0xe0(r1)
-	psq_st   f24, 232(r1), 0, qr0
-	stfd     f23, 0xd0(r1)
-	psq_st   f23, 216(r1), 0, qr0
-	stfd     f22, 0xc0(r1)
-	psq_st   f22, 200(r1), 0, qr0
-	stfd     f21, 0xb0(r1)
-	psq_st   f21, 184(r1), 0, qr0
-	stfd     f20, 0xa0(r1)
-	psq_st   f20, 168(r1), 0, qr0
-	stmw     r23, 0x7c(r1)
-	lwz      r6, lbl_8051D414@sda21(r2)
-	mr       r25, r3
-	lwz      r5, lbl_8051D418@sda21(r2)
-	lwz      r4, lbl_8051D41C@sda21(r2)
-	lwz      r0, lbl_8051D420@sda21(r2)
-	stw      r6, 0x10(r1)
-	stw      r5, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       getFallEggNum__Q34Game10DangoMushi3ObjFv
-	stw      r3, 0xc(r1)
-	addi     r30, r1, 0x10
-	addi     r29, r1, 8
-	li       r28, 0
+	int fallEnemyTypes[]  = { EnemyTypeID::EnemyID_Rock, EnemyTypeID::EnemyID_Egg };
+	int fallEnemyCounts[] = { DANGO_FALLING_ROCK_COUNT, DANGO_FALLING_EGG_COUNT };
 
-lbl_802FD434:
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	lwz      r4, 0(r30)
-	bl       getEnemyMgr__Q24Game15GeneralEnemyMgrFi
-	or.      r27, r3, r3
-	beq      lbl_802FD7EC
-	mr       r4, r25
-	mr       r5, r28
-	addi     r3, r1, 0x18
-	bl       getFallPosition__Q34Game10DangoMushi3ObjFi
-	lfs      f28, 0x18(r1)
-	lfs      f27, 0x1c(r1)
-	lfs      f26, 0x20(r1)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x5c(r1)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f23, lbl_8051D3A8@sda21(r2)
-	addi     r23, r3, sincosTable___5JMath@l
-	stw      r0, 0x58(r1)
-	li       r26, 0
-	lfd      f1, lbl_8051D3F8@sda21(r2)
-	fmr      f31, f23
-	lfd      f0, 0x58(r1)
-	fmr      f20, f23
-	lfs      f3, lbl_8051D3E4@sda21(r2)
-	fsubs    f4, f0, f1
-	lfs      f2, lbl_8051D3E0@sda21(r2)
-	lfs      f1, lbl_8051D424@sda21(r2)
-	lfs      f0, lbl_8051D428@sda21(r2)
-	fmuls    f3, f3, f4
-	lwz      r31, 0(r29)
-	lfs      f30, lbl_8051D44C@sda21(r2)
-	lfs      f21, lbl_8051D3EC@sda21(r2)
-	fdivs    f29, f3, f2
-	fadds    f25, f1, f29
-	fadds    f24, f0, f29
-	b        lbl_802FD7E4
+	// set number of falling eggs to either 1 or 0
+	fallEnemyCounts[DANGOFALL_Egg] = getFallEggNum();
 
-lbl_802FD4CC:
-	cmpwi    r26, 0
-	bne      lbl_802FD50C
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x5c(r1)
-	lfd      f3, lbl_8051D3F8@sda21(r2)
-	stw      r0, 0x58(r1)
-	lfs      f1, lbl_8051D42C@sda21(r2)
-	lfd      f2, 0x58(r1)
-	lfs      f0, lbl_8051D3E0@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f0, f1, f0
-	fmr      f22, f0
-	b        lbl_802FD6BC
+	for (int i = 0; i < (int)ARRAY_SIZE(fallEnemyTypes); i++) {
+		EnemyMgrBase* mgr = generalEnemyMgr->getEnemyMgr(fallEnemyTypes[i]);
+		if (!mgr) {
+			continue;
+		}
 
-lbl_802FD50C:
-	cmpwi    r26, 4
-	bge      lbl_802FD5A0
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x5c(r1)
-	xoris    r0, r26, 0x8000
-	lfd      f4, lbl_8051D3F8@sda21(r2)
-	stw      r4, 0x58(r1)
-	lfs      f0, lbl_8051D3B8@sda21(r2)
-	lfd      f2, 0x58(r1)
-	lfs      f1, lbl_8051D3E0@sda21(r2)
-	fsubs    f3, f2, f4
-	stw      r0, 0x64(r1)
-	lfs      f2, lbl_8051D430@sda21(r2)
-	stw      r4, 0x60(r1)
-	fmuls    f3, f0, f3
-	lfd      f0, 0x60(r1)
-	fdivs    f3, f3, f1
-	fsubs    f1, f0, f4
-	fadds    f0, f29, f3
-	fmadds   f23, f2, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x6c(r1)
-	lfd      f3, lbl_8051D3F8@sda21(r2)
-	stw      r0, 0x68(r1)
-	lfs      f2, lbl_8051D42C@sda21(r2)
-	lfd      f0, 0x68(r1)
-	lfs      f1, lbl_8051D3E0@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051D434@sda21(r2)
-	fmuls    f2, f2, f3
-	fdivs    f1, f2, f1
-	fadds    f22, f0, f1
-	b        lbl_802FD6BC
+		Vector3f fallPos = getFallPosition(i);
 
-lbl_802FD5A0:
-	cmpwi    r26, 0xa
-	bge      lbl_802FD634
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x6c(r1)
-	xoris    r0, r26, 0x8000
-	lfd      f4, lbl_8051D3F8@sda21(r2)
-	stw      r4, 0x68(r1)
-	lfs      f0, lbl_8051D424@sda21(r2)
-	lfd      f2, 0x68(r1)
-	lfs      f1, lbl_8051D3E0@sda21(r2)
-	fsubs    f3, f2, f4
-	stw      r0, 0x64(r1)
-	lfs      f2, lbl_8051D438@sda21(r2)
-	stw      r4, 0x60(r1)
-	fmuls    f3, f0, f3
-	lfd      f0, 0x60(r1)
-	fdivs    f3, f3, f1
-	fsubs    f1, f0, f4
-	fadds    f0, f25, f3
-	fmadds   f23, f2, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x5c(r1)
-	lfd      f3, lbl_8051D3F8@sda21(r2)
-	stw      r0, 0x58(r1)
-	lfs      f2, lbl_8051D42C@sda21(r2)
-	lfd      f0, 0x58(r1)
-	lfs      f1, lbl_8051D3E0@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051D43C@sda21(r2)
-	fmuls    f2, f2, f3
-	fdivs    f1, f2, f1
-	fadds    f22, f0, f1
-	b        lbl_802FD6BC
+		f32 angleOffset1 = randWeightFloat(PI);
+		f32 angleOffset2 = 0.5f + angleOffset1;
+		f32 angleOffset3 = 0.25f + angleOffset1;
+		f32 birthAngle   = 0.0f;
+		f32 dist;
 
-lbl_802FD634:
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x6c(r1)
-	xoris    r0, r26, 0x8000
-	lfd      f4, lbl_8051D3F8@sda21(r2)
-	stw      r4, 0x68(r1)
-	lfs      f0, lbl_8051D440@sda21(r2)
-	lfd      f2, 0x68(r1)
-	lfs      f1, lbl_8051D3E0@sda21(r2)
-	fsubs    f3, f2, f4
-	stw      r0, 0x64(r1)
-	lfs      f2, lbl_8051D444@sda21(r2)
-	stw      r4, 0x60(r1)
-	fmuls    f3, f0, f3
-	lfd      f0, 0x60(r1)
-	fdivs    f3, f3, f1
-	fsubs    f1, f0, f4
-	fadds    f0, f24, f3
-	fmadds   f23, f2, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x5c(r1)
-	lfd      f3, lbl_8051D3F8@sda21(r2)
-	stw      r0, 0x58(r1)
-	lfs      f2, lbl_8051D42C@sda21(r2)
-	lfd      f0, 0x58(r1)
-	lfs      f1, lbl_8051D3E0@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051D448@sda21(r2)
-	fmuls    f2, f2, f3
-	fdivs    f1, f2, f1
-	fadds    f22, f0, f1
+		for (int j = 0; j < fallEnemyCounts[i]; j++) {
+			if (j == 0) {
+				// first falling enemy goes at (fallPos.x, fallPos.y, dist + fallPos.z)
+				dist = randWeightFloat(15.0f);
 
-lbl_802FD6BC:
-	fcmpo    cr0, f23, f30
-	ble      lbl_802FD6C8
-	fsubs    f23, f23, f30
+			} else if (j < 4) {
+				// enemies (rocks) 2, 3, 4 go vaguely equally spaced around a circle, with some small randomness...
+				birthAngle = (2 * PI / 3) * (f32)j + (angleOffset1 + randWeightFloat(1.0f));
 
-lbl_802FD6C8:
-	addi     r3, r1, 0x24
-	bl       __ct__Q24Game13EnemyBirthArgFv
-	lwz      r0, 0(r30)
-	fcmpo    cr0, f23, f31
-	stw      r0, 0x4c(r1)
-	lfs      f0, 0x1fc(r25)
-	stfs     f0, 0x30(r1)
-	bge      lbl_802FD714
-	lfs      f0, lbl_8051D3F0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f23, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x68(r1)
-	lwz      r0, 0x6c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_802FD738
+				// ... at some distance between 70 and 85 units from fall position
+				dist = 70.0f + randWeightFloat(15.0f);
 
-lbl_802FD714:
-	lfs      f0, lbl_8051D3EC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f23, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x60(r1)
-	lwz      r0, 0x64(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
+			} else if (j < 10) {
+				// enemies (rocks) 5, 6, 7, 8, 9, 10 go vaguely equally spaced around a circle, with some small(er) randomness...
+				birthAngle = (PI / 3) * (f32)j + (angleOffset2 + randWeightFloat(0.5f));
 
-lbl_802FD738:
-	fmadds   f0, f22, f0, f28
-	stfs     f27, 0x28(r1)
-	fmr      f1, f23
-	fcmpo    cr0, f23, f20
-	stfs     f0, 0x24(r1)
-	bge      lbl_802FD754
-	fneg     f1, f23
+				// ... at some distance between 140 and 155 units from fall position
+				dist = 140.0f + randWeightFloat(15.0f);
 
-lbl_802FD754:
-	fmuls    f0, f1, f21
-	lwz      r0, 0(r30)
-	cmpwi    r0, 0x25
-	fctiwz   f0, f0
-	stfd     f0, 0x58(r1)
-	lwz      r0, 0x5c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r23, r0
-	lfs      f0, 4(r3)
-	fmadds   f0, f22, f0, f26
-	stfs     f0, 0x2c(r1)
-	bne      lbl_802FD790
-	li       r0, 1
-	stb      r0, 0x34(r1)
-	b        lbl_802FD798
+			} else {
+				// any additional enemies (rocks) keep going around a circle with smaller spacing (unused, max is 10 rocks)
+				birthAngle = (PI / 6) * (f32)j + (angleOffset3 + randWeightFloat(0.1f));
 
-lbl_802FD790:
-	lfs      f0, lbl_8051D3B0@sda21(r2)
-	stfs     f0, 0x50(r1)
+				// they'd also go at a larger distance from fall position (220-235 units)
+				dist = 220.0f + randWeightFloat(15.0f);
+			}
 
-lbl_802FD798:
-	mr       r3, r27
-	addi     r4, r1, 0x24
-	lwz      r12, 0(r27)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	or.      r24, r3, r3
-	beq      lbl_802FD7E0
-	li       r4, 0
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	lwz      r0, 0x1e0(r24)
-	lfs      f0, lbl_8051D450@sda21(r2)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r24)
-	lwz      r3, 0xc0(r24)
-	stfs     f0, 0x3ac(r3)
-	lwz      r3, 0xc0(r24)
-	stfs     f0, 0x3d4(r3)
+			if (birthAngle > TAU) {
+				birthAngle -= TAU;
+			}
 
-lbl_802FD7E0:
-	addi     r26, r26, 1
+			EnemyBirthArg birthArg;
+			birthArg.mTypeID     = (EnemyTypeID::EEnemyTypeID)fallEnemyTypes[i];
+			birthArg.mFaceDir    = mFaceDir;
+			birthArg.mPosition.x = dist * sinf(birthAngle) + fallPos.x;
+			birthArg.mPosition.y = fallPos.y;
+			birthArg.mPosition.z = dist * cosf(birthAngle) + fallPos.z;
 
-lbl_802FD7E4:
-	cmpw     r26, r31
-	blt      lbl_802FD4CC
+			if (fallEnemyTypes[i] == EnemyTypeID::EnemyID_Egg) {
+				birthArg.mTekiBirthType = EDG_Normal; // eggs fall on approach by piki or navi, rocks just fall with no condition
+			} else {
+				birthArg.mExistenceLength = 30.0f; // rocks have an "existence length" instead
+			}
 
-lbl_802FD7EC:
-	addi     r28, r28, 1
-	addi     r29, r29, 4
-	cmpwi    r28, 2
-	addi     r30, r30, 4
-	blt      lbl_802FD434
-	psq_l    f31, 344(r1), 0, qr0
-	lfd      f31, 0x150(r1)
-	psq_l    f30, 328(r1), 0, qr0
-	lfd      f30, 0x140(r1)
-	psq_l    f29, 312(r1), 0, qr0
-	lfd      f29, 0x130(r1)
-	psq_l    f28, 296(r1), 0, qr0
-	lfd      f28, 0x120(r1)
-	psq_l    f27, 280(r1), 0, qr0
-	lfd      f27, 0x110(r1)
-	psq_l    f26, 264(r1), 0, qr0
-	lfd      f26, 0x100(r1)
-	psq_l    f25, 248(r1), 0, qr0
-	lfd      f25, 0xf0(r1)
-	psq_l    f24, 232(r1), 0, qr0
-	lfd      f24, 0xe0(r1)
-	psq_l    f23, 216(r1), 0, qr0
-	lfd      f23, 0xd0(r1)
-	psq_l    f22, 200(r1), 0, qr0
-	lfd      f22, 0xc0(r1)
-	psq_l    f21, 184(r1), 0, qr0
-	lfd      f21, 0xb0(r1)
-	psq_l    f20, 168(r1), 0, qr0
-	lfd      f20, 0xa0(r1)
-	lmw      r23, 0x7c(r1)
-	lwz      r0, 0x164(r1)
-	mtlr     r0
-	addi     r1, r1, 0x160
-	blr
-	*/
+			EnemyBase* enemy = mgr->birth(birthArg);
+			if (enemy) {
+				enemy->init(nullptr);
+				enemy->disableEvent(0, EB_Cullable); // rocks/eggs are always loaded to go off, even if you're not watching
+
+				// majorly increase trigger distance (for rocks, these are 75 and 150 by default; for eggs, 30 and 700)
+				CG_PARMS(enemy)->mGeneral.mPrivateRadius() = 1000.0f;
+				CG_PARMS(enemy)->mGeneral.mSightRadius()   = 1000.0f;
+			}
+		}
+	}
 }
 
 /*
@@ -1005,15 +746,16 @@ lbl_802FD7EC:
 int Obj::getFallEggNum()
 {
 	f32 pikiCount = (f32)pikiMgr->mActiveCount;
-	f32 var       = 0.0f;
+	f32 weight    = 0.0f;
 
 	Navi* navi = naviMgr->getActiveNavi();
 	if (navi) {
-		var = (f32)navi->mCPlateMgr->_BC;
+		weight = (f32)navi->mCPlateMgr->_BC; // what even is this
 	}
 
-	if ((pikiCount > 0.0f) && (randWeightFloat(1.0f) < (var / pikiCount))) {
-		return 1;
+	// the closer mCPlateMgr->_BC is to the active piki count, the more likely an egg will drop
+	if ((pikiCount > 0.0f) && (randWeightFloat(1.0f) < (weight / pikiCount))) {
+		return DANGO_FALLING_EGG_COUNT;
 	}
 
 	return 0;
@@ -1024,15 +766,20 @@ int Obj::getFallEggNum()
  * Address:	802FD960
  * Size:	000104
  */
-Vector3f Obj::getFallPosition(int p1)
+Vector3f Obj::getFallPosition(int fallEnemyType)
 {
+	// eggs always fall at crab's home position
 	Vector3f fallPos = mHomePosition;
 
-	if (p1 == 0) {
+	if (fallEnemyType == DANGOFALL_Rock) {
+
+		// if possible, spawn rocks centred at active navi's position
 		Navi* navi = naviMgr->getActiveNavi();
 		if (navi) {
 			fallPos = navi->getPosition();
+
 		} else {
+			// if we don't have an active navi, spawn them centred at the nearest pikmin or navi within 500 units, "in front" of crab
 			Creature* target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, 500.0f, nullptr, nullptr, nullptr);
 			if (target) {
 				fallPos = target->getPosition();
@@ -1050,6 +797,7 @@ Vector3f Obj::getFallPosition(int p1)
  */
 void Obj::setupCollision()
 {
+	// set up arm collision
 	CollPart* part = mCollTree->getCollPart('haR0');
 	if (part) {
 		part->makeTubeTree();
@@ -1063,6 +811,7 @@ void Obj::setupCollision()
  */
 void Obj::setBodyCollision(bool check)
 {
+	// these are the attackable parts
 	u32 collTags[2] = { 'bod0', 'bod1' };
 
 	for (int i = 0; i < 2; i++) {
@@ -1076,10 +825,10 @@ void Obj::setBodyCollision(bool check)
 
 	if (check && mStuckPikminCount != 0 && !(mHealth <= 0.0f)) {
 		f32 angle = PI + mFaceDir;
-		Vector3f vec;
-		vec.x = 150.0f * sinf(mFaceDir);
-		vec.y = 150.0f;
-		vec.z = 150.0f * cosf(mFaceDir);
+		Vector3f effectPos;
+		effectPos.x = 150.0f * sinf(mFaceDir);
+		effectPos.y = 150.0f;
+		effectPos.z = 150.0f * cosf(mFaceDir);
 
 		Stickers stickers(this);
 		Iterator<Creature> iter(&stickers);
@@ -1087,12 +836,11 @@ void Obj::setBodyCollision(bool check)
 		{
 			Creature* stuck = *iter;
 			if (stuck->isPiki()) {
-				int pikiColor = static_cast<Piki*>(stuck)->mPikiKind;
-				if (pikiColor == Purple) {
-					InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback.mValue, C_PARMS->mGeneral.mShakeDamage.mValue, angle);
+				if (static_cast<Piki*>(stuck)->getKind() == Purple) {
+					InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback(), C_PARMS->mGeneral.mShakeDamage(), angle);
 					stuck->stimulate(flick);
 				} else {
-					InteractHanaChirashi wilt(this, C_PARMS->mGeneral.mAttackDamage.mValue, &vec);
+					InteractHanaChirashi wilt(this, C_PARMS->mGeneral.mAttackDamage(), &effectPos);
 					stuck->stimulate(wilt);
 				}
 			}
@@ -1105,199 +853,38 @@ void Obj::setBodyCollision(bool check)
  * Address:	802FDEE0
  * Size:	0002AC
  */
-void Obj::flickHandCollision(Creature*)
+void Obj::flickHandCollision(Creature* target)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	lwz      r12, 0(r4)
-	mr       r30, r3
-	mr       r31, r4
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f31, 8(r1)
-	lwz      r12, 0(r31)
-	lfs      f30, 0x10(r1)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FE00C
-	lfs      f1, 0x18c(r30)
-	lfs      f0, 0x194(r30)
-	fsubs    f31, f31, f1
-	lfs      f1, lbl_8051D3A8@sda21(r2)
-	fsubs    f30, f30, f0
-	fmadds   f0, f31, f31, f1
-	fmuls    f2, f30, f30
-	fadds    f2, f2, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_802FDF7C
-	ble      lbl_802FDF80
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_802FDF80
+	Vector3f targetPos = target->getPosition();
+	if (target->isNavi()) {
+		targetPos -= mPosition;
+		targetPos.y = 0.0f;
+		targetPos.normalise();
+		targetPos.y = 1.0f;
+		targetPos *= 300.0f;
 
-lbl_802FDF7C:
-	fmr      f2, f1
+		InteractHanaChirashi wither(this, C_PARMS->mGeneral.mAttackDamage(), &targetPos);
+		target->stimulate(wither);
+		return;
+	}
 
-lbl_802FDF80:
-	lfs      f0, lbl_8051D3A8@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_802FDF9C
-	lfs      f0, lbl_8051D3B8@sda21(r2)
-	fdivs    f0, f0, f2
-	fmuls    f31, f31, f0
-	fmuls    f30, f30, f0
+	if (target->isPiki()) {
+		if (static_cast<Piki*>(target)->getKind() == Purple) {
+			f32 angle = JMAAtan2Radian(mPosition.x - targetPos.x, mPosition.z - targetPos.z);
+			InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback(), C_PARMS->mGeneral.mShakeDamage(), angle);
+			target->stimulate(flick);
+			return;
+		}
 
-lbl_802FDF9C:
-	lwz      r5, 0xc0(r30)
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lfs      f0, lbl_8051D464@sda21(r2)
-	lis      r3, __vt__Q24Game12InteractWind@ha
-	lfs      f1, 0x604(r5)
-	addi     r0, r4, __vt__Q24Game11Interaction@l
-	lfs      f2, lbl_8051D3B8@sda21(r2)
-	fmuls    f31, f31, f0
-	stw      r0, 0x40(r1)
-	fmuls    f30, f30, f0
-	fmuls    f2, f2, f0
-	addi     r0, r3, __vt__Q24Game12InteractWind@l
-	lis      r3, __vt__Q24Game20InteractHanaChirashi@ha
-	stw      r0, 0x40(r1)
-	addi     r0, r3, __vt__Q24Game20InteractHanaChirashi@l
-	mr       r3, r31
-	stw      r30, 0x44(r1)
-	addi     r4, r1, 0x40
-	stfs     f1, 0x48(r1)
-	stfs     f31, 0x4c(r1)
-	stfs     f2, 0x50(r1)
-	stfs     f30, 0x54(r1)
-	stw      r0, 0x40(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802FE164
+		targetPos -= mPosition;
+		targetPos.y = 0.0f;
+		targetPos.normalise();
+		targetPos.y = 1.0f;
+		targetPos *= 300.0f;
 
-lbl_802FE00C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FE164
-	lbz      r0, 0x2b8(r31)
-	cmpwi    r0, 3
-	bne      lbl_802FE0A0
-	lfs      f1, 0x18c(r30)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x194(r30)
-	addi     r3, r3, atanTable___5JMath@l
-	fsubs    f1, f1, f31
-	fsubs    f2, f0, f30
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	lwz      r6, 0xc0(r30)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game13InteractFlick@ha
-	mr       r3, r31
-	lfs      f2, 0x4ec(r6)
-	addi     r5, r5, __vt__Q24Game11Interaction@l
-	lfs      f0, 0x4c4(r6)
-	addi     r0, r4, __vt__Q24Game13InteractFlick@l
-	addi     r4, r1, 0x2c
-	stw      r5, 0x2c(r1)
-	stw      r30, 0x30(r1)
-	stw      r0, 0x2c(r1)
-	stfs     f0, 0x34(r1)
-	stfs     f2, 0x38(r1)
-	stfs     f1, 0x3c(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802FE164
-
-lbl_802FE0A0:
-	lfs      f1, 0x18c(r30)
-	lfs      f0, 0x194(r30)
-	fsubs    f31, f31, f1
-	lfs      f1, lbl_8051D3A8@sda21(r2)
-	fsubs    f30, f30, f0
-	fmadds   f0, f31, f31, f1
-	fmuls    f2, f30, f30
-	fadds    f2, f2, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_802FE0D8
-	ble      lbl_802FE0DC
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_802FE0DC
-
-lbl_802FE0D8:
-	fmr      f2, f1
-
-lbl_802FE0DC:
-	lfs      f0, lbl_8051D3A8@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_802FE0F8
-	lfs      f0, lbl_8051D3B8@sda21(r2)
-	fdivs    f0, f0, f2
-	fmuls    f31, f31, f0
-	fmuls    f30, f30, f0
-
-lbl_802FE0F8:
-	lwz      r5, 0xc0(r30)
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lfs      f0, lbl_8051D464@sda21(r2)
-	lis      r3, __vt__Q24Game12InteractWind@ha
-	lfs      f1, 0x604(r5)
-	addi     r0, r4, __vt__Q24Game11Interaction@l
-	lfs      f2, lbl_8051D3B8@sda21(r2)
-	fmuls    f31, f31, f0
-	stw      r0, 0x14(r1)
-	fmuls    f30, f30, f0
-	fmuls    f2, f2, f0
-	addi     r0, r3, __vt__Q24Game12InteractWind@l
-	lis      r3, __vt__Q24Game20InteractHanaChirashi@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r3, __vt__Q24Game20InteractHanaChirashi@l
-	mr       r3, r31
-	stw      r30, 0x18(r1)
-	addi     r4, r1, 0x14
-	stfs     f1, 0x1c(r1)
-	stfs     f31, 0x20(r1)
-	stfs     f2, 0x24(r1)
-	stfs     f30, 0x28(r1)
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802FE164:
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+		InteractHanaChirashi wither(this, C_PARMS->mGeneral.mAttackDamage(), &targetPos);
+		target->stimulate(wither);
+	}
 }
 
 /*
@@ -1323,9 +910,9 @@ void Obj::resetMapCollisionSize(bool isBall)
 {
 	mIsBall = isBall;
 	if (isBall) {
-		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
+		C_PARMS->mGeneral.mHeightOffsetFromFloor() = 60.0f;
 	} else {
-		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 120.0f;
+		C_PARMS->mGeneral.mHeightOffsetFromFloor() = 120.0f;
 	}
 }
 
@@ -1337,21 +924,21 @@ void Obj::resetMapCollisionSize(bool isBall)
 void Obj::updateMapCollisionSize()
 {
 	if (mIsBall) {
-		f32 heightOff = C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue;
+		f32 heightOff = C_PARMS->mGeneral.mHeightOffsetFromFloor();
 		if (heightOff > 60.0f) {
-			C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = -((250.0f * sys->mDeltaTime) - heightOff);
-			heightOff                                       = C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue;
+			C_PARMS->mGeneral.mHeightOffsetFromFloor() = -((250.0f * sys->mDeltaTime) - heightOff);
+			heightOff                                  = C_PARMS->mGeneral.mHeightOffsetFromFloor();
 			if (heightOff < 60.0f) {
-				C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
+				C_PARMS->mGeneral.mHeightOffsetFromFloor() = 60.0f;
 			}
 		}
 	} else {
-		f32 heightOff = C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue;
+		f32 heightOff = C_PARMS->mGeneral.mHeightOffsetFromFloor();
 		if (heightOff < 120.0f) {
-			C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = ((250.0f * sys->mDeltaTime) + heightOff);
-			heightOff                                       = C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue;
+			C_PARMS->mGeneral.mHeightOffsetFromFloor() = ((250.0f * sys->mDeltaTime) + heightOff);
+			heightOff                                  = C_PARMS->mGeneral.mHeightOffsetFromFloor();
 			if (heightOff > 120.0f) {
-				C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 120.0f;
+				C_PARMS->mGeneral.mHeightOffsetFromFloor() = 120.0f;
 			}
 		}
 	}
@@ -1364,6 +951,44 @@ void Obj::updateMapCollisionSize()
  */
 bool Obj::flickHandCollision()
 {
+	if (mIsArmSwinging) {
+		Matrixf* armMtx = mModel->getJoint("hand_R")->getWorldMatrix();
+
+		Vector3f armX, armY, armZ, armPos;
+
+		f32 xWeights[] = { -15.0f, 70.0f };
+		f32 yWeights[] = { -20.0f, -40.0f };
+		f32 zWeights[] = { 15.0f, 15.0f };
+
+		armMtx->getBasis(0, armX);      // f31, f30, f29
+		armMtx->getBasis(1, armY);      // f28, f27, f26
+		armMtx->getBasis(2, armZ);      // f25, f24, f23
+		armMtx->getTranslation(armPos); // f22, f21, f20
+
+		armX.normalise();
+		armY.normalise();
+		armZ.normalise();
+
+		for (int i = 0; i < 2; i++) {
+			Vector3f xVec = armX * xWeights[i];
+			Vector3f yVec = armY * yWeights[i];
+			Vector3f zVec = armZ * zWeights[i];
+			armPos += xVec;
+			armPos += yVec;
+			armPos += zVec;
+
+			CurrTriInfo info;
+			info.mPosition = armPos;
+			info._0C       = 0;
+			mapMgr->getCurrTri(info);
+
+			if (!info.mTriangle || info.mMinY > armPos.y) {
+				return true;
+			}
+		}
+	}
+
+	return false;
 	/*
 	stwu     r1, -0x160(r1)
 	mflr     r0
@@ -1863,72 +1488,18 @@ void Obj::createBodyDamageEffect()
  */
 void Obj::createBodyWallCrashEffect(Vector3f vec)
 {
-	f32 x = vec.x;
-	f32 z = vec.z;
-	x *= 60.0f;
-	z *= 60.0f;
+	Vector3f weightVec = vec;
+	weightVec *= 60.0f;
 
 	Vector3f fxPos = mPosition;
-	fxPos.x -= x;
-	fxPos.z -= z;
+	fxPos -= weightVec;
+	fxPos.y = mPosition.y;
+
 	efx::TDangoCrash crashFX;
 	efx::ArgDir fxArg(fxPos);
 
 	fxArg.mAngle = vec;
 	crashFX.create(&fxArg);
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r5, __vt__Q23efx3Arg@ha
-	lfs      f1, 0(r4)
-	stw      r0, 0x44(r1)
-	lis      r6, __vt__Q23efx5TBase@ha
-	lfs      f0, lbl_8051D3AC@sda21(r2)
-	addi     r0, r6, __vt__Q23efx5TBase@l
-	lfs      f2, 8(r4)
-	lis      r6, __vt__Q23efx11TDangoCrash@ha
-	fmuls    f1, f1, f0
-	lfs      f3, 0x18c(r3)
-	fmuls    f2, f2, f0
-	lfs      f4, 0x194(r3)
-	lfs      f5, 0x190(r3)
-	addi     r5, r5, __vt__Q23efx3Arg@l
-	fsubs    f3, f3, f1
-	li       r7, 0
-	fsubs    f4, f4, f2
-	lfs      f2, 0(r4)
-	lfs      f1, 4(r4)
-	li       r9, 0x2a3
-	lfs      f0, 8(r4)
-	li       r8, 0x2a4
-	lis      r10, __vt__Q23efx8TSimple2@ha
-	stw      r0, 8(r1)
-	addi     r0, r10, __vt__Q23efx8TSimple2@l
-	lis      r3, __vt__Q23efx6ArgDir@ha
-	stw      r0, 8(r1)
-	addi     r6, r6, __vt__Q23efx11TDangoCrash@l
-	addi     r0, r3, __vt__Q23efx6ArgDir@l
-	addi     r3, r1, 8
-	stw      r5, 0x18(r1)
-	addi     r4, r1, 0x18
-	sth      r9, 0xc(r1)
-	sth      r8, 0xe(r1)
-	stw      r7, 0x10(r1)
-	stw      r7, 0x14(r1)
-	stw      r6, 8(r1)
-	stfs     f3, 0x1c(r1)
-	stfs     f5, 0x20(r1)
-	stfs     f4, 0x24(r1)
-	stw      r0, 0x18(r1)
-	stfs     f2, 0x28(r1)
-	stfs     f1, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	bl       create__Q23efx11TDangoCrashFPQ23efx3Arg
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -1961,7 +1532,30 @@ void Obj::createMoveHandEffect()
 {
 	int state = getStateID();
 	if (state == DANGOMUSHI_Move || state == DANGOMUSHI_Attack) {
-		Matrixf* mf = mModel->getJoint("hand_R")->getWorldMatrix();
+		Matrixf* armMtx = mModel->getJoint("hand_R")->getWorldMatrix();
+		Vector3f armX, armY, armPos;
+		armMtx->getBasis(0, armX);
+		armMtx->getBasis(1, armY);
+		armMtx->getTranslation(armPos);
+
+		armX.normalise();
+		armY.normalise();
+
+		armX *= 42.5f;
+		armPos += armX;
+		armY *= -12.5f;
+		armPos += armY;
+
+		f32 yDiff = armPos.y - mapMgr->getMinY(armPos);
+		if (mIsMoveHandEffectActive) {
+			if (yDiff > 30.0f) {
+				mIsMoveHandEffectActive = false;
+			}
+		} else if (yDiff < 25.0f) {
+			mIsMoveHandEffectActive = true;
+			armPos.y                = mPosition.y;
+			createBounceEffect(armPos, 0.68f);
+		}
 	}
 	/*
 	stwu     r1, -0x20(r1)

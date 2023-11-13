@@ -34,6 +34,41 @@ enum StateID {
 	DANGOMUSHI_StateCount, // 9
 };
 
+enum FallEnemyTypes {
+	DANGOFALL_Rock = 0,
+	DANGOFALL_Egg  = 1,
+};
+
+struct Parms : public EnemyParmsBase {
+	struct ProperParms : public Parameters {
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , mRollingMoveSpeed(this, 'fp01', "ローリング移動速度", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
+		    , mRollingTurnAccel(this, 'fp02', "ローリング回転速度率", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
+		    , mRollingTurnSpeed(this, 'fp03', "ローリング回転最大速度", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
+		    , mFlipTime(this, 'fp10', "ひっくり返り時間", 7.5f, 0.0f, 30.0f)                 // 'flip time'
+		{
+		}
+
+		Parm<f32> mRollingMoveSpeed; // _804
+		Parm<f32> mRollingTurnAccel; // _82C
+		Parm<f32> mRollingTurnSpeed; // _854
+		Parm<f32> mFlipTime;         // _87C
+	};
+
+	Parms() { }
+
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		mGeneral.read(stream);
+		mProperParms.read(stream);
+	}
+
+	// _00-_7F8	= EnemyParmsBase
+	ProperParms mProperParms; // _7F8
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -114,7 +149,7 @@ struct Obj : public EnemyBase {
 	bool mIsRolling;                        // _2C0
 	bool mIsArmSwinging;                    // _2C1
 	bool mIsBall;                           // _2C2, set by StateAttack::init, used for map collision
-	bool _2C3;                              // _2C3, only used by createMoveHandEffect
+	bool mIsMoveHandEffectActive;           // _2C3
 	f32 mStateTimer;                        // _2C4, timer recycled by each state
 	f32 mShadowScale;                       // _2C8
 	StateID mNextState;                     // _2CC
@@ -151,36 +186,6 @@ struct Mgr : public EnemyMgrBase {
 	// _00-_44	= EnemyMgrBase
 	Sys::MatTevRegAnimation* mTevRegAnimation; // _44
 	Obj* mObj;                                 // _48, array of Objs
-};
-
-struct Parms : public EnemyParmsBase {
-	struct ProperParms : public Parameters {
-		inline ProperParms()
-		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mRollingMoveSpeed(this, 'fp01', "ローリング移動速度", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
-		    , mRollingTurnAccel(this, 'fp02', "ローリング回転速度率", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
-		    , mRollingTurnSpeed(this, 'fp03', "ローリング回転最大速度", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
-		    , mFlipTime(this, 'fp10', "ひっくり返り時間", 7.5f, 0.0f, 30.0f)                 // 'flip time'
-		{
-		}
-
-		Parm<f32> mRollingMoveSpeed; // _804
-		Parm<f32> mRollingTurnAccel; // _82C
-		Parm<f32> mRollingTurnSpeed; // _854
-		Parm<f32> mFlipTime;         // _87C
-	};
-
-	Parms() { }
-
-	virtual void read(Stream& stream) // _08 (weak)
-	{
-		CreatureParms::read(stream);
-		mGeneral.read(stream);
-		mProperParms.read(stream);
-	}
-
-	// _00-_7F8	= EnemyParmsBase
-	ProperParms mProperParms; // _7F8
 };
 
 enum AnimID {

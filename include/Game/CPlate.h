@@ -32,9 +32,9 @@ struct CPlate : public Container<Creature> {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Navi::Parms")
-		    , p000(this, 'p000', "先頭オフセット", 17.5f, 0.0f, 100.0f)
-		    , p001(this, 'p001', "長さリミット", 130.0f, 10.0f, 1000.0f)
-		    , p002(this, 'p002', "ポジションの大きさ(最大)", 6.0f, 1.0f, 50.0f)
+		    , p000(this, 'p000', "先頭オフセット", 17.5f, 0.0f, 100.0f)         // 'starting offset'
+		    , p001(this, 'p001', "長さリミット", 130.0f, 10.0f, 1000.0f)        // 'length limit'
+		    , p002(this, 'p002', "ポジションの大きさ(最大)", 6.0f, 1.0f, 50.0f) // 'position size (max)'
 		{
 		}
 		Parm<f32> p000; // _0C
