@@ -14,7 +14,7 @@ namespace Screen {
 CallBack_CounterDay::CallBack_CounterDay(char** p1, u16 p2, JKRArchive* archive)
     : CallBack_CounterRV(p1, p2, 2, archive)
 {
-	_A8 = nullptr;
+	mDayPic = nullptr;
 }
 
 /*
@@ -24,11 +24,11 @@ CallBack_CounterDay::CallBack_CounterDay(char** p1, u16 p2, JKRArchive* archive)
  */
 void CallBack_CounterDay::init(J2DScreen* mgr, u64 tag1, u64 tag2, u64 pictureTag, u32* ptr, bool p7)
 {
-	_A8 = (J2DPicture*)TagSearch(mgr, pictureTag);
+	mDayPic = (J2DPicture*)TagSearch(mgr, pictureTag);
 
-	if (_A8) {
-		_A8->hide();
-		_A8->setBasePosition(J2DPOS_Center);
+	if (mDayPic) {
+		mDayPic->hide();
+		mDayPic->setBasePosition(J2DPOS_Center);
 	}
 
 	CallBack_CounterRV::init(mgr, tag1, tag2, 0, ptr, true);
@@ -65,23 +65,23 @@ void CallBack_CounterDay::setValue()
 	}
 
 	J2DPicture* picture = mCounters[0]->mPicture;
-	_A8->changeTexture(picture->getTexture(0)->mTexInfo, 0);
+	mDayPic->changeTexture(picture->getTexture(0)->mTexInfo, 0);
 
 	if (mIsHidden) {
-		_A8->hide();
+		mDayPic->hide();
 		picture->hide();
 
 	} else if (mInitialDisplayValue >= 10) {
-		_A8->hide();
+		mDayPic->hide();
 		picture->show();
 
 	} else {
-		_A8->show();
+		mDayPic->show();
 		picture->hide();
 
 		JGeometry::TVec2f scale(picture->mScale);
-		_A8->setBasePosition(J2DPOS_Center);
-		_A8->updateScale(scale.x, scale.y);
+		mDayPic->setBasePosition(J2DPOS_Center);
+		mDayPic->updateScale(scale.x, scale.y);
 	}
 }
 
@@ -109,7 +109,7 @@ void CallBack_CounterDay::hide()
 	for (int i = 0; i < mCounterLimit; i++) {
 		mCounters[i]->mPicture->hide();
 	}
-	_A8->hide();
+	mDayPic->hide();
 }
 
 /*

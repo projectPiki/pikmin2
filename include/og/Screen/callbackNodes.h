@@ -160,7 +160,7 @@ struct CallBack_CounterDay : public CallBack_CounterRV {
 
 	// _00     = VTBL
 	// _00-_A8 = CallBack_CounterRV
-	J2DPicture* _A8; // _A8
+	J2DPicture* mDayPic; // _A8
 };
 
 // Size: 0xCC
