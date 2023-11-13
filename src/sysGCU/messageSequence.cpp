@@ -2,6 +2,7 @@
 #include "P2JME/TSequenceProcessor.h"
 #include "P2JME/P2JME.h"
 #include "P2Macros.h"
+#include "SoundID.h"
 #include "System.h"
 #include "PSSystem/PSSystemIF.h"
 
@@ -386,7 +387,7 @@ void TSequenceProcessor::resetAbtnWait()
  * Address:	80437E08
  * Size:	00002C
  */
-void TSequenceProcessor::doResetAbtnWaitSE() { PSSystem::spSysIF->playSystemSe(0x1800, 0); }
+void TSequenceProcessor::doResetAbtnWaitSE() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0); }
 
 /*
  * --INFO--
