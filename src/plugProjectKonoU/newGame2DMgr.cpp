@@ -1863,12 +1863,12 @@ u32 Game2DMgr::check_VsSelect(int& ret1, int& ret2, int& ret3)
 
 	Morimura::DispMemberVsSelect* disp = reinterpret_cast<Morimura::DispMemberVsSelect*>(mScreenMgr->getDispMember());
 
-	if (disp->_34 == 3) {
+	if (disp->mState == 3) {
 		ret1 = disp->mSelectedStageIndex;
 		ret2 = disp->mOlimarHandicap;
 		ret3 = disp->mLouieHandicap;
 	}
-	return disp->_34;
+	return disp->mState;
 }
 
 /*

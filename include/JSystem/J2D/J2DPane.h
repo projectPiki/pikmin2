@@ -300,6 +300,12 @@ struct J2DPane {
 
 	inline f32 getOffsetY() { return mOffset.y; }
 
+	inline void setAngleY(f32 a)
+	{
+		mAngleY = a;
+		calcMtx();
+	}
+
 	inline void setAngle(f32 a)
 	{
 		mAngleZ = a;

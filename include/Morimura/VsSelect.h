@@ -8,7 +8,11 @@
 #include "Morimura/Window.h"
 #include "Morimura/mrUtil.h"
 #include "Morimura/ScrollList.h"
+#include "PSSystem/PSSystemIF.h"
 #include "trig.h"
+
+// This should match the number of stages in the stages.txt
+#define VS_Stage_Count 10
 
 namespace Game {
 struct Vs2D_TitleInfo;
@@ -40,28 +44,40 @@ struct TVsPiki {
 };
 
 struct TVsSelectOnyon {
+	TVsSelectOnyon(J2DPane* pane1, J2DPane* pane2)
+	{
+		mNaviPane  = static_cast<J2DPicture*>(pane1);
+		mOnyonPane = static_cast<J2DPicture*>(pane2);
+		mOnyonPane->setBasePosition(J2DPOS_Center);
+	}
 
 	void reset();
 	void posUpdate(f32);
 	f32 getAngDist();
 	void draw();
 
-	u8 _00[0x8];               // _00, unknown
-	J2DPane* mOnyonPane;       // _08
-	Vector2f mCurrentPosition; // _0C
+	f32 _00;                   // _00
+	J2DPicture* mNaviPane;     // _04
+	J2DPicture* mOnyonPane;    // _08
+	Vector2f mCurrentPosition; // _0C TODO: guessing these names for the most part
 	Vector2f mGoalPosition;    // _14
 	Vector2f mVelocity;        // _1C
 	Vector2f mAngleDef;        // _24
 	f32 mGoalAngle;            // _2C
-	u8 _30[0x4];               // _30, unknown
+	f32 _30;                   // _30
 	f32 mAngleTimer;           // _34
 	int mCounter;              // _38
-	u8 _3C[0x4];               // _3C, unknown
+	bool _3C;                  // _3C
 };
 
 struct TVsSelectSlotIndex {
-	void getIndexInfo(int);
+	static TVsSelectSlotIndex* getIndexInfo(int);
+
+	int mIndex;
+	int mTagID;
+	u64 mMesg;
 };
+extern TVsSelectSlotIndex slotIDInfo[12];
 
 struct DispMemberVsSelect : public og::Screen::DispMemberBase {
 	DispMemberVsSelect()
@@ -77,7 +93,7 @@ struct DispMemberVsSelect : public og::Screen::DispMemberBase {
 		mBlueWinCount         = 0;
 		mVsWinner             = -1;
 		mStageCount           = 0;
-		_34                   = 0;
+		mState                = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberVsSelect); } // _08
@@ -97,7 +113,7 @@ struct DispMemberVsSelect : public og::Screen::DispMemberBase {
 	int mBlueWinCount;                                             // _28
 	int mVsWinner;                                                 // _2C
 	int mStageCount;                                               // _30
-	int _34;                                                       // _34
+	int mState;                                                    // _34
 };
 
 struct TVsSelectCBWinNum : public og::Screen::CallBack_CounterDay {
@@ -114,14 +130,33 @@ struct TVsSelectCBWinNum : public og::Screen::CallBack_CounterDay {
 };
 
 struct TVsSelectExplanationWindow : public TSelectExplanationWindow {
+	TVsSelectExplanationWindow(JKRArchive* arc, int anims)
+	    : TSelectExplanationWindow(arc, anims)
+	{
+	}
 	virtual void create(const char*, u32); // _08
 	virtual void screenScaleUp();          // _14
+
+	inline void openClose()
+	{
+		if (0.0f <= mScaleGrowRate) {
+			openWindow();
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+		} else {
+			closeWindow();
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+		}
+	}
 
 	// _00     = VTBL
 	// _00-_30 = TSelectExplanationWindow
 };
 
 struct TVsSelectIndPane : public TIndPane {
+	TVsSelectIndPane(const char* name, f32 x, f32 y)
+	    : TIndPane(name, x, y)
+	{
+	}
 	virtual ~TVsSelectIndPane() { } // _08 (weak)
 	virtual void draw();            // _10
 
@@ -130,14 +165,23 @@ struct TVsSelectIndPane : public TIndPane {
 };
 
 struct TVsSelectListScreen : public TListScreen {
-	virtual void create(const char*, u32); // _08 (weak)
-	virtual void update();                 // _0C (weak)
+	TVsSelectListScreen(JKRArchive* arc, int anims)
+	    : TListScreen(arc, anims)
+	{
+	}
+	virtual void create(const char* path, u32 flags) { TScreenBase::create(path, flags); } // _08 (weak)
+	virtual void update() { mScreenObj->update(); }                                        // _0C (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
 };
 
 struct TVsSelectScreen : public TScreenBase {
+	TVsSelectScreen(JKRArchive* arc, int anims)
+	    : TScreenBase(arc, anims)
+	{
+		mCallbackScissor = nullptr;
+	}
 	virtual void create(const char*, u32); // _08
 
 	// _00     = VTBL
@@ -183,7 +227,7 @@ struct TVsSelect : public TScrollList {
 	virtual u64 getNameID(int);                                                                                    // _8C
 	virtual void setShortenIndex(int, int, bool);                                                                  // _94
 
-	void getCourseID(int);
+	int getCourseID(int);
 	void doZoom();
 	void doMoveOnyon();
 	void doScreenEffect();
@@ -202,9 +246,20 @@ struct TVsSelect : public TScrollList {
 	void reset();
 
 	static bool mCanCancel;
-	static f32 mDemoScale; // 1.0f
-	static f32 mAngUp;     // 0.03f
-	static f32 mMoveSpeed; // 25.0f
+	static bool mLoopDrum;
+	static bool mForceDemoStart;
+	static f32 mDemoScale;     // 1.0f
+	static f32 mAngUp;         // 0.03f
+	static f32 mTestVal;       // 10.0f
+	static f32 mMoveSpeed;     // 25.0f
+	static f32 mAngRate;       // 0.2f
+	static f32 mIndShuki;      // 0.3f
+	static f32 mIndVal;        // 0.05f
+	static f32 mZoomFrameMax;  // 25.0f
+	static f32 mDemoScaleMax;  // 2.2f
+	static f32 mDemoOffsetMax; // 290.0f
+	static f32 mWindowScale;   // 1.0f
+	static f32 mFireAlphaRate; // 0.5f
 	static JKRHeap* mDebugHeap;
 	static JKRHeap* mDebugHeapParent;
 	static ResTIMG* mOrimaTexture[5];
@@ -213,94 +268,87 @@ struct TVsSelect : public TScrollList {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_B4 = TScrollList
-	JKRArchive* mVsSelectTextureArc;  // _B4
-	Controller* mController2;         // _B8
-	TVsSelectScreen* _BC;             // _BC
-	TScreenBase* _C0;                 // _C0
-	TScreenBase* mRedPodScreen;       // _C4
-	TScreenBase* mBluePodScreen;      // _C8
-	TScreenBase* mSlotTexturesScreen; // _CC
-	TScreenBase* _D0;                 // _D0
-	TVsSelectExplanationWindow* _D4;  // _D4
-	TVsSelectIndPane* _D8;            // _D8
-	J2DPane* _DC;                     // _DC
-
-	J2DPane* _E0;                       // _E0
-	J2DPane* _E4;                       // _E4
-	J2DPane* _E8;                       // _E8
-	J2DPane* _EC;                       // _EC
-	J2DPane* _F0;                       // _F0
-	J2DPane* _F4[3];                    // _F4
-	J2DPane* _100[2];                   // _100
-	J2DPane* _108[2];                   // _108
-	J2DPane* _110;                      // _110
-	J2DPane* _114[6];                   // _114
-	J2DPane* _12C[5];                   // _12C
-	J2DPane* _140[5];                   // _140
-	J2DPane* _154[6];                   // _154
-	J2DPane* _16C[6];                   // _16C
-	J2DPane* _184[12];                  // _184
-	J2DPane* _1B4[6];                   // _1B4
-	J2DPane* _1CC[6];                   // _1CC
-	J2DPictureEx* _1E4;                 // _1E4
-	unknown* _1E8[2];                   // _1E8
-	TVsPiki* mVsPiki[2];                // _1F0
-	DispMemberVsSelect* mDispMember;    // _1F8
-	TOffsetMsgSet* mMesgData;           // _1FC
-	efx2d::T2DCountKira* _200;          // _200
-	og::Screen::CallBack_Picture* _204; // _204
-	og::Screen::StickAnimMgr* _208;     // _208
-	og::Screen::ArrowAlphaBlink* _20C;  // _20C
-	TVsSelectCBWinNum* mWinCounts[2];   // _210
-	u8 _214[0x10];                      // _214
-	u8 _228;                            // _228
-	u8 _229;                            // _229
-	u8 _22A;                            // _22A
-	u8 _22B;                            // _22B
-	u8 _22C;                            // _22C
-	u8 _22D;                            // _22D
-	u8 _22E;                            // _22E
-	u8 _22F;                            // _22F
-	f32 _230;                           // _230
-	f32 _234;                           // _234
-	f32 _238;                           // _238
-	u8 _23C;                            // _23C
-	u8 _23D;                            // _23D
-	u8 _23E[2];                         // _23E
-	int _240;                           // _240
-	int _244;                           // _244
-	int mStageCount;                    // _248
-	int _24C;                           // _24C
-	f32 _250;                           // _250
-	f32 _254;                           // _254
-	f32 _258;                           // _258
-	f32 _25C;                           // _25C
-	f32 _260;                           // _260
-	f32 _264;                           // _264
-	f32 _268;                           // _268
-	f32 _26C;                           // _26C
-	f32 _270;                           // _270
-	int mHandicapSel[2];                // _274
-	u32 mDispRedPikiNum;                // _27C
-	u32 mDispBluePikiNum;               // _280
-	u32 _284[2];                        // _284
-	u8 _28C[2];                         // _28C
-	u8 _28E;                            // _28E
-	u8 _28F;                            // _28F
-	f32 _290;                           // _290
-	f32 _294;                           // _294
-	f32 _298;                           // _298
-	f32 _29C;                           // _29C
-	f32 _2A0;                           // _2A0
-	f32 _2A4;                           // _2A4
-	Vector2f _2A8[5];                   // _2A8
-	Vector2f _2D0[5];                   // _2D0
-	Vector2f _2F8[2];                   // _2F8
-	Vector2f _308[2];                   // _308
-	f32 _318;                           // _318
-	f32 _31C;                           // _31C
-	Vector2f _320;                      // _320
-	ResTIMG** mLevelTextures;           // _328
+	JKRArchive* mVsSelectTextureArc;           // _B4
+	Controller* mController2;                  // _B8
+	TVsSelectListScreen* mListScreen;          // _BC
+	TScreenBase* mBackgroundScreen;            // _C0
+	TScreenBase* mRedPodScreen;                // _C4
+	TScreenBase* mBluePodScreen;               // _C8
+	TScreenBase* mSlotTexturesScreen;          // _CC
+	TScreenBase* mFireScreen;                  // _D0
+	TVsSelectExplanationWindow* mRulesWindow;  // _D4
+	TVsSelectIndPane* mIndPane;                // _D8
+	J2DPane* mPane3DStick;                     // _DC
+	J2DPane* mPaneSpot;                        // _E0
+	J2DPane* mPaneStageList;                   // _E4
+	J2DPane* mPaneStageNameBg;                 // _E8
+	J2DPane* mPaneStars;                       // _EC
+	J2DPane* mPaneLevelName;                   // _F0
+	J2DPane* mButtonMsgTags[3];                // _F4
+	J2DPane* mCharacterMainIcons[2];           // _100
+	J2DPane* mPaneRulesLR[2];                  // _108
+	J2DPane* mPaneRulesInfo;                   // _110
+	J2DPane* mPaneRulesIcons[6];               // _114
+	J2DPane* mPaneLevelWindows[5];             // _12C
+	J2DPicture* mActiveCourseThumbs[5];        // _140
+	J2DPicture* mOlimarFacePanes[6];           // _154
+	J2DPicture* mLouieFacePanes[6];            // _16C
+	J2DPane* mPowerIconPanes[12];              // _184
+	J2DPane* mPaneRulesDesc1[6];               // _1B4
+	J2DPane* mPaneRulesDesc2[6];               // _1CC
+	J2DPictureEx* mIndPic;                     // _1E4
+	TVsSelectOnyon* mOnyonObj[2];              // _1E8
+	TVsPiki* mVsPiki[2];                       // _1F0
+	DispMemberVsSelect* mDispMember;           // _1F8
+	TOffsetMsgSet* mMesgData;                  // _1FC
+	efx2d::T2DCountKira* mEfxCountKira;        // _200
+	og::Screen::CallBack_Picture* mStickImage; // _204
+	og::Screen::StickAnimMgr* mStickAnim;      // _208
+	og::Screen::ArrowAlphaBlink* mArrowBlink;  // _20C
+	TVsSelectCBWinNum* mWinCounter[2];         // _210
+	JGeometry::TBox2f mScissorBounds;          // _214
+	u8 mIsDemoStarted;                         // _228
+	u8 mIsZoomActive;                          // _229
+	u8 mIsOnyonHitGoal;                        // _22A
+	u8 mIsUpdatedScore;                        // _22B
+	u8 mCurrentRulesPage;                      // _22C
+	u8 mDoChangeRulesPage;                     // _22D
+	u8 mIsRulesPageChanging;                   // _22E
+	f32 mLevelNameYPos;                        // _230
+	f32 _234;                                  // _234
+	f32 mPaneStarAlpha;                        // _238
+	u8 mDrawAlpha;                             // _23C
+	u8 mIsSelectIndexChange;                   // _23D
+	int mZoomState;                            // _240
+	int mStickAnimState;                       // _244
+	int mStageCount;                           // _248
+	int mChangeFaceState;                      // _24C
+	f32 mZoomLevel;                            // _250
+	f32 mEndDelayTimer;                        // _254
+	f32 mOtherLevelsFadeAlpha;                 // _258
+	f32 mRulesMoveXPos;                        // _25C
+	f32 mRuleChangeTimer;                      // _260
+	f32 mRulePageChangeSpeed;                  // _264
+	f32 mChangeFaceTimer;                      // _268
+	f32 mScreenXPos;                           // _26C
+	f32 mFaceChangeSpeed;                      // _270
+	u32 mHandicapSel[2];                       // _274
+	u32 mDispPikiNum[2];                       // _27C
+	u32 mPlayerWinCounts[2];                   // _284
+	u8 mDebugWinCounts[2];                     // _28C
+	u8 mDoDebugScores;                         // _28E
+	f32 _290;                                  // _290
+	f32 _294;                                  // _294
+	f32 _298;                                  // _298
+	f32 _29C;                                  // _29C
+	Vector2f mOnyonGoalOffset;                 // _2A0
+	Vector2f mOlimarFaceScales[5];             // _2A8
+	Vector2f mLouieFaceScales[5];              // _2D0
+	JGeometry::TVec2f mPlayerMainIconPos[2];   // _2F8
+	Vector2f mPlayerIconOffset[2];             // _308
+	JGeometry::TVec2f mRulesPanePos;           // _318
+	Vector2f mPowerIconOffset;                 // _320
+	ResTIMG** mLevelTextures;                  // _328
 
 	static struct StaticValues {
 		// WARNING: the actual TVsSelect constructor overwrites these
