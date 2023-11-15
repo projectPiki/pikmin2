@@ -211,8 +211,7 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 			}
 
 			if (item->getPSCreature()) {
-				PSM::ObjMgr* inst = PSSystem::SingletonBase<PSM::ObjMgr>::sInstance;
-				if (inst) {
+				if (PSM::ObjMgr* inst = PSSystem::SingletonBase<PSM::ObjMgr>::sInstance) {
 					PSM::Creature* soundObj = item->getPSCreature();
 					inst->remove(soundObj);
 				}
