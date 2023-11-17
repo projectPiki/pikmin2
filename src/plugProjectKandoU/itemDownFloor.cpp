@@ -3,6 +3,7 @@
 #include "Game/routeMgr.h"
 #include "Game/Navi.h"
 #include "Game/MoviePlayer.h"
+#include "Game/SingleGame.h"
 #include "efx/TDownf.h"
 #include "efx/TPbag.h"
 #include "PSM/WorkItem.h"
@@ -170,13 +171,6 @@ void Item::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 		mCurrentState->onKeyEvent(this, keyEvent);
 	}
 }
-
-/*
- * --INFO--
- * Address:	801F5484
- * Size:	000004
- */
-void State::onKeyEvent(Item* item, SysShape::KeyEvent const& keyEvent) { }
 
 /*
  * --INFO--
@@ -469,13 +463,6 @@ void Item::platCallback(PlatEvent& event)
 		}
 	}
 }
-
-/*
- * --INFO--
- * Address:	801F6248
- * Size:	000004
- */
-void State::onPlat(Item*) { }
 
 /*
  * --INFO--
@@ -824,7 +811,7 @@ void DownState::onKeyEvent(Item* item, SysShape::KeyEvent const&)
 
 			playData->setDemoFlag(DEMO_Reunite_Captains);
 
-			gameSystem->mSection->disableTimer(DEMOTIMER_CrushBag);
+			gameSystem->mSection->disableTimer(DEMOTIMER_YouAppearLost);
 		}
 
 	} else {

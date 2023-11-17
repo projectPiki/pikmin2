@@ -63,7 +63,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void initDependency() { }                                                 // _1BC (weak)
 	virtual void startSound(u32);                                                     // _1C0
 	virtual void makeTrMatrix();                                                      // _1C4
-	virtual void doAI();                                                              // _1C8 (weak)
+	virtual void doAI() { }                                                           // _1C8 (weak)
 	virtual void move(f32);                                                           // _1CC
 	virtual void changeMaterial() {};                                                 // _1D0 (weak)
 	virtual void do_updateLOD();                                                      // _1D4

@@ -49,8 +49,8 @@ struct State : public ItemState<Item> {
 	{
 	}
 
-	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24 (weak)
-	virtual void onPlat(Item*);                                // _34 (weak)
+	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&) { } // _24 (weak)
+	virtual void onPlat(Item*) { }                                // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = ItemState

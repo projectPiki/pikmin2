@@ -844,13 +844,6 @@ void BaseItem::update()
 
 /*
  * --INFO--
- * Address:	801CC58C
- * Size:	000004
- */
-void BaseItem::doAI() { }
-
-/*
- * --INFO--
  * Address:	801CC590
  * Size:	00007C
  */
