@@ -32,6 +32,19 @@ struct WaterBox;
 
 struct MapMgr : virtual public GenericObjectMgr {
 	struct BeamCollisionArg {
+		BeamCollisionArg(f32 p1, int p2, u8 p3)
+		{
+			_18 = p1;
+			_1C = p2;
+			_20 = p3;
+		}
+
+		Vector3f _00; // _00
+		Vector3f _0C; // _0C
+		f32 _18;      // _18
+		int _1C;      // _1C
+		u8 _20;       // _20
+		f32 _24;      // _24
 	};
 
 	static bool traceMoveDebug;
@@ -49,18 +62,18 @@ struct MapMgr : virtual public GenericObjectMgr {
 	virtual Matrixf* getDemoMatrix();                                           // _14
 	virtual void getBoundBox2d(BoundBox2d&) = 0;                                // _18
 	virtual void getBoundBox(BoundBox&)     = 0;                                // _1C
-	virtual bool findRayIntersection(Sys::RayIntersectInfo&);                   // _20 (weak)
+	virtual bool findRayIntersection(Sys::RayIntersectInfo&) { return false; }  // _20 (weak)
 	virtual void traceMove(MoveInfo&, f32) = 0;                                 // _24
 	virtual f32 getMinY(Vector3f&)         = 0;                                 // _28
 	virtual void getCurrTri(CurrTriInfo&)  = 0;                                 // _2C
-	virtual void createTriangles(Sys::CreateTriangleArg& arg);                  // _30 (weak)
-	virtual void setupJUTTextures() {};                                         // _34 (weak)
-	virtual bool frozenable();                                                  // _38 (weak)
+	virtual void createTriangles(Sys::CreateTriangleArg& arg) { }               // _30 (weak)
+	virtual void setupJUTTextures() { }                                         // _34 (weak)
+	virtual bool frozenable() { return false; }                                 // _38 (weak)
 	virtual void update();                                                      // _3C (weak)
-	virtual void do_update();                                                   // _40 (weak)
+	virtual void do_update() { }                                                // _40 (weak)
 	virtual void drawCollision(Graphics& gfx, Sys::Sphere& boundingSphere) = 0; // _44
-	virtual void doSimulation(f32 rate);                                        // _48 (weak)
-	virtual void doDirectDraw(Graphics& gfx);                                   // _4C (weak)
+	virtual void doSimulation(f32 rate) { }                                     // _48 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { }                                // _4C (weak)
 
 	WaterBox* findWater(Sys::Sphere&);
 	f32 getMapRotation();
@@ -73,8 +86,8 @@ struct MapMgr : virtual public GenericObjectMgr {
 	// unused/inlined:
 	void draw2d(Graphics&);
 
-	// _00: ptr to _0x24 (GenericObjectMgr)
-	// _04: vtable 1
+	// _00 = ptr to _24 (GenericObjectMgr)
+	// _04 = VTBL
 	RouteMgr* mRouteMgr;     // _08
 	CourseInfo* mCourseInfo; // _0C
 	SeaMgr* mSeaMgr;         // _10
@@ -82,8 +95,7 @@ struct MapMgr : virtual public GenericObjectMgr {
 	u32 _18;                 // _18
 	u32 _1C;                 // _1C
 	u32 _20;                 // _20
-
-	// _24: GenericObjectMgr
+	                         // _24: GenericObjectMgr
 };
 
 struct ShapeMapMgr : public MapMgr {
@@ -126,12 +138,14 @@ struct ShapeMapMgr : public MapMgr {
 
 	void load(LoadArg&);
 
+	// _04     = VTBL
+	// _00-_24 = MapMgr
 	int mTexAnimCount;               // _24
 	Sys::MatTexAnimation* mTexAnims; // _28
 	Sys::MatTexAnimation* _2C;       // _2C
 	Sys::MatLoopAnimator* _30;       // _30
 	SysShape::Model* mMapModel;      // _34
-	MapCollision _38;                // _38
+	MapCollision mMapCollision;      // _38
 };
 
 extern MapMgr* mapMgr;

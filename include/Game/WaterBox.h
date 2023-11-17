@@ -29,10 +29,6 @@ enum WBFlags {
 struct WaterBox {
 	WaterBox();
 
-	/**
-	 * @reifiedAddress{80106CE8}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
 	virtual bool inWater(Sys::Sphere&) // _08 (weak)
 	{
 		return false;
@@ -44,10 +40,10 @@ struct WaterBox {
 	virtual void startDown(f32) { }                        // _1C (weak)
 	virtual void startUp(f32) { }                          // _20 (weak)
 	virtual void directDraw(Graphics&) { }                 // _24 (weak)
-	virtual void doAnimation();                            // _28 (weak)
-	virtual void doEntry();                                // _2C (weak)
-	virtual void doSetView(int viewportNumber);            // _30 (weak)
-	virtual void doViewCalc();                             // _34 (weak)
+	virtual void doAnimation() { }                         // _28 (weak)
+	virtual void doEntry() { }                             // _2C (weak)
+	virtual void doSetView(int viewportNumber) { }         // _30 (weak)
+	virtual void doViewCalc() { }                          // _34 (weak)
 	virtual void doSimulation(f32) { }                     // _38 (weak)
 	virtual void doDirectDraw(Graphics& gfx) { }           // _3C (weak)
 	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*,

@@ -177,7 +177,7 @@ CourseInfo::CourseInfo()
 
 	mCourseIndex = 0;
 
-	PSMTXIdentity(_D0.mMatrix.mtxView);
+	PSMTXIdentity(mDemoMatrix.mMatrix.mtxView);
 	mGroundOtakaraMax = 0;
 }
 
@@ -267,8 +267,8 @@ void CourseInfo::read(Stream& stream)
 		stream.readString(nullptr, 0);
 
 		// Convert angle to radians
-		Vector3f vec(0.0f, 3.1415927f * (0.0055555557f * mStartAngle), 0.0f);
-		_D0.makeTR(mStartPosition, vec);
+		Vector3f vec(0.0f, TORADIANS(mStartAngle), 0.0f);
+		mDemoMatrix.makeTR(mStartPosition, vec);
 	}
 
 	mLimitGenInfo.read(stream);

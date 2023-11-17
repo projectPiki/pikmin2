@@ -43,7 +43,7 @@ void Platform::setTriDivider(Sys::TriDivider* triDivider)
  * Address:	801336EC
  * Size:	000008
  */
-Sys::TriDivider* Platform::getTriDivider() { return mTriDivider; }
+Sys::OBBTree* Platform::getTriDivider() { return mTriDivider; }
 
 /*
  * read__8PlatformFR6Stream
@@ -608,7 +608,6 @@ int CollPart::getAllCollPartToArray(CollPart** partArray, int limit, int& count)
  * Address:	80136A04
  * Size:	000118
  */
-// WIP: https://decomp.me/scratch/BSzdU - just regswaps in the dist calculation
 CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 {
 	if (mPart) {
@@ -621,8 +620,7 @@ CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 		for (int i = 0; i < numParts; i++) {
 			CollPart* currPart = partArray[i];
 			if (((findArg.mCondition == nullptr) || findArg.mCondition->satisfy(currPart)) && currPart->isSphere()) {
-				Vector3f sep(findArg.mPosition.mPosition - currPart->mPosition);
-				f32 dist = (sep).sqrMagnitude() - SQUARE(currPart->mRadius);
+				f32 dist = findArg.mPosition.mPosition.sqrDistance(currPart->mPosition) - SQUARE(currPart->mRadius);
 				if (dist < minDist) {
 					foundPart = currPart;
 					minDist   = dist;
@@ -839,7 +837,6 @@ void CollPart::makeMatrixTo(Matrixf& p1)
  * Address:	8013739C
  * Size:	000214
  */
-// WIP: https://decomp.me/scratch/b2SSt
 void CollPart::makeTubeTree()
 {
 	if (getChild()) {
@@ -868,9 +865,8 @@ void CollPart::calcStickLocal(Vector3f& arg0, Vector3f& arg1)
 		Matrixf inv;
 		PSMTXInverse(mtx.mMatrix.mtxView, inv.mMatrix.mtxView);
 
-		Vector3f row1 = mtx.getRow(0);
+		Vector3f row1 = Vector3f(mtx.getRow(0));
 
-		// this... doesn't use length()?
 		f32 len = row1.length();
 
 		if (FABS(len) < 0.001f) {

@@ -78,23 +78,22 @@ struct CourseInfo : public CNode {
 	ID32* getCaveID_FromIndex(int);
 	int getCaveNum();
 
-	char* mFolder;           // _18
-	char* mAbeFolder;        // _1C
-	char* mModelPath;        // _20
-	char* mCollisionPath;    // _24
-	char* mWaterboxPath;     // _28
-	char* mMapcodePath;      // _2C
-	char* mFarmPath;         // _30
-	char* mRoutePath;        // _34
-	Vector3f mStartPosition; // _38
-	f32 mStartAngle;         // _44
-	u32 mCourseIndex;        // _48
-
+	char* mFolder;                    // _18
+	char* mAbeFolder;                 // _1C
+	char* mModelPath;                 // _20
+	char* mCollisionPath;             // _24
+	char* mWaterboxPath;              // _28
+	char* mMapcodePath;               // _2C
+	char* mFarmPath;                  // _30
+	char* mRoutePath;                 // _34
+	Vector3f mStartPosition;          // _38
+	f32 mStartAngle;                  // _44
+	u32 mCourseIndex;                 // _48
 	LimitGenInfo mLimitGenInfo;       // _4C
 	LimitGenInfo mLoopGenInfo;        // _78
 	CaveOtakaraInfo mCaveOtakaraInfo; // _9C
 	int mGroundOtakaraMax;            // _CC
-	Matrixf _D0;                      // _D0
+	Matrixf mDemoMatrix;              // _D0
 };
 
 struct Stages {
