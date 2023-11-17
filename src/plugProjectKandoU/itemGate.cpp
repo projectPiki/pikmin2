@@ -719,7 +719,7 @@ void ItemGate::changeMaterial()
 {
 	int jointIdx = (mIsElectric) ? 0 : mModel->getJoint("move")->mJointIndex;
 
-	bool showJoint = mCentrePlatInstance->_108 & 1 && mLod.mFlags & 4;
+	bool showJoint = mCentrePlatInstance->mFlags & 1 && mLod.mFlags & 4;
 	mModel->jointVisible(showJoint, (u16)jointIdx);
 	if (mIsElectric) {
 		mMatAnimator->animate(30.0f);
@@ -973,111 +973,22 @@ void ItemGateMgr::setupPlatform(Game::ItemGate* gate)
 	ID32 centreID            = 'gate';
 	PlatAddInstanceArg platArgCentre;
 	platArgCentre.mItem       = gate;
-	platArgCentre.mMatrix     = moveJointMatrix;
 	platArgCentre.mId         = centreID;
 	platArgCentre.mPlatform   = mCentrePlatform;
+	platArgCentre.mMatrix     = moveJointMatrix;
 	gate->mCentrePlatInstance = platMgr->addInstance(platArgCentre);
 	sys->heapStatusStart("Clone-Plat", nullptr);
 	Matrixf* fixJointMatrix = gate->mModel->getJoint("fix")->getWorldMatrix();
 	ID32 sideID             = 'none';
 	PlatAddInstanceArg platArgSide;
-	platArgSide.mItem       = gate;
-	platArgSide.mMatrix     = fixJointMatrix;
-	platArgSide.mId         = sideID;
-	platArgSide.mPlatform   = mSidePlatform;
-	platArgSide._18         = 1;
-	gate->mSidePlatInstance = platMgr->addInstance(platArgSide);
+	platArgSide.mItem             = gate;
+	platArgSide.mId               = sideID;
+	platArgSide.mPlatform         = mSidePlatform;
+	platArgSide.mMatrix           = fixJointMatrix;
+	platArgSide.mEnableGlobalPlat = true;
+	gate->mSidePlatInstance       = platMgr->addInstance(platArgSide);
 	sys->heapStatusEnd("Clone-Plat");
 	sys->heapStatusEnd("Platform");
-
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	lis      r5, lbl_80480294@ha
-	stw      r0, 0x74(r1)
-	addi     r0, r5, lbl_80480294@l
-	li       r5, 0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	mr       r30, r4
-	mr       r4, r0
-	stw      r29, 0x64(r1)
-	mr       r29, r3
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, 0x174(r30)
-	addi     r4, r2, lbl_805195D8@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, 0x67617465@ha
-	mr       r31, r3
-	addi     r3, r1, 0x14
-	addi     r4, r4, 0x67617465@l
-	bl       __ct__4ID32FUl
-	addi     r3, r1, 0x40
-	bl       __ct__Q24Game18PlatAddInstanceArgFv
-	stw      r30, 0x40(r1)
-	addi     r3, r1, 0x44
-	addi     r4, r1, 0x14
-	li       r5, 5
-	bl       __copy
-	lwz      r0, 0x1c(r1)
-	addi     r4, r1, 0x40
-	lwz      r3, platMgr__4Game@sda21(r13)
-	stw      r0, 0x4c(r1)
-	lwz      r0, 0x6c(r29)
-	stw      r0, 0x50(r1)
-	stw      r31, 0x54(r1)
-	bl       addInstance__Q24Game7PlatMgrFRQ24Game18PlatAddInstanceArg
-	stw      r3, 0x1f4(r30)
-	lis      r3, lbl_804802A0@ha
-	addi     r4, r3, lbl_804802A0@l
-	li       r5, 0
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, 0x174(r30)
-	addi     r4, r2, lbl_805195F4@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, 0x6E6F6E65@ha
-	mr       r31, r3
-	addi     r3, r1, 8
-	addi     r4, r4, 0x6E6F6E65@l
-	bl       __ct__4ID32FUl
-	addi     r3, r1, 0x20
-	bl       __ct__Q24Game18PlatAddInstanceArgFv
-	stw      r30, 0x20(r1)
-	addi     r3, r1, 0x24
-	addi     r4, r1, 8
-	li       r5, 5
-	bl       __copy
-	lwz      r5, 0x10(r1)
-	li       r0, 1
-	lwz      r3, platMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x20
-	stw      r5, 0x2c(r1)
-	lwz      r5, 0x70(r29)
-	stw      r5, 0x30(r1)
-	stw      r31, 0x34(r1)
-	stb      r0, 0x38(r1)
-	bl       addInstance__Q24Game7PlatMgrFRQ24Game18PlatAddInstanceArg
-	stw      r3, 0x1f8(r30)
-	lis      r3, lbl_804802A0@ha
-	addi     r4, r3, lbl_804802A0@l
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lis      r4, lbl_80480294@ha
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r4, lbl_80480294@l
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -1389,7 +1300,7 @@ void GateDamagedState::exec(Game::ItemGate* gate)
 		transit(gate, GATESTATE_Down, nullptr);
 	} else {
 		if (mNotInAnim) {
-			if (gate->mDamage > 0.0f) {
+			if (gate->mDamage > 0.0f) { // flow swap
 				gate->mAnimator.startAnim(gate->mSegmentsDown, gate);
 				gate->mAnimSpeed = 30.0f;
 			}
@@ -1661,110 +1572,22 @@ void ItemDengekiGate::Mgr::setupPlatform(Game::ItemGate* gate)
 	ID32 centreID            = 'elec';
 	PlatAddInstanceArg platArgCentre;
 	platArgCentre.mItem       = gate;
-	platArgCentre.mMatrix     = moveJointMatrix;
 	platArgCentre.mId         = centreID;
 	platArgCentre.mPlatform   = mCentrePlatform;
+	platArgCentre.mMatrix     = moveJointMatrix;
 	gate->mCentrePlatInstance = platMgr->addInstance(platArgCentre);
 	sys->heapStatusStart("Clone-Plat", nullptr);
 	Matrixf* fixJointMatrix = gate->mModel->getJoint("pole")->getWorldMatrix();
 	ID32 sideID             = 'side';
 	PlatAddInstanceArg platArgSide;
-	platArgSide.mItem       = gate;
-	platArgSide.mMatrix     = fixJointMatrix;
-	platArgSide.mId         = sideID;
-	platArgSide.mPlatform   = mSidePlatform;
-	platArgSide._18         = 1;
-	gate->mSidePlatInstance = platMgr->addInstance(platArgSide);
+	platArgSide.mItem             = gate;
+	platArgSide.mId               = sideID;
+	platArgSide.mPlatform         = mSidePlatform;
+	platArgSide.mMatrix           = fixJointMatrix;
+	platArgSide.mEnableGlobalPlat = true;
+	gate->mSidePlatInstance       = platMgr->addInstance(platArgSide);
 	sys->heapStatusEnd("Clone-Plat");
 	sys->heapStatusEnd("Platform");
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	lis      r5, lbl_80480294@ha
-	stw      r0, 0x74(r1)
-	addi     r0, r5, lbl_80480294@l
-	li       r5, 0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	mr       r30, r4
-	mr       r4, r0
-	stw      r29, 0x64(r1)
-	mr       r29, r3
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, 0x174(r30)
-	addi     r4, r2, lbl_805195B4@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, 0x656C6563@ha
-	mr       r31, r3
-	addi     r3, r1, 0x14
-	addi     r4, r4, 0x656C6563@l
-	bl       __ct__4ID32FUl
-	addi     r3, r1, 0x40
-	bl       __ct__Q24Game18PlatAddInstanceArgFv
-	stw      r30, 0x40(r1)
-	addi     r3, r1, 0x44
-	addi     r4, r1, 0x14
-	li       r5, 5
-	bl       __copy
-	lwz      r0, 0x1c(r1)
-	addi     r4, r1, 0x40
-	lwz      r3, platMgr__4Game@sda21(r13)
-	stw      r0, 0x4c(r1)
-	lwz      r0, 0x88(r29)
-	stw      r0, 0x50(r1)
-	stw      r31, 0x54(r1)
-	bl       addInstance__Q24Game7PlatMgrFRQ24Game18PlatAddInstanceArg
-	stw      r3, 0x1f4(r30)
-	lis      r3, lbl_804802A0@ha
-	addi     r4, r3, lbl_804802A0@l
-	li       r5, 0
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, 0x174(r30)
-	addi     r4, r2, lbl_805195F8@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, 0x73696465@ha
-	mr       r31, r3
-	addi     r3, r1, 8
-	addi     r4, r4, 0x73696465@l
-	bl       __ct__4ID32FUl
-	addi     r3, r1, 0x20
-	bl       __ct__Q24Game18PlatAddInstanceArgFv
-	stw      r30, 0x20(r1)
-	addi     r3, r1, 0x24
-	addi     r4, r1, 8
-	li       r5, 5
-	bl       __copy
-	lwz      r5, 0x10(r1)
-	li       r0, 1
-	lwz      r3, platMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x20
-	stw      r5, 0x2c(r1)
-	lwz      r5, 0x8c(r29)
-	stw      r5, 0x30(r1)
-	stw      r31, 0x34(r1)
-	stb      r0, 0x38(r1)
-	bl       addInstance__Q24Game7PlatMgrFRQ24Game18PlatAddInstanceArg
-	stw      r3, 0x1f8(r30)
-	lis      r3, lbl_804802A0@ha
-	addi     r4, r3, lbl_804802A0@l
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lis      r4, lbl_80480294@ha
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r4, lbl_80480294@l
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*

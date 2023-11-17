@@ -50,7 +50,7 @@ void DynamicsParms::globalInstance()
  * Address:	8013A050
  * Size:	000054
  */
-Game::Rigid::Rigid() { _175.clear(); }
+Game::Rigid::Rigid() { mFlags.clear(); }
 
 /*
  * --INFO--

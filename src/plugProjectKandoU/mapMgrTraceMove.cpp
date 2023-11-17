@@ -33,7 +33,7 @@ void ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
 	} while (steps <= 8);
 
 	for (int i = 0; i < steps; i++) {
-		MapMgr::traceMove(_38, info, len);
+		MapMgr::traceMove(mMapCollision, info, len);
 	}
 
 	_18 += steps;

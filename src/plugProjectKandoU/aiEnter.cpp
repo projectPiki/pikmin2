@@ -188,9 +188,9 @@ void ActEnter::initSuck()
 	mSuckGoalPos = mOnyon->getInEnd_UFO();
 	mSuckGoalPos.y -= 3.0f;
 
-	Vector3f pikiPos = mParent->getPosition();
-	mSuckDir         = mSuckGoalPos - pikiPos;
-	mSuckDir.y       = 0.0f;
+	const Vector3f pikiPos = mParent->getPosition();
+	mSuckDir               = mSuckGoalPos - pikiPos;
+	mSuckDir.y             = 0.0f;
 
 	mHorizSuckDist = mSuckDir.normalise();
 	mVertSuckDist  = absF(mSuckGoalPos.y - pikiPos.y);

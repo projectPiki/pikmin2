@@ -483,7 +483,7 @@ void PelletGoalState::exec(Pellet* pelt)
 	}
 
 	if (mInDemo && !mDidSuikomi && moviePlayer && moviePlayer->mDemoState == 5) {
-		if (((int)mOnyon->mObjectTypeID == OBJTYPE_Onyon || (int)mOnyon->mObjectTypeID == OBJTYPE_Ufo)) {
+		if (((int)mOnyon->mObjectTypeID == OBJTYPE_Onyon || (int)mOnyon->mObjectTypeID == OBJTYPE_Ufo)) { // maybe getOnyon inline?
 			static_cast<Onyon*>(mOnyon)->efxSuikomi();
 			mDidSuikomi = true;
 		}
@@ -523,12 +523,12 @@ void PelletGoalState::exec(Pellet* pelt)
 
 	pelt->mRigid.mConfigs[0].mPosition = test;
 	pelt->mPelletPosition              = test;
-	f32 scale                          = (1.0f - mSuckTime) * mScale;
 
-	// weird regswap and also loading the sin values (325.whatever) too late??
-	f32 angle    = 8.0f * (TAU * (1.0f - mSuckTime));
-	f32 sinTheta = sinf(angle);
-	sinTheta *= 0.03f;
+	f32 suckRemain = (1.0f - mSuckTime);
+	f32 scale      = suckRemain * mScale;
+
+	f32 sinTheta = sinf(8.0f * (TAU * suckRemain));
+	sinTheta *= 0.03f; // regswap here for f1 and f0
 	scale += sinTheta;
 	pelt->mScale = Vector3f(scale);
 
@@ -1863,9 +1863,8 @@ u32 PelletReturnState::execPathfinding(Pellet* pelt)
 u32 PelletReturnState::execMove(Pellet* pelt)
 {
 	WayPoint* currWP = mapMgr->mRouteMgr->getWayPoint(mPathNode->mWpIndex);
-	Vector3f wpPos   = currWP->mPosition;
-	Vector3f peltPos = pelt->getPosition();
-	Vector3f sep     = wpPos - peltPos;
+	Vector3f wpPos   = currWP->mPosition; // wpPos is only used for sep calculation
+	Vector3f sep     = wpPos - pelt->getPosition();
 	sep.y            = 0.0f;
 	// not quite right - needs to ignore that sep.y is 0.0f.
 	f32 dist = _normaliseVec(sep);
@@ -1882,12 +1881,13 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 	f32 frameTime = sys->getFrameLength();
 
 	if (time < 0.1f) {
-		yoffs        = 0.0f;
-		f32 scale    = (time / 0.1f) * PI * 0.5f;
-		f32 sinTheta = sinf(scale);
-		f32 factor   = 0.3f;
+		yoffs            = 0.0f;
+		f32 scale        = (time / 0.1f) * PI * 0.5f;
+		f32 sinTheta     = sinf(scale);
+		const f32 factor = 0.3f; // not sure what the plan is with this load
 		// not quite right either - multiplication needs to be in the other order
 		// might be similar to the regswap in that one enemyBase function?
+		// What is the above note referring to in enemyBase? -Epoch
 		mPeltYScale = 1.0f - (sinTheta *= 0.3f);
 
 	} else if (time < 0.9f) {

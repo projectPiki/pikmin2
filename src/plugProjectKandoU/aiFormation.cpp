@@ -8,6 +8,7 @@
 #include "Game/gameStat.h"
 #include "Game/CPlate.h"
 #include "Game/GameSystem.h"
+#include "Game/SingleGameSection.h"
 #include "Game/gamePlayData.h"
 #include "Game/MoviePlayer.h"
 #include "Game/Footmark.h"
