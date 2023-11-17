@@ -632,6 +632,37 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return check1;
 	}
 
+	inline bool checkDistAndAngle2(Creature* target, f32 angle, f32 privateRad, f32 sightRad, f32 fov, f32 viewAngle)
+	{
+		Vector3f sep;
+		sep.x = target->getPosition().x - getPosition().x;
+		sep.y = target->getPosition().y - getPosition().y;
+		sep.z = target->getPosition().z - getPosition().z;
+
+		f32 rad1 = SQUARE(privateRad);
+		f32 rad2 = SQUARE(sightRad);
+
+		bool check1 = true;  // r3
+		bool check2 = false; // r4
+		bool check3;
+		f32 dist2D = sep.sqrMagnitude2D();
+		if (dist2D > rad1) {
+			check3 = false;
+			if (dist2D > rad2 && absF(sep.y) < fov) {
+				check3 = true;
+			}
+
+			if (check3) {
+				check2 = true;
+			}
+		}
+
+		if (!check2 && absF(angle) <= TORADIANS(viewAngle)) {
+			check1 = false;
+		}
+		return check1;
+	}
+
 	inline f32 changeFaceDir2(Creature* target)
 	{
 		f32 rotSpeed;

@@ -364,7 +364,7 @@ void Obj::flickAttackFail()
  * Address:	8012B5C8
  * Size:	000024
  */
-void Obj::eatAttackPikmin() { EnemyFunc::eatPikmin(this, nullptr); }
+int Obj::eatAttackPikmin() { return EnemyFunc::eatPikmin(this, nullptr); }
 
 /*
  * --INFO--

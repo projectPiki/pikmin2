@@ -23,7 +23,7 @@ struct Obj : public ChappyBase::Obj {
 	virtual bool isWakeup();                                                                 // _2FC
 	virtual void flickStatePikmin();                                                         // _308
 	virtual void flickAttackBomb();                                                          // _30C
-	virtual void eatAttackPikmin();                                                          // _310
+	virtual int eatAttackPikmin();                                                           // _310
 	virtual void resetUnderGround();                                                         // _314
 	virtual void setUnderGround();                                                           // _318
 	virtual void createEffect() { }                                                          // _31C (weak)

@@ -146,10 +146,10 @@ void Obj::flickAttackBomb()
  * Address:	802F35DC
  * Size:	00003C
  */
-void Obj::eatAttackPikmin()
+int Obj::eatAttackPikmin()
 {
 	ConditionNotStickSlot cond;
-	EnemyFunc::eatPikmin(this, &cond);
+	return EnemyFunc::eatPikmin(this, &cond);
 }
 
 /*

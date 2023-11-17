@@ -75,7 +75,7 @@ struct Obj : public EnemyBase {
 	virtual void flickAttackFail();                  // _304
 	virtual void flickStatePikmin();                 // _308
 	virtual void flickAttackBomb();                  // _30C
-	virtual void eatAttackPikmin();                  // _310
+	virtual int eatAttackPikmin();                   // _310
 	virtual void resetUnderGround() { }              // _314 (weak)
 	virtual void setUnderGround() { }                // _318 (weak)
 	virtual void createEffect();                     // _31C
@@ -211,7 +211,7 @@ struct StateCautionBase : public State {
 struct StateTurnBase : public StateCautionBase {
 	StateTurnBase(int);
 
-	void turnToTarget(EnemyBase*, Vector3f&);
+	bool turnToTarget(EnemyBase*, Vector3f&);
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
@@ -262,7 +262,7 @@ struct StateGoHome : public StateCautionBase {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	u8 _10[0x4]; // _10, unknown
+	int mNextState; // _10
 };
 
 struct SleepArg : public StateArg {
@@ -292,7 +292,7 @@ struct StateTurn : public StateTurnBase {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10
+	int mNextState; // _10
 };
 
 struct StateTurnToHome : public StateTurnBase {
@@ -304,7 +304,7 @@ struct StateTurnToHome : public StateTurnBase {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10
+	int mNextState; // _10
 };
 
 struct StateWalk : public StateCautionBase {
@@ -316,7 +316,7 @@ struct StateWalk : public StateCautionBase {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10
+	int mNextState; // _10
 };
 /////////////////////////////////////////////////////////////////
 
