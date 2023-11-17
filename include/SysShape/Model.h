@@ -40,7 +40,7 @@ struct Model : public MtxObject {
 	void initJointsRec(int, Joint*);
 	u16 getJointIndex(char*);
 	Joint* getJoint(char*);
-	void setViewCalcModeImm();
+	static void setViewCalcModeImm();
 	static void setViewCalcModeInd();
 	void viewCalc();
 	void setCurrentViewNo(u32 viewportNumber);

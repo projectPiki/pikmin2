@@ -68,88 +68,10 @@ void Object::changeMaterial()
 	}
 
 	u16 id           = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterialNames->getIndex("bpel1");
-	J3DTevBlock* tev = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[id]->mTevBlock;
-	tev->setTevColor(0, color);
+	J3DMaterial* mat = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[id];
+	mat->mTevBlock->setTevColor(0, color);
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->diff();
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	lhz      r0, 0x43e(r3)
-	cmpwi    r0, 1
-	beq      lbl_801F9240
-	bge      lbl_801F9234
-	cmpwi    r0, 0
-	bge      lbl_801F9268
-	b        lbl_801F9278
-
-lbl_801F9234:
-	cmpwi    r0, 3
-	bge      lbl_801F9278
-	b        lbl_801F9254
-
-lbl_801F9240:
-	li       r31, 0xfb
-	li       r30, 0x11
-	li       r29, 0
-	li       r28, 0xff
-	b        lbl_801F9278
-
-lbl_801F9254:
-	li       r31, 0xff
-	li       r30, 0xdc
-	mr       r28, r31
-	li       r29, 0x34
-	b        lbl_801F9278
-
-lbl_801F9268:
-	li       r29, 0xff
-	li       r31, 0
-	mr       r28, r29
-	li       r30, 0x33
-
-lbl_801F9278:
-	lwz      r3, 0x174(r27)
-	addi     r4, r2, lbl_80519CE0@sda21
-	lwz      r3, 8(r3)
-	lwz      r3, 4(r3)
-	lwz      r3, 0x64(r3)
-	bl       getIndex__10JUTNameTabCFPCc
-	lwz      r4, 0x174(r27)
-	rlwinm   r0, r3, 2, 0xe, 0x1d
-	addi     r5, r1, 8
-	lwz      r3, 8(r4)
-	li       r4, 0
-	lwz      r3, 4(r3)
-	lwz      r3, 0x60(r3)
-	lwzx     r3, r3, r0
-	sth      r31, 8(r1)
-	sth      r30, 0xa(r1)
-	sth      r29, 0xc(r1)
-	sth      r28, 0xe(r1)
-	lwz      r3, 0x2c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	bl       diff__8J3DModelFv
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -206,7 +128,7 @@ void Mgr::onCreateModel(SysShape::Model* model)
  * Address:	801F97D8
  * Size:	00003C
  */
-GenPelletParm* Mgr::generatorNewPelletParm() { return new GenPelletParm(PELCOLOR_BLUE, PELLET_NUMBER_ONE); }
+GenPelletParm* Mgr::generatorNewPelletParm() { return new GenNumberPelletParm(PELCOLOR_BLUE, PELLET_NUMBER_ONE); }
 
 /*
  * --INFO--
@@ -215,7 +137,9 @@ GenPelletParm* Mgr::generatorNewPelletParm() { return new GenPelletParm(PELCOLOR
  */
 Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& angle, GenPelletParm* parm)
 {
-	PelletNumberInitArg arg(parm->mSize, parm->mColor);
+	GenNumberPelletParm* nparm = static_cast<GenNumberPelletParm*>(parm);
+
+	PelletNumberInitArg arg(nparm->mSize, nparm->mColor);
 	Pellet* pelt = pelletMgr->birth(&arg);
 	if (pelt) {
 		if (mapMgr) {
@@ -236,8 +160,9 @@ Pellet* Mgr::generatorBirth(Vector3f& pos, Vector3f& angle, GenPelletParm* parm)
  */
 void Mgr::generatorWrite(Stream& stream, GenPelletParm* parm)
 {
-	stream.writeByte(parm->mColor);
-	stream.writeByte(parm->mSize);
+	GenNumberPelletParm* nparm = static_cast<GenNumberPelletParm*>(parm);
+	stream.writeByte(nparm->mColor);
+	stream.writeByte(nparm->mSize);
 }
 
 /*
@@ -247,9 +172,11 @@ void Mgr::generatorWrite(Stream& stream, GenPelletParm* parm)
  */
 void Mgr::generatorRead(Stream& stream, GenPelletParm* parm, u32 flag)
 {
-	parm->mColor = stream.readByte();
-	parm->mSize  = stream.readByte();
-	switch (parm->mSize) {
+	GenNumberPelletParm* nparm = static_cast<GenNumberPelletParm*>(parm);
+
+	nparm->mColor = stream.readByte();
+	nparm->mSize  = stream.readByte();
+	switch (nparm->mSize) {
 	case PELLET_NUMBER_ONE:
 		parm->mIndex = 0;
 		break;
@@ -263,7 +190,7 @@ void Mgr::generatorRead(Stream& stream, GenPelletParm* parm, u32 flag)
 		parm->mIndex = 3;
 		break;
 	default:
-		JUT_PANICLINE(258, "NumberPellet size %d error\n", parm->mSize);
+		JUT_PANICLINE(258, "NumberPellet size %d error\n", nparm->mSize);
 		break;
 	}
 }

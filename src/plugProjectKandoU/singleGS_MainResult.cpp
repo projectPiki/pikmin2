@@ -6,6 +6,7 @@
 #include "Game/Entities/PelletItem.h"
 #include "Game/Entities/PelletOtakara.h"
 #include "Game/MoviePlayer.h"
+#include "Game/Entities/PelletCarcass.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/GameLight.h"
 #include "Game/CameraMgr.h"
@@ -509,51 +510,58 @@ void MainResultState::createResultNodes()
 {
 	JKRHeap* backup = JKRGetCurrentHeap();
 	mMainHeap->becomeCurrentHeap();
+	PelletCropMemory* mem = playData->mMainCropMemory;
 
-	KindCounter* counter = &playData->mMainCropMemory->mItem;
-	for (int i = 0; i < counter->mNumKinds; i++) {
-		if (*counter->operator()(i)) {
-			PelletConfig* config = PelletItem::mgr->getPelletConfig(i);
+	KindCounter& counter     = mem->mItem;
+	PelletItem::Mgr* itemMgr = PelletItem::mgr;
+	for (int i = 0; i < counter.mNumKinds; i++) {
+		if (*counter(i)) {
+			PelletConfig* config = itemMgr->getPelletConfig(i);
 			int id               = PelletList::Mgr::getOffsetFromDictionaryNo(config->mParams.mDictionary.mData - 1);
 			u64 tag              = Result::TNode::convertByMorimun(id);
 			Result::TNode* node  = new Result::TNode;
-			node->setTNode(tag, mResultTex.getItemTexture(i), *counter->operator()(i),
-			               config->mParams.mMoney.mData * *counter->operator()(i), config->mParams.mMoney.mData);
+			int money            = config->mParams.mMoney.mData;
+			node->setTNode(tag, mResultTex.getItemTexture(i), *counter(i), money * *counter(i), money);
 			mResultNode.add(node);
-			playData->mTreasureCount += *counter->operator()(i);
+			playData->mTreasureCount += *counter(i);
 		}
 	}
 
-	counter = &playData->mMainCropMemory->mOtakara;
-	for (int i = 0; i < counter->mNumKinds; i++) {
-		if (*counter->operator()(i)) {
-			PelletConfig* config = PelletOtakara::mgr->getPelletConfig(i);
+	KindCounter& counter2      = mem->mOtakara;
+	PelletOtakara::Mgr* otaMgr = PelletOtakara::mgr;
+	for (int i = 0; i < counter2.mNumKinds; i++) {
+		if (*counter2(i)) {
+			PelletConfig* config = otaMgr->getPelletConfig(i);
 			int id               = PelletList::Mgr::getOffsetFromDictionaryNo(config->mParams.mDictionary.mData - 1);
 			u64 tag              = Result::TNode::convertByMorimun(id);
 			Result::TNode* node  = new Result::TNode;
-			node->setTNode(tag, mResultTex.getItemTexture(i), *counter->operator()(i),
-			               config->mParams.mMoney.mData * *counter->operator()(i), config->mParams.mMoney.mData);
+			int money            = config->mParams.mMoney.mData;
+			node->setTNode(tag, mResultTex.getItemTexture(i), *counter2(i), money * *counter2(i), money);
 			mResultNode.add(node);
-			playData->mTreasureCount += *counter->operator()(i);
+			playData->mTreasureCount += *counter2(i);
 		}
 	}
 
-	int num   = 0;
-	int money = 0;
-	counter   = &playData->mMainCropMemory->mCarcass;
-	for (int i = 0; i < counter->mNumKinds; i++) {
-		if (*counter->operator()(i)) {
-			PelletConfig* config = PelletOtakara::mgr->getPelletConfig(i);
-			num += *counter->operator()(i);
-			money += *counter->operator()(i) * config->mParams.mMoney.mData;
+	KindCounter& counter3          = mem->mCarcass;
+	PelletCarcass::Mgr* carcassMgr = PelletCarcass::mgr;
+	int money                      = 0;
+	int num                        = 0;
+	for (int i = 0; i < counter3.mNumKinds; i++) {
+		if (*counter3(i)) {
+			PelletConfig* config = carcassMgr->getPelletConfig(i);
+			num += *counter3(i);
+			int cValue           = config->mParams.mMoney.mData;
+			money += *counter3(i) * cValue;
 		}
 	}
+
 	if (num > 0) {
 		playData->mTreasureCount += num;
 		Result::TNode* node = new Result::TNode;
 		node->setTNode(0, mResultTex.getCarcassTexture(), num, money, -1);
 		mResultNode.add(node);
 	}
+
 	playData->mMainCropMemory->clear();
 	mIncP = new kh::Screen::IncP;
 	_1C   = 0;

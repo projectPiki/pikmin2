@@ -125,7 +125,7 @@ struct LookAtCamera : public Camera {
 	virtual Vector3f getLookAtPosition_() { return mLookAtPosition; } // _58 (weak)
 	virtual Vector3f* on_getPositionPtr() { return &mPosition; }      // _64 (weak)
 	virtual void updateMatrix();                                      // _74
-	virtual void startVibration(int);                                 // _7C (weak)
+	virtual void startVibration(int) { }                              // _7C (weak)
 
 	// Camera _00 - _144
 	Matrixf mLookMatrix;      // _144

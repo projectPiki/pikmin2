@@ -648,8 +648,8 @@ void CaveResultState::createResultNodes()
 
 	PelletCarcass::Mgr* carcassMgr = PelletCarcass::mgr;
 	KindCounter& counter3          = cropMem->mCarcass;
-	int value                      = 0;
 	int num                        = 0;
+	int value                      = 0;
 	for (int i = 0; i < counter3.mNumKinds; i++) {
 		if (*counter3(i)) {
 			PelletConfig* config = carcassMgr->getPelletConfig(i);

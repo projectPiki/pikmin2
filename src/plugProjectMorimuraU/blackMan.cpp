@@ -1278,8 +1278,8 @@ void BlackMan::Obj::changeMaterial()
 
 	*img = *xfbTex->mTexInfo;
 
-	wraithMain->setImageOffset((int)img);
-	wraithMain->setPaletteOffset((int)img);
+	wraithMain->setImageOffset((int)img, 0);
+	wraithMain->setPaletteOffset((int)img, 0);
 
 	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
 		j3dSys.mMatPacket = &j3dModel->mMatPackets[i];

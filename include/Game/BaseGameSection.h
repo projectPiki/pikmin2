@@ -66,12 +66,12 @@ struct BaseGameSection : public BaseHIOSection {
 
 		// _00		= VTBL
 		// _00-_198	= LookAtCamera
-		f32 _198;         // _198, angleX?
-		f32 _19C;         // _19C, angleY?
-		f32 _1A0;         // _1A0, cameraDistance?
-		f32 _1A4;         // _1A4
-		f32 _1A8;         // _1A8, angle?
-		Controller* _1AC; // _1AC
+		f32 mAngleX;             // _198, angleX?
+		f32 mAngleY;             // _19C, angleY?
+		f32 _1A0;                // _1A0, cameraDistance?
+		f32 _1A4;                // _1A4
+		f32 _1A8;                // _1A8, angle?
+		Controller* mController; // _1AC
 	};
 
 	BaseGameSection(struct JKRHeap*);

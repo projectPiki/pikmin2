@@ -57,8 +57,8 @@ void Obj::changeMaterial()
 
 	*newTexture = *changeTexture;
 
-	j3dTexture->setImageOffset((u32)changeTexture);
-	j3dTexture->setPaletteOffset((u32)changeTexture);
+	j3dTexture->setImageOffset((u32)changeTexture, 0);
+	j3dTexture->setPaletteOffset((u32)changeTexture, 0);
 
 	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
 		J3DMatPacket* packet  = &j3dModel->mMatPackets[i];

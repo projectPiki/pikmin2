@@ -1,10 +1,13 @@
-#include "Camera.h"
-#include "Controller.h"
 #include "Game/pelletMgr.h"
-
-#include "JSystem/J3D/J3DSys.h"
-
-#include "trig.h"
+#include "og/Screen/DispMember.h"
+#include "Screen/Game2DMgr.h"
+#include "PSSystem/PSSystemIF.h"
+#include "Game/gamePlayData.h"
+#include "Game/MoviePlayer.h"
+#include "Game/GameLight.h"
+#include "P2JME/P2JME.h"
+#include "Controller.h"
+#include "Sys/DrawBuffers.h"
 #include "nans.h"
 
 namespace Game {
@@ -31,7 +34,7 @@ void BaseGameSection::drawOtakaraWindow(Graphics& gfx)
  * Address:	8023B598
  * Size:	000094
  */
-void BaseGameSection::setDraw2DCreature(Game::Creature* creature)
+void BaseGameSection::setDraw2DCreature(Creature* creature)
 {
 	if (creature) {
 		if (mDraw2DCreature) {
@@ -62,7 +65,7 @@ void BaseGameSection::startZoomWindow()
 	Vector3f* vecPtr       = &center;
 
 	if (mDraw2DCreature->getObjType() == OBJTYPE_Honey) {
-		modelRadius *= 1.5F;
+		modelRadius *= 1.5f;
 	}
 
 	if (mDraw2DCreature->getObjType() == OBJTYPE_Pellet) {
@@ -80,9 +83,8 @@ void BaseGameSection::startZoomWindow()
 		}
 	}
 
-	f32 properDist  = mTreasureZoomCamera->calcProperDistance(20.0f, modelRadius);
-	f32 l           = vecPtr->length();
-	Vector3f length = Vector3f(0.0f, l, 0.0f);
+	f32 properDist = mTreasureZoomCamera->calcProperDistance(20.0f, modelRadius);
+	Vector3f length(0.0f, vecPtr->length(), 0.0f);
 	mTreasureZoomCamera->init(properDist, properDist * JMath::sincosTable_.mTable[256].first, length, mControllerP1);
 	/*
 	stwu     r1, -0x50(r1)
@@ -231,176 +233,43 @@ lbl_8023B7BC:
  */
 void BaseGameSection::startKantei2D()
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stw      r31, 0x7c(r1)
-	stw      r30, 0x78(r1)
-	mr       r30, r3
-	stw      r29, 0x74(r1)
-	stw      r28, 0x70(r1)
-	lwz      r3, 0x13c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8023B9F8
-	lwz      r31, 0x13c(r30)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	beq      lbl_8023B88C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_8023B9A8
+	if (mDraw2DCreature->isPellet()) {
+		Pellet* obj = static_cast<Pellet*>(mDraw2DCreature);
+		if (obj->getKind() == PELTYPE_TREASURE || obj->getKind() == PELTYPE_UPGRADE) {
+			og::Screen::DispMemberKantei disp;
+			PelletConfig* config  = obj->mConfig;
+			int totalmoney        = playData->mPokoCount;
+			int cavemoney         = playData->mCavePokoCount;
+			disp.mPelletValue     = config->mParams.mMoney.mData;
+			disp.mDelegate        = mKanteiDelegate;
+			disp.mPelletMessageID = config->mParams.mMessage.mData;
 
-lbl_8023B88C:
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r9, 0
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	li       r7, 0x7b
-	lis      r3, __vt__Q32og6Screen16DispMemberKantei@ha
-	stw      r0, 0x30(r1)
-	addi     r8, r3, __vt__Q32og6Screen16DispMemberKantei@l
-	li       r4, 0x1388
-	li       r3, 0x15b3
-	li       r0, 1
-	stw      r9, 0x34(r1)
-	addi     r5, r1, 0xc
-	lwz      r10, playData__4Game@sda21(r13)
-	addi     r6, r1, 8
-	stw      r8, 0x30(r1)
-	stw      r7, 0x38(r1)
-	stw      r4, 0x3c(r1)
-	stw      r9, 0x64(r1)
-	stw      r9, 0x40(r1)
-	stw      r9, 0x4c(r1)
-	stw      r9, 0x48(r1)
-	stw      r9, 0x50(r1)
-	stw      r3, 0x54(r1)
-	stb      r9, 0x58(r1)
-	stw      r9, 0x5c(r1)
-	stb      r9, 0x59(r1)
-	stb      r9, 0x60(r1)
-	stb      r9, 0x68(r1)
-	stb      r0, 0x69(r1)
-	lwz      r4, 0x35c(r31)
-	lwz      r29, 0xe8(r10)
-	lwz      r28, 0xec(r10)
-	lwz      r0, 0x170(r4)
-	stw      r0, 0x38(r1)
-	lwz      r0, 0x148(r30)
-	stw      r0, 0x40(r1)
-	lwz      r3, 0x230(r4)
-	lwz      r4, 0x234(r4)
-	stw      r4, 0x4c(r1)
-	stw      r3, 0x48(r1)
-	bl       convertU64ToMessageID__5P2JMEFUxPUlPUl
-	add      r0, r29, r28
-	stw      r28, 0x54(r1)
-	stw      r0, 0x3c(r1)
-	lwz      r3, 0x35c(r31)
-	lhz      r3, 0x254(r3)
-	addi     r3, r3, -1
-	bl       getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi
-	stw      r3, 0x50(r1)
-	li       r3, 0
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 1
-	beq      lbl_8023B96C
-	cmpwi    r0, 3
-	bne      lbl_8023B970
+			u32 idk1, idk2;
+			P2JME::convertU64ToMessageID(disp.mPelletMessageID, &idk1, &idk2);
 
-lbl_8023B96C:
-	li       r3, 1
+			disp.mTotalPokosCave = cavemoney;
+			disp.mTotalPokos     = totalmoney + cavemoney;
+			disp.mPelletOffset   = PelletList::Mgr::getOffsetFromDictionaryNo(obj->mConfig->mParams.mDictionary.mData - 1);
+			if (gameSystem->isMultiplayerMode()) {
+				disp.mSecondaryController = mControllerP2;
+			} else {
+				disp.mSecondaryController = nullptr;
+			}
+			Screen::gGame2DMgr->setGamePad(mControllerP1);
+			Screen::gGame2DMgr->open_Kantei(disp);
+		} else {
+			og::Screen::DispMemberSpecialItem disp;
+			disp.mDelegate = mKanteiDelegate;
+			Screen::gGame2DMgr->setGamePad(mControllerP1);
+			Screen::gGame2DMgr->open_SpecialItem(disp);
+		}
 
-lbl_8023B970:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8023B984
-	lwz      r0, 0x110(r30)
-	stw      r0, 0x5c(r1)
-	b        lbl_8023B98C
-
-lbl_8023B984:
-	li       r0, 0
-	stw      r0, 0x5c(r1)
-
-lbl_8023B98C:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r4, 0x10c(r30)
-	bl       setGamePad__Q26Screen9Game2DMgrFP10Controller
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0x30
-	bl       open_Kantei__Q26Screen9Game2DMgrFRQ32og6Screen16DispMemberKantei
-	b        lbl_8023BA44
-
-lbl_8023B9A8:
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r5, 0
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	lis      r3, __vt__Q32og6Screen21DispMemberSpecialItem@ha
-	stw      r0, 0x20(r1)
-	addi     r4, r3, __vt__Q32og6Screen21DispMemberSpecialItem@l
-	li       r0, 1
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	stw      r5, 0x24(r1)
-	stw      r4, 0x20(r1)
-	stw      r5, 0x28(r1)
-	stb      r0, 0x2c(r1)
-	lwz      r0, 0x148(r30)
-	stw      r0, 0x28(r1)
-	lwz      r4, 0x10c(r30)
-	bl       setGamePad__Q26Screen9Game2DMgrFP10Controller
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0x20
-	bl
-open_SpecialItem__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberSpecialItem b
-lbl_8023BA44
-
-lbl_8023B9F8:
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r5, 0
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	lis      r3, __vt__Q32og6Screen21DispMemberSpecialItem@ha
-	stw      r0, 0x10(r1)
-	addi     r4, r3, __vt__Q32og6Screen21DispMemberSpecialItem@l
-	li       r0, 1
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	stw      r5, 0x14(r1)
-	stw      r4, 0x10(r1)
-	stw      r5, 0x18(r1)
-	stb      r0, 0x1c(r1)
-	lwz      r0, 0x148(r30)
-	stw      r0, 0x18(r1)
-	lwz      r4, 0x10c(r30)
-	bl       setGamePad__Q26Screen9Game2DMgrFP10Controller
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0x10
-	bl
-open_SpecialItem__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberSpecialItem
-
-lbl_8023BA44:
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	lwz      r29, 0x74(r1)
-	lwz      r28, 0x70(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	} else {
+		og::Screen::DispMemberSpecialItem disp;
+		disp.mDelegate = mKanteiDelegate;
+		Screen::gGame2DMgr->setGamePad(mControllerP1);
+		Screen::gGame2DMgr->open_SpecialItem(disp);
+	}
 }
 
 /*
@@ -410,6 +279,17 @@ lbl_8023BA44:
  */
 void BaseGameSection::onKanteiDone(Rectf& rect)
 {
+	f32 oldy = rect.p1.y;
+	f32 oldx = rect.p1.x;
+	f32 test = (oldy + oldx) * 0.5f;
+	// startZoomWindow();
+	u16 x = sys->getRenderModeObj()->fbWidth;
+	u16 y = sys->getRenderModeObj()->efbHeight;
+
+	f32 offs = 0.0f;
+	f32 newy = -(y * 0.5f - test);
+	Rectf newrect(0.0f, newy, x + offs, newy + y);
+	mTreasureGetViewport->setRect(newrect);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -470,8 +350,29 @@ void BaseGameSection::onKanteiDone(Rectf& rect)
  * Address:	8023BB30
  * Size:	000114
  */
-void BaseGameSection::ZoomCamera::init(float, float, Vector3f&, Controller*)
+void BaseGameSection::ZoomCamera::init(f32 dist1, f32 dist2, Vector3f& pos, Controller* control)
 {
+	mController = control;
+	f32 angle   = HALF_PI;
+	f32 dist    = dist2 / dist1;
+	mAngleX     = HALF_PI;
+	if (dist >= 1.0f) {
+		if (dist <= -1.0f) {
+			angle = -HALF_PI;
+		} else if (dist < 0.0f) {
+			angle = -JMath::asinAcosTable_.mTable[(u32)(-dist * 1023.5f)];
+		} else {
+			angle = JMath::asinAcosTable_.mTable[(u32)(dist * 1023.5f)];
+		}
+	}
+	mAngleY = angle;
+	_1A8    = angle;
+
+	_1A0 = dist1;
+	_1A4 = dist1;
+	_1A0 *= 0.75f;
+	mLookAtPosition = pos;
+	makeLookAt();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -772,6 +673,8 @@ lbl_8023BEBC:
  */
 bool BaseGameSection::ZoomCamera::doUpdate()
 {
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_OTAKARA_SCROLL, 0);
+	makeLookAt();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -890,8 +793,99 @@ lbl_8023C03C:
  * Address:	8023C058
  * Size:	000410
  */
-void BaseGameSection::do_drawOtakaraWindow(Graphics&)
+void BaseGameSection::do_drawOtakaraWindow(Graphics& gfx)
 {
+	if (!gameSystem->isZukanMode()) {
+		f32 time = sys->mDeltaTime;
+		if (mDraw2DCreature && mDraw2DCreature->isPellet()) {
+			Pellet* obj = static_cast<Pellet*>(mDraw2DCreature);
+			if ((obj->getKind() == PELTYPE_TREASURE || obj->getKind() == PELTYPE_UPGRADE) && !Screen::gGame2DMgr->update_Kantei()
+			    && mTreasureGetState == 2) {
+				mTreasureGetState = 4;
+				if (moviePlayer) {
+					moviePlayer->unsuspend(1, false);
+				}
+			}
+		}
+		switch (mTreasureGetState) {
+		case 0:
+			return;
+		case 1:
+			mDraw2DCreatureScale += time * 2.0f;
+			if (mDraw2DCreatureScale >= 1.0f) {
+				mDraw2DCreatureScale = 1.0f;
+				mTreasureGetState    = 2;
+				_144                 = 6.0f;
+			}
+			break;
+
+		case 2:
+		case 3:
+			mDraw2DCreatureScale = -(time * 10.0f - mDraw2DCreatureScale);
+			mDraw2DCreatureScale = 0.0f;
+			mDraw2DCreatureScale = 0.0f; // you know, just to be sure
+			mTreasureGetState    = 0;
+			if (moviePlayer) {
+				moviePlayer->unsuspend(1, false);
+			}
+			break;
+		}
+
+		mTreasureLightMgr->update();
+		Matrixf mtx;
+		PSMTXIdentity(mtx.mMatrix.mtxView);
+		mTreasureLightMgr->set(mtx);
+		mTreasureZoomCamera->update();
+
+		u16 y = sys->getRenderModeObj()->efbHeight;
+		u16 x = sys->getRenderModeObj()->fbWidth;
+		Rectf bounds(0.0f, 0.0f, x, y);
+		gfx.clearZBuffer(bounds);
+
+		Mtx mtx2;
+		PSMTXCopy(j3dSys.mViewMtx, mtx2);
+		Viewport* vp = mTreasureGetViewport;
+		if (mDraw2DCreature) {
+			vp->setJ3DViewMtx(false);
+			Camera* cam = mTreasureZoomCamera;
+			cam->setProjection();
+			Matrixf* cammtx = cam->getViewMatrix(false);
+			PSMTXCopy(cammtx->mMatrix.mtxView, j3dSys.mViewMtx);
+
+			mDraw2DCreature->mLod.setFlag(AILOD_IsVisVP1 | AILOD_IsVisVP2 | AILOD_IsVisible);
+
+			PSMTXIdentity(mDraw2DCreature->mBaseTrMatrix.mMatrix.mtxView);
+			Vec scale;
+			scale.x = (mDraw2DCreatureScale * mDraw2DCreatureScale);
+			scale.y = (mDraw2DCreatureScale * mDraw2DCreatureScale);
+			scale.z = (mDraw2DCreatureScale * mDraw2DCreatureScale);
+
+			Mtx mtx;
+			PSMTXIdentity(mtx);
+			PSMTXCopy(mtx, mDraw2DCreature->mModel->mJ3dModel->mPosMtx);
+			mDraw2DCreature->setAlive(false);
+			mDraw2DCreature->mModel->mJ3dModel->mModelScale = scale;
+			mDraw2DCreature->mModel->mJ3dModel->calcMaterial();
+
+			SysShape::Model::setViewCalcModeInd();
+			mDraw2DCreature->isAlive();
+			SysShape::Model::setViewCalcModeImm();
+			mDraw2DCreature->isAlive();
+			setDrawBuffer(5);
+			mDraw2DCreature->isAlive();
+			setDrawBuffer(0);
+		}
+		vp->setViewport();
+		vp->setProjection();
+
+		mDrawBuffer1->get(5)->draw();
+		mDrawBuffer2->get(5)->draw();
+		mDrawBuffer1->get(5)->frameInit();
+		mDrawBuffer2->get(5)->frameInit();
+
+		PSMTXCopy(mtx2, j3dSys.mViewMtx);
+		j3dSys.reinitGX();
+	}
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -1172,157 +1166,4 @@ lbl_8023C444:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8023C468
- * Size:	0000D0
- */
-// BaseGameSection::ZoomCamera::~ZoomCamera()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	or.      r31, r3, r3
-// 	stw      r30, 8(r1)
-// 	mr       r30, r4
-// 	beq      lbl_8023C51C
-// 	lis      r4, __vt__Q34Game15BaseGameSection10ZoomCamera@ha
-// 	addi     r0, r4, __vt__Q34Game15BaseGameSection10ZoomCamera@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_8023C50C
-// 	lis      r4, __vt__12LookAtCamera@ha
-// 	addi     r0, r4, __vt__12LookAtCamera@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_8023C50C
-// 	lis      r4, __vt__6Camera@ha
-// 	addi     r0, r4, __vt__6Camera@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_8023C50C
-// 	lis      r4, __vt__11CullFrustum@ha
-// 	addi     r0, r4, __vt__11CullFrustum@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_8023C50C
-// 	lis      r4, __vt__9CullPlane@ha
-// 	addi     r0, r4, __vt__9CullPlane@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_8023C50C
-// 	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-// 	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_8023C50C
-// 	lis      r4, "__vt__17Container<5Plane>"@ha
-// 	addi     r0, r4, "__vt__17Container<5Plane>"@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_8023C50C
-// 	lis      r5, __vt__16GenericContainer@ha
-// 	li       r4, 0
-// 	addi     r0, r5, __vt__16GenericContainer@l
-// 	stw      r0, 0(r31)
-// 	bl       __dt__5CNodeFv
-
-// lbl_8023C50C:
-// 	extsh.   r0, r30
-// 	ble      lbl_8023C51C
-// 	mr       r3, r31
-// 	bl       __dl__FPv
-
-// lbl_8023C51C:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r31
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8023C538
- * Size:	000004
- */
-void LookAtCamera::startVibration(int) { }
-
-// namespace og {
-// namespace Screen {
-
-// /*
-//  * --INFO--
-//  * Address:	8023C53C
-//  * Size:	000008
-//  */
-// u32 DispMemberSpecialItem::getSize() { return 0x10; }
-
-// /*
-//  * --INFO--
-//  * Address:	8023C544
-//  * Size:	00000C
-//  */
-// void DispMemberSpecialItem::getOwnerID()
-// {
-// 	/*
-// lis      r3, 0x004F4741@ha
-// addi     r3, r3, 0x004F4741@l
-// blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8023C550
-//  * Size:	000014
-//  */
-// void DispMemberSpecialItem::getMemberID()
-// {
-// 	/*
-// lis      r4, 0x4954454D@ha
-// lis      r3, 0x0053505F@ha
-// addi     r4, r4, 0x4954454D@l
-// addi     r3, r3, 0x0053505F@l
-// blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8023C564
-//  * Size:	000008
-//  */
-// u32 DispMemberKantei::getSize() { return 0x40; }
-
-// /*
-//  * --INFO--
-//  * Address:	8023C56C
-//  * Size:	00000C
-//  */
-// void DispMemberKantei::getOwnerID()
-// {
-// 	/*
-// lis      r3, 0x004F4741@ha
-// addi     r3, r3, 0x004F4741@l
-// blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8023C578
-//  * Size:	000010
-//  */
-// void DispMemberKantei::getMemberID()
-// {
-// 	/*
-// lis      r4, 0x4E544549@ha
-// li       r3, 0x4b41
-// addi     r4, r4, 0x4E544549@l
-// blr
-// 	*/
-// }
-
-// } // namespace Screen
-// } // namespace og

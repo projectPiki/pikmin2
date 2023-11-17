@@ -248,15 +248,14 @@ void Object::changeMaterial()
 		texMtx->_24[3][0] = texMtx->_24[3][1] = texMtx->_24[3][2] = 0.0f;
 		texMtx->_24[3][3]                                         = 1.0f;
 
-		J3DTexture* texData = mModel->mJ3dModel->mModelData->getTexture();
-		JUTTexture* xfbTex  = gameSystem->getXfbTexture();
 		u16 id              = mFbTextureID;
-		ResTIMG* img        = texData->getResTIMG(id);
+		const ResTIMG* xfb  = gameSystem->getXfbTexture()->getTexInfo();
+		J3DTexture* texData = mModel->mJ3dModel->mModelData->getTexture();
 
-		*img = *xfbTex->mTexInfo;
+		*texData->getResTIMG(id) = *xfb;
 
-		texData->setImageOffset((int)&img[id]);
-		texData->setPaletteOffset((int)&img[id]);
+		texData->setImageOffset((u32)xfb, id);
+		texData->setPaletteOffset((u32)xfb, id);
 	}
 	/*
 	stwu     r1, -0x50(r1)
