@@ -472,7 +472,7 @@ lbl_8023AAE8:
  * Address:	8023AAFC
  * Size:	0005B8
  */
-void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, u32)
+void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32 p3, u32 p4)
 {
 	Screen::gGame2DMgr->startFadeBG_CourseName();
 	Screen::gGame2DMgr->startCount_CourseName();
@@ -484,9 +484,8 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32
 		origin.y = 0.0f;
 		origin.z = 166.0f;
 		if (mapMgr->getDemoMatrix()) {
-			Matrixf* mtx = mapMgr->getDemoMatrix();
 			Vec out;
-			PSMTXMultVec(mtx->mMatrix.mtxView, &origin, &out);
+			PSMTXMultVec(mapMgr->getDemoMatrix()->mMatrix.mtxView, &origin, &out);
 			origin = out;
 
 			Piki* pikiBuffer[103];
@@ -957,81 +956,11 @@ void DayEndState::onMovieDone(SingleGameSection* section, MovieConfig* cfg, u32 
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		pikiMgr->killAllPikmins();
 	} else {
-		MoviePlayArg moviePlayArg("s21_dayend_takeoff", const_cast<char*>(section->mCurrentCourseInfo->mName),
-		                          section->mMovieFinishCallback, 0);
+		char* course_name = const_cast<char*>(section->mCurrentCourseInfo->mName);
+		MoviePlayArg moviePlayArg("s21_dayend_takeoff", course_name, section->mMovieFinishCallback, 0);
 		moviePlayArg.mDelegateStart = section->mMovieStartCallback;
 		moviePlayer->play(moviePlayArg);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  lis       r3, 0x8048
-	  stw       r0, 0x54(r1)
-	  addi      r0, r3, 0x3DAC
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r5
-	  mr        r3, r31
-	  stw       r30, 0x48(r1)
-	  mr        r30, r4
-	  mr        r4, r0
-	  bl        0x1F67EC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x44
-	  lwz       r3, -0x6D0C(r13)
-	  li        r4, 0
-	  bl        -0xDB440
-
-	.loc_0x44:
-	  lis       r4, 0x8048
-	  mr        r3, r31
-	  addi      r4, r4, 0x3E34
-	  bl        0x1F67C8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x78
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm    r0,r0,0,27,25
-	  stb       r0, 0x3C(r3)
-	  lwz       r3, -0x6D0C(r13)
-	  bl        -0xDABCC
-	  b         .loc_0xDC
-
-	.loc_0x78:
-	  lwz       r4, 0x22C(r30)
-	  lis       r3, 0x8048
-	  lwz       r5, 0xC8(r30)
-	  addi      r3, r3, 0x3E34
-	  lwz       r6, 0x14(r4)
-	  li        r0, 0
-	  lfs       f0, -0x3E28(r2)
-	  addi      r4, r1, 0x8
-	  stw       r3, 0x8(r1)
-	  lwz       r3, -0x64AC(r13)
-	  stw       r6, 0xC(r1)
-	  stw       r5, 0x14(r1)
-	  stfs      f0, 0x20(r1)
-	  stfs      f0, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  stfs      f0, 0x2C(r1)
-	  stw       r0, 0x30(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0x34(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x38(r1)
-	  lwz       r0, 0xCC(r30)
-	  stw       r0, 0x18(r1)
-	  bl        0x1F1844
-
-	.loc_0xDC:
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
 }
 
 /*
