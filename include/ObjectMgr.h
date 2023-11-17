@@ -18,8 +18,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.mIndex != iter.mContainer->getEnd()) {
-			iter.mContainer->get(iter.mIndex)->doAnimation();
+		while (!iter.isDone()) {
+			(*iter)->doAnimation();
 			iter.next();
 		}
 	}
@@ -27,8 +27,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.mIndex != iter.mContainer->getEnd()) {
-			iter.mContainer->get(iter.mIndex)->doEntry();
+		while (!iter.isDone()) {
+			(*iter)->doEntry();
 			iter.next();
 		}
 	}
@@ -36,8 +36,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.mIndex != iter.mContainer->getEnd()) {
-			iter.mContainer->get(iter.mIndex)->doSetView(viewportNumber);
+		while (!iter.isDone()) {
+			(*iter)->doSetView(viewportNumber);
 			iter.next();
 		}
 	}
@@ -45,8 +45,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.mIndex != iter.mContainer->getEnd()) {
-			iter.mContainer->get(iter.mIndex)->doViewCalc();
+		while (!iter.isDone()) {
+			(*iter)->doViewCalc();
 			iter.next();
 		}
 	}
@@ -54,8 +54,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.mIndex != iter.mContainer->getEnd()) {
-			iter.mContainer->get(iter.mIndex)->doSimulation(constraint);
+		while (!iter.isDone()) {
+			(*iter)->doSimulation(constraint);
 			iter.next();
 		}
 	}
@@ -63,8 +63,8 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 		Iterator<T> iter(this);
 		iter.first();
-		while (iter.mIndex != iter.mContainer->getEnd()) {
-			iter.mContainer->get(iter.mIndex)->doDirectDraw(graphics);
+		while (!iter.isDone()) {
+			(*iter)->doDirectDraw(graphics);
 			iter.next();
 		}
 	}

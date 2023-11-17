@@ -33,4 +33,5 @@ void Mgr::setupResources()
 }
 
 } // namespace PelletCarcass
+
 } // namespace Game

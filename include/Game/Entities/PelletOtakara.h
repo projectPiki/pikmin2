@@ -10,20 +10,20 @@ struct J3DMaterial;
 namespace Game {
 namespace PelletOtakara {
 struct Object : public Pellet {
-	Object();
+	Object() { }
 
 	virtual void constructor();                           // _2C
 	virtual void getShadowParam(ShadowParam& settings);   // _134
 	virtual void do_onInit(CreatureInitArg*);             // _1CC
 	virtual void onCreateShape();                         // _1D0
 	virtual void theEntry();                              // _1D4
-	virtual s32 getBedamaColor() { return mBedamaColor; } // _1E8 (weak)
-	virtual u8 getKind() { return PELTYPE_TREASURE; }     // _1F4 (weak)
 	virtual void changeMaterial();                        // _1F8
 	virtual void sound_otakaraEventStart();               // _20C
 	virtual void sound_otakaraEventRestart();             // _210
 	virtual void sound_otakaraEventStop();                // _214
 	virtual void sound_otakaraEventFinish();              // _218
+	virtual u8 getKind() { return PELTYPE_TREASURE; }     // _1F4 (weak)
+	virtual s32 getBedamaColor() { return mBedamaColor; } // _1E8 (weak)
 
 	// _00      = VTBL
 	// _00-_458 = Pellet
@@ -43,7 +43,7 @@ struct Mgr : public FixedSizePelletMgr<Object> {
 	virtual void generatorRead(Stream&, GenPelletParm*, u32);             // _78
 	virtual u32 generatorLocalVersion() { return '0000'; }                // _7C (weak)
 	virtual GenPelletParm* generatorNewPelletParm();                      // _84
-	virtual ~Mgr() { }                                                    // _C8 (weak)
+	// virtual ~Mgr() { }                                                    // _C8 (weak)
 
 	// _00      = VTABLE
 	// _00-_A0  = FixedSizePelletMgr

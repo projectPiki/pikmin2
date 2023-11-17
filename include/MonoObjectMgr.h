@@ -12,73 +12,25 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 
 	void kill(T* item);
 	// virtual ~MonoObjectMgr() { }     // _08 (weak)
-	virtual void* getNext(void* idx) // _14 (weak)
+	virtual void* getNext(void* idx); // _14 (weak)
+	virtual void* getStart();         // _18 (weak)
+	virtual void* getEnd()            // _1C (weak)
 	{
-		for (int i = (int)idx + 1; i < mMax; i++) {
-			if (mOpenIds[i] == 0) {
-				return (void*)i;
-			}
-		}
+		return (void*)mMax;
+	}
+	virtual T* getAt(int index); // _24 (weak)
 
-		return (void*)mMax;
-	}
-	virtual void* getStart() // _18 (weak)
-	{
-		return getNext((void*)-1);
-	}
-	virtual void* getEnd() // _1C (weak)
-	{
-		return (void*)mMax;
-	}
-	virtual T* getAt(int index) // _24 (weak)
-	{
-		return &mArray[index];
-	}
 	virtual int getTo() // _28 (weak)
 	{
 		return mMax;
 	}
-	virtual void doAnimation() // _64 (weak, thunk at _34)
-	{
-		for (int i = 0; i < mMax; i++) {
-			if (mOpenIds[i] == false) {
-				mArray[i].doAnimation();
-			}
-		}
-	}
-	virtual void doEntry() // _68 (weak, thunk at _38)
-	{
-		for (int i = 0; i < mMax; i++) {
-			if (mOpenIds[i] == false) {
-				mArray[i].doEntry();
-			}
-		}
-	}
-	virtual void doSetView(int viewportNumber) // _6C (weak, thunk at _3C)
-	{
-		for (int i = 0; i < mMax; i++) {
-			if (mOpenIds[i] == false) {
-				mArray[i].doSetView(viewportNumber);
-			}
-		}
-	}
-	virtual void doViewCalc() // _70 (weak, thunk at _40)
-	{
-		for (int i = 0; i < mMax; i++) {
-			if (mOpenIds[i] == false) {
-				mArray[i].doViewCalc();
-			}
-		}
-	}
-	virtual void doSimulation(f32 timeStep); // _74 (weak, thunk at _44)
-	virtual void doDirectDraw(Graphics& gfx) // _78 (weak, thunk at _48)
-	{
-		for (int i = 0; i < mMax; i++) {
-			if (mOpenIds[i] == false) {
-				mArray[i].doDirectDraw(gfx);
-			}
-		}
-	}
+
+	virtual void doAnimation();                 // _64 (weak, thunk at _34)
+	virtual void doEntry();                     // _68 (weak, thunk at _38)
+	virtual void doSetView(int viewportNumber); // _6C (weak, thunk at _3C)
+	virtual void doViewCalc();                  // _70 (weak, thunk at _40)
+	virtual void doSimulation(f32 timeStep);    // _74 (weak, thunk at _44)
+	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak, thunk at _48)
 
 	virtual void resetMgr(); // _80 (weak, thunk at _54)
 	virtual void clearMgr()  // _84 (weak)
@@ -88,7 +40,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 			mOpenIds[i] = true;
 		}
 	}
-	virtual void onAlloc() { } // _88 (weak)
+	virtual void onAlloc(); // _88 (weak)
 
 	int getEmptyIndex();
 
@@ -98,6 +50,10 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	}
 
 	void alloc(int count);
+
+	inline int getMax() const { return mMax; }
+	inline void setFlag(int i, u32 flag) { mOpenIds[i] = flag; }
+	inline u32 getFlag(int i) { return mOpenIds[i]; }
 
 	// _00		= VTBL
 	// _00-_20  = ObjectMgr
@@ -118,16 +74,6 @@ MonoObjectMgr<T>::MonoObjectMgr()
 }
 
 template <typename T>
-void MonoObjectMgr<T>::doSimulation(f32 timeStep)
-{
-	for (int i = 0; i < mMax; i++) {
-		if (mOpenIds[i] == false) {
-			mArray[i].doSimulation(timeStep);
-		}
-	}
-}
-
-template <typename T>
 void MonoObjectMgr<T>::alloc(int count)
 {
 	mArray       = new T[count];
@@ -136,7 +82,7 @@ void MonoObjectMgr<T>::alloc(int count)
 	mOpenIds     = new u8[count];
 
 	for (int i = 0; i < count; i++) {
-		mOpenIds[i] = true;
+		setFlag(i, 1);
 	}
 
 	onAlloc();
@@ -144,6 +90,11 @@ void MonoObjectMgr<T>::alloc(int count)
 	for (int i = 0; i < count; i++) {
 		mArray[i].constructor();
 	}
+}
+
+template <typename T>
+void MonoObjectMgr<T>::onAlloc()
+{
 }
 
 template <typename T>
@@ -190,4 +141,101 @@ T* MonoObjectMgr<T>::birth()
 	}
 	return nullptr;
 }
+
+template <typename T>
+void MonoObjectMgr<T>::doAnimation() // _64 (weak, thunk at _34)
+{
+	for (int i = 0; i < mMax; i++) {
+		if (mOpenIds[i] == false) {
+			mArray[i].doAnimation();
+		}
+	}
+}
+
+template <typename T>
+void MonoObjectMgr<T>::doEntry() // _68 (weak, thunk at _38)
+{
+	for (int i = 0; i < mMax; i++) {
+		if (mOpenIds[i] == false) {
+			mArray[i].doEntry();
+		}
+	}
+}
+
+template <typename T>
+void MonoObjectMgr<T>::doSetView(int viewportNumber) // _6C (weak, thunk at _3C)
+{
+	for (int i = 0; i < mMax; i++) {
+		if (mOpenIds[i] == false) {
+			mArray[i].doSetView(viewportNumber);
+		}
+	}
+}
+
+template <typename T>
+void MonoObjectMgr<T>::doViewCalc() // _70 (weak, thunk at _40)
+{
+	for (int i = 0; i < mMax; i++) {
+		if (mOpenIds[i] == false) {
+			mArray[i].doViewCalc();
+		}
+	}
+}
+
+template <typename T>
+void MonoObjectMgr<T>::doSimulation(f32 timeStep) // _74 (weak, thunk at _44)
+{
+	for (int i = 0; i < mMax; i++) {
+		if (mOpenIds[i] == false) {
+			mArray[i].doSimulation(timeStep);
+		}
+	}
+}
+
+template <typename T>
+void MonoObjectMgr<T>::doDirectDraw(Graphics& gfx) // _78 (weak, thunk at _48)
+{
+	for (int i = 0; i < mMax; i++) {
+		if (mOpenIds[i] == false) {
+			mArray[i].doDirectDraw(gfx);
+		}
+	}
+}
+
+template <typename T>
+void* MonoObjectMgr<T>::getNext(void* idx) // _14 (weak)
+{
+	for (int i = (int)idx + 1; i < mMax; i++) {
+		if (mOpenIds[i] == 0) {
+			return (void*)i;
+		}
+	}
+
+	return (void*)mMax;
+}
+
+template <typename T>
+void* MonoObjectMgr<T>::getStart() // _18 (weak)
+{
+	return getNext((void*)-1);
+}
+
+// template <typename T>
+// void* MonoObjectMgr<T>::getEnd()
+// {
+// 	return (void*)mMax;
+// }
+
+// template <typename T>
+// T* MonoObjectMgr<T>::get(void* idx)
+// {
+// 	return &mArray[(int)idx];
+// }
+
+template <typename T>
+T* MonoObjectMgr<T>::getAt(int index)
+{
+	return &mArray[index];
+}
+
 #endif

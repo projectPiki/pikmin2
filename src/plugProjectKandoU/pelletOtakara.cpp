@@ -244,7 +244,18 @@ void Object::changeMaterial()
 		mModel->mJ3dModel->calcMaterial();
 
 		J3DTexMtx* texMtx = mFbMaterial->mTexGenBlock->getTexMtx(1);
-		copyMtx44(texMtx->_24, copyMatrix);
+		texMtx->_24[0][0] = copyMatrix[0][0];
+		texMtx->_24[0][1] = copyMatrix[0][1];
+		texMtx->_24[0][2] = copyMatrix[0][2];
+		texMtx->_24[0][3] = copyMatrix[0][3];
+		texMtx->_24[1][0] = copyMatrix[1][0];
+		texMtx->_24[1][1] = copyMatrix[1][1];
+		texMtx->_24[1][2] = copyMatrix[1][2];
+		texMtx->_24[1][3] = copyMatrix[1][3];
+		texMtx->_24[2][0] = copyMatrix[2][0];
+		texMtx->_24[2][1] = copyMatrix[2][1];
+		texMtx->_24[2][2] = copyMatrix[2][2];
+		texMtx->_24[2][3] = copyMatrix[2][3];
 		texMtx->_24[3][0] = texMtx->_24[3][1] = texMtx->_24[3][2] = 0.0f;
 		texMtx->_24[3][3]                                         = 1.0f;
 
@@ -257,168 +268,6 @@ void Object::changeMaterial()
 		texData->setImageOffset((u32)xfb, id);
 		texData->setPaletteOffset((u32)xfb, id);
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lwz      r0, 0x458(r3)
-	cmplwi   r0, 0
-	beq      lbl_80200768
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	li       r3, 0
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 1
-	beq      lbl_80200550
-	cmpwi    r0, 3
-	bne      lbl_80200554
-
-lbl_80200550:
-	li       r3, 1
-
-lbl_80200554:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80200768
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r1, 8
-	lwz      r3, 0x24(r3)
-	lwz      r3, 0x25c(r3)
-	lwz      r3, 0x44(r3)
-	addi     r3, r3, 0xb4
-	bl       PSMTX44Copy
-	lfs      f5, 0x38(r1)
-	lfs      f4, 0x3c(r1)
-	lfs      f1, lbl_80519D20@sda21(r2)
-	lfs      f3, 0x40(r1)
-	lfs      f2, 0x44(r1)
-	lfs      f0, lbl_80519D24@sda21(r2)
-	stfs     f5, 0x28(r1)
-	stfs     f4, 0x2c(r1)
-	stfs     f3, 0x30(r1)
-	stfs     f2, 0x34(r1)
-	stfs     f1, 0x38(r1)
-	stfs     f1, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	stfs     f0, 0x44(r1)
-	lwz      r3, 0x174(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x458(r31)
-	li       r4, 1
-	lwz      r3, 0x28(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	lfs      f1, lbl_80519D20@sda21(r2)
-	stfs     f0, 0x24(r3)
-	lfs      f0, lbl_80519D24@sda21(r2)
-	lfs      f2, 0xc(r1)
-	stfs     f2, 0x28(r3)
-	lfs      f2, 0x10(r1)
-	stfs     f2, 0x2c(r3)
-	lfs      f2, 0x14(r1)
-	stfs     f2, 0x30(r3)
-	lfs      f2, 0x18(r1)
-	stfs     f2, 0x34(r3)
-	lfs      f2, 0x1c(r1)
-	stfs     f2, 0x38(r3)
-	lfs      f2, 0x20(r1)
-	stfs     f2, 0x3c(r3)
-	lfs      f2, 0x24(r1)
-	stfs     f2, 0x40(r3)
-	lfs      f2, 0x28(r1)
-	stfs     f2, 0x44(r3)
-	lfs      f2, 0x2c(r1)
-	stfs     f2, 0x48(r3)
-	lfs      f2, 0x30(r1)
-	stfs     f2, 0x4c(r3)
-	lfs      f2, 0x34(r1)
-	stfs     f2, 0x50(r3)
-	stfs     f1, 0x5c(r3)
-	stfs     f1, 0x58(r3)
-	stfs     f1, 0x54(r3)
-	stfs     f0, 0x60(r3)
-	lwz      r3, 0x174(r31)
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lwz      r3, 8(r3)
-	lha      r0, 0x45c(r31)
-	lwz      r3, 4(r3)
-	lwz      r5, 0x54(r4)
-	rlwinm   r0, r0, 5, 0xb, 0x1a
-	lwz      r4, 0x6c(r3)
-	lwz      r3, 0x20(r5)
-	lwz      r6, 4(r4)
-	lbz      r5, 0(r3)
-	add      r6, r6, r0
-	stb      r5, 0(r6)
-	lbz      r5, 1(r3)
-	stb      r5, 1(r6)
-	lhz      r5, 2(r3)
-	sth      r5, 2(r6)
-	lhz      r5, 4(r3)
-	sth      r5, 4(r6)
-	lbz      r5, 6(r3)
-	stb      r5, 6(r6)
-	lbz      r5, 7(r3)
-	stb      r5, 7(r6)
-	lbz      r5, 8(r3)
-	stb      r5, 8(r6)
-	lbz      r5, 9(r3)
-	stb      r5, 9(r6)
-	lhz      r5, 0xa(r3)
-	sth      r5, 0xa(r6)
-	lwz      r5, 0xc(r3)
-	stw      r5, 0xc(r6)
-	lbz      r5, 0x10(r3)
-	stb      r5, 0x10(r6)
-	lbz      r5, 0x11(r3)
-	stb      r5, 0x11(r6)
-	lbz      r5, 0x12(r3)
-	stb      r5, 0x12(r6)
-	lbz      r5, 0x13(r3)
-	stb      r5, 0x13(r6)
-	lbz      r5, 0x14(r3)
-	stb      r5, 0x14(r6)
-	lbz      r5, 0x15(r3)
-	stb      r5, 0x15(r6)
-	lbz      r5, 0x16(r3)
-	stb      r5, 0x16(r6)
-	lbz      r5, 0x17(r3)
-	stb      r5, 0x17(r6)
-	lbz      r5, 0x18(r3)
-	stb      r5, 0x18(r6)
-	lbz      r5, 0x19(r3)
-	stb      r5, 0x19(r6)
-	lha      r5, 0x1a(r3)
-	sth      r5, 0x1a(r6)
-	lwz      r5, 0x1c(r3)
-	stw      r5, 0x1c(r6)
-	lwz      r5, 4(r4)
-	add      r6, r5, r0
-	lwz      r5, 0x1c(r6)
-	add      r5, r3, r5
-	subf     r5, r6, r5
-	stw      r5, 0x1c(r6)
-	lwz      r4, 4(r4)
-	add      r4, r4, r0
-	lwz      r0, 0xc(r4)
-	add      r0, r3, r0
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-
-lbl_80200768:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
