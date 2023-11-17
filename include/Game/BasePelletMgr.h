@@ -92,36 +92,38 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 	}
 
 	////////// VTABLE
-	virtual void doAnimation();                 // _08
-	virtual void doEntry();                     // _0C
-	virtual void doSetView(int viewportNumber); // _10
-	virtual void doViewCalc();                  // _14
-	virtual void doSimulation(f32 rate);        // _18
-	virtual void doDirectDraw(Graphics& gfx);   // _1C
-	virtual void resetMgr()                     // _28 (weak)
+	virtual void resetMgr() // _28 (weak)
 	{
 		mMonoObjectMgr.resetMgr();
 		mCollPartMgr.resetMgr();
 	}
-	virtual void resetMgrAndResources();            // _38
-	virtual Pellet* birth();                        // _3C
-	virtual void kill(Pellet*);                     // _40
+
+	virtual void resetMgrAndResources();          // _38
+	virtual void onCreateModel(SysShape::Model*); // _54
+	virtual Pellet* birth();                      // _3C
+	virtual void doAnimation();                   // _08
+	virtual void doEntry();                       // _0C
+	virtual void doSetView(int viewportNumber);   // _10
+	virtual void doViewCalc();                    // _14
+	virtual void doSimulation(f32 rate);          // _18
+	virtual void doDirectDraw(Graphics& gfx);     // _1C
+	virtual Pellet* birthFromTeki(PelletConfig*); // _48
+	virtual T* getObjectPtr(void*);               // _88
+	virtual T* get(void*);                        // _C4
+	virtual void* getEnd();                       // _94
+	virtual void setComeAlive(int);               // _4C
+	virtual void setComeAlive(Pellet*);           // _50
+	virtual void setRevival(Pellet*);             // _60
+	virtual void setFromTeki(Pellet*);            // _64
+	virtual u32 getFlag(Pellet*);                 // _68
+	virtual void* getStart();                     // _90
+	virtual void* getNext(void*);                 // _8C
+	virtual void kill(Pellet*);                   // _40
+
 	virtual void setupResources() = 0;              // _44
-	virtual Pellet* birthFromTeki(PelletConfig*);   // _48
-	virtual void setComeAlive(int);                 // _4C
-	virtual void setComeAlive(Pellet*);             // _50
-	virtual void onCreateModel(SysShape::Model*);   // _54
-	virtual char* getMgrName() = 0;                 // _58
-	virtual u8 getMgrID()      = 0;                 // _5C
-	virtual void setRevival(Pellet*);               // _60
-	virtual void setFromTeki(Pellet*);              // _64
-	virtual u32 getFlag(Pellet*);                   // _68
+	virtual char* getMgrName()    = 0;              // _58
+	virtual u8 getMgrID()         = 0;              // _5C
 	virtual SysShape::Model* createShape(int, int); // _6C
-	virtual T* getObjectPtr(void*);                 // _88
-	virtual void* getNext(void*);                   // _8C
-	virtual void* getStart();                       // _90
-	virtual void* getEnd();                         // _94
-	virtual T* get(void*);                          // _C4
 	virtual ~FixedSizePelletMgr() { }               // _C8
 	////////// VTABLE END
 
@@ -133,6 +135,181 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 	// _6C-_70	= ptr to _BasePelletMgrParent2 (maybe??)
 	MonoObjectMgr<T> mMonoObjectMgr; // _70
 };
+
+template <typename T>
+void FixedSizePelletMgr<T>::resetMgrAndResources()
+{
+	resetMgr();
+	for (int i = 0; i < mEntries; i++) {
+		mModelData[i]  = nullptr;
+		mAnimMgr[i]    = nullptr;
+		mCollParts[i]  = nullptr;
+		mIsUsedList[i] = false;
+	}
+
+	if (mModelMgr) {
+		mModelMgr = nullptr;
+	}
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::onCreateModel(SysShape::Model* model)
+{
+}
+
+template <typename T>
+Pellet* FixedSizePelletMgr<T>::birth()
+{
+	return mMonoObjectMgr.birth();
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::doAnimation()
+{
+	mMonoObjectMgr.doAnimation();
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::doEntry()
+{
+	mMonoObjectMgr.doEntry();
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::doSetView(int vp)
+{
+	mMonoObjectMgr.doSetView(vp);
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::doViewCalc()
+{
+	mMonoObjectMgr.doViewCalc();
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::doSimulation(f32 step)
+{
+	mMonoObjectMgr.doSimulation(step);
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::doDirectDraw(Graphics& gfx)
+{
+	mMonoObjectMgr.doDirectDraw(gfx);
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::kill(Pellet* pellet)
+{
+	mMonoObjectMgr.kill(static_cast<T*>(pellet));
+}
+
+template <typename T>
+void* FixedSizePelletMgr<T>::getNext(void* idx)
+{
+	return mMonoObjectMgr.getNext(idx);
+}
+
+template <typename T>
+void* FixedSizePelletMgr<T>::getStart()
+{
+	return mMonoObjectMgr.getStart();
+}
+
+template <typename T>
+u32 FixedSizePelletMgr<T>::getFlag(Pellet* pellet)
+{
+	if (pellet) {
+		return mMonoObjectMgr.mOpenIds[pellet->mSlotIndex];
+	}
+
+	return -1;
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::setFromTeki(Pellet* pellet)
+{
+	if (pellet) {
+		mMonoObjectMgr.mOpenIds[pellet->mSlotIndex] = (0x64 | 0x1);
+	}
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::setRevival(Pellet* pellet)
+{
+	if (pellet) {
+		mMonoObjectMgr.mOpenIds[pellet->mSlotIndex] = (0x64);
+	}
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::setComeAlive(Pellet* pellet)
+{
+	if (pellet) {
+		mMonoObjectMgr.mOpenIds[pellet->mSlotIndex] = (0);
+	}
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::setComeAlive(int slotIdx)
+{
+	mMonoObjectMgr.mOpenIds[slotIdx] = (0);
+}
+
+template <typename T>
+void* FixedSizePelletMgr<T>::getEnd()
+{
+	return mMonoObjectMgr.getEnd();
+}
+
+template <typename T>
+T* FixedSizePelletMgr<T>::get(void* index)
+{
+	return mMonoObjectMgr.get(index);
+}
+
+template <typename T>
+T* FixedSizePelletMgr<T>::getObjectPtr(void* index)
+{
+	return get(index);
+}
+
+template <typename T>
+Pellet* FixedSizePelletMgr<T>::birthFromTeki(PelletConfig* config)
+{
+	for (int i = 0; i < mMonoObjectMgr.mMax; i++) {
+		if (mMonoObjectMgr.mOpenIds[i] != (0x64 | 0x1)) {
+			continue;
+		}
+
+		Pellet* pellet = mMonoObjectMgr.getAt(i);
+		if (pellet->mConfig != config) {
+			continue;
+		}
+
+		return pellet;
+	}
+	return nullptr;
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::alloc(int count)
+{
+	mMonoObjectMgr.alloc(count);
+	onAlloc();
+	for (int i = 0; i < mMonoObjectMgr.mMax; i++) {
+		mMonoObjectMgr.getAt(i)->constructor();
+	}
+}
+
+template <typename T>
+void FixedSizePelletMgr<T>::onAlloc()
+{
+	for (int i = 0; i < mMonoObjectMgr.mMax; i++) {
+		mMonoObjectMgr.getAt(i)->mSlotIndex = i;
+	}
+}
 
 } // namespace Game
 

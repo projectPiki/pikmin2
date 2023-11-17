@@ -8,8 +8,10 @@ template <typename T>
 struct MonoObjectMgr : public ObjectMgr<T> {
 	MonoObjectMgr();
 
-	////////////////// VTABLE
-	virtual ~MonoObjectMgr() { }     // _08 (weak)
+	virtual T* birth(); // _7C (weak)
+
+	void kill(T* item);
+	// virtual ~MonoObjectMgr() { }     // _08 (weak)
 	virtual void* getNext(void* idx) // _14 (weak)
 	{
 		for (int i = (int)idx + 1; i < mMax; i++) {
@@ -27,10 +29,6 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	virtual void* getEnd() // _1C (weak)
 	{
 		return (void*)mMax;
-	}
-	virtual T* get(void* idx) // _20 (weak)
-	{
-		return &mArray[(int)idx];
 	}
 	virtual T* getAt(int index) // _24 (weak)
 	{
@@ -81,7 +79,6 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-	virtual T* birth(); // _7C (weak)
 
 	virtual void resetMgr(); // _80 (weak, thunk at _54)
 	virtual void clearMgr()  // _84 (weak)
@@ -92,11 +89,13 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 		}
 	}
 	virtual void onAlloc() { } // _88 (weak)
-	////////////////// VTABLE END
-
-	void kill(T* item);
 
 	int getEmptyIndex();
+
+	virtual T* get(void* idx) // _20 (weak)
+	{
+		return &mArray[(int)idx];
+	}
 
 	void alloc(int count);
 
@@ -181,16 +180,14 @@ int MonoObjectMgr<T>::getEmptyIndex()
 
 template <typename T>
 T* MonoObjectMgr<T>::birth()
-{ // non-matching
+{
 	int index = getEmptyIndex();
-	T* result;
 	if (index != -1) {
-		result          = &mArray[index];
-		mOpenIds[index] = nullptr;
+		T* result       = &mArray[index];
+		mOpenIds[index] = 0;
 		mActiveCount++;
-	} else {
-		result = nullptr;
+		return result;
 	}
-	return result;
+	return nullptr;
 }
 #endif

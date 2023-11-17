@@ -20,10 +20,10 @@ struct Mgr : public FixedSizePelletMgr<Object> {
 	Mgr();
 
 	virtual void setupResources();                                     // _44
+	virtual SysShape::Model* createShape(int, int) { return nullptr; } // _6C (weak)
 	virtual char* getMgrName() { return "carcass"; }                   // _58 (weak)
 	virtual u8 getMgrID() { return PELTYPE_CARCASS; }                  // _5C (weak)
-	virtual SysShape::Model* createShape(int, int) { return nullptr; } // _6C (weak)
-	virtual ~Mgr() { }                                                 // _C8 (weak)
+	// virtual ~Mgr() { }                                                 // _C8 (weak)
 
 	// _00      = VTABLE
 	// _00-_A0  = FixedSizePelletMgr
