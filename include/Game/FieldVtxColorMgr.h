@@ -10,7 +10,6 @@
 #include "JSystem/J3D/J3DModel.h"
 
 namespace Game {
-// TODO fields
 struct FieldVtxColorInfo {
 	FieldVtxColorInfo()
 	{
@@ -27,16 +26,46 @@ struct FieldVtxColorInfo {
 	u8 _04;  // _04
 };
 
+// fabricated, probably some other existing struct
+struct FieldVtxColorControlInfo {
+	FieldVtxColorControlInfo(FieldVtxColorInfo* info, f32 p1)
+	{
+		mNext = nullptr;
+		mInfo = info;
+		if (p1 < 0.0f || p1 > 1.0f) {
+			if (p1 < 0.0f) {
+				p1 = 0.0f;
+			}
+			if (p1 > 1.0f) {
+				p1 = 1.0f;
+			}
+		}
+
+		f32 val2 = 255.0f * p1;
+		f32 val;
+		if (val2 >= 0.0f) {
+			val = 0.5f + val2;
+		} else {
+			val = val2 - 0.5f;
+		}
+		_08 = val;
+	}
+
+	FieldVtxColorControlInfo* mNext; // _00
+	FieldVtxColorInfo* mInfo;        // _04
+	u8 _08;                          // _08
+};
+
 // TODO fields
 struct FieldVtxColorControl {
 	FieldVtxColorControl(); // inlined
 
-	FieldVtxColorControl* mNext; // _00
-	Vector3f mPosition;          // _04
-	f32 _10;                     // _10
-	f32 mPower;                  // _14
-	f32 _18;                     // _18
-	u32 _1C;                     // _1C, unknown
+	FieldVtxColorControl* mNext;            // _00
+	Vector3f mPosition;                     // _04
+	f32 _10;                                // _10
+	f32 mPower;                             // _14
+	f32 _18;                                // _18
+	FieldVtxColorControlInfo* mControlInfo; // _1C
 };
 
 struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
@@ -60,6 +89,10 @@ struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
 
 	inline FieldVtxColorInfo& getColorInfo(u16 i) const { return mInfo[i]; }
 
+	inline void setFlag(u32 flag) { mMgrFlags.typeView |= flag; }
+	inline void resetFlag(u32 flag) { mMgrFlags.typeView &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mMgrFlags.typeView & flag; }
+
 	// _00     = VTBL1 (J3DVtxColorCalc)
 	// _00-_0C = J3DVtxColorCalc
 	// _0C     = VTBL2 (CNode)
@@ -69,10 +102,7 @@ struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
 	int _2C;                        // _2C
 	FieldVtxColorControl* mControl; // _30
 	f32 _34;                        // _34
-	u8 _38;                         // _38
-	u8 _39;                         // _39
-	u8 _3A;                         // _3A
-	u8 _3B;                         // _3B
+	BitFlag<u32> mMgrFlags;         // _38
 };
 } // namespace Game
 
