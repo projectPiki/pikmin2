@@ -1,27 +1,25 @@
-#include "Game/pelletConfig.h"
 #include "Game/GameConfig.h"
 #include "Game/PelletList.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "P2Macros.h"
 #include "System.h"
-#include "stream.h"
 
-static const char unusedPelletListName[] = "gamePelletList";
+static const char className[] = "gamePelletList";
 
 namespace Game {
+namespace PelletList {
 
-PelletList::Mgr* PelletList::Mgr::mInstance;
+Mgr* Mgr::mInstance;
 
 /*
  * --INFO--
  * Address:	80227D5C
  * Size:	000070
  */
-PelletConfigList* PelletList::Mgr::getConfigList(PelletList::cKind kind)
+PelletConfigList* Mgr::getConfigList(cKind kind)
 {
-	bool isValid = (kind) >= 0 && (kind) < 5;
-	P2ASSERTLINE(16, isValid);
-	return &PelletList::Mgr::mInstance->mConfigList[kind];
+	P2ASSERTBOUNDSLINE(16, 0, kind, 5);
+	return &mInstance->mConfigList[kind];
 }
 
 /*
@@ -29,21 +27,21 @@ PelletConfigList* PelletList::Mgr::getConfigList(PelletList::cKind kind)
  * Address:	80227DCC
  * Size:	000074
  */
-int PelletList::Mgr::getCount(PelletList::cKind kind) { return getConfigList(kind)->mConfigCnt; }
+int Mgr::getCount(cKind kind) { return getConfigList(kind)->mConfigCnt; }
 
 /*
  * --INFO--
  * Address:	80227E40
  * Size:	0000C0
  */
-PelletConfig* PelletList::Mgr::getConfigAndKind(char* config, PelletList::cKind& kind)
+PelletConfig* Mgr::getConfigAndKind(char* config, cKind& kind)
 {
 	// Need to pre-define these variables due to register ordering issues
 	bool isValid;
-	PelletList::cKind kindCopy;
+	cKind kindCopy;
 
 	for (int i = 0; i < 5; i++) {
-		kind               = (PelletList::cKind)i;
+		kind               = (cKind)i;
 		PelletConfig* list = getConfigList(kind)->getPelletConfig(config);
 		if (list) {
 			return list;
@@ -58,7 +56,7 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config, PelletList::cKind&
  * Address:	........
  * Size:	000068
  */
-PelletList::Mgr::Mgr()
+Mgr::Mgr()
 {
 	mConfigList = new PelletConfigList[5];
 	loadResource();
@@ -69,7 +67,7 @@ PelletList::Mgr::Mgr()
  * Address:	80227F00
  * Size:	000070
  */
-PelletList::Mgr::~Mgr()
+Mgr::~Mgr()
 {
 	delete[] mConfigList;
 	mConfigList = nullptr;
@@ -80,43 +78,49 @@ PelletList::Mgr::~Mgr()
  * Address:	80227F70
  * Size:	0001D8
  */
-void PelletList::Mgr::loadResource()
+void Mgr::loadResource()
 {
 	JKRArchive* archive;
-	if (Game::gGameConfig.mParms.mPelletMultiLang.mData) {
-		char pathBuffer[0x200];
+	char pathBuffer[512];
+	const char* path;
+
+	if (gGameConfig.mParms.mPelletMultiLang.mData) {
 		switch (sys->mRegion) {
 		case System::LANG_FRENCH:
 		case System::LANG_GERMAN:
 		case System::LANG_ITALIAN:
 			break;
 		case System::LANG_JAPANESE:
-			sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "jpn", "jpn");
+			path = "/user/Abe/Pellet/%s/pelletlist_%s.szs";
+			sprintf(pathBuffer, path, "jpn", "jpn");
 			break;
 		case System::LANG_ENGLISH:
-			sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "us", "us");
+			path = "/user/Abe/Pellet/%s/pelletlist_%s.szs";
+			sprintf(pathBuffer, path, "us", "us");
 			break;
 		case System::LANG_SPANISH:
-			// // default:
 			break;
 		}
 		archive = JKRArchive::mount(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 	} else {
 		JUT_PANICLINE(145, "don\'t use this !\n");
-		archive = JKRArchive::mount("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
+		const char* path = "/user/Kando/pelletlist.szs";
+		archive          = JKRArchive::mount(path, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 	}
 
 	JUT_ASSERTLINE(154, archive, "no pelletlist.szs\n");
 
-	char* configs[] = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt", "otakara_config.txt", "item_config.txt" };
+	const char* configs[5]
+	    = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt", "otakara_config.txt", "item_config.txt" };
 	for (int i = 0; i < 5; i++) {
 		void* data = archive->getResource(configs[i]);
 		JUT_ASSERTLINE(168, data, "no config file [%s]\n", configs[i]);
 		RamStream stream(data, -1);
 		stream.resetPosition(STREAM_MODE_TEXT, STREAM_MODE_TEXT);
-		mConfigList[i].read(stream);
+		getConfig(i)->read(stream);
 	}
 	archive->unmount();
+
 	// 	/*
 	// 	.loc_0x0:
 	// 	  stwu      r1, -0x660(r1)
@@ -265,7 +269,7 @@ void PelletList::Mgr::loadResource()
  * Address:	80228148
  * Size:	000018
  */
-int PelletList::Mgr::getDictionaryNum()
+int Mgr::getDictionaryNum()
 {
 	int itemCount    = mInstance->mConfigList[ITEM].getConfigCount();
 	int otakaraCount = mInstance->mConfigList[OTAKARA].getConfigCount();
@@ -277,7 +281,7 @@ int PelletList::Mgr::getDictionaryNum()
  * Address:	80228160
  * Size:	0000A4
  */
-PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int dictNo)
+PelletConfig* Mgr::getConfigFromDictionaryNo(int dictNo)
 {
 	bool isValid = dictNo >= 0 && dictNo < getDictionaryNum();
 	P2ASSERTLINE(188, isValid);
@@ -293,15 +297,15 @@ PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int dictNo)
  * Address:	80228204
  * Size:	0000A4
  */
-int Game::PelletList::Mgr::getOffsetFromDictionaryNo(int dictNo)
+int Mgr::getOffsetFromDictionaryNo(int dictNo)
 {
 	int offset           = 0;
 	PelletConfig* config = mInstance->mConfigList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
-	if (config == nullptr) {
+	if (!config) {
 		offset = mInstance->mConfigList[OTAKARA].getConfigCount();
 		config = mInstance->mConfigList[ITEM].getPelletConfig_ByDictionaryNo(dictNo);
 	}
-	JUT_ASSERTLINE(210, config != nullptr, "dictNo:%d \n", dictNo);
+	JUT_ASSERTLINE(210, config, "dictNo:%d \n", dictNo);
 	return offset + config->mParams.mIndex;
 }
 
@@ -310,11 +314,12 @@ int Game::PelletList::Mgr::getOffsetFromDictionaryNo(int dictNo)
  * Address:	802282A8
  * Size:	000080
  */
-void PelletList::Mgr::globalInstance()
+void Mgr::globalInstance()
 {
-	if (!PelletList::Mgr::mInstance) {
-		PelletList::Mgr::mInstance = new PelletList::Mgr();
+	if (!mInstance) {
+		mInstance = new Mgr;
 	}
 }
 
+} // namespace PelletList
 } // namespace Game
