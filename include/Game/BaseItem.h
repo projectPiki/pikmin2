@@ -209,9 +209,8 @@ struct FSMItem : public BaseItem {
 	virtual void platCallback(PlatEvent& event);             // _E8
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) // _68 (thunked at _00)
 	{
-		StateClass* state = mCurrentState;
-		if (state) {
-			static_cast<ItemState<ItemClass>*>(state)->onKeyEvent((ItemClass*)this, event);
+		if (mCurrentState) {
+			mCurrentState->onKeyEvent((ItemClass*)this, event);
 		}
 	}
 	int getStateID();
@@ -245,40 +244,36 @@ struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
 template <typename ItemClass, typename FSMClass, typename StateClass>
 int FSMItem<ItemClass, FSMClass, StateClass>::getStateID()
 {
-	StateClass* state = mCurrentState;
-	if (state) {
-		return (static_cast<ItemState<ItemClass>*>(state)->mId);
+	if (mCurrentState) {
+		return (mCurrentState->getCurrStateID());
 	}
 	return -1;
 }
 template <typename ItemClass, typename FSMClass, typename StateClass>
 void FSMItem<ItemClass, FSMClass, StateClass>::doAI()
 {
-	static_cast<ItemFSM<ItemClass>*>(mFsm)->exec((ItemClass*)this);
+	mFsm->exec((ItemClass*)this);
 }
 
 template <typename ItemClass, typename FSMClass, typename StateClass>
 void FSMItem<ItemClass, FSMClass, StateClass>::bounceCallback(Sys::Triangle* tri)
 {
-	StateClass* state = mCurrentState;
-	if (state) {
-		static_cast<ItemState<ItemClass>*>(state)->onBounce((ItemClass*)this, tri);
+	if (mCurrentState) {
+		mCurrentState->onBounce((ItemClass*)this, tri);
 	}
 }
 template <typename ItemClass, typename FSMClass, typename StateClass>
 void FSMItem<ItemClass, FSMClass, StateClass>::collisionCallback(CollEvent& event)
 {
-	StateClass* state = mCurrentState;
-	if (state) {
-		static_cast<ItemState<ItemClass>*>(state)->onCollision((ItemClass*)this, event);
+	if (mCurrentState) {
+		mCurrentState->onCollision((ItemClass*)this, event);
 	}
 }
 template <typename ItemClass, typename FSMClass, typename StateClass>
 void FSMItem<ItemClass, FSMClass, StateClass>::platCallback(PlatEvent& event)
 {
-	StateClass* state = mCurrentState;
-	if (state) {
-		static_cast<ItemState<ItemClass>*>(state)->onPlatCollision((ItemClass*)this, event);
+	if (mCurrentState) {
+		mCurrentState->onPlatCollision((ItemClass*)this, event);
 	}
 }
 

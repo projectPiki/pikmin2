@@ -29,6 +29,8 @@ struct FSMState {
 		mStateMachine->transit(obj, stateID, stateArg);
 	}
 
+	inline int getCurrStateID() { return mId; }
+
 	// _00 VTBL
 	int mId;                        // _04
 	StateMachine<T>* mStateMachine; // _08
@@ -48,11 +50,10 @@ struct StateMachine {
 		obj->mCurrentState = nullptr; // this can't be right because of itemHole.cpp smh
 		transit(obj, stateID, arg);
 	}
-	virtual void exec(T* obj);                                // _10
-	void create(int limit);                                   // must be placed above transit
-	virtual void transit(T* obj, int stateID, StateArg* arg); // _14
-
+	virtual void exec(T* obj); // _10
+	void create(int limit);    // must be placed above transit
 	void registerState(FSMState<T>* state);
+	virtual void transit(T* obj, int stateID, StateArg* arg); // _14
 
 	int getCurrID(T*);
 
@@ -102,7 +103,7 @@ void StateMachine<T>::registerState(FSMState<T>* state)
 	}
 	mStates[mCount] = state;
 	bool inBounds;
-	if (state->mId < 0 || state->mId >= mLimit) {
+	if (state->getCurrStateID() < 0 || state->getCurrStateID() >= mLimit) {
 		inBounds = false;
 	} else {
 		inBounds = true;
@@ -112,9 +113,9 @@ void StateMachine<T>::registerState(FSMState<T>* state)
 		return;
 	}
 
-	state->mStateMachine        = this;
-	mIndexToIDArray[mCount]     = state->mId;
-	mIdToIndexArray[state->mId] = mCount;
+	state->mStateMachine                     = this;
+	mIndexToIDArray[mCount]                  = state->getCurrStateID();
+	mIdToIndexArray[state->getCurrStateID()] = mCount;
 	mCount++;
 }
 template <typename T>

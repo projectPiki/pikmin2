@@ -261,8 +261,42 @@ namespace Game {
  * Address:	801959B4
  * Size:	0004A0
  */
-void CPlate::sortByColor(Creature*, int)
+void CPlate::sortByColor(Creature* piki, int happaType)
 {
+	int kind  = static_cast<Piki*>(piki)->getKind();
+	int happa = static_cast<Piki*>(piki)->getHappa();
+
+	int pikiCounts[PikiColorCount];
+	for (int i = 0; i < PikiColorCount; i++) {
+		pikiCounts[i] = (kind + i) % PikiColorCount;
+	}
+
+	int happaSlots[PikiHappaCount];
+	if (happaType != -1) {
+		happaSlots[happaType]                        = Leaf;
+		happaSlots[(happaType + 1) % PikiHappaCount] = Bud;
+		happaSlots[(happaType + 2) % PikiHappaCount] = Flower;
+	}
+
+	for (int i = 0; i < mSlotCount; i++) {
+		for (int j = 0; j < mSlotCount; j++) {
+			Piki* iPiki = static_cast<Piki*>(mSlots[i].mCreature);
+			Piki* jPiki = static_cast<Piki*>(mSlots[j].mCreature);
+			int iKind   = iPiki->getKind();
+			int jKind   = jPiki->getKind();
+
+			if (iKind != jKind) {
+				int nextType;
+				for (int k = 0; k < PikiColorCount; k++) {
+					if (iKind == pikiCounts[k]) {
+						nextType = pikiCounts[k];
+						break;
+					}
+				}
+			} else {
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

@@ -120,8 +120,11 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 	{
 		return mMonoObjectMgr.get(index);
 	}
-	virtual void* getEnd();             // _94
-	virtual void setComeAlive(int);     // _4C
+	virtual void* getEnd();                // _94
+	virtual void setComeAlive(int slotIdx) // _4C
+	{
+		mMonoObjectMgr.setFlag(slotIdx, 0);
+	}
 	virtual void setComeAlive(Pellet*); // _50
 	virtual void setRevival(Pellet*);   // _60
 	virtual void setFromTeki(Pellet*);  // _64
@@ -250,11 +253,11 @@ void FixedSizePelletMgr<T>::setComeAlive(Pellet* pellet)
 	}
 }
 
-template <typename T>
-void FixedSizePelletMgr<T>::setComeAlive(int slotIdx)
-{
-	mMonoObjectMgr.setFlag(slotIdx, 0);
-}
+// template <typename T>
+// void FixedSizePelletMgr<T>::setComeAlive(int slotIdx)
+// {
+
+// }
 
 template <typename T>
 void* FixedSizePelletMgr<T>::getEnd()

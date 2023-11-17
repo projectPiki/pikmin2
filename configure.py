@@ -937,7 +937,7 @@ LIBS = [
             ["plugProjectKandoU/gameSystem", True],
             ["plugProjectKandoU/aiConstants", True],
             "plugProjectKandoU/gameMapParts",
-            "plugProjectKandoU/vsGameSection",
+            ["plugProjectKandoU/vsGameSection", True],
             ["plugProjectKandoU/gamePlatMgr", True],
             "plugProjectKandoU/itemGate",
             "plugProjectKandoU/itemMgr",

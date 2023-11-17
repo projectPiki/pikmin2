@@ -1046,10 +1046,34 @@ bool GameMessageVsUseCard::actVs(VsGameSection* section)
 
 /*
  * --INFO--
- * Address:	801C351C
- * Size:	000010
+ * Address:	........
+ * Size:	000170
  */
-void FixedSizePelletMgr<PelletOtakara::Object>::setComeAlive(int index) { mMonoObjectMgr.mOpenIds[index] = false; }
+Pellet* VsGameSection::createCardPellet()
+{
+	PelletList::cKind kind;
+	char* name = const_cast<char*>(VsOtakaraName::cCoin);
+	PelletInitArg pelletArg;
+
+	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
+	JUT_ASSERTLINE(1759, config, "zannenn\n");
+	pelletArg.mPelletIndex    = config->mParams.mIndex;
+	pelletArg.mTextIdentifier = config->mParams.mName.mData;
+	pelletArg.mPelletType     = kind;
+	pelletArg._1C             = 1;
+	pelletArg.mMinCarriers    = 1;
+	pelletArg.mMaxCarriers    = 1;
+
+	for (int i = 0; i < mMaxCherries; i++) {
+		Pellet* pellet = mCherryArray[i];
+		if (!pellet->isAlive() && !pellet->getStateID()) {
+			PelletOtakara::mgr->setComeAlive(pellet->mSlotIndex);
+			pellet->init(&pelletArg);
+			return pellet;
+		}
+	}
+	return nullptr;
+}
 
 /*
  * --INFO--
@@ -1200,37 +1224,6 @@ void VsGameSection::useCard()
 	if (mCardCount > 0) {
 		mCardCount -= 1;
 	}
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000170
- */
-Pellet* VsGameSection::createCardPellet()
-{
-	PelletList::cKind kind;
-	char* name = const_cast<char*>(VsOtakaraName::cCoin);
-	PelletInitArg pelletArg;
-
-	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
-	JUT_ASSERTLINE(1759, config, "zannenn\n");
-	pelletArg.mPelletIndex    = config->mParams.mIndex;
-	pelletArg.mTextIdentifier = config->mParams.mName.mData;
-	pelletArg.mPelletType     = kind;
-	pelletArg._1C             = 1;
-	pelletArg.mMinCarriers    = 1;
-	pelletArg.mMaxCarriers    = 1;
-
-	for (int i = 0; i < mMaxCherries; i++) {
-		Pellet* pellet = mCherryArray[i];
-		if (!pellet->isAlive() && !pellet->getStateID()) {
-			PelletOtakara::mgr->setComeAlive(pellet->mSlotIndex);
-			pellet->init(&pelletArg);
-			return pellet;
-		}
-	}
-	return nullptr;
 }
 
 void VsGameSection::dropCard(VsGameSection::DropCardArg& arg)

@@ -322,7 +322,7 @@ void Item::initDependency()
  */
 void Item::update()
 {
-	((FSMItem*)(this))->doAI();
+	doAI();
 	updateBoundSphere();
 	mSoundObj->exec();
 	updateCell();
