@@ -1748,7 +1748,7 @@ void StateWalkPath::exec(EnemyBase* enemy)
 		f32 minRange = CG_PARMS(kuma)->mGeneral.mMaxAttackAngle();
 		f32 maxRange = CG_PARMS(kuma)->mGeneral.mMaxAttackRange();
 		f32 dist     = kuma->getAngDist(target);
-		if (kuma->checkDistAndAngle(target, dist, minRange, maxRange)) {
+		if (kuma->isTargetAttackable(target, dist, minRange, maxRange)) {
 			kuma->mNextState = KUMAKOCHAPPY_Attack;
 			kuma->finishMotion();
 			kuma->setAnimSpeed(60.0f);

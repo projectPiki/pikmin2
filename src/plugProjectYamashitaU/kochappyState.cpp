@@ -119,8 +119,9 @@ void StateWait::exec(EnemyBase* enemy)
 			case KEYEVENT_END:
 				Parms* parms = static_cast<Parms*>(enemy->mParms);
 				f32 angLimit = parms->mProperParms.mFp03.mValue;
-				f32 angDist  = enemy->changeFaceDir(enemy->mTargetCreature); // this is wrong?
-				if (FABS(angDist) <= PI * (DEG2RAD * angLimit)) {
+				f32 angDist  = enemy->turnToTarget(enemy->mTargetCreature, CG_PARMS(enemy)->mGeneral.mTurnSpeed(),
+                                                  CG_PARMS(enemy)->mGeneral.mMaxTurnAngle()); // this is wrong?
+				if (FABS(angDist) <= TORADIANS(angLimit)) {
 					transit(enemy, KOCHAPPY_Walk, nullptr);
 				} else {
 					transit(enemy, KOCHAPPY_Turn, nullptr);
@@ -428,62 +429,59 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
-	Obj* obj = OBJ(enemy);
 	if (EnemyFunc::isStartFlick(enemy, true)) {
 		transit(enemy, KOCHAPPY_Flick, nullptr);
 	} else {
-		if (EnemyFunc::isPikminOrNaviInRange(obj, CG_PARMS(obj)->mGeneral.mPrivateRadius) || obj->isAlertLife()) {
-			obj->mAlertTime = 0.0f;
+		bool check = EnemyFunc::isPikminOrNaviInRange(enemy, CG_PARMS(enemy)->mGeneral.mPrivateRadius) || enemy->isAlertLife();
+		if (check) {
+			OBJ(enemy)->mAlertTime = 0.0f;
 		}
 		f32 viewAngle, searchAngle;
-		if (obj->mAlertTime < CG_PARMS(obj)->mGeneral.mAlertDuration) {
+		if (OBJ(enemy)->mAlertTime < CG_PARMS(enemy)->mGeneral.mAlertDuration()) {
 			viewAngle = 180.0f;
-			obj->mAlertTime += sys->mDeltaTime;
-			searchAngle = searchAngle;
+			OBJ(enemy)->mAlertTime += sys->mDeltaTime;
+			searchAngle = viewAngle;
 		} else {
-			searchAngle = CG_PARMS(obj)->mGeneral.mViewAngle;
-			viewAngle   = CG_PARMS(obj)->mGeneral.mSearchAngle;
+			viewAngle   = CG_PARMS(enemy)->mGeneral.mViewAngle();
+			searchAngle = CG_PARMS(enemy)->mGeneral.mSearchAngle();
 		}
 		Creature* target
-		    = EnemyFunc::getNearestPikminOrNavi(obj, viewAngle, CG_PARMS(obj)->mGeneral.mSearchDistance, nullptr, nullptr, nullptr);
+		    = EnemyFunc::getNearestPikminOrNavi(enemy, searchAngle, CG_PARMS(enemy)->mGeneral.mSearchDistance, nullptr, nullptr, nullptr);
 		if (target) {
-			obj->mTargetCreature = target;
-			Vector3f targetpos   = enemy->mTargetCreature->getPosition();
-			f32 angle            = obj->getCreatureViewAngle(targetpos);
-			if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-			                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
+			enemy->mTargetCreature = target;
+			f32 angle              = enemy->getCreatureViewAngle(enemy->mTargetCreature);
+			if (enemy->isTargetAttackable(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mMaxAttackRange,
+			                              CG_PARMS(enemy)->mGeneral.mMaxAttackAngle)) {
 				mNextState = KOCHAPPY_Attack;
-				obj->finishMotion();
-				obj->setAnimationSpeed(60.0f);
+				enemy->finishMotion();
+				OBJ(enemy)->setAnimationSpeed(60.0f);
 			} else {
-				if (!obj->checkDistAndAngle(obj->mTargetCreature, CG_PARMS(obj)->mGeneral.mPrivateRadius, searchAngle,
-				                            CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
-					if (!obj->isWithinHomeRadius()) {
-						mNextState = KOCHAPPY_TurnToHome;
-						obj->finishMotion();
-					} else {
-						f32 max = CG_PARMS(obj)->mProperParms.mFp03;
-						f32 dir = obj->changeFaceDir(obj->mTargetCreature);
-						if (dir <= (max * DEG2RAD) * PI) {
-							mNextState = KOCHAPPY_Walk;
-							obj->finishMotion();
-							obj->setAnimationSpeed(60.0f);
-						}
+				if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mPrivateRadius(),
+				                              CG_PARMS(enemy)->mGeneral.mSightRadius(), CG_PARMS(enemy)->mGeneral.mFov(), viewAngle)) {
+					mNextState = KOCHAPPY_TurnToHome;
+					enemy->finishMotion();
+				} else {
+					f32 max = CG_PROPERPARMS(enemy).mFp03();
+					f32 dir = enemy->changeFaceDir(enemy->mTargetCreature);
+					if (absF(dir) <= TORADIANS(max)) {
+						mNextState = KOCHAPPY_Walk;
+						enemy->finishMotion();
+						OBJ(enemy)->setAnimationSpeed(60.0f);
 					}
 				}
 			}
 		} else {
 			mNextState = KOCHAPPY_TurnToHome;
-			obj->finishMotion();
+			enemy->finishMotion();
 		}
 
-		if (obj->mCurAnim->mIsPlaying && (u32)obj->mCurAnim->mType == KEYEVENT_END) {
-			transit(obj, mNextState, nullptr);
+		if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+			transit(enemy, mNextState, nullptr);
 		}
 	}
 
-	if (obj->mHealth <= 0.0f) {
-		transit(obj, KOCHAPPY_Dead, nullptr);
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, KOCHAPPY_Dead, nullptr);
 	}
 	/*
 	stwu     r1, -0x190(r1)
@@ -1025,72 +1023,72 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWalk::exec(EnemyBase* enemy)
 {
-	Obj* obj = OBJ(enemy);
-	if (EnemyFunc::isStartFlick(obj, true)) {
-		transit(obj, KOCHAPPY_Flick, nullptr);
+	if (EnemyFunc::isStartFlick(enemy, true)) {
+		transit(enemy, KOCHAPPY_Flick, nullptr);
 	} else {
-		if (EnemyFunc::isPikminOrNaviInRange(obj, CG_PARMS(obj)->mGeneral.mPrivateRadius) || obj->isAlertLife()) {
-			obj->mAlertTime = 0.0f;
+		bool check = EnemyFunc::isPikminOrNaviInRange(enemy, CG_PARMS(enemy)->mGeneral.mPrivateRadius()) || enemy->isAlertLife();
+		if (check) {
+			OBJ(enemy)->mAlertTime = 0.0f;
 		}
-		f32 viewAngle, searchAngle;
-		if (obj->mAlertTime < CG_PARMS(obj)->mGeneral.mAlertDuration) {
-			viewAngle = 180.0f;
-			obj->mAlertTime += sys->mDeltaTime;
+		f32 searchAngle;
+		if (OBJ(enemy)->mAlertTime < CG_PARMS(enemy)->mGeneral.mAlertDuration()) {
+			searchAngle = 180.0f;
+			OBJ(enemy)->mAlertTime += sys->mDeltaTime;
 		} else {
-			viewAngle = CG_PARMS(obj)->mGeneral.mSearchAngle;
+			searchAngle = CG_PARMS(enemy)->mGeneral.mSearchAngle();
 		}
 		Creature* target
-		    = EnemyFunc::getNearestPikminOrNavi(obj, viewAngle, CG_PARMS(obj)->mGeneral.mSearchDistance, nullptr, nullptr, nullptr);
+		    = EnemyFunc::getNearestPikminOrNavi(enemy, searchAngle, CG_PARMS(enemy)->mGeneral.mSearchDistance(), nullptr, nullptr, nullptr);
 		if (target) {
-			obj->mTargetCreature = target;
-			Vector3f targetpos   = obj->mTargetCreature->getPosition();
-			f32 angle            = obj->getCreatureViewAngle(targetpos);
-			if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-			                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
+			enemy->mTargetCreature = target;
+			f32 angle              = enemy->getCreatureViewAngle(enemy->mTargetCreature);
+			if (enemy->isTargetAttackable(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mMaxAttackRange(),
+			                              CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
 				mNextState = KOCHAPPY_Attack;
-				obj->finishMotion();
-				obj->mTargetVelocity = 0.0f;
-				obj->setAnimationSpeed(60.0f);
-			} else if (!obj->checkDistAndAngle(obj->mTargetCreature, CG_PARMS(obj)->mGeneral.mPrivateRadius, searchAngle,
-			                                   CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
-				if (!obj->isWithinHomeRadius()) {
-					mNextState = KOCHAPPY_TurnToHome;
-					obj->finishMotion();
-					obj->mTargetVelocity = 0.0f;
+				enemy->finishMotion();
+				enemy->mTargetVelocity = Vector3f(0.0f);
+				OBJ(enemy)->setAnimationSpeed(60.0f);
+			} else if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mPrivateRadius(),
+			                                     CG_PARMS(enemy)->mGeneral.mSightRadius(), CG_PARMS(enemy)->mGeneral.mFov(),
+			                                     CG_PARMS(enemy)->mGeneral.mViewAngle())) {
+				mNextState = KOCHAPPY_TurnToHome;
+				enemy->finishMotion();
+				enemy->mTargetVelocity = Vector3f(0.0f);
+			} else {
+				f32 max = CG_PROPERPARMS(enemy).mFp03();
+				if (absF(angle) <= TORADIANS(max)) {
+					EnemyFunc::walkToTarget(enemy, enemy->mTargetCreature, CG_PARMS(enemy)->mGeneral.mMoveSpeed(),
+					                        CG_PARMS(enemy)->mGeneral.mTurnSpeed(), CG_PARMS(enemy)->mGeneral.mMaxTurnAngle());
 				} else {
-					f32 max = CG_PARMS(obj)->mProperParms.mFp03;
-					if (angle <= (max * DEG2RAD) * PI) {
-						EnemyFunc::walkToTarget(obj, obj->mTargetCreature, CG_PARMS(obj)->mGeneral.mMoveSpeed,
-						                        CG_PARMS(obj)->mGeneral.mTurnSpeed, CG_PARMS(obj)->mGeneral.mMaxTurnAngle);
-					} else {
-						mNextState = KOCHAPPY_Turn;
-						obj->finishMotion();
-						obj->mTargetVelocity = 0.0f;
-					}
+					mNextState = KOCHAPPY_Turn;
+					enemy->finishMotion();
+					enemy->mTargetVelocity = Vector3f(0.0f);
 				}
 			}
 		} else {
-			if (obj->mFlickTimer != 0.0f) {
+			if (enemy->mFlickTimer) {
 				mNextState = KOCHAPPY_Flick;
 			} else {
 				mNextState = KOCHAPPY_TurnToHome;
 			}
-			obj->finishMotion();
+			enemy->finishMotion();
 		}
 
-		if (!obj->isWithinHomeRadius()) {
+		Vector3f homePos     = enemy->mHomePosition;
+		Vector3f kochappyPos = enemy->getPosition();
+		if (kochappyPos.distance(homePos) > CG_PARMS(enemy)->mGeneral.mTerritoryRadius()) {
 			mNextState = KOCHAPPY_TurnToHome;
-			obj->finishMotion();
-			obj->mTargetVelocity = 0.0f;
+			enemy->finishMotion();
+			enemy->mTargetVelocity = Vector3f(0.0f);
 		}
 
-		if (obj->mCurAnim->mIsPlaying && (u32)obj->mCurAnim->mType == KEYEVENT_END) {
-			transit(obj, mNextState, nullptr);
+		if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+			transit(enemy, mNextState, nullptr);
 		}
 	}
 
-	if (obj->mHealth <= 0.0f) {
-		transit(obj, KOCHAPPY_Dead, nullptr);
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, KOCHAPPY_Dead, nullptr);
 	}
 	/*
 	stwu     r1, -0x170(r1)
@@ -1630,44 +1628,44 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	Obj* obj = OBJ(enemy);
-	if (obj->mCurAnim->mIsPlaying) {
-		switch (obj->mCurAnim->mType) {
-		case 2:
-			EnemyFunc::attackNavi(obj, CG_PARMS(obj)->mGeneral.mAttackRadius, CG_PARMS(obj)->mGeneral.mAttackHitAngle,
-			                      CG_PARMS(obj)->mGeneral.mAttackDamage, nullptr, nullptr);
-			if (!EnemyFunc::eatPikmin(obj, nullptr)) {
-				obj->startMotion(KOCHAPPYANIM_Eat, nullptr);
+	if (enemy->mCurAnim->mIsPlaying) {
+		switch (enemy->mCurAnim->mType) {
+		case KEYEVENT_2:
+			EnemyFunc::attackNavi(enemy, CG_PARMS(enemy)->mGeneral.mAttackRadius(), CG_PARMS(enemy)->mGeneral.mAttackHitAngle(),
+			                      CG_PARMS(enemy)->mGeneral.mAttackDamage(), nullptr, nullptr);
+			if (!EnemyFunc::eatPikmin(enemy, nullptr)) {
+				enemy->startMotion(KOCHAPPYANIM_Eat, nullptr);
 			}
-			f32 dir = obj->getFaceDir();
-			EnemyFunc::flickStickPikmin(obj, CG_PARMS(obj)->mGeneral.mShakeChance, CG_PARMS(obj)->mGeneral.mShakeKnockback,
-			                            CG_PARMS(obj)->mGeneral.mShakeDamage, dir, nullptr);
+
+			EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeChance(), CG_PARMS(enemy)->mGeneral.mShakeKnockback(),
+			                            CG_PARMS(enemy)->mGeneral.mShakeDamage(), enemy->getFaceDir(), nullptr);
 			break;
-		case 3:
-			EnemyFunc::swallowPikmin(obj, CG_PARMS(obj)->mProperParms.mPoisonDamage, nullptr);
+
+		case KEYEVENT_3:
+			EnemyFunc::swallowPikmin(enemy, CG_PARMS(enemy)->mProperParms.mPoisonDamage(), nullptr);
 			break;
-		case 1000:
-			Creature* target = EnemyFunc::getNearestPikminOrNavi(obj, CG_PARMS(obj)->mGeneral.mSearchAngle,
-			                                                     CG_PARMS(obj)->mGeneral.mSearchDistance, nullptr, nullptr, nullptr);
+
+		case KEYEVENT_END:
+			Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, CG_PARMS(enemy)->mGeneral.mSearchAngle(),
+			                                                     CG_PARMS(enemy)->mGeneral.mSearchDistance(), nullptr, nullptr, nullptr);
 			if (target) {
-				obj->mTargetCreature = target;
-				Vector3f targetpos   = obj->mTargetCreature->getPosition();
-				f32 angle            = obj->getCreatureViewAngle(targetpos);
-				if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-				                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
-					transit(obj, KOCHAPPY_Attack, nullptr);
+				enemy->mTargetCreature = target;
+				f32 angle              = enemy->getCreatureViewAngle(enemy->mTargetCreature);
+				if (enemy->isTargetAttackable(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mMaxAttackRange(),
+				                              CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
+					transit(enemy, KOCHAPPY_Attack, nullptr);
 				} else {
-					transit(obj, KOCHAPPY_Turn, nullptr);
+					transit(enemy, KOCHAPPY_Turn, nullptr);
 				}
 			} else {
-				transit(obj, KOCHAPPY_TurnToHome, nullptr);
+				transit(enemy, KOCHAPPY_TurnToHome, nullptr);
 			}
 			break;
 		}
 	}
 
-	if (obj->mHealth <= 0.0f) {
-		transit(obj, KOCHAPPY_Dead, nullptr);
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, KOCHAPPY_Dead, nullptr);
 	}
 
 	/*
@@ -2064,95 +2062,14 @@ StateTurnToHome::StateTurnToHome(int stateID)
  */
 void StateTurnToHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* obj             = OBJ(enemy);
-	obj->mTargetVelocity = 0.0f;
-	if (obj->getSqrHomeRadius() < CG_PARMS(obj)->mGeneral.mHomeRadius) {
-		transit(obj, KOCHAPPY_Wait, nullptr);
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	Vector3f homePos       = enemy->mHomePosition;
+	Vector3f kochappyPos   = enemy->getPosition();
+	if (kochappyPos.distance(homePos) < CG_PARMS(enemy)->mGeneral.mHomeRadius()) {
+		transit(enemy, KOCHAPPY_Wait, nullptr);
 	} else {
-		obj->startMotion(KOCHAPPYANIM_Turn, nullptr);
+		enemy->startMotion(KOCHAPPYANIM_Turn, nullptr);
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	lfs      f0, lbl_805179E0@sda21(r2)
-	mr       r31, r4
-	mr       r30, r3
-	addi     r3, r1, 8
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	lwz      r12, 0(r4)
-	lfs      f31, 0x198(r4)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x19c(r4)
-	lfs      f29, 0x1a0(r4)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 8(r1)
-	fsubs    f3, f0, f30
-	lfs      f1, 0x10(r1)
-	fsubs    f2, f2, f31
-	lfs      f0, lbl_805179E0@sda21(r2)
-	fsubs    f1, f1, f29
-	fmuls    f3, f3, f3
-	fmuls    f4, f1, f1
-	fmadds   f1, f2, f2, f3
-	fadds    f1, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801117C0
-	ble      lbl_801117C4
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801117C4
-
-lbl_801117C0:
-	fmr      f1, f0
-
-lbl_801117C4:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x384(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_801117F8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80111808
-
-lbl_801117F8:
-	mr       r3, r31
-	li       r4, 7
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-
-lbl_80111808:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -2162,32 +2079,36 @@ lbl_80111808:
  */
 void StateTurnToHome::exec(EnemyBase* enemy)
 {
-	Obj* obj = OBJ(enemy);
 	if (EnemyFunc::isStartFlick(enemy, true)) {
 		transit(enemy, KOCHAPPY_Flick, nullptr);
 	} else {
-		f32 dir = obj->changeFaceDir(obj->mHomePosition);
-		if (dir < CG_PARMS(obj)->mGeneral.mMaxAttackAngle * DEG2RAD) {
-			obj->finishMotion();
+		Vector3f targetPos = enemy->mHomePosition;
+		f32 maxAngle       = CG_PARMS(enemy)->mGeneral.mMaxAttackAngle();
+		f32 angle          = enemy->changeFaceDir(targetPos);
+		if (absF(angle) <= TORADIANS(maxAngle)) {
+			enemy->finishMotion();
 		}
-		if (obj->mCurAnim->mIsPlaying && (u32)obj->mCurAnim->mType == KEYEVENT_END) {
-			transit(obj, KOCHAPPY_GoHome, nullptr);
+		if (enemy->mCurAnim->mIsPlaying) {
+			switch (enemy->mCurAnim->mType) {
+			case KEYEVENT_END:
+				transit(enemy, KOCHAPPY_GoHome, nullptr);
+				break;
+			}
 		}
-		Creature* target = EnemyFunc::getNearestPikminOrNavi(obj, CG_PARMS(obj)->mGeneral.mSearchAngle,
-		                                                     CG_PARMS(obj)->mGeneral.mSearchDistance, nullptr, nullptr, nullptr);
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, CG_PARMS(enemy)->mGeneral.mSearchAngle(),
+		                                                     CG_PARMS(enemy)->mGeneral.mSearchDistance(), nullptr, nullptr, nullptr);
 		if (target) {
-			obj->mTargetCreature = target;
-			Vector3f targetpos   = obj->mTargetCreature->getPosition();
-			f32 angle            = obj->getCreatureViewAngle(targetpos);
-			if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-			                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
-				transit(obj, KOCHAPPY_Attack, nullptr);
+			enemy->mTargetCreature = target;
+			Creature* attackTarget = enemy->mTargetCreature;
+			if (enemy->isTargetAttackable(attackTarget, enemy->getCreatureViewAngle(attackTarget),
+			                              CG_PARMS(enemy)->mGeneral.mMaxAttackRange(), CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
+				transit(enemy, KOCHAPPY_Attack, nullptr);
 			}
 		}
 	}
 
-	if (obj->mHealth <= 0.0f) {
-		transit(obj, KOCHAPPY_Dead, nullptr);
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, KOCHAPPY_Dead, nullptr);
 	}
 	/*
 	stwu     r1, -0x110(r1)
@@ -2533,40 +2454,46 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateGoHome::exec(EnemyBase* enemy)
 {
-	Obj* obj = OBJ(enemy);
-	if (EnemyFunc::isStartFlick(obj, true)) {
-		transit(obj, KOCHAPPY_Flick, nullptr);
+	if (EnemyFunc::isStartFlick(enemy, true)) {
+		transit(enemy, KOCHAPPY_Flick, nullptr);
 	} else {
-		EnemyFunc::walkToTarget(obj, obj->mHomePosition, CG_PARMS(obj)->mGeneral.mMoveSpeed, CG_PARMS(obj)->mGeneral.mTurnSpeed,
-		                        CG_PARMS(obj)->mGeneral.mMaxTurnAngle);
-		if (obj->getSqrHomeRadius() < CG_PARMS(obj)->mGeneral.mHomeRadius) {
-			obj->finishMotion();
-			obj->mTargetVelocity = 0.0f;
-			mNextState           = KOCHAPPY_Wait;
+		Vector3f targetPos = Vector3f(enemy->mHomePosition);
+		EnemyFunc::walkToTarget(enemy, targetPos, CG_PARMS(enemy)->mGeneral.mMoveSpeed(), CG_PARMS(enemy)->mGeneral.mTurnSpeed(),
+		                        CG_PARMS(enemy)->mGeneral.mMaxTurnAngle());
+
+		Vector3f homePos     = enemy->mHomePosition;
+		Vector3f kochappyPos = enemy->getPosition();
+		if (kochappyPos.distance(homePos) < CG_PARMS(enemy)->mGeneral.mHomeRadius()) {
+			enemy->finishMotion();
+			enemy->mTargetVelocity = 0.0f;
+			mNextState             = KOCHAPPY_Wait;
 		}
-		Creature* target = EnemyFunc::getNearestPikminOrNavi(obj, CG_PARMS(obj)->mGeneral.mSearchAngle,
-		                                                     CG_PARMS(obj)->mGeneral.mSearchDistance, nullptr, nullptr, nullptr);
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, CG_PARMS(enemy)->mGeneral.mSearchAngle(),
+		                                                     CG_PARMS(enemy)->mGeneral.mSearchDistance(), nullptr, nullptr, nullptr);
 		if (target) {
-			obj->mTargetCreature = target;
-			Vector3f targetpos   = obj->mTargetCreature->getPosition();
-			f32 angle            = obj->getCreatureViewAngle(targetpos);
-			if (obj->checkDistAndAngle(obj->mTargetCreature, angle, CG_PARMS(obj)->mGeneral.mMaxAttackRange,
-			                           CG_PARMS(obj)->mGeneral.mMaxAttackAngle)) {
-				obj->finishMotion();
-				obj->setAnimationSpeed(60.0f);
+			enemy->mTargetCreature = target;
+			Creature* attackTarget = enemy->mTargetCreature;
+			if (enemy->isTargetAttackable(attackTarget, enemy->getCreatureViewAngle(attackTarget),
+			                              CG_PARMS(enemy)->mGeneral.mMaxAttackRange(), CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
+				enemy->finishMotion();
+				OBJ(enemy)->setAnimationSpeed(60.0f);
 				mNextState = KOCHAPPY_Attack;
 			} else {
-				obj->finishMotion();
+				enemy->finishMotion();
 				mNextState = KOCHAPPY_Walk;
 			}
 		}
-		if (obj->mCurAnim->mIsPlaying && (u32)obj->mCurAnim->mType == KEYEVENT_END) {
-			transit(obj, mNextState, nullptr);
+		if (enemy->mCurAnim->mIsPlaying) {
+			switch (enemy->mCurAnim->mType) {
+			case KEYEVENT_END:
+				transit(enemy, mNextState, nullptr);
+				break;
+			}
 		}
 	}
 
-	if (obj->mHealth <= 0.0f) {
-		transit(obj, KOCHAPPY_Dead, nullptr);
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, KOCHAPPY_Dead, nullptr);
 	}
 	/*
 	stwu     r1, -0x110(r1)

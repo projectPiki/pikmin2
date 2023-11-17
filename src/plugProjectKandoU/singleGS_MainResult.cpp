@@ -550,7 +550,7 @@ void MainResultState::createResultNodes()
 		if (*counter3(i)) {
 			PelletConfig* config = carcassMgr->getPelletConfig(i);
 			num += *counter3(i);
-			int cValue           = config->mParams.mMoney.mData;
+			int cValue = config->mParams.mMoney.mData;
 			money += *counter3(i) * cValue;
 		}
 	}

@@ -255,7 +255,7 @@ void StateBombWait::exec(EnemyBase* enemy)
 		f32 maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange.mValue; // f30
 		f32 angleDist = sarai->getAngDist(target);
 
-		if (sarai->checkDistAndAngle(target, angleDist, maxRange, minRange)) {
+		if (sarai->isTargetAttackable(target, angleDist, maxRange, minRange)) {
 			sarai->mNextState = BOMBSARAI_Release;
 			sarai->finishMotion();
 		} else {
@@ -711,7 +711,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 		f32 maxRange  = CG_PARMS(sarai)->mGeneral.mMaxAttackRange.mValue; // f30
 		f32 angleDist = sarai->getAngDist(target);
 
-		if (sarai->checkDistAndAngle(target, angleDist, maxRange, minRange)) {
+		if (sarai->isTargetAttackable(target, angleDist, maxRange, minRange)) {
 			sarai->mNextState = BOMBSARAI_Release;
 			sarai->finishMotion();
 		} else {

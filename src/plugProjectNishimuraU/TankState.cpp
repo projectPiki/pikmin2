@@ -200,7 +200,7 @@ void StateMove::exec(EnemyBase* enemy)
 
 			f32 angleDist = tank->getAngDist(target); // f26
 
-			if (tank->checkDistAndAngle(target, angleDist, privRad, sightRad)) { // slightly different inline?
+			if (tank->isTargetAttackable(target, angleDist, privRad, sightRad)) { // slightly different inline?
 				transit(tank, TANK_Wait, nullptr);
 				return;
 			}
@@ -793,8 +793,8 @@ void StateChaseTurn::exec(EnemyBase* enemy)
 			tank->mCautionTimer = 0.0f;
 			f32 angleDist       = tank->changeFaceDir2(target);
 			if (target->isAlive()) {
-				if (tank->checkDistAndAngle(target, angleDist, CG_PARMS(tank)->mGeneral.mTerritoryRadius(),
-				                            viewAngle)) { // not the right inline
+				if (tank->isTargetAttackable(target, angleDist, CG_PARMS(tank)->mGeneral.mTerritoryRadius(),
+				                             viewAngle)) { // not the right inline
 					tank->mTargetCreature = nullptr;
 					tank->finishMotion();
 				}

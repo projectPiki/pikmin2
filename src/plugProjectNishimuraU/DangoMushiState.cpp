@@ -202,7 +202,7 @@ void StateAppear::exec(EnemyBase* enemy)
 				maxAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackRange();
 
 				f32 viewAngle = crab->getCreatureViewAngle(target);
-				if (crab->checkDistAndAngle(target, viewAngle, maxAttackRange, minAttackRange)) {
+				if (crab->isTargetAttackable(target, viewAngle, maxAttackRange, minAttackRange)) {
 					transit(crab, DANGOMUSHI_Attack, nullptr);
 				} else {
 					crab->setRandTarget();
@@ -545,7 +545,7 @@ void StateWait::exec(EnemyBase* enemy)
 		maxAttackRange = CG_PARMS(crab)->mGeneral.mMaxAttackRange();
 
 		f32 viewAngle = crab->getCreatureViewAngle(target);
-		if (crab->checkDistAndAngle(target, viewAngle, maxAttackRange, minAttackRange)) {
+		if (crab->isTargetAttackable(target, viewAngle, maxAttackRange, minAttackRange)) {
 			crab->mNextState = DANGOMUSHI_Attack;
 			crab->finishMotion();
 		} else {
@@ -843,8 +843,8 @@ void StateMove::exec(EnemyBase* enemy)
 	if (target && gameSystem && !gameSystem->isZukanMode()) {
 		f32 viewAngle = crab->getCreatureViewAngle(target);
 
-		if (crab->checkDistAndAngle(target, viewAngle, CG_PARMS(crab)->mGeneral.mMaxAttackRange(),
-		                            CG_PARMS(crab)->mGeneral.mMaxAttackAngle())) {
+		if (crab->isTargetAttackable(target, viewAngle, CG_PARMS(crab)->mGeneral.mMaxAttackRange(),
+		                             CG_PARMS(crab)->mGeneral.mMaxAttackAngle())) {
 			crab->mNextState = DANGOMUSHI_Attack;
 			crab->finishMotion();
 

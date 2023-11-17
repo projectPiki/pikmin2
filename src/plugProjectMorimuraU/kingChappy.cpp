@@ -1853,14 +1853,15 @@ void Obj::checkAttack(bool check)
 	}
 
 	if (mTargetCreature && mTargetCreature->isAlive()) {
-
-		if (checkDistAndAngle2(mTargetCreature)) {
+		Creature* target = mTargetCreature;
+		if (isTargetOutOfRange(target, getCreatureViewAngle(target), C_PARMS->mGeneral.mPrivateRadius(), C_PARMS->mGeneral.mSightRadius(),
+		                       C_PARMS->mGeneral.mFov(), C_PARMS->mGeneral.mViewAngle())) {
 			mTargetCreature = nullptr;
 
 		} else {
 			Creature* target = mTargetCreature;
 			f32 angle        = getCreatureViewAngle(target);
-			if (checkDistAndAngle(target, angle, attackRange, attackAngle)) {
+			if (isTargetAttackable(target, angle, attackRange, attackAngle)) {
 				f32 range          = C_PROPERPARMS.mFp06();
 				Vector3f targetPos = mTargetCreature->getPosition();
 
@@ -1896,7 +1897,7 @@ void Obj::checkAttack(bool check)
 		}
 
 		f32 bombAngle = getCreatureViewAngle(bomb);
-		if (checkDistAndAngle(bomb, bombAngle, attackRange, attackAngle)) {
+		if (isTargetAttackable(bomb, bombAngle, attackRange, attackAngle)) {
 			f32 range          = C_PROPERPARMS.mFp06();
 			Vector3f targetPos = bomb->getPosition();
 

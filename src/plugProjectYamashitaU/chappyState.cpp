@@ -306,13 +306,13 @@ void StateTurn::exec(EnemyBase* enemy)
 
 			f32 angleDist = enemy->getCreatureViewAngle(enemy->mTargetCreature);
 
-			if (enemy->checkDistAndAngle(enemy->mTargetCreature, angleDist, CG_PARMS(enemy)->mGeneral.mMaxAttackRange(),
-			                             CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
+			if (enemy->isTargetAttackable(enemy->mTargetCreature, angleDist, CG_PARMS(enemy)->mGeneral.mMaxAttackRange(),
+			                              CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
 				enemy->finishMotion();
 				OBJ(enemy)->setAnimationSpeed(60.0f);
 				mNextState = CHAPPY_Attack;
 
-			} else if (enemy->checkDistAndAngle2(enemy->mTargetCreature, angleDist, CG_PARMS(enemy)->mGeneral.mPrivateRadius(),
+			} else if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angleDist, CG_PARMS(enemy)->mGeneral.mPrivateRadius(),
 			                                     CG_PARMS(enemy)->mGeneral.mSightRadius(), CG_PARMS(enemy)->mGeneral.mFov(),
 			                                     OBJ(enemy)->_2DC)) {
 				mNextState = CHAPPY_TurnToHome;
@@ -956,15 +956,15 @@ void StateWalk::exec(EnemyBase* enemy)
 		if (target) {
 			enemy->mTargetCreature = target;
 			f32 angle              = enemy->getCreatureViewAngle(enemy->mTargetCreature);
-			if (enemy->checkDistAndAngle(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mMaxAttackRange(),
-			                             CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
+			if (enemy->isTargetAttackable(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mMaxAttackRange(),
+			                              CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
 				mNextState = CHAPPY_Attack;
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);
 				if (mNextState == CHAPPY_Attack) {
 					OBJ(enemy)->setAnimationSpeed(60.0f);
 				}
-			} else if (enemy->checkDistAndAngle2(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mPrivateRadius(),
+			} else if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mPrivateRadius(),
 			                                     CG_PARMS(enemy)->mGeneral.mSightRadius(), CG_PARMS(enemy)->mGeneral.mFov(),
 			                                     OBJ(enemy)->_2DC)) {
 				mNextState = CHAPPY_TurnToHome;
@@ -1957,8 +1957,8 @@ void StateAttack::transitState(EnemyBase* enemy)
 		enemy->mTargetCreature = target;
 
 		f32 angle = enemy->getCreatureViewAngle(enemy->mTargetCreature);
-		if (enemy->checkDistAndAngle(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mMaxAttackRange(),
-		                             CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
+		if (enemy->isTargetAttackable(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mMaxAttackRange(),
+		                              CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
 			transit(enemy, CHAPPY_Attack, nullptr);
 			return;
 		}
@@ -2313,8 +2313,8 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 				enemy->mTargetCreature = target;
 
 				Creature* attackTarget = enemy->mTargetCreature;
-				if (enemy->checkDistAndAngle(attackTarget, enemy->getCreatureViewAngle(attackTarget),
-				                             CG_PARMS(enemy)->mGeneral.mMaxAttackRange(), CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
+				if (enemy->isTargetAttackable(attackTarget, enemy->getCreatureViewAngle(attackTarget),
+				                              CG_PARMS(enemy)->mGeneral.mMaxAttackRange(), CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
 					enemy->finishMotion();
 					OBJ(enemy)->setAnimationSpeed(60.0f);
 					mNextState = CHAPPY_Attack;
@@ -2881,8 +2881,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 			enemy->mTargetCreature = target;
 
 			Creature* attackTarget = enemy->mTargetCreature;
-			if (enemy->checkDistAndAngle(attackTarget, enemy->getCreatureViewAngle(attackTarget),
-			                             CG_PARMS(enemy)->mGeneral.mMaxAttackRange(), CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
+			if (enemy->isTargetAttackable(attackTarget, enemy->getCreatureViewAngle(attackTarget),
+			                              CG_PARMS(enemy)->mGeneral.mMaxAttackRange(), CG_PARMS(enemy)->mGeneral.mMaxAttackAngle())) {
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);
 				OBJ(enemy)->setAnimationSpeed(60.0f);

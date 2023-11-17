@@ -112,8 +112,8 @@ void StateWait::exec(EnemyBase* enemy)
 
 			f32 angdist = frog->getCreatureViewAngle(target);
 
-			if (frog->checkDistAndAngle(target, angdist, CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
-			                            CG_PARMS(frog)->mGeneral.mMaxAttackAngle())) {
+			if (frog->isTargetAttackable(target, angdist, CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
+			                             CG_PARMS(frog)->mGeneral.mMaxAttackAngle())) {
 				Vector3f targetPos2   = target->getPosition();
 				frog->mTargetPosition = targetPos2;
 				frog->attackNaviPosition();

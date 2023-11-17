@@ -580,59 +580,20 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
-	inline bool checkDistAndAngle(Creature* target, f32 angle, f32 distRange, f32 angRange)
+	inline bool isTargetAttackable(Creature* target, f32 angleDiff, f32 attackDist, f32 attackAngle)
 	{
 		bool result = false;
 		Vector3f sep;
 		sep.x = target->getPosition().x - getPosition().x;
 		sep.y = target->getPosition().y - getPosition().y;
 		sep.z = target->getPosition().z - getPosition().z;
-		if ((sep.sqrMagnitude() < SQUARE(distRange)) && FABS(angle) <= PI * (DEG2RAD * angRange)) {
+		if ((sep.sqrMagnitude() < SQUARE(attackDist)) && FABS(angleDiff) <= TORADIANS(attackAngle)) {
 			result = true;
 		}
 		return result;
 	}
 
-	inline bool checkDistAndAngle2(Creature* target)
-	{
-		f32 viewAngle  = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mViewAngle();     // f28
-		f32 fov        = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mFov();           // f29
-		f32 sightRad   = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mSightRadius();   // f30
-		f32 privateRad = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mPrivateRadius(); // f31
-
-		f32 angle = getCreatureViewAngle(target);
-
-		Vector3f sep;
-		sep.x = target->getPosition().x - getPosition().x;
-		sep.y = target->getPosition().y - getPosition().y;
-		sep.z = target->getPosition().z - getPosition().z;
-
-		// Vector3f sep = getTargetSeparation(target);
-		f32 rad1 = SQUARE(privateRad);
-		f32 rad2 = SQUARE(sightRad);
-
-		bool check1 = true;  // r3
-		bool check2 = false; // r4
-		bool check3;
-		f32 dist2D = sep.sqrMagnitude2D();
-		if (dist2D > rad1) {
-			check3 = false;
-			if (dist2D > rad2 && absF(sep.y) < fov) {
-				check3 = true;
-			}
-
-			if (check3) {
-				check2 = true;
-			}
-		}
-
-		if (!check2 && absF(angle) <= TORADIANS(viewAngle)) {
-			check1 = false;
-		}
-		return check1;
-	}
-
-	inline bool checkDistAndAngle2(Creature* target, f32 angle, f32 privateRad, f32 sightRad, f32 fov, f32 viewAngle)
+	inline bool isTargetOutOfRange(Creature* target, f32 angle, f32 privateRad, f32 sightRad, f32 fov, f32 viewAngle)
 	{
 		Vector3f sep;
 		sep.x = target->getPosition().x - getPosition().x;
@@ -642,25 +603,25 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		f32 rad1 = SQUARE(privateRad);
 		f32 rad2 = SQUARE(sightRad);
 
-		bool check1 = true;  // r3
-		bool check2 = false; // r4
-		bool check3;
+		bool result         = true;  // r3
+		bool isOutsideRange = false; // r4
+		bool isOutsideSight;
 		f32 dist2D = sep.sqrMagnitude2D();
 		if (dist2D > rad1) {
-			check3 = false;
+			isOutsideSight = false;
 			if (dist2D > rad2 && absF(sep.y) < fov) {
-				check3 = true;
+				isOutsideSight = true;
 			}
 
-			if (check3) {
-				check2 = true;
+			if (isOutsideSight) {
+				isOutsideRange = true;
 			}
 		}
 
-		if (!check2 && absF(angle) <= TORADIANS(viewAngle)) {
-			check1 = false;
+		if (!isOutsideRange && absF(angle) <= TORADIANS(viewAngle)) {
+			result = false;
 		}
-		return check1;
+		return result;
 	}
 
 	inline f32 changeFaceDir2(Creature* target)

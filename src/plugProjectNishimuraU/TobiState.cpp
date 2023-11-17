@@ -274,8 +274,8 @@ void StateMove::exec(EnemyBase* enemy)
 
 		tobi->mTargetVelocity = Vector3f(speed * x, y, speed * z);
 
-		if (tobi->checkDistAndAngle(target, angleDist, CG_PARMS(tobi)->mGeneral.mMaxAttackRange(),
-		                            CG_PARMS(tobi)->mGeneral.mMaxAttackAngle())) {
+		if (tobi->isTargetAttackable(target, angleDist, CG_PARMS(tobi)->mGeneral.mMaxAttackRange(),
+		                             CG_PARMS(tobi)->mGeneral.mMaxAttackAngle())) {
 			tobi->mNextState = TOBI_Attack2;
 			tobi->finishMotion();
 		} else {

@@ -191,8 +191,8 @@ void StateMove::exec(EnemyBase* enemy)
 			baby->mTargetVelocity = Vector3f(speed * sintheta, y, speed * costheta);
 		}
 
-		if (baby->checkDistAndAngle(creature, angleDist, CG_PARMS(baby)->mGeneral.mMaxAttackRange.mValue,
-		                            CG_PARMS(baby)->mGeneral.mMaxAttackAngle.mValue)) {
+		if (baby->isTargetAttackable(creature, angleDist, CG_PARMS(baby)->mGeneral.mMaxAttackRange.mValue,
+		                             CG_PARMS(baby)->mGeneral.mMaxAttackAngle.mValue)) {
 			transit(baby, BABY_Attack, nullptr);
 		}
 
