@@ -8,6 +8,7 @@
 #include "Game/Entities/PelletOtakara.h"
 #include "Game/Entities/PelletItem.h"
 #include "Game/gameStat.h"
+#include "Game/enemyInfo.h"
 
 /*
  * --INFO--
@@ -622,7 +623,7 @@ PlayData::PlayData()
 		gen->mLoops.create(info->mLoopGenInfo.mCount, nullptr);
 	}
 
-	mTekiStatMgr.allocate(102);
+	mTekiStatMgr.allocate(EnemyTypeID::EnemyID_COUNT); // uses EnemyTypeID::EnemyID_COUNT rather than gEnemyInfoNum
 
 	mCaveOtakara    = new CaveOtakara[stageCount];
 	mCaveOtakaraOld = new CaveOtakara[stageCount];
