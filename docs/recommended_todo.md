@@ -249,7 +249,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_CreaturePrm.cpp">PSMainSide_CreaturePrm.cpp</a> | 4104 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjCalc.cpp">PSMainSide_ObjCalc.cpp</a> | 9412 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/menu.cpp">menu.cpp</a> | 13538 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Sound.cpp">PSMainSide_Sound.cpp</a> | 13563 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Sound.cpp">PSMainSide_Sound.cpp</a> | 11590 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/menu.cpp">menu.cpp</a> | 13538 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_TrackMap.cpp">PSMainSide_TrackMap.cpp</a> | 17177 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_BossMgr.cpp">PSMainSide_BossMgr.cpp</a> | 19867 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_DirectorMgr.cpp">PSMainSide_DirectorMgr.cpp</a> | 40558 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Demo.cpp">PSMainSide_Demo.cpp</a> | 50137 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Se.cpp">PSMainSide_Se.cpp</a> | 59958 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Director.cpp">PSMainSide_Director.cpp</a> | 76305 |

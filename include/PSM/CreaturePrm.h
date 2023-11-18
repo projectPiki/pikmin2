@@ -17,7 +17,7 @@ struct CreaturePrm : public PSSystem::SingletonBase<CreaturePrm> {
 	// _00 = VTBL
 	PSGame::SoundTable::SePerspInfo mPersp; // _04
 
-	static f32 cSeFxmix;
+	static f32 cSeFxMix;
 };
 
 } // namespace PSM

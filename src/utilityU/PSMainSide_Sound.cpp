@@ -42,6 +42,22 @@ SeSound* SeSound::makeSeSound() { return new SeSound; }
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000064
+ */
+f32 SeSound::psACos(f32 val)
+{
+	int mod = (val + 1.0f) * 50.0f;
+	if (mod < 0) {
+		return smACosPrm[0];
+	} else if (mod >= 101) {
+		return smACosPrm[100];
+	}
+	return smACosPrm[mod];
+}
+
+/*
+ * --INFO--
  * Address:	80470F84
  * Size:	000004
  */
@@ -108,23 +124,23 @@ void SeSound::initParameter(void* d1, JAInter::Actor* actor, u32 a1, u32 a2, u8 
  */
 f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 {
-	setFxmix(CreaturePrm::cSeFxmix, 0, 1);
-	f32 dist  = _34->_18;
-	bool test = isValidSeType(mSoundInfo);
+	setFxmix(CreaturePrm::cSeFxMix, 0, 1);
+	f32 dist = _34->_18;
+	u8 test  = isValidSeType(mSoundID);
 
 	f32 dist2;
-	if (mPerspInfo.mIsSpecialSound) {
+	if (mPerspInfo.mIsSpecialSound == true) {
 		dist2 = calcVolumeSpecialized(dist);
 	} else {
 		dist2 = calcVolume(dist, flag, test);
 	}
 	dist2 = dist2 - _4A0;
-	if (!_1A && _34) {
+	if (!_1A || _38) {
 		PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(PSMGetSceneMgrCheck()->getEndScene());
 		P2ASSERTLINE(261, scene);
 		f32 calc = scene->getCamDistVol(_49C);
-		JUT_ASSERTLINE(269, calc != 0.0f, "\nSE called at invalid timming\n(%08x)\n", mSoundInfo);
-		dist2  = calc * dist2;
+		JUT_ASSERTLINE(269, calc != 0.0f, "\nSE called at invalid timming\n(%08x)\n", mSoundID);
+		dist2 *= calc;
 		f32 fx = static_cast<PSM::Scene_Cave*>(PSMGetChildScene())->getSceneFx();
 		setFxmix(fx, 0, 2);
 	}
@@ -416,25 +432,13 @@ void SeSound::setSeDistancePan(u8 flag)
  */
 f32 SeSound::calcPan(const Vec& pos, f32 modifier)
 {
-	f32 calc;
-	if (modifier <= 0.0f) {
-		calc = cCenterRad;
-	} else {
-		int mod = (-pos.x / modifier + 1.0f) * 50.0f;
-		if (mod < 0) {
-			calc = smACosPrm[0];
-		} else if (mod >= 101) {
-			calc = smACosPrm[100];
-		} else {
-			calc = smACosPrm[mod];
-		}
-	}
+	f32 calc = (modifier <= 0.0f) ? cCenterRad : psACos(-pos.x / modifier);
 
-	static s8 init;
 	static f32 panRatio;
+	static s8 init;
 	if (!init) {
 		init     = true;
-		panRatio = 3.1415f / cPan_MaxAmp;
+		panRatio = cPan_MaxAmp / 3.1415f;
 	}
 
 	f32 ret = panRatio * calc;
@@ -470,124 +474,35 @@ void SeSound::setSeDistanceDolby(u8 flag)
  */
 f32 SeSound::calcDolby(const Vec& pos, f32 modifier)
 {
-	f32 calc;
 	if (modifier <= 0.0f) {
-		calc = 0.0f;
-	} else {
-		int mod = (-pos.z / modifier + 1.0f) * 50.0f;
-		if (mod < 0) {
-			calc = smACosPrm[0];
-		} else if (mod >= 101) {
-			calc = smACosPrm[100];
-		} else {
-			calc = smACosPrm[mod];
-		}
+		return 0.0f;
 	}
 
-	f32 ret;
+	f32 calc = psACos(-pos.z / modifier);
+
+	f32 dolby;
 	if (calc < cDol_0Rad) {
-		ret = 0.0f;
+		dolby = 0.0f;
+
 	} else if (calc < cDol_HalfRad) {
-		ret = calc - cDol_0Rad;
+		dolby = (0.5f / (cDol_HalfRad - cDol_0Rad)) * (calc - cDol_0Rad);
+
 	} else if (calc < cDol_FullRad) {
-		ret = (calc - cDol_HalfRad) * cDol_FullRad + 0.5f;
+		dolby = (0.5f / (cDol_FullRad - cDol_HalfRad)) * (calc - cDol_HalfRad) + 0.5f;
+
 	} else {
-		ret = 1.0f;
+		dolby = 1.0f;
 	}
 
-	return ret < 0.0f ? 0.0f : ret > 1.0f ? 1.0f : ret;
+	if (dolby > 1.0f) {
+		return 1.0f;
+	}
 
-	/*
-lfs      f0, lbl_80520D94@sda21(r2)
-stwu     r1, -0x10(r1)
-fcmpo    cr0, f1, f0
-cror     2, 0, 2
-bne      lbl_804717B8
-fmr      f1, f0
-b        lbl_804718A0
+	if (dolby < 0.0f) {
+		return 0.0f;
+	}
 
-lbl_804717B8:
-lfs      f0, 8(r3)
-lfs      f2, lbl_80520D90@sda21(r2)
-fneg     f0, f0
-lfs      f3, lbl_80520D98@sda21(r2)
-fdivs    f0, f0, f1
-fadds    f0, f2, f0
-fmuls    f0, f3, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r0, 0xc(r1)
-cmpwi    r0, 0
-bge      lbl_804717F4
-lis      r3, smACosPrm__Q23PSM7SeSound@ha
-lfs      f0, smACosPrm__Q23PSM7SeSound@l(r3)
-b        lbl_8047181C
-
-lbl_804717F4:
-cmpwi    r0, 0x65
-blt      lbl_8047180C
-lis      r3, smACosPrm__Q23PSM7SeSound@ha
-addi     r3, r3, smACosPrm__Q23PSM7SeSound@l
-lfs      f0, 0x190(r3)
-b        lbl_8047181C
-
-lbl_8047180C:
-lis      r3, smACosPrm__Q23PSM7SeSound@ha
-slwi     r0, r0, 2
-addi     r3, r3, smACosPrm__Q23PSM7SeSound@l
-lfsx     f0, r3, r0
-
-lbl_8047181C:
-lfs      f3, cDol_0Rad__Q23PSM7SeSound@sda21(r13)
-fcmpo    cr0, f0, f3
-bge      lbl_80471830
-lfs      f0, lbl_80520D94@sda21(r2)
-b        lbl_8047187C
-
-lbl_80471830:
-lfs      f4, cDol_HalfRad__Q23PSM7SeSound@sda21(r13)
-fcmpo    cr0, f0, f4
-bge      lbl_80471854
-fsubs    f1, f4, f3
-lfs      f2, lbl_80520DA8@sda21(r2)
-fsubs    f0, f0, f3
-fdivs    f1, f2, f1
-fmuls    f0, f1, f0
-b        lbl_8047187C
-
-lbl_80471854:
-lfs      f1, cDol_FullRad__Q23PSM7SeSound@sda21(r13)
-fcmpo    cr0, f0, f1
-bge      lbl_80471878
-fsubs    f1, f1, f4
-lfs      f2, lbl_80520DA8@sda21(r2)
-fsubs    f0, f0, f4
-fdivs    f1, f2, f1
-fmadds   f0, f1, f0, f2
-b        lbl_8047187C
-
-lbl_80471878:
-lfs      f0, lbl_80520D90@sda21(r2)
-
-lbl_8047187C:
-lfs      f1, lbl_80520D90@sda21(r2)
-fcmpo    cr0, f0, f1
-ble      lbl_8047188C
-b        lbl_804718A0
-
-lbl_8047188C:
-lfs      f1, lbl_80520D94@sda21(r2)
-fcmpo    cr0, f0, f1
-bge      lbl_8047189C
-b        lbl_804718A0
-
-lbl_8047189C:
-fmr      f1, f0
-
-lbl_804718A0:
-addi     r1, r1, 0x10
-blr
-*/
+	return dolby;
 }
 
 } // namespace PSM

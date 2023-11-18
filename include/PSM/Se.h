@@ -94,6 +94,7 @@ struct SeSound : public JAISe {
 	static f32 calcVolume(f32, u8, u8);
 	static f32 calcPan(const Vec&, f32);
 	static f32 calcDolby(const Vec&, f32);
+	static f32 psACos(f32);
 
 	// _00      = VTABLE
 	// _00-_484 = JAISe

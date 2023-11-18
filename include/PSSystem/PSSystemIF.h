@@ -95,15 +95,23 @@ inline PSSystem::SysIF* PSGetSystemIFA()
 	return PSSystem::spSysIF;
 }
 
-inline bool isValidSeType(JAInter::SoundInfo* info)
+inline u32 isValidSeType(u32 soundID)
 {
 	// this is wrong, but its stupid either way
-	u8 mode  = info->_00 >> 0x1C;
-	bool ret = info->_00 >> 0xC & 0xf;
-	P2ASSERTLINE(31, ret != 0);
-	P2ASSERTLINE(35, ret != 3);
-	P2ASSERTLINE(37, ret != 2);
-	return ret;
+	u32 mode = soundID >> 30;
+	u8 ret   = (soundID >> 12) & 0xF;
+	if (mode == 0) {
+		return ret;
+	}
+
+	if (mode == 2) {
+		JUT_PANICLINE(31, "P2Assert");
+	} else if (mode == 3) {
+		JUT_PANICLINE(35, "P2Assert");
+	}
+
+	JUT_PANICLINE(37, "P2Assert");
+	return 0;
 }
 
 inline PSSystem::SysIF* PSGetSystemIF() { return PSSystem::spSysIF; }
