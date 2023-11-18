@@ -88,7 +88,58 @@ void StateRebirth::exec(EnemyBase* enemy)
 {
 	Obj* chappy = OBJ(enemy);
 	if (chappy->mCurAnim->mIsPlaying) {
-		if (chappy->mCurAnim->mType == KEYEVENT_2) { }
+		if (chappy->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::flickStickPikmin(chappy, CG_PARMS(chappy)->mGeneral.mShakeChance(), CG_PARMS(chappy)->mGeneral.mShakeKnockback(),
+			                            CG_PARMS(chappy)->mGeneral.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyPikmin(chappy, CG_PARMS(chappy)->mGeneral.mShakeRange(), CG_PARMS(chappy)->mGeneral.mShakeKnockback(),
+			                             CG_PARMS(chappy)->mGeneral.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
+			EnemyFunc::flickNearbyNavi(chappy, CG_PARMS(chappy)->mGeneral.mShakeRange(), CG_PARMS(chappy)->mGeneral.mShakeKnockback(),
+			                           CG_PARMS(chappy)->mGeneral.mShakeDamage(), FLICK_BACKWARD_ANGLE, nullptr);
+			chappy->mFlickTimer = 0.0f;
+
+		} else if (chappy->mCurAnim->mType == KEYEVENT_3) {
+			chappy->enableEvent(0, EB_NoInterrupt);
+
+		} else if (chappy->mCurAnim->mType == KEYEVENT_4) {
+			chappy->disableEvent(0, EB_NoInterrupt);
+
+		} else if (chappy->mCurAnim->mType == KEYEVENT_END) {
+			if (chappy->mHealth <= 0.0f) {
+				transit(chappy, KUMACHAPPY_Dead, nullptr);
+				return;
+			}
+
+			if (EnemyFunc::isStartFlick(chappy, false)) {
+				transit(chappy, KUMACHAPPY_Flick, nullptr);
+				return;
+			}
+
+			Creature* target = chappy->getSearchedTarget();
+			if (target) {
+				f32 angleDist = chappy->getCreatureViewAngle(target);
+				if (chappy->isTargetAttackable(target, chappy->getCreatureViewAngle(target), CG_PARMS(chappy)->mGeneral.mMaxAttackRange(),
+				                               CG_PARMS(chappy)->mGeneral.mMaxAttackAngle())) {
+					transit(chappy, KUMACHAPPY_Attack, nullptr);
+					return;
+				}
+
+				if (absF(angleDist) <= TORADIANS(CG_PARMS(chappy)->mGeneral.mMaxAttackAngle())) {
+					transit(chappy, KUMACHAPPY_Walk, nullptr);
+					return;
+				}
+
+				transit(chappy, KUMACHAPPY_Turn, nullptr);
+				return;
+			}
+			Vector3f targetPos = chappy->mTargetPos;
+			f32 angleDist      = chappy->getCreatureViewAngle(targetPos);
+			if (absF(angleDist) <= (PI / 4)) {
+				transit(chappy, KUMACHAPPY_WalkPath, nullptr);
+				return;
+			}
+
+			transit(chappy, KUMACHAPPY_TurnPath, nullptr);
+		}
 	}
 	/*
 	stwu     r1, -0x150(r1)

@@ -69,15 +69,15 @@ struct Obj : public EnemyBase {
 	}
 	virtual void createEffect() { }              // _2FC (weak)
 	virtual void setupEffect() { }               // _300 (weak)
-	virtual void startEffect();                  // _304 (weak)
-	virtual void startYodare();                  // _308 (weak)
+	virtual void startEffect() { }               // _304 (weak)
+	virtual void startYodare() { }               // _308 (weak)
 	virtual void finishEffect() { }              // _30C (weak)
 	virtual void effectDrawOn() { }              // _310 (weak)
 	virtual void effectDrawOff() { }             // _314 (weak)
 	virtual void interactCreature(Creature*) { } // _318 (weak)
 	virtual void stopEffectRadius(f32) { }       // _31C (weak)
-	virtual void createChargeSE();               // _320 (weak)
-	virtual void createDisChargeSE();            // _324 (weak)
+	virtual void createChargeSE() { }            // _320 (weak)
+	virtual void createDisChargeSE() { }         // _324 (weak)
 	//////////////// VTABLE END
 
 	bool isAttackable(bool);

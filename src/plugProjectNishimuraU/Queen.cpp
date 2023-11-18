@@ -1028,33 +1028,5 @@ void Obj::effectDrawOff()
 	mEfxHanacho->startDemoDrawOff();
 }
 
-/*
- * --INFO--
- * Address:	8028C494
- * Size:	000004
- */
-void Obj::inWaterCallback(WaterBox*) { }
-
-/*
- * --INFO--
- * Address:	8028C498
- * Size:	000004
- */
-void Obj::outWaterCallback() { }
-
-/*
- * --INFO--
- * Address:	8028C49C
- * Size:	000008
- */
-f32 Obj::getDamageCoeStoneState() { return 0.25f; }
-
-/*
- * --INFO--
- * Address:	8028C4A4
- * Size:	000008
- */
-EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Queen; }
-
 } // namespace Queen
 } // namespace Game

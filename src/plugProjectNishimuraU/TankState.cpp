@@ -145,7 +145,7 @@ void StateMove::exec(EnemyBase* enemy)
 	f32 viewAngle = tank->getViewAngle();
 
 	Vector3f pos       = tank->getPosition();
-	Vector3f targetPos = tank->_2F8;
+	Vector3f targetPos = Vector3f(tank->_2F8);
 
 	if (sqrDistanceXZ(pos, targetPos) > 2500.0f && tank->_2F0 < 3.0f) {
 		EnemyFunc::walkToTarget(tank, targetPos, CG_PARMS(tank)->mGeneral.mMoveSpeed(), CG_PARMS(tank)->mGeneral.mTurnSpeed(),
@@ -194,13 +194,11 @@ void StateMove::exec(EnemyBase* enemy)
 
 		Creature* target = tank->mTargetCreature;
 		if (target) {
-			f32 fov      = CG_PARMS(tank)->mGeneral.mFov();           // f29
-			f32 sightRad = CG_PARMS(tank)->mGeneral.mSightRadius();   // f30
-			f32 privRad  = CG_PARMS(tank)->mGeneral.mPrivateRadius(); // f31
+			// f32 angleDist = tank->getAngDist(target); // f26
 
-			f32 angleDist = tank->getAngDist(target); // f26
-
-			if (tank->isTargetAttackable(target, angleDist, privRad, sightRad)) { // slightly different inline?
+			if (tank->isTargetOutOfRange(target, tank->getAngDist(target), CG_PARMS(tank)->mGeneral.mPrivateRadius(),
+			                             CG_PARMS(tank)->mGeneral.mSightRadius(), CG_PARMS(tank)->mGeneral.mFov(),
+			                             viewAngle)) { // slightly different inline?
 				transit(tank, TANK_Wait, nullptr);
 				return;
 			}
@@ -787,24 +785,24 @@ void StateChaseTurn::exec(EnemyBase* enemy)
 	if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false)) {
 		tank->finishMotion();
 		tank->setAnimSpeed(60.0f);
-	} else {
-		Creature* target = tank->mTargetCreature;
-		if (target) {
-			tank->mCautionTimer = 0.0f;
-			f32 angleDist       = tank->changeFaceDir2(target);
-			if (target->isAlive()) {
-				if (tank->isTargetAttackable(target, angleDist, CG_PARMS(tank)->mGeneral.mTerritoryRadius(),
-				                             viewAngle)) { // not the right inline
-					tank->mTargetCreature = nullptr;
-					tank->finishMotion();
-				}
-			}
-		} else {
-			Vector3f targetPos = tank->_2F8;
-			f32 angleDist      = tank->changeFaceDir(targetPos);
-			if (absF(angleDist) <= 10.0f * PI / 180) {
+	}
+
+	Creature* target = tank->mTargetCreature;
+	if (target) {
+		tank->mCautionTimer = 0.0f;
+		f32 angleDist       = tank->changeFaceDir2(target);
+		if (target->isAlive()) {
+			if (tank->isTargetOutOfRange(target, angleDist, CG_PARMS(tank)->mGeneral.mPrivateRadius(),
+			                             CG_PARMS(tank)->mGeneral.mSightRadius(), CG_PARMS(tank)->mGeneral.mFov(), viewAngle)) {
+				tank->mTargetCreature = nullptr;
 				tank->finishMotion();
 			}
+		}
+	} else {
+		Vector3f targetPos = tank->_2F8;
+		f32 angleDist      = tank->changeFaceDir(targetPos);
+		if (absF(angleDist) <= 10.0f * PI / 180) {
+			tank->finishMotion();
 		}
 	}
 
@@ -1291,13 +1289,6 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 
 /*
  * --INFO--
- * Address:	80275560
- * Size:	000004
- */
-void Obj::createChargeSE() { }
-
-/*
- * --INFO--
  * Address:	80275564
  * Size:	0001E0
  */
@@ -1344,20 +1335,6 @@ void StateAttack::exec(EnemyBase* enemy)
 
 /*
  * --INFO--
- * Address:	80275744
- * Size:	000004
- */
-void Obj::startEffect() { }
-
-/*
- * --INFO--
- * Address:	80275748
- * Size:	000004
- */
-void Obj::createDisChargeSE() { }
-
-/*
- * --INFO--
  * Address:	8027574C
  * Size:	000058
  */
@@ -1369,13 +1346,6 @@ void StateAttack::cleanup(EnemyBase* enemy)
 	tank->startYodare();
 	tank->setEmotionCaution();
 }
-
-/*
- * --INFO--
- * Address:	802757A4
- * Size:	000004
- */
-void Obj::startYodare() { }
 
 /*
  * --INFO--

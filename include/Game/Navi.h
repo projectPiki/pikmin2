@@ -219,7 +219,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 		mController2 = control;
 	}
 
-	inline NaviState* getCurrentState() { return mCurrentState; }
+	// inline NaviState* getCurrentState() { return mCurrentState; }
 
 	inline void setControlFlag(u16 flag) { mNaviControlFlag.typeView |= flag; }
 	inline void resetControlFlag(u16 flag) { mNaviControlFlag.typeView &= ~flag; }
