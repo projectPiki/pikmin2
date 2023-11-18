@@ -20,9 +20,7 @@ struct MoveParaSet;
  * @fabricated
  */
 struct JAISound_0x34 {
-	f32 _00; // _00
-	f32 _04; // _04
-	f32 _08; // _08
+	Vec _00; // _00
 	f32 _0C; // _0C
 	f32 _10; // _10
 	f32 _14; // _14

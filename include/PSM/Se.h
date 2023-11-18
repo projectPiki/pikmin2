@@ -90,10 +90,10 @@ struct SeSound : public JAISe {
 
 	static SeSound* makeSeSound();
 	void specializePerspCalc(const PSGame::SoundTable::SePerspInfo&);
-	void calcVolumeSpecialized(f32);
-	f32 calcVolume(f32, u8, u8);
-	void calcPan(const Vec&, f32);
-	void calcDolby(const Vec&, f32);
+	f32 calcVolumeSpecialized(f32);
+	static f32 calcVolume(f32, u8, u8);
+	static f32 calcPan(const Vec&, f32);
+	static f32 calcDolby(const Vec&, f32);
 
 	// _00      = VTABLE
 	// _00-_484 = JAISe
@@ -106,6 +106,7 @@ struct SeSound : public JAISe {
 	static f32 cDol_FullRad;
 	static f32 cPan_MaxAmp;
 	static f32 cCenterRad;
+	static const f32 smACosPrm[];
 };
 } // namespace PSM
 

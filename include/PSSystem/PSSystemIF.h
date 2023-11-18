@@ -88,10 +88,22 @@ inline JKRFileLoader* getLoaderInstance()
 
 extern SysIF* spSysIF;
 } // namespace PSSystem
+
 inline PSSystem::SysIF* PSGetSystemIFA()
 {
 	P2ASSERTLINE(395, PSSystem::spSysIF);
 	return PSSystem::spSysIF;
+}
+
+inline bool isValidSeType(JAInter::SoundInfo* info)
+{
+	// this is wrong, but its stupid either way
+	u8 mode  = info->_00 >> 0x1C;
+	bool ret = info->_00 >> 0xC & 0xf;
+	P2ASSERTLINE(31, ret != 0);
+	P2ASSERTLINE(35, ret != 3);
+	P2ASSERTLINE(37, ret != 2);
+	return ret;
 }
 
 inline PSSystem::SysIF* PSGetSystemIF() { return PSSystem::spSysIF; }

@@ -4,349 +4,41 @@
 #include "PSGame/SoundTable.h"
 #include "PSM/Se.h"
 #include "PSSystem/PSCommon.h"
-#include "types.h"
+#include "JSystem/JAudio/JALCalc.h"
+#include "PSSystem/PSSystemIF.h"
+#include "PSM/CreaturePrm.h"
+#include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_PSMainSide_Sound_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049DC30
-    lbl_8049DC30:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global smACosPrm__Q23PSM7SeSound
-    smACosPrm__Q23PSM7SeSound:
-        .4byte 0x40490FD8
-        .4byte 0x403C3D92
-        .4byte 0x4036E62E
-        .4byte 0x4032C782
-        .4byte 0x402F49C3
-        .4byte 0x402C323C
-        .4byte 0x402962D8
-        .4byte 0x4026C9C9
-        .4byte 0x40245B68
-        .4byte 0x40220FAE
-        .4byte 0x401FE0BD
-        .4byte 0x401DCA21
-        .4byte 0x401BC871
-        .4byte 0x4019D8F5
-        .4byte 0x4017F96E
-        .4byte 0x4016280B
-        .4byte 0x40146345
-        .4byte 0x4012A9D2
-        .4byte 0x4010FA98
-        .4byte 0x400F549B
-        .4byte 0x400DB70F
-        .4byte 0x400C212D
-        .4byte 0x400A9258
-        .4byte 0x400909F6
-        .4byte 0x40078787
-        .4byte 0x40060A91
-        .4byte 0x400492A7
-        .4byte 0x40031F64
-        .4byte 0x4001B075
-        .4byte 0x4000457C
-        .4byte 0x3FFDBC6F
-        .4byte 0x3FFAF4B6
-        .4byte 0x3FF83340
-        .4byte 0x3FF5779F
-        .4byte 0x3FF2C15D
-        .4byte 0x3FF01006
-        .4byte 0x3FED633D
-        .4byte 0x3FEABA95
-        .4byte 0x3FE815B1
-        .4byte 0x3FE57447
-        .4byte 0x3FE2D5F1
-        .4byte 0x3FE03A6D
-        .4byte 0x3FDDA15E
-        .4byte 0x3FDB0A81
-        .4byte 0x3FD87582
-        .4byte 0x3FD5E226
-        .4byte 0x3FD3501A
-        .4byte 0x3FD0BF1A
-        .4byte 0x3FCE2EEC
-        .4byte 0x3FCB9F45
-        .4byte 0x3FC90FD8
-        .4byte 0x3FC68073
-        .4byte 0x3FC3F0CC
-        .4byte 0x3FC16095
-        .4byte 0x3FBECF9E
-        .4byte 0x3FBC3D92
-        .4byte 0x3FB9AA37
-        .4byte 0x3FB71538
-        .4byte 0x3FB47E5A
-        .4byte 0x3FB1E54B
-        .4byte 0x3FAF49C7
-        .4byte 0x3FACAB71
-        .4byte 0x3FAA0A07
-        .4byte 0x3FA76523
-        .4byte 0x3FA4BC7B
-        .4byte 0x3FA20FB2
-        .4byte 0x3F9F5E5B
-        .4byte 0x3F9CA811
-        .4byte 0x3F99EC70
-        .4byte 0x3F972B02
-        .4byte 0x3F946349
-        .4byte 0x3F9194B8
-        .4byte 0x3F8EBECF
-        .4byte 0x3F8BE0E7
-        .4byte 0x3F88FA6A
-        .4byte 0x3F860A96
-        .4byte 0x3F8310A1
-        .4byte 0x3F800BC4
-        .4byte 0x3F79F612
-        .4byte 0x3F73BABA
-        .4byte 0x3F6D6335
-        .4byte 0x3F66ED03
-        .4byte 0x3F605511
-        .4byte 0x3F599829
-        .4byte 0x3F52B25B
-        .4byte 0x3F4B9F45
-        .4byte 0x3F4459B8
-        .4byte 0x3F3CDB9C
-        .4byte 0x3F351D9B
-        .4byte 0x3F2D16EC
-        .4byte 0x3F24BC7B
-        .4byte 0x3F1C00B9
-        .4byte 0x3F12D1BF
-        .4byte 0x3F09184C
-        .4byte 0x3EFD67FD
-        .4byte 0x3EE6ED03
-        .4byte 0x3ECE30CB
-        .4byte 0x3EB242D0
-        .4byte 0x3E914D72
-        .4byte 0x3E4D249E
-        .4byte 0x00000000
-    .global lbl_8049DDD0
-    lbl_8049DDD0:
-        .4byte 0x50534D61
-        .4byte 0x696E5369
-        .4byte 0x64655F53
-        .4byte 0x6F756E64
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_8049DDE8
-    lbl_8049DDE8:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x5053436F
-        .4byte 0x6D6D6F6E
-        .4byte 0x2E680000
-        .4byte 0x50535379
-        .4byte 0x7374656D
-        .4byte 0x49462E68
-        .4byte 0x00000000
-    .global lbl_8049DE10
-    lbl_8049DE10:
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-        .4byte 0x50535363
-        .4byte 0x656E652E
-        .4byte 0x68000000
-        .4byte 0x0A534520
-        .4byte 0x63616C6C
-        .4byte 0x65642061
-        .4byte 0x7420696E
-        .4byte 0x76616C69
-        .4byte 0x64207469
-        .4byte 0x6D6D696E
-        .4byte 0x670A2825
-        .4byte 0x30387829
-        .4byte 0x0A000000
-        .4byte 0x67657420
-        .4byte 0x736F756E
-        .4byte 0x64207363
-        .4byte 0x656E6520
-        .4byte 0x61740A69
-        .4byte 0x6E76616C
-        .4byte 0x69642074
-        .4byte 0x696D6D69
-        .4byte 0x6E670A00
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EF9A8
-    lbl_804EF9A8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q23PSM7SeSound
-    __vt__Q23PSM7SeSound:
-        .4byte 0
-        .4byte 0
-        .4byte setPortData__5JAISeFUcUs
-        .4byte getPortData__5JAISeFUc
-        .4byte start__8JAISoundFUl
-        .4byte stop__5JAISeFUl
-        .4byte release__8JAISoundFv
-        .4byte setVolume__5JAISeFfUlUc
-        .4byte getVolume__5JAISeFUc
-        .4byte setPan__5JAISeFfUlUc
-        .4byte getPan__5JAISeFUc
-        .4byte setPitch__5JAISeFfUlUc
-        .4byte getPitch__5JAISeFUc
-        .4byte setFxmix__5JAISeFfUlUc
-        .4byte getFxmix__5JAISeFUc
-        .4byte setDolby__5JAISeFfUlUc
-        .4byte getDolby__5JAISeFUc
-        .4byte setTempoProportion__8JAISoundFfUl
-        .4byte getTempoProportion__8JAISoundFv
-        .4byte setVolumeU7__5JAISeFUcUlUc
-        .4byte getVolumeU7__5JAISeFUc
-        .4byte setPanU7__5JAISeFUcUlUc
-        .4byte getPanU7__5JAISeFUc
-        .4byte setFxmixU7__5JAISeFUcUlUc
-        .4byte getFxmixU7__5JAISeFUc
-        .4byte setDolbyU7__5JAISeFUcUlUc
-        .4byte getDolbyU7__5JAISeFUc
-        .4byte setDirectVolume__8JAISoundFfUl
-        .4byte setDirectPan__8JAISoundFfUl
-        .4byte setDirectPitch__8JAISoundFfUl
-        .4byte setDirectFxmix__8JAISoundFfUl
-        .4byte setDirectDolby__8JAISoundFfUl
-        .4byte setDemoVolume__8JAISoundFfUl
-        .4byte setDemoPan__8JAISoundFfUl
-        .4byte setDemoPitch__8JAISoundFfUl
-        .4byte setDemoFxmix__8JAISoundFfUl
-        .4byte setDemoDolby__8JAISoundFfUl
-        .4byte setDemoVolumeU7__8JAISoundFUcUl
-        .4byte setDemoPanU7__8JAISoundFUcUl
-        .4byte setDemoFxmixU7__8JAISoundFUcUl
-        .4byte setDemoDolbyU7__8JAISoundFUcUl
-        .4byte getFadeCounter__5JAISeFv
-        .4byte setPrepareFlag__8JAISoundFUc
-        .4byte checkReady__8JAISoundFv
-        .4byte setDistanceParameterMoveTime__8JAISoundFUc
-        .4byte setAdjustPriority__8JAISoundFs
-        .4byte setPositionDopplarCommon__8JAISoundFUl
-        .4byte setDistanceVolumeCommon__Q23PSM7SeSoundFfUc
-        .4byte setDistancePanCommon__8JAISoundFv
-        .4byte setDistanceDolbyCommon__8JAISoundFv
-        .4byte
-   initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-        .4byte onGet__Q23PSM7SeSoundFv
-        .4byte onRelease__Q23PSM7SeSoundFv
-        .4byte setSeDistanceParameters__5JAISeFv
-        .4byte setSeDistanceVolume__5JAISeFUc
-        .4byte setSeDistancePan__Q23PSM7SeSoundFUc
-        .4byte setSeDistancePitch__5JAISeFUc
-        .4byte setSeDistanceFxmix__5JAISeFUc
-        .4byte setSeDistanceFir__5JAISeFUc
-        .4byte setSeDistanceDolby__Q23PSM7SeSoundFUc
-        .4byte setSePositionDopplar__5JAISeFv
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global cDol_0Rad__Q23PSM7SeSound
-    cDol_0Rad__Q23PSM7SeSound:
-        .float 1.0316
-    .global cDol_HalfRad__Q23PSM7SeSound
-    cDol_HalfRad__Q23PSM7SeSound:
-        .float 1.5708
-    .global cDol_FullRad__Q23PSM7SeSound
-    cDol_FullRad__Q23PSM7SeSound:
-        .float 2.11
-    .global cPan_MaxAmp__Q23PSM7SeSound
-    cPan_MaxAmp__Q23PSM7SeSound:
-        .float 0.98
-    .global cCenterRad__Q23PSM7SeSound
-    cCenterRad__Q23PSM7SeSound:
-        .float 1.57
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516330
-    lbl_80516330:
-        .skip 0x4
-    .global lbl_80516334
-    lbl_80516334:
-        .skip 0x4
-    .global panRatio$3853
-    panRatio$3853:
-        .skip 0x4
-    .global init$3854_1
-    init$3854_1:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520D90
-    lbl_80520D90:
-        .float 1.0
-    .global lbl_80520D94
-    lbl_80520D94:
-        .4byte 0x00000000
-    .global lbl_80520D98
-    lbl_80520D98:
-        .4byte 0x42480000
-    .global lbl_80520D9C
-    lbl_80520D9C:
-        .4byte 0x41700000
-    .global lbl_80520DA0
-    lbl_80520DA0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80520DA8
-    lbl_80520DA8:
-        .float 0.5
-    .global lbl_80520DAC
-    lbl_80520DAC:
-        .4byte 0x40490E56
-*/
-
-float PSM::SeSound::cDol_0Rad    = 1.0316;
-float PSM::SeSound::cDol_HalfRad = 1.5707999;
-float PSM::SeSound::cDol_FullRad = 2.1099999;
-float PSM::SeSound::cPan_MaxAmp  = 0.98;
-float PSM::SeSound::cCenterRad   = 1.57;
+static const u32 padding[] = { 0, 0, 0 };
 
 namespace PSM {
+
+f32 SeSound::cDol_0Rad    = 1.0316;
+f32 SeSound::cDol_HalfRad = 1.5707999;
+f32 SeSound::cDol_FullRad = 2.1099999;
+f32 SeSound::cPan_MaxAmp  = 0.98;
+f32 SeSound::cCenterRad   = 1.57;
+
+const f32 SeSound::smACosPrm[] = {
+	3.141592f,   2.941258f,  2.857799f,   2.793427f,   2.738877f,   2.690566f,  2.6466579f, 2.606066f,   2.568079f,   2.532207f,
+	2.4980919f,  2.465462f,  2.434109f,   2.403867f,   2.374599f,   2.346194f,  2.3185589f, 2.291615f,   2.265295f,   2.2395389f,
+	2.214298f,   2.1895249f, 2.165182f,   2.141233f,   2.1176469f,  2.0943949f, 2.0714509f, 2.0487909f,  2.026395f,   2.004241f,
+	1.982313f,   1.960593f,  1.939064f,   1.917713f,   1.896526f,   1.875489f,  1.854591f,  1.833819f,   1.813162f,   1.792611f,
+	1.772154f,   1.751783f,  1.731487f,   1.711258f,   1.691086f,   1.670964f,  1.650882f,  1.630832f,   1.6108069f,  1.590798f,
+	1.570796f,   1.550795f,  1.530786f,   1.5107599f,  1.490711f,   1.470629f,  1.450507f,  1.430335f,   1.4101059f,  1.38981f,
+	1.369439f,   1.348982f,  1.328431f,   1.3077739f,  1.287002f,   1.266104f,  1.245067f,  1.223879f,   1.202528f,   1.181f,
+	1.1592799f,  1.137351f,  1.115198f,   1.092801f,   1.070142f,   1.047198f,  1.023945f,  1.000359f,   0.97641098f, 0.95206797f,
+	0.927295f,   0.902054f,  0.876298f,   0.849978f,   0.82303399f, 0.795399f,  0.766994f,  0.73772597f, 0.70748299f, 0.676131f,
+	0.64350098f, 0.609386f,  0.57351297f, 0.53552699f, 0.49493399f, 0.451027f,  0.402716f,  0.34816599f, 0.28379399f, 0.200335f,
+	0.0f,
+};
 
 /*
  * --INFO--
  * Address:	80470F0C
  * Size:	000078
  */
-SeSound* SeSound::makeSeSound()
-{
-	return new SeSound();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0x4a4
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80470F6C
-	bl       __ct__5JAISeFv
-	lis      r3, __vt__Q23PSM7SeSound@ha
-	lfs      f1, lbl_80520D90@sda21(r2)
-	addi     r0, r3, __vt__Q23PSM7SeSound@l
-	lfs      f0, lbl_80520D94@sda21(r2)
-	stw      r0, 0x10(r31)
-	li       r0, 0
-	stfs     f1, 0x484(r31)
-	stfs     f0, 0x488(r31)
-	stfs     f0, 0x48c(r31)
-	stfs     f0, 0x490(r31)
-	stfs     f0, 0x494(r31)
-	stb      r0, 0x498(r31)
-	stb      r0, 0x499(r31)
-	stb      r0, 0x49c(r31)
-	stfs     f1, 0x4a0(r31)
-
-lbl_80470F6C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+SeSound* SeSound::makeSeSound() { return new SeSound; }
 
 /*
  * --INFO--
@@ -368,61 +60,14 @@ void SeSound::onRelease()
 	if (_38 == nullptr) {
 		return;
 	}
-	PSM::Creature* creature = static_cast<PSM::Creature*>(_38);
-	P2ASSERTLINE(184, creature != nullptr);
+
+	Creature* creature = static_cast<Creature*>(_38);
+	P2ASSERTLINE(184, creature);
+
 	if (creature->getPlayingHandleNum() != 0) {
 		return;
 	}
-	PSM::ObjMgr::getInstance()->remove(creature);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8049DC30@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_8049DC30@l
-	stw      r30, 8(r1)
-	lbz      r0, 0x1a(r3)
-	cmplwi   r0, 0
-	beq      lbl_80471014
-	lwz      r0, 0x38(r3)
-	cmplwi   r0, 0
-	beq      lbl_80471014
-	mr       r30, r0
-	bne      lbl_80470FD8
-	addi     r3, r31, 0x1a0
-	addi     r5, r31, 0x1b8
-	li       r4, 0xb8
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80470FD8:
-	mr       r3, r30
-	bl       getPlayingHandleNum__Q23PSM8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80471014
-	lwz      r0,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
-	bne      lbl_80471008
-	addi     r3, r31, 0x1c4
-	addi     r5, r31, 0x1b8
-	li       r4, 0x89
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80471008:
-	lwz      r3,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) mr       r4,
-r30 bl       remove__10JSUPtrListFP10JSUPtrLink
-
-lbl_80471014:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	ObjMgr::getInstance()->remove(creature);
 }
 
 /*
@@ -430,114 +75,30 @@ lbl_80471014:
  * Address:	8047102C
  * Size:	000154
  */
-void SeSound::initParameter(void*, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*)
+void SeSound::initParameter(void* d1, JAInter::Actor* actor, u32 a1, u32 a2, u8 a3, JAInter::SoundInfo* info)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r10, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r10, 0x23D0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r9
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        -0x3BBA44
-	  li        r0, 0
-	  stb       r0, 0x498(r28)
-	  lbz       r0, 0x1A(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA8
-	  lwz       r0, 0x38(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA8
-	  mr        r30, r0
-	  bne-      .loc_0x6C
-	  addi      r3, r31, 0x1A0
-	  addi      r5, r31, 0x1B8
-	  li        r4, 0xD0
-	  crclr     6, 0x6
-	  bl        -0x446A54
+	JAISound::initParameter(d1, actor, a1, a2, a3, info);
+	mPerspInfo.mIsSpecialSound = false;
+	if (_1A) {
+		if (_38) {
+			Creature* creature = static_cast<Creature*>(_38);
+			P2ASSERTLINE(208, creature);
 
-	.loc_0x6C:
-	  mr        r3, r30
-	  bl        -0x13E48
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xA8
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x9C
-	  addi      r3, r31, 0x1C4
-	  addi      r5, r31, 0x1B8
-	  li        r4, 0x89
-	  crclr     6, 0x6
-	  bl        -0x446A84
+			if (creature->getPlayingHandleNum() == 0) {
+				ObjMgr::getInstance()->append(creature);
+			}
+		}
+	}
 
-	.loc_0x9C:
-	  lwz       r3, -0x6E44(r13)
-	  mr        r4, r30
-	  bl        -0x44A7EC
+	P2ASSERTLINE(215, info);
 
-	.loc_0xA8:
-	  cmplwi    r29, 0
-	  bne-      .loc_0xC4
-	  addi      r3, r31, 0x1A0
-	  addi      r5, r31, 0x1B8
-	  li        r4, 0xD7
-	  crclr     6, 0x6
-	  bl        -0x446AAC
-
-	.loc_0xC4:
-	  lwz       r0, 0x0(r29)
-	  rlwinm.   r30,r0,4,28,31
-	  beq-      .loc_0x12C
-	  bl        -0x3B6C08
-	  lis       r0, 0x4330
-	  stw       r30, 0xC(r1)
-	  lfd       f3, 0x2A40(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f0, 0x2A3C(r2)
-	  lfd       f2, 0x8(r1)
-	  lfs       f4, 0x2A34(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f0, f2, f0
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x4A0(r28)
-	  lfs       f0, 0x4A0(r28)
-	  fcmpo     cr0, f0, f4
-	  bge-      .loc_0x110
-	  b         .loc_0x124
-
-	.loc_0x110:
-	  lfs       f4, 0x2A30(r2)
-	  fcmpo     cr0, f0, f4
-	  ble-      .loc_0x120
-	  b         .loc_0x124
-
-	.loc_0x120:
-	  fmr       f4, f0
-
-	.loc_0x124:
-	  stfs      f4, 0x4A0(r28)
-	  b         .loc_0x134
-
-	.loc_0x12C:
-	  lfs       f0, 0x2A34(r2)
-	  stfs      f0, 0x4A0(r28)
-
-	.loc_0x134:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	u32 num = (u32)info->_00 >> 0x1c;
+	if (num) {
+		_4A0 = (num / 15.0f) * JALCalc::getRandom_0_1();
+		_4A0 = _4A0 < 0.0f ? 0.0f : _4A0 > 1.0f ? 1.0f : _4A0;
+	} else {
+		_4A0 = 0.0f;
+	}
 }
 
 /*
@@ -545,8 +106,30 @@ void SeSound::initParameter(void*, JAInter::Actor*, u32, u32, u8, JAInter::Sound
  * Address:	80471180
  * Size:	0002D8
  */
-f32 SeSound::setDistanceVolumeCommon(float, u8)
+f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 {
+	setFxmix(CreaturePrm::cSeFxmix, 0, 1);
+	f32 dist  = _34->_18;
+	bool test = isValidSeType(mSoundInfo);
+
+	f32 dist2;
+	if (mPerspInfo.mIsSpecialSound) {
+		dist2 = calcVolumeSpecialized(dist);
+	} else {
+		dist2 = calcVolume(dist, flag, test);
+	}
+	dist2 = dist2 - _4A0;
+	if (!_1A && _34) {
+		PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(PSMGetSceneMgrCheck()->getEndScene());
+		P2ASSERTLINE(261, scene);
+		f32 calc = scene->getCamDistVol(_49C);
+		JUT_ASSERTLINE(269, calc != 0.0f, "\nSE called at invalid timming\n(%08x)\n", mSoundInfo);
+		dist2  = calc * dist2;
+		f32 fx = static_cast<PSM::Scene_Cave*>(PSMGetChildScene())->getSceneFx();
+		setFxmix(fx, 0, 2);
+	}
+	return dist2 < 0.0f ? 0.0f : dist2 > 1.0f ? 1.0f : dist2;
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -782,25 +365,6 @@ void SeSound::specializePerspCalc(const PSGame::SoundTable::SePerspInfo& info)
 {
 	mPerspInfo                 = info;
 	mPerspInfo.mIsSpecialSound = true;
-	/*
-	lfs      f0, 0(r4)
-	li       r0, 1
-	lfs      f1, 4(r4)
-	stfs     f0, 0x484(r3)
-	lfs      f0, 8(r4)
-	stfs     f1, 0x488(r3)
-	lfs      f1, 0xc(r4)
-	stfs     f0, 0x48c(r3)
-	lfs      f0, 0x10(r4)
-	stfs     f1, 0x490(r3)
-	lbz      r5, 0x14(r4)
-	stfs     f0, 0x494(r3)
-	lbz      r4, 0x15(r4)
-	stb      r5, 0x498(r3)
-	stb      r4, 0x499(r3)
-	stb      r0, 0x498(r3)
-	blr
-	*/
 }
 
 /*
@@ -808,41 +372,10 @@ void SeSound::specializePerspCalc(const PSGame::SoundTable::SePerspInfo& info)
  * Address:	8047149C
  * Size:	00006C
  */
-void SeSound::calcVolumeSpecialized(float p1)
+f32 SeSound::calcVolumeSpecialized(float p1)
 {
 	P2ASSERTLINE(294, mPerspInfo.mIsSpecialSound == true);
-	mPerspInfo.getDistVol(p1, 0);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	mr       r31, r3
-	lbz      r0, 0x498(r3)
-	cmplwi   r0, 1
-	beq      lbl_804714E0
-	lis      r3, lbl_8049DDD0@ha
-	lis      r5, lbl_8049DDE8@ha
-	addi     r3, r3, lbl_8049DDD0@l
-	li       r4, 0x126
-	addi     r5, r5, lbl_8049DDE8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804714E0:
-	fmr      f1, f31
-	addi     r3, r31, 0x484
-	li       r4, 0
-	bl       getDistVol__Q36PSGame10SoundTable11SePerspInfoFfUc
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return mPerspInfo.getDistVol(p1, 0);
 }
 
 /*
@@ -850,49 +383,10 @@ lbl_804714E0:
  * Address:	80471508
  * Size:	00008C
  */
-f32 SeSound::calcVolume(float p1, u8 p2, u8 p3)
+f32 SeSound::calcVolume(f32 p1, u8 p2, u8 p3)
 {
-	return PSGame::SoundTable::CategoryMgr::getInstance()->mPerspInfo[p3]->getDistVol(p1, p2);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	stw      r30, 0x10(r1)
-	rlwinm   r30, r4, 2, 0x16, 0x1d
-	stw      r29, 0xc(r1)
-	mr       r29, r3
-	lwz      r31,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-	add      r3, r31, r30
-	lwz      r0, 4(r3)
-	cmplwi   r0, 0
-	bne      lbl_80471560
-	lis      r3, lbl_8049DE10@ha
-	lis      r5, lbl_8049DDE8@ha
-	addi     r3, r3, lbl_8049DE10@l
-	li       r4, 0x5d
-	addi     r5, r5, lbl_8049DDE8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80471560:
-	add      r3, r31, r30
-	fmr      f1, f31
-	lwz      r3, 4(r3)
-	mr       r4, r29
-	bl       getDistVol__Q36PSGame10SoundTable11SePerspInfoFfUc
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	lwz      r30, 0x10(r1)
-	lwz      r29, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	PSGame::SoundTable::CategoryMgr* mgr = PSGame::SoundTable::CategoryMgr::sInstance;
+	PSSystem::getSoundCategoryInfo(mgr, p3)->getDistVol(p1, p2);
 }
 
 /*
@@ -900,62 +394,19 @@ lbl_80471560:
  * Address:	80471594
  * Size:	0000B8
  */
-void SeSound::setSeDistancePan(u8)
+void SeSound::setSeDistancePan(u8 flag)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f1, lbl_80520DA8@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lbz      r0, 0x1a(r3)
-	cmplwi   r0, 0
-	bne      lbl_804715D4
-	lwz      r3, 0x34(r29)
-	lfs      f1, 0x18(r3)
-	bl       calcPan__Q23PSM7SeSoundFRC3Vecf
-	b        lbl_8047161C
-
-lbl_804715D4:
-	lwz      r0, 0x38(r29)
-	cmplwi   r0, 0
-	beq      lbl_8047161C
-	mr       r31, r0
-	bne      lbl_80471604
-	lis      r3, lbl_8049DDD0@ha
-	lis      r5, lbl_8049DDE8@ha
-	addi     r3, r3, lbl_8049DDD0@l
-	li       r4, 0x151
-	addi     r5, r5, lbl_8049DDE8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80471604:
-	mr       r3, r31
-	lwz      r12, 0x28(r31)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x38(r3)
-
-lbl_8047161C:
-	mr       r3, r29
-	clrlwi   r5, r30, 0x18
-	li       r4, 4
-	li       r6, 0
-	bl       setSeInterPan__5JAISeFUcfUlUc
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	f32 calc = 0.5f;
+	if (!_1A) {
+		calc = calcPan(_34->_00, _34->_18);
+	} else {
+		if (_38) {
+			Creature* creature = static_cast<Creature*>(_38);
+			P2ASSERTLINE(337, creature);
+			calc = creature->getJAIObject()->_38;
+		}
+	}
+	setSeInterPan(4, calc, flag, 0);
 }
 
 /*
@@ -963,74 +414,34 @@ lbl_8047161C:
  * Address:	8047164C
  * Size:	0000C8
  */
-void SeSound::calcPan(const Vec&, float)
+f32 SeSound::calcPan(const Vec& pos, f32 modifier)
 {
-	/*
-	lfs      f0, lbl_80520D94@sda21(r2)
-	stwu     r1, -0x10(r1)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80471668
-	lfs      f2, cCenterRad__Q23PSM7SeSound@sda21(r13)
-	b        lbl_804716CC
+	f32 calc;
+	if (modifier <= 0.0f) {
+		calc = cCenterRad;
+	} else {
+		int mod = (-pos.x / modifier + 1.0f) * 50.0f;
+		if (mod < 0) {
+			calc = smACosPrm[0];
+		} else if (mod >= 101) {
+			calc = smACosPrm[100];
+		} else {
+			calc = smACosPrm[mod];
+		}
+	}
 
-lbl_80471668:
-	lfs      f0, 0(r3)
-	lfs      f2, lbl_80520D90@sda21(r2)
-	fneg     f0, f0
-	lfs      f3, lbl_80520D98@sda21(r2)
-	fdivs    f0, f0, f1
-	fadds    f0, f2, f0
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	cmpwi    r0, 0
-	bge      lbl_804716A4
-	lis      r3, smACosPrm__Q23PSM7SeSound@ha
-	lfs      f2, smACosPrm__Q23PSM7SeSound@l(r3)
-	b        lbl_804716CC
+	static s8 init;
+	static f32 panRatio;
+	if (!init) {
+		init     = true;
+		panRatio = 3.1415f / cPan_MaxAmp;
+	}
 
-lbl_804716A4:
-	cmpwi    r0, 0x65
-	blt      lbl_804716BC
-	lis      r3, smACosPrm__Q23PSM7SeSound@ha
-	addi     r3, r3, smACosPrm__Q23PSM7SeSound@l
-	lfs      f2, 0x190(r3)
-	b        lbl_804716CC
-
-lbl_804716BC:
-	lis      r3, smACosPrm__Q23PSM7SeSound@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, smACosPrm__Q23PSM7SeSound@l
-	lfsx     f2, r3, r0
-
-lbl_804716CC:
-	lbz      r0, init$3854_1@sda21(r13)
-	extsb.   r0, r0
-	bne      lbl_804716F0
-	lfs      f1, cPan_MaxAmp__Q23PSM7SeSound@sda21(r13)
-	li       r0, 1
-	lfs      f0, lbl_80520DAC@sda21(r2)
-	stb      r0, init$3854_1@sda21(r13)
-	fdivs    f0, f1, f0
-	stfs     f0, panRatio$3853@sda21(r13)
-
-lbl_804716F0:
-	lfs      f0, panRatio$3853@sda21(r13)
-	lfs      f1, lbl_80520D90@sda21(r2)
-	fmuls    f0, f0, f2
-	fcmpo    cr0, f0, f1
-	ble      lbl_80471708
-	b        lbl_8047170C
-
-lbl_80471708:
-	fmr      f1, f0
-
-lbl_8047170C:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	f32 ret = panRatio * calc;
+	if (ret > 1.0f) {
+		return 1.0f;
+	}
+	return ret;
 }
 
 /*
@@ -1038,48 +449,18 @@ lbl_8047170C:
  * Address:	80471714
  * Size:	000088
  */
-void SeSound::setSeDistanceDolby(u8)
+void SeSound::setSeDistanceDolby(u8 flag)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80520D94@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x1a(r3)
-	cmplwi   r0, 0
-	bne      lbl_80471750
-	lwz      r3, 0x34(r30)
-	lfs      f1, 0x18(r3)
-	bl       calcDolby__Q23PSM7SeSoundFRC3Vecf
-	b        lbl_80471770
-
-lbl_80471750:
-	lwz      r3, 0x38(r30)
-	cmplwi   r3, 0
-	beq      lbl_80471770
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x3c(r3)
-
-lbl_80471770:
-	mr       r3, r30
-	clrlwi   r5, r31, 0x18
-	li       r4, 4
-	li       r6, 0
-	bl       setSeInterDolby__5JAISeFUcfUlUc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	f32 calc = 0.0f;
+	if (!_1A) {
+		calc = calcDolby(_34->_00, _34->_18);
+	} else {
+		if (_38) {
+			Creature* creature = static_cast<Creature*>(_38);
+			calc               = creature->getJAIObject()->_3C;
+		}
+	}
+	setSeInterDolby(4, calc, flag, 0);
 }
 
 /*
@@ -1087,120 +468,126 @@ lbl_80471770:
  * Address:	8047179C
  * Size:	00010C
  */
-void SeSound::calcDolby(const Vec&, float)
+f32 SeSound::calcDolby(const Vec& pos, f32 modifier)
 {
+	f32 calc;
+	if (modifier <= 0.0f) {
+		calc = 0.0f;
+	} else {
+		int mod = (-pos.z / modifier + 1.0f) * 50.0f;
+		if (mod < 0) {
+			calc = smACosPrm[0];
+		} else if (mod >= 101) {
+			calc = smACosPrm[100];
+		} else {
+			calc = smACosPrm[mod];
+		}
+	}
+
+	f32 ret;
+	if (calc < cDol_0Rad) {
+		ret = 0.0f;
+	} else if (calc < cDol_HalfRad) {
+		ret = calc - cDol_0Rad;
+	} else if (calc < cDol_FullRad) {
+		ret = (calc - cDol_HalfRad) * cDol_FullRad + 0.5f;
+	} else {
+		ret = 1.0f;
+	}
+
+	return ret < 0.0f ? 0.0f : ret > 1.0f ? 1.0f : ret;
+
 	/*
-	lfs      f0, lbl_80520D94@sda21(r2)
-	stwu     r1, -0x10(r1)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_804717B8
-	fmr      f1, f0
-	b        lbl_804718A0
+lfs      f0, lbl_80520D94@sda21(r2)
+stwu     r1, -0x10(r1)
+fcmpo    cr0, f1, f0
+cror     2, 0, 2
+bne      lbl_804717B8
+fmr      f1, f0
+b        lbl_804718A0
 
 lbl_804717B8:
-	lfs      f0, 8(r3)
-	lfs      f2, lbl_80520D90@sda21(r2)
-	fneg     f0, f0
-	lfs      f3, lbl_80520D98@sda21(r2)
-	fdivs    f0, f0, f1
-	fadds    f0, f2, f0
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	cmpwi    r0, 0
-	bge      lbl_804717F4
-	lis      r3, smACosPrm__Q23PSM7SeSound@ha
-	lfs      f0, smACosPrm__Q23PSM7SeSound@l(r3)
-	b        lbl_8047181C
+lfs      f0, 8(r3)
+lfs      f2, lbl_80520D90@sda21(r2)
+fneg     f0, f0
+lfs      f3, lbl_80520D98@sda21(r2)
+fdivs    f0, f0, f1
+fadds    f0, f2, f0
+fmuls    f0, f3, f0
+fctiwz   f0, f0
+stfd     f0, 8(r1)
+lwz      r0, 0xc(r1)
+cmpwi    r0, 0
+bge      lbl_804717F4
+lis      r3, smACosPrm__Q23PSM7SeSound@ha
+lfs      f0, smACosPrm__Q23PSM7SeSound@l(r3)
+b        lbl_8047181C
 
 lbl_804717F4:
-	cmpwi    r0, 0x65
-	blt      lbl_8047180C
-	lis      r3, smACosPrm__Q23PSM7SeSound@ha
-	addi     r3, r3, smACosPrm__Q23PSM7SeSound@l
-	lfs      f0, 0x190(r3)
-	b        lbl_8047181C
+cmpwi    r0, 0x65
+blt      lbl_8047180C
+lis      r3, smACosPrm__Q23PSM7SeSound@ha
+addi     r3, r3, smACosPrm__Q23PSM7SeSound@l
+lfs      f0, 0x190(r3)
+b        lbl_8047181C
 
 lbl_8047180C:
-	lis      r3, smACosPrm__Q23PSM7SeSound@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, smACosPrm__Q23PSM7SeSound@l
-	lfsx     f0, r3, r0
+lis      r3, smACosPrm__Q23PSM7SeSound@ha
+slwi     r0, r0, 2
+addi     r3, r3, smACosPrm__Q23PSM7SeSound@l
+lfsx     f0, r3, r0
 
 lbl_8047181C:
-	lfs      f3, cDol_0Rad__Q23PSM7SeSound@sda21(r13)
-	fcmpo    cr0, f0, f3
-	bge      lbl_80471830
-	lfs      f0, lbl_80520D94@sda21(r2)
-	b        lbl_8047187C
+lfs      f3, cDol_0Rad__Q23PSM7SeSound@sda21(r13)
+fcmpo    cr0, f0, f3
+bge      lbl_80471830
+lfs      f0, lbl_80520D94@sda21(r2)
+b        lbl_8047187C
 
 lbl_80471830:
-	lfs      f4, cDol_HalfRad__Q23PSM7SeSound@sda21(r13)
-	fcmpo    cr0, f0, f4
-	bge      lbl_80471854
-	fsubs    f1, f4, f3
-	lfs      f2, lbl_80520DA8@sda21(r2)
-	fsubs    f0, f0, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f1, f0
-	b        lbl_8047187C
+lfs      f4, cDol_HalfRad__Q23PSM7SeSound@sda21(r13)
+fcmpo    cr0, f0, f4
+bge      lbl_80471854
+fsubs    f1, f4, f3
+lfs      f2, lbl_80520DA8@sda21(r2)
+fsubs    f0, f0, f3
+fdivs    f1, f2, f1
+fmuls    f0, f1, f0
+b        lbl_8047187C
 
 lbl_80471854:
-	lfs      f1, cDol_FullRad__Q23PSM7SeSound@sda21(r13)
-	fcmpo    cr0, f0, f1
-	bge      lbl_80471878
-	fsubs    f1, f1, f4
-	lfs      f2, lbl_80520DA8@sda21(r2)
-	fsubs    f0, f0, f4
-	fdivs    f1, f2, f1
-	fmadds   f0, f1, f0, f2
-	b        lbl_8047187C
+lfs      f1, cDol_FullRad__Q23PSM7SeSound@sda21(r13)
+fcmpo    cr0, f0, f1
+bge      lbl_80471878
+fsubs    f1, f1, f4
+lfs      f2, lbl_80520DA8@sda21(r2)
+fsubs    f0, f0, f4
+fdivs    f1, f2, f1
+fmadds   f0, f1, f0, f2
+b        lbl_8047187C
 
 lbl_80471878:
-	lfs      f0, lbl_80520D90@sda21(r2)
+lfs      f0, lbl_80520D90@sda21(r2)
 
 lbl_8047187C:
-	lfs      f1, lbl_80520D90@sda21(r2)
-	fcmpo    cr0, f0, f1
-	ble      lbl_8047188C
-	b        lbl_804718A0
+lfs      f1, lbl_80520D90@sda21(r2)
+fcmpo    cr0, f0, f1
+ble      lbl_8047188C
+b        lbl_804718A0
 
 lbl_8047188C:
-	lfs      f1, lbl_80520D94@sda21(r2)
-	fcmpo    cr0, f0, f1
-	bge      lbl_8047189C
-	b        lbl_804718A0
+lfs      f1, lbl_80520D94@sda21(r2)
+fcmpo    cr0, f0, f1
+bge      lbl_8047189C
+b        lbl_804718A0
 
 lbl_8047189C:
-	fmr      f1, f0
+fmr      f1, f0
 
 lbl_804718A0:
-	addi     r1, r1, 0x10
-	blr
-	*/
+addi     r1, r1, 0x10
+blr
+*/
 }
 
 } // namespace PSM
-
-/*
- * --INFO--
- * Address:	804718A8
- * Size:	000028
- */
-void __sinit_PSMainSide_Sound_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EF9A8@ha
-	stw      r0, lbl_80516330@sda21(r13)
-	stfsu    f0, lbl_804EF9A8@l(r3)
-	stfs     f0, lbl_80516334@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
