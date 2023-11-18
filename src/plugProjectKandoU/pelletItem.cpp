@@ -100,9 +100,9 @@ Mgr::Mgr()
 void Mgr::setupResources()
 {
 	sys->heapStatusStart("Equipment", nullptr);
-	alloc(11);
+	alloc(PELLET_ITEM_MAXCOUNT);
 	load_texArc("item_texts.szs");
-	mCollPartMgr.alloc(0x80);
+	mCollPartMgr.alloc(PELLET_ITEM_MAXCOLLPART);
 	sys->heapStatusEnd("Equipment");
 }
 

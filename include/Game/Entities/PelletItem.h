@@ -5,6 +5,10 @@
 #include "Game/pelletMgr.h"
 #include "Game/BasePelletMgr.h"
 
+// the maximum item pellets that can be active at once
+#define PELLET_ITEM_MAXCOUNT    (11)
+#define PELLET_ITEM_MAXCOLLPART (128)
+
 namespace Game {
 namespace PelletItem {
 struct Object : public Pellet {

@@ -103,7 +103,7 @@ void Mgr::setupResources()
 	mModelData[1]->newSharedDisplayList(0x40000);
 	mModelData[2]->newSharedDisplayList(0x40000);
 	mModelData[3]->newSharedDisplayList(0x40000);
-	useModelMgr(64, 0x80000);
+	useModelMgr(PELLET_NUMBER_MAXMODEL, 0x80000);
 	mCollPartMgr.alloc(PELLET_NUMBER_MAXCOLLPART);
 	sys->heapStatusEnd("NumberPellet");
 }

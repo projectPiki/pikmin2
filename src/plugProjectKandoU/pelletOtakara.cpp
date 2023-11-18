@@ -288,9 +288,9 @@ Mgr::Mgr()
 void Mgr::setupResources()
 {
 	sys->heapStatusStart("Otakara", nullptr);
-	alloc(32); // definitely should have defines for these
+	alloc(PELLET_OTAKARA_MAXCOUNT);
 	load_texArc("otakara_texts.szs");
-	mCollPartMgr.alloc(256);
+	mCollPartMgr.alloc(PELLET_OTAKARA_MAXCOLLPART);
 	sys->heapStatusEnd("Otakara");
 }
 
@@ -299,11 +299,7 @@ void Mgr::setupResources()
  * Address:	80200B44
  * Size:	000024
  */
-GenPelletParm* Mgr::generatorNewPelletParm()
-{
-	// something weird here (should it return something else?)
-	return new GenPelletParm;
-}
+GenPelletParm* Mgr::generatorNewPelletParm() { return new GenPelletParm; }
 
 /*
  * --INFO--

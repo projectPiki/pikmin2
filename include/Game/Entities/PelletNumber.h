@@ -17,6 +17,7 @@ namespace PelletNumber {
 
 // the maximum number pellets that can be active at once
 #define PELLET_NUMBER_MAXCOUNT    (48)
+#define PELLET_NUMBER_MAXMODEL    (64)
 #define PELLET_NUMBER_MAXCOLLPART (128)
 
 struct Object : public Pellet {

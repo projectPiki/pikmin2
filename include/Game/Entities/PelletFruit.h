@@ -5,6 +5,11 @@
 #include "Game/pelletMgr.h"
 #include "Game/BasePelletMgr.h"
 
+// the maximum berry pellets that can be active at once
+#define PELLET_FRUIT_MAXCOUNT    (64)
+#define PELLET_FRUIT_MAXMODEL    (64)
+#define PELLET_FRUIT_MAXCOLLPART (128)
+
 namespace Game {
 namespace PelletFruit {
 struct Object : public Pellet {

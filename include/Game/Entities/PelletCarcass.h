@@ -5,6 +5,10 @@
 #include "Game/pelletMgr.h"
 #include "Game/BasePelletMgr.h"
 
+// the maximum carcass pellets that can be active at once
+#define PELLET_CARCASS_MAXCOUNT    (64) // (known by some as the fabled "corpse limit")
+#define PELLET_CARCASS_MAXCOLLPART (128)
+
 namespace Game {
 namespace PelletCarcass {
 struct Object : public Pellet {

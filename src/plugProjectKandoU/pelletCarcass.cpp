@@ -1,8 +1,5 @@
 #include "Game/Entities/PelletCarcass.h"
 
-#define MAX_CARCASS_COUNT     64
-#define MAX_CARCASS_COLLPARTS 128
-
 namespace Game {
 namespace PelletCarcass {
 
@@ -26,12 +23,11 @@ Mgr::Mgr()
 void Mgr::setupResources()
 {
 	sys->heapStatusStart("Carcass", nullptr);
-	alloc(MAX_CARCASS_COUNT);
+	alloc(PELLET_CARCASS_MAXCOUNT);
 	load();
-	mCollPartMgr.alloc(MAX_CARCASS_COLLPARTS);
+	mCollPartMgr.alloc(PELLET_CARCASS_MAXCOLLPART);
 	sys->heapStatusEnd("Carcass");
 }
 
 } // namespace PelletCarcass
-
 } // namespace Game
