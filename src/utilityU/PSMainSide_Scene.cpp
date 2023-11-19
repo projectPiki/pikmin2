@@ -3687,14 +3687,14 @@ void Scene_Ground::fadeMainBgm(float p1, u32 p2, PSM::Scene_Ground::Time time)
 	case GroundTime_On:
 		if (p1 == 0.0f) {
 			if (seq->getHandleP() != nullptr) {
-				seq->getHandleP()->setVolume(p1, p2, 2);
+				(*seq->getHandleP())->setVolume(p1, p2, 2);
 			}
 			if (mEnvSeMgr != nullptr) {
 				mEnvSeMgr->setVolumeRequest(p1, p2, 2);
 			}
 		} else {
 			if (seq->getHandleP() != nullptr) {
-				seq->getHandleP()->setVolume(p1, p2 * 3, 2);
+				(*seq->getHandleP())->setVolume(p1, p2 * 3, 2);
 			}
 			if (mEnvSeMgr != nullptr) {
 				mEnvSeMgr->setVolumeRequest(p1, p2, 2);

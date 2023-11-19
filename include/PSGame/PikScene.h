@@ -36,9 +36,14 @@ struct PikScene : public PSSystem::Scene {
  * @size{0xD}
  */
 struct PikSceneMgr : public PSSystem::SceneMgr {
+	PikSceneMgr()
+	    : mAccessMode(JADUtility::MODE_0)
+	{
+	}
+
 	virtual PSSystem::Scene* newAndSetCurrentScene(SceneInfo&);                     // _0C
 	virtual PSSystem::Scene* newAndSetGlobalScene();                                // _10
-	virtual void newMainBgm(const char*, JAInter::SoundInfo&)                  = 0; // _14
+	virtual PSSystem::BgmSeq* newMainBgm(const char*, JAInter::SoundInfo&)     = 0; // _14
 	virtual PSSystem::BgmSeq* newDirectedBgm(const char*, JAInter::SoundInfo&) = 0; // _18
 	virtual PSSystem::BgmSeq* newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, SceneInfo&,
 	                                     PSSystem::DirectorMgrBase*)
@@ -54,7 +59,7 @@ struct PikSceneMgr : public PSSystem::SceneMgr {
 
 	// _00      = VTBL
 	// _00-_08  = SceneMgr
-	JADUtility::AccessMode mAccessMode; // _0C
+	u8 mAccessMode; // _0C,  JADUtility::AccessMode
 };
 } // namespace PSGame
 

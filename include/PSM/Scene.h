@@ -25,7 +25,7 @@ struct ObjMgr;
 struct SceneBase : public PSGame::PikScene {
 	SceneBase(u8, PSGame::SceneInfo*);
 
-	virtual ~SceneBase();                                      // _0C (weak)
+	virtual ~SceneBase() { }                                   // _0C (weak)
 	virtual f32 getCamDistVol(u8) = 0;                         // _28
 	virtual PSSystem::EnvSeMgr* getEnvSe() { return nullptr; } // _2C (weak)
 	virtual f32 getSceneFx();                                  // _30
@@ -49,7 +49,7 @@ struct SceneBase : public PSGame::PikScene {
 struct SceneMgr : public PSGame::PikSceneMgr {
 	SceneMgr();
 
-	virtual void newMainBgm(const char*, JAInter::SoundInfo&);                  // _14
+	virtual PSSystem::BgmSeq* newMainBgm(const char*, JAInter::SoundInfo&);     // _14
 	virtual PSSystem::BgmSeq* newDirectedBgm(const char*, JAInter::SoundInfo&); // _18
 	virtual PSSystem::BgmSeq* newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, PSGame::SceneInfo&,
 	                                     PSSystem::DirectorMgrBase*); // _1C
@@ -112,6 +112,10 @@ struct Scene_Objects : public SceneBase {
  * @size{0x38}
  */
 struct Scene_Zukan : public Scene_Objects {
+	Scene_Zukan(u8 wscene, PSGame::SceneInfo* info)
+	    : Scene_Objects(wscene, info)
+	{
+	}
 	virtual ~Scene_Zukan();                     // _0C (weak)
 	virtual f32 getCamDistVol(u8);              // _28
 	virtual bool getSeSceneGate(ObjBase*, u32); // _38
@@ -237,7 +241,10 @@ struct Scene_Challenge : public Scene_Cave {
  * @size{0x28}
  */
 struct Scene_NoObjects : public SceneBase {
-	inline Scene_NoObjects(u8 p1, PSGame::SceneInfo* info);
+	inline Scene_NoObjects(u8 wscene, PSGame::SceneInfo* info)
+	    : SceneBase(wscene, info)
+	{
+	}
 
 	virtual ~Scene_NoObjects();    // _0C (weak)
 	virtual f32 getCamDistVol(u8); // _28
@@ -307,6 +314,14 @@ inline PSM::Scene_Game* PSMGetGameScene()
 	}
 
 	return nullptr;
+}
+
+inline PSM::MiddleBossSeq* PSMGetMiddleBossSeq()
+{
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+	mgr->checkScene();
+	PSM::Scene_Objects* scene = static_cast<PSM::Scene_Objects*>(mgr->mScenes->mChild);
+	return !scene ? nullptr : scene->getMiddleBossBgm();
 }
 
 inline void PSMSetSceneInfo(PSGame::SceneInfo& info)

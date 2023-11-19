@@ -20,10 +20,10 @@ struct SeqTrackChild;
 struct BgmSeq : public SeqBase {
 	BgmSeq(const char* bmsFileName, const JAInter::SoundInfo& info);
 
-	virtual ~BgmSeq();                                  // _08
-	virtual u8 getCastType() { return 0; }              // _24 (weak)
-	virtual u32 getSeqType() { return 0x80000000; }     // _28 (weak)
-	virtual JAISound* getHandleP() { return mHandleP; } // _3C (weak)
+	virtual ~BgmSeq();                                    // _08
+	virtual u8 getCastType() { return 0; }                // _24 (weak)
+	virtual u32 getSeqType() { return 0x80000000; }       // _28 (weak)
+	virtual JAISound** getHandleP() { return &mHandleP; } // _3C (weak)
 
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
@@ -90,7 +90,7 @@ struct DirectedBgm : public BgmSeq {
 struct JumpBgmSeq : public DirectedBgm {
 	JumpBgmSeq(const char* bmsFileName, const JAInter::SoundInfo& info, DirectorMgrBase* directorMgr);
 
-	virtual ~JumpBgmSeq();                             // _08 (weak)
+	virtual ~JumpBgmSeq() { }                          // _08 (weak)
 	virtual void startSeq();                           // _14
 	virtual u8 getCastType() { return 4; }             // _24 (weak)
 	virtual void onPlayingFrame();                     // _30

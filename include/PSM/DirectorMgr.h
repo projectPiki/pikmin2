@@ -44,6 +44,11 @@ struct DirectorMgr_Scene : public ::PSSystem::DirectorMgrBase, public JKRDispose
 };
 
 struct DirectorMgr_Scene_AutoBgm : public DirectorMgr_Scene {
+	DirectorMgr_Scene_AutoBgm(PSSystem::DirectorMgrBase* mgr, u8 mode)
+	    : DirectorMgr_Scene((DirectorMgr_Scene*)mgr, mode)
+	{
+	}
+
 	virtual ~DirectorMgr_Scene_AutoBgm() { }                                                  // _08 (weak)
 	virtual PikminNumberDirector* newPikminNumberDirector(int, u8, ::PSSystem::DirectedBgm&); // _20
 

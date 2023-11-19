@@ -52,7 +52,7 @@ struct EnvSeBase : public JSULink<EnvSeBase> {
 };
 
 struct EnvSeMgr {
-	EnvSeMgr();
+	EnvSeMgr() { }
 
 	void setAllPauseFlag(u8);
 	void on();

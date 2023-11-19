@@ -42,6 +42,12 @@ struct Scene {
  * @size{0x4}
  */
 struct SceneMgr {
+	SceneMgr()
+	{
+		mScenes   = nullptr;
+		mEndScene = nullptr;
+	}
+
 	virtual void exec()
 	{
 		if (mScenes) {

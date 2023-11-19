@@ -49,7 +49,7 @@ struct NodeTree : public JSUTree<T> {
 };
 
 // TODO: this
-enum AccessMode {};
+enum AccessMode { MODE_0 };
 
 /**
  * @size = 0x3C

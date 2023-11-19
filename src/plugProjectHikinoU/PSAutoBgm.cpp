@@ -3970,7 +3970,7 @@ void AutoBgm::startSeq()
 {
 	DirectedBgm::startSeq();
 	if (getHandleP()) {
-		JAISound* sound = getHandleP();
+		JAISound** sound = getHandleP();
 		mRootTrack;
 	}
 	/*
@@ -4293,7 +4293,7 @@ void AutoBgm::pauseOn(SeqBase::PauseMode pause)
 	mPauseMode = pause;
 	P2ASSERTLINE(1310, getHandleP());
 
-	JAISound* sound = getHandleP();
+	JAISound* sound = *getHandleP();
 	bool noSound    = false;
 	switch (pause) {
 	case SeqBase::MODE0:

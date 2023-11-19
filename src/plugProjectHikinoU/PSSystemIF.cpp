@@ -359,7 +359,7 @@ void SysIF::setConfigVol_Se(f32 volume)
 	if (spSceneMgr && spSceneMgr->mScenes) {
 		SeqBase* seq = spSceneMgr->mScenes->mSeqMgr.getFirstSeq();
 		if (seq) {
-			JAISound* se = seq->getHandleP();
+			JAISound* se = *seq->getHandleP();
 			if (se) {
 				se->setVolume(volume, 3, 8);
 			}
@@ -420,7 +420,7 @@ void SysIF::setConfigVol_Bgm(f32 volume)
 		Scene* scene = scenemgr->mScenes;
 		if (scene) {
 			for (SeqBase* mgr = (SeqBase*)scene->mSeqMgr.getFirst(); mgr; mgr = (SeqBase*)mgr->getNext()) {
-				JAISound* se = mgr->getHandleP();
+				JAISound* se = *mgr->getHandleP();
 				if (se) {
 					se->setVolume(volume, 3, 8);
 				}

@@ -16,15 +16,15 @@ namespace PSSystem {
 struct StreamBgm : public BgmSeq {
 	StreamBgm(u32 id, const JAInter::SoundInfo& info);
 
-	virtual ~StreamBgm();                                // _08
-	virtual void init();                                 // _0C
-	virtual void scene1st(TaskChecker*) { }              // _10 (weak)
-	virtual void startSeq();                             // _14
-	virtual u8 getCastType() { return 1; }               // _24 (weak)
-	virtual u32 getSeqType() { return 0; }               // _28 (weak)
-	virtual bool isPlaying();                            // _34
-	virtual JAISound* getHandleP() { return mJaiSound; } // _3C (weak)
-	virtual void setConfigVolume();                      // _40
+	virtual ~StreamBgm();                                  // _08
+	virtual void init();                                   // _0C
+	virtual void scene1st(TaskChecker*) { }                // _10 (weak)
+	virtual void startSeq();                               // _14
+	virtual u8 getCastType() { return 1; }                 // _24 (weak)
+	virtual u32 getSeqType() { return 0; }                 // _28 (weak)
+	virtual bool isPlaying();                              // _34
+	virtual JAISound** getHandleP() { return &mJaiSound; } // _3C (weak)
+	virtual void setConfigVolume();                        // _40
 
 	void setId(u32);
 

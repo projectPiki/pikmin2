@@ -942,7 +942,7 @@ void SeqBase::pauseOn(PauseMode pause)
 	mPauseMode = pause;
 	P2ASSERTLINE(418, getHandleP());
 
-	JAISound* sound = getHandleP();
+	JAISound* sound = *getHandleP();
 	bool noSound    = false;
 	switch (pause) {
 	case SeqBase::MODE0:
@@ -1145,14 +1145,14 @@ void SeqBase::pauseOff()
 	if (mPauseMode == SeqBase::MODE3) {
 		startSeq();
 	} else if (mPauseMode == SeqBase::MODE2 || mPauseMode == SeqBase::MODE1) {
-		JAISound* sound = getHandleP();
+		JAISound* sound = *getHandleP();
 		if (sound) {
-			getHandleP()->setVolume(1.0f, 15, 11);
+			(*getHandleP())->setVolume(1.0f, 15, 11);
 		}
 	} else if (mPauseMode != SeqBase::MODE4) {
-		JAISound* sound = getHandleP();
+		JAISound* sound = *getHandleP();
 		if (sound) {
-			getHandleP()->setPauseMode(false, 30);
+			(*getHandleP())->setPauseMode(false, 30);
 		}
 	}
 	mPauseMode = SeqBase::MODE4;
@@ -1471,8 +1471,8 @@ lbl_80331E98:
 void SeqBase::setConfigVolume()
 {
 	f32 vol = PSGetSystemIFA()->mBgmVolume;
-	getHandleP()->setVolume(vol, 0, 8);
-	getHandleP()->setVolume(0.8f, 0, 3);
+	(*getHandleP())->setVolume(vol, 0, 8);
+	(*getHandleP())->setVolume(0.8f, 0, 3);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1551,7 +1551,7 @@ void SeqBase::scene1st(TaskChecker* task)
 void SeqBase::stopSeq(u32 type)
 {
 	if (getHandleP()) {
-		getHandleP()->stop(type);
+		(*getHandleP())->stop(type);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -1650,8 +1650,8 @@ void StreamBgm::startSeq()
 	P2ASSERTLINE(704, mJaiSound);
 	P2ASSERTLINE(705, mId == mJaiSound->mSoundID);
 	if (mId == 0xc001101f) {
-		getHandleP()->setVolume(1.0f, 0, 8);
-		getHandleP()->setVolume(0.8f, 0, 3);
+		(*getHandleP())->setVolume(1.0f, 0, 8);
+		(*getHandleP())->setVolume(0.8f, 0, 3);
 	} else {
 		setConfigVolume();
 	}
@@ -1767,8 +1767,8 @@ lbl_80332558:
 void StreamBgm::setConfigVolume()
 {
 	f32 vol = PSGetSystemIFA()->mBgmVolume;
-	getHandleP()->setVolume(vol, 0, 8);
-	getHandleP()->setVolume(0.8f, 0, 3);
+	(*getHandleP())->setVolume(vol, 0, 8);
+	(*getHandleP())->setVolume(0.8f, 0, 3);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1856,8 +1856,8 @@ void SeSeq::seqLoadAfter() { startSeq(); }
 void SeSeq::setConfigVolume()
 {
 	f32 vol = PSGetSystemIFA()->mSfxVolume;
-	getHandleP()->setVolume(vol, 0, 8);
-	getHandleP()->setVolume(0.8f, 0, 3);
+	(*getHandleP())->setVolume(vol, 0, 8);
+	(*getHandleP())->setVolume(0.8f, 0, 3);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1927,7 +1927,7 @@ void SeSeq::stopSeq(u32 type)
 		JAIBasic::msBasic->stopAllSe(i);
 	}
 	if (getHandleP()) {
-		getHandleP()->stop(type);
+		(*getHandleP())->stop(type);
 	}
 	/*
 	stwu     r1, -0x20(r1)
@@ -2386,7 +2386,7 @@ void DirectedBgm::stopSeq(u32 type)
 			mDirectorMgr->off(this);
 		}
 		if (getHandleP()) {
-			getHandleP()->stop(type);
+			(*getHandleP())->stop(type);
 		}
 	}
 	/*

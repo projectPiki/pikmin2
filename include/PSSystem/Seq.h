@@ -41,7 +41,7 @@ struct SeqBase : JSULink<SeqBase> {
 	virtual void onPlayingFrame();       // _30
 	virtual bool isPlaying();            // _34
 	virtual void seqLoadAfter() { }      // _38 (weak)
-	virtual JAISound* getHandleP() = 0;  // _3C
+	virtual JAISound** getHandleP() = 0; // _3C
 	virtual void setConfigVolume();      // _40
 
 	void* getFileEntry();
@@ -114,13 +114,13 @@ struct SeSeq : public SeqBase {
 	    : SeqBase(bmsFileName, info)
 	{
 	}
-	virtual ~SeSeq();                                                   // _08
-	virtual void stopSeq(u32);                                          // _18
-	virtual u8 getCastType() { return 5; }                              // _24 (weak)
-	virtual u32 getSeqType() { return 0x80000800; }                     // _28 (weak)
-	virtual void seqLoadAfter();                                        // _38
-	virtual JAISound* getHandleP() { return JAInter::SeMgr::seHandle; } // _3C (weak)
-	virtual void setConfigVolume();                                     // _40
+	virtual ~SeSeq();                                                                  // _08
+	virtual void stopSeq(u32);                                                         // _18
+	virtual u8 getCastType() { return 5; }                                             // _24 (weak)
+	virtual u32 getSeqType() { return 0x80000800; }                                    // _28 (weak)
+	virtual void seqLoadAfter();                                                       // _38
+	virtual JAISound** getHandleP() { return (JAISound**)(JAInter::SeMgr::seHandle); } // _3C (weak)
+	virtual void setConfigVolume();                                                    // _40
 
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
