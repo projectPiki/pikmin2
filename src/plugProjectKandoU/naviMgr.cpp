@@ -346,101 +346,27 @@ Navi* NaviMgr::getAliveOrima(int type)
 	} else if (mDeadNavis == 1) {
 		int index = 1 - mNaviDeadFlags[0];
 		return (type == 0) ? getAt(index) : nullptr;
-		// if (type == 0) {
-		// 	return getAt(1 - mNaviDeadFlags[0]);
-		// } else {
-		// 	return nullptr;
-		// }
+
 	} else if (mDeadNavis == 0) {
 		Navi* navi1 = getAt(0);
 		Navi* navi2 = getAt(1);
-		Navi* navi3;
+		Navi* activeNavi;
+		Navi* inactiveNavi;
 		if (navi1->mController1) {
-			navi3 = navi1;
-			navi1 = navi2;
+			activeNavi = navi1;
+			inactiveNavi = navi2;
 		}
-		if (!type) {
-			navi1 = navi3;
+		else {
+			activeNavi = navi2;
+			inactiveNavi = navi1;
 		}
-		return navi1;
+		if (type == 0) {
+			return activeNavi;
+		}
+		return inactiveNavi;
 	} else {
 		return nullptr;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r0, 0x50(r3)
-	cmpwi    r0, 2
-	bne      lbl_8015B2FC
-	li       r3, 0
-	b        lbl_8015B3A0
-
-lbl_8015B2FC:
-	cmpwi    r0, 1
-	bne      lbl_8015B330
-	lwz      r0, 0x54(r31)
-	cmpwi    r30, 0
-	subfic   r4, r0, 1
-	bne      lbl_8015B328
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8015B3A0
-
-lbl_8015B328:
-	li       r3, 0
-	b        lbl_8015B3A0
-
-lbl_8015B330:
-	cmpwi    r0, 0
-	bne      lbl_8015B39C
-	lwz      r12, 0(r3)
-	li       r4, 0
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	mr       r31, r0
-	li       r4, 1
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x278(r31)
-	cmplwi   r0, 0
-	beq      lbl_8015B380
-	mr       r0, r31
-	b        lbl_8015B388
-
-lbl_8015B380:
-	mr       r0, r3
-	mr       r3, r31
-
-lbl_8015B388:
-	cmpwi    r30, 0
-	bne      lbl_8015B3A0
-	mr       r3, r0
-	b        lbl_8015B3A0
-	b        lbl_8015B3A0
-
-lbl_8015B39C:
-	li       r3, 0
-
-lbl_8015B3A0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
