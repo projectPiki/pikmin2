@@ -53,7 +53,7 @@ inline void* JKRLoadToMainRAM(char* filename)
 
 int JKRDecompressFromDVD(JKRDvdFile*, void*, u32, u32, u32, u32, u32*);
 
-inline void* JKRDvdToMainRam(long entryNum, u8* dst, JKRExpandSwitch expandSwitch, u32 fileSize, JKRHeap* heap,
+inline void* JKRDvdToMainRam(s32 entryNum, u8* dst, JKRExpandSwitch expandSwitch, u32 fileSize, JKRHeap* heap,
                              JKRDvdRipper::EAllocDirection allocDirection, u32 startOffset, int* pCompression, u32* pSize)
 {
 	return JKRDvdRipper::loadToMainRAM(entryNum, dst, expandSwitch, fileSize, heap, allocDirection, startOffset, pCompression, pSize);
