@@ -495,7 +495,7 @@ void RandMapUnit::changeTwoToOneMapUnit()
 
 	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
 	{
-		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 1 && currNode->getNumDoors() == 2
+		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 2 && currNode->getNumDoors() == 2
 		    && currNode->getDoorDirect(0) == 0 && currNode->getDoorDirect(1) == 2) {
 			secondUnitNames[secondNamesCount] = currNode->mUnitInfo->getUnitName();
 			secondNamesCount++;
@@ -1387,8 +1387,8 @@ void RandMapUnit::setRandomDoorIndex(int* list, int max)
 MapNode* RandMapUnit::getLoopRandMapUnit()
 {
 	MapNode* tileList[512];
-	int openDoorNum = getOpenDoorNum();
-	int loopCount   = getLoopMapNode(tileList);
+	int openDoorNum     = getOpenDoorNum();
+	const int loopCount = getLoopMapNode(tileList);
 
 	for (int i = 0; i < openDoorNum; i++) {
 		int doorIdx;
@@ -1404,8 +1404,8 @@ MapNode* RandMapUnit::getLoopRandMapUnit()
 			if (firstLink) {
 				int directions[2];
 
-				int tileDir = tile->getDoorDirect(doorIdx);
-				int linkDir = getLinkDoorDirection(tile, doorIdx, firstLink, d);
+				const int tileDir = tile->getDoorDirect(doorIdx);
+				const int linkDir = getLinkDoorDirection(tile, doorIdx, firstLink, d);
 
 				directions[0] = linkDir;
 				directions[1] = tileDir;
@@ -1586,7 +1586,7 @@ MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& b, int& c, int d)
 
 	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currTile)
 	{
-		doorIdx = 0;
+		doorIdx = 0; // this line is the jank one. registers line up if you do doorIdx = counter, but that's wrong
 		while (doorIdx < currTile->getNumDoors()) {
 			if (!currTile->isDoorClose(doorIdx)) {
 				if (counter == d) {
