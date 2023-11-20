@@ -197,19 +197,19 @@ void NaviMgr::loadResources()
 void NaviMgr::load()
 {
 	P2DEBUG("Before mount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
-	JKRArchive* texts = JKRArchive::mount("/user/Kando/piki/texts.szs", JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Tail);
+	JKRArchive* texts = JKRMountArchive("/user/Kando/piki/texts.szs", JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Tail);
 	P2DEBUG("After mount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 	sys->heapStatusStart("NaviMgr::Archive", nullptr);
-	JKRArchive* arc = JKRArchive::mount("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
 	sys->heapStatusEnd("NaviMgr::Archive");
 
 	J3DModelData* model = J3DModelLoaderDataBase::load(arc->getResource("orima_model/orima1.bmd"), 0x20000030);
 	for (u16 j = 0; j < model->getShapeNum(); j++) {
-		J3DShape* shape = model->mShapeTable.mItems[j];
-		shape->mFlags   = (shape->mFlags & (~0xF000)) | 0x2000;
+		model->mShapeTable.mItems[j]->mFlags = (model->mShapeTable.mItems[j]->mFlags & (~0xF000)) | 0x2000;
 	}
 
 	mOlimarModel = model;
+
 	if (!animMgr) {
 		animMgr = SysShape::AnimMgr::load(texts, "animMgr.txt", model, arc, "motion");
 	}
@@ -228,171 +228,6 @@ void NaviMgr::load()
 	P2DEBUG("Before unmount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 	texts->unmount();
 	P2DEBUG("After unmount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_8047D088@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_8047D088@l
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       getTotalFreeSize__7JKRHeapFv
-	lwz      r5, sCurrentHeap__7JKRHeap@sda21(r13)
-	addi     r3, r31, 0x5dc
-	li       r4, 1
-	li       r6, 2
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	mr       r30, r3
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       getTotalFreeSize__7JKRHeapFv
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x5f8
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r5, sys@sda21(r13)
-	addi     r3, r31, 0x60c
-	li       r4, 1
-	li       r6, 1
-	lwz      r5, 0x38(r5)
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	mr       r29, r3
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x5f8
-	bl       heapStatusEnd__6SystemFPc
-	mr       r3, r29
-	addi     r4, r31, 0x628
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, 0x20000030@ha
-	addi     r4, r4, 0x20000030@l
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	li       r4, 0
-	mr       r5, r3
-	b        lbl_8015AEA0
-
-lbl_8015AE80:
-	lwz      r3, 0x80(r5)
-	rlwinm   r0, r4, 2, 0xe, 0x1d
-	addi     r4, r4, 1
-	lwzx     r3, r3, r0
-	lwz      r0, 0xc(r3)
-	rlwinm   r0, r0, 0, 0x14, 0xf
-	ori      r0, r0, 0x2000
-	stw      r0, 0xc(r3)
-
-lbl_8015AEA0:
-	lhz      r0, 0x7c(r5)
-	clrlwi   r3, r4, 0x10
-	cmplw    r3, r0
-	blt      lbl_8015AE80
-	stw      r5, 0xb0(r28)
-	lwz      r0, animMgr__Q24Game7NaviMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8015AED8
-	mr       r3, r30
-	mr       r6, r29
-	addi     r4, r31, 0x640
-	addi     r7, r2, lbl_80518748@sda21
-	bl
-load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
-	stw      r3, animMgr__Q24Game7NaviMgr@sda21(r13)
-
-lbl_8015AED8:
-	mr       r3, r30
-	addi     r4, r31, 0x64c
-	bl       load__15CollPartFactoryFP13JKRFileLoaderPc
-	stw      r3, 0xcc(r28)
-	mr       r3, r29
-	addi     r4, r31, 0x65c
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, 0x24
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	stw      r3, 0xb8(r28)
-	mr       r3, r29
-	addi     r4, r31, 0x670
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, 0x24
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	stw      r3, 0xc4(r28)
-	lis      r4, 4
-	lwz      r3, 0xc4(r28)
-	bl       newSharedDisplayList__12J3DModelDataFUl
-	lwz      r3, 0xb8(r28)
-	li       r4, 0
-	bl       enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
-	mr       r3, r29
-	addi     r4, r31, 0x684
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0xb8(r28)
-	mr       r4, r3
-	addi     r3, r28, 0x60
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	mr       r3, r29
-	addi     r4, r31, 0x69c
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0xb8(r28)
-	mr       r4, r3
-	addi     r3, r28, 0x74
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	mr       r3, r29
-	addi     r4, r31, 0x6b4
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0xb8(r28)
-	mr       r4, r3
-	addi     r3, r28, 0x88
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	mr       r3, r29
-	addi     r4, r31, 0x6cc
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0xb8(r28)
-	mr       r4, r3
-	addi     r3, r28, 0x9c
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       getTotalFreeSize__7JKRHeapFv
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       getTotalFreeSize__7JKRHeapFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*

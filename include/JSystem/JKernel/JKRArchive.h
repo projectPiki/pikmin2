@@ -188,6 +188,17 @@ struct JKRArchive : public JKRFileLoader {
 	int _58;                    // _58
 };
 
+inline JKRArchive* JKRMountArchive(const char* path, JKRArchive::EMountMode mountMode, JKRHeap* heap,
+                                   JKRArchive::EMountDirection mountDirection)
+{
+	return JKRArchive::mount(path, mountMode, heap, mountDirection);
+}
+
+inline JKRArchive* JKRMountArchive(void* inBuf, JKRHeap* heap, JKRArchive::EMountDirection mountDirection)
+{
+	return JKRArchive::mount(inBuf, heap, mountDirection);
+}
+
 enum JKRMemBreakFlag { MBF_0 = 0, MBF_1 = 1 };
 
 struct JKRMemArchive : public JKRArchive {
