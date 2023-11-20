@@ -103,8 +103,8 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSBnkMgr.cpp">PSBnkMgr.cpp</a> | 8941 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSDirector.cpp">PSDirector.cpp</a> | 10344 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSystemIF.cpp">PSSystemIF.cpp</a> | 13415 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSe.cpp">PSSe.cpp</a> | 32211 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeq.cpp">PSSeq.cpp</a> | 76063 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSAutoBgm.cpp">PSAutoBgm.cpp</a> | 113483 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 131632 |  |  |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeq.cpp">PSSeq.cpp</a> | 75969 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSAutoBgm.cpp">PSAutoBgm.cpp</a> | 113483 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSGame.cpp">PSGame.cpp</a> | 131752 |  |  |
 
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |

@@ -3037,7 +3037,7 @@ void PikSceneMgr::initAdditionalBgm(SceneInfo& info, PSSystem::Scene* scene)
 		sound.mCount                  = 0x7f040000;
 		sound.mVolume.w               = 0x23000000;
 		sound._00                     = 0x1f00;
-		JADUtility::AccessMode flag   = mAccessMode;
+		JADUtility::AccessMode flag   = (JADUtility::AccessMode)mAccessMode;
 		PSSystem::DirectedBgm* seqold = (PSSystem::DirectedBgm*)scene->mSeqMgr.getFirstSeq();
 		seq                           = newAutoBgm("cavekeyget.cnd", "cavekeyget.bms", sound, flag, info, seqold->mDirectorMgr);
 		scene->appendSeq(seq);
@@ -3393,7 +3393,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			u8 wScene2;
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
-			bgm = newAutoBgm(name, bmsName, sound, mAccessMode, info, nullptr);
+			bgm = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mAccessMode, info, nullptr);
 			delete list;
 			break;
 		case SceneInfo::TWO_PLAYER_BATTLE:
@@ -3405,10 +3405,10 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 		if (!bgm) {
 			switch (cinfo.mBetaType) {
 			case 1: // Floor without music for bosses, apparently it loads caveconc_00 by default
-				bgm = newAutoBgm("caveconc_00_0.cnd", "caveconc.bms", sound, mAccessMode, info, nullptr);
+				bgm = newAutoBgm("caveconc_00_0.cnd", "caveconc.bms", sound, (JADUtility::AccessMode)mAccessMode, info, nullptr);
 				break;
 			case 2:
-				bgm     = newAutoBgm("caverelax.cnd", "caverelax.bms", sound, mAccessMode, info, nullptr);
+				bgm     = newAutoBgm("caverelax.cnd", "caverelax.bms", sound, (JADUtility::AccessMode)mAccessMode, info, nullptr);
 				*wScene = PSSystem::WaveScene::WSCENE28_CaveRestFloor;
 				break;
 			}
@@ -3454,7 +3454,7 @@ PSSystem::BgmSeq* PikSceneMgr::initMainBgm(SceneInfo& info, u8* wScene)
 			u8 wScene2;
 			char* bmsName;
 			list->getSeqAndWaveFromConductor(name, &wScene2, &bmsName);
-			bgm = newAutoBgm(name, bmsName, sound, mAccessMode, info, nullptr);
+			bgm = newAutoBgm(name, bmsName, sound, (JADUtility::AccessMode)mAccessMode, info, nullptr);
 			delete list;
 		}
 	} else {

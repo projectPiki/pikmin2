@@ -3801,11 +3801,4 @@ lbl_80333EC0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80333ED0
- * Size:	0000E0
- */
-JumpBgmSeq::~JumpBgmSeq() { }
-
 } // namespace PSSystem
