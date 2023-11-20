@@ -1,5 +1,5 @@
 JAUDIO_JAL_FILES:=\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAL/JALCalc.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAL/JALCalc.o\
 
 DEPENDS += $(JAUDIO_JAL_FILES:.o=.d)
 

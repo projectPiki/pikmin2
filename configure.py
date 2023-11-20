@@ -399,7 +399,7 @@ LIBS = [
         "mw_version": "2.6",
         "host": True,
         "objects": [
-            "JSystem/JAudio/JAL/JALCalc",
+            ["JSystem/JAudio/JAL/JALCalc", True],
         ],
     },
     {
