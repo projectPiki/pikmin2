@@ -209,14 +209,14 @@ bool Obj::doBecomeCarcass()
 void Obj::doUpdateCarcass()
 {
 	if (mPellet->isAlive()) {
-		if (mReviveTimer < C_PARMS->mProperParms.mFp11) {
+		if (mReviveTimer < C_PARMS->mProperParms.mHealthGaugeTimer()) {
 			mReviveTimer += sys->mDeltaTime;
-			if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mFp11) {
+			if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mHealthGaugeTimer()) {
 				lifeGaugeMgr->activeLifeGauge(this, 0.0f);
 			}
 
 		} else if (mHealth < mMaxHealth) {
-			mHealth += (mMaxHealth / C_PARMS->mProperParms.mFp12()) * sys->getFrameLength();
+			mHealth += (mMaxHealth / C_PARMS->mProperParms.mRespawnRate()) * sys->getFrameLength();
 			if (mHealth >= mMaxHealth) {
 				mPellet->kill(nullptr);
 				f32 x = mBaseTrMatrix.mMatrix.structView.zx;
@@ -233,7 +233,7 @@ void Obj::doUpdateCarcass()
 				}
 			}
 		}
-	} else if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mFp11) {
+	} else if (lifeGaugeMgr && mReviveTimer >= C_PARMS->mProperParms.mHealthGaugeTimer()) {
 		mReviveTimer = 0.0f;
 		mHealth      = 0.0f;
 		lifeGaugeMgr->inactiveLifeGauge(this);
