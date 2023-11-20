@@ -169,6 +169,7 @@ struct System : public OSMutex {
 
 	inline f32 getFrameLength() const { return mDeltaTime; }
 	inline f32 getFrameRate(f32 mod) const { return getFrameLength() / mod; }
+	inline f32 updateTimer(f32& timer, f32 mod) const { timer += mod * mDeltaTime; }
 
 	// _00-_18 = OSMutex
 	JKRHeap* mBackupHeap;                 // _18
