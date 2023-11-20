@@ -17,7 +17,13 @@ namespace ClusterSe {
  */
 struct PartInitArg {
 	PartInitArg();
-	u8 _00[0x4];      // _00 - unknown
+
+	void check();
+
+	u8 _00;           // _00
+	u8 _01;           // _01
+	u8 _02;           // _02
+	u8 _03;           // _03
 	SoundID mSoundID; // _04
 };
 
@@ -27,18 +33,21 @@ struct PartInitArg {
 struct Part {
 	Part();
 
-	virtual void callSe(JAInter::Object* obj); // _08
+	virtual JAISound* callSe(JAInter::Object* obj); // _08
 
-	PartInitArg mInitArg;
+	void identify(PartInitArg initArg);
+	void play(u8, JAInter::Object*);
+
+	PartInitArg mInitArg; // _04
 };
 
 struct Factory {
-	Factory(u8);
+	Factory(u8 count);
 
-	virtual Part* constructPart();     // _08
-	virtual void identifyPart(u8) = 0; // _0C
+	virtual Part* constructPart();            // _08
+	virtual PartInitArg identifyPart(u8) = 0; // _0C
 
-	u8 _04; // _04
+	u8 mCount; // _04
 };
 
 /**
@@ -48,8 +57,8 @@ struct Mgr {
 	void constructParts(PSSystem::ClusterSe::Factory& factory);
 	void play(u8, JAInter::Object*);
 
-	u8 _00[0x4]; // _00 - unknown
-	Part* mPart; // _04
+	u8 mCount;    // _00, number of parts in array
+	Part* mParts; // _04
 };
 
 } // namespace ClusterSe

@@ -603,8 +603,8 @@ float JAISound::setDistancePanCommon()
 {
 	if (JAIGlobalParameter::audioCameraMax == 1) {
 		JAISound_0x34* v0 = _34;
-		float v1          = FABS(v0->_00);
-		float v2          = FABS(v0->_08);
+		float v1          = FABS(v0->_00.x);
+		float v2          = FABS(v0->_00.z);
 		if (v1 < 1.0f && v2 < 1.0f) {
 			return 0.5f;
 		}
@@ -614,19 +614,19 @@ float JAISound::setDistancePanCommon()
 		if (JAIGlobalParameter::panDistanceMax < v2) {
 			v2 = JAIGlobalParameter::panDistanceMax;
 		}
-		if (v0->_00 == 0.0f && v0->_08 == 0.0f) {
+		if (v0->_00.x == 0.0f && v0->_00.z == 0.0f) {
 			return 0.5f;
 		}
-		if (v0->_00 > 0.0f && v1 >= v2) {
+		if (v0->_00.x > 0.0f && v1 >= v2) {
 			return 1.0f
 			     - (JAIGlobalParameter::panDistance2Max - v1)
 			           / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - v2));
 		}
-		if (v0->_00 <= 0.0f && v1 >= v2) {
+		if (v0->_00.x <= 0.0f && v1 >= v2) {
 			return (JAIGlobalParameter::panDistance2Max - v1)
 			     / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - v2));
 		}
-		return v0->_00 / (JAIGlobalParameter::panAngleParameter2 * v2) + 0.5f;
+		return v0->_00.x / (JAIGlobalParameter::panAngleParameter2 * v2) + 0.5f;
 	}
 	if (_18 != 4) {
 		return _18 & 1;
@@ -960,15 +960,15 @@ lbl_800B42A0:
 float JAISound::setDistanceDolbyCommon()
 {
 	JAISound_0x34* obj = _34;
-	if (_3C == 0 || obj->_08 < JAIGlobalParameter::seDolbyFrontDistanceMax) {
+	if (_3C == 0 || obj->_00.z < JAIGlobalParameter::seDolbyFrontDistanceMax) {
 		return 0.0f;
 	}
-	if (obj->_08 < 0.0f) {
-		return (JAIGlobalParameter::seDolbyCenterValue * (JAIGlobalParameter::seDolbyFrontDistanceMax - obj->_08))
+	if (obj->_00.z < 0.0f) {
+		return (JAIGlobalParameter::seDolbyCenterValue * (JAIGlobalParameter::seDolbyFrontDistanceMax - obj->_00.z))
 		     / JAIGlobalParameter::seDolbyFrontDistanceMax;
 	}
-	if (obj->_08 < JAIGlobalParameter::seDolbyBehindDistanceMax) {
-		return (127.0f - JAIGlobalParameter::seDolbyCenterValue) * (obj->_08 / JAIGlobalParameter::seDolbyBehindDistanceMax)
+	if (obj->_00.z < JAIGlobalParameter::seDolbyBehindDistanceMax) {
+		return (127.0f - JAIGlobalParameter::seDolbyCenterValue) * (obj->_00.z / JAIGlobalParameter::seDolbyBehindDistanceMax)
 		     + JAIGlobalParameter::seDolbyCenterValue;
 	}
 	return 127.0f;

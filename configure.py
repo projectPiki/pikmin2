@@ -1373,7 +1373,7 @@ LIBS = [
             ["plugProjectHikinoU/PSCreatureMgr", True],
             ["plugProjectHikinoU/PSAutoBgm_MeloArranger", True],
             "plugProjectHikinoU/PSSe",
-            "plugProjectHikinoU/PSSeBase",
+            ["plugProjectHikinoU/PSSeBase", True],
             ["plugProjectHikinoU/PSScene", True],
             ["plugProjectHikinoU/PSBgmTrack", True],
             "plugProjectHikinoU/PSDirector",
