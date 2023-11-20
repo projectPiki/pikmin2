@@ -240,55 +240,14 @@ void Obj::getThrowupItemPosition(Vector3f* pos) { *pos = mModel->getJoint("kutij
  * Address:	802CEE64
  * Size:	00003C
  */
-bool Obj::isOutTerritory()
-{
-	return (sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius()));
-	/*
-	lfs      f1, 0x194(r3)
-	lfs      f0, 0x1a0(r3)
-	lfs      f2, 0x18c(r3)
-	fsubs    f3, f1, f0
-	lfs      f1, 0x198(r3)
-	lwz      r4, 0xc0(r3)
-	fsubs    f2, f2, f1
-	fmuls    f1, f3, f3
-	lfs      f0, 0x35c(r4)
-	fmuls    f0, f0, f0
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	rlwinm   r3, r0, 2, 0x1f, 0x1f
-	blr
-	*/
-}
+bool Obj::isOutTerritory() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius())); }
 
 /*
  * --INFO--
  * Address:	802CEEA0
  * Size:	00003C
  */
-bool Obj::isInHomeRange()
-{
-	return (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mHomeRadius()));
-
-	/*
-	lfs      f1, 0x194(r3)
-	lfs      f0, 0x1a0(r3)
-	lfs      f2, 0x18c(r3)
-	fsubs    f3, f1, f0
-	lfs      f1, 0x198(r3)
-	lwz      r4, 0xc0(r3)
-	fsubs    f2, f2, f1
-	fmuls    f1, f3, f3
-	lfs      f0, 0x384(r4)
-	fmuls    f0, f0, f0
-	fmadds   f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool Obj::isInHomeRange() { return (u8)(sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(C_PARMS->mGeneral.mHomeRadius())); }
 
 /*
  * --INFO--
@@ -368,6 +327,47 @@ void Obj::updateConstraint()
  */
 void Obj::appearNearByTarget(Creature* target)
 {
+	Vector3f targetPos = target->getPosition();
+	f32 faceDir        = randWeightFloat(TAU);
+
+	Vector3f newPos = Vector3f(-sinf(faceDir), 0.0f, -cosf(faceDir));
+	newPos *= 120.0f;
+	newPos += targetPos;
+
+	if (sqrDistanceXZ(mHomePosition, newPos) > SQUARE(C_PARMS->mGeneral.mTerritoryRadius())) {
+		faceDir = JMAAtan2Radian(targetPos.x - mHomePosition.x, targetPos.z - mHomePosition.z);
+
+		faceDir = faceDir + (randWeightFloat(PI) - HALF_PI);
+		newPos  = Vector3f(-sinf(faceDir), 0.0f, -cosf(faceDir));
+		newPos *= 120.0f;
+		newPos += targetPos;
+	}
+
+	CurrTriInfo info;
+	info.mPosition = newPos;
+	info._0C       = false;
+	mapMgr->getCurrTri(info);
+
+	if (info.mTriangle) {
+		newPos.y = info.mMaxY;
+	} else {
+		faceDir = JMAAtan2Radian(targetPos.x - mHomePosition.x, targetPos.z - mHomePosition.z);
+		newPos  = Vector3f(-sinf(faceDir), 0.0f, -cosf(faceDir));
+		newPos *= 120.0f;
+		newPos += targetPos;
+		CurrTriInfo newInfo;
+		newInfo.mPosition = newPos;
+		newInfo._0C       = false;
+		mapMgr->getCurrTri(newInfo);
+		if (newInfo.mTriangle) {
+			newPos.y = newInfo.mMaxY;
+		} else {
+			newPos = mHomePosition;
+		}
+	}
+
+	onSetPosition(newPos);
+	updateFaceDir(faceDir);
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -741,7 +741,7 @@ void Obj::setAttackPosition()
 	Vector3f dir      = Vector3f(sinf(angle), 0.0f, cosf(angle));
 	Vector3f orthoDir = Vector3f(-dir.z, 0.0f, dir.x);
 
-	f32 array1[5] = { 40.0f, 120.0f, 190.0f, 90.0f, 90.0f };
+	f32 array1[5] = { 60.0f, 150.0f, 220.0f, 120.0f, 120.0f };
 	f32 array2[5] = { 0.0f, 0.0f, 0.0f, 80.0f, -80.0f };
 
 	for (int i = 0; i < 5; i++) {
@@ -900,8 +900,51 @@ lbl_802CF8D4:
  * Address:	802CF9BC
  * Size:	0005F4
  */
-Piki* Obj::getAttackPiki(int)
+Piki* Obj::getAttackPiki(int animIdx)
 {
+	int p1 = 0; // r30
+	int p2 = 5; // r31
+	if (animIdx < 5) {
+		p1 = animIdx;
+		p2 = animIdx + 1;
+	}
+
+	Vector3f snakePos = getPosition();                 // f28, f27, f26
+	Vector3f dir      = getDirection(mFaceDir);        // f30, f29
+	Vector3f orthoDir = Vector3f(-dir.z, 0.0f, dir.x); // f31
+
+	f32 maxDotDirs[]     = { 120.0f, 180.0f, 260.0f, 160.0f, 160.0f }; // 0x94
+	f32 minDotDirs[]     = { 0.0f, 120.0f, 180.0f, 80.0f, 80.0f };     // 0x80
+	f32 maxDotPerpDirs[] = { 30.0f, 30.0f, 30.0f, 110.0f, -50.0f };    // 0x6C
+	f32 minDotPerpDirs[] = { -30.0f, -30.0f, -30.0f, 50.0f, -110.0f }; // 0x58
+	f32 maxYs[]          = { 40.0f, 40.0f, 40.0f, 40.0f, 40.0f };      // 0x44
+	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f }; // 0x30
+
+	for (int i = 0; i < 5; i++) {
+		maxYs[i] += mAttackPositions[i].y - snakePos.y;
+		minYs[i] += mAttackPositions[i].y - snakePos.y;
+	}
+
+	Iterator<Piki> iter(pikiMgr);
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		if (piki->isAlive() && piki->isPikmin() && !piki->isStickToMouth()) {
+			Vector3f pikiPos = piki->getPosition();
+			Vector3f sep     = pikiPos - snakePos;
+			f32 dotDir       = dot(dir, sep);      // f1
+			f32 dotPerpDir   = dot(orthoDir, sep); // f2
+			for (int i = p1; i < p2; i++) {
+				if (dotDir < maxDotDirs[i] && dotDir > minDotDirs[i] && dotPerpDir < maxDotPerpDirs[i] && dotPerpDir > minDotPerpDirs[i]
+				    && sep.y < maxYs[i] && sep.y > minYs[i]) {
+					mAttackAnimIdx = i;
+					return piki;
+				}
+			}
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x160(r1)
 	mflr     r0
@@ -1324,8 +1367,51 @@ lbl_802CFF6C:
  * Address:	802CFFB0
  * Size:	0005C8
  */
-Navi* Obj::getAttackNavi(int)
+Navi* Obj::getAttackNavi(int animIdx)
 {
+	int p1 = 0; // r30
+	int p2 = 5; // r31
+	if (animIdx < 5) {
+		p1 = animIdx;
+		p2 = animIdx + 1;
+	}
+
+	Vector3f snakePos = getPosition();                 // f28, f27, f26
+	Vector3f dir      = getDirection(mFaceDir);        // f30, f29
+	Vector3f orthoDir = Vector3f(-dir.z, 0.0f, dir.x); // f31
+
+	f32 maxDotDirs[]     = { 120.0f, 180.0f, 260.0f, 160.0f, 160.0f }; // 0x94
+	f32 minDotDirs[]     = { 0.0f, 120.0f, 180.0f, 80.0f, 80.0f };     // 0x80
+	f32 maxDotPerpDirs[] = { 30.0f, 30.0f, 30.0f, 110.0f, -50.0f };    // 0x6C
+	f32 minDotPerpDirs[] = { -30.0f, -30.0f, -30.0f, 50.0f, -110.0f }; // 0x58
+	f32 maxYs[]          = { 40.0f, 40.0f, 40.0f, 40.0f, 40.0f };      // 0x44
+	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f }; // 0x30
+
+	for (int i = 0; i < 5; i++) {
+		maxYs[i] += mAttackPositions[i].y - snakePos.y;
+		minYs[i] += mAttackPositions[i].y - snakePos.y;
+	}
+
+	Iterator<Navi> iter(naviMgr);
+	CI_LOOP(iter)
+	{
+		Navi* navi = *iter;
+		if (navi->isAlive()) {
+			Vector3f naviPos = navi->getPosition();
+			Vector3f sep     = naviPos - snakePos;
+			f32 dotDir       = dot(dir, sep);      // f1
+			f32 dotPerpDir   = dot(orthoDir, sep); // f2
+			for (int i = p1; i < p2; i++) {
+				if (dotDir < maxDotDirs[i] && dotDir > minDotDirs[i] && dotPerpDir < maxDotPerpDirs[i] && dotPerpDir > minDotPerpDirs[i]
+				    && sep.y < maxYs[i] && sep.y > minYs[i]) {
+					mAttackAnimIdx = i;
+					return navi;
+				}
+			}
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x160(r1)
 	mflr     r0

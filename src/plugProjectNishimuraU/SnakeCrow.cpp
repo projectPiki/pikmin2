@@ -489,8 +489,51 @@ lbl_80293D54:
  * Address:	80293E3C
  * Size:	0005F4
  */
-Piki* Obj::getAttackPiki(int)
+Piki* Obj::getAttackPiki(int animIdx)
 {
+	int p1 = 0; // r30
+	int p2 = 5; // r31
+	if (animIdx < 5) {
+		p1 = animIdx;
+		p2 = animIdx + 1;
+	}
+
+	Vector3f snakePos = getPosition();                 // f28, f27, f26
+	Vector3f dir      = getDirection(mFaceDir);        // f30, f29
+	Vector3f orthoDir = Vector3f(-dir.z, 0.0f, dir.x); // f31
+
+	f32 maxDotDirs[]     = { 80.0f, 160.0f, 220.0f, 130.0f, 130.0f };  // 0x94
+	f32 minDotDirs[]     = { 0.0f, 80.0f, 160.0f, 50.0f, 50.0f };      // 0x80
+	f32 maxDotPerpDirs[] = { 30.0f, 30.0f, 30.0f, 110.0f, -50.0f };    // 0x6C
+	f32 minDotPerpDirs[] = { -30.0f, -30.0f, -30.0f, 50.0f, -110.0f }; // 0x58
+	f32 maxYs[]          = { 40.0f, 40.0f, 40.0f, 40.0f, 40.0f };      // 0x44
+	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f }; // 0x30
+
+	for (int i = 0; i < 5; i++) {
+		maxYs[i] += mAttackPositions[i].y - snakePos.y;
+		minYs[i] += mAttackPositions[i].y - snakePos.y;
+	}
+
+	Iterator<Piki> iter(pikiMgr);
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		if (piki->isAlive() && piki->isPikmin() && !piki->isStickToMouth()) {
+			Vector3f pikiPos = piki->getPosition();
+			Vector3f sep     = pikiPos - snakePos;
+			f32 dotDir       = dot(dir, sep);      // f1
+			f32 dotPerpDir   = dot(orthoDir, sep); // f2
+			for (int i = p1; i < p2; i++) {
+				if (dotDir < maxDotDirs[i] && dotDir > minDotDirs[i] && dotPerpDir < maxDotPerpDirs[i] && dotPerpDir > minDotPerpDirs[i]
+				    && sep.y < maxYs[i] && sep.y > minYs[i]) {
+					mAttackAnimIdx = i;
+					return piki;
+				}
+			}
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x160(r1)
 	mflr     r0
@@ -913,8 +956,51 @@ lbl_802943EC:
  * Address:	80294430
  * Size:	0005C8
  */
-Navi* Obj::getAttackNavi(int)
+Navi* Obj::getAttackNavi(int animIdx)
 {
+	int p1 = 0; // r30
+	int p2 = 5; // r31
+	if (animIdx < 5) {
+		p1 = animIdx;
+		p2 = animIdx + 1;
+	}
+
+	Vector3f snakePos = getPosition();                 // f28, f27, f26
+	Vector3f dir      = getDirection(mFaceDir);        // f30, f29
+	Vector3f orthoDir = Vector3f(-dir.z, 0.0f, dir.x); // f31
+
+	f32 maxDotDirs[]     = { 80.0f, 160.0f, 220.0f, 130.0f, 130.0f };  // 0x94
+	f32 minDotDirs[]     = { 0.0f, 80.0f, 160.0f, 50.0f, 50.0f };      // 0x80
+	f32 maxDotPerpDirs[] = { 30.0f, 30.0f, 30.0f, 110.0f, -50.0f };    // 0x6C
+	f32 minDotPerpDirs[] = { -30.0f, -30.0f, -30.0f, 50.0f, -110.0f }; // 0x58
+	f32 maxYs[]          = { 40.0f, 40.0f, 40.0f, 40.0f, 40.0f };      // 0x44
+	f32 minYs[]          = { -40.0f, -40.0f, -40.0f, -40.0f, -40.0f }; // 0x30
+
+	for (int i = 0; i < 5; i++) {
+		maxYs[i] += mAttackPositions[i].y - snakePos.y;
+		minYs[i] += mAttackPositions[i].y - snakePos.y;
+	}
+
+	Iterator<Navi> iter(naviMgr);
+	CI_LOOP(iter)
+	{
+		Navi* navi = *iter;
+		if (navi->isAlive()) {
+			Vector3f naviPos = navi->getPosition();
+			Vector3f sep     = naviPos - snakePos;
+			f32 dotDir       = dot(dir, sep);      // f1
+			f32 dotPerpDir   = dot(orthoDir, sep); // f2
+			for (int i = p1; i < p2; i++) {
+				if (dotDir < maxDotDirs[i] && dotDir > minDotDirs[i] && dotPerpDir < maxDotPerpDirs[i] && dotPerpDir > minDotPerpDirs[i]
+				    && sep.y < maxYs[i] && sep.y > minYs[i]) {
+					mAttackAnimIdx = i;
+					return navi;
+				}
+			}
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x160(r1)
 	mflr     r0
