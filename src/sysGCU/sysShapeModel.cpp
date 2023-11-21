@@ -1,104 +1,13 @@
-#include "Camera.h"
-#include "Graphics.h"
-#include "Vector3.h"
-#include "nans.h"
-#include "JSystem/J3D/J3DJoint.h"
-#include "JSystem/J3D/J3DMaterial.h"
-#include "JSystem/J3D/J3DMaterialAnm.h"
-#include "JSystem/J3D/J3DModel.h"
-#include "JSystem/J3D/J3DShape.h"
-#include "JSystem/JUtility/JUTException.h"
 #include "SysShape/Model.h"
 #include "SysShape/Joint.h"
-#include "SysShape/MtxObject.h"
-#include "System.h"
+#include "Graphics.h"
 #include "Viewport.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_sysShapeModel_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049AC90
-    lbl_8049AC90:
-        .4byte 0x73797353
-        .4byte 0x68617065
-        .4byte 0x4D6F6465
-        .4byte 0x6C2E6370
-        .4byte 0x70000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804ECC00
-    lbl_804ECC00:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q28SysShape5Joint
-    __vt__Q28SysShape5Joint:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28SysShape5JointFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q28SysShape5Model
-    __vt__Q28SysShape5Model:
-        .4byte 0
-        .4byte 0
-        .4byte getMatrix__Q28SysShape5ModelFi
-        .4byte isModel__Q28SysShape5ModelFv
-        .4byte isVisible__Q28SysShape5ModelFRQ23Sys6Sphere
-        .4byte isVisible__Q28SysShape5ModelFv
-        .4byte hide__Q28SysShape5ModelFv
-        .4byte show__Q28SysShape5ModelFv
-        .4byte hidePackets__Q28SysShape5ModelFv
-        .4byte showPackets__Q28SysShape5ModelFv
-        .4byte jointVisible__Q28SysShape5ModelFbi
-        .4byte jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint
-        .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global viewCalcMode__Q28SysShape5Model
-    viewCalcMode__Q28SysShape5Model:
-        .byte 0x01
-        .byte 0x00
-        .byte 0x00
-        .byte 0x00
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516278
-    lbl_80516278:
-        .skip 0x4
-    .global lbl_8051627C
-    lbl_8051627C:
-        .skip 0x4
-    .global cullCount__Q28SysShape5Model
-    cullCount__Q28SysShape5Model:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520908
-    lbl_80520908:
-        .4byte 0x6D616E64
-        .4byte 0x610A0000
-    .global lbl_80520910
-    lbl_80520910:
-        .4byte 0x00000000
-    .global lbl_80520914
-    lbl_80520914:
-        .float 0.5
-    .global lbl_80520918
-    lbl_80520918:
-        .4byte 0x47000000
-    .global lbl_8052091C
-    lbl_8052091C:
-        .4byte 0xC7000000
-*/
+#include "nans.h"
 
 namespace SysShape {
 
-u8 Model::viewCalcMode;
+u8 Model::viewCalcMode = true;
+int Model::cullCount;
 
 /*
  * --INFO--
@@ -106,10 +15,9 @@ u8 Model::viewCalcMode;
  * Size:	0000C4
  */
 Model::Model(J3DModelData* data, u32 p2, u32 modelType)
-    : MtxObject()
 {
 	mJ3dModel   = new J3DModel(data, p2, modelType);
-	mJointCount = mJ3dModel->mModelData->mJointTree.mJointCnt;
+	mJointCount = mJ3dModel->mModelData->getJointNum();
 	initJoints();
 	_05          = 1;
 	mIsAnimating = false;
@@ -125,10 +33,10 @@ void Model::enableMaterialAnim(J3DModelData* data, int p2)
 {
 	switch (p2) {
 	case 0:
-		for (u16 i = 0; i < data->mMaterialTable.mMaterialNum; i++) {
-			J3DMaterialAnm* anm = new J3DMaterialAnm();
-			data->mMaterialTable.mMaterials[i]->change();
-			data->mMaterialTable.mMaterials[i]->mMaterialAnm = anm;
+		for (u16 i = 0; i < data->getMaterialNum(); i++) {
+			J3DMaterialAnm* anm = new J3DMaterialAnm;
+			data->getMaterialNodePointer(i)->change();
+			data->getMaterialNodePointer(i)->setMaterialAnm(anm);
 		}
 		break;
 	case 1:
@@ -146,10 +54,10 @@ void Model::enableMaterialAnim(int p1)
 	switch (p1) {
 	case 0:
 		J3DModelData* data = mJ3dModel->mModelData;
-		for (u16 i = 0; i < data->mMaterialTable.mMaterialNum; i++) {
-			J3DMaterialAnm* anm = new J3DMaterialAnm();
-			data->mMaterialTable.mMaterials[i]->change();
-			data->mMaterialTable.mMaterials[i]->mMaterialAnm = anm;
+		for (u16 i = 0; i < data->getMaterialNum(); i++) {
+			J3DMaterialAnm* anm = new J3DMaterialAnm;
+			data->getMaterialNodePointer(i)->change();
+			data->getMaterialNodePointer(i)->setMaterialAnm(anm);
 		}
 		break;
 	case 1:
@@ -178,6 +86,40 @@ Matrixf* Model::getMatrix(int jointIndex)
  */
 f32 Model::getRoughBoundingRadius()
 {
+	Vector3f center = getRoughCenter();
+
+	f32 maxlen = 0.0f;
+
+	for (int i = 0; i < mJointCount; i++) {
+		J3DJoint* jnt = mJoints[i].mJ3d;
+		Vector3f max  = *(Vector3f*)jnt->getMax() - center; // stupid tvec3 cast part 100
+		Vector3f min  = *(Vector3f*)jnt->getMin() - center;
+
+		f32 max2 = max.length();
+		f32 min2 = min.length();
+
+		if (max2 > maxlen) {
+			maxlen = max2;
+		}
+
+		if (min2 > maxlen) {
+			maxlen = min2;
+		}
+	}
+
+	f32 minlen = 0.0f;
+
+	for (int i = 0; i < mJointCount; i++) {
+		f32 rad = mJoints[i].mJ3d->mBoundingSphereRadius;
+		if (rad > minlen) {
+			minlen = rad;
+		}
+	}
+
+	if (minlen < maxlen) {
+		maxlen = minlen;
+	}
+	return maxlen;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -300,117 +242,32 @@ lbl_8043E71C:
  */
 Vector3f Model::getRoughCenter()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stfd     f28, 0x20(r1)
-	psq_st   f28, 40(r1), 0, qr0
-	stfd     f27, 0x10(r1)
-	psq_st   f27, 24(r1), 0, qr0
-	lfs      f5, lbl_80520910@sda21(r2)
-	li       r6, 0
-	lwz      r0, 0xc(r4)
-	fmr      f6, f5
-	fmr      f7, f5
-	fmr      f8, f5
-	fmr      f9, f5
-	fmr      f10, f5
-	fmr      f28, f5
-	fmr      f27, f5
-	fmr      f2, f5
-	fmr      f0, f5
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_8043E84C
 
-lbl_8043E798:
-	lwz      r5, 0x10(r4)
-	addi     r0, r6, 0x18
-	lwzx     r5, r5, r0
-	lfs      f12, 0x4c(r5)
-	lfs      f13, 0x50(r5)
-	fmuls    f1, f12, f12
-	lfs      f11, 0x48(r5)
-	fmuls    f3, f13, f13
-	lfs      f31, 0x3c(r5)
-	lfs      f30, 0x40(r5)
-	fmadds   f1, f11, f11, f1
-	lfs      f29, 0x44(r5)
-	fadds    f3, f3, f1
-	fcmpo    cr0, f3, f2
-	ble      lbl_8043E7E4
-	ble      lbl_8043E7E8
-	frsqrte  f1, f3
-	fmuls    f3, f1, f3
-	b        lbl_8043E7E8
+	Vector3f result_max = 0.0f;
+	Vector3f result_min = 0.0f;
+	f32 currhighestmax  = 0.0f;
+	f32 currhighestmin  = 0.0f;
 
-lbl_8043E7E4:
-	fmr      f3, f2
+	for (int i = 0; i < mJointCount; i++) {
+		J3DJoint* jnt = mJoints[i].mJ3d;
+		Vector3f max  = *(Vector3f*)jnt->getMax();
+		Vector3f min  = *(Vector3f*)jnt->getMin();
 
-lbl_8043E7E8:
-	fmuls    f1, f30, f30
-	fmuls    f4, f29, f29
-	fmadds   f1, f31, f31, f1
-	fadds    f1, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8043E810
-	ble      lbl_8043E814
-	frsqrte  f4, f1
-	fmuls    f1, f4, f1
-	b        lbl_8043E814
+		f32 magmax = max.length();
+		f32 magmin = min.length();
 
-lbl_8043E810:
-	fmr      f1, f0
+		if (magmax > currhighestmax) {
+			result_max     = max;
+			currhighestmax = magmax;
+		}
 
-lbl_8043E814:
-	fcmpo    cr0, f3, f28
-	ble      lbl_8043E82C
-	fmr      f5, f11
-	fmr      f6, f12
-	fmr      f7, f13
-	fmr      f28, f3
+		if (magmin > currhighestmin) {
+			result_min     = min;
+			currhighestmin = magmin;
+		}
+	}
 
-lbl_8043E82C:
-	fcmpo    cr0, f1, f27
-	ble      lbl_8043E844
-	fmr      f8, f31
-	fmr      f9, f30
-	fmr      f10, f29
-	fmr      f27, f1
-
-lbl_8043E844:
-	addi     r6, r6, 0x3c
-	bdnz     lbl_8043E798
-
-lbl_8043E84C:
-	fadds    f2, f5, f8
-	lfs      f3, lbl_80520914@sda21(r2)
-	fadds    f1, f6, f9
-	fadds    f0, f7, f10
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 0(r3)
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	psq_l    f28, 40(r1), 0, qr0
-	lfd      f28, 0x20(r1)
-	psq_l    f27, 24(r1), 0, qr0
-	lfd      f27, 0x10(r1)
-	addi     r1, r1, 0x60
-	blr
-	*/
+	return Vector3f(result_max + result_min) * 0.5f;
 }
 
 /*
@@ -500,7 +357,7 @@ void Model::show()
  */
 void Model::hidePackets()
 {
-	for (u16 i = 0; i < mJ3dModel->mModelData->mShapeTable.mCount; i++) {
+	for (u16 i = 0; i < getJ3DModel()->getModelData()->getShapeNum(); i++) {
 		mJ3dModel->mShapePackets[i].onFlag(0x10);
 	}
 	/*
@@ -535,8 +392,8 @@ lbl_8043EA94:
  */
 void Model::showPackets()
 {
-	for (u16 i = 0; i < mJ3dModel->mModelData->mShapeTable.mCount; i++) {
-		mJ3dModel->mShapePackets[i].offFlag(0x10);
+	for (u16 i = 0; i < getJ3DModel()->getModelData()->getShapeNum(); i++) {
+		getJ3DModel()->getShapePacket(i)->offFlag(0x10);
 	}
 	/*
 	li       r7, 0
@@ -572,62 +429,9 @@ void Model::initJoints()
 {
 	mJoints = new Joint[mJointCount];
 	for (u16 i = 0; i < mJointCount; i++) {
-		mJoints[i].init(i, this, mJ3dModel->mModelData->mJointTree.mJoints[i]);
+		mJoints[i].init(i, this, getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(i));
 	}
 	initJointsRec(0, nullptr);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r31, 0xc(r3)
-	mulli    r3, r31, 0x3c
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q28SysShape5JointFv@ha
-	lis      r5, __dt__Q28SysShape5JointFv@ha
-	addi     r4, r4, __ct__Q28SysShape5JointFv@l
-	mr       r7, r31
-	addi     r5, r5, __dt__Q28SysShape5JointFv@l
-	li       r6, 0x3c
-	bl       __construct_new_array
-	stw      r3, 0x10(r30)
-	li       r31, 0
-	b        lbl_8043EB78
-
-lbl_8043EB44:
-	lwz      r4, 8(r30)
-	clrlwi   r0, r31, 0x10
-	mulli    r0, r0, 0x3c
-	lwz      r3, 0x10(r30)
-	lwz      r5, 4(r4)
-	rlwinm   r6, r31, 2, 0xe, 0x1d
-	mr       r4, r31
-	lwz      r7, 0x28(r5)
-	mr       r5, r30
-	add      r3, r3, r0
-	lwzx     r6, r7, r6
-	bl       init__Q28SysShape5JointFUsPQ28SysShape5ModelP8J3DJoint
-	addi     r31, r31, 1
-
-lbl_8043EB78:
-	lwz      r0, 0xc(r30)
-	clrlwi   r3, r31, 0x10
-	cmpw     r3, r0
-	blt      lbl_8043EB44
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       initJointsRec__Q28SysShape5ModelFiPQ28SysShape5Joint
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -637,8 +441,8 @@ lbl_8043EB78:
  */
 Joint::Joint()
 {
-	mMin = FLOAT_DIST_MIN;
-	mMax = FLOAT_DIST_MAX;
+	mMin = 32768.0f;
+	mMax = -32768.0f;
 }
 
 /*
@@ -646,8 +450,24 @@ Joint::Joint()
  * Address:	8043EC6C
  * Size:	000330
  */
-void Model::initJointsRec(int, SysShape::Joint*)
+void Model::initJointsRec(int id, Joint* jnt)
 {
+	Joint* joint   = &mJoints[id];
+	joint->mParent = jnt;
+
+	J3DJoint* jnt2 = joint->mJ3d->getChild();
+	J3DJoint* jnt3 = joint->mJ3d->getYounger();
+	if (jnt2) {
+		int id2       = jnt2->getJntNo();
+		joint->mChild = &mJoints[id2];
+		initJointsRec(id2, joint);
+	}
+
+	if (jnt3) {
+		int id2      = jnt3->getJntNo();
+		joint->mNext = &mJoints[id2];
+		initJointsRec(id2, jnt);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -924,7 +744,13 @@ void Model::setViewCalcModeInd() { viewCalcMode = true; }
  */
 bool Model::needViewCalc()
 {
-	// UNUSED FUNCTION
+	u8 calc;
+	if (viewCalcMode == 0) {
+		calc = isMtxImmediate();
+	} else {
+		calc = isMtxImmediate() >> 5;
+	}
+	return calc;
 }
 
 /*
@@ -934,14 +760,8 @@ bool Model::needViewCalc()
  */
 void Model::viewCalc()
 {
-	u8 calc;
-	if (viewCalcMode == 0) {
-		calc = isMtxImmediate();
-	} else {
-		calc = isMtxImmediate() >> 5;
-	}
 
-	if (calc) {
+	if (needViewCalc()) {
 		mJ3dModel->viewCalc();
 	}
 	/*

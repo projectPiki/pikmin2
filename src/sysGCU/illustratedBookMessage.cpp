@@ -82,7 +82,7 @@ void TControl::scroll(f32 rate)
 		mCurrentScroll += rate * _6C * 60.0f * sys->mDeltaTime;
 		if (mCurrentScroll < mMaxScroll) {
 			mCurrentScroll = mMaxScroll;
-		};
+		}
 		if (mCurrentScroll > 0.0f) {
 			mCurrentScroll = 0.0f;
 		}
@@ -113,7 +113,7 @@ void TControl::scroll(f32 rate)
 bool TControl::update(Controller* control1, Controller* control2)
 {
 	P2JME::TControl::update();
-	mMaxScroll = -(mTextRenderProc->_C0 * f32(mTextRenderProc->_A4 + 1) - mTextRenderProc->_3C);
+	mMaxScroll = -(mTextRenderProc->_C0 * f32(mTextRenderProc->mCurrLine + 1) - mTextRenderProc->_3C);
 
 	f32 calc   = mTextRenderProc->_C0;
 	mMaxScroll = calc * (int)(mMaxScroll / calc);

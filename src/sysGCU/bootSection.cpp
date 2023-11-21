@@ -1502,7 +1502,7 @@ void BootSection::updateLoadMemoryCard()
 	PSSystem::checkSceneMgr(mgr);
 	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
 	P2ASSERTLINE(1748, scene);
-	JAISound* handle = scene->getGlobalStream()->getHandleP();
+	JAISound** handle = scene->getGlobalStream()->getHandleP();
 
 	if (sys->mCardMgr->isSaveValid() && !handle) {
 		sys->mCardMgr->checkStatus();

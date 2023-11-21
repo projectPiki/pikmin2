@@ -83,6 +83,7 @@
 */
 
 namespace Game {
+namespace P2JST {
 
 /*
  * --INFO--
@@ -99,8 +100,8 @@ namespace Game {
  * Address:	80430954
  * Size:	0000A0
  */
-P2JST::ObjectSystem::ObjectSystem(char const* name, Game::MoviePlayer* player)
-    : P2JST::ObjectBase(name, player)
+ObjectSystem::ObjectSystem(char const* name, MoviePlayer* player)
+    : ObjectBase(name, player)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -151,8 +152,9 @@ P2JST::ObjectSystem::ObjectSystem(char const* name, Game::MoviePlayer* player)
  * Address:	804309F4
  * Size:	000084
  */
-P2JST::ObjectSystem::~ObjectSystem()
+ObjectSystem::~ObjectSystem()
 {
+	destroyObjectAll();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -199,7 +201,7 @@ lbl_80430A5C:
  * Address:	80430A78
  * Size:	0000A8
  */
-void P2JST::ObjectSystem::destroyObjectAll()
+void ObjectSystem::destroyObjectAll()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -259,7 +261,7 @@ lbl_80430AF4:
  * Address:	80430B20
  * Size:	0000F4
  */
-void P2JST::ObjectSystem::reset()
+void ObjectSystem::reset()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -345,7 +347,7 @@ lbl_80430BEC:
  * Address:	80430C14
  * Size:	0000AC
  */
-void P2JST::ObjectSystem::entry()
+void ObjectSystem::entry()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -407,7 +409,7 @@ lbl_80430C98:
  * Address:	80430CC0
  * Size:	0000D4
  */
-void P2JST::ObjectSystem::update()
+void ObjectSystem::update()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -481,7 +483,7 @@ lbl_80430D6C:
  * Address:	80430D94
  * Size:	0000D4
  */
-void P2JST::ObjectSystem::start()
+void ObjectSystem::start()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -555,7 +557,7 @@ lbl_80430E40:
  * Address:	80430E68
  * Size:	0000D4
  */
-void P2JST::ObjectSystem::stop()
+void ObjectSystem::stop()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -629,7 +631,7 @@ lbl_80430F14:
  * Address:	80430F3C
  * Size:	0000FC
  */
-P2JST::ObjectBase* P2JST::ObjectSystem::findObject(char const*, JStage::TEObject) const
+ObjectBase* ObjectSystem::findObject(char const*, JStage::TEObject) const
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -717,7 +719,7 @@ lbl_80431020:
  * Address:	80431038
  * Size:	000310
  */
-int P2JST::ObjectSystem::JSGFindObject(JStage::TObject**, char const*, JStage::TEObject) const
+int ObjectSystem::JSGFindObject(JStage::TObject**, char const*, JStage::TEObject) const
 {
 	/*
 	.loc_0x0:
@@ -977,51 +979,33 @@ int P2JST::ObjectSystem::JSGFindObject(JStage::TObject**, char const*, JStage::T
  * Address:	80431348
  * Size:	000008
  */
-char* P2JST::ObjectSystem::JSGGetName() const
-{
-	/*
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+char* ObjectSystem::JSGGetName() const { return const_cast<char*>(mName); }
 
 /*
  * --INFO--
  * Address:	80431350
  * Size:	000008
  */
-void P2JST::ObjectSystem::JSGSetFlag(u32 a1)
-{
-	// Generated from stw r4, 0x10(r3)
-	mFlags = a1;
-}
+void ObjectSystem::JSGSetFlag(u32 a1) { mFlags = a1; }
 
 /*
  * --INFO--
  * Address:	80431358
  * Size:	000008
  */
-u32 P2JST::ObjectSystem::JSGGetFlag() const
-{
-	/*
-	lwz      r3, 0x10(r3)
-	blr
-	*/
-}
+u32 ObjectSystem::JSGGetFlag() const { return mFlags; }
 
 /*
  * --INFO--
  * Address:	80431360
  * Size:	000010
  */
-void P2JST::ObjectSystem::JSGSetData(u32, void const*, u32)
+void ObjectSystem::JSGSetData(u32 d1, void const* d2, u32 d3)
 {
-	/*
-	stw      r4, 0x14(r3)
-	stw      r5, 0x18(r3)
-	stw      r6, 0x1c(r3)
-	blr
-	*/
+	_14 = d1;
+	_18 = d2;
+	_1C = d3;
 }
 
+} // namespace P2JST
 } // namespace Game

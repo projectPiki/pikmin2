@@ -287,7 +287,7 @@ void Section::doUpdateMainTitle()
 	}
 
 	if (mController1->mButton.mButtonDown & Controller::PRESS_Y) {
-		OSReport("code size           %dKB\n", (JKRHeap::mCodeEnd - JKRHeap::mCodeStart) / 1024);
+		OSReport("code size           %dKB\n", ((int)JKRHeap::getCodeEnd() - (int)JKRHeap::getCodeStart()) / 1024);
 		OSReport("GameSystemHeap Free %dKB\n", (int)sys->mSysHeap->getTotalFreeSize() / 1024);
 	}
 
