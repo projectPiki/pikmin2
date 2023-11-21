@@ -24,16 +24,22 @@ struct _DynParticleParent {
  * TODO: I suspect there's a common erased base interface that defines this
  * vtable.
  */
-struct DynParticle : _DynParticleParent {
-	DynParticle();
+struct DynParticle : public _DynParticleParent {
+	DynParticle()
+	{
+		_18   = 1.0f;
+		_2C   = 0;
+		mNext = nullptr;
+		_20   = Vector3f(0.0f);
+	}
 
-	virtual void constructor();               // _08 (weak)
-	virtual void doAnimation();               // _0C (weak)
-	virtual void doEntry();                   // _10 (weak)
-	virtual void doSetView(u32);              // _14 (weak)
-	virtual void doViewCalc();                // _18 (weak)
-	virtual void doSimulation(f32);           // _1C (weak)
-	virtual void doDirectDraw(Graphics& gfx); // _20 (weak)
+	virtual void constructor() { }               // _08 (weak)
+	virtual void doAnimation() { }               // _0C (weak)
+	virtual void doEntry() { }                   // _10 (weak)
+	virtual void doSetView(u32) { }              // _14 (weak)
+	virtual void doViewCalc() { }                // _18 (weak)
+	virtual void doSimulation(f32) { }           // _1C (weak)
+	virtual void doDirectDraw(Graphics& gfx) { } // _20 (weak)
 
 	DynParticle* getAt(int);
 
@@ -46,7 +52,7 @@ struct DynParticleMgr : public MonoObjectMgr<DynParticle> {
 	DynParticleMgr(int);
 
 	// vtable 1
-	virtual ~DynParticleMgr(); // _08 (weak)
+	// virtual ~DynParticleMgr(); // _08 (weak)
 	// vtable 2
 	virtual void resetMgr(); // _80 (weak)
 

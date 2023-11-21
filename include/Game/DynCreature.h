@@ -26,7 +26,7 @@ struct DynCreature : public Creature {
 	virtual void getVelocityAt(Vector3f&, Vector3f&);   // _184
 	virtual f32 getAngularEffect(Vector3f&, Vector3f&); // _188
 	virtual void applyImpulse(Vector3f&, Vector3f&);    // _18C
-	virtual void onSetPosition();                       // _1B0 (weak)
+	virtual void onSetPosition() { }                    // _1B0 (weak)
 
 	bool createParticles(int);
 	void releaseParticles();
@@ -45,7 +45,7 @@ struct DynCreature : public Creature {
 	Rigid mRigid;              // _17C
 	Vector3f _2F4;             // _2F4
 	Vector3f _300;             // _300
-	u32 _30C;                  // _30C
+	DynParticle* _30C;         // _30C
 	u8 _310;                   // _310
 	u8 _311;                   // _311
 };
