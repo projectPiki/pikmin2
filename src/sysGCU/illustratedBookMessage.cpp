@@ -3,8 +3,17 @@
 #include "System.h"
 
 namespace P2JME {
-
 namespace IllustratedBook {
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000048
+ */
+TSequenceProcessor::TSequenceProcessor(JMessage::TReference* ref, JMessage::TControl* owner)
+    : TSeqProcNoSeq(ref, owner)
+{
+}
 
 /*
  * --INFO--
@@ -79,7 +88,7 @@ f32 TControl::getScrollPosition()
 void TControl::scroll(f32 rate)
 {
 	if (rate != 0.0f) {
-		mCurrentScroll += rate * _6C * 60.0f * sys->mDeltaTime;
+		mCurrentScroll += rate * _6C * 60.0f * sys->getFrameLength();
 		if (mCurrentScroll < mMaxScroll) {
 			mCurrentScroll = mMaxScroll;
 		}
@@ -93,7 +102,8 @@ void TControl::scroll(f32 rate)
 		} else {
 			dir = -1;
 		}
-		mCurrentTextHeight = f32(dir + (int)(mCurrentScroll / calc)) * calc;
+		f32 height         = (f32)(dir + (int)(mCurrentScroll / calc));
+		mCurrentTextHeight = height * calc;
 		if (mCurrentTextHeight < mMaxScroll) {
 			mCurrentTextHeight = mMaxScroll;
 		}
@@ -113,13 +123,15 @@ void TControl::scroll(f32 rate)
 bool TControl::update(Controller* control1, Controller* control2)
 {
 	P2JME::TControl::update();
-	mMaxScroll = -(mTextRenderProc->_C0 * f32(mTextRenderProc->mCurrLine + 1) - mTextRenderProc->_3C);
+	mMaxScroll = mTextRenderProc->_3C - mTextRenderProc->_C0 * (f32)(mTextRenderProc->mCurrLine + 1);
 
 	f32 calc   = mTextRenderProc->_C0;
-	mMaxScroll = calc * (int)(mMaxScroll / calc);
+	f32 scroll = (int)(mMaxScroll / calc);
+	mMaxScroll = scroll * calc;
 
-	f32 calc2 = mTextRenderProc->_58;
-	mTextRenderProc->_58 += mScrollSpeed * (mCurrentScroll - calc2) * calc2 * 60.0f * sys->mDeltaTime;
+	f32 calc2            = mTextRenderProc->_58;
+	f32 val              = mScrollSpeed * (mCurrentScroll - calc2) * 60.0f * sys->getFrameLength();
+	mTextRenderProc->_58 = val + mTextRenderProc->_58;
 }
 
 /*

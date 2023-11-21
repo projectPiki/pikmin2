@@ -1629,7 +1629,7 @@ LIBS = [
             ["sysGCU/screenObj", True],
             "sysGCU/JSTObjectParticleActor",
             ["sysGCU/moviePlayerAudio", True],
-            "sysGCU/illustratedBookMessage",
+            ["sysGCU/illustratedBookMessage", True],
             ["sysGCU/sysDrawBuffer", True],
             ["sysGCU/dvdErrorMessage", True],
             ["sysGCU/pikmin2AramMgr", True],

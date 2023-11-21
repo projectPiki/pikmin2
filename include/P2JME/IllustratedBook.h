@@ -24,10 +24,10 @@ struct TRenderingProcessor : public P2JME::Window::TRenderingProcessor {
 };
 
 struct TSequenceProcessor : public P2JME::TSeqProcNoSeq {
-	TSequenceProcessor(JMessage::TReference* ref, JMessage::TControl* owner)
-	    : TSeqProcNoSeq(ref, owner)
-	{
-	}
+	TSequenceProcessor(JMessage::TReference* ref, JMessage::TControl* owner);
+	//     : TSeqProcNoSeq(ref, owner)
+	// {
+	// }
 
 	virtual ~TSequenceProcessor() { } // _08 (weak)
 
@@ -41,11 +41,11 @@ struct TControl : public P2JME::Window::TControl {
 	virtual ~TControl() { }                                                                                                   // _08 (weak)
 	virtual void reset();                                                                                                     // _0C
 	virtual bool update(Controller*, Controller*);                                                                            // _14
-	virtual void draw(Graphics& gfx) { P2JME::Window::TControl::draw(gfx); }                                                  // _18 (weak)
 	virtual void draw(Mtx, Mtx);                                                                                              // _1C
 	virtual bool onInit();                                                                                                    // _34
-	virtual void createSequenceProcessor() { mSequenceProc = new IllustratedBook::TSequenceProcessor(getReference(), this); } // _40 (weak)
+	virtual void draw(Graphics& gfx) { P2JME::Window::TControl::draw(gfx); }                                                  // _18 (weak)
 	virtual void createRenderingProcessor() { mTextRenderProc = new IllustratedBook::TRenderingProcessor(getReference()); }   // _44 (weak)
+	virtual void createSequenceProcessor() { mSequenceProc = new IllustratedBook::TSequenceProcessor(getReference(), this); } // _40 (weak)
 
 	f32 getScrollPosition();
 	void scroll(f32);
