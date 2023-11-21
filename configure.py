@@ -930,7 +930,7 @@ LIBS = [
             ["plugProjectKandoU/genNavi", True],
             ["plugProjectKandoU/genItem", True],
             ["plugProjectKandoU/gameStages", True],
-            "plugProjectKandoU/gameSeaMgr",
+            ["plugProjectKandoU/gameSeaMgr", True],
             ["plugProjectKandoU/pikiAI", True],
             ["plugProjectKandoU/pelletConfig", True],
             ["plugProjectKandoU/gameFootmark", True],

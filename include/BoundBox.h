@@ -26,6 +26,9 @@ struct BoundBox {
 	void read(struct Stream&);
 	int transform(struct Matrixf&);
 
+	inline void getMin(Vector3f& min) const { min = mMin; }
+	inline void getMax(Vector3f& max) const { max = mMax; }
+
 	/**
 	 * @fabricated
 	 */
@@ -56,18 +59,16 @@ struct BoundBox {
 };
 
 struct BoundBox2d {
-	inline BoundBox2d(f32 l, f32 b, f32 r, f32 t)
+	inline BoundBox2d(f32 minX, f32 minY, f32 maxX, f32 maxY)
 	{
-		mLeft   = l;
-		mBottom = b;
-		mRight  = r;
-		mTop    = t;
+		mMin.x = minX;
+		mMin.y = minY;
+		mMax.x = maxX;
+		mMax.y = maxY;
 	}
 
-	f32 mLeft;   // _00
-	f32 mBottom; // _04
-	f32 mRight;  // _08
-	f32 mTop;    // _0C
+	Vector2f mMin; // _00
+	Vector2f mMax; // _08
 };
 
 #endif

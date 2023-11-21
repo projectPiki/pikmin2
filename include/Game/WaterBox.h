@@ -33,29 +33,28 @@ struct WaterBox {
 	{
 		return false;
 	}
-	virtual bool inWater2d(Sys::Sphere&) { return false; } // _0C (weak)
-	virtual f32 getSeaLevel()      = 0;                    // _10
-	virtual f32* getSeaHeightPtr() = 0;                    // _14
-	virtual bool update()          = 0;                    // _18
-	virtual void startDown(f32) { }                        // _1C (weak)
-	virtual void startUp(f32) { }                          // _20 (weak)
-	virtual void directDraw(Graphics&) { }                 // _24 (weak)
-	virtual void doAnimation() { }                         // _28 (weak)
-	virtual void doEntry() { }                             // _2C (weak)
-	virtual void doSetView(int viewportNumber) { }         // _30 (weak)
-	virtual void doViewCalc() { }                          // _34 (weak)
-	virtual void doSimulation(f32) { }                     // _38 (weak)
-	virtual void doDirectDraw(Graphics& gfx) { }           // _3C (weak)
-	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*,
-	                         f32); // _40 (weak)
-	virtual void calcMatrix() { }  // _44 (weak)
+	virtual bool inWater2d(Sys::Sphere&) { return false; }                  // _0C (weak)
+	virtual f32 getSeaLevel()      = 0;                                     // _10
+	virtual f32* getSeaHeightPtr() = 0;                                     // _14
+	virtual bool update()          = 0;                                     // _18
+	virtual void startDown(f32) { }                                         // _1C (weak)
+	virtual void startUp(f32) { }                                           // _20 (weak)
+	virtual void directDraw(Graphics&) { }                                  // _24 (weak)
+	virtual void doAnimation() { }                                          // _28 (weak)
+	virtual void doEntry() { }                                              // _2C (weak)
+	virtual void doSetView(int viewportNumber) { }                          // _30 (weak)
+	virtual void doViewCalc() { }                                           // _34 (weak)
+	virtual void doSimulation(f32) { }                                      // _38 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { }                            // _3C (weak)
+	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*, f32) { } // _40 (weak)
+	virtual void calcMatrix() { }                                           // _44 (weak)
 
-	inline void setFlag(u32 flag) { mFlags |= flag; }
-	inline void resetFlag(u32 flag) { mFlags &= ~flag; }
-	inline bool isFlag(u32 flag) const { return mFlags & flag; }
+	inline void setFlag(u8 flag) { mFlags.typeView |= flag; }
+	inline void resetFlag(u8 flag) { mFlags.typeView &= ~flag; }
+	inline bool isFlag(u8 flag) const { return mFlags.typeView & flag; }
 
 	// _00
-	u8 mFlags; // _04
+	BitFlag<u8> mFlags; // _04
 };
 
 struct AABBWaterBox : public WaterBox {
@@ -87,6 +86,10 @@ struct AABBWaterBox : public WaterBox {
 
 	void create(Vector3f&, Vector3f&);
 
+	inline J3DTexture* getFbTexture() { return mFbTexture; }
+
+	inline s16 getFbTexIndex() const { return mFbTexIndex; }
+
 	u16 mState;                        // _08 (1 = lowering)
 	f32 mLoweredAmount;                // _0C (total amount moved downward)
 	f32 mLoweringGoalDiff;             // _10 (how far to move down when lowering starts)
@@ -100,7 +103,7 @@ struct AABBWaterBox : public WaterBox {
 	SysShape::Model* mModel;           // _50
 	Sys::MatLoopAnimator mMatAnimator; // _54
 	J3DTexture* mFbTexture;            // _60
-	short mFbTexIndex;                 // _64
+	s16 mFbTexIndex;                   // _64
 };
 } // namespace Game
 

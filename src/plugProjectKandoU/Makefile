@@ -40,7 +40,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/genNavi.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/genItem.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameStages.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pikiAI.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameFootmark.o\

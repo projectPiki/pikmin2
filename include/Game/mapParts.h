@@ -185,7 +185,7 @@ struct MapUnitMgr : public NodeObjectMgr<MapUnit> {
 	virtual ~MapUnitMgr() { }    // _08 (weak)
 	virtual MapUnit* getAt(int); // _24
 
-	void findMapUnit(char*);
+	MapUnit* findMapUnit(char* unitName);
 	void load(char*);
 	void loadShape(char*);
 	void makeUnit(MapUnit*, char*);
@@ -209,7 +209,7 @@ struct MapRoom : public CellObject {
 	virtual void doSimulation(f32);                                                   // _40
 	virtual void doDirectDraw(Graphics&);                                             // _44
 
-	void placeObjects(Cave::FloorInfo*, bool);
+	void placeObjects(Cave::FloorInfo* floorInfo, bool isFinalFloor);
 	void countItems();
 	void countEnemys();
 
@@ -278,20 +278,20 @@ struct RoomMapMgr : public MapMgr {
 	virtual void traceMove_new(MoveInfo&, f32);                                           // _60
 	virtual void traceMove_original(MoveInfo&, f32);                                      // _64
 
-	MapRoom* getMapRoom(s16);
+	MapRoom* getMapRoom(s16 roomIdx);
 	void createRandomMap(int floorNum, Cave::EditMapUnit* editInfo);
 	void completeUnitData();
-	void useUnit(char*);
-	JUTTexture* getTexture(char*);
-	void allocRooms(int);
-	void makeRoom(char*, f32, f32, int, int, RoomLink*, ObjectLayoutInfo*);
+	void useUnit(char* unitName);
+	JUTTexture* getTexture(char* unitName);
+	void allocRooms(int count);
+	void makeRoom(char* unitName, f32 centreX, f32 centreY, int direction, int roomIdx, RoomLink* link, ObjectLayoutInfo* layoutInfo);
 	void placeObjects();
 	void entryToMapRoomCellMgr();
 	s16 findRoomIndex(Sys::Sphere&);
 	void createGlobalCollision();
-	void makeOneRoom(f32, f32, f32, char*, s16, RoomLink*, ObjectLayoutInfo*);
+	void makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unitName, s16 roomIdx, RoomLink* link, ObjectLayoutInfo* layoutInfo);
 	void deleteTemp();
-	void getMUI(MapUnit*);
+	MapUnitInterface* getMUI(MapUnit* unit);
 	void nishimuraCreateRandomMap(MapUnitInterface* interfaces, int interfaceCount, Cave::FloorInfo* floorInfo, bool isLastFloor,
 	                              Cave::EditMapUnit* editInfo);
 	void nishimuraPlaceRooms();
@@ -308,15 +308,15 @@ struct RoomMapMgr : public MapMgr {
 	Cave::FloorInfo* mFloorInfo;         // _2C
 	int mSublevel;                       // _30
 	MapCollision* mMapCollision;         // _34
-	u32 _38;                             // _38
-	void* _3C;                           // _3C
+	int mTriCount;                       // _38
+	int* mRoomTriIndices;                // _3C
 	Sys::Triangle mTriangle;             // _40
 	int mCount;                          // _A0
 	MapRoom** mRoomList;                 // _A4
 	MapUnitMgr* mMapUnitMgr;             // _A8
 	MonoObjectMgr<MapRoom> mRoomMgr;     // _AC
 	BoundBox mBoundbox;                  // _DC
-	uint mMapUnitInterfaceCount;         // _F4
+	int mMapUnitInterfaceCount;          // _F4
 	MapUnitInterface* mMapUnitInterface; // _F8
 	Vector3f mStartPositions[2];         // _FC
 	Game::BlackMan::Obj* mWraith;        // _114

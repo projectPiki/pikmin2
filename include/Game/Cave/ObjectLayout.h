@@ -17,6 +17,7 @@ enum ObjectLayoutType {
 	OBJLAYOUT_Fountain    = 5,
 	OBJLAYOUT_VsRedOnyon  = 6,
 	OBJLAYOUT_VsBlueOnyon = 7,
+	OBJLAYOUT_TypeCount, // 8
 };
 
 /**
