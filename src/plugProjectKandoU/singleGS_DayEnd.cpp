@@ -69,7 +69,7 @@ void DayEndState::init(SingleGameSection* game, StateArg* arg)
 	PelletFruit::mgr->resetMgr();
 	PelletItem::mgr->resetMgrAndResources();
 	PelletOtakara::mgr->resetMgrAndResources();
-	Navi* navi = naviMgr->getAt(0);
+	Navi* navi = naviMgr->getAt(NAVIID_Olimar);
 	if (navi->isAlive()) {
 		navi->mFsm->transit(navi, NSID_Walk, nullptr);
 		efx::TNaviEffect* effectsObj = navi->mEffectsObj;
@@ -77,7 +77,7 @@ void DayEndState::init(SingleGameSection* game, StateArg* arg)
 		effectsObj->killHamonA_();
 		effectsObj->killHamonB_();
 	}
-	navi = naviMgr->getAt(1);
+	navi = naviMgr->getAt(NAVIID_Louie);
 	if (navi->isAlive()) {
 		navi->mFsm->transit(navi, NSID_Walk, nullptr);
 		efx::TNaviEffect* effectsObj = navi->mEffectsObj;
@@ -116,12 +116,12 @@ void DayEndState::exec(SingleGameSection* game)
 				} else {
 					arg.mStreamID = 0xc0011003;
 				}
-				JUT_ASSERTLINE(222, naviMgr->getAliveOrima(0), "no alive:s01_dayend");
+				JUT_ASSERTLINE(222, naviMgr->getAliveOrima(ALIVEORIMA_Active), "no alive:s01_dayend");
 				Navi* navi      = naviMgr->getActiveNavi();
 				arg.mPelletName = nullptr;
 				if (navi) {
 					arg.mPelletName = (char*)navi->mNaviIndex;
-					if ((int)arg.mPelletName == 1 && playData->mStoryFlags & STORY_DebtPaid) {
+					if ((int)arg.mPelletName == NAVIID_Captain2 && playData->isStoryFlag(STORY_DebtPaid)) {
 						arg.mPelletName = (char*)2;
 					}
 				}
@@ -508,7 +508,7 @@ void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32
 			CI_LOOP(iterator2)
 			{
 				Piki* piki = *iterator2;
-				Navi* navi = naviMgr->getAliveOrima(0);
+				Navi* navi = naviMgr->getAliveOrima(ALIVEORIMA_Active);
 				JUT_ASSERTLINE(376, navi, "no alive navi");
 				PikiAI::ActFormationInitArg arg(navi);
 				piki->mNavi = navi;

@@ -300,7 +300,7 @@ void Obj::doAnimationCullingOff()
 	mShadowMgr->update();
 	if (mTargetNavi && _2DC) {
 		if (_300 == 0) {
-			if (mTargetNavi->mNaviIndex == 0) {
+			if (mTargetNavi->mNaviIndex == NAVIID_Olimar) {
 				mSoundObj->startSound(PSSE_EN_UMI_SEARCH_ORIMER, 0);
 			} else {
 				mSoundObj->startSound(PSSE_EN_UMI_SEARCH_LUGIE, 0);

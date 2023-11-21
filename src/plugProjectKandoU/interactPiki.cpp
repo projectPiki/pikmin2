@@ -54,15 +54,14 @@ bool InteractFueFuki::actPiki(Game::Piki* piki)
  * Size:	000BD0
  */
 
-inline bool vsFlute(Piki* p, Navi* n)
+inline bool vsFlute(Piki* piki, Navi* navi)
 {
-	bool val = false;
+	bool isEnemyPiki = false;
 	if (gameSystem->isVersusMode()) {
-		int pikiKind = p->getKind();
-		// piki->getKind() == navi->mNaviIndex; ????????????
-		val = ((pikiKind == Red && n->mNaviIndex == 1) || (pikiKind == Blue && n->mNaviIndex == 0));
+		int pikiKind = piki->getKind();
+		isEnemyPiki  = ((pikiKind == Red && navi->mNaviIndex == NAVIID_Louie) || (pikiKind == Blue && navi->mNaviIndex == NAVIID_Olimar));
 	}
-	return val;
+	return isEnemyPiki;
 }
 
 bool InteractFue::actPiki(Game::Piki* piki)
@@ -71,10 +70,10 @@ bool InteractFue::actPiki(Game::Piki* piki)
 		// the check for if it is day 1 and the captains are separated
 		if (mCreature->isNavi()) {
 			Navi* navi = static_cast<Navi*>(mCreature);
-			if (navi->mNaviIndex == 0 && !piki->wasZikatu()) {
+			if (navi->mNaviIndex == NAVIID_Olimar && !piki->wasZikatu()) {
 				return false;
 			}
-			if (navi->mNaviIndex == 1 && piki->wasZikatu()) {
+			if (navi->mNaviIndex == NAVIID_Louie && piki->wasZikatu()) {
 				return false;
 			}
 		}
@@ -193,7 +192,8 @@ bool InteractFue::actPiki(Game::Piki* piki)
 			Navi* vsNavi = (Navi*)mCreature;
 			if (gameSystem->isVersusMode()) {
 				int pikiColor = piki->getKind();
-				if ((pikiColor == Red && vsNavi->mNaviIndex == 1) || (pikiColor == Blue && vsNavi->mNaviIndex == 0)) {
+				if ((pikiColor == Red && vsNavi->mNaviIndex == NAVIID_Louie)
+				    || (pikiColor == Blue && vsNavi->mNaviIndex == NAVIID_Olimar)) {
 					return false;
 				}
 			}
@@ -233,7 +233,7 @@ bool InteractDope::actPiki(Game::Piki* piki)
 	if (gameSystem->isVersusMode() && mSprayType == SPRAY_TYPE_BITTER) {
 		if (mCreature->isNavi()) {
 			Navi* navi = static_cast<Navi*>(mCreature);
-			if (piki->mPikiKind == navi->mNaviIndex && !currState->dead()) { // regswap if getKind() is used
+			if (piki->getKind() == navi->getNaviID() && !currState->dead()) {
 				FallMeckStateArg bitterArg;
 				bitterArg._00 = true;
 				piki->mFsm->transit(piki, PIKISTATE_FallMeck, &bitterArg);

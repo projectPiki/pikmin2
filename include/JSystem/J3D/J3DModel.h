@@ -151,11 +151,11 @@ struct J3DModelData {
  * @size{0xDC}
  */
 struct J3DModel {
-	J3DModel(J3DModelData* data, u32 p2, u32 modelType)
+	J3DModel(J3DModelData* data, u32 flags, u32 modelType)
 	{
 		mVertexBuffer.init();
 		initialize();
-		entryModelData(data, p2, modelType);
+		entryModelData(data, flags, modelType);
 	}
 
 	virtual void update();         // _08

@@ -1005,7 +1005,7 @@ void BaseGameSection::initGenerators()
 		PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&offset, (Vec*)&pos);
 		offset       = pos;
 		offset.y     = mapMgr->getMinY(offset) + 8.5f;
-		Navi* olimar = naviMgr->getAt(0);
+		Navi* olimar = naviMgr->getAt(NAVIID_Olimar);
 		olimar->setCamera(mOlimarCamera);
 		olimar->setController(mControllerP1);
 		olimar = naviMgr->birth();
@@ -1016,10 +1016,10 @@ void BaseGameSection::initGenerators()
 		break;
 
 	case 2: {
-		Navi* olimar = naviMgr->getAt(0);
+		Navi* olimar = naviMgr->getAt(NAVIID_Olimar);
 		olimar->setCamera(mOlimarCamera);
 		olimar->setController(mControllerP1);
-		Navi* louie = naviMgr->getAt(1);
+		Navi* louie = naviMgr->getAt(NAVIID_Louie);
 		louie->setCamera(mLouieCamera);
 		louie->setController(mControllerP2);
 		break;
@@ -1091,8 +1091,8 @@ void BaseGameSection::setPlayerMode(int mode)
 {
 	// this is a really dumb regswap
 	Navi* fools[2];
-	fools[0] = naviMgr->getAt(0);
-	fools[1] = naviMgr->getAt(1);
+	fools[0] = naviMgr->getAt(NAVIID_Olimar);
+	fools[1] = naviMgr->getAt(NAVIID_Louie);
 	fools[0]->disableController();
 	fools[1]->disableController();
 
@@ -1163,7 +1163,7 @@ void BaseGameSection::onCameraBlendFinished(CameraArg* arg)
 	setCamController();
 	if (gameSystem->isStoryMode()) {
 		if (!playData->isDemoFlag(DEMO_First_Use_Louie) && playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
-			Navi* louie = naviMgr->getAt(1);
+			Navi* louie = naviMgr->getAt(NAVIID_Louie);
 			JUT_ASSERTLINE(3088, louie, "louie null");
 			MoviePlayArg louieStart("x05_louiestart", nullptr, nullptr, 0);
 			louieStart.setTarget(louie);
@@ -1193,8 +1193,8 @@ void BaseGameSection::setCamController()
 {
 	Navi* navis[2];
 
-	navis[0] = naviMgr->getAt(0);
-	navis[1] = naviMgr->getAt(1);
+	navis[0] = naviMgr->getAt(NAVIID_Olimar);
+	navis[1] = naviMgr->getAt(NAVIID_Louie);
 
 	switch (mPrevNaviIdx) {
 	case 0: {
@@ -1317,7 +1317,7 @@ void BaseGameSection::setDefaultPSSceneInfo(PSGame::SceneInfo& sceneInfo)
 void BaseGameSection::prepareHoleIn(Vector3f& suroundPos, bool killPikihead)
 {
 	Screen::gGame2DMgr->mScreenMgr->reset();
-	Navi* aliveOrima = naviMgr->getAliveOrima(0);
+	Navi* aliveOrima = naviMgr->getAliveOrima(ALIVEORIMA_Active);
 	if (killPikihead) {
 		Iterator<ItemPikihead::Item> iPikihead = ItemPikihead::mgr;
 		CI_LOOP(iPikihead)
@@ -1381,7 +1381,7 @@ void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
 		fountain->killAllEffect();
 	}
 	Screen::gGame2DMgr->mScreenMgr->reset();
-	Navi* aliveOrima = naviMgr->getAliveOrima(0);
+	Navi* aliveOrima = naviMgr->getAliveOrima(ALIVEORIMA_Active);
 
 	Iterator<ItemPikihead::Item> iPikihead = ItemPikihead::mgr;
 	CI_LOOP(iPikihead)
@@ -1666,7 +1666,7 @@ void BaseGameSection::doSimpleDraw(Viewport* vp) { gameSystem->doSimpleDraw(vp);
  */
 void BaseGameSection::doAnimation()
 {
-	Navi* olimar = naviMgr->getAt(0);
+	Navi* olimar = naviMgr->getAt(NAVIID_Olimar);
 	if (!gameSystem->isZukanMode() && generatorMgr) {
 		Vector3f olimarPos = olimar->getPosition();
 		generatorMgr->updateCursorPos(olimarPos);
@@ -1706,7 +1706,7 @@ void BaseGameSection::doAnimation()
  * Address:	8014F754
  * Size:	00004C
  */
-void BaseGameSection::changeGeneratorCursor(Vector3f& vec) { naviMgr->getAt(0)->setPosition(vec, false); }
+void BaseGameSection::changeGeneratorCursor(Vector3f& vec) { naviMgr->getAt(NAVIID_Olimar)->setPosition(vec, false); }
 
 /*
  * --INFO--
@@ -2476,8 +2476,8 @@ void BaseGameSection::setupFloatMemory()
 
 	naviMgr->alloc(2);
 
-	Navi* p1 = naviMgr->getAt(0);
-	Navi* p2 = naviMgr->getAt(1);
+	Navi* p1 = naviMgr->getAt(NAVIID_Olimar);
+	Navi* p2 = naviMgr->getAt(NAVIID_Louie);
 
 	mControllerP1 = new Controller(JUTGamePad::PORT_0);
 	mControllerP2 = new Controller(JUTGamePad::PORT_1);

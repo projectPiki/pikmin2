@@ -23,8 +23,8 @@ NaviMgr::NaviMgr()
 	mName      = "naviMgr";
 	mNaviParms = new NaviParms;
 	clearDeadCount();
-	_48     = 0;
-	mPSMMgr = nullptr;
+	mBackupPSMMgr = nullptr;
+	mPSMMgr       = nullptr;
 }
 
 /*
@@ -36,9 +36,9 @@ NaviMgr::~NaviMgr()
 {
 	animMgr = nullptr;
 	naviMgr = nullptr;
-	if (_48) {
-		delete _48;
-		_48 = nullptr;
+	if (mBackupPSMMgr) {
+		delete mBackupPSMMgr;
+		mBackupPSMMgr = nullptr;
 	}
 	if (mPSMMgr) {
 		delete mPSMMgr;
@@ -51,7 +51,7 @@ NaviMgr::~NaviMgr()
  * Address:	........
  * Size:	000020
  */
-unknown NaviMgr::init()
+void NaviMgr::init()
 {
 	// UNUSED FUNCTION
 }
@@ -75,10 +75,10 @@ void NaviMgr::createPSMDirectorUpdator()
  */
 void NaviMgr::resetMgr()
 {
-	MonoObjectMgr::resetMgr(); // should be MonoObjectMgr::resetMgr
-	if (_48) {
-		delete _48;
-		_48 = nullptr;
+	MonoObjectMgr::resetMgr();
+	if (mBackupPSMMgr) {
+		delete mBackupPSMMgr;
+		mBackupPSMMgr = nullptr;
 	}
 	if (mPSMMgr) {
 		delete mPSMMgr;
@@ -93,7 +93,7 @@ void NaviMgr::resetMgr()
  */
 void NaviMgr::killAll()
 {
-	for (int i = 0; i < mMax; i++) {
+	for (int i = 0; i < getMax(); i++) {
 		Navi* navi = &mArray[i];
 		navi->kill(nullptr);
 		if (PSSystem::SingletonBase<PSM::ObjMgr>::sInstance && navi->mSoundObj) {
@@ -107,7 +107,7 @@ void NaviMgr::killAll()
  * Address:	8015AA34
  * Size:	0000F0
  */
-void NaviMgr::setupNavi(Game::Navi* navi)
+void NaviMgr::setupNavi(Navi* navi)
 {
 	navi->mModel       = createModel(navi->mNaviIndex);
 	navi->mParms       = mNaviParms;
@@ -135,7 +135,7 @@ Navi* NaviMgr::birth()
 		P2ASSERTLINE(349, navi->mSoundObj);
 		navi->mSoundObj->init(navi->mNaviIndex);
 		// Use president sounds for navi ID 1
-		if (playData->mStoryFlags & STORY_DebtPaid && navi->mNaviIndex == 1) {
+		if (playData->isStoryFlag(STORY_DebtPaid) && navi->mNaviIndex == NAVIID_Captain2) {
 			navi->mSoundObj->setShacho();
 		}
 	}
@@ -155,20 +155,19 @@ Navi* NaviMgr::birth()
  */
 Navi* NaviMgr::getActiveNavi()
 {
-	Navi* navi1 = getAt(0);
-	Navi* navi2 = getAt(1);
+	Navi* navi1 = getAt(NAVIID_Captain1);
+	Navi* navi2 = getAt(NAVIID_Captain2);
 	if (!navi1 && !navi2) {
 		return nullptr;
 	}
 
-	// navi is considered active if it is controller
+	// navi is considered active if it has a controller initialised
 	if (navi1->mController1) {
 		return navi1;
 	} else if (navi2->mController1) {
 		return navi2;
-	} else {
-		return nullptr;
 	}
+	return nullptr;
 }
 
 /*
@@ -178,13 +177,13 @@ Navi* NaviMgr::getActiveNavi()
  */
 void NaviMgr::loadResources()
 {
-	void* file
-	    = JKRDvdRipper::loadToMainRAM("user/Abe/piki/naviParms.txt", 0, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, 0, 0);
-	if (file) {
-		RamStream stream(file, -1);
+	void* parmsFile = JKRDvdRipper::loadToMainRAM("user/Abe/piki/naviParms.txt", nullptr, Switch_0, 0, nullptr,
+	                                              JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	if (parmsFile) {
+		RamStream stream(parmsFile, -1);
 		stream.resetPosition(true, 1);
 		mNaviParms->read(stream);
-		delete[] file;
+		delete[] parmsFile;
 	}
 	load();
 }
@@ -199,6 +198,7 @@ void NaviMgr::load()
 	P2DEBUG("Before mount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
 	JKRArchive* texts = JKRMountArchive("/user/Kando/piki/texts.szs", JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Tail);
 	P2DEBUG("After mount: %d", JKRGetCurrentHeap()->getTotalFreeSize());
+
 	sys->heapStatusStart("NaviMgr::Archive", nullptr);
 	JKRArchive* arc = JKRMountArchive("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
 	sys->heapStatusEnd("NaviMgr::Archive");
@@ -235,7 +235,7 @@ void NaviMgr::load()
  * Address:	8015B02C
  * Size:	000064
  */
-SysShape::Model* NaviMgr::createModel(int id) { return new SysShape::Model((&mOlimarModel)[id], 0, 2); }
+SysShape::Model* NaviMgr::createModel(int naviID) { return new SysShape::Model((&mOlimarModel)[naviID], 0, 2); }
 
 /*
  * --INFO--
@@ -246,10 +246,10 @@ void NaviMgr::loadResources_float()
 {
 	JKRArchive* arc = JKRArchive::mount("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
 	void* file;
-	if (playData->mStoryFlags & STORY_DebtPaid) {
-		file = arc->getResource("orima_model/syatyou.bmd");
+	if (playData->isStoryFlag(STORY_DebtPaid)) {
+		file = arc->getResource("orima_model/syatyou.bmd"); // president
 	} else {
-		file = arc->getResource("orima_model/orima3.bmd");
+		file = arc->getResource("orima_model/orima3.bmd"); // louie
 	}
 
 	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x20000030);
@@ -269,7 +269,7 @@ void NaviMgr::loadResources_float()
 int NaviMgr::getAliveCount()
 {
 	int alive = 0;
-	for (int i = 0; i < mMax; i++) {
+	for (int i = 0; i < getMax(); i++) {
 		if (mArray[i].isAlive()) {
 			alive++;
 		}
@@ -306,6 +306,7 @@ void NaviMgr::clearDeadCount()
  */
 void NaviMgr::informOrimaDead(int id)
 {
+	// check if already dead
 	for (int i = 0; i < mDeadNavis; i++) {
 		if (mNaviDeadFlags[i] == id) {
 			return;
@@ -329,9 +330,8 @@ Navi* NaviMgr::getDeadOrima(int id)
 {
 	if (mDeadNavis > id) {
 		return getAt(mNaviDeadFlags[id]);
-	} else {
-		return nullptr;
 	}
+	return nullptr;
 }
 
 /*
@@ -341,31 +341,41 @@ Navi* NaviMgr::getDeadOrima(int id)
  */
 Navi* NaviMgr::getAliveOrima(int type)
 {
+	// no captains alive to get
 	if (mDeadNavis == 2) {
 		return nullptr;
-	} else if (mDeadNavis == 1) {
-		int index = 1 - mNaviDeadFlags[0];
-		return (type == 0) ? getAt(index) : nullptr;
+	}
 
-	} else if (mDeadNavis == 0) {
-		Navi* navi1 = getAt(0);
-		Navi* navi2 = getAt(1);
+	// only one captain alive to get
+	if (mDeadNavis == 1) {
+		int index = 1 - mNaviDeadFlags[0];
+
+		// no inactive captain to return, so only return if we want active
+		return (type == ALIVEORIMA_Active) ? getAt(index) : nullptr;
+	}
+
+	// both captains alive
+	if (mDeadNavis == 0) {
+		Navi* olimar = getAt(NAVIID_Captain1);
+		Navi* louie  = getAt(NAVIID_Captain2); // or president
 		Navi* activeNavi;
 		Navi* inactiveNavi;
-		if (navi1->mController1) {
-			activeNavi   = navi1;
-			inactiveNavi = navi2;
-		} else {
-			activeNavi   = navi2;
-			inactiveNavi = navi1;
+
+		if (olimar->mController1) { // olimar's active
+			activeNavi   = olimar;
+			inactiveNavi = louie;
+		} else { // louie or president is active
+			activeNavi   = louie;
+			inactiveNavi = olimar;
 		}
-		if (type == 0) {
+
+		if (type == ALIVEORIMA_Active) {
 			return activeNavi;
 		}
 		return inactiveNavi;
-	} else {
-		return nullptr;
 	}
+
+	return nullptr;
 }
 
 /*
@@ -381,7 +391,7 @@ void NaviMgr::setMovieDraw(bool drawOn)
 		mFlags.unset(0x01);
 	}
 
-	for (int i = 0; i < mMax; i++) {
+	for (int i = 0; i < getMax(); i++) {
 		if (!mOpenIds[i]) {
 			mArray[i].set_movie_draw(drawOn);
 		}
@@ -396,7 +406,7 @@ void NaviMgr::setMovieDraw(bool drawOn)
 void NaviMgr::doAnimation()
 {
 	bool flag = mFlags.isSet(1);
-	for (int i = 0; i < mMax; i++) {
+	for (int i = 0; i < getMax(); i++) {
 		if (mOpenIds[i] == 0 && (flag == 0 || mArray[i].isMovieActor())) {
 			mArray[i].mFaceDirOffset = mArray[i].mFaceDir;
 			mArray[i].update();
@@ -422,17 +432,17 @@ void NaviMgr::doEntry()
 			continue;
 		}
 		if (flag && !mArray[i].isMovieActor()) {
-			mArray[i].mLod.resetFlag(0x34);
+			mArray[i].mLod.resetFlag(AILOD_Visible01);
 		} else if (mArray[i].isMovieActor()) {
-			mArray[i].mLod.setFlag(0x34);
+			mArray[i].mLod.setFlag(AILOD_Visible01);
 		}
 
 		if (vs) {
 			Navi* navi = &mArray[i];
-			if ((int)navi->mNaviIndex == 1 && pikiMgr->mFlags[0] & 1) {
-				navi->mLod.resetFlag(0x10);
-			} else if ((int)navi->mNaviIndex == 0 && pikiMgr->mFlags[0] & 2) {
-				navi->mLod.resetFlag(0x20);
+			if ((int)navi->mNaviIndex == NAVIID_Captain2 && pikiMgr->mFlags[0] & 1) {
+				navi->mLod.resetFlag(AILOD_IsVisVP0);
+			} else if ((int)navi->mNaviIndex == NAVIID_Captain1 && pikiMgr->mFlags[0] & 2) {
+				navi->mLod.resetFlag(AILOD_IsVisVP1);
 			}
 		}
 		mArray[i].doEntry();
@@ -446,7 +456,7 @@ void NaviMgr::doEntry()
  */
 void NaviMgr::doSimulation(f32 rate)
 {
-	MonoObjectMgr::doSimulation(rate); // should be MonoObjectMgr::doSimulation
+	MonoObjectMgr::doSimulation(rate);
 	if (gameSystem->isChallengeMode() || mPSMMgr) {
 		Iterator<Navi> iterator(this);
 		CI_LOOP(iterator)

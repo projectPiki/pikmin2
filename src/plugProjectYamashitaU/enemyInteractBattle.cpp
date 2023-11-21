@@ -58,7 +58,7 @@ bool InteractAttack::actEnemy(EnemyBase* enemy)
 	if (!enemy->isEvent(0, EB_Invulnerable)) {
 		bool flag = false;
 		if (mCreature->isNavi()) {
-			if (static_cast<Navi*>(mCreature)->mNaviIndex == 0) {
+			if (static_cast<Navi*>(mCreature)->mNaviIndex == NAVIID_Olimar) {
 				if (!enemy->isEvent(0, EB_AttackingNavi0)) {
 					flag = true;
 					enemy->enableEvent(0, EB_AttackingNavi0);

@@ -948,15 +948,15 @@ void GameState::update_GameChallenge(VsGameSection* section)
 		disp.mFloorExtendTimer   = mFloorExtendTimer;
 		disp.mTimeLimit          = section->mTimeLimit;
 
-		Navi* olimar                    = naviMgr->getAt(0);
-		disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
+		Navi* olimar                    = naviMgr->getAt(NAVIID_Olimar);
+		disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[NAVIID_Olimar];
 		disp.mOlimarData.mNextThrowPiki = olimar->ogGetNextThrowPiki();
 		disp.mOlimarData.mDope1Count    = playData->getDopeCount(1);
 		disp.mOlimarData.mDope0Count    = playData->getDopeCount(0);
 		disp.mOlimarData.mNaviLifeRatio = olimar->getLifeRatio();
 
-		Navi* louie                    = naviMgr->getAt(1);
-		disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
+		Navi* louie                    = naviMgr->getAt(NAVIID_Louie);
+		disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[NAVIID_Louie];
 		disp.mLouieData.mNextThrowPiki = louie->ogGetNextThrowPiki();
 		disp.mLouieData.mDope1Count    = playData->getDopeCount(1);
 		disp.mLouieData.mDope0Count    = playData->getDopeCount(0);
@@ -999,15 +999,15 @@ void GameState::update_GameChallenge(VsGameSection* section)
 
 		og::Screen::DispMemberVs disp;
 
-		Navi* olimar                    = naviMgr->getAt(0);
-		disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[0];
+		Navi* olimar                    = naviMgr->getAt(NAVIID_Olimar);
+		disp.mOlimarData.mFollowPikis   = GameStat::formationPikis.mCounter[NAVIID_Olimar];
 		disp.mOlimarData.mNextThrowPiki = olimar->ogGetNextThrowPiki();
 		disp.mOlimarData.mDope1Count    = olimar->getDopeCount(1);
 		disp.mOlimarData.mDope0Count    = olimar->getDopeCount(0);
 		disp.mOlimarData.mNaviLifeRatio = olimar->getLifeRatio();
 
-		Navi* louie                    = naviMgr->getAt(1);
-		disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[1];
+		Navi* louie                    = naviMgr->getAt(NAVIID_Louie);
+		disp.mLouieData.mFollowPikis   = GameStat::formationPikis.mCounter[NAVIID_Louie];
 		disp.mLouieData.mNextThrowPiki = louie->ogGetNextThrowPiki();
 		disp.mLouieData.mDope1Count    = louie->getDopeCount(1);
 		disp.mLouieData.mDope0Count    = louie->getDopeCount(0);

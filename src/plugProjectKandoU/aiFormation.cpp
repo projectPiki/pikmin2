@@ -170,7 +170,7 @@ void ActFormation::setFormed()
 	}
 
 	Game::Navi* navi = mParent->mNavi;
-	int index        = 0;
+	int index        = NAVIID_Olimar;
 	if (navi) {
 		index = navi->mNaviIndex;
 	}

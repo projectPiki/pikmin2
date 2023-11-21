@@ -195,7 +195,7 @@ void ObjSMenuMap::tuningIcon()
 {
 	if (mDisp->mActiveNavi) {
 		Game::Navi* navi = Game::naviMgr->getActiveNavi();
-		if ((int)navi->mNaviIndex == 0) {
+		if ((int)navi->mNaviIndex == NAVIID_Olimar) {
 			if (mLouieArrow)
 				mMapTexPane->appendChild(mLouieArrow);
 			if (mOlimarArrow)

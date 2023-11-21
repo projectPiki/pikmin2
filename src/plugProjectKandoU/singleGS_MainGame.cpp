@@ -27,6 +27,11 @@
 #include "nans.h"
 #include "utilityU.h"
 
+#define LOUIE_START_X   (-1260.0f)
+#define LOUIE_START_Y   (-80.0f)
+#define LOUIE_START_Z   (4350.0f)
+#define LOUIE_START_DIR (7.6969f) // in radians (even though this is above tau lol). it's like 81 degrees.
+
 static const u32 padding[]    = { 0, 0, 0 };
 static const char className[] = "SingleGS_Game";
 
@@ -51,12 +56,12 @@ void GameState::init(SingleGameSection* game, StateArg* arg)
 
 	// Refill each captain life if they arent dead
 	if (!(playData->mDeadNaviID & 1)) {
-		playData->mNaviLifeMax[0] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
-		naviMgr->getAt(0)->setLifeMax();
+		playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
+		naviMgr->getAt(NAVIID_Olimar)->setLifeMax();
 	}
 	if (!(playData->mDeadNaviID >> 1 & 1)) {
-		playData->mNaviLifeMax[1] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
-		naviMgr->getAt(1)->setLifeMax();
+		playData->mNaviLifeMax[NAVIID_Louie] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
+		naviMgr->getAt(NAVIID_Louie)->setLifeMax();
 	}
 
 	GameArg* castedArg = static_cast<GameArg*>(arg);
@@ -381,7 +386,7 @@ void GameState::on_demo_timer(SingleGameSection* game, u32 id)
 				return;
 			char* name = const_cast<char*>(game->mCurrentCourseInfo->mName);
 			MoviePlayArg moviePlayArg("g33_camera_demo", name, game->mMovieFinishCallback, 0);
-			Navi* navi = naviMgr->getAt(0);
+			Navi* navi = naviMgr->getAt(NAVIID_Olimar);
 			if (!navi) {
 				navi = naviMgr->getActiveNavi();
 			}
@@ -1321,9 +1326,9 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 	// After start of day 1 cutscene
 	if (config->is("x01_gamestart")) {
 		// Le funny hardcoded louie day 1 position
-		Navi* louie = naviMgr->getAt(1);
-		Vector3f pos(-1260.0f, -80.0f, 4350.0f);
-		louie->mFaceDir = roundAng(7.6969f);
+		Navi* louie = naviMgr->getAt(NAVIID_Louie);
+		Vector3f pos(LOUIE_START_X, LOUIE_START_Y, LOUIE_START_Z);
+		louie->mFaceDir = roundAng(LOUIE_START_DIR);
 		pos.y           = mapMgr->getMinY(pos);
 		louie->setPosition(pos, false);
 		louie->mFsm->transit(louie, 0, nullptr);
@@ -1454,7 +1459,7 @@ void GameState::onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u
 		Screen::gGame2DMgr->close_GameOver();
 		naviMgr->getAt(id)->setDeadLaydown();
 		if (naviMgr->mDeadNavis != 2) {
-			if ((int)id == 0) {
+			if ((int)id == NAVIID_Olimar) {
 				gameSystem->mSection->setPlayerMode(1);
 			} else {
 				gameSystem->mSection->setPlayerMode(0);

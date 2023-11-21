@@ -85,7 +85,7 @@ int J3DModel::createShapePacket(J3DModelData* data)
  * Address:	80066500
  * Size:	0001D8
  */
-int J3DModel::createMatPacket(J3DModelData* data, u32 p2)
+int J3DModel::createMatPacket(J3DModelData* data, u32 flags)
 {
 	if (data->mMaterialTable.mMaterialNum != 0) {
 		mMatPackets = new J3DMatPacket[data->mMaterialTable.mMaterialNum];
@@ -103,11 +103,11 @@ int J3DModel::createMatPacket(J3DModelData* data, u32 p2)
 		if (data->mJointTree.mFlags == 1) {
 			matPacket->mFlags = matPacket->mFlags | 1;
 		}
-		if ((p2 & 0x80000) != 0) {
+		if ((flags & 0x80000) != 0) {
 			matPacket->mDisplayList = material->mSharedDLObj;
 		} else {
 			if (data->mJointTree.mFlags == 1) {
-				if ((p2 & 0x40000) != 0) {
+				if ((flags & 0x40000) != 0) {
 					matPacket->mDisplayList = material->mSharedDLObj;
 				} else {
 					J3DDisplayListObj* dl = material->mSharedDLObj;
@@ -117,8 +117,8 @@ int J3DModel::createMatPacket(J3DModelData* data, u32 p2)
 					}
 					matPacket->mDisplayList = dl;
 				}
-			} else if ((p2 & 0x20000) != 0) {
-				if ((p2 & 0x40000) != 0) {
+			} else if ((flags & 0x20000) != 0) {
+				if ((flags & 0x40000) != 0) {
 					material->newSingleSharedDisplayList(material->countDLSize());
 					matPacket->mDisplayList = material->mSharedDLObj;
 				} else {
@@ -128,7 +128,7 @@ int J3DModel::createMatPacket(J3DModelData* data, u32 p2)
 					matPacket->mDisplayList = dl;
 				}
 			} else {
-				if ((p2 & 0x40000) != 0) {
+				if ((flags & 0x40000) != 0) {
 					matPacket->newSingleDisplayList(material->countDLSize());
 				} else {
 					matPacket->newDisplayList(material->countDLSize());

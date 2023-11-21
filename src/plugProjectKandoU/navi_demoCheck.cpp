@@ -101,7 +101,7 @@ bool Navi::demoCheck()
 	if (ItemOnyon::mgr) {
 
 		// find red onion cutscene, only Louie can trigger it
-		if (!playData->isDemoFlag(DEMO_Louie_Finds_Red_Onion) && mNaviIndex == 1) {
+		if (!playData->isDemoFlag(DEMO_Louie_Finds_Red_Onion) && mNaviIndex == NAVIID_Louie) {
 			Onyon* onyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
 			if (onyon) {
 				Vector3f onyonpos = onyon->getPosition();

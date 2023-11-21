@@ -29,6 +29,14 @@ enum NaviIndex {
 	NAVIID_Olimar    = 0,
 	NAVIID_Louie     = 1,
 	NAVIID_President = 2,
+
+	NAVIID_Captain1 = NAVIID_Olimar, // 0, always olimar
+	NAVIID_Captain2 = NAVIID_Louie,  // 1, louie or president
+};
+
+enum AliveOrimaType {
+	ALIVEORIMA_Active   = 0,
+	ALIVEORIMA_Inactive = 1,
 };
 
 #define GET_OTHER_NAVI(navi) (1 - (navi)->mNaviIndex)
@@ -219,6 +227,8 @@ struct Navi : public FakePiki, virtual public PelletView {
 		mController2 = control;
 	}
 
+	inline int getNaviID() { return mNaviIndex; }
+
 	// inline NaviState* getCurrentState() { return mCurrentState; }
 
 	inline void setControlFlag(u16 flag) { mNaviControlFlag.typeView |= flag; }
@@ -285,41 +295,44 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	virtual ~NaviMgr(); // _08 (weak)
 
 	// vtable 2 (MonoObjectMgr, _00)
-	virtual void doAnimation();        // _64 (weak, thunk at _34)
-	virtual void doEntry();            // _68 (weak, thunk at _38)
-	virtual void doSimulation(f32 p1); // _74 (weak, thunk at _44)
-	virtual Navi* birth();             // _7C
-	virtual void resetMgr();           // _80 (weak, thunk at _54)
+	virtual void doAnimation();          // _64 (thunk at _34)
+	virtual void doEntry();              // _68 (thunk at _38)
+	virtual void doSimulation(f32 rate); // _74 (thunk at _44)
+	virtual Navi* birth();               // _7C
+	virtual void resetMgr();             // _80 (thunk at _54)
 
 	// vtable 3 (JKRDisposer + self, _30)
 	virtual void killAll();                          // _98
 	virtual char* getMgrName() { return "NaviMgr"; } // _9C (weak)
 	virtual bool frozenable() { return false; }      // _A0 (weak, thunk at _5C in vt 2)
-	virtual void loadResources();                    // _A4 (weak, thunk at _50 in vt 2)
+	virtual void loadResources();                    // _A4 (thunk at _50 in vt 2)
 
 	void clearDeadCount();
-	SysShape::Model* createModel(int);
+	SysShape::Model* createModel(int naviID);
 	void createPSMDirectorUpdator();
 	Navi* getActiveNavi();
 	int getAliveCount();
-	Navi* getAliveOrima(int);
-	Navi* getDeadOrima(int);
-	void informOrimaDead(int);
+	Navi* getAliveOrima(int aliveOrimaType); // see AliveOrimaType enum; 0 = get active, 1 = get inactive
+	Navi* getDeadOrima(int deadID);          // 0 for first dead, 1 for second dead
+	void informOrimaDead(int naviID);
 	void load();
 	void loadResources_float();
-	void setMovieDraw(bool);
+	void setMovieDraw(bool isMoviePlaying);
 	void setupSoundViewerAndBas();
-	void setupNavi(Navi*);
+	void setupNavi(Navi* navi);
 
 	// Unused/inlined:
-	unknown init();
+	void init();
 	Navi* getSurviveNavi();
-	unknown draw2d(J2DGrafContext&);
+	void draw2d(J2DGrafContext&);
 
 	static SysShape::AnimMgr* animMgr;
 
-	// VT 3 pointer is at _30
-	PSM::DirectorUpdator* _48;               // _48 (appears to be completely unused)
+	// _00     = VTBL 1 + 2
+	// _00-_30 = MonoObjectMgr
+	// _30     = VTBL 3
+	// _30-_48 = JKRDisposer
+	PSM::DirectorUpdator* mBackupPSMMgr;     // _48 (appears to be completely unused)
 	PSM::DirectorUpdator* mPSMMgr;           // _4C (used for damage taking bgm mix)
 	int mDeadNavis;                          // _50
 	int mNaviDeadFlags[2];                   // _54 (seems to translate the order of killed captains to their ids?)
@@ -329,7 +342,7 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	J3DModelData* mOlimarModel;              // _B0
 	J3DModelData* mLouieModel;               // _B4 (also president model)
 	J3DModelData* mCursorModelData;          // _B8
-	u8 _BC[8];                               // _BC
+	u8 _BC[8];                               // _BC, unused?
 	J3DModelData* mMarkerModelData;          // _C4
 	NaviParms* mNaviParms;                   // _C8
 	CollPartFactory* mCollData;              // _CC

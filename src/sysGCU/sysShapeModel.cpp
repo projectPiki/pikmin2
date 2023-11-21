@@ -14,9 +14,9 @@ int Model::cullCount;
  * Address:	8043E1D8
  * Size:	0000C4
  */
-Model::Model(J3DModelData* data, u32 p2, u32 modelType)
+Model::Model(J3DModelData* data, u32 flags, u32 modelType)
 {
-	mJ3dModel   = new J3DModel(data, p2, modelType);
+	mJ3dModel   = new J3DModel(data, flags, modelType);
 	mJointCount = mJ3dModel->mModelData->getJointNum();
 	initJoints();
 	_05          = 1;

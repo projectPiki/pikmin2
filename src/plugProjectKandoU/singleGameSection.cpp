@@ -1297,8 +1297,8 @@ bool SingleGameSection::updateCaveMenus()
 	if (flag & 1) {
 		switch (Screen::gGame2DMgr->check_CaveInMenu()) {
 		case 1:
-			playData->mNaviLifeMax[0] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
-			playData->mNaviLifeMax[1] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
+			playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
+			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
 			gameSystem->setPause(false, "cave-yes", 3);
 			gameSystem->setMoviePause(false, "cave-yes");
 			mOpenMenuFlags &= ~1;
@@ -1317,8 +1317,8 @@ bool SingleGameSection::updateCaveMenus()
 	} else if (flag & 2) {
 		switch (Screen::gGame2DMgr->check_CaveMoreMenu()) {
 		case 1:
-			playData->mNaviLifeMax[0] = naviMgr->getAt(0)->mHealth;
-			playData->mNaviLifeMax[1] = naviMgr->getAt(1)->mHealth;
+			playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->getAt(NAVIID_Olimar)->mHealth;
+			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->getAt(NAVIID_Louie)->mHealth;
 			gameSystem->setPause(false, "more-yes", 3);
 			gameSystem->setMoviePause(false, "more-yes");
 			mOpenMenuFlags &= ~2;
@@ -1636,7 +1636,7 @@ void SingleGameSection::createFallPikmins()
 	Vector3f origin;
 	mapMgr->getStartPosition(origin, 0);
 	playData->mCaveSaveData.mCavePikis.dump("createFallPikmins");
-	Navi* navi = naviMgr->getAliveOrima(0);
+	Navi* navi = naviMgr->getAliveOrima(ALIVEORIMA_Active);
 	if (navi) {
 		origin = navi->getPosition();
 	}
@@ -1995,7 +1995,7 @@ void SingleGameSection::setDispMemberSMenu(og::Screen::DispMemberSMenuAll& disp)
 {
 	// General data
 	Navi* navi = naviMgr->getActiveNavi();
-	int id     = 0;
+	int id     = NAVIID_Olimar;
 	if (navi) {
 		id = navi->mNaviIndex;
 	}

@@ -66,8 +66,8 @@ void CaveState::init(SingleGameSection* game, StateArg* arg)
 	game->setCamController();
 
 	// if olimar and louie are both alive, set louie to be in olimars party
-	Navi* olimar = naviMgr->getAt(0);
-	Navi* louie  = naviMgr->getAt(1);
+	Navi* olimar = naviMgr->getAt(NAVIID_Olimar);
+	Navi* louie  = naviMgr->getAt(NAVIID_Louie);
 	if (olimar->isAlive() && louie->isAlive()) {
 		InteractFue act(olimar, false, true);
 		louie->stimulate(act);
@@ -517,7 +517,7 @@ void CaveState::onOrimaDown(SingleGameSection* game, int naviID)
 	arg.mDelegateStart = game->mMovieStartCallback;
 
 	moviePlayer->mTargetNavi = naviMgr->getAt(naviID);
-	if (naviID == 0) {
+	if (naviID == NAVIID_Olimar) {
 		moviePlayer->mActingCamera = game->mOlimarCamera;
 	} else {
 		moviePlayer->mActingCamera = game->mLouieCamera;
@@ -552,7 +552,7 @@ void CaveState::onFountainReturn(SingleGameSection* game, ItemBigFountain::Item*
  */
 void CaveState::onNextFloor(SingleGameSection* game, ItemHole::Item* hole)
 {
-	BlackMan::Obj* waterwraith = ((RoomMapMgr*)mapMgr)->mBlackMan;
+	BlackMan::Obj* waterwraith = ((RoomMapMgr*)mapMgr)->mWraith;
 	if (waterwraith) {
 		if (waterwraith->isAlive()) {
 			playData->mCaveSaveData.mWaterwraithTimer = waterwraith->getTimer();

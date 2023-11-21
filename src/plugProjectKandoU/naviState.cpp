@@ -647,13 +647,13 @@ void NaviWalkState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 	}
 
 	if (event.mAnimIdx == IPikiAnims::JUMP && event.mType == KEYEVENT_200) {
-		if (navi->mNaviIndex == 0) {
+		if (navi->mNaviIndex == NAVIID_Olimar) { // olimar
 			navi->mSoundObj->startSound(PSSE_PL_WAIT_LAND_ORIMA, 0);
 
-		} else if (playData->isStoryFlag(STORY_DebtPaid)) {
+		} else if (playData->isStoryFlag(STORY_DebtPaid)) { // president
 			navi->mSoundObj->startSound(PSSE_PL_WAIT_LAND_SHACHO, 0);
 
-		} else {
+		} else { // louie
 			navi->mSoundObj->startSound(PSSE_PL_WAIT_LAND_LUGI, 0);
 		}
 	}
@@ -872,7 +872,7 @@ void NaviWalkState::initAI_animation(Navi* navi)
 	}
 
 	int naviIdx = navi->mNaviIndex;
-	if (naviIdx == 1 && gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
+	if (naviIdx == NAVIID_Captain2 && gameSystem->isStoryMode() && playData->isStoryFlag(STORY_DebtPaid)) {
 		naviIdx++;
 	}
 

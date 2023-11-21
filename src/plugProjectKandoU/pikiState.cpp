@@ -5963,7 +5963,7 @@ void PikiGrowupState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 			piki->startSound(PSSE_PK_FLOWER_VOICE, true);
 			if (piki->getCurrActionID() == 0) {
 				if (!piki->mNavi) {
-					piki->mNavi = naviMgr->getAliveOrima(0);
+					piki->mNavi = naviMgr->getAliveOrima(ALIVEORIMA_Active);
 				}
 
 				piki->mNavi->mCPlateMgr->changeFlower(piki);

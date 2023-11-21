@@ -19,7 +19,7 @@ struct BaseAnimator;
  * @size{0x14}
  */
 struct Model : public MtxObject {
-	Model(J3DModelData* data, u32 p2, u32 modelType);
+	Model(J3DModelData* data, u32 flags, u32 modelType);
 
 	virtual Matrixf* getMatrix(int jointIndex);                    // _08
 	virtual bool isModel() { return true; }                        // _0C (weak)

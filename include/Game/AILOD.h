@@ -13,6 +13,8 @@ enum AILODFlags {
 	AILOD_IsVisVP1   = 0x20, // is visible in viewport 1
 	AILOD_IsVisVP2   = 0x40, // is visible in viewport 2
 	AILOD_IsVisVP3   = 0x80, // is visible in viewport 3
+
+	AILOD_Visible01 = AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1, // set visible for both main viewports
 };
 
 namespace Game {

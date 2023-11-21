@@ -355,8 +355,8 @@ void VsGameSection::initPlayData()
 {
 	playData->reset();
 	playData->setDevelopSetting(true, true);
-	playData->mNaviLifeMax[0] = naviMgr->mNaviParms->mNaviParms.mMaxHealth.mValue;
-	playData->mNaviLifeMax[1] = naviMgr->mNaviParms->mNaviParms.mMaxHealth.mValue;
+	playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->mNaviParms->mNaviParms.mMaxHealth.mValue;
+	playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->mNaviParms->mNaviParms.mMaxHealth.mValue;
 }
 
 /*
@@ -599,8 +599,8 @@ bool VsGameSection::updateCaveMenus()
 			break;
 
 		case 1:
-			playData->mNaviLifeMax[0] = naviMgr->getAt(0)->mHealth;
-			playData->mNaviLifeMax[1] = naviMgr->getAt(1)->mHealth;
+			playData->mNaviLifeMax[NAVIID_Olimar] = naviMgr->getAt(NAVIID_Olimar)->mHealth;
+			playData->mNaviLifeMax[NAVIID_Louie]  = naviMgr->getAt(NAVIID_Louie)->mHealth;
 			gameSystem->setPause(false, "more-yes", 3);
 			gameSystem->setMoviePause(false, "more-yes");
 			mMenuFlags &= ~2;
@@ -694,7 +694,7 @@ void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int param_2)
 	Vector3f start;
 	mapMgr->getStartPosition(start, param_2);
 	setPikmin.dump("createFallPikmins");
-	Navi* orima = naviMgr->getAt(0);
+	Navi* orima = naviMgr->getAt(NAVIID_Olimar);
 	start       = orima->getPosition();
 	start.y     = mapMgr->getMinY(start);
 	for (int color = FirstPikmin; color < PikiColorCount; color++) {
@@ -794,10 +794,10 @@ void VsGameSection::createVsPikmins()
 			pelletIter.next();
 		}
 	}
-	Navi* orima            = naviMgr->getAt(0);
+	Navi* orima            = naviMgr->getAt(NAVIID_Olimar);
 	orima->mSprayCounts[0] = mVsStageData->mStartNumSpicy;
 	orima->mSprayCounts[1] = mVsStageData->mStartNumBitter;
-	Navi* luji             = naviMgr->getAt(1);
+	Navi* luji             = naviMgr->getAt(NAVIID_Louie);
 	luji->mSprayCounts[0]  = mVsStageData->mStartNumSpicy;
 	luji->mSprayCounts[1]  = mVsStageData->mStartNumBitter;
 }

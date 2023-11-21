@@ -51,10 +51,10 @@ Creature* ObjectSystem::findCreature(const char* query) const
 	}
 
 	if (!strcmp(stringBuffer, "theOrima")) {
-		creature = naviMgr->getAt(0);
+		creature = naviMgr->getAt(NAVIID_Olimar);
 
 	} else if (!strcmp(stringBuffer, "theLouie")) {
-		creature = naviMgr->getAt(1);
+		creature = naviMgr->getAt(NAVIID_Louie);
 
 	} else if (!strcmp(stringBuffer, "orimaAlive")) {
 		int i = targetChar - '1';

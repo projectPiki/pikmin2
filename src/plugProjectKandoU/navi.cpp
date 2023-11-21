@@ -164,7 +164,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	Vector3f navi_scale; // navi model scale
 	navi_scale = Vector3f(OLIMAR_SCALE);
 
-	if (mNaviIndex == 1) { // case for Louie/President scale
+	if (mNaviIndex == NAVIID_Louie) { // case for Louie/President scale
 		navi_scale = Vector3f(LOUIE_SCALE);
 	}
 
@@ -184,7 +184,7 @@ void Navi::onSetPosition(Vector3f& position)
 	mPosition = position;
 	static_cast<FakePiki*>(this)->onSetPosition(); // dumb.
 
-	if (mNaviIndex == 0) { // olimar
+	if (mNaviIndex == NAVIID_Olimar) { // olimar
 		Radar::Mgr::entry(this, Radar::MAP_OLIMAR, 0);
 
 	} else { // louie/president
@@ -1292,7 +1292,7 @@ SysShape::Model* Navi::viewGetShape() { return mModel; }
  * Address:	80141744
  * Size:	00001C
  */
-f32 Navi::viewGetBaseScale() { return mNaviIndex == 0 ? 1.3f : 1.5f; }
+f32 Navi::viewGetBaseScale() { return mNaviIndex == NAVIID_Olimar ? 1.3f : 1.5f; }
 
 /*
  * --INFO--
@@ -1853,7 +1853,7 @@ f32 Navi::getLifeRatio() { return mHealth / naviMgr->mNaviParms->mNaviParms.mMax
  */
 int Navi::getDownfloorMass()
 {
-	NaviState* curState = getCurrentState();
+	NaviState* curState = mCurrentState;
 
 	int id;
 	if (curState) {
@@ -2575,9 +2575,9 @@ void Navi::setDeadLaydown()
 	}
 
 	Vector3f offset;
-	if (mNaviIndex == 0) {
+	if (mNaviIndex == NAVIID_Olimar) { // olimar
 		offset = (-170.0f, 0.0f, 40.0f);
-	} else {
+	} else { // louie/president
 		offset = (-190.0f, 0.0f, 10.0f);
 	}
 	if (mapMgr->getDemoMatrix()) {
@@ -4450,7 +4450,7 @@ void Navi::clearThrowDisable() { mThrowTimer = 0; }
  */
 void Navi::holeinAllPikis(Vector3f& pos)
 {
-	naviMgr->getAliveOrima(0);
+	naviMgr->getAliveOrima(ALIVEORIMA_Active);
 	Piki* buffer[100];
 
 	Iterator<Creature> iterator(mCPlateMgr);
@@ -4691,7 +4691,7 @@ void Navi::holeinAllPikis(Vector3f& pos)
  */
 void Navi::fountainonAllPikis(Vector3f& pos)
 {
-	naviMgr->getAliveOrima(0);
+	naviMgr->getAliveOrima(ALIVEORIMA_Active);
 	Piki* buffer[100];
 
 	Iterator<Creature> iterator(mCPlateMgr);
