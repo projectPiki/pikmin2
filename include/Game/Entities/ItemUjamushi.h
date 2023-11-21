@@ -30,7 +30,7 @@ struct InitArg : public CreatureInitArg {
 	virtual const char* getName() { return "ItemUjamushi::InitArg"; } // _08 (weak)
 
 	// _00     = VTBL
-	int _04; // _04
+	int mCount; // _04
 };
 
 struct FSM : public ItemFSM<Item> {
@@ -198,7 +198,7 @@ struct Uja : public TFlock {
 	u8 _AD;                       // _AD
 	u8 _AE;                       // _AE
 	u8 _AF;                       // _AF, unknown/padding
-	u8 _B0[0x4];                  // _B0, unknown
+	u32 _B0;                      // _B0, unknown
 	f32 _B4;                      // _B4
 	f32 _B8;                      // _B8
 	int mBufferSlotCount;         // _BC
@@ -207,9 +207,17 @@ struct Uja : public TFlock {
 };
 
 struct UjaMgrInitArg {
+	inline UjaMgrInitArg(Vector3f& pos, f32 rad, BoidParameter* boid, UjaParms* parms)
+	{
+		mSphere.mPosition = pos;
+		mSphere.mRadius   = rad;
+		mBoidParameter    = boid;
+		mUjaParms         = parms;
+	}
+
 	Sys::Sphere mSphere;           // _00
 	BoidParameter* mBoidParameter; // _10
-	u32 _14;                       // _14
+	UjaParms* mUjaParms;           // _14, same as the parameters at _310 in UjaMgr
 };
 
 struct UjaMgr : public TFlockMgr<Uja> {
@@ -239,7 +247,7 @@ struct UjaMgr : public TFlockMgr<Uja> {
 	f32 _A0;                       // _A0
 	BoidParameter* mBoidParameter; // _A4
 	BoidParms mBoidParms;          // _A8
-	void* _310;                    // _310, this is a pointer to parameters of some description.
+	UjaParms* mUjaParms;           // _310, this is a pointer to parameters of some description, UjaParms is a guess
 };
 
 struct Item : public FSMItem<Item, FSM, State> {
@@ -259,7 +267,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	virtual void onInit(CreatureInitArg* initArg);                                        // _30
 	virtual BaseFlockMgr* getFlockMgr() { return static_cast<BaseFlockMgr*>(mFlockMgr); } // _90 (weak)
-	virtual bool isCollisionFlick();                                                      // _B0 (weak)
+	virtual bool isCollisionFlick() { return false; }                                     // _B0 (weak)
 	virtual bool ignoreAtari(Creature* toIgnore);                                         // _190
 	virtual void makeTrMatrix() { }                                                       // _1C4 (weak)
 	virtual void doAI();                                                                  // _1C8
@@ -325,9 +333,10 @@ extern Mgr* mgr;
 } // namespace Game
 
 struct GenUjamushiParm : public Game::GenItemParm {
+	inline GenUjamushiParm() { mCount = 100; }
 
 	// _00     = VTBL
-	int _04; // _04
+	int mCount; // _04
 };
 
 #endif

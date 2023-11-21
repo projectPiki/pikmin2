@@ -119,6 +119,13 @@ inline Vector3f getDirection(f32 angle)
 	Vector3f vec = Vector3f(sinf(angle), 0.0f, cosf(angle));
 	return vec;
 }
+
+inline Vector3f getDirection(f32 angle, f32 rad)
+{
+	Vector3f vec = Vector3f(rad * sinf(angle), 0.0f, rad * cosf(angle));
+	return vec;
+}
+
 inline Vector3f getPerpDirection(f32 angle) { return Vector3f(cosf(angle), 0.0f, -sinf(angle)); }
 
 inline Vector3f getDirectionMori(f32 angle)

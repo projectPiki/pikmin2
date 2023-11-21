@@ -37,7 +37,6 @@ BoidParms::BoidParms()
 {
 }
 
-#pragma dont_inline on
 /*
  * --INFO--
  * Address:	80205DFC
@@ -45,24 +44,23 @@ BoidParms::BoidParms()
  */
 void BoidParms::blendTo(BoidParms& blendParms, BoidParms& outParms, f32 blendFactor)
 {
-	f32 comp                           = 1.0f - blendFactor;
-	outParms.mCohesion.mValue          = comp * mCohesion.mValue + blendFactor * blendParms.mCohesion.mValue;
-	outParms.mAlignment.mValue         = comp * mAlignment.mValue + blendFactor * blendParms.mAlignment.mValue;
-	outParms.mSeparation.mValue        = comp * mSeparation.mValue + blendFactor * blendParms.mSeparation.mValue;
-	outParms.mBounds.mValue            = comp * mBounds.mValue + blendFactor * blendParms.mBounds.mValue;
-	outParms.mTarget.mValue            = comp * mTarget.mValue + blendFactor * blendParms.mTarget.mValue;
-	outParms.mRandom.mValue            = comp * mRandom.mValue + blendFactor * blendParms.mRandom.mValue;
-	outParms.mGoHome.mValue            = comp * mGoHome.mValue + blendFactor * blendParms.mGoHome.mValue;
-	outParms.mPiki.mValue              = comp * mPiki.mValue + blendFactor * blendParms.mPiki.mValue;
-	outParms.mNavi.mValue              = comp * mNavi.mValue + blendFactor * blendParms.mNavi.mValue;
-	outParms.mCollision.mValue         = comp * mCollision.mValue + blendFactor * blendParms.mCollision.mValue;
-	outParms.mMaxSpeed.mValue          = comp * mMaxSpeed.mValue + blendFactor * blendParms.mMaxSpeed.mValue;
-	outParms.mFov.mValue               = comp * mFov.mValue + blendFactor * blendParms.mFov.mValue;
-	outParms.mDistance.mValue          = comp * mDistance.mValue + blendFactor * blendParms.mDistance.mValue;
-	outParms.mRotationPerSecond.mValue = comp * mRotationPerSecond.mValue + blendFactor * blendParms.mRotationPerSecond.mValue;
-	outParms.mRandomAngle.mValue       = comp * mRandomAngle.mValue + blendFactor * blendParms.mRandomAngle.mValue;
+	f32 comp                      = 1.0f - blendFactor;
+	outParms.mCohesion()          = comp * mCohesion() + blendFactor * blendParms.mCohesion();
+	outParms.mAlignment()         = comp * mAlignment() + blendFactor * blendParms.mAlignment();
+	outParms.mSeparation()        = comp * mSeparation() + blendFactor * blendParms.mSeparation();
+	outParms.mBounds()            = comp * mBounds() + blendFactor * blendParms.mBounds();
+	outParms.mTarget()            = comp * mTarget() + blendFactor * blendParms.mTarget();
+	outParms.mRandom()            = comp * mRandom() + blendFactor * blendParms.mRandom();
+	outParms.mGoHome()            = comp * mGoHome() + blendFactor * blendParms.mGoHome();
+	outParms.mPiki()              = comp * mPiki() + blendFactor * blendParms.mPiki();
+	outParms.mNavi()              = comp * mNavi() + blendFactor * blendParms.mNavi();
+	outParms.mCollision()         = comp * mCollision() + blendFactor * blendParms.mCollision();
+	outParms.mMaxSpeed()          = comp * mMaxSpeed() + blendFactor * blendParms.mMaxSpeed();
+	outParms.mFov()               = comp * mFov() + blendFactor * blendParms.mFov();
+	outParms.mDistance()          = comp * mDistance() + blendFactor * blendParms.mDistance();
+	outParms.mRotationPerSecond() = comp * mRotationPerSecond() + blendFactor * blendParms.mRotationPerSecond();
+	outParms.mRandomAngle()       = comp * mRandomAngle() + blendFactor * blendParms.mRandomAngle();
 }
-#pragma dont_inline reset
 
 /*
  * --INFO--
@@ -113,6 +111,7 @@ void BoidParameter::newParms()
  */
 void BoidParameter::write(Stream& output)
 {
+	output.textWriteText("\t# num parms\r\n");
 	// UNUSED FUNCTION
 }
 
@@ -145,7 +144,7 @@ void BoidParameter::read(Stream& input)
  */
 UjaParms::UjaParms()
     : Parameters(nullptr, "UjaParms")
-    , mU001(this, 'u001', "表示スケール", 0.3f, 0.1f, 1.0f)    // 'display scale'
+    , mU001(this, 'u001', "表\示スケール", 0.3f, 0.1f, 1.0f)   // 'display scale'
     , mU002(this, 'u002', "謎 Multiply", 1.0f, 0.0f, 200.0f)   // 'mystery multiply' (lmao)
     , mU003(this, 'u003', "ライフ", 0.0f, 0.0f, 600.0f)        // 'life'
     , mU004(this, 'u004', "モーション速度", 0.5f, 0.0f, 10.0f) // 'motion speed'
@@ -177,7 +176,18 @@ Uja::Uja()
  */
 void Uja::init(Mgr* mgr, Vector3f& pos)
 {
+	// this is wrong but it's a placeholder for floats
+	_70 = TAU * randFloat();
+	_84 = Vector3f(0.0f);
+	_90 = Vector3f(0.0f);
+	_9C = Vector3f(0.0f);
 
+	_AC = 0;
+
+	_AD = (int)(100.0f * randFloat()) + 20;
+	_B0 = 0;
+	_AE = 0;
+	_B4 = 0.0f;
 	// UNUSED FUNCTION
 }
 
@@ -213,27 +223,6 @@ void Uja::clearBuffer()
 		mPikiBuffer[i]     = nullptr;
 		mPikiDistBuffer[i] = 12800.0f;
 	}
-	/*
-	li       r6, 0
-	lfs      f0, lbl_80519E28@sda21(r2)
-	mr       r5, r6
-	li       r7, 0
-	b        lbl_802062D4
-
-lbl_802062BC:
-	lwz      r4, 0xc0(r3)
-	addi     r7, r7, 1
-	stwx     r5, r4, r6
-	lwz      r4, 0xc4(r3)
-	stfsx    f0, r4, r6
-	addi     r6, r6, 4
-
-lbl_802062D4:
-	lwz      r0, 0xbc(r3)
-	cmpw     r7, r0
-	blt      lbl_802062BC
-	blr
-	*/
 }
 
 /*
@@ -274,7 +263,7 @@ void Uja::makeMatrix()
 {
 	Vector3f rot(_B8, _5C, 0.0f);
 	Vector3f scale = _64;
-	scale *= ((f32*)mFlockMgr->_310)[9];
+	scale *= mFlockMgr->mUjaParms->mU001();
 	Vector3f translation = (Vector3f)(*this);
 	translation.y += _B4;
 	_10.makeSRT(scale, rot, translation);
@@ -288,7 +277,7 @@ void Uja::makeMatrix()
 void Uja::updateScale(f32 scale)
 {
 	f32 factor = 4.0f * (PI * (scale / 20.0f));
-	_70 += (sys->mDeltaTime * factor) * ((f32*)(mFlockMgr->_310))[39];
+	_70 += (sys->mDeltaTime * factor) * mFlockMgr->mUjaParms->mU004();
 
 	if (_70 > TAU) {
 		_70 -= TAU;
@@ -297,108 +286,8 @@ void Uja::updateScale(f32 scale)
 	_64.x = 0.14f * sinf(_70) + 1.0f;
 	_64.z = 0.14f * cosf(_70) + 1.0f;
 	_64.y = 0.14f * cosf(_70) + 1.0f;
-	/*
-	lfs      f0, lbl_80519E38@sda21(r2)
-	stwu     r1, -0x30(r1)
-	fdivs    f0, f1, f0
-	lfs      f1, lbl_80519E34@sda21(r2)
-	lwz      r5, sys@sda21(r13)
-	lwz      r4, 0x74(r3)
-	lfs      f4, lbl_80519E30@sda21(r2)
-	lwz      r4, 0x310(r4)
-	fmuls    f3, f1, f0
-	lfs      f5, 0x54(r5)
-	lfs      f2, 0x9c(r4)
-	lfs      f1, 0x70(r3)
-	fmuls    f3, f4, f3
-	lfs      f0, lbl_80519E18@sda21(r2)
-	fmuls    f3, f5, f3
-	fmadds   f1, f3, f2, f1
-	stfs     f1, 0x70(r3)
-	lfs      f1, 0x70(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80206700
-	fsubs    f0, f1, f0
-	stfs     f0, 0x70(r3)
-
-lbl_80206700:
-	lfs      f1, 0x70(r3)
-	lfs      f0, lbl_80519D94@sda21(r2)
-	lfs      f3, lbl_80519E3C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80206740
-	lfs      f0, lbl_80519E40@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	addi     r4, r4, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f2, f0
-	b        lbl_80206764
-
-lbl_80206740:
-	lfs      f0, lbl_80519E44@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	addi     r4, r4, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r4, r0
-
-lbl_80206764:
-	lfs      f1, lbl_80519DA0@sda21(r2)
-	lfs      f0, lbl_80519D94@sda21(r2)
-	fmadds   f1, f3, f2, f1
-	stfs     f1, 0x64(r3)
-	lfs      f1, 0x70(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80206784
-	fneg     f1, f1
-
-lbl_80206784:
-	lfs      f0, lbl_80519E44@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	addi     r4, r4, sincosTable___5JMath@l
-	lfs      f2, lbl_80519E3C@sda21(r2)
-	fmuls    f3, f1, f0
-	addi     r4, r4, 4
-	lfs      f1, lbl_80519DA0@sda21(r2)
-	lfs      f0, lbl_80519D94@sda21(r2)
-	fctiwz   f3, f3
-	stfd     f3, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f3, r4, r0
-	fmadds   f1, f2, f3, f1
-	stfs     f1, 0x6c(r3)
-	lfs      f1, 0x70(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802067D0
-	fneg     f1, f1
-
-lbl_802067D0:
-	lfs      f0, lbl_80519E44@sda21(r2)
-	lfs      f2, lbl_80519E3C@sda21(r2)
-	fmuls    f1, f1, f0
-	lfs      f0, lbl_80519DA0@sda21(r2)
-	fctiwz   f1, f1
-	stfd     f1, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r4, r0
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x68(r3)
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
-#pragma dont_inline on
 /*
  * --INFO--
  * Address:	80206804
@@ -1776,7 +1665,6 @@ lbl_80207AA0:
 	blr
 	*/
 }
-#pragma dont_inline reset
 
 /*
  * --INFO--
@@ -1794,119 +1682,23 @@ UjaMgr::UjaMgr(int count)
 	_98            = 0;
 	_A0            = 0.0f;
 	mBoidParameter = nullptr;
-	_310           = nullptr;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r6, 1
-	li       r5, -1
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lis      r3, __vt__Q24Game12BaseFlockMgr@ha
-	stw      r30, 0x18(r1)
-	addi     r0, r3, __vt__Q24Game12BaseFlockMgr@l
-	mr       r7, r31
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r7
-	addi     r29, r28, 0x20
-	stw      r0, 0(r31)
-	li       r0, 0
-	mr       r3, r29
-	stb      r6, 0x1d(r7)
-	stb      r6, 0x1c(r7)
-	stw      r5, 4(r7)
-	stw      r0, 8(r7)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__16GenericContainer@ha
-	lis      r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
-	addi     r0, r3, __vt__16GenericContainer@l
-	lis      r3, "__vt__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
-	addi     r4, r3, "__vt__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>"@l
-	li       r5, 0
-	stw      r0, 0(r29)
-	addi     r0, r4, 0x30
-	addi     r3, r28, 0x3c
-	stb      r5, 0x18(r29)
-	stw      r4, 0(r28)
-	stw      r0, 0x20(r28)
-	bl       "__ct__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	lis      r4, __vt__Q34Game12ItemUjamushi6UjaMgr@ha
-	addi     r3, r31, 0xa8
-	addi     r5, r4, __vt__Q34Game12ItemUjamushi6UjaMgr@l
-	li       r4, 1
-	stw      r5, 0(r31)
-	addi     r0, r5, 0x30
-	stw      r0, 0x20(r31)
-	bl       __ct__Q34Game12ItemUjamushi9BoidParmsFv
-	mr       r4, r30
-	addi     r3, r31, 0x3c
-	bl       "alloc__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fi"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80207F84
-	bl       __ct__Q24Game9UpdateMgrFv
-	mr       r0, r3
-
-lbl_80207F84:
-	stw      r0, 0x94(r31)
-	li       r4, 0x1e
-	lwz      r3, 0x94(r31)
-	bl       create__Q24Game9UpdateMgrFi
-	li       r0, 0
-	lfs      f0, lbl_80519D94@sda21(r2)
-	stw      r0, 0x9c(r31)
-	mr       r3, r31
-	stw      r0, 0x98(r31)
-	stfs     f0, 0xa0(r31)
-	stw      r0, 0xa4(r31)
-	stw      r0, 0x310(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mUjaParms      = nullptr;
 }
 
+#pragma dont_inline on
 /*
  * --INFO--
  * Address:	802081E4
  * Size:	000050
  */
-void UjaMgr::init(UjaMgrInitArg&)
+void UjaMgr::init(UjaMgrInitArg& initArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lfs      f0, 0(r4)
-	stfs     f0, 0x6c(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x70(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x74(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0x78(r3)
-	lwz      r0, 0x10(r4)
-	stw      r0, 0xa4(r3)
-	lwz      r0, 0x14(r4)
-	stw      r0, 0x310(r3)
-	bl       test_createUjas__Q34Game12ItemUjamushi6UjaMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mBoundSphere   = initArg.mSphere;
+	mBoidParameter = initArg.mBoidParameter;
+	mUjaParms      = initArg.mUjaParms;
+	test_createUjas();
 }
+#pragma dont_inline reset
 
 /*
  * --INFO--
@@ -1955,290 +1747,56 @@ void UjaMgr::mogure()
  */
 void UjaMgr::test_createUjas()
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stw      r31, 0x7c(r1)
-	stw      r30, 0x78(r1)
-	stw      r29, 0x74(r1)
-	lwz      r12, 0(r3)
-	mr       r29, r3
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	beq      lbl_8020866C
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	li       r30, 0
-	lfd      f2, lbl_80519E20@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_80519E18@sda21(r2)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f31, f0, f1
-	b        lbl_80208650
+	Uja* uja;
+	if (getMaxObjects() == 0) {
+		return;
+	}
 
-lbl_802082F4:
-	addi     r3, r29, 0x3c
-	lwz      r12, 0x3c(r29)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_8020864C
-	bl       rand
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80519E20@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_80519E14@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_80519E18@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_80519D94@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f4, f1, f2
-	fmr      f3, f4
-	fcmpo    cr0, f4, f0
-	bge      lbl_80208358
-	fneg     f3, f4
+	f32 factor = TAU / (f32)getMaxObjects();
 
-lbl_80208358:
-	lfs      f1, lbl_80519E44@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f2, lbl_80519D94@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f1
-	fcmpo    cr0, f4, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f3, f2, f0
-	bge      lbl_802083B4
-	lfs      f0, lbl_80519E40@sda21(r2)
-	fmuls    f0, f4, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_802083CC
+	for (int i = 0; i < getMaxObjects(); i++) {
+		uja = mMonoObjectMgr.birth();
+		if (uja) {
+			randFloat();
+			f32 randAngle = TAU * randFloat();
+			Vector3f dir  = getDirection(randAngle, 0.0f); // a fancy way of making a zero vector.
+			dir += mBoundSphere.mPosition;
 
-lbl_802083B4:
-	fmuls    f0, f4, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
+			uja->mFlockMgr    = this;
+			*((Vector3f*)uja) = dir;
 
-lbl_802083CC:
-	fmuls    f4, f2, f0
-	lfs      f2, 0x6c(r29)
-	lfs      f0, 0x74(r29)
-	lfs      f1, 0x70(r29)
-	lfs      f5, lbl_80519D94@sda21(r2)
-	fadds    f4, f4, f2
-	stw      r29, 0x74(r31)
-	fadds    f2, f3, f0
-	fadds    f5, f5, f1
-	lfs      f0, lbl_80519D94@sda21(r2)
-	stfs     f4, 0(r31)
-	stfs     f5, 4(r31)
-	stfs     f2, 8(r31)
-	stfs     f0, 0x50(r31)
-	stfs     f0, 0x54(r31)
-	stfs     f0, 0x58(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x2c(r1)
-	mr       r3, r31
-	lfd      f3, lbl_80519E20@sda21(r2)
-	stw      r0, 0x28(r1)
-	lfs      f2, lbl_80519E14@sda21(r2)
-	lfd      f0, 0x28(r1)
-	lfs      f1, lbl_80519E18@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_80519D94@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f1, f1, f2
-	stfs     f1, 0x5c(r31)
-	stfs     f0, 0xb8(r31)
-	stfs     f0, 0x60(r31)
-	lwz      r12, 0xc(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80519DA0@sda21(r2)
-	stfs     f0, 0x64(r31)
-	stfs     f0, 0x68(r31)
-	stfs     f0, 0x6c(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x34(r1)
-	lfd      f3, lbl_80519E20@sda21(r2)
-	stw      r0, 0x30(r1)
-	lfs      f2, lbl_80519E14@sda21(r2)
-	lfd      f0, 0x30(r1)
-	lfs      f1, lbl_80519E18@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_80519D94@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f1, f1, f2
-	stfs     f1, 0x70(r31)
-	stfs     f0, 0x84(r31)
-	stfs     f0, 0x88(r31)
-	stfs     f0, 0x8c(r31)
-	stfs     f0, 0x90(r31)
-	stfs     f0, 0x94(r31)
-	stfs     f0, 0x98(r31)
-	stfs     f0, 0x9c(r31)
-	stfs     f0, 0xa0(r31)
-	stfs     f0, 0xa4(r31)
-	lwz      r3, 0x310(r29)
-	lfs      f0, 0x74(r3)
-	stfs     f0, 0xa8(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x3c(r1)
-	addi     r3, r31, 0x78
-	lfd      f3, lbl_80519E20@sda21(r2)
-	stw      r0, 0x38(r1)
-	lfs      f2, lbl_80519E14@sda21(r2)
-	lfd      f1, 0x38(r1)
-	lfs      f0, lbl_80519DDC@sda21(r2)
-	fsubs    f3, f1, f3
-	lfs      f1, 0xa8(r31)
-	fmuls    f0, f0, f1
-	fdivs    f2, f3, f2
-	fmadds   f0, f0, f2, f1
-	stfs     f0, 0xa8(r31)
-	lwz      r4, 0x94(r29)
-	bl       init__Q24Game13UpdateContextFPQ24Game9UpdateMgr
-	li       r0, 0
-	stb      r0, 0xac(r31)
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x44(r1)
-	xoris    r0, r30, 0x8000
-	lfd      f4, lbl_80519E20@sda21(r2)
-	li       r3, 0
-	stw      r4, 0x40(r1)
-	lfs      f0, lbl_80519E14@sda21(r2)
-	lfd      f1, 0x40(r1)
-	lfs      f2, lbl_80519E1C@sda21(r2)
-	fsubs    f3, f1, f4
-	stw      r0, 0x54(r1)
-	lfs      f1, lbl_80519D94@sda21(r2)
-	stw      r4, 0x50(r1)
-	fdivs    f3, f3, f0
-	lfd      f0, 0x50(r1)
-	fmuls    f2, f2, f3
-	fsubs    f0, f0, f4
-	fctiwz   f2, f2
-	fmuls    f5, f31, f0
-	stfd     f2, 0x48(r1)
-	fmr      f3, f5
-	lwz      r4, 0x4c(r1)
-	fcmpo    cr0, f5, f1
-	addi     r0, r4, 0x14
-	stb      r0, 0xad(r31)
-	stw      r3, 0xb0(r31)
-	stb      r3, 0xae(r31)
-	stfs     f1, 0xb4(r31)
-	bge      lbl_802085A8
-	fneg     f3, f5
+			uja->_50 = Vector3f(0.0f);
 
-lbl_802085A8:
-	lfs      f2, lbl_80519E44@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_80519D94@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f1, f3, f2
-	lfs      f3, lbl_80519E8C@sda21(r2)
-	fcmpo    cr0, f5, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x58(r1)
-	lwz      r0, 0x5c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f4, f3, f0
-	bge      lbl_80208608
-	lfs      f0, lbl_80519E40@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x60(r1)
-	lwz      r0, 0x64(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_80208620
+			uja->_5C = TAU * randFloat();
+			uja->_B8 = 0.0f;
+			uja->_60 = 0.0f;
+			uja->makeMatrix();
 
-lbl_80208608:
-	fmuls    f0, f5, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x68(r1)
-	lwz      r0, 0x6c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
+			uja->_64 = Vector3f(1.0f);
 
-lbl_80208620:
-	fmuls    f3, f3, f0
-	lfs      f2, 0x6c(r29)
-	lfs      f0, 0x74(r29)
-	lfs      f5, lbl_80519D94@sda21(r2)
-	lfs      f1, 0x70(r29)
-	fadds    f3, f3, f2
-	fadds    f0, f4, f0
-	fadds    f5, f5, f1
-	stfs     f3, 0x44(r31)
-	stfs     f5, 0x48(r31)
-	stfs     f0, 0x4c(r31)
+			uja->_70 = TAU * randFloat();
+			uja->_84 = Vector3f(0.0f);
+			uja->_90 = Vector3f(0.0f);
+			uja->_9C = Vector3f(0.0f);
 
-lbl_8020864C:
-	addi     r30, r30, 1
+			uja->_A8 = mUjaParms->mU003();
 
-lbl_80208650:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpw     r30, r3
-	blt      lbl_802082F4
+			uja->_A8 += (0.1f * uja->_A8 * randFloat());
+			uja->mUpdateContext.init(mUpdateMgr);
+			uja->_AC = 0;
 
-lbl_8020866C:
-	psq_l    f31, 136(r1), 0, qr0
-	lwz      r0, 0x94(r1)
-	lfd      f31, 0x80(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	lwz      r29, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+			uja->_AD = (int)(100.0f * randFloat()) + 20;
+			uja->_B0 = 0;
+			uja->_AE = 0;
+			uja->_B4 = 0.0f;
+
+			f32 angle = factor * (f32)i;
+
+			Vector3f newDir = getDirection(angle, 120.0f);
+			newDir += mBoundSphere.mPosition;
+			uja->_44 = newDir;
+		}
+	}
 }
 
 /*
@@ -2454,215 +2012,20 @@ lbl_80208930:
  */
 void UjaMgr::astonishPikmins()
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lfs      f31, 0xc(r3)
-	lfs      f30, 0x10(r3)
-	addi     r0, r4, __vt__Q24Game11Interaction@l
-	lfs      f29, 0x14(r3)
-	li       r5, 0
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lis      r6, "__vt__22Iterator<Q24Game4Piki>"@ha
-	lfs      f0, lbl_80519E98@sda21(r2)
-	lis      r4, __vt__Q24Game16InteractAstonish@ha
-	addi     r6, r6, "__vt__22Iterator<Q24Game4Piki>"@l
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q24Game16InteractAstonish@l
-	cmplwi   r5, 0
-	stw      r6, 0x20(r1)
-	stw      r5, 0x2c(r1)
-	stw      r5, 0x24(r1)
-	stw      r3, 0x28(r1)
-	stw      r5, 0x18(r1)
-	stw      r0, 0x14(r1)
-	stfs     f0, 0x1c(r1)
-	bne      lbl_802089FC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_80208BFC
-
-lbl_802089FC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_80208A68
-
-lbl_80208A14:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80208BFC
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_80208A68:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80208A14
-	b        lbl_80208BFC
-
-lbl_80208A88:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80208B40
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 0x10(r1)
-	fsubs    f3, f0, f30
-	lfs      f1, 8(r1)
-	fsubs    f2, f2, f29
-	lfs      f0, lbl_80519D94@sda21(r2)
-	fsubs    f1, f1, f31
-	fmuls    f3, f3, f3
-	fmuls    f2, f2, f2
-	fmadds   f1, f1, f1, f3
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_80208B14
-	ble      lbl_80208B18
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_80208B18
-
-lbl_80208B14:
-	fmr      f1, f0
-
-lbl_80208B18:
-	lfs      f0, lbl_80519E98@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80208B40
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80208B40:
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_80208B6C
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_80208BFC
-
-lbl_80208B6C:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_80208BE0
-
-lbl_80208B8C:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80208BFC
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_80208BE0:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80208B8C
-
-lbl_80208BFC:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_80208A88
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	Vector3f pos = _0C.mPosition;
+	Iterator<Piki> iter(pikiMgr);
+	InteractAstonish astonish(nullptr, 500.0f);
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		if (piki->isAlive()) {
+			Vector3f pikiPos = piki->getPosition();
+			Vector3f sep     = pikiPos - pos;
+			if (sep.length() <= 500.0f) {
+				piki->stimulate(astonish);
+			}
+		}
+	}
 }
 
 /*
@@ -2696,88 +2059,14 @@ Item::Item()
  */
 void Item::onInit(CreatureInitArg* initArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_80208DB8
-	lis      r3, lbl_80481DC8@ha
-	lis      r5, lbl_80481DDC@ha
-	addi     r3, r3, lbl_80481DC8@l
-	li       r4, 0x42f
-	addi     r5, r5, lbl_80481DDC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80208DB8:
-	lwz      r31, 4(r31)
-	li       r3, 0x314
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80208DD8
-	mr       r4, r31
-	bl       __ct__Q34Game12ItemUjamushi6UjaMgrFi
-	mr       r0, r3
-
-lbl_80208DD8:
-	stw      r0, 0x200(r30)
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x1d8(r30)
-	mr       r4, r30
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	li       r4, 1
-	lwz      r12, 0(r30)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	InitArg* ujaArg = static_cast<InitArg*>(initArg);
+	P2ASSERTLINE(1071, ujaArg);
+	int count = ujaArg->mCount;
+	mFlockMgr = new UjaMgr(count);
+	setCollisionFlick(false);
+	mFsm->start(this, UJAMUSHI_Wait, nullptr);
+	setAlive(true);
 }
-
-/*
- * --INFO--
- * Address:	80208E44
- * Size:	000034
- */
-// void start__Q24Game40StateMachine<Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  li        r0, 0
-// 	  stw       r0, 0x1DC(r4)
-// 	  lwz       r12, 0x0(r3)
-// 	  lwz       r12, 0x14(r12)
-// 	  mtctr     r12
-// 	  bctrl
-// 	  lwz       r0, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
 
 /*
  * --INFO--
@@ -2786,56 +2075,19 @@ lbl_80208DD8:
  */
 void Item::onSetPosition()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x138
-	addi     r4, r31, 0x19c
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-	lwz      r4, mgr__Q24Game12ItemUjamushi@sda21(r13)
-	lfs      f3, 0x1d0(r31)
-	lfs      f1, 0x1a0(r31)
-	addi     r3, r4, 0x310
-	lfs      f2, 0x1a4(r31)
-	addi     r0, r4, 0x5a8
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	stfs     f3, 0x14(r1)
-	stw      r3, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	lwz      r12, 0x310(r4)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x200(r31)
-	addi     r4, r1, 8
-	bl init__Q34Game12ItemUjamushi6UjaMgrFRQ34Game12ItemUjamushi13UjaMgrInitArg
-	lwz      r3, 0x200(r31)
-	bl       astonishPikmins__Q34Game12ItemUjamushi6UjaMgrFv
-	li       r0, 0
-	stw      r0, 0x1e0(r31)
-	stw      r0, 0x1e4(r31)
-	lwz      r3, mgr__Q24Game12ItemUjamushi@sda21(r13)
-	lwzu     r12, 0x328(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x1ec(r31)
-	mr       r3, r31
-	lfs      f0, lbl_80519D94@sda21(r2)
-	stfs     f0, 0x1e8(r31)
-	bl       setBoidTimer__Q34Game12ItemUjamushi4ItemFv
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mBaseTrMatrix.makeT(mPosition);
+	f32 rad      = mBoundingSphere.mRadius;
+	Vector3f pos = mPosition;
+	UjaMgrInitArg initArg(pos, rad, &mgr->mBoidParameter, &mgr->mMgrParms);
+	mgr->mBoidParameter.getChildCount();
+	mFlockMgr->init(initArg);
+	mFlockMgr->astonishPikmins();
+	_1E0 = 0;
+	_1E4 = 0;
+
+	_1EC = mgr->mBoidParameter.mNode.getChildCount();
+	_1E8 = 0.0f;
+	setBoidTimer();
 }
 
 /*
@@ -2874,48 +2126,12 @@ bool Item::ignoreAtari(Creature* creature) { return !creature->isPiki(); }
  */
 void Item::updateBoundSphere()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x114(r3)
-	lfs      f0, 0x1d0(r3)
-	lwz      r4, 0(r4)
-	stfs     f0, 0x1c(r4)
-	lfs      f0, 0x19c(r3)
-	stfs     f0, 0x1c4(r3)
-	lfs      f0, 0x1a0(r3)
-	stfs     f0, 0x1c8(r3)
-	lfs      f0, 0x1a4(r3)
-	stfs     f0, 0x1cc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xb0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80209040
-	lis      r3, lbl_80481DC8@ha
-	lis      r5, lbl_80481E30@ha
-	addi     r3, r3, lbl_80481DC8@l
-	li       r4, 0x471
-	addi     r5, r5, lbl_80481E30@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80209040:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCollTree->mPart->mRadius = mBoundingSphere.mRadius;
+	mBoundingSphere.mPosition = mPosition;
+	if (isCollisionFlick()) {
+		JUT_PANICLINE(1137, "ダメック\n"); // 'damek'
+	}
 }
-
-/*
- * --INFO--
- * Address:	80209050
- * Size:	000008
- */
-bool Item::isCollisionFlick() { return false; }
 
 /*
  * --INFO--
@@ -3361,24 +2577,14 @@ lbl_80209650:
 
 /*
  * --INFO--
- * Address:	80209678
- * Size:	000008
- */
-// void getNumObjects__Q24Game36TFlockMgr<Uja> Fv()
-// {
-// 	/*
-// 	lwz      r3, 0x5c(r3)
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
  * Address:	80209680
  * Size:	000078
  */
-void Item::doSimpleDraw(Viewport*)
+void Item::doSimpleDraw(Viewport* vp)
 {
+	J3DModelData* model  = mgr->getModelData((!mgr->_8E));
+	J3DModelData* data[] = { model };
+	mFlockMgr->doSimpleDraw(vp, data, 1);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -4007,78 +3213,21 @@ void DigState::cleanup(Item*) { }
  * Address:	8020A134
  * Size:	00004C
  */
-GenItemParm* Mgr::generatorNewItemParm()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 8
-	stw      r0, 0x14(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8020A170
-	lis      r5, __vt__Q24Game11GenItemParm@ha
-	lis      r4, __vt__15GenUjamushiParm@ha
-	addi     r5, r5, __vt__Q24Game11GenItemParm@l
-	li       r0, 0x64
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__15GenUjamushiParm@l
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_8020A170:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+GenItemParm* Mgr::generatorNewItemParm() { return new GenUjamushiParm(); }
 
 /*
  * --INFO--
  * Address:	8020A180
  * Size:	000088
  */
-void Mgr::generatorWrite(Stream&, GenItemParm*)
+void Mgr::generatorWrite(Stream& output, GenItemParm* genParm)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, lbl_80481D40@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r3, lbl_80481D40@l
-	stw      r30, 0x18(r1)
-	or.      r30, r5, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bne      lbl_8020A1C0
-	addi     r3, r31, 0x88
-	addi     r5, r31, 0x9c
-	li       r4, 0x5ea
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	GenUjamushiParm* ujaParm = static_cast<GenUjamushiParm*>(genParm);
+	P2ASSERTLINE(1514, ujaParm);
 
-lbl_8020A1C0:
-	lwz      r4, 0x414(r29)
-	mr       r3, r29
-	bl       textWriteTab__6StreamFi
-	lwz      r0, 4(r30)
-	mr       r3, r29
-	extsh    r4, r0
-	bl       writeShort__6StreamFs
-	mr       r3, r29
-	addi     r4, r31, 0x17c
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	output.textWriteTab(output.mTabCount);
+	output.writeShort(ujaParm->mCount);
+	output.textWriteText("\t#うじゃ王数\r\n"); // 'ujaoh number'
 }
 
 /*
@@ -4086,38 +3235,12 @@ lbl_8020A1C0:
  * Address:	8020A208
  * Size:	000064
  */
-void Mgr::generatorRead(Stream&, GenItemParm*, u32)
+void Mgr::generatorRead(Stream& input, GenItemParm* genParm, u32 version)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x1DC8
-	  li        r4, 0x5F4
-	  addi      r5, r5, 0x1DDC
-	  crclr     6, 0x6
-	  bl        -0x1DFC00
+	GenUjamushiParm* ujaParm = static_cast<GenUjamushiParm*>(genParm);
+	P2ASSERTLINE(1524, ujaParm);
 
-	.loc_0x3C:
-	  mr        r3, r30
-	  bl        0x20A51C
-	  extsh     r0, r3
-	  stw       r0, 0x4(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	ujaParm->mCount = input.readShort();
 }
 
 /*
