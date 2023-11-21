@@ -9,16 +9,17 @@
 
 struct J3DUMtxAnmCacheTableBase {
 	~J3DUMtxAnmCacheTableBase();
+
+	int _00;         // _00, unknown
+	int mJointCount; // _04
+	int mTime;       // _08
+	Mtx* mMatrices;  // _0C, array of Mtxs
 };
 
 struct J3DUMtxAnmCacheTable : public J3DUMtxAnmCacheTableBase {
 	J3DUMtxAnmCacheTable(J3DModel* model, J3DAnmTransform* transform);
 
-	// some of this may be in J3DUMtxAnmCacheTableBase and inherited
-	int _00;         // _00, unknown
-	int mJointCount; // _04
-	int mTime;       // _08
-	Mtx* mMatrices;  // _0C, array of Mtxs
+	// _00-_10 = J3DUMtxAnmCacheTableBase
 };
 
 struct J3DUMtxCacheBase {

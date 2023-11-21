@@ -86,7 +86,7 @@ LIBS = [
             ["JSystem/J3DU/J3DUDL", True],
             "JSystem/J3DU/J3DUMotion",
             ["JSystem/J3DU/J3DUShadow", True],
-            "JSystem/J3DU/J3DUMtxCache",
+            ["JSystem/J3DU/J3DUMtxCache", True],
         ],
     },
     {
