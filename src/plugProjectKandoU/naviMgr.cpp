@@ -353,11 +353,10 @@ Navi* NaviMgr::getAliveOrima(int type)
 		Navi* activeNavi;
 		Navi* inactiveNavi;
 		if (navi1->mController1) {
-			activeNavi = navi1;
+			activeNavi   = navi1;
 			inactiveNavi = navi2;
-		}
-		else {
-			activeNavi = navi2;
+		} else {
+			activeNavi   = navi2;
 			inactiveNavi = navi1;
 		}
 		if (type == 0) {
