@@ -8,6 +8,7 @@
 #include "JSystem/J3D/J3DTexMtx.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JGeometry.h"
+#include "JSystem/J3D/J3DTransform.h"
 #include "types.h"
 
 /*
@@ -264,16 +265,8 @@ const J3DDefaultTexCoordInfo j3dDefaultTexCoordInfo[8]
 const J3DTexMtxInfo j3dDefaultTexMtxInfo
     = { 1,
 	    0,
-	    0xFF,
-	    0xFF,
-	    0.0f,
-	    0.0f,
-	    0.0f,
-	    1.0f,
-	    1.0f,
-	    0,
-	    0.0f,
-	    0.0f,
+	    { 0.0f, 0.0f, 0.0f },
+	    { 1.0f, 1.0f, 0, 0.0f, 0.0f },
 	    { { 1.0f, 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 1.0f, 0.0f }, { 0.0f, 0.0f, 0.0f, 1.0f } } };
 
 const J3DIndTexMtxInfo j3dDefaultIndTexMtxInfo = { 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f, 1 };
@@ -327,362 +320,23 @@ void J3DLightObj::load(u32 p1) const
  * Address:	80063BD8
  * Size:	000530
  */
-void loadTexCoordGens(u32, J3DTexCoord*)
+void loadTexCoordGens(u32 num, J3DTexCoord* coord)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r26, r3
-	mr       r27, r4
-	slwi     r3, r3, 3
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	lwz      r0, 0xc(r5)
-	add      r3, r3, r4
-	addi     r3, r3, 0xa
-	cmplw    r3, r0
-	ble      lbl_80063C14
-	bl       GDOverflowed
-
-lbl_80063C14:
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	clrlwi   r3, r26, 0x18
-	addi     r6, r3, -1
-	li       r7, 0x10
-	lwz      r3, 8(r4)
-	rlwinm   r30, r6, 0x18, 0x18, 0x1f
-	li       r5, 0x40
-	mr       r31, r27
-	addi     r0, r3, 1
-	clrlwi   r29, r6, 0x18
-	stw      r0, 8(r4)
-	li       r28, 0
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r30, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	b        lbl_80063CB0
-
-lbl_80063C9C:
-	lbz      r3, 0(r31)
-	lbz      r4, 1(r31)
-	bl       J3DGDSetTexCoordGen__F13_GXTexGenType12_GXTexGenSrc
-	addi     r31, r31, 6
-	addi     r28, r28, 1
-
-lbl_80063CB0:
-	cmplw    r28, r26
-	blt      lbl_80063C9C
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lis      r3, j3dSys@ha
-	li       r7, 0x10
-	li       r6, 0x50
-	lwz      r4, 8(r5)
-	addi     r3, r3, j3dSys@l
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r7, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r30, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r29, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r7, 0(r4)
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r4, 8(r5)
-	addi     r0, r4, 1
-	stw      r0, 8(r5)
-	stb      r6, 0(r4)
-	lwz      r0, 0x34(r3)
-	rlwinm.  r0, r0, 0, 1, 1
-	beq      lbl_80063DCC
-	mr       r9, r27
-	li       r10, 0
-	mtctr    r26
-	cmplwi   r26, 0
-	ble      lbl_800640F4
-
-lbl_80063D4C:
-	lbz      r0, 2(r9)
-	li       r8, 0x3d
-	cmplwi   r0, 0x3c
-	beq      lbl_80063D60
-	mr       r8, r10
-
-lbl_80063D60:
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	srwi     r7, r8, 0x18
-	rlwinm   r6, r8, 0x10, 0x18, 0x1f
-	rlwinm   r5, r8, 0x18, 0x18, 0x1f
-	lwz      r3, 8(r4)
-	addi     r9, r9, 6
-	addi     r10, r10, 3
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r7, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r8, 0(r3)
-	bdnz     lbl_80063D4C
-	b        lbl_800640F4
-
-lbl_80063DCC:
-	cmplwi   r26, 0
-	li       r4, 0
-	ble      lbl_800640F4
-	cmplwi   r26, 8
-	addi     r3, r26, -8
-	ble      lbl_80064088
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmplwi   r3, 0
-	ble      lbl_80064088
-
-lbl_80063DF8:
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	li       r3, 0
-	li       r0, 0x3d
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r0, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r0, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r0, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	addi     r4, r4, 8
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r0, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r0, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r0, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r0, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r6, 8(r7)
-	addi     r5, r6, 1
-	stw      r5, 8(r7)
-	stb      r3, 0(r6)
-	lwz      r6, __GDCurrentDL@sda21(r13)
-	lwz      r5, 8(r6)
-	addi     r3, r5, 1
-	stw      r3, 8(r6)
-	stb      r0, 0(r5)
-	bdnz     lbl_80063DF8
-
-lbl_80064088:
-	subf     r0, r4, r26
-	mtctr    r0
-	cmplw    r4, r26
-	bge      lbl_800640F4
-	li       r6, 0
-	li       r5, 0x3d
-
-lbl_800640A0:
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r6, 0(r3)
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	addi     r0, r3, 1
-	stw      r0, 8(r4)
-	stb      r5, 0(r3)
-	bdnz     lbl_800640A0
-
-lbl_800640F4:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	GDOverflowCheck(num * 8 + 10);
+	J3DGDWriteXFCmdHdr(0x1040, num);
+	for (int i = 0; i < num; i++) {
+		J3DGDSetTexCoordGen(GXTexGenType(coord[i].getTexGenType()), GXTexGenSrc(coord[i].getTexGenSrc()));
+	}
+	J3DGDWriteXFCmdHdr(0x1050, num);
+	if (j3dSys.checkFlag(0x40000000)) {
+		for (int i = 0; i < num; i++) {
+			J3DGDWrite_u32(coord[i].getTexGenMtx() == 60 ? 61 : i * 3);
+		}
+	} else {
+		for (int i = 0; i < num; i++) {
+			J3DGDWrite_u32(61);
+		}
+	}
 }
 
 /*
@@ -707,7 +361,7 @@ void J3DTexMtx::load(u32 p1) const
 void J3DTexMtx::loadTexMtx(u32 p1) const
 {
 	__GDCheckOverflowed(0x35);
-	J3DGDLoadTexMtxImm(const_cast<float(*)[4]>(_64), p1 * 3 + 30, (_GXTexMtxType)_00);
+	J3DGDLoadTexMtxImm(const_cast<float(*)[4]>(mMtx), p1 * 3 + 30, (_GXTexMtxType)mTexMtxInfo.mProjection);
 }
 
 /*
@@ -1085,7 +739,7 @@ lbl_80064720:
 void J3DTexMtx::loadPostTexMtx(u32 p1) const
 {
 	__GDCheckOverflowed(0x35);
-	J3DGDLoadPostTexMtxImm(const_cast<float(*)[4]>(_64), p1 * 3 + 0x40);
+	J3DGDLoadPostTexMtxImm(const_cast<float(*)[4]>(mMtx), p1 * 3 + 0x40);
 }
 
 /*
@@ -1458,253 +1112,96 @@ void J3DTexMtx::calc(const float (*mtx)[4]) { calcTexMtx(mtx); }
  * Address:	80064D14
  * Size:	0002EC
  */
-void J3DTexMtx::calcTexMtx(const Mtx)
+void J3DTexMtx::calcTexMtx(const Mtx mtx)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stw      r31, 0x8c(r1)
-	mr       r31, r4
-	stw      r30, 0x88(r1)
-	mr       r30, r3
-	lbz      r3, 1(r3)
-	clrlwi   r0, r3, 0x1a
-	rlwinm   r4, r3, 0x19, 0x1f, 0x1f
-	cmplwi   r0, 0xb
-	bgt      lbl_80064FB8
-	lis      r3, lbl_804A1870@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804A1870@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80064D5C
+	Mtx44 mtx1;
+	Mtx44 mtx2;
 
-lbl_80064D5C:
-	cmplwi   r4, 0
-	bne      lbl_80064D78
-	addi     r3, r30, 0x10
-	addi     r4, r30, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80064D8C
+	static Mtx qMtx = {
+		0.5f, 0.0f, 0.5f, 0.0f, 0.0f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+	};
+	static Mtx qMtx2 = {
+		0.5f, 0.0f, 0.0f, 0.5f, 0.0f, -0.5f, 0.0f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+	};
 
-lbl_80064D78:
-	cmplwi   r4, 1
-	bne      lbl_80064D8C
-	addi     r3, r30, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80064D8C:
-	lis      r4, qMtx$1682@ha
-	addi     r3, r1, 8
-	addi     r4, r4, qMtx$1682@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	addi     r4, r30, 0x24
-	addi     r5, r1, 0x48
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	mr       r4, r31
-	addi     r3, r1, 0x48
-	addi     r5, r30, 0x64
-	bl       PSMTXConcat
-	b        lbl_80064FE8
-	.global  lbl_80064DC4
-
-lbl_80064DC4:
-	cmplwi   r4, 0
-	bne      lbl_80064DE0
-	addi     r3, r30, 0x10
-	addi     r4, r30, 4
-	addi     r5, r1, 0x48
-	bl       J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80064DF4
-
-lbl_80064DE0:
-	cmplwi   r4, 1
-	bne      lbl_80064DF4
-	addi     r3, r30, 0x10
-	addi     r4, r1, 0x48
-	bl       J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80064DF4:
-	lis      r4, qMtx$1682@ha
-	addi     r3, r1, 0x48
-	addi     r4, r4, qMtx$1682@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	mr       r4, r31
-	addi     r3, r1, 0x48
-	addi     r5, r30, 0x64
-	bl       PSMTXConcat
-	b        lbl_80064FE8
-	.global  lbl_80064E1C
-
-lbl_80064E1C:
-	cmplwi   r4, 0
-	bne      lbl_80064E38
-	addi     r3, r30, 0x10
-	addi     r4, r30, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80064E4C
-
-lbl_80064E38:
-	cmplwi   r4, 1
-	bne      lbl_80064E4C
-	addi     r3, r30, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80064E4C:
-	lis      r4, qMtx2$1683@ha
-	addi     r3, r1, 8
-	addi     r4, r4, qMtx2$1683@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	addi     r4, r30, 0x24
-	addi     r5, r1, 0x48
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	mr       r4, r31
-	addi     r3, r1, 0x48
-	addi     r5, r30, 0x64
-	bl       PSMTXConcat
-	b        lbl_80064FE8
-	.global  lbl_80064E84
-
-lbl_80064E84:
-	cmplwi   r4, 0
-	bne      lbl_80064EA0
-	addi     r3, r30, 0x10
-	addi     r4, r30, 4
-	addi     r5, r1, 0x48
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80064EB4
-
-lbl_80064EA0:
-	cmplwi   r4, 1
-	bne      lbl_80064EB4
-	addi     r3, r30, 0x10
-	addi     r4, r1, 0x48
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80064EB4:
-	lis      r4, qMtx2$1683@ha
-	addi     r3, r1, 0x48
-	addi     r4, r4, qMtx2$1683@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	mr       r4, r31
-	addi     r3, r1, 0x48
-	addi     r5, r30, 0x64
-	bl       PSMTXConcat
-	b        lbl_80064FE8
-	.global  lbl_80064EDC
-
-lbl_80064EDC:
-	cmplwi   r4, 0
-	bne      lbl_80064EF8
-	addi     r3, r30, 0x10
-	addi     r4, r30, 4
-	addi     r5, r1, 0x48
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80064F0C
-
-lbl_80064EF8:
-	cmplwi   r4, 1
-	bne      lbl_80064F0C
-	addi     r3, r30, 0x10
-	addi     r4, r1, 0x48
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80064F0C:
-	mr       r4, r31
-	addi     r3, r1, 0x48
-	addi     r5, r30, 0x64
-	bl       PSMTXConcat
-	b        lbl_80064FE8
-	.global  lbl_80064F20
-
-lbl_80064F20:
-	cmplwi   r4, 0
-	bne      lbl_80064F3C
-	addi     r3, r30, 0x10
-	addi     r4, r30, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80064F50
-
-lbl_80064F3C:
-	cmplwi   r4, 1
-	bne      lbl_80064F50
-	addi     r3, r30, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80064F50:
-	addi     r3, r1, 8
-	addi     r4, r30, 0x24
-	addi     r5, r1, 0x48
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	mr       r4, r31
-	addi     r3, r1, 0x48
-	addi     r5, r30, 0x64
-	bl       PSMTXConcat
-	b        lbl_80064FE8
-	.global  lbl_80064F74
-
-lbl_80064F74:
-	cmplwi   r4, 0
-	bne      lbl_80064F90
-	addi     r3, r30, 0x10
-	addi     r4, r30, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80064FA4
-
-lbl_80064F90:
-	cmplwi   r4, 1
-	bne      lbl_80064FA4
-	addi     r3, r30, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80064FA4:
-	addi     r3, r1, 8
-	addi     r4, r30, 0x24
-	addi     r5, r30, 0x64
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	b        lbl_80064FE8
-	.global  lbl_80064FB8
-
-lbl_80064FB8:
-	cmplwi   r4, 0
-	bne      lbl_80064FD4
-	addi     r3, r30, 0x10
-	addi     r4, r30, 4
-	addi     r5, r30, 0x64
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80064FE8
-
-lbl_80064FD4:
-	cmplwi   r4, 1
-	bne      lbl_80064FE8
-	addi     r3, r30, 0x10
-	addi     r4, r30, 0x64
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80064FE8:
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	u8 r28  = mTexMtxInfo.mInfo & 0x3f;
+	u32 r30 = (mTexMtxInfo.mInfo >> 7) & 1;
+	switch (r28) {
+	case 8:
+	case 9:
+	case 11:
+		if (r30 == 0) {
+			J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx2);
+		}
+		PSMTXConcat(mtx2, qMtx, mtx2);
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+		PSMTXConcat(mtx1, mtx, mMtx);
+		break;
+	case 7:
+		if (r30 == 0) {
+			J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx1);
+		}
+		PSMTXConcat(mtx1, qMtx, mtx1);
+		PSMTXConcat(mtx1, mtx, mMtx);
+		break;
+	case 10:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+		}
+		PSMTXConcat(mtx2, qMtx2, mtx2);
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+		PSMTXConcat(mtx1, mtx, mMtx);
+		break;
+	case 6:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx1);
+		}
+		PSMTXConcat(mtx1, qMtx2, mtx1);
+		PSMTXConcat(mtx1, mtx, mMtx);
+		break;
+	case 1:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx1);
+		}
+		PSMTXConcat(mtx1, mtx, mMtx);
+		break;
+	case 2:
+	case 3:
+	case 5:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+		}
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+		PSMTXConcat(mtx1, mtx, mMtx);
+		break;
+	case 4:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+		}
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mMtx);
+		break;
+	default:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mMtx);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mMtx);
+		}
+		break;
+	}
 }
 
 /*
@@ -1712,292 +1209,108 @@ lbl_80064FE8:
  * Address:	80065000
  * Size:	000358
  */
-void J3DTexMtx::calcPostTexMtx(const Mtx)
+void J3DTexMtx::calcPostTexMtx(const Mtx mtx)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stw      r31, 0x8c(r1)
-	mr       r31, r3
-	stw      r30, 0x88(r1)
-	mr       r30, r4
-	lbz      r3, 1(r3)
-	clrlwi   r0, r3, 0x1a
-	rlwinm   r4, r3, 0x19, 0x1f, 0x1f
-	cmplwi   r0, 0xb
-	bgt      lbl_80065310
-	lis      r3, lbl_804A1900@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804A1900@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80065048
+	Mtx44 mtx1;
+	Mtx44 mtx2;
 
-lbl_80065048:
-	cmplwi   r4, 0
-	bne      lbl_80065064
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80065078
+	static Mtx qMtx = {
+		0.5f, 0.0f, 0.5f, 0.0f, 0.0f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+	};
+	static Mtx qMtx2 = {
+		0.5f, 0.0f, 0.0f, 0.5f, 0.0f, -0.5f, 0.0f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+	};
 
-lbl_80065064:
-	cmplwi   r4, 1
-	bne      lbl_80065078
-	addi     r3, r31, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80065078:
-	lis      r4, qMtx$1744@ha
-	addi     r3, r1, 8
-	addi     r4, r4, qMtx$1744@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	addi     r4, r31, 0x24
-	addi     r5, r1, 0x48
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	mr       r4, r30
-	addi     r3, r1, 0x48
-	addi     r5, r31, 0x64
-	bl       PSMTXConcat
-	b        lbl_80065340
-	.global  lbl_800650B0
-
-lbl_800650B0:
-	cmplwi   r4, 0
-	bne      lbl_800650CC
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_800650E0
-
-lbl_800650CC:
-	cmplwi   r4, 1
-	bne      lbl_800650E0
-	addi     r3, r31, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_800650E0:
-	lis      r4, qMtx$1744@ha
-	addi     r3, r1, 8
-	addi     r4, r4, qMtx$1744@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	addi     r4, r31, 0x24
-	addi     r5, r31, 0x64
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	b        lbl_80065340
-	.global  lbl_80065108
-
-lbl_80065108:
-	cmplwi   r4, 0
-	bne      lbl_80065124
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r1, 0x48
-	bl       J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80065138
-
-lbl_80065124:
-	cmplwi   r4, 1
-	bne      lbl_80065138
-	addi     r3, r31, 0x10
-	addi     r4, r1, 0x48
-	bl       J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80065138:
-	lis      r4, qMtx$1744@ha
-	addi     r3, r1, 0x48
-	addi     r4, r4, qMtx$1744@l
-	addi     r5, r31, 0x64
-	bl       PSMTXConcat
-	b        lbl_80065340
-	.global  lbl_80065150
-
-lbl_80065150:
-	cmplwi   r4, 0
-	bne      lbl_8006516C
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80065180
-
-lbl_8006516C:
-	cmplwi   r4, 1
-	bne      lbl_80065180
-	addi     r3, r31, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80065180:
-	lis      r4, qMtx2$1745@ha
-	addi     r3, r1, 8
-	addi     r4, r4, qMtx2$1745@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	addi     r4, r31, 0x24
-	addi     r5, r1, 0x48
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	mr       r4, r30
-	addi     r3, r1, 0x48
-	addi     r5, r31, 0x64
-	bl       PSMTXConcat
-	b        lbl_80065340
-	.global  lbl_800651B8
-
-lbl_800651B8:
-	cmplwi   r4, 0
-	bne      lbl_800651D4
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r1, 0x48
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_800651E8
-
-lbl_800651D4:
-	cmplwi   r4, 1
-	bne      lbl_800651E8
-	addi     r3, r31, 0x10
-	addi     r4, r1, 0x48
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_800651E8:
-	lis      r4, qMtx2$1745@ha
-	addi     r3, r1, 0x48
-	addi     r4, r4, qMtx2$1745@l
-	addi     r5, r31, 0x64
-	bl       PSMTXConcat
-	b        lbl_80065340
-	.global  lbl_80065200
-
-lbl_80065200:
-	cmplwi   r4, 0
-	bne      lbl_8006521C
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r31, 0x64
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80065340
-
-lbl_8006521C:
-	cmplwi   r4, 1
-	bne      lbl_80065340
-	addi     r3, r31, 0x10
-	addi     r4, r31, 0x64
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-	b        lbl_80065340
-	.global  lbl_80065234
-
-lbl_80065234:
-	cmplwi   r4, 0
-	bne      lbl_80065250
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80065264
-
-lbl_80065250:
-	cmplwi   r4, 1
-	bne      lbl_80065264
-	addi     r3, r31, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80065264:
-	addi     r3, r1, 8
-	addi     r4, r31, 0x24
-	addi     r5, r1, 0x48
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	mr       r4, r30
-	addi     r3, r1, 0x48
-	addi     r5, r31, 0x64
-	bl       PSMTXConcat
-	b        lbl_80065340
-	.global  lbl_80065288
-
-lbl_80065288:
-	cmplwi   r4, 0
-	bne      lbl_800652A4
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_800652B8
-
-lbl_800652A4:
-	cmplwi   r4, 1
-	bne      lbl_800652B8
-	addi     r3, r31, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_800652B8:
-	addi     r3, r1, 8
-	addi     r4, r31, 0x24
-	addi     r5, r31, 0x64
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	b        lbl_80065340
-	.global  lbl_800652CC
-
-lbl_800652CC:
-	cmplwi   r4, 0
-	bne      lbl_800652E8
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r1, 8
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_800652FC
-
-lbl_800652E8:
-	cmplwi   r4, 1
-	bne      lbl_800652FC
-	addi     r3, r31, 0x10
-	addi     r4, r1, 8
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_800652FC:
-	addi     r3, r1, 8
-	addi     r4, r31, 0x24
-	addi     r5, r31, 0x64
-	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-	b        lbl_80065340
-	.global  lbl_80065310
-
-lbl_80065310:
-	cmplwi   r4, 0
-	bne      lbl_8006532C
-	addi     r3, r31, 0x10
-	addi     r4, r31, 4
-	addi     r5, r31, 0x64
-	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
-	b        lbl_80065340
-
-lbl_8006532C:
-	cmplwi   r4, 1
-	bne      lbl_80065340
-	addi     r3, r31, 0x10
-	addi     r4, r31, 0x64
-	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
-
-lbl_80065340:
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	u8 r29  = mTexMtxInfo.mInfo & 0x3f;
+	u32 r30 = (mTexMtxInfo.mInfo >> 7) & 1;
+	switch (r29) {
+	case 8:
+	case 11:
+		if (r30 == 0) {
+			J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx2);
+		}
+		PSMTXConcat(mtx2, qMtx, mtx2);
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+		PSMTXConcat(mtx1, mtx, mMtx);
+		break;
+	case 9:
+		if (r30 == 0) {
+			J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx2);
+		}
+		PSMTXConcat(mtx2, qMtx, mtx2);
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mMtx);
+		break;
+	case 7:
+		if (r30 == 0) {
+			J3DGetTextureMtx(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMaya(mTexMtxInfo.mSRT, mtx1);
+		}
+		PSMTXConcat(mtx1, qMtx, mMtx);
+		break;
+	case 10:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+		}
+		PSMTXConcat(mtx2, qMtx2, mtx2);
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+		PSMTXConcat(mtx1, mtx, mMtx);
+		break;
+	case 6:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx1);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx1);
+		}
+		PSMTXConcat(mtx1, qMtx2, mMtx);
+		break;
+	case 1:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mMtx);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mMtx);
+		}
+		break;
+	case 2:
+	case 5:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+		}
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mtx1);
+		PSMTXConcat(mtx1, mtx, mMtx);
+		break;
+	case 3:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+		}
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mMtx);
+		break;
+	case 4:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mtx2);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mtx2);
+		}
+		J3DMtxProjConcat(mtx2, mTexMtxInfo.mEffectMtx, mMtx);
+		break;
+	default:
+		if (r30 == 0) {
+			J3DGetTextureMtxOld(mTexMtxInfo.mSRT, mTexMtxInfo.mCenter, mMtx);
+		} else if (r30 == 1) {
+			J3DGetTextureMtxMayaOld(mTexMtxInfo.mSRT, mMtx);
+		}
+		break;
+	}
 }
 
 /*
@@ -2025,129 +1338,25 @@ u16 getTexNoReg(void* p1) { return *(u32*)(static_cast<u8*>(p1) + 1); }
  * Address:	80065388
  * Size:	0001B8
  */
-void loadTexNo(u32, const u16&)
+void loadTexNo(u32 id, const u16& data)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, j3dSys@ha
-	stw      r0, 0x34(r1)
-	lhz      r0, 0(r4)
-	addi     r4, r5, j3dSys@l
-	stw      r31, 0x2c(r1)
-	slwi     r0, r0, 5
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lis      r3, sTexCoordScaleTable__6J3DSys@ha
-	stw      r29, 0x24(r1)
-	slwi     r6, r30, 3
-	stw      r28, 0x20(r1)
-	lwz      r4, 0x58(r4)
-	lwz      r7, __GDCurrentDL@sda21(r13)
-	lwz      r5, 4(r4)
-	addi     r4, r3, sTexCoordScaleTable__6J3DSys@l
-	add      r3, r4, r6
-	add      r31, r5, r0
-	lhz      r0, 2(r31)
-	sthx     r0, r4, r6
-	lhz      r0, 4(r31)
-	sth      r0, 2(r3)
-	lwz      r3, 8(r7)
-	lwz      r0, 0xc(r7)
-	addi     r3, r3, 0x14
-	cmplw    r3, r0
-	ble      lbl_80065400
-	bl       GDOverflowed
+	ResTIMG* resTIMG                    = j3dSys.getTexture()->getResTIMG(data);
+	J3DSys::sTexCoordScaleTable[id]._00 = resTIMG->getWidth();
+	J3DSys::sTexCoordScaleTable[id]._02 = resTIMG->getHeight();
+	GDOverflowCheck(0x14);
+	J3DGDSetTexImgPtr(GXTexMapID(id), (u8*)resTIMG + resTIMG->mImageDataOffset);
+	J3DGDSetTexImgAttr(GXTexMapID(id), resTIMG->getWidth(), resTIMG->getHeight(), GXTexFmt(resTIMG->mTextureFormat & 0x0f));
+	J3DGDSetTexLookupMode(GXTexMapID(id), GXTexWrapMode(resTIMG->mWrapS), GXTexWrapMode(resTIMG->mWrapT),
+	                      GXTexFilter(resTIMG->mMinFilterType), GXTexFilter(resTIMG->mMagFilterType), resTIMG->mMinLOD * 0.125f,
+	                      resTIMG->mMaxLOD * 0.125f, resTIMG->mLODBias * 0.01f, resTIMG->mIsBiasClamp, resTIMG->mDoEdgeLOD,
+	                      GXAnisotropy(resTIMG->mIsMaxAnisotropy));
 
-lbl_80065400:
-	lwz      r0, 0x1c(r31)
-	mr       r3, r30
-	add      r4, r31, r0
-	bl       J3DGDSetTexImgPtr__F11_GXTexMapIDPv
-	lbz      r0, 0(r31)
-	mr       r3, r30
-	lhz      r4, 2(r31)
-	lhz      r5, 4(r31)
-	clrlwi   r6, r0, 0x1c
-	bl       J3DGDSetTexImgAttr__F11_GXTexMapIDUsUs9_GXTexFmt
-	lbz      r6, 0x16(r31)
-	lis      r5, 0x4330
-	lbz      r4, 0x17(r31)
-	mr       r3, r30
-	lha      r0, 0x1a(r31)
-	extsb    r6, r6
-	extsb    r4, r4
-	stw      r5, 8(r1)
-	xoris    r6, r6, 0x8000
-	xoris    r0, r0, 0x8000
-	xoris    r4, r4, 0x8000
-	stw      r6, 0xc(r1)
-	lfd      f4, lbl_805169B8@sda21(r2)
-	lfd      f0, 8(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f1, f0, f4
-	lfs      f5, lbl_805169B0@sda21(r2)
-	stw      r5, 0x10(r1)
-	lfs      f3, lbl_805169B4@sda21(r2)
-	lfd      f0, 0x10(r1)
-	fmuls    f1, f5, f1
-	stw      r0, 0x1c(r1)
-	fsubs    f2, f0, f4
-	lbz      r4, 6(r31)
-	stw      r5, 0x18(r1)
-	lbz      r5, 7(r31)
-	lfd      f0, 0x18(r1)
-	fmuls    f2, f5, f2
-	lbz      r6, 0x14(r31)
-	fsubs    f0, f0, f4
-	lbz      r7, 0x15(r31)
-	lbz      r8, 0x12(r31)
-	lbz      r9, 0x11(r31)
-	fmuls    f3, f3, f0
-	lbz      r10, 0x13(r31)
-	bl
-J3DGDSetTexLookupMode__F11_GXTexMapID14_GXTexWrapMode14_GXTexWrapMode12_GXTexFilter12_GXTexFilterfffUcUc13_GXAnisotropy
-	lbz      r0, 8(r31)
-	cmplwi   r0, 1
-	bne      lbl_80065520
-	lhz      r0, 0xa(r31)
-	li       r29, 1
-	cmplwi   r0, 0x10
-	ble      lbl_800654D8
-	li       r29, 0x10
-
-lbl_800654D8:
-	lwz      r4, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r4)
-	lwz      r0, 0xc(r4)
-	addi     r3, r3, 0x14
-	cmplw    r3, r0
-	ble      lbl_800654F4
-	bl       GDOverflowed
-
-lbl_800654F4:
-	slwi     r3, r30, 0xd
-	lwz      r0, 0xc(r31)
-	addis    r28, r3, 0xf
-	mr       r5, r29
-	mr       r4, r28
-	add      r3, r31, r0
-	bl       J3DGDLoadTlut__FPvUl11_GXTlutSize
-	lbz      r5, 9(r31)
-	mr       r3, r30
-	mr       r4, r28
-	bl       J3DGDSetTexTlut__F11_GXTexMapIDUl10_GXTlutFmt
-
-lbl_80065520:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (resTIMG->mPaletteFormat == 1) {
+		GXTlutSize tlutSize = resTIMG->mPaletteEntryCount > 16 ? GX_TLUT_256 : GX_TLUT_16;
+		GDOverflowCheck(0x14);
+		J3DGDLoadTlut((u8*)resTIMG + resTIMG->mPaletteOffset, (id << 13) + 0xf0000, tlutSize);
+		J3DGDSetTexTlut(GXTexMapID(id), (id << 13) + 0xf0000, GXTlutFmt(resTIMG->mColorFormat));
+	}
 }
 
 /*
@@ -2164,7 +1373,7 @@ void patchTexNo_PtrToIdx(u32 p1, const u16& p2) { J3DGDSetTexImgPtrRaw((_GXTexMa
  */
 void loadNBTScale(J3DNBTScale& scale)
 {
-	if (scale._00 == 1) {
+	if (scale.mbHasScale == 1) {
 		// j3dSys._118 = &scale._04;
 	}
 	/*
@@ -2295,6 +1504,8 @@ lbl_800656CC:
 	*/
 }
 
+u8 j3dAlphaCmpTable[768];
+
 /*
  * --INFO--
  * Address:	800656F8
@@ -2302,6 +1513,17 @@ lbl_800656CC:
  */
 void makeAlphaCmpTable()
 {
+	u8* table = j3dAlphaCmpTable;
+	for (u32 i = 0; i < 8; i++) {
+		for (int j = 0; j < 4; j++) {
+			for (u32 k = 0; k < 8; k++) {
+				u32 idx            = i * 32 + j * 8 + k;
+				table[idx * 3]     = i;
+				table[idx * 3 + 1] = j;
+				table[idx * 3 + 2] = k;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r4, j3dAlphaCmpTable@ha
@@ -2386,6 +1608,8 @@ lbl_80065720:
 	*/
 }
 
+u8 j3dZModeTable[96];
+
 /*
  * --INFO--
  * Address:	80065828
@@ -2393,6 +1617,17 @@ lbl_80065720:
  */
 void makeZModeTable()
 {
+	u8* table = j3dZModeTable;
+	for (int i = 0; i < 2; i++) {
+		for (u32 j = 0; j < 8; j++) {
+			for (int k = 0; k < 2; k++) {
+				u32 idx            = i * 16 + j * 2 + k;
+				table[idx * 3]     = i;
+				table[idx * 3 + 1] = j;
+				table[idx * 3 + 2] = k;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	lis      r3, j3dZModeTable@ha
@@ -2479,6 +1714,8 @@ lbl_8006585C:
 	*/
 }
 
+u8 j3dTevSwapTableTable[1024];
+
 /*
  * --INFO--
  * Address:	80065960
@@ -2486,25 +1723,14 @@ lbl_8006585C:
  */
 void makeTevSwapTable()
 {
-	/*
-	lis      r3, j3dTevSwapTableTable@ha
-	li       r6, 0
-	addi     r0, r3, j3dTevSwapTableTable@l
-	mr       r5, r0
-
-lbl_80065970:
-	srawi    r0, r6, 6
-	rlwinm   r4, r6, 0x1c, 0x1e, 0x1f
-	stb      r0, 0(r5)
-	rlwinm   r3, r6, 0x1e, 0x1e, 0x1f
-	clrlwi   r0, r6, 0x1e
-	addi     r6, r6, 1
-	stb      r4, 1(r5)
-	cmpwi    r6, 0x100
-	stb      r3, 2(r5)
-	stb      r0, 3(r5)
-	addi     r5, r5, 4
-	blt      lbl_80065970
-	blr
-	*/
+	u8* table = j3dTevSwapTableTable;
+	int i     = 0;
+	do {
+		table[0] = i >> 6;
+		table[1] = (i >> 4) & 3;
+		table[2] = (i >> 2) & 3;
+		table[3] = i & 3;
+		i++;
+		table += 4;
+	} while (i < 256);
 }

@@ -5,6 +5,7 @@
 #include "JSystem/J3D/J3DTypes.h"
 
 extern Mtx j3dDefaultMtx;
+extern Vec j3dDefaultScale;
 
 void J3DCalcBBoardMtx(f32 (*)[4]);
 void J3DCalcYBBoardMtx(f32 (*)[4]);

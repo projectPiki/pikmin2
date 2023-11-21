@@ -26,6 +26,38 @@ struct J3DModel;
 
 typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
 
+// This belongs... somewhere
+void J3DCalcViewBaseMtx(Mtx view, Vec const& scale, const Mtx& base, Mtx dst)
+{
+	Mtx m;
+
+	m[0][0] = base[0][0] * scale.x;
+	m[0][1] = base[0][1] * scale.y;
+	m[0][2] = base[0][2] * scale.z;
+	m[0][3] = base[0][3];
+
+	m[1][0] = base[1][0] * scale.x;
+	m[1][1] = base[1][1] * scale.y;
+	m[1][2] = base[1][2] * scale.z;
+	m[1][3] = base[1][3];
+
+	m[2][0] = base[2][0] * scale.x;
+	m[2][1] = base[2][1] * scale.y;
+	m[2][2] = base[2][2] * scale.z;
+	m[2][3] = base[2][3];
+
+	PSMTXConcat(view, m, dst);
+}
+
+struct J3DUnkCalc1 {
+	virtual void calc(J3DModel* model);
+};
+
+struct J3DUnkCalc2 {
+	virtual void unk();
+	virtual void calc(J3DModelData* mpModelData);
+};
+
 // TODO: name these
 enum J3DModelFlags {
 	J3DMODEL_Unk1       = 0x1,
@@ -208,6 +240,7 @@ struct J3DModel {
 	void setUserArea(u32 area) { mUserArea = area; }
 	u32 getUserArea() const { return mUserArea; }
 	void setAnmMtx(int i, Mtx m) { mMtxBuffer->setAnmMtx(i, m); }
+	MtxP getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
 
 	// void setBaseScale(const Vec& scale) { mModelScale = scale; }
 	Vec* getBaseScale() { return &mModelScale; }
@@ -228,8 +261,8 @@ struct J3DModel {
 	J3DDeformData* mDeformData;     // _C8
 	J3DSkinDeform* mSkinDeform;     // _CC
 	J3DVtxColorCalc* mVtxColorCalc; // _D0
-	u32 _D4;                        // _D4
-	void* _D8;                      // _D8
+	J3DUnkCalc1* mUnkCalc1;         // _D4
+	J3DUnkCalc2* mUnkCalc2;         // _D8
 };
 
 struct J3DModelHierarchy {

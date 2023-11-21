@@ -615,7 +615,7 @@ void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen* screen)
 				}
 				mImgPtrArray[i].mImg = var2;
 				if (var2 && var2->mPaletteFormat) {
-					JUTPalette* palette      = new JUTPalette(GX_TLUT0, (GXTlutFmt)var2->mLutFormat, (JUTTransparency)var2->mTransparency,
+					JUTPalette* palette      = new JUTPalette(GX_TLUT0, (GXTlutFmt)var2->mColorFormat, (JUTTransparency)var2->mTransparency,
                                                          var2->mPaletteEntryCount, ((u8*)var2) + var2->mPaletteOffset);
 					mImgPtrArray[i].mPalette = palette;
 				}

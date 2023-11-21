@@ -3,19 +3,6 @@
 #include "JSystem/J3D/J3DMaterialAnm.h"
 #include "JSystem/J3D/J3DMaterial.h"
 #include "JSystem/J3D/J3DTypes.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__16J3DMaterialTable
-    __vt__16J3DMaterialTable:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__16J3DMaterialTableFv
-        .4byte 0
-*/
 
 /*
  * --INFO--

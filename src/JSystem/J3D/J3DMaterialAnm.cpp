@@ -71,7 +71,7 @@ void J3DMaterialAnm::calc(J3DMaterial* material) const
 	}
 	for (u32 i = 0; i < 8; i++) {
 		if (mTexMtxAnmList[i].getAnmFlag()) {
-			J3DTextureSRTInfo* info = &material->mTexGenBlock->getTexMtx(i)->mSrtInfo;
+			J3DTextureSRTInfo* info = &material->mTexGenBlock->getTexMtx(i)->mTexMtxInfo.mSRT;
 			mTexMtxAnmList[i].calc(info);
 		}
 	}

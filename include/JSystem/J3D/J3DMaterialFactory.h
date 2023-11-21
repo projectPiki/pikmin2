@@ -79,22 +79,6 @@ struct J3DTevSwapModeTableInfo {
 struct J3DTexCoord2Info {
 };
 
-struct J3DTexMtxInfo {
-	u8 _00;    // _00
-	u8 _01;    // _01
-	u8 _02;    // _02
-	u8 _03;    // _03
-	f32 _04;   // _04
-	f32 _08;   // _08
-	f32 _0C;   // _0C
-	f32 _10;   // _10
-	f32 _14;   // _14
-	u16 _18;   // _18
-	f32 _1C;   // _1C
-	f32 _20;   // _20
-	Mtx44 _24; // _24
-};
-
 /**
  * @size{0x14C}
  */

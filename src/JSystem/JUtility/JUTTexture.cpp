@@ -24,7 +24,7 @@ JUTTexture::JUTTexture(int sizeX, int sizeY, GXTexFmt textureFormat)
 	img->mWrapS             = GX_CLAMP;
 	img->mWrapT             = GX_CLAMP;
 	img->mPaletteFormat     = 0;
-	img->mLutFormat         = GX_TL_IA8;
+	img->mColorFormat       = GX_TL_IA8;
 	img->mPaletteEntryCount = 0;
 	img->mPaletteOffset     = 0;
 	img->mIsMIPmapEnabled   = GX_FALSE;
@@ -96,11 +96,11 @@ void JUTTexture::storeTIMG(const ResTIMG* img, u8 lutID)
 		}
 
 		if (!mEmbPalette || !(mFlags & TEXFLAG_Unk2)) {
-			mEmbPalette = new JUTPalette(tlut, (GXTlutFmt)mTexInfo->mLutFormat, (JUTTransparency)mTexInfo->mTransparency,
+			mEmbPalette = new JUTPalette(tlut, (GXTlutFmt)mTexInfo->mColorFormat, (JUTTransparency)mTexInfo->mTransparency,
 			                             mTexInfo->mPaletteEntryCount, (void*)((u32)mTexInfo + mTexInfo->mPaletteOffset));
 			mFlags      = (mFlags & TEXFLAG_Unk1) | TEXFLAG_Unk2;
 		} else {
-			mEmbPalette->storeTLUT(tlut, (GXTlutFmt)mTexInfo->mLutFormat, (JUTTransparency)mTexInfo->mTransparency,
+			mEmbPalette->storeTLUT(tlut, (GXTlutFmt)mTexInfo->mColorFormat, (JUTTransparency)mTexInfo->mTransparency,
 			                       mTexInfo->mPaletteEntryCount, (void*)((u32)mTexInfo + mTexInfo->mPaletteOffset));
 		}
 

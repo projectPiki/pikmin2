@@ -364,8 +364,8 @@ struct J3DTransformInfo {
 extern const J3DTransformInfo j3dDefaultTransformInfo;
 
 struct J3DNBTScaleInfo {
-	u8 _00;                // _00
-	JGeometry::TVec3f _04; // _04
+	u8 _00;  // _00
+	Vec _04; // _04
 
 	// f32 _08; // _08
 	// f32 _0C; // _0C
@@ -375,8 +375,8 @@ extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 
 struct J3DNBTScale {
 	inline J3DNBTScale()
-	    : _00(j3dDefaultNBTScaleInfo._00)
-	    , _04(j3dDefaultNBTScaleInfo._04)
+	    : mbHasScale(j3dDefaultNBTScaleInfo._00)
+	    , mScale(j3dDefaultNBTScaleInfo._04)
 	{
 		// _04.x = j3dDefaultNBTScaleInfo._04;
 		// _04.y = j3dDefaultNBTScaleInfo._08;
@@ -385,17 +385,27 @@ struct J3DNBTScale {
 
 	/** @fabricated */
 	inline J3DNBTScale(const J3DNBTScaleInfo& info)
-	    : _00(info._00)
-	    , _04(info._04)
+	    : mbHasScale(info._00)
+	    , mScale(info._04)
 	{
 		// _04.x = info._04;
 		// _04.y = info._08;
 		// _04.z = info._0C;
 	}
 
-	u8 _00; // _00
-	JGeometry::TVec3f _04;
+	Vec* getScale() { return &mScale; }
+
+	u8 mbHasScale; // _00
+	Vec mScale;
 };
+
+struct J3DTexCoordScaleInfo {
+	u16 _00;
+	u16 _02;
+	u16 _04;
+	u16 _06;
+};
+
 void loadNBTScale(J3DNBTScale&);
 
 void loadTexCoordGens(u32, J3DTexCoord*);

@@ -196,20 +196,20 @@ void AABBWaterBox::doEntry()
 				Mtx copyMatrix;
 				PSMTXIdentity(copyMatrix);
 				J3DTexMtx* texMtx = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[0]->mTexGenBlock->getTexMtx(3); // good lord
-				texMtx->_24[0][0] = copyMatrix[0][0];
-				texMtx->_24[0][1] = copyMatrix[0][1];
-				texMtx->_24[0][2] = copyMatrix[0][2];
-				texMtx->_24[0][3] = copyMatrix[0][3];
-				texMtx->_24[1][0] = copyMatrix[1][0];
-				texMtx->_24[1][1] = copyMatrix[1][1];
-				texMtx->_24[1][2] = copyMatrix[1][2];
-				texMtx->_24[1][3] = copyMatrix[1][3];
-				texMtx->_24[2][0] = copyMatrix[2][0];
-				texMtx->_24[2][1] = copyMatrix[2][1];
-				texMtx->_24[2][2] = copyMatrix[2][2];
-				texMtx->_24[2][3] = copyMatrix[2][3];
-				texMtx->_24[3][0] = texMtx->_24[3][1] = texMtx->_24[3][2] = 0.0f;
-				texMtx->_24[3][3]                                         = 1.0f;
+				texMtx->mTexMtxInfo.mEffectMtx[0][0] = copyMatrix[0][0];
+				texMtx->mTexMtxInfo.mEffectMtx[0][1] = copyMatrix[0][1];
+				texMtx->mTexMtxInfo.mEffectMtx[0][2] = copyMatrix[0][2];
+				texMtx->mTexMtxInfo.mEffectMtx[0][3] = copyMatrix[0][3];
+				texMtx->mTexMtxInfo.mEffectMtx[1][0] = copyMatrix[1][0];
+				texMtx->mTexMtxInfo.mEffectMtx[1][1] = copyMatrix[1][1];
+				texMtx->mTexMtxInfo.mEffectMtx[1][2] = copyMatrix[1][2];
+				texMtx->mTexMtxInfo.mEffectMtx[1][3] = copyMatrix[1][3];
+				texMtx->mTexMtxInfo.mEffectMtx[2][0] = copyMatrix[2][0];
+				texMtx->mTexMtxInfo.mEffectMtx[2][1] = copyMatrix[2][1];
+				texMtx->mTexMtxInfo.mEffectMtx[2][2] = copyMatrix[2][2];
+				texMtx->mTexMtxInfo.mEffectMtx[2][3] = copyMatrix[2][3];
+				texMtx->mTexMtxInfo.mEffectMtx[3][0] = texMtx->mTexMtxInfo.mEffectMtx[3][1] = texMtx->mTexMtxInfo.mEffectMtx[3][2] = 0.0f;
+				texMtx->mTexMtxInfo.mEffectMtx[3][3]                                                                               = 1.0f;
 
 				u16 id                   = getFbTexIndex();
 				J3DTexture* texData      = getFbTexture();
@@ -246,20 +246,20 @@ void AABBWaterBox::doEntry()
 
 		if (mFbTexture) {
 			J3DTexMtx* texMtx = mModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[0]->mTexGenBlock->getTexMtx(3); // good lord x2
-			texMtx->_24[0][0] = copyMatrix[0][0];
-			texMtx->_24[0][1] = copyMatrix[0][1];
-			texMtx->_24[0][2] = copyMatrix[0][2];
-			texMtx->_24[0][3] = copyMatrix[0][3];
-			texMtx->_24[1][0] = copyMatrix[1][0];
-			texMtx->_24[1][1] = copyMatrix[1][1];
-			texMtx->_24[1][2] = copyMatrix[1][2];
-			texMtx->_24[1][3] = copyMatrix[1][3];
-			texMtx->_24[2][0] = copyMatrix[2][0];
-			texMtx->_24[2][1] = copyMatrix[2][1];
-			texMtx->_24[2][2] = copyMatrix[2][2];
-			texMtx->_24[2][3] = copyMatrix[2][3];
-			texMtx->_24[3][0] = texMtx->_24[3][1] = texMtx->_24[3][2] = 0.0f;
-			texMtx->_24[3][3]                                         = 1.0f;
+			texMtx->mTexMtxInfo.mEffectMtx[0][0] = copyMatrix[0][0];
+			texMtx->mTexMtxInfo.mEffectMtx[0][1] = copyMatrix[0][1];
+			texMtx->mTexMtxInfo.mEffectMtx[0][2] = copyMatrix[0][2];
+			texMtx->mTexMtxInfo.mEffectMtx[0][3] = copyMatrix[0][3];
+			texMtx->mTexMtxInfo.mEffectMtx[1][0] = copyMatrix[1][0];
+			texMtx->mTexMtxInfo.mEffectMtx[1][1] = copyMatrix[1][1];
+			texMtx->mTexMtxInfo.mEffectMtx[1][2] = copyMatrix[1][2];
+			texMtx->mTexMtxInfo.mEffectMtx[1][3] = copyMatrix[1][3];
+			texMtx->mTexMtxInfo.mEffectMtx[2][0] = copyMatrix[2][0];
+			texMtx->mTexMtxInfo.mEffectMtx[2][1] = copyMatrix[2][1];
+			texMtx->mTexMtxInfo.mEffectMtx[2][2] = copyMatrix[2][2];
+			texMtx->mTexMtxInfo.mEffectMtx[2][3] = copyMatrix[2][3];
+			texMtx->mTexMtxInfo.mEffectMtx[3][0] = texMtx->mTexMtxInfo.mEffectMtx[3][1] = texMtx->mTexMtxInfo.mEffectMtx[3][2] = 0.0f;
+			texMtx->mTexMtxInfo.mEffectMtx[3][3]                                                                               = 1.0f;
 
 			u16 id                   = getFbTexIndex();
 			J3DTexture* texData      = getFbTexture();

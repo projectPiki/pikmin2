@@ -80,6 +80,13 @@ static inline void __GDWriteF32(f32 data)
 	__GDWrite(((u8*)&data)[3]);
 }
 
+inline void GDOverflowCheck(u32 len)
+{
+	if (__GDCurrentDL->pDisplayListData + len > __GDCurrentDL->end) {
+		GDOverflowed();
+	}
+}
+
 ////////////////////////////////////////////
 
 #ifdef __cplusplus

@@ -21,7 +21,7 @@ struct ResTIMG {
 	u8 mWrapS;                      // _06
 	u8 mWrapT;                      // _07
 	u8 mPaletteFormat;              // _08
-	u8 mLutFormat;                  // _09
+	u8 mColorFormat;                // _09
 	u16 mPaletteEntryCount;         // _0A
 	u32 mPaletteOffset;             // _0C
 	GXBool mIsMIPmapEnabled;        // _10

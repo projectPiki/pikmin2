@@ -8,6 +8,19 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
+struct J3DTexMtxInfo {
+
+	// I think these exist in TP but not here
+	// void operator=(J3DTexMtxInfo const&);
+	// void setEffectMtx(Mtx);
+
+	u8 mProjection;         // _00
+	u8 mInfo;               // _01
+	Vec mCenter;            // _04
+	J3DTextureSRTInfo mSRT; // _10
+	Mtx44 mEffectMtx;       // _24
+};                          // Size: 0x64
+
 struct J3DTexMtx {
 	void calc(const f32 (*)[4]);
 	void calcTexMtx(const f32 (*)[4]);
@@ -17,14 +30,12 @@ struct J3DTexMtx {
 	void loadTexMtx(u32) const;
 	void loadPostTexMtx(u32) const;
 
-	u8 _00;                     // _00
-	s8 mFlags;                  // _01
-	u8 _02;                     // _02
-	u8 _03;                     // _03
-	Vec _04;                    // _04
-	J3DTextureSRTInfo mSrtInfo; // _10
-	Mtx44 _24;                  // _24
-	Mtx _64;                    // _64
+	J3DTexMtxInfo& getTexMtxInfo() { return mTexMtxInfo; }
+	Mtx& getMtx() { return mMtx; }
+	// void setEffectMtx(Mtx effectMtx) { mTexMtxInfo.setEffectMtx(effectMtx); }
+
+	J3DTexMtxInfo mTexMtxInfo; // _00
+	Mtx mMtx;                  // _64
 };
 
 namespace J3DDifferedTexMtx {

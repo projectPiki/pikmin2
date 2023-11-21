@@ -98,7 +98,7 @@ struct J3DSys {
 	static Mtx mCurrentMtx;
 	static Vec mCurrentS;
 	static Vec mParentS;
-	static u16 sTexCoordScaleTable[8][4];
+	static J3DTexCoordScaleInfo sTexCoordScaleTable[8];
 
 	Mtx mViewMtx;                   // _000
 	J3DMtxCalc* mMtxCalc;           // _030
@@ -121,6 +121,12 @@ struct J3DSys {
 	void* mVtxNorm;                 // _110
 	GXColor* mVtxColor;             // _114
 	Vec* mNBTScale;                 // _118
+};
+
+enum J3DSysFlag {
+	J3DSysFlag_SkinPosCpu = 0x00000004,
+	J3DSysFlag_SkinNrmCpu = 0x00000008,
+	J3DSysFlag_PostTexMtx = 0x40000000,
 };
 
 extern J3DSys j3dSys;

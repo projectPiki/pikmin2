@@ -8,7 +8,7 @@ J3DSys j3dSys;
 Mtx J3DSys::mCurrentMtx;
 Vec J3DSys::mCurrentS;
 Vec J3DSys::mParentS;
-u16 J3DSys::sTexCoordScaleTable[8][4];
+J3DTexCoordScaleInfo J3DSys::sTexCoordScaleTable[8];
 
 static GXColor ColorBlack = { 0x00, 0x00, 0x00, 0x00 };
 static GXColor ColorWhite = { 0xFF, 0xFF, 0xFF, 0xFF };
@@ -47,10 +47,10 @@ J3DSys::J3DSys()
 	mVtxColor     = nullptr;
 
 	for (u32 i = 0; i < 8; i++) {
-		sTexCoordScaleTable[i][0] = 1;
-		sTexCoordScaleTable[i][1] = 1;
-		sTexCoordScaleTable[i][2] = 0;
-		sTexCoordScaleTable[i][3] = 0;
+		sTexCoordScaleTable[i]._00 = 1;
+		sTexCoordScaleTable[i]._02 = 1;
+		sTexCoordScaleTable[i]._04 = 0;
+		sTexCoordScaleTable[i]._06 = 0;
 	}
 }
 

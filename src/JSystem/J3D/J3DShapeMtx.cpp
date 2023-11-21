@@ -416,7 +416,7 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 	} else {
 		for (u16 i = 0; i < tmo->mUserArea; i++) {
 			J3DTexMtx* blockTexMtx = block->getTexMtx(i);
-			switch (blockTexMtx->mFlags & 0x3F) {
+			switch (blockTexMtx->mTexMtxInfo.mInfo & 0x3F) {
 			case 3:
 			case 9:
 				PSMTXConcat(tmo->mBaseMtxPtr[i], p1, v88);
@@ -441,10 +441,10 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 				break;
 			case 5: {
 				Mtx v216;
-				if ((blockTexMtx->mFlags & 0x80) == 0) {
-					J3DGetTextureMtxOld(blockTexMtx->mSrtInfo, blockTexMtx->_04, v216);
-				} else if ((blockTexMtx->mFlags & 0x80) == 1) {
-					J3DGetTextureMtxMayaOld(blockTexMtx->mSrtInfo, v216);
+				if ((blockTexMtx->mTexMtxInfo.mInfo & 0x80) == 0) {
+					J3DGetTextureMtxOld(blockTexMtx->mTexMtxInfo.mSRT, blockTexMtx->mTexMtxInfo.mCenter, v216);
+				} else if ((blockTexMtx->mTexMtxInfo.mInfo & 0x80) == 1) {
+					J3DGetTextureMtxMayaOld(blockTexMtx->mTexMtxInfo.mSRT, v216);
 				}
 				J3DMtxProjConcat(v216, tmo->mBaseMtxPtr[i * 2], v88);
 				Mtx v152;
@@ -459,10 +459,10 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 			}
 			case 11: {
 				Mtx v216;
-				if ((blockTexMtx->mFlags & 0x80) == 0) {
-					J3DGetTextureMtx(blockTexMtx->mSrtInfo, blockTexMtx->_04, v216);
-				} else if ((blockTexMtx->mFlags & 0x80) == 1) {
-					J3DGetTextureMtxMaya(blockTexMtx->mSrtInfo, v216);
+				if ((blockTexMtx->mTexMtxInfo.mInfo & 0x80) == 0) {
+					J3DGetTextureMtx(blockTexMtx->mTexMtxInfo.mSRT, blockTexMtx->mTexMtxInfo.mCenter, v216);
+				} else if ((blockTexMtx->mTexMtxInfo.mInfo & 0x80) == 1) {
+					J3DGetTextureMtxMaya(blockTexMtx->mTexMtxInfo.mSRT, v216);
 				}
 				PSMTXConcat(v216, qMtx, v216);
 				J3DMtxProjConcat(v216, tmo->mBaseMtxPtr[i * 2], v88);
@@ -478,10 +478,10 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 			}
 			case 10: {
 				Mtx v216;
-				if ((blockTexMtx->mFlags & 0x80) == 0) {
-					J3DGetTextureMtx(blockTexMtx->mSrtInfo, blockTexMtx->_04, v216);
-				} else if ((blockTexMtx->mFlags & 0x80) == 1) {
-					J3DGetTextureMtxMaya(blockTexMtx->mSrtInfo, v216);
+				if ((blockTexMtx->mTexMtxInfo.mInfo & 0x80) == 0) {
+					J3DGetTextureMtx(blockTexMtx->mTexMtxInfo.mSRT, blockTexMtx->mTexMtxInfo.mCenter, v216);
+				} else if ((blockTexMtx->mTexMtxInfo.mInfo & 0x80) == 1) {
+					J3DGetTextureMtxMaya(blockTexMtx->mTexMtxInfo.mSRT, v216);
 				}
 				PSMTXConcat(v216, qMtx2, v216);
 				J3DMtxProjConcat(v216, tmo->mBaseMtxPtr[i * 2], v88);
@@ -501,7 +501,7 @@ void J3DDifferedTexMtx::loadExecute(const float (*p1)[4])
 				mtxToLoad = tmo->mBaseMtxPtr + i;
 				break;
 			}
-			GXLoadTexMtxImm(*mtxToLoad, i * 3 + 30, (GXTexMtxType)blockTexMtx->_00);
+			GXLoadTexMtxImm(*mtxToLoad, i * 3 + 30, (GXTexMtxType)blockTexMtx->mTexMtxInfo.mProjection);
 		}
 	}
 	/*

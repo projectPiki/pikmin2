@@ -68,6 +68,13 @@ inline void J3DGDWriteXFCmd(u16 param_1, u32 param_2)
 	J3DGDWrite_u32(param_2);
 }
 
+inline void J3DGDWriteXFCmdHdr(u16 cmd, u8 len)
+{
+	J3DGDWrite_u8(0x10);
+	J3DGDWrite_u16(len - 1);
+	J3DGDWrite_u16(cmd);
+}
+
 inline void J3DGDSetNumChans(u8 numChans) { J3DGDWriteXFCmd(0x1009, numChans); }
 
 inline void J3DGDSetNumTexGens(u8 numTexGens) { J3DGDWriteXFCmd(0x103f, numTexGens); }
