@@ -45,12 +45,17 @@ struct EnemyNumInfo {
 	{
 		EnemyTypeID* enemyNumList = mEnemyNumList;
 		if (enemyNumList) {
-			getEnemyNumData(enemyID)->mCount += num;
+			for (int i = 0; i < gEnemyInfoNum; i++) {
+				if (enemyID == mEnemyNumList[i].mEnemyID) {
+					mEnemyNumList[i].mCount += num;
+					return;
+				}
+			}
 		}
 	}
-	inline u8 getEnemyNum(int enemyID, bool check)
+	inline u8 getEnemyNum(int enemyID, bool doFullCount)
 	{
-		if (check) {
+		if (doFullCount) {
 			u8 num = 0;
 			if (mEnemyNumList) {
 				int mgrID = getEnemyMgrID(enemyID);
@@ -65,16 +70,18 @@ struct EnemyNumInfo {
 			}
 			return num;
 		}
-		return getEnemyNumData(enemyID)->mCount;
+		// return getEnemyNumData(enemyID)->mCount;
 	}
-	inline EnemyTypeID* getEnemyNumData(int enemyID)
+	inline u8 getEnemyNumData(int enemyID)
 	{
+		u8 num = 0;
 		for (int i = 0; i < gEnemyInfoNum; i++) {
 			if (enemyID == mEnemyNumList[i].mEnemyID) {
-				return mEnemyNumList + i;
+				num = mEnemyNumList[i].mCount;
+				break;
 			}
 		}
-		return nullptr;
+		return num;
 	}
 
 	u8 _44[4];                  // _00

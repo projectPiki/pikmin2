@@ -38,6 +38,9 @@
 #define PELCOLOR_SPICY  (0)
 #define PELCOLOR_BITTER (1)
 
+#define PELCOLOR_SPECTRALID (0)
+#define PELSIZE_SPECTRALID  (1)
+
 // pellet types
 // for use with Pellet:mPelletType and getKind()
 #define PELTYPE_NUMBER   (0)

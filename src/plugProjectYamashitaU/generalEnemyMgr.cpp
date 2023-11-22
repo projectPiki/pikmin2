@@ -647,8 +647,8 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 	P2ASSERTLINE(1844, currentHeap->getHeapType() == 'EXPH');
 
 	LoadResource::ArgAramOnly arg("/enemy/parm/enemyParms.szs");
-	arg.mHeap = currentHeap;
-	arg._1C   = 2;
+	arg.mHeap     = currentHeap;
+	arg.mAllocDir = JKRDvdRipper::ALLOC_DIR_BOTTOM;
 
 	LoadResource::Node* resourceNode = gLoadResourceMgr->mountArchive(arg);
 	gParmArc                         = resourceNode->mArchive;
@@ -701,7 +701,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 					EnemyPelletInfo pelletInfo;
 					pelletInfo = genObj->mPelletInfo;
 
-					if (pelletInfo.mColor == 0 && pelletInfo.mSize == 1) {
+					if (pelletInfo.mColor == PELCOLOR_SPECTRALID && pelletInfo.mSize == PELSIZE_SPECTRALID) {
 						EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
 						addEnemyNum(info->mChildID, info->mChildNum, nullptr);
 					}
@@ -735,29 +735,25 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
  * Address:	8010DA80
  * Size:	000170
  */
-u8 GeneralEnemyMgr::getEnemyNum(int enemyID, bool check)
+u8 GeneralEnemyMgr::getEnemyNum(int enemyID, bool doFullCount)
 {
-	return mEnemyNumInfo.getEnemyNum(enemyID, check);
-	/*
-	{
-	    if (check) {
-	        u8 num = 0;
-	        if (mEnemyNumInfo.mEnemyNumList) {
-	            int mgrID = getEnemyMgrID(enemyID);
+	u8 num = 0;
+	if (doFullCount) {
 
-	            for (int i = 0; i < gEnemyInfoNum; i++) {
-	                EnemyTypeID* typeID = &mEnemyNumInfo.mEnemyNumList[i];
-	                int id              = ((u8)(enemyID == mgrID) != 0) ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
-	                if (id == enemyID) {
-	                    num += typeID->mCount;
-	                }
-	            }
-	        }
-	        return num;
-	    }
-	    return mEnemyNumInfo.getEnemyNumData(enemyID)->mCount;
+		if (mEnemyNumInfo.mEnemyNumList) {
+			int mgrID = getEnemyMgrID(enemyID);
+
+			for (int i = 0; i < gEnemyInfoNum; i++) {
+				EnemyTypeID* typeID = &mEnemyNumInfo.mEnemyNumList[i];
+				int id              = ((u8)(enemyID == mgrID) != 0) ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
+				if (id == enemyID) {
+					num += typeID->mCount;
+				}
+			}
+		}
+		return num;
 	}
-	*/
+	return mEnemyNumInfo.getEnemyNumData(enemyID);
 	/*
 	stwu     r1, -0x10(r1)
 	clrlwi.  r0, r5, 0x18
