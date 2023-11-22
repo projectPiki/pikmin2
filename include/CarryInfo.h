@@ -12,22 +12,26 @@
 struct CarryInfoList;
 
 enum cCarryInfoState {
-	CINFO_Appear = 0,
-	CINFO_1      = 1,
-	CINFO_Hidden = 2,
+	CINFO_Appear    = 0,
+	CINFO_Disappear = 1,
+	CINFO_Hidden    = 2,
 };
 
 struct CarryInfo {
+	CarryInfo();
+
 	void disappear();
 	void draw(struct Graphics&, struct CarryInfoParam&);
 	f32 drawNumber(Graphics&, f32, f32, int, struct Color4&, f32);
 	void drawNumberPrim(Graphics&, f32, f32, int, Color4&, f32);
 	void update(const CarryInfoParam&);
 
+	void appear();
+
 	f32 mGrowRate; // _00
 	f32 mYOffset;  // _04
 	f32 mScale;    // _08
-	u8 mHidden;    // _0C
+	u8 mState;     // _0C
 	u8 mAlpha;     // _0D
 	u8 mCounter;   // _0E
 };
@@ -38,8 +42,8 @@ struct CarryInfoParam {
 	f32 mYOffsetMax;      // _10
 	u8 _14;               // _14
 	u8 mColor;            // _15
-	short mValue1;        // _16
-	short mValue2;        // _18
+	s16 mValue1;          // _16
+	s16 mValue2;          // _18
 	BOOL mIsTopFirst;     // _1C, 0 means value1 on bottom, 1 means value2 on bottom
 	int mValue;           // _20
 	CarryInfo mCarryInfo; // _24
@@ -69,6 +73,9 @@ struct PokoInfoOwner : public CarryInfoOwner, public CNode {
 	// vtable 2 (CNode)
 	virtual ~PokoInfoOwner() { } // _1C (thunked at _14) (weak)
 
+	// _00     = VTBL 1
+	// _04     = VTBL 2
+	// _04-_1C = CNode
 	f32 mTimer;           // _1C
 	CarryInfoList* mList; // _20
 	Vector3f mPosition;   // _24
@@ -79,12 +86,14 @@ struct PokoInfoOwner : public CarryInfoOwner, public CNode {
  * @size(0x58)
  */
 struct CarryInfoList : public InfoListBase<CarryInfoOwner, CarryInfoList> {
-	virtual ~CarryInfoList() { }                                                    // _08 (weak)
-	virtual void init();                                                            // _0C
-	virtual void update();                                                          // _10
-	virtual void draw(Graphics&);                                                   // _14
-	virtual bool isFinish() { return (mParam.mCarryInfo.mHidden == CINFO_Hidden); } // _18 (weak)
+	virtual ~CarryInfoList() { }                                                   // _08 (weak)
+	virtual void init();                                                           // _0C
+	virtual void update();                                                         // _10
+	virtual void draw(Graphics&);                                                  // _14
+	virtual bool isFinish() { return (mParam.mCarryInfo.mState == CINFO_Hidden); } // _18 (weak)
 
+	// _00     = VTBL
+	// _00-_24 = InfoListBase
 	CarryInfoParam mParam; // _24
 };
 
@@ -105,6 +114,8 @@ struct CarryInfoMgr : public InfoMgr<CarryInfoOwner, CarryInfoList> {
 	void appearPoko(const Vector3f&, int);
 	void updatePokoInfoOwners();
 
+	// _00     = VTBL
+	// _00-_B8 = InfoMgr
 	JUTTexture* mTexture; // _B8
 	CNode mNode1;         // _BC
 	CNode mPoko_node;     // _D4

@@ -33,7 +33,8 @@ struct InfoListBase : public JKRDisposer {
 	virtual void draw(Graphics&) { } // _14
 	virtual bool isFinish() = 0;     // _18
 
-	// TODO: These may be just List*?
+	// _00     = VTBL
+	// _00-_18 = JKRDisposer
 	List* _18;     // _18
 	List* _1C;     // _1C
 	Owner* mOwner; // _20
@@ -41,89 +42,112 @@ struct InfoListBase : public JKRDisposer {
 
 template <typename Owner, typename List>
 struct InfoMgr : public InfoMgrBase {
-	// TODO: ctor
-	InfoMgr(int) { }
+	InfoMgr(int);
 
-	// TODO: dtor
-	virtual ~InfoMgr() { }           // _08
-	virtual void loadResource() = 0; // _0C
-	virtual void update()            // _10
-	{
-		List* next = (mActiveList)._1C;
-		List* current;
-		while (current = next, current) {
-			next = current->_1C;
-			current->update();
-			if (current->isFinish()) {
-				addInactiveList(current);
-			}
-		}
-	}
+	virtual ~InfoMgr() { }              // _08
+	virtual void loadResource() = 0;    // _0C
+	virtual void update();              // _10
+	virtual void draw(Graphics& gfx);   // _14
+	virtual List* regist(Owner* owner); // _18
+	virtual void scratch(Owner* owner); // _1C
 
-	virtual void draw(Graphics& gfx) // _14
-	{
-		List* list = (mActiveList)._1C;
-		if (list) {
-			for (; list != nullptr; list = list->_1C) {
-				list->draw(gfx);
-			}
-		}
-	}
+	List* search(List* list, Owner* owner);
+	void addActiveList(List* list);
+	void addInactiveList(List* list);
 
-	virtual List* regist(Owner* owner) // _18
-	{
-		List* list;
-		for (list = (mActiveList)._1C; list != nullptr; list = list->_1C) {
-			if (list->mOwner == owner) {
-				break;
-			}
-		}
-		if (list == nullptr) {
-			list = (mActiveList)._1C;
-		}
-		if (list) {
-			list->mOwner = owner;
-			addActiveList(list);
-		}
-		return list;
-	}
-	virtual void scratch(Owner* owner)
-	{
-		List* list = search(mActiveList._1C, owner); // search(&mActiveList, owner); // this I cant get to work
-		if (list) {
-			addInactiveList(list);
-		}
-	}
-
-	List* search(List* list, Owner* owner)
-	{
-		while (true) {
-			if (list == nullptr) {
-				return nullptr;
-			}
-			if (((InfoListBase<Owner, List>*)list)->mOwner == owner) {
-				return list;
-			}
-			list = ((InfoListBase<Owner, List>*)list)->_1C;
-		}
-	}
-
-	void addActiveList(List* list)
-	{
-		if (list->_18) {
-			list->_18->_1C = list->_1C;
-		}
-	}
-	void addInactiveList(List* list)
-	{
-		if (list->_18) {
-			list->_18->_1C = list->_1C;
-		}
-	}
-
+	// _00     = VTBL
+	// _00-_04 = InfoMgrBase
 	List mActiveList;   // _04 when List is CarryInfoList
 	List mInactiveList; // _5C when List is CarryInfoList
 	int mCount;         // _B4 when List is CarryInfoList
 };
+
+template <typename Owner, typename List>
+void InfoMgr<Owner, List>::update()
+{
+	List* next = (mActiveList)._1C;
+	List* current;
+	while (current = next, current) {
+		next = current->_1C;
+		current->update();
+		if (current->isFinish()) {
+			addInactiveList(current);
+		}
+	}
+}
+
+template <typename Owner, typename List>
+void InfoMgr<Owner, List>::draw(Graphics& gfx)
+{
+	List* list = (mActiveList)._1C;
+	if (list) {
+		for (; list != nullptr; list = list->_1C) {
+			list->draw(gfx);
+		}
+	}
+}
+
+template <typename Owner, typename List>
+List* InfoMgr<Owner, List>::search(List* list, Owner* owner)
+{
+	while (true) {
+		if (list == nullptr) {
+			return nullptr;
+		}
+		if (((InfoListBase<Owner, List>*)list)->mOwner == owner) {
+			return list;
+		}
+		list = ((InfoListBase<Owner, List>*)list)->_1C;
+	}
+}
+
+template <typename Owner, typename List>
+List* InfoMgr<Owner, List>::regist(Owner* owner)
+{
+	List* list;
+	for (list = (mActiveList)._1C; list != nullptr; list = list->_1C) {
+		if (list->mOwner == owner) {
+			break;
+		}
+	}
+	if (list == nullptr) {
+		list = (mActiveList)._1C;
+	}
+	if (list) {
+		list->mOwner = owner;
+		addActiveList(list);
+	}
+	return list;
+}
+
+template <typename Owner, typename List>
+void InfoMgr<Owner, List>::scratch(Owner* owner)
+{
+	List* list = search(mActiveList._1C, owner); // search(&mActiveList, owner); // this I cant get to work
+	if (list) {
+		addInactiveList(list);
+	}
+}
+
+template <typename Owner, typename List>
+void InfoMgr<Owner, List>::addActiveList(List* list)
+{
+	if (list->_18) {
+		list->_18->_1C = list->_1C;
+	}
+}
+
+template <typename Owner, typename List>
+void InfoMgr<Owner, List>::addInactiveList(List* list)
+{
+	if (list->_18) {
+		list->_18->_1C = list->_1C;
+	}
+}
+
+template <typename Owner, typename List>
+InfoMgr<Owner, List>::InfoMgr(int)
+{
+}
 
 #endif

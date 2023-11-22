@@ -29,10 +29,24 @@ CarryInfoMgr* carryInfoMgr;
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000024
+ */
+CarryInfo::CarryInfo() { }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000010
+ */
+void CarryInfo::appear() { mState = CINFO_Appear; }
+
+/*
+ * --INFO--
  * Address:	8011AFD0
  * Size:	00000C
  */
-void CarryInfo::disappear() { mHidden = true; }
+void CarryInfo::disappear() { mState = CINFO_Disappear; }
 
 /*
  * --INFO--
@@ -41,10 +55,10 @@ void CarryInfo::disappear() { mHidden = true; }
  */
 void CarryInfo::update(const CarryInfoParam& param)
 {
-	if (mHidden != CINFO_Hidden) {
+	if (mState != CINFO_Hidden) {
 		switch (param.mUseType) {
 		case 0: {
-			switch (mHidden) {
+			switch (mState) {
 			case CINFO_Appear: {
 				f32 temp = 0.04f * (param.mYOffsetMax - mYOffset);
 				mGrowRate += temp;
@@ -53,7 +67,7 @@ void CarryInfo::update(const CarryInfoParam& param)
 				break;
 			}
 
-			case CINFO_1: {
+			case CINFO_Disappear: {
 				f32 temp = 0.04f * -mYOffset;
 				mGrowRate += temp;
 				mYOffset += mGrowRate;
@@ -62,7 +76,7 @@ void CarryInfo::update(const CarryInfoParam& param)
 					mGrowRate = 0.0f;
 					mYOffset  = 0.0f;
 					mScale    = 0.0f;
-					mHidden   = CINFO_Hidden;
+					mState    = CINFO_Hidden;
 
 				} else {
 					mScale = mYOffset / param.mYOffsetMax;
@@ -98,7 +112,7 @@ void CarryInfo::update(const CarryInfoParam& param)
 				mScale = 1.0f;
 			}
 
-			switch (mHidden) {
+			switch (mState) {
 			case CINFO_Appear: {
 				f32 scaledAlpha = mScale * 255.0f;
 				f32 alpha;
@@ -111,7 +125,7 @@ void CarryInfo::update(const CarryInfoParam& param)
 				break;
 			}
 
-			case CINFO_1: {
+			case CINFO_Disappear: {
 				if (mAlpha > 8) {
 					mAlpha -= 8;
 				} else {
@@ -119,7 +133,7 @@ void CarryInfo::update(const CarryInfoParam& param)
 					mGrowRate = 0.0f;
 					mYOffset  = 0.0f;
 					mScale    = 0.0f;
-					mHidden   = CINFO_Hidden;
+					mState    = CINFO_Hidden;
 				}
 				break;
 			}
@@ -138,7 +152,7 @@ void CarryInfo::update(const CarryInfoParam& param)
  */
 void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 {
-	if (mHidden != CINFO_Hidden) {
+	if (mState != CINFO_Hidden) {
 		Viewport* vp = gfx.mCurrentViewport;
 		Matrixf* mtx = vp->getMatrix(1);
 		Matrixf newmtx;
@@ -697,7 +711,7 @@ void CarryInfoMgr::appearPoko(const Vector3f& pos, int value)
 			obj->mValue                         = value;
 			obj->mTimer                         = 0.0f;
 			newlist                             = obj->mList;
-			newlist->mParam.mCarryInfo.mHidden  = CINFO_Appear;
+			newlist->mParam.mCarryInfo.mState   = CINFO_Appear;
 			newlist->mParam.mCarryInfo.mCounter = 0;
 		}
 	}
@@ -712,7 +726,7 @@ CarryInfoList* CarryInfoMgr::appear(CarryInfoOwner* owner)
 {
 	CarryInfoList* list = regist(owner);
 	if (list) {
-		list->mParam.mCarryInfo.mHidden  = CINFO_Appear;
+		list->mParam.mCarryInfo.mState   = CINFO_Appear;
 		list->mParam.mCarryInfo.mCounter = 0;
 	}
 	return list;
@@ -977,7 +991,7 @@ void CarryInfoMgr::updatePokoInfoOwners()
 		if (!obj->mList->isFinish() && obj->mList->mOwner == obj) {
 			obj->mTimer += sys->mDeltaTime;
 			if (obj->mTimer > 1.5f) {
-				obj->mList->mParam.mCarryInfo.mHidden = CINFO_1;
+				obj->mList->mParam.mCarryInfo.mState = CINFO_Disappear;
 			}
 		} else {
 			obj->del();
