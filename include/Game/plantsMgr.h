@@ -250,7 +250,7 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 		for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 			shape = mModelData->mShapeTable.mItems[j];
 			P2ASSERTLINE(523, shape != nullptr);
-			shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
+			shape->setTexMtxLoadType(0x2000);
 		}
 	}
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
@@ -326,7 +326,7 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 		for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 			shape = mModelData->mShapeTable.mItems[j];
 			P2ASSERTLINE(582, shape != nullptr);
-			shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
+			shape->setTexMtxLoadType(0x2000);
 		}
 	}
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)

@@ -597,7 +597,7 @@ void Obj::updateMaterialAnimation()
 {
 	if (_2DC) {
 		f32 maxFrame;
-		f32 currFrame = mMatLoopAnimator[0]._08;
+		f32 currFrame = mMatLoopAnimator[0].mCurrFrame;
 		if (mMatLoopAnimator[0].mAnimation) {
 			maxFrame = mMatLoopAnimator[0].mAnimation->getFrameMax();
 		} else {

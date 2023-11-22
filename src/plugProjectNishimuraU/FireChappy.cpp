@@ -254,7 +254,7 @@ void Obj::updateMaterialAnimation()
 	f32 p1 = 30.0f;
 	if (!mOnFire) {
 		Sys::MatBaseAnimation* animation = mLoopAnimators[0].mAnimation;
-		f32 p2                           = mLoopAnimators[0]._08;
+		f32 p2                           = mLoopAnimators[0].mCurrFrame;
 		f32 frameMax                     = (animation) ? animation->getFrameMax() : 0.0f;
 		frameMax -= 30.0f;
 

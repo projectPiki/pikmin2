@@ -44,7 +44,7 @@ void Mgr::loadModelData()
 
 	for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 		J3DShape* shape = mModelData->mShapeTable.mItems[j];
-		shape->mFlags   = (shape->mFlags & (~0xF000)) | 0x2000;
+		shape->setTexMtxLoadType(0x2000);
 	}
 }
 

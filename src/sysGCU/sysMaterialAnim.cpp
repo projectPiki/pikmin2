@@ -6,81 +6,6 @@
 #include "Sys/MatBaseAnimator.h"
 #include "System.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049A6A0
-    lbl_8049A6A0:
-        .4byte 0x7379734D
-        .4byte 0x61746572
-        .4byte 0x69616C41
-        .4byte 0x6E696D2E
-        .4byte 0x63707000
-    .global lbl_8049A6B4
-    lbl_8049A6B4:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23Sys17MatRepeatAnimator
-    __vt__Q23Sys17MatRepeatAnimator:
-        .4byte 0
-        .4byte 0
-        .4byte start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
-        .4byte onStart__Q23Sys17MatRepeatAnimatorFv
-        .4byte do_animate__Q23Sys17MatRepeatAnimatorFf
-    .global __vt__Q23Sys15MatLoopAnimator
-    __vt__Q23Sys15MatLoopAnimator:
-        .4byte 0
-        .4byte 0
-        .4byte start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
-        .4byte onStart__Q23Sys15MatBaseAnimatorFv
-        .4byte do_animate__Q23Sys15MatLoopAnimatorFf
-    .global __vt__Q23Sys15MatBaseAnimator
-    __vt__Q23Sys15MatBaseAnimator:
-        .4byte 0
-        .4byte 0
-        .4byte start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
-        .4byte onStart__Q23Sys15MatBaseAnimatorFv
-        .4byte do_animate__Q23Sys15MatBaseAnimatorFf
-    .global __vt__Q23Sys18MatTevRegAnimation
-    __vt__Q23Sys18MatTevRegAnimation:
-        .4byte 0
-        .4byte 0
-        .4byte onAttachResource__Q23Sys18MatTevRegAnimationFPv
-        .4byte getAnmBase__Q23Sys18MatTevRegAnimationFv
-        .4byte set__Q23Sys18MatTevRegAnimationFv
-        .4byte remove__Q23Sys18MatTevRegAnimationFv
-    .global __vt__Q23Sys15MatTexAnimation
-    __vt__Q23Sys15MatTexAnimation:
-        .4byte 0
-        .4byte 0
-        .4byte onAttachResource__Q23Sys15MatTexAnimationFPv
-        .4byte getAnmBase__Q23Sys15MatTexAnimationFv
-        .4byte set__Q23Sys15MatTexAnimationFv
-        .4byte remove__Q23Sys15MatTexAnimationFv
-    .global __vt__Q23Sys16MatBaseAnimation
-    __vt__Q23Sys16MatBaseAnimation:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520780
-    lbl_80520780:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80520788
-    lbl_80520788:
-        .4byte 0x00000000
-        .4byte 0x00000000
-*/
-
 namespace Sys {
 
 /*
@@ -100,7 +25,7 @@ namespace Sys {
  */
 void MatBaseAnimation::attachResource(void* resource, J3DModelData* modelData)
 {
-	P2ASSERTLINE(49, mModelData == nullptr);
+	P2ASSERTLINE(49, !mModelData);
 	mModelData = modelData;
 	onAttachResource(resource);
 }
@@ -112,7 +37,7 @@ void MatBaseAnimation::attachResource(void* resource, J3DModelData* modelData)
  */
 f32 MatBaseAnimation::getFrameMax()
 {
-	P2ASSERTLINE(57, getAnmBase() != nullptr);
+	P2ASSERTLINE(57, getAnmBase());
 	return getAnmBase()->mMaxFrame;
 }
 
@@ -122,9 +47,8 @@ f32 MatBaseAnimation::getFrameMax()
  * Size:	00002C
  */
 MatTexAnimation::MatTexAnimation()
-    : MatBaseAnimation()
-    , _08(nullptr)
-    , _0C(nullptr)
+    : mAnmSRT(nullptr)
+    , mAnmMtx(nullptr)
 {
 }
 
@@ -135,49 +59,12 @@ MatTexAnimation::MatTexAnimation()
  */
 void MatTexAnimation::onAttachResource(void* resource)
 {
-	P2ASSERTLINE(75, _08 == nullptr);
-	_08 = static_cast<J3DAnmTextureSRTKey*>(J3DAnmLoaderDataBase::load(resource));
-	_08->searchUpdateMaterialID(mModelData);
-	mModelData->getMaterialTable().allocTexMtxAnimator(_08, _0C);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_804341A4
-	lis      r3, lbl_8049A6A0@ha
-	lis      r5, lbl_8049A6B4@ha
-	addi     r3, r3, lbl_8049A6A0@l
-	li       r4, 0x4b
-	addi     r5, r5, lbl_8049A6B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(75, !mAnmSRT);
+	mAnmSRT = static_cast<J3DAnmTextureSRTKey*>(J3DAnmLoaderDataBase::load(resource));
 
-lbl_804341A4:
-	mr       r3, r31
-	bl       load__20J3DAnmLoaderDataBaseFPCv
-	stw      r3, 8(r30)
-	lwz      r31, 4(r30)
-	lwz      r3, 8(r30)
-	mr       r4, r31
-	bl       searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData
-	lwz      r4, 8(r30)
-	addi     r3, r31, 0x58
-	addi     r5, r30, 0xc
-	bl
-allocTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKeyPP12J3DTexMtxAnm
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J3DModelData* model = mModelData;
+	mAnmSRT->searchUpdateMaterialID(model);
+	model->getMaterialTable().allocTexMtxAnimator(mAnmSRT, &mAnmMtx);
 }
 
 /*
@@ -185,14 +72,14 @@ allocTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKeyPP12J3DTexMtxAnm
  * Address:	804341E8
  * Size:	00002C
  */
-void MatTexAnimation::set() { mModelData->getMaterialTable().entryTexMtxAnimator(_08); }
+void MatTexAnimation::set() { mModelData->getMaterialTable().entryTexMtxAnimator(mAnmSRT); }
 
 /*
  * --INFO--
  * Address:	80434214
  * Size:	00002C
  */
-bool MatTexAnimation::remove() { return mModelData->getMaterialTable().removeTexMtxAnimator(_08); }
+bool MatTexAnimation::remove() { return mModelData->getMaterialTable().removeTexMtxAnimator(mAnmSRT); }
 
 /*
  * --INFO--
@@ -200,8 +87,7 @@ bool MatTexAnimation::remove() { return mModelData->getMaterialTable().removeTex
  * Size:	000030
  */
 MatTevRegAnimation::MatTevRegAnimation()
-    : MatBaseAnimation()
-    , mAnmTevRegKey(nullptr)
+    : mAnmTevRegKey(nullptr)
     , mTevColorAnm(nullptr)
     , mTevKColorAnm(nullptr)
 {
@@ -214,50 +100,12 @@ MatTevRegAnimation::MatTevRegAnimation()
  */
 void MatTevRegAnimation::onAttachResource(void* resource)
 {
-	P2ASSERTLINE(111, mAnmTevRegKey == nullptr);
+	P2ASSERTLINE(111, !mAnmTevRegKey);
 	mAnmTevRegKey = static_cast<J3DAnmTevRegKey*>(J3DAnmLoaderDataBase::load(resource));
-	mAnmTevRegKey->searchUpdateMaterialID(mModelData);
-	mModelData->getMaterialTable().allocTevRegAnimator(mAnmTevRegKey, &mTevColorAnm, &mTevKColorAnm);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_804342B4
-	lis      r3, lbl_8049A6A0@ha
-	lis      r5, lbl_8049A6B4@ha
-	addi     r3, r3, lbl_8049A6A0@l
-	li       r4, 0x6f
-	addi     r5, r5, lbl_8049A6B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
 
-lbl_804342B4:
-	mr       r3, r31
-	bl       load__20J3DAnmLoaderDataBaseFPCv
-	stw      r3, 8(r30)
-	lwz      r31, 4(r30)
-	lwz      r3, 8(r30)
-	mr       r4, r31
-	bl       searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
-	lwz      r4, 8(r30)
-	addi     r3, r31, 0x58
-	addi     r5, r30, 0xc
-	addi     r6, r30, 0x10
-	bl
-allocTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKeyPP14J3DTevColorAnmPP15J3DTevKColorAnm
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J3DModelData* model = mModelData;
+	mAnmTevRegKey->searchUpdateMaterialID(model);
+	model->getMaterialTable().allocTevRegAnimator(mAnmTevRegKey, &mTevColorAnm, &mTevKColorAnm);
 }
 
 /*
@@ -296,7 +144,7 @@ void MatBaseAnimator::start(Sys::MatBaseAnimation* animation)
 	}
 	mAnimation = animation;
 	mAnimation->set();
-	_08 = 0.0f;
+	mCurrFrame = 0.0f;
 }
 
 /*
@@ -324,8 +172,18 @@ void MatBaseAnimator::forward(f32)
  * Address:	804343DC
  * Size:	000170
  */
-void MatBaseAnimator::setCurrentFrame(f32)
+void MatBaseAnimator::setCurrentFrame(f32 frame)
 {
+	P2ASSERTLINE(201, mAnimation);
+
+	if (frame < 0.0f) {
+		frame = 0.0f;
+	} else if (frame >= mAnimation->getFrameMax()) {
+		frame = mAnimation->getFrameMax();
+	}
+
+	mCurrFrame = frame;
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -437,46 +295,13 @@ lbl_80434528:
  * Address:	8043454C
  * Size:	000078
  */
-void MatBaseAnimator::animate(f32)
+void MatBaseAnimator::animate(f32 rate)
 {
-	if (mAnimation != nullptr) {
+	rate *= sys->mDeltaTime;
+	if (mAnimation) {
 		mAnimation->set();
 	}
-	do_animate(sys->mDeltaTime);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lwz      r4, sys@sda21(r13)
-	mr       r31, r3
-	lwz      r3, 4(r3)
-	lfs      f0, 0x54(r4)
-	cmplwi   r3, 0
-	fmuls    f31, f1, f0
-	beq      lbl_80434590
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80434590:
-	mr       r3, r31
-	fmr      f1, f31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	do_animate(rate);
 }
 
 /*
@@ -491,8 +316,29 @@ void MatBaseAnimator::do_animate(f32) { }
  * Address:	804345C8
  * Size:	0001B0
  */
-void MatLoopAnimator::do_animate(f32)
+void MatLoopAnimator::do_animate(f32 rate)
 {
+	u32 state;
+	if (!mAnimation) {
+		state = 0x8000;
+	} else {
+		state = 0;
+		mCurrFrame += rate;
+		if (mCurrFrame < 0.0f) {
+			mCurrFrame = 0.0f;
+			state      = 1;
+		} else {
+			if (mAnimation->getFrameMax() >= mCurrFrame) {
+				mCurrFrame = mAnimation->getFrameMax();
+				state      = 2;
+			}
+		}
+		mAnimation->getAnmBase()->mCurrentFrame = mCurrFrame;
+	}
+
+	if (state == 2) {
+		mCurrFrame = 0.0f;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -624,19 +470,56 @@ lbl_80434754:
  * Address:	80434778
  * Size:	00000C
  */
-void MatRepeatAnimator::onStart()
-{
-	// Generated from stb r0, 0xC(r3)
-	_0C = 1;
-}
+void MatRepeatAnimator::onStart() { _0C = 1; }
 
 /*
  * --INFO--
  * Address:	80434784
  * Size:	000328
  */
-void MatRepeatAnimator::do_animate(f32)
+void MatRepeatAnimator::do_animate(f32 rate)
 {
+	if (_0C) {
+		u32 state;
+		if (!mAnimation) {
+			state = 0x8000;
+		} else {
+			state = 0;
+			mCurrFrame += rate;
+			if (mCurrFrame < 0.0f) {
+				mCurrFrame = 0.0f;
+				state      = 1;
+			} else if (mAnimation->getFrameMax() >= mCurrFrame) {
+				mCurrFrame = mAnimation->getFrameMax();
+				state      = 2;
+			}
+			mAnimation->getAnmBase()->mCurrentFrame = mCurrFrame;
+		}
+
+		if (state == 2) {
+			_0C = false;
+		}
+	} else {
+		u32 state;
+		if (!mAnimation) {
+			state = 0x8000;
+		} else {
+			state = 0;
+			mCurrFrame -= rate;
+			if (mCurrFrame < 0.0f) {
+				mCurrFrame = 0.0f;
+				state      = 1;
+			} else if (mAnimation->getFrameMax() >= mCurrFrame) {
+				mCurrFrame = mAnimation->getFrameMax();
+				state      = 2;
+			}
+			mAnimation->getAnmBase()->mCurrentFrame = mCurrFrame;
+		}
+
+		if (state == 1) {
+			_0C = true;
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -890,5 +773,5 @@ J3DAnmBase* MatTevRegAnimation::getAnmBase() { return mAnmTevRegKey; }
  * Address:	80434AB8
  * Size:	000008
  */
-J3DAnmBase* MatTexAnimation::getAnmBase() { return _08; }
+J3DAnmBase* MatTexAnimation::getAnmBase() { return mAnmSRT; }
 } // namespace Sys

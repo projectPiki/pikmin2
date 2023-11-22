@@ -41,8 +41,8 @@ void Mgr::loadModelData()
 	EnemyMgrBase::loadModelData();
 	J3DShape* shape;
 	for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
-		shape         = mModelData->mShapeTable.mItems[j];
-		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
+		shape = mModelData->mShapeTable.mItems[j];
+		shape->setTexMtxLoadType(0x2000);
 	}
 }
 

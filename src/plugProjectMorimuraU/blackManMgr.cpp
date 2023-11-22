@@ -45,7 +45,7 @@ void Mgr::loadModelData()
 	for (u16 j = 0; j < mModelData->getShapeNum(); j++) {
 		shape = mModelData->mShapeTable.mItems[j];
 		P2ASSERTLINE(56, shape);
-		shape->mFlags = (shape->mFlags & (~0xF000)) | 0x2000;
+		shape->setTexMtxLoadType(0x2000);
 	}
 }
 

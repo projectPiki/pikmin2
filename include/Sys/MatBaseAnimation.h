@@ -56,8 +56,8 @@ struct MatTexAnimation : public MatBaseAnimation {
 	virtual void set();                            // _10
 	virtual bool remove();                         // _14
 
-	J3DAnmTextureSRTKey* _08; // _08
-	J3DTexMtxAnm** _0C;       // _0C
+	J3DAnmTextureSRTKey* mAnmSRT; // _08
+	J3DTexMtxAnm* mAnmMtx;        // _0C
 };
 
 } // namespace Sys

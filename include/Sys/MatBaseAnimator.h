@@ -24,7 +24,7 @@ struct MatBaseAnimator {
 
 	// VTBL _00
 	MatBaseAnimation* mAnimation; // _04
-	f32 _08;                      // _08
+	f32 mCurrFrame;               // _08
 };
 
 /**

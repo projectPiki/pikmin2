@@ -205,7 +205,7 @@ void NaviMgr::load()
 
 	J3DModelData* model = J3DModelLoaderDataBase::load(arc->getResource("orima_model/orima1.bmd"), 0x20000030);
 	for (u16 j = 0; j < model->getShapeNum(); j++) {
-		model->mShapeTable.mItems[j]->mFlags = (model->mShapeTable.mItems[j]->mFlags & (~0xF000)) | 0x2000;
+		model->mShapeTable.mItems[j]->setTexMtxLoadType(0x2000);
 	}
 
 	mOlimarModel = model;
@@ -255,7 +255,7 @@ void NaviMgr::loadResources_float()
 	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x20000030);
 	for (u16 j = 0; j < model->getShapeNum(); j++) {
 		J3DShape* shape = model->mShapeTable.mItems[j];
-		shape->mFlags   = (shape->mFlags & (~0xF000)) | 0x2000;
+		shape->setTexMtxLoadType(0x2000);
 	}
 
 	mLouieModel = model;
