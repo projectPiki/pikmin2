@@ -1,183 +1,37 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JParticle/JPAEmitter.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516BB8
-    lbl_80516BB8:
-        .4byte 0x00000000
-    .global lbl_80516BBC
-    lbl_80516BBC:
-        .4byte 0x42000000
-    .global lbl_80516BC0
-    lbl_80516BC0:
-        .float 0.5
-    .global lbl_80516BC4
-    lbl_80516BC4:
-        .4byte 0x40400000
-    .global lbl_80516BC8
-    lbl_80516BC8:
-        .float 1.0
-        .4byte 0x00000000
-*/
+#include "JSystem/JParticle/JPANode.h"
+#include "JSystem/JMath.h"
 
 /*
  * --INFO--
  * Address:	80090538
  * Size:	0001FC
  */
-JPAEmitterManager::JPAEmitterManager(u32, u32, JKRHeap*, u8, u8)
+JPAEmitterManager::JPAEmitterManager(u32 ptclNum, u32 emtrNum, JKRHeap* heap, u8 groups, u8 resnum)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r30, r3
-	  mr        r26, r4
-	  mr        r27, r5
-	  mr        r31, r6
-	  mr        r29, r7
-	  mr        r28, r8
-	  addi      r3, r30, 0x4
-	  bl        -0x69C94
-	  li        r0, 0
-	  mr        r4, r31
-	  stw       r0, 0x10(r30)
-	  li        r5, 0
-	  stw       r0, 0x14(r30)
-	  stw       r0, 0x18(r30)
-	  stw       r27, 0x24(r30)
-	  stw       r26, 0x28(r30)
-	  stb       r29, 0x2C(r30)
-	  stb       r28, 0x2D(r30)
-	  lwz       r29, 0x24(r30)
-	  mulli     r3, r29, 0x114
-	  addi      r3, r3, 0x10
-	  bl        -0x6C554
-	  lis       r4, 0x8009
-	  lis       r5, 0x8009
-	  addi      r4, r4, 0x810
-	  mr        r7, r29
-	  addi      r5, r5, 0x7B0
-	  li        r6, 0x114
-	  bl        0x31438
-	  li        r28, 0
-	  mr        r29, r3
-	  b         .loc_0xA4
+	mEmtrMax = emtrNum;
+	mPtclMax = ptclNum;
+	mGrpMax  = groups;
+	mResMax  = resnum;
 
-	.loc_0x90:
-	  addi      r3, r30, 0x4
-	  addi      r4, r29, 0x58
-	  bl        -0x69C34
-	  addi      r29, r29, 0x114
-	  addi      r28, r28, 0x1
+	JPABaseEmitter* emitters = new (heap, 0) JPABaseEmitter[mEmtrMax]; // JPABaseEmitter ctor needs GXColor instead of TColor to match
+	for (int i = 0; i < mEmtrMax; i++) {
+		mFreeEmtrList.prepend(&emitters[i].mLink);
+	}
 
-	.loc_0xA4:
-	  lwz       r0, 0x24(r30)
-	  cmplw     r28, r0
-	  blt+      .loc_0x90
-	  lwz       r29, 0x28(r30)
-	  mr        r4, r31
-	  li        r5, 0
-	  mulli     r3, r29, 0xA0
-	  addi      r3, r3, 0x10
-	  bl        -0x6C5B4
-	  lis       r4, 0x8009
-	  lis       r5, 0x8009
-	  addi      r4, r4, 0x7A0
-	  mr        r7, r29
-	  addi      r5, r5, 0x764
-	  li        r6, 0xA0
-	  bl        0x313D8
-	  li        r6, 0
-	  li        r5, 0
-	  b         .loc_0x138
+	JPANode<JPABaseParticle>* nodes = new (heap, 0) JPANode<JPABaseParticle>[mPtclMax];
+	for (int i = 0; i < mPtclMax; i++) {
+		mPtclPool.push_back(&nodes[i]);
+	}
 
-	.loc_0xF0:
-	  lwz       r0, 0x14(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x114
-	  stw       r0, 0x0(r3)
-	  stw       r5, 0x4(r3)
-	  lwz       r4, 0x14(r30)
-	  stw       r3, 0x4(r4)
-	  stw       r3, 0x14(r30)
-	  b         .loc_0x124
+	mGrpEmtr   = new (heap, 0) JSUList<JPABaseEmitter>[mGrpMax];
+	mResMgrAry = new (heap, 0) JPAResourceManager*[mResMax];
+	for (int i = 0; i < mResMax; i++) {
+		mResMgrAry[i] = nullptr;
+	}
 
-	.loc_0x114:
-	  stw       r3, 0x10(r30)
-	  stw       r3, 0x14(r30)
-	  stw       r5, 0x0(r3)
-	  stw       r5, 0x4(r3)
-
-	.loc_0x124:
-	  lwz       r4, 0x18(r30)
-	  addi      r3, r3, 0xA0
-	  addi      r6, r6, 0x1
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x18(r30)
-
-	.loc_0x138:
-	  lwz       r0, 0x28(r30)
-	  cmplw     r6, r0
-	  blt+      .loc_0xF0
-	  lbz       r29, 0x2C(r30)
-	  mr        r4, r31
-	  li        r5, 0
-	  mulli     r3, r29, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x6C648
-	  lis       r4, 0x8009
-	  lis       r5, 0x8009
-	  addi      r4, r4, 0x734
-	  mr        r7, r29
-	  addi      r5, r5, 0x868
-	  li        r6, 0xC
-	  bl        0x31344
-	  stw       r3, 0x0(r30)
-	  mr        r4, r31
-	  li        r5, 0
-	  lbz       r0, 0x2D(r30)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x6C67C
-	  li        r5, 0
-	  stw       r3, 0x1C(r30)
-	  mr        r4, r5
-	  li        r6, 0
-	  b         .loc_0x1B4
-
-	.loc_0x1A4:
-	  lwz       r3, 0x1C(r30)
-	  addi      r6, r6, 0x1
-	  stwx      r4, r3, r5
-	  addi      r5, r5, 0x4
-
-	.loc_0x1B4:
-	  lbz       r0, 0x2D(r30)
-	  cmpw      r6, r0
-	  blt+      .loc_0x1A4
-	  mr        r4, r31
-	  li        r3, 0x218
-	  li        r5, 0
-	  bl        -0x6C7C4
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1E0
-	  li        r0, 0
-	  stw       r0, 0xC(r3)
-
-	.loc_0x1E0:
-	  stw       r3, 0x20(r30)
-	  mr        r3, r30
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	mWorkData = new (heap, 0) JPAEmitterWorkData;
 }
 
 /*
@@ -192,130 +46,13 @@ JPAEmitterManager::JPAEmitterManager(u32, u32, JKRHeap*, u8, u8)
 
 /*
  * --INFO--
- * Address:	80090764
- * Size:	00003C
- */
-JPANode<JPABaseParticle>::~JPANode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80090788
-	extsh.   r0, r4
-	ble      lbl_80090788
-	bl       __dl__FPv
-
-lbl_80090788:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	800907A0
- * Size:	000010
- */
-JPANode<JPABaseParticle>::JPANode()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	........
  * Size:	00003C
  */
-JPABaseParticle::~JPABaseParticle()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800907B0
- * Size:	000060
- */
-JPABaseEmitter::~JPABaseEmitter()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800907F4
-	addic.   r0, r30, 0x58
-	beq      lbl_800907E4
-	addi     r3, r30, 0x58
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_800907E4:
-	extsh.   r0, r31
-	ble      lbl_800907F4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800907F4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80090810
- * Size:	000058
- */
-JPABaseEmitter::JPABaseEmitter()
-    : mLink(this)
-    , mRandom(0)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	addi     r3, r31, 0x58
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0xc4(r31)
-	stw      r0, 0xc8(r31)
-	stw      r0, 0xcc(r31)
-	stw      r0, 0xd0(r31)
-	stw      r0, 0xd4(r31)
-	stw      r0, 0xd8(r31)
-	stw      r0, 0xdc(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// JPABaseParticle::~JPABaseParticle()
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
@@ -339,108 +76,31 @@ JPABaseEmitter::JPABaseEmitter()
 
 /*
  * --INFO--
- * Address:	80090868
- * Size:	000054
- */
-// JSUList<JPABaseEmitter>::~JSUList()
-//{
-/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_800908A0
-li       r4, 0
-bl       __dt__10JSUPtrListFv
-extsh.   r0, r31
-ble      lbl_800908A0
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_800908A0:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-*/
-//}
-
-/*
- * --INFO--
  * Address:	800908BC
  * Size:	0000DC
  */
-JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<float>&, u16, u8, u8, JPAEmitterCallBack*,
-                                                         JPAParticleCallBack*)
+JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3f& pos, u16 resID, u8 groupID, u8 resMgrID,
+                                                         JPAEmitterCallBack* ecback, JPAParticleCallBack* pcback)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  rlwinm    r0,r7,2,22,29
-	  stmw      r24, 0x10(r1)
-	  mr        r24, r3
-	  mr        r25, r4
-	  mr        r27, r7
-	  mr        r26, r6
-	  mr        r28, r8
-	  mr        r29, r9
-	  mr        r4, r5
-	  lwz       r3, 0x1C(r3)
-	  lwzx      r3, r3, r0
-	  bl        0x7C34
-	  mr.       r30, r3
-	  beq-      .loc_0xC4
-	  lwz       r0, 0xC(r24)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC4
-	  lwz       r31, 0x4(r24)
-	  addi      r3, r24, 0x4
-	  mr        r4, r31
-	  bl        -0x69CF4
-	  rlwinm    r0,r26,0,24,31
-	  lwz       r3, 0x0(r24)
-	  mulli     r0, r0, 0xC
-	  mr        r4, r31
-	  add       r3, r3, r0
-	  bl        -0x6A04C
-	  lwz       r31, 0x0(r31)
-	  mr        r4, r24
-	  mr        r5, r30
-	  mr        r3, r31
-	  bl        -0xC60
-	  addi      r0, r24, 0x10
-	  lfs       f2, 0x0(r25)
-	  stw       r0, 0xE0(r31)
-	  mr        r3, r31
-	  lfs       f1, 0x4(r25)
-	  stw       r28, 0xEC(r31)
-	  lfs       f0, 0x8(r25)
-	  stw       r29, 0xF0(r31)
-	  stb       r26, 0x112(r31)
-	  stb       r27, 0x113(r31)
-	  stfs      f2, 0xA4(r31)
-	  stfs      f1, 0xA8(r31)
-	  stfs      f0, 0xAC(r31)
-	  b         .loc_0xC8
+	JPAResource* res = mResMgrAry[resMgrID]->getResource(resID);
 
-	.loc_0xC4:
-	  li        r3, 0
+	if (res && mFreeEmtrList.mLinkCount) {
+		JSULink<JPABaseEmitter>* link = mFreeEmtrList.getFirst();
+		mFreeEmtrList.remove(link);
+		mGrpEmtr[groupID].append(link);
 
-	.loc_0xC8:
-	  lmw       r24, 0x10(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+		JPABaseEmitter* emit = link->getObject();
+		emit->init(this, res);
+		emit->mPtclPool         = &mPtclPool;
+		emit->mEmitterCallback  = ecback;
+		emit->mParticleCallback = pcback;
+		emit->mGroupID          = groupID;
+		emit->mResMgrID         = resMgrID;
+		emit->mGlobalTrs        = pos;
+		return emit;
+	}
+
+	return nullptr;
 }
 
 /*
@@ -448,7 +108,7 @@ JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<
  * Address:	........
  * Size:	0000C8
  */
-void JPAEmitterManager::createSimpleEmitter(const JGeometry::TVec3<float>&, u16, JPAEmitterCallBack*, JPAParticleCallBack*)
+void JPAEmitterManager::createSimpleEmitter(const JGeometry::TVec3f&, u16, JPAEmitterCallBack*, JPAParticleCallBack*)
 {
 	// UNUSED FUNCTION
 }
@@ -470,6 +130,17 @@ void JPAEmitterManager::calc(u8)
  */
 void JPAEmitterManager::calc()
 {
+	for (u8 i = 0; i < mGrpMax; i++) {
+		JSUPtrLink* link = mGrpEmtr[i].getFirst();
+		while (link) {
+			JPABaseEmitter* emit = (JPABaseEmitter*)link->getObjectPtr();
+			link                 = link->getNext();
+			bool stat            = emit->mResource->calc(mWorkData, emit);
+			if (stat && !emit->isFlag(0x200)) {
+				forceDeleteEmitter(emit);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -531,144 +202,39 @@ lbl_80090A18:
  * Address:	80090A48
  * Size:	000200
  */
-void JPAEmitterManager::draw(const JPADrawInfo*, u8)
+void JPAEmitterManager::draw(const JPADrawInfo* info, u8 id)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r4, 0x20(r3)
-	mr       r3, r30
-	addi     r4, r4, 0x184
-	bl       PSMTXCopy
-	lwz      r4, 0x20(r29)
-	addi     r3, r30, 0x30
-	addi     r4, r4, 0x1b4
-	bl       PSMTXCopy
-	mr       r3, r29
-	bl       calcYBBCam__17JPAEmitterManagerFv
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevColorOp
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	li       r3, 0
-	li       r4, 1
-	li       r5, 1
-	bl       GXEnableTexOffsets
-	li       r3, 1
-	li       r4, 1
-	li       r5, 1
-	bl       GXEnableTexOffsets
-	li       r3, 2
-	li       r4, 1
-	li       r5, 1
-	bl       GXEnableTexOffsets
-	li       r3, 0
-	bl       GXSetCullMode
-	li       r3, 0
-	bl       GXSetCoPlanar
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 2
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 2
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 1
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 1
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 1
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 1
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 5
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 0
-	bl       GXSetNumChans
-	clrlwi   r0, r31, 0x18
-	lwz      r3, 0(r29)
-	mulli    r0, r0, 0xc
-	lwzx     r31, r3, r0
-	b        lbl_80090C24
+	PSMTXCopy(info->mtx1, mWorkData->mPosCamMtx);
+	PSMTXCopy(info->mtx2, mWorkData->mPrjMtx);
+	calcYBBCam();
+	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+	GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+	GXEnableTexOffsets(GX_TEXCOORD0, GX_TRUE, GX_TRUE);
+	GXEnableTexOffsets(GX_TEXCOORD1, GX_TRUE, GX_TRUE);
+	GXEnableTexOffsets(GX_TEXCOORD2, GX_TRUE, GX_TRUE);
+	GXSetCullMode(GX_CULL_NONE);
+	GXSetCoPlanar(GX_FALSE);
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+	GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S8, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S8, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT1, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT1, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
+	GXSetCurrentMtx(0);
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetNumChans(0);
 
-lbl_80090BEC:
-	lwz      r5, 0(r31)
-	lwz      r0, 0xf4(r5)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	bne      lbl_80090C20
-	lbz      r0, 0x113(r5)
-	lwz      r4, 0x1c(r29)
-	slwi     r0, r0, 2
-	lwz      r3, 0x20(r29)
-	lwzx     r0, r4, r0
-	stw      r0, 8(r3)
-	lwz      r3, 0xe8(r5)
-	lwz      r4, 0x20(r29)
-	bl       draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter
-
-lbl_80090C20:
-	lwz      r31, 0xc(r31)
-
-lbl_80090C24:
-	cmplwi   r31, 0
-	bne      lbl_80090BEC
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JSUPtrLink* link = mGrpEmtr[id].mHead;
+	while (link) {
+		JPABaseEmitter* emit = (JPABaseEmitter*)link->getObjectPtr();
+		if (!emit->isFlag(0x4)) {
+			mWorkData->mResourceMgr = mResMgrAry[emit->mResMgrID];
+			emit->mResource->draw(mWorkData, emit);
+		}
+		link = link->getNext();
+	}
 }
 
 /*
@@ -708,34 +274,9 @@ void JPAEmitterManager::draw(float (*)[4])
  */
 void JPAEmitterManager::forceDeleteAllEmitter()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	b        lbl_80090C78
-
-lbl_80090C68:
-	mr       r3, r30
-	mr       r4, r31
-	bl       forceDeleteGroupEmitter__17JPAEmitterManagerFUc
-	addi     r31, r31, 1
-
-lbl_80090C78:
-	lbz      r0, 0x2c(r30)
-	clrlwi   r3, r31, 0x18
-	cmplw    r3, r0
-	blt      lbl_80090C68
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (u8 i = 0; i < mGrpMax; i++) {
+		forceDeleteGroupEmitter(i);
+	}
 }
 
 /*
@@ -743,38 +284,11 @@ lbl_80090C78:
  * Address:	80090CA0
  * Size:	000060
  */
-void JPAEmitterManager::forceDeleteGroupEmitter(u8)
+void JPAEmitterManager::forceDeleteGroupEmitter(u8 grp)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi   r0, r4, 0x18
-	stw      r31, 0xc(r1)
-	mulli    r31, r0, 0xc
-	stw      r30, 8(r1)
-	mr       r30, r3
-	b        lbl_80090CD4
-
-lbl_80090CC4:
-	lwz      r4, 4(r3)
-	mr       r3, r30
-	lwz      r4, 0(r4)
-	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
-
-lbl_80090CD4:
-	lwz      r0, 0(r30)
-	add      r3, r31, r0
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	bne      lbl_80090CC4
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	while (mGrpEmtr[grp].mLinkCount) {
+		forceDeleteEmitter((JPABaseEmitter*)mGrpEmtr[grp].mTail->getObjectPtr());
+	}
 }
 
 /*
@@ -782,37 +296,12 @@ lbl_80090CD4:
  * Address:	80090D00
  * Size:	00006C
  */
-void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter*)
+void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter* emit)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       deleteAllParticle__14JPABaseEmitterFv
-	lwz      r0, 0xf4(r31)
-	addi     r4, r31, 0x58
-	ori      r0, r0, 0x300
-	stw      r0, 0xf4(r31)
-	lbz      r0, 0x112(r31)
-	lwz      r3, 0(r30)
-	mulli    r0, r0, 0xc
-	add      r3, r3, r0
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	addi     r3, r30, 4
-	addi     r4, r31, 0x58
-	bl       prepend__10JSUPtrListFP10JSUPtrLink
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	emit->deleteAllParticle();
+	emit->setFlag(0x300);
+	mGrpEmtr[emit->mGroupID].remove(&emit->mLink);
+	mFreeEmtrList.prepend(&emit->mLink);
 }
 
 /*
@@ -820,23 +309,26 @@ void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter*)
  * Address:	80090D6C
  * Size:	000010
  */
-void JPAEmitterManager::entryResourceManager(JPAResourceManager*, u8)
-{
-	/*
-	lwz      r3, 0x1c(r3)
-	rlwinm   r0, r5, 2, 0x16, 0x1d
-	stwx     r4, r3, r0
-	blr
-	*/
-}
+void JPAEmitterManager::entryResourceManager(JPAResourceManager* mgr, u8 grpID) { mResMgrAry[grpID] = mgr; }
 
 /*
  * --INFO--
  * Address:	80090D7C
  * Size:	0000C8
  */
-void JPAEmitterManager::clearResourceManager(u8)
+void JPAEmitterManager::clearResourceManager(u8 id)
 {
+	for (u8 i = 0; i < mGrpMax; i++) {
+		JSUPtrLink* link = mGrpEmtr[i].mHead;
+		while (link) {
+			JPABaseEmitter* emit = (JPABaseEmitter*)link->getObjectPtr();
+			link                 = link->getNext();
+			if (id == emit->getResourceManagerID()) {
+				forceDeleteEmitter(emit);
+			}
+		}
+	}
+	mResMgrAry[id] = nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

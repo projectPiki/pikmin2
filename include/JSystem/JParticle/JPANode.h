@@ -10,20 +10,23 @@ struct JPANode {
 		mPrev = nullptr;
 		mNext = nullptr;
 	}
+
 	~JPANode() { }
+
 	JPANode<T>* getPrev() { return mPrev; }
 	JPANode<T>* getNext() { return mNext; }
 	T* getObject() { return &mData; }
-	JPANode<T>* mPrev;
-	JPANode<T>* mNext;
-	T mData;
+
+	JPANode<T>* mPrev; // _00
+	JPANode<T>* mNext; // _04
+	T mData;           // _08
 };
 
 template <typename T>
 struct JPAList {
-	JPANode<T>* mFirst;
-	JPANode<T>* mLast;
-	u32 mNum;
+	JPANode<T>* mFirst; // _00
+	JPANode<T>* mLast;  // _04
+	u32 mNum;           // _08
 
 	JPAList()
 	    : mFirst(nullptr)
@@ -64,7 +67,7 @@ struct JPAList {
 		} else {
 			mFirst      = node;
 			mLast       = node;
-			node->mprev = nullptr;
+			node->mPrev = nullptr;
 			node->mNext = nullptr;
 		}
 

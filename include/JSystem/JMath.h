@@ -175,6 +175,8 @@ inline const TSinCosTable<2048, f32>* getSinCosTable() { return &sincosTable_; }
 struct TRandom_fast_ {
 	u32 value;
 
+	TRandom_fast_() { value = 0; }
+
 	TRandom_fast_(u32 param_0);
 
 	inline u32 next() { return value = value * 0x19660d + 0x3c6ef35f; }

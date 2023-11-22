@@ -60,7 +60,7 @@ struct JPABaseParticle {
 	f32 getCalcCurrentPositionZ(const JPABaseEmitter*) const;
 
 	// unused/inlined:
-	~JPABaseParticle();
+	//~JPABaseParticle();
 	f32 getWidth(const JPABaseEmitter*) const;
 	f32 getHeight(const JPABaseEmitter*) const;
 
@@ -100,8 +100,8 @@ struct JPABaseParticle {
 	f32 mTime;                         // _84
 	s16 mRotateAngle;                  // _88
 	s16 mRotateSpeed;                  // _8A
-	JUtility::TColor mPrmClr;          // _8C
-	JUtility::TColor mEnvClr;          // _90
+	GXColor mPrmClr;                   // _8C
+	GXColor mEnvClr;                   // _90
 	u8 mTexAnmIdx;                     // _94
 	u8 mAnmRandom;                     // _95
 	u8 mPrmColorAlphaAnm;              // _96
@@ -114,8 +114,13 @@ struct JPAParticleCallBack {
 };
 
 struct JPABaseEmitter {
-	JPABaseEmitter();
-	~JPABaseEmitter();
+	JPABaseEmitter()
+	    : mLink(this)
+	{
+	}
+
+	~JPABaseEmitter() { }
+
 	void init(JPAEmitterManager*, struct JPAResource*);
 	JPABaseParticle* createParticle();
 	JPABaseParticle* createChild(JPABaseParticle*);
@@ -311,13 +316,13 @@ struct JPABaseEmitter {
 	s16 mLifeTime;                           // _52
 	u16 mVolumeSize;                         // _54
 	u8 mRateStep;                            // _56
-	JSUPtrLink mLink;                        // _58
+	JSULink<JPABaseEmitter> mLink;           // _58
 	Mtx mGlobalRot;                          // _68
 	JGeometry::TVec3f mGlobalScl;            // _98
 	JGeometry::TVec3f mGlobalTrs;            // _A4
 	JGeometry::TVec2f mGlobalPScl;           // _B0
-	JUtility::TColor mGlobalPrmClr;          // _B8
-	JUtility::TColor mGlobalEnvClr;          // _BC
+	JUtility::TColor mGlobalPrmClr;          // _B8, NEEDS TO BE GXCOLOR
+	JUtility::TColor mGlobalEnvClr;          // _BC, NEEDS TO BE GXCOLOR
 	s32 : 0;                                 // reset alignment to _C0
 	s32 mpUserWork;                          // _C0
 	JMath::TRandom_fast_ mRandom;            // _C4
@@ -334,8 +339,8 @@ struct JPABaseEmitter {
 	u32 mTick;                               // _100
 	s16 mWaitTime;                           // _104
 	s16 mRateStepTimer;                      // _106
-	JUtility::TColor mPrmClr;                // _108
-	JUtility::TColor mEnvClr;                // _10C
+	GXColor mPrmClr;                         // _108
+	GXColor mEnvClr;                         // _10C
 	u8 mDrawTimes;                           // _110
 	u8 mTexAnmIdx;                           // _111
 	u8 mGroupID;                             // _112

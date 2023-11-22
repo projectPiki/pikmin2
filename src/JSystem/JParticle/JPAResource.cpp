@@ -1932,7 +1932,7 @@ lbl_80096B88:
  * Address:	80096B9C
  * Size:	00055C
  */
-void JPAResource::calc(JPAEmitterWorkData*, JPABaseEmitter*)
+bool JPAResource::calc(JPAEmitterWorkData*, JPABaseEmitter*)
 {
 	/*
 	stwu     r1, -0x20(r1)
