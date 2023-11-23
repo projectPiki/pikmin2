@@ -51,7 +51,7 @@ typedef union {
 } PPCWGPipe;
 
 #ifdef __MWERKS__
-PPCWGPipe GXWGFifo : GXFIFO_ADDR;
+volatile PPCWGPipe GXWGFifo : GXFIFO_ADDR;
 #else
 #define GXWGFifo (*(volatile PPCWGPipe*)GXFIFO_ADDR)
 #endif
@@ -61,7 +61,7 @@ PPCWGPipe GXWGFifo : GXFIFO_ADDR;
 //////////// FIFO MACROS/INLINES ///////////
 #define GX_WRITE_U8(val)  (GXWGFifo.u8 = val)
 #define GX_WRITE_U16(val) (GXWGFifo.u16 = val)
-#define GX_WRITE_U32(val) (GXWGFifo.u32 = val)
+#define GX_WRITE_U32(val) (GXWGFifo.u32 = (u32)val)
 
 static inline void GXPosition2f32(const f32 x, const f32 y)
 {
@@ -83,7 +83,7 @@ static inline void GXPosition3u16(const u16 x, const u16 y, const u16 z)
 	GXWGFifo.u16 = z;
 }
 
-static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z)
+static inline void GXPosition3f32(f32 x, f32 y, f32 z)
 {
 	GXWGFifo.f32 = x;
 	GXWGFifo.f32 = y;

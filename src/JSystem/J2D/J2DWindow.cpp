@@ -551,20 +551,23 @@ void J2DWindow::drawFrameTexture(JUTTexture* texture, f32 x0, f32 y0, f32 width,
 
 	JUtility::TColor color(mColorAlpha | 0xFFFFFF00);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+
+	f32 z = 0.0f;
+
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-	GXPosition3f32(x0, y0, 0.0f);
+	GXPosition3f32(x0, y0, z);
 	GXColor1u32(color);
 	GXTexCoord2u16(minU, minV);
 
-	GXPosition3f32(x1, y0, 0.0f);
+	GXPosition3f32(x1, y0, z);
 	GXColor1u32(color);
 	GXTexCoord2u16(maxU, minV);
 
-	GXPosition3f32(x1, y1, 0.0f);
+	GXPosition3f32(x1, y1, z);
 	GXColor1u32(color);
 	GXTexCoord2u16(maxU, maxV);
 
-	GXPosition3f32(x0, y1, 0.0f);
+	GXPosition3f32(x0, y1, z);
 	GXColor1u32(color);
 	GXTexCoord2u16(minU, maxV);
 

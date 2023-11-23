@@ -206,7 +206,7 @@ void J2DGrafContext::fillBox(const JGeometry::TBox2f& box)
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
 
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-	f32 z = 0;
+	f32 z = 0.0f;
 	GXPosition3f32(box.i.x, box.i.y, z);
 	GXColor1u32(mColorTL);
 	GXPosition3f32(box.f.x, box.i.y, z);

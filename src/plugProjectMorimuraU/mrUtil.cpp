@@ -267,21 +267,27 @@ void TIndPane::draw()
 	GXSetCurrentMtx(0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
+	f32 z  = 0.0f;
+	f32 s0 = 0.0f;
+	f32 t0 = 0.0f;
+	f32 s1 = 1.0f;
+	f32 t1 = 1.0f;
+
 	// bottom left
-	GXPosition3f32(mMinPos.x, mMinPos.y, 0.0f);
-	GXTexCoord2f32(0.0f, 0.0f);
+	GXPosition3f32(mMinPos.x, mMinPos.y, z);
+	GXTexCoord2f32(s0, t0);
 
 	// bottom right
-	GXPosition3f32(mMaxPos.x, mMinPos.y, 0.0f);
-	GXTexCoord2f32(1.0f, 0.0f);
+	GXPosition3f32(mMaxPos.x, mMinPos.y, z);
+	GXTexCoord2f32(s1, t0);
 
 	// top right
-	GXPosition3f32(mMaxPos.x, mMaxPos.y, 0.0f);
-	GXTexCoord2f32(1.0f, 1.0f);
+	GXPosition3f32(mMaxPos.x, mMaxPos.y, z);
+	GXTexCoord2f32(s1, t1);
 
 	// top left
-	GXPosition3f32(mMinPos.x, mMaxPos.y, 0.0f);
-	GXTexCoord2f32(0.0f, 1.0f);
+	GXPosition3f32(mMinPos.x, mMaxPos.y, z);
+	GXTexCoord2f32(s0, t1);
 }
 
 /*

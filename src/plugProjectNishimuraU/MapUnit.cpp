@@ -376,20 +376,22 @@ void UnitInfo::draw(f32 x0, f32 y0, f32 x1, f32 y1)
 
 		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
+		f32 z = 0.0f;
+
 		// bottom left
-		GXPosition3f32(x0, y0, 0.0f);
+		GXPosition3f32(x0, y0, z);
 		GXTexCoord2s8(u0, v0);
 
 		// bottom right
-		GXPosition3f32(x1, y0, 0.0f);
+		GXPosition3f32(x1, y0, z);
 		GXTexCoord2s8(u1, v1);
 
 		// top right
-		GXPosition3f32(x1, y1, 0.0f);
+		GXPosition3f32(x1, y1, z);
 		GXTexCoord2s8(u2, v2);
 
 		// top left
-		GXPosition3f32(x0, y1, 0.0f);
+		GXPosition3f32(x0, y1, z);
 		GXTexCoord2s8(u3, v3);
 	}
 }

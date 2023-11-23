@@ -1091,26 +1091,27 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 
 		GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x4);
 
+		f32 z = 0.0f;
 		// --------------------------
-		GXPosition3f32(neg, neg, 0.0f);
-		GXPosition2f32(0.0f, 0.0f);
-		GXPosition3f32(1.0f, 0.0f, 0.0f);
-		GXPosition2f32(machine._68, 0.0f);
+		GXPosition3f32(neg, neg, z);
+		GXPosition2f32(z, z);
+		GXPosition3f32(1.0f, z, z);
+		GXPosition2f32(machine._68, z);
 
-		GXPosition3f32(pos, neg, 0.0f);
-		GXPosition2f32(0.0f, 0.0f);
-		GXPosition3f32(1.0f, 1.0f, 0.0f);
-		GXPosition2f32(machine._68 + 1.0f, 0.0f);
+		GXPosition3f32(pos, neg, z);
+		GXPosition2f32(z, z);
+		GXPosition3f32(1.0f, 1.0f, z);
+		GXPosition2f32(machine._68 + 1.0f, z);
 
-		GXPosition3f32(neg, pos, 0.0f);
-		GXPosition2f32(0.0f, 0.0f);
-		GXPosition3f32(1.0f, 0.0f, 1.0f);
-		GXPosition2f32(machine._68, 0.0f);
+		GXPosition3f32(neg, pos, z);
+		GXPosition2f32(z, z);
+		GXPosition3f32(1.0f, z, 1.0f);
+		GXPosition2f32(machine._68, z);
 
-		GXPosition3f32(pos, pos, 0.0f);
-		GXPosition2f32(0.0f, 0.0f);
+		GXPosition3f32(pos, pos, z);
+		GXPosition2f32(z, z);
 		GXPosition3f32(1.0f, 1.0f, 1.0f);
-		GXPosition2f32(machine._68 + 1.0f, 0.0f);
+		GXPosition2f32(machine._68 + 1.0f, z);
 		// --------------------------
 
 		GXSetNumTevStages(1);

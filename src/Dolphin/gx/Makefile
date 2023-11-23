@@ -3,7 +3,7 @@ GX_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXFifo.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXAttr.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXMisc.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXGeometry.o\
+	$(BUILD_DIR)/src/Dolphin/gx/GXGeometry.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXFrameBuf.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXLight.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXTexture.o\
@@ -15,7 +15,7 @@ GX_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXPerf.o\
 
 $(GX_FILES): CFLAGS += -common off -str noreadonly
-$(GX_FILES): MWCC_VERSION := 1.2.5
+$(GX_FILES): MWCC_VERSION := 1.2.5n
 
 DEPENDS += $(GX_FILES:.o=.d)
 

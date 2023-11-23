@@ -708,7 +708,7 @@ LIBS = [
             "Dolphin/gx/GXFifo",
             "Dolphin/gx/GXAttr",
             "Dolphin/gx/GXMisc",
-            "Dolphin/gx/GXGeometry",
+            ["Dolphin/gx/GXGeometry", True],
             "Dolphin/gx/GXFrameBuf",
             "Dolphin/gx/GXLight",
             "Dolphin/gx/GXTexture",

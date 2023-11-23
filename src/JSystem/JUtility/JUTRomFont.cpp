@@ -154,23 +154,25 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
+	f32 z = 0.0f;
+
 	// Bottom left
-	GXPosition3f32((s16)posMinX, (s16)posMinY, 0.0f);
+	GXPosition3f32((s16)posMinX, (s16)posMinY, z);
 	GXColor1u32(mColor1);
 	GXPosition2u16(texMinX, texMinY);
 
 	// Bottom right
-	GXPosition3f32((s16)posMaxX, (s16)posMinY, 0.0f);
+	GXPosition3f32((s16)posMaxX, (s16)posMinY, z);
 	GXColor1u32(mColor2);
 	GXPosition2u16(texMaxX, texMinY);
 
 	// Top right
-	GXPosition3f32((s16)posMaxX, (s16)posMaxY, 0.0f);
+	GXPosition3f32((s16)posMaxX, (s16)posMaxY, z);
 	GXColor1u32(mColor4);
 	GXPosition2u16(texMaxX, texMaxY);
 
 	// Top left
-	GXPosition3f32((s16)posMinX, (s16)posMaxY, 0.0f);
+	GXPosition3f32((s16)posMinX, (s16)posMaxY, z);
 	GXColor1u32(mColor3);
 	GXPosition2u16(texMinX, texMaxY);
 
