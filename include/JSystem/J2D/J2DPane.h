@@ -188,7 +188,9 @@ struct J2DPane {
 	JGeometry::TBox2f* getBounds();
 	JGeometry::TVec3f getGlbVtx(u8) const;
 	void* getPointer(JSURandomInputStream*, u32, JKRArchive*);
-	u64 getTagName() const;
+
+	// Supposed to be weak but refuses to work
+	u64 getTagName() const; // { return mTag; }
 
 	/**
 	 * @reifiedAddress{80309D98}
@@ -584,6 +586,14 @@ struct J2DPicture : public J2DPane {
 		mCornerColors.mColor1.set(colors.mColor1);
 		mCornerColors.mColor2.set(colors.mColor2);
 		mCornerColors.mColor3.set(colors.mColor3);
+	}
+
+	inline void setCornerColor(JUtility::TColor color)
+	{
+		mCornerColors.mColor0.set(color);
+		mCornerColors.mColor1.set(color);
+		mCornerColors.mColor2.set(color);
+		mCornerColors.mColor3.set(color);
 	}
 
 	inline void getCornerColor(TCornerColor& colors) { colors = mCornerColors; }

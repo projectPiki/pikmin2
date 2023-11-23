@@ -9,6 +9,7 @@
 #include "Controller.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
 #include "og/newScreen/ogUtil.h"
+#include "Dolphin/rand.h"
 #include "LoadResource.h"
 
 namespace kh {
@@ -233,7 +234,7 @@ bool ObjDayEndResultBase::doUpdateFadein()
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	mMainAnimTimer1 += msVal._08;
+	mMainAnimTimer1 += msVal.mAnimRate;
 
 	mScreenStars->search('Nall')->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
 
@@ -262,7 +263,7 @@ bool ObjDayEndResultBase::doUpdateFadeout()
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	mMainAnimTimer1 += msVal._08;
+	mMainAnimTimer1 += msVal.mAnimRate;
 
 	mScreenStars->search('Nall')->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
 
@@ -570,7 +571,7 @@ bool ObjDayEndResultItem::doUpdateFadein()
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	mMainAnimTimer1 += ObjDayEndResultBase::msVal._08;
+	mMainAnimTimer1 += ObjDayEndResultBase::msVal.mAnimRate;
 
 	mScreenStars->search('Nall')->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
 
@@ -667,7 +668,7 @@ bool ObjDayEndResultItem::doUpdateFadeout()
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	mMainAnimTimer1 += ObjDayEndResultBase::msVal._08;
+	mMainAnimTimer1 += ObjDayEndResultBase::msVal.mAnimRate;
 
 	mScreenStars->search('Nall')->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
 
@@ -1711,7 +1712,7 @@ bool ObjDayEndResultIncP::doUpdateFadein()
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	mMainAnimTimer1 += ObjDayEndResultBase::msVal._08;
+	mMainAnimTimer1 += ObjDayEndResultBase::msVal.mAnimRate;
 
 	mScreenStars->search('Nall')->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
 
@@ -1833,7 +1834,7 @@ bool ObjDayEndResultIncP::doUpdateFadeout()
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	mMainAnimTimer1 += ObjDayEndResultBase::msVal._08;
+	mMainAnimTimer1 += ObjDayEndResultBase::msVal.mAnimRate;
 
 	mScreenStars->search('Nall')->setAlpha((1.0f - (mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)) * 255.0f);
 
@@ -2223,7 +2224,7 @@ void ObjDayEndResultMail::doCreate(JKRArchive* arc)
 		mMailIconAnms = new MailIconAnm[20];
 
 		for (int i = 0; i < 20; i++) {
-			u8 id = scene->mMailFlags[i];
+			s8 id = scene->mMailFlags[i];
 			if (id == -1)
 				break;
 			if (id == -2) {
@@ -2908,7 +2909,7 @@ bool ObjDayEndResultMail::doUpdateFadein()
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	mMainAnimTimer1 += msVal._08;
+	mMainAnimTimer1 += msVal.mAnimRate;
 
 	mScreenStars->search('Nall')->setAlpha((mMainAnimTimer1 - mFadeinMinFrame) / (mFadeinMaxFrame - mFadeinMinFrame) * 255.0f);
 
@@ -2964,13 +2965,13 @@ bool ObjDayEndResultMail::doUpdate()
 			statusFadeoutToLeft();
 			break;
 		case MAILSTATUS_FadeinFromLeft:
-			statusFadeoutToLeft();
+			statusFadeinFromLeft();
 			break;
 		case MAILSTATUS_FadeoutToRight:
-			statusFadeoutToLeft();
+			statusFadeoutToRight();
 			break;
 		case MAILSTATUS_FadeinFromRight:
-			statusFadeoutToLeft();
+			statusFadeinFromRight();
 			break;
 		case MAILSTATUS_WaitOpen:
 			statusWaitOpen();
@@ -3008,7 +3009,7 @@ bool ObjDayEndResultMail::doUpdateFadeout()
 	mMainAnimTrans1->mCurrentFrame = mMainAnimTimer1;
 	mScreenMain->search('NitemW')->animationTransform();
 
-	mMainAnimTimer1 += msVal._08;
+	mMainAnimTimer1 += msVal.mAnimRate;
 
 	mScreenStars->search('Nall')->setAlpha((1.0f - ((mMainAnimTimer1 - mFadeoutMinFrame) / (mFadeoutMaxFrame - mFadeoutMinFrame)))
 	                                       * 255.0f);
@@ -3247,22 +3248,19 @@ void ObjDayEndResultMail::changeMail()
 	SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
 	mCharacterIconTimer          = 0;
 	setTex(mScreenMain, 'Pset_p', mMailIconAnms[mMaxDay - mCurrentDay].mTIMG[0]);
-	mScreenMain->search(scene->mTableData[mMaxDay - mCurrentDay]->mMessageID);
+	u64 mesg = scene->mTableData[scene->mMailFlags[mMaxDay - mCurrentDay]]->mMessageID;
+	mScreenMain->search('Ttext')->setMsgID(mesg);
 
-	if (mMaxDay == mCurrentDay) {
-		mMessage->mMinX = 1.0f;
-		mMessage->mMinY = 1.0f;
-		mMessage->mMaxX = 1.0f;
-		mMessage->mMaxY = 1.0f;
-		mScreenMain->search('Pset_p');
-		mScreenMain->search('Picon_b');
+	if (mCurrentDay == mMaxDay) {
+		mMessage->setBounds(1.0f, 1.0f, 1.0f, 1.0f);
+		JUtility::TColor color(255, 255, 255, 255);
+		static_cast<J2DPicture*>(mScreenMain->search('Pset_p'))->setCornerColor(color);
+		static_cast<J2DPicture*>(mScreenMain->search('Picon_b'))->setCornerColor(color);
 	} else {
-		mMessage->mMinX = msVal._2C;
-		mMessage->mMinY = msVal._30;
-		mMessage->mMaxX = msVal._34;
-		mMessage->mMaxY = msVal._38;
-		mScreenMain->search('Pset_p');
-		mScreenMain->search('Picon_b');
+		mMessage->setBounds(msVal._2C, msVal._30, msVal._34, msVal._38);
+		JUtility::TColor color(msVal._2C * 255.0f, msVal._30 * 255.0f, msVal._34 * 255.0f, msVal._38 * 255.0f);
+		static_cast<J2DPicture*>(mScreenMain->search('Pset_p'))->setCornerColor(color);
+		static_cast<J2DPicture*>(mScreenMain->search('Picon_b'))->setCornerColor(color);
 	}
 	/*
 stwu     r1, -0x80(r1)
@@ -3600,6 +3598,8 @@ void ObjDayEndResultMail::updateCommon()
 	mScreenMain->animation();
 }
 
+inline u64 J2DPane::getTagName() const { return mTag; }
+
 /*
  * --INFO--
  * Address:	80409DB8
@@ -3609,7 +3609,7 @@ void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 {
 	if (pane->getTypeID() == 19 && pane->getUserInfo()) {
 		og::Screen::CallBack_Message* mesg = new og::Screen::CallBack_Message;
-		u64 tag                            = pane->mTag; // getTagName() ?
+		u64 tag                            = pane->getTagName();
 		mgr->addCallBack(tag, mesg);
 		static_cast<J2DTextBox*>(pane)->setString("");
 		if (tag == 'Ttext') {
@@ -3623,282 +3623,6 @@ void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 		setCallBackMessage(mgr, iter.getObject());
 		++iter;
 	}
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-stw      r0, 0x44(r1)
-stmw     r23, 0x1c(r1)
-mr       r26, r5
-mr       r31, r3
-mr       r30, r4
-mr       r3, r26
-lwz      r12, 0(r26)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi   r0, r3, 0x10
-cmplwi   r0, 0x13
-bne      lbl_80409E74
-lwz      r0, 0x18(r26)
-li       r3, 0
-lwz      r4, 0x1c(r26)
-xor      r0, r0, r3
-xor      r3, r4, r3
-or.      r0, r3, r0
-beq      lbl_80409E74
-li       r3, 0x48
-bl       __nw__FUl
-or.      r24, r3, r3
-beq      lbl_80409E28
-bl       __ct__Q32og6Screen16CallBack_MessageFv
-mr       r24, r3
-
-lbl_80409E28:
-lwz      r25, 0x10(r26)
-mr       r3, r30
-lwz      r27, 0x14(r26)
-mr       r7, r24
-mr       r5, r25
-mr       r6, r27
-bl       addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-mr       r3, r26
-addi     r4, r2, lbl_80520100@sda21
-crclr    6
-bl       setString__10J2DTextBoxFPCce
-lis      r3, 0x74657874@ha
-li       r0, 0x54
-addi     r3, r3, 0x74657874@l
-xor      r3, r27, r3
-xor      r0, r25, r0
-or.      r0, r3, r0
-bne      lbl_80409E74
-stw      r24, 0xd4(r31)
-
-lbl_80409E74:
-lwz      r29, 0xdc(r26)
-cmplwi   r29, 0
-beq      lbl_8040A158
-addi     r29, r29, -12
-b        lbl_8040A158
-
-lbl_80409E88:
-lwz      r24, 0xc(r29)
-mr       r3, r24
-lwz      r12, 0(r24)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi   r0, r3, 0x10
-cmplwi   r0, 0x13
-bne      lbl_80409F2C
-lwz      r0, 0x18(r24)
-li       r3, 0
-lwz      r4, 0x1c(r24)
-xor      r0, r0, r3
-xor      r3, r4, r3
-or.      r0, r3, r0
-beq      lbl_80409F2C
-li       r3, 0x48
-bl       __nw__FUl
-or.      r25, r3, r3
-beq      lbl_80409EE0
-bl       __ct__Q32og6Screen16CallBack_MessageFv
-mr       r25, r3
-
-lbl_80409EE0:
-lwz      r26, 0x10(r24)
-mr       r3, r30
-lwz      r27, 0x14(r24)
-mr       r7, r25
-mr       r5, r26
-mr       r6, r27
-bl       addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-mr       r3, r24
-addi     r4, r2, lbl_80520100@sda21
-crclr    6
-bl       setString__10J2DTextBoxFPCce
-lis      r3, 0x74657874@ha
-li       r0, 0x54
-addi     r3, r3, 0x74657874@l
-xor      r3, r27, r3
-xor      r0, r26, r0
-or.      r0, r3, r0
-bne      lbl_80409F2C
-stw      r25, 0xd4(r31)
-
-lbl_80409F2C:
-addi     r3, r24, 0xdc
-bl       getFirstLink__10JSUPtrListCFv
-cmplwi   r3, 0
-beq      lbl_80409F40
-addi     r3, r3, -12
-
-lbl_80409F40:
-mr       r28, r3
-b        lbl_8040A140
-
-lbl_80409F48:
-mr       r3, r28
-bl       "getObject__17JSUTree<7J2DPane>CFv"
-lwz      r12, 0(r3)
-mr       r27, r3
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi   r0, r3, 0x10
-cmplwi   r0, 0x13
-bne      lbl_80409FF0
-lwz      r0, 0x18(r27)
-li       r3, 0
-lwz      r4, 0x1c(r27)
-xor      r0, r0, r3
-xor      r3, r4, r3
-or.      r0, r3, r0
-beq      lbl_80409FF0
-li       r3, 0x48
-bl       __nw__FUl
-or.      r24, r3, r3
-beq      lbl_80409FA4
-bl       __ct__Q32og6Screen16CallBack_MessageFv
-mr       r24, r3
-
-lbl_80409FA4:
-lwz      r25, 0x10(r27)
-mr       r3, r30
-lwz      r26, 0x14(r27)
-mr       r7, r24
-mr       r5, r25
-mr       r6, r26
-bl       addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-mr       r3, r27
-addi     r4, r2, lbl_80520100@sda21
-crclr    6
-bl       setString__10J2DTextBoxFPCce
-lis      r3, 0x74657874@ha
-li       r0, 0x54
-addi     r3, r3, 0x74657874@l
-xor      r3, r26, r3
-xor      r0, r25, r0
-or.      r0, r3, r0
-bne      lbl_80409FF0
-stw      r24, 0xd4(r31)
-
-lbl_80409FF0:
-addi     r26, r27, 0xdc
-mr       r3, r26
-bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
-stw      r3, 0xc(r1)
-b        lbl_8040A11C
-
-lbl_8040A004:
-addi     r3, r1, 0xc
-bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
-lwz      r12, 0(r3)
-mr       r27, r3
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi   r0, r3, 0x10
-cmplwi   r0, 0x13
-bne      lbl_8040A0B4
-mr       r3, r27
-bl       getUserInfo__7J2DPaneCFv
-li       r0, 0
-xor      r4, r4, r0
-xor      r0, r3, r0
-or.      r0, r4, r0
-beq      lbl_8040A0B4
-li       r3, 0x48
-bl       __nw__FUl
-or.      r23, r3, r3
-beq      lbl_8040A060
-bl       __ct__Q32og6Screen16CallBack_MessageFv
-mr       r23, r3
-
-lbl_8040A060:
-mr       r3, r27
-bl       getTagName__7J2DPaneCFv
-mr       r25, r3
-mr       r24, r4
-mr       r3, r30
-mr       r7, r23
-mr       r6, r24
-mr       r5, r25
-bl       addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-mr       r3, r27
-addi     r4, r2, lbl_80520100@sda21
-crclr    6
-bl       setString__10J2DTextBoxFPCce
-lis      r3, 0x74657874@ha
-li       r0, 0x54
-addi     r3, r3, 0x74657874@l
-xor      r3, r24, r3
-xor      r0, r25, r0
-or.      r0, r3, r0
-bne      lbl_8040A0B4
-stw      r23, 0xd4(r31)
-
-lbl_8040A0B4:
-mr       r3, r27
-bl       getPaneTree__7J2DPaneFv
-mr       r27, r3
-bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
-mr       r4, r3
-addi     r3, r1, 8
-bl       "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
-b        lbl_8040A0F4
-
-lbl_8040A0D4:
-addi     r3, r1, 8
-bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
-mr       r5, r3
-mr       r3, r31
-mr       r4, r30
-bl
-setCallBackMessage__Q32kh6Screen19ObjDayEndResultMailFPQ29P2DScreen3MgrP7J2DPane
-addi     r3, r1, 8
-bl       "__pp__25JSUTreeIterator<7J2DPane>Fv"
-
-lbl_8040A0F4:
-mr       r3, r27
-bl       "getEndChild__17JSUTree<7J2DPane>CFv"
-mr       r4, r3
-addi     r3, r1, 8
-bl       "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
-clrlwi.  r0, r3, 0x18
-bne      lbl_8040A0D4
-lwz      r3, 0xc(r1)
-bl       "getNextChild__17JSUTree<7J2DPane>CFv"
-stw      r3, 0xc(r1)
-
-lbl_8040A11C:
-mr       r3, r26
-bl       "getEndChild__17JSUTree<7J2DPane>CFv"
-lwz      r0, 0xc(r1)
-cmplw    r0, r3
-bne      lbl_8040A004
-lwz      r28, 0x18(r28)
-cmplwi   r28, 0
-beq      lbl_8040A140
-addi     r28, r28, -12
-
-lbl_8040A140:
-cmplwi   r28, 0
-bne      lbl_80409F48
-lwz      r29, 0x18(r29)
-cmplwi   r29, 0
-beq      lbl_8040A158
-addi     r29, r29, -12
-
-lbl_8040A158:
-cmplwi   r29, 0
-bne      lbl_80409E88
-lmw      r23, 0x1c(r1)
-lwz      r0, 0x44(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
 }
 
 /*
@@ -3967,11 +3691,11 @@ bool ObjDayEndResultTitl::doUpdateFadein()
 	updateCommon();
 	mScreenMain->setAlpha(mAlpha);
 
-	if (mAlpha > 255 - msVal._04) {
+	if (mAlpha > 255 - msVal.mAlphaChangeRate) {
 		mAlpha = 255;
 		return true;
 	} else {
-		mAlpha += msVal._04;
+		mAlpha += msVal.mAlphaChangeRate;
 		return false;
 	}
 }
@@ -3984,7 +3708,7 @@ bool ObjDayEndResultTitl::doUpdateFadein()
 bool ObjDayEndResultTitl::doUpdate()
 {
 	updateCommon();
-	if (++mTimer >= msVal._00 || getGamePad()->mButton.mButtonDown & Controller::PRESS_A) {
+	if (++mTimer >= msVal.mActiveMaxFrames || getGamePad()->getButtonDown() & Controller::PRESS_A) {
 		return true;
 	} else {
 		return false;
@@ -4001,11 +3725,11 @@ bool ObjDayEndResultTitl::doUpdateFadeout()
 	updateCommon();
 	mScreenMain->setAlpha(mAlpha);
 
-	if (mAlpha < msVal._04) {
+	if (mAlpha < msVal.mAlphaChangeRate) {
 		mAlpha = 0;
 		return true;
 	} else {
-		mAlpha -= msVal._04;
+		mAlpha -= msVal.mAlphaChangeRate;
 		return false;
 	}
 	return false;
@@ -4114,6 +3838,15 @@ void SceneDayEndResultMail::doUserCallBackFunc(Resource::MgrCommand* mgr)
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
 		JUT_PANICLINE(2690, "disp member err");
 	}
+	// Im just throwing stuff in here for the sake of sdata2/rodata
+	JUT_PANICLINE(2690, "error");
+
+	for (int i = 0; i < entries; i++) {
+		if (randFloat() < 0.5f) {
+			break;
+		}
+	}
+
 	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
 	og::newScreen::makeLanguageResName(mName, "result_mail.szs");
@@ -4540,65 +4273,3 @@ ObjDayEndResultTitl::StaticValues ObjDayEndResultTitl::msVal;
 
 } // namespace Screen
 } // namespace kh
-
-// /*
-//  * --INFO--
-//  * Address:	8040B300
-//  * Size:	0000CC
-//  */
-// void __sinit_khDayEndResult_cpp()
-// {
-// 	/*
-// 	lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-// 	lfs      f12, lbl_80520154@sda21(r2)
-// 	addi     r11, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-// 	lfs      f9, lbl_805200FC@sda21(r2)
-// 	lfs      f10, lbl_805200B0@sda21(r2)
-// 	li       r7, 0x5a
-// 	lfs      f7, lbl_805200A8@sda21(r2)
-// 	li       r10, 8
-// 	lfs      f11, lbl_80520158@sda21(r2)
-// 	li       r9, 3
-// 	lfs      f8, lbl_8052015C@sda21(r2)
-// 	li       r8, 0x1e
-// 	lfs      f6, lbl_80520160@sda21(r2)
-// 	li       r6, 0xa0
-// 	lfs      f5, lbl_80520164@sda21(r2)
-// 	li       r5, 0x20
-// 	lfs      f4, lbl_80520168@sda21(r2)
-// 	li       r4, 0x14
-// 	lfs      f3, lbl_8052016C@sda21(r2)
-// 	li       r0, 0x10
-// 	lfs      f2, lbl_80520170@sda21(r2)
-// 	addi     r3, r13, msVal__Q32kh6Screen19ObjDayEndResultTitl@sda21
-// 	lfs      f1, lbl_80520174@sda21(r2)
-// 	lfs      f0, lbl_80520178@sda21(r2)
-// 	stfs     f12, 0(r11)
-// 	stfs     f11, 4(r11)
-// 	stfs     f10, 8(r11)
-// 	stfs     f10, 0xc(r11)
-// 	stfs     f9, 0x10(r11)
-// 	stw      r10, 0x24(r11)
-// 	stw      r9, 0x28(r11)
-// 	stb      r8, 0x4c(r11)
-// 	stb      r7, 0x4d(r11)
-// 	stb      r6, 0x4e(r11)
-// 	stb      r5, 0x4f(r11)
-// 	stb      r4, 0x50(r11)
-// 	stfs     f8, 0x14(r11)
-// 	stfs     f7, 0x18(r11)
-// 	stfs     f7, 0x1c(r11)
-// 	stfs     f6, 0x20(r11)
-// 	stfs     f5, 0x2c(r11)
-// 	stfs     f4, 0x30(r11)
-// 	stfs     f3, 0x34(r11)
-// 	stfs     f2, 0x38(r11)
-// 	stfs     f1, 0x40(r11)
-// 	stfs     f0, 0x48(r11)
-// 	stfs     f9, 0x3c(r11)
-// 	stfs     f9, 0x44(r11)
-// 	stw      r7, msVal__Q32kh6Screen19ObjDayEndResultTitl@sda21(r13)
-// 	stb      r0, 4(r3)
-// 	blr
-// 	*/
-// }

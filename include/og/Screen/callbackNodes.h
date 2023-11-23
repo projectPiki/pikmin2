@@ -325,6 +325,14 @@ struct CallBack_Message : public P2DScreen::CallBackNode {
 	// Unused/inlined:
 	void drawInfo(J2DGrafContext&);
 
+	inline void setBounds(f32 minX, f32 minY, f32 maxX, f32 maxY)
+	{
+		mMinX = minX;
+		mMinY = minY;
+		mMaxX = maxX;
+		mMaxY = maxY;
+	}
+
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
 	P2JME::SimpleMessage* mMessage; // _1C
