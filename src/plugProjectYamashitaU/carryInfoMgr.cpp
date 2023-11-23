@@ -1,10 +1,8 @@
-#include "types.h"
 #include "CarryInfo.h"
 #include "Graphics.h"
 #include "Viewport.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "Game/MoviePlayer.h"
-#include "Dolphin/gx.h"
 #include "nans.h"
 
 namespace {
@@ -744,26 +742,6 @@ CarryInfoList* CarryInfoMgr::appear(CarryInfoOwner* owner)
 		list->mParam.mCarryInfo.mCounter = 0;
 	}
 	return list;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_8011C208
-	li       r0, 0
-	stb      r0, 0x54(r3)
-	stb      r0, 0x56(r3)
-
-lbl_8011C208:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -774,52 +752,9 @@ lbl_8011C208:
 void CarryInfoMgr::loadResource()
 {
 	JKRArchive* arc = JKRArchive::mount("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
-	ResTIMG* timg   = (ResTIMG*)JKRFileLoader::getGlbResource("item_0_9.bti", arc);
+	ResTIMG* timg   = JKRGetImageResource("item_0_9.bti", arc);
 	JUTTexture* tex = new JUTTexture(timg);
 	mTexture        = tex;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_8047B290@ha
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	li       r6, 1
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	addi     r3, r4, lbl_8047B290@l
-	li       r4, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	lis      r5, lbl_8047B2B0@ha
-	mr       r4, r3
-	addi     r3, r5, lbl_8047B2B0@l
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	mr       r30, r3
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8011C290
-	li       r0, 0
-	mr       r4, r30
-	stw      r0, 0x28(r31)
-	li       r5, 0
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r31)
-
-lbl_8011C290:
-	stw      r31, 0xb8(r29)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -855,114 +790,6 @@ void CarryInfoMgr::draw(Graphics& gfx)
 		mTexture->load(GX_TEXMAP0);
 		InfoMgr<CarryInfoOwner, CarryInfoList>::draw(gfx);
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_8011C2E4
-	lwz      r0, 0x1f0(r5)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_8011C430
-
-lbl_8011C2E4:
-	bl       clearInitGX__8GraphicsFv
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r3, 0
-	bl       GXSetTevDirect
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 0
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xb
-	li       r5, 1
-	li       r6, 5
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	bl       GXSetBlendMode
-	li       r3, 0
-	li       r4, 1
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 1
-	li       r5, 0xc
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	addi     r3, r1, 8
-	bl       PSMTXIdentity
-	addi     r3, r1, 8
-	li       r4, 0x1e
-	li       r5, 1
-	bl       GXLoadTexMtxImm
-	lwz      r3, 0xb8(r30)
-	li       r4, 0
-	bl       load__10JUTTextureF11_GXTexMapID
-	mr       r3, r30
-	mr       r4, r31
-	bl       "draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
-
-lbl_8011C430:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -999,19 +826,22 @@ void CarryInfoMgr::update()
  */
 void CarryInfoMgr::updatePokoInfoOwners()
 {
-	PokoInfoOwner* obj = static_cast<PokoInfoOwner*>(mPoko_node.mChild);
-
-	while (obj) {
-		if (!obj->mList->isFinish() && obj->mList->mOwner == obj) {
+	FOREACH_NODE(PokoInfoOwner, mNode1.mChild, obj)
+	{
+		bool del = false;
+		if (obj->mList->isFinish() || obj->mList->mOwner != obj) {
+			del = true;
+		} else {
 			obj->mTimer += sys->mDeltaTime;
 			if (obj->mTimer > 1.5f) {
 				obj->mList->mParam.mCarryInfo.mState = CINFO_Disappear;
 			}
-		} else {
+		}
+
+		if (del) {
 			obj->del();
 			mPoko_node.add(obj);
 		}
-		obj = static_cast<PokoInfoOwner*>(obj->mNext);
 	}
 	/*
 	stwu     r1, -0x20(r1)

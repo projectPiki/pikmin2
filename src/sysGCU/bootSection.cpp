@@ -22,7 +22,9 @@
 #include "trig.h"
 #include "nans.h"
 
-static const u32 padding[] = { 0, 0, 0 };
+static const u32 padding[]        = { 0, 0, 0 };
+u32 TinyPikminMgr::sTinyPikminNum = 10;
+J2DPicture* TinyPikminMgr::sPikminTex[6];
 
 /*
  * --INFO--
@@ -218,7 +220,7 @@ void TinyPikmin::draw()
 		f32 yoffs       = _0C + mPosY;
 		J2DPicture* pic = sTinyPikminMgr->sPikminTex[mColor];
 		pic->updateScale(x, y);
-		pic->rotate(pic->getWidth() / 2, pic->getHeight() / 2, J2DROTATE_Y, mAngle);
+		pic->rotate(pic->getWidth() / 2, pic->getHeight() / 2, J2DROTATE_Z, mAngle);
 		pic->draw(pic->getWidth() / 2 - xoffs, yoffs - (pic->getHeight() / 2), false, false, false);
 	}
 }
@@ -374,7 +376,9 @@ void TinyPikminMgr::init()
  */
 void TinyPikminMgr::update()
 {
-	// UNUSED FUNCTION
+	for (int i = 0; i < sTinyPikminNum; i++) {
+		mPikis[i].update();
+	}
 }
 
 /*
@@ -648,7 +652,7 @@ void BootSection::drawNintendoLogo(Graphics& gfx)
 	} else {
 		color.set(NINTENDOLOGO_COLOR_US);
 	}
-	pic.mWhite = color;
+	pic.setWhite(color);
 	pic.draw(mLogoShakeStrength * (randFloat() - 0.5f) + NINTENDOLOGO_XPOS, mLogoShakeStrength * (randFloat() - 0.5f) + NINTENDOLOGO_YPOS,
 	         NINTENDOLOGO_WIDTH, NINTENDOLOGO_HEIGHT, false, false, false);
 	if (mLogoShakeStrength > 0.0f) {
@@ -666,9 +670,8 @@ void BootSection::drawDolbyLogo(Graphics& gfx)
 	gfx.mOrthoGraph.setPort();
 
 	J2DPicture pic(mDolbyMarkTexture);
-	JUtility::TColor color;
-	color.set(DOLBYLOGO_COLOR);
-	pic.mWhite = color;
+	JUtility::TColor color(DOLBYLOGO_COLOR);
+	pic.setWhite(color);
 	pic.draw(DOLBYLOGO_XPOS, DOLBYLOGO_YPOS, DOLBYLOGO_WIDTH, DOLBYLOGO_HEIGHT, false, false, false);
 }
 
@@ -686,11 +689,11 @@ void BootSection::drawEpilepsy(Graphics& gfx)
 	pic.draw(189.0f, 150.0f, -2.5f, -3.5f, false, false, false);
 
 	f32 calc = sinf(1.00f);
+	u8 alpha = calc * 255.0f;
 
 	J2DPicture pic2(mWarningPressStartTexture);
-	JUtility::TColor color;
-	color.set(255, 255, 255, calc);
-	pic.mWhite = color;
+	JUtility::TColor color(255, 255, 255, alpha);
+	pic2.setWhite(color);
 	pic2.draw(189.0f, 150.0f, 232.0f, 112.0f, false, false, false);
 	/*
 	stwu     r1, -0x300(r1)
@@ -819,6 +822,7 @@ void BootSection::changeRenderModeProgressive()
  */
 bool BootSection::doUpdate()
 {
+	mPikiMgr->update();
 	JUTFader* fader;
 	switch (mStateID) {
 	case SID_LOAD_RESOURCE_FIRST:
@@ -828,8 +832,8 @@ bool BootSection::doUpdate()
 		updateLoadMemoryCard();
 		break;
 	case SID_INIT_NINTENDO_LOGO:
-		setMode(SID_NINTENDO_LOGO);
-		mPikiMgr->appear();
+		// setMode(SID_NINTENDO_LOGO);
+		// mPikiMgr->appear();
 		break;
 	case SID_NINTENDO_LOGO:
 		updateNintendoLogo();
@@ -861,18 +865,10 @@ bool BootSection::doUpdate()
 			}
 			if (mFadeTimer > 1.0f && !waitLoadResource()) {
 				f32 test = 0.5f / sys->mDeltaTime;
-				if (test > 0.0f) {
-					test += 0.5f;
-				} else {
-					test -= 0.5f;
-				}
+				test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
 				if (mProgressiveScreen->fadeout((int)test)) {
 					f32 test = 0.5f / sys->mDeltaTime;
-					if (test > 0.0f) {
-						test += 0.5f;
-					} else {
-						test -= 0.5f;
-					}
+					test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
 					fader->startFadeOut((int)test);
 				}
 			}
@@ -896,18 +892,10 @@ bool BootSection::doUpdate()
 			}
 			if (mFadeTimer > 1.0f && !waitLoadResource()) {
 				f32 test = 0.5f / sys->mDeltaTime;
-				if (test > 0.0f) {
-					test += 0.5f;
-				} else {
-					test -= 0.5f;
-				}
+				test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
 				if (mProgressiveScreen->fadeout((int)test)) {
 					f32 test = 0.5f / sys->mDeltaTime;
-					if (test > 0.0f) {
-						test += 0.5f;
-					} else {
-						test -= 0.5f;
-					}
+					test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
 					fader->startFadeOut((int)test);
 				}
 			}
@@ -1502,9 +1490,9 @@ void BootSection::updateLoadMemoryCard()
 	PSSystem::checkSceneMgr(mgr);
 	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->mScenes);
 	P2ASSERTLINE(1748, scene);
-	JAISound** handle = scene->getGlobalStream()->getHandleP();
+	JAISound* handle = *(scene->getGlobalStream()->getHandleP());
 
-	if (sys->mCardMgr->isSaveValid() && !handle) {
+	if (sys->mCardMgr->isSaveInvalid() && !handle) {
 		sys->mCardMgr->checkStatus();
 		sys->mPlayData->setup();
 		sys->loadResourceSecond();
@@ -1543,26 +1531,20 @@ void BootSection::updateNintendoLogo()
 			JUTFader* fader = mDisplay->mFader;
 			if (fader->mStatus == JUTFader::Status_In) {
 				f32 test = 0.5f / sys->mDeltaTime;
-				if (test >= 0.0f) {
-					test += 0.5f;
-				} else {
-					test -= 0.5f;
-				}
+				test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
 				fader->startFadeOut((int)test);
-			} else if (mDisplay->mFader->mStatus == JUTFader::Status_Out) {
+			}
+			if (mDisplay->mFader->mStatus == JUTFader::Status_Out) {
 				setMode(mChangeStateID);
 				mFadeTimer = 0.0f;
 			}
 		} else {
 			setMode(mChangeStateID);
-			mFadeTimer = 0.0f;
-			f32 test   = 0.5f / sys->mDeltaTime;
-			if (test >= 0.0f) {
-				test += 0.5f;
-			} else {
-				test -= 0.5f;
-			}
-			mProgressiveScreen->startScreen(0, (int)test);
+			mFadeTimer                 = 0.0f;
+			ebi::TScreenProgre* screen = mProgressiveScreen;
+			f32 test                   = 0.5f / sys->mDeltaTime;
+			test                       = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
+			screen->startScreen(0, (int)test);
 			mProgressiveScreen->mSelect = 1;
 		}
 	}
@@ -1586,11 +1568,7 @@ void BootSection::updateProgressive()
 		}
 		if (mProgressiveScreen->mSelected) {
 			f32 test = 0.5f / sys->mDeltaTime;
-			if (test >= 0.0f) {
-				test += 0.5f;
-			} else {
-				test -= 0.5f;
-			}
+			test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
 			mProgressiveScreen->fadeout((int)test);
 			mFadeTimer = 10.0f;
 		}
@@ -1599,20 +1577,12 @@ void BootSection::updateProgressive()
 		if (mProgressiveScreen->mSelect) {
 			setMode(8);
 			f32 test = 0.5f / sys->mDeltaTime;
-			if (test >= 0.0f) {
-				test += 0.5f;
-			} else {
-				test -= 0.5f;
-			}
+			test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
 			mProgressiveScreen->startScreen(2, (int)test);
 		} else {
 			setMode(7);
 			f32 test = 0.5f / sys->mDeltaTime;
-			if (test >= 0.0f) {
-				test += 0.5f;
-			} else {
-				test -= 0.5f;
-			}
+			test     = (test >= 0.0f) ? test + 0.5f : test - 0.5f;
 			mProgressiveScreen->startScreen(1, (int)test);
 		}
 		mFadeTimer = 0.0f;

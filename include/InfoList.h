@@ -19,14 +19,14 @@ template <typename Owner, typename List>
 struct InfoListBase : public JKRDisposer {
 	virtual ~InfoListBase() // _08
 	{
-		if (_18) {
-			_18->_1C = _1C;
+		if (mPrev) {
+			mPrev->mNext = mNext;
 		}
-		if (_1C) {
-			_1C->_18 = _18;
+		if (mNext) {
+			mNext->mPrev = mPrev;
 		}
-		_1C = nullptr;
-		_18 = nullptr;
+		mNext = nullptr;
+		mPrev = nullptr;
 	}
 	virtual void init() { }          // _0C
 	virtual void update() { }        // _10
@@ -35,8 +35,8 @@ struct InfoListBase : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	List* _18;     // _18
-	List* _1C;     // _1C
+	List* mPrev;   // _18
+	List* mNext;   // _1C
 	Owner* mOwner; // _20
 };
 
@@ -65,10 +65,10 @@ struct InfoMgr : public InfoMgrBase {
 template <typename Owner, typename List>
 void InfoMgr<Owner, List>::update()
 {
-	List* next = (mActiveList)._1C;
+	List* next = (mActiveList).mNext;
 	List* current;
 	while (current = next, current) {
-		next = current->_1C;
+		next = current->mNext;
 		current->update();
 		if (current->isFinish()) {
 			addInactiveList(current);
@@ -79,39 +79,32 @@ void InfoMgr<Owner, List>::update()
 template <typename Owner, typename List>
 void InfoMgr<Owner, List>::draw(Graphics& gfx)
 {
-	List* list = (mActiveList)._1C;
-	if (list) {
-		for (; list != nullptr; list = list->_1C) {
-			list->draw(gfx);
-		}
-	}
+	FOREACH_NODE(List, mActiveList.mNext, cList) { cList->draw(gfx); }
 }
 
 template <typename Owner, typename List>
 List* InfoMgr<Owner, List>::search(List* list, Owner* owner)
 {
-	while (true) {
-		if (list == nullptr) {
-			return nullptr;
+	FOREACH_NODE(List, list, cList)
+	{
+		if (cList->mOwner == owner) {
+			return cList;
 		}
-		if (((InfoListBase<Owner, List>*)list)->mOwner == owner) {
-			return list;
-		}
-		list = ((InfoListBase<Owner, List>*)list)->_1C;
 	}
+	return nullptr;
 }
 
 template <typename Owner, typename List>
 List* InfoMgr<Owner, List>::regist(Owner* owner)
 {
 	List* list;
-	for (list = (mActiveList)._1C; list != nullptr; list = list->_1C) {
+	for (list = (mActiveList).mNext; list != nullptr; list = list->mNext) {
 		if (list->mOwner == owner) {
 			break;
 		}
 	}
 	if (list == nullptr) {
-		list = (mActiveList)._1C;
+		list = (mActiveList).mNext;
 	}
 	if (list) {
 		list->mOwner = owner;
@@ -123,7 +116,7 @@ List* InfoMgr<Owner, List>::regist(Owner* owner)
 template <typename Owner, typename List>
 void InfoMgr<Owner, List>::scratch(Owner* owner)
 {
-	List* list = search(mActiveList._1C, owner); // search(&mActiveList, owner); // this I cant get to work
+	List* list = search(mActiveList.mNext, owner); // search(&mActiveList, owner); // this I cant get to work
 	if (list) {
 		addInactiveList(list);
 	}
@@ -132,16 +125,16 @@ void InfoMgr<Owner, List>::scratch(Owner* owner)
 template <typename Owner, typename List>
 void InfoMgr<Owner, List>::addActiveList(List* list)
 {
-	if (list->_18) {
-		list->_18->_1C = list->_1C;
+	if (list->mPrev) {
+		list->mPrev->mNext = list->mNext;
 	}
 }
 
 template <typename Owner, typename List>
 void InfoMgr<Owner, List>::addInactiveList(List* list)
 {
-	if (list->_18) {
-		list->_18->_1C = list->_1C;
+	if (list->mPrev) {
+		list->mPrev->mNext = list->mNext;
 	}
 }
 
