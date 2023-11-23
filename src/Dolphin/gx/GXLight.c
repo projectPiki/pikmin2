@@ -1,8 +1,6 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/math.h"
 
-#define GX_LARGE_NUMBER 1.0e+18f;
-
 /*
  * --INFO--
  * Address:	800E6870

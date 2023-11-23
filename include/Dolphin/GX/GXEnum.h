@@ -16,6 +16,8 @@ typedef u8 GXBool;
 #define GX_ENABLE  ((GXBool)1)
 #define GX_DISABLE ((GXBool)0)
 
+#define GX_LARGE_NUMBER 1.0e+18f;
+
 // Logical comparison operators.
 typedef enum _GXCompare {
 	GX_NEVER   = 0, // never true
@@ -186,7 +188,9 @@ typedef enum _GXCompCnt {
 	GX_CLR_RGBA = 1, // RGBA (four components).
 
 	GX_TEX_S  = 0, // Texture coordinate S (one component).
-	GX_TEX_ST = 1  // Texture coordinates S, T (two components).
+	GX_TEX_ST = 1, // Texture coordinates S, T (two components).
+
+	GX_COMPCNT_NULL = 0, // Null count.
 } GXCompCnt;
 
 // Type of components in an attribute.
@@ -203,7 +207,9 @@ typedef enum _GXCompType {
 	GX_RGBX8  = 2, // RGB888x 32-bit.
 	GX_RGBA4  = 3, // RGBA4444 16-bit.
 	GX_RGBA6  = 4, // RGBA6666 24-bit.
-	GX_RGBA8  = 5  // RGBA8888 32-bit.
+	GX_RGBA8  = 5, // RGBA8888 32-bit.
+
+	GX_COMP_NULL = 0, // Null type.
 } GXCompType;
 
 // Anisotropy (direction-dependent) types.
@@ -628,10 +634,16 @@ typedef enum _GXTlut {
 	GX_TLUT14 = 14,
 	GX_TLUT15 = 15,
 
+	GX_MAX_TLUT = 16,
+
 	GX_BIGTLUT0 = 16, // BIGTLUT (1024 16-bit entries) ID 0.
 	GX_BIGTLUT1 = 17,
 	GX_BIGTLUT2 = 18,
 	GX_BIGTLUT3 = 19,
+
+	GX_MAX_BIGTLUT = 4,
+
+	GX_MAX_TLUT_ALL = GX_MAX_TLUT + GX_MAX_BIGTLUT, // 20
 } GXTlut;
 
 // Texture look-up (Tlut) formats.
@@ -1008,6 +1020,7 @@ typedef enum _GXFBClamp {
 	GX_CLAMP_NONE   = 0,
 	GX_CLAMP_TOP    = 1,
 	GX_CLAMP_BOTTOM = 2,
+	GX_CLAMP_BOTH   = GX_CLAMP_TOP | GX_CLAMP_BOTTOM,
 } GXFBClamp;
 
 // Z-Texture operations.

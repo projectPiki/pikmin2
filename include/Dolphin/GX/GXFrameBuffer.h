@@ -25,7 +25,7 @@ extern GXRenderModeObj GXNtsc480Int;
 // extern GXRenderModeObj GXMpal240DsAa;
 // extern GXRenderModeObj GXMpal240Int;
 // extern GXRenderModeObj GXMpal240IntAa;
-// extern GXRenderModeObj GXMpal480IntDf;
+extern GXRenderModeObj GXMpal480IntDf;
 extern GXRenderModeObj GXMpal480Int;
 // extern GXRenderModeObj GXMpal480IntAa;
 // extern GXRenderModeObj GXPal264Ds;

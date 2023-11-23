@@ -8,7 +8,7 @@ static OSAlarmQueue AlarmQueue;
 static void DecrementerExceptionHandler(__OSException exception, OSContext* context);
 static BOOL OnReset(BOOL final);
 
-static OSResetFunctionInfo ResetFunctionInfo = { OnReset, 0xFFFFFFFF };
+static OSResetFunctionInfo ResetFunctionInfo = { OnReset, OS_RESET_PRIO_ALARM };
 
 /*
  * --INFO--

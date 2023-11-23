@@ -704,7 +704,7 @@ LIBS = [
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
-            "Dolphin/gx/GXInit",
+            ["Dolphin/gx/GXInit", True],
             "Dolphin/gx/GXFifo",
             "Dolphin/gx/GXAttr",
             "Dolphin/gx/GXMisc",

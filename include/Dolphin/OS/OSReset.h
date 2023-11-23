@@ -76,9 +76,10 @@ OSResetCallback OSSetResetCallback(OSResetCallback callback);
 #define OS_RESET_PRIO_SO    110
 #define OS_RESET_PRIO_IP    111
 #define OS_RESET_PRIO_CARD  127
+#define OS_RESET_PRIO_MEM   127
 #define OS_RESET_PRIO_PAD   127
 #define OS_RESET_PRIO_GX    127
-#define OS_RESET_PRIO_ALARM 4294967295
+#define OS_RESET_PRIO_ALARM 0xFFFFFFFF
 
 extern BOOL __OSIsGcam;
 

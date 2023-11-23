@@ -26,6 +26,7 @@ extern void GXSetViewport(f32 left, f32 top, f32 width, f32 height, f32 nearZ, f
 
 // Scissor/clip functions.
 extern void GXSetScissor(u32 left, u32 top, u32 width, u32 height);
+extern void GXSetScissorBoxOffset(s32 x, s32 y);
 extern void GXGetScissor(u32* left, u32* top, u32* width, u32* height);
 extern void GXGetScissorBoxOffset(int xOffset, int yOffset);
 extern void GXSetClipMode(GXClipMode mode);

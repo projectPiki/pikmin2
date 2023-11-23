@@ -12,6 +12,9 @@ extern "C" {
 #include "Dolphin/mtx.h"
 
 ////////////// BUMP FUNCTIONS //////////////
+// Flush functions.
+extern void __GXFlushTextureState();
+
 // Indirect texture functions.
 extern void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID indStage, GXIndTexFormat format, GXIndTexBiasSel bias,
                              GXIndTexMtxID mtx, GXIndTexWrap sWrap, GXIndTexWrap tWrap, GXBool doAddPrev, GXBool isIndLOD,
@@ -20,6 +23,7 @@ extern void GXSetIndTexMtx(GXIndTexMtxID mtx, const Mtx23 offsets, s8 scale);
 extern void GXSetIndTexCoordScale(GXIndTexStageID stage, GXIndTexScale sScale, GXIndTexScale tScale);
 extern void GXSetIndTexOrder(GXIndTexStageID stage, GXTexCoordID texCoord, GXTexMapID texMap);
 extern void GXSetNumIndStages(u8 stageCount);
+extern void __GXSetIndirectMask(u32 mask);
 
 // Convenience functions.
 extern void GXSetTevDirect(GXTevStageID stage);

@@ -149,6 +149,7 @@ static inline void GXEnd(void) { }
 
 //////////// FIFO INIT/SET/SAVE ////////////
 // Init.
+extern void __GXFifoInit();
 extern void GXInitFifoBase(GXFifoObj* obj, void* base, u32 size);
 extern void GXInitFifoPtrs(GXFifoObj* obj, void* readPtr, void* writePtr);
 extern void GXInitFifoLimits(GXFifoObj* obj, u32 hiWaterMark, u32 loWaterMark);

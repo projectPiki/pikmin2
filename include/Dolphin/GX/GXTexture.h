@@ -69,7 +69,7 @@ extern GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback func);
 // TODO: work these out.
 extern void __SetSURegs();
 extern void __GXSetSUTexRegs();
-extern void __GXSetTmemConfig();
+extern void __GXSetTmemConfig(u32 config);
 
 // Unused/inlined in P2.
 extern void GXInitTexObjData(GXTexObj* obj, void* imagePtr);

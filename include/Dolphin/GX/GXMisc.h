@@ -18,15 +18,16 @@ typedef void (*GXDrawDoneCallback)(void);
 ////////////////////////////////////////////
 
 ///////////// BASIC FUNCTIONS //////////////
-extern GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID id);
-extern GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut);
-extern void __GXShutdown(); // need to check types
+static GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID id);
+static GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut);
+static BOOL __GXShutdown(BOOL final); // need to check types
 
 ////////////////////////////////////////////
 
 ////////////// INIT FUNCTIONS //////////////
 extern GXFifoObj* GXInit(void* base, u32 size);
 extern void __GXInitGX(); // need to check types
+extern void __GXPEInit();
 
 ////////////////////////////////////////////
 

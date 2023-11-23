@@ -46,6 +46,8 @@
     "trktypes.h": "c",
     "trkenum.h": "c",
     "osinterrupt.h": "c",
-    "gxdata.h": "c"
+    "gxdata.h": "c",
+    "gxtypes.h": "c",
+    "gxtexture.h": "c"
   }
 }

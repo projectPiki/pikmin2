@@ -1,5 +1,5 @@
 GX_FILES:=\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXInit.o\
+	$(BUILD_DIR)/src/Dolphin/gx/GXInit.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXFifo.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXAttr.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXMisc.o\
@@ -14,7 +14,7 @@ GX_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXTransform.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXPerf.o\
 
-$(GX_FILES): CFLAGS += -common off
+$(GX_FILES): CFLAGS += -common off -str noreadonly
 $(GX_FILES): MWCC_VERSION := 1.2.5
 
 DEPENDS += $(GX_FILES:.o=.d)

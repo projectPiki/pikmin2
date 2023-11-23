@@ -5,7 +5,7 @@
 static BOOL OnReset(BOOL final);
 
 // Local reset function information.
-static OSResetFunctionInfo ResetFunctionInfo = { OnReset, 127 };
+static OSResetFunctionInfo ResetFunctionInfo = { OnReset, OS_RESET_PRIO_MEM };
 
 // useful macros.
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
