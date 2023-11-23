@@ -1087,8 +1087,8 @@ void GXSetNumTexGens(u8 count)
 {
 	LOAD_GX_FIELD(0x204, u32) |= count & 0xf;
 	GX_WRITE_U8(0x10);
-	GXWGFifo.u32 = 0x103f;
-	GXWGFifo.u32 = count;
+	GX_WRITE_U32(0x103F);
+	GX_WRITE_U32(count);
 	LOAD_GX_FIELD(0x5ac, u32) |= 4;
 
 	/*

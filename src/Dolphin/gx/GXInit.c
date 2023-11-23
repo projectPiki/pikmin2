@@ -1,15 +1,32 @@
 #include "Dolphin/gx.h"
+#include "Dolphin/os.h"
 
-GXData* const __GXData;
+static GXFifoObj FifoObj;
+static GXData gxData;
+GXData* const __GXData = &gxData;
+
+char* __GXVersion = "<< Dolphin SDK - GX\trelease build: Nov 26 2003 05:19:07 (0x2301) >>";
+
+PIReg* __piReg = nullptr;
+CPReg* __cpReg = nullptr;
+void* __peReg  = nullptr; // TODO: change to struct later
+void* __memReg = nullptr; // TODO: change to struct later
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-BOOL IsWriteGatherBufferEmpty(void)
+asm BOOL IsWriteGatherBufferEmpty(void)
 {
-	// UNUSED FUNCTION
+	// clang-format off
+	nofralloc;
+	sync;
+
+	mfspr r3, WPAR;
+	andi. r3, r3, 1;
+	blr;
+	// clang-format on
 }
 
 /*
@@ -17,9 +34,13 @@ BOOL IsWriteGatherBufferEmpty(void)
  * Address:	........
  * Size:	000040
  */
-void EnableWriteGatherPipe(void)
+static void EnableWriteGatherPipe()
 {
-	// UNUSED FUNCTION
+	u32 hid2; // r31
+	hid2 = PPCMfhid2();
+	PPCMtwpar(OSUncachedToPhysical((void*)GXFIFO_ADDR));
+	hid2 |= 0x40000000;
+	PPCMthid2(hid2);
 }
 
 /*
@@ -27,9 +48,12 @@ void EnableWriteGatherPipe(void)
  * Address:	........
  * Size:	000028
  */
-void DisableWriteGatherPipe(void)
+static void DisableWriteGatherPipe()
 {
-	// UNUSED FUNCTION
+	u32 hid2;
+	hid2 = PPCMfhid2();
+	hid2 &= ~0x40000000;
+	PPCMthid2(hid2);
 }
 
 /*
@@ -37,7 +61,7 @@ void DisableWriteGatherPipe(void)
  * Address:	800E2680
  * Size:	0000FC
  */
-GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID id)
+static GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID id)
 {
 	GXTexFmt fmt; // r31
 
@@ -136,24 +160,13 @@ GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID id)
  * Address:	800E277C
  * Size:	000024
  */
-GXTlutRegion* __GXDefaultTlutRegionCallback(GXTlut tlut)
+static GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut)
 {
-	/*
-	.loc_0x0:
-	  cmplwi    r3, 0x14
-	  blt-      .loc_0x10
-	  li        r3, 0
-	  b         .loc_0x20
+	if (tlut >= 20) {
+		return 0;
+	}
 
-	.loc_0x10:
-	  rlwinm    r3,r3,4,0,27
-	  lwz       r0, -0x6D70(r2)
-	  addi      r3, r3, 0x388
-	  add       r3, r0, r3
-
-	.loc_0x20:
-	  blr
-	*/
+	return &gx->TlutRegions[tlut];
 }
 
 /*

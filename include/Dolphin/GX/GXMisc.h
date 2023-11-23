@@ -19,7 +19,7 @@ typedef void (*GXDrawDoneCallback)(void);
 
 ///////////// BASIC FUNCTIONS //////////////
 extern GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID id);
-extern GXTlutRegion* __GXDefaultTlutRegionCallback(GXTlut tlut);
+extern GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut);
 extern void __GXShutdown(); // need to check types
 
 ////////////////////////////////////////////

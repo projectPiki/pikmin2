@@ -1,4 +1,7 @@
 #include "Dolphin/gx.h"
+#include "Dolphin/math.h"
+
+#define GX_LARGE_NUMBER 1.0e+18f;
 
 /*
  * --INFO--
@@ -64,6 +67,61 @@ void GXGetLightAttnK(GXLightObj* obj, f32* k0, f32* k1, f32* k2)
  */
 void GXInitLightSpot(GXLightObj* obj, f32 cutoff, GXSpotFn spotFunc)
 {
+	f32 a0, a1, a2, r, d, cr;
+	GXLightObjPriv* pObj = (GXLightObjPriv*)obj;
+
+	if (cutoff <= 0.0f || cutoff > 90.0f) {
+		spotFunc = GX_SP_OFF;
+	}
+
+	r  = cutoff * PI / 180.0f;
+	cr = cosf(r);
+
+	switch (spotFunc) {
+	case GX_SP_FLAT:
+		a0 = -1000.0f * cr;
+		a1 = 1000.0f;
+		a2 = 0.0f;
+		break;
+	case GX_SP_COS:
+		a1 = 1.0f / (1.0f - cr);
+		a0 = -cr * a1;
+		a2 = 0.0f;
+		break;
+	case GX_SP_COS2:
+		a2 = 1.0f / (1.0f - cr);
+		a0 = 0.0f;
+		a1 = -cr * a2;
+		break;
+	case GX_SP_SHARP:
+		d  = 1.0F / ((1.0F - cr) * (1.0F - cr));
+		a0 = cr * (cr - 2.0F) * d;
+		a1 = 2.0F * d;
+		a2 = -d;
+		break;
+	case GX_SP_RING1:
+		d  = 1.0f / ((1.0f - cr) * (1.0F - cr));
+		a2 = -4.0f * d;
+		a0 = a2 * cr;
+		a1 = 4.0f * (1.0f + cr) * d;
+		break;
+	case GX_SP_RING2:
+		d  = 1.0f / ((1.0f - cr) * (1.0F - cr));
+		a0 = 1.0f - 2.0f * cr * cr * d;
+		a1 = 4.0f * cr * d;
+		a2 = -2.0f * d;
+		break;
+	case GX_SP_OFF:
+	default:
+		a0 = 1.0f;
+		a1 = 0.0f;
+		a2 = 0.0f;
+		break;
+	}
+
+	pObj->a[0] = a0;
+	pObj->a[1] = a1;
+	pObj->a[2] = a2;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -184,79 +242,44 @@ void GXInitLightSpot(GXLightObj* obj, f32 cutoff, GXSpotFn spotFunc)
  */
 void GXInitLightDistAttn(GXLightObj* obj, f32 refDist, f32 refBrightness, GXDistAttnFn distFunc)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, -0x6D38(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x10
-	  li        r4, 0
+	f32 k0, k1, k2;
+	GXLightObjPriv* pObj = (GXLightObjPriv*)obj;
 
-	.loc_0x10:
-	  lfs       f0, -0x6D38(r2)
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0, 0x2
-	  beq-      .loc_0x30
-	  lfs       f0, -0x6D20(r2)
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x34
+	if (refDist < 0.0F) {
+		distFunc = GX_DA_OFF;
+	}
 
-	.loc_0x30:
-	  li        r4, 0
+	if (refBrightness <= 0.0F || refBrightness >= 1.0F) {
+		distFunc = GX_DA_OFF;
+	}
 
-	.loc_0x34:
-	  cmpwi     r4, 0x2
-	  beq-      .loc_0x74
-	  bge-      .loc_0x50
-	  cmpwi     r4, 0
-	  beq-      .loc_0xB4
-	  bge-      .loc_0x5C
-	  b         .loc_0xB4
+	switch (distFunc) {
+	case GX_DA_GENTLE:
+		k0 = 1.0F;
+		k1 = (1.0F - refBrightness) / (refBrightness * refDist);
+		k2 = 0.0F;
+		break;
+	case GX_DA_MEDIUM:
+		k0 = 1.0f;
+		k1 = 0.5f * (1.0f - refBrightness) / (refBrightness * refDist);
+		k2 = 0.5f * (1.0f - refBrightness) / (refBrightness * refDist * refDist);
+		break;
+	case GX_DA_STEEP:
+		k0 = 1.0f;
+		k1 = 0.0f;
+		k2 = (1.0f - refBrightness) / (refBrightness * refDist * refDist);
+		break;
+	case GX_DA_OFF:
+	default:
+		k0 = 1.0f;
+		k1 = 0.0f;
+		k2 = 0.0f;
+		break;
+	}
 
-	.loc_0x50:
-	  cmpwi     r4, 0x4
-	  bge-      .loc_0xB4
-	  b         .loc_0x98
-
-	.loc_0x5C:
-	  lfs       f5, -0x6D20(r2)
-	  fmuls     f0, f2, f1
-	  lfs       f4, -0x6D38(r2)
-	  fsubs     f1, f5, f2
-	  fdivs     f3, f1, f0
-	  b         .loc_0xC0
-
-	.loc_0x74:
-	  lfs       f5, -0x6D20(r2)
-	  fmuls     f4, f2, f1
-	  lfs       f3, -0x6D0C(r2)
-	  fsubs     f2, f5, f2
-	  fmuls     f0, f1, f4
-	  fmuls     f1, f3, f2
-	  fdivs     f3, f1, f4
-	  fdivs     f4, f1, f0
-	  b         .loc_0xC0
-
-	.loc_0x98:
-	  fmuls     f0, f2, f1
-	  lfs       f5, -0x6D20(r2)
-	  lfs       f3, -0x6D38(r2)
-	  fsubs     f2, f5, f2
-	  fmuls     f0, f1, f0
-	  fdivs     f4, f2, f0
-	  b         .loc_0xC0
-
-	.loc_0xB4:
-	  lfs       f3, -0x6D38(r2)
-	  lfs       f5, -0x6D20(r2)
-	  fmr       f4, f3
-
-	.loc_0xC0:
-	  stfs      f5, 0x1C(r3)
-	  stfs      f3, 0x20(r3)
-	  stfs      f4, 0x24(r3)
-	  blr
-	*/
+	pObj->k[0] = k0;
+	pObj->k[1] = k1;
+	pObj->k[2] = k2;
 }
 
 /*
@@ -312,6 +335,26 @@ void GXGetLightDir(GXLightObj* obj, f32* nX, f32* nY, f32* nZ)
  */
 void GXInitSpecularDir(GXLightObj* obj, f32 nX, f32 nY, f32 nZ)
 {
+	f32 mag;
+	f32 vx, vy, vz;
+	GXLightObjPriv* pObj = (GXLightObjPriv*)obj;
+
+	vx  = -nX;
+	vy  = -nY;
+	vz  = (-nZ + 1.0F);
+	mag = vx * vx + vy * vy + vz * vz;
+
+	if (mag != 0.0f) {
+		mag = 1.0f / dolsqrtf(mag);
+	}
+
+	pObj->lpos[0] = vx * mag;
+	pObj->lpos[1] = vy * mag;
+	pObj->lpos[2] = vz * mag;
+
+	pObj->ldir[0] = nX * -GX_LARGE_NUMBER;
+	pObj->ldir[1] = nY * -GX_LARGE_NUMBER;
+	pObj->ldir[2] = nZ * -GX_LARGE_NUMBER;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -411,6 +454,36 @@ void GXGetLightColor(GXLightObj* obj, GXColor* color)
 	// UNUSED FUNCTION
 }
 
+static inline void PushLight(const register GXLightObjPriv* lt_obj, register void* dest)
+{
+	register u32 zero, color;
+	register f32 a0_a1, a2_k0, k1_k2;
+	register f32 px_py, pz_dx, dy_dz;
+
+	asm
+	{
+        lwz     color, 12(lt_obj)
+        xor     zero, zero, zero
+        psq_l   a0_a1, 16(lt_obj), 0, 0
+        psq_l   a2_k0, 24(lt_obj), 0, 0
+        psq_l   k1_k2, 32(lt_obj), 0, 0
+        psq_l   px_py, 40(lt_obj), 0, 0
+        psq_l   pz_dx, 48(lt_obj), 0, 0
+        psq_l   dy_dz, 56(lt_obj), 0, 0
+        
+        stw     zero,  0(dest)
+        stw     zero,  0(dest)
+        stw     zero,  0(dest)
+        stw     color, 0(dest)
+        psq_st  a0_a1, 0(dest), 0, 0
+        psq_st  a2_k0, 0(dest), 0, 0
+        psq_st  k1_k2, 0(dest), 0, 0
+        psq_st  px_py, 0(dest), 0, 0
+        psq_st  pz_dx, 0(dest), 0, 0
+        psq_st  dy_dz, 0(dest), 0, 0
+	}
+}
+
 /*
  * --INFO--
  * Address:	800E6C08
@@ -418,40 +491,19 @@ void GXGetLightColor(GXLightObj* obj, GXColor* color)
  */
 void GXLoadLightObjImm(GXLightObj* obj, GXLightID light)
 {
-	/*
-	.loc_0x0:
-	  cntlzw    r0, r4
-	  subfic    r0, r0, 0x1F
-	  rlwinm    r5,r0,4,25,27
-	  lis       r4, 0xCC01
-	  li        r0, 0x10
-	  addi      r5, r5, 0x600
-	  stb       r0, -0x8000(r4)
-	  oris      r0, r5, 0xF
-	  stwu      r0, -0x8000(r4)
-	  lwz       r0, 0xC(r3)
-	  xor       r6, r6, r6
-	  psq_l     f5,0x10(r3),0,0
-	  psq_l     f4,0x18(r3),0,0
-	  psq_l     f3,0x20(r3),0,0
-	  psq_l     f2,0x28(r3),0,0
-	  psq_l     f1,0x30(r3),0,0
-	  psq_l     f0,0x38(r3),0,0
-	  stw       r6, 0x0(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r0, 0x0(r4)
-	  psq_st    f5,0x0(r4),0,0
-	  psq_st    f4,0x0(r4),0,0
-	  psq_st    f3,0x0(r4),0,0
-	  psq_st    f2,0x0(r4),0,0
-	  psq_st    f1,0x0(r4),0,0
-	  psq_st    f0,0x0(r4),0,0
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0x1
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
+	u32 addr;
+	u32 idx;
+	GXLightObjPriv* pObj = (GXLightObjPriv*)obj;
+
+	idx = 31 - __cntlzw(light);
+	idx &= 7;
+
+	addr = 0x600 + idx * 0x10;
+
+	GX_WRITE_U8(16);
+	GX_WRITE_U32(addr | (0x10 - 1) << 16);
+	PushLight(pObj, (void*)GXFIFO_ADDR);
+	__GXData->bpSentNot = 1;
 }
 
 /*

@@ -787,7 +787,7 @@ void JFWGXAbortAlarmHandler(OSAlarm*, OSContext*)
 {
 	diagnoseGpHang();
 	GXAbortFrame();
-	GXWGFifo.u8  = 0x61;
+	GX_WRITE_U8(0x61);
 	GXWGFifo.u32 = 0x5800000F;
 	GXSetDrawDone();
 }

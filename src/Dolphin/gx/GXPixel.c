@@ -428,8 +428,8 @@ void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor ds
  */
 void GXSetColorUpdate(GXBool update_enable)
 {
-	u32 newValue  = (update_enable & GX_ENABLE) << 3 | gx->cmode0 & ~8;
-	GXWGFifo.u8   = 0x61;
+	u32 newValue = (update_enable & GX_ENABLE) << 3 | gx->cmode0 & ~8;
+	GX_WRITE_U8(0x61);
 	GXWGFifo.u32  = newValue;
 	gx->cmode0    = newValue;
 	gx->bpSentNot = GX_FALSE;

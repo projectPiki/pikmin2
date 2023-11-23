@@ -114,89 +114,47 @@ typedef struct _GXData {
 	u32 nextTexRgn;              // _2C8
 	u32 nextTexRgnCI;            // _2CC
 
+	u8 _2D0[0xB8]; // _2D0, unknown padding, definitely goes before TlutRegions
+
 	// Texture lookup table regions
-	GXTlutRegion TlutRegions[20];            // _2D0
-	GXTexRegionCallback texRegionCallback;   // _410
-	GXTlutRegionCallback tlutRegionCallback; // _414
+	GXTlutRegion TlutRegions[20];            // _388
+	GXTexRegionCallback texRegionCallback;   // _4C8
+	GXTlutRegionCallback tlutRegionCallback; // _4CC
 
 	// Command processor vars
-	GXAttrType nrmType; // _418
-	GXBool hasNrms;     // _41C
-	GXBool hasBiNrms;   // _41D
-	u32 projType;       // _420
-	f32 projMtx[6];     // _424
+	GXAttrType nrmType; // _4D0
+	GXBool hasNrms;     // _4D4
+	GXBool hasBiNrms;   // _4D5
+	u32 projType;       // _4D8
+	f32 projMtx[6];     // _4DC
 
 	// Viewport parms
-	f32 vpLeft;  // _43C
-	f32 vpTop;   // _440
-	f32 vpWd;    // _444
-	f32 vpHt;    // _448
-	f32 vpNearz; // _44C
-	f32 vpFarz;  // _450
-	u8 fgRange;  // _454
-	f32 fgSideX; // _458
+	f32 vpLeft;  // _4F4
+	f32 vpTop;   // _4F8
+	f32 vpWd;    // _4FC
+	f32 vpHt;    // _500
+	f32 vpNearz; // _504
+	f32 vpFarz;  // _508
+	u8 fgRange;  // _50C
+	f32 fgSideX; // _510
 
 	// Texture regs
-	u32 tImage0[8];   // _45C
-	u32 tMode0[8];    // _47C
-	u32 texmapId[16]; // _49C
-	u32 tcsManEnab;   // _4DC
-	u32 tevTcEnab;    // _4E0
+	u32 tImage0[8];   // _514
+	u32 tMode0[8];    // _534
+	u32 texmapId[16]; // _554
+	u32 tcsManEnab;   // _594
+	u32 tevTcEnab;    // _598
 
 	// Performance metrics
-	GXPerf0 perf0; // _4E4
-	GXPerf1 perf1; // _4E8
-	u32 perfSel;   // _4EC
-
-	u8 _4F0[0xB8]; // _4F0, unknown padding, lives somewhere before dirtyState
+	GXPerf0 perf0; // _59C
+	GXPerf1 perf1; // _5A0
+	u32 perfSel;   // _5A4
 
 	// Flags
 	GXBool inDispList;    // _5A8
 	GXBool dlSaveContext; // _5A9
 	u8 dirtyVAT;          // _5AA
 	u32 dirtyState;       // _5AC
-
-	// union {
-	// 	s16 s[2];
-	// 	u32 w;
-	// } _000;                          // _000
-	// u16 _004;                        // _004
-	// u16 _006;                        // _006
-	// ControlRegister controlRegister; // _008
-	// u32 _00C;                        // _00C, probably CPStatus
-	// u32 _010;                        // _010
-	// u32 _014;                        // _014
-	// u8 _018[0x64];                   // _018
-	// u32 _07C;                        // _07C
-	// u8 _080[0x28];                   // _080
-	// GXColor _0A8[2];                 // _0A8
-	// GXColor _0B0[2];                 // _0B0
-	// u32 _0B8[2];                     // _0B8
-	// u32 _0C0;                        // _0C0
-	// u32 _0C4;                        // _0C4
-	// u32 _0C8[2];                     // _0C8
-	// u8 _0D0[0x18];                   // _0D0
-	// u32 _0E8[2];                     // _0E8
-	// u8 _0F0[0x18];                   // _0F0
-	// u32 _108[2];                     // _108
-	// u8 _110[0x10];                   // _110
-	// u32 _120;                        // _120
-	// u32 _124;                        // _124
-	// u32 _128;                        // _128
-	// u32 _12C;                        // _12C
-	// u8 _130[0x40];                   // _130
-	// u32 _170;                        // _170
-	// u32 _174;                        // _174
-	// u32 _178;                        // _178
-	// u32 _17C;                        // _17C
-	// u8 _180[0x50];                   // _180
-	// u32 _1D0;                        // _1D0
-	// u8 _1D4[0x30];                   // _1D4
-	// u32 _204;                        // _204
-	// u8 _208[0x4C];                   // _208
-	// u32 _254;                        // _254
-	// u8 _258[0x354];                  // _258
-	// u32 _5AC;                        // _5AC
 } GXData;
 extern GXData* const __GXData; // NB: this is const in SMG1 decomp.
 

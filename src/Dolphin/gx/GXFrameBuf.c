@@ -1078,9 +1078,9 @@ void GXCopyTex(void* dest, GXBool doClear)
  */
 void GXClearBoundingBox(void)
 {
-	GXWGFifo.u8             = 0x61;
-	GXWGFifo.u32            = 0x550003ff;
-	GXWGFifo.u8             = 0x61;
+	GX_WRITE_U8(0x61);
+	GXWGFifo.u32 = 0x550003ff;
+	GX_WRITE_U8(0x61);
 	GXWGFifo.u32            = 0x560003ff;
 	LOAD_GX_FIELD(0x2, u16) = 0;
 }
