@@ -294,7 +294,7 @@ void GXGetVtxDescv(GXVtxDescList* list)
 void GXClearVtxDesc(void)
 {
 	LOAD_GX_FIELD(0x14, u32) = 0;
-	LOAD_GX_FIELD(0x14, u32) &= 0x200;
+	LOAD_GX_FIELD(0x14, u32) &= 0x600;
 	LOAD_GX_FIELD(0x18, u32) = 0;
 	LOAD_GX_FIELD(0x4d4, u8) = 0;
 	LOAD_GX_FIELD(0x4d5, u8) = 0;
@@ -324,8 +324,83 @@ void GXClearVtxDesc(void)
  * Address:	800E4708
  * Size:	00025C
  */
+#define INSERT_FIELD(reg, value, nbits, shift) \
+    (reg) = ((u32) (reg) & ~(((1 << (nbits)) - 1) << (shift))) | ((u32) (value) << (shift))
+
 void GXSetVtxAttrFmt(GXVtxFmt format, GXAttr attr, GXCompCnt count, GXCompType type, u8 frac)
 {
+	u32* temp_r4 = (&LOAD_GX_FIELD(0x1c, u32)) + format;
+    u32* temp_r8 = (&LOAD_GX_FIELD(0x3d, u32)) + format;
+    u32* temp_r9 = (&LOAD_GX_FIELD(0x5c, u32)) + format;
+    switch (attr) {
+    case 9:
+        INSERT_FIELD(*temp_r4, count, 1, 0);
+        INSERT_FIELD(*temp_r4, type, 3, 1);
+        INSERT_FIELD(*temp_r4, frac, 5, 4);
+        break;
+    case 10:
+    case 25:
+        INSERT_FIELD(*temp_r4, type, 3, 10);
+        if (count == 2) {
+            INSERT_FIELD(*temp_r4, 1, 1, 9);
+            INSERT_FIELD(*temp_r4, 1, 1, 31);
+        } else {
+            INSERT_FIELD(*temp_r4, count, 1, 9);
+            INSERT_FIELD(*temp_r4, 0, 1, 31);
+        }
+        break;
+    case 11:
+        INSERT_FIELD(*temp_r4, count, 1, 13);
+        INSERT_FIELD(*temp_r4, type, 3, 14);
+        break;
+    case 12:
+        INSERT_FIELD(*temp_r4, count, 1, 17);
+        INSERT_FIELD(*temp_r4, type, 3, 18);
+        break;
+    case 13:
+        INSERT_FIELD(*temp_r4, count, 1, 21);
+        INSERT_FIELD(*temp_r4, type, 3, 22);
+        INSERT_FIELD(*temp_r4, frac, 5, 25);
+        break;
+    case 14:
+        INSERT_FIELD(*temp_r8, count, 1, 0);
+        INSERT_FIELD(*temp_r8, type, 3, 1);
+        INSERT_FIELD(*temp_r8, frac, 5, 4);
+        break;
+    case 15:
+        INSERT_FIELD(*temp_r8, count, 1, 9);
+        INSERT_FIELD(*temp_r8, type, 3, 10);
+        INSERT_FIELD(*temp_r8, frac, 5, 13);
+        break;
+    case 16:
+        INSERT_FIELD(*temp_r8, count, 1, 18);
+        INSERT_FIELD(*temp_r8, type, 3, 19);
+        INSERT_FIELD(*temp_r8, frac, 5, 22);
+        break;
+    case 17:
+        INSERT_FIELD(*temp_r8, count, 1, 27);
+        INSERT_FIELD(*temp_r8, type, 3, 28);
+        INSERT_FIELD(*temp_r9, frac, 5, 0);
+        break;
+    case 18:
+        INSERT_FIELD(*temp_r9, count, 1, 5);
+        INSERT_FIELD(*temp_r9, type, 3, 6);
+        INSERT_FIELD(*temp_r9, frac, 5, 9);
+        break;
+    case 19:
+        INSERT_FIELD(*temp_r9, count, 1, 14);
+        INSERT_FIELD(*temp_r9, type, 3, 15);
+        INSERT_FIELD(*temp_r9, frac, 5, 18);
+        break;
+    case 20:
+        INSERT_FIELD(*temp_r9, count, 1, 23);
+        INSERT_FIELD(*temp_r9, type, 3, 24);
+        INSERT_FIELD(*temp_r9, frac, 5, 27);
+        break;
+    }
+    LOAD_GX_FIELD(0x4f0, u32) |= 0x10;
+    LOAD_GX_FIELD(0x4ee, u32) |= (u8) (1 << (u8) format);
+
 	/*
 	.loc_0x0:
 	  subi      r0, r4, 0x9
