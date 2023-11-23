@@ -1,5 +1,37 @@
 #include "Dolphin/gx.h"
 
+static u32 TEVCOpTableST0[] = {
+	0xC008F8AF, // modulate
+	0xC008A89F, // decal
+	0xC008AC8F, // blend
+	0xC008FFF8, // replace
+	0xC008FFFA, // passclr
+};
+
+static u32 TEVCOpTableST1[] = {
+	0xC008F80F, // modulate
+	0xC008089F, // decal
+	0xC0080C8F, // blend
+	0xC008FFF8, // replace
+	0xC008FFF0, // passclr
+};
+
+static u32 TEVAOpTableST0[] = {
+	0xC108F2F0, // modulate
+	0xC108FFD0, // decal
+	0xC108F2F0, // blend
+	0xC108FFC0, // replace
+	0xC108FFD0, // passclr
+};
+
+static u32 TEVAOpTableST1[] = {
+	0xC108F070, // modulate
+	0xC108FF80, // decal
+	0xC108F070, // blend
+	0xC108FFC0, // replace
+	0xC108FF80, // passclr
+};
+
 /*
  * --INFO--
  * Address:	800E847C
@@ -7,48 +39,35 @@
  */
 void GXSetTevOp(GXTevStageID stage, GXTevMode mode)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r3, 0
-	  lis       r5, 0x804B
-	  subi      r0, r5, 0x7888
-	  bne-      .loc_0x20
-	  rlwinm    r4,r4,2,0,29
-	  add       r5, r0, r4
-	  addi      r9, r5, 0x28
-	  b         .loc_0x34
+	u32* color;
+	u32* alpha;
+	u32 tevReg;
 
-	.loc_0x20:
-	  rlwinm    r4,r4,2,0,29
-	  add       r5, r0, r4
-	  add       r9, r0, r4
-	  addi      r5, r5, 0x14
-	  addi      r9, r9, 0x3C
+	if (stage == GX_TEVSTAGE0) {
+		color = &TEVCOpTableST0[mode];
+		alpha = &TEVAOpTableST0[mode];
+	} else {
+		color = &TEVCOpTableST1[mode];
+		alpha = &TEVAOpTableST1[mode];
+	}
 
-	.loc_0x34:
-	  lwz       r7, -0x6D70(r2)
-	  rlwinm    r3,r3,2,0,29
-	  lwz       r0, 0x0(r5)
-	  li        r5, 0x61
-	  add       r6, r7, r3
-	  lwz       r3, 0x130(r6)
-	  lis       r4, 0xCC01
-	  stb       r5, -0x8000(r4)
-	  rlwinm    r3,r3,0,0,7
-	  rlwimi    r3,r0,0,8,31
-	  stw       r3, -0x8000(r4)
-	  li        r0, 0
-	  stw       r3, 0x130(r6)
-	  lwz       r8, 0x170(r6)
-	  lwz       r3, 0x0(r9)
-	  rlwinm    r8,r8,0,28,7
-	  stb       r5, -0x8000(r4)
-	  rlwimi    r8,r3,0,8,27
-	  stw       r8, -0x8000(r4)
-	  stw       r8, 0x170(r6)
-	  sth       r0, 0x2(r7)
-	  blr
-	*/
+	tevReg = gx->tevc[stage];
+	tevReg = (*color & ~0xFF000000) | (tevReg & 0xFF000000);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+
+	gx->tevc[stage] = tevReg;
+
+	tevReg = gx->teva[stage];
+	tevReg = (*alpha & ~0xFF00000F) | (tevReg & 0xFF00000F);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+
+	gx->teva[stage] = tevReg;
+
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -58,26 +77,20 @@ void GXSetTevOp(GXTevStageID stage, GXTevMode mode)
  */
 void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d)
 {
-	/*
-	.loc_0x0:
-	  lwz       r9, -0x6D70(r2)
-	  rlwinm    r3,r3,2,0,29
-	  li        r0, 0x61
-	  add       r8, r9, r3
-	  lwz       r10, 0x130(r8)
-	  lis       r3, 0xCC01
-	  rlwimi    r10,r4,12,16,19
-	  stb       r0, -0x8000(r3)
-	  addi      r4, r10, 0
-	  rlwimi    r4,r5,8,20,23
-	  rlwimi    r4,r6,4,24,27
-	  rlwimi    r4,r7,0,28,31
-	  stw       r4, -0x8000(r3)
-	  li        r0, 0
-	  stw       r4, 0x130(r8)
-	  sth       r0, 0x2(r9)
-	  blr
-	*/
+	u32 tevReg;
+
+	tevReg = gx->tevc[stage];
+
+	FAST_FLAG_SET(tevReg, a, 12, 4);
+	FAST_FLAG_SET(tevReg, b, 8, 4);
+	FAST_FLAG_SET(tevReg, c, 4, 4);
+	FAST_FLAG_SET(tevReg, d, 0, 4);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+
+	gx->tevc[stage] = tevReg;
+	gx->bpSentNot   = GX_FALSE;
 }
 
 /*
@@ -87,26 +100,20 @@ void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTev
  */
 void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d)
 {
-	/*
-	.loc_0x0:
-	  lwz       r9, -0x6D70(r2)
-	  rlwinm    r3,r3,2,0,29
-	  li        r0, 0x61
-	  add       r8, r9, r3
-	  lwz       r10, 0x170(r8)
-	  lis       r3, 0xCC01
-	  rlwimi    r10,r4,13,16,18
-	  stb       r0, -0x8000(r3)
-	  addi      r4, r10, 0
-	  rlwimi    r4,r5,10,19,21
-	  rlwimi    r4,r6,7,22,24
-	  rlwimi    r4,r7,4,25,27
-	  stw       r4, -0x8000(r3)
-	  li        r0, 0
-	  stw       r4, 0x170(r8)
-	  sth       r0, 0x2(r9)
-	  blr
-	*/
+	u32 tevReg;
+
+	tevReg = gx->teva[stage];
+
+	FAST_FLAG_SET(tevReg, a, 13, 3);
+	FAST_FLAG_SET(tevReg, b, 10, 3);
+	FAST_FLAG_SET(tevReg, c, 7, 3);
+	FAST_FLAG_SET(tevReg, d, 4, 3);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+
+	gx->teva[stage] = tevReg;
+	gx->bpSentNot   = GX_FALSE;
 }
 
 /*
@@ -116,39 +123,26 @@ void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTev
  */
 void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool doClamp, GXTevRegID outReg)
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, -0x6D70(r2)
-	  rlwinm    r9,r3,2,0,29
-	  cmpwi     r4, 0x1
-	  add       r3, r0, r9
-	  lwz       r3, 0x130(r3)
-	  rlwimi    r3,r4,18,13,13
-	  addi      r10, r3, 0
-	  bgt-      .loc_0x2C
-	  rlwimi    r10,r6,20,10,11
-	  rlwimi    r10,r5,16,14,15
-	  b         .loc_0x38
+	u32 tevReg;
 
-	.loc_0x2C:
-	  li        r0, 0x3
-	  rlwimi    r10,r4,19,10,11
-	  rlwimi    r10,r0,16,14,15
+	tevReg = gx->tevc[stage];
+	FAST_FLAG_SET(tevReg, op & 1, 18, 1);
 
-	.loc_0x38:
-	  li        r0, 0x61
-	  lwz       r4, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  rlwimi    r10,r7,19,12,12
-	  rlwimi    r10,r8,22,8,9
-	  stw       r10, -0x8000(r5)
-	  add       r3, r4, r9
-	  li        r0, 0
-	  stw       r10, 0x130(r3)
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
+	if (op <= 1) {
+		FAST_FLAG_SET(tevReg, scale, 20, 2);
+		FAST_FLAG_SET(tevReg, bias, 16, 2);
+	} else {
+		FAST_FLAG_SET(tevReg, (op >> 1) & 3, 20, 2);
+		FAST_FLAG_SET(tevReg, 3, 16, 2);
+	}
+
+	FAST_FLAG_SET(tevReg, doClamp, 19, 1);
+	FAST_FLAG_SET(tevReg, outReg, 22, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+	gx->tevc[stage] = tevReg;
+	gx->bpSentNot   = GX_FALSE;
 }
 
 /*
@@ -158,39 +152,26 @@ void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale 
  */
 void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool doClamp, GXTevRegID outReg)
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, -0x6D70(r2)
-	  rlwinm    r9,r3,2,0,29
-	  cmpwi     r4, 0x1
-	  add       r3, r0, r9
-	  lwz       r3, 0x170(r3)
-	  rlwimi    r3,r4,18,13,13
-	  addi      r10, r3, 0
-	  bgt-      .loc_0x2C
-	  rlwimi    r10,r6,20,10,11
-	  rlwimi    r10,r5,16,14,15
-	  b         .loc_0x38
+	u32 tevReg;
 
-	.loc_0x2C:
-	  li        r0, 0x3
-	  rlwimi    r10,r4,19,10,11
-	  rlwimi    r10,r0,16,14,15
+	tevReg = gx->teva[stage];
+	FAST_FLAG_SET(tevReg, op & 1, 18, 1);
 
-	.loc_0x38:
-	  li        r0, 0x61
-	  lwz       r4, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  rlwimi    r10,r7,19,12,12
-	  rlwimi    r10,r8,22,8,9
-	  stw       r10, -0x8000(r5)
-	  add       r3, r4, r9
-	  li        r0, 0
-	  stw       r10, 0x170(r3)
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
+	if (op <= 1) {
+		FAST_FLAG_SET(tevReg, scale, 20, 2);
+		FAST_FLAG_SET(tevReg, bias, 16, 2);
+	} else {
+		FAST_FLAG_SET(tevReg, (op >> 1) & 3, 20, 2);
+		FAST_FLAG_SET(tevReg, 3, 16, 2);
+	}
+
+	FAST_FLAG_SET(tevReg, doClamp, 19, 1);
+	FAST_FLAG_SET(tevReg, outReg, 22, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+	gx->teva[stage] = tevReg;
+	gx->bpSentNot   = GX_FALSE;
 }
 
 /*
@@ -200,40 +181,30 @@ void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale 
  */
 void GXSetTevColor(GXTevRegID reg, GXColor color)
 {
-	/*
-	.loc_0x0:
-	  lbz       r5, 0x0(r4)
-	  rlwinm    r7,r3,1,0,30
-	  lbz       r0, 0x3(r4)
-	  li        r3, 0
-	  rlwimi    r3,r5,0,21,31
-	  addi      r8, r3, 0
-	  lbz       r6, 0x2(r4)
-	  rlwimi    r8,r0,12,9,19
-	  lbz       r0, 0x1(r4)
-	  li        r9, 0
-	  lwz       r3, -0x6D70(r2)
-	  rlwimi    r9,r6,0,21,31
-	  addi      r6, r9, 0
-	  rlwimi    r6,r0,12,9,19
-	  addi      r0, r7, 0xE0
-	  rlwimi    r8,r0,24,0,7
-	  addi      r0, r7, 0xE1
-	  rlwimi    r6,r0,24,0,7
-	  li        r5, 0x61
-	  lis       r4, 0xCC01
-	  stb       r5, -0x8000(r4)
-	  li        r0, 0
-	  stw       r8, -0x8000(r4)
-	  stb       r5, -0x8000(r4)
-	  stw       r6, -0x8000(r4)
-	  stb       r5, -0x8000(r4)
-	  stw       r6, -0x8000(r4)
-	  stb       r5, -0x8000(r4)
-	  stw       r6, -0x8000(r4)
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
+	u32 ra = 0;
+	u32 bg = 0;
+
+	FAST_FLAG_SET(ra, color.r, 0, 11);
+	FAST_FLAG_SET(ra, color.a, 12, 11);
+	FAST_FLAG_SET(bg, color.b, 0, 11);
+	FAST_FLAG_SET(bg, color.g, 12, 11);
+
+	FAST_FLAG_SET(ra, 0xE0 + reg * 2, 24, 8);
+	FAST_FLAG_SET(bg, 0xE1 + reg * 2, 24, 8);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(ra);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -243,6 +214,32 @@ void GXSetTevColor(GXTevRegID reg, GXColor color)
  */
 void GXSetTevColorS10(GXTevRegID reg, GXColorS10 color)
 {
+	u32 ra;
+	u32 bg;
+
+	ra = 0;
+	FAST_FLAG_SET(ra, color.r, 0, 11);
+	FAST_FLAG_SET(ra, color.a, 12, 11);
+	FAST_FLAG_SET(ra, 0xE0 + reg * 2, 24, 8);
+
+	bg = 0;
+	FAST_FLAG_SET(bg, color.b, 0, 11);
+	FAST_FLAG_SET(bg, color.g, 12, 11);
+	FAST_FLAG_SET(bg, 0xE1 + reg * 2, 24, 8);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(ra);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	gx->bpSentNot = GX_FALSE;
 	/*
 	.loc_0x0:
 	  lha       r0, 0x0(r4)
@@ -286,38 +283,28 @@ void GXSetTevColorS10(GXTevRegID reg, GXColorS10 color)
  */
 void GXSetTevKColor(GXTevKColorID id, GXColor color)
 {
-	/*
-	.loc_0x0:
-	  lbz       r5, 0x0(r4)
-	  rlwinm    r6,r3,1,0,30
-	  lbz       r0, 0x3(r4)
-	  li        r3, 0
-	  rlwimi    r3,r5,0,24,31
-	  addi      r7, r3, 0
-	  lbz       r5, 0x2(r4)
-	  rlwimi    r7,r0,12,12,19
-	  lbz       r0, 0x1(r4)
-	  li        r4, 0x8
-	  lwz       r3, -0x6D70(r2)
-	  li        r8, 0
-	  rlwimi    r8,r5,0,24,31
-	  rlwimi    r8,r0,12,12,19
-	  rlwimi    r7,r4,20,8,11
-	  rlwimi    r8,r4,20,8,11
-	  addi      r5, r6, 0xE0
-	  rlwimi    r7,r5,24,0,7
-	  addi      r5, r6, 0xE1
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  stb       r0, -0x8000(r4)
-	  rlwimi    r8,r5,24,0,7
-	  stw       r7, -0x8000(r4)
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0
-	  stw       r8, -0x8000(r4)
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
+	u32 ra;
+	u32 bg;
+
+	ra = 0;
+	FAST_FLAG_SET(ra, color.r, 0, 8);
+	FAST_FLAG_SET(ra, color.a, 12, 8);
+	FAST_FLAG_SET(ra, 8, 20, 4);
+	FAST_FLAG_SET(ra, 0xE0 + id * 2, 24, 8);
+
+	bg = 0;
+	FAST_FLAG_SET(bg, color.b, 0, 8);
+	FAST_FLAG_SET(bg, color.g, 12, 8);
+	FAST_FLAG_SET(bg, 8, 20, 4);
+	FAST_FLAG_SET(bg, 0xE1 + id * 2, 24, 8);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(ra);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -327,36 +314,19 @@ void GXSetTevKColor(GXTevKColorID id, GXColor color)
  */
 void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
 {
-	/*
-	.loc_0x0:
-	  srawi     r5, r3, 0x1
-	  lwz       r6, -0x6D70(r2)
-	  rlwinm.   r0,r3,0,31,31
-	  rlwinm    r3,r5,2,0,29
-	  addi      r7, r3, 0x1B0
-	  add       r7, r6, r7
-	  beq-      .loc_0x2C
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r4,14,13,17
-	  stw       r0, 0x0(r7)
-	  b         .loc_0x38
+	u32* reg;
 
-	.loc_0x2C:
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r4,4,23,27
-	  stw       r0, 0x0(r7)
+	reg = &gx->tevKsel[stage >> 1];
 
-	.loc_0x38:
-	  li        r0, 0x61
-	  lwz       r3, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r0, 0
-	  lwz       r4, 0x0(r7)
-	  stw       r4, -0x8000(r5)
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
+	if (stage & 1) {
+		FAST_FLAG_SET(*reg, sel, 14, 5);
+	} else {
+		FAST_FLAG_SET(*reg, sel, 4, 5);
+	}
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -366,36 +336,19 @@ void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
  */
 void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
 {
-	/*
-	.loc_0x0:
-	  srawi     r5, r3, 0x1
-	  lwz       r6, -0x6D70(r2)
-	  rlwinm.   r0,r3,0,31,31
-	  rlwinm    r3,r5,2,0,29
-	  addi      r7, r3, 0x1B0
-	  add       r7, r6, r7
-	  beq-      .loc_0x2C
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r4,19,8,12
-	  stw       r0, 0x0(r7)
-	  b         .loc_0x38
+	u32* reg;
 
-	.loc_0x2C:
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r4,9,18,22
-	  stw       r0, 0x0(r7)
+	reg = &gx->tevKsel[stage >> 1];
 
-	.loc_0x38:
-	  li        r0, 0x61
-	  lwz       r3, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r0, 0
-	  lwz       r4, 0x0(r7)
-	  stw       r4, -0x8000(r5)
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
+	if (stage & 1) {
+		FAST_FLAG_SET(*reg, sel, 19, 5);
+	} else {
+		FAST_FLAG_SET(*reg, sel, 9, 5);
+	}
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -405,27 +358,14 @@ void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel)
  */
 void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel rasSel, GXTevSwapSel texSel)
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r3,r3,2,0,29
-	  lwz       r7, -0x6D70(r2)
-	  addi      r8, r3, 0x170
-	  add       r8, r7, r8
-	  lwz       r0, 0x0(r8)
-	  rlwimi    r0,r4,0,30,31
-	  li        r3, 0x61
-	  stw       r0, 0x0(r8)
-	  lis       r4, 0xCC01
-	  li        r0, 0
-	  lwz       r6, 0x0(r8)
-	  rlwimi    r6,r5,2,28,29
-	  stw       r6, 0x0(r8)
-	  stb       r3, -0x8000(r4)
-	  lwz       r3, 0x0(r8)
-	  stw       r3, -0x8000(r4)
-	  sth       r0, 0x2(r7)
-	  blr
-	*/
+	u32* reg = &gx->teva[stage];
+	FAST_FLAG_SET(*reg, rasSel, 0, 2);
+	FAST_FLAG_SET(*reg, texSel, 2, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -435,41 +375,23 @@ void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel rasSel, GXTevSwapSel texS
  */
 void GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColorChan red, GXTevColorChan green, GXTevColorChan blue, GXTevColorChan alpha)
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r9,r3,1,0,30
-	  lwz       r8, -0x6D70(r2)
-	  rlwinm    r3,r3,3,0,28
-	  addi      r10, r3, 0x1B0
-	  add       r10, r8, r10
-	  lwz       r3, 0x0(r10)
-	  rlwimi    r3,r4,0,30,31
-	  addi      r0, r9, 0x1
-	  stw       r3, 0x0(r10)
-	  rlwinm    r3,r0,2,0,29
-	  addi      r9, r3, 0x1B0
-	  lwz       r0, 0x0(r10)
-	  rlwimi    r0,r5,2,28,29
-	  li        r5, 0x61
-	  stw       r0, 0x0(r10)
-	  lis       r4, 0xCC01
-	  add       r9, r8, r9
-	  stb       r5, -0x8000(r4)
-	  li        r0, 0
-	  lwz       r3, 0x0(r10)
-	  stw       r3, -0x8000(r4)
-	  lwz       r3, 0x0(r9)
-	  rlwimi    r3,r6,0,30,31
-	  stw       r3, 0x0(r9)
-	  lwz       r3, 0x0(r9)
-	  rlwimi    r3,r7,2,28,29
-	  stw       r3, 0x0(r9)
-	  stb       r5, -0x8000(r4)
-	  lwz       r3, 0x0(r9)
-	  stw       r3, -0x8000(r4)
-	  sth       r0, 0x2(r8)
-	  blr
-	*/
+	u32* reg;
+
+	reg = &gx->tevKsel[table << 1];
+	FAST_FLAG_SET(*reg, red, 0, 2);
+	FAST_FLAG_SET(*reg, green, 2, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+
+	reg = &gx->tevKsel[(table << 1) + 1];
+	FAST_FLAG_SET(*reg, blue, 0, 2);
+	FAST_FLAG_SET(*reg, alpha, 2, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -489,26 +411,18 @@ void GXSetTevClampMode(GXTevStageID stage, GXTevClampMode mode)
  */
 void GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1)
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,0,24,31
-	  lwz       r4, -0x6D70(r2)
-	  lis       r8, 0xF300
-	  rlwimi    r8,r0,0,24,31
-	  rlwinm    r0,r7,0,24,31
-	  addi      r7, r8, 0
-	  rlwimi    r7,r0,8,16,23
-	  rlwimi    r7,r3,16,13,15
-	  rlwimi    r7,r6,19,10,12
-	  li        r0, 0x61
-	  lis       r3, 0xCC01
-	  stb       r0, -0x8000(r3)
-	  rlwimi    r7,r5,22,8,9
-	  li        r0, 0
-	  stw       r7, -0x8000(r3)
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
+	u32 reg = 0xF3000000;
+
+	FAST_FLAG_SET(reg, ref0, 0, 8);
+	FAST_FLAG_SET(reg, ref1, 8, 8);
+	FAST_FLAG_SET(reg, comp0, 16, 3);
+	FAST_FLAG_SET(reg, comp1, 19, 3);
+	FAST_FLAG_SET(reg, op, 22, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(reg);
+
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -518,56 +432,41 @@ void GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, 
  */
 void GXSetZTexture(GXZTexOp op, GXTexFmt format, u32 bias)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x13
-	  li        r0, 0xF4
-	  li        r6, 0
-	  rlwimi    r6,r5,0,8,31
-	  rlwimi    r6,r0,24,0,7
-	  li        r7, 0
-	  beq-      .loc_0x40
-	  bge-      .loc_0x2C
-	  cmpwi     r4, 0x11
-	  beq-      .loc_0x38
-	  b         .loc_0x50
+	u32 val1;
+	u32 val2;
+	u32 val3;
 
-	.loc_0x2C:
-	  cmpwi     r4, 0x16
-	  beq-      .loc_0x48
-	  b         .loc_0x50
+	val1 = 0;
+	FAST_FLAG_SET(val1, bias, 0, 24);
+	FAST_FLAG_SET(val1, 0xF4, 24, 8);
 
-	.loc_0x38:
-	  li        r8, 0
-	  b         .loc_0x54
+	val2 = 0;
+	switch (format) {
+	case GX_TF_Z8:
+		val3 = 0;
+		break;
+	case GX_TF_Z16:
+		val3 = 1;
+		break;
+	case GX_TF_Z24X8:
+		val3 = 2;
+		break;
+	default:
+		val3 = 2;
+		break;
+	}
 
-	.loc_0x40:
-	  li        r8, 0x1
-	  b         .loc_0x54
+	FAST_FLAG_SET(val2, val3, 0, 2);
+	FAST_FLAG_SET(val2, op, 2, 2);
+	FAST_FLAG_SET(val2, 0xF5, 24, 8);
 
-	.loc_0x48:
-	  li        r8, 0x2
-	  b         .loc_0x54
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(val1);
 
-	.loc_0x50:
-	  li        r8, 0x2
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(val2);
 
-	.loc_0x54:
-	  li        r0, 0x61
-	  lwz       r4, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  rlwimi    r7,r8,0,30,31
-	  rlwimi    r7,r3,2,28,29
-	  stw       r6, -0x8000(r5)
-	  li        r3, 0xF5
-	  rlwimi    r7,r3,24,0,7
-	  stb       r0, -0x8000(r5)
-	  li        r0, 0
-	  stw       r7, -0x8000(r5)
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -577,136 +476,44 @@ void GXSetZTexture(GXZTexOp op, GXTexFmt format, u32 bias)
  */
 void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color)
 {
-	/*
-	.loc_0x0:
-	  srawi     r7, r3, 0x1
-	  lwz       r9, -0x6D70(r2)
-	  rlwinm    r10,r5,0,24,22
-	  addze     r7, r7
-	  rlwinm    r0,r3,2,0,29
-	  add       r8, r9, r0
-	  rlwinm    r7,r7,2,0,29
-	  stw       r5, 0x554(r8)
-	  addi      r7, r7, 0x100
-	  cmplwi    r10, 0x8
-	  addi      r0, r10, 0
-	  add       r7, r9, r7
-	  blt-      .loc_0x3C
-	  li        r9, 0
-	  b         .loc_0x40
+	static int c2r[] = { 0, 1, 0, 1, 0, 1, 7, 5, 6 };
 
-	.loc_0x3C:
-	  mr        r9, r0
+	u32* reg;
+	u32 tempMap;
+	u32 tempCoord;
 
-	.loc_0x40:
-	  cmpwi     r4, 0x8
-	  blt-      .loc_0x6C
-	  lwz       r4, -0x6D70(r2)
-	  li        r0, 0x1
-	  slw       r0, r0, r3
-	  lwz       r8, 0x598(r4)
-	  addi      r10, r4, 0x598
-	  li        r4, 0
-	  andc      r0, r8, r0
-	  stw       r0, 0x0(r10)
-	  b         .loc_0x88
+	reg                 = &gx->tref[stage / 2];
+	gx->texmapId[stage] = map;
 
-	.loc_0x6C:
-	  lwz       r8, -0x6D70(r2)
-	  li        r0, 0x1
-	  slw       r0, r0, r3
-	  addi      r10, r8, 0x598
-	  lwz       r8, 0x598(r8)
-	  or        r0, r8, r0
-	  stw       r0, 0x0(r10)
+	tempMap = map & ~0x100;
+	tempMap = (tempMap >= GX_MAX_TEXMAP) ? GX_TEXMAP0 : tempMap;
 
-	.loc_0x88:
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x100
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r9,12,17,19
-	  cmpwi     r6, 0xFF
-	  stw       r0, 0x0(r7)
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r4,15,14,16
-	  stw       r0, 0x0(r7)
-	  bne-      .loc_0xB8
-	  li        r3, 0x7
-	  b         .loc_0xCC
+	if (coord >= GX_MAX_TEXCOORD) {
+		tempCoord     = GX_TEXCOORD0;
+		gx->tevTcEnab = gx->tevTcEnab & ~(1 << stage);
+	} else {
+		tempCoord     = coord;
+		gx->tevTcEnab = gx->tevTcEnab | (1 << stage);
+	}
 
-	.loc_0xB8:
-	  lis       r3, 0x804B
-	  rlwinm    r4,r6,2,0,29
-	  subi      r0, r3, 0x7838
-	  add       r3, r0, r4
-	  lwz       r3, 0x0(r3)
+	if (stage & 1) {
+		FAST_FLAG_SET(*reg, tempMap, 12, 3);
+		FAST_FLAG_SET(*reg, tempCoord, 15, 3);
+		FAST_FLAG_SET(*reg, (color == GX_COLOR_NULL ? 7 : c2r[color]), 19, 3);
+		FAST_FLAG_SET(*reg, ((map != GX_TEXMAP_NULL) && !(map & 0x100)), 18, 1);
 
-	.loc_0xCC:
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r3,19,10,12
-	  cmpwi     r5, 0xFF
-	  stw       r0, 0x0(r7)
-	  li        r3, 0
-	  beq-      .loc_0xF0
-	  rlwinm.   r0,r5,0,23,23
-	  bne-      .loc_0xF0
-	  li        r3, 0x1
+	} else {
+		FAST_FLAG_SET(*reg, tempMap, 0, 3);
+		FAST_FLAG_SET(*reg, tempCoord, 3, 3);
+		FAST_FLAG_SET(*reg, (color == GX_COLOR_NULL ? 7 : c2r[color]), 7, 3);
+		FAST_FLAG_SET(*reg, ((map != GX_TEXMAP_NULL) && !(map & 0x100)), 6, 1);
+	}
 
-	.loc_0xF0:
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r3,18,13,13
-	  stw       r0, 0x0(r7)
-	  b         .loc_0x16C
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
 
-	.loc_0x100:
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r9,0,29,31
-	  cmpwi     r6, 0xFF
-	  stw       r0, 0x0(r7)
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r4,3,26,28
-	  stw       r0, 0x0(r7)
-	  bne-      .loc_0x128
-	  li        r3, 0x7
-	  b         .loc_0x13C
-
-	.loc_0x128:
-	  lis       r3, 0x804B
-	  rlwinm    r4,r6,2,0,29
-	  subi      r0, r3, 0x7838
-	  add       r3, r0, r4
-	  lwz       r3, 0x0(r3)
-
-	.loc_0x13C:
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r3,7,22,24
-	  cmpwi     r5, 0xFF
-	  stw       r0, 0x0(r7)
-	  li        r3, 0
-	  beq-      .loc_0x160
-	  rlwinm.   r0,r5,0,23,23
-	  bne-      .loc_0x160
-	  li        r3, 0x1
-
-	.loc_0x160:
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r3,6,25,25
-	  stw       r0, 0x0(r7)
-
-	.loc_0x16C:
-	  li        r0, 0x61
-	  lwz       r3, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r0, 0
-	  lwz       r4, 0x0(r7)
-	  stw       r4, -0x8000(r5)
-	  sth       r0, 0x2(r3)
-	  lwz       r0, 0x5AC(r3)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x5AC(r3)
-	  blr
-	*/
+	gx->bpSentNot = GX_FALSE;
+	gx->dirtyState |= 1;
 }
 
 /*
@@ -716,17 +523,6 @@ void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXCha
  */
 void GXSetNumTevStages(u8 count)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6D70(r2)
-	  rlwinm    r3,r3,0,24,31
-	  subi      r0, r3, 0x1
-	  lwz       r3, 0x204(r4)
-	  rlwimi    r3,r0,10,18,21
-	  stw       r3, 0x204(r4)
-	  lwz       r0, 0x5AC(r4)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0x5AC(r4)
-	  blr
-	*/
+	FAST_FLAG_SET(gx->genMode, count - 1, 10, 4);
+	gx->dirtyState |= 0x4;
 }
