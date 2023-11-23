@@ -36,22 +36,22 @@ typedef struct _GXColorS10 {
 
 // Generic struct for texture objects.
 typedef struct _GXTexObj {
+	u8 pad[0x20]; // _00
+} GXTexObj;       // size 0x20
 
-	// structure of obj, note as found:
-	u32 _00;
-	u32 _04;
-	u32 _08;
-	u32 _0c;
-	u8 _10;
-	u8 _11;
-	u8 _12;
-	u8 _13;
+// Internal struct for texture objects.
+typedef struct _GXTexObjPriv {
+	u32 mode0;       // _00
+	u32 mode1;       // _04
+	u32 image0;      // _08
+	u32 image3;      // _0C
+	void* userData;  // _10
 	GXTexFmt format; // _14
-	u32 tlut_name_18;
-	u16 _1c;
-	s8 _1e;
-	s8 mipmap_1f;
-} GXTexObj; // size 0x20
+	u32 tlutName;    // _18
+	u16 loadCount;   // _1C
+	u8 loadFormat;   // _1E
+	u8 flags;        // _1F
+} GXTexObjPriv;
 
 // Generic struct for texture memory storage.
 typedef struct _GXTexRegion {
@@ -70,16 +70,17 @@ typedef struct _GXTlutRegion {
 
 // Generic struct for light information.
 typedef struct _GXLightObj {
-	// u8 padding[0x40]; // _00
+	u8 padding[0x40]; // _00
+} GXLightObj;         // size 0x40
 
-	// structure of obj, note as found:
-	u32 reserved[3];
-	GXColor Color; // _0C, light color
-	f32 a[3];      // _10, angle-attenuation coefficients
-	f32 k[3];      // _1C, distance-attenuation coefficients
-	f32 lpos[3];   // _28, diffuse: position;  specular: direction
-	f32 ldir[3];   // _34, diffuse: direction; specular: half-angle
-} GXLightObj;      // size 0x40
+typedef struct __GXLightObjPriv {
+	u32 reserved[3]; // _00
+	GXColor color;   // _0C, light color
+	f32 a[3];        // _10, angle-attenuation coefficients
+	f32 k[3];        // _1C, distance-attenuation coefficients
+	f32 lpos[3];     // _28, diffuse: position;  specular: direction
+	f32 ldir[3];     // _34, diffuse: direction; specular: half-angle
+} GXLightObjPriv;
 
 ////////////////////////////////////////////
 

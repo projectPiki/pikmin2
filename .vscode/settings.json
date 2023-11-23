@@ -45,6 +45,7 @@
     "ppc_reg.h": "c",
     "trktypes.h": "c",
     "trkenum.h": "c",
-    "osinterrupt.h": "c"
+    "osinterrupt.h": "c",
+    "gxdata.h": "c"
   }
 }

@@ -12,7 +12,7 @@ extern "C" {
 
 //////////// TEXTURE CALLBACKS /////////////
 
-typedef GXTexRegion* (*GXTexRegionCallback)(GXTexObj* t_obj, GXTexMapID id);
+typedef GXTexRegion* (*GXTexRegionCallback)(const GXTexObj* t_obj, GXTexMapID id);
 typedef GXTlutRegion* (*GXTlutRegionCallback)(u32 idx);
 
 ////////////////////////////////////////////

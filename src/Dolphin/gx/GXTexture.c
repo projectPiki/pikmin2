@@ -705,7 +705,11 @@ void GXGetTexObjHeight(void)
  * Address:	800E7574
  * Size:	000008
  */
-GXTexFmt GXGetTexObjFmt(GXTexObj* obj) { return obj->format; }
+GXTexFmt GXGetTexObjFmt(GXTexObj* obj)
+{
+	GXTexObjPriv* pObj = (GXTexObjPriv*)obj;
+	return pObj->format;
+}
 
 /*
  * --INFO--

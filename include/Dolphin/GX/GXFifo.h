@@ -16,22 +16,23 @@ extern "C" {
 
 #define GXFIFO_ADDR 0xCC008000
 
-// Placeholder struct for GXFifoObj.
-// Actual members (shouldn't be) accessed directly.
-typedef struct {
+// Generic struct for FIFO access (size 0x80).
+typedef struct _GXFifoObj {
 	u8 padding[GX_FIFO_OBJ_SIZE]; // _00
-
-	// structure of obj, note as found:
-	// void* base;        // _00
-	// void* end;         // _04
-	// u32 size;          // _08
-	// u32 highWatermark; // _0C
-	// u32 lowWatermark;  // _10
-	// void* readPtr;     // _14
-	// void* writePtr;    // _18
-	// s32 rwDistance;    // _1C
-	// u8 _20[0x60];      // _20
 } GXFifoObj;
+
+// Internal struct for FIFO access.
+typedef struct _GXFifoObjPriv {
+	void* base;        // _00
+	void* end;         // _04
+	u32 size;          // _08
+	u32 highWatermark; // _0C
+	u32 lowWatermark;  // _10
+	void* readPtr;     // _14
+	void* writePtr;    // _18
+	s32 rwDistance;    // _1C
+	u8 _20[0x60];      // _20
+} GXFifoObjPriv;
 
 typedef void (*GXBreakPtCallback)(void);
 
@@ -58,6 +59,10 @@ PPCWGPipe GXWGFifo : GXFIFO_ADDR;
 ////////////////////////////////////////////
 
 //////////// FIFO MACROS/INLINES ///////////
+#define GX_WRITE_U8(val)  (GXWGFifo.u8 = val)
+#define GX_WRITE_U16(val) (GXWGFifo.u16 = val)
+#define GX_WRITE_U32(val) (GXWGFifo.u32 = val)
+
 static inline void GXPosition2f32(const f32 x, const f32 y)
 {
 	GXWGFifo.f32 = x;

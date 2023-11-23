@@ -53,13 +53,13 @@ void GXUnderflowHandler()
 void GXBreakPointHandler(OSContext* context)
 {
 	// UNUSED FUNCTION
-	GXData* data = __GXData;
+	GXData* data = gx;
 	OSContext bpContext;
 	// if (IS_FLAG_SET(data->controlRegister, 5) && IS_FLAG_SET(data->_00C, 4)) {
 	// if ((data->controlRegister & BP_ENABLE) && IS_FLAG_SET(data->_00C, 4)) {
-	__GXData->controlRegister.bits.bpEnable = FALSE;
+	gx->cpEnable = FALSE;
 	// __cpReg->controlRegister = GXWGFifo.u16(&__GXData->controlRegister);
-	__cpReg->controlRegister = __GXData->controlRegister.value;
+	__cpReg->controlRegister = __GXData->cpEnable;
 	// __GXData->controlRegister &= ~BP_ENABLE;
 	// __cpReg->controlRegister = __GXData->controlRegister;
 	if (BreakPointCB) {
@@ -79,25 +79,23 @@ void GXBreakPointHandler(OSContext* context)
  */
 void GXCPInterruptHandler(s16 p1, OSContext* context)
 {
-	GXData* data;
 	// GXData* data = __GXData;
-	__GXData->_00C = __cpReg->statusRegister;
+	gx->cpStatus = __cpReg->statusRegister;
 	// data->_00C = __cpReg->statusRegister;
 	// data = __GXData;
-	if (__GXData->controlRegister.bits.fifoUnderflowIRQEnable && (__GXData->_00C >> 1 & 1)) {
+	if (gx->cpEnable && (gx->cpStatus >> 1 & 1)) {
 		// if ((__GXData->controlRegister >> 3 & 1) && (__GXData->_00C >> 1 & 1)) {
 		// if ((data->controlRegister >> 3 & 1) && (data->_00C >> 1 & 1)) {
 		GXUnderflowHandler();
 	}
-	if ((__GXData->controlRegister.bits.fifoOverflowIRQEnable) && (__GXData->_00C >> 0 & 1)) {
+	if ((gx->cpEnable) && (gx->cpStatus >> 0 & 1)) {
 		// if ((__GXData->controlRegister >> 2 & 1) && (__GXData->_00C >> 0 & 1)) {
 		// if ((data->controlRegister >> 2 & 1) && (data->_00C >> 0 & 1)) {
 		GXOverflowHandler();
 	}
-	data = __GXData;
 	// if ((__GXData->controlRegister & BP_ENABLE) && (__GXData->_00C >> 4 & 1)) {
 	// if ((__GXData->controlRegister >> 5 & 1) && (__GXData->_00C >> 4 & 1)) {
-	if ((data->controlRegister.bits.bpEnable) && (data->_00C >> 4 & 1)) {
+	if ((gx->cpEnable) && (gx->cpStatus >> 4 & 1)) {
 		// if ((data->controlRegister >> 5 & 1) && (data->_00C >> 4 & 1)) {
 		// if (IS_FLAG_SET(__GXData->controlRegister, 5) && IS_FLAG_SET(__GXData->_00C, 4)) {
 		// if (IS_FLAG_SET(data->controlRegister, 5) && IS_FLAG_SET(data->_00C, 4)) {
@@ -512,13 +510,12 @@ void GXSaveGPFifo(GXFifoObj* fifo)
 void GXGetGPStatus(GXBool* overhi, GXBool* underlow, GXBool* readIdle, GXBool* cmdIdle, GXBool* brkpt)
 {
 	CPReg* cpReg = __cpReg;
-	GXData* data = __GXData;
-	data->_00C   = cpReg->statusRegister;
-	*overhi      = data->_00C & 1;
-	*underlow    = (data->_00C >> 1) & 1;
-	*readIdle    = (data->_00C >> 2) & 1;
-	*cmdIdle     = (data->_00C >> 3) & 1;
-	*brkpt       = (data->_00C >> 4) & 1;
+	gx->cpStatus = cpReg->statusRegister;
+	*overhi      = gx->cpStatus & 1;
+	*underlow    = (gx->cpStatus >> 1) & 1;
+	*readIdle    = (gx->cpStatus >> 2) & 1;
+	*cmdIdle     = (gx->cpStatus >> 3) & 1;
+	*brkpt       = (gx->cpStatus >> 4) & 1;
 	/*
 	.loc_0x0:
 	  lwz       r9, -0x714C(r13)
@@ -721,16 +718,14 @@ void __GXFifoReadDisable(void)
 void __GXFifoLink(u8 link)
 {
 	u32 b;
-	GXData* data;
 	if (link) {
 		b = 1;
 	} else {
 		b = 0;
 	}
-	data                                    = __GXData;
-	data->controlRegister.bits.gpLinkEnable = b;
+	gx->cpEnable = b;
 	// controlRegister.gpLinkEnable = b;
-	__cpReg->controlRegister = data->controlRegister.value;
+	__cpReg->controlRegister = gx->cpEnable;
 	// __GXData->controlRegister = ((link != 0) << 4) | (__GXData->controlRegister & ~GP_LINK_ENABLE);
 	// __cpReg->controlRegister = __GXData->controlRegister;
 	/*

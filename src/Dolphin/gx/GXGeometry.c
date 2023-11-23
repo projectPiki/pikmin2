@@ -7,7 +7,7 @@
  */
 void __GXSetDirtyState(void)
 {
-	u32 dirtyFlags = __GXData->_5AC;
+	u32 dirtyFlags = gx->dirtyState;
 
 	if (dirtyFlags & 1) {
 		__GXSetSUTexRegs();
@@ -33,7 +33,7 @@ void __GXSetDirtyState(void)
 		__GXCalculateVLim();
 	}
 
-	__GXData->_5AC = 0;
+	gx->dirtyState = 0;
 }
 
 /*
@@ -43,16 +43,16 @@ void __GXSetDirtyState(void)
  */
 void GXBegin(GXPrimitive type, GXVtxFmt fmt, u16 vert_num)
 {
-	if (__GXData->_5AC != 0) {
+	if (gx->dirtyState) {
 		__GXSetDirtyState();
 	}
 
-	if (*(u32*)__GXData == 0) {
+	if (GX_CHECK_FLUSH()) {
 		__GXSendFlushPrim();
 	}
 
-	GXWGFifo.u8  = fmt | type;
-	GXWGFifo.u16 = vert_num;
+	GX_WRITE_U8(fmt | type);
+	GX_WRITE_U16(vert_num);
 }
 
 /*
@@ -62,19 +62,18 @@ void GXBegin(GXPrimitive type, GXVtxFmt fmt, u16 vert_num)
  */
 void __GXSendFlushPrim(void)
 {
-	u32 i;
-	u32 sz;
-	u16 tmp = __GXData->_004;
-	sz      = tmp * __GXData->_006;
+	u32 i, sz;
+	u16 num = gx->vNum;
+	sz      = (num * gx->vLim);
 
-	GXWGFifo.u8  = 0x98;
-	GXWGFifo.u16 = tmp;
+	GX_WRITE_U8(0x98);
+	GX_WRITE_U16(num);
 
 	for (i = 0; i < sz; i += 4) {
-		GXWGFifo.s32 = 0;
+		GX_WRITE_U32(0);
 	}
 
-	__GXData->_000.s[1] = 1;
+	gx->bpSentNot = GX_TRUE;
 	/*
 	.loc_0x0:
 	  lwz       r3, -0x6D70(r2)
@@ -129,13 +128,13 @@ void __GXSendFlushPrim(void)
  */
 void GXSetLineWidth(u8 width, GXTexOffset offsets)
 {
-	GXData* data = __GXData;
+	GXData* data = gx;
 
-	GX_BITFIELD_SET(data->_07C, 24, 8, width);
-	GX_BITFIELD_SET(data->_07C, 13, 3, offsets);
+	GX_BITFIELD_SET(data->lpSize, 24, 8, width);
+	GX_BITFIELD_SET(data->lpSize, 13, 3, offsets);
 	GXWGFifo.u8     = 0x61;
-	GXWGFifo.u32    = data->_07C;
-	data->_000.s[1] = 0;
+	GXWGFifo.u32    = data->lpSize;
+	data->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -145,13 +144,13 @@ void GXSetLineWidth(u8 width, GXTexOffset offsets)
  */
 void GXSetPointSize(u8 size, GXTexOffset offsets)
 {
-	GXData* data = __GXData;
+	GXData* data = gx;
 
-	GX_BITFIELD_SET(data->_07C, 16, 8, size);
-	GX_BITFIELD_SET(data->_07C, 10, 3, offsets);
+	GX_BITFIELD_SET(data->lpSize, 16, 8, size);
+	GX_BITFIELD_SET(data->lpSize, 10, 3, offsets);
 	GXWGFifo.u8     = 0x61;
-	GXWGFifo.u32    = data->_07C;
-	data->_000.s[1] = 0;
+	GXWGFifo.u32    = data->lpSize;
+	data->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -161,13 +160,13 @@ void GXSetPointSize(u8 size, GXTexOffset offsets)
  */
 void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point)
 {
-	GXData* data = __GXData;
+	GXData* data = gx;
 
-	GX_BITFIELD_SET(data->_0B8[coord], 13, 1, line);
-	GX_BITFIELD_SET(data->_0B8[coord], 12, 1, point);
+	GX_BITFIELD_SET(data->suTs0[coord], 13, 1, line);
+	GX_BITFIELD_SET(data->suTs0[coord], 12, 1, point);
 	GXWGFifo.u8     = 0x61;
-	GXWGFifo.u32    = data->_0B8[coord];
-	data->_000.s[1] = 0;
+	GXWGFifo.u32    = data->suTs0[coord];
+	data->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -177,7 +176,6 @@ void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point)
  */
 void GXSetCullMode(GXCullMode mode)
 {
-	GXData* data;
 	switch (mode) {
 	case GX_CULL_FRONT:
 		mode = GX_CULL_BACK;
@@ -187,10 +185,8 @@ void GXSetCullMode(GXCullMode mode)
 		break;
 	}
 
-	data = __GXData;
-
-	GX_BITFIELD_SET(data->_204, 16, 2, mode);
-	data->_5AC |= 4;
+	GX_BITFIELD_SET(gx->genMode, 16, 2, mode);
+	gx->dirtyState |= 4;
 }
 
 /*
@@ -200,13 +196,13 @@ void GXSetCullMode(GXCullMode mode)
  */
 void GXSetCoPlanar(GXBool enable)
 {
-	GXData* data = __GXData;
+	GXData* data = gx;
 
-	GX_BITFIELD_SET(data->_204, 12, 1, enable);
+	GX_BITFIELD_SET(data->genMode, 12, 1, enable);
 	GXWGFifo.u8  = 0x61;
 	GXWGFifo.u32 = 0xFE080000;
 	GXWGFifo.u8  = 0x61;
-	GXWGFifo.u32 = data->_204;
+	GXWGFifo.u32 = data->genMode;
 }
 
 /*
@@ -216,7 +212,7 @@ void GXSetCoPlanar(GXBool enable)
  */
 void __GXSetGenMode(void)
 {
-	GXWGFifo.u8         = 0x61;
-	GXWGFifo.u32        = __GXData->_204;
-	__GXData->_000.s[1] = 0;
+	GXWGFifo.u8   = 0x61;
+	GXWGFifo.u32  = gx->genMode;
+	gx->bpSentNot = GX_FALSE;
 }

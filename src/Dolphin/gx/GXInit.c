@@ -1,5 +1,7 @@
 #include "Dolphin/gx.h"
 
+GXData* const __GXData;
+
 /*
  * --INFO--
  * Address:	........
@@ -35,8 +37,18 @@ void DisableWriteGatherPipe(void)
  * Address:	800E2680
  * Size:	0000FC
  */
-GXTexRegion* __GXDefaultTexRegionCallback(GXTexObj* obj)
+GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID id)
 {
+	GXTexFmt fmt; // r31
+
+	fmt = GXGetTexObjFmt(obj);
+
+	if (gx->fgRange != GX_TF_C4 && fmt != GX_TF_C8 && fmt != GX_TF_C14X2) {
+		return &__GXData->TexRegions[(__GXData->nextTexRgn++) & 7];
+	}
+
+	return &__GXData->TexRegionsCI[(__GXData->nextTexRgnCI++) & 3];
+
 	/*
 	.loc_0x0:
 	  mflr      r0

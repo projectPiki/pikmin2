@@ -8,20 +8,24 @@
 #include "nans.h"
 
 namespace {
-const Color4 sColorTableNumerator[7] = {
-	Color4(30, 30, 255, 255),   // blue
-	Color4(255, 0, 0, 255),     // red
-	Color4(234, 234, 0, 255),   // yellow
-	Color4(255, 255, 255, 255), // white (used for treasures to pod)
-	Color4(255, 255, 255, 255), // white (used for treasures to ship)
-	Color4(102, 153, 153, 255), // gray  (used when not enough to lift?)
-	Color4(102, 211, 211, 255), // gray  (used in scale blocks?)
+static GXColor sColorTableNumerator[CINFOCOLOR_ColorCount] = {
+	{ 30, 30, 255, 255 },   // blue
+	{ 255, 0, 0, 255 },     // red
+	{ 234, 234, 0, 255 },   // yellow
+	{ 255, 255, 255, 255 }, // white (used for treasures to pod)
+	{ 255, 255, 255, 255 }, // white (used for treasures to ship)
+	{ 102, 153, 153, 255 }, // gray  (used when not enough to lift?)
+	{ 102, 211, 211, 255 }, // gray  (used in scale blocks?)
 };
 
-const Color4 sColorTableDenominator[7] = {
-	Color4(30, 30, 255, 255),   Color4(255, 0, 0, 255),     Color4(234, 234, 0, 255),   Color4(255, 255, 255, 255),
-	Color4(255, 255, 255, 255), Color4(102, 153, 153, 255), Color4(112, 216, 216, 255), // this is the only one where
-	                                                                                    // the denominator is different
+static GXColor sColorTableDenominator[CINFOCOLOR_ColorCount] = {
+	{ 30, 30, 255, 255 },   // blue
+	{ 255, 0, 0, 255 },     // red
+	{ 234, 234, 0, 255 },   // yellow
+	{ 255, 255, 255, 255 }, // white (treasures to pod)
+	{ 255, 255, 255, 255 }, // white (treasures to ship)
+	{ 102, 153, 153, 255 }, // gray  (struggling to lift)
+	{ 112, 216, 216, 255 }, // gray (scale blocks) - only one where the denominator is different
 };
 } // namespace
 
@@ -32,14 +36,26 @@ CarryInfoMgr* carryInfoMgr;
  * Address:	........
  * Size:	000024
  */
-CarryInfo::CarryInfo() { }
+CarryInfo::CarryInfo()
+{
+	// guess, but something like this
+	mGrowRate = 0.0f;
+	mYOffset  = 0.0f;
+	mScale    = 0.0f;
+	mState    = CINFO_Hidden;
+	mCounter  = 0;
+}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void CarryInfo::appear() { mState = CINFO_Appear; }
+void CarryInfo::appear()
+{
+	mState   = CINFO_Appear;
+	mCounter = 0;
+}
 
 /*
  * --INFO--
@@ -57,7 +73,7 @@ void CarryInfo::update(const CarryInfoParam& param)
 {
 	if (mState != CINFO_Hidden) {
 		switch (param.mUseType) {
-		case 0: {
+		case CINFOTYPE_Table: {
 			switch (mState) {
 			case CINFO_Appear: {
 				f32 temp = 0.04f * (param.mYOffsetMax - mYOffset);
@@ -99,7 +115,7 @@ void CarryInfo::update(const CarryInfoParam& param)
 			break;
 		}
 
-		case 1: {
+		case CINFOTYPE_Scale: {
 			mCounter++;
 			if (mYOffset < param.mYOffsetMax) {
 				f32 temp = (param.mYOffsetMax - mYOffset) * 0.04f;
@@ -597,36 +613,34 @@ f32 CarryInfo::drawNumber(Graphics& gfx, f32 xpos, f32 ypos, int dispNum, Color4
  * Address:	8011BA14
  * Size:	0001B4
  */
-void CarryInfo::drawNumberPrim(Graphics& gfx, f32 arg1, f32 arg2, int arg3, Color4& color, f32 arg5)
+void CarryInfo::drawNumberPrim(Graphics& gfx, f32 x, f32 y, int arg3, Color4& color, f32 offset)
 {
-	f32 temp_f5  = 7.0f * arg5;
-	f32 temp_f3  = 0.083333336f;
-	f32 temp_f31 = arg1 - temp_f5;
-	f32 temp_f30 = arg1 + temp_f5;
-	f32 temp_f29 = arg2 - temp_f5;
-	f32 temp_f28 = arg2 + temp_f5;
-	f32 temp_f27 = temp_f3 * arg3;
-	f32 temp_f26 = temp_f27 + temp_f3;
-	f32 temp_f1  = 0.0f;
-	f32 temp_f0  = 1.0f;
+	f32 scaledOffset = 7.0f * offset;
+	f32 factor       = (1.0f / 12.0f);
+	f32 xMin         = x - scaledOffset;
+	f32 xMax         = x + scaledOffset;
+	f32 yMin         = y - scaledOffset;
+	f32 yMax         = y + scaledOffset;
+	f32 x0           = factor * arg3;
+	f32 x1           = x0 + factor;
 
 	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 
-	GXPosition3f32(temp_f31, temp_f29, temp_f1);
+	GXPosition3f32(xMin, yMin, 0.0f);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(temp_f27, temp_f0);
+	GXPosition2f32(x0, 1.0f);
 
-	GXPosition3f32(temp_f30, temp_f29, temp_f1);
+	GXPosition3f32(xMax, yMin, 0.0f);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(temp_f26, temp_f0);
+	GXPosition2f32(x1, 1.0f);
 
-	GXPosition3f32(temp_f31, temp_f28, temp_f1);
+	GXPosition3f32(xMin, yMax, 0.0f);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(temp_f27, temp_f1);
+	GXPosition2f32(x0, 0.0f);
 
-	GXPosition3f32(temp_f30, temp_f28, temp_f1);
+	GXPosition3f32(xMax, yMax, 0.0f);
 	GXColor4u8(color.r, color.g, color.b, color.a);
-	GXPosition2f32(temp_f26, temp_f1);
+	GXPosition2f32(x1, 0.0f);
 }
 
 /*
@@ -661,7 +675,7 @@ void CarryInfoList::draw(Graphics& gfx) { mParam.mCarryInfo.draw(gfx, mParam); }
  */
 void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
 {
-	param.mUseType    = 1;
+	param.mUseType    = CINFOTYPE_Scale;
 	param.mPosition   = mPosition;
 	param.mYOffsetMax = 25.0f;
 	param.mColor      = 4;

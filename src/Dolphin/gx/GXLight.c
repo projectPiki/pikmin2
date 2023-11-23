@@ -7,13 +7,14 @@
  */
 void GXInitLightAttn(GXLightObj* obj, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2)
 {
-	obj->a[0] = a0;
-	obj->a[1] = a1;
-	obj->a[2] = a2;
+	GXLightObjPriv* pObj = (GXLightObjPriv*)obj;
+	pObj->a[0]           = a0;
+	pObj->a[1]           = a1;
+	pObj->a[2]           = a2;
 
-	obj->k[0] = k0;
-	obj->k[1] = k1;
-	obj->k[2] = k2;
+	pObj->k[0] = k0;
+	pObj->k[1] = k1;
+	pObj->k[2] = k2;
 }
 
 /*
@@ -265,9 +266,10 @@ void GXInitLightDistAttn(GXLightObj* obj, f32 refDist, f32 refBrightness, GXDist
  */
 void GXInitLightPos(GXLightObj* obj, f32 x, f32 y, f32 z)
 {
-	obj->lpos[0] = x;
-	obj->lpos[1] = y;
-	obj->lpos[2] = z;
+	GXLightObjPriv* pObj = (GXLightObjPriv*)obj;
+	pObj->lpos[0]        = x;
+	pObj->lpos[1]        = y;
+	pObj->lpos[2]        = z;
 }
 
 /*
@@ -287,9 +289,10 @@ void GXGetLightPos(GXLightObj* obj, f32* x, f32* y, f32* z)
  */
 void GXInitLightDir(GXLightObj* obj, f32 nX, f32 nY, f32 nZ)
 {
-	obj->ldir[0] = -nX;
-	obj->ldir[1] = -nY;
-	obj->ldir[2] = -nZ;
+	GXLightObjPriv* pObj = (GXLightObjPriv*)obj;
+	pObj->ldir[0]        = -nX;
+	pObj->ldir[1]        = -nY;
+	pObj->ldir[2]        = -nZ;
 }
 
 /*
@@ -392,7 +395,11 @@ void GXInitSpecularDirHA(GXLightObj* obj, f32 nX, f32 nY, f32 nZ, f32 hX, f32 hY
  * Address:	800E6BFC
  * Size:	00000C
  */
-void GXInitLightColor(GXLightObj* obj, GXColor color) { obj->Color = color; }
+void GXInitLightColor(GXLightObj* obj, GXColor color)
+{
+	GXLightObjPriv* pObj = (GXLightObjPriv*)obj;
+	pObj->color          = color;
+}
 
 /*
  * --INFO--

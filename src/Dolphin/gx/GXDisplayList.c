@@ -7,13 +7,13 @@
  */
 void GXCallDisplayList(void* dl, u32 byteCnt)
 {
-	if (__GXData->_5AC != 0) {
+	if (gx->dirtyState) {
 		__GXSetDirtyState();
 	}
-	if (__GXData->_000.w == 0) {
+	if (GX_CHECK_FLUSH()) {
 		__GXSendFlushPrim();
 	}
-	GXWGFifo.u8  = 0x40;
-	GXWGFifo.u32 = (u32)dl;
-	GXWGFifo.u32 = byteCnt;
+	GX_WRITE_U8(0x40);
+	GX_WRITE_U32((u32)dl);
+	GX_WRITE_U32(byteCnt);
 }

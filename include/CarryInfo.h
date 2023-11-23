@@ -17,6 +17,22 @@ enum cCarryInfoState {
 	CINFO_Hidden    = 2,
 };
 
+enum cCarryInfoUseType {
+	CINFOTYPE_Table = 0,
+	CINFOTYPE_Scale = 1,
+};
+
+enum cCarryInfoColors {
+	CINFOCOLOR_Blue      = 0,
+	CINFOCOLOR_Red       = 1,
+	CINFOCOLOR_Yellow    = 2,
+	CINFOCOLOR_Ship      = 3,
+	CINFOCOLOR_Pod       = 4,
+	CINFOCOLOR_Struggle  = 5,
+	CINFOCOLOR_DownFloor = 6,
+	CINFOCOLOR_ColorCount, // 7
+};
+
 struct CarryInfo {
 	CarryInfo();
 
