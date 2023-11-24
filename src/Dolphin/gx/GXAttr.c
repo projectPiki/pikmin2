@@ -2,6 +2,7 @@
 #include "Dolphin/GX/GXHardware.h"
 #include "Dolphin/GX/GXHardwareCP.h"
 #include "Dolphin/GX/GXHardwareXF.h"
+#include "Dolphin/GX/GXHardwareBP.h"
 
 /*
  * --INFO--
@@ -748,14 +749,18 @@ void GXSetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
  */
 void __GXSetVAT(void)
 {
-	int i;
-
-	for (i = 0; i < 8; i++) {
-		if (LOAD_GX_FIELD(0x5ab, u8) & 1 << i) {
-			GXColor1u32(LOAD_GX_FIELD(0x5ab, u8));
+	u8 i;
+    for (i = 0; i < 8; i++)
+	{
+		if (gx->dirtyVAT & (1 << (u8) i)) 
+		{
+            GX_CP_LOAD_REG(GX_CP_REG_VAT_GROUP0 | i, gx->vatA[i]);
+            GX_CP_LOAD_REG(GX_CP_REG_VAT_GROUP1 | i, gx->vatB[i]);
+            GX_CP_LOAD_REG(GX_CP_REG_VAT_GROUP2 | i, gx->vatC[i]);
 		}
-	}
-	LOAD_GX_FIELD(0x5ab, u8) = 0;
+    }
+
+    gx->dirtyVAT = 0;
 
 	/*
 	.loc_0x0:
@@ -834,6 +839,33 @@ void GXGetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
  */
 void GXSetArray(GXAttr attr, void* basePtr, u8 stride)
 {
+    s32 idx;
+	s32 newAttr;
+	s32 attrReg;
+
+	newAttr = attr; 
+    if (newAttr == GX_VA_NBT) {
+        newAttr = GX_VA_NRM;
+    }
+
+    attrReg = newAttr - GX_VA_POS;
+
+	GX_CP_LOAD_REG(GX_BP_REG_SETMODE0_TEX4 | attrReg,
+                   // Address -> offset?
+                   (u32)basePtr & ~0xC0000000);
+
+    idx = attrReg - 12;
+    if (idx >= 0 && idx < 4) {
+        gx->indexBase[idx] = (u32)basePtr & ~0xC0000000;
+    }
+
+	GX_CP_LOAD_REG(GX_BP_REG_SETIMAGE2_TEX4 | attrReg, stride);
+
+    idx = attrReg - 12;
+    if (idx >= 0 && idx < 4) {
+        gx->indexStride[idx]= stride;
+    }
+	
 	/*
 	.loc_0x0:
 	  cmpwi     r3, 0x19
