@@ -10,31 +10,33 @@
  */
 inline void __GXXfVtxSpecs(void)
 {
-	unsigned int cmd;
-	u32 numNormals;
-	u32 numColor;
-	u32 numTxc;
-	numNormals = LOAD_GX_FIELD(0x4d5, u8) ? 2 : (LOAD_GX_FIELD(0x4d4, u8) ? 1 : 0);
+	u32 norm, color, texCount;
+
+	norm = gx->hasBiNrms ? 2 : (gx->hasNrms ? 1 : 0);
 
 	// Both fields in one access
-	numColor = 32
-	         - __cntlzw(GX_BITGET(LOAD_GX_FIELD(0x14, u32), GX_CP_VCD_LO_COLORSPECULAR_ST,
-	                              GX_CP_VCD_LO_COLORSPECULAR_SZ + GX_CP_VCD_LO_COLORDIFFUSED_SZ))
-	         + 1;
+	color = 32
+			- __cntlzw(
+				GX_BITGET(gx->vcdLo, GX_CP_VCD_LO_COLORSPECULAR_ST,
+							GX_CP_VCD_LO_COLORSPECULAR_SZ + GX_CP_VCD_LO_COLORDIFFUSED_SZ)
+			)
+			+ 1;
+	color >>= 1;
 
 	// All 16 assigned bits in VCD_Hi
-	numTxc = 32 - __cntlzw(GX_BITGET(LOAD_GX_FIELD(0x18, u32), GX_CP_VCD_HI_TEX7COORD_ST, sizeof(u16) * 8)) + 1;
+	texCount = 	32
+               	- __cntlzw(
+					GX_BITGET(gx->vcdHi, GX_CP_VCD_HI_TEX7COORD_ST,
+								sizeof(u16) * 8)
+				)
+			   	+ 1;
+	texCount <<= 3;
+	
+	norm <<= 2;
 
 	GX_XF_LOAD_REG_HDR(GX_XF_REG_INVERTEXSPEC);
-
-	cmd = 0;
-	cmd |= numColor >> 1;
-	cmd |= (numTxc << 3) & ~0xF;
-	cmd |= (numNormals << 2);
-
-	WGPIPE.u32 = cmd;
-
-	LOAD_GX_FIELD(0x2, u16) = TRUE;
+    WGPIPE.u32 = color | norm | (texCount & ~0xf);
+	gx->bpSentNot = TRUE;
 }
 
 /*
@@ -78,20 +80,20 @@ void GXSetVtxDesc(GXAttr attr, GXAttrType type)
 		break;
 	case GX_VA_NRM:
 		if (type != GX_NONE) {
-			LOAD_GX_FIELD(0x4d4, u8)  = TRUE;
-			LOAD_GX_FIELD(0x4d5, u8)  = FALSE;
-			LOAD_GX_FIELD(0x4d0, u32) = type;
+			gx->hasNrms  = TRUE;
+			gx->hasBiNrms  = FALSE;
+			gx->nrmType = type;
 		} else {
-			LOAD_GX_FIELD(0x4d4, u8) = 0;
+			gx->hasNrms  = FALSE;
 		}
 		break;
 	case GX_VA_NBT:
 		if (type != GX_NONE) {
-			LOAD_GX_FIELD(0x4d5, u8)  = TRUE;
-			LOAD_GX_FIELD(0x4d4, u8)  = FALSE;
-			LOAD_GX_FIELD(0x4d0, u32) = type;
+			gx->hasBiNrms  = TRUE;
+			gx->hasNrms  = FALSE;
+			gx->nrmType = type;
 		} else {
-			LOAD_GX_FIELD(0x4d5, u8) = 0;
+			gx->hasBiNrms = FALSE;
 		}
 		break;
 	case GX_VA_CLR0:
@@ -101,36 +103,36 @@ void GXSetVtxDesc(GXAttr attr, GXAttrType type)
 		GX_BITFIELD_SET(gx->vcdLo, 15, 2, type);
 		break;
 	case GX_VA_TEX0:
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 30, 2, type);
+		GX_BITFIELD_SET(gx->vcdHi, 30, 2, type);
 		break;
 	case GX_VA_TEX1:
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 28, 2, type);
+		GX_BITFIELD_SET(gx->vcdHi, 28, 2, type);
 		break;
 	case GX_VA_TEX2:
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 26, 2, type);
+		GX_BITFIELD_SET(gx->vcdHi, 26, 2, type);
 		break;
 	case GX_VA_TEX3:
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 24, 2, type);
+		GX_BITFIELD_SET(gx->vcdHi, 24, 2, type);
 		break;
 	case GX_VA_TEX4:
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 22, 2, type);
+		GX_BITFIELD_SET(gx->vcdHi, 22, 2, type);
 		break;
 	case GX_VA_TEX5:
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 20, 2, type);
+		GX_BITFIELD_SET(gx->vcdHi, 20, 2, type);
 		break;
 	case GX_VA_TEX6:
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 18, 2, type);
+		GX_BITFIELD_SET(gx->vcdHi, 18, 2, type);
 		break;
 	case GX_VA_TEX7:
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x18, u32), 16, 2, type);
+		GX_BITFIELD_SET(gx->vcdHi, 16, 2, type);
 		break;
 	}
 
-	if (LOAD_GX_FIELD(0x4d4, u8) != 0 || LOAD_GX_FIELD(0x4d5, u8) != 0) {
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x14, u32), 19, 2, LOAD_GX_FIELD(0x4d0, u32));
+	if (gx->hasNrms || gx->hasBiNrms) {
+		GX_BITFIELD_SET(gx->vcdLo, 19, 2, gx->nrmType);
 	} else {
 		// gx->_014 &= ~0x3800;
-		GX_BITFIELD_SET(LOAD_GX_FIELD(0x14, u32), 19, 2, 0);
+		GX_BITFIELD_SET(gx->vcdLo, 19, 2, 0);
 	}
 
 	gx->dirtyState |= 8;
@@ -154,8 +156,8 @@ void GXSetVtxDescv(GXVtxDescList* list)
 void __GXSetVCD(void)
 {
 
-	GX_CP_LOAD_REG(GX_CP_REG_VCD_LO, LOAD_GX_FIELD(0x14, u32));
-	GX_CP_LOAD_REG(GX_CP_REG_VCD_HI, LOAD_GX_FIELD(0x18, u32));
+	GX_CP_LOAD_REG(GX_CP_REG_VCD_LO, gx->vcdLo);
+	GX_CP_LOAD_REG(GX_CP_REG_VCD_HI, gx->vcdHi);
 
 	__GXXfVtxSpecs();
 	/*
@@ -232,13 +234,13 @@ void __GXCalculateVLim(void)
 	u32 vcdHi;
 	s32 vat;
 
-	if (LOAD_GX_FIELD(0x4, u16) == 0) {
+	if (gx->vNum == 0) {
 		return;
 	}
 
-	vcdLo = LOAD_GX_FIELD(0x14, u32);
-	vcdHi = LOAD_GX_FIELD(0x18, s32);
-	vat   = (&LOAD_GX_FIELD(0x1c, u32))[GX_VTXFMT0];
+	vcdLo = gx->vcdLo;
+	vcdHi = gx->vcdHi;
+	vat   = gx->vatA[GX_VTXFMT0];
 	vat   = (vat & 0x200) >> 9;
 
 	vlim = vcdLo & 1;
@@ -293,11 +295,11 @@ void GXGetVtxDescv(GXVtxDescList* list)
  */
 void GXClearVtxDesc(void)
 {
-	LOAD_GX_FIELD(0x14, u32) = 0;
-	LOAD_GX_FIELD(0x14, u32) &= 0x600;
-	LOAD_GX_FIELD(0x18, u32) = 0;
-	LOAD_GX_FIELD(0x4d4, u8) = 0;
-	LOAD_GX_FIELD(0x4d5, u8) = 0;
+	gx->vcdLo = 0;
+	gx->vcdLo &= 0x600;
+	gx->vcdHi = 0;
+	gx->hasNrms = 0;
+	gx->hasBiNrms = 0;
 	LOAD_GX_FIELD(0x5ac, u32) |= 8;
 
 	/*
@@ -324,81 +326,80 @@ void GXClearVtxDesc(void)
  * Address:	800E4708
  * Size:	00025C
  */
-#define INSERT_FIELD(reg, value, nbits, shift) (reg) = ((u32)(reg) & ~(((1 << (nbits)) - 1) << (shift))) | ((u32)(value) << (shift))
-
 void GXSetVtxAttrFmt(GXVtxFmt format, GXAttr attr, GXCompCnt count, GXCompType type, u8 frac)
 {
-	u32* temp_r4 = (&LOAD_GX_FIELD(0x1c, u32)) + format;
-	u32* temp_r8 = (&LOAD_GX_FIELD(0x3d, u32)) + format;
-	u32* temp_r9 = (&LOAD_GX_FIELD(0x5c, u32)) + format;
+	u32* vA = &gx->vatA[format];
+	u32* vB = &gx->vatB[format];
+	u32* vC = &gx->vatC[format];
 	switch (attr) {
 	case 9:
-		INSERT_FIELD(*temp_r4, count, 1, 0);
-		INSERT_FIELD(*temp_r4, type, 3, 1);
-		INSERT_FIELD(*temp_r4, frac, 5, 4);
+		GX_BITFIELD_SET(*vA, 31, 1, count);
+		GX_BITFIELD_SET(*vA, 28, 3, type);
+		GX_BITFIELD_SET(*vA, 23, 5, frac);
 		break;
 	case 10:
 	case 25:
-		INSERT_FIELD(*temp_r4, type, 3, 10);
+		GX_BITFIELD_SET(*vA, 19, 3, type);
 		if (count == 2) {
-			INSERT_FIELD(*temp_r4, 1, 1, 9);
-			INSERT_FIELD(*temp_r4, 1, 1, 31);
+			GX_BITFIELD_SET(*vA, 22, 1, 1);
+			GX_BITFIELD_SET(*vA, 0, 1, 1);
 		} else {
-			INSERT_FIELD(*temp_r4, count, 1, 9);
-			INSERT_FIELD(*temp_r4, 0, 1, 31);
+			GX_BITFIELD_SET(*vA, 22, 1, count);
+			GX_BITFIELD_SET(*vA, 0, 1, 0);
 		}
 		break;
 	case 11:
-		INSERT_FIELD(*temp_r4, count, 1, 13);
-		INSERT_FIELD(*temp_r4, type, 3, 14);
+		GX_BITFIELD_SET(*vA, 18, 1, count);
+		GX_BITFIELD_SET(*vA, 15, 3, type);
 		break;
 	case 12:
-		INSERT_FIELD(*temp_r4, count, 1, 17);
-		INSERT_FIELD(*temp_r4, type, 3, 18);
+		GX_BITFIELD_SET(*vA, 14, 1, count);
+		GX_BITFIELD_SET(*vA, 11, 3, type);
 		break;
 	case 13:
-		INSERT_FIELD(*temp_r4, count, 1, 21);
-		INSERT_FIELD(*temp_r4, type, 3, 22);
-		INSERT_FIELD(*temp_r4, frac, 5, 25);
+		GX_BITFIELD_SET(*vA, 10, 1, count);
+		GX_BITFIELD_SET(*vA, 7, 3, type);
+		GX_BITFIELD_SET(*vA, 2, 5, frac);
 		break;
 	case 14:
-		INSERT_FIELD(*temp_r8, count, 1, 0);
-		INSERT_FIELD(*temp_r8, type, 3, 1);
-		INSERT_FIELD(*temp_r8, frac, 5, 4);
+		GX_BITFIELD_SET(*vB, 31, 1, count);
+		GX_BITFIELD_SET(*vB, 28, 3, type);
+		GX_BITFIELD_SET(*vB, 23, 5, frac);
 		break;
 	case 15:
-		INSERT_FIELD(*temp_r8, count, 1, 9);
-		INSERT_FIELD(*temp_r8, type, 3, 10);
-		INSERT_FIELD(*temp_r8, frac, 5, 13);
+		GX_BITFIELD_SET(*vB, 22, 1, count);
+		GX_BITFIELD_SET(*vB, 19, 3, type);
+		GX_BITFIELD_SET(*vB, 14, 5, frac);
 		break;
 	case 16:
-		INSERT_FIELD(*temp_r8, count, 1, 18);
-		INSERT_FIELD(*temp_r8, type, 3, 19);
-		INSERT_FIELD(*temp_r8, frac, 5, 22);
+		GX_BITFIELD_SET(*vB, 13, 1, count);
+		GX_BITFIELD_SET(*vB, 10, 3, type);
+		GX_BITFIELD_SET(*vB, 5, 5, frac);
 		break;
 	case 17:
-		INSERT_FIELD(*temp_r8, count, 1, 27);
-		INSERT_FIELD(*temp_r8, type, 3, 28);
-		INSERT_FIELD(*temp_r9, frac, 5, 0);
+		GX_BITFIELD_SET(*vB, 4, 1, count);
+		GX_BITFIELD_SET(*vB, 1, 3, type);
+		GX_BITFIELD_SET(*vC, 27, 5, frac);
 		break;
 	case 18:
-		INSERT_FIELD(*temp_r9, count, 1, 5);
-		INSERT_FIELD(*temp_r9, type, 3, 6);
-		INSERT_FIELD(*temp_r9, frac, 5, 9);
+		GX_BITFIELD_SET(*vC, 26, 1, count);
+		GX_BITFIELD_SET(*vC, 23, 3, type);
+		GX_BITFIELD_SET(*vC, 18, 5, frac);
 		break;
 	case 19:
-		INSERT_FIELD(*temp_r9, count, 1, 14);
-		INSERT_FIELD(*temp_r9, type, 3, 15);
-		INSERT_FIELD(*temp_r9, frac, 5, 18);
+		GX_BITFIELD_SET(*vC, 17, 1, count);
+		GX_BITFIELD_SET(*vC, 14, 3, type);
+		GX_BITFIELD_SET(*vC,  9, 5, frac);
 		break;
 	case 20:
-		INSERT_FIELD(*temp_r9, count, 1, 23);
-		INSERT_FIELD(*temp_r9, type, 3, 24);
-		INSERT_FIELD(*temp_r9, frac, 5, 27);
+		GX_BITFIELD_SET(*vC, 8, 1, count);
+		GX_BITFIELD_SET(*vC, 5, 3, type);
+		GX_BITFIELD_SET(*vC,  0, 5, frac);
 		break;
 	}
-	LOAD_GX_FIELD(0x4f0, u32) |= 0x10;
-	LOAD_GX_FIELD(0x4ee, u32) |= (u8)(1 << (u8)format);
+	
+	gx->dirtyState |= 0x10;
+	gx->dirtyVAT |= (u8)(1 << (u8)format);
 
 	/*
 	.loc_0x0:
