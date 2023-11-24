@@ -1085,28 +1085,9 @@ void GXSetTexCoordGen2(GXTexCoordID coord, GXTexGenType genType, GXTexGenSrc src
  */
 void GXSetNumTexGens(u8 count)
 {
-	LOAD_GX_FIELD(0x204, u32) |= count & 0xf;
+	GX_BITFIELD_SET(LOAD_GX_FIELD(0x204, u32), 28, 4, count);
 	GX_WRITE_U8(0x10);
 	GX_WRITE_U32(0x103F);
 	GX_WRITE_U32(count);
 	LOAD_GX_FIELD(0x5ac, u32) |= 4;
-
-	/*
-	.loc_0x0:
-	  lwz       r6, -0x6D70(r2)
-	  rlwinm    r5,r3,0,24,31
-	  li        r4, 0x10
-	  lwz       r0, 0x204(r6)
-	  rlwimi    r0,r3,0,28,31
-	  lis       r3, 0xCC01
-	  stw       r0, 0x204(r6)
-	  li        r0, 0x103F
-	  stb       r4, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  stw       r5, -0x8000(r3)
-	  lwz       r0, 0x5AC(r6)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0x5AC(r6)
-	  blr
-	*/
 }
