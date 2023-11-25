@@ -42,34 +42,34 @@ void GXSetVtxDesc(GXAttr attr, GXAttrType type)
 {
 	switch (attr) {
 	case GX_VA_PNMTXIDX:
-		GX_BITFIELD_SET(gx->vcdLo, 31, 1, type);
+        GX_CP_SET_VCD_LO_POSMATIDX(gx->vcdLo, type);
 		break;
 	case GX_VA_TEX0MTXIDX:
-		GX_BITFIELD_SET(gx->vcdLo, 30, 1, type);
+        GX_CP_SET_VCD_LO_TEX0MATIDX(gx->vcdLo, type);
 		break;
 	case GX_VA_TEX1MTXIDX:
-		GX_BITFIELD_SET(gx->vcdLo, 29, 1, type);
+        GX_CP_SET_VCD_LO_TEX1MATIDX(gx->vcdLo, type);
 		break;
 	case GX_VA_TEX2MTXIDX:
-		GX_BITFIELD_SET(gx->vcdLo, 28, 1, type);
+        GX_CP_SET_VCD_LO_TEX2MATIDX(gx->vcdLo, type);
 		break;
 	case GX_VA_TEX3MTXIDX:
-		GX_BITFIELD_SET(gx->vcdLo, 27, 1, type);
+        GX_CP_SET_VCD_LO_TEX3MATIDX(gx->vcdLo, type);
 		break;
 	case GX_VA_TEX4MTXIDX:
-		GX_BITFIELD_SET(gx->vcdLo, 26, 1, type);
+        GX_CP_SET_VCD_LO_TEX4MATIDX(gx->vcdLo, type);
 		break;
 	case GX_VA_TEX5MTXIDX:
-		GX_BITFIELD_SET(gx->vcdLo, 25, 1, type);
+        GX_CP_SET_VCD_LO_TEX5MATIDX(gx->vcdLo, type);
 		break;
 	case GX_VA_TEX6MTXIDX:
-		GX_BITFIELD_SET(gx->vcdLo, 24, 1, type);
+        GX_CP_SET_VCD_LO_TEX6MATIDX(gx->vcdLo, type);
 		break;
 	case GX_VA_TEX7MTXIDX:
-		GX_BITFIELD_SET(gx->vcdLo, 23, 1, type);
+        GX_CP_SET_VCD_LO_TEX7MATIDX(gx->vcdLo, type);
 		break;
 	case GX_VA_POS:
-		GX_BITFIELD_SET(gx->vcdLo, 21, 2, type);
+        GX_CP_SET_VCD_LO_POSITION(gx->vcdLo, type);
 		break;
 	case GX_VA_NRM:
 		if (type != GX_NONE) {
@@ -77,58 +77,57 @@ void GXSetVtxDesc(GXAttr attr, GXAttrType type)
 			gx->hasBiNrms = FALSE;
 			gx->nrmType   = type;
 		} else {
-			gx->hasNrms = FALSE;
+			gx->hasNrms  = FALSE;
 		}
 		break;
 	case GX_VA_NBT:
 		if (type != GX_NONE) {
-			gx->hasBiNrms = TRUE;
-			gx->hasNrms   = FALSE;
-			gx->nrmType   = type;
+			gx->hasBiNrms  = TRUE;
+			gx->hasNrms  = FALSE;
+			gx->nrmType = type;
 		} else {
-			gx->hasBiNrms = FALSE;
+			gx->hasBiNrms 	= FALSE;
 		}
 		break;
 	case GX_VA_CLR0:
-		GX_BITFIELD_SET(gx->vcdLo, 17, 2, type);
+        GX_CP_SET_VCD_LO_COLORDIFFUSED(gx->vcdLo, type);
 		break;
 	case GX_VA_CLR1:
-		GX_BITFIELD_SET(gx->vcdLo, 15, 2, type);
+        GX_CP_SET_VCD_LO_COLORSPECULAR(gx->vcdLo, type);
 		break;
 	case GX_VA_TEX0:
-		GX_BITFIELD_SET(gx->vcdHi, 30, 2, type);
+        GX_CP_SET_VCD_HI_TEX0COORD(gx->vcdHi, type);
 		break;
 	case GX_VA_TEX1:
-		GX_BITFIELD_SET(gx->vcdHi, 28, 2, type);
+        GX_CP_SET_VCD_HI_TEX1COORD(gx->vcdHi, type);
 		break;
 	case GX_VA_TEX2:
-		GX_BITFIELD_SET(gx->vcdHi, 26, 2, type);
+        GX_CP_SET_VCD_HI_TEX2COORD(gx->vcdHi, type);
 		break;
 	case GX_VA_TEX3:
-		GX_BITFIELD_SET(gx->vcdHi, 24, 2, type);
+        GX_CP_SET_VCD_HI_TEX3COORD(gx->vcdHi, type);
 		break;
 	case GX_VA_TEX4:
-		GX_BITFIELD_SET(gx->vcdHi, 22, 2, type);
+        GX_CP_SET_VCD_HI_TEX4COORD(gx->vcdHi, type);
 		break;
 	case GX_VA_TEX5:
-		GX_BITFIELD_SET(gx->vcdHi, 20, 2, type);
+        GX_CP_SET_VCD_HI_TEX5COORD(gx->vcdHi, type);
 		break;
 	case GX_VA_TEX6:
-		GX_BITFIELD_SET(gx->vcdHi, 18, 2, type);
+        GX_CP_SET_VCD_HI_TEX6COORD(gx->vcdHi, type);
 		break;
 	case GX_VA_TEX7:
-		GX_BITFIELD_SET(gx->vcdHi, 16, 2, type);
+        GX_CP_SET_VCD_HI_TEX7COORD(gx->vcdHi, type);
 		break;
 	}
 
 	if (gx->hasNrms || gx->hasBiNrms) {
-		GX_BITFIELD_SET(gx->vcdLo, 19, 2, gx->nrmType);
+		GX_CP_SET_VCD_LO_NORMAL(gx->vcdLo, gx->nrmType);
 	} else {
-		// gx->_014 &= ~0x3800;
-		GX_BITFIELD_SET(gx->vcdLo, 19, 2, 0);
+		GX_CP_SET_VCD_LO_NORMAL(gx->vcdLo, GX_NONE);
 	}
 
-	gx->dirtyState |= 8;
+	gx->dirtyState |= GX_DIRTY_VCD;
 }
 
 /*
@@ -218,47 +217,52 @@ void __GXSetVCD(void)
  */
 void __GXCalculateVLim(void)
 {
-	static u8 tbl1[] = { 0, 4, 1, 2 };
-	static u8 tbl2[] = { 0, 8, 1, 2 };
-	static u8 tbl3[] = { 0, 12, 1, 2 };
+	static u8 tbl1[] = {0, 4, 1, 2};
+    static u8 tbl2[] = {0, 8, 1, 2};
+    static u8 tbl3[] = {0, 12, 1, 2};
 
-	u32 vlim;
-	u32 vcdLo;
-	u32 vcdHi;
-	s32 vat;
+    u32 vlim;
+    u32 vcdLo;
+    u32 vcdHi;
+    s32 compCnt;
 
-	if (gx->vNum == 0) {
-		return;
-	}
+    if (gx->vNum == 0) {
+        return;
+    }
 
-	vcdLo = gx->vcdLo;
-	vcdHi = gx->vcdHi;
-	vat   = gx->vatA[GX_VTXFMT0];
-	vat   = (vat & 0x200) >> 9;
+    vcdLo = gx->vcdLo;
+    vcdHi = gx->vcdHi;
 
-	vlim = vcdLo & 1;
-	vlim += vcdLo >> 1 & 1;
-	vlim += vcdLo >> 2 & 1;
-	vlim += vcdLo >> 3 & 1;
-	vlim += vcdLo >> 4 & 1;
-	vlim += vcdLo >> 5 & 1;
-	vlim += vcdLo >> 6 & 1;
-	vlim += vcdLo >> 7 & 1;
-	vlim += vcdLo >> 8 & 1;
-	vlim += tbl3[vcdLo >> 9 & 3];
-	vlim += tbl3[vcdLo >> 11 & 3] * (vat == 1 ? 3 : 1);
-	vlim += tbl1[vcdLo >> 13 & 3];
-	vlim += tbl1[vcdLo >> 15 & 3];
-	vlim += tbl2[vcdHi & 3];
-	vlim += tbl2[vcdHi >> 2 & 3];
-	vlim += tbl2[vcdHi >> 4 & 3];
-	vlim += tbl2[vcdHi >> 6 & 3];
-	vlim += tbl2[vcdHi >> 8 & 3];
-	vlim += tbl2[vcdHi >> 10 & 3];
-	vlim += tbl2[vcdHi >> 12 & 3];
-	vlim += tbl2[vcdHi >> 14 & 3];
+    // GXCompCnt bit of normal parameters
+    compCnt = gx->vatA[GX_VTXFMT0];
+    compCnt = (compCnt & 0x200) >> 9;
 
-	LOAD_GX_FIELD(0x6, u16) = vlim;
+    vlim = GX_CP_GET_VCD_LO_POSMATIDX(vcdLo);
+    vlim += GX_CP_GET_VCD_LO_TEX0MATIDX(vcdLo);
+    vlim += GX_CP_GET_VCD_LO_TEX1MATIDX(vcdLo);
+    vlim += GX_CP_GET_VCD_LO_TEX2MATIDX(vcdLo);
+    vlim += GX_CP_GET_VCD_LO_TEX3MATIDX(vcdLo);
+    vlim += GX_CP_GET_VCD_LO_TEX4MATIDX(vcdLo);
+    vlim += GX_CP_GET_VCD_LO_TEX5MATIDX(vcdLo);
+    vlim += GX_CP_GET_VCD_LO_TEX6MATIDX(vcdLo);
+    vlim += GX_CP_GET_VCD_LO_TEX7MATIDX(vcdLo);
+
+    vlim += tbl3[GX_CP_GET_VCD_LO_POSITION(vcdLo)];
+    vlim +=
+        tbl3[GX_CP_GET_VCD_LO_NORMAL(vcdLo)] * (compCnt == GX_NRM_NBT ? 3 : 1);
+    vlim += tbl1[GX_CP_GET_VCD_LO_COLORDIFFUSED(vcdLo)];
+    vlim += tbl1[GX_CP_GET_VCD_LO_COLORSPECULAR(vcdLo)];
+
+    vlim += tbl2[GX_CP_GET_VCD_HI_TEX0COORD(vcdHi)];
+    vlim += tbl2[GX_CP_GET_VCD_HI_TEX1COORD(vcdHi)];
+    vlim += tbl2[GX_CP_GET_VCD_HI_TEX2COORD(vcdHi)];
+    vlim += tbl2[GX_CP_GET_VCD_HI_TEX3COORD(vcdHi)];
+    vlim += tbl2[GX_CP_GET_VCD_HI_TEX4COORD(vcdHi)];
+    vlim += tbl2[GX_CP_GET_VCD_HI_TEX5COORD(vcdHi)];
+    vlim += tbl2[GX_CP_GET_VCD_HI_TEX6COORD(vcdHi)];
+    vlim += tbl2[GX_CP_GET_VCD_HI_TEX7COORD(vcdHi)];
+
+    gx->vLim = vlim;
 }
 
 /*
@@ -289,29 +293,11 @@ void GXGetVtxDescv(GXVtxDescList* list)
 void GXClearVtxDesc(void)
 {
 	gx->vcdLo = 0;
-	gx->vcdLo &= 0x600;
-	gx->vcdHi     = 0;
-	gx->hasNrms   = 0;
-	gx->hasBiNrms = 0;
-	LOAD_GX_FIELD(0x5ac, u32) |= 8;
-
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6D70(r2)
-	  li        r5, 0
-	  li        r0, 0x1
-	  stw       r5, 0x14(r4)
-	  lwz       r3, 0x14(r4)
-	  rlwimi    r3,r0,9,21,22
-	  stw       r3, 0x14(r4)
-	  stw       r5, 0x18(r4)
-	  stb       r5, 0x4D4(r4)
-	  stb       r5, 0x4D5(r4)
-	  lwz       r0, 0x5AC(r4)
-	  ori       r0, r0, 0x8
-	  stw       r0, 0x5AC(r4)
-	  blr
-	*/
+    GX_CP_SET_VCD_LO_POSITION(gx->vcdLo, GX_DIRECT);
+	gx->vcdHi = 0;
+	gx->hasNrms = FALSE;
+	gx->hasBiNrms = FALSE;
+    gx->dirtyState |= GX_DIRTY_VCD;
 }
 
 /*
@@ -319,239 +305,87 @@ void GXClearVtxDesc(void)
  * Address:	800E4708
  * Size:	00025C
  */
+static inline void SETVAT(u32* vatA, u32* vatB, u32* vatC, GXAttr attr,
+                          GXCompCnt compCnt, GXCompType compType, u8 shift) {
+    switch (attr) {
+    case GX_VA_POS:
+        GX_CP_SET_VAT_GROUP0_POS_CNT(*vatA, compCnt);
+        GX_CP_SET_VAT_GROUP0_POS_TYPE(*vatA, compType);
+        GX_CP_SET_VAT_GROUP0_POS_SHIFT(*vatA, shift);
+        break;
+    case GX_VA_NRM:
+    case GX_VA_NBT:
+        GX_CP_SET_VAT_GROUP0_NRM_TYPE(*vatA, compType);
+        if (compCnt == GX_NRM_NBT3) {
+            // Probably because the compCnt can only be one bit?
+            GX_CP_SET_VAT_GROUP0_NRM_CNT(*vatA, GX_NRM_NBT);
+            GX_CP_SET_VAT_GROUP0_NORMALINDEX3(*vatA, TRUE);
+        } else {
+            GX_CP_SET_VAT_GROUP0_NRM_CNT(*vatA, compCnt);
+            GX_CP_SET_VAT_GROUP0_NORMALINDEX3(*vatA, FALSE);
+        }
+        break;
+    case GX_VA_CLR0:
+        GX_CP_SET_VAT_GROUP0_COLORDIFF_CNT(*vatA, compCnt);
+        GX_CP_SET_VAT_GROUP0_COLORDIFF_TYPE(*vatA, compType);
+        break;
+    case GX_VA_CLR1:
+        GX_CP_SET_VAT_GROUP0_COLORSPEC_CNT(*vatA, compCnt);
+        GX_CP_SET_VAT_GROUP0_COLORSPEC_TYPE(*vatA, compType);
+        break;
+    case GX_VA_TEX0:
+        GX_CP_SET_VAT_GROUP0_TXC0_CNT(*vatA, compCnt);
+        GX_CP_SET_VAT_GROUP0_TXC0_TYPE(*vatA, compType);
+        GX_CP_SET_VAT_GROUP0_TXC0_SHIFT(*vatA, shift);
+        break;
+    case GX_VA_TEX1:
+        GX_CP_SET_VAT_GROUP1_TXC1_CNT(*vatB, compCnt);
+        GX_CP_SET_VAT_GROUP1_TXC1_TYPE(*vatB, compType);
+        GX_CP_SET_VAT_GROUP1_TXC1_SHIFT(*vatB, shift);
+        break;
+    case GX_VA_TEX2:
+        GX_CP_SET_VAT_GROUP1_TXC2_CNT(*vatB, compCnt);
+        GX_CP_SET_VAT_GROUP1_TXC2_TYPE(*vatB, compType);
+        GX_CP_SET_VAT_GROUP1_TXC2_SHIFT(*vatB, shift);
+        break;
+    case GX_VA_TEX3:
+        GX_CP_SET_VAT_GROUP1_TXC3_CNT(*vatB, compCnt);
+        GX_CP_SET_VAT_GROUP1_TXC3_TYPE(*vatB, compType);
+        GX_CP_SET_VAT_GROUP1_TXC3_SHIFT(*vatB, shift);
+        break;
+    case GX_VA_TEX4:
+        GX_CP_SET_VAT_GROUP1_TXC4_CNT(*vatB, compCnt);
+        GX_CP_SET_VAT_GROUP1_TXC4_TYPE(*vatB, compType);
+        GX_CP_SET_VAT_GROUP2_TXC4_SHIFT(*vatC, shift);
+        break;
+    case GX_VA_TEX5:
+        GX_CP_SET_VAT_GROUP2_TXC5_CNT(*vatC, compCnt);
+        GX_CP_SET_VAT_GROUP2_TXC5_TYPE(*vatC, compType);
+        GX_CP_SET_VAT_GROUP2_TXC5_SHIFT(*vatC, shift);
+        break;
+    case GX_VA_TEX6:
+        GX_CP_SET_VAT_GROUP2_TXC6_CNT(*vatC, compCnt);
+        GX_CP_SET_VAT_GROUP2_TXC6_TYPE(*vatC, compType);
+        GX_CP_SET_VAT_GROUP2_TXC6_SHIFT(*vatC, shift);
+        break;
+    case GX_VA_TEX7:
+        GX_CP_SET_VAT_GROUP2_TXC7_CNT(*vatC, compCnt);
+        GX_CP_SET_VAT_GROUP2_TXC7_TYPE(*vatC, compType);
+        GX_CP_SET_VAT_GROUP2_TXC7_SHIFT(*vatC, shift);
+        break;
+    }
+}
+
 void GXSetVtxAttrFmt(GXVtxFmt format, GXAttr attr, GXCompCnt count, GXCompType type, u8 frac)
 {
 	u32* vA = &gx->vatA[format];
 	u32* vB = &gx->vatB[format];
 	u32* vC = &gx->vatC[format];
-	switch (attr) {
-	case 9:
-		GX_BITFIELD_SET(*vA, 31, 1, count);
-		GX_BITFIELD_SET(*vA, 28, 3, type);
-		GX_BITFIELD_SET(*vA, 23, 5, frac);
-		break;
-	case 10:
-	case 25:
-		GX_BITFIELD_SET(*vA, 19, 3, type);
-		if (count == 2) {
-			GX_BITFIELD_SET(*vA, 22, 1, 1);
-			GX_BITFIELD_SET(*vA, 0, 1, 1);
-		} else {
-			GX_BITFIELD_SET(*vA, 22, 1, count);
-			GX_BITFIELD_SET(*vA, 0, 1, 0);
-		}
-		break;
-	case 11:
-		GX_BITFIELD_SET(*vA, 18, 1, count);
-		GX_BITFIELD_SET(*vA, 15, 3, type);
-		break;
-	case 12:
-		GX_BITFIELD_SET(*vA, 14, 1, count);
-		GX_BITFIELD_SET(*vA, 11, 3, type);
-		break;
-	case 13:
-		GX_BITFIELD_SET(*vA, 10, 1, count);
-		GX_BITFIELD_SET(*vA, 7, 3, type);
-		GX_BITFIELD_SET(*vA, 2, 5, frac);
-		break;
-	case 14:
-		GX_BITFIELD_SET(*vB, 31, 1, count);
-		GX_BITFIELD_SET(*vB, 28, 3, type);
-		GX_BITFIELD_SET(*vB, 23, 5, frac);
-		break;
-	case 15:
-		GX_BITFIELD_SET(*vB, 22, 1, count);
-		GX_BITFIELD_SET(*vB, 19, 3, type);
-		GX_BITFIELD_SET(*vB, 14, 5, frac);
-		break;
-	case 16:
-		GX_BITFIELD_SET(*vB, 13, 1, count);
-		GX_BITFIELD_SET(*vB, 10, 3, type);
-		GX_BITFIELD_SET(*vB, 5, 5, frac);
-		break;
-	case 17:
-		GX_BITFIELD_SET(*vB, 4, 1, count);
-		GX_BITFIELD_SET(*vB, 1, 3, type);
-		GX_BITFIELD_SET(*vC, 27, 5, frac);
-		break;
-	case 18:
-		GX_BITFIELD_SET(*vC, 26, 1, count);
-		GX_BITFIELD_SET(*vC, 23, 3, type);
-		GX_BITFIELD_SET(*vC, 18, 5, frac);
-		break;
-	case 19:
-		GX_BITFIELD_SET(*vC, 17, 1, count);
-		GX_BITFIELD_SET(*vC, 14, 3, type);
-		GX_BITFIELD_SET(*vC, 9, 5, frac);
-		break;
-	case 20:
-		GX_BITFIELD_SET(*vC, 8, 1, count);
-		GX_BITFIELD_SET(*vC, 5, 3, type);
-		GX_BITFIELD_SET(*vC, 0, 5, frac);
-		break;
-	}
 
-	gx->dirtyState |= 0x10;
+	SETVAT(vA, vB, vC, attr, count, type, frac);
+
+	gx->dirtyState |= GX_DIRTY_VAT;
 	gx->dirtyVAT |= (u8)(1 << (u8)format);
-
-	/*
-	.loc_0x0:
-	  subi      r0, r4, 0x9
-	  lwz       r8, -0x6D70(r2)
-	  rlwinm    r4,r3,2,0,29
-	  add       r8, r8, r4
-	  cmplwi    r0, 0x10
-	  addi      r4, r8, 0x1C
-	  addi      r9, r8, 0x3C
-	  addi      r10, r8, 0x5C
-	  bgt-      .loc_0x22C
-	  lis       r8, 0x804B
-	  subi      r8, r8, 0x7CF8
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r0, r8, r0
-	  mtctr     r0
-	  bctr
-	  lwz       r8, 0x0(r4)
-	  rlwimi    r8,r5,0,31,31
-	  stw       r8, 0x0(r4)
-	  lwz       r5, 0x0(r4)
-	  rlwimi    r5,r6,1,28,30
-	  stw       r5, 0x0(r4)
-	  lwz       r5, 0x0(r4)
-	  rlwimi    r5,r7,4,23,27
-	  stw       r5, 0x0(r4)
-	  b         .loc_0x22C
-	  lwz       r0, 0x0(r4)
-	  rlwimi    r0,r6,10,19,21
-	  cmpwi     r5, 0x2
-	  stw       r0, 0x0(r4)
-	  bne-      .loc_0x98
-	  lwz       r0, 0x0(r4)
-	  li        r5, 0x1
-	  rlwimi    r0,r5,9,22,22
-	  stw       r0, 0x0(r4)
-	  lwz       r0, 0x0(r4)
-	  rlwimi    r0,r5,31,0,0
-	  stw       r0, 0x0(r4)
-	  b         .loc_0x22C
-
-	.loc_0x98:
-	  lwz       r6, 0x0(r4)
-	  rlwimi    r6,r5,9,22,22
-	  li        r0, 0
-	  stw       r6, 0x0(r4)
-	  lwz       r5, 0x0(r4)
-	  rlwimi    r5,r0,31,0,0
-	  stw       r5, 0x0(r4)
-	  b         .loc_0x22C
-	  lwz       r0, 0x0(r4)
-	  rlwimi    r0,r5,13,18,18
-	  stw       r0, 0x0(r4)
-	  lwz       r0, 0x0(r4)
-	  rlwimi    r0,r6,14,15,17
-	  stw       r0, 0x0(r4)
-	  b         .loc_0x22C
-	  lwz       r0, 0x0(r4)
-	  rlwimi    r0,r5,17,14,14
-	  stw       r0, 0x0(r4)
-	  lwz       r0, 0x0(r4)
-	  rlwimi    r0,r6,18,11,13
-	  stw       r0, 0x0(r4)
-	  b         .loc_0x22C
-	  lwz       r8, 0x0(r4)
-	  rlwimi    r8,r5,21,10,10
-	  stw       r8, 0x0(r4)
-	  lwz       r5, 0x0(r4)
-	  rlwimi    r5,r6,22,7,9
-	  stw       r5, 0x0(r4)
-	  lwz       r5, 0x0(r4)
-	  rlwimi    r5,r7,25,2,6
-	  stw       r5, 0x0(r4)
-	  b         .loc_0x22C
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r5,0,31,31
-	  stw       r4, 0x0(r9)
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r6,1,28,30
-	  stw       r4, 0x0(r9)
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r7,4,23,27
-	  stw       r4, 0x0(r9)
-	  b         .loc_0x22C
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r5,9,22,22
-	  stw       r4, 0x0(r9)
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r6,10,19,21
-	  stw       r4, 0x0(r9)
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r7,13,14,18
-	  stw       r4, 0x0(r9)
-	  b         .loc_0x22C
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r5,18,13,13
-	  stw       r4, 0x0(r9)
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r6,19,10,12
-	  stw       r4, 0x0(r9)
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r7,22,5,9
-	  stw       r4, 0x0(r9)
-	  b         .loc_0x22C
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r5,27,4,4
-	  stw       r4, 0x0(r9)
-	  lwz       r4, 0x0(r9)
-	  rlwimi    r4,r6,28,1,3
-	  stw       r4, 0x0(r9)
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r7,0,27,31
-	  stw       r4, 0x0(r10)
-	  b         .loc_0x22C
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r5,5,26,26
-	  stw       r4, 0x0(r10)
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r6,6,23,25
-	  stw       r4, 0x0(r10)
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r7,9,18,22
-	  stw       r4, 0x0(r10)
-	  b         .loc_0x22C
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r5,14,17,17
-	  stw       r4, 0x0(r10)
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r6,15,14,16
-	  stw       r4, 0x0(r10)
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r7,18,9,13
-	  stw       r4, 0x0(r10)
-	  b         .loc_0x22C
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r5,23,8,8
-	  stw       r4, 0x0(r10)
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r6,24,5,7
-	  stw       r4, 0x0(r10)
-	  lwz       r4, 0x0(r10)
-	  rlwimi    r4,r7,27,0,4
-	  stw       r4, 0x0(r10)
-
-	.loc_0x22C:
-	  lwz       r5, -0x6D70(r2)
-	  rlwinm    r0,r3,0,24,31
-	  li        r3, 0x1
-	  lwz       r4, 0x5AC(r5)
-	  slw       r0, r3, r0
-	  rlwinm    r0,r0,0,24,31
-	  ori       r3, r4, 0x10
-	  stw       r3, 0x5AC(r5)
-	  lbz       r3, 0x5AB(r5)
-	  or        r0, r3, r0
-	  stb       r0, 0x5AB(r5)
-	  blr
-	*/
 }
 
 /*
@@ -561,177 +395,21 @@ void GXSetVtxAttrFmt(GXVtxFmt format, GXAttr attr, GXCompCnt count, GXCompType t
  */
 void GXSetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, -0x6D70(r2)
-	  rlwinm    r0,r3,2,0,29
-	  lis       r5, 0x804B
-	  add       r6, r6, r0
-	  addi      r7, r6, 0x1C
-	  addi      r8, r6, 0x3C
-	  addi      r9, r6, 0x5C
-	  subi      r5, r5, 0x7CB4
-	  b         .loc_0x244
+	u32* vatA;
+    u32* vatB;
+    u32* vatC;
 
-	.loc_0x24:
-	  lwz       r10, 0x0(r4)
-	  lbz       r6, 0xC(r4)
-	  subi      r10, r10, 0x9
-	  lwz       r0, 0x8(r4)
-	  cmplwi    r10, 0x10
-	  lwz       r11, 0x4(r4)
-	  bgt-      .loc_0x240
-	  rlwinm    r10,r10,2,0,29
-	  lwzx      r10, r5, r10
-	  mtctr     r10
-	  bctr
-	  lwz       r10, 0x0(r7)
-	  rlwimi    r10,r11,0,31,31
-	  stw       r10, 0x0(r7)
-	  lwz       r10, 0x0(r7)
-	  rlwimi    r10,r0,1,28,30
-	  stw       r10, 0x0(r7)
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r6,4,23,27
-	  stw       r0, 0x0(r7)
-	  b         .loc_0x240
-	  lwz       r6, 0x0(r7)
-	  rlwimi    r6,r0,10,19,21
-	  cmpwi     r11, 0x2
-	  stw       r6, 0x0(r7)
-	  bne-      .loc_0xAC
-	  lwz       r0, 0x0(r7)
-	  li        r6, 0x1
-	  rlwimi    r0,r6,9,22,22
-	  stw       r0, 0x0(r7)
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r6,31,0,0
-	  stw       r0, 0x0(r7)
-	  b         .loc_0x240
+    vatA = &gx->vatA[format];
+    vatB = &gx->vatB[format];
+    vatC = &gx->vatC[format];
 
-	.loc_0xAC:
-	  lwz       r6, 0x0(r7)
-	  rlwimi    r6,r11,9,22,22
-	  li        r0, 0
-	  stw       r6, 0x0(r7)
-	  lwz       r6, 0x0(r7)
-	  rlwimi    r6,r0,31,0,0
-	  stw       r6, 0x0(r7)
-	  b         .loc_0x240
-	  lwz       r6, 0x0(r7)
-	  rlwimi    r6,r11,13,18,18
-	  stw       r6, 0x0(r7)
-	  lwz       r6, 0x0(r7)
-	  rlwimi    r6,r0,14,15,17
-	  stw       r6, 0x0(r7)
-	  b         .loc_0x240
-	  lwz       r6, 0x0(r7)
-	  rlwimi    r6,r11,17,14,14
-	  stw       r6, 0x0(r7)
-	  lwz       r6, 0x0(r7)
-	  rlwimi    r6,r0,18,11,13
-	  stw       r6, 0x0(r7)
-	  b         .loc_0x240
-	  lwz       r10, 0x0(r7)
-	  rlwimi    r10,r11,21,10,10
-	  stw       r10, 0x0(r7)
-	  lwz       r10, 0x0(r7)
-	  rlwimi    r10,r0,22,7,9
-	  stw       r10, 0x0(r7)
-	  lwz       r0, 0x0(r7)
-	  rlwimi    r0,r6,25,2,6
-	  stw       r0, 0x0(r7)
-	  b         .loc_0x240
-	  lwz       r10, 0x0(r8)
-	  rlwimi    r10,r11,0,31,31
-	  stw       r10, 0x0(r8)
-	  lwz       r10, 0x0(r8)
-	  rlwimi    r10,r0,1,28,30
-	  stw       r10, 0x0(r8)
-	  lwz       r0, 0x0(r8)
-	  rlwimi    r0,r6,4,23,27
-	  stw       r0, 0x0(r8)
-	  b         .loc_0x240
-	  lwz       r10, 0x0(r8)
-	  rlwimi    r10,r11,9,22,22
-	  stw       r10, 0x0(r8)
-	  lwz       r10, 0x0(r8)
-	  rlwimi    r10,r0,10,19,21
-	  stw       r10, 0x0(r8)
-	  lwz       r0, 0x0(r8)
-	  rlwimi    r0,r6,13,14,18
-	  stw       r0, 0x0(r8)
-	  b         .loc_0x240
-	  lwz       r10, 0x0(r8)
-	  rlwimi    r10,r11,18,13,13
-	  stw       r10, 0x0(r8)
-	  lwz       r10, 0x0(r8)
-	  rlwimi    r10,r0,19,10,12
-	  stw       r10, 0x0(r8)
-	  lwz       r0, 0x0(r8)
-	  rlwimi    r0,r6,22,5,9
-	  stw       r0, 0x0(r8)
-	  b         .loc_0x240
-	  lwz       r10, 0x0(r8)
-	  rlwimi    r10,r11,27,4,4
-	  stw       r10, 0x0(r8)
-	  lwz       r10, 0x0(r8)
-	  rlwimi    r10,r0,28,1,3
-	  stw       r10, 0x0(r8)
-	  lwz       r0, 0x0(r9)
-	  rlwimi    r0,r6,0,27,31
-	  stw       r0, 0x0(r9)
-	  b         .loc_0x240
-	  lwz       r10, 0x0(r9)
-	  rlwimi    r10,r11,5,26,26
-	  stw       r10, 0x0(r9)
-	  lwz       r10, 0x0(r9)
-	  rlwimi    r10,r0,6,23,25
-	  stw       r10, 0x0(r9)
-	  lwz       r0, 0x0(r9)
-	  rlwimi    r0,r6,9,18,22
-	  stw       r0, 0x0(r9)
-	  b         .loc_0x240
-	  lwz       r10, 0x0(r9)
-	  rlwimi    r10,r11,14,17,17
-	  stw       r10, 0x0(r9)
-	  lwz       r10, 0x0(r9)
-	  rlwimi    r10,r0,15,14,16
-	  stw       r10, 0x0(r9)
-	  lwz       r0, 0x0(r9)
-	  rlwimi    r0,r6,18,9,13
-	  stw       r0, 0x0(r9)
-	  b         .loc_0x240
-	  lwz       r10, 0x0(r9)
-	  rlwimi    r10,r11,23,8,8
-	  stw       r10, 0x0(r9)
-	  lwz       r10, 0x0(r9)
-	  rlwimi    r10,r0,24,5,7
-	  stw       r10, 0x0(r9)
-	  lwz       r0, 0x0(r9)
-	  rlwimi    r0,r6,27,0,4
-	  stw       r0, 0x0(r9)
+    for (; list->mAttr != GX_VA_NULL; list++) {
+        SETVAT(vatA, vatB, vatC, list->mAttr, list->mCount, list->mType,
+               list->mFrac);
+    }
 
-	.loc_0x240:
-	  addi      r4, r4, 0x10
-
-	.loc_0x244:
-	  lwz       r0, 0x0(r4)
-	  cmpwi     r0, 0xFF
-	  bne+      .loc_0x24
-	  lwz       r5, -0x6D70(r2)
-	  rlwinm    r0,r3,0,24,31
-	  li        r3, 0x1
-	  lwz       r4, 0x5AC(r5)
-	  slw       r0, r3, r0
-	  rlwinm    r0,r0,0,24,31
-	  ori       r3, r4, 0x10
-	  stw       r3, 0x5AC(r5)
-	  lbz       r3, 0x5AB(r5)
-	  or        r0, r3, r0
-	  stb       r0, 0x5AB(r5)
-	  blr
-	*/
+    gx->dirtyState |= GX_DIRTY_VAT;
+    gx->dirtyVAT |= (u8)(1 << (u8)format);
 }
 
 /*
@@ -751,55 +429,6 @@ void __GXSetVAT(void)
 	}
 
 	gx->dirtyVAT = 0;
-
-	/*
-	.loc_0x0:
-	  lwz       r10, -0x6D70(r2)
-	  li        r12, 0
-	  li        r11, 0
-	  lis       r7, 0xCC01
-	  b         .loc_0x80
-
-	.loc_0x14:
-	  rlwinm    r9,r12,0,24,31
-	  lbz       r3, 0x5AB(r10)
-	  li        r0, 0x1
-	  slw       r0, r0, r9
-	  and.      r0, r3, r0
-	  beq-      .loc_0x78
-	  li        r8, 0x8
-	  stb       r8, -0x8000(r7)
-	  ori       r3, r9, 0x70
-	  addi      r0, r11, 0x1C
-	  stb       r3, -0x8000(r7)
-	  ori       r5, r9, 0x80
-	  addi      r4, r11, 0x3C
-	  lwzx      r6, r10, r0
-	  ori       r3, r9, 0x90
-	  addi      r0, r11, 0x5C
-	  stw       r6, -0x8000(r7)
-	  stb       r8, -0x8000(r7)
-	  stb       r5, -0x8000(r7)
-	  lwzx      r4, r10, r4
-	  stw       r4, -0x8000(r7)
-	  stb       r8, -0x8000(r7)
-	  stb       r3, -0x8000(r7)
-	  lwzx      r0, r10, r0
-	  stw       r0, -0x8000(r7)
-
-	.loc_0x78:
-	  addi      r11, r11, 0x4
-	  addi      r12, r12, 0x1
-
-	.loc_0x80:
-	  rlwinm    r0,r12,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x14
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0
-	  stb       r0, 0x5AB(r3)
-	  blr
-	*/
 }
 
 /*
@@ -844,10 +473,10 @@ void GXSetArray(GXAttr attr, void* basePtr, u8 stride)
 	               // Address -> offset?
 	               (u32)basePtr & ~0xC0000000);
 
-	idx = attrReg - 12;
-	if (idx >= 0 && idx < 4) {
-		gx->indexBase[idx] = (u32)basePtr & ~0xC0000000;
-	}
+    idx = attrReg - 12;
+    if (idx >= 0 && idx < 4) {
+        gx->indexBase[idx] = (u32)basePtr & ~0xC0000000;
+    }
 
 	GX_CP_LOAD_REG(GX_BP_REG_SETIMAGE2_TEX4 | attrReg, stride);
 
@@ -855,49 +484,6 @@ void GXSetArray(GXAttr attr, void* basePtr, u8 stride)
 	if (idx >= 0 && idx < 4) {
 		gx->indexStride[idx] = stride;
 	}
-
-	/*
-	.loc_0x0:
-	  cmpwi     r3, 0x19
-	  bne-      .loc_0xC
-	  li        r3, 0xA
-
-	.loc_0xC:
-	  li        r0, 0x8
-	  subi      r6, r3, 0x9
-	  lis       r3, 0xCC01
-	  stb       r0, -0x8000(r3)
-	  ori       r0, r6, 0xA0
-	  rlwinm    r4,r4,0,2,31
-	  stb       r0, -0x8000(r3)
-	  subic.    r0, r6, 0xC
-	  stw       r4, -0x8000(r3)
-	  blt-      .loc_0x4C
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x4C
-	  lwz       r3, -0x6D70(r2)
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r3, r0
-	  stw       r4, 0x88(r3)
-
-	.loc_0x4C:
-	  li        r0, 0x8
-	  lis       r3, 0xCC01
-	  stb       r0, -0x8000(r3)
-	  ori       r0, r6, 0xB0
-	  rlwinm    r4,r5,0,24,31
-	  stb       r0, -0x8000(r3)
-	  subic.    r0, r6, 0xC
-	  stw       r4, -0x8000(r3)
-	  bltlr-
-	  cmpwi     r0, 0x4
-	  bgelr-
-	  lwz       r3, -0x6D70(r2)
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r3, r0
-	  stw       r4, 0x98(r3)
-	  blr
-	*/
 }
 
 /*
@@ -912,193 +498,148 @@ void GXInvalidateVtxCache(void) { GX_WRITE_U8(0x48); }
  * Address:	800E4D1C
  * Size:	000280
  */
-void GXSetTexCoordGen2(GXTexCoordID coord, GXTexGenType genType, GXTexGenSrc srcParam, u32 mtx, GXBool doNormalise, u32 postMtx)
+void GXSetTexCoordGen2(GXTexCoordID id, GXTexGenType type, GXTexGenSrc src, u32 texMtxIdx, GXBool normalize, u32 dualTexMtxIdx)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  cmplwi    r5, 0x14
-	  stw       r0, 0x4(r1)
-	  li        r10, 0
-	  li        r12, 0
-	  stwu      r1, -0x8(r1)
-	  li        r11, 0x5
-	  bgt-      .loc_0xB4
-	  lis       r9, 0x804B
-	  subi      r9, r9, 0x7C54
-	  rlwinm    r0,r5,2,0,29
-	  lwzx      r0, r9, r0
-	  mtctr     r0
-	  bctr
-	  li        r11, 0
-	  li        r12, 0x1
-	  b         .loc_0xB4
-	  li        r11, 0x1
-	  li        r12, 0x1
-	  b         .loc_0xB4
-	  li        r11, 0x3
-	  li        r12, 0x1
-	  b         .loc_0xB4
-	  li        r11, 0x4
-	  li        r12, 0x1
-	  b         .loc_0xB4
-	  li        r11, 0x2
-	  b         .loc_0xB4
-	  li        r11, 0x2
-	  b         .loc_0xB4
-	  li        r11, 0x5
-	  b         .loc_0xB4
-	  li        r11, 0x6
-	  b         .loc_0xB4
-	  li        r11, 0x7
-	  b         .loc_0xB4
-	  li        r11, 0x8
-	  b         .loc_0xB4
-	  li        r11, 0x9
-	  b         .loc_0xB4
-	  li        r11, 0xA
-	  b         .loc_0xB4
-	  li        r11, 0xB
-	  b         .loc_0xB4
-	  li        r11, 0xC
+	u32 reg;
+    u32 inputRow;
+    GXXfTexForm inputForm;
 
-	.loc_0xB4:
-	  cmpwi     r4, 0x1
-	  beq-      .loc_0xDC
-	  bge-      .loc_0xCC
-	  cmpwi     r4, 0
-	  bge-      .loc_0xFC
-	  b         .loc_0x174
+    reg = 0;
+    inputForm = GX_XF_TEX_FORM_AB11;
+    inputRow = 5;
 
-	.loc_0xCC:
-	  cmpwi     r4, 0xA
-	  beq-      .loc_0x144
-	  bge-      .loc_0x174
-	  b         .loc_0x118
+    switch (src) {
+    case GX_TG_POS:
+        inputRow = 0;
+        inputForm = GX_XF_TEX_FORM_ABC1;
+        break;
+    case GX_TG_NRM:
+        inputRow = 1;
+        inputForm = GX_XF_TEX_FORM_ABC1;
+        break;
+    case GX_TG_BINRM:
+        inputRow = 3;
+        inputForm = GX_XF_TEX_FORM_ABC1;
+        break;
+    case GX_TG_TANGENT:
+        inputRow = 4;
+        inputForm = GX_XF_TEX_FORM_ABC1;
+        break;
+    case GX_TG_COLOR0:
+        inputRow = 2;
+        break;
+    case GX_TG_COLOR1:
+        inputRow = 2;
+        break;
+    case GX_TG_TEX0:
+        inputRow = 5;
+        break;
+    case GX_TG_TEX1:
+        inputRow = 6;
+        break;
+    case GX_TG_TEX2:
+        inputRow = 7;
+        break;
+    case GX_TG_TEX3:
+        inputRow = 8;
+        break;
+    case GX_TG_TEX4:
+        inputRow = 9;
+        break;
+    case GX_TG_TEX5:
+        inputRow = 10;
+        break;
+    case GX_TG_TEX6:
+        inputRow = 11;
+        break;
+    case GX_TG_TEX7:
+        inputRow = 12;
+        break;
+    }
+	
+    switch (type) {
+    case GX_TG_NRM:
+        // reg = 0;
+        GX_XF_SET_TEX_PROJTYPE(reg, GX_XF_TEX_PROJ_ST); // 2x4 projection
+        GX_XF_SET_TEX_INPUTFORM(reg, inputForm);
+		GX_XF_SET_TEX_TEXGENTYPE(reg, GX_TG_POS);
+        GX_XF_SET_TEX_SRCROW(reg, inputRow);
+        break;
+    case GX_TG_POS:
+        // reg = 0;
+        GX_XF_SET_TEX_PROJTYPE(reg, GX_XF_TEX_PROJ_STQ); // 3x4 projection
+        GX_XF_SET_TEX_INPUTFORM(reg, inputForm);
+		GX_XF_SET_TEX_TEXGENTYPE(reg, GX_TG_POS);
+        GX_XF_SET_TEX_SRCROW(reg, inputRow);
+        break;
+    case GX_TG_BUMP0:
+    case GX_TG_BUMP1:
+    case GX_TG_BUMP2:
+    case GX_TG_BUMP3:
+    case GX_TG_BUMP4:
+    case GX_TG_BUMP5:
+    case GX_TG_BUMP6:
+    case GX_TG_BUMP7:
+        // reg = 0;
+		GX_XF_SET_TEX_PROJTYPE(reg, GX_XF_TEX_PROJ_ST); // 2x4 projection
+        GX_XF_SET_TEX_INPUTFORM(reg, inputForm);
+		GX_XF_SET_TEX_TEXGENTYPE(reg, GX_TG_NRM);
+        GX_XF_SET_TEX_SRCROW(reg, inputRow);
+		GX_XF_SET_TEX_BUMPSRCTEX(reg, src - GX_TG_TEXCOORD0);
+		GX_XF_SET_TEX_BUMPSRCLIGHT(reg, type - GX_TG_BUMP0);
+        break;
+    case GX_TG_SRTG:
+        // reg = 0;
+		GX_XF_SET_TEX_PROJTYPE(reg, GX_XF_TEX_PROJ_ST); // 2x4 projection
+        GX_XF_SET_TEX_INPUTFORM(reg, inputForm);
 
-	.loc_0xDC:
-	  li        r0, 0
-	  rlwimi    r10,r0,1,30,30
-	  addi      r4, r10, 0
-	  rlwimi    r4,r12,2,29,29
-	  addi      r10, r4, 0
-	  rlwimi    r10,r0,4,25,27
-	  rlwimi    r10,r11,7,20,24
-	  b         .loc_0x174
+        if (src == GX_TG_COLOR0) {
+            GX_XF_SET_TEX_TEXGENTYPE(reg, GX_XF_TG_CLR0);
+        } else {
+            GX_XF_SET_TEX_TEXGENTYPE(reg, GX_XF_TG_CLR1);
+        }
 
-	.loc_0xFC:
-	  li        r0, 0x1
-	  rlwimi    r10,r0,1,30,30
-	  li        r0, 0
-	  rlwimi    r10,r12,2,29,29
-	  rlwimi    r10,r0,4,25,27
-	  rlwimi    r10,r11,7,20,24
-	  b         .loc_0x174
+        GX_XF_SET_TEX_SRCROW(reg, 2);
+        break;
+    default:
+        break;
+    }
 
-	.loc_0x118:
-	  li        r0, 0
-	  rlwimi    r10,r0,1,30,30
-	  li        r0, 0x1
-	  rlwimi    r10,r12,2,29,29
-	  rlwimi    r10,r0,4,25,27
-	  subi      r0, r5, 0xC
-	  rlwimi    r10,r11,7,20,24
-	  rlwimi    r10,r0,12,17,19
-	  subi      r0, r4, 0x2
-	  rlwimi    r10,r0,15,14,16
-	  b         .loc_0x174
+	GX_XF_LOAD_REG(GX_XF_REG_TEX0 + id, reg);
 
-	.loc_0x144:
-	  cmpwi     r5, 0x13
-	  li        r0, 0
-	  rlwimi    r10,r0,1,30,30
-	  rlwimi    r10,r12,2,29,29
-	  bne-      .loc_0x164
-	  li        r0, 0x2
-	  rlwimi    r10,r0,4,25,27
-	  b         .loc_0x16C
+	reg = 0;
+	GX_XF_SET_MATRIXINDEX0_GEOM(reg, dualTexMtxIdx - 0x40);
+	GX_XF_SET_DUALTEX_NORMALIZE(reg, normalize);
 
-	.loc_0x164:
-	  li        r0, 0x3
-	  rlwimi    r10,r0,4,25,27
-
-	.loc_0x16C:
-	  li        r0, 0x2
-	  rlwimi    r10,r0,7,20,24
-
-	.loc_0x174:
-	  li        r9, 0x10
-	  lis       r5, 0xCC01
-	  stb       r9, -0x8000(r5)
-	  addi      r4, r3, 0x1040
-	  subi      r0, r8, 0x40
-	  stw       r4, -0x8000(r5)
-	  li        r8, 0
-	  rlwimi    r8,r0,0,26,31
-	  stw       r10, -0x8000(r5)
-	  addi      r0, r3, 0x1050
-	  cmplwi    r3, 0x6
-	  stb       r9, -0x8000(r5)
-	  rlwimi    r8,r7,8,23,23
-	  stw       r0, -0x8000(r5)
-	  stw       r8, -0x8000(r5)
-	  bgt-      .loc_0x258
-	  lis       r4, 0x804B
-	  subi      r4, r4, 0x7C70
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r0, r4, r0
-	  mtctr     r0
-	  bctr
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x80(r4)
-	  rlwimi    r0,r6,6,20,25
-	  stw       r0, 0x80(r4)
-	  b         .loc_0x268
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x80(r4)
-	  rlwimi    r0,r6,12,14,19
-	  stw       r0, 0x80(r4)
-	  b         .loc_0x268
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x80(r4)
-	  rlwimi    r0,r6,18,8,13
-	  stw       r0, 0x80(r4)
-	  b         .loc_0x268
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x80(r4)
-	  rlwimi    r0,r6,24,2,7
-	  stw       r0, 0x80(r4)
-	  b         .loc_0x268
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x84(r4)
-	  rlwimi    r0,r6,0,26,31
-	  stw       r0, 0x84(r4)
-	  b         .loc_0x268
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x84(r4)
-	  rlwimi    r0,r6,6,20,25
-	  stw       r0, 0x84(r4)
-	  b         .loc_0x268
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x84(r4)
-	  rlwimi    r0,r6,12,14,19
-	  stw       r0, 0x84(r4)
-	  b         .loc_0x268
-
-	.loc_0x258:
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x84(r4)
-	  rlwimi    r0,r6,18,8,13
-	  stw       r0, 0x84(r4)
-
-	.loc_0x268:
-	  addi      r3, r3, 0x1
-	  bl        0x4978
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
+	GX_XF_LOAD_REG(GX_XF_REG_DUALTEX0 + id, reg);
+    
+    switch (id) {
+    case GX_TEXCOORD0:
+        GX_XF_SET_MATRIXINDEX0_TEX0(gx->matIdxA, texMtxIdx);
+        break;
+    case GX_TEXCOORD1:
+        GX_XF_SET_MATRIXINDEX0_TEX1(gx->matIdxA, texMtxIdx);
+        break;
+    case GX_TEXCOORD2:
+        GX_XF_SET_MATRIXINDEX0_TEX2(gx->matIdxA, texMtxIdx);
+        break;
+    case GX_TEXCOORD3:
+        GX_XF_SET_MATRIXINDEX0_TEX3(gx->matIdxA, texMtxIdx);
+        break;
+    case GX_TEXCOORD4:
+        GX_XF_SET_MATRIXINDEX1_TEX4(gx->matIdxB, texMtxIdx);
+        break;
+    case GX_TEXCOORD5:
+        GX_XF_SET_MATRIXINDEX1_TEX5(gx->matIdxB, texMtxIdx);
+        break;
+    case GX_TEXCOORD6:
+        GX_XF_SET_MATRIXINDEX1_TEX6(gx->matIdxB, texMtxIdx);
+        break;
+    default:
+        GX_XF_SET_MATRIXINDEX1_TEX7(gx->matIdxB, texMtxIdx);
+        break;
+    }
+	__GXSetMatrixIndex(id + 1);
 }
 
 /*

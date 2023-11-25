@@ -629,7 +629,7 @@ void GXSetClipMode(GXClipMode mode)
  * Address:	800E9900
  * Size:	000084
  */
-void __GXSetMatrixIndex(void)
+void __GXSetMatrixIndex(GXTexCoordID)
 {
 	/*
 	.loc_0x0:
