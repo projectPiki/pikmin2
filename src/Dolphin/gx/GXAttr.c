@@ -17,12 +17,14 @@ inline void __GXXfVtxSpecs(void)
 
 	// Both fields in one access
 	color = 32
-	      - __cntlzw(GX_BITGET(gx->vcdLo, GX_CP_VCD_LO_COLORSPECULAR_ST, GX_CP_VCD_LO_COLORSPECULAR_SZ + GX_CP_VCD_LO_COLORDIFFUSED_SZ))
-	      + 1;
+            - __cntlzw(GX_BITGET(gx->vcdLo, GX_CP_VCD_LO_COLORSPECULAR_ST, GX_CP_VCD_LO_COLORSPECULAR_SZ + GX_CP_VCD_LO_COLORDIFFUSED_SZ))
+            + 1;
 	color >>= 1;
 
 	// All 16 assigned bits in VCD_Hi
-	texCount = 32 - __cntlzw(GX_BITGET(gx->vcdHi, GX_CP_VCD_HI_TEX7COORD_ST, sizeof(u16) * 8)) + 1;
+	texCount =  32
+                - __cntlzw(GX_BITGET(gx->vcdHi, GX_CP_VCD_HI_TEX7COORD_ST, sizeof(u16) * 8))
+                + 1;
 	texCount <<= 3;
 
 	norm <<= 2;
@@ -491,7 +493,7 @@ void GXSetArray(GXAttr attr, void* basePtr, u8 stride)
  * Address:	800E4D0C
  * Size:	000010
  */
-void GXInvalidateVtxCache(void) { GX_WRITE_U8(0x48); }
+void GXInvalidateVtxCache(void) { GX_WRITE_U8(GX_FIFO_CMD_INVAL_VTX); }
 
 /*
  * --INFO--
@@ -649,9 +651,7 @@ void GXSetTexCoordGen2(GXTexCoordID id, GXTexGenType type, GXTexGenSrc src, u32 
  */
 void GXSetNumTexGens(u8 count)
 {
-	GX_BITFIELD_SET(LOAD_GX_FIELD(0x204, u32), 28, 4, count);
-	GX_WRITE_U8(0x10);
-	GX_WRITE_U32(0x103F);
-	GX_WRITE_U32(count);
-	LOAD_GX_FIELD(0x5ac, u32) |= 4;
+    GX_BP_SET_GENMODE_NUMTEX(gx->genMode, count);
+    GX_XF_LOAD_REG(GX_XF_REG_NUMTEX, count);
+    gx->dirtyState |= GX_DIRTY_GEN_MODE;
 }
