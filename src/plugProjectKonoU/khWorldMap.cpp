@@ -15,733 +15,6 @@
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_khWorldMap_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80497C70
-    lbl_80497C70:
-        .asciz "khWorldMap.cpp"
-        .skip 1
-    .global cOpenMinFrm__Q22kh6Screen
-    cOpenMinFrm__Q22kh6Screen:
-        .float 0.0
-        .float 300.0
-        .float 600.0
-        .float 900.0
-    .global cOpenMaxFrm__Q22kh6Screen
-    cOpenMaxFrm__Q22kh6Screen:
-        .float 300.0
-        .float 600.0
-        .float 900.0
-        .float 1100.0
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80497D2C
-    lbl_80497D2C:
-        .asciz "worldmap_icon.blo"
-        .skip 2
-    .global lbl_80497D40
-    lbl_80497D40:
-        .asciz "worldmap_icon.bck"
-        .skip 2
-    .global lbl_80497D54
-    lbl_80497D54:
-        .asciz "worldmap_icon.btp"
-        .skip 2
-    .global lbl_80497D68
-    lbl_80497D68:
-        .asciz "worldmap_gicon.blo"
-        .skip 1
-    .global lbl_80497D7C
-    lbl_80497D7C:
-        .asciz "worldmap_gicon.bck"
-        .skip 1
-    .global lbl_80497D90
-    lbl_80497D90:
-        .asciz "worldmap_gicon.btp"
-        .skip 1
-        .4byte lbl_80497D2C
-        .4byte lbl_80497D40
-        .4byte lbl_80497D54
-        .4byte lbl_80497D68
-        .4byte lbl_80497D7C
-        .4byte lbl_80497D90
-    .global lbl_80497DBC
-    lbl_80497DBC:
-        .asciz "world_map_info.blo"
-        .skip 1
-    .global lbl_80497DD0
-    lbl_80497DD0:
-        .asciz "world_map_info.btk"
-        .skip 1
-    .global lbl_80497DE4
-    lbl_80497DE4:
-        .asciz "world_map_info_02.btk"
-        .skip 2
-    .global lbl_80497DFC
-    lbl_80497DFC:
-        .asciz "world_map_info_03.btk"
-        .skip 2
-        .4byte lbl_80497DBC
-        .4byte lbl_80497DD0
-        .4byte lbl_80497DE4
-        .4byte lbl_80497DFC
-        .skip 4
-        .4byte 0x50494354
-        .4byte 0x5F303435
-        .4byte 0x0050675F
-        .4byte 0x705F3031
-        .4byte 0x0050675F
-        .4byte 0x705F3032
-        .4byte 0x0050675F
-        .4byte 0x635F3031
-        .4byte 0x0050675F
-        .4byte 0x635F3032
-        .4byte 0x50636176
-        .4byte 0x655F3030
-        .4byte 0x0050305F
-        .4byte 0x705F3031
-        .4byte 0x0050305F
-        .4byte 0x705F3032
-        .4byte 0x0050305F
-        .4byte 0x635F3031
-        .4byte 0x0050305F
-        .4byte 0x635F3032
-        .4byte 0x50636176
-        .4byte 0x655F3031
-        .4byte 0x0050315F
-        .4byte 0x705F3031
-        .4byte 0x0050315F
-        .4byte 0x705F3032
-        .4byte 0x0050315F
-        .4byte 0x635F3031
-        .4byte 0x0050315F
-        .4byte 0x635F3032
-        .4byte 0x50636176
-        .4byte 0x655F3032
-        .4byte 0x0050325F
-        .4byte 0x705F3031
-        .4byte 0x0050325F
-        .4byte 0x705F3032
-        .4byte 0x0050325F
-        .4byte 0x635F3031
-        .4byte 0x0050325F
-        .4byte 0x635F3032
-        .4byte 0x50636176
-        .4byte 0x655F3033
-        .4byte 0x0050335F
-        .4byte 0x705F3031
-        .4byte 0x0050335F
-        .4byte 0x705F3032
-        .4byte 0x0050335F
-        .4byte 0x635F3031
-        .4byte 0x0050335F
-        .4byte 0x635F3032
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x776F726C
-        .4byte 0x646D6170
-        .4byte 0x2E737A73
-        .4byte 0x00000000
-        .4byte 0x776F726C
-        .4byte 0x645F6D61
-        .4byte 0x705F6B69
-        .4byte 0x74616761
-        .4byte 0x77612E62
-        .4byte 0x6C6F0000
-        .4byte 0x776F726C
-        .4byte 0x645F6D61
-        .4byte 0x705F6B69
-        .4byte 0x74616761
-        .4byte 0x77612E62
-        .4byte 0x636B0000
-        .4byte 0x776F726C
-        .4byte 0x645F6D61
-        .4byte 0x705F6B69
-        .4byte 0x74616761
-        .4byte 0x77612E62
-        .4byte 0x706B0000
-        .4byte 0x776F726C
-        .4byte 0x645F6D61
-        .4byte 0x705F6B69
-        .4byte 0x74616761
-        .4byte 0x77612E62
-        .4byte 0x746B0000
-        .4byte 0x776F726C
-        .4byte 0x645F6D61
-        .4byte 0x705F6B69
-        .4byte 0x74616761
-        .4byte 0x77615F30
-        .4byte 0x322E6274
-        .4byte 0x6B000000
-        .4byte 0x75736572
-        .4byte 0x2F456269
-        .4byte 0x73617761
-        .4byte 0x2F656666
-        .4byte 0x6563742F
-        .4byte 0x65666632
-        .4byte 0x645F776F
-        .4byte 0x726C645F
-        .4byte 0x6D61702E
-        .4byte 0x6A706300
-        .4byte 0x00000000
-        .4byte 0x00004E77
-        .4byte 0x61697430
-        .4byte 0x00004E77
-        .4byte 0x61697431
-        .4byte 0x00004E77
-        .4byte 0x61697432
-        .4byte 0x00004E77
-        .4byte 0x61697433
-        .4byte 0x004E706F
-        .4byte 0x696E7430
-        .4byte 0x004E706F
-        .4byte 0x696E7431
-        .4byte 0x004E706F
-        .4byte 0x696E7432
-        .4byte 0x004E706F
-        .4byte 0x696E7433
-        .4byte 0x00545F6E
-        .4byte 0x65775F6C
-        .4byte 0x00545F6E
-        .4byte 0x65775F72
-    .global lbl_80498030
-    lbl_80498030:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_8049803C
-    lbl_8049803C:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x305F3031
-        .4byte 0x00383339
-        .4byte 0x315F3031
-        .4byte 0x00383339
-        .4byte 0x325F3031
-        .4byte 0x00383339
-        .4byte 0x335F3031
-        .4byte 0x00383339
-        .4byte 0x355F3031
-        .4byte 0x00383339
-        .4byte 0x395F3031
-        .4byte 0x00383430
-        .4byte 0x305F3031
-        .4byte 0x006E6F5F
-        .4byte 0x64617461
-        .4byte 0x00383339
-        .4byte 0x365F3031
-        .4byte 0x00383339
-        .4byte 0x385F3031
-        .4byte 0x00383430
-        .4byte 0x315F3031
-        .4byte 0x00383431
-        .4byte 0x305F3031
-        .4byte 0x00383339
-        .4byte 0x375F3031
-        .4byte 0x00383430
-        .4byte 0x325F3031
-        .4byte 0x00383430
-        .4byte 0x335F3031
-        .4byte 0x00383431
-        .4byte 0x315F3031
-        .4byte 0x00383431
-        .4byte 0x325F3031
-        .4byte 0x00383431
-        .4byte 0x335F3031
-        .4byte 0x00383431
-        .4byte 0x345F3031
-        .4byte 0x006E6F5F
-        .4byte 0x64617461
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0050675F
-        .4byte 0x705F3031
-        .4byte 0x0050675F
-        .4byte 0x705F3032
-        .4byte 0x0050675F
-        .4byte 0x635F3031
-        .4byte 0x0050675F
-        .4byte 0x635F3032
-        .4byte 0x0050305F
-        .4byte 0x705F3031
-        .4byte 0x0050305F
-        .4byte 0x705F3032
-        .4byte 0x0050305F
-        .4byte 0x635F3031
-        .4byte 0x0050305F
-        .4byte 0x635F3032
-        .4byte 0x0050315F
-        .4byte 0x705F3031
-        .4byte 0x0050315F
-        .4byte 0x705F3032
-        .4byte 0x0050315F
-        .4byte 0x635F3031
-        .4byte 0x0050315F
-        .4byte 0x635F3032
-        .4byte 0x0050325F
-        .4byte 0x705F3031
-        .4byte 0x0050325F
-        .4byte 0x705F3032
-        .4byte 0x0050325F
-        .4byte 0x635F3031
-        .4byte 0x0050325F
-        .4byte 0x635F3032
-        .4byte 0x0050335F
-        .4byte 0x705F3031
-        .4byte 0x0050335F
-        .4byte 0x705F3032
-        .4byte 0x0050335F
-        .4byte 0x635F3031
-        .4byte 0x0050335F
-        .4byte 0x635F3032
-        .4byte 0x004E6361
-        .4byte 0x5F666C30
-        .4byte 0x004E6361
-        .4byte 0x5F666C31
-        .4byte 0x004E6361
-        .4byte 0x5F666C32
-        .4byte 0x004E6361
-        .4byte 0x5F666C33
-        .4byte 0x00005030
-        .4byte 0x5F737261
-        .4byte 0x0050315F
-        .4byte 0x73757261
-        .4byte 0x0050325F
-        .4byte 0x73757261
-        .4byte 0x00005033
-        .4byte 0x5F737261
-        .4byte 0x00383339
-        .4byte 0x305F3031
-        .4byte 0x00383339
-        .4byte 0x315F3031
-        .4byte 0x00383339
-        .4byte 0x325F3031
-        .4byte 0x00383339
-        .4byte 0x335F3031
-        .4byte 0x00383339
-        .4byte 0x355F3031
-        .4byte 0x00383339
-        .4byte 0x395F3031
-        .4byte 0x00383430
-        .4byte 0x305F3031
-        .4byte 0x006E6F5F
-        .4byte 0x64617461
-        .4byte 0x00383339
-        .4byte 0x365F3031
-        .4byte 0x00383339
-        .4byte 0x385F3031
-        .4byte 0x00383430
-        .4byte 0x315F3031
-        .4byte 0x00383431
-        .4byte 0x305F3031
-        .4byte 0x00383339
-        .4byte 0x375F3031
-        .4byte 0x00383430
-        .4byte 0x325F3031
-        .4byte 0x00383430
-        .4byte 0x335F3031
-        .4byte 0x00383431
-        .4byte 0x315F3031
-        .4byte 0x00383431
-        .4byte 0x325F3031
-        .4byte 0x00383431
-        .4byte 0x335F3031
-        .4byte 0x00383431
-        .4byte 0x345F3031
-        .4byte 0x006E6F5F
-        .4byte 0x64617461
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x0050675F
-        .4byte 0x705F3031
-        .4byte 0x0050675F
-        .4byte 0x705F3032
-        .4byte 0x0050675F
-        .4byte 0x635F3031
-        .4byte 0x0050675F
-        .4byte 0x635F3032
-        .4byte 0x0050305F
-        .4byte 0x705F3031
-        .4byte 0x0050305F
-        .4byte 0x705F3032
-        .4byte 0x0050305F
-        .4byte 0x635F3031
-        .4byte 0x0050305F
-        .4byte 0x635F3032
-        .4byte 0x0050315F
-        .4byte 0x705F3031
-        .4byte 0x0050315F
-        .4byte 0x705F3032
-        .4byte 0x0050315F
-        .4byte 0x635F3031
-        .4byte 0x0050315F
-        .4byte 0x635F3032
-        .4byte 0x0050325F
-        .4byte 0x705F3031
-        .4byte 0x0050325F
-        .4byte 0x705F3032
-        .4byte 0x0050325F
-        .4byte 0x635F3031
-        .4byte 0x0050325F
-        .4byte 0x635F3032
-        .4byte 0x0050335F
-        .4byte 0x705F3031
-        .4byte 0x0050335F
-        .4byte 0x705F3032
-        .4byte 0x0050335F
-        .4byte 0x635F3031
-        .4byte 0x0050335F
-        .4byte 0x635F3032
-    .global lbl_80498328
-    lbl_80498328:
-        .4byte 0x00004E77
-        .4byte 0x61697430
-        .4byte 0x00004E77
-        .4byte 0x61697431
-        .4byte 0x00004E77
-        .4byte 0x61697432
-        .4byte 0x00004E77
-        .4byte 0x61697433
-    .global lbl_80498348
-    lbl_80498348:
-        .4byte 0x41726744
-        .4byte 0x69725363
-        .4byte 0x616C6500
-        .4byte 0x41726753
-        .4byte 0x63616C65
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EA3A0
-    lbl_804EA3A0:
-        .4byte lbl_803F3D80
-        .4byte lbl_803F4084
-        .4byte lbl_803F40E8
-        .4byte lbl_803F4108
-        .4byte lbl_803F44A8
-        .4byte lbl_803F4554
-        .4byte lbl_803F4698
-        .4byte lbl_803F472C
-        .4byte lbl_803F47C0
-        .4byte lbl_803F4864
-        .4byte lbl_803F4908
-        .4byte lbl_803F4D90
-        .4byte lbl_803F503C
-        .4byte lbl_803F5098
-        .4byte lbl_803F4420
-    .global __vt__Q35efx2d8WorldMap10T2DRocketA
-    __vt__Q35efx2d8WorldMap10T2DRocketA:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q35efx2d8WorldMap19TSimple_ArgDirScaleFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TSimple1Fv
-        .4byte fade__Q25efx2d8TSimple1Fv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-    .global __vt__Q35efx2d8WorldMap11ArgDirScale
-    __vt__Q35efx2d8WorldMap11ArgDirScale:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q35efx2d8WorldMap11ArgDirScaleFv
-    .global __vt__Q35efx2d8WorldMap10T2DShstar1
-    __vt__Q35efx2d8WorldMap10T2DShstar1:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TForeverFv
-        .4byte fade__Q25efx2d8TForeverFv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q35efx2d8WorldMap10T2DShstar1Fv"
-        .4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
-        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte __dt__Q35efx2d8WorldMap10T2DShstar1Fv
-        .4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
-    .global __vt__Q35efx2d8WorldMap11T2DMapFlare
-    __vt__Q35efx2d8WorldMap11T2DMapFlare:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TForeverFv
-        .4byte fade__Q25efx2d8TForeverFv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv"
-        .4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
-        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte __dt__Q35efx2d8WorldMap11T2DMapFlareFv
-        .4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
-    .global __vt__Q35efx2d8WorldMap13T2DRocketGlow
-    __vt__Q35efx2d8WorldMap13T2DRocketGlow:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q25efx2d12TChasePosDirFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TForeverFv
-        .4byte fade__Q25efx2d8TForeverFv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv"
-        .4byte "@8@execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter"
-        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte __dt__Q35efx2d8WorldMap13T2DRocketGlowFv
-        .4byte execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter
-    .global __vt__Q32kh6Screen8WorldMap
-    __vt__Q32kh6Screen8WorldMap:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen8WorldMapFv
-        .4byte loadResource__Q32kh6Screen8WorldMapFv
-        .4byte init__Q32kh6Screen8WorldMapFRQ34Game8WorldMap7InitArg
-        .4byte update__Q32kh6Screen8WorldMapFRQ34Game8WorldMap9UpdateArg
-        .4byte draw__Q34Game8WorldMap4BaseFR8Graphics
-        .4byte draw1st__Q32kh6Screen8WorldMapFR8Graphics
-        .4byte draw2nd__Q32kh6Screen8WorldMapFR8Graphics
-        .4byte draw3rd__Q32kh6Screen8WorldMapFR8Graphics
-        .4byte draw4th__Q32kh6Screen8WorldMapFR8Graphics
-    .global __vt__Q34Game8WorldMap4Base
-    __vt__Q34Game8WorldMap4Base:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game8WorldMap4BaseFv
-        .4byte loadResource__Q34Game8WorldMap4BaseFv
-        .4byte init__Q34Game8WorldMap4BaseFRQ34Game8WorldMap7InitArg
-        .4byte update__Q34Game8WorldMap4BaseFRQ34Game8WorldMap9UpdateArg
-        .4byte draw__Q34Game8WorldMap4BaseFR8Graphics
-        .4byte draw1st__Q34Game8WorldMap4BaseFR8Graphics
-        .4byte draw2nd__Q34Game8WorldMap4BaseFR8Graphics
-        .4byte draw3rd__Q34Game8WorldMap4BaseFR8Graphics
-        .4byte draw4th__Q34Game8WorldMap4BaseFR8Graphics
-    .global __vt__Q32kh6Screen16khUtilColorAnmWM
-    __vt__Q32kh6Screen16khUtilColorAnmWM:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen16khUtilColorAnmWMFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q32kh6Screen14khUtilColorAnmFv
-        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte do_update__Q32kh6Screen16khUtilColorAnmWMFv
-    .global __vt__Q32kh6Screen16khUtilFadePaneWM
-    __vt__Q32kh6Screen16khUtilFadePaneWM:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen16khUtilFadePaneWMFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q32kh6Screen14khUtilFadePaneFv
-        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte fadein_finish__Q32kh6Screen14khUtilFadePaneFv
-        .4byte fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv
-    .global __vt__Q42kh6Screen14khUtilFadePane10khPaneNode
-    __vt__Q42kh6Screen14khUtilFadePane10khPaneNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv
-        .4byte 0
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msVal__Q32kh6Screen8WorldMap
-    msVal__Q32kh6Screen8WorldMap:
-        .skip 0x7C
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FEF0
-    lbl_8051FEF0:
-        .float 1.0
-    .global lbl_8051FEF4
-    lbl_8051FEF4:
-        .4byte 0x00000000
-    .global lbl_8051FEF8
-    lbl_8051FEF8:
-        .4byte 0xBF800000
-    .global lbl_8051FEFC
-    lbl_8051FEFC:
-        .4byte 0x6661696C
-        .4byte 0x65640000
-    .global lbl_8051FF04
-    lbl_8051FF04:
-        .float 0.1
-    .global lbl_8051FF08
-    lbl_8051FF08:
-        .float 0.7
-    .global lbl_8051FF0C
-    lbl_8051FF0C:
-        .float 0.3
-    .global lbl_8051FF10
-    lbl_8051FF10:
-        .4byte 0x447A0000
-    .global lbl_8051FF14
-    lbl_8051FF14:
-        .float 0.5
-    .global lbl_8051FF18
-    lbl_8051FF18:
-        .4byte 0x3FC00000
-    .global lbl_8051FF1C
-    lbl_8051FF1C:
-        .4byte 0xBDCCCCCD
-    .global lbl_8051FF20
-    lbl_8051FF20:
-        .4byte 0x42000000
-    .global lbl_8051FF24
-    lbl_8051FF24:
-        .4byte 0x40400000
-    .global lbl_8051FF28
-    lbl_8051FF28:
-        .4byte 0x40C90FDB
-    .global lbl_8051FF2C
-    lbl_8051FF2C:
-        .4byte 0x3F733333
-    .global lbl_8051FF30
-    lbl_8051FF30:
-        .4byte 0x3C23D70A
-    .global lbl_8051FF34
-    lbl_8051FF34:
-        .4byte 0x42652EE0
-    .global lbl_8051FF38
-    lbl_8051FF38:
-        .4byte 0x40000000
-    .global lbl_8051FF3C
-    lbl_8051FF3C:
-        .4byte 0x437F0000
-    .global lbl_8051FF40
-    lbl_8051FF40:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051FF48
-    lbl_8051FF48:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051FF50
-    lbl_8051FF50:
-        .4byte 0x3F7D70A4
-    .global lbl_8051FF54
-    lbl_8051FF54:
-        .4byte 0x40490FDB
-    .global lbl_8051FF58
-    lbl_8051FF58:
-        .4byte 0x3CA3D70A
-    .global lbl_8051FF5C
-    lbl_8051FF5C:
-        .4byte 0xBD4CCCCD
-    .global lbl_8051FF60
-    lbl_8051FF60:
-        .float 0.05
-    .global lbl_8051FF64
-    lbl_8051FF64:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051FF68
-    lbl_8051FF68:
-        .4byte 0x41480000
-    .global lbl_8051FF6C
-    lbl_8051FF6C:
-        .4byte 0x41380000
-    .global lbl_8051FF70
-    lbl_8051FF70:
-        .float 0.25
-    .global lbl_8051FF74
-    lbl_8051FF74:
-        .4byte 0x41A00000
-    .global lbl_8051FF78
-    lbl_8051FF78:
-        .4byte 0x42480000
-    .global lbl_8051FF7C
-    lbl_8051FF7C:
-        .4byte 0x458CA000
-    .global lbl_8051FF80
-    lbl_8051FF80:
-        .4byte 0x3A83126F
-    .global lbl_8051FF84
-    lbl_8051FF84:
-        .4byte 0x3F6B851F
-    .global lbl_8051FF88
-    lbl_8051FF88:
-        .4byte 0x44480000
-    .global lbl_8051FF8C
-    lbl_8051FF8C:
-        .4byte 0x3F7851EC
-    .global lbl_8051FF90
-    lbl_8051FF90:
-        .4byte 0x45BB8000
-    .global lbl_8051FF94
-    lbl_8051FF94:
-        .4byte 0x3F4CCCCD
-    .global lbl_8051FF98
-    lbl_8051FF98:
-        .4byte 0x3F666666
-    .global lbl_8051FF9C
-    lbl_8051FF9C:
-        .4byte 0x3F99999A
-    .global lbl_8051FFA0
-    lbl_8051FFA0:
-        .4byte 0xBC23D70A
-    .global lbl_8051FFA4
-    lbl_8051FFA4:
-        .4byte 0x3F6147AE
-*/
-
 namespace kh {
 
 namespace Screen {
@@ -755,8 +28,10 @@ const f32 cOpenMaxFrm[4] = { 300.0f, 600.0f, 900.0f, 1100.0f };
  * Address:	........
  * Size:	0000B8
  */
-void khUtilFadePaneWM::create(P2DScreen::Mgr*, u64, u8)
+void khUtilFadePaneWM::create(P2DScreen::Mgr* mgr, u64, u8)
 {
+	P2ASSERTLINE(60, mgr); // here for rodata
+
 	// UNUSED FUNCTION
 }
 
@@ -835,46 +110,11 @@ void khUtilColorAnmWM::effect_off()
 void khUtilColorAnmWM::do_update()
 {
 	JUtility::TColor col = mColor;
-	static_cast<J2DPictureEx*>(mPane)->setWhite(col);
+	static_cast<J2DTextBox*>(mPane)->setWhite(col);
 	if (mUpdateMode && !mFrame) {
 		mCounter1->startPuyoUp(1.0f);
-		mCounter2->startPuyoUp(2.0f);
+		mCounter2->startPuyoUp(1.0f);
 	}
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-addi     r4, r1, 8
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lwz      r0, 0x20(r3)
-stw      r0, 8(r1)
-lwz      r3, 0x18(r3)
-stw      r0, 0xc(r1)
-lwz      r12, 0(r3)
-lwz      r12, 0xa8(r12)
-mtctr    r12
-bctrl
-lbz      r0, 0x34(r31)
-cmplwi   r0, 0
-beq      lbl_803F1CE0
-lwz      r0, 0x30(r31)
-cmpwi    r0, 0
-bne      lbl_803F1CE0
-lwz      r3, 0x58(r31)
-lfs      f1, lbl_8051FEF0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, 0x5c(r31)
-lfs      f1, lbl_8051FEF0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-
-lbl_803F1CE0:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
 }
 
 /*
@@ -1113,6 +353,10 @@ void WorldMap::init(::Game::WorldMap::InitArg& arg)
 	SET_FLAG(mCourseJustOpenFlags, mCourseJustOpenFlags << 4);
 }
 
+// I swear theres a way to get this to generate automatically, something with tag pointer shit
+// clearly so because theres some nonsense at the top of loadResource that seems to be what generates it
+static const int someDumbUnusedArray[0x20] = { 0 };
+
 /*
  * --INFO--
  * Address:	803F2008
@@ -1122,7 +366,8 @@ void WorldMap::loadResource()
 {
 	JKRHeap* savedHeap = JKRHeap::sCurrentHeap;
 	mInitArg.mHeap->becomeCurrentHeap();
-	char path[64];
+	// said nonsense goes here (is "path" supposed to be in rodata somehow?)
+	char path[128];
 	og::newScreen::makeLanguageResName(path, "worldmap.szs");
 	LoadResource::Arg arg(path);
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
@@ -1158,12 +403,13 @@ void WorldMap::loadResource()
 	mKitaAnim5 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
 	mScreenKitagawa->setAnimation(mKitaAnim5);
 
-	const char* pathsPreDebt[3]  = { "worldmap_icon.blo", "worldmap_icon.bck", "worldmap_icon.btp" };
-	const char* pathsPostDebt[3] = { "worldmap_gicon.blo", "worldmap_gicon.bck", "worldmap_gicon.btp" };
+	const char* paths[3][2] = { "worldmap_icon.blo",  "worldmap_icon.bck",  "worldmap_icon.btp",
+		                        "worldmap_gicon.blo", "worldmap_gicon.bck", "worldmap_gicon.btp" };
+	const char** usePath;
 
-	const char** usePath = pathsPreDebt;
+	usePath = paths[0];
 	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
-		usePath = pathsPostDebt;
+		usePath = paths[1];
 	}
 
 	mScreenRocket = new P2DScreen::Mgr;
@@ -1209,7 +455,6 @@ void WorldMap::loadResource()
 
 	if (::Game::playData->hasBootContainer(0)) {
 		mOnyonArray[onyons].mOnyonPane = mScreenRocket->search('NBLUE');
-		onyons++;
 	}
 
 	for (int i = 1; i < mOnyonCount; i++) {
@@ -1260,9 +505,9 @@ void WorldMap::loadResource()
 	mScreenInfo->search('Nlwin')->hide();
 	mScreenInfo->search('Nrwin')->hide();
 	mColorAnim2 = new khUtilColorAnm(nullptr, 'dummy', 3, 100);
-	mColorAnim2->mColorList[0].set(255, 96, 80, 0);
-	mColorAnim2->mColorList[1].set(255, 160, 32, 255);
-	mColorAnim2->mColorList[2].set(255, 96, 80, 0);
+	mColorAnim2->setColor(JUtility::TColor(255, 96, 80, 0), 0);
+	mColorAnim2->setColor(JUtility::TColor(255, 160, 32, 255), 1);
+	mColorAnim2->setColor(JUtility::TColor(255, 96, 80, 0), 2);
 	mColorAnim2->mUpdateMode = true;
 	mScaleMgr                = new og::Screen::ScaleMgr;
 	mArrowBlink              = new og::Screen::ArrowAlphaBlink;
@@ -1277,15 +522,15 @@ void WorldMap::loadResource()
 	mEfxRocketGlow   = new efx2d::WorldMap::T2DRocketGlow(_D0, _D8);
 	mEfxRocketSparks->setGroup(3);
 	mEfxRocketGlow->setGroup(2);
-	mEfxRocketGlow->create(nullptr);
 	mEfxRocketSparks->create(nullptr);
+	mEfxRocketGlow->create(nullptr);
 
 	for (int i = 0; i < mOnyonCount; i++) {
 		mOnyonArray[i].initPtcl();
 	}
 
-	mEfxMapFlare = new efx2d::WorldMap::T2DMapFlare;
-	mEfxShstar1  = new efx2d::WorldMap::T2DShstar1;
+	mEfxMapFlare = new efx2d::WorldMap::T2DMapFlare(&mLight01Center);
+	mEfxShstar1  = new efx2d::WorldMap::T2DShstar1(&mStarCenter);
 	mEfxMapFlare->setGroup(2);
 	mEfxShstar1->setGroup(2);
 	mEfxMapFlare->create(nullptr);
@@ -1297,9 +542,10 @@ void WorldMap::loadResource()
 	if (!screen) {
 		fPane = nullptr;
 	} else {
-		fPane = new khUtilFadePaneWM();
-		P2ASSERTLINE(60, fPane);
+		fPane = new khUtilFadePaneWM;
+		P2ASSERTLINE(60, fPane); // line number indicates this is probably  khUtilFadePaneWM::create
 	}
+
 	fPane->add(screen->addCallBack(tag, fPane));
 	mCaveFadePane = fPane;
 	mCaveFadePane->add(mScreenInfo->search('Ncave1'));
@@ -1314,35 +560,37 @@ void WorldMap::loadResource()
 	u64 paneTags[25] = { 'PICT_045', 'Pg_p_01',  'Pg_p_02',  'Pg_c_01', 'Pg_c_02', 'Pcave_00', 'P0_p_01',  'P0_p_02', 'P0_c_01',
 		                 'P0_c_02',  'Pcave_01', 'P1_p_01',  'P1_p_02', 'P1_c_01', 'P1_c_02',  'Pcave_02', 'P2_p_01', 'P2_p_02',
 		                 'P2_c_01',  'P2_c_02',  'Pcave_03', 'P3_p_01', 'P3_p_02', 'P3_c_01',  'P3_c_02' };
-	og::Screen::CallBack_CounterRV* counter[10]
+	og::Screen::CallBack_CounterRV* counter[5][2]
 	    = { mGroundTreasureCounter,   mGroundTreasureMaxCounter, mCaveTreasureCounters[0], mCaveTreasureCounters2[0],
 		    mCaveTreasureCounters[1], mCaveTreasureCounters2[1], mCaveTreasureCounters[2], mCaveTreasureCounters2[2],
 		    mCaveTreasureCounters[3], mCaveTreasureCounters2[3] };
 	for (int i = 0; i < 4; i++) {
 		mColorAnims[i] = new khUtilColorAnmWM(mScreenInfo, paneTags[5 * i]);
-		mColorAnims[i]->mColorList[0].set(255, 96, 80, 0);
-		mColorAnims[i]->mColorList[1].set(255, 160, 32, 255);
-		mColorAnims[i]->mColorList[2].set(255, 96, 80, 0);
-		mColorAnims[i]->mDisabledColor.set(0, 173, 182, 255);
+		mColorAnims[i]->setColor(JUtility::TColor(255, 160, 64, 255), 0);
+		mColorAnims[i]->setColor(JUtility::TColor(255, 255, 96, 255), 1);
+		mColorAnims[i]->setColor(JUtility::TColor(255, 160, 64, 255), 2);
+		mColorAnims[i]->setColor(JUtility::TColor(0, 173, 182, 255), 3);
+		//	mColorAnims[i]->mDisabledColor.set(0, 173, 182, 255);
 
 		J2DPane* paneList[4] = { mScreenInfo->search(paneTags[i]), mScreenInfo->search(paneTags[i + 1]),
 			                     mScreenInfo->search(paneTags[i + 2]), mScreenInfo->search(paneTags[i + 3]) };
 		for (int j = 0; j < 4; j++) {
 			mColorAnims[i]->mPaneList[j] = paneList[j];
 			mColorAnims[i]->mEfx[j]      = new efx2d::T2DCountKira;
+			mColorAnims[i]->mEfx[j]->setGroup(4);
 		}
-		mColorAnims[i]->mCounter1 = counter[i];
-		mColorAnims[i]->mCounter2 = counter[i + 1];
+		mColorAnims[i]->mCounter1 = counter[i][0];
+		mColorAnims[i]->mCounter2 = counter[i][1];
 	}
 	savedHeap->becomeCurrentHeap();
 
-	if (mOpenCourses) {
-		for (int i = 0; i < mOpenCourses; i++) {
-			if (mCourseJustOpenFlags & 1 << i) {
-				mCameraZoomMinFrame = cOpenMinFrm[i];
-			}
+	for (int i = mOpenCourses - 1; i >= 0; i--) {
+		if (!(mCourseJustOpenFlags & 1 << i)) {
+			mCameraZoomMinFrame = cOpenMinFrm[i];
+			break;
 		}
 	}
+
 	mScreenRocket->search('NROCKET')->setOffset(1000.0f, 0.0f);
 	mScreenRocket->search('NRED')->setOffset(1000.0f, 0.0f);
 	mScreenRocket->search('NYELLOW')->setOffset(1000.0f, 0.0f);
@@ -1353,7 +601,7 @@ void WorldMap::loadResource()
 	}
 
 	for (int i = 0; i < 4; i++) {
-		if (i > mOpenCourses || mCourseJustOpenFlags & 1 << i) {
+		if (i >= mOpenCourses || mCourseJustOpenFlags & 1 << i) {
 			mScreenKitagawa->search(getSerialTagName('Npoint0', i))->hide();
 		}
 	}
@@ -3068,7 +2316,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	case WMAP_RocketMoving: {
 		f32 test = rocketMove(cWaitPane, true);
 		rocketUpdate(cWaitPane);
-		if (test > msVal._0C) {
+		if (test < msVal._0C) {
 			mRocketMoveCounter = 0;
 			mCurrentState      = WMAP_Idle;
 			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_5);
@@ -3087,15 +2335,14 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		mRocketMoveCounter++;
 		f32 x, y;
 		if (mRocketAngleMode == 1) {
-			// it looks like all these trig functions specifically arent inlined, so we dont include trig.h? idk how that works
-			x = cosf(0.1f);
+			x = pikmin2_cosf(0.1f);
 		} else {
-			x = cosf(-0.1f);
+			x = pikmin2_cosf(-0.1f);
 		}
 		if (mRocketAngleMode == 1) {
-			y = sinf(0.1f);
+			y = pikmin2_sinf(0.1f);
 		} else {
-			y = sinf(-0.1f);
+			y = pikmin2_sinf(-0.1f);
 		}
 		Vector2f temp  = mRocketAngle;
 		mRocketAngle.x = temp.x * x - temp.y * y;
@@ -3158,7 +2405,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_B) {
 			mCurrentState = WMAP_InputTarget;
 			mFlags &= ~3;
-			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_3);
+			mRocketMoveCounter = 0;
 		}
 		onyonMove();
 		break;
@@ -3166,30 +2413,29 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	case WMAP_RocketMoving3: {
 		f32 dist = rocketMove(cPointPane, true);
 		rocketUpdate(cPointPane);
-		if (dist > msVal._14) {
+		if (dist < msVal._14) {
 			mRocketMoveCounter = 0;
 			arg.mStatus        = 1;
 			finish();
-		} else {
-			if (mZukanFadeout < 255 - msVal._79) {
-				mZukanFadeout += msVal._79;
-			}
-			if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_B) {
-				mCurrentState = WMAP_InputTarget;
-				mFlags &= ~0x13;
-				mRocketMoveCounter = 0;
-			}
-			onyonMove();
+		} else if (mZukanFadeout < 255 - msVal._79) {
+			mZukanFadeout += msVal._79;
 		}
+		if (mInitArg.mController->mButton.mButtonDown & Controller::PRESS_B) {
+			mCurrentState = WMAP_InputTarget;
+			mFlags &= ~0x13;
+			mRocketMoveCounter = 0;
+		}
+		onyonMove();
+
 		break;
 	}
 	case WMAP_InputTarget: {
 		int map = getTarget();
 		// a new course was or wasn't selected
-		if (map < 0 || map > mOpenCourses || map == mCurrentCourseIndex) {
-			f32 x = getPaneCenterX(cWaitPane) - mRocketPosition.x;
+		if (map < 0 || map >= mOpenCourses || map == mCurrentCourseIndex) {
 			f32 y = getPaneCenterY(cWaitPane) - mRocketPosition.y;
-			if (x * x + y * y >= msVal._0C) {
+			f32 x = getPaneCenterX(cWaitPane) - mRocketPosition.x;
+			if (x * x + y * y < msVal._0C) {
 				postureControl(cWaitPane);
 				mCurrentState = WMAP_Idle;
 				PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_5);
@@ -3220,7 +2466,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		}
 		onyonMove();
 		mFlags |= 0x10;
-		mZukanFadeout -= msVal._79;
+		mZukanFadeout += msVal._79;
 		if (mZukanFadeout >= 255 - msVal._79) {
 			arg.mStatus = 4;
 			finish();
@@ -3235,9 +2481,9 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		}
 		onyonMove();
 		mFlags |= 0x10;
-		mZukanFadeout -= msVal._79;
+		mZukanFadeout += msVal._79;
 		if (mZukanFadeout >= 255 - msVal._79) {
-			arg.mStatus = 4;
+			arg.mStatus = 3;
 			finish();
 		}
 		break;
@@ -3276,7 +2522,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			break;
 		}
 		case 0: {
-			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_7);
+			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_2);
 			mCurrentState = 14;
 			mFlags &= ~0x10;
 			mRocketMoveCounter = 0;
@@ -3289,14 +2535,13 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		break;
 	}
 	case 10: {
-		f32 angle = mRocketAngle.x;
-		pikmin2_atan2f(angle, -mRocketAngle.y);
-		if (mRocketAngleMode != 1 || angle <= 0.0f) {
+		f32 angle = pikmin2_atan2f(mRocketAngle.x, -mRocketAngle.y);
+		if (mRocketAngleMode != 1 || angle > 0.0f) {
+			angle -= TAU;
+		} else {
 			if (mRocketAngleMode == 2 && angle > 0.0f) {
 				angle += TAU;
 			}
-		} else {
-			angle -= TAU;
 		}
 		f32 offs;
 		if (mRocketAngleMode == 1) {
@@ -3304,8 +2549,8 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		} else {
 			offs = -0.1f;
 		}
-		mRocketAngle.x = sinf(angle + offs);
-		mRocketAngle.y = cosf(angle + offs);
+		mRocketAngle.x = pikmin2_sinf(angle + offs);
+		mRocketAngle.y = pikmin2_cosf(angle + offs);
 		f32 dist       = mRocketAngle.x * mRocketAngle.x + mRocketAngle.y * mRocketAngle.y;
 		if (dist > __float_epsilon[0]) {
 			mRocketAngle = mRocketAngle * dist;
@@ -3313,35 +2558,33 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		mRocketPosition.x += msVal._04 * mRocketAngle.x * msVal._00;
 		mRocketPosition.y += msVal._04 * mRocketAngle.y * msVal._00;
 		f32 zero = 0.0f;
-		if (mRocketAngle.x * zero + mRocketAngle.y * -1.0f <= 0.95f) {
-			mFlags &= ~2;
-		} else if (!(mFlags & 1)) {
+		if (mRocketAngle.x * zero + mRocketAngle.y * -1.0f > 0.95f) {
 			mFlags |= 3;
 		} else if (!(mFlags & 2)) {
 			mCurrentState = WMAP_RocketMoving;
 			newMapOpen();
 			mFlags &= ~3;
 			if (mInitArg.mHasNewPiklopediaEntries) {
-				J2DPane* target = mScreenInfo->search('Tnew_l');
+				J2DPane* target = mScreenInfo->search('T_new_l');
 				target->show();
 				mScreenInfo->search('Nlwin')->show();
 
 				if (!mInitArg.mDoNewEntriesEfx) {
 					Vector2f efxPos2(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y);
-					efx2d::T2DChangesmoke efx;
 					efx2d::Arg arg(efxPos2);
+					efx2d::T2DChangesmoke efx;
 					efx.create(&arg);
 				}
 			}
 			if (mInitArg.mHasNewTreasureHoardEntries) {
-				J2DPane* target = mScreenInfo->search('Tnew_r');
+				J2DPane* target = mScreenInfo->search('T_new_r');
 				target->show();
 				mScreenInfo->search('Nrwin')->show();
 
 				if (!mInitArg.mDoNewEntriesEfx) {
 					Vector2f efxPos2(getPaneCenterX(target) + msVal._50[0].x, getPaneCenterY(target) + msVal._50[0].y);
-					efx2d::T2DChangesmoke efx;
 					efx2d::Arg arg(efxPos2);
+					efx2d::T2DChangesmoke efx;
 					efx.create(&arg);
 				}
 			}
@@ -3354,6 +2597,8 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_ZUKAN_NEW, 0);
 				}
 			}
+		} else {
+			mFlags &= ~2;
 		}
 		rocketUpdate(cWaitPane);
 		onyonMove();
@@ -3371,14 +2616,15 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			}
 			cPointPane = mScreenKitagawa->search(tagsPoint[mCurrentCourseIndex]);
 			mScreenKitagawa->search(tagsWait[mCurrentCourseIndex]);
-			mRocketPosition = Vector2f(getPaneCenterX(cPointPane), getPaneCenterY(cPointPane));
-			mRocketScale    = 0.01f;
+			mCaveFadePane->mFinish = true;
+			mRocketPosition        = Vector2f(getPaneCenterX(cPointPane), getPaneCenterY(cPointPane));
+			mRocketScale           = 0.01f;
 			paneRocket->setOffset(mRocketPosition.x, mRocketPosition.y);
-			paneRocket->setAngle(atan2(-mRocketAngle.x, -mRocketAngle.y));
+			paneRocket->setAngle(JMath::atanTable_.atan2_(-mRocketAngle.x, -mRocketAngle.y) * 57.295776f);
 			paneRocket->updateScale(mRocketScale);
 			for (int i = 0; i < mOnyonCount; i++) {
 				mOnyonArray[i].mOnyonPane->setOffset(mRocketPosition.x, mRocketPosition.y);
-				mOnyonArray[i].mOnyonPane->setAngle(atan2(-mRocketAngle.x, -mRocketAngle.y));
+				mOnyonArray[i].mOnyonPane->setAngle(JMath::atanTable_.atan2_(-mRocketAngle.x, -mRocketAngle.y) * 57.295776f);
 				mOnyonArray[i].mOnyonPane->updateScale(mRocketScale);
 			}
 			mRocketMoveCounter = 0;
@@ -3390,7 +2636,7 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	case 12: {
 		f32 test = rocketMove(cWaitPane, true);
 		rocketUpdate(cWaitPane);
-		if (test > msVal._0C) {
+		if (test < msVal._0C) {
 			mRocketMoveCounter = 0;
 			mCurrentState      = WMAP_Idle;
 			PSMGetWorldMapRocket()->stateChange(PSM::WorldMapRocket::PSMRocket_5);
@@ -3403,11 +2649,11 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 		for (int i = 0; i < mOnyonCount; i++) {
 			mOnyonArray[i].mOnyonPane->setOffset(1000.0f, 0.0f);
 		}
-		_98 += 1.0f;
+		_98 += msVal._48;
 		mAnimTimers[0] = mCameraZoomMinFrame * (1.0f - (_98 * _98 * _98 * _98));
 		if (mCameraZoomMinFrame - mAnimTimers[0] < 2.0f) {
 			mAnimTimers[0] = mCameraZoomMinFrame;
-			mCurrentState  = 12;
+			mCurrentState  = 11;
 		}
 		break;
 	}
@@ -3438,13 +2684,15 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	mColorAnim2->update();
 	mScaleMgr->calc();
 
-	u64 tags[5] = { 'T_new_l', 'T_new_r' };
 	for (int i = 0; i < 2; i++) {
-		J2DPicture* cPane = static_cast<J2DPicture*>(mScreenInfo->search(tags[i]));
-		cPane->setWhite(mColorAnim2->mColorList[i]);
+		u64 tags[5]            = { 'T_new_l', 'T_new_r' };
+		J2DTextBox* cPane      = static_cast<J2DTextBox*>(mScreenInfo->search(tags[i]));
+		JUtility::TColor color = mColorAnim2->mDisabledColor;
+		cPane->setAlpha(color.a);
+		cPane->setBlack(color);
 	}
 
-	f32 scale = mArrowBlink->calc() * 255.0f;
+	u8 scale = mArrowBlink->calc() * 255.0f;
 	mScreenInfo->search('Nlbtn')->setAlpha(scale);
 	mScreenInfo->search('Nrbtn')->setAlpha(scale);
 	::Screen::gGame2DMgr->update();
@@ -6728,16 +5976,15 @@ void WorldMap::changeInfo()
 	u64 tags1[4] = { '8395_01', '8399_01', '8400_01', 'no_data' }; // "Emergence Cave" 	"Subterranean Complex"	"Frontier Cavern"
 	u64 tags2[4]
 	    = { '8396_01', '8398_01', '8401_01', '8410_01' }; // "Hole of Beasts" 	"White Flower Garden"	"Bulblax Kingdom" 	"Snagret Hole"
-	u64 tags3[4] = { '8397_01', '8402_01', '8403_01',
-		             '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
-	u64 tags4[4] = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
-
-	u64 unusedtags[22]
-	    = { 0,         0,         'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02', 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01',
-		    'P1_p_02', 'P1_c_01', 'P1_c_02', 'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
-
-	u64 floTags[4]   = { 'Nca_fl0', 'Nca_fl1', 'Nca_fl2', 'Nca_fl3' };
+	u64 tags3[4]     = { '8397_01', '8402_01', '8403_01',
+                     '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
+	u64 tags4[4]     = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
+
+	u64 unusedtags[20] = { 'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02', 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01', 'P1_p_02',
+		                   'P1_c_01', 'P1_c_02', 'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
+
+	u64 floTags[4] = { 'Nca_fl0', 'Nca_fl1', 'Nca_fl2', 'Nca_fl3' };
 
 	mScreenInfo->search('Pc_name')->setMsgID(courseTags[mCurrentCourseIndex]);
 	mGroundTreasureCount = Game::playData->getGroundOtakaraNum(mCurrentCourseIndex);
@@ -6758,7 +6005,8 @@ void WorldMap::changeInfo()
 		anm->mUpdateMode = true;
 		for (int i = 0; i < 4; i++) {
 			if (i & 1 == i || max > 9) {
-				efx2d::Arg arg(getPaneCenterX(&anm->mPane[i]), getPaneCenterY(&anm->mPane[i]));
+				Vector2f pos(getPaneCenterX(&anm->mPane[i]), getPaneCenterY(&anm->mPane[i]));
+				efx2d::Arg arg(pos);
 				anm->mEfx[i]->create(&arg);
 			}
 		}
@@ -6787,7 +6035,7 @@ void WorldMap::changeInfo()
 		}
 		mGroundTreasureCounter->getMotherPane()->move(x, 0.0f);
 	}
-	u64 tagsSura[4] = { 'P0_sra', 'P1_sura', 'P2_sura', 'P3_sura' };
+	u64 tagsSura[4] = { 'P0_sra', 'P1_sura', 'P2_sura', 'P3_sra' };
 
 	for (int i = 0; i < 4; i++) {
 		khUtilColorAnmWM* anm = mColorAnims[i];
@@ -6820,7 +6068,7 @@ void WorldMap::changeInfo()
 					mCaveTreasureCounters2[i]->getMotherPane()->hide();
 					mScreenInfo->search(floTags[i])->hide();
 					f32 x = msVal._64;
-					if (mCaveOtaMax[i] > 9) {
+					if (mCaveOtaNum[i] >= 10) {
 						x += 12.5f;
 					}
 					mCaveTreasureCounters[i]->getMotherPane()->move(x, 0.0f);
@@ -6830,7 +6078,7 @@ void WorldMap::changeInfo()
 			} else {
 				if (!(Game::playData->mStoryFlags & Game::STORY_DebtPaid) && mCaveOtaMax[i] != mCaveOtaNum[i]) {
 					f32 x = msVal._64;
-					if (mCaveOtaMax[i] > 9) {
+					if (mCaveOtaMax[i] >= 10) {
 						x += 12.5f;
 					}
 					mCaveTreasureCounters[i]->getMotherPane()->move(x, 0.0f);
@@ -6845,7 +6093,8 @@ void WorldMap::changeInfo()
 					anm->mFrame           = 0;
 					anm->mUpdateMode      = true;
 					for (int i = 0; i < 4; i++) {
-						efx2d::Arg arg(getPaneCenterX(anm->mPane), getPaneCenterY(anm->mPane));
+						Vector2f pos(getPaneCenterX(anm->mPane), getPaneCenterY(anm->mPane));
+						efx2d::Arg arg(pos);
 						anm->mEfx[i]->create(&arg);
 					}
 					mScreenInfo->search(floTags[i])->show();
@@ -7588,15 +6837,15 @@ void WorldMap::effectFirstTime()
 		             '8411_01' }; // "Citadel of Spiders"	"Glutton's Kitchen"		"Shower Room"		"Submerged Castle"
 	u64 tags4[4] = { '8412_01', '8413_01', '8414_01', 'no_data' }; // "Cavern of Chaos" 	"Hole of Heroes"	 	"Dream Den"
 
-	u64 unusedtags[22]
-	    = { 0,         0,         'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02', 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01',
-		    'P1_p_02', 'P1_c_01', 'P1_c_02', 'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
+	u64* caveTags[4] = { tags1, tags2, tags3, tags4 }; // Note: this generates some 0s in the rodata, so its place is important
 
-	u64* caveTags[4] = { tags1, tags2, tags3, tags4 };
-	bool isIncPoko   = false;
-	bool isNewOta    = false;
-	bool isAllOta    = false;
-	bool isNewCave   = false;
+	u64 unusedtags[20] = { 'Pg_p_01', 'Pg_p_02', 'Pg_c_01', 'Pg_c_02', 'P0_p_01', 'P0_p_02', 'P0_c_01', 'P0_c_02', 'P1_p_01', 'P1_p_02',
+		                   'P1_c_01', 'P1_c_02', 'P2_p_01', 'P2_p_02', 'P2_c_01', 'P2_c_02', 'P3_p_01', 'P3_p_02', 'P3_c_01', 'P3_c_02' };
+
+	bool isIncPoko = false;
+	bool isNewOta  = false;
+	bool isAllOta  = false;
+	bool isNewCave = false;
 
 	int old0 = Game::playData->mPokoCount;
 	int old  = Game::playData->getMoney_Old();
@@ -7619,8 +6868,9 @@ void WorldMap::effectFirstTime()
 			    != Game::playData->isCaveFirstTime_Old(mCurrentCourseIndex, caveID)) {
 				Vector3f pos1 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(0);
 				Vector3f pos2 = mScreenInfo->search(getSerialTagName('Pcave_00', i))->getGlbVtx(3);
-				for (u32 i = 0; i < 5; i++) {
-					efx2d::Arg arg((pos1.y + pos2.y) * 0.5f, 0.25f * (pos1.z * 4 - i) * (pos2.z * 4 - i));
+				for (int j = 0; j < 5; j++) {
+					Vector2f pos((pos1.y + pos2.y) * 0.5f, 0.25f * (pos1.z * 4 - j) * (pos2.z * 4 - j));
+					efx2d::Arg arg(pos);
 					efx2d::T2DChangesmoke efx;
 					efx.create(&arg);
 				}

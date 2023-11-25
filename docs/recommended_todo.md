@@ -26,7 +26,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXLight.c">gx/GXLight.c</a> | 16180 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXPerf.c">gx/GXPerf.c</a> | 17608 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXMisc.c">gx/GXMisc.c</a> | 19172 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OdemuExi2/DebuggerDriver.c">OdemuExi2/DebuggerDriver.c</a> | 19371 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXFifo.c">gx/GXFifo.c</a> | 22004 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXFrameBuf.c">gx/GXFrameBuf.c</a> | 24532 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXAttr.c">gx/GXAttr.c</a> | 25896 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.c">TRK_MINNOW_DOLPHIN/msghndlr.c</a> | 29495 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXAttr.c">gx/GXAttr.c</a> | 25449 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msghndlr.c">TRK_MINNOW_DOLPHIN/msghndlr.c</a> | 29495 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTexture.c">gx/GXTexture.c</a> | 35803 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSFont.c">os/OSFont.c</a> | 35837 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/targimpl.c">TRK_MINNOW_DOLPHIN/targimpl.c</a> | 52648 |  |  |
 
@@ -140,8 +140,8 @@
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 62947 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 66479 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khDayEndResult.cpp">khDayEndResult.cpp</a> | 111576 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWorldMap.cpp">khWorldMap.cpp</a> | 220627 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khCaveResult.cpp">khCaveResult.cpp</a> | 62893 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalResult.cpp">khFinalResult.cpp</a> | 66479 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khDayEndResult.cpp">khDayEndResult.cpp</a> | 111624 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWorldMap.cpp">khWorldMap.cpp</a> | 199352 |
 
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |

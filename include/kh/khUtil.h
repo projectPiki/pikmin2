@@ -86,8 +86,8 @@ struct khUtilFadePaneWM : public khUtilFadePane {
 
 	// _00     = VTBL
 	// _00-_30 = khUtilFadePane
-	kh::Screen::WorldMap* mMapObj; // _34
-	bool mFinish;
+	kh::Screen::WorldMap* mMapObj; // _30
+	bool mFinish;                  // _34
 };
 
 struct khUtilColorAnm : public P2DScreen::CallBackNode {
@@ -98,6 +98,8 @@ struct khUtilColorAnm : public P2DScreen::CallBackNode {
 	virtual void do_update() { }  // _1C (weak)
 
 	inline JUtility::TColor& getColor(int id) const { return mColorList[id]; }
+
+	inline void setColor(JUtility::TColor color, int id) { mColorList[id] = color; }
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::Node

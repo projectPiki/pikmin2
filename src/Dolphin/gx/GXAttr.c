@@ -17,26 +17,18 @@ inline void __GXXfVtxSpecs(void)
 
 	// Both fields in one access
 	color = 32
-			- __cntlzw(
-				GX_BITGET(gx->vcdLo, GX_CP_VCD_LO_COLORSPECULAR_ST,
-							GX_CP_VCD_LO_COLORSPECULAR_SZ + GX_CP_VCD_LO_COLORDIFFUSED_SZ)
-			)
-			+ 1;
+	      - __cntlzw(GX_BITGET(gx->vcdLo, GX_CP_VCD_LO_COLORSPECULAR_ST, GX_CP_VCD_LO_COLORSPECULAR_SZ + GX_CP_VCD_LO_COLORDIFFUSED_SZ))
+	      + 1;
 	color >>= 1;
 
 	// All 16 assigned bits in VCD_Hi
-	texCount = 	32
-               	- __cntlzw(
-					GX_BITGET(gx->vcdHi, GX_CP_VCD_HI_TEX7COORD_ST,
-								sizeof(u16) * 8)
-				)
-			   	+ 1;
+	texCount = 32 - __cntlzw(GX_BITGET(gx->vcdHi, GX_CP_VCD_HI_TEX7COORD_ST, sizeof(u16) * 8)) + 1;
 	texCount <<= 3;
-	
+
 	norm <<= 2;
 
 	GX_XF_LOAD_REG_HDR(GX_XF_REG_INVERTEXSPEC);
-    WGPIPE.u32 = color | norm | (texCount & ~0xf);
+	WGPIPE.u32    = color | norm | (texCount & ~0xf);
 	gx->bpSentNot = TRUE;
 }
 
@@ -81,18 +73,18 @@ void GXSetVtxDesc(GXAttr attr, GXAttrType type)
 		break;
 	case GX_VA_NRM:
 		if (type != GX_NONE) {
-			gx->hasNrms  = TRUE;
-			gx->hasBiNrms  = FALSE;
-			gx->nrmType = type;
+			gx->hasNrms   = TRUE;
+			gx->hasBiNrms = FALSE;
+			gx->nrmType   = type;
 		} else {
-			gx->hasNrms  = FALSE;
+			gx->hasNrms = FALSE;
 		}
 		break;
 	case GX_VA_NBT:
 		if (type != GX_NONE) {
-			gx->hasBiNrms  = TRUE;
-			gx->hasNrms  = FALSE;
-			gx->nrmType = type;
+			gx->hasBiNrms = TRUE;
+			gx->hasNrms   = FALSE;
+			gx->nrmType   = type;
 		} else {
 			gx->hasBiNrms = FALSE;
 		}
@@ -298,8 +290,8 @@ void GXClearVtxDesc(void)
 {
 	gx->vcdLo = 0;
 	gx->vcdLo &= 0x600;
-	gx->vcdHi = 0;
-	gx->hasNrms = 0;
+	gx->vcdHi     = 0;
+	gx->hasNrms   = 0;
 	gx->hasBiNrms = 0;
 	LOAD_GX_FIELD(0x5ac, u32) |= 8;
 
@@ -390,15 +382,15 @@ void GXSetVtxAttrFmt(GXVtxFmt format, GXAttr attr, GXCompCnt count, GXCompType t
 	case 19:
 		GX_BITFIELD_SET(*vC, 17, 1, count);
 		GX_BITFIELD_SET(*vC, 14, 3, type);
-		GX_BITFIELD_SET(*vC,  9, 5, frac);
+		GX_BITFIELD_SET(*vC, 9, 5, frac);
 		break;
 	case 20:
 		GX_BITFIELD_SET(*vC, 8, 1, count);
 		GX_BITFIELD_SET(*vC, 5, 3, type);
-		GX_BITFIELD_SET(*vC,  0, 5, frac);
+		GX_BITFIELD_SET(*vC, 0, 5, frac);
 		break;
 	}
-	
+
 	gx->dirtyState |= 0x10;
 	gx->dirtyVAT |= (u8)(1 << (u8)format);
 
@@ -750,17 +742,15 @@ void GXSetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
 void __GXSetVAT(void)
 {
 	u8 i;
-    for (i = 0; i < 8; i++)
-	{
-		if (gx->dirtyVAT & (1 << (u8) i)) 
-		{
-            GX_CP_LOAD_REG(GX_CP_REG_VAT_GROUP0 | i, gx->vatA[i]);
-            GX_CP_LOAD_REG(GX_CP_REG_VAT_GROUP1 | i, gx->vatB[i]);
-            GX_CP_LOAD_REG(GX_CP_REG_VAT_GROUP2 | i, gx->vatC[i]);
+	for (i = 0; i < 8; i++) {
+		if (gx->dirtyVAT & (1 << (u8)i)) {
+			GX_CP_LOAD_REG(GX_CP_REG_VAT_GROUP0 | i, gx->vatA[i]);
+			GX_CP_LOAD_REG(GX_CP_REG_VAT_GROUP1 | i, gx->vatB[i]);
+			GX_CP_LOAD_REG(GX_CP_REG_VAT_GROUP2 | i, gx->vatC[i]);
 		}
-    }
+	}
 
-    gx->dirtyVAT = 0;
+	gx->dirtyVAT = 0;
 
 	/*
 	.loc_0x0:
@@ -839,33 +829,33 @@ void GXGetVtxAttrFmtv(GXVtxFmt format, GXVtxAttrFmtList* list)
  */
 void GXSetArray(GXAttr attr, void* basePtr, u8 stride)
 {
-    s32 idx;
+	s32 idx;
 	s32 newAttr;
 	s32 attrReg;
 
-	newAttr = attr; 
-    if (newAttr == GX_VA_NBT) {
-        newAttr = GX_VA_NRM;
-    }
+	newAttr = attr;
+	if (newAttr == GX_VA_NBT) {
+		newAttr = GX_VA_NRM;
+	}
 
-    attrReg = newAttr - GX_VA_POS;
+	attrReg = newAttr - GX_VA_POS;
 
 	GX_CP_LOAD_REG(GX_BP_REG_SETMODE0_TEX4 | attrReg,
-                   // Address -> offset?
-                   (u32)basePtr & ~0xC0000000);
+	               // Address -> offset?
+	               (u32)basePtr & ~0xC0000000);
 
-    idx = attrReg - 12;
-    if (idx >= 0 && idx < 4) {
-        gx->indexBase[idx] = (u32)basePtr & ~0xC0000000;
-    }
+	idx = attrReg - 12;
+	if (idx >= 0 && idx < 4) {
+		gx->indexBase[idx] = (u32)basePtr & ~0xC0000000;
+	}
 
 	GX_CP_LOAD_REG(GX_BP_REG_SETIMAGE2_TEX4 | attrReg, stride);
 
-    idx = attrReg - 12;
-    if (idx >= 0 && idx < 4) {
-        gx->indexStride[idx]= stride;
-    }
-	
+	idx = attrReg - 12;
+	if (idx >= 0 && idx < 4) {
+		gx->indexStride[idx] = stride;
+	}
+
 	/*
 	.loc_0x0:
 	  cmpwi     r3, 0x19

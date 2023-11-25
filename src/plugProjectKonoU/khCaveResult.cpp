@@ -405,8 +405,8 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	J2DPane* paneList[2] = { mScreenMain->search('Nsetp00'), mScreenMain->search('Nsetp01') };
 	J2DPane* pane2       = mScreenMain->search('N3DALL');
 
-	u64 nametags[2] = { 'Piname00', 'Piname01' };
 	u64 icontags[2] = { 'iPicon00', 'iPicon01' };
+	u64 nametags[2] = { 'Piname00', 'Piname01' };
 
 	gfx.mOrthoGraph.setPort();
 	pane1->show();
@@ -1681,17 +1681,16 @@ void ObjCaveResult::statusEffect()
  */
 void ObjCaveResult::updateAnimation()
 {
-	JGeometry::TVec3f vec1 = mScreenMain->search('Nmask')->getGlbVtx(0);
-	JGeometry::TVec3f vec2 = mScreenMain->search('Nmask')->getGlbVtx(3);
-	mScissorMin            = vec1.y;
-	mScissorMax            = vec2.y;
+	Vector3f vec1 = (mScreenMain->search('Nmask')->getGlbVtx(0));
+	Vector3f vec2 = (mScreenMain->search('Nmask')->getGlbVtx(3));
+	f32 yoffs     = vec1.y;
+	mScissorMin   = vec1.y + 0.5f;
+	mScissorMax   = vec2.y - yoffs;
 
-	mMainAnim->mCurrentFrame          = mAnimTimers[0];
-	mCompleteAnim->mCurrentFrame      = mAnimTimers[1];
-	mMainAnimColor->mCurrentFrame     = mAnimTimers[2];
-	mCompleteAnimColor->mCurrentFrame = mAnimTimers[3];
-	mAnimTexSRT->mCurrentFrame        = mAnimTimers[4];
-	mAnimTevReg->mCurrentFrame        = mAnimTimers[5];
+	mMainAnim->mCurrentFrame      = mAnimTimers[0];
+	mMainAnimColor->mCurrentFrame = mAnimTimers[2];
+	mAnimTexSRT->mCurrentFrame    = mAnimTimers[4];
+	mAnimTevReg->mCurrentFrame    = mAnimTimers[5];
 	mScreenMain->animation();
 
 	if (!isFlag(CAVERESFLAG_SaveOpen)) {
@@ -1724,19 +1723,23 @@ void ObjCaveResult::updateAnimation()
 		mCompleteAnimColor->mCurrentFrame = mAnimTimers[3];
 		mScreenComplete->animation();
 		if (mAnimTimers[1] >= 30.0f && !isFlag(CAVERESFLAG_MakeEfx)) {
-			u32 y = System::getRenderModeObj()->efbHeight;
-			u32 x = System::getRenderModeObj()->fbWidth;
-			efx2d::Arg arg2(x * 0.5f, y * 0.5f);
+			u16 y = System::getRenderModeObj()->efbHeight;
+			u16 x = System::getRenderModeObj()->fbWidth;
+			Vector2f pos(x * 0.5f, y * 0.5f);
+			efx2d::Arg arg2(pos);
 			mEfxComp->create(&arg2);
-			efx2d::Arg arg(getPaneCenterX(mScreenMain->search('NALL')) + msVal._04,
-			               getPaneCenterY(mScreenMain->search('NALL')) + msVal._08);
+
+			Vector2f pos2(getPaneCenterX(mScreenComplete->search('NALL')) + msVal._04,
+			              getPaneCenterY(mScreenComplete->search('NALL')) + msVal._08);
+			efx2d::Arg arg(pos2);
 			efx2d::T2DCavecomp efx;
 			efx.create(&arg);
+
 			setFlag(CAVERESFLAG_MakeEfx);
 		}
 		mAnimTimers[1] += msVal._00;
 		mAnimTimers[3] += msVal._00;
-		if (mCompleteAnim->mFrameLength - 1.0f >= mAnimTimers[1] || mCompleteAnimColor->mFrameLength - 1.0f >= mAnimTimers[3]) {
+		if (mAnimTimers[1] >= mCompleteAnim->getFrameMax() - 1.0f || mAnimTimers[3] >= mCompleteAnimColor->getFrameMax() - 1.0f) {
 			resetFlag(CAVERESFLAG_DrawComp);
 		}
 	}

@@ -43,16 +43,17 @@ struct TSimple_ArgDirScale : public TSimple1 {
  * @size{0x18}
  */
 struct T2DMapFlare : public TChasePos {
-	T2DMapFlare()
-	    : TChasePos(PID_WMap_LensFlare)
+	T2DMapFlare(Vector2f* pos)
+	    : TChasePos(PID_WMap_LensFlare, pos)
 	{
+		_04 = 1;
 	}
 
 	virtual ~T2DMapFlare() { } // _34 (weak)
 
 	// _00		= VTBL
 	// _00-_18	= TChasePos
-	u8 _18[4]; // _18
+	// u8 _18[4]; // _18
 };
 
 struct T2DNewmap : public TSimple2 {
@@ -126,6 +127,7 @@ struct T2DRocketGlow : public TChasePosDir {
 	T2DRocketGlow(Vector2f& pos, Vector2f& pos2)
 	    : TChasePosDir(PID_WMap_RocketGlow, pos, pos2)
 	{
+		_04 = 1;
 	}
 	// vtable 2
 	virtual ~T2DRocketGlow() { } // _34 (weak)
@@ -140,9 +142,10 @@ struct T2DRocketGlow : public TChasePosDir {
  * @size{0x18}
  */
 struct T2DShstar1 : public TChasePos {
-	T2DShstar1()
-	    : TChasePos(PID_WMap_ShootingStar1)
+	T2DShstar1(Vector2f* pos)
+	    : TChasePos(PID_WMap_ShootingStar1, pos)
 	{
+		_04 = 1;
 	}
 
 	virtual ~T2DShstar1() { } // _34 (weak)
