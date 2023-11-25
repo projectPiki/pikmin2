@@ -140,12 +140,12 @@ struct ShapeMapMgr : public MapMgr {
 
 	// _04     = VTBL
 	// _00-_24 = MapMgr
-	int mTexAnimCount;               // _24
-	Sys::MatTexAnimation* mTexAnims; // _28
-	Sys::MatTexAnimation* _2C;       // _2C
-	Sys::MatLoopAnimator* _30;       // _30
-	SysShape::Model* mMapModel;      // _34
-	MapCollision mMapCollision;      // _38
+	int mTexAnimCount;                   // _24
+	Sys::MatTexAnimation* mTexAnims;     // _28
+	int mAnimatorCount;                  // _2C
+	Sys::MatLoopAnimator* mMatAnimators; // _30
+	SysShape::Model* mMapModel;          // _34
+	MapCollision mMapCollision;          // _38
 };
 
 extern MapMgr* mapMgr;

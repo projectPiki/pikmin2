@@ -1,24 +1,21 @@
 #include "Game/MapMgr.h"
-#include "Dolphin/GX/GXEnum.h"
-#include "Dolphin/GX/GXGeometry.h"
-#include "Dolphin/mtx.h"
 #include "Game/gameStages.h"
 #include "Game/GameSystem.h"
 #include "Game/TDispTriangle.h"
-#include "Game/seaMgr.h"
-#include "Game/WaterBox.h"
-#include "MapCollision.h"
-#include "Sys/GridDivider.h"
-#include "Sys/TriIndexList.h"
 #include "Sys/TriangleTable.h"
-#include "System.h"
-#include "types.h"
+#include "JSystem/J3D/J3DModelLoader.h"
+#include "Game/GameLight.h"
+#include "Game/Farm.h"
+#include "Game/seaMgr.h"
 #include "nans.h"
 
 namespace Game {
 
-static const char unusedName[] = "mapMgr";
-static const int unusedArray[] = { 0, 0, 0 };
+static const char className[] = "mapMgr";
+static const int padding[]    = { 0, 0, 0 };
+
+MapMgr* mapMgr;
+bool MapMgr::traceMoveDebug;
 
 /*
  * --INFO--
@@ -105,10 +102,10 @@ void TDispTriangle::store(Sys::Triangle& triangle, Sys::VertexTable& vertexTable
 	mVertices[0] = vertexTable.mObjects[triangle.mVertices.x];
 	mVertices[1] = vertexTable.mObjects[triangle.mVertices.y];
 	mVertices[2] = vertexTable.mObjects[triangle.mVertices.z];
-	_28.clear();
-	_28.typeView |= 1;
+	mFlags.clear();
+	mFlags.typeView |= 1;
 	_2C = p3;
-	PSMTXIdentity(_30.mMatrix.mtxView);
+	PSMTXIdentity(mMatrix.mMatrix.mtxView);
 }
 
 /*
@@ -122,10 +119,10 @@ void TDispTriangle::store(Matrixf& mtx, Sys::Triangle& tri, Sys::VertexTable& ve
 	mVertices[0] = mtx.mtxMult(vertTable.mObjects[tri.mVertices.x]);
 	mVertices[1] = mtx.mtxMult(vertTable.mObjects[tri.mVertices.y]);
 	mVertices[2] = mtx.mtxMult(vertTable.mObjects[tri.mVertices.z]);
-	_28.clear();
-	_28.typeView |= 1;
+	mFlags.clear();
+	mFlags.typeView |= 1;
 	_2C = p4;
-	PSMTXCopy(mtx.mMatrix.mtxView, _30.mMatrix.mtxView);
+	PSMTXCopy(mtx.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
 }
 
 /*
@@ -145,7 +142,7 @@ void TDispTriangle::draw(Graphics&)
  */
 MapMgr::MapMgr()
 {
-	mSeaMgr     = new SeaMgr();
+	mSeaMgr     = new SeaMgr;
 	mRouteMgr   = nullptr;
 	mCourseInfo = nullptr;
 }
@@ -210,6 +207,7 @@ f32 MapMgr::getBestAngle(Vector3f& vec, f32 p2, f32 p3)
 		checkBeamCollision(beamArg);
 		angles[i] = beamArg._24;
 	}
+	return angles[0] * 0.39269909f;
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -689,8 +687,9 @@ lbl_80162DC0:
  * Address:	80162E44
  * Size:	0002A4
  */
-void MapMgr::checkBeamCollision(Game::MapMgr::BeamCollisionArg&)
+void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 {
+	arg._24 = 9.9999998E+10;
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -893,8 +892,164 @@ lbl_801630BC:
  * Address:	801630E8
  * Size:	000804
  */
-void ShapeMapMgr::load(Game::ShapeMapMgr::LoadArg&)
+void ShapeMapMgr::load(LoadArg& arg)
 {
+	sys->heapStatusStart("loadArg", nullptr);
+
+	sys->heapStatusStart("map arc", nullptr);
+
+	char path[512];
+	sprintf(path, "%s/arc.szs", arg.mFolder);
+	JKRArchive* arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	if (!arc) {
+		for (int i = 0; i < 512; i++) {
+			//	path[i] = 0; some wack way of clearing this
+		}
+		sprintf(path, "%s/arc.arc", arg.mFolder);
+		arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	}
+	P2ASSERTLINE(720, arc);
+	sys->heapStatusEnd("map arc");
+
+	sys->heapStatusStart("map model", nullptr);
+	void* file = JKRFileLoader::getGlbResource("model.bmd", nullptr);
+	P2ASSERTBOOLLINE(729, file && arg.mFolder);
+	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x20040000);
+	model->newSharedDisplayList(0x40000);
+	model->makeSharedDL();
+	mMapModel = new SysShape::Model(model, 0x20000, 2);
+	mMapModel->getJ3DModel()->newDifferedDisplayList(0x200);
+	mMapModel->getJ3DModel()->calc();
+	mMapModel->getJ3DModel()->calcMaterial();
+	mMapModel->getJ3DModel()->makeDL();
+	mMapModel->getJ3DModel()->lock();
+	sys->heapStatusEnd("map model");
+
+	Farm::farmMgr = new Farm::FarmMgr(2);
+	char farmPath[512];
+	for (int i = 0; i < 10; i++) {
+		sprintf(farmPath, "farm_%d.bmd", i + 1);
+		void* file = JKRFileLoader::getGlbResource(farmPath, nullptr);
+		if (!file)
+			break;
+		Farm::farmMgr->addFarmBmd(file);
+	}
+
+	mMapModel->enableMaterialAnim(0);
+	mTexAnimCount  = 0;
+	mAnimatorCount = 0;
+
+	// You know, casual 100 .btk files
+	char btkPath[256];
+	for (int i = 0; i < 100; i++) {
+		sprintf(btkPath, "texanm_%d.btk", i + 1);
+		void* file = JKRFileLoader::getGlbResource(btkPath, nullptr);
+		if (!file)
+			break;
+		mTexAnimCount++;
+	}
+
+	if (mTexAnimCount > 0) {
+		mAnimatorCount = mTexAnimCount;
+		mTexAnims      = new Sys::MatTexAnimation[mTexAnimCount];
+		mMatAnimators  = new Sys::MatLoopAnimator[mAnimatorCount];
+		for (int i = 0; i < mTexAnimCount; i++) {
+			char btkPath[256];
+			sprintf(btkPath, "texanm_%d.btk", i + 1);
+			void* file = JKRFileLoader::getGlbResource(btkPath, nullptr);
+			mTexAnims[i].attachResource(file, mMapModel->getJ3DModel()->getModelData());
+			mMatAnimators[i].start(&mTexAnims[i]);
+		}
+	}
+	mMapModel->getJ3DModel()->calc();
+
+	// Load Lighting data
+	char lightPath[512];
+	sprintf(lightPath, "%s/light.ini", arg.mAbeFolder);
+	file = JKRDvdToMainRam(lightPath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	if (file) {
+		RamStream stream(file, -1);
+		stream.resetPosition(true, 1);
+		if (gameSystem) {
+			gameSystem->getLightMgr()->loadParm(stream);
+		}
+		delete[] file;
+	}
+
+	char textsPath[512];
+	sprintf(textsPath, "%s/texts.szs", arg.mFolder);
+	JKRArchive* texts = JKRArchive::mount(textsPath, JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Tail);
+	if (texts) {
+
+		void* file = JKRFileLoader::getGlbResource("grid.bin", texts);
+		P2ASSERTLINE(887, file);
+		sys->heapStatusStart("map collision", nullptr);
+		RamStream stream(file, -1);
+		mMapCollision.read(stream);
+		sys->heapStatusEnd("map collision");
+
+		file = JKRFileLoader::getGlbResource("waterbox.txt", texts);
+		if (file) {
+			sys->heapStatusStart("waterbox", nullptr);
+			RamStream stream(file, -1);
+			stream.resetPosition(true, 1);
+			mSeaMgr->read(stream);
+			sys->heapStatusEnd("waterbox");
+		}
+
+		file = JKRFileLoader::getGlbResource("mapcode.bin", texts);
+		if (file) {
+			MapCode::Mgr* mgr = new MapCode::Mgr;
+			RamStream stream(file, -1);
+			mgr->read(stream);
+			mgr->attachCodes(mMapCollision.mDivider->mTriangleTable);
+		}
+		texts->unmount();
+	} else {
+		file = JKRDvdToMainRam(arg.mCollisionPath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+		sys->heapStatusStart("map collision", nullptr);
+		RamStream stream(file, -1);
+		mMapCollision.read(stream);
+		sys->heapStatusEnd("map collision");
+		delete[] file;
+
+		if (arg.mWaterboxPath) {
+			void* file
+			    = JKRDvdToMainRam(arg.mWaterboxPath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+			sys->heapStatusStart("waterbox", nullptr);
+			RamStream stream(file, -1);
+			stream.resetPosition(true, 1);
+			mSeaMgr->read(stream);
+			sys->heapStatusEnd("waterbox");
+			delete[] file;
+		}
+
+		if (arg.mMapcodePath) {
+			void* file
+			    = JKRDvdToMainRam(arg.mMapcodePath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+			MapCode::Mgr* mgr = new MapCode::Mgr;
+			RamStream stream(file, -1);
+			mgr->read(stream);
+			mgr->attachCodes(mMapCollision.mDivider->mTriangleTable);
+			delete[] file;
+		}
+	}
+
+	if (arg.mRoutePath) {
+		void* file = JKRDvdToMainRam(arg.mRoutePath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+		sys->heapStatusStart("routeInfo", nullptr);
+		RamStream stream(file, -1);
+		stream.resetPosition(true, 1);
+		if (!mRouteMgr) {
+			mRouteMgr = new GameRouteMgr;
+		}
+		mRouteMgr->read(stream);
+		sys->heapStatusEnd("routeInfo");
+		delete[] file;
+	}
+
+	sys->heapStatusEnd("mapMgr");
+
 	/*
 	stwu     r1, -0x2b30(r1)
 	mflr     r0
@@ -1487,33 +1642,6 @@ lbl_801638CC:
 }
 
 /*
- * @generated{__ct__Q23Sys15MatLoopAnimatorFv}
- * --INFO--
- * Address:	801638EC
- * Size:	00003C
- */
-// MatLoopAnimator::MatLoopAnimator()
-// {
-// 	/*
-// stwu     r1, -0x10(r1)
-// mflr     r0
-// stw      r0, 0x14(r1)
-// stw      r31, 0xc(r1)
-// mr       r31, r3
-// bl       __ct__Q23Sys15MatBaseAnimatorFv
-// lis      r4, __vt__Q23Sys15MatLoopAnimator@ha
-// mr       r3, r31
-// addi     r0, r4, __vt__Q23Sys15MatLoopAnimator@l
-// stw      r0, 0(r31)
-// lwz      r31, 0xc(r1)
-// lwz      r0, 0x14(r1)
-// mtlr     r0
-// addi     r1, r1, 0x10
-// blr
-// 	*/
-// }
-
-/*
  * --INFO--
  * Address:	80163928
  * Size:	000034
@@ -1531,7 +1659,7 @@ void ShapeMapMgr::do_update()
 		return;
 	}
 	for (int i = 0; i < mTexAnimCount; i++) {
-		_30[i].animate(30.0f);
+		mMatAnimators[i].animate(30.0f);
 	}
 	mMapModel->getJ3DModel()->calcMaterial();
 	mMapModel->getJ3DModel()->diff();
@@ -1619,7 +1747,7 @@ f32 ShapeMapMgr::getMinY(Vector3f& pos)
  * Address:	80163BFC
  * Size:	00002C
  */
-void ShapeMapMgr::getCurrTri(Game::CurrTriInfo& info) { mMapCollision.getCurrTri(info); }
+void ShapeMapMgr::getCurrTri(CurrTriInfo& info) { mMapCollision.getCurrTri(info); }
 
 /*
  * --INFO--
@@ -1844,42 +1972,11 @@ lbl_80163F7C:
  * Address:	80163FE0
  * Size:	000080
  */
-void ShapeMapMgr::getBoundBox2d(BoundBox2d&)
+void ShapeMapMgr::getBoundBox2d(BoundBox2d& bounds)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f1, lbl_805188CC@sda21(r2)
-	stw      r0, 0x34(r1)
-	lfs      f0, lbl_805188D0@sda21(r2)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	addi     r4, r1, 8
-	stfs     f1, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 0x50(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x10(r1)
-	lfs      f0, 8(r1)
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	lfs      f1, 0x1c(r1)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 8(r31)
-	stfs     f1, 0xc(r31)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	BoundBox calc;
+	mMapCollision.mDivider->getBoundBox(calc);
+	bounds.fromBoundBox(calc);
 }
 
 /*
@@ -1887,45 +1984,10 @@ void ShapeMapMgr::getBoundBox2d(BoundBox2d&)
  * Address:	80164060
  * Size:	000090
  */
-void ShapeMapMgr::getBoundBox(BoundBox&)
+void ShapeMapMgr::getBoundBox(BoundBox& bounds)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f1, lbl_805188CC@sda21(r2)
-	stw      r0, 0x34(r1)
-	lfs      f0, lbl_805188D0@sda21(r2)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	addi     r4, r1, 8
-	stfs     f1, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 0x50(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	stfs     f0, 0(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 8(r31)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0xc(r31)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x10(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x14(r31)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	BoundBox calc;
+	mMapCollision.mDivider->getBoundBox(calc);
+	bounds = calc;
 }
 } // namespace Game

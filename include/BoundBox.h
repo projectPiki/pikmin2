@@ -67,6 +67,12 @@ struct BoundBox2d {
 		mMax.y = maxY;
 	}
 
+	inline void fromBoundBox(BoundBox& in)
+	{
+		mMin = Vector2f(in.mMin.x, in.mMin.z);
+		mMax = Vector2f(in.mMax.x, in.mMax.z);
+	}
+
 	Vector2f mMin; // _00
 	Vector2f mMax; // _08
 };

@@ -59,4 +59,10 @@ inline void* JKRDvdToMainRam(s32 entryNum, u8* dst, JKRExpandSwitch expandSwitch
 	return JKRDvdRipper::loadToMainRAM(entryNum, dst, expandSwitch, fileSize, heap, allocDirection, startOffset, pCompression, pSize);
 }
 
+inline void* JKRDvdToMainRam(char* path, u8* dst, JKRExpandSwitch expandSwitch, u32 fileSize, JKRHeap* heap,
+                             JKRDvdRipper::EAllocDirection allocDirection, u32 startOffset, int* pCompression, u32* pSize)
+{
+	return JKRDvdRipper::loadToMainRAM(path, dst, expandSwitch, fileSize, heap, allocDirection, startOffset, pCompression, pSize);
+}
+
 #endif
