@@ -56,6 +56,16 @@ char* OSGetFontTexel(char* string, void* image, s32 pos, s32 stride, s32* width)
 //////////////////////////////////
 
 ////////// FONT DEFINES //////////
+typedef enum {
+	OS_FONT_ENCODE_ANSI,  // 0
+	OS_FONT_ENCODE_SJIS,  // 1
+	OS_FONT_ENCODE_2,     // 2
+	OS_FONT_ENCODE_UTF8,  // 3
+	OS_FONT_ENCODE_UTF16, // 4
+	OS_FONT_ENCODE_UTF32, // 5
+	OS_FONT_ENCODE_MAX,   // 6
+} OSFontEncode;
+
 #define OS_FONT_ENCODE_NULL -1
 #define OS_FONT_ENCODE_ANSI 0
 #define OS_FONT_ENCODE_SJIS 1

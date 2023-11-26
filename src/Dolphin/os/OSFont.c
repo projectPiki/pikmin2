@@ -1,6 +1,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/vi.h"
 #include "Dolphin/hw_regs.h"
+#include "Dolphin/gx.h"
 
 // outside functions
 BOOL __OSReadROM(void* buffer, s32 length, s32 offset);
@@ -164,8 +165,9 @@ static u16 ZenkakuToCode[]
  * Address:	........
  * Size:	000058
  */
-BOOL IsSjisLeadByte(u8 letter)
+static BOOL IsSjisLeadByte(u8 letter)
 {
+	return (0x81 <= letter && letter <= 0x9F) || (0xE0 <= letter && letter <= 0xFC);
 	// UNUSED FUNCTION
 }
 
@@ -174,7 +176,7 @@ BOOL IsSjisLeadByte(u8 letter)
  * Address:	........
  * Size:	000040
  */
-BOOL IsSjisTrailByte(u8 letter) { return (letter >= 0x40 && letter <= 0xFC && letter != 0x7F); }
+static BOOL IsSjisTrailByte(u8 letter) { return (letter >= 0x40 && letter <= 0xFC && letter != 0x7F); }
 
 /*
  * --INFO--
@@ -237,122 +239,65 @@ static int GetFontCode(u16 code)
  * Address:	800EDF34
  * Size:	000174
  */
-static void Decode(u8* in, u8* out)
+static void Decode(u8* src, u8* dst)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  addi      r6, r3, 0x10
-	  li        r10, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  lwz       r31, 0x4(r3)
-	  lwz       r11, 0x8(r3)
-	  lwz       r12, 0xC(r3)
+	int j;
+	int linkOfs;
+	int chunkPos;
+	int i;
+	int maskTblPos;
+	int linkTblOfs;
+	int chunksOfs;
+	int count;
+	int expandSize;
+	u32 maskBits;
+	u32 mask;
 
-	.loc_0x28:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x3C
-	  lwz       r29, 0x0(r6)
-	  li        r30, 0x20
-	  addi      r6, r6, 0x4
+	expandSize = *(int*)(src + 0x4);
+	linkTblOfs = *(int*)(src + 0x8);
+	chunksOfs  = *(int*)(src + 0xC);
 
-	.loc_0x3C:
-	  rlwinm.   r0,r29,0,0,0
-	  beq-      .loc_0x60
-	  mr        r0, r12
-	  lbzx      r5, r3, r0
-	  mr        r0, r10
-	  addi      r10, r10, 0x1
-	  stbx      r5, r4, r0
-	  addi      r12, r12, 0x1
-	  b         .loc_0x150
+	i          = 0;
+	maskBits   = 0;
+	maskTblPos = 16;
 
-	.loc_0x60:
-	  add       r7, r3, r11
-	  lbz       r5, 0x0(r7)
-	  addi      r11, r11, 0x2
-	  lbz       r0, 0x1(r7)
-	  rlwimi    r0,r5,8,16,23
-	  srawi.    r5, r0, 0xC
-	  rlwinm    r0,r0,0,20,31
-	  sub       r9, r10, r0
-	  bne-      .loc_0x98
-	  mr        r0, r12
-	  lbzx      r5, r3, r0
-	  addi      r12, r12, 0x1
-	  addi      r0, r5, 0x12
-	  b         .loc_0x9C
+	do {
+		// Get next mask
+		if (maskBits == 0) {
+			mask = *(u32*)(src + maskTblPos);
+			maskTblPos += sizeof(u32);
+			maskBits = sizeof(u32) * 8;
+		}
 
-	.loc_0x98:
-	  addi      r0, r5, 0x2
+		// Non-linked chunk
+		if (mask & 0x80000000) {
+			dst[i++] = src[chunksOfs++];
+		}
+		// Linked chunk
+		else {
+			// Read offset from link table
+			linkOfs = src[linkTblOfs] << 8 | src[linkTblOfs + 1];
+			linkTblOfs += sizeof(u16);
 
-	.loc_0x9C:
-	  cmpwi     r0, 0
-	  mr        r5, r0
-	  add       r7, r4, r10
-	  ble-      .loc_0x150
-	  rlwinm.   r0,r5,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x130
+			// Apply offset
+			chunkPos = i - (linkOfs & 0x0FFF);
+			count    = linkOfs >> 12;
+			if (count == 0) {
+				count = src[chunksOfs++] + 0x12;
+			} else {
+				count += 2;
+			}
 
-	.loc_0xB8:
-	  subi      r8, r9, 0x1
-	  lbzx      r0, r4, r8
-	  addi      r8, r9, 0
-	  addi      r10, r10, 0x8
-	  stb       r0, 0x0(r7)
-	  lbzx      r0, r4, r8
-	  addi      r8, r9, 0x1
-	  stb       r0, 0x1(r7)
-	  lbzx      r0, r4, r8
-	  addi      r8, r9, 0x2
-	  stb       r0, 0x2(r7)
-	  lbzx      r0, r4, r8
-	  addi      r8, r9, 0x3
-	  stb       r0, 0x3(r7)
-	  lbzx      r0, r4, r8
-	  addi      r8, r9, 0x4
-	  stb       r0, 0x4(r7)
-	  lbzx      r0, r4, r8
-	  addi      r8, r9, 0x5
-	  stb       r0, 0x5(r7)
-	  lbzx      r0, r4, r8
-	  addi      r8, r9, 0x6
-	  addi      r9, r9, 0x8
-	  stb       r0, 0x6(r7)
-	  lbzx      r0, r4, r8
-	  stb       r0, 0x7(r7)
-	  addi      r7, r7, 0x8
-	  bdnz+     .loc_0xB8
-	  andi.     r5, r5, 0x7
-	  beq-      .loc_0x150
+			// Copy chunk
+			for (j = 0; j < count; j++, i++, chunkPos++) {
+				dst[i] = dst[chunkPos - 1];
+			}
+		}
 
-	.loc_0x130:
-	  mtctr     r5
-
-	.loc_0x134:
-	  subi      r8, r9, 0x1
-	  lbzx      r0, r4, r8
-	  addi      r10, r10, 0x1
-	  addi      r9, r9, 0x1
-	  stb       r0, 0x0(r7)
-	  addi      r7, r7, 0x1
-	  bdnz+     .loc_0x134
-
-	.loc_0x150:
-	  cmpw      r10, r31
-	  rlwinm    r29,r29,1,0,30
-	  subi      r30, r30, 0x1
-	  blt+      .loc_0x28
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+		// Prepare next mask bit
+		mask <<= 1;
+		maskBits--;
+	} while (i < expandSize);
 }
 
 /*
@@ -360,9 +305,13 @@ static void Decode(u8* in, u8* out)
  * Address:	........
  * Size:	000034
  */
-u32 GetFontSize(u8* in)
+static u32 GetFontSize(u8* in)
 {
-	// UNUSED FUNCTION
+	if (in[0] == 'Y' && in[1] == 'a' && in[2] == 'y') {
+		return *(u32*)(in + 0x4);
+	}
+
+	return 0;
 }
 
 /*
@@ -372,61 +321,25 @@ u32 GetFontSize(u8* in)
  */
 u16 OSGetFontEncode(void)
 {
-	static u16 fontEncode = OS_FONT_ENCODE_NULL;
-	if (fontEncode <= 1) { // use r3 dangit
-		return;
-	} else {
-		switch (__OSTVMode) {
-		case VI_NTSC:
-			fontEncode = (__VIRegs[VI_DTV_STAT] & 2) ? OS_FONT_ENCODE_SJIS : OS_FONT_ENCODE_ANSI;
-			break;
+	static u16 fontEncode = 0xFFFF;
+	if (fontEncode <= 1) {
+		return fontEncode;
+	}
+	switch (__OSTVMode) {
+	case VI_NTSC:
+		fontEncode = (__VIRegs[VI_DTV_STAT] & 2) ? OS_FONT_ENCODE_SJIS : OS_FONT_ENCODE_ANSI;
+		break;
 
-		case VI_PAL:
-		case VI_MPAL:
-		case VI_DEBUG:
-		case VI_DEBUG_PAL:
-		case VI_EURGB60:
-		default:
-			fontEncode = OS_FONT_ENCODE_ANSI;
-		}
+	case VI_PAL:
+	case VI_MPAL:
+	case VI_DEBUG:
+	case VI_DEBUG_PAL:
+	case VI_EURGB60:
+	default:
+		fontEncode = OS_FONT_ENCODE_ANSI;
 	}
 
 	return fontEncode;
-	/*
-	.loc_0x0:
-	  lhz       r3, -0x7C90(r13)
-	  cmplwi    r3, 0x1
-	  blelr-
-	  lis       r3, 0x8000
-	  lwz       r0, 0xCC(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x24
-	  blt-      .loc_0x48
-	  b         .loc_0x48
-
-	.loc_0x24:
-	  lis       r3, 0xCC00
-	  lhz       r0, 0x206E(r3)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0x3C
-	  li        r0, 0x1
-	  b         .loc_0x40
-
-	.loc_0x3C:
-	  li        r0, 0
-
-	.loc_0x40:
-	  sth       r0, -0x7C90(r13)
-	  b         .loc_0x50
-
-	.loc_0x48:
-	  li        r0, 0
-	  sth       r0, -0x7C90(r13)
-
-	.loc_0x50:
-	  lhz       r3, -0x7C90(r13)
-	  blr
-	*/
 }
 
 /*
@@ -726,263 +639,26 @@ u32 OSLoadFont(void* fontInfo, void* temp)
  * Address:	800EE4C0
  * Size:	0003B0
  */
-static void ExpandFontSheet(OSFontHeader* fontInfo, u8* source, u8* dest)
+static void ExpandFontSheet(u8* source, u8* dest)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  lwz       r6, -0x7090(r13)
-	  lhz       r0, 0x18(r6)
-	  addi      r5, r6, 0x2C
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1D8
-	  lwz       r0, 0x28(r6)
-	  srawi     r6, r0, 0x1
-	  addze     r6, r6
-	  subi      r0, r6, 0x1
-	  mr.       r10, r0
-	  rlwinm    r0,r0,1,0,30
-	  add       r8, r4, r0
-	  addi      r6, r10, 0x1
-	  blt-      .loc_0x390
-	  rlwinm.   r0,r6,30,2,31
-	  mtctr     r0
-	  beq-      .loc_0x180
+	int i;
+	const u8* tmp = &FontData->c0;
 
-	.loc_0x50:
-	  add       r9, r3, r10
-	  lbz       r0, 0x0(r9)
-	  subi      r10, r10, 0x1
-	  rlwinm    r7,r0,26,30,31
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, 0x0(r8)
-	  lbz       r0, 0x0(r9)
-	  add       r9, r3, r10
-	  subi      r10, r10, 0x1
-	  rlwinm    r7,r0,30,30,31
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, 0x1(r8)
-	  lbz       r0, 0x0(r9)
-	  rlwinm    r7,r0,26,30,31
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, -0x2(r8)
-	  lbz       r0, 0x0(r9)
-	  add       r9, r3, r10
-	  subi      r10, r10, 0x1
-	  rlwinm    r7,r0,30,30,31
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, -0x1(r8)
-	  lbz       r0, 0x0(r9)
-	  rlwinm    r7,r0,26,30,31
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, -0x4(r8)
-	  lbz       r0, 0x0(r9)
-	  add       r9, r3, r10
-	  subi      r10, r10, 0x1
-	  rlwinm    r7,r0,30,30,31
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, -0x3(r8)
-	  lbz       r0, 0x0(r9)
-	  rlwinm    r7,r0,26,30,31
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, -0x6(r8)
-	  lbz       r0, 0x0(r9)
-	  rlwinm    r7,r0,30,30,31
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, -0x5(r8)
-	  subi      r8, r8, 0x8
-	  bdnz+     .loc_0x50
-	  andi.     r6, r6, 0x3
-	  beq-      .loc_0x390
+	if (FontData->sheetFormat == GX_TF_I4) {
+		for (i = (s32)FontData->sheetFullSize / 2 - 1; i >= 0; i--) {
+			dest[i * 2 + 0] = tmp[source[i] >> 6 & 3] & 0xF0 | tmp[source[i] >> 4 & 3] & 0x0F;
+			dest[i * 2 + 1] = tmp[source[i] >> 2 & 3] & 0xF0 | tmp[source[i] >> 0 & 3] & 0x0F;
+		}
+	} else if (FontData->sheetFormat == GX_TF_IA4) {
+		for (i = (s32)FontData->sheetFullSize / 4 - 1; i >= 0; i--) {
+			dest[i * 4 + 0] = tmp[source[i] >> 6 & 3];
+			dest[i * 4 + 1] = tmp[source[i] >> 4 & 3];
+			dest[i * 4 + 2] = tmp[source[i] >> 2 & 3];
+			dest[i * 4 + 3] = tmp[source[i] >> 0 & 3];
+		}
+	}
 
-	.loc_0x180:
-	  mtctr     r6
-
-	.loc_0x184:
-	  add       r9, r3, r10
-	  lbz       r0, 0x0(r9)
-	  subi      r10, r10, 0x1
-	  rlwinm    r7,r0,26,30,31
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, 0x0(r8)
-	  lbz       r0, 0x0(r9)
-	  rlwinm    r7,r0,30,30,31
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r7, r5, r7
-	  lbzx      r0, r5, r0
-	  rlwinm    r0,r0,0,28,31
-	  rlwimi    r0,r7,0,24,27
-	  stb       r0, 0x1(r8)
-	  subi      r8, r8, 0x2
-	  bdnz+     .loc_0x184
-	  b         .loc_0x390
-
-	.loc_0x1D8:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x390
-	  lwz       r0, 0x28(r6)
-	  srawi     r6, r0, 0x2
-	  addze     r6, r6
-	  subic.    r9, r6, 0x1
-	  rlwinm    r0,r9,2,0,29
-	  add       r7, r4, r0
-	  addi      r6, r9, 0x1
-	  blt-      .loc_0x390
-	  rlwinm.   r0,r6,30,2,31
-	  mtctr     r0
-	  beq-      .loc_0x33C
-
-	.loc_0x20C:
-	  add       r8, r3, r9
-	  lbz       r0, 0x0(r8)
-	  subi      r9, r9, 0x1
-	  rlwinm    r0,r0,26,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x0(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x1(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,30,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x2(r7)
-	  lbz       r0, 0x0(r8)
-	  add       r8, r3, r9
-	  subi      r9, r9, 0x1
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x3(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,26,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0x4(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0x3(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,30,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0x2(r7)
-	  lbz       r0, 0x0(r8)
-	  add       r8, r3, r9
-	  subi      r9, r9, 0x1
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0x1(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,26,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0x8(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0x7(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,30,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0x6(r7)
-	  lbz       r0, 0x0(r8)
-	  add       r8, r3, r9
-	  subi      r9, r9, 0x1
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0x5(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,26,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0xC(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0xB(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,30,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0xA(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, -0x9(r7)
-	  subi      r7, r7, 0x10
-	  bdnz+     .loc_0x20C
-	  andi.     r6, r6, 0x3
-	  beq-      .loc_0x390
-
-	.loc_0x33C:
-	  mtctr     r6
-
-	.loc_0x340:
-	  add       r8, r3, r9
-	  lbz       r0, 0x0(r8)
-	  subi      r9, r9, 0x1
-	  rlwinm    r0,r0,26,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x0(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,28,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x1(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,30,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x2(r7)
-	  lbz       r0, 0x0(r8)
-	  rlwinm    r0,r0,0,30,31
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x3(r7)
-	  subi      r7, r7, 0x4
-	  bdnz+     .loc_0x340
-
-	.loc_0x390:
-	  lwz       r5, -0x7090(r13)
-	  mr        r3, r4
-	  lwz       r4, 0x28(r5)
-	  bl        -0x2114
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
+	DCStoreRange(dest, FontData->sheetFullSize);
 }
 
 /*
@@ -990,8 +666,57 @@ static void ExpandFontSheet(OSFontHeader* fontInfo, u8* source, u8* dest)
  * Address:	800EE870
  * Size:	0000E0
  */
-BOOL OSInitFont(OSFontHeader* fontInfo)
+BOOL OSInitFont(OSFontHeader* font)
 {
+	u8* sheets;
+
+	switch (OSGetFontEncode()) {
+	case OS_FONT_ENCODE_ANSI:
+		FontData = font;
+		if (ReadFont((u8*)font + 0x1D120, OS_FONT_ENCODE_ANSI, FontData) == 0) {
+			return FALSE;
+		}
+
+		sheets               = (u8*)FontData + FontData->sheetImage;
+		FontData->sheetImage = ROUND_UP(FontData->sheetImage, 32);
+		ExpandFontSheet(sheets, (u8*)FontData + FontData->sheetImage);
+		break;
+	case OS_FONT_ENCODE_SJIS:
+		FontData = font;
+		if (ReadFont((u8*)font + 0xD3F00, OS_FONT_ENCODE_SJIS, FontData) == 0) {
+			return FALSE;
+		}
+
+		sheets               = (u8*)FontData + FontData->sheetImage;
+		FontData->sheetImage = ROUND_UP(FontData->sheetImage, 32);
+		ExpandFontSheet(sheets, (u8*)FontData + FontData->sheetImage);
+		break;
+	case OS_FONT_ENCODE_2:
+		break;
+	case OS_FONT_ENCODE_UTF8:
+	case OS_FONT_ENCODE_UTF16:
+	case OS_FONT_ENCODE_UTF32:
+		FontData = font;
+		if (ReadFont((u8*)font + 0xF4020, OS_FONT_ENCODE_ANSI, FontData) == 0) {
+			return FALSE;
+		}
+
+		sheets               = (u8*)FontData + FontData->sheetImage;
+		FontData->sheetImage = ROUND_UP(FontData->sheetImage, 32);
+		ExpandFontSheet(sheets, (u8*)FontData + FontData->sheetImage);
+
+		FontData = (OSFontHeader*)((u8*)FontData + 0x20120);
+		if (ReadFont((u8*)font + 0xF4020, OS_FONT_ENCODE_SJIS, FontData) == 0) {
+			return FALSE;
+		}
+
+		sheets               = (u8*)FontData + FontData->sheetImage;
+		FontData->sheetImage = ROUND_UP(FontData->sheetImage, 32);
+		ExpandFontSheet(sheets, (u8*)FontData + FontData->sheetImage);
+		break;
+	}
+
+	return TRUE;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1082,6 +807,70 @@ BOOL OSInitFont(OSFontHeader* fontInfo)
  */
 char* OSGetFontTexture(char* string, void** image, s32* x, s32* y, s32* width)
 {
+	OSFontHeader* font;
+	s32 numRestTex;
+	u8* font_u8;
+	u32 code;
+	u32 sheet;
+	u32 row;
+	u32 col;
+	u32 tmp;
+
+	OSFontHeader* font2;
+	u16 code2 = 0;
+	switch (OSGetFontEncode()) {
+	case OS_FONT_ENCODE_ANSI:
+		font2 = FontData;
+		code2 = (u8)*string;
+		if (code == '\0') {
+			break;
+		}
+		++string;
+		break;
+	case OS_FONT_ENCODE_SJIS:
+		font2 = FontData;
+		code2 = (u8)*string;
+		if (code == '\0') {
+			break;
+		}
+		++string;
+		if (IsSjisLeadByte((u8)code2) && IsSjisTrailByte((u8)*string)) {
+			code2 = (u16)((code2 << 8) | (u8)*string++);
+		}
+		break;
+	}
+
+	font = font2;
+	code = GetFontCode(code2);
+
+	// return (char*) string;
+
+	// Font sheet on which the texture resides
+	sheet = (s32)code / (font->sheetColumn * font->sheetRow);
+	// Font code texture
+	*image = (font->sheetSize * sheet) + ((u8*)font + font->sheetImage);
+
+	// Number of succeeding textures on the sheet
+	// TODO: Permuter fake(?)match
+	tmp        = font->sheetRow;
+	numRestTex = code - (sheet * (font->sheetColumn * tmp));
+
+	// Sheet row on which the texure resides
+	row = numRestTex / font->sheetColumn;
+	// Sheet column on which the texture resides
+	col = numRestTex - row * font->sheetColumn;
+
+	// Texture position
+	*x = col * font->cellWidth;
+	*y = row * font->cellHeight;
+
+	if (width != NULL) {
+		// TODO: Permuter fake(?)match
+		font_u8 = (u8*)font;
+		*width  = (font_u8 + font->widthTable)[code];
+	}
+
+	return string;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1228,6 +1017,19 @@ char* OSGetFontTexture(char* string, void** image, s32* x, s32* y, s32* width)
  */
 char* OSGetFontWidth(char* string, s32* width)
 {
+	OSFontHeader* font;
+	u8* font_u8;
+	u32 code;
+
+	string = (const char*)ParseString(OSGetFontEncode(), (const u8*)string, &font, &code);
+
+	if (width != NULL) {
+		// TODO: Permuter fake(?)match
+		font_u8 = (u8*)font;
+		*width  = (font_u8 + font->widthTable)[code];
+	}
+
+	return string;
 	/*
 	.loc_0x0:
 	  mflr      r0
