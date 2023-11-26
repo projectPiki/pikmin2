@@ -13,7 +13,7 @@ OS_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/os/OSMessage.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSMemory.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSMutex.o\
-	$(BUILD_DIR)/asm/Dolphin/os/OSReboot.o\
+	$(BUILD_DIR)/src/Dolphin/os/OSReboot.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSReset.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSResetSW.o\
 	$(BUILD_DIR)/src/Dolphin/os/OSRtc.o\

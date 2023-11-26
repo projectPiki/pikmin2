@@ -761,7 +761,7 @@ LIBS = [
             ["Dolphin/os/OSMessage", True],
             ["Dolphin/os/OSMemory", True],
             ["Dolphin/os/OSMutex", True],
-            "Dolphin/os/OSReboot",
+            ["Dolphin/os/OSReboot", True],
             ["Dolphin/os/OSReset", True],
             ["Dolphin/os/OSResetSW", True],
             ["Dolphin/os/OSRtc", True],
