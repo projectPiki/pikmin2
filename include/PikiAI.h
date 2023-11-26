@@ -554,6 +554,11 @@ struct ActCrop : public Action, virtual SysShape::MotionListener {
 	                              // _40 = MotionListener
 };
 
+struct ActEnterArg : public ActionArg {
+	ActEnterArg(Game::Onyon* onyon) { mOnyon = onyon; }
+	Game::Onyon* mOnyon; // _04
+};
+
 struct ActEnter : public Action, virtual SysShape::MotionListener {
 	enum EnterState {
 		// states for entering onyon

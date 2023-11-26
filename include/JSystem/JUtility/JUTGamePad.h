@@ -240,6 +240,7 @@ struct JUTGamePad : public JKRDisposer {
 
 	inline u32 getButton() const { return mButton.mButton; }
 	inline u32 getButtonDown() const { return mButton.mButtonDown; }
+	inline u32 getButtonUp() const { return mButton.mButtonUp; }
 	inline f32 getMainStickX() const { return mMStick.mXPos; }
 	inline f32 getMainStickY() const { return mMStick.mYPos; }
 	inline f32 getMainStickValue() const { return mMStick.mStickMag; }

@@ -339,7 +339,7 @@ void Obj::flickAttackBomb()
 		downWatEffect.create(&argWater);
 	} else {
 		efx::Arg argLand(effectPos);
-		efx::TEnemyDownSmoke downSmokeEffect;
+		efx::TEnemyDownSmoke downSmokeEffect(1.0f);
 		downSmokeEffect.mScale = 0.75f;
 		downSmokeEffect.create(&argLand);
 	}

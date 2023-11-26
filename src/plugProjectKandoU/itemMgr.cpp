@@ -1399,8 +1399,8 @@ JKRArchive* BaseItemMgr::openTextArc(char* fileName)
 	char pathBuffer[512];
 	sprintf(pathBuffer, "%s/%s", mObjectPathComponent, fileName);
 	LoadResource::Arg loadArg(pathBuffer);
-	loadArg._1C   = 2;
-	loadArg.mHeap = JKRHeap::sCurrentHeap;
+	loadArg.mAllocDir = JKRDvdRipper::ALLOC_DIR_BOTTOM;
+	loadArg.mHeap     = JKRHeap::sCurrentHeap;
 	// LoadResource::Node* loadNode = gLoadResourceMgr->mountArchive(loadArg);
 	// mNode = loadNode;
 	mResourceNode = gLoadResourceMgr->mountArchive(loadArg);

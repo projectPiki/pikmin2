@@ -1746,7 +1746,7 @@ void EnemyBase::updateSpheres()
 void EnemyBase::createDropEffect(const Vector3f& position, f32 scale)
 {
 	efx::Arg enemyArg(position);
-	efx::TEnemyDownSmoke downSmoke;
+	efx::TEnemyDownSmoke downSmoke(1.0f);
 	downSmoke.mScale = scale;
 	downSmoke.create(&enemyArg);
 

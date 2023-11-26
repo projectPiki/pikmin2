@@ -1907,7 +1907,7 @@ u32 PelletReturnState::execMove(Pellet* pelt)
 			Vector3f pos = pelt->getPosition();
 			pos.y -= pelt->getCylinderHeight() * 0.5f;
 			::efx::Arg arg(pos);
-			::efx::TEnemyDownSmoke efx;
+			::efx::TEnemyDownSmoke efx(1.0f);
 			efx.mScale = 0.5f;
 			efx.create(&arg);
 		}

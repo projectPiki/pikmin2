@@ -378,7 +378,7 @@ void Obj::createSwingSmokeEffect()
 
 	} else {
 		efx::Arg arg(mPosition.x, mPosition.y - 5.0f, mPosition.z);
-		efx::TEnemyDownSmoke smokeFX;
+		efx::TEnemyDownSmoke smokeFX(1.0f);
 
 		smokeFX.mScale = 0.7f;
 		smokeFX.create(&arg);

@@ -960,7 +960,7 @@ void Obj::createOnGroundEffect(int footIdx, WaterBox* wbox)
 
 		} else {
 			efx::Arg fxArg(effectPos);
-			efx::TEnemyDownSmoke walk;
+			efx::TEnemyDownSmoke walk(1.0f);
 			walk.mScale = 0.3f;
 
 			walk.create(&fxArg);

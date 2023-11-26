@@ -164,9 +164,11 @@ struct ArgDir : public Arg {
 };
 
 struct ArgDopingSmoke : public Arg {
-	ArgDopingSmoke(Vector3f position)
+	ArgDopingSmoke(Vector3f& position, Vector3f& dopepos, u16 type)
 	    : Arg(position)
 	{
+		mDopePos  = dopepos;
+		mDopeType = type;
 	}
 
 	virtual const char* getName() // _08 (weak)

@@ -171,7 +171,7 @@ u8 Pellet::getWallTimer() { return mWallTimer; }
  */
 PelletViewArg::PelletViewArg()
 {
-	_18        = Vector3f(1.0f);
+	mScale     = Vector3f(1.0f);
 	mEnemy     = nullptr;
 	mMatrix    = nullptr;
 	mPosition  = Vector3f(0.0f);
@@ -221,7 +221,7 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 
 		newPellet->mIsBounced = true;
 		newPellet->setOrientation(*viewArg->mMatrix);
-		newPellet->mScale = viewArg->_18;
+		newPellet->mScale = viewArg->mScale;
 		newPellet->mLod.setFlag(AILOD_IsVisible | AILOD_IsVisVP0 | AILOD_IsVisVP1);
 
 		viewStartPreCarryMotion();

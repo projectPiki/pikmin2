@@ -59,6 +59,8 @@ struct NaviState : public FSMState<Navi> {
 	virtual bool vsUsableY() { return true; }                      // _44 (weak)
 	virtual void draw2d(J2DGrafContext&, int&);                    // _48
 
+	void playChangeVoice(Navi* navi);
+
 	// _00     = VTBL
 	// _00-_0C = FSMState<Navi>
 	char* mName; // _0C
@@ -82,10 +84,10 @@ struct NaviAbsorbState : public NaviState {
 	virtual void init(Navi*, StateArg*);                       // _08
 	virtual void exec(Navi*);                                  // _0C
 	virtual void cleanup(Navi*);                               // _10
-	virtual bool invincible();                                 // _20 (weak)
+	virtual bool invincible() { return true; }                 // _20 (weak)
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
-	virtual bool pressable();                                  // _34 (weak)
-	virtual bool vsUsableY();                                  // _44 (weak)
+	virtual bool pressable() { return false; }                 // _34 (weak)
+	virtual bool vsUsableY() { return false; }                 // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
@@ -141,6 +143,15 @@ struct NaviChangeState : public NaviState {
 	bool mIsFinished; // _14
 };
 
+struct ClimbStateArg : public StateArg {
+	inline ClimbStateArg(Creature* obj)
+	    : mObj(obj)
+	{
+	}
+
+	Creature* mObj; // _00
+};
+
 struct NaviClimbState : public NaviState {
 	inline NaviClimbState()
 	    : NaviState(NSID_Climb)
@@ -155,7 +166,10 @@ struct NaviClimbState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x18]; // _10, unknown
+	Vector3f _10;
+	int _1C;
+	Creature* mClimbObj;
+	CollPart* mTubePart;
 };
 
 struct NaviContainerArg : public StateArg {
@@ -173,16 +187,20 @@ struct NaviContainerState : public NaviState {
 	{
 	}
 
-	virtual void init(Navi*, StateArg*); // _08
-	virtual void exec(Navi*);            // _0C
-	virtual void cleanup(Navi*);         // _10
-	virtual bool invincible();           // _20 (weak)
+	virtual void init(Navi*, StateArg*);       // _08
+	virtual void exec(Navi*);                  // _0C
+	virtual void cleanup(Navi*);               // _10
+	virtual bool invincible() { return true; } // _20 (weak)
 
 	void enterPikis(Navi*, int);
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x14]; // _10, unknown
+	Onyon* mOnyon; // _10
+	int _14;
+	bool _18;
+	int mShipPikiType;
+	bool mIsScreenOpen; // _20
 };
 
 struct NaviDamagedState : public NaviState {
@@ -194,9 +212,9 @@ struct NaviDamagedState : public NaviState {
 	virtual void init(Navi*, StateArg*);                       // _08
 	virtual void exec(Navi*);                                  // _0C
 	virtual void cleanup(Navi*);                               // _10
-	virtual bool invincible();                                 // _20 (weak)
+	virtual bool invincible() { return true; }                 // _20 (weak)
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
-	virtual bool vsUsableY();                                  // _44 (weak)
+	virtual bool vsUsableY() { return false; }                 // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
@@ -211,10 +229,10 @@ struct NaviDeadState : public NaviState {
 	virtual void init(Navi*, StateArg*);                       // _08
 	virtual void exec(Navi*);                                  // _0C
 	virtual void cleanup(Navi*);                               // _10
-	virtual bool invincible();                                 // _20 (weak)
+	virtual bool invincible() { return true; }                 // _20 (weak)
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
-	virtual bool pressable();                                  // _34 (weak)
-	virtual bool vsUsableY();                                  // _44 (weak)
+	virtual bool pressable() { return false; }                 // _34 (weak)
+	virtual bool vsUsableY() { return false; }                 // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
@@ -231,15 +249,17 @@ struct NaviDemo_HoleInState : public NaviState {
 	virtual void cleanup(Navi*);                               // _10
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
 
-	void execGoto(Navi*);
+	bool execGoto(Navi*);
 	void initHesitate(Navi*);
-	void execHesitate(Navi*);
+	bool execHesitate(Navi*);
 	void initFall(Navi*);
 	bool execFall(Navi*);
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x8]; // _10, unknown
+	u16 _10;
+	u8 _12;
+	int _14;
 };
 
 struct NaviDemo_UfoState : public NaviState {
@@ -252,13 +272,14 @@ struct NaviDemo_UfoState : public NaviState {
 	virtual void exec(Navi*);            // _0C
 	virtual void cleanup(Navi*);         // _10
 
-	void execGoto(Navi*);
+	bool execGoto(Navi*);
 	void initSuck(Navi*);
-	void execSuck(Navi*);
+	bool execSuck(Navi*);
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x24]; // _10, unknown
+	u16 _10;      // _10
+	u8 _14[0x20]; // _14, unknown
 };
 
 struct NaviDopeArg : public StateArg {
@@ -279,13 +300,13 @@ struct NaviDopeState : public NaviState {
 	virtual void init(Navi*, StateArg*);                       // _08
 	virtual void exec(Navi*);                                  // _0C
 	virtual void cleanup(Navi*);                               // _10
-	virtual bool invincible();                                 // _20 (weak)
+	virtual bool invincible() { return true; }                 // _20 (weak)
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x4]; // _10, unknown
-	u8 _14;      // _14
+	int mDopeType; // _10
+	u8 _14;        // _14
 };
 
 struct NaviFallMeckArg : public StateArg {
@@ -305,7 +326,7 @@ struct NaviFallMeckState : public NaviState {
 	virtual void cleanup(Navi*);                               // _10
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
 	virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30
-	virtual bool pressable();                                  // _34 (weak)
+	virtual bool pressable() { return false; }                 // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
@@ -337,8 +358,8 @@ struct NaviFlickState : public NaviState {
 	virtual void cleanup(Navi*);                               // _10
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
 	virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30
-	virtual bool pressable();                                  // _34 (weak)
-	virtual bool vsUsableY();                                  // _44 (weak)
+	virtual bool pressable() { return true; }                  // _34 (weak)
+	virtual bool vsUsableY() { return false; }                 // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
@@ -368,16 +389,26 @@ struct NaviFollowState : public NaviState {
 	virtual void exec(Navi*);                                  // _0C
 	virtual void cleanup(Navi*);                               // _10
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
-	virtual bool needYChangeMotion();                          // _40 (weak)
+	virtual bool needYChangeMotion() { return true; }          // _40 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	Navi* mTargetNavi; // _10
-	u8 _14;            // _14
-	Creature* _18;     // _18
-	u8 _1C;            // _1C, counter?
-	u8 _1D;            // _1D, motion?
-	u8 _1E;            // _1E, counter 2?
+	Navi* mTargetNavi;   // _10
+	u8 _14;              // _14
+	Creature* mRunEnemy; // _18
+	u8 _1C;              // _1C, counter?
+	u8 mAnimID;          // _1D, motion?
+	u8 _1E;              // _1E, counter 2?
+};
+
+struct NaviGatherArg : public StateArg {
+	inline NaviGatherArg(bool p1)
+	    : _00(p1)
+	{
+	}
+
+	bool _00; // _00
+	bool _01; // _01
 };
 
 struct NaviGatherState : public NaviState {
@@ -411,7 +442,7 @@ struct NaviKokeDamageInitArg : public StateArg {
 	Creature* mCreature; // _00
 	f32 mDamage;         // _04
 	f32 _08;             // _08
-	u8 _0C;              // _0C
+	bool _0C;            // _0C
 };
 
 struct NaviDamageArg : public StateArg {
@@ -423,7 +454,7 @@ struct NaviDamageArg : public StateArg {
 	f32 mDamage;
 };
 
-// WTF is Koke Damage? Heart Attack?
+// Knockback state
 struct NaviKokeDamageState : public NaviState {
 	inline NaviKokeDamageState()
 	    : NaviState(NSID_KokeDamage)
@@ -434,16 +465,16 @@ struct NaviKokeDamageState : public NaviState {
 	virtual void exec(Navi*);                                  // _0C
 	virtual void cleanup(Navi*);                               // _10
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
-	virtual bool pressable();                                  // _34 (weak)
-	virtual bool vsUsableY();                                  // _44 (weak)
+	virtual bool pressable() { return true; }                  // _34 (weak)
+	virtual bool vsUsableY() { return false; }                 // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u32 _10;             // _10
-	f32 _14;             // _14
-	u32 _18;             // _18
+	f32 mDamage;         // _10
+	f32 mTimer;          // _14
+	int mState;          // _18
 	Creature* mCreature; // _1C
-	u8 _20;              // _20
+	bool _20;            // _20
 };
 
 struct NaviNukuAdjustStateArg : public StateArg {
@@ -475,10 +506,19 @@ struct NaviNukuAdjustState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x38]; // _10, unknown
-	u8 _48;       // _38
-	u8 _49[0x3];  // _39, unknown/buffer
-	u8 _4C[0x14]; // _3C, unknown
+	f32 _10;
+	Vector3f _14;
+	bool _20;
+	Vector3f _24;
+	f32 _30;
+	Vector3f _34;
+	int _40;
+	ItemPikihead::Item* mPikiHead;
+	u8 _48;       // _48
+	u8 _49[0x3];  // _49, unknown/buffer
+	u8 _4C;       // _4C
+	Vector3f _50; // _50
+	u8 _5C;       // _5C
 };
 
 struct NaviNukuArg : public StateArg {
@@ -494,18 +534,18 @@ struct NaviNukuState : public NaviState {
 	virtual void init(Navi*, StateArg*);                       // _08
 	virtual void exec(Navi*);                                  // _0C
 	virtual void cleanup(Navi*);                               // _10
-	virtual bool invincible();                                 // _20 (weak)
+	virtual bool invincible() { return true; }                 // _20 (weak)
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u16 _10;     // _10, unknown
-	u8 _12;      // _12
-	u8 _13;      // _13
-	u8 _14;      // _14
-	u8 _15;      // _15
-	s16 mAnimID; // _16
-	u8 _18;      // _18
+	u16 mCounter;   // _10
+	u8 mDidPluckSE; // _12
+	u8 mDidPressA;  // _13
+	u8 mIsActive;   // _14
+	u8 _15;         // _15
+	s16 mAnimID;    // _16
+	u8 mIsFollower; // _18
 };
 
 /** @fabricated */
@@ -542,7 +582,7 @@ struct NaviPathMoveState : public NaviState {
 	u16 _10;                  // _10
 	u32 mPathfinderContextID; // _14
 	Vector3f mPosition;       // _18
-	PathNode* _24[2];         // _24
+	PathNode* mNodes[2];      // _24
 	int _2C;                  // _2C
 };
 
@@ -556,11 +596,12 @@ struct NaviPelletState : public NaviState {
 	virtual void exec(Navi*);                                  // _0C
 	virtual void cleanup(Navi*);                               // _10
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
-	virtual bool callable();                                   // _34 (weak)
+	virtual bool callable() { return true; }                   // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x8]; // _10, unknown
+	u8 _10;     // _10
+	int mState; // _14
 };
 
 struct NaviPressedState : public NaviState {
@@ -569,18 +610,18 @@ struct NaviPressedState : public NaviState {
 	{
 	}
 
-	virtual void init(Navi*, StateArg*); // _08
-	virtual void exec(Navi*);            // _0C
-	virtual void cleanup(Navi*);         // _10
-	virtual bool invincible();           // _20 (weak)
-	virtual bool pressable();            // _34 (weak)
-	virtual bool vsUsableY();            // _44 (weak)
+	virtual void init(Navi*, StateArg*);       // _08
+	virtual void exec(Navi*);                  // _0C
+	virtual void cleanup(Navi*);               // _10
+	virtual bool invincible() { return true; } // _20 (weak)
+	virtual bool pressable() { return false; } // _34 (weak)
+	virtual bool vsUsableY() { return false; } // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 mTimer;    // _10
-	Vector3f _14; // _14
-	u32 _18;      // _18
+	f32 mTimer;            // _10
+	Vector3f mScaleBackup; // _14
+	u32 _20;               // _20
 };
 
 struct NaviPunchArg : public StateArg {
@@ -623,7 +664,7 @@ struct NaviSaraiExitState : public NaviState {
 	virtual void exec(Navi*);                           // _0C
 	virtual void cleanup(Navi*);                        // _10
 	virtual void bounceCallback(Navi*, Sys::Triangle*); // _30
-	virtual bool pressable();                           // _34 (weak)
+	virtual bool pressable() { return false; }          // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
@@ -635,15 +676,15 @@ struct NaviSaraiState : public NaviState {
 	{
 	}
 
-	virtual void init(Navi*, StateArg*); // _08
-	virtual void exec(Navi*);            // _0C
-	virtual void cleanup(Navi*);         // _10
-	virtual bool pressable();            // _34 (weak)
+	virtual void init(Navi*, StateArg*);       // _08
+	virtual void exec(Navi*);                  // _0C
+	virtual void cleanup(Navi*);               // _10
+	virtual bool pressable() { return false; } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u32 _10; // _10
-	u16 _14; // _14
+	u32 _10;           // _10
+	u16 mEscapeInputs; // _14
 };
 
 struct NaviStuckState : public NaviState {
@@ -652,10 +693,10 @@ struct NaviStuckState : public NaviState {
 	{
 	}
 
-	virtual void init(Navi*, StateArg*); // _08
-	virtual void exec(Navi*);            // _0C
-	virtual void cleanup(Navi*);         // _10
-	virtual bool vsUsableY();            // _44 (weak)
+	virtual void init(Navi*, StateArg*);       // _08
+	virtual void exec(Navi*);                  // _0C
+	virtual void cleanup(Navi*);               // _10
+	virtual bool vsUsableY() { return false; } // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
@@ -710,11 +751,17 @@ struct NaviThrowWaitState : public NaviState, virtual public SysShape::MotionLis
 	// _00     = VTBL
 	// _00-_10 = NaviState
 	// _10-_14 = MotionListener VTBL
-	Piki* mPiki;                             // _14, held piki to be thrown
-	u8 _18[0x18];                            // _18, unknown
+	Piki* mPiki; // _14, held piki to be thrown
+	u8 _18;      // _18
+	int _1C;
+	bool _20;
+	int _24;
+	int _28;
+	int _2C;
 	Delegate<NaviThrowWaitState>* mDelegate; // _30
-	u8 _34[0x8];                             // _34, unknown
-	                                         // _3C = MotionListener
+	Navi* mNavi;                             // _34
+	int _38;
+	// _3C = MotionListener
 };
 
 struct NaviWalkState : public NaviState {
@@ -737,8 +784,8 @@ struct NaviWalkState : public NaviState {
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
 	virtual void collisionCallback(Navi*, CollEvent&);         // _28
 	virtual void wallCallback(Navi*, Vector3f&);               // _2C
-	virtual bool callable();                                   // _38 (weak)
-	virtual bool needYChangeMotion();                          // _40 (weak)
+	virtual bool callable() { return true; }                   // _38 (weak)
+	virtual bool needYChangeMotion() { return true; }          // _40 (weak)
 
 	void execAI(Navi*);
 	bool checkAI(Navi*);

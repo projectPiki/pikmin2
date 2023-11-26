@@ -6,6 +6,10 @@
 
 namespace efx {
 struct TDopingSmoke : public TSimple1 {
+	TDopingSmoke()
+	    : TSimple1(PID_DopingSmoke_2)
+	{
+	}
 	virtual bool create(Arg*); // _08
 
 	inline void setEmitterVector(Vector3f* vec)

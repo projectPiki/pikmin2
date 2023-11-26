@@ -20,8 +20,8 @@ struct PelletViewArg {
 	char* mEnemyName;   // _00
 	Vector3f mPosition; // _04
 	Matrixf* mMatrix;   // _10
-	EnemyBase* mEnemy;  // _14
-	Vector3f _18;       // _18
+	Creature* mEnemy;   // _14
+	Vector3f mScale;    // _18
 };
 
 // @trait

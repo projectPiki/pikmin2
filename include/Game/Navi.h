@@ -246,7 +246,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	u8 _264[4];                             // _264
 	bool mIsAlive;                          // _268
 	u8 _269;                                // _269
-	u8 _26A;                                // _26A
+	u8 mPluckingCounter;                    // _26A
 	PSM::Navi* mSoundObj;                   // _26C
 	NaviFSM* mFsm;                          // _270
 	NaviState* mCurrentState;               // _274
