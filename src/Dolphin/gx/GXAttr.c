@@ -9,7 +9,7 @@
  * Address:	........
  * Size:	00008C
  */
-inline void __GXXfVtxSpecs(void)
+void __GXXfVtxSpecs(void)
 {
 	u32 norm, color, texCount;
 

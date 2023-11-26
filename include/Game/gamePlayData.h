@@ -150,23 +150,23 @@ struct KindCounter {
 struct OlimarData {
 	enum ItemIndex {
 		ODII_FIRST_EXPLORATION_KIT_ITEM = 0,
-		ODII_BruteKnuckles              = ODII_FIRST_EXPLORATION_KIT_ITEM,
-		ODII_DreamMaterial,
-		ODII_AmplifiedAmplifier,
-		ODII_ProfessionalNoisemaker,
-		ODII_StellarOrb,
-		ODII_JusticeAlloy,
-		ODII_ForgedCourage,
-		ODII_RepugnantAppendage,
-		ODII_PrototypeDetector,
-		ODII_FiveManNapsack,
-		ODII_SphericalAtlas,
-		ODII_GeographicProjection,
-		ODII_LAST_EXPLORATION_KIT_ITEM = ODII_GeographicProjection,
-		ODII_FIRST_NON_EXPLORATION_KIT_ITEM,
-		ODII_TheKey                        = ODII_FIRST_NON_EXPLORATION_KIT_ITEM,
-		ODII_LAST_NON_EXPLORATION_KIT_ITEM = ODII_TheKey,
-		ODII_COUNT
+		ODII_BruteKnuckles              = ODII_FIRST_EXPLORATION_KIT_ITEM,        // 0
+		ODII_DreamMaterial,                                                       // 1
+		ODII_AmplifiedAmplifier,                                                  // 2
+		ODII_ProfessionalNoisemaker,                                              // 3
+		ODII_StellarOrb,                                                          // 4
+		ODII_JusticeAlloy,                                                        // 5
+		ODII_ForgedCourage,                                                       // 6
+		ODII_RepugnantAppendage,                                                  // 7
+		ODII_PrototypeDetector,                                                   // 8
+		ODII_FiveManNapsack,                                                      // 9
+		ODII_SphericalAtlas,                                                      // 10
+		ODII_GeographicProjection,                                                // 11
+		ODII_LAST_EXPLORATION_KIT_ITEM = ODII_GeographicProjection,               // 11
+		ODII_FIRST_NON_EXPLORATION_KIT_ITEM,                                      // 12
+		ODII_TheKey                        = ODII_FIRST_NON_EXPLORATION_KIT_ITEM, // 12
+		ODII_LAST_NON_EXPLORATION_KIT_ITEM = ODII_TheKey,                         // 12
+		ODII_COUNT                                                                // 13
 	};
 
 	OlimarData();

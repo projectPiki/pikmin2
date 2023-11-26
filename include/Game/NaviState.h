@@ -166,10 +166,10 @@ struct NaviClimbState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	Vector3f _10;
-	int _1C;
-	Creature* mClimbObj;
-	CollPart* mTubePart;
+	Vector3f _10;        // _10
+	f32 _1C;             // _1C
+	Creature* mClimbObj; // _20
+	CollPart* mTubePart; // _24
 };
 
 struct NaviContainerArg : public StateArg {
@@ -196,10 +196,10 @@ struct NaviContainerState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	Onyon* mOnyon; // _10
-	int _14;
-	bool _18;
-	int mShipPikiType;
+	Onyon* mOnyon;      // _10
+	int _14;            // _14
+	bool _18;           // _18
+	int mShipPikiType;  // _1C
 	bool mIsScreenOpen; // _20
 };
 
@@ -625,6 +625,12 @@ struct NaviPressedState : public NaviState {
 };
 
 struct NaviPunchArg : public StateArg {
+	inline NaviPunchArg()
+	    : _00(0)
+	    , _04(0)
+	{
+	}
+
 	u8 _00;  // _00
 	u32 _04; // _04
 };

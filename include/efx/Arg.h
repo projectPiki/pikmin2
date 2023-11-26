@@ -175,8 +175,11 @@ struct ArgDopingSmoke : public Arg {
 	{
 		return "ArgDopingSmoke";
 	}
-	Vector3f mDopePos;
-	u16 mDopeType;
+
+	// _00     = VTBL
+	// _00-_10 = Arg
+	Vector3f mDopePos; // _10
+	u16 mDopeType;     // _1C
 };
 
 struct ArgGasuHiba : public Arg {

@@ -27,7 +27,7 @@ struct J3DModel;
 typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
 
 // This belongs... somewhere
-void J3DCalcViewBaseMtx(Mtx view, Vec const& scale, const Mtx& base, Mtx dst)
+inline void J3DCalcViewBaseMtx(Mtx view, Vec const& scale, const Mtx& base, Mtx dst)
 {
 	Mtx m;
 
