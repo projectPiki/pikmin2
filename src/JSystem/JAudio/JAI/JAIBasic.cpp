@@ -213,7 +213,7 @@ JKRArchive* JAIBasic::initArchive()
 	if (archive == nullptr) {
 		char archiveName[100];
 		JAInter::SequenceMgr::getArchiveName(archiveName);
-		JAInter::SequenceMgr::setArchivePointer(JKRArchive::mount(archiveName, JKRArchive::EMM_Dvd, msCurrentHeap, JKRArchive::EMD_Head));
+		JAInter::SequenceMgr::setArchivePointer(JKRMountArchive(archiveName, JKRArchive::EMM_Dvd, msCurrentHeap, JKRArchive::EMD_Head));
 		archive = JAInter::SequenceMgr::getArchivePointer();
 	}
 	return archive;

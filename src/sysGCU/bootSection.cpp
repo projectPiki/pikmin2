@@ -471,26 +471,27 @@ void BootSection::init() { }
  * --INFO--
  * Address:	8044813C
  * Size:	0002B8
+ * Figure out how the JKR inlines are being used
  */
 void BootSection::loadBootResource()
 {
 	mDisplayHeap->becomeCurrentHeap();
-	JKRArchive* arc = JKRArchive::mount("/user/yamashita/arc/boot_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/boot_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(1025, arc);
 
-	ResTIMG* file = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("/data/timg/nintendo_376x104.bti"));
+	ResTIMG* file = JKRGetImageResource("/data/timg/nintendo_376x104.bti");
 	P2ASSERTLINE(1031, file);
 	mNintendoLogoTexture = new JUTTexture(file);
 
-	file = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("/data/timg/dolby_mark.bti"));
+	file = JKRGetImageResource("/data/timg/dolby_mark.bti");
 	P2ASSERTLINE(1034, file);
 	mDolbyMarkTexture = new JUTTexture(file);
 
-	file = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("/data/timg/warning.bti"));
+	file = JKRGetImageResource("/data/timg/warning.bti");
 	P2ASSERTLINE(1039, file);
 	mWarningTexture = new JUTTexture(file);
 
-	file = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("/data/timg/warning_pstart.bti"));
+	file = JKRGetImageResource("/data/timg/warning_pstart.bti");
 	P2ASSERTLINE(1042, file);
 	mWarningPressStartTexture = new JUTTexture(file);
 

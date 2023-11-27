@@ -115,7 +115,7 @@ void Mgr::reloadMessageResource()
  */
 void Mgr::setupMessage()
 {
-	JKRArchive* msgarc = JKRArchive::mount(sMesResName[sys->mRegion], JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* msgarc = JKRMountArchive(sMesResName[sys->mRegion], JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(304, msgarc);
 
 	mResContainer      = new JMessage::TResourceContainer;
@@ -133,7 +133,7 @@ void Mgr::setupMessage()
  */
 void Mgr::setupTex()
 {
-	JKRArchive* imgarc = JKRArchive::mount("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* imgarc = JKRMountArchive("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	createImage(ImageGroup::ID0, 11);
 
 	for (int i = 0; i < mMaxTextures[0]; i++) {
@@ -150,11 +150,11 @@ void Mgr::setupTex()
  */
 void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 {
-	// japanese uses a seperate font loading system since its so big
+	// Japanese uses a separate font loading system since it's so big
 	if (sys->mRegion == System::LANG_JAPANESE) {
 		JKRAram::sAramObject->mAramHeap->getFreeSize();
 
-		JKRArchive* fontarc = JKRArchive::mount(sFontResName[sys->mRegion], JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Tail);
+		JKRArchive* fontarc = JKRMountArchive(sFontResName[sys->mRegion], JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Tail);
 		P2ASSERTLINE(368, fontarc);
 		sys->heapStatusStart("cacheFont", nullptr);
 
@@ -175,7 +175,7 @@ void Mgr::setupFont(char const* path, JKRExpHeap* heap)
 		delete file;
 		fontarc->unmount();
 	} else {
-		JKRArchive* fontarc = JKRArchive::mount(sFontResName[sys->mRegion], JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
+		JKRArchive* fontarc = JKRMountArchive(sFontResName[sys->mRegion], JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
 		P2ASSERTLINE(407, fontarc);
 
 		sys->heapStatusStart("resFont", nullptr);

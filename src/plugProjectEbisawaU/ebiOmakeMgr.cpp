@@ -233,7 +233,7 @@ void TMgr::loadResource()
 
 	char buf[256];
 	og::newScreen::makeLanguageResName(buf, "omake.szs");
-	JKRArchive* arc = JKRArchive::mount(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(271, arc);
 
 	mOmake.setArchive(arc);

@@ -751,7 +751,7 @@ CarryInfoList* CarryInfoMgr::appear(CarryInfoOwner* owner)
  */
 void CarryInfoMgr::loadResource()
 {
-	JKRArchive* arc = JKRArchive::mount("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	ResTIMG* timg   = JKRGetImageResource("item_0_9.bti", arc);
 	JUTTexture* tex = new JUTTexture(timg);
 	mTexture        = tex;

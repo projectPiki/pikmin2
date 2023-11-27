@@ -110,9 +110,9 @@ void Mgr::loadResource(JKRHeap* heap)
 {
 	Resource* resource = new (heap, 0) Resource(this);
 	P2ASSERTLINE(533, resource);
-	JKRArchive* memCardHeader = JKRArchive::mount("/memoryCard/memoryCardHeader.szs", JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Head);
+	JKRArchive* memCardHeader = JKRMountArchive("/memoryCard/memoryCardHeader.szs", JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Head);
 	P2ASSERTLINE(540, memCardHeader);
-	mBannerImageFile = JKRFileLoader::getGlbResource("banner.dat", memCardHeader);
+	mBannerImageFile = JKRFileLoader::getGlbResource("banner.dat", memCardHeader); // possibly ResTIMG*
 	mIconImageFile   = JKRFileLoader::getGlbResource("icon.dat", memCardHeader);
 	P2ASSERTLINE(543, mBannerImageFile);
 	P2ASSERTLINE(544, mIconImageFile);

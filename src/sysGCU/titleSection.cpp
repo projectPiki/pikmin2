@@ -86,11 +86,11 @@ void Section::loadResident()
 		sys->heapStatusStart("titleSection::loadResident", nullptr);
 
 		char* path      = "/user/Kando/piki/pikis.szs";
-		JKRArchive* arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 		JUT_ASSERTLINE(582, arc, "%s : mount failed !!\n", path);
 
 		path = "user/Kando/onyon/arc.szs";
-		arc  = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		arc  = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 		JUT_ASSERTLINE(590, arc, "%s : mount failed !!\n", path);
 
 		sys->heapStatusEnd("titleSection::loadResident");
@@ -688,7 +688,7 @@ void Section::loadResource()
 	mHiScoreTex = nullptr;
 	char buf[52];
 	og::newScreen::makeLanguageResName(buf, "res_hiscoreTexture.szs");
-	mHiScoreTex = JKRArchive::mount(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	mHiScoreTex = JKRMountArchive(buf, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	JUT_ASSERTLINE(1700, mHiScoreTex, "arcName = %s\n", buf);
 	sys->heapStatusEnd("hiscoreTexture");
 

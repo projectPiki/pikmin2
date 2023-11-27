@@ -831,50 +831,7 @@ lbl_8011AEF8:
  */
 void LifeGaugeMgr::loadResource()
 {
-	JKRArchive* arc = JKRArchive::mount("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
-	ResTIMG* timg   = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("lifeGauge.bti", arc));
+	JKRArchive* arc = JKRMountArchive("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	ResTIMG* timg   = JKRGetImageResource("lifeGauge.bti", arc);
 	mTexture        = new JUTTexture(timg);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_8047B238@ha
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	li       r6, 1
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	addi     r3, r4, lbl_8047B238@l
-	li       r4, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	lis      r5, lbl_8047B258@ha
-	mr       r4, r3
-	addi     r3, r5, lbl_8047B258@l
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	mr       r30, r3
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8011AF88
-	li       r0, 0
-	mr       r4, r30
-	stw      r0, 0x28(r31)
-	li       r5, 0
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lbz      r0, 0x3b(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	stb      r0, 0x3b(r31)
-
-lbl_8011AF88:
-	stw      r31, 0x90(r29)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }

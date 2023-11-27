@@ -46,6 +46,7 @@ struct JKRFileLoader : public JKRDisposer {
 };
 
 // is the built-in ResTIMG cast right? either way, it makes CarryInfoMgr::loadResource() match
+inline ResTIMG* JKRGetImageResource(char const* name) { return (ResTIMG*)JKRFileLoader::getGlbResource(name); }
 inline ResTIMG* JKRGetImageResource(char const* name, JKRFileLoader* arc) { return (ResTIMG*)JKRFileLoader::getGlbResource(name, arc); }
 
 #endif

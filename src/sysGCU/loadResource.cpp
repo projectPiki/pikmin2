@@ -206,7 +206,7 @@ Node* Mgr::mountArchive(Arg& arg)
 		if (arg.mAllocDir == JKRDvdRipper::ALLOC_DIR_TOP) {
 			mountDirection = JKRArchive::EMD_Head;
 		}
-		node->mArchive = JKRArchive::mount(v1, heap, mountDirection);
+		node->mArchive = JKRMountArchive(v1, heap, mountDirection);
 		JUT_ASSERTLINE(221, node->mArchive != nullptr, "mount arc failure");
 	}
 	return node;

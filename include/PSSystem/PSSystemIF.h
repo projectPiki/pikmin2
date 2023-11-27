@@ -60,7 +60,7 @@ struct ArcMgr : public JKRDisposer {
 	ArcMgr()
 	{
 		mArchive = nullptr;
-		mArchive = JKRArchive::mount("/AudioRes/Key.arc", JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
+		mArchive = JKRMountArchive("/AudioRes/Key.arc", JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
 		P2ASSERTLINE(92, mArchive);
 	}
 

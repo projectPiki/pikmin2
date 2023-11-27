@@ -473,9 +473,9 @@ SeaMgr::SeaMgr()
 
 	JKRArchive* archive;
 	if (Game::gameSystem && !Game::gameSystem->isMultiplayerMode()) {
-		archive = JKRArchive::mount("user/Kando/map/waterbox.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		archive = JKRMountArchive("user/Kando/map/waterbox.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	} else {
-		archive = JKRArchive::mount("user/Kando/map/waterbox2p.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		archive = JKRMountArchive("user/Kando/map/waterbox2p.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	}
 	P2ASSERTLINE(527, archive);
 

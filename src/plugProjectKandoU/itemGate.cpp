@@ -808,7 +808,7 @@ ItemGateMgr::ItemGateMgr()
 	mCentrePlatform = loadPlatform(arc, "cent.pla");
 	mSidePlatform   = loadPlatform(arc, "side.pla");
 	closeTextArc(arc);
-	JKRArchive::mount("user/Kando/gates/gate-arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRMountArchive("user/Kando/gates/gate-arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	SysShape::Model::enableMaterialAnim(mModelData[0], 0);
 	void* brk = JKRFileLoader::getGlbResource("gate_soft.brk", nullptr);
 	mMatTevRegAnim.attachResource(brk, mModelData[0]);
@@ -1538,7 +1538,7 @@ ItemDengekiGate::Mgr::Mgr()
 	mCentrePlatform = loadPlatform(texts, "e-cent.pla");
 	mSidePlatform   = loadPlatform(texts, "e-side.pla");
 	closeTextArc(texts);
-	JKRArchive::mount("user/Kando/gates/e-gate-arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRMountArchive("user/Kando/gates/e-gate-arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	SysShape::Model::enableMaterialAnim(mModelData[0], 0);
 	void* brk = JKRFileLoader::getGlbResource("e-gate.btk", nullptr);
 	mMatAnimation.attachResource(brk, mModelData[0]);

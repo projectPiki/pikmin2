@@ -136,7 +136,7 @@ const char* tex_names[] = {
 
 void VsGame::CardMgr::loadResource()
 {
-	JKRArchive* arch = JKRArchive::mount("user/Kando/vstex/arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arch = JKRMountArchive("user/Kando/vstex/arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 
 	JUT_ASSERTLINE(258, arch, "vstex/arc.szs not found !\n");
 

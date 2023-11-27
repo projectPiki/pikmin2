@@ -136,8 +136,8 @@ JKRArchive* DvdThreadCommand::loadArchive(char* path, JKRHeap* heap, DvdThreadCo
 	// if (direction == EHD_Unknown1) {
 	// 	mountDir = JKRArchive::EMD_Head;
 	// }
-	// return JKRArchive::mount(path, heap, mountDir);
-	// return JKRArchive::mount(path, heap, (direction == EHD_Unknown1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
+	// return JKRMountArchive(path, heap, mountDir);
+	// return JKRMountArchive(path, heap, (direction == EHD_Unknown1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
 }
 
 /*
@@ -403,8 +403,7 @@ void DvdThread::loadArchive(DvdThreadCommand* cmd)
 	// if (cmd->mHeapDirection == 1) {
 	// 	mountDir = JKRArchive::EMD_Head;
 	// }
-	JKRArchive* arc
-	    = JKRArchive::mount(cmd->mArcPath, cmd->mHeap, (cmd->mHeapDirection == 1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
+	JKRArchive* arc = JKRMountArchive(cmd->mArcPath, cmd->mHeap, (cmd->mHeapDirection == 1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
 	// JKRArchive* arc = DvdThreadCommand::loadArchive(cmd->mArcPath, cmd->mHeap, cmd->mHeapDirection);
 	P2ASSERTLINE(275, arc != nullptr);
 	cmd->mMountedArchive = arc;

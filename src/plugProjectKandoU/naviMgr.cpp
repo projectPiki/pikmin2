@@ -244,7 +244,7 @@ SysShape::Model* NaviMgr::createModel(int naviID) { return new SysShape::Model((
  */
 void NaviMgr::loadResources_float()
 {
-	JKRArchive* arc = JKRArchive::mount("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
 	void* file;
 	if (playData->isStoryFlag(STORY_DebtPaid)) {
 		file = arc->getResource("orima_model/syatyou.bmd"); // president

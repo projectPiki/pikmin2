@@ -900,13 +900,13 @@ void ShapeMapMgr::load(LoadArg& arg)
 
 	char path[512];
 	sprintf(path, "%s/arc.szs", arg.mFolder);
-	JKRArchive* arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	if (!arc) {
 		for (int i = 0; i < 512; i++) {
 			//	path[i] = 0; some wack way of clearing this
 		}
 		sprintf(path, "%s/arc.arc", arg.mFolder);
-		arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	}
 	P2ASSERTLINE(720, arc);
 	sys->heapStatusEnd("map arc");
@@ -978,7 +978,7 @@ void ShapeMapMgr::load(LoadArg& arg)
 
 	char textsPath[512];
 	sprintf(textsPath, "%s/texts.szs", arg.mFolder);
-	JKRArchive* texts = JKRArchive::mount(textsPath, JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Tail);
+	JKRArchive* texts = JKRMountArchive(textsPath, JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Tail);
 	if (texts) {
 
 		void* file = JKRFileLoader::getGlbResource("grid.bin", texts);

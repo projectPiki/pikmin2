@@ -4500,7 +4500,7 @@ void ZukanState::dvdloadA()
 	mMainHeap->becomeCurrentHeap();
 	char path[256];
 	sprintf(path, "user/Yamashita/zukan/%s/%s/arc.szs", "us", sDirName[mMapIndex]);
-	JKRArchive* arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Tail);
+	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Tail);
 	P2ASSERTLINE(2457, arc);
 	mParms = new IllustratedBook::Parms;
 	mParms->loadFile(arc);

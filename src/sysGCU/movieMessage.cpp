@@ -883,7 +883,7 @@ bool TControl::onInit()
 	}
 	sys->heapStatusStart("PMT_onInit_arc", nullptr);
 
-	JKRArchive* arc = JKRArchive::mount("new_screen/cmn/message_window.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive("new_screen/cmn/message_window.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	if (arc) {
 		mMessageWindow = new MessageWindowScreen;
 		mMessageWindow->set(arc);
@@ -901,7 +901,7 @@ bool TControl::onInit()
 	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
 		path = "new_screen/cmn/gold_pod_for_message_window.szs";
 	}
-	arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	if (arc) {
 		mPodIcon = new PodIconScreen;
 		mPodIcon->set(arc);

@@ -39,7 +39,7 @@ void TMemoryCard::loadResource(JKRHeap* heap)
 	char buf[264];
 	og::newScreen::makeLanguageResName(buf, "memory_card.szs");
 
-	JKRArchive* arc = JKRArchive::mount(buf, JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive(buf, JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Head);
 
 	P2ASSERTLINE(54, arc);
 

@@ -528,7 +528,7 @@ void TOption::loadResource()
 	char resName[256];
 	sys->heapStatusStart("TOption::loadResource", nullptr);
 	og::newScreen::makeLanguageResName(resName, "option_us.szs");
-	JKRArchive* archive = JKRArchive::mount(resName, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* archive = JKRMountArchive(resName, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 #if VERNUM == 1 // demo
 	P2ASSERTLINE(768, (archive != nullptr));
 #else

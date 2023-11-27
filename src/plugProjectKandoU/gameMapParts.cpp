@@ -250,7 +250,7 @@ void MapUnitMgr::makeUnit(MapUnit* unit, char* folder)
 	char path[512];
 
 	sprintf(path, "%s/arc.szs", folder);
-	JKRArchive* archive = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* archive = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(651, archive);
 
 	void* viewModelData = archive->getResource("view.bmd");
@@ -319,7 +319,7 @@ void MapUnitMgr::makeUnit(MapUnit* unit, char* folder)
 
 	// Load collision data
 	sprintf(path, "%s/texts.szs", folder);
-	archive = JKRArchive::mount(path, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Tail);
+	archive = JKRMountArchive(path, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Tail);
 	P2ASSERTLINE(777, archive);
 
 	void* gridResource = archive->getResource("grid.bin");
@@ -998,7 +998,7 @@ void CaveVRBox::create(char* name)
 	char vrBoxFileName[512];
 	sprintf(vrBoxFileName, "user/Kando/map/vrbox/%s.szs", name);
 	if (DVDConvertPathToEntrynum(vrBoxFileName) != -1) {
-		JKRArchive* vrBoxArc = JKRArchive::mount(vrBoxFileName, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+		JKRArchive* vrBoxArc = JKRMountArchive(vrBoxFileName, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 		if (vrBoxArc) {
 			void* res = vrBoxArc->getResource("model.bmd");
 			if (res) {
@@ -1088,7 +1088,7 @@ void RoomMapMgr::createRandomMap(int floorNum, Cave::EditMapUnit* edit)
 	for (int i = 0; i < interfaceCount; i++) {
 		char layoutName[512];
 		sprintf(layoutName, "user/Mukki/mapunits/arc/%s/texts.szs", interfaces[i].mName);
-		JKRArchive* layoutArc = JKRArchive::mount(layoutName, JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
+		JKRArchive* layoutArc = JKRMountArchive(layoutName, JKRArchive::EMM_Mem, JKRGetCurrentHeap(), JKRArchive::EMD_Tail);
 		JUT_ASSERTLINE(1687, layoutArc, "no textARc !\n");
 		void* res = layoutArc->getResource("layout.txt");
 		if (res) {

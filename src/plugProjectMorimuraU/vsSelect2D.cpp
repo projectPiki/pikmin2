@@ -1097,7 +1097,7 @@ void TVsSelect::doCreate(JKRArchive* arc)
 	mVsSelectTextureArc = nullptr;
 	char path[64];
 	og::newScreen::makeLanguageResName(path, "res_vsSelectTexture.szs");
-	mVsSelectTextureArc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	mVsSelectTextureArc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	JUT_ASSERTLINE(893, mVsSelectTextureArc, "arcName = %s\n", path);
 	sys->heapStatusEnd("vsSelectTexture");
 

@@ -3,6 +3,7 @@
 
 #include "JSystem/JAudio/JAD/JADDataMgr.h"
 #include "types.h"
+#include "P2Macros.h"
 #include "JSystem/JAudio/JAD/JADUtility.h"
 #include "PSAutoBgm/Track.h"
 #include "JSystem/JSupport/JSUList.h"
@@ -42,7 +43,7 @@ struct ConductorArcMgr {
 	ConductorArcMgr()
 	{
 		mArchive = nullptr;
-		mArchive = JKRArchive::mount("/AudioRes/Conductor.arc", JKRArchive::EMM_Dvd, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
+		mArchive = JKRMountArchive("/AudioRes/Conductor.arc", JKRArchive::EMM_Dvd, JKRGetCurrentHeap(), JKRArchive::EMD_Head);
 		P2ASSERTLINE(746, mArchive); // this file needs to be PSAutoBgm.h
 	}
 

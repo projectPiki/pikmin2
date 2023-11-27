@@ -196,7 +196,7 @@ void Mgr::deleteInstance()
  */
 void Mgr::loadResource()
 {
-	JKRArchive* textArc = JKRArchive::mount("user/Kando/texCaster/arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* textArc = JKRMountArchive("user/Kando/texCaster/arc.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(288, textArc);
 	mTextureCount = 1;
 	mTextures     = new JUTTexture*[mTextureCount];

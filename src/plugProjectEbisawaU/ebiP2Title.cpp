@@ -260,7 +260,7 @@ void TTitleMgr::loadResource()
 	sys->heapStatusStart("TTitleMgr::loadResource()", nullptr);
 	sys->heapStatusStart("TTitleMgr::loadResource--mount_arc", nullptr);
 
-	JKRArchive* arc = JKRArchive::mount("user/Ebisawa/title/title.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive("user/Ebisawa/title/title.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(258, arc);
 
 	sys->heapStatusEnd("TTitleMgr::loadResource--mount_arc");
@@ -327,7 +327,7 @@ void TTitleMgr::loadResource()
 	}
 
 	sys->heapStatusStart("TTitleMgr::loadResource--mount_arc", nullptr);
-	JKRArchive* levelarc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* levelarc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(342, levelarc);
 	sys->heapStatusEnd("TTitleMgr::loadResource--mount_arc");
 

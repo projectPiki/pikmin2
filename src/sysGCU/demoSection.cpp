@@ -167,10 +167,10 @@ bool Section::doLoading() { return sys->dvdLoadSyncNoBlock(&mThreadCommand) == 0
  */
 void Section::loadResource()
 {
-	JKRArchive* arc = JKRArchive::mount("/user/yamashita/arc/demoMovieLogo_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive("/user/yamashita/arc/demoMovieLogo_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(428, arc);
 
-	ResTIMG* timg = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("/data/timg/pikmin2_logo.bti"));
+	ResTIMG* timg = JKRGetImageResource("/data/timg/pikmin2_logo.bti");
 	P2ASSERTLINE(433, timg);
 
 	mLogoTexture = new JUTTexture(timg);

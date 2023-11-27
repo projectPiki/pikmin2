@@ -20,7 +20,7 @@ void TScreenProgre::loadResource()
 	sys->heapStatusStart("TScreenProgre::loadResource", nullptr);
 	char path[256];
 	og::newScreen::makeLanguageResName(path, "progre.szs");
-	JKRArchive* arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	JKRArchive* arc = JKRMountArchive(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	P2ASSERTLINE(37, arc);
 	sys->heapStatusEnd("TScreenProgre::loadResource");
 	setArchive(arc);
