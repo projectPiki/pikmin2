@@ -36,16 +36,6 @@ struct PikiCounter {
 	u32 mPikiCounts[PikiColorCount]; // 04
 };
 
-inline void checkNaviIndex(int index)
-{
-	bool check = false;
-	if (index >= 0 && index < PikiColorCount) {
-		check = true;
-	}
-
-	P2ASSERTLINE(119, check);
-}
-
 struct PikiNaviCounter {
 	PikiNaviCounter();
 
@@ -64,10 +54,20 @@ struct PikiNaviCounter {
 		return total;
 	}
 
-	inline int getCount(int id, int color)
+	inline int getTotal(int naviID)
 	{
-		checkNaviIndex(id);
-		PikiCounter& counter = mCounter[id];
+		P2ASSERTBOUNDSLINE(115, 0, naviID, 7);
+
+		PikiCounter& counter = mCounter[naviID];
+		return counter;
+	}
+
+	inline int getCount(int naviID, int color)
+	{
+		// I'm pretty sure the assert was meant to be on color instead of the navi id
+		P2ASSERTBOUNDSLINE(119, 0, naviID, 7);
+
+		PikiCounter& counter = mCounter[naviID];
 		return counter(color);
 	}
 };

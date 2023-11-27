@@ -183,16 +183,13 @@ void ActFormation::setFormed()
 	*/
 	if (!Game::gameSystem->mIsInCave && Game::gameSystem->isFlag(Game::GAMESYS_IsGameWorldActive)
 	    && !Game::playData->isDemoFlag(Game::DEMO_Reds_Purples_Tutorial) && Game::playData->isDemoFlag(Game::DEMO_Purples_In_Ship)) {
-		Game::GameStat::checkNaviIndex(index); // check navi index is between 0 and 6 otherwise panic (?)
-		Game::GameStat::PikiCounter* counter = &Game::GameStat::formationPikis.mCounter[index]; // get squad numbers
 
-		int redCount = (*counter)(Game::Red);
+		int redCount = Game::GameStat::formationPikis.getCount(index, Game::Red);
 
 		// if we have reds in squad...
 		if (redCount > 0) {
 
-			Game::GameStat::checkNaviIndex(index);
-			int purpleCount = (*counter)(Game::Purple);
+			int purpleCount = Game::GameStat::formationPikis.getCount(index, Game::Purple);
 
 			// ... AND we have purples in squad...
 			if (purpleCount > 0) {

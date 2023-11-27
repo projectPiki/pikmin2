@@ -244,6 +244,8 @@ struct NaviDemo_HoleInState : public NaviState {
 	{
 	}
 
+	enum SubState { GoTo, Hesitate, Fall };
+
 	virtual void init(Navi*, StateArg*);                       // _08
 	virtual void exec(Navi*);                                  // _0C
 	virtual void cleanup(Navi*);                               // _10
@@ -257,9 +259,9 @@ struct NaviDemo_HoleInState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u16 _10;
-	u8 _12;
-	int _14;
+	u16 mSubState;      // _10
+	u8 _12;             // _12
+	BaseItem* mHoleObj; // _14, could be ItemHole or ItemCave
 };
 
 struct NaviDemo_UfoState : public NaviState {
@@ -279,7 +281,12 @@ struct NaviDemo_UfoState : public NaviState {
 	// _00     = VTBL
 	// _00-_10 = NaviState
 	u16 _10;      // _10
-	u8 _14[0x20]; // _14, unknown
+	f32 _14;      // _14
+	f32 _18;      // _18
+	f32 _1C;      // _1C
+	f32 _20;      // _20
+	Vector3f _24; // _24
+	f32 _30;
 };
 
 struct NaviDopeArg : public StateArg {
@@ -751,23 +758,23 @@ struct NaviThrowWaitState : public NaviState, virtual public SysShape::MotionLis
 
 	void doAnimCallback();
 	void lockHangPiki(Navi*);
-	void findNearestColorPiki(Navi*, int);
+	Piki* findNearestColorPiki(Navi*, int);
 	void sortPikis(Navi*);
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
 	// _10-_14 = MotionListener VTBL
-	Piki* mPiki; // _14, held piki to be thrown
-	u8 _18;      // _18
+	Piki* mHeldPiki; // _14, held piki to be thrown
+	Piki* mNextPiki; // _18
 	int _1C;
 	bool _20;
 	int _24;
-	int _28;
-	int _2C;
+	f32 _28;
+	f32 _2C;
 	Delegate<NaviThrowWaitState>* mDelegate; // _30
 	Navi* mNavi;                             // _34
-	int _38;
-	// _3C = MotionListener
+	int mCurrHappa;                          // _38
+	                                         // _3C = MotionListener
 };
 
 struct NaviWalkState : public NaviState {
