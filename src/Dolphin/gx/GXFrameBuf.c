@@ -17,50 +17,15 @@ void GXAdjustForOverscan(GXRenderModeObj* rIn, GXRenderModeObj* rOut, u16 horiz,
  */
 void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height)
 {
-	LOAD_GX_FIELD(0x1e0, u32) = 0;
-	LOAD_GX_FIELD(0x1e0, u32) |= left;
-	LOAD_GX_FIELD(0x1e0, u32) |= top << 0x10;
-	LOAD_GX_FIELD(0x1e0, u32) &= 0x49;
+	gx->cpDispSrc = 0;
+	FAST_FLAG_SET(gx->cpDispSrc, left, 0, 10);
+	FAST_FLAG_SET(gx->cpDispSrc, top, 10, 10);
+	FAST_FLAG_SET(gx->cpDispSrc, 0x49, 24, 8);
 
-	LOAD_GX_FIELD(0x1e4, u32) = 0;
-	LOAD_GX_FIELD(0x1e4, u32) |= width - 1;
-	LOAD_GX_FIELD(0x1e4, u32) |= height - 1 << 0x10;
-	LOAD_GX_FIELD(0x1e4, u32) &= 0x49;
-
-	/*
-	.loc_0x0:
-	  lwz       r8, -0x6D70(r2)
-	  li        r9, 0
-	  rlwinm    r7,r5,0,16,31
-	  stw       r9, 0x1E0(r8)
-	  rlwinm    r5,r6,0,16,31
-	  rlwinm    r0,r3,0,16,31
-	  lwz       r3, 0x1E0(r8)
-	  rlwimi    r3,r0,0,22,31
-	  rlwinm    r0,r4,0,16,31
-	  stw       r3, 0x1E0(r8)
-	  li        r6, 0x49
-	  subi      r4, r7, 0x1
-	  lwz       r7, 0x1E0(r8)
-	  rlwimi    r7,r0,10,12,21
-	  subi      r3, r5, 0x1
-	  stw       r7, 0x1E0(r8)
-	  li        r0, 0x4A
-	  lwz       r5, 0x1E0(r8)
-	  rlwimi    r5,r6,24,0,7
-	  stw       r5, 0x1E0(r8)
-	  stw       r9, 0x1E4(r8)
-	  lwz       r5, 0x1E4(r8)
-	  rlwimi    r5,r4,0,22,31
-	  stw       r5, 0x1E4(r8)
-	  lwz       r4, 0x1E4(r8)
-	  rlwimi    r4,r3,10,12,21
-	  stw       r4, 0x1E4(r8)
-	  lwz       r3, 0x1E4(r8)
-	  rlwimi    r3,r0,24,0,7
-	  stw       r3, 0x1E4(r8)
-	  blr
-	*/
+	gx->cpDispSize = 0;
+	FAST_FLAG_SET(gx->cpDispSize, width - 1, 0, 10);
+	FAST_FLAG_SET(gx->cpDispSize, height - 1, 10, 10);
+	FAST_FLAG_SET(gx->cpDispSize, 0x4A, 24, 8);
 }
 
 /*
@@ -70,49 +35,15 @@ void GXSetDispCopySrc(u16 left, u16 top, u16 width, u16 height)
  */
 void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height)
 {
-	LOAD_GX_FIELD(0x1f0, u32) = 0;
-	LOAD_GX_FIELD(0x1f0, u32) |= left;
-	LOAD_GX_FIELD(0x1f0, u32) |= top << 0x10;
-	LOAD_GX_FIELD(0x1f0, u32) &= 0x49;
+	gx->cpTexSrc = 0;
+	FAST_FLAG_SET(gx->cpTexSrc, left, 0, 10);
+	FAST_FLAG_SET(gx->cpTexSrc, top, 10, 10);
+	FAST_FLAG_SET(gx->cpTexSrc, 0x49, 24, 8);
 
-	LOAD_GX_FIELD(0x1f4, u32) = 0;
-	LOAD_GX_FIELD(0x1f4, u32) |= width - 1;
-	LOAD_GX_FIELD(0x1f4, u32) |= height - 1 << 0x10;
-	LOAD_GX_FIELD(0x1f4, u32) &= 0x49;
-	/*
-	.loc_0x0:
-	  lwz       r8, -0x6D70(r2)
-	  li        r9, 0
-	  rlwinm    r7,r5,0,16,31
-	  stw       r9, 0x1F0(r8)
-	  rlwinm    r5,r6,0,16,31
-	  rlwinm    r0,r3,0,16,31
-	  lwz       r3, 0x1F0(r8)
-	  rlwimi    r3,r0,0,22,31
-	  rlwinm    r0,r4,0,16,31
-	  stw       r3, 0x1F0(r8)
-	  li        r6, 0x49
-	  subi      r4, r7, 0x1
-	  lwz       r7, 0x1F0(r8)
-	  rlwimi    r7,r0,10,12,21
-	  subi      r3, r5, 0x1
-	  stw       r7, 0x1F0(r8)
-	  li        r0, 0x4A
-	  lwz       r5, 0x1F0(r8)
-	  rlwimi    r5,r6,24,0,7
-	  stw       r5, 0x1F0(r8)
-	  stw       r9, 0x1F4(r8)
-	  lwz       r5, 0x1F4(r8)
-	  rlwimi    r5,r4,0,22,31
-	  stw       r5, 0x1F4(r8)
-	  lwz       r4, 0x1F4(r8)
-	  rlwimi    r4,r3,10,12,21
-	  stw       r4, 0x1F4(r8)
-	  lwz       r3, 0x1F4(r8)
-	  rlwimi    r3,r0,24,0,7
-	  stw       r3, 0x1F4(r8)
-	  blr
-	*/
+	gx->cpTexSize = 0;
+	FAST_FLAG_SET(gx->cpTexSize, width - 1, 0, 10);
+	FAST_FLAG_SET(gx->cpTexSize, height - 1, 10, 10);
+	FAST_FLAG_SET(gx->cpTexSize, 0x4A, 24, 8);
 }
 
 /*
@@ -122,25 +53,10 @@ void GXSetTexCopySrc(u16 left, u16 top, u16 width, u16 height)
  */
 void GXSetDispCopyDst(u16 width, u16 height)
 {
-	LOAD_GX_FIELD(0x1e8, u32) = 0;
-	LOAD_GX_FIELD(0x1e8, u32) |= width << 1;
-	LOAD_GX_FIELD(0x1e8, u32) |= 0x4d;
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6D70(r2)
-	  li        r0, 0
-	  stw       r0, 0x1E8(r4)
-	  rlwinm    r0,r3,1,16,30
-	  srawi     r0, r0, 0x5
-	  lwz       r3, 0x1E8(r4)
-	  rlwimi    r3,r0,0,22,31
-	  li        r0, 0x4D
-	  stw       r3, 0x1E8(r4)
-	  lwz       r3, 0x1E8(r4)
-	  rlwimi    r3,r0,24,0,7
-	  stw       r3, 0x1E8(r4)
-	  blr
-	*/
+	u16 stride       = width * 2;
+	gx->cpDispStride = 0;
+	FAST_FLAG_SET(gx->cpDispStride, stride >> 5, 0, 10);
+	FAST_FLAG_SET(gx->cpDispStride, 0x4D, 24, 8);
 }
 
 /*
@@ -246,20 +162,8 @@ void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt format, GXBool useMIPmap)
  */
 void GXSetDispCopyFrame2Field(GXCopyMode mode)
 {
-	LOAD_GX_FIELD(0x1ec, u32) |= mode & 3 << 0xc;
-	LOAD_GX_FIELD(0x1fc, u32) &= ~0x2000;
-	/*
-	.loc_0x0:
-	  lwz       r5, -0x6D70(r2)
-	  li        r0, 0
-	  lwz       r4, 0x1EC(r5)
-	  rlwimi    r4,r3,12,18,19
-	  stw       r4, 0x1EC(r5)
-	  lwz       r3, 0x1FC(r5)
-	  rlwimi    r3,r0,12,18,19
-	  stw       r3, 0x1FC(r5)
-	  blr
-	*/
+	FAST_FLAG_SET(gx->cpDisp, mode, 12, 2);
+	FAST_FLAG_SET(gx->cpTex, 0, 12, 2);
 }
 
 /*
@@ -269,36 +173,12 @@ void GXSetDispCopyFrame2Field(GXCopyMode mode)
  */
 void GXSetCopyClamp(GXFBClamp clamp)
 {
-	LOAD_GX_FIELD(0x1ec, u32) |= clamp >> 5 & 1;
-	LOAD_GX_FIELD(0x1ec, u32) |= clamp >> 5 & 2;
-
-	LOAD_GX_FIELD(0x1fc, u32) |= clamp >> 5 & 1;
-	LOAD_GX_FIELD(0x1fc, u32) |= clamp >> 5 & 2;
-	/*
-	.loc_0x0:
-	  rlwinm    r5,r3,0,31,31
-	  lwz       r4, -0x6D70(r2)
-	  subi      r0, r5, 0x1
-	  cntlzw    r5, r0
-	  lwz       r0, 0x1EC(r4)
-	  rlwinm    r5,r5,27,24,31
-	  rlwinm    r3,r3,0,30,30
-	  rlwimi    r0,r5,0,31,31
-	  subi      r3, r3, 0x2
-	  stw       r0, 0x1EC(r4)
-	  cntlzw    r0, r3
-	  rlwinm    r3,r0,27,24,31
-	  lwz       r0, 0x1EC(r4)
-	  rlwimi    r0,r3,1,30,30
-	  stw       r0, 0x1EC(r4)
-	  lwz       r0, 0x1FC(r4)
-	  rlwimi    r0,r5,0,31,31
-	  stw       r0, 0x1FC(r4)
-	  lwz       r0, 0x1FC(r4)
-	  rlwimi    r0,r3,1,30,30
-	  stw       r0, 0x1FC(r4)
-	  blr
-	*/
+	GXBool clamp1 = ((clamp & 1) == 1);
+	GXBool clamp2 = ((clamp & 2) == 2);
+	FAST_FLAG_SET(gx->cpDisp, clamp1, 0, 1);
+	FAST_FLAG_SET(gx->cpDisp, clamp2, 1, 1);
+	FAST_FLAG_SET(gx->cpTex, clamp1, 0, 1);
+	FAST_FLAG_SET(gx->cpTex, clamp2, 1, 1);
 }
 
 /*
@@ -821,18 +701,7 @@ void GXSetCopyFilter(GXBool useAA, u8 samplePattern[12][2], GXBool doVertFilt, u
  * Address:	800E6530
  * Size:	000014
  */
-void GXSetDispCopyGamma(GXGamma gamma)
-{
-	LOAD_GX_FIELD(0x1ec, u32) |= (gamma & 3) >> 7;
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r0, 0x1EC(r4)
-	  rlwimi    r0,r3,7,23,24
-	  stw       r0, 0x1EC(r4)
-	  blr
-	*/
-}
+void GXSetDispCopyGamma(GXGamma gamma) { FAST_FLAG_SET(gx->cpDisp, gamma, 7, 2); }
 
 /*
  * --INFO--
@@ -1079,10 +948,10 @@ void GXCopyTex(void* dest, GXBool doClear)
 void GXClearBoundingBox(void)
 {
 	GX_WRITE_U8(0x61);
-	GXWGFifo.u32 = 0x550003ff;
+	GX_WRITE_U32(0x550003FF);
 	GX_WRITE_U8(0x61);
-	GXWGFifo.u32            = 0x560003ff;
-	LOAD_GX_FIELD(0x2, u16) = 0;
+	GX_WRITE_U32(0x560003FF);
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*

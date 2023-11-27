@@ -579,7 +579,7 @@ void GXGetScissor(u32* left, u32* top, u32* width, u32* height)
  * Address:	800E9898
  * Size:	000040
  */
-void GXSetScissorBoxOffset(void)
+void GXSetScissorBoxOffset(s32 x, s32 y)
 {
 	/*
 	.loc_0x0:

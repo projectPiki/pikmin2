@@ -28,8 +28,8 @@ void __GXXfVtxSpecs(void)
 	norm <<= 2;
 
 	GX_XF_LOAD_REG_HDR(GX_XF_REG_INVERTEXSPEC);
-	WGPIPE.u32    = color | norm | (texCount & ~0xf);
-	gx->bpSentNot = TRUE;
+	GX_WRITE_U32(color | norm | (texCount & ~0xf));
+	gx->bpSentNot = GX_TRUE;
 }
 
 /*

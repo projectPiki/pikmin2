@@ -1576,7 +1576,7 @@ void __GXGetSUTexSize(void)
  * Address:	800E7BEC
  * Size:	000354
  */
-void __GXSetTmemConfig(void)
+void __GXSetTmemConfig(u32 config)
 {
 	/*
 	.loc_0x0:

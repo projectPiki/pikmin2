@@ -7,563 +7,372 @@
  */
 void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1)
 {
-	/*
-	.loc_0x0:
-	  lwz       r5, -0x6D70(r2)
-	  lwz       r0, 0x59C(r5)
-	  cmpwi     r0, 0x22
-	  beq-      .loc_0x38
-	  bge-      .loc_0x84
-	  cmpwi     r0, 0xB
-	  bge-      .loc_0x28
-	  cmpwi     r0, 0
-	  bge-      .loc_0x38
-	  b         .loc_0x84
+	switch (gx->perf0) {
+	case GX_PERF0_VERTICES:
+	case GX_PERF0_CLIP_VTX:
+	case GX_PERF0_CLIP_CLKS:
+	case GX_PERF0_XF_WAIT_IN:
+	case GX_PERF0_XF_WAIT_OUT:
+	case GX_PERF0_XF_XFRM_CLKS:
+	case GX_PERF0_XF_LIT_CLKS:
+	case GX_PERF0_XF_BOT_CLKS:
+	case GX_PERF0_XF_REGLD_CLKS:
+	case GX_PERF0_XF_REGRD_CLKS:
+	case GX_PERF0_CLIP_RATIO:
+	case GX_PERF0_CLOCKS:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0);
+		break;
 
-	.loc_0x28:
-	  cmpwi     r0, 0x1B
-	  bge-      .loc_0x70
-	  b         .loc_0x58
-	  b         .loc_0x84
+	case GX_PERF0_TRIANGLES:
+	case GX_PERF0_TRIANGLES_CULLED:
+	case GX_PERF0_TRIANGLES_PASSED:
+	case GX_PERF0_TRIANGLES_SCISSORED:
+	case GX_PERF0_TRIANGLES_0TEX:
+	case GX_PERF0_TRIANGLES_1TEX:
+	case GX_PERF0_TRIANGLES_2TEX:
+	case GX_PERF0_TRIANGLES_3TEX:
+	case GX_PERF0_TRIANGLES_4TEX:
+	case GX_PERF0_TRIANGLES_5TEX:
+	case GX_PERF0_TRIANGLES_6TEX:
+	case GX_PERF0_TRIANGLES_7TEX:
+	case GX_PERF0_TRIANGLES_8TEX:
+	case GX_PERF0_TRIANGLES_0CLR:
+	case GX_PERF0_TRIANGLES_1CLR:
+	case GX_PERF0_TRIANGLES_2CLR:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x23000000);
+		break;
 
-	.loc_0x38:
-	  li        r0, 0x10
-	  lis       r6, 0xCC01
-	  stb       r0, -0x8000(r6)
-	  li        r5, 0x1006
-	  li        r0, 0
-	  stw       r5, -0x8000(r6)
-	  stw       r0, -0x8000(r6)
-	  b         .loc_0x84
+	case GX_PERF0_QUAD_0CVG:
+	case GX_PERF0_QUAD_NON0CVG:
+	case GX_PERF0_QUAD_1CVG:
+	case GX_PERF0_QUAD_2CVG:
+	case GX_PERF0_QUAD_3CVG:
+	case GX_PERF0_QUAD_4CVG:
+	case GX_PERF0_AVG_QUAD_CNT:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x24000000);
+		break;
 
-	.loc_0x58:
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  lis       r0, 0x2300
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x84
+	case GX_PERF0_NONE:
+		break;
+	}
 
-	.loc_0x70:
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  lis       r0, 0x2400
-	  stw       r0, -0x8000(r5)
+	switch (gx->perf1) {
+	case GX_PERF1_TEXELS:
+	case GX_PERF1_TX_IDLE:
+	case GX_PERF1_TX_REGS:
+	case GX_PERF1_TX_MEMSTALL:
+	case GX_PERF1_TC_CHECK1_2:
+	case GX_PERF1_TC_CHECK3_4:
+	case GX_PERF1_TC_CHECK5_6:
+	case GX_PERF1_TC_CHECK7_8:
+	case GX_PERF1_TC_MISS:
+	case GX_PERF1_CLOCKS:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x67000000);
+		break;
 
-	.loc_0x84:
-	  lwz       r6, -0x6D70(r2)
-	  lwz       r0, 0x5A0(r6)
-	  cmpwi     r0, 0x15
-	  beq-      .loc_0xBC
-	  bge-      .loc_0x110
-	  cmpwi     r0, 0x9
-	  bge-      .loc_0xAC
-	  cmpwi     r0, 0
-	  bge-      .loc_0xBC
-	  b         .loc_0x110
+	case GX_PERF1_VC_ELEMQ_FULL:
+	case GX_PERF1_VC_MISSQ_FULL:
+	case GX_PERF1_VC_MEMREQ_FULL:
+	case GX_PERF1_VC_STATUS7:
+	case GX_PERF1_VC_MISSREP_FULL:
+	case GX_PERF1_VC_STREAMBUF_LOW:
+	case GX_PERF1_VC_ALL_STALLS:
+	case GX_PERF1_VERTICES:
+		FAST_FLAG_SET(gx->perfSel, 0, 4, 4);
+		GX_WRITE_U8(8);
+		GX_WRITE_U8(32);
+		GX_WRITE_U32(gx->perfSel);
+		break;
 
-	.loc_0xAC:
-	  cmpwi     r0, 0x11
-	  bge-      .loc_0x104
-	  b         .loc_0xD4
-	  b         .loc_0x110
+	case GX_PERF1_FIFO_REQ:
+	case GX_PERF1_CALL_REQ:
+	case GX_PERF1_VC_MISS_REQ:
+	case GX_PERF1_CP_ALL_REQ:
+		GX_SET_CP_REG(3, 0);
+		break;
 
-	.loc_0xBC:
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  lis       r0, 0x6700
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x110
+	case GX_PERF1_NONE:
+		break;
+	}
 
-	.loc_0xD4:
-	  lwz       r5, 0x5A4(r6)
-	  li        r0, 0
-	  rlwimi    r5,r0,4,24,27
-	  stw       r5, 0x5A4(r6)
-	  li        r0, 0x8
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r0, 0x20
-	  stb       r0, -0x8000(r5)
-	  lwz       r0, 0x5A4(r6)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x110
+	gx->perf0 = perf0;
 
-	.loc_0x104:
-	  lwz       r5, -0x714C(r13)
-	  li        r0, 0
-	  sth       r0, 0x6(r5)
+	switch (gx->perf0) {
+	case GX_PERF0_VERTICES:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x273);
+		break;
+	case GX_PERF0_CLIP_VTX:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x14A);
+		break;
+	case GX_PERF0_CLIP_CLKS:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x16B);
+		break;
+	case GX_PERF0_XF_WAIT_IN:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x84);
+		break;
+	case GX_PERF0_XF_WAIT_OUT:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0xC6);
+		break;
+	case GX_PERF0_XF_XFRM_CLKS:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x210);
+		break;
+	case GX_PERF0_XF_LIT_CLKS:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x252);
+		break;
+	case GX_PERF0_XF_BOT_CLKS:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x231);
+		break;
+	case GX_PERF0_XF_REGLD_CLKS:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x1AD);
+		break;
+	case GX_PERF0_XF_REGRD_CLKS:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x1CE);
+		break;
+	case GX_PERF0_CLOCKS:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x21);
+		break;
+	case GX_PERF0_CLIP_RATIO:
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1006);
+		GX_WRITE_U32(0x153);
+		break;
 
-	.loc_0x110:
-	  lwz       r5, -0x6D70(r2)
-	  stw       r3, 0x59C(r5)
-	  lwz       r0, 0x59C(r5)
-	  cmplwi    r0, 0x23
-	  bgt-      .loc_0x53C
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x7794
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x273
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x14A
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x16B
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x84
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0xC6
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x210
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x252
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x231
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x1AD
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x1CE
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x21
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x10
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r3, 0x1006
-	  li        r0, 0x153
-	  stw       r3, -0x8000(r5)
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5181
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x7181
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x6181
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2300
-	  stb       r0, -0x8000(r5)
-	  addi      r0, r3, 0x1E7F
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x53C1
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5381
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5341
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5301
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x52C1
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5281
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5241
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5201
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x51C1
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5D81
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5981
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2301
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x5581
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2403
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x3F3A
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2403
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x3E95
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2403
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x3F19
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2403
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x3EF8
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2403
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x3ED7
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2403
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x3EB6
-	  stw       r0, -0x8000(r5)
-	  b         .loc_0x53C
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r3, 0x2403
-	  stb       r0, -0x8000(r5)
-	  subi      r0, r3, 0x3E53
-	  stw       r0, -0x8000(r5)
+	case GX_PERF0_TRIANGLES:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300AE7F);
+		break;
+	case GX_PERF0_TRIANGLES_CULLED:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x23008E7F);
+		break;
+	case GX_PERF0_TRIANGLES_PASSED:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x23009E7F);
+		break;
+	case GX_PERF0_TRIANGLES_SCISSORED:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x23001E7F);
+		break;
+	case GX_PERF0_TRIANGLES_0TEX:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300AC3F);
+		break;
+	case GX_PERF0_TRIANGLES_1TEX:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300AC7F);
+		break;
+	case GX_PERF0_TRIANGLES_2TEX:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300ACBF);
+		break;
+	case GX_PERF0_TRIANGLES_3TEX:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300ACFF);
+		break;
+	case GX_PERF0_TRIANGLES_4TEX:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300AD3F);
+		break;
+	case GX_PERF0_TRIANGLES_5TEX:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300AD7F);
+		break;
+	case GX_PERF0_TRIANGLES_6TEX:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300ADBF);
+		break;
+	case GX_PERF0_TRIANGLES_7TEX:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300ADFF);
+		break;
+	case GX_PERF0_TRIANGLES_8TEX:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300AE3F);
+		break;
+	case GX_PERF0_TRIANGLES_0CLR:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300A27F);
+		break;
+	case GX_PERF0_TRIANGLES_1CLR:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300A67F);
+		break;
+	case GX_PERF0_TRIANGLES_2CLR:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2300AA7F);
+		break;
 
-	.loc_0x53C:
-	  lwz       r3, -0x6D70(r2)
-	  stw       r4, 0x5A0(r3)
-	  lwz       r0, 0x5A0(r3)
-	  cmplwi    r0, 0x16
-	  bgt-      .loc_0x838
-	  lis       r4, 0x804B
-	  subi      r4, r4, 0x77F0
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r0, r4, r0
-	  mtctr     r0
-	  bctr
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x42
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x84
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x63
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x129
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x252
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x21
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x14B
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x18D
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x1CF
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lis       r3, 0x6700
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x211
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  lwz       r4, 0x5A4(r3)
-	  li        r0, 0x2
-	  rlwimi    r4,r0,4,24,27
-	  stw       r4, 0x5A4(r3)
-	  li        r0, 0x8
-	  lis       r4, 0xCC01
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0x20
-	  stb       r0, -0x8000(r4)
-	  lwz       r0, 0x5A4(r3)
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  lwz       r4, 0x5A4(r3)
-	  li        r0, 0x3
-	  rlwimi    r4,r0,4,24,27
-	  stw       r4, 0x5A4(r3)
-	  li        r0, 0x8
-	  lis       r4, 0xCC01
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0x20
-	  stb       r0, -0x8000(r4)
-	  lwz       r0, 0x5A4(r3)
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  lwz       r4, 0x5A4(r3)
-	  li        r0, 0x4
-	  rlwimi    r4,r0,4,24,27
-	  stw       r4, 0x5A4(r3)
-	  li        r0, 0x8
-	  lis       r4, 0xCC01
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0x20
-	  stb       r0, -0x8000(r4)
-	  lwz       r0, 0x5A4(r3)
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  lwz       r4, 0x5A4(r3)
-	  li        r0, 0x5
-	  rlwimi    r4,r0,4,24,27
-	  stw       r4, 0x5A4(r3)
-	  li        r0, 0x8
-	  lis       r4, 0xCC01
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0x20
-	  stb       r0, -0x8000(r4)
-	  lwz       r0, 0x5A4(r3)
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  lwz       r4, 0x5A4(r3)
-	  li        r0, 0x6
-	  rlwimi    r4,r0,4,24,27
-	  stw       r4, 0x5A4(r3)
-	  li        r0, 0x8
-	  lis       r4, 0xCC01
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0x20
-	  stb       r0, -0x8000(r4)
-	  lwz       r0, 0x5A4(r3)
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  lwz       r4, 0x5A4(r3)
-	  li        r0, 0x7
-	  rlwimi    r4,r0,4,24,27
-	  stw       r4, 0x5A4(r3)
-	  li        r0, 0x8
-	  lis       r4, 0xCC01
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0x20
-	  stb       r0, -0x8000(r4)
-	  lwz       r0, 0x5A4(r3)
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  lwz       r4, 0x5A4(r3)
-	  li        r0, 0x9
-	  rlwimi    r4,r0,4,24,27
-	  stw       r4, 0x5A4(r3)
-	  li        r0, 0x8
-	  lis       r4, 0xCC01
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0x20
-	  stb       r0, -0x8000(r4)
-	  lwz       r0, 0x5A4(r3)
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  lwz       r0, 0x5A4(r3)
-	  li        r5, 0x8
-	  rlwimi    r0,r5,4,24,27
-	  stw       r0, 0x5A4(r3)
-	  lis       r4, 0xCC01
-	  li        r0, 0x20
-	  stb       r5, -0x8000(r4)
-	  stb       r0, -0x8000(r4)
-	  lwz       r0, 0x5A4(r3)
-	  stw       r0, -0x8000(r4)
-	  b         .loc_0x838
-	  lwz       r3, -0x714C(r13)
-	  li        r0, 0x2
-	  sth       r0, 0x6(r3)
-	  b         .loc_0x838
-	  lwz       r3, -0x714C(r13)
-	  li        r0, 0x3
-	  sth       r0, 0x6(r3)
-	  b         .loc_0x838
-	  lwz       r3, -0x714C(r13)
-	  li        r0, 0x4
-	  sth       r0, 0x6(r3)
-	  b         .loc_0x838
-	  lwz       r3, -0x714C(r13)
-	  li        r0, 0x5
-	  sth       r0, 0x6(r3)
+	case GX_PERF0_QUAD_0CVG:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2402C0C6);
+		break;
+	case GX_PERF0_QUAD_NON0CVG:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2402C16B);
+		break;
+	case GX_PERF0_QUAD_1CVG:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2402C0E7);
+		break;
+	case GX_PERF0_QUAD_2CVG:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2402C108);
+		break;
+	case GX_PERF0_QUAD_3CVG:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2402C129);
+		break;
+	case GX_PERF0_QUAD_4CVG:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2402C14A);
+		break;
+	case GX_PERF0_AVG_QUAD_CNT:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x2402C1AD);
+		break;
 
-	.loc_0x838:
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
+	case GX_PERF0_NONE:
+		break;
+	}
+
+	gx->perf1 = perf1;
+
+	switch (gx->perf1) {
+	case GX_PERF1_TEXELS:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x67000042);
+		break;
+	case GX_PERF1_TX_IDLE:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x67000084);
+		break;
+	case GX_PERF1_TX_REGS:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x67000063);
+		break;
+	case GX_PERF1_TX_MEMSTALL:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x67000129);
+		break;
+	case GX_PERF1_TC_MISS:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x67000252);
+		break;
+	case GX_PERF1_CLOCKS:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x67000021);
+		break;
+	case GX_PERF1_TC_CHECK1_2:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x6700014B);
+		break;
+	case GX_PERF1_TC_CHECK3_4:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x6700018D);
+		break;
+	case GX_PERF1_TC_CHECK5_6:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x670001CF);
+		break;
+	case GX_PERF1_TC_CHECK7_8:
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(0x67000211);
+		break;
+
+	case GX_PERF1_VC_ELEMQ_FULL:
+		FAST_FLAG_SET(gx->perfSel, 2, 4, 4);
+		GX_WRITE_U8(8);
+		GX_WRITE_U8(32);
+		GX_WRITE_U32(gx->perfSel);
+		break;
+	case GX_PERF1_VC_MISSQ_FULL:
+		FAST_FLAG_SET(gx->perfSel, 3, 4, 4);
+		GX_WRITE_U8(8);
+		GX_WRITE_U8(32);
+		GX_WRITE_U32(gx->perfSel);
+		break;
+	case GX_PERF1_VC_MEMREQ_FULL:
+		FAST_FLAG_SET(gx->perfSel, 4, 4, 4);
+		GX_WRITE_U8(8);
+		GX_WRITE_U8(32);
+		GX_WRITE_U32(gx->perfSel);
+		break;
+	case GX_PERF1_VC_STATUS7:
+		FAST_FLAG_SET(gx->perfSel, 5, 4, 4);
+		GX_WRITE_U8(8);
+		GX_WRITE_U8(32);
+		GX_WRITE_U32(gx->perfSel);
+		break;
+	case GX_PERF1_VC_MISSREP_FULL:
+		FAST_FLAG_SET(gx->perfSel, 6, 4, 4);
+		GX_WRITE_U8(8);
+		GX_WRITE_U8(32);
+		GX_WRITE_U32(gx->perfSel);
+		break;
+	case GX_PERF1_VC_STREAMBUF_LOW:
+		FAST_FLAG_SET(gx->perfSel, 7, 4, 4);
+		GX_WRITE_U8(8);
+		GX_WRITE_U8(32);
+		GX_WRITE_U32(gx->perfSel);
+		break;
+	case GX_PERF1_VC_ALL_STALLS:
+		FAST_FLAG_SET(gx->perfSel, 9, 4, 4);
+		GX_WRITE_U8(8);
+		GX_WRITE_U8(32);
+		GX_WRITE_U32(gx->perfSel);
+		break;
+	case GX_PERF1_VERTICES:
+		FAST_FLAG_SET(gx->perfSel, 8, 4, 4);
+		GX_WRITE_U8(8);
+		GX_WRITE_U8(32);
+		GX_WRITE_U32(gx->perfSel);
+		break;
+
+	case GX_PERF1_FIFO_REQ:
+		GX_SET_CP_REG(3, 2);
+		break;
+	case GX_PERF1_CALL_REQ:
+		GX_SET_CP_REG(3, 3);
+		break;
+	case GX_PERF1_VC_MISS_REQ:
+		GX_SET_CP_REG(3, 4);
+		break;
+	case GX_PERF1_CP_ALL_REQ:
+		GX_SET_CP_REG(3, 5);
+		break;
+
+	case GX_PERF1_NONE:
+		break;
+	}
+
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -581,7 +390,7 @@ void GXReadGPMetric(u32* count0, u32* count1)
  * Address:	800EA1CC
  * Size:	000010
  */
-void GXClearGPMetric(void) { __cpReg->clearRegister = 4; }
+void GXClearGPMetric(void) { GX_SET_CP_REG(2, 4); }
 
 /*
  * --INFO--
@@ -691,6 +500,10 @@ void GXInitXfRasMetric(void)
  */
 void GXReadXfRasMetric(u32* xfWaitIn, u32* xfWaitOut, u32* rasBusy, u32* clocks)
 {
+	*rasBusy   = GXReadCPReg(32, 33);
+	*clocks    = GXReadCPReg(34, 35);
+	*xfWaitIn  = GXReadCPReg(36, 37);
+	*xfWaitOut = GXReadCPReg(38, 39);
 	/*
 	.loc_0x0:
 	  lwz       r7, -0x714C(r13)

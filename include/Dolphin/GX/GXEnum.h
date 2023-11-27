@@ -1131,40 +1131,42 @@ typedef enum _GXMiscToken {
 	GX_MT_ABORT_WAIT_COPYOUT = 3,
 } GXMiscToken;
 
+// Flags for setting GXData dirtyState.
 typedef enum _GXDirtyFlag {
-	GX_DIRTY_SU_TEX   = (1 << 0),
-	GX_DIRTY_BP_MASK  = (1 << 1),
-	GX_DIRTY_GEN_MODE = (1 << 2),
-	GX_DIRTY_VCD      = (1 << 3),
-	GX_DIRTY_VAT      = (1 << 4),
+	GX_DIRTY_SU_TEX   = (1 << 0), // 0x1
+	GX_DIRTY_BP_MASK  = (1 << 1), // 0x2
+	GX_DIRTY_GEN_MODE = (1 << 2), // 0x4
+	GX_DIRTY_VCD      = (1 << 3), // 0x8
+	GX_DIRTY_VAT      = (1 << 4), // 0x10
 	// . . .
-	GX_DIRTY_AMB_COLOR0  = (1 << 8),
-	GX_DIRTY_AMB_COLOR1  = (1 << 9),
-	GX_DIRTY_MAT_COLOR0  = (1 << 10),
-	GX_DIRTY_MAT_COLOR1  = (1 << 11),
-	GX_DIRTY_CHAN_COLOR0 = (1 << 12),
-	GX_DIRTY_CHAN_COLOR1 = (1 << 13),
-	GX_DIRTY_CHAN_ALPHA0 = (1 << 14),
-	GX_DIRTY_CHAN_ALPHA1 = (1 << 15),
-	GX_DIRTY_TEX0        = (1 << 16),
-	GX_DIRTY_TEX1        = (1 << 17),
-	GX_DIRTY_TEX2        = (1 << 18),
-	GX_DIRTY_TEX3        = (1 << 19),
-	GX_DIRTY_TEX4        = (1 << 20),
-	GX_DIRTY_TEX5        = (1 << 21),
-	GX_DIRTY_TEX6        = (1 << 22),
-	GX_DIRTY_TEX7        = (1 << 23),
-	GX_DIRTY_NUM_COLORS  = (1 << 24),
-	GX_DIRTY_NUM_TEX     = (1 << 25),
-	GX_DIRTY_MTX_IDX     = (1 << 26),
-	GX_DIRTY_PROJECTION  = (1 << 27),
-	GX_DIRTY_VIEWPORT    = (1 << 28),
+	GX_DIRTY_AMB_COLOR0  = (1 << 8),  // 0x100
+	GX_DIRTY_AMB_COLOR1  = (1 << 9),  // 0x200
+	GX_DIRTY_MAT_COLOR0  = (1 << 10), // 0x400
+	GX_DIRTY_MAT_COLOR1  = (1 << 11), // 0x800
+	GX_DIRTY_CHAN_COLOR0 = (1 << 12), // 0x1000
+	GX_DIRTY_CHAN_COLOR1 = (1 << 13), // 0x2000
+	GX_DIRTY_CHAN_ALPHA0 = (1 << 14), // 0x4000
+	GX_DIRTY_CHAN_ALPHA1 = (1 << 15), // 0x8000
+	GX_DIRTY_TEX0        = (1 << 16), // 0x10000
+	GX_DIRTY_TEX1        = (1 << 17), // 0x20000
+	GX_DIRTY_TEX2        = (1 << 18), // 0x40000
+	GX_DIRTY_TEX3        = (1 << 19), // 0x80000
+	GX_DIRTY_TEX4        = (1 << 20), // 0x100000
+	GX_DIRTY_TEX5        = (1 << 21), // 0x200000
+	GX_DIRTY_TEX6        = (1 << 22), // 0x400000
+	GX_DIRTY_TEX7        = (1 << 23), // 0x800000
+	GX_DIRTY_NUM_COLORS  = (1 << 24), // 0x1000000
+	GX_DIRTY_NUM_TEX     = (1 << 25), // 0x2000000
+	GX_DIRTY_MTX_IDX     = (1 << 26), // 0x4000000
+	GX_DIRTY_PROJECTION  = (1 << 27), // 0x8000000
+	GX_DIRTY_VIEWPORT    = (1 << 28), // 0x10000000
 
-	GX_AMB_MAT_MASK = GX_DIRTY_AMB_COLOR0 | GX_DIRTY_AMB_COLOR1 | GX_DIRTY_MAT_COLOR0 | GX_DIRTY_MAT_COLOR1,
+	GX_AMB_MAT_MASK = GX_DIRTY_AMB_COLOR0 | GX_DIRTY_AMB_COLOR1 | GX_DIRTY_MAT_COLOR0 | GX_DIRTY_MAT_COLOR1, // 0xF00
 
-	GX_LIGHT_CHAN_MASK = GX_DIRTY_CHAN_COLOR0 | GX_DIRTY_CHAN_COLOR1 | GX_DIRTY_CHAN_ALPHA0 | GX_DIRTY_CHAN_ALPHA1 | GX_DIRTY_NUM_COLORS,
+	GX_LIGHT_CHAN_MASK
+	= GX_DIRTY_CHAN_COLOR0 | GX_DIRTY_CHAN_COLOR1 | GX_DIRTY_CHAN_ALPHA0 | GX_DIRTY_CHAN_ALPHA1 | GX_DIRTY_NUM_COLORS, // 0x100F000
 
-	GX_TEX_GEN_MASK = 0x2FF0000,
+	GX_TEX_GEN_MASK = 0x2FF0000, // all GX_DIRTY_TEXs | GX_DIRTY_NUM_TEX
 } GXDirtyFlag;
 
 ////////////////////////////////////////////

@@ -1,10 +1,12 @@
-#ifndef DOLPHIN_GX_HARDWARE_H
-#define DOLPHIN_GX_HARDWARE_H
+#ifndef _DOLPHIN_GXHARDWARE_H
+#define _DOLPHIN_GXHARDWARE_H
+
 #include "Dolphin/GX/GXTypes.h"
 #include "types.h"
+
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif // ifdef __cplusplus
 
 /**
  * Documentation from:
@@ -26,26 +28,6 @@ extern "C" {
  *
  *
  ***********************************************************/
-
-/**
- * FIFO write/gather pipe
- */
-// extern volatile union {
-//     // 1-byte
-//     s8 c;
-//     u8 uc;
-//     // 2-byte
-//     s16 s;
-//     u16 us;
-//     // 4-byte
-//     s32 i;
-//     u32 ui;
-//     void* p;
-//     f32 f;
-//     f64 d;
-// } WGPIPE : GXFIFO_ADDR;
-
-#define WGPIPE GXWGFifo
 
 /**
  * FIFO commands
@@ -76,8 +58,8 @@ typedef enum {
 		__GX_FIFO_SET_LOAD_INDX_DST(cmd, dst);      \
 		__GX_FIFO_SET_LOAD_INDX_NELEM(cmd, nelem);  \
 		__GX_FIFO_SET_LOAD_INDX_INDEX(cmd, index);  \
-		WGPIPE.s8  = reg;                           \
-		WGPIPE.s32 = cmd;                           \
+		GXWGFifo.s8  = reg;                         \
+		GXWGFifo.s32 = cmd;                         \
 	}
 
 #define GX_FIFO_LOAD_INDX_A(dst, nelem, index) __GX_FIFO_LOAD_INDX(GX_FIFO_CMD_LOAD_INDX_A, dst, nelem, index)
@@ -99,9 +81,9 @@ typedef enum {
 /**
  * Load immediate value into BP register
  */
-#define GX_LOAD_BP_REG(data)              \
-	WGPIPE.s8  = GX_FIFO_CMD_LOAD_BP_REG; \
-	WGPIPE.s32 = (data);
+#define GX_LOAD_BP_REG(data)                \
+	GXWGFifo.s8  = GX_FIFO_CMD_LOAD_BP_REG; \
+	GXWGFifo.s32 = (data);
 
 /**
  * Set BP command opcode (first 8 bits)
@@ -119,10 +101,10 @@ typedef enum {
 /**
  * Load immediate value into CP register
  */
-#define GX_CP_LOAD_REG(addr, data)        \
-	WGPIPE.s8  = GX_FIFO_CMD_LOAD_CP_REG; \
-	WGPIPE.s8  = (addr);                  \
-	WGPIPE.s32 = (data);
+#define GX_CP_LOAD_REG(addr, data)          \
+	GXWGFifo.s8  = GX_FIFO_CMD_LOAD_CP_REG; \
+	GXWGFifo.s8  = (addr);                  \
+	GXWGFifo.s32 = (data);
 
 /************************************************************
  *
@@ -140,16 +122,16 @@ typedef enum { GX_XF_MEM_POSMTX = 0x0000, GX_XF_MEM_NRMMTX = 0x0400, GX_XF_MEM_D
 /**
  * Header for an XF register load
  */
-#define GX_XF_LOAD_REG_HDR(addr)          \
-	WGPIPE.s8  = GX_FIFO_CMD_LOAD_XF_REG; \
-	WGPIPE.s32 = (addr);
+#define GX_XF_LOAD_REG_HDR(addr)            \
+	GXWGFifo.s8  = GX_FIFO_CMD_LOAD_XF_REG; \
+	GXWGFifo.s32 = (addr);
 
 /**
  * Load immediate value into XF register
  */
 #define GX_XF_LOAD_REG(addr, data) \
 	GX_XF_LOAD_REG_HDR(addr);      \
-	WGPIPE.s32 = (data);
+	GXWGFifo.s32 = (data);
 
 /**
  * Load immediate values into multiple XF registers

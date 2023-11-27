@@ -244,14 +244,6 @@ static inline u32 GXReadPIReg(u32 addrLo, u32 addrHi)
 // used in GXDisplayList, saves having a union in the struct
 #define GX_CHECK_FLUSH() (!(*(u32*)(&gx->vNumNot)))
 
-// set waste flags
-static inline void GXSetWasteFlags()
-{
-	GXData* data = __GXData;
-	data->dirtyState |= 0x3;
-	data->bpSentNot = GX_FALSE;
-}
-
 // do the damn rlwimi thing
 #define FAST_FLAG_SET(regOrg, newFlag, shift, size)                                                                \
 	do {                                                                                                           \

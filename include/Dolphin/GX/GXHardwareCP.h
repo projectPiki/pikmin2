@@ -1,5 +1,5 @@
-#ifndef DOLPHIN_GX_HARDWARE_CP_H
-#define DOLPHIN_GX_HARDWARE_CP_H
+#ifndef _DOLPHIN_GXHARDWARECP_H
+#define _DOLPHIN_GXHARDWARECP_H
 #include "Dolphin/GX/GXTypes.h"
 #include "types.h"
 #ifdef __cplusplus
