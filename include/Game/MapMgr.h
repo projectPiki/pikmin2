@@ -63,9 +63,9 @@ struct MapMgr : virtual public GenericObjectMgr {
 	virtual void getBoundBox2d(BoundBox2d&) = 0;                                // _18
 	virtual void getBoundBox(BoundBox&)     = 0;                                // _1C
 	virtual bool findRayIntersection(Sys::RayIntersectInfo&) { return false; }  // _20 (weak)
-	virtual void traceMove(MoveInfo&, f32) = 0;                                 // _24
-	virtual f32 getMinY(Vector3f&)         = 0;                                 // _28
-	virtual void getCurrTri(CurrTriInfo&)  = 0;                                 // _2C
+	virtual Sys::TriIndexList* traceMove(MoveInfo&, f32) = 0;                   // _24
+	virtual f32 getMinY(Vector3f&)                       = 0;                   // _28
+	virtual void getCurrTri(CurrTriInfo&)                = 0;                   // _2C
 	virtual void createTriangles(Sys::CreateTriangleArg& arg) { }               // _30 (weak)
 	virtual void setupJUTTextures() { }                                         // _34 (weak)
 	virtual bool frozenable() { return false; }                                 // _38 (weak)
@@ -80,7 +80,7 @@ struct MapMgr : virtual public GenericObjectMgr {
 	f32 getBestAngle(Vector3f&, f32, f32);
 	void checkBeamCollision(BeamCollisionArg&);
 	void clearPerfMonitor();
-	void traceMove(MapCollision&, Game::MoveInfo&, f32);
+	Sys::TriIndexList* traceMove(MapCollision&, Game::MoveInfo&, f32);
 	Sys::TriIndexList* traceMove_test1203_cylinder(MapCollision&, Game::MoveInfo&, f32);
 
 	// unused/inlined:
@@ -125,7 +125,7 @@ struct ShapeMapMgr : public MapMgr {
 	virtual void getBoundBox2d(BoundBox2d&);                                // _18 (weak)
 	virtual void getBoundBox(BoundBox&);                                    // _1C (weak)
 	virtual bool findRayIntersection(Sys::RayIntersectInfo&);               // _20
-	virtual void traceMove(MoveInfo&, f32);                                 // _24
+	virtual Sys::TriIndexList* traceMove(MoveInfo&, f32);                   // _24
 	virtual f32 getMinY(Vector3f&);                                         // _28
 	virtual void getCurrTri(CurrTriInfo&);                                  // _2C
 	virtual void createTriangles(Sys::CreateTriangleArg& arg);              // _30

@@ -37,7 +37,10 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	BaseItem(int);
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition();              // _08 (weak)
+	virtual Vector3f getPosition() // _08 (weak)
+	{
+		return mPosition;
+	}
 	virtual void constructor();                  // _2C
 	virtual void doAnimation();                  // _3C (weak)
 	virtual void doEntry();                      // _40

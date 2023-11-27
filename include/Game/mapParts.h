@@ -222,7 +222,7 @@ struct MapRoom : public CellObject {
 	// _00     = VTBL
 	// _00-_B8 = CellObject
 	MapCollision* mCollision;              // _0B8
-	u8 _0BC;                               // _0BC
+	bool mIsVisited;                       // _0BC
 	MapUnitInterface* mInterface;          // _0C0
 	Cave::ObjectLayout* mObjectLayoutInfo; // _0C4
 	int _0C8;                              // _0C8
@@ -263,7 +263,7 @@ struct RoomMapMgr : public MapMgr {
 	virtual void getBoundBox2d(BoundBox2d&);                                              // _18
 	virtual void getBoundBox(BoundBox&);                                                  // _1C
 	virtual bool findRayIntersection(Sys::RayIntersectInfo&);                             // _20
-	virtual void traceMove(MoveInfo&, f32);                                               // _24
+	virtual Sys::TriIndexList* traceMove(MoveInfo&, f32);                                 // _24
 	virtual f32 getMinY(Vector3f&);                                                       // _28
 	virtual void getCurrTri(CurrTriInfo&);                                                // _2C
 	virtual void createTriangles(Sys::CreateTriangleArg&);                                // _30

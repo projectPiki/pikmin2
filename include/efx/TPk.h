@@ -33,6 +33,8 @@ void createSimpleGate2Attack(Vector3f&);
 void createSimpleGate3Attack(Vector3f&);
 void createSimpleStoneAttack(Vector3f& pos);
 void createSimpleGlow2(Vector3f& pos);
+void createSimpleWalkwater(Vector3f& pos);
+void createSimpleWalksmoke(Vector3f& pos);
 
 struct TPkAp : public TSimple2 {
 	inline TPkAp()

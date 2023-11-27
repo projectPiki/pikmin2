@@ -9,12 +9,24 @@
 
 inline bool checkASinCosBounds(f32 x) { return (x >= -1.0f) && (x <= 1.0f); }
 
+inline int GetTableIdxNeg(f32 x) { return x *= -325.9493f; }
+
+inline int GetTableIdxPos(f32 x) { return x *= 325.9493f; }
+
 inline f32 sinf(f32 x)
 {
 	if (x < 0.0f) {
-		return -JMath::sincosTable_.mTable[((int)(x *= -325.9493f) & 0x7ffU)].first;
+		return -JMath::sincosTable_.mTable[(int)(x *= -325.9493f) & 0x7ffU].first;
 	}
-	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].first;
+	return JMath::sincosTable_.mTable[(int)(x *= 325.9493f) & 0x7ffU].first;
+}
+
+inline f32 sinfc(const f32 x)
+{
+	if (x < 0.0f) {
+		return -JMath::sincosTable_.mTable[(GetTableIdxNeg(x) & 0x7ffU)].first;
+	}
+	return JMath::sincosTable_.mTable[(GetTableIdxPos(x) & 0x7ffU)].first;
 }
 
 inline f32 cosf(f32 x)
@@ -22,7 +34,16 @@ inline f32 cosf(f32 x)
 	if (x < 0.0f) {
 		x = -x;
 	}
-	return JMath::sincosTable_.mTable[((int)(x *= 325.9493f) & 0x7ffU)].second;
+	return JMath::sincosTable_.mTable[(int)(x *= 325.9493f) & 0x7ffU].second;
+}
+
+inline f32 cosfc(const f32 x)
+{
+	f32 angle = x;
+	if (angle < 0.0f) {
+		angle = -angle;
+	}
+	return JMath::sincosTable_.mTable[(GetTableIdxPos(angle) & 0x7ffU)].second;
 }
 
 inline f32 acosf(f32 x)
@@ -53,10 +74,6 @@ inline f32 angXZ(f32 x, f32 z, Vector3f& vec)
 }
 
 inline f32 _angXZ(f32 x1, f32 z1, f32 x2, f32 z2) { return roundAng(JMAAtan2Radian(x1 - x2, z1 - z2)); }
-
-inline int GetTableIdxNeg(f32 x) { return x *= -325.9493f; }
-
-inline int GetTableIdxPos(f32 x) { return x *= 325.9493f; }
 
 inline f32 altSin(f32 x)
 {

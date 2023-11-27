@@ -34,7 +34,7 @@ struct MoveInfo {
 		mTriangleArray  = nullptr;
 		_2C             = JMath::sincosTable_.mTable[256].first; // pi/2
 		_30             = 0.6f;
-		_98             = -1;
+		mRoomIndex      = -1;
 		_4C             = nullptr;
 		_1A             = 0;
 	}
@@ -66,7 +66,7 @@ struct MoveInfo {
 	Vector3f _84;                                      // _84
 	u8 _90;                                            // _90
 	TDispTriangleArray* mTriangleArray;                // _94
-	int _98;                                           // _98
+	int mRoomIndex;                                    // _98
 };
 } // namespace Game
 

@@ -462,7 +462,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 	Vector3f pos = getPosition();
 
 	if (pos.y < -500.0f) {
-		if (isPiki() && static_cast<FakePiki*>(this)->isPikmin()) {
+		if (isPiki() && static_cast<Piki*>(this)->isPikmin()) {
 			deathMgr->inc(0);
 		}
 

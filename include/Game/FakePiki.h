@@ -11,6 +11,10 @@
 
 struct J3DJoint;
 
+namespace Sys {
+struct TriIndexList;
+} // namespace Sys
+
 namespace Game {
 struct IPikiAnims {
 	enum PikiAnims {
@@ -105,50 +109,96 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	inline bool isFPFlag(u32 flag) { return mFakePikiFlags.typeView & flag; }
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition() { return mPosition; }      // _08
-	virtual void getBoundingSphere(Sys::Sphere& boundSphere); // _10 (weak)
-	virtual void doAnimation();                               // _3C
-	virtual void doEntry();                                   // _40
-	virtual void doSimulation(f32);                           // _4C
-	virtual f32 getFaceDir();                                 // _64 (weak)
-	virtual void setVelocity(Vector3f& vel);                  // _68 (weak)
-	virtual Vector3f getVelocity();                           // _6C (weak)
-	virtual void onSetPosition(Vector3f& dest);               // _70 (weak)
-	virtual void updateTrMatrix();                            // _78
-	virtual void inWaterCallback(WaterBox* wb);               // _84 (weak)
-	virtual void outWaterCallback();                          // _88 (weak)
-	virtual bool inWater();                                   // _8C (weak)
-	virtual Vector3f* getSound_PosPtr();                      // _100 (weak)
-	virtual void movieSetFaceDir(f32);                        // _128
-	virtual void getVelocityAt(Vector3f&, Vector3f&);         // _184 (weak)
+	virtual Vector3f getPosition() { return mPosition; }                                        // _08
+	virtual void getBoundingSphere(Sys::Sphere& boundSphere) { boundSphere = mBoundingSphere; } // _10 (weak)
+	virtual void doAnimation();                                                                 // _3C
+	virtual void doEntry();                                                                     // _40
+	virtual void doSimulation(f32);                                                             // _4C
+	virtual void updateTrMatrix();                                                              // _78
+	virtual bool inWater() { return (mWaterBox != nullptr); }                                   // _8C (weak)
+	virtual void movieSetFaceDir(f32);                                                          // _128
 	// vtable 2 (MotionListener + self)
 	// virtual void onKeyEvent(const SysShape::KeyEvent& event); // _1B8 thunk
-	virtual int getDownfloorMass();                                                        // _1BC (weak)
-	virtual bool isPikmin();                                                               // _1C0 (weak)
-	virtual void doColorChange();                                                          // _1C4 (weak)
-	virtual void doDebugDL();                                                              // _1C8 (weak)
-	virtual void update();                                                                 // _1CC (weak)
-	virtual void move(f32);                                                                // _1D0
-	virtual bool useMoveRotation();                                                        // _1D4 (weak)
-	virtual void setMoveRotation(bool);                                                    // _1D8 (weak)
+	virtual int getDownfloorMass() { return 0; }                                       // _1BC (weak)
+	virtual bool isPikmin() { return true; }                                           // _1C0 (weak)
+	virtual void doColorChange() { }                                                   // _1C4 (weak)
+	virtual void doDebugDL() { }                                                       // _1C8 (weak)
+	virtual void update() { }                                                          // _1CC (weak)
+	virtual void move(f32);                                                            // _1D0
+	virtual bool useMoveRotation() { return !isFPFlag(FPFLAGS_MoveRotationDisabled); } // _1D4 (weak)
+	virtual void setMoveRotation(bool useMoveRotation)                                 // _1D8 (weak)
+	{
+		if (!useMoveRotation) {
+			setFPFlag(FPFLAGS_MoveRotationDisabled);
+		} else {
+			resetFPFlag(FPFLAGS_MoveRotationDisabled);
+		}
+	}
 	virtual bool useUpdateTrMatrix() { return !isFPFlag(FPFLAGS_UpdateTrMatrixDisabled); } // _1DC (weak)
-	virtual void setUpdateTrMatrix(bool);                                                  // _1E0 (weak)
-	virtual bool useMoveVelocity();                                                        // _1E4 (weak)
-	virtual void setMoveVelocity(bool);                                                    // _1E8 (weak)
-	virtual bool useMapCollision();                                                        // _1EC (weak)
-	virtual void setMapCollision(bool);                                                    // _1F0 (weak)
-	virtual bool isZikatu();                  // _1F4 (weak), is this a Wild Piki? (before type discovery, useless Pikmin)
-	virtual void setZikatu(bool);             // _1F8 (weak)
-	virtual bool wasZikatu();                 // _1FC (weak)
-	virtual f32 getMapCollisionRadius();      // _200 (weak)
-	virtual void wallCallback(Vector3<f32>&); // _204 (weak)
+	virtual void setUpdateTrMatrix(bool useUpdateTrMatrix)                                 // _1E0 (weak)
+	{
+		if (!useUpdateTrMatrix) {
+			setFPFlag(FPFLAGS_UpdateTrMatrixDisabled);
+		} else {
+			resetFPFlag(FPFLAGS_UpdateTrMatrixDisabled);
+		}
+	}
+	virtual bool useMoveVelocity() { return !isFPFlag(FPFLAGS_MoveVelocityDisabled); } // _1E4 (weak)
+	virtual void setMoveVelocity(bool useMoveVelocity)                                 // _1E8 (weak)
+	{
+		if (!useMoveVelocity) {
+			setFPFlag(FPFLAGS_MoveVelocityDisabled);
+		} else {
+			resetFPFlag(FPFLAGS_MoveVelocityDisabled);
+		}
+	}
+	virtual bool useMapCollision() { return !isFPFlag(FPFLAGS_MapCollisionDisabled); } // _1EC (weak)
+	virtual void setMapCollision(bool useMapCollision)                                 // _1F0 (weak)
+	{
+		if (!useMapCollision) {
+			setFPFlag(FPFLAGS_MapCollisionDisabled);
+		} else {
+			resetFPFlag(FPFLAGS_MapCollisionDisabled);
+		}
+	}
+	virtual bool isZikatu()
+	{
+		return isFPFlag(FPFLAGS_Zikatu);
+	}                                       // _1F4 (weak), is this a Wild Piki? (before type discovery, useless Pikmin)
+	virtual void setZikatu(bool makeZikatu) // _1F8 (weak)
+	{
+		if (makeZikatu) {
+			setFPFlag(FPFLAGS_Zikatu);
+		} else {
+			resetFPFlag(FPFLAGS_Zikatu);
+		}
+
+		if (makeZikatu) {
+			setFPFlag(FPFLAGS_WasZikatu);
+		}
+	}
+	virtual bool wasZikatu() { return isFPFlag(FPFLAGS_WasZikatu); } // _1FC (weak)
+	virtual void inWaterCallback(WaterBox* wb) { }                   // _84 (weak)
+	virtual void outWaterCallback() { }                              // _88 (weak)
+	virtual f32 getMapCollisionRadius() { return 8.5f; }             // _200 (weak)
+	virtual void wallCallback(Vector3f&) { }                         // _204 (weak)
 	virtual void startMotion(int anim1Idx, int anim2Idx, SysShape::MotionListener* ml1,
-	                         SysShape::MotionListener* ml2);  // _208
-	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _20C (weak)
-	virtual void updateLookCreature();                        // _210
-	virtual void do_updateLookCreature();                     // _214
-	virtual void onSetPosition() { }                          // _218 (weak)
-	virtual bool isWalking();                                 // _21C (weak)
+	                         SysShape::MotionListener* ml2);     // _208
+	virtual void onKeyEvent(const SysShape::KeyEvent& event) { } // _20C (weak)
+	virtual void updateLookCreature();                           // _210
+	virtual void do_updateLookCreature();                        // _214
+	virtual void onSetPosition(Vector3f& dest)                   // _70 (weak)
+	{
+		mPosition = dest;
+		onSetPosition();
+	}
+	virtual f32 getFaceDir() { return mFaceDir; }                                    // _64 (weak)
+	virtual Vector3f getVelocity() { return mSimVelocity; }                          // _6C (weak)
+	virtual void setVelocity(Vector3f& vel) { mSimVelocity = vel; }                  // _68 (weak)
+	virtual void getVelocityAt(Vector3f& vec, Vector3f& vel) { vel = mSimVelocity; } // _184 (weak)
+	virtual Vector3f* getSound_PosPtr() { return &mPosition; }                       // _100 (weak)
+	virtual void onSetPosition() { }                                                 // _218 (weak)
+	virtual bool isWalking() { return false; }                                       // _21C (weak)
 
 	bool assertMotion(int);
 
@@ -190,7 +240,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	f32 _180;                               // _180
 	u32 _184;                               // _184
 	IDelegate* mDoAnimCallback;             // _188
-	short mRoomIndex;                       // _18C
+	s16 mRoomIndex;                         // _18C
 	WaterBox* mWaterBox;                    // _190
 	CollPart* mTargetCollObj;               // _194
 	f32 mNeckTheta;                         // _198
@@ -212,7 +262,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	Vector3f mPositionBeforeMovie;          // _238
 	f32 mFaceDirOffset;                     // _244
 	Sys::Triangle* mFakePikiBounceTriangle; // _248
-	u32 _24C;                               // _24C, unknown
+	Sys::TriIndexList* mTriList;            // _24C
 
 	static f32 sCurrNeckTheta;
 	static f32 sCurrNeckPhi;

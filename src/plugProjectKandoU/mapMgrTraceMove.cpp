@@ -14,8 +14,9 @@ u8 MapMgr::mTraceMoveOptLevel = 1;
  * Size:	000114
  * TODO: 57%
  */
-void ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
+Sys::TriIndexList* ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
 {
+	Sys::TriIndexList* triList;
 	_14++;
 	f32 len    = stepLength;
 	int steps  = 1;
@@ -33,10 +34,12 @@ void ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
 	} while (steps <= 8);
 
 	for (int i = 0; i < steps; i++) {
-		MapMgr::traceMove(mMapCollision, info, len);
+		triList = MapMgr::traceMove(mMapCollision, info, len);
 	}
 
 	_18 += steps;
+
+	return triList;
 }
 
 /*
@@ -44,7 +47,10 @@ void ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
  * Address:	802051A0
  * Size:	000020
  */
-void MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f32 p1) { traceMove_test1203_cylinder(coll, info, p1); }
+Sys::TriIndexList* MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f32 p1)
+{
+	return traceMove_test1203_cylinder(coll, info, p1);
+}
 
 // /*
 //  * --INFO--
@@ -406,25 +412,5 @@ lbl_8020553C:
 	blr
 	*/
 }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000464
-//  */
-// void MapMgr::traceMove_test(MapCollision&, Game::MoveInfo&, f32)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000464
-//  */
-// void MapMgr::traceMove_original(MapCollision&, Game::MoveInfo&, f32)
-// {
-// 	// UNUSED FUNCTION
-// }
 
 } // namespace Game

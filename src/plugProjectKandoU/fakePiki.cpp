@@ -2,17 +2,27 @@
 #include "Game/BaseItem.h"
 #include "Game/gameStat.h"
 #include "Game/Navi.h"
+#include "Game/PikiMgr.h"
+#include "Game/Navi.h"
 #include "Game/AIConstants.h"
+#include "Game/mapParts.h"
 #include "Game/MapMgr.h"
+#include "Game/PlatInstance.h"
 #include "CollInfo.h"
 #include "JSystem/JMath.h"
+#include "Dolphin/rand.h"
 #include "trig.h"
 #include "nans.h"
+
+f32 efx::TCursor::kAngleSpeed = 0.05235988f;
 
 namespace Game {
 
 static const u32 fakePikiUnusedArray[] = { 0, 0, 0 };
 static const char fakePikiName[]       = "fakePiki";
+
+f32 FakePiki::sCurrNeckTheta = 0.0f;
+f32 FakePiki::sCurrNeckPhi   = 0.0f;
 
 /*
  * --INFO--
@@ -201,9 +211,8 @@ void FakePiki::clearDoAnimCallback() { mDoAnimCallback = nullptr; }
  */
 void FakePiki::updateWalkAnimation()
 {
-	Vector3f sep   = Vector3f(mPosition.x - mPositionBeforeMovie.x, 0.0f, mPosition.z - mPositionBeforeMovie.z);
-	f32 updateTime = sys->mDeltaTime;
-	f32 animSpeed  = _lenVec(sep) / updateTime;
+	Vector3f sep  = Vector3f(mPosition.x - mPositionBeforeMovie.x, 0.0f, mPosition.z - mPositionBeforeMovie.z);
+	f32 animSpeed = sep.length() / sys->getFrameLength();
 
 	int boundIdx;
 	if (mAnimator.mBoundAnimator.mAnimInfo) {
@@ -235,7 +244,7 @@ void FakePiki::updateWalkAnimation()
 	FakePiki* otherListener = nullptr;
 	f32 faceDir             = FABS(mFaceDir - mFaceDirOffset);
 	FakePikiParms* parms    = static_cast<FakePikiParms*>(mParms);
-	if (animSpeed < parms->mFakePikiParms.mStepStartSpeed.mValue) {
+	if (animSpeed < parms->mFakePikiParms.mStepStartSpeed()) {
 		otherIdx  = IPikiAnims::WAIT;
 		animSpeed = 30.0f;
 		if (faceDir > 0.01f) {
@@ -243,32 +252,30 @@ void FakePiki::updateWalkAnimation()
 			otherIdx  = IPikiAnims::ASIBUMI;
 		}
 
-	} else if (animSpeed < parms->mFakePikiParms.mWalkStartSpeed.mValue) {
+	} else if (animSpeed < parms->mFakePikiParms.mWalkStartSpeed()) {
 		animSpeed = 30.0f;
 		otherIdx  = IPikiAnims::ASIBUMI;
 
-	} else if (animSpeed < parms->mFakePikiParms.mRunStartSpeed.mValue) {
-		f32 val       = animSpeed - parms->mFakePikiParms.mWalkStartSpeed.mValue;
-		f32 diff      = parms->mFakePikiParms.mRunStartSpeed.mValue - parms->mFakePikiParms.mWalkStartSpeed.mValue;
+	} else if (animSpeed < parms->mFakePikiParms.mRunStartSpeed()) {
+		f32 val       = animSpeed - parms->mFakePikiParms.mWalkStartSpeed();
+		f32 diff      = parms->mFakePikiParms.mRunStartSpeed() - parms->mFakePikiParms.mWalkStartSpeed();
 		otherListener = this;
 		otherIdx      = IPikiAnims::WALK;
 
-		animSpeed = (val / diff)
-		              * (parms->mFakePikiParms.mWalkPlaybackFrameCountMin.mValue - parms->mFakePikiParms.mWalkPlaybackFrameCountMax.mValue)
-		          + parms->mFakePikiParms.mWalkPlaybackFrameCountMax.mValue;
+		animSpeed = (val / diff) * (parms->mFakePikiParms.mWalkPlaybackFrameCountMin() - parms->mFakePikiParms.mWalkPlaybackFrameCountMax())
+		          + parms->mFakePikiParms.mWalkPlaybackFrameCountMin();
 
-	} else if (animSpeed < parms->mFakePikiParms.mEscapeStartSpeed.mValue) {
-		f32 val       = animSpeed - parms->mFakePikiParms.mRunStartSpeed.mValue;
-		f32 diff      = parms->mFakePikiParms.mEscapeStartSpeed.mValue - parms->mFakePikiParms.mRunStartSpeed.mValue;
+	} else if (animSpeed < parms->mFakePikiParms.mEscapeStartSpeed()) {
+		f32 val       = animSpeed - parms->mFakePikiParms.mRunStartSpeed();
+		f32 diff      = parms->mFakePikiParms.mEscapeStartSpeed() - parms->mFakePikiParms.mRunStartSpeed();
 		otherListener = this;
 		otherIdx      = IPikiAnims::RUN2;
 
-		animSpeed = (val / diff)
-		              * (parms->mFakePikiParms.mRunPlaybackFrameCountMax.mValue - parms->mFakePikiParms.mRunPlaybackFrameCountMin.mValue)
-		          + parms->mFakePikiParms.mRunPlaybackFrameCountMax.mValue;
+		animSpeed = (val / diff) * (parms->mFakePikiParms.mRunPlaybackFrameCountMax() - parms->mFakePikiParms.mRunPlaybackFrameCountMin())
+		          + parms->mFakePikiParms.mRunPlaybackFrameCountMin();
 
 	} else {
-		animSpeed     = parms->mFakePikiParms.mEscapePlaybackFrameCountMin.mValue;
+		animSpeed     = parms->mFakePikiParms.mEscapePlaybackFrameCountMin();
 		otherListener = this;
 		otherIdx      = IPikiAnims::NIGERU;
 	}
@@ -626,167 +633,42 @@ lbl_8013D47C:
  * Address:	8013D4B4
  * Size:	00023C
  */
-bool FakePiki::sNeckCallback(J3DJoint*, int)
+bool FakePiki::sNeckCallback(J3DJoint* joint, int jointIdx)
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0xa4(r1)
-	stw      r31, 0x9c(r1)
-	bne      lbl_8013D6D8
-	lwz      r4, mInstance__Q24Game18OptimiseController@sda21(r13)
-	lbz      r0, 0x3c(r4)
-	cmplwi   r0, 0
-	beq      lbl_8013D6D8
-	lfs      f2, sCurrNeckPhi__Q24Game8FakePiki@sda21(r13)
-	lhz      r0, 0x14(r3)
-	fneg     f1, f2
-	lwz      r3, mMtxBuffer__10J3DMtxCalc@sda21(r13)
-	lfs      f0, lbl_805182B4@sda21(r2)
-	mulli    r0, r0, 0x30
-	lwz      r3, 0xc(r3)
-	fcmpo    cr0, f1, f0
-	lfs      f3, sCurrNeckTheta__Q24Game8FakePiki@sda21(r13)
-	add      r31, r3, r0
-	bge      lbl_8013D534
-	lfs      f0, lbl_805182C8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x68(r1)
-	lwz      r0, 0x6c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f6, f0
-	b        lbl_8013D558
+	if (jointIdx == 0 && OptimiseController::mInstance->mC000.mValue) {
+		Matrixf* worldMat = J3DMtxCalc::mMtxBuffer->getWorldMatrix(joint->getJntNo());
 
-lbl_8013D534:
-	lfs      f0, lbl_805182CC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x70(r1)
-	lwz      r0, 0x74(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f6, r3, r0
+		f32 phi   = sCurrNeckPhi;
+		f32 theta = sCurrNeckTheta;
 
-lbl_8013D558:
-	fneg     f1, f2
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8013D56C
-	fneg     f1, f1
+		f32 sinPhi   = sinfc(-phi);  // f6
+		f32 cosPhi   = cosfc(-phi);  // f7
+		f32 sinTheta = sinfc(theta); // f8
+		f32 cosTheta = cosfc(theta); // f4
 
-lbl_8013D56C:
-	lfs      f2, lbl_805182CC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_805182B4@sda21(r2)
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	addi     r6, r3, 4
-	fcmpo    cr0, f3, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x78(r1)
-	lwz      r0, 0x7c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f7, r6, r0
-	bge      lbl_8013D5C4
-	lfs      f0, lbl_805182C8@sda21(r2)
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x80(r1)
-	lwz      r0, 0x84(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f8, f0
-	b        lbl_8013D5DC
+		Matrixf rotMtx;
+		rotMtx.mMatrix.structView.xx = cosPhi;
+		rotMtx.mMatrix.structView.yx = -sinPhi;
+		rotMtx.mMatrix.structView.zx = 0.0f;
 
-lbl_8013D5C4:
-	fmuls    f0, f3, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x88(r1)
-	lwz      r0, 0x8c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f8, r3, r0
+		rotMtx.mMatrix.structView.xy = cosTheta * sinPhi;
+		rotMtx.mMatrix.structView.yy = cosTheta * cosPhi;
+		rotMtx.mMatrix.structView.zy = -sinTheta;
 
-lbl_8013D5DC:
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fmr      f1, f3
-	fcmpo    cr0, f3, f0
-	bge      lbl_8013D5F0
-	fneg     f1, f3
+		rotMtx.mMatrix.structView.xz = sinTheta * sinPhi;
+		rotMtx.mMatrix.structView.yz = sinTheta * cosPhi;
+		rotMtx.mMatrix.structView.zz = cosTheta;
 
-lbl_8013D5F0:
-	lfs      f0, lbl_805182CC@sda21(r2)
-	fneg     f4, f6
-	lfs      f3, lbl_805182B4@sda21(r2)
-	fneg     f2, f8
-	fmuls    f5, f1, f0
-	stfs     f7, 0x38(r1)
-	fmuls    f1, f8, f6
-	stfs     f4, 0x3c(r1)
-	fmuls    f0, f8, f7
-	fctiwz   f4, f5
-	stfs     f2, 0x50(r1)
-	mr       r5, r31
-	addi     r3, r1, 8
-	addi     r4, r1, 0x38
-	stfd     f4, 0x90(r1)
-	lwz      r0, 0x94(r1)
-	stfs     f1, 0x58(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f4, r6, r0
-	stfs     f3, 0x40(r1)
-	fmuls    f2, f4, f6
-	fmuls    f1, f4, f7
-	stfs     f0, 0x5c(r1)
-	stfs     f2, 0x48(r1)
-	stfs     f1, 0x4c(r1)
-	stfs     f4, 0x60(r1)
-	stfs     f3, 0x44(r1)
-	stfs     f3, 0x54(r1)
-	stfs     f3, 0x64(r1)
-	lwz      r6, 0(r31)
-	lwz      r0, 4(r31)
-	stw      r6, 8(r1)
-	stw      r0, 0xc(r1)
-	lwz      r6, 8(r31)
-	lwz      r0, 0xc(r31)
-	stw      r6, 0x10(r1)
-	stw      r0, 0x14(r1)
-	lwz      r6, 0x10(r31)
-	lwz      r0, 0x14(r31)
-	stw      r6, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	lwz      r6, 0x18(r31)
-	lwz      r0, 0x1c(r31)
-	stw      r6, 0x20(r1)
-	stw      r0, 0x24(r1)
-	lwz      r6, 0x20(r31)
-	lwz      r0, 0x24(r31)
-	stw      r6, 0x28(r1)
-	stw      r0, 0x2c(r1)
-	lwz      r6, 0x28(r31)
-	lwz      r0, 0x2c(r31)
-	stw      r6, 0x30(r1)
-	stw      r0, 0x34(r1)
-	bl       PSMTXConcat
-	lis      r4, mCurrentMtx__6J3DSys@ha
-	mr       r3, r31
-	addi     r4, r4, mCurrentMtx__6J3DSys@l
-	bl       PSMTXCopy
+		rotMtx.mMatrix.structView.tx = 0.0f;
+		rotMtx.mMatrix.structView.ty = 0.0f;
+		rotMtx.mMatrix.structView.tz = 0.0f;
 
-lbl_8013D6D8:
-	lwz      r0, 0xa4(r1)
-	li       r3, 0
-	lwz      r31, 0x9c(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+		Matrixf worldCopy = *worldMat;
+
+		PSMTXConcat(worldCopy.mMatrix.mtxView, rotMtx.mMatrix.mtxView, worldMat->mMatrix.mtxView);
+		PSMTXCopy(worldMat->mMatrix.mtxView, J3DSys::mCurrentMtx);
+	}
+	return false;
 }
 
 /*
@@ -877,8 +759,8 @@ void FakePiki::updateLook()
 	if (mLookAtPosition) {
 		Vector3f pos = getPosition();
 		Vector3f sep = *mLookAtPosition - pos;
-		angle1       = JMath::atanTable_.atan2_(sep.x, sep.z);
-		angle2       = JMath::atanTable_.atan2_(sep.y, _lengthXZ(sep));
+		angle1       = JMAAtan2Radian(sep.x, sep.z);
+		angle2       = JMAAtan2Radian(sep.y, _lengthXZ(sep));
 
 	} else {
 		mNeckTheta = roundAng(0.2f * angDist(0.0f, mNeckTheta) + mNeckTheta);
@@ -927,7 +809,7 @@ void FakePiki::updateLook()
 	mNeckTheta = roundAng(mNeckTheta + val);
 	if (mNeckTheta > 2.0f * PI / 3.0f && mNeckTheta < PI) {
 		mNeckTheta = 2.0f * PI / 3.0f;
-	} else if (mNeckTheta < 4.0f * PI / 3.0f && mNeckTheta >= PI) {
+	} else if (mNeckTheta < (4.0f * PI / 3.0f) && mNeckTheta >= PI) {
 		mNeckTheta = 4.0f * PI / 3.0f;
 	}
 
@@ -949,8 +831,8 @@ void FakePiki::updateLook()
 	mNeckPhi = roundAng(mNeckPhi + val2);
 	if (mNeckPhi > PI / 3.0f && mNeckPhi < PI) {
 		mNeckPhi = PI / 3.0f;
-	} else if (mNeckPhi < 5.0f * PI / 3.0f && mNeckPhi >= PI) {
-		mNeckPhi = 5.0f * PI / 3.0f;
+	} else if (mNeckPhi < (5.2359877f) && mNeckPhi >= PI) {
+		mNeckPhi = 5.2359877f; // 5 PI / 3
 	}
 
 	if (mLookAtTimer) {
@@ -1259,11 +1141,11 @@ void FakePiki::moveVelocity()
 	Vector3f oldVelocity = Vector3f(mVelocity);
 
 	if (tri) {
-		f32 oldSpeed     = _length(oldVelocity);
+		f32 oldSpeed     = oldVelocity.length();
 		f32 collSpeedDot = dot(oldVelocity, mCollisionPosition);
 		Vector3f vec1    = oldVelocity - (mCollisionPosition * collSpeedDot);
 
-		_normalise2(vec1);
+		vec1.normalise();
 
 		oldVelocity = vec1 * oldSpeed;
 
@@ -1280,7 +1162,7 @@ void FakePiki::moveVelocity()
 			Vector3f scaleVec = Vector3f(0.0f, -_aiConstants->mGravity.mData * sys->mDeltaTime, 0.0f);
 			f32 collScaleDot  = dot(scaleVec, mCollisionPosition);
 			Vector3f vec2     = scaleVec - mCollisionPosition * collScaleDot;
-			_normalise2(vec2);
+			vec2.normalise();
 
 			f32 scale;
 			if (code == MapCode::Code::SlipCode2) {
@@ -1298,14 +1180,12 @@ void FakePiki::moveVelocity()
 
 	Vector3f vec3 = (oldVelocity + mSimPosition) - mSimVelocity;
 
-	_length2(vec3); // something's gotten commented out involving this
+	vec3.length(); // something's gotten commented out involving this
 
 	vec3 *= sys->mDeltaTime / 0.1f;
-	vec3         = vec3 + mSimVelocity;
-	mSimVelocity = vec3;
+	mSimVelocity = mSimVelocity + vec3;
 
-	vec3         = mSimVelocity + newVelocity;
-	mSimVelocity = vec3;
+	mSimVelocity = mSimVelocity + newVelocity;
 
 	/*
 	stwu     r1, -0x80(r1)
@@ -1593,32 +1473,125 @@ void FakePiki::moveRotation()
 
 /*
  * --INFO--
- * Address:	8013E09C
- * Size:	000014
- */
-bool FakePiki::useMoveRotation() { return !isFPFlag(FPFLAGS_MoveRotationDisabled); }
-
-/*
- * --INFO--
  * Address:	8013E0B0
  * Size:	0006A4
  */
-void FakePiki::move(f32 p1)
+void FakePiki::move(f32 rate)
 {
 	f32 collRad  = getMapCollisionRadius();
 	Vector3f pos = mPosition;
 	pos.y += collRad;
 
+	Vector3f translation;
 	if (isFPFlag(FPFLAGS_Unk5) && mModel) {
-		pos = mModel->mJoints[1].getWorldMatrix()->getBasis(3);
+		translation = mModel->mJoints[1].getWorldMatrix()->getBasis(3);
+		pos         = translation;
 	}
 
 	Sys::Sphere sphere(pos, collRad);
+	Vector3f vec;
+	vec = mSimVelocity + mAcceleration;
 
-	MoveInfo info(&sphere, nullptr, 0.0f);
+	MoveInfo info(&sphere, &vec, 0.0f);
+	mFakePikiBounceTriangle = nullptr;
 
 	if (useMapCollision()) {
-		mapMgr->traceMove(info, p1); // this returns *something* that gets stored in 0x24C
+		mTriList       = mapMgr->traceMove(info, rate);
+		mSimVelocity   = vec;
+		info.mVelocity = &mSimVelocity;
+
+		if (info.mRoomIndex != -1 && mapMgr->mRouteMgr) {
+			mRoomIndex    = info.mRoomIndex;
+			MapRoom* room = static_cast<RoomMapMgr*>(mapMgr)->getMapRoom(info.mRoomIndex);
+
+			if (!room->mIsVisited) {
+				mapMgr->mRouteMgr->openRoom(info.mRoomIndex);
+				room->mIsVisited = true;
+			}
+
+			if (isNavi() && gameSystem->isMultiplayerMode()) {
+				bool mode = gameSystem->isMultiplayerMode(); // something else needs to go here to make this work
+			}
+		}
+	} else {
+		info.mMoveSphere->mPosition = info.mMoveSphere->mPosition + mSimVelocity * rate;
+		info.mBounceTriangle        = nullptr;
+	}
+
+	if (!mBounceTriangle && info.mBounceTriangle) {
+		bounceCallback(info.mBounceTriangle);
+	}
+
+	mBounceTriangle    = info.mBounceTriangle;
+	mCollisionPosition = info.mPosition;
+
+	if (!_184 && info.mWallTriangle) {
+		wallCallback(info.mReflectPosition);
+	}
+
+	if (platMgr) {
+		platMgr->traceMove(info, rate);
+	}
+
+	if (!mBounceTriangle && info.mBounceTriangle) {
+		bounceCallback(info.mBounceTriangle);
+		mBounceTriangle    = info.mBounceTriangle;
+		mCollisionPosition = info.mPosition;
+	}
+
+	if (!_184 && info.mWallTriangle) {
+		wallCallback(info.mReflectPosition);
+	}
+
+	if (mBounceTriangle && mBounceTriangle->mTrianglePlane.b > 0.6f) {
+		mFakePikiBounceTriangle = mBounceTriangle;
+	}
+
+	if (isFPFlag(FPFLAGS_Unk5)) {
+		Vector3f diff = sphere.mPosition - translation;
+		diff.y        = 0.0f;
+		mPosition += diff;
+
+		sphere.mPosition = mPosition;
+	} else {
+		mPosition = sphere.mPosition;
+		mPosition.y -= collRad;
+	}
+
+	if (mapMgr->hasHiddenCollision()) {
+		Sys::Sphere bbSphere(mPosition, collRad);
+		mapMgr->constraintBoundBox(bbSphere);
+
+		mPosition        = bbSphere.mPosition;
+		sphere.mPosition = mPosition;
+	}
+
+	mBoundingSphere = sphere;
+
+	if (!mBounceTriangle) {
+		return;
+	}
+
+	if (inWater()) {
+		return;
+	}
+
+	if (mPositionBeforeMovie.distance(mPosition) > 1.0f) {
+		f32 chance;
+		if (isNavi()) {
+			chance = 0.033333335f;
+		} else {
+			int counter = GameStat::formationPikis;
+			chance      = -0.025000002f * ((f32)counter / 100.0f) + 0.033333335f;
+		}
+
+		if (randFloat() <= chance) {
+			if (mBounceTriangle->mCode.mContents == 8) {
+				efx::createSimpleWalkwater(mPosition);
+			} else {
+				efx::createSimpleWalksmoke(mPosition);
+			}
+		}
 	}
 	/*
 	stwu     r1, -0x130(r1)
@@ -2095,34 +2068,6 @@ lbl_8013E714:
 
 /*
  * --INFO--
- * Address:	8013E790
- * Size:	000014
- */
-bool FakePiki::inWater() { return (mWaterBox != nullptr); }
-
-/*
- * --INFO--
- * Address:	8013E7A4
- * Size:	000004
- */
-void FakePiki::wallCallback(Vector3f&) { }
-
-/*
- * --INFO--
- * Address:	8013E7A8
- * Size:	000014
- */
-bool FakePiki::useMapCollision() { return !isFPFlag(FPFLAGS_MapCollisionDisabled); }
-
-/*
- * --INFO--
- * Address:	8013E7BC
- * Size:	000008
- */
-f32 FakePiki::getMapCollisionRadius() { return 8.5f; }
-
-/*
- * --INFO--
  * Address:	8013E7C4
  * Size:	0000BC
  */
@@ -2146,13 +2091,6 @@ void FakePiki::doEntry()
 
 /*
  * --INFO--
- * Address:	8013E880
- * Size:	000004
- */
-void FakePiki::doColorChange() { }
-
-/*
- * --INFO--
  * Address:	8013E884
  * Size:	000494
  */
@@ -2165,35 +2103,47 @@ void FakePiki::doAnimation()
 	updateCell();
 	updateLOD(lodParm);
 	sys->mTimers->_stop("doa1");
+
+	f32 frameLen = sys->mDeltaTime;
 	if (isMovieMotion()) {
 		mAnimSpeed = 30.0f;
 	}
-	if (isPiki()) {
-		static_cast<Piki*>(this)->doped();
+
+	f32 animRate = mAnimSpeed * frameLen;
+	if (isPiki() && static_cast<Piki*>(this)->doped()) {
+		animRate *= 2.0f;
 	}
 	if (gameSystem->mIsFrozen == false) {
-		mAnimator.mSelfAnimator.animate(sys->getFrameLength());
-	} else {
-		mAnimator.mBoundAnimator.animate(sys->getFrameLength());
+		mAnimator.mSelfAnimator.animate(animRate);
+		SysShape::Animator::verbose = false;
+		mAnimator.mBoundAnimator.animate(animRate);
 	}
-	if (isPiki() && mLod.isFlag(3)) {
-		JUT_ASSERTLINE(1694, mModel != nullptr, "zama--------n\n", getCreatureID());
+	if (isPiki() && (mLod.mFlags & 3) >= 1) { // why
+		if (!mModel) {
+			P2DEBUG(getCreatureID());
+			JUT_PANICLINE(1694, "zama--------n\n");
+		}
 		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(0)->setMtxCalc(nullptr);
 		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(4)->setMtxCalc(nullptr);
 	} else {
-		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(0)->setMtxCalc(mAnimator.mBoundAnimator.getCalc());
-		mModel->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(4)->setMtxCalc(mAnimator.mSelfAnimator.getCalc());
+		SysShape::Model* model1 = mModel;
+		model1->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(0)->setMtxCalc(mAnimator.mBoundAnimator.getCalc());
+		SysShape::Model* model2 = mModel;
+		model2->getJ3DModel()->getModelData()->getJointTree().getJointNodePointer(4)->setMtxCalc(mAnimator.mSelfAnimator.getCalc());
 	}
-	SysShape::Animator::verbose = 0;
-	mPositionBeforeMovie        = mPosition;
-	if ((isMovieExtra() || !isMovieActor()) && mFakePikiBounceTriangle != nullptr) {
-		if (useMoveVelocity() || mBounceTriangle == nullptr) {
+
+	SysShape::Animator::verbose = false;
+
+	mPositionBeforeMovie = mPosition;
+
+	if ((isMovieExtra() || !isMovieActor()) && mFakePikiBounceTriangle) {
+		if (useMoveVelocity() || !mBounceTriangle) {
 			moveVelocity();
 		}
 		if (useMoveRotation()) {
-			if (1.0f < SQUARE(mVelocity.z) + SQUARE(mVelocity.x)) {
-				mFaceDir
-				    = (sys->getFrameLength() * (angDist(JMAAtan2Radian(mVelocity.z, mVelocity.x), mFaceDir) * 0.8f)) * 10.0f + mFaceDir;
+			f32 frameLen = sys->mDeltaTime;
+			if (mVelocity.sqrMagnitude2D() > 1.0f) {
+				mFaceDir = (frameLen * (angDist(JMAAtan2Radian(mVelocity.z, mVelocity.x), mFaceDir) * 0.8f)) * 10.0f + mFaceDir;
 				mFaceDir = roundAng(mFaceDir);
 			}
 		}
@@ -2201,23 +2151,23 @@ void FakePiki::doAnimation()
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);
 	mWaterBox = checkWater(mWaterBox, boundingSphere);
-	if (mapMgr != nullptr) {
-		mSimVelocity.y = -(sys->getFrameLength() * _aiConstants->mGravity.mData - mSimVelocity.y);
+	if (mapMgr) {
+		mSimVelocity.y = -(frameLen * _aiConstants->mGravity.mData - mSimVelocity.y);
 	}
 	updateTrMatrix();
-	if (isNavi()) {
+	if (isNavi() && static_cast<Navi*>(this)->mPellet) {
 		static_cast<Navi*>(this)->viewMakeMatrix(mBaseTrMatrix);
-		mPosition = mBaseTrMatrix.getPosition();
-		PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->getJ3DModel()->mPosMtx);
-		sCurrNeckTheta = mNeckTheta;
-		sCurrNeckPhi   = mNeckPhi;
-		sys->mTimers->_start("calc-coll", true);
-		mModel->getJ3DModel()->calc();
-		mCollTree->update();
-		sys->mTimers->_stop("calc-coll");
-		if (mDoAnimCallback != nullptr) {
-			mDoAnimCallback->invoke();
-		}
+		mPosition = Vector3f(mBaseTrMatrix.getBasis(3));
+	}
+	PSMTXCopy(mBaseTrMatrix.mMatrix.mtxView, mModel->getJ3DModel()->mPosMtx);
+	sCurrNeckTheta = mNeckTheta;
+	sCurrNeckPhi   = mNeckPhi;
+	sys->mTimers->_start("calc-coll", true);
+	mModel->getJ3DModel()->calc();
+	mCollTree->update();
+	sys->mTimers->_stop("calc-coll");
+	if (mDoAnimCallback != nullptr) {
+		mDoAnimCallback->invoke();
 	}
 	/*
 	stwu     r1, -0x60(r1)
@@ -2544,24 +2494,6 @@ lbl_8013ECEC:
 
 /*
  * --INFO--
- * Address:	8013ED18
- * Size:	000024
- */
-void FakePiki::getBoundingSphere(Sys::Sphere& sphere)
-{
-	sphere.mPosition = mBoundingSphere.mPosition;
-	sphere.mRadius   = mBoundingSphere.mRadius;
-}
-
-/*
- * --INFO--
- * Address:	8013ED3C
- * Size:	000014
- */
-bool FakePiki::useMoveVelocity() { return !isFPFlag(FPFLAGS_MoveVelocityDisabled); }
-
-/*
- * --INFO--
  * Address:	8013ED50
  * Size:	000078
  */
@@ -2578,408 +2510,112 @@ void FakePiki::updateTrMatrix()
  * Address:	8013EDDC
  * Size:	000560
  */
-void FakePiki::doSimulation(f32)
+void FakePiki::doSimulation(f32 rate)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	lwz      r12, 0(r3)
-	fmr      f31, f1
-	mr       r31, r3
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013EF18
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013EE7C
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lbz      r0, 0x39(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8013EEE0
-	lfs      f0, lbl_805182B4@sda21(r2)
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	stfs     f0, 0x11c(r31)
-	stfs     f0, 0x120(r31)
-	stfs     f0, 0x124(r31)
-	lfs      f0, 0x20c(r31)
-	stfs     f0, 0x218(r31)
-	lfs      f0, 0x210(r31)
-	stfs     f0, 0x21c(r31)
-	lfs      f0, 0x214(r31)
-	stfs     f0, 0x220(r31)
-	b        lbl_8013F31C
+	// if we're not on camera, make sure we don't move during cutscenes
+	if (!isMovieExtra()) {
+		if (isPiki()) {
+			if (pikiMgr->mFlags[1] & 1) {
+				mSimVelocity              = Vector3f(0.0f);
+				mAcceleration             = Vector3f(0.0f);
+				mBoundingSphere.mPosition = mPosition;
+				return;
+			}
+		} else if (isNavi()) {
+			if (naviMgr->mFlags.isSet(1)) {
+				mSimVelocity              = Vector3f(0.0f);
+				mAcceleration             = Vector3f(0.0f);
+				mBoundingSphere.mPosition = mPosition;
+				return;
+			}
+		}
 
-lbl_8013EE7C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013EEE0
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lbz      r0, 0x5c(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8013EEE0
-	lfs      f0, lbl_805182B4@sda21(r2)
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	stfs     f0, 0x11c(r31)
-	stfs     f0, 0x120(r31)
-	stfs     f0, 0x124(r31)
-	lfs      f0, 0x20c(r31)
-	stfs     f0, 0x218(r31)
-	lfs      f0, 0x210(r31)
-	stfs     f0, 0x21c(r31)
-	lfs      f0, 0x214(r31)
-	stfs     f0, 0x220(r31)
-	b        lbl_8013F31C
+		if (isMovieActor()) {
+			mSimVelocity  = Vector3f(0.0f);
+			mAcceleration = Vector3f(0.0f);
+		}
+	}
 
-lbl_8013EEE0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013EF18
-	lfs      f0, lbl_805182B4@sda21(r2)
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	stfs     f0, 0x11c(r31)
-	stfs     f0, 0x120(r31)
-	stfs     f0, 0x124(r31)
+	// if we're attaching to somewhere or in something, do simple calculation
+	if (mTargetCollObj) {
+		mPosition = mPosition + mSimVelocity * rate;
+		updateStomach();
+		updateCell();
+		mBoundingSphere.mPosition = mPosition;
+		return;
+	}
 
-lbl_8013EF18:
-	lwz      r0, 0x194(r31)
-	cmplwi   r0, 0
-	beq      lbl_8013EF8C
-	lfs      f0, 0x200(r31)
-	mr       r3, r31
-	lfs      f2, 0x204(r31)
-	fmuls    f0, f0, f31
-	lfs      f1, 0x20c(r31)
-	lfs      f4, 0x208(r31)
-	fmuls    f2, f2, f31
-	lfs      f3, 0x210(r31)
-	fadds    f0, f1, f0
-	lfs      f5, 0x214(r31)
-	fmuls    f1, f4, f31
-	fadds    f2, f3, f2
-	stfs     f0, 0x20c(r31)
-	fadds    f0, f5, f1
-	stfs     f2, 0x210(r31)
-	stfs     f0, 0x214(r31)
-	bl       updateStomach__Q24Game8FakePikiFv
-	mr       r3, r31
-	bl       updateCell__Q24Game8CreatureFv
-	lfs      f0, 0x20c(r31)
-	stfs     f0, 0x218(r31)
-	lfs      f0, 0x210(r31)
-	stfs     f0, 0x21c(r31)
-	lfs      f0, 0x214(r31)
-	stfs     f0, 0x220(r31)
-	b        lbl_8013F31C
+	// if we're stuck to something, just make sure we're facing the right direction
+	if (isStickTo()) {
+		Vector3f stickVec = Vector3f(sinf(mFaceDir), 0.0f, cosf(mFaceDir));
+		updateStick(stickVec);
+		updateCell();
+		mAnimSpeed = 30.0f;
 
-lbl_8013EF8C:
-	mr       r3, r31
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013F054
-	lfs      f4, 0x1fc(r31)
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fmr      f1, f4
-	fcmpo    cr0, f4, f0
-	bge      lbl_8013EFB4
-	fneg     f1, f4
+	} else {
+		// we're not stuck, so move a step
+		move(rate);
 
-lbl_8013EFB4:
-	lfs      f2, lbl_805182CC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_805182B4@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f4, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f3, 4(r3)
-	bge      lbl_8013F00C
-	lfs      f0, lbl_805182C8@sda21(r2)
-	fmuls    f0, f4, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f1, f0
-	b        lbl_8013F024
+		// if we're on camera but not the focus, also walk
+		if (isMovieExtra() || !isMovieActor()) {
+			updateWalkAnimation();
+		}
+	}
 
-lbl_8013F00C:
-	fmuls    f0, f4, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r4, r0
+	f32 speed = mSimVelocity.normalise();
+	f32 accel = mAcceleration.length();
 
-lbl_8013F024:
-	lfs      f0, lbl_805182B4@sda21(r2)
-	mr       r3, r31
-	stfs     f1, 0x24(r1)
-	addi     r4, r1, 0x24
-	stfs     f0, 0x28(r1)
-	stfs     f3, 0x2c(r1)
-	bl       "updateStick__Q24Game8CreatureFR10Vector3<f>"
-	mr       r3, r31
-	bl       updateCell__Q24Game8CreatureFv
-	lfs      f0, lbl_805182B8@sda21(r2)
-	stfs     f0, 0x234(r31)
-	b        lbl_8013F0AC
+	if (speed > accel) {
+		// add friction?
+		speed -= accel;
+		mSimVelocity  = mSimVelocity * speed;
+		mAcceleration = Vector3f(0.0f);
 
-lbl_8013F054:
-	mr       r3, r31
-	fmr      f1, f31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1d0(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013F0A4
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013F0AC
+	} else {
+		// accel not high enough, reset it
+		mSimVelocity  = mSimVelocity * speed;
+		mAcceleration = Vector3f(0.0f);
+	}
 
-lbl_8013F0A4:
-	mr       r3, r31
-	bl       updateWalkAnimation__Q24Game8FakePikiFv
+	// update collision sphere
+	mBoundingSphere.mPosition = mPosition;
 
-lbl_8013F0AC:
-	lfs      f2, 0x200(r31)
-	lfs      f1, 0x204(r31)
-	fmuls    f0, f2, f2
-	lfs      f3, 0x208(r31)
-	fmuls    f4, f1, f1
-	lfs      f1, lbl_805182B4@sda21(r2)
-	fmuls    f3, f3, f3
-	fadds    f0, f0, f4
-	fadds    f0, f3, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8013F0F4
-	fmadds   f0, f2, f2, f4
-	fadds    f4, f3, f0
-	fcmpo    cr0, f4, f1
-	ble      lbl_8013F0F8
-	frsqrte  f0, f4
-	fmuls    f4, f0, f4
-	b        lbl_8013F0F8
+	// check if we've hit the death plane
+	CheckHellArg hellArg;
+	if (checkHell(hellArg) != TRUE) {
+		// we haven't hit the death plane, we're done
+		return;
+	}
 
-lbl_8013F0F4:
-	fmr      f4, f1
+	// GO TO HELL
+	if (isPiki()) {
+		// play piki falling/dying sound
+		static_cast<Piki*>(this)->startSound(PSSE_PK_VC_FALL, true);
+		return;
+	}
 
-lbl_8013F0F8:
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fcmpo    cr0, f4, f0
-	ble      lbl_8013F134
-	lfs      f1, lbl_80518304@sda21(r2)
-	lfs      f0, 0x200(r31)
-	fdivs    f1, f1, f4
-	fmuls    f0, f0, f1
-	stfs     f0, 0x200(r31)
-	lfs      f0, 0x204(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x204(r31)
-	lfs      f0, 0x208(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x208(r31)
-	b        lbl_8013F138
+	if (isNavi()) {
+		// warp navi to ship/pod/onyon (if vs mode, since ship or pod should be loaded otherwise)
+		Onyon* dropLocation = ItemOnyon::mgr->mUfo; // default to ship
+		if (!ItemOnyon::mgr->mUfo) {
+			dropLocation = ItemOnyon::mgr->mPod; // if no ship (cave etc), go to pod
+		}
 
-lbl_8013F134:
-	fmr      f4, f0
+		// if no ship OR pod, warp to appropriate onyon
+		if (!dropLocation) {
+			// olimar warps to red onyon, louie/president warps to blue onyon
+			dropLocation = ItemOnyon::mgr->getOnyon(1 - static_cast<Navi*>(this)->mNaviIndex);
+		}
 
-lbl_8013F138:
-	lfs      f2, 0x11c(r31)
-	lfs      f1, 0x120(r31)
-	fmuls    f0, f2, f2
-	lfs      f3, 0x124(r31)
-	fmuls    f5, f1, f1
-	lfs      f1, lbl_805182B4@sda21(r2)
-	fmuls    f3, f3, f3
-	fadds    f0, f0, f5
-	fadds    f0, f3, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8013F180
-	fmadds   f0, f2, f2, f5
-	fadds    f0, f3, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8013F184
-	frsqrte  f1, f0
-	fmuls    f0, f1, f0
-	b        lbl_8013F184
+		// we're really boned if there's no ship, pod OR onyon loaded.
+		JUT_ASSERTLINE(1929, dropLocation, "no recover onyon\n");
 
-lbl_8013F180:
-	fmr      f0, f1
+		Vector3f dropPos = dropLocation->getPosition();
+		dropPos.y += 150.0f; // fall from 150 units above set location
 
-lbl_8013F184:
-	fcmpo    cr0, f4, f0
-	ble      lbl_8013F1C8
-	fsubs    f4, f4, f0
-	lfs      f0, 0x200(r31)
-	lfs      f2, 0x204(r31)
-	lfs      f3, 0x208(r31)
-	fmuls    f1, f0, f4
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fmuls    f2, f2, f4
-	fmuls    f3, f3, f4
-	stfs     f1, 0x200(r31)
-	stfs     f2, 0x204(r31)
-	stfs     f3, 0x208(r31)
-	stfs     f0, 0x11c(r31)
-	stfs     f0, 0x120(r31)
-	stfs     f0, 0x124(r31)
-	b        lbl_8013F1FC
-
-lbl_8013F1C8:
-	lfs      f0, 0x200(r31)
-	lfs      f2, 0x204(r31)
-	fmuls    f1, f0, f4
-	lfs      f3, 0x208(r31)
-	fmuls    f2, f2, f4
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fmuls    f3, f3, f4
-	stfs     f1, 0x200(r31)
-	stfs     f2, 0x204(r31)
-	stfs     f3, 0x208(r31)
-	stfs     f0, 0x11c(r31)
-	stfs     f0, 0x120(r31)
-	stfs     f0, 0x124(r31)
-
-lbl_8013F1FC:
-	lfs      f0, 0x20c(r31)
-	li       r0, 1
-	mr       r3, r31
-	addi     r4, r1, 8
-	stfs     f0, 0x218(r31)
-	lfs      f0, 0x210(r31)
-	stfs     f0, 0x21c(r31)
-	lfs      f0, 0x214(r31)
-	stfs     f0, 0x220(r31)
-	stb      r0, 8(r1)
-	bl       checkHell__Q24Game8CreatureFRQ34Game8Creature12CheckHellArg
-	cmpwi    r3, 1
-	bne      lbl_8013F31C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013F260
-	mr       r3, r31
-	li       r4, 0x2837
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-	b        lbl_8013F31C
-
-lbl_8013F260:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013F31C
-	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
-	lwz      r0, 0xb0(r3)
-	cmplwi   r0, 0
-	mr       r30, r0
-	bne      lbl_8013F294
-	lwz      r30, 0xac(r3)
-
-lbl_8013F294:
-	cmplwi   r30, 0
-	bne      lbl_8013F2AC
-	lhz      r0, 0x2dc(r31)
-	subfic   r4, r0, 1
-	bl       getOnyon__Q34Game9ItemOnyon3MgrFi
-	mr       r30, r3
-
-lbl_8013F2AC:
-	cmplwi   r30, 0
-	bne      lbl_8013F2D0
-	lis      r3, lbl_8047C720@ha
-	lis      r5, lbl_8047C764@ha
-	addi     r3, r3, lbl_8047C720@l
-	li       r4, 0x789
-	addi     r5, r5, lbl_8047C764@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8013F2D0:
-	mr       r4, r30
-	addi     r3, r1, 0xc
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x10(r1)
-	mr       r3, r31
-	lfs      f0, lbl_80518340@sda21(r2)
-	addi     r4, r1, 0x18
-	lfs      f3, 0xc(r1)
-	li       r5, 0
-	lfs      f1, 0x14(r1)
-	fadds    f0, f2, f0
-	stfs     f2, 0x1c(r1)
-	stfs     f3, 0x18(r1)
-	stfs     f1, 0x20(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-
-lbl_8013F31C:
-	psq_l    f31, 88(r1), 0, qr0
-	lwz      r0, 0x64(r1)
-	lfd      f31, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+		setPosition(dropPos, false);
+	}
 }
-
-/*
- * --INFO--
- * Address:	8013F33C
- * Size:	00001C
- */
-Vector3f BaseItem::getPosition() { return mPosition; }
 
 /*
  * --INFO--
@@ -3134,195 +2770,5 @@ lbl_8013F400:
  * Size:	000008
  */
 bool FakePiki::debugShapeDL(char*) { return true; }
-
-/*
- * --INFO--
- * Address:	8013F4D8
- * Size:	000008
- */
-int FakePiki::getDownfloorMass() { return 0; }
-
-/*
- * --INFO--
- * Address:	8013F4E0
- * Size:	000008
- */
-bool FakePiki::isPikmin() { return true; }
-
-/*
- * --INFO--
- * Address:	8013F4E8
- * Size:	000004
- */
-void FakePiki::doDebugDL() { }
-
-/*
- * --INFO--
- * Address:	8013F4EC
- * Size:	000004
- */
-void FakePiki::update() { }
-
-/*
- * --INFO--
- * Address:	8013F4F0
- * Size:	000028
- */
-void FakePiki::setMoveRotation(bool useMoveRotation)
-{
-	if (!useMoveRotation) {
-		setFPFlag(FPFLAGS_MoveRotationDisabled);
-	} else {
-		resetFPFlag(FPFLAGS_MoveRotationDisabled);
-	}
-}
-
-/*
- * --INFO--
- * Address:	8013F518
- * Size:	000028
- */
-void FakePiki::setUpdateTrMatrix(bool useUpdateTrMatrix)
-{
-	if (!useUpdateTrMatrix) {
-		setFPFlag(FPFLAGS_UpdateTrMatrixDisabled);
-	} else {
-		resetFPFlag(FPFLAGS_UpdateTrMatrixDisabled);
-	}
-}
-
-/*
- * --INFO--
- * Address:	8013F540
- * Size:	000028
- */
-void FakePiki::setMoveVelocity(bool useMoveVelocity)
-{
-	if (!useMoveVelocity) {
-		setFPFlag(FPFLAGS_MoveVelocityDisabled);
-	} else {
-		resetFPFlag(FPFLAGS_MoveVelocityDisabled);
-	}
-}
-
-/*
- * --INFO--
- * Address:	8013F568
- * Size:	000028
- */
-void FakePiki::setMapCollision(bool useMapCollision)
-{
-	if (!useMapCollision) {
-		setFPFlag(FPFLAGS_MapCollisionDisabled);
-	} else {
-		resetFPFlag(FPFLAGS_MapCollisionDisabled);
-	}
-}
-
-/*
- * --INFO--
- * Address:	8013F590
- * Size:	00000C
- */
-bool FakePiki::isZikatu() { return isFPFlag(FPFLAGS_Zikatu); }
-
-/*
- * --INFO--
- * Address:	8013F59C
- * Size:	00003C
- */
-void FakePiki::setZikatu(bool makeZikatu)
-{
-	if (makeZikatu) {
-		setFPFlag(FPFLAGS_Zikatu);
-	} else {
-		resetFPFlag(FPFLAGS_Zikatu);
-	}
-
-	if (makeZikatu) {
-		setFPFlag(FPFLAGS_WasZikatu);
-	}
-}
-
-/*
- * --INFO--
- * Address:	8013F5D8
- * Size:	00000C
- */
-bool FakePiki::wasZikatu() { return isFPFlag(FPFLAGS_WasZikatu); }
-
-/*
- * --INFO--
- * Address:	8013F5E4
- * Size:	000004
- */
-void FakePiki::inWaterCallback(WaterBox*) { }
-
-/*
- * --INFO--
- * Address:	8013F5E8
- * Size:	000004
- */
-void FakePiki::outWaterCallback() { }
-
-/*
- * --INFO--
- * Address:	8013F5F0
- * Size:	000044
- */
-void FakePiki::onSetPosition(Vector3f& position)
-{
-	mPosition = position;
-	onSetPosition();
-}
-
-/*
- * --INFO--
- * Address:	8013F634
- * Size:	000008
- */
-f32 FakePiki::getFaceDir() { return mFaceDir; }
-
-/*
- * --INFO--
- * Address:	8013F63C
- * Size:	00001C
- */
-Vector3f FakePiki::getVelocity() { return mSimVelocity; }
-
-/*
- * --INFO--
- * Address:	8013F658
- * Size:	00001C
- */
-void FakePiki::setVelocity(Vector3f& velocity) { mSimVelocity = velocity; }
-
-/*
- * --INFO--
- * Address:	8013F674
- * Size:	00001C
- */
-void FakePiki::getVelocityAt(Vector3f& vec, Vector3f& velocity) { velocity = mSimVelocity; }
-
-/*
- * --INFO--
- * Address:	8013F690
- * Size:	000008
- */
-Vector3f* FakePiki::getSound_PosPtr() { return &mPosition; }
-
-/*
- * --INFO--
- * Address:	8013F698
- * Size:	000008
- */
-bool FakePiki::isWalking() { return false; }
-
-/*
- * --INFO--
- * Address:	8013F6A0
- * Size:	000004
- */
-void FakePiki::onKeyEvent(const SysShape::KeyEvent&) { }
 
 } // namespace Game

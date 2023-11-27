@@ -387,7 +387,7 @@ MapRoom::MapRoom()
 	mIndex     = -1;
 	mLink      = nullptr;
 	mWpIndices = nullptr;
-	_0BC       = 0;
+	mIsVisited = false;
 	mInterface = nullptr;
 }
 
@@ -2383,7 +2383,7 @@ void RoomMapMgr::drawCollision(Graphics&, Sys::Sphere&) { }
  * Address:	801B9BA0
  * Size:	0001F0
  */
-void RoomMapMgr::traceMove(MoveInfo& moveInfo, f32 rate)
+Sys::TriIndexList* RoomMapMgr::traceMove(MoveInfo& moveInfo, f32 rate)
 {
 
 	/*
