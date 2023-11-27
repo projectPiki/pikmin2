@@ -764,13 +764,13 @@ struct NaviThrowWaitState : public NaviState, virtual public SysShape::MotionLis
 	// _00     = VTBL
 	// _00-_10 = NaviState
 	// _10-_14 = MotionListener VTBL
-	Piki* mHeldPiki; // _14, held piki to be thrown
-	Piki* mNextPiki; // _18
-	int _1C;
-	bool _20;
-	int _24;
-	f32 _28;
-	f32 _2C;
+	Piki* mHeldPiki;                         // _14, held piki to be thrown
+	Piki* mNextPiki;                         // _18
+	int _1C;                                 // _1C
+	bool _20;                                // _20
+	int _24;                                 // _24
+	f32 _28;                                 // _28
+	f32 _2C;                                 // _2C
 	Delegate<NaviThrowWaitState>* mDelegate; // _30
 	Navi* mNavi;                             // _34
 	int mCurrHappa;                          // _38

@@ -51,7 +51,7 @@ struct ToeHamonA {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos mContext;
+	ContextChasePos mContext[1];
 };
 
 struct ToeHamonB {
@@ -59,7 +59,7 @@ struct ToeHamonB {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos mContext;
+	ContextChasePos mContext[1];
 };
 
 struct ToeKourin {

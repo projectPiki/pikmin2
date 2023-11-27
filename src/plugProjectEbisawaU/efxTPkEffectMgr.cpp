@@ -583,9 +583,9 @@ void ToeWater::kill()
 void ToeHamonA::create(Vector3f* chasePos)
 {
 	P2ASSERTLINE(461, chasePos);
-	if (!mContext.mParent) {
-		mContext.mPosition = chasePos;
-		pkEffectMgr->mTOneEmitters.mToeHamonA->add(&mContext);
+	if (!mContext[0].mParent) {
+		mContext[0].mPosition = chasePos;
+		pkEffectMgr->mTOneEmitters.mToeHamonA->add(mContext);
 	}
 }
 
@@ -594,7 +594,7 @@ void ToeHamonA::create(Vector3f* chasePos)
  * Address:	803C75EC
  * Size:	00002C
  */
-void ToeHamonA::kill() { pkEffectMgr->mTOneEmitters.mToeHamonA->del(&mContext); }
+void ToeHamonA::kill() { pkEffectMgr->mTOneEmitters.mToeHamonA->del(mContext); }
 
 /*
  * --INFO--
@@ -604,9 +604,9 @@ void ToeHamonA::kill() { pkEffectMgr->mTOneEmitters.mToeHamonA->del(&mContext); 
 void ToeHamonB::create(Vector3f* chasePos)
 {
 	P2ASSERTLINE(478, chasePos);
-	if (!mContext.mParent) {
-		mContext.mPosition = chasePos;
-		pkEffectMgr->mTOneEmitters.mToeHamonB->add(&mContext);
+	if (!mContext[0].mParent) {
+		mContext[0].mPosition = chasePos;
+		pkEffectMgr->mTOneEmitters.mToeHamonB->add(mContext);
 	}
 }
 
@@ -615,7 +615,7 @@ void ToeHamonB::create(Vector3f* chasePos)
  * Address:	803C768C
  * Size:	00002C
  */
-void ToeHamonB::kill() { pkEffectMgr->mTOneEmitters.mToeHamonB->del(&mContext); }
+void ToeHamonB::kill() { pkEffectMgr->mTOneEmitters.mToeHamonB->del(mContext); }
 
 /*
  * --INFO--

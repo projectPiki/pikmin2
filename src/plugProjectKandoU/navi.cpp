@@ -28,6 +28,7 @@
 #include "Radar.h"
 #include "nans.h"
 #include "utilityU.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/arith.h"
 
 static const u32 fillerbytes[3] = { 0, 0, 0 };
 
@@ -830,7 +831,7 @@ void Navi::setupNukuAdjustArg(ItemPikihead::Item* item, NaviNukuAdjustStateArg& 
 
 	f32 length    = pikmin2_sqrtf(direction.sqrMagnitude());
 	f32 norm      = 1.0f / length;
-	arg._04       = direction * (3.0f * (norm * (length - 15.0f)));
+	arg._04       = direction * (3.0003002f * (norm * (length - 15.0f)));
 	arg._10       = 2;
 	arg.mPikihead = item;
 }
@@ -1399,7 +1400,7 @@ void Navi::doAnimation()
 			mCollTree->update();
 		}
 		Matrixf* mtx    = mBeaconJoint->getWorldMatrix();
-		mBeaconPosition = (5.0f, 0.0f, 0.0f);
+		mBeaconPosition = Vector3f(5.0f, 0.0f, 0.0f);
 		Vector3f calcpos;
 		PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&mBeaconPosition, (Vec*)&calcpos);
 		mBeaconPosition = calcpos;
@@ -1608,14 +1609,39 @@ void Navi::doAnimation()
  */
 void Navi::updateCursor()
 {
-	Vector3f navipos = getPosition();
-	Vector3f pos1    = mWhistle->mPosition.distance(navipos);
+	Vector3f whistlePos = mWhistle->mPosition;
+	Vector3f naviPos    = getPosition();
+	Vector3f sep        = whistlePos - naviPos; // f28, f27, f26
+	f32 dist            = pikmin2_sqrtf(sep.magnitude());
+	if (dist > 0.0f) {
+		sep *= (1.0f / dist);
+	}
+
+	Vector3f yVec = mWhistle->mNormal; // f25, f24, f23
+	Vector3f xVec = cross(yVec, sep);
+
+	f32 xLen = pikmin2_sqrtf(xVec.magnitude());
+	if (xLen > 0.0f) {
+		xVec *= (1.0f / xLen);
+	}
+
+	Vector3f zVec = cross(xVec, yVec);
+	f32 zLen      = pikmin2_sqrtf(zVec.magnitude());
+	if (zLen > 0.0f) {
+		zVec *= (1.0f / zLen);
+	}
 
 	Matrixf mtx;
-	PSMTXCopy(mtx.mMatrix.mtxView, mCursorModel->mJ3dModel->mPosMtx);
+
+	mtx.setBasis(0, xVec);
+	mtx.setBasis(1, yVec);
+	mtx.setBasis(2, zVec);
+	mtx.setBasis(3, whistlePos);
+
 	PSMTXCopy(mtx.mMatrix.mtxView, mMarkerModel->mJ3dModel->mPosMtx);
-	mCursorModel->mJ3dModel->calc();
+	PSMTXCopy(mtx.mMatrix.mtxView, mCursorModel->mJ3dModel->mPosMtx);
 	mMarkerModel->mJ3dModel->calc();
+	mCursorModel->mJ3dModel->calc();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x110(r1)
@@ -1862,17 +1888,17 @@ int Navi::getDownfloorMass()
 		id = -1;
 	}
 
-	int mass = naviMgr->mNaviParms->mNaviParms.mQ009;
+	int mass = naviMgr->mNaviParms->mNaviParms.mQ009();
 
 	// if we're holding a piki, modify our mass
 	if (id == NSID_ThrowWait) {
-		Piki* heldPiki = static_cast<NaviThrowWaitState*>(curState)->mPiki;
+		Piki* heldPiki = static_cast<NaviThrowWaitState*>(curState)->mHeldPiki;
 		int a          = 1; // default mass to add is 1
 
 		if (heldPiki) {
 			int pikiState = heldPiki->getStateID();
 			if (pikiState == PIKISTATE_Hanged) {
-				if ((int)static_cast<NaviThrowWaitState*>(curState)->mPiki->mPikiKind == Purple) {
+				if (static_cast<NaviThrowWaitState*>(curState)->mHeldPiki->getKind() == Purple) {
 					a = 2; // held piki is purple, so add double mass
 				}
 			} else {
@@ -1924,8 +1950,7 @@ void Navi::update()
 		return;
 	}
 
-	// abs?
-	if (mFootmarks->mCount - gameSystem->mFrameTimer > 10) {
+	if (abs(mFootmarks->mLastUpdateTime - gameSystem->mFrameTimer) > 10) {
 		Footmark mark;
 		mark.mPosition = getPosition();
 		mFootmarks->add(mark);
@@ -2340,12 +2365,18 @@ void Navi::movieSetTranslation(Vector3f& newpos, f32 dir)
  */
 bool Navi::movieGotoPosition(Vector3f& pos)
 {
-	if (pos.distance(mPosition) <= 400.0f) {
+	Vector3f sep = pos - mPosition;
+	f32 xz       = sep.sqrMagnitude2D();
+	f32 dist     = pikmin2_sqrtf(sep.magnitude());
+	if (dist > 0.0f) {
+		sep *= (1.0f / dist);
+	}
+	if (xz < 400.0f) {
 		mVelocity    = 0.0f;
 		mSimVelocity = 0.0f;
 		return true;
 	} else {
-		mVelocity = naviMgr->mNaviParms->mNaviParms.mP004.mValue;
+		mVelocity = (sep * naviMgr->mNaviParms->mNaviParms.mP004()) * 0.5f;
 		return false;
 	}
 	/*
@@ -2438,7 +2469,37 @@ bool Navi::movieGotoPosition(Vector3f& pos)
  */
 void Navi::set_movie_draw(bool on)
 {
-	if (isMovieActor() && on) { }
+	if (!isMovieActor() && on) {
+		if (isAlive()) {
+			efx::TNaviEffect* effectsObj = mEffectsObj;
+			if (effectsObj->isFlag(efx::NAVIFX_IsSaved)) {
+				effectsObj->restoreFlags();
+			}
+			bool inWater = effectsObj->isFlag(efx::NAVIFX_InWater);
+			if (inWater) {
+				effectsObj->enterWater(inWater);
+			}
+
+			if (effectsObj->isFlag(efx::NAVIFX_LightOn)) {
+				effectsObj->createLight();
+			}
+		}
+	} else if (!isMovieExtra() && !on) {
+		efx::TNaviEffect* effectsObj = mEffectsObj;
+		if (!effectsObj->isFlag(efx::NAVIFX_IsSaved)) {
+			effectsObj->saveFlags();
+		}
+
+		effectsObj->mLight.forceKill();
+		effectsObj->mLightAct.forceKill();
+		effectsObj->mDamage.forceKill();
+		effectsObj->killHamonA_();
+		effectsObj->killHamonB_();
+		effectsObj->killLight_();
+		effectsObj->killLightAct_();
+		effectsObj->killCursor_();
+		effectsObj->killFueact_();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -2571,14 +2632,14 @@ void Navi::setDeadLaydown()
 {
 	int id = mNaviIndex;
 	if (id < 8) {
-		playData->mDeadNaviID = mNaviIndex; // erm
+		(&playData->mDeadNaviID)[mNaviIndex] = mNaviIndex > 0; // erm
 	}
 
 	Vector3f offset;
 	if (mNaviIndex == NAVIID_Olimar) { // olimar
-		offset = (-170.0f, 0.0f, 40.0f);
+		offset = Vector3f(-170.0f, 0.0f, 40.0f);
 	} else { // louie/president
-		offset = (-190.0f, 0.0f, 10.0f);
+		offset = Vector3f(-190.0f, 0.0f, 10.0f);
 	}
 	if (mapMgr->getDemoMatrix()) {
 		Matrixf* mtx = mapMgr->getDemoMatrix();
