@@ -147,7 +147,7 @@ void GXSetCPUFifo(GXFifoObj* fifo)
 		GX_BITFIELD_SET(reg, 6, 21, (u32)((GXFifoObjPriv*)fifo)->writePtr >> 5);
 		GX_BITFIELD_SET(reg, 5, 1, 0);
 		GX_SET_PI_REG(5, reg);
-		
+
 		CPGPLinked = GX_TRUE;
 
 		__GXWriteFifoIntReset(1, 1);
@@ -547,7 +547,7 @@ void __GXCleanGPFifo(void)
 {
 	BOOL interrupts;
 	GXFifoObjPriv tempObj;  // 0x14
-	u32 i, j, k; // stack alloc
+	u32 i, j, k;            // stack alloc
 	GXFifoObjPriv* gpFifo;  // r31
 	GXFifoObjPriv* cpuFifo; // r30
 	void* tempPtr;          // r29

@@ -1266,11 +1266,10 @@ void BlackMan::Obj::changeMaterial()
 
 	mMatLoopAnimator->animate(30.0f);
 
-	J3DTexMtx* texMtx = modelData->mMaterialTable.mMaterials[0]->mTexGenBlock->getTexMtx(0);
-
-	copyMtx44(texMtx->_24, copyMatrix);
-	texMtx->_24[3][0] = texMtx->_24[3][1] = texMtx->_24[3][2] = 0.0f;
-	texMtx->_24[3][3]                                         = 1.0f;
+	J3DTexMtxInfo* texInfo = &modelData->mMaterialTable.mMaterials[0]->mTexGenBlock->getTexMtx(0)->getTexMtxInfo();
+	copyMtx44(texInfo->mEffectMtx, copyMatrix);
+	texInfo->mEffectMtx[3][0] = texInfo->mEffectMtx[3][1] = texInfo->mEffectMtx[3][2] = 0.0f;
+	texInfo->mEffectMtx[3][3]                                                         = 1.0f;
 
 	J3DTexture* wraithMain = modelData->getTexture();
 	JUTTexture* xfbTex     = gameSystem->getXfbTexture();
