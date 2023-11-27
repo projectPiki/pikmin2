@@ -546,11 +546,11 @@ void __GXInsaneWatermark(void)
 void __GXCleanGPFifo(void)
 {
 	BOOL interrupts;
-	u32 i;
+	GXFifoObjPriv tempObj;  // 0x14
+	u32 i, j, k; // stack alloc
 	GXFifoObjPriv* gpFifo;  // r31
 	GXFifoObjPriv* cpuFifo; // r30
 	void* tempPtr;          // r29
-	GXFifoObjPriv tempObj;  // 0x14
 
 	gpFifo = (GXFifoObjPriv*)GXGetGPFifo();
 	if (!gpFifo) {
@@ -560,9 +560,7 @@ void __GXCleanGPFifo(void)
 	cpuFifo = (GXFifoObjPriv*)GXGetCPUFifo();
 	tempPtr = gpFifo->base;
 
-	for (i = 0; i < 16; i++) {
-		// some copy going on here
-	}
+	tempObj = *gpFifo;
 
 	interrupts = OSDisableInterrupts();
 
