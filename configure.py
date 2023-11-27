@@ -705,7 +705,7 @@ LIBS = [
         "host": False,
         "objects": [
             ["Dolphin/gx/GXInit", True],
-            ["Dolphin/gx/GXFifo", False],
+            ["Dolphin/gx/GXFifo", True],
             ["Dolphin/gx/GXAttr", False],
             ["Dolphin/gx/GXMisc", False],
             ["Dolphin/gx/GXGeometry", True],

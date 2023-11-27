@@ -152,7 +152,7 @@ void GXSetCPUFifo(GXFifoObj* fifo)
 
 		__GXWriteFifoIntReset(1, 1);
 		__GXWriteFifoIntEnable(1, 0);
-		__GXWriteFifoLink(1);
+		__GXFifoLink(1);
 	} else {
 		u32 reg;
 		if (CPGPLinked) {
@@ -172,89 +172,6 @@ void GXSetCPUFifo(GXFifoObj* fifo)
 	PPCSync();
 
 	OSRestoreInterrupts(interrupts);
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  bl        0xB004
-	  lwz       r0, -0x7124(r13)
-	  addi      r31, r3, 0
-	  stw       r30, -0x7128(r13)
-	  cmplw     r30, r0
-	  bne-      .loc_0x9C
-	  lwz       r0, 0x0(r30)
-	  li        r8, 0
-	  lwz       r3, -0x7150(r13)
-	  li        r6, 0
-	  rlwinm    r0,r0,0,2,31
-	  stw       r0, 0xC(r3)
-	  li        r0, 0x1
-	  li        r3, 0x1
-	  lwz       r7, 0x4(r30)
-	  li        r4, 0x1
-	  lwz       r5, -0x7150(r13)
-	  rlwinm    r7,r7,0,2,31
-	  stw       r7, 0x10(r5)
-	  lwz       r7, 0x18(r30)
-	  lwz       r5, -0x7150(r13)
-	  rlwimi    r8,r7,0,6,26
-	  addi      r7, r8, 0
-	  rlwimi    r7,r6,26,5,5
-	  stw       r7, 0x14(r5)
-	  stb       r0, -0x711C(r13)
-	  bl        0x4A8
-	  li        r3, 0x1
-	  li        r4, 0
-	  bl        0x46C
-	  li        r3, 0x1
-	  bl        0x430
-	  b         .loc_0x104
-
-	.loc_0x9C:
-	  lbz       r0, -0x711C(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB8
-	  li        r3, 0
-	  bl        0x418
-	  li        r0, 0
-	  stb       r0, -0x711C(r13)
-
-	.loc_0xB8:
-	  li        r3, 0
-	  li        r4, 0
-	  bl        0x438
-	  lwz       r4, 0x0(r30)
-	  li        r5, 0
-	  lwz       r3, -0x7150(r13)
-	  li        r0, 0
-	  rlwinm    r4,r4,0,2,31
-	  stw       r4, 0xC(r3)
-	  lwz       r4, 0x4(r30)
-	  lwz       r3, -0x7150(r13)
-	  rlwinm    r4,r4,0,2,31
-	  stw       r4, 0x10(r3)
-	  lwz       r4, 0x18(r30)
-	  lwz       r3, -0x7150(r13)
-	  rlwimi    r5,r4,0,6,26
-	  addi      r4, r5, 0
-	  rlwimi    r4,r0,26,5,5
-	  stw       r4, 0x14(r3)
-
-	.loc_0x104:
-	  bl        -0xF790
-	  mr        r3, r31
-	  bl        0xAF38
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*
@@ -594,85 +511,6 @@ void __GXCleanGPFifo(void)
 	if (cpuFifo == gpFifo) {
 		GXSetCPUFifo((GXFifoObj*)cpuFifo);
 	}
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0xA8(r1)
-	  stw       r31, 0xA4(r1)
-	  stw       r30, 0xA0(r1)
-	  stw       r29, 0x9C(r1)
-	  bl        0xF0
-	  mr.       r31, r3
-	  beq-      .loc_0xE4
-	  bl        .loc_0x100
-	  li        r0, 0x10
-	  lwz       r29, 0x0(r31)
-	  mtctr     r0
-	  addi      r30, r3, 0
-	  addi      r5, r1, 0xC
-	  subi      r4, r31, 0x8
-
-	.loc_0x40:
-	  lwzu      r3, 0x8(r4)
-	  lwz       r0, 0x4(r4)
-	  stwu      r3, 0x8(r5)
-	  stw       r0, 0x4(r5)
-	  bdnz+     .loc_0x40
-	  bl        0xAA70
-	  stw       r29, 0x28(r1)
-	  li        r0, 0
-	  stw       r29, 0x2C(r1)
-	  stw       r0, 0x30(r1)
-	  lwz       r4, 0x30(r1)
-	  cmpwi     r4, 0
-	  bge-      .loc_0x80
-	  lwz       r0, 0x1C(r1)
-	  add       r0, r4, r0
-	  stw       r0, 0x30(r1)
-
-	.loc_0x80:
-	  bl        0xAA6C
-	  addi      r3, r1, 0x14
-	  bl        -0x4B8
-	  cmplw     r30, r31
-	  bne-      .loc_0x9C
-	  addi      r3, r1, 0x14
-	  bl        -0x5F0
-
-	.loc_0x9C:
-	  bl        0xAA28
-	  stw       r29, 0x14(r31)
-	  li        r0, 0
-	  stw       r29, 0x18(r31)
-	  stw       r0, 0x1C(r31)
-	  lwz       r4, 0x1C(r31)
-	  cmpwi     r4, 0
-	  bge-      .loc_0xC8
-	  lwz       r0, 0x8(r31)
-	  add       r0, r4, r0
-	  stw       r0, 0x1C(r31)
-
-	.loc_0xC8:
-	  bl        0xAA24
-	  mr        r3, r31
-	  bl        -0x500
-	  cmplw     r30, r31
-	  bne-      .loc_0xE4
-	  mr        r3, r30
-	  bl        -0x638
-
-	.loc_0xE4:
-	  lwz       r0, 0xAC(r1)
-	  lwz       r31, 0xA4(r1)
-	  lwz       r30, 0xA0(r1)
-	  lwz       r29, 0x9C(r1)
-	  addi      r1, r1, 0xA8
-	  mtlr      r0
-	  blr
-
-	.loc_0x100:
-	*/
 }
 
 /*
