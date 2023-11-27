@@ -135,31 +135,38 @@ void GXInitFifoLimits(GXFifoObj* fifo, u32 highWatermark, u32 lowWatermark)
 void GXSetCPUFifo(GXFifoObj* fifo)
 {
 	BOOL interrupts;
-
 	interrupts = OSDisableInterrupts();
 
 	CPUFifo = fifo;
 
 	if (fifo == GPFifo) {
+		u32 reg;
 		GX_SET_PI_REG(3, (u32)((GXFifoObjPriv*)fifo)->base & 0x3FFFFFFF);
 		GX_SET_PI_REG(4, (u32)((GXFifoObjPriv*)fifo)->end & 0x3FFFFFFF);
-		GX_SET_PI_REG(5, (u32)((GXFifoObjPriv*)fifo)->end & 0x3FFFFFFF);
+		reg = 0;
+		GX_BITFIELD_SET(reg, 6, 21, (u32)((GXFifoObjPriv*)fifo)->writePtr >> 5);
+		GX_BITFIELD_SET(reg, 5, 1, 0);
+		GX_SET_PI_REG(5, reg);
+		
 		CPGPLinked = GX_TRUE;
 
 		__GXWriteFifoIntReset(1, 1);
 		__GXWriteFifoIntEnable(1, 0);
 		__GXWriteFifoLink(1);
 	} else {
+		u32 reg;
 		if (CPGPLinked) {
 			__GXFifoLink(0);
 			CPGPLinked = GX_FALSE;
 		}
-
 		__GXWriteFifoIntEnable(0, 0);
 
 		GX_SET_PI_REG(3, (u32)((GXFifoObjPriv*)fifo)->base & 0x3FFFFFFF);
 		GX_SET_PI_REG(4, (u32)((GXFifoObjPriv*)fifo)->end & 0x3FFFFFFF);
-		GX_SET_PI_REG(5, (u32)((GXFifoObjPriv*)fifo)->end & 0x3FFFFFFF);
+		reg = 0;
+		GX_BITFIELD_SET(reg, 6, 21, (u32)((GXFifoObjPriv*)fifo)->writePtr >> 5);
+		GX_BITFIELD_SET(reg, 5, 1, 0);
+		GX_SET_PI_REG(5, reg);
 	}
 
 	PPCSync();
