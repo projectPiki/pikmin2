@@ -991,7 +991,7 @@ LIBS = [
             "plugProjectKandoU/navi_demoCheck",
             "plugProjectKandoU/singleGS_Zukan",
             ["plugProjectKandoU/gameResultTexMgr", True],
-            "plugProjectKandoU/gamePelletList",
+            ["plugProjectKandoU/gamePelletList", True],
             ["plugProjectKandoU/vsGS_Title", True],
             ["plugProjectKandoU/vsGS_Game", True],
             ["plugProjectKandoU/vsGS_Result", True],
