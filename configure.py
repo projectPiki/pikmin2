@@ -443,7 +443,7 @@ LIBS = [
                 {"cflags": "$cflags_base -inline deferred -func_align 32"},
             ],
             ["Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e", True],
-            "Dolphin/TRK_MINNOW_DOLPHIN/__exception",
+            ["Dolphin/TRK_MINNOW_DOLPHIN/__exception", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk", False],
             ["Dolphin/TRK_MINNOW_DOLPHIN/main_TRK", True],
             ["Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue", False],
@@ -2013,6 +2013,13 @@ if __name__ == "__main__":
                 c_file = src_path / f"{object}.c"
             elif os.path.exists(src_path / f"{object}.C"):
                 c_file = src_path / f"{object}.C"
+            elif os.path.exists(src_path / f"{object}.s"): # specifically for __exception.s
+                n.build(
+                    outputs=path(build_src_path / f"{object}.o"),
+                    rule="as",
+                    inputs=path(src_path / f"{object}.s"),
+                    implicit=path(dtk),
+                )
             if c_file is not None:
                 n.build(
                     outputs=path(build_src_path / f"{object}.o"),
