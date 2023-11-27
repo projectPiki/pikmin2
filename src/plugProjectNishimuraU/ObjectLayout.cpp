@@ -35,7 +35,7 @@ void ObjectLayout::setNode(int idx, ObjectLayoutNode* layoutNode) { mNodeList[id
  * Address:	80250900
  * Size:	000048
  */
-s32 ObjectLayout::getCount(int idx)
+int ObjectLayout::getCount(int idx)
 {
 	ObjectLayoutNode* node = mNodeList[idx];
 	return node ? node->getChildCount() : 0;
@@ -46,10 +46,10 @@ s32 ObjectLayout::getCount(int idx)
  * Address:	80250948
  * Size:	000040
  */
-CNode* ObjectLayout::getNode(int idx, int at)
+ObjectLayoutNode* ObjectLayout::getNode(int idx, int at)
 {
 	ObjectLayoutNode* node = mNodeList[idx];
-	return node ? node->getChildAt(at) : nullptr;
+	return node ? (ObjectLayoutNode*)node->getChildAt(at) : nullptr;
 }
 } // namespace Cave
 } // namespace Game

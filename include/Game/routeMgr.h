@@ -64,6 +64,8 @@ struct WayPoint : public JKRDisposer {
 		{
 		}
 
+		inline RoomList(s16 idx) { mRoomIdx = idx; }
+
 		virtual ~RoomList() { } // _08 (weak)
 
 		// _00     = VTBL

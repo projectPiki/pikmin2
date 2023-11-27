@@ -60,9 +60,7 @@ struct MoveInfo {
 	Vector3f mReflectPosition;                         // _5C
 	Vector3f _68;                                      // _68, related to tri at _4C
 	u8 _74;                                            // _74
-	f32 _78;                                           // _78
-	f32 _7C;                                           // _7C
-	f32 _80;                                           // _80
+	Vector3f _78;                                      // _78
 	Vector3f _84;                                      // _84
 	u8 _90;                                            // _90
 	TDispTriangleArray* mTriangleArray;                // _94

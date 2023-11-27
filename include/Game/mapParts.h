@@ -94,8 +94,8 @@ struct RoomLink : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	s16 mLinkIndex;      // _18
-	s16 mBirthDoorIndex; // _1A
+	u16 mLinkIndex;      // _18
+	u16 mBirthDoorIndex; // _1A
 	s16 mAliveMapIndex;  // _1C
 };
 
@@ -225,7 +225,7 @@ struct MapRoom : public CellObject {
 	bool mIsVisited;                       // _0BC
 	MapUnitInterface* mInterface;          // _0C0
 	Cave::ObjectLayout* mObjectLayoutInfo; // _0C4
-	int _0C8;                              // _0C8
+	int mAnimationCount;                   // _0C8
 	Sys::MatLoopAnimator* mAnimators;      // _0CC
 	int mDoorNum;                          // _0D0
 	RoomDoorInfo* mDoorInfos;              // _0D4
@@ -239,8 +239,7 @@ struct MapRoom : public CellObject {
 	RoomLink* mLink;                       // _180
 	s16 mIndex;                            // _184
 	s16 mUnitKind;                         // _186
-	u8 _188;                               // _188
-	u8 _189;                               // _189
+	BitFlag<u16> mFlags;                   // _188
 	int* mWpIndices;                       // _18C
 	Sys::Sphere _190;                      // _190
 };
@@ -275,7 +274,7 @@ struct RoomMapMgr : public MapMgr {
 	virtual void doEntry();                                                               // _54
 	virtual void doSetView(int viewportNumber);                                           // _58
 	virtual void doViewCalc();                                                            // _5C
-	virtual void traceMove_new(MoveInfo&, f32);                                           // _60
+	virtual Sys::TriIndexList* traceMove_new(MoveInfo&, f32);                             // _60
 	virtual void traceMove_original(MoveInfo&, f32);                                      // _64
 
 	MapRoom* getMapRoom(s16 roomIdx);

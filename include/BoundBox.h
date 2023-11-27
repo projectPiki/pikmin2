@@ -54,6 +54,28 @@ struct BoundBox {
 		}
 	}
 
+	inline void include(BoundBox& box)
+	{
+		if (box.mMin.x < mMin.x) {
+			mMin.x = box.mMin.x;
+		}
+		if (box.mMin.y < mMin.y) {
+			mMin.y = box.mMin.y;
+		}
+		if (box.mMin.z < mMin.z) {
+			mMin.z = box.mMin.z;
+		}
+		if (box.mMax.x > mMax.x) {
+			mMax.x = box.mMax.x;
+		}
+		if (box.mMax.y > mMax.y) {
+			mMax.y = box.mMax.y;
+		}
+		if (box.mMax.z > mMax.z) {
+			mMax.z = box.mMax.z;
+		}
+	}
+
 	Vector3f mMin; // _00
 	Vector3f mMax; // _0C
 };

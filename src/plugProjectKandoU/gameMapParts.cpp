@@ -11,6 +11,7 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "Dolphin/rand.h"
 #include "Sys/TriangleTable.h"
+#include "VsOtakaraName.h"
 #include "nans.h"
 
 namespace Game {
@@ -379,8 +380,6 @@ void MapUnitMgr::load(char*)
  */
 MapRoom::MapRoom()
 {
-	_188   = 0;
-	_189   = 0;
 	mModel = nullptr;
 	mUnit  = nullptr;
 	PSMTXIdentity(_0D8.mMatrix.mtxView);
@@ -688,7 +687,7 @@ void MapRoom::doEntry()
 		}
 		if (isVisible) {
 			if (!gameSystem->paused()) {
-				for (int i = 0; i < _0C8; i++) {
+				for (int i = 0; i < mAnimationCount; i++) {
 					mAnimators[i].animate(30.0f);
 				}
 			}
@@ -2385,7 +2384,47 @@ void RoomMapMgr::drawCollision(Graphics&, Sys::Sphere&) { }
  */
 Sys::TriIndexList* RoomMapMgr::traceMove(MoveInfo& moveInfo, f32 rate)
 {
+	int counter = 1;
+	Sys::TriIndexList* list;
+	f32 rad   = moveInfo.mMoveSphere->mRadius;
+	f32 speed = moveInfo.mVelocity->length();
 
+	do {
+		if (rate * speed > rad) {
+			counter *= 2;
+			rate *= 0.5f;
+			continue;
+		}
+		break;
+	} while (counter <= 4);
+
+	for (int i = 0; i < counter; i++) {
+		list = traceMove_new(moveInfo, rate);
+	}
+
+	if (mFloorInfo->hasHiddenCollision() && !moveInfo.mBounceTriangle
+	    && (moveInfo.mMoveSphere->mPosition.y - moveInfo.mMoveSphere->mRadius) < 0.0f) {
+		moveInfo.mMoveSphere->mPosition.y = moveInfo.mMoveSphere->mRadius;
+		if (moveInfo.mVelocity->y < 0.0f) {
+			moveInfo.mVelocity->y = -moveInfo.mVelocity->y * (moveInfo.mTraceRadius - 1.0f);
+		}
+
+		Vector3f vec1 = moveInfo.mMoveSphere->mPosition;
+		vec1.y -= moveInfo.mMoveSphere->mRadius;
+
+		moveInfo.mBounceTriangle = &mTriangle;
+		moveInfo.mPosition       = Vector3f(0.0f, 1.0f, 0.0f);
+		moveInfo._78             = Vector3f(0.0f, 1.0f, 0.0f);
+
+		moveInfo._84 = vec1;
+
+		if (moveInfo._10) {
+			Vector3f vec2(0.0f, 1.0f, 0.0f);
+			moveInfo._10->invoke(vec1, vec2);
+		}
+	}
+
+	return list;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -3393,7 +3432,7 @@ lbl_801BAB44:
  * Address:	801BAD60
  * Size:	000328
  */
-void RoomMapMgr::traceMove_new(MoveInfo&, f32)
+Sys::TriIndexList* RoomMapMgr::traceMove_new(MoveInfo&, f32)
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -5399,6 +5438,275 @@ lbl_801BC900:
 void RoomMapMgr::makeOneRoom(f32 centreX, f32 centreY, f32 direction, char* unitName, s16 roomIdx, RoomLink* link,
                              ObjectLayoutInfo* layoutInfo)
 {
+	f32 faceAngle           = TORADIANS(direction); // f31
+	MapRoom* room           = mRoomMgr.birth();     // r31
+	room->mIndex            = roomIdx;
+	room->mLink             = link;
+	room->mObjectLayoutInfo = static_cast<Cave::ObjectLayout*>(layoutInfo);
+
+	for (int i = 0; i < room->mObjectLayoutInfo->getCount(0); i++) {
+		ObjectLayoutNode* node = room->mObjectLayoutInfo->getNode(0, i);
+		PelletMgr::OtakaraItemCode itemCode;
+		itemCode.mValue = node->getExtraCode();
+
+		PelletInitArg initArg;
+
+		if (pelletMgr->makePelletInitArg(initArg, itemCode)) {
+			if (pelletMgr->setUse(&initArg)) {
+				if (Pellet::sFromTekiEnable) {
+					PelletBirthBuffer::entry(initArg);
+				}
+			} else {
+				itemCode.mValue = 0;
+			}
+		}
+
+		u8 num = node->getBirthCount();
+
+		generalEnemyMgr->addEnemyNum(node->getObjectId(), num, nullptr);
+	}
+
+	for (int i = 0; i < room->mObjectLayoutInfo->getCount(1); i++) {
+		ObjectLayoutNode* node = room->mObjectLayoutInfo->getNode(1, i);
+
+		PelletIndexInitArg initArg(node->getObjectId());
+		pelletMgr->setUse(&initArg);
+	}
+
+	if (gameSystem && gameSystem->isVersusMode()) {
+		PelletList::cKind kind;
+		PelletConfig* config = PelletList::Mgr::getConfigAndKind(const_cast<char*>(VsOtakaraName::cCoin), kind);
+
+		if (config) {
+			PelletIndexInitArg initArg(pelletMgr->encode(kind, config->mParams.mIndex));
+			pelletMgr->setUse(&initArg);
+		}
+	}
+
+	Matrixf mtx1;                                                   // 0x214
+	Vector3f translation(centreX * 170.0f, 0.0f, centreY * 170.0f); // 0xD0
+	Vector3f rotation1(0.0f, faceAngle, 0.0f);                      // 0xC4
+	mtx1.makeTR(translation, rotation1);
+
+	MapUnit* unit = mMapUnitMgr->findMapUnit(unitName); // r22
+
+	room->mUnit = unit;
+	PSMTXCopy(mtx1.mMatrix.mtxView, room->_0D8.mMatrix.mtxView);
+	PSMTXInverse(mtx1.mMatrix.mtxView, room->_108.mMatrix.mtxView);
+	room->mModel = new SysShape::Model(unit->mModelData, 0x20000, 2);
+	room->mModel->mJ3dModel->newDifferedTexMtx(TexDiff_0);
+	room->mModel->mJ3dModel->newDifferedDisplayList(0x200);
+
+	PSMTXCopy(room->_0D8.mMatrix.mtxView, room->mModel->mJ3dModel->mPosMtx);
+	room->mModel->mJ3dModel->calc();
+	room->mModel->mJ3dModel->calcMaterial();
+	room->mModel->mJ3dModel->makeDL();
+	room->mModel->mJ3dModel->lock();
+
+	room->mAnimationCount = unit->mAnimationCount;
+	room->mAnimators      = new Sys::MatLoopAnimator[room->mAnimationCount];
+
+	for (int i = 0; i < room->mAnimationCount; i++) {
+		room->mAnimators[i].start(&unit->mAnimations[i]);
+	}
+
+	Matrixf boundMtx;                          // 0x1E4
+	BoundBox bBox(unit->mBoundingBox);         // 0xF4
+	Vector3f rotation2(0.0f, faceAngle, 0.0f); // 0xB8
+	boundMtx.makeTR(translation, rotation2);
+
+	bBox.transform(boundMtx);
+
+	mBoundbox.include(bBox);
+
+	bBox.makeBoundSphere(room->mBoundingSphere);
+
+	BoundBox bBox2(bBox);
+	bBox2.mMin.y = 0.0f;
+	bBox2.mMax.y = 0.0f;
+	bBox2.makeBoundSphere(room->_190);
+
+	Vector3f modelCenter = room->mModel->getRoughCenter(); // f30, f29, f28
+
+	f32 val = 0.0f;
+	for (int i = 0; i < room->mModel->mJointCount; i++) {
+		if (val < room->mModel->mJoints[i].mJ3d->mBoundingSphereRadius) {
+			val = room->mModel->mJoints[i].mJ3d->mBoundingSphereRadius;
+		}
+	}
+
+	if (strcmp(unitName, "cap_conc") == 0) {
+		val += 30.0f;
+	}
+
+	room->_150.mPosition = modelCenter + translation;
+	room->_150.mRadius   = val;
+
+	Vector3f startCyl = Vector3f(room->mBoundingSphere.mPosition);
+	Vector3f endCyl   = Vector3f(room->mBoundingSphere.mPosition);
+	endCyl.y -= 100.0f;
+
+	room->_160.set(startCyl, endCyl, room->mBoundingSphere.mRadius);
+
+	mSeaMgr->addSeaMgr(&unit->mSeaMgr, mtx1);
+	MapUnitInterface* mui = getMUI(unit); // r27
+
+	room->mUnitKind  = mui->mUnitKind;
+	room->mInterface = mui;
+	room->mDoorNum   = mui->mDoorCount;
+
+	room->mDoorInfos = new RoomDoorInfo[room->mDoorNum];
+
+	room->mFlags = mui->_6E;
+
+	for (int i = 0; i < mui->mDoorCount; i++) {
+		Door* door   = mui->getDoor(i);
+		WayPoint* wp = unit->mRouteMgr.getWayPoint(door->mWpIndex);
+
+		wp->mDoFloorSnap = 1;
+		wp->_76          = i;
+	}
+
+	int counter = 0;
+	Iterator<WayPoint> iterWP(&unit->mRouteMgr);
+	CI_LOOP(iterWP)
+	{
+		*iterWP;
+		counter++;
+	}
+
+	room->mWpIndices = new (-0x20) int[counter];
+
+	int nextIdx = 0;
+
+	CI_LOOP(iterWP)
+	{
+		WayPoint* wp = *iterWP; // r25
+		if (wp->mDoFloorSnap) {
+			RoomLink* targetLink = nullptr; // r23
+			FOREACH_NODE(RoomLink, link->mChild, linkNode)
+			{
+				if (linkNode->mLinkIndex == wp->_76) {
+					targetLink = linkNode;
+					break;
+				}
+			}
+
+			P2ASSERTLINE(3459, targetLink);
+			MapRoom* aliveRoom = getMapRoom(targetLink->mAliveMapIndex); // r21
+
+			Door* door = mui->getDoor(wp->_76); // r22
+
+			Vector3f doorDirs[4] = { (Vector3f) { 1.0f, 0.0f, 0.0f }, (Vector3f) { 0.0f, 0.0f, 1.0f }, (Vector3f) { 0.0f, 0.0f, 0.0f },
+				                     (Vector3f) { 0.0f, 1.0f, 0.0f } }; // 0x1B4
+
+			if (!aliveRoom) {
+				P2ASSERTBOOLLINE(3480, wp->mIndex >= 0 && wp->mIndex < counter);
+
+				WayPoint* newWP = new WayPoint();
+
+				static_cast<EditorRouteMgr*>(mRouteMgr)->addWayPoint(newWP);
+
+				room->mWpIndices[wp->mIndex] = newWP->mIndex;
+
+				newWP->mRadius   = wp->mRadius;
+				newWP->mPosition = mtx1.mtxMult(wp->mPosition);
+
+				if (wp->mDoFloorSnap) {
+					newWP->mPosition.y = 0.0f;
+				} else {
+					newWP->mPosition.y = mapMgr->getMinY(newWP->mPosition);
+				}
+
+				wp = newWP;
+
+			} else {
+				WayPoint* newWP = aliveRoom->mUnit->mRouteMgr.getWayPoint(targetLink->mBirthDoorIndex); // r23
+				P2ASSERTLINE(3504, aliveRoom->mWpIndices);
+
+				room->mWpIndices[wp->mIndex] = aliveRoom->mWpIndices[newWP->mIndex];
+
+				wp = mRouteMgr->getWayPoint(room->mWpIndices[wp->mIndex]);
+			}
+
+			RoomDoorInfo* doorInfo = &room->mDoorInfos[nextIdx++];
+			doorInfo->mWaypoint    = wp;
+
+			WayPoint::RoomList* roomList = new WayPoint::RoomList(room->mIndex);
+
+			wp->mRoomList.add(roomList);
+
+			Matrixf mtx2;
+			Vector3f rotation3(0.0f, faceAngle, 0.0f);
+			mtx2.makeTR(Vector3f::zero, rotation3);
+
+			doorInfo->mLookAtPos = mtx2.getBasis(3) + (Vector3f)(doorDirs[door->mDir]); // not right, just a placeholder
+
+		} else {
+			P2ASSERTBOOLLINE(3530, wp->mIndex >= 0 && wp->mIndex < counter);
+
+			WayPoint* newWP = new WayPoint();
+
+			static_cast<EditorRouteMgr*>(mRouteMgr)->addWayPoint(newWP);
+
+			room->mWpIndices[wp->mIndex] = newWP->mIndex;
+
+			newWP->mRadius   = wp->mRadius;
+			newWP->mPosition = mtx1.mtxMult(wp->mPosition);
+
+			if (wp->mDoFloorSnap) {
+				newWP->mPosition.y = 0.0f;
+			} else {
+				newWP->mPosition.y = mapMgr->getMinY(newWP->mPosition);
+			}
+
+			WayPoint::RoomList* roomList = new WayPoint::RoomList(room->mIndex);
+
+			newWP->mRoomList.add(roomList);
+		}
+	}
+
+	CI_LOOP(iterWP)
+	{
+		WayPoint* wp1 = *iterWP;                                               // r22
+		WayPoint* wp2 = mRouteMgr->getWayPoint(room->mWpIndices[wp1->mIndex]); // r24
+
+		if (wp1->mDoFloorSnap) {
+			int numFromLinks = wp2->mNumFromLinks;
+			if (wp2->mNumFromLinks == 0) {
+				wp2->mNumFromLinks = wp1->mNumFromLinks;
+				for (int i = 0; i < 8; i++) {
+					if (wp1->mFromLinks[i] == -1) {
+						wp2->mFromLinks[i] = -1;
+					} else {
+						wp2->mFromLinks[i] = room->mWpIndices[wp1->mFromLinks[i]];
+					}
+				}
+			} else {
+				for (int i = 0; i < wp1->mNumFromLinks; i++) {
+					int totalLinks = numFromLinks + i;
+					P2ASSERTLINE(3572, totalLinks < 8);
+					if (wp1->mFromLinks[i] == -1) {
+						wp2->mFromLinks[totalLinks] = -1;
+					} else {
+						wp2->mFromLinks[totalLinks] = room->mWpIndices[wp1->mFromLinks[i]];
+					}
+				}
+
+				wp2->mNumFromLinks += wp1->mNumFromLinks;
+			}
+		} else {
+			wp2->mNumFromLinks = wp1->mNumFromLinks;
+			for (int i = 0; i < 8; i++) {
+				if (wp1->mFromLinks[i] == -1) {
+					wp2->mFromLinks[i] = -1;
+				} else {
+					wp2->mFromLinks[i] = room->mWpIndices[wp1->mFromLinks[i]];
+				}
+			}
+		}
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x2D0(r1)

@@ -41,8 +41,8 @@ struct ObjectLayoutNode : public CNode {
 struct ObjectLayoutInfo {
 	ObjectLayoutInfo() { }
 
-	virtual s32 getCount(int)        = 0;
-	virtual CNode* getNode(int, int) = 0;
+	virtual int getCount(int)                   = 0;
+	virtual ObjectLayoutNode* getNode(int, int) = 0;
 };
 
 namespace Cave {
@@ -92,8 +92,8 @@ struct UnitInfo {
 struct ObjectLayout : public ObjectLayoutInfo {
 	ObjectLayout(MapNode*);
 
-	virtual s32 getCount(int);        // _08
-	virtual CNode* getNode(int, int); // _0C
+	virtual int getCount(int);                   // _08
+	virtual ObjectLayoutNode* getNode(int, int); // _0C
 
 	void setNode(int, Game::ObjectLayoutNode*);
 
