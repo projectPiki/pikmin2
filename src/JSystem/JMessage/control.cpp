@@ -227,9 +227,9 @@ bool TControl::setMessageID(u32 p1, u32 p2, bool* p3)
 	TProcessor* proc1;
 	void* voidPtr;
 
-	TProcessor* processor = (mBaseProcSeq != nullptr) ? mBaseProcSeq : mBaseProcRender;
+	const TProcessor* processor = (mBaseProcSeq != nullptr) ? mBaseProcSeq : mBaseProcRender;
 
-	u32 msgCode = processor->toMessageCode_messageID(p1, p2, p3);
+	const u32 msgCode = processor->toMessageCode_messageID(p1, p2, p3);
 	if (msgCode == 0xFFFFFFFF) {
 		return false;
 	}
@@ -237,8 +237,8 @@ bool TControl::setMessageID(u32 p1, u32 p2, bool* p3)
 		return false;
 	}
 
-	char* ptr      = _18;
-	bool checkVars = (ptr && mBaseProcSeq);
+	const char* ptr      = _18;
+	const bool checkVars = (ptr && mBaseProcSeq);
 
 	if (checkVars) {
 		proc1      = mBaseProcSeq;
@@ -346,7 +346,7 @@ bool TControl::setMessageCode_inSequence_(TProcessor const* processor, u16 resID
 	} else {
 		INF1Block* inf1 = resource->mINF1;
 		if (msgID < inf1->_08) {
-			v1 = inf1->_10[msgID * inf1->_0A];
+			v1 = &((char*)inf1->_10)[msgID * inf1->_0A];
 		} else {
 			v1 = nullptr;
 		}
