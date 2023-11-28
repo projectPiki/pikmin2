@@ -60,13 +60,11 @@ void TControl::reset()
  */
 bool TControl::update()
 {
-	bool checkVars = (mMessageBegin && mBaseProcSeq);
-
-	if (!checkVars) {
+	if (!isReady_update_()) {
 		return false;
 	}
 
-	mCurrentText = (static_cast<TSequenceProcessor*>(mBaseProcSeq))->process(nullptr);
+	mCurrentText = mBaseProcSeq->process(nullptr);
 
 	if (!mCurrentText) {
 		mMessageBegin = nullptr;
