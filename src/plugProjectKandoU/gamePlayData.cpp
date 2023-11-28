@@ -2613,41 +2613,11 @@ lbl_801E9290:
  */
 void PlayData::initLimitGens()
 {
-	u16 courseCount = stageList->mCourseCount;
+	u16 courseCount = stageList->getCourseCount();
 	for (int i = 0; i < courseCount; i++) {
-		mLimitGen[i].init();
+		LimitGen* gen = &mLimitGen[i];
+		gen->init();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	li       r29, 0
-	li       r30, 0
-	lwz      r4, stageList__4Game@sda21(r13)
-	lhz      r31, 0x100(r4)
-	b        lbl_801E92E0
-
-lbl_801E92C0:
-	lwz      r0, 0xe4(r27)
-	add      r28, r0, r30
-	mr       r3, r28
-	bl       reset__8BitFlagsFv
-	addi     r3, r28, 8
-	bl       reset__8BitFlagsFv
-	addi     r30, r30, 0x10
-	addi     r29, r29, 1
-
-lbl_801E92E0:
-	cmpw     r29, r31
-	blt      lbl_801E92C0
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
