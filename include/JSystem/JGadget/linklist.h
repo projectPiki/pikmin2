@@ -6,11 +6,6 @@
 #include "stl/iterator.h"
 
 namespace JGadget {
-
-namespace {
-struct TPRIsEqual_pointer_;
-} // namespace
-
 struct TLinkListNode {
 	TLinkListNode()
 	{
@@ -63,7 +58,8 @@ struct TNodeLinkList {
 	TNodeLinkList::iterator Insert(TNodeLinkList::iterator, TLinkListNode*);
 	TNodeLinkList::iterator Erase(TLinkListNode*);
 	void Remove(TLinkListNode*);
-	void remove_if(TPRIsEqual_pointer_);
+	template <typename T>
+	void remove_if(T node);
 
 	// unused/inlined:
 	void erase(iterator);
@@ -155,16 +151,6 @@ struct TLinkList_factory : public TLinkList<T, Offset> {
 	// _00-_08	= TNodeLinkList
 	// _0C		= VTABLE
 };
-
-namespace {
-struct TPRIsEqual_pointer_ {
-	TPRIsEqual_pointer_(TLinkListNode* node) { mNode = node; }
-	/** @fabricated */
-	bool operator()(TLinkListNode* other) { return other == mNode; }
-
-	TLinkListNode* mNode;
-};
-} // namespace
 
 }; // namespace JGadget
 

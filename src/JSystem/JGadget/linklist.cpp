@@ -2,6 +2,95 @@
 
 namespace JGadget {
 
+namespace {
+template <typename T>
+struct TPRIsEqual_pointer_ {
+	TPRIsEqual_pointer_(T* node) { mNode = node; }
+
+	bool operator()(T* other) { return other == mNode; }
+
+	T* mNode; // _00
+};
+} // namespace
+
+/*
+ * --INFO--
+ * Address:	8002739C
+ * Size:	0000E8
+ * TODO: This mess.
+ */
+template <typename T>
+void TNodeLinkList::remove_if(T node)
+{
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x50(r1)
+	  li        r5, 0
+	  lwz       r6, 0x0(r4)
+	  addi      r0, r3, 0x4
+	  stw       r5, 0x44(r1)
+	  addi      r8, r1, 0x44
+	  stw       r5, 0x48(r1)
+	  stw       r5, 0x40(r1)
+	  stw       r8, 0x44(r1)
+	  stw       r8, 0x48(r1)
+	  lwz       r4, 0x4(r3)
+	  stw       r6, 0x3C(r1)
+	  stw       r4, 0x20(r1)
+	  b         .loc_0xC8
+
+	.loc_0x38:
+	  lwz       r5, 0x20(r1)
+	  cmplw     r5, r6
+	  bne-      .loc_0xC0
+	  lwz       r4, 0x0(r5)
+	  cmplw     r8, r5
+	  stw       r5, 0x24(r1)
+	  stw       r4, 0x20(r1)
+	  stw       r5, 0x2C(r1)
+	  stw       r8, 0x28(r1)
+	  stw       r4, 0x8(r1)
+	  stw       r5, 0x10(r1)
+	  stw       r8, 0xC(r1)
+	  beq-      .loc_0xC8
+	  cmplw     r8, r4
+	  stw       r4, 0x18(r1)
+	  stw       r8, 0x14(r1)
+	  beq-      .loc_0xC8
+	  lwz       r7, 0x0(r5)
+	  lwz       r4, 0x4(r5)
+	  stw       r8, 0x1C(r1)
+	  stw       r4, 0x4(r7)
+	  stw       r7, 0x0(r4)
+	  lwz       r4, 0x0(r3)
+	  subi      r4, r4, 0x1
+	  stw       r4, 0x0(r3)
+	  lwz       r4, 0x48(r1)
+	  stw       r8, 0x0(r5)
+	  stw       r4, 0x4(r5)
+	  stw       r5, 0x48(r1)
+	  stw       r5, 0x0(r4)
+	  lwz       r4, 0x40(r1)
+	  addi      r4, r4, 0x1
+	  stw       r4, 0x40(r1)
+	  b         .loc_0xC8
+
+	.loc_0xC0:
+	  lwz       r4, 0x0(r5)
+	  stw       r4, 0x20(r1)
+
+	.loc_0xC8:
+	  lwz       r4, 0x20(r1)
+	  cmplw     r4, r0
+	  stw       r4, 0x38(r1)
+	  stw       r4, 0x34(r1)
+	  stw       r4, 0x30(r1)
+	  bne+      .loc_0x38
+	  addi      r1, r1, 0x50
+	  blr
+	*/
+}
+
 /*
  * --INFO--
  * Address:	800272E4
@@ -136,85 +225,6 @@ TNodeLinkList::iterator TNodeLinkList::Erase(TLinkListNode* node)
  * Address:	80027370
  * Size:	00002C
  */
-void TNodeLinkList::Remove(TLinkListNode* node) { remove_if(TPRIsEqual_pointer_(node)); }
+void TNodeLinkList::Remove(TLinkListNode* node) { remove_if((TPRIsEqual_pointer_<TLinkListNode>)(node)); }
 
 } // namespace JGadget
-
-/*
- * --INFO--
- * Address:	8002739C
- * Size:	0000E8
- * TODO: This mess.
- */
-// void remove_if<JGadget::@unnamed @linklist_cpp @ ::TPRIsEqual_pointer_<JGadget::TLinkListNode>> __Q27JGadget13TNodeLinkListFQ37JGadget22
-//     @unnamed @linklist_cpp @46TPRIsEqual_pointer_
-//     < JGadget::TLinkListNode > ()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x50(r1)
-// 	  li        r5, 0
-// 	  lwz       r6, 0x0(r4)
-// 	  addi      r0, r3, 0x4
-// 	  stw       r5, 0x44(r1)
-// 	  addi      r8, r1, 0x44
-// 	  stw       r5, 0x48(r1)
-// 	  stw       r5, 0x40(r1)
-// 	  stw       r8, 0x44(r1)
-// 	  stw       r8, 0x48(r1)
-// 	  lwz       r4, 0x4(r3)
-// 	  stw       r6, 0x3C(r1)
-// 	  stw       r4, 0x20(r1)
-// 	  b         .loc_0xC8
-
-// 	.loc_0x38:
-// 	  lwz       r5, 0x20(r1)
-// 	  cmplw     r5, r6
-// 	  bne-      .loc_0xC0
-// 	  lwz       r4, 0x0(r5)
-// 	  cmplw     r8, r5
-// 	  stw       r5, 0x24(r1)
-// 	  stw       r4, 0x20(r1)
-// 	  stw       r5, 0x2C(r1)
-// 	  stw       r8, 0x28(r1)
-// 	  stw       r4, 0x8(r1)
-// 	  stw       r5, 0x10(r1)
-// 	  stw       r8, 0xC(r1)
-// 	  beq-      .loc_0xC8
-// 	  cmplw     r8, r4
-// 	  stw       r4, 0x18(r1)
-// 	  stw       r8, 0x14(r1)
-// 	  beq-      .loc_0xC8
-// 	  lwz       r7, 0x0(r5)
-// 	  lwz       r4, 0x4(r5)
-// 	  stw       r8, 0x1C(r1)
-// 	  stw       r4, 0x4(r7)
-// 	  stw       r7, 0x0(r4)
-// 	  lwz       r4, 0x0(r3)
-// 	  subi      r4, r4, 0x1
-// 	  stw       r4, 0x0(r3)
-// 	  lwz       r4, 0x48(r1)
-// 	  stw       r8, 0x0(r5)
-// 	  stw       r4, 0x4(r5)
-// 	  stw       r5, 0x48(r1)
-// 	  stw       r5, 0x0(r4)
-// 	  lwz       r4, 0x40(r1)
-// 	  addi      r4, r4, 0x1
-// 	  stw       r4, 0x40(r1)
-// 	  b         .loc_0xC8
-
-// 	.loc_0xC0:
-// 	  lwz       r4, 0x0(r5)
-// 	  stw       r4, 0x20(r1)
-
-// 	.loc_0xC8:
-// 	  lwz       r4, 0x20(r1)
-// 	  cmplw     r4, r0
-// 	  stw       r4, 0x38(r1)
-// 	  stw       r4, 0x34(r1)
-// 	  stw       r4, 0x30(r1)
-// 	  bne+      .loc_0x38
-// 	  addi      r1, r1, 0x50
-// 	  blr
-// 	*/
-// }

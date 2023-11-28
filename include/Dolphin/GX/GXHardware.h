@@ -21,6 +21,10 @@ extern "C" {
  * https://patents.google.com/patent/US6697074
  */
 
+#define GX_REG_MASK(st, end)        (((1 << ((end) - (st) + 1)) - 1) << 31 - (end))
+#define GX_GET_REG(reg, st, end)    GX_BITGET(reg, st, (end - st + 1))
+#define GX_SET_REG(reg, x, st, end) GX_BITFIELD_SET(reg, st, (end - st + 1), x)
+
 /************************************************************
  *
  *
@@ -28,25 +32,6 @@ extern "C" {
  *
  *
  ***********************************************************/
-
-/**
- * FIFO commands
- */
-typedef enum {
-	GX_FIFO_CMD_NOOP = 0x00,
-
-	GX_FIFO_CMD_LOAD_BP_REG = 0x61,
-	GX_FIFO_CMD_LOAD_CP_REG = 0x08,
-	GX_FIFO_CMD_LOAD_XF_REG = 0x10,
-
-	GX_FIFO_CMD_LOAD_INDX_A = 0x20,
-	GX_FIFO_CMD_LOAD_INDX_B = 0x28,
-	GX_FIFO_CMD_LOAD_INDX_C = 0x30,
-	GX_FIFO_CMD_LOAD_INDX_D = 0x38,
-
-	GX_FIFO_CMD_CALL_DL   = 0x40,
-	GX_FIFO_CMD_INVAL_VTX = 0x48
-} GXFifoCmd;
 
 #define __GX_FIFO_SET_LOAD_INDX_DST(reg, x)   ((reg) = GX_BITSET(reg, 20, 12, x))
 #define __GX_FIFO_SET_LOAD_INDX_NELEM(reg, x) ((reg) = GX_BITSET(reg, 16, 4, x))
@@ -115,11 +100,6 @@ typedef enum {
  ***********************************************************/
 
 /**
- * XF memory
- */
-typedef enum { GX_XF_MEM_POSMTX = 0x0000, GX_XF_MEM_NRMMTX = 0x0400, GX_XF_MEM_DUALTEXMTX = 0x0500, GX_XF_MEM_LIGHTOBJ = 0x0600 } GXXfMem;
-
-/**
  * Header for an XF register load
  */
 #define GX_XF_LOAD_REG_HDR(addr)            \
@@ -143,28 +123,6 @@ typedef enum { GX_XF_MEM_POSMTX = 0x0000, GX_XF_MEM_NRMMTX = 0x0400, GX_XF_MEM_D
 		cmd |= (size) << 16;        \
 		GX_XF_LOAD_REG_HDR(cmd);    \
 	}
-
-/**
- * Enums for Tex0-Tex7 register fields
- */
-typedef enum {
-	GX_XF_TEX_PROJ_ST, //! (s,t): texmul is 2x4
-	GX_XF_TEX_PROJ_STQ //! (s,t,q): texmul is 3x4
-} GXXfTexProj;
-
-typedef enum {
-	GX_XF_TEX_FORM_AB11, //! (A, B, 1.0, 1.0) (used for regular texture source)
-	GX_XF_TEX_FORM_ABC1  //! (A, B, C, 1.0) (used for geometry or normal source)
-} GXXfTexForm;
-
-typedef enum {
-	GX_XF_TG_REGULAR, //! Regular transformation (transform incoming data)
-	GX_XF_TG_BUMP,    //! Texgen bump mapping
-	GX_XF_TG_CLR0,    //! Color texgen: (s,t)=(r,g:b) (g and b are concatenated),
-	                  //! color0
-	GX_XF_TG_CLR1     //! Color texgen: (s,t)=(r,g:b) (g and b are concatenated),
-	                  //! color 1
-} GXXfTexGen;
 
 #ifdef __cplusplus
 }
