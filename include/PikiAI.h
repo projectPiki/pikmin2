@@ -784,6 +784,12 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 };
 
 struct ActFreeArg : public ActionArg {
+	ActFreeArg(f32 radius, Vector3f& goal, u8 gather)
+	{
+		mRadius       = radius;
+		mGoalPosition = goal;
+		mToGather     = gather;
+	}
 	virtual const char* getName() { return "ActFreeArg"; } // _08 (weak)
 
 	// _00 = VTBL

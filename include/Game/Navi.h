@@ -115,7 +115,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	virtual void doViewCalc();                                          // _48
 	virtual void doSimulation(f32);                                     // _4C
 	virtual void doDirectDraw(Graphics& gfx);                           // _50
-	virtual void setVelocity(Vector3f& vel);                            // _68 (weak)
+	virtual void setVelocity(Vector3f& vel) { mVelocity = vel; }        // _68 (weak)
 	virtual void onSetPosition(Vector3f& dest);                         // _70
 	virtual void inWaterCallback(WaterBox* wb);                         // _84
 	virtual void outWaterCallback();                                    // _88
@@ -138,7 +138,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	virtual void onStickEnd(Creature*);                                 // _15C
 	virtual bool ignoreAtari(Creature* toIgnore);                       // _190
 	virtual bool stimulate(Interaction& data);                          // _1A4
-	virtual char* getCreatureName();                                    // _1A8 (weak)
+	virtual char* getCreatureName() { return "navi"; }                  // _1A8 (weak)
 	virtual s32 getCreatureID() { return mNaviIndex; }                  // _1AC (weak)
 
 	// vtable 2 (MotionListener + FakePiki + self)
@@ -277,7 +277,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	u8 _2DE;                                // _2DE
 	Vector3f mCStickTargetVector;           // _2E0
 	Vector3f mCStickPosition;               // _2EC
-	f32 _2F8;                               // _2F8
+	f32 mCStickAngle;                       // _2F8
 	u8 _2FC;                                // _2FC
 	u8 _2FD;                                // _2FD
 	int mCStickState;                       // _300

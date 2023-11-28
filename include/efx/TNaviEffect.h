@@ -96,6 +96,23 @@ struct TNaviEffect {
 		}
 	}
 
+	inline void setMovieEffect()
+	{
+		if (isFlag(efx::NAVIFX_IsSaved)) {
+			restoreFlags();
+		}
+
+		if (isFlag(efx::NAVIFX_InWater)) {
+			enterWater(isFlag(efx::NAVIFX_InWater));
+		}
+
+		if (isFlag(efx::NAVIFX_LightOn)) {
+			createLight();
+		}
+	}
+
+	inline void updateCursor(f32 radius) { updateCursor_(*mNaviPos, radius); }
+
 	BitFlag<u32> mFlags;      // _00
 	BitFlag<u32> mSavedFlags; // _04
 	Vector3f* mPos;           // _08

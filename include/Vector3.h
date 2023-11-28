@@ -181,7 +181,21 @@ struct Vector3 {
 	// 2D magnitude
 	inline f32 sqrMagnitude2D() const { return x * x + z * z; }
 	// Quick length
-	inline f32 qLength() { return pikmin2_sqrtf(sqrMagnitude()); }
+	inline f32 qLength() const { return pikmin2_sqrtf(sqrMagnitude()); }
+	inline f32 qLength2D() const { return pikmin2_sqrtf(sqrMagnitude2D()); }
+
+	inline f32 qNormalise()
+	{
+		f32 length = qLength();
+		if (length > 0.0f) {
+			f32 len = 1.0f / length;
+			x *= len;
+			y *= len;
+			z *= len;
+			return len;
+		}
+		return 0.0f;
+	}
 
 	f32 length() const;
 	f32 distance(Vector3&);

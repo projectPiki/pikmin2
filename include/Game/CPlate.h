@@ -83,7 +83,7 @@ struct CPlate : public Container<Creature> {
 	Vector3f mPosition;             // _CC
 	Vector3f _D8;                   // _D8
 	Vector3f mVelocity;             // _E4
-	f32 _F0;                        // _F0
+	f32 mAngle;                     // _F0
 	f32 _F4;                        // _F4
 	f32 _F8;                        // _F8
 	f32 _FC;                        // _FC
