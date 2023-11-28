@@ -4,18 +4,6 @@
 #include "JSystem/JMessage/TResource.h"
 #include "JSystem/JMessage/TControl.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q28JMessage8TControl
-    __vt__Q28JMessage8TControl:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28JMessage8TControlFv
-        .4byte 0
-*/
-
 namespace JMessage {
 
 /*
@@ -79,7 +67,7 @@ bool TControl::update()
 		return false;
 	}
 
-	_1C = ((TSequenceProcessor*)mBaseProcSeq)->process(0);
+	_1C = (static_cast<TSequenceProcessor*>(mBaseProcSeq))->process(0);
 
 	if (_1C == 0) {
 		_18 = 0;
@@ -351,7 +339,7 @@ lbl_80008834:
  */
 bool TControl::setMessageCode_inSequence_(TProcessor const* processor, u16 resID, u16 msgID)
 {
-	char* v1;
+	char* v1; // idk the actual type
 	TResource* resource = processor->getResource_groupID(resID);
 	if (resource == nullptr) {
 		v1 = nullptr;
@@ -363,14 +351,14 @@ bool TControl::setMessageCode_inSequence_(TProcessor const* processor, u16 resID
 			v1 = nullptr;
 		}
 	}
-	_14 = v1;
+	_14 = (u32*)v1; // sus
 	if (_14 == nullptr) {
 		return false;
 	}
 	_0C = resID;
 	_0E = msgID;
 	_10 = processor->_08;
-	_18 = (char*)_10->mDAT1 + *_14;
+	_18 = (char*)_10->mDAT1 + *_14; // sign memes
 	_20 = _18;
 	_24 = 0;
 	return true;

@@ -2,16 +2,6 @@
 #include "SweepPrune.h"
 
 /*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A5D0
-    lbl_8051A5D0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-*/
-
-/*
  * --INFO--
  * Address:	........
  * Size:	000028

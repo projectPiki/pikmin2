@@ -4,18 +4,6 @@
 #include "JSystem/J2D/J2DTypes.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_J2DBloSaver_cpp
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global TextureNameConnect__11J2DBloSaver
-    TextureNameConnect__11J2DBloSaver:
-        .skip 0x8
-*/
-
 J2DBloSaver::CTextureNameConnect* J2DBloSaver::TextureNameConnect = nullptr;
 
 /*
@@ -287,29 +275,3 @@ lbl_800497EC:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	80049820
- * Size:	00003C
- */
-// void __sinit_J2DBloSaver_cpp()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	lis      r3, __dt__Q211J2DBloSaver19CTextureNameConnectFv@ha
-// 	lis      r5, lbl_804F0408@ha
-// 	stw      r0, 0x14(r1)
-// 	li       r0, 0
-// 	addi     r4, r3, __dt__Q211J2DBloSaver19CTextureNameConnectFv@l
-// 	addi     r3, r13, TextureNameConnect__11J2DBloSaver@sda21
-// 	stw      r0, TextureNameConnect__11J2DBloSaver@sda21(r13)
-// 	addi     r5, r5, lbl_804F0408@l
-// 	bl       __register_global_object
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }

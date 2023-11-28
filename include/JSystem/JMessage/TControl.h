@@ -26,7 +26,7 @@ struct TControl {
 	u16 _0C;                     // _0C
 	u16 _0E;                     // _0E
 	TResource* _10;              // _10
-	char* _14;                   // _14
+	u32* _14;                    // _14
 	char* _18;                   // _18
 	char* _1C;                   // _1C
 	char* _20;                   // _20
