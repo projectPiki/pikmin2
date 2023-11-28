@@ -12,17 +12,16 @@ namespace JMessage {
  * Size:	000044
  */
 TControl::TControl()
+    : mBaseProcSeq(nullptr)
+    , mBaseProcRender(nullptr)
+    , mMessageCode(0xFFFF)
+    , mMessageIndex(0xFFFF)
+    , mResourceCache(nullptr)
+    , mEntry(nullptr)
+    , mMessageBegin(nullptr)
+    , mCurrentText(nullptr)
+    , _20(nullptr)
 {
-	mBaseProcSeq    = nullptr;
-	mBaseProcRender = nullptr;
-	_0C             = 0xFFFF;
-	_0E             = 0xFFFF;
-	_10             = 0;
-	_14             = 0;
-	_18             = 0;
-	_1C             = 0;
-	_20             = 0;
-	_24             = 0;
 }
 
 /*
@@ -39,18 +38,18 @@ TControl::~TControl() { }
  */
 void TControl::reset()
 {
-	_14 = 0;
-	_18 = 0;
-	_1C = 0;
-	_20 = 0;
-	_24 = 0;
+	mEntry        = nullptr;
+	mMessageBegin = nullptr;
+	mCurrentText  = nullptr;
+	_20           = nullptr;
+	mRenderStack.clear();
 
 	if (mBaseProcSeq) {
-		mBaseProcSeq->reset_(0);
+		mBaseProcSeq->reset_(nullptr);
 	}
 
 	if (mBaseProcRender) {
-		mBaseProcRender->reset_(0);
+		mBaseProcRender->reset_(nullptr);
 	}
 }
 
@@ -61,16 +60,16 @@ void TControl::reset()
  */
 bool TControl::update()
 {
-	bool checkVars = (_18 && mBaseProcSeq);
+	bool checkVars = (mMessageBegin && mBaseProcSeq);
 
 	if (!checkVars) {
 		return false;
 	}
 
-	_1C = (static_cast<TSequenceProcessor*>(mBaseProcSeq))->process(0);
+	mCurrentText = (static_cast<TSequenceProcessor*>(mBaseProcSeq))->process(nullptr);
 
-	if (_1C == 0) {
-		_18 = 0;
+	if (!mCurrentText) {
+		mMessageBegin = nullptr;
 		return false;
 	}
 	return true;
@@ -83,6 +82,14 @@ bool TControl::update()
  */
 void TControl::render()
 {
+	if (!isReady_render_()) {
+		return;
+	}
+
+	mBaseProcRender->setBegin_messageEntryText(mResourceCache, mEntry, _20);
+	mBaseProcRender->mStack = mRenderStack; // this needs fixing
+	mBaseProcRender->process(mCurrentText);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -191,30 +198,7 @@ lbl_8000865C:
  * Address:	8000867C
  * Size:	0000DC
  */
-bool TControl::setMessageCode(u16 idx1, u16 idx2)
-{
-	TProcessor* proc1;
-	void* voidPtr;
-
-	TProcessor* processor = (mBaseProcSeq) ? mBaseProcSeq : mBaseProcRender;
-
-	if (!setMessageCode_inSequence_(processor, idx1, idx2)) {
-		return false;
-	}
-
-	char* ptr      = _18;
-	bool checkVars = (ptr && mBaseProcSeq);
-
-	if (checkVars) {
-		proc1      = mBaseProcSeq;
-		voidPtr    = _14;
-		proc1->_08 = _10;
-		proc1->reset_(ptr);
-		proc1->do_begin_(voidPtr, ptr);
-	}
-
-	return true;
-}
+bool TControl::setMessageCode(u16 idx1, u16 idx2) { return setMessageCode_inReset_(getProcessor(), idx1, idx2); }
 
 /*
  * --INFO--
@@ -224,111 +208,14 @@ bool TControl::setMessageCode(u16 idx1, u16 idx2)
  */
 bool TControl::setMessageID(u32 p1, u32 p2, bool* p3)
 {
-	TProcessor* proc1;
-	void* voidPtr;
+	TProcessor* proc = getProcessor();
 
-	const TProcessor* processor = (mBaseProcSeq != nullptr) ? mBaseProcSeq : mBaseProcRender;
-
-	const u32 msgCode = processor->toMessageCode_messageID(p1, p2, p3);
-	if (msgCode == 0xFFFFFFFF) {
-		return false;
-	}
-	if (!setMessageCode_inSequence_(processor, msgCode >> 0x10, (u16)msgCode)) {
+	u32 code = proc->toMessageCode_messageID(p1, p2, p3);
+	if (code == -1) {
 		return false;
 	}
 
-	const char* ptr      = _18;
-	const bool checkVars = (ptr && mBaseProcSeq);
-
-	if (checkVars) {
-		proc1      = mBaseProcSeq;
-		voidPtr    = _14;
-		proc1->_08 = _10;
-		proc1->reset_(ptr);
-		proc1->do_begin_(voidPtr, ptr);
-	}
-
-	return true;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	beq      lbl_80008788
-	b        lbl_8000878C
-
-lbl_80008788:
-	lwz      r30, 8(r28)
-
-lbl_8000878C:
-	mr       r3, r30
-	bl       toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb
-	mr       r6, r3
-	addis    r0, r6, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_800087AC
-	li       r3, 0
-	b        lbl_80008834
-
-lbl_800087AC:
-	srwi     r5, r6, 0x10
-	mr       r3, r28
-	mr       r4, r30
-	clrlwi   r6, r6, 0x10
-	bl
-setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_800087D0
-	li       r3, 0
-	b        lbl_80008834
-
-lbl_800087D0:
-	lwz      r29, 0x18(r28)
-	li       r3, 0
-	cmplwi   r29, 0
-	beq      lbl_800087F0
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	beq      lbl_800087F0
-	li       r3, 1
-
-lbl_800087F0:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80008830
-	lwz      r31, 4(r28)
-	mr       r4, r29
-	lwz      r30, 0x14(r28)
-	lwz      r0, 0x10(r28)
-	mr       r3, r31
-	stw      r0, 8(r31)
-	bl       reset___Q28JMessage10TProcessorFPCc
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	mr       r5, r29
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80008830:
-	li       r3, 1
-
-lbl_80008834:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return setMessageCode_inReset_(proc, code >> 16, code);
 }
 
 /*
@@ -337,30 +224,20 @@ lbl_80008834:
  * Size:	0000E8
  * setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
  */
-bool TControl::setMessageCode_inSequence_(TProcessor const* processor, u16 resID, u16 msgID)
+bool TControl::setMessageCode_inSequence_(TProcessor const* proc, u16 messageCode, u16 messageIndex)
 {
-	char* v1; // idk the actual type
-	TResource* resource = processor->getResource_groupID(resID);
-	if (resource == nullptr) {
-		v1 = nullptr;
-	} else {
-		INF1Block* inf1 = resource->mINF1;
-		if (msgID < inf1->_08) {
-			v1 = &((char*)inf1->_10)[msgID * inf1->_0A];
-		} else {
-			v1 = nullptr;
-		}
-	}
-	_14 = (u32*)v1; // sus
-	if (_14 == nullptr) {
+	mEntry = proc->getMessageEntry_messageCode(messageCode, messageIndex);
+
+	if (mEntry == nullptr) {
 		return false;
 	}
-	_0C = resID;
-	_0E = msgID;
-	_10 = processor->_08;
-	_18 = (char*)_10->mDAT1 + *_14; // sign memes
-	_20 = _18;
-	_24 = 0;
+
+	mMessageCode   = messageCode;
+	mMessageIndex  = messageIndex;
+	mResourceCache = proc->getResourceCache();
+	mMessageBegin  = mResourceCache->getMessageText_messageEntry(mEntry);
+	_20            = mMessageBegin;
+	mRenderStack.clear();
 	return true;
 	/*
 	.loc_0x0:

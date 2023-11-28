@@ -12,9 +12,57 @@ struct TControl;
 struct TResource;
 
 struct TProcessor {
-	typedef bool OnCharacterEndCallBack(TProcessor*);
-	typedef void OnSelectBeginCallBack(TProcessor*);
-	typedef char* ProcessOnSelectCallBack(TProcessor*);
+	typedef bool (*OnCharacterEndCallBack)(TProcessor*);
+	typedef void (*OnSelectBeginCallBack)(TProcessor*);
+	typedef const char* (*ProcessOnSelectCallBack)(TProcessor*);
+
+	struct TStack {
+		TStack() { clear(); }
+
+		TStack(const TStack& other)
+		{
+			mSize = other.mSize;
+			for (int i = 0; i < mSize; i++) {
+				mStack[i] = mStack[i];
+			}
+		}
+
+		inline bool empty() const { return mSize == 0; }
+		inline bool isPushable() const { return mSize < 4; }
+		inline void clear() { mSize = 0; }
+
+		inline u32 getMaxSize() const { return 4; }
+		inline u32 getSize() const { return mSize; }
+		inline const char* getTop() const { return mStack[mSize - 1]; }
+
+		inline void push(const char* str)
+		{
+			mStack[mSize] = str;
+			mSize++;
+		}
+
+		inline void pop() { mSize--; }
+
+		u32 mSize;             // _00
+		const char* mStack[4]; // _04
+	};
+
+	struct TProcess {
+		struct TProcessData {
+			ProcessOnSelectCallBack mSelectCallback; // _00
+			const char* mBase;                       // _04
+			const void* mOffset;                     // _08
+			u32 mRest;                               // _0C
+		};
+
+		TProcess() { reset_normal(); }
+
+		void reset_normal() { mEndCallback = process_onCharacterEnd_normal_; }
+		void reset_select() { mEndCallback = process_onCharacterEnd_select_; }
+
+		OnCharacterEndCallBack mEndCallback; // _00
+		TProcessData mData;                  // _04
+	};
 
 	virtual ~TProcessor();                                     // _08
 	virtual void do_reset();                                   // _0C
@@ -41,9 +89,32 @@ struct TProcessor {
 	char* getMessageText_messageCode(u32) const; // weak
 	static bool process_onCharacterEnd_normal_(TProcessor*);
 	static bool process_onCharacterEnd_select_(TProcessor*);
-	static char* process_onSelect_limited_(TProcessor*);
-	static char* process_onSelect_(TProcessor*);
+	static const char* process_onSelect_limited_(TProcessor*);
+	static const char* process_onSelect_(TProcessor*);
 	void reset_(const char*);
+
+	int setBegin_messageEntryText(const TResource* resource, const void* entry, const char* param_2)
+	{
+		mResourceCache = resource;
+		reset_(param_2);
+		do_begin_(entry, param_2);
+		return TRUE;
+	}
+
+	void* getMessageEntry_messageCode(u16 messageCode, u16 messageIndex) const
+	{
+		const TResource* res = getResource_groupID(messageCode);
+
+		if (res == nullptr) {
+			return nullptr;
+		}
+
+		return res->getMessageEntry_messageIndex(messageIndex);
+	}
+
+	const TResource* getResourceCache() const { return mResourceCache; }
+	const char* getCurrent() const { return mCurrent; }
+	const TReference* getReference() const { return mReference; }
 
 	// Unused/inlined:
 	void pushCurrent(const char*);
@@ -55,15 +126,11 @@ struct TProcessor {
 	unknown process_character_();
 
 	// _00 = VTBL
-	TReference* _04;              // _04
-	TResource* _08;               // _08
-	const char* _0C;              // _0C
-	u32 _10[5];                   // _10
-	OnCharacterEndCallBack* _24;  // _24 - process_onCharacterEndCallBack(void*) pointer?
-	ProcessOnSelectCallBack* _28; // _28 - process_onSelectCallBack(void*) pointer?
-	char* _2C;                    // _2C
-	void* _30;                    // _30
-	u32 _34;                      // _34
+	const TReference* mReference;    // _04
+	const TResource* mResourceCache; // _08
+	const char* mCurrent;            // _0C
+	TStack mStack;                   // _10
+	TProcess mProcess;               // _24
 };
 
 struct TSequenceProcessor : public TProcessor {

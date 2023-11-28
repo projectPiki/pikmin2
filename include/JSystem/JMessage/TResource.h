@@ -20,6 +20,24 @@ struct TResource : public JGadget::TLinkListNode {
 
 	s16 toMessageIndex_messageID(u32, u32, bool*) const;
 
+	bool isContained_messageIndex(u16 messageIndex) const { return messageIndex < getMessageEntryNumber(); }
+
+	u16 getMessageEntrySize() const { return mINF1->getMessageSize(); }
+	u16 getMessageEntryNumber() const { return mINF1->getMessageNumber(); }
+	char* getMessageEntry() const { return mINF1->getContent(); }
+
+	void* getMessageEntry_messageIndex(u16 messageIndex) const
+	{
+		if (!isContained_messageIndex(messageIndex)) {
+			return nullptr;
+		}
+
+		return mINF1->getContent() + messageIndex * getMessageEntrySize();
+	}
+
+	char* getMessageText_messageEntry(const void* entry) const { return (char*)mDAT1 + *(int*)entry; }
+
+	// _00 = JGadget::TLinkListNode
 	JMessageHeader* mHeader; // _08 - generic file type header info
 	INF1Block* mINF1;        // _0C - info block
 	DAT1Block* mDAT1;        // _10 - data block

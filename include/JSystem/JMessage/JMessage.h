@@ -4,7 +4,7 @@
 #include "types.h"
 
 namespace JMessage {
-
+// according to TP, these are meant to inherit JGadget::binary::TParseData_aligned<4>
 struct JMessageHeader {
 	char _00[4]; // _00 - subsystem version - "MESG"
 	char _04[4]; // _04 - file type - "bmg"
@@ -15,6 +15,10 @@ struct JMessageHeader {
 };
 
 struct INF1Block {
+	inline char* getContent() const { return (char*)_10; }
+	inline u16 getMessageSize() const { return _0A; }
+	inline u16 getMessageNumber() const { return _08; }
+
 	void* _00;       // _00 - pointer to INF1?
 	int _04;         // _04 - size of section? (bytes from section beginning)
 	u16 _08;         // _08 - number of messages?

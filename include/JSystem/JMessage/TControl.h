@@ -2,10 +2,10 @@
 #define _JSYSTEM_JMESSAGE_TCONTROL_H
 
 #include "types.h"
+#include "JSystem/JMessage/TProcessor.h"
 
 namespace JMessage {
 
-struct TProcessor;
 struct TResource;
 
 struct TControl {
@@ -20,18 +20,38 @@ struct TControl {
 	bool setMessageID(u32, u32, bool*);
 	bool setMessageCode_inSequence_(const TProcessor*, u16, u16);
 
+	inline bool isReady_update_() const { return mMessageBegin && mBaseProcSeq; }
+	inline bool isReady_render_() const { return _20 && mBaseProcRender; }
+
+	inline TProcessor* getProcessor() const { return mBaseProcSeq ? (TProcessor*)mBaseProcSeq : (TProcessor*)mBaseProcRender; }
+
+	inline bool setMessageCode_inReset_(TProcessor* proc, u16 p2, u16 p3)
+	{
+		if (!setMessageCode_inSequence_(proc, p2, p3)) {
+			return false;
+		}
+
+		if (isReady_update_()) {
+			mBaseProcSeq->setBegin_messageEntryText(mResourceCache, mEntry, mMessageBegin);
+		}
+
+		return true;
+	}
+
+	const char* getMessageText_begin() const { return mMessageBegin; }
+	void* getMessageEntry() const { return mEntry; }
+
 	// _00 = VTBL
-	TProcessor* mBaseProcSeq;    // _04
-	TProcessor* mBaseProcRender; // _08
-	u16 _0C;                     // _0C
-	u16 _0E;                     // _0E
-	TResource* _10;              // _10
-	u32* _14;                    // _14
-	char* _18;                   // _18
-	char* _1C;                   // _1C
-	char* _20;                   // _20
-	int _24;                     // _24
-	u8 _28[0x10];                // _28-_38 - unknown
+	TSequenceProcessor* mBaseProcSeq;     // _04
+	TRenderingProcessor* mBaseProcRender; // _08
+	u16 mMessageCode;                     // _0C
+	u16 mMessageIndex;                    // _0E
+	const TResource* mResourceCache;      // _10
+	void* mEntry;                         // _14
+	const char* mMessageBegin;            // _18
+	const char* mCurrentText;             // _1C
+	const char* _20;                      // _20
+	TProcessor::TStack mRenderStack;      // _24
 };
 } // namespace JMessage
 
