@@ -409,7 +409,7 @@ JAIStream::JAIStream()
  * Address:	........
  * Size:	000114
  */
-void JAISound::initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, float, float, u32)
+void JAISound::initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, f32, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -559,9 +559,9 @@ void JAISequence::checkReady() { checkSeqReady(); }
  * Address:	800B3D88
  * Size:	000154
  */
-float JAISound::setDistanceVolumeCommon(float p1, u8 p2)
+f32 JAISound::setDistanceVolumeCommon(f32 p1, u8 p2)
 {
-	float v1;
+	f32 v1;
 	if (_18 != 4) {
 		v1 = _34[_18]._18;
 	} else {
@@ -599,12 +599,12 @@ float JAISound::setDistanceVolumeCommon(float p1, u8 p2)
  * Address:	800B3EDC
  * Size:	00015C
  */
-float JAISound::setDistancePanCommon()
+f32 JAISound::setDistancePanCommon()
 {
 	if (JAIGlobalParameter::audioCameraMax == 1) {
 		JAISound_0x34* v0 = _34;
-		float v1          = FABS(v0->_00.x);
-		float v2          = FABS(v0->_00.z);
+		f32 v1            = FABS(v0->_00.x);
+		f32 v2            = FABS(v0->_00.z);
 		if (v1 < 1.0f && v2 < 1.0f) {
 			return 0.5f;
 		}
@@ -748,7 +748,7 @@ lbl_800B4030:
  * Address:	800B4038
  * Size:	000270
  */
-float JAISound::setPositionDopplarCommon(u32)
+f32 JAISound::setPositionDopplarCommon(u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -957,7 +957,7 @@ lbl_800B42A0:
  * Address:	800B42A8
  * Size:	000074
  */
-float JAISound::setDistanceDolbyCommon()
+f32 JAISound::setDistanceDolbyCommon()
 {
 	JAISound_0x34* obj = _34;
 	if (_3C == 0 || obj->_00.z < JAIGlobalParameter::seDolbyFrontDistanceMax) {
@@ -979,7 +979,7 @@ float JAISound::setDistanceDolbyCommon()
  * Address:	800B431C
  * Size:	000088
  */
-void JAISequence::setSeqInterVolume(u8 p1, float p2, u32 p3)
+void JAISequence::setSeqInterVolume(u8 p1, f32 p2, u32 p3)
 {
 	int result = mSeqParameter._110[p1].set(p2, p3);
 	if (result == 1) {
@@ -995,7 +995,7 @@ void JAISequence::setSeqInterVolume(u8 p1, float p2, u32 p3)
  * Address:	800B43A4
  * Size:	000088
  */
-void JAISequence::setSeqInterPan(u8 p1, float p2, u32 p3)
+void JAISequence::setSeqInterPan(u8 p1, f32 p2, u32 p3)
 {
 	int result = mSeqParameter._250[p1].set(p2, p3);
 	if (result == 1) {
@@ -1011,7 +1011,7 @@ void JAISequence::setSeqInterPan(u8 p1, float p2, u32 p3)
  * Address:	800B442C
  * Size:	000088
  */
-void JAISequence::setSeqInterPitch(u8 p1, float p2, u32 p3)
+void JAISequence::setSeqInterPitch(u8 p1, f32 p2, u32 p3)
 {
 	int result = mSeqParameter._254[p1].set(p2, p3);
 	if (result == 1) {
@@ -1027,7 +1027,7 @@ void JAISequence::setSeqInterPitch(u8 p1, float p2, u32 p3)
  * Address:	........
  * Size:	000088
  */
-void JAISequence::setSeqInterFxmix(u8, float, u32)
+void JAISequence::setSeqInterFxmix(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1037,7 +1037,7 @@ void JAISequence::setSeqInterFxmix(u8, float, u32)
  * Address:	........
  * Size:	0000BC
  */
-void JAISequence::setSeqInterDolby(u8, float, u32)
+void JAISequence::setSeqInterDolby(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1047,7 +1047,7 @@ void JAISequence::setSeqInterDolby(u8, float, u32)
  * Address:	........
  * Size:	000048
  */
-void JAISequence::setSeqTempoProportion(float, u32)
+void JAISequence::setSeqTempoProportion(f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1077,7 +1077,7 @@ void JAISequence::setWaveReadMode(long, long)
  * Address:	........
  * Size:	0000B0
  */
-void JAISequence::setTrackVolume(u8, float, u32)
+void JAISequence::setTrackVolume(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1087,7 +1087,7 @@ void JAISequence::setTrackVolume(u8, float, u32)
  * Address:	........
  * Size:	000140
  */
-void JAISequence::setTrackVolumeMulti(u8, u32, float, u32)
+void JAISequence::setTrackVolumeMulti(u8, u32, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1131,7 +1131,7 @@ void JAISequence::setTrackInterruptSwitch(u8 p1, u8 p2)
  * Address:	........
  * Size:	0000B0
  */
-void JAISequence::setTrackPan(u8, float, u32)
+void JAISequence::setTrackPan(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1141,7 +1141,7 @@ void JAISequence::setTrackPan(u8, float, u32)
  * Address:	........
  * Size:	000140
  */
-void JAISequence::setTrackPanMulti(u8, u32, float, u32)
+void JAISequence::setTrackPanMulti(u8, u32, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1151,7 +1151,7 @@ void JAISequence::setTrackPanMulti(u8, u32, float, u32)
  * Address:	........
  * Size:	0000B0
  */
-void JAISequence::setTrackPitch(u8, float, u32)
+void JAISequence::setTrackPitch(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1161,7 +1161,7 @@ void JAISequence::setTrackPitch(u8, float, u32)
  * Address:	........
  * Size:	000140
  */
-void JAISequence::setTrackPitchMulti(u8, u32, float, u32)
+void JAISequence::setTrackPitchMulti(u8, u32, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1171,7 +1171,7 @@ void JAISequence::setTrackPitchMulti(u8, u32, float, u32)
  * Address:	800B44DC
  * Size:	0000B0
  */
-void JAISequence::setTrackFxmix(u8 p1, float p2, u32 p3)
+void JAISequence::setTrackFxmix(u8 p1, f32 p2, u32 p3)
 {
 	if (_15 >= 4 && (mSeqParameter._2C0->_04 & 1 << p1) == 0) {
 		return;
@@ -1190,7 +1190,7 @@ void JAISequence::setTrackFxmix(u8 p1, float p2, u32 p3)
  * Address:	........
  * Size:	000140
  */
-void JAISequence::setTrackFxmixMulti(u8, u32, float, u32)
+void JAISequence::setTrackFxmixMulti(u8, u32, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1200,7 +1200,7 @@ void JAISequence::setTrackFxmixMulti(u8, u32, float, u32)
  * Address:	........
  * Size:	0000E4
  */
-void JAISequence::setTrackDolby(u8, float, u32)
+void JAISequence::setTrackDolby(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1210,7 +1210,7 @@ void JAISequence::setTrackDolby(u8, float, u32)
  * Address:	........
  * Size:	000154
  */
-void JAISequence::setTrackDolbyMulti(u8, u32, float, u32)
+void JAISequence::setTrackDolbyMulti(u8, u32, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1240,7 +1240,7 @@ void JAISequence::setTrackPortData(u8 p1, u8 p2, u16 p3)
  * Address:	........
  * Size:	000114
  */
-void JAISe::setSeInterRandomPara(float*, u32, float, float)
+void JAISe::setSeInterRandomPara(f32*, u32, f32, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -1250,9 +1250,9 @@ void JAISe::setSeInterRandomPara(float*, u32, float, float)
  * Address:	800B465C
  * Size:	000158
  */
-void JAISe::setSeInterVolume(u8 p1, float p2, u32 p3, u8 p4)
+void JAISe::setSeInterVolume(u8 p1, f32 p2, u32 p3, u8 p4)
 {
-	// float v5 = p2;
+	// f32 v5 = p2;
 	// if (p4 != 0) {
 	// 	// TODO: I think this is a mapping function of TRandom_fast_. v3 and v1 are probably a max and min, in some order?
 	// 	// 	uint v3  = (p4 * 1000) / 0x7F;
@@ -1260,7 +1260,7 @@ void JAISe::setSeInterVolume(u8 p1, float p2, u32 p3, u8 p4)
 	// 	// 	u32 v2   = JAInter::Const::random.nextFloat_0_1();
 	// 	// 	u32 v1   = v3 * 2;
 	// 	// 	v5       = 1.0f;
-	// 	// 	float v7 = (float)((v2 - (v2 / v1) * v1) + 1) - ((float)(v3) / 1000.0f);
+	// 	// 	f32 v7 = (f32)((v2 - (v2 / v1) * v1) + 1) - ((f32)(v3) / 1000.0f);
 	// 	// 	if (p2 + v7 <= v5) {
 	// 	// 		v5 = 0.0f;
 	// 	// 		if (v5 - v7 <= p2) {
@@ -1373,7 +1373,7 @@ lbl_800B4774:
  * Address:	800B47B4
  * Size:	000158
  */
-void JAISe::setSeInterPan(u8, float, u32, u8)
+void JAISe::setSeInterPan(u8, f32, u32, u8)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1476,7 +1476,7 @@ lbl_800B48CC:
  * Address:	........
  * Size:	00014C
  */
-void JAISe::setSeInterPitch(u8, float, u32, float)
+void JAISe::setSeInterPitch(u8, f32, u32, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -1486,7 +1486,7 @@ void JAISe::setSeInterPitch(u8, float, u32, float)
  * Address:	........
  * Size:	000158
  */
-void JAISe::setSeInterFxmix(u8, float, u32, u8)
+void JAISe::setSeInterFxmix(u8, f32, u32, u8)
 {
 	// UNUSED FUNCTION
 }
@@ -1506,7 +1506,7 @@ void JAISe::setSeInterFir(u8, u8, u32, u8)
  * Address:	800B490C
  * Size:	000158
  */
-void JAISe::setSeInterDolby(u8, float, u32, u8)
+void JAISe::setSeInterDolby(u8, f32, u32, u8)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1653,7 +1653,7 @@ void JAISe::setSeDistanceParameters()
  * Size:	000030
  * setFxmix__5JAISeFfUlUc
  */
-void JAISe::setFxmix(float p1, u32 p2, u8 p3) { mSeParam._2A4[p3].set(p1, p2); }
+void JAISe::setFxmix(f32 p1, u32 p2, u8 p3) { mSeParam._2A4[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -1945,7 +1945,7 @@ void JAIStream::setStreamMode(u32)
  * Address:	........
  * Size:	000088
  */
-void JAIStream::setStreamInterVolume(u8, float, u32)
+void JAIStream::setStreamInterVolume(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1955,7 +1955,7 @@ void JAIStream::setStreamInterVolume(u8, float, u32)
  * Address:	........
  * Size:	000088
  */
-void JAIStream::setStreamInterPan(u8, float, u32)
+void JAIStream::setStreamInterPan(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1965,7 +1965,7 @@ void JAIStream::setStreamInterPan(u8, float, u32)
  * Address:	........
  * Size:	000088
  */
-void JAIStream::setStreamInterPitch(u8, float, u32)
+void JAIStream::setStreamInterPitch(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1975,7 +1975,7 @@ void JAIStream::setStreamInterPitch(u8, float, u32)
  * Address:	........
  * Size:	000088
  */
-void JAIStream::setStreamInterFxmix(u8, float, u32)
+void JAIStream::setStreamInterFxmix(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -1985,7 +1985,7 @@ void JAIStream::setStreamInterFxmix(u8, float, u32)
  * Address:	........
  * Size:	000088
  */
-void JAIStream::setStreamInterDolby(u8, float, u32)
+void JAIStream::setStreamInterDolby(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -2015,7 +2015,7 @@ bool JAIStream::checkStreamReady()
  * Address:	800B5018
  * Size:	0000A0
  */
-void JAIStream::setChannelVolume(u8 p1, float p2, u32 p3)
+void JAIStream::setChannelVolume(u8 p1, f32 p2, u32 p3)
 {
 	JAInter::StreamMgr::getChannelMax();
 	int result = _1C8[p1].set(p2, p3);
@@ -2032,7 +2032,7 @@ void JAIStream::setChannelVolume(u8 p1, float p2, u32 p3)
  * Address:	800B50B8
  * Size:	0000A0
  */
-void JAIStream::setChannelPan(u8 p1, float p2, u32 p3)
+void JAIStream::setChannelPan(u8 p1, f32 p2, u32 p3)
 {
 	JAInter::StreamMgr::getChannelMax();
 	int result = _1CC[p1].set(p2, p3);
@@ -2049,7 +2049,7 @@ void JAIStream::setChannelPan(u8 p1, float p2, u32 p3)
  * Address:	........
  * Size:	0000A0
  */
-void JAIStream::setChannelFxmix(u8, float, u32)
+void JAIStream::setChannelFxmix(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -2059,7 +2059,7 @@ void JAIStream::setChannelFxmix(u8, float, u32)
  * Address:	........
  * Size:	0000A0
  */
-void JAIStream::setChannelDolby(u8, float, u32)
+void JAIStream::setChannelDolby(u8, f32, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -2328,7 +2328,7 @@ lbl_800B5328:
  * Address:	800B5340
  * Size:	000084
  */
-// void JAIStream::setVolume(float p1, u32 p2, u8 p3)
+// void JAIStream::setVolume(f32 p1, u32 p2, u8 p3)
 // {
 // 	int result = _64[p3].set(p1, p2);
 // 	if (result == 1) {
@@ -2384,7 +2384,7 @@ bool JAISequence::checkSeqReady()
  * Size:	00002C
  * getSeqInterVolume__11JAISequenceFUc
  */
-float JAISequence::getSeqInterVolume(u8 p1)
+f32 JAISequence::getSeqInterVolume(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return mSeqParameter._110[p1]._04;
@@ -2787,7 +2787,7 @@ void JAInter::LinkSound::getUsedEndFirstObject()
  * Size:	000098
  * set__Q27JAInter11MoveParaSetFfUl
  */
-int JAInter::MoveParaSet::set(float p1, u32 p2)
+int JAInter::MoveParaSet::set(f32 p1, u32 p2)
 {
 	if (_0C == 0 && _04 == p1) {
 		return 2;
@@ -2834,7 +2834,7 @@ BOOL JAInter::MoveParaSet::move()
  * Size:	00002C
  * getVolume__9JAIStreamFUc
  */
-float JAIStream::getVolume(u8 p1)
+f32 JAIStream::getVolume(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return _64[p1]._04;
@@ -2848,7 +2848,7 @@ float JAIStream::getVolume(u8 p1)
  * Size:	0000E4
  * setPan__9JAIStreamFfUlUc
  */
-void JAIStream::setPan(float p1, u32 p2, u8 p3)
+void JAIStream::setPan(f32 p1, u32 p2, u8 p3)
 {
 	int result = _1A8[p3].set(p1, p2);
 	if (result == 1) {
@@ -2865,7 +2865,7 @@ void JAIStream::setPan(float p1, u32 p2, u8 p3)
  * Size:	000030
  * getPan__9JAIStreamFUc
  */
-float JAIStream::getPan(u8 p1)
+f32 JAIStream::getPan(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return _1A8[p1]._04;
@@ -2879,7 +2879,7 @@ float JAIStream::getPan(u8 p1)
  * Size:	0000E4
  * setPitch__9JAIStreamFfUlUc
  */
-void JAIStream::setPitch(float p1, u32 p2, u8 p3)
+void JAIStream::setPitch(f32 p1, u32 p2, u8 p3)
 {
 	int result = _1A4[p3].set(p1, p2);
 	if (result == 1) {
@@ -2896,7 +2896,7 @@ void JAIStream::setPitch(float p1, u32 p2, u8 p3)
  * Size:	000030
  * getPitch__9JAIStreamFUc
  */
-float JAIStream::getPitch(u8 p1)
+f32 JAIStream::getPitch(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return _1A4[p1]._04;
@@ -2910,7 +2910,7 @@ float JAIStream::getPitch(u8 p1)
  * Size:	0000E4
  * setFxmix__9JAIStreamFfUlUc
  */
-void JAIStream::setFxmix(float p1, u32 p2, u8 p3)
+void JAIStream::setFxmix(f32 p1, u32 p2, u8 p3)
 {
 	int result = _1AC[p3].set(p1, p2);
 	if (result == 1) {
@@ -2927,7 +2927,7 @@ void JAIStream::setFxmix(float p1, u32 p2, u8 p3)
  * Size:	000030
  * getFxmix__9JAIStreamFUc
  */
-float JAIStream::getFxmix(u8 p1)
+f32 JAIStream::getFxmix(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return _1AC[p1]._04;
@@ -2941,7 +2941,7 @@ float JAIStream::getFxmix(u8 p1)
  * Size:	0000E4
  * setDolby__9JAIStreamFfUlUc
  */
-void JAIStream::setDolby(float p1, u32 p2, u8 p3)
+void JAIStream::setDolby(f32 p1, u32 p2, u8 p3)
 {
 	int result = _1B0[p3].set(p1, p2);
 	if (result == 1) {
@@ -2958,7 +2958,7 @@ void JAIStream::setDolby(float p1, u32 p2, u8 p3)
  * Size:	000030
  * getDolby__9JAIStreamFUc
  */
-float JAIStream::getDolby(u8 p1)
+f32 JAIStream::getDolby(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return _1B0[p1]._04;
@@ -3050,84 +3050,84 @@ u16 JAIStream::getPortData(u8) { return 0xFFFF; }
  * Address:	800B6028
  * Size:	000004
  */
-void JAISound::setTempoProportion(float, u32) { }
+void JAISound::setTempoProportion(f32, u32) { }
 
 /*
  * --INFO--
  * Address:	800B602C
  * Size:	000008
  */
-float JAISound::getTempoProportion() { return 1.0f; }
+f32 JAISound::getTempoProportion() { return 1.0f; }
 
 /*
  * --INFO--
  * Address:	800B6034
  * Size:	000030
  */
-void JAISound::setDirectVolume(float p1, u32 p2) { setVolume(p1, p2, 6); }
+void JAISound::setDirectVolume(f32 p1, u32 p2) { setVolume(p1, p2, 6); }
 
 /*
  * --INFO--
  * Address:	800B6064
  * Size:	000030
  */
-void JAISound::setDirectPan(float p1, u32 p2) { setPan(p1, p2, 6); }
+void JAISound::setDirectPan(f32 p1, u32 p2) { setPan(p1, p2, 6); }
 
 /*
  * --INFO--
  * Address:	800B6094
  * Size:	000030
  */
-void JAISound::setDirectPitch(float p1, u32 p2) { setPitch(p1, p2, 6); }
+void JAISound::setDirectPitch(f32 p1, u32 p2) { setPitch(p1, p2, 6); }
 
 /*
  * --INFO--
  * Address:	800B60C4
  * Size:	000030
  */
-void JAISound::setDirectFxmix(float p1, u32 p2) { setFxmix(p1, p2, 6); }
+void JAISound::setDirectFxmix(f32 p1, u32 p2) { setFxmix(p1, p2, 6); }
 
 /*
  * --INFO--
  * Address:	800B60F4
  * Size:	000030
  */
-void JAISound::setDirectDolby(float p1, u32 p2) { setDolby(p1, p2, 6); }
+void JAISound::setDirectDolby(f32 p1, u32 p2) { setDolby(p1, p2, 6); }
 
 /*
  * --INFO--
  * Address:	800B6124
  * Size:	000030
  */
-void JAISound::setDemoVolume(float p1, u32 p2) { setVolume(p1, p2, 2); }
+void JAISound::setDemoVolume(f32 p1, u32 p2) { setVolume(p1, p2, 2); }
 
 /*
  * --INFO--
  * Address:	800B6154
  * Size:	000030
  */
-void JAISound::setDemoPan(float p1, u32 p2) { setPan(p1, p2, 2); }
+void JAISound::setDemoPan(f32 p1, u32 p2) { setPan(p1, p2, 2); }
 
 /*
  * --INFO--
  * Address:	800B6184
  * Size:	000030
  */
-void JAISound::setDemoPitch(float p1, u32 p2) { setPitch(p1, p2, 2); }
+void JAISound::setDemoPitch(f32 p1, u32 p2) { setPitch(p1, p2, 2); }
 
 /*
  * --INFO--
  * Address:	800B61B4
  * Size:	000030
  */
-void JAISound::setDemoFxmix(float p1, u32 p2) { setFxmix(p1, p2, 2); }
+void JAISound::setDemoFxmix(f32 p1, u32 p2) { setFxmix(p1, p2, 2); }
 
 /*
  * --INFO--
  * Address:	800B61E4
  * Size:	000030
  */
-void JAISound::setDemoDolby(float p1, u32 p2) { setDolby(p1, p2, 2); }
+void JAISound::setDemoDolby(f32 p1, u32 p2) { setDolby(p1, p2, 2); }
 
 /*
  * --INFO--
@@ -3185,7 +3185,7 @@ void JAISound::setAdjustPriority(short a1)
  * Size:	000010
  * getVolume__5JAISeFUc
  */
-float JAISe::getVolume(u8 p1) { return mSeParam._124[p1]._04; }
+f32 JAISe::getVolume(u8 p1) { return mSeParam._124[p1]._04; }
 
 /*
  * --INFO--
@@ -3193,7 +3193,7 @@ float JAISe::getVolume(u8 p1) { return mSeParam._124[p1]._04; }
  * Size:	000090
  * setPan__5JAISeFfUlUc
  */
-void JAISe::setPan(float p1, u32 p2, u8 p3) { mSeParam._1A4[p3].set(p1, p2); }
+void JAISe::setPan(f32 p1, u32 p2, u8 p3) { mSeParam._1A4[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -3201,7 +3201,7 @@ void JAISe::setPan(float p1, u32 p2, u8 p3) { mSeParam._1A4[p3].set(p1, p2); }
  * Size:	000010
  * getPan__5JAISeFUc
  */
-float JAISe::getPan(u8 p1) { return mSeParam._1A4[p1]._04; }
+f32 JAISe::getPan(u8 p1) { return mSeParam._1A4[p1]._04; }
 
 /*
  * --INFO--
@@ -3209,7 +3209,7 @@ float JAISe::getPan(u8 p1) { return mSeParam._1A4[p1]._04; }
  * Size:	000090
  * setPitch__5JAISeFfUlUc
  */
-void JAISe::setPitch(float p1, u32 p2, u8 p3) { mSeParam._224[p3].set(p1, p2); }
+void JAISe::setPitch(f32 p1, u32 p2, u8 p3) { mSeParam._224[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -3217,7 +3217,7 @@ void JAISe::setPitch(float p1, u32 p2, u8 p3) { mSeParam._224[p3].set(p1, p2); }
  * Size:	000010
  * getPitch__5JAISeFUc
  */
-float JAISe::getPitch(u8 p1) { return mSeParam._224[p1]._04; }
+f32 JAISe::getPitch(u8 p1) { return mSeParam._224[p1]._04; }
 
 /*
  * --INFO--
@@ -3225,7 +3225,7 @@ float JAISe::getPitch(u8 p1) { return mSeParam._224[p1]._04; }
  * Size:	000010
  * getFxmix__5JAISeFUc
  */
-float JAISe::getFxmix(u8 p1) { return mSeParam._2A4[p1]._04; }
+f32 JAISe::getFxmix(u8 p1) { return mSeParam._2A4[p1]._04; }
 
 /*
  * --INFO--
@@ -3233,7 +3233,7 @@ float JAISe::getFxmix(u8 p1) { return mSeParam._2A4[p1]._04; }
  * Size:	000090
  * setDolby__5JAISeFfUlUc
  */
-void JAISe::setDolby(float p1, u32 p2, u8 p3) { mSeParam._3A4[p3].set(p1, p2); }
+void JAISe::setDolby(f32 p1, u32 p2, u8 p3) { mSeParam._3A4[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -3241,7 +3241,7 @@ void JAISe::setDolby(float p1, u32 p2, u8 p3) { mSeParam._3A4[p3].set(p1, p2); }
  * Size:	000010
  * getDolby__5JAISeFUc
  */
-float JAISe::getDolby(u8 p1) { return mSeParam._3A4[p1]._04; }
+f32 JAISe::getDolby(u8 p1) { return mSeParam._3A4[p1]._04; }
 
 /*
  * --INFO--
@@ -3251,7 +3251,7 @@ float JAISe::getDolby(u8 p1) { return mSeParam._3A4[p1]._04; }
  */
 void JAISe::setVolumeU7(u8 p1, u32 p2, u8 p3)
 {
-	float v1 = p1 / 127.0f;
+	f32 v1 = p1 / 127.0f;
 	mSeParam._124[p3].set(v1, p2);
 }
 
@@ -3271,7 +3271,7 @@ u8 JAISe::getVolumeU7(u8 p1) { return mSeParam._124[p1]._04 * 127.0f; }
  */
 void JAISe::setPanU7(u8 p1, u32 p2, u8 p3)
 {
-	float v1 = p1 / 127.0f;
+	f32 v1 = p1 / 127.0f;
 	mSeParam._1A4[p3].set(v1, p2);
 }
 
@@ -3291,7 +3291,7 @@ u8 JAISe::getPanU7(u8 p1) { return mSeParam._1A4[p1]._04 * 127.0f; }
  */
 void JAISe::setFxmixU7(u8 p1, u32 p2, u8 p3)
 {
-	float v1 = p1 / 127.0f;
+	f32 v1 = p1 / 127.0f;
 	mSeParam._2A4[p3].set(v1, p2);
 }
 
@@ -3311,7 +3311,7 @@ u8 JAISe::getFxmixU7(u8 p1) { return mSeParam._2A4[p1]._04 * 127.0f; }
  */
 void JAISe::setDolbyU7(u8 p1, u32 p2, u8 p3)
 {
-	float v1 = p1 / 127.0f;
+	f32 v1 = p1 / 127.0f;
 	mSeParam._3A4[p3].set(v1, p2);
 }
 
@@ -3512,7 +3512,7 @@ lbl_800B6A30:
  * Size:	000030
  * getPan__11JAISequenceFUc
  */
-float JAISequence::getPan(u8 p1)
+f32 JAISequence::getPan(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return mSeqParameter._250[p1]._04;
@@ -3526,7 +3526,7 @@ float JAISequence::getPan(u8 p1)
  * Size:	000030
  * getPitch__11JAISequenceFUc
  */
-float JAISequence::getPitch(u8 p1)
+f32 JAISequence::getPitch(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return mSeqParameter._254[p1]._04;
@@ -3540,7 +3540,7 @@ float JAISequence::getPitch(u8 p1)
  * Size:	0000E4
  * setFxmix__11JAISequenceFfUlUc
  */
-void JAISequence::setFxmix(float, u32, u8)
+void JAISequence::setFxmix(f32, u32, u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3621,7 +3621,7 @@ lbl_800B6B7C:
  * Size:	000030
  * getFxmix__11JAISequenceFUc
  */
-float JAISequence::getFxmix(u8 p1)
+f32 JAISequence::getFxmix(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return mSeqParameter._258[p1]._04;
@@ -3635,7 +3635,7 @@ float JAISequence::getFxmix(u8 p1)
  * Size:	000110
  * setDolby__11JAISequenceFfUlUc
  */
-void JAISequence::setDolby(float, u32, u8)
+void JAISequence::setDolby(f32, u32, u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3729,7 +3729,7 @@ lbl_800B6CBC:
  * Size:	000030
  * getDolby__11JAISequenceFUc
  */
-float JAISequence::getDolby(u8 p1)
+f32 JAISequence::getDolby(u8 p1)
 {
 	if (_15 == 4 || _15 == 5) {
 		return mSeqParameter._25C[p1]._04;
@@ -3743,7 +3743,7 @@ float JAISequence::getDolby(u8 p1)
  * Size:	000098
  * setTempoProportion__11JAISequenceFfUl
  */
-void JAISequence::setTempoProportion(float, u32)
+void JAISequence::setTempoProportion(f32, u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3803,7 +3803,7 @@ lbl_800B6D84:
  * Size:	000024
  * getTempoProportion__11JAISequenceFv
  */
-float JAISequence::getTempoProportion()
+f32 JAISequence::getTempoProportion()
 {
 	if (_15 == 4 || _15 == 5) {
 		return mSeqParameter._04;

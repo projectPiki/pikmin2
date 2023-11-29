@@ -6396,64 +6396,30 @@ lbl_80460CDC:
  * --INFO--
  * Address:	80460CF8
  * Size:	0000BC
+ * Adjusts pitch for chappy sounds
  */
-void Enemy_SpecialChappy::onPlayingSe(u32, JAISound*)
+void Enemy_SpecialChappy::onPlayingSe(u32 soundID, JAISound* param_2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x14(r1)
-	beq      lbl_80460DA4
-	cmplwi   r4, 0x5811
-	blt      lbl_80460D50
-	cmplwi   r4, 0x5819
-	bgt      lbl_80460D50
-	cmplwi   r4, 0x5818
-	beq      lbl_80460D50
-	cmplwi   r4, 0x5816
-	beq      lbl_80460D50
-	mr       r3, r5
-	lfs      f1, lbl_80520C80@sda21(r2)
-	lwz      r12, 0x10(r5)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80460DA4
+	// unfinished- needs proper control flow
+	if (param_2) {
+		if ((((soundID < PSSE_EN_CHAPPY_WALK) || (PSSE_EN_CHAPPY_EAT < soundID)) || (soundID != PSSE_EN_CHAPPY_DEAD))) {
 
-lbl_80460D50:
-	cmplwi   r4, 0x5818
-	bne      lbl_80460D7C
-	mr       r3, r5
-	lfs      f1, lbl_80520C84@sda21(r2)
-	lwz      r12, 0x10(r5)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80460DA4
-
-lbl_80460D7C:
-	cmplwi   r4, 0x5816
-	bne      lbl_80460DA4
-	mr       r3, r5
-	lfs      f1, lbl_80520C80@sda21(r2)
-	lwz      r12, 0x10(r5)
-	li       r4, 0x14
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80460DA4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			if (soundID != PSSE_EN_CHAPPY_BITE2) {
+				param_2->setPitch(0.0f, 0, 0);
+				return;
+			}
+			if (soundID == PSSE_EN_CHAPPY_DEAD) {
+				param_2->setPitch(2.802597e-44, 0, 0);
+				return;
+			}
+			if (soundID == PSSE_EN_CHAPPY_BITE2) {
+				return; // ???????
+			}
+		} else {
+			param_2->setPitch(0.0f, 20, 0);
+			return;
+		}
+	}
 }
 
 /*
