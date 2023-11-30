@@ -1567,7 +1567,7 @@ LIBS = [
             ["sysGCU/section", False],
             ["sysGCU/gameflow", True],
             ["sysGCU/menuSection", True],
-            ["sysGCU/dvdThread", False],
+            ["sysGCU/dvdThread", True],
             ["sysGCU/appThread", True],
             ["sysGCU/controller", True],
             ["sysGCU/graphics", False],

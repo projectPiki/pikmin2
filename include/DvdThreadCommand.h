@@ -24,15 +24,17 @@ struct DvdThreadCommand {
 	void loading();
 	void finish();
 	void getDataType();
-	void checkExp(const char*) const;
+	bool checkExp(const char*) const;
+
+	char* getArcPath() { return mArcPath; }
 
 	IDelegate* mCallBack;            // _00
-	u32 mLoadType;                   // _04
+	int mLoadType;                   // _04
 	char* mArcPath;                  // _08
 	JKRArchive* mMountedArchive;     // _0C
-	s32 _10;                         // _10
+	int _10;                         // _10
 	EHeapDirection mHeapDirection;   // _14
-	s32 mMode;                       // _18
+	int mMode;                       // _18
 	OSMutex mMutex;                  // _1C
 	JKRHeap* mHeap;                  // _34
 	OSMessageQueue mMsgQueue;        // _38
@@ -43,7 +45,7 @@ struct DvdThreadCommand {
 struct DvdThread : public AppThread {
 
 	enum ESyncBlockFlag {
-
+		BLOCKFLAG_Unk0 = 0,
 	};
 
 	DvdThread(u32, int, int);
@@ -59,7 +61,7 @@ struct DvdThread : public AppThread {
 
 	// _00 		= VTBL
 	// _00-_7C 	= AppThread
-	JSUList<DvdThread> _7C; // _7C
+	JSUList<DvdThreadCommand> _7C; // _7C
 };
 
 #endif

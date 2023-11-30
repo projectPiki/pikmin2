@@ -3,7 +3,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/asm/sysGCU/section.o\
 	$(BUILD_DIR)/src/sysGCU/gameflow.o\
 	$(BUILD_DIR)/src/sysGCU/menuSection.o\
-	$(BUILD_DIR)/asm/sysGCU/dvdThread.o\
+	$(BUILD_DIR)/src/sysGCU/dvdThread.o\
 	$(BUILD_DIR)/src/sysGCU/appThread.o\
 	$(BUILD_DIR)/src/sysGCU/controller.o\
 	$(BUILD_DIR)/asm/sysGCU/graphics.o\
