@@ -120,117 +120,6 @@ void GXInitLightSpot(GXLightObj* obj, f32 cutoff, GXSpotFn spotFunc)
 	pObj->a[0] = a0;
 	pObj->a[1] = a1;
 	pObj->a[2] = a2;
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r4, 0
-	  stw       r30, 0x18(r1)
-	  addi      r30, r3, 0
-	  lfs       f0, -0x6D38(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  beq-      .loc_0x38
-	  lfs       f0, -0x6D34(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x3C
-
-	.loc_0x38:
-	  li        r31, 0
-
-	.loc_0x3C:
-	  lfs       f2, -0x6D30(r2)
-	  lfs       f0, -0x6D2C(r2)
-	  fmuls     f1, f2, f1
-	  fdivs     f1, f1, f0
-	  bl        -0x16C40
-	  cmplwi    r31, 0x6
-	  bgt-      .loc_0x160
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x7AD0
-	  rlwinm    r0,r31,2,0,29
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  lfs       f0, -0x6D28(r2)
-	  lfs       f4, -0x6D24(r2)
-	  fmuls     f3, f0, f1
-	  lfs       f6, -0x6D38(r2)
-	  b         .loc_0x16C
-	  lfs       f2, -0x6D20(r2)
-	  fneg      f0, f1
-	  lfs       f6, -0x6D38(r2)
-	  fsubs     f1, f2, f1
-	  fdivs     f1, f2, f1
-	  fmr       f4, f1
-	  fmuls     f3, f0, f1
-	  b         .loc_0x16C
-	  lfs       f2, -0x6D20(r2)
-	  fneg      f0, f1
-	  lfs       f3, -0x6D38(r2)
-	  fsubs     f1, f2, f1
-	  fdivs     f1, f2, f1
-	  fmr       f6, f1
-	  fmuls     f4, f0, f1
-	  b         .loc_0x16C
-	  lfs       f4, -0x6D20(r2)
-	  lfs       f2, -0x6D1C(r2)
-	  fsubs     f3, f4, f1
-	  fsubs     f0, f1, f2
-	  fmuls     f3, f3, f3
-	  fmuls     f0, f1, f0
-	  fdivs     f1, f4, f3
-	  fmuls     f3, f1, f0
-	  fmuls     f4, f2, f1
-	  fneg      f6, f1
-	  b         .loc_0x16C
-	  lfs       f5, -0x6D20(r2)
-	  lfs       f3, -0x6D18(r2)
-	  fsubs     f4, f5, f1
-	  lfs       f2, -0x6D14(r2)
-	  fadds     f0, f5, f1
-	  fmuls     f4, f4, f4
-	  fmuls     f0, f2, f0
-	  fdivs     f4, f5, f4
-	  fmuls     f2, f3, f4
-	  fmuls     f4, f0, f4
-	  fmr       f6, f2
-	  fmuls     f3, f2, f1
-	  b         .loc_0x16C
-	  lfs       f5, -0x6D20(r2)
-	  lfs       f0, -0x6D1C(r2)
-	  fsubs     f4, f5, f1
-	  lfs       f2, -0x6D14(r2)
-	  fmuls     f3, f0, f1
-	  lfs       f0, -0x6D10(r2)
-	  fmuls     f2, f2, f1
-	  fmuls     f4, f4, f4
-	  fmuls     f1, f3, f1
-	  fdivs     f3, f5, f4
-	  fmuls     f1, f3, f1
-	  fmuls     f4, f2, f3
-	  fmuls     f6, f0, f3
-	  fsubs     f3, f5, f1
-	  b         .loc_0x16C
-
-	.loc_0x160:
-	  lfs       f4, -0x6D38(r2)
-	  lfs       f3, -0x6D20(r2)
-	  fmr       f6, f4
-
-	.loc_0x16C:
-	  stfs      f3, 0x10(r30)
-	  stfs      f4, 0x14(r30)
-	  stfs      f6, 0x18(r30)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*
@@ -346,79 +235,13 @@ void GXInitSpecularDir(GXLightObj* obj, f32 nX, f32 nY, f32 nZ)
 		mag = 1.0f / dolsqrtf(mag);
 	}
 
-	pObj->lpos[0] = vx * mag;
-	pObj->lpos[1] = vy * mag;
-	pObj->lpos[2] = vz * mag;
+	pObj->ldir[0] = vx * mag;
+	pObj->ldir[1] = vy * mag;
+	pObj->ldir[2] = vz * mag;
 
-	pObj->ldir[0] = nX * -GX_LARGE_NUMBER;
-	pObj->ldir[1] = nY * -GX_LARGE_NUMBER;
-	pObj->ldir[2] = nZ * -GX_LARGE_NUMBER;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  fneg      f0, f1
-	  fneg      f4, f2
-	  lfs       f5, -0x6D20(r2)
-	  fmuls     f8, f0, f0
-	  lfs       f6, -0x6D38(r2)
-	  fsubs     f5, f5, f3
-	  fmuls     f7, f4, f4
-	  fmuls     f9, f5, f5
-	  fadds     f7, f8, f7
-	  fadds     f7, f9, f7
-	  fcmpu     cr0, f6, f7
-	  fmr       f10, f7
-	  beq-      .loc_0xA8
-	  fcmpo     cr0, f10, f6
-	  ble-      .loc_0x9C
-	  fsqrte    f7, f10
-	  lfd       f9, -0x6D08(r2)
-	  lfd       f8, -0x6D00(r2)
-	  fmul      f6, f7, f7
-	  fmul      f7, f9, f7
-	  fmul      f6, f10, f6
-	  fsub      f6, f8, f6
-	  fmul      f7, f7, f6
-	  fmul      f6, f7, f7
-	  fmul      f7, f9, f7
-	  fmul      f6, f10, f6
-	  fsub      f6, f8, f6
-	  fmul      f7, f7, f6
-	  fmul      f6, f7, f7
-	  fmul      f7, f9, f7
-	  fmul      f6, f10, f6
-	  fsub      f6, f8, f6
-	  fmul      f6, f7, f6
-	  fmul      f6, f10, f6
-	  frsp      f6, f6
-	  stfs      f6, 0x18(r1)
-	  lfs       f7, 0x18(r1)
-	  b         .loc_0xA0
-
-	.loc_0x9C:
-	  fmr       f7, f10
-
-	.loc_0xA0:
-	  lfs       f6, -0x6D20(r2)
-	  fdivs     f10, f6, f7
-
-	.loc_0xA8:
-	  fmuls     f6, f0, f10
-	  fmuls     f4, f4, f10
-	  fmuls     f0, f5, f10
-	  stfs      f6, 0x34(r3)
-	  stfs      f4, 0x38(r3)
-	  stfs      f0, 0x3C(r3)
-	  lfs       f0, -0x6CF8(r2)
-	  fmuls     f4, f0, f1
-	  fmuls     f1, f0, f2
-	  fmuls     f0, f0, f3
-	  stfs      f4, 0x28(r3)
-	  stfs      f1, 0x2C(r3)
-	  stfs      f0, 0x30(r3)
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	pObj->lpos[0] = nX * -GX_LARGE_NUMBER;
+	pObj->lpos[1] = nY * -GX_LARGE_NUMBER;
+	pObj->lpos[2] = nZ * -GX_LARGE_NUMBER;
 }
 
 /*
@@ -521,6 +344,48 @@ void GXLoadLightObjIndx(u32 objIndex, GXLightID light)
  */
 void GXSetChanAmbColor(GXChannelID channel, GXColor color)
 {
+	u32 reg = 0;
+	u32 rgb;
+	u32 colorID;
+
+	switch (channel) {
+	case GX_COLOR0:
+		rgb = gx->ambColor[GX_COLOR0];
+		reg = (*(u32*)(&color)) >> 8;
+		GX_SET_REG(reg, rgb, 24, 31);
+		colorID = GX_COLOR0;
+		break;
+	case GX_COLOR1:
+		rgb = gx->ambColor[GX_COLOR1];
+		reg = (*(u32*)(&color)) >> 8;
+		GX_SET_REG(reg, rgb, 24, 31);
+		colorID = GX_COLOR1;
+		break;
+	case GX_ALPHA0:
+		reg = gx->ambColor[GX_COLOR0];
+		GX_SET_REG(reg, color.a, 24, 31);
+		colorID = GX_COLOR0;
+		break;
+	case GX_ALPHA1:
+		reg = gx->ambColor[GX_COLOR1];
+		GX_SET_REG(reg, color.a, 24, 31);
+		colorID = GX_COLOR1;
+		break;
+	case GX_COLOR0A0:
+		reg     = (*(u32*)(&color));
+		colorID = GX_COLOR0;
+		break;
+	case GX_COLOR1A1:
+		reg     = (*(u32*)(&color));
+		colorID = GX_COLOR1;
+		break;
+	default:
+		return;
+	}
+
+	GX_XF_LOAD_REG(GX_XF_REG_AMBIENT0 + colorID, reg);
+	gx->bpSentNot         = GX_TRUE;
+	gx->ambColor[colorID] = reg;
 	/*
 	.loc_0x0:
 	  cmpwi     r3, 0x3
@@ -609,6 +474,48 @@ void GXSetChanAmbColor(GXChannelID channel, GXColor color)
  */
 void GXSetChanMatColor(GXChannelID channel, GXColor color)
 {
+	u32 reg = 0;
+	u32 rgb;
+	u32 colorID;
+
+	switch (channel) {
+	case GX_COLOR0:
+		rgb = gx->matColor[GX_COLOR0];
+		reg = (*(u32*)(&color)) >> 8;
+		GX_SET_REG(reg, rgb, 24, 31);
+		colorID = 0;
+		break;
+	case GX_COLOR1:
+		rgb = gx->matColor[GX_COLOR1];
+		reg = (*(u32*)(&color)) >> 8;
+		GX_SET_REG(reg, rgb, 24, 31);
+		colorID = 1;
+		break;
+	case GX_ALPHA0:
+		reg = gx->matColor[GX_COLOR0];
+		GX_SET_REG(reg, color.a, 24, 31);
+		colorID = 0;
+		break;
+	case GX_ALPHA1:
+		reg = gx->matColor[GX_COLOR1];
+		GX_SET_REG(reg, color.a, 24, 31);
+		colorID = 1;
+		break;
+	case GX_COLOR0A0:
+		reg     = (*(u32*)(&color));
+		colorID = 0;
+		break;
+	case GX_COLOR1A1:
+		reg     = (*(u32*)(&color));
+		colorID = 1;
+		break;
+	default:
+		return;
+	}
+
+	GX_XF_LOAD_REG(GX_XF_REG_MATERIAL0 + colorID, reg);
+	gx->bpSentNot         = GX_TRUE;
+	gx->matColor[colorID] = reg;
 	/*
 	.loc_0x0:
 	  cmpwi     r3, 0x3
@@ -697,24 +604,9 @@ void GXSetChanMatColor(GXChannelID channel, GXColor color)
  */
 void GXSetNumChans(u8 count)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, -0x6D70(r2)
-	  rlwinm    r5,r3,0,24,31
-	  li        r4, 0x10
-	  lwz       r0, 0x204(r6)
-	  rlwimi    r0,r3,4,25,27
-	  lis       r3, 0xCC01
-	  stw       r0, 0x204(r6)
-	  li        r0, 0x1009
-	  stb       r4, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  stw       r5, -0x8000(r3)
-	  lwz       r0, 0x5AC(r6)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0x5AC(r6)
-	  blr
-	*/
+	GX_SET_REG(gx->genMode, count, 25, 27);
+	GX_XF_LOAD_REG(GX_XF_REG_NUMCOLORS, count);
+	gx->dirtyState |= GX_DIRTY_GEN_MODE;
 }
 
 /*
@@ -725,6 +617,28 @@ void GXSetNumChans(u8 count)
 void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 mask, GXDiffuseFn diffFunc,
                    GXAttnFn attnFunc)
 {
+	u32 colorID;
+	u32 reg = 0;
+	colorID = (channel & 0x3);
+	GX_SET_REG(reg, doEnable, GX_XF_CLR0CTRL_LIGHT_ST, GX_XF_CLR0CTRL_LIGHT_END);
+	GX_SET_REG(reg, matSrc, GX_XF_CLR0CTRL_MTXSRC_ST, GX_XF_CLR0CTRL_MTXSRC_END);
+	GX_SET_REG(reg, ambSrc, GX_XF_CLR0CTRL_AMBSRC_ST, GX_XF_CLR0CTRL_AMBSRC_END);
+	GX_SET_REG(reg, (attnFunc == GX_AF_SPEC ? GX_DF_NONE : diffFunc), GX_XF_CLR0CTRL_DIFATTN_ST, GX_XF_CLR0CTRL_DIFATTN_END);
+	GX_SET_REG(reg, (attnFunc != GX_AF_NONE), GX_XF_CLR0CTRL_ATTNENABLE_ST, GX_XF_CLR0CTRL_ATTNENABLE_END);
+	GX_SET_REG(reg, (attnFunc != GX_AF_SPEC), GX_XF_CLR0CTRL_ATTNSEL_ST, GX_XF_CLR0CTRL_ATTNSEL_END);
+
+	GX_SET_REG(reg, mask & 0xF, GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
+	GX_SET_REG(reg, (mask & 0xF0) >> 4, GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
+
+	GX_XF_LOAD_REG(GX_XF_REG_COLOR0CNTRL + colorID, reg);
+
+	if (channel == GX_COLOR0A0) {
+		GX_XF_LOAD_REG(GX_XF_REG_ALPHA0CNTRL, reg);
+	} else if (channel == GX_COLOR1A1) {
+		GX_XF_LOAD_REG(GX_XF_REG_ALPHA1CNTRL, reg);
+	}
+
+	gx->bpSentNot = GX_TRUE;
 	/*
 	.loc_0x0:
 	  rlwinm    r0,r4,0,24,31

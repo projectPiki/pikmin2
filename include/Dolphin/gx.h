@@ -22,6 +22,7 @@ extern "C" {
 #include "Dolphin/GX/GXTransform.h"
 #include "Dolphin/GX/GXMisc.h"
 #include "Dolphin/GX/GXData.h"
+#include "Dolphin/GX/GXHardware.h"
 
 #ifdef __cplusplus
 };

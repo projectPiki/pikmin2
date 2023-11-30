@@ -66,7 +66,7 @@ extern "C" {
 /**
  * Load immediate value into BP register
  */
-#define GX_LOAD_BP_REG(data)                \
+#define GX_BP_LOAD_REG(data)                \
 	GXWGFifo.s8  = GX_FIFO_CMD_LOAD_BP_REG; \
 	GXWGFifo.s32 = (data);
 

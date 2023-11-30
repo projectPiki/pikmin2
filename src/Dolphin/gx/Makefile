@@ -14,7 +14,7 @@ GX_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXTransform.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXPerf.o\
 
-$(GX_FILES): CFLAGS += -common off -str noreadonly
+$(GX_FILES): CFLAGS += -common off -str noreadonly -fp_contract off
 $(GX_FILES): MWCC_VERSION := 1.2.5n
 
 DEPENDS += $(GX_FILES:.o=.d)

@@ -701,7 +701,7 @@ LIBS = [
     {
         "lib": "gx",
         "mw_version": "1.2.5n",
-        "cflags": "$cflags_base -str noreadonly",
+        "cflags": "$cflags_base -str noreadonly -fp_contract off",
         "host": False,
         "objects": [
             ["Dolphin/gx/GXInit", True],

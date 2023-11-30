@@ -8,26 +8,19 @@
  */
 void __GXXfVtxSpecs(void)
 {
-	u32 norm, color, texCount;
+	u32 normCount, colorCount, texCount;
 
-	norm = gx->hasBiNrms ? 2 : (gx->hasNrms ? 1 : 0);
+	normCount = gx->hasBiNrms ? 2 : (gx->hasNrms ? 1 : 0);
 
 	// Both fields in one access
-	color = 32
-	      - __cntlzw(GX_BITGET(gx->vcdLo, GX_CP_VCD_LO_CLRSPEC_ST,
-	                           (GX_CP_VCD_LO_CLRSPEC_END - GX_CP_VCD_LO_CLRSPEC_ST + 1)
-	                               + (GX_CP_VCD_LO_CLRDIF_END - GX_CP_VCD_LO_CLRDIF_ST + 1)))
-	      + 1;
-	color >>= 1;
+	colorCount = 33 - __cntlzw(GX_GET_REG(gx->vcdLo, GX_CP_VCD_LO_CLRSPEC_ST, GX_CP_VCD_LO_CLRDIF_END));
+	colorCount = (colorCount) / 2;
 
 	// All 16 assigned bits in VCD_Hi
-	texCount = 32 - __cntlzw(GX_BITGET(gx->vcdHi, GX_CP_VCD_HI_TEX7COORD_ST, sizeof(u16) * 8)) + 1;
-	texCount <<= 3;
+	texCount = 33 - __cntlzw(GX_GET_REG(gx->vcdHi, GX_CP_VCD_HI_TEX7COORD_ST, GX_CP_VCD_HI_TEX0COORD_END));
+	texCount = (texCount) / 2;
 
-	norm <<= 2;
-
-	GX_XF_LOAD_REG_HDR(GX_XF_REG_INVERTEXSPEC);
-	GX_WRITE_U32(color | norm | (texCount & ~0xf));
+	GX_XF_LOAD_REG(GX_XF_REG_INVERTEXSPEC, colorCount | normCount << 2 | texCount << 4);
 	gx->bpSentNot = GX_TRUE;
 }
 
