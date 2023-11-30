@@ -27,7 +27,7 @@ struct OBBTree : public TriDivider {
 	}
 	virtual void read(Stream&);                  // _18
 	virtual void getCurrTri(Game::CurrTriInfo&); // _1C
-	virtual void getBoundBox(BoundBox&);         // _24 (weak)
+	virtual void getBoundBox(BoundBox&) { }      // _24 (weak)
 	virtual OBBTree* clone(Matrixf&);            // _28
 
 	void construct(VertexTable*, TriangleTable*, int, int);
@@ -44,6 +44,8 @@ struct OBBTree : public TriDivider {
 	void writeVertsOnly(Stream&);
 	void writeWithoutVerts(Stream&);
 	void testIntersection(Sys::Sphere&, Vector3f&);
+
+	inline OBB* getOBB() { return &mRoot; }
 
 	static bool debugTraceMove;
 

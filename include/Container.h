@@ -146,6 +146,8 @@ struct ArrayContainer : public Container<T> {
 	}
 	/////////////////// END VTABLE
 
+	int getNum() { return mCount; }
+
 	// The number of used objects.
 	int mCount; // _1C
 

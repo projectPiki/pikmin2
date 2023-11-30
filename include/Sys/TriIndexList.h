@@ -13,7 +13,7 @@ struct TriangleTable;
 struct VertexTable;
 
 struct TriIndexList : public IndexList {
-	TriIndexList();
+	TriIndexList() { }
 
 	virtual ~TriIndexList() { } // _08 (weak)
 

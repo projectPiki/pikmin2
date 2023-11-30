@@ -15,9 +15,28 @@ struct VertexTable;
 struct TriangleTable : public ArrayContainer<Triangle> {
 	TriangleTable();
 
-	virtual ~TriangleTable();                     // _08 (weak)
-	virtual void writeObject(Stream&, Triangle&); // _2C (weak)
-	virtual void readObject(Stream&, Triangle&);  // _30 (weak)
+	virtual ~TriangleTable() { }                                 // _08 (weak)
+	virtual void writeObject(Stream& output, Triangle& triangle) // _2C (weak)
+	{
+		output.writeInt(triangle.mVertices.x);
+		output.writeInt(triangle.mVertices.y);
+		output.writeInt(triangle.mVertices.z);
+
+		triangle.mTrianglePlane.write(output);
+		triangle.mEdgePlanes[0].write(output);
+		triangle.mEdgePlanes[1].write(output);
+		triangle.mEdgePlanes[2].write(output);
+	}
+	virtual void readObject(Stream& input, Triangle& triangle) // _30 (weak)
+	{
+		triangle.mVertices.x = input.readInt();
+		triangle.mVertices.y = input.readInt();
+		triangle.mVertices.z = input.readInt();
+		triangle.mTrianglePlane.read(input);
+		triangle.mEdgePlanes[0].read(input);
+		triangle.mEdgePlanes[1].read(input);
+		triangle.mEdgePlanes[2].read(input);
+	}
 
 	void createTriangleSphere(VertexTable&);
 	void cloneFrom(Matrixf&, TriangleTable*, VertexTable*);
@@ -33,6 +52,8 @@ struct TriangleTable : public ArrayContainer<Triangle> {
 		currTriangle->createSphere(*vtxTable);
 	}
 
+	inline Triangle* getTriangle(int i) { return &mObjects[i]; }
+
 	// Unused/inlined:
 	void findMaxVertexIndex();
 };
@@ -47,11 +68,11 @@ struct VertexTable : public ArrayContainer<Vector3f> {
 	{
 	}
 
-	virtual ~VertexTable();                       // _08 (weak)
-	virtual void writeObject(Stream&, Vector3f&); // _2C
-	virtual void readObject(Stream&, Vector3f&);  // _30 (weak)
-	virtual void write(Stream&);                  // _34
-	virtual void addOne(Vector3f&);               // _40 (weak)
+	virtual ~VertexTable() { }                                                       // _08 (weak)
+	virtual void writeObject(Stream&, Vector3f&);                                    // _2C
+	virtual void readObject(Stream& input, Vector3f& vertex) { vertex.read(input); } // _30 (weak)
+	virtual void write(Stream&);                                                     // _34
+	virtual void addOne(Vector3f&);                                                  // _40 (weak)
 
 	void transform(Matrixf&);
 	void cloneFrom(Matrixf&, VertexTable*);
@@ -62,6 +83,8 @@ struct VertexTable : public ArrayContainer<Vector3f> {
 			mBoundBox.include(mObjects[i]);
 		}
 	}
+
+	inline Vector3f* getVertex(int i) { return &mObjects[i]; }
 
 	BoundBox mBoundBox; // _28
 	u8 _40[0x10];       // _40

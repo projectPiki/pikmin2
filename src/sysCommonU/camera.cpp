@@ -153,7 +153,6 @@ Vector3f CullFrustum::getPosition()
  * Address:	8041A374
  * Size:	0002D4
  */
-// WIP: https://decomp.me/scratch/Dm64d
 void CullFrustum::updatePlanes()
 {
 	Vector3f row1 = getSideVector();
@@ -161,13 +160,13 @@ void CullFrustum::updatePlanes()
 
 	Vector3f posVec = getPosition(); // 38
 
-	float viewAngle = PI * (mViewAngle / 360.0f);                    // 27
-	float fovAngle  = (f32)atan(mAspectRatio * (f32)tan(viewAngle)); // 31
+	f32 viewAngle = PI * (mViewAngle / 360.0f);                    // 27
+	f32 fovAngle  = (f32)atan(mAspectRatio * (f32)tan(viewAngle)); // 31
 
 	Matrixf outMat;
 	Vec outVec;
 	Vector3f planeVec;
-	float dist;
+	f32 dist;
 
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, (PI - viewAngle));
 	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec);
@@ -438,7 +437,7 @@ Camera::Camera()
  * Address:	8041A840
  * Size:	000018
  */
-void Camera::setFixNearFar(bool fixed, float near, float far)
+void Camera::setFixNearFar(bool fixed, f32 near, f32 far)
 {
 	mIsFixed = fixed;
 	if (fixed) {
@@ -478,9 +477,29 @@ void Camera::copyFrom(Camera* camera)
  * Address:	8041A900
  * Size:	000198
  */
-// WIP: https://decomp.me/scratch/wPmZm
 void Camera::updatePlanes()
 {
+	CullFrustum::updatePlanes();
+	Vector3f zVec;
+	zVec.x = -mViewMatrix->mMatrix.structView.xz;
+	zVec.y = -mViewMatrix->mMatrix.structView.yz;
+	zVec.z = -mViewMatrix->mMatrix.structView.zz;
+
+	Vector3f pos = getPosition();
+
+	mObjects[4].a = -zVec.x;
+	mObjects[4].b = -zVec.y;
+	mObjects[4].c = -zVec.z;
+	Vector3f farPlaneVec(mObjects[4].a, mObjects[4].b, mObjects[4].c);
+	Vector3f farVec = zVec * mProjectionFar + pos;
+	mObjects[4].d   = dot(farPlaneVec, farVec);
+
+	mObjects[5].a = -zVec.x;
+	mObjects[5].b = -zVec.y;
+	mObjects[5].c = -zVec.z;
+	Vector3f nearPlaneVec(mObjects[5].a, mObjects[5].b, mObjects[5].c);
+	Vector3f nearVec = zVec * mProjectionNear + pos;
+	mObjects[5].d    = dot(nearPlaneVec, farVec);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -663,7 +682,7 @@ Vector3f* Camera::getPositionPtr()
  * Address:	8041AD0C
  * Size:	00001C
  */
-float Camera::getNear()
+f32 Camera::getNear()
 {
 	if (mIsFixed) {
 		return mNear;
@@ -676,7 +695,7 @@ float Camera::getNear()
  * Address:	8041AD28
  * Size:	00001C
  */
-float Camera::getFar()
+f32 Camera::getFar()
 {
 	if (mIsFixed) {
 		return mFar;
@@ -691,9 +710,9 @@ float Camera::getFar()
  */
 void Camera::setProjection()
 {
-	float far     = getFar();
+	f32 far       = getFar();
 	Mtx44* matrix = &mProjectionMtx;
-	float near    = getNear();
+	f32 near      = getNear();
 
 	C_MTXPerspective(*matrix, mViewAngle, mAspectRatio, near, far);
 	GXSetProjection(mProjectionMtx, GX_PERSPECTIVE);
@@ -751,15 +770,15 @@ Matrixf* Camera::getViewMatrix(bool b)
  */
 f32 Camera::calcProperDistance(f32 f1, f32 f2)
 {
-	float input2;
-	float angle;
-	float cos;
-	float sin;
-	float pct;
-	float ratio;
-	float returnValue;
-	float new_var2;
-	float returnMax;
+	f32 input2;
+	f32 angle;
+	f32 cos;
+	f32 sin;
+	f32 pct;
+	f32 ratio;
+	f32 returnValue;
+	f32 new_var2;
+	f32 returnMax;
 
 	input2 = f2;
 	if (input2 < 0.01f) {
@@ -785,9 +804,9 @@ f32 Camera::calcProperDistance(f32 f1, f32 f2)
  */
 void Camera::updateScreenConstants()
 {
-	_134      = ((mViewAngle * 0.5f) / 180.0f) * PI;
-	float cos = cosf(_134);
-	float sin = sinf(_134);
+	_134    = ((mViewAngle * 0.5f) / 180.0f) * PI;
+	f32 cos = cosf(_134);
+	f32 sin = sinf(_134);
 
 	_138 = cos / sin;
 
@@ -799,19 +818,18 @@ void Camera::updateScreenConstants()
  * Address:	8041B0F8
  * Size:	0000B8
  */
-// WIP: https://decomp.me/scratch/iovxv
-float Camera::calcScreenSize(Sys::Sphere& ball)
+f32 Camera::calcScreenSize(Sys::Sphere& ball)
 {
 	Vector3f camPos = getPosition();
 	Matrixf* matrix = mViewMatrix;
 	Vector3f netPos = ball.mPosition - camPos;
-	float dotprod
+	f32 dotprod
 	    = netPos.x * -matrix->mMatrix.structView.xz + netPos.y * -matrix->mMatrix.structView.yz + netPos.z * -matrix->mMatrix.structView.zz;
-	float scaledRad = _138 * ball.mRadius;
+	f32 scaledRad = _138 * ball.mRadius;
 
-	float product = _13C * scaledRad / dotprod;
+	f32 product = _13C * scaledRad / dotprod;
 
-	return fabs(product);
+	return absF(product);
 }
 
 /*
@@ -819,7 +837,7 @@ float Camera::calcScreenSize(Sys::Sphere& ball)
  * Address:	........
  * Size:	0000E0
  */
-// void Camera::calcScreenSize(Sys::Sphere&, float&, float&, Vector3f&)
+// void Camera::calcScreenSize(Sys::Sphere&, f32&, f32&, Vector3f&)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -829,10 +847,9 @@ float Camera::calcScreenSize(Sys::Sphere& ball)
  * Address:	8041B1B0
  * Size:	0002E8
  */
-// WIP: https://decomp.me/scratch/4nLm6
-void Camera::updateSoundCamera(float angle)
+void Camera::updateSoundCamera(f32 angle)
 {
-	float cotan = cosf(angle) / sinf(angle);
+	f32 cotan = cosf(angle) / sinf(angle);
 
 	Vector3f targetPos = getTargetDistance(); // wrong func call
 	Vector3f pos       = getPosition();
@@ -842,7 +859,7 @@ void Camera::updateSoundCamera(float angle)
 	viewVec1.z = -(*mViewMatrix)(2, 2);
 
 	f32 distance = targetPos.distance(pos);
-	float ratio  = (cotan * distance) / _138;
+	f32 ratio    = (cotan * distance) / _138;
 
 	mSoundPosition.x = -(viewVec1.x * ratio - targetPos.x);
 	mSoundPosition.y = -(viewVec1.y * ratio - targetPos.y);
@@ -917,9 +934,9 @@ void BlendCamera::setCameras(Camera** camList)
  * Address:	8041B934
  * Size:	000060
  */
-void BlendCamera::setBlendFactor(float factor)
+void BlendCamera::setBlendFactor(f32 factor)
 {
-	float blendfactor = factor;
+	f32 blendfactor = factor;
 	if (blendfactor < 0.0f) {
 		blendfactor = 0.0f;
 	} else if (blendfactor > mCameraCount - 1) {
@@ -934,9 +951,68 @@ void BlendCamera::setBlendFactor(float factor)
  * Address:	8041B994
  * Size:	0002A8
  */
-// WIP: https://decomp.me/scratch/JbYac
 bool BlendCamera::doUpdate()
 {
+	int blend          = mBlendFactor;
+	int blendIndex     = blend;
+	int nextBlendIndex = blendIndex + 1;
+
+	// Blend can't be higher than camera count
+	if (mCameraCount - 1 <= blend) {
+		blend          = blendIndex - 1;
+		nextBlendIndex = blend;
+	}
+
+	f32 blendFactorNextIndex = ((f32)blendIndex);
+
+	Quat indexQuat;
+	Quat nextIndexQuat;
+	Quat slerpQuat;
+
+	Matrixf* viewMatrix = mCameras[blendIndex]->getViewMatrix(false);
+	indexQuat.fromMatrixf(*viewMatrix);
+
+	viewMatrix = mCameras[nextBlendIndex]->getViewMatrix(false);
+	nextIndexQuat.fromMatrixf(*viewMatrix);
+
+	indexQuat.normalise();
+	nextIndexQuat.normalise();
+
+	Vector3f vectIndex     = mCameras[blendIndex]->getPosition();
+	Vector3f vectNextIndex = mCameras[nextBlendIndex]->getPosition();
+
+	f32 blendFactorIndex = 1.0f - blendFactorNextIndex;
+
+	mViewAngle = blendFactorIndex * mCameras[blendIndex]->mViewAngle + blendFactorNextIndex * mCameras[nextBlendIndex]->mViewAngle;
+
+	Vector3f vect3 = vectIndex * -blendFactorIndex + vectNextIndex * blendFactorNextIndex;
+
+	indexQuat.slerp(nextIndexQuat, blendFactorNextIndex, slerpQuat);
+	slerpQuat.normalise();
+
+	Matrixf quatMatrix;
+	Matrixf vectMatrix;
+
+	quatMatrix.makeQ(slerpQuat);
+
+	PSMTXTranspose(quatMatrix.mMatrix.mtxView, vectMatrix.mMatrix.mtxView);
+
+	// Probably an Inline
+
+	vectMatrix.mMatrix.structView.zy *= vect3.y;
+	vectMatrix.mMatrix.structView.zx *= vect3.x;
+	vectMatrix.mMatrix.structView.yx *= vect3.x;
+
+	vect3.x = vect3.z * vectMatrix.mMatrix.structView.xz + vect3.x * vectMatrix.mMatrix.structView.xx
+	        + vect3.y * vectMatrix.mMatrix.structView.xy;
+
+	vect3.y = vect3.z * vectMatrix.mMatrix.structView.yz + vectMatrix.mMatrix.structView.yx + vect3.y * vectMatrix.mMatrix.structView.yy;
+
+	vect3.z = vect3.z * vectMatrix.mMatrix.structView.zz + vectMatrix.mMatrix.structView.zx + vectMatrix.mMatrix.structView.zy;
+
+	_150.makeTQ(vect3, slerpQuat);
+
+	return;
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -1109,94 +1185,6 @@ lbl_8041BA14:
 	lwz      r29, 0xd4(r1)
 	mtlr     r0
 	addi     r1, r1, 0x120
-	blr
-
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C8
- */
-// EditorCamera::EditorCamera()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-// void EditorCamera::init(Controller*, Vector3f&, float)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001CC
- */
-// void EditorCamera::makeLookAt()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000474
- */
-// void EditorCamera::doUpdate()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
- */
-// EditorCamera::~EditorCamera()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	8041BC3C
- * Size:	0000C0
- */
-// WEAK - in header
-// BlendCamera::~BlendCamera() { }
-
-/*
- * --INFO--
- * Address:	8041BCFC
- * Size:	000008
- */
-// WEAK - in header
-// Matrixf* CullFrustum::getViewMatrix(bool) { return mViewMatrix; }
-
-/*
- * --INFO--
- * Address:	8041BD04
- * Size:	000028
- */
-void __sinit_camera_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EB718@ha
-	stw      r0, lbl_80516158@sda21(r13)
-	stfsu    f0, lbl_804EB718@l(r3)
-	stfs     f0, lbl_8051615C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
 	blr
 
 	*/

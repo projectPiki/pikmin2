@@ -4,16 +4,6 @@
 #include "types.h"
 #include "Game/MapMgr.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805203E0
-    lbl_805203E0:
-        .float 1.0
-        .4byte 0x00000000
-*/
-
 namespace Sys {
 
 /*

@@ -5,18 +5,7 @@
 #include "types.h"
 
 struct Matrix3f {
-	inline Matrix3f()
-	{
-		mMatrix[0][0] = 0.0f;
-		mMatrix[0][1] = 0.0f;
-		mMatrix[0][2] = 0.0f;
-		mMatrix[1][0] = 0.0f;
-		mMatrix[1][1] = 0.0f;
-		mMatrix[1][2] = 0.0f;
-		mMatrix[2][0] = 0.0f;
-		mMatrix[2][1] = 0.0f;
-		mMatrix[2][2] = 0.0f;
-	}
+
 	void makeIdentity();
 	inline bool isDiagonal(f32 thresh)
 	{

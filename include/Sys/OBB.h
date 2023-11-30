@@ -64,6 +64,31 @@ struct OBB : public CNode {
 
 	bool isLeaf() { return (!mHalfA && !mHalfB); }
 
+	inline void setMaxPlane(Vector3f* axisVec, int i)
+	{
+		f32 max    = mMaxXYZ[i];
+		axisVec->x = mAxes[i].x;
+		axisVec->y = mAxes[i].y;
+		axisVec->z = mAxes[i].z;
+
+		Vector3f scaledVec = *axisVec * max;
+		mSidePlanes[i].a   = axisVec->x;
+		mSidePlanes[i].b   = axisVec->y;
+		mSidePlanes[i].c   = axisVec->z;
+		mSidePlanes[i].d   = mSidePlanes[i].a * (mPosition.x + scaledVec.x) + mSidePlanes[i].b * (mPosition.y + scaledVec.y)
+		                 + mSidePlanes[i].c * (mPosition.z + scaledVec.z);
+	}
+
+	inline void setMinPlane(int i)
+	{
+		mSidePlanes[i + 3].a = -mAxes[i].x;
+		mSidePlanes[i + 3].b = -mAxes[i].y;
+		mSidePlanes[i + 3].c = -mAxes[i].z;
+		mSidePlanes[i + 3].d = mSidePlanes[i + 3].a * (mPosition.x + (-mAxes[i].x * mMinXYZ[i]))
+		                     + mSidePlanes[i + 3].b * (mPosition.y + (-mAxes[i].y * mMinXYZ[i]))
+		                     + mSidePlanes[i + 3].c * (mPosition.z + (-mAxes[i].z * mMinXYZ[i]));
+	}
+
 	Plane mSidePlanes[6];       // _18
 	Vector3f mPosition;         // _78
 	Vector3f mAxes[3];          // _84
