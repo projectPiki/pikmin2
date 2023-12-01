@@ -32,7 +32,7 @@ extern "C" {
 #define QUARTER_PI 0.7853982f
 
 #define SIN_2_5 0.43633234f
-#define M_SQRT3 1.7320508075688772f
+#define M_SQRT3 1.73205f
 
 #define DEG2RAD (1.0f / 180.0f)
 
