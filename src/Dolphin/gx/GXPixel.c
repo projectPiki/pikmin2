@@ -67,14 +67,14 @@ void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor
 	a_bits = *(u32*)&a;
 	c_bits = *(u32*)&c;
 
-	GX_SET_REG(fogParamReg0, a_bits >> 12 & 0x7FF, GX_BP_FOGPARAM0_A_MANT_ST, GX_BP_FOGPARAM0_A_MANT_END);
-	GX_SET_REG(fogParamReg0, a_bits >> 23 & 0xFF, GX_BP_FOGPARAM0_A_EXP_ST, GX_BP_FOGPARAM0_A_EXP_END);
+	GX_SET_REG(fogParamReg0, a_bits >> 12, GX_BP_FOGPARAM0_A_MANT_ST, GX_BP_FOGPARAM0_A_MANT_END);
+	GX_SET_REG(fogParamReg0, a_bits >> 23, GX_BP_FOGPARAM0_A_EXP_ST, GX_BP_FOGPARAM0_A_EXP_END);
 	GX_SET_REG(fogParamReg0, a_bits >> 31, GX_BP_FOGPARAM0_A_SIGN_ST, GX_BP_FOGPARAM0_A_SIGN_END);
 
 	GX_SET_REG(fogParamReg0, GX_BP_REG_FOGPARAM0, 0, 7);
 
-	GX_SET_REG(fogParamReg3, c_bits >> 12 & 0x7FF, GX_BP_FOGPARAM3_C_MANT_ST, GX_BP_FOGPARAM3_C_MANT_END);
-	GX_SET_REG(fogParamReg3, c_bits >> 23 & 0xFF, GX_BP_FOGPARAM3_C_EXP_ST, GX_BP_FOGPARAM3_C_EXP_END);
+	GX_SET_REG(fogParamReg3, c_bits >> 12, GX_BP_FOGPARAM3_C_MANT_ST, GX_BP_FOGPARAM3_C_MANT_END);
+	GX_SET_REG(fogParamReg3, c_bits >> 23, GX_BP_FOGPARAM3_C_EXP_ST, GX_BP_FOGPARAM3_C_EXP_END);
 	GX_SET_REG(fogParamReg3, c_bits >> 31, GX_BP_FOGPARAM3_C_SIGN_ST, GX_BP_FOGPARAM3_C_SIGN_END);
 
 	GX_SET_REG(fogParamReg3, ortho, GX_BP_FOGPARAM3_PROJ_ST, GX_BP_FOGPARAM3_PROJ_END);
@@ -82,7 +82,9 @@ void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor
 
 	GX_SET_REG(fogParamReg3, GX_BP_REG_FOGPARAM3, 0, 7);
 
-	GX_SET_REG(fogColorReg, *(u32*)&color >> 8, GX_BP_FOGCOLOR_RGB_ST, GX_BP_FOGCOLOR_RGB_END);
+	GX_SET_REG(fogColorReg, color.b, GX_BP_FOGCOLOR_RGB_ST + 16, GX_BP_FOGCOLOR_RGB_END);
+	GX_SET_REG(fogColorReg, color.g, (GX_BP_FOGCOLOR_RGB_ST + 8), (GX_BP_FOGCOLOR_RGB_END - 8));
+	GX_SET_REG(fogColorReg, color.r, (GX_BP_FOGCOLOR_RGB_ST + 0), (GX_BP_FOGCOLOR_RGB_END - 16));
 	GX_SET_REG(fogColorReg, GX_BP_REG_FOGCOLOR, 0, 7);
 
 	GX_BP_LOAD_REG(fogParamReg0);
