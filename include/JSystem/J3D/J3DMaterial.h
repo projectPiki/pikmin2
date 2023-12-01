@@ -76,7 +76,7 @@ struct J3DCurrentMtx : public J3DCurrentMtxInfo {
 struct J3DMaterial {
 	inline J3DMaterial() { initialize(); }
 
-	~J3DMaterial();
+	~J3DMaterial() { }
 
 	virtual void calc(const Mtx);           // _08
 	virtual void calcDiffTexMtx(const Mtx); // _0C

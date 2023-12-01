@@ -123,7 +123,34 @@ struct J3DMaterialBlock : J3DFileBlockBase {
 };
 
 struct J3DMaterialBlock_v21 : J3DFileBlockBase {
-	u8 _08[0x70]; // _08
+	u16 mNumMaterials;                 // _08
+	void* mMatEntryDataOffset;         // _0C
+	void* mMatRemapTableOffset;        // _10
+	void* mIndTexInfoOffset;           // _14
+	void* mCullModeInfoOffset;         // _18
+	void* mMatColorsOffset;            // _1C
+	void* mNumColorChansOffset;        // _20
+	void* mColorChanInfoOffset;        // _24
+	void* mNumTexCoordsOffset;         // _28
+	void* mTexCoordInfoOffset;         // _2C
+	void* mTexCoord2InfoOffset;        // _30
+	void* mTexMtxInfoOffset;           // _34
+	void* mTexMtxInfo2Offset;          // _38
+	void* mTextureRemapTableOffset;    // _3C
+	void* mTevOrderInfoOffset;         // _40
+	void* mTevColorsOffset;            // _44
+	void* mTevKColorsOffset;           // _48
+	void* mNumTevStagesOffset;         // _4C
+	void* mTevStageInfoOffset;         // _50
+	void* mTevSwapModeInfoOffset;      // _54
+	void* mTevSwapModeTableInfoOffset; // _58
+	void* mFogInfoOffset;              // _5C
+	void* mAlphaCompInfoOffset;        // _60
+	void* mBlendInfoOffset;            // _64
+	void* mZModeInfoOffset;            // _68
+	void* mZCompareInfoOffset;         // _6C
+	void* mDitherInfoOffset;           // _70
+	void* mNBTScaleInfoOffset;         // _74
 };
 
 struct J3DMaterialDLBlock : J3DFileBlockBase {
