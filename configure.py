@@ -242,7 +242,7 @@ LIBS = [
             ["JSystem/J3D/J3DModelSaver", True],
             ["JSystem/J3D/J3DGD", False],
             ["JSystem/J3D/J3DMatBlock", False],
-            ["JSystem/J3D/J3DModelData", False],
+            ["JSystem/J3D/J3DModelData", True],
             ["JSystem/J3D/J3DMaterialAttach", False],
             ["JSystem/J3D/J3DMaterialFactory_v21", False],
             ["JSystem/J3D/J3DShapeMtx", False],
