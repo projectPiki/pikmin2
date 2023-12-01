@@ -994,6 +994,7 @@ typedef enum _GXPixelFmt {
 	GX_PF_U8         = 5,
 	GX_PF_V8         = 6,
 	GX_PF_YUV420     = 7,
+	GX_MAX_PIXELFMT, // 8
 } GXPixelFmt;
 
 typedef GXPixelFmt _SDK_GXPixelFmt;

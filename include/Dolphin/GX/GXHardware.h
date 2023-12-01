@@ -33,9 +33,9 @@ extern "C" {
  *
  ***********************************************************/
 
-#define __GX_FIFO_SET_LOAD_INDX_DST(reg, x)   ((reg) = GX_BITSET(reg, 20, 12, x))
-#define __GX_FIFO_SET_LOAD_INDX_NELEM(reg, x) ((reg) = GX_BITSET(reg, 16, 4, x))
-#define __GX_FIFO_SET_LOAD_INDX_INDEX(reg, x) ((reg) = GX_BITSET(reg, 0, 16, x))
+#define __GX_FIFO_SET_LOAD_INDX_DST(reg, x)   ((reg) = GX_BITFIELD_SET(reg, 20, 12, x))
+#define __GX_FIFO_SET_LOAD_INDX_NELEM(reg, x) ((reg) = GX_BITFIELD_SET(reg, 16, 4, x))
+#define __GX_FIFO_SET_LOAD_INDX_INDEX(reg, x) ((reg) = GX_BITFIELD_SET(reg, 0, 16, x))
 
 #define __GX_FIFO_LOAD_INDX(reg, dst, nelem, index) \
 	{                                               \
@@ -73,7 +73,7 @@ extern "C" {
 /**
  * Set BP command opcode (first 8 bits)
  */
-#define GX_BP_SET_OPCODE(cmd, opcode) (cmd) = GX_BITSET(cmd, 0, 8, (opcode))
+#define GX_BP_SET_OPCODE(cmd, opcode) (cmd) = GX_BITFIELD_SET(cmd, 0, 8, (opcode))
 
 /************************************************************
  *

@@ -14,7 +14,7 @@ extern "C" {
 ///////////// PIXEL FUNCTIONS //////////////
 // Fog functions.
 extern void GXSetFog(GXFogType type, f32 startZ, f32 endZ, f32 nearZ, f32 farZ, GXColor color);
-extern void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, Mtx44 projMtx);
+extern void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, const Mtx44 projMtx);
 extern void GXSetFogRangeAdj(GXBool doEnable, u16 center, GXFogAdjTable* table);
 
 // Blend functions.

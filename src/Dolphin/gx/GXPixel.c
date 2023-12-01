@@ -1,4 +1,5 @@
 #include "Dolphin/gx.h"
+#include "Dolphin/math.h"
 
 /*
  * --INFO--
@@ -7,6 +8,90 @@
  */
 void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color)
 {
+	f32 a, c;
+	u32 a_bits, c_bits;
+
+	u32 fogColorReg  = 0;
+	u32 fogParamReg0 = 0;
+	u32 fogParamReg1 = 0;
+	u32 fogParamReg2 = 0;
+	u32 fogParamReg3 = 0;
+
+	u32 fsel   = type & 7;
+	BOOL ortho = (type >> 3) & 1;
+
+	if (ortho) {
+		if (farz == nearz || endz == startz) {
+			a = 0.0f;
+			c = 0.0f;
+		} else {
+			a = (1.0f / (endz - startz)) * (farz - nearz);
+			c = (1.0f / (endz - startz)) * (startz - nearz);
+		}
+	} else {
+		f32 f28, f25, f24;
+		u32 expB, magB, shiftB;
+
+		if (farz == nearz || endz == startz) {
+			f28 = 0.0f;
+			f25 = 0.5f;
+			f24 = 0.0f;
+		} else {
+			f28 = (farz * nearz) / ((farz - nearz) * (endz - startz));
+			f25 = farz / (farz - nearz);
+			f24 = startz / (endz - startz);
+		}
+
+		expB = 0;
+		while (f25 > 1.0l) {
+			f25 /= 2.0f;
+			expB++;
+		}
+		while (f25 > 0.0f && f25 < 0.5l) {
+			f25 *= 2.0f;
+			expB--;
+		}
+
+		a      = f28 / (1 << expB + 1);
+		magB   = 8388638.0f * f25;
+		shiftB = expB + 1;
+		c      = f24;
+
+		GX_SET_REG(fogParamReg1, magB, GX_BP_FOGPARAM1_B_MAG_ST, GX_BP_FOGPARAM1_B_MAG_END);
+		GX_SET_REG(fogParamReg2, shiftB, GX_BP_FOGPARAM2_B_SHIFT_ST, GX_BP_FOGPARAM2_B_SHIFT_END);
+
+		GX_SET_REG(fogParamReg1, GX_BP_REG_FOGPARAM1, 0, 7);
+		GX_SET_REG(fogParamReg2, GX_BP_REG_FOGPARAM2, 0, 7);
+	}
+
+	a_bits = *(u32*)&a;
+	c_bits = *(u32*)&c;
+
+	GX_SET_REG(fogParamReg0, a_bits >> 12 & 0x7FF, GX_BP_FOGPARAM0_A_MANT_ST, GX_BP_FOGPARAM0_A_MANT_END);
+	GX_SET_REG(fogParamReg0, a_bits >> 23 & 0xFF, GX_BP_FOGPARAM0_A_EXP_ST, GX_BP_FOGPARAM0_A_EXP_END);
+	GX_SET_REG(fogParamReg0, a_bits >> 31, GX_BP_FOGPARAM0_A_SIGN_ST, GX_BP_FOGPARAM0_A_SIGN_END);
+
+	GX_SET_REG(fogParamReg0, GX_BP_REG_FOGPARAM0, 0, 7);
+
+	GX_SET_REG(fogParamReg3, c_bits >> 12 & 0x7FF, GX_BP_FOGPARAM3_C_MANT_ST, GX_BP_FOGPARAM3_C_MANT_END);
+	GX_SET_REG(fogParamReg3, c_bits >> 23 & 0xFF, GX_BP_FOGPARAM3_C_EXP_ST, GX_BP_FOGPARAM3_C_EXP_END);
+	GX_SET_REG(fogParamReg3, c_bits >> 31, GX_BP_FOGPARAM3_C_SIGN_ST, GX_BP_FOGPARAM3_C_SIGN_END);
+
+	GX_SET_REG(fogParamReg3, ortho, GX_BP_FOGPARAM3_PROJ_ST, GX_BP_FOGPARAM3_PROJ_END);
+	GX_SET_REG(fogParamReg3, fsel, GX_BP_FOGPARAM3_FSEL_ST, GX_BP_FOGPARAM3_FSEL_END);
+
+	GX_SET_REG(fogParamReg3, GX_BP_REG_FOGPARAM3, 0, 7);
+
+	GX_SET_REG(fogColorReg, *(u32*)&color >> 8, GX_BP_FOGCOLOR_RGB_ST, GX_BP_FOGCOLOR_RGB_END);
+	GX_SET_REG(fogColorReg, GX_BP_REG_FOGCOLOR, 0, 7);
+
+	GX_BP_LOAD_REG(fogParamReg0);
+	GX_BP_LOAD_REG(fogParamReg1);
+	GX_BP_LOAD_REG(fogParamReg2);
+	GX_BP_LOAD_REG(fogParamReg3);
+	GX_BP_LOAD_REG(fogColorReg);
+
+	gx->bpSentNot = GX_FALSE;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -178,8 +263,28 @@ void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor
  * Address:	800E8E04
  * Size:	0001B0
  */
-void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, f32 projmtx[4][4])
+void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, const Mtx44 proj)
 {
+	f32 f31, f30, f29, f28, f27;
+	u32 i;
+
+	if (proj[3][3] == 0.0l) {
+		f30 = proj[2][3] / (proj[2][2] - 1.0f);
+		f28 = f30 / proj[0][0];
+	} else {
+		f28 = 1.0f / proj[0][0];
+		f30 = M_SQRT3 * f28;
+	}
+
+	f29 = 2.0f / width;
+
+	for (i = 0; i < ARRAY_SIZE(table->fogVals); i++) {
+		f31 = (i + 1) * 32;
+		f31 *= f29;
+		f31 *= f28;
+		f27               = dolsqrtf(1.0f + (f31 * f31) / (f30 * f30));
+		table->fogVals[i] = (u32)(f27 * 256) & 0xFFF;
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -308,84 +413,27 @@ void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, f32 projmtx[4][4])
  */
 void GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table)
 {
-	/*
-	.loc_0x0:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xE8
-	  li        r6, 0
-	  rlwinm    r0,r6,1,0,30
-	  add       r9, r5, r0
-	  lhz       r8, 0x0(r9)
-	  rlwinm    r10,r6,31,1,31
-	  lhz       r7, 0x2(r9)
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  li        r11, 0
-	  stb       r0, -0x8000(r5)
-	  rlwimi    r11,r8,0,20,31
-	  addi      r8, r11, 0
-	  addi      r6, r10, 0xE9
-	  rlwimi    r8,r7,12,8,19
-	  rlwimi    r8,r6,24,0,7
-	  stw       r8, -0x8000(r5)
-	  addi      r6, r10, 0xEA
-	  li        r11, 0
-	  lhz       r8, 0x4(r9)
-	  lhz       r7, 0x6(r9)
-	  rlwimi    r11,r8,0,20,31
-	  addi      r8, r11, 0
-	  stb       r0, -0x8000(r5)
-	  rlwimi    r8,r7,12,8,19
-	  rlwimi    r8,r6,24,0,7
-	  stw       r8, -0x8000(r5)
-	  addi      r6, r10, 0xEB
-	  li        r11, 0
-	  lhz       r8, 0x8(r9)
-	  lhz       r7, 0xA(r9)
-	  rlwimi    r11,r8,0,20,31
-	  addi      r8, r11, 0
-	  stb       r0, -0x8000(r5)
-	  rlwimi    r8,r7,12,8,19
-	  rlwimi    r8,r6,24,0,7
-	  stw       r8, -0x8000(r5)
-	  addi      r6, r10, 0xEC
-	  li        r11, 0
-	  lhz       r8, 0xC(r9)
-	  lhz       r7, 0xE(r9)
-	  rlwimi    r11,r8,0,20,31
-	  addi      r8, r11, 0
-	  stb       r0, -0x8000(r5)
-	  rlwimi    r8,r7,12,8,19
-	  rlwimi    r8,r6,24,0,7
-	  stw       r8, -0x8000(r5)
-	  addi      r6, r10, 0xED
-	  li        r11, 0
-	  lhz       r8, 0x10(r9)
-	  lhz       r7, 0x12(r9)
-	  rlwimi    r11,r8,0,20,31
-	  addi      r8, r11, 0
-	  stb       r0, -0x8000(r5)
-	  rlwimi    r8,r7,12,8,19
-	  rlwimi    r8,r6,24,0,7
-	  stw       r8, -0x8000(r5)
+	u32 fogRangeReg;
+	u32 fogRangeRegK;
+	u32 i;
 
-	.loc_0xE8:
-	  rlwinm    r5,r4,0,16,31
-	  lwz       r4, -0x6D70(r2)
-	  addi      r0, r5, 0x156
-	  li        r5, 0
-	  rlwimi    r5,r0,0,22,31
-	  rlwimi    r5,r3,10,21,21
-	  li        r0, 0x61
-	  lis       r3, 0xCC01
-	  stb       r0, -0x8000(r3)
-	  li        r0, 0xE8
-	  rlwimi    r5,r0,24,0,7
-	  stw       r5, -0x8000(r3)
-	  li        r0, 0
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
+	if (enable) {
+		for (i = 0; i < ARRAY_SIZE(table->fogVals); i += 2) {
+			fogRangeRegK = 0;
+			GX_SET_REG(fogRangeRegK, table->fogVals[i], GX_BP_FOGRANGEK_HI_ST, GX_BP_FOGRANGEK_HI_END);
+			GX_SET_REG(fogRangeRegK, table->fogVals[i + 1], GX_BP_FOGRANGEK_LO_ST, GX_BP_FOGRANGEK_LO_END);
+			GX_SET_REG(fogRangeRegK, GX_BP_REG_FOGRANGEK0 + (i / 2), 0, 7);
+			GX_BP_LOAD_REG(fogRangeRegK);
+		}
+	}
+
+	fogRangeReg = 0;
+	GX_SET_REG(fogRangeReg, center + 342, GX_BP_FOGRANGE_CENTER_ST, GX_BP_FOGRANGE_CENTER_END);
+	GX_SET_REG(fogRangeReg, enable, GX_BP_FOGRANGE_ENABLED_ST, GX_BP_FOGRANGE_ENABLED_END);
+	GX_SET_REG(fogRangeReg, GX_BP_REG_FOGRANGE, 0, 7);
+	GX_BP_LOAD_REG(fogRangeReg);
+
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -395,30 +443,18 @@ void GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table)
  */
 void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op)
 {
-	/*
-	.loc_0x0:
-	  lwz       r8, -0x6D70(r2)
-	  subfic    r0, r3, 0x3
-	  cntlzw    r7, r0
-	  subfic    r0, r3, 0x2
-	  lwz       r9, 0x1D0(r8)
-	  rlwimi    r9,r7,6,20,20
-	  addi      r7, r9, 0
-	  rlwimi    r7,r3,0,31,31
-	  cntlzw    r0, r0
-	  rlwimi    r7,r0,28,30,30
-	  rlwimi    r7,r6,12,16,19
-	  rlwimi    r7,r4,8,21,23
-	  li        r0, 0x61
-	  lis       r3, 0xCC01
-	  stb       r0, -0x8000(r3)
-	  rlwimi    r7,r5,5,24,26
-	  li        r0, 0
-	  stw       r7, -0x8000(r3)
-	  stw       r7, 0x1D0(r8)
-	  sth       r0, 0x2(r8)
-	  blr
-	*/
+	u32 blendModeReg = gx->cmode0;
+	GX_SET_REG(blendModeReg, type == GX_BM_SUBTRACT, GX_BP_BLENDMODE_SUBTRACT_ST, GX_BP_BLENDMODE_SUBTRACT_END);
+	GX_SET_REG(blendModeReg, type, GX_BP_BLENDMODE_ENABLE_ST, GX_BP_BLENDMODE_ENABLE_END);
+	GX_SET_REG(blendModeReg, type == GX_BM_LOGIC, GX_BP_BLENDMODE_LOGIC_OP_ST, GX_BP_BLENDMODE_LOGIC_OP_END);
+	GX_SET_REG(blendModeReg, op, GX_BP_BLENDMODE_LOGICMODE_ST, GX_BP_BLENDMODE_LOGICMODE_END);
+	GX_SET_REG(blendModeReg, src_factor, GX_BP_BLENDMODE_SRCFACTOR_ST, GX_BP_BLENDMODE_SRCFACTOR_END);
+	GX_SET_REG(blendModeReg, dst_factor, GX_BP_BLENDMODE_DSTFACTOR_ST, GX_BP_BLENDMODE_DSTFACTOR_END);
+
+	GX_BP_LOAD_REG(blendModeReg);
+	gx->cmode0 = blendModeReg;
+
+	gx->bpSentNot = FALSE;
 }
 
 /*
@@ -426,27 +462,13 @@ void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor ds
  * Address:	800E912C
  * Size:	00002C
  */
-void GXSetColorUpdate(GXBool update_enable)
+void GXSetColorUpdate(GXBool updateEnable)
 {
-	u32 newValue = (update_enable & GX_ENABLE) << 3 | gx->cmode0 & ~8;
-	GX_WRITE_U8(0x61);
-	GXWGFifo.u32  = newValue;
-	gx->cmode0    = newValue;
+	u32 blendModeReg = gx->cmode0;
+	GX_SET_REG(blendModeReg, updateEnable, GX_BP_BLENDMODE_COLOR_UPDATE_ST, GX_BP_BLENDMODE_COLOR_UPDATE_END);
+	GX_BP_LOAD_REG(blendModeReg);
+	gx->cmode0    = blendModeReg;
 	gx->bpSentNot = GX_FALSE;
-	/*
-	.loc_0x0:
-	  lwz       r5, -0x6D70(r2)
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lwz       r6, 0x1D0(r5)
-	  rlwimi    r6,r3,3,28,28
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0
-	  stw       r6, -0x8000(r4)
-	  stw       r6, 0x1D0(r5)
-	  sth       r0, 0x2(r5)
-	  blr
-	*/
 }
 
 /*
@@ -456,20 +478,11 @@ void GXSetColorUpdate(GXBool update_enable)
  */
 void GXSetAlphaUpdate(GXBool updateEnable)
 {
-	/*
-	.loc_0x0:
-	  lwz       r5, -0x6D70(r2)
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lwz       r6, 0x1D0(r5)
-	  rlwimi    r6,r3,4,27,27
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0
-	  stw       r6, -0x8000(r4)
-	  stw       r6, 0x1D0(r5)
-	  sth       r0, 0x2(r5)
-	  blr
-	*/
+	u32 blendModeReg = gx->cmode0;
+	GX_SET_REG(blendModeReg, updateEnable, GX_BP_BLENDMODE_ALPHA_UPDATE_ST, GX_BP_BLENDMODE_ALPHA_UPDATE_END);
+	GX_BP_LOAD_REG(blendModeReg);
+	gx->cmode0    = blendModeReg;
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -477,24 +490,15 @@ void GXSetAlphaUpdate(GXBool updateEnable)
  * Address:	800E9184
  * Size:	000034
  */
-void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable)
+void GXSetZMode(GXBool compareEnable, GXCompare func, GXBool updateEnable)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, -0x6D70(r2)
-	  li        r0, 0x61
-	  lwz       r7, 0x1D8(r6)
-	  rlwimi    r7,r3,0,31,31
-	  lis       r3, 0xCC01
-	  stb       r0, -0x8000(r3)
-	  rlwimi    r7,r4,1,28,30
-	  rlwimi    r7,r5,4,27,27
-	  stw       r7, -0x8000(r3)
-	  li        r0, 0
-	  stw       r7, 0x1D8(r6)
-	  sth       r0, 0x2(r6)
-	  blr
-	*/
+	u32 zModeReg = gx->zmode;
+	GX_SET_REG(zModeReg, compareEnable, GX_BP_ZMODE_TEST_ENABLE_ST, GX_BP_ZMODE_TEST_ENABLE_END);
+	GX_SET_REG(zModeReg, func, GX_BP_ZMODE_COMPARE_ST, GX_BP_ZMODE_COMPARE_END);
+	GX_SET_REG(zModeReg, updateEnable, GX_BP_ZMODE_UPDATE_ENABLE_ST, GX_BP_ZMODE_UPDATE_ENABLE_END);
+	GX_BP_LOAD_REG(zModeReg);
+	gx->zmode     = zModeReg;
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -502,24 +506,11 @@ void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable)
  * Address:	800E91B8
  * Size:	000034
  */
-void GXSetZCompLoc(GXBool before_tex)
+void GXSetZCompLoc(GXBool beforeTex)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, -0x6D70(r2)
-	  rlwinm    r0,r3,0,24,31
-	  li        r3, 0x61
-	  lwz       r5, 0x1DC(r6)
-	  rlwimi    r5,r0,6,25,25
-	  lis       r4, 0xCC01
-	  stw       r5, 0x1DC(r6)
-	  li        r0, 0
-	  stb       r3, -0x8000(r4)
-	  lwz       r3, 0x1DC(r6)
-	  stw       r3, -0x8000(r4)
-	  sth       r0, 0x2(r6)
-	  blr
-	*/
+	GX_SET_REG(gx->peCtrl, beforeTex, GX_BP_ZCONTROL_BEFORE_TEX_ST, GX_BP_ZCONTROL_BEFORE_TEX_END);
+	GX_BP_LOAD_REG(gx->peCtrl);
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -527,8 +518,29 @@ void GXSetZCompLoc(GXBool before_tex)
  * Address:	800E91EC
  * Size:	0000D4
  */
-void GXSetPixelFmt(GXPixelFmt pix_fmt, GXZFmt16 z_fmt)
+void GXSetPixelFmt(GXPixelFmt pixelFmt, GXZFmt16 zFmt)
 {
+	static u32 p2f[GX_MAX_PIXELFMT]
+	    = { GX_PF_RGB8_Z24, GX_PF_RGBA6_Z24, GX_PF_RGB565_Z16, GX_PF_Z24, GX_PF_Y8, GX_PF_Y8, GX_PF_Y8, GX_PF_U8 };
+
+	const u32 zControlRegOld = gx->peCtrl;
+
+	GX_SET_REG(gx->peCtrl, p2f[pixelFmt], GX_BP_ZCONTROL_PIXEL_FMT_ST, GX_BP_ZCONTROL_PIXEL_FMT_END);
+	GX_SET_REG(gx->peCtrl, zFmt, GX_BP_ZCONTROL_Z_FMT_ST, GX_BP_ZCONTROL_Z_FMT_END);
+
+	if (zControlRegOld != gx->peCtrl) {
+		GX_BP_LOAD_REG(gx->peCtrl);
+		GX_SET_REG(gx->genMode, (pixelFmt == GX_PF_RGB565_Z16) ? 1 : 0, GX_BP_GENMODE_MULTISAMPLE_ST, GX_BP_GENMODE_MULTISAMPLE_END);
+		gx->dirtyState |= GX_DIRTY_GEN_MODE;
+	}
+
+	if (p2f[pixelFmt] == GX_PF_Y8) {
+		GX_SET_REG(gx->cmode1, pixelFmt - GX_PF_Y8, GX_BP_DSTALPHA_YUV_FMT_ST, GX_BP_DSTALPHA_YUV_FMT_END);
+		GX_SET_REG(gx->cmode1, GX_BP_REG_DSTALPHA, 0, 7);
+		GX_BP_LOAD_REG(gx->cmode1);
+	}
+
+	gx->bpSentNot = FALSE;
 	/*
 	.loc_0x0:
 	  lis       r5, 0x804B
@@ -602,20 +614,11 @@ void GXSetPixelFmt(GXPixelFmt pix_fmt, GXZFmt16 z_fmt)
  */
 void GXSetDither(GXBool dither)
 {
-	/*
-	.loc_0x0:
-	  lwz       r5, -0x6D70(r2)
-	  li        r0, 0x61
-	  lis       r4, 0xCC01
-	  lwz       r6, 0x1D0(r5)
-	  rlwimi    r6,r3,2,29,29
-	  stb       r0, -0x8000(r4)
-	  li        r0, 0
-	  stw       r6, -0x8000(r4)
-	  stw       r6, 0x1D0(r5)
-	  sth       r0, 0x2(r5)
-	  blr
-	*/
+	u32 blendModeReg = gx->cmode0;
+	GX_SET_REG(blendModeReg, dither, GX_BP_BLENDMODE_DITHER_ST, GX_BP_BLENDMODE_DITHER_END);
+	GX_BP_LOAD_REG(blendModeReg);
+	gx->cmode0    = blendModeReg;
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -625,24 +628,12 @@ void GXSetDither(GXBool dither)
  */
 void GXSetDstAlpha(GXBool enable, u8 alpha)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, -0x6D70(r2)
-	  rlwinm    r5,r4,0,24,31
-	  li        r0, 0x61
-	  lwz       r7, 0x1D4(r6)
-	  lis       r4, 0xCC01
-	  rlwimi    r7,r5,0,24,31
-	  stb       r0, -0x8000(r4)
-	  rlwinm    r0,r3,0,24,31
-	  addi      r3, r7, 0
-	  rlwimi    r3,r0,8,23,23
-	  stw       r3, -0x8000(r4)
-	  li        r0, 0
-	  stw       r3, 0x1D4(r6)
-	  sth       r0, 0x2(r6)
-	  blr
-	*/
+	u32 dstAlpha = gx->cmode1;
+	GX_SET_REG(dstAlpha, alpha, GX_BP_DSTALPHA_ALPHA_ST, GX_BP_DSTALPHA_ALPHA_END);
+	GX_SET_REG(dstAlpha, enable, GX_BP_DSTALPHA_ENABLE_ST, GX_BP_DSTALPHA_ENABLE_END);
+	GX_BP_LOAD_REG(dstAlpha);
+	gx->cmode1    = dstAlpha;
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -650,25 +641,15 @@ void GXSetDstAlpha(GXBool enable, u8 alpha)
  * Address:	800E9328
  * Size:	000038
  */
-void GXSetFieldMask(GXBool odd_mask, GXBool even_mask)
+void GXSetFieldMask(GXBool enableEven, GXBool enableOdd)
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,0,24,31
-	  lwz       r4, -0x6D70(r2)
-	  li        r5, 0
-	  rlwimi    r5,r0,0,31,31
-	  rlwimi    r5,r3,1,30,30
-	  li        r0, 0x61
-	  lis       r3, 0xCC01
-	  stb       r0, -0x8000(r3)
-	  li        r0, 0x44
-	  rlwimi    r5,r0,24,0,7
-	  stw       r5, -0x8000(r3)
-	  li        r0, 0
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
+	u32 fieldMaskReg = 0;
+	GX_SET_REG(fieldMaskReg, enableOdd, GX_BP_FIELDMASK_ODD_ST, GX_BP_FIELDMASK_ODD_END);
+	GX_SET_REG(fieldMaskReg, enableEven, GX_BP_FIELDMASK_EVEN_ST, GX_BP_FIELDMASK_EVEN_END);
+	GX_SET_REG(fieldMaskReg, GX_BP_REG_FIELDMASK, 0, 7);
+
+	GX_BP_LOAD_REG(fieldMaskReg);
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -676,39 +657,12 @@ void GXSetFieldMask(GXBool odd_mask, GXBool even_mask)
  * Address:	800E9360
  * Size:	000078
  */
-void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio)
+void GXSetFieldMode(GXBool texLOD, GXBool adjustAR)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  rlwinm    r0,r4,0,24,31
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  lis       r31, 0xCC01
-	  stw       r30, 0x18(r1)
-	  li        r30, 0x61
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r5, -0x6D70(r2)
-	  lwz       r4, 0x7C(r5)
-	  rlwimi    r4,r0,22,9,9
-	  stw       r4, 0x7C(r5)
-	  stb       r30, -0x8000(r31)
-	  lwz       r0, 0x7C(r5)
-	  stw       r0, -0x8000(r31)
-	  bl        -0xF4C
-	  rlwinm    r0,r29,0,24,31
-	  stb       r30, -0x8000(r31)
-	  oris      r0, r0, 0x6800
-	  stw       r0, -0x8000(r31)
-	  bl        -0xF60
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	GX_SET_REG(gx->lpSize, adjustAR, GX_BP_LINEPTWIDTH_ADJUST_ST, GX_BP_LINEPTWIDTH_ADJUST_END);
+	GX_BP_LOAD_REG(gx->lpSize);
+
+	__GXFlushTextureState();
+	GX_BP_LOAD_REG(GX_BP_REG_FIELDMODE << 24 | texLOD);
+	__GXFlushTextureState();
 }
