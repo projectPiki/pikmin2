@@ -1,131 +1,39 @@
 #include "JSystem/J3D/J3DSkinDeform.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516A48
-    lbl_80516A48:
-        .float 1.0
-    .global lbl_80516A4C
-    lbl_80516A4C:
-        .float 1.0
-    .global lbl_80516A50
-    lbl_80516A50:
-        .float -1.0
-    .global lbl_80516A54
-    lbl_80516A54:
-        .4byte 0x00000000
-    .global lbl_80516A58
-    lbl_80516A58:
-        .float -1.0
-    .global lbl_80516A5C
-    lbl_80516A5C:
-        .4byte 0x40490FDB
-    .global lbl_80516A60
-    lbl_80516A60:
-        .4byte 0x447FE000
-    .global lbl_80516A64
-    lbl_80516A64:
-        .4byte 0x3FC90FDB
-    .global lbl_80516A68
-    lbl_80516A68:
-        .4byte 0x42652EE0
-    .global lbl_80516A6C
-    lbl_80516A6C:
-        .4byte 0x43340000
-    .global lbl_80516A70
-    lbl_80516A70:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
+#include "JSystem/J3D/J3DAnmCluster.h"
 
 /*
  * --INFO--
  * Address:	8006A59C
  * Size:	000024
  */
-void J3DDeformData::deform(J3DModel*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r4, r4, 0x88
-	stw      r0, 0x14(r1)
-	bl       deform__13J3DDeformDataFP15J3DVertexBuffer
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J3DDeformData::deform(J3DModel* model) { deform(model->getVertexBuffer()); }
 
 /*
  * --INFO--
  * Address:	8006A5C0
  * Size:	0000D4
  */
-void J3DDeformData::deform(J3DVertexBuffer*)
+void J3DDeformData::deform(J3DVertexBuffer* vtxbuffer)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 4(r4)
-	lwz      r0, 8(r4)
-	stw      r0, 4(r4)
-	stw      r3, 8(r4)
-	lwz      r3, 0xc(r4)
-	lwz      r0, 0x10(r4)
-	stw      r0, 0xc(r4)
-	stw      r3, 0x10(r4)
-	b        lbl_8006A62C
+	// Swap vtxbuffer positions
+	void* old             = vtxbuffer->mVtxPos[0];
+	vtxbuffer->mVtxPos[0] = vtxbuffer->mVtxPos[1];
+	vtxbuffer->mVtxPos[1] = old;
+	// Swap vertex normals
+	old                    = vtxbuffer->mVtxNorm[0];
+	vtxbuffer->mVtxNorm[0] = vtxbuffer->mVtxNorm[1];
+	vtxbuffer->mVtxNorm[1] = old;
 
-lbl_8006A608:
-	clrlwi   r0, r31, 0x10
-	lwz      r6, 8(r29)
-	mulli    r3, r0, 0x24
-	mr       r4, r30
-	mr       r5, r31
-	addi     r0, r3, 0x20
-	lwzx     r3, r6, r0
-	bl       deform__11J3DDeformerFP15J3DVertexBufferUs
-	addi     r31, r31, 1
+	for (u16 i = 0; i < mClusterNum; i++) {
+		getCluster(i)->mDeformer->deform(vtxbuffer, i);
+	}
 
-lbl_8006A62C:
-	lhz      r0, 0(r29)
-	clrlwi   r3, r31, 0x10
-	cmplw    r3, r0
-	blt      lbl_8006A608
-	lwz      r4, 0(r30)
-	lwz      r3, 4(r30)
-	lwz      r0, 0(r4)
-	mulli    r4, r0, 0xc
-	bl       DCStoreRangeNoSync
-	lwz      r4, 0(r30)
-	lwz      r3, 0xc(r30)
-	lwz      r0, 4(r4)
-	mulli    r4, r0, 0xc
-	bl       DCStoreRangeNoSync
-	bl       PPCSync
-	lwz      r0, 4(r30)
-	stw      r0, 0x2c(r30)
-	lwz      r0, 0xc(r30)
-	stw      r0, 0x30(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	DCStoreRangeNoSync(vtxbuffer->mVtxPos[0], vtxbuffer->mVtxData->getVtxNum() * 12);
+	DCStoreRangeNoSync(vtxbuffer->mVtxNorm[0], vtxbuffer->mVtxData->getNrmNum() * 12);
+	PPCSync();
+
+	vtxbuffer->mCurrentVtxPos  = vtxbuffer->mVtxPos[0];
+	vtxbuffer->mCurrentVtxNorm = vtxbuffer->mVtxNorm[0];
 }
 
 /*
@@ -133,118 +41,20 @@ lbl_8006A62C:
  * Address:	8006A694
  * Size:	000168
  */
-void J3DDeformer::deform(J3DVertexBuffer*, u16)
+void J3DDeformer::deform(J3DVertexBuffer* vtxbuffer, u16 index)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r28, r3
-	mr       r29, r4
-	mr       r30, r5
-	li       r31, 0
-	lwz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_8006A7E8
-	clrlwi   r0, r30, 0x10
-	li       r3, 0
-	cmplwi   r0, 0
-	ble      lbl_8006A77C
-	cmplwi   r0, 8
-	addi     r0, r30, -8
-	ble      lbl_8006A748
-	clrlwi   r0, r0, 0x10
-	b        lbl_8006A73C
+	u16 size = 0;
+	if (mAnmCluster) {
+		for (u16 i = 0; i < index; i++) {
+			size += mDeformData->getCluster(i)->_10;
+		}
 
-lbl_8006A6E4:
-	clrlwi   r4, r3, 0x10
-	lwz      r5, 0(r28)
-	mulli    r4, r4, 0x24
-	addi     r3, r3, 8
-	lwz      r5, 8(r5)
-	add      r6, r5, r4
-	lhz      r5, 0x10(r6)
-	lhz      r4, 0x34(r6)
-	add      r31, r31, r5
-	lhz      r5, 0x58(r6)
-	add      r31, r31, r4
-	lhz      r4, 0x7c(r6)
-	add      r31, r31, r5
-	lhz      r5, 0xa0(r6)
-	add      r31, r31, r4
-	lhz      r4, 0xc4(r6)
-	add      r31, r31, r5
-	lhz      r5, 0xe8(r6)
-	add      r31, r31, r4
-	lhz      r4, 0x10c(r6)
-	add      r31, r31, r5
-	add      r31, r31, r4
-
-lbl_8006A73C:
-	clrlwi   r4, r3, 0x10
-	cmplw    r4, r0
-	blt      lbl_8006A6E4
-
-lbl_8006A748:
-	clrlwi   r0, r30, 0x10
-	b        lbl_8006A770
-
-lbl_8006A750:
-	clrlwi   r4, r3, 0x10
-	lwz      r5, 0(r28)
-	mulli    r4, r4, 0x24
-	addi     r3, r3, 1
-	lwz      r5, 8(r5)
-	addi     r4, r4, 0x10
-	lhzx     r4, r5, r4
-	add      r31, r31, r4
-
-lbl_8006A770:
-	clrlwi   r4, r3, 0x10
-	cmplw    r4, r0
-	blt      lbl_8006A750
-
-lbl_8006A77C:
-	clrlwi   r0, r30, 0x10
-	lwz      r4, 0(r28)
-	mulli    r3, r0, 0x24
-	li       r26, 0
-	lwz      r4, 8(r4)
-	addi     r0, r3, 0x10
-	lhzx     r27, r4, r0
-	b        lbl_8006A7C8
-
-lbl_8006A79C:
-	lwz      r3, 4(r28)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	addi     r31, r31, 1
-	bctrl
-	lwz      r3, 8(r28)
-	rlwinm   r0, r26, 2, 0xe, 0x1d
-	addi     r26, r26, 1
-	stfsx    f1, r3, r0
-
-lbl_8006A7C8:
-	clrlwi   r0, r26, 0x10
-	cmplw    r0, r27
-	blt      lbl_8006A79C
-	lwz      r6, 8(r28)
-	mr       r3, r28
-	mr       r4, r29
-	mr       r5, r30
-	bl       deform__11J3DDeformerFP15J3DVertexBufferUsPf
-
-lbl_8006A7E8:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		u16 max = mDeformData->getCluster(index)->_10;
+		for (u16 i = 0; i < max; i++) {
+			mWeightList[i] = mAnmCluster->getWeight(size++);
+		}
+		deform(vtxbuffer, index, mWeightList);
+	}
 }
 
 /*
@@ -252,8 +62,17 @@ lbl_8006A7E8:
  * Address:	8006A7FC
  * Size:	00026C
  */
-void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*, float*)
+void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* vtxbuffer, J3DCluster* cluster, J3DClusterKey* key, f32* weights)
 {
+	for (u16 i = 0; i < cluster->_12; i++) {
+		f32* pos = (f32*)((int)vtxbuffer->mVtxPos[0] + (int)cluster->_18[i] * 12);
+		pos[0]   = 0.0f;
+		pos[1]   = 0.0f;
+		pos[2]   = 0.0f;
+	}
+
+	f32 test[2] = { 1.0f, -1.0f };
+	for (u16 i = 0; i < cluster->_12; i++) { }
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -435,7 +254,7 @@ void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*
  * Address:	8006AA68
  * Size:	000470
  */
-void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*, float*)
+void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*, f32*)
 {
 	/*
 	.loc_0x0:
@@ -783,8 +602,24 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*
  * Address:	8006AED8
  * Size:	0001CC
  */
-void J3DDeformer::deform(J3DVertexBuffer*, u16, float*)
+void J3DDeformer::deform(J3DVertexBuffer* vtxbuffer, u16 index, f32* weights)
 {
+	if ((mFlags & Active) && mDeformData->_14 == 4) {
+
+		J3DCluster* cluster = mDeformData->getCluster(index);
+
+		u16 size = 0;
+		for (u16 i = 0; i < index; i++) {
+			size += mDeformData->getCluster(i)->_10 + 1;
+		}
+
+		J3DClusterKey* key = mDeformData->getClusterKey(size);
+		normalizeWeight(key->_10, weights);
+		deform_VtxPosF32(vtxbuffer, cluster, key, weights);
+		if ((mFlags & UseNrm) && key->_0C && mDeformData->_14 == 4) {
+			deform_VtxNrmF32(vtxbuffer, cluster, key, weights);
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -925,113 +760,15 @@ lbl_8006B090:
  * Address:	8006B0A4
  * Size:	00015C
  */
-void J3DDeformer::normalizeWeight(int, float*)
+void J3DDeformer::normalizeWeight(int count, f32* weights)
 {
-	/*
-	cmpwi    r4, 0
-	lfs      f6, lbl_80516A54@sda21(r2)
-	li       r7, 0
-	ble      lbl_8006B13C
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_8006B130
-	b        lbl_8006B110
+	f32 total = 0.0f;
+	for (u16 i = 0; i < count; i++) {
+		total += weights[i];
+	}
+	total = 1.0f / total;
 
-lbl_8006B0C4:
-	rlwinm   r0, r7, 2, 0xe, 0x1d
-	addi     r7, r7, 8
-	add      r6, r5, r0
-	lfs      f1, 0(r6)
-	lfs      f0, 4(r6)
-	fadds    f6, f6, f1
-	lfs      f5, 8(r6)
-	lfs      f4, 0xc(r6)
-	lfs      f3, 0x10(r6)
-	fadds    f6, f6, f0
-	lfs      f2, 0x14(r6)
-	lfs      f1, 0x18(r6)
-	lfs      f0, 0x1c(r6)
-	fadds    f6, f6, f5
-	fadds    f6, f6, f4
-	fadds    f6, f6, f3
-	fadds    f6, f6, f2
-	fadds    f6, f6, f1
-	fadds    f6, f6, f0
-
-lbl_8006B110:
-	clrlwi   r0, r7, 0x10
-	cmpw     r0, r3
-	blt      lbl_8006B0C4
-	b        lbl_8006B130
-
-lbl_8006B120:
-	rlwinm   r0, r7, 2, 0xe, 0x1d
-	addi     r7, r7, 1
-	lfsx     f0, r5, r0
-	fadds    f6, f6, f0
-
-lbl_8006B130:
-	clrlwi   r0, r7, 0x10
-	cmpw     r0, r4
-	blt      lbl_8006B120
-
-lbl_8006B13C:
-	lfs      f0, lbl_80516A48@sda21(r2)
-	cmpwi    r4, 0
-	li       r7, 0
-	fdivs    f1, f0, f6
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_8006B1F0
-	b        lbl_8006B1CC
-
-lbl_8006B160:
-	rlwinm   r0, r7, 2, 0xe, 0x1d
-	addi     r7, r7, 8
-	add      r6, r5, r0
-	lfs      f0, 0(r6)
-	fmuls    f0, f0, f1
-	stfs     f0, 0(r6)
-	lfs      f0, 4(r6)
-	fmuls    f0, f0, f1
-	stfs     f0, 4(r6)
-	lfs      f0, 8(r6)
-	fmuls    f0, f0, f1
-	stfs     f0, 8(r6)
-	lfs      f0, 0xc(r6)
-	fmuls    f0, f0, f1
-	stfs     f0, 0xc(r6)
-	lfs      f0, 0x10(r6)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r6)
-	lfs      f0, 0x14(r6)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x14(r6)
-	lfs      f0, 0x18(r6)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x18(r6)
-	lfs      f0, 0x1c(r6)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x1c(r6)
-
-lbl_8006B1CC:
-	clrlwi   r0, r7, 0x10
-	cmpw     r0, r3
-	blt      lbl_8006B160
-	b        lbl_8006B1F0
-
-lbl_8006B1DC:
-	rlwinm   r0, r7, 2, 0xe, 0x1d
-	addi     r7, r7, 1
-	lfsx     f0, r5, r0
-	fmuls    f0, f0, f1
-	stfsx    f0, r5, r0
-
-lbl_8006B1F0:
-	clrlwi   r0, r7, 0x10
-	cmpw     r0, r4
-	blt      lbl_8006B1DC
-	blr
-	*/
+	for (u16 i = 0; i < count; i++) {
+		weights[i] *= total;
+	}
 }

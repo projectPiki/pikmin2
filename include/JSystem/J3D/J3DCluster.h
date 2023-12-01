@@ -21,6 +21,11 @@ struct J3DCluster {
 };
 
 struct J3DClusterKey {
+	int _00; // _00
+	int _04; // _04
+	int _08; // _08
+	int _0C; // _0C
+	int _10; // _10
 };
 
 #endif

@@ -57,6 +57,15 @@ void J3DColorBlockLightOff::initialize()
  */
 void J3DColorBlockAmbientOn::initialize()
 {
+	mColorChannelNum = 0;
+	for (int i = 0; i < 2; i++) {
+		mMaterialColors[i] = j3dDefaultColInfo;
+	}
+	for (int i = 0; i < 2; i++) {
+		mAmbientColors[i] = j3dDefaultAmbInfo;
+	}
+	mMaterialColorOffset = 0;
+	mColorChannelOffset  = 0;
 	/*
 	li       r9, 0
 	addi     r5, r2, j3dDefaultColInfo@sda21
@@ -99,6 +108,19 @@ void J3DColorBlockAmbientOn::initialize()
  */
 void J3DColorBlockLightOn::initialize()
 {
+	mColorChannelNum = 0;
+	for (int i = 0; i < 2; i++) {
+		mMaterialColors[i] = j3dDefaultColInfo;
+	}
+	for (int i = 0; i < 2; i++) {
+		mAmbientColors[i] = j3dDefaultAmbInfo;
+	}
+	for (int i = 0; i < 8; i++) {
+		mLights[i] = nullptr;
+	}
+
+	mMaterialColorOffset = 0;
+	mColorChannelOffset  = 0;
 	/*
 	li       r9, 0
 	addi     r5, r2, j3dDefaultColInfo@sda21
@@ -180,20 +202,11 @@ void J3DTexGenBlock4::initialize()
  */
 void J3DTexGenBlockBasic::initialize()
 {
-	/*
-	li       r0, 0
-	stw      r0, 4(r3)
-	stw      r0, 0x38(r3)
-	stw      r0, 0x3c(r3)
-	stw      r0, 0x40(r3)
-	stw      r0, 0x44(r3)
-	stw      r0, 0x48(r3)
-	stw      r0, 0x4c(r3)
-	stw      r0, 0x50(r3)
-	stw      r0, 0x54(r3)
-	stw      r0, 0x58(r3)
-	blr
-	*/
+	mTexgenCnt = 0;
+	for (int i = 0; i < 8; i++) {
+		mTexMatrices[i] = nullptr;
+	}
+	mDlistOffs = 0;
 }
 
 /*
@@ -202,11 +215,7 @@ void J3DTexGenBlockBasic::initialize()
  * Size:	00000C
  * initialize__15J3DTevBlockNullFv
  */
-void J3DTevBlockNull::initialize()
-{
-	// Generated from stw r0, 0x4(r3)
-	mTexNoOffset = 0;
-}
+void J3DTevBlockNull::initialize() { mTexNoOffset = 0; }
 
 /*
  * --INFO--
@@ -223,15 +232,12 @@ void J3DTevBlockPatched::initialize()
 		mStages[i]._00 = 0xC0 + (i * 2);
 		mStages[i]._04 = 0xC1 + (i * 2);
 	}
-	// const J3DGXColorS10 defaultTevK = j3dDefaultTevKColor;
-	// const J3DGXColor defaultTev     = j3dDefaultTevColor;
+
 	for (int i = 0; i < 3; i++) {
-		mKColors[i] = j3dDefaultTevKColor;
-		// _98[i] = defaultTevK;
+		mColors[i] = j3dDefaultTevColor;
 	}
 	for (int i = 0; i < 4; i++) {
-		mColors[i] = j3dDefaultTevColor;
-		// _B8[i] = defaultTev;
+		mKColors[i] = j3dDefaultTevKColor;
 	}
 	for (int i = 0; i < 8; i++) {
 		_C8[i] = 0xC;
@@ -371,25 +377,25 @@ void J3DTevBlock2::initialize()
 	for (int i = 0; i < 2; i++) {
 		mTexIndices[i] = 0xFFFF;
 	}
+	mStageNum = 1;
+
 	for (int i = 0; i < 2; i++) {
 		mStages[i]._00 = 0xC0 + (i * 2);
 		mStages[i]._04 = 0xC1 + (i * 2);
 	}
+
 	for (int i = 0; i < 2; i++) {
 		mKColorSels[i] = 0xC;
 	}
 	for (int i = 0; i < 2; i++) {
 		mKAlphaSels[i] = 0x1C;
 	}
-	// const J3DGXColorS10 defaultTevK = j3dDefaultTevKColor;
-	// const J3DGXColor defaultTev     = j3dDefaultTevColor;
+
 	for (int i = 0; i < 3; i++) {
-		mKColors[i] = j3dDefaultTevKColor;
-		// _98[i] = defaultTevK;
+		mColors[i] = j3dDefaultTevColor;
 	}
 	for (int i = 0; i < 4; i++) {
-		mColors[i] = j3dDefaultTevColor;
-		// _B8[i] = defaultTev;
+		mKColors[i] = j3dDefaultTevKColor;
 	}
 	mTexNoOffset = 0;
 	mRegOffset   = 0;
@@ -472,6 +478,31 @@ void J3DTevBlock2::initialize()
  */
 void J3DTevBlock4::initialize()
 {
+	for (int i = 0; i < 4; i++) {
+		mTexIndices[i] = 0xFFFF;
+	}
+	mStageNum = 1;
+
+	for (int i = 0; i < 4; i++) {
+		mStages[i]._00 = 0xC0 + (i * 2);
+		mStages[i]._04 = 0xC1 + (i * 2);
+	}
+
+	for (int i = 0; i < 4; i++) {
+		mKColorSels[i] = 0xC;
+	}
+	for (int i = 0; i < 4; i++) {
+		mKAlphaSels[i] = 0x1C;
+	}
+
+	for (int i = 0; i < 3; i++) {
+		mColors[i] = j3dDefaultTevColor;
+	}
+	for (int i = 0; i < 4; i++) {
+		mKColors[i] = j3dDefaultTevKColor;
+	}
+	mTexNoOffset = 0;
+	mRegOffset   = 0;
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r4, 0x0000FFFF@ha
@@ -563,6 +594,30 @@ void J3DTevBlock4::initialize()
  */
 void J3DTevBlock16::initialize()
 {
+	for (int i = 0; i < 8; i++) {
+		mTexIndices[i] = 0xFFFF;
+	}
+	mStageNum = 1;
+	for (int i = 0; i < 3; i++) {
+		mColors[i] = j3dDefaultTevColor;
+	}
+	for (int i = 0; i < 4; i++) {
+		mKColors[i] = j3dDefaultTevKColor;
+	}
+	for (int i = 0; i < 16; i++) {
+		mKColorSels[i] = 0xC;
+	}
+	for (int i = 0; i < 16; i++) {
+		mKAlphaSels[i] = 0x1C;
+	}
+
+	for (int i = 0; i < 16; i++) {
+		mStages[i]._00 = 0xC0 + (i * 2);
+		mStages[i]._04 = 0xC1 + (i * 2);
+	}
+
+	mTexNoOffset = 0;
+	mRegOffset   = 0;
 	/*
 	stwu     r1, -0x30(r1)
 	lis      r4, 0x0000FFFF@ha

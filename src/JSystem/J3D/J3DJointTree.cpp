@@ -263,7 +263,7 @@ lbl_800885CC:
 void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const Mtx& mtx)
 {
 	mTransformCalc->init(vec, mtx);
-	J3DMtxCalc::setMtxBuffer(buffer);
+	J3DMtxCalc::setMtxBuffer(buffer); // this is a weak function thats supposed to not inline here, somehow
 	J3DJoint* root = mRootNode;
 	if (root) {
 		J3DJoint::mCurrentMtxCalc = mTransformCalc;

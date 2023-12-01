@@ -12,6 +12,13 @@ struct J3DMaterial;
 struct J3DTextureSRTInfo;
 
 struct J3DMatColorAnm {
+	J3DMatColorAnm(J3DAnmColor* anm, u16 index, u16 flag)
+	{
+		mIndex   = index;
+		mAnmFlag = flag;
+		mAnm     = anm;
+	}
+
 	J3DMatColorAnm();
 
 	~J3DMatColorAnm() { }
@@ -59,6 +66,13 @@ struct J3DTexNoAnm {
 };
 
 struct J3DTexMtxAnm {
+	J3DTexMtxAnm(J3DAnmTextureSRTKey* anm, u16 index, u16 flag)
+	{
+		mIndex   = index;
+		mAnmFlag = flag;
+		mAnm     = anm;
+	}
+
 	J3DTexMtxAnm();
 
 	~J3DTexMtxAnm() { }
@@ -80,6 +94,13 @@ struct J3DTexMtxAnm {
 };
 
 struct J3DTevColorAnm {
+	J3DTevColorAnm(J3DAnmTevRegKey* anm, u16 index, u16 flag)
+	{
+		mIndex   = index;
+		mAnmFlag = flag;
+		mAnm     = anm;
+	}
+
 	J3DTevColorAnm();
 
 	~J3DTevColorAnm() { }
@@ -101,6 +122,13 @@ struct J3DTevColorAnm {
 };
 
 struct J3DTevKColorAnm {
+	J3DTevKColorAnm(J3DAnmTevRegKey* anm, u16 index, u16 flag)
+	{
+		mIndex   = index;
+		mAnmFlag = flag;
+		mAnm     = anm;
+	}
+
 	J3DTevKColorAnm();
 
 	~J3DTevKColorAnm() { }

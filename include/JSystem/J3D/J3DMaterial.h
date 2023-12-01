@@ -214,14 +214,14 @@ struct J3DMaterialTable {
 	void clear();
 
 	J3DErrType allocTexMtxAnimator(J3DAnmTextureSRTKey*, J3DTexMtxAnm**);
-	void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
+	J3DErrType entryTexMtxAnimator(J3DAnmTextureSRTKey*);
 	bool removeTexMtxAnimator(J3DAnmTextureSRTKey*);
 
 	J3DErrType allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**, J3DTevKColorAnm**);
 	J3DErrType entryTevRegAnimator(J3DAnmTevRegKey*);
 	bool removeTevRegAnimator(J3DAnmTevRegKey*);
 
-	void entryMatColorAnimator(J3DAnmColor*);
+	J3DErrType entryMatColorAnimator(J3DAnmColor*);
 
 	J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterials[idx]; }
 	J3DTexture* getTexture() const { return mTextures; }

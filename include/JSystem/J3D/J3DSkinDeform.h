@@ -17,21 +17,26 @@ struct J3DDeformData {
 	void deform(J3DModel*);
 	void deform(J3DVertexBuffer*);
 
-	u16 mClusterNum;              // _00
-	u16 mClusterKeyNum;           // _02
-	u16 _04;                      // _04
-	J3DCluster** mClusters;       // _08
-	J3DClusterKey** mClusterKeys; // _0C
-	int _10;                      // _10
-	u16 _14;                      // _14
-	u16 _16;                      // _16
-	void* mVtxPos;                // _18, check type
-	void* mVtxNorm;               // _1C, check type
-	int _20;                      // _20
-	int _24;                      // _24
+	inline J3DCluster* getCluster(int i) { return &mClusters[i]; }
+	inline J3DClusterKey* getClusterKey(int i) { return &mClusterKeys[i]; }
+
+	u16 mClusterNum;             // _00
+	u16 mClusterKeyNum;          // _02
+	u16 _04;                     // _04
+	J3DCluster* mClusters;       // _08
+	J3DClusterKey* mClusterKeys; // _0C
+	int _10;                     // _10
+	u16 _14;                     // _14
+	u16 _16;                     // _16
+	void* mVtxPos;               // _18, check type
+	void* mVtxNorm;              // _1C, check type
+	int _20;                     // _20
+	int _24;                     // _24
 };
 
 struct J3DDeformer {
+
+	enum flags { UseNrm = 1, Active = 2 };
 	J3DDeformer(J3DDeformData*);
 
 	void deform(J3DVertexBuffer*, u16, f32*);
@@ -42,7 +47,7 @@ struct J3DDeformer {
 
 	J3DDeformData* mDeformData; // _00
 	J3DAnmCluster* mAnmCluster; // _04
-	int _08;                    // _08
+	f32* mWeightList;           // _08
 	int _0C;                    // _0C
 	u32 mFlags;                 // _10
 };
