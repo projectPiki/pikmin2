@@ -12,13 +12,13 @@
  * Size:	0000B0
  */
 J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock& block)
-    : mInitData(JSUConvertOffsetToPtr<J3DShapeInitData>(&block, block._0C))
-    , mInitDataIndices(JSUConvertOffsetToPtr<u16>(&block, block._10))
-    , mVtxDescLists(JSUConvertOffsetToPtr<_GXVtxDescList>(&block, block._18))
-    , mMtxTable(JSUConvertOffsetToPtr<u16>(&block, block._1C))
-    , mDisplayListData(JSUConvertOffsetToPtr<u8>(&block, block._20))
-    , mMtxInitData(JSUConvertOffsetToPtr<J3DShapeMtxInitData>(&block, block._24))
-    , mDrawInitData(JSUConvertOffsetToPtr<J3DShapeDrawInitData>(&block, block._28))
+    : mInitData(JSUConvertOffsetToPtr<J3DShapeInitData>(&block, block.mShapeDataOffset))
+    , mInitDataIndices(JSUConvertOffsetToPtr<u16>(&block, block.mRemapTableOffset))
+    , mVtxDescLists(JSUConvertOffsetToPtr<_GXVtxDescList>(&block, block.mAttribTableOffset))
+    , mMtxTable(JSUConvertOffsetToPtr<u16>(&block, block.mMatrixTableOffset))
+    , mDisplayListData(JSUConvertOffsetToPtr<u8>(&block, block.mPrimDataOffset))
+    , mMtxInitData(JSUConvertOffsetToPtr<J3DShapeMtxInitData>(&block, block.mMatrixInitDataOffset))
+    , mDrawInitData(JSUConvertOffsetToPtr<J3DShapeDrawInitData>(&block, block.mMtxGroupTableOffset))
     , mVcdVatCmdBuffer(nullptr)
 {
 }

@@ -229,6 +229,7 @@ struct J3DMaterialTable {
 	JUTNameTab* getMaterialName() const { return mMaterialNames; }
 	u16 getMaterialNum() const { return mMaterialNum; }
 	bool isLocked() const { return _1C == 1; }
+	void setTexture(J3DTexture* tex) { mTextures = tex; }
 
 	// VTBL _00
 	u16 mMaterialNum;              // _04

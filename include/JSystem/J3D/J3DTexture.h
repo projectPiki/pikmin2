@@ -11,17 +11,19 @@ struct ResTIMGPair;
  * @size{0xC}
  */
 struct J3DTexture {
-	u16 mNum;      // _00
+	u16 mNum; // _00
+	u16 _02;
 	ResTIMG* mRes; // _04
 
 	/** @fabricated */
 	inline J3DTexture(u16 count, ResTIMG* res)
 	{
 		mNum = count;
+		_02  = 0;
 		mRes = res;
 	}
 
-	virtual ~J3DTexture(); // _08 (weak)
+	virtual ~J3DTexture() { } // _08 (weak)
 
 	u16 getNum() const { return mNum; }
 	ResTIMG* getResTIMG(u16 entry) const { return &mRes[entry]; }

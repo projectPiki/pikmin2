@@ -202,7 +202,7 @@ struct J3DMaterialFactory {
 	J3DDisplayListInit* mDisplayLists;              // _78
 	J3DPatchingInfo* mPatchInfo;                    // _7C
 	J3DCurrentMtxInfo* mCurrMtxInfo;                // _80
-	u8* _84;                                        // _84
+	u8* mPEModes;                                   // _84
 };
 
 /**

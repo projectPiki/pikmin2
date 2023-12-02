@@ -19,44 +19,45 @@
  */
 J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialBlock& block)
 {
-	mMaterialNum   = block.mCount;
-	mInitData      = JSUConvertOffsetToPtr<J3DMaterialInitData>(&block, block._0C);
-	mMatRemapTable = JSUConvertOffsetToPtr<u16>(&block, block._10);
-	if (block._18 != nullptr && (u32)block._18 - (u32)block._14 > 4) {
-		mIndInitData = JSUConvertOffsetToPtr<J3DIndInitData>(&block, block._18);
+	mMaterialNum   = block.mNumMaterials;
+	mInitData      = JSUConvertOffsetToPtr<J3DMaterialInitData>(&block, block.mMatEntryDataOffset);
+	mMatRemapTable = JSUConvertOffsetToPtr<u16>(&block, block.mMatRemapTableOffset);
+	if (block.mIndTextureInfoOffset != nullptr && (u32)block.mIndTextureInfoOffset - (u32)block.mStringTableOffset > 4) {
+		mIndInitData = JSUConvertOffsetToPtr<J3DIndInitData>(&block, block.mIndTextureInfoOffset);
 	} else {
 		mIndInitData = nullptr;
 	}
-	mCullModeInfo         = JSUConvertOffsetToPtr<_GXCullMode>(&block, block._1C);
-	mColorData            = JSUConvertOffsetToPtr<GXColor>(&block, block._20);
-	mNumColorChans        = JSUConvertOffsetToPtr<u8>(&block, block._24);
-	mColorChanInfo        = JSUConvertOffsetToPtr<J3DColorChanInfo>(&block, block._28);
-	mAmbientColors        = JSUConvertOffsetToPtr<GXColor>(&block, block._2C);
-	mLightInfo            = JSUConvertOffsetToPtr<J3DLightInfo>(&block, block._30);
-	mNumTexCoords         = JSUConvertOffsetToPtr<u8>(&block, block._34);
-	mTexCoordInfo         = JSUConvertOffsetToPtr<J3DTexCoord>(&block, block._38);
-	mTexCoord2Info        = JSUConvertOffsetToPtr<J3DTexCoord2Info>(&block, block._3C);
-	mTexMtxInfo           = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&block, block._40);
-	mTexMtxInfo2          = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&block, block._44);
-	mTextureRemapTable    = JSUConvertOffsetToPtr<u16>(&block, block._48);
-	mTevOrderInfo         = JSUConvertOffsetToPtr<J3DTevOrderInfo>(&block, block._4C);
-	mTevColors            = JSUConvertOffsetToPtr<GXColorS10>(&block, block._50);
-	mTevKColors           = JSUConvertOffsetToPtr<GXColor>(&block, block._54);
-	mNumTevStages         = JSUConvertOffsetToPtr<u8>(&block, block._58);
-	mTevStageInfo         = JSUConvertOffsetToPtr<J3DTevStageInfo>(&block, block._5C);
-	mTevSwapModeInfo      = JSUConvertOffsetToPtr<J3DTevSwapModeInfo>(&block, block._60);
-	mTevSwapModeTableInfo = JSUConvertOffsetToPtr<J3DTevSwapModeTableInfo>(&block, block._64);
-	mFogInfo              = JSUConvertOffsetToPtr<J3DFogInfo>(&block, block._68);
-	mAlphaCompInfo        = JSUConvertOffsetToPtr<J3DAlphaCompInfo>(&block, block._6C);
-	mBlendInfo            = JSUConvertOffsetToPtr<J3DBlendInfo>(&block, block._70);
-	mZModeInfo            = JSUConvertOffsetToPtr<J3DZModeInfo>(&block, block._74);
-	mZCompareInfo         = JSUConvertOffsetToPtr<u8>(&block, block._78);
-	mDitherInfo           = JSUConvertOffsetToPtr<u8>(&block, block._7C);
-	mNBTScaleInfo         = JSUConvertOffsetToPtr<J3DNBTScaleInfo>(&block, block._80);
-	mDisplayLists         = nullptr;
-	mPatchInfo            = nullptr;
-	mCurrMtxInfo          = nullptr;
-	_84                   = nullptr;
+	mCullModeInfo         = JSUConvertOffsetToPtr<_GXCullMode>(&block, block.mCullModeInfoOffset);
+	mColorData            = JSUConvertOffsetToPtr<GXColor>(&block, block.mMatColorsOffset);
+	mNumColorChans        = JSUConvertOffsetToPtr<u8>(&block, block.mNumColorChansOffset);
+	mColorChanInfo        = JSUConvertOffsetToPtr<J3DColorChanInfo>(&block, block.mColorChanInfoOffset);
+	mAmbientColors        = JSUConvertOffsetToPtr<GXColor>(&block, block.mAmbientColorOffset);
+	mLightInfo            = JSUConvertOffsetToPtr<J3DLightInfo>(&block, block.mLightInfoOffset);
+	mNumTexCoords         = JSUConvertOffsetToPtr<u8>(&block, block.mNumTexCoordsOffset);
+	mTexCoordInfo         = JSUConvertOffsetToPtr<J3DTexCoord>(&block, block.mTexCoordInfoOffset);
+	mTexCoord2Info        = JSUConvertOffsetToPtr<J3DTexCoord2Info>(&block, block.mTexCoord2InfoOffset);
+	mTexMtxInfo           = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&block, block.mTexMtxInfoOffset);
+	mTexMtxInfo2          = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&block, block.mTexMtxInfo2Offset);
+	mTextureRemapTable    = JSUConvertOffsetToPtr<u16>(&block, block.mTextureRemapTableOffset);
+	mTevOrderInfo         = JSUConvertOffsetToPtr<J3DTevOrderInfo>(&block, block.mTevOrderInfoOffset);
+	mTevColors            = JSUConvertOffsetToPtr<GXColorS10>(&block, block.mTevColorsOffset);
+	mTevKColors           = JSUConvertOffsetToPtr<GXColor>(&block, block.mTevKColorsOffset);
+	mNumTevStages         = JSUConvertOffsetToPtr<u8>(&block, block.mNumTevStagesOffset);
+	mTevStageInfo         = JSUConvertOffsetToPtr<J3DTevStageInfo>(&block, block.mTevStageInfoOffset);
+	mTevSwapModeInfo      = JSUConvertOffsetToPtr<J3DTevSwapModeInfo>(&block, block.mTevSwapModeInfoOffset);
+	mTevSwapModeTableInfo = JSUConvertOffsetToPtr<J3DTevSwapModeTableInfo>(&block, block.mTevSwapModeTableInfoOffset);
+	mFogInfo              = JSUConvertOffsetToPtr<J3DFogInfo>(&block, block.mFogInfoOffset);
+	mAlphaCompInfo        = JSUConvertOffsetToPtr<J3DAlphaCompInfo>(&block, block.mAlphaCompInfoOffset);
+	mBlendInfo            = JSUConvertOffsetToPtr<J3DBlendInfo>(&block, block.mBlendInfoOffset);
+	mZModeInfo            = JSUConvertOffsetToPtr<J3DZModeInfo>(&block, block.mZModeInfoOffset);
+	mZCompareInfo         = JSUConvertOffsetToPtr<u8>(&block, block.mZCompareInfoOffset);
+	mDitherInfo           = JSUConvertOffsetToPtr<u8>(&block, block.mDitherInfoOffset);
+	mNBTScaleInfo         = JSUConvertOffsetToPtr<J3DNBTScaleInfo>(&block, block.mNBTScaleInfoOffset);
+
+	mDisplayLists = nullptr;
+	mPatchInfo    = nullptr;
+	mCurrMtxInfo  = nullptr;
+	mPEModes      = nullptr;
 }
 
 /*
@@ -67,12 +68,12 @@ J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialBlock& block)
  */
 J3DMaterialFactory::J3DMaterialFactory(const J3DMaterialDLBlock& block)
 {
-	mMaterialNum  = block._08;
+	mMaterialNum  = block.mEntries;
 	mInitData     = nullptr;
-	mDisplayLists = JSUConvertOffsetToPtr<J3DDisplayListInit>(&block, block._0C);
-	mPatchInfo    = JSUConvertOffsetToPtr<J3DPatchingInfo>(&block, block._10);
-	mCurrMtxInfo  = JSUConvertOffsetToPtr<J3DCurrentMtxInfo>(&block, block._14);
-	_84           = JSUConvertOffsetToPtr<u8>(&block, block._18);
+	mDisplayLists = JSUConvertOffsetToPtr<J3DDisplayListInit>(&block, block.mPacketOffset);
+	mPatchInfo    = JSUConvertOffsetToPtr<J3DPatchingInfo>(&block, block.mSubPacketLocationOffset);
+	mCurrMtxInfo  = JSUConvertOffsetToPtr<J3DCurrentMtxInfo>(&block, block.mMatrixIndexOffset);
+	mPEModes      = JSUConvertOffsetToPtr<u8>(&block, block.mPixelEngineModesOffset);
 }
 
 /*
@@ -1711,7 +1712,7 @@ J3DLockedMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* materia
 	material->mIndBlock               = new J3DIndBlockNull;
 	material->mPEBlock                = new J3DPEBlockNull;
 	material->mIndex                  = index;
-	material->mMaterialMode           = _84[index];
+	material->mMaterialMode           = mPEModes[index];
 	material->mCurrentMtx.mMtxIdxRegA = mCurrMtxInfo[index].mMtxIdxRegA;
 	material->mCurrentMtx.mMtxIdxRegB = mCurrMtxInfo[index].mMtxIdxRegB;
 	material->mColorBlock->setMatColorOffset(mPatchInfo[index]._00);

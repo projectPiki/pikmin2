@@ -9,8 +9,8 @@
  */
 J3DJointFactory::J3DJointFactory(const J3DJointBlock& block)
 {
-	mInitData = JSUConvertOffsetToPtr<J3DJointInitData>(&block, block._0C);
-	mIndexMap = JSUConvertOffsetToPtr<u16>(&block, block._10);
+	mInitData = JSUConvertOffsetToPtr<J3DJointInitData>(&block, block.mJointInitData);
+	mIndexMap = JSUConvertOffsetToPtr<u16>(&block, block.mRemapTableOffset);
 }
 
 /*

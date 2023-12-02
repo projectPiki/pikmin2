@@ -37,13 +37,13 @@ struct J3DModelLoader {
 	 * @reifiedAddress{8006FAA0}
 	 * @reifiedFile{JSystem/J3D/J3DModelLoader.cpp}
 	 */
-	virtual ~J3DModelLoader() {};                                         // _28 (weak)
-	virtual void readMaterial(const J3DMaterialBlock*, u32);              // _2C (weak)
-	virtual void readMaterial_v21(const J3DMaterialBlock_v21*, u32);      // _30 (weak)
-	virtual void readMaterialTable(const J3DMaterialBlock*, u32);         // _34 (weak)
-	virtual void readMaterialTable_v21(const J3DMaterialBlock_v21*, u32); // _38 (weak)
-	virtual size_t calcSizeMaterial(const J3DMaterialBlock*, u32);        // _3C (weak)
-	virtual size_t calcSizeMaterialTable(const J3DMaterialBlock*, u32);   // _40 (weak)
+	virtual ~J3DModelLoader() {};                                                    // _28 (weak)
+	virtual void readMaterial(const J3DMaterialBlock*, u32);                         // _2C (weak)
+	virtual void readMaterial_v21(const J3DMaterialBlock_v21*, u32);                 // _30 (weak)
+	virtual void readMaterialTable(const J3DMaterialBlock*, u32);                    // _34 (weak)
+	virtual void readMaterialTable_v21(const J3DMaterialBlock_v21*, u32);            // _38 (weak)
+	virtual size_t calcSizeMaterial(const J3DMaterialBlock*, u32) { return 0; }      // _3C (weak)
+	virtual size_t calcSizeMaterialTable(const J3DMaterialBlock*, u32) { return 0; } // _40 (weak)
 
 	void readInformation(const J3DModelInfoBlock*, u32);
 	void readVertex(const J3DVertexBlock*);
@@ -69,7 +69,7 @@ struct J3DModelLoader {
 	// VT _00
 	J3DModelData* mModelData;               // _04
 	J3DMaterialTable* mMaterialTable;       // _08
-	J3DShapeBlock* mShapeBlock;             // _0C
+	const J3DShapeBlock* mShapeBlock;       // _0C
 	const J3DMaterialBlock* mMaterialBlock; // _10
 	J3DModelHierarchy* mHierarchy;          // _14
 	u8 _18;                                 // _18

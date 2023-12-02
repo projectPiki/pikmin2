@@ -63,63 +63,63 @@ enum J3DFileBlockType {
 	J3DFBT_AnmTevRegKey      = 'TRK1',
 };
 
-struct J3DDrawBlock : J3DFileBlockBase {
-	/** @fabricated */
-	// const u32 TypeID = 'DRW1';
+/*
+ *    Block members courtesy of https://wiki.cloudmodding.com/tww/BMD_and_BDL
+ */
 
-	u16 mCount; // _08
-	void* _0C;  // _0C
-	void* _14;  // _14
+struct J3DDrawBlock : J3DFileBlockBase {
+	u16 mCount;                   // _08
+	void* mMatrixTypeArrayOffset; // _0C
+	void* mDataArrayOffset;       // _14
 };
 
 struct J3DEnvelopeBlock : J3DFileBlockBase {
-	/** Count of envelopes. */
-	u16 mCount; // _08
-	void* _0C;  // _0C
-	void* _10;  // _10
-	void* _14;  // _14
-	void* _18;  // _18
+	u16 mCount;                   // _08
+	void* mJointCountTableOffset; // _0C
+	void* mIndexTableOffset;      // _10
+	void* mWeightTableOffset;     // _14
+	void* mInvBindTableOffset;    // _18
 };
 
 struct J3DJointBlock : J3DFileBlockBase {
-	u16 _08; // _08
-	u32 _0C; // _0C
-	u32 _10; // _10
-	u32 _14; // _14
+	u16 mCount;            // _08
+	u32 mJointInitData;    // _0C
+	u32 mRemapTableOffset; // _10
+	u32 mNameTableOffset;  // _14
 };
 
 struct J3DMaterialBlock : J3DFileBlockBase {
-	u16 mCount; // _08
-	void* _0C;  // _0C
-	void* _10;  // _10
-	void* _14;  // _14
-	void* _18;  // _18
-	void* _1C;  // _1C
-	void* _20;  // _20
-	void* _24;  // _24
-	void* _28;  // _28
-	void* _2C;  // _2C
-	void* _30;  // _30
-	void* _34;  // _34
-	void* _38;  // _38
-	void* _3C;  // _3C
-	void* _40;  // _40
-	void* _44;  // _44
-	void* _48;  // _48
-	void* _4C;  // _4C
-	void* _50;  // _50
-	void* _54;  // _54
-	void* _58;  // _58
-	void* _5C;  // _5C
-	void* _60;  // _60
-	void* _64;  // _64
-	void* _68;  // _68
-	void* _6C;  // _6C
-	void* _70;  // _70
-	void* _74;  // _74
-	void* _78;  // _78
-	void* _7C;  // _7C
-	void* _80;  // _80
+	u16 mNumMaterials;                 // _08
+	void* mMatEntryDataOffset;         // _0C
+	void* mMatRemapTableOffset;        // _10
+	void* mStringTableOffset;          // _14
+	void* mIndTextureInfoOffset;       // _18
+	void* mCullModeInfoOffset;         // _1C
+	void* mMatColorsOffset;            // _20
+	void* mNumColorChansOffset;        // _24
+	void* mColorChanInfoOffset;        // _28
+	void* mAmbientColorOffset;         // _2C
+	void* mLightInfoOffset;            // _30
+	void* mNumTexCoordsOffset;         // _34
+	void* mTexCoordInfoOffset;         // _38
+	void* mTexCoord2InfoOffset;        // _3C
+	void* mTexMtxInfoOffset;           // _40
+	void* mTexMtxInfo2Offset;          // _44
+	void* mTextureRemapTableOffset;    // _48
+	void* mTevOrderInfoOffset;         // _4C
+	void* mTevColorsOffset;            // _50
+	void* mTevKColorsOffset;           // _54
+	void* mNumTevStagesOffset;         // _58
+	void* mTevStageInfoOffset;         // _5C
+	void* mTevSwapModeInfoOffset;      // _60
+	void* mTevSwapModeTableInfoOffset; // _64
+	void* mFogInfoOffset;              // _68
+	void* mAlphaCompInfoOffset;        // _6C
+	void* mBlendInfoOffset;            // _70
+	void* mZModeInfoOffset;            // _74
+	void* mZCompareInfoOffset;         // _78
+	void* mDitherInfoOffset;           // _7C
+	void* mNBTScaleInfoOffset;         // _80
 };
 
 struct J3DMaterialBlock_v21 : J3DFileBlockBase {
@@ -154,50 +154,47 @@ struct J3DMaterialBlock_v21 : J3DFileBlockBase {
 };
 
 struct J3DMaterialDLBlock : J3DFileBlockBase {
-	u16 _08;   // _08
-	void* _0C; // _0C
-	void* _10; // _10
-	void* _14; // _14
-	void* _18; // _18
-	void* _1C; // _1C
-	u32 _20;   // _20
+	u16 mEntries;                   // _08
+	void* mPacketOffset;            // _0C
+	void* mSubPacketLocationOffset; // _10
+	void* mMatrixIndexOffset;       // _14
+	void* mPixelEngineModesOffset;  // _18
+	void* mIndexesOffset;           // _1C
+	void* mStringTableOffset;       // _20
 };
 
 struct J3DModelInfoBlock : J3DFileBlockBase {
-	u16 _08;   // _08
-	u32 _0C;   // _0C
-	u32 _10;   // _10
-	void* _14; // _14
+	u16 mFlags;                 // _08
+	u32 mMatrixGroupCount;      // _0C
+	u32 mVertexCount;           // _10
+	void* mHierarchyDataOffset; // _14
 };
 
 struct J3DShapeBlock : J3DFileBlockBase {
-	u16 _08; // _08
-	u32 _0C; // _0C
-	u32 _10; // _10
-	u32 _14; // _14
-	u32 _18; // _18
-	u32 _1C; // _1C
-	u32 _20; // _20
-	u32 _24; // _24
-	u32 _28; // _28
+	u16 mShapeNum;             // _08
+	u32 mShapeDataOffset;      // _0C
+	u32 mRemapTableOffset;     // _10
+	u32 mNameTableOffset;      // _14
+	u32 mAttribTableOffset;    // _18
+	u32 mMatrixTableOffset;    // _1C
+	u32 mPrimDataOffset;       // _20
+	u32 mMatrixInitDataOffset; // _24
+	u32 mMtxGroupTableOffset;  // _28
 };
 
 struct J3DTextureBlock : J3DFileBlockBase {
-	u16 _08;   // _08
-	void* _0C; // _0C
-	void* _10; // _10
+	u16 mTextureCount;      // _08
+	void* mTexHeaderOffset; // _0C
+	void* mTexNameOffset;   // _10
 };
 
 struct J3DVertexBlock : J3DFileBlockBase {
-	/** @fabricated */
-	// const u32 TypeID = 'VTX1';
-
-	void* _08;    // _08
-	void* _0C;    // _0C
-	void* _10;    // _10
-	void* _14;    // _14
-	void* _18[2]; // _18
-	void* _20[8]; // _20
+	void* mVertexFormatOffset;    // _08
+	void* mPositionDataOffset;    // _0C
+	void* mNormalDataOffset;      // _10
+	void* mNBTDataOffset;         // _14
+	void* mColorDataOffset[2];    // _18
+	void* mTexCoordDataOffset[8]; // _20
 };
 
 #endif
