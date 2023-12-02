@@ -2,7 +2,7 @@ GX_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/gx/GXInit.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXFifo.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXAttr.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXMisc.o\
+	$(BUILD_DIR)/src/Dolphin/gx/GXMisc.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXGeometry.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXFrameBuf.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXLight.o\

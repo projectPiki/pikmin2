@@ -1,4 +1,11 @@
 #include "Dolphin/gx.h"
+#include "Dolphin/os.h"
+#include "Dolphin/hw_regs.h"
+
+static GXDrawSyncCallback TokenCB;
+static GXDrawDoneCallback DrawDoneCB;
+static GXBool DrawDone;
+static OSThreadQueue FinishQueue;
 
 /*
  * --INFO--
@@ -7,54 +14,28 @@
  */
 void GXSetMisc(GXMiscToken token, u32 val)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r3, 0x2
-	  beq-      .loc_0x64
-	  bge-      .loc_0x1C
-	  cmpwi     r3, 0
-	  beqlr-
-	  bge-      .loc_0x28
-	  blr
+	switch (token) {
+	case GX_MT_NULL:
+		break;
 
-	.loc_0x1C:
-	  cmpwi     r3, 0x4
-	  bgelr-
-	  b         .loc_0x7C
+	case GX_MT_XF_FLUSH:
+		gx->vNum      = val;
+		gx->vNumNot   = !gx->vNum;
+		gx->bpSentNot = GX_TRUE;
 
-	.loc_0x28:
-	  lwz       r5, -0x6D70(r2)
-	  li        r0, 0x1
-	  sth       r4, 0x4(r5)
-	  lhz       r3, 0x4(r5)
-	  cntlzw    r3, r3
-	  rlwinm    r3,r3,27,16,31
-	  sth       r3, 0x0(r5)
-	  sth       r0, 0x2(r5)
-	  lhz       r0, 0x4(r5)
-	  cmplwi    r0, 0
-	  beqlr-
-	  lwz       r0, 0x5AC(r5)
-	  ori       r0, r0, 0x8
-	  stw       r0, 0x5AC(r5)
-	  blr
+		if (gx->vNum) {
+			gx->dirtyState |= GX_DIRTY_VCD;
+		}
+		break;
 
-	.loc_0x64:
-	  neg       r4, r4
-	  lwz       r3, -0x6D70(r2)
-	  subic     r0, r4, 0x1
-	  subfe     r0, r0, r4
-	  stb       r0, 0x5A9(r3)
-	  blr
+	case GX_MT_DL_SAVE_CONTEXT:
+		gx->dlSaveContext = (val != 0);
+		break;
 
-	.loc_0x7C:
-	  neg       r4, r4
-	  lwz       r3, -0x6D70(r2)
-	  subic     r0, r4, 0x1
-	  subfe     r0, r0, r4
-	  stb       r0, 0x5AA(r3)
-	  blr
-	*/
+	case GX_MT_ABORT_WAIT_COPYOUT:
+		gx->abtWaitPECopy = (val != 0);
+		break;
+	}
 }
 
 /*
@@ -64,34 +45,18 @@ void GXSetMisc(GXMiscToken token, u32 val)
  */
 void GXFlush(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x5AC(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x20
-	  bl        0x880
-
-	.loc_0x20:
-	  li        r0, 0
-	  lis       r3, 0xCC01
-	  stw       r0, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  stw       r0, -0x8000(r3)
-	  bl        -0x10B24
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
+	if (gx->dirtyState) {
+		__GXSetDirtyState();
+	}
+	GX_WRITE_U32(0);
+	GX_WRITE_U32(0);
+	GX_WRITE_U32(0);
+	GX_WRITE_U32(0);
+	GX_WRITE_U32(0);
+	GX_WRITE_U32(0);
+	GX_WRITE_U32(0);
+	GX_WRITE_U32(0);
+	PPCSync();
 }
 
 /*
@@ -109,9 +74,14 @@ void GXResetWriteGatherPipe(void)
  * Address:	........
  * Size:	00007C
  */
-void __GXAbortWait(void)
+static void __GXAbortWait(u32 clocks)
 {
-	// UNUSED FUNCTION
+	OSTime time0, time1;
+	time0 = OSGetTime();
+
+	do {
+		time1 = OSGetTime();
+	} while (time1 - time0 <= clocks / 4);
 }
 
 /*
@@ -119,9 +89,17 @@ void __GXAbortWait(void)
  * Address:	........
  * Size:	0000C4
  */
-void __GXAbortWaitPECopyDone(void)
+static void __GXAbortWaitPECopyDone(void)
 {
-	// UNUSED FUNCTION
+	u32 peCnt0, peCnt1;
+
+	peCnt0 = GXReadMEMReg(0x28, 0x27);
+	do {
+		peCnt1 = peCnt0;
+		__GXAbortWait(32);
+
+		peCnt0 = GXReadMEMReg(0x28, 0x27);
+	} while (peCnt0 != peCnt1);
 }
 
 /*
@@ -131,114 +109,14 @@ void __GXAbortWaitPECopyDone(void)
  */
 void __GXAbort(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stmw      r27, 0x14(r1)
-	  lwz       r3, -0x6D70(r2)
-	  lbz       r0, 0x5AA(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xCC
-	  bl        -0xE6C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  lwz       r3, -0x7144(r13)
-	  addi      r6, r3, 0x4E
-	  lhz       r4, 0x4E(r3)
-	  addi      r5, r3, 0x50
+	if (gx->abtWaitPECopy && GXGetGPFifo()) {
+		__GXAbortWaitPECopyDone();
+	}
 
-	.loc_0x3C:
-	  mr        r0, r4
-	  lhz       r4, 0x0(r6)
-	  lhz       r3, 0x0(r5)
-	  cmplw     r4, r0
-	  bne+      .loc_0x3C
-	  rlwinm    r0,r4,16,0,15
-	  or        r27, r0, r3
-
-	.loc_0x58:
-	  bl        0xDA70
-	  li        r0, 0
-	  addi      r31, r4, 0
-	  addi      r30, r3, 0
-	  xoris     r28, r0, 0x8000
-	  li        r29, 0x8
-
-	.loc_0x70:
-	  bl        0xDA58
-	  subc      r4, r4, r31
-	  subfe     r0, r30, r3
-	  xoris     r3, r0, 0x8000
-	  subc      r0, r29, r4
-	  subfe     r3, r3, r28
-	  subfe     r3, r28, r28
-	  neg.      r3, r3
-	  beq+      .loc_0x70
-	  lwz       r3, -0x7144(r13)
-	  addi      r6, r3, 0x4E
-	  lhz       r4, 0x4E(r3)
-	  addi      r5, r3, 0x50
-
-	.loc_0xA4:
-	  mr        r0, r4
-	  lhz       r4, 0x0(r6)
-	  lhz       r3, 0x0(r5)
-	  cmplw     r4, r0
-	  bne+      .loc_0xA4
-	  rlwinm    r0,r4,16,0,15
-	  or        r0, r0, r3
-	  cmplw     r0, r27
-	  mr        r27, r0
-	  bne+      .loc_0x58
-
-	.loc_0xCC:
-	  lis       r3, 0xCC00
-	  li        r0, 0x1
-	  addi      r27, r3, 0x3000
-	  stwu      r0, 0x18(r27)
-	  bl        0xD9EC
-	  li        r0, 0
-	  addi      r31, r4, 0
-	  addi      r30, r3, 0
-	  xoris     r28, r0, 0x8000
-	  li        r29, 0x32
-
-	.loc_0xF4:
-	  bl        0xD9D4
-	  subc      r4, r4, r31
-	  subfe     r0, r30, r3
-	  xoris     r3, r0, 0x8000
-	  subc      r0, r29, r4
-	  subfe     r3, r3, r28
-	  subfe     r3, r28, r28
-	  neg.      r3, r3
-	  beq+      .loc_0xF4
-	  li        r30, 0
-	  stw       r30, 0x0(r27)
-	  bl        0xD9A8
-	  addi      r28, r4, 0
-	  addi      r29, r3, 0
-	  xoris     r31, r30, 0x8000
-	  li        r30, 0x5
-
-	.loc_0x134:
-	  bl        0xD994
-	  subc      r4, r4, r28
-	  subfe     r0, r29, r3
-	  xoris     r3, r0, 0x8000
-	  subc      r0, r30, r4
-	  subfe     r3, r3, r31
-	  subfe     r3, r31, r31
-	  neg.      r3, r3
-	  beq+      .loc_0x134
-	  lmw       r27, 0x14(r1)
-	  lwz       r0, 0x2C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	__PIRegs[0x18 / 4] = 1;
+	__GXAbortWait(200);
+	__PIRegs[0x18 / 4] = 0;
+	__GXAbortWait(20);
 }
 
 /*
@@ -248,115 +126,8 @@ void __GXAbort(void)
  */
 void GXAbortFrame(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stmw      r27, 0x14(r1)
-	  lwz       r3, -0x6D70(r2)
-	  lbz       r0, 0x5AA(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xCC
-	  bl        -0xFD8
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  lwz       r3, -0x7144(r13)
-	  addi      r6, r3, 0x4E
-	  lhz       r4, 0x4E(r3)
-	  addi      r5, r3, 0x50
-
-	.loc_0x3C:
-	  mr        r0, r4
-	  lhz       r4, 0x0(r6)
-	  lhz       r3, 0x0(r5)
-	  cmplw     r4, r0
-	  bne+      .loc_0x3C
-	  rlwinm    r0,r4,16,0,15
-	  or        r27, r0, r3
-
-	.loc_0x58:
-	  bl        0xD904
-	  li        r0, 0
-	  addi      r31, r4, 0
-	  addi      r30, r3, 0
-	  xoris     r28, r0, 0x8000
-	  li        r29, 0x8
-
-	.loc_0x70:
-	  bl        0xD8EC
-	  subc      r4, r4, r31
-	  subfe     r0, r30, r3
-	  xoris     r3, r0, 0x8000
-	  subc      r0, r29, r4
-	  subfe     r3, r3, r28
-	  subfe     r3, r28, r28
-	  neg.      r3, r3
-	  beq+      .loc_0x70
-	  lwz       r3, -0x7144(r13)
-	  addi      r6, r3, 0x4E
-	  lhz       r4, 0x4E(r3)
-	  addi      r5, r3, 0x50
-
-	.loc_0xA4:
-	  mr        r0, r4
-	  lhz       r4, 0x0(r6)
-	  lhz       r3, 0x0(r5)
-	  cmplw     r4, r0
-	  bne+      .loc_0xA4
-	  rlwinm    r0,r4,16,0,15
-	  or        r0, r0, r3
-	  cmplw     r0, r27
-	  mr        r27, r0
-	  bne+      .loc_0x58
-
-	.loc_0xCC:
-	  lis       r3, 0xCC00
-	  li        r0, 0x1
-	  addi      r27, r3, 0x3000
-	  stwu      r0, 0x18(r27)
-	  bl        0xD880
-	  li        r0, 0
-	  addi      r31, r4, 0
-	  addi      r30, r3, 0
-	  xoris     r28, r0, 0x8000
-	  li        r29, 0x32
-
-	.loc_0xF4:
-	  bl        0xD868
-	  subc      r4, r4, r31
-	  subfe     r0, r30, r3
-	  xoris     r3, r0, 0x8000
-	  subc      r0, r29, r4
-	  subfe     r3, r3, r28
-	  subfe     r3, r28, r28
-	  neg.      r3, r3
-	  beq+      .loc_0xF4
-	  li        r30, 0
-	  stw       r30, 0x0(r27)
-	  bl        0xD83C
-	  addi      r28, r4, 0
-	  addi      r29, r3, 0
-	  xoris     r31, r30, 0x8000
-	  li        r30, 0x5
-
-	.loc_0x134:
-	  bl        0xD828
-	  subc      r4, r4, r28
-	  subfe     r0, r29, r3
-	  xoris     r3, r0, 0x8000
-	  subc      r0, r30, r4
-	  subfe     r3, r3, r31
-	  subfe     r3, r31, r31
-	  neg.      r3, r3
-	  beq+      .loc_0x134
-	  bl        -0x1218
-	  lmw       r27, 0x14(r1)
-	  lwz       r0, 0x2C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	__GXAbort();
+	__GXCleanGPFifo();
 }
 
 /*
@@ -366,56 +137,19 @@ void GXAbortFrame(void)
  */
 void GXSetDrawSync(u16 token)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  bl        0x987C
-	  li        r6, 0x61
-	  lwz       r4, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  rlwinm    r0,r30,0,16,31
-	  stb       r6, -0x8000(r5)
-	  oris      r7, r0, 0x4800
-	  stw       r7, -0x8000(r5)
-	  rlwimi    r7,r30,0,16,31
-	  li        r0, 0x47
-	  stb       r6, -0x8000(r5)
-	  rlwimi    r7,r0,24,0,7
-	  mr        r30, r3
-	  stw       r7, -0x8000(r5)
-	  lwz       r0, 0x5AC(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x60
-	  bl        0x508
+	u32 reg;
+	BOOL interrupts;
 
-	.loc_0x60:
-	  li        r31, 0
-	  lis       r3, 0xCC01
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  bl        -0x10E9C
-	  mr        r3, r30
-	  bl        0x982C
-	  lwz       r3, -0x6D70(r2)
-	  sth       r31, 0x2(r3)
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	interrupts = OSDisableInterrupts();
+	reg        = token | 0x48000000;
+	GX_BP_LOAD_REG(reg);
+	GX_SET_REG(reg, token, 16, 31);
+	GX_SET_REG(reg, 0x47, 0, 7);
+	GX_BP_LOAD_REG(reg);
+
+	GXFlush();
+	OSRestoreInterrupts(interrupts);
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -435,49 +169,16 @@ void GXReadDrawSync(void)
  */
 void GXSetDrawDone(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  bl        0x97CC
-	  li        r0, 0x61
-	  lwz       r4, -0x6D70(r2)
-	  lis       r6, 0xCC01
-	  lis       r5, 0x4500
-	  stb       r0, -0x8000(r6)
-	  addi      r0, r5, 0x2
-	  stw       r0, -0x8000(r6)
-	  mr        r30, r3
-	  lwz       r0, 0x5AC(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  bl        0x46C
+	u32 reg;
+	BOOL interrupts;
 
-	.loc_0x48:
-	  li        r31, 0
-	  lis       r3, 0xCC01
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  stw       r31, -0x8000(r3)
-	  bl        -0x10F38
-	  stb       r31, -0x7100(r13)
-	  mr        r3, r30
-	  bl        0x978C
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	interrupts = OSDisableInterrupts();
+	reg        = 0x45000002;
+	GX_BP_LOAD_REG(reg);
+
+	GXFlush();
+	DrawDone = GX_FALSE;
+	OSRestoreInterrupts(interrupts);
 }
 
 /*
@@ -487,32 +188,13 @@ void GXSetDrawDone(void)
  */
 void GXWaitDrawDone(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  bl        0x9738
-	  mr        r31, r3
-	  b         .loc_0x24
+	BOOL interrupts;
+	interrupts = OSDisableInterrupts();
+	while (!DrawDone) {
+		OSSleepThread(&FinishQueue);
+	}
 
-	.loc_0x1C:
-	  subi      r3, r13, 0x70FC
-	  bl        0xD3DC
-
-	.loc_0x24:
-	  lbz       r0, -0x7100(r13)
-	  cmplwi    r0, 0
-	  beq+      .loc_0x1C
-	  mr        r3, r31
-	  bl        0x973C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
+	OSRestoreInterrupts(interrupts);
 }
 
 /*
@@ -522,45 +204,8 @@ void GXWaitDrawDone(void)
  */
 void GXDrawDone(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  bl        0x96EC
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  lis       r4, 0x4500
-	  stb       r0, -0x8000(r5)
-	  addi      r0, r4, 0x2
-	  stw       r0, -0x8000(r5)
-	  mr        r31, r3
-	  bl        -0x500
-	  li        r0, 0
-	  stb       r0, -0x7100(r13)
-	  mr        r3, r31
-	  bl        0x96E4
-	  bl        0x96B8
-	  mr        r31, r3
-	  b         .loc_0x58
-
-	.loc_0x50:
-	  subi      r3, r13, 0x70FC
-	  bl        0xD35C
-
-	.loc_0x58:
-	  lbz       r0, -0x7100(r13)
-	  cmplwi    r0, 0
-	  beq+      .loc_0x50
-	  mr        r3, r31
-	  bl        0x96BC
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	GXSetDrawDone();
+	GXWaitDrawDone();
 }
 
 /*
@@ -570,18 +215,8 @@ void GXDrawDone(void)
  */
 void GXPixModeSync(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x61
-	  lwz       r4, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r0, 0
-	  lwz       r3, 0x1DC(r4)
-	  stw       r3, -0x8000(r5)
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
+	GX_BP_LOAD_REG(gx->peCtrl);
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
@@ -599,17 +234,7 @@ void GXTexModeSync(void)
  * Address:	800E55E0
  * Size:	000014
  */
-void GXPokeAlphaMode(GXCompare func, u8 threshold)
-{
-	/*
-	.loc_0x0:
-	  lwz       r5, -0x7148(r13)
-	  rlwinm    r0,r4,0,24,31
-	  rlwimi    r0,r3,8,0,23
-	  sth       r0, 0x6(r5)
-	  blr
-	*/
-}
+void GXPokeAlphaMode(GXCompare func, u8 threshold) { GX_SET_PE_REG(3, func << 8 | threshold); }
 
 /*
  * --INFO--
@@ -618,17 +243,10 @@ void GXPokeAlphaMode(GXCompare func, u8 threshold)
  */
 void GXPokeAlphaRead(GXAlphaReadMode mode)
 {
-	/*
-	.loc_0x0:
-	  li        r5, 0
-	  lwz       r4, -0x7148(r13)
-	  rlwimi    r5,r3,0,30,31
-	  li        r0, 0x1
-	  addi      r3, r5, 0
-	  rlwimi    r3,r0,2,29,29
-	  sth       r3, 0x8(r4)
-	  blr
-	*/
+	u32 reg = 0;
+	GX_SET_REG(reg, mode, 30, 31);
+	GX_SET_REG(reg, 1, 29, 29);
+	GX_SET_PE_REG(4, reg);
 }
 
 /*
@@ -638,15 +256,10 @@ void GXPokeAlphaRead(GXAlphaReadMode mode)
  */
 void GXPokeAlphaUpdate(GXBool doUpdate)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x7148(r13)
-	  rlwinm    r0,r3,0,24,31
-	  lhz       r3, 0x2(r4)
-	  rlwimi    r3,r0,4,27,27
-	  sth       r3, 0x2(r4)
-	  blr
-	*/
+	u32 reg;
+	reg = GX_GET_PE_REG(1);
+	GX_SET_REG(reg, doUpdate, 27, 27);
+	GX_SET_PE_REG(1, reg);
 }
 
 /*
@@ -656,36 +269,17 @@ void GXPokeAlphaUpdate(GXBool doUpdate)
  */
 void GXPokeBlendMode(GXBlendMode mode, GXBlendFactor srcFactor, GXBlendFactor destFactor, GXLogicOp op)
 {
-	/*
-	.loc_0x0:
-	  lwz       r7, -0x7148(r13)
-	  cmpwi     r3, 0x1
-	  li        r9, 0x1
-	  lhz       r10, 0x2(r7)
-	  beq-      .loc_0x20
-	  cmpwi     r3, 0x3
-	  beq-      .loc_0x20
-	  li        r9, 0
+	u32 reg;
 
-	.loc_0x20:
-	  subfic    r0, r3, 0x3
-	  lwz       r7, -0x7148(r13)
-	  cntlzw    r8, r0
-	  subfic    r0, r3, 0x2
-	  rlwimi    r10,r9,0,31,31
-	  rlwinm    r3,r8,27,5,31
-	  addi      r8, r10, 0
-	  cntlzw    r0, r0
-	  rlwimi    r8,r3,11,20,20
-	  rlwimi    r8,r0,28,30,30
-	  rlwimi    r8,r6,12,16,19
-	  rlwimi    r8,r4,8,21,23
-	  li        r0, 0x41
-	  rlwimi    r8,r5,5,24,26
-	  rlwimi    r8,r0,24,0,7
-	  sth       r8, 0x2(r7)
-	  blr
-	*/
+	reg = GX_GET_PE_REG(1);
+	GX_SET_REG(reg, (mode == GX_BM_BLEND) || (mode == GX_BM_SUBTRACT), 31, 31);
+	GX_SET_REG(reg, (mode == GX_BM_SUBTRACT), 20, 20);
+	GX_SET_REG(reg, (mode == GX_BM_LOGIC), 30, 30);
+	GX_SET_REG(reg, op, 16, 19);
+	GX_SET_REG(reg, srcFactor, 21, 23);
+	GX_SET_REG(reg, destFactor, 24, 26);
+	GX_SET_REG(reg, 0x41, 0, 7);
+	GX_SET_PE_REG(1, reg);
 }
 
 /*
@@ -695,15 +289,10 @@ void GXPokeBlendMode(GXBlendMode mode, GXBlendFactor srcFactor, GXBlendFactor de
  */
 void GXPokeColorUpdate(GXBool doUpdate)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x7148(r13)
-	  rlwinm    r0,r3,0,24,31
-	  lhz       r3, 0x2(r4)
-	  rlwimi    r3,r0,3,28,28
-	  sth       r3, 0x2(r4)
-	  blr
-	*/
+	u32 reg;
+	reg = GX_GET_PE_REG(1);
+	GX_SET_REG(reg, doUpdate, 28, 28);
+	GX_SET_PE_REG(1, reg);
 }
 
 /*
@@ -713,18 +302,11 @@ void GXPokeColorUpdate(GXBool doUpdate)
  */
 void GXPokeDstAlpha(GXBool doEnable, u8 alpha)
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,0,24,31
-	  lwz       r4, -0x7148(r13)
-	  li        r5, 0
-	  rlwimi    r5,r0,0,24,31
-	  rlwinm    r0,r3,0,24,31
-	  addi      r3, r5, 0
-	  rlwimi    r3,r0,8,23,23
-	  sth       r3, 0x4(r4)
-	  blr
-	*/
+	u32 reg;
+	reg = 0;
+	GX_SET_REG(reg, alpha, 24, 31);
+	GX_SET_REG(reg, doEnable, 23, 23);
+	GX_SET_PE_REG(2, reg);
 }
 
 /*
@@ -734,15 +316,10 @@ void GXPokeDstAlpha(GXBool doEnable, u8 alpha)
  */
 void GXPokeDither(GXBool doDither)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x7148(r13)
-	  rlwinm    r0,r3,0,24,31
-	  lhz       r3, 0x2(r4)
-	  rlwimi    r3,r0,2,29,29
-	  sth       r3, 0x2(r4)
-	  blr
-	*/
+	u32 reg;
+	reg = GX_GET_PE_REG(1);
+	GX_SET_REG(reg, doDither, 29, 29);
+	GX_SET_PE_REG(1, reg);
 }
 
 /*
@@ -752,17 +329,12 @@ void GXPokeDither(GXBool doDither)
  */
 void GXPokeZMode(GXBool doCompare, GXCompare func, GXBool doUpdate)
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r0,r3,0,24,31
-	  lwz       r3, -0x7148(r13)
-	  li        r6, 0
-	  rlwimi    r6,r0,0,31,31
-	  rlwimi    r6,r4,1,28,30
-	  rlwimi    r6,r5,4,27,27
-	  sth       r6, 0x0(r3)
-	  blr
-	*/
+	u32 reg;
+	reg = 0;
+	GX_SET_REG(reg, doCompare, 31, 31);
+	GX_SET_REG(reg, func, 28, 30);
+	GX_SET_REG(reg, doUpdate, 27, 27);
+	GX_SET_PE_REG(0, reg);
 }
 
 /*
@@ -812,26 +384,14 @@ void GXPokeZ(u16 x, u16 y, u32 z)
  */
 GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback callback)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  lwz       r31, -0x7108(r13)
-	  bl        0x9518
-	  stw       r30, -0x7108(r13)
-	  bl        0x9538
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	GXDrawSyncCallback prevCB;
+	BOOL interrupts;
+
+	prevCB     = TokenCB;
+	interrupts = OSDisableInterrupts();
+	TokenCB    = callback;
+	OSRestoreInterrupts(interrupts);
+	return prevCB;
 }
 
 /*
@@ -839,47 +399,25 @@ GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback callback)
  * Address:	800E5748
  * Size:	000088
  */
-void GXTokenInterruptHandler(void)
+static void GXTokenInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x2E0(r1)
-	  stw       r31, 0x2DC(r1)
-	  stw       r30, 0x2D8(r1)
-	  mr        r30, r4
-	  lwz       r0, -0x7108(r13)
-	  lwz       r3, -0x7148(r13)
-	  cmplwi    r0, 0
-	  lhz       r31, 0xE(r3)
-	  beq-      .loc_0x5C
-	  addi      r3, r1, 0x10
-	  bl        0x79F4
-	  addi      r3, r1, 0x10
-	  bl        0x7824
-	  lwz       r12, -0x7108(r13)
-	  addi      r3, r31, 0
-	  mtlr      r12
-	  blrl
-	  addi      r3, r1, 0x10
-	  bl        0x79D4
-	  mr        r3, r30
-	  bl        0x7804
+	u16 token;
+	OSContext exceptContext;
+	u32 reg;
 
-	.loc_0x5C:
-	  lwz       r3, -0x7148(r13)
-	  li        r0, 0x1
-	  lhz       r4, 0xA(r3)
-	  rlwimi    r4,r0,2,29,29
-	  sth       r4, 0xA(r3)
-	  lwz       r0, 0x2E4(r1)
-	  lwz       r31, 0x2DC(r1)
-	  lwz       r30, 0x2D8(r1)
-	  addi      r1, r1, 0x2E0
-	  mtlr      r0
-	  blr
-	*/
+	token = GX_GET_PE_REG(7);
+
+	if (TokenCB) {
+		OSClearContext(&exceptContext);
+		OSSetCurrentContext(&exceptContext);
+		TokenCB(token);
+		OSClearContext(&exceptContext);
+		OSSetCurrentContext(context);
+	}
+
+	reg = GX_GET_PE_REG(5);
+	GX_SET_REG(reg, 1, 29, 29);
+	GX_SET_PE_REG(5, reg);
 }
 
 /*
@@ -889,26 +427,14 @@ void GXTokenInterruptHandler(void)
  */
 GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback callback)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  lwz       r31, -0x7104(r13)
-	  bl        0x944C
-	  stw       r30, -0x7104(r13)
-	  bl        0x946C
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	GXDrawDoneCallback prevCB;
+	BOOL interrupts;
+
+	prevCB     = DrawDoneCB;
+	interrupts = OSDisableInterrupts();
+	DrawDoneCB = callback;
+	OSRestoreInterrupts(interrupts);
+	return prevCB;
 }
 
 /*
@@ -916,45 +442,26 @@ GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback callback)
  * Address:	800E5814
  * Size:	000080
  */
-void GXFinishInterruptHandler(void)
+static void GXFinishInterruptHandler(__OSInterrupt interrupt, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  li        r3, 0x1
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x2E0(r1)
-	  stw       r31, 0x2DC(r1)
-	  addi      r31, r4, 0
-	  lwz       r5, -0x7148(r13)
-	  lhz       r0, 0xA(r5)
-	  rlwimi    r0,r3,3,28,28
-	  sth       r0, 0xA(r5)
-	  lwz       r0, -0x7104(r13)
-	  stb       r3, -0x7100(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x64
-	  addi      r3, r1, 0x10
-	  bl        0x791C
-	  addi      r3, r1, 0x10
-	  bl        0x774C
-	  lwz       r12, -0x7104(r13)
-	  mtlr      r12
-	  blrl
-	  addi      r3, r1, 0x10
-	  bl        0x7900
-	  mr        r3, r31
-	  bl        0x7730
+	OSContext exceptContext;
+	u32 reg;
 
-	.loc_0x64:
-	  subi      r3, r13, 0x70FC
-	  bl        0xD15C
-	  lwz       r0, 0x2E4(r1)
-	  lwz       r31, 0x2DC(r1)
-	  addi      r1, r1, 0x2E0
-	  mtlr      r0
-	  blr
-	*/
+	reg = GX_GET_PE_REG(5);
+	GX_SET_REG(reg, 1, 28, 28);
+	GX_SET_PE_REG(5, reg);
+
+	DrawDone = GX_TRUE;
+
+	if (DrawDoneCB) {
+		OSClearContext(&exceptContext);
+		OSSetCurrentContext(&exceptContext);
+		DrawDoneCB();
+		OSClearContext(&exceptContext);
+		OSSetCurrentContext(context);
+	}
+
+	OSWakeupThread(&FinishQueue);
 }
 
 /*
@@ -964,38 +471,22 @@ void GXFinishInterruptHandler(void)
  */
 void __GXPEInit(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x800E
-	  stw       r0, 0x4(r1)
-	  addi      r4, r3, 0x5748
-	  li        r3, 0x12
-	  stwu      r1, -0x8(r1)
-	  bl        0x93D8
-	  lis       r3, 0x800E
-	  addi      r4, r3, 0x5814
-	  li        r3, 0x13
-	  bl        0x93C8
-	  subi      r3, r13, 0x70FC
-	  bl        0xC0F0
-	  li        r3, 0x2000
-	  bl        0x97BC
-	  li        r3, 0x1000
-	  bl        0x97B4
-	  lwz       r3, -0x7148(r13)
-	  li        r0, 0x1
-	  lhz       r4, 0xA(r3)
-	  rlwimi    r4,r0,2,29,29
-	  rlwimi    r4,r0,3,28,28
-	  rlwimi    r4,r0,0,31,31
-	  rlwimi    r4,r0,1,30,30
-	  sth       r4, 0xA(r3)
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
+	u32 reg;
+
+	__OSSetInterruptHandler(__OS_INTERRUPT_PI_PE_TOKEN, GXTokenInterruptHandler);
+	__OSSetInterruptHandler(__OS_INTERRUPT_PI_PE_FINISH, GXFinishInterruptHandler);
+
+	OSInitThreadQueue(&FinishQueue);
+
+	__OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_PE_TOKEN);
+	__OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_PE_FINISH);
+
+	reg = GX_GET_PE_REG(5);
+	GX_SET_REG(reg, 1, 29, 29);
+	GX_SET_REG(reg, 1, 28, 28);
+	GX_SET_REG(reg, 1, 31, 31);
+	GX_SET_REG(reg, 1, 30, 30);
+	GX_SET_PE_REG(5, reg);
 }
 
 /*
