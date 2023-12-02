@@ -13,12 +13,13 @@ extern "C" {
 
 /////////// TRANSFORM FUNCTIONS ////////////
 // Matrix and projection functions.
-extern void GXSetProjection(Mtx44 mtx, GXProjectionType type);
+extern void GXSetProjection(const Mtx44 mtx, GXProjectionType type);
 extern void GXSetProjectionv(f32* ptr);
 extern void GXLoadPosMtxImm(Mtx mtx, u32 id);
 extern void GXLoadNrmMtxImm(Mtx mtx, u32 id);
 extern void GXSetCurrentMtx(u32 id);
-extern void GXLoadTexMtxImm(f32 mtx[][4], u32 id, GXTexMtxType type);
+extern void GXLoadTexMtxImm(const Mtx mtx, u32 id, GXTexMtxType type);
+extern void __GXSetMatrixIndex(GXAttr index);
 
 // Viewport functions.
 extern void __GXSetViewport(); // confirm types

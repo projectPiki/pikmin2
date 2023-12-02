@@ -62,6 +62,7 @@ volatile PPCWGPipe GXWGFifo : GXFIFO_ADDR;
 #define GX_WRITE_U8(val)  (GXWGFifo.u8 = val)
 #define GX_WRITE_U16(val) (GXWGFifo.u16 = val)
 #define GX_WRITE_U32(val) (GXWGFifo.u32 = (u32)val)
+#define GX_WRITE_F32(val) (GXWGFifo.f32 = (f32)val)
 
 static inline void GXPosition2f32(const f32 x, const f32 y)
 {

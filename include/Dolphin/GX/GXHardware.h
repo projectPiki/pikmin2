@@ -116,12 +116,10 @@ extern "C" {
 /**
  * Load immediate values into multiple XF registers
  */
-#define GX_XF_LOAD_REGS(size, addr) \
-	{                               \
-		u32 cmd = 0;                \
-		cmd |= (addr);              \
-		cmd |= (size) << 16;        \
-		GX_XF_LOAD_REG_HDR(cmd);    \
+#define GX_XF_LOAD_REGS(size, addr)    \
+	{                                  \
+		u32 cmd = (size) << 16 | addr; \
+		GX_XF_LOAD_REG_HDR(cmd);       \
 	}
 
 #ifdef __cplusplus
