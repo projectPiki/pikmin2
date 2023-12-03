@@ -77,6 +77,8 @@ extern void GXInitTexObjWrapMode(GXTexObj* obj, GXTexWrapMode sWrap, GXTexWrapMo
 extern void GXInitTexObjTlut(GXTexObj* obj, u32 tlutName);
 // TODO: finish filling these out for reference purposes.
 
+extern void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b, u32* c);
+
 ////////////////////////////////////////////
 
 #ifdef __cplusplus

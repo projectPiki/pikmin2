@@ -1,5 +1,4 @@
 #include "Dolphin/gx.h"
-
 /*
  * --INFO--
  * Address:	........
@@ -64,8 +63,50 @@ void GXSetDispCopyDst(u16 width, u16 height)
  * Address:	800E5D70
  * Size:	000130
  */
+
+// this is here only until we have a GXTexture.c header that contains this
 void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt format, GXBool useMIPmap)
 {
+	u32 sp20, sp1C, sp18;
+
+	u8 depthRelated;
+
+	gx->cpTexZ = GX_NONE;
+
+	depthRelated = format & 0xf;
+	if (format == GX_TF_Z16)
+	{
+		depthRelated = 0xb;
+	}
+
+	switch (format)
+	{
+		case GX_TF_I4:
+		case GX_TF_I8:
+		case GX_TF_IA4:
+		case GX_TF_IA8:
+		case GX_CTF_A8:
+			GX_BITFIELD_SET(gx->cpTex, 15, 2, 3);
+			break;
+		default:
+			GX_BITFIELD_SET(gx->cpTex, 15, 2, 2);
+			break;
+	}
+	
+	gx->cpTexZ = (format & 0x10) == 0x10;
+
+	GX_BITFIELD_SET(gx->cpTex, 28, 1, depthRelated >> 3);
+
+	depthRelated &= 7;
+	
+	__GetImageTileCount(format, width, height, &sp20, &sp1C, &sp18);
+
+	gx->cpTexStride = GX_NONE;
+	GX_BITFIELD_SET(gx->cpTexStride, 22, 10, sp20 * sp18);
+	GX_BITFIELD_SET(gx->cpTexStride, 0, 8, 0x4d);
+
+	GX_BITFIELD_SET(gx->cpTex, 22, 1, useMIPmap);
+	GX_BITFIELD_SET(gx->cpTex, 25, 3, depthRelated);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -80,13 +121,10 @@ void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt format, GXBool useMIPmap)
 	  addi      r30, r6, 0
 	  lwz       r7, -0x6D70(r2)
 	  stb       r0, 0x200(r7)
+.loc_0x3C:
 	  addi      r7, r4, 0
 	  bne-      .loc_0x3C
-	  li        r31, 0xB
-
-	.loc_0x3C:
-	  cmpwi     r5, 0x26
-	  beq-      .loc_0x5C
+	  li        r31,      .loc_0x5C
 	  bge-      .loc_0x74
 	  cmpwi     r5, 0x4
 	  bge-      .loc_0x74
@@ -198,6 +236,21 @@ void __GXGetNumXfbLines(void)
  */
 u16 GXGetNumXfbLines(u16 efbHeight, f32 yScale)
 {
+	u32 newScale = (u32)(256.0f / yScale) & 0x1ff;
+	u32 oldScale = ((u16)efbHeight) - 1;
+	u8 a = newScale;
+	a++;
+	
+
+	if (newScale > 0x80 && newScale < 0x100)
+	{
+		while (!(newScale & 1))
+		{
+			newScale >>= 1;
+		}
+	}
+
+	return efbHeight + oldScale;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -287,30 +340,21 @@ f32 GXGetYScaleFactor(u16 efbHeight, u16 xfbHeight)
 	  rlwinm    r4,r3,0,23,31
 	  rlwinm    r30,r0,8,0,23
 	  divwu     r3, r30, r4
+	bge-      .loc_0xB4
 	  cmplwi    r4, 0x80
-	  addi      r3, r3, 0x1
-	  ble-      .loc_0xB4
-	  cmplwi    r4, 0x100
-	  bge-      .loc_0xB4
-	  b         .loc_0x98
 
-	.loc_0x94:
-	  rlwinm    r4,r4,31,1,31
+	  addi      r3, r3, 0x1
+	  ble-      .  rlwinm    r4,r4,31,1,31
 
 	.loc_0x98:
 	  rlwinm.   r0,r4,0,31,31
 	  beq+      .loc_0x94
 	  divwu     r0, r31, r4
+
 	  mullw     r0, r0, r4
 	  sub.      r0, r31, r0
-	  bne-      .loc_0xB4
-	  addi      r3, r3, 0x1
-
-	.loc_0xB4:
-	  cmplwi    r3, 0x400
-	  ble-      .loc_0xC0
-	  li        r3, 0x400
-
+	ble-      ..loc_0xB4:
+	  
 	.loc_0xC0:
 	  lfd       f31, -0x6D40(r2)
 	  mr        r0, r3
@@ -472,35 +516,22 @@ u32 GXSetDispCopyYScale(f32 vertScale)
 	  rlwinm    r5,r0,22,22,31
 	  rlwinm    r0,r0,30,14,23
 	  divwu     r3, r0, r7
+	bge-      .loc_0xB0
 	  addi      r5, r5, 0x1
-	  addi      r3, r3, 0x1
-	  ble-      .loc_0xB0
-	  cmplwi    r7, 0x100
-	  bge-      .loc_0xB0
-	  b         .loc_0x94
 
-	.loc_0x90:
-	  rlwinm    r4,r4,31,1,31
+	  addi      r3, r3, 0x1
+	  ble-      .  rlwinm    r4,r4,31,1,31
 
 	.loc_0x94:
 	  rlwinm.   r0,r4,0,31,31
 	  beq+      .loc_0x90
 	  divwu     r0, r5, r4
+
 	  mullw     r0, r0, r4
 	  sub.      r0, r5, r0
-	  bne-      .loc_0xB0
-	  addi      r3, r3, 0x1
-
-	.loc_0xB0:
-	  cmplwi    r3, 0x400
-	  ble-      .loc_0xBC
-	  li        r3, 0x400
-
-	.loc_0xBC:
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
+	ble-      .  addi      r3, r3, 0x1
+	..loc_0xBC:
+	  
 	*/
 }
 
@@ -596,13 +627,11 @@ void GXSetCopyFilter(GXBool useAA, u8 samplePattern[12][2], GXBool doVertFilt, u
 	  li        r0, 0x1
 	  lbz       r31, 0xA(r4)
 	  rlwimi    r9,r10,8,20,23
+	lbz       r11, 0x10(r4)
 	  lbz       r26, 0x15(r4)
 	  rlwimi    r3,r0,24,0,7
 	  lbz       r12, 0xB(r4)
-	  rlwimi    r7,r24,8,20,23
-	  lbz       r11, 0x10(r4)
-	  rlwimi    r7,r30,12,16,19
-	  lbz       r10, 0x11(r4)
+	  rlwimi    r7,11(r4)
 	  lbz       r27, 0x16(r4)
 	  rlwimi    r7,r31,16,12,15
 	  rlwimi    r8,r25,12,16,19
@@ -872,19 +901,15 @@ void GXCopyTex(void* dest, GXBool doClear)
 	  rlwimi    r7,r0,6,25,25
 	  li        r0, 0x1
 
+	lis       r5, 0xCC01
 	.loc_0xA4:
 	  rlwinm.   r5,r0,0,24,31
 	  beq-      .loc_0xBC
-	  li        r6, 0x61
-	  lis       r5, 0xCC01
-	  stb       r6, -0x8000(r5)
+	  li        r6, 70(r2)
 	  stw       r7, -0x8000(r5)
 
 	.loc_0xBC:
-	  li        r9, 0x61
-	  lwz       r7, -0x6D70(r2)
-	  lis       r8, 0xCC01
-	  stb       r9, -0x8000(r8)
+	       r9, -0x8000(r8)
 	  rlwinm.   r5,r4,0,24,31
 	  li        r10, 0
 	  lwz       r4, 0x1F0(r7)

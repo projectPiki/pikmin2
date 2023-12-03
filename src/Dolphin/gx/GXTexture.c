@@ -140,7 +140,7 @@ u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_
  * Address:	800E70B4
  * Size:	0000C8
  */
-void __GetImageTileCount(void)
+void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b, u32* c)
 {
 	/*
 	.loc_0x0:
