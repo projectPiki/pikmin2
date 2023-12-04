@@ -234,23 +234,32 @@ void __GXGetNumXfbLines(void)
  * Address:	800E5F1C
  * Size:	000090
  */
-u16 GXGetNumXfbLines(u16 efbHeight, f32 yScale)
+u16 GXGetNumXfbLines(const u16 efbHeight, f32 yScale)
 {
-	u32 newScale = (u32)(256.0f / yScale) & 0x1ff;
-	u32 oldScale = ((u16)efbHeight) - 1;
-	u8 a = newScale;
-	a++;
-	
+	u32 r5;
+	u32 numXfbLines = (efbHeight - 1) * 0x100;
+	u32 scaledHeight = (u32)(0x100 / yScale) % 0x200;
+	numXfbLines = (numXfbLines / scaledHeight) + 1;
 
-	if (newScale > 0x80 && newScale < 0x100)
+	if (scaledHeight > 0x80 && scaledHeight < 0x100)
 	{
-		while (!(newScale & 1))
+		while (scaledHeight % 2 == 0)
 		{
-			newScale >>= 1;
+			scaledHeight /= 2;
+		}
+
+		if (efbHeight % scaledHeight == 0)
+		{
+			numXfbLines++;
 		}
 	}
 
-	return efbHeight + oldScale;
+	if (numXfbLines > 0x400)
+	{
+		numXfbLines = 0x400;
+	}
+
+	return numXfbLines;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -484,6 +493,36 @@ f32 GXGetYScaleFactor(u16 efbHeight, u16 xfbHeight)
  */
 u32 GXSetDispCopyYScale(f32 vertScale)
 {
+	u32 reg = 0;
+	u32 numXfbLines = (1 - 1) * 0x100;
+	u32 scaledHeight = (u32)(0x100 / vertScale) % 0x200;
+	numXfbLines = (numXfbLines / scaledHeight) + 1;
+	GX_BITFIELD_SET(reg, 23, 9, scaledHeight);
+	GX_BITFIELD_SET(reg, 0, 8, 0x4e);
+	GX_BP_LOAD_REG(reg);
+
+	GX_BITFIELD_SET(gx->cpDisp, 21, 1, 0);
+	gx->cpDispSize = gx->cpDisp;
+	if (scaledHeight > 0x80 && scaledHeight < 0x100)
+	{
+		while (scaledHeight % 2 == 0)
+		{
+			scaledHeight /= 2;
+		}
+
+		if (1 % scaledHeight == 0)
+		{
+			numXfbLines++;
+		}
+	}
+
+	if (numXfbLines > 0x400)
+	{
+		numXfbLines = 0x400;
+	}
+
+	return numXfbLines;
+
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -542,39 +581,22 @@ u32 GXSetDispCopyYScale(f32 vertScale)
  */
 void GXSetCopyClear(GXColor clearColor, u32 clearZ)
 {
-	/*
-	.loc_0x0:
-	  lbz       r5, 0x0(r3)
-	  li        r6, 0
-	  lbz       r0, 0x3(r3)
-	  li        r9, 0x61
-	  rlwimi    r6,r5,0,24,31
-	  lis       r8, 0xCC01
-	  lwz       r5, -0x6D70(r2)
-	  rlwimi    r6,r0,8,16,23
-	  stb       r9, -0x8000(r8)
-	  li        r0, 0x4F
-	  rlwimi    r6,r0,24,0,7
-	  stw       r6, -0x8000(r8)
-	  li        r10, 0
-	  li        r6, 0x50
-	  lbz       r7, 0x2(r3)
-	  li        r11, 0
-	  lbz       r3, 0x1(r3)
-	  li        r0, 0x51
-	  rlwimi    r11,r7,0,24,31
-	  rlwimi    r11,r3,8,16,23
-	  stb       r9, -0x8000(r8)
-	  rlwimi    r11,r6,24,0,7
-	  stw       r11, -0x8000(r8)
-	  rlwimi    r10,r4,0,8,31
-	  rlwimi    r10,r0,24,0,7
-	  stb       r9, -0x8000(r8)
-	  li        r0, 0
-	  stw       r10, -0x8000(r8)
-	  sth       r0, 0x2(r5)
-	  blr
-	*/
+	u32 reg = 0;
+	GX_BITFIELD_SET(reg, 24, 8, clearColor.r);
+	GX_BITFIELD_SET(reg, 16, 8, clearColor.a);
+	GX_BITFIELD_SET(reg, 0, 8, 0x4f);
+	GX_BP_LOAD_REG(reg);
+	reg = 0;
+	GX_BITFIELD_SET(reg, 24, 8, clearColor.b);
+	GX_BITFIELD_SET(reg, 16, 8, clearColor.g);
+	GX_BITFIELD_SET(reg, 0, 8, 0x50);
+	GX_BP_LOAD_REG(reg);
+	reg = 0;
+	GX_BITFIELD_SET(reg, 8, 24, clearZ);
+	GX_BITFIELD_SET(reg, 0, 8, 0x51);
+	GX_BP_LOAD_REG(reg);
+
+	gx->bpSentNot = GX_FALSE;
 }
 
 /*
