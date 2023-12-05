@@ -351,13 +351,13 @@ void GXSetChanAmbColor(GXChannelID channel, GXColor color)
 	switch (channel) {
 	case GX_COLOR0:
 		rgb = gx->ambColor[GX_COLOR0];
-		reg = (*(u32*)(&color)) >> 8;
+		reg = (*(u32*)(&color)) & ~0xff;
 		GX_SET_REG(reg, rgb, 24, 31);
 		colorID = GX_COLOR0;
 		break;
 	case GX_COLOR1:
 		rgb = gx->ambColor[GX_COLOR1];
-		reg = (*(u32*)(&color)) >> 8;
+		reg = (*(u32*)(&color)) & ~0xff;
 		GX_SET_REG(reg, rgb, 24, 31);
 		colorID = GX_COLOR1;
 		break;
@@ -481,13 +481,13 @@ void GXSetChanMatColor(GXChannelID channel, GXColor color)
 	switch (channel) {
 	case GX_COLOR0:
 		rgb = gx->matColor[GX_COLOR0];
-		reg = (*(u32*)(&color)) >> 8;
+		reg = (*(u32*)(&color)) & ~0xff;
 		GX_SET_REG(reg, rgb, 24, 31);
 		colorID = 0;
 		break;
 	case GX_COLOR1:
 		rgb = gx->matColor[GX_COLOR1];
-		reg = (*(u32*)(&color)) >> 8;
+		reg = (*(u32*)(&color)) & ~0xff;
 		GX_SET_REG(reg, rgb, 24, 31);
 		colorID = 1;
 		break;
@@ -620,15 +620,20 @@ void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXCo
 	u32 colorID;
 	u32 reg = 0;
 	colorID = (channel & 0x3);
-	GX_SET_REG(reg, doEnable, GX_XF_CLR0CTRL_LIGHT_ST, GX_XF_CLR0CTRL_LIGHT_END);
-	GX_SET_REG(reg, matSrc, GX_XF_CLR0CTRL_MTXSRC_ST, GX_XF_CLR0CTRL_MTXSRC_END);
-	GX_SET_REG(reg, ambSrc, GX_XF_CLR0CTRL_AMBSRC_ST, GX_XF_CLR0CTRL_AMBSRC_END);
-	GX_SET_REG(reg, (attnFunc == GX_AF_SPEC ? GX_DF_NONE : diffFunc), GX_XF_CLR0CTRL_DIFATTN_ST, GX_XF_CLR0CTRL_DIFATTN_END);
-	GX_SET_REG(reg, (attnFunc != GX_AF_NONE), GX_XF_CLR0CTRL_ATTNENABLE_ST, GX_XF_CLR0CTRL_ATTNENABLE_END);
-	GX_SET_REG(reg, (attnFunc != GX_AF_SPEC), GX_XF_CLR0CTRL_ATTNSEL_ST, GX_XF_CLR0CTRL_ATTNSEL_END);
+	GX_SET_REG(reg, doEnable, 											GX_XF_CLR0CTRL_LIGHT_ST, 		GX_XF_CLR0CTRL_LIGHT_END);
+	GX_SET_REG(reg, matSrc, 											GX_XF_CLR0CTRL_MTXSRC_ST, 		GX_XF_CLR0CTRL_MTXSRC_END);
+	GX_SET_REG(reg, ambSrc, 											GX_XF_CLR0CTRL_AMBSRC_ST, 		GX_XF_CLR0CTRL_AMBSRC_END);
+	GX_SET_REG(reg, ((attnFunc == GX_AF_SPEC) ? GX_DF_NONE : diffFunc), GX_XF_CLR0CTRL_DIFATTN_ST, 		GX_XF_CLR0CTRL_DIFATTN_END);
+	GX_SET_REG(reg, (attnFunc != GX_AF_NONE), 							GX_XF_CLR0CTRL_ATTNENABLE_ST, 	GX_XF_CLR0CTRL_ATTNENABLE_END);
+	GX_SET_REG(reg, (attnFunc != GX_AF_SPEC), 							GX_XF_CLR0CTRL_ATTNSEL_ST, 		GX_XF_CLR0CTRL_ATTNSEL_END);
 
-	GX_SET_REG(reg, mask & 0xF, GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
-	GX_SET_REG(reg, (mask & 0xF0) >> 4, GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
+	// rlwinm here
+	mask &= ~0x3C;
+	GX_SET_REG(reg, mask, 												GX_XF_CLR0CTRL_LMASKHI_ST, 		GX_XF_CLR0CTRL_LMASKHI_END);
+	mask &= ~0x7800;
+	// rlwinm here
+
+	GX_SET_REG(reg, mask >> 4, 											GX_XF_CLR0CTRL_LMASKLO_ST, 		GX_XF_CLR0CTRL_LMASKLO_END);
 
 	GX_XF_LOAD_REG(GX_XF_REG_COLOR0CNTRL + colorID, reg);
 
