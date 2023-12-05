@@ -497,75 +497,17 @@ void GXInitXfRasMetric(void)
  * --INFO--
  * Address:	800EA1DC
  * Size:	0000C4
+ * TODO: use enums for the read regs
  */
+#pragma scheduling off
 void GXReadXfRasMetric(u32* xfWaitIn, u32* xfWaitOut, u32* rasBusy, u32* clocks)
 {
 	*rasBusy   = GXReadCPReg(32, 33);
 	*clocks    = GXReadCPReg(34, 35);
 	*xfWaitIn  = GXReadCPReg(36, 37);
 	*xfWaitOut = GXReadCPReg(38, 39);
-	/*
-	.loc_0x0:
-	  lwz       r7, -0x714C(r13)
-	  addi      r10, r7, 0x42
-	  lhz       r8, 0x42(r7)
-	  addi      r9, r7, 0x40
-
-	.loc_0x10:
-	  mr        r0, r8
-	  lhz       r7, 0x0(r9)
-	  lhz       r8, 0x0(r10)
-	  cmplw     r8, r0
-	  bne+      .loc_0x10
-	  rlwinm    r0,r8,16,0,15
-	  or        r0, r0, r7
-	  stw       r0, 0x0(r5)
-	  lwz       r5, -0x714C(r13)
-	  addi      r9, r5, 0x46
-	  lhz       r7, 0x46(r5)
-	  addi      r8, r5, 0x44
-
-	.loc_0x40:
-	  mr        r0, r7
-	  lhz       r5, 0x0(r8)
-	  lhz       r7, 0x0(r9)
-	  cmplw     r7, r0
-	  bne+      .loc_0x40
-	  rlwinm    r0,r7,16,0,15
-	  or        r0, r0, r5
-	  stw       r0, 0x0(r6)
-	  lwz       r5, -0x714C(r13)
-	  addi      r8, r5, 0x4A
-	  lhz       r6, 0x4A(r5)
-	  addi      r7, r5, 0x48
-
-	.loc_0x70:
-	  mr        r0, r6
-	  lhz       r5, 0x0(r7)
-	  lhz       r6, 0x0(r8)
-	  cmplw     r6, r0
-	  bne+      .loc_0x70
-	  rlwinm    r0,r6,16,0,15
-	  or        r0, r0, r5
-	  stw       r0, 0x0(r3)
-	  lwz       r3, -0x714C(r13)
-	  addi      r7, r3, 0x4E
-	  lhz       r5, 0x4E(r3)
-	  addi      r6, r3, 0x4C
-
-	.loc_0xA0:
-	  mr        r0, r5
-	  lhz       r3, 0x0(r6)
-	  lhz       r5, 0x0(r7)
-	  cmplw     r5, r0
-	  bne+      .loc_0xA0
-	  rlwinm    r0,r5,16,0,15
-	  or        r0, r0, r3
-	  stw       r0, 0x0(r4)
-	  blr
-	*/
 }
-
+#pragma scheduling reset
 /*
  * --INFO--
  * Address:	........

@@ -12,7 +12,7 @@ GX_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/gx/GXPixel.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXDisplayList.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXTransform.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXPerf.o\
+	$(BUILD_DIR)/src/Dolphin/gx/GXPerf.o\
 
 $(GX_FILES): CFLAGS += -common off -str noreadonly -fp_contract off
 $(GX_FILES): MWCC_VERSION := 1.2.5n
