@@ -29,7 +29,7 @@ extern void GXLoadLightObjImm(GXLightObj* obj, GXLightID light);
 extern void GXSetChanAmbColor(GXChannelID channel, GXColor color);
 extern void GXSetChanMatColor(GXChannelID channel, GXColor color);
 extern void GXSetNumChans(u8 count);
-extern void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 mask, GXDiffuseFn diffFunc,
+extern void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, GXLightID mask, GXDiffuseFn diffFunc,
                           GXAttnFn attnFunc);
 
 // Unused/inlined in P2.

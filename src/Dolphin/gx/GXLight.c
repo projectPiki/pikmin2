@@ -344,20 +344,21 @@ void GXLoadLightObjIndx(u32 objIndex, GXLightID light)
  */
 void GXSetChanAmbColor(GXChannelID channel, GXColor color)
 {
-	u32 reg = 0;
+	u32 reg;
 	u32 rgb;
 	u32 colorID;
+	u8 alpha;
 
 	switch (channel) {
 	case GX_COLOR0:
 		rgb = gx->ambColor[GX_COLOR0];
-		reg = (*(u32*)(&color)) & ~0xff;
+		reg = GXCOLOR_AS_U32(color) & ~0xff;
 		GX_SET_REG(reg, rgb, 24, 31);
 		colorID = GX_COLOR0;
 		break;
 	case GX_COLOR1:
 		rgb = gx->ambColor[GX_COLOR1];
-		reg = (*(u32*)(&color)) & ~0xff;
+		reg = GXCOLOR_AS_U32(color) & ~0xff;
 		GX_SET_REG(reg, rgb, 24, 31);
 		colorID = GX_COLOR1;
 		break;
@@ -372,11 +373,11 @@ void GXSetChanAmbColor(GXChannelID channel, GXColor color)
 		colorID = GX_COLOR1;
 		break;
 	case GX_COLOR0A0:
-		reg     = (*(u32*)(&color));
+		reg     = GXCOLOR_AS_U32(color);
 		colorID = GX_COLOR0;
 		break;
 	case GX_COLOR1A1:
-		reg     = (*(u32*)(&color));
+		reg     = GXCOLOR_AS_U32(color);
 		colorID = GX_COLOR1;
 		break;
 	default:
@@ -481,13 +482,13 @@ void GXSetChanMatColor(GXChannelID channel, GXColor color)
 	switch (channel) {
 	case GX_COLOR0:
 		rgb = gx->matColor[GX_COLOR0];
-		reg = (*(u32*)(&color)) & ~0xff;
+		reg = GXCOLOR_AS_U32(color) & ~0xff;
 		GX_SET_REG(reg, rgb, 24, 31);
 		colorID = 0;
 		break;
 	case GX_COLOR1:
 		rgb = gx->matColor[GX_COLOR1];
-		reg = (*(u32*)(&color)) & ~0xff;
+		reg = GXCOLOR_AS_U32(color) & ~0xff;
 		GX_SET_REG(reg, rgb, 24, 31);
 		colorID = 1;
 		break;
@@ -502,11 +503,11 @@ void GXSetChanMatColor(GXChannelID channel, GXColor color)
 		colorID = 1;
 		break;
 	case GX_COLOR0A0:
-		reg     = (*(u32*)(&color));
+		reg     = GXCOLOR_AS_U32(color);
 		colorID = 0;
 		break;
 	case GX_COLOR1A1:
-		reg     = (*(u32*)(&color));
+		reg     = GXCOLOR_AS_U32(color);
 		colorID = 1;
 		break;
 	default:
@@ -614,26 +615,28 @@ void GXSetNumChans(u8 count)
  * Address:	800E6EA0
  * Size:	0000B8
  */
-void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 mask, GXDiffuseFn diffFunc,
+
+
+void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, GXLightID mask, GXDiffuseFn diffFunc,
                    GXAttnFn attnFunc)
 {
-	u32 colorID;
+	const u32 colorID = (u32)channel % 4;
+
 	u32 reg = 0;
-	colorID = (channel & 0x3);
+
 	GX_SET_REG(reg, doEnable, 											GX_XF_CLR0CTRL_LIGHT_ST, 		GX_XF_CLR0CTRL_LIGHT_END);
 	GX_SET_REG(reg, matSrc, 											GX_XF_CLR0CTRL_MTXSRC_ST, 		GX_XF_CLR0CTRL_MTXSRC_END);
 	GX_SET_REG(reg, ambSrc, 											GX_XF_CLR0CTRL_AMBSRC_ST, 		GX_XF_CLR0CTRL_AMBSRC_END);
-	GX_SET_REG(reg, ((attnFunc == GX_AF_SPEC) ? GX_DF_NONE : diffFunc), GX_XF_CLR0CTRL_DIFATTN_ST, 		GX_XF_CLR0CTRL_DIFATTN_END);
+	GX_SET_REG(reg, (attnFunc == GX_AF_SPEC ? GX_DF_NONE : diffFunc), 	GX_XF_CLR0CTRL_DIFATTN_ST, 		GX_XF_CLR0CTRL_DIFATTN_END);
 	GX_SET_REG(reg, (attnFunc != GX_AF_NONE), 							GX_XF_CLR0CTRL_ATTNENABLE_ST, 	GX_XF_CLR0CTRL_ATTNENABLE_END);
 	GX_SET_REG(reg, (attnFunc != GX_AF_SPEC), 							GX_XF_CLR0CTRL_ATTNSEL_ST, 		GX_XF_CLR0CTRL_ATTNSEL_END);
 
-	// rlwinm here
-	mask &= ~0x3C;
-	GX_SET_REG(reg, mask, 												GX_XF_CLR0CTRL_LMASKHI_ST, 		GX_XF_CLR0CTRL_LMASKHI_END);
-	mask &= ~0x7800;
-	// rlwinm here
 
-	GX_SET_REG(reg, mask >> 4, 											GX_XF_CLR0CTRL_LMASKLO_ST, 		GX_XF_CLR0CTRL_LMASKLO_END);
+	// why are we unmasking bits we're about to overwrite?
+	reg &= ~GX_REG_MASK(												GX_XF_CLR0CTRL_LMASKHI_ST,		GX_XF_CLR0CTRL_LMASKHI_END);
+	GX_SET_REG(reg, (u32)mask,											GX_XF_CLR0CTRL_LMASKHI_ST,		GX_XF_CLR0CTRL_LMASKHI_END);
+	reg &= ~GX_REG_MASK(												GX_XF_CLR0CTRL_LMASKLO_ST,		GX_XF_CLR0CTRL_LMASKLO_END);
+	GX_SET_REG(reg, (u32)mask >> 4,										GX_XF_CLR0CTRL_LMASKLO_ST,		GX_XF_CLR0CTRL_LMASKLO_END);
 
 	GX_XF_LOAD_REG(GX_XF_REG_COLOR0CNTRL + colorID, reg);
 
