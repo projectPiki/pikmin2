@@ -15,9 +15,9 @@ inline s32 colorCheck(s32 diff, s32 t)
 
 struct JUTConsole : public JKRDisposer {
 	enum EConsoleType {
-		CONSOLETYPE_Unk0 = 0,
-		CONSOLETYPE_Unk1 = 1,
-		CONSOLETYPE_Unk2 = 2,
+		CONSOLETYPE_Active   = 0,
+		CONSOLETYPE_Inactive = 1,
+		CONSOLETYPE_Unk2     = 2,
 	};
 
 	enum OutputFlag {
@@ -93,15 +93,7 @@ struct JUTConsole : public JKRDisposer {
 		return diff += mMaxLines;
 	}
 
-	int nextIndex(int currIndex) const
-	{
-		int newIndex = currIndex + 1;
-		if (mMaxLines <= newIndex) {
-			newIndex = 0;
-		}
-
-		return newIndex;
-	}
+	int nextIndex(int currIndex) const { return ++currIndex >= mMaxLines ? 0 : currIndex; }
 
 	void scrollToLastLine() { scroll(mMaxLines); }
 	void scrollToFirstLine() { scroll(-mMaxLines); }
@@ -121,7 +113,7 @@ struct JUTConsole : public JKRDisposer {
 	// _00-_18 = JKRDisposer
 	JGadget::TLinkListNode mListNode; // _18
 	u32 _20;                          // _20
-	u32 mMaxLines;                    // _24
+	int mMaxLines;                    // _24
 	u8* mBuf;                         // _28
 	bool _2C;                         // _2C
 	int _30;                          // _30
@@ -145,6 +137,8 @@ struct JUTConsole : public JKRDisposer {
 };
 
 struct JUTConsoleManager {
+	typedef JGadget::TLinkList<JUTConsole, -0x18> ConsoleList;
+
 	JUTConsoleManager();
 
 	~JUTConsoleManager();
@@ -166,9 +160,9 @@ struct JUTConsoleManager {
 
 	static JUTConsoleManager* sManager;
 
-	JGadget::TLinkList<JUTConsole, 4> mLinkList; // _00
-	JUTConsole* mActiveConsole;                  // _0C
-	JUTConsole* mDirectConsole;                  // _10
+	ConsoleList mLinkList;      // _00
+	JUTConsole* mActiveConsole; // _0C
+	JUTConsole* mDirectConsole; // _10
 };
 
 extern "C" {

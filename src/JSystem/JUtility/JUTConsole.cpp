@@ -9,56 +9,6 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "string.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .balign 8
-    .global __vt__10JUTConsole
-    __vt__10JUTConsole:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__10JUTConsoleFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .balign 8
-    .global sManager__17JUTConsoleManager
-    sManager__17JUTConsoleManager:
-        .skip 0x4
-    sReportConsole: # local object
-        .skip 0x4
-    sWarningConsole: # local object
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .balign 8
-    lbl_80516568:
-        .float 2.0
-    lbl_8051656C:
-        .float 0.0
-    lbl_80516570:
-        .float 640.0
-    lbl_80516574:
-        .float 480.0
-    lbl_80516578:
-        .float -1.0
-    lbl_8051657C:
-        .float 1.0
-    lbl_80516580:
-        .float 4.0
-    .balign 8
-    lbl_80516588:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .balign 8
-    lbl_80516590:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .balign 4
-    lbl_80516598:
-        .asciz "%s"
-*/
-
 JUTConsoleManager* JUTConsoleManager::sManager;
 static JUTConsole* sReportConsole;
 static JUTConsole* sWarningConsole;
@@ -174,7 +124,7 @@ void JUTConsole::clear()
 	_38 = 0;
 	_3C = 0;
 
-	for (int i = 0; i < mMaxLines; i++) {
+	for (int i = 0; i < (u32)mMaxLines; i++) {
 		setLineAttr(i, 0);
 	}
 	mBuf[0] = 0xFF;
@@ -194,7 +144,7 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 
 	if (mIsVisible && (mFont || (inputType == CONSOLETYPE_Unk2))) {
 		if (mHeight != 0) {
-			bool testVal = (inputType == CONSOLETYPE_Unk0);
+			bool testVal = (inputType == CONSOLETYPE_Active);
 			fontYOffset  = 2.0f + mFontSizeY;
 
 			if (inputType != CONSOLETYPE_Unk2) {
@@ -304,238 +254,66 @@ void JUTConsole::print_f(const char* format, ...)
  */
 void JUTConsole::print(const char* str)
 {
-	char* strPtr = const_cast<char*>(str);
-	if (isOutputOSReport()) {
-		while (*strPtr) { }
+	if (mOutput & 1) {
+		const u8* r29 = (const u8*)str;
+		u8* r28       = getLinePtr(_38) + _3C;
+		while (*r29) {
+			if (_6A && _34 == nextIndex(_38)) {
+				break;
+			}
+			if (*r29 == '\n') {
+				r29++;
+				_3C = _20;
+			} else if (*r29 == '\t') {
+				r29++;
+				while (_3C < _20) {
+					*(r28++) = ' ';
+					_3C++;
+					if (_3C % _64 == 0) {
+						break;
+					}
+				}
+			} else if (mFont && mFont->isLeadByte(*r29)) {
+				if (_3C + 1 < _20) {
+					*(r28++) = *(r29++);
+					*(r28++) = *(r29++);
+					_3C++;
+					_3C++;
+				} else {
+					*(r28++) = 0;
+					_3C++;
+				}
+			} else {
+				*(r28++) = *(r29++);
+				_3C++;
+			}
+
+			if (_3C < _20) {
+				continue;
+			}
+			*r28 = 0;
+			_38  = nextIndex(_38);
+			_3C  = 0;
+			setLineAttr(_38, 0xff);
+			r28          = getLinePtr(_38);
+			*r28         = 0;
+			int local_28 = diffIndex(_30, _38);
+			if (local_28 == mHeight) {
+				_30 = nextIndex(_30);
+			}
+			if (_38 == _34) {
+				_34 = nextIndex(_34);
+			}
+			if (_38 == _30) {
+				_30 = nextIndex(_30);
+			}
+
+			if (_6B) {
+				break;
+			}
+		}
+		*r28 = 0;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x58(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80028D10
-	lwz      r5, 0x20(r29)
-	mr       r31, r4
-	lwz      r3, 0x38(r29)
-	addi     r4, r5, 2
-	lwz      r0, 0x3c(r29)
-	mullw    r3, r4, r3
-	lwz      r4, 0x28(r29)
-	addi     r3, r3, 1
-	add      r30, r3, r0
-	add      r30, r4, r30
-	b        lbl_80028CFC
-
-lbl_80028A80:
-	lbz      r0, 0x6a(r29)
-	cmplwi   r0, 0
-	beq      lbl_80028AB8
-	lwz      r6, 0x38(r29)
-	lwz      r3, 0x24(r29)
-	addi     r6, r6, 1
-	lwz      r0, 0x34(r29)
-	xoris    r5, r3, 0x8000
-	subf     r3, r3, r6
-	addc     r3, r3, r5
-	subfe    r3, r3, r3
-	andc     r3, r6, r3
-	cmpw     r0, r3
-	beq      lbl_80028D08
-
-lbl_80028AB8:
-	cmpwi    r4, 0xa
-	bne      lbl_80028AD0
-	lwz      r0, 0x20(r29)
-	addi     r31, r31, 1
-	stw      r0, 0x3c(r29)
-	b        lbl_80028BC8
-
-lbl_80028AD0:
-	cmpwi    r4, 9
-	bne      lbl_80028B24
-	li       r5, 0x20
-	addi     r31, r31, 1
-	b        lbl_80028B10
-
-lbl_80028AE4:
-	stb      r5, 0(r30)
-	addi     r30, r30, 1
-	lwz      r3, 0x3c(r29)
-	addi     r0, r3, 1
-	stw      r0, 0x3c(r29)
-	lwz      r4, 0x3c(r29)
-	lwz      r3, 0x64(r29)
-	divw     r0, r4, r3
-	mullw    r0, r0, r3
-	subf.    r0, r0, r4
-	beq      lbl_80028BC8
-
-lbl_80028B10:
-	lwz      r3, 0x3c(r29)
-	lwz      r0, 0x20(r29)
-	cmplw    r3, r0
-	blt      lbl_80028AE4
-	b        lbl_80028BC8
-
-lbl_80028B24:
-	lwz      r3, 0x4c(r29)
-	cmplwi   r3, 0
-	beq      lbl_80028BAC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80028BAC
-	lwz      r3, 0x3c(r29)
-	lwz      r0, 0x20(r29)
-	addi     r3, r3, 1
-	cmplw    r3, r0
-	bge      lbl_80028B90
-	lbz      r3, 0(r31)
-	lbz      r0, 1(r31)
-	addi     r31, r31, 2
-	stb      r3, 0(r30)
-	stb      r0, 1(r30)
-	addi     r30, r30, 2
-	lwz      r3, 0x3c(r29)
-	addi     r0, r3, 1
-	stw      r0, 0x3c(r29)
-	lwz      r3, 0x3c(r29)
-	addi     r0, r3, 1
-	stw      r0, 0x3c(r29)
-	b        lbl_80028BC8
-
-lbl_80028B90:
-	li       r0, 0
-	stb      r0, 0(r30)
-	addi     r30, r30, 1
-	lwz      r3, 0x3c(r29)
-	addi     r0, r3, 1
-	stw      r0, 0x3c(r29)
-	b        lbl_80028BC8
-
-lbl_80028BAC:
-	lbz      r0, 0(r31)
-	addi     r31, r31, 1
-	stb      r0, 0(r30)
-	addi     r30, r30, 1
-	lwz      r3, 0x3c(r29)
-	addi     r0, r3, 1
-	stw      r0, 0x3c(r29)
-
-lbl_80028BC8:
-	lwz      r3, 0x3c(r29)
-	lwz      r0, 0x20(r29)
-	cmplw    r3, r0
-	blt      lbl_80028CFC
-	li       r6, 0
-	li       r5, 0xff
-	stb      r6, 0(r30)
-	lwz      r4, 0x38(r29)
-	lwz      r0, 0x24(r29)
-	addi     r4, r4, 1
-	xoris    r3, r0, 0x8000
-	subf     r0, r0, r4
-	addc     r0, r0, r3
-	subfe    r0, r0, r0
-	andc     r0, r4, r0
-	stw      r0, 0x38(r29)
-	stw      r6, 0x3c(r29)
-	lwz      r3, 0x20(r29)
-	lwz      r0, 0x38(r29)
-	addi     r3, r3, 2
-	lwz      r4, 0x28(r29)
-	mullw    r0, r3, r0
-	stbx     r5, r4, r0
-	lwz      r3, 0x20(r29)
-	lwz      r0, 0x38(r29)
-	addi     r3, r3, 2
-	lwz      r4, 0x28(r29)
-	mullw    r3, r3, r0
-	addi     r3, r3, 1
-	add      r3, r4, r3
-	stb      r6, 0(r3)
-	mr       r30, r3
-	lwz      r4, 0x30(r29)
-	lwz      r0, 0x38(r29)
-	subf.    r3, r4, r0
-	blt      lbl_80028C5C
-	b        lbl_80028C64
-
-lbl_80028C5C:
-	lwz      r0, 0x24(r29)
-	add      r3, r3, r0
-
-lbl_80028C64:
-	lwz      r0, 0x48(r29)
-	cmplw    r3, r0
-	bne      lbl_80028C90
-	lwz      r0, 0x24(r29)
-	addi     r4, r4, 1
-	xoris    r3, r0, 0x8000
-	subf     r0, r0, r4
-	addc     r0, r0, r3
-	subfe    r0, r0, r0
-	andc     r0, r4, r0
-	stw      r0, 0x30(r29)
-
-lbl_80028C90:
-	lwz      r0, 0x38(r29)
-	lwz      r3, 0x34(r29)
-	cmpw     r0, r3
-	bne      lbl_80028CC0
-	lwz      r0, 0x24(r29)
-	addi     r4, r3, 1
-	xoris    r3, r0, 0x8000
-	subf     r0, r0, r4
-	addc     r0, r0, r3
-	subfe    r0, r0, r0
-	andc     r0, r4, r0
-	stw      r0, 0x34(r29)
-
-lbl_80028CC0:
-	lwz      r0, 0x38(r29)
-	lwz      r3, 0x30(r29)
-	cmpw     r0, r3
-	bne      lbl_80028CF0
-	lwz      r0, 0x24(r29)
-	addi     r4, r3, 1
-	xoris    r3, r0, 0x8000
-	subf     r0, r0, r4
-	addc     r0, r0, r3
-	subfe    r0, r0, r0
-	andc     r0, r4, r0
-	stw      r0, 0x30(r29)
-
-lbl_80028CF0:
-	lbz      r0, 0x6b(r29)
-	cmplwi   r0, 0
-	bne      lbl_80028D08
-
-lbl_80028CFC:
-	lbz      r4, 0(r31)
-	cmplwi   r4, 0
-	bne      lbl_80028A80
-
-lbl_80028D08:
-	li       r0, 0
-	stb      r0, 0(r30)
-
-lbl_80028D10:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -604,7 +382,7 @@ void JUTConsole::scroll(int amount)
 	if (_30 < 0) {
 		_30 += mMaxLines;
 	}
-	if (_30 >= mMaxLines) {
+	if (_30 >= (u32)mMaxLines) {
 		_30 -= mMaxLines;
 	}
 }
@@ -700,10 +478,8 @@ void JUTConsoleManager::destroyManager(JUTConsoleManager*)
  */
 void JUTConsoleManager::appendConsole(JUTConsole* console)
 {
-	JGadget::TLinkList<JUTConsole, 4> list;
-	list.mLinkListNode.mPrev = list.mLinkListNode.mNext = &mLinkList.mLinkListNode;
-	JGadget::TLinkList<JUTConsole, 4>::iterator iterator(list.mLinkListNode.mPrev);
-	list.Insert(iterator, console);
+	mLinkList.Push_back(console);
+
 	if (mActiveConsole == nullptr) {
 		mActiveConsole = console;
 	}
@@ -747,8 +523,22 @@ lbl_80028F58:
  * Address:	80028F70
  * Size:	0000C8
  */
-void JUTConsoleManager::removeConsole(JUTConsole*)
+void JUTConsoleManager::removeConsole(JUTConsole* console)
 {
+	if (mActiveConsole == console) {
+		if (mLinkList.size() <= 1) {
+			mActiveConsole = nullptr;
+		} else {
+			mActiveConsole = console != &mLinkList.back() ? mLinkList.Element_toValue(console->mListNode.getNext()) : &mLinkList.front();
+		}
+	}
+
+	if (JUTGetWarningConsole() == console)
+		JUTSetWarningConsole(nullptr);
+	if (JUTGetReportConsole() == console)
+		JUTSetReportConsole(nullptr);
+
+	mLinkList.Remove(console);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -832,6 +622,17 @@ void JUTConsoleManager::getConsoleNumber() const
  */
 void JUTConsoleManager::draw() const
 {
+	ConsoleList::const_iterator iter = mLinkList.begin();
+	ConsoleList::const_iterator end  = mLinkList.end();
+
+	for (; iter != end; ++iter) {
+		const JUTConsole* const console = &(*iter);
+		if (console != mActiveConsole)
+			console->doDraw(JUTConsole::CONSOLETYPE_Inactive);
+	}
+
+	if (mActiveConsole != nullptr)
+		mActiveConsole->doDraw(JUTConsole::CONSOLETYPE_Active);
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1081,69 +882,6 @@ void JUTReportConsole_f(char const* fmt, ...)
 	va_start(args, fmt);
 	JUTReportConsole_f_va(fmt, args);
 	va_end(args);
-	/*
-	stwu     r1, -0x180(r1)
-	mflr     r0
-	stw      r0, 0x184(r1)
-	stw      r31, 0x17c(r1)
-	stw      r30, 0x178(r1)
-	bne      cr1, lbl_800292FC
-	stfd     f1, 0x28(r1)
-	stfd     f2, 0x30(r1)
-	stfd     f3, 0x38(r1)
-	stfd     f4, 0x40(r1)
-	stfd     f5, 0x48(r1)
-	stfd     f6, 0x50(r1)
-	stfd     f7, 0x58(r1)
-	stfd     f8, 0x60(r1)
-
-lbl_800292FC:
-	lwz      r30, sReportConsole@sda21(r13)
-	addi     r11, r1, 0x188
-	addi     r0, r1, 8
-	lis      r12, 0x100
-	cmplwi   r30, 0
-	stw      r3, 8(r1)
-	addi     r31, r1, 0x68
-	stw      r4, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r10, 0x24(r1)
-	stw      r12, 0x68(r1)
-	stw      r11, 0x6c(r1)
-	stw      r0, 0x70(r1)
-	bne      lbl_8002935C
-	mr       r5, r3
-	mr       r6, r31
-	addi     r3, r1, 0x74
-	li       r4, 0x100
-	bl       vsnprintf
-	b        lbl_80029388
-
-lbl_8002935C:
-	lwz      r0, 0x58(r30)
-	clrlwi.  r0, r0, 0x1e
-	beq      lbl_80029388
-	mr       r5, r3
-	mr       r6, r31
-	addi     r3, r1, 0x74
-	li       r4, 0x100
-	bl       vsnprintf
-	lwz      r3, sReportConsole@sda21(r13)
-	addi     r4, r1, 0x74
-	bl       print__10JUTConsoleFPCc
-
-lbl_80029388:
-	lwz      r0, 0x184(r1)
-	lwz      r31, 0x17c(r1)
-	lwz      r30, 0x178(r1)
-	mtlr     r0
-	addi     r1, r1, 0x180
-	blr
-	*/
 }
 
 /*

@@ -1,6 +1,6 @@
 JUTILITY_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTAssert.o\
-	$(BUILD_DIR)/asm/JSystem/JUtility/JUTConsole.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTConsole.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTDbPrint.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTDirectFile.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTDirectPrint.o\

@@ -141,7 +141,7 @@ LIBS = [
         "host": True,
         "objects": [
             ["JSystem/JGadget/binary", True],
-            ["JSystem/JGadget/linklist", False],
+            ["JSystem/JGadget/linklist", True],
             ["JSystem/JGadget/std-list", False],
             ["JSystem/JGadget/std-vector", False],
         ],
@@ -153,7 +153,7 @@ LIBS = [
         "host": True,
         "objects": [
             ["JSystem/JUtility/JUTAssert", True],
-            ["JSystem/JUtility/JUTConsole", False],
+            ["JSystem/JUtility/JUTConsole", True],
             ["JSystem/JUtility/JUTDbPrint", True],
             ["JSystem/JUtility/JUTDirectFile", True],
             ["JSystem/JUtility/JUTDirectPrint", True],
