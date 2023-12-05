@@ -8,45 +8,42 @@ J2DBloSaver::CTextureNameConnect* J2DBloSaver::TextureNameConnect = nullptr;
 
 /*
  * --INFO--
- * Address:	800494E4
- * Size:	00000C
+ * Address:	........
+ * Size:	001158
  */
-// u16 J2DTevBlock::getTexNo(u32 index) const { return 0xFFFF; }
+void J2DBloSaver::writeMaterialBlock(const MaterialName*, J2DMaterial**, u16, const ResTIMGName*, u16)
+{
+	// obviously much much more than this, but need to spawn weak functions
+	J2DTevBlock* block;
+	block->setTexNo(0, 0);
+	u16 texNo = block->getTexNo(0);
+}
 
 /*
  * --INFO--
- * Address:	800494F0
- * Size:	000004
+ * Address:	........
+ * Size:	00044C
  */
-// void J2DTevBlock::setTexNo(u32 index, u16 texNo) { }
+void J2DMaterial_SaveBlock::countParts(J2DMaterial**, u16)
+{
+	// obviously much much more than this, but need to spawn weak functions
+	J2DTevBlock* block;
+	block->getFontNo();
+	block->getTevOrder(0);
+	block->getTevSwapModeTable(0);
+}
 
 /*
  * --INFO--
- * Address:	800494F4
- * Size:	000008
+ * Address:	........
+ * Size:	0003FC
  */
-// J2DTevSwapModeTable* J2DTevBlock::getTevSwapModeTable(u32 index) { return nullptr; }
-
-/*
- * --INFO--
- * Address:	800494FC
- * Size:	000008
- */
-// J2DTevOrder* J2DTevBlock::getTevOrder(u32 index) { return nullptr; }
-
-/*
- * --INFO--
- * Address:	80049504
- * Size:	00000C
- */
-// u16 J2DTevBlock::getFontNo() const { return 0xFFFF; }
-
-/*
- * --INFO--
- * Address:	80049510
- * Size:	000008
- */
-// u8 J2DIndBlock::getIndTexStageNum() const { return 0; }
+void J2DMaterial_SaveBlock::setOffset(J2DMaterial**, u16, JUTNameTab*)
+{
+	// obviously much much more than this, but need to spawn weak functions
+	J2DIndBlock* block;
+	block->getIndTexStageNum();
+}
 
 /*
  * --INFO--
@@ -79,36 +76,15 @@ void J2DBloSaver::CTextureNameConnect::clear()
 J2DTevStage::J2DTevStage()
 {
 	setTevStageInfo(j2dDefaultTevStageInfo);
-	_04 = j2dDefaultTevSwapMode.mTexSel << 1;
-	_04 = j2dDefaultTevSwapMode.mRasSel;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, j2dDefaultTevStageInfo@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, j2dDefaultTevStageInfo@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo
-	addi     r3, r2, j2dDefaultTevSwapMode@sda21
-	lbz      r4, 7(r31)
-	lbz      r0, 1(r3)
-	mr       r3, r31
-	rlwinm   r4, r4, 0, 0x1e, 0x1b
-	slwi     r0, r0, 2
-	or       r0, r4, r0
-	stb      r0, 7(r31)
-	lbz      r4, 7(r31)
-	lbz      r0, j2dDefaultTevSwapMode@sda21(r2)
-	rlwinm   r4, r4, 0, 0, 0x1d
-	or       r0, r4, r0
-	stb      r0, 7(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	u32 flag = _07;
+	flag &= ~0xC;
+	u32 swapMode = j2dDefaultTevSwapMode.mTexSel << 2;
+	_07          = flag | swapMode;
+
+	u32 flag2 = _07;
+	flag2 &= ~0x3;
+	u32 rasSel = j2dDefaultTevSwapMode.mRasSel;
+	_07        = flag2 | rasSel;
 }
 
 /*

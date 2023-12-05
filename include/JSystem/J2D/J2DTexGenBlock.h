@@ -6,6 +6,8 @@
 #include "types.h"
 
 struct J2DTexGenBlock {
+	inline J2DTexGenBlock() { initialize(); }
+
 	u32 mTexGenNum;            // _00
 	J2DTexCoord mTexCoords[8]; // _04
 	J2DTexMtx* mTexMtxes[8];   // _24

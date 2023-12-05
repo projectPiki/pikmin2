@@ -5,110 +5,10 @@
 #include "fdlibm.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global j2dDefaultTexCoordInfo
-    j2dDefaultTexCoordInfo:
-        .4byte 0x01043C00
-        .4byte 0x01053C00
-        .4byte 0x01063C00
-        .4byte 0x01073C00
-        .4byte 0x01083C00
-        .4byte 0x01093C00
-        .4byte 0x010A3C00
-        .4byte 0x010B3C00
-    .global j2dDefaultTexMtxInfo
-    j2dDefaultTexMtxInfo:
-        .4byte 0x0101FFFF
-        .float 0.5
-        .float 0.5
-        .4byte 0x00000000
-        .float 1.0
-        .float 1.0
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global j2dDefaultIndTexMtxInfo
-    j2dDefaultIndTexMtxInfo:
-        .float 0.5
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .float 0.5
-        .4byte 0x00000000
-        .4byte 0x01000000
-    .global j2dDefaultTevStageInfo
-    j2dDefaultTevStageInfo:
-        .4byte 0x040A0F0F
-        .4byte 0x00000000
-        .4byte 0x01000507
-        .4byte 0x07000000
-        .4byte 0x00010000
-    .global j2dDefaultIndTevStageInfo
-    j2dDefaultIndTevStageInfo:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805168F8
-    lbl_805168F8:
-        .4byte 0x40490FDB
-    .global lbl_805168FC
-    lbl_805168FC:
-        .4byte 0x43340000
-    .global lbl_80516900
-    lbl_80516900:
-        .4byte 0x00000000
-    .global lbl_80516904
-    lbl_80516904:
-        .float 1.0
-    .global lbl_80516908
-    lbl_80516908:
-        .float 0.5
-    .global j2dDefaultColInfo
-    j2dDefaultColInfo:
-        .4byte 0xFFFFFFFF
-    .global j2dDefaultTevOrderInfoNull
-    j2dDefaultTevOrderInfoNull:
-        .4byte 0xFFFFFF00
-    .global j2dDefaultIndTexOrderNull
-    j2dDefaultIndTexOrderNull:
-        .4byte 0xFFFF0000
-    .global j2dDefaultTevColor
-    j2dDefaultTevColor:
-        .4byte 0x00FF00FF
-        .4byte 0x00FF00FF
-    .global j2dDefaultIndTexCoordScaleInfo
-    j2dDefaultIndTexCoordScaleInfo:
-        .4byte 0x00000000
-    .global j2dDefaultTevKColor
-    j2dDefaultTevKColor:
-        .4byte 0xFFFFFFFF
-    .global j2dDefaultTevSwapMode
-    j2dDefaultTevSwapMode:
-        .4byte 0x00000000
-    .global j2dDefaultTevSwapModeTable
-    j2dDefaultTevSwapModeTable:
-        .4byte 0x00010203
-    .global j2dDefaultBlendInfo
-    j2dDefaultBlendInfo:
-        .4byte 0x01040505
-    .global j2dDefaultDither
-    j2dDefaultDither:
-        .4byte 0x00000000
-    .global j2dDefaultColorChanInfo
-    j2dDefaultColorChanInfo:
-        .4byte 0x00030000
-    .global j2dDefaultTevSwapTable
-    j2dDefaultTevSwapTable:
-        .2byte 0x1B00
-    .global j2dDefaultAlphaCmp
-    j2dDefaultAlphaCmp:
-        .2byte 0x00E7
-*/
+// these all need to be const and at the end of the file to go in sdata2 instead of sdata
+const u32 j2dDefaultColInfo                        = 0xFFFFFFFF;
+const J2DTevOrderInfo j2dDefaultTevOrderInfoNull   = { 0xFF, 0xFF, 0xFF, 0 };
+const J2DIndTexOrderNull j2dDefaultIndTexOrderNull = { 0xFF, 0xFF };
 
 /*
  * --INFO--
@@ -137,19 +37,19 @@ void J2DTexMtx::calc()
  */
 void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, Mtx mtx)
 {
-	float theta = (info._08 * PI) / 180.0f;
-	mtx[0][0]   = info._00 * cosf_kludge(theta);
-	mtx[0][1]   = -info._00 * sinf_kludge(theta);
-	mtx[0][2]   = 0.0f;
-	mtx[0][3]   = info._0C + p2.x + p2.x * (-info._00 * cosf_kludge(theta)) + (info._00 * sinf_kludge(theta)) * p2.y;
-	mtx[1][0]   = info._04 * sinf_kludge(theta);
-	mtx[1][1]   = info._04 * cosf_kludge(theta);
-	mtx[1][2]   = 0.0f;
-	mtx[1][3]   = info._10 + p2.y + p2.x * (-info._04 * sinf_kludge(theta)) - p2.y * (info._04 * cosf_kludge(theta));
-	mtx[2][0]   = 0.0f;
-	mtx[2][1]   = 0.0f;
-	mtx[2][2]   = 1.0f;
-	mtx[2][3]   = 0.0f;
+	f32 theta = (info._08 * PI) / 180.0f;
+	mtx[0][0] = info._00 * cosf_kludge(theta);
+	mtx[0][1] = -info._00 * sinf_kludge(theta);
+	mtx[0][2] = 0.0f;
+	mtx[0][3] = info._0C + p2.x + p2.x * (-info._00 * cosf_kludge(theta)) + (info._00 * sinf_kludge(theta)) * p2.y;
+	mtx[1][0] = info._04 * sinf_kludge(theta);
+	mtx[1][1] = info._04 * cosf_kludge(theta);
+	mtx[1][2] = 0.0f;
+	mtx[1][3] = info._10 + p2.y + p2.x * (-info._04 * sinf_kludge(theta)) - p2.y * (info._04 * cosf_kludge(theta));
+	mtx[2][0] = 0.0f;
+	mtx[2][1] = 0.0f;
+	mtx[2][2] = 1.0f;
+	mtx[2][3] = 0.0f;
 
 	/*
 	stwu     r1, -0x40(r1)
@@ -262,7 +162,19 @@ void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, Mtx mtx)
  */
 void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo& info, Mtx mtx)
 {
-
+	f32 theta = (info._08 * PI) / 180.0f;
+	mtx[0][0] = info._00 * cosf_kludge(theta);
+	mtx[0][1] = info._04 * sinf_kludge(theta);
+	mtx[0][2] = 0.0f;
+	mtx[0][3] = info._0C + (-info._00 * cosf_kludge(theta)) + (info._00 * sinf_kludge(theta));
+	mtx[1][0] = -info._00 * sinf_kludge(theta);
+	mtx[1][1] = info._04 * cosf_kludge(theta);
+	mtx[1][2] = 0.0f;
+	mtx[1][3] = info._10 + (-info._04 * sinf_kludge(theta)) - (info._04 * cosf_kludge(theta));
+	mtx[2][0] = 0.0f;
+	mtx[2][1] = 0.0f;
+	mtx[2][2] = 1.0f;
+	mtx[2][3] = 0.0f;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -416,4 +328,4 @@ void J2DIndTexCoordScale::load(u8 stage) { GXSetIndTexCoordScale((GXIndTexStageI
  * Address:	80059678
  * Size:	000030
  */
-void J2DIndTexOrder::load(u8 stage) { GXSetIndTexOrder((GXIndTexStageID)stage, (GXTexCoordID)mCoord, (GXTexMapID)mMap); }
+void J2DIndTexOrder::load(u8 stage) { GXSetIndTexOrder((GXIndTexStageID)stage, (GXTexCoordID)mOrder.mCoord, (GXTexMapID)mOrder.mMap); }

@@ -71,7 +71,7 @@ struct J2DAnmColor : public J2DAnmBase {
 
 	virtual ~J2DAnmColor() { }                       // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
-	virtual void getColor(u16, GXColor*) const;      // _10 (weak)
+	virtual void getColor(u16, GXColor*) const { }   // _10 (weak)
 
 	inline u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
 	inline u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }

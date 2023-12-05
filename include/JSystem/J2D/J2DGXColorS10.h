@@ -37,6 +37,14 @@ struct J2DGXColorS10 : public GXColorS10 {
 		a                      = otherBytes->a;
 	}
 
+	J2DGXColorS10(const GXColorS10& color)
+	{
+		r = color.r;
+		g = color.g;
+		b = color.b;
+		a = color.a;
+	}
+
 	inline operator u64() const { return toUInt64(); }
 	inline u32 toUInt64() const { return *(u64*)&r; }
 

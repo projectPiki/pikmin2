@@ -20,11 +20,13 @@ struct J2DIndTexCoordScaleInfo {
 	u8 mScaleT; // _01
 };
 
+extern const J2DIndTexCoordScaleInfo j2dDefaultIndTexCoordScaleInfo;
+
 /**
  * @size{0x2}
  */
 struct J2DIndTexCoordScale {
-	J2DIndTexCoordScale();
+	J2DIndTexCoordScale() { mScaleInfo = j2dDefaultIndTexCoordScaleInfo; }
 
 	~J2DIndTexCoordScale() { }
 
@@ -49,11 +51,13 @@ struct J2DIndTexMtxInfo {
 	}
 };
 
+extern const J2DIndTexMtxInfo j2dDefaultIndTexMtxInfo;
+
 /**
  * @size{0x1C}
  */
 struct J2DIndTexMtx {
-	J2DIndTexMtx();
+	J2DIndTexMtx() { mMtxInfo = j2dDefaultIndTexMtxInfo; }
 
 	~J2DIndTexMtx() { }
 
@@ -62,17 +66,29 @@ struct J2DIndTexMtx {
 	J2DIndTexMtxInfo mMtxInfo; // _00
 };
 
-extern J2DIndTexMtxInfo j2dDefaultIndTexMtxInfo;
+// fabricated based on global variable name
+struct J2DIndTexOrderNull {
+	J2DIndTexOrderNull& operator=(const J2DIndTexOrderNull& other)
+	{
+		mCoord = other.mCoord;
+		mMap   = other.mMap;
+		return *this;
+	}
+
+	u8 mCoord; // _00
+	u8 mMap;   // _01
+};
+
+extern const J2DIndTexOrderNull j2dDefaultIndTexOrderNull;
 
 /**
  * @size{0x2}
  */
 struct J2DIndTexOrder {
-	J2DIndTexOrder();
+	J2DIndTexOrder() { mOrder = j2dDefaultIndTexOrderNull; }
 	void load(u8);
 
-	u8 mCoord; // _00
-	u8 mMap;   // _01
+	J2DIndTexOrderNull mOrder; // _00
 };
 
 struct J2DIndBlock {
@@ -98,9 +114,9 @@ struct J2DIndBlockNull : public J2DIndBlock {
 	{
 	}
 
-	virtual void setGX();       // _0C (weak)
-	virtual u32 getType();      // _10 (weak)
-	virtual ~J2DIndBlockNull(); // _34 (weak)
+	virtual void setGX() { }                      // _0C (weak)
+	virtual u32 getType() { return JBT_IndNull; } // _10 (weak)
+	virtual ~J2DIndBlockNull() { }                // _34 (weak)
 };
 
 struct J2DIndBlockFull : public J2DIndBlock {

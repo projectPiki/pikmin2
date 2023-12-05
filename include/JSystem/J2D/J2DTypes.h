@@ -205,7 +205,7 @@ struct J2DTevOrderInfo {
 	}
 };
 
-extern J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
+extern const J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
 
 struct J2DTevOrder {
 	J2DTevOrder() { mTevOrderInfo = j2dDefaultTevOrderInfoNull; }
@@ -491,8 +491,10 @@ struct J2DTexCoordInfo {
 	}
 };
 
+extern J2DTexCoordInfo j2dDefaultTexCoordInfo[8];
+
 struct J2DTexCoord {
-	J2DTexCoord();
+	J2DTexCoord() { mTexCoordInfo = j2dDefaultTexCoordInfo[0]; }
 	// J2DTexCoordInfo _00;
 
 	J2DTexCoord(const J2DTexCoordInfo& info) { *(J2DTexCoordInfo*)this = info; }
@@ -513,13 +515,10 @@ struct J2DTextureSRTInfo {
 	f32 _10; // _10
 };
 
-extern J2DTexCoordInfo j2dDefaultTexCoordInfo[8];
 extern J2DTevStageInfo j2dDefaultTevStageInfo;
-extern u32 j2dDefaultColInfo;
+extern const u32 j2dDefaultColInfo;
 // j2dDefaultTevOrderInfoNull declared earlier in file.
-extern J2DIndTexOrder j2dDefaultIndTexOrderNull;
 extern J2DGXColorS10 j2dDefaultTevColor;
-extern J2DIndTexCoordScale j2dDefaultIndTexCoordScaleInfo;
 extern JUtility::TColor j2dDefaultTevKColor;
 extern J2DTevSwapModeInfo j2dDefaultTevSwapMode;
 // extern u8 j2dDefaultTevSwapModeTable[4];

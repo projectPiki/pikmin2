@@ -6,51 +6,10 @@
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/J3D/J3DAnmTexPattern.h"
+#include "JSystem/J3D/J3DAnmTevRegKey.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__15J2DIndBlockNull
-    __vt__15J2DIndBlockNull:
-        .4byte 0
-        .4byte 0
-        .4byte initialize__11J2DIndBlockFv
-        .4byte setGX__15J2DIndBlockNullFv
-        .4byte getType__15J2DIndBlockNullFv
-        .4byte setIndTexStageNum__11J2DIndBlockFUc
-        .4byte getIndTexStageNum__11J2DIndBlockCFv
-        .4byte setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder
-        .4byte getIndTexOrder__11J2DIndBlockFUl
-        .4byte setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx
-        .4byte getIndTexMtx__11J2DIndBlockFUl
-        .4byte setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale
-        .4byte getIndTexCoordScale__11J2DIndBlockFUl
-        .4byte __dt__15J2DIndBlockNullFv
-    .global __vt__11J2DMaterial
-    __vt__11J2DMaterial:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__11J2DMaterialFv
-    .global __vt__13J2DColorBlock
-    __vt__13J2DColorBlock:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__13J2DColorBlockFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805168C8
-    lbl_805168C8:
-        .4byte 0x43B40000
-    .global lbl_805168CC
-    lbl_805168CC:
-        .4byte 0x477FFF00
-    .global lbl_805168D0
-    lbl_805168D0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
 
 /*
  * --INFO--
@@ -64,215 +23,29 @@ J2DMaterial::J2DMaterial()
     , mPeBlock()
 {
 	mPane      = nullptr;
-	mIndex     = 0xFFFF;
+	mIndex     = -1;
 	mTevBlock  = nullptr;
 	mIndBlock  = nullptr;
 	mAnmPtr    = nullptr;
 	_08        = 1;
 	mIsVisible = 1;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__11J2DMaterial@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__11J2DMaterial@l
-	lis      r4, __ct__Q28JUtility6TColorFv@ha
-	li       r6, 4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__13J2DColorBlock@ha
-	addi     r4, r4, __ct__Q28JUtility6TColorFv@l
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__13J2DColorBlock@l
-	addi     r3, r31, 0x10
-	li       r7, 2
-	stw      r0, 0x24(r31)
-	bl       __construct_array
-	lis      r4, __ct__12J2DColorChanFv@ha
-	addi     r3, r31, 0x1a
-	addi     r4, r4, __ct__12J2DColorChanFv@l
-	li       r5, 0
-	li       r6, 2
-	li       r7, 4
-	bl       __construct_array
-	addi     r3, r31, 0x10
-	bl       initialize__13J2DColorBlockFv
-	lis      r3, __vt__14J2DTexGenBlock@ha
-	lis      r4, __ct__11J2DTexCoordFv@ha
-	addi     r0, r3, __vt__14J2DTexGenBlock@l
-	li       r5, 0
-	stw      r0, 0x6c(r31)
-	addi     r3, r31, 0x2c
-	addi     r4, r4, __ct__11J2DTexCoordFv@l
-	li       r6, 4
-	li       r7, 8
-	bl       __construct_array
-	addi     r3, r31, 0x28
-	bl       initialize__14J2DTexGenBlockFv
-	lhz      r5, j2dDefaultAlphaCmp@sda21(r2)
-	li       r0, 0
-	addi     r4, r2, j2dDefaultBlendInfo@sda21
-	addi     r3, r31, 0x78
-	sth      r5, 0x78(r31)
-	stb      r0, 0x7a(r31)
-	stb      r0, 0x7b(r31)
-	lbz      r0, j2dDefaultBlendInfo@sda21(r2)
-	stb      r0, 0x7c(r31)
-	lbz      r0, 1(r4)
-	stb      r0, 0x7d(r31)
-	lbz      r0, 2(r4)
-	stb      r0, 0x7e(r31)
-	lbz      r0, 3(r4)
-	stb      r0, 0x7f(r31)
-	bl       initialize__10J2DPEBlockFv
-	li       r5, 0
-	lis      r3, 0x0000FFFF@ha
-	stw      r5, 4(r31)
-	addi     r4, r3, 0x0000FFFF@l
-	li       r0, 1
-	mr       r3, r31
-	sth      r4, 0xc(r31)
-	stw      r5, 0x70(r31)
-	stw      r5, 0x74(r31)
-	stw      r5, 0x84(r31)
-	stw      r0, 8(r31)
-	stb      r0, 0xe(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
-
-/*
- * --INFO--
- * Address:	80051FC4
- * Size:	000020
- */
-J2DTexCoord::J2DTexCoord()
-{
-	mTexCoordInfo = j2dDefaultTexCoordInfo[0];
-	// _01 = j2dDefaultTexCoordInfo[0]._01;
-	// _02 = j2dDefaultTexCoordInfo[0]._02;
-}
-
-/*
- * --INFO--
- * Address:	80051FE4
- * Size:	000048
- */
-// J2DColorBlock::~J2DColorBlock() { }
-
-/*
- * --INFO--
- * Address:	8005202C
- * Size:	000010
- */
-// J2DColorChan::J2DColorChan()
-// {
-// 	mData = j2dDefaultColorChanInfo._01;
-// 	/*
-// 	addi     r4, r2, j2dDefaultColorChanInfo@sda21
-// 	lbz      r0, 1(r4)
-// 	sth      r0, 0(r3)
-// 	blr
-// 	*/
-// }
 
 /*
  * --INFO--
  * Address:	8005203C
  * Size:	00014C
  */
-J2DMaterial::J2DMaterial(u32)
+J2DMaterial::J2DMaterial(u32 flag)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, __vt__11J2DMaterial@ha
-	li       r6, 4
-	stw      r0, 0x14(r1)
-	addi     r0, r5, __vt__11J2DMaterial@l
-	li       r5, 0
-	li       r7, 2
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, __vt__13J2DColorBlock@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__13J2DColorBlock@l
-	lis      r3, __ct__Q28JUtility6TColorFv@ha
-	stw      r0, 0x24(r30)
-	addi     r4, r3, __ct__Q28JUtility6TColorFv@l
-	addi     r3, r30, 0x10
-	bl       __construct_array
-	lis      r4, __ct__12J2DColorChanFv@ha
-	addi     r3, r30, 0x1a
-	addi     r4, r4, __ct__12J2DColorChanFv@l
-	li       r5, 0
-	li       r6, 2
-	li       r7, 4
-	bl       __construct_array
-	addi     r3, r30, 0x10
-	bl       initialize__13J2DColorBlockFv
-	lis      r3, __vt__14J2DTexGenBlock@ha
-	lis      r4, __ct__11J2DTexCoordFv@ha
-	addi     r0, r3, __vt__14J2DTexGenBlock@l
-	li       r5, 0
-	stw      r0, 0x6c(r30)
-	addi     r3, r30, 0x2c
-	addi     r4, r4, __ct__11J2DTexCoordFv@l
-	li       r6, 4
-	li       r7, 8
-	bl       __construct_array
-	addi     r3, r30, 0x28
-	bl       initialize__14J2DTexGenBlockFv
-	lhz      r5, j2dDefaultAlphaCmp@sda21(r2)
-	li       r0, 0
-	addi     r4, r2, j2dDefaultBlendInfo@sda21
-	addi     r3, r30, 0x78
-	sth      r5, 0x78(r30)
-	stb      r0, 0x7a(r30)
-	stb      r0, 0x7b(r30)
-	lbz      r0, j2dDefaultBlendInfo@sda21(r2)
-	stb      r0, 0x7c(r30)
-	lbz      r0, 1(r4)
-	stb      r0, 0x7d(r30)
-	lbz      r0, 2(r4)
-	stb      r0, 0x7e(r30)
-	lbz      r0, 3(r4)
-	stb      r0, 0x7f(r30)
-	bl       initialize__10J2DPEBlockFv
-	li       r0, 0
-	lis      r3, 0x0000FFFF@ha
-	stw      r0, 4(r30)
-	addi     r0, r3, 0x0000FFFF@l
-	rlwinm   r3, r31, 0x10, 0x1b, 0x1f
-	li       r4, 1
-	sth      r0, 0xc(r30)
-	bl       createTevBlock__11J2DMaterialFib
-	stw      r3, 0x70(r30)
-	rlwinm   r3, r31, 8, 0x1f, 0x1f
-	li       r4, 1
-	bl       createIndBlock__11J2DMaterialFib
-	stw      r3, 0x74(r30)
-	li       r4, 0
-	li       r0, 1
-	mr       r3, r30
-	stw      r4, 0x84(r30)
-	stw      r0, 8(r30)
-	stb      r0, 0xe(r30)
-	stb      r0, 0xf(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mPane              = nullptr;
+	mIndex             = -1;
+	mTevBlock          = createTevBlock((flag >> 16) & 0x1F, true);
+	mIndBlock          = createIndBlock((flag >> 24) & 0x1, true);
+	mAnmPtr            = nullptr;
+	_08                = 1;
+	mIsVisible         = 1;
+	mMaterialAlphaCalc = 1;
 }
 
 /*
@@ -294,47 +67,22 @@ J2DMaterial::~J2DMaterial()
  */
 void J2DMaterial::setGX()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0xe(r3)
-	cmplwi   r0, 0
-	beq      lbl_800522B8
-	addi     r3, r31, 0x10
-	bl       setGX__13J2DColorBlockFv
-	addi     r3, r31, 0x28
-	bl       setGX__14J2DTexGenBlockFv
-	lwz      r3, 0x70(r31)
-	cmplwi   r3, 0
-	beq      lbl_80052294
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+	if (!mIsVisible) {
+		return;
+	}
 
-lbl_80052294:
-	lwz      r3, 0x74(r31)
-	cmplwi   r3, 0
-	beq      lbl_800522B0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+	mColorBlock.setGX();
+	mTexGenBlock.setGX();
 
-lbl_800522B0:
-	addi     r3, r31, 0x78
-	bl       setGX__10J2DPEBlockFv
+	if (mTevBlock) {
+		mTevBlock->setGX();
+	}
 
-lbl_800522B8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mIndBlock) {
+		mIndBlock->setGX();
+	}
+
+	mPeBlock.setGX();
 }
 
 /*
@@ -395,128 +143,14 @@ J2DIndBlock* J2DMaterial::createIndBlock(int stageCount, bool p2)
 
 /*
  * --INFO--
- * Address:	80052658
- * Size:	000018
- */
-J2DIndTexCoordScale::J2DIndTexCoordScale()
-{
-	/*
-	lbz      r0, j2dDefaultIndTexCoordScaleInfo@sda21(r2)
-	addi     r4, r2, j2dDefaultIndTexCoordScaleInfo@sda21
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80052670
- * Size:	000040
- */
-J2DIndTexMtx::J2DIndTexMtx()
-{
-	/*
-	lis      r4, j2dDefaultIndTexMtxInfo@ha
-	lfsu     f0, j2dDefaultIndTexMtxInfo@l(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 8(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0xc(r3)
-	lfs      f0, 0x10(r4)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x14(r4)
-	stfs     f0, 0x14(r3)
-	lbz      r0, 0x18(r4)
-	stb      r0, 0x18(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	800526B0
- * Size:	000018
- */
-J2DIndTexOrder::J2DIndTexOrder()
-{
-	/*
-	lbz      r0, j2dDefaultIndTexOrderNull@sda21(r2)
-	addi     r4, r2, j2dDefaultIndTexOrderNull@sda21
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	800526C8
  * Size:	0000C8
  */
 void J2DMaterial::makeAnmPointer()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x84(r3)
-	cmplwi   r0, 0
-	bne      lbl_8005277C
-	li       r3, 0x44
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80052778
-	li       r5, 0
-	lis      r4, 0x0000FFFF@ha
-	stw      r5, 0(r3)
-	addi     r0, r4, 0x0000FFFF@l
-	sth      r0, 0x10(r3)
-	stw      r5, 4(r3)
-	sth      r0, 0x12(r3)
-	sth      r0, 0x14(r3)
-	sth      r0, 0x16(r3)
-	sth      r0, 0x18(r3)
-	sth      r0, 0x1a(r3)
-	sth      r0, 0x1c(r3)
-	sth      r0, 0x1e(r3)
-	sth      r0, 0x20(r3)
-	stw      r5, 8(r3)
-	sth      r0, 0x22(r3)
-	sth      r0, 0x24(r3)
-	sth      r0, 0x26(r3)
-	sth      r0, 0x28(r3)
-	sth      r0, 0x2a(r3)
-	sth      r0, 0x2c(r3)
-	sth      r0, 0x2e(r3)
-	sth      r0, 0x30(r3)
-	stw      r5, 0xc(r3)
-	sth      r0, 0x32(r3)
-	sth      r0, 0x34(r3)
-	sth      r0, 0x36(r3)
-	sth      r0, 0x38(r3)
-	sth      r0, 0x3a(r3)
-	sth      r0, 0x3c(r3)
-	sth      r0, 0x3e(r3)
-	sth      r0, 0x40(r3)
-
-lbl_80052778:
-	stw      r3, 0x84(r31)
-
-lbl_8005277C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!mAnmPtr) {
+		mAnmPtr = new J2DMaterialAnmPointer;
+	}
 }
 
 /*
@@ -524,105 +158,24 @@ lbl_8005277C:
  * Address:	80052790
  * Size:	000144
  */
-void J2DMaterial::setAnimation(J2DAnmColor*)
+void J2DMaterial::setAnimation(J2DAnmColor* animation)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_800527BC
-	lwz      r0, 0x84(r30)
-	cmplwi   r0, 0
-	beq      lbl_800528BC
+	if (animation || mAnmPtr) {
+		makeAnmPointer();
+		mAnmPtr->mColorAnm    = animation;
+		mAnmPtr->mColorIds[0] = -1;
 
-lbl_800527BC:
-	lwz      r0, 0x84(r30)
-	cmplwi   r0, 0
-	bne      lbl_8005285C
-	li       r3, 0x44
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80052858
-	li       r5, 0
-	lis      r4, 0x0000FFFF@ha
-	stw      r5, 0(r3)
-	addi     r0, r4, 0x0000FFFF@l
-	sth      r0, 0x10(r3)
-	stw      r5, 4(r3)
-	sth      r0, 0x12(r3)
-	sth      r0, 0x14(r3)
-	sth      r0, 0x16(r3)
-	sth      r0, 0x18(r3)
-	sth      r0, 0x1a(r3)
-	sth      r0, 0x1c(r3)
-	sth      r0, 0x1e(r3)
-	sth      r0, 0x20(r3)
-	stw      r5, 8(r3)
-	sth      r0, 0x22(r3)
-	sth      r0, 0x24(r3)
-	sth      r0, 0x26(r3)
-	sth      r0, 0x28(r3)
-	sth      r0, 0x2a(r3)
-	sth      r0, 0x2c(r3)
-	sth      r0, 0x2e(r3)
-	sth      r0, 0x30(r3)
-	stw      r5, 0xc(r3)
-	sth      r0, 0x32(r3)
-	sth      r0, 0x34(r3)
-	sth      r0, 0x36(r3)
-	sth      r0, 0x38(r3)
-	sth      r0, 0x3a(r3)
-	sth      r0, 0x3c(r3)
-	sth      r0, 0x3e(r3)
-	sth      r0, 0x40(r3)
-
-lbl_80052858:
-	stw      r3, 0x84(r30)
-
-lbl_8005285C:
-	lwz      r4, 0x84(r30)
-	lis      r3, 0x0000FFFF@ha
-	cmplwi   r31, 0
-	stw      r31, 0(r4)
-	addi     r0, r3, 0x0000FFFF@l
-	lwz      r3, 0x84(r30)
-	sth      r0, 0x10(r3)
-	beq      lbl_800528BC
-	lhz      r4, 0x18(r31)
-	li       r6, 0
-	lhz      r5, 0xc(r30)
-	b        lbl_800528B0
-
-lbl_8005288C:
-	lwz      r3, 0x1c(r31)
-	rlwinm   r0, r6, 1, 0xf, 0x1e
-	lhzx     r0, r3, r0
-	cmplw    r5, r0
-	bne      lbl_800528AC
-	lwz      r3, 0x84(r30)
-	sth      r6, 0x10(r3)
-	b        lbl_800528BC
-
-lbl_800528AC:
-	addi     r6, r6, 1
-
-lbl_800528B0:
-	clrlwi   r0, r6, 0x10
-	cmplw    r0, r4
-	blt      lbl_8005288C
-
-lbl_800528BC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		if (animation) {
+			u32 count = animation->getUpdateMaterialNum();
+			u16 index = mIndex;
+			for (u16 i = 0; i < count; i++) {
+				if (index == animation->getUpdateMaterialID(i)) {
+					mAnmPtr->mColorIds[0] = i;
+					return;
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -630,8 +183,30 @@ lbl_800528BC:
  * Address:	800528D4
  * Size:	0001A4
  */
-void J2DMaterial::setAnimation(J2DAnmTextureSRTKey*)
+void J2DMaterial::setAnimation(J2DAnmTextureSRTKey* animation)
 {
+	if (animation || mAnmPtr) {
+		makeAnmPointer();
+		mAnmPtr->mSRTAnm    = animation;
+		mAnmPtr->mSRTIds[0] = -1;
+		mAnmPtr->mSRTIds[1] = -1;
+		mAnmPtr->mSRTIds[2] = -1;
+		mAnmPtr->mSRTIds[3] = -1;
+		mAnmPtr->mSRTIds[4] = -1;
+		mAnmPtr->mSRTIds[5] = -1;
+		mAnmPtr->mSRTIds[6] = -1;
+		mAnmPtr->mSRTIds[7] = -1;
+
+		if (animation) {
+			u16 index = getIndex();
+			u32 count = animation->getUpdateMaterialNum();
+			for (u16 i = 0; i < count; i++) {
+				if (index == animation->getUpdateMaterialID(i)) {
+					mAnmPtr->mSRTIds[animation->getUpdateTexMtxID(i)] = i;
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -760,8 +335,31 @@ lbl_80052A60:
  * Address:	80052A78
  * Size:	000194
  */
-void J2DMaterial::setAnimation(J2DAnmTexPattern*)
+void J2DMaterial::setAnimation(J2DAnmTexPattern* animation)
 {
+	if (animation || mAnmPtr) {
+		makeAnmPointer();
+		mAnmPtr->mPatternAnm    = animation;
+		mAnmPtr->mPatternIds[0] = -1;
+		mAnmPtr->mPatternIds[1] = -1;
+		mAnmPtr->mPatternIds[2] = -1;
+		mAnmPtr->mPatternIds[3] = -1;
+		mAnmPtr->mPatternIds[4] = -1;
+		mAnmPtr->mPatternIds[5] = -1;
+		mAnmPtr->mPatternIds[6] = -1;
+		mAnmPtr->mPatternIds[7] = -1;
+
+		if (animation) {
+			u16 index                        = getIndex();
+			u32 count                        = animation->getUpdateMaterialNum();
+			J3DAnmTexPatternFullTable* table = animation->getAnmTable();
+			for (u16 i = 0; i < count; i++) {
+				if (index == animation->getUpdateMaterialID(i)) {
+					mAnmPtr->mPatternIds[table->mData[i][4]] = i;
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -886,8 +484,44 @@ lbl_80052BF4:
  * Address:	80052C0C
  * Size:	0001FC
  */
-void J2DMaterial::setAnimation(J2DAnmTevRegKey*)
+void J2DMaterial::setAnimation(J2DAnmTevRegKey* animation)
 {
+	if (animation || mAnmPtr) {
+		makeAnmPointer();
+		mAnmPtr->mTevAnm        = animation;
+		mAnmPtr->mTevCRegIds[0] = -1;
+		mAnmPtr->mTevCRegIds[1] = -1;
+		mAnmPtr->mTevCRegIds[2] = -1;
+		mAnmPtr->mTevCRegIds[3] = -1;
+
+		if (animation) {
+			u16 cIndex = getIndex();
+			u32 cCount = animation->getCRegUpdateMaterialNum();
+			for (u16 i = 0; i < cCount; i++) {
+				if (cIndex == animation->getCRegUpdateMaterialID(i)) {
+					J3DAnmCRegKeyTable* table                       = animation->getAnmCRegKeyTable();
+					mAnmPtr->mTevCRegIds[table->mTables[i].mOffset] = i;
+				}
+			}
+		}
+
+		mAnmPtr->mTevKRegIds[0] = -1;
+		mAnmPtr->mTevKRegIds[1] = -1;
+		mAnmPtr->mTevKRegIds[2] = -1;
+		mAnmPtr->mTevKRegIds[3] = -1;
+
+		if (animation) {
+
+			u16 kIndex = getIndex();
+			u32 kCount = animation->getKRegUpdateMaterialNum();
+			for (u16 i = 0; i < kCount; i++) {
+				if (kIndex == animation->getKRegUpdateMaterialID(i)) {
+					J3DAnmKRegKeyTable* table                       = animation->getAnmKRegKeyTable();
+					mAnmPtr->mTevKRegIds[table->mTables[i].mOffset] = i;
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1048,6 +682,77 @@ lbl_80052DF0:
  */
 void J2DMaterial::animation()
 {
+	if (!mAnmPtr) {
+		return;
+	}
+
+	if (mAnmPtr->mColorAnm && mAnmPtr->mColorIds[0] != 0xFFFF) {
+		GXColor color;
+		mAnmPtr->mColorAnm->getColor(mAnmPtr->mColorIds[0], &color);
+		mColorBlock.setMatColor(0, color);
+	}
+
+	if (mAnmPtr->mSRTAnm) {
+		for (u8 i = 0; i < 8; i++) {
+			u16 idx = mAnmPtr->mSRTIds[i];
+			if (idx != -1) {
+				J3DTextureSRTInfo srtInfo;
+				mAnmPtr->mSRTAnm->calcTransform(mAnmPtr->mSRTAnm->mCurrentFrame, idx, &srtInfo);
+				// more here
+			}
+		}
+	}
+
+	if (mTevBlock && mAnmPtr->mPatternAnm) {
+		for (u8 i = 0; i < 8; i++) {
+			if (mAnmPtr->mPatternIds[i] != 0xFFFF) {
+				JUTTexture* texture = mTevBlock->getTexture(i);
+				if (!texture) {
+					continue;
+				}
+
+				u16 idx = mAnmPtr->mPatternIds[i];
+				u16 texNo;
+				mAnmPtr->mPatternAnm->getTexNo(idx, &texNo);
+				mTevBlock->setTexNo(i, texNo);
+
+				ResTIMG* img = mAnmPtr->mPatternAnm->getResTIMG(idx);
+				if (texture->mTexInfo != img) {
+					JUTPalette* palette = nullptr;
+					u32 tlut            = GX_TLUT0;
+					if (img->mPaletteFormat != 0) {
+						palette = mAnmPtr->mPatternAnm->getPalette(idx);
+						if (palette->mNumColors > 256) {
+							tlut = i % 4 + 16;
+						} else {
+							tlut = i;
+						}
+					}
+
+					texture->storeTIMG(img, palette, (GXTlut)tlut);
+				}
+			}
+		}
+	}
+
+	if (mTevBlock && mAnmPtr->mTevAnm) {
+		for (u8 i = 0; i < 4; i++) {
+			if (mAnmPtr->mTevCRegIds[i] != 0xFFFF) {
+				GXColorS10 color;
+				mAnmPtr->mTevAnm->getTevColorReg(mAnmPtr->mTevCRegIds[i], &color);
+				mTevBlock->setTevColor(i, color);
+			}
+		}
+
+		for (u8 i = 0; i < 4; i++) {
+			u16 idx = mAnmPtr->mTevKRegIds[i];
+			if (idx != 0xFFFF) {
+				JUtility::TColor konstColor;
+				mAnmPtr->mTevAnm->getTevKonstReg(idx, &konstColor);
+				mTevBlock->setTevKColor(i, konstColor);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -1368,73 +1073,6 @@ lbl_8005323C:
 	lwz      r0, 0x114(r1)
 	mtlr     r0
 	addi     r1, r1, 0x110
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80053278
- * Size:	000004
- */
-void J2DAnmColor::getColor(u16, GXColor*) const { }
-
-/*
- * --INFO--
- * Address:	8005327C
- * Size:	000004
- */
-void J2DIndBlockNull::setGX() { }
-
-/*
- * --INFO--
- * Address:	80053280
- * Size:	00000C
- */
-u32 J2DIndBlockNull::getType()
-{
-	return JBT_IndNull;
-	/*
-	lis      r3, 0x49424C4E@ha
-	addi     r3, r3, 0x49424C4E@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8005328C
- * Size:	00005C
- */
-J2DIndBlockNull::~J2DIndBlockNull()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800532D0
-	lis      r3, __vt__15J2DIndBlockNull@ha
-	addi     r0, r3, __vt__15J2DIndBlockNull@l
-	stw      r0, 0(r31)
-	beq      lbl_800532C0
-	lis      r3, __vt__11J2DIndBlock@ha
-	addi     r0, r3, __vt__11J2DIndBlock@l
-	stw      r0, 0(r31)
-
-lbl_800532C0:
-	extsh.   r0, r4
-	ble      lbl_800532D0
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_800532D0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
 	blr
 	*/
 }
