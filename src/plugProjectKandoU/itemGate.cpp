@@ -1729,7 +1729,6 @@ int ItemDengekiGate::Mgr::getCaveID(char* cave)
  * Address:	801CA3CC
  * Size:	000134
  */
-#pragma dont_inline reset
 ItemDengekiGate::Mgr::~Mgr() { }
 
 /*

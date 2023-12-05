@@ -387,7 +387,7 @@ void C_MTXRotRad(void)
 {
 	// UNUSED FUNCTION
 }
-#pragma scheduling on
+#pragma scheduling reset
 /*
  * --INFO--
  * Address:	800EA514

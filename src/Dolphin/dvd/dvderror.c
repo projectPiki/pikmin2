@@ -25,7 +25,7 @@ u8 ErrorCode2Num(u32 errorCode)
 
 	return 29;
 }
-#pragma dont_inline off
+#pragma dont_inline reset
 /*
  * --INFO--
  * Address:	800DF770

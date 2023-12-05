@@ -182,7 +182,6 @@ void TChallengeResultDemoScreen::reset()
  * Address:	803936DC
  * Size:	00007C
  */
-#pragma dont_inline on
 void TMovePane::setPane(J2DPane* pane)
 {
 	P2ASSERTLINE(271, pane);
@@ -191,7 +190,6 @@ void TMovePane::setPane(J2DPane* pane)
 	mPanePosition = JGeometry::TVec2f(pane->mOffset);
 	reset();
 }
-#pragma dont_inline off
 
 /*
  * --INFO--
@@ -779,7 +777,6 @@ void TMovePane::reset()
  * Address:	80393F2C
  * Size:	000100
  */
-#pragma dont_inline on
 TCounterRV* setTCounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, u32* data, u16 flag1, u16 flag2, JKRArchive* arc)
 {
 	TCounterRV* counter = new TCounterRV(const_cast<char**>(og::Screen::SujiTex32), flag1, flag2, arc);
@@ -789,7 +786,6 @@ TCounterRV* setTCounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 tag2, u64 tag3, 
 	screen->addCallBack(tag1, counter);
 	return counter;
 }
-#pragma dont_inline off
 
 /*
  * --INFO--

@@ -66,7 +66,7 @@ void TRK_fill_mem(void* dst, int val, size_t n)
 
 	return;
 }
-#pragma dont_inline off
+#pragma dont_inline reset
 
 void* TRK_memcpy(void* dst, const void* src, size_t n)
 {

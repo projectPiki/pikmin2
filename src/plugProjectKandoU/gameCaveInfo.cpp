@@ -2298,5 +2298,3 @@ blr
 // }
 } // namespace Cave
 } // namespace Game
-
-#pragma auto_inline reset

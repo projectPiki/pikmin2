@@ -191,7 +191,6 @@ inline static void __init_bss_section(void* dst, unsigned long size)
 	}
 }
 
-#pragma scheduling off
 void __init_data(void)
 {
 	__rom_copy_info* dci;
