@@ -214,15 +214,15 @@ struct TAdaptor_sound : public TAdaptor {
 	// ~TAdaptor_sound();
 
 	virtual ~TAdaptor_sound() = 0; // _08
-	virtual void _20()        = 0; // _20
-	virtual void _24()        = 0; // _24
-	virtual void _28()        = 0; // _28
-	virtual void _2C()        = 0; // _2C
-	virtual void _30()        = 0; // _30
-	virtual void _34()        = 0; // _34
-	virtual void _38()        = 0; // _38
-	virtual void _3C()        = 0; // _3C
-	virtual void _40()        = 0; // _40
+	// virtual void _20()        = 0; // _20
+	// virtual void _24()        = 0; // _24
+	// virtual void _28()        = 0; // _28
+	// virtual void _2C()        = 0; // _2C
+	// virtual void _30()        = 0; // _30
+	// virtual void _34()        = 0; // _34
+	// virtual void _38()        = 0; // _38
+	// virtual void _3C()        = 0; // _3C
+	// virtual void _40()        = 0; // _40
 
 	static const u32 sauVariableValue_3_POSITION_XYZ[3];
 };

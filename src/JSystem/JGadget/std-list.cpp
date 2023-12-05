@@ -3,27 +3,17 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-*/
-
-/*
  * --INFO--
  * Address:	80027484
  * Size:	000020
  */
 // void __ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<void*>()
-JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TAllocator<void*>& allocator)
+JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TVoidAllocator& allocator)
 {
-	/*
-	lbz      r0, 0(r4)
-	li       r4, 0
-	stb      r0, 0(r3)
-	addi     r0, r3, 8
-	stw      r4, 4(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	_00 = allocator._00;
+	_04 = 0;
+	_08 = &_08;
+	_0C = &_08;
 }
 
 /*
@@ -257,7 +247,7 @@ void JGadget::TList_pointer_void::assign(u32, void* const&)
  * Size:	000100
  */
 template <>
-void JGadget::TList<void*, JGadget::TAllocator<void*>>::assign(u32, void* const&)
+void JGadget::TList<void*, JGadget::TVoidAllocator>::assign(u32, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -298,8 +288,8 @@ JGadget::TList_pointer_void& JGadget::TList_pointer_void::operator=(JGadget::TLi
  * Size:	000194
  */
 template <>
-JGadget::TList<void*, JGadget::TAllocator<void*>>&
-JGadget::TList<void*, JGadget::TAllocator<void*>>::operator=(const TList<void*, JGadget::TAllocator<void*>>& other)
+JGadget::TList<void*, JGadget::TVoidAllocator>&
+JGadget::TList<void*, JGadget::TVoidAllocator>::operator=(const TList<void*, JGadget::TVoidAllocator>& other)
 // void __as__Q27JGadget36TList<void*, JGadget::TAllocator<void*>> FRCQ27JGadget36TList<void*, JGadget::TAllocator<void*>>()
 {
 	// UNUSED FUNCTION

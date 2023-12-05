@@ -11,10 +11,10 @@
 struct JAIBasic;
 struct JAISound;
 namespace JStudio_JAudio {
+typedef JStudio::TObject* (*JStudioAudioCreateFunc)(const JStudio::stb::data::TParse_TBlock_object&, JAIBasic*, const JStage::TSystem*);
+// void createObject_SOUND_JAI(const JStudio::stb::data::TParse_TBlock_object&, JAIBasic*, JStage::TSystem*);
 
-void createObject_SOUND_JAI(const JStudio::stb::data::TParse_TBlock_object&, JAIBasic*, JStage::TSystem*);
-
-struct TAdaptor_sound : public JStudio::TAdaptor {
+struct TAdaptor_sound : public JStudio::TAdaptor_sound {
 	struct TVVOSetValue_ : public JStudio::TVariableValue::TOutput {
 		virtual void operator()(f32, JStudio::TAdaptor*) const; // _08
 		virtual ~TVVOSetValue_();                               // _0C (weak)
@@ -64,17 +64,16 @@ struct TAdaptor_sound : public JStudio::TAdaptor {
 struct TCreateObject : public JStudio::TCreateObject {
 	TCreateObject(JAIBasic* jai, const JStage::TSystem* system)
 	{
-		_04 = jai;
-		_08 = system;
+		mSound  = jai;
+		mSystem = system;
 	}
 	virtual ~TCreateObject();                                                                                // _08
 	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
 
-	// _00 = VTBL
-	JAIBasic* _04;              // _04, unknown
-	const JStage::TSystem* _08; // _08, unknown
-	JAIBasic* _0C;              // _0C
-	JStage::TSystem* mSystem;   // _10
+	// _00     = VTBL
+	// _00-_0C = JStudio::TCreateObject
+	JAIBasic* mSound;               // _04
+	const JStage::TSystem* mSystem; // _08
 };
 } // namespace JStudio_JAudio
 

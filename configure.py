@@ -74,7 +74,7 @@ LIBS = [
         "host": True,
         "objects": [
             ["JSystem/JStudio_JAudio/object-sound", False],
-            ["JSystem/JStudio_JAudio/control", False],
+            ["JSystem/JStudio_JAudio/control", True],
         ],
     },
     {

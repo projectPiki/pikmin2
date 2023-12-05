@@ -11,17 +11,17 @@ struct TList {
 	struct iterator : std::iterator<std::input_iterator_tag, Element> {
 		Element* mElement;
 	};
-	~TList(); // unused/inlined
+	~TList() { } // unused/inlined
 
 	// unused/inlined:
 	void assign(u32, const Element&);
 	TList& operator=(const TList& other);
 };
 
-struct TList_pointer_void : public TList<void*, TAllocator<void*> /*space necessary here to prevent compiler error*/> {
+struct TList_pointer_void : public TList<void*, TVoidAllocator> {
 	TList_pointer_void(); // unused/inlined?
-	TList_pointer_void(const TAllocator<void*>& allocator);
-	TList_pointer_void(u32, const void*&, const TAllocator<void*>&); // unused/inlined
+	TList_pointer_void(const TVoidAllocator& allocator);
+	TList_pointer_void(u32, const void*&, const TVoidAllocator&); // unused/inlined
 	~TList_pointer_void();
 
 	void insert(iterator, void* const&);
@@ -35,6 +35,12 @@ struct TList_pointer_void : public TList<void*, TAllocator<void*> /*space necess
 	void resize(u32, void* const&);
 	void unique();
 	TList_pointer_void& operator=(const TList_pointer_void& other);
+
+	// not sure what goes in here vs what goes in TList (or things above that)
+	u8 _00;    // _00, unknown
+	u32 _04;   // _04, unknown
+	void* _08; // _08, probably mNext? type unknown
+	void* _0C; // _0C, probably mPrev? type unknown
 };
 
 template <typename Iterator, typename Value>

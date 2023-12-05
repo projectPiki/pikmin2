@@ -18,15 +18,16 @@ struct TVector {
 	// 	~Destructed_deallocate_(); // unused/inlined
 	// };
 
-	TVector(u32, const T&, const Allocator<T>&);
+	// TVector(u32, const T&, const Allocator<T>&);
 
-	TVector(Allocator<T> alloc)
-	{
-		_00     = nullptr;
-		mBegin  = _00;
-		_0C     = nullptr;
-		mExtend = vector::extend_default;
-	}
+	// TVector(Allocator<T> alloc)
+	// {
+	// 	_00     = alloc._00;
+	// 	_04     = nullptr;
+	// 	mBegin = nullptr;
+	// 	mEnd  = nullptr;
+	// 	mExtend = vector::extend_default;
+	// }
 
 	~TVector();
 
@@ -41,11 +42,11 @@ struct TVector {
 	void** begin() { return mBegin; }
 	void** end() { return mEnd; }
 
-	void** _00;                 // _00
-	void** mBegin;              // _04
-	void** mEnd;                // _08
-	u32 _0C;                    // _0C
-	vector::ExtendFunc mExtend; // _10
+	u8 _00;                     // _00
+	void** _04;                 // _04
+	void** mBegin;              // _08
+	void** mEnd;                // _0C
+	vector::ExtendFunc mExtend; // _14
 };
 
 struct TVector_pointer_void : TVector<void*, TAllocator> {

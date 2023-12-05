@@ -15,6 +15,8 @@ struct TAllocator {
 	u32 _08; // _08
 	u32 _0C; // _0C
 };
+
+typedef TAllocator<void*> TVoidAllocator;
 }; // namespace JGadget
 
 #endif

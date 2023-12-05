@@ -14,14 +14,7 @@ namespace JGadget {
  * Address:	8002766C
  * Size:	000008
  */
-u32 vector::extend_default(u32, u32, u32)
-{
-	/*
-	.loc_0x0:
-	  rlwinm    r3,r4,1,0,30
-	  blr
-	*/
-}
+u32 vector::extend_default(u32 p1, u32 p2, u32 p3) { return p2 * 2; }
 
 /*
  * --INFO--
@@ -29,23 +22,13 @@ u32 vector::extend_default(u32, u32, u32)
  * Size:	00002C
  * __ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>
  */
-TVector_pointer_void::TVector_pointer_void(const TAllocator<void*>& allocator)
-    : TVector(allocator)
+TVector_pointer_void::TVector_pointer_void(const TVoidAllocator& allocator)
 {
-	/*
-	.loc_0x0:
-	  lbz       r0, 0x0(r4)
-	  li        r5, 0
-	  lis       r4, 0x8002
-	  stb       r0, 0x0(r3)
-	  addi      r0, r4, 0x766C
-	  stw       r5, 0x4(r3)
-	  lwz       r4, 0x4(r3)
-	  stw       r4, 0x8(r3)
-	  stw       r5, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  blr
-	*/
+	_00     = allocator._00;
+	_04     = nullptr;
+	mBegin  = _04;
+	mEnd    = nullptr;
+	mExtend = vector::extend_default;
 }
 
 /*
