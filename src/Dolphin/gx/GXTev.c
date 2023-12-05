@@ -220,12 +220,12 @@ void GXSetTevColorS10(GXTevRegID reg, GXColorS10 color)
 	ra = 0;
 	FAST_FLAG_SET(ra, color.r, 0, 11);
 	FAST_FLAG_SET(ra, color.a, 12, 11);
-	FAST_FLAG_SET(ra, 0xE0 + reg * 2, 24, 8);
+	// FAST_FLAG_SET(ra, 0xE0 + reg * 2, 24, 8);
 
 	bg = 0;
 	FAST_FLAG_SET(bg, color.b, 0, 11);
 	FAST_FLAG_SET(bg, color.g, 12, 11);
-	FAST_FLAG_SET(bg, 0xE1 + reg * 2, 24, 8);
+	// FAST_FLAG_SET(bg, 0xE1 + reg * 2, 24, 8);
 
 	GX_WRITE_U8(0x61);
 	GX_WRITE_U32(ra);
