@@ -10,8 +10,6 @@ struct THanachoN : public TChaseMtx {
 	{
 	}
 
-	virtual ~THanachoN(); // _48
-
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
 };
@@ -21,8 +19,6 @@ struct THanachoY : public TChaseMtx {
 	    : TChaseMtx(PID_HanachoY, nullptr)
 	{
 	}
-
-	virtual ~THanachoY() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx

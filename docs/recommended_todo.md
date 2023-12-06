@@ -19,7 +19,7 @@
 ### <section id="Dolphin">Dolphin</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTev.c">gx/GXTev.c</a> | 10536 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10728 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTev.c">gx/GXTev.c</a> | 10538 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10728 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTransform.c">gx/GXTransform.c</a> | 12312 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 13669 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 13875 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXLight.c">gx/GXLight.c</a> | 14897 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/msgbuf.c">TRK_MINNOW_DOLPHIN/msgbuf.c</a> | 15285 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXAttr.c">gx/GXAttr.c</a> | 19263 |

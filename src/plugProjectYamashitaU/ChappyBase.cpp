@@ -405,7 +405,3 @@ void Obj::finishSleepEffect() { static_cast<efx::THanachoN*>(mEfxHanacho)->fade(
 
 } // namespace ChappyBase
 } // namespace Game
-
-namespace efx {
-THanachoN::~THanachoN() { }
-} // namespace efx
