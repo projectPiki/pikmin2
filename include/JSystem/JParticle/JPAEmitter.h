@@ -152,6 +152,13 @@ struct JPABaseEmitter {
 		mGlobalPScl.y = scale;
 	}
 
+	inline void setScale(JGeometry::TVec3f& vec)
+	{
+		mGlobalScl    = vec;
+		mGlobalPScl.x = vec.x;
+		mGlobalPScl.y = vec.y;
+	}
+
 	inline void setScale(f32 scaleXY, f32 scaleZ)
 	{
 		mGlobalScl    = JGeometry::TVec3f(scaleXY, scaleXY, scaleZ);
