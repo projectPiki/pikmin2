@@ -4,7 +4,28 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
+struct J3DFogInfo {
+	u8 _00;       // _00
+	u8 _01;       // _01
+	u16 _02;      // _02
+	f32 _04;      // _04
+	f32 _08;      // _08
+	f32 _0C;      // _0C
+	f32 _10;      // _10
+	u8 _14;       // _14
+	u8 _15;       // _15
+	u8 _16;       // _16
+	u16 _18[0xA]; // _18
+};
+
+extern const J3DFogInfo j3dDefaultFogInfo;
+
 struct J3DFog {
+
+	inline J3DFog(J3DFogInfo& info) { }
+
+	inline J3DFog() { j3dDefaultFogInfo; }
+	
 	/** @fabricated */
 	inline J3DFog& operator=(const J3DFog& other)
 	{

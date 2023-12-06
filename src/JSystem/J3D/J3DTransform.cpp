@@ -1,5 +1,5 @@
 #include "JSystem/J3D/J3DTypes.h"
-#include "types.h"
+#include "Vector3.h"
 
 /*
     Generated from dpostproc
@@ -64,8 +64,27 @@
  * Address:	8005EE78
  * Size:	0000F0
  */
-void J3DCalcBBoardMtx(float (*)[4])
+void J3DCalcBBoardMtx(Mtx mtx)
 {
+	f32 x = (mtx[0][0] * mtx[0][0]) + (mtx[1][0] * mtx[1][0]) + (mtx[2][0] * mtx[2][0]);
+	f32 y = (mtx[0][1] * mtx[0][1]) + (mtx[1][1] * mtx[1][1]) + (mtx[2][1] * mtx[2][1]);
+	f32 z = (mtx[0][2] * mtx[0][2]) + (mtx[1][2] * mtx[1][2]) + (mtx[2][2] * mtx[2][2]);
+	if (x > 0.0f) {
+		x *= sqrtf(x);
+	}
+	if (y > 0.0f) {
+		y *= sqrtf(y);
+	}
+	if (z > 0.0f) {
+		z *= sqrtf(z);
+	}
+
+	mtx[0][0] = x;
+	mtx[1][0] = 0.0f;
+	mtx[1][1] = y;
+	mtx[1][2] = 0.0f;
+	mtx[2][2] = z;
+
 	/*
 	lfs      f2, 0(r3)
 	lfs      f1, 0x10(r3)
@@ -153,8 +172,28 @@ lbl_8005EF44:
  * Address:	8005EF68
  * Size:	00013C
  */
-void J3DCalcYBBoardMtx(float (*)[4])
+void J3DCalcYBBoardMtx(Mtx mtx)
 {
+	f32 x = (mtx[0][0] * mtx[0][0]) + (mtx[1][0] * mtx[1][0]) + (mtx[2][0] * mtx[2][0]);
+	f32 z = (mtx[0][2] * mtx[0][2]) + (mtx[1][2] * mtx[1][2]) + (mtx[2][2] * mtx[2][2]);
+
+	if (x > 0.0f) {
+		x *= sqrtf(x);
+	}
+	if (z > 0.0f) {
+		z *= sqrtf(z);
+	}
+
+	Vec vec = { 0.0f, -mtx[2][1], mtx[1][1] };
+	PSVECNormalize(&vec, &vec);
+
+	mtx[0][0] = x;
+	mtx[0][2] = 0.0f;
+	mtx[1][0] = 0.0f;
+
+	mtx[1][2] = vec.y * z;
+	mtx[2][0] = 0.0f;
+	mtx[2][2] = vec.z * z;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -255,7 +294,7 @@ lbl_8005F014:
  * Address:	8005F0A4
  * Size:	0000C8
  */
-void J3DPSCalcInverseTranspose(float (*)[4], float (*)[3])
+void J3DPSCalcInverseTranspose(Mtx, Mtx33)
 {
 	/*
 	psq_l    f0, 0(r3), 1, qr0
@@ -318,7 +357,7 @@ lbl_8005F118:
  * Address:	8005F16C
  * Size:	0000B0
  */
-void J3DGetTranslateRotateMtx(const J3DTransformInfo&, float (*)[4])
+void J3DGetTranslateRotateMtx(const J3DTransformInfo&, Mtx)
 {
 	/*
 	lha      r5, 0xe(r3)
@@ -373,7 +412,7 @@ void J3DGetTranslateRotateMtx(const J3DTransformInfo&, float (*)[4])
  * Address:	8005F21C
  * Size:	0000B0
  */
-void J3DGetTranslateRotateMtx(short, short, short, float, float, float, float (*)[4])
+void J3DGetTranslateRotateMtx(s16, s16, s16, f32, f32, f32, Mtx)
 {
 	/*
 	.loc_0x0:
@@ -429,7 +468,7 @@ void J3DGetTranslateRotateMtx(short, short, short, float, float, float, float (*
  * Address:	8005F2CC
  * Size:	0000AC
  */
-void J3DGetTextureMtx(const J3DTextureSRTInfo&, const Vec&, float (*)[4])
+void J3DGetTextureMtx(const J3DTextureSRTInfo&, const Vec&, Mtx)
 {
 	/*
 	lha      r0, 8(r3)
@@ -483,7 +522,7 @@ void J3DGetTextureMtx(const J3DTextureSRTInfo&, const Vec&, float (*)[4])
  * Address:	8005F378
  * Size:	0000AC
  */
-void J3DGetTextureMtxOld(const J3DTextureSRTInfo&, const Vec&, float (*)[4])
+void J3DGetTextureMtxOld(const J3DTextureSRTInfo&, const Vec&, Mtx)
 {
 	/*
 	lha      r0, 8(r3)
@@ -537,7 +576,7 @@ void J3DGetTextureMtxOld(const J3DTextureSRTInfo&, const Vec&, float (*)[4])
  * Address:	8005F424
  * Size:	0000A8
  */
-void J3DGetTextureMtxMaya(const J3DTextureSRTInfo&, float (*)[4])
+void J3DGetTextureMtxMaya(const J3DTextureSRTInfo&, Mtx)
 {
 	/*
 	lfs      f9, lbl_805169A0@sda21(r2)
@@ -590,7 +629,7 @@ void J3DGetTextureMtxMaya(const J3DTextureSRTInfo&, float (*)[4])
  * Address:	8005F4CC
  * Size:	0000A8
  */
-void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo&, float (*)[4])
+void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo&, Mtx)
 {
 	/*
 	lfs      f9, lbl_805169A0@sda21(r2)
@@ -643,7 +682,7 @@ void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo&, float (*)[4])
  * Address:	8005F574
  * Size:	000064
  */
-void J3DScaleNrmMtx(float (*)[4], const Vec&)
+void J3DScaleNrmMtx(Mtx, const Vec&)
 {
 	/*
 	psq_l    f2, 0(r4), 0, qr0
@@ -679,7 +718,7 @@ void J3DScaleNrmMtx(float (*)[4], const Vec&)
  * Address:	8005F5D8
  * Size:	000054
  */
-void J3DScaleNrmMtx33(float (*)[3], const Vec&)
+void J3DScaleNrmMtx33(Mtx33, const Vec&)
 {
 	/*
 	psq_l    f0, 0(r3), 0, qr0
@@ -711,7 +750,7 @@ void J3DScaleNrmMtx33(float (*)[3], const Vec&)
  * Address:	8005F62C
  * Size:	000124
  */
-void J3DMtxProjConcat(float (*)[4], float (*)[4], float (*)[4])
+void J3DMtxProjConcat(Mtx, Mtx, Mtx)
 {
 	/*
 	psq_l    f2, 0(r3), 0, qr0
@@ -795,7 +834,7 @@ void J3DMtxProjConcat(float (*)[4], float (*)[4], float (*)[4])
  * Address:	8005F750
  * Size:	0000DC
  */
-void J3DPSMtxArrayConcat(float (*)[4], float (*)[4], float (*)[4], u32)
+void J3DPSMtxArrayConcat(Mtx, Mtx, Mtx, u32)
 {
 	/*
 	.loc_0x0:

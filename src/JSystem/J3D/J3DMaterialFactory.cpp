@@ -3463,8 +3463,13 @@ lbl_8006F16C:
  * Address:	8006F1D0
  * Size:	000080
  */
-J3DAlphaComp J3DMaterialFactory::newAlphaComp(int) const
+J3DAlphaComp J3DMaterialFactory::newAlphaComp(int id) const
 {
+	u16 v1 = getMaterialInitData(id).mAlphaCompareIndex;
+	if (v1 != 0xFFFF) {
+		return J3DAlphaComp(mAlphaCompInfo[v1]);
+	}
+	return J3DAlphaComp();
 	/*
 	lwz      r6, 8(r4)
 	slwi     r0, r5, 1

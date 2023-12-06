@@ -13,31 +13,13 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
-struct J3DAlphaCompInfo {
-	u8 _00[0x5]; // _00
-};
-
 struct J3DColorChanInfo {
-	J3DColorChan mChan; // _00
+	u8 _00[8]; // _00
 };
 
 struct J3DDisplayListInit {
 	u32 _00; // _00
 	u32 _04; // _04
-};
-
-struct J3DFogInfo {
-	u8 _00;       // _00
-	u8 _01;       // _01
-	u16 _02;      // _02
-	f32 _04;      // _04
-	f32 _08;      // _08
-	f32 _0C;      // _0C
-	f32 _10;      // _10
-	u8 _14;       // _14
-	u8 _15;       // _15
-	u8 _16;       // _16
-	u16 _18[0xA]; // _18
 };
 
 struct J3DIndInitData {
@@ -265,7 +247,9 @@ struct J3DMaterialFactory_v21 {
 	u8 newDither(int) const;
 	J3DNBTScale newNBTScale(int) const;
 
-	J3DMaterialInitData_v21* getMatData(u16 i) const { return &mInitData[mMatRemapTable[i]]; }
+	/** @fabricated */
+	// inline s32 getMaterialInitDataIndex(s32 initDataIndexIndex) const { return _08[initDataIndexIndex]; }
+	inline J3DMaterialInitData_v21& getMaterialInitData(s32 index) const { return mInitData[mMatRemapTable[index]]; }
 
 	u16 mMaterialNum;                               // _00
 	J3DMaterialInitData_v21* mInitData;             // _04

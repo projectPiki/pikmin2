@@ -74,7 +74,25 @@ enum JBlockType {
 
 enum J3DErrType { JET_Success = 0, JET_NoMatAnm, JET_LockedModelData, JET_NullBinRes, JET_OutOfMemory, JET_InvalidArg, JET_InvalidData };
 
+struct J3DAlphaCompInfo {
+	u8 _00[0x8]; // _00
+};
+
 struct J3DAlphaComp {
+	inline J3DAlphaComp(J3DAlphaCompInfo& info)
+	{
+		_00 = (info._00[0] * 0x20) + (info._00[2] * 8) + (info._00[3]);
+		_02 = info._00[1];
+		_03 = info._00[4];
+	}
+
+	inline J3DAlphaComp()
+	{
+		_00 = -1;
+		_02 = 0;
+		_03 = 0;
+	}
+
 	u16 _00; // _00
 	u8 _02;  // _02
 	u8 _03;  // _03
@@ -194,7 +212,7 @@ struct J3DTevOrderInfo {
 	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mData[0]; }
 	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)mData[1]; }
 	// inline u8 getChannelID() const { return mData[2]; }
-	u8 mData[3]; // _00
+	u8 mData[4]; // _00 size should be 4 for newTevOrder to work
 
 	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)mTexCoordID; }
 	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)mTexMapID; }

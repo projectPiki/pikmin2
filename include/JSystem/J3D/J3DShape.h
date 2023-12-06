@@ -222,7 +222,7 @@ struct J3DShapeMtxConcatView : public J3DShapeMtx {
 	virtual ~J3DShapeMtxConcatView() { }                 // _08 (weak)
 	virtual int getType() const { return 'SMCV'; }       // _0C (weak)
 	virtual void load() const;                           // _18
-	virtual void loadNrmMtx(int, u16) const;             // _20 (weak)
+	virtual void loadNrmMtx(int, u16) const { }          // _20 (weak)
 	virtual void loadNrmMtx(int, u16, f32 (*)[4]) const; // _24
 
 	void loadMtxConcatView_PNGP(int, u16) const;
@@ -249,8 +249,8 @@ struct J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
 	virtual int getUseMtxNum() const { return mUseMtxNum; }                          // _10 (weak)
 	virtual u16 getUseMtxIndex(u16 index) const { return mUseMtxIndexTable[index]; } // _14 (weak)
 	virtual void load() const;                                                       // _18
-	virtual void loadNrmMtx(int, u16) const;                                         // _20 (weak)
-	virtual void loadNrmMtx(int, u16, Mtx*) const;                                   // _24
+	virtual void loadNrmMtx(int, u16) const { }                                      // _20 (weak)
+	virtual void loadNrmMtx(int, u16, Mtx) const;                                   // _24
 
 	u16 mUseMtxNum;         // _08
 	u16* mUseMtxIndexTable; // _0C

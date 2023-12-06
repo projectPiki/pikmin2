@@ -6,7 +6,6 @@
 #include "JSystem/J3D/J3DSys.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "mem.h"
-#include "types.h"
 
 /*
  * --INFO--

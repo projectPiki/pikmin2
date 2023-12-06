@@ -44,7 +44,7 @@ struct J3DMatColorAnm {
 struct J3DTexNoAnm {
 	J3DTexNoAnm();
 
-	virtual void calc(u16* data) const { mAnm->getTexNo(mIndex, data); } // _08 (weak)
+	virtual void calc(u16* data) const { getAnmTexPattern()->getTexNo(mIndex, data); } // _08 (weak)
 
 	void operator=(J3DTexNoAnm const& other)
 	{
@@ -57,7 +57,8 @@ struct J3DTexNoAnm {
 
 	void setAnmFlag(bool flag) { mAnmFlag = flag; }
 	bool getAnmFlag() const { return mAnmFlag; }
-	J3DAnmTexPattern* getAnmTexPattern() { return mAnm; }
+	J3DAnmTexPattern* getAnmTexPattern() const { return mAnm; }
+	u16 getIndex() const { return mIndex; }
 
 	// _00 = VTBL
 	u16 mIndex;             // _04
