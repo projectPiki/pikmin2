@@ -385,85 +385,6 @@ void GXSetChanAmbColor(GXChannelID channel, GXColor color)
 	GX_XF_LOAD_REG(GX_XF_REG_AMBIENT0 + colorID, reg);
 	gx->bpSentNot         = GX_TRUE;
 	gx->ambColor[colorID] = reg;
-	/*
-	.loc_0x0:
-	  cmpwi     r3, 0x3
-	  beq-      .loc_0x88
-	  bge-      .loc_0x24
-	  cmpwi     r3, 0x1
-	  beq-      .loc_0x50
-	  bge-      .loc_0x6C
-	  cmpwi     r3, 0
-	  bge-      .loc_0x34
-	  blr
-
-	.loc_0x24:
-	  cmpwi     r3, 0x5
-	  beq-      .loc_0xAC
-	  bgelr-
-	  b         .loc_0xA0
-
-	.loc_0x34:
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0
-	  lwz       r0, 0x0(r4)
-	  lwz       r3, 0xA8(r3)
-	  rlwinm    r7,r0,0,0,23
-	  rlwimi    r7,r3,0,24,31
-	  b         .loc_0xBC
-
-	.loc_0x50:
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0x1
-	  lwz       r0, 0x0(r4)
-	  lwz       r3, 0xAC(r3)
-	  rlwinm    r7,r0,0,0,23
-	  rlwimi    r7,r3,0,24,31
-	  b         .loc_0xBC
-
-	.loc_0x6C:
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0
-	  lbz       r0, 0x3(r4)
-	  lwz       r3, 0xA8(r3)
-	  rlwimi    r3,r0,0,24,31
-	  addi      r7, r3, 0
-	  b         .loc_0xBC
-
-	.loc_0x88:
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0x1
-	  lbz       r0, 0x3(r4)
-	  lwz       r7, 0xAC(r3)
-	  rlwimi    r7,r0,0,24,31
-	  b         .loc_0xBC
-
-	.loc_0xA0:
-	  lwz       r7, 0x0(r4)
-	  li        r5, 0
-	  b         .loc_0xBC
-
-	.loc_0xAC:
-	  lwz       r7, 0x0(r4)
-	  li        r5, 0x1
-	  b         .loc_0xBC
-	  blr
-
-	.loc_0xBC:
-	  li        r0, 0x10
-	  lwz       r4, -0x6D70(r2)
-	  lis       r6, 0xCC01
-	  stb       r0, -0x8000(r6)
-	  addi      r3, r5, 0x100A
-	  rlwinm    r0,r5,2,0,29
-	  stw       r3, -0x8000(r6)
-	  li        r5, 0x1
-	  add       r3, r4, r0
-	  stw       r7, -0x8000(r6)
-	  sth       r5, 0x2(r4)
-	  stw       r7, 0xA8(r3)
-	  blr
-	*/
 }
 
 /*
@@ -513,85 +434,6 @@ void GXSetChanMatColor(GXChannelID channel, GXColor color)
 	GX_XF_LOAD_REG(GX_XF_REG_MATERIAL0 + colorID, reg);
 	gx->bpSentNot         = GX_TRUE;
 	gx->matColor[colorID] = reg;
-	/*
-	.loc_0x0:
-	  cmpwi     r3, 0x3
-	  beq-      .loc_0x88
-	  bge-      .loc_0x24
-	  cmpwi     r3, 0x1
-	  beq-      .loc_0x50
-	  bge-      .loc_0x6C
-	  cmpwi     r3, 0
-	  bge-      .loc_0x34
-	  blr
-
-	.loc_0x24:
-	  cmpwi     r3, 0x5
-	  beq-      .loc_0xAC
-	  bgelr-
-	  b         .loc_0xA0
-
-	.loc_0x34:
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0
-	  lwz       r0, 0x0(r4)
-	  lwz       r3, 0xB0(r3)
-	  rlwinm    r7,r0,0,0,23
-	  rlwimi    r7,r3,0,24,31
-	  b         .loc_0xBC
-
-	.loc_0x50:
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0x1
-	  lwz       r0, 0x0(r4)
-	  lwz       r3, 0xB4(r3)
-	  rlwinm    r7,r0,0,0,23
-	  rlwimi    r7,r3,0,24,31
-	  b         .loc_0xBC
-
-	.loc_0x6C:
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0
-	  lbz       r0, 0x3(r4)
-	  lwz       r3, 0xB0(r3)
-	  rlwimi    r3,r0,0,24,31
-	  addi      r7, r3, 0
-	  b         .loc_0xBC
-
-	.loc_0x88:
-	  lwz       r3, -0x6D70(r2)
-	  li        r5, 0x1
-	  lbz       r0, 0x3(r4)
-	  lwz       r7, 0xB4(r3)
-	  rlwimi    r7,r0,0,24,31
-	  b         .loc_0xBC
-
-	.loc_0xA0:
-	  lwz       r7, 0x0(r4)
-	  li        r5, 0
-	  b         .loc_0xBC
-
-	.loc_0xAC:
-	  lwz       r7, 0x0(r4)
-	  li        r5, 0x1
-	  b         .loc_0xBC
-	  blr
-
-	.loc_0xBC:
-	  li        r0, 0x10
-	  lwz       r4, -0x6D70(r2)
-	  lis       r6, 0xCC01
-	  stb       r0, -0x8000(r6)
-	  addi      r3, r5, 0x100C
-	  rlwinm    r0,r5,2,0,29
-	  stw       r3, -0x8000(r6)
-	  li        r5, 0x1
-	  add       r3, r4, r0
-	  stw       r7, -0x8000(r6)
-	  sth       r5, 0x2(r4)
-	  stw       r7, 0xB0(r3)
-	  blr
-	*/
 }
 
 /*
@@ -611,12 +453,10 @@ void GXSetNumChans(u8 count)
  * Address:	800E6EA0
  * Size:	0000B8
  */
-
 void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, GXLightID mask, GXDiffuseFn diffFunc,
                    GXAttnFn attnFunc)
 {
 	const u32 colorID = (u32)channel & 0x3;
-
 	u32 reg = 0;
 
 	GX_SET_REG(reg, doEnable, GX_XF_CLR0CTRL_LIGHT_ST, GX_XF_CLR0CTRL_LIGHT_END);
@@ -627,9 +467,14 @@ void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXCo
 	GX_SET_REG(reg, (attnFunc != GX_AF_SPEC), GX_XF_CLR0CTRL_ATTNSEL_ST, GX_XF_CLR0CTRL_ATTNSEL_END);
 
 	// why are we unmasking bits we're about to overwrite?
-	reg &= ~GX_REG_MASK(GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
-	GX_SET_REG(reg, (u32)mask, GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
-	reg &= ~GX_REG_MASK(GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
+
+	// these lines do identical things. The first one is wrong, but wrangles the code
+	/*filler*/ GX_SET_REG(reg, 0, GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
+	reg &=~   GX_REG_MASK(GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
+	
+	GX_SET_REG(reg, mask, GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
+
+	reg &=~             GX_REG_MASK(GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
 	GX_SET_REG(reg, (u32)mask >> 4, GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
 
 	GX_XF_LOAD_REG(GX_XF_REG_COLOR0CNTRL + colorID, reg);
