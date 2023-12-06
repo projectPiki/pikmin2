@@ -24,6 +24,7 @@ extern "C" {
 #define GX_REG_MASK(st, end)        (((1 << ((end) - (st) + 1)) - 1) << 31 - (end))
 #define GX_GET_REG(reg, st, end)    GX_BITGET(reg, st, (end - st + 1))
 #define GX_SET_REG(reg, x, st, end) GX_BITFIELD_SET(reg, st, (end - st + 1), x)
+#define GX_SET_TRUNC(reg, x, st, end) GX_BITFIELD_TRUNC(reg, st, (end - st + 1), x)
 
 /************************************************************
  *

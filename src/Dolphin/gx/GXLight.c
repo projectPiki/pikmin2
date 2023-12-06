@@ -348,40 +348,38 @@ void GXSetChanAmbColor(GXChannelID channel, GXColor color)
 	u32 rgb;
 	u32 colorID;
 	u8 alpha;
-
+	
 	switch (channel) {
-	case GX_COLOR0:
-		rgb = gx->ambColor[GX_COLOR0];
-		reg = GXCOLOR_AS_U32(color) & ~0xff;
-		GX_SET_REG(reg, rgb, 24, 31);
-		colorID = GX_COLOR0;
-		break;
-	case GX_COLOR1:
-		rgb = gx->ambColor[GX_COLOR1];
-		reg = GXCOLOR_AS_U32(color) & ~0xff;
-		GX_SET_REG(reg, rgb, 24, 31);
-		colorID = GX_COLOR1;
-		break;
-	case GX_ALPHA0:
-		reg = gx->ambColor[GX_COLOR0];
-		GX_SET_REG(reg, color.a, 24, 31);
-		colorID = GX_COLOR0;
-		break;
-	case GX_ALPHA1:
-		reg = gx->ambColor[GX_COLOR1];
-		GX_SET_REG(reg, color.a, 24, 31);
-		colorID = GX_COLOR1;
-		break;
-	case GX_COLOR0A0:
-		reg     = GXCOLOR_AS_U32(color);
-		colorID = GX_COLOR0;
-		break;
-	case GX_COLOR1A1:
-		reg     = GXCOLOR_AS_U32(color);
-		colorID = GX_COLOR1;
-		break;
-	default:
-		return;
+		case GX_COLOR0:
+			rgb = gx->ambColor[GX_COLOR0];
+			reg = GX_SET_TRUNC(GXCOLOR_AS_U32(color) & ~0xff, rgb, 24, 31);
+			colorID = GX_COLOR0;
+			break;
+		case GX_COLOR1:
+			rgb = gx->ambColor[GX_COLOR1];
+			reg = GX_SET_TRUNC(GXCOLOR_AS_U32(color) & ~0xff, rgb, 24, 31);
+			colorID = GX_COLOR1;
+			break;
+		case GX_ALPHA0:
+			reg = gx->ambColor[GX_COLOR0];
+			reg = GX_SET_TRUNC(reg, color.a, 24, 31);
+			colorID = GX_COLOR0;
+			break;
+		case GX_ALPHA1:
+			reg = gx->ambColor[GX_COLOR1];
+			reg = GX_SET_TRUNC(reg, color.a, 24, 31);
+			colorID = GX_COLOR1;
+			break;
+		case GX_COLOR0A0:
+			reg     = GXCOLOR_AS_U32(color);
+			colorID = GX_COLOR0;
+			break;
+		case GX_COLOR1A1:
+			reg     = GXCOLOR_AS_U32(color);
+			colorID = GX_COLOR1;
+			break;
+		default:
+			return;
 	}
 
 	GX_XF_LOAD_REG(GX_XF_REG_AMBIENT0 + colorID, reg);
@@ -477,41 +475,39 @@ void GXSetChanMatColor(GXChannelID channel, GXColor color)
 {
 	u32 reg = 0;
 	u32 rgb;
-	u32 colorID;
+	GXChannelID colorID;
 
-	switch (channel) {
-	case GX_COLOR0:
-		rgb = gx->matColor[GX_COLOR0];
-		reg = GXCOLOR_AS_U32(color) & ~0xff;
-		GX_SET_REG(reg, rgb, 24, 31);
-		colorID = 0;
-		break;
-	case GX_COLOR1:
-		rgb = gx->matColor[GX_COLOR1];
-		reg = GXCOLOR_AS_U32(color) & ~0xff;
-		GX_SET_REG(reg, rgb, 24, 31);
-		colorID = 1;
-		break;
-	case GX_ALPHA0:
-		reg = gx->matColor[GX_COLOR0];
-		GX_SET_REG(reg, color.a, 24, 31);
-		colorID = 0;
-		break;
-	case GX_ALPHA1:
-		reg = gx->matColor[GX_COLOR1];
-		GX_SET_REG(reg, color.a, 24, 31);
-		colorID = 1;
-		break;
-	case GX_COLOR0A0:
-		reg     = GXCOLOR_AS_U32(color);
-		colorID = 0;
-		break;
-	case GX_COLOR1A1:
-		reg     = GXCOLOR_AS_U32(color);
-		colorID = 1;
-		break;
-	default:
-		return;
+		switch (channel) {
+		case GX_COLOR0:
+			rgb = gx->matColor[GX_COLOR0];
+			reg = GX_SET_TRUNC(GXCOLOR_AS_U32(color) & ~0xff, rgb, 24, 31);
+			colorID = GX_COLOR0;
+			break;
+		case GX_COLOR1:
+			rgb = gx->matColor[GX_COLOR1];
+			reg = GX_SET_TRUNC(GXCOLOR_AS_U32(color) & ~0xff, rgb, 24, 31);
+			colorID = GX_COLOR1;
+			break;
+		case GX_ALPHA0:
+			reg = gx->matColor[GX_COLOR0];
+			reg = GX_SET_TRUNC(reg, color.a, 24, 31);
+			colorID = GX_COLOR0;
+			break;
+		case GX_ALPHA1:
+			reg = gx->matColor[GX_COLOR1];
+			reg = GX_SET_TRUNC(reg, color.a, 24, 31);
+			colorID = GX_COLOR1;
+			break;
+		case GX_COLOR0A0:
+			reg     = GXCOLOR_AS_U32(color);
+			colorID = GX_COLOR0;
+			break;
+		case GX_COLOR1A1:
+			reg     = GXCOLOR_AS_U32(color);
+			colorID = GX_COLOR1;
+			break;
+		default:
+			return;
 	}
 
 	GX_XF_LOAD_REG(GX_XF_REG_MATERIAL0 + colorID, reg);
@@ -619,7 +615,7 @@ void GXSetNumChans(u8 count)
 void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, GXLightID mask, GXDiffuseFn diffFunc,
                    GXAttnFn attnFunc)
 {
-	const u32 colorID = (u32)channel % 4;
+	const u32 colorID = (u32)channel & 0x3;
 
 	u32 reg = 0;
 
