@@ -70,11 +70,11 @@ struct TParse_TParagraph {
 struct TParse_TBlock_object {
 
 	struct TData {
-		int _00;        // _00
-		int _04;        // _04
-		u16 _08;        // _08
-		u16 _0A;        // _0A
-		const char _0C; // _0C
+		int mSize;           // _00
+		int mDataType;       // _04
+		u16 _08;             // _08
+		u16 _0A;             // _0A
+		const char mObjName; // _0C
 	};
 	TData* filedata;
 };

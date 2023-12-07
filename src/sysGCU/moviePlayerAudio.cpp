@@ -1,4 +1,3 @@
-#include "types.h"
 #include "Game/MoviePlayer.h"
 #include "Game/P2JST/ObjectSystem.h"
 #include "nans.h"
@@ -32,7 +31,7 @@ Pikmin_TCreateObject_JAudio::Pikmin_TCreateObject_JAudio(JAIBasic* jai, const JS
 bool Pikmin_TCreateObject_JAudio::create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data)
 {
 	char buf[256];
-	const char* str    = &(data.filedata->_0C);
+	const char* str    = &(data.filedata->mObjName);
 	const char first_c = *(str);
 	if (first_c != '#') {
 		return false;

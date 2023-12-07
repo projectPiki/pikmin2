@@ -48,7 +48,7 @@ TCreateObject::~TCreateObject() { }
 bool TCreateObject::create(JStudio::TObject** object, const JStudio::stb::data::TParse_TBlock_object& parseBlock)
 {
 	JStudioAudioCreateFunc createFunc;
-	switch (parseBlock.filedata->_04) {
+	switch (parseBlock.filedata->mDataType) {
 	case 'JSND':
 		createFunc = createObject_SOUND_JAI_;
 		break;

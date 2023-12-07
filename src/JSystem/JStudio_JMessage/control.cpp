@@ -55,7 +55,7 @@ JStudio_JMessage::TCreateObject_base::~TCreateObject_base()
 bool JStudio_JMessage::TCreateObject_base::create(JStudio::TObject** newObject, JStudio::stb::data::TParse_TBlock_object const& data)
 {
 	JStudio::TObject_message* (*func)(const JStudio::stb::data::TParse_TBlock_object&, JMessage::TControl*);
-	int p1 = data.filedata->_04;
+	int p1 = data.filedata->mDataType;
 	switch (p1) {
 	case 'JMSG':
 		func = &createObject_MESSAGE_JMS_;

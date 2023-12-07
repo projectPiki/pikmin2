@@ -222,7 +222,7 @@ lbl_80087AD0:
  */
 int J3DModelLoader::calcLoadMaterialTableSize(const void* stream)
 {
-	const J3DFileHeader* header = reinterpret_cast<const J3DFileHeader*>(stream);
+	const J3DFileHeader* header       = reinterpret_cast<const J3DFileHeader*>(stream);
 	bool hasTextureTable              = false;
 	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
 	u32 i                             = 0;
@@ -242,7 +242,7 @@ int J3DModelLoader::calcLoadMaterialTableSize(const void* stream)
 		}
 		nextBlock = nextBlock->getNext();
 	}
-	
+
 	if (!hasTextureTable) {
 		size += 0xC;
 	}

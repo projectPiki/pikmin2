@@ -102,26 +102,6 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor {
 	virtual void adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData, const void*, u32);         // _44
 	virtual void adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOperationData, const void*, u32);      // _48
 	virtual void adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::data::TEOperationData, const void*, u32); // _4C
-	// virtual void _50() = 0;                                                                                        // _50
-	// virtual void _54() = 0;                                                                                        // _54
-	// virtual void _58() = 0;                                                                                        // _58
-	// virtual void _5C() = 0;                                                                                        // _5C
-	// virtual void _60() = 0;                                                                                        // _60
-	// virtual void _64() = 0;                                                                                        // _64
-	// virtual void _68() = 0;                                                                                        // _68
-	// virtual void _6C() = 0;                                                                                        // _6C
-	// virtual void _70() = 0;                                                                                        // _70
-	// virtual void _74() = 0;                                                                                        // _74
-	// virtual void _78() = 0;                                                                                        // _78
-	// virtual void _7C() = 0;                                                                                        // _7C
-	// virtual void _80() = 0;                                                                                        // _80
-	// virtual void _84() = 0;                                                                                        // _84
-	// virtual void _88() = 0;                                                                                        // _88
-	// virtual void _8C() = 0;                                                                                        // _8C
-	// virtual void _90() = 0;                                                                                        // _90
-	// virtual void _94() = 0;                                                                                        // _94
-	// virtual void _98() = 0;                                                                                        // _98
-	// virtual void _9C() = 0;                                                                                        // _9C
 
 	void setJSG_ID_(IDFunction, JStudio::data::TEOperationData, const void*, u32);
 	// void setJSG_ID_(JStage::TActor, void(const void*, void*, u32), JStudio::data::TEOperationData, const void*, u32);
@@ -176,21 +156,6 @@ struct TAdaptor_camera : public JStudio::TAdaptor_camera {
 	virtual void adaptor_do_TARGET_PARENT(JStudio::data::TEOperationData, const void*, u32);        // _30
 	virtual void adaptor_do_TARGET_PARENT_NODE(JStudio::data::TEOperationData, const void*, u32);   // _34
 	virtual void adaptor_do_TARGET_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32); // _38
-	// virtual void _3C() = 0;                                                                                        // _3C
-	// virtual void _40() = 0;                                                                                        // _40
-	// virtual void _44() = 0;                                                                                        // _44
-	// virtual void _48() = 0;                                                                                        // _48
-	// virtual void _4C() = 0;                                                                                        // _4C
-	// virtual void _50() = 0;                                                                                        // _50
-	// virtual void _54() = 0;                                                                                        // _54
-	// virtual void _58() = 0;                                                                                        // _58
-	// virtual void _5C() = 0;                                                                                        // _5C
-	// virtual void _60() = 0;                                                                                        // _60
-	// virtual void _64() = 0;                                                                                        // _64
-	// virtual void _68() = 0;                                                                                        // _68
-	// virtual void _6C() = 0;                                                                                        // _6C
-	// virtual void _70() = 0;                                                                                        // _70
-	// virtual void _74() = 0;                                                                                        // _74
 
 	void setJSG_position_(const JStudio::TControl*);
 	void getJSG_position_(const JStudio::TControl*);
@@ -198,7 +163,7 @@ struct TAdaptor_camera : public JStudio::TAdaptor_camera {
 	void getJSG_targetPosition_(const JStudio::TControl*);
 
 	const JStage::TSystem* mSystem; // _FC
-	JStage::TCamera* mCamera;       // _100
+	JStage::TCamera* mObject;       // _100
 	u32 _104;                       // _104
 	JStage::TObject* _108;          // _108
 	u32 _10C;                       // _10C
@@ -222,14 +187,6 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog {
 	virtual void adaptor_do_end(const JStudio::TObject*);                                      // _14
 	virtual void adaptor_do_update(const JStudio::TObject*, u32);                              // _18
 	virtual void adaptor_do_data(const JStudio::TObject*, const void*, u32, const void*, u32); // _1C
-	// virtual void _20() = 0;                                                                                        // _20
-	// virtual void _24() = 0;                                                                                        // _24
-	// virtual void _28() = 0;                                                                                        // _28
-	// virtual void _2C() = 0;                                                                                        // _2C
-	// virtual void _30() = 0;                                                                                        // _30
-	// virtual void _34() = 0;                                                                                        // _34
-	// virtual void _38() = 0;                                                                                        // _38
-	// virtual void _3C() = 0;                                                                                        // _3C
 
 	const JStage::TSystem* mSystem; // _84
 	JStage::TFog* mObject;          // _88
@@ -238,9 +195,18 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog {
 };
 
 struct TAdaptor_light : public JStudio::TAdaptor_light {
-	struct TVVOutput_direction_ {
+	struct TVVOutput_direction_ : public JStudio::TVariableValue::TOutput {
+		TVVOutput_direction_(int a1, int a2)
+		{
+			mValueIndex = a1;
+			_08         = a2;
+		}
+
 		virtual void operator()(f32, JStudio::TAdaptor*) const; // _08
-		virtual ~TVVOutput_direction_();                        // _0C (weak)
+		virtual ~TVVOutput_direction_() { }                     // _0C (weak)
+
+		int mValueIndex; // _04
+		int _08;         // _08
 	};
 
 	TAdaptor_light(const JStage::TSystem*, JStage::TLight*);
@@ -254,7 +220,11 @@ struct TAdaptor_light : public JStudio::TAdaptor_light {
 	virtual void adaptor_do_ENABLE(JStudio::data::TEOperationData, const void*, u32);          // _20
 	virtual void adaptor_do_FACULTY(JStudio::data::TEOperationData, const void*, u32);         // _24
 
-	JStudio::TVariableValue* _0C;
+	const JStage::TSystem* mSystem; // _110
+	JStage::TLight* mObject;        // _114
+	int _118;
+
+	static const TVVOutput_direction_ saoVVOutput_direction[6];
 };
 
 bool transform_toGlobalFromLocal(f32 (*)[4], const JStudio::TControl::TTransform_translation_rotation_scaling&, const JStage::TObject*,

@@ -25,7 +25,7 @@ struct J3DFog {
 	inline J3DFog(J3DFogInfo& info) { }
 
 	inline J3DFog() { j3dDefaultFogInfo; }
-	
+
 	/** @fabricated */
 	inline J3DFog& operator=(const J3DFog& other)
 	{

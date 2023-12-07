@@ -152,8 +152,8 @@ struct TAdaptor_fog : public TAdaptor {
 };
 
 struct TAdaptor_light : public TAdaptor {
-	TAdaptor_light(TVariableValue* values, int count)
-	    : TAdaptor(values, count)
+	TAdaptor_light()
+	    : TAdaptor(_0C, 13)
 	{
 	}
 	// ~TAdaptor_light();
@@ -161,6 +161,8 @@ struct TAdaptor_light : public TAdaptor {
 	virtual ~TAdaptor_light()                                                         = 0; // _08
 	virtual void adaptor_do_ENABLE(JStudio::data::TEOperationData, const void*, u32)  = 0; // _20
 	virtual void adaptor_do_FACULTY(JStudio::data::TEOperationData, const void*, u32) = 0; // _24
+
+	JStudio::TVariableValue _0C[13]; // _0C
 
 	static const u32 sauVariableValue_3_COLOR_RGB[3];
 	static const u32 sauVariableValue_4_COLOR_RGBA[4];

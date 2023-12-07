@@ -250,7 +250,7 @@ struct J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
 	virtual u16 getUseMtxIndex(u16 index) const { return mUseMtxIndexTable[index]; } // _14 (weak)
 	virtual void load() const;                                                       // _18
 	virtual void loadNrmMtx(int, u16) const { }                                      // _20 (weak)
-	virtual void loadNrmMtx(int, u16, Mtx) const;                                   // _24
+	virtual void loadNrmMtx(int, u16, Mtx) const;                                    // _24
 
 	u16 mUseMtxNum;         // _08
 	u16* mUseMtxIndexTable; // _0C

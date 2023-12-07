@@ -100,6 +100,13 @@
         .skip 0xA0
 */
 
+namespace JStudio_JStage {
+
+const TAdaptor_camera::TVVOutput TAdaptor_camera::saoVVOutput_[5] = {
+	TVVOutput(4, nullptr, nullptr), TVVOutput(5, nullptr, nullptr),  TVVOutput(4, nullptr, nullptr),
+	TVVOutput(5, nullptr, nullptr), TVVOutput(-1, nullptr, nullptr),
+};
+
 /*
  * --INFO--
  * Address:	80013428
@@ -107,7 +114,7 @@
  */
 JStudio_JStage::TAdaptor_camera::TAdaptor_camera(const JStage::TSystem* system, JStage::TCamera* camera)
     : mSystem(system)
-    , mCamera(camera)
+    , mObject(camera)
     , _104(0)
     , _108(nullptr)
     , _10C(0xFFFFFFFF)
@@ -218,7 +225,7 @@ lbl_80013668:
  * Address:	80013694
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_end(const JStudio::TObject*) { mCamera->setFlagOff(1); }
+void JStudio_JStage::TAdaptor_camera::adaptor_do_end(const JStudio::TObject*) { mObject->setFlagOff(1); }
 
 /*
  * --INFO--
@@ -230,7 +237,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_update(const JStudio::TObject* 
 	const JStudio::TControl* control = static_cast<JStudio::TControl*>(object->pControl);
 	setJSG_position_(control);
 	setJSG_targetPosition_(control);
-	mCamera->JSGUpdate();
+	mObject->JSGUpdate();
 }
 
 /*
@@ -240,7 +247,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_update(const JStudio::TObject* 
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_data(const JStudio::TObject* object, const void* p2, u32 p3, const void* p4, u32 p5)
 {
-	TAdaptor_object_::adaptor_data_(mCamera, p2, p3, p4, p5);
+	TAdaptor_object_::adaptor_data_(mObject, p2, p3, p4, p5);
 }
 
 /*
@@ -375,19 +382,12 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_NODE(JStudio::dat
  * Address:	8001394C
  * Size:	000020
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE(JStudio::data::TEOperationData operation, const void* data, u32)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x2
-	  bnelr-
-	  lwz       r4, 0x0(r5)
-	  neg       r0, r4
-	  or        r0, r0, r4
-	  rlwinm    r0,r0,1,31,31
-	  stb       r0, 0x11C(r3)
-	  blr
-	*/
+	if (operation != JStudio::data::TEOD_Unknown_02) {
+		return;
+	}
+	_11C = ((int*)data)[0] != 0;
 }
 
 /*
@@ -731,326 +731,4 @@ void JStudio_JStage::TAdaptor_camera::getJSG_targetPosition_(const JStudio::TCon
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80013D34
- * Size:	000370
- */
-// void __sinit_object - camera_cpp()
-// {
-// 	/*
-// 	stwu     r1, -0xc0(r1)
-// 	mflr     r0
-// 	lis      r3, lbl_8049F728@ha
-// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-// 	stw      r0, 0xc4(r1)
-// 	lis      r5,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	lis      r12, lbl_804EFE28@ha
-// 	li       r11, 7
-// 	stw      r31, 0xbc(r1)
-// 	addi     r31, r3, lbl_8049F728@l
-// 	lis      r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@ha
-// 	stw      r30, 0xb8(r1)
-// 	addi     r30, r12, lbl_804EFE28@l
-// 	addi     r12, r5,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	stw      r29, 0xb4(r1)
-// 	addi     r29, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-// 	lis      r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@ha
-// 	addi     r5, r30, 0
-// 	stwu     r29, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@l(r3)
-// 	addi     r4, r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@l
-// 	lwz      r10, 0(r31)
-// 	lwz      r9, 4(r31)
-// 	lwz      r8, 8(r31)
-// 	lwz      r7, 0xc(r31)
-// 	lwz      r6, 0x10(r31)
-// 	lwz      r0, 0x14(r31)
-// 	stw      r29, 0x88(r1)
-// 	stw      r12, 0x88(r1)
-// 	stw      r11, 0x8c(r1)
-// 	stw      r10, 0x90(r1)
-// 	stw      r9, 0x94(r1)
-// 	stw      r8, 0x98(r1)
-// 	stw      r7, 0x9c(r1)
-// 	stw      r6, 0xa0(r1)
-// 	stw      r0, 0xa4(r1)
-// 	stw      r12, 0(r3)
-// 	stw      r11, 4(r3)
-// 	stw      r10, 8(r3)
-// 	stw      r9, 0xc(r3)
-// 	stw      r8, 0x10(r3)
-// 	stw      r7, 0x14(r3)
-// 	stw      r6, 0x18(r3)
-// 	stw      r0, 0x1c(r3)
-// 	bl       __register_global_object
-// 	lis      r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	addi     r3, r1, 0x88
-// 	addi     r0, r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	li       r4, 0
-// 	stw      r0, 0x88(r1)
-// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-// 	lis      r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@ha
-// 	addi     r29, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-// 	lwz      r10, 0x18(r31)
-// 	addi     r3, r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@l
-// 	lwz      r9, 0x1c(r31)
-// 	stwu     r29, 0x20(r3)
-// 	li       r11, 6
-// 	lwz      r8, 0x20(r31)
-// 	lis      r5,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	lwz      r7, 0x24(r31)
-// 	addi     r12, r5,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	lwz      r6, 0x28(r31)
-// 	lis      r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@ha
-// 	lwz      r0, 0x2c(r31)
-// 	addi     r4, r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@l
-// 	stw      r29, 0x68(r1)
-// 	addi     r5, r30, 0xc
-// 	stw      r12, 0x68(r1)
-// 	stw      r11, 0x6c(r1)
-// 	stw      r10, 0x70(r1)
-// 	stw      r9, 0x74(r1)
-// 	stw      r8, 0x78(r1)
-// 	stw      r7, 0x7c(r1)
-// 	stw      r6, 0x80(r1)
-// 	stw      r0, 0x84(r1)
-// 	stw      r12, 0(r3)
-// 	stw      r11, 4(r3)
-// 	stw      r10, 8(r3)
-// 	stw      r9, 0xc(r3)
-// 	stw      r8, 0x10(r3)
-// 	stw      r7, 0x14(r3)
-// 	stw      r6, 0x18(r3)
-// 	stw      r0, 0x1c(r3)
-// 	bl       __register_global_object
-// 	lis      r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	addi     r3, r1, 0x68
-// 	addi     r0, r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	li       r4, 0
-// 	stw      r0, 0x68(r1)
-// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-// 	lis      r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@ha
-// 	addi     r29, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-// 	lwz      r10, 0x30(r31)
-// 	addi     r3, r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@l
-// 	lwz      r9, 0x34(r31)
-// 	stwu     r29, 0x40(r3)
-// 	li       r11, 8
-// 	lwz      r8, 0x38(r31)
-// 	lis      r5,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	lwz      r7, 0x3c(r31)
-// 	addi     r12, r5,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	lwz      r6, 0x40(r31)
-// 	lis      r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@ha
-// 	lwz      r0, 0x44(r31)
-// 	addi     r4, r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@l
-// 	stw      r29, 0x48(r1)
-// 	addi     r5, r30, 0x18
-// 	stw      r12, 0x48(r1)
-// 	stw      r11, 0x4c(r1)
-// 	stw      r10, 0x50(r1)
-// 	stw      r9, 0x54(r1)
-// 	stw      r8, 0x58(r1)
-// 	stw      r7, 0x5c(r1)
-// 	stw      r6, 0x60(r1)
-// 	stw      r0, 0x64(r1)
-// 	stw      r12, 0(r3)
-// 	stw      r11, 4(r3)
-// 	stw      r10, 8(r3)
-// 	stw      r9, 0xc(r3)
-// 	stw      r8, 0x10(r3)
-// 	stw      r7, 0x14(r3)
-// 	stw      r6, 0x18(r3)
-// 	stw      r0, 0x1c(r3)
-// 	bl       __register_global_object
-// 	lis      r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	addi     r3, r1, 0x48
-// 	addi     r0, r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	li       r4, 0
-// 	stw      r0, 0x48(r1)
-// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-// 	lis      r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@ha
-// 	addi     r29, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-// 	lwz      r10, 0x48(r31)
-// 	addi     r3, r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@l
-// 	lwz      r9, 0x4c(r31)
-// 	stwu     r29, 0x60(r3)
-// 	li       r11, 9
-// 	lwz      r8, 0x50(r31)
-// 	lis      r5,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	lwz      r7, 0x54(r31)
-// 	addi     r12, r5,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	lwz      r6, 0x58(r31)
-// 	lis      r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@ha
-// 	lwz      r0, 0x5c(r31)
-// 	addi     r4, r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@l
-// 	stw      r29, 0x28(r1)
-// 	addi     r5, r30, 0x24
-// 	stw      r12, 0x28(r1)
-// 	stw      r11, 0x2c(r1)
-// 	stw      r10, 0x30(r1)
-// 	stw      r9, 0x34(r1)
-// 	stw      r8, 0x38(r1)
-// 	stw      r7, 0x3c(r1)
-// 	stw      r6, 0x40(r1)
-// 	stw      r0, 0x44(r1)
-// 	stw      r12, 0(r3)
-// 	stw      r11, 4(r3)
-// 	stw      r10, 8(r3)
-// 	stw      r9, 0xc(r3)
-// 	stw      r8, 0x10(r3)
-// 	stw      r7, 0x14(r3)
-// 	stw      r6, 0x18(r3)
-// 	stw      r0, 0x1c(r3)
-// 	bl       __register_global_object
-// 	lis      r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	addi     r3, r1, 0x28
-// 	addi     r0, r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	li       r4, 0
-// 	stw      r0, 0x28(r1)
-// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-// 	lis      r3,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	addi     r11, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-// 	li       r9, -1
-// 	stw      r11, 8(r1)
-// 	addi     r10, r3,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	lis      r4, __ptmf_null@ha
-// 	lis      r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@ha
-// 	stw      r10, 8(r1)
-// 	addi     r8, r4, __ptmf_null@l
-// 	lis      r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@ha
-// 	lwz      r7, 0(r8)
-// 	stw      r9, 0xc(r1)
-// 	addi     r3, r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@l
-// 	addi     r4, r4,
-// 	"__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"@l
-// 	addi     r5, r30, 0x30
-// 	lwz      r6, 4(r8)
-// 	stw      r7, 0x10(r1)
-// 	stw      r6, 0x14(r1)
-// 	lwz      r0, 8(r8)
-// 	stwu     r11, 0x80(r3)
-// 	stw      r0, 0x18(r1)
-// 	stw      r7, 0x1c(r1)
-// 	stw      r6, 0x20(r1)
-// 	stw      r0, 0x24(r1)
-// 	stw      r10, 0(r3)
-// 	stw      r9, 4(r3)
-// 	stw      r7, 8(r3)
-// 	stw      r6, 0xc(r3)
-// 	stw      r0, 0x10(r3)
-// 	stw      r7, 0x14(r3)
-// 	stw      r6, 0x18(r3)
-// 	stw      r0, 0x1c(r3)
-// 	bl       __register_global_object
-// 	lis      r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@ha
-// 	addi     r3, r1, 8
-// 	addi     r0, r4,
-// 	"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"@l
-// 	li       r4, 0
-// 	stw      r0, 8(r1)
-// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-// 	lwz      r0, 0xc4(r1)
-// 	lwz      r31, 0xbc(r1)
-// 	lwz      r30, 0xb8(r1)
-// 	lwz      r29, 0xb4(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0xc0
-// 	blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	800140A4
- * Size:	000060
- */
-// void JStudio_JStage::TVariableValueOutput_object_<JStudio_JStage::TAdaptor_camera, JStage::TCamera>::~TVariableValueOutput_object_()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  stw       r31, 0xC(r1)
-// 	  mr        r31, r4
-// 	  stw       r30, 0x8(r1)
-// 	  mr.       r30, r3
-// 	  beq-      .loc_0x44
-// 	  lis       r5, 0x804A
-// 	  li        r4, 0
-// 	  subi      r0, r5, 0x800
-// 	  stw       r0, 0x0(r30)
-// 	  bl        -0x706C
-// 	  extsh.    r0, r31
-// 	  ble-      .loc_0x44
-// 	  mr        r3, r30
-// 	  bl        0xFFD0
-
-// 	.loc_0x44:
-// 	  lwz       r0, 0x14(r1)
-// 	  mr        r3, r30
-// 	  lwz       r31, 0xC(r1)
-// 	  lwz       r30, 0x8(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
-
-/*
- * --INFO--
- * Address:	80014104
- * Size:	000030
- */
-// void JStudio_JStage::TVariableValueOutput_object_<JStudio_JStage::TAdaptor_camera, JStage::TCamera>::operator()(float,
-//                                                                                                                 JStudio::TAdaptor*) const
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  mr        r5, r3
-// 	  stw       r0, 0x14(r1)
-// 	  addi      r12, r5, 0x8
-// 	  lwz       r3, 0x100(r4)
-// 	  bl        0xADA08
-// 	  nop
-// 	  lwz       r0, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
+} // namespace JStudio_JStage

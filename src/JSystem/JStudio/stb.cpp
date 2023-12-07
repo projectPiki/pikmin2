@@ -107,7 +107,7 @@ TObject::TObject(data::TParse_TBlock_object const& block)
     : JStudio::object::TObject_ID((u32*)block.filedata + 3, block.filedata->_0A)
 {
 	pControl       = nullptr;
-	signature      = block.filedata->_04;
+	signature      = block.filedata->mDataType;
 	mFlag          = block.filedata->_08;
 	bSequence_     = false;
 	_20            = 0;
