@@ -17,7 +17,7 @@ struct Module;
  */
 struct CycleBase {
 	virtual void play(JASTrack*);            // _08
-	virtual u32 getCycleType() { return 1; } // _0C (weak)
+	virtual int getCycleType() { return 1; } // _0C (weak)
 	virtual u32 avoidCheck() { return 0; }   // _10 (weak)
 
 	u32 cycleTop(JASTrack*);
@@ -37,7 +37,7 @@ struct OnCycle : public CycleBase {
 	OnCycle(Module*);
 
 	virtual void play(JASTrack*);            // _08
-	virtual u32 getCycleType() { return 0; } // _0C (weak)
+	virtual int getCycleType() { return 0; } // _0C (weak)
 	virtual u32 avoidCheck();                // _10
 
 	void setTip(JASTrack*);

@@ -61,6 +61,9 @@ struct PrmSetTree : public NodeTree<PrmSetBase> {
 	}
 
 	inline ~PrmSetTree() { }
+
+	// _1C     = VTBL
+	// _00-_38 = NodeTree
 };
 
 /**
@@ -72,8 +75,8 @@ struct PrmSetBase : public JKRDisposer {
 	virtual ~PrmSetBase()
 	{
 		JSULink<PrmBase>* link;
-		while ((link = _1C.getFirst()) != nullptr) {
-			_1C.remove(link);
+		while ((link = mList.getFirst()) != nullptr) {
+			mList.remove(link);
 		}
 	} // _08 (weak)
 
@@ -87,13 +90,14 @@ struct PrmSetBase : public JKRDisposer {
 	// unused/inlined:
 	// void appendDummy(u8);
 
-	u8 _18;               // _18
-	u8 _19;               // _19
-	bool _1A;             // _1A
-	u8 _1B;               // _1B - possibly padding
-	JSUList<PrmBase> _1C; // _1C
-	u8 _28[0x4];          // _28 - unknown
-	PrmSetTree _2C;       // _2C
+	// _00     = VTBL
+	// _00-_18 = JKRDisposer
+	u8 _18;                 // _18
+	u8 _19;                 // _19
+	bool _1A;               // _1A
+	JSUList<PrmBase> mList; // _1C
+	u8 _28[0x4];            // _28 - unknown
+	PrmSetTree mTree;       // _2C
 };
 
 /**
@@ -102,7 +106,7 @@ struct PrmSetBase : public JKRDisposer {
 struct PrmBase : public JKRDisposer {
 	PrmBase()
 	    : _18(0)
-	    , _1C(this)
+	    , mLink(this)
 	{
 	}
 	virtual ~PrmBase() { } // _08 (weak)
@@ -121,10 +125,10 @@ struct PrmBase : public JKRDisposer {
 		}
 	} // _10 (weak)
 
-	// _00      = VTABLE
-	// _04-_18  = JKRDisposer
-	u8 _18;               // _18
-	JSULink<PrmBase> _1C; // _1C
+	// _00      = VTBL
+	// _00-_18  = JKRDisposer
+	u8 _18;                 // _18
+	JSULink<PrmBase> mLink; // _1C
 };
 
 /**
@@ -137,23 +141,22 @@ struct Prm : public PrmBase {
 	{
 	}
 
-	virtual ~Prm() { } // _08 (weak)
-	virtual void save(JSUMemoryOutputStream& output)
+	virtual ~Prm() { }                               // _08 (weak)
+	virtual void save(JSUMemoryOutputStream& output) // _0C (weak)
 	{
-		output.write((void*)mValue, sizeof(T));
+		T val = mValue;
+		output.write(&val, sizeof(T));
 		PrmBase::save(output);
-	} // _0C (weak)
-	virtual void load(JSUMemoryInputStream& input)
+	}
+	virtual void load(JSUMemoryInputStream& input) // _10 (weak)
 	{
-		input.read((void*)mValue, sizeof(T));
+		input.read(&mValue, sizeof(T));
 		PrmBase::load(input);
-	} // _10 (weak)
+	}
 
 	// _00      = VTABLE
 	// _04-_2C  = PrmBase
 	T mValue; // _2C
-
-	// T* mValue;   // _2C
 };
 
 template <>
@@ -175,16 +178,15 @@ inline void Prm<char*>::load(JSUMemoryInputStream& input)
  */
 template <typename T>
 struct PrmSetRc : public PrmSetBase {
-	PrmSetRc()
-	    : PrmSetBase(true)
-	    , _64(0)
-	    , _68()
+	PrmSetRc();
+
+	virtual ~PrmSetRc() // _08 (weak)
 	{
+		while (mTree.getFirstChild()) {
+			mTree.remove(mTree.getFirstChild());
+		}
+		delete[] _64;
 	}
-
-	u8 getChildNum() { return _68.mValue; }
-
-	virtual ~PrmSetRc() { } // _08 (weak)
 	virtual void load(JSUMemoryInputStream& input)
 	{
 		PrmSetBase::load(input);
@@ -196,7 +198,7 @@ struct PrmSetRc : public PrmSetBase {
 			T* childObjects = new T[getChildNum()];
 			for (int i = 0; i < getChildNum(); i++) {
 				PrmSetBase* object = static_cast<PrmSetBase*>(childObjects + i);
-				_2C.append(&object->_2C);
+				mTree.append(&object->mTree);
 				object->appendAfter();
 				object->load(input);
 			}
@@ -205,17 +207,36 @@ struct PrmSetRc : public PrmSetBase {
 	}                                                    // _10 (weak)
 	virtual JKRHeap* getPrmObjHeap() { return nullptr; } // _24 (weak)
 
-	T* getChild(u8 n)
-	{
-		JSUPtrLink* link = _2C.getNthLink(n);
-		return (link != nullptr ? static_cast<T*>(link->getObjectPtr()) : nullptr);
-	}
+	T* getChild(u8 n);
+
+	u8 getChildNum();
 
 	// _00      = VTABLE
-	// _04-_64  = PrmBase
+	// _04-_64  = PrmSetBase
 	T* _64;      // _64 - unknown
 	Prm<u8> _68; // _68 - should this be T? it's u8 in ghidra
 };
+
+template <typename T>
+PrmSetRc<T>::PrmSetRc()
+    : PrmSetBase(true)
+    , _64(nullptr)
+    , _68()
+{
+}
+
+template <typename T>
+u8 PrmSetRc<T>::getChildNum()
+{
+	return _68.mValue;
+}
+
+template <typename T>
+T* PrmSetRc<T>::getChild(u8 n)
+{
+	JSUPtrLink* link = mTree.getNthLink(n);
+	return (link != nullptr ? static_cast<T*>(link->getObjectPtr()) : nullptr);
+}
 
 /**
  * @size = 0x30

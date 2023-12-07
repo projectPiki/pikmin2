@@ -37,7 +37,7 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 
 	DataLoadMgrNode();
 
-	virtual ~DataLoadMgrNode() { }  // _08 (weak)
+	virtual ~DataLoadMgrNode();     // _08 (weak)
 	virtual bool isTempBuffaMode(); // _0C (weak)
 	virtual void init()
 	{
@@ -108,9 +108,15 @@ struct DataMgrNode : public DataLoadMgrNode {
 
 template <typename A, typename B>
 struct PrmDataMgrNode : public DataMgrNode {
-	virtual ~PrmDataMgrNode<A, B>(); // _08 (weak)
-	virtual JKRHeap* getObjHeap();   // _14 (weak)
-	virtual JKRHeap* getDataHeap();  // _18 (weak)
+	inline PrmDataMgrNode(B* data)
+	    : _250(0)
+	    , _254(data)
+	{
+	}
+
+	virtual ~PrmDataMgrNode<A, B>() { } // _08 (weak)
+	virtual JKRHeap* getObjHeap();      // _14 (weak)
+	virtual JKRHeap* getDataHeap();     // _18 (weak)
 	virtual bool initInstance(void* buffer, long bufferLength)
 	{
 		bool success = initInstance();
@@ -122,6 +128,13 @@ struct PrmDataMgrNode : public DataMgrNode {
 		return success;
 	}                               // _1C (weak)
 	virtual bool initInstance() { } // _20 (weak)
+
+	// _00      = DataMgrBase*
+	// _04      = VTBL
+	// _08-_250 = DataMgrNode
+	u32 _250; // _250, unknown
+	B* _254;  // _254, unknown
+	          // _258-_278 = DataMgrBase (virtual)
 };
 
 struct DataLoadMgrVirNode {

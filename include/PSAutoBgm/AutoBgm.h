@@ -59,7 +59,6 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 	// _10      = VTABLE
 	// _14-_B8  = DirectedBgm
 	ConductorMgr mConductorMgr;  // _B8
-	u8 _328[0x8];                // _328 - unknown
 	char* mConductorFilePath;    // _330 (.cnd)
 	PSSystem::TaskChecker* _334; // _334
 	JKRHeap* mHeap;              // _338

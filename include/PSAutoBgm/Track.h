@@ -18,7 +18,7 @@ struct Module : public JADUtility::PrmSetBase {
 	virtual void afterGetFromFree(); // _20
 
 	static void removeCallback(u8, void*);
-	void seqCpuSync_AutoBgm_Module(JASTrack*, u16, u32, JASTrack*);
+	u32 seqCpuSync_AutoBgm_Module(JASTrack*, u16, u32, JASTrack*);
 	void setTableAddress(JASTrack*);
 	void cycleLoop(JASTrack*);
 
@@ -27,7 +27,7 @@ struct Module : public JADUtility::PrmSetBase {
 	JADUtility::PrmSlider<short> _64;    // _64
 	JADUtility::PrmSlider<short> _94;    // _94
 	JADUtility::PrmSlider<u8> _C4;       // _C4
-	JADUtility::PrmRadioButton<u8> _F4;  // _F4
+	JADUtility::PrmRadioButton<s8> _F4;  // _F4
 	JADUtility::PrmSlider<u8> _124;      // _124
 	JADUtility::PrmSlider<u8> _154;      // _154
 	JADUtility::PrmSlider<short> _184;   // _184
@@ -43,8 +43,8 @@ struct Module : public JADUtility::PrmSetBase {
 	u8 _2B4;                             // _2B4
 	CycleBase* _2B8[2];                  // _2B8 - 0 = OnCycle, 1 = OffCycle
 	u8 _2C0;                             // _2C0 - cycle index?
-	u8 _2C1;                             // _2C1 - unknown/just padding?
-	short _2C2;                          // _2C2
+	u8 _2C1;                             // _2C1
+	u16 _2C2;                            // _2C2
 };
 
 /**
@@ -57,7 +57,7 @@ struct Track : public JADUtility::PrmSetRc<PSAutoBgm::Module> {
 	virtual void afterGetFromFree(); // _20
 
 	static void removeCallback(u8, void*);
-	void seqCpuSync_AutoBgm_Track(JASTrack*, u16, u32, JASTrack*);
+	u32 seqCpuSync_AutoBgm_Track(JASTrack*, u16, u32, JASTrack*);
 	void incCurModule();
 
 	// _00      = VTABLE
@@ -66,12 +66,12 @@ struct Track : public JADUtility::PrmSetRc<PSAutoBgm::Module> {
 	u8 _99;                             // _99
 	u8 _9A[0x2];                        // _9A - possibly padding?
 	u32 _9C;                            // _9C - unknown
-	JADUtility::PrmSlider<short> _A0;   // _A0
+	JADUtility::PrmSlider<s16> _A0;     // _A0
 	JADUtility::PrmRadioButton<u8> _D0; // _D0
 	JADUtility::StrEditBox _100;        // _100
 	JADUtility::PrmSlider<u8> _13C;     // _13C
 	JADUtility::PrmSlider<u8> _16C;     // _16C
-	u8 _19C;                            // _19C - unknown
+	Track* _19C;                        // _19C
 };
 
 } // namespace PSAutoBgm
