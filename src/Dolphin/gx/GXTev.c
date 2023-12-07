@@ -214,30 +214,26 @@ void GXSetTevColor(GXTevRegID reg, GXColor color)
  */
 void GXSetTevColorS10(GXTevRegID reg, GXColorS10 color)
 {
-	u32 ra;
-	u32 bg;
+	s16 r = color.r;
+	s16 a = color.a;
+	s16 b = color.b;
+	s16 g = color.g;
 
-	ra = 0;
-	FAST_FLAG_SET(ra, color.r, 0, 11);
-	FAST_FLAG_SET(ra, color.a, 12, 11);
-	// FAST_FLAG_SET(ra, 0xE0 + reg * 2, 24, 8);
+	u32 ra = 0;
+	
+	GX_SET_REG(ra, r, 21, 31);
+	GX_SET_REG(ra, a, 9, 19);
+	GX_SET_REG(ra, GX_BP_REG_TEVREG0LO + reg*2, 0, 7);
 
-	bg = 0;
-	FAST_FLAG_SET(bg, color.b, 0, 11);
-	FAST_FLAG_SET(bg, color.g, 12, 11);
-	// FAST_FLAG_SET(bg, 0xE1 + reg * 2, 24, 8);
+	GX_BP_LOAD_REG(ra);
 
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(ra);
+	GX_SET_REG(ra, b, 21, 31);
+	GX_SET_REG(ra, g, 9, 19);
+	GX_SET_REG(ra, GX_BP_REG_TEVREG0HI + reg*2, 0, 7);
 
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(bg);
-
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(bg);
-
-	GX_WRITE_U8(0x61);
-	GX_WRITE_U32(bg);
+	GX_BP_LOAD_REG(ra);
+	GX_BP_LOAD_REG(ra);
+	GX_BP_LOAD_REG(ra);
 
 	gx->bpSentNot = GX_FALSE;
 	/*
