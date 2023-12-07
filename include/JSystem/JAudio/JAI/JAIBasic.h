@@ -53,28 +53,14 @@ struct JAIBasic {
 	static long stopCallBack(void*);
 	static u16 setParameterSeqSync(JASTrack*, u16);
 
-	// void startSoundActorReturnHandleT<JAISe>(JAISe**, u32, JAInter::Actor*, u32, u8);
-
-	// void startSoundActorT<JAISe>(u32, JAISe**, JAInter::Actor*, u32, u8);
 	template <typename T>
-	void startSoundActorT(u32 id, T** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5)
-	{
-		JAInter::SoundInfo* info = JAInter::SoundTable::getInfoPointer(id);
-		if (info != nullptr) {
-			startSoundBasic(id, handlePtr, actor, p4, p5, info);
-		}
-	}
+	void startSoundActorT(u32 id, T** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5);
 
-	// void startSoundVecReturnHandleT<JAISound>(JAISound**, u32, Vec*, u32, u32, u8);
 	template <typename T>
 	T* startSoundVecReturnHandleT(T** handlePtr, u32 p2, Vec* p3, u32 p4, u32 p5, u8 p6);
 
 	template <typename T>
-	void startSoundVecT(u32 id, T** handlePtr, Vec* p3, u32 p4, u32 p5, u8 p6)
-	{
-		JAInter::Actor actor(p3, p3, p3, p5);
-		startSoundActorT(id, handlePtr, &actor, p4, p6);
-	}
+	void startSoundVecT(u32 id, T** handlePtr, Vec* p3, u32 p4, u32 p5, u8 p6);
 
 	template <typename T>
 	void startSoundActorReturnHandleT(T**, u32, JAInter::Actor*, u32, u8);
@@ -133,5 +119,21 @@ struct JAIBasic {
 
 	static u8 msStopStatus;
 };
+
+template <typename T>
+void JAIBasic::startSoundVecT(u32 id, T** handlePtr, Vec* p3, u32 p4, u32 p5, u8 p6)
+{
+	JAInter::Actor actor(p3, p3, p3, p5);
+	startSoundActorT(id, handlePtr, &actor, p4, p6);
+}
+
+template <typename T>
+void JAIBasic::startSoundActorT(u32 id, T** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5)
+{
+	JAInter::SoundInfo* info = JAInter::SoundTable::getInfoPointer(id);
+	if (info) {
+		startSoundBasic(id, handlePtr, actor, p4, p5, info);
+	}
+}
 
 #endif

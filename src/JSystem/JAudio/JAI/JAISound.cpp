@@ -13,315 +13,6 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__9JAIStream
-    __vt__9JAIStream:
-        .4byte 0
-        .4byte 0
-        .4byte setPortData__9JAIStreamFUcUs
-        .4byte getPortData__9JAIStreamFUc
-        .4byte start__8JAISoundFUl
-        .4byte stop__9JAIStreamFUl
-        .4byte release__8JAISoundFv
-        .4byte setVolume__9JAIStreamFfUlUc
-        .4byte getVolume__9JAIStreamFUc
-        .4byte setPan__9JAIStreamFfUlUc
-        .4byte getPan__9JAIStreamFUc
-        .4byte setPitch__9JAIStreamFfUlUc
-        .4byte getPitch__9JAIStreamFUc
-        .4byte setFxmix__9JAIStreamFfUlUc
-        .4byte getFxmix__9JAIStreamFUc
-        .4byte setDolby__9JAIStreamFfUlUc
-        .4byte getDolby__9JAIStreamFUc
-        .4byte setTempoProportion__8JAISoundFfUl
-        .4byte getTempoProportion__8JAISoundFv
-        .4byte setVolumeU7__9JAIStreamFUcUlUc
-        .4byte getVolumeU7__9JAIStreamFUc
-        .4byte setPanU7__9JAIStreamFUcUlUc
-        .4byte getPanU7__9JAIStreamFUc
-        .4byte setFxmixU7__9JAIStreamFUcUlUc
-        .4byte getFxmixU7__9JAIStreamFUc
-        .4byte setDolbyU7__9JAIStreamFUcUlUc
-        .4byte getDolbyU7__9JAIStreamFUc
-        .4byte setDirectVolume__8JAISoundFfUl
-        .4byte setDirectPan__8JAISoundFfUl
-        .4byte setDirectPitch__8JAISoundFfUl
-        .4byte setDirectFxmix__8JAISoundFfUl
-        .4byte setDirectDolby__8JAISoundFfUl
-        .4byte setDemoVolume__8JAISoundFfUl
-        .4byte setDemoPan__8JAISoundFfUl
-        .4byte setDemoPitch__8JAISoundFfUl
-        .4byte setDemoFxmix__8JAISoundFfUl
-        .4byte setDemoDolby__8JAISoundFfUl
-        .4byte setDemoVolumeU7__8JAISoundFUcUl
-        .4byte setDemoPanU7__8JAISoundFUcUl
-        .4byte setDemoFxmixU7__8JAISoundFUcUl
-        .4byte setDemoDolbyU7__8JAISoundFUcUl
-        .4byte getFadeCounter__9JAIStreamFv
-        .4byte setPrepareFlag__9JAIStreamFUc
-        .4byte checkReady__9JAIStreamFv
-        .4byte setDistanceParameterMoveTime__8JAISoundFUc
-        .4byte setAdjustPriority__8JAISoundFs
-        .4byte setPositionDopplarCommon__8JAISoundFUl
-        .4byte setDistanceVolumeCommon__8JAISoundFfUc
-        .4byte setDistancePanCommon__8JAISoundFv
-        .4byte setDistanceDolbyCommon__8JAISoundFv
-        .4byte
-   initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-        .4byte onGet__8JAISoundFv
-        .4byte onRelease__8JAISoundFv
-    .global __vt__5JAISe
-    __vt__5JAISe:
-        .4byte 0
-        .4byte 0
-        .4byte setPortData__5JAISeFUcUs
-        .4byte getPortData__5JAISeFUc
-        .4byte start__8JAISoundFUl
-        .4byte stop__5JAISeFUl
-        .4byte release__8JAISoundFv
-        .4byte setVolume__5JAISeFfUlUc
-        .4byte getVolume__5JAISeFUc
-        .4byte setPan__5JAISeFfUlUc
-        .4byte getPan__5JAISeFUc
-        .4byte setPitch__5JAISeFfUlUc
-        .4byte getPitch__5JAISeFUc
-        .4byte setFxmix__5JAISeFfUlUc
-        .4byte getFxmix__5JAISeFUc
-        .4byte setDolby__5JAISeFfUlUc
-        .4byte getDolby__5JAISeFUc
-        .4byte setTempoProportion__8JAISoundFfUl
-        .4byte getTempoProportion__8JAISoundFv
-        .4byte setVolumeU7__5JAISeFUcUlUc
-        .4byte getVolumeU7__5JAISeFUc
-        .4byte setPanU7__5JAISeFUcUlUc
-        .4byte getPanU7__5JAISeFUc
-        .4byte setFxmixU7__5JAISeFUcUlUc
-        .4byte getFxmixU7__5JAISeFUc
-        .4byte setDolbyU7__5JAISeFUcUlUc
-        .4byte getDolbyU7__5JAISeFUc
-        .4byte setDirectVolume__8JAISoundFfUl
-        .4byte setDirectPan__8JAISoundFfUl
-        .4byte setDirectPitch__8JAISoundFfUl
-        .4byte setDirectFxmix__8JAISoundFfUl
-        .4byte setDirectDolby__8JAISoundFfUl
-        .4byte setDemoVolume__8JAISoundFfUl
-        .4byte setDemoPan__8JAISoundFfUl
-        .4byte setDemoPitch__8JAISoundFfUl
-        .4byte setDemoFxmix__8JAISoundFfUl
-        .4byte setDemoDolby__8JAISoundFfUl
-        .4byte setDemoVolumeU7__8JAISoundFUcUl
-        .4byte setDemoPanU7__8JAISoundFUcUl
-        .4byte setDemoFxmixU7__8JAISoundFUcUl
-        .4byte setDemoDolbyU7__8JAISoundFUcUl
-        .4byte getFadeCounter__5JAISeFv
-        .4byte setPrepareFlag__8JAISoundFUc
-        .4byte checkReady__8JAISoundFv
-        .4byte setDistanceParameterMoveTime__8JAISoundFUc
-        .4byte setAdjustPriority__8JAISoundFs
-        .4byte setPositionDopplarCommon__8JAISoundFUl
-        .4byte setDistanceVolumeCommon__8JAISoundFfUc
-        .4byte setDistancePanCommon__8JAISoundFv
-        .4byte setDistanceDolbyCommon__8JAISoundFv
-        .4byte
-   initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-        .4byte onGet__8JAISoundFv
-        .4byte onRelease__8JAISoundFv
-        .4byte setSeDistanceParameters__5JAISeFv
-        .4byte setSeDistanceVolume__5JAISeFUc
-        .4byte setSeDistancePan__5JAISeFUc
-        .4byte setSeDistancePitch__5JAISeFUc
-        .4byte setSeDistanceFxmix__5JAISeFUc
-        .4byte setSeDistanceFir__5JAISeFUc
-        .4byte setSeDistanceDolby__5JAISeFUc
-        .4byte setSePositionDopplar__5JAISeFv
-    .global __vt__11JAISequence
-    __vt__11JAISequence:
-        .4byte 0
-        .4byte 0
-        .4byte setPortData__11JAISequenceFUcUs
-        .4byte getPortData__11JAISequenceFUc
-        .4byte start__8JAISoundFUl
-        .4byte stop__11JAISequenceFUl
-        .4byte release__8JAISoundFv
-        .4byte setVolume__11JAISequenceFfUlUc
-        .4byte getVolume__11JAISequenceFUc
-        .4byte setPan__11JAISequenceFfUlUc
-        .4byte getPan__11JAISequenceFUc
-        .4byte setPitch__11JAISequenceFfUlUc
-        .4byte getPitch__11JAISequenceFUc
-        .4byte setFxmix__11JAISequenceFfUlUc
-        .4byte getFxmix__11JAISequenceFUc
-        .4byte setDolby__11JAISequenceFfUlUc
-        .4byte getDolby__11JAISequenceFUc
-        .4byte setTempoProportion__11JAISequenceFfUl
-        .4byte getTempoProportion__11JAISequenceFv
-        .4byte setVolumeU7__11JAISequenceFUcUlUc
-        .4byte getVolumeU7__11JAISequenceFUc
-        .4byte setPanU7__11JAISequenceFUcUlUc
-        .4byte getPanU7__11JAISequenceFUc
-        .4byte setFxmixU7__11JAISequenceFUcUlUc
-        .4byte getFxmixU7__11JAISequenceFUc
-        .4byte setDolbyU7__11JAISequenceFUcUlUc
-        .4byte getDolbyU7__11JAISequenceFUc
-        .4byte setDirectVolume__8JAISoundFfUl
-        .4byte setDirectPan__8JAISoundFfUl
-        .4byte setDirectPitch__8JAISoundFfUl
-        .4byte setDirectFxmix__8JAISoundFfUl
-        .4byte setDirectDolby__8JAISoundFfUl
-        .4byte setDemoVolume__8JAISoundFfUl
-        .4byte setDemoPan__8JAISoundFfUl
-        .4byte setDemoPitch__8JAISoundFfUl
-        .4byte setDemoFxmix__8JAISoundFfUl
-        .4byte setDemoDolby__8JAISoundFfUl
-        .4byte setDemoVolumeU7__8JAISoundFUcUl
-        .4byte setDemoPanU7__8JAISoundFUcUl
-        .4byte setDemoFxmixU7__8JAISoundFUcUl
-        .4byte setDemoDolbyU7__8JAISoundFUcUl
-        .4byte getFadeCounter__11JAISequenceFv
-        .4byte setPrepareFlag__11JAISequenceFUc
-        .4byte checkReady__11JAISequenceFv
-        .4byte setDistanceParameterMoveTime__8JAISoundFUc
-        .4byte setAdjustPriority__8JAISoundFs
-        .4byte setPositionDopplarCommon__8JAISoundFUl
-        .4byte setDistanceVolumeCommon__8JAISoundFfUc
-        .4byte setDistancePanCommon__8JAISoundFv
-        .4byte setDistanceDolbyCommon__8JAISoundFv
-        .4byte
-   initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-        .4byte onGet__8JAISoundFv
-        .4byte onRelease__8JAISoundFv
-    .global __vt__8JAISound
-    __vt__8JAISound:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte start__8JAISoundFUl
-        .4byte stop__8JAISoundFUl
-        .4byte release__8JAISoundFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte setTempoProportion__8JAISoundFfUl
-        .4byte getTempoProportion__8JAISoundFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte setDirectVolume__8JAISoundFfUl
-        .4byte setDirectPan__8JAISoundFfUl
-        .4byte setDirectPitch__8JAISoundFfUl
-        .4byte setDirectFxmix__8JAISoundFfUl
-        .4byte setDirectDolby__8JAISoundFfUl
-        .4byte setDemoVolume__8JAISoundFfUl
-        .4byte setDemoPan__8JAISoundFfUl
-        .4byte setDemoPitch__8JAISoundFfUl
-        .4byte setDemoFxmix__8JAISoundFfUl
-        .4byte setDemoDolby__8JAISoundFfUl
-        .4byte setDemoVolumeU7__8JAISoundFUcUl
-        .4byte setDemoPanU7__8JAISoundFUcUl
-        .4byte setDemoFxmixU7__8JAISoundFUcUl
-        .4byte setDemoDolbyU7__8JAISoundFUcUl
-        .4byte 0
-        .4byte setPrepareFlag__8JAISoundFUc
-        .4byte checkReady__8JAISoundFv
-        .4byte setDistanceParameterMoveTime__8JAISoundFUc
-        .4byte setAdjustPriority__8JAISoundFs
-        .4byte setPositionDopplarCommon__8JAISoundFUl
-        .4byte setDistanceVolumeCommon__8JAISoundFfUc
-        .4byte setDistancePanCommon__8JAISoundFv
-        .4byte setDistanceDolbyCommon__8JAISoundFv
-        .4byte
-   initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-        .4byte onGet__8JAISoundFv
-        .4byte onRelease__8JAISoundFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global _port$2234
-    _port$2234:
-        .skip 0x2
-    .global _port$2291
-    _port$2291:
-        .skip 0x2
-    .global init$2292
-    init$2292:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516FE0
-    lbl_80516FE0:
-        .float 1.0
-    .global lbl_80516FE4
-    lbl_80516FE4:
-        .4byte 0x00000000
-    .global lbl_80516FE8
-    lbl_80516FE8:
-        .float 0.5
-        .4byte 0x00000000
-    .global lbl_80516FF0
-    lbl_80516FF0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516FF8
-    lbl_80516FF8:
-        .4byte 0x3FE00000
-        .4byte 0x00000000
-    .global lbl_80517000
-    lbl_80517000:
-        .4byte 0x40080000
-        .4byte 0x00000000
-    .global lbl_80517008
-    lbl_80517008:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80517010
-    lbl_80517010:
-        .float 0.1
-    .global lbl_80517014
-    lbl_80517014:
-        .4byte 0x40000000
-    .global lbl_80517018
-    lbl_80517018:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80517020
-    lbl_80517020:
-        .4byte 0x42FE0000
-    .global lbl_80517024
-    lbl_80517024:
-        .4byte 0x4F800000
-    .global lbl_80517028
-    lbl_80517028:
-        .4byte 0x447A0000
-    .global lbl_8051702C
-    lbl_8051702C:
-        .4byte 0x41800000
-    .global lbl_80517030
-    lbl_80517030:
-        .4byte 0x43400000
-    .global lbl_80517034
-    lbl_80517034:
-        .float -1.0
-    .global lbl_80517038
-    lbl_80517038:
-        .4byte 0x41200000
-        .4byte 0x00000000
-*/
-
-/*
  * --INFO--
  * Address:	........
  * Size:	000078
@@ -337,16 +28,6 @@ JAISound::JAISound()
 	JKRHeap* heap = JAIBasic::msCurrentHeap;
 	_34           = new (heap, 0x20) JAISound_0x34[JAIGlobalParameter::getParamAudioCameraMax()];
 }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-// void JSULink<JAISound>::~JSULink()
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /*
  * --INFO--
@@ -426,21 +107,21 @@ u32 JAISe::getSeCategoryNumber() { return JAInter::SeMgr::changeIDToCategory(mSo
  * Address:	800B3B48
  * Size:	00000C
  */
-u32 JAISound::getSwBit() { return mSoundInfo->mCount; }
+u32 JAISound::getSwBit() { return mSoundInfo->mFlag; }
 
 /*
  * --INFO--
  * Address:	800B3B54
  * Size:	000010
  */
-u32 JAISound::checkSwBit(u32 p1) { return p1 & getSwBit(); }
+u32 JAISound::checkSwBit(u32 flag) { return flag & getSwBit(); }
 
 /*
  * --INFO--
  * Address:	800B3B64
  * Size:	00000C
  */
-u8 JAISound::getInfoPriority() { return mSoundInfo->mCount; }
+u8 JAISound::getInfoPriority() { return mSoundInfo->mPriority; }
 
 /*
  * --INFO--
@@ -449,10 +130,10 @@ u8 JAISound::getInfoPriority() { return mSoundInfo->mCount; }
  */
 void JAISound::clearMainSoundPPointer()
 {
-	if (_40 == nullptr) {
+	if (mMainSoundPPointer == nullptr) {
 		return;
 	}
-	*_40 = nullptr;
+	*mMainSoundPPointer = nullptr;
 }
 
 /*
@@ -462,8 +143,8 @@ void JAISound::clearMainSoundPPointer()
  */
 void JAISound::release()
 {
-	*_40 = nullptr;
-	_40  = nullptr;
+	*mMainSoundPPointer = nullptr;
+	mMainSoundPPointer  = nullptr;
 }
 
 /*
@@ -509,7 +190,7 @@ void JAISound::setPrepareFlag(u8 prepareFlag)
  * Size:	000020
  * setPrepareFlag__9JAIStreamFUc
  */
-void JAIStream::setPrepareFlag(u8 p1) { setStreamPrepareFlag(p1); }
+void JAIStream::setPrepareFlag(u8 flag) { setStreamPrepareFlag(flag); }
 
 /*
  * --INFO--
@@ -517,7 +198,7 @@ void JAIStream::setPrepareFlag(u8 p1) { setStreamPrepareFlag(p1); }
  * Size:	000020
  * setPrepareFlag__11JAISequenceFUc
  */
-void JAISequence::setPrepareFlag(u8 p1) { setSeqPrepareFlag(p1); }
+void JAISequence::setPrepareFlag(u8 flag) { setSeqPrepareFlag(flag); }
 
 /*
  * --INFO--
@@ -628,6 +309,8 @@ f32 JAISound::setDistancePanCommon()
 		}
 		return v0->_00.x / (JAIGlobalParameter::panAngleParameter2 * v2) + 0.5f;
 	}
+
+	// audioCameraMax != 1
 	if (_18 != 4) {
 		return _18 & 1;
 	}
@@ -1641,7 +1324,7 @@ void JAISe::setSeDistanceParameters()
 	setSePositionDopplar();
 	setSeDistanceFxmix(v1);
 	setSeDistanceFir(v1);
-	if ((mSoundInfo->mCount & 0x400) == 0) {
+	if (checkSwBit(0x400) == 0) {
 		setFxmix(JAIBasic::msBasic->getMapInfoFxParameter(_30), 0, 3);
 	}
 	setSeDistanceDolby(v1);
@@ -1663,8 +1346,7 @@ void JAISe::setFxmix(f32 p1, u32 p2, u8 p3) { mSeParam._2A4[p3].set(p1, p2); }
 void JAISe::setSeDistanceVolume(u8 p1)
 {
 	mSeParam._124[4].set(
-	    (mSoundInfo->mCount & 2) == 0 ? setDistanceVolumeCommon(JAIGlobalParameter::distanceMax, (mSoundInfo->mCount >> 0x10) & 7) : 1.0f,
-	    p1);
+	    checkSwBit(2) == 0 ? setDistanceVolumeCommon(JAIGlobalParameter::distanceMax, (mSoundInfo->mFlag >> 0x10) & 7) : 1.0f, p1);
 }
 
 /*
@@ -1719,14 +1401,14 @@ lbl_800B4C80:
 void JAISe::setSeDistancePitch(u8 p1)
 {
 	f32 pitch = 1.0f;
-	if ((mSoundInfo->mCount & 0x10) != 0) {
+	if (checkSwBit(0x10) != 0) {
 		// pitch = 1.0f - ((JAInter::Const::random.nextFloat_0_1() * 16.0f) / 192.0f;
 		// pitch = 1.0f - ((JAInter::Const::random.idkanymore() & 0xF) ^ 0x80000000) / 192.0f;
 		// pitch = 1.0f - JAInter::Const::random.idkanymore() / 192.0f;
 		pitch = JAInter::Const::random.idkanymore();
 	}
-	if ((mSoundInfo->mCount & 0x4000) != 0) {
-		if ((mSoundInfo->mCount & 2) == 0 && (mSoundInfo->mCount & 0x300) == 0) {
+	if (checkSwBit(0x4000) != 0) {
+		if (checkSwBit(0x2) == 0 && checkSwBit(0x100 | 0x200) == 0) {
 			if (JAIGlobalParameter::audioCameraMax == 1) {
 				if (_34->_18 >= JAIGlobalParameter::distanceMax) {
 					pitch += JAIGlobalParameter::seDistancepitchMax;
@@ -1736,7 +1418,7 @@ void JAISe::setSeDistancePitch(u8 p1)
 			}
 		}
 	}
-	if ((mSoundInfo->mCount & 0xC0) != 0) {
+	if (checkSwBit(0x40 | 0x80) != 0) {
 		pitch += _17 / 192.0f;
 	}
 	mSeParam._224[4].set(pitch, p1);
@@ -1841,8 +1523,8 @@ void JAISe::setSePositionDopplar()
 	if (_15 == 2) {
 		moveTime = 1;
 	}
-	if ((mSoundInfo->mCount & 0x300) != 0 && JAIGlobalParameter::audioCameraMax == 1) {
-		mSeParam._224[1].set(setPositionDopplarCommon(mSoundInfo->mCount & 0x300), moveTime);
+	if (checkSwBit(0x100 | 0x200) != 0 && JAIGlobalParameter::audioCameraMax == 1) {
+		mSeParam._224[1].set(setPositionDopplarCommon(checkSwBit(0x100 | 0x200)), moveTime);
 	}
 }
 
@@ -1854,15 +1536,15 @@ void JAISe::setSePositionDopplar()
 void JAISe::setSeDistanceFxmix(u8 p1)
 {
 	u16 fx = JAIGlobalParameter::seDefaultFx;
-	if ((mSoundInfo->mCount & 4) == 0 && JAIGlobalParameter::audioCameraMax == 1) {
+	if (checkSwBit(0x4) == 0 && JAIGlobalParameter::audioCameraMax == 1) {
 		if (_34->_18 < JAIGlobalParameter::distanceMax) {
 			fx = (JAIGlobalParameter::seDistanceFxParameter * (_34->_18 / JAIGlobalParameter::distanceMax));
 		} else {
 			fx = JAIGlobalParameter::seDistanceFxParameter;
 		}
 	}
-	if (0x7F < fx) {
-		fx = 0x7F;
+	if (fx > 127) {
+		fx = 127;
 	}
 	mSeParam._2A4[4].set((u8)fx / 127.0f, p1);
 }
@@ -2618,7 +2300,7 @@ u32 JAISound::checkSoundHandle(u32 id, void* p2)
 	u32 result = 0;
 	if ((mSoundID & JAISoundID_TypeMask) != (id & JAISoundID_TypeMask)) {
 		stop(0);
-	} else if (mSoundInfo->mCount <= static_cast<JAInter::SoundInfo*>(p2)->mCount) {
+	} else if (mSoundInfo->mPriority <= static_cast<JAInter::SoundInfo*>(p2)->mPriority) {
 		stop(0);
 	} else {
 		result = 1;
@@ -2686,7 +2368,7 @@ void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, u32 id, u32
 		_1A = 0;
 		_30 = 0;
 	}
-	_40                        = (void**)handlePtr;
+	mMainSoundPPointer         = (void**)handlePtr;
 	_28                        = p4;
 	_18                        = p5;
 	mSoundInfo                 = info;

@@ -3,63 +3,6 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__13JAIAnimeSound
-    __vt__13JAIAnimeSound:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__13JAIAnimeSoundFv
-        .4byte startSound__Q27JAInter6ObjectFUlUl
-        .4byte startSound__Q27JAInter10ObjectBaseFUcUlUl
-        .4byte startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl
-        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
-        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
-        .4byte enable__Q27JAInter10ObjectBaseFv
-        .4byte disable__Q27JAInter6ObjectFv
-        .4byte dispose__Q27JAInter10ObjectBaseFv
-        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
-        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
-        .4byte handleStop__13JAIAnimeSoundFUcUl
-        .4byte loop__Q27JAInter6ObjectFv
-        .4byte playActorAnimSound__13JAIAnimeSoundFPQ27JAInter5ActorfUc
-        .4byte startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc
-        .4byte
-   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516ED8
-    lbl_80516ED8:
-        .4byte 0x00000000
-    .global lbl_80516EDC
-    lbl_80516EDC:
-        .float -1.0
-    .global lbl_80516EE0
-    lbl_80516EE0:
-        .4byte 0x42FE0000
-    .global lbl_80516EE4
-    lbl_80516EE4:
-        .float 1.0
-    .global lbl_80516EE8
-    lbl_80516EE8:
-        .4byte 0x3D000000
-        .4byte 0x00000000
-    .global lbl_80516EF0
-    lbl_80516EF0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80516EF8
-    lbl_80516EF8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516F00
-    lbl_80516F00:
-        .4byte 0x40000000
-        .4byte 0x00000000
-*/
-
-/*
  * --INFO--
  * Address:	800AB0EC
  * Size:	00003C

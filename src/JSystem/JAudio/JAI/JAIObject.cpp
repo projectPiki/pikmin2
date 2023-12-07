@@ -8,66 +8,6 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q27JAInter6Object
-    __vt__Q27JAInter6Object:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JAInter6ObjectFv
-        .4byte startSound__Q27JAInter6ObjectFUlUl
-        .4byte startSound__Q27JAInter10ObjectBaseFUcUlUl
-        .4byte startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl
-        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
-        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
-        .4byte enable__Q27JAInter10ObjectBaseFv
-        .4byte disable__Q27JAInter6ObjectFv
-        .4byte dispose__Q27JAInter10ObjectBaseFv
-        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
-        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
-        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
-        .4byte loop__Q27JAInter6ObjectFv
-    .global __vt__Q27JAInter10ObjectBase
-    __vt__Q27JAInter10ObjectBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q27JAInter10ObjectBaseFv
-        .4byte startSound__Q27JAInter10ObjectBaseFUlUl
-        .4byte startSound__Q27JAInter10ObjectBaseFUcUlUl
-        .4byte startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl
-        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
-        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
-        .4byte enable__Q27JAInter10ObjectBaseFv
-        .4byte disable__Q27JAInter10ObjectBaseFv
-        .4byte dispose__Q27JAInter10ObjectBaseFv
-        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
-        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
-        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80517058
-    lbl_80517058:
-        .4byte 0x00000000
-    .global lbl_8051705C
-    lbl_8051705C:
-        .float 0.5
-    .global lbl_80517060
-    lbl_80517060:
-        .4byte 0x3FE00000
-        .4byte 0x00000000
-    .global lbl_80517068
-    lbl_80517068:
-        .4byte 0x40080000
-        .4byte 0x00000000
-    .global lbl_80517070
-    lbl_80517070:
-        .4byte 0x00000000
-        .4byte 0x00000000
-*/
-
-/*
  * --INFO--
  * Address:	........
  * Size:	0000C8
@@ -75,18 +15,19 @@
 JAInter::ObjectBase::ObjectBase(Vec* p1, JKRHeap* heap, u8 handleCount)
     : JKRDisposer()
 {
-	// UNUSED FUNCTION
-	if (heap == nullptr) {
-		heap = JKRHeap::sCurrentHeap;
+	if (!heap) {
+		heap = JKRGetCurrentHeap();
 	}
 	mHandleCount = handleCount;
 	mSounds      = new (heap, 0) JAISound*[mHandleCount];
+
 	for (u8 i = 0; i < mHandleCount; i++) {
 		mSounds[i] = nullptr;
 	}
-	_24 = p1;
-	_20 = 0;
-	_18 = 1;
+
+	_24            = p1;
+	mUseHandleFlag = 0;
+	mIsEnabled     = true;
 }
 
 /*
@@ -108,134 +49,31 @@ JAISound* JAInter::ObjectBase::startSound(u32 id, u32 p2)
 	if (IsJAISoundIDInUse(id)) {
 		handlePtr = getUseSoundHandlePointer(id);
 	}
-	if (handlePtr == nullptr) {
+
+	if (!handlePtr) {
 		handlePtr = getFreeSoundHandlePointer();
 	}
-	if (handlePtr != nullptr) {
+
+	if (handlePtr) {
 		JAIBasic::msBasic->startSoundVecT(id, handlePtr, _24, p2, 0, 4);
 		return *handlePtr;
 	}
-	u8 v1       = 0xFF;
-	u8 handleNo = 0xFF;
+
+	u8 prio     = 255;
+	u8 handleNo = JAI_NULL_HANDLE_ID;
 	for (u8 i = 0; i < mHandleCount; i++) {
-		if (mSounds[i]->mSoundInfo->mCount <= v1) {
-			v1       = mSounds[i]->mSoundInfo->mCount;
+		if (mSounds[i]->mSoundInfo->mPriority <= prio) {
+			prio     = mSounds[i]->mSoundInfo->mPriority;
 			handleNo = i;
 		}
 	}
-	if (handleNo == 0xFF || SoundTable::getInfoPointer(id)->mCount < v1) {
-		return nullptr;
+	if (handleNo != JAI_NULL_HANDLE_ID && SoundTable::getInfoPointer(id)->mPriority >= prio) {
+		handleStop(handleNo, 0);
+		JAIBasic::msBasic->startSoundVecT(id, mSounds + handleNo, _24, p2, 0, 4);
+		return mSounds[handleNo];
 	}
-	handleStop(handleNo, 0);
-	JAIBasic::msBasic->startSoundVecT(id, mSounds + handleNo, _24, p2, 0, 4);
-	return mSounds[handleNo];
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	rlwinm.  r0, r4, 0, 0x14, 0x14
-	stmw     r27, 0xc(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r31, r5
-	li       r28, 0
-	bne      lbl_800B96AC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
 
-lbl_800B96AC:
-	cmplwi   r28, 0
-	bne      lbl_800B96CC
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
-
-lbl_800B96CC:
-	cmplwi   r28, 0
-	beq      lbl_800B96FC
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	mr       r4, r30
-	lwz      r6, 0x24(r29)
-	mr       r5, r28
-	mr       r7, r31
-	li       r8, 0
-	li       r9, 4
-	bl       "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
-	lwz      r3, 0(r28)
-	b        lbl_800B97C0
-
-lbl_800B96FC:
-	lbz      r5, 0x19(r29)
-	li       r28, 0xff
-	li       r27, 0xff
-	li       r6, 0
-	b        lbl_800B973C
-
-lbl_800B9710:
-	lwz      r4, 0x1c(r29)
-	rlwinm   r3, r6, 2, 0x16, 0x1d
-	clrlwi   r0, r28, 0x18
-	lwzx     r3, r4, r3
-	lwz      r3, 0x44(r3)
-	lbz      r3, 4(r3)
-	cmplw    r3, r0
-	bgt      lbl_800B9738
-	mr       r28, r3
-	mr       r27, r6
-
-lbl_800B9738:
-	addi     r6, r6, 1
-
-lbl_800B973C:
-	clrlwi   r0, r6, 0x18
-	cmplw    r0, r5
-	blt      lbl_800B9710
-	clrlwi   r0, r27, 0x18
-	cmplwi   r0, 0xff
-	beq      lbl_800B97BC
-	mr       r3, r30
-	bl       getInfoPointer__Q27JAInter10SoundTableFUl
-	lbz      r3, 4(r3)
-	clrlwi   r0, r28, 0x18
-	cmplw    r3, r0
-	blt      lbl_800B97BC
-	mr       r3, r29
-	mr       r4, r27
-	lwz      r12, 0(r29)
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1c(r29)
-	rlwinm   r28, r27, 2, 0x16, 0x1d
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	mr       r4, r30
-	lwz      r6, 0x24(r29)
-	mr       r7, r31
-	add      r5, r0, r28
-	li       r8, 0
-	li       r9, 4
-	bl       "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
-	lwz      r3, 0x1c(r29)
-	lwzx     r3, r3, r28
-	b        lbl_800B97C0
-
-lbl_800B97BC:
-	li       r3, 0
-
-lbl_800B97C0:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -258,27 +96,6 @@ void JAInter::ObjectBase::handleStop(u8 handleNo, u32 p2)
 void JAInter::ObjectBase::startSound(u8 handleNo, u32 id, u32 p3)
 {
 	JAIBasic::msBasic->startSoundVecT(id, mSounds + handleNo, _24, p3, 0, 4);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r9, r3
-	  mr        r7, r6
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,2,22,29
-	  mr        r4, r5
-	  lwz       r8, 0x1C(r3)
-	  lwz       r6, 0x24(r9)
-	  li        r9, 0x4
-	  add       r5, r8, r0
-	  lwz       r3, -0x7498(r13)
-	  li        r8, 0
-	  bl        -0xA3FE0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -289,25 +106,6 @@ void JAInter::ObjectBase::startSound(u8 handleNo, u32 id, u32 p3)
 void JAInter::ObjectBase::startSound(JAISound** handlePtr, u32 id, u32 p3)
 {
 	JAIBasic::msBasic->startSoundVecT(id, handlePtr, _24, p3, 0, 4);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r8, r3
-	mr       r7, r6
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	mr       r4, r5
-	li       r9, 4
-	lwz      r6, 0x24(r8)
-	mr       r5, r0
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	li       r8, 0
-	bl       "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -318,7 +116,7 @@ void JAInter::ObjectBase::startSound(JAISound** handlePtr, u32 id, u32 p3)
 void JAInter::ObjectBase::stopSound(u32 id, u32 p2)
 {
 	u8 handleNo = getUseSoundHandleNo(id);
-	if (handleNo != 0xFF) {
+	if (handleNo != JAI_NULL_HANDLE_ID) {
 		handleStop(handleNo, p2);
 	}
 }
@@ -343,8 +141,8 @@ void JAInter::ObjectBase::stopAllSound()
 void JAInter::ObjectBase::disable()
 {
 	stopAllSound();
-	_18 = 0;
-	_20 = 0;
+	mIsEnabled     = false;
+	mUseHandleFlag = 0;
 }
 
 /*
@@ -366,8 +164,8 @@ void JAInter::ObjectBase::dispose()
 JAISound** JAInter::ObjectBase::getFreeSoundHandlePointer()
 {
 	for (u32 i = 0; i < mHandleCount; i++) {
-		if (mSounds[i] == nullptr && (_20 & 1 << i) == 0) {
-			return mSounds + i;
+		if (!mSounds[i] && !IsJAIHandleInUse(i)) {
+			return &mSounds[i];
 		}
 	}
 	return nullptr;
@@ -382,11 +180,11 @@ u8 JAInter::ObjectBase::getFreeSoundHandleNo()
 {
 	// UNUSED FUNCTION
 	for (u8 i = 0; i < mHandleCount; i++) {
-		if (mSounds[i] == nullptr && (_20 & 1 << i) == 0) {
+		if (!mSounds[i] && !IsJAIHandleInUse(i)) {
 			return i;
 		}
 	}
-	return 0xFF;
+	return JAI_NULL_HANDLE_ID;
 }
 
 /*
@@ -397,8 +195,8 @@ u8 JAInter::ObjectBase::getFreeSoundHandleNo()
 JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(u32 id)
 {
 	for (u32 i = 0; i < mHandleCount; i++) {
-		if (mSounds[i] != nullptr && id == mSounds[i]->mSoundID) {
-			return mSounds + i;
+		if (mSounds[i] && id == mSounds[i]->mSoundID) {
+			return &mSounds[i];
 		}
 	}
 	return nullptr;
@@ -412,11 +210,11 @@ JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(u32 id)
 u8 JAInter::ObjectBase::getUseSoundHandleNo(u32 id)
 {
 	for (u8 i = 0; i < mHandleCount; i++) {
-		if (mSounds[i] != nullptr && id == mSounds[i]->mSoundID) {
+		if (mSounds[i] && id == mSounds[i]->mSoundID) {
 			return i;
 		}
 	}
-	return 0xFF;
+	return JAI_NULL_HANDLE_ID;
 }
 
 /*
@@ -469,176 +267,45 @@ JAInter::Object::~Object() { }
  * Address:	800B9C64
  * Size:	00021C
  */
-JAISound* JAInter::Object::startSound(u32, u32)
+JAISound* JAInter::Object::startSound(u32 id, u32 p2)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	rlwinm.  r0, r4, 0, 0x14, 0x14
-	stmw     r27, 0x3c(r1)
-	mr       r28, r4
-	mr       r27, r3
-	mr       r29, r5
-	li       r30, 0
-	bne      lbl_800B9CA0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
+	JAISound** handlePtr = nullptr;
+	if (IsJAISoundIDInUse(id)) {
+		handlePtr = getUseSoundHandlePointer(id);
+	}
 
-lbl_800B9CA0:
-	cmplwi   r30, 0
-	bne      lbl_800B9CC0
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
+	if (!handlePtr) {
+		handlePtr = getFreeSoundHandlePointer();
+	}
 
-lbl_800B9CC0:
-	cmplwi   r30, 0
-	beq      lbl_800B9D34
-	cmplwi   r27, 0
-	lwz      r4, 0x24(r27)
-	bne      lbl_800B9CDC
-	mr       r3, r4
-	b        lbl_800B9CE0
+	if (handlePtr) {
+		Vec* vec = _24;
+		JAInter::Actor actor((this == nullptr) ? (void*)vec : (void*)this, vec, nullptr, 0);
+		JAIBasic::msBasic->startSoundActorT(id, handlePtr, &actor, p2, 4);
+		return *handlePtr;
+	}
 
-lbl_800B9CDC:
-	mr       r3, r27
+	u8 prio     = 255;
+	u8 handleNo = JAI_NULL_HANDLE_ID;
+	for (u8 i = 0; i < mHandleCount; i++) {
+		if (!IsJAIHandleInUse(i) && mSounds[i]->mSoundInfo->mPriority <= prio) {
+			prio     = mSounds[i]->mSoundInfo->mPriority;
+			handleNo = i;
+		}
+	}
+	if (handleNo != JAI_NULL_HANDLE_ID && SoundTable::getInfoPointer(id)->mPriority >= prio) {
+		handleStop(0, 0);
+		Vec* vec = _24;
+		JAInter::Actor actor((this == nullptr) ? (void*)vec : (void*)this, vec, nullptr, 0);
+		JAIBasic::msBasic->startSoundActorT(id, mSounds + handleNo, &actor, p2, 4);
+		if (mSounds[handleNo]) {
+			mSounds[handleNo]->_1A = 1;
+		}
 
-lbl_800B9CE0:
-	li       r0, 0
-	cmplwi   r4, 0
-	stw      r3, 0x1c(r1)
-	stw      r4, 0x20(r1)
-	stw      r0, 0x24(r1)
-	stw      r0, 0x28(r1)
-	bne      lbl_800B9D08
-	li       r0, 1
-	stb      r0, 0x2c(r1)
-	b        lbl_800B9D10
+		return mSounds[handleNo];
+	}
 
-lbl_800B9D08:
-	li       r0, 1
-	stb      r0, 0x2c(r1)
-
-lbl_800B9D10:
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	mr       r4, r28
-	mr       r5, r30
-	mr       r7, r29
-	addi     r6, r1, 0x1c
-	li       r8, 4
-	bl
-"startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc" lwz
-r3, 0(r30) b        lbl_800B9E6C
-
-lbl_800B9D34:
-	lbz      r6, 0x19(r27)
-	li       r31, 0xff
-	li       r30, 0xff
-	li       r7, 0
-	li       r5, 1
-	b        lbl_800B9D8C
-
-lbl_800B9D4C:
-	clrlwi   r0, r7, 0x18
-	lwz      r3, 0x20(r27)
-	slw      r0, r5, r0
-	and.     r0, r3, r0
-	bne      lbl_800B9D88
-	lwz      r4, 0x1c(r27)
-	rlwinm   r3, r7, 2, 0x16, 0x1d
-	clrlwi   r0, r31, 0x18
-	lwzx     r3, r4, r3
-	lwz      r3, 0x44(r3)
-	lbz      r3, 4(r3)
-	cmplw    r3, r0
-	bgt      lbl_800B9D88
-	mr       r31, r3
-	mr       r30, r7
-
-lbl_800B9D88:
-	addi     r7, r7, 1
-
-lbl_800B9D8C:
-	clrlwi   r0, r7, 0x18
-	cmplw    r0, r6
-	blt      lbl_800B9D4C
-	clrlwi   r0, r30, 0x18
-	cmplwi   r0, 0xff
-	beq      lbl_800B9E68
-	mr       r3, r28
-	bl       getInfoPointer__Q27JAInter10SoundTableFUl
-	lbz      r3, 4(r3)
-	clrlwi   r0, r31, 0x18
-	cmplw    r3, r0
-	blt      lbl_800B9E68
-	mr       r3, r27
-	li       r4, 0
-	lwz      r12, 0(r27)
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r27, 0
-	lwz      r4, 0x24(r27)
-	bne      lbl_800B9DEC
-	mr       r3, r4
-	b        lbl_800B9DF0
-
-lbl_800B9DEC:
-	mr       r3, r27
-
-lbl_800B9DF0:
-	li       r0, 0
-	cmplwi   r4, 0
-	stw      r3, 8(r1)
-	stw      r4, 0xc(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x14(r1)
-	bne      lbl_800B9E18
-	li       r0, 1
-	stb      r0, 0x18(r1)
-	b        lbl_800B9E20
-
-lbl_800B9E18:
-	li       r0, 1
-	stb      r0, 0x18(r1)
-
-lbl_800B9E20:
-	lwz      r0, 0x1c(r27)
-	rlwinm   r30, r30, 2, 0x16, 0x1d
-	lwz      r3, msBasic__8JAIBasic@sda21(r13)
-	mr       r4, r28
-	mr       r7, r29
-	add      r5, r0, r30
-	addi     r6, r1, 8
-	li       r8, 4
-	bl
-"startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc" lwz
-r3, 0x1c(r27) lwzx     r3, r3, r30 cmplwi   r3, 0 beq      lbl_800B9E5C li r0, 1
-	stb      r0, 0x1a(r3)
-
-lbl_800B9E5C:
-	lwz      r3, 0x1c(r27)
-	lwzx     r3, r3, r30
-	b        lbl_800B9E6C
-
-lbl_800B9E68:
-	li       r3, 0
-
-lbl_800B9E6C:
-	lmw      r27, 0x3c(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -648,106 +315,38 @@ lbl_800B9E6C:
  */
 void JAInter::Object::disable()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_800B9FA0
+	DummyObjectMgr::DummyObject* handlePtr = nullptr;
+	for (u8 i = 0; i < mHandleCount; i++) {
+		JAISound* sound = mSounds[i];
+		if (!sound) {
+			continue;
+		}
+		if (((sound->mSoundID & JAISoundID_TypeMask) == JAISoundID_Type_Se) && sound->checkSwBit(0x8000)) {
+			if (!handlePtr) {
+				handlePtr = JAInter::DummyObjectMgr::getPointer(JAIGlobalParameter::getParamDummyObjectLifeTime());
+			}
 
-lbl_800B9EAC:
-	lwz      r3, 0x1c(r28)
-	rlwinm   r31, r29, 2, 0x16, 0x1d
-	lwzx     r3, r3, r31
-	cmplwi   r3, 0
-	beq      lbl_800B9F9C
-	lwz      r0, 0x20(r3)
-	rlwinm.  r0, r0, 0, 0, 1
-	bne      lbl_800B9F80
-	lis      r4, 0x00008000@ha
-	addi     r4, r4, 0x00008000@l
-	bl       checkSwBit__8JAISoundFUl
-	cmplwi   r3, 0
-	beq      lbl_800B9F80
-	cmplwi   r30, 0
-	bne      lbl_800B9EF4
-	bl       getParamDummyObjectLifeTime__18JAIGlobalParameterFv
-	bl       getPointer__Q27JAInter14DummyObjectMgrFUl
-	mr       r30, r3
+			if (handlePtr) {
+				Vec* vec                       = _24;
+				handlePtr->_0C.x               = vec->x;
+				handlePtr->_0C.y               = vec->y;
+				handlePtr->_0C.z               = vec->z;
+				handlePtr->mSound              = mSounds[i];
+				mSounds[i]->_1A                = 0;
+				mSounds[i]->_3C                = &handlePtr->_0C;
+				mSounds[i]->mMainSoundPPointer = (void**)&handlePtr->mSound;
+				mSounds[i]                     = nullptr;
+				continue;
+			}
 
-lbl_800B9EF4:
-	cmplwi   r30, 0
-	beq      lbl_800B9F60
-	lwz      r3, 0x24(r28)
-	li       r5, 0
-	addi     r4, r30, 0xc
-	addi     r0, r30, 8
-	lfs      f0, 0(r3)
-	stfs     f0, 0xc(r30)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x10(r30)
-	lfs      f0, 8(r3)
-	stfs     f0, 0x14(r30)
-	lwz      r3, 0x1c(r28)
-	lwzx     r3, r3, r31
-	stw      r3, 8(r30)
-	lwz      r3, 0x1c(r28)
-	lwzx     r3, r3, r31
-	stb      r5, 0x1a(r3)
-	lwz      r3, 0x1c(r28)
-	lwzx     r3, r3, r31
-	stw      r4, 0x3c(r3)
-	lwz      r3, 0x1c(r28)
-	lwzx     r3, r3, r31
-	stw      r0, 0x40(r3)
-	lwz      r3, 0x1c(r28)
-	stwx     r5, r3, r31
-	b        lbl_800B9F9C
+			handleStop(i, 0);
 
-lbl_800B9F60:
-	mr       r3, r28
-	mr       r4, r29
-	lwz      r12, 0(r28)
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_800B9F9C
+		} else {
+			handleStop(i, 0);
+		}
+	}
 
-lbl_800B9F80:
-	mr       r3, r28
-	mr       r4, r29
-	lwz      r12, 0(r28)
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800B9F9C:
-	addi     r29, r29, 1
-
-lbl_800B9FA0:
-	lbz      r0, 0x19(r28)
-	clrlwi   r3, r29, 0x18
-	cmplw    r3, r0
-	blt      lbl_800B9EAC
-	li       r0, 0
-	stb      r0, 0x18(r28)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mIsEnabled = false;
 }
 
 /*
@@ -757,6 +356,29 @@ lbl_800B9FA0:
  */
 void JAInter::Object::loop()
 {
+	bool check = false;
+	for (u32 i = 0; i < mHandleCount; i++) {
+		if (!mSounds[i]) {
+			continue;
+		}
+
+		if (!check && _24) {
+			PSMTXMultVec(*JAIBasic::msBasic->mCameras->mMtx, _24, &_28);
+			_34 = dolsqrtf(_28.x * _28.x + _28.y * _28.y + _28.z * _28.z); // needs to be a more elaborate sqrt
+		}
+
+		JAISound_0x34* v1 = mSounds[i]->_34;
+		v1->_00           = _28;
+		v1->_0C           = _34;
+
+		if (!check) {
+			if (_24) {
+				_38 = mSounds[i]->setDistancePanCommon();
+				_3C = mSounds[i]->setDistanceDolbyCommon();
+			}
+			check = true;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

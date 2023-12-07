@@ -19,9 +19,9 @@ struct Actor;
 struct DummyVec;
 struct SeqUpdateData;
 struct SoundInfo {
-	int _00;    // _00
-	u32 mCount; // _04
-	u32 mPitch; // _08
+	u32 mFlag;    // _00
+	u8 mPriority; // _04
+	u32 mPitch;   // _08
 	union volume_t {
 		u32 w;
 		u8 c;
@@ -72,24 +72,23 @@ extern CustomHeapCallback customHeapCallback;
 } // namespace SequenceMgr
 
 struct Actor {
-	inline Actor(Vec* vec1, Vec* vec2, Vec* vec3, u32 unk)
+	inline Actor(void* vec1, Vec* vec2, Vec* vec3, u32 unk)
 	{
 		mVec1 = vec1;
 		mVec2 = vec2;
 		mVec3 = vec3;
 		mUnk  = unk;
-		// Actual condition is unknown
-		if (mVec1 == nullptr) {
+		if (mVec2 == nullptr) {
 			mFlag.boolView[0] = true;
 		} else {
 			mFlag.boolView[0] = true;
 		}
 	}
 
-	Vec* mVec1; // _00
-	Vec* mVec2; // _04
-	Vec* mVec3; // _08
-	u32 mUnk;   // _0C (might be a pointer?)
+	void* mVec1; // _00
+	Vec* mVec2;  // _04
+	Vec* mVec3;  // _08
+	u32 mUnk;    // _0C (might be a pointer?)
 	// bool mFlag; // _10
 	union {
 		bool boolView[4];
@@ -116,11 +115,11 @@ struct DummyObjectMgr {
 	 * @size{0x1C}
 	 */
 	struct DummyObject {
-		DummyObject* _00;      // _00
-		DummyObject* _04;      // _04
-		JAISound* mSound;      // _08
-		JGeometry::TVec3f _0C; // _0C
-		u32 _18;               // _18
+		DummyObject* _00; // _00
+		DummyObject* _04; // _04
+		JAISound* mSound; // _08
+		Vec _0C;          // _0C
+		u32 _18;          // _18
 	};
 
 	static void init();
