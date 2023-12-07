@@ -82,6 +82,7 @@ struct THiScore : public TScrollList {
 	virtual void changeTextTevBlock(int);                                                                    // _A0
 	virtual void setPaneCharacter(int);                                                                      // _A8
 
+	enum RecordType { ClearRank1, ClearRank2, ClearRank3, CompleteRank1, CompleteRank2, CompleteRank3 };
 	int getRecord(int, int);
 	void copyTevBlock(J2DTevBlock*, J2DTevBlock*);
 	void changeTevBlock(J2DTevBlock*, J2DTevBlock*);
@@ -141,6 +142,8 @@ struct THiScore : public TScrollList {
 	static f32 mPictureOffsetY;
 	static f32 mListOffsetY;
 	static f32 mClearListHeightRate;
+	static u64 mNameID[16];
+	static int mHiscoreDataOrder[16];
 
 	static struct StaticValues {
 		// WARNING: the actual THiScore constructor overwrites these

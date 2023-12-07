@@ -4,6 +4,7 @@
 #include "Morimura/mrUtil.h"
 #include "Controller.h"
 #include "PSSystem/PSSystemIF.h"
+#include "Dolphin/rand.h"
 #include "trig.h"
 
 static const char name[] = "hiScore2D";
@@ -18,6 +19,30 @@ f32 THiScore::mPictureOffsetY      = -8.0f;
 bool THiScore::mChangeAlpha        = true;
 f32 THiScore::mListOffsetY         = 25.0f;
 f32 THiScore::mClearListHeightRate = 1.55f;
+ResTIMG* THiScore::mPicTexture[16] = { nullptr };
+
+u64 THiScore::mNameID[16] = {
+	'8502_00', // "Days Spent:"
+	'8503_00', // "Total Pikmin Lost:"
+	'8504_00', // "Pikmin Lost in Battle:"
+	'8505_00', // "Pikmin Left Behind:"
+	'8506_00', // "Pikmin Lost to Fire:"
+	'8507_00', // "Pikmin Lost to Water:"
+	'8508_00', // "Pikmin Lost to Electricity:"
+	'8509_00', // "Pikmin Lost to Explosions:"
+	'8510_00', // "Pikmin Lost to Poison:"
+	'8511_00', // "Pikmin Born:"
+	'8512_00', // "Red Pikmin Born:"
+	'8513_00', // "Yellow Pikmin Born:"
+	'8514_00', // "Blue Pikmin Born:"
+	'8515_00', // "White Pikmin Born:"
+	'8516_00', // "Purple Pikmin Born:"
+	'8517_00'  // "Play Time:"
+};
+
+int THiScore::mHiscoreDataOrder[16] = {
+	0, 8, 1, 2, 3, 4, 5, 6, 7, 14, 10, 11, 9, 13, 12, 15,
+};
 
 /*
  * --INFO--
@@ -49,7 +74,7 @@ void THiScoreIndPane::draw()
 	color.b = 0;
 	color.a = 255;
 	GXSetChanMatColor(GX_COLOR0A0, color);
-	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
 	GXSetCullMode(GX_CULL_NONE);
 	GXSetNumTevStages(1);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
@@ -516,47 +541,14 @@ THiScore::THiScore()
 	_1F8               = 0.0f;
 	mMaxSelect         = 5;
 
-	mScoreCounts[0]   = 0;
-	mScaleCounter1[0] = nullptr;
-	mCurrScore1[0]    = 0;
-	mCurrScore2[0]    = 0;
-	mScaleCounter2[0] = nullptr;
-	mScaleCounter3[0] = nullptr;
-
-	mScoreCounts[1]   = 0;
-	mScaleCounter1[1] = nullptr;
-	mCurrScore1[1]    = 0;
-	mCurrScore2[1]    = 0;
-	mScaleCounter2[1] = nullptr;
-	mScaleCounter3[1] = nullptr;
-
-	mScoreCounts[2]   = 0;
-	mScaleCounter1[2] = nullptr;
-	mCurrScore1[2]    = 0;
-	mCurrScore2[2]    = 0;
-	mScaleCounter2[2] = nullptr;
-	mScaleCounter3[2] = nullptr;
-
-	mScoreCounts[3]   = 0;
-	mScaleCounter1[3] = nullptr;
-	mCurrScore1[3]    = 0;
-	mCurrScore2[3]    = 0;
-	mScaleCounter2[3] = nullptr;
-	mScaleCounter3[3] = nullptr;
-
-	mScoreCounts[4]   = 0;
-	mScaleCounter1[4] = nullptr;
-	mCurrScore1[4]    = 0;
-	mCurrScore2[4]    = 0;
-	mScaleCounter2[4] = nullptr;
-	mScaleCounter3[4] = nullptr;
-
-	mScoreCounts[5]   = 0;
-	mScaleCounter1[5] = nullptr;
-	mCurrScore1[5]    = 0;
-	mCurrScore2[5]    = 0;
-	mScaleCounter2[5] = nullptr;
-	mScaleCounter3[5] = nullptr;
+	for (int i = 0; i < 6; i++) {
+		mScoreCounts[i]   = 0;
+		mScaleCounter1[i] = nullptr;
+		mCurrScore1[i]    = 0;
+		mCurrScore2[i]    = 0;
+		mScaleCounter2[i] = nullptr;
+		mScaleCounter3[i] = nullptr;
+	}
 
 	mSelIconCorners[0] = 0;
 	mSelIconCorners[1] = 0;
@@ -731,9 +723,9 @@ void THiScore::doCreate(JKRArchive* arc)
 	total->setMsgID('8472_00'); // 3rd
 
 	u64 tagList0[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
-	u64 tagList2[6] = { 'Phe1st5', 'Phe2nd5', 'Phe3rd5', 'Pot1st5', 'Pot2nd5', 'Pot3rd5' };
-	u64 tagList3[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
-	u64 tagList1[6] = { 'Phe1st4', 'Phe2nd4', 'Phe3rd4', 'Pot1st4', 'Pot2nd4', 'Pot3rd4' };
+	u64 tagList2[6] = { 'Phe1st4', 'Phe2nd4', 'Phe3rd4', 'Pot1st4', 'Pot2nd4', 'Pot3rd4' };
+	u64 tagList3[6] = { 'Phe1st5', 'Phe2nd5', 'Phe3rd5', 'Pot1st5', 'Pot2nd5', 'Pot3rd5' };
+	u64 tagList1[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
 	u64 tagList4[6] = { 'Phe1st2', 'Phe2nd2', 'Phe3rd2', 'Pot1st2', 'Pot2nd2', 'Pot3rd2' };
 	for (int i = 0; i < 6; i++) {
 		mScaleCounter1[i] = Morimura::setScaleUpCounter(mMainScreen->mScreenObj, tagList0[i], &mScoreCounts[i], 10, mArchive);
@@ -1899,29 +1891,7 @@ lbl_8037E030:
  * Address:	8037E178
  * Size:	00001C
  */
-u64 THiScore::getNameID(int id)
-{
-	static u64 mNameID[16] = {
-		'8502_00', // "Days Spent:"
-		'8503_00', // "Total Pikmin Lost:"
-		'8504_00', // "Pikmin Lost in Battle:"
-		'8505_00', // "Pikmin Left Behind:"
-		'8506_00', // "Pikmin Lost to Fire:"
-		'8507_00', // "Pikmin Lost to Water:"
-		'8508_00', // "Pikmin Lost to Electricity:"
-		'8509_00', // "Pikmin Lost to Explosions:"
-		'8510_00', // "Pikmin Lost to Poison:"
-		'8511_00', // "Pikmin Born:"
-		'8512_00', // "Red Pikmin Born:"
-		'8513_00', // "Yellow Pikmin Born:"
-		'8514_00', // "Blue Pikmin Born:"
-		'8515_00', // "White Pikmin Born:"
-		'8516_00', // "Purple Pikmin Born:"
-		'8517_00'  // "Play Time:"
-	};
-
-	return mNameID[id];
-}
+u64 THiScore::getNameID(int id) { return mNameID[id]; }
 
 /*
  * --INFO--
@@ -2890,7 +2860,9 @@ void THiScore::doDraw(Graphics& gfx)
 
 	mListScreen->draw(gfx, graf);
 	mMainScreen->draw(gfx, graf);
-	graf->setColor(JUtility::TColor(0, 0, 0, 255 - mFadeAlpha));
+	JUtility::TColor color;
+	color = JUtility::TColor(0, 0, 0, 255 - mFadeAlpha);
+	graf->setColor(color);
 	GXSetAlphaUpdate(GX_FALSE);
 
 	f32 zero = 0.0f;
@@ -2898,117 +2870,6 @@ void THiScore::doDraw(Graphics& gfx)
 	u16 x    = System::getRenderModeObj()->fbWidth;
 	graf->fillBox(JGeometry::TBox2f(0.0f, 0.0f, zero + x, zero + y));
 	GXSetAlphaUpdate(GX_TRUE);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	mr       r30, r4
-	addi     r31, r30, 0x190
-	stw      r29, 0x44(r1)
-	mr       r29, r3
-	lbz      r0, 0x1c7(r3)
-	cmplwi   r0, 0
-	beq      lbl_8037EC44
-	addi     r3, r30, 0xbc
-	lwz      r12, 0xbc(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	bl       dirtyInitGX__8GraphicsFv
-	lwz      r3, 0xb8(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xb8(r29)
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0x20
-	lwz      r3, 0x20(r3)
-	li       r7, 0
-	li       r8, 0
-	bl       capture__10JUTTextureFii9_GXTexFmtbUc
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8037EC44:
-	lwz      r3, 0xb4(r29)
-	mr       r4, r30
-	mr       r5, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x7c(r29)
-	mr       r4, r30
-	mr       r5, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lbz      r3, 0x44(r29)
-	li       r0, -1
-	stw      r0, 0x1c(r1)
-	li       r0, 0
-	subfic   r8, r3, 0xff
-	mr       r3, r31
-	stb      r0, 0x1c(r1)
-	addi     r4, r1, 0xc
-	addi     r5, r1, 0x10
-	addi     r6, r1, 0x14
-	stb      r0, 0x1d(r1)
-	addi     r7, r1, 0x18
-	stb      r0, 0x1e(r1)
-	stb      r8, 0x1f(r1)
-	lwz      r0, 0x1c(r1)
-	stw      r0, 8(r1)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0xc(r1)
-	bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-	li       r3, 0
-	bl       GXSetAlphaUpdate
-	bl       getRenderModeObj__6SystemFv
-	lhz      r30, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lfs      f3, lbl_8051EC18@sda21(r2)
-	mr       r3, r31
-	stw      r4, 0x34(r1)
-	addi     r4, r1, 0x20
-	lfd      f2, lbl_8051EC98@sda21(r2)
-	stw      r0, 0x30(r1)
-	lfd      f0, 0x30(r1)
-	stw      r30, 0x3c(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x38(r1)
-	lfd      f0, 0x38(r1)
-	fadds    f1, f3, f1
-	stfs     f3, 0x20(r1)
-	fsubs    f0, f0, f2
-	stfs     f3, 0x24(r1)
-	fadds    f0, f3, f0
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-	li       r3, 1
-	bl       GXSetAlphaUpdate
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -3020,8 +2881,8 @@ void THiScore::paneInit()
 {
 	mHighScorePic->changeTexture(mPicTexture[0], 0);
 
-	J2DPictureEx* pane = static_cast<J2DPictureEx*>(mIndexPaneList[_90]->mPane2->getFirstChildPane());
-	mTevBlock[0]       = new J2DTevBlock2;
+	J2DTextBox* pane = static_cast<J2DTextBox*>(mIndexPaneList[_90]->mPane2->getFirstChildPane());
+	mTevBlock[0]     = new J2DTevBlock2;
 	copyTevBlock(mTevBlock[0], pane->getMaterial()->mTevBlock);
 
 	J2DGXColorS10* col = mTevBlock[0]->getTevColor(0);
@@ -3036,11 +2897,11 @@ void THiScore::paneInit()
 	mColors[3].b = col->b;
 	mColors[3].a = col->a;
 
-	pane           = static_cast<J2DPictureEx*>(mIndexPaneList[_90]->mPane2);
+	pane           = static_cast<J2DTextBox*>(mIndexPaneList[_90]->mPane2);
 	mColorBlock[0] = new J2DColorBlock;
 	copyColorBlock(mColorBlock[0], &pane->getMaterial()->mColorBlock);
 
-	pane         = static_cast<J2DPictureEx*>(mIndexPaneList[_98]->mPane2->getFirstChildPane());
+	pane         = static_cast<J2DTextBox*>(mIndexPaneList[_98]->mPane2->getFirstChildPane());
 	mTevBlock[1] = new J2DTevBlock2;
 	copyTevBlock(mTevBlock[1], pane->getMaterial()->mTevBlock);
 
@@ -3056,223 +2917,13 @@ void THiScore::paneInit()
 	mColors[1].b = col->b;
 	mColors[1].a = col->a;
 
-	pane           = static_cast<J2DPictureEx*>(mIndexPaneList[_98]->mPane2);
+	pane           = static_cast<J2DTextBox*>(mIndexPaneList[_98]->mPane2);
 	mColorBlock[1] = new J2DColorBlock;
 	copyColorBlock(mColorBlock[1], &pane->getMaterial()->mColorBlock);
 
+	f32 y    = 20.0f;
 	mYOffset = mIndexPaneList[mCurrentSelect]->_1C - 10.0f;
-	_AC      = mYOffset + 20.0f;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, mPicTexture__Q28Morimura8THiScore@ha
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	addi     r4, r4, mPicTexture__Q28Morimura8THiScore@l
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	lwz      r3, 0xbc(r3)
-	lwz      r4, 0(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x110(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x90(r31)
-	lwz      r3, 0x88(r31)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	lwz      r3, 8(r3)
-	bl       getFirstChildPane__7J2DPaneFv
-	mr       r0, r3
-	li       r3, 0x7c
-	mr       r29, r0
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8037EDD4
-	bl       __ct__12J2DTevBlock2Fv
-	mr       r0, r3
-
-lbl_8037EDD4:
-	stw      r0, 0x1c8(r31)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0x70(r3)
-	mr       r3, r31
-	lwz      r4, 0x1c8(r31)
-	bl       copyTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock
-	lwz      r3, 0x1c8(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lha      r0, 0(r3)
-	li       r4, 1
-	sth      r0, 0x1e8(r31)
-	lha      r0, 2(r3)
-	sth      r0, 0x1ea(r31)
-	lha      r0, 4(r3)
-	sth      r0, 0x1ec(r31)
-	lha      r0, 6(r3)
-	sth      r0, 0x1ee(r31)
-	lwz      r3, 0x1c8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lha      r0, 0(r3)
-	sth      r0, 0x1f0(r31)
-	lha      r0, 2(r3)
-	sth      r0, 0x1f2(r31)
-	lha      r0, 4(r3)
-	sth      r0, 0x1f4(r31)
-	lha      r0, 6(r3)
-	li       r3, 0x18
-	sth      r0, 0x1f6(r31)
-	lwz      r0, 0x90(r31)
-	lwz      r4, 0x88(r31)
-	slwi     r0, r0, 2
-	lwzx     r4, r4, r0
-	lwz      r29, 8(r4)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8037EED8
-	lis      r5, __vt__13J2DColorBlock@ha
-	lis      r4, __ct__Q28JUtility6TColorFv@ha
-	addi     r0, r5, __vt__13J2DColorBlock@l
-	li       r6, 4
-	stw      r0, 0x14(r30)
-	li       r5, 0
-	addi     r4, r4, __ct__Q28JUtility6TColorFv@l
-	li       r7, 2
-	bl       __construct_array
-	lis      r4, __ct__12J2DColorChanFv@ha
-	addi     r3, r30, 0xa
-	addi     r4, r4, __ct__12J2DColorChanFv@l
-	li       r5, 0
-	li       r6, 2
-	li       r7, 4
-	bl       __construct_array
-	mr       r3, r30
-	bl       initialize__13J2DColorBlockFv
-
-lbl_8037EED8:
-	stw      r30, 0x1d0(r31)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	lwz      r4, 0x1d0(r31)
-	mr       r3, r31
-	addi     r5, r5, 0x10
-	bl copyColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock lwz
-r0, 0x98(r31) lwz      r3, 0x88(r31) slwi     r0, r0, 2 lwzx     r3, r3, r0 lwz
-r3, 8(r3) bl       getFirstChildPane__7J2DPaneFv mr       r29, r3 li       r3,
-0x7c bl       __nw__FUl or.      r0, r3, r3 beq      lbl_8037EF38 bl
-__ct__12J2DTevBlock2Fv mr       r0, r3
-
-lbl_8037EF38:
-	stw      r0, 0x1cc(r31)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0x70(r3)
-	mr       r3, r31
-	lwz      r4, 0x1cc(r31)
-	bl       copyTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock
-	lwz      r3, 0x1cc(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lha      r0, 0(r3)
-	li       r4, 1
-	sth      r0, 0x1d8(r31)
-	lha      r0, 2(r3)
-	sth      r0, 0x1da(r31)
-	lha      r0, 4(r3)
-	sth      r0, 0x1dc(r31)
-	lha      r0, 6(r3)
-	sth      r0, 0x1de(r31)
-	lwz      r3, 0x1cc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lha      r0, 0(r3)
-	sth      r0, 0x1e0(r31)
-	lha      r0, 2(r3)
-	sth      r0, 0x1e2(r31)
-	lha      r0, 4(r3)
-	sth      r0, 0x1e4(r31)
-	lha      r0, 6(r3)
-	li       r3, 0x18
-	sth      r0, 0x1e6(r31)
-	lwz      r0, 0x98(r31)
-	lwz      r4, 0x88(r31)
-	slwi     r0, r0, 2
-	lwzx     r4, r4, r0
-	lwz      r29, 8(r4)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8037F03C
-	lis      r5, __vt__13J2DColorBlock@ha
-	lis      r4, __ct__Q28JUtility6TColorFv@ha
-	addi     r0, r5, __vt__13J2DColorBlock@l
-	li       r6, 4
-	stw      r0, 0x14(r30)
-	li       r5, 0
-	addi     r4, r4, __ct__Q28JUtility6TColorFv@l
-	li       r7, 2
-	bl       __construct_array
-	lis      r4, __ct__12J2DColorChanFv@ha
-	addi     r3, r30, 0xa
-	addi     r4, r4, __ct__12J2DColorChanFv@l
-	li       r5, 0
-	li       r6, 2
-	li       r7, 4
-	bl       __construct_array
-	mr       r3, r30
-	bl       initialize__13J2DColorBlockFv
-
-lbl_8037F03C:
-	stw      r30, 0x1d4(r31)
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	lwz      r4, 0x1d4(r31)
-	mr       r3, r31
-	addi     r5, r5, 0x10
-	bl copyColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock lwz
-r0, 0x94(r31) lwz      r3, 0x88(r31) slwi     r0, r0, 2 lfs      f1,
-lbl_8051ECA0@sda21(r2) lwzx     r3, r3, r0 lfs      f0, lbl_8051EC70@sda21(r2)
-	lfs      f2, 0x1c(r3)
-	fsubs    f1, f2, f1
-	stfs     f1, 0xa8(r31)
-	lfs      f1, 0xa8(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0xac(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_AC      = mYOffset + y;
 }
 
 /*
@@ -3314,7 +2965,7 @@ void THiScore::changePaneInfo()
 	int id = mIndexPaneList[mCurrentSelect]->getIndex();
 
 	if (mIsAllTreasures || (mIsSection && mForceClear)) {
-		mHighScorePic->show();
+		mHighScorePic->hide();
 		mMainScreen->mScreenObj->search('Notakara')->show();
 	} else {
 		mHighScorePic->show();
@@ -3328,23 +2979,28 @@ void THiScore::changePaneInfo()
 	}
 
 	// show the : when the current selection is play time only
-	u32 id2 = mIndexPaneList[mCurrentSelect]->getIndex();
+	bool isTime = false;
+	int id2     = mIndexPaneList[mCurrentSelect]->getIndex();
 	if (id2 == 15) {
-		mMainScreen->mScreenObj->search('Mheten')->show();
+		isTime = true;
+	}
+
+	if (isTime) {
+		mMainScreen->mScreenObj->search('Nheten')->show();
 		if (mIsAllTreasures) {
-			mMainScreen->mScreenObj->search('Motten')->show();
+			mMainScreen->mScreenObj->search('Notten')->show();
 		}
 	} else {
 		P2ASSERTLINE(917, mMainScreen->mScreenObj->search('Nheten'));
 		P2ASSERTLINE(918, mMainScreen->mScreenObj->search('Notten'));
 		mMainScreen->mScreenObj->search('Nheten')->hide();
-		mMainScreen->mScreenObj->search('Nheten')->hide();
+		mMainScreen->mScreenObj->search('Notten')->hide();
 	}
 
 	for (int i = 0; i < 6; i++) {
 		int score = getRecord(i, id);
 		// use compeltely different counters for the play time versus the other scores
-		if (id2 != 0) {
+		if (isTime) {
 			mScaleCounter2[i]->getMotherPane()->show();
 			mScaleCounter3[i]->getMotherPane()->show();
 			mScaleCounter2[i]->setBlind(false);
@@ -3357,8 +3013,8 @@ void THiScore::changePaneInfo()
 				mScaleCounter2[i]->setBlind(true);
 				mScaleCounter3[i]->setBlind(true);
 			}
-			mCurrScore1[i] = score % 10;
-			mCurrScore2[i] = (score / 10) * 0x100;
+			mCurrScore1[i] = score / 60;
+			mCurrScore2[i] = score % 60;
 		} else {
 			mScaleCounter2[i]->getMotherPane()->hide();
 			mScaleCounter3[i]->getMotherPane()->hide();
@@ -3944,335 +3600,80 @@ lbl_8037F7F4:
  * Address:	8037F814
  * Size:	00044C
  */
-int THiScore::getRecord(int, int)
+int THiScore::getRecord(int type, int id)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	cmplwi   r3, 0
-	bne      lbl_8037F85C
-	lis      r3, lbl_804935F0@ha
-	lis      r5, lbl_80493600@ha
-	addi     r3, r3, lbl_804935F0@l
-	li       r4, 0x417
-	addi     r5, r5, lbl_80493600@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(1047, sys->getPlayCommonData());
 
-lbl_8037F85C:
-	lis      r3, mHiscoreDataOrder__Q28Morimura8THiScore@ha
-	slwi     r0, r31, 2
-	addi     r3, r3, mHiscoreDataOrder__Q28Morimura8THiScore@l
-	lwzx     r31, r3, r0
-	cmpwi    r31, 0x10
-	ble      lbl_8037F890
-	lis      r3, lbl_804935F0@ha
-	lis      r5, lbl_80493600@ha
-	addi     r3, r3, lbl_804935F0@l
-	li       r4, 0x419
-	addi     r5, r5, lbl_80493600@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	int orderID = mHiscoreDataOrder[id];
+	P2ASSERTLINE(1049, orderID <= 16);
 
-lbl_8037F890:
-	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
-	li       r3, 0
-	cmplwi   r0, 0
-	beq      lbl_8037F8A4
-	li       r3, 1
+	bool debug = false;
+	if (mIsSection) {
+		debug = true;
+	}
 
-lbl_8037F8A4:
-	cmpwi    r30, 3
-	beq      lbl_8037FAA0
-	bge      lbl_8037F8C8
-	cmpwi    r30, 1
-	beq      lbl_8037F95C
-	bge      lbl_8037F9E0
-	cmpwi    r30, 0
-	bge      lbl_8037F8D8
-	b        lbl_8037FC2C
-
-lbl_8037F8C8:
-	cmpwi    r30, 5
-	beq      lbl_8037FBA8
-	bge      lbl_8037FC2C
-	b        lbl_8037FB24
-
-lbl_8037F8D8:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8037F924
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051EC20@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_8051ECA4@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051ECA0@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051EC44@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r3, 0x14(r1)
-	b        lbl_8037FC48
-
-lbl_8037F924:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	lbz      r0, 0(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8037F954
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r31
-	bl       getHighscore_clear__Q24Game14PlayCommonDataFi
-	li       r4, 0
-	bl       getScore__Q24Game9HighscoreFi
-	b        lbl_8037FC48
-
-lbl_8037F954:
-	li       r3, -1
-	b        lbl_8037FC48
-
-lbl_8037F95C:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8037F9A8
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_8051EC20@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f2, lbl_8051ECA4@sda21(r2)
-	lfd      f0, 0x10(r1)
-	lfs      f1, lbl_8051ECA8@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051ECA0@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	b        lbl_8037FC48
-
-lbl_8037F9A8:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	lbz      r0, 0(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8037F9D8
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r31
-	bl       getHighscore_clear__Q24Game14PlayCommonDataFi
-	li       r4, 1
-	bl       getScore__Q24Game9HighscoreFi
-	b        lbl_8037FC48
-
-lbl_8037F9D8:
-	li       r3, -1
-	b        lbl_8037FC48
-
-lbl_8037F9E0:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8037FA68
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_8051EC20@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f1, lbl_8051ECA4@sda21(r2)
-	lfd      f2, 0x10(r1)
-	lfs      f0, lbl_8051EC74@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8037FA24
-	li       r3, -1
-	b        lbl_8037FC48
-
-lbl_8037FA24:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_8051EC20@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f2, lbl_8051ECA4@sda21(r2)
-	lfd      f0, 0x10(r1)
-	lfs      f1, lbl_8051ECB0@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051ECAC@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	b        lbl_8037FC48
-
-lbl_8037FA68:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	lbz      r0, 0(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8037FA98
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r31
-	bl       getHighscore_clear__Q24Game14PlayCommonDataFi
-	li       r4, 2
-	bl       getScore__Q24Game9HighscoreFi
-	b        lbl_8037FC48
-
-lbl_8037FA98:
-	li       r3, -1
-	b        lbl_8037FC48
-
-lbl_8037FAA0:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8037FAEC
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_8051EC20@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f2, lbl_8051ECA4@sda21(r2)
-	lfd      f0, 0x10(r1)
-	lfs      f1, lbl_8051ECA8@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051ECA0@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	b        lbl_8037FC48
-
-lbl_8037FAEC:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	lbz      r0, 0(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8037FB1C
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r31
-	bl       getHighscore_complete__Q24Game14PlayCommonDataFi
-	li       r4, 0
-	bl       getScore__Q24Game9HighscoreFi
-	b        lbl_8037FC48
-
-lbl_8037FB1C:
-	li       r3, -1
-	b        lbl_8037FC48
-
-lbl_8037FB24:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8037FB70
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_8051EC20@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f2, lbl_8051ECA4@sda21(r2)
-	lfd      f0, 0x10(r1)
-	lfs      f1, lbl_8051ECA8@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051ECAC@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	b        lbl_8037FC48
-
-lbl_8037FB70:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	lbz      r0, 0(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8037FBA0
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r31
-	bl       getHighscore_complete__Q24Game14PlayCommonDataFi
-	li       r4, 1
-	bl       getScore__Q24Game9HighscoreFi
-	b        lbl_8037FC48
-
-lbl_8037FBA0:
-	li       r3, -1
-	b        lbl_8037FC48
-
-lbl_8037FBA8:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8037FBF4
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_8051EC20@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f2, lbl_8051ECA4@sda21(r2)
-	lfd      f0, 0x10(r1)
-	lfs      f1, lbl_8051ECB8@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051ECB4@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	b        lbl_8037FC48
-
-lbl_8037FBF4:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	lbz      r0, 0(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8037FC24
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r31
-	bl       getHighscore_complete__Q24Game14PlayCommonDataFi
-	li       r4, 2
-	bl       getScore__Q24Game9HighscoreFi
-	b        lbl_8037FC48
-
-lbl_8037FC24:
-	li       r3, -1
-	b        lbl_8037FC48
-
-lbl_8037FC2C:
-	lis      r3, lbl_804935F0@ha
-	li       r4, 0x446
-	addi     r3, r3, lbl_804935F0@l
-	li       r5, 0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 0
-
-lbl_8037FC48:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	switch (type) {
+	case ClearRank1:
+		if (debug) {
+			return randFloat() * 10.0f + 1.0f;
+		}
+		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(0);
+		}
+		return -1;
+		break;
+	case ClearRank2:
+		if (debug) {
+			return randFloat() * 100.0f + 10.0f;
+		}
+		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(1);
+		}
+		return -1;
+		break;
+	case ClearRank3:
+		if (debug) {
+			if (randFloat() < 0.5f) {
+				return -1;
+			}
+			return randFloat() * 100.0f + 10.0f;
+		}
+		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(2);
+		}
+		return -1;
+		break;
+	case CompleteRank1:
+		if (debug) {
+			return randFloat() * 100.0f + 10.0f;
+		}
+		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(0);
+		}
+		return -1;
+		break;
+	case CompleteRank2:
+		if (debug) {
+			return randFloat() * 100.0f + 110.0f;
+		}
+		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(1);
+		}
+		return -1;
+		break;
+	case CompleteRank3:
+		if (debug) {
+			return randFloat() * 100000.0f + 1110.0f;
+		}
+		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
+			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(2);
+		}
+		return -1;
+		break;
+	default:
+		JUT_PANICLINE(1094, nullptr);
+	}
+	return 0;
 }
 
 /*
@@ -4572,149 +3973,18 @@ lbl_80380088:
  * Address:	8038009C
  * Size:	00021C
  */
-void THiScore::copyTevBlock(J2DTevBlock*, J2DTevBlock*)
+void THiScore::copyTevBlock(J2DTevBlock* tevA, J2DTevBlock* tevB)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r5
-	mr       r3, r30
-	stw      r29, 0x34(r1)
-	mr       r29, r4
-	lwz      r12, 0(r30)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r29)
-	mr       r4, r3
-	mr       r3, r29
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	li       r31, 0
-	b        lbl_8038027C
+	tevA->setTevStageNum(tevB->getTevStageNum());
 
-lbl_803800F0:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	mr       r3, r29
-	mr       r4, r31
-	addi     r5, r1, 0x14
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lha      r0, 0(r3)
-	mr       r4, r31
-	addi     r5, r1, 0x20
-	sth      r0, 0x20(r1)
-	lha      r0, 2(r3)
-	sth      r0, 0x22(r1)
-	lha      r0, 4(r3)
-	sth      r0, 0x24(r1)
-	lha      r0, 6(r3)
-	mr       r3, r29
-	sth      r0, 0x26(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	mr       r3, r29
-	mr       r4, r31
-	addi     r5, r1, 0x10
-	stw      r0, 0x10(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	lwz      r6, 0(r3)
-	mr       r4, r31
-	lwz      r0, 4(r3)
-	mr       r3, r29
-	addi     r5, r1, 0x18
-	stw      r6, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	mr       r3, r29
-	mr       r4, r31
-	addi     r5, r1, 0xc
-	stw      r0, 0xc(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0(r3)
-	mr       r3, r29
-	mr       r4, r31
-	addi     r5, r1, 8
-	stb      r0, 8(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-
-lbl_8038027C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplw    r31, r0
-	blt      lbl_803800F0
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	for (u32 i = 0; i < (u8)tevB->getMaxStage(); i++) {
+		tevA->setTevOrder(i, *tevB->getTevOrder(i));
+		tevA->setTevColor(i, *tevB->getTevColor(i));
+		tevA->setTevKColor(i, *tevB->getTevKColor(i));
+		tevA->setTevStage(i, *tevB->getTevStage(i));
+		tevA->setIndTevStage(i, *tevB->getIndTevStage(i));
+		tevA->setTevSwapModeTable(i, *tevB->getTevSwapModeTable(i));
+	}
 }
 
 /*
@@ -4722,149 +3992,18 @@ lbl_8038027C:
  * Address:	803802B8
  * Size:	00021C
  */
-void THiScore::changeTevBlock(J2DTevBlock*, J2DTevBlock*)
+void THiScore::changeTevBlock(J2DTevBlock* tevB, J2DTevBlock* tevA)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r5
-	stw      r29, 0x34(r1)
-	mr       r29, r4
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r30)
-	mr       r4, r3
-	mr       r3, r30
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	li       r31, 0
-	b        lbl_80380498
+	tevA->setTevStageNum(tevB->getTevStageNum());
 
-lbl_8038030C:
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	mr       r3, r30
-	mr       r4, r31
-	addi     r5, r1, 0x14
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lha      r0, 0(r3)
-	mr       r4, r31
-	addi     r5, r1, 0x20
-	sth      r0, 0x20(r1)
-	lha      r0, 2(r3)
-	sth      r0, 0x22(r1)
-	lha      r0, 4(r3)
-	sth      r0, 0x24(r1)
-	lha      r0, 6(r3)
-	mr       r3, r30
-	sth      r0, 0x26(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	mr       r3, r30
-	mr       r4, r31
-	addi     r5, r1, 0x10
-	stw      r0, 0x10(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	lwz      r6, 0(r3)
-	mr       r4, r31
-	lwz      r0, 4(r3)
-	mr       r3, r30
-	addi     r5, r1, 0x18
-	stw      r6, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r3)
-	mr       r3, r30
-	mr       r4, r31
-	addi     r5, r1, 0xc
-	stw      r0, 0xc(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0(r3)
-	mr       r3, r30
-	mr       r4, r31
-	addi     r5, r1, 8
-	stb      r0, 8(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-
-lbl_80380498:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplw    r31, r0
-	blt      lbl_8038030C
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	for (u32 i = 0; i < (u8)tevB->getMaxStage(); i++) {
+		tevA->setTevOrder(i, *tevB->getTevOrder(i));
+		tevA->setTevColor(i, *tevB->getTevColor(i));
+		tevA->setTevKColor(i, *tevB->getTevKColor(i));
+		tevA->setTevStage(i, *tevB->getTevStage(i));
+		tevA->setIndTevStage(i, *tevB->getIndTevStage(i));
+		tevA->setTevSwapModeTable(i, *tevB->getTevSwapModeTable(i));
+	}
 }
 
 /*
@@ -4872,46 +4011,16 @@ lbl_80380498:
  * Address:	803804D4
  * Size:	000080
  */
-void THiScore::copyColorBlock(J2DColorBlock*, J2DColorBlock*)
+void THiScore::copyColorBlock(J2DColorBlock* colorA, J2DColorBlock* colorB)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mr       r6, r5
-	mr       r7, r5
-	mr       r8, r4
-	lbz      r0, 8(r5)
-	li       r9, 0
-	stb      r0, 8(r4)
-	lbz      r0, 0x12(r5)
-	stb      r0, 0x12(r4)
-	b        lbl_80380540
+	colorA->mChannelCount = colorB->mChannelCount;
+	colorA->mCullMode     = colorB->mCullMode;
+	for (u32 i = 0; i < colorB->mChannelCount; i++) {
+		colorA->mChannels[i] = colorB->mChannels[i];
 
-lbl_803804FC:
-	lhz      r0, 0xa(r6)
-	addi     r6, r6, 2
-	addi     r9, r9, 1
-	sth      r0, 0xa(r4)
-	addi     r4, r4, 2
-	lwz      r0, 0(r7)
-	addi     r7, r7, 4
-	stw      r0, 8(r1)
-	lbz      r3, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r3, 0(r8)
-	lbz      r3, 0xa(r1)
-	stb      r0, 1(r8)
-	lbz      r0, 0xb(r1)
-	stb      r3, 2(r8)
-	stb      r0, 3(r8)
-	addi     r8, r8, 4
-
-lbl_80380540:
-	lbz      r0, 8(r5)
-	cmplw    r9, r0
-	blt      lbl_803804FC
-	addi     r1, r1, 0x10
-	blr
-	*/
+		JUtility::TColor color = colorB->mColors[i];
+		colorA->mColors[i]     = color;
+	}
 }
 
 /*
@@ -4919,46 +4028,16 @@ lbl_80380540:
  * Address:	80380554
  * Size:	000080
  */
-void THiScore::changeColorBlock(J2DColorBlock*, J2DColorBlock*)
+void THiScore::changeColorBlock(J2DColorBlock* colorB, J2DColorBlock* colorA)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mr       r6, r4
-	mr       r7, r4
-	mr       r8, r5
-	lbz      r0, 8(r4)
-	li       r9, 0
-	stb      r0, 8(r5)
-	lbz      r0, 0x12(r4)
-	stb      r0, 0x12(r5)
-	b        lbl_803805C0
+	colorA->mChannelCount = colorB->mChannelCount;
+	colorA->mCullMode     = colorB->mCullMode;
+	for (u32 i = 0; i < colorB->mChannelCount; i++) {
+		colorA->mChannels[i] = colorB->mChannels[i];
 
-lbl_8038057C:
-	lhz      r0, 0xa(r6)
-	addi     r6, r6, 2
-	addi     r9, r9, 1
-	sth      r0, 0xa(r5)
-	addi     r5, r5, 2
-	lwz      r0, 0(r7)
-	addi     r7, r7, 4
-	stw      r0, 8(r1)
-	lbz      r3, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r3, 0(r8)
-	lbz      r3, 0xa(r1)
-	stb      r0, 1(r8)
-	lbz      r0, 0xb(r1)
-	stb      r3, 2(r8)
-	stb      r0, 3(r8)
-	addi     r8, r8, 4
-
-lbl_803805C0:
-	lbz      r0, 8(r4)
-	cmplw    r9, r0
-	blt      lbl_8038057C
-	addi     r1, r1, 0x10
-	blr
-	*/
+		JUtility::TColor color = colorB->mColors[i];
+		colorA->mColors[i]     = color;
+	}
 }
 
 /*
@@ -4968,6 +4047,21 @@ lbl_803805C0:
  */
 void THiScore::updateLayout()
 {
+	f32 ydiff = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
+	_1FC      = ydiff * 2.0f;
+
+	if (mIsAllTreasures) {
+		for (int i = 0; i < mMaxSelect; i++) {
+			TIndexPane* idpane = mIndexPaneList[i];
+			idpane->mPane->setOffsetY(idpane->_1C + (ydiff * mClearListHeightRate) * f32(i - mCurrentSelect));
+			idpane->_1C = idpane->mPane->mOffset.y;
+		}
+
+		ydiff = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
+		_A0   = mIndexPaneList[_90]->mPane->mOffset.y;
+		_A4   = mIndexPaneList[_98]->mPane->mOffset.y;
+	}
+	mIndexGroup->mHeight = ydiff;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

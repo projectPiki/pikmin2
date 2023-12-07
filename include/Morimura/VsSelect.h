@@ -344,7 +344,7 @@ struct TVsSelect : public TScrollList {
 	Vector2f mOnyonGoalOffset;                 // _2A0
 	Vector2f mOlimarFaceScales[5];             // _2A8
 	Vector2f mLouieFaceScales[5];              // _2D0
-	JGeometry::TVec2f mPlayerMainIconPos[2];   // _2F8
+	Vector2f mPlayerMainIconPos[2];            // _2F8
 	Vector2f mPlayerIconOffset[2];             // _308
 	JGeometry::TVec2f mRulesPanePos;           // _318
 	Vector2f mPowerIconOffset;                 // _320
