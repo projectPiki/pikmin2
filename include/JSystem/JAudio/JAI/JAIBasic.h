@@ -136,4 +136,6 @@ void JAIBasic::startSoundActorT(u32 id, T** handlePtr, JAInter::Actor* actor, u3
 	}
 }
 
+static inline JKRHeap* JAIGetCurrentHeap() { return JAIBasic::msCurrentHeap; }
+
 #endif

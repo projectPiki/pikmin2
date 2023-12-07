@@ -21,6 +21,7 @@ struct SeqUpdateData;
 struct SoundInfo {
 	u32 mFlag;    // _00
 	u8 mPriority; // _04
+	u16 _06;      // _06
 	u32 mPitch;   // _08
 	union volume_t {
 		u32 w;
@@ -30,6 +31,8 @@ struct SoundInfo {
 
 namespace SequenceMgr {
 struct CustomHeapInfo {
+	u32 _00; // _00, unknown
+	u32 _04; // _04, unknown
 };
 
 typedef JAInter::SequenceMgr::CustomHeapInfo (*CustomHeapCallback)(u32, u16, JAISequence*);

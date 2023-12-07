@@ -3,21 +3,6 @@
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global deadObjectFreePointer__Q27JAInter14DummyObjectMgr
-    deadObjectFreePointer__Q27JAInter14DummyObjectMgr:
-        .skip 0x4
-    .global deadObjectUsedPointer__Q27JAInter14DummyObjectMgr
-    deadObjectUsedPointer__Q27JAInter14DummyObjectMgr:
-        .skip 0x4
-    .global deadObjectObject__Q27JAInter14DummyObjectMgr
-    deadObjectObject__Q27JAInter14DummyObjectMgr:
-        .skip 0x8
-*/
-
 JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectFreePointer;
 JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectUsedPointer;
 JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectObject;
@@ -29,7 +14,7 @@ JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectObject;
  */
 void JAInter::DummyObjectMgr::init()
 {
-	JKRHeap* heap         = JAIBasic::msCurrentHeap;
+	JKRHeap* heap         = JAIGetCurrentHeap();
 	deadObjectFreePointer = deadObjectObject
 	    = (DummyObject*)new (heap, 0x20) u8[sizeof(DummyObject) * JAIGlobalParameter::getParamDummyObjectMax()];
 	deadObjectUsedPointer = nullptr;
@@ -43,67 +28,6 @@ void JAInter::DummyObjectMgr::init()
 	}
 	deadObjectObject[i]._00 = &deadObjectObject[i - 1];
 	deadObjectObject[i]._04 = nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lwz      r31, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamDummyObjectMax__18JAIGlobalParameterFv
-	mulli    r3, r3, 0x1c
-	mr       r4, r31
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	li       r0, 0
-	stw      r3, deadObjectObject__Q27JAInter14DummyObjectMgr@sda21(r13)
-	li       r31, 1
-	li       r30, 0x1c
-	stw      r3, deadObjectFreePointer__Q27JAInter14DummyObjectMgr@sda21(r13)
-	stw      r0, deadObjectUsedPointer__Q27JAInter14DummyObjectMgr@sda21(r13)
-	stw      r0, 0(r3)
-	lwz      r3, deadObjectObject__Q27JAInter14DummyObjectMgr@sda21(r13)
-	addi     r0, r3, 0x1c
-	stw      r0, 4(r3)
-	b        lbl_800AD51C
-
-lbl_800AD4E8:
-	addi     r0, r31, -1
-	addi     r3, r31, 1
-	mulli    r4, r0, 0x1c
-	lwz      r5, deadObjectObject__Q27JAInter14DummyObjectMgr@sda21(r13)
-	addi     r0, r30, 4
-	addi     r31, r31, 1
-	add      r4, r5, r4
-	stwx     r4, r5, r30
-	mulli    r3, r3, 0x1c
-	addi     r30, r30, 0x1c
-	lwz      r4, deadObjectObject__Q27JAInter14DummyObjectMgr@sda21(r13)
-	add      r3, r4, r3
-	stwx     r3, r4, r0
-
-lbl_800AD51C:
-	bl       getParamDummyObjectMax__18JAIGlobalParameterFv
-	addi     r0, r3, -1
-	cmplw    r31, r0
-	blt      lbl_800AD4E8
-	addi     r0, r31, -1
-	lwz      r3, deadObjectObject__Q27JAInter14DummyObjectMgr@sda21(r13)
-	mulli    r0, r0, 0x1c
-	li       r4, 0
-	mulli    r5, r31, 0x1c
-	add      r0, r3, r0
-	stwx     r0, r3, r5
-	lwz      r0, deadObjectObject__Q27JAInter14DummyObjectMgr@sda21(r13)
-	add      r3, r0, r5
-	stw      r4, 4(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
