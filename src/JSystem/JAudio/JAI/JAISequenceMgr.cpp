@@ -9,67 +9,9 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global seqTrackInfo__Q27JAInter11SequenceMgr
-    seqTrackInfo__Q27JAInter11SequenceMgr:
-        .skip 0x4
-    .global FixSeqBufPointer__Q27JAInter11SequenceMgr
-    FixSeqBufPointer__Q27JAInter11SequenceMgr:
-        .skip 0x4
-    .global seqControl__Q27JAInter11SequenceMgr
-    seqControl__Q27JAInter11SequenceMgr:
-        .skip 0x8
-    .global arcPointer__Q27JAInter11SequenceMgr
-    arcPointer__Q27JAInter11SequenceMgr:
-        .skip 0x4
-    .global customHeapCallback__Q27JAInter11SequenceMgr
-    customHeapCallback__Q27JAInter11SequenceMgr:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516FA0
-    lbl_80516FA0:
-        .float 1.0
-    .global lbl_80516FA4
-    lbl_80516FA4:
-        .float 0.5
-    .global lbl_80516FA8
-    lbl_80516FA8:
-        .4byte 0x00000000
-    .global lbl_80516FAC
-    lbl_80516FAC:
-        .4byte 0x42800000
-    .global lbl_80516FB0
-    lbl_80516FB0:
-        .4byte 0x3F8CCCCD
-        .4byte 0x00000000
-    .global lbl_80516FB8
-    lbl_80516FB8:
-        .4byte 0x3FE00000
-        .4byte 0x00000000
-    .global lbl_80516FC0
-    lbl_80516FC0:
-        .4byte 0x40080000
-        .4byte 0x00000000
-    .global lbl_80516FC8
-    lbl_80516FC8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80516FD0
-    lbl_80516FD0:
-        .4byte 0x42FE0000
-        .4byte 0x00000000
-    .global lbl_80516FD8
-    lbl_80516FD8:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
-
 JAInter::SeqUpdateData* JAInter::SequenceMgr::seqTrackInfo;
 JAISequence** JAInter::SequenceMgr::FixSeqBufPointer;
+JAInter::LinkSound JAInter::SequenceMgr::seqControl;
 JKRArchive* JAInter::SequenceMgr::arcPointer;
 JAInter::SequenceMgr::CustomHeapCallback JAInter::SequenceMgr::customHeapCallback;
 
@@ -80,6 +22,17 @@ JAInter::SequenceMgr::CustomHeapCallback JAInter::SequenceMgr::customHeapCallbac
  */
 void JAInter::SequenceMgr::init()
 {
+	seqControl.init();
+	FixSeqBufPointer = new (JAIGetCurrentHeap(), 0x20) JAISequence*[JAIGlobalParameter::getParamSeqPlayTrackMax()];
+
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqControlBufferMax(); i++) {
+		JAISequence* sequence = JAIBasic::msBasic->makeSequence();
+		seqControl._00->append(sequence);
+	}
+
+	for (JSULink<JAISound>* link = seqControl._00->getFirst(); link; link = link->getNext()) {
+		JAISound* obj = link->getObject();
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -2873,11 +2826,11 @@ void JAInter::SequenceMgr::checkCustomDvdLoadArc(u32 p1, u32 index)
 {
 	JAISequence* sequence   = seqTrackInfo[index].mSequence;
 	seqTrackInfo[index]._03 = 0;
-	CustomHeapInfo info     = customHeapCallback(1, sequence->mSoundInfo->_06, sequence);
+	CustomHeapInfo info     = customHeapCallback(1, sequence->mSoundInfo->mOffsetNo, sequence);
 	if (sequence != nullptr && sequence->_15 == 1) {
 		sequence->_15 = 2;
 	} else {
-		CustomHeapInfo info2 = customHeapCallback(2, sequence->mSoundInfo->_06, sequence);
+		CustomHeapInfo info2 = customHeapCallback(2, sequence->mSoundInfo->mOffsetNo, sequence);
 	}
 	/*
 	stwu     r1, -0x20(r1)

@@ -369,7 +369,7 @@ void JAInter::InitData::initBnkList(u32* p1)
 	}
 	BankWave::initOnCodeBnk = (BankWave::TCodeBnk*)transInitDataFile(start, (count / 3) * 0xC + 4);
 	while (reinterpret_cast<u32*>(aafPointer)[*p1] != 0) {
-		BankWave::initOnCodeBnk[*p1][0] = *reinterpret_cast<int*>(aafPointer) + BankWave::initOnCodeBnk[*p1][0];
+		BankWave::initOnCodeBnk[*p1]._00 = *reinterpret_cast<int*>(aafPointer) + BankWave::initOnCodeBnk[*p1]._00;
 		*p1 += 3;
 	}
 	*p1 += 1;

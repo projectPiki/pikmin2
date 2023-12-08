@@ -19,14 +19,27 @@ struct Actor;
 struct DummyVec;
 struct SeqUpdateData;
 struct SoundInfo {
-	u32 mFlag;    // _00
-	u8 mPriority; // _04
-	u16 _06;      // _06
-	u32 mPitch;   // _08
+	u32 mFlag;     // _00
+	u8 mPriority;  // _04
+	u16 mOffsetNo; // _06
+	u32 mPitch;    // _08
 	union volume_t {
 		u32 w;
 		u8 c;
 	} mVolume; // _0C
+};
+
+struct LinkSound {
+	void init();
+	JAISound* getSound();
+	void releaseSound(JAISound*);
+
+	// unused/inlined:
+	void getFreeStartFirstObject();
+	void getUsedEndFirstObject();
+
+	JSUList<JAISound>* _00; // _00
+	JSUList<JAISound>* _04; // _04
 };
 
 namespace SequenceMgr {
@@ -70,8 +83,10 @@ void loadCustomArcSeqData(u16, bool);
 
 extern SeqUpdateData* seqTrackInfo;
 extern JAISequence** FixSeqBufPointer;
+extern LinkSound seqControl;
 extern JKRArchive* arcPointer;
 extern CustomHeapCallback customHeapCallback;
+
 } // namespace SequenceMgr
 
 struct Actor {
@@ -144,19 +159,6 @@ struct HeapBlock {
 	int _08;   // _08
 	u32 _0C;   // _0C
 	int _10;   // _10
-};
-
-struct LinkSound {
-	void init();
-	JAISound* getSound();
-	void releaseSound(JAISound*);
-
-	// unused/inlined:
-	void getFreeStartFirstObject();
-	void getUsedEndFirstObject();
-
-	JSUList<JAISound>* _00; // _00
-	JSUList<JAISound>* _04; // _04
 };
 
 struct MuteBit {

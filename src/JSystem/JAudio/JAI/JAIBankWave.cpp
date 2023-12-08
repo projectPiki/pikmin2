@@ -6,48 +6,10 @@
 #include "types.h"
 #include "JSystem/JAudio/JAI/JAInter/BankWave.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global flags__Q27JAInter8BankWave
-    flags__Q27JAInter8BankWave:
-        .4byte 0x00000000
-    .global SceneSetFlag__Q27JAInter8BankWave
-    SceneSetFlag__Q27JAInter8BankWave:
-        .4byte 0xFFFFFFFF
-    .global initCallback__Q27JAInter8BankWave
-    initCallback__Q27JAInter8BankWave:
-        .4byte init__Q27JAInter8BankWaveFv
-    .global firstLoadCallback__Q27JAInter8BankWave
-    firstLoadCallback__Q27JAInter8BankWave:
-        .4byte loadFirstStayWave__Q27JAInter8BankWaveFv
-    .global secondLoadCallback__Q27JAInter8BankWave
-    secondLoadCallback__Q27JAInter8BankWave:
-        .4byte loadSecondStayWave__Q27JAInter8BankWaveFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global initOnCodeBnk__Q27JAInter8BankWave
-    initOnCodeBnk__Q27JAInter8BankWave:
-        .skip 0x4
-    .global initOnCodeWs__Q27JAInter8BankWave
-    initOnCodeWs__Q27JAInter8BankWave:
-        .skip 0x4
-    .global wsGroupNumber__Q27JAInter8BankWave
-    wsGroupNumber__Q27JAInter8BankWave:
-        .skip 0x4
-    .global wsLoadStatus__Q27JAInter8BankWave
-    wsLoadStatus__Q27JAInter8BankWave:
-        .skip 0x4
-    .global wsMax__Q27JAInter8BankWave
-    wsMax__Q27JAInter8BankWave:
-        .skip 0x8
-*/
-
 JAInter::BankWave::TCodeBnk* JAInter::BankWave::initOnCodeBnk;
 JAInter::BankWave::TCodeWS* JAInter::BankWave::initOnCodeWs;
-long* JAInter::BankWave::wsGroupNumber;
-long* JAInter::BankWave::wsLoadStatus;
+s32* JAInter::BankWave::wsGroupNumber;
+s32* JAInter::BankWave::wsLoadStatus;
 int JAInter::BankWave::wsMax;
 
 JAInter::BankWave::Flags JAInter::BankWave::flags                     = { 0 };
@@ -61,7 +23,7 @@ JAInter::BankWave::LoadCallback JAInter::BankWave::secondLoadCallback = loadSeco
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::setWsGroupNumber(long index, long groupNumber)
+void JAInter::BankWave::setWsGroupNumber(s32 index, s32 groupNumber)
 {
 	// UNUSED FUNCTION
 	wsGroupNumber[index] = groupNumber;
@@ -72,7 +34,7 @@ void JAInter::BankWave::setWsGroupNumber(long index, long groupNumber)
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::setWsLoadStatus(long index, long status)
+void JAInter::BankWave::setWsLoadStatus(s32 index, s32 status)
 {
 	// UNUSED FUNCTION
 	wsLoadStatus[index] = status;
@@ -83,7 +45,7 @@ void JAInter::BankWave::setWsLoadStatus(long index, long status)
  * Address:	........
  * Size:	000010
  */
-long JAInter::BankWave::getWsGroupNumber(long index)
+s32 JAInter::BankWave::getWsGroupNumber(s32 index)
 {
 	// UNUSED FUNCTION
 	return wsGroupNumber[index];
@@ -94,7 +56,7 @@ long JAInter::BankWave::getWsGroupNumber(long index)
  * Address:	........
  * Size:	000010
  */
-long JAInter::BankWave::getWsLoadStatus(long index)
+s32 JAInter::BankWave::getWsLoadStatus(s32 index)
 {
 	// UNUSED FUNCTION
 	return wsLoadStatus[index];
@@ -128,41 +90,31 @@ void JAInter::BankWave::setSecondLoadCallback(JAInter::BankWave::LoadCallback ca
  */
 void JAInter::BankWave::init()
 {
-	wsGroupNumber = new (JAIBasic::msCurrentHeap, 0x20) long[wsMax];
-	wsLoadStatus  = new (JAIBasic::msCurrentHeap, 0x20) long[wsMax];
+	wsGroupNumber = new (JAIGetCurrentHeap(), 0x20) s32[wsMax];
+	wsLoadStatus  = new (JAIGetCurrentHeap(), 0x20) s32[wsMax];
+
 	JASWaveArcLoader::setCurrentDir(JAIGlobalParameter::getParamWavePath());
-	JASWaveBankMgr::init(0x100);
+	JASWaveBankMgr::init(256);
 	JASWaveArcLoader::init(nullptr);
-	if (initOnCodeWs != nullptr) {
-		for (long i = 0; *initOnCodeWs[i] != 0; i++) {
-			if (initOnCodeWs[i] != 0) {
-				JASWaveBankMgr::registWaveBankWS(i, initOnCodeWs[i]);
+	if (initOnCodeWs) {
+		for (s32 i = 0; initOnCodeWs[i]._00; i++) {
+			if (initOnCodeWs[i]._00) {
+				JASWaveBankMgr::registWaveBankWS(i, initOnCodeWs[i]._00);
 				setWsGroupNumber(i, -1);
 				setWsLoadStatus(i, 0);
 			}
 		}
 	}
-	JASBankMgr::init(0x100);
-	if (initOnCodeBnk != nullptr) {
-		for (long i = 0; initOnCodeBnk[i][0] != 0; i++) {
-			if (initOnCodeBnk[i][0] != 0) {
-				JASBankMgr::registBankBNK(i, &initOnCodeBnk[i]);
+
+	JASBankMgr::init(256);
+	if (initOnCodeBnk) {
+		for (s32 i = 0; initOnCodeBnk[i]._00; i++) {
+			if (initOnCodeBnk[i]._00) {
+				JASBankMgr::registBankBNK(i, initOnCodeBnk[i]._00);
 			}
 		}
-		for (long i = 0; initOnCodeBnk[i][0] != 0; i++) {
-			JASBankMgr::assignWaveBank(i, initOnCodeBnk[i][2]);
-		}
+		assignWaveBanks();
 	}
-	// if (initOnCodeBnk != nullptr) {
-	// 	for (int i = 0; initOnCodeBnk[i]._00 != nullptr; i++) {
-	// 		if (initOnCodeBnk[i]._00 != nullptr) {
-	// 			JASBankMgr::registBankBNK(i, initOnCodeBnk + i);
-	// 		}
-	// 	}
-	// 	for (int i = 0; initOnCodeBnk[i]._00 != nullptr; i++) {
-	// 		JASBankMgr::assignWaveBank(i, initOnCodeBnk[i]._08);
-	// 	}
-	// }
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -287,8 +239,8 @@ void JAInter::BankWave::readInitSoundData()
 void JAInter::BankWave::loadFirstStayWave()
 {
 	if (initOnCodeWs != nullptr && !flags.asStruct._7) {
-		for (int i = 0; initOnCodeWs[i][0] != nullptr; i++) {
-			if (initOnCodeWs[i][2] == 0) {
+		for (int i = 0; initOnCodeWs[i]._00 != nullptr; i++) {
+			if (initOnCodeWs[i]._08 == 0) {
 				loadGroupWave(i, 0);
 			}
 		}
@@ -304,8 +256,8 @@ void JAInter::BankWave::loadFirstStayWave()
 void JAInter::BankWave::loadSecondStayWave()
 {
 	if (!flags.asStruct._6 && initOnCodeWs != nullptr) {
-		for (int i = 0; initOnCodeWs[i][0] != 0; i++) {
-			if (initOnCodeWs[i][2] == 1) {
+		for (int i = 0; initOnCodeWs[i]._00 != 0; i++) {
+			if (initOnCodeWs[i]._08 == 1) {
 				loadGroupWave(i, 0);
 			}
 		}
@@ -339,7 +291,7 @@ void JAInter::BankWave::finishSceneSet(u32 flag)
  * Address:	........
  * Size:	000080
  */
-void JAInter::BankWave::loadSceneWave(long, long)
+void JAInter::BankWave::loadSceneWave(s32, s32)
 {
 	// UNUSED FUNCTION
 }
@@ -349,7 +301,7 @@ void JAInter::BankWave::loadSceneWave(long, long)
  * Address:	........
  * Size:	000034
  */
-void JAInter::BankWave::checkSceneWaveOnMemory(long, long)
+void JAInter::BankWave::checkSceneWaveOnMemory(s32, s32)
 {
 	// UNUSED FUNCTION
 }
@@ -359,12 +311,12 @@ void JAInter::BankWave::checkSceneWaveOnMemory(long, long)
  * Address:	800AC0E4
  * Size:	000074
  */
-void JAInter::BankWave::loadGroupWave(long bankIndex, long arcIndex)
+void JAInter::BankWave::loadGroupWave(s32 bankIndex, s32 arcIndex)
 {
 	JASWaveBankMgr::loadWave(bankIndex, arcIndex, nullptr);
 	SceneSetFlag            = -1;
 	wsLoadStatus[bankIndex] = 1;
-	long v1                 = bankIndex * 0x10000;
+	s32 v1                  = bankIndex * 0x10000;
 	JASDvd::checkPassDvdT(v1 + arcIndex, nullptr, finishSceneSet);
 	wsGroupNumber[bankIndex] = arcIndex;
 	/*
@@ -405,7 +357,7 @@ void JAInter::BankWave::loadGroupWave(long bankIndex, long arcIndex)
  * Address:	........
  * Size:	000010
  */
-long JAInter::BankWave::getWaveGroupNumber(long)
+s32 JAInter::BankWave::getWaveGroupNumber(s32)
 {
 	// UNUSED FUNCTION
 }
@@ -415,7 +367,7 @@ long JAInter::BankWave::getWaveGroupNumber(long)
  * Address:	........
  * Size:	000010
  */
-long JAInter::BankWave::getWaveLoadStatus(long)
+s32 JAInter::BankWave::getWaveLoadStatus(s32)
 {
 	// UNUSED FUNCTION
 }

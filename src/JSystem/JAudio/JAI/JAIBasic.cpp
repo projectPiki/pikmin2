@@ -549,7 +549,7 @@ void JAIBasic::startSoundBasic(u32 id, JAISequence** handlePtr, JAInter::Actor* 
 {
 	if (_0E._1 != true && (JAInter::SeMgr::seHandle == nullptr || (JAInter::SeMgr::seHandle->mSoundID & 0x3FF) != (id & 0x3FF))) {
 		if (handlePtr == nullptr) {
-			handlePtr = &JAInter::SequenceMgr::FixSeqBufPointer[info->mCount];
+			handlePtr = &JAInter::SequenceMgr::FixSeqBufPointer[info->mPriority];
 		}
 		JAInter::SequenceMgr::storeSeqBuffer(handlePtr, actor, id, p4, p5, info);
 	}
@@ -844,18 +844,15 @@ f32 JAIBasic::getMapInfoFxParameter(u32 p1) { return (p1 == 0) ? 0.0f : 1.0f; }
  * Address:	800ACACC
  * Size:	000050
  */
-u16 JAIBasic::getSoundOffsetNumberFromID(u32 p1)
+u16 JAIBasic::getSoundOffsetNumberFromID(u32 id)
 {
 	// TODO: probably an inline here.
-	return ((JAInter::SoundTable::getInfoFormat(p1) & 1) != 0) ? JAInter::SoundTable::getInfoPointer(p1)->mCount : p1 & 0x3FF;
-	// u32 v1;
-	// if ((JAInter::SoundTable::getInfoFormat(p1) & 1) != 0) {
-	// 	JAInter::SoundInfo* info = JAInter::SoundTable::getInfoPointer(p1);
-	// 	v1                       = (u32)info->count.v3[1];
-	// } else {
-	// 	v1 = p1 & 0x3FF;
-	// }
-	// return v1;
+	if (JAInter::SoundTable::getInfoFormat(id) & 1) {
+		return JAInter::SoundTable::getInfoPointer(id)->mOffsetNo;
+	}
+
+	return (id & 0x3FF);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
