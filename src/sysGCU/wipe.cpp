@@ -402,15 +402,9 @@ void BallFader::resolveCollision()
  */
 void BallFader::birth()
 {
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-BallFader::~BallFader()
-{
+	// this is just here to generate weak functions in the right order
+	WipeBase* base;
+	base->isBlack();
+	base->isWhite();
 	// UNUSED FUNCTION
 }

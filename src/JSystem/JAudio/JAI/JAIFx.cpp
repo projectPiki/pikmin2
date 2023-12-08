@@ -5,27 +5,6 @@
 #include "JSystem/JAudio/JAS/JASDsp.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global initOnCodeFxScene__Q27JAInter2Fx
-    initOnCodeFxScene__Q27JAInter2Fx:
-        .skip 0x4
-    .global mSceneMax__Q27JAInter2Fx
-    mSceneMax__Q27JAInter2Fx:
-        .skip 0x4
-    .global mBufferSizeMax__Q27JAInter2Fx
-    mBufferSizeMax__Q27JAInter2Fx:
-        .skip 0x4
-    .global mBufferPointer__Q27JAInter2Fx
-    mBufferPointer__Q27JAInter2Fx:
-        .skip 0x4
-    .global mFxconfigTable__Q27JAInter2Fx
-    mFxconfigTable__Q27JAInter2Fx:
-        .skip 0x8
-*/
-
 JAInter::Fx::Init* JAInter::Fx::initOnCodeFxScene;
 u8 JAInter::Fx::mSceneMax;
 u32* JAInter::Fx::mBufferSizeMax;
@@ -39,22 +18,22 @@ JASDsp::FxlineConfig_** JAInter::Fx::mFxconfigTable;
  */
 void JAInter::Fx::init()
 {
-	if (initOnCodeFxScene != nullptr) {
-		mBufferSizeMax = new (JAIBasic::msCurrentHeap, 4) u32[4];
-		mBufferPointer = new (JAIBasic::msCurrentHeap, 4) short*[4];
+	if (initOnCodeFxScene) {
+		mBufferSizeMax = new (JAIGetCurrentHeap(), 4) u32[4];
+		mBufferPointer = new (JAIGetCurrentHeap(), 4) short*[4];
 		Init* init     = initOnCodeFxScene;
 		setSceneMax(init->mSceneMax);
 		setBufferMax(init->mBufferMax1, init->mBufferMax2, init->mBufferMax3, init->mBufferMax4);
-		JKRHeap* heap = JAIBasic::msCurrentHeap;
+		JKRHeap* heap = JAIGetCurrentHeap();
 		setTablePointer(new (heap, 0x20) void*[getSceneMax()]);
 		for (u8 i = 0; i < getSceneMax(); i++) {
-			setScenePointer(i, reinterpret_cast<u8*>(initOnCodeFxScene) + initOnCodeFxScene->mScenePointerOffsets[i]);
+			setScenePointer(i, (reinterpret_cast<u8*>(initOnCodeFxScene) + init->mScenePointerOffsets[i]));
 		}
 		for (u8 i = 0; i < 4; i++) {
 			if (getBufferSizeMax(i) != 0) {
-				heap = JAIBasic::msCurrentHeap;
-				setBufferPointer(i, new (heap, 0x20) short[0xA0 * getBufferSizeMax(i)]);
-				JASDsp::setFXLine(i, getBufferPointer(i), *(getFxconfigTable() + i));
+				s16* buf = new (JAIGetCurrentHeap(), 0x20) s16[0xA0 * getBufferSizeMax(i)];
+				setBufferPointer(i, buf);
+				JASDsp::setFXLine(i, getBufferPointer(i), &(getFxconfigTable()[0])[i]);
 			}
 		}
 	}

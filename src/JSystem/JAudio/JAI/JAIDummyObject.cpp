@@ -35,7 +35,7 @@ void JAInter::DummyObjectMgr::init()
  * Address:	800AD56C
  * Size:	000068
  */
-JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32 p1)
+JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32 lifeTime)
 {
 	DummyObject** freeTop = &deadObjectFreePointer;
 	DummyObject** usedTop = &deadObjectUsedPointer;
@@ -51,10 +51,10 @@ JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32 p1
 			target->mNext = nullptr;
 		}
 
-		target->mPrev  = nullptr;
-		usedTop[0]     = target;
-		target->_18    = p1;
-		target->mSound = nullptr;
+		target->mPrev     = nullptr;
+		usedTop[0]        = target;
+		target->mLifeTime = lifeTime;
+		target->mSound    = nullptr;
 
 	} else {
 		target = nullptr;
@@ -83,9 +83,9 @@ void JAInter::DummyObjectMgr::check()
 	DummyObject* currUsed = deadObjectUsedPointer;
 	while (currUsed) {
 		DummyObject* nextUsed = currUsed->mNext;
-		currUsed->_18--;
+		currUsed->mLifeTime--;
 
-		if (!currUsed->_18 || !currUsed->mSound) {
+		if (currUsed->mLifeTime == 0 || !currUsed->mSound) {
 			if (currUsed->mSound) {
 				currUsed->mSound->stop(0);
 			}

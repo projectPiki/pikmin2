@@ -1579,7 +1579,7 @@ LIBS = [
             ["sysGCU/modelMgr", True],
             ["sysGCU/heapStatus", False],
             ["sysGCU/light", False],
-            ["sysGCU/wipe", False],
+            ["sysGCU/wipe", True],
             ["sysGCU/moviePlayer", False],
             ["sysGCU/JSTObjectActor", False],
             ["sysGCU/JSTObjectCamera", False],

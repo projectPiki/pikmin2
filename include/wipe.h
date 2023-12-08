@@ -10,7 +10,7 @@ struct Graphics;
 struct WipeBase : public CNode {
 	WipeBase();
 
-	virtual ~WipeBase() { }                  // _08 (weak)
+	// virtual ~WipeBase() { }                  // _08 (weak)
 	virtual void update();                   // _10
 	virtual void draw();                     // _14
 	virtual bool isWhite() { return false; } // _18 (weak)
@@ -32,10 +32,9 @@ struct WipeBase : public CNode {
 struct WipeInFader : public WipeBase {
 	WipeInFader();
 
-	virtual bool isWhite(); // _18
-	virtual bool isBlack(); // _1C
-
-	virtual ~WipeInFader() { } // _08 (weak)
+	// virtual ~WipeInFader() { } // _08 (weak)
+	virtual bool isWhite();    // _18
+	virtual bool isBlack();    // _1C
 	virtual void do_draw(f32); // _24
 
 	JUtility::TColor mColor; // _24
@@ -47,11 +46,11 @@ struct WipeInFader : public WipeBase {
 struct WipeOutFader : public WipeBase {
 	WipeOutFader();
 
-	virtual bool isWhite();     // _18
-	virtual bool isBlack();     // _1C
-	virtual ~WipeOutFader() { } // _08 (weak)
-	virtual void on_start();    // _20
-	virtual void do_draw(f32);  // _24
+	// virtual ~WipeOutFader() { } // _08 (weak)
+	virtual bool isWhite();    // _18
+	virtual bool isBlack();    // _1C
+	virtual void on_start();   // _20
+	virtual void do_draw(f32); // _24
 
 	JUtility::TColor mColor; // _24
 };
@@ -61,11 +60,11 @@ struct WipeOutFader : public WipeBase {
  */
 struct WipeOutInFader : public WipeBase {
 
-	virtual bool isWhite();       // _18
-	virtual bool isBlack();       // _1C
-	virtual ~WipeOutInFader() { } // _08 (weak)
-	virtual void on_start();      // _20
-	virtual void do_draw(f32);    // _24
+	// virtual ~WipeOutInFader() { } // _08 (weak)
+	virtual bool isWhite();    // _18
+	virtual bool isBlack();    // _1C
+	virtual void on_start();   // _20
+	virtual void do_draw(f32); // _24
 
 	WipeOutFader mWipeOutFader; // _24
 	WipeInFader mWipeInFader;   // _4C
@@ -75,9 +74,9 @@ struct WipeOutInFader : public WipeBase {
 struct BlackFader : public WipeBase {
 	BlackFader();
 
+	// virtual ~BlackFader() { }  // _08 (weak)
 	virtual bool isWhite();    // _18
 	virtual bool isBlack();    // _1C
-	virtual ~BlackFader() { }  // _08 (weak)
 	virtual void do_draw(f32); // _24
 
 	JUtility::TColor mColor; // _24
@@ -93,9 +92,9 @@ struct BallFader : public WipeBase {
 
 	BallFader(int);
 
+	// virtual ~BallFader();      // _08
 	virtual bool isWhite();    // _18
 	virtual bool isBlack();    // _1C
-	virtual ~BallFader();      // _08
 	virtual void on_start();   // _20
 	virtual void do_draw(f32); // _24
 
