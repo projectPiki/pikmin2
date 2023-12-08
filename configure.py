@@ -370,7 +370,7 @@ LIBS = [
             ["JSystem/JAudio/JAI/JAIBankWave", False],
             ["JSystem/JAudio/JAI/JAIBasic", False],
             ["JSystem/JAudio/JAI/JAIConst", True],
-            ["JSystem/JAudio/JAI/JAIDummyObject", False],
+            ["JSystem/JAudio/JAI/JAIDummyObject", True],
             ["JSystem/JAudio/JAI/JAIFx", False],
             ["JSystem/JAudio/JAI/JAIGlobalParameter", True],
             ["JSystem/JAudio/JAI/JAIInitData", False],

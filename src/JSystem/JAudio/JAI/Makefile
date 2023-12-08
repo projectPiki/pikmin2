@@ -3,7 +3,7 @@ JAUDIO_JAI_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIBankWave.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIBasic.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAIConst.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIDummyObject.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAIDummyObject.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIFx.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAIGlobalParameter.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIInitData.o\

@@ -118,11 +118,11 @@ struct DummyObjectMgr {
 	 * @size{0x1C}
 	 */
 	struct DummyObject {
-		DummyObject* _00; // _00
-		DummyObject* _04; // _04
-		JAISound* mSound; // _08
-		Vec _0C;          // _0C
-		u32 _18;          // _18
+		DummyObject* mPrev; // _00
+		DummyObject* mNext; // _04
+		JAISound* mSound;   // _08
+		Vec _0C;            // _0C
+		u32 _18;            // _18
 	};
 
 	static void init();
