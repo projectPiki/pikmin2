@@ -2132,7 +2132,7 @@ void BaseGameSection::setupFixMemory_dvdload()
 	addGenNode(particleMgr);
 
 	TParticle2dMgr::globalInstance();
-	particle2dMgr->createHeap(0x3e800);
+	particle2dMgr->createHeap(256000);
 	particle2dMgr->createMgr("user/Ebisawa/effect/eff2d_game2d.jpc", 0x1d4, 0x28, 0x80);
 	addGenNode(particle2dMgr);
 
