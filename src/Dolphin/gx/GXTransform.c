@@ -15,7 +15,7 @@ void GXProject(f32 x, f32 y, f32 z, Mtx viewMtx, f32* projMtx, f32* viewport, f3
  * Address:	........
  * Size:	00001C
  */
-void WriteProjPS(register volatile void* dst, register const f32* src)
+static void WriteProjPS(const register f32 src[6], register volatile void* dst)
 {
 	register f32 ps_0, ps_1, ps_2;
 
@@ -36,7 +36,7 @@ void WriteProjPS(register volatile void* dst, register const f32* src)
  * Address:	........
  * Size:	00001C
  */
-void Copy6Floats(register f32* dst, register const f32* src)
+static void Copy6Floats(const register f32 src[6], register f32 dst[6])
 {
 	register f32 ps_0, ps_1, ps_2;
 
@@ -59,9 +59,9 @@ void Copy6Floats(register f32* dst, register const f32* src)
  */
 void __GXSetProjection(void)
 {
-	volatile void* fifo = (volatile void*)GXFIFO_ADDR;
+	u32 fifo = GXFIFO_ADDR;
 	GX_XF_LOAD_REGS(6, GX_XF_REG_PROJECTIONA);
-	WriteProjPS(fifo, gx->projMtx);
+	WriteProjPS(gx->projMtx, (volatile void*)fifo);
 	GX_WRITE_U32(gx->projType);
 }
 
@@ -145,55 +145,13 @@ void GXSetProjection(const Mtx44 proj, GXProjectionType type)
  * Address:	800E94EC
  * Size:	00008C
  */
-void GXSetProjectionv(f32* proj)
+void GXSetProjectionv(const f32* proj)
 {
 	gx->projType = proj[0] == 0.0f ? GX_PERSPECTIVE : GX_ORTHOGRAPHIC;
-	Copy6Floats(gx->projMtx, proj + 1);
+	Copy6Floats(&proj[1], gx->projMtx);
 
 	__GXSetProjection();
 	gx->bpSentNot = GX_TRUE;
-	/*
-	.loc_0x0:
-	  lfs       f1, -0x6C60(r2)
-	  lfs       f0, 0x0(r3)
-	  fcmpu     cr0, f1, f0
-	  bne-      .loc_0x18
-	  li        r0, 0
-	  b         .loc_0x1C
-
-	.loc_0x18:
-	  li        r0, 0x1
-
-	.loc_0x1C:
-	  lwz       r5, -0x6D70(r2)
-	  addi      r3, r3, 0x4
-	  stw       r0, 0x4D8(r5)
-	  addi      r6, r5, 0x4DC
-	  psq_l     f2,0x0(r3),0,0
-	  psq_l     f1,0x8(r3),0,0
-	  psq_l     f0,0x10(r3),0,0
-	  psq_st    f2,0x0(r6),0,0
-	  psq_st    f1,0x8(r6),0,0
-	  psq_st    f0,0x10(r6),0,0
-	  lis       r4, 0xCC01
-	  li        r0, 0x10
-	  lis       r3, 0x6
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x1020
-	  stw       r0, -0x8000(r4)
-	  subi      r3, r4, 0x8000
-	  psq_l     f2,0x0(r6),0,0
-	  psq_l     f1,0x8(r6),0,0
-	  psq_l     f0,0x10(r6),0,0
-	  psq_st    f2,0x0(r3),0,0
-	  psq_st    f1,0x0(r3),0,0
-	  psq_st    f0,0x0(r3),0,0
-	  lwz       r3, 0x4D8(r5)
-	  li        r0, 0x1
-	  stw       r3, -0x8000(r4)
-	  sth       r0, 0x2(r5)
-	  blr
-	*/
 }
 
 /*

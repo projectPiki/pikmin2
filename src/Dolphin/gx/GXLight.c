@@ -280,7 +280,7 @@ static inline void PushLight(const register GXLightObjPriv* lt_obj, register voi
 	register u32 zero, color;
 	register f32 a0_a1, a2_k0, k1_k2;
 	register f32 px_py, pz_dx, dy_dz;
-
+	// clang-format off
 	asm
 	{
         lwz     color, 12(lt_obj)
@@ -303,6 +303,7 @@ static inline void PushLight(const register GXLightObjPriv* lt_obj, register voi
         psq_st  pz_dx, 0(dest), 0, 0
         psq_st  dy_dz, 0(dest), 0, 0
 	}
+	// clang-format on
 }
 
 /*
@@ -453,7 +454,7 @@ void GXSetNumChans(u8 count)
  * Address:	800E6EA0
  * Size:	0000B8
  */
-void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, GXLightID mask, GXDiffuseFn diffFunc,
+void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 mask, GXDiffuseFn diffFunc,
                    GXAttnFn attnFunc)
 {
 	const u32 colorID = (u32)channel & 0x3;
@@ -475,7 +476,7 @@ void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXCo
 	GX_SET_REG(reg, mask, GX_XF_CLR0CTRL_LMASKHI_ST, GX_XF_CLR0CTRL_LMASKHI_END);
 
 	reg &= ~GX_REG_MASK(GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
-	GX_SET_REG(reg, (u32)mask >> 4, GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
+	GX_SET_REG(reg, mask >> 4, GX_XF_CLR0CTRL_LMASKLO_ST, GX_XF_CLR0CTRL_LMASKLO_END);
 
 	GX_XF_LOAD_REG(GX_XF_REG_COLOR0CNTRL + colorID, reg);
 
