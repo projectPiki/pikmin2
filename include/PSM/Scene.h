@@ -40,6 +40,8 @@ struct SceneBase : public PSGame::PikScene {
 
 	PSGame::SceneInfo* getSceneInfoA();
 
+	// _00     = VTBL
+	// _00-_24 = PSGame::PikScene
 	PSGame::SceneInfo* mSceneInfoA; // _24
 };
 
@@ -175,12 +177,12 @@ struct Scene_Game : public Scene_Objects {
 	// _00      = VTBL
 	// _00-_38  = Scene_Objects
 	JSUList<EnemyBoss> mEnemyBossList; // _38
-	PSSystem::EnvSeMgr* mEnvSeMgr;     // _48
-	u32 _4C;                           // _4C, unknown
-	int _50;                           // _50
-	BossBgmFader::Mgr* mBossFaderMgr;  // _54
-	PikiHummingMgr* mHummingMgr;       // _58
-	PersEnvManager* mPersEnvMgr;       // _5C
+	PSSystem::EnvSeMgr* mEnvSeMgr;     // _44
+	u32 _48;                           // _48, unknown
+	u32 _4C;                           // _4C, needs to be u32
+	BossBgmFader::Mgr* mBossFaderMgr;  // _50
+	PikiHummingMgr* mHummingMgr;       // _54
+	PersEnvManager* mPersEnvMgr;       // _58
 };
 
 /**

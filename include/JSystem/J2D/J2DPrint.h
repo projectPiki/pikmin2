@@ -28,7 +28,7 @@ struct J2DPrint {
 	void locate(f32, f32);
 	f64 print(f32, f32, char const*, ...);
 	void print(f32, f32, u8, const char*, ...);
-	void getWidth(const char*, ...);
+	f32 getWidth(const char*, ...);
 	void printReturn(const char*, f32, f32, J2DTextBoxHBinding, J2DTextBoxVBinding, f32, f32, u8);
 	void parse(const u8*, int, int, u16*, J2DPrint::TSize&, u8, bool);
 	void doCtrlCode(int);

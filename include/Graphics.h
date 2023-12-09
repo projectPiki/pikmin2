@@ -37,41 +37,19 @@ struct PerspPrintfInfo {
 	}
 
 	struct JUTFont* mFont; // _00
-	u32 _04;               // _04
-	u32 _08;               // _08
+	int _04;               // _04
+	int _08;               // _08
 	int _0C;               // _0C
 	f32 mScale;            // _10
 	Color4 mColorA;        // _14
 	Color4 mColorB;        // _18
 };
 
-struct _GraphicsParent {
+// Size: 0x2A0
+struct Graphics {
 #define GRAPHICS_TOKEN_MAX 32
 
-	u16 mActiveTokens;                 // _000
-	char* mTokens[GRAPHICS_TOKEN_MAX]; // _004
-	Color4 mDrawColor;                 // _084
-	Color4 _088;                       // _088
-	Matrixf mMatrix;                   // _08C
-	J2DOrthoGraph mOrthoGraph;         // _0BC
-	J2DPerspGraph mPerspGraph;         // _190
-	Viewport* mCurrentViewport;        // _25C
-	int mMaxViewports;                 // _260
-	int mActiveViewports;              // _264
-	Viewport** mViewports;             // _268
-};
-
-// Size: 0x2A0
-struct Graphics : public _GraphicsParent {
 	Graphics();
-
-	virtual void doJ3DDrawInit() { }   // _08 (weak)
-	virtual void doJ3DDraw(int) { }    // _0C (weak)
-	virtual void doJ3DFrameInit() { }  // _10 (weak)
-	virtual void doJ3DAnimation() { }  // _14 (weak)
-	virtual void doJ3DUpdateInit() { } // _18 (weak)
-	virtual void doJ3DSetView(int) { } // _1C (weak)
-	virtual void doJ3DViewCalc() { }   // _20 (weak)
 
 	void allocateViewports(int count);
 	void addViewport(Viewport* newVp);
@@ -87,7 +65,6 @@ struct Graphics : public _GraphicsParent {
 	int findTokenIndex(char*);
 	u16 getToken();
 	char* getTokenName(u16);
-	void graphicsTokenCallback(u16);
 	void setToken(char*);
 
 	void drawAxis(f32, Matrixf*);
@@ -136,11 +113,35 @@ struct Graphics : public _GraphicsParent {
 	static void dirtyInitGX();
 	static void clearInitGX();
 
-	// _GraphicsParent _000
-	// VTBL _26C
-	u8 _270[0x2E]; // _270
-
 	static char* lastTokenName;
+
+	// _000-_268 = Graphics members
+	// _26C-_270 = VTBL (sure)
+	// _270-_29E = other members
+
+	u16 mActiveTokens;                 // _000
+	char* mTokens[GRAPHICS_TOKEN_MAX]; // _004
+	Color4 mDrawColor;                 // _084
+	Color4 _088;                       // _088
+	Matrixf mMatrix;                   // _08C
+	J2DOrthoGraph mOrthoGraph;         // _0BC
+	J2DPerspGraph mPerspGraph;         // _190
+	Viewport* mCurrentViewport;        // _25C
+	int mMaxViewports;                 // _260
+	int mActiveViewports;              // _264
+	Viewport** mViewports;             // _268
+
+	// NB: VTBL MUST be declared between _268 and _270 (dumb)
+
+	virtual void doJ3DDrawInit() { }   // _08 (weak)
+	virtual void doJ3DDraw(int) { }    // _0C (weak)
+	virtual void doJ3DFrameInit() { }  // _10 (weak)
+	virtual void doJ3DAnimation() { }  // _14 (weak)
+	virtual void doJ3DUpdateInit() { } // _18 (weak)
+	virtual void doJ3DSetView(int) { } // _1C (weak)
+	virtual void doJ3DViewCalc() { }   // _20 (weak)
+
+	u8 _270[0x2E]; // _270
 };
 
 #endif

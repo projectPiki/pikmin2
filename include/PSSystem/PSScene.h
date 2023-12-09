@@ -32,6 +32,7 @@ struct Scene {
 	SeqMgr* getSeqMgr() { return &mSeqMgr; }
 	Scene* getChildScene() { return mChild; }
 
+	// _00 = VTBL
 	Scene* mChild;           // _04
 	WaveLoader* mWaveLoader; // _08
 	Scene** mAdaptScene;     // _0C

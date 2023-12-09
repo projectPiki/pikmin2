@@ -137,6 +137,26 @@ struct Matrixf {
 		(*this)(2, 3) = tr.z;
 	}
 
+	inline void set(f32 scale, Vector3f& pos, Matrixf* mtx)
+	{
+		f32 yScale    = -scale;
+		(*this)(0, 0) = mtx->mMatrix.mtxView[0][0] * scale;
+		(*this)(1, 0) = mtx->mMatrix.mtxView[0][1] * scale;
+		(*this)(2, 0) = mtx->mMatrix.mtxView[0][2] * scale;
+
+		(*this)(0, 1) = mtx->mMatrix.mtxView[1][0] * yScale;
+		(*this)(1, 1) = mtx->mMatrix.mtxView[1][1] * yScale;
+		(*this)(2, 1) = mtx->mMatrix.mtxView[1][2] * yScale;
+
+		(*this)(0, 2) = mtx->mMatrix.mtxView[2][0] * scale;
+		(*this)(1, 2) = mtx->mMatrix.mtxView[2][1] * scale;
+		(*this)(2, 2) = mtx->mMatrix.mtxView[2][2] * scale;
+
+		(*this)(0, 3) = pos.x;
+		(*this)(1, 3) = pos.y;
+		(*this)(2, 3) = pos.z;
+	}
+
 	inline Vector3f getScaledTranslation(Vector2f& vec)
 	{
 		Vector3f result;

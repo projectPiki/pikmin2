@@ -67,7 +67,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASAramStream.cpp">JAudio//JAS/JASAramStream.cpp</a> | 40048 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTException.cpp">JUtility/JUTException.cpp</a> | 40644 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialFactory_v21.cpp">J3D/J3DMaterialFactory_v21.cpp</a> | 41191 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DShapeMtx.cpp">J3D/J3DShapeMtx.cpp</a> | 42371 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DTevs.cpp">J3D/J3DTevs.cpp</a> | 43878 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelLoader.cpp">J3D/J3DModelLoader.cpp</a> | 47966 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/processor.cpp">JMessage/processor.cpp</a> | 48602 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DPrint.cpp">J2D/J2DPrint.cpp</a> | 53420 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/processor.cpp">JMessage/processor.cpp</a> | 48602 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DPrint.cpp">J2D/J2DPrint.cpp</a> | 53419 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTGamePad.cpp">JUtility/JUTGamePad.cpp</a> | 59409 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAIStreamMgr.cpp">JAudio//JAI/JAIStreamMgr.cpp</a> | 61967 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DAnimation.cpp">J3D/J3DAnimation.cpp</a> | 65982 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAI/JAISeMgr.cpp">JAudio//JAI/JAISeMgr.cpp</a> | 68545 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JAudio/JSystem/JAS/JASSeqParser.cpp">JAudio//JAS/JASSeqParser.cpp</a> | 68852 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAFieldBlock.cpp">JParticle/JPAFieldBlock.cpp</a> | 69327 |
@@ -128,7 +128,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemMgr.cpp">itemMgr.cpp</a> | 102156 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiPrimitives.cpp">aiPrimitives.cpp</a> | 116963 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletMgr.cpp">pelletMgr.cpp</a> | 142709 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pikiState.cpp">pikiState.cpp</a> | 152886 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/navi.cpp">navi.cpp</a> | 152928 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameMapParts.cpp">gameMapParts.cpp</a> | 168071 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 180369 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 192280 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviState.cpp">naviState.cpp</a> | 180369 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Zukan.cpp">singleGS_Zukan.cpp</a> | 192349 |
 
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -231,7 +231,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/bootSection.cpp">bootSection.cpp</a> | 38727 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/system.cpp">system.cpp</a> | 38770 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenMgr.cpp">screenMgr.cpp</a> | 40605 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/movieMessage.cpp">movieMessage.cpp</a> | 46930 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/memoryCard.cpp">memoryCard.cpp</a> | 48558 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/pikmin2MemoryCardMgr.cpp">pikmin2MemoryCardMgr.cpp</a> | 50829 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/graphics.cpp">graphics.cpp</a> | 71763 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageRendering.cpp">messageRendering.cpp</a> | 108975 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/graphics.cpp">graphics.cpp</a> | 76098 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageRendering.cpp">messageRendering.cpp</a> | 108975 |
 
 ### <section id="utilityU">utilityU</section>
 | File | Size (bytes) | File | Size (bytes) |

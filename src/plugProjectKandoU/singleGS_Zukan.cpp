@@ -4535,10 +4535,12 @@ void ZukanState::dvdloadA()
 	vp1->updateCameraAspect();
 	vp2->mCamera = mCamera;
 	vp2->updateCameraAspect();
-	vp1->_48       = mCameraAspect.x;
-	vp1->mVpScaleY = mCameraAspect.y;
-	vp1->port      = 1.0f;
-	vp1->mVpScaleX = 1.0f;
+	vp1->_48 = mCameraAspect;
+	vp1->_50 = Vector2f(1.0f);
+	// vp1->_48       = mCameraAspect.x;
+	// vp1->mVpScaleY = mCameraAspect.y;
+	// vp1->port      = 1.0f;
+	// vp1->mVpScaleX = 1.0f;
 	vp1->setRect(mWindowBounds);
 
 	particleMgr->setViewport(*gfx);

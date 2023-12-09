@@ -765,7 +765,7 @@ lbl_8003DF10:
  * Address:	8003DF2C
  * Size:	0000EC
  */
-void J2DPrint::getWidth(const char*, ...)
+f32 J2DPrint::getWidth(const char*, ...)
 {
 	/*
 	stwu     r1, -0x90(r1)

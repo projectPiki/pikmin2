@@ -15,7 +15,7 @@ namespace SysShape {
 struct Model;
 } // namespace SysShape
 
-struct Viewport : CNode {
+struct Viewport : public CNode {
 	Viewport();
 
 	virtual ~Viewport() { } // _08 (weak)
@@ -38,6 +38,15 @@ struct Viewport : CNode {
 		updateCameraAspect();
 	}
 
+	inline Matrixf* getViewMatrix()
+	{
+		if (mCamera) {
+			return mCamera->getViewMatrix(false);
+		}
+
+		return mViewMat;
+	}
+
 	inline Camera* getCamera() { return mCamera; }
 
 	u16 mVpId;             // _18
@@ -46,10 +55,8 @@ struct Viewport : CNode {
 	s8 mFlags;             // _3C
 	Matrixf* mViewMat;     // _40
 	LookAtCamera* mCamera; // _44
-	f32 _48;               // _48
-	f32 mVpScaleY;         // _4C
-	f32 port;              // _50
-	f32 mVpScaleX;         // _54
+	Vector2f _48;          // _48
+	Vector2f _50;          // _50
 };
 
 #endif

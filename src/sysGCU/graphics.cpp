@@ -3,7 +3,9 @@
 #include "Graphics.h"
 #include "Camera.h"
 #include "JSystem/J3D/J3DSys.h"
+#include "JSystem/J2D/J2DPrint.h"
 #include "IDelegate.h"
+#include "trig.h"
 #include "nans.h"
 
 int gScissorOffset;
@@ -18,10 +20,7 @@ HorizonalSplitter::HorizonalSplitter(Graphics* gfx)
 {
 	mGraphics = gfx;
 
-	u16 y      = sys->getRenderModeObj()->efbHeight;
-	u16 x      = sys->getRenderModeObj()->fbWidth;
-	mBounds.p1 = 0.0f;
-	mBounds.p2 = Vector2f(x, y);
+	mBounds.set(sys->getRenderModeObj()->fbWidth, sys->getRenderModeObj()->efbHeight);
 
 	gfx->allocateViewports(2);
 	Viewport* vp1 = new Viewport;
@@ -34,96 +33,6 @@ HorizonalSplitter::HorizonalSplitter(Graphics* gfx)
 	vp2->setRect(bounds2);
 	gfx->addViewport(vp1);
 	gfx->addViewport(vp2);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	lis      r6, __vt__8Splitter@ha
-	lis      r5, __vt__17HorizonalSplitter@ha
-	stw      r0, 0x54(r1)
-	addi     r0, r5, __vt__17HorizonalSplitter@l
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	mr       r29, r4
-	stw      r28, 0x40(r1)
-	mr       r28, r3
-	addi     r3, r6, __vt__8Splitter@l
-	stw      r3, 0(r28)
-	stw      r0, 0(r28)
-	stw      r29, 0x14(r28)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r31, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lfs      f3, lbl_805204B8@sda21(r2)
-	mr       r3, r29
-	stw      r4, 0x2c(r1)
-	li       r4, 2
-	lfd      f2, lbl_805204C0@sda21(r2)
-	stw      r0, 0x28(r1)
-	lfd      f0, 0x28(r1)
-	stfs     f3, 4(r28)
-	fsubs    f1, f0, f2
-	stfs     f3, 8(r28)
-	stw      r31, 0x34(r1)
-	stw      r0, 0x30(r1)
-	lfd      f0, 0x30(r1)
-	stfs     f1, 0xc(r28)
-	fsubs    f0, f0, f2
-	stfs     f0, 0x10(r28)
-	bl       allocateViewports__8GraphicsFi
-	li       r3, 0x58
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80424F40
-	bl       __ct__8ViewportFv
-	mr       r31, r3
-
-lbl_80424F40:
-	li       r3, 0x58
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80424F58
-	bl       __ct__8ViewportFv
-	mr       r30, r3
-
-lbl_80424F58:
-	lfs      f2, lbl_805204BC@sda21(r2)
-	mr       r3, r31
-	lfs      f1, 0x10(r28)
-	addi     r4, r1, 0x18
-	lfs      f3, 0xc(r28)
-	lfs      f0, lbl_805204B8@sda21(r2)
-	fmuls    f2, f2, f1
-	stfs     f3, 0x20(r1)
-	stfs     f0, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	stfs     f2, 0x24(r1)
-	stfs     f0, 8(r1)
-	stfs     f2, 0xc(r1)
-	stfs     f3, 0x10(r1)
-	stfs     f1, 0x14(r1)
-	bl       "setRect__8ViewportFR7Rect<f>"
-	mr       r3, r30
-	addi     r4, r1, 8
-	bl       "setRect__8ViewportFR7Rect<f>"
-	mr       r3, r29
-	mr       r4, r31
-	bl       addViewport__8GraphicsFP8Viewport
-	mr       r3, r29
-	mr       r4, r30
-	bl       addViewport__8GraphicsFP8Viewport
-	lwz      r0, 0x54(r1)
-	mr       r3, r28
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	lwz      r28, 0x40(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -136,9 +45,9 @@ void HorizonalSplitter::split2(f32 split)
 	Viewport* vp1 = mGraphics->getViewport(0);
 	Viewport* vp2 = mGraphics->getViewport(1);
 
-	vp1->mVpScaleX = split / 0.5f;
-	vp2->mVpScaleX = (1.0f - split) / 0.5f;
-	vp2->mVpScaleY = vp1->mVpScaleX * (vp1->mBounds.getHeight()) - mBounds.p2.y * 0.5f;
+	vp1->_50.y = split / 0.5f;
+	vp2->_50.y = (1.0f - split) / 0.5f;
+	vp2->_48.y = vp1->_50.y * (vp1->mBounds.getHeight()) - mBounds.p2.y * 0.5f;
 
 	vp1->refresh();
 	vp2->refresh();
@@ -199,10 +108,8 @@ Viewport::Viewport()
 	mBounds.p2 = Vector2f(x, y);
 	mFlags     = 0;
 	mCamera    = nullptr;
-	_48        = 0.0f;
-	mVpScaleY  = 0.0f;
-	port       = 1.0f;
-	mVpScaleX  = 1.0f;
+	_48        = Vector2f(0.0f);
+	_50        = Vector2f(1.0f);
 	refresh();
 }
 
@@ -304,9 +211,8 @@ void Viewport::updateCameraAspect()
  */
 void Viewport::refresh()
 {
-	mBounds2.p1.x = mBounds.p1.x + _48;
-	mBounds2.p1.y = mBounds.p1.y + mVpScaleY;
-	mBounds2.p2   = (mBounds2.p1.x + port * mBounds.getWidth(), mBounds2.p1.y + mVpScaleX * mBounds.getHeight());
+	mBounds2.p1 = mBounds.p1 + _48;
+	mBounds2.p2 = mBounds2.p1 + Vector2f(_50.x * mBounds.getWidth(), _50.y * mBounds.getHeight());
 	updateCameraAspect();
 	/*
 	lfs      f4, 0x1c(r3)
@@ -568,7 +474,7 @@ void Graphics::updateJ3D()
  * Address:	804256E0
  * Size:	000030
  */
-void graphicsTokenCallback(u16 id) { Graphics::lastTokenName = sys->mGfx->getTokenName(id); }
+static void graphicsTokenCallback(u16 id) { Graphics::lastTokenName = sys->mGfx->getTokenName(id); }
 
 /*
  * --INFO--
@@ -722,8 +628,60 @@ void Graphics::drawBox(Vector3f&, Vector3f&, Vector3f&, Vector3f&)
  * Address:	80425AAC
  * Size:	000598
  */
-void Graphics::drawSphere(Vector3f&, f32)
+void Graphics::drawSphere(Vector3f& position, f32 radius)
 {
+	Matrixf concatMtx; // 0x98
+	for (int i = 0; i < 16; i++) {
+		Matrixf srtMtx;                           // 0x68
+		Vector3f scale(1.0f);                     // 0x2C
+		Vector3f rot(0.0f, 0.3926991f * i, 0.0f); // 0x20
+
+		srtMtx.makeSRT(scale, rot, position);
+
+		PSMTXConcat(mMatrix.mMatrix.mtxView, srtMtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
+		GXLoadPosMtxImm(concatMtx.mMatrix.mtxView, 0);
+
+		for (int j = 0; j < 16; j++) {
+			f32 theta    = 0.3926991f * (f32)(j);
+			f32 phi      = 0.3926991f * (f32)((j + 1) % 32);
+			f32 cosTheta = radius * cosf(theta); // f26
+			f32 sinTheta = radius * sinf(theta); // f24
+			f32 cosPhi   = radius * cosf(phi);   // f23
+			f32 sinPhi   = radius * sinf(phi);   // f22
+			f32 zero     = 0.0f;                 // f28
+			GXBegin(GX_LINES, GX_VTXFMT0, 2);
+			GXPosition3f32(sinTheta, cosTheta, zero);
+			GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+			GXPosition3f32(sinPhi, cosPhi, zero);
+			GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+		}
+	}
+
+	for (int i = 0; i < 16; i++) {
+		Matrixf srtMtx;                           // 0x68
+		Vector3f scale(1.0f);                     // 0x2C
+		Vector3f rot(0.3926991f * i, 0.0f, 0.0f); // 0x20
+
+		srtMtx.makeSRT(scale, rot, position);
+
+		PSMTXConcat(mMatrix.mMatrix.mtxView, srtMtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
+		GXLoadPosMtxImm(concatMtx.mMatrix.mtxView, 0);
+
+		for (int j = 0; j < 16; j++) {
+			f32 theta    = 0.3926991f * (f32)(j);
+			f32 phi      = 0.3926991f * (f32)((j + 1) % 32);
+			f32 cosTheta = radius * cosf(theta); // f26
+			f32 sinTheta = radius * sinf(theta); // f23
+			f32 cosPhi   = radius * cosf(phi);   // f24
+			f32 sinPhi   = radius * sinf(phi);   // f22
+			f32 zero     = 0.0f;                 // f30
+			GXBegin(GX_LINES, GX_VTXFMT0, 2);
+			GXPosition3f32(sinTheta, zero, cosTheta);
+			GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+			GXPosition3f32(sinPhi, zero, cosPhi);
+			GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+		}
+	}
 	/*
 	stwu     r1, -0x1d0(r1)
 	mflr     r0
@@ -1123,8 +1081,62 @@ lbl_80425F5C:
  * Address:	80426044
  * Size:	0005C8
  */
-void Graphics::drawSphere(f32, Matrixf*)
+void Graphics::drawSphere(f32 radius, Matrixf* gfxMtx)
 {
+	Matrixf concatMtx; // 0x98
+	for (int i = 0; i < 16; i++) {
+		Matrixf srtMtx;                           // 0x68
+		Vector3f scale(1.0f);                     // 0x2C
+		Vector3f rot(0.0f, 0.3926991f * i, 0.0f); // 0x20
+
+		srtMtx.makeSRT(scale, rot, Vector3f::zero);
+
+		PSMTXConcat(gfxMtx->mMatrix.mtxView, srtMtx.mMatrix.mtxView, srtMtx.mMatrix.mtxView);
+		PSMTXConcat(mMatrix.mMatrix.mtxView, srtMtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
+		GXLoadPosMtxImm(concatMtx.mMatrix.mtxView, 0);
+
+		for (int j = 0; j < 16; j++) {
+			f32 theta    = 0.3926991f * (f32)(j);
+			f32 phi      = 0.3926991f * (f32)((j + 1) % 32);
+			f32 cosTheta = radius * cosf(theta); // f26
+			f32 sinTheta = radius * sinf(theta); // f24
+			f32 cosPhi   = radius * cosf(phi);   // f23
+			f32 sinPhi   = radius * sinf(phi);   // f22
+			f32 zero     = 0.0f;                 // f28
+			GXBegin(GX_LINES, GX_VTXFMT0, 2);
+			GXPosition3f32(sinTheta, cosTheta, zero);
+			GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+			GXPosition3f32(sinPhi, cosPhi, zero);
+			GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+		}
+	}
+
+	for (int i = 0; i < 16; i++) {
+		Matrixf srtMtx;                           // 0x68
+		Vector3f scale(1.0f);                     // 0x2C
+		Vector3f rot(0.3926991f * i, 0.0f, 0.0f); // 0x20
+
+		srtMtx.makeSRT(scale, rot, Vector3f::zero);
+
+		PSMTXConcat(gfxMtx->mMatrix.mtxView, srtMtx.mMatrix.mtxView, srtMtx.mMatrix.mtxView);
+		PSMTXConcat(mMatrix.mMatrix.mtxView, srtMtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
+		GXLoadPosMtxImm(concatMtx.mMatrix.mtxView, 0);
+
+		for (int j = 0; j < 16; j++) {
+			f32 theta    = 0.3926991f * (f32)(j);
+			f32 phi      = 0.3926991f * (f32)((j + 1) % 32);
+			f32 cosTheta = radius * cosf(theta); // f26
+			f32 sinTheta = radius * sinf(theta); // f23
+			f32 cosPhi   = radius * cosf(phi);   // f24
+			f32 sinPhi   = radius * sinf(phi);   // f22
+			f32 zero     = 0.0f;                 // f30
+			GXBegin(GX_LINES, GX_VTXFMT0, 2);
+			GXPosition3f32(sinTheta, zero, cosTheta);
+			GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+			GXPosition3f32(sinPhi, zero, cosPhi);
+			GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+		}
+	}
 	/*
 	stwu     r1, -0x1d0(r1)
 	mflr     r0
@@ -1968,8 +1980,75 @@ void Graphics::drawTile(Sys::Sphere&, Sys::Sphere&, JUTTexture*)
  * Address:	80426CB8
  * Size:	00070C
  */
-void Graphics::drawCone(Vector3f&, Vector3f&, f32, int)
+void Graphics::drawCone(Vector3f& vec1, Vector3f& vec2, f32 p3, int limit)
 {
+	f32 angle    = TORADIANS(p3); // f7
+	Vector3f sep = vec2 - vec1;   // f2, f0, f1
+	f32 dist     = sep.length();  // f31
+
+	f32 sinTheta = sinf(angle);
+	f32 cosTheta = cosf(angle);
+
+	sep *= 1.0f / dist;
+
+	f32 val = dist * (sinTheta / cosTheta); // f30
+
+	Vector3f xVec; // f3, f4, f5
+	Vector3f yVec; // f6, f7, f8
+	Vector3f yAxis(0.0f, 1.0f, 0.0f);
+	if (FABS(dot(sep, yAxis)) < 1.0E-7f) {
+		xVec = cross(yAxis, sep);
+		xVec.normalise();
+
+		yVec = cross(xVec, sep);
+		yVec.normalise();
+	} else {
+		yVec = cross(yAxis, sep);
+		yVec.normalise();
+		xVec = cross(yVec, sep);
+		xVec.normalise();
+	}
+
+	Matrixf mtx; // 0x38
+	mtx.setBasis(0, xVec);
+	mtx.setBasis(1, yVec);
+	mtx.setBasis(2, sep);
+	mtx.setBasis(3, vec1);
+
+	Matrixf concatMtx; // 0x8
+	PSMTXConcat(mMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
+
+	GXLoadPosMtxImm(concatMtx.mMatrix.mtxView, 0);
+
+	for (int i = 0; i < limit; i++) {
+		f32 newAngle1 = (TAU * ((f32)i - 0.5f)) / (f32)limit;
+
+		f32 cosPhi = val * cosf(newAngle1); // f24
+		f32 sinPhi = val * sinf(newAngle1); // f23
+
+		f32 newAngle2 = (TAU * ((f32)(i + 1) - 0.5f)) / (f32)limit;
+
+		f32 cosOmega = val * cosf(newAngle2); // f22
+		f32 sinOmega = val * sinf(newAngle2); // f21
+
+		GXBegin(GX_LINES, GX_VTXFMT0, 2);
+		GXPosition3f32(Vector3f::zero.x, Vector3f::zero.y, Vector3f::zero.z);
+		GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+		GXPosition3f32(cosPhi, sinPhi, dist);
+		GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+
+		GXBegin(GX_LINES, GX_VTXFMT0, 2);
+		GXPosition3f32(Vector3f::zero.x, Vector3f::zero.y, Vector3f::zero.z);
+		GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+		GXPosition3f32(cosOmega, sinOmega, dist);
+		GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+
+		GXBegin(GX_LINES, GX_VTXFMT0, 2);
+		GXPosition3f32(cosPhi, sinPhi, dist);
+		GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+		GXPosition3f32(cosOmega, sinOmega, dist);
+		GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+	}
 	/*
 	stwu     r1, -0x190(r1)
 	mflr     r0
@@ -2486,53 +2565,10 @@ Graphics::Graphics()
 	mDrawColor.set(255, 255, 255, 255);
 	_088.set(255, 255, 255, 255);
 	mActiveTokens = 0;
-	// GXSetDrawSyncCallback(graphicsTokenCallback);
+	GXSetDrawSyncCallback(graphicsTokenCallback);
 	mCurrentViewport = nullptr;
 	setupJ2DOrthoGraphDefault();
 	setupJ2DPerspGraphDefault();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__8Graphics@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__8Graphics@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r0, 0x26c(r3)
-	addi     r3, r31, 0xbc
-	bl       __ct__13J2DOrthoGraphFv
-	addi     r3, r31, 0x190
-	bl       __ct__13J2DPerspGraphFv
-	li       r4, 0
-	lis      r3, graphicsTokenCallback__FUs@ha
-	stw      r4, 0x260(r31)
-	li       r0, 0xff
-	addi     r3, r3, graphicsTokenCallback__FUs@l
-	stw      r4, 0x264(r31)
-	stw      r4, 0x268(r31)
-	stb      r0, 0x84(r31)
-	stb      r0, 0x85(r31)
-	stb      r0, 0x86(r31)
-	stb      r0, 0x87(r31)
-	stb      r0, 0x88(r31)
-	stb      r0, 0x89(r31)
-	stb      r0, 0x8a(r31)
-	stb      r0, 0x8b(r31)
-	sth      r4, 0(r31)
-	bl       GXSetDrawSyncCallback
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x25c(r31)
-	bl       setupJ2DOrthoGraphDefault__8GraphicsFv
-	mr       r3, r31
-	bl       setupJ2DPerspGraphDefault__8GraphicsFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2870,8 +2906,48 @@ void Graphics::initPerspPrintf(Viewport* vp)
  * Address:	80427ADC
  * Size:	0003C4
  */
-void Graphics::perspPrintf(PerspPrintfInfo&, Vector3f&, char*, ...)
+void Graphics::perspPrintf(PerspPrintfInfo& info, Vector3f& vec, char* format, ...)
 {
+	va_list args;
+	va_start(args, format);
+	char buf[256];
+	vsprintf(buf, format, args);
+
+	Matrixf mtx;
+	mtx.set(info.mScale, vec, mCurrentViewport->getViewMatrix());
+
+	Matrixf concatMtx;
+	PSMTXConcat(mCurrentViewport->getViewMatrix()->mMatrix.mtxView, mtx.mMatrix.mtxView, concatMtx.mMatrix.mtxView);
+
+	GXLoadPosMtxImm(concatMtx.mMatrix.mtxView, 0);
+
+	JUtility::TColor color1;
+	JUtility::TColor color2;
+	color1.set(info.mColorA.r, info.mColorA.g, info.mColorA.b, info.mColorA.a);
+	color2.set(info.mColorB.r, info.mColorB.g, info.mColorB.b, info.mColorB.a);
+
+	J2DPrint printer(info.mFont, color1, color2);
+	printer.initiate();
+
+	switch (info._0C) {
+	case 1:
+		printer.print((f32)info._04, (f32)info._08, buf);
+		break;
+
+	case 2: {
+		f32 width = printer.getWidth(buf);
+		f32 val   = (width >= 0.0f) ? 0.5f + width : width - 0.5f;
+		int x     = info._04 - (int)val;
+		printer.print(x, (f32)info._08, buf);
+	} break;
+	default: {
+		f32 width = 0.5f * printer.getWidth(buf);
+		f32 val   = (width >= 0.0f) ? 0.5f + width : width - 0.5f;
+		int x     = info._04 - (int)val;
+		printer.print(x, (f32)info._08, buf);
+	} break;
+	}
+
 	/*
 	stwu     r1, -0x270(r1)
 	mflr     r0

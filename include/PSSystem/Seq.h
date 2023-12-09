@@ -103,7 +103,6 @@ struct SeqMgr : public JSUList<SeqBase> {
 	// _00-_0C  = JSUList<SeqBase>
 	// _0C      = VTABLE
 	Scene* mScene; // _10
-	u32 _14;       // _14, Shouldnt be here, breaking lots of files, but needed for matching
 };
 
 /**
