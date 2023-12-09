@@ -6,7 +6,8 @@
 #include "IDelegate.h"
 #include "nans.h"
 
-u32 gScissorOffset;
+int gScissorOffset;
+char* Graphics::lastTokenName;
 
 /*
  * --INFO--
@@ -633,7 +634,7 @@ void Graphics::initPrimDraw(Matrixf* mtx)
 	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
 	GXSetNumChans(1);
-	GXSetChanCtrl(GX_COLOR0A0, GX_TRUE, GX_SRC_VTX, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetChanCtrl(GX_COLOR0A0, GX_TRUE, GX_SRC_VTX, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
 	disableLight();
 	clearVtxDesc();
 	setVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -679,57 +680,11 @@ void Graphics::drawLine(Vector3f& start, Vector3f& end)
 {
 	GXBegin(GX_LINES, GX_VTXFMT0, 2);
 
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	li       r5, 2
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	li       r4, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 0xa8
-	bl       GXBegin
-	lfs      f2, 8(r30)
-	lis      r6, 0xCC008000@ha
-	lfs      f1, 4(r30)
-	lfs      f0, 0(r30)
-	stfs     f0, 0xCC008000@l(r6)
-	stfs     f1, -0x8000(r6)
-	stfs     f2, -0x8000(r6)
-	lbz      r5, 0x87(r29)
-	lbz      r4, 0x86(r29)
-	lbz      r3, 0x85(r29)
-	lbz      r0, 0x84(r29)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	lfs      f2, 8(r31)
-	lfs      f1, 4(r31)
-	lfs      f0, 0(r31)
-	stfs     f0, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	stfs     f2, -0x8000(r6)
-	lbz      r5, 0x87(r29)
-	lbz      r4, 0x86(r29)
-	lbz      r3, 0x85(r29)
-	lbz      r0, 0x84(r29)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	GXPosition3f32(start.x, start.y, start.z);
+	GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+
+	GXPosition3f32(end.x, end.y, end.z);
+	GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
 }
 
 /*
@@ -1621,200 +1576,40 @@ void Graphics::drawMesh(Matrixf*)
  * Address:	8042660C
  * Size:	0002B8
  */
-void Graphics::drawAxis(f32, Matrixf*)
+void Graphics::drawAxis(f32 a1, Matrixf* mtx)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stmw     r26, 0x38(r1)
-	fmr      f31, f1
-	mr       r26, r3
-	lis      r3, lbl_80499C48@ha
-	mr       r27, r4
-	mr       r30, r26
-	li       r29, 0
-	addi     r28, r3, lbl_80499C48@l
-	b        lbl_80426664
+	setToken("draw axis");
+	Color4 backup = mDrawColor;
+	Mtx out;
+	if (mtx) {
+		PSMTXConcat(mMatrix.mMatrix.mtxView, mtx->mMatrix.mtxView, out);
+		GXLoadPosMtxImm(out, 0);
+	} else {
+		GXLoadPosMtxImm(mMatrix.mMatrix.mtxView, 0);
+	}
+	f32 zero   = 0.0f;
+	mDrawColor = Color4(255, 0, 0, 255);
+	GXBegin(GX_LINES, GX_VTXFMT0, 2);
+	GXPosition3f32(zero, zero, zero);
+	GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+	GXPosition3f32(a1, zero, zero);
+	GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
 
-lbl_80426644:
-	lwz      r3, 4(r30)
-	mr       r4, r28
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8042665C
-	b        lbl_80426674
+	mDrawColor = Color4(0, 255, 0, 255);
+	GXBegin(GX_LINES, GX_VTXFMT0, 2);
+	GXPosition3f32(zero, zero, zero);
+	GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+	GXPosition3f32(zero, a1, zero);
+	GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
 
-lbl_8042665C:
-	addi     r30, r30, 4
-	addi     r29, r29, 1
+	mDrawColor = Color4(0, 0, 255, 255);
+	GXBegin(GX_LINES, GX_VTXFMT0, 2);
+	GXPosition3f32(zero, zero, zero);
+	GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
+	GXPosition3f32(zero, zero, a1);
+	GXColor4u8(mDrawColor.r, mDrawColor.g, mDrawColor.b, mDrawColor.a);
 
-lbl_80426664:
-	lhz      r0, 0(r26)
-	cmpw     r29, r0
-	blt      lbl_80426644
-	li       r29, -1
-
-lbl_80426674:
-	cmpwi    r29, -1
-	bne      lbl_804266B4
-	lhz      r0, 0(r26)
-	cmplwi   r0, 0x20
-	bge      lbl_804266BC
-	rlwinm   r0, r0, 2, 0xe, 0x1d
-	lis      r3, lbl_80499C48@ha
-	addi     r4, r3, lbl_80499C48@l
-	add      r3, r26, r0
-	stw      r4, 4(r3)
-	lhz      r3, 0(r26)
-	bl       GXSetDrawSync
-	lhz      r3, 0(r26)
-	addi     r0, r3, 1
-	sth      r0, 0(r26)
-	b        lbl_804266BC
-
-lbl_804266B4:
-	clrlwi   r3, r29, 0x10
-	bl       GXSetDrawSync
-
-lbl_804266BC:
-	cmplwi   r27, 0
-	lbz      r31, 0x84(r26)
-	lbz      r30, 0x85(r26)
-	lbz      r29, 0x86(r26)
-	lbz      r28, 0x87(r26)
-	beq      lbl_804266F4
-	mr       r4, r27
-	addi     r3, r26, 0x8c
-	addi     r5, r1, 8
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	b        lbl_80426700
-
-lbl_804266F4:
-	addi     r3, r26, 0x8c
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-
-lbl_80426700:
-	li       r6, 0xff
-	li       r0, 0
-	stb      r6, 0x84(r26)
-	li       r3, 0xa8
-	li       r4, 0
-	li       r5, 2
-	stb      r0, 0x85(r26)
-	stb      r0, 0x86(r26)
-	stb      r6, 0x87(r26)
-	bl       GXBegin
-	lfs      f0, lbl_805204B8@sda21(r2)
-	lis      r11, 0xCC008000@ha
-	li       r6, 0
-	li       r0, 0xff
-	stfs     f0, 0xCC008000@l(r11)
-	li       r3, 0xa8
-	li       r4, 0
-	li       r5, 2
-	stfs     f0, -0x8000(r11)
-	stfs     f0, -0x8000(r11)
-	lbz      r10, 0x87(r26)
-	lbz      r9, 0x86(r26)
-	lbz      r8, 0x85(r26)
-	lbz      r7, 0x84(r26)
-	stb      r7, -0x8000(r11)
-	stb      r8, -0x8000(r11)
-	stb      r9, -0x8000(r11)
-	stb      r10, -0x8000(r11)
-	stfs     f31, -0x8000(r11)
-	stfs     f0, -0x8000(r11)
-	stfs     f0, -0x8000(r11)
-	lbz      r10, 0x87(r26)
-	lbz      r9, 0x86(r26)
-	lbz      r8, 0x85(r26)
-	lbz      r7, 0x84(r26)
-	stb      r7, -0x8000(r11)
-	stb      r8, -0x8000(r11)
-	stb      r9, -0x8000(r11)
-	stb      r10, -0x8000(r11)
-	stb      r6, 0x84(r26)
-	stb      r0, 0x85(r26)
-	stb      r6, 0x86(r26)
-	stb      r0, 0x87(r26)
-	bl       GXBegin
-	lfs      f0, lbl_805204B8@sda21(r2)
-	lis      r11, 0xCC008000@ha
-	li       r6, 0
-	li       r0, 0xff
-	stfs     f0, 0xCC008000@l(r11)
-	li       r3, 0xa8
-	li       r4, 0
-	li       r5, 2
-	stfs     f0, -0x8000(r11)
-	stfs     f0, -0x8000(r11)
-	lbz      r10, 0x87(r26)
-	lbz      r9, 0x86(r26)
-	lbz      r8, 0x85(r26)
-	lbz      r7, 0x84(r26)
-	stb      r7, -0x8000(r11)
-	stb      r8, -0x8000(r11)
-	stb      r9, -0x8000(r11)
-	stb      r10, -0x8000(r11)
-	stfs     f0, -0x8000(r11)
-	stfs     f31, -0x8000(r11)
-	stfs     f0, -0x8000(r11)
-	lbz      r10, 0x87(r26)
-	lbz      r9, 0x86(r26)
-	lbz      r8, 0x85(r26)
-	lbz      r7, 0x84(r26)
-	stb      r7, -0x8000(r11)
-	stb      r8, -0x8000(r11)
-	stb      r9, -0x8000(r11)
-	stb      r10, -0x8000(r11)
-	stb      r6, 0x84(r26)
-	stb      r6, 0x85(r26)
-	stb      r0, 0x86(r26)
-	stb      r0, 0x87(r26)
-	bl       GXBegin
-	lfs      f0, lbl_805204B8@sda21(r2)
-	lis      r6, 0xCC008000@ha
-	stfs     f0, 0xCC008000@l(r6)
-	stfs     f0, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	lbz      r5, 0x87(r26)
-	lbz      r4, 0x86(r26)
-	lbz      r3, 0x85(r26)
-	lbz      r0, 0x84(r26)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stfs     f31, -0x8000(r6)
-	lbz      r5, 0x87(r26)
-	lbz      r4, 0x86(r26)
-	lbz      r3, 0x85(r26)
-	lbz      r0, 0x84(r26)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r31, 0x84(r26)
-	stb      r30, 0x85(r26)
-	stb      r29, 0x86(r26)
-	stb      r28, 0x87(r26)
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	lmw      r26, 0x38(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	mDrawColor = backup;
 }
 
 /*
@@ -1859,8 +1654,62 @@ void Graphics::clearZBuffer(Rectf& bounds) { fillZBuffer(bounds, -0.999f); }
  * Address:	804268E8
  * Size:	0003D0
  */
-void Graphics::fillZBuffer(Rectf&, f32)
+void Graphics::fillZBuffer(Rectf& bounds, f32 z)
 {
+	setToken("initPrimDraw");
+	initGX();
+	GXSetNumTevStages(1);
+	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GXSetNumChans(1);
+	GXSetChanCtrl(GX_COLOR0A0, GX_TRUE, GX_SRC_VTX, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+	disableLight();
+	clearVtxDesc();
+	setVtxDesc(GX_VA_POS, GX_DIRECT);
+	setVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	setVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	setVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
+	GXSetCullMode(GX_CULL_NONE);
+	GXSetLineWidth(6, GX_TO_ZERO);
+	GXSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ONE, GX_LO_CLEAR);
+	GXSetZMode(GX_TRUE, GX_LESS, GX_TRUE);
+	GXLoadPosMtxImm(mMatrix.mMatrix.mtxView, 0);
+	GXSetViewport(bounds.p1.x, bounds.p1.y, bounds.getWidth(), bounds.getHeight(), 0.0f, 1.0f);
+	GXSetScissor(bounds.p1.x, bounds.p1.y, bounds.getWidth(), bounds.getHeight());
+	GXSetColorUpdate(GX_FALSE);
+	GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
+
+	Mtx mtx;
+	C_MTXOrtho(mtx, bounds.p1.y, bounds.p2.y, bounds.p1.x, bounds.p2.x, -1.0f, 1.0f);
+	GXSetProjection(mtx, GX_ORTHOGRAPHIC);
+
+	Mtx mtx2;
+	PSMTXIdentity(mtx2);
+	GXLoadPosMtxImm(mtx2, 0);
+
+	GXSetCullMode(GX_CULL_NONE);
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	GXPosition3f32(bounds.p1.x, bounds.p1.y, z);
+	GXColor4u8(10, 70, 10, 255);
+
+	GXPosition3f32(bounds.p1.x, bounds.p2.y, z);
+	GXColor4u8(10, 70, 10, 255);
+
+	GXPosition3f32(bounds.p2.x, bounds.p2.y, z);
+	GXColor4u8(10, 70, 10, 255);
+
+	GXPosition3f32(bounds.p2.x, bounds.p1.y, z);
+	GXColor4u8(10, 70, 10, 255);
+
+	GXSetZMode(GX_TRUE, GX_LESS, GX_TRUE);
+	GXSetColorUpdate(GX_TRUE);
+
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -2634,7 +2483,7 @@ lbl_80427350:
 Graphics::Graphics()
 {
 	deleteViewports();
-	_084.set(255, 255, 255, 255);
+	mDrawColor.set(255, 255, 255, 255);
 	_088.set(255, 255, 255, 255);
 	mActiveTokens = 0;
 	// GXSetDrawSyncCallback(graphicsTokenCallback);
@@ -2713,6 +2562,21 @@ void Graphics::initJ2DPerspGraph(J2DPerspGraph*)
  */
 void Graphics::setupJ2DOrthoGraphDefault()
 {
+	sys->getRenderModeObj();
+	u16 y = sys->getRenderModeObj()->efbHeight;
+	u16 x = sys->getRenderModeObj()->fbWidth;
+	mOrthoGraph.place(0.0f, 0.0f, x, y);
+
+	f32 y2   = sys->getRenderModeObj()->efbHeight + gScissorOffset;
+	f32 x2   = sys->getRenderModeObj()->fbWidth;
+	f32 offs = 0.0f;
+	JGeometry::TBox2f bounds(0.0f, 0.0f, x2 + offs, y2 + offs);
+	mOrthoGraph.scissor(bounds);
+
+	y = sys->getRenderModeObj()->efbHeight;
+	x = sys->getRenderModeObj()->fbWidth;
+	JGeometry::TBox2f bounds2(0.0f, 0.0f, x, y);
+	mOrthoGraph.setOrtho(bounds2, -1024.0f, 1024.0f);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2815,6 +2679,17 @@ void Graphics::setupJ2DOrthoGraphDefault()
  */
 void Graphics::setupJ2DPerspGraphDefault()
 {
+	u16 y = sys->getRenderModeObj()->efbHeight;
+	u16 x = sys->getRenderModeObj()->fbWidth;
+	mPerspGraph.place(0.0f, 0.0f, x, y);
+
+	f32 y2   = sys->getRenderModeObj()->efbHeight + gScissorOffset;
+	f32 x2   = sys->getRenderModeObj()->fbWidth;
+	f32 offs = 0.0f;
+	JGeometry::TBox2f bounds(0.0f, 0.0f, offs + x2, offs + y2);
+	mPerspGraph.scissor(bounds);
+
+	mPerspGraph.set(30.0f, 10.0f, 10000.0f);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -2929,7 +2804,7 @@ void Graphics::drawRectangle(Rectf&, bool)
  * Address:	8042776C
  * Size:	00003C
  */
-void Graphics::disableLight() { GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, 1, GX_DF_CLAMP, GX_AF_NONE); }
+void Graphics::disableLight() { GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, GX_LIGHT0, GX_DF_CLAMP, GX_AF_NONE); }
 
 /*
  * --INFO--
@@ -2948,7 +2823,7 @@ void Graphics::disableTexture()
  */
 void Graphics::setTextureGX()
 {
-	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, 1, GX_DF_CLAMP, GX_AF_NONE);
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_VTX, GX_SRC_VTX, GX_LIGHT0, GX_DF_CLAMP, GX_AF_NONE);
 	GXClearVtxDesc();
 	GXSetNumTevStages(1);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);

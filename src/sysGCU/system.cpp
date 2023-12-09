@@ -294,7 +294,7 @@ void preUserCallback(u16, OSContext*, u32, u32)
 		JUTException::waitTime(100);
 		JUTException::sErrorManager->readPad(&input, nullptr);
 		if (input) {
-			i += ((u8)input == (u8)inputs[i]);
+			i = (i + 1) & (input != inputs[i]);
 		}
 	}
 
@@ -658,14 +658,12 @@ void System::createSoundSystem()
 	P2ASSERTLINE(1161, gResMgr2D);
 
 	JKRHeap* resHeap    = gResMgr2D->mHeap;
-	u32 size            = resHeap->getFreeSize();
-	JKRExpHeap* newheap = JKRExpHeap::create(size, resHeap, true);
+	JKRExpHeap* newheap = makeExpHeap(resHeap->getFreeSize(), resHeap, true);
 
 	P2ASSERTLINE(1165, newheap);
 	newheap->becomeCurrentHeap();
 
-	JKRFileCache* arc = JKRFileCache::mount("/AudioRes", newheap, nullptr);
-	void* file        = JKRFileLoader::getGlbResource("PSound.aaf", arc);
+	void* file = JKRGetResource("PSound.aaf", JKRMountDvdDrive("/AudioRes", newheap, nullptr));
 
 	P2ASSERTLINE(1173, file);
 
@@ -676,11 +674,10 @@ void System::createSoundSystem()
 	factory->mAafFile     = file;
 	factory->newSoundSystem();
 
-	JKRSolidHeap* newheap2 = JKRSolidHeap::create(old->getFreeSize(), old, true);
+	JKRSolidHeap* newheap2 = makeSolidHeap(old->getFreeSize(), old, true);
 	newheap2->becomeCurrentHeap();
 
-	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-	mgr->newAndSetGlobalScene();
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetGlobalScene();
 	newheap2->adjustSize();
 
 	old->becomeCurrentHeap();
@@ -822,8 +819,7 @@ void System::createSoundSystem()
  */
 void System::loadSoundResource()
 {
-	JKRHeap* old = JKRGetCurrentHeap();
-
+	JKRHeap* old          = JKRGetCurrentHeap();
 	JKRSolidHeap* newheap = JKRSolidHeap::create(old->getFreeSize(), old, true);
 	newheap->becomeCurrentHeap();
 
@@ -1075,7 +1071,8 @@ int System::run()
  */
 f32 System::getTime()
 {
-	return (int)(OSGetTick() / 1000);
+	OSTick tick = OSGetTick();
+	return tick / __OSBusClock / 1000;
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -1318,7 +1315,7 @@ _GXRenderModeObj* System::getRenderModeObj() { return sRenderModeTable[mRenderMo
  */
 void System::changeRenderMode(ERenderMode newmode)
 {
-	JUTVideo* mgr = JUTVideo::sManager;
+	JUTVideo* mgr = JUTVideo::getManager();
 	P2ASSERTLINE(1889, mgr);
 
 	if (mRenderMode != newmode) {

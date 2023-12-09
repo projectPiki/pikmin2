@@ -950,7 +950,7 @@ void VsGame::CardMgr::drawSlot(Graphics& gfx, Vector3f& place, SlotMachine& mach
 	float spinAngle = machine.mSpinAngle;
 	Vector3f pos    = place;
 	gfx.initPrimDraw(0);
-	gfx._084 = Color4(250, 250, 250, 255);
+	gfx.mDrawColor = Color4(250, 250, 250, 255);
 	GXSetLineWidth(40, GX_TO_ZERO);
 	gfx.mOrthoGraph.setPort();
 	Matrixf* matrix = (Matrixf*)&gfx.mOrthoGraph.mPosMtx;

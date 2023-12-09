@@ -50,7 +50,7 @@ struct _GraphicsParent {
 
 	u16 mActiveTokens;                 // _000
 	char* mTokens[GRAPHICS_TOKEN_MAX]; // _004
-	Color4 _084;                       // _084
+	Color4 mDrawColor;                 // _084
 	Color4 _088;                       // _088
 	Matrixf mMatrix;                   // _08C
 	J2DOrthoGraph mOrthoGraph;         // _0BC

@@ -395,5 +395,6 @@ inline JKRHeap* JKRGetSystemHeap() { return JKRHeap::getSystemHeap(); }
 inline JKRHeap* JKRGetCurrentHeap() { return JKRHeap::getCurrentHeap(); }
 
 inline JKRExpHeap* makeExpHeap(size_t size, JKRHeap* heap, bool a) { return JKRExpHeap::create(size, heap, a); }
+inline JKRSolidHeap* makeSolidHeap(size_t size, JKRHeap* heap, bool a) { return JKRSolidHeap::create(size, heap, a); }
 
 #endif

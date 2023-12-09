@@ -1710,7 +1710,7 @@ void MapMgr::draw2d(Graphics&)
 void ShapeMapMgr::drawCollision(Graphics& gfx, ::Sys::Sphere& boundingSphere)
 {
 	gfx.initPrimDraw(nullptr);
-	gfx._084 = Color4(50, 255, 10, 255);
+	gfx.mDrawColor = Color4(50, 255, 10, 255);
 	GXSetLineWidth(' ', GX_TO_ZERO);
 	Sys::TriIndexList* triLists  = mMapCollision.mDivider->findTriLists(boundingSphere);
 	Sys::VertexTable& vertTable  = *mMapCollision.mDivider->mVertexTable;

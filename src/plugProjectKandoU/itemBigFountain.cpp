@@ -413,7 +413,7 @@ void Item::doAI()
 void Item::doDirectDraw(Graphics& gfx)
 {
 	gfx.initPrimDraw(nullptr);
-	gfx._084 = Color4(200, 250, 200, 255);
+	gfx.mDrawColor = Color4(200, 250, 200, 255);
 	gfx.drawSphere(mBoundingSphere.mPosition, mBoundingSphere.mRadius);
 
 	PerspPrintfInfo printInfo;
