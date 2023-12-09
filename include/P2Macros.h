@@ -14,7 +14,7 @@
 	}                                                                           \
 	P2ASSERTLINE(line, check##line)
 
-// Used in PSMainSide_CreaturePrm
+// Used in some UtilityU
 #define P2ASSERTBOUNDSLINE2(line, lowerLimitExclusive, var, upperLimitInclusive) \
 	bool check##line = false;                                                    \
 	if (var > lowerLimitExclusive && var <= upperLimitInclusive) {               \

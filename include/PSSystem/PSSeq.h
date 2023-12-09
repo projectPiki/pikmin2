@@ -120,7 +120,7 @@ struct JumpBgmSeq : public DirectedBgm {
 	u16 _124;         // _124
 	JumpBgmSeq* _128; // _128
 	u32 _12C;         // _12C
-	short _130;       // _130
+	u16 _130;         // _130
 };
 
 struct JumpBgmPort {

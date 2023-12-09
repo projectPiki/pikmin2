@@ -30,6 +30,8 @@ struct CameraMgr : public JKRDisposer {
 	f32 mCamDistVolume[2];    // _3C
 	f32 mDistVolumeFactor[2]; // _44
 	bool mIsSpecial[2];       // _4C
+
+	static const f32 sDefaultVol;
 };
 
 } // namespace PSGame

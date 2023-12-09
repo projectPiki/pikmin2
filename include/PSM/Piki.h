@@ -29,6 +29,8 @@ struct Piki : public CreatureObj {
 	// _30-_70 = JAInter::Object
 	int _70; // _70
 	u32 _74; // _74
+
+	static u8 sDopedPikminNum;
 };
 } // namespace PSM
 

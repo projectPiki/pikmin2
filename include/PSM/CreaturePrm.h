@@ -18,6 +18,7 @@ struct CreaturePrm : public PSSystem::SingletonBase<CreaturePrm> {
 	PSGame::SoundTable::SePerspInfo mPersp; // _04
 
 	static f32 cSeFxMix;
+	static f32 cSeFxMix_cave;
 };
 
 } // namespace PSM

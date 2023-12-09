@@ -71,9 +71,14 @@ struct SceneMgr : public PSGame::PikSceneMgr {
 struct Scene_Global : public SceneBase {
 	Scene_Global(u8, PSGame::SceneInfo*);
 
-	virtual ~Scene_Global();                    // _0C
-	virtual f32 getCamDistVol(u8);              // _28
-	virtual bool getSeSceneGate(ObjBase*, u32); // _38 (weak)
+	virtual ~Scene_Global();       // _0C
+	virtual f32 getCamDistVol(u8); // _28
+	virtual bool getSeSceneGate(ObjBase*, u32)
+	{
+		// this needs to go in PSMainSide_Scene.h
+		JUT_PANICLINE(63, "P2Assert");
+		return false;
+	} // _38 (weak)
 
 	PSSystem::StreamBgm* getGlobalStream();
 	void startGlobalStream(u32);
@@ -105,7 +110,7 @@ struct Scene_Objects : public SceneBase {
 	PSGame::CameraMgr* mCameraMgr; // _28
 	ObjMgr* mObjMgr;               // _2C
 	u8 _30;                        // _30
-	int _34;                       // _34
+	int mTimer;                    // _34
 };
 
 /**
@@ -116,7 +121,7 @@ struct Scene_Zukan : public Scene_Objects {
 	    : Scene_Objects(wscene, info)
 	{
 	}
-	virtual ~Scene_Zukan();                     // _0C (weak)
+	virtual ~Scene_Zukan() { }                  // _0C (weak)
 	virtual f32 getCamDistVol(u8);              // _28
 	virtual bool getSeSceneGate(ObjBase*, u32); // _38
 
@@ -130,29 +135,42 @@ struct Scene_Zukan : public Scene_Objects {
 struct Scene_Game : public Scene_Objects {
 	Scene_Game(u8, PSGame::SceneInfo*);
 
-	virtual void init();                      // _08
-	virtual ~Scene_Game();                    // _0C
-	virtual void exec();                      // _18
-	virtual void startMainSeq();              // _1C
-	virtual void stopMainSeq(u32);            // _20
-	virtual void stopAllSound(u32);           // _24
-	virtual PSSystem::EnvSeMgr* getEnvSe();   // _2C
-	virtual bool isDemoScene();               // _34 (weak)
-	virtual bool isGameScene();               // _40 (weak)
-	virtual void pauseOn_2D(u8, u8);          // _44
-	virtual void pauseOff_2D();               // _48
-	virtual void pauseOn_Demo();              // _4C
-	virtual void pauseOff_Demo();             // _50
-	virtual bool isCave() { return false; }   // _58 (weak)
-	virtual void bossAppear(EnemyBoss*, u16); // _5C
-	virtual void bossKilled(EnemyBoss*);      // _60
-	virtual bool isBossFloor();               // _64 (weak)
-	virtual bool akubiOK();                   // _68
-	virtual bool isPollutUp();                // _6C (weak)
-	virtual s32 getPollutUpTimer() const;     // _70 (weak)
+	virtual void init();                                // _08
+	virtual ~Scene_Game();                              // _0C
+	virtual void exec();                                // _18
+	virtual void startMainSeq();                        // _1C
+	virtual void stopMainSeq(u32);                      // _20
+	virtual void stopAllSound(u32);                     // _24
+	virtual PSSystem::EnvSeMgr* getEnvSe();             // _2C
+	virtual bool isDemoScene() { return false; }        // _34 (weak)
+	virtual bool isGameScene() { return true; }         // _40 (weak)
+	virtual void pauseOn_2D(u8, u8);                    // _44
+	virtual void pauseOff_2D();                         // _48
+	virtual void pauseOn_Demo();                        // _4C
+	virtual void pauseOff_Demo();                       // _50
+	virtual bool isCave() { return false; }             // _58 (weak)
+	virtual void bossAppear(EnemyBoss*, u16);           // _5C
+	virtual void bossKilled(EnemyBoss*);                // _60
+	virtual bool isBossFloor() { return false; }        // _64 (weak)
+	virtual bool akubiOK();                             // _68
+	virtual bool isPollutUp() { return false; }         // _6C (weak)
+	virtual s32 getPollutUpTimer() const { return -1; } // _70 (weak)
 
 	void attachBossFaderMgr();
 	void adaptEnvSe(PSSystem::EnvSeMgr*);
+
+	inline bool needBossBgm()
+	{
+		bool ret = true;
+		// No boss music when sToolMode is on, we are in day 1 tutorial, or in non-boss floors of submerged castle
+		if ((PSSystem::DirectorBase::sToolMode != 0) || (mSceneInfoA->mSceneType == PSGame::SceneInfo::COURSE_TUTORIALDAY1)
+		    || (mSceneInfoA->isCaveFloor() && mSceneInfoA->mSceneType == PSGame::SceneInfo::COURSE_YAKUSHIMA
+		        && (u8) static_cast<PSGame::CaveFloorInfo*>(mSceneInfoA)->getCaveNoFromID() == 3
+		        && !static_cast<PSGame::CaveFloorInfo*>(mSceneInfoA)->isBossFloor())) {
+			ret = false;
+		}
+		return ret;
+	}
 
 	// _00      = VTBL
 	// _00-_38  = Scene_Objects
@@ -177,10 +195,10 @@ struct Scene_Ground : public Scene_Game {
 
 	Scene_Ground(u8, PSGame::SceneInfo*);
 
-	virtual ~Scene_Ground();              // _0C (weak)
-	virtual void exec();                  // _18
-	virtual bool isPollutUp();            // _6C (weak)
-	virtual s32 getPollutUpTimer() const; // _70 (weak)
+	virtual ~Scene_Ground() { }                                     // _0C (weak)
+	virtual void exec();                                            // _18
+	virtual bool isPollutUp() { return (mPollutUpTimer != -1); }    // _6C (weak)
+	virtual s32 getPollutUpTimer() const { return mPollutUpTimer; } // _70 (weak)
 
 	void setPollutUp();
 	void fadeMainBgm(f32, u32, Time);
@@ -198,24 +216,25 @@ struct Scene_Ground : public Scene_Game {
 struct Scene_Cave : public Scene_Game {
 	Scene_Cave(u8, PSGame::SceneInfo*);
 
-	virtual void init();                                         // _08
-	virtual ~Scene_Cave();                                       // _0C (weak)
-	virtual void exec();                                         // _18
-	virtual void startMainSeq();                                 // _1C
-	virtual f32 getSceneFx();                                    // _30
-	virtual bool isCave();                                       // _58 (weak)
-	virtual void bossAppear(EnemyBoss*, u16);                    // _5C
-	virtual void bossKilled(EnemyBoss*);                         // _60
-	virtual bool isBossFloor();                                  // _64
-	virtual bool akubiOK();                                      // _68
-	virtual bool isPollutUp() { return (mPollutUpTimer != -1); } // _6C (weak)
-	virtual s32 getPollutUpTimer() const;                        // _70 (weak)
+	virtual void init();                                            // _08
+	virtual ~Scene_Cave() { }                                       // _0C (weak)
+	virtual void exec();                                            // _18
+	virtual void startMainSeq();                                    // _1C
+	virtual f32 getSceneFx();                                       // _30
+	virtual bool isCave() { return true; }                          // _58 (weak)
+	virtual void bossAppear(EnemyBoss*, u16);                       // _5C
+	virtual void bossKilled(EnemyBoss*);                            // _60
+	virtual bool isBossFloor();                                     // _64
+	virtual bool akubiOK();                                         // _68
+	virtual bool isPollutUp() { return (mPollutUpTimer != -1); }    // _6C (weak)
+	virtual s32 getPollutUpTimer() const { return mPollutUpTimer; } // _70 (weak)
 
 	void stopPollutionSe();
 	void startPollutUpSe();
 
 	// _00      = VTBL
 	// _00-_5C  = Scene_Game
+	bool _5C;           // _5C
 	f32 mSceneFx;       // _60
 	int mPollutUpTimer; // _64
 };
@@ -226,10 +245,10 @@ struct Scene_Cave : public Scene_Game {
 struct Scene_Challenge : public Scene_Cave {
 	Scene_Challenge(u8, PSGame::SceneInfo*);
 
-	virtual void init();         // _08
-	virtual ~Scene_Challenge();  // _0C (weak)
-	virtual void startMainSeq(); // _1C
-	virtual bool akubiOK();      // _68
+	virtual void init();           // _08
+	virtual ~Scene_Challenge() { } // _0C (weak)
+	virtual void startMainSeq();   // _1C
+	virtual bool akubiOK();        // _68
 
 	// _00      = VTBL
 	// _00-_68  = Scene_Cave
@@ -246,7 +265,7 @@ struct Scene_NoObjects : public SceneBase {
 	{
 	}
 
-	virtual ~Scene_NoObjects();    // _0C (weak)
+	virtual ~Scene_NoObjects() { } // _0C (weak)
 	virtual f32 getCamDistVol(u8); // _28
 
 	// _00      = VTBL
@@ -259,7 +278,7 @@ struct Scene_NoObjects : public SceneBase {
 struct Scene_WorldMap : public Scene_NoObjects {
 	Scene_WorldMap(u8, PSGame::SceneInfo*);
 
-	virtual ~Scene_WorldMap(); // _0C (weak)
+	virtual ~Scene_WorldMap() { } // _0C (weak)
 
 	// _00      = VTBL
 	// _00-_28  = SceneBase
@@ -274,14 +293,14 @@ struct Scene_WorldMap : public Scene_NoObjects {
 struct Scene_Demo : public SceneBase {
 	Scene_Demo(u8, PSGame::SceneInfo*);
 
-	virtual ~Scene_Demo();                      // _0C (weak)
+	virtual ~Scene_Demo() { }                   // _0C (weak)
 	virtual f32 getCamDistVol(u8);              // _28
-	virtual bool isDemoScene();                 // _34 (weak)
+	virtual bool isDemoScene() { return true; } // _34 (weak)
 	virtual bool getSeSceneGate(ObjBase*, u32); // _38
 
 	// _00      = VTBL
 	// _00-_28  = SceneBase
-	u8 mGate; // _28
+	bool mGate; // _28
 };
 
 } // namespace PSM

@@ -34,7 +34,6 @@ struct TypedProc {
 	u32 _20;                           // _20
 	DirectorUpdator* mDirectorUpdator; // _24
 	u8 _28;                            // _28
-	u8 _29[0x3];                       // _29, unknown/padding
 	f32 _2C;                           // _2C
 };
 
@@ -70,6 +69,19 @@ struct Mgr : ::PSSystem::SingletonBase<Mgr> {
 		if (mEnemyBossList.mLinkCount) {
 			mTypedProc.mBossUpdator = new DirectorUpdator(director, mEnemyBossList.mLinkCount, DirectorUpdator::TYPE_0);
 		}
+	}
+
+	inline bool checkBossActive()
+	{
+		bool ret = false;
+		FOREACH_NODE(JSULink<EnemyBoss>, mEnemyBossList.getFirst(), link)
+		{
+			EnemyBoss* obj = link->getObject();
+			if (obj->_FE) {
+				ret = true;
+			}
+		}
+		return ret;
 	}
 
 	// _00 VTBL
