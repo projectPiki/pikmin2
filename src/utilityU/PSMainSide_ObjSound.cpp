@@ -4333,7 +4333,7 @@ lbl_8045F430:
  */
 inline EnemyBoss::EnemyBoss(Game::EnemyBase* gameObj)
     : EnemyBase(gameObj, 4)
-    , _E0(10000000.0f)
+    , mNaviDistance(10000000.0f)
     , mDisappearTimer(-1)
     , _E8(-1)
     , _EC(this)
@@ -5227,7 +5227,7 @@ lbl_8045FF00:
  * Address:	8045FF1C
  * Size:	000024
  */
-void EnemyBoss::isOnDisappearing()
+bool EnemyBoss::isOnDisappearing()
 {
 	/*
 	lis      r4, 0x0000FFFF@ha
@@ -5279,7 +5279,7 @@ EnemyMidBoss::EnemyMidBoss(Game::EnemyBase* gameObj)
 {
 	PSM::BossBgmFader::Mgr* mgr = PSM::BossBgmFader::Mgr::sInstance;
 	if (mgr != nullptr) {
-		_100 = mgr->mEnemyBossList.getNumLinks();
+		_100 = mgr->mTypedProc.getNumLinks();
 		mgr->appendTarget(&_108);
 	}
 	/*

@@ -97,10 +97,10 @@ void ObjCalc_2PGame::newInstance_2PGame() { new ObjCalc_2PGame; }
 u8 ObjCalc_2PGame::getPlayerNo(Vec& pos)
 {
 	switch (mMode) {
-	case OBJCALC_2:
+	case OBJCALC_1:
 		return 0;
 
-	case OBJCALC_1:
+	case OBJCALC_0:
 		f32 dists[2] = { 100000.0f, 1000000.0f };
 		Iterator<Game::Navi> it(Game::naviMgr);
 		int i = 0;
@@ -417,9 +417,9 @@ u8 ObjCalc_2PGame::getPlayerNo(PSM::Creature* obj)
 {
 	P2ASSERTLINE(87, obj);
 	switch (mMode) {
-	case OBJCALC_2:
-		return 0;
 	case OBJCALC_1:
+		return 0;
+	case OBJCALC_0:
 		return obj->mGameObj->getSound_AILOD()->mSndVpId;
 	default:
 		JUT_PANICLINE(125, "Ç†ÇËÇ¶Ç»Ç¢ÉPÅ[ÉX1");

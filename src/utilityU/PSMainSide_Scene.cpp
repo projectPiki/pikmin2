@@ -1187,10 +1187,10 @@ void Scene_Game::adaptEnvSe(PSSystem::EnvSeMgr* mgr)
  */
 void Scene_Game::bossAppear(PSM::EnemyBoss* obj, u16 time)
 {
-	if (PSMGetMiddleBossSeq() && (!mBossFaderMgr || mBossFaderMgr->mTypedProc._14 == 0)) {
+	if (PSMGetMiddleBossSeq() && (!mBossFaderMgr || mBossFaderMgr->mTypedProc.mCurrState == 0)) {
 		obj->jumpRequest(time);
 		if (mBossFaderMgr) {
-			mBossFaderMgr->mTypedProc._28 = 1;
+			mBossFaderMgr->mTypedProc.mNeedJump = 1;
 		}
 	}
 }
@@ -2076,7 +2076,24 @@ f32 Scene_NoObjects::getCamDistVol(u8) { return PSGame::CameraMgr::sDefaultVol; 
  */
 void* PSChangeBgm_ChallengeGame()
 {
-	PSSystemGetSeq(0);
+	PSSystem::Scene* scene = PSMGetGameScene();
+	if (scene) {
+		PSSystem::SeqMgr* seqmgr = &scene->mSeqMgr;
+
+		PSSystem::SeqBase* seq = seqmgr->getSeq(0);
+		P2ASSERTLINE(1181, seq);
+		JAISound* sound = *seq->getHandleP();
+		if (sound) {
+			sound->setVolume(0.0f, 0, 1);
+		}
+
+		PSSystem::SeqBase* seq2 = seqmgr->getSeq(2);
+		P2ASSERTLINE(1190, seq2);
+		JAISound* sound2 = *seq2->getHandleP();
+		if (sound2) {
+			sound2->setVolume(1.0f, 30, 2);
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

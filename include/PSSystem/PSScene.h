@@ -104,6 +104,13 @@ inline Scene* checkChildScene(Scene* scene)
 	return scene->mChild;
 }
 
+// stupid
+inline Scene* checkChildScene2(Scene* scene)
+{
+	P2ASSERTLINE(91, scene->mChild);
+	return scene->mChild;
+}
+
 inline void stopChildSeq(Scene* scene, int flag)
 {
 	P2ASSERTLINE(91, scene->mChild);

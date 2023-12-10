@@ -9,7 +9,12 @@ struct ObjCalcBase : public PSSystem::SingletonBase<ObjCalcBase> {
 
 	ObjCalcBase() { mMode = OBJCALC_1; }
 
-	enum Mode { OBJCALC_1, OBJCALC_2, OBJCALC_3 };
+	enum Mode {
+		OBJCALC_0 = 0,
+		OBJCALC_1 = 1,
+		OBJCALC_2 = 2,
+		OBJCALC_3 = 3,
+	};
 
 	virtual ~ObjCalcBase() { }                        // _08 (weak)
 	virtual u8 getPlayerNo(Creature*) = 0;            // _0C

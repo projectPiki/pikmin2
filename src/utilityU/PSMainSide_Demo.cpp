@@ -157,11 +157,10 @@ void Demo::init(Vec* cam1pos, Vec* cam2pos, Mtx mtx, DemoArg arg)
 	info->mCameraMtx[0]    = (Matrixf*)mtx;
 	info->mSceneType       = 255;
 
-	DemoArg demoarg       = arg;
 	u8 unk                = 255;
-	PSSystem::BgmSeq* seq = initiate(demoarg, &unk);
-	mCurrentDemoName      = new char[strlen(demoarg.mName) + 1];
-	strcpy(mCurrentDemoName, demoarg.mName);
+	PSSystem::BgmSeq* seq = initiate(arg, &unk);
+	mCurrentDemoName      = new char[strlen(arg.mName) + 1];
+	strcpy(mCurrentDemoName, arg.mName);
 
 	Scene_Demo* scene = new Scene_Demo(unk, info);
 	P2ASSERTLINE(199, scene);
@@ -179,159 +178,6 @@ void Demo::init(Vec* cam1pos, Vec* cam2pos, Mtx mtx, DemoArg arg)
 	initDemoScene(arg, scene);
 	_18 = 1;
 	demo1stLoadSync();
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r8, lbl_8049D080@ha
-	stw      r0, 0x44(r1)
-	stmw     r25, 0x24(r1)
-	mr       r30, r3
-	mr       r25, r4
-	mr       r27, r5
-	mr       r26, r6
-	mr       r31, r7
-	addi     r29, r8, lbl_8049D080@l
-	li       r3, 0x38
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80464088
-	bl       __ct__Q26PSGame9SceneInfoFv
-	mr       r28, r3
-
-lbl_80464088:
-	mr       r3, r28
-	li       r4, 1
-	li       r5, 2
-	bl
-setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo12FlagBitShift
-	li       r0, 1
-	li       r8, 0xff
-	stb      r0, 7(r28)
-	mr       r3, r30
-	addi     r4, r1, 0xc
-	addi     r5, r1, 8
-	stw      r25, 8(r28)
-	stw      r27, 0x10(r28)
-	stw      r26, 0x18(r28)
-	stb      r8, 6(r28)
-	lwz      r7, 0(r31)
-	lwz      r6, 4(r31)
-	lwz      r0, 8(r31)
-	stb      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	stw      r6, 0x10(r1)
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	lwz      r3, 4(r31)
-	mr       r26, r0
-	bl       strlen
-	addi     r3, r3, 1
-	bl       __nwa__FUl
-	stw      r3, 0x28(r30)
-	lwz      r3, 0x28(r30)
-	lwz      r4, 4(r31)
-	bl       strcpy
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_80464134
-	lbz      r4, 8(r1)
-	mr       r5, r28
-	bl       __ct__Q23PSM10Scene_DemoFUcPQ26PSGame9SceneInfo
-	mr       r27, r3
-
-lbl_80464134:
-	cmplwi   r27, 0
-	bne      lbl_80464150
-	addi     r3, r29, 0
-	addi     r5, r29, 0x14
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80464150:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80464170
-	addi     r3, r29, 0x20
-	addi     r5, r29, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80464170:
-	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r28, 0
-	bne      lbl_80464190
-	addi     r3, r29, 0x20
-	addi     r5, r29, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80464190:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_804641B0
-	addi     r3, r29, 0x2c
-	addi     r5, r29, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804641B0:
-	lwz      r3, 4(r28)
-	lwz      r28, 4(r3)
-	cmplwi   r28, 0
-	bne      lbl_804641D4
-	addi     r3, r29, 0x2c
-	addi     r5, r29, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804641D4:
-	mr       r3, r28
-	mr       r4, r27
-	bl       adaptChildScene__Q28PSSystem5SceneFPQ28PSSystem5Scene
-	cmplwi   r27, 0
-	bne      lbl_804641FC
-	addi     r3, r29, 0
-	addi     r5, r29, 0x14
-	li       r4, 0xcb
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804641FC:
-	cmplwi   r26, 0
-	beq      lbl_80464210
-	mr       r3, r27
-	mr       r4, r26
-	bl       appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
-
-lbl_80464210:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	mr       r5, r27
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	mr       r3, r30
-	stb      r0, 0x18(r30)
-	bl       demo1stLoadSync__Q23PSM4DemoFv
-	lmw      r25, 0x24(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -344,7 +190,7 @@ void Demo::demo1stLoadSync()
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
 	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-	PSSystem::checkChildScene(scene);
+	PSSystem::checkChildScene2(scene);
 	scene->mChild->scene1stLoadSync();
 }
 
@@ -356,7 +202,7 @@ void Demo::demo1stLoadSync()
 void Demo::initDemoScene(PSM::DemoArg& arg, PSM::Scene_Demo* scene)
 {
 	if (!strcmp(arg.mName, "s21_dayend_takeoff")) {
-		scene->mGate = 1; // offset is messed up?
+		scene->mGate = 1;
 	}
 }
 
@@ -586,138 +432,14 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 Demo::~Demo()
 {
 	becomeSceneCamera();
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	PSSystem::Scene* scene = PSMGetSceneMgrCheck()->getChildScene();
 	PSSystem::checkChildScene(scene);
+	scene = scene->getChildScene();
 
-	mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	mgr->deleteScene(scene);
+	PSMGetSceneMgrCheck()->deleteScene(scene);
 
 	delete mCurrentDemoName;
-
-	if (scene) {
-		scene->~Scene_Game();
-	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_8049D080@ha
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	or.      r27, r3, r3
-	mr       r28, r4
-	addi     r31, r5, lbl_8049D080@l
-	beq      lbl_80466294
-	lis      r4, __vt__Q23PSM4Demo@ha
-	addi     r0, r4, __vt__Q23PSM4Demo@l
-	stw      r0, 0(r27)
-	bl       becomeSceneCamera__Q23PSM4DemoFv
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046617C
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046617C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_8046619C
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046619C:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804661BC
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804661BC:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_804661E0
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804661E0:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80466200
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x5a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466200:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r30, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80466224
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466224:
-	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r29, 0
-	bne      lbl_80466244
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466244:
-	mr       r3, r29
-	mr       r4, r30
-	bl       deleteScene__Q28PSSystem8SceneMgrFPQ28PSSystem5Scene
-	lwz      r3, 0x28(r27)
-	bl       __dl__FPv
-	cmplwi   r30, 0
-	beq      lbl_80466278
-	mr       r3, r30
-	li       r4, 1
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80466278:
-	mr       r3, r27
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r28
-	ble      lbl_80466294
-	mr       r3, r27
-	bl       __dl__FPv
-
-lbl_80466294:
-	mr       r3, r27
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	delete scene;
 }
 
 /*
@@ -730,8 +452,8 @@ void Demo::onDemoTop()
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
 	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-	PSSystem::checkChildScene(scene);
-	scene->becomeSceneCamera();
+	PSSystem::checkChildScene2(scene);
+	static_cast<PSM::Scene_Game*>(scene->mChild)->becomeSceneCamera();
 
 	ObjCalcBase* objcalc = PSSystem::SingletonBase<ObjCalcBase>::getInstance();
 	objcalc->setMode(ObjCalcBase::OBJCALC_1);
@@ -749,16 +471,14 @@ void Demo::onDemoTop()
 		envse->mReservator.mState = 0;
 	}
 
-	mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene = static_cast<PSM::Scene_Game*>(PSMGetChildScene());
 	PSSystem::checkGameScene(scene);
 	char* name = mCurrentDemoName;
-	envse      = scene->getEnvSe();
-	if (envse) {
-		if (!strcmp(name, "s01_dayend") || !strcmp(name, "s02_dayend_result") || !strcmp(name, "s04_dayend_orimadown")
-		    || !strcmp(name, "s05_pikminzero") || !strcmp(name, "s06_dayend_pikminzero") || !strcmp(name, "s09_holein")
-		    || !strcmp(name, "s0C_cv_escape") || !strcmp(name, "s12_cv_giveup") || !strcmp(name, "s21_dayend_takeoff")) {
+	if (!strcmp(name, "s01_dayend") || !strcmp(name, "s02_dayend_result") || !strcmp(name, "s04_dayend_orimadown")
+	    || !strcmp(name, "s05_pikminzero") || !strcmp(name, "s06_dayend_pikminzero") || !strcmp(name, "s09_holein")
+	    || !strcmp(name, "s0C_cv_escape") || !strcmp(name, "s12_cv_giveup") || !strcmp(name, "s21_dayend_takeoff")) {
+		scene->mSeqMgr.stopAllSound(15);
+		if (envse) {
 			envse->off();
 			if (scene->isCave() && !scene->isPollutUp()) {
 				envse->on(PSSE_EV_POLUTION_MIX01, true);
@@ -766,22 +486,20 @@ void Demo::onDemoTop()
 			}
 			envse->off(PSSE_MP_BIRD_NIGHT01_MIX, true);
 			envse->off(PSSE_MP_BIRD_NIGHT02_MIX, true);
-		} else {
-			scene->mSeqMgr.pauseOnAllSeq(PSSystem::SeqBase::MODE1);
-			if (envse) {
-				envse->setAllPauseFlag(2);
-			}
+		}
+	} else {
+		scene->mSeqMgr.pauseOnAllSeq(PSSystem::SeqBase::MODE1);
+		if (envse) {
+			envse->setAllPauseFlag(2);
 		}
 	}
 
 	if (!strcmp(name, "x19_vs_bedama")) {
 		scene->mSeqMgr.stopAllSound(15);
 	} else if (!strcmp(name, "x06_join")) {
-		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
-		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(PSMGetChildScene());
 		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(scene, 1);
-		P2ASSERTLINE(838, seq);
+		P2ASSERTLINE(731, seq);
 		seq->stopSeq(5);
 	} else if (!strcmp(name, "x01_gamestart")) {
 		PSGame::SoundTable::CategoryMgr* cat              = PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::getInstance();
@@ -793,10 +511,10 @@ void Demo::onDemoTop()
 		PSSystem::spSysIF->playSystemSe(mMovieStartSE, 0);
 	}
 
-	PSSystem::checkChildScene(scene);
+	PSSystem::checkChildScene2(scene);
 	PSSystem::SeqBase* seq = scene->mChild->mSeqMgr.getFirstSeq();
 	if (seq && mDoStartWithAudio) {
-		PSSystem::checkChildScene(scene);
+		PSSystem::checkChildScene2(scene);
 		scene->mChild->startMainSeq();
 	}
 
@@ -1321,86 +1039,8 @@ lbl_80466958:
  */
 void Demo::becomeSceneCamera()
 {
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-	scene->becomeSceneCamera();
-
-	ObjCalcBase* objcalc = PSSystem::SingletonBase<ObjCalcBase>::getInstance();
-	objcalc->setMode(ObjCalcBase::OBJCALC_1);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049D080@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049D080@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_804669A8
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804669A8:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_804669C8
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804669C8:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804669E8
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804669E8:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80466A0C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466A0C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) cmplwi
-r0, 0 bne      lbl_80466A40 addi     r3, r31, 0x86c addi     r5, r31, 0x14 li
-r4, 0x89 crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466A40:
-	lwz      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) li r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	static_cast<PSM::Scene_Game*>(PSMGetChildScene())->becomeSceneCamera();
+	PSSystem::SingletonBase<ObjCalcBase>::getInstance()->setMode(ObjCalcBase::OBJCALC_0);
 }
 
 /*

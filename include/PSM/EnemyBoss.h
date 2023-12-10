@@ -30,9 +30,9 @@ struct EnemyBoss : public EnemyBase {
 	void calcDistance();
 	void setAppearFlag(bool);
 	void dyingFrameWork();
-	void isOnDisappearing();
+	bool isOnDisappearing();
 
-	f32 _E0;             // _E0
+	f32 mNaviDistance;   // _E0
 	u16 mDisappearTimer; // _E4
 	int _E8;             // _E8
 	JSUPtrLink _EC;      // _EC - could be JSULink<PSM::EnemyBoss>

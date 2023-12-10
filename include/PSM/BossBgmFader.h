@@ -14,7 +14,7 @@ namespace BossBgmFader {
  * @size{0x30}
  */
 struct TypedProc : public JSUList<EnemyBoss> {
-	// inline TypedProc(f32, f32);
+	inline TypedProc(f32, f32);
 
 	virtual void update(); // _08
 
@@ -27,24 +27,27 @@ struct TypedProc : public JSUList<EnemyBoss> {
 
 	// _00-_0C = JSUList<EnemyBoss>
 	// _0C     = VTBL
-	f32 _04;                           // _10
-	f32 _08;                           // _14
-	f32 _0C;                           // _18
-	f32 _10;                           // _1C
-	int _14;                           // _20
-	u32 _18;                           // _24, unknown
-	u32 _1C;                           // _28, unknown
-	u32 _20;                           // _2C
+	f32 mFarDist;                      // _10
+	f32 mMiddleDist;                   // _14
+	f32 mNearDist;                     // _18
+	f32 mStopDist;                     // _1C
+	int mCurrState;                    // _20
+	int mPrevState;                    // _24
+	EnemyBoss* mCurrObj;               // _28
+	f32 mMaxDistance;                  // _2C
 	DirectorUpdator* mDirectorUpdator; // _30
-	u8 _28;                            // _34
-	f32 _2C;                           // _38
+	u8 mNeedJump;                      // _34
+	f32 _38;                           // _38
 };
 
 /**
  * @size{0x34}
  */
 struct TypedProc_MidBoss : public TypedProc {
-	// inline TypedProc_MidBoss(f32, f32);
+	inline TypedProc_MidBoss(f32 a1, f32 a2)
+	    : TypedProc(a1, a2)
+	{
+	}
 
 	virtual void update(); // _08
 

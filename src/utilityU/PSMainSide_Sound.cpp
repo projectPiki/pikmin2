@@ -108,7 +108,7 @@ void SeSound::initParameter(void* d1, JAInter::Actor* actor, u32 a1, u32 a2, u8 
 
 	P2ASSERTLINE(215, info);
 
-	u32 num = (u32)info->_00 >> 0x1c;
+	u32 num = (u32)info->mFlag >> 0x1c;
 	if (num) {
 		_4A0 = (num / 15.0f) * JALCalc::getRandom_0_1();
 		_4A0 = _4A0 < 0.0f ? 0.0f : _4A0 > 1.0f ? 1.0f : _4A0;
