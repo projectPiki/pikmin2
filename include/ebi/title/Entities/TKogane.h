@@ -119,8 +119,8 @@ struct TUnit : public TObjBase {
 		mActionID         = KOGANEACT_NULL;
 	}
 
-	virtual u32 getCreatureType() { return 5; } // _08 (weak)
-	virtual bool isCalc();                      // _0C
+	virtual u32 getCreatureType() { return TITLECREATURE_Kogane; } // _08 (weak)
+	virtual bool isCalc();                                         // _0C
 
 	void setController(Controller*);
 	void init(TMgr*);

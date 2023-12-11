@@ -16,6 +16,13 @@ struct J3DMtxCalcAnmBase;
 
 namespace ebi {
 namespace title {
+enum CreatureType {
+	TITLECREATURE_NULL   = -1,
+	TITLECREATURE_Pikmin = 0,
+	TITLECREATURE_Kogane = 5,
+	TITLECREATURE_Chappy = 6,
+};
+
 struct TObjBase {
 	inline TObjBase()
 	{
@@ -29,8 +36,8 @@ struct TObjBase {
 		mModel    = nullptr;
 	}
 
-	virtual u32 getCreatureType() { return -1; } // _08 (weak)
-	virtual bool isCalc() { return true; }       // _0C (weak)
+	virtual u32 getCreatureType() { return TITLECREATURE_NULL; } // _08 (weak)
+	virtual bool isCalc() { return true; }                       // _0C (weak)
 
 	void calcModelBaseMtx_();
 	void pushOut(TObjBase*);
@@ -40,7 +47,7 @@ struct TObjBase {
 	// _00 = VTBL
 	Vector2f mPosition; // _04
 	Vector2f mAngle;    // _0C
-	f32 mParms[5];      // _14
+	f32 mParms[5];      // _14, 0=?, 1=scale, 2=collRadius, 3=?, 4=?
 	J3DModel* mModel;   // _28
 };
 

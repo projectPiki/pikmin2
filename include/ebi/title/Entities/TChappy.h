@@ -135,8 +135,8 @@ struct TUnit : public TObjBase {
 		mAttacks  = 0;
 	}
 
-	virtual u32 getCreatureType() { return 6; } // _08 (weak)
-	virtual bool isCalc();                      // _0C
+	virtual u32 getCreatureType() { return TITLECREATURE_Chappy; } // _08 (weak)
+	virtual bool isCalc();                                         // _0C
 
 	void setController(Controller*);
 	void init(TMgr*);

@@ -2,6 +2,7 @@
 #include "ebi/title/TTitle.h"
 #include "types.h"
 #include "JSystem/J3D/J3DModelLoader.h"
+#include "Game/Piki.h"
 #include "nans.h"
 #include "Dolphin/rand.h"
 
@@ -19,6 +20,22 @@ static const char unusedPikminTitleName[] = "ebiP2TitlePikmin";
 Pikmin::TBoidParamMgr::TBoidParamMgr()
     : CNode("TBoidParamMgr")
 {
+	mCounter  = 0;
+	mCounter2 = 0;
+	_6B0      = 0.0f;
+	_6B4      = 0.0f;
+	_6B8      = 0.0f;
+	_6BC      = 0.0f;
+	_6C0      = 0.0f;
+	_6C4      = 0.0f;
+	_6C8      = 0.0f;
+	_6CC      = 0.0f;
+
+	u32 time  = 0.0f / sys->mDeltaTime;
+	mCounter  = time;
+	mCounter2 = time;
+	_1C       = 0;
+	_18       = 0;
 }
 
 /*
@@ -36,20 +53,49 @@ Pikmin::TBoidParamMgr::TBoidParamMgr()
  * Address:	........
  * Size:	000130
  */
-/* void Pikmin::TBoidParamMgr::update()
+void Pikmin::TBoidParamMgr::update()
 {
-    // UNUSED FUNCTION
-} */
+	if (mCounter != 0) {
+		mCounter--;
+	}
+
+	TBoidParam& param1 = mParams[_1C];
+	TBoidParam& param2 = mParams[_18];
+
+	f32 factor2, factor1;
+
+	factor1 = 1.0f - ((mCounter2 != 0) ? (f32)mCounter / (f32)mCounter2 : 0.0f);
+	factor2 = 1.0f - factor1;
+
+	_6B0 = factor2 * param1.mMaxWalkSpeed() + factor1 * param2.mMaxWalkSpeed();
+	_6B4 = factor2 * param1.mMaxTurnVec() + factor1 * param2.mMaxTurnVec();
+	_6B8 = factor2 * param1.mTurnMag() + factor1 * param2.mTurnMag();
+
+	_6BC = factor2 * param1.mBoidCenter() + factor1 * param2.mBoidCenter();
+	_6C0 = factor2 * param1.mBoidSpeedMatch() + factor1 * param2.mBoidSpeedMatch();
+	_6C4 = factor2 * param1.mBoidColl() + factor1 * param2.mBoidColl();
+
+	_6C8 = factor2 * param1.mGroupCenter() + factor1 * param2.mGroupCenter();
+	_6CC = factor2 * param1.mBoidNeighbor() + factor1 * param2.mBoidNeighbor();
+}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-/* Pikmin::TAnimator::TAnimator()
+Pikmin::TAnimator::TAnimator()
 {
-    // UNUSED FUNCTION
-} */
+	mModelDataRed    = nullptr;
+	mModelDataYellow = nullptr;
+	mModelDataBlue   = nullptr;
+	mModelDataPurple = nullptr;
+	mModelDataWhite  = nullptr;
+	_14              = nullptr;
+	_18              = nullptr;
+	_1C              = nullptr;
+	_20              = nullptr;
+}
 
 /*
  * --INFO--
@@ -60,34 +106,34 @@ void Pikmin::TAnimator::setArchive(JKRArchive* arc)
 {
 	void* file;
 	file = arc->getResource("pikmin/title_red_piki.bmd");
-	P2ASSERTLINE(0xb0, file);
-	pModelDataRed = J3DModelLoaderDataBase::load(file, 0x20100000);
+	P2ASSERTLINE(176, file);
+	mModelDataRed = J3DModelLoaderDataBase::load(file, 0x20100000);
 	file          = arc->getResource("pikmin/title_yellow_piki.bmd");
-	P2ASSERTLINE(0xba, file);
-	pModelDataYellow = J3DModelLoaderDataBase::load(file, 0x20100000);
+	P2ASSERTLINE(186, file);
+	mModelDataYellow = J3DModelLoaderDataBase::load(file, 0x20100000);
 	file             = arc->getResource("pikmin/title_blue_piki.bmd");
-	P2ASSERTLINE(0xc4, file);
-	pModelDataBlue = J3DModelLoaderDataBase::load(file, 0x20100000);
+	P2ASSERTLINE(196, file);
+	mModelDataBlue = J3DModelLoaderDataBase::load(file, 0x20100000);
 	file           = arc->getResource("pikmin/title_black_piki.bmd");
-	P2ASSERTLINE(0xce, file);
-	pModelDataPurple = J3DModelLoaderDataBase::load(file, 0x20100000);
+	P2ASSERTLINE(206, file);
+	mModelDataPurple = J3DModelLoaderDataBase::load(file, 0x20100000);
 	file             = arc->getResource("pikmin/title_white_piki.bmd");
-	P2ASSERTLINE(0xd8, file);
-	pModelDataWhite = J3DModelLoaderDataBase::load(file, 0x20100000);
+	P2ASSERTLINE(216, file);
+	mModelDataWhite = J3DModelLoaderDataBase::load(file, 0x20100000);
 	file            = arc->getResource("pikmin/wait.bck");
-	P2ASSERTLINE(0xe4, file);
+	P2ASSERTLINE(228, file);
 	_14  = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(file);
 	file = arc->getResource("pikmin/wave.bck");
-	P2ASSERTLINE(0xe9, file);
+	P2ASSERTLINE(233, file);
 	_18                 = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(file);
-	_1C                 = J3DNewMtxCalcAnm(pModelDataRed->mJointTree.mFlags & 0xf, _14);
-	_20                 = J3DUNewMtxCalcAnm(pModelDataRed->mJointTree.mFlags & 0xf, _14, _18, nullptr, nullptr, (J3DMtxCalcFlag)0);
-	J3DModelData* model = pModelDataBlue;
+	_1C                 = J3DNewMtxCalcAnm(mModelDataRed->mJointTree.mFlags & 0xf, _14);
+	_20                 = J3DUNewMtxCalcAnm(mModelDataRed->mJointTree.mFlags & 0xf, _14, _18, nullptr, nullptr, (J3DMtxCalcFlag)0);
+	J3DModelData* model = mModelDataBlue;
 	model->doMakeShared();
-	pModelDataRed->doMakeShared();
-	pModelDataYellow->doMakeShared();
-	pModelDataPurple->doMakeShared();
-	pModelDataWhite->doMakeShared();
+	mModelDataRed->doMakeShared();
+	mModelDataYellow->doMakeShared();
+	mModelDataPurple->doMakeShared();
+	mModelDataWhite->doMakeShared();
 }
 
 /*
@@ -95,30 +141,52 @@ void Pikmin::TAnimator::setArchive(JKRArchive* arc)
  * Address:	........
  * Size:	000020
  */
-/* void Pikmin::TAnimator::setAnmWait(J3DModel*, float)
+void Pikmin::TAnimator::setAnmWait(J3DModel* model, f32 frame)
 {
-    // UNUSED FUNCTION
-} */
+	_14->mCurrentFrame                                 = frame;
+	model->mModelData->mJointTree.mJoints[0]->mMtxCalc = _1C;
+}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A4
  */
-/* void Pikmin::TAnimator::setAnmWave(J3DModel*, float, float, float)
+void Pikmin::TAnimator::setAnmWave(J3DModel* model, f32 weight, f32 frameA, f32 frameB)
 {
-    // UNUSED FUNCTION
-} */
+	_18->mCurrentFrame = frameB;
+	_14->mCurrentFrame = frameA;
+
+	J3DMtxCalc* calc = _20;
+	calc->setWeight(0, 1.0f - weight);
+	calc->setWeight(1, weight);
+
+	model->mModelData->mJointTree.mJoints[0]->mMtxCalc = calc;
+}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000218
  */
-/* void Pikmin::TAnimator::newJ3DModel(long)
+J3DModel* Pikmin::TAnimator::newJ3DModel(s32 color)
 {
-    // UNUSED FUNCTION
-} */
+	P2ASSERTBOUNDSLINE(292, 0, color, Game::AllPikmin);
+	switch (color) {
+	case Game::Red:
+		return new J3DModel(mModelDataRed, 0x20000, 1);
+	case Game::Yellow:
+		return new J3DModel(mModelDataYellow, 0x20000, 1);
+	case Game::Blue:
+		return new J3DModel(mModelDataBlue, 0x20000, 1);
+	case Game::Purple:
+		return new J3DModel(mModelDataPurple, 0x20000, 1);
+	case Game::White:
+		return new J3DModel(mModelDataWhite, 0x20000, 1);
+	}
+
+	return nullptr;
+}
 
 /*
  * --INFO--
@@ -128,25 +196,9 @@ void Pikmin::TAnimator::setArchive(JKRArchive* arc)
 Pikmin::TMgr::TMgr()
     : CNode("PikminMgr")
 {
-	mCounter          = 0;
-	mCounter2         = 0;
-	_960              = 0;
-	_964              = 0;
-	_968              = 0;
-	_96C              = 0;
-	_970              = 0;
-	_974              = 0;
-	_978              = 0;
-	_97C              = 0;
-	u32 time          = 0.0f / sys->mDeltaTime;
-	mCounter          = time;
-	mCounter2         = time;
-	mBoidParamMgr._1C = 0;
-	mBoidParamMgr._18 = 0;
-	mModelData        = (J3DModelData*)new TruncatedJ3DModelData;
-	pUnits            = new TUnit[500];
-	_998              = 0.0f;
-	_99C              = 0.0f;
+	mAnimator = new TAnimator;
+	mUnits    = new TUnit[TITLE_PIKI_TOTAL];
+	_988      = Vector2f(0.0f);
 	add((CNode*)&mBoidParamMgr);
 }
 
@@ -158,7 +210,7 @@ Pikmin::TMgr::TMgr()
 void Pikmin::TMgr::setArchive(JKRArchive* arc)
 {
 	mParams.loadSettingFile(arc, "param/param_pikmin.txt");
-	((TAnimator*)mModelData)->setArchive(arc);
+	mAnimator->setArchive(arc);
 	void* file = arc->getResource("param/param_boid.txt");
 	if (file != nullptr) {
 		RamStream stream(file, -1);
@@ -178,20 +230,20 @@ void Pikmin::TMgr::setArchive(JKRArchive* arc)
  */
 void Pikmin::TMgr::initUnit()
 {
-	for (int i = 0; i < 100; i++) {
-		(pUnits[i]).init(this, 0);
+	for (int i = 0; i < TITLE_PIKI_TYPE_MAX; i++) {
+		(mUnits[i]).init(this, Game::Blue);
 	}
-	for (int i = 100; i < 200; i++) {
-		(pUnits[i]).init(this, 1);
+	for (int i = TITLE_PIKI_TYPE_MAX; i < 2 * TITLE_PIKI_TYPE_MAX; i++) {
+		(mUnits[i]).init(this, Game::Red);
 	}
-	for (int i = 200; i < 300; i++) {
-		(pUnits[i]).init(this, 2);
+	for (int i = 2 * TITLE_PIKI_TYPE_MAX; i < 3 * TITLE_PIKI_TYPE_MAX; i++) {
+		(mUnits[i]).init(this, Game::Yellow);
 	}
-	for (int i = 300; i < 400; i++) {
-		(pUnits[i]).init(this, 3);
+	for (int i = 3 * TITLE_PIKI_TYPE_MAX; i < 4 * TITLE_PIKI_TYPE_MAX; i++) {
+		(mUnits[i]).init(this, Game::Purple);
 	}
-	for (int i = 400; i < 500; i++) {
-		(pUnits[i]).init(this, 4);
+	for (int i = 4 * TITLE_PIKI_TYPE_MAX; i < TITLE_PIKI_TOTAL; i++) {
+		(mUnits[i]).init(this, Game::White);
 	}
 }
 
@@ -202,28 +254,14 @@ void Pikmin::TMgr::initUnit()
  */
 void Pikmin::TMgr::update()
 {
-	if (mCounter != 0) {
-		mCounter--;
-	}
+	mBoidParamMgr.update();
 
-	// Annoying float + double arithmetic
-
-	/* if (mCounter2 != 0) {
-	    u32 var = 0x4430;
-	    u32 count = mCounter;
-	    u32 count2 = mCounter2;
-
-
-	}
-	else {
-
-	} */
 	updateCalcBoid_();
-	for (int i = 0; i < 500; i++) {
-		(pUnits[i]).update();
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		(mUnits[i]).update();
 	}
-	for (int i = 0; i < 500; i++) {
-		titleMgr->inField((TObjBase*)&pUnits[i]);
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		titleMgr->inField((TObjBase*)&mUnits[i]);
 	}
 }
 
@@ -234,18 +272,18 @@ void Pikmin::TMgr::update()
  */
 void Pikmin::TMgr::forceArriveDest()
 {
-	for (int i = 0; i < 500; i++) {
-		(pUnits[i]).alive();
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		(mUnits[i]).alive();
 	}
-	mBoidParamMgr._1C = mBoidParamMgr._18;
-	mBoidParamMgr._18 = 0;
-	u32 time          = 0.0f / sys->mDeltaTime;
-	mCounter          = time;
-	mCounter2         = time;
-	for (int i = 0; i < 500; i++) {
-		TUnit* unit     = &pUnits[i];
-		unit->mPosition = unit->destPos;
-		unit->startState((Pikmin::TUnit::enumState)1);
+	mBoidParamMgr._1C       = mBoidParamMgr._18;
+	mBoidParamMgr._18       = 0;
+	u32 time                = 0.0f / sys->mDeltaTime;
+	mBoidParamMgr.mCounter  = time;
+	mBoidParamMgr.mCounter2 = time;
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		TUnit* unit     = &mUnits[i];
+		unit->mPosition = unit->mDestPos;
+		unit->startState(TUnit::STATE_Unk1);
 	}
 }
 
@@ -256,13 +294,13 @@ void Pikmin::TMgr::forceArriveDest()
  */
 void Pikmin::TMgr::assemble()
 {
-	mBoidParamMgr._1C = mBoidParamMgr._18;
-	mBoidParamMgr._18 = 0;
-	u32 time          = 2.0f / sys->mDeltaTime;
-	mCounter          = time;
-	mCounter2         = time;
-	for (int i = 0; i < 500; i++) {
-		pUnits[i].goDestination();
+	mBoidParamMgr._1C       = mBoidParamMgr._18;
+	mBoidParamMgr._18       = 0;
+	u32 time                = 2.0f / sys->mDeltaTime;
+	mBoidParamMgr.mCounter  = time;
+	mBoidParamMgr.mCounter2 = time;
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		mUnits[i].goDestination();
 	}
 }
 
@@ -273,13 +311,13 @@ void Pikmin::TMgr::assemble()
  */
 void Pikmin::TMgr::quickAssemble()
 {
-	mBoidParamMgr._1C = mBoidParamMgr._18;
-	mBoidParamMgr._18 = 1;
-	u32 time          = 1.0f / sys->mDeltaTime;
-	mCounter          = time;
-	mCounter2         = time;
-	for (int i = 0; i < 500; i++) {
-		pUnits[i].goDestination();
+	mBoidParamMgr._1C       = mBoidParamMgr._18;
+	mBoidParamMgr._18       = 1;
+	u32 time                = 1.0f / sys->mDeltaTime;
+	mBoidParamMgr.mCounter  = time;
+	mBoidParamMgr.mCounter2 = time;
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		mUnits[i].goDestination();
 	}
 }
 
@@ -290,13 +328,13 @@ void Pikmin::TMgr::quickAssemble()
  */
 void Pikmin::TMgr::startBoid1(f32 arg)
 {
-	mBoidParamMgr._1C = mBoidParamMgr._18;
-	mBoidParamMgr._18 = 2;
-	u32 time          = (arg / 2) / sys->mDeltaTime;
-	mCounter          = time;
-	mCounter2         = time;
-	for (int i = 0; i < 500; i++) {
-		pUnits[i].startState((Pikmin::TUnit::enumState)4);
+	mBoidParamMgr._1C       = mBoidParamMgr._18;
+	mBoidParamMgr._18       = 2;
+	u32 time                = (arg / 2) / sys->mDeltaTime;
+	mBoidParamMgr.mCounter  = time;
+	mBoidParamMgr.mCounter2 = time;
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		mUnits[i].startState(TUnit::STATE_Unk4);
 	}
 }
 
@@ -307,13 +345,13 @@ void Pikmin::TMgr::startBoid1(f32 arg)
  */
 void Pikmin::TMgr::startBoid2(f32 arg)
 {
-	mBoidParamMgr._1C = mBoidParamMgr._18;
-	mBoidParamMgr._18 = 3;
-	u32 time          = (arg / 2) / sys->mDeltaTime;
-	mCounter          = time;
-	mCounter2         = time;
-	for (int i = 0; i < 500; i++) {
-		pUnits[i].startState((Pikmin::TUnit::enumState)4);
+	mBoidParamMgr._1C       = mBoidParamMgr._18;
+	mBoidParamMgr._18       = 3;
+	u32 time                = (arg / 2) / sys->mDeltaTime;
+	mBoidParamMgr.mCounter  = time;
+	mBoidParamMgr.mCounter2 = time;
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		mUnits[i].startState(TUnit::STATE_Unk4);
 	}
 }
 
@@ -324,13 +362,13 @@ void Pikmin::TMgr::startBoid2(f32 arg)
  */
 void Pikmin::TMgr::startBoid3(f32 arg)
 {
-	mBoidParamMgr._1C = mBoidParamMgr._18;
-	mBoidParamMgr._18 = 4;
-	u32 time          = (arg / 2) / sys->mDeltaTime;
-	mCounter          = time;
-	mCounter2         = time;
-	for (int i = 0; i < 500; i++) {
-		pUnits[i].startState((Pikmin::TUnit::enumState)4);
+	mBoidParamMgr._1C       = mBoidParamMgr._18;
+	mBoidParamMgr._18       = 4;
+	u32 time                = (arg / 2) / sys->mDeltaTime;
+	mBoidParamMgr.mCounter  = time;
+	mBoidParamMgr.mCounter2 = time;
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		mUnits[i].startState(TUnit::STATE_Unk4);
 	}
 }
 
@@ -341,12 +379,12 @@ void Pikmin::TMgr::startBoid3(f32 arg)
  */
 void Pikmin::TMgr::startWindBlow(ebi::EGEBox2f& box)
 {
-	for (int i = 0; i < 500; i++) {
-		TUnit* unit = &pUnits[i];
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		TUnit* unit = &mUnits[i];
 		if (unit->isCalc()) {
 			Vector2f unitPos = Vector2f(unit->mPosition.x, unit->mPosition.y);
 			if (!box.isOut(unitPos)) {
-				(pUnits[i]).startState((Pikmin::TUnit::enumState)3);
+				(mUnits[i]).startState(TUnit::STATE_Unk3);
 			}
 		}
 	}
@@ -359,8 +397,8 @@ void Pikmin::TMgr::startWindBlow(ebi::EGEBox2f& box)
  */
 void Pikmin::TMgr::startDemo()
 {
-	for (int i = 0; i < 500; i++) {
-		pUnits[i].alive();
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		mUnits[i].alive();
 	}
 	quickAssemble();
 }
@@ -372,8 +410,8 @@ void Pikmin::TMgr::startDemo()
  */
 void Pikmin::TMgr::enemyPushOut(ebi::title::TObjBase* obj)
 {
-	for (int i = 0; i < 500; i++) {
-		pUnits[i].pushOut(obj);
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		obj->pushOut(&mUnits[i]);
 	}
 }
 
@@ -382,7 +420,77 @@ void Pikmin::TMgr::enemyPushOut(ebi::title::TObjBase* obj)
  * Address:	803E4E64
  * Size:	0003B8
  */
-void Pikmin::TMgr::updateCalcBoid_() { }
+void Pikmin::TMgr::updateCalcBoid_()
+{
+	// non-matching
+	static int boidCalcTimer = 0;
+	if (++boidCalcTimer >= 10) {
+		boidCalcTimer = 0;
+		_988          = Vector2f(0.0f);
+
+		int counter = 0;
+		for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+			if (mUnits[i].isCalc()) {
+				_988 = _988 + Vector2f(mUnits[i].mPosition.x, mUnits[i].mPosition.y);
+				counter++;
+			}
+		}
+
+		if (counter != 0) {
+			f32 norm = 1.0f / (f32)counter;
+			_988 *= norm;
+		}
+	}
+
+	int i     = (boidCalcTimer * TITLE_PIKI_TOTAL) / 10;
+	int limit = (boidCalcTimer == 9) ? TITLE_PIKI_TOTAL : (((boidCalcTimer + 1) * TITLE_PIKI_TOTAL) / 10);
+
+	for (i; i < limit; i++) {
+		TUnit* unit = &mUnits[i];
+		if (!unit->isWalk()) {
+			continue;
+		}
+
+		f32 factor1 = mBoidParamMgr._6C8;
+		f32 factor2 = 1.0f - factor1;
+
+		Vector2f vec1 = _988 * factor1 + unit->mDestPos * factor2; // f31, f30
+		Vector2f vec2(0.0f);
+		Vector2f vec3(0.0f);
+		int counter = 0;
+		for (int j = 0; j < TITLE_PIKI_TOTAL; j++) {
+			TUnit* curUnit = &mUnits[j];
+			if (curUnit->isCalc()) {
+				Vector2f sep = unit->mPosition - curUnit->mPosition;
+				f32 dist     = sep.length();
+				if (dist < mBoidParamMgr._6C4) {
+					vec2 += curUnit->mAngle * curUnit->mParms[0];
+					if (dist < 1.0f) {
+						dist = 1.0f;
+					}
+
+					sep.normalise();
+
+					vec3 += sep * (1.0f / SQUARE(dist));
+					counter++;
+				}
+			}
+		}
+
+		Vector2f vec4;
+		Vector2f vec5;
+		if (counter == 0) {
+			vec4 = Vector2f(0.0f);
+			vec5 = Vector2f(0.0f);
+		} else {
+			vec4 = vec2 * (1.0f / (f32)counter);
+			vec5 = vec3 * (1.0f / (f32)counter);
+		}
+		unit->_6C = vec1;
+		unit->_74 = vec4;
+		unit->_7C = vec5;
+	}
+}
 
 /*
  * --INFO--
@@ -392,8 +500,8 @@ void Pikmin::TMgr::updateCalcBoid_() { }
 bool Pikmin::TMgr::isAssemble()
 {
 
-	for (int i = 0; i < 500; i++) {
-		TUnit* unit = &pUnits[i];
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		TUnit* unit = &mUnits[i];
 		if (!unit->isAssemble()) {
 			return false;
 		}
@@ -406,262 +514,41 @@ bool Pikmin::TMgr::isAssemble()
  * Address:	803E528C
  * Size:	000010
  */
-Pikmin::TUnit* Pikmin::TMgr::getUnit(long idx) { return &pUnits[idx]; }
+Pikmin::TUnit* Pikmin::TMgr::getUnit(long idx) { return &mUnits[idx]; }
 
 /*
  * --INFO--
  * Address:	803E529C
  * Size:	000360
  */
-void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr* mgr, long colour)
+void Pikmin::TUnit::init(ebi::title::Pikmin::TMgr* mgr, s32 color)
 {
 	mManager = mgr;
-	mManager->mParams.mAnimMaxWaitTime.mValue;
-	mManager->mParams.mAnimMinWaitTime.mValue;
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-stfd     f31, 0x40(r1)
-psq_st   f31, 72(r1), 0, qr0
-stfd     f30, 0x30(r1)
-psq_st   f30, 56(r1), 0, qr0
-stw      r31, 0x2c(r1)
-stw      r30, 0x28(r1)
-stw      r29, 0x24(r1)
-mr       r30, r3
-mr       r29, r5
-stw      r4, 0x34(r3)
-lwz      r3, 0x34(r3)
-lfs      f30, 0x1a8(r3)
-lfs      f31, 0x1d0(r3)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0xc(r1)
-fsubs    f0, f30, f31
-lfd      f3, lbl_8051FCD8@sda21(r2)
-cmpwi    r29, 0
-stw      r0, 8(r1)
-li       r0, 0
-lfs      f1, lbl_8051FCE0@sda21(r2)
-lfd      f2, 8(r1)
-fsubs    f2, f2, f3
-fdivs    f1, f2, f1
-fmadds   f0, f0, f1, f31
-stfs     f0, 0x60(r30)
-lwz      r3, 0x34(r30)
-lwz      r31, 0x18(r3)
-blt      lbl_803E5330
-cmpwi    r29, 5
-bge      lbl_803E5330
-li       r0, 1
+	f32 min, max;
+	max = mManager->mParams.mAnimMaxWaitTime();
+	min = mManager->mParams.mAnimMinWaitTime();
 
-lbl_803E5330:
-clrlwi.  r0, r0, 0x18
-bne      lbl_803E5354
-lis      r3, lbl_80497278@ha
-lis      r5, lbl_80497290@ha
-addi     r3, r3, lbl_80497278@l
-li       r4, 0x124
-addi     r5, r5, lbl_80497290@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	_60.x = (max - min) * randEbisawaFloat() + min;
 
-lbl_803E5354:
-cmpwi    r29, 2
-beq      lbl_803E53C8
-bge      lbl_803E5370
-cmpwi    r29, 0
-beq      lbl_803E5410
-bge      lbl_803E5380
-b        lbl_803E54E8
+	mModel = mManager->mAnimator->newJ3DModel(color);
 
-lbl_803E5370:
-cmpwi    r29, 4
-beq      lbl_803E54A0
-bge      lbl_803E54E8
-b        lbl_803E5458
+	mFrameControlA.init(mManager->mAnimator->_14->mMaxFrame);
+	mFrameControlB.init(mManager->mAnimator->_18->mMaxFrame);
 
-lbl_803E5380:
-li       r3, 0xdc
-bl       __nw__FUl
-or.      r29, r3, r3
-beq      lbl_803E54EC
-lis      r3, __vt__8J3DModel@ha
-lwz      r31, 0(r31)
-addi     r0, r3, __vt__8J3DModel@l
-stw      r0, 0(r29)
-addi     r3, r29, 0x88
-bl       init__15J3DVertexBufferFv
-mr       r3, r29
-bl       initialize__8J3DModelFv
-mr       r3, r29
-mr       r4, r31
-lis      r5, 2
-li       r6, 1
-bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
-b        lbl_803E54EC
+	switch (sys->mRegion) {
+	case System::LANG_JAPANESE:
+		mParms[1] = mManager->mParams.mJpnScale();
+		break;
+	default:
+		mParms[1] = mManager->mParams.mIntScale();
+		break;
+	}
 
-lbl_803E53C8:
-li       r3, 0xdc
-bl       __nw__FUl
-or.      r29, r3, r3
-beq      lbl_803E54EC
-lis      r3, __vt__8J3DModel@ha
-lwz      r31, 4(r31)
-addi     r0, r3, __vt__8J3DModel@l
-stw      r0, 0(r29)
-addi     r3, r29, 0x88
-bl       init__15J3DVertexBufferFv
-mr       r3, r29
-bl       initialize__8J3DModelFv
-mr       r3, r29
-mr       r4, r31
-lis      r5, 2
-li       r6, 1
-bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
-b        lbl_803E54EC
+	mParms[2] = mManager->mParams.mCollRadius();
 
-lbl_803E5410:
-li       r3, 0xdc
-bl       __nw__FUl
-or.      r29, r3, r3
-beq      lbl_803E54EC
-lis      r3, __vt__8J3DModel@ha
-lwz      r31, 8(r31)
-addi     r0, r3, __vt__8J3DModel@l
-stw      r0, 0(r29)
-addi     r3, r29, 0x88
-bl       init__15J3DVertexBufferFv
-mr       r3, r29
-bl       initialize__8J3DModelFv
-mr       r3, r29
-mr       r4, r31
-lis      r5, 2
-li       r6, 1
-bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
-b        lbl_803E54EC
-
-lbl_803E5458:
-li       r3, 0xdc
-bl       __nw__FUl
-or.      r29, r3, r3
-beq      lbl_803E54EC
-lis      r3, __vt__8J3DModel@ha
-lwz      r31, 0xc(r31)
-addi     r0, r3, __vt__8J3DModel@l
-stw      r0, 0(r29)
-addi     r3, r29, 0x88
-bl       init__15J3DVertexBufferFv
-mr       r3, r29
-bl       initialize__8J3DModelFv
-mr       r3, r29
-mr       r4, r31
-lis      r5, 2
-li       r6, 1
-bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
-b        lbl_803E54EC
-
-lbl_803E54A0:
-li       r3, 0xdc
-bl       __nw__FUl
-or.      r29, r3, r3
-beq      lbl_803E54EC
-lis      r3, __vt__8J3DModel@ha
-lwz      r31, 0x10(r31)
-addi     r0, r3, __vt__8J3DModel@l
-stw      r0, 0(r29)
-addi     r3, r29, 0x88
-bl       init__15J3DVertexBufferFv
-mr       r3, r29
-bl       initialize__8J3DModelFv
-mr       r3, r29
-mr       r4, r31
-lis      r5, 2
-li       r6, 1
-bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
-b        lbl_803E54EC
-
-lbl_803E54E8:
-li       r29, 0
-
-lbl_803E54EC:
-stw      r29, 0x28(r30)
-addi     r3, r30, 0x38
-lwz      r4, 0x34(r30)
-lwz      r4, 0x18(r4)
-lwz      r4, 0x14(r4)
-lha      r4, 6(r4)
-bl       init__12J3DFrameCtrlFs
-lwz      r4, 0x34(r30)
-addi     r3, r30, 0x4c
-lwz      r4, 0x18(r4)
-lwz      r4, 0x18(r4)
-lha      r4, 6(r4)
-bl       init__12J3DFrameCtrlFs
-lwz      r3, sys@sda21(r13)
-lwz      r0, 0xd4(r3)
-cmpwi    r0, 5
-beq      lbl_803E5534
-b        lbl_803E5544
-
-lbl_803E5534:
-lwz      r3, 0x34(r30)
-lfs      f0, 0x68(r3)
-stfs     f0, 0x18(r30)
-b        lbl_803E5550
-
-lbl_803E5544:
-lwz      r3, 0x34(r30)
-lfs      f0, 0x40(r3)
-stfs     f0, 0x18(r30)
-
-lbl_803E5550:
-lwz      r3, 0x34(r30)
-lfs      f0, 0x90(r3)
-stfs     f0, 0x1c(r30)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0xc(r1)
-lfd      f3, lbl_8051FCD8@sda21(r2)
-stw      r0, 8(r1)
-lfs      f1, lbl_8051FCE0@sda21(r2)
-lfd      f2, 8(r1)
-lfs      f0, lbl_8051FCB4@sda21(r2)
-fsubs    f2, f2, f3
-fdivs    f1, f2, f1
-fmuls    f0, f0, f1
-stfs     f0, 0x48(r30)
-bl       rand
-xoris    r0, r3, 0x8000
-lis      r3, 0x43300030@ha
-stw      r0, 0x14(r1)
-li       r0, 0
-lfd      f3, lbl_8051FCD8@sda21(r2)
-stw      r3, 0x10(r1)
-lfs      f2, lbl_8051FCE0@sda21(r2)
-lfd      f0, 0x10(r1)
-lfs      f1, lbl_8051FCE8@sda21(r2)
-fsubs    f3, f0, f3
-lfs      f0, lbl_8051FCE4@sda21(r2)
-fdivs    f2, f3, f2
-fmadds   f0, f1, f2, f0
-stfs     f0, 0x64(r30)
-stb      r0, 0x94(r30)
-psq_l    f31, 72(r1), 0, qr0
-lfd      f31, 0x40(r1)
-psq_l    f30, 56(r1), 0, qr0
-lfd      f30, 0x30(r1)
-lwz      r31, 0x2c(r1)
-lwz      r30, 0x28(r1)
-lwz      r0, 0x54(r1)
-lwz      r29, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
+	mFrameControlA.mFrame = 5.0f * randEbisawaFloat();
+	_60.y                 = 0.8f * randEbisawaFloat() + 0.40000004f;
+	mIsDead               = false;
 }
 
 /*
@@ -671,18 +558,18 @@ blr
  */
 void Pikmin::TUnit::goDestination()
 {
-	Vector2f Diff(destPos.x - mPosition.x, destPos.y - mPosition.y);
+	Vector2f Diff(mDestPos.x - mPosition.x, mDestPos.y - mPosition.y);
 	f32 comp = _lenVec2D(Diff);
 	if (comp < mManager->mParams.mStopDist.mValue) {
-		startState((enumState)1);
+		startState(STATE_Unk1);
 		return;
 	}
 
 	if (comp < mManager->mParams.mConvDist.mValue) {
-		startState((enumState)2);
+		startState(STATE_Unk2);
 		return;
 	}
-	startState((enumState)2);
+	startState(STATE_Unk2);
 }
 
 /*
@@ -702,13 +589,13 @@ void Pikmin::TUnit::goDestination()
  */
 bool Pikmin::TUnit::beAttacked()
 {
-	if (_94 != false) {
-		return 0;
+	if (mIsDead) {
+		return false;
 	}
-	_94       = true;
-	_84       = 0;
-	mPosition = titleMgr->getPosOutOfViewField();
-	return 1;
+	mIsDead       = true;
+	mCurrentState = STATE_Hidden;
+	mPosition     = titleMgr->getPosOutOfViewField();
+	return true;
 }
 
 /*
@@ -716,14 +603,14 @@ bool Pikmin::TUnit::beAttacked()
  * Address:	803E5700
  * Size:	00000C
  */
-void Pikmin::TUnit::alive() { _94 = false; }
+void Pikmin::TUnit::alive() { mIsDead = false; }
 
 /*
  * --INFO--
  * Address:	803E570C
  * Size:	000014
  */
-bool Pikmin::TUnit::isCalc() { return (bool)(_84); }
+bool Pikmin::TUnit::isCalc() { return (bool)(mCurrentState != STATE_Hidden); }
 
 /*
  * --INFO--
@@ -732,7 +619,7 @@ bool Pikmin::TUnit::isCalc() { return (bool)(_84); }
  */
 bool Pikmin::TUnit::isAssemble()
 {
-	if ((_84 == 0) || (_84 == 1)) {
+	if ((mCurrentState == STATE_Hidden) || (mCurrentState == STATE_Unk1)) {
 		return true;
 	}
 	return false;
@@ -745,7 +632,7 @@ bool Pikmin::TUnit::isAssemble()
  */
 bool Pikmin::TUnit::isWalk()
 {
-	if ((_84 == 2) || (_84 == 4)) {
+	if ((mCurrentState == STATE_Unk2) || (mCurrentState == STATE_Unk4)) {
 		return true;
 	}
 	return false;
@@ -766,108 +653,38 @@ bool Pikmin::TUnit::isWalk()
  * Address:	803E5768
  * Size:	000150
  */
-void Pikmin::TUnit::startState(ebi::title::Pikmin::TUnit::enumState)
+void Pikmin::TUnit::startState(TUnit::enumState state)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lwz      r3, 0x84(r3)
-cmpw     r4, r3
-beq      lbl_803E58A4
-lbz      r0, 0x94(r31)
-cmplwi   r0, 1
-bne      lbl_803E57A0
-li       r0, 0
-stw      r0, 0x84(r31)
-b        lbl_803E57A8
+	if (state == mCurrentState) {
+		return;
+	}
 
-lbl_803E57A0:
-stw      r3, 0x88(r31)
-stw      r4, 0x84(r31)
+	if (mIsDead == true) {
+		mCurrentState = STATE_Hidden;
+	} else {
+		mPreviousState = mCurrentState;
+		mCurrentState  = state;
+	}
+	switch (mCurrentState) {
+	case STATE_Hidden:
+		mPosition = mDestPos;
+		break;
 
-lbl_803E57A8:
-lwz      r0, 0x84(r31)
-cmpwi    r0, 2
-beq      lbl_803E58A4
-bge      lbl_803E57C8
-cmpwi    r0, 0
-beq      lbl_803E57D4
-bge      lbl_803E5878
-b        lbl_803E58A4
+	case STATE_Unk3:
+		mAngle = Vector2f(1.0f, 0.0f);
 
-lbl_803E57C8:
-cmpwi    r0, 4
-bge      lbl_803E58A4
-b        lbl_803E57E8
+		u32 time              = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
+		mCounter              = time;
+		mCounter2             = time;
+		mFrameControlB.mFrame = 5.0f * randEbisawaFloat();
+		mFrameControlB.mRate  = mManager->mParams.mAnimSpeedStyle.mValue * (sys->mDeltaTime * 60.f * 0.5f);
+		break;
 
-lbl_803E57D4:
-lfs      f0, 0x2c(r31)
-stfs     f0, 4(r31)
-lfs      f0, 0x30(r31)
-stfs     f0, 8(r31)
-b        lbl_803E58A4
-
-lbl_803E57E8:
-lfs      f1, lbl_8051FC90@sda21(r2)
-lfs      f0, lbl_8051FC60@sda21(r2)
-stfs     f1, 0xc(r31)
-stfs     f0, 0x10(r31)
-lwz      r4, 0x34(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x270(r4)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x8c(r31)
-stw      r3, 0x90(r31)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0xc(r1)
-lfd      f2, lbl_8051FCD8@sda21(r2)
-stw      r0, 8(r1)
-lfs      f3, lbl_8051FCE0@sda21(r2)
-lfd      f1, 8(r1)
-lfs      f0, lbl_8051FCB4@sda21(r2)
-fsubs    f4, f1, f2
-lfs      f1, lbl_8051FCEC@sda21(r2)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-fdivs    f3, f4, f3
-fmuls    f0, f0, f3
-stfs     f0, 0x5c(r31)
-lwz      r3, sys@sda21(r13)
-lwz      r4, 0x34(r31)
-lfs      f0, 0x54(r3)
-lfs      f3, 0x180(r4)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x58(r31)
-b        lbl_803E58A4
-
-lbl_803E5878:
-lfs      f0, lbl_8051FC60@sda21(r2)
-lfs      f1, lbl_8051FCEC@sda21(r2)
-stfs     f0, 0x14(r31)
-lfs      f2, lbl_8051FCC0@sda21(r2)
-lwz      r3, sys@sda21(r13)
-lfs      f3, 0x60(r31)
-lfs      f0, 0x54(r3)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-fmuls    f0, f3, f0
-stfs     f0, 0x44(r31)
-
-lbl_803E58A4:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	case STATE_Unk1:
+		mParms[0]            = 0.0f;
+		mFrameControlA.mRate = _60.x * (sys->mDeltaTime * 60.0f * 0.5f);
+		break;
+	}
 }
 
 /*
@@ -877,6 +694,142 @@ blr
  */
 void Pikmin::TUnit::update()
 {
+	if (titleMgr->isOutViewField(this) && titleMgr->isOutViewField(mDestPos, 0.0f)) {
+		startState(STATE_Hidden);
+	}
+
+	f32 val1        = mManager->mBoidParamMgr._6BC; // f7
+	f32 val2        = mManager->mBoidParamMgr._6C0; // f9
+	f32 chaseFactor = mManager->mBoidParamMgr._6C4; // f31
+
+	switch (mCurrentState) {
+	case STATE_Unk3: {
+		if (mCounter != 0) {
+			mCounter--;
+		}
+
+		if (mCounter == 0) {
+			startState(STATE_Unk1);
+		}
+	} break;
+
+	case STATE_Unk1: {
+		mAngle = mAngle + Vector2f(0.2f, 0.0f);
+		mAngle.normalise();
+
+		mPosition = mPosition + (mDestPos - mPosition) * 0.1f;
+		updateEnemyReaction_();
+	} break;
+
+	case STATE_Unk2: {
+		Vector2f sep = mDestPos - mPosition; // f29, f30
+		f32 dist     = sep.length();         // f31
+		if (dist < mManager->mParams.mStopDist()) {
+			startState(STATE_Unk1);
+		} else if (dist < mManager->mParams.mConvDist()) {
+			startState(STATE_Unk2);
+		}
+		f32 factor = dist * mManager->mParams.mDistSpeedFactor();
+		sep.normalise();
+
+		Vector2f vel = sep * factor;
+		updateSmoothWalk_(vel);
+		updateEnemyReaction_();
+	} break;
+
+	case STATE_Unk5: {
+		if (mDestPos.distance(mPosition) > mManager->mParams.mChaseGiveUp()) {
+			mEnemyObj = nullptr;
+		}
+
+		if (mEnemyObj) {
+			if (mEnemyObj->isCalc()) {
+				switch (mEnemyObj->getCreatureType()) {
+				case TITLECREATURE_Kogane: {
+					Vector2f sep = mEnemyObj->mPosition - mPosition;
+					sep.normalise();
+
+					Vector2f vel = mAngle * mParms[0] + sep * mManager->mParams.mKogane();
+					vel += _7C * chaseFactor;
+					updateSmoothWalk_(vel);
+				} break;
+
+				case TITLECREATURE_Chappy: {
+					Vector2f sep = mEnemyObj->mPosition - mPosition;
+					sep.normalise();
+
+					Vector2f vel = mAngle * mParms[0] + sep * mManager->mParams.mChappyRun();
+					vel += _7C * chaseFactor;
+					updateSmoothWalk_(vel);
+				} break;
+
+				case TITLECREATURE_NULL:
+					break;
+				}
+
+			} else {
+				mEnemyObj = nullptr;
+			}
+		} else {
+			startState(STATE_Unk2);
+		}
+
+	} break;
+
+	case STATE_Unk4: {
+		Vector2f sep = _6C - mPosition;
+		Vector2f vel = sep * val1 + _74 * val2 + _7C * chaseFactor + mAngle * mParms[0];
+		updateSmoothWalk_(vel);
+	} break;
+	}
+
+	if (mCurrentState == STATE_Hidden) {
+		return;
+	}
+
+	calcModelBaseMtx_();
+
+	switch (mCurrentState) {
+	case STATE_Unk3:
+		mFrameControlB.update();
+		mFrameControlA.update();
+		f32 factor1 = 1.0f - ((mCounter2 != 0) ? (f32)mCounter / (f32)mCounter2 : 0.0f);
+		f32 factor2 = 1.0f; // f27
+		if (factor1 <= 0.2f) {
+			factor2 = factor1 / 0.2f;
+		} else if (factor1 <= 0.5f) {
+			factor2 = 1.0f;
+		} else {
+			factor2 = -2.0f * factor1 + -(-2.0f);
+		}
+		mManager->mAnimator->setAnmWave(mModel, factor2, mFrameControlA.mFrame, mFrameControlB.mFrame);
+
+		break;
+
+	case STATE_Unk1:
+		mFrameControlA.update();
+		mManager->mAnimator->setAnmWait(mModel, mFrameControlA.mFrame);
+		break;
+
+	case STATE_Unk2:
+	case STATE_Unk4:
+	case STATE_Unk5:
+		mFrameControlA.mRate = (_60.y * (mParms[0] * mManager->mParams.mAnimSpeedWalk())) * ((sys->mDeltaTime * 60.0f) * 0.5f);
+		mFrameControlA.update();
+		mManager->mAnimator->setAnmWait(mModel, mFrameControlA.mFrame);
+
+		break;
+	}
+
+	mModel->calc();
+
+	u32 index         = mModel->mModelData->mJointTree.getJointName()->getIndex("shadow1");
+	Matrixf* worldMat = mModel->mMtxBuffer->getWorldMatrix(index);
+	worldMat->mMatrix.structView.tx += mManager->mParams.mShadowX();
+	worldMat->mMatrix.structView.tz += mManager->mParams.mShadowZ();
+	mModel->entry();
+	mModel->viewCalc();
+	
 	/*
 stwu     r1, -0xa0(r1)
 mflr     r0
@@ -1919,8 +1872,8 @@ blr
  */
 void Pikmin::TMgr::setStartPos(Vector2f* pos)
 {
-	for (int i = 0; i < 500; i++) {
-		TUnit* unit       = &pUnits[i];
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		TUnit* unit       = &mUnits[i];
 		unit->mPosition.x = pos[i].x;
 		unit->mPosition.y = pos[i].y;
 	}
@@ -1933,10 +1886,10 @@ void Pikmin::TMgr::setStartPos(Vector2f* pos)
  */
 void Pikmin::TMgr::setDestPos(Vector2f* pos)
 {
-	for (int i = 0; i < 500; i++) {
-		TUnit* unit     = &pUnits[i];
-		unit->destPos.x = pos[i].x;
-		unit->destPos.y = pos[i].y;
+	for (int i = 0; i < TITLE_PIKI_TOTAL; i++) {
+		TUnit* unit      = &mUnits[i];
+		unit->mDestPos.x = pos[i].x;
+		unit->mDestPos.y = pos[i].y;
 	}
 }
 
@@ -1953,9 +1906,9 @@ namespace title {
 void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 {
 	// Still needs to be matched
-	f32 _964  = mManager->_964;
-	f32 _968  = mManager->_968;
-	f32 _960  = mManager->_960;
+	f32 _964  = mManager->mBoidParamMgr._6B4;
+	f32 _968  = mManager->mBoidParamMgr._6B8;
+	f32 _960  = mManager->mBoidParamMgr._6B0;
 	f32 param = arg.length();
 	if (param > _960) {
 		param = _960;
@@ -1964,24 +1917,12 @@ void Pikmin::TUnit::updateSmoothWalk_(Vector2f& arg)
 	}
 	mParms[0] = param;
 	Vector2f pos(arg);
-	f32 len = _sqrtf((pos.x * pos.x) + (pos.y * pos.y));
-	if (len != 0.0f) {
-		f32 norm = 1.0f / len;
-		pos      = pos * norm;
-	}
-	pos      = pos * _964;
-	f32 sqt  = pos.x * pos.x + pos.y * pos.y;
-	f32 len2 = _sqrtf(sqt);
-
+	pos.normalise();
+	pos     = pos * _964;
+	f32 len = pos.length();
 	Vector2f newpos;
-	if (len2 > _968) {
-
-		f32 sqt2 = pos.x * pos.x + pos.y * pos.y;
-		f32 len  = _sqrtf(sqt2);
-		if (len != 0.0f) {
-			f32 norm = 1.0f / len;
-			pos      = pos * norm;
-		}
+	if (len > _968) {
+		pos.normalise();
 		newpos = pos * _968;
 	}
 
@@ -1999,65 +1940,19 @@ void Pikmin::TUnit::updateEnemyReaction_()
 {
 	if (mEnemyObj != nullptr && mEnemyObj->isCalc()) {
 		Vector2f diff = mEnemyObj->mPosition - mPosition;
-		f32 len       = _lenVec2D(diff);
+		f32 dist      = diff.length();
 		switch (mEnemyObj->getCreatureType()) {
-		case 5: // Kogane
-			if (len < mEnemyObj->mParms[3] && _84 != 5) {
-				if (_94 == 1) {
-					_84 = 0;
-				} else {
-					_88 = _84;
-					_84 = 5;
-				}
-				switch (_84) {
-				case 0:
-					mPosition = destPos;
-					break;
-				case 3:
-					mAngle = Vector2f(1.0f, 0.0f);
-
-					u32 time              = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
-					mCounter              = time;
-					mCounter2             = time;
-					mFrameControlB.mFrame = 5.0f * randEbisawaFloat();
-					mFrameControlB.mRate  = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
-					break;
-				case 1:
-					mParms[0]            = 0.0f;
-					mFrameControlA.mRate = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
-					break;
-				}
+		case TITLECREATURE_Kogane: // Kogane
+			if (dist < mEnemyObj->mParms[3]) {
+				startState(STATE_Unk5);
 			}
 			break;
-		case 6:
-			if (len < mEnemyObj->mParms[3] && _84 != 5) {
-				if (_94 == 1) {
-					_84 = 0;
-				} else {
-					_88 = _84;
-					_84 = 5;
-				}
-				switch (_84) {
-				case 0:
-					mPosition = destPos;
-					break;
-				case 3:
-					mAngle = Vector2f(1.0f, 0.0f);
-
-					u32 time              = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
-					mCounter              = time;
-					mCounter2             = time;
-					mFrameControlB.mFrame = 5.0f * randEbisawaFloat();
-					mFrameControlB.mRate  = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
-					break;
-				case 1:
-					mParms[0]            = 0.0f;
-					mFrameControlA.mRate = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
-					break;
-				}
+		case TITLECREATURE_Chappy:
+			if (dist < mEnemyObj->mParms[3]) {
+				startState(STATE_Unk5);
 			}
 			break;
-		case -1:
+		case TITLECREATURE_NULL:
 			break;
 		}
 	}

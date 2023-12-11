@@ -12,7 +12,7 @@ namespace title {
 TCoordMgr::TCoordMgr()
     : CNode("TCoordMgr")
 {
-	for (int i = 0; i < TITLE_PIKI_COUNT; i++) {
+	for (int i = 0; i < TITLE_PIKI_COLOR_COUNT; i++) {
 		mPikiCounts[i] = 0;
 	}
 }
@@ -84,7 +84,7 @@ void TCoordMgr::readCoordinate(JKRArchive* arc, char* path)
  */
 void TCoordMgr::readCoordinate(Stream& stream)
 {
-	for (int i = 0; i < TITLE_PIKI_COUNT; i++) {
+	for (int i = 0; i < TITLE_PIKI_COLOR_COUNT; i++) {
 		mPikiCounts[i] = stream.readInt();
 		int offs       = 0;
 		switch (i) {

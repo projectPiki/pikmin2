@@ -7,8 +7,8 @@
 #include "Parameters.h"
 #include "BaseParm.h"
 
-#define TITLE_PIKI_COUNT    5
-#define TITLE_PIKI_TYPE_MAX 100
+#define TITLE_PIKI_COLOR_COUNT 5
+#define TITLE_PIKI_TYPE_MAX    100
 
 struct JKRArchive;
 
@@ -42,9 +42,9 @@ struct TCoordMgr : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	int mPikiCounts[TITLE_PIKI_COUNT];                        // _18, unknown
-	Vector2f mCoords[TITLE_PIKI_COUNT * TITLE_PIKI_TYPE_MAX]; // _2C
-	LoadParameters mLoadParms;                                // _FCC
+	int mPikiCounts[TITLE_PIKI_COLOR_COUNT];                        // _18, unknown
+	Vector2f mCoords[TITLE_PIKI_COLOR_COUNT * TITLE_PIKI_TYPE_MAX]; // _2C
+	LoadParameters mLoadParms;                                      // _FCC
 };
 } // namespace title
 } // namespace ebi
