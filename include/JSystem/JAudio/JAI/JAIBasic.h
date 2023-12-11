@@ -57,7 +57,7 @@ struct JAIBasic {
 	void startSoundActorT(u32 id, T** handlePtr, JAInter::Actor* actor, u32 p4, u8 p5);
 
 	template <typename T>
-	T* startSoundVecReturnHandleT(T** handlePtr, u32 p2, Vec* p3, u32 p4, u32 p5, u8 p6);
+	void startSoundVecReturnHandleT(T** handlePtr, u32 p2, Vec* p3, u32 p4, u32 p5, u8 p6);
 
 	template <typename T>
 	void startSoundVecT(u32 id, T** handlePtr, Vec* p3, u32 p4, u32 p5, u8 p6);
@@ -133,6 +133,21 @@ void JAIBasic::startSoundActorT(u32 id, T** handlePtr, JAInter::Actor* actor, u3
 	JAInter::SoundInfo* info = JAInter::SoundTable::getInfoPointer(id);
 	if (info) {
 		startSoundBasic(id, handlePtr, actor, p4, p5, info);
+	}
+}
+
+template <typename T>
+void JAIBasic::startSoundVecReturnHandleT(T** handlePtr, u32 p2, Vec* p3, u32 p4, u32 p5, u8 p6)
+{
+	T* tempHandle[1];
+	*tempHandle = nullptr;
+	if ((p2 & JAISoundID_TypeMask) == JAISoundID_Type_Se) {
+		*tempHandle = (JAISound*)(1);
+	}
+	JAIBasic::startSoundVecT(p2, tempHandle, p3, p4, p5, p6);
+	*handlePtr = *tempHandle;
+	if (*tempHandle) {
+		(*tempHandle)->release();
 	}
 }
 

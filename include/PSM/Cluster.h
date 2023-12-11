@@ -25,7 +25,7 @@ struct ClusterFactory : public PSSystem::ClusterSe::Factory {
 	{
 	}
 
-	virtual PSSystem::ClusterSe::PartInitArg identifyPart(u8 a1) { partInit(a1); } // _0C (weak)
+	virtual PSSystem::ClusterSe::PartInitArg identifyPart(u8 a1) { return partInit(a1); } // _0C (weak)
 
 	PSSystem::ClusterSe::PartInitArg partInit(u8);
 
