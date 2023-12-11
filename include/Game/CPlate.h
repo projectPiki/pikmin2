@@ -76,7 +76,7 @@ struct CPlate : public Container<Creature> {
 	f32 _B0;                        // _B0
 	f32 _B4;                        // _B4
 	f32 _B8;                        // _B8
-	int _BC;                        // _BC
+	int mActiveGroupSize;           // _BC
 	Slot* mSlots;                   // _C0
 	int mSlotLimit;                 // _C4
 	int mSlotCount;                 // _C8

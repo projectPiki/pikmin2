@@ -66,18 +66,18 @@ CPlate::CPlate(int slotLimit)
     , mParms()
     , mSlotLimit(slotLimit)
 {
-	_B4        = 10.0f;
-	_B0        = 10.0f;
-	mPosition  = Vector3f(0.0f);
-	_F0        = 0.0f;
-	mSlots     = new Slot[mSlotLimit];
-	_BC        = 0;
-	mSlotCount = 0;
-	_110       = 0;
-	_111       = 1;
-	_F4        = 0.0f;
-	_F8        = 0.0f;
-	_FC        = 0.0f;
+	_B4              = 10.0f;
+	_B0              = 10.0f;
+	mPosition        = Vector3f(0.0f);
+	mAngle           = 0.0f;
+	mSlots           = new Slot[mSlotLimit];
+	mActiveGroupSize = 0;
+	mSlotCount       = 0;
+	_110             = 0;
+	_111             = 1;
+	_F4              = 0.0f;
+	_F8              = 0.0f;
+	_FC              = 0.0f;
 	for (int i = 0; i < ARRAY_SIZE(_104); i++) {
 		_104[i] = 0;
 	}
@@ -102,7 +102,7 @@ void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
 
 	f32 rad = _B0 + offset;
 
-	_F0       = angle;
+	mAngle    = angle;
 	mPosition = position;
 
 	Vector3f dir = Vector3f(rad * sinf(angle), 0.0f, rad * cosf(angle));
@@ -206,7 +206,7 @@ void CPlate::releaseSlot(Creature* creature, int idx)
 	_104[static_cast<Piki*>(creature)->mHappaKind]--;
 	slot.mCreature = nullptr;
 	mSlotCount--;
-	_BC--;
+	mActiveGroupSize--;
 	if (mSlotCount < 0) {
 		creature->getTypeName();
 	}

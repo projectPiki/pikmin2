@@ -449,23 +449,15 @@ Demo::~Demo()
  */
 void Demo::onDemoTop()
 {
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	Scene_Game* scene = static_cast<Scene_Game*>(PSMGetChildScene());
 	PSSystem::checkChildScene2(scene);
-	static_cast<PSM::Scene_Game*>(scene->mChild)->becomeSceneCamera();
+	static_cast<Scene_Game*>(scene->getChildScene())->becomeSceneCamera();
 
-	ObjCalcBase* objcalc = PSSystem::SingletonBase<ObjCalcBase>::getInstance();
-	objcalc->setMode(ObjCalcBase::OBJCALC_1);
+	PSSystem::SingletonBase<ObjCalcBase>::getInstance()->setMode(ObjCalcBase::OBJCALC_1);
 
-	mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-	scene->pauseOn_Demo();
+	static_cast<Scene_Game*>(PSMGetChildScene())->pauseOn_Demo();
 
-	mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	scene                     = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene                     = static_cast<Scene_Game*>(PSMGetChildScene());
 	PSSystem::EnvSeMgr* envse = scene->getEnvSe();
 	if (envse) {
 		envse->mReservator.mState = 0;
@@ -1065,14 +1057,9 @@ void Demo::onDemoEnd()
 {
 	becomeSceneCamera();
 
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-	scene->pauseOff_Demo();
+	static_cast<PSM::Scene_Game*>(PSMGetChildScene())->pauseOff_Demo();
 
-	mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	Scene_Game* scene = static_cast<PSM::Scene_Game*>(PSMGetSceneMgrCheck()->getChildScene());
 	PSSystem::checkGameScene(scene);
 	char* name                = mCurrentDemoName;
 	PSSystem::EnvSeMgr* envse = scene->getEnvSe();
@@ -1092,22 +1079,13 @@ void Demo::onDemoEnd()
 	}
 
 	if (!strcmp(name, "x06_join")) {
-		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
-		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-		scene->startMainSeq();
+		static_cast<PSM::Scene_Game*>(PSMGetChildScene())->startMainSeq();
 	} else if (!strcmp(name, "g03_meet_redpikmin")) {
-		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
-		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(scene, 1);
-		P2ASSERTLINE(839, seq);
+		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(PSMGetChildScene(), 1);
+		P2ASSERTLINE(834, seq);
 		seq->startSeq();
 	} else if (!strcmp(name, "x20_blackman")) {
-		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr(mgr);
-		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
-		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(scene, 1);
+		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(PSMGetChildScene(), 1);
 		P2ASSERTLINE(838, seq);
 		seq->startSeq();
 	}

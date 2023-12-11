@@ -21,17 +21,17 @@ struct Cluster : public CreatureObj {
 struct ClusterFactory : public PSSystem::ClusterSe::Factory {
 	inline ClusterFactory()
 	    : PSSystem::ClusterSe::Factory(3)
-	    , _0C(0)
+	    , mType(0)
 	{
 	}
 
-	virtual PSSystem::ClusterSe::PartInitArg identifyPart(u8); // _0C (weak)
+	virtual PSSystem::ClusterSe::PartInitArg identifyPart(u8 a1) { partInit(a1); } // _0C (weak)
 
 	PSSystem::ClusterSe::PartInitArg partInit(u8);
 
 	// _00     = VTBL
 	// _00-_08 = PSSystem::ClusterSe::Factory
-	u32 _0C; // _0C
+	u32 mType; // _0C
 };
 } // namespace PSM
 

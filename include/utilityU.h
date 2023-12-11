@@ -52,27 +52,28 @@ void PSSetCurCameraNo(u8);
 void PSSetLastBeedamaDirection(bool, bool);
 void PSStart2DStream(u32);
 void PSStartChallengeTimeUpStream();
-JAIStream* PSStartEnemyDownSmokeSE(Game::EnemyBase*, f32);
+JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase*, f32);
 JAIStream* PSStartEnemyDownWatSE(f64, Game::EnemyBase*);
 JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase*, f32);
-int PSStartEnemyGhostSE(Game::EnemyBase*, f32);
+JAISound* PSStartEnemyGhostSE(Game::EnemyBase*, f32);
 JAISound* PSStartSoundVec(SoundID, Vec*);
 JAISe* PSStartTreasureLaderSE(f32);
 JAISe* PSStartTreasureLaderNoiseSE(u8, f32, f32);
 u8 PSStop2DStream();
 
-// f32 sLaderNoiseFuefukiSensMax = 0.3f;
-// f32 sLaderNoiseFuefukiSensMin;
-// s16 sLaderNoiseFuefukiTimerCenter = 0x3C;
-// s16 sLaderNoiseFuefukiTimerRandam = 0x08;
-// f32 sLaderNoiseFuefukiVolumeMax = 0.5f;
-// f32 sLaderNoiseFuefukiVolumeMin = 0.25f;
-// s16 sLaderNoiseTimer;
-// f32 sLaderNoiseVolumeExp = 7.18f;
-// s16 sLaderNoiseWait;
-// f32 sTreasureLader_DistanceExp = 5.0f;
-// f32 sTreasureLader_MinimumVolume = 0.3f;
-// f32 sTreasureLader_Pitch = 1.04f;
-// f32 sTreasureLader_PitchDistance;
+// not sure how to handle these for PSMainSide_Se
+static f32 sLaderNoiseFuefukiSensMax; // = 0.3f;
+static f32 sLaderNoiseFuefukiSensMin;
+static s16 sLaderNoiseFuefukiTimerCenter; // = 0x3C;
+static s16 sLaderNoiseFuefukiTimerRandam; // = 0x08;
+static f32 sLaderNoiseFuefukiVolumeMax;   // = 0.5f;
+static f32 sLaderNoiseFuefukiVolumeMin;   // = 0.25f;
+static u16 sLaderNoiseTimer;
+static f32 sLaderNoiseVolumeExp; // = 7.18f;
+static s16 sLaderNoiseWait;
+static f32 sTreasureLader_DistanceExp;   // = 5.0f;
+static f32 sTreasureLader_MinimumVolume; //= 0.3f;
+static f32 sTreasureLader_Pitch;         //= 1.04f;
+static f32 sTreasureLader_PitchDistance; //= 0.77f;
 
 #endif

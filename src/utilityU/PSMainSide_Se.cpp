@@ -1,25 +1,22 @@
-#include "JSystem/JAudio/JAI/JAIAnimeSound.h"
-#include "JSystem/JAudio/JAI/JAInter.h"
 #include "P2Macros.h"
 #include "PSM/ObjCalc.h"
-#include "PSM/Scene.h"
-#include "PSM/Se.h"
-#include "PSSystem/PSCommon.h"
-#include "PSSystem/PSGame.h"
-#include "PSSystem/PSScene.h"
-#include "SoundID.h"
-#include "Sys/Sphere.h"
 #include "PSM/Cluster.h"
 #include "PSSystem/ClusterSe.h"
 #include "PSM/WorldMapRocket.h"
 #include "PSM/PikiHumming.h"
-#include "PSM/Piki.h"
-#include "PS.h"
 #include "PSSystem/PSSystemIF.h"
 #include "JSystem/JAudio/JALCalc.h"
 #include "Game/EnemyBase.h"
 #include "Game/Navi.h"
+#include "Game/Piki.h"
+#include "Game/CPlate.h"
 #include "PSM/EnemyBase.h"
+#include "PSM/BossSeq.h"
+#include "PSM/CreaturePrm.h"
+#include "utilityU.h"
+
+// f32 sTreasureLader_Pitch         = 1.04f;
+// f32 sTreasureLader_PitchDistance = 0.77f;
 
 /*
     Generated from dpostproc
@@ -330,28 +327,28 @@ namespace PSM {
 PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 {
 	PSSystem::ClusterSe::PartInitArg arg;
-	switch (_0C) {
+	switch (mType) {
 	case 0: {
 		switch (unknownID) {
 		case 0:
-			arg._00[0]   = 0x19;
-			arg._00[2]   = 0x19;
-			arg._00[3]   = 0x16;
-			arg._00[1]   = 0x10;
+			arg._00      = 0x19;
+			arg._02      = 0x19;
+			arg._03      = 0x16;
+			arg._01      = 0x10;
 			arg.mSoundID = PSSE_EN_BUTTERFLY_L;
 			break;
 		case 1:
-			arg._00[0]   = 0x16;
-			arg._00[2]   = 0x10;
-			arg._00[3]   = 0x0e;
-			arg._00[1]   = 0x08;
+			arg._00      = 0x16;
+			arg._02      = 0x10;
+			arg._03      = 0x0e;
+			arg._01      = 0x08;
 			arg.mSoundID = PSSE_EN_BUTTERFLY_M;
 			break;
 		case 2:
-			arg._00[0]   = 0x0e;
-			arg._00[2]   = 0x08;
-			arg._00[3]   = 0x05;
-			arg._00[1]   = 0x00;
+			arg._00      = 0x0e;
+			arg._02      = 0x08;
+			arg._03      = 0x05;
+			arg._01      = 0x00;
 			arg.mSoundID = PSSE_EN_BUTTERFLY_S;
 			break;
 		default:
@@ -362,21 +359,21 @@ PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 	case 1: {
 		switch (unknownID) {
 		case 0:
-			arg._00[0] = 0x64;
-			arg._00[3] = 0x46;
-			arg._00[1] = 0x3c;
+			arg._00 = 0x64;
+			arg._03 = 0x46;
+			arg._01 = 0x3c;
 			break;
 		case 1:
-			arg._00[0] = 0x46;
-			arg._00[2] = 0x3c;
-			arg._00[3] = 0x28;
-			arg._00[1] = 0x1e;
+			arg._00 = 0x46;
+			arg._02 = 0x3c;
+			arg._03 = 0x28;
+			arg._01 = 0x1e;
 			break;
 		case 2:
-			arg._00[0] = 0x28;
-			arg._00[2] = 0x1e;
-			arg._00[3] = 0x0a;
-			arg._00[1] = 0x00;
+			arg._00 = 0x28;
+			arg._02 = 0x1e;
+			arg._03 = 0x0a;
+			arg._01 = 0x00;
 			break;
 		default:
 			P2ASSERTLINE(95, false);
@@ -387,11 +384,6 @@ PSSystem::ClusterSe::PartInitArg ClusterFactory::partInit(u8 unknownID)
 		P2ASSERTLINE(100, false);
 		break;
 	}
-	// _04->mPart->mInitArg = arg;
-	// for (int i = 0; i < 4; i++) {
-	// 	_04->_00[i] = arg._00[i];
-	// }
-	// _04->mPart->mInitArg.mSoundID = arg.mSoundID;
 	return arg;
 }
 
@@ -424,31 +416,30 @@ WorldMapRocket::~WorldMapRocket() { }
  * Address:	8046D434
  * Size:	000490
  */
-JAISe* WorldMapRocket::startRocketSE(float transform1, float transform2)
+JAISe* WorldMapRocket::startRocketSE(f32 posX, f32 posY)
 {
 	JAISe* se = PSSystem::spSysIF->playSystemSe(PSSE_SY_ROCKET_SMOKE, 0);
-	u8 r6;
 
 	static f32 tmpVol;
-	static bool init;
+	static s8 init;
 
 	if (se) {
-		f32 transform = JALCalc::linearTransform(transform1, _08, _0C, 0.0f, 1.0f, false);
-		if (transform < 0.5f) {
-			JALCalc::getParamByExp(transform, 0.0f, 0.5f, _10, 0.0f, 0.5f, JALCalc::CS_1);
+		f32 calcX = JALCalc::linearTransform(posX, _08, _0C, 0.0f, 1.0f, false);
+		if (calcX < 0.5f) {
+			calcX = JALCalc::getParamByExp(calcX, 0.0f, 0.5f, _10, 0.0f, 0.5f, JALCalc::CS_1);
 		} else {
-			JALCalc::getParamByExp(transform, 0.5f, 1.0f, _10, 0.5f, 1.0f, JALCalc::CS_0);
+			calcX = JALCalc::getParamByExp(calcX, 0.5f, 1.0f, _10, 0.5f, 1.0f, JALCalc::CS_0);
 		}
-		transform = JALCalc::linearTransform(transform1, _14, _18, 0.0f, 1.0f, false);
-		if (transform < 0.5f) {
-			JALCalc::getParamByExp(transform, 0.0f, 0.5f, _1C, 0.0f, 0.5f, JALCalc::CS_1);
+		f32 calcY = JALCalc::linearTransform(posY, _14, _18, 0.0f, 1.0f, false);
+		if (calcY < 0.5f) {
+			calcY = JALCalc::getParamByExp(calcY, 0.0f, 0.5f, _1C, 0.0f, 0.5f, JALCalc::CS_1);
 		} else {
-			JALCalc::getParamByExp(transform, 0.5f, 1.0f, _1C, 0.5f, 1.0f, JALCalc::CS_0);
+			calcY = JALCalc::getParamByExp(calcY, 0.5f, 1.0f, _1C, 0.5f, 1.0f, JALCalc::CS_0);
 		}
 
 		if (mState != PSMRocket_3) {
-			se->setPan(transform1, 0, 0);
-			se->setDolby(transform2, 0, 0);
+			se->setPan(calcX, 0, 0);
+			se->setDolby(calcY, 0, 0);
 		}
 
 		switch (mState) {
@@ -512,11 +503,7 @@ JAISe* WorldMapRocket::startRocketSE(float transform1, float transform2)
  * Address:	8046D8C4
  * Size:	000008
  */
-void WorldMapRocket::stateChange(PSM::WorldMapRocket::rocketState a1)
-{
-	// Generated from stw r4, 0x4(r3)
-	mState = a1;
-}
+void WorldMapRocket::stateChange(rocketState a1) { mState = a1; }
 
 /*
  * --INFO--
@@ -532,36 +519,37 @@ PikiHumming::PikiHumming() { }
  */
 PikiHummingMgr::PikiHummingMgr()
 {
-	_00                   = 10;
-	_04                   = 0;
-	_08                   = 0;
+	_00     = 10;
+	mState  = 0;
+	mCurrID = 0;
+
 	mHummingArray         = new PikiHumming[3];
 	PikiHumming* shouting = &mHummingArray[0];
-	shouting->_14         = 0;
+	shouting->mActiveID   = 0;
 	shouting->mSoundID    = PSSE_PK_SHOUT01;
-	shouting->_08         = 72;
+	shouting->mCounterMax = 72;
 	shouting->_0C         = 4;
 	shouting->_00         = 0;
-	shouting->_18         = 0;
-	shouting->_10         = -1;
+	shouting->mIsActive   = 0;
+	shouting->mCounter    = -1;
 
 	PikiHumming* ainoutaRU = &mHummingArray[1];
-	ainoutaRU->_14         = 1;
+	ainoutaRU->mActiveID   = 1;
 	ainoutaRU->mSoundID    = PSSE_PK_AINOUTA_RU;
-	ainoutaRU->_08         = 300;
+	ainoutaRU->mCounterMax = 300;
 	ainoutaRU->_0C         = 2;
 	ainoutaRU->_00         = 0;
-	ainoutaRU->_18         = 0;
-	ainoutaRU->_10         = -1;
+	ainoutaRU->mIsActive   = 0;
+	ainoutaRU->mCounter    = -1;
 
 	PikiHumming* humming = &mHummingArray[2];
-	humming->_14         = 2;
+	humming->mActiveID   = 2;
 	humming->mSoundID    = PSSE_PK_HUMING01;
-	humming->_08         = 160;
+	humming->mCounterMax = 160;
 	humming->_0C         = 3;
 	humming->_00         = 0;
-	humming->_18         = 0;
-	humming->_10         = -1;
+	humming->mIsActive   = 0;
+	humming->mCounter    = -1;
 }
 
 /*
@@ -571,12 +559,69 @@ PikiHummingMgr::PikiHummingMgr()
  */
 void PikiHummingMgr::exec()
 {
-	// Iterator<Game::Navi> iNavi(Game::naviMgr);
-	// CI_LOOP(iNavi)
-	// {
-	// 	Game::Navi* navi = *iNavi;
-	// 	Game::naviMgr->getActiveNavi();
-	// }
+	Iterator<Game::Navi> iNavi(Game::naviMgr);
+	bool hasNavi = false;
+	CI_LOOP(iNavi)
+	{
+		Game::Navi* navi = *iNavi;
+		if (navi->isWalking()) {
+			hasNavi = true;
+			break;
+		}
+	}
+
+	int newState     = 0;
+	Game::Navi* navi = Game::naviMgr->getActiveNavi();
+	if (navi) {
+		int id = navi->mNaviIndex;
+		P2ASSERTBOUNDSINCLUSIVELINE(394, 0, id, 1);
+		if (Game::GameStat::formationPikis.getCount(id, Game::Red) == 20 && Game::GameStat::formationPikis.getCount(id, Game::Blue) == 20
+		    && Game::GameStat::formationPikis.getCount(id, Game::Yellow) == 20
+		    && Game::GameStat::formationPikis.getCount(id, Game::Purple) == 20
+		    && Game::GameStat::formationPikis.getCount(id, Game::White) == 20) {
+			newState = 1;
+		}
+	}
+
+	if (newState != 1) {
+		Scene_Game* scene = PSMGetGameScene();
+		if (scene->isPollutUp() && (u32)scene->getPollutUpTimer() > 60) {
+			newState = 2;
+		}
+	}
+
+	if (navi && navi->mCPlateMgr && navi->mCPlateMgr->mActiveGroupSize > 0 && hasNavi) {
+		mDoAiNoUta = true;
+	} else {
+		mDoAiNoUta = false;
+	}
+	mState = newState;
+	for (u8 i = 0; i < 3; i++) {
+		bool test        = true;
+		PikiHumming* hum = &mHummingArray[i];
+		u8 doPlay        = mDoAiNoUta;
+		if ((mState == hum->mActiveID) || !doPlay) {
+			if (hum->mCounter == -1) {
+				hum->_00 = 0;
+			}
+			test = false;
+		}
+		hum->mIsActive = false;
+		if (test) {
+			if (hum->_00 - (hum->_00 / hum->mCounterMax) * hum->mCounterMax == 0) {
+				hum->mIsActive = true;
+				hum->_00       = 0;
+			}
+			hum->_00++;
+		}
+		if (hum->mCounter >= 0) {
+			hum->mCounter++;
+			if (hum->mCounter >= hum->mCounterMax) {
+				hum->mCounter = -1;
+			}
+		}
+	}
+	mCurrID = 0;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1061,10 +1106,17 @@ lbl_8046DFC8:
  */
 void PikiHummingMgr::play(PSM::Piki* piki)
 {
-	// if (_10 != 0 && _00 <= piki->_74 && ++_08 < 4 && mHummingArray[_04]._18 != 0) {
-	// 	u32 v1 = static_cast<Game::Piki*>(piki->mGameObj)->getFormationSlotID();
-	// 	u32 v2 = mHummingArray[_04]._0C;
-	// }
+	if (mDoAiNoUta && (piki->_74 >= _00)) {
+		mCurrID++;
+		if (mCurrID < 4 && mHummingArray[mState].mIsActive) {
+			PikiHumming* hum = &mHummingArray[mState];
+			u32 id           = static_cast<Game::Piki*>(piki->mGameObj)->getFormationSlotID();
+			u32 test         = hum->_0C;
+			test             = hum->mSoundID + (id - (id / hum->_0C) * test);
+			piki->startPikiSound(piki, test, 0);
+			hum->mCounter = 0;
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1131,109 +1183,16 @@ lbl_8046E09C:
  */
 PSM::SeSound* PSStartSoundVec(u32 soundID, Vec* vec)
 {
-
-	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-	PSSystem::checkSceneMgr(mgr);
-	if (!static_cast<PSM::SceneBase*>(mgr->getEndScene())->getSeSceneGate(nullptr, soundID)) {
+	if (!static_cast<PSM::SceneBase*>(PSMGetSceneMgrCheck()->getEndScene())->getSeSceneGate(nullptr, soundID)) {
 		return nullptr;
 	}
-	u8 playerNo = PSM::ObjCalcBase::getInstance()->getPlayerNo(*vec);
-	P2ASSERTLINE(522, vec != nullptr);
 
-	JAISound* soundHandle;
+	u8 playerNo = PSM::ObjCalcBase::getInstance()->getPlayerNo(*vec);
+	P2ASSERTLINE(522, vec);
+
+	JAISound* soundHandle = nullptr;
 	PSSystem::spSysIF->startSoundVecReturnHandleT(&soundHandle, soundID, vec, 0, 0, playerNo);
 	return static_cast<PSM::SeSound*>(soundHandle);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_8049DA08@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r5, lbl_8049DA08@l
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046E100
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E100:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_8046E120
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E120:
-	lwz      r0, 8(r30)
-	cmplwi   r0, 0
-	bne      lbl_8046E140
-	addi     r3, r31, 0x38
-	addi     r5, r31, 0x14
-	li       r4, 0xa1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E140:
-	lwz      r3, 8(r30)
-	mr       r5, r28
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8046E16C
-	li       r3, 0
-	b        lbl_8046E1F0
-
-lbl_8046E16C:
-	lwz      r0,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) cmplwi
-r0, 0 bne      lbl_8046E18C addi     r3, r31, 0x68 addi     r5, r31, 0x14 li r4,
-0x89 crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E18C:
-	lwz      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
-r29 lwz      r12, 0(r3) lwz      r12, 0x10(r12) mtctr    r12 bctrl cmplwi   r29,
-0 mr       r30, r3 bne      lbl_8046E1C4 addi     r3, r31, 0 addi     r5, r31,
-0x14 li       r4, 0x20a crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E1C4:
-	li       r0, 0
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	stw      r0, 8(r1)
-	mr       r5, r28
-	mr       r6, r29
-	mr       r9, r30
-	addi     r4, r1, 8
-	li       r7, 0
-	li       r8, 0
-	bl
-"startSoundVecReturnHandleT<8JAISound>__8JAIBasicFPP8JAISoundUlP3VecUlUlUc" lwz
-r3, 8(r1)
-
-lbl_8046E1F0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1245,37 +1204,6 @@ PSM::Cluster* newPSCluster_SijimiChou(Game::Creature* creature)
 {
 	PSM::ClusterFactory factory;
 	return new PSM::Cluster(creature, factory);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r4, 3
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	bl       __ct__Q38PSSystem9ClusterSe7FactoryFUc
-	lis      r3, __vt__Q23PSM14ClusterFactory@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q23PSM14ClusterFactory@l
-	stw      r0, 0x10(r1)
-	li       r3, 0x74
-	stw      r4, 8(r1)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8046E264
-	mr       r4, r31
-	addi     r5, r1, 8
-	bl __ct__Q23PSM7ClusterFPQ24Game8CreatureRQ38PSSystem9ClusterSe7Factory mr
-r0, r3
-
-lbl_8046E264:
-	mr       r3, r0
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1283,7 +1211,7 @@ lbl_8046E264:
  * Address:	8046E27C
  * Size:	000198
  */
-JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, float)
+JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, f32)
 {
 	JAISound* ghost = enemy->getJAIObject()->startSound(PSSE_EN_ENEMY_GHOST, 0);
 	if (ghost) {
@@ -1385,206 +1313,33 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, float)
  * Address:	8046E414
  * Size:	00027C
  */
-void PSStartEnemyFatalHitSE(Game::EnemyBase* enemy, float p2)
+JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase* enemy, f32 p2)
 {
-	PSM::SeSound* sound = PSStartSoundVec(PSSE_EN_ENEMY_FATAL_HIT, reinterpret_cast<Vec*>(enemy->getSound_PosPtr()));
-	if (sound != nullptr) {
+	JAISound* sound = PSStartSoundVec(PSSE_EN_ENEMY_FATAL_HIT, reinterpret_cast<Vec*>(enemy->getSound_PosPtr()));
+	if (sound) {
 		Sys::Sphere sphere;
 		enemy->getBoundingSphere(sphere);
-		float v1 = JALCalc::getParamByExp(sphere.mRadius, 5.0f, 250.0f, 5.0f, 0.5f, 1.5f, JALCalc::CS_0);
-		if (v1 > 1.0f) {
-			v1 = 1.0f;
+		f32 rad    = sphere.mRadius;
+		f32 volume = JALCalc::getParamByExp(rad, 5.0f, 250.0f, 5.0f, 0.5f, 1.5f, JALCalc::CS_0);
+		if (volume > 1.0f) {
+			volume = 1.0f;
 		}
-		if (v1 < 0.5f) {
-			v1 = 0.5f;
+		if (volume < 0.5f) {
+			volume = 0.5f;
 		}
-		// v1       = MIN(1.0f, v1);
-		// v1       = MAX(v1, 0.5f);
-		float v2 = JALCalc::getParamByExp(sphere.mRadius, 250.0f, 5.0f, 5.0f, 0.7f, 1.7f, JALCalc::CS_1);
-		if (v2 > 1.7f) {
-			v2 = 1.7f;
+
+		f32 pitch = JALCalc::getParamByExp(rad, 250.0f, 5.0f, 5.0f, 0.7f, 1.7f, JALCalc::CS_1);
+		if (pitch > 1.7f) {
+			pitch = 1.7f;
 		}
-		if (v2 < 0.7f) {
-			v2 = 0.7f;
+		if (pitch < 0.7f) {
+			pitch = 0.7f;
 		}
-		// v2       = MIN(1.7f, v2);
-		// v2       = MAX(v2, 0.7f);
-		sound->setVolume(v1, 0, 0);
-		sound->setPitch(v2, 0, 0);
+
+		sound->setVolume(volume, 0, 0);
+		sound->setPitch(pitch, 0, 0);
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	stw      r28, 0x20(r1)
-	lwz      r12, 0(r3)
-	lis      r4, lbl_8049DA08@ha
-	mr       r28, r3
-	lwz      r12, 0x100(r12)
-	addi     r31, r4, lbl_8049DA08@l
-	mtctr    r12
-	bctrl
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	mr       r29, r3
-	cmplwi   r0, 0
-	bne      lbl_8046E480
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E480:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_8046E4A0
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E4A0:
-	lwz      r0, 8(r30)
-	cmplwi   r0, 0
-	bne      lbl_8046E4C0
-	addi     r3, r31, 0x38
-	addi     r5, r31, 0x14
-	li       r4, 0xa1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E4C0:
-	lwz      r3, 8(r30)
-	li       r4, 0
-	li       r5, 0x580b
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8046E4EC
-	li       r31, 0
-	b        lbl_8046E570
-
-lbl_8046E4EC:
-	lwz      r0,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) cmplwi
-r0, 0 bne      lbl_8046E50C addi     r3, r31, 0x68 addi     r5, r31, 0x14 li r4,
-0x89 crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E50C:
-	lwz      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
-r29 lwz      r12, 0(r3) lwz      r12, 0x10(r12) mtctr    r12 bctrl cmplwi   r29,
-0 mr       r30, r3 bne      lbl_8046E544 addi     r3, r31, 0 addi     r5, r31,
-0x14 li       r4, 0x20a crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046E544:
-	li       r0, 0
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	stw      r0, 8(r1)
-	mr       r6, r29
-	mr       r9, r30
-	addi     r4, r1, 8
-	li       r5, 0x580b
-	li       r7, 0
-	li       r8, 0
-	bl
-"startSoundVecReturnHandleT<8JAISound>__8JAIBasicFPP8JAISoundUlP3VecUlUlUc" lwz
-r31, 8(r1)
-
-lbl_8046E570:
-	cmplwi   r31, 0
-	beq      lbl_8046E65C
-	mr       r3, r28
-	addi     r4, r1, 0xc
-	lwz      r12, 0(r28)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 0x18(r1)
-	li       r3, 0
-	lfs      f2, lbl_80520D48@sda21(r2)
-	fmr      f1, f31
-	lfs      f3, lbl_80520D4C@sda21(r2)
-	fmr      f4, f2
-	lfs      f5, lbl_80520CF8@sda21(r2)
-	lfs      f6, lbl_80520D0C@sda21(r2)
-	bl       getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
-	fmr      f30, f1
-	lfs      f0, lbl_80520CF4@sda21(r2)
-	fcmpo    cr0, f30, f0
-	ble      lbl_8046E5C8
-	fmr      f30, f0
-
-lbl_8046E5C8:
-	lfs      f0, lbl_80520CF8@sda21(r2)
-	fcmpo    cr0, f30, f0
-	bge      lbl_8046E5D8
-	fmr      f30, f0
-
-lbl_8046E5D8:
-	lfs      f3, lbl_80520D48@sda21(r2)
-	fmr      f1, f31
-	lfs      f2, lbl_80520D4C@sda21(r2)
-	li       r3, 1
-	fmr      f4, f3
-	lfs      f5, lbl_80520D30@sda21(r2)
-	lfs      f6, lbl_80520D3C@sda21(r2)
-	bl       getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
-	fmr      f31, f1
-	lfs      f0, lbl_80520D3C@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_8046E60C
-	fmr      f31, f0
-
-lbl_8046E60C:
-	lfs      f0, lbl_80520D30@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046E61C
-	fmr      f31, f0
-
-lbl_8046E61C:
-	mr       r3, r31
-	fmr      f1, f30
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	fmr      f1, f31
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046E65C:
-	mr       r3, r31
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	return sound;
 }
 
 /*
@@ -1592,151 +1347,30 @@ lbl_8046E65C:
  * Address:	8046E690
  * Size:	0001B0
  */
-JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase* enemy, float p2)
+JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase* enemy, f32 scale)
 {
-	if (p2 == 0 || p2 < 0.0f) {
+	if (scale == 0.0f || scale < 0.0f) {
 		return nullptr;
 	}
+
 	JAISound* sound;
-	if (p2 < 0.3f) {
+	if (scale < 0.3f) {
 		sound = enemy->getJAIObject()->startSound(PSSE_EV_ITEM_LAND_SOIL_S, 0);
-		if (sound != nullptr) {
-			sound->setPitch(JALCalc::linearTransform(p2, 0.0f, 0.3f, 1.0f, 0.8f, false), 0, 0);
+		if (sound) {
+			sound->setPitch(JALCalc::linearTransform(scale, 0.0f, 0.3f, 1.0f, 0.8f, false), 0, 0);
 		}
-	} else if (p2 < 0.7f) {
+	} else if (scale < 0.7f) {
 		sound = enemy->getJAIObject()->startSound(PSSE_EV_ITEM_LAND_SOIL_M, 0);
-		if (sound != nullptr) {
-			sound->setPitch(JALCalc::linearTransform(p2, 0.3f, 0.7f, 1.5f, 0.6f, false), 0, 0);
+		if (sound) {
+			sound->setPitch(JALCalc::linearTransform(scale, 0.3f, 0.7f, 1.5f, 0.6f, false), 0, 0);
 		}
 	} else {
 		sound = enemy->getJAIObject()->startSound(PSSE_EV_ITEM_LAND_SOIL_L, 0);
-		if (sound != nullptr) {
-			sound->setPitch(JALCalc::linearTransform(p2, 0.7f, 2.0f, 1.5f, 0.8f, false), 0, 0);
+		if (sound) {
+			sound->setPitch(JALCalc::linearTransform(scale, 0.7f, 2.0f, 1.5f, 0.8f, false), 0, 0);
 		}
 	}
 	return sound;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	fmr      f31, f1
-	lfs      f0, lbl_80520CE0@sda21(r2)
-	fcmpu    cr0, f0, f31
-	beq      lbl_8046E6C0
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046E6C8
-
-lbl_8046E6C0:
-	li       r3, 0
-	b        lbl_8046E824
-
-lbl_8046E6C8:
-	lfs      f0, lbl_80520D10@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046E740
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x3808
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_8046E820
-	fmr      f1, f31
-	lfs      f2, lbl_80520CE0@sda21(r2)
-	lfs      f3, lbl_80520D10@sda21(r2)
-	li       r3, 0
-	lfs      f4, lbl_80520CF4@sda21(r2)
-	lfs      f5, lbl_80520D18@sda21(r2)
-	bl       linearTransform__7JALCalcFfffffb
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046E820
-
-lbl_8046E740:
-	lfs      f0, lbl_80520D30@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046E7B8
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x3809
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_8046E820
-	fmr      f1, f31
-	lfs      f2, lbl_80520D10@sda21(r2)
-	lfs      f3, lbl_80520D30@sda21(r2)
-	li       r3, 0
-	lfs      f4, lbl_80520D0C@sda21(r2)
-	lfs      f5, lbl_80520D34@sda21(r2)
-	bl       linearTransform__7JALCalcFfffffb
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8046E820
-
-lbl_8046E7B8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x380a
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_8046E820
-	fmr      f1, f31
-	lfs      f2, lbl_80520D30@sda21(r2)
-	lfs      f3, lbl_80520D00@sda21(r2)
-	li       r3, 0
-	lfs      f4, lbl_80520D0C@sda21(r2)
-	lfs      f5, lbl_80520D18@sda21(r2)
-	bl       linearTransform__7JALCalcFfffffb
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0x10(r31)
-	li       r5, 0
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8046E820:
-	mr       r3, r31
-
-lbl_8046E824:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1752,19 +1386,21 @@ JAISound* PSStartEnemyDownWatSE(Game::EnemyBase* enemy, float p2)
 	}
 	if (p2 < 0.3f) {
 		JAIAnimeSound* soundObj = enemy->mSoundObj;
-		sound                   = PSSystem::getSeMgrInstance()->mSetSeList[6]->startSound(soundObj, PSSE_EV_ITEM_LAND_WATER1_S, 0);
-		if (sound != nullptr) {
+		PSGame::SeMgr* mgr      = PSSystem::getSeMgrInstance();
+		sound                   = mgr->mSetSeList[6]->startSound(soundObj, PSSE_EV_ITEM_LAND_WATER1_S, 0);
+		if (sound) {
 			sound->setPitch(JALCalc::linearTransform(p2, 0.0f, 0.3f, 1.0f, 0.8f, false), 0, 0);
 		}
 	} else if (p2 < 0.7f) {
 		JAIAnimeSound* soundObj = enemy->mSoundObj;
-		sound                   = PSSystem::getSeMgrInstance()->mSetSeList[6]->startSound(soundObj, PSSE_EV_ITEM_LAND_WATER1_M, 0);
-		if (sound != nullptr) {
+		PSGame::SeMgr* mgr      = PSSystem::getSeMgrInstance();
+		sound                   = mgr->mSetSeList[6]->startSound(soundObj, PSSE_EV_ITEM_LAND_WATER1_M, 0);
+		if (sound) {
 			sound->setPitch(JALCalc::linearTransform(p2, 0.3f, 0.7f, 1.5f, 0.6f, false), 0, 0);
 		}
 	} else {
 		sound = enemy->getJAIObject()->startSound(PSSE_EV_ITEM_LAND_WATER1_L, 0);
-		if (sound != nullptr) {
+		if (sound) {
 			sound->setPitch(JALCalc::linearTransform(p2, 0.7f, 1.5f, 1.8f, 0.8f, false), 0, 0);
 		}
 	}
@@ -1898,8 +1534,34 @@ lbl_8046EA24:
  * Address:	8046EA40
  * Size:	000260
  */
-void PSStartTreasureLaderSE(float)
+JAISe* PSStartTreasureLaderSE(f32 rate)
 {
+	JAISe* sound = PSSystem::spSysIF->playSystemSe(PSSE_SY_TRESURE_LADER, 0);
+	if (sound) {
+		f32 calc;
+		if (rate < sTreasureLader_PitchDistance) {
+			calc = JALCalc::getParamByExp(rate, 0.0f, 0.77f, sTreasureLader_DistanceExp, sTreasureLader_MinimumVolume, 1.0f, JALCalc::CS_1);
+		} else {
+			calc = JALCalc::linearTransform(rate, 0.77f, 1.0f, 1.0f, 0.7f, false);
+		}
+		u16 calc2 = JALCalc::linearTransform(rate, 0.3f, 1.0f, 0.0f, 127.0f, false);
+		if (calc2 > 128) {
+			calc2 = 127;
+		}
+		sound->setPortData(12, calc2);
+		PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
+		if (seq && *seq->getHandleP()) {
+			f32 vol = (*seq->getHandleP())->getVolume(0);
+			if (vol > 0.0f) {
+				calc *= JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
+			}
+		}
+		sound->setVolume(calc, 0, 0);
+		if (rate > sTreasureLader_PitchDistance) {
+			sound->setPitch(sTreasureLader_Pitch, 0, 0);
+		}
+	}
+	return sound;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2081,8 +1743,53 @@ lbl_8046EC70:
  * Address:	8046ECA0
  * Size:	000450
  */
-void PSStartTresureLaderNoiseSE(u8, float, float)
+JAISe* PSStartTresureLaderNoiseSE(u8 state, f32 a1, f32)
 {
+	JAISe* sound = nullptr;
+	switch (state) {
+	case 3:
+		sLaderNoiseTimer++;
+		if (sLaderNoiseTimer > sLaderNoiseWait) {
+			sound            = PSSystem::spSysIF->playSystemSe(PSSE_SY_LADER_NOISE_SINGLE, 0);
+			f32 delay        = JALCalc::getRandom(sLaderNoiseFuefukiTimerRandam, JALCalc::cEqualCSlope, JALCalc::cEqualPSlope);
+			sLaderNoiseTimer = 0;
+			sLaderNoiseWait  = sLaderNoiseFuefukiTimerCenter + delay;
+			if (sound) {
+				f32 calc = JALCalc::getParamByExp(a1, sLaderNoiseFuefukiSensMin, sLaderNoiseFuefukiSensMax, sLaderNoiseVolumeExp,
+				                                  sLaderNoiseFuefukiVolumeMin, sLaderNoiseFuefukiVolumeMax, JALCalc::CS_1);
+				PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
+				if (seq && *seq->getHandleP()) {
+					f32 vol = (*seq->getHandleP())->getVolume(0);
+					if (vol > 0.0f) {
+						calc *= JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
+					}
+				}
+				sound->setVolume(calc, 0, 0);
+			}
+		}
+		break;
+	case 4:
+		sLaderNoiseTimer++;
+		if (sLaderNoiseTimer > sLaderNoiseWait) {
+			sound            = PSSystem::spSysIF->playSystemSe(PSSE_SY_LADER_NOISE_SINGLE, 0);
+			f32 delay        = JALCalc::getRandom(sLaderNoiseFuefukiTimerRandam / 6, JALCalc::cEqualCSlope, JALCalc::cEqualPSlope);
+			sLaderNoiseTimer = 0;
+			sLaderNoiseWait  = sLaderNoiseFuefukiTimerRandam / 6 + delay;
+			if (sound) {
+				PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
+				if (seq && *seq->getHandleP()) {
+					f32 vol = (*seq->getHandleP())->getVolume(0);
+					if (vol > 0.0f) {
+						f32 calc = JALCalc::linearTransform(vol, 0.0f, 1.0f, 1.0f, 0.2f, true);
+						sound->setVolume(calc, 0, 0);
+					}
+				}
+				sound->setPitch(1.2f, 0, 0);
+			}
+		}
+		break;
+	}
+	return sound;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2402,64 +2109,15 @@ lbl_8046F0C8:
  * Address:	8046F0F0
  * Size:	0000B0
  */
-void PSMGetWorldMapRocket()
+PSM::WorldMapRocket* PSMGetWorldMapRocket()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049DA08@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049DA08@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046F12C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046F12C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_8046F14C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046F14C:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_8046F16C
-	addi     r3, r31, 0x38
-	addi     r5, r31, 0x14
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046F16C:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	beq      lbl_8046F184
-	lwz      r3, 0x28(r3)
-	b        lbl_8046F188
-
-lbl_8046F184:
-	li       r3, 0
-
-lbl_8046F188:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+	mgr->checkScene();
+	PSM::Scene_WorldMap* scene = static_cast<PSM::Scene_WorldMap*>(mgr->mScenes->getChildScene());
+	if (scene) {
+		return scene->mRocket;
+	}
+	return nullptr;
 }
 
 /*
@@ -2467,68 +2125,13 @@ lbl_8046F188:
  * Address:	8046F1A0
  * Size:	00007C
  */
-unknown PSPlayCaveHoleSound(PSM::Creature*)
+void PSPlayCaveHoleSound(PSM::Creature* obj)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x307c
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_8046F208
-	lwz      r0,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@sda21(r13) cmplwi
-r0, 0 bne      lbl_8046F1F8 lis      r3, lbl_8049DA70@ha lis      r5,
-lbl_8049DA1C@ha addi     r3, r3, lbl_8049DA70@l li       r4, 0x89 addi     r5,
-r5, lbl_8049DA1C@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046F1F8:
-	lwz      r4,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@sda21(r13) mr r3,
-r31 addi     r4, r4, 4 bl
-specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
-
-lbl_8046F208:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSM::SeSound* sound = static_cast<PSM::SeSound*>(static_cast<PSM::CreatureObj*>(obj)->startSound(PSSE_EV_POLUTION_NOISE, 0));
+	if (sound) {
+		sound->specializePerspCalc(PSSystem::SingletonBase<PSM::CreaturePrm>::getInstance()->mPersp);
+	}
 }
-
-namespace PSM {
-
-/*
- * --INFO--
- * Address:	8046F21C
- * Size:	000030
- */
-void ClusterFactory::identifyPart(u8)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	clrlwi   r5, r5, 0x18
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       partInit__Q23PSM14ClusterFactoryFUc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace PSM
 
 /*
  * --INFO--
@@ -2536,8 +2139,15 @@ void ClusterFactory::identifyPart(u8)
  * Size:	000070
  */
 template <typename T>
-T* startSoundVecReturnHandleT(T** handlePtr, u32 p2, Vec* p3, u32 p4, u32 p5, u8 p6)
+T* JAIBasic::startSoundVecReturnHandleT(T** handlePtr, u32 p2, Vec* p3, u32 p4, u32 p5, u8 p6)
 {
+	T* test[1];
+	*test = nullptr;
+	JAIBasic::startSoundVecT(p2, test, p3, p4, p5, p6);
+	*handlePtr = *test;
+	if (*test) {
+		(*test)->release();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
