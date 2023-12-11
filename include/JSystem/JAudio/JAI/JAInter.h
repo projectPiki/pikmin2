@@ -21,6 +21,7 @@ struct SeqUpdateData;
 struct SoundInfo {
 	u32 mFlag;     // _00
 	u8 mPriority;  // _04
+	u8 _05;        // _05
 	u16 mOffsetNo; // _06
 	u32 mPitch;    // _08
 	union volume_t {

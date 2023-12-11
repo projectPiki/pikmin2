@@ -48,6 +48,8 @@ struct Demo : public JKRDisposer {
 	void onDemoEnd();
 	void onMessageEnd(int);
 
+	void becomeDemoCamera();
+
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
 	s8 _18;                  // _18

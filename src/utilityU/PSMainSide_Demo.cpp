@@ -216,7 +216,7 @@ PSSystem::BgmSeq* Demo::initiate(DemoArg demoArg, u8* unk)
 	PSSystem::BgmSeq* seq;
 	u32 AST_ID;
 	char buffer[32];
-	JAInter::SoundInfo audio_info = { 0x00000000, 0x7F030000, 0x3F800000, 0x3C000000 };
+	JAInter::SoundInfo audio_info = { 0x00000000, 0x7F, 0x03, 0, 0x3F800000, 0x3C000000 };
 
 	seq       = nullptr;
 	buffer[0] = '\0';
@@ -444,6 +444,20 @@ Demo::~Demo()
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000124
+ */
+void Demo::becomeDemoCamera()
+{
+	// not quite right but needs the checkGameScene inline for rodata purposes
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(PSMGetChildScene());
+	PSSystem::checkGameScene(scene);
+	scene->becomeSceneCamera();
+	PSSystem::SingletonBase<ObjCalcBase>::getInstance()->setMode(ObjCalcBase::OBJCALC_0);
+}
+
+/*
+ * --INFO--
  * Address:	804662AC
  * Size:	0006C0
  */
@@ -489,8 +503,8 @@ void Demo::onDemoTop()
 	if (!strcmp(name, "x19_vs_bedama")) {
 		scene->mSeqMgr.stopAllSound(15);
 	} else if (!strcmp(name, "x06_join")) {
-		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(PSMGetChildScene());
-		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(scene, 1);
+		PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+		PSSystem::SeqBase* seq  = PSSystem::getSeqDataCheck(mgr, 1);
 		P2ASSERTLINE(731, seq);
 		seq->stopSeq(5);
 	} else if (!strcmp(name, "x01_gamestart")) {
@@ -509,519 +523,6 @@ void Demo::onDemoTop()
 		PSSystem::checkChildScene2(scene);
 		scene->mChild->startMainSeq();
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_8049D080@ha
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r29, r3
-	addi     r31, r4, lbl_8049D080@l
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_804662E8
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804662E8:
-	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r28, 0
-	bne      lbl_80466308
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466308:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_80466328
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466328:
-	lwz      r3, 4(r28)
-	lwz      r28, 4(r3)
-	cmplwi   r28, 0
-	bne      lbl_8046634C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046634C:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_8046636C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x5b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046636C:
-	lwz      r3, 4(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) cmplwi
-r0, 0 bne      lbl_804663A0 addi     r3, r31, 0x86c addi     r5, r31, 0x14 li
-r4, 0x89 crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804663A0:
-	lwz      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) li r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_804663D8
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804663D8:
-	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r28, 0
-	bne      lbl_804663F8
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804663F8:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_80466418
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466418:
-	lwz      r3, 4(r28)
-	lwz      r28, 4(r3)
-	cmplwi   r28, 0
-	bne      lbl_8046643C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046643C:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80466470
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466470:
-	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r28, 0
-	bne      lbl_80466490
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466490:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_804664B0
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804664B0:
-	lwz      r3, 4(r28)
-	lwz      r28, 4(r3)
-	cmplwi   r28, 0
-	bne      lbl_804664D4
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804664D4:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	or.      r27, r3, r3
-	beq      lbl_804664F8
-	li       r0, 0
-	sth      r0, 0x10(r27)
-
-lbl_804664F8:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80466518
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466518:
-	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r28, 0
-	bne      lbl_80466538
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466538:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_80466558
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466558:
-	lwz      r3, 4(r28)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_8046657C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x38
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046657C:
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_804665AC
-	addi     r3, r31, 0x858
-	addi     r5, r31, 0x14
-	li       r4, 0x177
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804665AC:
-	lwz      r28, 0x28(r29)
-	addi     r4, r31, 0x94
-	mr       r3, r28
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_80466664
-	mr       r3, r28
-	addi     r4, r31, 0x80
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_80466664
-	mr       r3, r28
-	addi     r4, r31, 0x168
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_80466664
-	mr       r3, r28
-	addi     r4, r31, 0xb0
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_80466664
-	mr       r3, r28
-	addi     r4, r31, 0x180
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_80466664
-	mr       r3, r28
-	addi     r4, r31, 0x26c
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_80466664
-	mr       r3, r28
-	addi     r4, r31, 0x37c
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_80466664
-	mr       r3, r28
-	addi     r4, r31, 0x878
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_80466664
-	mr       r3, r28
-	addi     r4, r31, 0x5c
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_804666FC
-
-lbl_80466664:
-	addi     r3, r30, 0x10
-	li       r4, 0xf
-	bl       stopAllSound__Q28PSSystem6SeqMgrFUl
-	cmplwi   r27, 0
-	beq      lbl_8046671C
-	mr       r3, r27
-	bl       off__Q28PSSystem8EnvSeMgrFv
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804666D8
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_804666D8
-	mr       r3, r27
-	li       r4, 0x3079
-	li       r5, 1
-	bl       on__Q28PSSystem8EnvSeMgrFUlb
-	mr       r3, r27
-	li       r4, 0x307a
-	li       r5, 1
-	bl       on__Q28PSSystem8EnvSeMgrFUlb
-
-lbl_804666D8:
-	mr       r3, r27
-	li       r4, 0x4014
-	li       r5, 1
-	bl       off__Q28PSSystem8EnvSeMgrFUlb
-	mr       r3, r27
-	li       r4, 0x4015
-	li       r5, 1
-	bl       off__Q28PSSystem8EnvSeMgrFUlb
-	b        lbl_8046671C
-
-lbl_804666FC:
-	addi     r3, r30, 0x10
-	li       r4, 1
-	bl       pauseOnAllSeq__Q28PSSystem6SeqMgrFQ38PSSystem7SeqBase9PauseMode
-	cmplwi   r27, 0
-	beq      lbl_8046671C
-	mr       r3, r27
-	li       r4, 2
-	bl       setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc
-
-lbl_8046671C:
-	mr       r3, r28
-	addi     r4, r31, 0x824
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80466740
-	addi     r3, r30, 0x10
-	li       r4, 0xf
-	bl       stopAllSound__Q28PSSystem6SeqMgrFUl
-	b        lbl_804668C8
-
-lbl_80466740:
-	mr       r3, r28
-	addi     r4, r31, 0x5a8
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80466838
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80466774
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466774:
-	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r28, 0
-	bne      lbl_80466794
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466794:
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	bne      lbl_804667B4
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804667B4:
-	lwz      r3, 4(r28)
-	lwz      r28, 4(r3)
-	cmplwi   r28, 0
-	bne      lbl_804667D8
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1e5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804667D8:
-	addi     r3, r28, 0x10
-	li       r4, 1
-	bl       getSeq__Q28PSSystem6SeqMgrFUl
-	or.      r28, r3, r3
-	bne      lbl_80466800
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x1e7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466800:
-	cmplwi   r28, 0
-	bne      lbl_8046681C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x14
-	li       r4, 0x2db
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046681C:
-	mr       r3, r28
-	li       r4, 5
-	lwz      r12, 0x10(r28)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_804668C8
-
-lbl_80466838:
-	mr       r3, r28
-	addi     r4, r31, 0x580
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_804668C8
-	lwz      r0,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8046686C
-	addi     r3, r31, 0x86c
-	addi     r5, r31, 0x14
-	li       r4, 0x89
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046686C:
-	lwz      r28,
-"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
-	lwz      r0, 0x18(r28)
-	cmplwi   r0, 0
-	bne      lbl_80466890
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x5d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466890:
-	lwz      r3, 0x18(r28)
-	li       r0, 1
-	stb      r0, 0x15(r3)
-	lwz      r0, 0xc(r28)
-	cmplwi   r0, 0
-	bne      lbl_804668BC
-	addi     r3, r31, 0x20
-	addi     r5, r31, 0x14
-	li       r4, 0x5d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804668BC:
-	lwz      r3, 0xc(r28)
-	li       r0, 1
-	stb      r0, 0x15(r3)
-
-lbl_804668C8:
-	lwz      r4, 0x1c(r29)
-	addis    r0, r4, 1
-	cmplwi   r0, 0xffff
-	beq      lbl_804668E4
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_804668E4:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80466904
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x5b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466904:
-	lwz      r3, 4(r30)
-	addi     r3, r3, 0x10
-	bl       getFirstSeq__Q28PSSystem6SeqMgrFv
-	cmplwi   r3, 0
-	beq      lbl_80466958
-	lbz      r0, 0x19(r29)
-	cmplwi   r0, 0
-	beq      lbl_80466958
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80466944
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x14
-	li       r4, 0x5b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80466944:
-	lwz      r3, 4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80466958:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1059,16 +560,16 @@ void Demo::onDemoEnd()
 
 	static_cast<PSM::Scene_Game*>(PSMGetChildScene())->pauseOff_Demo();
 
-	Scene_Game* scene = static_cast<PSM::Scene_Game*>(PSMGetSceneMgrCheck()->getChildScene());
+	SceneBase* scene = static_cast<PSM::SceneBase*>(PSMGetSceneMgrCheck()->getChildScene());
 	PSSystem::checkGameScene(scene);
-	char* name                = mCurrentDemoName;
+	const char* name          = mCurrentDemoName;
 	PSSystem::EnvSeMgr* envse = scene->getEnvSe();
 	if (envse) {
 		if (!strcmp(name, "s01_dayend") || !strcmp(name, "s02_dayend_result") || !strcmp(name, "s04_dayend_orimadown")
 		    || !strcmp(name, "s05_pikminzero") || !strcmp(name, "s06_dayend_pikminzero") || !strcmp(name, "s09_holein")
 		    || !strcmp(name, "s0C_cv_escape") || !strcmp(name, "s12_cv_giveup") || !strcmp(name, "s21_dayend_takeoff")) {
 			envse->off();
-			if (scene->isCave() && !scene->isPollutUp()) {
+			if (static_cast<Scene_Game*>(scene)->isCave() && !static_cast<Scene_Cave*>(scene)->isPollutUp()) {
 				envse->on(PSSE_EV_POLUTION_MIX01, true);
 				envse->on(PSSE_EV_POLUTION_MIX02, true);
 			}
@@ -1081,11 +582,13 @@ void Demo::onDemoEnd()
 	if (!strcmp(name, "x06_join")) {
 		static_cast<PSM::Scene_Game*>(PSMGetChildScene())->startMainSeq();
 	} else if (!strcmp(name, "g03_meet_redpikmin")) {
-		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(PSMGetChildScene(), 1);
+		PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+		PSSystem::SeqBase* seq  = PSSystem::getSeqDataCheck(mgr, 1);
 		P2ASSERTLINE(834, seq);
 		seq->startSeq();
 	} else if (!strcmp(name, "x20_blackman")) {
-		PSSystem::SeqBase* seq = PSSystem::getSeqFromScene(PSMGetChildScene(), 1);
+		PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+		PSSystem::SeqBase* seq  = PSSystem::getSeqDataCheck(mgr, 1);
 		P2ASSERTLINE(838, seq);
 		seq->startSeq();
 	}

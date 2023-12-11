@@ -7,7 +7,11 @@
 namespace PSM {
 struct ObjCalcBase : public PSSystem::SingletonBase<ObjCalcBase> {
 
-	ObjCalcBase() { mMode = OBJCALC_1; }
+	ObjCalcBase()
+	    : PSSystem::SingletonBase<ObjCalcBase>(this)
+	{
+		mMode = OBJCALC_0;
+	}
 
 	enum Mode {
 		OBJCALC_0 = 0,

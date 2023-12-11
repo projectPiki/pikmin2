@@ -353,8 +353,20 @@ inline void PSMSetSceneInfo(PSGame::SceneInfo& info)
 
 inline PSSystem::SeqBase* PSSystemGetSeq(int id)
 {
-	PSSystem::SceneMgr* mgr = PSMGetSceneMgr();
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
 	return PSSystem::getSeqData(mgr, id);
+}
+
+inline PSSystem::SeqBase* PSSystemGetSeqCheck(int id)
+{
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+	return PSSystem::getSeqDataCheck(mgr, id);
+}
+
+inline PSSystem::SeqBase* PSSystemChildSceneData(int id)
+{
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+	return mgr->getChildScene()->mSeqMgr.getSeq(id);
 }
 
 #endif

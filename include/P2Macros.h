@@ -29,6 +29,13 @@
 	}                                                                                    \
 	P2ASSERTLINE(line, check##line)
 
+#define P2ASSERTBOUNDSINCLUSIVELINE2(line, lowerLimitInclusive, var, upperLimitInclusive) \
+	bool check##line = false;                                                             \
+	if (var >= lowerLimitInclusive && var <= upperLimitInclusive) {                       \
+		check##line = true;                                                               \
+	}                                                                                     \
+	P2ASSERTLINE(line, check##line)
+
 #define P2ASSERTBOOLLINE(line, var) \
 	bool check##line = false;       \
 	if (var) {                      \

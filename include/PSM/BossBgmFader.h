@@ -14,7 +14,7 @@ namespace BossBgmFader {
  * @size{0x30}
  */
 struct TypedProc : public JSUList<EnemyBoss> {
-	inline TypedProc(f32, f32);
+	TypedProc(f32, f32);
 
 	virtual void update(); // _08
 
@@ -47,6 +47,7 @@ struct TypedProc_MidBoss : public TypedProc {
 	inline TypedProc_MidBoss(f32 a1, f32 a2)
 	    : TypedProc(a1, a2)
 	{
+		mDirectorUpdator = nullptr;
 	}
 
 	virtual void update(); // _08

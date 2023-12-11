@@ -30,6 +30,16 @@ inline SeqBase* getSeqData(SceneMgr* mgr, int id)
 	return seq;
 }
 
+inline SeqBase* getSeqDataCheck(SceneMgr* mgr, int id)
+{
+	mgr->checkScene();
+	Scene* scene = mgr->mScenes->mChild;
+	P2ASSERTLINE(485, scene);
+	SeqBase* seq = scene->mSeqMgr.getSeq(id);
+	P2ASSERTLINE(487, seq);
+	return seq;
+}
+
 inline PSGame::SeMgr* getSeMgrInstance()
 {
 	P2ASSERTLINE(567, SingletonBase<PSGame::SeMgr>::sInstance);

@@ -7,6 +7,7 @@ namespace PSSystem {
 
 template <typename T>
 struct SingletonBase {
+	inline SingletonBase(T* inst) { sInstance = inst; }
 
 	// inline SingletonBase()
 	static inline T* newInstance()

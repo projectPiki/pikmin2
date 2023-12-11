@@ -8,19 +8,22 @@
 namespace PSM {
 namespace BossBgmFader {
 
-// seems like it should be weak, but panic needs this file
-// no idea which floats are supposed to come from the 2 args
-TypedProc::TypedProc(f32, f32)
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000C8
+ */
+TypedProc::TypedProc(f32 farDist, f32 nearDist)
 {
-	mFarDist     = 1000.0f;
-	mMiddleDist  = 600.0f;
-	mNearDist    = 400.0f;
-	mStopDist    = mMiddleDist * 2.0f;
+	mFarDist     = farDist;
+	mMiddleDist  = (farDist - nearDist);
+	mNearDist    = nearDist;
+	mStopDist    = mMiddleDist / 2.0f;
 	mCurrState   = 0;
 	mPrevState   = 0;
 	mCurrObj     = nullptr;
 	mMaxDistance = 1000000000.0f;
-	P2ASSERTLINE(47, 0.0f > mNearDist);
+	P2ASSERTLINE(47, mNearDist > 0.0f);
 }
 
 /*
@@ -33,14 +36,13 @@ void TypedProc::update()
 	f32 maxDist     = 1000000000.0f;
 	f32 defaultDist = mMaxDistance;
 	mCurrObj        = nullptr;
-	FOREACH_NODE(JSULink<EnemyBoss>, getFirst(), link)
-	{
-		EnemyBoss* obj = link->getObject();
-		if (obj->mAppearFlag) {
-			f32 dist = obj->mNaviDistance;
+
+	for (JSULinkIterator<EnemyBoss> iter(getFirst()); iter != nullptr; iter++) {
+		if (iter.getObject()->mAppearFlag) {
+			f32 dist = iter.getObject()->mNaviDistance;
 			if (dist < maxDist) {
 				maxDist  = dist;
-				mCurrObj = obj;
+				mCurrObj = iter.getObject();
 			}
 		}
 	}
@@ -87,154 +89,14 @@ void TypedProc::update()
 		maxDist  = maxDist2;
 	}
 	mMaxDistance = maxDist;
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r3
-	li       r0, 0
-	lfs      f1, 0x2c(r3)
-	lfs      f31, lbl_80520CBC@sda21(r2)
-	stw      r0, 0x28(r3)
-	lwz      r3, 0(r3)
-	b        lbl_8046C724
-
-lbl_8046C6FC:
-	lwz      r4, 0(r3)
-	lbz      r0, 0xfc(r4)
-	cmplwi   r0, 0
-	beq      lbl_8046C720
-	lfs      f0, 0xe0(r4)
-	fcmpo    cr0, f0, f31
-	bge      lbl_8046C720
-	fmr      f31, f0
-	stw      r4, 0x28(r30)
-
-lbl_8046C720:
-	lwz      r3, 0xc(r3)
-
-lbl_8046C724:
-	cmplwi   r3, 0
-	bne      lbl_8046C6FC
-	lfs      f0, lbl_80520CC4@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_8046C73C
-	fmr      f31, f1
-
-lbl_8046C73C:
-	lfs      f30, lbl_80520CC8@sda21(r2)
-	li       r31, 0
-	lwz      r29, 0(r30)
-	b        lbl_8046C790
-
-lbl_8046C74C:
-	lwz      r3, 0(r29)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0xdc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0(r29)
-	bl       isOnDisappearing__Q23PSM9EnemyBossFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8046C78C
-	lwz      r3, 0(r29)
-	lfs      f0, 0xe0(r3)
-	fcmpo    cr0, f0, f30
-	cror     2, 0, 2
-	bne      lbl_8046C78C
-	fmr      f30, f0
-	mr       r31, r3
-
-lbl_8046C78C:
-	lwz      r29, 0xc(r29)
-
-lbl_8046C790:
-	cmplwi   r29, 0
-	bne      lbl_8046C74C
-	lwz      r0, 0x28(r30)
-	cmplwi   r0, 0
-	beq      lbl_8046C81C
-	lfs      f0, 0x1c(r30)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046C7C8
-	li       r0, 0
-	stw      r0, 0x20(r30)
-	lwz      r0, 0x20(r30)
-	ori      r0, r0, 3
-	stw      r0, 0x20(r30)
-	b        lbl_8046C824
-
-lbl_8046C7C8:
-	lfs      f0, 0x14(r30)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046C7EC
-	li       r0, 0
-	stw      r0, 0x20(r30)
-	lwz      r0, 0x20(r30)
-	ori      r0, r0, 2
-	stw      r0, 0x20(r30)
-	b        lbl_8046C824
-
-lbl_8046C7EC:
-	lfs      f0, 0x10(r30)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8046C810
-	li       r0, 0
-	stw      r0, 0x20(r30)
-	lwz      r0, 0x20(r30)
-	ori      r0, r0, 1
-	stw      r0, 0x20(r30)
-	b        lbl_8046C824
-
-lbl_8046C810:
-	li       r0, 0
-	stw      r0, 0x20(r30)
-	b        lbl_8046C824
-
-lbl_8046C81C:
-	li       r0, 0
-	stw      r0, 0x20(r30)
-
-lbl_8046C824:
-	cmplwi   r31, 0
-	beq      lbl_8046C860
-	lfs      f0, 0x10(r30)
-	fcmpo    cr0, f30, f0
-	bge      lbl_8046C860
-	lwz      r0, 0x20(r30)
-	cmpwi    r0, 0
-	bne      lbl_8046C860
-	li       r0, 0
-	fmr      f31, f30
-	stw      r0, 0x20(r30)
-	lwz      r0, 0x20(r30)
-	ori      r0, r0, 4
-	stw      r0, 0x20(r30)
-	stw      r31, 0x28(r30)
-
-lbl_8046C860:
-	stfs     f31, 0x2c(r30)
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000100
+ */
+void TypedProc::getBossFadeVolume() { mNearDist = 1.0f; }
 
 /*
  * --INFO--
@@ -255,57 +117,10 @@ void TypedProc_MidBoss::update()
  * Size:	0000EC
  */
 Mgr::Mgr()
-    : mTypedProc(0.0f, 0.0f)
+    : PSSystem::SingletonBase<Mgr>(this)
+    , mTypedProc(1000.0f, 400.0f)
 {
-	mTypedProc.mCurrObj  = nullptr;
 	mTypedProc.mNeedJump = false;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4,
-"__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@l stw      r31,
-0xc(r1) mr       r31, r3 lis      r3, __vt__Q33PSM12BossBgmFader3Mgr@ha stw r30,
-8(r1) addi     r30, r31, 4 stw      r0, 0(r31) addi     r0, r3,
-__vt__Q33PSM12BossBgmFader3Mgr@l mr       r3, r30 stw      r31,
-"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13) stw
-r0, 0(r31) bl       initiate__10JSUPtrListFv lis      r3,
-__vt__Q33PSM12BossBgmFader9TypedProc@ha lfs      f2, lbl_80520CD0@sda21(r2) addi
-r0, r3, __vt__Q33PSM12BossBgmFader9TypedProc@l lfs      f1,
-lbl_80520CD4@sda21(r2) stw      r0, 0xc(r30) li       r0, 0 lfs      f0,
-lbl_80520CD8@sda21(r2) stfs     f2, 0x10(r30) lfs      f2,
-lbl_80520CB8@sda21(r2) stfs     f1, 0x14(r30) lfs      f1,
-lbl_80520CBC@sda21(r2) stfs     f0, 0x18(r30) lfs      f0,
-lbl_80520CC0@sda21(r2) lfs      f3, 0x14(r30) fmuls    f2, f3, f2 stfs     f2,
-0x1c(r30) stw      r0, 0x20(r30) stw      r0, 0x24(r30) stw      r0, 0x28(r30)
-	stfs     f1, 0x2c(r30)
-	lfs      f1, 0x18(r30)
-	fcmpo    cr0, f1, f0
-	bgt      lbl_8046C984
-	lis      r3, lbl_8049D9A8@ha
-	lis      r5, lbl_8049D9C0@ha
-	addi     r3, r3, lbl_8049D9A8@l
-	li       r4, 0x2f
-	addi     r5, r5, lbl_8049D9C0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8046C984:
-	lis      r3, __vt__Q33PSM12BossBgmFader17TypedProc_MidBoss@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q33PSM12BossBgmFader17TypedProc_MidBoss@l
-	mr       r3, r31
-	stw      r4, 0xc(r30)
-	stw      r0, 0x30(r30)
-	stb      r0, 0x38(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -322,25 +137,26 @@ void Mgr::appendTarget(JSULink<EnemyBoss>* obj) { mTypedProc.append(obj); }
  */
 void Mgr::exec()
 {
-	mTypedProc.update();
-	PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgmA();
-	JAISound* mainSound        = *bgm->getHandleP();
 
-	JAISound* bossSound = *PSMGetMiddleBossSeq()->getHandleP();
+	mTypedProc.update();
+	JAISound* mainSound = *PSGetDirectedMainBgmA()->getHandleP();
+
+	PSM::MiddleBossSeq* bossSeq = PSMGetMiddleBossSeq();
+	JAISound* bossSound         = (bossSeq) ? *bossSeq->getHandleP() : nullptr;
 
 	JAISound* chSound = nullptr;
 	Scene_Game* scene = PSMGetGameScene();
 	if (scene && scene->getSceneInfoA()->mSceneType == PSGame::SceneInfo::CHALLENGE_MODE) {
-		PSSystem::SeqBase* seq = PSSystemGetSeq(2);
-		if (seq) {
-			chSound = *seq->getHandleP();
-		}
+		PSSystem::SeqBase* seq = PSSystemChildSceneData(2);
+		chSound                = (seq) ? *seq->getHandleP() : nullptr;
 	}
 
-	if (mTypedProc.mCurrState == 3 && mTypedProc.mPrevState != 3) {
-		PSSystem::DirectorBase* director = PSMGetBattleDirector(1);
-		if (director) {
-			director->directOn();
+	if (mTypedProc.mCurrState == 3) {
+		if (mTypedProc.mPrevState != 3) {
+			PSSystem::DirectorBase* director = PSMGetBattleDirector(1);
+			if (director) {
+				director->directOn();
+			}
 		}
 	} else if (mTypedProc.mPrevState == 3) {
 		PSSystem::DirectorBase* director = PSMGetBattleDirector(1);
@@ -365,53 +181,56 @@ void Mgr::exec()
 	}
 
 	switch (mTypedProc.mCurrState) {
+	case 2:
 	case 3:
 		if (mainSound) {
 			mainSound->setVolume(0.0f, 40, 0);
 		}
-		if (bossSound) {
-			bossSound->setVolume(0.0f, 40, 0);
-		}
 		if (chSound) {
-			chSound->setVolume(1.0f, 40, 0);
+			chSound->setVolume(0.0f, 40, 0);
 		}
+		if (bossSound) {
+			bossSound->setVolume(1.0f, 40, 0);
+		}
+
 		break;
 	case 1:
 		f32 calc = mTypedProc.mMaxDistance - mTypedProc.mMiddleDist;
-		P2ASSERTBOUNDSLINE2(167, 0.0f, calc, mTypedProc.mNearDist);
+		P2ASSERTBOUNDSINCLUSIVELINE2(167, 0.0f, calc, mTypedProc.mNearDist);
 		calc = JALCalc::linearTransform(calc, 0.0f, mTypedProc.mNearDist, 1.0f, 0.0f, false);
-		P2ASSERTBOUNDSLINE2(172, 0.0f, calc, 1.0f);
+		P2ASSERTBOUNDSINCLUSIVELINE2(172, 0.0f, calc, 1.0f);
 		f32 inv = 1.0f - calc;
 		if (mainSound) {
 			mainSound->setVolume(inv, 40, 0);
 		}
-		if (bossSound) {
-			bossSound->setVolume(inv, 40, 0);
-		}
 		if (chSound) {
-			chSound->setVolume(calc, 40, 0);
+			chSound->setVolume(inv, 40, 0);
 		}
+		if (bossSound) {
+			bossSound->setVolume(calc, 40, 0);
+		}
+
 		break;
 	case 0:
 		if (mainSound) {
 			mainSound->setVolume(1.0f, 40, 0);
 		}
-		if (bossSound) {
-			bossSound->setVolume(1.0f, 40, 0);
-		}
 		if (chSound) {
-			chSound->setVolume(0.0f, 40, 0);
+			chSound->setVolume(1.0f, 40, 0);
+		}
+		if (bossSound) {
+			bossSound->setVolume(0.0f, 40, 0);
 		}
 		break;
 	case 4:
 		if (mainSound) {
 			mainSound->setVolume(0.0f, 40, 0);
 		}
-		if (bossSound) {
-			bossSound->setVolume(0.0f, 40, 0);
-		}
 		if (chSound) {
 			chSound->setVolume(0.0f, 40, 0);
+		}
+		if (bossSound) {
+			bossSound->setVolume(0.0f, 40, 0);
 		}
 		break;
 	}

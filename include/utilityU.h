@@ -62,18 +62,18 @@ JAISe* PSStartTreasureLaderNoiseSE(u8, f32, f32);
 u8 PSStop2DStream();
 
 // not sure how to handle these for PSMainSide_Se
-static f32 sLaderNoiseFuefukiSensMax; // = 0.3f;
-static f32 sLaderNoiseFuefukiSensMin;
-static s16 sLaderNoiseFuefukiTimerCenter; // = 0x3C;
-static s16 sLaderNoiseFuefukiTimerRandam; // = 0x08;
-static f32 sLaderNoiseFuefukiVolumeMax;   // = 0.5f;
-static f32 sLaderNoiseFuefukiVolumeMin;   // = 0.25f;
-static u16 sLaderNoiseTimer;
-static f32 sLaderNoiseVolumeExp; // = 7.18f;
-static s16 sLaderNoiseWait;
-static f32 sTreasureLader_DistanceExp;   // = 5.0f;
-static f32 sTreasureLader_MinimumVolume; //= 0.3f;
-static f32 sTreasureLader_Pitch;         //= 1.04f;
-static f32 sTreasureLader_PitchDistance; //= 0.77f;
+// static f32 sLaderNoiseFuefukiSensMax; // = 0.3f;
+// static f32 sLaderNoiseFuefukiSensMin;
+// static s16 sLaderNoiseFuefukiTimerCenter; // = 0x3C;
+// static s16 sLaderNoiseFuefukiTimerRandam; // = 0x08;
+// static f32 sLaderNoiseFuefukiVolumeMax;   // = 0.5f;
+// static f32 sLaderNoiseFuefukiVolumeMin;   // = 0.25f;
+// static u16 sLaderNoiseTimer;
+// static f32 sLaderNoiseVolumeExp; // = 7.18f;
+// static s16 sLaderNoiseWait;
+// static f32 sTreasureLader_DistanceExp;   // = 5.0f;
+// static f32 sTreasureLader_MinimumVolume; //= 0.3f;
+// static f32 sTreasureLader_Pitch;         //= 1.04f;
+// static f32 sTreasureLader_PitchDistance; //= 0.77f;
 
 #endif

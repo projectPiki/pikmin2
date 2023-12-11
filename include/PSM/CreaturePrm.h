@@ -7,8 +7,8 @@
 namespace PSM {
 struct CreaturePrm : public PSSystem::SingletonBase<CreaturePrm> {
 	CreaturePrm()
+	    : PSSystem::SingletonBase<CreaturePrm>(this)
 	{
-		sInstance = this;
 		mPersp.set(1.0f, 400.0f, 0.8f, 700.0f, 0.0f);
 	}
 
