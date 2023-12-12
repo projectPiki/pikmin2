@@ -829,7 +829,7 @@ void Pikmin::TUnit::update()
 	worldMat->mMatrix.structView.tz += mManager->mParams.mShadowZ();
 	mModel->entry();
 	mModel->viewCalc();
-	
+
 	/*
 stwu     r1, -0xa0(r1)
 mflr     r0

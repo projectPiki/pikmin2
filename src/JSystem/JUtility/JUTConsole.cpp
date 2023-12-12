@@ -483,39 +483,6 @@ void JUTConsoleManager::appendConsole(JUTConsole* console)
 	if (mActiveConsole == nullptr) {
 		mActiveConsole = console;
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	addi     r5, r1, 0x14
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	addi     r6, r31, 0x18
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	addi     r0, r30, 4
-	addi     r3, r1, 0x10
-	stw      r0, 0xc(r1)
-	mr       r4, r30
-	stw      r0, 8(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x14(r1)
-	bl
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
-	lwz      r0, 0xc(r30)
-	cmplwi   r0, 0
-	bne      lbl_80028F58
-	stw      r31, 0xc(r30)
-
-lbl_80028F58:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -539,70 +506,6 @@ void JUTConsoleManager::removeConsole(JUTConsole* console)
 		JUTSetReportConsole(nullptr);
 
 	mLinkList.Remove(console);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r0, 0xc(r3)
-	cmplw    r0, r31
-	bne      lbl_80028FEC
-	lwz      r0, 0(r30)
-	cmplwi   r0, 1
-	bgt      lbl_80028FB0
-	li       r0, 0
-	stw      r0, 0xc(r30)
-	b        lbl_80028FEC
-
-lbl_80028FB0:
-	addi     r3, r30, 4
-	lwz      r4, 8(r30)
-	stw      r3, 0x14(r1)
-	addi     r0, r4, -24
-	cmplw    r31, r0
-	stw      r3, 0x10(r1)
-	beq      lbl_80028FD8
-	lwz      r3, 0x18(r31)
-	addi     r0, r3, -24
-	b        lbl_80028FE8
-
-lbl_80028FD8:
-	lwz      r3, 4(r30)
-	stw      r3, 0xc(r1)
-	addi     r0, r3, -24
-	stw      r3, 8(r1)
-
-lbl_80028FE8:
-	stw      r0, 0xc(r30)
-
-lbl_80028FEC:
-	bl       JUTGetWarningConsole
-	cmplw    r3, r31
-	bne      lbl_80029000
-	li       r3, 0
-	bl       JUTSetWarningConsole
-
-lbl_80029000:
-	bl       JUTGetReportConsole
-	cmplw    r3, r31
-	bne      lbl_80029014
-	li       r3, 0
-	bl       JUTSetReportConsole
-
-lbl_80029014:
-	mr       r3, r30
-	addi     r4, r31, 0x18
-	bl       Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -633,67 +536,6 @@ void JUTConsoleManager::draw() const
 
 	if (mActiveConsole != nullptr)
 		mActiveConsole->doDraw(JUTConsole::CONSOLETYPE_Active);
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	lwz      r0, 4(r3)
-	stw      r31, 0x5c(r1)
-	lwz      r31, 0xc(r3)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	mr       r29, r3
-	addi     r30, r29, 4
-	stw      r30, 0xc(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x34(r1)
-	stw      r0, 0x30(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x44(r1)
-	stw      r30, 8(r1)
-	stw      r30, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r30, 0x18(r1)
-	stw      r30, 0x40(r1)
-	stw      r30, 0x3c(r1)
-	stw      r30, 0x24(r1)
-	b        lbl_800290C0
-
-lbl_8002909C:
-	lwz      r3, 0x44(r1)
-	addi     r3, r3, -24
-	cmplw    r3, r31
-	beq      lbl_800290B4
-	li       r4, 1
-	bl       doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType
-
-lbl_800290B4:
-	lwz      r3, 0x44(r1)
-	lwz      r0, 0(r3)
-	stw      r0, 0x44(r1)
-
-lbl_800290C0:
-	lwz      r0, 0x44(r1)
-	cmplw    r0, r30
-	stw      r0, 0x38(r1)
-	stw      r0, 0x20(r1)
-	bne      lbl_8002909C
-	lwz      r3, 0xc(r29)
-	cmplwi   r3, 0
-	beq      lbl_800290E8
-	li       r4, 0
-	bl       doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType
-
-lbl_800290E8:
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /*
@@ -731,98 +573,6 @@ void JUTConsoleManager::setDirectConsole(JUTConsole* console)
 		removeConsole(console);
 	}
 	mDirectConsole = console;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r4
-	stw      r29, 0x34(r1)
-	mr       r29, r3
-	lwz      r31, 0x10(r3)
-	cmplwi   r31, 0
-	beq      lbl_800291E8
-	addi     r0, r29, 4
-	mr       r4, r29
-	stw      r0, 0xc(r1)
-	addi     r3, r1, 0x20
-	addi     r5, r1, 0x24
-	addi     r6, r31, 0x18
-	stw      r0, 8(r1)
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x28(r1)
-	stw      r0, 0x24(r1)
-	bl
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
-	lwz      r0, 0xc(r29)
-	cmplwi   r0, 0
-	bne      lbl_800291E8
-	stw      r31, 0xc(r29)
-
-lbl_800291E8:
-	cmplwi   r30, 0
-	beq      lbl_80029284
-	lwz      r0, 0xc(r29)
-	cmplw    r0, r30
-	bne      lbl_80029250
-	lwz      r0, 0(r29)
-	cmplwi   r0, 1
-	bgt      lbl_80029214
-	li       r0, 0
-	stw      r0, 0xc(r29)
-	b        lbl_80029250
-
-lbl_80029214:
-	addi     r3, r29, 4
-	lwz      r4, 8(r29)
-	stw      r3, 0x1c(r1)
-	addi     r0, r4, -24
-	cmplw    r30, r0
-	stw      r3, 0x18(r1)
-	beq      lbl_8002923C
-	lwz      r3, 0x18(r30)
-	addi     r0, r3, -24
-	b        lbl_8002924C
-
-lbl_8002923C:
-	lwz      r3, 4(r29)
-	stw      r3, 0x14(r1)
-	addi     r0, r3, -24
-	stw      r3, 0x10(r1)
-
-lbl_8002924C:
-	stw      r0, 0xc(r29)
-
-lbl_80029250:
-	bl       JUTGetWarningConsole
-	cmplw    r3, r30
-	bne      lbl_80029264
-	li       r3, 0
-	bl       JUTSetWarningConsole
-
-lbl_80029264:
-	bl       JUTGetReportConsole
-	cmplw    r3, r30
-	bne      lbl_80029278
-	li       r3, 0
-	bl       JUTSetReportConsole
-
-lbl_80029278:
-	mr       r3, r29
-	addi     r4, r30, 0x18
-	bl       Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
-
-lbl_80029284:
-	stw      r30, 0x10(r29)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*

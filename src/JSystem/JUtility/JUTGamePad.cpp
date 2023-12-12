@@ -715,7 +715,7 @@ void JUTGamePad::setStatus_sticks_subroutine(PADStatus*)
  */
 void JUTGamePad::assign()
 {
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < PAD_MAX_CONTROLLERS; i++) {
 		if (mPadStatus[i].err == 0 && mPadAssign[i] == 0) {
 			mPortNum      = i;
 			mPadAssign[i] = 1;
@@ -2177,7 +2177,7 @@ void JUTGamePad::clearButtonRepeat(bool)
  */
 bool JUTGamePad::recalibrate(u32 mask)
 {
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < PAD_MAX_CONTROLLERS; i++) {
 		if ((sSuppressPadReset & channel_mask[i]) != 0) {
 			mask &= -1 ^ channel_mask[i];
 		}

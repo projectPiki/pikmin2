@@ -12,7 +12,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTExternalFB.h"
 #include "JSystem/JUtility/JUTGamePad.h"
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/strtold.h"
+#include "stl/stdlib.h"
 #include "types.h"
 
 JUTException* JUTException::sErrorManager;
@@ -493,7 +493,7 @@ void JUTException::showGPRMap(OSContext* context)
 	bool found_address_register = false;
 	sConsole->print("-------------------------------- GPRMAP\n");
 
-	for (int i = 0; i < 31; i++) {
+	for (int i = 0; i < 31; i++) { // GPR 0 to GPR 31
 		const u32 address = context->gpr[i];
 
 		if (address >= 0x80000000 && address <= 0x83000000 - 1) {
@@ -1239,375 +1239,118 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
 	char section_name[16];
 	char buffer[0x200];
 	JUTDirectFile file;
-	int i = 0;
+	int section_idx = 0;
 	if (!file.fopen(mapPath)) {
 		return false;
 	}
 
-	int result = 0;
-	do {
-		char* src         = buffer;
-		int found_section = 0;
-		do {
-			i++;
-			while (true) {
-				while (true) {
-					int length = file.fgets(buffer, ARRAY_SIZE(buffer));
-					if (length < 0)
-						goto next_section;
-					if (buffer[0] == '.')
-						break;
-				}
+	bool result = false;
+	bool found_section;
 
-				char* dst = section_name;
-				int i     = 0;
-				char* src = buffer + 1;
-				for (; *src != '\0'; i++, dst++, src++) {
-					*dst = *src;
-					if (*src == ' ' || i == 0xf)
-						break;
-				}
+	while (true) {
+		section_idx++;
+		found_section = false;
+		while (true) {
+			char* src;
+			char* dst;
 
-				section_name[i] = 0;
-				if (*src == 0)
+			if (file.fgets(buffer, ARRAY_SIZE(buffer)) < 0)
+				break;
+			if (buffer[0] != '.')
+				continue;
+
+			int i = 0;
+			src   = buffer + 1;
+			while (*src != '\0') {
+				section_name[i] = *src;
+				if (*src == ' ' || i == 0xf)
 					break;
-
-				if (src[1] == 's' && src[2] == 'e' && src[3] == 'c' && src[4] == 't') {
-					found_section = true;
-					break;
-				}
+				i++;
+				src++;
 			}
-			if ((found_section & 0xFF) == 0)
-				goto end;
-		} while (section_id >= 0 && section_id != i);
-	next_section:;
 
-		u32 addr;
-		int size;
-		do {
-			int length;
-			do {
-				length = file.fgets(buffer, ARRAY_SIZE(buffer));
-				if (length <= 4)
-					goto next_symbol;
-			} while ((length < 28) || (buffer[28] != '4'));
+			section_name[i] = 0;
+			if (*src == 0)
+				break;
 
-			addr = strtol(buffer + 19, nullptr, 16);
-			addr = ((buffer[18] - '0') << 28) | addr;
-			size = strtol(buffer + 11, nullptr, 16);
-		} while (addr > address || address >= addr + size);
-
-		if (out_addr)
-			*out_addr = addr;
-
-		if (out_size)
-			*out_size = size;
-
-		if (out_line) {
-			src        = buffer + 0x1e;
-			char* dst  = out_line;
-			u32 length = 0;
-			for (; length < line_length - 1; src++) {
-				u32 ch = *(u8*)src;
-				if (ch < ' ' && ch != '\t')
-					break;
-				if (((int)ch == ' ' || ch == '\t') && (length != 0)) {
-					if (dst[-1] != ' ') {
-						*dst = ' ';
-						dst++;
-						length++;
-					}
-				} else {
-					*dst = ch;
-					dst++;
-					length++;
-				}
-			}
-			if (length != 0 && dst[-1] == ' ') {
-				dst--;
-			}
-			*dst = 0;
-			if (print) {
-				if (begin_with_newline) {
-					sConsole->print("\n");
-				}
-				sConsole->print_f("  [%08X]: .%s [%08X: %XH]\n  %s\n", address, section_name, addr, size, out_line);
-				begin_with_newline = false;
+			if (src[1] == 's' && src[2] == 'e' && src[3] == 'c' && src[4] == 't') {
+				found_section = true;
+				break;
 			}
 		}
 
-		result = true;
+		if (!found_section)
+			break;
 
-	next_symbol:;
-	} while (section_id >= 0 && section_id != i);
+		if (section_id >= 0 && section_id != section_idx)
+			continue;
 
-	if (print && begin_with_newline) {
-		sConsole->print("\n");
+		int length;
+
+		while (true) {
+			if ((length = file.fgets(buffer, ARRAY_SIZE(buffer))) <= 4)
+				break;
+			if ((length < 28))
+				continue;
+			if ((buffer[28] == '4')) {
+				u32 addr = ((buffer[18] - '0') << 28) | strtol(buffer + 19, nullptr, 16);
+				int size = strtol(buffer + 11, nullptr, 16);
+				if ((addr <= address && address < addr + size)) {
+					if (out_addr)
+						*out_addr = addr;
+
+					if (out_size)
+						*out_size = size;
+
+					if (out_line) {
+						const u8* src = (const u8*)&buffer[0x1e];
+						u8* dst       = (u8*)out_line;
+						u32 i         = 0;
+
+						for (i = 0; i < line_length - 1; ++src) {
+							if ((u32)(*src) < ' ' && (u32)*src != '\t')
+								break;
+							if ((*src == ' ' || (u32)*src == '\t') && (i != 0)) {
+								if (dst[-1] != ' ') {
+									*dst = ' ';
+									dst++;
+									++i;
+								}
+							} else {
+								*dst++ = *src;
+								i++;
+							}
+						}
+						if (i != 0 && dst[-1] == ' ') {
+							dst--;
+							i--;
+						}
+						*dst = 0;
+						if (print) {
+							if (begin_with_newline) {
+								sConsole->print("\n");
+							}
+							sConsole->print_f("  [%08X]: .%s [%08X: %XH]\n  %s\n", address, section_name, addr, size, out_line);
+							begin_with_newline = false;
+						}
+					}
+					result = true;
+					break;
+				}
+			}
+		}
+
+		if ((section_id < 0 || section_id != section_idx)) {
+			continue;
+		}
+		if (print && begin_with_newline) {
+			sConsole->print("\n");
+		}
+		break;
 	}
 
-end:
-	int bresult = result != 0;
 	file.fclose();
-
-	return bresult;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xAD0(r1)
-	  mflr      r0
-	  stw       r0, 0xAD4(r1)
-	  stmw      r16, 0xA90(r1)
-	  mr.       r16, r3
-	  lbz       r19, 0xADB(r1)
-	  mr        r26, r4
-	  mr        r27, r5
-	  mr        r28, r6
-	  mr        r29, r7
-	  mr        r30, r8
-	  mr        r18, r9
-	  mr        r31, r10
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  b         .loc_0x328
-
-	.loc_0x40:
-	  addi      r3, r1, 0x218
-	  bl        -0x313C
-	  mr        r4, r16
-	  addi      r3, r1, 0x218
-	  li        r22, 0
-	  bl        -0x30E4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x74
-	  addi      r3, r1, 0x218
-	  li        r4, -0x1
-	  bl        -0x313C
-	  li        r3, 0
-	  b         .loc_0x328
-
-	.loc_0x74:
-	  addi      r25, r1, 0x19
-	  addi      r24, r1, 0x2B
-	  addi      r23, r1, 0x23
-	  addi      r16, r1, 0x36
-	  li        r17, 0
-
-	.loc_0x88:
-	  li        r20, 0
-	  addi      r22, r22, 0x1
-
-	.loc_0x90:
-	  addi      r3, r1, 0x218
-	  addi      r4, r1, 0x18
-	  li        r5, 0x200
-	  bl        -0x3024
-	  cmpwi     r3, 0
-	  blt-      .loc_0x140
-	  lbz       r0, 0x18(r1)
-	  cmpwi     r0, 0x2E
-	  bne+      .loc_0x90
-	  mr        r3, r25
-	  addi      r4, r1, 0x8
-	  li        r6, 0
-	  b         .loc_0xE8
-
-	.loc_0xC4:
-	  lbz       r0, 0x0(r3)
-	  stb       r5, 0x0(r4)
-	  cmpwi     r0, 0x20
-	  beq-      .loc_0xF4
-	  cmpwi     r6, 0xF
-	  beq-      .loc_0xF4
-	  addi      r4, r4, 0x1
-	  addi      r6, r6, 0x1
-	  addi      r3, r3, 0x1
-
-	.loc_0xE8:
-	  lbz       r5, 0x0(r3)
-	  extsb.    r0, r5
-	  bne+      .loc_0xC4
-
-	.loc_0xF4:
-	  lbz       r0, 0x0(r3)
-	  addi      r4, r1, 0x8
-	  li        r5, 0
-	  extsb.    r0, r0
-	  stbx      r5, r4, r6
-	  beq-      .loc_0x140
-	  lbz       r0, 0x1(r3)
-	  cmpwi     r0, 0x73
-	  bne+      .loc_0x90
-	  lbz       r0, 0x2(r3)
-	  cmpwi     r0, 0x65
-	  bne+      .loc_0x90
-	  lbz       r0, 0x3(r3)
-	  cmpwi     r0, 0x63
-	  bne+      .loc_0x90
-	  lbz       r0, 0x4(r3)
-	  cmpwi     r0, 0x74
-	  bne+      .loc_0x90
-	  li        r20, 0x1
-
-	.loc_0x140:
-	  rlwinm.   r0,r20,0,24,31
-	  beq-      .loc_0x300
-	  cmpwi     r27, 0
-	  blt-      .loc_0x158
-	  cmpw      r27, r22
-	  bne+      .loc_0x88
-
-	.loc_0x158:
-	  addi      r3, r1, 0x218
-	  addi      r4, r1, 0x18
-	  li        r5, 0x200
-	  bl        -0x30EC
-	  cmpwi     r3, 0x4
-	  ble-      .loc_0x2D4
-	  cmpwi     r3, 0x1C
-	  blt+      .loc_0x158
-	  lbz       r0, 0x34(r1)
-	  cmpwi     r0, 0x34
-	  bne+      .loc_0x158
-	  mr        r3, r24
-	  li        r4, 0
-	  li        r5, 0x10
-	  bl        0x9EE84
-	  lbz       r0, 0x2A(r1)
-	  li        r4, 0
-	  li        r5, 0x10
-	  extsb     r6, r0
-	  subi      r0, r6, 0x30
-	  rlwinm    r0,r0,28,0,3
-	  or        r21, r0, r3
-	  mr        r3, r23
-	  bl        0x9EE60
-	  cmplw     r21, r26
-	  mr        r20, r3
-	  bgt+      .loc_0x158
-	  add       r0, r21, r20
-	  cmplw     r26, r0
-	  bge+      .loc_0x158
-	  cmplwi    r28, 0
-	  beq-      .loc_0x1DC
-	  stw       r21, 0x0(r28)
-
-	.loc_0x1DC:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x1E8
-	  stw       r20, 0x0(r29)
-
-	.loc_0x1E8:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x2D0
-	  mr        r5, r16
-	  mr        r6, r30
-	  subi      r0, r18, 0x1
-	  li        r7, 0
-	  li        r3, 0x20
-	  b         .loc_0x260
-
-	.loc_0x208:
-	  lbz       r4, 0x0(r5)
-	  cmplwi    r4, 0x20
-	  bge-      .loc_0x21C
-	  cmplwi    r4, 0x9
-	  bne-      .loc_0x268
-
-	.loc_0x21C:
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0x22C
-	  cmplwi    r4, 0x9
-	  bne-      .loc_0x250
-
-	.loc_0x22C:
-	  cmplwi    r7, 0
-	  beq-      .loc_0x250
-	  lbz       r4, -0x1(r6)
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0x25C
-	  stb       r3, 0x0(r6)
-	  addi      r6, r6, 0x1
-	  addi      r7, r7, 0x1
-	  b         .loc_0x25C
-
-	.loc_0x250:
-	  stb       r4, 0x0(r6)
-	  addi      r6, r6, 0x1
-	  addi      r7, r7, 0x1
-
-	.loc_0x25C:
-	  addi      r5, r5, 0x1
-
-	.loc_0x260:
-	  cmplw     r7, r0
-	  blt+      .loc_0x208
-
-	.loc_0x268:
-	  cmplwi    r7, 0
-	  beq-      .loc_0x280
-	  lbz       r0, -0x1(r6)
-	  cmpwi     r0, 0x20
-	  bne-      .loc_0x280
-	  subi      r6, r6, 0x1
-
-	.loc_0x280:
-	  li        r3, 0
-	  rlwinm.   r0,r31,0,24,31
-	  stb       r3, 0x0(r6)
-	  beq-      .loc_0x2D0
-	  rlwinm.   r0,r19,0,24,31
-	  beq-      .loc_0x2A4
-	  lwz       r3, -0x775C(r13)
-	  subi      r4, r2, 0x7D30
-	  bl        -0x4198
-
-	.loc_0x2A4:
-	  lis       r4, 0x8047
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r4, 0x412C
-	  mr        r5, r26
-	  mr        r7, r21
-	  mr        r8, r20
-	  mr        r9, r30
-	  addi      r6, r1, 0x8
-	  crclr     6, 0x6
-	  bl        -0x424C
-	  li        r19, 0
-
-	.loc_0x2D0:
-	  li        r17, 0x1
-
-	.loc_0x2D4:
-	  cmpwi     r27, 0
-	  blt+      .loc_0x88
-	  cmpw      r27, r22
-	  bne+      .loc_0x88
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x300
-	  rlwinm.   r0,r19,0,24,31
-	  beq-      .loc_0x300
-	  lwz       r3, -0x775C(r13)
-	  subi      r4, r2, 0x7D30
-	  bl        -0x41F4
-
-	.loc_0x300:
-	  addi      r3, r1, 0x218
-	  bl        -0x32EC
-	  rlwinm    r5,r17,0,24,31
-	  addi      r3, r1, 0x218
-	  neg       r0, r5
-	  li        r4, -0x1
-	  or        r0, r0, r5
-	  rlwinm    r16,r0,1,31,31
-	  bl        -0x33F4
-	  mr        r3, r16
-
-	.loc_0x328:
-	  lmw       r16, 0xA90(r1)
-	  lwz       r0, 0xAD4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xAD0
-	  blr
-	*/
+	return result ? true : false;
 }
 
 /*
