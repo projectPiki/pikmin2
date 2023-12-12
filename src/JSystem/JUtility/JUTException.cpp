@@ -15,6 +15,8 @@
 #include "stl/stdlib.h"
 #include "types.h"
 
+static JUTException::ExCallbackObject exCallbackObject;
+
 JUTException* JUTException::sErrorManager;
 JUTExceptionHandler JUTException::sPreUserCallback;
 JUTExceptionHandler JUTException::sPostUserCallback;
@@ -26,8 +28,6 @@ u32 JUTException::fpscr;
 OSMessageQueue JUTException::sMessageQueue = { 0 };
 void* JUTException::sMessageBuffer[1]      = { nullptr };
 JSUList<JUTException::JUTExMapFile> JUTException::sMapFileList(false);
-
-static JUTException::ExCallbackObject exCallbackObject;
 
 static OSTime c3bcnt[4] = { 0, 0, 0, 0 };
 
@@ -435,7 +435,7 @@ void JUTException::showGPR(OSContext* context)
  */
 bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline)
 {
-	if ((address < 0x80000000) || (0x82ffffff < address)) {
+	if ((address < OS_BASE_CACHED) || (0x83000000 - 1 < address)) {
 		return false;
 	}
 
@@ -496,7 +496,7 @@ void JUTException::showGPRMap(OSContext* context)
 	for (int i = 0; i < 31; i++) { // GPR 0 to GPR 31
 		const u32 address = context->gpr[i];
 
-		if (address >= 0x80000000 && address <= 0x83000000 - 1) {
+		if (address >= OS_BASE_CACHED && address <= 0x83000000 - 1) {
 			found_address_register = true;
 
 			sConsole->print_f("R%02d: %08XH", i, address);
@@ -775,7 +775,7 @@ void JUTException::showSRR0Map(OSContext* context)
 
 	sConsole->print("-------------------------------- SRR0MAP\n");
 	u32 address = context->srr0;
-	if (address >= 0x80000000 && address <= 0x83000000 - 1) {
+	if (address >= OS_BASE_CACHED && address <= 0x83000000 - 1) {
 		sConsole->print_f("SRR0: %08XH", address);
 		if (showMapInfo_subroutine(address, true) == false) {
 			sConsole->print("  no information\n");
@@ -1122,8 +1122,6 @@ void JUTException::createFB()
 
 	mFrameMemory = (JUTExternalFB*)object;
 }
-
-static const char unusedExceptionStr[] = "  [%08X]: .%s [%08X: %XH]\n  %s\n";
 
 /*
  * --INFO--
