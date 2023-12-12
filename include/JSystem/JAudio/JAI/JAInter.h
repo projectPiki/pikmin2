@@ -165,9 +165,9 @@ struct HeapBlock {
 struct MuteBit {
 	MuteBit();
 
-	bool _0 : 1;
-	bool _1 : 1;
-	bool _2 : 1;
+	u8 _0 : 1; // JAInter::SystemInterface::outerInit breaks if this is bool.
+	u8 _1 : 1;
+	u8 _2 : 1;
 };
 
 struct PlayerParameter {

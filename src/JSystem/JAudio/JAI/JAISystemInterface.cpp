@@ -6,24 +6,6 @@
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_JAISystemInterface_cpp
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global systemPortCmd__Q27JAInter15SystemInterface
-    systemPortCmd__Q27JAInter15SystemInterface:
-        .skip 0x18
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80517050
-    lbl_80517050:
-        .4byte 0x00000000
-        .4byte 0x00000000
-*/
-
 JASPortCmd JAInter::SystemInterface::systemPortCmd;
 
 /*
@@ -469,7 +451,7 @@ void JAInter::SystemInterface::setPortParameter(JASPortArgs*, JASTrack*, u32, u3
 void JAInter::SystemInterface::setSePortParameter(JASPortArgs* args)
 {
 	u32 soundID    = args->_04 & 0x800;
-	u8 v1          = args->_04 & 0xFF;
+	u8 v1          = args->_04;
 	JASTrack* seqP = args->_00;
 	if (v1 != JAIGlobalParameter::getParamSeqTrackMax()) {
 		seqP = trackToSeqp(seqP, v1, soundID);
