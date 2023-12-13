@@ -59,9 +59,8 @@ static void Copy6Floats(const register f32 src[6], register f32 dst[6])
  */
 void __GXSetProjection(void)
 {
-	u32 fifo = GXFIFO_ADDR;
 	GX_XF_LOAD_REGS(6, GX_XF_REG_PROJECTIONA);
-	WriteProjPS(gx->projMtx, (volatile void*)fifo);
+	WriteProjPS(gx->projMtx, (volatile void*)GXFIFO_ADDR);
 	GX_WRITE_U32(gx->projType);
 }
 
@@ -90,54 +89,6 @@ void GXSetProjection(const Mtx44 proj, GXProjectionType type)
 	__GXSetProjection();
 
 	gx->bpSentNot = GX_TRUE;
-	/*
-	.loc_0x0:
-	  lwz       r5, -0x6D70(r2)
-	  cmpwi     r4, 0x1
-	  stw       r4, 0x4D8(r5)
-	  lfs       f0, 0x0(r3)
-	  stfs      f0, 0x4DC(r5)
-	  lfs       f0, 0x14(r3)
-	  stfs      f0, 0x4E4(r5)
-	  lfs       f0, 0x28(r3)
-	  stfs      f0, 0x4EC(r5)
-	  lfs       f0, 0x2C(r3)
-	  stfs      f0, 0x4F0(r5)
-	  bne-      .loc_0x44
-	  lfs       f0, 0xC(r3)
-	  stfs      f0, 0x4E0(r5)
-	  lfs       f0, 0x1C(r3)
-	  stfs      f0, 0x4E8(r5)
-	  b         .loc_0x54
-
-	.loc_0x44:
-	  lfs       f0, 0x8(r3)
-	  stfs      f0, 0x4E0(r5)
-	  lfs       f0, 0x18(r3)
-	  stfs      f0, 0x4E8(r5)
-
-	.loc_0x54:
-	  lis       r5, 0xCC01
-	  lwz       r4, -0x6D70(r2)
-	  li        r0, 0x10
-	  lis       r3, 0x6
-	  stb       r0, -0x8000(r5)
-	  addi      r0, r3, 0x1020
-	  stw       r0, -0x8000(r5)
-	  subi      r6, r5, 0x8000
-	  addi      r3, r4, 0x4DC
-	  psq_l     f2,0x0(r3),0,0
-	  psq_l     f1,0x8(r3),0,0
-	  psq_l     f0,0x10(r3),0,0
-	  psq_st    f2,0x0(r6),0,0
-	  psq_st    f1,0x0(r6),0,0
-	  psq_st    f0,0x0(r6),0,0
-	  lwz       r3, 0x4D8(r4)
-	  li        r0, 0x1
-	  stw       r3, -0x8000(r5)
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
 }
 
 /*

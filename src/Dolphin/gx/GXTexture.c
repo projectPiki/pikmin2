@@ -1,38 +1,14 @@
 #include "Dolphin/gx.h"
 
-u8 GXTexMode0Ids[8] = {
-	0x80,0x81,0x82,0x83,
-	0xA0,0xA1,0xA2,0xA3
-};
-u8 GXTexMode1Ids[8] = {
-	0x84,0x85,0x86,0x87,
-	0xA4,0xA5,0xA6,0xA7
-};
-u8 GXTexImage0Ids[8] = {
-	0x88,0x89,0x8a,0x8b,
-	0xA8,0xA9,0xAa,0xAb
-};
-u8 GXTexImage1Ids[8] = {
-	0x8c,0x8d,0x8e,0x8f,
-	0xAc,0xAd,0xAe,0xAf
-};
-u8 GXTexImage2Ids[8] = {
-	0x90,0x91,0x92,0x93,
-	0xB0,0xB1,0xB2,0xB3
-};
-u8 GXTexImage3Ids[8] = {
-	0x94,0x95,0x96,0x97,
-	0xB4,0xB5,0xB6,0xB7
-};
-u8 GXTexTlutIds[8] = {
-	0x98,0x99,0x9a,0x9b,
-	0xB8,0xB9,0xBa,0xBb
-};
+u8 GXTexMode0Ids[8]  = { 0x80, 0x81, 0x82, 0x83, 0xA0, 0xA1, 0xA2, 0xA3 };
+u8 GXTexMode1Ids[8]  = { 0x84, 0x85, 0x86, 0x87, 0xA4, 0xA5, 0xA6, 0xA7 };
+u8 GXTexImage0Ids[8] = { 0x88, 0x89, 0x8a, 0x8b, 0xA8, 0xA9, 0xAa, 0xAb };
+u8 GXTexImage1Ids[8] = { 0x8c, 0x8d, 0x8e, 0x8f, 0xAc, 0xAd, 0xAe, 0xAf };
+u8 GXTexImage2Ids[8] = { 0x90, 0x91, 0x92, 0x93, 0xB0, 0xB1, 0xB2, 0xB3 };
+u8 GXTexImage3Ids[8] = { 0x94, 0x95, 0x96, 0x97, 0xB4, 0xB5, 0xB6, 0xB7 };
+u8 GXTexTlutIds[8]   = { 0x98, 0x99, 0x9a, 0x9b, 0xB8, 0xB9, 0xBa, 0xBb };
 
-u8 GX2HWFiltConv[6] = {
-	0x00,0x04,0x01,0x05,0x02,0x06
-};
-
+u8 GX2HWFiltConv[6] = { 0x00, 0x04, 0x01, 0x05, 0x02, 0x06 };
 
 /*
  * --INFO--
@@ -177,7 +153,7 @@ u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_
  */
 void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b, u32* c)
 {
-	
+
 	/*
 	.loc_0x0:
 	  cmplwi    r3, 0x3C
@@ -256,82 +232,76 @@ void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt
                   GXBool useMIPmap)
 {
 	u32 a, b;
-	GXTexObjPriv *internal = (GXTexObjPriv *)obj;
+	GXTexObjPriv* internal = (GXTexObjPriv*)obj;
 	memset(internal, 0, sizeof(*internal));
-	
+
 	GX_SET_REG(internal->mode0, sWrap, 30, 31);
 	GX_SET_REG(internal->mode0, tWrap, 28, 29);
 	GX_SET_REG(internal->mode0, GX_TRUE, 27, 27);
 
-	if (useMIPmap)
-	{
+	if (useMIPmap) {
 		u32 maxDimSize;
 		internal->flags |= 1;
-		if (((u32)format - 8) <= 2)
-		{
+		if (((u32)format - 8) <= 2) {
 			GX_SET_REG(internal->mode0, 5, 24, 26);
-		}
-		else 
-		{
+		} else {
 			GX_SET_REG(internal->mode0, 6, 24, 26);
 		}
 
 		maxDimSize = width > height ? 31 - __cntlzw(width) : 31 - __cntlzw(height);
 
-		GX_SET_REG(internal->mode1, (maxDimSize) * 16.f, 16, 23);
-	}
-	else
-	{
+		GX_SET_REG(internal->mode1, (maxDimSize)*16.f, 16, 23);
+	} else {
 		GX_SET_REG(internal->mode0, 4, 24, 26);
 	}
 	internal->format = format;
 	GX_SET_REG(internal->image0, (width & 0xffff) - 1, 22, 31);
-	GX_SET_REG(internal->image0, (height& 0xffff) - 1, 12, 21);
+	GX_SET_REG(internal->image0, (height & 0xffff) - 1, 12, 21);
 
 	GX_SET_REG(internal->image0, format & 0xf, 8, 11);
 	GX_SET_REG(internal->image3, (u32)imagePtr >> 5, 11, 31);
-	
-	switch (format & 0xf)
-	{
-		case 0:
-		case 8:
-			internal->loadFormat = 1;
-			a = 3;
-			b = 3;
-			break;
-		case 1:
-		case 2:
-		case 9:
-			internal->loadFormat = 2;
-			a = 3;
-			b = 2;
-			break;
-		case 3:
-		case 4:
-		case 5:
-		case 10:
-			internal->loadFormat = 2;
-			a = 2;
-			b = 2;
-			break;
-		case 6:
-			internal->loadFormat = 3;
-			a = 2;
-			b = 2;
-			break;
-		case 0xe:
-			internal->loadFormat = 0;
-			a = 3;
-			b = 3;
+
+	switch (format & 0xf) {
+	case 0:
+	case 8:
+		internal->loadFormat = 1;
+		a                    = 3;
+		b                    = 3;
 		break;
-		default:
-			internal->loadFormat = 2;
-			a = 2;
-			b = 2;
+	case 1:
+	case 2:
+	case 9:
+		internal->loadFormat = 2;
+		a                    = 3;
+		b                    = 2;
+		break;
+	case 3:
+	case 4:
+	case 5:
+	case 10:
+		internal->loadFormat = 2;
+		a                    = 2;
+		b                    = 2;
+		break;
+	case 6:
+		internal->loadFormat = 3;
+		a                    = 2;
+		b                    = 2;
+		break;
+	case 0xe:
+		internal->loadFormat = 0;
+		a                    = 3;
+		b                    = 3;
+		break;
+	default:
+		internal->loadFormat = 2;
+		a                    = 2;
+		b                    = 2;
 		break;
 	}
 
-	internal->loadCount = (((width + (1 << (a & 0xffff)) - 1) >> (a & 0xffff)) * ((height + (1 << (b & 0xffff)) - 1) >> (b & 0xffff))) & 0x7fff;
+	internal->loadCount
+	    = (((width + (1 << (a & 0xffff)) - 1) >> (a & 0xffff)) * ((height + (1 << (b & 0xffff)) - 1) >> (b & 0xffff))) & 0x7fff;
 
 	internal->flags |= 2;
 
@@ -511,10 +481,10 @@ void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt
 void GXInitTexObjCI(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXCITexFmt format, GXTexWrapMode sWrap, GXTexWrapMode tWrap,
                     GXBool useMIPmap, u32 tlutName)
 {
-	GXTexObjPriv *internal = (GXTexObjPriv *)obj;
+	GXTexObjPriv* internal = (GXTexObjPriv*)obj;
 
 	GXInitTexObj(obj, imagePtr, width, height, format, sWrap, tWrap, useMIPmap);
-	
+
 	internal->flags &= ~2;
 	internal->tlutName = tlutName;
 	/*
@@ -974,13 +944,13 @@ void GXLoadTexObjPreLoaded(GXTexObj* obj, GXTexRegion* region, GXTexMapID map)
 {
 	u8 stackManipulation[0x18];
 
-	GXTexObjPriv *internalObj = (GXTexObjPriv *)obj;
-	GXTexRegionPriv *internalRegion = (GXTexRegionPriv *)region;
+	GXTexObjPriv* internalObj       = (GXTexObjPriv*)obj;
+	GXTexRegionPriv* internalRegion = (GXTexRegionPriv*)region;
 
 	GX_SET_REG(internalObj->mode0, GXTexMode0Ids[map], 0, 7);
 	GX_SET_REG(internalObj->mode1, GXTexMode1Ids[map], 0, 7);
 	GX_SET_REG(internalObj->image0, GXTexImage0Ids[map], 0, 7);
-	
+
 	GX_SET_REG(internalRegion->unk0, GXTexImage1Ids[map], 0, 7);
 	GX_SET_REG(internalRegion->unk4, GXTexImage2Ids[map], 0, 7);
 
@@ -993,16 +963,15 @@ void GXLoadTexObjPreLoaded(GXTexObj* obj, GXTexRegion* region, GXTexMapID map)
 	GX_BP_LOAD_REG(internalRegion->unk4);
 	GX_BP_LOAD_REG(internalObj->image3);
 
-	if ((internalObj->flags & 2) == 0)
-	{
-		GXTlutObjPriv *tlut = (GXTlutObjPriv *)gx->tlutRegionCallback(internalObj->tlutName);
+	if ((internalObj->flags & 2) == 0) {
+		GXTlutObjPriv* tlut = (GXTlutObjPriv*)gx->tlutRegionCallback(internalObj->tlutName);
 		GX_SET_REG(tlut->unk4, GXTexTlutIds[map], 0, 7);
 
 		GX_BP_LOAD_REG(tlut->unk4);
 	}
 
 	gx->tImage0[map] = internalObj->image0;
-	gx->tMode0[map] = internalObj->mode0;
+	gx->tMode0[map]  = internalObj->mode0;
 
 	gx->dirtyState |= GX_DIRTY_SU_TEX;
 	gx->bpSentNot = GX_FALSE;
@@ -1119,7 +1088,7 @@ void GXLoadTexObjPreLoaded(GXTexObj* obj, GXTexRegion* region, GXTexMapID map)
  */
 void GXLoadTexObj(GXTexObj* obj, GXTexMapID map)
 {
-	GXTexRegion *ret = (GXTexRegion *)gx->texRegionCallback(obj, map);
+	GXTexRegion* ret = (GXTexRegion*)gx->texRegionCallback(obj, map);
 
 	GXLoadTexObjPreLoaded(obj, ret, map);
 	/*
@@ -1155,10 +1124,10 @@ void GXLoadTexObj(GXTexObj* obj, GXTexMapID map)
  */
 void GXInitTlutObj(GXTlutObj* obj, void* table, GXTlutFmt format, u16 numEntries)
 {
-	GXTlutObjPriv *internal = (GXTlutObjPriv *)obj;
+	GXTlutObjPriv* internal = (GXTlutObjPriv*)obj;
 
 	internal->unk0 = 0;
-	
+
 	GX_SET_REG(internal->unk0, format, 20, 21);
 	GX_SET_REG(internal->unk4, (u32)table >> 5, 11, 31);
 	GX_SET_REG(internal->unk4, 100, 0, 7);
@@ -1213,20 +1182,20 @@ void GXGetTlutObjNumEntries(void)
  */
 void GXLoadTlut(GXTlutObj* obj, u32 tlutName)
 {
-	GXTlutObjPriv *internal = (GXTlutObjPriv*)obj;
-	GXTlutRegionPriv *ret = (GXTlutRegionPriv *)gx->tlutRegionCallback(tlutName);
+	GXTlutObjPriv* internal = (GXTlutObjPriv*)obj;
+	GXTlutRegionPriv* ret   = (GXTlutRegionPriv*)gx->tlutRegionCallback(tlutName);
 	u32 reg;
-	
+
 	__GXFlushTextureState();
 
 	GX_BP_LOAD_REG(internal->unk4);
 	GX_BP_LOAD_REG(ret->unk0);
 
 	__GXFlushTextureState();
-	
+
 	reg = ret->unk0;
 	GX_SET_REG(internal->unk0, reg, 22, 31);
-	
+
 	ret->tlutObj = *internal;
 }
 
@@ -1237,20 +1206,19 @@ void GXLoadTlut(GXTlutObj* obj, u32 tlutName)
  */
 void GXInitTexCacheRegion(GXTexRegion* region, GXBool is32bMIPmap, u32 memEven, GXTexCacheSize sizeEven, u32 memOdd, GXTexCacheSize sizeOdd)
 {
-	GXTexRegionPriv *internal = (GXTexRegionPriv*)region;
-	
+	GXTexRegionPriv* internal = (GXTexRegionPriv*)region;
+
 	u32 reg;
-	switch (sizeEven)
-	{
-		case 0:
-			reg = 3;
-			break;
-		case 1:
-			reg = 4;
-			break;
-		case 2:
-			reg = 5;
-			break;
+	switch (sizeEven) {
+	case 0:
+		reg = 3;
+		break;
+	case 1:
+		reg = 4;
+		break;
+	case 2:
+		reg = 5;
+		break;
 	}
 
 	internal->unk0 = 0;
@@ -1260,22 +1228,21 @@ void GXInitTexCacheRegion(GXTexRegion* region, GXBool is32bMIPmap, u32 memEven, 
 	GX_SET_REG(internal->unk0, reg, 11, 13);
 	GX_SET_REG(internal->unk0, 0, 10, 10);
 
-	switch (sizeOdd)
-	{
-		case 0:
-			reg = 3;
-			break;
-		case 1:
-			reg = 4;
-			break;
-		case 2:
-			reg = 5;
-			break;
-		case 3:
-			reg = 0;
-			break;
+	switch (sizeOdd) {
+	case 0:
+		reg = 3;
+		break;
+	case 1:
+		reg = 4;
+		break;
+	case 2:
+		reg = 5;
+		break;
+	case 3:
+		reg = 0;
+		break;
 	}
-	
+
 	internal->unk4 = 0;
 	GX_SET_REG(internal->unk4, memOdd >> 5, 17, 31);
 	GX_SET_REG(internal->unk4, reg, 14, 16);
@@ -1313,7 +1280,7 @@ void GXGetTexRegionAll(void)
 void GXInitTlutRegion(GXTlutRegion* region, u32 memAddr, GXTlutSize tlutSize)
 {
 	GXTlutRegionPriv* internal = (GXTlutRegionPriv*)region;
-	
+
 	internal->unk0 = 0;
 	GX_SET_REG(internal->unk0, (memAddr - 0x80000) >> 9, 22, 31);
 	GX_SET_REG(internal->unk0, tlutSize, 11, 21);
