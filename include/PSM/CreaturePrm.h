@@ -19,6 +19,12 @@ struct CreaturePrm : public PSSystem::SingletonBase<CreaturePrm> {
 
 	static f32 cSeFxMix;
 	static f32 cSeFxMix_cave;
+
+	static const f32 cVolMaxDist_Kehai[7];
+	static const f32 cVolMaxDist_Battle[7];
+	static const f32 cVolZeroDist_Kehai[7];
+	static const f32 cVolZeroDist_Battle[7];
+	static const f32 cVolZeroDist_InnerSize_Kehai[7];
 };
 
 } // namespace PSM

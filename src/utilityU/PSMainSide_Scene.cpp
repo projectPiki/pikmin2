@@ -1608,14 +1608,14 @@ Scene_Cave::Scene_Cave(u8 p1, PSGame::SceneInfo* info)
 {
 	PSGame::CaveFloorInfo* floorInfo = static_cast<PSGame::CaveFloorInfo*>(info);
 	switch (floorInfo->mAlphaType) {
-	case 0:
-	case 1:
-	case 2:
-	case 3:
+	case PSGame::CaveFloorInfo::AlphaType_Soil:
+	case PSGame::CaveFloorInfo::AlphaType_Metal:
+	case PSGame::CaveFloorInfo::AlphaType_Concrete:
+	case PSGame::CaveFloorInfo::AlphaType_Tile:
 		mSceneFx = CreaturePrm::cSeFxMix_cave;
 		break;
-	case 4:
-	case 5:
+	case PSGame::CaveFloorInfo::AlphaType_Garden:
+	case PSGame::CaveFloorInfo::AlphaType_Toy:
 		mSceneFx = 0.0f;
 		break;
 	default:

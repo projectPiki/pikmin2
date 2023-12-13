@@ -52,7 +52,7 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 				num++;
 			}
 		}
-		mPikiMaskNum = num;
+		mMeloArr._10 = num;
 	}
 
 	// _00-_10  = JSULink<SeqBase>
@@ -63,9 +63,6 @@ struct AutoBgm : public PSSystem::DirectedBgm {
 	PSSystem::TaskChecker* _334; // _334
 	JKRHeap* mHeap;              // _338
 	MeloArrMgr mMeloArr;         // _33C
-	u16 mPikiMaskNum;            // _34C - unknown
-	u8 _34E;                     // _34E - unknown
-	u8 _34F;                     // _34F - might be padding
 };
 
 } // namespace PSAutoBgm

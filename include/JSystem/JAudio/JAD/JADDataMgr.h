@@ -9,6 +9,10 @@
 #include "JSystem/JAudio/JAD/JADUtility.h"
 #include "JSystem/JAudio/JAD/JADStr.h"
 
+namespace PSAutoBgm {
+struct Track;
+};
+
 namespace JADUtility {
 
 /**
@@ -109,7 +113,7 @@ struct DataMgrNode : public DataLoadMgrNode {
 template <typename A, typename B>
 struct PrmDataMgrNode : public DataMgrNode {
 	inline PrmDataMgrNode(B* data)
-	    : _250(0)
+	    : mPrmSetRc(nullptr)
 	    , _254(data)
 	{
 	}
@@ -132,9 +136,9 @@ struct PrmDataMgrNode : public DataMgrNode {
 	// _00      = DataMgrBase*
 	// _04      = VTBL
 	// _08-_250 = DataMgrNode
-	u32 _250; // _250, unknown
-	B* _254;  // _254, unknown
-	          // _258-_278 = DataMgrBase (virtual)
+	JADUtility::PrmSetRc<PSAutoBgm::Track>* mPrmSetRc; // _250
+	B* _254;                                           // _254, unknown
+	                                                   // _258-_278 = DataMgrBase (virtual)
 };
 
 struct DataLoadMgrVirNode {

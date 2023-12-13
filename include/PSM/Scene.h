@@ -369,4 +369,10 @@ inline PSSystem::SeqBase* PSSystemChildSceneData(int id)
 	return mgr->getChildScene()->mSeqMgr.getSeq(id);
 }
 
+inline PSGame::SceneInfo* PSGameGetSceneInfo()
+{
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+	return static_cast<PSM::SceneBase*>(mgr->getChildScene())->getSceneInfoA();
+}
+
 #endif

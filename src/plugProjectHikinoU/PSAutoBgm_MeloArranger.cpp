@@ -36,7 +36,7 @@ bool MeloArrMgr::isToAvoid(MeloArrArg& meloArg)
 {
 	MeloArrBase* currLink;
 	meloArg.assertCheck();
-	if (!_12) {
+	if (!mIsActive) {
 		return false;
 	}
 	bool check = false;

@@ -68,7 +68,7 @@ struct DirectorBase : public JADHioNode {
 		return false;
 	}
 
-	inline void fadeAllTracks(f32 rate, f32 a2)
+	inline void fadeAllTracks(f32 rate, u32 a2)
 	{
 		for (u8 i = 0; i < mTrackNum; i++) {
 			P2ASSERTLINE(51, i < mTrackNum);
@@ -89,7 +89,6 @@ struct DirectorBase : public JADHioNode {
 	u8 _3D[0x3];            // _3D - padding?
 	bool mEnabled;          // _40 (only enabled for interactive music)
 	u8 mTrackNum;           // _41
-	u8 _42[0x2];            // _42 - padding?
 	u8* mTrackFlagList;     // _44
 };
 

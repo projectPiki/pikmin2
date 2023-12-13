@@ -34,11 +34,11 @@ void THPDinamicsProc::setSetting(THP_ID id)
 	setSetting(&sTHPDemoDinamics[id]);
 }
 
-const f32 cVolMaxDist_Kehai[7]            = { 150.0f, 100.0f, 500.0f, 500.0f, 600.0f, 800.0f, 300.0f };
-const f32 cVolMaxDist_Battle[7]           = { 210.0f, 140.0f, 700.0f, 700.0f, 840.0f, 1120.0f, 420.0f };
-const f32 cVolZeroDist_Kehai[7]           = { 300.0f, 200.0f, 1000.0f, 1000.0f, 1200.0f, 1600.0f, 600.0f };
-const f32 cVolZeroDist_Battle[7]          = { 420.0f, 280.0f, 1400.0f, 1400.0f, 1680.0f, 2240.0f, 840.0f };
-const f32 cVolZeroDist_InnerSize_Kehai[7] = { 233.99998f, 156.0f, 780.0f, 780.0f, 935.99996f, 1248.0f, 467.99998f };
+const f32 CreaturePrm::cVolMaxDist_Kehai[7]            = { 150.0f, 100.0f, 500.0f, 500.0f, 600.0f, 800.0f, 300.0f };
+const f32 CreaturePrm::cVolMaxDist_Battle[7]           = { 210.0f, 140.0f, 700.0f, 700.0f, 840.0f, 1120.0f, 420.0f };
+const f32 CreaturePrm::cVolZeroDist_Kehai[7]           = { 300.0f, 200.0f, 1000.0f, 1000.0f, 1200.0f, 1600.0f, 600.0f };
+const f32 CreaturePrm::cVolZeroDist_Battle[7]          = { 420.0f, 280.0f, 1400.0f, 1400.0f, 1680.0f, 2240.0f, 840.0f };
+const f32 CreaturePrm::cVolZeroDist_InnerSize_Kehai[7] = { 233.99998f, 156.0f, 780.0f, 780.0f, 935.99996f, 1248.0f, 467.99998f };
 
 /*
  * --INFO--

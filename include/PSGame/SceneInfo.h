@@ -78,16 +78,32 @@ struct CaveFloorInfo : public SceneInfo {
 		mChallengeModeStageNum = 0xFF;
 	}
 
-	virtual bool isCaveFloor() { return true; }            // _08 (weak)
-	virtual bool isBossFloor() { return mBetaType == 1; }  // _0C (weak)
-	virtual bool isRelaxFloor() { return mBetaType == 2; } // _10 (weak)
+	// This value is f011 in the caveinfo, it creates a very subtle echo effect on the music, the value usually depends on the cave theme.
+	enum FloorAlphaType {
+		AlphaType_Soil     = 0,
+		AlphaType_Metal    = 1,
+		AlphaType_Concrete = 2,
+		AlphaType_Tile     = 3,
+		AlphaType_Garden   = 4,
+		AlphaType_Toy      = 5,
+	};
+
+	enum FloorBetaType {
+		BetaType_Normal = 0,
+		BetaType_Boss   = 1,
+		BetaType_Relax  = 2,
+	};
+
+	virtual bool isCaveFloor() { return true; }                         // _08 (weak)
+	virtual bool isBossFloor() { return mBetaType == BetaType_Boss; }   // _0C (weak)
+	virtual bool isRelaxFloor() { return mBetaType == BetaType_Relax; } // _10 (weak)
 
 	u32 getCaveNoFromID();
 
 	// _00     = VTBL
 	// _00-_38 = SceneInfo
-	uint mAlphaType; // _38
-	uint mBetaType;  // _3C
+	uint mAlphaType; // _38 (use enum FloorAlphaType)
+	uint mBetaType;  // _3C (use enum FloorBetaType)
 	u8 mFloorNum;    // _40
 	union {
 		u32 fullView;

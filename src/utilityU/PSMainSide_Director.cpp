@@ -1,12 +1,13 @@
 #include "PSSystem/SeqTrack.h"
-#include "PSSystem/PSGame.h"
 #include "PSM/ObjCalc.h"
 #include "PSM/Otakara.h"
 #include "PSGame/Global.h"
 #include "PSAutoBgm/AutoBgm.h"
 #include "JSystem/JAudio/JALCalc.h"
 #include "PSM/CreaturePrm.h"
+#include "Game/Navi.h"
 #include "utilityU.h"
+#include "PSM/BossSeq.h"
 
 /*
     Generated from dpostproc
@@ -383,10 +384,9 @@ namespace PSM {
  * Size:	000080
  */
 DamageDirector::DamageDirector()
-    : PSM::OneShotDirector()
-    , _4C(0.1f)
-    , _50(5.0f)
-    , _54(225)
+    : mPitchMod1(0.1f)
+    , mPitchMod2(5.0f)
+    , mDuration(225)
 {
 }
 
@@ -397,7 +397,7 @@ DamageDirector::DamageDirector()
  */
 void DamageDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
-	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).pitchModulation(_4C, _50, _54, this);
+	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).pitchModulation(mPitchMod1, mPitchMod2, mDuration, this);
 }
 
 /*
@@ -419,7 +419,7 @@ void DamageDirector::execInner()
  */
 void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
-	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(_48, _4C, this);
+	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(mTempoValue, mTimeBase, this);
 }
 
 /*
@@ -429,7 +429,7 @@ void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
  */
 void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
-	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(1.0f, _4C, this);
+	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(1.0f, mTimeBase, this);
 }
 
 /*
@@ -456,9 +456,11 @@ void ActorDirector_TempoChange::execInner()
  * Address:	80456E98
  * Size:	000078
  */
-PikminNumberDirector::PikminNumberDirector(int p1, u8 p2, PSSystem::DirectedBgm& bgm)
-    : SwitcherDirector(p1, "pikminD  ")
-    , _4C(p2)
+PikminNumberDirector::PikminNumberDirector(int type, u8 mask, PSSystem::DirectedBgm& bgm)
+    : SwitcherDirector(type, "pikminD  ")
+    , mActor(nullptr)
+    , mMaskId(mask)
+// It seems like mActor is supposed to be a member of SwitcherDirector, but that messes up everything else that inherits it
 {
 }
 
@@ -470,7 +472,7 @@ PikminNumberDirector::PikminNumberDirector(int p1, u8 p2, PSSystem::DirectedBgm&
 void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
 	seqTrack.getTaskEntryList();
-	static_cast<PSSystem::SeqTrackChild&>(seqTrack).setIdMask(_4C, this);
+	static_cast<PSSystem::SeqTrackChild&>(seqTrack).setIdMask(mMaskId, this);
 }
 
 /*
@@ -555,10 +557,12 @@ void PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase& track)
 {
 	PSAutoBgm::Track* subtrack = getTrack(track);
 	PSAutoBgm::AutoBgm* bgm    = static_cast<PSAutoBgm::AutoBgm*>(mDirectedBgm);
-	bgm->_34E                  = true;
-	FOREACH_NODE(PSAutoBgm::MeloArrBase, bgm->mMeloArr.mList.mHead, melo)
+	bgm->mMeloArr.mIsActive    = true;
+
+	FOREACH_NODE(JSULink<PSAutoBgm::MeloArrBase>, bgm->mMeloArr.mList.getFirst(), link)
 	{
-		bool valid = melo->_18 == 1;
+		PSAutoBgm::MeloArrBase* melo = link->getObject();
+		bool valid                   = (bool)melo->_18 == 1;
 		if (valid) {
 			melo->directOn(subtrack);
 		}
@@ -616,12 +620,14 @@ void PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase& track)
 {
 	PSAutoBgm::Track* subtrack = getTrack(track);
 	PSAutoBgm::AutoBgm* bgm    = static_cast<PSAutoBgm::AutoBgm*>(mDirectedBgm);
-	bgm->_34E                  = false;
-	FOREACH_NODE(PSAutoBgm::MeloArrBase, bgm->mMeloArr.mList.mHead, melo)
+	bgm->mMeloArr.mIsActive    = false;
+
+	FOREACH_NODE(JSULink<PSAutoBgm::MeloArrBase>, bgm->mMeloArr.mList.getFirst(), link)
 	{
-		bool valid = melo->_18 == 1;
+		PSAutoBgm::MeloArrBase* melo = link->getObject();
+		bool valid                   = (bool)melo->_18 == 1;
 		if (valid) {
-			melo->directOn(subtrack);
+			melo->directOff(subtrack);
 		}
 	}
 	/*
@@ -676,8 +682,13 @@ lbl_804571D8:
 PSAutoBgm::Track* PikminNumberDirector_AutoBgm::getTrack(PSSystem::SeqTrackBase& parent)
 {
 	PSSystem::TaskEntryMgr* mgr = parent.getTaskEntryList();
-	u32 flag                    = mgr->mTrack->_348 & 0xf;
-	// P2ASSERTLINE(194, (JADUtility::PrmSetRc<PSAutoBgm::Track>*)(mDirectedBgm)->getchild <= flag);
+	u8 maxTrack                 = (u8)(mgr->mTrack->_348 & 0xf);
+	u8 childNum                 = static_cast<PSAutoBgm::AutoBgm*>(mDirectedBgm)->mConductorMgr.mPrmSetRc->getChildNum();
+	P2ASSERTLINE(194, childNum < maxTrack);
+	PSAutoBgm::Track* track = static_cast<PSAutoBgm::AutoBgm*>(mDirectedBgm)->mConductorMgr.mPrmSetRc->getChild(maxTrack);
+	P2ASSERTLINE(196, track);
+	return track;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -737,11 +748,11 @@ lbl_80457294:
  * Address:	804572B0
  * Size:	00007C
  */
-TrackOnDirectorBase::TrackOnDirectorBase(int p1, const char* p2, long p3, long p4)
-    : SwitcherDirector(p1, p2)
-    , _48(p3)
-    , _4C(p4)
-    , _50(0)
+TrackOnDirectorBase::TrackOnDirectorBase(int type, const char* name, long in, long out)
+    : SwitcherDirector(type, name)
+    , mFadeInValue(in)
+    , mFadeOutValue(out)
+    , mEnableType(0)
 {
 }
 
@@ -763,10 +774,10 @@ void TrackOnDirectorBase::onPlayInit(JASTrack* track)
  */
 void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
-	if (_50 != 0) {
+	if (mEnableType) {
 		static_cast<PSSystem::SeqTrackChild&>(seqTrack).muteOffAndFadeIn(0.0f, 0, this);
 	} else {
-		static_cast<PSSystem::SeqTrackChild&>(seqTrack).muteOffAndFadeIn(1.0f, _48, this);
+		static_cast<PSSystem::SeqTrackChild&>(seqTrack).muteOffAndFadeIn(1.0f, mFadeInValue, this);
 	}
 }
 
@@ -777,7 +788,7 @@ void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
  */
 void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
-	static_cast<PSSystem::SeqTrackChild&>(seqTrack).fadeoutAndMute(_4C, this);
+	static_cast<PSSystem::SeqTrackChild&>(seqTrack).fadeoutAndMute(mFadeOutValue, this);
 }
 
 /*
@@ -787,12 +798,12 @@ void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
  */
 void TrackOnDirector_Voting::execInner()
 {
-	if (_54 == 0 && isUnderDirection()) {
+	if (mVoteState == 0 && isUnderDirection()) {
 		directOff();
-	} else if (_54 != 0 && !isUnderDirection()) {
+	} else if (mVoteState != 0 && !isUnderDirection()) {
 		directOn();
 	}
-	_54 = 0;
+	mVoteState = 0;
 }
 
 /*
@@ -804,9 +815,9 @@ void TrackOnDirector_Scaled::underDirection()
 {
 	f32 rate = 1.0f;
 	if (!PSSystem::DirectorBase::sToolMode) {
-		rate = getNearestDistance();
-		_5C  = rate;
-		rate = JALCalc::linearTransform(_5C, _58, _54, 0.0f, 1.0f, false);
+		rate          = getNearestDistance();
+		mCurrDistance = rate;
+		rate          = JALCalc::linearTransform(mCurrDistance, _58, _54, 0.0f, 1.0f, false);
 	}
 
 	fadeAllTracks(rate, _60);
@@ -989,8 +1000,57 @@ void ActorDirector_Scaled::execInner()
  * Address:	80457928
  * Size:	000614
  */
-f64 ActorDirector_Scaled::getNearestDistance()
+f32 ActorDirector_Scaled::getNearestDistance()
 {
+	bool is1P   = PSSystem::SingletonBase<PSM::ObjCalcBase>::getInstance()->is1PGame();
+	f32 minDist = 100000.0f;
+	if (!is1P) {
+		Game::Navi* olimar = Game::naviMgr->getAt(NAVIID_Captain1);
+		Game::Navi* louie  = Game::naviMgr->getAt(NAVIID_Captain2);
+		P2ASSERTBOOLLINE(394, olimar && louie);
+
+		Vector3f oPos = olimar->getPosition();
+		Vector3f lPos = louie->getPosition();
+
+		FOREACH_NODE(JSULink<Game::Creature>, mActor->getFirst(), link)
+		{
+			Game::Creature* obj = link->getObject();
+			Vector3f objpos     = obj->getPosition();
+			f32 p1Dist          = oPos.distance(objpos);
+			f32 p2Dist          = lPos.distance(objpos);
+			if (p1Dist <= p2Dist) {
+				if (p1Dist < minDist) {
+					onSetMinDistObj(obj);
+					minDist = p1Dist;
+				}
+			} else if (p2Dist < minDist) {
+				onSetMinDistObj(obj);
+				minDist = p2Dist;
+			}
+		}
+
+	} else {
+		Game::Navi* navi = Game::naviMgr->getActiveNavi();
+		Vector3f naviPos;
+		if (!navi) {
+			u8 id                = PSSystem::SingletonBase<PSM::ObjCalcBase>::sInstance->getPlayerNo(nullptr);
+			JAInter::Camera* cam = &JAIBasic::msBasic->mCameras[id];
+			naviPos              = (*cam->mVec1);
+		} else {
+			naviPos = navi->getPosition();
+		}
+
+		FOREACH_NODE(JSULink<Game::Creature>, mActor->getFirst(), link)
+		{
+			Game::Creature* obj = link->getObject();
+			Vector3f objpos     = obj->getPosition();
+			f32 dist            = naviPos.distance(objpos);
+			if (dist < minDist) {
+				minDist = dist;
+				onSetMinDistObj(obj);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x1d0(r1)
 	mflr     r0
@@ -1422,7 +1482,7 @@ ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int p2, long p3, long
  * Address:	804580D0
  * Size:	000008
  */
-void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* obj) { mGameObject = obj; }
+void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* obj) { mGameObject = static_cast<Game::EnemyBase*>(obj); }
 
 /*
  * --INFO--
@@ -1432,6 +1492,19 @@ void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* obj) { mGameObject = o
 void ActorDirector_Enemy::underDirection()
 {
 	mGameObject = nullptr;
+	f32 rate    = 1.0f;
+	if (!PSSystem::DirectorBase::sToolMode) {
+		if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::PIKLOPEDIA) {
+			rate = 1.0f;
+		} else {
+			rate          = getNearestDistance();
+			mCurrDistance = rate;
+			rate = JALCalc::linearTransform(mCurrDistance, getVolZeroDist(mGameObject), getVolMaxDist(mGameObject), 0.0f, 1.0f, false);
+		}
+	}
+
+	fadeAllTracks(rate, _60);
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1577,26 +1650,8 @@ lbl_80458274:
  */
 f64 ActorDirector_Battle::getVolZeroDist(Game::EnemyBase* enemy)
 {
-	// return CreaturePrm::cVolZeroDist_Battle[enemy->mSoundObj->getCastType() - 2];
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x28c(r4)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r3, -2
-	lis      r3, cVolZeroDist_Battle__Q23PSM11CreaturePrm@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, cVolZeroDist_Battle__Q23PSM11CreaturePrm@l
-	lfsx     f1, r3, r0
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int id = enemy->mSoundObj->getCastType() - 2;
+	return CreaturePrm::cVolZeroDist_Battle[id];
 }
 
 /*
@@ -1606,26 +1661,8 @@ f64 ActorDirector_Battle::getVolZeroDist(Game::EnemyBase* enemy)
  */
 f64 ActorDirector_Battle::getVolMaxDist(Game::EnemyBase* enemy)
 {
-	// return CreaturePrm::cVolMaxDist_Battle[enemy->mSoundObj->getCastType() - 2];
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x28c(r4)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r3, -2
-	lis      r3, cVolMaxDist_Battle__Q23PSM11CreaturePrm@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, cVolMaxDist_Battle__Q23PSM11CreaturePrm@l
-	lfsx     f1, r3, r0
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int id = enemy->mSoundObj->getCastType() - 2;
+	return CreaturePrm::cVolMaxDist_Battle[id];
 }
 
 /*
@@ -1635,26 +1672,8 @@ f64 ActorDirector_Battle::getVolMaxDist(Game::EnemyBase* enemy)
  */
 f64 ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase* enemy)
 {
-	// return CreaturePrm::cVolZeroDist_Kehai[enemy->mSoundObj->getCastType() - 2];
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x28c(r4)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r3, -2
-	lis      r3, cVolZeroDist_Kehai__Q23PSM11CreaturePrm@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, cVolZeroDist_Kehai__Q23PSM11CreaturePrm@l
-	lfsx     f1, r3, r0
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int id = enemy->mSoundObj->getCastType() - 2;
+	return CreaturePrm::cVolZeroDist_Kehai[id];
 }
 
 /*
@@ -1664,27 +1683,12 @@ f64 ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase* enemy)
  */
 f64 ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase* enemy)
 {
-	// return CreaturePrm::cVolMaxDist_Kehai[enemy->mSoundObj->getCastType() - 2];
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x28c(r4)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	addi     r0, r3, -2
-	lis      r3, cVolMaxDist_Kehai__Q23PSM11CreaturePrm@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, cVolMaxDist_Kehai__Q23PSM11CreaturePrm@l
-	lfsx     f1, r3, r0
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int id = enemy->mSoundObj->getCastType() - 2;
+	return CreaturePrm::cVolMaxDist_Kehai[id];
 }
+
+// exists here but doesnt seem to be used by any panics
+static const char* unusedpath = "PSMainSide_ObjSound.h";
 
 /*
  * --INFO--
@@ -1711,14 +1715,14 @@ ExiteDirector::ExiteDirector(int p1)
  * Address:	804584B0
  * Size:	000068
  */
-DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, u8 p2, PSM::DirectorUpdator::Type type)
-    : _00(p2)
+DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, u8 number, PSM::DirectorUpdator::Type type)
+    : mUpdateNum(number)
     , mType(type)
     , _08(0)
     , _09(0)
     , mDirector(director)
 {
-	P2ASSERTLINE(698, p2 != 0);
+	P2ASSERTLINE(698, number != 0);
 }
 
 /*
@@ -1728,7 +1732,9 @@ DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, u8 p2, PSM::D
  */
 void DirectorUpdator::directOn(u8 id)
 {
-	if (id != _09 & 1) { }
+	if (_09 & 1) {
+		return;
+	}
 	id = 1 << id;
 	_08 |= id;
 	_09 |= id;
@@ -1756,7 +1762,9 @@ void DirectorUpdator::directOn(u8 id)
  */
 void DirectorUpdator::directOff(u8 id)
 {
-	if (id != _09 & 1) { }
+	if (_09 & 1) {
+		return;
+	}
 	id = 1 << id;
 	_08 &= ~id;
 	_09 |= id;
@@ -1784,107 +1792,40 @@ void DirectorUpdator::directOff(u8 id)
  */
 void DirectorUpdator::frameEndWork()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0xc(r3)
-	cmplwi   r3, 0
-	beq      lbl_80458698
-	lwz      r0, 4(r31)
-	li       r7, 0
-	cmpwi    r0, 1
-	beq      lbl_80458600
-	bge      lbl_80458640
-	cmpwi    r0, 0
-	bge      lbl_804585C0
-	b        lbl_80458640
+	if (mDirector) {
+		bool end = false;
+		switch (mType) {
+		case PSM::DirectorUpdator::TYPE_0:
+			for (u8 i = 0; i < mUpdateNum; i++) {
+				if (_08 & 1 << i) {
+					end = true;
+					break;
+				}
+			}
+			break;
+		case PSM::DirectorUpdator::TYPE_1:
+			end = true;
+			for (u8 i = 0; i < mUpdateNum; i++) {
+				if (!(_08 & 1 << i)) {
+					end = false;
+					break;
+				}
+			}
+			break;
+		}
 
-lbl_804585C0:
-	lbz      r6, 0(r31)
-	li       r8, 0
-	li       r4, 1
-	b        lbl_804585F0
-
-lbl_804585D0:
-	clrlwi   r0, r8, 0x18
-	lbz      r5, 8(r31)
-	slw      r0, r4, r0
-	and.     r0, r5, r0
-	beq      lbl_804585EC
-	li       r7, 1
-	b        lbl_80458640
-
-lbl_804585EC:
-	addi     r8, r8, 1
-
-lbl_804585F0:
-	clrlwi   r0, r8, 0x18
-	cmplw    r0, r6
-	blt      lbl_804585D0
-	b        lbl_80458640
-
-lbl_80458600:
-	lbz      r6, 0(r31)
-	li       r7, 1
-	li       r8, 0
-	li       r4, 1
-	b        lbl_80458634
-
-lbl_80458614:
-	clrlwi   r0, r8, 0x18
-	lbz      r5, 8(r31)
-	slw      r0, r4, r0
-	and.     r0, r5, r0
-	bne      lbl_80458630
-	li       r7, 0
-	b        lbl_80458640
-
-lbl_80458630:
-	addi     r8, r8, 1
-
-lbl_80458634:
-	clrlwi   r0, r8, 0x18
-	cmplw    r0, r6
-	blt      lbl_80458614
-
-lbl_80458640:
-	clrlwi.  r0, r7, 0x18
-	beq      lbl_8045866C
-	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8045868C
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8045868C
-
-lbl_8045866C:
-	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8045868C
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8045868C:
-	li       r0, 0
-	stb      r0, 8(r31)
-	stb      r0, 9(r31)
-
-lbl_80458698:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		if (end) {
+			if (!mDirector->isUnderDirection()) {
+				mDirector->directOn();
+			}
+		} else {
+			if (mDirector->isUnderDirection()) {
+				mDirector->directOff();
+			}
+		}
+		_08 = 0;
+		_09 = 0;
+	}
 }
 
 } // namespace PSM
@@ -1894,8 +1835,14 @@ lbl_80458698:
  * Address:	804586AC
  * Size:	000148
  */
-PSSystem::DirectorBase* PSMGetBattleDirector(u8)
+PSSystem::DirectorBase* PSMGetBattleDirector(u8 flag)
 {
+	PSM::MiddleBossSeq* seq = PSMGetMiddleBossSeq();
+	if (!seq) {
+		return nullptr;
+	}
+	P2ASSERTBOOLLINE(810, seq->getCastType() == 2 || seq->getCastType() == 4);
+	return seq->getDirectorP(flag);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2009,90 +1956,19 @@ lbl_804587D4:
  */
 PSM::ActorDirector_Kehai* PSMGetKehaiD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80458830
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458830:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80458850
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458850:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80458870
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458870:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80458894
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458894:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	bne      lbl_804588C8
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_804588C0
-	li       r4, 1
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_804588E4
-
-lbl_804588C0:
-	li       r3, 0
-	b        lbl_804588E4
-
-lbl_804588C8:
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_804588E0
-	li       r4, 2
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_804588E4
-
-lbl_804588E0:
-	li       r3, 0
-
-lbl_804588E4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_Kehai*>(bgm->getDirectorP(1));
+		}
+		return nullptr;
+	} else {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_Kehai*>(bgm->getDirectorP(2));
+		}
+		return nullptr;
+	}
 }
 
 /*
@@ -2102,90 +1978,19 @@ lbl_804588E4:
  */
 PSM::ActorDirector_Battle* PSMGetBattleD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80458938
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458938:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80458958
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458958:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80458978
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458978:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_8045899C
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045899C:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	bne      lbl_804589D0
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_804589C8
-	li       r4, 2
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_804589EC
-
-lbl_804589C8:
-	li       r3, 0
-	b        lbl_804589EC
-
-lbl_804589D0:
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_804589E8
-	li       r4, 3
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_804589EC
-
-lbl_804589E8:
-	li       r3, 0
-
-lbl_804589EC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(2));
+		}
+		return nullptr;
+	} else {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(3));
+		}
+		return nullptr;
+	}
 }
 
 /*
@@ -2195,90 +2000,19 @@ lbl_804589EC:
  */
 PSM::ActorDirector_Scaled* PSMGetEventD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80458A40
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458A40:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80458A60
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458A60:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80458A80
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458A80:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80458AA4
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458AA4:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	bne      lbl_80458AD8
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_80458AD0
-	li       r4, 0
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80458AF4
-
-lbl_80458AD0:
-	li       r3, 0
-	b        lbl_80458AF4
-
-lbl_80458AD8:
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_80458AF0
-	li       r4, 0
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80458AF4
-
-lbl_80458AF0:
-	li       r3, 0
-
-lbl_80458AF4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(0));
+		}
+		return nullptr;
+	} else {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_Battle*>(bgm->getDirectorP(0));
+		}
+		return nullptr;
+	}
 }
 
 /*
@@ -2288,93 +2022,14 @@ lbl_80458AF4:
  */
 PSM::ActorDirector_TrackOn* PSMGetOtakaraEventD()
 {
-	PSM::SceneMgr* mgr = static_cast<PSM::SceneMgr*>(PSSystem::getSceneMgr());
-	PSSystem::checkSceneMgr(mgr);
-	PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(mgr->getChildScene()->mChild);
-	if (scene->getSceneInfoA()->mSceneType == 7) {
+	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(1));
+		}
 		return nullptr;
 	}
-	PSSystem::DirectedBgm* bgm = static_cast<PSSystem::DirectedBgm*>(PSGetDirectedMainBgm());
-	if (bgm == nullptr) {
-		return nullptr;
-	}
-	return (PSM::ActorDirector_TrackOn*)bgm->getDirectorP(1);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80458B48
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458B48:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80458B68
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458B68:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80458B88
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458B88:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80458BAC
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458BAC:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	beq      lbl_80458BE0
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_80458BD8
-	li       r4, 1
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80458BE4
-
-lbl_80458BD8:
-	li       r3, 0
-	b        lbl_80458BE4
-
-lbl_80458BE0:
-	li       r3, 0
-
-lbl_80458BE4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -2384,131 +2039,15 @@ lbl_80458BE4:
  */
 PSM::ActorDirector_Scaled* PSMGetGroundD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80458C38
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE && !PSGameGetSceneInfo()->isCaveFloor()) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_Scaled*>(bgm->getDirectorP(4));
+		}
+		return nullptr;
+	}
 
-lbl_80458C38:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80458C58
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458C58:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80458C78
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458C78:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80458C9C
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458C9C:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	beq      lbl_80458D74
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80458CD0
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458CD0:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80458CF0
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458CF0:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80458D10
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458D10:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80458D34
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458D34:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80458D74
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_80458D6C
-	li       r4, 4
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80458D78
-
-lbl_80458D6C:
-	li       r3, 0
-	b        lbl_80458D78
-
-lbl_80458D74:
-	li       r3, 0
-
-lbl_80458D78:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -2518,82 +2057,14 @@ lbl_80458D78:
  */
 PSM::PikminNumberDirector* PSMGetPikminNumD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80458DCC
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458DCC:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80458DEC
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458DEC:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80458E0C
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458E0C:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80458E30
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458E30:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	beq      lbl_80458E64
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_80458E5C
-	li       r4, 5
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80458E68
-
-lbl_80458E5C:
-	li       r3, 0
-	b        lbl_80458E68
-
-lbl_80458E64:
-	li       r3, 0
-
-lbl_80458E68:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::PikminNumberDirector*>(bgm->getDirectorP(5));
+		}
+		return nullptr;
+	}
+	return nullptr;
 }
 
 /*
@@ -2603,82 +2074,14 @@ lbl_80458E68:
  */
 PSM::DamageDirector* PSMGetDamageD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80458EBC
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458EBC:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80458EDC
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458EDC:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80458EFC
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458EFC:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80458F20
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458F20:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	beq      lbl_80458F54
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_80458F4C
-	li       r4, 6
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80458F58
-
-lbl_80458F4C:
-	li       r3, 0
-	b        lbl_80458F58
-
-lbl_80458F54:
-	li       r3, 0
-
-lbl_80458F58:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::DamageDirector*>(bgm->getDirectorP(6));
+		}
+		return nullptr;
+	}
+	return nullptr;
 }
 
 /*
@@ -2688,82 +2091,14 @@ lbl_80458F58:
  */
 PSM::ActorDirector_TempoChange* PSMGetLifeD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80458FAC
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458FAC:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_80458FCC
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458FCC:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80458FEC
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80458FEC:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80459010
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80459010:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	beq      lbl_80459044
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_8045903C
-	li       r4, 7
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80459048
-
-lbl_8045903C:
-	li       r3, 0
-	b        lbl_80459048
-
-lbl_80459044:
-	li       r3, 0
-
-lbl_80459048:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType != PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_TempoChange*>(bgm->getDirectorP(7));
+		}
+		return nullptr;
+	}
+	return nullptr;
 }
 
 /*
@@ -2773,82 +2108,14 @@ lbl_80459048:
  */
 PSM::ActorDirector_TrackOn* PSMGetBeedamaForOrimerD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8045909C
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045909C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_804590BC
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804590BC:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804590DC
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804590DC:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_80459100
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80459100:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	bne      lbl_80459134
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_8045912C
-	li       r4, 3
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80459138
-
-lbl_8045912C:
-	li       r3, 0
-	b        lbl_80459138
-
-lbl_80459134:
-	li       r3, 0
-
-lbl_80459138:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(3));
+		}
+		return nullptr;
+	}
+	return nullptr;
 }
 
 /*
@@ -2858,82 +2125,14 @@ lbl_80459138:
  */
 PSM::ActorDirector_TrackOn* PSMGetBeedamaForLugieD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8045918C
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045918C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_804591AC
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804591AC:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804591CC
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804591CC:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_804591F0
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804591F0:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	bne      lbl_80459224
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_8045921C
-	li       r4, 4
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80459228
-
-lbl_8045921C:
-	li       r3, 0
-	b        lbl_80459228
-
-lbl_80459224:
-	li       r3, 0
-
-lbl_80459228:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(4));
+		}
+		return nullptr;
+	}
+	return nullptr;
 }
 
 /*
@@ -2943,82 +2142,14 @@ lbl_80459228:
  */
 PSM::ActorDirector_TrackOn* PSMGetIchouForOrimerD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8045927C
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045927C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_8045929C
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045929C:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804592BC
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804592BC:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_804592E0
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804592E0:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	bne      lbl_80459314
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_8045930C
-	li       r4, 5
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80459318
-
-lbl_8045930C:
-	li       r3, 0
-	b        lbl_80459318
-
-lbl_80459314:
-	li       r3, 0
-
-lbl_80459318:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(5));
+		}
+		return nullptr;
+	}
+	return nullptr;
 }
 
 /*
@@ -3028,82 +2159,14 @@ lbl_80459318:
  */
 PSM::ActorDirector_TrackOn* PSMGetIchouForLugieD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8045936C
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045936C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_8045938C
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045938C:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_804593AC
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804593AC:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_804593D0
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804593D0:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	bne      lbl_80459404
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_804593FC
-	li       r4, 6
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_80459408
-
-lbl_804593FC:
-	li       r3, 0
-	b        lbl_80459408
-
-lbl_80459404:
-	li       r3, 0
-
-lbl_80459408:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::ActorDirector_TrackOn*>(bgm->getDirectorP(6));
+		}
+		return nullptr;
+	}
+	return nullptr;
 }
 
 /*
@@ -3113,80 +2176,12 @@ lbl_80459408:
  */
 PSM::TrackOnDirector_Voting* PSMGetPikiBattleD()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049CD98@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_8049CD98@l
-	stw      r30, 8(r1)
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8045945C
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045945C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r30, 0
-	bne      lbl_8045947C
-	addi     r3, r31, 0x64
-	addi     r5, r31, 0x3c
-	li       r4, 0x1dc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045947C:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_8045949C
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x3c
-	li       r4, 0xcf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045949C:
-	lwz      r3, 4(r30)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_804594C0
-	addi     r3, r31, 0x70
-	addi     r5, r31, 0x7c
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804594C0:
-	mr       r3, r30
-	bl       getSceneInfoA__Q23PSM9SceneBaseFv
-	lbz      r0, 6(r3)
-	cmplwi   r0, 7
-	bne      lbl_804594F4
-	bl       PSGetDirectedMainBgm__Fv
-	cmplwi   r3, 0
-	beq      lbl_804594EC
-	li       r4, 7
-	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
-	b        lbl_804594F8
-
-lbl_804594EC:
-	li       r3, 0
-	b        lbl_804594F8
-
-lbl_804594F4:
-	li       r3, 0
-
-lbl_804594F8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (PSGameGetSceneInfo()->mSceneType == PSGame::SceneInfo::TWO_PLAYER_BATTLE) {
+		PSSystem::DirectedBgm* bgm = PSGetDirectedMainBgm();
+		if (bgm) {
+			return static_cast<PSM::TrackOnDirector_Voting*>(bgm->getDirectorP(7));
+		}
+		return nullptr;
+	}
+	return nullptr;
 }

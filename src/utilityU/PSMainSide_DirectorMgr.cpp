@@ -789,7 +789,7 @@ r3, r22 lmw      r22, 8(r1) lwz      r0, 0x34(r1) mtlr     r0 addi     r1, r1,
  */
 void DirectorMgr_Scene::adaptDirectorActor(::PSSystem::DirectorBase* director, u8 type)
 {
-	::PSSystem::DirectorCopyActor* actor = mCopyActorList[type];
+	ListDirectorActor* actor = static_cast<ListDirectorActor*>(mCopyActorList[type]);
 	switch (type) {
 	case 0:
 		static_cast<ActorDirector_Scaled*>(director)->mActor = actor;

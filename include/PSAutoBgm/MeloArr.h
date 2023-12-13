@@ -53,7 +53,7 @@ struct MeloArrMgr : public JADHioNode {
 	    : JADHioNode(nullptr)
 	    , mList()
 	    , _10(0)
-	    , _12(0)
+	    , mIsActive(0)
 	{
 	}
 
@@ -64,7 +64,7 @@ struct MeloArrMgr : public JADHioNode {
 	// _00 = VTABLE
 	JSUList<MeloArrBase> mList; // _04
 	u16 _10;                    // _10
-	u8 _12;                     // _12
+	u8 mIsActive;               // _12
 };
 
 /**

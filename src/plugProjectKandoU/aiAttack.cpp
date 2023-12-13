@@ -222,7 +222,7 @@ int ActAttack::exec()
 	}
 
 	if (Game::gameSystem->isVersusMode() && mCreature && mCreature->isNavi()) {
-		PSMGetPikiBattleD()->_54++;
+		PSMGetPikiBattleD()->mVoteState++;
 	}
 
 	switch (mAttackID) {

@@ -2,73 +2,6 @@
 #include "PSM/BgmTrackMap.h"
 #include "stream.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    lbl_8049DE78:
-        .asciz "PSMainSide_TrackMap.cpp"
-        .asciz "not loaded\n"
-        .asciz "endoffile"
-        .skip 2
-        .asciz "not find\ntrack map\n(%s)"
-        .asciz "basic trk over\n(%s)\n(Cur=%d)"
-        .skip 3
-        .asciz "event trk over\n(%s)\n(Cur=%d)"
-        .skip 3
-        .asciz "otakara trk over\n(%s)\n(Cur=%d)"
-        .skip 1
-        .asciz "kehai trk over\n(%s)\n(Cur=%d)"
-        .skip 3
-        .asciz "battle trk over\n(%s)\n(Cur=%d)"
-        .skip 2
-        .asciz "ground trk over\n(%s)\n(Cur=%d)"
-        .skip 2
-        .asciz "abnormal pik num\n(%s)\n(Cur=%d)"
-        .skip 1
-        .asciz "abnormal pik mask\n(%s)\n(Cur=%d)"
-        .asciz "file num over\ntrack map\n(%s)"
-        .skip 3
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "not find info\n"
-        .skip 1
-        .asciz "basic trk over\n(Cur=%d)\n"
-        .skip 3
-        .asciz "event trk over\n(Cur=%d)\n"
-        .skip 3
-        .asciz "otakara trk over\n(Cur=%d)\n"
-        .skip 1
-        .asciz "kehai trk over\n(Cur=%d)\n"
-        .skip 3
-        .asciz "battle trk over\n(Cur=%d)\n"
-        .skip 2
-        .asciz "ground trk over\n(Cur=%d)\n"
-        .skip 2
-        .asciz "abnormal pik num\n(Cur=%d)\n"
-        .skip 1
-        .asciz "abnormal pik mask\n(Cur=%d)\n"
-        .asciz "file num over\n"
-        .skip 1
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23PSM15BgmTrackMapFile
-    __vt__Q23PSM15BgmTrackMapFile:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23PSM15BgmTrackMapFileFv
-        .4byte read__Q23PSM15BgmTrackMapFileFR6Stream
-        .4byte 0
-        .4byte 0
-        .4byte "@28@__dt__Q23PSM15BgmTrackMapFileFv"
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    lbl_80520DB0:
-        .asciz ""
-        .skip 3
-*/
-
 namespace PSM {
 
 /*
@@ -77,7 +10,7 @@ namespace PSM {
  * Size:	0000A8
  */
 BgmTrackMapFile::BgmTrackMapFile(bool flag)
-    : SingletonBase()
+    : SingletonBase(this)
 {
 	mTrackMaps = nullptr;
 	mMapCount  = 0;
@@ -133,8 +66,64 @@ lbl_8047195C:
  * Address:	80471978
  * Size:	00077C
  */
-PSM::BgmTrackMap BgmTrackMapFile::readTrackMap(const char*)
+BgmTrackMap BgmTrackMapFile::readTrackMap(const char* path)
 {
+	JUT_ASSERTLINE(119, mFile, "not loaded\n");
+
+	RamStream input(mFile, -1);
+	input.resetPosition(true, 1);
+
+	BgmTrackMap map;
+
+	for (int i = 0; i < 32; i++) {
+		char* name = input.readString(nullptr, -1);
+		if (!strcmp(name, "endoffile")) {
+			// the flow here makes no sense, idk what goes where
+			JUT_PANICLINE(135, "not find\ntrack map\n(%s)", path);
+			return map;
+		}
+
+		strcpy(map.mFileName, name);
+		u8 nrm               = input.readByte();
+		map.mBasicTrackCount = nrm;
+		JUT_ASSERTLINE(142, nrm < 16, "basic trk over\n(%s)\n(Cur=%d)", path, i);
+
+		u8 evt               = input.readByte();
+		map.mEventTrackCount = evt;
+		JUT_ASSERTLINE(145, evt < 16, "event trk over\n(%s)\n(Cur=%d)", path, i);
+
+		u8 ota                 = input.readByte();
+		map.mOtakaraTrackCount = ota;
+		JUT_ASSERTLINE(148, ota < 16, "otakara trk over\n(%s)\n(Cur=%d)", path, i);
+
+		u8 keh               = input.readByte();
+		map.mKehaiTrackCount = keh;
+		JUT_ASSERTLINE(151, keh < 16, "kehai trk over\n(%s)\n(Cur=%d)", path, i);
+
+		u8 btl                = input.readByte();
+		map.mBattleTrackCount = btl;
+		JUT_ASSERTLINE(154, btl < 16, "battle trk over\n(%s)\n(Cur=%d)", path, i);
+
+		u8 grn                = input.readByte();
+		map.mGroundTrackCount = grn;
+		JUT_ASSERTLINE(157, grn < 16, "ground trk over\n(%s)\n(Cur=%d)", path, i);
+
+		for (u8 i = 0; i < 16; i++) {
+			map.mPikNum[i] = input.readByte();
+			JUT_ASSERTLINE(161, map.mPikNum[i] <= 1, "abnormal pik num\n(%s)\n(Cur=%d)", path, i);
+		}
+
+		for (u8 i = 0; i < 8; i++) {
+			map.mPikMask[i] = input.readByte();
+			JUT_ASSERTLINE(156, map.mPikMask[i] <= 1, "abnormal pik mask\n(%s)\n(Cur=%d)", path, i);
+		}
+
+		if (!strcmp(name, path)) {
+			return map;
+		}
+	}
+	JUT_PANICLINE(179, "file num over\ntrack map\n(%s)", path);
+	return map;
 	/*
 	stwu     r1, -0x490(r1)
 	mflr     r0
@@ -672,6 +661,9 @@ lbl_804720E0:
 	*/
 }
 
+static const char* unused  = "P2Assert";
+static const char* unused2 = "not find info\n";
+
 /*
  * --INFO--
  * Address:	804720F4
@@ -680,6 +672,7 @@ lbl_804720E0:
 bool BgmTrackMapFile::read(Stream& input)
 {
 	P2ASSERTLINE(205, _28 == true);
+
 	for (mMapCount = 0; mMapCount < 32; mMapCount++) {
 		int currentMapNumber = mMapCount;
 		char* s1             = input.readString(nullptr, 0);
@@ -691,15 +684,15 @@ bool BgmTrackMapFile::read(Stream& input)
 		dest.mBasicTrackCount = input.readByte();
 		JUT_ASSERTLINE(223, dest.mBasicTrackCount < 16, "basic trk over\n(Cur=%d)\n", currentMapNumber);
 		dest.mEventTrackCount = input.readByte();
-		JUT_ASSERTLINE(226, dest.mEventTrackCount < 16, "event trk over\n(%s)\n(Cur=%d)", currentMapNumber);
+		JUT_ASSERTLINE(226, dest.mEventTrackCount < 16, "event trk over\n(Cur=%d)\n", currentMapNumber);
 		dest.mOtakaraTrackCount = input.readByte();
-		JUT_ASSERTLINE(229, dest.mOtakaraTrackCount < 16, "otakara trk over\n(%s)\n(Cur=%d)", currentMapNumber);
+		JUT_ASSERTLINE(229, dest.mOtakaraTrackCount < 16, "otakara trk over\n(Cur=%d)\n", currentMapNumber);
 		dest.mKehaiTrackCount = input.readByte();
-		JUT_ASSERTLINE(232, dest.mKehaiTrackCount < 16, "kehai trk over\n(%s)\n(Cur=%d)", currentMapNumber);
+		JUT_ASSERTLINE(232, dest.mKehaiTrackCount < 16, "kehai trk over\n(Cur=%d)\n", currentMapNumber);
 		dest.mBattleTrackCount = input.readByte();
-		JUT_ASSERTLINE(235, dest.mBattleTrackCount < 16, "battle trk over\n(%s)\n(Cur=%d)", currentMapNumber);
+		JUT_ASSERTLINE(235, dest.mBattleTrackCount < 16, "battle trk over\n(Cur=%d)\n", currentMapNumber);
 		dest.mGroundTrackCount = input.readByte();
-		JUT_ASSERTLINE(238, dest.mGroundTrackCount < 16, "ground trk over\n(%s)\n(Cur=%d)", currentMapNumber);
+		JUT_ASSERTLINE(238, dest.mGroundTrackCount < 16, "ground trk over\n(Cur=%d)\n", currentMapNumber);
 		for (u8 i = 0; i < 16; i++) {
 			u8 byte         = input.readByte();
 			dest.mPikNum[i] = byte;
