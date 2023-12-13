@@ -44,7 +44,7 @@ struct J3DMatColorAnm {
 struct J3DTexNoAnm {
 	J3DTexNoAnm();
 
-	virtual void calc(u16* data) const { getAnmTexPattern()->getTexNo(mIndex, data); } // _08 (weak)
+	virtual void calc(u16* data) const { getAnmTexPattern()->getTexNo(mIndex, data); } // _08 (weak) // nonmatching
 
 	void operator=(J3DTexNoAnm const& other)
 	{

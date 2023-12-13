@@ -59,20 +59,17 @@ void J3DMaterialAnm::calc(J3DMaterial* material) const
 	}
 	for (u32 i = 0; i < 3; i++) {
 		if (mTevColAnmList[i].getAnmFlag()) {
-			GXColorS10* color = material->getTevBlock()->getTevColor(i);
-			mTevColAnmList[i].calc(color);
+			mTevColAnmList[i].calc(material->getTevBlock()->getTevColor(i));
 		}
 	}
 	for (u32 i = 0; i < 4; i++) {
 		if (mTevKColAnmList[i].getAnmFlag()) {
-			GXColor* color = material->mTevBlock->getTevKColor(i);
-			mTevKColAnmList[i].calc(color);
+			mTevKColAnmList[i].calc(material->mTevBlock->getTevKColor(i));
 		}
 	}
 	for (u32 i = 0; i < 8; i++) {
 		if (mTexMtxAnmList[i].getAnmFlag()) {
-			J3DTextureSRTInfo* info = &material->mTexGenBlock->getTexMtx(i)->mTexMtxInfo.mSRT;
-			mTexMtxAnmList[i].calc(info);
+			mTexMtxAnmList[i].calc(&material->mTexGenBlock->getTexMtx(i)->mTexMtxInfo.mSRT);
 		}
 	}
 
