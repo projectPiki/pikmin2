@@ -296,21 +296,24 @@ bool JUTException::searchPartialModule(u32 address, u32* module_id, u32* section
  */
 void search_name_part(u8* src, u8* dst, int dst_length)
 {
+	u8* p2 = src;
 	for (u8* p = src; *p; p++) {
 		if (*p == '\\') {
-			src = p;
+			p2 = p;
 		}
 	}
 
-	if (*src == '\\') {
-		src++;
+	if (*p2 == '\\') {
+		p2++;
 	}
 
-	for (int i = 0; (*src != 0) && (i < dst_length);) {
-		if (*src == '.')
+	int j;
+	int i = 0;
+	while ((*p2 != 0) && (i < dst_length)) {
+		if (*p2 == '.')
 			break;
-		*dst++ = *src++;
-		i++;
+		*dst++ = *p2++;
+		j      = i++;
 	}
 
 	*dst = '\0';
@@ -435,17 +438,18 @@ void JUTException::showGPR(OSContext* context)
  */
 bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline)
 {
-	if ((address < OS_BASE_CACHED) || (0x83000000 - 1 < address)) {
-		return false;
-	}
-
+	const char* new_line;
 	u32 name_offset;
 	u32 module_id;
 	u32 section_id;
 	u32 section_offset;
 	u8 name_part[36];
 
-	const char* new_line = "\n";
+	if ((address < OS_BASE_CACHED) || (0x83000000 - 1 < address)) {
+		return false;
+	}
+
+	new_line = "\n";
 	if (begin_with_newline == false) {
 		new_line = "";
 	}
@@ -454,24 +458,25 @@ bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline)
 	if (result == true) {
 		search_name_part((u8*)name_offset, name_part, 32);
 		sConsole->print_f("%s %s:%x section:%d\n", new_line, name_part, section_offset, section_id);
+		new_line           = "";
 		begin_with_newline = false;
 	}
 
-	JSUListIterator<JUTException::JUTExMapFile> last  = sMapFileList.getEnd();
-	JSUListIterator<JUTException::JUTExMapFile> first = sMapFileList.getFirst();
-	if (first != last) {
+	if (sMapFileList.getFirst() != sMapFileList.getEnd()) {
 		u32 out_addr;
 		u32 out_size;
 		char out_line[256];
+		bool map_result;
 
 		if (result == true) {
-			result = queryMapAddress((char*)name_part, section_offset, section_id, &out_addr, &out_size, out_line, ARRAY_SIZE(out_line),
-			                         true, begin_with_newline);
+			map_result = queryMapAddress((char*)name_part, section_offset, section_id, &out_addr, &out_size, out_line, ARRAY_SIZE(out_line),
+			                             true, begin_with_newline);
 		} else {
-			result = queryMapAddress(nullptr, address, -1, &out_addr, &out_size, out_line, ARRAY_SIZE(out_line), true, begin_with_newline);
+			map_result
+			    = queryMapAddress(nullptr, address, -1, &out_addr, &out_size, out_line, ARRAY_SIZE(out_line), true, begin_with_newline);
 		}
 
-		if (result == true) {
+		if (map_result == true) {
 			return true;
 		}
 	}
@@ -494,16 +499,17 @@ void JUTException::showGPRMap(OSContext* context)
 	sConsole->print("-------------------------------- GPRMAP\n");
 
 	for (int i = 0; i < 31; i++) { // GPR 0 to GPR 31
-		const u32 address = context->gpr[i];
+		u32 address = context->gpr[i];
 
 		if (address >= OS_BASE_CACHED && address <= 0x83000000 - 1) {
 			found_address_register = true;
 
 			sConsole->print_f("R%02d: %08XH", i, address);
-			if (!showMapInfo_subroutine(address, true)) {
+			bool res = showMapInfo_subroutine(address, true);
+			if (!res) { // inlined
 				sConsole->print("  no information\n");
 			}
-			JUTConsoleManager::sManager->drawDirect(true);
+			JUTConsoleManager::getManager()->drawDirect(true);
 			waitTime(mPrintWaitTime1);
 		}
 	}
@@ -511,255 +517,6 @@ void JUTException::showGPRMap(OSContext* context)
 	if (!found_address_register) {
 		sConsole->print("  no register which seem to address.\n");
 	}
-	/*
-	stwu     r1, -0x170(r1)
-	mflr     r0
-	lis      r5, lbl_80473C18@ha
-	stw      r0, 0x174(r1)
-	stmw     r24, 0x150(r1)
-	mr       r24, r3
-	mr       r25, r4
-	addi     r30, r5, lbl_80473C18@l
-	lwz      r0, sConsole__12JUTException@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8002B810
-	mr       r3, r0
-	addi     r4, r30, 0x3bc
-	li       r27, 0
-	bl       print__10JUTConsoleFPCc
-	mr       r28, r25
-	li       r26, 0
-	lis      r31, 0x8000
-
-lbl_8002B578:
-	lwz      r25, 0(r28)
-	cmplw    r25, r31
-	blt      lbl_8002B7EC
-	lis      r3, 0x82FFFFFF@ha
-	addi     r0, r3, 0x82FFFFFF@l
-	cmplw    r25, r0
-	bgt      lbl_8002B7EC
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	mr       r5, r26
-	mr       r6, r25
-	addi     r4, r30, 0x3e8
-	li       r27, 1
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	lis      r4, 0x8000
-	li       r6, 1
-	cmplw    r25, r4
-	blt      lbl_8002B5D0
-	lis      r3, 0x82FFFFFF@ha
-	addi     r0, r3, 0x82FFFFFF@l
-	cmplw    r25, r0
-	ble      lbl_8002B5D8
-
-lbl_8002B5D0:
-	li       r0, 0
-	b        lbl_8002B7C4
-
-lbl_8002B5D8:
-	cmplwi   r25, 0
-	addi     r5, r2, lbl_80516630@sda21
-	bne      lbl_8002B5EC
-	li       r29, 0
-	b        lbl_8002B694
-
-lbl_8002B5EC:
-	lwz      r8, 0x30c8(r4)
-	b        lbl_8002B688
-
-lbl_8002B5F4:
-	lwz      r0, 0xc(r8)
-	li       r4, 0
-	lwz      r7, 0x10(r8)
-	mtctr    r0
-	cmplwi   r0, 0
-	ble      lbl_8002B684
-
-lbl_8002B60C:
-	lwz      r9, 4(r7)
-	cmplwi   r9, 0
-	beq      lbl_8002B678
-	lwz      r0, 0(r7)
-	rlwinm   r3, r0, 0, 0, 0x1e
-	cmplw    r3, r25
-	bgt      lbl_8002B678
-	add      r0, r3, r9
-	cmplw    r25, r0
-	bge      lbl_8002B678
-	addic.   r0, r1, 0x14
-	beq      lbl_8002B644
-	lwz      r0, 0(r8)
-	stw      r0, 0x14(r1)
-
-lbl_8002B644:
-	addic.   r0, r1, 0x18
-	beq      lbl_8002B650
-	stw      r4, 0x18(r1)
-
-lbl_8002B650:
-	addic.   r0, r1, 0x1c
-	beq      lbl_8002B660
-	subf     r0, r3, r25
-	stw      r0, 0x1c(r1)
-
-lbl_8002B660:
-	addic.   r0, r1, 0x10
-	beq      lbl_8002B670
-	lwz      r0, 0x14(r8)
-	stw      r0, 0x10(r1)
-
-lbl_8002B670:
-	li       r29, 1
-	b        lbl_8002B694
-
-lbl_8002B678:
-	addi     r7, r7, 8
-	addi     r4, r4, 1
-	bdnz     lbl_8002B60C
-
-lbl_8002B684:
-	lwz      r8, 4(r8)
-
-lbl_8002B688:
-	cmplwi   r8, 0
-	bne      lbl_8002B5F4
-	li       r29, 0
-
-lbl_8002B694:
-	clrlwi   r0, r29, 0x18
-	cmplwi   r0, 1
-	bne      lbl_8002B73C
-	lwz      r4, 0x10(r1)
-	addi     r6, r1, 0x28
-	mr       r3, r4
-	b        lbl_8002B6C0
-
-lbl_8002B6B0:
-	cmpwi    r0, 0x5c
-	bne      lbl_8002B6BC
-	mr       r4, r3
-
-lbl_8002B6BC:
-	addi     r3, r3, 1
-
-lbl_8002B6C0:
-	lbz      r0, 0(r3)
-	cmplwi   r0, 0
-	bne      lbl_8002B6B0
-	lbz      r0, 0(r4)
-	cmpwi    r0, 0x5c
-	bne      lbl_8002B6DC
-	addi     r4, r4, 1
-
-lbl_8002B6DC:
-	li       r3, 0
-	b        lbl_8002B700
-
-lbl_8002B6E4:
-	cmpwi    r0, 0x2e
-	beq      lbl_8002B714
-	lbz      r0, 0(r4)
-	addi     r3, r3, 1
-	addi     r4, r4, 1
-	stb      r0, 0(r6)
-	addi     r6, r6, 1
-
-lbl_8002B700:
-	lbz      r0, 0(r4)
-	cmplwi   r0, 0
-	beq      lbl_8002B714
-	cmpwi    r3, 0x20
-	blt      lbl_8002B6E4
-
-lbl_8002B714:
-	li       r0, 0
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	stb      r0, 0(r6)
-	addi     r4, r30, 0x3a4
-	lwz      r7, 0x1c(r1)
-	addi     r6, r1, 0x28
-	lwz      r8, 0x18(r1)
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	li       r6, 0
-
-lbl_8002B73C:
-	lis      r3, sMapFileList__12JUTException@ha
-	lwz      r0, sMapFileList__12JUTException@l(r3)
-	cmplwi   r0, 0
-	beq      lbl_8002B7C0
-	clrlwi   r0, r29, 0x18
-	cmplwi   r0, 1
-	bne      lbl_8002B784
-	stw      r6, 8(r1)
-	addi     r3, r1, 0x28
-	lwz      r4, 0x1c(r1)
-	addi     r6, r1, 0x20
-	lwz      r5, 0x18(r1)
-	addi     r7, r1, 0x24
-	addi     r8, r1, 0x4c
-	li       r9, 0x100
-	li       r10, 1
-	bl       queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb
-	b        lbl_8002B7AC
-
-lbl_8002B784:
-	stw      r6, 8(r1)
-	mr       r4, r25
-	addi     r6, r1, 0x20
-	addi     r7, r1, 0x24
-	addi     r8, r1, 0x4c
-	li       r3, 0
-	li       r5, -1
-	li       r9, 0x100
-	li       r10, 1
-	bl       queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb
-
-lbl_8002B7AC:
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_8002B7C0
-	li       r0, 1
-	b        lbl_8002B7C4
-
-lbl_8002B7C0:
-	li       r0, 0
-
-lbl_8002B7C4:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8002B7D8
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x3f8
-	bl       print__10JUTConsoleFPCc
-
-lbl_8002B7D8:
-	lwz      r3, sManager__17JUTConsoleManager@sda21(r13)
-	li       r4, 1
-	bl       drawDirect__17JUTConsoleManagerCFb
-	lwz      r3, 0x90(r24)
-	bl       waitTime__12JUTExceptionFl
-
-lbl_8002B7EC:
-	addi     r26, r26, 1
-	addi     r28, r28, 4
-	cmpwi    r26, 0x1f
-	blt      lbl_8002B578
-	clrlwi.  r0, r27, 0x18
-	bne      lbl_8002B810
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x40c
-	bl       print__10JUTConsoleFPCc
-
-lbl_8002B810:
-	lmw      r24, 0x150(r1)
-	lwz      r0, 0x174(r1)
-	mtlr     r0
-	addi     r1, r1, 0x170
-	blr
-	*/
 }
 
 /*

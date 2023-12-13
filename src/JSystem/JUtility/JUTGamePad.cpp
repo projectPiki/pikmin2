@@ -7,7 +7,7 @@
 #include "types.h"
 
 u32 JUTGamePad::CRumble::sChannelMask[PAD_MAX_CONTROLLERS] = { 0x80000000, 0x40000000, 0x20000000, 0x10000000 };
-u32 channel_mask[PAD_MAX_CONTROLLERS]                      = { 0x80000000, 0x40000000, 0x20000000, 0x10000000 };
+static u32 channel_mask[PAD_MAX_CONTROLLERS]               = { 0x80000000, 0x40000000, 0x20000000, 0x10000000 };
 
 JUTGamePad::EStickMode JUTGamePad::sStickMode    = MODE_1;
 int JUTGamePad::sClampMode                       = 1;
@@ -40,149 +40,6 @@ bool JUTGamePad::C3ButtonReset::sResetOccurred;
 JUTGamePad::EPadPort JUTGamePad::C3ButtonReset::sResetOccurredPort;
 
 /*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_JUTGamePad_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global sChannelMask__Q210JUTGamePad7CRumble
-    sChannelMask__Q210JUTGamePad7CRumble:
-        .4byte 0x80000000
-        .4byte 0x40000000
-        .4byte 0x20000000
-        .4byte 0x10000000
-    .global channel_mask
-    channel_mask:
-        .4byte 0x80000000
-        .4byte 0x40000000
-        .4byte 0x20000000
-        .4byte 0x10000000
-    .global __vt__10JUTGamePad
-    __vt__10JUTGamePad:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__10JUTGamePadFv
-        .4byte 0
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global mPadList__10JUTGamePad
-    mPadList__10JUTGamePad:
-        .skip 0x188
-    .global mPadStatus__10JUTGamePad
-    mPadStatus__10JUTGamePad:
-        .skip 0x30
-    .global mPadButton__10JUTGamePad
-    mPadButton__10JUTGamePad:
-        .skip 0xC0
-    .global mPadMStick__10JUTGamePad
-    mPadMStick__10JUTGamePad:
-        .skip 0x40
-    .global mPadSStick__10JUTGamePad
-    mPadSStick__10JUTGamePad:
-        .skip 0x40
-    .global sPatternList__19JUTGamePadLongPress
-    sPatternList__19JUTGamePadLongPress:
-        .skip 0x28
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global sStickMode__10JUTGamePad
-    sStickMode__10JUTGamePad:
-        .4byte 1
-    .global sClampMode__10JUTGamePad
-    sClampMode__10JUTGamePad:
-        .4byte 1
-    .global sPressPoint__Q210JUTGamePad6CStick
-    sPressPoint__Q210JUTGamePad6CStick:
-        .float 0.5
-    .global sReleasePoint__Q210JUTGamePad6CStick
-    sReleasePoint__Q210JUTGamePad6CStick:
-        .float 0.25
-    .global sResetPattern__Q210JUTGamePad13C3ButtonReset
-    sResetPattern__Q210JUTGamePad13C3ButtonReset:
-        .4byte 0x00001600
-    .global sResetMaskPattern__Q210JUTGamePad13C3ButtonReset
-    sResetMaskPattern__Q210JUTGamePad13C3ButtonReset:
-        .4byte 0x0000ffff
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mListInitialized__10JUTGamePad
-    mListInitialized__10JUTGamePad:
-        .skip 0x4
-    .global mPadAssign__10JUTGamePad
-    mPadAssign__10JUTGamePad:
-        .skip 0x4
-    .global sSuppressPadReset__10JUTGamePad
-    sSuppressPadReset__10JUTGamePad:
-        .skip 0x4
-    .global sAnalogMode__10JUTGamePad
-    sAnalogMode__10JUTGamePad:
-        .skip 0x4
-    .global sRumbleSupported__10JUTGamePad
-    sRumbleSupported__10JUTGamePad:
-        .skip 0x4
-    .global mStatus__Q210JUTGamePad7CRumble
-    mStatus__Q210JUTGamePad7CRumble:
-        .skip 0x4
-    .global mEnabled__Q210JUTGamePad7CRumble
-    mEnabled__Q210JUTGamePad7CRumble:
-        .skip 0x4
-    .global sCallback__Q210JUTGamePad13C3ButtonReset
-    sCallback__Q210JUTGamePad13C3ButtonReset:
-        .skip 0x4
-    .global sCallbackArg__Q210JUTGamePad13C3ButtonReset
-    sCallbackArg__Q210JUTGamePad13C3ButtonReset:
-        .skip 0x8
-    .global sThreshold__Q210JUTGamePad13C3ButtonReset
-    sThreshold__Q210JUTGamePad13C3ButtonReset:
-        .skip 0x4
-    .global lbl_80514F5C
-    lbl_80514F5C:
-        .skip 0x4
-    .global sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset
-    sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset:
-        .skip 0x1
-    .global sResetOccurred__Q210JUTGamePad13C3ButtonReset
-    sResetOccurred__Q210JUTGamePad13C3ButtonReset:
-        .skip 0x3
-    .global sResetOccurredPort__Q210JUTGamePad13C3ButtonReset
-    sResetOccurredPort__Q210JUTGamePad13C3ButtonReset:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516660
-    lbl_80516660:
-        .4byte 0x43160000
-        .4byte 0x00000000
-    .global lbl_80516668
-    lbl_80516668:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80516670
-    lbl_80516670:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80516678
-    lbl_80516678:
-        .4byte 0x3FE00000
-        .4byte 0x00000000
-    .global lbl_80516680
-    lbl_80516680:
-        .4byte 0x40080000
-        .4byte 0x00000000
-    .global lbl_80516688
-    lbl_80516688:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80516690
-    lbl_80516690:
-        .float 1.0
-    .global lbl_80516694
-    lbl_80516694:
-        .4byte 0x4622F984
-*/
-
-/*
  * --INFO--
  * Address:	8002D458
  * Size:	0000D4
@@ -206,84 +63,28 @@ JUTGamePad::JUTGamePad(JUTGamePad::EPadPort portNum)
 	mPadRecord = nullptr;
 	mPadReplay = nullptr;
 	clear();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r4, __vt__10JUTGamePad@ha
-	addi     r3, r30, 0x18
-	addi     r0, r4, __vt__10JUTGamePad@l
-	stw      r0, 0(r30)
-	bl       clear__Q210JUTGamePad7CButtonFv
-	addi     r3, r30, 0x48
-	bl       clear__Q210JUTGamePad6CStickFv
-	addi     r3, r30, 0x58
-	bl       clear__Q210JUTGamePad6CStickFv
-	mr       r4, r30
-	addi     r3, r30, 0x68
-	bl       clear__Q210JUTGamePad7CRumbleFP10JUTGamePad
-	mr       r4, r30
-	addi     r3, r30, 0x80
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0
-	mr       r3, r30
-	stb      r0, 0x98(r30)
-	sth      r31, 0x7c(r30)
-	lha      r0, 0x7c(r30)
-	cmpwi    r0, 0
-	blt      lbl_8002D4E0
-	addi     r5, r13, mPadAssign__10JUTGamePad@sda21
-	lbzx     r4, r5, r31
-	addi     r0, r4, 1
-	stbx     r0, r5, r31
-
-lbl_8002D4E0:
-	bl       initList__10JUTGamePadFv
-	lis      r3, mPadList__10JUTGamePad@ha
-	addi     r4, r30, 0x80
-	addi     r3, r3, mPadList__10JUTGamePad@l
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	mr       r3, r30
-	bl       update__10JUTGamePadFv
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x90(r30)
-	stw      r0, 0x94(r30)
-	bl       clear__10JUTGamePadFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-// void JSULink<JUTGamePad>::~JSULink()
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A8
  */
-// JUTGamePad::JUTGamePad()
-// {
-// 	// UNUSED FUNCTION
-// }
+JUTGamePad::JUTGamePad()
+    : mButton()
+    , mMStick()
+    , mSStick()
+    , mRumble(this)
+    , mListLink(this)
+    , mButtonReset()
+{
+	mPortNum = -1;
+	initList();
+	JUTGamePad::mPadList.append(&mListLink);
+	mPadRecord = nullptr;
+	mPadReplay = nullptr;
+	clear();
+}
 
 /*
  * --INFO--
@@ -298,57 +99,6 @@ JUTGamePad::~JUTGamePad()
 		mPortNum = -1;
 	}
 	mPadList.remove(&mListLink);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8002D5BC
-	lis      r3, __vt__10JUTGamePad@ha
-	addi     r0, r3, __vt__10JUTGamePad@l
-	stw      r0, 0(r30)
-	lha      r5, 0x7c(r30)
-	extsh.   r0, r5
-	blt      lbl_8002D57C
-	addi     r4, r13, mPadAssign__10JUTGamePad@sda21
-	li       r0, -1
-	lbzx     r3, r4, r5
-	addi     r3, r3, -1
-	stbx     r3, r4, r5
-	sth      r0, 0x7c(r30)
-
-lbl_8002D57C:
-	lis      r3, mPadList__10JUTGamePad@ha
-	addi     r4, r30, 0x80
-	addi     r3, r3, mPadList__10JUTGamePad@l
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	addic.   r0, r30, 0x80
-	beq      lbl_8002D5A0
-	addi     r3, r30, 0x80
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8002D5A0:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_8002D5BC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8002D5BC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -409,6 +159,7 @@ u32 JUTGamePad::read()
 	default:
 		break;
 	}
+
 	u32 v1 = 0;
 	for (int i = 0; i < PAD_MAX_CONTROLLERS; i++) {
 		if (mPadStatus[i].err == 0) {
