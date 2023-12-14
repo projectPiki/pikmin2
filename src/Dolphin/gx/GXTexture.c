@@ -15,9 +15,50 @@ u8 GX2HWFiltConv[6] = { 0x00, 0x04, 0x01, 0x05, 0x02, 0x06 };
  * Address:	........
  * Size:	000064
  */
-void __GXGetTexTileShift(void)
+inline void __GXGetTexTileShift(u32 format, u32 *widthTiles, u32 *heightTiles)
 {
-	// UNUSED FUNCTION
+	switch (format) {
+		case 0x0:
+		case 0x8:
+		case 0xE:
+		case 0x20:
+		case 0x30:
+			*widthTiles = 3;
+			*heightTiles = 3;
+			break;
+		case 0x1:
+		case 0x2:
+		case 0x9:
+		case 0x11:
+		case 0x22:
+		case 0x27:
+		case 0x28:
+		case 0x29:
+		case 0x2A:
+		case 0x39:
+		case 0x3A:
+			*widthTiles = 3;
+			*heightTiles = 2;
+			break;
+		case 0x3:
+		case 0x4:
+		case 0x5:
+		case 0x6:
+		case 0xA:
+		case 0x13:
+		case 0x16:
+		case 0x23:
+		case 0x2B:
+		case 0x2C:
+		case 0x3C:
+			*widthTiles = 2;
+			*heightTiles = 2;
+			break;
+		default:
+			*heightTiles = 0;
+			*widthTiles = 0;
+			break;
+    }
 }
 
 /*
@@ -151,9 +192,44 @@ u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_
  * Address:	800E70B4
  * Size:	0000C8
  */
+#define GET_TILE_COUNT(a, b) (((a) + (1 << (b)) - 1) >> (b))
 void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b, u32* c)
 {
+	u32 widthTiles, heightTiles, var_r0;
+	int var_r10;
+	
+	__GXGetTexTileShift(format, &widthTiles, &heightTiles);
+	
+	if (width <= 0)
+	{
+		width = 1;
+	}
 
+	if (height <= 0)
+	{
+		height = 1;
+	}
+	
+	var_r10 = GX_TRUE;
+
+	*a = GET_TILE_COUNT(width, widthTiles);
+	*b = GET_TILE_COUNT(height, heightTiles);
+
+	if (format != 6 && format != 0x16)
+	{
+		var_r10 = GX_FALSE;
+	}
+	
+	if (var_r10 != 0)
+	{
+		var_r0 = 2;
+	}
+	else
+	{
+		var_r0 = 1;
+	}
+	
+	*c = var_r0;
 	/*
 	.loc_0x0:
 	  cmplwi    r3, 0x3C
@@ -231,8 +307,11 @@ void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b,
 void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt format, GXTexWrapMode sWrap, GXTexWrapMode tWrap,
                   GXBool useMIPmap)
 {
-	u32 a, b;
-	GXTexObjPriv* internal = (GXTexObjPriv*)obj;
+	u32     imageBase;
+    u16     a, b;
+    u32     c, d;
+
+    GXTexObjPriv* internal = (GXTexObjPriv*)obj;
 	memset(internal, 0, sizeof(*internal));
 
 	GX_SET_REG(internal->mode0, sWrap, 30, 31);
@@ -242,7 +321,7 @@ void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt
 	if (useMIPmap) {
 		u32 maxDimSize;
 		internal->flags |= 1;
-		if (((u32)format - 8) <= 2) {
+		if (format == 8 || format == 9 || format == 10) {
 			GX_SET_REG(internal->mode0, 5, 24, 26);
 		} else {
 			GX_SET_REG(internal->mode0, 6, 24, 26);
@@ -254,12 +333,14 @@ void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt
 	} else {
 		GX_SET_REG(internal->mode0, 4, 24, 26);
 	}
+	
 	internal->format = format;
-	GX_SET_REG(internal->image0, (width & 0xffff) - 1, 22, 31);
-	GX_SET_REG(internal->image0, (height & 0xffff) - 1, 12, 21);
+	GX_SET_REG(internal->image0, width - 1, 22, 31);
+	GX_SET_REG(internal->image0, height - 1, 12, 21);
 
 	GX_SET_REG(internal->image0, format & 0xf, 8, 11);
-	GX_SET_REG(internal->image3, (u32)imagePtr >> 5, 11, 31);
+    imageBase = (u32)imagePtr >> 5;
+	GX_SET_REG(internal->image3, imageBase, 11, 31);
 
 	switch (format & 0xf) {
 	case 0:
@@ -300,8 +381,7 @@ void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt
 		break;
 	}
 
-	internal->loadCount
-	    = (((width + (1 << (a & 0xffff)) - 1) >> (a & 0xffff)) * ((height + (1 << (b & 0xffff)) - 1) >> (b & 0xffff))) & 0x7fff;
+	internal->loadCount = (GET_TILE_COUNT(width, a) * GET_TILE_COUNT(height, b)) & 0x7fff;
 
 	internal->flags |= 2;
 
@@ -1393,9 +1473,23 @@ void GXSetTexCoordBias(void)
  * Address:	800E79D0
  * Size:	0000A0
  */
-void __SetSURegs(void)
+static void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
 {
+	u32 a, b, c;
 
+	a = gx->tImage0[texImgIndex];
+	GX_SET_REG(gx->suTs0[setUpRegIndex], (a >>  0) & 0x3ff, 16, 31);
+	GX_SET_REG(gx->suTs1[setUpRegIndex], (a >> 10) & 0x3ff, 16, 31);
+	b = __cntlzw(1 - (gx->tMode0[texImgIndex]>> 0 & 3));
+	c = __cntlzw(1 - (gx->tMode0[texImgIndex]>> 2 & 3));
+
+	GX_SET_REG(gx->suTs0[setUpRegIndex], b >> 5, 15, 15);
+	GX_SET_REG(gx->suTs1[setUpRegIndex], c >> 5, 15, 15);
+
+	GX_BP_LOAD_REG(gx->suTs0[setUpRegIndex]);
+	GX_BP_LOAD_REG(gx->suTs1[setUpRegIndex]);
+
+	gx->bpSentNot = GX_FALSE;
 	/*
 	.loc_0x0:
 	  lwz       r8, -0x6D70(r2)
@@ -1446,8 +1540,51 @@ void __SetSURegs(void)
  * Address:	800E7A70
  * Size:	00017C
  */
-void __GXSetSUTexRegs(void)
+static void __GXSetSUTexRegs(void)
 {
+	// if (gx->tcsManEnab != 0xff)
+	// {
+	// 	u32 a, b;
+	// 	u32 c, d;
+	// 	int i;
+	// 	a = gx->genMode;
+	// 	b = gx->genMode;
+	// 	for (i = 0; i < ((b >> 0x10) & 7); i++)
+	// 	{
+	// 		switch (i)
+	// 		{
+	// 			case 0:
+	// 				c = gx->iref >> 0x00 & 7;
+	// 				d = gx->iref >> 0x03 & 7;
+	// 				break;
+	// 			case 1:
+	// 				c = gx->iref >> 0x06 & 7;
+	// 				d = gx->iref >> 0x09 & 7;
+	// 				break;
+	// 			case 2:
+	// 				c = gx->iref >> 0x0c & 7;
+	// 				d = gx->iref >> 0x0f & 7;
+	// 				break;
+	// 			case 3:
+	// 				c = gx->iref >> 0x12 & 7;
+	// 				d = gx->iref >> 0x15 & 7;
+	// 				break;
+	// 		}
+
+	// 		if ((gx->genMode & (1 << d)) == 0)
+	// 		{
+	// 			__SetSURegs(c, d);
+	// 		}
+	// 	}
+
+	// 	for (i = 0; i < ((b >> 0x10) & 0xf); i++)
+	// 	{
+	// 		if ((gx->genMode & (1 << d)) == 0)
+	// 		{
+	// 			__SetSURegs(c, d);
+	// 		}
+	// 	}
+	// }
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1595,6 +1732,87 @@ void __GXGetSUTexSize(void)
  */
 void __GXSetTmemConfig(u32 config)
 {
+	switch (config)
+	{
+		case 1:
+		case 2:
+			GX_BP_LOAD_REG(0x8c0d8000);
+			GX_BP_LOAD_REG(0x900dc000);
+
+			GX_BP_LOAD_REG(0x8d0d8800);
+			GX_BP_LOAD_REG(0x910dc800);
+
+			GX_BP_LOAD_REG(0x8e0d9000);
+			GX_BP_LOAD_REG(0x920dd000);
+			
+			GX_BP_LOAD_REG(0x8f0d9800);
+			GX_BP_LOAD_REG(0x930dd800);
+
+			GX_BP_LOAD_REG(0xac0da000);
+			GX_BP_LOAD_REG(0xb00dc400);
+
+			GX_BP_LOAD_REG(0xad0da800);
+			GX_BP_LOAD_REG(0xb10dcc00);
+
+			GX_BP_LOAD_REG(0xae0db000);
+			GX_BP_LOAD_REG(0xb20dd400);
+
+			GX_BP_LOAD_REG(0xaf0db800);
+			GX_BP_LOAD_REG(0xb30ddc00);
+			break;
+		case 3:
+			GX_BP_LOAD_REG(0x8c0d8000);
+			GX_BP_LOAD_REG(0x900dc000);
+
+			GX_BP_LOAD_REG(0x8d0d8800);
+			GX_BP_LOAD_REG(0x910dc800);
+
+			GX_BP_LOAD_REG(0x8e0d9000);
+			GX_BP_LOAD_REG(0x920dd000);
+			
+			GX_BP_LOAD_REG(0x8f0d9800);
+			GX_BP_LOAD_REG(0x930dd800);
+
+			GX_BP_LOAD_REG(0xac0da000);
+			GX_BP_LOAD_REG(0xb00de000);
+
+			GX_BP_LOAD_REG(0xad0da800);
+			GX_BP_LOAD_REG(0xb10de800);
+
+			GX_BP_LOAD_REG(0xae0db000);
+			GX_BP_LOAD_REG(0xb20df000);
+
+			GX_BP_LOAD_REG(0xaf0db800);
+			GX_BP_LOAD_REG(0xb30df800);
+			
+			break;
+		default:
+			GX_BP_LOAD_REG(0x8c0d8000);
+			GX_BP_LOAD_REG(0x900dc000);
+
+			GX_BP_LOAD_REG(0x8d0d8400);
+			GX_BP_LOAD_REG(0x910dc400);
+
+			GX_BP_LOAD_REG(0x8e0d8800);
+			GX_BP_LOAD_REG(0x920dc800);
+			
+			GX_BP_LOAD_REG(0x8f0d8c00);
+			GX_BP_LOAD_REG(0x930dcc00);
+
+			GX_BP_LOAD_REG(0xac0d9000);
+			GX_BP_LOAD_REG(0xb00dd000);
+
+			GX_BP_LOAD_REG(0xad0d9400);
+			GX_BP_LOAD_REG(0xb10dd400);
+
+			GX_BP_LOAD_REG(0xae0d9800);
+			GX_BP_LOAD_REG(0xb20dd800);
+
+			GX_BP_LOAD_REG(0xaf0d9c00);
+			GX_BP_LOAD_REG(0xb30ddc00);
+			
+			break;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x18(r1)
