@@ -62,6 +62,13 @@ enum MoviePlayerFlags {
 	MVP_Unk32      = 0x80000000,
 };
 
+enum MoviePlayerDrawFlags {
+	MVDP_DrawPikmin = 0x1,
+	MVDP_DrawEnemy  = 0x2,
+	MVDP_DrawPellet = 0x4,
+	MVDP_DrawNavi   = 0x8,
+};
+
 struct MovieConfig : public CNode {
 	struct TParms : public TagParameters {
 		inline TParms()

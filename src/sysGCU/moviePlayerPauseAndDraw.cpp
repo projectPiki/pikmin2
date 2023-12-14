@@ -17,12 +17,12 @@ namespace Game {
  */
 void MoviePlayer::setPauseAndDraw(MovieConfig* config)
 {
-	pikiMgr->setMovieDraw(config->isDrawFlag(1));
-	naviMgr->setMovieDraw(config->isDrawFlag(8));
-	pelletMgr->setMovieDraw(config->isDrawFlag(4));
+	pikiMgr->setMovieDraw(config->isDrawFlag(MVDP_DrawPikmin));
+	naviMgr->setMovieDraw(config->isDrawFlag(MVDP_DrawNavi));
+	pelletMgr->setMovieDraw(config->isDrawFlag(MVDP_DrawPellet));
 
 	if (generalEnemyMgr) {
-		generalEnemyMgr->setMovieDraw(config->isDrawFlag(2));
+		generalEnemyMgr->setMovieDraw(config->isDrawFlag(MVDP_DrawEnemy));
 	}
 }
 

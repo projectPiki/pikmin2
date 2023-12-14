@@ -75,6 +75,15 @@ namespace EnemyBaseFSM {
  * Address:	800FF26C
  * Size:	0000F8
  */
+/**
+ * Performs animation for the given enemy.
+ * If the enemy is not alive, the function returns early.
+ * Updates the enemy's cell and level of detail (LOD).
+ * If the enemy is not culled, it checks if it is animating and performs the appropriate animation culling.
+ * If the enemy is culled, it performs animation culling and fades effects if they exist.
+ * Increments the total count of enemies and the cull count if the enemy is culled.
+ * @param enemy Pointer to the enemy object.
+ */
 void State::animation(EnemyBase* enemy)
 {
 	if (!enemy->isEvent(0, EB_Alive)) {
@@ -113,6 +122,12 @@ void State::animation(EnemyBase* enemy)
  * Address:	800FF364
  * Size:	0001E0
  */
+/**
+ * Checks if the BirthTypeDropState is finishable for waiting birth type drop.
+ *
+ * @param enemy A pointer to the EnemyBase object.
+ * @return True if the waiting birth type drop is finishable, false otherwise.
+ */
 bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 {
 	Sys::Sphere sphere(enemy->mPosition, static_cast<EnemyParmsBase*>(enemy->mParms)->mGeneral.mPrivateRadius.mValue);
@@ -148,6 +163,14 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
  * Address:	800FF550
  * Size:	0001A8
  */
+/**
+ * Initializes the BirthTypeDropState for an enemy.
+ * This function sets the initial position of the enemy, updates its cell, and starts the waiting birth type drop.
+ * If the enemy is not a specific type of Pom, it randomly adjusts its position within a radius of 50 units.
+ *
+ * @param enemy Pointer to the EnemyBase object.
+ * @param arg Pointer to the StateArg object.
+ */
 void BirthTypeDropState::init(EnemyBase* enemy, StateArg* arg)
 {
 	if (mapMgr) {
@@ -173,6 +196,12 @@ void BirthTypeDropState::init(EnemyBase* enemy, StateArg* arg)
  * Address:	800FF6F8
  * Size:	00006C
  */
+/**
+ * Updates the state of the BirthTypeDropState for the given enemy.
+ * If the enemy is in a finishable waiting birth type drop state, it transitions to the EBS_Appear state.
+ *
+ * @param enemy The enemy object to update.
+ */
 void BirthTypeDropState::update(EnemyBase* enemy)
 {
 	if (isFinishableWaitingBirthTypeDrop(enemy)) {
@@ -185,12 +214,23 @@ void BirthTypeDropState::update(EnemyBase* enemy)
  * Address:	800FF764
  * Size:	000030
  */
+/**
+ * Cleans up the BirthTypeDropState by finishing the waiting process for birth type drop of the enemy.
+ *
+ * @param enemy A pointer to the EnemyBase object.
+ */
 void BirthTypeDropState::cleanup(EnemyBase* enemy) { enemy->finishWaitingBirthTypeDrop(); }
 
 /*
  * --INFO--
  * Address:	800FF794
  * Size:	0001C4
+ */
+/**
+ * Checks if the BirthTypeDropPikminState is finishable for waiting birth type drop.
+ *
+ * @param enemy A pointer to the EnemyBase object.
+ * @return True if the BirthTypeDropPikminState is finishable for waiting birth type drop, false otherwise.
  */
 bool BirthTypeDropPikminState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 {
@@ -223,6 +263,12 @@ bool BirthTypeDropPikminState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
  * Address:	800FF958
  * Size:	0001A8
  */
+/**
+ * Checks if the BirthTypeDropOlimarState is finishable for waiting birth type drop.
+ *
+ * @param enemy A pointer to the EnemyBase object.
+ * @return True if the BirthTypeDropOlimarState is finishable for waiting birth type drop, false otherwise.
+ */
 bool BirthTypeDropOlimarState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 {
 	Sys::Sphere sphere(enemy->mPosition, static_cast<EnemyParmsBase*>(enemy->mParms)->mGeneral.mPrivateRadius.mValue);
@@ -252,6 +298,12 @@ bool BirthTypeDropOlimarState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
  * --INFO--
  * Address:	800FFB00
  * Size:	00018C
+ */
+/**
+ * Checks if the BirthTypeDropTreasureState is finishable for waiting birth type drop.
+ *
+ * @param enemy The EnemyBase object.
+ * @return True if the waiting birth type drop is finishable, false otherwise.
  */
 bool BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 {
@@ -297,6 +349,13 @@ void AppearState::entry(EnemyBase* enemy) { enemy->doEntryLiving(); }
  * Address:	800FFCD4
  * Size:	0000FC
  */
+/**
+ * Initializes the AppearState of an enemy.
+ * This function creates an "Appear Smoke" effect and sets the initial values for the enemy's scale and stun animation timer.
+ *
+ * @param enemy Pointer to the EnemyBase object.
+ * @param arg Pointer to the StateArg object.
+ */
 void AppearState::init(EnemyBase* enemy, StateArg* arg)
 {
 	efx::TEnemyApsmoke effect; // this is "Appear Smoke"
@@ -315,6 +374,17 @@ void AppearState::init(EnemyBase* enemy, StateArg* arg)
  * --INFO--
  * Address:	800FFDEC
  * Size:	000130
+ */
+/**
+ * @brief Updates the appearance state of an enemy.
+ *
+ * It increases a timer related to the enemy's stun animation.
+ * The increase is twice the amount of time that has passed since the last update.
+ * If this timer goes above 1.0, the enemy is no longer stunned and goes back to its normal state.
+ * The size of the enemy is also adjusted based on this timer.
+ * Lastly, it calls two other functions (doUpdate() and doUpdateCommon()) that handle other updates for the enemy.
+ *
+ * @param enemy Pointer to the EnemyBase object.
  */
 void AppearState::update(EnemyBase* enemy)
 {
@@ -343,6 +413,13 @@ void AppearState::update(EnemyBase* enemy)
  * Address:	800FFF1C
  * Size:	00001C
  */
+/**
+ * @brief Cleans up the state of the enemy when it appears.
+ *
+ * This function resets the scale and stun animation timer of the enemy.
+ *
+ * @param enemy Pointer to the EnemyBase object.
+ */
 void AppearState::cleanup(EnemyBase* enemy)
 {
 	enemy->mScale         = 1.0f;
@@ -353,6 +430,12 @@ void AppearState::cleanup(EnemyBase* enemy)
  * --INFO--
  * Address:	800FFF38
  * Size:	00010C
+ */
+/**
+ * Simulates the behavior of the enemy in the Living state.
+ *
+ * @param enemy The enemy object.
+ * @param frameRate The frame rate of the simulation.
  */
 void EnemyBaseFSM::LivingState::simulation(EnemyBase* enemy, f32 frameRate)
 {
@@ -415,6 +498,14 @@ void LivingState::updateAlways(EnemyBase* enemy)
  * Address:	80100124
  * Size:	0001BC
  */
+/**
+ * Updates the state of the enemy.
+ * This function is responsible for updating various aspects of the enemy's behavior,
+ * such as disabling events, executing sound effects, updating carcass, culling off,
+ * life recovery, injury, and damage animation.
+ * If the enemy's existence duration exceeds a certain threshold, it will be destroyed.
+ * @param enemy A pointer to the EnemyBase object.
+ */
 void LivingState::update(EnemyBase* enemy)
 {
 	sys->mTimers->_start("e-upd-do", true);
@@ -470,6 +561,15 @@ void EnemyBaseFSM::FitState::updateCullingOff(EnemyBase* enemy)
  * Address:	80100328
  * Size:	000150
  */
+/**
+ * Initializes the FitState of the EnemyBase.
+ * This function updates the enemy, backs up events, enables specific events,
+ * stops motion, sets target and current velocity to 0, starts earthquake fit state,
+ * sets the position of the enemy's fit effect, creates the enemy's fit effect.
+ *
+ * @param enemy Pointer to the EnemyBase object.
+ * @param arg Pointer to the StateArg object.
+ */
 void EnemyBaseFSM::FitState::init(EnemyBase* enemy, StateArg* arg)
 {
 	enemy->doUpdate();
@@ -496,6 +596,14 @@ void EnemyBaseFSM::FitState::init(EnemyBase* enemy, StateArg* arg)
  * Address:	80100478
  * Size:	000080
  */
+/**
+ * @brief Cleans up the state of an enemy.
+ *
+ * This function restores the events of the enemy, disables a specific event,
+ * starts the motion, performs the finish earthquake fit state, and fades the enemy.
+ *
+ * @param enemy Pointer to the EnemyBase object.
+ */
 void FitState::cleanup(EnemyBase* enemy)
 {
 	enemy->restoreEvents();
@@ -510,6 +618,15 @@ void FitState::cleanup(EnemyBase* enemy)
  * --INFO--
  * Address:	801004F8
  * Size:	000204
+ */
+/**
+ * Updates the state of the enemy in the FitState.
+ * This function is called continuously to update the enemy's behavior.
+ * It updates the stun animation timer, checks if the stun duration has elapsed,
+ * and updates the stun animation rotation based on the timer.
+ * Finally, it updates the position of the enemy's FitEffect.
+ *
+ * @param enemy Pointer to the EnemyBase object.
  */
 void FitState::updateAlways(EnemyBase* enemy)
 {
@@ -749,6 +866,13 @@ void StateMachine::simulation(EnemyBase* enemy, f32 frameRate) { mState->simulat
  * Address:	801013A0
  * Size:	000370
  */
+/**
+ * @brief EnemyBase constructor.
+ *
+ * This constructor initializes the EnemyBase object with default values for its member variables.
+ * It sets the position, rotation, and animation properties to zero or null values.
+ * It also initializes various data structures and creates shadows and life gauges if the corresponding managers exist.
+ */
 EnemyBase::EnemyBase()
     : Creature()
     , SysShape::MotionListener()
@@ -821,6 +945,11 @@ EnemyBase::EnemyBase()
  * Address:	80101788
  * Size:	000044
  */
+/**
+ * @brief EnemyBase constructor.
+ *
+ * This function initializes the EnemyBase object by creating a sound object and an instance of the EfxHamon effect.
+ */
 void EnemyBase::constructor()
 {
 	mSoundObj = createPSEnemyBase();
@@ -831,6 +960,12 @@ void EnemyBase::constructor()
  * --INFO--
  * Address:	801017CC
  * Size:	00005C
+ */
+/**
+ * @brief Creates the effects for the enemy base.
+ *
+ * This function iterates through the linked list of EnemyEffectNodeHamon objects
+ * and calls the create() function for each node, passing the current EnemyBase object.
  */
 void EnemyBase::createEffects()
 {
@@ -846,6 +981,12 @@ void EnemyBase::createEffects()
  * --INFO--
  * Address:	80101828
  * Size:	00005C
+ */
+/**
+ * @brief Fades the effects of the enemy base.
+ *
+ * This function iterates through the linked list of enemy effect nodes and calls the fade function on each node.
+ * The fade function is responsible for fading out the effect associated with the node.
  */
 void EnemyBase::fadeEffects()
 {
@@ -946,6 +1087,12 @@ void EnemyBase::setEmotionNone()
  * Address:	80101A58
  * Size:	000104
  */
+/**
+ * Initializes the EnemyBase object.
+ * This function is called when the EnemyBase is being initialized.
+ * It resets various variables and enables necessary events for the EnemyBase.
+ * @param arg A pointer to the CreatureInitArg object containing initialization arguments.
+ */
 void EnemyBase::onInit(CreatureInitArg* arg)
 {
 	clearStick();
@@ -973,6 +1120,13 @@ void EnemyBase::onInit(CreatureInitArg* arg)
  * --INFO--
  * Address:	80101B5C
  * Size:	000218
+ */
+/**
+ *  Initializes the EnemyBase object after creation.
+ * Determines the appropriate lifecycle state based on the drop group.
+ * If in Zukan mode, performs animation culling and sets the water box.
+ *
+ * @param arg The CreatureInitArg object containing initialization arguments.
  */
 void EnemyBase::onInitPost(CreatureInitArg* arg)
 {
@@ -1039,6 +1193,11 @@ void EnemyBase::onInitPost(CreatureInitArg* arg)
  * Address:	80101D74
  * Size:	0000A0
  */
+/**
+ * Sets the otakara code for the EnemyBase object.
+ *
+ * @param itemCode The otakara item code to set.
+ */
 void EnemyBase::setOtakaraCode(PelletMgr::OtakaraItemCode& itemCode)
 {
 	mPelletDropCode.mValue = itemCode;
@@ -1060,6 +1219,13 @@ void EnemyBase::setOtakaraCode(PelletMgr::OtakaraItemCode& itemCode)
 	}
 }
 
+/**
+ * @brief Forces the enemy base to perform kill effects.
+ *
+ * This function is responsible for performing the kill effects of the enemy base.
+ * If the enemy base is holding a pellet, it stimulates the pellet with an InteractMattuan object.
+ * After that, it sets the sound object as killed.
+ */
 void EnemyBase::forceKillEffects()
 {
 	if (mHeldPellet) {
@@ -1090,6 +1256,13 @@ void EnemyBase::setCarcassArg(PelletViewArg& carcassArg)
  * --INFO--
  * Address:	........
  * Size:	000234
+ */
+/**
+ * @brief Transforms the enemy base into a carcass.
+ *
+ * This function is responsible for performing the necessary actions to transform the enemy base into a carcass.
+ * It deactivates the life gauge, removes the shadow, fades the effects, turns off the battle sound, sets the animation to nullptr,
+ * and finally kills the enemy base.
  */
 void EnemyBase::becomeCarcass()
 {
@@ -1137,6 +1310,14 @@ void EnemyBase::deathMethod()
  * --INFO--
  * Address:	80101EE8
  * Size:	0009EC
+ */
+/**
+ * @brief Handles the logic when an enemy is killed.
+ *
+ * This function is called when an enemy is killed. It performs various actions such as triggering death effects,
+ * dropping honey items, becoming a carcass, etc.
+ *
+ * @param inputArg Pointer to the CreatureKillArg object containing information about the kill.
  */
 void EnemyBase::onKill(CreatureKillArg* inputArg)
 {
@@ -1281,6 +1462,13 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
  * Address:	80102920
  * Size:	0000E0
  */
+/**
+ * Sets the visibility of the enemy in the Piklopedia.
+ *
+ * @param updateStats Flag indicating whether to update the enemy's statistics.
+ *                    If true, the enemy's kill count will be incremented.
+ *                    If false, the enemy's state will be set to updated.
+ */
 void EnemyBase::setZukanVisible(bool updateStats)
 {
 	if (!mInPiklopedia) {
@@ -1306,6 +1494,19 @@ void EnemyBase::setZukanVisible(bool updateStats)
  * --INFO--
  * Address:	80102A00
  * Size:	000160
+ */
+/**
+ * @brief Initializes the EnemyBase object with the given position and face direction.
+ *
+ * This function sets up the initial state of the EnemyBase object when it is created.
+ * It enables the "Alive" event, sets the position and home position, initializes the rotation
+ * and velocity vectors, and resets various member variables. It also calculates the model,
+ * updates the collision tree, and adds a shadow. If a life gauge manager is available, it
+ * activates the life gauge for this EnemyBase. Finally, it sets the initial emotion to "Caution"
+ * and initializes the timers for existence and stun animation.
+ *
+ * @param pos The initial position of the EnemyBase.
+ * @param faceDir The initial face direction of the EnemyBase.
  */
 void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 {
@@ -1392,6 +1593,10 @@ void EnemyBase::update() { static_cast<EnemyBaseFSM::StateMachine*>(mLifecycleFS
  * --INFO--
  * Address:	80102C84
  * Size:	0001E0
+ */
+/**
+ * Checks if the EnemyBase is in a finishable state for the waiting birth type drop.
+ * @return true if the EnemyBase is in a finishable state for the waiting birth type drop, false otherwise.
  */
 bool EnemyBase::isFinishableWaitingBirthTypeDrop()
 {
@@ -1494,6 +1699,10 @@ void EnemyBase::doAnimation() { static_cast<EnemyBaseFSM::StateMachine*>(mLifecy
  * Address:	80102FF8
  * Size:	000088
  */
+/**
+ * Updates the animator of the EnemyBase object by animating it based on the current speed and delta time.
+ * This function also updates the model's joint matrix calculation with the animator's calculated matrix.
+ */
 void EnemyBase::doAnimationUpdateAnimator()
 {
 	mAnimator->animate(mAnimator->mSpeed * sys->mDeltaTime);
@@ -1509,6 +1718,15 @@ void EnemyBase::doAnimationUpdateAnimator()
  * --INFO--
  * Address:	80103080
  * Size:	0001E0
+ */
+/**
+ * Disables animation culling for the EnemyBase object.
+ * This function stops the current animation, updates the animator, and performs necessary transformations based on the object's state.
+ * If the object has a pellet, it applies scaling and translation to the base transformation matrix and updates the position.
+ * If the object is sticked to something, it performs the stick animation.
+ * Otherwise, it applies scaling, rotation, and translation to the base transformation matrix based on the object's properties.
+ * After updating the transformation matrix, it calculates the model's position matrix, updates the collision tree, and handles sound
+ * animation if necessary.
  */
 void EnemyBase::doAnimationCullingOff()
 {
@@ -1683,6 +1901,11 @@ void EnemyBase::doViewCalc()
  * Address:	80103774
  * Size:	0000AC
  */
+/**
+ * Simulates the movement of the enemy on the ground.
+ *
+ * @param frameRate The frame rate of the simulation.
+ */
 void EnemyBase::doSimulationGround(f32 frameRate)
 {
 	Vector3f velocity = mTargetVelocity;
@@ -1819,6 +2042,16 @@ void EnemyBase::inWaterCallback(WaterBox* water)
  * Address:	80103FFC
  * Size:	00028C
  */
+/**
+ * Finish dropping function for the EnemyBase class.
+ * This function is called when the enemy finishes dropping.
+ * If latchToMap is true, the enemy's position is adjusted to the minimum Y position on the map.
+ * It adds damage to the enemy, enables the squash on damage animation event,
+ * creates a bounce effect at the enemy's position, and disables the dropping event.
+ * Finally, it sets the current velocity of the enemy to 0.
+ *
+ * @param latchToMap If true, the enemy's position is adjusted to the minimum Y position on the map.
+ */
 void EnemyBase::finishDropping(bool latchToMap)
 {
 	if (!isEvent(1, EB2_Dropping)) {
@@ -1862,6 +2095,17 @@ void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
  * --INFO--
  * Address:	80104340
  * Size:	0006D4
+ */
+/**
+ * Applies collision detection and response for the EnemyBase object on the map and platforms.
+ * If the EnemyBase is not stuck, it applies simulation for ground or flying enemies based on their event status.
+ * If the EnemyBase is flying, it disables collision detection for floor and other objects.
+ * It calculates the collision sphere based on the position, height offset from the floor, and effect offset.
+ * It then checks the movement of the EnemyBase using the collision sphere and velocity, and applies bounce and wall triangle logic.
+ * If platform collisions are enabled, it also checks for platform collisions and applies bounce and wall triangle logic.
+ * Finally, it updates the position of the EnemyBase based on the collision result.
+ *
+ * @param frameRate The frame rate of the simulation.
  */
 void EnemyBase::collisionMapAndPlat(f32 frameRate)
 {
@@ -2000,6 +2244,14 @@ void EnemyBase::doSimulation(f32 frameRate) { mLifecycleFSM->simulation(this, fr
  * Address:	80104A8C
  * Size:	0000D8
  */
+/**
+ * Performs simulation constraint for the EnemyBase object.
+ * This function checks if the EnemyBase is hard constrained and enables collision checking if it is moving.
+ * If the EnemyBase has just bounced off a triangle, collision checking is disabled.
+ * Finally, it updates the spheres and the water box.
+ *
+ * @param frameRate The frame rate of the simulation.
+ */
 void EnemyBase::doSimulationConstraint(f32 frameRate)
 {
 	if (!(isEvent(0, EB_HardConstrained))) {
@@ -2049,6 +2301,12 @@ void EnemyBase::setAnimMgr(SysShape::AnimMgr* mgr) { mAnimator->setAnimMgr(mgr);
  * Address:	80104C04
  * Size:	0001B4
  */
+/**
+ * Sets the anime for the enemy base based on the current event.
+ * If the event is EB_PS1, it retrieves the animation information and sets the anime sound data accordingly.
+ * If the event is EB_PS2 or EB_PS3, it sets the anime sound data to -1.
+ * If the event is not EB_PS1, EB_PS2, or EB_PS3, it sets the anime sound data to nullptr.
+ */
 void EnemyBase::setPSEnemyBaseAnime()
 {
 	if (isEvent(0, EB_PS1)) {
@@ -2093,6 +2351,15 @@ void EnemyBase::setPSEnemyBaseAnime()
  * --INFO--
  * Address:	80104DB8
  * Size:	0001F0
+ */
+/**
+ * Starts the blending animation for the EnemyBase object.
+ *
+ * @param start The starting frame of the blending animation.
+ * @param end The ending frame of the blending animation.
+ * @param blendFunc The blend function to be used for the animation.
+ * @param framerate The framerate of the animation.
+ * @param inputListener The motion listener for the animation. If null, the EnemyBase object itself will be used as the listener.
  */
 void EnemyBase::startBlend(int start, int end, SysShape::BlendFunction* blendFunc, f32 framerate, SysShape::MotionListener* inputListener)
 {
@@ -2159,6 +2426,12 @@ void EnemyBase::endBlend()
  * --INFO--
  * Address:	80105004
  * Size:	000224
+ */
+/**
+ * Starts the motion of the EnemyBase object.
+ *
+ * @param p1 The parameter for starting the animation.
+ * @param inputListener The motion listener for the animation.
  */
 void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
 {
@@ -2281,6 +2554,12 @@ void EnemyBase::lifeRecover()
  * Address:	801053C0
  * Size:	00033C
  */
+/**
+ * Scales the damage animation of the enemy base.
+ * This function adjusts the scale and rotation of the enemy base
+ * based on the damage received. It applies various modifiers and
+ * animations to create a visual effect of damage.
+ */
 void EnemyBase::scaleDamageAnim()
 {
 	if (!isEvent(0, EB_DamageAnimEnabled) && mDamageAnimTimer == 0.0f) {
@@ -2375,6 +2654,15 @@ void EnemyBase::finishScaleDamageAnim()
  * Address:	80105720
  * Size:	0000F8
  */
+/**
+ * Performs the death procedure for the EnemyBase object.
+ * Disables the damage animation, sets the object as not alive,
+ * throws up an item if the object is bittered, otherwise throws up
+ * an item in the death procedure, starts the motion, creates a dead
+ * bomb effect and plays the enemy fatal hit sound if the death effect
+ * is enabled. Additionally, if the sound object is of type EnemyMidBoss
+ * or EnemyBigBoss, it triggers the onDeathMotionTop function.
+ */
 void EnemyBase::deathProcedure()
 {
 	disableEvent(0, EB_DamageAnimEnabled);
@@ -2440,6 +2728,13 @@ void EnemyBase::getThrowupItemVelocity(Vector3f* throwupItemVelocity) { *throwup
  * --INFO--
  * Address:	801059B8
  * Size:	0004B0
+ */
+/**
+ * Throws up an item from the enemy base.
+ * The item is created and thrown with a specific velocity and position.
+ * If the enemy is a boss in the final floor of a cave in story mode, the carry weight of the thrown item
+ * is adapted to the squads amount, allowing annihilated squads to recover treasures.
+ * @return void
  */
 void EnemyBase::throwupItem()
 {
@@ -3160,6 +3455,16 @@ bool EnemyBase::needShadow()
  * --INFO--
  * Address:	801074D0
  * Size:	000234
+ */
+/**
+ * @brief Callback function for eating white Pikmin.
+ *
+ * This function is called when the EnemyBase object eats a white Pikmin.
+ * It adds damage to the EnemyBase object and triggers the necessary events and effects.
+ *
+ * @param creature A pointer to the Creature object representing the white Pikmin.
+ * @param damage The amount of damage to be added to the EnemyBase object.
+ * @return true if the callback is successful, false otherwise.
  */
 bool EnemyBase::eatWhitePikminCallBack(Creature* creature, f32 damage)
 {

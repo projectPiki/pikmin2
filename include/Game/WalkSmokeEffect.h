@@ -27,10 +27,10 @@ struct Obj {
 	void init(Matrixf*, f32);
 	void draw(Graphics&);
 
-	bool _00;           // _00
-	Matrixf* mMatrix;   // _04 - unknown
-	f32 _08;            // _08 - height?
-	Vector3f mPosition; // _0C
+	bool mIsEffectCreated; // _00
+	Matrixf* mMatrix;      // _04 - unknown
+	f32 mHeightOffset;     // _08 - height?
+	Vector3f mPosition;    // _0C
 };
 
 /**
@@ -41,7 +41,8 @@ struct Mgr {
 
 	void alloc(int);
 	void update(EnemyBase*);
-	void setup(int, SysShape::Model*, char*, f32);
+
+	void setup(int objIdx, SysShape::Model* model, char* name, f32 heightOffset);
 
 	// unused/inlined
 	void draw(Graphics&);

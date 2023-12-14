@@ -92,11 +92,11 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                          // _2BC
 	MouthSlots mMouthSlots;             // _2C0
 	SysShape::Joint* mShadowJoint;      // _2C8
-	f32 _2CC;                           // _2CC
+	f32 mAlertTimer;                    // _2CC
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2D0
 	efx::TChaseMtx* mEfxHanacho;        // _2D8, either efx::THanachoN or efx::THanachoY
-	f32 _2DC;                           // _2DC
-	f32 _2E0;                           // _2E0
+	f32 mViewAngle;                     // _2DC
+	f32 mSearchAngle;                   // _2E0
 	                                    // _2E4 = PelletView
 };
 

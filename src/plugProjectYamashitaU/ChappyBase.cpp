@@ -21,16 +21,23 @@ Obj::Obj()
 	createEffect();
 }
 
-/*
+/**
+ * @brief Performs the birth operation for the chappy.
+ *
+ * This function initializes the chappy's position and other properties.
+ *
+ * @param position The initial position of the chappy.
+ * @param faceDirection The initial direction of the chappy.
+ *
  * --INFO--
  * Address:	8012AAAC
  * Size:	000044
  */
-void Obj::birth(Vector3f& position, f32 p1)
+void Obj::birth(Vector3f& position, f32 faceDirection)
 {
-	EnemyBase::birth(position, p1);
+	EnemyBase::birth(position, faceDirection);
 	mShadowJoint = mModel->getJoint("ago");
-	_2CC         = 0.0f;
+	mAlertTimer  = 0.0f;
 }
 
 /*
@@ -40,10 +47,16 @@ void Obj::birth(Vector3f& position, f32 p1)
  */
 void Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
-/*
+/**
+ * Initializes the chappy with the given CreatureInitArg.
+ * This function sets up the LOD parameters, sleep arguments, and starts the FSM with the CHAPPY_Sleep state.
+ *
+ * @param initArg The CreatureInitArg used to initialize the chappy.
+ *
  * --INFO--
  * Address:	8012AAF4
  * Size:	000080
+ *
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -123,7 +136,12 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	return true;
 }
 
-/*
+/**
+ * Handles collision events.
+ * Checks if the colliding creature is an enemy or a pellet, and performs specific actions based on the type of creature.
+ *
+ * @param collEvent The collision event object containing information about the collision.
+ *
  * --INFO--
  * Address:	8012ACD4
  * Size:	000150
@@ -244,7 +262,10 @@ void Obj::initWalkSmokeEffect()
  */
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
 
-/*
+/**
+ * Checks if the object should wake up based on its enemy type and nearby creatures.
+ * @return true if the object should wake up, false otherwise.
+ *
  * --INFO--
  * Address:	8012B04C
  * Size:	000200

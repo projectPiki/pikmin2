@@ -32,7 +32,6 @@ void Obj::changeMaterial()
 	newTexture             = j3dTexture->mRes;
 
 	*newTexture = *texture;
-	;
 
 	j3dTexture->setImageOffset((u32)texture, 0);
 	j3dTexture->setPaletteOffset((u32)texture, 0);

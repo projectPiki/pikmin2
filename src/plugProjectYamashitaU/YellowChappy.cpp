@@ -43,23 +43,22 @@ void Obj::doUpdateCommon()
 	if (isEvent(0, EB_Bittered)) {
 		alpha += -10;
 
-	} else {
-		if (mHealth < 0.5f * mMaxHealth) {
-			if (mHasHair) {
-				SysShape::Joint* joint = mModel->getJoint("body");
-				P2ASSERTLINE(124, joint != nullptr);
-				Matrixf* mat = joint->getWorldMatrix();
-				P2ASSERTLINE(126, mat != nullptr);
+	} else if (mHealth < 0.5f * mMaxHealth) {
+		if (mHasHair) {
+			SysShape::Joint* joint = mModel->getJoint("body");
+			P2ASSERTLINE(124, joint != nullptr);
 
-				efx::TKechappyOff offEffect(mat);
-				offEffect.create(nullptr);
+			Matrixf* mat = joint->getWorldMatrix();
+			P2ASSERTLINE(126, mat != nullptr);
 
-				mHasHair = false;
-			}
-			alpha += -50;
-		} else {
-			alpha += 10;
+			efx::TKechappyOff offEffect(mat);
+			offEffect.create(nullptr);
+
+			mHasHair = false;
 		}
+		alpha += -50;
+	} else {
+		alpha += 10;
 	}
 
 	if (alpha < 0) {
@@ -108,8 +107,10 @@ void Obj::createEffect()
 void Obj::setupEffect()
 {
 	ChappyBase::Obj::setupEffect();
+
 	SysShape::Joint* joint = mModel->getJoint("body");
 	P2ASSERTLINE(192, joint != nullptr);
+
 	Matrixf* mat = joint->getWorldMatrix();
 	P2ASSERTLINE(194, mat != nullptr);
 

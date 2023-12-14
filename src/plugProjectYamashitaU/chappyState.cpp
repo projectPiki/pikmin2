@@ -35,7 +35,13 @@ StateCautionBase::StateCautionBase(int stateID)
 	mName = "StateCautionBase";
 }
 
-/*
+/**
+ * Executes the caution behavior for the enemy.
+ * Determines if the enemy should be alerted based on its type and health.
+ * Updates the enemy's alert timer and view/search angles accordingly.
+ *
+ * @param enemy A pointer to the EnemyBase object.
+ *
  * --INFO--
  * Address:	........
  * Size:	000194
@@ -66,17 +72,17 @@ void StateCautionBase::cautionProc(EnemyBase* enemy)
 	}
 
 	if (doAlert) {
-		OBJ(enemy)->_2CC = 0.0f;
+		OBJ(enemy)->mAlertTimer = 0.0f;
 	}
 
-	if (OBJ(enemy)->_2CC < CG_PARMS(enemy)->mGeneral.mAlertDuration.mValue) {
-		OBJ(enemy)->_2CC += sys->mDeltaTime;
-		OBJ(enemy)->_2DC = 180.0f;
-		OBJ(enemy)->_2E0 = 180.0f;
+	if (OBJ(enemy)->mAlertTimer < CG_PARMS(enemy)->mGeneral.mAlertDuration.mValue) {
+		OBJ(enemy)->mAlertTimer += sys->mDeltaTime;
+		OBJ(enemy)->mViewAngle   = 180.0f;
+		OBJ(enemy)->mSearchAngle = 180.0f;
 
 	} else {
-		OBJ(enemy)->_2DC = CG_PARMS(enemy)->mGeneral.mViewAngle.mValue;
-		OBJ(enemy)->_2E0 = CG_PARMS(enemy)->mGeneral.mSearchAngle.mValue;
+		OBJ(enemy)->mViewAngle   = CG_PARMS(enemy)->mGeneral.mViewAngle.mValue;
+		OBJ(enemy)->mSearchAngle = CG_PARMS(enemy)->mGeneral.mSearchAngle.mValue;
 	}
 }
 
@@ -299,8 +305,8 @@ void StateTurn::exec(EnemyBase* enemy)
 	cautionProc(enemy);
 
 	if (!enemy->isFinishMotion()) {
-		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->_2E0, CG_PARMS(enemy)->mGeneral.mSearchDistance(), nullptr,
-		                                                     nullptr, nullptr);
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->mSearchAngle, CG_PARMS(enemy)->mGeneral.mSearchDistance(),
+		                                                     nullptr, nullptr, nullptr);
 		if (target) {
 			enemy->mTargetCreature = target;
 
@@ -314,7 +320,7 @@ void StateTurn::exec(EnemyBase* enemy)
 
 			} else if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angleDist, CG_PARMS(enemy)->mGeneral.mPrivateRadius(),
 			                                     CG_PARMS(enemy)->mGeneral.mSightRadius(), CG_PARMS(enemy)->mGeneral.mFov(),
-			                                     OBJ(enemy)->_2DC)) {
+			                                     OBJ(enemy)->mViewAngle)) {
 				mNextState = CHAPPY_TurnToHome;
 				enemy->finishMotion();
 			} else {
@@ -951,8 +957,8 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	cautionProc(enemy);
 	if (!enemy->isFinishMotion()) {
-		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->_2E0, CG_PARMS(enemy)->mGeneral.mSearchDistance(), nullptr,
-		                                                     nullptr, nullptr);
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->mSearchAngle, CG_PARMS(enemy)->mGeneral.mSearchDistance(),
+		                                                     nullptr, nullptr, nullptr);
 		if (target) {
 			enemy->mTargetCreature = target;
 			f32 angle              = enemy->getCreatureViewAngle(enemy->mTargetCreature);
@@ -966,7 +972,7 @@ void StateWalk::exec(EnemyBase* enemy)
 				}
 			} else if (enemy->isTargetOutOfRange(enemy->mTargetCreature, angle, CG_PARMS(enemy)->mGeneral.mPrivateRadius(),
 			                                     CG_PARMS(enemy)->mGeneral.mSightRadius(), CG_PARMS(enemy)->mGeneral.mFov(),
-			                                     OBJ(enemy)->_2DC)) {
+			                                     OBJ(enemy)->mViewAngle)) {
 				mNextState = CHAPPY_TurnToHome;
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);
@@ -1951,8 +1957,8 @@ lbl_801181BC:
  */
 void StateAttack::transitState(EnemyBase* enemy)
 {
-	Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->_2E0, CG_PARMS(enemy)->mGeneral.mSearchDistance(), nullptr,
-	                                                     nullptr, nullptr);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->mSearchAngle, CG_PARMS(enemy)->mGeneral.mSearchDistance(),
+	                                                     nullptr, nullptr, nullptr);
 	if (target) {
 		enemy->mTargetCreature = target;
 
@@ -2307,8 +2313,8 @@ void StateTurnToHome::exec(EnemyBase* enemy)
 			enemy->finishMotion();
 			mNextState = CHAPPY_GoHome;
 		} else {
-			Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->_2E0, CG_PARMS(enemy)->mGeneral.mSearchDistance(),
-			                                                     nullptr, nullptr, nullptr);
+			Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->mSearchAngle,
+			                                                     CG_PARMS(enemy)->mGeneral.mSearchDistance(), nullptr, nullptr, nullptr);
 			if (target) {
 				enemy->mTargetCreature = target;
 
@@ -2875,8 +2881,8 @@ void StateGoHome::exec(EnemyBase* enemy)
 			mNextState             = CHAPPY_Sleep;
 		}
 
-		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->_2E0, CG_PARMS(enemy)->mGeneral.mSearchDistance(), nullptr,
-		                                                     nullptr, nullptr);
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(enemy, OBJ(enemy)->mSearchAngle, CG_PARMS(enemy)->mGeneral.mSearchDistance(),
+		                                                     nullptr, nullptr, nullptr);
 		if (target) {
 			enemy->mTargetCreature = target;
 

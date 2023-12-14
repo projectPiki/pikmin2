@@ -30,36 +30,40 @@ Pikmin_TCreateObject_JAudio::Pikmin_TCreateObject_JAudio(JAIBasic* jai, const JS
  */
 bool Pikmin_TCreateObject_JAudio::create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data)
 {
-	char buf[256];
-	const char* str    = &(data.filedata->mObjName);
-	const char first_c = *(str);
-	if (first_c != '#') {
+	const char* str = &data.filedata->mObjName;
+	if (str[0] != '#') {
 		return false;
 	}
-	int len = strlen(str);
 
-	if (len > 100) {
-		len = 100;
+	// Set the position to a max of 100 characters
+	int pos = strlen(str);
+	if (pos > 100) {
+		pos = 100;
 	}
-	for (int i = len; i > 0; i--) {
+
+	// Work backwards from the end to find the underscore
+	for (int i = pos; i > 0; i--) {
 		if (str[i] == '_') {
-			len = i;
+			pos = i;
 			break;
 		}
 	}
-	len--; // get the character index before the underscore
-	buf[0] = '*';
 
-	for (int i = 0; i < len; i++) {
+	pos--;
+
+	// Copy the string into a new buffer with a star at the beginning
+	char buf[256];
+	buf[0] = '*';
+	for (int i = 0; i < pos; i++) {
 		buf[i + 1] = str[i + 1];
 	}
-	char* buf_ptr            = &buf[0];
-	buf[len + 1]             = '\0';
-	Game::Creature* creature = Game::moviePlayer->mObjectSystem->findCreature(buf_ptr);
-	if (creature != nullptr) {
-		return TCreateObject::create(newObject, data);
-	} else {
+	buf[pos + 1] = '\0';
+
+	// If the string is not a valid creature name, return false
+	if (!Game::moviePlayer->mObjectSystem->findCreature(buf)) {
 		return false;
 	}
-	// return ret;
+
+	// Create the object
+	return TCreateObject::create(newObject, data);
 }

@@ -19,36 +19,38 @@ namespace WalkSmokeEffect {
  */
 Obj::Obj()
 {
-	_00       = false;
-	mMatrix   = nullptr;
-	_08       = 0.0f;
-	mPosition = Vector3f::zero;
+	mIsEffectCreated = false;
+	mMatrix          = nullptr;
+	mHeightOffset    = 0.0f;
+	mPosition        = Vector3f::zero;
 }
 
 void Obj::update(EnemyBase* enemy)
 {
-	Vector3f vec;
-	mMatrix->getTranslation(vec);
-	vec.y -= _08;
+	Vector3f pos;
+	mMatrix->getTranslation(pos);
+	pos.y -= mHeightOffset;
 
-	if (_00 == false) {
-		if ((vec.y - mPosition.y) < 0.0f) {
-			if (vec.y < mapMgr->getMinY(vec)) {
+	if (!mIsEffectCreated) {
+		if ((pos.y - mPosition.y) < 0.0f) {
+			if (pos.y < mapMgr->getMinY(pos)) {
 				if (!enemy->inWater()) {
 					f32 scaleMod                      = enemy->mScaleModifier;
 					EnemyTypeID::EEnemyTypeID enemyID = enemy->getEnemyTypeID();
 
-					efx::ArgEnemyType effectArg(vec, enemyID, scaleMod);
+					efx::ArgEnemyType effectArg(pos, enemyID, scaleMod);
 					efx::TEnemyWalkSmoke walkSmoke;
 					walkSmoke.create(&effectArg);
 				}
-				_00 = true;
+
+				mIsEffectCreated = true;
 			}
 		}
-	} else if (vec.y > mapMgr->getMinY(vec)) {
-		_00 = false;
+	} else if (pos.y > mapMgr->getMinY(pos)) {
+		mIsEffectCreated = false;
 	}
-	mPosition = vec;
+
+	mPosition = pos;
 }
 
 /*
@@ -101,17 +103,17 @@ void Mgr::update(EnemyBase* enemy)
  * Address:	8012A5E0
  * Size:	000090
  */
-void Mgr::setup(int objIdx, SysShape::Model* model, char* name, f32 p1)
+void Mgr::setup(int objIdx, SysShape::Model* model, char* name, f32 heightOffset)
 {
 	Matrixf* worldMat = model->getJoint(name)->getWorldMatrix();
 
-	Obj* obj     = &mObjects[objIdx];
-	obj->mMatrix = worldMat;
-	obj->_08     = p1;
+	Obj* obj           = &mObjects[objIdx];
+	obj->mMatrix       = worldMat;
+	obj->mHeightOffset = heightOffset;
 
 	obj->mMatrix->getTranslation(obj->mPosition);
 
-	obj->_00 = true;
+	obj->mIsEffectCreated = true;
 }
 } // namespace WalkSmokeEffect
 } // namespace Game
