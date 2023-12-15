@@ -10,12 +10,12 @@ extern "C" {
 
 ///////////////// SI TYPES /////////////////
 // SI callback function type.
-typedef void (*SICallback)(int chan, u32 sr, OSContext* context);
-typedef void (*SITypeAndStatusCallback)(int chan, u32 type);
+typedef void (*SICallback)(s32 chan, u32 sr, OSContext* context);
+typedef void (*SITypeAndStatusCallback)(s32 chan, u32 type);
 
 // Struct for SI information transfer (size 0x20).
 typedef struct SIPacket {
-	int chan;            // _00
+	s32 chan;            // _00
 	void* output;        // _04
 	u32 outputBytes;     // _08
 	void* input;         // _0C
@@ -26,7 +26,7 @@ typedef struct SIPacket {
 
 // Struct for 'Si' object in SIBios.c (size 0x14).
 typedef struct SIControl {
-	int chan;            // _00
+	s32 chan;            // _00
 	u32 poll;            // _04
 	u32 inputBytes;      // _08
 	void* input;         // _0C
@@ -59,24 +59,24 @@ typedef union SIComm {
 
 /////////////// SI FUNCTIONS ///////////////
 BOOL SIBusy();
-BOOL SIIsChanBusy(int chan);
+BOOL SIIsChanBusy(s32 chan);
 
 BOOL SIRegisterPollingHandler(__OSInterruptHandler handler);
 BOOL SIUnregisterPollingHandler(__OSInterruptHandler handler);
 
 void SIInit(void);
-u32 SIGetStatus(int chan);
-void SISetCommand(int chan, u32 command);
+u32 SIGetStatus(s32 chan);
+void SISetCommand(s32 chan, u32 command);
 void SITransferCommands(void);
 u32 SISetXY(u32 x, u32 y);
 u32 SIEnablePolling(u32 poll);
 u32 SIDisablePolling(u32 poll);
-BOOL SIGetResponse(int chan, void* data);
-BOOL SITransfer(int chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback, OSTime delay);
-u32 SIGetType(int chan);
-u32 SIGetTypeAsync(int chan, SITypeAndStatusCallback callback);
+BOOL SIGetResponse(s32 chan, void* data);
+BOOL SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback, OSTime delay);
+u32 SIGetType(s32 chan);
+u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback);
 u32 SIDecodeType(u32 type);
-u32 SIProbe(int chan);
+u32 SIProbe(s32 chan);
 
 ////////////////////////////////////////////
 

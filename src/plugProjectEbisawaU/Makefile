@@ -40,7 +40,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiMainTitleMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleFog.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyBoss.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardEReader.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardEReader.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmake.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o\

@@ -23,9 +23,9 @@ static vu32 InputBufferVcount[SI_MAX_CHAN];
 u32 __PADFixBits;
 
 // forward-declared static functions.
-static BOOL __SITransfer(int chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback);
-static BOOL SIGetResponseRaw(int chan);
-static void GetTypeCallback(int chan, u32 error, OSContext* context);
+static BOOL __SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback);
+static BOOL SIGetResponseRaw(s32 chan);
+static void GetTypeCallback(s32 chan, u32 error, OSContext* context);
 
 // useful macros.
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
@@ -42,7 +42,7 @@ BOOL SIBusy() { return Si.chan != -1 ? TRUE : FALSE; }
  * Address:	800F4F1C
  * Size:	00003C
  */
-BOOL SIIsChanBusy(int chan) { return Packet[chan].chan != -1 || Si.chan == chan; }
+BOOL SIIsChanBusy(s32 chan) { return Packet[chan].chan != -1 || Si.chan == chan; }
 
 /*
  * --INFO--
@@ -121,7 +121,7 @@ static u32 CompleteTransfer(void)
  * Address:	........
  * Size:	0000F0
  */
-void SITransferNext(int chan)
+void SITransferNext(s32 chan)
 {
 	int i;
 	SIPacket* packet;
@@ -347,7 +347,7 @@ void SIInit(void)
  * Address:	800F58A4
  * Size:	00020C
  */
-static BOOL __SITransfer(int chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback)
+static BOOL __SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback)
 {
 	BOOL enabled;
 	u32 rLen;
@@ -418,11 +418,11 @@ u32 SISync(void)
  * Address:	800F5AB0
  * Size:	00007C
  */
-u32 SIGetStatus(int chan)
+u32 SIGetStatus(s32 chan)
 {
 	BOOL enabled;
 	u32 sr;
-	int chanShift;
+	s32 chanShift;
 
 	enabled = OSDisableInterrupts();
 
@@ -444,14 +444,14 @@ u32 SIGetStatus(int chan)
  * Address:	800F5B2C
  * Size:	000014
  */
-void SISetCommand(int chan, u32 command) { __SIRegs[3 * chan] = command; }
+void SISetCommand(s32 chan, u32 command) { __SIRegs[3 * chan] = command; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000014
  */
-u32 SIGetCommand(int chan) { return __SIRegs[3 * chan]; }
+u32 SIGetCommand(s32 chan) { return __SIRegs[3 * chan]; }
 
 /*
  * --INFO--
@@ -554,7 +554,7 @@ u32 SIDisablePolling(u32 poll)
  * Address:	800F5CC4
  * Size:	0000D4
  */
-static BOOL SIGetResponseRaw(int chan)
+static BOOL SIGetResponseRaw(s32 chan)
 {
 	u32 sr;
 
@@ -573,7 +573,7 @@ static BOOL SIGetResponseRaw(int chan)
  * Address:	800F5D98
  * Size:	0000C4
  */
-BOOL SIGetResponse(int chan, void* data)
+BOOL SIGetResponse(s32 chan, void* data)
 {
 	BOOL rc;
 	BOOL enabled;
@@ -615,7 +615,7 @@ static void AlarmHandler(OSAlarm* alarm, OSContext* context)
  * Address:	800F5EE8
  * Size:	00016C
  */
-BOOL SITransfer(int chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback, OSTime delay)
+BOOL SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback, OSTime delay)
 {
 	BOOL enabled;
 	SIPacket* packet = &Packet[chan];
@@ -659,7 +659,7 @@ BOOL SITransfer(int chan, void* output, u32 outputBytes, void* input, u32 inputB
  * Address:	........
  * Size:	000078
  */
-void CallTypeAndStatusCallback(int chan, u32 type)
+void CallTypeAndStatusCallback(s32 chan, u32 type)
 {
 	SITypeAndStatusCallback callback;
 	int i;
@@ -678,7 +678,7 @@ void CallTypeAndStatusCallback(int chan, u32 type)
  * Address:	800F6054
  * Size:	000298
  */
-static void GetTypeCallback(int chan, u32 error, OSContext* context)
+static void GetTypeCallback(s32 chan, u32 error, OSContext* context)
 {
 	static u32 cmdFixDevice[SI_MAX_CHAN];
 	u32 type;
@@ -748,7 +748,7 @@ static void GetTypeCallback(int chan, u32 error, OSContext* context)
  * Address:	800F62EC
  * Size:	0001C4
  */
-u32 SIGetType(int chan)
+u32 SIGetType(s32 chan)
 {
 	static u32 cmdTypeAndStatus;
 	BOOL enabled;
@@ -790,7 +790,7 @@ u32 SIGetType(int chan)
  * Address:	800F64B0
  * Size:	00013C
  */
-u32 SIGetTypeAsync(int chan, SITypeAndStatusCallback callback)
+u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback)
 {
 	BOOL enabled;
 	u32 type;
@@ -888,7 +888,7 @@ u32 SIDecodeType(u32 type)
  * Address:	800F6738
  * Size:	000024
  */
-u32 SIProbe(int chan) { return SIDecodeType(SIGetType(chan)); }
+u32 SIProbe(s32 chan) { return SIDecodeType(SIGetType(chan)); }
 
 /*
  * --INFO--

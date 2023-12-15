@@ -9,7 +9,7 @@ static const char name[] = "ebiCardEReader";
 namespace ebi {
 CardEReader::TMgr* gCardEMgr;
 namespace CardEReader {
-static char cInitialCode[4] = { 'P', 'S', 'A', 'J' };
+static u8 cInitialCode[4] = { 'P', 'S', 'A', 'J' };
 } // namespace CardEReader
 
 /*
@@ -28,10 +28,7 @@ void gCardEMgr_ThreadFunc(void* data)
  * Address:	........
  * Size:	000018
  */
-void CardEReader::changeEndian(u32)
-{
-	// UNUSED FUNCTION
-}
+u32 CardEReader::changeEndian(u32 x) { return ((x & 0xFF00) << 8) | (((x >> 24) & 0xFF) | ((x >> 8) & 0xFF00)) | ((x & 0xFF) << 24); }
 
 /*
  * --INFO--
@@ -58,277 +55,78 @@ void CardEReader::CardE_probeAGB()
  * Address:	803ECB9C
  * Size:	000274
  */
-bool CardEReader::CardE_uploadToGBA(long portIndex, u8* data, u32 size)
+bool CardEReader::CardE_uploadToGBA(s32 chan, u8* data, size_t size)
 {
-	// u8 flags1[4];
-	u8 flags2[4];
-	u32 sizeStore;
-	u8 val1;
+	u8 gameCode[4];
+	u8 sizeToGba[4];
+	u8 sizeFromGba[4];
+	u8 status[4];
 
-	if (GBAReset(portIndex, (u8*)&val1)) {
+	if (GBAReset(chan, status)) {
 		return false;
 	}
-	if (GBAGetStatus(portIndex, (u8*)&val1)) {
+	if (GBAGetStatus(chan, status)) {
 		return false;
 	}
-	if (val1 != 0x28) {
+	if (status[0] != 0x28) {
 		return false;
 	}
-	if (GBARead(portIndex, (u8*)flags2, (u8*)&val1)) {
+
+	if (GBARead(chan, gameCode, status)) {
 		return false;
 	}
+
 	for (int i = 0; i < 4; i++) {
-		if (flags2[i] != (u8)cInitialCode[i]) {
+		if (gameCode[i] != cInitialCode[i])
 			return false;
-		}
 	}
-	if (GBAGetStatus(portIndex, (u8*)&val1)) {
-		return false;
-	}
-	if (val1 != 0x20) {
-		return false;
-	}
-	if (GBAWrite(portIndex, (u8*)flags2, (u8*)&val1)) {
-		return false;
-	}
-	if (GBAGetStatus(portIndex, (u8*)&val1)) {
-		return false;
-	}
-	if (val1 != 0x30) {
+
+	if (GBAGetStatus(chan, status)) {
 		return false;
 	}
 
-	sizeStore = size;
-	if (GBAWrite(portIndex, (u8*)&sizeStore, (u8*)&val1)) {
-		return false;
-	}
-	if (GBARead(portIndex, (u8*)flags2, (u8*)&val1)) {
-		return false;
-	}
-	if (size != flags2[0]) {
+	if (status[0] != 0x20) {
 		return false;
 	}
 
-	for (int i = 0; i < size; i++) {
-		u8 flags4[4];
+	if (GBAWrite(chan, gameCode, status)) {
+		return false;
+	}
+
+	if (GBAGetStatus(chan, status)) {
+		return false;
+	}
+
+	if (status[0] != 0x30) {
+		return false;
+	}
+
+	*(u32*)sizeToGba = changeEndian(size);
+
+	if (GBAWrite(chan, sizeToGba, status)) {
+		return false;
+	} else if (GBARead(chan, sizeFromGba, status)) {
+		return false;
+	} else if (size != changeEndian(*(u32*)sizeFromGba)) {
+		return false;
+	}
+
+	for (int i = 0; i < size; i += 4) {
 		while (true) {
-			if (GBAGetStatus(portIndex, flags4)) {
+			if (GBAGetStatus(chan, status)) {
 				return false;
 			}
-			if (flags4[0] & 2)
+			if (!(status[0] & 2))
 				break;
-			if (flags4[0] & 0x30 != 0x30) {
+			if ((status[0] & 0x30) != 0x30) {
 				return false;
 			}
 		}
-		if (GBAWrite(portIndex, &data[i], flags4)) {
+		if (GBAWrite(chan, data + i, status)) {
 			return false;
 		}
 	}
 	return true;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r5
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	addi     r4, r1, 8
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	stw      r28, 0x20(r1)
-	bl       GBAReset
-	cmpwi    r3, 0
-	beq      lbl_803ECBDC
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECBDC:
-	mr       r3, r29
-	addi     r4, r1, 8
-	bl       GBAGetStatus
-	cmpwi    r3, 0
-	beq      lbl_803ECBF8
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECBF8:
-	lbz      r0, 8(r1)
-	cmplwi   r0, 0x28
-	beq      lbl_803ECC0C
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECC0C:
-	mr       r3, r29
-	addi     r4, r1, 0x14
-	addi     r5, r1, 8
-	bl       GBARead
-	cmpwi    r3, 0
-	beq      lbl_803ECC2C
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECC2C:
-	addi     r4, r13, cInitialCode__Q23ebi11CardEReader@sda21
-	lbz      r3, 0x14(r1)
-	lbz      r0, cInitialCode__Q23ebi11CardEReader@sda21(r13)
-	cmplw    r3, r0
-	beq      lbl_803ECC48
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECC48:
-	lbz      r3, 0x15(r1)
-	lbzu     r0, 1(r4)
-	cmplw    r3, r0
-	beq      lbl_803ECC60
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECC60:
-	lbz      r3, 0x16(r1)
-	lbzu     r0, 1(r4)
-	cmplw    r3, r0
-	beq      lbl_803ECC78
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECC78:
-	lbz      r3, 0x17(r1)
-	lbz      r0, 1(r4)
-	cmplw    r3, r0
-	beq      lbl_803ECC90
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECC90:
-	mr       r3, r29
-	addi     r4, r1, 8
-	bl       GBAGetStatus
-	cmpwi    r3, 0
-	beq      lbl_803ECCAC
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECCAC:
-	lbz      r0, 8(r1)
-	cmplwi   r0, 0x20
-	beq      lbl_803ECCC0
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECCC0:
-	mr       r3, r29
-	addi     r4, r1, 0x14
-	addi     r5, r1, 8
-	bl       GBAWrite
-	cmpwi    r3, 0
-	beq      lbl_803ECCE0
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECCE0:
-	mr       r3, r29
-	addi     r4, r1, 8
-	bl       GBAGetStatus
-	cmpwi    r3, 0
-	beq      lbl_803ECCFC
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECCFC:
-	lbz      r0, 8(r1)
-	cmplwi   r0, 0x30
-	beq      lbl_803ECD10
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECD10:
-	addi     r0, r1, 0x10
-	mr       r3, r29
-	stwbrx   r31, 0, r0
-	addi     r4, r1, 0x10
-	addi     r5, r1, 8
-	bl       GBAWrite
-	cmpwi    r3, 0
-	beq      lbl_803ECD38
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECD38:
-	mr       r3, r29
-	addi     r4, r1, 0xc
-	addi     r5, r1, 8
-	bl       GBARead
-	cmpwi    r3, 0
-	beq      lbl_803ECD58
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECD58:
-	lwz      r3, 0xc(r1)
-	rlwinm   r0, r3, 0x18, 0x10, 0x17
-	rlwimi   r0, r3, 8, 0x18, 0x1f
-	rlwimi   r0, r3, 8, 8, 0xf
-	rlwimi   r0, r3, 0x18, 0, 7
-	cmplw    r31, r0
-	beq      lbl_803ECD7C
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECD7C:
-	li       r28, 0
-	b        lbl_803ECDE4
-
-lbl_803ECD84:
-	mr       r3, r29
-	addi     r4, r1, 8
-	bl       GBAGetStatus
-	cmpwi    r3, 0
-	beq      lbl_803ECDA0
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECDA0:
-	lbz      r3, 8(r1)
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	beq      lbl_803ECDC0
-	rlwinm   r0, r3, 0, 0x1a, 0x1b
-	cmpwi    r0, 0x30
-	beq      lbl_803ECD84
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECDC0:
-	mr       r3, r29
-	add      r4, r30, r28
-	addi     r5, r1, 8
-	bl       GBAWrite
-	cmpwi    r3, 0
-	beq      lbl_803ECDE0
-	li       r3, 0
-	b        lbl_803ECDF0
-
-lbl_803ECDE0:
-	addi     r28, r28, 4
-
-lbl_803ECDE4:
-	cmplw    r28, r31
-	blt      lbl_803ECD84
-	li       r3, 1
-
-lbl_803ECDF0:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -403,7 +201,7 @@ void CardEReader::TMgr::init()
  * Address:	803ED03C
  * Size:	00001C
  */
-void CardEReader::TMgr::uploadToGBA(long data)
+void CardEReader::TMgr::uploadToGBA(s32 data)
 {
 	_38      = 1;
 	mState   = 1;

@@ -10,7 +10,7 @@ extern "C" {
 
 ////////// SI FUNCTIONS //////////
 // Basic serial functions.
-u32 SIProbe(int chan);
+u32 SIProbe(s32 chan);
 void SIRefreshSamplingRate();
 void SISetSamplingRate(u32 msec);
 

@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/exi.h"
 
-static int Chan;
+static s32 Chan;
 static u32 Dev;
 static u32 Enabled         = 0;
 static u32 BarnacleEnabled = 0;
@@ -11,7 +11,7 @@ static u32 BarnacleEnabled = 0;
  * Address:	800E1530
  * Size:	00018C
  */
-static BOOL ProbeBarnacle(int chan, u32 dev, u32* revision)
+static BOOL ProbeBarnacle(s32 chan, u32 dev, u32* revision)
 {
 	BOOL err;
 	u32 cmd;
@@ -51,7 +51,7 @@ static BOOL ProbeBarnacle(int chan, u32 dev, u32* revision)
  * Address:	800E16BC
  * Size:	0001BC
  */
-void __OSEnableBarnacle(int chan, u32 dev)
+void __OSEnableBarnacle(s32 chan, u32 dev)
 {
 	u32 id;
 

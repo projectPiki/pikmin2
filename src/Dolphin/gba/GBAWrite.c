@@ -5,7 +5,7 @@
  * Address:	800FEE64
  * Size:	000030
  */
-void WriteProc(int chan)
+void WriteProc(s32 chan)
 {
 	GBAControl* gba = &__GBA[chan];
 	if (gba->ret == 0) {
@@ -18,7 +18,7 @@ void WriteProc(int chan)
  * Address:	........
  * Size:	000094
  */
-int GBWriteAsync(int chan, u8* ptr, u8* statusPtr)
+int GBWriteAsync(s32 chan, u8* ptr, u8* statusPtr)
 {
 	GBAControl* gba = &__GBA[chan];
 	if (gba->callback) {
@@ -37,7 +37,7 @@ int GBWriteAsync(int chan, u8* ptr, u8* statusPtr)
  * Address:	800FEE94
  * Size:	0000C4
  */
-int GBAWrite(int chan, u8* ptr, u8* statusPtr)
+int GBAWrite(s32 chan, u8* ptr, u8* statusPtr)
 {
 	int _unused; // for stack size, probably commented out code
 	int status = GBWriteAsync(chan, ptr, statusPtr);

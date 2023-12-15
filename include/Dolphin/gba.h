@@ -11,8 +11,8 @@ extern "C" {
 
 /////////// GBA TYPES ////////////
 
-typedef void (*GBASyncCallback)(int chan, int ret);
-typedef void (*GBAProcHandler)(int chan);
+typedef void (*GBASyncCallback)(s32 chan, int ret);
+typedef void (*GBAProcHandler)(s32 chan);
 
 // Struct for SecParam (size 0x40).
 typedef struct GBASecParam {
@@ -72,16 +72,16 @@ typedef struct GBAControl {
 
 ///////// GBA FUNCTIONS //////////
 void GBAInit();
-BOOL __GBATransfer(int portIndex, u32, u32, GBAProcHandler);
-int __GBASync(int portIndex);
-void __GBASyncCallback(int portIndex, int);
+BOOL __GBATransfer(s32 portIndex, u32, u32, GBAProcHandler);
+int __GBASync(s32 portIndex);
+void __GBASyncCallback(s32 portIndex, int);
 BOOL OnReset();
-void ShortCommandProc(int portIndex);
-void ReadProc(int portIndex);
-int GBAReset(int portIndex, u8* p2);
-int GBAGetStatus(int portIndex, u8* p2);
-int GBARead(int portIndex, u8* p2, u8* p3);
-int GBAWrite(int portIndex, u8* p2, u8* p3);
+void ShortCommandProc(s32 portIndex);
+void ReadProc(s32 portIndex);
+int GBAReset(s32 portIndex, u8* p2);
+int GBAGetStatus(s32 portIndex, u8* p2);
+int GBARead(s32 portIndex, u8* p2, u8* p3);
+int GBAWrite(s32 portIndex, u8* p2, u8* p3);
 
 static inline GBAProcHandler getGBAHandler(GBAControl* gba) { return gba->proc; }
 

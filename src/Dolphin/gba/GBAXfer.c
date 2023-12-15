@@ -7,7 +7,7 @@
  * Address:	800FEF58
  * Size:	0000DC
  */
-static void __GBAHandler(int chan, u32 flag, OSContext* context)
+static void __GBAHandler(s32 chan, u32 flag, OSContext* context)
 {
 	GBASyncCallback syncCallback;
 	GBAProcHandler procHandler;
@@ -42,14 +42,14 @@ static void __GBAHandler(int chan, u32 flag, OSContext* context)
  * Address:	800FF034
  * Size:	000034
  */
-void __GBASyncCallback(int chan, int ret) { OSWakeupThread(&__GBA[chan].threadQueue); }
+void __GBASyncCallback(s32 chan, int ret) { OSWakeupThread(&__GBA[chan].threadQueue); }
 
 /*
  * --INFO--
  * Address:	800FF068
  * Size:	00006C
  */
-int __GBASync(int chan)
+int __GBASync(s32 chan)
 {
 	int result;
 	GBAControl* gba = &__GBA[chan];
@@ -67,7 +67,7 @@ int __GBASync(int chan)
  * Address:	800FF0D4
  * Size:	000124
  */
-static void TypeAndStatusCallback(int chan, u32 flags)
+static void TypeAndStatusCallback(s32 chan, u32 flags)
 {
 	GBAControl* gba = &__GBA[chan];
 	OSContext* osContext;
@@ -108,7 +108,7 @@ static void TypeAndStatusCallback(int chan, u32 flags)
  * Address:	800FF1F8
  * Size:	000074
  */
-BOOL __GBATransfer(int chan, u32 outputBytes, u32 inputBytes, GBAProcHandler gbaProcHandler)
+BOOL __GBATransfer(s32 chan, u32 outputBytes, u32 inputBytes, GBAProcHandler gbaProcHandler)
 {
 	u32 interruptsTemp;
 	GBAControl* gba = &__GBA[chan];

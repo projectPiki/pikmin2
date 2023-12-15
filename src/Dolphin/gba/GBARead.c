@@ -5,7 +5,7 @@
  * Address:	800FED70
  * Size:	000060
  */
-void ReadProc(int chan)
+void ReadProc(s32 chan)
 {
 	GBAControl* gba = &__GBA[chan];
 	if (gba->ret == 0) {
@@ -19,7 +19,7 @@ void ReadProc(int chan)
  * Address:	........
  * Size:	00006C
  */
-int GBAReadAsync(int chan, u8* ptr, u8* statusPtr)
+int GBAReadAsync(s32 chan, u8* ptr, u8* statusPtr)
 {
 	GBAControl* gba = &__GBA[chan];
 	if (gba->callback) {
@@ -37,7 +37,7 @@ int GBAReadAsync(int chan, u8* ptr, u8* statusPtr)
  * Address:	800FEDD0
  * Size:	000094
  */
-int GBARead(int chan, u8* ptr, u8* statusPtr)
+int GBARead(s32 chan, u8* ptr, u8* statusPtr)
 {
 	int _unused; // for stack size, probably commented out code
 	int status = GBAReadAsync(chan, ptr, statusPtr);

@@ -12,7 +12,7 @@ BOOL __GBAReset;
  * Address:	800FEB2C
  * Size:	000054
  */
-static void ShortCommandProc(int chan)
+static void ShortCommandProc(s32 chan)
 {
 	GBAControl* port = &__GBA[chan];
 	if (port->ret != 0) {
@@ -33,7 +33,7 @@ static void ShortCommandProc(int chan)
 void GBAInit(void)
 {
 	GBAControl* gba;
-	int chan;
+	s32 chan;
 
 	if (Initialized == FALSE) {
 		Initialized = TRUE;
@@ -58,7 +58,7 @@ void GBAInit(void)
  * Address:	........
  * Size:	000064
  */
-int GBAGetStatusAsync(int chan, u8* statusPtr)
+int GBAGetStatusAsync(s32 chan, u8* statusPtr)
 {
 	GBAControl* gba = &__GBA[chan];
 	if (gba->callback) {
@@ -76,7 +76,7 @@ int GBAGetStatusAsync(int chan, u8* statusPtr)
  * Address:	800FEC40
  * Size:	000090
  */
-int GBAGetStatus(int chan, u8* statusPtr)
+int GBAGetStatus(s32 chan, u8* statusPtr)
 {
 	int status = GBAGetStatusAsync(chan, statusPtr);
 	return (status != 0) ? status : __GBASync(chan);
@@ -87,7 +87,7 @@ int GBAGetStatus(int chan, u8* statusPtr)
  * Address:	........
  * Size:	000064
  */
-int GBAResetAsync(int chan, u8* statusPtr)
+int GBAResetAsync(s32 chan, u8* statusPtr)
 {
 	GBAControl* gba = &__GBA[chan];
 	if (gba->callback) {
@@ -105,7 +105,7 @@ int GBAResetAsync(int chan, u8* statusPtr)
  * Address:	800FECD0
  * Size:	000090
  */
-int GBAReset(int chan, u8* statusPtr)
+int GBAReset(s32 chan, u8* statusPtr)
 {
 	int status = GBAResetAsync(chan, statusPtr);
 	return (status != 0) ? status : __GBASync(chan);

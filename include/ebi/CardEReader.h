@@ -12,10 +12,10 @@ namespace ebi {
 void gCardEMgr_ThreadFunc(void*);
 
 namespace CardEReader {
-void changeEndian(u32);
+u32 changeEndian(u32 x);
 void roundup4b(u32);
 void CardE_probeAGB();
-bool CardE_uploadToGBA(long, u8*, u32);
+bool CardE_uploadToGBA(s32 chan, u8* data, size_t size);
 
 struct TMgr : public JKRDisposer {
 	enum enumErr { Error_0, Error_1, Error_2 };
@@ -33,7 +33,7 @@ struct TMgr : public JKRDisposer {
 	static void globalInstance();
 	void loadResource();
 	void init();
-	void uploadToGBA(long);
+	void uploadToGBA(s32);
 	void probeAGB();
 	void update();
 	bool isFinish();

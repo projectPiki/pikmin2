@@ -423,7 +423,7 @@ u32 PADRead(PADStatus* status)
 	u32 data[2];
 	u32 chanBit;
 	u32 sr;
-	int chanShift;
+	s32 chanShift;
 	u32 motor;
 
 	enabled = OSDisableInterrupts();
@@ -528,7 +528,7 @@ u32 PADRead(PADStatus* status)
 void PADControlAllMotors(u32* commandArray)
 {
 	BOOL enabled;
-	int chan;
+	s32 chan;
 	u32 command;
 	BOOL commit;
 	u32 chanBit;
