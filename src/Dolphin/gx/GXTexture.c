@@ -10,6 +10,8 @@ u8 GXTexTlutIds[8]   = { 0x98, 0x99, 0x9a, 0x9b, 0xB8, 0xB9, 0xBa, 0xBb };
 
 u8 GX2HWFiltConv[6] = { 0x00, 0x04, 0x01, 0x05, 0x02, 0x06 };
 
+#define GET_TILE_COUNT(a, b) (((a) + (1 << (b)) - 1) >> (b))
+
 /*
  * --INFO--
  * Address:	........
@@ -68,7 +70,55 @@ inline void __GXGetTexTileShift(u32 format, u32* widthTiles, u32* heightTiles)
  */
 u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_lod)
 {
+	u32 widthTiles, heightTiles, iVar4, iVar6;
+	__GXGetTexTileShift(format, &widthTiles, &heightTiles);
 
+	if (format == 6 || format == 0x16)
+	{
+		iVar4 = 0x40;
+	}
+	else 
+	{
+		iVar4 = 0x20;
+	}
+
+	if (mipmap == GX_TRUE)
+	{
+		int i;
+		iVar6 = 0;
+		for (i = max_lod; i > 0; i -= 1)
+		{
+			iVar6 += iVar4 * (GET_TILE_COUNT(width, widthTiles) * GET_TILE_COUNT(height, heightTiles));
+			if (width == 1 && height == 1)
+			{
+				break;
+			}
+
+			if (width > 1)
+			{
+				width = width >> 1;
+			}
+			else 
+			{
+				width = 1;
+			}
+
+			if (height > 1)
+			{
+				height = height >> 1;
+			}
+			else 
+			{
+				height = 1;
+			}
+		}
+	}
+	else
+	{
+		iVar6 = iVar4 * (GET_TILE_COUNT(width, widthTiles) * GET_TILE_COUNT(height, heightTiles));
+	}
+
+	return iVar6;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x28(r1)
@@ -192,7 +242,6 @@ u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_
  * Address:	800E70B4
  * Size:	0000C8
  */
-#define GET_TILE_COUNT(a, b) (((a) + (1 << (b)) - 1) >> (b))
 void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b, u32* c)
 {
 	u32 widthTiles, heightTiles, var_r0;
@@ -1467,18 +1516,23 @@ void GXSetTexCoordBias(void)
  * Address:	800E79D0
  * Size:	0000A0
  */
-static void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
+void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
 {
-	u32 a, b, c;
+	u16 a1, a2;
+	GXBool b, c;
 
-	a = gx->tImage0[texImgIndex];
-	GX_SET_REG(gx->suTs0[setUpRegIndex], (a >> 0) & 0x3ff, 16, 31);
-	GX_SET_REG(gx->suTs1[setUpRegIndex], (a >> 10) & 0x3ff, 16, 31);
-	b = __cntlzw(1 - (gx->tMode0[texImgIndex] >> 0 & 3));
-	c = __cntlzw(1 - (gx->tMode0[texImgIndex] >> 2 & 3));
+	a1 = GX_GET_REG(gx->tImage0[texImgIndex], 22, 31);
+	// a2 = GX_GET_REG(gx->tImage0[texImgIndex], 12, 21);
+	a2 = gx->tImage0[texImgIndex] >> 10;
 
-	GX_SET_REG(gx->suTs0[setUpRegIndex], b >> 5, 15, 15);
-	GX_SET_REG(gx->suTs1[setUpRegIndex], c >> 5, 15, 15);
+	GX_SET_REG(gx->suTs0[setUpRegIndex], a1, 16, 31);
+	GX_SET_REG(gx->suTs1[setUpRegIndex], a2, 16, 31);
+	
+	b = GX_GET_REG(gx->tMode0[texImgIndex], 30, 31) == 1;
+	c = GX_GET_REG(gx->tMode0[texImgIndex], 28, 29) == 1;
+
+	GX_SET_REG(gx->suTs0[setUpRegIndex], b, 15, 15);
+	GX_SET_REG(gx->suTs1[setUpRegIndex], c, 15, 15);
 
 	GX_BP_LOAD_REG(gx->suTs0[setUpRegIndex]);
 	GX_BP_LOAD_REG(gx->suTs1[setUpRegIndex]);
@@ -1536,49 +1590,48 @@ static void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
  */
 static void __GXSetSUTexRegs(void)
 {
-	// if (gx->tcsManEnab != 0xff)
-	// {
-	// 	u32 a, b;
-	// 	u32 c, d;
-	// 	int i;
-	// 	a = gx->genMode;
-	// 	b = gx->genMode;
-	// 	for (i = 0; i < ((b >> 0x10) & 7); i++)
-	// 	{
-	// 		switch (i)
-	// 		{
-	// 			case 0:
-	// 				c = gx->iref >> 0x00 & 7;
-	// 				d = gx->iref >> 0x03 & 7;
-	// 				break;
-	// 			case 1:
-	// 				c = gx->iref >> 0x06 & 7;
-	// 				d = gx->iref >> 0x09 & 7;
-	// 				break;
-	// 			case 2:
-	// 				c = gx->iref >> 0x0c & 7;
-	// 				d = gx->iref >> 0x0f & 7;
-	// 				break;
-	// 			case 3:
-	// 				c = gx->iref >> 0x12 & 7;
-	// 				d = gx->iref >> 0x15 & 7;
-	// 				break;
-	// 		}
+	if (gx->tcsManEnab != 0xff)
+	{
+		u32 c, d;
+		int i;
+		u32 a = gx->genMode;
+		u32 b = gx->genMode;
+		for (i = 0; i < ((b >> 0x10) & 7); i++)
+		{
+			switch (i)
+			{
+				case 0:
+					c = GX_GET_REG(gx->iref, 29, 31);
+					d = GX_GET_REG(gx->iref, 26, 28);
+					break;
+				case 1:
+					c = GX_GET_REG(gx->iref, 23, 25);
+					d = GX_GET_REG(gx->iref, 20, 22);
+					break;
+				case 2:
+					c = GX_GET_REG(gx->iref, 17, 19);
+					d = GX_GET_REG(gx->iref, 14, 16);
+					break;
+				case 3:
+					c = GX_GET_REG(gx->iref, 11, 13);
+					d = GX_GET_REG(gx->iref, 8, 10);
+					break;
+			}
 
-	// 		if ((gx->genMode & (1 << d)) == 0)
-	// 		{
-	// 			__SetSURegs(c, d);
-	// 		}
-	// 	}
+			if ((gx->tcsManEnab & (1 << d)) == 0)
+			{
+				__SetSURegs(c, d);
+			}
+		}
 
-	// 	for (i = 0; i < ((b >> 0x10) & 0xf); i++)
-	// 	{
-	// 		if ((gx->genMode & (1 << d)) == 0)
-	// 		{
-	// 			__SetSURegs(c, d);
-	// 		}
-	// 	}
-	// }
+		for (i = 0; i < ((b >> 0x10) & 0xf); i++)
+		{
+			if ((gx->genMode & (1 << d)) == 0)
+			{
+				__SetSURegs(c, d);
+			}
+		}
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1726,308 +1779,85 @@ void __GXGetSUTexSize(void)
  */
 void __GXSetTmemConfig(u32 config)
 {
-	switch (config) {
-	case 1:
-	case 2:
-		GX_BP_LOAD_REG(0x8c0d8000);
-		GX_BP_LOAD_REG(0x900dc000);
+	switch (config)
+	{
+		case 2:
+			GX_BP_LOAD_REG(0x8c0d8000);
+			GX_BP_LOAD_REG(0x900dc000);
 
-		GX_BP_LOAD_REG(0x8d0d8800);
-		GX_BP_LOAD_REG(0x910dc800);
+			GX_BP_LOAD_REG(0x8d0d8800);
+			GX_BP_LOAD_REG(0x910dc800);
 
-		GX_BP_LOAD_REG(0x8e0d9000);
-		GX_BP_LOAD_REG(0x920dd000);
+			GX_BP_LOAD_REG(0x8e0d9000);
+			GX_BP_LOAD_REG(0x920dd000);
+			
+			GX_BP_LOAD_REG(0x8f0d9800);
+			GX_BP_LOAD_REG(0x930dd800);
 
-		GX_BP_LOAD_REG(0x8f0d9800);
-		GX_BP_LOAD_REG(0x930dd800);
+			GX_BP_LOAD_REG(0xac0da000);
+			GX_BP_LOAD_REG(0xb00dc400);
 
-		GX_BP_LOAD_REG(0xac0da000);
-		GX_BP_LOAD_REG(0xb00dc400);
+			GX_BP_LOAD_REG(0xad0da800);
+			GX_BP_LOAD_REG(0xb10dcc00);
 
-		GX_BP_LOAD_REG(0xad0da800);
-		GX_BP_LOAD_REG(0xb10dcc00);
+			GX_BP_LOAD_REG(0xae0db000);
+			GX_BP_LOAD_REG(0xb20dd400);
 
-		GX_BP_LOAD_REG(0xae0db000);
-		GX_BP_LOAD_REG(0xb20dd400);
+			GX_BP_LOAD_REG(0xaf0db800);
+			GX_BP_LOAD_REG(0xb30ddc00);
+			break;
+		case 1:
+			GX_BP_LOAD_REG(0x8c0d8000);
+			GX_BP_LOAD_REG(0x900dc000);
 
-		GX_BP_LOAD_REG(0xaf0db800);
-		GX_BP_LOAD_REG(0xb30ddc00);
-		break;
-	case 3:
-		GX_BP_LOAD_REG(0x8c0d8000);
-		GX_BP_LOAD_REG(0x900dc000);
+			GX_BP_LOAD_REG(0x8d0d8800);
+			GX_BP_LOAD_REG(0x910dc800);
 
-		GX_BP_LOAD_REG(0x8d0d8800);
-		GX_BP_LOAD_REG(0x910dc800);
+			GX_BP_LOAD_REG(0x8e0d9000);
+			GX_BP_LOAD_REG(0x920dd000);
+			
+			GX_BP_LOAD_REG(0x8f0d9800);
+			GX_BP_LOAD_REG(0x930dd800);
 
-		GX_BP_LOAD_REG(0x8e0d9000);
-		GX_BP_LOAD_REG(0x920dd000);
+			GX_BP_LOAD_REG(0xac0da000);
+			GX_BP_LOAD_REG(0xb00de000);
 
-		GX_BP_LOAD_REG(0x8f0d9800);
-		GX_BP_LOAD_REG(0x930dd800);
+			GX_BP_LOAD_REG(0xad0da800);
+			GX_BP_LOAD_REG(0xb10de800);
 
-		GX_BP_LOAD_REG(0xac0da000);
-		GX_BP_LOAD_REG(0xb00de000);
+			GX_BP_LOAD_REG(0xae0db000);
+			GX_BP_LOAD_REG(0xb20df000);
 
-		GX_BP_LOAD_REG(0xad0da800);
-		GX_BP_LOAD_REG(0xb10de800);
+			GX_BP_LOAD_REG(0xaf0db800);
+			GX_BP_LOAD_REG(0xb30df800);
+			
+			break;
+		case 0:
+		default:
+			GX_BP_LOAD_REG(0x8c0d8000);
+			GX_BP_LOAD_REG(0x900dc000);
 
-		GX_BP_LOAD_REG(0xae0db000);
-		GX_BP_LOAD_REG(0xb20df000);
+			GX_BP_LOAD_REG(0x8d0d8400);
+			GX_BP_LOAD_REG(0x910dc400);
 
-		GX_BP_LOAD_REG(0xaf0db800);
-		GX_BP_LOAD_REG(0xb30df800);
+			GX_BP_LOAD_REG(0x8e0d8800);
+			GX_BP_LOAD_REG(0x920dc800);
+			
+			GX_BP_LOAD_REG(0x8f0d8c00);
+			GX_BP_LOAD_REG(0x930dcc00);
 
-		break;
-	default:
-		GX_BP_LOAD_REG(0x8c0d8000);
-		GX_BP_LOAD_REG(0x900dc000);
+			GX_BP_LOAD_REG(0xac0d9000);
+			GX_BP_LOAD_REG(0xb00dd000);
 
-		GX_BP_LOAD_REG(0x8d0d8400);
-		GX_BP_LOAD_REG(0x910dc400);
+			GX_BP_LOAD_REG(0xad0d9400);
+			GX_BP_LOAD_REG(0xb10dd400);
 
-		GX_BP_LOAD_REG(0x8e0d8800);
-		GX_BP_LOAD_REG(0x920dc800);
+			GX_BP_LOAD_REG(0xae0d9800);
+			GX_BP_LOAD_REG(0xb20dd800);
 
-		GX_BP_LOAD_REG(0x8f0d8c00);
-		GX_BP_LOAD_REG(0x930dcc00);
-
-		GX_BP_LOAD_REG(0xac0d9000);
-		GX_BP_LOAD_REG(0xb00dd000);
-
-		GX_BP_LOAD_REG(0xad0d9400);
-		GX_BP_LOAD_REG(0xb10dd400);
-
-		GX_BP_LOAD_REG(0xae0d9800);
-		GX_BP_LOAD_REG(0xb20dd800);
-
-		GX_BP_LOAD_REG(0xaf0d9c00);
-		GX_BP_LOAD_REG(0xb30ddc00);
-
-		break;
+			GX_BP_LOAD_REG(0xaf0d9c00);
+			GX_BP_LOAD_REG(0xb30ddc00);
+			
+			break;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x18(r1)
-	  cmpwi     r3, 0x1
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  beq-      .loc_0x130
-	  bge-      .loc_0x1C
-	  b         .loc_0x23C
-
-	.loc_0x1C:
-	  cmpwi     r3, 0x3
-	  bge-      .loc_0x23C
-	  li        r0, 0x61
-	  lis       r3, 0xCC01
-	  lis       r4, 0x8C0E
-	  stb       r0, -0x8000(r3)
-	  subi      r4, r4, 0x8000
-	  stw       r4, -0x8000(r3)
-	  lis       r4, 0x900E
-	  lis       r7, 0x8D0E
-	  stb       r0, -0x8000(r3)
-	  subi      r4, r4, 0x4000
-	  lis       r6, 0x910E
-	  stw       r4, -0x8000(r3)
-	  lis       r5, 0x8E0E
-	  lis       r4, 0x920E
-	  stb       r0, -0x8000(r3)
-	  subi      r7, r7, 0x7800
-	  lis       r30, 0x8F0E
-	  stw       r7, -0x8000(r3)
-	  lis       r12, 0x930E
-	  lis       r11, 0xAC0E
-	  stb       r0, -0x8000(r3)
-	  subi      r6, r6, 0x3800
-	  lis       r10, 0xB00E
-	  stw       r6, -0x8000(r3)
-	  lis       r9, 0xAD0E
-	  lis       r8, 0xB10E
-	  stb       r0, -0x8000(r3)
-	  subi      r5, r5, 0x7000
-	  lis       r7, 0xAE0E
-	  stw       r5, -0x8000(r3)
-	  lis       r6, 0xB20E
-	  lis       r5, 0xAF0E
-	  stb       r0, -0x8000(r3)
-	  subi      r31, r4, 0x3000
-	  lis       r4, 0xB30E
-	  stw       r31, -0x8000(r3)
-	  subi      r30, r30, 0x6800
-	  subi      r12, r12, 0x2800
-	  stb       r0, -0x8000(r3)
-	  subi      r11, r11, 0x6000
-	  subi      r10, r10, 0x3C00
-	  stw       r30, -0x8000(r3)
-	  subi      r9, r9, 0x5800
-	  subi      r8, r8, 0x3400
-	  stb       r0, -0x8000(r3)
-	  subi      r7, r7, 0x5000
-	  subi      r6, r6, 0x2C00
-	  stw       r12, -0x8000(r3)
-	  subi      r5, r5, 0x4800
-	  subi      r4, r4, 0x2400
-	  stb       r0, -0x8000(r3)
-	  stw       r11, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r10, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r9, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r8, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r7, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r6, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r5, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r4, -0x8000(r3)
-	  b         .loc_0x344
-
-	.loc_0x130:
-	  li        r0, 0x61
-	  lis       r3, 0xCC01
-	  lis       r4, 0x8C0E
-	  stb       r0, -0x8000(r3)
-	  subi      r4, r4, 0x8000
-	  stw       r4, -0x8000(r3)
-	  lis       r4, 0x900E
-	  lis       r7, 0x8D0E
-	  stb       r0, -0x8000(r3)
-	  subi      r4, r4, 0x4000
-	  lis       r6, 0x910E
-	  stw       r4, -0x8000(r3)
-	  lis       r5, 0x8E0E
-	  lis       r4, 0x920E
-	  stb       r0, -0x8000(r3)
-	  subi      r7, r7, 0x7800
-	  lis       r30, 0x8F0E
-	  stw       r7, -0x8000(r3)
-	  lis       r12, 0x930E
-	  lis       r11, 0xAC0E
-	  stb       r0, -0x8000(r3)
-	  subi      r6, r6, 0x3800
-	  lis       r10, 0xB00E
-	  stw       r6, -0x8000(r3)
-	  lis       r9, 0xAD0E
-	  lis       r8, 0xB10E
-	  stb       r0, -0x8000(r3)
-	  subi      r5, r5, 0x7000
-	  lis       r7, 0xAE0E
-	  stw       r5, -0x8000(r3)
-	  lis       r6, 0xB20E
-	  lis       r5, 0xAF0E
-	  stb       r0, -0x8000(r3)
-	  subi      r31, r4, 0x3000
-	  lis       r4, 0xB30E
-	  stw       r31, -0x8000(r3)
-	  subi      r30, r30, 0x6800
-	  subi      r12, r12, 0x2800
-	  stb       r0, -0x8000(r3)
-	  subi      r11, r11, 0x6000
-	  subi      r10, r10, 0x2000
-	  stw       r30, -0x8000(r3)
-	  subi      r9, r9, 0x5800
-	  subi      r8, r8, 0x1800
-	  stb       r0, -0x8000(r3)
-	  subi      r7, r7, 0x5000
-	  subi      r6, r6, 0x1000
-	  stw       r12, -0x8000(r3)
-	  subi      r5, r5, 0x4800
-	  subi      r4, r4, 0x800
-	  stb       r0, -0x8000(r3)
-	  stw       r11, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r10, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r9, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r8, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r7, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r6, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r5, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r4, -0x8000(r3)
-	  b         .loc_0x344
-
-	.loc_0x23C:
-	  li        r0, 0x61
-	  lis       r3, 0xCC01
-	  lis       r4, 0x8C0E
-	  stb       r0, -0x8000(r3)
-	  subi      r4, r4, 0x8000
-	  stw       r4, -0x8000(r3)
-	  lis       r4, 0x900E
-	  lis       r7, 0x8D0E
-	  stb       r0, -0x8000(r3)
-	  subi      r4, r4, 0x4000
-	  lis       r6, 0x910E
-	  stw       r4, -0x8000(r3)
-	  lis       r5, 0x8E0E
-	  lis       r4, 0x920E
-	  stb       r0, -0x8000(r3)
-	  subi      r7, r7, 0x7C00
-	  lis       r31, 0x8F0E
-	  stw       r7, -0x8000(r3)
-	  lis       r12, 0x930E
-	  lis       r11, 0xAC0E
-	  stb       r0, -0x8000(r3)
-	  subi      r6, r6, 0x3C00
-	  lis       r10, 0xB00E
-	  stw       r6, -0x8000(r3)
-	  lis       r9, 0xAD0E
-	  lis       r8, 0xB10E
-	  stb       r0, -0x8000(r3)
-	  subi      r5, r5, 0x7800
-	  lis       r7, 0xAE0E
-	  stw       r5, -0x8000(r3)
-	  lis       r6, 0xB20E
-	  lis       r5, 0xAF0E
-	  stb       r0, -0x8000(r3)
-	  subi      r30, r4, 0x3800
-	  lis       r4, 0xB30E
-	  stw       r30, -0x8000(r3)
-	  subi      r31, r31, 0x7400
-	  subi      r12, r12, 0x3400
-	  stb       r0, -0x8000(r3)
-	  subi      r11, r11, 0x7000
-	  subi      r10, r10, 0x3000
-	  stw       r31, -0x8000(r3)
-	  subi      r9, r9, 0x6C00
-	  subi      r8, r8, 0x2C00
-	  stb       r0, -0x8000(r3)
-	  subi      r7, r7, 0x6800
-	  subi      r6, r6, 0x2800
-	  stw       r12, -0x8000(r3)
-	  subi      r5, r5, 0x6400
-	  subi      r4, r4, 0x2400
-	  stb       r0, -0x8000(r3)
-	  stw       r11, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r10, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r9, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r8, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r7, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r6, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r5, -0x8000(r3)
-	  stb       r0, -0x8000(r3)
-	  stw       r4, -0x8000(r3)
-
-	.loc_0x344:
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  blr
-	*/
 }
