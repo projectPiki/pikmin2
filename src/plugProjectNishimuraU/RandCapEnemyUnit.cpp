@@ -91,7 +91,7 @@ void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* mapTile, int spawnType)
 			if (tekiCount_1 > mEnemyCounts[spawnType]) {
 				int setCount = 1; // default to 1
 				                  // if teki type is 0 and we have room for another, make it 2
-				if ((tekiInfo->mType == BaseGen::TekiA__Easy) && ((tekiCount_1 - mEnemyCounts[spawnType]) > 1)) {
+				if ((tekiInfo->mType == BaseGen::CGT_TekiEasy) && ((tekiCount_1 - mEnemyCounts[spawnType]) > 1)) {
 					setCount = 2;
 				}
 				// set the cap enemy
@@ -117,7 +117,7 @@ void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* mapTile, int spawnType)
 			if (tekiCount_2 > randWeight) {
 				int setCount = 1; // default to 1
 				                  // if teki type is 0, we can place more, so make it 2
-				if (tekiInfo->mType == BaseGen::TekiA__Easy) {
+				if (tekiInfo->mType == BaseGen::CGT_TekiEasy) {
 					setCount = 2;
 				}
 				// set the cap enemy

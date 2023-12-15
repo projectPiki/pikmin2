@@ -28,7 +28,7 @@ BaseGen::BaseGen()
 	mAngle     = 0.0f;
 	mMinimum   = 1;
 	mMaximum   = 1;
-	mSpawnType = TekiA__Easy;
+	mSpawnType = CGT_TekiEasy;
 }
 
 /*
@@ -41,7 +41,7 @@ void BaseGen::read(Stream& stream)
 	int childCount = stream.readInt();
 	for (int i = 0; i < childCount; i++) {
 		BaseGen* child    = new BaseGen();
-		child->mSpawnType = (BaseGen::Type)stream.readInt();
+		child->mSpawnType = (BaseGen::CaveGenType)stream.readInt();
 		child->mPosition.read(stream);
 		child->mAngle   = stream.readFloat();
 		child->mRadius  = stream.readFloat();
@@ -132,7 +132,7 @@ void TekiInfo::read(Stream& stream)
 
 	parsedIntValue = stream.readInt();
 	mWeight        = parsedIntValue;
-	mType          = (BaseGen::Type)stream.readInt();
+	mType          = (BaseGen::CaveGenType)stream.readInt();
 	inputPtr       = generalEnemyMgr->getEnemyName(mEnemyID, 4);
 	mName          = inputPtr;
 	return;
@@ -1528,13 +1528,15 @@ blr
  * Address:	801D7080
  * Size:	000044
  */
-bool FloorInfo::hasEscapeFountain(int p1)
+bool FloorInfo::hasEscapeFountain(int floorIndex)
 {
 	bool hasEscapeFountain = mParms.mHasEscapeFountain == 1;
-	if (p1 == -1) {
+
+	if (floorIndex == -1) {
 		return hasEscapeFountain;
 	}
-	if (hasEscapeFountain && p1 == mParms.mFloorIndex2) {
+
+	if (hasEscapeFountain && floorIndex == mParms.mFloorIndex2) {
 		return true;
 	}
 	return false;

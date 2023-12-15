@@ -344,9 +344,9 @@ void MapNode::setEnemyScore()
 		BaseGen* gen     = enemy->mSpawn;
 		int score        = 0;
 		if (gen) {
-			if (gen->mSpawnType == BaseGen::TekiA__Easy) {
+			if (gen->mSpawnType == BaseGen::CGT_TekiEasy) {
 				score = 2;
-			} else if (gen->mSpawnType == BaseGen::TekiB__Hard) {
+			} else if (gen->mSpawnType == BaseGen::CGT_TekiHard) {
 				score = 10;
 			}
 		}

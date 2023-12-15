@@ -157,7 +157,7 @@ bool Cave::MapUnitGenerator::isCreateList(Game::MapUnitInterface* interface)
 	if (spawn) {
 		FOREACH_NODE(BaseGen, spawn->mChild, currSpawn)
 		{
-			if (currSpawn->mSpawnType == BaseGen::Start) {
+			if (currSpawn->mSpawnType == BaseGen::CGT_Start) {
 				return true;
 			}
 		}
@@ -276,6 +276,7 @@ void MapUnitGenerator::createCapEnemyList()
 bool MapUnitGenerator::isPomGroup(TekiInfo* tekiInfo)
 {
 	EnemyTypeID::EEnemyTypeID id = tekiInfo->mEnemyID;
+
 	if ((id == EnemyTypeID::EnemyID_Pom) ||       // candypop base type
 	    (id == EnemyTypeID::EnemyID_BluePom) ||   // blue candypop
 	    (id == EnemyTypeID::EnemyID_RedPom) ||    // red candypop

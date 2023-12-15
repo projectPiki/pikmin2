@@ -401,7 +401,7 @@ void RandMapScore::setChallengePod()
 
 				FOREACH_NODE(BaseGen, gen->mChild, currGen)
 				{
-					if (currGen->mSpawnType == BaseGen::Start) {
+					if (currGen->mSpawnType == BaseGen::CGT_Start) {
 						genList[counter] = currGen;
 						counter++;
 					}
@@ -468,7 +468,7 @@ MapNode* RandMapScore::getMaxScoreRoomMapNode(MapNode* mapNode, BaseGen** maxSco
 			if (gen) {
 				FOREACH_NODE(BaseGen, gen->mChild, currGen)
 				{
-					if (currGen->mSpawnType == BaseGen::Start) {
+					if (currGen->mSpawnType == BaseGen::CGT_Start) {
 						if (nodeScore > maxScore || (nodeScore == maxScore && randWeightFloat(1.0f) < 0.5f)) {
 							*maxScoreGen = currGen;
 							maxScoreNode = currNode;
@@ -896,7 +896,7 @@ void RandMapScore::setChallengeFixObjNormal()
 								if (gen) {
 									FOREACH_NODE(BaseGen, gen->mChild, currGen)
 									{
-										if (currGen->mSpawnType == BaseGen::HoleOrGeyser && isFixObjSet(currNode, currGen)) {
+										if (currGen->mSpawnType == BaseGen::CGT_HoleOrGeyser && isFixObjSet(currNode, currGen)) {
 											scoreList[counter] = score;
 											tally += scoreList[counter];
 											mapList[counter] = currNode;
@@ -1272,7 +1272,7 @@ void RandMapScore::setChallengeFixObjHard()
 								if (gen) {
 									FOREACH_NODE(BaseGen, gen->mChild, currGen)
 									{
-										if (currGen->mSpawnType == BaseGen::HoleOrGeyser && isFixObjSet(currNode, currGen)) {
+										if (currGen->mSpawnType == BaseGen::CGT_HoleOrGeyser && isFixObjSet(currNode, currGen)) {
 											if (score >= maxScore) {
 												if (score > maxScore) {
 													counter  = 0;

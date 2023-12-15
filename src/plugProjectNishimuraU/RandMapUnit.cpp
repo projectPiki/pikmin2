@@ -93,7 +93,6 @@ void EditMapUnit::setEditNumber(int editNo)
 
 	if (mEditCount > 0) {
 		if (editNo >= 0) {
-			// make 0 <= editNo < _04
 			int ceil = mEditCount - 1;
 			if (editNo < 0) {
 				editNo = 0;
@@ -981,7 +980,7 @@ MapNode* RandMapUnit::getFirstMapUnit()
 		if (gen) {
 			FOREACH_NODE(BaseGen, gen->mChild, currGen)
 			{
-				if (currGen->mSpawnType == BaseGen::Start) {
+				if (currGen->mSpawnType == BaseGen::CGT_Start) {
 					currNode->setOffset(0, 0);
 					return currNode;
 				}
@@ -1038,7 +1037,7 @@ MapNode* RandMapUnit::getNormalRandMapUnit()
  * Address:	80246CF8
  * Size:	0000C8
  */
-void RandMapUnit::setUnitKindOrder(MapNode* node, int* list)
+void RandMapUnit::setUnitKindOrder(MapNode* node, int* unitList)
 {
 	f32 ratio = mRouteRatio;
 
@@ -1050,13 +1049,13 @@ void RandMapUnit::setUnitKindOrder(MapNode* node, int* list)
 		ratio *= 2.0f;
 	}
 
-	list[2] = UNITKIND_Cap;
+	unitKindList[2] = UNITKIND_Cap;
 	if (randWeightFloat(1.0f) < ratio) {
-		list[0] = UNITKIND_Corridor;
-		list[1] = UNITKIND_Room;
+		unitKindList[0] = UNITKIND_Corridor;
+		unitKindList[1] = UNITKIND_Room;
 	} else {
-		list[0] = UNITKIND_Room;
-		list[1] = UNITKIND_Corridor;
+		unitKindList[0] = UNITKIND_Room;
+		unitKindList[1] = UNITKIND_Corridor;
 	}
 }
 
@@ -1580,18 +1579,19 @@ lbl_8024742C:
  * Address:	80247440
  * Size:	0000C8
  */
-MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& b, int& c, int d)
+MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& doorOffsetX, int& doorOffsetY, int targetDoorCount)
 {
 	int counter = 0;
 
 	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currTile)
 	{
+		// INTNS: shouldn't this just be a for loop?
 		doorIdx = 0; // this line is the jank one. registers line up if you do doorIdx = counter, but that's wrong
 		while (doorIdx < currTile->getNumDoors()) {
 			if (!currTile->isDoorClose(doorIdx)) {
-				if (counter == d) {
+				if (counter == targetDoorCount) {
 					currTile->getDoorNode(doorIdx);
-					currTile->getDoorOffset(doorIdx, b, c);
+					currTile->getDoorOffset(doorIdx, doorOffsetX, doorOffsetY);
 					return currTile;
 				}
 				counter++;
@@ -2641,7 +2641,7 @@ int RandMapUnit::getOpenDoorNum()
  * Address:	80248008
  * Size:	0000B4
  */
-void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool check)
+void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool updatePriority)
 {
 	MapNode* newTile = new MapNode(info);
 	if (newTile) {
@@ -2650,7 +2650,7 @@ void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool check)
 		mGenerator->mPlacedMapNodes->add(newTile);
 	}
 
-	if (check) {
+	if (updatePriority) {
 		closeDoorCheck();
 		moveCentre();
 		changeMapPriority(info);

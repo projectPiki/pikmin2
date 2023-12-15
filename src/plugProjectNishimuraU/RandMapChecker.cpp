@@ -193,7 +193,7 @@ bool RandMapChecker::isPartsOnDoor(MapNode* mapnode)
  * --INFO--
  * Address:	80245BE0
  * Size:	00007C
- * Matches!
+ *
  */
 bool RandMapChecker::isInnerBox(int outerX1, int outerY1, int outerX2, int outerY2, int innerX1, int innerY1, int innerX2, int innerY2)
 {

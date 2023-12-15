@@ -32,33 +32,33 @@ struct BaseGen : public CNode {
 	 * UNUSED_3 is player 1 spawn in vs mode? (see
 	 * Game::Cave::RandMapMgr::getStartPosition)
 	 */
-	enum Type {
-		TekiA__Easy    = 0,
-		TekiB__Hard    = 1,
-		Treasure__Item = 2,
-		Unused3        = 3,
-		HoleOrGeyser   = 4,
-		Seam__Door     = 5,
-		Plant          = 6,
-		Start          = 7,
-		TekiF__Special = 8,
-		Alcove         = 9
+	enum CaveGenType {
+		CGT_TekiEasy = 0, // AKA TekiA
+		CGT_TekiHard,     // AKA TekiB
+		CGT_TreasureItem,
+		CGT_Unknown3,
+		CGT_HoleOrGeyser,
+		CGT_DoorSeam,
+		CGT_Plant,
+		CGT_Start,
+		CGT_TekiSpecial, // AKA TekiF
+		CGT_Alcove
 	};
 
 	BaseGen();
 
-	virtual ~BaseGen() { }                  // _08 (weak)
-	virtual void read(Stream& input);       // _10
-	virtual void draw(Graphics&, Matrixf*); // _14
+	virtual ~BaseGen() { }                              // _08 (weak)
+	virtual void read(Stream& input);                   // _10
+	virtual void draw(Graphics& gfx, Matrixf* drawMtx); // _14
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Type mSpawnType;    // _18
-	Vector3f mPosition; // _1C
-	f32 mAngle;         // _28
-	f32 mRadius;        // _2C
-	int mMinimum;       // _30
-	int mMaximum;       // _34
+	CaveGenType mSpawnType; // _18
+	Vector3f mPosition;     // _1C
+	f32 mAngle;             // _28
+	f32 mRadius;            // _2C
+	int mMinimum;           // _30
+	int mMaximum;           // _34
 };
 
 /**
@@ -69,7 +69,7 @@ struct TekiInfo : public CNode {
 	{
 		mEnemyID  = EnemyTypeID::EnemyID_Pelplant;
 		mWeight   = 1;
-		mType     = BaseGen::TekiA__Easy;
+		mType     = BaseGen::CGT_TekiEasy;
 		mDropMode = DROP_NoDrop;
 	}
 
@@ -80,7 +80,7 @@ struct TekiInfo : public CNode {
 	// _00-_18 = CNode
 	EnemyTypeID::EEnemyTypeID mEnemyID; // _18
 	int mWeight;                        // _1C
-	BaseGen::Type mType;                // _20
+	BaseGen::CaveGenType mType;         // _20
 	u8 mDropMode;                       // _24
 	u8 : 0;
 	Game::PelletMgr::OtakaraItemCode mOtakaraItemCode; // _26
@@ -190,26 +190,26 @@ struct FloorInfo : public CNode {
 
 	int getTekiMax();
 	int getTekiInfoNum();
-	TekiInfo* getTekiInfo(int);
+	TekiInfo* getTekiInfo(int idx);
 	int getTekiWeightSum();
 
 	int getItemMax();
 	int getItemInfoNum();
-	ItemInfo* getItemInfo(int);
+	ItemInfo* getItemInfo(int idx);
 	int getItemWeightSum();
 
 	int getGateMax();
 	int getGateInfoNum();
-	GateInfo* getGateInfo(int);
+	GateInfo* getGateInfo(int idx);
 	int getGateWeightSum();
 
 	int getCapMax();
 	int getCapInfoNum();
-	CapInfo* getCapInfo(int);
+	CapInfo* getCapInfo(int idx);
 
 	int getRoomNum();
 	f32 getRouteRatio();
-	bool hasEscapeFountain(int);
+	bool hasEscapeFountain(int floorIndex);
 	bool hasHiddenCollision();
 	bool useKaidanBarrel();
 

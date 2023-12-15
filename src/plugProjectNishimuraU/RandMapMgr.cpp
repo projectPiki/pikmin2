@@ -462,7 +462,7 @@ void RandMapMgr::getBaseGenData(Vector3f* positions, f32* dirs)
 
 				FOREACH_NODE(BaseGen, baseGen->mChild, currGen)
 				{
-					if (currGen->mSpawnType == BaseGen::TekiA__Easy || currGen->mSpawnType == BaseGen::TekiB__Hard) {
+					if (currGen->mSpawnType == BaseGen::CGT_TekiEasy || currGen->mSpawnType == BaseGen::CGT_TekiHard) {
 						Vector3f globalPos = currNode->getBaseGenGlobalPosition(currGen);
 						Vector3f sep       = Vector3f(positions->y - globalPos.y, positions->z - globalPos.z, positions->x - globalPos.x);
 						nodeList[counter]  = currNode;

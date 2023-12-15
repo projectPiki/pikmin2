@@ -108,7 +108,7 @@ bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
 		FOREACH_NODE(EnemyNode, mapNode->mEnemyNode->mChild, node)
 		{
 			TekiInfo* info = node->mEnemyUnit->mTekiInfo;
-			if (info && (info->mDropMode == 0) && (info->mType != BaseGen::Seam__Door) && (info->mType != BaseGen::Plant)) {
+			if (info && (info->mDropMode == 0) && (info->mType != BaseGen::CGT_DoorSeam) && (info->mType != BaseGen::CGT_Plant)) {
 				return true;
 			}
 		}
@@ -136,7 +136,7 @@ bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
 	FOREACH_NODE(EnemyNode, mapNode->mEnemyNode->mChild, node)
 	{
 		TekiInfo* info = node->mEnemyUnit->mTekiInfo;
-		if (info && (info->mType != BaseGen::Seam__Door) && (info->mType != BaseGen::Plant)
+		if (info && (info->mType != BaseGen::CGT_DoorSeam) && (info->mType != BaseGen::CGT_Plant)
 		    && (info->mDropMode == 0 || (mGenerator->isPomGroup(info)))) {
 			return true;
 		}
@@ -161,7 +161,7 @@ bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
 	FOREACH_NODE(EnemyNode, mapNode->mEnemyNode->mChild, node)
 	{
 		TekiInfo* info = node->mEnemyUnit->mTekiInfo;
-		if (info && (info->mType != BaseGen::Seam__Door) && (info->mType != BaseGen::Plant)
+		if (info && (info->mType != BaseGen::CGT_DoorSeam) && (info->mType != BaseGen::CGT_Plant)
 		    && (info->mDropMode != 0 || (mGenerator->isPomGroup(info)))) {
 			return true;
 		}
@@ -246,7 +246,7 @@ MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 				if (baseGen) {
 					FOREACH_NODE(BaseGen, baseGen->mChild, currBaseGen)
 					{
-						if (currBaseGen->mSpawnType == BaseGen::Treasure__Item) {
+						if (currBaseGen->mSpawnType == BaseGen::CGT_TreasureItem) {
 							if (!isItemSetDone(currMapNode, currBaseGen)) {
 								mapNodeList[counter]   = currMapNode;
 								baseGenList[counter]   = currBaseGen;
@@ -305,7 +305,7 @@ MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 			if (baseGen) {
 				FOREACH_NODE(BaseGen, baseGen->mChild, currBaseGen)
 				{
-					if (currBaseGen->mSpawnType == BaseGen::Treasure__Item) {
+					if (currBaseGen->mSpawnType == BaseGen::CGT_TreasureItem) {
 						if (!isItemSetDone(currMapNode, currBaseGen)) {
 							if (currScore >= totalScore) {
 								if (currScore > totalScore) {
@@ -406,7 +406,7 @@ int RandItemUnit::getItemSlotNum(MapNode* mapNode)
 	if (baseGen) {
 		FOREACH_NODE(BaseGen, baseGen->mChild, node)
 		{
-			if (node->mSpawnType == BaseGen::Treasure__Item) {
+			if (node->mSpawnType == BaseGen::CGT_TreasureItem) {
 				itemSlotNum++;
 			}
 		}
@@ -489,13 +489,13 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode* node, int score)
 	if (gen) {
 		FOREACH_NODE(BaseGen, gen->mChild, currGen)
 		{
-			if (currGen->mSpawnType == BaseGen::Treasure__Item) {
+			if (currGen->mSpawnType == BaseGen::CGT_TreasureItem) {
 				genList[counter] = currGen;
 				counter++;
-			} else if (currGen->mSpawnType == BaseGen::TekiA__Easy) {
+			} else if (currGen->mSpawnType == BaseGen::CGT_TekiEasy) {
 				genList[counter] = currGen;
 				counter++;
-			} else if (currGen->mSpawnType == BaseGen::TekiB__Hard) {
+			} else if (currGen->mSpawnType == BaseGen::CGT_TekiHard) {
 				genList[counter] = currGen;
 				counter++;
 			}
@@ -548,7 +548,7 @@ void RandItemUnit::getItemDropList(MapNode* testNode, MapNode** nodeList, BaseGe
 		if (gen) {
 			FOREACH_NODE(BaseGen, gen->mChild, currGen)
 			{
-				if (currGen->mSpawnType == BaseGen::Treasure__Item) {
+				if (currGen->mSpawnType == BaseGen::CGT_TreasureItem) {
 					nodeList[idx] = testNode;
 					outGen[idx]   = currGen;
 					idx++;

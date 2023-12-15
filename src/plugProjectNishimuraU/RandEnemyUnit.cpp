@@ -67,7 +67,7 @@ void RandEnemyUnit::setEnemyTypeWeight()
 		mTypeMax[i]   = 0;
 	}
 
-	int enemyTypes[4] = { BaseGen::TekiA__Easy, BaseGen::TekiB__Hard, BaseGen::Seam__Door, BaseGen::TekiF__Special }; // _38
+	int enemyTypes[4] = { BaseGen::CGT_TekiEasy, BaseGen::CGT_TekiHard, BaseGen::CGT_DoorSeam, BaseGen::CGT_TekiSpecial }; // _38
 
 	int weightList[4]; // _28
 	int countList[4];  // _18
@@ -433,7 +433,7 @@ void RandEnemyUnit::setVersusHibaTypeC()
 	if (mIsVersusHiba) {
 		TekiInfo* info = new TekiInfo;
 		info->mEnemyID = EnemyTypeID::EnemyID_ElecHiba;
-		info->mType    = BaseGen::Seam__Door;
+		info->mType    = BaseGen::CGT_DoorSeam;
 
 		EnemyUnit* unit = new EnemyUnit;
 		unit->mTekiInfo = info;
@@ -468,7 +468,7 @@ void RandEnemyUnit::setVersusEnemyTypeC()
 	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
 	{
 		TekiInfo* info = currEnemy->getTekiInfo();
-		if (info && info->mType == BaseGen::Seam__Door) {
+		if (info && info->mType == BaseGen::CGT_DoorSeam) {
 			count += info->mWeight / 10;
 			if (count > mTypeCount[TEKITYPE_C]) {
 				int altNum     = (count - mTypeCount[TEKITYPE_C]) % 2;
@@ -956,7 +956,7 @@ void RandEnemyUnit::setVersusEnemyTypeF()
 	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
 	{
 		TekiInfo* info = currEnemy->getTekiInfo();
-		if (info && info->mType == BaseGen::TekiF__Special) {
+		if (info && info->mType == BaseGen::CGT_TekiSpecial) {
 			count += info->mWeight / 10;
 			if (count > mTypeCount[TEKITYPE_F]) {
 				int altNum     = (count - mTypeCount[TEKITYPE_F]) % 2;
@@ -1451,7 +1451,7 @@ void RandEnemyUnit::setVersusEnemyTypeB()
 	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
 	{
 		TekiInfo* info = currEnemy->getTekiInfo();
-		if (info && info->mType == BaseGen::TekiB__Hard) {
+		if (info && info->mType == BaseGen::CGT_TekiHard) {
 			count += info->mWeight / 10;
 			if (count > mTypeCount[TEKITYPE_B]) {
 				int altNum     = (count - mTypeCount[TEKITYPE_B]) % 2;

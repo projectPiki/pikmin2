@@ -22,7 +22,7 @@ RandPlantUnit::RandPlantUnit(MapUnitGenerator* generator)
 	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
 	{
 		// if TekiInfo exists and the Teki type is 6 (plant), add its weight to goal count
-		if ((currEnemy->mEnemyUnit->mTekiInfo) && (currEnemy->mEnemyUnit->mTekiInfo->mType == BaseGen::Plant)) {
+		if ((currEnemy->mEnemyUnit->mTekiInfo) && (currEnemy->mEnemyUnit->mTekiInfo->mType == BaseGen::CGT_Plant)) {
 			mGoalCount += currEnemy->mEnemyUnit->mTekiInfo->mWeight;
 		}
 	}
@@ -93,7 +93,7 @@ MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** outSpawn)
 		if (spawn) {
 			FOREACH_NODE(BaseGen, spawn->mChild, currSpawn)
 			{
-				if ((currSpawn->mSpawnType == BaseGen::Plant) && (isPlantSet(currTile, currSpawn))) {
+				if ((currSpawn->mSpawnType == BaseGen::CGT_Plant) && (isPlantSet(currTile, currSpawn))) {
 					tileList[count]  = currTile;
 					spawnList[count] = currSpawn;
 					count++;
@@ -129,7 +129,7 @@ EnemyUnit* RandPlantUnit::getPlantUnit(BaseGen* spawn)
 		FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
 		{
 			// if TekiInfo exists and Teki type = plant, add weight to slotCount
-			if (currEnemy->mEnemyUnit->mTekiInfo && (currEnemy->mEnemyUnit->mTekiInfo->mType == BaseGen::Plant)) {
+			if (currEnemy->mEnemyUnit->mTekiInfo && (currEnemy->mEnemyUnit->mTekiInfo->mType == BaseGen::CGT_Plant)) {
 				slotCount += currEnemy->mEnemyUnit->mTekiInfo->mWeight;
 
 				// if we've gotten further than current plant count, we've hit the next plant type to add
