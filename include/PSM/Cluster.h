@@ -8,7 +8,7 @@ namespace PSM {
 struct Cluster : public CreatureObj {
 	Cluster(Game::Creature*, PSSystem::ClusterSe::Factory&);
 
-	virtual ~Cluster(); // _14 (weak)
+	virtual ~Cluster() { } // _14 (weak)
 
 	void startClusterSound(u8);
 

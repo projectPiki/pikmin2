@@ -6,27 +6,29 @@
 #include "PSM/DirectorLink.h"
 
 namespace PSM {
+struct ActorDirector_TrackOn;
+
 struct EventLink : public DirectorLink {
 	inline EventLink(void* p1)
 	    : DirectorLink(p1)
 	{
 	}
 
-	virtual void getListDirectorActor(); // _08
+	virtual ListDirectorActor* getListDirectorActor(); // _08
 
 	// _00-_10  = JSUPtrLink
 	// _10      = VTABLE
 };
 
-struct OtakaraEventLink : public EventLink {
+struct OtakaraEventLink : public DirectorLink {
 	inline OtakaraEventLink(Game::Pellet* gameObj)
-	    : EventLink(gameObj)
+	    : DirectorLink(gameObj)
 	{
 	}
 
-	virtual void getListDirectorActor();        // _08
-	virtual void eventFinish();                 // _18
-	virtual bool is2PBattle() { return false; } // _1C (weak)
+	virtual ListDirectorActor* getListDirectorActor(); // _08
+	virtual void eventFinish();                        // _18
+	virtual bool is2PBattle() { return false; }        // _1C (weak)
 
 	// _00-_10  = JSUPtrLink
 	// _10      = VTABLE
@@ -38,14 +40,14 @@ struct OtakaraEventLink_2PBattle : public OtakaraEventLink {
 	{
 	}
 
-	virtual void getListDirectorActor(); // _08
-	virtual void eventStart();           // _0C
-	virtual void eventRestart();         // _10
-	virtual void eventStop();            // _14
-	virtual void eventFinish();          // _18
-	virtual bool is2PBattle();           // _1C (weak)
+	virtual ListDirectorActor* getListDirectorActor(); // _08
+	virtual void eventStart();                         // _0C
+	virtual void eventRestart();                       // _10
+	virtual void eventStop();                          // _14
+	virtual void eventFinish();                        // _18
+	virtual bool is2PBattle() { return true; }         // _1C (weak)
 
-	void getTargetDirector();
+	ActorDirector_TrackOn* getTargetDirector();
 };
 } // namespace PSM
 

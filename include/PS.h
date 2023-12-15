@@ -4,6 +4,7 @@
 #include "types.h"
 
 struct Vec;
+struct JAISound;
 
 namespace Game {
 struct EnemyBase;

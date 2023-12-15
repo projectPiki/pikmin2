@@ -93,7 +93,7 @@ extern CustomHeapCallback customHeapCallback;
 struct Actor {
 	inline Actor(void* vec1, Vec* vec2, Vec* vec3, u32 unk)
 	{
-		mVec1 = vec1;
+		mObj  = vec1;
 		mVec2 = vec2;
 		mVec3 = vec3;
 		mUnk  = unk;
@@ -104,10 +104,10 @@ struct Actor {
 		}
 	}
 
-	void* mVec1; // _00
-	Vec* mVec2;  // _04
-	Vec* mVec3;  // _08
-	u32 mUnk;    // _0C (might be a pointer?)
+	void* mObj; // _00
+	Vec* mVec2; // _04
+	Vec* mVec3; // _08
+	u32 mUnk;   // _0C (might be a pointer?)
 	// bool mFlag; // _10
 	union {
 		bool boolView[4];

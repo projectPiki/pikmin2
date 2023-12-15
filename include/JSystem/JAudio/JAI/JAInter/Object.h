@@ -56,10 +56,10 @@ struct Object : public ObjectBase {
 	// _00		= VTABLE
 	// _04-_18	= JKRDisposer
 	// _18-_28	= ObjectBase
-	Vec _28; // _28
-	f32 _34; // _34, some other distance?
-	f32 _38; // _38, distance Pan Common?
-	f32 _3C; // _3C, distance Dolby Common?
+	Vec _28;       // _28
+	f32 mDistance; // _34
+	f32 mPan;      // _38
+	f32 mDolby;    // _3C
 };
 } // namespace JAInter
 

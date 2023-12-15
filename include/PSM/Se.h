@@ -88,7 +88,7 @@ struct EnvSeObjBuilder : public PSGame::Builder_EvnSe_Perspective {
 struct SeSound : public JAISe {
 	inline SeSound()
 	    : mPerspInfo()
-	    , _49C(0)
+	    , mPlayerNum(0)
 	    , _4A0(1.0f)
 	{
 	}
@@ -111,7 +111,7 @@ struct SeSound : public JAISe {
 	// _00      = VTABLE
 	// _00-_484 = JAISe
 	PSGame::SoundTable::SePerspInfo mPerspInfo; // _484
-	u8 _49C;                                    // _49C
+	u8 mPlayerNum;                              // _49C
 	f32 _4A0;                                   // _4A0
 
 	static f32 cDol_0Rad;

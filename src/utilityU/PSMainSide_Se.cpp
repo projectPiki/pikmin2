@@ -821,7 +821,7 @@ lbl_8046DFC8:
  */
 void PikiHummingMgr::play(PSM::Piki* piki)
 {
-	if (mDoAiNoUta && (piki->_74 >= _00)) {
+	if (mDoAiNoUta && (piki->mHummingCounter >= _00)) {
 		mCurrID++;
 		if (mCurrID < 4 && mHummingArray[mState].mIsActive) {
 			PikiHumming* hum = &mHummingArray[mState];

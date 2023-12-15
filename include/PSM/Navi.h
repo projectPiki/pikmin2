@@ -19,8 +19,8 @@ struct Navi : public CreatureObj {
 
 	// vtable 1 (JKRDisposer, _10)
 	// vtable 2 (Creature, _28)
-	virtual ~Navi() { }                     // _14 (weak)
-	virtual CreatureCastType getCastType(); // _1C (weak)
+	virtual ~Navi() { }                                         // _14 (weak)
+	virtual CreatureCastType getCastType() { return CCT_Navi; } // _1C (weak)
 
 	// vtable 3 (JAInter::Object + self, _28)
 	virtual JAISound* startSound(u32, u32); // _7C (weak)
@@ -28,16 +28,16 @@ struct Navi : public CreatureObj {
 	void init(u16);
 	void setShacho();
 	void stopWaitVoice();
-	void getManType();
-	void playShugoSE();
-	void playKaisanSE();
+	int getManType();
+	JAISound* playShugoSE();
+	JAISound* playKaisanSE();
 	void playWalkSound(Navi::FootType, int);
 
 	// _10     = VTBL 1
 	// _28     = VTBL 2
 	// _00-_70 = CreatureObj
 	PSGame::Rappa mRappa; // _70
-	u32 _90;              // _90, unknown
+	JAISound* mCurrSound; // _90
 };
 } // namespace PSM
 

@@ -12,8 +12,33 @@ struct Object;
 } // namespace JAInter
 
 namespace PSM {
-struct FrameCalcArg;
-struct StartSoundArg;
+struct CreatureAnime;
+
+struct StartSoundArg {
+	inline StartSoundArg(Creature* obj, u32 soundID, u32 a1)
+	{
+		mObj     = obj;
+		mSoundID = soundID;
+		_08      = a1;
+	}
+	Creature* mObj; // _00
+	u32 mSoundID;   // _04
+	u32 _08;        //_08
+};
+
+struct FrameCalcArg {
+	inline FrameCalcArg(Creature* obj, f32* dist, f32* pan, f32* dolby)
+	{
+		mObj   = obj;
+		mDist  = dist;
+		mPan   = pan;
+		mDolby = dolby;
+	}
+	Creature* mObj; // _00
+	f32* mDist;     // _04
+	f32* mPan;      // _08
+	f32* mDolby;    // _0C
+};
 
 struct Creature : public ObjBase {
 	Creature(Game::Creature* gameObj);
@@ -27,7 +52,7 @@ struct Creature : public ObjBase {
 	virtual JAInter::Object* getJAIObject() = 0;                        // _24
 	virtual void onCalcOn()                 = 0;                        // _28
 	virtual void loopCalc(FrameCalcArg&);                               // _2C
-	virtual void startSoundInner(StartSoundArg&);                       // _30
+	virtual JAISound* startSoundInner(StartSoundArg&);                  // _30
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, f32, f32); // _34
 	virtual void onPlayingSe(u32, JAISound*);                           // _38
 	virtual JAISound** getHandleArea(u8) = 0;                           // _3C

@@ -3,6 +3,7 @@
 
 #include "PSM/EventBase.h"
 #include "PSM/ObjBase.h"
+#include "PSM/EventLink.h"
 
 namespace Game {
 struct BaseItem;
@@ -29,7 +30,7 @@ struct WorkItem : public EventBase {
 	virtual void eventStop();    // _48
 	virtual void eventFinish();  // _4C
 
-	u8 _70[0x14]; // _70
+	EventLink mLink; // _70
 };
 } // namespace PSM
 

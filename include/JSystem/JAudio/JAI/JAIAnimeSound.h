@@ -16,9 +16,10 @@ struct JAIAnimeSoundData_0xC {
 };
 
 struct JAIAnimeSoundData {
-	u16 _00; // _00
+	u16 mEntries; // _00
 	u32 : 0;
-	u8 _04[8];                  // _04 - unknown
+	u8 _04[4];                  // _04 - unknown
+	u32 _08;                    // _08
 	JAIAnimeSoundData_0xC* _0C; // _0C
 	u8 _10[8];                  // _10 - unknown
 	u8 _18;                     // _18

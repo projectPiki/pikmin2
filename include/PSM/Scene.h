@@ -25,18 +25,18 @@ struct ObjMgr;
 struct SceneBase : public PSGame::PikScene {
 	SceneBase(u8, PSGame::SceneInfo*);
 
-	virtual ~SceneBase() { }                                   // _0C (weak)
-	virtual f32 getCamDistVol(u8) = 0;                         // _28
-	virtual PSSystem::EnvSeMgr* getEnvSe() { return nullptr; } // _2C (weak)
-	virtual f32 getSceneFx();                                  // _30
-	virtual bool isDemoScene();                                // _34 (weak)
-	virtual bool getSeSceneGate(ObjBase*, u32);                // _38 (weak)
-	virtual void becomeSceneCamera();                          // _3C
-	virtual bool isGameScene() { return false; }               // _40 (weak)
-	virtual void pauseOn_2D(u8, u8);                           // _44
-	virtual void pauseOff_2D();                                // _48
-	virtual void pauseOn_Demo();                               // _4C
-	virtual void pauseOff_Demo();                              // _50
+	virtual ~SceneBase() { }                                    // _0C (weak)
+	virtual f32 getCamDistVol(u8) = 0;                          // _28
+	virtual PSSystem::EnvSeMgr* getEnvSe() { return nullptr; }  // _2C (weak)
+	virtual f32 getSceneFx();                                   // _30
+	virtual bool isDemoScene() { return false; }                // _34 (weak)
+	virtual bool getSeSceneGate(ObjBase*, u32) { return true; } // _38 (weak)
+	virtual void becomeSceneCamera();                           // _3C
+	virtual bool isGameScene() { return false; }                // _40 (weak)
+	virtual void pauseOn_2D(u8, u8);                            // _44
+	virtual void pauseOff_2D();                                 // _48
+	virtual void pauseOn_Demo();                                // _4C
+	virtual void pauseOff_Demo();                               // _50
 
 	PSGame::SceneInfo* getSceneInfoA();
 
@@ -343,6 +343,12 @@ inline PSM::MiddleBossSeq* PSMGetMiddleBossSeq()
 	mgr->checkScene();
 	PSM::Scene_Objects* scene = static_cast<PSM::Scene_Objects*>(mgr->mScenes->mChild);
 	return !scene ? nullptr : scene->getMiddleBossBgm();
+}
+
+inline bool PSMCheckSceneIsDemo()
+{
+	PSSystem::SceneMgr* mgr = PSMGetSceneMgrCheck();
+	return static_cast<PSM::SceneBase*>(mgr->getEndScene())->isDemoScene();
 }
 
 inline void PSMSetSceneInfo(PSGame::SceneInfo& info)

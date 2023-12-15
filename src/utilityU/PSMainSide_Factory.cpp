@@ -3140,7 +3140,7 @@ PSSystem::BgmSeq* SceneMgr::newAutoBgm(const char* bmsname, const char* cndname,
  */
 MiddleBossSeq::MiddleBossSeq(const char* p1, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr)
     : PSSystem::JumpBgmSeq(p1, info, directorMgr)
-    , _134(0)
+    , mCurrBossObj(nullptr)
     , _138(0)
     , _13C(3)
     , _13E(-1)
@@ -3193,7 +3193,7 @@ void MiddleBossSeq::onJump(u16 track)
 		break;
 	}
 
-	P2ASSERTLINE(1078, _134);
+	P2ASSERTLINE(1078, mCurrBossObj);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

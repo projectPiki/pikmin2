@@ -12,7 +12,7 @@ struct Object;
 namespace PSGame {
 struct RandId {
 	RandId();
-	void startSound(JAInter::Object*, u32, u32, u32);
+	JAISe* startSound(JAInter::Object*, u32, u32, u32);
 	void playSystemSe(u32, JAISound**, u32, u32);
 
 	f32 mId; // _00, notUsingMasterIDRatio according to ghidra

@@ -125,7 +125,7 @@ void SeSound::initParameter(void* d1, JAInter::Actor* actor, u32 a1, u32 a2, u8 
 f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 {
 	setFxmix(CreaturePrm::cSeFxMix, 0, 1);
-	f32 dist = _34->_18;
+	f32 dist = _34->mDistance;
 	u8 test  = isValidSeType(mSoundID);
 
 	f32 dist2;
@@ -138,7 +138,7 @@ f32 SeSound::setDistanceVolumeCommon(f32, u8 flag)
 	if (!_1A || _38) {
 		PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(PSMGetSceneMgrCheck()->getEndScene());
 		P2ASSERTLINE(261, scene);
-		f32 calc = scene->getCamDistVol(_49C);
+		f32 calc = scene->getCamDistVol(mPlayerNum);
 		JUT_ASSERTLINE(269, calc != 0.0f, "\nSE called at invalid timming\n(%08x)\n", mSoundID);
 		dist2 *= calc;
 		f32 fx = static_cast<PSM::Scene_Cave*>(PSMGetChildScene())->getSceneFx();
@@ -414,12 +414,12 @@ void SeSound::setSeDistancePan(u8 flag)
 {
 	f32 calc = 0.5f;
 	if (!_1A) {
-		calc = calcPan(_34->_00, _34->_18);
+		calc = calcPan(_34->_00, _34->mDistance);
 	} else {
 		if (_38) {
 			Creature* creature = static_cast<Creature*>(_38);
 			P2ASSERTLINE(337, creature);
-			calc = creature->getJAIObject()->_38;
+			calc = creature->getJAIObject()->mPan;
 		}
 	}
 	setSeInterPan(4, calc, flag, 0);
@@ -457,11 +457,11 @@ void SeSound::setSeDistanceDolby(u8 flag)
 {
 	f32 calc = 0.0f;
 	if (!_1A) {
-		calc = calcDolby(_34->_00, _34->_18);
+		calc = calcDolby(_34->_00, _34->mDistance);
 	} else {
 		if (_38) {
 			Creature* creature = static_cast<Creature*>(_38);
-			calc               = creature->getJAIObject()->_3C;
+			calc               = creature->getJAIObject()->mDolby;
 		}
 	}
 	setSeInterDolby(4, calc, flag, 0);

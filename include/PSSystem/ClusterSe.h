@@ -54,6 +54,11 @@ struct Factory {
  * @size = 0x8
  */
 struct Mgr {
+	Mgr()
+	{
+		mCount = 0;
+		mParts = nullptr;
+	}
 	void constructParts(PSSystem::ClusterSe::Factory& factory);
 	void play(u8, JAInter::Object*);
 

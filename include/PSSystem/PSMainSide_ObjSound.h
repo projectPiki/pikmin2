@@ -4,6 +4,7 @@
 #include "P2Macros.h"
 #include "PSM/EnemyBase.h"
 #include "PSM/EnemyBoss.h"
+#include "PSM/Otakara.h"
 
 // idk what else goes in this file (if anything? maybe this is in the PSGame folder??)
 // but these use the file name in the exception check so :shrug:
@@ -30,6 +31,8 @@ inline void disableAppearFlag(PSM::EnemyBase* soundObj)
 		bossObj->_FF = true;
 	}
 }
+
+inline void otakaraCheckEvent(Otakara* item) { P2ASSERTLINE(884, item->mOtaEvent); }
 
 }; // namespace PSM
 

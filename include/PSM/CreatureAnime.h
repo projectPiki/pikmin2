@@ -41,9 +41,9 @@ struct CreatureAnime : public Creature, public JAIAnimeSound {
 	// _28     = VTBL 2
 	// _00-_30 = Creature
 	// _30-_AC = JAIAnimeSound
-	f32 _AC;   // _AC
-	f32 _B0;   // _B0
-	u8 _B4[4]; // _B4
+	f32 _AC;      // _AC
+	f32 _B0;      // _B0
+	bool mActive; // _B4
 };
 } // namespace PSM
 

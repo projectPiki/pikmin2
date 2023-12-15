@@ -26,11 +26,11 @@ struct JAISound_0x34 {
 		_0C = p1;
 	}
 
-	Vec _00; // _00
-	f32 _0C; // _0C
-	f32 _10; // _10
-	f32 _14; // _14
-	f32 _18; // _18
+	Vec _00;       // _00
+	f32 _0C;       // _0C
+	f32 _10;       // _10
+	f32 _14;       // _14
+	f32 mDistance; // _18
 };
 
 struct JAISound : public JSULink<JAISound> {

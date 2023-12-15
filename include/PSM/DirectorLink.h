@@ -5,16 +5,18 @@
 #include "JSystem/JSupport/JSUList.h"
 
 namespace PSM {
-struct DirectorLink : public JSUPtrLink {
+struct ListDirectorActor;
+
+struct DirectorLink : public JSULink<Game::Creature> {
 	inline DirectorLink(void* p1)
-	    : JSUPtrLink(p1)
+	    : JSULink<Game::Creature>((Game::Creature*)p1)
 	{
 	}
-	virtual void getListDirectorActor() = 0; // _08
-	virtual void eventStart();               // _0C
-	virtual void eventRestart();             // _10
-	virtual void eventStop();                // _14
-	virtual void eventFinish();              // _18
+	virtual ListDirectorActor* getListDirectorActor() = 0; // _08
+	virtual void eventStart();                             // _0C
+	virtual void eventRestart();                           // _10
+	virtual void eventStop();                              // _14
+	virtual void eventFinish();                            // _18
 
 	// _00-_10  = JSUPtrLink
 	// _10      = VTABLE

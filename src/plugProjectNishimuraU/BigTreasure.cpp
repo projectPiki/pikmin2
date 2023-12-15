@@ -1735,7 +1735,7 @@ void Obj::setBossAppearBGM()
 		break;
 	}
 
-	soundObj->_11C = jumpReqIdx;
+	soundObj->mCurrBgmState = jumpReqIdx;
 
 	soundObj->setAppearFlag(true);
 }

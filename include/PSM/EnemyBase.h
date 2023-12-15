@@ -22,8 +22,8 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	{
 		return CCT_Enemy;
 	}
-	virtual void onCalcOn();                      // _28
-	virtual void startSoundInner(StartSoundArg&); // _30
+	virtual void onCalcOn();                           // _28
+	virtual JAISound* startSoundInner(StartSoundArg&); // _30
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, f32,
 	                                 f32); // _34
 	// vtable 3 (CreatureAnime)
@@ -38,7 +38,7 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	virtual void updateKehai();  // _CC
 	virtual void updateBattle(); // _D0
 
-	void calcKehai();
+	bool calcKehai();
 
 	// _00-_10 	= JSUPtrLink (+ vtable 1)
 	// _10-_28	= JKRDisposer
@@ -57,17 +57,17 @@ struct EnemyNotAggressive : public EnemyBase {
 	EnemyNotAggressive(Game::EnemyBase*, u8);
 
 	// vtable 2 (CreatureAnime, _28)
-	// virtual ~EnemyNotAggressive();          // _14 (weak)
-	virtual CreatureCastType getCastType(); // _1C (weak)
+	virtual ~EnemyNotAggressive() { }                                         // _14 (weak)
+	virtual CreatureCastType getCastType() { return CCT_EnemyNotAggressive; } // _1C (weak)
 	// vtable 3 (CreatureAnime)
 	// vtable 4 (BattleLink)
 	// vtable 5 (KehaiLink + self)
-	virtual void battleOff();    // _C4 (weak)
-	virtual void updateKehai();  // _CC (weak)
-	virtual void updateBattle(); // _D0
-	virtual void kehaiOn();      // _D4 (weak)
-	virtual void kehaiOff();     // _D8 (weak)
-	virtual void battleOn();     // _DC (weak)
+	virtual void battleOff() { }    // _C4 (weak)
+	virtual void updateKehai() { }  // _CC (weak)
+	virtual void updateBattle() { } // _D0
+	virtual void kehaiOn() { }      // _D4 (weak)
+	virtual void kehaiOff() { }     // _D8 (weak)
+	virtual void battleOn() { }     // _DC (weak)
 };
 
 /**
@@ -80,7 +80,7 @@ struct EnemyBig : public EnemyBase {
 	}
 
 	// virtual ~EnemyBig() { }                 // _14 (weak)
-	virtual CreatureCastType getCastType(); // _1C (weak)
+	virtual CreatureCastType getCastType() { return CCT_EnemyBig; } // _1C (weak)
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, f32,
 	                                 f32); // _34
 };

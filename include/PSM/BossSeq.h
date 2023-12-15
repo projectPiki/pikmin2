@@ -4,6 +4,8 @@
 #include "PSSystem/PSSeq.h"
 
 namespace PSM {
+struct EnemyBoss;
+
 struct MiddleBossSeq : public PSSystem::JumpBgmSeq {
 	MiddleBossSeq(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*);
 
@@ -17,11 +19,11 @@ struct MiddleBossSeq : public PSSystem::JumpBgmSeq {
 
 	// _10      = VTBL
 	// _00-_134 = PSSystem::JumpBgmSeq
-	u32 _134; // _134, unknown
-	u32 _138; // _138
-	s16 _13C; // _13C
-	u16 _13E; // _13E
-	u8 _140;  // _140
+	EnemyBoss* mCurrBossObj; // _134
+	u32 _138;                // _138
+	s16 _13C;                // _13C
+	u16 _13E;                // _13E
+	u8 _140;                 // _140
 };
 
 struct BigBossSeq : public MiddleBossSeq {
