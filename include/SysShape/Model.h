@@ -44,7 +44,7 @@ struct Model : public MtxObject {
 	static void setViewCalcModeInd();
 	void viewCalc();
 	void setCurrentViewNo(u32 viewportNumber);
-	u8 isMtxImmediate();
+	bool isMtxImmediate();
 
 	static void enableMaterialAnim(J3DModelData* data, int p2);
 

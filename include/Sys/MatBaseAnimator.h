@@ -20,7 +20,7 @@ struct MatBaseAnimator {
 
 	// unused/inlined:
 	void removeMotion();
-	void forward(f32);
+	f32 forward(f32);
 
 	// VTBL _00
 	MatBaseAnimation* mAnimation; // _04

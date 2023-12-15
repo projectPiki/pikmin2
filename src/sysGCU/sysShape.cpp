@@ -163,7 +163,7 @@ void Animator::animate(f32 timeFactor)
 				break;
 			}
 			mCurAnimKey = (KeyEvent*)mCurAnimKey->mNext;
-			if (!mCurAnimKey || mCurAnimKey->mFrame < mTimer) {
+			if (end || !mCurAnimKey || mCurAnimKey->mFrame >= (int)mTimer) {
 				break;
 			}
 		}
@@ -171,8 +171,8 @@ void Animator::animate(f32 timeFactor)
 			mCurAnimKey = mAnimInfo->getLowestAnimKey(mTimer);
 		}
 
-		int time = mAnimInfo->mAnm->mCurrentFrame;
-		if (time <= mTimer) {
+		int time = mAnimInfo->mAnm->mMaxFrame;
+		if (time >= mTimer) {
 			mTimer = time - 1.0f;
 			if (mListener && !(mFlags & 1)) {
 				KeyEvent event;
@@ -182,8 +182,8 @@ void Animator::animate(f32 timeFactor)
 				mFlags |= 1;
 				mListener->onKeyEvent(event);
 			}
-			mAnimInfo->mAnm->setFrame((int)mTimer);
 		}
+		mAnimInfo->mAnm->setFrame((int)mTimer);
 	}
 	/*
 	stwu     r1, -0x50(r1)
@@ -583,10 +583,12 @@ KeyEvent* AnimInfo::getLowestAnimKey(f32 minimumFrame)
 	KeyEvent* lowestKey = nullptr;
 	FOREACH_NODE(KeyEvent, mKeyEvent.mChild, key)
 	{
-		f32 frame = key->mFrame; // I have no clue
-		if ((int)minimumFrame > (int)frame && frame < lowestFrame) {
+		// dumb but works
+		int frame      = key->mFrame;
+		f32 framefloat = frame;
+		if ((int)minimumFrame >= frame && framefloat < lowestFrame) {
+			lowestFrame = framefloat;
 			lowestKey   = key;
-			lowestFrame = frame;
 		}
 	}
 	return lowestKey;

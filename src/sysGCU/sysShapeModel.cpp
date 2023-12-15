@@ -357,32 +357,9 @@ void Model::show()
  */
 void Model::hidePackets()
 {
-	for (u16 i = 0; i < getJ3DModel()->getModelData()->getShapeNum(); i++) {
+	for (u16 i = 0; i < mJ3dModel->getModelData()->getShapeNum(); i++) {
 		mJ3dModel->mShapePackets[i].onFlag(0x10);
 	}
-	/*
-	li       r7, 0
-	b        lbl_8043EA94
-
-lbl_8043EA74:
-	clrlwi   r0, r7, 0x10
-	lwz      r5, 0xc4(r6)
-	mulli    r4, r0, 0x3c
-	addi     r7, r7, 1
-	addi     r4, r4, 0x10
-	lwzx     r0, r5, r4
-	ori      r0, r0, 0x10
-	stwx     r0, r5, r4
-
-lbl_8043EA94:
-	lwz      r6, 8(r3)
-	clrlwi   r4, r7, 0x10
-	lwz      r5, 4(r6)
-	lhz      r0, 0x7c(r5)
-	cmplw    r4, r0
-	blt      lbl_8043EA74
-	blr
-	*/
 }
 
 /*
@@ -392,32 +369,9 @@ lbl_8043EA94:
  */
 void Model::showPackets()
 {
-	for (u16 i = 0; i < getJ3DModel()->getModelData()->getShapeNum(); i++) {
+	for (u16 i = 0; i < mJ3dModel->getModelData()->getShapeNum(); i++) {
 		getJ3DModel()->getShapePacket(i)->offFlag(0x10);
 	}
-	/*
-	li       r7, 0
-	b        lbl_8043EAD8
-
-lbl_8043EAB8:
-	clrlwi   r0, r7, 0x10
-	lwz      r5, 0xc4(r6)
-	mulli    r4, r0, 0x3c
-	addi     r7, r7, 1
-	addi     r4, r4, 0x10
-	lwzx     r0, r5, r4
-	rlwinm   r0, r0, 0, 0x1c, 0x1a
-	stwx     r0, r5, r4
-
-lbl_8043EAD8:
-	lwz      r6, 8(r3)
-	clrlwi   r4, r7, 0x10
-	lwz      r5, 4(r6)
-	lhz      r0, 0x7c(r5)
-	cmplw    r4, r0
-	blt      lbl_8043EAB8
-	blr
-	*/
 }
 
 /*
@@ -744,11 +698,11 @@ void Model::setViewCalcModeInd() { viewCalcMode = true; }
  */
 bool Model::needViewCalc()
 {
-	u8 calc;
+	bool calc;
 	if (viewCalcMode == 0) {
 		calc = isMtxImmediate();
 	} else {
-		calc = isMtxImmediate() >> 5;
+		calc = isMtxImmediate() == false;
 	}
 	return calc;
 }
@@ -817,7 +771,7 @@ void Model::setCurrentViewNo(u32 viewportNumber)
  * Address:	8043F10C
  * Size:	000014
  */
-u8 Model::isMtxImmediate() { return mJ3dModel->mModelData->mModelLoaderFlags >> 4 & 1; }
+bool Model::isMtxImmediate() { return mJ3dModel->mModelData->mModelLoaderFlags >> 4 & 1; }
 
 /*
  * --INFO--

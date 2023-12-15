@@ -162,9 +162,14 @@ void MatBaseAnimator::removeMotion()
  * Address:	........
  * Size:	0001A4
  */
-void MatBaseAnimator::forward(f32)
+f32 MatBaseAnimator::forward(f32 frame)
 {
-	// UNUSED FUNCTION
+	if (frame < 0.0f) {
+		frame = 0.0f;
+	} else if (frame >= mAnimation->getFrameMax()) {
+		frame = mAnimation->getFrameMax();
+	}
+	return frame;
 }
 
 /*
@@ -175,119 +180,7 @@ void MatBaseAnimator::forward(f32)
 void MatBaseAnimator::setCurrentFrame(f32 frame)
 {
 	P2ASSERTLINE(201, mAnimation);
-
-	if (frame < 0.0f) {
-		frame = 0.0f;
-	} else if (frame >= mAnimation->getFrameMax()) {
-		frame = mAnimation->getFrameMax();
-	}
-
-	mCurrFrame = frame;
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r31, r3
-	fmr      f31, f1
-	lwz      r0, 4(r3)
-	cmplwi   r0, 0
-	bne      lbl_80434428
-	lis      r3, lbl_8049A6A0@ha
-	lis      r5, lbl_8049A6B4@ha
-	addi     r3, r3, lbl_8049A6A0@l
-	li       r4, 0xc9
-	addi     r5, r5, lbl_8049A6B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80434428:
-	lfs      f0, lbl_80520788@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_8043443C
-	fmr      f31, f0
-	b        lbl_80434528
-
-lbl_8043443C:
-	lwz      r30, 4(r31)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	bne      lbl_80434478
-	lis      r3, lbl_8049A6A0@ha
-	lis      r5, lbl_8049A6B4@ha
-	addi     r3, r3, lbl_8049A6A0@l
-	li       r4, 0x39
-	addi     r5, r5, lbl_8049A6B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80434478:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lha      r3, 6(r3)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f1, lbl_80520780@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fcmpo    cr0, f31, f0
-	cror     2, 1, 2
-	bne      lbl_80434528
-	lwz      r30, 4(r31)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	bne      lbl_804344F4
-	lis      r3, lbl_8049A6A0@ha
-	lis      r5, lbl_8049A6B4@ha
-	addi     r3, r3, lbl_8049A6A0@l
-	li       r4, 0x39
-	addi     r5, r5, lbl_8049A6B4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804344F4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lha      r3, 6(r3)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f1, lbl_80520780@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f31, f0, f1
-
-lbl_80434528:
-	stfs     f31, 8(r31)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mCurrFrame = forward(frame);
 }
 
 /*
@@ -333,7 +226,7 @@ void MatLoopAnimator::do_animate(f32 rate)
 				state      = 2;
 			}
 		}
-		mAnimation->getAnmBase()->mCurrentFrame = mCurrFrame;
+		mAnimation->getAnmBase()->setFrame(mCurrFrame);
 	}
 
 	if (state == 2) {
@@ -493,7 +386,7 @@ void MatRepeatAnimator::do_animate(f32 rate)
 				mCurrFrame = mAnimation->getFrameMax();
 				state      = 2;
 			}
-			mAnimation->getAnmBase()->mCurrentFrame = mCurrFrame;
+			mAnimation->getAnmBase()->setFrame(mCurrFrame);
 		}
 
 		if (state == 2) {
@@ -513,7 +406,7 @@ void MatRepeatAnimator::do_animate(f32 rate)
 				mCurrFrame = mAnimation->getFrameMax();
 				state      = 2;
 			}
-			mAnimation->getAnmBase()->mCurrentFrame = mCurrFrame;
+			mAnimation->getAnmBase()->setFrame(mCurrFrame);
 		}
 
 		if (state == 1) {
