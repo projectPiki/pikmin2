@@ -73,48 +73,34 @@ u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_
 	u32 widthTiles, heightTiles, iVar4, iVar6;
 	__GXGetTexTileShift(format, &widthTiles, &heightTiles);
 
-	if (format == 6 || format == 0x16)
-	{
+	if (format == 6 || format == 0x16) {
 		iVar4 = 0x40;
-	}
-	else 
-	{
+	} else {
 		iVar4 = 0x20;
 	}
 
-	if (mipmap == GX_TRUE)
-	{
+	if (mipmap == GX_TRUE) {
 		int i;
 		iVar6 = 0;
-		for (i = max_lod; i > 0; i -= 1)
-		{
+		for (i = max_lod; i > 0; i -= 1) {
 			iVar6 += iVar4 * (GET_TILE_COUNT(width, widthTiles) * GET_TILE_COUNT(height, heightTiles));
-			if (width == 1 && height == 1)
-			{
+			if (width == 1 && height == 1) {
 				break;
 			}
 
-			if (width > 1)
-			{
+			if (width > 1) {
 				width = width >> 1;
-			}
-			else 
-			{
+			} else {
 				width = 1;
 			}
 
-			if (height > 1)
-			{
+			if (height > 1) {
 				height = height >> 1;
-			}
-			else 
-			{
+			} else {
 				height = 1;
 			}
 		}
-	}
-	else
-	{
+	} else {
 		iVar6 = iVar4 * (GET_TILE_COUNT(width, widthTiles) * GET_TILE_COUNT(height, heightTiles));
 	}
 
@@ -1527,7 +1513,7 @@ void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
 
 	GX_SET_REG(gx->suTs0[setUpRegIndex], a1, 16, 31);
 	GX_SET_REG(gx->suTs1[setUpRegIndex], a2, 16, 31);
-	
+
 	b = GX_GET_REG(gx->tMode0[texImgIndex], 30, 31) == 1;
 	c = GX_GET_REG(gx->tMode0[texImgIndex], 28, 29) == 1;
 
@@ -1590,44 +1576,38 @@ void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
  */
 static void __GXSetSUTexRegs(void)
 {
-	if (gx->tcsManEnab != 0xff)
-	{
+	if (gx->tcsManEnab != 0xff) {
 		u32 c, d;
 		int i;
 		u32 a = gx->genMode;
 		u32 b = gx->genMode;
-		for (i = 0; i < ((b >> 0x10) & 7); i++)
-		{
-			switch (i)
-			{
-				case 0:
-					c = GX_GET_REG(gx->iref, 29, 31);
-					d = GX_GET_REG(gx->iref, 26, 28);
-					break;
-				case 1:
-					c = GX_GET_REG(gx->iref, 23, 25);
-					d = GX_GET_REG(gx->iref, 20, 22);
-					break;
-				case 2:
-					c = GX_GET_REG(gx->iref, 17, 19);
-					d = GX_GET_REG(gx->iref, 14, 16);
-					break;
-				case 3:
-					c = GX_GET_REG(gx->iref, 11, 13);
-					d = GX_GET_REG(gx->iref, 8, 10);
-					break;
+		for (i = 0; i < ((b >> 0x10) & 7); i++) {
+			switch (i) {
+			case 0:
+				c = GX_GET_REG(gx->iref, 29, 31);
+				d = GX_GET_REG(gx->iref, 26, 28);
+				break;
+			case 1:
+				c = GX_GET_REG(gx->iref, 23, 25);
+				d = GX_GET_REG(gx->iref, 20, 22);
+				break;
+			case 2:
+				c = GX_GET_REG(gx->iref, 17, 19);
+				d = GX_GET_REG(gx->iref, 14, 16);
+				break;
+			case 3:
+				c = GX_GET_REG(gx->iref, 11, 13);
+				d = GX_GET_REG(gx->iref, 8, 10);
+				break;
 			}
 
-			if ((gx->tcsManEnab & (1 << d)) == 0)
-			{
+			if ((gx->tcsManEnab & (1 << d)) == 0) {
 				__SetSURegs(c, d);
 			}
 		}
 
-		for (i = 0; i < ((b >> 0x10) & 0xf); i++)
-		{
-			if ((gx->genMode & (1 << d)) == 0)
-			{
+		for (i = 0; i < ((b >> 0x10) & 0xf); i++) {
+			if ((gx->genMode & (1 << d)) == 0) {
 				__SetSURegs(c, d);
 			}
 		}
@@ -1779,85 +1759,84 @@ void __GXGetSUTexSize(void)
  */
 void __GXSetTmemConfig(u32 config)
 {
-	switch (config)
-	{
-		case 2:
-			GX_BP_LOAD_REG(0x8c0d8000);
-			GX_BP_LOAD_REG(0x900dc000);
+	switch (config) {
+	case 2:
+		GX_BP_LOAD_REG(0x8c0d8000);
+		GX_BP_LOAD_REG(0x900dc000);
 
-			GX_BP_LOAD_REG(0x8d0d8800);
-			GX_BP_LOAD_REG(0x910dc800);
+		GX_BP_LOAD_REG(0x8d0d8800);
+		GX_BP_LOAD_REG(0x910dc800);
 
-			GX_BP_LOAD_REG(0x8e0d9000);
-			GX_BP_LOAD_REG(0x920dd000);
-			
-			GX_BP_LOAD_REG(0x8f0d9800);
-			GX_BP_LOAD_REG(0x930dd800);
+		GX_BP_LOAD_REG(0x8e0d9000);
+		GX_BP_LOAD_REG(0x920dd000);
 
-			GX_BP_LOAD_REG(0xac0da000);
-			GX_BP_LOAD_REG(0xb00dc400);
+		GX_BP_LOAD_REG(0x8f0d9800);
+		GX_BP_LOAD_REG(0x930dd800);
 
-			GX_BP_LOAD_REG(0xad0da800);
-			GX_BP_LOAD_REG(0xb10dcc00);
+		GX_BP_LOAD_REG(0xac0da000);
+		GX_BP_LOAD_REG(0xb00dc400);
 
-			GX_BP_LOAD_REG(0xae0db000);
-			GX_BP_LOAD_REG(0xb20dd400);
+		GX_BP_LOAD_REG(0xad0da800);
+		GX_BP_LOAD_REG(0xb10dcc00);
 
-			GX_BP_LOAD_REG(0xaf0db800);
-			GX_BP_LOAD_REG(0xb30ddc00);
-			break;
-		case 1:
-			GX_BP_LOAD_REG(0x8c0d8000);
-			GX_BP_LOAD_REG(0x900dc000);
+		GX_BP_LOAD_REG(0xae0db000);
+		GX_BP_LOAD_REG(0xb20dd400);
 
-			GX_BP_LOAD_REG(0x8d0d8800);
-			GX_BP_LOAD_REG(0x910dc800);
+		GX_BP_LOAD_REG(0xaf0db800);
+		GX_BP_LOAD_REG(0xb30ddc00);
+		break;
+	case 1:
+		GX_BP_LOAD_REG(0x8c0d8000);
+		GX_BP_LOAD_REG(0x900dc000);
 
-			GX_BP_LOAD_REG(0x8e0d9000);
-			GX_BP_LOAD_REG(0x920dd000);
-			
-			GX_BP_LOAD_REG(0x8f0d9800);
-			GX_BP_LOAD_REG(0x930dd800);
+		GX_BP_LOAD_REG(0x8d0d8800);
+		GX_BP_LOAD_REG(0x910dc800);
 
-			GX_BP_LOAD_REG(0xac0da000);
-			GX_BP_LOAD_REG(0xb00de000);
+		GX_BP_LOAD_REG(0x8e0d9000);
+		GX_BP_LOAD_REG(0x920dd000);
 
-			GX_BP_LOAD_REG(0xad0da800);
-			GX_BP_LOAD_REG(0xb10de800);
+		GX_BP_LOAD_REG(0x8f0d9800);
+		GX_BP_LOAD_REG(0x930dd800);
 
-			GX_BP_LOAD_REG(0xae0db000);
-			GX_BP_LOAD_REG(0xb20df000);
+		GX_BP_LOAD_REG(0xac0da000);
+		GX_BP_LOAD_REG(0xb00de000);
 
-			GX_BP_LOAD_REG(0xaf0db800);
-			GX_BP_LOAD_REG(0xb30df800);
-			
-			break;
-		case 0:
-		default:
-			GX_BP_LOAD_REG(0x8c0d8000);
-			GX_BP_LOAD_REG(0x900dc000);
+		GX_BP_LOAD_REG(0xad0da800);
+		GX_BP_LOAD_REG(0xb10de800);
 
-			GX_BP_LOAD_REG(0x8d0d8400);
-			GX_BP_LOAD_REG(0x910dc400);
+		GX_BP_LOAD_REG(0xae0db000);
+		GX_BP_LOAD_REG(0xb20df000);
 
-			GX_BP_LOAD_REG(0x8e0d8800);
-			GX_BP_LOAD_REG(0x920dc800);
-			
-			GX_BP_LOAD_REG(0x8f0d8c00);
-			GX_BP_LOAD_REG(0x930dcc00);
+		GX_BP_LOAD_REG(0xaf0db800);
+		GX_BP_LOAD_REG(0xb30df800);
 
-			GX_BP_LOAD_REG(0xac0d9000);
-			GX_BP_LOAD_REG(0xb00dd000);
+		break;
+	case 0:
+	default:
+		GX_BP_LOAD_REG(0x8c0d8000);
+		GX_BP_LOAD_REG(0x900dc000);
 
-			GX_BP_LOAD_REG(0xad0d9400);
-			GX_BP_LOAD_REG(0xb10dd400);
+		GX_BP_LOAD_REG(0x8d0d8400);
+		GX_BP_LOAD_REG(0x910dc400);
 
-			GX_BP_LOAD_REG(0xae0d9800);
-			GX_BP_LOAD_REG(0xb20dd800);
+		GX_BP_LOAD_REG(0x8e0d8800);
+		GX_BP_LOAD_REG(0x920dc800);
 
-			GX_BP_LOAD_REG(0xaf0d9c00);
-			GX_BP_LOAD_REG(0xb30ddc00);
-			
-			break;
+		GX_BP_LOAD_REG(0x8f0d8c00);
+		GX_BP_LOAD_REG(0x930dcc00);
+
+		GX_BP_LOAD_REG(0xac0d9000);
+		GX_BP_LOAD_REG(0xb00dd000);
+
+		GX_BP_LOAD_REG(0xad0d9400);
+		GX_BP_LOAD_REG(0xb10dd400);
+
+		GX_BP_LOAD_REG(0xae0d9800);
+		GX_BP_LOAD_REG(0xb20dd800);
+
+		GX_BP_LOAD_REG(0xaf0d9c00);
+		GX_BP_LOAD_REG(0xb30ddc00);
+
+		break;
 	}
 }
