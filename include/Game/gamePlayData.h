@@ -179,20 +179,20 @@ struct OlimarData {
 	void read(Stream&);
 
 	/**
-	 * Returns the map type based on the given upgrade flags.
+	 * Returns the map type based on the given collection flags.
 	 *
-	 * @param hasPrototypeUpgrade A boolean indicating whether the prototype upgrade has been collected.
-	 * @param hasNapsack A boolean indicating whether the napsack upgrade has been collected.
+	 * @param hasPrototypeDetector A boolean indicating whether the Prototype Detector item has been collected.
+	 * @param hasNapsack A boolean indicating whether the Five-Man Napsack item has been collected.
 	 * @return An integer representing the map type:
-	 *         - 0: If only the prototype upgrade has been collected.
-	 *         - 1: If only the napsack upgrade has been collected.
-	 *         - 2: If neither the prototype upgrade nor the napsack upgrade has been collected.
-	 *         - 3: If both the prototype upgrade and the napsack upgrade has been collected.
+	 *         - 0: If only the Prototype Detector item has been collected.
+	 *         - 1: If only the Five-Man Napsack item has been collected.
+	 *         - 2: If neither the Prototype Detector item nor the Five-Man Napsack item has been collected.
+	 *         - 3: If both the Prototype Detector item and the Five-Man Napsack item has been collected.
 	 */
-	static inline int getMapType(bool hasPrototypeUpgrade, bool hasNapsack)
+	static inline int getMapType(bool hasPrototypeDetector, bool hasNapsack)
 	{
 		bool flag = false;
-		if (hasPrototypeUpgrade && hasNapsack) {
+		if (hasPrototypeDetector && hasNapsack) {
 			flag = true;
 		}
 
@@ -204,7 +204,7 @@ struct OlimarData {
 			return 1;
 		}
 
-		if (hasPrototypeUpgrade) {
+		if (hasPrototypeDetector) {
 			return 0;
 		}
 
