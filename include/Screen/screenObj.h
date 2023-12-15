@@ -112,7 +112,19 @@ struct EndSceneArg : public SceneArgBase {
 };
 
 struct SceneBase {
-	enum StateID { Unknown0 = 0, Unknown1, Unknown2, Unknown3, Unknown4 };
+	enum StateID {
+		SB_Finished3           = -3,
+		SB_Finished2           = -2,
+		SB_Finished1           = -1,
+		SB_Unknown0            = 0,
+		SB_WaitForResourceSync = 1,
+		SB_Unknown2            = 2,
+		SB_Started             = 3,
+		SB_Unknown4            = 4,
+		SB_Unknown5            = 5,
+		SB_Unknown6            = 6,
+		SB_Unknown7            = 7,
+	};
 
 	SceneBase();
 	~SceneBase();
@@ -138,8 +150,8 @@ struct SceneBase {
 		memcpy(mDispMember, (void*)&disp, sizeof(disp));
 		return true;
 	}
-	virtual void doSetBackupScene(SetSceneArg&) { } // _48 (weak)
-	virtual int doGetFinishState() { return -3; }   // _4C (weak)
+	virtual void doSetBackupScene(SetSceneArg&) { }         // _48 (weak)
+	virtual int doGetFinishState() { return SB_Finished3; } // _4C (weak)
 
 	bool confirmEndScene(EndSceneArg*);
 	bool confirmSetScene(SetSceneArg&);
@@ -173,15 +185,15 @@ struct SceneBase {
 	inline Mgr* getScreenMgr() { return mScreenMgr; }
 
 	// _00 = VTBL
-	char mName[256];                                  // _004
-	Controller* mController;                          // _104
-	Mgr* mScreenMgr;                                  // _108
-	Delegate1<SceneBase, Resource::MgrCommand*> _10C; // _10C
-	int mStateID;                                     // _120
-	f32 mSomeTime;                                    // _124
-	Resource::MgrCommand mCommand;                    // _128
-	ObjMgrBase* mObjMgr;                              // _218
-	og::Screen::DispMemberBase* mDispMember;          // _21C
+	char mName[256];                                                   // _004
+	Controller* mController;                                           // _104
+	Mgr* mScreenMgr;                                                   // _108
+	Delegate1<SceneBase, Resource::MgrCommand*> mUserCallbackDelegate; // _10C
+	int mStateID;                                                      // _120
+	f32 mSomeTime;                                                     // _124
+	Resource::MgrCommand mCommand;                                     // _128
+	ObjMgrBase* mObjMgr;                                               // _218
+	og::Screen::DispMemberBase* mDispMember;                           // _21C
 };
 
 struct IObjBase : public CNode, public JKRDisposer {

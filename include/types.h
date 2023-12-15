@@ -72,6 +72,7 @@ typedef unsigned short wchar_t;
 // Align object to num bytes (num should be power of two)
 #define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
 
+// Checks if a flag is set in a bitfield
 #define IS_FLAG_SET(flags, bitsFromLSB) (((flags) >> (bitsFromLSB)&1))
 
 // For functions that return 0 on a success and -1 on failure
@@ -89,7 +90,10 @@ typedef unsigned short wchar_t;
 // Get the minimum of two values
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 
-// number of bytes in a kilobyte
+// Rounds a float to a u8
+#define ROUND_F32_TO_U8(a) a >= 0.0f ? a + 0.5f : a - 0.5f
+
+// Number of bytes in a kilobyte
 #define KILOBYTE_BYTECOUNT 1024
 
 #ifdef __MWERKS__

@@ -67,7 +67,7 @@ CPlate::CPlate(int slotLimit)
     , mSlotLimit(slotLimit)
 {
 	_B4              = 10.0f;
-	_B0              = 10.0f;
+	mBaseRadius      = 10.0f;
 	mPosition        = Vector3f(0.0f);
 	mAngle           = 0.0f;
 	mSlots           = new Slot[mSlotLimit];
@@ -86,21 +86,29 @@ CPlate::CPlate(int slotLimit)
 	_100      = 0;
 }
 
+/**
+ * Sets the position, angle, velocity, and scale of the CPlate object.
+ *
+ * @param position The new position of the CPlate object.
+ * @param angle The new angle of the CPlate object.
+ * @param velocity The new velocity of the CPlate object.
+ * @param scale The scale factor to be applied to the CPlate object.
+ */
 /*
  * --INFO--
  * Address:	801952EC
  * Size:	000210
  */
-void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
+void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 scale)
 {
-	f32 offset = mParms.p000();
-	offset *= p4;
+	f32 offset = mParms.mStartingOffset();
+	offset *= scale;
 
 	if (mVelocity.length2D() > 5.0f) {
 		offset = 0.0f;
 	}
 
-	f32 rad = _B0 + offset;
+	f32 rad = mBaseRadius + offset;
 
 	mAngle    = angle;
 	mPosition = position;
@@ -121,14 +129,14 @@ void CPlate::setPos(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
  */
 void CPlate::setPosGray(Vector3f& position, f32 angle, Vector3f& velocity, f32 p4)
 {
-	f32 offset = mParms.p000();
+	f32 offset = mParms.mStartingOffset();
 	offset *= p4;
 
 	if (mVelocity.length2D() > 5.0f) {
 		offset = 0.0f;
 	}
 
-	f32 rad = _B0 + offset;
+	f32 rad = mBaseRadius + offset;
 
 	mPosition = position;
 

@@ -238,7 +238,6 @@ struct Navi : public FakePiki, virtual public PelletView {
 	// _000      = VTBL
 	// _000-_250 = FakePiki
 	// _250      = ptr to PelletView
-	// u32 _250;                                // probably shouldn't be here?
 	CPlate* mCPlateMgr;                     // _254
 	u8 _258;                                // _258
 	u8 mStickCount;                         // _259

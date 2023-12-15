@@ -2180,9 +2180,9 @@ void Pellet::update()
 		} else {
 			mWallTimer = 0;
 		}
-		*velocityPtr   = vec;
-		info.mVelocity = velocityPtr;
-		info._19       = 0;
+		*velocityPtr              = vec;
+		info.mVelocity            = velocityPtr;
+		info.mUseIntersectionAlgo = 0;
 		if (platMgr) {
 			platMgr->traceMove(info, frametime);
 		}

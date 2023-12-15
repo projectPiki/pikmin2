@@ -17,7 +17,7 @@ u8 MapMgr::mTraceMoveOptLevel = 1;
 Sys::TriIndexList* ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
 {
 	Sys::TriIndexList* triList;
-	_14++;
+	mTotalTraceCount++;
 	f32 len    = stepLength;
 	int steps  = 1;
 	f32 radius = info.mMoveSphere->mRadius;
@@ -37,7 +37,7 @@ Sys::TriIndexList* ShapeMapMgr::traceMove(Game::MoveInfo& info, f32 stepLength)
 		triList = MapMgr::traceMove(mMapCollision, info, len);
 	}
 
-	_18 += steps;
+	mTotalStepCount += steps;
 
 	return triList;
 }
@@ -67,7 +67,7 @@ Sys::TriIndexList* MapMgr::traceMove(MapCollision& coll, Game::MoveInfo& info, f
  * Address:	802051C0
  * Size:	0003BC
  */
-Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game::MoveInfo& info, f32 p1)
+Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game::MoveInfo& info, f32 deltaTime)
 {
 	Sys::Sphere* sphere         = info.mMoveSphere;            // r26
 	Vector3f* vel               = info.mVelocity;              // r25
@@ -77,22 +77,22 @@ Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game:
 	}
 
 	Vector3f spherePos = sphere->mPosition;
-	sphere->mPosition += (*vel) * p1;
+	sphere->mPosition += (*vel) * deltaTime;
 	Sys::TriIndexList* triList   = coll.mDivider->findTriLists(*sphere); // r23
 	Sys::TriangleTable* triTable = coll.mDivider->mTriangleTable;        // r19
 
-	Vector3f v1;
-	Vector3f v2;
+	Vector3f intersectPoint;
+	Vector3f unused;
 
 	for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
-		_1C += triList->mCount;
+		mTotalTriCount += triList->mCount;
 
 		for (int i = 0; i < triList->mCount; i++) {
 			int idx            = triList->mObjects[i];     // r21
 			Sys::Triangle* tri = &triTable->mObjects[idx]; // r29
 			if (mTraceMoveOptLevel >= 1) {
 				if (!tri->fastIntersect(*sphere)) {
-					_20++;
+					mMissedIntersectionCount++;
 					continue;
 				}
 			}
@@ -102,14 +102,15 @@ Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game:
 			}
 
 			Sys::Triangle::SphereSweep sweep;
-			sweep._00 = spherePos;
-			sweep._1C = 0;
-			if (info._19) {
-				sweep._1C = 1;
+			sweep.mStartPos = spherePos;
+
+			sweep.mSweepType = Sys::Triangle::SphereSweep::ST_SphereInsidePlane;
+			if (info.mUseIntersectionAlgo) {
+				sweep.mSweepType = Sys::Triangle::SphereSweep::ST_SphereIntersectPlane;
 			}
 
 			bool intersectCheck;
-			if (info._1A != 0) {
+			if (info.mIntersectType != Game::MoveInfo::IT_Triangle) {
 				Sys::Cylinder cylinder(sphere->mPosition, info.mDirection, info.mDistance, sphere->mRadius);
 				f32 overlap;
 				intersectCheck = cylinder.intersect(*tri, overlap);
@@ -121,15 +122,17 @@ Sys::TriIndexList* MapMgr::traceMove_test1203_cylinder(MapCollision& coll, Game:
 				if (info.mTriangleArray) {
 					info.mTriangleArray->store(*tri, *vertTable, idx);
 				}
-				if (info._10) {
-					info._10->invoke(v1, v2);
+
+				if (info.mIntersectCallback) {
+					info.mIntersectCallback->invoke(intersectPoint, unused);
 				}
-				if (v1.y >= info._30) {
+
+				if (intersectPoint.y >= info.mBounceThreshold) {
 					info.mBounceTriangle = tri;
-					info.mPosition       = v1;
-				} else if (FABS(v1.y) <= info._2C) {
+					info.mPosition       = intersectPoint;
+				} else if (FABS(intersectPoint.y) <= info.mWallThreshold) {
 					info.mWallTriangle    = tri;
-					info.mReflectPosition = v1;
+					info.mReflectPosition = intersectPoint;
 				}
 			}
 			Sys::Triangle::debug = false;

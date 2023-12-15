@@ -373,7 +373,7 @@ int PikiAI::ActFormation::exec()
 	if (dist < 60.0f && mParent->mNavi->mCommandOn1 && mSortState != FORMATION_SORT_STARTED) {
 		if (!_60
 		    && (mParent->mNavi->mSceneAnimationTimer - 2.0f * randFloat())
-		           >= static_cast<Game::NaviParms*>(mParent->mNavi->mParms)->mNaviParms.mP049.mValue) {
+		           >= static_cast<Game::NaviParms*>(mParent->mNavi->mParms)->mNaviParms.mPikiLoseNumbnessTime.mValue) {
 			_60 = true;
 			return ACTEXEC_Continue;
 		}

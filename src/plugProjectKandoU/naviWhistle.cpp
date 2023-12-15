@@ -34,7 +34,7 @@ void NaviWhistle::init()
 	mColor            = Color4(255, 150, 0, 120);
 	const f32 faceDir = mNavi->getFaceDir();
 	NaviParms* parms  = static_cast<NaviParms*>(mNavi->mParms);
-	f32 v1            = parms->mNaviParms.mP046.mValue * 0.5f;
+	f32 v1            = parms->mNaviParms.mMaxCursorMoveRadius.mValue * 0.5f;
 	mNaviOffsetVec    = Vector3f(sinf(faceDir) * v1, 0.0f, cosf(faceDir) * v1);
 
 	updatePosition();
@@ -87,13 +87,13 @@ void NaviWhistle::start()
 		mState           = 1;
 		mActiveTime      = 0.0f;
 		NaviParms* parms = static_cast<NaviParms*>(mNavi->mParms);
-		mRadius          = parms->mNaviParms.mP053.mValue;
+		mRadius          = parms->mNaviParms.mPikiCallMinRadius.mValue;
 		return;
 	case Whistle_Timeout:
 		mState      = 1;
 		mActiveTime = 0.0f;
 		parms       = static_cast<NaviParms*>(mNavi->mParms);
-		mRadius     = parms->mNaviParms.mP053.mValue;
+		mRadius     = parms->mNaviParms.mPikiCallMinRadius.mValue;
 		return;
 	}
 }
@@ -155,7 +155,7 @@ void NaviWhistle::updateWhistle()
 		break;
 	case Whistle_Active:
 		NaviParms* parms = static_cast<NaviParms*>(mNavi->mParms);
-		f32 growth       = mActiveTime / parms->mNaviParms.mP002.mValue;
+		f32 growth       = mActiveTime / parms->mNaviParms.mMaxCallTime.mValue;
 		f32 zero         = 0.0f;
 		mColor.r         = (growth * -175.0f + 255.0f);
 		mColor.g         = (growth * -110.0f + 120.0f);
@@ -164,7 +164,7 @@ void NaviWhistle::updateWhistle()
 		mActiveTime += sys->mDeltaTime;
 		Navi* navi = mNavi;
 		parms      = static_cast<NaviParms*>(mNavi->mParms);
-		if (mActiveTime > parms->mNaviParms.mP002.mValue) {
+		if (mActiveTime > parms->mNaviParms.mMaxCallTime.mValue) {
 			mActiveTime = 0.0f;
 			mState      = Whistle_Timeout;
 		} else {
@@ -172,24 +172,24 @@ void NaviWhistle::updateWhistle()
 			f32 maxSize;
 			if (data->hasItem(OlimarData::ODII_AmplifiedAmplifier)) {
 				parms   = naviMgr->mNaviParms;
-				maxSize = parms->mNaviParms.mQ007.mValue;
+				maxSize = parms->mNaviParms.mWideWhistleRadius.mValue;
 			} else {
 				parms   = naviMgr->mNaviParms;
-				maxSize = parms->mNaviParms.mP001.mValue;
+				maxSize = parms->mNaviParms.mPikiCallMaxRadius.mValue;
 			}
 			parms     = static_cast<NaviParms*>(mNavi->mParms);
-			f32 ratio = mActiveTime / parms->mNaviParms.mP002();
-			f32 diff  = maxSize - parms->mNaviParms.mP053();
-			mRadius   = ratio * diff + parms->mNaviParms.mP053();
+			f32 ratio = mActiveTime / parms->mNaviParms.mMaxCallTime();
+			f32 diff  = maxSize - parms->mNaviParms.mPikiCallMinRadius();
+			mRadius   = ratio * diff + parms->mNaviParms.mPikiCallMinRadius();
 		}
 		break;
 	case Whistle_Timeout:
 		parms    = static_cast<NaviParms*>(mNavi->mParms);
-		mColor.a = (1.0f - mActiveTime / parms->mNaviParms.mP003.mValue) * 120.0f;
+		mColor.a = (1.0f - mActiveTime / parms->mNaviParms.mCircleDisappearTime.mValue) * 120.0f;
 		mActiveTime += sys->mDeltaTime;
 
 		parms = static_cast<NaviParms*>(mNavi->mParms);
-		if (mActiveTime > parms->mNaviParms.mP003.mValue) {
+		if (mActiveTime > parms->mNaviParms.mCircleDisappearTime.mValue) {
 			mActiveTime = 0.0f;
 			mState      = Whistle_Inactive;
 			mRadius     = 10.0f;
@@ -355,7 +355,7 @@ void NaviWhistle::update(Vector3f& stick, bool active)
 		res              = stick;
 		f32 dist         = res.normalise();
 		NaviParms* parms = static_cast<NaviParms*>(mNavi->mParms);
-		res *= parms->mNaviParms.mP047.mValue;
+		res *= parms->mNaviParms.mCursorMovementSpeed.mValue;
 		f32 time = sys->mDeltaTime;
 		res *= time;
 		res += mNaviOffsetVec;

@@ -59,15 +59,15 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	J3DModelData* getModelData(int);
 	void setModelSize(int);
 
-	void loadAnimMgr(JKRFileLoader*, char*);
-	void loadArchive(char*);
-	void loadBmd(char*, int, u32);
-	void loadCollision(JKRFileLoader*, char*);
-	PlatAttacher* loadPlatAttacher(JKRFileLoader*, char*);
-	Platform* loadPlatform(JKRFileLoader*, char*);
+	void loadAnimMgr(JKRFileLoader* loader, char* path);
+	void loadArchive(char* path);
+	void loadBmd(char* path, int shapeID, u32 flags);
+	void loadCollision(JKRFileLoader* loader, char* path);
+	PlatAttacher* loadPlatAttacher(JKRFileLoader* loader, char* path);
+	Platform* loadPlatform(JKRFileLoader* loader, char* path);
 
-	JKRArchive* openTextArc(char*);
-	void closeTextArc(JKRArchive*);
+	JKRArchive* openTextArc(char* path);
+	void closeTextArc(JKRArchive* unused);
 
 	// _00 = VTBL
 	// _04 = ptr to _BaseItemMgrParent2

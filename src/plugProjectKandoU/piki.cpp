@@ -944,14 +944,14 @@ f32 Piki::getThrowHeight()
 
 	switch (getKind()) {
 	case Yellow:
-		return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mP054.mValue;
+		return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mThrowHeightYellow.mValue;
 	case Purple:
-		return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mQ000.mValue;
+		return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mThrowBlackHeight.mValue;
 	case White:
-		return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mQ001.mValue;
+		return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mThrowWhiteHeight.mValue;
 	}
 
-	return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mP025.mValue;
+	return static_cast<NaviParms*>(mNavi->mParms)->mNaviParms.mThrowHeightMin.mValue;
 }
 
 /*

@@ -17,10 +17,10 @@ namespace Farm {
  * Address:	80124018
  * Size:	0000C0
  */
-FarmMgr::FarmMgr(u32 p1)
+FarmMgr::FarmMgr(u32 farmType)
     : GenericObjectMgr()
     , CNode("”_kƒ}ƒl[ƒWƒƒ")
-    , _1C(p1)
+    , mModelType(farmType)
     , mFarmsRootNode("”_kƒ|ƒCƒ“ƒg")
     , mDirectorUpdator(nullptr)
     , _3C(0)
@@ -161,7 +161,7 @@ void FarmMgr::addFarmBmd(void* bmd)
 Farm* FarmMgr::createNewFarm(void* bmd)
 {
 	Farm* farm = new Farm();
-	farm->loadResource(_1C, bmd);
+	farm->loadResource(mModelType, bmd);
 	mFarmsRootNode.add(farm);
 	return farm;
 }
@@ -193,12 +193,12 @@ Farm* FarmMgr::getNearestFarm(Vector3f& position)
  * Address:	80124474
  * Size:	000120
  */
-Obstacle* FarmMgr::addObstacle(Creature* creature, f32 p2, f32 p3)
+Obstacle* FarmMgr::addObstacle(Creature* creature, f32 radius, f32 power)
 {
 	Vector3f position = creature->getPosition();
 	Farm* farm        = getNearestFarm(position);
 	if (farm) {
-		return farm->addObstacle(creature, p2, p3);
+		return farm->addObstacle(creature, radius, power);
 	}
 	return nullptr;
 }

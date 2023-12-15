@@ -26,6 +26,13 @@ struct MgrBase : public JKRDisposer {
 };
 
 struct Mgr : public MgrBase {
+	enum SceneFinishState {
+		SFS_OPEN_PAUSE_MENU = -1,
+		SFS_NO_STATE        = 0,
+		SFS_UNPAUSE_RESUME  = 1,
+		SFS_GIVE_UP         = 4,
+	};
+
 	Mgr();
 
 	virtual ~Mgr() { sScreenMgr = nullptr; }           // _08 (weak)
@@ -81,7 +88,7 @@ struct Mgr : public MgrBase {
 	JKRSolidHeap* mCurrHeap;   // _5C
 	CNode _60;                 // _60
 	CNode mSceneInfoList;      // _78, treat as SceneInfoList
-	u8 _90;                    // _90
+	u8 mInitialised;           // _90
 	bool mInCave;              // _91
 	bool mInDemo;              // _92
 	u32 mCourseIndex;          // _94
@@ -110,7 +117,7 @@ struct Mgr : public Screen::Mgr {
 	{
 		mBgColor.set(-1);
 		mColor2.set(-1);
-		_90          = 0;
+		mInitialised = 0;
 		mInCave      = false;
 		mInDemo      = false;
 		mCourseIndex = 0;

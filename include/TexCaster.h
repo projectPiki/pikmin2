@@ -11,6 +11,8 @@
 namespace TexCaster {
 // size: 0x48
 struct Caster : public CNode {
+	enum CasterStatus { CS_Hidden = 0, CS_Finished = 1, CS_Increasing = 2, CS_Decreasing = 3 };
+
 	Caster();
 
 	virtual ~Caster(); // _08
@@ -28,15 +30,15 @@ struct Caster : public CNode {
 
 	// _00      = VTABLE
 	// _04-_18  = CNode
-	Sys::Sphere _18; // _18
-	u32 _28;         // _28
-	Vector3f* _2C;   // _2C
-	u8* _30;         // _30
-	int _34;         // _34
-	f32** _38;       // _38, array of floats of size _28 * 6
-	u8 _3C;          // _3C
-	f32 _40;         // _40
-	f32 _44;         // _44
+	Sys::Sphere mBoundingSphere; // _18
+	u32 mTriangleCount;          // _28
+	Vector3f* mVertices;         // _2C
+	u8* mDisplayList;            // _30
+	int mDisplayListSize;        // _34
+	f32** mTexturePositions;     // _38, array of floats of size _28 * 6
+	u8 mStatus;                  // _3C
+	f32 mColor;                  // _40
+	f32 mChangeRate;             // _44
 };
 
 // size: 0x50

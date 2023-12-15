@@ -76,22 +76,22 @@ void OnyonSpotData::loadResources()
 	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x21020000);
 	*mModelData         = model;
 	mTexAnimCount       = 1;
-	mTexanims           = new Sys::MatTexAnimation[mTexAnimCount];
+	mTexAnims           = new Sys::MatTexAnimation[mTexAnimCount];
 
 	mTevAnimCount = ONYON_TYPE_MAX;
-	mTevanims     = new Sys::MatTevRegAnimation[mTevAnimCount];
+	mTevAnims     = new Sys::MatTevRegAnimation[mTevAnimCount];
 
 	file = JKRFileLoader::getGlbResource("onyonspot.btk", nullptr);
-	mTexanims[0].attachResource(file, *mModelData);
+	mTexAnims[0].attachResource(file, *mModelData);
 
 	file = JKRFileLoader::getGlbResource("onyonspot_blue.brk", nullptr);
-	mTevanims[ONYON_TYPE_BLUE].attachResource(file, *mModelData);
+	mTevAnims[ONYON_TYPE_BLUE].attachResource(file, *mModelData);
 
 	file = JKRFileLoader::getGlbResource("onyonspot_red.brk", nullptr);
-	mTevanims[ONYON_TYPE_RED].attachResource(file, *mModelData);
+	mTevAnims[ONYON_TYPE_RED].attachResource(file, *mModelData);
 
 	file = JKRFileLoader::getGlbResource("onyonspot_yellow.brk", nullptr);
-	mTevanims[ONYON_TYPE_YELLOW].attachResource(file, *mModelData);
+	mTevAnims[ONYON_TYPE_YELLOW].attachResource(file, *mModelData);
 }
 
 /*
@@ -115,7 +115,7 @@ ModelEffect* OnyonSpotData::onCreate(ModelEffectCreateArg* arg)
 	mtx.makeT(onyonarg->mOrig);
 	PSMTXCopy(mtx.mMatrix.mtxView, spot->mMtx.mMatrix.mtxView);
 
-	spot->initAnimators(mTexanims, &mTevanims[type]);
+	spot->initAnimators(mTexAnims, &mTevAnims[type]);
 
 	return spot;
 }

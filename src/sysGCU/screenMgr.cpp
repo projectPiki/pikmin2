@@ -1946,10 +1946,12 @@ bool Mgr::isSceneFinish()
  */
 int Mgr::getSceneFinishState()
 {
-	int ret = -1;
+	int ret = SceneBase::SB_Finished1;
+
 	if (mBackupScene) {
 		ret = mBackupScene->getFinishState();
 	}
+
 	return ret;
 }
 

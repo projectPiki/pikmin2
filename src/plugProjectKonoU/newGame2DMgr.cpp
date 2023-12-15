@@ -423,36 +423,36 @@ int Game2DMgr::check_SMenu()
 		if (mScreenMgr->isSceneFinish()) {
 			int scene = mScreenMgr->getSceneFinishState();
 			switch (scene) {
-			case 1:
+			case SceneBase::SB_WaitForResourceSync:
 				exit = 0;
 				break;
 
-			case 2:
+			case SceneBase::SB_Unknown2:
 				PSPause_StartMenuOff();
 				exit = 1;
 				break;
 
-			case 3:
+			case SceneBase::SB_Started:
 				PSPause_StartMenuOff();
 				exit = 2;
 				break;
 
-			case 4:
+			case SceneBase::SB_Unknown4:
 				PSPause_StartMenuOff();
 				exit = 3;
 				break;
 
-			case 5:
+			case SceneBase::SB_Unknown5:
 				PSPause_StartMenuOff();
 				exit = 1;
 				break;
 
-			case 6:
+			case SceneBase::SB_Unknown6:
 				PSPause_StartMenuOff();
 				exit = 4;
 				break;
 
-			case 7:
+			case SceneBase::SB_Unknown7:
 				PSPause_StartMenuOff();
 				exit = 5;
 				break;

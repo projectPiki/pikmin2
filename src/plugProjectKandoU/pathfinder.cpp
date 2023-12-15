@@ -199,12 +199,12 @@ int Pathfinder::check(u32 handle)
 void PathNode::initNode()
 {
 	// UNUSED FUNCTION
-	_18    = nullptr;
-	_14    = nullptr;
-	_1C    = nullptr;
-	_10    = nullptr;
-	mChild = nullptr;
-	mNext  = nullptr;
+	mPrevious = nullptr;
+	mSibling  = nullptr;
+	_1C       = nullptr;
+	mParent   = nullptr;
+	mChild    = nullptr;
+	mNext     = nullptr;
 }
 
 /*
@@ -217,11 +217,11 @@ void PathNode::add(Game::PathNode* newNode)
 	// UNUSED FUNCTION
 	if (_1C != nullptr) {
 		PathNode* node;
-		for (node = _14; node->_14 != nullptr;) {
-			node = node->_14;
+		for (node = mSibling; node->mSibling != nullptr;) {
+			node = node->mSibling;
 		}
-		node->_14    = newNode;
-		newNode->_18 = node;
+		node->mSibling     = newNode;
+		newNode->mPrevious = node;
 	} else {
 		_1C = newNode;
 	}
@@ -361,11 +361,11 @@ void AStarPathfinder::initsearch(Game::AStarContext* context)
 	PathNode* node           = mContext->getNode(startID);
 	node->mWpIndex           = startID;
 	node->_00                = 0.0f;
-	node->_04                = estimate(startID, endID);
+	node->mDistanceToEnd     = estimate(startID, endID);
 	node->mChild             = nullptr;
 	node->_22                = 0;
 	mContext->_08[0].add(node);
-	node->_10 = mContext->_08 + 0;
+	node->mParent = mContext->_08 + 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -483,20 +483,28 @@ lbl_801A3D54:
 	*/
 }
 
+/**
+ * @brief Performs an A* search algorithm to find a path.
+ *
+ * @param context The AStarContext containing the necessary information for the search.
+ * @param maxIterations The maximum number of iterations to perform.
+ * @param path A pointer to store the resulting path.
+ * @return Returns 0 if a path is found, 1 if no path is found, and 2 if the maximum number of iterations is reached.
+ */
 /*
  * --INFO--
  * Address:	801A3D70
  * Size:	0004B8
  */
-int AStarPathfinder::search(Game::AStarContext* context, int p1, Game::PathNode** outNode)
+int AStarPathfinder::search(Game::AStarContext* context, int maxIterations, Game::PathNode** path)
 {
 	mContext   = context;
 	s16 endIdx = context->mEndWPID;
-	for (int i = p1; mContext->_08[0]._1C && i > 0; i--) {
+	for (int i = maxIterations; mContext->_08[0]._1C && i > 0; i--) {
 		f32 minDist          = 1280000.0f;
 		PathNode* targetNode = nullptr;
-		for (PathNode* node = mContext->_08[0]._1C; node; node = node->_14) {
-			f32 dist = node->_00 + node->_04;
+		for (PathNode* node = mContext->_08[0]._1C; node; node = node->mSibling) {
+			f32 dist = node->_00 + node->mDistanceToEnd;
 			if (dist < minDist) {
 				minDist    = dist;
 				targetNode = node;
@@ -504,40 +512,40 @@ int AStarPathfinder::search(Game::AStarContext* context, int p1, Game::PathNode*
 		}
 
 		if (targetNode) {
-			PathNode* child = targetNode->_10;
+			PathNode* child = targetNode->mParent;
 			if (child) {
 				PathNode* node     = child->_1C;
 				PathNode* prevNode = nullptr;
 				while (node) {
 					if (node == targetNode) {
 						if (prevNode) {
-							prevNode->_14 = node->_14;
-							if (node->_14) {
-								node->_14->_18 = prevNode;
+							prevNode->mSibling = node->mSibling;
+							if (node->mSibling) {
+								node->mSibling->mPrevious = prevNode;
 							}
 
-							targetNode->_18 = nullptr;
-							targetNode->_14 = nullptr;
-							targetNode->_10 = nullptr;
+							targetNode->mPrevious = nullptr;
+							targetNode->mSibling  = nullptr;
+							targetNode->mParent   = nullptr;
 						} else {
-							child->_1C = node->_14;
-							if (node->_14) {
-								node->_14->_18 = nullptr;
+							child->_1C = node->mSibling;
+							if (node->mSibling) {
+								node->mSibling->mPrevious = nullptr;
 							}
 
-							targetNode->_18 = nullptr;
-							targetNode->_14 = nullptr;
-							targetNode->_10 = nullptr;
+							targetNode->mPrevious = nullptr;
+							targetNode->mSibling  = nullptr;
+							targetNode->mParent   = nullptr;
 						}
 						break;
 					}
 
 					prevNode = node;
-					node     = node->_14;
+					node     = node->mSibling;
 				}
 
 				if (targetNode->mWpIndex == endIdx) {
-					outNode[0] = targetNode;
+					path[0] = targetNode;
 					return 0;
 				}
 

@@ -248,7 +248,7 @@ struct TMgr : public JKRDisposer {
 	Screen::TSaveMenu mSaveMenu;                      // _18
 	CardError::TMgr mMemCardErrorMgr;                 // _100
 	u32 mCounter;                                     // _3C8
-	u32 _3CC;                                         // _3CC, unknown
+	u32 mCounterBackup;                               // _3CC
 	Controller* mController;                          // _3D0
 	Game::MemoryCard::PlayerFileInfo mPlayerFileInfo; // _3D4
 	BOOL mIsStoryGameSave;                            // _470

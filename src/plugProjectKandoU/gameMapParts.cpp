@@ -2409,18 +2409,18 @@ Sys::TriIndexList* RoomMapMgr::traceMove(MoveInfo& moveInfo, f32 rate)
 			moveInfo.mVelocity->y = -moveInfo.mVelocity->y * (moveInfo.mTraceRadius - 1.0f);
 		}
 
-		Vector3f vec1 = moveInfo.mMoveSphere->mPosition;
-		vec1.y -= moveInfo.mMoveSphere->mRadius;
+		Vector3f bottomSpherePos = moveInfo.mMoveSphere->mPosition;
+		bottomSpherePos.y -= moveInfo.mMoveSphere->mRadius;
 
 		moveInfo.mBounceTriangle = &mTriangle;
 		moveInfo.mPosition       = Vector3f(0.0f, 1.0f, 0.0f);
-		moveInfo._78             = Vector3f(0.0f, 1.0f, 0.0f);
+		moveInfo.mUpDirection    = Vector3f(0.0f, 1.0f, 0.0f);
 
-		moveInfo._84 = vec1;
+		moveInfo.mBaseSpherePos = bottomSpherePos;
 
-		if (moveInfo._10) {
-			Vector3f vec2(0.0f, 1.0f, 0.0f);
-			moveInfo._10->invoke(vec1, vec2);
+		if (moveInfo.mIntersectCallback) {
+			Vector3f up(0.0f, 1.0f, 0.0f);
+			moveInfo.mIntersectCallback->invoke(bottomSpherePos, up);
 		}
 	}
 

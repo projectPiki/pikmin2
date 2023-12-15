@@ -22,8 +22,8 @@ namespace Screen {
 SceneBase::SceneBase()
     : mController(nullptr)
     , mScreenMgr(nullptr)
-    , _10C(this, &SceneBase::userCallBackFunc)
-    , mStateID(Unknown0)
+    , mUserCallbackDelegate(this, &SceneBase::userCallBackFunc)
+    , mStateID(SB_Unknown0)
     , mCommand("no name")
     , mObjMgr(nullptr)
 {
@@ -63,14 +63,14 @@ void SceneBase::create()
 {
 	if (mCommand.mMode == -1) {
 		mSomeTime              = sys->getTime();
-		mCommand.mUserCallback = &_10C;
+		mCommand.mUserCallback = &mUserCallbackDelegate;
 		if (getResName()[0] != '\0') {
 			og::newScreen::makeLanguageResName(mName, getResName());
 			gResMgr2D->loadResource(&mCommand, mName, true);
 		} else {
 			gResMgr2D->loadResource(&mCommand, "", true);
 		}
-		mStateID = Unknown1;
+		mStateID = SB_WaitForResourceSync;
 	}
 }
 
@@ -82,9 +82,9 @@ void SceneBase::create()
 void SceneBase::update()
 {
 	switch (mStateID) {
-	case Unknown0:
+	case SB_Unknown0:
 		break;
-	case Unknown1:
+	case SB_WaitForResourceSync:
 		if (gResMgr2D->sync(&mCommand, false) != false) {
 			if (getResName()[0] != '\0') {
 				void* res = mCommand.getResource();
@@ -95,18 +95,18 @@ void SceneBase::update()
 				createObj(archive);
 				mCommand.releaseCurrentHeap();
 			}
-			mStateID = Unknown2;
+			mStateID = SB_Unknown2;
 			sys->getTime();
 		}
 		break;
-	case Unknown2:
+	case SB_Unknown2:
 		break;
-	case Unknown3:
+	case SB_Started:
 		if (updateActive()) {
-			mStateID = Unknown4;
+			mStateID = SB_Unknown4;
 		}
 		break;
-	case Unknown4:
+	case SB_Unknown4:
 		break;
 	default:
 		JUT_PANICLINE(226, "P2Assert");
@@ -141,16 +141,14 @@ void SceneBase::doUpdateActive() { }
 void SceneBase::draw(Graphics& gfx)
 {
 	switch (mStateID) {
-	case Unknown0:
-	case Unknown1:
-	case Unknown2:
-		// return;
+	case SB_Unknown0:
+	case SB_WaitForResourceSync:
+	case SB_Unknown2:
 		break;
-	case Unknown3:
-	case Unknown4:
+	case SB_Started:
+	case SB_Unknown4:
 		setPort(gfx);
 		mObjMgr->draw(gfx);
-		// return;
 		break;
 	default:
 		P2ASSERTLINE(285, false);
@@ -164,12 +162,12 @@ void SceneBase::draw(Graphics& gfx)
  */
 bool SceneBase::start(Screen::StartSceneArg* arg)
 {
-	if (mStateID != Unknown0 && mStateID != Unknown1) {
-		mStateID = Unknown3;
+	if (mStateID != SB_Unknown0 && mStateID != SB_WaitForResourceSync) {
+		mStateID = SB_Started;
 		return doStart(arg);
-	} else {
-		return false;
 	}
+
+	return false;
 }
 
 /*
@@ -191,10 +189,10 @@ bool SceneBase::doStart(Screen::StartSceneArg* arg)
 bool SceneBase::end(Screen::EndSceneArg* arg)
 {
 	bool result;
-	if (mStateID == Unknown0 || mStateID == Unknown2) {
-		mStateID = Unknown4;
+	if (mStateID == SB_Unknown0 || mStateID == SB_Unknown2) {
+		mStateID = SB_Unknown4;
 		result   = true;
-	} else if (mStateID != Unknown1) {
+	} else if (mStateID != SB_WaitForResourceSync) {
 		result = doEnd(arg);
 	} else {
 		result = false;
@@ -305,6 +303,7 @@ bool SceneBase::setBackupScene()
 			mgr->mSceneInfoList.add(list);
 		}
 	}
+
 	return result;
 }
 
@@ -332,7 +331,7 @@ bool SceneBase::setDispMember(og::Screen::DispMemberBase* disp)
  * Address:	804521F0
  * Size:	000040
  */
-int SceneBase::getFinishState() { return (mStateID == 4) ? doGetFinishState() : -2; }
+int SceneBase::getFinishState() { return (mStateID == SB_Unknown4) ? doGetFinishState() : SB_Finished2; }
 
 /*
  * --INFO--

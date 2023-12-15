@@ -415,9 +415,9 @@ void FSMState_NowSave::do_init(TMgr* mgr, Game::StateArg* arg)
 
 	mgr->mSaveMenu.openMsg(Screen::TSaveMenu::MESSAGE_Saving);
 
-	u32 count     = 1.0f / sys->mDeltaTime;
-	mgr->mCounter = count;
-	mgr->_3CC     = count;
+	u32 count           = 1.0f / sys->mDeltaTime;
+	mgr->mCounter       = count;
+	mgr->mCounterBackup = count;
 
 	mgr->mMemCardErrorMgr.forceQuitSeq();
 }
@@ -524,9 +524,9 @@ void FSMState_AfterSave::do_init(TMgr* mgr, Game::StateArg*)
 {
 	mgr->mSaveMenu.openMsg(Screen::TSaveMenu::MESSAGE_SaveSuccess);
 
-	u32 count     = 1.0f / sys->mDeltaTime;
-	mgr->mCounter = count;
-	mgr->_3CC     = count;
+	u32 count           = 1.0f / sys->mDeltaTime;
+	mgr->mCounter       = count;
+	mgr->mCounterBackup = count;
 }
 
 /*
@@ -683,7 +683,7 @@ void TMgr::onDvdErrorRecovered()
  */
 TMgr::TMgr()
     : mCounter(0)
-    , _3CC(0)
+    , mCounterBackup(0)
 {
 	mStateMachine.init(this);
 	mStateMachine.start(this, Standby, nullptr);

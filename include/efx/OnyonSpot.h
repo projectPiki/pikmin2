@@ -30,9 +30,9 @@ struct OnyonSpotData : public ModelEffectData {
 	virtual ModelEffect* onCreate(ModelEffectCreateArg* arg); // _18
 
 	int mTexAnimCount;                  // _20
-	Sys::MatTexAnimation* mTexanims;    // _24
+	Sys::MatTexAnimation* mTexAnims;    // _24
 	int mTevAnimCount;                  // _28
-	Sys::MatTevRegAnimation* mTevanims; // _2C
+	Sys::MatTevRegAnimation* mTevAnims; // _2C
 };
 
 struct OnyonSpot : public ModelEffect {

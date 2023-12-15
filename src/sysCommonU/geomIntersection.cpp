@@ -14,18 +14,18 @@ namespace Sys {
 bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep& sweep)
 {
 
-	float distSweep    = planeDist(sweep.mSphere.mPosition, mTrianglePlane);
-	Vector3f* sweepVec = &sweep._30;
-	switch (sweep._1C) {
+	float distSweep = planeDist(sweep.mSphere.mPosition, mTrianglePlane);
 
-	case 0:
+	Vector3f* intersectPoint = &sweep.mIntersectionPoint;
+	switch (sweep.mSweepType) {
+	case Triangle::SphereSweep::ST_SphereInsidePlane:
 		if (!(FABS(distSweep) > sweep.mSphere.mRadius)) {
 			break;
 		} else {
 			return false;
 		}
 
-	case 1:
+	case Triangle::SphereSweep::ST_SphereIntersectPlane:
 		if (distSweep > sweep.mSphere.mRadius) {
 			return false;
 		}
@@ -34,9 +34,9 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 		}
 		break;
 
-	case 2:
+	case Triangle::SphereSweep::ST_EdgeIntersect:
 		Edge edge_intersect;
-		edge_intersect.mStartPos = sweep._00;
+		edge_intersect.mStartPos = sweep.mStartPos;
 		edge_intersect.mEndPos   = sweep.mSphere.mPosition;
 		Vector3f diff            = edge_intersect.mStartPos - edge_intersect.mEndPos;
 
@@ -47,7 +47,7 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 			break;
 		}
 
-		bool isIntersect = intersect(edge_intersect, sweep.mSphere.mRadius, *sweepVec, sweep._2C);
+		bool isIntersect = intersect(edge_intersect, sweep.mSphere.mRadius, *intersectPoint, sweep.mDistanceFromRadius);
 		if (isIntersect) {
 			sweep.mNormal.x = mTrianglePlane.a;
 			sweep.mNormal.y = mTrianglePlane.b;
@@ -62,13 +62,13 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 	}
 
 	if ((edgeDists[0] <= 0.0f) && (edgeDists[1] <= 0.0f) && (edgeDists[2] <= 0.0f)) {
-		sweep.mNormal.x = mTrianglePlane.a;
-		sweep.mNormal.y = mTrianglePlane.b;
-		sweep.mNormal.z = mTrianglePlane.c;
-		sweep._2C       = sweep.mSphere.mRadius - distSweep;
+		sweep.mNormal.x           = mTrianglePlane.a;
+		sweep.mNormal.y           = mTrianglePlane.b;
+		sweep.mNormal.z           = mTrianglePlane.c;
+		sweep.mDistanceFromRadius = sweep.mSphere.mRadius - distSweep;
 
-		Vector3f new_norm = sweep.mNormal * sweep.mSphere.mRadius;
-		sweep._30         = sweep.mSphere.mPosition - new_norm;
+		Vector3f new_norm        = sweep.mNormal * sweep.mSphere.mRadius;
+		sweep.mIntersectionPoint = sweep.mSphere.mPosition - new_norm;
 		return true;
 	}
 
@@ -83,9 +83,9 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 	                                              // = vert_A;
 	                                              // = vert_B;
 
-	if (ball.intersect(edge_in, t, sweep.mNormal, sweep._2C)) {
-		Vector3f new_norm = sweep.mNormal * sweep.mSphere.mRadius;
-		sweep._30         = sweep.mSphere.mPosition - new_norm;
+	if (ball.intersect(edge_in, t, sweep.mNormal, sweep.mDistanceFromRadius)) {
+		Vector3f new_norm        = sweep.mNormal * sweep.mSphere.mRadius;
+		sweep.mIntersectionPoint = sweep.mSphere.mPosition - new_norm;
 		return true;
 	}
 
@@ -94,9 +94,9 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 	edge_in.mStartPos = vtxTable.mObjects[vertA]; // sp28, 2C, 30
 	edge_in.mEndPos   = vtxTable.mObjects[vertB]; // sp34, 38, 3C
 
-	if (ball.intersect(edge_in, t, sweep.mNormal, sweep._2C)) {
-		Vector3f new_norm = sweep.mNormal * sweep.mSphere.mRadius;
-		sweep._30         = sweep.mSphere.mPosition - new_norm;
+	if (ball.intersect(edge_in, t, sweep.mNormal, sweep.mDistanceFromRadius)) {
+		Vector3f new_norm        = sweep.mNormal * sweep.mSphere.mRadius;
+		sweep.mIntersectionPoint = sweep.mSphere.mPosition - new_norm;
 		return true;
 	}
 
@@ -105,9 +105,9 @@ bool Triangle::intersect(Sys::VertexTable& vtxTable, Sys::Triangle::SphereSweep&
 	edge_in.mStartPos = vtxTable.mObjects[vertA]; // sp28, 2C, 30
 	edge_in.mEndPos   = vtxTable.mObjects[vertB]; // sp34, 38, 3C
 
-	if (ball.intersect(edge_in, t, sweep.mNormal, sweep._2C)) {
-		Vector3f new_norm = sweep.mNormal * sweep.mSphere.mRadius;
-		sweep._30         = sweep.mSphere.mPosition - new_norm;
+	if (ball.intersect(edge_in, t, sweep.mNormal, sweep.mDistanceFromRadius)) {
+		Vector3f new_norm        = sweep.mNormal * sweep.mSphere.mRadius;
+		sweep.mIntersectionPoint = sweep.mSphere.mPosition - new_norm;
 		return true;
 	}
 	return false;

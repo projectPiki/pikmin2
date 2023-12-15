@@ -178,22 +178,36 @@ struct OlimarData {
 	void write(Stream&);
 	void read(Stream&);
 
-	// Not sure what the purpose of this even is, might not be used for anything
-	static inline int getMapType(bool item1, bool item2)
+	/**
+	 * Returns the map type based on the given upgrade flags.
+	 *
+	 * @param hasPrototypeUpgrade A boolean indicating whether the prototype upgrade has been collected.
+	 * @param hasNapsack A boolean indicating whether the napsack upgrade has been collected.
+	 * @return An integer representing the map type:
+	 *         - 0: If only the prototype upgrade has been collected.
+	 *         - 1: If only the napsack upgrade has been collected.
+	 *         - 2: If neither the prototype upgrade nor the napsack upgrade has been collected.
+	 *         - 3: If both the prototype upgrade and the napsack upgrade has been collected.
+	 */
+	static inline int getMapType(bool hasPrototypeUpgrade, bool hasNapsack)
 	{
 		bool flag = false;
-		if (item1 && item2) {
+		if (hasPrototypeUpgrade && hasNapsack) {
 			flag = true;
 		}
+
 		if (flag) {
 			return 3;
 		}
-		if (item2) {
+
+		if (hasNapsack) {
 			return 1;
 		}
-		if (item1) {
+
+		if (hasPrototypeUpgrade) {
 			return 0;
 		}
+
 		return 2;
 	}
 

@@ -1686,10 +1686,10 @@ void MapMgr::update()
  */
 void MapMgr::clearPerfMonitor()
 {
-	_14 = 0;
-	_18 = 0;
-	_1C = 0;
-	_20 = 0;
+	mTotalTraceCount         = 0;
+	mTotalStepCount          = 0;
+	mTotalTriCount           = 0;
+	mMissedIntersectionCount = 0;
 }
 
 /*

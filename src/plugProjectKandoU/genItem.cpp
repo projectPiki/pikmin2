@@ -56,14 +56,14 @@ void GenItem::doEvent(u32 idx)
  * Address:	801ACEEC
  * Size:	000068
  */
-void GenItem::generatorMakeMatrix(Matrixf& matrix, Vector3f& vec)
+void GenItem::generatorMakeMatrix(Matrixf& matrix, Vector3f& pos)
 {
 	float x           = mRotation.x * DEG2RAD * PI;
 	float y           = mRotation.y * DEG2RAD * PI;
 	float z           = mRotation.z * DEG2RAD * PI;
 	Vector3f rotation = Vector3f(x, y, z);
 
-	matrix.makeTR(vec, rotation);
+	matrix.makeTR(pos, rotation);
 }
 
 /*

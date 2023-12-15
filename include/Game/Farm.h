@@ -107,7 +107,7 @@ struct FarmMgr : public GenericObjectMgr, public CNode {
 	// Unused/inlined:
 	inline Farm* getNearestFarm(Vector3f&);
 
-	u32 _1C;                                // _1C
+	u32 mModelType;                         // _1C
 	CNode mFarmsRootNode;                   // _20
 	PSM::DirectorUpdator* mDirectorUpdator; // _38
 	u8 _3C;                                 // _3C

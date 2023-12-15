@@ -297,7 +297,7 @@ void Mgr::drawBG(Graphics& gfx)
 bool Mgr::reset()
 {
 	if (::Screen::Mgr::reset()) {
-		_90          = 0;
+		mInitialised = 0;
 		mInCave      = false;
 		mInDemo      = false;
 		mCourseIndex = 0;

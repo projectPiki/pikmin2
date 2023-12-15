@@ -34,36 +34,78 @@ static OSMutex decompMutex;
 bool JKRDvdRipper::errorRetry    = true;
 int JKRDvdRipper::sSZSBufferSize = 0x400;
 
+/**
+ * Loads a file from DVD to main RAM.
+ *
+ * @param path The path of the file to load.
+ * @param fileData Pointer to the buffer where the file data will be stored.
+ * @param expSwitch The expansion switch for the file data.
+ * @param fileSize The size of the file.
+ * @param heap The heap to allocate memory from.
+ * @param allocDir The allocation direction for the memory.
+ * @param startOffset The start offset of the file data.
+ * @param fileCompression Pointer to store the file compression type.
+ * @param newSize Pointer to store the new size of the file data.
+ * @return A pointer to the loaded file data in main RAM, or nullptr if loading failed.
+ */
 /*
  * --INFO--
  * Address:	8001F188
  * Size:	0000B4
  */
-void* JKRDvdRipper::loadToMainRAM(const char* path, u8* p2, JKRExpandSwitch expSwitch, u32 p4, JKRHeap* heap, EAllocDirection allocDir,
-                                  u32 p7, int* p8, u32* p9)
+void* JKRDvdRipper::loadToMainRAM(const char* path, u8* fileData, JKRExpandSwitch expSwitch, u32 fileSize, JKRHeap* heap,
+                                  EAllocDirection allocDir, u32 startOffset, int* fileCompression, u32* newSize)
 {
-	JKRDvdFile file;
-	if (!file.open(path)) {
+	JKRDvdFile dvdFile;
+	if (!dvdFile.open(path)) {
 		return nullptr;
 	}
-	return loadToMainRAM(&file, p2, expSwitch, p4, heap, allocDir, p7, p8, p9);
+	return loadToMainRAM(&dvdFile, fileData, expSwitch, fileSize, heap, allocDir, startOffset, fileCompression, newSize);
 }
 
+/**
+ * Loads the specified DVD file into the main RAM.
+ *
+ * @param entryNum The entry number of the DVD file.
+ * @param fileData Pointer to the buffer where the file data will be loaded.
+ * @param expSwitch The expansion switch for the file data.
+ * @param fileSize The size of the file.
+ * @param heap The heap to be used for memory allocation.
+ * @param allocDir The allocation direction for the memory.
+ * @param startOffset The start offset of the file data.
+ * @param fileCompression Pointer to store the file compression type.
+ * @param newSize Pointer to store the new size of the file data.
+ * @return A pointer to the loaded file data in the main RAM, or nullptr if loading failed.
+ */
 /*
  * --INFO--
  * Address:	8001F23C
  * Size:	0000B4
  */
-void* JKRDvdRipper::loadToMainRAM(long inode, u8* p2, JKRExpandSwitch expSwitch, u32 p4, JKRHeap* heap, EAllocDirection allocDir, u32 p7,
-                                  int* p8, u32* p9)
+void* JKRDvdRipper::loadToMainRAM(long entryNum, u8* fileData, JKRExpandSwitch expSwitch, u32 fileSize, JKRHeap* heap,
+                                  EAllocDirection allocDir, u32 startOffset, int* fileCompression, u32* newSize)
 {
 	JKRDvdFile file;
-	if (!file.open(inode)) {
+	if (!file.open(entryNum)) {
 		return nullptr;
 	}
-	return loadToMainRAM(&file, p2, expSwitch, p4, heap, allocDir, p7, p8, p9);
+	return loadToMainRAM(&file, fileData, expSwitch, fileSize, heap, allocDir, startOffset, fileCompression, newSize);
 }
 
+/**
+ * Loads a file from a JKRDvdFile object into main RAM.
+ *
+ * @param jkrDvdFile The JKRDvdFile object representing the file to load.
+ * @param file The buffer to store the loaded file data. If nullptr, a new buffer will be allocated.
+ * @param expandSwitch The expansion switch to determine the decompression method.
+ * @param fileSize The size of the file to load. If 0, the entire file will be loaded.
+ * @param heap The JKRHeap object to allocate memory from.
+ * @param allocDirection The allocation direction for the memory. Can be ALLOC_DIR_TOP or ALLOC_DIR_BOTTOM.
+ * @param startOffset The offset within the file to start loading from.
+ * @param fileCompression A pointer to store the compression type of the loaded file.
+ * @param newSize A pointer to store the size of the loaded file after decompression.
+ * @return A pointer to the loaded file data, or nullptr if loading failed.
+ */
 /*
  * --INFO--
  * Address:	8001F2F0
@@ -260,7 +302,7 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* jkrDvdFile, u8* file, JKRExpandSwi
  * Address:	8001F79C
  * Size:	000174
  */
-int JKRDecompressFromDVD(JKRDvdFile* file, void* p2, u32 p3, u32 inMaxDest, u32 inFileOffset, u32 inSrcOffset, u32* inTsPtr)
+int JKRDecompressFromDVD(JKRDvdFile* file, void* destinationBuf, u32 size, u32 inMaxDest, u32 inFileOffset, u32 inSrcOffset, u32* inTsPtr)
 {
 	int interrupts = OSDisableInterrupts();
 	if (!isInitMutex) {
@@ -285,7 +327,7 @@ int JKRDecompressFromDVD(JKRDvdFile* file, void* p2, u32 p3, u32 inMaxDest, u32 
 
 	srcFile    = file;
 	srcOffset  = inSrcOffset;
-	transLeft  = p3 - inSrcOffset;
+	transLeft  = size - inSrcOffset;
 	fileOffset = inFileOffset;
 	readCount  = 0;
 	maxDest    = inMaxDest;
@@ -298,14 +340,14 @@ int JKRDecompressFromDVD(JKRDvdFile* file, void* p2, u32 p3, u32 inMaxDest, u32 
 
 	*tsPtr     = 0;
 	u8* data   = firstSrcData();
-	u32 result = (data) ? decompSZS_subroutine(data, (u8*)p2) : -1;
+	u32 result = (data) ? decompSZS_subroutine(data, (u8*)destinationBuf) : -1;
 
 	JKRFree(szpBuf);
 	if (refBuf) {
 		JKRFree(refBuf);
 	}
 
-	DCStoreRangeNoSync(p2, *tsPtr);
+	DCStoreRangeNoSync(destinationBuf, *tsPtr);
 	OSUnlockMutex(&decompMutex);
 
 	return result;

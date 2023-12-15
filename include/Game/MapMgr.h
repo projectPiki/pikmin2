@@ -88,14 +88,14 @@ struct MapMgr : virtual public GenericObjectMgr {
 
 	// _00 = ptr to _24 (GenericObjectMgr)
 	// _04 = VTBL
-	RouteMgr* mRouteMgr;     // _08
-	CourseInfo* mCourseInfo; // _0C
-	SeaMgr* mSeaMgr;         // _10
-	u32 _14;                 // _14
-	u32 _18;                 // _18
-	u32 _1C;                 // _1C
-	u32 _20;                 // _20
-	                         // _24: GenericObjectMgr
+	RouteMgr* mRouteMgr;          // _08
+	CourseInfo* mCourseInfo;      // _0C
+	SeaMgr* mSeaMgr;              // _10
+	u32 mTotalTraceCount;         // _14
+	u32 mTotalStepCount;          // _18
+	u32 mTotalTriCount;           // _1C
+	u32 mMissedIntersectionCount; // _20
+	                              // _24: GenericObjectMgr
 };
 
 struct ShapeMapMgr : public MapMgr {

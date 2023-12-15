@@ -17,14 +17,14 @@ Mgr* Mgr::sInstance;
  */
 Caster::Caster()
 {
-	_28 = 0;
-	_2C = nullptr;
-	_30 = 0;
-	_34 = 0;
-	_38 = 0;
-	_3C = 0;
-	_40 = 0.0f;
-	_44 = 0.0f;
+	mTriangleCount    = 0;
+	mVertices         = nullptr;
+	mDisplayList      = 0;
+	mDisplayListSize  = 0;
+	mTexturePositions = 0;
+	mStatus           = CS_Hidden;
+	mColor            = 0.0f;
+	mChangeRate       = 0.0f;
 }
 
 /*
@@ -51,8 +51,8 @@ void Caster::show()
  */
 void Caster::hide()
 {
-	_40 = 0.0f;
-	_3C = 0;
+	mColor  = 0.0f;
+	mStatus = CS_Hidden;
 }
 
 /*
@@ -60,12 +60,12 @@ void Caster::hide()
  * Address:	8023C9D0
  * Size:	000080
  */
-void Caster::fadein(f32 p1)
+void Caster::fadein(f32 duration)
 {
-	P2ASSERTLINE(59, p1 > 0.0f);
-	_44 = 1.0f / p1;
-	_40 = 0.0f;
-	_3C = 2;
+	P2ASSERTLINE(59, duration > 0.0f);
+	mChangeRate = 1.0f / duration;
+	mColor      = 0.0f;
+	mStatus     = CS_Increasing;
 }
 
 /*
@@ -95,21 +95,21 @@ void Caster::makeDL()
  */
 void Caster::update()
 {
-	switch (_3C) {
-	case 1:
+	switch (mStatus) {
+	case CS_Finished:
 		break;
-	case 2:
-		_40 += _44 * sys->mDeltaTime;
-		if (_40 >= 1.0f) {
-			_40 = 1.0f;
-			_3C = 1;
+	case CS_Increasing:
+		mColor += mChangeRate * sys->mDeltaTime;
+		if (mColor >= 1.0f) {
+			mColor  = 1.0f;
+			mStatus = CS_Finished;
 		}
 		break;
-	case 3:
-		_40 -= _44 * sys->mDeltaTime;
-		if (_40 <= 0.0f) {
-			_40 = 0.0f;
-			_3C = 0;
+	case CS_Decreasing:
+		mColor -= mChangeRate * sys->mDeltaTime;
+		if (mColor <= 0.0f) {
+			mColor  = 0.0f;
+			mStatus = CS_Hidden;
 		}
 		break;
 	}
@@ -123,7 +123,7 @@ void Caster::update()
 void Caster::draw(Graphics& gfx)
 {
 	update();
-	int v = 255.0f * _40;
+	int v = 255.0f * mColor;
 	GXColor color;
 	color.a = v;
 	color.b = v;
@@ -132,9 +132,9 @@ void Caster::draw(Graphics& gfx)
 	GXSetTevColor(GX_TEVREG0, color);
 
 	Mgr::sInstance->getTexture(0);
-	GXSetArray(GX_VA_POS, _2C, sizeof(Vector3f));
-	GXSetArray(GX_VA_TEX0, _38, 8);
-	GXCallDisplayList((void*)_30, _34);
+	GXSetArray(GX_VA_POS, mVertices, sizeof(Vector3f));
+	GXSetArray(GX_VA_TEX0, mTexturePositions, 8);
+	GXCallDisplayList((void*)mDisplayList, mDisplayListSize);
 }
 
 /*
@@ -224,32 +224,32 @@ Caster* Mgr::create(Sys::Sphere& sphere, f32 p1)
 		// float math
 	}
 
-	Caster* caster = new Caster;
-	caster->_18    = sphere;
-	caster->_2C    = triArg.mVertices;
-	caster->_28    = triArg.mCount;
-	caster->_38    = new f32*[caster->_28 * 6];
+	Caster* caster            = new Caster;
+	caster->mBoundingSphere   = sphere;
+	caster->mVertices         = triArg.mVertices;
+	caster->mTriangleCount    = triArg.mCount;
+	caster->mTexturePositions = new f32*[caster->mTriangleCount * 6];
 
-	for (int i = 0; i < caster->_28; i++) {
+	for (int i = 0; i < caster->mTriangleCount; i++) {
 		for (int j = 0; j < 3; j++) {
 			// float math
 		}
 	}
 
-	caster->_34 = (caster->_28 * 12 + 34) & ~0x1F;
-	caster->_30 = new (0x20) u8[caster->_34];
+	caster->mDisplayListSize = OSRoundDown32B(caster->mTriangleCount * 12 + 34);
+	caster->mDisplayList     = new (0x20) u8[caster->mDisplayListSize];
 
 	// this is wrong
-	caster->_30[0] = 0x90;
-	caster->_30[1] = (caster->_28 * 3) * 16;
-	caster->_30[2] = (caster->_28 * 3);
+	caster->mDisplayList[0] = 0x90;
+	caster->mDisplayList[1] = (caster->mTriangleCount * 3) * 16;
+	caster->mDisplayList[2] = (caster->mTriangleCount * 3);
 
 	// this is wrong
-	for (int i = 0; i < caster->_34; i++) {
-		caster->_30[i] = i * 2;
+	for (int i = 0; i < caster->mDisplayListSize; i++) {
+		caster->mDisplayList[i] = i * 2;
 	}
 
-	DCFlushRange(caster->_30, caster->_34);
+	DCFlushRange(caster->mDisplayList, caster->mDisplayListSize);
 	mCaster.add(caster);
 	return caster;
 	/*

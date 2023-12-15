@@ -1762,9 +1762,9 @@ void ActPathMove::initPathfinding(bool resetLinkCount)
 		flag |= Game::PATHFLAG_Unk3;
 		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
 			if (mOnyon->mOnyonType == ONYON_TYPE_BLUE) {
-				flag |= (Game::PATHFLAG_VsBlue | Game::PATHFLAG_Unk7);
+				flag |= (Game::PATHFLAG_VsBlue | Game::PATHFLAG_InVersusMode);
 			} else {
-				flag |= (Game::PATHFLAG_VsRed | Game::PATHFLAG_Unk7);
+				flag |= (Game::PATHFLAG_VsRed | Game::PATHFLAG_InVersusMode);
 			}
 		}
 
@@ -1899,10 +1899,10 @@ int ActPathMove::execPathfinding()
 		mStartPathFindCounter++;
 		mState = PATHMOVE_Pathfinding;
 		if (Game::gameSystem && Game::gameSystem->isVersusMode()) {
-			flag |= Game::PATHFLAG_Unk7;
+			flag |= Game::PATHFLAG_InVersusMode;
 		}
 		if (mStartPathFindCounter >= 2) {
-			flag |= Game::PATHFLAG_Unk7; // hm
+			flag |= Game::PATHFLAG_InVersusMode; // hm
 			if (mStartPathFindCounter >= 3) {
 				mStartPathFindCounter = 3;
 			}

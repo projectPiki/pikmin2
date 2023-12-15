@@ -13,58 +13,60 @@ namespace Game {
 struct FieldVtxColorInfo {
 	FieldVtxColorInfo()
 	{
-		_00 = 0xFFFF;
-		_02 = 0xFFFF;
-		_04 = 0;
+		mColorIdx = 0xFFFF;
+		_02       = 0xFFFF;
+		mAlpha    = 0;
 	}
 
 	// Unused/inlined:
 	void setVtxColorIndex(u16);
 
-	u16 _00; // _00
-	u16 _02; // _02
-	u8 _04;  // _04
+	u16 mColorIdx; // _00
+	u16 _02;       // _02
+	u8 mAlpha;     // _04
 };
 
 // fabricated, probably some other existing struct
 struct FieldVtxColorControlInfo {
-	FieldVtxColorControlInfo(FieldVtxColorInfo* info, f32 p1)
+	/**
+	 * @brief Constructor for FieldVtxColorControlInfo class.
+	 *
+	 * @param info The FieldVtxColorInfo object.
+	 * @param normalisedDistance The normalized distance to the object's position.
+	 */
+	FieldVtxColorControlInfo(FieldVtxColorInfo* info, f32 normalisedDistance)
 	{
 		mNext = nullptr;
 		mInfo = info;
-		if (p1 < 0.0f || p1 > 1.0f) {
-			if (p1 < 0.0f) {
-				p1 = 0.0f;
+
+		// Force normalise to 0-1
+		if (normalisedDistance < 0.0f || normalisedDistance > 1.0f) {
+			if (normalisedDistance < 0.0f) {
+				normalisedDistance = 0.0f;
 			}
-			if (p1 > 1.0f) {
-				p1 = 1.0f;
+			if (normalisedDistance > 1.0f) {
+				normalisedDistance = 1.0f;
 			}
 		}
 
-		f32 val2 = 255.0f * p1;
-		f32 val;
-		if (val2 >= 0.0f) {
-			val = 0.5f + val2;
-		} else {
-			val = val2 - 0.5f;
-		}
-		_08 = val;
+		// Convert to 0-255, then round to nearest integer
+		f32 alpha       = 255.0f * normalisedDistance;
+		mAlphaThreshold = alpha >= 0.0f ? alpha + 0.5f : alpha - 0.5f;
 	}
 
 	FieldVtxColorControlInfo* mNext; // _00
 	FieldVtxColorInfo* mInfo;        // _04
-	u8 _08;                          // _08
+	u8 mAlphaThreshold;              // _08
 };
 
-// TODO fields
 struct FieldVtxColorControl {
 	FieldVtxColorControl(); // inlined
 
 	FieldVtxColorControl* mNext;            // _00
 	Vector3f mPosition;                     // _04
-	f32 _10;                                // _10
+	f32 mRadius;                            // _10
 	f32 mPower;                             // _14
-	f32 _18;                                // _18
+	f32 mCurrentPower;                      // _18
 	FieldVtxColorControlInfo* mControlInfo; // _1C
 };
 
@@ -99,9 +101,9 @@ struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
 	// _0C-_24 = CNode
 	J3DModelData* mModelData;       // _24
 	FieldVtxColorInfo* mInfo;       // _28
-	int _2C;                        // _2C
+	int mInfoCount;                 // _2C
 	FieldVtxColorControl* mControl; // _30
-	f32 _34;                        // _34
+	f32 mSmoothingRate;             // _34
 	BitFlag<u32> mMgrFlags;         // _38
 };
 } // namespace Game

@@ -958,7 +958,7 @@ void NaviWalkState::execAI_attack(Navi* navi)
 
 	navi->control();
 
-	sep = sep * naviMgr->mNaviParms->mNaviParms.mP004.mValue * 0.5f;
+	sep = sep * naviMgr->mNaviParms->mNaviParms.mMoveSpeed.mValue * 0.5f;
 	blendVelocity(navi, sep);
 
 	if (dist < 10.0f) {
@@ -1034,7 +1034,7 @@ void NaviWalkState::execAI_escape(Navi* navi)
 
 	navi->control();
 
-	sep = sep * naviMgr->mNaviParms->mNaviParms.mP004.mValue;
+	sep = sep * naviMgr->mNaviParms->mNaviParms.mMoveSpeed.mValue;
 	blendVelocity(navi, sep);
 	/*
 	stwu     r1, -0x80(r1)
@@ -1424,7 +1424,7 @@ void NaviFollowState::exec(Navi* navi)
 					mRunEnemy = nullptr;
 				} else {
 					navi->control();
-					f32 rate        = naviMgr->mNaviParms->mNaviParms.mP004() * 0.5f;
+					f32 rate        = naviMgr->mNaviParms->mNaviParms.mMoveSpeed() * 0.5f;
 					navi->mVelocity = diff * rate;
 				}
 			}
@@ -1494,7 +1494,7 @@ void NaviFollowState::exec(Navi* navi)
 		Vector3f dir = getDirection(TORADIANS(80.9999961f) + angle, 30.0f);
 		vel += dir;
 	} else if (state == NSID_Punch) {
-		f32 rad      = -mTargetNavi->mCPlateMgr->_B0;
+		f32 rad      = -mTargetNavi->mCPlateMgr->mBaseRadius;
 		Vector3f dir = getDirection(angle, rad);
 		vel += dir;
 	}
@@ -1507,9 +1507,9 @@ void NaviFollowState::exec(Navi* navi)
 
 	f32 newSpeed;
 	if (navi->getOlimarData()->hasItem(OlimarData::ODII_RepugnantAppendage)) {
-		newSpeed = naviMgr->mNaviParms->mNaviParms.mQ006();
+		newSpeed = naviMgr->mNaviParms->mNaviParms.mRushBootSpeed();
 	} else {
-		newSpeed = naviMgr->mNaviParms->mNaviParms.mP004();
+		newSpeed = naviMgr->mNaviParms->mNaviParms.mMoveSpeed();
 	}
 
 	if (oldSpeed < 30.0f) {
@@ -2873,7 +2873,7 @@ void NaviNukuState::init(Navi* navi, StateArg* stateArg)
 		mAnimID = IPikiAnims::NUKU;
 	}
 	navi->startMotion(mAnimID, mAnimID, navi, nullptr);
-	mCounter = static_cast<NaviParms*>(navi->mParms)->mNaviParms.mP042;
+	mCounter = static_cast<NaviParms*>(navi->mParms)->mNaviParms.mLoopCountToPluck;
 	navi->mSoundObj->startSound(PSSE_PL_PULLING_PIKI, 0);
 	mDidPluckSE = 0;
 	mIsActive   = 0;
@@ -5423,7 +5423,7 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 		}
 	}
 
-	if (minDist <= static_cast<NaviParms*>(navi->mParms)->mNaviParms.mP037.mValue) {
+	if (minDist <= static_cast<NaviParms*>(navi->mParms)->mNaviParms.mGrabPikiRange.mValue) {
 		mHeldPiki = retPiki;
 	} else {
 		mNextPiki = retPiki;
@@ -5447,11 +5447,13 @@ void NaviThrowWaitState::init(Navi* navi, StateArg* stateArg)
 		_20 = true;
 	}
 	NaviParms* parms = static_cast<NaviParms*>(navi->mParms);
-	navi->_2B4       = _1C / 3.0f * (parms->mNaviParms.mP002.mValue - parms->mNaviParms.mP003.mValue) + parms->mNaviParms.mP003.mValue;
-	parms            = static_cast<NaviParms*>(navi->mParms);
-	navi->_2B8       = _1C / 3.0f * (parms->mNaviParms.mP002.mValue - parms->mNaviParms.mP003.mValue) + parms->mNaviParms.mP003.mValue;
-	_28              = 3.0f;
-	_2C              = 0.1f;
+	navi->_2B4       = _1C / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
+	           + parms->mNaviParms.mCircleDisappearTime.mValue;
+	parms      = static_cast<NaviParms*>(navi->mParms);
+	navi->_2B8 = _1C / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
+	           + parms->mNaviParms.mCircleDisappearTime.mValue;
+	_28 = 3.0f;
+	_2C = 0.1f;
 	navi->setDoAnimCallback(mDelegate);
 	/*
 	stwu     r1, -0xb0(r1)
@@ -5938,9 +5940,11 @@ void NaviThrowWaitState::exec(Navi* navi)
 
 	navi->mNextThrowPiki = mNextPiki;
 	NaviParms* parms     = static_cast<NaviParms*>(navi->mParms);
-	navi->_2B4           = _1C / 3.0f * (parms->mNaviParms.mP002.mValue - parms->mNaviParms.mP003.mValue) + parms->mNaviParms.mP003.mValue;
-	parms                = static_cast<NaviParms*>(navi->mParms);
-	navi->_2B8           = _1C / 3.0f * (parms->mNaviParms.mP002.mValue - parms->mNaviParms.mP003.mValue) + parms->mNaviParms.mP003.mValue;
+	navi->_2B4           = _1C / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
+	           + parms->mNaviParms.mCircleDisappearTime.mValue;
+	parms      = static_cast<NaviParms*>(navi->mParms);
+	navi->_2B8 = _1C / 3.0f * (parms->mNaviParms.mMaxCallTime.mValue - parms->mNaviParms.mCircleDisappearTime.mValue)
+	           + parms->mNaviParms.mCircleDisappearTime.mValue;
 
 	/*
 	stwu     r1, -0xf0(r1)
@@ -7225,7 +7229,7 @@ bool NaviDemo_UfoState::execGoto(Navi* navi)
 	}
 
 	diff.normalise();
-	navi->mVelocity = diff * naviMgr->mNaviParms->mNaviParms.mP004.mValue * 0.5f;
+	navi->mVelocity = diff * naviMgr->mNaviParms->mNaviParms.mMoveSpeed.mValue * 0.5f;
 	return false;
 }
 
@@ -7514,7 +7518,7 @@ bool NaviDemo_HoleInState::execGoto(Navi* navi)
 	}
 
 	diff.normalise();
-	navi->mVelocity = diff * naviMgr->mNaviParms->mNaviParms.mP004.mValue * 0.5f;
+	navi->mVelocity = diff * naviMgr->mNaviParms->mNaviParms.mMoveSpeed.mValue * 0.5f;
 	return false;
 }
 

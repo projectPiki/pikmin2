@@ -177,7 +177,7 @@ struct System : public OSMutex {
 	u32 mCpuLockCount;                    // _20
 	Graphics* mGfx;                       // _24
 	SysTimers* mTimers;                   // _28
-	u32 _2C;                              // _2C
+	u32 mRenderModeStatus;                // _2C
 	u32 _30;                              // _30
 	u32 _34;                              // _34
 	JKRHeap* mSysHeap;                    // _38

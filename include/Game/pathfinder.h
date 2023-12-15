@@ -23,7 +23,7 @@ enum PathFindFlags {
 	PATHFLAG_Unk4             = 0x8,
 	PATHFLAG_VsRed            = 0x10,
 	PATHFLAG_VsBlue           = 0x20,
-	PATHFLAG_Unk7             = 0x40, // I think? gets set with above two, might be unrelated
+	PATHFLAG_InVersusMode     = 0x40,
 };
 
 namespace PathfindContext {
@@ -50,16 +50,16 @@ struct PathNode {
 	void pop();
 	void countLinks(PathNode**);
 
-	f32 _00;          // _00
-	f32 _04;          // _04
-	PathNode* mChild; // _08
-	PathNode* mNext;  // _0C
-	PathNode* _10;    // _10
-	PathNode* _14;    // _14
-	PathNode* _18;    // _18
-	PathNode* _1C;    // _1C
-	s16 mWpIndex;     // _20
-	u8 _22;           // _22
+	f32 _00;             // _00
+	f32 mDistanceToEnd;  // _04
+	PathNode* mChild;    // _08
+	PathNode* mNext;     // _0C
+	PathNode* mParent;   // _10
+	PathNode* mSibling;  // _14
+	PathNode* mPrevious; // _18
+	PathNode* _1C;       // _1C
+	s16 mWpIndex;        // _20
+	u8 _22;              // _22
 };
 
 struct AStarContext {

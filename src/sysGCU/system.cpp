@@ -937,8 +937,8 @@ void System::clearGXVerifyLevel()
  */
 void System::initialize()
 {
-	// not whats actually being compared here but I have no clue
-	if (sys->_2C == 'vald') {
+	// If the render mode status is valid, use it, otherwise use NTSC
+	if (sys->mRenderModeStatus == 'vald') {
 		System::setRenderMode(mRenderMode);
 	} else {
 		System::setRenderMode(NTSC_Standard);

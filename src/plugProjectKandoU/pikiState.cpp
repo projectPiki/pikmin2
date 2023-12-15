@@ -2281,11 +2281,11 @@ void PikiGoHangState::exec(Piki* piki)
 	Vector3f diff      = collpart->mPosition - position;
 	f32 length         = _normalise2(diff); // can't use this bc no second round of fmadds - has to use a different normalise.
 	f32 scale          = 1.0f;
-	if (length > 2.0f * naviMgr->mNaviParms->mNaviParms.mP037.mValue) {
+	if (length > 2.0f * naviMgr->mNaviParms->mNaviParms.mGrabPikiRange.mValue) {
 		scale = 2.0f;
 	}
 	Vector3f naviPos = piki->mNavi->mSimVelocity;
-	f32 factor       = scale * static_cast<NaviParms*>(piki->mNavi->mParms)->mNaviParms.mP060.mValue;
+	f32 factor       = scale * static_cast<NaviParms*>(piki->mNavi->mParms)->mNaviParms.mAutopluckDistance.mValue;
 	f32 dist         = _length(naviPos);
 	piki->mVelocity  = diff * (factor + dist);
 
@@ -3949,7 +3949,7 @@ void PikiFlyingState::init(Piki* piki, StateArg* stateArg)
 
 	efx::TPkEffect* effectsObj = piki->mEffectsObj;
 	effectsObj->createNage_(effectsObj->mHamonPosPtr, effectsObj->_1C->mMatrix.mtxView);
-	piki->mUpdateContext._09 = 1;
+	piki->mUpdateContext._09 = true;
 	if (PikiMgr::throwPikiDebug) {
 		piki->setDebugCollision(true);
 	}
@@ -4075,9 +4075,9 @@ void PikiFlyingState::exec(Piki* piki)
 
 		f32 throwHeight;
 		if (piki->getKind() == Yellow) {
-			throwHeight = naviMgr->mNaviParms->mNaviParms.mP054.mValue;
+			throwHeight = naviMgr->mNaviParms->mNaviParms.mThrowHeightYellow.mValue;
 		} else {
-			throwHeight = naviMgr->mNaviParms->mNaviParms.mP024.mValue;
+			throwHeight = naviMgr->mNaviParms->mNaviParms.mThrowHeightMax.mValue;
 		}
 
 		f32 sqrVal = thing * thing + (2.0f * throwHeight) * flowerFallFactor;

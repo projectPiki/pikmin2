@@ -76,10 +76,12 @@ void NaviMgr::createPSMDirectorUpdator()
 void NaviMgr::resetMgr()
 {
 	MonoObjectMgr::resetMgr();
+
 	if (mBackupPSMMgr) {
 		delete mBackupPSMMgr;
 		mBackupPSMMgr = nullptr;
 	}
+
 	if (mPSMMgr) {
 		delete mPSMMgr;
 		mPSMMgr = nullptr;
@@ -134,6 +136,7 @@ Navi* NaviMgr::birth()
 
 		P2ASSERTLINE(349, navi->mSoundObj);
 		navi->mSoundObj->init(navi->mNaviIndex);
+
 		// Use president sounds for navi ID 1
 		if (playData->isStoryFlag(STORY_DebtPaid) && navi->mNaviIndex == NAVIID_Captain2) {
 			navi->mSoundObj->setShacho();
@@ -245,12 +248,9 @@ SysShape::Model* NaviMgr::createModel(int naviID) { return new SysShape::Model((
 void NaviMgr::loadResources_float()
 {
 	JKRArchive* arc = JKRMountArchive("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
-	void* file;
-	if (playData->isStoryFlag(STORY_DebtPaid)) {
-		file = arc->getResource("orima_model/syatyou.bmd"); // president
-	} else {
-		file = arc->getResource("orima_model/orima3.bmd"); // louie
-	}
+
+	void* file
+	    = playData->isStoryFlag(STORY_DebtPaid) ? arc->getResource("orima_model/syatyou.bmd") : arc->getResource("orima_model/orima3.bmd");
 
 	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x20000030);
 	for (u16 j = 0; j < model->getShapeNum(); j++) {
@@ -469,19 +469,21 @@ void NaviMgr::doSimulation(f32 rate)
 			}
 		}
 		mPSMMgr->frameEndWork();
-	} else {
-		PSM::ActorDirector_TempoChange* psm = PSMGetLifeD();
-		if (psm) {
-			Navi* navi = naviMgr->getActiveNavi();
-			if (navi) {
-				if (navi->getLifeRatio() <= 0.5f) {
-					psm->directOn();
-				} else {
-					psm->directOff();
-				}
+
+		return;
+	}
+
+	PSM::ActorDirector_TempoChange* psm = PSMGetLifeD();
+	if (psm) {
+		Navi* navi = naviMgr->getActiveNavi();
+		if (navi) {
+			if (navi->getLifeRatio() <= 0.5f) {
+				psm->directOn();
 			} else {
 				psm->directOff();
 			}
+		} else {
+			psm->directOff();
 		}
 	}
 }

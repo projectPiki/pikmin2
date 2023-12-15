@@ -54,13 +54,13 @@ void Plant::doDebugDraw(Graphics& gfx) { }
  * Address:	........
  * Size:	0000F0
  */
-Obstacle::Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, f32 p2, f32 p3)
+Obstacle::Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, f32 radius, f32 power)
     : CNode("")
     , mFarm(farm)
 {
 	Vector3f position = creature->getPosition();
 	mCreature         = creature;
-	mVtxColorControl  = vtxColorMgr->createNewControl(position, p2, p3);
+	mVtxColorControl  = vtxColorMgr->createNewControl(position, radius, power);
 }
 
 /*
@@ -84,12 +84,12 @@ void Obstacle::doDebugDraw(Graphics& gfx)
 	Vector3f creaturePos = mCreature->getPosition();
 
 	gfx.mDrawColor = Color4(255, 255, 255, 255);
-	gfx.drawSphere(creaturePos, mVtxColorControl->_10);
+	gfx.drawSphere(creaturePos, mVtxColorControl->mRadius);
 
 	gfx.mDrawColor = Color4(255, 55, 55, 255);
 
 	f32 power = mVtxColorControl->mPower;
-	power     = mVtxColorControl->_10 * power;
+	power     = mVtxColorControl->mRadius * power;
 	gfx.drawSphere(creaturePos, power);
 }
 
@@ -115,7 +115,7 @@ Farm::Farm()
  * Address:	801235E4
  * Size:	000200
  */
-void Farm::loadResource(u32 p1, void* mdlData)
+void Farm::loadResource(u32 modelType, void* mdlData)
 {
 	sys->heapStatusStart("Farm resource", nullptr);
 	sys->heapStatusStart("mdlData", nullptr);
@@ -134,7 +134,7 @@ void Farm::loadResource(u32 p1, void* mdlData)
 	mPosition *= norm;
 
 	sys->heapStatusStart("createModel", nullptr);
-	mModel = new SysShape::Model(mModelData, 0, p1);
+	mModel = new SysShape::Model(mModelData, 0, modelType);
 	sys->heapStatusEnd("createModel");
 
 	sys->heapStatusStart("vtxClrAnm", nullptr);
@@ -187,9 +187,9 @@ void Farm::doViewCalc() { mModel->viewCalc(); }
  * Address:	80123898
  * Size:	000070
  */
-Obstacle* Farm::addObstacle(Creature* creature, f32 p2, f32 p3)
+Obstacle* Farm::addObstacle(Creature* creature, f32 radius, f32 power)
 {
-	Obstacle* obstacle = createNewObstacle(creature, p2, p3);
+	Obstacle* obstacle = createNewObstacle(creature, radius, power);
 	obstacle->setName(creature->getCreatureName());
 	mVtxColorMgr->initVtxColor();
 	updateObjectRelation(true);
@@ -201,9 +201,9 @@ Obstacle* Farm::addObstacle(Creature* creature, f32 p2, f32 p3)
  * Address:	80123914
  * Size:	000114
  */
-Obstacle* Farm::createNewObstacle(Creature* creature, f32 p2, f32 p3)
+Obstacle* Farm::createNewObstacle(Creature* creature, f32 radius, f32 power)
 {
-	Obstacle* obstacle = new Obstacle(this, mVtxColorMgr, creature, p2, p3);
+	Obstacle* obstacle = new Obstacle(this, mVtxColorMgr, creature, radius, power);
 	mObstacleRootNode.add(obstacle);
 	return obstacle;
 }
@@ -248,7 +248,7 @@ void Farm::updateObjectRelation(bool doInteract)
 		{
 			Vector3f obstaclePos = obstacleNode->mCreature->getPosition();
 			f32 dist             = obstaclePos.distance(plantPos);
-			f32 factor           = obstacleNode->mVtxColorControl->_10;
+			f32 factor           = obstacleNode->mVtxColorControl->mRadius;
 			if (dist < factor) {
 				if (dist < factor * obstacleNode->mVtxColorControl->mPower) {
 					counter--;

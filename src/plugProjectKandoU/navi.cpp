@@ -284,9 +284,9 @@ bool Navi::procActionButton()
 {
 	f32 minDist;
 	if (mPluckingCounter) {
-		minDist = naviMgr->mNaviParms->mNaviParms.mP060.mValue; // 'continuous extraction distance' - autoplucking range?
+		minDist = naviMgr->mNaviParms->mNaviParms.mAutopluckDistance.mValue; // 'continuous extraction distance' - autoplucking range?
 	} else {
-		minDist = naviMgr->mNaviParms->mNaviParms.mP000.mValue; // 'action radius' - first pluck range
+		minDist = naviMgr->mNaviParms->mNaviParms.mActionRadius.mValue; // 'action radius' - first pluck range
 	}
 
 	Iterator<ItemPikihead::Item> iter(ItemPikihead::mgr);
@@ -320,7 +320,7 @@ bool Navi::procActionButton()
 		// if there's a captain following us, put them to work.
 		Navi* otherNavi = naviMgr->getAt(1 - mNaviIndex);
 		if (otherNavi && otherNavi->isAlive() && otherNavi->getStateID() == NSID_Follow) {
-			f32 actionRadius = naviMgr->mNaviParms->mNaviParms.mP060.mValue; // following captain uses autopluck range
+			f32 actionRadius = naviMgr->mNaviParms->mNaviParms.mAutopluckDistance.mValue; // following captain uses autopluck range
 
 			ItemPikihead::Item* otherTargetSprout = nullptr;
 			minDist                               = actionRadius * actionRadius;
@@ -1157,7 +1157,7 @@ void Navi::platCallback(PlatEvent& plat)
 				origin.z *= -1.0f;
 			}
 			Vector3f mag(200.0f * origin.x, 150.0f, origin.z * 200.0f);
-			NaviFlickArg arg(obj, mag, naviMgr->mNaviParms->mNaviParms.mQ010());
+			NaviFlickArg arg(obj, mag, naviMgr->mNaviParms->mNaviParms.mElectricGateDamage());
 			transit(NSID_Flick, &arg);
 		}
 		return;
@@ -1878,7 +1878,7 @@ int Navi::getDownfloorMass()
 		id = -1;
 	}
 
-	int mass = naviMgr->mNaviParms->mNaviParms.mQ009();
+	int mass = naviMgr->mNaviParms->mNaviParms.mSeesawWeight();
 
 	// if we're holding a piki, modify our mass
 	if (id == NSID_ThrowWait) {
@@ -2366,7 +2366,7 @@ bool Navi::movieGotoPosition(Vector3f& pos)
 		return true;
 	}
 
-	mVelocity = (sep * naviMgr->mNaviParms->mNaviParms.mP004()) * 0.5f;
+	mVelocity = (sep * naviMgr->mNaviParms->mNaviParms.mMoveSpeed()) * 0.5f;
 	return false;
 
 	/*
@@ -2913,12 +2913,12 @@ void Navi::makeVelocity()
 
 	f32 speed;
 	if (playData->mOlimarData->hasItem(OlimarData::ODII_RepugnantAppendage)) {
-		speed = naviMgr->mNaviParms->mNaviParms.mQ006();
+		speed = naviMgr->mNaviParms->mNaviParms.mRushBootSpeed();
 	} else {
-		speed = naviMgr->mNaviParms->mNaviParms.mP004();
+		speed = naviMgr->mNaviParms->mNaviParms.mMoveSpeed();
 	}
 	f32 dist = result.qLength();
-	if (dist > naviMgr->mNaviParms->mNaviParms.mCStickNeutralThresh()) {
+	if (dist > naviMgr->mNaviParms->mNaviParms.mNeutralStickThreshold()) {
 		mSceneAnimationTimer = 0.0f;
 	}
 
@@ -2928,10 +2928,10 @@ void Navi::makeVelocity()
 	if (mController1) {
 		NaviParms* parms = naviMgr->mNaviParms;
 		bool check       = false;
-		if (mSceneAnimationTimer >= parms->mNaviParms.mP048()) {
+		if (mSceneAnimationTimer >= parms->mNaviParms.mCursorLookTime()) {
 			check = true;
 		}
-		if ((check || (check || dist > parms->mNaviParms.mCStickNeutralThresh())) && (dist <= parms->mNaviParms.mP044())) {
+		if ((check || (check || dist > parms->mNaviParms.mNeutralStickThreshold())) && (dist <= parms->mNaviParms.mCursorMovementStick())) {
 			mVelocity = 0.0f;
 			f32 rad   = pikmin2_atan2f(mWhistle->mNaviOffsetVec.x, mWhistle->mNaviOffsetVec.z);
 			rad       = roundAng(rad);
@@ -3237,7 +3237,7 @@ void Navi::reviseController(Vector3f& input)
 	f32 mag = input.qLength();
 	f32 dir = roundAng(pikmin2_atan2f(input.x, input.z));
 
-	f32 mod  = naviMgr->mNaviParms->mNaviParms.mP035() * DEG2RAD * PI;
+	f32 mod  = naviMgr->mNaviParms->mNaviParms.mShakePreventionAngle() * DEG2RAD * PI;
 	f32 mod2 = mod * int((mod * 0.5f + dir) / mod);
 	mod      = -((int)(mod2 / 0.7853981f) * 0.7853981f - mod2);
 	dir      = pikmin2_sinf(0.7853981f - mod);
@@ -3246,10 +3246,10 @@ void Navi::reviseController(Vector3f& input)
 	dir = pikmin2_sinf(0.7853981f);
 
 	mag = mag * (1.0f / (dir / mod));
-	if (mag >= naviMgr->mNaviParms->mNaviParms._918()) {
+	if (mag >= naviMgr->mNaviParms->mNaviParms.mClampStick()) {
 		mag = 1.0f;
 	}
-	if (mag < naviMgr->mNaviParms->mNaviParms.mCStickNeutralThresh()) {
+	if (mag < naviMgr->mNaviParms->mNaviParms.mNeutralStickThreshold()) {
 		mag = 0.0f;
 	}
 	dir   = pikmin2_cosf(mod2);
@@ -3579,7 +3579,7 @@ void Navi::startDamage(f32 damage)
 	}
 
 	if (playData->mOlimarData->hasItem(OlimarData::ODII_JusticeAlloy)) {
-		damage *= naviMgr->mNaviParms->mNaviParms.mQ008();
+		damage *= naviMgr->mNaviParms->mNaviParms.mShieldDamageReductionRate();
 	}
 	if (getStateID() != NSID_Damaged) {
 		NaviDamageArg arg(damage);
@@ -3759,7 +3759,7 @@ void Navi::addDamage(f32 damage, bool flag)
 	}
 
 	if (playData->mOlimarData->hasItem(OlimarData::ODII_JusticeAlloy)) {
-		damage *= naviMgr->mNaviParms->mNaviParms.mQ008();
+		damage *= naviMgr->mNaviParms->mNaviParms.mShieldDamageReductionRate();
 	}
 
 	if (isAlive() && !mCurrentState->invincible() && !invincible()) {
@@ -5100,12 +5100,13 @@ bool Navi::releasePikis()
  */
 void Navi::makeCStick(bool disable)
 {
-	Vector3f inputPos;
-	inputPos.x = 0.0f;
-	inputPos.z = inputPos.x;
+	Vector3f stickPos;
+	stickPos.x = 0.0f;
+	stickPos.z = stickPos.x;
+
 	if (mController1 && moviePlayer->mDemoState == 0) {
-		inputPos.x = mController1->getSubStickX();
-		inputPos.z = -mController1->getSubStickY();
+		stickPos.x = mController1->getSubStickX();
+		stickPos.z = -mController1->getSubStickY();
 	}
 
 	Vector3f side = mCamera->getSideVector();
@@ -5113,12 +5114,15 @@ void Navi::makeCStick(bool disable)
 	Vector3f view = mCamera->getViewVector();
 	view.y        = 0.0f;
 	view.qNormalise();
+
+	//
 	if (view.y < up.y) {
 		up.z = view.z;
 		up.x = view.x;
 	}
+
 	up.qNormalise();
-	up = (side * inputPos.x) + (up * inputPos.z);
+	up = (side * stickPos.x) + (up * stickPos.z);
 	if (disable) {
 		up = 0.0f;
 	}
@@ -5128,19 +5132,19 @@ void Navi::makeCStick(bool disable)
 	if (pikmin2_sqrtf(dist) >= 0.05f) {
 		mCommandOn2     = true;
 		mCStickPosition = up;
-		f32 ang         = pikmin2_atan2f(up.x, up.z);
+		f32 scale       = pikmin2_atan2f(up.x, up.z);
 		f32 ang2        = mCPlateMgr->mAngle;
-		f32 cosA        = pikmin2_cosf(ang);
-		f32 sinA        = pikmin2_sinf(ang);
+		f32 cosA        = pikmin2_cosf(scale);
+		f32 sinA        = pikmin2_sinf(scale);
 		f32 cosB        = pikmin2_cosf(ang2);
 		f32 sinB        = pikmin2_sinf(ang2);
 		f32 cosC        = pikmin2_sinf(2.0943952f);
 		f32 zero        = 0.0f;
 		if (cosC < (cosA * cosB + zero) + (sinA * sinB + zero)) {
-			ang = angDist(ang, ang2) * 0.4f + ang2;
+			scale = angDist(scale, ang2) * 0.4f + ang2;
 		}
-		ang          = roundAng(ang);
-		mCStickAngle = ang;
+		scale        = roundAng(scale);
+		mCStickAngle = scale;
 		f32 calc     = (pikmin2_sqrtf(dist) - 0.05f) / 0.95f;
 		if (calc >= 0.9f) {
 			calc = 1.0f;
@@ -5152,13 +5156,15 @@ void Navi::makeCStick(bool disable)
 			_258++;
 		}
 		Vector3f pos = getPosition();
-		f32 calc2;
+
+		f32 angle;
 		if (_258 >= 40) {
-			calc2 = 3.0f;
+			angle = 3.0f;
 		} else {
-			calc2 = 1.0f;
+			angle = 1.0f;
 		}
-		mCPlateMgr->setPos(pos, calc2, mSimVelocity, ang);
+
+		mCPlateMgr->setPos(pos, angle, mSimVelocity, scale);
 		_2FC        = 0;
 		mCommandOn1 = false;
 
@@ -5192,14 +5198,14 @@ void Navi::makeCStick(bool disable)
 				minDist = dist;
 			}
 		}
-		if (minDist < naviMgr->mNaviParms->mNaviParms._698()) {
+		if (minDist < naviMgr->mNaviParms->mNaviParms.mPikiWaitRange()) {
 			if (mCStickState == 0) {
 				mCStickIncrement++;
 			} else {
 				mCStickIncrement = 0;
 				mCStickState     = 0;
 			}
-		} else if (minDist < naviMgr->mNaviParms->mNaviParms.mP040()) {
+		} else if (minDist < naviMgr->mNaviParms->mNaviParms.mPikiChangeFormationRange()) {
 			if (mCStickState == 1) {
 				mCStickIncrement++;
 			} else {
@@ -5875,7 +5881,7 @@ void Navi::makeCStick(bool disable)
 bool Navi::isCStickNetural()
 {
 	NaviParms::Parms& parms = naviMgr->mNaviParms->mNaviParms;
-	return mCStickPosition.qLength() <= parms.mCStickNeutralThresh.mValue;
+	return mCStickPosition.qLength() <= parms.mNeutralStickThreshold.mValue;
 }
 
 /*
@@ -6153,7 +6159,7 @@ void Navi::throwPiki(Piki* piki, Vector3f& cursorPos)
 	// So, we should be able to work out what our initial velocity should be to get there.
 
 	// NaviParm p026 is 'landing time', i.e. total flight time, so time to peak is half that.
-	f32 timeToPeak = 0.5f * naviMgr->mNaviParms->mNaviParms.mP026.mValue;
+	f32 timeToPeak = 0.5f * naviMgr->mNaviParms->mNaviParms.mLandingTime.mValue;
 
 	// "Actual" height at peak is navi elevation + 10.0f + throwHeight, but this is fine for our mechanics, mostly.
 	f32 throwHeight = piki->getThrowHeight();
