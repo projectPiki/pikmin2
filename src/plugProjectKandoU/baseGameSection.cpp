@@ -390,7 +390,7 @@ bool BaseGameSection::doUpdate()
 	if (!gameSystem->paused()) {
 		f32 frameRate = sys->getFrameRate(1.0f);
 		sys->mTimers->_start("coll", true);
-		if (!(gameSystem->isFlag(GAMESYS_Unk3))) {
+		if (!(gameSystem->isFlag(GAMESYS_DisableCollision))) {
 			sys->getTime();
 			cellMgr->resolveCollision();
 			CellPyramid::sSpeedUpResolveColl = true;

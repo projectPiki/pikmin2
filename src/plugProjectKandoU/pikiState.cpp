@@ -1303,7 +1303,7 @@ void PikiNukareState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(mAnimIdx, mAnimIdx, piki, nullptr);
 	_14 = false;
 	if (!playData->hasMetPikmin(piki->mPikiKind)) {
-		gameSystem->setFlag(GAMESYS_Unk4);
+		gameSystem->setFlag(GAMESYS_DisablePause);
 	}
 }
 

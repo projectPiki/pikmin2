@@ -36,7 +36,7 @@ namespace SingleGame {
 void DayEndState::init(SingleGameSection* game, StateArg* arg)
 {
 	gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
-	gameSystem->setFlag(GAMESYS_Unk5);
+	gameSystem->setFlag(GAMESYS_DisableDeathCounter);
 	moviePlayer->reset();
 	moviePlayer->clearSuspendedDemo();
 	DayEndArg* castedArg = static_cast<DayEndArg*>(arg);
@@ -158,7 +158,7 @@ void DayEndState::exec(SingleGameSection* game)
 			gameSystem->mTimeMgr->setStartTime();
 			gameSystem->detachObjectMgr(generalEnemyMgr);
 			gameSystem->detachObjectMgr(mapMgr);
-			gameSystem->setFlag(GAMESYS_Unk3);
+			gameSystem->setFlag(GAMESYS_DisableCollision);
 			transit(game, SGS_MainResult, nullptr);
 			return;
 		}
@@ -1227,7 +1227,7 @@ void DayEndState::cleanup(SingleGameSection* game)
 	int alivePikis = GameStat::alivePikis;
 	int mePikis    = GameStat::mePikis;
 	gameSystem->setPause(false, "dayend;cln", 3);
-	gameSystem->resetFlag(GAMESYS_Unk5);
+	gameSystem->resetFlag(GAMESYS_DisableDeathCounter);
 }
 
 } // namespace SingleGame

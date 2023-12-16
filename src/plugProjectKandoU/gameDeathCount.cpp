@@ -415,7 +415,8 @@ void DeathMgr::clear()
  */
 void DeathMgr::inc(int cod)
 {
-	if (gameSystem == nullptr || !(gameSystem->isFlag(GAMESYS_Unk5)) || cod == DeathCounter::COD_Sunset || cod == DeathCounter::COD_All) {
+	if (gameSystem == nullptr || !(gameSystem->isFlag(GAMESYS_DisableDeathCounter)) || cod == DeathCounter::COD_Sunset
+	    || cod == DeathCounter::COD_All) {
 		if (gameSystem->mIsInCave) {
 			inc_cave(cod);
 		} else {

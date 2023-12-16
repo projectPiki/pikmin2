@@ -201,7 +201,7 @@ void Piki::onKill(CreatureKillArg* killArg)
 		mEffectsObj->doDead();
 		mSoundObj->startFreePikiSound(PSSE_PK_VC_GHOST, 90, 0);
 
-		if (gameSystem && !gameSystem->isFlag(GAMESYS_Unk5)) {
+		if (gameSystem && !gameSystem->isFlag(GAMESYS_DisableDeathCounter)) {
 			int pikiType = getKind();
 			if (pikiType < Bulbmin && !isZikatu() && !isPikmin()) {
 				DeathMgr::inc(DeathCounter::COD_All);
@@ -298,7 +298,7 @@ void Piki::update()
  */
 bool Piki::isAlive()
 {
-	bool flag = isCreatureFlag(CF_IS_ALIVE);
+	bool flag = isCreatureFlag(CF_IsAlive);
 	if (flag && mCurrentState) {
 		return !mCurrentState->dead();
 	}
@@ -1018,7 +1018,7 @@ void Piki::onStickEndSelf(Creature* creature)
  */
 bool Piki::stimulate(Interaction& interaction)
 {
-	if (!isCreatureFlag(CF_IS_ALIVE)) {
+	if (!isCreatureFlag(CF_IsAlive)) {
 		return false;
 	}
 

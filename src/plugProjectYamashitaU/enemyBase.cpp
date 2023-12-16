@@ -1457,11 +1457,6 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 	becomeCarcass();
 }
 
-/*
- * --INFO--
- * Address:	80102920
- * Size:	0000E0
- */
 /**
  * Sets the visibility of the enemy in the Piklopedia.
  *
@@ -1469,13 +1464,18 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
  *                    If true, the enemy's kill count will be incremented.
  *                    If false, the enemy's state will be set to updated.
  */
+/*
+ * --INFO--
+ * Address:	80102920
+ * Size:	0000E0
+ */
 void EnemyBase::setZukanVisible(bool updateStats)
 {
 	if (!mInPiklopedia) {
 		return;
 	}
 
-	if ((gameSystem->isFlag(GAMESYS_Unk5)) == FALSE) {
+	if ((gameSystem->isFlag(GAMESYS_DisableDeathCounter)) == FALSE) {
 		EnemyInfo* enemyInfo = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 		if ((enemyInfo->mFlags & 0x200) == FALSE) {
 			TekiStat::Info* tekiInfo = playData->mTekiStatMgr.getTekiInfo(getEnemyTypeID());

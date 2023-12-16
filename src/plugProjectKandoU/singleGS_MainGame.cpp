@@ -509,7 +509,7 @@ void GameState::exec(SingleGameSection* game)
 	}
 
 	// Check open pause menu
-	if (!gameSystem->isFlag(GAMESYS_Unk4) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
+	if (!gameSystem->isFlag(GAMESYS_DisablePause) && moviePlayer->mDemoState == 0 && !gameSystem->paused()
 	    && game->mControllerP1->getButtonDown() & Controller::PRESS_START) {
 		og::Screen::DispMemberSMenuAll disp; // this ctor should be weak, but needs to not inline here?
 		game->setDispMemberSMenu(disp);
@@ -520,8 +520,8 @@ void GameState::exec(SingleGameSection* game)
 	}
 
 	// Check if the day time is up
-	if (!gameSystem->paused_soft() && !gameSystem->isFlag(GAMESYS_Unk4) && gameSystem->mTimeMgr->isDayOver() && !game->mOpenMenuFlags
-	    && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
+	if (!gameSystem->paused_soft() && !gameSystem->isFlag(GAMESYS_DisablePause) && gameSystem->mTimeMgr->isDayOver()
+	    && !game->mOpenMenuFlags && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 		gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 		DayEndArg arg(0);
 		transit(game, SGS_DayEnd, &arg);

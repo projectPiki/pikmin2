@@ -697,7 +697,7 @@ void SingleGameSection::onMovieStart(Game::MovieConfig* config, u32 p2, u32 p3)
  */
 void SingleGameSection::onMovieDone(Game::MovieConfig* config, u32 p2, u32 p3)
 {
-	gameSystem->resetFlag(GAMESYS_Unk4);
+	gameSystem->resetFlag(GAMESYS_DisablePause);
 	if (mCurrentState) {
 		mCurrentState->onMovieDone(this, config, p2, p3);
 	}

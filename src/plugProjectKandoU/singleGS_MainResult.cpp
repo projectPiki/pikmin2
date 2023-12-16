@@ -40,7 +40,7 @@ MainResultState::MainResultState()
  */
 void MainResultState::init(SingleGameSection* game, StateArg* arg)
 {
-	gameSystem->setFlag(GAMESYS_Unk3);
+	gameSystem->setFlag(GAMESYS_DisableCollision);
 	mGameSect = game;
 	game->startFadeblack();
 
@@ -842,7 +842,7 @@ void MainResultState::cleanup(SingleGameSection* game)
 		gameSystem->addObjectMgr_reuse(mPelletMgr);
 	}
 	mGameSect->_168 = nullptr;
-	gameSystem->resetFlag(GAMESYS_Unk3);
+	gameSystem->resetFlag(GAMESYS_DisableCollision);
 }
 
 } // namespace SingleGame

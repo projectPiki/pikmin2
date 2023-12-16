@@ -22,12 +22,12 @@ enum GameSystemMode {
 };
 
 enum GameSystemFlags {
-	GAMESYS_IsSoundFXActive   = 0x1,
-	GAMESYS_IsPlaying         = 0x2,
-	GAMESYS_Unk3              = 0x4,  // on during PoD cutscene
-	GAMESYS_Unk4              = 0x8,  // maybe disables pausing?
-	GAMESYS_Unk5              = 0x10, // to do with death counting?
-	GAMESYS_IsGameWorldActive = 0x20,
+	GAMESYS_IsSoundFXActive     = 0x1,  // set when sound effects are enabled
+	GAMESYS_IsPlaying           = 0x2,  // set when the game is running
+	GAMESYS_DisableCollision    = 0x4,  // disables collision detection
+	GAMESYS_DisablePause        = 0x8,  // disables pausing
+	GAMESYS_DisableDeathCounter = 0x10, // disables the death counter
+	GAMESYS_IsGameWorldActive   = 0x20, // set when the game world is active
 };
 
 struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
