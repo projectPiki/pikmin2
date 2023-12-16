@@ -11,15 +11,15 @@ namespace Sys {
  * Address:	80421ACC
  * Size:	000120
  */
-TriDivider* TriDivider::clone(Matrixf& p1)
+TriDivider* TriDivider::clone(Matrixf& transformationMtx)
 {
 	VertexTable* vtxTable = new VertexTable();
-	vtxTable->cloneFrom(p1, mVertexTable);
+	vtxTable->cloneFrom(transformationMtx, mVertexTable);
 
 	TriangleTable* triTable = new TriangleTable();
-	triTable->cloneFrom(p1, mTriangleTable, vtxTable);
+	triTable->cloneFrom(transformationMtx, mTriangleTable, vtxTable);
 
-	return do_clone(p1, vtxTable, triTable);
+	return do_clone(transformationMtx, vtxTable, triTable);
 }
 
 /*
@@ -27,16 +27,15 @@ TriDivider* TriDivider::clone(Matrixf& p1)
  * Address:	80421BEC
  * Size:	000160
  */
-void VertexTable::cloneFrom(Matrixf& p1, VertexTable* vtxTable)
+void VertexTable::cloneFrom(Matrixf& transformationMtx, VertexTable* vtxTable)
 {
 	alloc(vtxTable->mLimit);
 	mCount = vtxTable->mCount;
 
 	for (int i = 0; i < mLimit; i++) {
-
-		Vector3f v1;
-		PSMTXMultVec(p1.mMatrix.mtxView, (Vec*)&vtxTable->mObjects[i], (Vec*)&v1);
-		mObjects[i] = Vector3f(v1);
+		Vector3f transformed;
+		PSMTXMultVec(transformationMtx.mMatrix.mtxView, (Vec*)&vtxTable->mObjects[i], (Vec*)&transformed);
+		mObjects[i] = Vector3f(transformed);
 	}
 
 	mBoundBox.mMin = 32768.0f;
@@ -49,7 +48,7 @@ void VertexTable::cloneFrom(Matrixf& p1, VertexTable* vtxTable)
  * Address:	80421D4C
  * Size:	0000B4
  */
-void TriangleTable::cloneFrom(Matrixf& p1, TriangleTable* triTable, VertexTable* vtxTable)
+void TriangleTable::cloneFrom(Matrixf& transformationMtx, TriangleTable* triTable, VertexTable* vtxTable)
 {
 	alloc(triTable->mLimit);
 	mCount = triTable->mCount;
@@ -63,7 +62,7 @@ void TriangleTable::cloneFrom(Matrixf& p1, TriangleTable* triTable, VertexTable*
  * Address:	80421E00
  * Size:	0000C4
  */
-TriDivider* GridDivider::do_clone(Matrixf& p1, VertexTable* vtxTable, TriangleTable* triTable)
+TriDivider* GridDivider::do_clone(Matrixf& transformationMtx, VertexTable* vtxTable, TriangleTable* triTable)
 {
 	GridDivider* copy = new GridDivider();
 	copy->create(vtxTable->mBoundBox, mMaxX, mMaxZ, vtxTable, triTable);
