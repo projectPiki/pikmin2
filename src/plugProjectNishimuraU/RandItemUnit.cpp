@@ -493,10 +493,10 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode* node, int score)
 			if (currGen->mSpawnType == BaseGen::CGT_TreasureItem) {
 				genList[counter] = currGen;
 				counter++;
-			} else if (currGen->mSpawnType == BaseGen::CGT_EnemyGroupSpawn) {
+			} else if (currGen->mSpawnType == BaseGen::CGT_EnemyEasy) {
 				genList[counter] = currGen;
 				counter++;
-			} else if (currGen->mSpawnType == BaseGen::CGT_EnemySoloSpawn) {
+			} else if (currGen->mSpawnType == BaseGen::CGT_EnemyHard) {
 				genList[counter] = currGen;
 				counter++;
 			}

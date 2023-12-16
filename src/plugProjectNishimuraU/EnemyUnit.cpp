@@ -57,7 +57,7 @@ void EnemyNode::makeGlobalData(MapNode* mapTile)
 	mDirection = mapTile->getBaseGenGlobalDirection(mSpawn);
 
 	// if teki type is 0 (easy), give it a random distance + direction from spawn centre, within radius
-	if (mSpawn && mSpawn->mSpawnType == BaseGen::CGT_EnemyGroupSpawn) {
+	if (mSpawn && mSpawn->mSpawnType == BaseGen::CGT_EnemyEasy) {
 
 		// get random radius between 0 and max radius
 		f32 radius = randWeightFloat(mSpawn->mRadius);

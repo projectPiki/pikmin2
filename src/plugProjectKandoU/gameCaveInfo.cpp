@@ -28,7 +28,7 @@ BaseGen::BaseGen()
 	mAngle     = 0.0f;
 	mMinimum   = 1;
 	mMaximum   = 1;
-	mSpawnType = CGT_EnemyGroupSpawn;
+	mSpawnType = CGT_EnemyEasy;
 }
 
 /*

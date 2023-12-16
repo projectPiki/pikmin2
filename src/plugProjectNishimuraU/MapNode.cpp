@@ -353,9 +353,9 @@ void MapNode::setEnemyScore()
 		BaseGen* gen     = enemy->mSpawn;
 		int score        = 0;
 		if (gen) {
-			if (gen->mSpawnType == BaseGen::CGT_EnemyGroupSpawn) {
+			if (gen->mSpawnType == BaseGen::CGT_EnemyEasy) {
 				score = 2;
-			} else if (gen->mSpawnType == BaseGen::CGT_EnemySoloSpawn) {
+			} else if (gen->mSpawnType == BaseGen::CGT_EnemyHard) {
 				score = 10;
 			}
 		}

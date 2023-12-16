@@ -67,8 +67,7 @@ void RandEnemyUnit::setEnemyTypeWeight()
 		mTypeMax[i]   = 0;
 	}
 
-	int enemyTypes[4]
-	    = { BaseGen::CGT_EnemyGroupSpawn, BaseGen::CGT_EnemySoloSpawn, BaseGen::CGT_DoorSeam, BaseGen::CGT_TekiSpecial }; // _38
+	int enemyTypes[4] = { BaseGen::CGT_EnemyEasy, BaseGen::CGT_EnemyHard, BaseGen::CGT_DoorSeam, BaseGen::CGT_TekiSpecial }; // _38
 
 	int weightList[4]; // _28
 	int countList[4];  // _18
@@ -1452,7 +1451,7 @@ void RandEnemyUnit::setVersusEnemyTypeB()
 	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
 	{
 		TekiInfo* info = currEnemy->getTekiInfo();
-		if (info && info->mType == BaseGen::CGT_EnemySoloSpawn) {
+		if (info && info->mType == BaseGen::CGT_EnemyHard) {
 			count += info->mWeight / 10;
 			if (count > mTypeCount[TEKITYPE_B]) {
 				int altNum     = (count - mTypeCount[TEKITYPE_B]) % 2;
