@@ -34,9 +34,9 @@ int getMapPikmins_exclude_Me(int id)
 {
 	if (id == -1) {
 		return alivePikis;
-	} else {
-		return alivePikis.mPikiCounts[id];
 	}
+
+	return alivePikis.mPikiCounts[id];
 }
 
 /*
@@ -48,9 +48,9 @@ int getMapPikmins(int id)
 {
 	if (id == -1) {
 		return alivePikis + mePikis;
-	} else {
-		return alivePikis.mPikiCounts[id] + mePikis.mPikiCounts[id];
 	}
+
+	return alivePikis.mPikiCounts[id] + mePikis.mPikiCounts[id];
 }
 
 /*
@@ -62,9 +62,9 @@ int getZikatuPikmins(int id)
 {
 	if (id == -1) {
 		return zikatuPikis;
-	} else {
-		return zikatuPikis.mPikiCounts[id];
 	}
+
+	return zikatuPikis.mPikiCounts[id];
 }
 
 /*
@@ -77,9 +77,9 @@ int getAllPikmins(int id)
 	if (id == -1) {
 		int sum = alivePikis + mePikis;
 		return playData->mPikiContainer.getTotalSum() + sum;
-	} else {
-		return getMapPikmins(id) + playData->mPikiContainer.getColorSum(id);
 	}
+
+	return getMapPikmins(id) + playData->mPikiContainer.getColorSum(id);
 }
 
 /*

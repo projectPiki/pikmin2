@@ -7,17 +7,17 @@
 
 struct _CellParms {
 	inline _CellParms(Parameters* parameters)
-	    : mP000(parameters, 'p000', "バッファを使う", false, false, true)  // 'use a buffer'
-	    , mP001(parameters, 'p001', "マジックナンバー", true, false, true) // 'magic number'
-	    , mP002(parameters, 'p002', "G-Half", false, false, true)
-	    , mP003(parameters, 'p003', "UpdateMgr", false, false, true)
+	    : mUseBuffer(parameters, 'p000', "バッファを使う", false, false, true)    // 'use a buffer'
+	    , mMagicNumber(parameters, 'p001', "マジックナンバー", true, false, true) // 'magic number'
+	    , mHalfG(parameters, 'p002', "G-Half", false, false, true)
+	    , mUpdateMgr(parameters, 'p003', "UpdateMgr", false, false, true)
 	{
 	}
 
-	Parm<bool> mP000; // _24, use a buffer?
-	Parm<bool> mP001; // _40, magic number?
-	Parm<bool> mP002; // _5C, G-Half?
-	Parm<bool> mP003; // _78, UpdateMgr?
+	Parm<bool> mUseBuffer;   // _24
+	Parm<bool> mMagicNumber; // _40
+	Parm<bool> mHalfG;       // _5C
+	Parm<bool> mUpdateMgr;   // _78
 };
 
 struct CellMgrParms : public Parameters, public JKRDisposer {

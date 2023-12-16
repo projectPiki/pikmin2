@@ -2,6 +2,7 @@
 #include "Game/MapMgr.h"
 #include "Game/routeMgr.h"
 #include "Game/GameSystem.h"
+#include "Game/Navi.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "JSystem/J3D/J3DTexMtx.h"
 #include "System.h"
@@ -77,14 +78,17 @@ bool AABBWaterBox::update()
 		mLoweredAmount = -(mLowerTimer * sys->mDeltaTime - mLoweredAmount);
 		mLowerTimer += sys->mDeltaTime * 5.0f;
 		mWaterHeight = mWaterTop + mLoweredAmount;
+
 		if (mLoweredAmount <= mLoweringGoalDiff) {
 			mLoweredAmount = mLoweringGoalDiff;
 			mState         = WaterBox_Dead;
 			mapMgr->mSeaMgr->delNode(this);
 			return true;
 		}
+
 		break;
 	}
+
 	mWaterHeight = mWaterTop + mLoweredAmount;
 	return false;
 }
@@ -101,14 +105,18 @@ void AABBWaterBox::attachModel(J3DModelData* modelData, Sys::MatTexAnimation* an
 	mModel               = new SysShape::Model(modelData, 0, 2);
 	mModel->mIsAnimating = true;
 
-	mXzPieceSize.x    = FABS(mBounds.mMax.x - mBounds.mMin.x) / scale;
-	mXzPieceSize.y    = FABS(mBounds.mMax.z - mBounds.mMin.z) / scale;
+	mXzPieceSize.x = FABS(mBounds.mMax.x - mBounds.mMin.x) / scale;
+	mXzPieceSize.y = FABS(mBounds.mMax.z - mBounds.mMin.z) / scale;
+
 	mCenterPosition.x = (mBounds.mMin.x + mBounds.mMax.x) * 0.5f;
 	mCenterPosition.z = (mBounds.mMin.z + mBounds.mMax.z) * 0.5f;
 	mCenterPosition.y = mWaterTop + mLoweredAmount;
+
 	mMatAnimator.start(anm);
 	calcMatrix();
+
 	mWaterHeight = mWaterTop + mLoweredAmount;
+
 	for (u16 i = 0; i < mModel->mJ3dModel->mModelData->mMaterialTable.mTextures->mNum; i++) {
 		if (strcmp(mModel->mJ3dModel->mModelData->mMaterialTable.mTextureNames->getName(i), "fbtex_dummy") == 0) {
 			mFbTexture  = mModel->mJ3dModel->mModelData->mMaterialTable.mTextures;
@@ -124,14 +132,18 @@ void AABBWaterBox::attachModel(J3DModelData* modelData, Sys::MatTexAnimation* an
  */
 void AABBWaterBox::calcMatrix()
 {
-	if (mModel) {
-		mCenterPosition.y = mWaterTop + mLoweredAmount;
-		Vector3f v1(mXzPieceSize.x, 1.0f, mXzPieceSize.y);
-		Matrixf mtx;
-		mtx.makeSRT(v1, Vector3f::zero, mCenterPosition);
-		PSMTXCopy(mtx.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
-		mModel->mJ3dModel->calc();
+	if (!mModel) {
+		return;
 	}
+
+	mCenterPosition.y = mWaterTop + mLoweredAmount;
+
+	Vector3f scale(mXzPieceSize.x, 1.0f, mXzPieceSize.y);
+	Matrixf mtx;
+	mtx.makeSRT(scale, Vector3f::zero, mCenterPosition);
+	PSMTXCopy(mtx.mMatrix.mtxView, mModel->mJ3dModel->mPosMtx);
+
+	mModel->mJ3dModel->calc();
 }
 
 /*
@@ -152,9 +164,11 @@ void AABBWaterBox::doAnimation()
  */
 void AABBWaterBox::doSetView(int viewportNumber)
 {
-	if (mModel) {
-		mModel->setCurrentViewNo((u16)viewportNumber);
+	if (!mModel) {
+		return;
 	}
+
+	mModel->setCurrentViewNo((u16)viewportNumber);
 }
 
 /*
@@ -164,9 +178,11 @@ void AABBWaterBox::doSetView(int viewportNumber)
  */
 void AABBWaterBox::doViewCalc()
 {
-	if (mModel) {
-		mModel->viewCalc();
+	if (!mModel) {
+		return;
 	}
+
+	mModel->viewCalc();
 }
 
 /*
@@ -177,10 +193,8 @@ void AABBWaterBox::doViewCalc()
 void AABBWaterBox::doEntry()
 {
 	if (gameSystem && !gameSystem->isStoryMode() && !gameSystem->isZukanMode()
-	    && (!gameSystem->isChallengeMode()
-	        || gameSystem->isMultiplayerMode())) // WHY NOT JUST CHECK ISMULTIPLAYER. THERE'S NO OTHER OPTION.
-	{
-		if (gameSystem) { // kando pls. why are we doing this. let us out.
+	    && (!gameSystem->isChallengeMode() || gameSystem->isMultiplayerMode())) {
+		if (gameSystem) {
 			gameSystem->setDrawBuffer(4);
 			mModel->mJ3dModel->calcMaterial();
 			mModel->mJ3dModel->entry();
@@ -190,7 +204,7 @@ void AABBWaterBox::doEntry()
 
 	if (gameSystem->isStoryMode()) {
 		BaseGameSection* section = gameSystem->getSection();
-		if (section->mPrevNaviIdx == 2) {
+		if (section->mPrevNaviIdx == NAVIID_President) {
 			if (gameSystem) {
 				gameSystem->setDrawBuffer(4);
 				Mtx copyMatrix;
@@ -290,6 +304,7 @@ void SeaMgr::update()
 			isRefreshNeeded = true;
 		}
 	}
+
 	if (isRefreshNeeded) {
 		mapMgr->mRouteMgr->refreshWater();
 	}
@@ -407,47 +422,34 @@ void AABBWaterBox::create(Vector3f&, Vector3f&)
  * Address:	801AF184
  * Size:	0001C8
  */
-void AABBWaterBox::globalise(Game::AABBWaterBox* other, Matrixf& p2)
+void AABBWaterBox::globalise(Game::AABBWaterBox* other, Matrixf& globalMatrix)
 {
-	Vector3f vecs[4];
+	Vector3f cornerPoints[4];
 	mBounds = other->mBounds;
 
-	// this is such a dumb way to manip this
-	mBounds.getMin(vecs[0]);
-	mBounds.getMax(vecs[2]);
-	vecs[1] = Vector3f(mBounds.mMin.x, mBounds.mMin.y, mBounds.mMax.z);
-	vecs[3] = Vector3f(mBounds.mMax.x, mBounds.mMin.y, mBounds.mMin.z);
+	// Get the minimum and maximum points of the bounding box
+	mBounds.getMin(cornerPoints[0]);
+	mBounds.getMax(cornerPoints[2]);
+
+	// Get the other two corner points of the bounding box
+	cornerPoints[1] = Vector3f(mBounds.mMin.x, mBounds.mMin.y, mBounds.mMax.z);
+	cornerPoints[3] = Vector3f(mBounds.mMax.x, mBounds.mMin.y, mBounds.mMin.z);
 
 	mBounds.mMin = Vector3f(32768.0f);
 	mBounds.mMax = Vector3f(-32768.0f);
 
+	// Transform each corner point with the global matrix and include it back into the bounding box
 	for (int i = 0; i < 4; i++) {
 		Vec result;
-		PSMTXMultVec(p2.mMatrix.mtxView, (Vec*)&vecs[i], &result);
-		vecs[i] = result;
-		if (vecs[i].x < mBounds.mMin.x) {
-			mBounds.mMin.x = vecs[i].x;
-		}
-		if (vecs[i].y < mBounds.mMin.y) {
-			mBounds.mMin.y = vecs[i].y;
-		}
-		if (vecs[i].z < mBounds.mMin.z) {
-			mBounds.mMin.z = vecs[i].z;
-		}
-		if (vecs[i].x > mBounds.mMax.x) {
-			mBounds.mMax.x = vecs[i].x;
-		}
-		if (vecs[i].y > mBounds.mMax.y) {
-			mBounds.mMax.y = vecs[i].y;
-		}
-		if (vecs[i].z > mBounds.mMax.z) {
-			mBounds.mMax.z = vecs[i].z;
-		}
+		PSMTXMultVec(globalMatrix.mMatrix.mtxView, (Vec*)&cornerPoints[i], &result);
+		cornerPoints[i] = result;
+		mBounds.include(cornerPoints[i]);
 	}
 
 	mWaterTop = other->mWaterTop;
 	mBounds.mMin.y -= 1000.0f;
-	mWaterTop      = mBounds.mMax.y;
+	mWaterTop = mBounds.mMax.y;
+
 	mState         = 0;
 	mLoweredAmount = 0.0f;
 	_14            = 0.0f;
@@ -502,6 +504,7 @@ SeaMgr::SeaMgr()
 	} else {
 		file = archive->getResource("2p/2p.btk");
 	}
+
 	P2ASSERTLINE(567, file);
 	mAnimations[0].attachResource(file, mModelData[0]);
 }
@@ -601,14 +604,14 @@ void SeaMgr::read(Stream& input)
  * Address:	801AFEA8
  * Size:	000308
  */
-void SeaMgr::addSeaMgr(SeaMgr* otherMgr, Matrixf& p2)
+void SeaMgr::addSeaMgr(SeaMgr* otherMgr, Matrixf& globalMtx)
 {
 	Iterator<WaterBox> iterator(otherMgr);
 	CI_LOOP(iterator)
 	{
 		WaterBox* otherWB = *iterator;
 		AABBWaterBox* wb  = new AABBWaterBox;
-		wb->globalise((AABBWaterBox*)otherWB, p2);
+		wb->globalise((AABBWaterBox*)otherWB, globalMtx);
 		addWaterBox(wb);
 	}
 }

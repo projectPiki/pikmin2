@@ -98,7 +98,7 @@ Creature* GenObjectEnemy::generate(Game::Generator* gen)
 	startpos.z = z;
 
 	// Grab the number of tekis we're spawning
-	int tekicount = mTekiNum - gen->_74;
+	int tekicount = mTekiNum - gen->mDeathCount;
 
 	Vector3f posVector[10];  // holds initial positions
 	Vector3f corrVector[10]; // holds corrections if too close to other tekis

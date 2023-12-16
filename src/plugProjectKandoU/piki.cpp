@@ -1474,7 +1474,7 @@ void Piki::do_updateLookCreature()
 		return;
 	}
 
-	if (OptimiseController::mInstance->mC000.mValue) {
+	if (OptimiseController::mInstance->mPikminNeck.mValue) {
 		if (mLookAtTargetCreature) {
 			mTargetLookTimer -= sys->mDeltaTime;
 			if (mTargetLookTimer > 0.0f) {

@@ -64,7 +64,7 @@ void GeneratorCache::addGenerator(Game::Generator* newGenerator)
 	int count = 0;
 	FOREACH_NODE(Generator, getFirstGenerator(), gen)
 	{
-		if (gen->_AC == 0) {
+		if (gen->mIsInactive == FALSE) {
 			count++;
 		}
 	}
@@ -91,7 +91,7 @@ Generator* GeneratorCache::findRamGenerator(int index)
 {
 	FOREACH_NODE(Generator, mGenerator.mChild, gen)
 	{
-		if (gen->_AC == 0 && gen->mIndex == index) {
+		if (gen->mIsInactive == FALSE && gen->mIndex == index) {
 			return gen;
 		}
 	}
@@ -253,20 +253,22 @@ void GeneratorCache::loadGenerators(int courseIndex)
 		for (int i = 0; i < mCurrentCache->mGeneratorCount; i++) {
 			Generator* generator = new Generator;
 
-			Generator::ramMode = 1;
+			Generator::ramMode = Generator::RM_MemoryCache;
 			generator->read(input);
-			int v1             = 0;
-			Generator::ramMode = 0;
 
-			generator->mIndex = i;
-			generator->_AC    = 0;
+			int v1             = 0;
+			Generator::ramMode = Generator::RM_Disc;
+
+			generator->mIndex      = i;
+			generator->mIsInactive = FALSE;
 
 			FOREACH_NODE(Generator, mGenerator.mChild, child)
 			{
-				if (child->_AC == 0) {
+				if (child->mIsInactive == FALSE) {
 					v1++;
 				}
 			}
+
 			if (v1 < 80) {
 				mGenerator.add(generator);
 			}
@@ -730,7 +732,7 @@ lbl_801F218C:
 void GeneratorCache::updateUseList()
 {
 	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->mNext) {
-		if (gen->_AC == 0) {
+		if (gen->mIsInactive == FALSE) {
 			gen->updateUseList();
 		}
 	}
@@ -744,10 +746,10 @@ void GeneratorCache::updateUseList()
 void GeneratorCache::createNumberGenerators()
 {
 	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->mNext) {
-		if (gen->_AC == 0 && (gen->mReservedNum & 4U) != 0) {
-			Generator::ramMode = 1;
+		if (gen->mIsInactive == FALSE && (gen->mReservedNum & 4U) != 0) {
+			Generator::ramMode = Generator::RM_MemoryCache;
 			gen->generate();
-			Generator::ramMode = 0;
+			Generator::ramMode = Generator::RM_Disc;
 		}
 	}
 }
@@ -798,9 +800,9 @@ void GeneratorCache::saveGenerator(Generator* generator)
 		if (generator->need_saveCreature()) {
 			RamStream output(mHeapBuffer + mFreeOffset, mFreeSize);
 			generator->mIndex  = mCurrentCache->mGeneratorCount;
-			Generator::ramMode = 1;
+			Generator::ramMode = Generator::RM_MemoryCache;
 			generator->write(output);
-			Generator::ramMode = 0;
+			Generator::ramMode = Generator::RM_Disc;
 			mFreeOffset += output.mPosition;
 			mFreeSize -= output.mPosition;
 			mCurrentCache->mGeneratorCount++;
@@ -885,16 +887,16 @@ void GeneratorCache::saveCreature(Generator* gen)
 {
 	if (gen->mCreature && (gen->mDayLimit == -1 || gameSystem->mTimeMgr->mDayCount < gen->mDayLimit)) {
 		RamStream output(mHeapBuffer + mFreeOffset, mFreeSize);
-		Generator::ramMode = 1;
+		Generator::ramMode = Generator::RM_MemoryCache;
 		if (gen->need_saveCreature()) {
 			output.writeInt(gen->mIndex);
 			gen->saveCreature(output);
 
 			JUT_ASSERTLINE(672, mCurrentCache->mGeneratorCount < gen->mIndex, "(gen number large %d>=%d\n", mCurrentCache->mGeneratorCount,
 			               gen->mIndex);
-			Generator::ramMode = 0;
+			Generator::ramMode = Generator::RM_Disc;
 		} else {
-			Generator::ramMode = 0;
+			Generator::ramMode = Generator::RM_Disc;
 		}
 		int size = output.mPosition;
 		mFreeOffset += size;

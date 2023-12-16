@@ -232,11 +232,10 @@ bool GameSystem::paused()
  */
 int GameSystem::startPause(bool isPausedSoft, int pauseID, char* str)
 {
-	if (isPausedSoft) {
-		if (paused()) {
-			return 1;
-		}
+	if (isPausedSoft && paused()) {
+		return TRUE;
 	}
+
 	mIsPaused     = pauseID;
 	int prev      = mIsPausedSoft;
 	mIsPausedSoft = isPausedSoft;
@@ -332,15 +331,17 @@ void GameSystem::doViewCalc()
 			GenericObjectMgr* obj = *it;
 			obj->doViewCalc();
 		}
-	} else {
-		bool flag = SysShape::Model::viewCalcMode == 0;
-		Iterator<GenericObjectMgr> it(this);
-		CI_LOOP(it)
-		{
-			GenericObjectMgr* obj = *it;
-			if ((u8)flag || (int)obj->getMatrixLoadType() != 1) {
-				obj->doViewCalc();
-			}
+
+		return;
+	}
+
+	bool flag = SysShape::Model::viewCalcMode == 0;
+	Iterator<GenericObjectMgr> it(this);
+	CI_LOOP(it)
+	{
+		GenericObjectMgr* obj = *it;
+		if ((u8)flag || (int)obj->getMatrixLoadType() != 1) {
+			obj->doViewCalc();
 		}
 	}
 }
@@ -450,6 +451,7 @@ TObjectNode<GenericObjectMgr>* GameSystem::detachObjectMgr_reuse(GenericObjectMg
 			return node;
 		}
 	}
+
 	return nullptr;
 }
 
@@ -460,8 +462,8 @@ TObjectNode<GenericObjectMgr>* GameSystem::detachObjectMgr_reuse(GenericObjectMg
  */
 OptimiseController::OptimiseController()
     : Parameters(nullptr, "Dynamics")
-    , mC000(this, 'c000', "ピクミン首", true, false, true)              // 'pikmin neck'
-    , mC001(this, 'c001', "コリジョンバッファ有効", false, false, true) // 'collision buffer enabled'
+    , mPikminNeck(this, 'c000', "ピクミン首", true, false, true)                          // 'pikmin neck'
+    , mCollisionBufferEnabled(this, 'c001', "コリジョンバッファ有効", false, false, true) // 'collision buffer enabled'
 {
 }
 

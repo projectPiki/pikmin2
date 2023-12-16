@@ -41,15 +41,16 @@ ResultTexMgr::Mgr::~Mgr() { }
  */
 void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 {
-
 	char pathBuffer[512];
 
-	mOtakaraConfigList  = arg.mOtakaraConfigList;
-	mItemConfigList     = arg.mItemConfigList;
-	mHeap               = arg.mHeap;
+	mOtakaraConfigList = arg.mOtakaraConfigList;
+	mItemConfigList    = arg.mItemConfigList;
+	mHeap              = arg.mHeap;
+
 	JKRHeap* poppedHeap = JKRHeap::sCurrentHeap;
 	JKRArchive* archive = nullptr;
 	mHeap->becomeCurrentHeap();
+
 	if (arg.mRegionMode == REGIONID_Null) {
 		switch (sys->mRegion) {
 		case System::LANG_JAPANESE:
@@ -72,49 +73,60 @@ void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 			break;
 		}
 	}
+
 	LoadResource::Arg loadResourceArg(pathBuffer);
 	loadResourceArg.mHeap = mHeap;
 	mLoadResourceNode     = gLoadResourceMgr->mountArchive(loadResourceArg);
+
 	if (mLoadResourceNode) {
 		archive = mLoadResourceNode->getArchive();
 	} else {
 		JUT_PANICLINE(198, "failed to open resulttex/arc.szs\n%s\n", pathBuffer);
 	}
+
 	int otakaraCount = mOtakaraConfigList->getConfigCount();
 	int itemCount    = mItemConfigList->getConfigCount();
-	mCarcassTextures.alloc(1);
-	ResTIMG* timg = static_cast<ResTIMG*>(archive->getResource("teki_carcass/texture.bti"));
-	if (timg == nullptr) {
-		timg = static_cast<ResTIMG*>(archive->getResource("ahiru/texture.bti"));
-	}
-	mCarcassTextures.getTexture(0)->storeTIMG(timg, (u8)0);
-	mOtakaraTextures.alloc(otakaraCount);
 
+	mCarcassTextures.alloc(1);
+	ResTIMG* carcassTexture = static_cast<ResTIMG*>(archive->getResource("teki_carcass/texture.bti"));
+	if (carcassTexture == nullptr) {
+		carcassTexture = static_cast<ResTIMG*>(archive->getResource("ahiru/texture.bti"));
+	}
+
+	mCarcassTextures.getTexture(0)->storeTIMG(carcassTexture, (u8)0);
+
+	mOtakaraTextures.alloc(otakaraCount);
 	for (int i = 0; i < otakaraCount; i++) {
 		char otakaraTexturePath[256];
 		sprintf(otakaraTexturePath, "%s/texture.bti", mOtakaraConfigList->getPelletConfig(i)->mParams.mName.mData);
-		ResTIMG* timg1 = static_cast<ResTIMG*>(archive->getResource(otakaraTexturePath));
-		if (timg1 == nullptr) {
+
+		ResTIMG* otakaraTexture = static_cast<ResTIMG*>(archive->getResource(otakaraTexturePath));
+		if (!otakaraTexture) {
 			sprintf(otakaraTexturePath, "ahiru/texture.bti");
-			timg1 = static_cast<ResTIMG*>(archive->getResource(otakaraTexturePath));
+			otakaraTexture = static_cast<ResTIMG*>(archive->getResource(otakaraTexturePath));
 		}
-		if (timg1 != nullptr) {
-			mOtakaraTextures.getTexture(i)->storeTIMG(timg1, (u8)0);
+
+		if (otakaraTexture) {
+			mOtakaraTextures.getTexture(i)->storeTIMG(otakaraTexture, (u8)0);
 		}
 	}
+
 	mItemTextures.alloc(itemCount);
 	for (int i = 0; i < itemCount; i++) {
 		char itemTexturePath[256];
 		sprintf(itemTexturePath, "%s/texture.bti", mItemConfigList->getPelletConfig(i)->mParams.mName.mData);
-		ResTIMG* timg1 = static_cast<ResTIMG*>(archive->getResource(itemTexturePath));
-		if (timg1 == nullptr) {
+
+		ResTIMG* itemTexture = static_cast<ResTIMG*>(archive->getResource(itemTexturePath));
+		if (!itemTexture) {
 			sprintf(itemTexturePath, "ahiru/texture.bti");
-			timg1 = static_cast<ResTIMG*>(archive->getResource(itemTexturePath));
+			itemTexture = static_cast<ResTIMG*>(archive->getResource(itemTexturePath));
 		}
-		if (timg1 != nullptr) {
-			mItemTextures.getTexture(i)->storeTIMG(timg1, (u8)0);
+
+		if (itemTexture) {
+			mItemTextures.getTexture(i)->storeTIMG(itemTexture, (u8)0);
 		}
 	}
+
 	poppedHeap->becomeCurrentHeap();
 }
 
@@ -154,6 +166,7 @@ JUTTexture* ResultTexMgr::Mgr::getOtakaraItemTexture(int index)
 	} else {
 		texture = getOtakaraTexture(index);
 	}
+
 	return texture;
 }
 
@@ -282,6 +295,7 @@ void DNode::add(Game::DNode* newNode)
 		while (child->mNext) {
 			child = child->mNext;
 		}
+
 		child->mNext   = newNode;
 		newNode->mPrev = child;
 	} else {
@@ -296,6 +310,7 @@ void DNode::add(Game::DNode* newNode)
 		if (child2 == newNode) {
 			count++;
 		}
+
 		JUT_ASSERTLINE(424, count <= 1, "DNode add err count %d\n", count);
 	}
 }
@@ -327,35 +342,39 @@ DNode::~DNode() { del(); }
 void DNode::del()
 {
 	DNode* parent = mParent;
+	if (!parent) {
+		return;
+	}
 
-	if (parent) {
-		DNode* node     = parent->mChild;
-		DNode* prevNode = nullptr;
-		while (node) {
-			if (node == this) {
-				if (prevNode) {
-					prevNode->mNext = node->mNext;
-					if (node->mNext) {
-						node->mNext->mPrev = prevNode;
-					}
-					mPrev   = nullptr;
-					mNext   = nullptr;
-					mParent = nullptr;
-					return;
+	DNode* node     = parent->mChild;
+	DNode* prevNode = nullptr;
+	while (node) {
+		if (node == this) {
+			if (prevNode) {
+				prevNode->mNext = node->mNext;
+				if (node->mNext) {
+					node->mNext->mPrev = prevNode;
 				}
+
+				mPrev   = nullptr;
+				mNext   = nullptr;
+				mParent = nullptr;
+				return;
+			} else {
 				parent->mChild = node->mNext;
 				if (node->mNext) {
 					node->mNext->mPrev = nullptr;
 				}
+
 				mPrev   = nullptr;
 				mNext   = nullptr;
 				mParent = nullptr;
 				return;
 			}
-
-			prevNode = node;
-			node     = node->mNext;
 		}
+
+		prevNode = node;
+		node     = node->mNext;
 	}
 }
 

@@ -111,8 +111,8 @@ struct OptimiseController : public JKRDisposer, public Parameters {
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
 	// _18-_24 = Parameters
-	Parm<bool> mC000; // _24, c000, 'pikmin neck'
-	Parm<bool> mC001; // _40, c001, 'collision buffer enabled'
+	Parm<bool> mPikminNeck;             // _24, c000, 'pikmin neck'
+	Parm<bool> mCollisionBufferEnabled; // _40, c001, 'collision buffer enabled'
 };
 
 extern GameSystem* gameSystem;

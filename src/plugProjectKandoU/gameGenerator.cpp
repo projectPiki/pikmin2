@@ -22,7 +22,6 @@ static const int unusedArray[] = { 0, 0, 0 };
 void _Print(char* name, ...) { OSReport("generator"); }
 
 namespace Game {
-
 GenObjectFactoryFactory* GenObjectFactory::factory;
 u8 Generator::ramMode;
 GeneratorMgr* generatorMgr;
@@ -72,11 +71,11 @@ void GenBase::write(Stream& output)
 	ID32 type(mTypeID);
 	output.textWriteTab(output.mTabCount);
 	type.write(output);
-	if (Generator::ramMode == 0) {
+	if (Generator::ramMode == Generator::RM_Disc) {
 		writeVersion(output);
 	}
 	doWrite(output);
-	if (Generator::ramMode != 0) {
+	if (Generator::ramMode != Generator::RM_Disc) {
 		ramSaveParameters(output);
 	} else {
 		Parameters::write(output);
@@ -114,7 +113,7 @@ void GenBase::readVersion(Stream&)
  */
 void GenBase::read(Stream& input)
 {
-	if (Generator::ramMode == 0) {
+	if (Generator::ramMode == Generator::Generator::RM_Disc) {
 		ID32 temp2;
 		temp2.read(input);
 		mRawID = temp2.getID();
@@ -122,7 +121,7 @@ void GenBase::read(Stream& input)
 		mRawID = getLatestVersion();
 	}
 	doRead(input);
-	if (Generator::ramMode != 0) {
+	if (Generator::ramMode != Generator::RM_Disc) {
 		ramLoadParameters(input);
 	} else {
 		Parameters::read(input);
@@ -162,28 +161,28 @@ void Generator::initialiseSystem() { GenObjectFactory::factory = nullptr; }
  */
 Generator::Generator()
     : CNode()
-    , _40()
+    , mNameId()
     , mVersion()
     , mPosition(0.0f, 0.0f, 0.0f)
 {
 	mObject      = nullptr;
-	_1C          = '____';
+	mId          = '____';
 	mReservedNum = 0;
-	_40.setID('    ');
+	mNameId.setID('    ');
 	mVersion.setID(GeneratorCurrentVersion);
 	strcpy(mGenObjName, "unset");
-	_64                   = 0;
-	_60                   = 0;
+	mNextGenerator        = 0;
+	mPrevGenerator        = 0;
 	mCreature             = nullptr;
 	_7C                   = 0;
 	mChild                = nullptr;
 	mParent               = nullptr;
 	mPrev                 = nullptr;
 	mNext                 = nullptr;
-	_AC                   = 1;
+	mIsInactive           = TRUE;
 	mDayLimit             = -1;
-	_74                   = 0;
-	_78                   = 0;
+	mDeathCount           = 0;
+	mDayNum               = 0;
 	mDaysTillResurrection = 0;
 }
 
@@ -202,7 +201,7 @@ Generator::Generator(int)
  * Address:	801AA8C0
  * Size:	000068
  */
-Generator::~Generator() { _64 = nullptr; }
+Generator::~Generator() { mNextGenerator = nullptr; }
 
 /*
  * updateUseList__Q24Game9GeneratorFv
@@ -290,15 +289,16 @@ void Generator::saveCreature(Stream& output)
 	if (mCreature) {
 		u8 conversion = 0;
 		if (mReservedNum & 8) {
-			conversion |= 0x1;
+			conversion |= CREATURE_SAVE_FLAG_POSITION;
 		}
+
 		mCreature->getTypeName();
 		mCreature->getCreatureName();
 		mCreature->getCreatureID();
 		mCreature->save(output, conversion);
 		return;
 	}
-	// sic
+
 	JUT_PANICLINE(448, "Generaotr::saveCreature creature is 0\n");
 }
 
@@ -314,25 +314,29 @@ void Generator::generate()
 	if (isExpired()) {
 		_7C       = 0;
 		mCreature = nullptr;
-	} else {
-		if (ramMode == 0) {
-			_7C = 0;
-			_74 = 0;
-			_78 = gameSystem->mTimeMgr->mDayCount;
-		} else if ((mReservedNum & 4) == 0) {
-			_7C = 0;
-			return;
+		return;
+	}
+
+	if (ramMode == RM_Disc) {
+		_7C         = 0;
+		mDeathCount = 0;
+		mDayNum     = gameSystem->mTimeMgr->mDayCount;
+	} else if ((mReservedNum & 4) == 0) {
+		_7C = 0;
+		return;
+	}
+
+	mCreature = nullptr;
+	if (mObject) {
+		if (ramMode != RM_Disc && (mReservedNum & 4) != 0
+		    && (int)gameSystem->mTimeMgr->mDayCount >= (int)(mDayNum + mDaysTillResurrection)) {
+			mDayNum     = gameSystem->mTimeMgr->mDayCount;
+			mDeathCount = 0;
 		}
-		mCreature = nullptr;
-		if (mObject) {
-			if (ramMode != 0 && (mReservedNum & 4) != 0 && (int)gameSystem->mTimeMgr->mDayCount >= (int)(_78 + mDaysTillResurrection)) {
-				_78 = gameSystem->mTimeMgr->mDayCount;
-				_74 = 0;
-			}
-			mCreature = mObject->generate(this);
-			if (mCreature) {
-				mCreature->mGenerator = this;
-			}
+
+		mCreature = mObject->generate(this);
+		if (mCreature) {
+			mCreature->mGenerator = this;
 		}
 	}
 }
@@ -347,7 +351,8 @@ void Generator::informDeath(Game::Creature* creature)
 	if (creature == mCreature) {
 		mCreature = nullptr;
 	}
-	_74++;
+
+	mDeathCount++;
 }
 
 /*
@@ -385,16 +390,16 @@ void Generator::read(Stream& input)
 	} else {
 		mReservedNum = input.readInt();
 	}
+
 	if (mVersion.getID() >= 'v0.3') {
 		mDaysTillResurrection = input.readShort();
+	} else if (mVersion.getID() >= 'v0.1') {
+		mDaysTillResurrection = input.readInt();
 	} else {
-		if (mVersion.getID() >= 'v0.1') {
-			mDaysTillResurrection = input.readInt();
-		} else {
-			mDaysTillResurrection = 0;
-		}
+		mDaysTillResurrection = 0;
 	}
-	if (ramMode == 0) {
+
+	if (ramMode == RM_Disc) {
 		readName(input);
 	} else {
 		if (mVersion.getID() >= 'v0.2') {
@@ -407,11 +412,11 @@ void Generator::read(Stream& input)
 		} else {
 			mGenObjName[0] = '\0';
 		}
-		_74       = input.readShort();
-		_78       = input.readShort();
-		mDayLimit = input.readShort();
+		mDeathCount = input.readShort();
+		mDayNum     = input.readShort();
+		mDayLimit   = input.readShort();
 	}
-	if (ramMode != 0) {
+	if (ramMode != RM_Disc) {
 		mPosition.x = input.readShort();
 		mPosition.y = input.readShort();
 		mPosition.z = input.readShort();
@@ -420,7 +425,7 @@ void Generator::read(Stream& input)
 		mPosition.y = input.readFloat();
 		mPosition.z = input.readFloat();
 	}
-	if (ramMode != 0) {
+	if (ramMode != RM_Disc) {
 		mOffset.x = 0.0f;
 		mOffset.y = 0.0f;
 		mOffset.z = 0.0f;
@@ -437,7 +442,7 @@ void Generator::read(Stream& input)
 	mObject = GenObjectFactory::factory->make(id);
 	if (mObject) {
 		mObject->read(input);
-		_1C = id;
+		mId = id;
 	} else {
 		temp.print();
 	}
@@ -465,7 +470,7 @@ void Generator::write(Stream& output)
 	output.writeShort(mDaysTillResurrection);
 	output.textWriteText("\t# •œŠˆ“ú”\r\n"); // 'resurrection days'
 
-	if (ramMode == 0) {
+	if (ramMode == RM_Disc) {
 		// generator files as stored on disc
 		output.textWriteTab(output.mTabCount);
 		for (int i = 0; i < 32; i++) {
@@ -475,11 +480,12 @@ void Generator::write(Stream& output)
 	} else {
 		// gencache?
 		output.writeByte('\0');
-		output.writeShort(_74);
-		output.writeShort(_78);
+		output.writeShort(mDeathCount);
+		output.writeShort(mDayNum);
 		output.writeShort(mDayLimit);
 	}
-	if (ramMode != 0) {
+
+	if (ramMode != RM_Disc) {
 		output.writeShort((s16)mPosition.x + mOffset.x);
 		output.writeShort((s16)mPosition.y + mOffset.y);
 		output.writeShort((s16)mPosition.z + mOffset.z);
@@ -570,7 +576,7 @@ bool GeneratorMgr::isRootMgr()
  */
 void GeneratorMgr::generate()
 {
-	for (Generator* gen = mGenerator; gen != nullptr; gen = gen->_64) {
+	for (Generator* gen = mGenerator; gen != nullptr; gen = gen->mNextGenerator) {
 		gen->generate();
 	}
 }
@@ -582,8 +588,8 @@ void GeneratorMgr::generate()
  */
 void GeneratorMgr::setDayLimit(int dayLimit)
 {
-	for (Generator* generator = mGenerator; generator != nullptr; generator = generator->_64) {
-		generator->mDayLimit = dayLimit;
+	for (Generator* gen = mGenerator; gen != nullptr; gen = gen->mNextGenerator) {
+		gen->mDayLimit = dayLimit;
 	}
 }
 
@@ -594,7 +600,7 @@ void GeneratorMgr::setDayLimit(int dayLimit)
  */
 void GeneratorMgr::updateUseList()
 {
-	for (Generator* gen = mGenerator; gen != nullptr; gen = gen->_64) {
+	for (Generator* gen = mGenerator; gen != nullptr; gen = gen->mNextGenerator) {
 		gen->updateUseList();
 	}
 }
@@ -655,12 +661,15 @@ void GeneratorMgr::read(Stream& input, bool)
 
 	mVersionID.read(input);
 	mVersionID == 'v0.0';
+
 	mStartPos.x = input.readFloat();
 	mStartPos.y = input.readFloat();
 	mStartPos.z = input.readFloat();
+
 	if (mVersionID == 'v0.1') {
 		mStartDir = input.readFloat();
 	}
+
 	mGeneratorCount = input.readInt();
 	mGenerator      = nullptr;
 	for (int i = 0; i < mGeneratorCount; i++) {
@@ -673,12 +682,14 @@ void GeneratorMgr::read(Stream& input, bool)
 			Generator* newGenerator = new Generator();
 			newGenerator->mMgr      = this;
 			newGenerator->read(input);
+
 			Generator* gen = mGenerator;
-			for (gen; gen->_64; gen = gen->_64) {
+			for (gen; gen->mNextGenerator; gen = gen->mNextGenerator) {
 				;
 			}
-			gen->_64          = newGenerator;
-			newGenerator->_60 = gen;
+			gen->mNextGenerator = newGenerator;
+
+			newGenerator->mPrevGenerator = gen;
 			generatorCache->addGenerator(newGenerator);
 		}
 	}
@@ -702,7 +713,6 @@ void GeneratorMgr::write(Stream& output)
 
 	output.textWriteTab(output.mTabCount);
 	output.textWriteText("\t# %d generators\r\n");
-	// UNUSED FUNCTION
 }
 
 /*
@@ -722,8 +732,8 @@ void Generator::doAnimation()
 		mObject->mModel->mJ3dModel->calc();
 	}
 
-	if (_64) {
-		_64->doAnimation();
+	if (mNextGenerator) {
+		mNextGenerator->doAnimation();
 	}
 }
 
@@ -738,8 +748,8 @@ void Generator::doEntry()
 		mObject->mModel->mJ3dModel->entry();
 	}
 
-	if (_64) {
-		_64->doEntry();
+	if (mNextGenerator) {
+		mNextGenerator->doEntry();
 	}
 }
 
@@ -754,8 +764,8 @@ void Generator::doSetView(int viewportNumber)
 		mObject->mModel->setCurrentViewNo(viewportNumber);
 	}
 
-	if (_64) {
-		_64->doSetView(viewportNumber);
+	if (mNextGenerator) {
+		mNextGenerator->doSetView(viewportNumber);
 	}
 }
 
@@ -770,8 +780,8 @@ void Generator::doViewCalc()
 		mObject->mModel->viewCalc();
 	}
 
-	if (_64) {
-		_64->doViewCalc();
+	if (mNextGenerator) {
+		mNextGenerator->doViewCalc();
 	}
 }
 
@@ -787,9 +797,11 @@ void GeneratorMgr::doAnimation()
 	if (mGenerator) {
 		mGenerator->doAnimation();
 	}
+
 	if (mChildMgr) {
 		mChildMgr->doAnimation();
 	}
+
 	if (getNext()) {
 		getNext()->doAnimation();
 	}
@@ -807,9 +819,11 @@ void GeneratorMgr::doEntry()
 	if (mGenerator) {
 		mGenerator->doEntry();
 	}
+
 	if (mChildMgr) {
 		mChildMgr->doEntry();
 	}
+
 	if (getNext()) {
 		getNext()->doEntry();
 	}
@@ -827,9 +841,11 @@ void GeneratorMgr::doSetView(int viewportNumber)
 	if (mGenerator) {
 		mGenerator->doSetView(viewportNumber);
 	}
+
 	if (mChildMgr) {
 		mChildMgr->doSetView(viewportNumber);
 	}
+
 	if (getNext()) {
 		getNext()->doSetView(viewportNumber);
 	}
@@ -847,9 +863,11 @@ void GeneratorMgr::doViewCalc()
 	if (mGenerator) {
 		mGenerator->doViewCalc();
 	}
+
 	if (mChildMgr) {
 		mChildMgr->doViewCalc();
 	}
+
 	if (getNext()) {
 		getNext()->doViewCalc();
 	}

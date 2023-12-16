@@ -10,18 +10,18 @@ DynamicsParms* DynamicsParms::mInstance;
  */
 DynamicsParms::DynamicsParms()
     : Parameters(nullptr, "Dynamics")
-    , _24(this, 'd009', "VƒtƒŠƒNƒVƒ‡ƒ“", true, false, true) // 'new friction'
-    , _40(this, 'd011', "Sta-Parm", 140.0f, 0.0f, 5000.0f)
-    , _68(this, 'd010', "Static", 10.0f, 0.0f, 5000.0f)
-    , _90(this, 'd000', "micro collision", 0.015f, 0.0f, 10.0f)
-    , _B8(this, 'd001', "ResolveŽž‚Ì–€ŽC", false, false, true) // 'friction during Resolve'
-    , _D4(this, 'd002', "elasticity", 0.3f, 0.0f, 1.0f)
-    , _FC(this, 'd003', "–€ŽC", true, false, true)                 // 'friction'
-    , _118(this, 'd004', "–€ŽC:tanvel", true, false, true)         // 'friction:tanvel' - tangent velocity?
-    , _134(this, 'd005', "ŒÅ’è–€ŽC", true, false, true)            // 'fixed friction'
-    , _150(this, 'd006', "ŒÅ’è–€ŽC’l", 100.0f, 0.0f, 10000.0f)     // 'fixed friction value'
-    , _178(this, 'd007', "‰ñ“]‰e‹¿‚È‚µ‚É‚·‚é", true, false, true)  // 'no rotation effect'
-    , _194(this, 'd008', "‰ñ“]ƒ‚[ƒƒ“ƒg Damp", 0.05f, 0.0f, 1.0f) // 'rotating moment Damp'
+    , mNewFriction(this, 'd009', "VƒtƒŠƒNƒVƒ‡ƒ“", true, false, true) // 'new friction'
+    , mStaParm(this, 'd011', "Sta-Parm", 140.0f, 0.0f, 5000.0f)
+    , mStatic(this, 'd010', "Static", 10.0f, 0.0f, 5000.0f)
+    , mMicroCollision(this, 'd000', "micro collision", 0.015f, 0.0f, 10.0f)
+    , mFrictionDuringResolve(this, 'd001', "ResolveŽž‚Ì–€ŽC", false, false, true) // 'friction during Resolve'
+    , mElasticity(this, 'd002', "elasticity", 0.3f, 0.0f, 1.0f)
+    , mFriction(this, 'd003', "–€ŽC", true, false, true)                          // 'friction'
+    , mFrictionTangentVelocity(this, 'd004', "–€ŽC:tanvel", true, false, true)    // 'friction:tanvel' - tangent velocity?
+    , mFixedFriction(this, 'd005', "ŒÅ’è–€ŽC", true, false, true)                 // 'fixed friction'
+    , mFixedFrictionValue(this, 'd006', "ŒÅ’è–€ŽC’l", 100.0f, 0.0f, 10000.0f)     // 'fixed friction value'
+    , mNoRotationEffect(this, 'd007', "‰ñ“]‰e‹¿‚È‚µ‚É‚·‚é", true, false, true)    // 'no rotation effect'
+    , mRotatingMomentDamp(this, 'd008', "‰ñ“]ƒ‚[ƒƒ“ƒg Damp", 0.05f, 0.0f, 1.0f) // 'rotating moment Damp'
 {
 	mInstance = this;
 }
@@ -107,7 +107,7 @@ void Game::Rigid::computeForces(int configIdx)
 	config->_18         = Vector3f(0.0f);
 	config->_3C         = Vector3f(0.0f);
 
-	f32 dampVal = DynamicsParms::mInstance->_194.mValue;
+	f32 dampVal = DynamicsParms::mInstance->mRotatingMomentDamp.mValue;
 	if (dampVal > 0.0f) {
 		config->_30 = config->_30 - config->_30 * dampVal;
 	}
@@ -751,7 +751,7 @@ lbl_8013AB2C:
  */
 bool Game::Rigid::resolveCollision(int index, Vector3f& p2, Vector3f& p3, f32 p4)
 {
-	if (DynamicsParms::mInstance->_90.mValue == 1120.0f) {
+	if (DynamicsParms::mInstance->mMicroCollision.mValue == 1120.0f) {
 		;
 	}
 	RigidConfig& config = mConfigs[index];

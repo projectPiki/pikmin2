@@ -635,7 +635,7 @@ lbl_8013D47C:
  */
 bool FakePiki::sNeckCallback(J3DJoint* joint, int jointIdx)
 {
-	if (jointIdx == 0 && OptimiseController::mInstance->mC000.mValue) {
+	if (jointIdx == 0 && OptimiseController::mInstance->mPikminNeck.mValue) {
 		Matrixf* worldMat = J3DMtxCalc::mMtxBuffer->getWorldMatrix(joint->getJntNo());
 
 		f32 phi   = sCurrNeckPhi;

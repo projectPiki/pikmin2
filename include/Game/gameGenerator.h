@@ -55,30 +55,29 @@ struct Generator : public CNode {
 	}
 
 	GenObject* mObject;        // _18
-	u32 _1C;                   // _1C /* Initialized to '____' */
+	u32 mId;                   // _1C /* Initialized to '____' */
 	char mGenObjName[32];      // _20 /* shift-jis name given in generator files */
-	ID32 _40;                  // _40
+	ID32 mNameId;              // _40
 	ID32 mVersion;             // _4C
 	u8 _58[4];                 // _58
 	u16 mReservedNum;          // _5C
-	Generator* _60;            // _60 /* mPrev */
-	Generator* _64;            // _64 /* mNext */
+	Generator* mPrevGenerator; // _60
+	Generator* mNextGenerator; // _64
 	GeneratorMgr* mMgr;        // _68
 	Creature* mCreature;       // _6C
 	int mDaysTillResurrection; // _70
-	u32 _74;                   // _74
-	u32 _78;                   // _78
+	u32 mDeathCount;           // _74
+	u32 mDayNum;               // _78
 	u32 _7C;                   // _7C
 	u8 _80[4];                 // _80
 	int mDayLimit;             // _84
 	u8 _88[12];                // _88
 	Vector3f mPosition;        // _94
 	Vector3f mOffset;          // _A0
-	u8 _AC;                    // _AC
+	u8 mIsInactive;            // _AC
 	int mIndex;                // _B0
 
-	//  0: format of the generator files on disc
-	// !0: format of the gencache?
+	enum RamMode { RM_Disc = 0, RM_MemoryCache };
 	static u8 ramMode;
 };
 

@@ -527,7 +527,7 @@ lbl_801A87D0:
  */
 void DynCreature::tracemoveCallback(Vector3f& vec1, Vector3f& vec2)
 {
-	bool collCheck = mRigid.resolveCollision(0, vec1, vec2, DynamicsParms::mInstance->_D4());
+	bool collCheck = mRigid.resolveCollision(0, vec1, vec2, DynamicsParms::mInstance->mElasticity());
 
 	if (_30C && collCheck) {
 		if (!_310) {
