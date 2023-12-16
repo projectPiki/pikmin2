@@ -681,11 +681,11 @@ void Creature::checkCollision(CellObject* other)
 
 	CollPart* collPart1;
 	CollPart* collPart2;
-	Vector3f vec;
+	Vector3f hitPoint;
 
 	if ((creatureCheck && objCheck) || (!creatureCheck && !objCheck)) {
-		if (mCollTree->checkCollision(creatureObj->mCollTree, &collPart1, &collPart2, vec)) {
-			delegate.invoke(collPart1, collPart2, vec);
+		if (mCollTree->checkCollision(creatureObj->mCollTree, &collPart1, &collPart2, hitPoint)) {
+			delegate.invoke(collPart1, collPart2, hitPoint);
 		}
 	} else {
 		mCollTree->checkCollisionMulti(creatureObj->mCollTree, (IDelegate3<CollPart*, CollPart*, Vector3<f32>&>*)&delegate);

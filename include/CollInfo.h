@@ -53,25 +53,25 @@ struct CollPart : public CNode {
 	void addChild(CollPart* child) { add(child); }
 	void attachModel(SysShape::MtxObject*);
 
-	void calcStickGlobal(Vector3f&, Vector3f&);
-	void calcStickLocal(Vector3f&, Vector3f&);
-	void calcPoseMatrix(Vector3f&, Matrixf&);
+	void calcStickGlobal(Vector3f& input, Vector3f& globalPosition);
+	void calcStickLocal(Vector3f& input, Vector3f& localPosition);
+	void calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix);
 
-	void checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*);
-	void checkCollisionMulti(CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
+	void checkCollision(Sys::Sphere& input, IDelegate1<CollPart*>* onCollisionCallback);
+	void checkCollisionMulti(CollPart* other, IDelegate3<CollPart*, CollPart*, Vector3f&>* onCollidedCallback);
 
-	CollPart* clone(SysShape::MtxObject*, CollPartMgr*);
-	bool collide(CollPart*, Vector3f&);
+	CollPart* clone(SysShape::MtxObject* newMtx, CollPartMgr* mgr);
+	bool collide(CollPart* other, Vector3f& hitPosition);
 
-	int getAllCollPartToArray(CollPart**, int, int&);
+	int getAllCollPartToArray(CollPart** outputArray, int limit, int& count);
 
 	CollPart* getChild() { return (CollPart*)mChild; }
 	CollPart* getCollPart(u32);
 	CollPart* getNext() { return (CollPart*)mNext; }
 	CollPart* getParent() { return (CollPart*)mParent; }
 
-	void getSphere(Sys::Sphere&);
-	void getTube(Sys::Tube&);
+	void getSphere(Sys::Sphere& output);
+	void getTube(Sys::Tube& output);
 
 	bool isLeaf() { return (getChild() == nullptr); }
 	bool isSphere() { return (mPartType == COLLTYPE_SPHERE); }
@@ -81,9 +81,9 @@ struct CollPart : public CNode {
 	bool isTubeLike() { return isTube() || isTubeTree(); }
 	bool isPrim() { return (getChild() == nullptr || isTube() || isTubeTree()); }
 
-	void makeMatrixTo(Matrixf&);
+	void makeMatrixTo(Matrixf& target);
 	void makeTubeTree();
-	void read(Stream&, bool);
+	void read(Stream& stream, bool isAgeCollPart);
 	void setScale(f32);
 	void update();
 

@@ -145,42 +145,44 @@ void Mgr::draw(Viewport* viewport)
 {
 	for (int i = 0; i < 2; i++) {
 		Obj* obj = (Obj*)mObj.mChild;
-		if (obj) {
-			for (obj; obj; obj = (Obj*)obj->mNext) {
-				if (obj->mEnemy->mLod.isFlag(AILOD_IsVisible)) {
-					DrawInfo* baseInfo = static_cast<DrawInfo*>(&obj->mNodeArray[i]);
+		if (!obj) {
+			continue;
+		}
 
-					FOREACH_NODE(DrawInfo, static_cast<DrawInfo*>(baseInfo->mChild), drawInfo)
-					{
-						J3DModelData* modelData = mModelData[i];
-						J3DMaterial* material   = modelData->mJointTree.mJoints[0]->mMaterial;
-						j3dSys.mVtxPos          = modelData->mVertexData.mVtxPos;
-						j3dSys.mVtxNorm         = modelData->mVertexData.mVtxNorm;
-						j3dSys.mVtxColor        = modelData->mVertexData.mVtxColor[0];
-						J3DShape::sOldVcdVatCmd = 0;
+		for (obj; obj; obj = (Obj*)obj->mNext) {
+			if (obj->mEnemy->mLod.isFlag(AILOD_IsVisible)) {
+				DrawInfo* baseInfo = static_cast<DrawInfo*>(&obj->mNodeArray[i]);
 
-						for (material; material != nullptr; material = material->mNext) {
-							material->loadSharedDL();
-							material->mShape->loadPreDrawSetting();
+				FOREACH_NODE(DrawInfo, static_cast<DrawInfo*>(baseInfo->mChild), drawInfo)
+				{
+					J3DModelData* modelData = mModelData[i];
+					J3DMaterial* material   = modelData->mJointTree.mJoints[0]->mMaterial;
+					j3dSys.mVtxPos          = modelData->mVertexData.mVtxPos;
+					j3dSys.mVtxNorm         = modelData->mVertexData.mVtxNorm;
+					j3dSys.mVtxColor        = modelData->mVertexData.mVtxColor[0];
+					J3DShape::sOldVcdVatCmd = 0;
 
-							Matrixf drawMtx;
-							drawInfo->makeMatrix(&drawMtx, true);
+					for (material; material != nullptr; material = material->mNext) {
+						material->loadSharedDL();
+						material->mShape->loadPreDrawSetting();
 
-							Matrixf* viewMtx = viewport->getMatrix(true);
+						Matrixf drawMtx;
+						drawInfo->makeMatrix(&drawMtx, true);
 
-							Matrixf combined;
-							PSMTXConcat(viewMtx->mMatrix.mtxView, drawMtx.mMatrix.mtxView, combined.mMatrix.mtxView);
+						Matrixf* viewMtx = viewport->getMatrix(true);
 
-							Matrixf inverse;
-							PSMTXInverse(combined.mMatrix.mtxView, inverse.mMatrix.mtxView);
+						Matrixf combined;
+						PSMTXConcat(viewMtx->mMatrix.mtxView, drawMtx.mMatrix.mtxView, combined.mMatrix.mtxView);
 
-							Matrixf transpose;
-							PSMTXTranspose(inverse.mMatrix.mtxView, transpose.mMatrix.mtxView);
+						Matrixf inverse;
+						PSMTXInverse(combined.mMatrix.mtxView, inverse.mMatrix.mtxView);
 
-							GXLoadPosMtxImm(combined.mMatrix.mtxView, 0);
-							GXLoadNrmMtxImm(transpose.mMatrix.mtxView, 0);
-							material->mShape->simpleDrawCache();
-						}
+						Matrixf transpose;
+						PSMTXTranspose(inverse.mMatrix.mtxView, transpose.mMatrix.mtxView);
+
+						GXLoadPosMtxImm(combined.mMatrix.mtxView, 0);
+						GXLoadNrmMtxImm(transpose.mMatrix.mtxView, 0);
+						material->mShape->simpleDrawCache();
 					}
 				}
 			}

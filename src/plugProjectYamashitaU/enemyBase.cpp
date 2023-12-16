@@ -1915,7 +1915,7 @@ void EnemyBase::doSimulationGround(f32 frameRate)
 	accel            = accel * getAccelerationScale(frameRate);
 	mCurrentVelocity = mCurrentVelocity + accel;
 
-	if (isDropping()) {
+	if (isEarthQuakeOrDropping()) {
 		mCurrentVelocity.y = -((3.0f * (frameRate * _aiConstants->mGravity.mData)) - mCurrentVelocity.y);
 		return;
 	}
@@ -2132,7 +2132,7 @@ void EnemyBase::collisionMapAndPlat(f32 frameRate)
 		collSphere.mPosition = pos;
 		collSphere.mRadius   = yOffsetFromMap;
 
-		f32 bounceAmount = isDropping() ? 0.0f : static_cast<CreatureProperty*>(mParms)->mProps.mWallReflection.mValue;
+		f32 bounceAmount = isEarthQuakeOrDropping() ? 0.0f : static_cast<CreatureProperty*>(mParms)->mProps.mWallReflection.mValue;
 
 		mAcceleration.y = 0.0f;
 
@@ -2211,8 +2211,6 @@ void EnemyBase::collisionMapAndPlat(f32 frameRate)
 		return;
 	}
 
-	// Is stuck or has something
-	// NOTE: what does isStuckTo mean?
 	mAcceleration = 0.0f;
 
 	doSimulationStick(frameRate);
@@ -3451,20 +3449,17 @@ bool EnemyBase::needShadow()
 	return mLod.isFlag(AILOD_IsVisible) && isEvent(0, EB_ModelHidden) == false;
 }
 
-/*
- * --INFO--
- * Address:	801074D0
- * Size:	000234
- */
 /**
  * @brief Callback function for eating white Pikmin.
- *
- * This function is called when the EnemyBase object eats a white Pikmin.
- * It adds damage to the EnemyBase object and triggers the necessary events and effects.
  *
  * @param creature A pointer to the Creature object representing the white Pikmin.
  * @param damage The amount of damage to be added to the EnemyBase object.
  * @return true if the callback is successful, false otherwise.
+ */
+/*
+ * --INFO--
+ * Address:	801074D0
+ * Size:	000234
  */
 bool EnemyBase::eatWhitePikminCallBack(Creature* creature, f32 damage)
 {

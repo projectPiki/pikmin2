@@ -123,6 +123,7 @@ struct EnemyKillArg : public CreatureKillArg {
 	// _04 = CreatureKillArg
 };
 
+/// @brief Base class for enemy objects
 struct EnemyBase : public Creature, public SysShape::MotionListener, virtual public Game::PelletView {
 	EnemyBase();
 
@@ -182,109 +183,67 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	}
 	// vtable 2 (MotionListener+self)
 	// virtual void onKeyEvent(const SysShape::KeyEvent& event); - thunk _1B8
-	virtual ~EnemyBase() { }                                             // _1BC (weak)
-	virtual void birth(Vector3f& position, f32 faceDirection);           // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase* settings) = 0; // _1C4
-	virtual void update();                                               // _1C8
-	virtual void doUpdate() = 0;                                         // _1CC
-	virtual void doUpdateCommon();                                       // _1D0
-	virtual void doUpdateCarcass();                                      // _1D4
-	virtual void doAnimationUpdateAnimator();                            // _1D8
-	virtual void doAnimationCullingOff();                                // _1DC
-	virtual void doAnimationCullingOn();                                 // _1E0
-	virtual void doAnimationStick();                                     // _1E4
-	virtual void doSimulationCarcass(f32);                               // _1E8
-	virtual void doDebugDraw(Graphics& gfx);                             // _1EC
-	virtual void doSimpleDraw(Viewport* vp) { }                          // _1F0 (weak)
-	virtual void doSimulationGround(f32 simSpeed);                       // _1F4
-	virtual void doSimulationFlying(f32 simSpeed);                       // _1F8
-	virtual void doSimulationStick(f32 simSpeed);                        // _1FC
-	virtual void changeMaterial();                                       // _200
-	virtual void getCommonEffectPos(Vector3f& effectPos);                // _204
-	virtual Vector3f* getFitEffectPos();                                 // _208
-	virtual SysShape::Model* viewGetShape();                             // _20C
-	virtual void view_start_carrymotion();                               // _210
-	virtual void view_finish_carrymotion();                              // _214
-	virtual void viewStartPreCarryMotion();                              // _218
-	virtual void viewStartCarryMotion();                                 // _21C
-	virtual void viewOnPelletKilled();                                   // _220
-	virtual f32 getCellRadius()                                          // _58 (weak)
-	{
-		return static_cast<EnemyParmsBase*>(mParms)->mGeneral.mCellRadius();
-	}
-	virtual f32 getBodyRadius() // _54 (weak)
-	{
-		return static_cast<EnemyParmsBase*>(mParms)->mGeneral.mPikminDamageRadius();
-	}
-	virtual f32 getFaceDir() // _64 (weak)
-	{
-		return mFaceDir;
-	}
-	virtual void setVelocity(Vector3f& velocity) // _68 (weak)
-	{
-		mCurrentVelocity = velocity;
-	}
-	virtual Vector3f getVelocity() // _6C (weak)
-	{
-		return mCurrentVelocity;
-	}
-	virtual void getVelocityAt(Vector3f& velSrc, Vector3f& velDest) // _184 (weak)
+	virtual ~EnemyBase() { }                                                                                     // _1BC (weak)
+	virtual void birth(Vector3f& position, f32 faceDirection);                                                   // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase* settings) = 0;                                         // _1C4
+	virtual void update();                                                                                       // _1C8
+	virtual void doUpdate() = 0;                                                                                 // _1CC
+	virtual void doUpdateCommon();                                                                               // _1D0
+	virtual void doUpdateCarcass();                                                                              // _1D4
+	virtual void doAnimationUpdateAnimator();                                                                    // _1D8
+	virtual void doAnimationCullingOff();                                                                        // _1DC
+	virtual void doAnimationCullingOn();                                                                         // _1E0
+	virtual void doAnimationStick();                                                                             // _1E4
+	virtual void doSimulationCarcass(f32);                                                                       // _1E8
+	virtual void doDebugDraw(Graphics& gfx);                                                                     // _1EC
+	virtual void doSimpleDraw(Viewport* vp) { }                                                                  // _1F0 (weak)
+	virtual void doSimulationGround(f32 simSpeed);                                                               // _1F4
+	virtual void doSimulationFlying(f32 simSpeed);                                                               // _1F8
+	virtual void doSimulationStick(f32 simSpeed);                                                                // _1FC
+	virtual void changeMaterial();                                                                               // _200
+	virtual void getCommonEffectPos(Vector3f& effectPos);                                                        // _204
+	virtual Vector3f* getFitEffectPos();                                                                         // _208
+	virtual SysShape::Model* viewGetShape();                                                                     // _20C
+	virtual void view_start_carrymotion();                                                                       // _210
+	virtual void view_finish_carrymotion();                                                                      // _214
+	virtual void viewStartPreCarryMotion();                                                                      // _218
+	virtual void viewStartCarryMotion();                                                                         // _21C
+	virtual void viewOnPelletKilled();                                                                           // _220
+	virtual f32 getCellRadius() { return static_cast<EnemyParmsBase*>(mParms)->mGeneral.mCellRadius(); }         // _58 (weak)
+	virtual f32 getBodyRadius() { return static_cast<EnemyParmsBase*>(mParms)->mGeneral.mPikminDamageRadius(); } // _54 (weak)
+	virtual f32 getFaceDir() { return mFaceDir; }                                                                // _64 (weak)
+	virtual void setVelocity(Vector3f& velocity) { mCurrentVelocity = velocity; }                                // _68 (weak)
+	virtual Vector3f getVelocity() { return mCurrentVelocity; }                                                  // _6C (weak)
+	virtual void getVelocityAt(Vector3f& velSrc, Vector3f& velDest)                                              // _184 (weak)
 	{
 		velSrc  = mCurrentVelocity;
 		velDest = mCurrentVelocity;
 	}
-	virtual bool isTeki() // _7C (weak)
-	{
-		return true;
-	}
-	virtual Vector3f* getSound_PosPtr() // _100 (weak)
-	{
-		return &mPosition;
-	}
-	virtual Vector3f getOffsetForMapCollision() // _224 (weak)
-	{
-		return Vector3f(0.0f);
-	}
-	virtual void setParameters();          // _228
-	virtual void initMouthSlots() { }      // _22C (weak)
-	virtual void initWalkSmokeEffect() { } // _230 (weak)
-	virtual bool inWater()                 // _8C (weak)
-	{
-		return (mWaterBox != nullptr);
-	}
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr() // _234 (weak)
-	{
-		return nullptr;
-	}
-	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _238 (weak)
-	virtual bool injure();                                    // _23C
-	virtual void setCollEvent(CollEvent& newEvent);           // _240
-	virtual void getEfxHamonPos(Vector3f* pos)                // _244 (weak)
-	{
-		*pos = mPosition;
-	}
-	virtual void createInstanceEfxHamon();                  // _248
-	virtual void updateEfxHamon();                          // _24C
-	virtual void createEfxHamon();                          // _250
-	virtual void fadeEfxHamon();                            // _254
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0; // _258
-	virtual MouthSlots* getMouthSlots()                     // _25C (weak)
-	{
-		return nullptr;
-	}
-	virtual void doGetLifeGaugeParam(LifeGaugeParam& settings);     // _260
-	virtual void throwupItem();                                     // _264
-	virtual void getThrowupItemPosition(Vector3f* throwupPosition); // _268
-	virtual void getThrowupItemVelocity(Vector3f* throwupVelocity); // _26C
-	virtual void throwupItemInDeathProcedure() { throwupItem(); }   // _270 (weak)
-	virtual void setLODSphere(Sys::Sphere& sphere)                  // _274 (weak)
-	{
-		mCurLodSphere = sphere;
-	}
-	virtual void getLODSphere(Sys::Sphere& lodSphere) // _140 (weak)
-	{
-		lodSphere = mCurLodSphere;
-	}
+	virtual bool isTeki() { return true; }                                           // _7C (weak)
+	virtual Vector3f* getSound_PosPtr() { return &mPosition; }                       // _100 (weak)
+	virtual Vector3f getOffsetForMapCollision() { return Vector3f(0.0f); }           // _224 (weak)
+	virtual void setParameters();                                                    // _228
+	virtual void initMouthSlots() { }                                                // _22C (weak)
+	virtual void initWalkSmokeEffect() { }                                           // _230 (weak)
+	virtual bool inWater() { return (mWaterBox != nullptr); }                        // _8C (weak)
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr() { return nullptr; }        // _234 (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);                        // _238 (weak)
+	virtual bool injure();                                                           // _23C
+	virtual void setCollEvent(CollEvent& newEvent);                                  // _240
+	virtual void getEfxHamonPos(Vector3f* pos) { *pos = mPosition; }                 // _244 (weak)
+	virtual void createInstanceEfxHamon();                                           // _248
+	virtual void updateEfxHamon();                                                   // _24C
+	virtual void createEfxHamon();                                                   // _250
+	virtual void fadeEfxHamon();                                                     // _254
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;                          // _258
+	virtual MouthSlots* getMouthSlots() { return nullptr; }                          // _25C (weak)
+	virtual void doGetLifeGaugeParam(LifeGaugeParam& settings);                      // _260
+	virtual void throwupItem();                                                      // _264
+	virtual void getThrowupItemPosition(Vector3f* throwupPosition);                  // _268
+	virtual void getThrowupItemVelocity(Vector3f* throwupVelocity);                  // _26C
+	virtual void throwupItemInDeathProcedure() { throwupItem(); }                    // _270 (weak)
+	virtual void setLODSphere(Sys::Sphere& sphere) { mCurLodSphere = sphere; }       // _274 (weak)
+	virtual void getLODSphere(Sys::Sphere& lodSphere) { lodSphere = mCurLodSphere; } // _140 (weak)
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);       // _278
 	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);        // _27C
 	virtual bool flyCollisionCallBack(Creature* source, f32 damage, CollPart* part); // _280
@@ -298,19 +257,10 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual bool doDopeCallBack(Creature* source, int sprayType) { return true; }    // _2A0 (weak)
 	virtual void doStartStoneState();                                                // _2A4
 	virtual void doFinishStoneState();                                               // _2A8
-	virtual f32 getDamageCoeStoneState()                                             // _2AC (weak)
-	{
-		return 1.5f;
-	}
-	virtual f32 getSound_CurrAnimFrame() // _108 (weak)
-	{
-		return mAnimator->getAnimator().mTimer;
-	}
-	virtual f32 getSound_CurrAnimSpeed() // _10C (weak)
-	{
-		return mAnimator->mSpeed;
-	}
-	virtual bool sound_culling() // _104 (weak)
+	virtual f32 getDamageCoeStoneState() { return 1.5f; }                            // _2AC (weak)
+	virtual f32 getSound_CurrAnimFrame() { return mAnimator->getAnimator().mTimer; } // _108 (weak)
+	virtual f32 getSound_CurrAnimSpeed() { return mAnimator->mSpeed; }               // _10C (weak)
+	virtual bool sound_culling()                                                     // _104 (weak)
 	{
 		bool culling = false;
 		if (isEvent(0, EB_14)) {
@@ -374,21 +324,18 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 		mSoundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
 	}
-	virtual void setCarcassArg(PelletViewArg& settings); // _2C8
-	virtual f32 getCarcassArgHeight()                    // _2CC (weak)
-	{
-		return mBoundingSphere.mRadius;
-	}
-	virtual bool doBecomeCarcass();                     // _2D0
-	virtual void startWaitingBirthTypeDrop();           // _2D4
-	virtual void finishWaitingBirthTypeDrop();          // _2D8
-	virtual bool isFinishableWaitingBirthTypeDrop();    // _2DC
-	virtual void doStartWaitingBirthTypeDrop();         // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();        // _2E4
-	virtual void wallCallback(const MoveInfo& info) { } // _2E8 (weak)
-	virtual f32 getDownSmokeScale();                    // _2EC
-	virtual void doStartMovie() { }                     // _2F0 (weak)
-	virtual void doEndMovie() { }                       // _2F4 (weak)
+	virtual void setCarcassArg(PelletViewArg& settings);                  // _2C8
+	virtual f32 getCarcassArgHeight() { return mBoundingSphere.mRadius; } // _2CC (weak)
+	virtual bool doBecomeCarcass();                                       // _2D0
+	virtual void startWaitingBirthTypeDrop();                             // _2D4
+	virtual void finishWaitingBirthTypeDrop();                            // _2D8
+	virtual bool isFinishableWaitingBirthTypeDrop();                      // _2DC
+	virtual void doStartWaitingBirthTypeDrop();                           // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();                          // _2E4
+	virtual void wallCallback(const MoveInfo& info) { }                   // _2E8 (weak)
+	virtual f32 getDownSmokeScale();                                      // _2EC
+	virtual void doStartMovie() { }                                       // _2F0 (weak)
+	virtual void doEndMovie() { }                                         // _2F4 (weak)
 
 	// vtable 3 (PelletView)
 
@@ -481,14 +428,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline bool isDead() { return mHealth <= 0.0f; }
 
-	inline bool isDropping()
-	{ // needs a better name eventually, used in doSimulationGround
-		return (isEvent(1, EB2_Earthquake) || isEvent(1, EB2_Dropping));
-	}
+	inline bool isEarthQuakeOrDropping() { return isEvent(1, EB2_Earthquake) || isEvent(1, EB2_Dropping); }
 
-	inline f32 getAccelerationScale(f32 constraint)
+	inline f32 getAccelerationScale(f32 maxAccel)
 	{
-		return constraint / static_cast<EnemyParmsBase*>(mParms)->mCreatureProps.mProps.mAccel.mValue;
+		return maxAccel / static_cast<EnemyParmsBase*>(mParms)->mCreatureProps.mProps.mAccel.mValue;
 	}
 
 	inline void setScale(f32 scale)
@@ -572,8 +516,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
 		f32 maxTurnAngle      = parms->mGeneral.mMaxTurnAngle.mValue;
 		f32 turnSpeed         = parms->mGeneral.mTurnSpeed.mValue;
-		f32 angleDist         = getAngDist(creature);
-		f32 angle             = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
+
+		f32 angleDist = getAngDist(creature);
+		f32 angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
 
 		updateFaceDir(roundAng(angle + getFaceDir()));
 

@@ -152,9 +152,11 @@ void PlatAttacher::read(Stream& input)
 	for (int i = 0; i < mNumShapes; i++) {
 		mJointIndices[i] = input.readShort();
 	}
+
 	mPlatforms              = new Platform[mNumShapes];
 	Sys::VertexTable* table = new Sys::VertexTable();
 	table->read(input);
+
 	for (int i = 0; i < mNumShapes; i++) {
 		Sys::OBBTree* tree = new Sys::OBBTree();
 		tree->readWithoutVerts(input, *table);
@@ -239,6 +241,7 @@ void CollTree::createSingleSphere(SysShape::MtxObject* mtxObject, int jointIndex
 	} else {
 		mPart = new CollPart(mtxObject);
 	}
+
 	mPart->mRadius     = sphere.mRadius;
 	mPart->mBaseRadius = sphere.mRadius;
 	mPart->mOffset     = 0.0f;
@@ -287,9 +290,9 @@ void CollTree::releaseRec(CollPart* part)
  * Address:	80134550
  * Size:	00003C
  */
-bool CollTree::checkCollision(CollTree* p1, CollPart** p2, CollPart** p3, Vector3f& p4)
+bool CollTree::checkCollision(CollTree* other, CollPart** collA, CollPart** collB, Vector3f& hitPosition)
 {
-	return checkCollisionRec(mPart, p1->mPart, p2, p3, p4);
+	return checkCollisionRec(mPart, other->mPart, collA, collB, hitPosition);
 }
 
 /*
@@ -297,35 +300,35 @@ bool CollTree::checkCollision(CollTree* p1, CollPart** p2, CollPart** p3, Vector
  * Address:	8013458C
  * Size:	000604
  */
-bool CollTree::checkCollisionRec(CollPart* p1, CollPart* p2, CollPart** p3, CollPart** p4, Vector3f& p5)
+bool CollTree::checkCollisionRec(CollPart* a, CollPart* b, CollPart** collA, CollPart** collB, Vector3f& hitPosition)
 {
-	if (p1 == nullptr || p2 == nullptr) {
+	if (a == nullptr || b == nullptr) {
 		return false;
 	}
-	if (p1->collide(p2, p5)) {
-		if (p1->isPrim()) {
-			if (p2->isPrim()) {
-				*p3 = p1;
-				*p4 = p2;
-				return true;
-			}
+
+	if (a->collide(b, hitPosition)) {
+		if (a->isPrim() && b->isPrim()) {
+			*collA = a;
+			*collB = b;
+			return true;
 		}
-		if (!p1->isLeaf()) {
-			return checkCollisionRec(p1->getChild(), p2, p3, p4, p5);
+
+		if (!a->isLeaf()) {
+			return checkCollisionRec(a->getChild(), b, collA, collB, hitPosition);
 		} else {
-			return checkCollisionRec(p1, p2->getChild(), p3, p4, p5);
+			return checkCollisionRec(a, b->getChild(), collA, collB, hitPosition);
 		}
-	} else {
-		if (p1->getNext()) {
-			return checkCollisionRec(p1->getNext(), p2, p3, p4, p5);
-		}
-		if (p2->getNext()) {
-			return checkCollisionRec(p1, p2->getNext(), p3, p4, p5);
-		}
-		*p3 = nullptr;
-		*p4 = nullptr;
-		return false;
+	} else if (a->getNext()) {
+		return checkCollisionRec(a->getNext(), b, collA, collB, hitPosition);
 	}
+
+	if (b->getNext()) {
+		return checkCollisionRec(a, b->getNext(), collA, collB, hitPosition);
+	}
+
+	*collA = nullptr;
+	*collB = nullptr;
+	return false;
 }
 
 /*
@@ -341,34 +344,42 @@ void CollTree::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delega
 	}
 }
 
+/**
+ * Checks for collision between the given sphere and the current CollPart.
+ * If a collision is detected, the provided collidedCallback function is invoked.
+ *
+ * @param sphere The sphere to check for collision with.
+ * @param onCollidedCallback The callback function to invoke when a collision is detected.
+ */
 /*
- * checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>
  * --INFO--
  * Address:	80134BFC
  * Size:	0008B8
  */
-void CollPart::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delegate)
+void CollPart::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* onCollidedCallback)
 {
 	if (isPrim()) {
 		if (isSphere()) {
 			Sys::Sphere partSphere(mPosition, mRadius);
 			if (partSphere.intersect(sphere)) {
-				delegate->invoke(this);
+				onCollidedCallback->invoke(this);
 			}
 		} else if (isTube() || isTubeTree()) {
 			Sys::Tube collTube(mPosition, getChild()->mPosition, mRadius, getChild()->mRadius);
 			Vector3f colVec;
 			f32 colSep;
 			if (collTube.collide(sphere, colVec, colSep)) {
-				delegate->invoke(this);
+				onCollidedCallback->invoke(this);
 			}
 		}
 	}
+
 	if (getChild()) {
-		getChild()->checkCollision(sphere, delegate);
+		getChild()->checkCollision(sphere, onCollidedCallback);
 	}
+
 	if (getNext()) {
-		getNext()->checkCollision(sphere, delegate);
+		getNext()->checkCollision(sphere, onCollidedCallback);
 	}
 }
 
@@ -382,32 +393,33 @@ void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPa
 {
 	CollPart* inputPart = other->mPart;
 
-	for (CollPart* thisPart = mPart; thisPart != nullptr; thisPart = thisPart->getNext()) {
+	for (CollPart* thisP = mPart; thisP; thisP = thisP->getNext()) {
+		for (CollPart* otherP = inputPart; otherP; otherP = otherP->getNext()) {
+			Vector3f hitPosition;
+			if (!thisP->collide(otherP, hitPosition)) {
+				continue;
+			}
 
-		for (CollPart* otherPart = inputPart; otherPart != nullptr; otherPart = otherPart->getNext()) {
+			if (thisP->isPrim() && otherP->isPrim()) {
+				delegate->invoke(thisP, otherP, hitPosition);
 
-			Vector3f outPosition;
-			if (thisPart->collide(otherPart, outPosition)) {
-				if (thisPart->isPrim()) {
-					if (otherPart->isPrim()) {
-						delegate->invoke(thisPart, otherPart, outPosition);
-						if (!thisPart->isLeaf()) {
-							thisPart->getChild()->checkCollisionMulti(otherPart, delegate);
-						} else if (!otherPart->isLeaf()) {
-							thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
-						}
-						continue;
-					}
+				if (!thisP->isLeaf()) {
+					thisP->getChild()->checkCollisionMulti(otherP, delegate);
+				} else if (!otherP->isLeaf()) {
+					thisP->checkCollisionMulti(otherP->getChild(), delegate);
 				}
-				if (thisPart->isLeaf()) {
-					thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
-				} else if (otherPart->isLeaf()) {
-					thisPart->getChild()->checkCollisionMulti(otherPart, delegate);
-				} else if (thisPart->getChild()) {
-					thisPart->getChild()->checkCollisionMulti(otherPart, delegate);
-				} else {
-					thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
-				}
+
+				continue;
+			}
+
+			if (thisP->isLeaf()) {
+				thisP->checkCollisionMulti(otherP->getChild(), delegate);
+			} else if (otherP->isLeaf()) {
+				thisP->getChild()->checkCollisionMulti(otherP, delegate);
+			} else if (thisP->getChild()) {
+				thisP->getChild()->checkCollisionMulti(otherP, delegate);
+			} else {
+				thisP->checkCollisionMulti(otherP->getChild(), delegate);
 			}
 		}
 	}
@@ -419,7 +431,7 @@ void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPa
  * Address:	801356FC
  * Size:	0001F0
  */
-void CollPart::checkCollisionMulti(CollPart* other, IDelegate3<CollPart*, CollPart*, Vector3f&>* delegate)
+void CollPart::checkCollisionMulti(CollPart* other, IDelegate3<CollPart*, CollPart*, Vector3f&>* onCollidedCallback)
 {
 	for (CollPart* thisPart = this; thisPart != nullptr; thisPart = thisPart->getNext()) {
 
@@ -428,55 +440,61 @@ void CollPart::checkCollisionMulti(CollPart* other, IDelegate3<CollPart*, CollPa
 			Vector3f colVec;
 			if (thisPart->collide(otherPart, colVec)) {
 				if (thisPart->isPrim() && otherPart->isPrim()) {
-					delegate->invoke(thisPart, otherPart, colVec);
+					onCollidedCallback->invoke(thisPart, otherPart, colVec);
 					if (!otherPart->isLeaf()) {
-						thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+						thisPart->checkCollisionMulti(otherPart->getChild(), onCollidedCallback);
 					} else if (!thisPart->isLeaf()) {
-						otherPart->checkCollisionMulti(thisPart->getChild(), delegate);
+						otherPart->checkCollisionMulti(thisPart->getChild(), onCollidedCallback);
 					}
 
 				} else if (thisPart->isLeaf()) {
-					thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+					thisPart->checkCollisionMulti(otherPart->getChild(), onCollidedCallback);
 				} else if (otherPart->isLeaf()) {
-					otherPart->checkCollisionMulti(thisPart->getChild(), delegate);
+					otherPart->checkCollisionMulti(thisPart->getChild(), onCollidedCallback);
 				} else if (!thisPart->isLeaf()) {
-					thisPart->getChild()->checkCollisionMulti(otherPart, delegate);
+					thisPart->getChild()->checkCollisionMulti(otherPart, onCollidedCallback);
 				} else {
-					thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+					thisPart->checkCollisionMulti(otherPart->getChild(), onCollidedCallback);
 				}
 
 			} else if (thisPart->isTube() || thisPart->isTubeTree()) {
-				otherPart->checkCollisionMulti(thisPart->getChild(), delegate);
+				otherPart->checkCollisionMulti(thisPart->getChild(), onCollidedCallback);
 			} else if (otherPart->isTube() || otherPart->isTubeTree()) {
-				thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+				thisPart->checkCollisionMulti(otherPart->getChild(), onCollidedCallback);
 			}
 		}
 	}
 }
 
 /**
- * @param other The other part participating in this collision.
- * @param outVector The center of the collision between the two parts.
+ * Checks for collision between this CollPart and another CollPart.
+ * If a collision is detected, the position of the collision is stored in the 'hitPosition' parameter.
+ *
+ * @param other The other CollPart to check for collision with.
+ * @param hitPosition The position of the collision, if one occurs.
+ * @return True if a collision occurs, false otherwise.
+ */
+/*
  * --INFO--
  * Address:	801358EC
  * Size:	0001B0
  */
-bool CollPart::collide(CollPart* other, Vector3f& outVector)
+bool CollPart::collide(CollPart* other, Vector3f& hitPosition)
 {
 	if (isSphere() && other->isSphere()) {
 		Sys::Sphere thisSphere(mPosition, mRadius);
 		Sys::Sphere otherSphere(other->mPosition, other->mRadius);
-		return thisSphere.intersect(otherSphere, outVector);
+		return thisSphere.intersect(otherSphere, hitPosition);
 	} else if (isSphere() && (other->isTube() || other->isTubeTree())) {
 		Sys::Sphere thisSphere(mPosition, mRadius);
 		Sys::Tube otherTube(other->mPosition, other->getChild()->mPosition, other->mRadius, other->getChild()->mRadius);
 		f32 collVal;
-		return otherTube.collide(thisSphere, outVector, collVal);
+		return otherTube.collide(thisSphere, hitPosition, collVal);
 	} else if ((isTube() || isTubeTree()) && other->isSphere()) {
 		Sys::Tube thisTube(mPosition, getChild()->mPosition, mRadius, getChild()->mRadius);
 		Sys::Sphere otherSphere(other->mPosition, other->mRadius);
 		f32 collVal;
-		return thisTube.collide(otherSphere, outVector, collVal);
+		return thisTube.collide(otherSphere, hitPosition, collVal);
 	}
 	return false;
 }
@@ -558,48 +576,60 @@ CollPart* CollPart::getCollPart(u32 partID)
 	return nullptr;
 }
 
+/**
+ * @brief Recursively collects all CollPart objects into an array.
+ *
+ * This function recursively collects all CollPart objects, including the current object and its children, into an array.
+ *
+ * @param outputArray The array to store the collected CollPart objects.
+ * @param limit The maximum number of CollPart objects that can be stored in the array.
+ * @param count The current count of CollPart objects in the array.
+ * @return The final count of CollPart objects in the array after the collection.
+ */
 /*
  * --INFO--
  * Address:	801364B8
  * Size:	00054C
  */
-int CollPart::getAllCollPartToArray(CollPart** partArray, int limit, int& count)
+int CollPart::getAllCollPartToArray(CollPart** outputArray, int limit, int& count)
 {
 	int index = count;
 	if (!(index < limit)) {
 		return count;
-	} else {
-		count++;
-		partArray[index] = this;
-		if (mNext) {
-			CollPart* nextPart = getNext();
-			int nextIndex      = count;
-			if (nextIndex < limit) {
-				count++;
-				partArray[nextIndex] = nextPart;
-				if (nextPart->getNext()) {
-					nextPart->getNext()->getAllCollPartToArray(partArray, limit, count);
-				}
-				if (nextPart->getChild()) {
-					nextPart->getChild()->getAllCollPartToArray(partArray, limit, count);
-				}
+	}
+
+	count++;
+	outputArray[index] = this;
+	if (mNext) {
+		CollPart* nextPart = getNext();
+		int nextIndex      = count;
+		if (nextIndex < limit) {
+			count++;
+			outputArray[nextIndex] = nextPart;
+			if (nextPart->getNext()) {
+				nextPart->getNext()->getAllCollPartToArray(outputArray, limit, count);
 			}
-		}
-		if (mChild) {
-			CollPart* childPart = getChild();
-			int childIndex      = count;
-			if (childIndex < limit) {
-				count++;
-				partArray[childIndex] = childPart;
-				if (childPart->getNext()) {
-					childPart->getNext()->getAllCollPartToArray(partArray, limit, count);
-				}
-				if (childPart->getChild()) {
-					childPart->getChild()->getAllCollPartToArray(partArray, limit, count);
-				}
+			if (nextPart->getChild()) {
+				nextPart->getChild()->getAllCollPartToArray(outputArray, limit, count);
 			}
 		}
 	}
+
+	if (mChild) {
+		CollPart* childPart = getChild();
+		int childIndex      = count;
+		if (childIndex < limit) {
+			count++;
+			outputArray[childIndex] = childPart;
+			if (childPart->getNext()) {
+				childPart->getNext()->getAllCollPartToArray(outputArray, limit, count);
+			}
+			if (childPart->getChild()) {
+				childPart->getChild()->getAllCollPartToArray(outputArray, limit, count);
+			}
+		}
+	}
+
 	return count;
 }
 
@@ -822,13 +852,13 @@ void CollPart::update()
  * Address:	80137318
  * Size:	000084
  */
-void CollPart::makeMatrixTo(Matrixf& p1)
+void CollPart::makeMatrixTo(Matrixf& target)
 {
 	if ((int)mJointIndex != -1) {
 		Matrixf mtx;
 		PSMTXIdentity(mtx.mMatrix.mtxView);
 		mtx.setTranslation(mOffset);
-		PSMTXConcat(mModel->getMatrix(mJointIndex)->mMatrix.mtxView, mtx.mMatrix.mtxView, p1.mMatrix.mtxView);
+		PSMTXConcat(mModel->getMatrix(mJointIndex)->mMatrix.mtxView, mtx.mMatrix.mtxView, target.mMatrix.mtxView);
 	}
 }
 
@@ -851,12 +881,19 @@ void CollPart::makeTubeTree()
 	}
 }
 
+/**
+ * Calculates the local stuck position based on the given global position.
+ * The calculation depends on the type of the CollPart.
+ *
+ * @param globalPosition The global stick position.
+ * @param localPosition  [out] The calculated local stick position.
+ */
 /*
  * --INFO--
  * Address:	801375B0
  * Size:	00022C
  */
-void CollPart::calcStickLocal(Vector3f& arg0, Vector3f& arg1)
+void CollPart::calcStickLocal(Vector3f& input, Vector3f& localPosition)
 {
 	switch (mPartType) {
 	case COLLTYPE_SPHERE:
@@ -870,24 +907,24 @@ void CollPart::calcStickLocal(Vector3f& arg0, Vector3f& arg1)
 		f32 len = row1.length();
 
 		if (FABS(len) < 0.001f) {
-			arg1 = Vector3f(0.0f);
+			localPosition = Vector3f(0.0f);
 			return;
 		}
 
 		f32 norm = 1.0f / len;
 
-		arg1 = inv.mtxMult(arg0);
+		localPosition = inv.mtxMult(input);
 
-		arg1.normalise();
-		f32 radNorm = mRadius * norm;
-		arg1        = arg1 * radNorm;
+		localPosition.normalise();
+		f32 radNorm   = mRadius * norm;
+		localPosition = localPosition * radNorm;
 		break;
 
 	case COLLTYPE_TUBE:
 	case COLLTYPE_TUBETREE:
 		Sys::Tube tube;
 		getTube(tube);
-		arg1.y = tube.getPosRatio(arg0);
+		localPosition.y = tube.getPosRatio(input);
 		break;
 	}
 	/*
@@ -1053,48 +1090,66 @@ lbl_801377B8:
 	*/
 }
 
+/**
+ * Calculates the global stick position based on the type of CollPart.
+ *
+ * @param input The input vector.
+ * @param globalPosition The calculated global position.
+ */
 /*
  * --INFO--
  * Address:	801377DC
  * Size:	000168
  */
-void CollPart::calcStickGlobal(Vector3f& arg0, Vector3f& arg1)
+void CollPart::calcStickGlobal(Vector3f& input, Vector3f& globalPosition)
 {
 	switch (mPartType) {
-	case COLLTYPE_SPHERE:
+	case COLLTYPE_SPHERE: {
 		Matrixf mtx;
 		makeMatrixTo(mtx);
-		arg1 = mtx.mtxMult(arg0);
+		globalPosition = mtx.mtxMult(input);
 		break;
-	case COLLTYPE_TUBE:
-		calcStickLocal(arg1, arg0);
-		Sys::Tube tube1;
-		getTube(tube1);
-		arg1 = tube1.setPos(arg0.y);
+	}
+
+	case COLLTYPE_TUBE: {
+		calcStickLocal(globalPosition, input);
+		Sys::Tube tube;
+		getTube(tube);
+		globalPosition = tube.setPos(input.y);
 		break;
-	case COLLTYPE_TUBETREE:
-		calcStickLocal(arg1, arg0);
-		Sys::Tube tube2;
-		getTube(tube2);
-		arg1 = tube2.setPos(arg0.y);
+	}
+
+	case COLLTYPE_TUBETREE: {
+		calcStickLocal(globalPosition, input);
+		Sys::Tube tube;
+		getTube(tube);
+		globalPosition = tube.setPos(input.y);
 		break;
+	}
 	}
 }
 
+/**
+ * Calculates the pose matrix for the CollPart object based on its part type.
+ * The pose matrix is used to transform the object's position and orientation in 3D space.
+ *
+ * @param input The target position to pose toward.
+ * @param poseMatrix The resulting pose matrix.
+ */
 /*
  * --INFO--
  * Address:	80137944
  * Size:	0004C8
  */
 // WIP: https://decomp.me/scratch/rvuzC
-void CollPart::calcPoseMatrix(Vector3f& info, Matrixf& outputPose)
+void CollPart::calcPoseMatrix(Vector3f& input, Matrixf& poseMatrix)
 {
 	switch (mPartType) {
 	case COLLTYPE_SPHERE:
 		Matrixf mtx;
 		makeMatrixTo(mtx);
 		Vector3f pos  = mtx.getBasis(3);
-		Vector3f diff = pos - info;
+		Vector3f diff = pos - input;
 		f32 len       = diff.normalise();
 		if (len == 0.0f) {
 			diff = Vector3f(0.0f, 0.0f, 1.0f);
@@ -1102,14 +1157,14 @@ void CollPart::calcPoseMatrix(Vector3f& info, Matrixf& outputPose)
 		Vector3f zAxis(0.0f, 0.0f, 1.0f);
 		Vector3f crossProd = cross(diff, zAxis);
 		crossProd.normalise();
-		outputPose.setBasis(0, crossProd);
+		poseMatrix.setBasis(0, crossProd);
 		f32 zVal = diff.y * crossProd.x;
 		Vector3f otherVec;
 		otherVec.x = diff.y * crossProd.z - diff.z * crossProd.y;
 		otherVec.y = diff.z * crossProd.x - diff.x * crossProd.z;
 		otherVec.z = diff.x * crossProd.y - diff.y * crossProd.x;
-		outputPose.setBasis(1, otherVec);
-		outputPose.setBasis(2, diff);
+		poseMatrix.setBasis(1, otherVec);
+		poseMatrix.setBasis(2, diff);
 		break;
 
 	case COLLTYPE_TUBETREE:
@@ -1128,11 +1183,11 @@ void CollPart::calcPoseMatrix(Vector3f& info, Matrixf& outputPose)
 		} else {
 			controls[3] = controls[2];
 		}
-		Vector3f path = CRSplineTangent(info.y, controls);
+		Vector3f path = CRSplineTangent(input.y, controls);
 		path.normalise();
-		f32 returnVal = info.x;
+		f32 returnVal = input.x;
 
-		outputPose.makeNaturalPosture(path, info.x);
+		poseMatrix.makeNaturalPosture(path, input.x);
 		break;
 
 	case COLLTYPE_TUBE:
@@ -1143,13 +1198,13 @@ void CollPart::calcPoseMatrix(Vector3f& info, Matrixf& outputPose)
 		axis.x             = -axis.x;
 		axis.y             = -axis.y;
 		axis.z             = -axis.z;
-		Vector3f axisCross = cross(info, axis);
+		Vector3f axisCross = cross(input, axis);
 		axisCross.normalise();
 		Vector3f thirdAxis = cross(axisCross, axis);
 		thirdAxis.normalise();
-		outputPose.setBasis(0, axisCross);
-		outputPose.setBasis(1, axis);
-		outputPose.setBasis(2, thirdAxis);
+		poseMatrix.setBasis(0, axisCross);
+		poseMatrix.setBasis(1, axis);
+		poseMatrix.setBasis(2, thirdAxis);
 		break;
 	}
 	/*
