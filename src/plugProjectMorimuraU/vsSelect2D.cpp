@@ -1377,14 +1377,14 @@ void TVsSelect::doCreate(JKRArchive* arc)
 
 	f32 calc = mIndexPaneList[0]->mPane->mOffset.y - mIndexPaneList[1]->mPane->mOffset.y;
 
-	mIndexGroup          = new TIndexGroup;
-	mIndexGroup->mHeight = calc;
-	TIndexGroup* grp     = mIndexGroup;
-	grp->mMaxRollSpeed   = mScrollParm._00;
-	grp->_04             = mScrollParm._04;
-	grp->mRollSpeedMod   = mScrollParm._08;
-	grp->_0C             = mScrollParm._0C;
-	grp->_10             = mScrollParm._10;
+	mIndexGroup               = new TIndexGroup;
+	mIndexGroup->mHeight      = calc;
+	TIndexGroup* grp          = mIndexGroup;
+	grp->mMaxRollSpeed        = mScrollParm._00;
+	grp->mSpeedSlowdownFactor = mScrollParm._04;
+	grp->mRollSpeedMod        = mScrollParm._08;
+	grp->mSpeedSpeedupFactor  = mScrollParm._0C;
+	grp->mInitialRollSpeed    = mScrollParm._10;
 
 	paneInit();
 	changePaneInfo();
@@ -4409,13 +4409,13 @@ bool TVsSelect::doUpdate()
 	}
 
 	if (mForceResetParm) {
-		mForceResetParm    = false;
-		TIndexGroup* grp   = mIndexGroup;
-		grp->mMaxRollSpeed = mScrollParm._00;
-		grp->_04           = mScrollParm._04;
-		grp->mRollSpeedMod = mScrollParm._08;
-		grp->_0C           = mScrollParm._0C;
-		grp->_10           = mScrollParm._10;
+		mForceResetParm           = false;
+		TIndexGroup* grp          = mIndexGroup;
+		grp->mMaxRollSpeed        = mScrollParm._00;
+		grp->mSpeedSlowdownFactor = mScrollParm._04;
+		grp->mRollSpeedMod        = mScrollParm._08;
+		grp->mSpeedSpeedupFactor  = mScrollParm._0C;
+		grp->mInitialRollSpeed    = mScrollParm._10;
 	}
 
 	return false;
@@ -6760,9 +6760,9 @@ void TVsSelect::changePaneInfo()
 		if (mStickAnimState == 0) {
 			mIsSelectIndexChange = 0;
 		} else {
-			f32 calc             = 0.0f;
-			mIsSelectIndexChange = 1;
-			mIndexGroup->_14     = 0.0f;
+			f32 calc                   = 0.0f;
+			mIsSelectIndexChange       = 1;
+			mIndexGroup->mScrollOffset = 0.0f;
 			for (int i = 0; i < mMaxSelect; i++) {
 				mIndexPaneList[i]->mPane->setOffsetY(calc + mIndexPaneList[i]->_1C);
 			}

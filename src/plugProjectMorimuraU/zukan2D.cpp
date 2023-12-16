@@ -45,6 +45,7 @@ JUtility::TColor TZukanBase::mCategoryColor1w;
 JUtility::TColor TZukanBase::mCategoryColor1b;
 JKRHeap* TZukanBase::mDebugHeapParent;
 JKRExpHeap* TZukanBase::mDebugHeap;
+
 // this table connects piklopedia order to the actual game enemy id order
 int eIDInfo[ENEMY_ZUKAN_COUNT][2] = {
 	{ TEnemyZukan::Zukan_Chappy, Game::EnemyTypeID::EnemyID_Chappy },
@@ -242,7 +243,16 @@ void TZukanBase::setDebugHeapParent(JKRHeap* heap)
  * Address:	80370FCC
  * Size:	00090C
  */
-void TZukanBase::doCreate(JKRArchive*)
+/**
+ * @brief Initializes the TZukanBase object.
+ *
+ * This function is responsible for initializing various member variables and creating necessary UI elements for the TZukanBase object.
+ * It sets up the icon screen, text boxes, color animation, message callback, scale manager, arrow alpha blink, controller, select icon,
+ * cursor corners, panel list bounds, big window, window back, model pane, and index group.
+ *
+ * @param archive A pointer to the JKRArchive object.
+ */
+void TZukanBase::doCreate(JKRArchive* archive)
 {
 	mIconScreen = new P2DScreen::Mgr_tuning;
 	mIconScreen->set("newicon.blo", 0x20000, mArchive);
@@ -342,14 +352,14 @@ void TZukanBase::doCreate(JKRArchive*)
 	float diff      = mIndexPaneList[1]->mPane->mOffset.y - idpane->mOffset.y;
 	idpane->show();
 
-	mIndexGroup          = new TIndexGroup;
-	mIndexGroup->mHeight = diff;
-	TIndexGroup* group   = mIndexGroup;
-	group->mMaxRollSpeed = mScrollParm._00;
-	group->_04           = mScrollParm._04;
-	group->mRollSpeedMod = mScrollParm._08;
-	group->_0C           = mScrollParm._0C;
-	group->_10           = mScrollParm._10;
+	mIndexGroup                 = new TIndexGroup;
+	mIndexGroup->mHeight        = diff;
+	TIndexGroup* group          = mIndexGroup;
+	group->mMaxRollSpeed        = mScrollParm._00;
+	group->mSpeedSlowdownFactor = mScrollParm._04;
+	group->mRollSpeedMod        = mScrollParm._08;
+	group->mSpeedSpeedupFactor  = mScrollParm._0C;
+	group->mInitialRollSpeed    = mScrollParm._10;
 
 	paneInit();
 	changePaneInfo();
@@ -430,7 +440,7 @@ bool TZukanBase::doUpdate()
 
 	if (!mIsInDemo && mCanInput && mState < 2 && !isOpenConfirmWindow()) {
 		mIsInFadeInOut = false;
-		if (!mIsBigWindowOpened && !mWindow->mStatus) {
+		if (!mIsBigWindowOpened && !mWindow->mState) {
 			Controller* pad = mController;
 			if (pad->getButton() & Controller::ANALOG_UP) {
 				if (!mIsPreDebt || !mCanScroll) {
@@ -502,7 +512,7 @@ bool TZukanBase::doUpdate()
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
 					mIsBigWindowOpened = false;
 				}
-				if (mWindow->mStatus) {
+				if (mWindow->mState) {
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 					mWindow->windowClose();
 				}
@@ -516,11 +526,11 @@ bool TZukanBase::doUpdate()
 					}
 					mIsBigWindowOpened = true;
 				}
-				if (mWindow->mStatus) {
+				if (mWindow->mState) {
 					windowOpenClose(getXMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
 				}
 			} else {
-				if (!(u8)mWindow->mStatus) {
+				if (!(u8)mWindow->mState) {
 					// scroll through message box with analog stick
 					f32 z = pad->mMStick.mYPos;
 					if (z >= 0.5f || z <= -0.5f) {
@@ -556,7 +566,7 @@ bool TZukanBase::doUpdate()
 		getOwner()->endScene(nullptr);
 	}
 
-	if (!mIsBigWindowOpened && mWindow->mStatus == 0) {
+	if (!mIsBigWindowOpened && mWindow->mState == 0) {
 		mControlStickPic->mAnimGroup->setSpeed(2.0f);
 	} else {
 		mControlStickPic->mAnimGroup->setSpeed(0.0f);
@@ -646,7 +656,7 @@ bool TZukanBase::doUpdate()
 	}
 
 	// manage fade out of cstick/arrow when near bottom of scroll list
-	if ((u8)mWindow->mStatus != 1) {
+	if ((u8)mWindow->mState != 1) {
 		f32 calc = mWindow->getPosRate();
 		if (calc < 0.2f) {
 			calc *= 5.0f;
@@ -681,13 +691,13 @@ bool TZukanBase::doUpdate()
 	doUpdateOut();
 
 	if (mForceResetParm) {
-		mForceResetParm      = false;
-		TIndexGroup* group   = mIndexGroup;
-		group->mMaxRollSpeed = mScrollParm._00;
-		group->_04           = mScrollParm._04;
-		group->mRollSpeedMod = mScrollParm._08;
-		group->_0C           = mScrollParm._0C;
-		group->_10           = mScrollParm._10;
+		mForceResetParm             = false;
+		TIndexGroup* group          = mIndexGroup;
+		group->mMaxRollSpeed        = mScrollParm._00;
+		group->mSpeedSlowdownFactor = mScrollParm._04;
+		group->mRollSpeedMod        = mScrollParm._08;
+		group->mSpeedSpeedupFactor  = mScrollParm._0C;
+		group->mInitialRollSpeed    = mScrollParm._10;
 	}
 
 	if (getDispDataZukan()->mPrevSelection && mCanInput) {
@@ -812,8 +822,8 @@ void TZukanBase::doDraw(Graphics& gfx)
 		mEffectScreen->draw(gfx, graf);
 	}
 
-	if (!(mWindow->mStatus & 4)) {
-		if (mWindow->mStatus == 3) {
+	if (!(mWindow->mState & 4)) {
+		if (mWindow->mState == 3) {
 			if (mMessageBoxBGAlpha > 20) {
 				mMessageBoxBGAlpha -= 20;
 			} else {
@@ -1503,7 +1513,7 @@ void TZukanBase::changeName()
  */
 void TZukanBase::doUpdateIn()
 {
-	if ((u8)mWindow->mStatus != TZukanWindow::STATE_Inactive && mWindow->_18) {
+	if ((u8)mWindow->mState != TZukanWindow::STATE_Inactive && mWindow->_18) {
 		mWindow->_18 = false;
 		if (mCurrCharacterOpened) {
 			doPushXButton();
@@ -1644,7 +1654,7 @@ void TZukanBase::doPushXButton()
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
 		}
 		mIsBigWindowOpened = false;
-		if (mWindow->mStatus == 0) {
+		if (mWindow->mState == 0) {
 			mCurrCharacterOpened = false;
 			windowOpenClose(getXMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
 			setXWindow();
@@ -1669,7 +1679,7 @@ void TZukanBase::doPushYButton()
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
 		}
 		mIsBigWindowOpened = false;
-		if (mWindow->mStatus == 0) {
+		if (mWindow->mState == 0) {
 			mCurrCharacterOpened = true;
 			windowOpenClose(getYMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
 			setYWindow();
@@ -1693,7 +1703,7 @@ void TZukanBase::doPushBButton()
 		mIsBigWindowOpened = false;
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
 	} else {
-		if (mWindow->mStatus != 0) {
+		if (mWindow->mState != 0) {
 			windowOpenClose(getXMsgID(mIndexPaneList[mCurrentSelect]->getIndex()));
 		} else {
 			openConfirmWindow();
@@ -1929,7 +1939,7 @@ lbl_80374788:
 void TZukanBase::windowOpenClose(u64 mesg)
 {
 	if (mIsCurrentSelUnlocked) {
-		int flag = mWindow->mStatus;
+		int flag = mWindow->mState;
 		if ((u8)flag & 5) {
 
 			mPaneMessageDemo->setMsgID(mesg);
@@ -2024,9 +2034,9 @@ int TZukanBase::getCurrSelectId()
 {
 	if (mIsCurrentSelUnlocked) {
 		return getModelIndex(mIndexPaneList[mCurrentSelect]->getIndex());
-	} else {
-		return -1;
 	}
+
+	return -1;
 }
 
 /*
@@ -2038,13 +2048,11 @@ const ResTIMG* TZukanBase::getTexInfo(int id)
 {
 	if (mIsSection) {
 		return static_cast<const ResTIMG*>(mArchive->getResource("timg/flower_icon.bti"));
+	} else if (getDispDataZukan()->getMemberID() == MEMBER_ZUKAN_ENEMY) {
+		return getDispDataZukan()->mEnemyTexMgr->getTexture(getModelIndex(id))->mTexInfo;
 	} else {
-		if (getDispDataZukan()->getMemberID() == MEMBER_ZUKAN_ENEMY) {
-			return getDispDataZukan()->mEnemyTexMgr->getTexture(getModelIndex(id))->mTexInfo;
-		} else {
-			int sel = getModelIndex(id);
-			return getDispDataZukan()->mResultTexMgr->getOtakaraItemTexture(sel)->mTexInfo;
-		}
+		int sel = getModelIndex(id);
+		return getDispDataZukan()->mResultTexMgr->getOtakaraItemTexture(sel)->mTexInfo;
 	}
 }
 
@@ -2096,6 +2104,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 	}
 
 	if (mIsSection) {
+		// Create debug heap and setup debug data
 		if (mDebugHeapParent) {
 			mDebugHeap = JKRExpHeap::create(0x100000, mDebugHeapParent, true);
 			P2ASSERTLINE(1986, mDebugHeap);
@@ -2121,12 +2130,14 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 		mDispEnemy->mDispWorldMapInfoWin0 = new og::Screen::DispMemberWorldMapInfoWin0;
 	}
 
+	// Setup icon data for all bosses
 	mDoEnableBigIcon = true;
 	if (mDoEnableBigIcon) {
 		mIsBigIconList = new u8[ENEMY_ZUKAN_COUNT];
 		for (int i = 0; i < ENEMY_ZUKAN_COUNT; i++) {
 			mIsBigIconList[i] = false;
 		}
+
 		mIsBigIconList[Zukan_DangoMushi]  = true;
 		mIsBigIconList[Zukan_BlackMan]    = true;
 		mIsBigIconList[Zukan_OoPanModoki] = true;
@@ -2186,12 +2197,14 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 					mMaxPane++;
 				}
 			}
+
 			int max2 = mMaxPane;
 			if (max2 == 0) {
 				mCanScroll = false;
 			} else {
 				mViewablePanelIDList = new int[max2];
 			}
+
 			for (int i = 0; i < getIdMax(); i++) {
 				if (isListShow(i)) {
 					mViewablePanelIDList[i] = i;
@@ -2373,9 +2386,9 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 			mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
 		}
 		updateIndex(false);
-		TIndexGroup* grp = mIndexGroup;
-		grp->_14         = xoffs;
-		grp->mStateID    = 0;
+		TIndexGroup* grp   = mIndexGroup;
+		grp->mScrollOffset = xoffs;
+		grp->mStateID      = 0;
 		changePaneInfo();
 	}
 
@@ -2383,6 +2396,7 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 	if (mDispEnemy->mPrevSelection && mDispEnemy->getMemberID() == MEMBER_ZUKAN_ENEMY) {
 		index = *mDispEnemy->mPrevSelection;
 	}
+
 	if (index < 0) {
 		for (int i = 0; i < getIdMax(); i++) {
 			if (isNewSupply(i, false)) {
@@ -2455,9 +2469,9 @@ void TEnemyZukan::doCreate(JKRArchive* arc)
 				// mRightOffset = 1;
 			} else {
 				updateIndex(true);
-				TIndexGroup* grp = mIndexGroup;
-				grp->_14         = xoffs;
-				grp->mStateID    = 0;
+				TIndexGroup* grp   = mIndexGroup;
+				grp->mScrollOffset = xoffs;
+				grp->mStateID      = 0;
 				// mRightOffset = backupindex - max2;
 				// if (mRightOffset < 0 || mRightOffset > 2) {
 				//	JUT_PANICLINE(2431, "P2ASSERT");
@@ -4551,7 +4565,7 @@ bool TItemZukan::doUpdate()
 			}
 			break;
 		case ZUKANDEMO_AppearEffect:
-			if (mWindow->mStatus == TZukanWindow::STATE_Inactive) {
+			if (mWindow->mState == TZukanWindow::STATE_Inactive) {
 				if (mEfxTimer == 0) {
 					J2DPane* pane = mYButtonPane;
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_ZUKAN_NEW, 0);
@@ -4588,7 +4602,7 @@ void TItemZukan::demoSet()
 	if (mDemoScrollTargetRow != mIndexPaneList[mCurrentSelect]->getIndex()) {
 		mIndexGroup->downIndex();
 	} else {
-		if (mWindow->mStatus == TZukanWindow::STATE_Inactive) {
+		if (mWindow->mState == TZukanWindow::STATE_Inactive) {
 			mPaneMessageDemo->setMsgID(mOffsetMsgCategoryNames->getMsgID(mSelection));
 			mMessageBoxBGAlpha = 0;
 			mWindow->windowOpen();
@@ -5709,9 +5723,9 @@ void TItemZukan::doCreate(JKRArchive* arc)
 			mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
 		}
 		updateIndex(false);
-		TIndexGroup* grp = mIndexGroup;
-		grp->_14         = xoffs;
-		grp->mStateID    = 0;
+		TIndexGroup* grp   = mIndexGroup;
+		grp->mScrollOffset = xoffs;
+		grp->mStateID      = 0;
 		changePaneInfo();
 	}
 
@@ -5757,9 +5771,9 @@ void TItemZukan::doCreate(JKRArchive* arc)
 					mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
 				}
 				updateIndex(true);
-				TIndexGroup* grp = mIndexGroup;
-				grp->_14         = xoffs;
-				grp->mStateID    = 0;
+				TIndexGroup* grp   = mIndexGroup;
+				grp->mScrollOffset = xoffs;
+				grp->mStateID      = 0;
 				changePaneInfo();
 			}
 		} else {
@@ -6438,7 +6452,7 @@ bool TItemZukan::isComplete()
 
 		if (mCategoryIsComplete[id]) {
 			if (mIsInDemo) {
-				if (mWindow->mStatus == TZukanWindow::STATE_Active)
+				if (mWindow->mState == TZukanWindow::STATE_Active)
 					return true;
 			} else
 				return true;
@@ -6759,7 +6773,7 @@ TZukanWindow::TZukanWindow(JKRArchive* arc, int anims)
 {
 	_18                   = 0;
 	mCharacterIconXOffset = 0.0f;
-	mStatus               = STATE_Inactive;
+	mState                = STATE_Inactive;
 	mAnimPaneLR           = nullptr;
 	mAnimPaneLight        = nullptr;
 	mMsgCallback          = nullptr;
@@ -6832,7 +6846,7 @@ void TZukanWindow::create(char const* filename, u32 flag)
  */
 void TZukanWindow::update()
 {
-	switch (mStatus) {
+	switch (mState) {
 	case STATE_Inactive:
 		return;
 	case STATE_Appear:
@@ -6840,7 +6854,7 @@ void TZukanWindow::update()
 			mScaleMgr->up(0.5f, 30.0f, 0.6f, 0.0f);
 		}
 		if (mAnimScreens[0]->mCurrentFrame > 12.0f) {
-			mStatus = 2;
+			mState = STATE_Active;
 		}
 		break;
 	case STATE_Active:
@@ -6850,7 +6864,7 @@ void TZukanWindow::update()
 		break;
 	case STATE_Exit:
 		if (mAnimScreens[0]->mCurrentFrame < 1.0f) {
-			mStatus = STATE_Inactive;
+			mState = STATE_Inactive;
 		}
 		break;
 	}
@@ -6863,13 +6877,16 @@ void TZukanWindow::update()
 				mAnimScreens[i]->mCurrentFrame = 0.0f;
 			}
 		}
+
 		mAnimPaneLight->mCurrentFrame = mAnimScreens[1]->mCurrentFrame;
 		mAnimPaneLight->update();
 		mAnimPaneLR->update();
+
 		// we have loop keyframes at home! (loop keyframes at home)
 		if (mAnimPaneLR->mCurrentFrame > 86.0f) {
 			mAnimPaneLR->mCurrentFrame = 13.0f;
 		}
+
 		mScreenObj->animation();
 
 		f32 scale  = mScaleMgr->calc();
@@ -6901,7 +6918,7 @@ void TZukanWindow::update()
  */
 void TZukanWindow::draw(Graphics& gfx, J2DPerspGraph* graf)
 {
-	if (mStatus != STATE_Inactive) {
+	if (mState != STATE_Inactive) {
 		TScreenBase::draw(gfx, graf);
 	}
 }
@@ -6915,7 +6932,7 @@ void TZukanWindow::windowOpen()
 {
 	mAnimScreens[0]->mCurrentFrame = 0.0f;
 	mAnimScreens[0]->mSpeed        = 0.5f;
-	mStatus                        = STATE_Appear;
+	mState                         = STATE_Appear;
 	mMsgCallback->reset();
 }
 
@@ -6926,10 +6943,10 @@ void TZukanWindow::windowOpen()
  */
 void TZukanWindow::windowClose()
 {
-	if (mStatus == STATE_Active || mStatus == STATE_Appear) {
+	if (mState == STATE_Active || mState == STATE_Appear) {
 		mAnimScreens[0]->mSpeed = -0.5f; // set animation speed to negative to close box
 	}
-	mStatus = STATE_Exit;
+	mState = STATE_Exit;
 }
 
 /*

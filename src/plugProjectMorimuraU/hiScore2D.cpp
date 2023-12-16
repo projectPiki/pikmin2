@@ -711,12 +711,12 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndexPaneList[0]->mPane->show();
 	mIndexGroup = new TIndexGroup;
 	updateLayout();
-	TIndexGroup* group   = mIndexGroup;
-	group->mMaxRollSpeed = mScrollParm._00;
-	group->_04           = mScrollParm._04;
-	group->mRollSpeedMod = mScrollParm._08;
-	group->_0C           = mScrollParm._0C;
-	group->_10           = mScrollParm._10;
+	TIndexGroup* group          = mIndexGroup;
+	group->mMaxRollSpeed        = mScrollParm._00;
+	group->mSpeedSlowdownFactor = mScrollParm._04;
+	group->mRollSpeedMod        = mScrollParm._08;
+	group->mSpeedSpeedupFactor  = mScrollParm._0C;
+	group->mInitialRollSpeed    = mScrollParm._10;
 
 	J2DPane* total = mMainScreen->mScreenObj->search('Tot3rds');
 	P2ASSERTLINE(469, total);
@@ -765,9 +765,9 @@ void THiScore::doCreate(JKRArchive* arc)
 			mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
 		}
 		updateIndex(0);
-		TIndexGroup* grp = mIndexGroup;
-		grp->_14         = 0.0f;
-		grp->mStateID    = 0;
+		TIndexGroup* grp   = mIndexGroup;
+		grp->mScrollOffset = 0.0f;
+		grp->mStateID      = 0;
 		changePaneInfo();
 	}
 
@@ -2020,13 +2020,13 @@ bool THiScore::doUpdate()
 	}
 
 	if (mForceResetParm) {
-		mForceResetParm    = false;
-		TIndexGroup* grp   = mIndexGroup;
-		grp->mMaxRollSpeed = mScrollParm._00;
-		grp->_04           = mScrollParm._04;
-		grp->mRollSpeedMod = mScrollParm._08;
-		grp->_0C           = mScrollParm._0C;
-		grp->_10           = mScrollParm._10;
+		mForceResetParm           = false;
+		TIndexGroup* grp          = mIndexGroup;
+		grp->mMaxRollSpeed        = mScrollParm._00;
+		grp->mSpeedSlowdownFactor = mScrollParm._04;
+		grp->mRollSpeedMod        = mScrollParm._08;
+		grp->mSpeedSpeedupFactor  = mScrollParm._0C;
+		grp->mInitialRollSpeed    = mScrollParm._10;
 	}
 
 	mHighScorePic->addOffsetY(mPictureOffsetY);

@@ -276,7 +276,7 @@ struct TZukanBase : public TScrollList {
 
 	inline bool checkMemoWindow()
 	{
-		if (mWindow->mStatus != TZukanWindow::STATE_Inactive) {
+		if (mWindow->mState != TZukanWindow::STATE_Inactive) {
 			return true;
 		}
 		return false;

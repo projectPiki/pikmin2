@@ -12,17 +12,17 @@ bool TScrollList::mWideWindow = true;
  */
 TIndexGroup::TIndexGroup()
 {
-	_14           = 0.0f;
-	mHeight       = 0.0f;
-	mRollSpeed    = 0.0f;
-	mStateID      = 0;
-	_24           = 0;
-	mMoveTimer    = 0.0f;
-	mMaxRollSpeed = 8.0f;
-	_04           = 0.9f;
-	mRollSpeedMod = 1.1f;
-	_0C           = 1.5f;
-	_10           = 2.0f;
+	mScrollOffset        = 0.0f;
+	mHeight              = 0.0f;
+	mRollSpeed           = 0.0f;
+	mStateID             = 0;
+	_24                  = 0;
+	mMoveTimer           = 0.0f;
+	mMaxRollSpeed        = 8.0f;
+	mSpeedSlowdownFactor = 0.9f;
+	mRollSpeedMod        = 1.1f;
+	mSpeedSpeedupFactor  = 1.5f;
+	mInitialRollSpeed    = 2.0f;
 }
 
 /*
@@ -35,7 +35,7 @@ bool TIndexGroup::upIndex()
 	bool ret = false;
 	if (mStateID == 0) {
 		if (mMoveTimer <= 0.0f) {
-			mRollSpeed = _10;
+			mRollSpeed = mInitialRollSpeed;
 		}
 		mMoveTimer = 1.0f;
 		mStateID   = 2;
@@ -55,7 +55,7 @@ bool TIndexGroup::downIndex()
 	bool ret = false;
 	if (mStateID == 0) {
 		if (mMoveTimer >= 0.0f) {
-			mRollSpeed = _10;
+			mRollSpeed = mInitialRollSpeed;
 		}
 		mMoveTimer = -1.0f;
 		mStateID   = 1;
@@ -72,11 +72,11 @@ bool TIndexGroup::downIndex()
  */
 void TIndexGroup::speedUpdate(bool check)
 {
-	if (mRollSpeed > _10 && !_24) {
-		if (FABS(_14) < 0.7f * mHeight) {
-			mRollSpeed *= _0C;
+	if (mRollSpeed > mInitialRollSpeed && !_24) {
+		if (FABS(mScrollOffset) < 0.7f * mHeight) {
+			mRollSpeed *= mSpeedSpeedupFactor;
 		} else {
-			mRollSpeed *= _04;
+			mRollSpeed *= mSpeedSlowdownFactor;
 		}
 	}
 }
@@ -96,18 +96,18 @@ bool TIndexGroup::offsetUpdate(f32 offset)
 			val = -mRollSpeed;
 		}
 
-		_14 += val;
+		mScrollOffset += val;
 
-		if (_14 > offset) {
-			_2C = _14 - offset;
-			_14 = offset;
+		if (mScrollOffset > offset) {
+			mOffsetDifference = mScrollOffset - offset;
+			mScrollOffset     = offset;
 			return true;
 		}
 
 		val = -offset;
-		if (_14 < val) {
-			_2C = _14 + offset;
-			_14 = val;
+		if (mScrollOffset < val) {
+			mOffsetDifference = mScrollOffset + offset;
+			mScrollOffset     = val;
 			return true;
 		}
 	}
@@ -853,7 +853,7 @@ void TScrollList::getUpdateIndex(int& id, bool flag)
 bool TScrollList::updateList()
 {
 	if (mIndexGroup->mStateID == 0) {
-		mIndexGroup->mRollSpeed = mIndexGroup->_10;
+		mIndexGroup->mRollSpeed = mIndexGroup->mInitialRollSpeed;
 	}
 
 	mIndexGroup->speedUpdate(true);
@@ -910,12 +910,12 @@ bool TScrollList::updateList()
 		}
 	}
 
-	group->_2C = 0.0f;
+	group->mOffsetDifference = 0.0f;
 
 	val         = group->mHeight * val;
 	bool result = group->offsetUpdate(val);
 
-	f32 val2 = mIndexGroup->_14;
+	f32 val2 = mIndexGroup->mScrollOffset;
 	for (int i = 0; i < mMaxSelect; i++) {
 		TIndexPane* pane = mIndexPaneList[i];
 		pane->mPane->setOffsetY(pane->_1C + val2);
@@ -924,18 +924,18 @@ bool TScrollList::updateList()
 
 	if (result) {
 		if (mIndexGroup->_24) {
-			val2 = mIndexGroup->_2C;
+			val2 = mIndexGroup->mOffsetDifference;
 		} else {
 			val2 = 0.0f;
 		}
 
 		changeIndex();
 	} else if (mIndexGroup->mStateID == 0) {
-		f32 val3 = -0.5f * mIndexGroup->_14;
-		val2     = mIndexGroup->_14 + val3;
+		f32 val3 = -0.5f * mIndexGroup->mScrollOffset;
+		val2     = mIndexGroup->mScrollOffset + val3;
 	}
 
-	mIndexGroup->_14 = val2;
+	mIndexGroup->mScrollOffset = val2;
 	for (int i = 0; i < mMaxSelect; i++) {
 		TIndexPane* pane = mIndexPaneList[i];
 		pane->mPane->setOffsetY(pane->_1C + val2);

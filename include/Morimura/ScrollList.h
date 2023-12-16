@@ -20,24 +20,24 @@ struct TIndexGroup {
 
 	inline void reset()
 	{
-		_14      = 0.0f;
-		mStateID = 0;
+		mScrollOffset = 0.0f;
+		mStateID      = 0;
 	}
 
 	inline f32 getHeight() { return mHeight; }
 
-	f32 mMaxRollSpeed; // _00
-	f32 _04;           // _04
-	f32 mRollSpeedMod; // _08
-	f32 _0C;           // _0C
-	f32 _10;           // _10
-	f32 _14;           // _14
-	f32 mHeight;       // _18
-	f32 mRollSpeed;    // _1C
-	int mStateID;      // _20
-	u8 _24;            // _24
-	f32 mMoveTimer;    // _28
-	f32 _2C;           // _2C
+	f32 mMaxRollSpeed;        // _00
+	f32 mSpeedSlowdownFactor; // _04
+	f32 mRollSpeedMod;        // _08
+	f32 mSpeedSpeedupFactor;  // _0C
+	f32 mInitialRollSpeed;    // _10
+	f32 mScrollOffset;        // _14
+	f32 mHeight;              // _18
+	f32 mRollSpeed;           // _1C
+	int mStateID;             // _20
+	u8 _24;                   // _24
+	f32 mMoveTimer;           // _28
+	f32 mOffsetDifference;    // _2C
 };
 
 struct TIconInfo {
