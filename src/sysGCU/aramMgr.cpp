@@ -17,7 +17,7 @@ namespace ARAM {
 inline Node::Node()
     : CNode("")
 {
-	mStatus = 0;
+	mMemoryBlock = 0;
 }
 
 inline u32 Node::dvdToAram(char const* name, bool setFalse)
@@ -25,15 +25,15 @@ inline u32 Node::dvdToAram(char const* name, bool setFalse)
 	P2ASSERTLINE(105, name);
 	mName = const_cast<char*>(name);
 
-	if (!mStatus) {
+	if (!mMemoryBlock) {
 		if (setFalse) {
-			mStatus = nullptr;
+			mMemoryBlock = nullptr;
 		} else {
-			mStatus = (JKRAramBlock*)JKRDvdAramRipper::loadToAram(mName, 0, Switch_0, 0, 0, 0);
+			mMemoryBlock = (JKRAramBlock*)JKRDvdAramRipper::loadToAram(mName, 0, Switch_0, 0, 0, 0);
 		}
 	}
 
-	return reinterpret_cast<u32>(mStatus);
+	return reinterpret_cast<u32>(mMemoryBlock);
 }
 
 void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap,
@@ -49,12 +49,12 @@ void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expa
 		byteCnt = &tempByteVal;
 	}
 
-	if (!mStatus) {
+	if (!mMemoryBlock) {
 		dvdToAram(mName, false);
 	}
 
-	if (mStatus) {
-		addr = JKRAram::aramToMainRam(mStatus, buf, address, offset, expandSwitch, maxExpandSize, heap, id, byteCnt);
+	if (mMemoryBlock) {
+		addr = JKRAram::aramToMainRam(mMemoryBlock, buf, address, offset, expandSwitch, maxExpandSize, heap, id, byteCnt);
 		DCFlushRange(addr, *byteCnt);
 		if (allocDir == JKRDvdRipper::ALLOC_DIR_BOTTOM) {
 			char* newAddr = new (heap, -0x20) char[*byteCnt];
@@ -177,7 +177,7 @@ void ARAM::Mgr::dump()
 	JKRAramBlock* status;
 	FOREACH_NODE(Node, mRootNode.mChild, node)
 	{
-		status   = node->mStatus;
+		status   = node->mMemoryBlock;
 		u32 size = (status) ? status->mSize : 0;
 		if (max > size) {
 			max = size;

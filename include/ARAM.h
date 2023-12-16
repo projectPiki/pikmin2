@@ -56,7 +56,7 @@ struct Node : CNode {
 	 */
 	inline void dump();
 
-	JKRAramBlock* mStatus; // _18
+	JKRAramBlock* mMemoryBlock; // _18
 };
 
 /**
