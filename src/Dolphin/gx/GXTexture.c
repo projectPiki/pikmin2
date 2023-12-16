@@ -1509,7 +1509,7 @@ void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
 
 	a1 = GX_GET_REG(gx->tImage0[texImgIndex], 22, 31);
 	// a2 = GX_GET_REG(gx->tImage0[texImgIndex], 12, 21);
-	a2 = gx->tImage0[texImgIndex] >> 10;
+	a2 = (gx->tImage0[texImgIndex] & (0x3ff << 10)) >> 10;
 
 	GX_SET_REG(gx->suTs0[setUpRegIndex], a1, 16, 31);
 	GX_SET_REG(gx->suTs1[setUpRegIndex], a2, 16, 31);
@@ -1524,49 +1524,6 @@ void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
 	GX_BP_LOAD_REG(gx->suTs1[setUpRegIndex]);
 
 	gx->bpSentNot = GX_FALSE;
-	/*
-	.loc_0x0:
-	  lwz       r8, -0x6D70(r2)
-	  rlwinm    r3,r3,2,0,29
-	  rlwinm    r0,r4,2,0,29
-	  add       r3, r8, r3
-	  lwz       r4, 0x514(r3)
-	  add       r7, r8, r0
-	  lwz       r0, 0xB8(r7)
-	  li        r5, 0x61
-	  rlwinm    r6,r4,0,22,31
-	  rlwimi    r0,r6,0,16,31
-	  stw       r0, 0xB8(r7)
-	  rlwinm    r4,r4,22,22,31
-	  lwz       r0, 0xD8(r7)
-	  rlwimi    r0,r4,0,16,31
-	  lis       r4, 0xCC01
-	  stw       r0, 0xD8(r7)
-	  li        r0, 0
-	  lwz       r9, 0x534(r3)
-	  lwz       r3, 0xB8(r7)
-	  rlwinm    r6,r9,0,30,31
-	  subfic    r6, r6, 0x1
-	  cntlzw    r6, r6
-	  rlwinm    r10,r6,27,24,31
-	  rlwinm    r6,r9,30,30,31
-	  rlwimi    r3,r10,16,15,15
-	  subfic    r6, r6, 0x1
-	  stw       r3, 0xB8(r7)
-	  cntlzw    r3, r6
-	  rlwinm    r6,r3,27,24,31
-	  lwz       r3, 0xD8(r7)
-	  rlwimi    r3,r6,16,15,15
-	  stw       r3, 0xD8(r7)
-	  stb       r5, -0x8000(r4)
-	  lwz       r3, 0xB8(r7)
-	  stw       r3, -0x8000(r4)
-	  stb       r5, -0x8000(r4)
-	  lwz       r3, 0xD8(r7)
-	  stw       r3, -0x8000(r4)
-	  sth       r0, 0x2(r8)
-	  blr
-	*/
 }
 
 /*
@@ -1574,12 +1531,12 @@ void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
  * Address:	800E7A70
  * Size:	00017C
  */
+// #pragma dont_inline on
 static void __GXSetSUTexRegs(void)
 {
 	if (gx->tcsManEnab != 0xff) {
 		u32 c, d;
 		int i;
-		u32 a = gx->genMode;
 		u32 b = gx->genMode;
 		for (i = 0; i < ((b >> 0x10) & 7); i++) {
 			switch (i) {
@@ -1607,7 +1564,17 @@ static void __GXSetSUTexRegs(void)
 		}
 
 		for (i = 0; i < ((b >> 0x10) & 0xf); i++) {
-			if ((gx->genMode & (1 << d)) == 0) {
+			u32 uVar1;
+			if (i % 2 == 0)
+			{
+				uVar1 = GX_GET_REG(gx->tref[i], 31, 29);
+			}
+			else
+			{
+				uVar1 = GX_GET_REG(gx->tref[i], 28, 26);
+			}
+
+			if (gx->texmapId[i] && gx->tcsManEnab != 0xff && (gx->genMode & (1 << (uVar1 & 7))) == 0) {
 				__SetSURegs(c, d);
 			}
 		}
