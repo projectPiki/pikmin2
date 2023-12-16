@@ -6,7 +6,9 @@
 
 ARAM::Mgr* gAramMgr;
 
-static const char* sdata2_placeholder = ""; // how in the hell are we going to get the sdata2 ordered correctly?
+#ifdef MATCHING
+static const char* SDATA2_FIX = "";
+#endif
 
 namespace ARAM {
 /*
