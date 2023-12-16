@@ -261,7 +261,7 @@ StateTurnBase::StateTurnBase(int stateID)
  */
 bool StateTurnBase::turnToTarget(EnemyBase* enemy, Vector3f& targetPos)
 {
-	int pikiNum = EnemyFunc::getSurroundPikminNum(enemy, CG_PROPERPARMS(enemy).mFp01(), nullptr);
+	int pikiNum = EnemyFunc::getSurroundPikminNum(enemy, CG_PROPERPARMS(enemy).mFootRange(), nullptr);
 	if (pikiNum > 10) {
 		pikiNum = 10;
 	}

@@ -161,11 +161,11 @@ struct PlantParms : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "Plant::Parms")
-		    , mGrowTimeToMedium(this, 'p000', "成長時間(小→中)", 10.0f, 0.0f, 2000.0f)  // 'growth time (small -> medium)'
-		    , mGrowTimeToLarge(this, 'p001', "成長時間(中→大)", 10.0f, 0.0f, 2000.0f)   // 'growth time (medium -> large)'
+		    , mGrowTimeToMedium(this, 'p000', "成長時間(小→中)", 10.0f, 0.0f, 2000.0f)   // 'growth time (small -> medium)'
+		    , mGrowTimeToLarge(this, 'p001', "成長時間(中→大)", 10.0f, 0.0f, 2000.0f)    // 'growth time (medium -> large)'
 		    , mDamageToDrop(this, 'p002', "ドロップするダメージ", 300.0f, 0.0f, 2500.0f) // 'damage to drop'
 		    , mBearFruitTime(this, 'p003', "実をつけるまでの時間", 10.0f, 0.0f, 2000.0f) // 'time to bear fruit'
-		    , mP004(this, 'p004', "実再生時間", 20.0f, 0.0f, 2000.0f)                    // 'actual play time'
+		    , mActualPlayTime(this, 'p004', "実再生時間", 20.0f, 0.0f, 2000.0f)          // 'actual play time'
 		    , mBurstTime(this, 'p005', "腐るまでの時間", 40.0f, 0.0f, 10000.0f)          // 'time to rot/spoil'
 		{
 		}
@@ -174,7 +174,7 @@ struct PlantParms : public CreatureParms {
 		Parm<f32> mGrowTimeToLarge;  // _110, p001, growth time, medium -> full
 		Parm<f32> mDamageToDrop;     // _138, p002, damage req'd to drop one fruit
 		Parm<f32> mBearFruitTime;    // _160, p003, time to bear fruit
-		Parm<f32> mP004;             // _188, p004
+		Parm<f32> mActualPlayTime;   // _188, p004
 		Parm<f32> mBurstTime;        // _1B0, p005, time til berry bursts
 	};
 

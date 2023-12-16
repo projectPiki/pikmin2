@@ -150,17 +150,17 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "OtakaraBaseParms")
-		    , mFp01(this, 'fp01', "オタカラライフ", 100.0f, 0.0f, 10000.0f) // 'otakara life'
-		    , mFp10(this, 'fp10', "ノーマルアタック", 1.0f, 0.0f, 10.0f)    // 'normal attack'
-		    , mFp11(this, 'fp11', "オタカラアタック", 1.25f, 0.0f, 10.0f)   // 'otakara attack'
-		    , mFp21(this, 'fp21', "オタカラキャッチ", 2.5f, 0.0f, 10.0f)    // 'treasure catch'
+		    , mOtakaraLife(this, 'fp01', "オタカラライフ", 100.0f, 0.0f, 10000.0f) // 'otakara life'
+		    , mNormalAttack(this, 'fp10', "ノーマルアタック", 1.0f, 0.0f, 10.0f)   // 'normal attack'
+		    , mOtakaraAttack(this, 'fp11', "オタカラアタック", 1.25f, 0.0f, 10.0f) // 'otakara attack'
+		    , mTreasureCatch(this, 'fp21', "オタカラキャッチ", 2.5f, 0.0f, 10.0f)  // 'treasure catch'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp10; // _82C
-		Parm<f32> mFp11; // _854
-		Parm<f32> mFp21; // _87C
+		Parm<f32> mOtakaraLife;   // _804
+		Parm<f32> mNormalAttack;  // _82C
+		Parm<f32> mOtakaraAttack; // _854
+		Parm<f32> mTreasureCatch; // _87C
 	};
 
 	Parms() { }

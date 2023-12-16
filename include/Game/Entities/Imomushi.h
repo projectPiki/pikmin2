@@ -132,19 +132,19 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "草登り速度", 2.0f, 0.0f, 10.0f)     // 'plant climbing speed'
-		    , mFp02(this, 'fp02', "種周回速度", 0.3f, 0.0f, 10.0f)     // 'seed circulation speed'
-		    , mFp11(this, 'fp11', "実食い時間", 10.0f, 0.0f, 100.0f)   // 'eating time'
-		    , mFp90(this, 'fp90', "Translate補正", 0.75f, 0.0f, 10.0f) // 'translation correction'
-		    , mFp91(this, 'fp91', "Rotate補正", 0.05f, 0.0f, 1.0f)     // 'rotation correction'
+		    , mPlantClimbingSpeed(this, 'fp01', "草登り速度", 2.0f, 0.0f, 10.0f)        // 'plant climbing speed'
+		    , mSeedCirculationSpeed(this, 'fp02', "種周回速度", 0.3f, 0.0f, 10.0f)      // 'seed circulation speed'
+		    , mEatingTime(this, 'fp11', "実食い時間", 10.0f, 0.0f, 100.0f)              // 'eating time'
+		    , mTranslationCorrection(this, 'fp90', "Translate補正", 0.75f, 0.0f, 10.0f) // 'translation correction'
+		    , mRotationCorrection(this, 'fp91', "Rotate補正", 0.05f, 0.0f, 1.0f)        // 'rotation correction'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp11; // _854
-		Parm<f32> mFp90; // _87C
-		Parm<f32> mFp91; // _8A4
+		Parm<f32> mPlantClimbingSpeed;    // _804
+		Parm<f32> mSeedCirculationSpeed;  // _82C
+		Parm<f32> mEatingTime;            // _854
+		Parm<f32> mTranslationCorrection; // _87C
+		Parm<f32> mRotationCorrection;    // _8A4
 	};
 
 	Parms() { }

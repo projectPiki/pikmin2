@@ -426,7 +426,8 @@ void StateShot::exec(EnemyBase* enemy)
 
 	if (houdai->isStopMotion()) {
 		if (houdai->mShotGunState != 0) {
-			if (houdai->isFinishMotion() || houdai->mShotGunSearchTimer > static_cast<Parms*>(houdai->mParms)->mProperParms.mFp12.mValue) {
+			if (houdai->isFinishMotion()
+			    || houdai->mShotGunSearchTimer > static_cast<Parms*>(houdai->mParms)->mProperParms.mMaxShootingOff.mValue) {
 				houdai->setShotGunEmitKeepTimerOn();
 				houdai->startMotion();
 			}
@@ -493,8 +494,8 @@ void StateShot::exec(EnemyBase* enemy)
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_4) {
 			if (!houdai->isFinishMotion()) {
 				Parms* parms2 = static_cast<Parms*>(houdai->mParms);
-				if (parms2->mGeneral.mSearchAngle.mValue - houdai->mStateTimer > parms2->mProperParms.mFp12.mValue
-				    && houdai->mShotGunSearchTimer > parms2->mProperParms.mFp10.mValue) {
+				if (parms2->mGeneral.mSearchAngle.mValue - houdai->mStateTimer > parms2->mProperParms.mMaxShootingOff.mValue
+				    && houdai->mShotGunSearchTimer > parms2->mProperParms.mMaxShootingOn.mValue) {
 					houdai->setShotGunEmitKeepTimerOff();
 					houdai->stopMotion();
 				}

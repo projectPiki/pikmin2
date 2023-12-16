@@ -147,7 +147,7 @@ void Obj::getShadowParam(ShadowParam& shadow)
 	shadow.mPosition.y               = mPosition.y + mShadowOffset;
 	shadow.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isFlying() || !mBounceTriangle) {
-		shadow.mBoundingSphere.mRadius = C_PROPERPARMS.mFp01.mValue + 100.0f;
+		shadow.mBoundingSphere.mRadius = C_PROPERPARMS.mStandardFlightHeight.mValue + 100.0f;
 	} else {
 		shadow.mBoundingSphere.mRadius = 50.0f;
 	}
@@ -275,16 +275,16 @@ Vector3f Obj::getHeadJointPos() { return mModel->getJoint("head")->getWorldMatri
 f32 Obj::setHeightVelocity()
 {
 	f32 groundY     = mapMgr->getMinY(mPosition);
-	f32 idealHeight = C_PROPERPARMS.mFp01.mValue;
+	f32 idealHeight = C_PROPERPARMS.mStandardFlightHeight.mValue;
 
-	if (mPosition.y - groundY > idealHeight - C_PROPERPARMS.mFp06.mValue) {
+	if (mPosition.y - groundY > idealHeight - C_PROPERPARMS.mVerticalSwingWidth.mValue) {
 		addPitchRatio();
-		idealHeight += C_PROPERPARMS.mFp06.mValue * sinf(mPitchRatio);
+		idealHeight += C_PROPERPARMS.mVerticalSwingWidth.mValue * sinf(mPitchRatio);
 	}
 
 	f32 totalHeight = groundY + idealHeight;
 	totalHeight -= mPosition.y;
-	mCurrentVelocity.y = totalHeight * C_PROPERPARMS.mFp02.mValue;
+	mCurrentVelocity.y = totalHeight * C_PROPERPARMS.mRiseFactor.mValue;
 	return mPosition.y - groundY;
 }
 
@@ -399,8 +399,8 @@ StateID Obj::getFlyingNextState()
 		return MAR_Fall;
 	}
 
-	if (mFallTimer > C_PROPERPARMS.mFp04.mValue || mStuckPikminCount >= C_PROPERPARMS.mIp01.mValue) {
-		if (mStuckPikminCount < C_PROPERPARMS.mIp01.mValue) {
+	if (mFallTimer > C_PROPERPARMS.mShakeOffTime.mValue || mStuckPikminCount >= C_PROPERPARMS.mFallingMinPikiNumber.mValue) {
+		if (mStuckPikminCount < C_PROPERPARMS.mFallingMinPikiNumber.mValue) {
 			return MAR_FlyFlick;
 		} else {
 			return MAR_Fall;
@@ -416,7 +416,7 @@ StateID Obj::getFlyingNextState()
  */
 void Obj::addPitchRatio()
 {
-	mPitchRatio += C_PROPERPARMS.mFp05.mValue * sys->mDeltaTime;
+	mPitchRatio += C_PROPERPARMS.mVerticalSwingSpeed.mValue * sys->mDeltaTime;
 	if (mPitchRatio > TAU) {
 		mPitchRatio -= TAU;
 	}

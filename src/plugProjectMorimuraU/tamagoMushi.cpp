@@ -42,7 +42,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mLeader       = nullptr;
 	_304          = 0;
 	mGoalPosition = mPosition;
-	_2C0          = (0.8f + 0.2f * randFloat()) * C_PROPERPARMS.mFp01.mValue;
+	_2C0          = (0.8f + 0.2f * randFloat()) * C_PROPERPARMS.mSurvivalTime.mValue;
 	if (gameSystem && gameSystem->isZukanMode()) {
 		_2C0 *= 5;
 	}
@@ -325,7 +325,7 @@ void Obj::genItem()
 	if (!gameSystem || !gameSystem->isZukanMode()) {
 		mInPiklopedia = 1;
 
-		if (!(randFloat() > C_PROPERPARMS.mFp03())) {
+		if (!(randFloat() > C_PROPERPARMS.mHoneyRate())) {
 			Vector3f nectarVel = Vector3f(sinf(mFaceDir) * 50.0f, 200.0f, sinf(mFaceDir) * 50.0f); // why are these both sines smh
 			Vector3f nectarPos = mPosition;
 			nectarPos.y += 2.0f;
@@ -573,7 +573,7 @@ bool Obj::isFound()
 		return true;
 	}
 
-	f32 searchRad = C_PROPERPARMS.mFp02();
+	f32 searchRad = C_PROPERPARMS.mAppearanceRange();
 	if (EnemyFunc::getNearestPikmin(this, 180.0f, searchRad, nullptr, nullptr)) {
 		return true;
 	}

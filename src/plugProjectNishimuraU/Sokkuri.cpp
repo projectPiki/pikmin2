@@ -250,10 +250,10 @@ bool Obj::isDisappear()
  */
 void Obj::setNextMoveInfo()
 {
-	f32 travelTime = C_PROPERPARMS.mFp01.mValue - C_PROPERPARMS.mFp02.mValue;
+	f32 travelTime = C_PROPERPARMS.mMaxTravelTime.mValue - C_PROPERPARMS.mMinTravelTime.mValue;
 	mTimer         = randWeightFloat(travelTime);
 
-	f32 movingAngle = C_PROPERPARMS.mFp03.mValue - C_PROPERPARMS.mFp04.mValue;
+	f32 movingAngle = C_PROPERPARMS.mMaxMoveAngle.mValue - C_PROPERPARMS.mMinMoveAngle.mValue;
 	f32 randAngle   = randWeightFloat(movingAngle) + getMinAngle();
 
 	randAngle = randAngle * DEG2RAD * PI;
@@ -286,7 +286,7 @@ void Obj::updateMoveState()
 		newVelocity.y += 5.0f;
 		setVelocity(newVelocity);
 
-		mMoveVelocity = adjustVal(mMoveVelocity, C_PROPERPARMS.mFp21.mValue, 10.0f);
+		mMoveVelocity = adjustVal(mMoveVelocity, C_PROPERPARMS.mUnderwaterMoveSpeed.mValue, 10.0f);
 
 	} else {
 		mMoveVelocity = adjustVal(mMoveVelocity, C_PARMS->mGeneral.mMoveSpeed.mValue, 25.0f);
@@ -301,7 +301,7 @@ void Obj::updateMoveState()
 void Obj::resetMoveVelocity()
 {
 	if (mWaterBox) {
-		mMoveVelocity = C_PROPERPARMS.mFp21.mValue;
+		mMoveVelocity = C_PROPERPARMS.mUnderwaterMoveSpeed.mValue;
 		return;
 	}
 
@@ -315,7 +315,7 @@ void Obj::resetMoveVelocity()
  */
 void Obj::setNextWaitInfo()
 {
-	f32 waitTime = C_PROPERPARMS.mFp12.mValue - C_PROPERPARMS.mFp13.mValue;
+	f32 waitTime = C_PROPERPARMS.mMaxWaitingTime.mValue - C_PROPERPARMS.mMinWaitingTime.mValue;
 	mTimer       = randWeightFloat(waitTime);
 }
 

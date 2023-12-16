@@ -282,7 +282,7 @@ bool Obj::isAppear()
  */
 bool Obj::isFlyKill()
 {
-	if (!(mLod.isFlag(AILOD_IsVisible)) || mUtilityTimer > C_PROPERPARMS.mFp05.mValue) {
+	if (!(mLod.isFlag(AILOD_IsVisible)) || mUtilityTimer > C_PROPERPARMS.mDeathTime.mValue) {
 		return true;
 	}
 

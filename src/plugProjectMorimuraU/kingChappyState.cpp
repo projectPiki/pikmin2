@@ -62,7 +62,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	OBJ(enemy)->mNextState = KINGCHAPPY_NULL;
-	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mFp11.mValue);
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).mWalkingAnimeSpeed.mValue);
 }
 
 /*
@@ -79,9 +79,9 @@ void StateWalk::exec(EnemyBase* enemy)
 			_10++;
 		}
 
-		if (OBJ(enemy)->isOutOfTerritory(1.0f) || CG_PARMS(enemy)->_BC9 || _10 > CG_PROPERPARMS(enemy).mIp01.mValue) {
+		if (OBJ(enemy)->isOutOfTerritory(1.0f) || CG_PARMS(enemy)->_BC9 || _10 > CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue) {
 			OBJ(enemy)->mGoalPosition = enemy->mHomePosition;
-			_10                       = CG_PROPERPARMS(enemy).mIp01.mValue;
+			_10                       = CG_PROPERPARMS(enemy).mPeriodOfIncubation.mValue;
 			if (OBJ(enemy)->isReachToGoal(CG_PARMS(enemy)->mGeneral.mHomeRadius.mValue)) {
 				OBJ(enemy)->mNextState = KINGCHAPPY_Hide;
 				_10                    = 0;
@@ -1639,8 +1639,8 @@ void StateWarCry::exec(EnemyBase* enemy)
 				if (piki->isAlive()) {
 					Vector3f pikiPos = piki->getPosition();
 					if (yMax > pikiPos.y && yMin < pikiPos.y) {
-						roarAngle      = CG_PROPERPARMS(enemy).mFp03();
-						roarDist       = CG_PROPERPARMS(enemy).mFp04();
+						roarAngle      = CG_PROPERPARMS(enemy).mRoarEffectiveAngleDeg();
+						roarDist       = CG_PROPERPARMS(enemy).mRoarEffectiveRange();
 						f32 angDist    = enemy->getCreatureViewAngle(piki);
 						bool distCheck = false;
 						Vector3f sep   = enemy->getTargetSeparation(piki);
@@ -1730,7 +1730,7 @@ void StateDamage::exec(EnemyBase* enemy)
 {
 	if (_10 > 0) {
 		_10++;
-		if (_10 > CG_PROPERPARMS(enemy).mIp03.mValue) {
+		if (_10 > CG_PROPERPARMS(enemy).mBombDamageTime.mValue) {
 			enemy->finishMotion();
 		}
 	}
@@ -1751,7 +1751,7 @@ void StateDamage::exec(EnemyBase* enemy)
 
 		case KEYEVENT_4:
 			int pikiNum = OBJ(enemy)->getPikminInMouth(true);
-			enemy->addDamage(pikiNum * CG_PROPERPARMS(enemy).mFp05.mValue, 1.0f);
+			enemy->addDamage(pikiNum * CG_PROPERPARMS(enemy).mBombDamage.mValue, 1.0f);
 			enemy->mFlickTimer = 0.0f;
 			break;
 
@@ -1818,7 +1818,7 @@ void StateTurn::exec(EnemyBase* enemy)
 {
 	f32 threshold = 0.5f;
 	if (enemy->mTargetCreature) {
-		threshold = PI * (DEG2RAD * CG_PROPERPARMS(enemy).mFp07.mValue);
+		threshold = PI * (DEG2RAD * CG_PROPERPARMS(enemy).mTurningEndAngle.mValue);
 	}
 
 	f32 turnVal = OBJ(enemy)->turnFunc(1.0f);
@@ -2003,8 +2003,8 @@ void StateHideWait::exec(EnemyBase* enemy)
 
 	_10++;
 
-	if (OBJ(enemy)->_2EC || _10 > CG_PROPERPARMS(enemy).mIp02.mValue) {
-		f32 range = CG_PROPERPARMS(enemy).mFp02.mValue * enemy->mScaleModifier;
+	if (OBJ(enemy)->_2EC || _10 > CG_PROPERPARMS(enemy).mTimeToAppearance.mValue) {
+		f32 range = CG_PROPERPARMS(enemy).mDistanceToSpawn.mValue * enemy->mScaleModifier;
 
 		bool doWake;
 		if (EnemyFunc::isThereOlimar(enemy, range, nullptr)) {
@@ -2112,9 +2112,9 @@ void StateAppear::exec(EnemyBase* enemy)
 
 		case KEYEVENT_3:
 			_10             = 0;
-			f32 shakePower  = CG_PROPERPARMS(enemy).mFp10.mValue;
+			f32 shakePower  = CG_PROPERPARMS(enemy).mAppearanceShakeOffPower.mValue;
 			f32 shakeDamage = CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue;
-			f32 shakeRange  = CG_PROPERPARMS(enemy).mFp09.mValue;
+			f32 shakeRange  = CG_PROPERPARMS(enemy).mAppearanceShakeOffRange.mValue;
 
 			EnemyFunc::flickNearbyPikmin(enemy, shakeRange, shakePower, shakeDamage, FLICK_BACKWARD_ANGLE, nullptr);
 			EnemyFunc::flickNearbyNavi(enemy, shakeRange, shakePower, shakeDamage, FLICK_BACKWARD_ANGLE, nullptr);

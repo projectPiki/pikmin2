@@ -48,8 +48,8 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	mitite->startMotion(TAMAGOANIM_Move, nullptr);
 	mitite->resetWalkParm();
 	Parms* parms = static_cast<Parms*>(mitite->mParms);
-	p1           = parms->mProperParms.mIp01.mValue;
-	diff         = parms->mProperParms.mIp02.mValue - p1;
+	p1           = parms->mProperParms.mMinimumWalkTime.mValue;
+	diff         = parms->mProperParms.mMaximumWalkTime.mValue - p1;
 
 	f32 r = (f32)diff * randFloat() + (f32)p1;
 	_14   = (int)r;
@@ -152,8 +152,8 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Obj* mitite  = OBJ(enemy);
 	Parms* parms = static_cast<Parms*>(mitite->mParms);
-	p1           = parms->mProperParms.mIp03.mValue;
-	diff         = parms->mProperParms.mIp04.mValue - p1;
+	p1           = parms->mProperParms.mMinimumAppearanceTime.mValue;
+	diff         = parms->mProperParms.mMaximumAppearanceTime.mValue - p1;
 
 	f32 r = (f32)diff * randFloat() + (f32)p1;
 	_18   = (int)r;

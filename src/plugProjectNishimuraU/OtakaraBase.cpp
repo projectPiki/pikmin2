@@ -207,7 +207,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (collpart) {
 		if (mTreasure) {
-			damageTreasure(C_PARMS->mProperParms.mFp01.mValue);
+			damageTreasure(C_PARMS->mProperParms.mOtakaraLife.mValue);
 		} else {
 			damageTreasure(damage);
 		}
@@ -224,7 +224,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
 {
 	if (mTreasure) {
-		damageTreasure(C_PARMS->mProperParms.mFp01.mValue);
+		damageTreasure(C_PARMS->mProperParms.mOtakaraLife.mValue);
 	}
 	return EnemyBase::earthquakeCallBack(creature, damage);
 }
@@ -369,7 +369,7 @@ void Obj::doEndMovie() { effectDrawOn(); }
 bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 {
 	Creature* target = nullptr;
-	if (!ignoringTreasures && (_2E8 > C_PARMS->mProperParms.mFp21.mValue)) {
+	if (!ignoringTreasures && (_2E8 > C_PARMS->mProperParms.mTreasureCatch.mValue)) {
 		target = getNearestTreasure();
 	} else {
 		_2E8 += sys->mDeltaTime;
@@ -513,7 +513,7 @@ bool Obj::takeTreasure()
 		if (target->isAlive() && !target->mCaptureMatrix && target->isPellet() && static_cast<Pellet*>(target)->isPickable()
 		    && isTakeTreasure()) {
 			mTreasure         = target;
-			mTreasureHealth   = C_PROPERPARMS.mFp01.mValue;
+			mTreasureHealth   = C_PROPERPARMS.mOtakaraLife.mValue;
 			mBodyHeightOffset = 0.5f * static_cast<Pellet*>(target)->getCylinderHeight();
 			mCellRadius       = static_cast<Pellet*>(target)->getPickRadius();
 

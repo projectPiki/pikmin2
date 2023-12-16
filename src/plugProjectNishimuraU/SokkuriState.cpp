@@ -288,7 +288,7 @@ void StateWait::exec(EnemyBase* enemy)
 		transit(sokkuri, SOKKURI_Flick, nullptr);
 
 	} else {
-		if (sokkuri->mTimer > static_cast<Parms*>(sokkuri->mParms)->mProperParms.mFp12.mValue) {
+		if (sokkuri->mTimer > static_cast<Parms*>(sokkuri->mParms)->mProperParms.mMaxWaitingTime.mValue) {
 			if (sokkuri->isDisappear()) {
 				sokkuri->mNextState = SOKKURI_Disappear;
 				sokkuri->finishMotion();
@@ -354,14 +354,14 @@ void StateMoveGround::exec(EnemyBase* enemy)
 	}
 
 	Parms* parms = static_cast<Parms*>(sokkuri->mParms);
-	if (sokkuri->mTimer > parms->mProperParms.mFp01.mValue) {
+	if (sokkuri->mTimer > parms->mProperParms.mMaxTravelTime.mValue) {
 		if (sokkuri->isDisappear()) {
 			sokkuri->mNextState = SOKKURI_Disappear;
 			sokkuri->finishMotion();
 
 		} else {
 			Parms* parms = static_cast<Parms*>(sokkuri->mParms);
-			if (randWeightFloat(1.0f) < parms->mProperParms.mFp11.mValue) {
+			if (randWeightFloat(1.0f) < parms->mProperParms.mWaitingProbability.mValue) {
 				sokkuri->mNextState = SOKKURI_Wait;
 				sokkuri->finishMotion();
 
@@ -440,7 +440,7 @@ void StateMoveWater::exec(EnemyBase* enemy)
 
 	} else {
 		Parms* parms = static_cast<Parms*>(sokkuri->mParms);
-		if (sokkuri->mTimer > parms->mProperParms.mFp01.mValue) {
+		if (sokkuri->mTimer > parms->mProperParms.mMaxTravelTime.mValue) {
 			if (sokkuri->mWaterBox) {
 				sokkuri->mTimer = 0.0f;
 				sokkuri->setNextMoveInfo();
@@ -458,8 +458,8 @@ void StateMoveWater::exec(EnemyBase* enemy)
 
 		} else {
 			Vector3f targetPos = Vector3f(sokkuri->mTargetPosition);
-			EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->mMoveVelocity, parms->mProperParms.mFp22.mValue,
-			                        parms->mProperParms.mFp23.mValue);
+			EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->mMoveVelocity, parms->mProperParms.mUnderwaterRotationRate.mValue,
+			                        parms->mProperParms.mUnderwaterRotationMaxSpeed.mValue);
 		}
 	}
 

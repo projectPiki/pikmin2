@@ -330,13 +330,13 @@ f32 Item::getCurrMaxLife()
 	f32 test  = mTotalLife / depth;
 
 	if (test < 0.25f) {
-		return mgr->mParameters->mParms.mP003.mValue;
+		return mgr->mParameters->mParms.mLife3.mValue;
 	} else if (test < 0.5f) {
-		return mgr->mParameters->mParms.mP002.mValue;
+		return mgr->mParameters->mParms.mLife2.mValue;
 	} else if (test < 0.75f) {
-		return mgr->mParameters->mParms.mP001.mValue;
+		return mgr->mParameters->mParms.mLife1.mValue;
 	} else {
-		return mgr->mParameters->mParms.mP000.mValue;
+		return mgr->mParameters->mParms.mLife0.mValue;
 	}
 }
 

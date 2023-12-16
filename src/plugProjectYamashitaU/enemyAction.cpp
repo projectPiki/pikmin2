@@ -1231,19 +1231,19 @@ bool isStartFlick(EnemyBase* enemy, bool doResetFlickTimer)
 	parms       = static_cast<EnemyParmsBase*>(enemy->mParms);
 	u8 flickInt = (int)flickVal;
 
-	if (enemy->mStuckPikminCount < parms->mGeneral.mIp02.mValue) {
-		if (flickInt > parms->mGeneral.mIp01.mValue) {
+	if (enemy->mStuckPikminCount < parms->mGeneral.mShakeOffSticking1.mValue) {
+		if (flickInt > parms->mGeneral.mShakeOffBlowA.mValue) {
 			result = true;
 		}
-	} else if (enemy->mStuckPikminCount < parms->mGeneral.mIp04.mValue) {
-		if (flickInt > parms->mGeneral.mIp03.mValue) {
+	} else if (enemy->mStuckPikminCount < parms->mGeneral.mShakeOffSticking2.mValue) {
+		if (flickInt > parms->mGeneral.mShakeOffBlowB.mValue) {
 			result = true;
 		}
-	} else if (enemy->mStuckPikminCount < parms->mGeneral.mIp06.mValue) {
-		if (flickInt > parms->mGeneral.mIp05.mValue) {
+	} else if (enemy->mStuckPikminCount < parms->mGeneral.mShakeOffSticking3.mValue) {
+		if (flickInt > parms->mGeneral.mShakeOffBlowC.mValue) {
 			result = true;
 		}
-	} else if (flickInt > parms->mGeneral.mIp07.mValue) {
+	} else if (flickInt > parms->mGeneral.mShakeOffBlowD.mValue) {
 		result = true;
 	}
 

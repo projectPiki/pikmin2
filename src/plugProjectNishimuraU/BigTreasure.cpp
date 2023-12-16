@@ -478,12 +478,12 @@ void Obj::setIKParameter()
 {
 	mIkSystemParms->mMaxTurnAngle        = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
 	mIkSystemParms->mMoveSpeed           = C_PARMS->mGeneral.mMoveSpeed.mValue;
-	mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mFp01.mValue;
-	mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mFp02.mValue;
-	mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mFp03.mValue;
-	mIkSystemParms->mMaxDecelFactor      = C_PROPERPARMS.mFp05.mValue;
-	mIkSystemParms->mMinDecelFactor      = C_PROPERPARMS.mFp04.mValue;
-	mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mFp06.mValue;
+	mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mBaseFactor.mValue;
+	mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mRaiseDecelFactor.mValue;
+	mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mDownwardDecelFactor.mValue;
+	mIkSystemParms->mMaxDecelFactor      = C_PROPERPARMS.mMaxDecelAccelFactor.mValue;
+	mIkSystemParms->mMinDecelFactor      = C_PROPERPARMS.mMinReducedAccelFactor.mValue;
+	mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mLegSwing.mValue;
 }
 
 /*
@@ -1137,20 +1137,20 @@ int Obj::getFireAttackAnimIndex()
 f32 Obj::getPreAttackTimeMax()
 {
 	if (mAttackIndex == BIGATTACK_Elec) {
-		return C_PROPERPARMS.mFp10.mValue;
+		return C_PROPERPARMS.mElectricityWaitTime.mValue;
 
 	} else if (mAttackIndex == BIGATTACK_Fire) {
 		if (isNormalAttack(mAttackIndex)) {
-			return C_PROPERPARMS.mFp11.mValue;
+			return C_PROPERPARMS.mFireWaitTime1.mValue;
 		} else {
-			return C_PROPERPARMS.mFp31.mValue;
+			return C_PROPERPARMS.mFireWaitTime2.mValue;
 		}
 
 	} else if (mAttackIndex == BIGATTACK_Gas) {
-		return C_PROPERPARMS.mFp12.mValue;
+		return C_PROPERPARMS.mGasWaitTime.mValue;
 
 	} else if (mAttackIndex == BIGATTACK_Water) {
-		return C_PROPERPARMS.mFp13.mValue;
+		return C_PROPERPARMS.mWaterWaitTime.mValue;
 	}
 
 	return 5.0f;

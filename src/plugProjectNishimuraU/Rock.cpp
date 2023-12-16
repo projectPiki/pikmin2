@@ -473,7 +473,7 @@ void Obj::updateMoveVelocity()
 
 		changeFaceDir(XZ);
 
-		f32 homingSpeed = C_PROPERPARMS.mFp01.mValue;
+		f32 homingSpeed = C_PROPERPARMS.mSearchRumbleSpeed.mValue;
 		f32 sinTheta    = sin(getFaceDir());
 		f32 oldY        = getTargetVelocity().y;
 		f32 cosTheta    = cos(getFaceDir());

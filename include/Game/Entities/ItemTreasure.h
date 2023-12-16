@@ -103,17 +103,17 @@ struct TreasureParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Plant::Parms")
-		    , mP000(this, 'p000', "ライフ(0)", 250.0f, 1.0f, 60000.0f)  // 'life (0)'
-		    , mP001(this, 'p001', "ライフ(1)", 750.0f, 1.0f, 60000.0f)  // 'life (1)'
-		    , mP002(this, 'p002', "ライフ(2)", 1200.0f, 1.0f, 60000.0f) // 'life (2)'
-		    , mP003(this, 'p003', "ライフ(3)", 1500.0f, 1.0f, 60000.0f) // 'life (3)'
+		    , mLife0(this, 'p000', "ライフ(0)", 250.0f, 1.0f, 60000.0f)  // 'life (0)'
+		    , mLife1(this, 'p001', "ライフ(1)", 750.0f, 1.0f, 60000.0f)  // 'life (1)'
+		    , mLife2(this, 'p002', "ライフ(2)", 1200.0f, 1.0f, 60000.0f) // 'life (2)'
+		    , mLife3(this, 'p003', "ライフ(3)", 1500.0f, 1.0f, 60000.0f) // 'life (3)'
 		{
 		}
 
-		Parm<f32> mP000; // _E8, max life when current depth >= 75% of max depth
-		Parm<f32> mP001; // _110, max life when 75% > current depth >= 50% of max depth
-		Parm<f32> mP002; // _138, max life when 50% > current depth >= 25% of max depth
-		Parm<f32> mP003; // _160, max life when current depth < 25% of max depth
+		Parm<f32> mLife0; // _E8, max life when current depth >= 75% of max depth
+		Parm<f32> mLife1; // _110, max life when 75% > current depth >= 50% of max depth
+		Parm<f32> mLife2; // _138, max life when 50% > current depth >= 25% of max depth
+		Parm<f32> mLife3; // _160, max life when current depth < 25% of max depth
 	};
 
 	TreasureParms() { }

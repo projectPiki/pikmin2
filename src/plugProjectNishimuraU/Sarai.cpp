@@ -97,13 +97,13 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 
 		if (stateId == SARAI_Fall || stateId == SARAI_Damage || stateId == SARAI_TakeOff) {
 			shadowParam.mPosition.y -= 5.0f;
-			shadowParam.mBoundingSphere.mRadius = 100.0f + static_cast<Parms*>(mParms)->mProperParms.mFp01.mValue;
+			shadowParam.mBoundingSphere.mRadius = 100.0f + static_cast<Parms*>(mParms)->mProperParms.mNormalFlightHeight.mValue;
 		} else if (mBounceTriangle) {
 			shadowParam.mPosition.y -= 5.0f;
 			shadowParam.mBoundingSphere.mRadius = 50.0f;
 		} else {
 			shadowParam.mPosition.y -= 20.0f;
-			shadowParam.mBoundingSphere.mRadius = 100.0f + static_cast<Parms*>(mParms)->mProperParms.mFp01.mValue;
+			shadowParam.mBoundingSphere.mRadius = 100.0f + static_cast<Parms*>(mParms)->mProperParms.mNormalFlightHeight.mValue;
 		}
 	} else {
 		shadowParam.mPosition.y             = 2.5f + mPosition.y;
@@ -177,8 +177,8 @@ f32 Obj::setHeightVelocity()
 	int pikminWeightFactor
 	    = (mStuckPikminCount < 0) ? (0) : (mStuckPikminCount <= MAX_PIKMIN_STUCK_FACTOR ? (mStuckPikminCount) : (MAX_PIKMIN_STUCK_FACTOR));
 
-	f32 riseFactor     = static_cast<Parms*>(mParms)->mProperParms.mFp11.mValue;
-	f32 climbingFactor = static_cast<Parms*>(mParms)->mProperParms.mFp12.mValue;
+	f32 riseFactor     = static_cast<Parms*>(mParms)->mProperParms.mClimbingFactor0.mValue;
+	f32 climbingFactor = static_cast<Parms*>(mParms)->mProperParms.mClimbingFactor5.mValue;
 	f32 weight         = pikminWeightFactor;
 
 	// Custom linear interpolation (https://en.wikipedia.org/wiki/Linear_interpolation)
@@ -190,8 +190,8 @@ f32 Obj::setHeightVelocity()
 	f32 mapPosY = mapMgr->getMinY(mPosition);
 
 	// Get intended flight height
-	f32 flightHeight = getCatchTargetNum() ? static_cast<Parms*>(mParms)->mProperParms.mFp02.mValue  // Grab flight height
-	                                       : static_cast<Parms*>(mParms)->mProperParms.mFp01.mValue; // Normal flight height
+	f32 flightHeight = getCatchTargetNum() ? static_cast<Parms*>(mParms)->mProperParms.mGrabFlightHeight.mValue    // Grab flight height
+	                                       : static_cast<Parms*>(mParms)->mProperParms.mNormalFlightHeight.mValue; // Normal flight height
 
 	// Upward velocity is offset by map height
 	mCurrentVelocity.y = velFactor * ((mapPosY + flightHeight) - mPosition.y);
@@ -251,7 +251,7 @@ void Obj::fallMeckGround()
 
 		Vector3f fallVelocity = Vector3f(0.0f);
 
-		const f32 fallMeckSpeed = static_cast<Parms*>(mParms)->mProperParms.mFp41.mValue;
+		const f32 fallMeckSpeed = static_cast<Parms*>(mParms)->mProperParms.mFallMeckSpeed.mValue;
 		fallVelocity.y -= fallMeckSpeed;
 		c->setVelocity(fallVelocity);
 	}
@@ -303,8 +303,8 @@ int Obj::getNextStateOnHeight()
 			}
 		}
 
-		f32 va1 = static_cast<Parms*>(mParms)->mProperParms.mFp21.mValue;
-		f32 va2 = static_cast<Parms*>(mParms)->mProperParms.mFp22.mValue;
+		f32 va1 = static_cast<Parms*>(mParms)->mProperParms.mPayoffProbability1.mValue;
+		f32 va2 = static_cast<Parms*>(mParms)->mProperParms.mPayoffProbability5.mValue;
 
 		f32 fv1 = v1;
 		f32 f4  = (4.0f - fv1) / 4;

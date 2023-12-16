@@ -306,143 +306,150 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "ベース係数", 3.0f, 0.0f, 10.0f)                  // 'base factor'
-		    , mFp02(this, 'fp02', "上げ減速係数", -0.2f, -5.0f, 5.0f)               // 'raising deceleration factor'
-		    , mFp03(this, 'fp03', "下げ加速係数", 0.5f, -5.0f, 5.0f)                // 'downward acceleration factor'
-		    , mFp04(this, 'fp04', "最低減加速係数", -2.0f, -10.0f, 10.0f)           // 'min reduced acceleration factor'
-		    , mFp05(this, 'fp05', "最高減加速係数", 10.0f, -10.0f, 10.0f)           // 'max deceleration acceleration factor'
-		    , mFp06(this, 'fp06', "足の振り上げ", 120.0f, 0.0f, 200.0f)             // 'leg swing'
-		    , mFp10(this, 'fp10', "予\備時間(電気)", 2.5f, 0.0f, 10.0f)             // 'wait time (electricity)'
-		    , mFp11(this, 'fp11', "予\備時間(火:1)", 2.8f, 0.0f, 10.0f)             // 'wait time (fire:1)'
-		    , mFp31(this, 'fp31', "予\備時間(火:2)", 2.5f, 0.0f, 10.0f)             // 'wait time (fire:2)'
-		    , mFp12(this, 'fp12', "予\備時間(ガス)", 2.5f, 0.0f, 10.0f)             // 'wait time (gas)'
-		    , mFp13(this, 'fp13', "予\備時間(水)", 2.5f, 0.0f, 10.0f)               // 'wait time (water)'
-		    , mElecAttackTimeMax(this, 'fp20', "攻撃時間(電気)", 5.0f, 0.0f, 10.0f) // 'attack time (electricity)'
-		    , mFireAttackTimeMax(this, 'fp21', "攻撃時間(火)", 5.0f, 0.0f, 10.0f)   // 'attack time (fire)'
-		    , mGasAttackTimeMax(this, 'fp22', "攻撃時間(ガス)", 5.0f, 0.0f, 10.0f)  // 'attack time (gas)'
-		    , mWaterAttackTimeMax(this, 'fp23', "攻撃時間(水)", 5.0f, 0.0f, 10.0f)  // 'attack time (water)'
-		    , mFe00(this, 'fe00', "跳返係数(1-1)", 0.75f, 0.0f, 1.0f)               // 'bounce coefficient (1-1)'
-		    , mFe01(this, 'fe01', "摩擦係数(1-1)", 0.65f, 0.0f, 1.0f)               // 'friction coefficient (1-1)'
-		    , mFe02(this, 'fe02', "XZ初速Base(1-1)", 100.0f, 0.0f, 500.0f)          // 'XZ muzzle velocity Base (1-1)'
-		    , mFe03(this, 'fe03', "XZ初速Rand(1-1)", 220.0f, 0.0f, 500.0f)          // 'XZ muzzle velocity Rand (1-1)'
-		    , mFe04(this, 'fe04', "Y初速Base(1-1)", 170.0f, 0.0f, 500.0f)           // 'Y muzzle velocity Base (1-1)'
-		    , mFe05(this, 'fe05', "Y初速Rand(1-1)", 200.0f, 0.0f, 500.0f)           // 'Y muzzle velocity Rand (1-1)'
-		    , mFe06(this, 'fe06', "放電開始(1-1)", 2.7f, 0.0f, 5.0f)                // 'discharge start (1-1)'
-		    , mFe08(this, 'fe08', "連鎖間隔(1-1)", 0.02f, 0.0f, 1.0f)               // 'chain interval (1-1)'
-		    , mFe07(this, 'fe07', "放電数(1-1)", 10, 0, 16)                         // 'number of discharges (1-1)'
-		    , mFe10(this, 'fe10', "跳返係数(1-2)", 0.7f, 0.0f, 1.0f)                // 'bounce coefficient (1-2)'
-		    , mFe11(this, 'fe11', "摩擦係数(1-2)", 0.65f, 0.0f, 1.0f)               // 'friction coefficient (1-2)'
-		    , mFe12(this, 'fe12', "XZ初速Base(1-2)", 80.0f, 0.0f, 500.0f)           // 'XZ muzzle velocity Base (1-2)'
-		    , mFe13(this, 'fe13', "XZ初速Rand(1-2)", 250.0f, 0.0f, 500.0f)          // 'XZ muzzle velocity Rand (1-2)'
-		    , mFe14(this, 'fe14', "Y初速Base(1-2)", 350.0f, 0.0f, 500.0f)           // 'Y muzzle velocity Base (1-2)'
-		    , mFe15(this, 'fe15', "Y初速Rand(1-2)", 100.0f, 0.0f, 500.0f)           // 'Y muzzle velocity Rand (1-2)'
-		    , mFe16(this, 'fe16', "放電開始(1-2)", 4.5f, 0.0f, 5.0f)                // 'discharge start (1-2)'
-		    , mFe18(this, 'fe18', "連鎖間隔(1-2)", 0.02f, 0.0f, 1.0f)               // 'chain interval (1-2)'
-		    , mFe17(this, 'fe17', "放電数(1-2)", 12, 0, 16)                         // 'number of discharges (1-2)'
-		    , mFe20(this, 'fe20', "跳返係数(2-1)", 0.97f, 0.0f, 1.0f)               // 'bounce coefficient (2-1)'
-		    , mFe21(this, 'fe21', "摩擦係数(2-1)", 0.75f, 0.0f, 1.0f)               // 'friction coefficient (2-1)'
-		    , mFe22(this, 'fe22', "XZ初速Base(2-1)", 60.0f, 0.0f, 500.0f)           // 'XZ muzzle velocity Base (2-1)'
-		    , mFe23(this, 'fe23', "XZ初速Rand(2-1)", 70.0f, 0.0f, 500.0f)           // 'XZ muzzle velocity Rand (2-1)'
-		    , mFe24(this, 'fe24', "Y初速Base(2-1)", 350.0f, 0.0f, 500.0f)           // 'Y muzzle velocity Base (2-1)'
-		    , mFe25(this, 'fe25', "Y初速Rand(2-1)", 100.0f, 0.0f, 500.0f)           // 'Y muzzle velocity Rand (2-1)'
-		    , mFe26(this, 'fe26', "放電開始(2-1)", 0.5f, 0.0f, 5.0f)                // 'discharge start (2-1)'
-		    , mFe28(this, 'fe28', "連鎖間隔(2-1)", 0.25f, 0.0f, 1.0f)               // 'chain interval (2-1)'
-		    , mFe27(this, 'fe27', "放電数(2-1)", 8, 0, 16)                          // 'number of discharges (2-1)'
-		    , mFe30(this, 'fe30', "跳返係数(2-2)", 0.2f, 0.0f, 1.0f)                // 'bounce coefficient (2-2)'
-		    , mFe31(this, 'fe31', "摩擦係数(2-2)", 0.985f, 0.0f, 1.0f)              // 'friction coefficient (2-2)'
-		    , mFe32(this, 'fe32', "XZ初速Base(2-2)", 100.0f, 0.0f, 500.0f)          // 'XZ muzzle velocity Base (2-2)'
-		    , mFe33(this, 'fe33', "XZ初速Rand(2-2)", 90.0f, 0.0f, 500.0f)           // 'XZ muzzle velocity Rand (2-2)'
-		    , mFe34(this, 'fe34', "Y初速Base(2-2)", 70.0f, 0.0f, 500.0f)            // 'Y muzzle velocity Base (2-2)'
-		    , mFe35(this, 'fe35', "Y初速Rand(2-2)", 20.0f, 0.0f, 500.0f)            // 'Y muzzle velocity Rand (2-2)'
-		    , mFe36(this, 'fe36', "放電開始(2-2)", 0.2f, 0.0f, 5.0f)                // 'discharge start (2-2)'
-		    , mFe38(this, 'fe38', "連鎖間隔(2-2)", 0.15f, 0.0f, 1.0f)               // 'chain interval (2-2)'
-		    , mFe37(this, 'fe37', "放電数(2-2)", 14, 0, 16)                         // 'number of discharges (2-2)'
-		    , mFe99(this, 'fe99', "パターンチェック", 0, 0, 4)                      // 'pattern check'
-		    , mFf00(this, 'ff00', "火炎スケール(1)", 1.0f, 0.5f, 5.0f)              // 'flame scale (1)'
-		    , mFf10(this, 'ff10', "火炎スケール(2)", 1.25f, 0.5f, 5.0f)             // 'flame scale (2)'
-		    , mFg99x01(this, 'fg99', "パターンチェック", 0, 0, 2)                   // 'pattern check'
-		    , mFg00(this, 'fg00', "回転スピード(1)", 0.015f, 0.01f, 0.03f)          // 'rotation speed (1)'
-		    , mFg10(this, 'fg10', "回転スピード(2)", 0.02f, 0.01f, 0.03f)           // 'rotation speed (2)'
-		    , mFg30(this, 'fg30', "反転時間(2-1)", 30.0f, 0.0f, 30.0f)              // 'reversal time (2-1)'
-		    , mFg40(this, 'fg40', "反転時間(2-2)", 2.0f, 0.0f, 30.0f)               // 'reversal time (2-2)'
-		    , mFg99x02(this, 'fg99', "パターンチェック", 0, 0, 3)                   // 'pattern check'
-		    , mFw00(this, 'fw00', "放水間隔(1)", 0.5f, 0.1f, 1.0f)                  // 'water discharge interval (1)'
-		    , mFw01(this, 'fw01', "ランダム角度(1)", 0.5f, 0.0f, 1.0f)              // 'random angle (1)'
-		    , mFw02(this, 'fw02', "ランダム距離(1)", 100.0f, 0.0f, 500.0f)          // 'random distance (1)'
-		    , mFw10(this, 'fw10', "放水間隔(2)", 0.25f, 0.1f, 1.0f)                 // 'water discharge interval (2)
-		    , mFw11(this, 'fw11', "ランダム角度(2)", 0.4f, 0.0f, 1.0f)              // 'random angle (2)'
-		    , mFw12(this, 'fw12', "ランダム距離(2)", 50.0f, 0.0f, 500.0f)           // 'random distance (2)'
-		    , mFw99(this, 'fw99', "パターンチェック", 0, 0, 2)                      // 'pattern check'
+		    , mBaseFactor(this, 'fp01', "ベース係数", 3.0f, 0.0f, 10.0f)                   // 'base factor'
+		    , mRaiseDecelFactor(this, 'fp02', "上げ減速係数", -0.2f, -5.0f, 5.0f)          // 'raising deceleration factor'
+		    , mDownwardDecelFactor(this, 'fp03', "下げ加速係数", 0.5f, -5.0f, 5.0f)        // 'downward acceleration factor'
+		    , mMinReducedAccelFactor(this, 'fp04', "最低減加速係数", -2.0f, -10.0f, 10.0f) // 'min reduced acceleration factor'
+		    , mMaxDecelAccelFactor(this, 'fp05', "最高減加速係数", 10.0f, -10.0f, 10.0f)   // 'max deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', "足の振り上げ", 120.0f, 0.0f, 200.0f)                // 'leg swing'
+		    , mElectricityWaitTime(this, 'fp10', "予\備時間(電気)", 2.5f, 0.0f, 10.0f)     // 'wait time (electricity)'
+		    , mFireWaitTime1(this, 'fp11', "予\備時間(火:1)", 2.8f, 0.0f, 10.0f)           // 'wait time (fire:1)'
+		    , mFireWaitTime2(this, 'fp31', "予\備時間(火:2)", 2.5f, 0.0f, 10.0f)           // 'wait time (fire:2)'
+		    , mGasWaitTime(this, 'fp12', "予\備時間(ガス)", 2.5f, 0.0f, 10.0f)             // 'wait time (gas)'
+		    , mWaterWaitTime(this, 'fp13', "予\備時間(水)", 2.5f, 0.0f, 10.0f)             // 'wait time (water)'
+		    , mElecAttackTimeMax(this, 'fp20', "攻撃時間(電気)", 5.0f, 0.0f, 10.0f)        // 'attack time (electricity)'
+		    , mFireAttackTimeMax(this, 'fp21', "攻撃時間(火)", 5.0f, 0.0f, 10.0f)          // 'attack time (fire)'
+		    , mGasAttackTimeMax(this, 'fp22', "攻撃時間(ガス)", 5.0f, 0.0f, 10.0f)         // 'attack time (gas)'
+		    , mWaterAttackTimeMax(this, 'fp23', "攻撃時間(水)", 5.0f, 0.0f, 10.0f)         // 'attack time (water)'
+
+		    , mBounceCoefficient1_1(this, 'fe00', "跳返係数(1-1)", 0.75f, 0.0f, 1.0f)         // 'bounce coefficient (1-1)'
+		    , mFrictionCoefficient1_1(this, 'fe01', "摩擦係数(1-1)", 0.65f, 0.0f, 1.0f)       // 'friction coefficient (1-1)'
+		    , mBaseMuzzleVelocityXZ1_1(this, 'fe02', "XZ初速Base(1-1)", 100.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Base (1-1)'
+		    , mRandMuzzleVelocityXZ1_1(this, 'fe03', "XZ初速Rand(1-1)", 220.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Rand (1-1)'
+		    , mBaseMuzzleVelocityY1_1(this, 'fe04', "Y初速Base(1-1)", 170.0f, 0.0f, 500.0f)   // 'Y muzzle velocity Base (1-1)'
+		    , mRandMuzzleVelocityY1_1(this, 'fe05', "Y初速Rand(1-1)", 200.0f, 0.0f, 500.0f)   // 'Y muzzle velocity Rand (1-1)'
+		    , mDischargeStart1_1(this, 'fe06', "放電開始(1-1)", 2.7f, 0.0f, 5.0f)             // 'discharge start (1-1)'
+		    , mChainInterval1_1(this, 'fe08', "連鎖間隔(1-1)", 0.02f, 0.0f, 1.0f)             // 'chain interval (1-1)'
+		    , mDischargeCount1_1(this, 'fe07', "放電数(1-1)", 10, 0, 16)                      // 'number of discharges (1-1)'
+
+		    , mBounceCoefficient1_2(this, 'fe10', "跳返係数(1-2)", 0.7f, 0.0f, 1.0f)          // 'bounce coefficient (1-2)'
+		    , mFrictionCoefficient1_2(this, 'fe11', "摩擦係数(1-2)", 0.65f, 0.0f, 1.0f)       // 'friction coefficient (1-2)'
+		    , mBaseMuzzleVelocityXZ1_2(this, 'fe12', "XZ初速Base(1-2)", 80.0f, 0.0f, 500.0f)  // 'XZ muzzle velocity Base (1-2)'
+		    , mRandMuzzleVelocityXZ1_2(this, 'fe13', "XZ初速Rand(1-2)", 250.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Rand (1-2)'
+		    , mBaseMuzzleVelocityY1_2(this, 'fe14', "Y初速Base(1-2)", 350.0f, 0.0f, 500.0f)   // 'Y muzzle velocity Base (1-2)'
+		    , mRandMuzzleVelocityY1_2(this, 'fe15', "Y初速Rand(1-2)", 100.0f, 0.0f, 500.0f)   // 'Y muzzle velocity Rand (1-2)'
+		    , mDischargeStart1_2(this, 'fe16', "放電開始(1-2)", 4.5f, 0.0f, 5.0f)             // 'discharge start (1-2)'
+		    , mChainInterval1_2(this, 'fe18', "連鎖間隔(1-2)", 0.02f, 0.0f, 1.0f)             // 'chain interval (1-2)'
+		    , mDischargeCount1_2(this, 'fe17', "放電数(1-2)", 12, 0, 16)                      // 'number of discharges (1-2)'
+
+		    , mBounceCoefficient2_1(this, 'fe20', "跳返係数(2-1)", 0.97f, 0.0f, 1.0f)        // 'bounce coefficient (2-1)'
+		    , mFrictionCoefficient2_1(this, 'fe21', "摩擦係数(2-1)", 0.75f, 0.0f, 1.0f)      // 'friction coefficient (2-1)'
+		    , mBaseMuzzleVelocityXZ2_1(this, 'fe22', "XZ初速Base(2-1)", 60.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Base (2-1)'
+		    , mRandMuzzleVelocityXZ2_1(this, 'fe23', "XZ初速Rand(2-1)", 70.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Rand (2-1)'
+		    , mBaseMuzzleVelocityY2_1(this, 'fe24', "Y初速Base(2-1)", 350.0f, 0.0f, 500.0f)  // 'Y muzzle velocity Base (2-1)'
+		    , mRandMuzzleVelocityY2_1(this, 'fe25', "Y初速Rand(2-1)", 100.0f, 0.0f, 500.0f)  // 'Y muzzle velocity Rand (2-1)'
+		    , mDischargeStart2_1(this, 'fe26', "放電開始(2-1)", 0.5f, 0.0f, 5.0f)            // 'discharge start (2-1)'
+		    , mChainInterval2_1(this, 'fe28', "連鎖間隔(2-1)", 0.25f, 0.0f, 1.0f)            // 'chain interval (2-1)'
+		    , mDischargeCount2_1(this, 'fe27', "放電数(2-1)", 8, 0, 16)                      // 'number of discharges (2-1)'
+
+		    , mBounceCoefficient2_2(this, 'fe30', "跳返係数(2-2)", 0.2f, 0.0f, 1.0f)          // 'bounce coefficient (2-2)'
+		    , mFrictionCoefficient2_2(this, 'fe31', "摩擦係数(2-2)", 0.985f, 0.0f, 1.0f)      // 'friction coefficient (2-2)'
+		    , mBaseMuzzleVelocityXZ2_2(this, 'fe32', "XZ初速Base(2-2)", 100.0f, 0.0f, 500.0f) // 'XZ muzzle velocity Base (2-2)'
+		    , mRandMuzzleVelocityXZ2_2(this, 'fe33', "XZ初速Rand(2-2)", 90.0f, 0.0f, 500.0f)  // 'XZ muzzle velocity Rand (2-2)'
+		    , mBaseMuzzleVelocityY2_2(this, 'fe34', "Y初速Base(2-2)", 70.0f, 0.0f, 500.0f)    // 'Y muzzle velocity Base (2-2)'
+		    , mRandMuzzleVelocityY2_2(this, 'fe35', "Y初速Rand(2-2)", 20.0f, 0.0f, 500.0f)    // 'Y muzzle velocity Rand (2-2)'
+		    , mDischargeStart2_2(this, 'fe36', "放電開始(2-2)", 0.2f, 0.0f, 5.0f)             // 'discharge start (2-2)'
+		    , mChainInterval2_2(this, 'fe38', "連鎖間隔(2-2)", 0.15f, 0.0f, 1.0f)             // 'chain interval (2-2)'
+		    , mDischargeCount2_2(this, 'fe37', "放電数(2-2)", 14, 0, 16)                      // 'number of discharges (2-2)'
+
+		    , mPatternCheckFlame(this, 'fe99', "パターンチェック", 0, 0, 4)    // 'pattern check'
+		    , mFlameScale1(this, 'ff00', "火炎スケール(1)", 1.0f, 0.5f, 5.0f)  // 'flame scale (1)'
+		    , mFlameScale2(this, 'ff10', "火炎スケール(2)", 1.25f, 0.5f, 5.0f) // 'flame scale (2)'
+
+		    , mPatternCheckRotation(this, 'fg99', "パターンチェック", 0, 0, 2)       // 'pattern check'
+		    , mRotationSpeed1(this, 'fg00', "回転スピード(1)", 0.015f, 0.01f, 0.03f) // 'rotation speed (1)'
+		    , mRotationSpeed2(this, 'fg10', "回転スピード(2)", 0.02f, 0.01f, 0.03f)  // 'rotation speed (2)'
+		    , mReversalTime2_1(this, 'fg30', "反転時間(2-1)", 30.0f, 0.0f, 30.0f)    // 'reversal time (2-1)'
+		    , mReversalTime2_2(this, 'fg40', "反転時間(2-2)", 2.0f, 0.0f, 30.0f)     // 'reversal time (2-2)'
+
+		    , mPatternCheckWater(this, 'fg99', "パターンチェック", 0, 0, 3)            // 'pattern check'
+		    , mWaterDischargeInterval1(this, 'fw00', "放水間隔(1)", 0.5f, 0.1f, 1.0f)  // 'water discharge interval (1)'
+		    , mRandomAngle1(this, 'fw01', "ランダム角度(1)", 0.5f, 0.0f, 1.0f)         // 'random angle (1)'
+		    , mRandomDistance1(this, 'fw02', "ランダム距離(1)", 100.0f, 0.0f, 500.0f)  // 'random distance (1)'
+		    , mWaterDischargeInterval2(this, 'fw10', "放水間隔(2)", 0.25f, 0.1f, 1.0f) // 'water discharge interval (2)
+		    , mRandomAngle2(this, 'fw11', "ランダム角度(2)", 0.4f, 0.0f, 1.0f)         // 'random angle (2)'
+		    , mRandomDistance2(this, 'fw12', "ランダム距離(2)", 50.0f, 0.0f, 500.0f)   // 'random distance (2)'
+		    , mPatternCheck4(this, 'fw99', "パターンチェック", 0, 0, 2)                // 'pattern check'
 		{
 		}
 
-		Parm<f32> mFp01;               // _804
-		Parm<f32> mFp02;               // _82C
-		Parm<f32> mFp03;               // _854
-		Parm<f32> mFp04;               // _87C
-		Parm<f32> mFp05;               // _8A4
-		Parm<f32> mFp06;               // _8CC
-		Parm<f32> mFp10;               // _8F4
-		Parm<f32> mFp11;               // _91C
-		Parm<f32> mFp31;               // _944
-		Parm<f32> mFp12;               // _96C
-		Parm<f32> mFp13;               // _994
-		Parm<f32> mElecAttackTimeMax;  // _9BC, fp20
-		Parm<f32> mFireAttackTimeMax;  // _9E4, fp21
-		Parm<f32> mGasAttackTimeMax;   // _A0C, fp22
-		Parm<f32> mWaterAttackTimeMax; // _A34, fp23
-		Parm<f32> mFe00;               // _A5C
-		Parm<f32> mFe01;               // _A84
-		Parm<f32> mFe02;               // _AAC
-		Parm<f32> mFe03;               // _AD4
-		Parm<f32> mFe04;               // _AFC
-		Parm<f32> mFe05;               // _B24
-		Parm<f32> mFe06;               // _B4C
-		Parm<f32> mFe08;               // _B74
-		Parm<int> mFe07;               // _B9C
-		Parm<f32> mFe10;               // _BC4
-		Parm<f32> mFe11;               // _BEC
-		Parm<f32> mFe12;               // _C14
-		Parm<f32> mFe13;               // _C3C
-		Parm<f32> mFe14;               // _C64
-		Parm<f32> mFe15;               // _C8C
-		Parm<f32> mFe16;               // _CB4
-		Parm<f32> mFe18;               // _CDC
-		Parm<int> mFe17;               // _D04
-		Parm<f32> mFe20;               // _D2C
-		Parm<f32> mFe21;               // _D54
-		Parm<f32> mFe22;               // _D7C
-		Parm<f32> mFe23;               // _DA4
-		Parm<f32> mFe24;               // _DCC
-		Parm<f32> mFe25;               // _DF4
-		Parm<f32> mFe26;               // _E1C
-		Parm<f32> mFe28;               // _E44
-		Parm<int> mFe27;               // _E6C
-		Parm<f32> mFe30;               // _E94
-		Parm<f32> mFe31;               // _EBC
-		Parm<f32> mFe32;               // _EE4
-		Parm<f32> mFe33;               // _F0C
-		Parm<f32> mFe34;               // _F34
-		Parm<f32> mFe35;               // _F5C
-		Parm<f32> mFe36;               // _F84
-		Parm<f32> mFe38;               // _FAC
-		Parm<int> mFe37;               // _FD4
-		Parm<int> mFe99;               // _FFC
-		Parm<f32> mFf00;               // _1024
-		Parm<f32> mFf10;               // _104C
-		Parm<int> mFg99x01;            // _1074
-		Parm<f32> mFg00;               // _109C
-		Parm<f32> mFg10;               // _10C4
-		Parm<f32> mFg30;               // _10EC
-		Parm<f32> mFg40;               // _1114
-		Parm<int> mFg99x02;            // _113C
-		Parm<f32> mFw00;               // _1164
-		Parm<f32> mFw01;               // _118C
-		Parm<f32> mFw02;               // _11B4
-		Parm<f32> mFw10;               // _11DC
-		Parm<f32> mFw11;               // _1204
-		Parm<f32> mFw12;               // _122C
-		Parm<int> mFw99;               // _1254
+		Parm<f32> mBaseFactor;              // _804
+		Parm<f32> mRaiseDecelFactor;        // _82C
+		Parm<f32> mDownwardDecelFactor;     // _854
+		Parm<f32> mMinReducedAccelFactor;   // _87C
+		Parm<f32> mMaxDecelAccelFactor;     // _8A4
+		Parm<f32> mLegSwing;                // _8CC
+		Parm<f32> mElectricityWaitTime;     // _8F4
+		Parm<f32> mFireWaitTime1;           // _91C
+		Parm<f32> mFireWaitTime2;           // _944
+		Parm<f32> mGasWaitTime;             // _96C
+		Parm<f32> mWaterWaitTime;           // _994
+		Parm<f32> mElecAttackTimeMax;       // _9BC, fp20
+		Parm<f32> mFireAttackTimeMax;       // _9E4, fp21
+		Parm<f32> mGasAttackTimeMax;        // _A0C, fp22
+		Parm<f32> mWaterAttackTimeMax;      // _A34, fp23
+		Parm<f32> mBounceCoefficient1_1;    // _A5C
+		Parm<f32> mFrictionCoefficient1_1;  // _A84
+		Parm<f32> mBaseMuzzleVelocityXZ1_1; // _AAC
+		Parm<f32> mRandMuzzleVelocityXZ1_1; // _AD4
+		Parm<f32> mBaseMuzzleVelocityY1_1;  // _AFC
+		Parm<f32> mRandMuzzleVelocityY1_1;  // _B24
+		Parm<f32> mDischargeStart1_1;       // _B4C
+		Parm<f32> mChainInterval1_1;        // _B74
+		Parm<int> mDischargeCount1_1;       // _B9C
+		Parm<f32> mBounceCoefficient1_2;    // _BC4
+		Parm<f32> mFrictionCoefficient1_2;  // _BEC
+		Parm<f32> mBaseMuzzleVelocityXZ1_2; // _C14
+		Parm<f32> mRandMuzzleVelocityXZ1_2; // _C3C
+		Parm<f32> mBaseMuzzleVelocityY1_2;  // _C64
+		Parm<f32> mRandMuzzleVelocityY1_2;  // _C8C
+		Parm<f32> mDischargeStart1_2;       // _CB4
+		Parm<f32> mChainInterval1_2;        // _CDC
+		Parm<int> mDischargeCount1_2;       // _D04
+		Parm<f32> mBounceCoefficient2_1;    // _D2C
+		Parm<f32> mFrictionCoefficient2_1;  // _D54
+		Parm<f32> mBaseMuzzleVelocityXZ2_1; // _D7C
+		Parm<f32> mRandMuzzleVelocityXZ2_1; // _DA4
+		Parm<f32> mBaseMuzzleVelocityY2_1;  // _DCC
+		Parm<f32> mRandMuzzleVelocityY2_1;  // _DF4
+		Parm<f32> mDischargeStart2_1;       // _E1C
+		Parm<f32> mChainInterval2_1;        // _E44
+		Parm<int> mDischargeCount2_1;       // _E6C
+		Parm<f32> mBounceCoefficient2_2;    // _E94
+		Parm<f32> mFrictionCoefficient2_2;  // _EBC
+		Parm<f32> mBaseMuzzleVelocityXZ2_2; // _EE4
+		Parm<f32> mRandMuzzleVelocityXZ2_2; // _F0C
+		Parm<f32> mBaseMuzzleVelocityY2_2;  // _F34
+		Parm<f32> mRandMuzzleVelocityY2_2;  // _F5C
+		Parm<f32> mDischargeStart2_2;       // _F84
+		Parm<f32> mChainInterval2_2;        // _FAC
+		Parm<int> mDischargeCount2_2;       // _FD4
+		Parm<int> mPatternCheckFlame;       // _FFC
+		Parm<f32> mFlameScale1;             // _1024
+		Parm<f32> mFlameScale2;             // _104C
+		Parm<int> mPatternCheckRotation;    // _1074
+		Parm<f32> mRotationSpeed1;          // _109C
+		Parm<f32> mRotationSpeed2;          // _10C4
+		Parm<f32> mReversalTime2_1;         // _10EC
+		Parm<f32> mReversalTime2_2;         // _1114
+		Parm<int> mPatternCheckWater;       // _113C
+		Parm<f32> mWaterDischargeInterval1; // _1164
+		Parm<f32> mRandomAngle1;            // _118C
+		Parm<f32> mRandomDistance1;         // _11B4
+		Parm<f32> mWaterDischargeInterval2; // _11DC
+		Parm<f32> mRandomAngle2;            // _1204
+		Parm<f32> mRandomDistance2;         // _122C
+		Parm<int> mPatternCheck4;           // _1254
 	};
 
 	Parms() { }

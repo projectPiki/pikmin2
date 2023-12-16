@@ -381,12 +381,12 @@ void Obj::setIKParameter()
 	mIkSystemParms->_28                  = 0.67f;
 	mIkSystemParms->mMaxTurnAngle        = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
 	mIkSystemParms->mMoveSpeed           = C_PARMS->mGeneral.mMoveSpeed.mValue;
-	mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mFp01.mValue;
-	mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mFp02.mValue;
-	mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mFp03.mValue;
-	mIkSystemParms->mMaxDecelFactor      = C_PROPERPARMS.mFp05.mValue;
-	mIkSystemParms->mMinDecelFactor      = C_PROPERPARMS.mFp04.mValue;
-	mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mFp06.mValue;
+	mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mBaseFactor.mValue;
+	mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mRaiseDecelFactor.mValue;
+	mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mDownwardAccelFactor.mValue;
+	mIkSystemParms->mMaxDecelFactor      = C_PROPERPARMS.mMaxDecelAccelFactor.mValue;
+	mIkSystemParms->mMinDecelFactor      = C_PROPERPARMS.mMinDecelAccelFactor.mValue;
+	mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mLegSwing.mValue;
 }
 
 /*

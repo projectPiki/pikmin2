@@ -152,7 +152,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDamage::exec(EnemyBase* enemy)
 {
 	Obj* sarai = OBJ(enemy);
-	if (sarai->mHealth <= 0.0f || sarai->_2C0 > CG_PROPERPARMS(sarai).mFp23.mValue || sarai->getStickPikminNum() == 0) {
+	if (sarai->mHealth <= 0.0f || sarai->_2C0 > CG_PROPERPARMS(sarai).mStrugglingTime.mValue || sarai->getStickPikminNum() == 0) {
 		sarai->finishMotion();
 	}
 
@@ -196,7 +196,7 @@ void StateTakeOff::exec(EnemyBase* enemy)
 	Obj* sarai = OBJ(enemy);
 	f32 val    = sarai->setHeightVelocity();
 
-	if (sarai->mHealth <= 0.0f || val > CG_PROPERPARMS(sarai).mFp03.mValue) {
+	if (sarai->mHealth <= 0.0f || val > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue) {
 		sarai->finishMotion();
 	}
 
@@ -311,11 +311,11 @@ void StateWait::exec(EnemyBase* enemy)
 	f32 val    = sarai->setHeightVelocity();
 
 	FakePiki* target = sarai->getAttackableTarget();
-	if (target || sarai->_2C0 > CG_PROPERPARMS(sarai).mFp06.mValue) {
+	if (target || sarai->_2C0 > CG_PROPERPARMS(sarai).mWaitTime.mValue) {
 		sarai->finishMotion();
 	}
 
-	if (val > CG_PROPERPARMS(sarai).mFp03.mValue || sarai->_2C0 > 3.0f) {
+	if (val > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->_2C0 > 3.0f) {
 		int nextState = sarai->getNextStateOnHeight();
 		if (nextState >= 0) {
 			transit(sarai, nextState, nullptr);
@@ -377,11 +377,11 @@ void StateMove::exec(EnemyBase* enemy)
 		sarai->mTargetVelocity = Vector3f(0.0f);
 		sarai->finishMotion();
 	} else {
-		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mFp04.mValue, CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue,
-		                        CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mNormalMovementSpeed.mValue,
+		                        CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue, CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
 	}
 
-	if (height > CG_PROPERPARMS(sarai).mFp03.mValue || sarai->_2C0 > 3.0f) {
+	if (height > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->_2C0 > 3.0f) {
 		int nextState = sarai->getNextStateOnHeight();
 		if (nextState >= 0) {
 			transit(sarai, nextState, nullptr);
@@ -450,7 +450,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				f32 saraiHeight  = sarai->getPosition().y;          // f29
 
 				Vector3f vel = sarai->getVelocity(); // 0x80
-				f32 factor   = ((targetHeight - saraiHeight) / sys->mDeltaTime) * CG_PROPERPARMS(sarai).mFp31();
+				f32 factor   = ((targetHeight - saraiHeight) / sys->mDeltaTime) * CG_PROPERPARMS(sarai).mHuntDescentFactor();
 
 				f32 vertSpeed;
 				if (factor < -2500.0f) {
@@ -469,7 +469,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			}
 		} else {
 			sarai->setHeightVelocity();
-			f32 decayRate          = CG_PROPERPARMS(sarai).mFp32();
+			f32 decayRate          = CG_PROPERPARMS(sarai).mPostHuntDecayRate();
 			sarai->mTargetVelocity = sarai->mTargetVelocity * decayRate;
 		}
 	} else {
@@ -981,7 +981,7 @@ void StateFail::exec(EnemyBase* enemy)
 	sarai->setHeightVelocity();
 
 	// regswaps here
-	f32 decayRate = CG_PROPERPARMS(sarai).mFp32();
+	f32 decayRate = CG_PROPERPARMS(sarai).mPostHuntDecayRate();
 	// Vector3f vel = sarai->getTargetVelocity();
 	// Vector3f vel           = sarai->mTargetVelocity * CG_PROPERPARMS(sarai).mFp32();
 	sarai->mTargetVelocity = sarai->mTargetVelocity * decayRate;
@@ -1100,8 +1100,8 @@ void StateCatchFly::exec(EnemyBase* enemy)
 		sarai->mTargetVelocity = Vector3f(0.0f);
 		sarai->finishMotion();
 	} else {
-		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mFp05.mValue, CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue,
-		                        CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
+		EnemyFunc::walkToTarget(sarai, targetPos, CG_PROPERPARMS(sarai).mGrabMovementSpeed.mValue,
+		                        CG_PARMS(sarai)->mGeneral.mTurnSpeed.mValue, CG_PARMS(sarai)->mGeneral.mMaxTurnAngle.mValue);
 	}
 
 	if (!sarai->getCatchTargetNum()) {
@@ -1109,7 +1109,7 @@ void StateCatchFly::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (height > CG_PROPERPARMS(sarai).mFp03.mValue || sarai->_2C0 > 3.0f) {
+	if (height > CG_PROPERPARMS(sarai).mStateTransitionHeight.mValue || sarai->_2C0 > 3.0f) {
 		int nextState = sarai->getNextStateOnHeight();
 		if (nextState >= 0) {
 			transit(sarai, nextState, nullptr);

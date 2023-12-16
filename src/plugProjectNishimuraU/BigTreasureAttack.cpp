@@ -1542,10 +1542,10 @@ void BigTreasureAttackMgr::setFireAttackParameter()
 	// this needs a srawi not srwi......................
 	switch ((mObj->isNormalAttack(BIGATTACK_Fire) != 0) + 2) {
 	case 1:
-		mAttackData->_28 = CG_PROPERPARMS(mObj).mFf00.mValue;
+		mAttackData->_28 = CG_PROPERPARMS(mObj).mFlameScale1.mValue;
 		break;
 	case 2:
-		mAttackData->_28 = CG_PROPERPARMS(mObj).mFf10.mValue;
+		mAttackData->_28 = CG_PROPERPARMS(mObj).mFlameScale2.mValue;
 		break;
 	}
 }

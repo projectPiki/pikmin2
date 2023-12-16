@@ -99,21 +99,21 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mWaitTime(this, 'fp02', "ウェイト時間", 2.5f, 0.0f, 100.0f)   // 'wait time'
-		    , mActiveTime(this, 'fp01', "ガス吐き時間", 2.5f, 0.0f, 100.0f) // 'gas discharge time'
-		    , mFp03(this, 'fp03', "攻撃開始時間", 1.0f, 0.0f, 100.0f)       // 'attack start time'
-		    , mStopTime(this, 'fp04', "停止時間", 10.0f, 0.0f, 100.0f)      // 'stop time'
+		    , mWaitTime(this, 'fp02', "ウェイト時間", 2.5f, 0.0f, 100.0f)        // 'wait time'
+		    , mActiveTime(this, 'fp01', "ガス吐き時間", 2.5f, 0.0f, 100.0f)      // 'gas discharge time'
+		    , mAttackStartTime(this, 'fp03', "攻撃開始時間", 1.0f, 0.0f, 100.0f) // 'attack start time'
+		    , mStopTime(this, 'fp04', "停止時間", 10.0f, 0.0f, 100.0f)           // 'stop time'
 		    , mLodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)
 		    , mLodMiddle(this, 'fp91', "LOD MIDDLE", 0.05f, 0.0f, 1.0f)
 		{
 		}
 
-		Parm<f32> mWaitTime;   // _804, fp02
-		Parm<f32> mActiveTime; // _82C, fp01
-		Parm<f32> mFp03;       // _854, fp03
-		Parm<f32> mStopTime;   // _87C, fp04
-		Parm<f32> mLodNear;    // _8A4, fp90
-		Parm<f32> mLodMiddle;  // _8CC, fp91
+		Parm<f32> mWaitTime;        // _804, fp02
+		Parm<f32> mActiveTime;      // _82C, fp01
+		Parm<f32> mAttackStartTime; // _854, fp03
+		Parm<f32> mStopTime;        // _87C, fp04
+		Parm<f32> mLodNear;         // _8A4, fp90
+		Parm<f32> mLodMiddle;       // _8CC, fp91
 	};
 
 	Parms() { }

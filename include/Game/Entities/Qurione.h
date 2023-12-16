@@ -131,16 +131,16 @@ struct Parms : public EnemyParmsBase {
 		    , mFlightHeight(this, 'fp01', "”òs‚‚³", 60.0f, 0.0f, 150.0f)  // 'flight height'
 		    , mPitchRate(this, 'fp02', "ã‰º‚Ì—h‚ê‘¬“x", 2.5f, 0.0f, 10.0f) // 'vertical swing speed'
 		    , mPitchAmp(this, 'fp03', "ã‰º‚Ì—h‚ê•", 20.0f, 0.0f, 50.0f)   // 'vertical swing width'
-		    , mFp04(this, 'fp04', "€–S‘¬“x", 100.0f, 0.0f, 1000.0f)        // 'death rate'
-		    , mFp05(this, 'fp05', "€–SŠÔ", 1.0f, 0.0f, 10.0f)            // 'death time'
+		    , mDeathRate(this, 'fp04', "€–S‘¬“x", 100.0f, 0.0f, 1000.0f)   // 'death rate'
+		    , mDeathTime(this, 'fp05', "€–SŠÔ", 1.0f, 0.0f, 10.0f)       // 'death time'
 		{
 		}
 
 		Parm<f32> mFlightHeight; // _804, fp01
 		Parm<f32> mPitchRate;    // _82C, fp02
 		Parm<f32> mPitchAmp;     // _854, fp03
-		Parm<f32> mFp04;         // _87C, fp04
-		Parm<f32> mFp05;         // _8A4, fp05
+		Parm<f32> mDeathRate;    // _87C, fp04
+		Parm<f32> mDeathTime;    // _8A4, fp05
 	};
 
 	Parms() { }

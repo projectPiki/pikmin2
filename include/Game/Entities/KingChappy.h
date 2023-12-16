@@ -48,57 +48,57 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "要旋回角度(deg)", 20.0f, 0.0f, 180.0f)       // 'required turning angle (deg)'
-		    , mFp02(this, 'fp02', "出現までの距離", 150.0f, 0.0f, 300.0f)       // 'distance to spawn'
-		    , mFp03(this, 'fp03', "雄たけび有効角度(deg)", 45.0f, 0.0f, 180.0f) // 'roar effective angle (deg)'
-		    , mFp04(this, 'fp04', "雄たけび有効範囲", 100.0f, 0.0f, 300.0f)     // 'roar effective range'
-		    , mFp05(this, 'fp05', "爆弾ダメージ", 200.0f, 0.0f, 600.0f)         // 'bomb damage'
-		    , mFp06(this, 'fp06', "見えない範囲", 70.0f, 0.0f, 200.0f)          // 'invisible range'
-		    , mFp07(this, 'fp07', "旋回終了角度", 10.0f, 0.0f, 180.0f)          // 'turning end angle'
-		    , mFp08(this, 'fp08', "踏み潰し範囲", 45.0f, 0.0f, 200.0f)          // 'trampling range'
-		    , mFp09(this, 'fp09', "出現振り払い範囲", 100.0f, 0.0f, 200.0f)     // 'appearance shake-off range'
-		    , mFp10(this, 'fp10', "出現振り払い力", 200.0f, 0.0f, 400.0f)       // 'appearance shake-off power'
-		    , mFp11(this, 'fp11', "歩きアニメスピード", 1.0f, 0.0f, 3.0f)       // 'walking anime speed'
-		    , mFp12(this, 'fp12', "死雄たけび率", 0.0f, 0.0f, 1.0f)             // 'death rate'
-		    , mFp13(this, 'fp13', "フリック雄たけび率", 0.5f, 0.0f, 1.0f)       // 'flick shout rate'
-		    , mFp14(this, 'fp14', "白ピクミン", 300.0f, 0.0f, 1000.0f)          // 'white pikmin'
-		    , mFp15(this, 'fp15', "bigスケール", 1.0f, 1.0f, 2.0f)              // 'big scale'
-		    , mFp16(this, 'fp16', "bigライフ", 100.0f, 0.0f, 9999.0f)           // 'big life'
-		    , mFp17(this, 'fp17', "big速度", 80.0f, 0.0f, 1000.0f)              // 'big speed'
-		    , mFp18(this, 'fp18', "big回転速度率", 0.1f, 0.0f, 1.0f)            // 'big rotation speed rate'
-		    , mFp19(this, 'fp19', "big回転最大速度", 10.0f, 0.0f, 360.0f)       // 'big rotation maximum speed'
-		    , mFp20(this, 'fp20', "big攻撃可能\角度", 15.0f, 0.0f, 180.0f)      // 'big attack angle'
-		    , mFp21(this, 'fp21', "big攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)    // 'big attack hit range'
-		    , mIp01(this, 'ip01', "潜伏までの期間", 500, 0, 2000)               // 'period of incubation'
-		    , mIp02(this, 'ip02', "出現までの期間", 200, 0, 1000)               // 'time to appearance'
-		    , mIp03(this, 'ip03', "爆弾ダメージ時間", 10, 0, 200)               // 'bomb damage time'
+		    , mRequiredTurningAngleDeg(this, 'fp01', "要旋回角度(deg)", 20.0f, 0.0f, 180.0f)     // 'required turning angle (deg)'
+		    , mDistanceToSpawn(this, 'fp02', "出現までの距離", 150.0f, 0.0f, 300.0f)             // 'distance to spawn'
+		    , mRoarEffectiveAngleDeg(this, 'fp03', "雄たけび有効角度(deg)", 45.0f, 0.0f, 180.0f) // 'roar effective angle (deg)'
+		    , mRoarEffectiveRange(this, 'fp04', "雄たけび有効範囲", 100.0f, 0.0f, 300.0f)        // 'roar effective range'
+		    , mBombDamage(this, 'fp05', "爆弾ダメージ", 200.0f, 0.0f, 600.0f)                    // 'bomb damage'
+		    , mInvisibleRange(this, 'fp06', "見えない範囲", 70.0f, 0.0f, 200.0f)                 // 'invisible range'
+		    , mTurningEndAngle(this, 'fp07', "旋回終了角度", 10.0f, 0.0f, 180.0f)                // 'turning end angle'
+		    , mTramplingRange(this, 'fp08', "踏み潰し範囲", 45.0f, 0.0f, 200.0f)                 // 'trampling range'
+		    , mAppearanceShakeOffRange(this, 'fp09', "出現振り払い範囲", 100.0f, 0.0f, 200.0f)   // 'appearance shake-off range'
+		    , mAppearanceShakeOffPower(this, 'fp10', "出現振り払い力", 200.0f, 0.0f, 400.0f)     // 'appearance shake-off power'
+		    , mWalkingAnimeSpeed(this, 'fp11', "歩きアニメスピード", 1.0f, 0.0f, 3.0f)           // 'walking anime speed'
+		    , mDeathRate(this, 'fp12', "死雄たけび率", 0.0f, 0.0f, 1.0f)                         // 'death rate'
+		    , mFlickShoutRate(this, 'fp13', "フリック雄たけび率", 0.5f, 0.0f, 1.0f)              // 'flick shout rate'
+		    , mWhitePikmin(this, 'fp14', "白ピクミン", 300.0f, 0.0f, 1000.0f)                    // 'white pikmin'
+		    , mBigScale(this, 'fp15', "bigスケール", 1.0f, 1.0f, 2.0f)                           // 'big scale'
+		    , mBigLife(this, 'fp16', "bigライフ", 100.0f, 0.0f, 9999.0f)                         // 'big life'
+		    , mBigSpeed(this, 'fp17', "big速度", 80.0f, 0.0f, 1000.0f)                           // 'big speed'
+		    , mBigRotationSpeedRate(this, 'fp18', "big回転速度率", 0.1f, 0.0f, 1.0f)             // 'big rotation speed rate'
+		    , mBigRotationMaxSpeed(this, 'fp19', "big回転最大速度", 10.0f, 0.0f, 360.0f)         // 'big rotation maximum speed'
+		    , mBigAttackAngle(this, 'fp20', "big攻撃可能\角度", 15.0f, 0.0f, 180.0f)             // 'big attack angle'
+		    , mBigAttackHitRange(this, 'fp21', "big攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)        // 'big attack hit range'
+		    , mPeriodOfIncubation(this, 'ip01', "潜伏までの期間", 500, 0, 2000)                  // 'period of incubation'
+		    , mTimeToAppearance(this, 'ip02', "出現までの期間", 200, 0, 1000)                    // 'time to appearance'
+		    , mBombDamageTime(this, 'ip03', "爆弾ダメージ時間", 10, 0, 200)                      // 'bomb damage time'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp03; // _854
-		Parm<f32> mFp04; // _87C
-		Parm<f32> mFp05; // _8A4
-		Parm<f32> mFp06; // _8CC
-		Parm<f32> mFp07; // _8F4
-		Parm<f32> mFp08; // _91C
-		Parm<f32> mFp09; // _944
-		Parm<f32> mFp10; // _96C
-		Parm<f32> mFp11; // _994
-		Parm<f32> mFp12; // _9BC
-		Parm<f32> mFp13; // _9E4
-		Parm<f32> mFp14; // _A0C
-		Parm<f32> mFp15; // _A34
-		Parm<f32> mFp16; // _A5C
-		Parm<f32> mFp17; // _A84
-		Parm<f32> mFp18; // _AAC
-		Parm<f32> mFp19; // _AD4
-		Parm<f32> mFp20; // _AFC
-		Parm<f32> mFp21; // _B24
-		Parm<int> mIp01; // _B4C
-		Parm<int> mIp02; // _B74
-		Parm<int> mIp03; // _B9C
+		Parm<f32> mRequiredTurningAngleDeg; // _804
+		Parm<f32> mDistanceToSpawn;         // _82C
+		Parm<f32> mRoarEffectiveAngleDeg;   // _854
+		Parm<f32> mRoarEffectiveRange;      // _87C
+		Parm<f32> mBombDamage;              // _8A4
+		Parm<f32> mInvisibleRange;          // _8CC
+		Parm<f32> mTurningEndAngle;         // _8F4
+		Parm<f32> mTramplingRange;          // _91C
+		Parm<f32> mAppearanceShakeOffRange; // _944
+		Parm<f32> mAppearanceShakeOffPower; // _96C
+		Parm<f32> mWalkingAnimeSpeed;       // _994
+		Parm<f32> mDeathRate;               // _9BC
+		Parm<f32> mFlickShoutRate;          // _9E4
+		Parm<f32> mWhitePikmin;             // _A0C
+		Parm<f32> mBigScale;                // _A34
+		Parm<f32> mBigLife;                 // _A5C
+		Parm<f32> mBigSpeed;                // _A84
+		Parm<f32> mBigRotationSpeedRate;    // _AAC
+		Parm<f32> mBigRotationMaxSpeed;     // _AD4
+		Parm<f32> mBigAttackAngle;          // _AFC
+		Parm<f32> mBigAttackHitRange;       // _B24
+		Parm<int> mPeriodOfIncubation;      // _B4C
+		Parm<int> mTimeToAppearance;        // _B74
+		Parm<int> mBombDamageTime;          // _B9C
 	};
 
 	Parms()
@@ -194,7 +194,7 @@ struct Obj : public EnemyBase {
 	}
 	virtual bool eatWhitePikminCallBack(Creature* creature, f32 damage) // _298 (weak)
 	{
-		EnemyBase::eatWhitePikminCallBack(creature, C_PROPERPARMS.mFp14.mValue);
+		EnemyBase::eatWhitePikminCallBack(creature, C_PROPERPARMS.mWhitePikmin.mValue);
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{

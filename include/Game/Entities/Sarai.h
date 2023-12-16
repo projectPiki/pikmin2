@@ -86,37 +86,37 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "通常飛行高さ", 100.0f, 0.0f, 300.0f)    // 'normal flight height'
-		    , mFp02(this, 'fp02', "掴み飛行高さ", 80.0f, 0.0f, 300.0f)     // 'grab flight height'
-		    , mFp03(this, 'fp03', "状態遷移高さ", 50.0f, 0.0f, 300.0f)     // 'state transition height'
-		    , mFp04(this, 'fp04', "通常移動速度", 100.0f, 0.0f, 300.0f)    // 'normal movement speed'
-		    , mFp05(this, 'fp05', "掴み移動速度", 75.0f, 0.0f, 300.0f)     // 'grab movement speed'
-		    , mFp06(this, 'fp06', "ウェイト時間", 3.0f, 0.0f, 10.0f)       // 'wait time'
-		    , mFp11(this, 'fp11', "上昇係数(0)", 1.5f, 0.0f, 5.0f)         // 'climbing factor (0)'
-		    , mFp12(this, 'fp12', "上昇係数(5)", 1.0f, 0.0f, 5.0f)         // 'climbing factor (5)'
-		    , mFp21(this, 'fp21', "振払確率(1)", 0.1f, 0.0f, 1.0f)         // 'payoff probability (1)'
-		    , mFp22(this, 'fp22', "振払確率(5)", 0.7f, 0.0f, 1.0f)         // 'payoff probability (5)'
-		    , mFp23(this, 'fp23', "もがき時間", 3.0f, 0.0f, 10.0f)         // 'struggling time'
-		    , mFp31(this, 'fp31', "ハント下降係数", 0.3f, 0.0f, 1.0f)      // 'hunt descent factor'
-		    , mFp32(this, 'fp32', "ハント後減衰率", 0.95f, 0.0f, 1.0f)     // 'post-hunt decay rate'
-		    , mFp41(this, 'fp41', "Fall Meck 速度", 200.0f, 0.0f, 1000.0f) // 'Fall Meck speed'
+		    , mNormalFlightHeight(this, 'fp01', "通常飛行高さ", 100.0f, 0.0f, 300.0f)   // 'normal flight height'
+		    , mGrabFlightHeight(this, 'fp02', "掴み飛行高さ", 80.0f, 0.0f, 300.0f)      // 'grab flight height'
+		    , mStateTransitionHeight(this, 'fp03', "状態遷移高さ", 50.0f, 0.0f, 300.0f) // 'state transition height'
+		    , mNormalMovementSpeed(this, 'fp04', "通常移動速度", 100.0f, 0.0f, 300.0f)  // 'normal movement speed'
+		    , mGrabMovementSpeed(this, 'fp05', "掴み移動速度", 75.0f, 0.0f, 300.0f)     // 'grab movement speed'
+		    , mWaitTime(this, 'fp06', "ウェイト時間", 3.0f, 0.0f, 10.0f)                // 'wait time'
+		    , mClimbingFactor0(this, 'fp11', "上昇係数(0)", 1.5f, 0.0f, 5.0f)           // 'climbing factor (0)'
+		    , mClimbingFactor5(this, 'fp12', "上昇係数(5)", 1.0f, 0.0f, 5.0f)           // 'climbing factor (5)'
+		    , mPayoffProbability1(this, 'fp21', "振払確率(1)", 0.1f, 0.0f, 1.0f)        // 'payoff probability (1)'
+		    , mPayoffProbability5(this, 'fp22', "振払確率(5)", 0.7f, 0.0f, 1.0f)        // 'payoff probability (5)'
+		    , mStrugglingTime(this, 'fp23', "もがき時間", 3.0f, 0.0f, 10.0f)            // 'struggling time'
+		    , mHuntDescentFactor(this, 'fp31', "ハント下降係数", 0.3f, 0.0f, 1.0f)      // 'hunt descent factor'
+		    , mPostHuntDecayRate(this, 'fp32', "ハント後減衰率", 0.95f, 0.0f, 1.0f)     // 'post-hunt decay rate'
+		    , mFallMeckSpeed(this, 'fp41', "Fall Meck 速度", 200.0f, 0.0f, 1000.0f)     // 'Fall Meck speed'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp03; // _854
-		Parm<f32> mFp04; // _87C
-		Parm<f32> mFp05; // _8A4
-		Parm<f32> mFp06; // _8CC
-		Parm<f32> mFp11; // _8F4
-		Parm<f32> mFp12; // _91C
-		Parm<f32> mFp21; // _944
-		Parm<f32> mFp22; // _96C
-		Parm<f32> mFp23; // _994
-		Parm<f32> mFp31; // _9BC
-		Parm<f32> mFp32; // _9E4
-		Parm<f32> mFp41; // _A0C
+		Parm<f32> mNormalFlightHeight;    // _804
+		Parm<f32> mGrabFlightHeight;      // _82C
+		Parm<f32> mStateTransitionHeight; // _854
+		Parm<f32> mNormalMovementSpeed;   // _87C
+		Parm<f32> mGrabMovementSpeed;     // _8A4
+		Parm<f32> mWaitTime;              // _8CC
+		Parm<f32> mClimbingFactor0;       // _8F4
+		Parm<f32> mClimbingFactor5;       // _91C
+		Parm<f32> mPayoffProbability1;    // _944
+		Parm<f32> mPayoffProbability5;    // _96C
+		Parm<f32> mStrugglingTime;        // _994
+		Parm<f32> mHuntDescentFactor;     // _9BC
+		Parm<f32> mPostHuntDecayRate;     // _9E4
+		Parm<f32> mFallMeckSpeed;         // _A0C
 	};
 
 	Parms() { }

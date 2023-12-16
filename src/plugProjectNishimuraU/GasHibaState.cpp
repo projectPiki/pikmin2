@@ -145,7 +145,7 @@ void StateAttack::exec(EnemyBase* enemy)
 	hiba->updateEfxLod();
 	hiba->updateLivingThing();
 
-	if (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mFp03.mValue) {
+	if (hiba->mTimer > static_cast<Parms*>(hiba->mParms)->mProperParms.mAttackStartTime.mValue) {
 		hiba->interactGasAttack();
 	}
 

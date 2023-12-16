@@ -113,7 +113,7 @@ void StateWait::exec(EnemyBase* enemy)
 		mar->mTargetCreature = target;
 		transit(mar, MAR_Chase, nullptr);
 
-	} else if (mar->_2C0 > CG_PROPERPARMS(mar).mFp03.mValue) {
+	} else if (mar->_2C0 > CG_PROPERPARMS(mar).mAirWaitTime.mValue) {
 		transit(mar, MAR_Move, nullptr);
 	}
 
@@ -1043,7 +1043,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 void StateGround::exec(EnemyBase* enemy)
 {
 	Obj* mar = OBJ(enemy);
-	if (mar->mStuckPikminCount == 0 || mar->_2C0 > CG_PROPERPARMS(mar).mFp10.mValue) {
+	if (mar->mStuckPikminCount == 0 || mar->_2C0 > CG_PROPERPARMS(mar).mGroundWaitTime.mValue) {
 		mar->finishMotion();
 	}
 

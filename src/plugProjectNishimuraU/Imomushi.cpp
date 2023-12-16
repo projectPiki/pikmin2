@@ -80,7 +80,7 @@ void Obj::doAnimationStick()
 	if (stuckPart->mPartType == COLLTYPE_SPHERE) {
 		Vector3f sep = mPosition - stuckPart->mPosition;
 		sep.normalise();
-		sep *= C_PROPERPARMS.mFp91.mValue;
+		sep *= C_PROPERPARMS.mRotationCorrection.mValue;
 
 		_2E4 += sep;
 
@@ -88,7 +88,7 @@ void Obj::doAnimationStick()
 		_2D8     = cross(crossVec, _2E4);
 	} else {
 		Vector3f sep = mClimbAxis - _2D8;
-		sep *= C_PROPERPARMS.mFp91.mValue;
+		sep *= C_PROPERPARMS.mRotationCorrection.mValue;
 
 		_2D8 += sep;
 
@@ -115,14 +115,14 @@ void Obj::doAnimationStick()
 			f32 absX = absVal(xDiff);
 			f32 absZ = absVal(zDiff);
 
-			if (absX > C_PROPERPARMS.mFp90()) {
+			if (absX > C_PROPERPARMS.mTranslationCorrection()) {
 				check = true;
-				pos.x = (xDiff / absX) * C_PROPERPARMS.mFp90() + _300;
+				pos.x = (xDiff / absX) * C_PROPERPARMS.mTranslationCorrection() + _300;
 			}
 
-			if (absZ > C_PROPERPARMS.mFp90()) {
+			if (absZ > C_PROPERPARMS.mTranslationCorrection()) {
 				check = true;
-				pos.z = (zDiff / absZ) * C_PROPERPARMS.mFp90() + _304;
+				pos.z = (zDiff / absZ) * C_PROPERPARMS.mTranslationCorrection() + _304;
 			}
 			_2C1 = check;
 
@@ -783,7 +783,7 @@ void Obj::startClimbPlant(CollPart* part)
 void Obj::moveStickTube()
 {
 	Vector3f pos = mClimbAxis;
-	pos *= C_PROPERPARMS.mFp01();
+	pos *= C_PROPERPARMS.mPlantClimbingSpeed();
 	mTargetVelocity = pos;
 }
 
@@ -798,7 +798,7 @@ void Obj::moveStickSphere()
 	CollPart* part    = mStuckCollPart;
 	endStick();
 	Vector3f vel = _2D8;
-	vel *= C_PROPERPARMS.mFp02();
+	vel *= C_PROPERPARMS.mSeedCirculationSpeed();
 	mTargetVelocity = vel;
 
 	doSimulationStick(sys->mDeltaTime);
@@ -829,7 +829,7 @@ void Obj::eatTsuyukusa()
 				}
 			}
 
-			if (mStateTimer > C_PROPERPARMS.mFp11()) {
+			if (mStateTimer > C_PROPERPARMS.mEatingTime()) {
 				InteractEat eat(this, PELTYPE_BERRY);
 				plant->stimulate(eat);
 				mStateTimer = 0.0f;

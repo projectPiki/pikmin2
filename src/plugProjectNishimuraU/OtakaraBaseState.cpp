@@ -93,7 +93,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* ota = OBJ(enemy);
-	if (ota->_2C4 > static_cast<Parms*>(ota->mParms)->mProperParms.mFp10.mValue) {
+	if (ota->_2C4 > static_cast<Parms*>(ota->mParms)->mProperParms.mNormalAttack.mValue) {
 		ota->finishMotion();
 	}
 	ota->_2C4 += sys->mDeltaTime;
@@ -632,7 +632,7 @@ void StateItemFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateItemFlick::exec(EnemyBase* enemy)
 {
 	Obj* ota = OBJ(enemy);
-	if (ota->_2C4 > static_cast<Parms*>(ota->mParms)->mProperParms.mFp11.mValue) {
+	if (ota->_2C4 > static_cast<Parms*>(ota->mParms)->mProperParms.mOtakaraAttack.mValue) {
 		ota->finishMotion();
 	}
 	ota->_2C4 += sys->mDeltaTime;

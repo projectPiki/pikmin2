@@ -201,31 +201,31 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "ÉxÅ[ÉXåWêî", 5.0f, 0.0f, 10.0f)          // 'base factor'
-		    , mFp02(this, 'fp02', "è„Ç∞å∏ë¨åWêî", -0.4f, -5.0f, 5.0f)       // 'raising deceleration factor'
-		    , mFp03(this, 'fp03', "â∫Ç∞â¡ë¨åWêî", 0.5f, -5.0f, 5.0f)        // 'downward acceleration factor'
-		    , mFp04(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -3.0f, -10.0f, 10.0f)   // 'minimum deceleration acceleration factor'
-		    , mFp05(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f, 10.0f)   // 'maximum deceleration acceleration factor'
-		    , mFp06(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 90.0f, 0.0f, 200.0f)      // 'leg swing'
-		    , mFp10(this, 'fp10', "éÀåÇOn:Max", 2.0f, 0.0f, 10.0f)          // 'shooting on:max'
-		    , mFp11(this, 'fp11', "éÀåÇOn:Min", 1.0f, 0.0f, 10.0f)          // 'shooting on:min'
-		    , mFp12(this, 'fp12', "éÀåÇOff:Max", 1.0f, 0.0f, 10.0f)         // 'shooting off:max'
-		    , mFp13(this, 'fp13', "éÀåÇOff:Min", 0.5f, 0.0f, 10.0f)         // 'shooting off:min'
-		    , mFp20(this, 'fp20', "Last 2 Territory", 380.0f, 0.0f, 500.0f) // 'Last 2 Territory'
+		    , mBaseFactor(this, 'fp01', "ÉxÅ[ÉXåWêî", 5.0f, 0.0f, 10.0f)                 // 'base factor'
+		    , mRaiseDecelFactor(this, 'fp02', "è„Ç∞å∏ë¨åWêî", -0.4f, -5.0f, 5.0f)        // 'raising deceleration factor'
+		    , mDownwardAccelFactor(this, 'fp03', "â∫Ç∞â¡ë¨åWêî", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor'
+		    , mMinDecelAccelFactor(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -3.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor'
+		    , mMaxDecelAccelFactor(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 90.0f, 0.0f, 200.0f)               // 'leg swing'
+		    , mMaxShootingOn(this, 'fp10', "éÀåÇOn:Max", 2.0f, 0.0f, 10.0f)              // 'shooting on:max'
+		    , mMinShootingOn(this, 'fp11', "éÀåÇOn:Min", 1.0f, 0.0f, 10.0f)              // 'shooting on:min'
+		    , mMaxShootingOff(this, 'fp12', "éÀåÇOff:Max", 1.0f, 0.0f, 10.0f)            // 'shooting off:max'
+		    , mMinShootingOff(this, 'fp13', "éÀåÇOff:Min", 0.5f, 0.0f, 10.0f)            // 'shooting off:min'
+		    , mLastToTerritory(this, 'fp20', "Last 2 Territory", 380.0f, 0.0f, 500.0f)   // 'Last 2 Territory'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp03; // _854
-		Parm<f32> mFp04; // _87C
-		Parm<f32> mFp05; // _8A4
-		Parm<f32> mFp06; // _8CC
-		Parm<f32> mFp10; // _8F4
-		Parm<f32> mFp11; // _91C
-		Parm<f32> mFp12; // _944
-		Parm<f32> mFp13; // _96C
-		Parm<f32> mFp20; // _994
+		Parm<f32> mBaseFactor;          // _804
+		Parm<f32> mRaiseDecelFactor;    // _82C
+		Parm<f32> mDownwardAccelFactor; // _854
+		Parm<f32> mMinDecelAccelFactor; // _87C
+		Parm<f32> mMaxDecelAccelFactor; // _8A4
+		Parm<f32> mLegSwing;            // _8CC
+		Parm<f32> mMaxShootingOn;       // _8F4
+		Parm<f32> mMinShootingOn;       // _91C
+		Parm<f32> mMaxShootingOff;      // _944
+		Parm<f32> mMinShootingOff;      // _96C
+		Parm<f32> mLastToTerritory;     // _994
 	};
 
 	Parms() {};

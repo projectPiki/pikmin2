@@ -66,7 +66,7 @@ void Obj::setParameters()
 	EnemyBase::setParameters();
 	if (_394 || C_PARMS->_BCC) {
 		_394           = 1;
-		f32 scale      = C_PROPERPARMS.mFp15.mValue;
+		f32 scale      = C_PROPERPARMS.mBigScale.mValue;
 		mScaleModifier = scale;
 		mScale         = Vector3f(scale);
 		mCollTree->mPart->setScale(scale);
@@ -151,8 +151,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 	if (C_PARMS->_BCC || (section && section->getCaveID() == 'f_03')) {
 		_394           = 1;
-		mHealth        = C_PROPERPARMS.mFp16.mValue;
-		f32 scale      = C_PROPERPARMS.mFp15.mValue;
+		mHealth        = C_PROPERPARMS.mBigLife.mValue;
+		f32 scale      = C_PROPERPARMS.mBigScale.mValue;
 		mScaleModifier = scale;
 		mScale         = Vector3f(scale);
 		mCollTree->mPart->setScale(scale);
@@ -1642,9 +1642,9 @@ void Obj::walkFunc()
 	f32 maxTurnAngle = C_PARMS->mGeneral.mMaxTurnAngle();
 	f32 turnSpeed    = C_PARMS->mGeneral.mTurnSpeed();
 	if (_394) {
-		speed        = C_PROPERPARMS.mFp17();
-		maxTurnAngle = C_PROPERPARMS.mFp19();
-		turnSpeed    = C_PROPERPARMS.mFp18();
+		speed        = C_PROPERPARMS.mBigSpeed();
+		maxTurnAngle = C_PROPERPARMS.mBigRotationMaxSpeed();
+		turnSpeed    = C_PROPERPARMS.mBigRotationSpeedRate();
 	}
 
 	searchTarget();
@@ -1678,8 +1678,8 @@ f32 Obj::turnFunc(f32 scale)
 	f32 turnSpeed = C_PARMS->mGeneral.mTurnSpeed();
 
 	if (_394) {
-		maxAngle  = C_PROPERPARMS.mFp19();
-		turnSpeed = C_PROPERPARMS.mFp18();
+		maxAngle  = C_PROPERPARMS.mBigRotationMaxSpeed();
+		turnSpeed = C_PROPERPARMS.mBigRotationSpeedRate();
 	}
 
 	return turnToTarget2(targetPos, turnSpeed * scale, maxAngle * scale);
@@ -1845,8 +1845,8 @@ void Obj::checkAttack(bool check)
 
 	f32 attackRange, attackAngle; // f27, f26
 	if (_394) {
-		attackRange = C_PROPERPARMS.mFp21();
-		attackAngle = C_PROPERPARMS.mFp20();
+		attackRange = C_PROPERPARMS.mBigAttackHitRange();
+		attackAngle = C_PROPERPARMS.mBigAttackAngle();
 	} else {
 		attackRange = C_PARMS->mGeneral.mMaxAttackRange();
 		attackAngle = C_PARMS->mGeneral.mMaxAttackAngle();
@@ -1862,7 +1862,7 @@ void Obj::checkAttack(bool check)
 			Creature* target = mTargetCreature;
 			f32 angle        = getCreatureViewAngle(target);
 			if (isTargetAttackable(target, angle, attackRange, attackAngle)) {
-				f32 range          = C_PROPERPARMS.mFp06();
+				f32 range          = C_PROPERPARMS.mInvisibleRange();
 				Vector3f targetPos = mTargetCreature->getPosition();
 
 				if (sqrDistanceXZ(mPosition, targetPos) > SQUARE(range)) {
@@ -1898,7 +1898,7 @@ void Obj::checkAttack(bool check)
 
 		f32 bombAngle = getCreatureViewAngle(bomb);
 		if (isTargetAttackable(bomb, bombAngle, attackRange, attackAngle)) {
-			f32 range          = C_PROPERPARMS.mFp06();
+			f32 range          = C_PROPERPARMS.mInvisibleRange();
 			Vector3f targetPos = bomb->getPosition();
 
 			if (sqrDistanceXZ(mPosition, targetPos) > SQUARE(range)) {
@@ -2498,7 +2498,7 @@ void Obj::checkFlick(bool check)
 	{
 		Navi* navi = *iter;
 		if (navi->isAlive()) {
-			f32 range    = C_PROPERPARMS.mFp06();
+			f32 range    = C_PROPERPARMS.mInvisibleRange();
 			Vector3f sep = navi->getTargetSeparation(this);
 			if (sep.sqrMagnitude() < SQUARE(range)) {
 				mFlickTimer += 0.1f;
@@ -2513,7 +2513,7 @@ void Obj::checkFlick(bool check)
 	_2E4 = check;
 
 	if (mHealth < 0.5f * C_PARMS->mGeneral.mHealth()) {
-		if (randFloat() < C_PROPERPARMS.mFp13()) {
+		if (randFloat() < C_PROPERPARMS.mFlickShoutRate()) {
 			mFsm->transit(this, KINGCHAPPY_WarCry, nullptr);
 			return;
 		}
@@ -2545,7 +2545,7 @@ void Obj::checkDead(bool check)
 	if (mHealth <= 0.0f) {
 		_2E4 = check;
 		// Parms* parms = C_PARMS;
-		if (randFloat() < C_PROPERPARMS.mFp12()) {
+		if (randFloat() < C_PROPERPARMS.mDeathRate()) {
 			mFsm->transit(this, KINGCHAPPY_WarCry, nullptr);
 			return;
 		}

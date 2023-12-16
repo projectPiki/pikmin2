@@ -102,15 +102,15 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "ぼんやり時間", 2.0f, 0.0f, 100.0f)            // 'absentminded time'
-		    , mPoisonDamage(this, 'fp02', "白ピクミン毒", 300.0f, 0.0f, 1000.0f) // 'white pikmin poison'
-		    , mFp03(this, 'fp03', "回転終了角度", 90.0f, 0.0f, 180.0f)           // 'rotation end angle'
+		    , mAbsentMindedTime(this, 'fp01', "ぼんやり時間", 2.0f, 0.0f, 100.0f)  // 'absentminded time'
+		    , mPoisonDamage(this, 'fp02', "白ピクミン毒", 300.0f, 0.0f, 1000.0f)   // 'white pikmin poison'
+		    , mRotationEndAngle(this, 'fp03', "回転終了角度", 90.0f, 0.0f, 180.0f) // 'rotation end angle'
 		{
 		}
 
-		Parm<f32> mFp01;         // _804
-		Parm<f32> mPoisonDamage; // _82C
-		Parm<f32> mFp03;         // _854
+		Parm<f32> mAbsentMindedTime; // _804
+		Parm<f32> mPoisonDamage;     // _82C
+		Parm<f32> mRotationEndAngle; // _854
 	};
 
 	virtual void read(Stream& stream) // _08 (weak)

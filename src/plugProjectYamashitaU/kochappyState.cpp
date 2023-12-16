@@ -118,7 +118,7 @@ void StateWait::exec(EnemyBase* enemy)
 				break;
 			case KEYEVENT_END:
 				Parms* parms = static_cast<Parms*>(enemy->mParms);
-				f32 angLimit = parms->mProperParms.mFp03.mValue;
+				f32 angLimit = parms->mProperParms.mRotationEndAngle.mValue;
 				f32 angDist  = enemy->turnToTarget(enemy->mTargetCreature, CG_PARMS(enemy)->mGeneral.mTurnSpeed(),
                                                   CG_PARMS(enemy)->mGeneral.mMaxTurnAngle()); // this is wrong?
 				if (FABS(angDist) <= TORADIANS(angLimit)) {
@@ -461,7 +461,7 @@ void StateTurn::exec(EnemyBase* enemy)
 					mNextState = KOCHAPPY_TurnToHome;
 					enemy->finishMotion();
 				} else {
-					f32 max = CG_PROPERPARMS(enemy).mFp03();
+					f32 max = CG_PROPERPARMS(enemy).mRotationEndAngle();
 					f32 dir = enemy->changeFaceDir(enemy->mTargetCreature);
 					if (absF(dir) <= TORADIANS(max)) {
 						mNextState = KOCHAPPY_Walk;
@@ -1055,7 +1055,7 @@ void StateWalk::exec(EnemyBase* enemy)
 				enemy->finishMotion();
 				enemy->mTargetVelocity = Vector3f(0.0f);
 			} else {
-				f32 max = CG_PROPERPARMS(enemy).mFp03();
+				f32 max = CG_PROPERPARMS(enemy).mRotationEndAngle();
 				if (absF(angle) <= TORADIANS(max)) {
 					EnemyFunc::walkToTarget(enemy, enemy->mTargetCreature, CG_PARMS(enemy)->mGeneral.mMoveSpeed(),
 					                        CG_PARMS(enemy)->mGeneral.mTurnSpeed(), CG_PARMS(enemy)->mGeneral.mMaxTurnAngle());

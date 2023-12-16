@@ -152,10 +152,10 @@ struct UjaParms : public Parameters {
 	UjaParms(); // unused/inlined
 
 	// _00-_0C = Parameters
-	Parm<f32> mU001; // _0C
-	Parm<f32> mU002; // _34
-	Parm<f32> mU003; // _5C
-	Parm<f32> mU004; // _84
+	Parm<f32> mDisplayScale;    // _0C
+	Parm<f32> mMysteryMultiply; // _34
+	Parm<f32> mLife;            // _5C
+	Parm<f32> mMotionSpeed;     // _84
 };
 
 struct Uja : public TFlock {

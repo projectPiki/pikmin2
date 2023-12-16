@@ -144,10 +144,10 @@ void BoidParameter::read(Stream& input)
  */
 UjaParms::UjaParms()
     : Parameters(nullptr, "UjaParms")
-    , mU001(this, 'u001', "表\示スケール", 0.3f, 0.1f, 1.0f)   // 'display scale'
-    , mU002(this, 'u002', "謎 Multiply", 1.0f, 0.0f, 200.0f)   // 'mystery multiply' (lmao)
-    , mU003(this, 'u003', "ライフ", 0.0f, 0.0f, 600.0f)        // 'life'
-    , mU004(this, 'u004', "モーション速度", 0.5f, 0.0f, 10.0f) // 'motion speed'
+    , mDisplayScale(this, 'u001', "表\示スケール", 0.3f, 0.1f, 1.0f)    // 'display scale'
+    , mMysteryMultiply(this, 'u002', "謎 Multiply", 1.0f, 0.0f, 200.0f) // 'mystery multiply' (lmao)
+    , mLife(this, 'u003', "ライフ", 0.0f, 0.0f, 600.0f)                 // 'life'
+    , mMotionSpeed(this, 'u004', "モーション速度", 0.5f, 0.0f, 10.0f)   // 'motion speed'
 {
 }
 
@@ -263,7 +263,7 @@ void Uja::makeMatrix()
 {
 	Vector3f rot(_B8, _5C, 0.0f);
 	Vector3f scale = _64;
-	scale *= mFlockMgr->mUjaParms->mU001();
+	scale *= mFlockMgr->mUjaParms->mDisplayScale();
 	Vector3f translation = (Vector3f)(*this);
 	translation.y += _B4;
 	_10.makeSRT(scale, rot, translation);
@@ -277,7 +277,7 @@ void Uja::makeMatrix()
 void Uja::updateScale(f32 scale)
 {
 	f32 factor = 4.0f * (PI * (scale / 20.0f));
-	_70 += (sys->mDeltaTime * factor) * mFlockMgr->mUjaParms->mU004();
+	_70 += (sys->mDeltaTime * factor) * mFlockMgr->mUjaParms->mMotionSpeed();
 
 	if (_70 > TAU) {
 		_70 -= TAU;
@@ -1779,7 +1779,7 @@ void UjaMgr::test_createUjas()
 			uja->_90 = Vector3f(0.0f);
 			uja->_9C = Vector3f(0.0f);
 
-			uja->_A8 = mUjaParms->mU003();
+			uja->_A8 = mUjaParms->mLife();
 
 			uja->_A8 += (0.1f * uja->_A8 * randFloat());
 			uja->mUpdateContext.init(mUpdateMgr);

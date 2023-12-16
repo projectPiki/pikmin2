@@ -26,23 +26,23 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "生存時間", 300.0f, 0.0, 2000.0f) // 'survival time'
-		    , mFp02(this, 'fp02', "出現範囲", 80.0f, 0.0f, 200.0f)  // 'appearance range'
-		    , mFp03(this, 'fp03', "蜜レート", 1.0f, 0.0f, 1.0f)     // 'honey rate'
-		    , mIp01(this, 'ip01', "歩き時間最小", 60, 0, 300)       // 'minimum walking time'
-		    , mIp02(this, 'ip02', "歩き時間最大", 100, 0, 600)      // 'maximum walking time'
-		    , mIp03(this, 'ip03', "出現時間最小", 10, 0, 100)       // 'minimum appearance time'
-		    , mIp04(this, 'ip04', "出現時間最大", 50, 0, 200)       // 'maximum appearance time'
+		    , mSurvivalTime(this, 'fp01', "生存時間", 300.0f, 0.0, 2000.0f)    // 'survival time'
+		    , mAppearanceRange(this, 'fp02', "出現範囲", 80.0f, 0.0f, 200.0f)  // 'appearance range'
+		    , mHoneyRate(this, 'fp03', "蜜レート", 1.0f, 0.0f, 1.0f)           // 'honey rate'
+		    , mMinimumWalkTime(this, 'ip01', "歩き時間最小", 60, 0, 300)       // 'minimum walking time'
+		    , mMaximumWalkTime(this, 'ip02', "歩き時間最大", 100, 0, 600)      // 'maximum walking time'
+		    , mMinimumAppearanceTime(this, 'ip03', "出現時間最小", 10, 0, 100) // 'minimum appearance time'
+		    , mMaximumAppearanceTime(this, 'ip04', "出現時間最大", 50, 0, 200) // 'maximum appearance time'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp03; // _854
-		Parm<int> mIp01; // _87C
-		Parm<int> mIp02; // _8A4
-		Parm<int> mIp03; // _8CC
-		Parm<int> mIp04; // _8F4
+		Parm<f32> mSurvivalTime;          // _804
+		Parm<f32> mAppearanceRange;       // _82C
+		Parm<f32> mHoneyRate;             // _854
+		Parm<int> mMinimumWalkTime;       // _87C
+		Parm<int> mMaximumWalkTime;       // _8A4
+		Parm<int> mMinimumAppearanceTime; // _8CC
+		Parm<int> mMaximumAppearanceTime; // _8F4
 	};
 
 	Parms()
