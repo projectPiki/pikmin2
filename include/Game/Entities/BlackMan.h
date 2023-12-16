@@ -88,8 +88,8 @@ struct Obj : public EnemyBase {
 			EnemyBase::updateEfxHamon();
 		}
 	}
-	virtual bool bombCallBack(Creature*, Vector3f&, f32) { return false; } // _294 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                     // _258 (weak)
+	virtual bool bombCallBack(Creature* source, Vector3f& direction, f32 damage) { return false; } // _294 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                                             // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_BlackMan;
 	}

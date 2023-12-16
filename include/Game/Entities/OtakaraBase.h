@@ -59,34 +59,34 @@ struct Obj : public EnemyBase {
 	{
 		return EnemyTypeID::EnemyID_FireOtakara;
 	}
-	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
-	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
-	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);        // _28C
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294
-	virtual void doStartStoneState();                                           // _2A4
-	virtual void doFinishStoneState();                                          // _2A8
-	virtual void doStartEarthquakeState(f32 yVelocityScale);                    // _2B0
-	virtual void doFinishEarthquakeState();                                     // _2B4
-	virtual void doStartEarthquakeFitState();                                   // _2B8
-	virtual void doFinishEarthquakeFitState();                                  // _2BC
-	virtual void startCarcassMotion();                                          // _2C4
-	virtual void doStartWaitingBirthTypeDrop();                                 // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();                                // _2E4
-	virtual void doStartMovie();                                                // _2F0
-	virtual void doEndMovie();                                                  // _2F4
-	virtual void setFSM(FSM* fsm);                                              // _2F8
-	virtual f32 getDownSmokeScale() { return 0.7f; }                            // _2EC (weak)
-	virtual f32 getCellRadius() { return mCellRadius; }                         // _58 (weak)
-	virtual void interactCreature(Creature*) { }                                // _2FC (weak)
-	virtual void createEffect() { }                                             // _300 (weak)
-	virtual void setupEffect() { }                                              // _304 (weak)
-	virtual void startChargeEffect() { }                                        // _308 (weak)
-	virtual void finishChargeEffect() { }                                       // _30C (weak)
-	virtual void createDisChargeEffect() { }                                    // _310 (weak)
-	virtual void effectDrawOn() { }                                             // _314 (weak)
-	virtual void effectDrawOff() { }                                            // _318 (weak)
-	virtual void startEscapeSE();                                               // _31C
-	virtual void startDisChargeSE() { }                                         // _320 (weak)
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);    // _278
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part);   // _284
+	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);          // _28C
+	virtual bool bombCallBack(Creature* source, Vector3f& direction, f32 damage); // _294
+	virtual void doStartStoneState();                                             // _2A4
+	virtual void doFinishStoneState();                                            // _2A8
+	virtual void doStartEarthquakeState(f32 yVelocityScale);                      // _2B0
+	virtual void doFinishEarthquakeState();                                       // _2B4
+	virtual void doStartEarthquakeFitState();                                     // _2B8
+	virtual void doFinishEarthquakeFitState();                                    // _2BC
+	virtual void startCarcassMotion();                                            // _2C4
+	virtual void doStartWaitingBirthTypeDrop();                                   // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();                                  // _2E4
+	virtual void doStartMovie();                                                  // _2F0
+	virtual void doEndMovie();                                                    // _2F4
+	virtual void setFSM(FSM* fsm);                                                // _2F8
+	virtual f32 getDownSmokeScale() { return 0.7f; }                              // _2EC (weak)
+	virtual f32 getCellRadius() { return mCellRadius; }                           // _58 (weak)
+	virtual void interactCreature(Creature*) { }                                  // _2FC (weak)
+	virtual void createEffect() { }                                               // _300 (weak)
+	virtual void setupEffect() { }                                                // _304 (weak)
+	virtual void startChargeEffect() { }                                          // _308 (weak)
+	virtual void finishChargeEffect() { }                                         // _30C (weak)
+	virtual void createDisChargeEffect() { }                                      // _310 (weak)
+	virtual void effectDrawOn() { }                                               // _314 (weak)
+	virtual void effectDrawOff() { }                                              // _318 (weak)
+	virtual void startEscapeSE();                                                 // _31C
+	virtual void startDisChargeSE() { }                                           // _320 (weak)
 	//////////////// VTABLE END
 
 	bool isMovePositionSet(bool);

@@ -77,7 +77,7 @@ struct Obj : public EnemyBase {
 	void createIKSystem();
 	void setupIKSystem();
 	void setIKParameter();
-	void setIKSystemTargetPosition(Vector3f&);
+	void setIKSystemTargetPosition(Vector3f& targetPosition);
 	void updateIKSystem();
 	void doAnimationIKSystem();
 	void finishAnimationIKSystem();
@@ -89,7 +89,7 @@ struct Obj : public EnemyBase {
 	void startBlendMotion();
 	void finishBlendMotion();
 	Vector3f getTraceCentrePosition();
-	bool isCollisionCheck(CollPart*);
+	bool isCollisionCheck(CollPart* part);
 	void createShadowSystem();
 	void setupShadowSystem();
 	void doAnimationShadowSystem();
@@ -108,8 +108,8 @@ struct Obj : public EnemyBase {
 	void setBossAppearBGM();
 	void createEffect();
 	void setupEffect();
-	void createOnGroundEffect(int, WaterBox*);
-	void createOffGroundEffect(int, WaterBox*);
+	void createOnGroundEffect(int footIdx, WaterBox* wb);
+	void createOffGroundEffect(int footIdx, WaterBox* wb);
 	void startPinchJointEffect();
 	void finishPinchJointEffect();
 	void startDeadEffect();
@@ -129,7 +129,7 @@ struct Obj : public EnemyBase {
 	Vector3f mTargetPosition;                   // _2C8
 	f32 mShadowScale;                           // _2D4
 	f32 mFlickWalkTimeMax;                      // _2D8
-	bool _2DC;                                  // _2DC
+	bool mUpdateMaterialAnim;                   // _2DC
 	bool mIsSmoking;                            // _2DD
 	bool mIsEnraged;                            // _2DE, next walk cycle will be fast
 	IKSystemMgr* mIkSystemMgr;                  // _2E0
@@ -190,37 +190,37 @@ struct Parms : public EnemyParmsBase {
 		    , mMinDecelFactor(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -2.5f, -10.0f,
 		                      10.0f) // 'minimum deceleration acceleration factor'
 		    , mMaxDecelFactor(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f,
-		                      10.0f)                                              // 'maximum deceleration acceleration factor'
-		    , mLegSwing(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 120.0f, 0.0f, 200.0f)       // 'leg swing'
-		    , mBaseCoefficients(this, 'fp11', "ÉxÅ[ÉXåWêî(s)", 3.0f, 0.0f, 10.0f) // 'base factor(s)'
-		    , mFp12(this, 'fp12', "è„Ç∞å∏ë¨åWêî(s)", -0.2f, -5.0f, 5.0f)          // 'raising deceleration factor(s)'
-		    , mFp13(this, 'fp13', "â∫Ç∞â¡ë¨åWêî(s)", 0.5f, -5.0f, 5.0f)           // 'downward acceleration factor(s)'
-		    , mFp14(this, 'fp14', "ç≈í·å∏â¡ë¨åWêî(s)", -2.0f, -10.0f,
-		            10.0f) // 'minimum deceleration acceleration factor(s)'
-		    , mFp15(this, 'fp15', "ç≈çÇå∏â¡ë¨åWêî(s)", 10.0f, -10.0f,
-		            10.0f)                                                             // 'maximum deceleration acceleration factor(s)'
-		    , mFp16(this, 'fp16', "ë´ÇÃêUÇËè„Ç∞(s)", 120.0f, 0.0f, 200.0f)             // 'leg swing(s)'
+		                      10.0f)                                                           // 'maximum deceleration acceleration factor'
+		    , mLegSwing(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 120.0f, 0.0f, 200.0f)                    // 'leg swing'
+		    , mEnragedBaseCoefficient(this, 'fp11', "ÉxÅ[ÉXåWêî(s)", 3.0f, 0.0f, 10.0f)        // 'base factor(s)'
+		    , mEnragedRaiseSlowdownFactor(this, 'fp12', "è„Ç∞å∏ë¨åWêî(s)", -0.2f, -5.0f, 5.0f) // 'raising deceleration factor(s)'
+		    , mEnragedDownwardAccelFactor(this, 'fp13', "â∫Ç∞â¡ë¨åWêî(s)", 0.5f, -5.0f, 5.0f)  // 'downward acceleration factor(s)'
+		    , mEnragedMinDecelFactor(this, 'fp14', "ç≈í·å∏â¡ë¨åWêî(s)", -2.0f, -10.0f,
+		                             10.0f) // 'minimum deceleration acceleration factor(s)'
+		    , mEnragedMaxDecelFactor(this, 'fp15', "ç≈çÇå∏â¡ë¨åWêî(s)", 10.0f, -10.0f,
+		                             10.0f)                                            // 'maximum deceleration acceleration factor(s)'
+		    , mEnragedLegSwing(this, 'fp16', "ë´ÇÃêUÇËè„Ç∞(s)", 120.0f, 0.0f, 200.0f)  // 'leg swing(s)'
 		    , mMovementOffset(this, 'fp17', "à⁄ìÆÉIÉtÉZÉbÉg(s)", 50.0f, 0.0f, 200.0f)  // 'movement offset(s)'
 		    , mNormalTravelTime(this, 'fp20', "í èÌà⁄ìÆéûä‘", 10.0f, 0.0f, 100.0f)     // 'normal travel time'
 		    , mPostShakeTravelTime(this, 'fp21', "êUï•å„à⁄ìÆéûä‘", 3.0f, 0.0f, 100.0f) // 'post-shakeoff travel time'
 		{
 		}
 
-		Parm<f32> mBaseCoefficient;     // _804, fp01
-		Parm<f32> mRaiseSlowdownFactor; // _82C, fp02
-		Parm<f32> mDownwardAccelFactor; // _854, fp03
-		Parm<f32> mMinDecelFactor;      // _87C, fp04
-		Parm<f32> mMaxDecelFactor;      // _8A4, fp05
-		Parm<f32> mLegSwing;            // _8CC, fp06
-		Parm<f32> mBaseCoefficients;    // _8F4, fp11
-		Parm<f32> mFp12;                // _91C
-		Parm<f32> mFp13;                // _944
-		Parm<f32> mFp14;                // _96C
-		Parm<f32> mFp15;                // _994
-		Parm<f32> mFp16;                // _9BC
-		Parm<f32> mMovementOffset;      // _9E4, fp17
-		Parm<f32> mNormalTravelTime;    // _A0C, fp20
-		Parm<f32> mPostShakeTravelTime; // _A34, fp21
+		Parm<f32> mBaseCoefficient;            // _804, fp01
+		Parm<f32> mRaiseSlowdownFactor;        // _82C, fp02
+		Parm<f32> mDownwardAccelFactor;        // _854, fp03
+		Parm<f32> mMinDecelFactor;             // _87C, fp04
+		Parm<f32> mMaxDecelFactor;             // _8A4, fp05
+		Parm<f32> mLegSwing;                   // _8CC, fp06
+		Parm<f32> mEnragedBaseCoefficient;     // _8F4, fp11
+		Parm<f32> mEnragedRaiseSlowdownFactor; // _91C
+		Parm<f32> mEnragedDownwardAccelFactor; // _944
+		Parm<f32> mEnragedMinDecelFactor;      // _96C
+		Parm<f32> mEnragedMaxDecelFactor;      // _994
+		Parm<f32> mEnragedLegSwing;            // _9BC
+		Parm<f32> mMovementOffset;             // _9E4, fp17
+		Parm<f32> mNormalTravelTime;           // _A0C, fp20
+		Parm<f32> mPostShakeTravelTime;        // _A34, fp21
 	};
 
 	Parms() { }

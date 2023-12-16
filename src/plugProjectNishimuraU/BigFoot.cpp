@@ -64,12 +64,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 	EnemyBase::hardConstraintOn();
 	disableEvent(0, EB_PlatformCollEnabled);
 	disableEvent(0, EB_LeaveCarcass);
-	mStateTimer     = 0.0f;
-	mNextState      = BIGFOOT_NULL;
-	mTargetPosition = mHomePosition;
-	mShadowScale    = 0.0f;
-	_2DC            = false;
-	mIsSmoking      = false;
+	mStateTimer         = 0.0f;
+	mNextState          = BIGFOOT_NULL;
+	mTargetPosition     = mHomePosition;
+	mShadowScale        = 0.0f;
+	mUpdateMaterialAnim = false;
+	mIsSmoking          = false;
 	resetFlickWalkTimeMax();
 	mIsEnraged = false;
 	setupIKSystem();
@@ -415,27 +415,27 @@ void Obj::setupIKSystem()
  */
 void Obj::setIKParameter()
 {
-	mIkSystemParms->_00 = 12;
-	mIkSystemParms->_04 = 10.0f;
-	mIkSystemParms->_08 = 40.0f;
-	mIkSystemParms->_28 = 0.5f;
-	mIkSystemParms->_38 = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
-	mIkSystemParms->_2C = C_PARMS->mGeneral.mMoveSpeed.mValue;
+	mIkSystemParms->_00           = 12;
+	mIkSystemParms->_04           = 10.0f;
+	mIkSystemParms->_08           = 40.0f;
+	mIkSystemParms->_28           = 0.5f;
+	mIkSystemParms->mMaxTurnAngle = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
+	mIkSystemParms->mMoveSpeed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
 
 	if (mIsEnraged) {
-		mIkSystemParms->_14           = C_PROPERPARMS.mBaseCoefficients.mValue;
-		mIkSystemParms->_18           = C_PROPERPARMS.mFp12.mValue;
-		mIkSystemParms->_1C           = C_PROPERPARMS.mFp13.mValue;
-		mIkSystemParms->_20           = C_PROPERPARMS.mFp15.mValue;
-		mIkSystemParms->_24           = C_PROPERPARMS.mFp14.mValue;
-		mIkSystemParms->mHeightOffset = C_PROPERPARMS.mFp16.mValue;
+		mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mEnragedBaseCoefficient.mValue;
+		mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mEnragedRaiseSlowdownFactor.mValue;
+		mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mEnragedDownwardAccelFactor.mValue;
+		mIkSystemParms->mMaxDecelFactor      = C_PROPERPARMS.mEnragedMaxDecelFactor.mValue;
+		mIkSystemParms->mMinDecelFactor      = C_PROPERPARMS.mEnragedMinDecelFactor.mValue;
+		mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mEnragedLegSwing.mValue;
 	} else {
-		mIkSystemParms->_14           = C_PROPERPARMS.mBaseCoefficient.mValue;
-		mIkSystemParms->_18           = C_PROPERPARMS.mRaiseSlowdownFactor.mValue;
-		mIkSystemParms->_1C           = C_PROPERPARMS.mDownwardAccelFactor.mValue;
-		mIkSystemParms->_20           = C_PROPERPARMS.mMaxDecelFactor.mValue;
-		mIkSystemParms->_24           = C_PROPERPARMS.mMinDecelFactor.mValue;
-		mIkSystemParms->mHeightOffset = C_PROPERPARMS.mLegSwing.mValue;
+		mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mBaseCoefficient.mValue;
+		mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mRaiseSlowdownFactor.mValue;
+		mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mDownwardAccelFactor.mValue;
+		mIkSystemParms->mMaxDecelFactor      = C_PROPERPARMS.mMaxDecelFactor.mValue;
+		mIkSystemParms->mMinDecelFactor      = C_PROPERPARMS.mMinDecelFactor.mValue;
+		mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mLegSwing.mValue;
 	}
 }
 
@@ -539,7 +539,7 @@ Vector3f Obj::getTraceCentrePosition() { return mIkSystemMgr->mTraceCentrePositi
  * Address:	802C9274
  * Size:	000024
  */
-bool Obj::isCollisionCheck(CollPart* collpart) { return mIkSystemMgr->isCollisionCheck(collpart); }
+bool Obj::isCollisionCheck(CollPart* part) { return mIkSystemMgr->isCollisionCheck(part); }
 
 /*
  * --INFO--
@@ -595,7 +595,7 @@ void Obj::startMaterialAnimation()
  */
 void Obj::updateMaterialAnimation()
 {
-	if (_2DC) {
+	if (mUpdateMaterialAnim) {
 		f32 maxFrame;
 		f32 currFrame = mMatLoopAnimator[0].mCurrFrame;
 		if (mMatLoopAnimator[0].mAnimation) {

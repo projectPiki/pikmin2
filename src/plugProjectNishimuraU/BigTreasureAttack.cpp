@@ -12,8 +12,8 @@ namespace BigTreasure {
  * Address:	........
  * Size:	00004C
  */
-AttackShadowNode::AttackShadowNode(int p1)
-    : JointShadowNode(p1)
+AttackShadowNode::AttackShadowNode(int mtxCount)
+    : JointShadowNode(mtxCount)
 {
 	_24 = nullptr;
 	_28 = 0.0f;
@@ -1862,9 +1862,7 @@ void BigTreasureAttackMgr::updateFireSePosition(BigTreasureFireAttack* attackNod
 	factor = nodeVal * factor;
 
 	_28[nodeType] *= factor;
-
 	_28[nodeType] += attackNode->_30;
-
 	_28[nodeType].y -= -25.0f;
 }
 

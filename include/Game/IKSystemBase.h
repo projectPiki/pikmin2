@@ -23,44 +23,44 @@ struct JointGroundCallBack;
 struct IKSystemParms {
 	inline IKSystemParms()
 	{
-		_00           = -1;
-		_04           = 0.0f;
-		_08           = 0.0f;
-		_0C           = 0.75f;
-		mHeightOffset = 120.0f;
-		_14           = 3.0f;
-		_18           = -0.15f;
-		_1C           = 0.5f;
-		_20           = 10.0f;
-		_24           = -2.0f;
-		_28           = 0.0f;
-		_2C           = 75.0f;
-		_30           = 0.0f;
-		_34           = 30.0f;
-		_38           = 60.0f;
-		_3C           = 0.1f;
-		_40           = 0.7f;
-		_44           = -1.5f;
+		_00                  = -1;
+		_04                  = 0.0f;
+		_08                  = 0.0f;
+		_0C                  = 0.75f;
+		mHeightOffset        = 120.0f;
+		mBaseCoefficient     = 3.0f;
+		mRaiseSlowdownFactor = -0.15f;
+		mDownwardAccelFactor = 0.5f;
+		mMaxDecelFactor      = 10.0f;
+		mMinDecelFactor      = -2.0f;
+		_28                  = 0.0f;
+		mMoveSpeed           = 75.0f;
+		_30                  = 0.0f;
+		_34                  = 30.0f;
+		mMaxTurnAngle        = 60.0f;
+		_3C                  = 0.1f;
+		_40                  = 0.7f;
+		_44                  = -1.5f;
 	}
 
-	int _00;           // _00
-	f32 _04;           // _04
-	f32 _08;           // _08
-	f32 _0C;           // _0C
-	f32 mHeightOffset; // _10
-	f32 _14;           // _14
-	f32 _18;           // _18
-	f32 _1C;           // _1C
-	f32 _20;           // _20
-	f32 _24;           // _24
-	f32 _28;           // _28
-	f32 _2C;           // _2C
-	f32 _30;           // _30
-	f32 _34;           // _34
-	f32 _38;           // _38
-	f32 _3C;           // _3C
-	f32 _40;           // _40
-	f32 _44;           // _44
+	int _00;                  // _00
+	f32 _04;                  // _04
+	f32 _08;                  // _08
+	f32 _0C;                  // _0C
+	f32 mHeightOffset;        // _10
+	f32 mBaseCoefficient;     // _14
+	f32 mRaiseSlowdownFactor; // _18
+	f32 mDownwardAccelFactor; // _1C
+	f32 mMaxDecelFactor;      // _20
+	f32 mMinDecelFactor;      // _24
+	f32 _28;                  // _28
+	f32 mMoveSpeed;           // _2C
+	f32 _30;                  // _30
+	f32 _34;                  // _34
+	f32 mMaxTurnAngle;        // _38
+	f32 _3C;                  // _3C
+	f32 _40;                  // _40
+	f32 _44;                  // _44
 };
 
 struct IKSystemBase {

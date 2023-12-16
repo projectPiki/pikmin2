@@ -43,26 +43,26 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                // _30
-	virtual void onKill(CreatureKillArg* settings);                // _34
-	virtual void doDirectDraw(Graphics& gfx);                      // _50
-	virtual void inWaterCallback(WaterBox* wb) { }                 // _84 (weak)
-	virtual void outWaterCallback() { }                            // _88 (weak)
-	virtual void getShadowParam(ShadowParam& settings);            // _134
-	virtual ~Obj() { }                                             // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
-	virtual void doUpdate();                                       // _1CC
-	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);          // _294
-	virtual void doFinishStoneState();                             // _2A8
-	virtual void startCarcassMotion();                             // _2C4
-	virtual void doStartWaitingBirthTypeDrop();                    // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();                   // _2E4
-	virtual void doStartMovie();                                   // _2F0
-	virtual void doEndMovie();                                     // _2F4
-	virtual void setFSM(FSM* fsm);                                 // _2F8
-	virtual f32 getDownSmokeScale() { return 0.9f; }               // _2EC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()             // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                               // _30
+	virtual void onKill(CreatureKillArg* settings);                               // _34
+	virtual void doDirectDraw(Graphics& gfx);                                     // _50
+	virtual void inWaterCallback(WaterBox* wb) { }                                // _84 (weak)
+	virtual void outWaterCallback() { }                                           // _88 (weak)
+	virtual void getShadowParam(ShadowParam& settings);                           // _134
+	virtual ~Obj() { }                                                            // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params);                // _1C4
+	virtual void doUpdate();                                                      // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                                      // _1EC
+	virtual bool bombCallBack(Creature* source, Vector3f& direction, f32 damage); // _294
+	virtual void doFinishStoneState();                                            // _2A8
+	virtual void startCarcassMotion();                                            // _2C4
+	virtual void doStartWaitingBirthTypeDrop();                                   // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();                                  // _2E4
+	virtual void doStartMovie();                                                  // _2F0
+	virtual void doEndMovie();                                                    // _2F4
+	virtual void setFSM(FSM* fsm);                                                // _2F8
+	virtual f32 getDownSmokeScale() { return 0.9f; }                              // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                            // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_BombSarai;
 	}

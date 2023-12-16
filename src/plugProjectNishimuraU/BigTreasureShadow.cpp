@@ -130,7 +130,10 @@ void BigTreasureShadowMgr::setKosiJointPosPtr(Vector3f* posPtr) { mKosiPosition 
  * Address:	802DAC9C
  * Size:	000018
  */
-void BigTreasureShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { mJointPositions[p1][p2] = posPtr; }
+void BigTreasureShadowMgr::setJointPosPtr(int jointIndex, int positionIndex, Vector3f* position)
+{
+	mJointPositions[jointIndex][positionIndex] = position;
+}
 
 /*
  * --INFO--

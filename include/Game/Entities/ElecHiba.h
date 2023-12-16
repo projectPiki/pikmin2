@@ -60,13 +60,13 @@ struct Obj : public EnemyBase {
 	{
 		return EnemyTypeID::EnemyID_ElecHiba;
 	}
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                          // _260
-	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
-	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);   // _27C
-	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294
-	virtual void lifeRecover() { }                                              // _2C0 (weak)
-	virtual void setFSM(FSM* fsm);                                              // _2F8
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                            // _260
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);    // _278
+	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);     // _27C
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part);   // _284
+	virtual bool bombCallBack(Creature* source, Vector3f& direction, f32 damage); // _294
+	virtual void lifeRecover() { }                                                // _2C0 (weak)
+	virtual void setFSM(FSM* fsm);                                                // _2F8
 	//////////////// VTABLE END
 
 	Obj* getChildObjPtr();

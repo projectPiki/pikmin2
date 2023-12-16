@@ -126,7 +126,7 @@ struct Obj : public EnemyBase {
 	void createIKSystem();
 	void setupIKSystem();
 	void setIKParameter();
-	void setIKSystemTargetPosition(Vector3f&);
+	void setIKSystemTargetPosition(Vector3f& targetPos);
 	void updateIKSystem();
 	void doAnimationIKSystem();
 	void finishAnimationIKSystem();
@@ -139,7 +139,7 @@ struct Obj : public EnemyBase {
 	void finishBlendMotion();
 	void checkJointScaleOn();
 	Vector3f getTraceCentrePosition();
-	Vector3f* getJointPositionPtr(int, int);
+	Vector3f* getJointPositionPtr(int jointIndex, int positionIndex);
 	void createShadowSystem();
 	void setupShadowSystem();
 	void doAnimationShadowSystem();
@@ -147,12 +147,12 @@ struct Obj : public EnemyBase {
 	void setupTreasure();
 	void updateTreasure();
 	void dropTreasure();
-	bool dropTreasure(int);
+	bool dropTreasure(int treasureIndex);
 	bool isCapturedTreasure();
-	bool isCapturedTreasure(int);
+	bool isCapturedTreasure(int treasureIndex);
 	int getCapturedTreasureNum();
-	bool addTreasureDamage(int, f32);
-	void flickStickCollPartPikmin(CollPart*);
+	bool addTreasureDamage(int treasureIndex, f32 damage);
+	void flickStickCollPartPikmin(CollPart* part);
 	void releaseItemLoozy();
 	void createAttack();
 	void setupAttack();
@@ -166,16 +166,16 @@ struct Obj : public EnemyBase {
 	int getFireAttackAnimIndex();
 	f32 getPreAttackTimeMax();
 	f32 getAttackTimeMax();
-	bool isNormalAttack(int);
+	bool isNormalAttack(int treasureIndex);
 	void resetMaterialColor();
-	void resetTargetMatBodyColor(bool);
+	void resetTargetMatBodyColor(bool isVisible);
 	void resetCurrentMatBodyColor();
 	void resetTargetEyeMatColor();
 	void resetCurrentMatEyeColor();
 	void setMatEyeAnimSpeed();
-	void setAttackMaterialColor(bool);
+	void setAttackMaterialColor(bool isFast);
 	void updateMaterialColor();
-	void startBlendAnimation(int, bool);
+	void startBlendAnimation(int animIdx, bool blendAnimation);
 	void endBlendAnimation();
 	int getCurrAnimationIndex();
 	void startBossChargeBGM();
@@ -188,17 +188,17 @@ struct Obj : public EnemyBase {
 	void setBossAppearBGM();
 	void createEffect();
 	void setupEffect();
-	void createOnGroundEffect(int, WaterBox*);
-	void createOffGroundEffect(int, WaterBox*);
-	void startTreasurePinchSmoke(int);
-	void finishTreasurePinchSmoke(int);
-	void createDropTreasureEffect(int);
+	void createOnGroundEffect(int footIdx, WaterBox* wb);
+	void createOffGroundEffect(int footIdx, WaterBox* wb);
+	void startTreasurePinchSmoke(int treasureIndex);
+	void finishTreasurePinchSmoke(int treasureIndex);
+	void createDropTreasureEffect(int treasureIndex);
 	void createAppearBodyEffect();
-	void createAppearLegEffect(int);
-	void createDeadBombLegEffect(int);
+	void createAppearLegEffect(int legIdx);
+	void createDeadBombLegEffect(int legIdx);
 	void createDeadBombBodyEffect();
-	void startDeadBubbleLegEffect(int);
-	void finishDeadBubbleLegEffect(int);
+	void startDeadBubbleLegEffect(int legIdx);
+	void finishDeadBubbleLegEffect(int legIdx);
 	void startDeadBubbleBodyEffect();
 	void finishDeadBubbleBodyEffect();
 	void startDeadBubbleMouthEffect();
@@ -516,12 +516,12 @@ struct BigTreasureShadowMgr {
 	BigTreasureShadowMgr(Obj*);
 
 	void init();
-	void setJointPosPtr(int, int, Vector3f*);
-	void setKosiJointPosPtr(Vector3f*);
+	void setJointPosPtr(int jointIndex, int positionIndex, Vector3f* position);
+	void setKosiJointPosPtr(Vector3f* position);
 	void update();
-	void updateTreasureShadow(JointShadowParm&);
-	void updateHandShadow(JointShadowParm&);
-	void updateAntennaShadow(JointShadowParm&);
+	void updateTreasureShadow(JointShadowParm& settings);
+	void updateHandShadow(JointShadowParm& settings);
+	void updateAntennaShadow(JointShadowParm& settings);
 
 	Matrixf* mBodyMatrix;            // _00
 	Matrixf* mElecMatrix;            // _04
@@ -558,8 +558,8 @@ struct BigTreasureGroundCallBack : public JointGroundCallBack {
 	{
 	}
 
-	virtual void invokeOnGround(int, WaterBox*);  // _08
-	virtual void invokeOffGround(int, WaterBox*); // _0C
+	virtual void invokeOnGround(int footIdx, WaterBox* wb);  // _08
+	virtual void invokeOffGround(int footIdx, WaterBox* wb); // _0C
 
 	// _00	= VTBL
 	Obj* mObj; // _04
@@ -568,7 +568,7 @@ struct BigTreasureGroundCallBack : public JointGroundCallBack {
 /////////////////////////////////////////////////////////////////
 // ATTACK DEFINITIONS
 struct AttackShadowNode : public JointShadowNode {
-	AttackShadowNode(int);
+	AttackShadowNode(int nodeCount);
 
 	virtual ~AttackShadowNode() { } // _08 (weak)
 
@@ -722,13 +722,13 @@ struct BigTreasureAttackMgr {
 	void startNewFireList();
 	void updateFireAttack();
 	void updateFireEmitPosition();
-	void updateFireSePosition(BigTreasureFireAttack*, int);
+	void updateFireSePosition(BigTreasureFireAttack* attack, int nodeType);
 
 	void startGasAttack();
 	void startNewGasList();
 	void updateGasAttack();
 	void updateGasEmitPosition();
-	void updateGasSePosition(BigTreasureGasAttack*, int);
+	void updateGasSePosition(BigTreasureGasAttack* attack, int nodeType);
 
 	void startWaterAttack();
 	void startNewWaterList();
@@ -741,10 +741,10 @@ struct BigTreasureAttackMgr {
 	void updateElecAttack();
 	void finishAttack();
 
-	void addAttackShadow(BigTreasureWaterAttack*);
-	void addAttackShadow(BigTreasureElecAttack*);
-	void delAttackShadow(BigTreasureWaterAttack*);
-	void delAttackShadow(BigTreasureElecAttack*);
+	void addAttackShadow(BigTreasureWaterAttack* attack);
+	void addAttackShadow(BigTreasureElecAttack* attack);
+	void delAttackShadow(BigTreasureWaterAttack* attack);
+	void delAttackShadow(BigTreasureElecAttack* attack);
 	void updateAttackShadow();
 
 	// unused/inlined:

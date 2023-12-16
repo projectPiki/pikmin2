@@ -61,7 +61,7 @@ void StateDead::exec(EnemyBase* enemy)
 			bigfoot->throwupItem();
 			bigfoot->createItemAndEnemy();
 		} else if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_3) {
-			bigfoot->_2DC = 1;
+			bigfoot->mUpdateMaterialAnim = 1;
 		} else if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_END) {
 			bigfoot->kill(nullptr);
 		}

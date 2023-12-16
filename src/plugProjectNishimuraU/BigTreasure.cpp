@@ -476,14 +476,14 @@ void Obj::setupIKSystem()
  */
 void Obj::setIKParameter()
 {
-	mIkSystemParms->_38           = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
-	mIkSystemParms->_2C           = C_PARMS->mGeneral.mMoveSpeed.mValue;
-	mIkSystemParms->_14           = C_PROPERPARMS.mFp01.mValue;
-	mIkSystemParms->_18           = C_PROPERPARMS.mFp02.mValue;
-	mIkSystemParms->_1C           = C_PROPERPARMS.mFp03.mValue;
-	mIkSystemParms->_20           = C_PROPERPARMS.mFp05.mValue;
-	mIkSystemParms->_24           = C_PROPERPARMS.mFp04.mValue;
-	mIkSystemParms->mHeightOffset = C_PROPERPARMS.mFp06.mValue;
+	mIkSystemParms->mMaxTurnAngle        = C_PARMS->mGeneral.mMaxTurnAngle.mValue;
+	mIkSystemParms->mMoveSpeed           = C_PARMS->mGeneral.mMoveSpeed.mValue;
+	mIkSystemParms->mBaseCoefficient     = C_PROPERPARMS.mFp01.mValue;
+	mIkSystemParms->mRaiseSlowdownFactor = C_PROPERPARMS.mFp02.mValue;
+	mIkSystemParms->mDownwardAccelFactor = C_PROPERPARMS.mFp03.mValue;
+	mIkSystemParms->mMaxDecelFactor      = C_PROPERPARMS.mFp05.mValue;
+	mIkSystemParms->mMinDecelFactor      = C_PROPERPARMS.mFp04.mValue;
+	mIkSystemParms->mHeightOffset        = C_PROPERPARMS.mFp06.mValue;
 }
 
 /*
@@ -593,7 +593,7 @@ Vector3f Obj::getTraceCentrePosition() { return mIkSystemMgr->mTraceCentrePositi
  * Address:	802DCF34
  * Size:	00001C
  */
-Vector3f* Obj::getJointPositionPtr(int p1, int p2) { return &mJointPositions[p1][p2]; }
+Vector3f* Obj::getJointPositionPtr(int jointIndex, int positionIndex) { return &mJointPositions[jointIndex][positionIndex]; }
 
 /*
  * --INFO--
