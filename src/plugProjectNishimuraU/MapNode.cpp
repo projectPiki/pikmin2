@@ -88,28 +88,37 @@ void MapNode::getDoorOffset(int idx, int& x, int& y)
 	// clang-format on
 
 	switch (door->mDoor.mDirection) {
-	case CD_UP:
+	case CD_Up:
 		x = mXGridOffset + door->mDoor.mOffset;
 		y = mYGridOffset;
 		break;
 
-	case CD_RIGHT:
+	case CD_Right:
 		x = mXGridOffset + mUnitInfo->getUnitSizeX();
 		y = mYGridOffset + door->mDoor.mOffset;
 		break;
 
-	case CD_DOWN:
+	case CD_Down:
 		x = mXGridOffset + door->mDoor.mOffset;
 		y = mYGridOffset + mUnitInfo->getUnitSizeY();
 		break;
 
-	case CD_LEFT:
+	case CD_Left:
 		x = mXGridOffset;
 		y = mYGridOffset + door->mDoor.mOffset;
 		break;
 	}
 }
 
+/**
+ * Checks if a door is set at the specified position and adjusts the offsets accordingly.
+ *
+ * @param testDoor The door to test against.
+ * @param x The x-coordinate of the position.
+ * @param y The y-coordinate of the position.
+ * @param idx The index of the door node.
+ * @return True if a door is set at the position and the offsets are adjusted, false otherwise.
+ */
 /*
  * --INFO--
  * Address:	8024314C
@@ -121,17 +130,17 @@ bool MapNode::isDoorSet(DoorNode* testDoor, int x, int y, int idx)
 	if (door->isDoorAdjust(testDoor)) {
 		setOffset(x, y);
 
-		if (door->mDoor.mDirection == CD_UP) {
+		if (door->mDoor.mDirection == CD_Up) {
 			mXGridOffset -= door->mDoor.mOffset;
 
-		} else if (door->mDoor.mDirection == CD_DOWN) {
+		} else if (door->mDoor.mDirection == CD_Down) {
 			mXGridOffset -= door->mDoor.mOffset;
 			mYGridOffset -= mUnitInfo->getUnitSizeY();
 
-		} else if (door->mDoor.mDirection == CD_LEFT) {
+		} else if (door->mDoor.mDirection == CD_Left) {
 			mYGridOffset -= door->mDoor.mOffset;
 
-		} else if (door->mDoor.mDirection == CD_RIGHT) {
+		} else if (door->mDoor.mDirection == CD_Right) {
 			mXGridOffset -= mUnitInfo->getUnitSizeX();
 			mYGridOffset -= door->mDoor.mOffset;
 		}
@@ -344,9 +353,9 @@ void MapNode::setEnemyScore()
 		BaseGen* gen     = enemy->mSpawn;
 		int score        = 0;
 		if (gen) {
-			if (gen->mSpawnType == BaseGen::CGT_TekiEasy) {
+			if (gen->mSpawnType == BaseGen::CGT_EnemyGroupSpawn) {
 				score = 2;
-			} else if (gen->mSpawnType == BaseGen::CGT_TekiHard) {
+			} else if (gen->mSpawnType == BaseGen::CGT_EnemySoloSpawn) {
 				score = 10;
 			}
 		}
@@ -474,22 +483,22 @@ Vector3f Cave::MapNode::getBaseGenGlobalPosition(BaseGen* testGen)
 				height = testGen->mPosition.y;
 
 				switch (mUnitInfo->getUnitRotation()) {
-				case CD_UP:
+				case CD_Up:
 					x += testGen->mPosition.x;
 					y += testGen->mPosition.z;
 					break;
 
-				case CD_RIGHT:
+				case CD_Right:
 					x -= testGen->mPosition.z;
 					y += testGen->mPosition.x;
 					break;
 
-				case CD_DOWN:
+				case CD_Down:
 					x -= testGen->mPosition.x;
 					y -= testGen->mPosition.z;
 					break;
 
-				case CD_LEFT:
+				case CD_Left:
 					x += testGen->mPosition.z;
 					y -= testGen->mPosition.x;
 					break;
@@ -518,25 +527,25 @@ Vector3f MapNode::getDoorGlobalPosition(int idx)
 	getDoorOffset(idx, xInt, yInt);
 
 	switch (direction) {
-	case CD_UP: {
+	case CD_Up: {
 		f32 xTemp = (f32)xInt + 0.5f;
 		x         = xTemp * 170.0f;
 		y         = (f32)yInt * 170.0f;
 		break;
 	}
-	case CD_RIGHT: {
+	case CD_Right: {
 		f32 xTemp = (f32)yInt + 0.5f;
 		x         = (f32)xInt * 170.0f;
 		y         = xTemp * 170.0f;
 		break;
 	}
-	case CD_DOWN: {
+	case CD_Down: {
 		f32 xTemp = (f32)xInt + 0.5f;
 		x         = xTemp * 170.0f;
 		y         = (f32)yInt * 170.0f;
 		break;
 	}
-	case CD_LEFT: {
+	case CD_Left: {
 		f32 xTemp = (f32)yInt + 0.5f;
 		x         = (f32)xInt * 170.0f;
 		y         = xTemp * 170.0f;

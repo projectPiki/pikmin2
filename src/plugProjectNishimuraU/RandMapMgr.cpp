@@ -33,9 +33,10 @@ RandMapMgr::RandMapMgr(bool isVersusHiba)
  * Address:	802445B0
  * Size:	0001A4
  */
-void RandMapMgr::loadResource(MapUnitInterface* interface, int p1, FloorInfo* floorInfo, bool check, EditMapUnit* editMU)
+void RandMapMgr::loadResource(MapUnitInterface* interface, int interfaceCount, FloorInfo* floorInfo, bool isFinalFloor,
+                              EditMapUnit* editUnit)
 {
-	mGenerator        = new MapUnitGenerator(interface, p1, floorInfo, check, editMU);
+	mGenerator        = new MapUnitGenerator(interface, interfaceCount, floorInfo, isFinalFloor, editUnit);
 	mRandMapUnit      = new RandMapUnit(mGenerator);
 	mRandEnemyUnit    = new RandEnemyUnit(mGenerator, mIsVersusHiba);
 	mRandCapEnemyUnit = new RandCapEnemyUnit(mGenerator);
@@ -213,10 +214,10 @@ void RandMapMgr::getItemDropPosition(Vector3f& position, f32 minDist, f32 maxDis
  * Address:	80244BDC
  * Size:	000188
  */
-void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 p1, f32 p2)
+void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 lowerWeightBound, f32 upperWeightBound)
 {
-	f32 avg    = 0.5f * (p1 + p2);
-	f32 weight = (p2 - avg > 0.0f) ? p2 - avg : -(p2 - avg);
+	f32 avg    = 0.5f * (lowerWeightBound + upperWeightBound);
+	f32 weight = (upperWeightBound - avg > 0.0f) ? upperWeightBound - avg : -(upperWeightBound - avg);
 
 	MapNode* nodeList[16];
 	BaseGen* genList[16];
@@ -423,7 +424,7 @@ JUTTexture* RandMapMgr::getRadarMapTexture() { return mRadarMapTexture; }
  * Address:	80244EC0
  * Size:	000024
  */
-void RandMapMgr::radarMapPartsOpen(Vector3f& vec) { mRandMapDraw->radarMapPartsOpen(vec); }
+void RandMapMgr::radarMapPartsOpen(Vector3f& pos) { mRandMapDraw->radarMapPartsOpen(pos); }
 
 /*
  * --INFO--
@@ -436,6 +437,17 @@ void RandMapMgr::getPositionOnTex(Vector3f& pos, f32& x, f32& y)
 	y = pos.z * (4.0f / 85.0f);
 }
 
+/**
+ * @brief Retrieves base generation data.
+ *
+ * This function retrieves the base generation data for enemy group or enemy solo spawns.
+ * It iterates through the map nodes and their child base generators to find the relevant data.
+ * The positions and directions of the base generators are stored in the provided arrays.
+ * The selection of the base generator is based on a random value.
+ *
+ * @param positions An array to store the positions of the base generators.
+ * @param dirs An array to store the directions of the base generators.
+ */
 /*
  * --INFO--
  * Address:	80244F04
@@ -462,7 +474,7 @@ void RandMapMgr::getBaseGenData(Vector3f* positions, f32* dirs)
 
 				FOREACH_NODE(BaseGen, baseGen->mChild, currGen)
 				{
-					if (currGen->mSpawnType == BaseGen::CGT_TekiEasy || currGen->mSpawnType == BaseGen::CGT_TekiHard) {
+					if (currGen->mSpawnType == BaseGen::CGT_EnemyGroupSpawn || currGen->mSpawnType == BaseGen::CGT_EnemySoloSpawn) {
 						Vector3f globalPos = currNode->getBaseGenGlobalPosition(currGen);
 						Vector3f sep       = Vector3f(positions->y - globalPos.y, positions->z - globalPos.z, positions->x - globalPos.x);
 						nodeList[counter]  = currNode;

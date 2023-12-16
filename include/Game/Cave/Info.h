@@ -33,15 +33,15 @@ struct BaseGen : public CNode {
 	 * Game::Cave::RandMapMgr::getStartPosition)
 	 */
 	enum CaveGenType {
-		CGT_TekiEasy = 0, // AKA TekiA
-		CGT_TekiHard,     // AKA TekiB
+		CGT_EnemyGroupSpawn = 0, // AKA TekiA / Easy Teki
+		CGT_EnemySoloSpawn,      // AKA TekiB / Hard Teki
 		CGT_TreasureItem,
 		CGT_Unknown3,
 		CGT_HoleOrGeyser,
 		CGT_DoorSeam,
 		CGT_Plant,
 		CGT_Start,
-		CGT_TekiSpecial, // AKA TekiF
+		CGT_EnemySpecial, // AKA TekiF / Special Teki, contribute 0 to score, spawn individually
 		CGT_Alcove
 	};
 
@@ -69,7 +69,7 @@ struct TekiInfo : public CNode {
 	{
 		mEnemyID  = EnemyTypeID::EnemyID_Pelplant;
 		mWeight   = 1;
-		mType     = BaseGen::CGT_TekiEasy;
+		mType     = BaseGen::CGT_EnemyGroupSpawn;
 		mDropMode = DROP_NoDrop;
 	}
 

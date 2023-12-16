@@ -174,10 +174,10 @@ bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
  * Address:	8024E7C4
  * Size:	00000C
  */
-void RandItemUnit::setItemDropPositionList(MapNode** node, BaseGen** gen)
+void RandItemUnit::setItemDropPositionList(MapNode** tileList, BaseGen** spawnList)
 {
-	mMapTileList = node;
-	mSpawnList   = gen;
+	mMapTileList = tileList;
+	mSpawnList   = spawnList;
 }
 
 /*
@@ -443,20 +443,21 @@ bool RandItemUnit::isItemSetHard()
  * Address:	8024F300
  * Size:	000148
  */
-void RandItemUnit::getItemDropMapNode(MapNode* testNode, MapNode** outNode, int score, int& outScore)
+void RandItemUnit::getItemDropMapNode(MapNode* targetTile, MapNode** nodeList, int currentScore, int& bestScore)
 {
 	bool check   = false;
-	int unitKind = testNode->mUnitInfo->getUnitKind();
+	int unitKind = targetTile->mUnitInfo->getUnitKind();
+
 	if (unitKind == UNITKIND_Room) {
 		check = true;
 	} else if (unitKind == UNITKIND_Cap) {
-		if (strncmp(testNode->getUnitName(), "item", 4) == 0) {
+		if (strncmp(targetTile->getUnitName(), "item", 4) == 0) {
 			check = true;
 		}
 	} else if (unitKind == UNITKIND_Corridor) {
-		if (testNode->getNumDoors() == 2) {
+		if (targetTile->getNumDoors() == 2) {
 			// make sure doors are parallel- north/south are even, east/west are odd
-			int doorDir = (testNode->getDoorDirect(0) + testNode->getDoorDirect(1)) % 2;
+			int doorDir = (targetTile->getDoorDirect(CD_Up) + targetTile->getDoorDirect(CD_Right)) % 2;
 			if (doorDir == 0) {
 				check = true;
 			}
@@ -466,11 +467,11 @@ void RandItemUnit::getItemDropMapNode(MapNode* testNode, MapNode** outNode, int 
 	}
 
 	if (check) {
-		int scoreDiff = testNode->getVersusScore() - score;
+		int scoreDiff = targetTile->getVersusScore() - currentScore;
 		int absScore  = absVal(scoreDiff);
-		if (absScore < outScore || (absScore == outScore && randWeightFloat(1.0f) < 0.5f)) {
-			*outNode = testNode;
-			outScore = absScore;
+		if (absScore < bestScore || (absScore == bestScore && randWeightFloat(1.0f) < 0.5f)) {
+			*nodeList = targetTile;
+			bestScore = absScore;
 		}
 	}
 }
@@ -492,10 +493,10 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode* node, int score)
 			if (currGen->mSpawnType == BaseGen::CGT_TreasureItem) {
 				genList[counter] = currGen;
 				counter++;
-			} else if (currGen->mSpawnType == BaseGen::CGT_TekiEasy) {
+			} else if (currGen->mSpawnType == BaseGen::CGT_EnemyGroupSpawn) {
 				genList[counter] = currGen;
 				counter++;
-			} else if (currGen->mSpawnType == BaseGen::CGT_TekiHard) {
+			} else if (currGen->mSpawnType == BaseGen::CGT_EnemySoloSpawn) {
 				genList[counter] = currGen;
 				counter++;
 			}
@@ -540,39 +541,39 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode* node, int score)
  * Address:	8024F75C
  * Size:	00018C
  */
-void RandItemUnit::getItemDropList(MapNode* testNode, MapNode** nodeList, BaseGen** outGen, int& idx)
+void RandItemUnit::getItemDropList(MapNode* targetTile, MapNode** nodeList, BaseGen** dropList, int& idx)
 {
-	int unitKind = testNode->mUnitInfo->getUnitKind();
+	int unitKind = targetTile->mUnitInfo->getUnitKind();
 	if (unitKind == UNITKIND_Room) {
-		BaseGen* gen = testNode->mUnitInfo->getBaseGen();
+		BaseGen* gen = targetTile->mUnitInfo->getBaseGen();
 		if (gen) {
 			FOREACH_NODE(BaseGen, gen->mChild, currGen)
 			{
 				if (currGen->mSpawnType == BaseGen::CGT_TreasureItem) {
-					nodeList[idx] = testNode;
-					outGen[idx]   = currGen;
+					nodeList[idx] = targetTile;
+					dropList[idx] = currGen;
 					idx++;
 				}
 			}
 		}
 	} else if (unitKind == UNITKIND_Cap) {
-		if (strncmp(testNode->getUnitName(), "item", 4) == 0) {
-			nodeList[idx] = testNode;
-			outGen[idx]   = nullptr;
+		if (strncmp(targetTile->getUnitName(), "item", 4) == 0) {
+			nodeList[idx] = targetTile;
+			dropList[idx] = nullptr;
 			idx++;
 		}
 	} else if (unitKind == UNITKIND_Corridor) {
-		if (testNode->getNumDoors() == 2) {
+		if (targetTile->getNumDoors() == 2) {
 			// make sure doors are parallel- north/south are even, east/west are odd
-			int doorDir = (testNode->getDoorDirect(0) + testNode->getDoorDirect(1)) % 2;
+			int doorDir = (targetTile->getDoorDirect(CD_Up) + targetTile->getDoorDirect(CD_Right)) % 2;
 			if (doorDir == 0) {
-				nodeList[idx] = testNode;
-				outGen[idx]   = nullptr;
+				nodeList[idx] = targetTile;
+				dropList[idx] = nullptr;
 				idx++;
 			}
 		} else {
-			nodeList[idx] = testNode;
-			outGen[idx]   = nullptr;
+			nodeList[idx] = targetTile;
+			dropList[idx] = nullptr;
 			idx++;
 		}
 	}
@@ -583,7 +584,7 @@ void RandItemUnit::getItemDropList(MapNode* testNode, MapNode** nodeList, BaseGe
  * Address:	8024F8E8
  * Size:	0002CC
  */
-Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** nodes, BaseGen** gens, int count, int minScore, int idx)
+Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** candidates, BaseGen** spawnerList, int nodeCount, int minScore, int idx)
 {
 	MapNode* redOnyonNode  = mMapScore->getFixObjNode(FIXNODE_VsRedOnyon);  // r27
 	MapNode* blueOnyonNode = mMapScore->getFixObjNode(FIXNODE_VsBlueOnyon); // r28
@@ -594,17 +595,17 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** nodes, BaseGen** gens, i
 	f32 maxDist = 400.0f;
 	int distScores[128];
 
-	for (int i = 0; i < count; i++) {
-		MapNode* currNode = nodes[i];
+	for (int i = 0; i < nodeCount; i++) {
+		MapNode* currNode = candidates[i];
 		f32 len           = 400.0f;
 		if (redOnyonNode == currNode) {
 			Vector3f onyonPos = redOnyonGen->mPosition;
-			Vector3f genPos   = gens[i]->mPosition;
+			Vector3f genPos   = spawnerList[i]->mPosition;
 			Vector3f sep      = Vector3f(onyonPos.y - genPos.y, onyonPos.z - genPos.z, onyonPos.x - genPos.x);
 			len               = _length2(sep);
 		} else if (blueOnyonNode == currNode) {
 			Vector3f onyonPos = blueOnyonGen->mPosition;
-			Vector3f genPos   = gens[i]->mPosition;
+			Vector3f genPos   = spawnerList[i]->mPosition;
 			Vector3f sep      = Vector3f(onyonPos.y - genPos.y, onyonPos.z - genPos.z, onyonPos.x - genPos.x);
 			len               = _length2(sep);
 		}
@@ -616,19 +617,19 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** nodes, BaseGen** gens, i
 		}
 	}
 
-	getItemDropSortingList(nodes, gens, distScores, count);
+	getItemDropSortingList(candidates, spawnerList, distScores, nodeCount);
 
-	for (int i = 0; i < count; i++) {
+	for (int i = 0; i < nodeCount; i++) {
 		bool check = true;
 		for (int j = 0; j < idx; j++) {
-			if (nodes[i] == mMapTileList[j] && gens[i] == mSpawnList[j]) {
+			if (candidates[i] == mMapTileList[j] && spawnerList[i] == mSpawnList[j]) {
 				check = false;
 			}
 		}
 
 		if (check) {
-			mMapTileList[idx] = nodes[i];
-			mSpawnList[idx]   = gens[i];
+			mMapTileList[idx] = candidates[i];
+			mSpawnList[idx]   = spawnerList[i];
 
 			return mMapTileList[idx]->getBaseGenGlobalPosition(mSpawnList[idx]);
 		}
@@ -643,21 +644,21 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** nodes, BaseGen** gens, i
  * Address:	8024FBB4
  * Size:	000114
  */
-void RandItemUnit::getItemDropSortingList(MapNode** nodes, BaseGen** gens, int* scores, int count)
+void RandItemUnit::getItemDropSortingList(MapNode** candidateNodes, BaseGen** spawnerList, int* scores, int count)
 {
 	int max = count - 1;
 	for (int i = 0; i < max; i++) {
 		for (int j = i + 1; j < count; j++) {
 			if (scores[i] > scores[j] || (scores[i] == scores[j] && randWeightFloat(1.0f) < 0.5f)) {
-				MapNode* oldNode = nodes[i];
-				BaseGen* oldGen  = gens[i];
-				int oldScore     = scores[i];
-				nodes[i]         = nodes[j];
-				gens[i]          = gens[j];
-				scores[i]        = scores[j];
-				nodes[j]         = oldNode;
-				gens[j]          = oldGen;
-				scores[j]        = oldScore;
+				MapNode* oldNode  = candidateNodes[i];
+				BaseGen* oldGen   = spawnerList[i];
+				int oldScore      = scores[i];
+				candidateNodes[i] = candidateNodes[j];
+				spawnerList[i]    = spawnerList[j];
+				scores[i]         = scores[j];
+				candidateNodes[j] = oldNode;
+				spawnerList[j]    = oldGen;
+				scores[j]         = oldScore;
 			}
 		}
 	}

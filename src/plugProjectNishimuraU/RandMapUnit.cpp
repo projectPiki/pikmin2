@@ -401,7 +401,7 @@ void RandMapUnit::changeCapToRootLoopMapUnit()
 	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
 	{
 		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 1 && currNode->getNumDoors() == 2
-		    && currNode->getDoorDirect(0) == 0 && currNode->getDoorDirect(1) == 2) {
+		    && currNode->getDoorDirect(CD_Up) == 0 && currNode->getDoorDirect(CD_Right) == 2) {
 			unitNames[nameCount] = currNode->mUnitInfo->getUnitName();
 			nameCount++;
 		}
@@ -418,21 +418,21 @@ void RandMapUnit::changeCapToRootLoopMapUnit()
 				int newX = X;
 				int newY = Y;
 
-				int doorDirect = (int)currNode->getDoorDirect(0);
+				int doorDirect = (int)currNode->getDoorDirect(CD_Up);
 				switch (doorDirect) {
-				case CD_UP:
+				case CD_Up:
 					newY++;
 					break;
 
-				case CD_RIGHT:
+				case CD_Right:
 					newX = X - 1;
 					break;
 
-				case CD_DOWN:
+				case CD_Down:
 					newY--;
 					break;
 
-				case CD_LEFT:
+				case CD_Left:
 					newX = X + 1;
 					break;
 				}
@@ -456,7 +456,7 @@ void RandMapUnit::changeCapToRootLoopMapUnit()
 
 					FOREACH_NODE(MapNode, nodeArray[2].mChild, anotherNode)
 					{
-						if (anotherNode->mUnitInfo->getUnitName() == randName && doorDirect == anotherNode->getDoorDirect(0)) {
+						if (anotherNode->mUnitInfo->getUnitName() == randName && doorDirect == anotherNode->getDoorDirect(CD_Up)) {
 							addMap(anotherNode->mUnitInfo, X, Y, true);
 							return;
 						}
@@ -484,7 +484,7 @@ void RandMapUnit::changeTwoToOneMapUnit()
 	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
 	{
 		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 1 && currNode->getNumDoors() == 2
-		    && currNode->getDoorDirect(0) == 0 && currNode->getDoorDirect(1) == 2) {
+		    && currNode->getDoorDirect(CD_Up) == 0 && currNode->getDoorDirect(CD_Right) == 2) {
 			firstUnitNames[firstNamesCount] = currNode->mUnitInfo->getUnitName();
 			firstNamesCount++;
 		}
@@ -495,7 +495,7 @@ void RandMapUnit::changeTwoToOneMapUnit()
 	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
 	{
 		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 2 && currNode->getNumDoors() == 2
-		    && currNode->getDoorDirect(0) == 0 && currNode->getDoorDirect(1) == 2) {
+		    && currNode->getDoorDirect(CD_Up) == 0 && currNode->getDoorDirect(CD_Right) == 2) {
 			secondUnitNames[secondNamesCount] = currNode->mUnitInfo->getUnitName();
 			secondNamesCount++;
 		}
@@ -548,7 +548,7 @@ void RandMapUnit::changeTwoToOneMapUnit()
 				char* randName = secondUnitNames[randIdx];
 				FOREACH_NODE(MapNode, nodeArray[2].mChild, anotherNode)
 				{
-					if (anotherNode->mUnitInfo->getUnitName() == randName && xDiff == anotherNode->getDoorDirect(0)) {
+					if (anotherNode->mUnitInfo->getUnitName() == randName && xDiff == anotherNode->getDoorDirect(CD_Up)) {
 						addMap(anotherNode->mUnitInfo, X, Y, true);
 						break;
 					}
@@ -1413,8 +1413,8 @@ MapNode* RandMapUnit::getLoopRandMapUnit()
 
 				for (int j = 0; j < 2; j++) {
 					for (int k = 0; k < loopCount; k++) {
-						int loopDir0 = tileList[k]->getDoorDirect(0);
-						int loopDir1 = tileList[k]->getDoorDirect(1);
+						int loopDir0 = tileList[k]->getDoorDirect(CD_Up);
+						int loopDir1 = tileList[k]->getDoorDirect(CD_Right);
 						if (loopDir0 == oppDir && loopDir1 == directions[j]) {
 							if (tileList[k]->isDoorSet(door, b, c, 0) && mChecker->isPutOnMap(tileList[k])) {
 								return tileList[k];

@@ -1601,12 +1601,12 @@ bool RandMapScore::isGoalSetHard()
  * Address:	8024DFA4
  * Size:	000128
  */
-bool RandMapScore::isFixObjSet(MapNode* mapNode, BaseGen* baseGen)
+bool RandMapScore::isFixObjSet(MapNode* node, BaseGen* spawner)
 {
 	// test 0 (pod/ship) separately
-	if (mapNode == getFixObjNode(FIXNODE_Pod) && baseGen && getFixObjGen(FIXNODE_Pod)) {
+	if (node == getFixObjNode(FIXNODE_Pod) && spawner && getFixObjGen(FIXNODE_Pod)) {
 		Vector3f fixPos  = getFixObjGen(FIXNODE_Pod)->mPosition;
-		Vector3f testPos = baseGen->mPosition;
+		Vector3f testPos = spawner->mPosition;
 		Vector3f sep     = Vector3f(fixPos.y - testPos.y, fixPos.z - testPos.z, fixPos.x - testPos.x);
 		if (_length2(sep) < 150.0f) {
 			return false;
@@ -1615,7 +1615,7 @@ bool RandMapScore::isFixObjSet(MapNode* mapNode, BaseGen* baseGen)
 
 	// test remaining fix obj nodes
 	for (int i = 1; i < FIXNODE_Count; i++) {
-		if (mapNode == getFixObjNode(i) && baseGen == getFixObjGen(i)) {
+		if (node == getFixObjNode(i) && spawner == getFixObjGen(i)) {
 			return false;
 		}
 	}

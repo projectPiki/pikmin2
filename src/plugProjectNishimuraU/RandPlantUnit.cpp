@@ -74,7 +74,7 @@ void Game::Cave::RandPlantUnit::setPlantSlot()
  * Address:	8029F044
  * Size:	000134
  */
-MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** outSpawn)
+MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** plantSpawnsList)
 {
 	// make list of EMPTY plant spawns and pick one at random
 	// returns mapnode of randomly selected plant spawn and puts pointer to basegen for plant in outSpawn
@@ -105,8 +105,8 @@ MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** outSpawn)
 	// assuming we hit at least one plant spawn, pick one from the list at random
 	// return the map node pointer, and put the basegen pointer into *baseGenOut
 	if (count) {
-		int randBase = count * randFloat();
-		*outSpawn    = spawnList[randBase];
+		int randBase     = count * randFloat();
+		*plantSpawnsList = spawnList[randBase];
 		return tileList[randBase];
 	}
 	// if we didn't hit any empty spawns, return nullptr

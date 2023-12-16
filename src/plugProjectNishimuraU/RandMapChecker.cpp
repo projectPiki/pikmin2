@@ -97,13 +97,13 @@ bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 
 		if (!b_flag) {
 			switch (mapnode->getDoorDirect(doorIndex)) {
-			case CD_UP:
+			case CD_Up:
 				outerY1--;
 				break;
-			case CD_LEFT:
+			case CD_Left:
 				outerX1--;
-			case CD_RIGHT:
-			case CD_DOWN:
+			case CD_Right:
+			case CD_Down:
 				break;
 			}
 
@@ -166,13 +166,13 @@ bool RandMapChecker::isPartsOnDoor(MapNode* mapnode)
 
 				if (!b_flag) {
 					switch (child->getDoorDirect(adjustInfoIndex)) {
-					case CD_UP:
+					case CD_Up:
 						innerY1--;
 						break;
-					case CD_LEFT:
+					case CD_Left:
 						innerX1--;
-					case CD_RIGHT:
-					case CD_DOWN:
+					case CD_Right:
+					case CD_Down:
 						break;
 					}
 

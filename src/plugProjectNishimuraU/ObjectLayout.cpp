@@ -46,10 +46,10 @@ int ObjectLayout::getCount(int idx)
  * Address:	80250948
  * Size:	000040
  */
-ObjectLayoutNode* ObjectLayout::getNode(int idx, int at)
+ObjectLayoutNode* ObjectLayout::getNode(int nodeIndex, int childIndex)
 {
-	ObjectLayoutNode* node = mNodeList[idx];
-	return node ? (ObjectLayoutNode*)node->getChildAt(at) : nullptr;
+	ObjectLayoutNode* node = mNodeList[nodeIndex];
+	return node ? (ObjectLayoutNode*)node->getChildAt(childIndex) : nullptr;
 }
 } // namespace Cave
 } // namespace Game

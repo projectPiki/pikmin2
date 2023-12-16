@@ -94,11 +94,11 @@ struct Door {
  */
 struct DoorNode : public CNode {
 	DoorNode();
-	DoorNode(Door&);
+	DoorNode(Door& door);
 
 	virtual ~DoorNode() { }
 
-	bool isDoorAdjust(DoorNode*);
+	bool isDoorAdjust(DoorNode* other);
 
 	inline void reset()
 	{
@@ -182,16 +182,16 @@ struct ItemUnit {
  */
 struct ItemNode : public ObjectLayoutNode {
 	ItemNode();
-	ItemNode(ItemUnit*, BaseGen*, int);
+	ItemNode(ItemUnit* unit, BaseGen* spawn, int birthCount);
 
-	virtual ~ItemNode() { }                    // _08 (weak)
-	virtual int getObjectId();                 // _10
-	virtual u32 getObjectType();               // _14
-	virtual int getBirthCount();               // _18
-	virtual f32 getDirection();                // _1C
-	virtual void getBirthPosition(f32&, f32&); // _24
+	virtual ~ItemNode() { }                        // _08 (weak)
+	virtual int getObjectId();                     // _10
+	virtual u32 getObjectType();                   // _14
+	virtual int getBirthCount();                   // _18
+	virtual f32 getDirection();                    // _1C
+	virtual void getBirthPosition(f32& x, f32& y); // _24
 
-	void makeGlobalData(MapNode*);
+	void makeGlobalData(MapNode* tile);
 
 	// _00     = VTBL
 	// _00-_18 = ObjectLayoutNode
@@ -206,15 +206,15 @@ struct ItemNode : public ObjectLayoutNode {
  * @size{0x24}
  */
 struct MapUnits {
-	MapUnits(JUTTexture*);
+	MapUnits(JUTTexture* mapTexture);
 
 	void setDoorNum(int doorNum);
 	void setUnitName(char* name);
 	void setUnitIndex(int idx);
 	void setUnitKind(int kind);
 	void setUnitSize(int sizeX, int sizeY);
-	void setBaseGenPtr(BaseGen* baseGen);
-	void setUnitTexture(JUTTexture*);
+	void setBaseGenPtr(BaseGen* spawner);
+	void setUnitTexture(JUTTexture* texture);
 
 	// unused/inlined:
 	char* getUnitName();
@@ -244,37 +244,37 @@ struct MapNode : public CNode {
 
 	virtual ~MapNode() { } // _08 (weak)
 
-	void setOffset(int, int);
-	int getDoorDirect(int);
-	void getDoorOffset(int, int&, int&);
-	bool isDoorSet(DoorNode*, int, int, int);
-	void setDoorClose(int, MapNode*, int);
+	void setOffset(int x, int y);
+	int getDoorDirect(int doorIndex);
+	void getDoorOffset(int doorIndex, int& x, int& y);
+	bool isDoorSet(DoorNode* testDoor, int x, int y, int index);
+	void setDoorClose(int doorIndex, MapNode* partner, int partnerIndex);
 	void detachDoorClose();
-	bool isDoorClose(int);
+	bool isDoorClose(int doorIndex);
 	void resetDoorScore();
-	void setDoorScore(int, int);
-	bool isDoorScoreSetDone(int);
-	DoorNode* getDoorNode(int);
-	AdjustNode* getAdjustNode(int);
-	bool isGateSetDoor(int);
-	int getGateScore(int);
+	void setDoorScore(int doorIndex, int score);
+	bool isDoorScoreSetDone(int doorIndex);
+	DoorNode* getDoorNode(int doorIndex);
+	AdjustNode* getAdjustNode(int doorIndex);
+	bool isGateSetDoor(int doorIndex);
+	int getGateScore(int doorIndex);
 	void setEnemyScore();
-	void setNodeScore(int);
+	void setNodeScore(int score);
 	void copyNodeScoreToVersusScore();
 	void subNodeScoreToVersusScore();
-	void draw(f32, f32, f32);
+	void draw(f32 x, f32 y, f32 scale);
 	int getNodeOffsetX();
 	int getNodeOffsetY();
 	int getEnemyScore();
 	int getNodeScore();
 	int getVersusScore();
 	char* getUnitName();
-	void getNodeCentreOffset(f32&, f32&);
+	void getNodeCentreOffset(f32& x, f32& y);
 	int getDirection();
-	Vector3f getBaseGenGlobalPosition(BaseGen*);
-	Vector3f getDoorGlobalPosition(int);
-	f32 getBaseGenGlobalDirection(BaseGen*);
-	f32 getDoorGlobalDirection(int);
+	Vector3f getBaseGenGlobalPosition(BaseGen* spawner);
+	Vector3f getDoorGlobalPosition(int doorIndex);
+	f32 getBaseGenGlobalDirection(BaseGen* spawner);
+	f32 getDoorGlobalDirection(int doorIndex);
 	int getNumDoors();
 
 	inline MapNode* getChild() { return static_cast<MapNode*>(mChild); }
@@ -309,16 +309,16 @@ struct EnemyUnit {
  */
 struct EnemyNode : public ObjectLayoutNode {
 	EnemyNode();
-	EnemyNode(EnemyUnit*, BaseGen*, int);
+	EnemyNode(EnemyUnit* unit, BaseGen* spawner, int amount);
 
-	virtual ~EnemyNode() { }                   // _08 (weak)
-	virtual int getObjectId();                 // _10
-	virtual u32 getObjectType();               // _14
-	virtual int getBirthCount();               // _18
-	virtual f32 getDirection();                // _1C
-	virtual int getBirthDoorIndex();           // _20
-	virtual void getBirthPosition(f32&, f32&); // _24
-	virtual u32 getExtraCode();                // _28
+	virtual ~EnemyNode() { }                       // _08 (weak)
+	virtual int getObjectId();                     // _10
+	virtual u32 getObjectType();                   // _14
+	virtual int getBirthCount();                   // _18
+	virtual f32 getDirection();                    // _1C
+	virtual int getBirthDoorIndex();               // _20
+	virtual void getBirthPosition(f32& x, f32& y); // _24
+	virtual u32 getExtraCode();                    // _28
 
 	void makeGlobalData(Game::Cave::MapNode*);
 	void setGlobalData(Vector3f&, f32);

@@ -218,7 +218,7 @@ void UnitInfo::create()
 	mDoorCounts = mMapUnits->mDoorCounts;
 
 	// if unit is facing up or down, use X and Y as normal
-	if ((mUnitRotation == 0) || (mUnitRotation == 2)) {
+	if ((mUnitRotation == CD_Up) || (mUnitRotation == CD_Down)) {
 		mUnitSizeX = mMapUnits->mSizeX;
 		mUnitSizeY = mMapUnits->mSizeY;
 	} else { // if unit is facing left or right, swap X and Y
@@ -239,20 +239,20 @@ void UnitInfo::create()
 
 		unitDoorNode->mDoor.mDirection = newDirection; // set as new door direction
 		// set offset based on new direction vs old direction
-		if (doorDir == CD_UP) {
-			if ((newDirection == CD_DOWN) || (newDirection == CD_LEFT)) {
+		if (doorDir == CD_Up) {
+			if ((newDirection == CD_Down) || (newDirection == CD_Left)) {
 				unitDoorNode->mDoor.mOffset = (X - unitDoorNode->mDoor.mOffset);
 			}
-		} else if (doorDir == CD_RIGHT) {
-			if ((newDirection == CD_DOWN) || (newDirection == CD_LEFT)) {
+		} else if (doorDir == CD_Right) {
+			if ((newDirection == CD_Down) || (newDirection == CD_Left)) {
 				unitDoorNode->mDoor.mOffset = (Y - unitDoorNode->mDoor.mOffset);
 			}
-		} else if (doorDir == CD_DOWN) {
-			if ((newDirection == CD_UP) || (newDirection == CD_RIGHT)) {
+		} else if (doorDir == CD_Down) {
+			if ((newDirection == CD_Up) || (newDirection == CD_Right)) {
 				unitDoorNode->mDoor.mOffset = (X - unitDoorNode->mDoor.mOffset);
 			}
-		} else if (doorDir == CD_LEFT) {
-			if ((newDirection == CD_UP) || (newDirection == CD_RIGHT)) {
+		} else if (doorDir == CD_Left) {
+			if ((newDirection == CD_Up) || (newDirection == CD_Right)) {
 				unitDoorNode->mDoor.mOffset = (Y - unitDoorNode->mDoor.mOffset);
 			}
 		}
@@ -343,16 +343,16 @@ void UnitInfo::draw(f32 x0, f32 y0, f32 x1, f32 y1)
 
 		// modify GX coords based on rotation of unit
 		switch (mUnitRotation) {
-		case 0: // facing up/default, no rotation
+		case CD_Up: // default, no rotation
 			break;
-		case 1: // facing right
+		case CD_Right:
 			u1 = 0;
 			u3 = 16;
 
 			v0 = 16;
 			v2 = 0;
 			break;
-		case 2: // facing down
+		case CD_Down:
 			u0 = 16;
 			u1 = 0;
 			u2 = 0;
@@ -363,7 +363,7 @@ void UnitInfo::draw(f32 x0, f32 y0, f32 x1, f32 y1)
 			v2 = 0;
 			v3 = 0;
 			break;
-		case 3: // facing left
+		case CD_Left:
 			u0 = 16;
 			u2 = 0;
 

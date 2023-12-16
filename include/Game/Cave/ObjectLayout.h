@@ -24,15 +24,15 @@ enum ObjectLayoutType {
  * @size{0x18}
  */
 struct ObjectLayoutNode : public CNode {
-	virtual ~ObjectLayoutNode() { }                 // _08 (weak)
-	virtual int getObjectId()   = 0;                // _10
-	virtual u32 getObjectType() = 0;                // _14
-	virtual int getBirthCount() = 0;                // _18
-	virtual f32 getDirection() { return 0.0f; }     // _1C (weak)
-	virtual int getBirthDoorIndex() { return -1; }  // _20 (weak)
-	virtual void getBirthPosition(f32&, f32&) { }   // _24 (weak)
-	virtual u32 getExtraCode() { return 0; }        // _28 (weak)
-	virtual bool isFixedBattery() { return false; } // _2C (weak)
+	virtual ~ObjectLayoutNode() { }                   // _08 (weak)
+	virtual int getObjectId()   = 0;                  // _10
+	virtual u32 getObjectType() = 0;                  // _14
+	virtual int getBirthCount() = 0;                  // _18
+	virtual f32 getDirection() { return 0.0f; }       // _1C (weak)
+	virtual int getBirthDoorIndex() { return -1; }    // _20 (weak)
+	virtual void getBirthPosition(f32& x, f32& y) { } // _24 (weak)
+	virtual u32 getExtraCode() { return 0; }          // _28 (weak)
+	virtual bool isFixedBattery() { return false; }   // _2C (weak)
 };
 
 /**
@@ -41,12 +41,12 @@ struct ObjectLayoutNode : public CNode {
 struct ObjectLayoutInfo {
 	ObjectLayoutInfo() { }
 
-	virtual int getCount(int)                   = 0;
-	virtual ObjectLayoutNode* getNode(int, int) = 0;
+	virtual int getCount(int index)                                  = 0;
+	virtual ObjectLayoutNode* getNode(int nodeIndex, int childIndex) = 0;
 };
 
 namespace Cave {
-enum CardinalDirection { CD_UP, CD_RIGHT, CD_DOWN, CD_LEFT };
+enum CardinalDirection { CD_Up = 0, CD_Right, CD_Down, CD_Left };
 struct DoorNode;
 struct BaseGen;
 struct AdjustNode;
@@ -66,8 +66,8 @@ enum UnitKind {
 struct UnitInfo {
 	UnitInfo(MapUnits* mapUnits);
 
-	void setUnitTexture(JUTTexture*);
-	void setUnitRotation(int rot);
+	void setUnitTexture(JUTTexture* texture);
+	void setUnitRotation(int direction); // Use CD_ / CardinalDirection enum
 	void create();
 	char* getUnitName();
 	int getUnitKind();
@@ -76,12 +76,12 @@ struct UnitInfo {
 	int getUnitRotation();
 	DoorNode* getDoorNode(int doorNum);
 	BaseGen* getBaseGen();
-	void draw(f32, f32, f32, f32);
+	void draw(f32 x0, f32 y0, f32 x1, f32 y1);
 
 	DoorNode* mDoorNode;     // _00
 	AdjustNode* mDoorCounts; // _04
 	MapUnits* mMapUnits;     // _08
-	int mUnitRotation;       // _0C
+	int mUnitRotation;       // _0C, Use CD_ / CardinalDirection enum
 	int mUnitSizeX;          // _10
 	int mUnitSizeY;          // _14
 };
@@ -92,10 +92,10 @@ struct UnitInfo {
 struct ObjectLayout : public ObjectLayoutInfo {
 	ObjectLayout(MapNode*);
 
-	virtual int getCount(int);                   // _08
-	virtual ObjectLayoutNode* getNode(int, int); // _0C
+	virtual int getCount(int index);                                  // _08
+	virtual ObjectLayoutNode* getNode(int nodeIndex, int childIndex); // _0C
 
-	void setNode(int, Game::ObjectLayoutNode*);
+	void setNode(int index, Game::ObjectLayoutNode* data);
 
 	// _00, VTBL
 	ObjectLayoutNode** mNodeList; // _04

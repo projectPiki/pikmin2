@@ -67,19 +67,19 @@ bool DoorNode::isDoorAdjust(DoorNode* other)
 	int x = mDoor.mDirection;
 	int y = other->mDoor.mDirection;
 
-	if (x == CD_UP && y == CD_DOWN) {
+	if (x == CD_Up && y == CD_Down) {
 		return true;
 	}
 
-	if (x == CD_DOWN && y == CD_UP) {
+	if (x == CD_Down && y == CD_Up) {
 		return true;
 	}
 
-	if (x == CD_LEFT && y == CD_RIGHT) {
+	if (x == CD_Left && y == CD_Right) {
 		return true;
 	}
 
-	if (x == CD_RIGHT && y == CD_LEFT) {
+	if (x == CD_Right && y == CD_Left) {
 		return true;
 	}
 
