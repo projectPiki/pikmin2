@@ -39,7 +39,7 @@ struct Obj : public EnemyBase {
 		return EnemyTypeID::EnemyID_Baby;
 	}
 	virtual MouthSlots* getMouthSlots();                                        // _25C (weak)
-	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
+	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);   // _27C
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
 	virtual void doStartStoneState();                                           // _2A4
 	virtual void doFinishStoneState();                                          // _2A8

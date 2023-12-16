@@ -76,7 +76,7 @@ struct Obj : public EnemyBase {
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                      // _234
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;                     // _258
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
+	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);   // _27C
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
 	virtual void doStartStoneState();                                           // _2A4
 	virtual void doFinishStoneState();                                          // _2A8

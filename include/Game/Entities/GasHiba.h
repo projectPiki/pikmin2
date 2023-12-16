@@ -48,7 +48,7 @@ struct Obj : public EnemyBase {
 		return EnemyTypeID::EnemyID_GasHiba;
 	}
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
+	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);   // _27C
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
 	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294
 	virtual void lifeRecover() { }                                              // _2C0 (weak)

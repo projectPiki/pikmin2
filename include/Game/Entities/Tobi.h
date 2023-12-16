@@ -58,7 +58,7 @@ struct Obj : public EnemyBase {
 	virtual void initMouthSlots();                                              // _22C
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                         // _258 (weak)
 	virtual MouthSlots* getMouthSlots();                                        // _25C (weak)
-	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
+	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);   // _27C
 	bool flyCollisionCallBack(Creature* source, f32 damage, CollPart* part);    // _280
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
 	virtual void doStartStoneState();                                           // _2A4

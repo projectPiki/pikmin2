@@ -14,7 +14,7 @@ struct Obj : public PanModokiBase::Obj {
 
 	virtual ~Obj() { }                                                                                      // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_OoPanModoki; }         // _258 (weak)
-	virtual bool pressCallBack(Creature*, f32, CollPart*);                                                  // _27C
+	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);                               // _27C
 	virtual f32 getDownSmokeScale() { return 1.0f; }                                                        // _2EC (weak)
 	virtual void appearRumble();                                                                            // _2F8
 	virtual void hideRumble();                                                                              // _2FC

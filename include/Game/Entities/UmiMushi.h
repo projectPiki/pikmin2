@@ -179,7 +179,7 @@ struct Obj : public EnemyBase {
 	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }                 // _25C (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                           // _260
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);   // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);                       // _27C
+	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);    // _27C
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part);  // _284
 	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);         // _28C
 	virtual void doStartStoneState();                                            // _2A4

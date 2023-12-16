@@ -57,9 +57,9 @@ struct Obj : public EnemyBase {
 	{
 		return EnemyTypeID::EnemyID_Egg;
 	}
-	virtual bool pressCallBack(Creature*, f32, CollPart*); // _27C
-	virtual f32 getDownSmokeScale() { return 0.4f; }       // _2EC (weak)
-	virtual void setFSM(FSM* fsm)                          // _2F8 (weak)
+	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part); // _27C
+	virtual f32 getDownSmokeScale() { return 0.4f; }                          // _2EC (weak)
+	virtual void setFSM(FSM* fsm)                                             // _2F8 (weak)
 	{
 		mFsm = fsm;
 		mFsm->init(this);
