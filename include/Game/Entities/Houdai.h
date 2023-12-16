@@ -52,8 +52,8 @@ struct Obj : public EnemyBase {
 	virtual void doAnimationCullingOff();                                      // _1DC
 	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
 	virtual void setParameters();                                              // _228
-	virtual void getThrowupItemPosition(Vector3f*);                            // _268
-	virtual void getThrowupItemVelocity(Vector3f*);                            // _26C
+	virtual void getThrowupItemPosition(Vector3f* position);                   // _268
+	virtual void getThrowupItemVelocity(Vector3f* velocity);                   // _26C
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
 	virtual void doStartStoneState();                                          // _2A4
 	virtual void doFinishStoneState();                                         // _2A8

@@ -56,17 +56,17 @@ struct Obj : public EnemyBase {
 	{
 		return EnemyTypeID::EnemyID_Mar;
 	}
-	virtual void getThrowupItemPosition(Vector3f*);   // _268
-	virtual void getThrowupItemVelocity(Vector3f*);   // _26C
-	virtual void throwupItemInDeathProcedure() {};    // _270 (weak)
-	virtual void doStartStoneState();                 // _2A4
-	virtual void doFinishStoneState();                // _2A8
-	virtual void doStartWaitingBirthTypeDrop();       // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();      // _2E4
-	virtual f32 getDownSmokeScale() { return 1.15f; } // _2EC (weak)
-	virtual void doStartMovie();                      // _2F0
-	virtual void doEndMovie();                        // _2F4
-	virtual void setFSM(FSM* fsm);                    // _2F8
+	virtual void getThrowupItemPosition(Vector3f* position); // _268
+	virtual void getThrowupItemVelocity(Vector3f* velocity); // _26C
+	virtual void throwupItemInDeathProcedure() {};           // _270 (weak)
+	virtual void doStartStoneState();                        // _2A4
+	virtual void doFinishStoneState();                       // _2A8
+	virtual void doStartWaitingBirthTypeDrop();              // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();             // _2E4
+	virtual f32 getDownSmokeScale() { return 1.15f; }        // _2EC (weak)
+	virtual void doStartMovie();                             // _2F0
+	virtual void doEndMovie();                               // _2F4
+	virtual void setFSM(FSM* fsm);                           // _2F8
 	//////////////// VTABLE END
 
 	Vector3f getHeadJointPos();
