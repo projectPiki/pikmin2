@@ -20,13 +20,13 @@ inline Node::Node()
 	mMemoryBlock = 0;
 }
 
-inline u32 Node::dvdToAram(char const* name, bool setFalse)
+inline u32 Node::dvdToAram(char const* name, bool forceFail)
 {
 	P2ASSERTLINE(105, name);
 	mName = const_cast<char*>(name);
 
 	if (!mMemoryBlock) {
-		if (setFalse) {
+		if (forceFail) {
 			mMemoryBlock = nullptr;
 		} else {
 			mMemoryBlock = (JKRAramBlock*)JKRDvdAramRipper::loadToAram(mName, 0, Switch_0, 0, 0, 0);

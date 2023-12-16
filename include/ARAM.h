@@ -22,14 +22,14 @@ struct Node : CNode {
 	 * This function loads a DVD resource to the ARAM system.
 	 *
 	 * @param path Resource name from the DVD.
-	 * @param useStatus If true, the function uses the status.
+	 * @param forceFail If true, the function will always fail.
 	 *
 	 * @warning This function uses const_cast, potentially modifying the input string. Caution with read-only memory (e.g., string
 	 * literals).
 	 *
 	 * @return The number of bytes loaded to ARAM.
 	 */
-	inline u32 dvdToAram(char const* path, bool useStatus);
+	inline u32 dvdToAram(char const* path, bool forceFail);
 
 	/**
 	 * @brief Transfers data from the ARAM to the main RAM.
