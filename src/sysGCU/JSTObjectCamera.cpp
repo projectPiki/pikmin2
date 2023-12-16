@@ -15,18 +15,14 @@ ObjectCamera::ObjectCamera(char const* name, MoviePlayer* movie)
     : ObjectBase(name, movie)
     , mViewPos(*(const Vec*)govNAN_)
     , mViewTargetPos(*(const Vec*)govNAN_)
+    , mViewRoll(gfNAN_)
+    , mProjectionNear(gfNAN_)
+    , mProjectionFar(gfNAN_)
+    , mProjectionFovy(gfNAN_)
+    , mProjectionAspect(gfNAN_)
+    , mCameraObj(nullptr)
+    , mIsRunning(false)
 {
-
-	f32 n = gfNAN_;
-
-	mViewRoll         = n;
-	mProjectionNear   = n;
-	mProjectionFar    = n;
-	mProjectionFovy   = n;
-	mProjectionAspect = n;
-	mCameraObj        = nullptr;
-	mIsRunning        = false;
-
 	mCameraObj2 = new Camera;
 	/*
 	stwu     r1, -0x10(r1)
@@ -373,20 +369,12 @@ void ObjectCamera::setCamera(Camera* cam)
 	mCameraObj             = cam;
 	mCameraObj->mJstObject = this;
 
-	// can Vec die pls
 	Vector3f pos = mCameraObj->getPosition();
-	Vec pos2;
-	pos2.x = pos.x;
-	pos2.y = pos.y;
-	pos2.z = pos.z;
-	JSGSetViewPosition(pos2);
+	JSGSetViewPosition(*(Vec*)&pos);
 
 	pos += mCameraObj->getViewVector() * 200.0f;
-	pos2.x = pos.x;
-	pos2.y = pos.y;
-	pos2.z = pos.z;
 
-	JSGSetViewTargetPosition(pos2);
+	JSGSetViewTargetPosition(*(Vec*)&pos);
 	JSGSetViewRoll(0.0f);
 	JSGSetProjectionNear(mCameraObj->getNear());
 	JSGSetProjectionFar(mCameraObj->getFar());

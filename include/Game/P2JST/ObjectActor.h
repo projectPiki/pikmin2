@@ -88,15 +88,6 @@ struct ObjectGameActor : public ObjectActor {
 	virtual void stop();                                   // _B8 (weak)
 	virtual void parseUserData_(u32, const void*);         // _C8 (weak)
 
-	// used in Game::P2JST::ObjectGameActor::stop
-	inline void killAllAnimCalc(Creature* obj)
-	{
-		for (int i = 0; i < obj->mModel->mJointCount; i++) {
-			obj->mModel->mJ3dModel->mModelData->mJointTree.mJoints[(u16)i]->mMtxCalc = nullptr;
-		}
-		obj->setMovieMotion(false);
-	}
-
 	// _00     = VTABLE (JStage::TActor)
 	// _04     = VTABLE2 (ObjectBase)
 	// _00-_70 = ObjectActor
@@ -107,10 +98,10 @@ struct ObjectGameActor : public ObjectActor {
 	JKRArchive* mActorArchive; // _8C
 	Vector3f mTranslation2;    // _90, translation 2?
 	Vector3f mRotation2;       // _9C, rotation 2?
-	u8 _A8;                    // _A8, unknown
-	f32 mObjectFaceDir;
-	int mUserDataNum;         // _B0
-	u16 mMovieCommandData[4]; // _B4 (actual value for command, anim id mainly)
+	bool mDoExtraSetTranslate; // _A8, enabled for SRT 5
+	f32 mObjectFaceDir;        // _AC
+	int mUserDataNum;          // _B0
+	u16 mMovieCommandData[4];  // _B4 (actual value for command, anim id mainly)
 };
 
 struct ObjectParticleActor : public ObjectActor, public JPAEmitterCallBack {

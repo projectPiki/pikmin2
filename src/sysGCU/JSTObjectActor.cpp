@@ -21,13 +21,23 @@ namespace P2JST {
 ObjectActor::ObjectActor(char const* name, MoviePlayer* movie)
     : ObjectBase(name, movie)
 {
+	u32 nan       = gu32NAN_.a;
+	f32 fnan      = gfNAN_;
 	mModelData    = nullptr;
 	mModel        = nullptr;
 	mAnmTransform = nullptr;
 	mMtxCalcAnm   = nullptr;
 	mArchive      = nullptr;
+	// mTranslation  = Vector3f(0.0f, 0.0f, 0.0f);
+	// mRotation     = Vector3f(0.0f, 0.0f, 0.0f);
+	// mScaling      = Vector3f(0.0f, 0.0f, 0.0f);
+	mShape           = nan;
+	mAnimation       = nan;
+	mAnimFrame       = fnan;
+	mAnimFrameMax    = fnan;
+	mModelFileId     = nan;
+	mAnimationFileId = nan;
 
-	reset();
 	mArchive = MoviePlayer::mArchive;
 	/*
 	lis      r6, __vt__Q26JStage7TObject@ha
@@ -519,8 +529,7 @@ void ObjectActor::mountArchive() { JUT_PANICLINE(359, "DON\'T CALL THIS !\n"); }
 void ObjectActor::parseUserData_(u32 p1, void const* p2)
 {
 	OSReport("data-ID : %u (0x%08x)\n", p1, p2);
-	JStudio::stb::data::TParse_TParagraph_data v1;
-	v1.stbData = p2;
+	JStudio::stb::data::TParse_TParagraph_data v1(p2);
 	JStudio::stb::data::TParse_TParagraph_data::TData v2;
 	v1.getData(&v2);
 	if (v2.status == 0) {

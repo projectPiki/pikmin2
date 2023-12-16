@@ -26,18 +26,19 @@ extern const u32 gauDataSize_TEParagraph_data[8];
 inline void toString_block(char* a5c, u32 arg1); // unused/inlined
 
 struct TParse_TParagraph_data {
+	TParse_TParagraph_data(const void* data) { stbData = data; }
 
 	struct TData {
 		u8 status;    //_00
 		int dataSize; //_04
 		int _08;
-		char* fileCount;
+		char* fileCount; // should be s16* for GameActor?
 		u8* _10;
 	};
 
 	void getData(TData*) const;
 
-	const void* stbData;
+	const void* stbData; // _00
 };
 
 struct TParse_TSequence {

@@ -175,13 +175,11 @@ void ObjectParticleActor::stop() { killEmitter(); }
  */
 void ObjectParticleActor::update()
 {
-	if (mCourseIdFlag) {
-		if (gameSystem) {
-			CourseInfo* info = gameSystem->mSection->getCurrentCourseInfo();
-			if (info && info->mCourseIndex >> 1 == mCourseIdFlag) {
-				mEfxFlag = 0;
-				return;
-			}
+	if (mCourseIdFlag && gameSystem) {
+		CourseInfo* info = gameSystem->mSection->getCurrentCourseInfo();
+		if (info && u8(1 << info->mCourseIndex) & mCourseIdFlag) {
+			mEfxFlag = 0;
+			return;
 		}
 	}
 
@@ -215,8 +213,7 @@ void ObjectParticleActor::JSGSetShape(u32 id)
  */
 void ObjectParticleActor::parseUserData_(u32 p1, void const* rawData)
 {
-	JStudio::stb::data::TParse_TParagraph_data paragraph;
-	paragraph.stbData = rawData;
+	JStudio::stb::data::TParse_TParagraph_data paragraph(rawData);
 	JStudio::stb::data::TParse_TParagraph_data::TData data;
 	paragraph.getData(&data);
 	if (data.status == 0) {
@@ -398,14 +395,14 @@ void ObjectParticleActor::emit()
 
 	if (mGameObject) {
 		pos = mGameObject->getPosition();
-		if (mGameObject->mModel && mModelJointIndex > -1) {
+		if (mGameObject->mModel && mModelJointIndex >= 0) {
 			PSMTXCopy(mGameObject->mModel->mJoints[mModelJointIndex].getWorldMatrix()->mMatrix.mtxView, mMatrix.mMatrix.mtxView);
-			pos = mMatrix.getBasis(3);
+			pos = mMatrix.getPosition();
 		} else if (mModelJointIndex == -1) {
 			PSMTXCopy(mGameObject->mBaseTrMatrix.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
 			pos = mMatrix.getBasis(3);
 		} else {
-			Vector3f pos(mTranslation2.x, mTranslation2.y, mTranslation2.z);
+			pos = Vector3f(mTranslation2.x, mTranslation2.y, mTranslation2.z);
 			Vector3f vec2(0.0f, moviePlayer->mTransformAngle, 0.0f);
 			mMatrix.makeTR(pos, vec2);
 		}
@@ -413,7 +410,7 @@ void ObjectParticleActor::emit()
 		if (mModelJointIndex == -2)
 			return;
 
-		Vector3f pos(mTranslation2.x, mTranslation2.y, mTranslation2.z);
+		pos = Vector3f(mTranslation2.x, mTranslation2.y, mTranslation2.z);
 		Vector3f vec2(0.0f, moviePlayer->mTransformAngle, 0.0f);
 		mMatrix.makeTR(pos, vec2);
 	}
@@ -434,97 +431,21 @@ void ObjectParticleActor::emit()
 void ObjectParticleActor::executeAfter(JPABaseEmitter* emit)
 {
 	Creature* obj = mGameObject;
-	if (obj) {
-		if (obj->mModel) {
-			if (mModelJointIndex > -1) {
-				PSMTXCopy(obj->mModel->mJoints[mModelJointIndex].getWorldMatrix()->mMatrix.mtxView, mMatrix.mMatrix.mtxView);
-			}
-		}
-		if (mModelJointIndex == -1) {
+	if (mGameObject) {
+		if (obj->mModel && mModelJointIndex >= 0) {
+			PSMTXCopy(obj->mModel->mJoints[mModelJointIndex].getWorldMatrix()->mMatrix.mtxView, mMatrix.mMatrix.mtxView);
+		} else if (mModelJointIndex == -1) {
 			PSMTXCopy(obj->mBaseTrMatrix.mMatrix.mtxView, mMatrix.mMatrix.mtxView);
-			return;
 		} else {
 			Vector3f vec(0.0f, moviePlayer->mTransformAngle, 0.0f);
 			mMatrix.makeTR(mTranslation2, vec);
-			return;
 		}
 	} else {
 		Vector3f vec(0.0f, moviePlayer->mTransformAngle, 0.0f);
 		mMatrix.makeTR(mTranslation2, vec);
 	}
 
-	mEmitter->setGlobalRTMatrix(mMatrix.mMatrix.mtxView);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r3, 0x80(r3)
-	cmplwi   r3, 0
-	beq      lbl_80454BC4
-	lwz      r5, 0x174(r3)
-	cmplwi   r5, 0
-	beq      lbl_80454B7C
-	lha      r4, 0x84(r30)
-	extsh.   r0, r4
-	blt      lbl_80454B7C
-	mulli    r0, r4, 0x3c
-	lwz      r3, 0x10(r5)
-	add      r3, r3, r0
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	addi     r4, r30, 0x88
-	bl       PSMTXCopy
-	b        lbl_80454BEC
-
-lbl_80454B7C:
-	lha      r0, 0x84(r30)
-	cmpwi    r0, -1
-	bne      lbl_80454B98
-	addi     r3, r3, 0x138
-	addi     r4, r30, 0x88
-	bl       PSMTXCopy
-	b        lbl_80454BEC
-
-lbl_80454B98:
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	addi     r3, r30, 0x88
-	lfs      f0, lbl_80520BA8@sda21(r2)
-	addi     r4, r30, 0xbc
-	lfs      f1, 0x1c8(r5)
-	addi     r5, r1, 0x14
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-	b        lbl_80454BEC
-
-lbl_80454BC4:
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	addi     r3, r30, 0x88
-	lfs      f0, lbl_80520BA8@sda21(r2)
-	addi     r4, r30, 0xbc
-	lfs      f1, 0x1c8(r5)
-	addi     r5, r1, 8
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-
-lbl_80454BEC:
-	addi     r3, r30, 0x88
-	addi     r4, r31, 0x68
-	addi     r5, r31, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	emit->setGlobalRTMatrix(mMatrix.mMatrix.mtxView);
 }
 
 /*

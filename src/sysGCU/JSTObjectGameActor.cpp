@@ -4,6 +4,9 @@
 #include "Game/MapMgr.h"
 #include "nans.h"
 
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "ObjectGameActor";
+
 namespace Game {
 namespace P2JST {
 
@@ -30,38 +33,15 @@ ObjectGameActor::ObjectGameActor(char const* name, MoviePlayer* movie, Creature*
  */
 void ObjectGameActor::reset()
 {
-	mSRTCommand       = 0;
-	_A8               = 0;
-	mCurrCommandCount = 0;
-	mUserDataNum      = 0;
+	mSRTCommand          = 0;
+	mDoExtraSetTranslate = false;
+	mCurrCommandCount    = 0;
+	mUserDataNum         = 0;
 	for (int i = 0; i < 4; i++) {
 		mCommandIDs[i]       = -1;
 		mMovieCommandData[i] = -1;
 	}
 	mRotation2 = 0.0f;
-	/*
-	li       r6, 0
-	lis      r4, 0x0000FFFF@ha
-	stw      r6, 0x88(r3)
-	li       r5, -1
-	addi     r0, r4, 0x0000FFFF@l
-	lfs      f0, lbl_805206B8@sda21(r2)
-	stb      r6, 0xa8(r3)
-	stw      r6, 0x74(r3)
-	stw      r6, 0xb0(r3)
-	stw      r5, 0x78(r3)
-	sth      r0, 0xb4(r3)
-	stw      r5, 0x7c(r3)
-	sth      r0, 0xb6(r3)
-	stw      r5, 0x80(r3)
-	sth      r0, 0xb8(r3)
-	stw      r5, 0x84(r3)
-	sth      r0, 0xba(r3)
-	stfs     f0, 0x9c(r3)
-	stfs     f0, 0xa0(r3)
-	stfs     f0, 0xa4(r3)
-	blr
-	*/
 }
 
 /*
@@ -71,8 +51,12 @@ void ObjectGameActor::reset()
  */
 void ObjectGameActor::stop()
 {
-	if (mGameObject->mModel) {
-		killAllAnimCalc(mGameObject);
+	SysShape::Model* mdl = mGameObject->mModel;
+	if (mdl) {
+		for (int i = 0; i < mGameObject->mModel->mJointCount; i++) {
+			mdl->getJ3DModel()->getModelData()->getJointNodePointer(i)->setMtxCalc(nullptr);
+		}
+		mGameObject->setMovieMotion(false);
 	}
 
 	mGameObject->movieStartAnimation(0);
@@ -136,42 +120,43 @@ void ObjectGameActor::update()
 		}
 	}
 
-	if (_A8) {
-		Vector3f pos(moviePlayer->mTransform);
+	if (mDoExtraSetTranslate) {
+		Vector3f pos = Vector3f(moviePlayer->mTransform);
 		mGameObject->movieSetTranslation(pos, moviePlayer->mTransformAngle);
 	}
 
 	switch (mSRTCommand) {
 	case 5:
-		Vector3f pos(moviePlayer->mTransform);
+		Vector3f pos = Vector3f(moviePlayer->mTransform);
 		mGameObject->movieSetTranslation(pos, moviePlayer->mTransformAngle);
-		_A8 = true;
+		mDoExtraSetTranslate = true;
 		break;
 	case 4:
 		JUT_PANICLINE(365, "DON\'T USE [SRT_COMMAND_GOTO]\n");
 		if (mapMgr) {
-			mTranslation.y = mapMgr->getMinY(mTranslation);
+			mTranslation2.y = mapMgr->getMinY(mTranslation2);
 		}
-		if (mMoviePlayer && mMoviePlayer->isFlag(MVP_IsFinished)) {
-			mGameObject->movieSetTranslation(mTranslation, 0.0f);
+		if (moviePlayer->isFlag(MVP_IsFinished)) {
+			mGameObject->movieSetTranslation(mTranslation2, 0.0f);
 			moviePlayer->unsuspend(1, false);
 			mSRTCommand = 0;
-		} else if (mGameObject->movieGotoPosition(mTranslation)) {
+		} else if (mGameObject->movieGotoPosition(mTranslation2)) {
 			moviePlayer->unsuspend(1, false);
 			mSRTCommand = 0;
 		}
 		break;
 	case 3:
-		mGameObject->movieSetTranslation(mTranslation, moviePlayer->mFadeTimer * f32(1 / 180) * PI);
+		f32 calc = mRotation2.y * DEG2RAD * PI;
+		mGameObject->movieSetTranslation(mTranslation2, calc);
 		break;
 	case 1:
-		mGameObject->movieSetTranslation(mTranslation, moviePlayer->mTransformAngle);
+		mGameObject->movieSetTranslation(mTranslation2, moviePlayer->mTransformAngle);
 		break;
 	case 2:
 		if (mapMgr) {
-			mTranslation.y = mapMgr->getMinY(mTranslation);
+			mTranslation2.y = mapMgr->getMinY(mTranslation2);
 		}
-		mGameObject->movieSetTranslation(mTranslation, moviePlayer->mTransformAngle);
+		mGameObject->movieSetTranslation(mTranslation2, moviePlayer->mTransformAngle);
 		break;
 	}
 
@@ -181,358 +166,6 @@ void ObjectGameActor::update()
 		mCommandIDs[i]       = -1;
 		mMovieCommandData[i] = -1;
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r25, 0x24(r1)
-	mr       r28, r3
-	lwz      r3, 0x70(r3)
-	lwz      r0, 0x174(r3)
-	cmplwi   r0, 0
-	beq      lbl_804300B0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8043004C
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x1f0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8043004C
-	lwz      r27, 0x70(r28)
-	lfs      f1, lbl_805206BC@sda21(r2)
-	addi     r3, r27, 0x1ac
-	lwz      r12, 0x1ac(r27)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r27, 0x1c8
-	lfs      f1, lbl_805206BC@sda21(r2)
-	lwz      r12, 0x1c8(r27)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8043004C:
-	lwz      r3, 0x70(r28)
-	lwz      r3, 0x174(r3)
-	lwz      r3, 0x10(r3)
-	cmplwi   r3, 0
-	beq      lbl_804300B0
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, atanTable___5JMath@ha
-	lfs      f1, 8(r3)
-	addi     r0, r4, atanTable___5JMath@l
-	lfs      f2, 0x28(r3)
-	mr       r3, r0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	stfs     f1, 0xac(r28)
-	lwz      r3, 0x70(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804300B0
-	lwz      r3, 0x70(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1ac(r12)
-	mtctr    r12
-	bctrl
-
-lbl_804300B0:
-	mr       r31, r28
-	mr       r30, r28
-	li       r29, 0
-	b        lbl_80430220
-
-lbl_804300C0:
-	lwz      r4, 0x78(r31)
-	cmpwi    r4, 0x64
-	blt      lbl_804300E8
-	lwz      r3, 0x70(r28)
-	lwz      r5, 8(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x130(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80430214
-
-lbl_804300E8:
-	cmpwi    r4, 0
-	bne      lbl_8043010C
-	lwz      r3, 0x70(r28)
-	lhz      r4, 0xb4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x118(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80430214
-
-lbl_8043010C:
-	cmpwi    r4, 1
-	bne      lbl_80430214
-	lwz      r3, 0x8c(r28)
-	lhz      r4, 0xb4(r30)
-	bl       getIdxResource__10JKRArchiveFUl
-	or.      r26, r3, r3
-	beq      lbl_80430214
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	lwz      r3, sys@sda21(r13)
-	lwz      r4, 0x1b0(r4)
-	bl       startChangeCurrentHeap__6SystemFP7JKRHeap
-	li       r3, 0x54
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_80430194
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q28SysShape8AnimInfo@ha
-	addi     r25, r27, 0x28
-	addi     r0, r3, __vt__Q28SysShape8AnimInfo@l
-	stw      r0, 0(r27)
-	mr       r3, r25
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q28SysShape8KeyEvent@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q28SysShape8KeyEvent@l
-	li       r0, -1
-	stw      r4, 0(r25)
-	stw      r3, 0x18(r25)
-	stw      r3, 0x1c(r25)
-	sth      r0, 0x20(r25)
-	stw      r3, 0x18(r27)
-	stw      r3, 0x1c(r27)
-	stw      r3, 0x50(r27)
-	stw      r3, 0x24(r27)
-
-lbl_80430194:
-	lwz      r4, 0x70(r28)
-	mr       r3, r27
-	mr       r5, r26
-	lwz      r4, 0x174(r4)
-	lwz      r4, 8(r4)
-	lwz      r4, 4(r4)
-	bl       attach__Q28SysShape8AnimInfoFP12J3DModelDataPv
-	lwz      r3, 0x70(r28)
-	mr       r4, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 0x11c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x70(r28)
-	li       r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r28)
-	cmplwi   r3, 0
-	beq      lbl_8043020C
-	lwz      r0, 0x1f0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8043020C
-	lwz      r3, 0x70(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x120(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8043020C:
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-
-lbl_80430214:
-	addi     r31, r31, 4
-	addi     r30, r30, 2
-	addi     r29, r29, 1
-
-lbl_80430220:
-	lwz      r0, 0x74(r28)
-	cmpw     r29, r0
-	blt      lbl_804300C0
-	lbz      r0, 0xa8(r28)
-	cmplwi   r0, 0
-	beq      lbl_80430270
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	addi     r4, r1, 0x14
-	lfs      f1, 0x1c0(r5)
-	lfs      f2, 0x1c4(r5)
-	lfs      f0, 0x1bc(r5)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f2, 0x1c(r1)
-	lwz      r3, 0x70(r28)
-	lfs      f1, 0x1c8(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x124(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80430270:
-	lwz      r0, 0x88(r28)
-	cmpwi    r0, 3
-	beq      lbl_804303A8
-	bge      lbl_80430290
-	cmpwi    r0, 1
-	beq      lbl_804303D8
-	bge      lbl_804303FC
-	b        lbl_80430440
-
-lbl_80430290:
-	cmpwi    r0, 5
-	beq      lbl_804302A0
-	bge      lbl_80430440
-	b        lbl_804302E4
-
-lbl_804302A0:
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	addi     r4, r1, 8
-	lfs      f1, 0x1c0(r5)
-	lfs      f2, 0x1c4(r5)
-	lfs      f0, 0x1bc(r5)
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	lwz      r3, 0x70(r28)
-	lfs      f1, 0x1c8(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x124(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stb      r0, 0xa8(r28)
-	b        lbl_80430440
-
-lbl_804302E4:
-	lis      r3, lbl_8049A22C@ha
-	lis      r5, lbl_8049A244@ha
-	addi     r3, r3, lbl_8049A22C@l
-	li       r4, 0x16d
-	addi     r5, r5, lbl_8049A244@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80430324
-	lwz      r12, 4(r3)
-	addi     r4, r28, 0x90
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x94(r28)
-
-lbl_80430324:
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x1f0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8043036C
-	lwz      r3, 0x70(r28)
-	addi     r4, r28, 0x90
-	lfs      f1, lbl_805206B8@sda21(r2)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x124(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	li       r4, 1
-	li       r5, 0
-	bl       unsuspend__Q24Game11MoviePlayerFlb
-	li       r0, 0
-	stw      r0, 0x88(r28)
-	b        lbl_80430440
-
-lbl_8043036C:
-	lwz      r3, 0x70(r28)
-	addi     r4, r28, 0x90
-	lwz      r12, 0(r3)
-	lwz      r12, 0x12c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80430440
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	li       r4, 1
-	li       r5, 0
-	bl       unsuspend__Q24Game11MoviePlayerFlb
-	li       r0, 0
-	stw      r0, 0x88(r28)
-	b        lbl_80430440
-
-lbl_804303A8:
-	lwz      r3, 0x70(r28)
-	addi     r4, r28, 0x90
-	lfs      f1, lbl_805206C4@sda21(r2)
-	lfs      f0, 0xa0(r28)
-	lwz      r12, 0(r3)
-	fmuls    f0, f1, f0
-	lfs      f1, lbl_805206C0@sda21(r2)
-	lwz      r12, 0x124(r12)
-	fmuls    f1, f1, f0
-	mtctr    r12
-	bctrl
-	b        lbl_80430440
-
-lbl_804303D8:
-	lwz      r3, 0x70(r28)
-	addi     r4, r28, 0x90
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lfs      f1, 0x1c8(r5)
-	lwz      r12, 0x124(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80430440
-
-lbl_804303FC:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80430420
-	lwz      r12, 4(r3)
-	addi     r4, r28, 0x90
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x94(r28)
-
-lbl_80430420:
-	lwz      r3, 0x70(r28)
-	addi     r4, r28, 0x90
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lfs      f1, 0x1c8(r5)
-	lwz      r12, 0x124(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80430440:
-	li       r5, 0
-	lis      r3, 0x0000FFFF@ha
-	stw      r5, 0x74(r28)
-	li       r4, -1
-	addi     r0, r3, 0x0000FFFF@l
-	stw      r5, 0xb0(r28)
-	stw      r4, 0x78(r28)
-	sth      r0, 0xb4(r28)
-	stw      r4, 0x7c(r28)
-	sth      r0, 0xb6(r28)
-	stw      r4, 0x80(r28)
-	sth      r0, 0xb8(r28)
-	stw      r4, 0x84(r28)
-	sth      r0, 0xba(r28)
-	lmw      r25, 0x24(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -551,7 +184,7 @@ void ObjectGameActor::JSGSetAnimation(u32 id)
  * Address:	80430500
  * Size:	000008
  */
-void ObjectGameActor::JSGSetShape(u32 a1) { mSRTCommand = a1; }
+void ObjectGameActor::JSGSetShape(u32 command) { mSRTCommand = command; }
 
 /*
  * --INFO--
@@ -629,9 +262,24 @@ bool ObjectGameActor::JSGGetNodeTransformation(u32 id, Mtx mtx) const
 void ObjectGameActor::parseUserData_(u32 data1, void const* data2)
 {
 	int count = mCurrCommandCount - 1;
-	JUT_ASSERTLINE(531, count > 0, "command <-> userData mismatch ! (%d)\n", mUserDataNum);
+	JUT_ASSERTLINE(531, count >= 0, "command <-> userData mismatch ! (%d)\n", mUserDataNum);
 	JUT_ASSERTLINE(534, count < 4, "too many userdata (%d)\n", mUserDataNum);
 	mUserDataNum++;
+
+	JStudio::stb::data::TParse_TParagraph_data::TData tdata;
+	JStudio::stb::data::TParse_TParagraph_data data(data2);
+	data.getData(&tdata);
+	if (tdata.status) {
+		bool test = false;
+		if (tdata.fileCount && tdata.status == 0x32 && tdata._10) {
+			test = true;
+		}
+		if (test) {
+			for (u16* i = (u16*)tdata.fileCount; i != (u16*)tdata.fileCount + tdata.dataSize; i++) {
+				mMovieCommandData[count] = i[0];
+			}
+		}
+	}
 
 	/*
 	stwu     r1, -0x40(r1)
