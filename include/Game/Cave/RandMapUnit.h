@@ -147,7 +147,7 @@ struct RandMapUnit {
 	MapNode** mCapCandidateNodes;  // _18
 	int* mCapCandidateDoorIndices; // _1C
 	MapUnitGenerator* mGenerator;  // _20
-	int* _24;                      // _24
+	int* mUnitKindChildCounts;     // _24
 	RandMapChecker* mChecker;      // _28
 };
 } // namespace Cave

@@ -26,7 +26,7 @@ enum EggDrop {
 };
 
 struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
+	virtual void init(EnemyBase* enemy); // _08
 
 	// _00		= VTBL
 	// _00-_1C	= EnemyStateMachine
@@ -174,8 +174,8 @@ struct State : public EnemyFSMState {
 struct StateWait : public State {
 	StateWait(int);
 
-	virtual void init(EnemyBase*, StateArg*); // _00
-	virtual void exec(EnemyBase*);            // _04
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _00
+	virtual void exec(EnemyBase* enemy);                     // _04
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState

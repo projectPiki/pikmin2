@@ -56,9 +56,9 @@ struct ActiveState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg); // _08
-	virtual void exec(Item* item);                // _0C
-	virtual void cleanup(Item* item);             // _10
+	virtual void init(Item* item, StateArg* settings); // _08
+	virtual void exec(Item* item);                     // _0C
+	virtual void cleanup(Item* item);                  // _10
 
 	// _00     = VTBL
 	// _00-_0C = State
@@ -72,9 +72,9 @@ struct DigState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg); // _08
-	virtual void exec(Item* item);                // _0C
-	virtual void cleanup(Item* item);             // _10
+	virtual void init(Item* item, StateArg* settings); // _08
+	virtual void exec(Item* item);                     // _0C
+	virtual void cleanup(Item* item);                  // _10
 
 	// _00     = VTBL
 	// _00-_0C = State
@@ -88,9 +88,9 @@ struct WaitState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg); // _08
-	virtual void exec(Item* item);                // _0C
-	virtual void cleanup(Item* item);             // _10
+	virtual void init(Item* item, StateArg* settings); // _08
+	virtual void exec(Item* item);                     // _0C
+	virtual void cleanup(Item* item);                  // _10
 
 	// _00     = VTBL
 	// _00-_0C = State

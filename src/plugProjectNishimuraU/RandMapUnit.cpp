@@ -118,10 +118,10 @@ RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 	MapNode* nodeArray   = mGenerator->mMapNodeKinds;
 	MapNode* placedNodes = mGenerator->getPlacedNodes();
 
-	_24 = new int[3];
+	mUnitKindChildCounts = new int[3];
 
 	for (int i = 0; i < 3; i++) {
-		_24[i] = nodeArray[i].getChildCount();
+		mUnitKindChildCounts[i] = nodeArray[i].getChildCount();
 	}
 
 	FloorInfo* info = mGenerator->mFloorInfo;

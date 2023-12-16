@@ -64,8 +64,8 @@ struct State : public EnemyFSMState {
 struct StateBlendAnim : public State {
 	StateBlendAnim(int stateID, int nextState, int startAnimIdx, int endAnimIdx);
 
-	virtual void init(EnemyBase*, StateArg*); // _08
-	virtual void exec(EnemyBase*);            // _0C
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
+	virtual void exec(EnemyBase* enemy);                     // _0C
 
 	// _00 VTBL
 	// _04 int stateID
@@ -79,9 +79,9 @@ struct StateBlendAnim : public State {
 struct StateDamage : public State {
 	StateDamage(int stateID, int animIdx);
 
-	virtual void init(EnemyBase*, StateArg*); // _08
-	virtual void exec(EnemyBase*);            // _0C
-	virtual void cleanup(EnemyBase*);         // _10
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
+	virtual void exec(EnemyBase* enemy);                     // _0C
+	virtual void cleanup(EnemyBase* enemy);                  // _10
 
 	// _00 VTBL
 	// _04 int stateID
@@ -93,9 +93,9 @@ struct StateDamage : public State {
 struct StateDead : public State {
 	StateDead(int stateID, int animIdx);
 
-	virtual void init(EnemyBase*, StateArg*); // _08
-	virtual void exec(EnemyBase*);            // _0C
-	virtual void cleanup(EnemyBase*);         // _10
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
+	virtual void exec(EnemyBase* enemy);                     // _0C
+	virtual void cleanup(EnemyBase* enemy);                  // _10
 
 	// _00 VTBL
 	// _04 int stateID
@@ -107,9 +107,9 @@ struct StateDead : public State {
 struct StateGrow : public State {
 	StateGrow(int stateID, int animIdx, int nextState);
 
-	virtual void init(EnemyBase*, StateArg*); // _08
-	virtual void exec(EnemyBase*);            // _0C
-	virtual void cleanup(EnemyBase*);         // _10
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
+	virtual void exec(EnemyBase* enemy);                     // _0C
+	virtual void cleanup(EnemyBase* enemy);                  // _10
 
 	// _00 VTBL
 	// _04 int stateID
@@ -122,9 +122,9 @@ struct StateGrow : public State {
 struct StateWait : public State {
 	StateWait(int stateID, int pelletSize);
 
-	virtual void init(EnemyBase*, StateArg*); // _08
-	virtual void exec(EnemyBase*);            // _0C
-	virtual void cleanup(EnemyBase*);         // _10
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
+	virtual void exec(EnemyBase* enemy);                     // _0C
+	virtual void cleanup(EnemyBase* enemy);                  // _10
 
 	// _00 VTBL
 	// _04 int stateID
@@ -136,9 +136,9 @@ struct StateWait : public State {
 struct StateWither : public StateBlendAnim {
 	StateWither(int, int, int, int);
 
-	virtual void init(EnemyBase*, StateArg*); // _08
-	virtual void exec(EnemyBase*);            // _0C
-	virtual void cleanup(EnemyBase*);         // _10
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
+	virtual void exec(EnemyBase* enemy);                     // _0C
+	virtual void cleanup(EnemyBase* enemy);                  // _10
 
 	// _00 VTBL
 	// _04 int stateID
@@ -156,7 +156,7 @@ struct FSM : public EnemyStateMachine {
 	{
 	}
 
-	virtual void init(EnemyBase*); // _08
+	virtual void init(EnemyBase* enemy); // _08
 
 	// _00		= VTABLE
 	// _04-_1C	= EnemyStateMachine
@@ -283,7 +283,7 @@ struct Parms : EnemyParmsBase {
 		    : Parameters(nullptr, "EnemyParmsBase")
 		    , mSmallToMedGrowth(this, 'fp01', "成長(小→中）", 120.0f, 0.0f, 300.0f) // growth (small to medium)
 		    , mMedToLargeGrowth(this, 'fp02', "成長(中→大）", 120.0f, 0.0f, 300.0f) // growth (medium to large)
-		    , mColorChangeTime(this, 'fp03', "カラー変更時間", 1.5f, 0.0f, 5.0f)     // color change time
+		    , mColorChangeTime(this, 'fp03', "カラー変更時間", 1.5f, 0.0f, 5.0f)    // color change time
 		{
 		}
 		Parm<f32> mSmallToMedGrowth; // _804, fp01

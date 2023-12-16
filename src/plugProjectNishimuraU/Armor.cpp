@@ -296,10 +296,10 @@ void Obj::killSlotPiki() { Game::EnemyFunc::swallowPikmin(this, CG_PROPERPARMS(t
  */
 void Obj::resetBridgeSearch()
 {
-	_2C0    = 1;
-	mBridge = nullptr;
-	_2DC    = 0.0f;
-	_2E0    = 0.0f;
+	mNeedsBridgeSearch    = true;
+	mBridge               = nullptr;
+	mBridgePositionOffset = 0.0f;
+	mBridgeWidth          = 0.0f;
 }
 
 /*
@@ -309,8 +309,8 @@ void Obj::resetBridgeSearch()
  */
 void Obj::setBridgeSearch()
 {
-	if (_2C0) {
-		_2C0 = 0;
+	if (mNeedsBridgeSearch) {
+		mNeedsBridgeSearch = false;
 		setNearestBridge();
 		setCullingCheck();
 	}
@@ -323,9 +323,9 @@ void Obj::setBridgeSearch()
  */
 void Obj::setNearestBridge()
 {
-	mBridge = nullptr;
-	_2DC    = 0.0f;
-	_2E0    = 0.0f;
+	mBridge               = nullptr;
+	mBridgePositionOffset = 0.0f;
+	mBridgeWidth          = 0.0f;
 
 	if (ItemBridge::mgr) {
 		f32 dist = SQUARE(C_PARMS->mGeneral.mTerritoryRadius.mValue);
@@ -346,8 +346,8 @@ void Obj::setNearestBridge()
 	}
 
 	if (mBridge) {
-		f32 grabDist = mBridge->getStageWidth() - 50.0f;
-		_2DC         = randWeightFloat(grabDist) - 0.5f * grabDist;
+		f32 grabDist          = mBridge->getStageWidth() - 50.0f;
+		mBridgePositionOffset = randWeightFloat(grabDist) - 0.5f * grabDist;
 	}
 }
 
@@ -365,7 +365,7 @@ void Obj::setCullingCheck() { }
  */
 int Obj::checkBreakOrMove()
 {
-	if (mBridge) {
+	if (!mBridge) {
 		Vector3f zVec     = mBridge->getBridgeZVec();
 		Vector3f startPos = mBridge->getStartPos();
 
@@ -380,9 +380,9 @@ int Obj::checkBreakOrMove()
 		f32 width     = 50.0f + halfWidth;
 
 		if (dotX < 0.0f) {
-			_2E0 = width;
+			mBridgeWidth = width;
 		} else {
-			_2E0 = -width;
+			mBridgeWidth = -width;
 		}
 
 		if (absVal(dotX) > halfWidth) {
@@ -427,7 +427,7 @@ bool Obj::moveBridgeSide()
 	Vector3f xVec     = mBridge->getBridgeXVec();
 	Vector3f zVec     = mBridge->getBridgeZVec();
 
-	xVec *= _2E0;
+	xVec *= mBridgeWidth;
 	zVec *= -50.0f;
 
 	startPos += xVec;
@@ -651,7 +651,7 @@ bool Obj::moveBridgeCentre()
 	Vector3f startPos = mBridge->getStartPos();
 	Vector3f xVec     = mBridge->getBridgeXVec();
 
-	xVec *= 0.7f * _2DC;
+	xVec *= 0.7f * mBridgePositionOffset;
 	startPos += xVec;
 
 	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
@@ -865,7 +865,7 @@ bool Obj::moveBridgeTop()
 	Vector3f stagePos = mBridge->getStagePos(stageID);
 	Vector3f xVec     = mBridge->getBridgeXVec();
 
-	xVec *= _2DC;
+	xVec *= mBridgePositionOffset;
 	stagePos += xVec;
 
 	if (stageID > 0) {

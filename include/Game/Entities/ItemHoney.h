@@ -124,7 +124,7 @@ struct BounceState : public State {
 	{
 	}
 
-	virtual void init(CFSMItem* item, StateArg* arg);                            // _08
+	virtual void init(CFSMItem* item, StateArg* settings);                       // _08
 	virtual void exec(CFSMItem* item);                                           // _0C
 	virtual void cleanup(CFSMItem* item);                                        // _10
 	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent); // _24
@@ -139,7 +139,7 @@ struct DemoState : public State {
 	{
 	}
 
-	virtual void init(CFSMItem* item, StateArg* arg);                            // _08
+	virtual void init(CFSMItem* item, StateArg* settings);                       // _08
 	virtual void exec(CFSMItem* item);                                           // _0C
 	virtual void cleanup(CFSMItem* item);                                        // _10
 	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent); // _24
@@ -154,7 +154,7 @@ struct FallState : public State {
 	{
 	}
 
-	virtual void init(CFSMItem* item, StateArg* arg);          // _08
+	virtual void init(CFSMItem* item, StateArg* settings);     // _08
 	virtual void exec(CFSMItem* item);                         // _0C
 	virtual void cleanup(CFSMItem* item);                      // _10
 	virtual void onBounce(CFSMItem* item, Sys::Triangle* tri); // _28
@@ -169,7 +169,7 @@ struct ShrinkState : public State {
 	{
 	}
 
-	virtual void init(CFSMItem* item, StateArg* arg);                                         // _08
+	virtual void init(CFSMItem* item, StateArg* settings);                                    // _08
 	virtual void exec(CFSMItem* item);                                                        // _0C
 	virtual void cleanup(CFSMItem* item);                                                     // _10
 	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent);              // _24
@@ -186,7 +186,7 @@ struct TouchState : public State {
 	{
 	}
 
-	virtual void init(CFSMItem* item, StateArg* arg);                            // _08
+	virtual void init(CFSMItem* item, StateArg* settings);                       // _08
 	virtual void exec(CFSMItem* item);                                           // _0C
 	virtual void cleanup(CFSMItem* item);                                        // _10
 	virtual void onKeyEvent(CFSMItem* item, const SysShape::KeyEvent& keyEvent); // _24
@@ -205,7 +205,7 @@ struct WaitState : public State {
 	{
 	}
 
-	virtual void init(CFSMItem* item, StateArg* arg);                         // _08
+	virtual void init(CFSMItem* item, StateArg* settings);                    // _08
 	virtual void exec(CFSMItem* item);                                        // _0C
 	virtual void cleanup(CFSMItem* item);                                     // _10
 	virtual void collisionCallback(CFSMItem* item, CollEvent& collEvent);     // _34

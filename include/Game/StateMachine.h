@@ -43,17 +43,17 @@ struct StateMachine {
 	{
 	}
 
-	virtual void init(T*);                                 // _08
-	virtual void start(T* obj, int stateID, StateArg* arg) // _0C
+	virtual void init(T*);                                      // _08
+	virtual void start(T* obj, int stateID, StateArg* settings) // _0C
 	{
 		// obj->setCurrState(nullptr); // should be this but this breaks ebiFileSelectMgr for some goddamn reason
 		obj->mCurrentState = nullptr; // this can't be right because of itemHole.cpp smh
-		transit(obj, stateID, arg);
+		transit(obj, stateID, settings);
 	}
 	virtual void exec(T* obj); // _10
 	void create(int limit);    // must be placed above transit
 	void registerState(FSMState<T>* state);
-	virtual void transit(T* obj, int stateID, StateArg* arg); // _14
+	virtual void transit(T* obj, int stateID, StateArg* settings); // _14
 
 	int getCurrID(T*);
 
@@ -80,7 +80,7 @@ void StateMachine<T>::create(int limit)
 	mIdToIndexArray = new int[mLimit];
 }
 template <typename T>
-void StateMachine<T>::transit(T* obj, int stateID, StateArg* arg)
+void StateMachine<T>::transit(T* obj, int stateID, StateArg* settings)
 {
 	int index           = mIdToIndexArray[stateID];
 	T::StateType* state = obj->mCurrentState;
@@ -93,7 +93,7 @@ void StateMachine<T>::transit(T* obj, int stateID, StateArg* arg)
 
 	state              = static_cast<T::StateType*>(mStates[index]);
 	obj->mCurrentState = state;
-	state->init(obj, arg);
+	state->init(obj, settings);
 }
 template <typename T>
 void StateMachine<T>::registerState(FSMState<T>* state)

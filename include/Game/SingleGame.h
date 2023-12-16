@@ -251,11 +251,11 @@ struct EndingState : public State {
 		EndingStatus_ShowFinalResultsComplete = 10
 	};
 
-	virtual void init(SingleGameSection* game, StateArg* arg); // _08
-	virtual void exec(SingleGameSection* game);                // _0C
-	virtual void cleanup(SingleGameSection* game);             // _10
-	virtual void draw(SingleGameSection* game, Graphics& gfx); // _20
-	virtual void do_dvdload();                                 // _48 (weak)
+	virtual void init(SingleGameSection* game, StateArg* settings); // _08
+	virtual void exec(SingleGameSection* game);                     // _0C
+	virtual void cleanup(SingleGameSection* game);                  // _10
+	virtual void draw(SingleGameSection* game, Graphics& gfx);      // _20
+	virtual void do_dvdload();                                      // _48 (weak)
 
 	void dvdload();
 
@@ -420,7 +420,7 @@ struct LoadState : public State {
 struct MainResultState : public State {
 	MainResultState();
 
-	virtual void init(SingleGameSection* game, StateArg* arg);                        // _08
+	virtual void init(SingleGameSection* game, StateArg* settings);                   // _08
 	virtual void exec(SingleGameSection* game);                                       // _0C
 	virtual void cleanup(SingleGameSection* game);                                    // _10
 	virtual void draw(SingleGameSection* game, Graphics& gfx);                        // _20
@@ -545,10 +545,10 @@ struct ZukanState : public State {
 
 	ZukanState();
 
-	virtual void init(SingleGameSection* game, StateArg* arg); // _08
-	virtual void exec(SingleGameSection* game);                // _0C
-	virtual void cleanup(SingleGameSection* game);             // _10
-	virtual void draw(SingleGameSection* game, Graphics& gfx); // _20
+	virtual void init(SingleGameSection* game, StateArg* settings); // _08
+	virtual void exec(SingleGameSection* game);                     // _0C
+	virtual void cleanup(SingleGameSection* game);                  // _10
+	virtual void draw(SingleGameSection* game, Graphics& gfx);      // _20
 
 	void clearHeapB_common();
 	void clearHeapB_pellet();

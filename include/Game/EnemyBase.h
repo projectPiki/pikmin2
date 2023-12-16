@@ -896,8 +896,8 @@ struct BirthTypeDropState : public State {
 		mName = "BirthTypeDrop";
 	}
 
-	virtual void init(EnemyBase*, StateArg*);                  // _08
-	virtual void cleanup(EnemyBase*);                          // _10
+	virtual void init(EnemyBase* enemy, StateArg* settings);   // _08
+	virtual void cleanup(EnemyBase* enemy);                    // _10
 	virtual void update(EnemyBase*);                           // _24
 	virtual void entry(EnemyBase*) { }                         // _28 (weak)
 	virtual void simulation(EnemyBase*, f32) { }               // _2C (weak)
@@ -955,11 +955,11 @@ struct AppearState : public State {
 		mName = "Appear";
 	}
 
-	virtual void init(EnemyBase*, StateArg*);    // _08
-	virtual void cleanup(EnemyBase*);            // _10
-	virtual void update(EnemyBase*);             // _24
-	virtual void entry(EnemyBase*);              // _28
-	virtual void simulation(EnemyBase*, f32) { } // _2C (weak)
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
+	virtual void cleanup(EnemyBase* enemy);                  // _10
+	virtual void update(EnemyBase*);                         // _24
+	virtual void entry(EnemyBase*);                          // _28
+	virtual void simulation(EnemyBase*, f32) { }             // _2C (weak)
 };
 
 /**
@@ -994,8 +994,8 @@ struct StoneState : public LivingState {
 		mName = "Stone";
 	}
 
-	virtual void init(EnemyBase*, StateArg*);                 // _08
-	virtual void cleanup(EnemyBase*);                         // _10
+	virtual void init(EnemyBase* enemy, StateArg* settings);  // _08
+	virtual void cleanup(EnemyBase* enemy);                   // _10
 	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30
 	virtual void updateCullingOff(EnemyBase*);                // _38
 	virtual void updateAlways(EnemyBase*);                    // _3C
@@ -1012,9 +1012,9 @@ struct EarthquakeState : public LivingState {
 		mName = "Earthquake";
 	}
 
-	virtual void init(EnemyBase*, StateArg*);  // _08
-	virtual void cleanup(EnemyBase*);          // _10
-	virtual void updateCullingOff(EnemyBase*); // _38
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
+	virtual void cleanup(EnemyBase* enemy);                  // _10
+	virtual void updateCullingOff(EnemyBase*);               // _38
 
 	int mEarthquakeStepTimer; // _10
 };
@@ -1031,10 +1031,10 @@ struct FitState : public LivingState {
 		mName = "Fit";
 	}
 
-	virtual void init(EnemyBase*, StateArg*);  // _08
-	virtual void cleanup(EnemyBase*);          // _10
-	virtual void updateCullingOff(EnemyBase*); // _38
-	virtual void updateAlways(EnemyBase*);     // _3C
+	virtual void init(EnemyBase* enemy, StateArg* settings); // _08
+	virtual void cleanup(EnemyBase* enemy);                  // _10
+	virtual void updateCullingOff(EnemyBase*);               // _38
+	virtual void updateAlways(EnemyBase*);                   // _3C
 
 	efx::TEnemyPiyo mEnemyPiyo; // _10
 };
@@ -1044,7 +1044,7 @@ struct FitState : public LivingState {
  * specific FSM derived from Game::StateMachine.
  */
 struct StateMachine : public Game::EnemyStateMachine {
-	virtual void init(EnemyBase*);                  // _08
+	virtual void init(EnemyBase* enemy);            // _08
 	virtual EnemyFSMState* getCurrState(EnemyBase*) // _1C (weak)
 	{
 		return mState;

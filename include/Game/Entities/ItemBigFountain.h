@@ -59,9 +59,9 @@ struct AppearState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg); // _08
-	virtual void exec(Item* item);                // _0C
-	virtual void cleanup(Item* item);             // _10
+	virtual void init(Item* item, StateArg* settings); // _08
+	virtual void exec(Item* item);                     // _0C
+	virtual void cleanup(Item* item);                  // _10
 
 	// _00     = VTBL
 	// _00-_0C = State
@@ -75,9 +75,9 @@ struct CloseState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg); // _08
-	virtual void exec(Item* item);                // _0C
-	virtual void cleanup(Item* item);             // _10
+	virtual void init(Item* item, StateArg* settings); // _08
+	virtual void exec(Item* item);                     // _0C
+	virtual void cleanup(Item* item);                  // _10
 
 	// _00     = VTBL
 	// _00-_0C = State
@@ -90,10 +90,10 @@ struct OutState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg); // _08
-	virtual void exec(Item* item);                // _0C
-	virtual void cleanup(Item* item);             // _10
-	virtual bool canRide() { return true; }       // _34 (weak)
+	virtual void init(Item* item, StateArg* settings); // _08
+	virtual void exec(Item* item);                     // _0C
+	virtual void cleanup(Item* item);                  // _10
+	virtual bool canRide() { return true; }            // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = State
@@ -106,7 +106,7 @@ struct WaitState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void init(Item* item, StateArg* settings);                       // _08
 	virtual void exec(Item* item);                                           // _0C
 	virtual void cleanup(Item* item);                                        // _10
 	virtual void onDamage(Item*, f32);                                       // _20

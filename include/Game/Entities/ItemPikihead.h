@@ -86,7 +86,7 @@ struct BuryState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void init(Item* item, StateArg* settings);                       // _08
 	virtual void exec(Item* item);                                           // _0C
 	virtual void cleanup(Item* item);                                        // _10
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
@@ -103,7 +103,7 @@ struct FallState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg);                   // _08
+	virtual void init(Item* item, StateArg* settings);              // _08
 	virtual void exec(Item* item);                                  // _0C
 	virtual void cleanup(Item* item);                               // _10
 	virtual void onBounce(Item*, Sys::Triangle*);                   // _28
@@ -121,7 +121,7 @@ struct GrowState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void init(Item* item, StateArg* settings);                       // _08
 	virtual void exec(Item* item);                                           // _0C
 	virtual void cleanup(Item* item);                                        // _10
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
@@ -136,7 +136,7 @@ struct HatugaState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void init(Item* item, StateArg* settings);                       // _08
 	virtual void exec(Item* item);                                           // _0C
 	virtual void cleanup(Item* item);                                        // _10
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
@@ -151,7 +151,7 @@ struct SioreState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void init(Item* item, StateArg* settings);                       // _08
 	virtual void exec(Item* item);                                           // _0C
 	virtual void cleanup(Item* item);                                        // _10
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
@@ -168,7 +168,7 @@ struct TaneState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void init(Item* item, StateArg* settings);                       // _08
 	virtual void exec(Item* item);                                           // _0C
 	virtual void cleanup(Item* item);                                        // _10
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
@@ -185,7 +185,7 @@ struct WaitState : public State {
 	{
 	}
 
-	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void init(Item* item, StateArg* settings);                       // _08
 	virtual void exec(Item* item);                                           // _0C
 	virtual void cleanup(Item* item);                                        // _10
 	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
