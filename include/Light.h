@@ -7,7 +7,7 @@
 #include "FogMgr.h"
 
 enum ELightTypeFlag {
-	TYPE_0,
+	TYPE_0 = 0,
 	TYPE_1,
 	TYPE_Spot,
 	TYPE_3,
@@ -26,15 +26,64 @@ struct AmbientLightObj : public CNode {
 	Color4 mColor; // _18
 };
 
+/**
+ * @struct LightObj
+ * @brief Represents a light object in the game.
+ * @extends CNode
+ */
 struct LightObj : public CNode {
-	LightObj(char*, _GXLightID, ELightTypeFlag, JUtility::TColor);
+	/**
+	 * @enum LightDebugState
+	 * @brief Represents the debug state of the light object.
+	 */
+	enum LightDebugState {
+		LDS_None      = 0, /** No debug state */
+		LDS_DrawDebug = 1  /** Debug state to draw debug information */
+	};
 
-	virtual ~LightObj() { }                    // _08 (weak)
-	virtual void update() { }                  // _10 (weak)
-	virtual void set(Matrixf&);                // _14
-	virtual void drawPos(Graphics&);           // _18
-	virtual void drawPos(Graphics&, Matrixf&); // _1C
-	virtual void drawPos(Graphics&, Camera&);  // _20
+	LightObj(char* name, GXLightID lightID, ELightTypeFlag lightType, JUtility::TColor lightColor);
+
+	virtual ~LightObj() { }   // _08 (weak)
+	virtual void update() { } // _10 (weak)
+
+	/**
+	 * Sets the properties of the light object based on the given matrix.
+	 * The light color is scaled by the brightness value.
+	 * The light position and direction are calculated based on the type of light.
+	 *
+	 * @param posMtx The matrix used for position and direction calculations.
+	 */
+	virtual void set(Matrixf&); // _14
+
+	/**
+	 * @brief Draws the position of the light object.
+	 *
+	 * @note ONLY WORKS IF DEBUG STATE IS SET!
+	 *
+	 * @param gfx The graphics object used for drawing.
+	 * @param matrix The viewport matrix used for transforming the position.
+	 */
+	virtual void drawPos(Graphics& gfx); // _18
+
+	/**
+	 * @brief Draws the position of the light object.
+	 *
+	 * @note ONLY WORKS IF DEBUG STATE IS SET!
+	 *
+	 * @param gfx The graphics object used for drawing.
+	 * @param posMtx The matrix used for transforming the position.
+	 */
+	virtual void drawPos(Graphics& gfx, Matrixf& transformationMtx); // _1C
+
+	/**
+	 * @brief Draws the position of the light object.
+	 *
+	 * @note ONLY WORKS IF DEBUG STATE IS SET!
+	 *
+	 * @param gfx The graphics object used for drawing.
+	 * @param viewCam The target camera to render on.
+	 */
+	virtual void drawPos(Graphics& gfx, Camera& viewCam); // _20
 
 	inline void setColor(Color4& color) { mColor.set(color); }
 
@@ -52,7 +101,7 @@ struct LightObj : public CNode {
 	u8 mSpotFn;          // _49, GXSpotFn
 	f32 mKScale;         // _4C
 	f32 mSphereRadius;   // _50
-	u8 mFlags;           // _54
+	u8 mDebugState;      // _54, LightDebugState
 };
 
 struct LightMgr : public CNode {
@@ -82,19 +131,20 @@ struct Mgr : public LightMgr {
 	Mgr();
 
 	/**
-	 * @brief Common procedure for the "Set" virtual functions
+	 * @brief Sets common properties for the main and specular lights.
 	 *
-	 * Calculates the position and rotation of the main and specular lights by converting the rotation and elevation
-	 * angles to spherical coordinates. Whenever you update the manager by assigning it a new "Graphics" handle, or a
-	 * new Matrix transform, this function is called.
+	 * The angles are derived from mRotationAngle and mElevationAngle.
+	 * The position is determined using spherical coordinates.
+	 * The elevation vector is the normalized negative of the rotation vector.
+	 * The default reference brightness of the main light is set to 0.85.
 	 */
 	void setCommonProc();
 
-	virtual ~Mgr() { }                     // _08
-	virtual void update();                 // _10
-	virtual void set(Graphics&);           // _14
-	virtual void set(Matrixf&);            // _18
-	virtual void drawDebugInfo(Graphics&); // _1C
+	virtual ~Mgr() { }                         // _08
+	virtual void update();                     // _10
+	virtual void set(Graphics& gfx);           // _14
+	virtual void set(Matrixf& mtx);            // _18
+	virtual void drawDebugInfo(Graphics& gfx); // _1C
 
 	// _00 VTBL
 	LightObj* mMainLight; // _50

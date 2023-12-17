@@ -22,7 +22,7 @@ struct Viewport : public CNode {
 
 	void draw2dframe(J2DGrafContext&);
 	void getAspect();
-	Matrixf* getMatrix(bool);
+	Matrixf* getMatrix(bool getCurrentViewMtx);
 	void refresh();
 	SysShape::Model* setJ3DViewMtx(bool);
 	void setOrthoGraph2d(J2DOrthoGraph&);

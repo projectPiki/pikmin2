@@ -1174,10 +1174,33 @@ struct ActStickAttack : public Action, virtual SysShape::MotionListener {
 	// _24 = MotionListener
 };
 
+/**
+ * @struct ActTeki
+ * @brief Represents the following Bulbmin behaviour.
+ * @details The ActTeki struct inherits from the Action class and implements the SysShape::MotionListener interface.
+ */
 struct ActTeki : public Action, virtual SysShape::MotionListener {
+	/**
+	 * @enum TekiFollowState
+	 * @brief Represents the state of following the Pikmin is currently at.
+	 */
+	enum TekiFollowState {
+		TFS_Footprint = 0, /** The Pikmin will follow the closest footprints of the parent. */
+		TFS_Parent         /** The pikmin has reached the parent and is now stationary. */
+	};
+
 	ActTeki(Game::Piki* p);
 
-	virtual void init(ActionArg* settings);                                // _08
+	virtual void init(ActionArg* settings); // _08
+
+	/**
+	 * @brief Manages ActTeki class behavior based on parent Teki's state.
+	 *
+	 * If parent Teki is dead, triggers panic behavior and increments alive Pikis count.
+	 * If flying or bittered, sets "ToEmote" flag to true.
+	 * Finishes by resetting timer for the beetle 'parent'.
+	 * @return Execution result of ActTeki behavior.
+	 */
 	virtual int exec();                                                    // _0C
 	virtual void cleanup();                                                // _10
 	virtual void emotion_success();                                        // _14
@@ -1187,26 +1210,35 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	void makeTarget();
+
+	/**
+	 * @brief Handles movement towards the current follow target.
+	 *
+	 * @note Directly sets the velocity of the parent Piki.
+	 */
 	void test_0();
 	void setTimer();
 
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	Game::EnemyBase* mFollowingTeki; // _10
-	bool mToPanicFinish;             // _14
-	bool mToEmote;                   // _15
-	Game::Footmark* mFollowMark;     // _18
-	s32 _1C;                         // _1C
-	f32 _20;                         // _20
-	f32 mMoveSpeed;                  // _24
-	u32 _28;                         // _28
-	Vector3f _2C;                    // _2C
-	f32 _38;                         // _38
-	f32 _3C;                         // _3C
-	f32 _40;                         // _40
-	f32 _44;                         // _44
-	                                 // _48 = MotionListener
+	Game::EnemyBase* mFollowingTeki;  // _10
+	bool mToPanicFinish;              // _14
+	bool mToEmote;                    // _15
+	Game::Footmark* mTargetFootprint; // _18
+	s32 mUnused0;                     // _1C
+	f32 mParentFollowTimer;           // _20
+	f32 mMoveSpeed;                   // _24
+	u32 mFollowState;                 // _28 TekiFollowState
+
+	// Everything from here onwards was probably used for testing new functionality
+	// But scrapped because it couldn't be done in time
+	Vector3f mUnusedZeroVector; // _2C
+	f32 mUnused1;               // _38
+	f32 mUnused2;               // _3C
+	f32 mUnused3;               // _40
+	f32 mUnusedDotProduct;      // _44
+	                            // _48 = MotionListener
 };
 
 struct ActTransportArg : public ActionArg {

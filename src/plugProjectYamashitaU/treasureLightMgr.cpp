@@ -69,21 +69,18 @@ void Mgr::set(Matrixf& mtx)
  * x = r * cos(ƒÆ)
  * y = r * sin(ƒÆ)
  *
- * So now imagine a line going in the direction of the 2D angle where
- * y is now height, x is now how far away it is from the center pole
+ * So now imagine a line going in the direction of the 2D angle
+ * where y is now height, x is now how far away it is from the center pole
  *
  * height   = r * sin(ƒÆ)
  * distance = r * cos(ƒÆ)
  *
- * Since the 2D x/y have to shrink a bit as the sphere gets smaller the
- * higher you go, use distance as the radius before putting them in the
- * 2D equations, and you get
+ * Since the 2D x/y have to shrink a bit as the sphere gets smaller the higher you go,
+ * use distance as the radius before putting them in the 2D equations, and you get
  *
  * x = (r * cos(ƒÆ)) * cos(ƒÆ)
  * y = (r * cos(ƒÆ)) * sin(ƒÆ)
  * z = r * sin(ƒÆ)
- *
- * For pikmin it's slightly different (y/z swap)
  */
 void Mgr::setCommonProc()
 {
@@ -97,13 +94,7 @@ void Mgr::setCommonProc()
 	rotation.z = pikmin2_cosf(elevation_angle) * radius * pikmin2_cosf(rotation_angle);
 
 	Vector3f elevation(-rotation.x, -rotation.y, -rotation.z);
-
-	f32 dist = pikmin2_sqrtf(VECTOR_SQUARE_MAG(elevation));
-	if (dist > 0.0f) {
-		elevation.x *= 1 / dist;
-		elevation.y *= 1 / dist;
-		elevation.z *= 1 / dist;
-	}
+	elevation.qNormalise();
 
 	mMainLight->mPosition      = rotation;
 	mMainLight->mElevation     = elevation;

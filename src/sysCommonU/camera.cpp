@@ -754,9 +754,9 @@ void Camera::update()
  * Address:	8041AEE0
  * Size:	000018
  */
-Matrixf* Camera::getViewMatrix(bool b)
+Matrixf* Camera::getViewMatrix(bool getCurrentViewMtx)
 {
-	if (b) {
+	if (getCurrentViewMtx) {
 		return &mCurViewMatrix;
 	}
 

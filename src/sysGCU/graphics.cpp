@@ -118,10 +118,10 @@ Viewport::Viewport()
  * Address:	8042515C
  * Size:	000044
  */
-Matrixf* Viewport::getMatrix(bool flag)
+Matrixf* Viewport::getMatrix(bool getCurrentViewMtx)
 {
 	if (mCamera) {
-		return mCamera->getViewMatrix(flag);
+		return mCamera->getViewMatrix(getCurrentViewMtx);
 	} else {
 		return mViewMat;
 	}

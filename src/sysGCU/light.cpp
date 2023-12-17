@@ -7,15 +7,14 @@
  * --INFO--
  * Address:	8042B46C
  * Size:	0000C4
- * Matches with fuckry... had to remove the changes because
- * breaks build elsewhere, wtf is going on?
+ *
  */
-LightObj::LightObj(char* name, GXLightID lightID, ELightTypeFlag typeFlag, JUtility::TColor color)
+LightObj::LightObj(char* name, GXLightID lightID, ELightTypeFlag lightType, JUtility::TColor lightColor)
     : mLightID(lightID)
-    , mTypeFlag(typeFlag)
+    , mTypeFlag(lightType)
     , mPosition(0.0f, 1000.0f, 0.0f)
     , mElevation(0.0f, -1.0f, 0.0f)
-    , mColor(color.toUInt32())
+    , mColor(lightColor.toUInt32())
 {
 	mBrightness    = 1.0f;
 	mRefDistance   = 1000.0f;
@@ -26,9 +25,25 @@ LightObj::LightObj(char* name, GXLightID lightID, ELightTypeFlag typeFlag, JUtil
 	mSpotFn       = GX_SP_COS2;
 	mKScale       = 16.0f;
 	mSphereRadius = 30.0f;
-	mFlags        = 0;
+	mDebugState   = LDS_None;
 
 	setName(name);
+}
+
+/**
+ * @brief Scales the input color by the specified brightness factor.
+ *
+ * @param input The input color value to be scaled.
+ * @param output The output color value after scaling.
+ * @param brightness The brightness factor to scale the input color by.
+ */
+inline void ScaleColor(u8& input, u8& output, f32 brightness)
+{
+	f32 xCol = input * brightness;
+	if (xCol > 255.0f) {
+		xCol = 255.0f;
+	}
+	output = xCol;
 }
 
 /*
@@ -36,65 +51,51 @@ LightObj::LightObj(char* name, GXLightID lightID, ELightTypeFlag typeFlag, JUtil
  * Address:	8042B530
  * Size:	0002DC
  */
-void LightObj::set(Matrixf& mtx)
+void LightObj::set(Matrixf& posMtx)
 {
 	JUtility::TColor color;
-
-	f32 rCol = mColor.r * mBrightness;
-	if (rCol > 255.0f) {
-		rCol = 255.0f;
-	}
-	color.r = rCol;
-
-	f32 gCol = mColor.g * mBrightness;
-	if (gCol > 255.0f) {
-		gCol = 255.0f;
-	}
-	color.g = gCol;
-
-	f32 bCol = mColor.b * mBrightness;
-	if (bCol > 255.0f) {
-		bCol = 255.0f;
-	}
-	color.b = bCol;
-
-	f32 aCol = mColor.a * mBrightness;
-	if (aCol > 255.0f) {
-		aCol = 255.0f;
-	}
-	color.a = aCol;
+	ScaleColor(mColor.r, color.r, mBrightness);
+	ScaleColor(mColor.g, color.g, mBrightness);
+	ScaleColor(mColor.b, color.b, mBrightness);
+	ScaleColor(mColor.a, color.a, mBrightness);
 
 	GXLightObj lightObj;
 	GXInitLightColor(&lightObj, color);
 
 	Matrixf invMtx, tposeMtx;
-	Vec r1, r2;
 	Vector3f pos;
-	Vector3f* posPtr = &pos;
+
+#ifndef NONMATCHING
+	Vector3f* posPtr = &pos; // INTNS: Required for matching compile.
+#endif
+
 	switch (mTypeFlag) {
 	case TYPE_1:
-		pos = mtx.mtxMult(mPosition);
+		pos = posMtx.mtxMult(mPosition);
 		GXInitLightPos(&lightObj, pos.x, pos.y, pos.z);
 		break;
 
 	case TYPE_Spot:
-		pos = mtx.mtxMult(mPosition);
+		pos = posMtx.mtxMult(mPosition);
 		GXInitLightPos(&lightObj, pos.x, pos.y, pos.z);
 
-		PSMTXInverse(mtx.mMatrix.mtxView, invMtx.mMatrix.mtxView);
+		PSMTXInverse(posMtx.mMatrix.mtxView, invMtx.mMatrix.mtxView);
 		PSMTXTranspose(invMtx.mMatrix.mtxView, tposeMtx.mMatrix.mtxView);
-		pos = tposeMtx.mtxMult(mElevation);
 
+		pos = tposeMtx.mtxMult(mElevation);
 		GXInitLightDir(&lightObj, pos.x, pos.y, pos.z);
+
 		GXInitLightSpot(&lightObj, mCutoffAngle, static_cast<GXSpotFn>(mSpotFn));
 		GXInitLightDistAttn(&lightObj, mRefDistance, mRefBrightness, static_cast<GXDistAttnFn>(mDistAttnFn));
 		break;
 
 	case TYPE_Spec:
-		PSMTXInverse(mtx.mMatrix.mtxView, invMtx.mMatrix.mtxView);
+		PSMTXInverse(posMtx.mMatrix.mtxView, invMtx.mMatrix.mtxView);
 		PSMTXTranspose(invMtx.mMatrix.mtxView, tposeMtx.mMatrix.mtxView);
+
 		pos = tposeMtx.mtxMult(mElevation);
 		GXInitSpecularDir(&lightObj, pos.x, pos.y, pos.z);
+
 		f32 k = mKScale / 2;
 		GXInitLightAttn(&lightObj, 0.0f, 0.0f, 1.0f, k, 0.0f, 1.0f - k);
 		break;
@@ -126,38 +127,47 @@ void LightObj::drawPos(Graphics& gfx, Camera& cam)
  * Address:	8042B8E4
  * Size:	0001A8
  */
-void LightObj::drawPos(Graphics& gfx, Matrixf& mtx)
+void LightObj::drawPos(Graphics& gfx, Matrixf& transformationMtx)
 {
-	if (mFlags & 1) {
-		gfx.initPrimDraw(&mtx);
+	// If the debug flag is not set, return.
+	if (!(mDebugState & LDS_DrawDebug)) {
+		return;
+	}
 
-		Matrixf debugMtx;
-		debugMtx.makeT(mPosition);
-		gfx.mDrawColor.set(mColor);
-		Vector3f pos;
-		switch (mTypeFlag) {
-		case TYPE_Spec: {
-			Vector3f elev = mElevation;
-			elev *= mSphereRadius * 10.0f;
-			pos = mPosition + elev;
-			gfx.drawLine(mPosition, pos);
-			gfx.drawSphere(10.0f, &debugMtx);
-			break;
-		}
-		case TYPE_Spot: {
-			gfx.drawSphere(10.0f, &debugMtx);
-			Vector3f elev = mElevation;
-			elev *= mSphereRadius * 10.0f;
-			pos = mPosition + elev;
-			gfx.drawCone(mPosition, pos, mCutoffAngle, 16);
-			break;
-		}
-		case TYPE_1: {
-			gfx.drawSphere(10.0f, &debugMtx);
-			gfx.drawSphere(mSphereRadius * 10.0f, &debugMtx);
-			break;
-		}
-		}
+	gfx.initPrimDraw(&transformationMtx);
+
+	Matrixf debugMtx;
+	debugMtx.makeT(mPosition);
+
+	gfx.mDrawColor.set(mColor);
+
+	// Debug draw the light position based on type.
+	Vector3f pos;
+	switch (mTypeFlag) {
+	case TYPE_Spec: {
+		Vector3f elev = mElevation;
+		elev *= mSphereRadius * 10.0f;
+		pos = mPosition + elev;
+
+		gfx.drawLine(mPosition, pos);
+		gfx.drawSphere(10.0f, &debugMtx);
+		break;
+	}
+	case TYPE_Spot: {
+		gfx.drawSphere(10.0f, &debugMtx);
+
+		Vector3f elev = mElevation;
+		elev *= mSphereRadius * 10.0f;
+		pos = mPosition + elev;
+
+		gfx.drawCone(mPosition, pos, mCutoffAngle, 16);
+		break;
+	}
+	case TYPE_1: {
+		gfx.drawSphere(10.0f, &debugMtx);
+		gfx.drawSphere(mSphereRadius * 10.0f, &debugMtx);
+		break;
+	}
 	}
 }
 
@@ -194,7 +204,7 @@ void LightMgr::registLightObj(LightObj* light)
  */
 void LightMgr::set(Graphics& gfx)
 {
-	Matrixf& mtx = *gfx.mCurrentViewport->getMatrix(1);
+	Matrixf& mtx = *gfx.mCurrentViewport->getMatrix(true);
 	set(mtx);
 }
 

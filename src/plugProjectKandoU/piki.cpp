@@ -788,12 +788,12 @@ lbl_80148FFC:
  * Address:	80149018
  * Size:	0001C0
  */
-void Piki::setSpeed(f32 multiplier, Vector3f& vec)
+void Piki::setSpeed(f32 multiplier, Vector3f& direction)
 {
 	if (multiplier < 0.0f) {
-		mVelocity = vec * -getSpeed(-multiplier);
+		mVelocity = direction * -getSpeed(-multiplier);
 	} else {
-		mVelocity = vec * getSpeed(multiplier);
+		mVelocity = direction * getSpeed(multiplier);
 	}
 }
 
