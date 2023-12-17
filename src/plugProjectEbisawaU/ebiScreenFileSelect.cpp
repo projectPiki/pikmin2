@@ -402,8 +402,8 @@ void TMainScreen::doSetArchive(JKRArchive* arc)
 	E2DPane_setTreeInfluencedAlpha(mPaneDataWindow, true);
 	mPaneDataWindow->setAlpha(0);
 
-	void* file = JKRDvdRipper::loadToMainRAM("user/Ebisawa/effect/eff2d_file_select.jpc", nullptr, Switch_0, 0, nullptr,
-	                                         JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
+	void* file = JKRDvdToMainRam("user/Ebisawa/effect/eff2d_file_select.jpc", nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0,
+	                             nullptr, nullptr);
 	P2ASSERTLINE(518, file);
 	mParticleResource = new JPAResourceManager(file, JKRGetCurrentHeap());
 

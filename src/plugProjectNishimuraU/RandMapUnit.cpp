@@ -30,8 +30,7 @@ EditMapUnit::EditMapUnit()
  */
 void EditMapUnit::read(char* filepath)
 {
-	void* resource
-	    = JKRDvdRipper::loadToMainRAM(filepath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	void* resource = JKRDvdToMainRam(filepath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		read(&stream);
@@ -1049,13 +1048,13 @@ void RandMapUnit::setUnitKindOrder(MapNode* node, int* unitList)
 		ratio *= 2.0f;
 	}
 
-	unitKindList[2] = UNITKIND_Cap;
+	unitList[2] = UNITKIND_Cap;
 	if (randWeightFloat(1.0f) < ratio) {
-		unitKindList[0] = UNITKIND_Corridor;
-		unitKindList[1] = UNITKIND_Room;
+		unitList[0] = UNITKIND_Corridor;
+		unitList[1] = UNITKIND_Room;
 	} else {
-		unitKindList[0] = UNITKIND_Room;
-		unitKindList[1] = UNITKIND_Corridor;
+		unitList[0] = UNITKIND_Room;
+		unitList[1] = UNITKIND_Corridor;
 	}
 }
 

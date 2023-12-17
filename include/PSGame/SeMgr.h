@@ -4,6 +4,7 @@
 #include "PSSystem/PSCommon.h"
 
 struct JAISound;
+struct JAISe;
 
 namespace JAInter {
 struct Object;

@@ -175,8 +175,8 @@ void CardEReader::TMgr::loadResource()
 		}
 		JKRDvdFile file;
 		file.open(path);
-		mGameDatas[i] = JKRDvdRipper::loadToMainRAM(&file, nullptr, (JKRExpandSwitch)0, 0, nullptr, (JKRDvdRipper::ALLOC_DIR_BOTTOM), 0,
-		                                            nullptr, nullptr);
+		mGameDatas[i]
+		    = JKRDvdRipper::loadToMainRAM(&file, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 		P2ASSERTLINE(462, mGameDatas[i]);
 		mSizes[i] = file.mDvdPlayer.length;
 		file.close();

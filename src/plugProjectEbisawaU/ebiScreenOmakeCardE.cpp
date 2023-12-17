@@ -143,38 +143,37 @@ bool TOmakeCardE::doUpdateStateWait()
 			mState = EnteringZoomed;
 		}
 		mMesgScroll->scroll(mInput->mMStick.mYPos);
-		f32 scroll = mMesgScroll->getPosRate();
-		int changeAlpha, alpha2, alpha1;
-		alpha2      = mPaneArrowUp->getAlpha(); // register dumbness here
-		alpha1      = mPaneArrowDown->getAlpha();
-		changeAlpha = sys->mDeltaTime * 2550.0f;
+		f32 scroll            = mMesgScroll->getPosRate();
+		const int changeAlpha = sys->mDeltaTime * 2550.0f;
+		int alphaArrowUp      = mPaneArrowUp->getAlpha(); // register dumbness here
+		int alphaArrowDown    = mPaneArrowDown->getAlpha();
 		if (scroll <= 0.0f) {
-			alpha2 -= changeAlpha;
-			alpha1 += changeAlpha;
+			alphaArrowUp -= changeAlpha;
+			alphaArrowDown += changeAlpha;
 		} else {
 			if (scroll >= 1.0f) {
-				alpha2 += changeAlpha;
-				alpha1 -= changeAlpha;
+				alphaArrowUp += changeAlpha;
+				alphaArrowDown -= changeAlpha;
 			} else {
-				alpha2 += changeAlpha;
-				alpha1 += changeAlpha;
+				alphaArrowUp += changeAlpha;
+				alphaArrowDown += changeAlpha;
 			}
 		}
 
-		if (alpha2 > 255)
-			alpha2 = 255;
+		if (alphaArrowUp > 255)
+			alphaArrowUp = 255;
 
-		if (alpha2 < 0)
-			alpha2 = 0;
+		if (alphaArrowUp < 0)
+			alphaArrowUp = 0;
 
-		if (alpha1 > 255)
-			alpha1 = 255;
+		if (alphaArrowDown > 255)
+			alphaArrowDown = 255;
 
-		if (alpha1 < 0)
-			alpha1 = 0;
+		if (alphaArrowDown < 0)
+			alphaArrowDown = 0;
 
-		mPaneArrowUp->setAlpha(alpha2);
-		mPaneArrowDown->setAlpha(alpha1);
+		mPaneArrowUp->setAlpha(alphaArrowUp);
+		mPaneArrowDown->setAlpha(alphaArrowDown);
 		break;
 	case InZoomed:
 		if (mInput->mButton.mButtonDown & (Controller::PRESS_B | Controller::PRESS_Z)) {

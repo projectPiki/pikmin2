@@ -25,7 +25,7 @@ AIConstants::AIConstants()
 
 	char* fileName = "/user/Kando/aiConstants.txt";
 
-	void* handle = JKRDvdRipper::loadToMainRAM(fileName, nullptr, Switch_0, 0, 0, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	void* handle = JKRDvdToMainRam(fileName, nullptr, Switch_0, 0, 0, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 
 	if (handle) {
 		RamStream stream(handle, -1);

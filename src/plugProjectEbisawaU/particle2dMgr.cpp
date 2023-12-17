@@ -105,7 +105,7 @@ void TParticle2dMgr::createMgr(char* path, u32 u1, u32 u2, u32 u3)
 	sys->heapStatusStart("TParticle2dMgr::createMgr", nullptr);
 	JKRHeap* backup = JKRGetCurrentHeap();
 	mSolidHeap->becomeCurrentHeap();
-	void* file = JKRDvdRipper::loadToMainRAM(path, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	void* file = JKRDvdToMainRam(path, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	JUT_ASSERTLINE(94, file, "ParticleResource (%s) not found\n", path);
 	backup->becomeCurrentHeap();
 

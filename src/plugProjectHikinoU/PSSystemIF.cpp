@@ -573,7 +573,7 @@ bool TextDataBase::load(const char* path, JKRDvdRipper::EAllocDirection directio
  */
 bool TextDataBase::onlyLoad(const char* path, JKRDvdRipper::EAllocDirection direction)
 {
-	mFile = JKRDvdRipper::loadToMainRAM(path, nullptr, Switch_0, 0, nullptr, direction, 0, nullptr, nullptr);
+	mFile = JKRDvdToMainRam(const_cast<char*>(path), nullptr, Switch_0, 0, nullptr, direction, 0, nullptr, nullptr);
 	return !!mFile; // ???
 }
 

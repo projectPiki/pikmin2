@@ -305,8 +305,7 @@ void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
 	JKRHeap* oldheap = JKRGetCurrentHeap();
 	mHeap->becomeCurrentHeap();
 
-	void* file
-	    = JKRDvdRipper::loadToMainRAM(path, nullptr, (JKRExpandSwitch)0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
+	void* file = JKRDvdToMainRam(path, nullptr, (JKRExpandSwitch)0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
 	JUT_ASSERTLINE(223, file, "ParticleResource (%s) not found\n", path);
 	oldheap->becomeCurrentHeap();
 
