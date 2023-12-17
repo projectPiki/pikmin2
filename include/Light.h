@@ -30,7 +30,7 @@ struct LightObj : public CNode {
 	LightObj(char*, _GXLightID, ELightTypeFlag, JUtility::TColor);
 
 	virtual ~LightObj() { }                    // _08 (weak)
-	virtual void update();                     // _10 (weak)
+	virtual void update() { }                  // _10 (weak)
 	virtual void set(Matrixf&);                // _14
 	virtual void drawPos(Graphics&);           // _18
 	virtual void drawPos(Graphics&, Matrixf&); // _1C
@@ -60,7 +60,7 @@ struct LightMgr : public CNode {
 	void registLightObj(LightObj*);
 
 	// virtual ~LightMgr() { }                // _08 (weak)
-	virtual void update();                 // _10 (weak)
+	virtual void update() { }              // _10 (weak)
 	virtual void set(Graphics&);           // _14
 	virtual void set(Matrixf&);            // _18
 	virtual void drawDebugInfo(Graphics&); // _1C

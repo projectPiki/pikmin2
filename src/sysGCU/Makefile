@@ -14,7 +14,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/sysTimers.o\
 	$(BUILD_DIR)/src/sysGCU/modelMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/heapStatus.o\
-	$(BUILD_DIR)/asm/sysGCU/light.o\
+	$(BUILD_DIR)/src/sysGCU/light.o\
 	$(BUILD_DIR)/src/sysGCU/wipe.o\
 	$(BUILD_DIR)/asm/sysGCU/moviePlayer.o\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectActor.o\

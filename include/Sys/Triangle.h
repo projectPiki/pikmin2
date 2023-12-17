@@ -20,6 +20,11 @@ struct Triangle {
 	struct SphereSweep {
 		enum SweepType { ST_SphereInsidePlane = 0, ST_SphereIntersectPlane = 1, ST_EdgeIntersect = 2 };
 
+		inline SphereSweep()
+		    : mSweepType(ST_SphereInsidePlane)
+		{
+		}
+
 		Vector3f mStartPos;          // _00
 		Sys::Sphere mSphere;         // _0C
 		u8 mSweepType;               // _1C

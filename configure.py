@@ -1578,7 +1578,7 @@ LIBS = [
             ["sysGCU/sysTimers", True],
             ["sysGCU/modelMgr", True],
             ["sysGCU/heapStatus", False],
-            ["sysGCU/light", False],
+            ["sysGCU/light", True],
             ["sysGCU/wipe", True],
             ["sysGCU/moviePlayer", False],
             ["sysGCU/JSTObjectActor", False],

@@ -1,4 +1,5 @@
 #include "Game/MoveInfo.h"
+#include "Game/TDispTriangle.h"
 #include "Sys/OBB.h"
 #include "Sys/OBBTree.h"
 #include "types.h"
@@ -10,22 +11,26 @@ namespace Sys {
  * --INFO--
  * Address:	8041FFA8
  * Size:	0001C0
- * TODO
  */
-void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::MoveInfo& moveInfo, float deltaTime)
+void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::MoveInfo& moveInfo, f32 deltaTime)
 {
-	const float traceRadius = moveInfo.mTraceRadius;
+	// set up input/outputs for traceMove_new calc
+	Vec hitPos[8]; // needs to be Vec to not trigger a construct_array bc of default Vector3f ctor
+	Sys::Triangle* resultTriangles[8];
+	f32 hitDist[8];
+	int hitCount = 0;
+
+	Sphere* moveSphere = moveInfo.mMoveSphere;
+	f32 traceRadius    = moveSphere->mRadius;
 
 	// Check if advanced trace optimization is enabled
 	if (Game::MapMgr::mTraceMoveOptLevel >= 2) {
-		// Create a sphere representing the trace movement
-		Sphere traceSphere  = *moveInfo.mVelocity;
-		traceSphere.mRadius = traceRadius;
-
-		Vector3f pos = mRoot.mSphere.mPosition + startMatrix.getPosition();
-
 		// Create a sphere representing the root sphere in the transformed space
-		Sphere rootSphere(pos, mRoot.mSphere.mRadius);
+		Sphere rootSphere = mRoot.mSphere;
+		// Create a sphere representing the trace movement
+		Sphere traceSphere(moveSphere->mPosition, traceRadius);
+
+		rootSphere.mPosition = rootSphere.mPosition + startMatrix.getPosition();
 
 		// If there's no intersection between the two spheres, return early
 		if (!rootSphere.intersect(traceSphere)) {
@@ -33,34 +38,22 @@ void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::Move
 		}
 	}
 
+	moveSphere->mPosition = endMatrix.mtxMult(moveSphere->mPosition);
+
 	// Create a sphere representing the hit sphere
-	Sphere hitSphere(*moveInfo.mVelocity, traceRadius);
+	Sphere hitSphere(moveSphere->mPosition, traceRadius);
 
-	// Check if advanced trace optimization is enabled or if there's an intersection with the root sphere
-	if (Game::MapMgr::mTraceMoveOptLevel >= 2u || mRoot.mSphere.intersect(hitSphere)) {
-		int hitCount = 0;
-		Sys::Triangle* resultTriangle;
-		float hitDistance;
-		Vector3f hitPosition;
-
-		// Perform the trace movement using the root node
-		mRoot.traceMove_new(moveInfo, *mVertexTable, *mTriangleTable, startMatrix, endMatrix, hitCount, &resultTriangle, &hitDistance,
-		                    &hitPosition);
-
-		// Transform the velocity vector using the view matrix of the start matrix
-		Vector3f transformedVelocity;
-		PSMTXMultVec(startMatrix.mMatrix.mtxView, (Vec*)moveInfo.mVelocity, (Vec*)&transformedVelocity);
-
-		// Update the velocity with the transformed value
-		*moveInfo.mVelocity = transformedVelocity;
-	} else {
-		// Transform the velocity vector using the view matrix of the start matrix
-		Vector3f transformedVelocity;
-		PSMTXMultVec(startMatrix.mMatrix.mtxView, (Vec*)moveInfo.mVelocity, (Vec*)&transformedVelocity);
-
-		// Update the velocity with the transformed value
-		*moveInfo.mVelocity = transformedVelocity;
+	// If we're using simple optimisation and we're not intersecting the hit sphere, update position
+	if (Game::MapMgr::mTraceMoveOptLevel < 2 && !mRoot.mSphere.intersect(hitSphere)) {
+		moveSphere->mPosition = startMatrix.mtxMult(moveSphere->mPosition);
+		return;
 	}
+
+	// Perform the trace movement
+	mRoot.traceMove_new(moveInfo, *mVertexTable, *mTriangleTable, startMatrix, endMatrix, hitCount, resultTriangles, hitDist,
+	                    (Vector3f*)hitPos);
+
+	moveSphere->mPosition = startMatrix.mtxMult(moveSphere->mPosition);
 }
 
 /*
@@ -68,12 +61,57 @@ void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::Move
  * Address:	80420168
  * Size:	0002FC
  */
-// void
-// traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
-//     float>()
-void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4,
-                               Matrixf& p5, int& p6, Sys::Triangle** p7, float* p8, Vector3f* p9)
+void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable,
+                               Matrixf& startMatrix, Matrixf& endMatrix, int& hitCount, Sys::Triangle** resultTris, f32* hitDists,
+                               Vector3f* hitPositions)
 {
+	Sphere* moveSphere     = moveInfo.mMoveSphere; // r27
+	Vector3f* moveVelocity = moveInfo.mVelocity;   // r26
+
+	Sphere sphere0; // 0x44
+	Sphere sphere1; // 0x34
+
+	Sphere* sphere0Ptr = &sphere0; // r29
+	Sphere* sphere1Ptr = &sphere1; // r28
+
+	for (int i = 0; i < mTriIndexList.getNum(); i++) {
+		Triangle* tri = triangleTable.getTriangle(mTriIndexList.mObjects[i]); // r31
+		Triangle::SphereSweep sweep;
+		sweep.mStartPos = moveSphere->mPosition;
+		sweep.mSphere   = *moveSphere;
+		if (moveInfo.mUseIntersectionAlgo) {
+			sweep.mSweepType = Triangle::SphereSweep::ST_SphereIntersectPlane;
+		}
+		if (!tri->intersect(vertexTable, sweep)) {
+			continue;
+		}
+
+		sphere0.mPosition = startMatrix.mtxMult(sphere0Ptr->mPosition);
+
+		Vector3f pos = sphere1.mPosition;
+
+		if (moveInfo.mIntersectCallback) {
+			moveInfo.mIntersectCallback->invoke(sphere0Ptr->mPosition, sphere1Ptr->mPosition);
+		}
+
+		int index = mTriIndexList.mObjects[i]; // r7
+		if (moveInfo.mTriangleArray) {
+			moveInfo.mTriangleArray->store(startMatrix, *tri, vertexTable, index);
+		}
+
+		if (sphere1.mPosition.y >= moveInfo.mBounceThreshold) {
+			moveInfo.mBounceTriangle = tri;
+			moveInfo.mPosition       = sphere1.mPosition;
+		} else if (FABS(sphere1.mPosition.y) <= moveInfo.mWallThreshold) {
+			moveInfo.mWallTriangle    = tri;
+			moveInfo.mReflectPosition = sphere1.mPosition;
+		} else {
+			moveInfo._4C = tri;
+			moveInfo._68 = sphere1.mPosition;
+		}
+
+		moveSphere->mPosition = moveSphere->mPosition + pos * sphere1.mRadius;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xC0(r1)
@@ -294,7 +332,7 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
  * Size:	0007F0
  */
 void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4,
-                        Matrixf& p5, int& p6, Sys::Triangle** p7, float* p8, Vector3f* p9)
+                        Matrixf& p5, int& p6, Sys::Triangle** p7, f32* p8, Vector3f* p9)
 {
 	/*
 	.loc_0x0:
@@ -878,7 +916,7 @@ void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable,
  * Address:	80420C54
  * Size:	000098
  */
-void OBBTree::traceMove_new_global(Game::MoveInfo&, float)
+void OBBTree::traceMove_new_global(Game::MoveInfo&, f32)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -931,7 +969,7 @@ lbl_80420CD4:
  * Size:	00024C
  */
 void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4,
-                                      Sys::Triangle** p5, float* p6, Vector3f* p7)
+                                      Sys::Triangle** p5, f32* p6, Vector3f* p7)
 {
 	/*
 	.loc_0x0:
@@ -1107,7 +1145,7 @@ void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable
  * Size:	0006F0
  */
 void OBB::traceMove_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4,
-                               Sys::Triangle** p5, float* p6, Vector3f* p7)
+                               Sys::Triangle** p5, f32* p6, Vector3f* p7)
 {
 	/*
 	.loc_0x0:
