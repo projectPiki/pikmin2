@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "ms-vscode.cpptools",
+    "ms-vscode.makefile-tools",
     "xaver.clang-format"
   ]
 }
