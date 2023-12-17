@@ -252,13 +252,7 @@ void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b,
 		var_r10 = GX_FALSE;
 	}
 
-	if (var_r10 != 0) {
-		var_r0 = 2;
-	} else {
-		var_r0 = 1;
-	}
-
-	*c = var_r0;
+	*c = var_r10 != 0 ? 2 : 1;
 	/*
 	.loc_0x0:
 	  cmplwi    r3, 0x3C
@@ -439,118 +433,39 @@ void GXInitTexObjCI(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXCITe
 void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter minFilter, GXTexFilter maxFilter, f32 minLOD, f32 maxLOD, f32 lodBias, GXBool doBiasClamp,
                      GXBool doEdgeLOD, GXAnisotropy maxAniso)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  lfs       f0, -0x6CE0(r2)
-	  fcmpo     cr0, f3, f0
-	  bge-      .loc_0x18
-	  fmr       f3, f0
-	  b         .loc_0x2C
+	GXTexObjPriv *internal = (GXTexObjPriv *)obj;
+	u8 reg1, reg2;
+	if (lodBias < -4.0f) {
+		lodBias = -4.0f;
+	} else if (lodBias >= 4.0f) {
+		lodBias = 3.99f;
+	}
 
-	.loc_0x18:
-	  lfs       f0, -0x6CDC(r2)
-	  fcmpo     cr0, f3, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x2C
-	  lfs       f3, -0x6CD8(r2)
+	GX_SET_REG(internal->mode0, lodBias * 32.0f, 15, 22);
+	GX_SET_REG(internal->mode0, maxFilter == 1 ? 1 : 0, 27, 27);
+	GX_SET_REG(internal->mode0, GX2HWFiltConv[minFilter], 24, 26);
+	GX_SET_REG(internal->mode0, doEdgeLOD ? 0 : 1, 23, 23);
+	GX_SET_REG(internal->mode0, 0, 14, 14);
+	GX_SET_REG(internal->mode0, 0, 13, 13);
+	GX_SET_REG(internal->mode0, maxAniso, 11, 12);
+	GX_SET_REG(internal->mode0, doBiasClamp, 10, 10);
 
-	.loc_0x2C:
-	  lfs       f0, -0x6CD4(r2)
-	  cmpwi     r5, 0x1
-	  lwz       r5, 0x0(r3)
-	  fmuls     f0, f0, f3
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  rlwimi    r5,r0,9,15,22
-	  stw       r5, 0x0(r3)
-	  bne-      .loc_0x5C
-	  li        r0, 0x1
-	  b         .loc_0x60
+    if (minLOD < 0.0f) {
+        minLOD = 0.0f;
+    } else if (minLOD > 10.0f) {
+        minLOD = 10.0f;
+    }
+    reg1 = minLOD * 16.0f;
+    
+    if (maxLOD < 0.0f) {
+        maxLOD = 0.0f;
+    } else if (maxLOD > 10.0f) {
+        maxLOD = 10.0f;
+    }
+	reg2 = maxLOD * 16.0f;
 
-	.loc_0x5C:
-	  li        r0, 0
-
-	.loc_0x60:
-	  lwz       r5, 0x0(r3)
-	  rlwimi    r5,r0,4,27,27
-	  rlwinm.   r0,r7,0,24,31
-	  stw       r5, 0x0(r3)
-	  subi      r5, r13, 0x7CC8
-	  lbzx      r0, r5, r4
-	  lwz       r4, 0x0(r3)
-	  rlwimi    r4,r0,5,24,26
-	  stw       r4, 0x0(r3)
-	  beq-      .loc_0x90
-	  li        r4, 0
-	  b         .loc_0x94
-
-	.loc_0x90:
-	  li        r4, 0x1
-
-	.loc_0x94:
-	  lwz       r0, 0x0(r3)
-	  rlwimi    r0,r4,8,23,23
-	  li        r5, 0
-	  stw       r0, 0x0(r3)
-	  lwz       r4, 0x0(r3)
-	  rlwimi    r4,r5,17,14,14
-	  stw       r4, 0x0(r3)
-	  lwz       r4, 0x0(r3)
-	  rlwimi    r4,r5,18,13,13
-	  stw       r4, 0x0(r3)
-	  lwz       r4, 0x0(r3)
-	  rlwimi    r4,r8,19,11,12
-	  stw       r4, 0x0(r3)
-	  lwz       r4, 0x0(r3)
-	  rlwimi    r4,r6,21,10,10
-	  stw       r4, 0x0(r3)
-	  lfs       f0, -0x6CD0(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xE8
-	  fmr       f1, f0
-	  b         .loc_0xF8
-
-	.loc_0xE8:
-	  lfs       f0, -0x6CCC(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xF8
-	  fmr       f1, f0
-
-	.loc_0xF8:
-	  lfs       f3, -0x6CF0(r2)
-	  lfs       f0, -0x6CD0(r2)
-	  fmuls     f1, f3, f1
-	  fcmpo     cr0, f2, f0
-	  fctiwz    f1, f1
-	  stfd      f1, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  bge-      .loc_0x120
-	  fmr       f2, f0
-	  b         .loc_0x130
-
-	.loc_0x120:
-	  lfs       f0, -0x6CCC(r2)
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x130
-	  fmr       f2, f0
-
-	.loc_0x130:
-	  lfs       f0, -0x6CF0(r2)
-	  lwz       r4, 0x4(r3)
-	  rlwimi    r4,r0,0,24,31
-	  fmuls     f0, f0, f2
-	  stw       r4, 0x4(r3)
-	  fctiwz    f0, f0
-	  lwz       r4, 0x4(r3)
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  rlwimi    r4,r0,8,16,23
-	  stw       r4, 0x4(r3)
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	GX_SET_REG(internal->mode1, reg1, 24, 31);
+	GX_SET_REG(internal->mode1, reg2, 16, 23);
 }
 
 /*
