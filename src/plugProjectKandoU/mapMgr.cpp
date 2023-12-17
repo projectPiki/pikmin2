@@ -2,7 +2,9 @@
 #include "Game/gameStages.h"
 #include "Game/GameSystem.h"
 #include "Game/TDispTriangle.h"
+#include "Game/PlatInstance.h"
 #include "Sys/TriangleTable.h"
+#include "Sys/RayIntersectInfo.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "Game/GameLight.h"
 #include "Game/Farm.h"
@@ -689,202 +691,43 @@ lbl_80162DC0:
  */
 void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 {
-	arg._24 = 9.9999998E+10;
-	/*
-	stwu     r1, -0x110(r1)
-	mflr     r0
-	stw      r0, 0x114(r1)
-	stfd     f31, 0x100(r1)
-	psq_st   f31, 264(r1), 0, qr0
-	stfd     f30, 0xf0(r1)
-	psq_st   f30, 248(r1), 0, qr0
-	stfd     f29, 0xe0(r1)
-	psq_st   f29, 232(r1), 0, qr0
-	stmw     r26, 0xc8(r1)
-	li       r0, 0
-	lfs      f1, lbl_805188A0@sda21(r2)
-	stb      r0, 0x20(r4)
-	mr       r27, r4
-	lfs      f0, lbl_8051886C@sda21(r2)
-	mr       r26, r3
-	stfs     f1, 0x24(r4)
-	lfs      f2, 0x10(r4)
-	lfs      f1, 4(r4)
-	lfs      f3, 0x14(r4)
-	fsubs    f4, f2, f1
-	lfs      f2, 8(r4)
-	lfs      f1, 0xc(r4)
-	fsubs    f5, f3, f2
-	lfs      f7, 0(r4)
-	fmuls    f2, f4, f4
-	fsubs    f3, f1, f7
-	fmuls    f6, f5, f5
-	fmadds   f1, f3, f3, f2
-	fadds    f2, f6, f1
-	fcmpo    cr0, f2, f0
-	ble      lbl_80162ED4
-	ble      lbl_80162ED8
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_80162ED8
+	arg._20 = 0;
+	arg._24 = 9.9999998E+10f;
 
-lbl_80162ED4:
-	fmr      f2, f0
+	Vector3f sep = arg._0C - arg._00;
+	f32 dist     = sep.normalise();
 
-lbl_80162ED8:
-	lfs      f0, lbl_8051886C@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80162EFC
-	lfs      f0, lbl_805188A4@sda21(r2)
-	fdivs    f0, f0, f2
-	fmuls    f3, f3, f0
-	fmuls    f4, f4, f0
-	fmuls    f5, f5, f0
-	b        lbl_80162F00
+	if (dist == 0.0f) {
+		return;
+	}
 
-lbl_80162EFC:
-	fmr      f2, f0
+	f32 norm              = dist / 30.0f;
+	Vector3f prevVelocity = sep * norm;
 
-lbl_80162F00:
-	lfs      f29, lbl_8051886C@sda21(r2)
-	fcmpu    cr0, f29, f2
-	beq      lbl_801630BC
-	lfs      f0, lbl_805188A8@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f1, 0x18(r27)
-	addi     r29, r3, sincosTable___5JMath@l
-	fdivs    f6, f2, f0
-	lfs      f30, lbl_805188A4@sda21(r2)
-	stfs     f7, 0x14(r1)
-	addi     r30, r1, 0x14
-	lfs      f31, lbl_805188AC@sda21(r2)
-	addi     r31, r1, 8
-	lfs      f0, 4(r27)
-	fmuls    f2, f3, f6
-	fmuls    f3, f4, f6
-	li       r28, 0
-	stfs     f0, 0x18(r1)
-	fmuls    f4, f5, f6
-	lfs      f0, 8(r27)
-	stfs     f0, 0x1c(r1)
-	stfs     f1, 0x20(r1)
+	Sys::Sphere sphere(arg._00, arg._18);
+	Vector3f velocity;
 
-lbl_80162F58:
-	stfs     f2, 8(r1)
-	li       r5, 0
-	lfs      f0, 0x800(r29)
-	li       r0, -1
-	stfs     f3, 0xc(r1)
-	mr       r3, r26
-	fmr      f1, f30
-	addi     r4, r1, 0x24
-	stfs     f4, 0x10(r1)
-	lfs      f2, 0(r27)
-	stfs     f2, 0x14(r1)
-	lfs      f2, 4(r27)
-	stfs     f2, 0x18(r1)
-	lfs      f2, 8(r27)
-	stfs     f2, 0x1c(r1)
-	stw      r30, 0x24(r1)
-	stw      r31, 0x28(r1)
-	stfs     f30, 0x2c(r1)
-	stfs     f29, 0x30(r1)
-	stw      r5, 0x34(r1)
-	stw      r5, 0x68(r1)
-	stb      r5, 0x98(r1)
-	stb      r5, 0x3d(r1)
-	stb      r5, 0x3c(r1)
-	stw      r5, 0x6c(r1)
-	stw      r5, 0x38(r1)
-	stb      r5, 0xb4(r1)
-	stw      r5, 0xb8(r1)
-	stfs     f0, 0x50(r1)
-	stfs     f31, 0x54(r1)
-	stw      r0, 0xbc(r1)
-	stw      r5, 0x70(r1)
-	stb      r5, 0x3e(r1)
-	lwz      r12, 4(r26)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, platMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80163004
-	lfs      f1, lbl_805188A4@sda21(r2)
-	addi     r4, r1, 0x24
-	bl       traceMove__Q24Game7PlatMgrFRQ24Game8MoveInfof
+	for (int i = 0; i < 30; i++) {
+		velocity         = prevVelocity;
+		sphere.mPosition = arg._00;
+		MoveInfo moveInfo(&sphere, &velocity, 1.0f);
 
-lbl_80163004:
-	lwz      r0, 0x6c(r1)
-	cmplwi   r0, 0
-	bne      lbl_80163028
-	lwz      r0, 0x68(r1)
-	cmplwi   r0, 0
-	bne      lbl_80163028
-	lwz      r0, 0x70(r1)
-	cmplwi   r0, 0
-	beq      lbl_80163034
+		traceMove(moveInfo, 1.0f);
+		if (platMgr) {
+			platMgr->traceMove(moveInfo, 1.0f);
+		}
 
-lbl_80163028:
-	li       r0, 1
-	stb      r0, 0x20(r27)
-	b        lbl_80163064
+		if (moveInfo.mWallTriangle || moveInfo.mBounceTriangle || moveInfo._4C) {
+			arg._20 = 1;
+			break;
+		}
 
-lbl_80163034:
-	lfs      f0, 0x14(r1)
-	addi     r28, r28, 1
-	cmpwi    r28, 0x1e
-	stfs     f0, 0(r27)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 4(r27)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 8(r27)
-	lfs      f2, 8(r1)
-	lfs      f3, 0xc(r1)
-	lfs      f4, 0x10(r1)
-	blt      lbl_80162F58
+		arg._00      = sphere.mPosition;
+		prevVelocity = velocity;
+	}
 
-lbl_80163064:
-	lfs      f1, 0x10(r27)
-	lfs      f0, 4(r27)
-	lfs      f3, 0x14(r27)
-	fsubs    f4, f1, f0
-	lfs      f2, 8(r27)
-	lfs      f1, 0xc(r27)
-	lfs      f0, 0(r27)
-	fsubs    f2, f3, f2
-	fmuls    f3, f4, f4
-	fsubs    f1, f1, f0
-	lfs      f0, lbl_8051886C@sda21(r2)
-	fmuls    f2, f2, f2
-	fmadds   f1, f1, f1, f3
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_801630B4
-	ble      lbl_801630B8
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_801630B8
-
-lbl_801630B4:
-	fmr      f1, f0
-
-lbl_801630B8:
-	stfs     f1, 0x24(r27)
-
-lbl_801630BC:
-	psq_l    f31, 264(r1), 0, qr0
-	lfd      f31, 0x100(r1)
-	psq_l    f30, 248(r1), 0, qr0
-	lfd      f30, 0xf0(r1)
-	psq_l    f29, 232(r1), 0, qr0
-	lfd      f29, 0xe0(r1)
-	lmw      r26, 0xc8(r1)
-	lwz      r0, 0x114(r1)
-	mtlr     r0
-	addi     r1, r1, 0x110
-	blr
-	*/
+	Vector3f sep2 = arg._0C - arg._00;
+	arg._24       = sep2.length();
 }
 
 /*
@@ -1814,8 +1657,38 @@ void ShapeMapMgr::doEntry()
  * Address:	80163DCC
  * Size:	000214
  */
-bool ShapeMapMgr::findRayIntersection(::Sys::RayIntersectInfo&)
+bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 {
+	Vector3f startPos = info.mIntersectEdge.mStartPos;
+	Vector3f endPos   = info.mIntersectEdge.mEndPos;
+	f32 edgeLen       = startPos.distance(endPos);
+
+	Vector3f midPoint = (startPos + endPos) * 0.5f;
+	Sys::Sphere sphere;
+	sphere.mRadius             = edgeLen;
+	sphere.mPosition           = midPoint;
+	Sys::TriIndexList* triList = mMapCollision.mDivider->findTriLists(sphere);
+	Vector3f outPos;
+	f32 minDist = 1.28E7f;
+	bool check  = false;
+	for (triList; triList; triList = static_cast<Sys::TriIndexList*>(triList->mNext)) {
+		for (int i = 0; i < triList->getNum(); i++) {
+			Sys::Triangle* tri = mMapCollision.mDivider->mTriangleTable->getTriangle(triList->mObjects[i]);
+			Vector3f interVec;
+			if (info.condition(*tri) && tri->intersect(info.mIntersectEdge, info.mRadius, interVec)) {
+				check       = true;
+				f32 sqrDist = interVec.sqrDistance(startPos);
+				if (sqrDist < minDist) {
+					outPos   = interVec;
+					info._48 = tri->mTrianglePlane.b;
+					minDist  = sqrDist;
+				}
+			}
+		}
+	}
+
+	info.mIntersectPosition = outPos;
+	return check;
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0

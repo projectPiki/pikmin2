@@ -118,7 +118,7 @@ void Game::Rigid::computeForces(int configIdx)
  * Address:	8013A294
  * Size:	000268
  */
-void getYDegree(Quat& quat, Vector3f& vec)
+static f32 getYDegree(Quat& quat, Vector3f& vec)
 {
 	Quat q1(0.0f, Vector3f(0.0f, 1.0f, 0.0f)); // 0x9c
 	Quat q2;                                   // 0x8c
@@ -126,162 +126,183 @@ void getYDegree(Quat& quat, Vector3f& vec)
 	q3 = quat.inverse();                       // 0x60
 
 	Quat q4; // 0x24
-	         /*
-	         stwu     r1, -0xc0(r1)
-	         mflr     r0
-	         lfs      f1, lbl_8051823C@sda21(r2)
-	         stw      r0, 0xc4(r1)
-	         lfs      f0, lbl_80518258@sda21(r2)
-	         stw      r31, 0xbc(r1)
-	         mr       r31, r4
-	         addi     r4, r1, 0x70
-	         stfs     f1, 0xac(r1)
-	         stfs     f0, 0xb0(r1)
-	         lwz      r6, 0xac(r1)
-	         stw      r30, 0xb8(r1)
-	         mr       r30, r3
-	         lwz      r5, 0xb0(r1)
-	         addi     r3, r1, 0x9c
-	         stfs     f1, 0xb4(r1)
-	         lwz      r0, 0xb4(r1)
-	         stw      r6, 0x70(r1)
-	         stw      r5, 0x74(r1)
-	         stw      r0, 0x78(r1)
-	         bl       "__ct__4QuatFf10Vector3<f>"
-	         addi     r3, r1, 0x8c
-	         bl       __ct__4QuatFv
-	         addi     r3, r1, 0x7c
-	         bl       __ct__4QuatFv
-	         mr       r4, r30
-	         addi     r3, r1, 0x60
-	         bl       inverse__4QuatFv
-	         lfs      f3, 0x60(r1)
-	         addi     r3, r1, 0x24
-	         lfs      f2, 0x64(r1)
-	         lfs      f1, 0x68(r1)
-	         lfs      f0, 0x6c(r1)
-	         stfs     f3, 0x7c(r1)
-	         stfs     f2, 0x80(r1)
-	         stfs     f1, 0x84(r1)
-	         stfs     f0, 0x88(r1)
-	         bl       __ct__4QuatFv
-	         lfs      f9, 0xc(r30)
-	         addi     r3, r1, 0x50
-	         lfs      f13, 0xa4(r1)
-	         addi     r4, r1, 0x34
-	         lfs      f7, 8(r30)
-	         lfs      f3, 0xa0(r1)
-	         fmuls    f1, f9, f13
-	         lfs      f12, 0xa8(r1)
-	         fmuls    f2, f7, f13
-	         lfs      f8, 4(r30)
-	         fmuls    f0, f7, f3
-	         fmsubs   f6, f7, f12, f1
-	         fmuls    f1, f8, f12
-	         lfs      f10, 0(r30)
-	         fmadds   f2, f8, f3, f2
-	         lfs      f11, 0x9c(r1)
-	         fmuls    f5, f3, f10
-	         fmsubs   f4, f9, f3, f1
-	         fmadds   f1, f9, f12, f2
-	         fmsubs   f2, f8, f13, f0
-	         fmuls    f0, f12, f10
-	         fmuls    f3, f13, f10
-	         fmuls    f9, f9, f11
-	         fadds    f0, f2, f0
-	         fadds    f2, f4, f3
-	         fmuls    f7, f7, f11
-	         fadds    f0, f0, f9
-	         fmuls    f4, f8, f11
-	         fadds    f2, f2, f7
-	         stfs     f0, 0x30(r1)
-	         fadds    f3, f6, f5
-	         fmsubs   f1, f10, f11, f1
-	         stfs     f2, 0x2c(r1)
-	         fadds    f0, f3, f4
-	         lwz      r0, 0x30(r1)
-	         lwz      r5, 0x2c(r1)
-	         stfs     f1, 0x24(r1)
-	         stfs     f0, 0x28(r1)
-	         lwz      r6, 0x28(r1)
-	         stw      r5, 0x38(r1)
-	         stw      r6, 0x34(r1)
-	         stw      r0, 0x3c(r1)
-	         bl       "__ct__4QuatFf10Vector3<f>"
-	         lfs      f3, 0x50(r1)
-	         addi     r3, r1, 8
-	         lfs      f2, 0x54(r1)
-	         lfs      f1, 0x58(r1)
-	         lfs      f0, 0x5c(r1)
-	         stfs     f3, 0x8c(r1)
-	         stfs     f2, 0x90(r1)
-	         stfs     f1, 0x94(r1)
-	         stfs     f0, 0x98(r1)
-	         bl       __ct__4QuatFv
-	         lfs      f8, 0x98(r1)
-	         addi     r3, r1, 0x40
-	         lfs      f13, 0x84(r1)
-	         addi     r4, r1, 0x18
-	         lfs      f9, 0x94(r1)
-	         lfs      f3, 0x80(r1)
-	         fmuls    f1, f8, f13
-	         lfs      f12, 0x88(r1)
-	         fmuls    f2, f9, f13
-	         lfs      f10, 0x90(r1)
-	         fmuls    f0, f9, f3
-	         fmsubs   f6, f9, f12, f1
-	         fmuls    f1, f10, f12
-	         lfs      f11, 0x8c(r1)
-	         fmadds   f2, f10, f3, f2
-	         lfs      f7, 0x7c(r1)
-	         fmuls    f5, f3, f11
-	         fmsubs   f4, f8, f3, f1
-	         fmadds   f1, f8, f12, f2
-	         fmuls    f3, f13, f11
-	         fmsubs   f2, f10, f13, f0
-	         fmuls    f0, f12, f11
-	         fadds    f6, f6, f5
-	         fmuls    f5, f10, f7
-	         fadds    f4, f4, f3
-	         fmuls    f3, f9, f7
-	         fadds    f2, f2, f0
-	         fmuls    f0, f8, f7
-	         fadds    f5, f6, f5
-	         fadds    f3, f4, f3
-	         fadds    f0, f2, f0
-	         stfs     f5, 0xc(r1)
-	         fmsubs   f1, f11, f7, f1
-	         stfs     f3, 0x10(r1)
-	         lwz      r6, 0xc(r1)
-	         stfs     f0, 0x14(r1)
-	         lwz      r5, 0x10(r1)
-	         lwz      r0, 0x14(r1)
-	         stfs     f1, 8(r1)
-	         stw      r6, 0x18(r1)
-	         stw      r5, 0x1c(r1)
-	         stw      r0, 0x20(r1)
-	         bl       "__ct__4QuatFf10Vector3<f>"
-	         lfs      f3, 0x40(r1)
-	         lfs      f2, 0x44(r1)
-	         lfs      f1, 0x48(r1)
-	         lfs      f0, 0x4c(r1)
-	         stfs     f3, 0x8c(r1)
-	         stfs     f2, 0x90(r1)
-	         stfs     f1, 0x94(r1)
-	         stfs     f0, 0x98(r1)
-	         stfs     f2, 0(r31)
-	         lfs      f0, 0x94(r1)
-	         stfs     f0, 4(r31)
-	         lfs      f0, 0x98(r1)
-	         stfs     f0, 8(r31)
-	         lfs      f1, 0x94(r1)
-	         lwz      r31, 0xbc(r1)
-	         lwz      r30, 0xb8(r1)
-	         lwz      r0, 0xc4(r1)
-	         mtlr     r0
-	         addi     r1, r1, 0xc0
-	         blr
-	         */
+	q4.w = quat.w * q1.w - (quat.x * q1.x + q1.y * quat.y + quat.z * q1.z);
+	q4.x = quat.y * q1.z - quat.z * q1.y + q1.x * quat.w + quat.x * q1.w;
+	q4.y = quat.z * q1.x - quat.x * q1.z + q1.y * quat.w + quat.y * q1.w;
+	q4.z = quat.x * q1.y - quat.y * q1.x + q1.z * quat.w + quat.z * q1.w;
+
+	q2 = Quat(q4.w, Vector3f(q4.x, q4.y, q4.z));
+
+	Quat q5; // 0x8
+	q5.w = q2.w * q3.w - (q2.x * q3.x + q3.y * q2.y + q2.z * q3.z);
+	q5.x = q2.y * q3.z - q2.z * q3.y + q3.x * q2.w + q2.x * q3.w;
+	q5.y = q2.z * q3.x - q2.x * q3.z + q3.y * q2.w + q2.y * q3.w;
+	q5.z = q2.x * q3.y - q2.y * q3.x + q3.z * q2.w + q2.z * q3.w;
+
+	q2 = Quat(q5.w, Vector3f(q5.x, q5.y, q5.z));
+
+	vec.x = q2.x;
+	vec.y = q2.y;
+	vec.z = q2.z;
+
+	return q2.y;
+
+	/*
+	stwu     r1, -0xc0(r1)
+	mflr     r0
+	lfs      f1, lbl_8051823C@sda21(r2)
+	stw      r0, 0xc4(r1)
+	lfs      f0, lbl_80518258@sda21(r2)
+	stw      r31, 0xbc(r1)
+	mr       r31, r4
+	addi     r4, r1, 0x70
+	stfs     f1, 0xac(r1)
+	stfs     f0, 0xb0(r1)
+	lwz      r6, 0xac(r1)
+	stw      r30, 0xb8(r1)
+	mr       r30, r3
+	lwz      r5, 0xb0(r1)
+	addi     r3, r1, 0x9c
+	stfs     f1, 0xb4(r1)
+	lwz      r0, 0xb4(r1)
+	stw      r6, 0x70(r1)
+	stw      r5, 0x74(r1)
+	stw      r0, 0x78(r1)
+	bl       "__ct__4QuatFf10Vector3<f>"
+	addi     r3, r1, 0x8c
+	bl       __ct__4QuatFv
+	addi     r3, r1, 0x7c
+	bl       __ct__4QuatFv
+	mr       r4, r30
+	addi     r3, r1, 0x60
+	bl       inverse__4QuatFv
+	lfs      f3, 0x60(r1)
+	addi     r3, r1, 0x24
+	lfs      f2, 0x64(r1)
+	lfs      f1, 0x68(r1)
+	lfs      f0, 0x6c(r1)
+	stfs     f3, 0x7c(r1)
+	stfs     f2, 0x80(r1)
+	stfs     f1, 0x84(r1)
+	stfs     f0, 0x88(r1)
+	bl       __ct__4QuatFv
+	lfs      f9, 0xc(r30)
+	addi     r3, r1, 0x50
+	lfs      f13, 0xa4(r1)
+	addi     r4, r1, 0x34
+	lfs      f7, 8(r30)
+	lfs      f3, 0xa0(r1)
+	fmuls    f1, f9, f13
+	lfs      f12, 0xa8(r1)
+	fmuls    f2, f7, f13
+	lfs      f8, 4(r30)
+	fmuls    f0, f7, f3
+	fmsubs   f6, f7, f12, f1
+	fmuls    f1, f8, f12
+	lfs      f10, 0(r30)
+	fmadds   f2, f8, f3, f2
+	lfs      f11, 0x9c(r1)
+	fmuls    f5, f3, f10
+	fmsubs   f4, f9, f3, f1
+	fmadds   f1, f9, f12, f2
+	fmsubs   f2, f8, f13, f0
+	fmuls    f0, f12, f10
+	fmuls    f3, f13, f10
+	fmuls    f9, f9, f11
+	fadds    f0, f2, f0
+	fadds    f2, f4, f3
+	fmuls    f7, f7, f11
+	fadds    f0, f0, f9
+	fmuls    f4, f8, f11
+	fadds    f2, f2, f7
+	stfs     f0, 0x30(r1)
+	fadds    f3, f6, f5
+	fmsubs   f1, f10, f11, f1
+	stfs     f2, 0x2c(r1)
+	fadds    f0, f3, f4
+	lwz      r0, 0x30(r1)
+	lwz      r5, 0x2c(r1)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	lwz      r6, 0x28(r1)
+	stw      r5, 0x38(r1)
+	stw      r6, 0x34(r1)
+	stw      r0, 0x3c(r1)
+	bl       "__ct__4QuatFf10Vector3<f>"
+	lfs      f3, 0x50(r1)
+	addi     r3, r1, 8
+	lfs      f2, 0x54(r1)
+	lfs      f1, 0x58(r1)
+	lfs      f0, 0x5c(r1)
+	stfs     f3, 0x8c(r1)
+	stfs     f2, 0x90(r1)
+	stfs     f1, 0x94(r1)
+	stfs     f0, 0x98(r1)
+	bl       __ct__4QuatFv
+	lfs      f8, 0x98(r1)
+	addi     r3, r1, 0x40
+	lfs      f13, 0x84(r1)
+	addi     r4, r1, 0x18
+	lfs      f9, 0x94(r1)
+	lfs      f3, 0x80(r1)
+	fmuls    f1, f8, f13
+	lfs      f12, 0x88(r1)
+	fmuls    f2, f9, f13
+	lfs      f10, 0x90(r1)
+	fmuls    f0, f9, f3
+	fmsubs   f6, f9, f12, f1
+	fmuls    f1, f10, f12
+	lfs      f11, 0x8c(r1)
+	fmadds   f2, f10, f3, f2
+	lfs      f7, 0x7c(r1)
+	fmuls    f5, f3, f11
+	fmsubs   f4, f8, f3, f1
+	fmadds   f1, f8, f12, f2
+	fmuls    f3, f13, f11
+	fmsubs   f2, f10, f13, f0
+	fmuls    f0, f12, f11
+	fadds    f6, f6, f5
+	fmuls    f5, f10, f7
+	fadds    f4, f4, f3
+	fmuls    f3, f9, f7
+	fadds    f2, f2, f0
+	fmuls    f0, f8, f7
+	fadds    f5, f6, f5
+	fadds    f3, f4, f3
+	fadds    f0, f2, f0
+	stfs     f5, 0xc(r1)
+	fmsubs   f1, f11, f7, f1
+	stfs     f3, 0x10(r1)
+	lwz      r6, 0xc(r1)
+	stfs     f0, 0x14(r1)
+	lwz      r5, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	stfs     f1, 8(r1)
+	stw      r6, 0x18(r1)
+	stw      r5, 0x1c(r1)
+	stw      r0, 0x20(r1)
+	bl       "__ct__4QuatFf10Vector3<f>"
+	lfs      f3, 0x40(r1)
+	lfs      f2, 0x44(r1)
+	lfs      f1, 0x48(r1)
+	lfs      f0, 0x4c(r1)
+	stfs     f3, 0x8c(r1)
+	stfs     f2, 0x90(r1)
+	stfs     f1, 0x94(r1)
+	stfs     f0, 0x98(r1)
+	stfs     f2, 0(r31)
+	lfs      f0, 0x94(r1)
+	stfs     f0, 4(r31)
+	lfs      f0, 0x98(r1)
+	stfs     f0, 8(r31)
+	lfs      f1, 0x94(r1)
+	lwz      r31, 0xbc(r1)
+	lwz      r30, 0xb8(r1)
+	lwz      r0, 0xc4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xc0
+	blr
+	*/
 }
 
 /*
