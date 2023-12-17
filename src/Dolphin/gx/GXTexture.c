@@ -413,173 +413,6 @@ void GXInitTexObj(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXTexFmt
 	internal->loadCount = (GET_TILE_COUNT(width, a) * GET_TILE_COUNT(height, b)) & 0x7fff;
 
 	internal->flags |= 2;
-
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x60(r1)
-	  stmw      r24, 0x40(r1)
-	  addi      r27, r4, 0
-	  addi      r28, r5, 0
-	  addi      r31, r3, 0
-	  addi      r29, r6, 0
-	  addi      r30, r7, 0
-	  addi      r24, r8, 0
-	  addi      r25, r9, 0
-	  addi      r26, r10, 0
-	  li        r4, 0
-	  li        r5, 0x20
-	  bl        -0xE2100
-	  lwz       r3, 0x0(r31)
-	  rlwimi    r3,r24,0,30,31
-	  rlwinm.   r0,r26,0,24,31
-	  stw       r3, 0x0(r31)
-	  li        r3, 0x1
-	  lwz       r0, 0x0(r31)
-	  rlwimi    r0,r25,2,28,29
-	  stw       r0, 0x0(r31)
-	  lwz       r0, 0x0(r31)
-	  rlwimi    r0,r3,4,27,27
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x108
-	  lbz       r3, 0x1F(r31)
-	  subi      r0, r30, 0x8
-	  cmplwi    r0, 0x2
-	  ori       r0, r3, 0x1
-	  stb       r0, 0x1F(r31)
-	  bgt-      .loc_0x98
-	  lwz       r3, 0x0(r31)
-	  li        r0, 0x5
-	  rlwimi    r3,r0,5,24,26
-	  stw       r3, 0x0(r31)
-	  b         .loc_0xA8
-
-	.loc_0x98:
-	  lwz       r3, 0x0(r31)
-	  li        r0, 0x6
-	  rlwimi    r3,r0,5,24,26
-	  stw       r3, 0x0(r31)
-
-	.loc_0xA8:
-	  rlwinm    r3,r28,0,16,31
-	  rlwinm    r0,r29,0,16,31
-	  cmplw     r3, r0
-	  ble-      .loc_0xC4
-	  cntlzw    r0, r3
-	  subfic    r0, r0, 0x1F
-	  b         .loc_0xCC
-
-	.loc_0xC4:
-	  cntlzw    r0, r0
-	  subfic    r0, r0, 0x1F
-
-	.loc_0xCC:
-	  stw       r0, 0x3C(r1)
-	  lis       r0, 0x4330
-	  lfd       f1, -0x6CE8(r2)
-	  stw       r0, 0x38(r1)
-	  lfs       f2, -0x6CF0(r2)
-	  lfd       f0, 0x38(r1)
-	  lwz       r3, 0x4(r31)
-	  fsubs     f0, f0, f1
-	  fmuls     f0, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  rlwimi    r3,r0,8,16,23
-	  stw       r3, 0x4(r31)
-	  b         .loc_0x118
-
-	.loc_0x108:
-	  lwz       r3, 0x0(r31)
-	  li        r0, 0x4
-	  rlwimi    r3,r0,5,24,26
-	  stw       r3, 0x0(r31)
-
-	.loc_0x118:
-	  stw       r30, 0x14(r31)
-	  rlwinm    r7,r28,0,16,31
-	  rlwinm    r4,r30,0,28,31
-	  subi      r0, r7, 0x1
-	  lwz       r3, 0x8(r31)
-	  rlwimi    r3,r0,0,22,31
-	  stw       r3, 0x8(r31)
-	  rlwinm    r5,r29,0,16,31
-	  subi      r0, r5, 0x1
-	  lwz       r3, 0x8(r31)
-	  rlwimi    r3,r0,10,12,21
-	  cmplwi    r4, 0xE
-	  stw       r3, 0x8(r31)
-	  lwz       r0, 0x8(r31)
-	  rlwimi    r0,r30,20,8,11
-	  stw       r0, 0x8(r31)
-	  lwz       r0, 0xC(r31)
-	  rlwimi    r0,r27,27,11,31
-	  stw       r0, 0xC(r31)
-	  bgt-      .loc_0x1E4
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x78C8
-	  rlwinm    r0,r4,2,0,29
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  li        r0, 0x1
-	  stb       r0, 0x1E(r31)
-	  li        r0, 0x3
-	  li        r6, 0x3
-	  b         .loc_0x1F4
-	  li        r0, 0x2
-	  stb       r0, 0x1E(r31)
-	  li        r0, 0x3
-	  li        r6, 0x2
-	  b         .loc_0x1F4
-	  li        r0, 0x2
-	  stb       r0, 0x1E(r31)
-	  li        r0, 0x2
-	  li        r6, 0x2
-	  b         .loc_0x1F4
-	  li        r0, 0x3
-	  stb       r0, 0x1E(r31)
-	  li        r0, 0x2
-	  li        r6, 0x2
-	  b         .loc_0x1F4
-	  li        r0, 0
-	  stb       r0, 0x1E(r31)
-	  li        r0, 0x3
-	  li        r6, 0x3
-	  b         .loc_0x1F4
-
-	.loc_0x1E4:
-	  li        r0, 0x2
-	  stb       r0, 0x1E(r31)
-	  li        r0, 0x2
-	  li        r6, 0x2
-
-	.loc_0x1F4:
-	  rlwinm    r8,r0,0,16,31
-	  li        r4, 0x1
-	  slw       r3, r4, r8
-	  rlwinm    r6,r6,0,16,31
-	  subi      r0, r3, 0x1
-	  slw       r3, r4, r6
-	  add       r4, r7, r0
-	  subi      r0, r3, 0x1
-	  sraw      r3, r4, r8
-	  add       r0, r5, r0
-	  sraw      r0, r0, r6
-	  mullw     r0, r3, r0
-	  rlwinm    r0,r0,0,17,31
-	  sth       r0, 0x1C(r31)
-	  lbz       r0, 0x1F(r31)
-	  ori       r0, r0, 0x2
-	  stb       r0, 0x1F(r31)
-	  lwz       r0, 0x64(r1)
-	  lmw       r24, 0x40(r1)
-	  addi      r1, r1, 0x60
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*
@@ -596,27 +429,6 @@ void GXInitTexObjCI(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXCITe
 
 	internal->flags &= ~2;
 	internal->tlutName = tlutName;
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x30(r1)
-	  stw       r31, 0x2C(r1)
-	  lwz       r31, 0x38(r1)
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  bl        -0x268
-	  lbz       r0, 0x1F(r30)
-	  rlwinm    r0,r0,0,31,29
-	  stb       r0, 0x1F(r30)
-	  stw       r31, 0x18(r30)
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  addi      r1, r1, 0x30
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*
@@ -1084,110 +896,6 @@ void GXLoadTexObjPreLoaded(GXTexObj* obj, GXTexRegion* region, GXTexMapID map)
 
 	gx->dirtyState |= GX_DIRTY_SU_TEX;
 	gx->bpSentNot = GX_FALSE;
-
-	// GX_SET_REG(internalObj->mode1, GXTexImage0Ids[map], 0, 7);
-
-	// GX_BP_LOAD_REG(GXTexTlutIds[map]);
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  subi      r7, r13, 0x7CF0
-	  stw       r0, 0x4(r1)
-	  subi      r6, r13, 0x7CE8
-	  stwu      r1, -0x40(r1)
-	  stw       r31, 0x3C(r1)
-	  addi      r31, r5, 0
-	  subi      r5, r13, 0x7D00
-	  stw       r30, 0x38(r1)
-	  addi      r30, r3, 0
-	  stw       r29, 0x34(r1)
-	  lis       r29, 0xCC01
-	  stw       r28, 0x30(r1)
-	  li        r28, 0x61
-	  lbzx      r0, r5, r31
-	  lwz       r5, 0x0(r3)
-	  subi      r3, r13, 0x7CF8
-	  rlwimi    r5,r0,24,0,7
-	  stw       r5, 0x0(r30)
-	  subi      r5, r13, 0x7CE0
-	  lbzx      r0, r3, r31
-	  subi      r3, r13, 0x7CD8
-	  lwz       r8, 0x4(r30)
-	  rlwimi    r8,r0,24,0,7
-	  stw       r8, 0x4(r30)
-	  lbzx      r0, r7, r31
-	  lwz       r7, 0x8(r30)
-	  rlwimi    r7,r0,24,0,7
-	  stw       r7, 0x8(r30)
-	  lbzx      r0, r6, r31
-	  lwz       r6, 0x0(r4)
-	  rlwimi    r6,r0,24,0,7
-	  stw       r6, 0x0(r4)
-	  lbzx      r0, r5, r31
-	  lwz       r5, 0x4(r4)
-	  rlwimi    r5,r0,24,0,7
-	  stw       r5, 0x4(r4)
-	  lbzx      r0, r3, r31
-	  lwz       r3, 0xC(r30)
-	  rlwimi    r3,r0,24,0,7
-	  stw       r3, 0xC(r30)
-	  stb       r28, -0x8000(r29)
-	  lwz       r0, 0x0(r30)
-	  stw       r0, -0x8000(r29)
-	  stb       r28, -0x8000(r29)
-	  lwz       r0, 0x4(r30)
-	  stw       r0, -0x8000(r29)
-	  stb       r28, -0x8000(r29)
-	  lwz       r0, 0x8(r30)
-	  stw       r0, -0x8000(r29)
-	  stb       r28, -0x8000(r29)
-	  lwz       r0, 0x0(r4)
-	  stw       r0, -0x8000(r29)
-	  stb       r28, -0x8000(r29)
-	  lwz       r0, 0x4(r4)
-	  stw       r0, -0x8000(r29)
-	  stb       r28, -0x8000(r29)
-	  lwz       r0, 0xC(r30)
-	  stw       r0, -0x8000(r29)
-	  lbz       r0, 0x1F(r30)
-	  rlwinm.   r0,r0,0,30,30
-	  bne-      .loc_0x12C
-	  lwz       r4, -0x6D70(r2)
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x4CC(r4)
-	  mtlr      r12
-	  blrl
-	  subi      r4, r13, 0x7CD0
-	  lwz       r5, 0x4(r3)
-	  lbzx      r0, r4, r31
-	  rlwimi    r5,r0,24,0,7
-	  stw       r5, 0x4(r3)
-	  stb       r28, -0x8000(r29)
-	  lwz       r0, 0x4(r3)
-	  stw       r0, -0x8000(r29)
-
-	.loc_0x12C:
-	  lwz       r5, -0x6D70(r2)
-	  rlwinm    r4,r31,2,0,29
-	  lwz       r3, 0x8(r30)
-	  li        r0, 0
-	  add       r4, r5, r4
-	  stw       r3, 0x514(r4)
-	  lwz       r3, 0x0(r30)
-	  stw       r3, 0x534(r4)
-	  lwz       r3, 0x5AC(r5)
-	  ori       r3, r3, 0x1
-	  stw       r3, 0x5AC(r5)
-	  sth       r0, 0x2(r5)
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  addi      r1, r1, 0x40
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*
@@ -1200,30 +908,6 @@ void GXLoadTexObj(GXTexObj* obj, GXTexMapID map)
 	GXTexRegion* ret = (GXTexRegion*)gx->texRegionCallback(obj, map);
 
 	GXLoadTexObjPreLoaded(obj, ret, map);
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  addi      r31, r4, 0
-	  stw       r30, 0x10(r1)
-	  addi      r30, r3, 0
-	  lwz       r5, -0x6D70(r2)
-	  lwz       r12, 0x4C8(r5)
-	  mtlr      r12
-	  blrl
-	  addi      r4, r3, 0
-	  addi      r3, r30, 0
-	  addi      r5, r31, 0
-	  bl        -0x1B4
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*
@@ -1531,14 +1215,19 @@ void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
  * Address:	800E7A70
  * Size:	00017C
  */
-// #pragma dont_inline on
+#pragma dont_inline on
 static void __GXSetSUTexRegs(void)
 {
+	u32 i;
+	u32 b;
+	u32 a;
+	u32 c;
+	u32 d;
+	u32 stackFiller;
 	if (gx->tcsManEnab != 0xff) {
-		u32 c, d;
-		int i;
-		u32 b = gx->genMode;
-		for (i = 0; i < ((b >> 0x10) & 7); i++) {
+		a = GX_GET_REG(gx->genMode, 18, 21) + 1;
+		b = GX_GET_REG(gx->genMode, 13, 15);
+		for (i = 0; i < b; i++) {
 			switch (i) {
 			case 0:
 				c = GX_GET_REG(gx->iref, 29, 31);
@@ -1558,152 +1247,31 @@ static void __GXSetSUTexRegs(void)
 				break;
 			}
 
-			if ((gx->tcsManEnab & (1 << d)) == 0) {
+			if (!(gx->tcsManEnab & (1 << d))) {
 				__SetSURegs(c, d);
 			}
 		}
 
-		for (i = 0; i < ((b >> 0x10) & 0xf); i++) {
-			u32 uVar1;
-			if (i % 2 == 0) {
-				uVar1 = GX_GET_REG(gx->tref[i], 31, 29);
-			} else {
-				uVar1 = GX_GET_REG(gx->tref[i], 28, 26);
+		for (i = 0; i < a; i++) {
+			u32 *g = &gx->tref[i / 2];
+
+			c = gx->texmapId[i] & ~0x100;
+
+			if (i & 1)
+			{
+				d = GX_GET_REG(*g, 14, 16);
+			}
+			else
+			{
+				d = GX_GET_REG(*g, 26, 28);
 			}
 
-			if (gx->texmapId[i] && gx->tcsManEnab != 0xff && (gx->genMode & (1 << (uVar1 & 7))) == 0) {
+			if (c != 0xff && !(gx->tcsManEnab & (1 << d)) && gx->tevTcEnab & (1 << i)) 
+			{
 				__SetSURegs(c, d);
 			}
 		}
 	}
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stmw      r27, 0x14(r1)
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x594(r3)
-	  cmplwi    r0, 0xFF
-	  beq-      .loc_0x168
-	  lwz       r0, 0x204(r3)
-	  li        r31, 0
-	  rlwinm    r3,r0,22,28,31
-	  addi      r30, r3, 0x1
-	  rlwinm    r27,r0,16,29,31
-	  b         .loc_0xD4
-
-	.loc_0x38:
-	  cmpwi     r31, 0x2
-	  beq-      .loc_0x88
-	  bge-      .loc_0x54
-	  cmpwi     r31, 0
-	  beq-      .loc_0x60
-	  bge-      .loc_0x74
-	  b         .loc_0xAC
-
-	.loc_0x54:
-	  cmpwi     r31, 0x4
-	  bge-      .loc_0xAC
-	  b         .loc_0x9C
-
-	.loc_0x60:
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x120(r3)
-	  rlwinm    r29,r0,0,29,31
-	  rlwinm    r28,r0,29,29,31
-	  b         .loc_0xAC
-
-	.loc_0x74:
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x120(r3)
-	  rlwinm    r29,r0,26,29,31
-	  rlwinm    r28,r0,23,29,31
-	  b         .loc_0xAC
-
-	.loc_0x88:
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x120(r3)
-	  rlwinm    r29,r0,20,29,31
-	  rlwinm    r28,r0,17,29,31
-	  b         .loc_0xAC
-
-	.loc_0x9C:
-	  lwz       r3, -0x6D70(r2)
-	  lwz       r0, 0x120(r3)
-	  rlwinm    r29,r0,14,29,31
-	  rlwinm    r28,r0,11,29,31
-
-	.loc_0xAC:
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0x1
-	  slw       r0, r0, r28
-	  lwz       r3, 0x594(r3)
-	  and.      r0, r3, r0
-	  bne-      .loc_0xD0
-	  addi      r3, r29, 0
-	  addi      r4, r28, 0
-	  bl        -0x16C
-
-	.loc_0xD0:
-	  addi      r31, r31, 0x1
-
-	.loc_0xD4:
-	  cmplw     r31, r27
-	  blt+      .loc_0x38
-	  li        r31, 0
-	  addi      r27, r31, 0
-	  b         .loc_0x160
-
-	.loc_0xE8:
-	  lwz       r5, -0x6D70(r2)
-	  addi      r3, r27, 0x554
-	  rlwinm    r4,r31,1,0,29
-	  lwzx      r3, r5, r3
-	  rlwinm.   r0,r31,0,31,31
-	  addi      r4, r4, 0x100
-	  add       r4, r5, r4
-	  rlwinm    r29,r3,0,24,22
-	  beq-      .loc_0x118
-	  lwz       r0, 0x0(r4)
-	  rlwinm    r28,r0,17,29,31
-	  b         .loc_0x120
-
-	.loc_0x118:
-	  lwz       r0, 0x0(r4)
-	  rlwinm    r28,r0,29,29,31
-
-	.loc_0x120:
-	  cmplwi    r29, 0xFF
-	  beq-      .loc_0x158
-	  li        r4, 0x1
-	  lwz       r3, 0x594(r5)
-	  slw       r0, r4, r28
-	  and.      r0, r3, r0
-	  bne-      .loc_0x158
-	  lwz       r3, 0x598(r5)
-	  slw       r0, r4, r31
-	  and.      r0, r3, r0
-	  beq-      .loc_0x158
-	  addi      r3, r29, 0
-	  addi      r4, r28, 0
-	  bl        -0x1F4
-
-	.loc_0x158:
-	  addi      r27, r27, 0x4
-	  addi      r31, r31, 0x1
-
-	.loc_0x160:
-	  cmplw     r31, r30
-	  blt+      .loc_0xE8
-
-	.loc_0x168:
-	  lmw       r27, 0x14(r1)
-	  lwz       r0, 0x2C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*
