@@ -6,7 +6,7 @@ GX_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/gx/GXGeometry.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXFrameBuf.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXLight.o\
-	$(BUILD_DIR)/asm/Dolphin/gx/GXTexture.o\
+	$(BUILD_DIR)/src/Dolphin/gx/GXTexture.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXBump.o\
 	$(BUILD_DIR)/asm/Dolphin/gx/GXTev.o\
 	$(BUILD_DIR)/src/Dolphin/gx/GXPixel.o\

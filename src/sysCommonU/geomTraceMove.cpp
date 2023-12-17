@@ -88,7 +88,8 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 
 		sphere0.mPosition = startMatrix.mtxMult(sphere0Ptr->mPosition);
 
-		Vector3f pos = sphere1.mPosition;
+		Vector3f pos      = sphere1.mPosition;
+		sphere1.mPosition = endMatrix.multTranspose(sphere1.mPosition);
 
 		if (moveInfo.mIntersectCallback) {
 			moveInfo.mIntersectCallback->invoke(sphere0Ptr->mPosition, sphere1Ptr->mPosition);
@@ -109,6 +110,12 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 			moveInfo._4C = tri;
 			moveInfo._68 = sphere1.mPosition;
 		}
+
+		Vector3f vel  = *moveVelocity;
+		f32 dotProd   = dot(sphere1.mPosition, vel);
+		f32 rad       = 1.0f + moveInfo.mTraceRadius;
+		f32 factor    = rad * dotProd;
+		*moveVelocity = vel - sphere1.mPosition * factor;
 
 		moveSphere->mPosition = moveSphere->mPosition + pos * sphere1.mRadius;
 	}
@@ -331,9 +338,10 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
  * Address:	80420464
  * Size:	0007F0
  */
-void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4,
-                        Matrixf& p5, int& p6, Sys::Triangle** p7, f32* p8, Vector3f* p9)
+void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& startMatrix,
+                        Matrixf& endMatrix, int& hitCount, Sys::Triangle** resultTris, f32* hitDists, Vector3f* hitPositions)
 {
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -916,51 +924,18 @@ void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable,
  * Address:	80420C54
  * Size:	000098
  */
-void OBBTree::traceMove_new_global(Game::MoveInfo&, f32)
+void OBBTree::traceMove_new_global(Game::MoveInfo& moveInfo, f32 step)
 {
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	li       r0, 0
-	stw      r31, 0xcc(r1)
-	mr       r31, r4
-	addi     r4, r1, 0xc
-	stw      r30, 0xc8(r1)
-	mr       r30, r3
-	addi     r3, r30, 0x120
-	stw      r0, 8(r1)
-	lwz      r5, 0(r31)
-	lfs      f1, 0xc(r5)
-	lfs      f0, 0(r5)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 4(r5)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 8(r5)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80420CD4
-	lwz      r5, 0x18(r30)
-	mr       r4, r31
-	lwz      r6, 0x1c(r30)
-	addi     r3, r30, 0x20
-	addi     r7, r1, 8
-	addi     r8, r1, 0x3c
-	addi     r9, r1, 0x1c
-	addi     r10, r1, 0x5c
-	bl
-"traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+	Triangle* resultTris[8];
+	f32 hitDists[8];
+	Vec hitPositions[8];
+	int hitCount   = 0;
+	f32 moveRadius = moveInfo.mMoveSphere->mRadius;
+	Sphere hitSphere(moveInfo.mMoveSphere->mPosition, moveRadius);
 
-lbl_80420CD4:
-	lwz      r0, 0xd4(r1)
-	lwz      r31, 0xcc(r1)
-	lwz      r30, 0xc8(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
+	if (mRoot.mSphere.intersect(hitSphere)) {
+		mRoot.traceMove_new_global(moveInfo, *mVertexTable, *mTriangleTable, hitCount, resultTris, hitDists, (Vector3f*)hitPositions);
+	}
 }
 
 /*

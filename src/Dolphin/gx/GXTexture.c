@@ -17,45 +17,48 @@ u8 GX2HWFiltConv[6] = { 0x00, 0x04, 0x01, 0x05, 0x02, 0x06 };
  * Address:	........
  * Size:	000064
  */
-inline void __GXGetTexTileShift(u32 format, u32* widthTiles, u32* heightTiles)
+inline void __GXGetTexTileShift(GXTexFmt format, u32* widthTiles, u32* heightTiles)
 {
 	switch (format) {
-	case 0x0:
-	case 0x8:
-	case 0xE:
-	case 0x20:
-	case 0x30:
+	case GX_TF_I4:
+	case GX_TF_C4:
+	case GX_TF_CMPR:
+	case GX_CTF_R4:
+	case GX_CTF_Z4:
 		*widthTiles  = 3;
 		*heightTiles = 3;
 		break;
-	case 0x1:
-	case 0x2:
-	case 0x9:
-	case 0x11:
-	case 0x22:
-	case 0x27:
-	case 0x28:
-	case 0x29:
-	case 0x2A:
-	case 0x39:
-	case 0x3A:
+
+	case GX_TF_I8:
+	case GX_TF_IA4:
+	case GX_TF_C8:
+	case GX_TF_Z8:
+	case GX_CTF_RA4:
+	case GX_CTF_R8:
+	case GX_CTF_G8:
+	case GX_CTF_B8:
+	case GX_CTF_RG8:
+	case GX_CTF_Z8M:
+	case GX_CTF_Z8L:
 		*widthTiles  = 3;
 		*heightTiles = 2;
 		break;
-	case 0x3:
-	case 0x4:
-	case 0x5:
-	case 0x6:
-	case 0xA:
-	case 0x13:
-	case 0x16:
-	case 0x23:
-	case 0x2B:
-	case 0x2C:
-	case 0x3C:
+
+	case GX_TF_IA8:
+	case GX_TF_RGB565:
+	case GX_TF_RGB5A3:
+	case GX_TF_RGBA8:
+	case GX_TF_C14X2:
+	case GX_TF_Z16:
+	case GX_TF_Z24X8:
+	case GX_CTF_RA8:
+	case GX_CTF_GB8:
+	case 44:
+	case GX_CTF_Z16L:
 		*widthTiles  = 2;
 		*heightTiles = 2;
 		break;
+
 	default:
 		*heightTiles = 0;
 		*widthTiles  = 0;
@@ -70,157 +73,40 @@ inline void __GXGetTexTileShift(u32 format, u32* widthTiles, u32* heightTiles)
  */
 u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_lod)
 {
-	u32 widthTiles, heightTiles, iVar4, iVar6;
+	u32 widthTiles, heightTiles, tileSize, bufferSize, numX, numY, i;
+
 	__GXGetTexTileShift(format, &widthTiles, &heightTiles);
 
-	if (format == 6 || format == 0x16) {
-		iVar4 = 0x40;
+	if (format == GX_TF_RGBA8 || format == GX_TF_Z24X8) {
+		tileSize = 0x40;
 	} else {
-		iVar4 = 0x20;
+		tileSize = 0x20;
 	}
 
 	if (mipmap == GX_TRUE) {
-		int i;
-		iVar6 = 0;
-		for (i = max_lod; i > 0; i -= 1) {
-			iVar6 += iVar4 * (GET_TILE_COUNT(width, widthTiles) * GET_TILE_COUNT(height, heightTiles));
+
+		bufferSize = 0;
+
+		for (i = 0; i < max_lod; i++) {
+			numX = GET_TILE_COUNT(width, widthTiles);
+			numY = GET_TILE_COUNT(height, heightTiles);
+
+			bufferSize += numX * numY * tileSize;
 			if (width == 1 && height == 1) {
 				break;
 			}
 
-			if (width > 1) {
-				width = width >> 1;
-			} else {
-				width = 1;
-			}
-
-			if (height > 1) {
-				height = height >> 1;
-			} else {
-				height = 1;
-			}
+			width  = (width > 1) ? (width >> 1) : 1;
+			height = (height > 1) ? (height >> 1) : 1;
 		}
+
 	} else {
-		iVar6 = iVar4 * (GET_TILE_COUNT(width, widthTiles) * GET_TILE_COUNT(height, heightTiles));
+		numX       = GET_TILE_COUNT(width, widthTiles);
+		numY       = GET_TILE_COUNT(height, heightTiles);
+		bufferSize = numX * numY * tileSize;
 	}
 
-	return iVar6;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x28(r1)
-	  cmplwi    r5, 0x3C
-	  stw       r31, 0x24(r1)
-	  bgt-      .loc_0x4C
-	  lis       r8, 0x804B
-	  subi      r8, r8, 0x7AB0
-	  rlwinm    r0,r5,2,0,29
-	  lwzx      r0, r8, r0
-	  mtctr     r0
-	  bctr
-	  li        r0, 0x3
-	  li        r8, 0x3
-	  b         .loc_0x54
-	  li        r0, 0x3
-	  li        r8, 0x2
-	  b         .loc_0x54
-	  li        r0, 0x2
-	  li        r8, 0x2
-	  b         .loc_0x54
-
-	.loc_0x4C:
-	  li        r8, 0
-	  li        r0, 0
-
-	.loc_0x54:
-	  cmplwi    r5, 0x6
-	  beq-      .loc_0x64
-	  cmplwi    r5, 0x16
-	  bne-      .loc_0x6C
-
-	.loc_0x64:
-	  li        r5, 0x40
-	  b         .loc_0x70
-
-	.loc_0x6C:
-	  li        r5, 0x20
-
-	.loc_0x70:
-	  rlwinm    r6,r6,0,24,31
-	  cmplwi    r6, 0x1
-	  bne-      .loc_0x118
-	  rlwinm    r9,r7,0,24,31
-	  li        r6, 0x1
-	  mtctr     r9
-	  slw       r7, r6, r8
-	  slw       r6, r6, r0
-	  cmplwi    r9, 0
-	  subi      r10, r6, 0x1
-	  subi      r7, r7, 0x1
-	  li        r31, 0
-	  ble-      .loc_0x14C
-
-	.loc_0xA4:
-	  rlwinm    r11,r3,0,16,31
-	  add       r6, r11, r10
-	  rlwinm    r12,r4,0,16,31
-	  sraw      r9, r6, r0
-	  add       r6, r12, r7
-	  sraw      r6, r6, r8
-	  mullw     r6, r9, r6
-	  mullw     r6, r5, r6
-	  cmplwi    r11, 0x1
-	  add       r31, r31, r6
-	  bne-      .loc_0xD8
-	  cmplwi    r12, 0x1
-	  beq-      .loc_0x14C
-
-	.loc_0xD8:
-	  rlwinm    r3,r3,0,16,31
-	  cmplwi    r3, 0x1
-	  ble-      .loc_0xEC
-	  srawi     r6, r11, 0x1
-	  b         .loc_0xF0
-
-	.loc_0xEC:
-	  li        r6, 0x1
-
-	.loc_0xF0:
-	  rlwinm    r3,r4,0,16,31
-	  cmplwi    r3, 0x1
-	  rlwinm    r3,r6,0,16,31
-	  ble-      .loc_0x108
-	  srawi     r4, r12, 0x1
-	  b         .loc_0x10C
-
-	.loc_0x108:
-	  li        r4, 0x1
-
-	.loc_0x10C:
-	  rlwinm    r4,r4,0,16,31
-	  bdnz+     .loc_0xA4
-	  b         .loc_0x14C
-
-	.loc_0x118:
-	  li        r6, 0x1
-	  slw       r7, r6, r0
-	  slw       r6, r6, r8
-	  rlwinm    r9,r3,0,16,31
-	  subi      r3, r7, 0x1
-	  add       r7, r9, r3
-	  rlwinm    r4,r4,0,16,31
-	  subi      r3, r6, 0x1
-	  sraw      r6, r7, r0
-	  add       r0, r4, r3
-	  sraw      r0, r0, r8
-	  mullw     r0, r6, r0
-	  mullw     r31, r5, r0
-
-	.loc_0x14C:
-	  mr        r3, r31
-	  lwz       r31, 0x24(r1)
-	  addi      r1, r1, 0x28
-	  blr
-	*/
+	return bufferSize;
 }
 
 /*
@@ -230,8 +116,7 @@ u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_
  */
 void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b, u32* c)
 {
-	u32 widthTiles, heightTiles, var_r0;
-	int var_r10;
+	u32 widthTiles, heightTiles;
 
 	__GXGetTexTileShift(format, &widthTiles, &heightTiles);
 
@@ -243,83 +128,9 @@ void __GetImageTileCount(GXTexFmt format, u16 width, u16 height, u32* a, u32* b,
 		height = 1;
 	}
 
-	var_r10 = GX_TRUE;
-
 	*a = GET_TILE_COUNT(width, widthTiles);
 	*b = GET_TILE_COUNT(height, heightTiles);
-
-	if (format != 6 && format != 0x16) {
-		var_r10 = GX_FALSE;
-	}
-
-	*c = var_r10 != 0 ? 2 : 1;
-	/*
-	.loc_0x0:
-	  cmplwi    r3, 0x3C
-	  bgt-      .loc_0x44
-	  lis       r9, 0x804B
-	  subi      r9, r9, 0x79BC
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r0, r9, r0
-	  mtctr     r0
-	  bctr
-	  li        r11, 0x3
-	  li        r12, 0x3
-	  b         .loc_0x4C
-	  li        r11, 0x3
-	  li        r12, 0x2
-	  b         .loc_0x4C
-	  li        r11, 0x2
-	  li        r12, 0x2
-	  b         .loc_0x4C
-
-	.loc_0x44:
-	  li        r12, 0
-	  li        r11, 0
-
-	.loc_0x4C:
-	  rlwinm.   r0,r4,0,16,31
-	  bne-      .loc_0x58
-	  li        r4, 0x1
-
-	.loc_0x58:
-	  rlwinm.   r0,r5,0,16,31
-	  bne-      .loc_0x64
-	  li        r5, 0x1
-
-	.loc_0x64:
-	  li        r10, 0x1
-	  slw       r9, r10, r11
-	  rlwinm    r4,r4,0,16,31
-	  subi      r0, r9, 0x1
-	  add       r0, r4, r0
-	  sraw      r0, r0, r11
-	  slw       r4, r10, r12
-	  stw       r0, 0x0(r6)
-	  rlwinm    r5,r5,0,16,31
-	  subi      r0, r4, 0x1
-	  add       r0, r5, r0
-	  sraw      r0, r0, r12
-	  cmpwi     r3, 0x6
-	  stw       r0, 0x0(r7)
-	  beq-      .loc_0xAC
-	  cmpwi     r3, 0x16
-	  beq-      .loc_0xAC
-	  li        r10, 0
-
-	.loc_0xAC:
-	  cmpwi     r10, 0
-	  beq-      .loc_0xBC
-	  li        r0, 0x2
-	  b         .loc_0xC0
-
-	.loc_0xBC:
-	  li        r0, 0x1
-
-	.loc_0xC0:
-	  stw       r0, 0x0(r8)
-	  blr
-	*/
+	*c = (format == GX_TF_RGBA8 || format == GX_TF_Z24X8) ? 2 : 1;
 }
 
 /*
@@ -433,7 +244,7 @@ void GXInitTexObjCI(GXTexObj* obj, void* imagePtr, u16 width, u16 height, GXCITe
 void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter minFilter, GXTexFilter maxFilter, f32 minLOD, f32 maxLOD, f32 lodBias, GXBool doBiasClamp,
                      GXBool doEdgeLOD, GXAnisotropy maxAniso)
 {
-	GXTexObjPriv *internal = (GXTexObjPriv *)obj;
+	GXTexObjPriv* internal = (GXTexObjPriv*)obj;
 	u8 reg1, reg2;
 	if (lodBias < -4.0f) {
 		lodBias = -4.0f;
@@ -450,18 +261,18 @@ void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter minFilter, GXTexFilter maxFilter
 	GX_SET_REG(internal->mode0, maxAniso, 11, 12);
 	GX_SET_REG(internal->mode0, doBiasClamp, 10, 10);
 
-    if (minLOD < 0.0f) {
-        minLOD = 0.0f;
-    } else if (minLOD > 10.0f) {
-        minLOD = 10.0f;
-    }
-    reg1 = minLOD * 16.0f;
-    
-    if (maxLOD < 0.0f) {
-        maxLOD = 0.0f;
-    } else if (maxLOD > 10.0f) {
-        maxLOD = 10.0f;
-    }
+	if (minLOD < 0.0f) {
+		minLOD = 0.0f;
+	} else if (minLOD > 10.0f) {
+		minLOD = 10.0f;
+	}
+	reg1 = minLOD * 16.0f;
+
+	if (maxLOD < 0.0f) {
+		maxLOD = 0.0f;
+	} else if (maxLOD > 10.0f) {
+		maxLOD = 10.0f;
+	}
 	reg2 = maxLOD * 16.0f;
 
 	GX_SET_REG(internal->mode1, reg1, 24, 31);
@@ -1131,7 +942,7 @@ void __SetSURegs(u32 texImgIndex, u32 setUpRegIndex)
  * Size:	00017C
  */
 #pragma dont_inline on
-static void __GXSetSUTexRegs(void)
+void __GXSetSUTexRegs(void)
 {
 	u32 i;
 	u32 b;
@@ -1184,6 +995,7 @@ static void __GXSetSUTexRegs(void)
 		}
 	}
 }
+#pragma dont_inline reset
 
 /*
  * --INFO--
