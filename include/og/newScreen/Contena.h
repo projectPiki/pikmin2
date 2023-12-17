@@ -128,7 +128,29 @@ struct ObjContena : public ::Screen::ObjBase {
 	u8 mPayedDebt;                           // _16C
 
 	static struct StaticValues {
-		f32 _00;
+		inline StaticValues()
+		{
+			_00 = 20.0f;
+			_08 = 0.06f;
+			_0C = 1.2f;
+			_10 = 0.6f;
+			_04 = 35.0f;
+			_14 = 230.0f;
+			_18 = 57.5f;
+			_1C = 0.43f;
+			_40 = false;
+			_20 = 0.3f;
+			_3C = 0;
+			_41 = false;
+			_24 = 0.2f;
+			_28 = 1.8f;
+			_2C = -1.0f;
+			_30 = 1.0f;
+			_34 = 0.55f;
+			_38 = 0.068f;
+		}
+
+		f32 _00; // _00
 		f32 _04; // _04
 		f32 _08; // _08
 		f32 _0C; // _0C
@@ -143,8 +165,9 @@ struct ObjContena : public ::Screen::ObjBase {
 		f32 _30; // _30
 		f32 _34;
 		f32 _38;
-		f32 _3C;
+		int _3C;
 		bool _40;
+		bool _41;
 	} msVal;
 };
 } // namespace newScreen
