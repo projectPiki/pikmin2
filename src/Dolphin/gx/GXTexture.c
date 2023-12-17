@@ -1565,12 +1565,9 @@ static void __GXSetSUTexRegs(void)
 
 		for (i = 0; i < ((b >> 0x10) & 0xf); i++) {
 			u32 uVar1;
-			if (i % 2 == 0)
-			{
+			if (i % 2 == 0) {
 				uVar1 = GX_GET_REG(gx->tref[i], 31, 29);
-			}
-			else
-			{
+			} else {
 				uVar1 = GX_GET_REG(gx->tref[i], 28, 26);
 			}
 

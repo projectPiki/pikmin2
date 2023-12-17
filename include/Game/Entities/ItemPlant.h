@@ -161,8 +161,8 @@ struct PlantParms : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
 		    : Parameters(nullptr, "Plant::Parms")
-		    , mGrowTimeToMedium(this, 'p000', "成長時間(小→中)", 10.0f, 0.0f, 2000.0f)   // 'growth time (small -> medium)'
-		    , mGrowTimeToLarge(this, 'p001', "成長時間(中→大)", 10.0f, 0.0f, 2000.0f)    // 'growth time (medium -> large)'
+		    , mGrowTimeToMedium(this, 'p000', "成長時間(小→中)", 10.0f, 0.0f, 2000.0f)  // 'growth time (small -> medium)'
+		    , mGrowTimeToLarge(this, 'p001', "成長時間(中→大)", 10.0f, 0.0f, 2000.0f)   // 'growth time (medium -> large)'
 		    , mDamageToDrop(this, 'p002', "ドロップするダメージ", 300.0f, 0.0f, 2500.0f) // 'damage to drop'
 		    , mBearFruitTime(this, 'p003', "実をつけるまでの時間", 10.0f, 0.0f, 2000.0f) // 'time to bear fruit'
 		    , mActualPlayTime(this, 'p004', "実再生時間", 20.0f, 0.0f, 2000.0f)          // 'actual play time'

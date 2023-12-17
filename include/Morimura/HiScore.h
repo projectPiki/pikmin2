@@ -39,7 +39,7 @@ struct THiScoreIndPane : public TIndPane {
 	void setRadius(s16, f32);
 
 	// _00     = VTBL
-	// _00-_18 = CNode
+	// _00-_48 = TIndPane
 };
 
 struct THiScoreListScreen : public TListScreen {
@@ -93,12 +93,12 @@ struct THiScore : public TScrollList {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_B4 = TScrollList
-	THiScoreListScreen* mListScreen; // _B4
-	THiScoreIndPane* mIndPane;       // _B8
-	J2DPictureEx* mHighScorePic;     //_BC
-	J2DPane* mSelIconPane;           // _C0
-	J2DPane* mSelIconCorners[4];     // _C4
-	J2DPane* m3DStickPane;
+	THiScoreListScreen* mListScreen;             // _B4
+	THiScoreIndPane* mIndPane;                   // _B8
+	J2DPictureEx* mHighScorePic;                 //_BC
+	J2DPane* mSelIconPane;                       // _C0
+	J2DPane* mSelIconCorners[4];                 // _C4
+	J2DPane* m3DStickPane;                       // _D4
 	og::Screen::CallBack_Picture* mStickAnimPic; // _D8
 	og::Screen::StickAnimMgr* mStickAnimMgr;     // _DC
 	og::Screen::ScaleMgr** mScaleMgrList;        // _E0
@@ -111,27 +111,27 @@ struct THiScore : public TScrollList {
 	bool mIsAllTreasures;                        // _174
 	int mState;                                  // _178
 	DispMemberHighScore* mDisp;                  // _17C
-	f32 mAlphaTimer;
-	f32 _184;
-	f32 mAngleGrowRate;
-	f32 mPaneAngle;
-	f32 mPaneAngle2;
-	f32 _194;
-	f32 _198;
-	f32 _19C;
-	f32 _1A0;
-	Vector2f mCoords[4]; // _1A4
-	u8 _1C4;
-	u8 _1C5;
-	u8 mErrorSoundCounter;         // _1C6
-	u8 mDoEnd;                     // _1C7
-	J2DTevBlock* mTevBlock[2];     //_1C8
-	J2DColorBlock* mColorBlock[2]; // _1D0
-	GXColorS10 mColors[4];         // _1D8
-	f32 _1F8;
-	f32 _1FC;
-	Vector2f mPaneListPos;
-	Vector2f mPaneIconPos;
+	f32 mAlphaTimer;                             // _180
+	f32 _184;                                    // _184
+	f32 mAngleGrowRate;                          // _188
+	f32 mPaneAngle;                              // _18C
+	f32 mPaneAngle2;                             // _190
+	f32 _194;                                    // _194
+	f32 _198;                                    // _198
+	f32 _19C;                                    // _19C
+	f32 _1A0;                                    // _1A0
+	Vector2f mCoords[4];                         // _1A4
+	u8 _1C4;                                     // _1C4
+	u8 _1C5;                                     // _1C5
+	u8 mErrorSoundCounter;                       // _1C6
+	u8 mDoEnd;                                   // _1C7
+	J2DTevBlock* mTevBlock[2];                   //_1C8
+	J2DColorBlock* mColorBlock[2];               // _1D0
+	GXColorS10 mColors[4];                       // _1D8
+	f32 _1F8;                                    // _1F8
+	f32 _1FC;                                    // _1FC
+	Vector2f mPaneListPos;                       // _200
+	Vector2f mPaneIconPos;                       // _208
 
 	static bool mForceClear;
 	static bool mForceResetParm;

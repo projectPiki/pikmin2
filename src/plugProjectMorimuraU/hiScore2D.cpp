@@ -68,12 +68,7 @@ void THiScoreIndPane::draw()
 	GXSetNumTexGens(0);
 	GXSetNumIndStages(0);
 	GXSetNumChans(1);
-	GXColor color;
-	color.r = 0;
-	color.g = 0;
-	color.b = 0;
-	color.a = 255;
-	GXSetChanMatColor(GX_COLOR0A0, color);
+	GXSetChanMatColor(GX_COLOR0A0, JUtility::TColor(0, 0, 0, 255));
 	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
 	GXSetCullMode(GX_CULL_NONE);
 	GXSetNumTevStages(1);
@@ -88,146 +83,16 @@ void THiScoreIndPane::draw()
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-	// gx register stuff
+	f32 zero = 0.0f;
+
+	GXPosition3f32(zero, zero, zero);
+	GXPosition3f32((int)mTexture3->mTexInfo->getWidth(), zero, zero);
+	GXPosition3f32((int)mTexture3->mTexInfo->getWidth(), (int)mTexture3->mTexInfo->getHeight(), zero);
+	GXPosition3f32(zero, (int)mTexture3->mTexInfo->getHeight(), zero);
 
 	GXSetDstAlpha(GX_FALSE, 0);
 	GXSetAlphaUpdate(GX_FALSE);
 	TIndPane::draw();
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	mr       r31, r3
-	li       r3, 1
-	bl       GXSetColorUpdate
-	li       r3, 0
-	bl       GXSetAlphaUpdate
-	li       r3, 0
-	li       r4, 0
-	bl       GXSetDstAlpha
-	li       r3, 1
-	li       r4, 1
-	li       r5, 0
-	li       r6, 0
-	bl       GXSetBlendMode
-	li       r3, 0
-	bl       GXSetNumTexGens
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r5, 0
-	li       r0, 0xff
-	stb      r5, 8(r1)
-	addi     r4, r1, 0xc
-	li       r3, 4
-	stb      r5, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetChanMatColor
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 0
-	bl       GXSetCullMode
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	addi     r3, r1, 0x10
-	bl       PSMTXIdentity
-	addi     r3, r1, 0x10
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lfs      f3, lbl_8051EC18@sda21(r2)
-	lis      r0, 0x4330
-	lis      r6, 0xCC008000@ha
-	stw      r0, 0x40(r1)
-	lfd      f2, lbl_8051EC20@sda21(r2)
-	li       r3, 0
-	stfs     f3, 0xCC008000@l(r6)
-	li       r4, 0
-	stfs     f3, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	lwz      r5, 0x20(r31)
-	stw      r0, 0x48(r1)
-	lwz      r5, 0x20(r5)
-	stw      r0, 0x50(r1)
-	lhz      r5, 2(r5)
-	stw      r0, 0x58(r1)
-	xoris    r0, r5, 0x8000
-	stw      r0, 0x44(r1)
-	lfd      f0, 0x40(r1)
-	fsubs    f0, f0, f2
-	stfs     f0, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	lwz      r5, 0x20(r31)
-	lwz      r5, 0x20(r5)
-	lhz      r0, 2(r5)
-	lhz      r5, 4(r5)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x4c(r1)
-	xoris    r0, r5, 0x8000
-	stw      r0, 0x54(r1)
-	lfd      f1, 0x48(r1)
-	lfd      f0, 0x50(r1)
-	fsubs    f1, f1, f2
-	fsubs    f0, f0, f2
-	stfs     f1, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	lwz      r5, 0x20(r31)
-	lwz      r5, 0x20(r5)
-	lhz      r0, 4(r5)
-	xoris    r0, r0, 0x8000
-	stfs     f3, -0x8000(r6)
-	stw      r0, 0x5c(r1)
-	lfd      f0, 0x58(r1)
-	fsubs    f0, f0, f2
-	stfs     f0, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	bl       GXSetDstAlpha
-	li       r3, 0
-	bl       GXSetAlphaUpdate
-	mr       r3, r31
-	bl       draw__Q28Morimura8TIndPaneFv
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -235,9 +100,13 @@ void THiScoreIndPane::draw()
  * Address:	........
  * Size:	000030
  */
-void THiScoreIndPane::setRadius(s16, f32)
+void THiScoreIndPane::setRadius(s16 p1, f32 radius)
 {
-	// UNUSED FUNCTION
+	_44 = 0;
+	_3C = p1;
+	_38 = 0.0f;
+	_34 = 0.0f;
+	_40 = (radius * 360.0f) / TAU;
 }
 
 /*
@@ -264,8 +133,11 @@ void THiScoreListScreen::create(char const* path, u32 screenFlags)
 	TCallbackScissor* scis = new TCallbackScissor;
 
 	JGeometry::TBox2f* bounds = mScreenObj->search('Nlist1')->getBounds();
-	JGeometry::TBox2f box(bounds->i.x * mScreenObj->mstTuningScaleX, (bounds->i.y - 5.0f) * mScreenObj->mstTuningScaleY,
-	                      (bounds->f.x + 5.0f) * mScreenObj->mstTuningScaleX, bounds->f.y * mScreenObj->mstTuningScaleY);
+	// some funky TBox2 inlines here
+	JGeometry::TBox2f box(*bounds);
+	box.set(bounds->i.x, (bounds->i.y - 5.0f), (bounds->f.x + 5.0f), bounds->f.y);
+	box.set(bounds->i.x * mScreenObj->mstTuningScaleX, (bounds->i.y - 5.0f) * mScreenObj->mstTuningScaleY,
+	        (bounds->f.x + 5.0f) * mScreenObj->mstTuningScaleX, bounds->f.y * mScreenObj->mstTuningScaleY);
 	scis->mBounds = box;
 	mScreenObj->addCallBack('Nlist1', scis);
 
@@ -280,8 +152,7 @@ void THiScoreListScreen::create(char const* path, u32 screenFlags)
 	og::Screen::setCallBackMessage(mScreenObj);
 
 	TCallbackScissor* scis2 = new TCallbackScissor;
-	JGeometry::TBox2f box2(0.0f, 0.0f, 640.0f, 480.0f);
-	scis2->mBounds = box2;
+	scis2->mBounds          = JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f);
 
 	mScreenObj->addCallBack('Tmenu04', scis2);
 	og::Screen::setAlphaScreen(mScreenObj);
@@ -556,8 +427,8 @@ THiScore::THiScore()
 	mSelIconCorners[3] = 0;
 
 	mScrollParm._00 = 8.0f;
-	mScrollParm._08 = 0.99f;
-	mScrollParm._04 = 1.2f;
+	mScrollParm._08 = 1.2f;
+	mScrollParm._04 = 0.99f;
 	mScrollParm._0C = 1.1f;
 	mScrollParm._10 = 2.0f;
 }
@@ -670,7 +541,7 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndexPaneList = new TIndexPane*[mMaxSelect];
 
 	for (int i = 0; i < mMaxSelect; i++) {
-		mIndexPaneList[i]         = new TIndexPane(this, screen, tags1[i]);
+		mIndexPaneList[i]         = new TIndexPane(nullptr, screen, tags1[i]);
 		mIndexPaneList[i]->mPane2 = screen->search(tags2[i]);
 
 		JUT_ASSERTLINE(415, screen->search(tags1[i]), "assertindex = %d \n", i);
@@ -723,14 +594,14 @@ void THiScore::doCreate(JKRArchive* arc)
 	total->setMsgID('8472_00'); // 3rd
 
 	u64 tagList0[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
-	u64 tagList2[6] = { 'Phe1st4', 'Phe2nd4', 'Phe3rd4', 'Pot1st4', 'Pot2nd4', 'Pot3rd4' };
-	u64 tagList3[6] = { 'Phe1st5', 'Phe2nd5', 'Phe3rd5', 'Pot1st5', 'Pot2nd5', 'Pot3rd5' };
-	u64 tagList1[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
+	u64 tagList1[6] = { 'Phe1st4', 'Phe2nd4', 'Phe3rd4', 'Pot1st4', 'Pot2nd4', 'Pot3rd4' };
+	u64 tagList2[6] = { 'Phe1st5', 'Phe2nd5', 'Phe3rd5', 'Pot1st5', 'Pot2nd5', 'Pot3rd5' };
+	u64 tagList3[6] = { 'Phe1st1', 'Phe2nd1', 'Phe3rd1', 'Pot1st1', 'Pot2nd1', 'Pot3rd1' };
 	u64 tagList4[6] = { 'Phe1st2', 'Phe2nd2', 'Phe3rd2', 'Pot1st2', 'Pot2nd2', 'Pot3rd2' };
 	for (int i = 0; i < 6; i++) {
 		mScaleCounter1[i] = Morimura::setScaleUpCounter(mMainScreen->mScreenObj, tagList0[i], &mScoreCounts[i], 10, mArchive);
-		mScaleCounter2[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList1[i], tagList3[i], &mCurrScore1[i], 3, mArchive);
-		mScaleCounter3[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList2[i], tagList4[i], &mCurrScore2[i], 3, mArchive);
+		mScaleCounter2[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList1[i], tagList2[i], &mCurrScore1[i], 3, mArchive);
+		mScaleCounter3[i] = Morimura::setScaleUpCounter2(mMainScreen->mScreenObj, tagList3[i], tagList4[i], &mCurrScore2[i], 3, mArchive);
 		mScaleCounter3[i]->setZeroAlpha(255);
 		mScaleCounter3[i]->setPuyoAnimZero(true);
 	}
@@ -761,7 +632,7 @@ void THiScore::doCreate(JKRArchive* arc)
 
 		for (int j = 0; j < mMaxSelect; j++) {
 			TIndexPane* IDPane = mIndexPaneList[j];
-			IDPane->mPane->setOffset(0.0f, IDPane->_1C + yoffs);
+			IDPane->mPane->setOffset(IDPane->mPane->mOffset.x, IDPane->_1C + yoffs);
 			mIndexPaneList[j]->_1C = mIndexPaneList[j]->mPane->mOffset.y;
 		}
 		updateIndex(0);
@@ -1928,7 +1799,7 @@ bool THiScore::doUpdate()
 		} else if (press & Controller::PRESS_UP) {
 			if (mState != 2) {
 				if (_184 == 0.0f) {
-					_184 = 1.0f;
+					_184 = -1.0f;
 				}
 				mIndexGroup->downIndex();
 			} else {
@@ -2008,7 +1879,7 @@ bool THiScore::doUpdate()
 		}
 		if (alpha == 0.0f) {
 			if (!_1C5) {
-				mIndPane->setAngleTimer(alpha);
+				mIndPane->setRadius(-6, alpha);
 			} else {
 				mIndPane->setXY(0.0f, 0.0f);
 			}
@@ -3615,64 +3486,65 @@ int THiScore::getRecord(int type, int id)
 	switch (type) {
 	case ClearRank1:
 		if (debug) {
-			return randFloat() * 10.0f + 1.0f;
+			return 1.0f + 10.0f * randFloat();
 		}
 		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
 			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(0);
 		}
 		return -1;
-		break;
+
 	case ClearRank2:
 		if (debug) {
-			return randFloat() * 100.0f + 10.0f;
+			return 10.0f + 100.0f * randFloat();
 		}
 		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
 			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(1);
 		}
 		return -1;
-		break;
+
 	case ClearRank3:
 		if (debug) {
 			if (randFloat() < 0.5f) {
 				return -1;
 			}
-			return randFloat() * 100.0f + 10.0f;
+			return 110.0f + 1000.0f * randFloat();
 		}
 		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
 			return sys->getPlayCommonData()->getHighscore_clear(orderID)->getScore(2);
 		}
 		return -1;
-		break;
+
 	case CompleteRank1:
 		if (debug) {
-			return randFloat() * 100.0f + 10.0f;
+			return 10.f + 100.0f * randFloat();
 		}
 		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
 			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(0);
 		}
 		return -1;
-		break;
+
 	case CompleteRank2:
 		if (debug) {
-			return randFloat() * 100.0f + 110.0f;
+			return 110.0f + 100.0f * randFloat();
 		}
 		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
 			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(1);
 		}
 		return -1;
-		break;
+
 	case CompleteRank3:
 		if (debug) {
-			return randFloat() * 100000.0f + 1110.0f;
+			return 1100.0f + 100000.0f * randFloat();
 		}
 		if (sys->getPlayCommonData()->mChallengeFlags.isSet(1)) {
 			return sys->getPlayCommonData()->getHighscore_complete(orderID)->getScore(2);
 		}
 		return -1;
-		break;
+
 	default:
 		JUT_PANICLINE(1094, nullptr);
 	}
+
 	return 0;
 }
 
@@ -3681,8 +3553,45 @@ int THiScore::getRecord(int type, int id)
  * Address:	8037FC60
  * Size:	00043C
  */
-void THiScore::changeTextTevBlock(int)
+void THiScore::changeTextTevBlock(int p1)
 {
+	J2DTextBox* textbox  = static_cast<J2DTextBox*>(mIndexPaneList[p1]->mPane2->getFirstChildPane()); // r29
+	f32 val              = mIndexPaneList[p1]->_1C + mIndexGroup->mScrollOffset;
+	J2DTextBox* startBox = static_cast<J2DTextBox*>(mIndexPaneList[p1]->mPane2); // r28
+
+	if (mIndexGroup->mStateID == 0 && val < _AC && val > mYOffset) {
+		changeTevBlock(mTevBlock[0], textbox->getMaterial()->mTevBlock);
+		_1F8 += 0.1f;
+		if (_1F8 > TAU) {
+			_1F8 -= TAU;
+		}
+
+		f32 t = cosf(_1F8);
+		if (t < 0.0f) {
+			t = 0.0f;
+		}
+
+		f32 tInv = 1.0f - t;
+
+		int r0 = (int)(tInv * (f32)mColors[2].r + t * (f32)mColors[0].r);
+		int g0 = (int)(tInv * (f32)mColors[2].g + t * (f32)mColors[0].g);
+		int b0 = (int)(tInv * (f32)mColors[2].b + t * (f32)mColors[0].b);
+		int a0 = (int)(tInv * (f32)mColors[2].a + t * (f32)mColors[0].a);
+
+		int r1 = (int)(tInv * (f32)mColors[3].r + t * (f32)mColors[1].r);
+		int g1 = (int)(tInv * (f32)mColors[3].g + t * (f32)mColors[1].g);
+		int b1 = (int)(tInv * (f32)mColors[3].b + t * (f32)mColors[1].b);
+		int a1 = (int)(tInv * (f32)mColors[3].a + t * (f32)mColors[1].a);
+
+		textbox->getMaterial()->mTevBlock->setTevColor(0, J2DGXColorS10(r0, g0, b0, a0));
+		textbox->getMaterial()->mTevBlock->setTevColor(1, J2DGXColorS10(r1, g1, b1, a1));
+
+		changeColorBlock(mColorBlock[0], &startBox->getMaterial()->mColorBlock);
+		return;
+	}
+
+	changeTevBlock(mTevBlock[1], textbox->getMaterial()->mTevBlock);
+	changeColorBlock(mColorBlock[1], &startBox->getMaterial()->mColorBlock);
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
