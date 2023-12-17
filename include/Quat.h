@@ -63,6 +63,8 @@ struct Quat {
 		z = other.z;
 	}
 
+	void setAxisRotation(Vector3f&, f32);
+
 	f32 w, x, y, z;
 };
 

@@ -478,6 +478,16 @@ Quat::Quat()
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0000C4
+ */
+void Quat::setAxisRotation(Vector3f&, f32)
+{
+	// UNUSED/INLINED
+}
+
+/*
+ * --INFO--
  * Address:	804123E0
  * Size:	000020
  */

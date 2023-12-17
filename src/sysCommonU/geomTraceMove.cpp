@@ -12,7 +12,7 @@ namespace Sys {
  * Address:	8041FFA8
  * Size:	0001C0
  */
-void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::MoveInfo& moveInfo, f32 deltaTime)
+void OBBTree::traceMove_new(Matrixf& startMatrix, Matrixf& endMatrix, Game::MoveInfo& moveInfo, f32 step)
 {
 	// set up input/outputs for traceMove_new calc
 	Vec hitPos[8]; // needs to be Vec to not trigger a construct_array bc of default Vector3f ctor
@@ -341,582 +341,43 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
 void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& startMatrix,
                         Matrixf& endMatrix, int& hitCount, Sys::Triangle** resultTris, f32* hitDists, Vector3f* hitPositions)
 {
+	Sphere* moveSphere = moveInfo.mMoveSphere;
+	if (isLeaf()) {
+		traceMoveTriList_new(moveInfo, vertexTable, triangleTable, startMatrix, endMatrix, hitCount, resultTris, hitDists, hitPositions);
+	} else {
+		f32 planeDist = mDivPlane.calcDist(moveSphere->mPosition);
+		if (planeDist > moveSphere->mRadius) {
+			if (mHalfA) {
+				mHalfA->traceMove_new(moveInfo, vertexTable, triangleTable, startMatrix, endMatrix, hitCount, resultTris, hitDists,
+				                      hitPositions);
+			} else {
+				traceMoveTriList_new(moveInfo, vertexTable, triangleTable, startMatrix, endMatrix, hitCount, resultTris, hitDists,
+				                     hitPositions);
+			}
+			return;
+		}
 
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r20, 0x10(r1)
-	  mr        r20, r3
-	  lwz       r23, 0x48(r1)
-	  mr        r31, r4
-	  lwz       r26, 0x4C(r1)
-	  mr        r25, r5
-	  mr        r24, r6
-	  mr        r30, r7
-	  mr        r29, r8
-	  mr        r28, r9
-	  mr        r27, r10
-	  lwz       r22, 0xC0(r3)
-	  li        r3, 0
-	  lwz       r21, 0x0(r4)
-	  cmplwi    r22, 0
-	  bne-      .loc_0x5C
-	  lwz       r0, 0xC4(r20)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C
-	  li        r3, 0x1
+		if (planeDist < -moveSphere->mRadius) {
+			if (mHalfB) {
+				mHalfB->traceMove_new(moveInfo, vertexTable, triangleTable, startMatrix, endMatrix, hitCount, resultTris, hitDists,
+				                      hitPositions);
+			} else {
+				traceMoveTriList_new(moveInfo, vertexTable, triangleTable, startMatrix, endMatrix, hitCount, resultTris, hitDists,
+				                     hitPositions);
+			}
+			return;
+		}
 
-	.loc_0x5C:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  stw       r23, 0x8(r1)
-	  mr        r3, r20
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x388
-	  b         .loc_0x7DC
+		if (mHalfA) {
+			mHalfA->traceMove_new(moveInfo, vertexTable, triangleTable, startMatrix, endMatrix, hitCount, resultTris, hitDists,
+			                      hitPositions);
+		}
 
-	.loc_0x94:
-	  lfs       f1, 0x4(r21)
-	  lfs       f0, 0xCC(r20)
-	  lfs       f2, 0x0(r21)
-	  fmuls     f0, f1, f0
-	  lfs       f1, 0xC8(r20)
-	  lfs       f4, 0x8(r21)
-	  lfs       f3, 0xD0(r20)
-	  fmadds    f1, f2, f1, f0
-	  lfs       f0, 0xD4(r20)
-	  lfs       f2, 0xC(r21)
-	  fmadds    f1, f4, f3, f1
-	  fsubs     f1, f1, f0
-	  fcmpo     cr0, f1, f2
-	  ble-      .loc_0x2A4
-	  cmplwi    r22, 0
-	  beq-      .loc_0x274
-	  mr        r3, r22
-	  bl        -0x1EB0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x114
-	  stw       r23, 0x8(r1)
-	  mr        r3, r22
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x408
-	  b         .loc_0x7DC
-
-	.loc_0x114:
-	  mr        r4, r21
-	  addi      r3, r22, 0xC8
-	  bl        -0x1F24
-	  lfs       f0, 0xC(r21)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x194
-	  lwz       r3, 0xC0(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x164
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x7DC
-
-	.loc_0x164:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r22
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x488
-	  b         .loc_0x7DC
-
-	.loc_0x194:
-	  fneg      f0, f0
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x208
-	  lwz       r3, 0xC4(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1D8
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x7DC
-
-	.loc_0x1D8:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r22
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x4FC
-	  b         .loc_0x7DC
-
-	.loc_0x208:
-	  lwz       r3, 0xC0(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x23C
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-
-	.loc_0x23C:
-	  lwz       r3, 0xC4(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x7DC
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x7DC
-
-	.loc_0x274:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r20
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x598
-	  b         .loc_0x7DC
-
-	.loc_0x2A4:
-	  fneg      f0, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x48C
-	  lwz       r22, 0xC4(r20)
-	  cmplwi    r22, 0
-	  beq-      .loc_0x45C
-	  mr        r3, r22
-	  bl        -0x2098
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2FC
-	  stw       r23, 0x8(r1)
-	  mr        r3, r22
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x5F0
-	  b         .loc_0x7DC
-
-	.loc_0x2FC:
-	  mr        r4, r21
-	  addi      r3, r22, 0xC8
-	  bl        -0x210C
-	  lfs       f0, 0xC(r21)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x37C
-	  lwz       r3, 0xC0(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34C
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x7DC
-
-	.loc_0x34C:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r22
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x670
-	  b         .loc_0x7DC
-
-	.loc_0x37C:
-	  fneg      f0, f0
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x3F0
-	  lwz       r3, 0xC4(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C0
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x7DC
-
-	.loc_0x3C0:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r22
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x6E4
-	  b         .loc_0x7DC
-
-	.loc_0x3F0:
-	  lwz       r3, 0xC0(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x424
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-
-	.loc_0x424:
-	  lwz       r3, 0xC4(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x7DC
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x7DC
-
-	.loc_0x45C:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r20
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x780
-	  b         .loc_0x7DC
-
-	.loc_0x48C:
-	  cmplwi    r22, 0
-	  beq-      .loc_0x630
-	  mr        r3, r22
-	  bl        -0x2270
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x4D4
-	  stw       r23, 0x8(r1)
-	  mr        r3, r22
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x7C8
-	  b         .loc_0x630
-
-	.loc_0x4D4:
-	  mr        r4, r21
-	  addi      r3, r22, 0xC8
-	  bl        -0x22E4
-	  lfs       f0, 0xC(r21)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x554
-	  lwz       r3, 0xC0(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x524
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x630
-
-	.loc_0x524:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r22
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x848
-	  b         .loc_0x630
-
-	.loc_0x554:
-	  fneg      f0, f0
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x5C8
-	  lwz       r3, 0xC4(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x598
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x630
-
-	.loc_0x598:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r22
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x8BC
-	  b         .loc_0x630
-
-	.loc_0x5C8:
-	  lwz       r3, 0xC0(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5FC
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-
-	.loc_0x5FC:
-	  lwz       r3, 0xC4(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x630
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-
-	.loc_0x630:
-	  lwz       r21, 0xC4(r20)
-	  cmplwi    r21, 0
-	  beq-      .loc_0x7DC
-	  lwz       r20, 0x0(r31)
-	  mr        r3, r21
-	  bl        -0x241C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x680
-	  stw       r23, 0x8(r1)
-	  mr        r3, r21
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x974
-	  b         .loc_0x7DC
-
-	.loc_0x680:
-	  mr        r4, r20
-	  addi      r3, r21, 0xC8
-	  bl        -0x2490
-	  lfs       f0, 0xC(r20)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x700
-	  lwz       r3, 0xC0(r21)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6D0
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x7DC
-
-	.loc_0x6D0:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r21
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0x9F4
-	  b         .loc_0x7DC
-
-	.loc_0x700:
-	  fneg      f0, f0
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x774
-	  lwz       r3, 0xC4(r21)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x744
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-	  b         .loc_0x7DC
-
-	.loc_0x744:
-	  stw       r23, 0x8(r1)
-	  mr        r3, r21
-	  mr        r4, r31
-	  mr        r5, r25
-	  stw       r26, 0xC(r1)
-	  mr        r6, r24
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        -0xA68
-	  b         .loc_0x7DC
-
-	.loc_0x774:
-	  lwz       r3, 0xC0(r21)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x7A8
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-
-	.loc_0x7A8:
-	  lwz       r3, 0xC4(r21)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x7DC
-	  stw       r23, 0x8(r1)
-	  mr        r4, r31
-	  mr        r5, r25
-	  mr        r6, r24
-	  stw       r26, 0xC(r1)
-	  mr        r7, r30
-	  mr        r8, r29
-	  mr        r9, r28
-	  mr        r10, r27
-	  bl        .loc_0x0
-
-	.loc_0x7DC:
-	  lmw       r20, 0x10(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+		if (mHalfB) {
+			mHalfB->traceMove_new(moveInfo, vertexTable, triangleTable, startMatrix, endMatrix, hitCount, resultTris, hitDists,
+			                      hitPositions);
+		}
+	}
 }
 
 /*
@@ -943,9 +404,55 @@ void OBBTree::traceMove_new_global(Game::MoveInfo& moveInfo, f32 step)
  * Address:	80420CEC
  * Size:	00024C
  */
-void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4,
-                                      Sys::Triangle** p5, f32* p6, Vector3f* p7)
+void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable,
+                                      int& hitCount, Sys::Triangle** resultTris, f32* hitDists, Vector3f* hitPositions)
 {
+	Sphere* moveSphere     = moveInfo.mMoveSphere; // r28
+	Vector3f* moveVelocity = moveInfo.mVelocity;   // r27
+
+	Sphere sphere1; // 0x28
+	Sphere sphere0; // 0x38
+
+	Sphere* sphere0Ptr = &sphere0; // r30
+	Sphere* sphere1Ptr = &sphere1; // r29
+
+	for (int i = 0; i < mTriIndexList.getNum(); i++) {
+		Triangle* tri = triangleTable.getTriangle(mTriIndexList.mObjects[i]); // r31
+		Triangle::SphereSweep sweep;
+		sweep.mStartPos = moveSphere->mPosition;
+		sweep.mSphere   = *moveSphere;
+		if (moveInfo.mUseIntersectionAlgo) {
+			sweep.mSweepType = Triangle::SphereSweep::ST_SphereIntersectPlane;
+		}
+		if (!tri->intersect(vertexTable, sweep)) {
+			continue;
+		}
+
+		Vector3f pos = sphere1.mPosition;
+
+		if (moveInfo.mIntersectCallback) {
+			moveInfo.mIntersectCallback->invoke(sphere0Ptr->mPosition, sphere1Ptr->mPosition);
+		}
+
+		if (sphere1.mPosition.y >= moveInfo.mBounceThreshold) {
+			moveInfo.mBounceTriangle = tri;
+			moveInfo.mPosition       = sphere1.mPosition;
+		} else if (FABS(sphere1.mPosition.y) <= moveInfo.mWallThreshold) {
+			moveInfo.mWallTriangle    = tri;
+			moveInfo.mReflectPosition = sphere1.mPosition;
+		} else {
+			moveInfo._4C = tri;
+			moveInfo._68 = sphere1.mPosition;
+		}
+
+		Vector3f vel  = *moveVelocity;
+		f32 dotProd   = dot(sphere1.mPosition, vel);
+		f32 rad       = 1.0f + moveInfo.mTraceRadius;
+		f32 factor    = rad * dotProd;
+		*moveVelocity = vel - sphere1.mPosition * factor;
+
+		moveSphere->mPosition = moveSphere->mPosition + pos * sphere1.mRadius;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xB0(r1)
@@ -1119,519 +626,39 @@ void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable
  * Address:	80420F38
  * Size:	0006F0
  */
-void OBB::traceMove_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4,
-                               Sys::Triangle** p5, f32* p6, Vector3f* p7)
+void OBB::traceMove_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& hitCount,
+                               Sys::Triangle** resultTris, f32* hitDists, Vector3f* hitPositions)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r22, 0x8(r1)
-	  mr        r23, r3
-	  mr        r30, r4
-	  mr        r31, r5
-	  mr        r29, r6
-	  mr        r28, r7
-	  mr        r27, r8
-	  mr        r26, r9
-	  mr        r25, r10
-	  lwz       r24, 0xC0(r3)
-	  li        r3, 0
-	  lwz       r22, 0x0(r4)
-	  cmplwi    r24, 0
-	  bne-      .loc_0x54
-	  lwz       r0, 0xC4(r23)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x54
-	  li        r3, 0x1
+	Sphere* moveSphere = moveInfo.mMoveSphere;
+	if (isLeaf()) {
+		traceMoveTriList_new_global(moveInfo, vertexTable, triangleTable, hitCount, resultTris, hitDists, hitPositions);
+	} else {
+		f32 planeDist = mDivPlane.calcDist(moveSphere->mPosition);
+		if (planeDist > moveSphere->mRadius) {
+			if (mHalfA) {
+				mHalfA->traceMove_new_global(moveInfo, vertexTable, triangleTable, hitCount, resultTris, hitDists, hitPositions);
+			} else {
+				traceMoveTriList_new_global(moveInfo, vertexTable, triangleTable, hitCount, resultTris, hitDists, hitPositions);
+			}
+			return;
+		}
 
-	.loc_0x54:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x84
-	  mr        r3, r23
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x2C8
-	  b         .loc_0x6DC
+		if (planeDist < -moveSphere->mRadius) {
+			if (mHalfB) {
+				mHalfB->traceMove_new_global(moveInfo, vertexTable, triangleTable, hitCount, resultTris, hitDists, hitPositions);
+			} else {
+				traceMoveTriList_new_global(moveInfo, vertexTable, triangleTable, hitCount, resultTris, hitDists, hitPositions);
+			}
+			return;
+		}
 
-	.loc_0x84:
-	  lfs       f1, 0x4(r22)
-	  lfs       f0, 0xCC(r23)
-	  lfs       f2, 0x0(r22)
-	  fmuls     f0, f1, f0
-	  lfs       f1, 0xC8(r23)
-	  lfs       f4, 0x8(r22)
-	  lfs       f3, 0xD0(r23)
-	  fmadds    f1, f2, f1, f0
-	  lfs       f0, 0xD4(r23)
-	  lfs       f2, 0xC(r22)
-	  fmadds    f1, f4, f3, f1
-	  fsubs     f1, f1, f0
-	  fcmpo     cr0, f1, f2
-	  ble-      .loc_0x254
-	  cmplwi    r24, 0
-	  beq-      .loc_0x22C
-	  mr        r3, r24
-	  bl        -0x2974
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xFC
-	  mr        r3, r24
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x340
-	  b         .loc_0x6DC
+		if (mHalfA) {
+			mHalfA->traceMove_new_global(moveInfo, vertexTable, triangleTable, hitCount, resultTris, hitDists, hitPositions);
+		}
 
-	.loc_0xFC:
-	  mr        r4, r22
-	  addi      r3, r24, 0xC8
-	  bl        -0x29E0
-	  lfs       f0, 0xC(r22)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x16C
-	  lwz       r3, 0xC0(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x144
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x6DC
-
-	.loc_0x144:
-	  mr        r3, r24
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x3B0
-	  b         .loc_0x6DC
-
-	.loc_0x16C:
-	  fneg      f0, f0
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1D0
-	  lwz       r3, 0xC4(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1A8
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x6DC
-
-	.loc_0x1A8:
-	  mr        r3, r24
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x414
-	  b         .loc_0x6DC
-
-	.loc_0x1D0:
-	  lwz       r3, 0xC0(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1FC
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-
-	.loc_0x1FC:
-	  lwz       r3, 0xC4(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6DC
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x6DC
-
-	.loc_0x22C:
-	  mr        r3, r23
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x498
-	  b         .loc_0x6DC
-
-	.loc_0x254:
-	  fneg      f0, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x3FC
-	  lwz       r24, 0xC4(r23)
-	  cmplwi    r24, 0
-	  beq-      .loc_0x3D4
-	  mr        r3, r24
-	  bl        -0x2B1C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2A4
-	  mr        r3, r24
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x4E8
-	  b         .loc_0x6DC
-
-	.loc_0x2A4:
-	  mr        r4, r22
-	  addi      r3, r24, 0xC8
-	  bl        -0x2B88
-	  lfs       f0, 0xC(r22)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x314
-	  lwz       r3, 0xC0(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2EC
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x6DC
-
-	.loc_0x2EC:
-	  mr        r3, r24
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x558
-	  b         .loc_0x6DC
-
-	.loc_0x314:
-	  fneg      f0, f0
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x378
-	  lwz       r3, 0xC4(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x350
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x6DC
-
-	.loc_0x350:
-	  mr        r3, r24
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x5BC
-	  b         .loc_0x6DC
-
-	.loc_0x378:
-	  lwz       r3, 0xC0(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3A4
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-
-	.loc_0x3A4:
-	  lwz       r3, 0xC4(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6DC
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x6DC
-
-	.loc_0x3D4:
-	  mr        r3, r23
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x640
-	  b         .loc_0x6DC
-
-	.loc_0x3FC:
-	  cmplwi    r24, 0
-	  beq-      .loc_0x568
-	  mr        r3, r24
-	  bl        -0x2CB4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x43C
-	  mr        r3, r24
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x680
-	  b         .loc_0x568
-
-	.loc_0x43C:
-	  mr        r4, r22
-	  addi      r3, r24, 0xC8
-	  bl        -0x2D20
-	  lfs       f0, 0xC(r22)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x4AC
-	  lwz       r3, 0xC0(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x484
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x568
-
-	.loc_0x484:
-	  mr        r3, r24
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x6F0
-	  b         .loc_0x568
-
-	.loc_0x4AC:
-	  fneg      f0, f0
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x510
-	  lwz       r3, 0xC4(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4E8
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x568
-
-	.loc_0x4E8:
-	  mr        r3, r24
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x754
-	  b         .loc_0x568
-
-	.loc_0x510:
-	  lwz       r3, 0xC0(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x53C
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-
-	.loc_0x53C:
-	  lwz       r3, 0xC4(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x568
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-
-	.loc_0x568:
-	  lwz       r22, 0xC4(r23)
-	  cmplwi    r22, 0
-	  beq-      .loc_0x6DC
-	  lwz       r23, 0x0(r30)
-	  mr        r3, r22
-	  bl        -0x2E28
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x5B0
-	  mr        r3, r22
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x7F4
-	  b         .loc_0x6DC
-
-	.loc_0x5B0:
-	  mr        r4, r23
-	  addi      r3, r22, 0xC8
-	  bl        -0x2E94
-	  lfs       f0, 0xC(r23)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x620
-	  lwz       r3, 0xC0(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5F8
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x6DC
-
-	.loc_0x5F8:
-	  mr        r3, r22
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x864
-	  b         .loc_0x6DC
-
-	.loc_0x620:
-	  fneg      f0, f0
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x684
-	  lwz       r3, 0xC4(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x65C
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-	  b         .loc_0x6DC
-
-	.loc_0x65C:
-	  mr        r3, r22
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        -0x8C8
-	  b         .loc_0x6DC
-
-	.loc_0x684:
-	  lwz       r3, 0xC0(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6B0
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-
-	.loc_0x6B0:
-	  lwz       r3, 0xC4(r22)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6DC
-	  mr        r4, r30
-	  mr        r5, r31
-	  mr        r6, r29
-	  mr        r7, r28
-	  mr        r8, r27
-	  mr        r9, r26
-	  mr        r10, r25
-	  bl        .loc_0x0
-
-	.loc_0x6DC:
-	  lmw       r22, 0x8(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+		if (mHalfB) {
+			mHalfB->traceMove_new_global(moveInfo, vertexTable, triangleTable, hitCount, resultTris, hitDists, hitPositions);
+		}
+	}
 }
 } // namespace Sys
