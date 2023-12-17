@@ -8,11 +8,7 @@
 #include "System.h"
 #include "Controller.h"
 #include "trig.h"
-
-// this definitely shouldnt be here, but I cant find where the actual one is defined
-extern "C" {
-int abs(int);
-};
+#include "stdlib.h"
 
 namespace og {
 namespace newScreen {
@@ -25,6 +21,10 @@ namespace newScreen {
 void ObjContena::setStartPos()
 {
 	// UNUSED FUNCTION
+	mMenuMoveAngle = 800.0f;
+	mYAnalog       = 0.0f;
+	mSpotX         = 0.0f;
+	mSpotY         = 0.0f;
 }
 
 /*
