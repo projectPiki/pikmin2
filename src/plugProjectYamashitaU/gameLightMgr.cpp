@@ -417,19 +417,19 @@ GameLightMgr::GameLightMgr(char* name)
 	start();
 
 	// setup main light
-	mMainLight             = new LightObj("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(255, 255, 255, 255)); // 'main light'
+	mMainLight             = new LightObj("メインライト", GX_LIGHT0, TYPE_Spot, JUtility::TColor(255, 255, 255, 255)); // 'main light'
 	mMainLight->mSpotFn    = GX_SP_OFF;
 	mMainLight->mElevation = Vector3f(0.0f, -1.0f, 0.0f);
 	registLightObj(mMainLight);
 
 	// setup sub light
-	mSubLight             = new LightObj("サブライト", GX_LIGHT1, TYPE_2, JUtility::TColor(128, 64, 64, 255)); // 'sub light'
+	mSubLight             = new LightObj("サブライト", GX_LIGHT1, TYPE_Spot, JUtility::TColor(128, 64, 64, 255)); // 'sub light'
 	mSubLight->mSpotFn    = GX_SP_OFF;
 	mSubLight->mElevation = Vector3f(0.0f, 1.0f, 0.0f);
 	registLightObj(mSubLight);
 
 	// setup specular light
-	mSpecLight          = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_4, JUtility::TColor(255, 255, 255, 255)); // 'specular light'
+	mSpecLight          = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255)); // 'specular light'
 	mSpecLight->mKScale = 40.0f;
 	registLightObj(mSpecLight);
 

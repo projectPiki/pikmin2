@@ -208,8 +208,8 @@ struct TTitleLightSetting {
 struct TTitleLightMgr : public LightMgr {
 	TTitleLightMgr()
 	    : LightMgr("LightMgr")
-	    , mLightObjMain("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(255, 255, 255, 255))
-	    , mLightObjSpec("スペキュラライト", GX_LIGHT7, TYPE_4, JUtility::TColor(255, 255, 255, 255))
+	    , mLightObjMain("メインライト", GX_LIGHT0, TYPE_Spot, JUtility::TColor(255, 255, 255, 255))
+	    , mLightObjSpec("スペキュラライト", GX_LIGHT7, TYPE_Spec, JUtility::TColor(255, 255, 255, 255))
 	    , mSetting()
 	{
 		registLightObj(&mLightObjMain);

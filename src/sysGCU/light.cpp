@@ -1,105 +1,7 @@
 #include "Light.h"
-
 #include "Graphics.h"
 #include "Viewport.h"
-
-#include "types.h"
 #include "nans.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_light_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80499EF8
-    lbl_80499EF8:
-        .4byte 0x83418393
-        .4byte 0x83728347
-        .4byte 0x83938367
-        .4byte 0x83898343
-        .4byte 0x83670000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EBE88
-    lbl_804EBE88:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__8LightMgr
-    __vt__8LightMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__8LightMgrFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__8LightMgrFv
-        .4byte set__8LightMgrFR8Graphics
-        .4byte set__8LightMgrFR7Matrixf
-        .4byte drawDebugInfo__8LightMgrFR8Graphics
-    .global __vt__8LightObj
-    __vt__8LightObj:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__8LightObjFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__8LightObjFv
-        .4byte set__8LightObjFR7Matrixf
-        .4byte drawPos__8LightObjFR8Graphics
-        .4byte drawPos__8LightObjFR8GraphicsR7Matrixf
-        .4byte drawPos__8LightObjFR8GraphicsR6Camera
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805161B8
-    lbl_805161B8:
-        .skip 0x4
-    .global lbl_805161BC
-    lbl_805161BC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805205A8
-    lbl_805205A8:
-        .4byte 0x00000000
-    .global lbl_805205AC
-    lbl_805205AC:
-        .4byte 0x447A0000
-    .global lbl_805205B0
-    lbl_805205B0:
-        .4byte 0xBF800000
-    .global lbl_805205B4
-    lbl_805205B4:
-        .float 1.0
-    .global lbl_805205B8
-    lbl_805205B8:
-        .4byte 0x42700000
-    .global lbl_805205BC
-    lbl_805205BC:
-        .4byte 0x41800000
-    .global lbl_805205C0
-    lbl_805205C0:
-        .4byte 0x41F00000
-    .global lbl_805205C4
-    lbl_805205C4:
-        .4byte 0x437F0000
-    .global lbl_805205C8
-    lbl_805205C8:
-        .float 0.5
-        .4byte 0x00000000
-    .global lbl_805205D0
-    lbl_805205D0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_805205D8
-    lbl_805205D8:
-        .4byte 0x41200000
-    .global lbl_805205DC
-    lbl_805205DC:
-        .4byte 0x83898343
-        .4byte 0x83670000
-        .4byte 0x00000000
-*/
 
 /*
  * --INFO--
@@ -108,14 +10,13 @@
  * Matches with fuckry... had to remove the changes because
  * breaks build elsewhere, wtf is going on?
  */
-LightObj::LightObj(char* name, _GXLightID lightID, ELightTypeFlag typeFlag, JUtility::TColor color)
+LightObj::LightObj(char* name, GXLightID lightID, ELightTypeFlag typeFlag, JUtility::TColor color)
+    : mLightID(lightID)
+    , mTypeFlag(typeFlag)
+    , mPosition(0.0f, 1000.0f, 0.0f)
+    , mElevation(0.0f, -1.0f, 0.0f)
+    , mColor(color.toUInt32())
 {
-	mLightID  = lightID;
-	mTypeFlag = typeFlag;
-
-	mPosition  = Vector3f(0.0f, 1000.0f, 0.0f);
-	mElevation = Vector3f(0.0f, -1.0f, 0.0f);
-	// mColor         = color.toUInt32();
 	mBrightness    = 1.0f;
 	mRefDistance   = 1000.0f;
 	mRefBrightness = 1.0f;
@@ -125,7 +26,7 @@ LightObj::LightObj(char* name, _GXLightID lightID, ELightTypeFlag typeFlag, JUti
 	mSpotFn       = GX_SP_COS2;
 	mKScale       = 16.0f;
 	mSphereRadius = 30.0f;
-	_54           = 0;
+	mFlags        = 0;
 
 	setName(name);
 }
@@ -137,61 +38,66 @@ LightObj::LightObj(char* name, _GXLightID lightID, ELightTypeFlag typeFlag, JUti
  */
 void LightObj::set(Matrixf& mtx)
 {
-	u_color color = Color4(0xff, 0xff, 0xff, 0xff);
+	JUtility::TColor color;
 
-	f32 rCol = mColor.toGXColor().r * mBrightness;
+	f32 rCol = mColor.r * mBrightness;
 	if (rCol > 255.0f) {
 		rCol = 255.0f;
 	}
-	color.GXColorView.r = (u8)rCol;
+	color.r = rCol;
 
-	f32 gCol = mColor.toGXColor().g * mBrightness;
+	f32 gCol = mColor.g * mBrightness;
 	if (gCol > 255.0f) {
 		gCol = 255.0f;
 	}
-	color.GXColorView.g = gCol;
+	color.g = gCol;
 
-	f32 bCol = mColor.toGXColor().b * mBrightness;
+	f32 bCol = mColor.b * mBrightness;
 	if (bCol > 255.0f) {
 		bCol = 255.0f;
 	}
-	color.GXColorView.b = bCol;
+	color.b = bCol;
 
-	f32 aCol = mColor.toGXColor().a * mBrightness;
+	f32 aCol = mColor.a * mBrightness;
 	if (aCol > 255.0f) {
 		aCol = 255.0f;
 	}
-	color.GXColorView.a = aCol;
+	color.a = aCol;
 
 	GXLightObj lightObj;
-	GXInitLightColor(&lightObj, color.GXColorView);
+	GXInitLightColor(&lightObj, color);
 
 	Mtx m1, m2;
 	Vec r1, r2;
 	switch (mTypeFlag) {
 	case TYPE_1:
 		PSMTXMultVec(mtx.mMatrix.mtxView, (Vec*)&mPosition, &r1);
-		GXInitLightPos(&lightObj, r1.x, r1.y, r1.z);
+		volatile Vector3f vec(r1);
+		GXInitLightPos(&lightObj, vec.x, vec.y, vec.z);
 		break;
-	case TYPE_4:
-		PSMTXInverse(mtx.mMatrix.mtxView, m1);
-		PSMTXTranspose(m1, m2);
-		PSMTXMultVec(m2, (Vec*)&mElevation, &r1);
-
-		GXInitSpecularDir(&lightObj, r1.x, r1.y, r1.z);
-		GXInitLightAttn(&lightObj, 0.0f, 0.0f, 1.0f, mKScale * 0.5f, 0.0f, mKScale * 0.5f);
-		break;
-	default:
+	case TYPE_Spot:
 		PSMTXMultVec(mtx.mMatrix.mtxView, (Vec*)&mElevation, &r1);
-		GXInitLightPos(&lightObj, r1.x, r1.y, r1.z);
+		volatile Vector3f vec2(r1);
+		// probably some inline or something, the volatile definitely isnt right but the extra vector3 needs to generate
+		GXInitLightPos(&lightObj, vec2.x, vec2.y, vec2.z);
 
 		PSMTXInverse(mtx.mMatrix.mtxView, m1);
 		PSMTXTranspose(m1, m2);
 		PSMTXMultVec(m2, (Vec*)&mElevation, &r2);
+		Vector3f vec3(r1);
 
-		GXInitLightDir(&lightObj, r2.x, r2.y, r2.z);
+		GXInitLightDir(&lightObj, vec3.x, vec3.y, vec3.z);
 		GXInitLightSpot(&lightObj, mCutoffAngle, static_cast<GXSpotFn>(mSpotFn));
 		GXInitLightDistAttn(&lightObj, mRefDistance, mRefBrightness, static_cast<GXDistAttnFn>(mDistAttnFn));
+		break;
+	case TYPE_Spec:
+		PSMTXInverse(mtx.mMatrix.mtxView, m1);
+		PSMTXTranspose(m1, m2);
+		PSMTXMultVec(m2, (Vec*)&mElevation, &r1);
+		volatile Vector3f vec4(r1);
+		GXInitSpecularDir(&lightObj, vec4.x, vec4.y, vec4.z);
+		f32 k = mKScale * 0.5f;
+		GXInitLightAttn(&lightObj, 0.0f, 0.0f, 1.0f, mKScale * 0.5f, 0.0f, 1.0f - k);
 		break;
 	}
 
@@ -426,11 +332,34 @@ void LightObj::drawPos(Graphics& gfx, Camera& cam)
  */
 void LightObj::drawPos(Graphics& gfx, Matrixf& mtx)
 {
-	if (_54 & 1) {
+	if (mFlags & 1) {
 		gfx.initPrimDraw(&mtx);
 
 		Matrixf debugMtx;
 		debugMtx.makeT(mPosition);
+		gfx.mDrawColor.set(mColor);
+
+		switch (mTypeFlag) {
+		case TYPE_Spec: {
+			f32 radius   = mSphereRadius * 10.0f;
+			Vector3f pos = mPosition + mElevation * radius;
+			gfx.drawLine(mPosition, pos);
+			gfx.drawSphere(10.0f, &debugMtx);
+			break;
+		}
+		case TYPE_Spot: {
+			gfx.drawSphere(10.0f, &debugMtx);
+			f32 radius   = mSphereRadius * 10.0f;
+			Vector3f pos = mPosition + mElevation * radius;
+			gfx.drawCone(mPosition, pos, mCutoffAngle, 16);
+			break;
+		}
+		case TYPE_1: {
+			gfx.drawSphere(10.0f, &debugMtx);
+			gfx.drawSphere(mSphereRadius * 10.0f, &debugMtx);
+			break;
+		}
+		}
 	}
 
 	/*
@@ -556,65 +485,14 @@ lbl_8042BA74:
  * Address:	8042BA8C
  * Size:	0000D8
  */
-LightMgr::LightMgr(char*)
-    : mAmbientLight("ambient light", Color4(0, 0, 0, 0))
+LightMgr::LightMgr(char* name)
+    : CNode(name)
+    , mAmbientLight("アンビエントライト")
+    , mLightObjChain("ライト")
+    , mLightCount(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, __vt__5CNode@ha
-	lis      r7, __vt__8LightMgr@ha
-	stw      r0, 0x14(r1)
-	addi     r11, r5, __vt__5CNode@l
-	lis      r6, lbl_80499EF8@ha
-	li       r10, 0
-	stw      r31, 0xc(r1)
-	addi     r8, r6, lbl_80499EF8@l
-	mr       r31, r3
-	addi     r9, r7, __vt__8LightMgr@l
-	stw      r11, 0(r3)
-	lis      r5, __vt__15AmbientLightObj@ha
-	addi     r7, r5, __vt__15AmbientLightObj@l
-	li       r6, 0x80
-	stw      r10, 0x10(r3)
-	li       r5, 0xff
-	addi     r0, r2, lbl_805205DC@sda21
-	addi     r12, r31, 0x18
-	stw      r10, 0xc(r3)
-	stw      r10, 8(r3)
-	stw      r10, 4(r3)
-	stw      r4, 0x14(r3)
-	mr       r4, r12
-	stw      r9, 0(r3)
-	stw      r11, 0x18(r3)
-	stw      r10, 0x28(r3)
-	stw      r10, 0x24(r3)
-	stw      r10, 0x20(r3)
-	stw      r10, 0x1c(r3)
-	stw      r8, 0x2c(r3)
-	stw      r7, 0x18(r3)
-	stb      r6, 0x30(r3)
-	stb      r6, 0x31(r3)
-	stb      r6, 0x32(r3)
-	stb      r5, 0x33(r3)
-	stw      r11, 0x34(r3)
-	stw      r10, 0x44(r3)
-	stw      r10, 0x40(r3)
-	stw      r10, 0x3c(r3)
-	stw      r10, 0x38(r3)
-	stw      r0, 0x48(r3)
-	stw      r10, 0x4c(r3)
-	bl       add__5CNodeFP5CNode
-	mr       r3, r31
-	addi     r4, r31, 0x34
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	add(&mAmbientLight);
+	add(&mLightObjChain);
 }
 
 /*
@@ -622,25 +500,10 @@ LightMgr::LightMgr(char*)
  * Address:	8042BB64
  * Size:	00003C
  */
-void LightMgr::registLightObj(LightObj*)
+void LightMgr::registLightObj(LightObj* light)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x34
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x4c(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x4c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mLightObjChain.add(light);
+	mLightCount++;
 }
 
 /*
@@ -648,30 +511,10 @@ void LightMgr::registLightObj(LightObj*)
  * Address:	8042BBA0
  * Size:	000050
  */
-void LightMgr::set(Graphics&)
+void LightMgr::set(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x25c(r4)
-	li       r4, 1
-	bl       getMatrix__8ViewportFb
-	lwz      r12, 0(r31)
-	mr       r0, r3
-	mr       r3, r31
-	lwz      r12, 0x18(r12)
-	mr       r4, r0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Matrixf& mtx = *gfx.mCurrentViewport->getMatrix(1);
+	set(mtx);
 }
 
 /*
@@ -679,51 +522,12 @@ void LightMgr::set(Graphics&)
  * Address:	8042BBF0
  * Size:	000094
  */
-void LightMgr::set(Matrixf&)
+void LightMgr::set(Matrixf& mtx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	addi     r4, r1, 0xc
-	lbz      r7, 0x30(r3)
-	lbz      r6, 0x31(r3)
-	li       r3, 4
-	lbz      r5, 0x32(r31)
-	lbz      r0, 0x33(r31)
-	stb      r7, 8(r1)
-	stb      r6, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetChanAmbColor
-	lwz      r31, 0x44(r31)
-	b        lbl_8042BC64
+	GXColor color = mAmbientLight.mColor.toGXColor();
+	GXSetChanAmbColor(GX_COLOR0A0, color);
 
-lbl_8042BC48:
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8042BC64:
-	cmplwi   r31, 0
-	bne      lbl_8042BC48
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	FOREACH_NODE(LightObj, mLightObjChain.mChild, light) { light->set(mtx); }
 }
 
 /*
@@ -731,37 +535,9 @@ lbl_8042BC64:
  * Address:	8042BC84
  * Size:	00005C
  */
-void LightMgr::drawDebugInfo(Graphics&)
+void LightMgr::drawDebugInfo(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, 0x44(r3)
-	b        lbl_8042BCC0
-
-lbl_8042BCA4:
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8042BCC0:
-	cmplwi   r31, 0
-	bne      lbl_8042BCA4
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(LightObj, mLightObjChain.mChild, light) { light->drawPos(gfx); }
 }
 
 /*
@@ -770,24 +546,3 @@ lbl_8042BCC0:
  * Size:	000004
  */
 void LightMgr::update() { }
-
-/*
- * --INFO--
- * Address:	8042BCE4
- * Size:	000028
- */
-// void __sinit_light_cpp()
-// {
-// 	/*
-// 	lis      r4, __float_nan@ha
-// 	li       r0, -1
-// 	lfs      f0, __float_nan@l(r4)
-// 	lis      r3, lbl_804EBE88@ha
-// 	stw      r0, lbl_805161B8@sda21(r13)
-// 	stfsu    f0, lbl_804EBE88@l(r3)
-// 	stfs     f0, lbl_805161BC@sda21(r13)
-// 	stfs     f0, 4(r3)
-// 	stfs     f0, 8(r3)
-// 	blr
-// 	*/
-// }

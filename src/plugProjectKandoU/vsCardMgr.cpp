@@ -90,7 +90,7 @@ VsGame::CardMgr::CardMgr(Game::VsGameSection* section, Game::VsGame::TekiMgr* te
 	initDraw();
 
 	JUtility::TColor color(0xFF, 0xFF, 0xFF, 0xFF);
-	mLightObj = new LightObj("test", GX_LIGHT0, TYPE_2, color);
+	mLightObj = new LightObj("test", GX_LIGHT0, TYPE_Spot, color);
 
 	mLightObj->mElevation     = Vector3f(0.0f, 0.0f, -1.0f);
 	mLightObj->mPosition      = Vector3f(555.0f, -250.0f, 4500.0f);

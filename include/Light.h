@@ -9,16 +9,16 @@
 enum ELightTypeFlag {
 	TYPE_0,
 	TYPE_1,
-	TYPE_2,
+	TYPE_Spot,
 	TYPE_3,
-	TYPE_4,
+	TYPE_Spec,
 };
 
 struct AmbientLightObj : public CNode {
-	AmbientLightObj(char* name, Color4 color)
+	AmbientLightObj(char* name)
 	    : CNode(name)
 	{
-		mColor = color;
+		mColor = Color4(128, 128, 128, 255);
 	}
 
 	virtual ~AmbientLightObj() { } // _08 (weak)
@@ -52,7 +52,7 @@ struct LightObj : public CNode {
 	u8 mSpotFn;          // _49, GXSpotFn
 	f32 mKScale;         // _4C
 	f32 mSphereRadius;   // _50
-	u8 _54;              // _54
+	u8 mFlags;           // _54
 };
 
 struct LightMgr : public CNode {

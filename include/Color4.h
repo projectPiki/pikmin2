@@ -14,6 +14,7 @@ struct Color4 {
 	    , g(green)
 	    , b(blue)
 	    , a(alpha) {};
+	inline Color4(u32 col) { *(u32*)this = col; }
 
 	inline GXColor toGXColor()
 	{

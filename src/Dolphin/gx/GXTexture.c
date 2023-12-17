@@ -1253,21 +1253,17 @@ static void __GXSetSUTexRegs(void)
 		}
 
 		for (i = 0; i < a; i++) {
-			u32 *g = &gx->tref[i / 2];
+			u32* g = &gx->tref[i / 2];
 
 			c = gx->texmapId[i] & ~0x100;
 
-			if (i & 1)
-			{
+			if (i & 1) {
 				d = GX_GET_REG(*g, 14, 16);
-			}
-			else
-			{
+			} else {
 				d = GX_GET_REG(*g, 26, 28);
 			}
 
-			if (c != 0xff && !(gx->tcsManEnab & (1 << d)) && gx->tevTcEnab & (1 << i)) 
-			{
+			if (c != 0xff && !(gx->tcsManEnab & (1 << d)) && gx->tevTcEnab & (1 << i)) {
 				__SetSURegs(c, d);
 			}
 		}

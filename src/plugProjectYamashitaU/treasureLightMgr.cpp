@@ -17,12 +17,12 @@ Mgr::Mgr()
 	mRotationAngle  = 300.0f;
 	mElevationAngle = 330.0f;
 
-	mMainLight             = new LightObj("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+	mMainLight             = new LightObj("メインライト", GX_LIGHT0, TYPE_Spot, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
 	mMainLight->mSpotFn    = 3;
 	mMainLight->mElevation = Vector3f(0.0f, -1.0f, 0.0f);
 	registLightObj(mMainLight);
 
-	mSpecLight          = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_4, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+	mSpecLight          = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_Spec, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
 	mSpecLight->mKScale = 40.0f;
 	registLightObj(mSpecLight);
 
