@@ -90,24 +90,26 @@ struct NodeItemMgr : public BaseItemMgr, public Container<T> {
 	NodeItemMgr(); // weak
 
 	// vtable 1
-	virtual void doAnimation();                 // _08 (weak)
-	virtual void doEntry();                     // _0C (weak)
-	virtual void doSetView(int viewportNumber); // _10 (weak)
-	virtual void doViewCalc();                  // _14 (weak)
-	virtual void doSimulation(f32);             // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx);   // _1C (weak)
-	virtual void initDependency();              // _38
-	virtual void killAll();                     // _3C
+	virtual void doAnimation() { mNodeObjectMgr.doAnimation(); }                             // _08 (weak)
+	virtual void doEntry() { mNodeObjectMgr.doEntry(); }                                     // _0C (weak)
+	virtual void doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); } // _10 (weak)
+	virtual void doViewCalc() { mNodeObjectMgr.doViewCalc(); }                               // _14 (weak)
+	virtual void doSimulation(f32 step) { mNodeObjectMgr.doSimulation(step); }               // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { mNodeObjectMgr.doDirectDraw(gfx); }           // _1C (weak)
+	virtual void initDependency();                                                           // _38
+	virtual void killAll();                                                                  // _3C
 
 	// vtable 2
-	virtual void kill(T*);        // _A0 (weak)
-	virtual T* get(void*);        // _A4 (weak)
-	virtual void* getNext(void*); // _A8 (weak)
-	virtual void* getStart();     // _AC (weak)
-	virtual void* getEnd();       // _B0 (weak)
-	virtual ~NodeItemMgr() { }    // _B4 (weak)
+	virtual void kill(T*);                                                   // _A0 (weak)
+	virtual T* get(void* idx) { return mNodeObjectMgr.get(idx); }            // _A4 (weak)
+	virtual void* getNext(void* idx) { return mNodeObjectMgr.getNext(idx); } // _A8 (weak)
+	virtual void* getStart() { return mNodeObjectMgr.getStart(); }           // _AC (weak)
+	virtual void* getEnd() { return mNodeObjectMgr.getEnd(); }               // _B0 (weak)
+	virtual ~NodeItemMgr() { }                                               // _B4 (weak)
 
 	T* birth(); // weak
+
+	void entry(T* item);
 
 	// _00     = VTBL (BaseItemMgr)
 	// _00-_30 = BaseItemMgr
@@ -269,6 +271,53 @@ void FixedSizeItemMgr<T>::onAlloc()
 	for (int i = 0; i < mMonoObjectMgr.mMax; i++) {
 		mMonoObjectMgr.getAt(i)->_184 = i;
 	}
+}
+
+template <typename T>
+void NodeItemMgr<T>::initDependency()
+{
+	Iterator<T> iter(&mNodeObjectMgr);
+	CI_LOOP(iter) { (*iter)->initDependency(); }
+}
+
+template <typename T>
+void NodeItemMgr<T>::kill(T* item)
+{
+	mNodeObjectMgr.delNode(item);
+}
+
+template <typename T>
+void NodeItemMgr<T>::killAll()
+{
+	Iterator<T> iter(&mNodeObjectMgr);
+	CI_LOOP(iter)
+	{
+		T* item = (*iter);
+		CreatureKillArg killArg(1);
+		if (item->isAlive()) {
+			item->kill(&killArg);
+		}
+
+		if (item->mSoundObj && PSSystem::SingletonBase<PSM::ObjMgr>::sInstance) {
+			PSSystem::SingletonBase<PSM::ObjMgr>::sInstance->remove(item->mSoundObj);
+		}
+	}
+}
+
+template <typename T>
+void NodeItemMgr<T>::entry(T* item)
+{
+	item->mNodeItemMgr   = this;
+	TObjectNode<T>* node = new TObjectNode<T>;
+	node->mContents      = item;
+	mNodeObjectMgr.mNode.add(node);
+	node->mContents->constructor();
+}
+
+template <typename T>
+NodeItemMgr<T>::NodeItemMgr()
+    : BaseItemMgr(1)
+{
 }
 
 extern ItemMgr* itemMgr;

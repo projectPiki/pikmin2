@@ -27,6 +27,8 @@ enum StateID {
 };
 
 struct InitArg : public CreatureInitArg {
+	inline InitArg(int count) { mCount = count; }
+
 	virtual const char* getName() { return "ItemUjamushi::InitArg"; } // _08 (weak)
 
 	// _00     = VTBL
@@ -48,6 +50,7 @@ struct State : public ItemState<Item> {
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
+	const char* mName; // _0C, guess - unused
 };
 
 struct ActiveState : public State {
@@ -62,8 +65,7 @@ struct ActiveState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
-	u32 _0C; // _0C
-	u32 _10; // _10
+	f32 mTimer; // _10, unused
 };
 
 struct DigState : public State {
@@ -78,8 +80,7 @@ struct DigState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
-	u32 _0C; // _0C
-	u32 _10; // _10
+	f32 mTimer; // _10
 };
 
 struct WaitState : public State {
@@ -94,8 +95,7 @@ struct WaitState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
-	u32 _0C; // _0C
-	u32 _10; // _10
+	f32 mTimer; // _10
 };
 
 struct BoidParms : public Parameters {
@@ -283,8 +283,8 @@ struct Item : public FSMItem<Item, FSM, State> {
 
 	// _00      = VTABLE
 	// _00-_1E0 = FSMItem
-	u32 _1E0;               // _1E0, unknown
-	u32 _1E4;               // _1E4, unknown
+	int _1E0;               // _1E0
+	int _1E4;               // _1E4
 	f32 _1E8;               // _1E8
 	int _1EC;               // _1EC
 	f32 _1F0;               // _1F0

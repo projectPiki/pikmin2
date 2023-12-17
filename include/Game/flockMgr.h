@@ -102,12 +102,7 @@ struct BaseFlockMgr {
 
 template <typename T>
 struct TFlockMgr : public BaseFlockMgr, public Container<T> {
-	inline TFlockMgr()
-	    : BaseFlockMgr()
-	    , Container<T>()
-	    , mMonoObjectMgr()
-	{
-	}
+	inline TFlockMgr() { }
 
 	virtual int getMaxObjects() { return mMonoObjectMgr.mMax; }                     // _08
 	virtual int getNumObjects() { return mMonoObjectMgr.mActiveCount; }             // _0C
