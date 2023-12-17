@@ -27,7 +27,7 @@ void BaseFlockMgr::update()
 			continue;
 		}
 
-		if (vp->mCamera->isVisible(_0C)) {
+		if (vp->mCamera->isVisible(mActivationSpherePosition)) {
 			mIsAgentVisible[i] = true;
 		} else {
 			mIsAgentVisible[i] = false;
@@ -347,7 +347,8 @@ void BaseFlockMgr::doSimpleDraw(Viewport* vp, J3DModelData** models, int p1)
 					if (isFlagAlive(j)) {
 						if (flock->isVisible() && flock->_40 == i) {
 							Matrixf mtx;
-							PSMTXConcat(vp->getMatrix(true)->mMatrix.mtxView, flock->_10.mMatrix.mtxView, mtx.mMatrix.mtxView);
+							PSMTXConcat(vp->getMatrix(true)->mMatrix.mtxView, flock->mTransformationMtx.mMatrix.mtxView,
+							            mtx.mMatrix.mtxView);
 							GXLoadPosMtxImm(mtx.mMatrix.mtxView, GX_PNMTX0);
 							GXLoadNrmMtxImm(mtx.mMatrix.mtxView, GX_PNMTX0);
 							mat->mShape->simpleDrawCache();

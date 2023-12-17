@@ -46,24 +46,24 @@ BoidParms::BoidParms()
  * Address:	80205DFC
  * Size:	000138
  */
-void BoidParms::blendTo(BoidParms& blendParms, BoidParms& outParms, f32 blendFactor)
+void BoidParms::blendTo(BoidParms& dest, BoidParms& outParms, f32 blendFactor)
 {
 	f32 comp                      = 1.0f - blendFactor;
-	outParms.mCohesion()          = comp * mCohesion() + blendFactor * blendParms.mCohesion();
-	outParms.mAlignment()         = comp * mAlignment() + blendFactor * blendParms.mAlignment();
-	outParms.mSeparation()        = comp * mSeparation() + blendFactor * blendParms.mSeparation();
-	outParms.mBounds()            = comp * mBounds() + blendFactor * blendParms.mBounds();
-	outParms.mTarget()            = comp * mTarget() + blendFactor * blendParms.mTarget();
-	outParms.mRandom()            = comp * mRandom() + blendFactor * blendParms.mRandom();
-	outParms.mGoHome()            = comp * mGoHome() + blendFactor * blendParms.mGoHome();
-	outParms.mPiki()              = comp * mPiki() + blendFactor * blendParms.mPiki();
-	outParms.mNavi()              = comp * mNavi() + blendFactor * blendParms.mNavi();
-	outParms.mCollision()         = comp * mCollision() + blendFactor * blendParms.mCollision();
-	outParms.mMaxSpeed()          = comp * mMaxSpeed() + blendFactor * blendParms.mMaxSpeed();
-	outParms.mFov()               = comp * mFov() + blendFactor * blendParms.mFov();
-	outParms.mDistance()          = comp * mDistance() + blendFactor * blendParms.mDistance();
-	outParms.mRotationPerSecond() = comp * mRotationPerSecond() + blendFactor * blendParms.mRotationPerSecond();
-	outParms.mRandomAngle()       = comp * mRandomAngle() + blendFactor * blendParms.mRandomAngle();
+	outParms.mCohesion()          = comp * mCohesion() + blendFactor * dest.mCohesion();
+	outParms.mAlignment()         = comp * mAlignment() + blendFactor * dest.mAlignment();
+	outParms.mSeparation()        = comp * mSeparation() + blendFactor * dest.mSeparation();
+	outParms.mBounds()            = comp * mBounds() + blendFactor * dest.mBounds();
+	outParms.mTarget()            = comp * mTarget() + blendFactor * dest.mTarget();
+	outParms.mRandom()            = comp * mRandom() + blendFactor * dest.mRandom();
+	outParms.mGoHome()            = comp * mGoHome() + blendFactor * dest.mGoHome();
+	outParms.mPiki()              = comp * mPiki() + blendFactor * dest.mPiki();
+	outParms.mNavi()              = comp * mNavi() + blendFactor * dest.mNavi();
+	outParms.mCollision()         = comp * mCollision() + blendFactor * dest.mCollision();
+	outParms.mMaxSpeed()          = comp * mMaxSpeed() + blendFactor * dest.mMaxSpeed();
+	outParms.mFov()               = comp * mFov() + blendFactor * dest.mFov();
+	outParms.mDistance()          = comp * mDistance() + blendFactor * dest.mDistance();
+	outParms.mRotationPerSecond() = comp * mRotationPerSecond() + blendFactor * dest.mRotationPerSecond();
+	outParms.mRandomAngle()       = comp * mRandomAngle() + blendFactor * dest.mRandomAngle();
 }
 
 /*
@@ -83,18 +83,13 @@ BoidParameter::BoidParameter()
  * Address:	80206028
  * Size:	0000C0
  */
-void BoidParameter::getParms(int blendIdx1, int blendIdx2, f32 blendFactor, BoidParms& outParms)
+void BoidParameter::getParms(int srcIndex, int destIndex, f32 blendFactor, BoidParms& outParms)
 {
-	TNode* blendNode1 = static_cast<TNode*>(mNode.getChildAt(blendIdx1));
-	TNode* blendNode2 = static_cast<TNode*>(mNode.getChildAt(blendIdx2));
-	bool check        = false;
-	if (blendNode1 && blendNode2) {
-		check = true;
-	}
+	TNode* src  = static_cast<TNode*>(mNode.getChildAt(srcIndex));
+	TNode* dest = static_cast<TNode*>(mNode.getChildAt(destIndex));
+	P2ASSERTBOOLLINE(143, src && dest);
 
-	P2ASSERTLINE(143, check);
-
-	blendNode1->mParms.blendTo(blendNode2->mParms, outParms, blendFactor);
+	src->mParms.blendTo(dest->mParms, outParms, blendFactor);
 }
 
 /*
@@ -164,12 +159,12 @@ Uja::Uja()
     : TFlock()
     , mUpdateContext()
 {
-	(Vector3f)(*this) = Vector3f(0.0f);
-	_50               = 0.0f;
-	mFlockMgr         = nullptr;
-	mBufferSlotCount  = 4;
-	mPikiBuffer       = new Piki*[mBufferSlotCount];
-	mPikiDistBuffer   = new f32[mBufferSlotCount];
+	(Vector3f)(*this)    = Vector3f(0.0f);
+	mVelocity            = 0.0f;
+	mFlockMgr            = nullptr;
+	mBufferSlotCount     = 4;
+	mClosePikiBuffer     = new Piki*[mBufferSlotCount];
+	mClosePikiDistBuffer = new f32[mBufferSlotCount];
 	clearBuffer();
 }
 
@@ -181,17 +176,17 @@ Uja::Uja()
 void Uja::init(Mgr* mgr, Vector3f& pos)
 {
 	// this is wrong but it's a placeholder for floats
-	_70 = TAU * randFloat();
-	_84 = Vector3f(0.0f);
-	_90 = Vector3f(0.0f);
-	_9C = Vector3f(0.0f);
+	mMotionAnimationFactor = TAU * randFloat();
+	mPreviousAlignmentDir  = Vector3f(0.0f);
+	mPreviousMoveDir       = Vector3f(0.0f);
+	mPreviousClosestUjaDir = Vector3f(0.0f);
 
-	_AC = 0;
+	mState = STATE_Appear;
 
-	_AD = (int)(100.0f * randFloat()) + 20;
-	_B0 = 0;
-	_AE = 0;
-	_B4 = 0.0f;
+	_AD           = (int)(100.0f * randFloat()) + 20;
+	_B0           = 0;
+	_AE           = 0;
+	mHeightOffset = 0.0f;
 	// UNUSED FUNCTION
 }
 
@@ -202,8 +197,8 @@ void Uja::init(Mgr* mgr, Vector3f& pos)
  */
 bool Uja::damaged(f32 damage)
 {
-	_A8 -= damage;
-	return _A8 <= 0.0f;
+	mHealth -= damage;
+	return mHealth <= 0.0f;
 }
 
 /*
@@ -224,8 +219,8 @@ void Uja::setPosition(Vector3f& pos)
 void Uja::clearBuffer()
 {
 	for (int i = 0; i < mBufferSlotCount; i++) {
-		mPikiBuffer[i]     = nullptr;
-		mPikiDistBuffer[i] = 12800.0f;
+		mClosePikiBuffer[i]     = nullptr;
+		mClosePikiDistBuffer[i] = 12800.0f;
 	}
 }
 
@@ -246,10 +241,11 @@ void Uja::updateBuffer()
 				f32 dist     = sep.length();
 				if (dist < 60.0f) {
 					for (int i = 0; i < mBufferSlotCount; i++) {
-						Piki* bufferPiki = mPikiBuffer[i];
-						if (!bufferPiki || !bufferPiki->isAlive() || mPikiDistBuffer[i] > dist) {
-							mPikiBuffer[i]     = piki;
-							mPikiDistBuffer[i] = dist;
+						Piki* bufferPiki = mClosePikiBuffer[i];
+
+						if (!bufferPiki || !bufferPiki->isAlive() || mClosePikiDistBuffer[i] > dist) {
+							mClosePikiBuffer[i]     = piki;
+							mClosePikiDistBuffer[i] = dist;
 						}
 					}
 				}
@@ -265,12 +261,15 @@ void Uja::updateBuffer()
  */
 void Uja::makeMatrix()
 {
-	Vector3f rot(_B8, _5C, 0.0f);
-	Vector3f scale = _64;
+	Vector3f rot(mPitch, mFaceDirection, 0.0f);
+
+	Vector3f scale = mScale;
 	scale *= mFlockMgr->mUjaParms->mDisplayScale();
+
 	Vector3f translation = (Vector3f)(*this);
-	translation.y += _B4;
-	_10.makeSRT(scale, rot, translation);
+	translation.y += mHeightOffset;
+
+	mTransformationMtx.makeSRT(scale, rot, translation);
 }
 
 /*
@@ -281,15 +280,15 @@ void Uja::makeMatrix()
 void Uja::updateScale(f32 scale)
 {
 	f32 factor = 4.0f * (PI * (scale / 20.0f));
-	_70 += (sys->mDeltaTime * factor) * mFlockMgr->mUjaParms->mMotionSpeed();
+	mMotionAnimationFactor += (sys->mDeltaTime * factor) * mFlockMgr->mUjaParms->mMotionSpeed();
 
-	if (_70 > TAU) {
-		_70 -= TAU;
+	if (mMotionAnimationFactor > TAU) {
+		mMotionAnimationFactor -= TAU;
 	}
 
-	_64.x = 0.14f * sinf(_70) + 1.0f;
-	_64.z = 0.14f * cosf(_70) + 1.0f;
-	_64.y = 0.14f * cosf(_70) + 1.0f;
+	mScale.x = 0.14f * sinf(mMotionAnimationFactor) + 1.0f;
+	mScale.z = 0.14f * cosf(mMotionAnimationFactor) + 1.0f;
+	mScale.y = 0.14f * cosf(mMotionAnimationFactor) + 1.0f;
 }
 
 /*
@@ -299,32 +298,32 @@ void Uja::updateScale(f32 scale)
  */
 void Uja::update(BoidParms& parms)
 {
-	if (_AC == 6) {
+	if (mState == STATE_InFloor) {
 		return;
 	}
 
 	f32 frameLength = sys->mDeltaTime;
-	if (_AC == 4) {
-		if (_B8 < HALF_PI) {
-			_B8 += 4.0f * (HALF_PI * frameLength);
+	if (mState == STATE_FallOffWorld) {
+		if (mPitch < HALF_PI) {
+			mPitch += 4.0f * (HALF_PI * frameLength);
 		} else {
-			_B4 -= 10.0f * frameLength;
+			mHeightOffset -= 10.0f * frameLength;
 		}
 
 		makeMatrix();
 		updateScale(100.0f);
 
-		if (_B4 < -15.0f) {
-			_B4 = -15.0f;
-			_AC = 6;
-			return;
-		} else {
+		// If 15 units below the floor
+		if (mHeightOffset < -15.0f) {
+			mHeightOffset = -15.0f;
+			mState        = STATE_InFloor;
 			return;
 		}
+
 		return;
 	}
 
-	Vector2f unkVec(0.0f); // f24, f25 (f23?)
+	Vector2f avoidanceVector(0.0f); // f24, f25 (f23?)
 
 	f32 scale = 10.0f * mFlockMgr->mUjaParms->mDisplayScale(); // f29
 	f32 speed = parms.mMaxSpeed();                             // f30
@@ -336,98 +335,118 @@ void Uja::update(BoidParms& parms)
 	updateBuffer();
 	sys->mTimers->_stop("AI PIKI");
 
-	Vector3f sep; // 0x2B4
-	sep = mFlockMgr->_7C - *this;
-	sep.normalise();
+	Vector3f seperationVec; // 0x2B4
+	seperationVec = mFlockMgr->mFlockCentre - *this;
+	seperationVec.normalise();
 
-	f32 scale2 = 1280.0f;
+	// To avoid collisions, we have an arbitrary size (representing the Uja) to keep away from other Uja
+	// While calculating the alignment vector.
+	f32 alignmentThreshold = 1280.0f;
 
+	// AI Alignment
 	sys->mTimers->_start("AI ALN", true);
 
-	Vector3f vec; // f22, f21, f20
+	Vector3f alignmentVec; // f22, f21, f20
 	if (!mUpdateContext.updatable()) {
-		vec = _84;
-		sep = _90;
+		alignmentVec  = mPreviousAlignmentDir;
+		seperationVec = mPreviousMoveDir;
 	} else {
-		scale2      = scale + scale; // f28
-		int counter = 0;             // r28
-		vec         = Vector3f(0.0f);
-		sep         = Vector3f(0.0f);
+		alignmentThreshold = scale + scale; // f28
 
-		f32 val2 = scale + parms.mDistance(); // f14
-		Iterator<Uja> iter(mFlockMgr);
+		int visibleUjaCount = 0; // r28
+		alignmentVec        = Vector3f(0.0f);
+		seperationVec       = Vector3f(0.0f);
 
-		f32 val3 = 2.0f * scale; // f15
+		f32 distanceThreshold = scale + parms.mDistance(); // f14
 
-		CI_LOOP(iter)
+		Iterator<Uja> flockList(mFlockMgr);
+
+		f32 doubleScale = 2.0f * scale; // f15
+
+		CI_LOOP(flockList)
 		{
-			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
-				Vector3f ujaSep = *this - *uja;       // 0x298
-				f32 dist        = ujaSep.normalise(); // f16
-				f32 fov         = parms.mFov();       // f17
-				if (dist < val2) {
+			Uja* i = *flockList;
+
+			if (i != this && i->mState != STATE_2) {
+				Vector3f directionFromUjaToThis = *this - *i; // 0x298
+
+				f32 dist = directionFromUjaToThis.normalise(); // f16
+				f32 fov  = parms.mFov();                       // f17
+
+				if (dist < distanceThreshold) {
 					if (dist > 0.0f) {
-						f32 angleDist = angDist(roundAng(JMAAtan2Radian(ujaSep.x, ujaSep.z)), _5C);
+						// Checks the angular distance between the direction to the other object and the current direction
+						f32 angleDist
+						    = angDist(roundAng(JMAAtan2Radian(directionFromUjaToThis.x, directionFromUjaToThis.z)), mFaceDirection);
+
+						// If the direction is NOT within the FOV, skip this object
 						if (absF(angleDist) > TORADIANS(fov)) {
 							continue;
 						}
 					}
-					sep += *uja;
 
-					Vector3f newVec = _50;
+					// We can see the other Uja, so we add it to the alignment vector to not collide with it
+					seperationVec += *i;
+
+					Vector3f newVec = mVelocity;
 					newVec.normalise();
 
-					counter++;
-					vec += uja->_50;
+					visibleUjaCount++;
+					alignmentVec += i->mVelocity;
 				}
 
-				if (dist < scale2) {
-					scale2 = dist;
-					unkVec = Vector2f(ujaSep.x, ujaSep.z) * (val3 - dist);
+				if (dist < alignmentThreshold) {
+					alignmentThreshold = dist;
+					avoidanceVector    = Vector2f(directionFromUjaToThis.x, directionFromUjaToThis.z) * (doubleScale - dist);
 				}
 			}
 		}
 
-		if (counter > 0) {
-			f32 norm = 1.0f / (f32)counter;
-			_84      = vec * norm;
-			sep *= norm;
+		// If we could see any other Uja, we cache the move direction
+		if (visibleUjaCount > 0) {
+			f32 norm              = 1.0f / (f32)visibleUjaCount;
+			mPreviousAlignmentDir = alignmentVec * norm;
 
-			sep -= *this;
-			sep.normalise();
-			_90 = sep;
+			seperationVec *= norm;
+			seperationVec -= *this;
+			seperationVec.normalise();
+
+			mPreviousMoveDir = seperationVec;
 		}
 	}
 
 	sys->mTimers->_stop("AI ALN");
 
-	Vector3f sep2(0.0f); // 0x280
-	sep2 = _44 - *this;
+	// UNUSED
+	Vector3f directionTo_44(0.0f); // 0x280
+	directionTo_44 = _44 - *this;
+	directionTo_44.normalise();
 
-	sep2.normalise();
-
-	Vector3f unkVec2(0.0f); // f31, f19, f18
+	Vector3f closestUjaDirection(0.0f); // f31, f19, f18
 
 	if (mUpdateContext.updatable()) {
 		f32 minDist = 2.0f * scale; // f14
+
 		Iterator<Uja> iter(mFlockMgr);
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
-				Vector3f ujaSep = *this - *uja; // 0x264
-				f32 dist        = ujaSep.normalise();
 
+			// If current iteration isn't this, and we aren't STATE_2
+			if (uja != this && uja->mState != STATE_2) {
+				// Calculate direction and distance to the other Uja
+				Vector3f ujaSep = *this - *uja; // 0x264
+
+				f32 dist = ujaSep.normalise();
 				if (dist < minDist) {
-					minDist = dist;
-					unkVec2 = ujaSep;
-					_9C     = ujaSep;
+					minDist                = dist;
+					closestUjaDirection    = ujaSep;
+					mPreviousClosestUjaDir = ujaSep;
 				}
 			}
 		}
 	} else {
-		unkVec2 = _9C;
+		closestUjaDirection = mPreviousClosestUjaDir;
 	}
 
 	// EVERYTHING PAST HERE IS FAKE
@@ -438,7 +457,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				*this - *uja;
 				*this - *uja;
@@ -473,7 +492,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -485,7 +504,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -497,7 +516,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -509,7 +528,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -521,7 +540,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -533,7 +552,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -545,7 +564,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -557,7 +576,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -569,7 +588,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -581,7 +600,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -593,7 +612,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -605,7 +624,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -617,7 +636,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -629,7 +648,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -641,7 +660,7 @@ void Uja::update(BoidParms& parms)
 		CI_LOOP(iter)
 		{
 			Uja* uja = *iter;
-			if (uja != this && uja->_AC != 2) {
+			if (uja != this && uja->mState != STATE_2) {
 				Vector3f ujaSep = *this - *uja;
 				f32 dist        = ujaSep.normalise();
 			}
@@ -2033,10 +2052,10 @@ void UjaMgr::appear()
 {
 	for (int i = 0; i < getMaxObjects(); i++) {
 		Uja* uja = static_cast<Uja*>(getFlock(i));
-		if (uja->_AC == 6 || uja->_AC == 3) {
-			uja->_AC = 0;
-			uja->_B4 = 0.0f;
-			uja->_B8 = 0.0f;
+		if (uja->mState == Uja::STATE_InFloor || uja->mState == Uja::STATE_Disappear) {
+			uja->mState        = Uja::STATE_Appear;
+			uja->mHeightOffset = 0.0f;
+			uja->mPitch        = 0.0f;
 		}
 	}
 }
@@ -2049,7 +2068,7 @@ void UjaMgr::appear()
 void UjaMgr::disappear()
 {
 	for (int i = 0; i < getMaxObjects(); i++) {
-		static_cast<Uja*>(getFlock(i))->_AC = 3;
+		static_cast<Uja*>(getFlock(i))->mState = Uja::STATE_Disappear;
 	}
 }
 
@@ -2061,7 +2080,7 @@ void UjaMgr::disappear()
 void UjaMgr::mogure()
 {
 	for (int i = 0; i < getMaxObjects(); i++) {
-		static_cast<Uja*>(getFlock(i))->_AC = 4;
+		static_cast<Uja*>(getFlock(i))->mState = Uja::STATE_FallOffWorld;
 	}
 }
 
@@ -2090,30 +2109,30 @@ void UjaMgr::test_createUjas()
 			uja->mFlockMgr    = this;
 			*((Vector3f*)uja) = dir;
 
-			uja->_50 = Vector3f(0.0f);
+			uja->mVelocity = Vector3f(0.0f);
 
-			uja->_5C = TAU * randFloat();
-			uja->_B8 = 0.0f;
-			uja->_60 = 0.0f;
+			uja->mFaceDirection = TAU * randFloat();
+			uja->mPitch         = 0.0f;
+			uja->_60            = 0.0f;
 			uja->makeMatrix();
 
-			uja->_64 = Vector3f(1.0f);
+			uja->mScale = Vector3f(1.0f);
 
-			uja->_70 = TAU * randFloat();
-			uja->_84 = Vector3f(0.0f);
-			uja->_90 = Vector3f(0.0f);
-			uja->_9C = Vector3f(0.0f);
+			uja->mMotionAnimationFactor = TAU * randFloat();
+			uja->mPreviousAlignmentDir  = Vector3f(0.0f);
+			uja->mPreviousMoveDir       = Vector3f(0.0f);
+			uja->mPreviousClosestUjaDir = Vector3f(0.0f);
 
-			uja->_A8 = mUjaParms->mLife();
+			uja->mHealth = mUjaParms->mLife();
 
-			uja->_A8 += (0.1f * uja->_A8 * randFloat());
+			uja->mHealth += (0.1f * uja->mHealth * randFloat());
 			uja->mUpdateContext.init(mUpdateMgr);
-			uja->_AC = 0;
+			uja->mState = Uja::STATE_Appear;
 
-			uja->_AD = (int)(100.0f * randFloat()) + 20;
-			uja->_B0 = 0;
-			uja->_AE = 0;
-			uja->_B4 = 0.0f;
+			uja->_AD           = (int)(100.0f * randFloat()) + 20;
+			uja->_B0           = 0;
+			uja->_AE           = 0;
+			uja->mHeightOffset = 0.0f;
 
 			f32 angle = factor * (f32)i;
 
@@ -2129,7 +2148,7 @@ void UjaMgr::test_createUjas()
  * Address:	80208690
  * Size:	000024
  */
-void UjaMgr::do_update_boundSphere() { _0C = mBoundSphere; }
+void UjaMgr::do_update_boundSphere() { mActivationSpherePosition = mBoundSphere; }
 
 /*
  * --INFO--
@@ -2148,11 +2167,11 @@ void UjaMgr::do_update()
 
 	mUpdateMgr->update();
 
-	int counter1 = 0; // r31
-	int counter2 = 0; // r30
+	int ujaCount       = 0; // r31
+	int movingUjaCount = 0; // r30
 
-	_7C = Vector3f(0.0f);
-	_88 = Vector3f(0.0f);
+	mFlockCentre     = Vector3f(0.0f);
+	mAverageVelocity = Vector3f(0.0f);
 
 	for (int i = 0; i < getMaxObjects(); i++) {
 		if (!isFlagAlive(i)) {
@@ -2160,21 +2179,21 @@ void UjaMgr::do_update()
 		}
 
 		Uja* uja = static_cast<Uja*>(getFlock(i));
-		counter1++;
-		_7C += *uja;
+		ujaCount++;
+		mFlockCentre += *uja;
 
-		if (uja->_AC != 2) {
-			counter2++;
-			_88 += uja->_50;
+		if (uja->mState != Uja::STATE_2) {
+			movingUjaCount++;
+			mAverageVelocity += uja->mVelocity;
 		}
 	}
 
-	if (counter1 > 0) {
-		_7C *= 1.0f / (f32)counter1;
+	if (ujaCount > 0) {
+		mFlockCentre *= 1.0f / (f32)ujaCount; // Find middle of the flock
 	}
 
-	if (counter2 > 0) {
-		_88 *= 1.0f / (f32)counter2;
+	if (movingUjaCount > 0) {
+		mAverageVelocity *= 1.0f / (f32)movingUjaCount; // Find average velocity of the flock
 	}
 
 	for (int i = 0; i < getMaxObjects(); i++) {
@@ -2195,16 +2214,19 @@ void UjaMgr::do_update()
  */
 void UjaMgr::astonishPikmins()
 {
-	Vector3f pos = _0C.mPosition;
+	Vector3f activationCentre = mActivationSpherePosition.mPosition;
+
 	Iterator<Piki> iter(pikiMgr);
 	InteractAstonish astonish(nullptr, 500.0f);
+
 	CI_LOOP(iter)
 	{
 		Piki* piki = *iter;
 		if (piki->isAlive()) {
 			Vector3f pikiPos = piki->getPosition();
-			Vector3f sep     = pikiPos - pos;
-			if (sep.length() <= 500.0f) {
+			f32 distance     = (pikiPos - activationCentre).length();
+
+			if (distance <= 500.0f) {
 				piki->stimulate(astonish);
 			}
 		}
@@ -2232,7 +2254,7 @@ void FSM::init(Item*)
 Item::Item()
     : FSMItem<Item, FSM, State>(OBJTYPE_Ujamushi)
 {
-	mCollTree               = new CollTree; // why
+	mCollTree               = new CollTree;
 	mBoundingSphere.mRadius = 90.0f;
 	mDummyShape.mMatrix     = &mBaseTrMatrix;
 	mCollTree->createSingleSphere(&mDummyShape, 0, mBoundingSphere, nullptr);
@@ -2248,9 +2270,12 @@ void Item::onInit(CreatureInitArg* initArg)
 {
 	InitArg* ujaArg = static_cast<InitArg*>(initArg);
 	P2ASSERTLINE(1071, ujaArg);
+
 	int count = ujaArg->mCount;
 	mFlockMgr = new UjaMgr(count);
+
 	setCollisionFlick(false);
+
 	mFsm->start(this, UJAMUSHI_Wait, nullptr);
 	setAlive(true);
 }
@@ -2272,8 +2297,8 @@ void Item::onSetPosition()
 	_1E0 = 0;
 	_1E4 = 0;
 
-	_1EC = mgr->mBoidParameter.mNode.getChildCount();
-	_1E8 = 0.0f;
+	mBoidCount = mgr->mBoidParameter.mNode.getChildCount();
+	_1E8       = 0.0f;
 	setBoidTimer();
 }
 
@@ -2294,9 +2319,9 @@ void Item::changeBoid()
  */
 void Item::setBoidTimer()
 {
-	f32 timer = 0.2f * randFloat() + 0.5f;
-	_1F0      = timer;
-	_1F4      = timer;
+	f32 timer   = 0.2f * randFloat() + 0.5f;
+	mBoidTimer1 = timer;
+	mBoidTimer2 = timer;
 }
 
 /*
@@ -2376,23 +2401,23 @@ void Item::doAI()
 	updateCollTree();
 
 	if (_1E8 < 1.0f) {
-		_1F0 -= sys->mDeltaTime;
-		if (_1F0 <= 0.0f) {
+		mBoidTimer1 -= sys->mDeltaTime;
+		if (mBoidTimer1 <= 0.0f) {
 			_1E0        = _1E4;
 			f32 randVal = 0.5f + 0.2f * randFloat();
-			_1F0        = randVal;
-			_1F4        = randVal;
+			mBoidTimer1 = randVal;
+			mBoidTimer2 = randVal;
 			_1E8        = 1.0f;
 		} else {
-			_1E8 = 1.0f - (_1F0 / _1F4);
+			_1E8 = 1.0f - (mBoidTimer1 / mBoidTimer2);
 		}
 	} else {
-		_1F0 -= sys->mDeltaTime;
-		if (_1F0 <= 0.0f) {
-			_1E4        = (f32)_1EC * randFloat();
+		mBoidTimer1 -= sys->mDeltaTime;
+		if (mBoidTimer1 <= 0.0f) {
+			_1E4        = (f32)mBoidCount * randFloat();
 			f32 randVal = 0.5f + 0.2f * randFloat();
-			_1F0        = randVal;
-			_1F4        = randVal;
+			mBoidTimer1 = randVal;
+			mBoidTimer2 = randVal;
 			_1E8        = 0.0f;
 		}
 	}

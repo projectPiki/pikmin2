@@ -215,8 +215,8 @@ int Piki::graspSituation_Fast(Game::Creature** outTarget)
 		case OBJTYPE_Ujamushi:
 		case OBJTYPE_Weed: { // can we pluck the grass/attack the ujadani?
 			if (creature->isAlive() && creature->getFlockMgr() && creature->getFlockMgr()->isAttackable()) {
-				f32 radius        = creature->getFlockMgr()->_0C.mRadius;
-				Vector3f flockPos = creature->getFlockMgr()->_0C.mPosition;
+				f32 radius        = creature->getFlockMgr()->mActivationSpherePosition.mRadius;
+				Vector3f flockPos = creature->getFlockMgr()->mActivationSpherePosition.mPosition;
 				f32 dist          = flockPos.distance(mPosition);
 				if (dist < radius) {
 					minDist = dist;

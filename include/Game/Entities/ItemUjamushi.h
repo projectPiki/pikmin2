@@ -101,7 +101,15 @@ struct WaitState : public State {
 struct BoidParms : public Parameters {
 	BoidParms();
 
-	void blendTo(BoidParms&, BoidParms&, f32);
+	/**
+	 * Blends the parameters of two BoidParms objects based on a blend factor.
+	 * The resulting blended parameters are stored in the outParms object.
+	 *
+	 * @param dest The destination BoidParms object to blend with.
+	 * @param outParms The BoidParms object to store the blended parameters.
+	 * @param blendFactor The blend factor, ranging from 0.0 to 1.0.
+	 */
+	void blendTo(BoidParms& dest, BoidParms& outParms, f32 blendFactor);
 
 	// _00-_0C = Parameters
 	Parm<f32> mCohesion;          // _0C, p000
@@ -136,7 +144,14 @@ struct BoidParameter : public CNode {
 
 	virtual ~BoidParameter() { } // _08 (weak)
 
-	void getParms(int, int, f32, BoidParms&);
+	/**
+	 * @brief Retrieves the interpolated parameters for a boid.
+	 * @param srcIndex The index of the source node.
+	 * @param destIndex The index of the destination node.
+	 * @param blendFactor The blend factor used for interpolation between the source and destination parameters.
+	 * @param outParms The BoidParms object where the resulting parameters will be stored.
+	 */
+	void getParms(int srcIndex, int destIndex, f32 blendFactor, BoidParms& outParms);
 	void newParms();
 	void read(Stream& input);
 
@@ -159,11 +174,22 @@ struct UjaParms : public Parameters {
 };
 
 struct Uja : public TFlock {
+	enum State {
+		STATE_Appear = 0,
+		STATE_1,
+		STATE_2,
+		STATE_Disappear,
+		STATE_FallOffWorld,
+		STATE_5,
+		STATE_InFloor,
+		STATE_COUNT,
+	};
+
 	Uja();
 
-	virtual void makeMatrix();                    // _08
-	virtual bool isVisible() { return _AC != 6; } // _0C (weak)
-	virtual bool damaged(f32);                    // _1C
+	virtual void makeMatrix();                       // _08
+	virtual bool isVisible() { return mState != 6; } // _0C (weak)
+	virtual bool damaged(f32);                       // _1C
 
 	void clearBuffer();
 	void updateBuffer();
@@ -182,28 +208,28 @@ struct Uja : public TFlock {
 	void setPosition(Vector3f& pos);
 
 	// _00-_44 = TFlock
-	Vector3f _44;                 // _44
-	Vector3f _50;                 // _50
-	f32 _5C;                      // _5C
-	f32 _60;                      // _60
-	Vector3f _64;                 // _64
-	f32 _70;                      // _70
-	UjaMgr* mFlockMgr;            // _74
-	UpdateContext mUpdateContext; // _78
-	Vector3f _84;                 // _84
-	Vector3f _90;                 // _90
-	Vector3f _9C;                 // _9C
-	f32 _A8;                      // _A8
-	u8 _AC;                       // _AC
-	u8 _AD;                       // _AD
-	u8 _AE;                       // _AE
-	u8 _AF;                       // _AF, unknown/padding
-	u32 _B0;                      // _B0, unknown
-	f32 _B4;                      // _B4
-	f32 _B8;                      // _B8
-	int mBufferSlotCount;         // _BC
-	Piki** mPikiBuffer;           // _C0
-	f32* mPikiDistBuffer;         // _C4
+	Vector3f _44;                    // _44
+	Vector3f mVelocity;              // _50
+	f32 mFaceDirection;              // _5C
+	f32 _60;                         // _60
+	Vector3f mScale;                 // _64
+	f32 mMotionAnimationFactor;      // _70
+	UjaMgr* mFlockMgr;               // _74
+	UpdateContext mUpdateContext;    // _78
+	Vector3f mPreviousAlignmentDir;  // _84
+	Vector3f mPreviousMoveDir;       // _90
+	Vector3f mPreviousClosestUjaDir; // _9C
+	f32 mHealth;                     // _A8
+	u8 mState;                       // _AC
+	u8 _AD;                          // _AD
+	u8 _AE;                          // _AE
+	u8 _AF;                          // _AF, unknown/padding
+	u32 _B0;                         // _B0, unknown
+	f32 mHeightOffset;               // _B4
+	f32 mPitch;                      // _B8
+	int mBufferSlotCount;            // _BC
+	Piki** mClosePikiBuffer;         // _C0
+	f32* mClosePikiDistBuffer;       // _C4
 };
 
 struct UjaMgrInitArg {
@@ -239,8 +265,8 @@ struct UjaMgr : public TFlockMgr<Uja> {
 	// _00     = VTBL
 	// _00-_6C = TFlockMgr
 	Sys::Sphere mBoundSphere;      // _6C
-	Vector3f _7C;                  // _7C
-	Vector3f _88;                  // _88
+	Vector3f mFlockCentre;         // _7C
+	Vector3f mAverageVelocity;     // _88
 	UpdateMgr* mUpdateMgr;         // _94
 	int _98;                       // _98
 	int _9C;                       // _9C
@@ -286,9 +312,9 @@ struct Item : public FSMItem<Item, FSM, State> {
 	int _1E0;               // _1E0
 	int _1E4;               // _1E4
 	f32 _1E8;               // _1E8
-	int _1EC;               // _1EC
-	f32 _1F0;               // _1F0
-	f32 _1F4;               // _1F4
+	int mBoidCount;         // _1EC
+	f32 mBoidTimer1;        // _1F0
+	f32 mBoidTimer2;        // _1F4
 	DummyShape mDummyShape; // _1F8
 	UjaMgr* mFlockMgr;      // _200
 };

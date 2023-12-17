@@ -474,30 +474,29 @@ bool InteractFire::actPiki(Game::Piki* piki)
  * Address:	80194440
  * Size:	000134
  */
-
-// what happened to this poor function??
 bool InteractAstonish::actPiki(Game::Piki* piki)
 {
 	if (piki->mCurrentState->invincible(piki)) {
 		return false;
 	}
+
 	PikiState* currState = piki->mCurrentState;
-	if (currState && currState->transittable(PIKISTATE_Panic)) {
-		int pikiKind = piki->getKind();
-		if (pikiKind != Purple) {
-			PanicStateArg panicAstonish;
-			panicAstonish.mPanicType = PIKIPANIC_Panic; // should probably get renamed to astonish
-			if (mCreature && mCreature->isTeki()) {
-				EnemyBase* teki = static_cast<EnemyBase*>(mCreature);
-				piki->setTekiKillID(teki->getEnemyTypeID());
-			} else {
-				piki->mTekiKillID = -1;
-			}
-			piki->mFsm->transit(piki, PIKISTATE_Panic, &panicAstonish);
-			return true;
+	if (currState && currState->transittable(PIKISTATE_Panic) && piki->getKind() != Purple) {
+		PanicStateArg panicAstonish;
+		panicAstonish.mPanicType = PIKIPANIC_Panic; // should probably get renamed to astonish
+
+		if (mCreature && mCreature->isTeki()) {
+			EnemyBase* teki = static_cast<EnemyBase*>(mCreature);
+			piki->setTekiKillID(teki->getEnemyTypeID());
+		} else {
+			piki->mTekiKillID = -1;
 		}
+
+		piki->mFsm->transit(piki, PIKISTATE_Panic, &panicAstonish);
+		return true;
 	}
-	currState->transittable(PIKISTATE_Panic); // ???????
+
+	currState->transittable(PIKISTATE_Panic);
 	return false;
 }
 

@@ -70,7 +70,7 @@ void Weed::makeMatrix()
 	Vector3f rot(0.0f, randFloat() * TAU, 0.0f);
 	Vector3f scale = mScale;
 	Vector3f translation(*this);
-	_10.makeSRT(scale, rot, translation);
+	mTransformationMtx.makeSRT(scale, rot, translation);
 }
 
 /*
@@ -99,7 +99,7 @@ WeedMgr::WeedMgr(int count)
  */
 void WeedMgr::init(Sys::Sphere& sphere, cWeedType weedType)
 {
-	_0C = sphere;
+	mActivationSpherePosition = sphere;
 	createWeeds(weedType);
 	resolveCollision(60.0f);
 }
@@ -120,9 +120,10 @@ void WeedMgr::createWeeds(cWeedType weedType)
 			// } else {
 			// 	weed->_40 = (int)(randFloat() * 3.0f) + 1;
 			// }
-			f32 randRadius   = _0C.mRadius * randFloat();
-			f32 randTheta    = randFloat() * TAU;
-			Vector3f weedPos = Vector3f(randRadius * sinf(randTheta), 0.0f, randRadius * cosf(randTheta)) + _0C.mPosition;
+			f32 randRadius = mActivationSpherePosition.mRadius * randFloat();
+			f32 randTheta  = randFloat() * TAU;
+			Vector3f weedPos
+			    = Vector3f(randRadius * sinf(randTheta), 0.0f, randRadius * cosf(randTheta)) + mActivationSpherePosition.mPosition;
 			weed->init(this, weedPos);
 		}
 	}

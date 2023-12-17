@@ -27,8 +27,8 @@ struct TFlock : public Vector3f {
 
 	// _00 - _0C Vector3f
 	// _0C VTBL
-	Matrixf _10; // _10
-	u8 _40;      // _40
+	Matrixf mTransformationMtx; // _10
+	u8 _40;                     // _40
 };
 
 struct BaseFlockMgr {
@@ -94,10 +94,10 @@ struct BaseFlockMgr {
 	void resolveCollision(f32);
 
 	// _00 VTBL
-	int mMaxAttackers;       // _04, -1 = no limit (uja), otherwise 5 (stone/weed)
-	int mNumAttackers;       // _08
-	Sys::Sphere _0C;         // _0C
-	bool mIsAgentVisible[2]; // _1C, might be 4, IDK
+	int mMaxAttackers;                     // _04, -1 = no limit (uja), otherwise 5 (stone/weed)
+	int mNumAttackers;                     // _08
+	Sys::Sphere mActivationSpherePosition; // _0C
+	bool mIsAgentVisible[2];               // _1C, might be 4, IDK
 };
 
 template <typename T>
