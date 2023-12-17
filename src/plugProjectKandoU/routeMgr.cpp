@@ -437,8 +437,8 @@ bool RouteMgr::linkable(WayPoint* wpA, WayPoint* wpB)
 
 	for (f32 i = 0.0f; i <= 1.0f; i += 0.1f) {
 		CurrTriInfo info;
-		info.mPosition = posA + sep * i;
-		info._0C       = false;
+		info.mPosition        = posA + sep * i;
+		info.mUpdateOnNewMaxY = false;
 
 		mapMgr->getCurrTri(info);
 		if (FABS(prevFloorHeight - info.mMinY) > 25.0f) {
@@ -496,7 +496,7 @@ WayPoint* RouteMgr::getNearestWayPoint(WPSearchArg& searchArg)
 			if (dist < minDist) {
 				if (searchArg.mDoRayCheck && dist < 300.0f) {
 					Sys::RayIntersectInfo mapInfo;
-					mapInfo._1C                      = 1;
+					mapInfo.mCheckHorizontal         = 1;
 					mapInfo.mDistance                = 1280000.0f;
 					mapInfo.mIntersectEdge.mStartPos = searchArg.mPosition;
 					mapInfo.mIntersectEdge.mEndPos   = wp->mPosition;
@@ -506,7 +506,7 @@ WayPoint* RouteMgr::getNearestWayPoint(WPSearchArg& searchArg)
 					}
 
 					Sys::RayIntersectInfo platInfo;
-					platInfo._1C                      = 1;
+					platInfo.mCheckHorizontal         = 1;
 					platInfo.mDistance                = 1280000.0f;
 					platInfo.mIntersectEdge.mStartPos = searchArg.mPosition;
 					platInfo.mIntersectEdge.mEndPos   = wp->mPosition;

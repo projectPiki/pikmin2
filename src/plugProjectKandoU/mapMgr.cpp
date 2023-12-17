@@ -205,7 +205,7 @@ f32 MapMgr::getBestAngle(Vector3f& vec, f32 p2, f32 p3)
 		f32 tanTheta = p2 * (f32)tan(p3);
 
 		BeamCollisionArg beamArg(10.0f, 0, 0);
-		beamArg._00 = pos;
+		beamArg.mPosition = pos;
 		checkBeamCollision(beamArg);
 		angles[i] = beamArg._24;
 	}
@@ -694,7 +694,7 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 	arg._20 = 0;
 	arg._24 = 9.9999998E+10f;
 
-	Vector3f sep = arg._0C - arg._00;
+	Vector3f sep = arg._0C - arg.mPosition;
 	f32 dist     = sep.normalise();
 
 	if (dist == 0.0f) {
@@ -704,12 +704,12 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 	f32 norm              = dist / 30.0f;
 	Vector3f prevVelocity = sep * norm;
 
-	Sys::Sphere sphere(arg._00, arg._18);
+	Sys::Sphere sphere(arg.mPosition, arg.mBeamRadius);
 	Vector3f velocity;
 
 	for (int i = 0; i < 30; i++) {
 		velocity         = prevVelocity;
-		sphere.mPosition = arg._00;
+		sphere.mPosition = arg.mPosition;
 		MoveInfo moveInfo(&sphere, &velocity, 1.0f);
 
 		traceMove(moveInfo, 1.0f);
@@ -722,11 +722,11 @@ void MapMgr::checkBeamCollision(BeamCollisionArg& arg)
 			break;
 		}
 
-		arg._00      = sphere.mPosition;
-		prevVelocity = velocity;
+		arg.mPosition = sphere.mPosition;
+		prevVelocity  = velocity;
 	}
 
-	Vector3f sep2 = arg._0C - arg._00;
+	Vector3f sep2 = arg._0C - arg.mPosition;
 	arg._24       = sep2.length();
 }
 
@@ -1578,8 +1578,8 @@ void ShapeMapMgr::createTriangles(::Sys::CreateTriangleArg& arg) { mMapCollision
 f32 ShapeMapMgr::getMinY(Vector3f& pos)
 {
 	CurrTriInfo info;
-	info.mPosition = pos;
-	info._0C       = false;
+	info.mPosition        = pos;
+	info.mUpdateOnNewMaxY = false;
 
 	mMapCollision.getCurrTri(info);
 	return info.mMinY;
@@ -1679,9 +1679,9 @@ bool ShapeMapMgr::findRayIntersection(Sys::RayIntersectInfo& info)
 				check       = true;
 				f32 sqrDist = interVec.sqrDistance(startPos);
 				if (sqrDist < minDist) {
-					outPos   = interVec;
-					info._48 = tri->mTrianglePlane.b;
-					minDist  = sqrDist;
+					outPos        = interVec;
+					info.mNormalY = tri->mTrianglePlane.b;
+					minDist       = sqrDist;
 				}
 			}
 		}

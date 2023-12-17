@@ -1640,12 +1640,16 @@ void OBB::getCurrTriTriList(Game::CurrTriInfo& info)
 {
 	for (int i = 0; i < mTriIndexList.getNum(); i++) {
 		Triangle* currTri = info.mTable->getTriangle(mTriIndexList.mObjects[i]);
-		Vector3f vec      = info.mPosition;
-		if (currTri->insideXZ(vec)) {
-			if (info.mMaxY > vec.y) {
 
-				info.mMaxY = vec.y;
-				if (info._0C) {
+		Vector3f position = info.mPosition;
+
+		// Check if the position is inside the XZ bounds of the triangle
+		if (currTri->insideXZ(position)) {
+			// If the current Y is less than the max Y, update the max Y and possibly the normal vector and triangle
+			if (info.mMaxY > position.y) {
+				info.mMaxY = position.y;
+
+				if (info.mUpdateOnNewMaxY) {
 					info.mNormalVec.x = currTri->mTrianglePlane.a;
 					info.mNormalVec.y = currTri->mTrianglePlane.b;
 					info.mNormalVec.z = currTri->mTrianglePlane.c;
@@ -1654,10 +1658,11 @@ void OBB::getCurrTriTriList(Game::CurrTriInfo& info)
 				}
 			}
 
-			if (info.mMinY < vec.y) {
+			// If the current Y is greater than the min Y, update the min Y and possibly the normal vector and triangle
+			if (info.mMinY < position.y) {
+				info.mMinY = position.y;
 
-				info.mMinY = vec.y;
-				if (!info._0C) {
+				if (!info.mUpdateOnNewMaxY) {
 					info.mNormalVec.x = currTri->mTrianglePlane.a;
 					info.mNormalVec.y = currTri->mTrianglePlane.b;
 					info.mNormalVec.z = currTri->mTrianglePlane.c;
@@ -1828,28 +1833,32 @@ void OBBTree::traceMove_original(Matrixf&, Matrixf&, Game::MoveInfo&, float)
  * Address:	8041EA58
  * Size:	000214
  */
-bool OBBTree::findRayIntersection(Sys::RayIntersectInfo& arg0, Matrixf& arg1, Matrixf& arg2)
+bool OBBTree::findRayIntersection(Sys::RayIntersectInfo& info, Matrixf& transformationMtx, Matrixf& edgeTransformationMtx)
 {
-	Vector3f edgeStart = arg0.mIntersectEdge.mStartPos;
-	Vector3f edgeEnd   = arg0.mIntersectEdge.mEndPos;
-	Vector3f vec1      = arg2.mtxMult(edgeStart);
-	Vector3f vec2      = arg2.mtxMult(edgeEnd);
-	Vector3f edgeVec   = arg0.mIntersectEdge.mStartPos - arg0.mIntersectEdge.mEndPos;
+	Vector3f edgeStart = info.mIntersectEdge.mStartPos;
+	Vector3f edgeEnd   = info.mIntersectEdge.mEndPos;
+
+	Vector3f intersectEdgeStart = edgeTransformationMtx.mtxMult(edgeStart);
+	Vector3f intersectEdgeEnd   = edgeTransformationMtx.mtxMult(edgeEnd);
+
+	Vector3f edgeVec = info.mIntersectEdge.mStartPos - info.mIntersectEdge.mEndPos;
+
 	Sphere ball;
 	ball.mRadius   = edgeVec.qLength();
-	ball.mPosition = (vec1 + vec2) * 0.5f;
-
+	ball.mPosition = (intersectEdgeStart + intersectEdgeEnd) * 0.5f;
 	if (!getOBB()->mSphere.intersect(ball)) {
 		return false;
 	}
-	arg0._30                      = mTriangleTable;
-	arg0.mIntersectEdge.mStartPos = vec1;
-	arg0.mIntersectEdge.mEndPos   = vec2;
-	arg0._20                      = ball;
 
-	bool rayIntersect             = getOBB()->findRayIntersection(arg0, arg1, arg2);
-	arg0.mIntersectEdge.mStartPos = edgeStart;
-	arg0.mIntersectEdge.mEndPos   = edgeEnd;
+	info.mTriTable                = mTriangleTable;
+	info.mIntersectEdge.mStartPos = intersectEdgeStart;
+	info.mIntersectEdge.mEndPos   = intersectEdgeEnd;
+	info.mBoundingSphere          = ball;
+
+	bool rayIntersect = getOBB()->findRayIntersection(info, transformationMtx, edgeTransformationMtx);
+
+	info.mIntersectEdge.mStartPos = edgeStart;
+	info.mIntersectEdge.mEndPos   = edgeEnd;
 	return rayIntersect;
 	/*
 	stwu     r1, -0xc0(r1)
@@ -2041,26 +2050,26 @@ void OBB::traceMove_original(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTa
  * Address:	8041EC6C
  * Size:	0005C0
  */
-bool OBB::findRayIntersection(Sys::RayIntersectInfo& arg0, Matrixf& arg1, Matrixf& arg2)
+bool OBB::findRayIntersection(Sys::RayIntersectInfo& info, Matrixf& transformationMtx, Matrixf& unused)
 {
 	if (isLeaf()) {
-		return findRayIntersectionTriList(arg0, arg1, arg2);
+		return findRayIntersectionTriList(info, transformationMtx, unused);
 	}
 
-	f32 rad      = arg0._20.mRadius;
-	f32 ballDist = mDivPlane.calcDist(arg0._20.mPosition);
+	f32 rad      = info.mBoundingSphere.mRadius;
+	f32 ballDist = mDivPlane.calcDist(info.mBoundingSphere.mPosition);
 
 	if (ballDist > rad) {
 		if (mHalfA) {
-			return mHalfA->findRayIntersection(arg0, arg1, arg2);
+			return mHalfA->findRayIntersection(info, transformationMtx, unused);
 		}
-		return findRayIntersectionTriList(arg0, arg1, arg2);
+		return findRayIntersectionTriList(info, transformationMtx, unused);
 	}
 	if (ballDist < -rad) {
 		if (mHalfB) {
-			return mHalfB->findRayIntersection(arg0, arg1, arg2);
+			return mHalfB->findRayIntersection(info, transformationMtx, unused);
 		}
-		return findRayIntersectionTriList(arg0, arg1, arg2);
+		return findRayIntersectionTriList(info, transformationMtx, unused);
 	}
 	return false;
 	/*
@@ -2559,12 +2568,12 @@ lbl_8041F218:
  * Address:	8041F22C
  * Size:	000114
  */
-bool OBB::findRayIntersectionTriList(Sys::RayIntersectInfo& rayInfo, Matrixf& arg1, Matrixf& arg2)
+bool OBB::findRayIntersectionTriList(Sys::RayIntersectInfo& rayInfo, Matrixf& transformMtx, Matrixf& arg2)
 {
 	bool isIntersect = false;
 
 	for (int i = 0; i < mTriIndexList.getNum(); i++) {
-		Triangle* currTri = rayInfo._30->getTriangle(mTriIndexList.mObjects[i]);
+		Triangle* currTri = rayInfo.mTriTable->getTriangle(mTriIndexList.mObjects[i]);
 		Vector3f intersectVec;
 
 		if (rayInfo.condition(*currTri) && currTri->intersect(rayInfo.mIntersectEdge, rayInfo.mRadius, intersectVec)) {
@@ -2573,8 +2582,8 @@ bool OBB::findRayIntersectionTriList(Sys::RayIntersectInfo& rayInfo, Matrixf& ar
 			float sqSep     = sepVec.x * sepVec.x + sepVec.y * sepVec.y + sepVec.z * sepVec.z;
 			if (sqSep < rayInfo.mDistance) {
 				rayInfo.mDistance          = sqSep;
-				rayInfo.mIntersectPosition = arg1.mtxMult(intersectVec);
-				rayInfo._48                = currTri->mTrianglePlane.b;
+				rayInfo.mIntersectPosition = transformMtx.mtxMult(intersectVec);
+				rayInfo.mNormalY           = currTri->mTrianglePlane.b;
 			}
 		}
 	}

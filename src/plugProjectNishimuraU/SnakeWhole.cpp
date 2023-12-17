@@ -344,8 +344,8 @@ void Obj::appearNearByTarget(Creature* target)
 	}
 
 	CurrTriInfo info;
-	info.mPosition = newPos;
-	info._0C       = false;
+	info.mPosition        = newPos;
+	info.mUpdateOnNewMaxY = false;
 	mapMgr->getCurrTri(info);
 
 	if (info.mTriangle) {
@@ -356,8 +356,8 @@ void Obj::appearNearByTarget(Creature* target)
 		newPos *= 120.0f;
 		newPos += targetPos;
 		CurrTriInfo newInfo;
-		newInfo.mPosition = newPos;
-		newInfo._0C       = false;
+		newInfo.mPosition        = newPos;
+		newInfo.mUpdateOnNewMaxY = false;
 		mapMgr->getCurrTri(newInfo);
 		if (newInfo.mTriangle) {
 			newPos.y = newInfo.mMaxY;

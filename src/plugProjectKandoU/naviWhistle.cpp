@@ -53,7 +53,7 @@ void NaviWhistle::updatePosition()
 	f32 y          = 0.0f;
 	info.mPosition = mPosition;
 	if (mapMgr) {
-		info._0C = false;
+		info.mUpdateOnNewMaxY = false;
 		mapMgr->getCurrTri(info);
 		y       = info.mMinY;
 		mNormal = info.mNormalVec;

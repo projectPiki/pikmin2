@@ -980,8 +980,8 @@ bool Obj::flickHandCollision()
 			armPos += zVec;
 
 			CurrTriInfo info;
-			info.mPosition = armPos;
-			info._0C       = 0;
+			info.mPosition        = armPos;
+			info.mUpdateOnNewMaxY = 0;
 			mapMgr->getCurrTri(info);
 
 			if (!info.mTriangle || info.mMinY > armPos.y) {

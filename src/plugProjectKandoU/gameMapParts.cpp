@@ -434,7 +434,7 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool isFinalFloor)
 					triInfo.mPosition = birthPos;
 					f32 minY          = 0.0f;
 					if (mapMgr) {
-						triInfo._0C = 0;
+						triInfo.mUpdateOnNewMaxY = 0;
 						mapMgr->getCurrTri(triInfo);
 						minY = triInfo.mMinY;
 					}
@@ -4561,8 +4561,8 @@ lbl_801BBC1C:
 f32 RoomMapMgr::getMinY(Vector3f& pos)
 {
 	CurrTriInfo info;
-	info.mPosition = pos;
-	info._0C       = 0;
+	info.mPosition        = pos;
+	info.mUpdateOnNewMaxY = 0;
 	getCurrTri(info);
 	return info.mMinY;
 }

@@ -57,7 +57,7 @@ struct MoveInfo {
 	u8 _34[16];                                                       // _34
 	Sys::Triangle* mBounceTriangle;                                   // _44
 	Sys::Triangle* mWallTriangle;                                     // _48
-	Sys::Triangle* _4C;                                               // _4C
+	Sys::Triangle* _4C;                                               // _4C, water triangle?
 	Vector3f mPosition;                                               // _50
 	Vector3f mReflectPosition;                                        // _5C
 	Vector3f _68;                                                     // _68, related to tri at _4C

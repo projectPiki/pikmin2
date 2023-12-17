@@ -2283,14 +2283,14 @@ lbl_8041806C:
  */
 bool RayIntersectInfo::condition(Sys::Triangle& triangle)
 {
-	// return true if _1C is 0 (false?) OR if triangle plane is close(ish) to vertical
-	if (_1C) { // possibly a bool, not u8?
-		// check if triangle plane is close to vertical
+	if (mCheckHorizontal) {
 		if ((triangle.mTrianglePlane.b < 0.5f) && (triangle.mTrianglePlane.b > -0.1f)) {
 			return true;
 		}
+
 		return false;
 	}
+
 	return true;
 }
 
@@ -2901,7 +2901,7 @@ void GridDivider::getCurrTri(Game::CurrTriInfo& inputInfo)
 			if (testTri->insideXZ(tempPoint)) {
 				if (min_y > y_val) {
 					min_y = y_val;
-					if (inputInfo._0C != 0) {
+					if (inputInfo.mUpdateOnNewMaxY != 0) {
 						yTest                  = true;
 						inputInfo.mNormalVec.x = testTri->mTrianglePlane.a;
 						inputInfo.mNormalVec.y = testTri->mTrianglePlane.b;
@@ -2912,7 +2912,7 @@ void GridDivider::getCurrTri(Game::CurrTriInfo& inputInfo)
 
 				if (y_val > max_y) {
 					max_y = y_val;
-					if (inputInfo._0C == 0) {
+					if (inputInfo.mUpdateOnNewMaxY == 0) {
 						yTest                  = true;
 						inputInfo.mNormalVec.x = testTri->mTrianglePlane.a;
 						inputInfo.mNormalVec.y = testTri->mTrianglePlane.b;

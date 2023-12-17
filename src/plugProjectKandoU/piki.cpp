@@ -1001,8 +1001,8 @@ void Piki::onStickEndSelf(Creature* creature)
 
 	if (mapMgr) {
 		CurrTriInfo triInfo;
-		triInfo.mPosition = pikiPos;
-		triInfo._0C       = true;
+		triInfo.mPosition        = pikiPos;
+		triInfo.mUpdateOnNewMaxY = true;
 		mapMgr->getCurrTri(triInfo);
 		if (pikiPos.y < triInfo.mMaxY) {
 			pikiPos.y = triInfo.mMaxY;

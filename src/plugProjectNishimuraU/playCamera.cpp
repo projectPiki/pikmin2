@@ -1029,8 +1029,8 @@ f32 PlayCamera::getCollisionCameraTargetPhi(f32 angle, f32 dist)
 		f32 y;
 		Vector3f pos(sinTheta * scaledSin + mGoalPosition.x, mGoalPosition.y + scaledCos, cosTheta * scaledSin + mGoalPosition.z);
 		CurrTriInfo info;
-		info.mPosition = pos;
-		info._0C       = 0;
+		info.mPosition        = pos;
+		info.mUpdateOnNewMaxY = 0;
 		mapMgr->getCurrTri(info);
 
 		if (gameSystem && gameSystem->mIsInCave) {
