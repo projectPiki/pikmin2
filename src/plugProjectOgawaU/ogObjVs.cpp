@@ -7,206 +7,6 @@
 #include "System.h"
 #include "trig.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_ogObjVs_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048F368
-    lbl_8048F368:
-        .4byte 0x6F674F62
-        .4byte 0x6A56732E
-        .4byte 0x63707000
-        .4byte 0x45525221
-        .4byte 0x20696E20
-        .4byte 0x4F626A56
-        .4byte 0x73204372
-        .4byte 0x65617465
-        .4byte 0x8EB89473
-        .4byte 0x81490A00
-        .4byte 0x6368616C
-        .4byte 0x6C656E67
-        .4byte 0x655F3150
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x6368616C
-        .4byte 0x6C656E67
-        .4byte 0x655F3250
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x625F6461
-        .4byte 0x6D612E62
-        .4byte 0x6C6F0000
-        .4byte 0x6F62616B
-        .4byte 0x655F6963
-        .4byte 0x6F6E2E62
-        .4byte 0x6C6F0000
-    .global lbl_8048F3D4
-    lbl_8048F3D4:
-        .4byte 0x41726753
-        .4byte 0x63616C65
-        .4byte 0x00000000
-        .4byte 0x41726753
-        .4byte 0x63616C65
-        .4byte 0x436F6C6F
-        .4byte 0x72436F6C
-        .4byte 0x6F720000
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6800
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q25efx2d8ArgScale
-    __vt__Q25efx2d8ArgScale:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q25efx2d8ArgScaleFv
-    .global __vt__Q32og9newScreen5ObjVs
-    __vt__Q32og9newScreen5ObjVs:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32og9newScreen5ObjVsFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32og9newScreen5ObjVsFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q32og9newScreen5ObjVsFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q32og9newScreen5ObjVsFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q32og9newScreen5ObjVsFP10JKRArchive
-        .4byte doUpdateFadein__Q32og9newScreen5ObjVsFv
-        .4byte doUpdateFadeinFinish__Q32og9newScreen5ObjVsFv
-        .4byte doUpdate__Q32og9newScreen5ObjVsFv
-        .4byte doUpdateFinish__Q32og9newScreen5ObjVsFv
-        .4byte doUpdateFadeout__Q32og9newScreen5ObjVsFv
-        .4byte doUpdateFadeoutFinish__Q32og9newScreen5ObjVsFv
-        .4byte doDraw__Q32og9newScreen5ObjVsFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-        .4byte 0
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msVal__Q32og9newScreen5ObjVs
-    msVal__Q32og9newScreen5ObjVs:
-        .skip 0x34
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051DD98
-    lbl_8051DD98:
-        .4byte 0x00000000
-    .global lbl_8051DD9C
-    lbl_8051DD9C:
-        .4byte 0x40808889
-    .global lbl_8051DDA0
-    lbl_8051DDA0:
-        .float 0.05
-    .global lbl_8051DDA4
-    lbl_8051DDA4:
-        .float 1.0
-    .global lbl_8051DDA8
-    lbl_8051DDA8:
-        .4byte 0x47C34F80
-    .global lbl_8051DDAC
-    lbl_8051DDAC:
-        .4byte 0x437F0000
-    .global lbl_8051DDB0
-    lbl_8051DDB0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051DDB8
-    lbl_8051DDB8:
-        .4byte 0x3F19999A
-    .global lbl_8051DDBC
-    lbl_8051DDBC:
-        .4byte 0x40000000
-    .global lbl_8051DDC0
-    lbl_8051DDC0:
-        .4byte 0xC3A2F983
-    .global lbl_8051DDC4
-    lbl_8051DDC4:
-        .4byte 0x43A2F983
-    .global lbl_8051DDC8
-    lbl_8051DDC8:
-        .float 0.5
-    .global lbl_8051DDCC
-    lbl_8051DDCC:
-        .4byte 0x41200000
-    .global lbl_8051DDD0
-    lbl_8051DDD0:
-        .4byte 0x3ECCCCCD
-    .global lbl_8051DDD4
-    lbl_8051DDD4:
-        .4byte 0x40C90FDB
-    .global lbl_8051DDD8
-    lbl_8051DDD8:
-        .4byte 0x41A00000
-    .global lbl_8051DDDC
-    lbl_8051DDDC:
-        .4byte 0x40490FDB
-    .global lbl_8051DDE0
-    lbl_8051DDE0:
-        .4byte 0xC3960000
-    .global lbl_8051DDE4
-    lbl_8051DDE4:
-        .4byte 0x43960000
-    .global lbl_8051DDE8
-    lbl_8051DDE8:
-        .4byte 0x44200000
-        .4byte 0x00000000
-    .global lbl_8051DDF0
-    lbl_8051DDF0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051DDF8
-    lbl_8051DDF8:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051DDFC
-    lbl_8051DDFC:
-        .4byte 0xBFC00000
-    .global lbl_8051DE00
-    lbl_8051DE00:
-        .4byte 0x43E60000
-    .global lbl_8051DE04
-    lbl_8051DE04:
-        .4byte 0x43570000
-    .global lbl_8051DE08
-    lbl_8051DE08:
-        .4byte 0x43D70000
-    .global lbl_8051DE0C
-    lbl_8051DE0C:
-        .4byte 0x42E60000
-    .global lbl_8051DE10
-    lbl_8051DE10:
-        .4byte 0x41F00000
-    .global lbl_8051DE14
-    lbl_8051DE14:
-        .4byte 0x43750000
-    .global lbl_8051DE18
-    lbl_8051DE18:
-        .float 0.7
-    .global lbl_8051DE1C
-    lbl_8051DE1C:
-        .4byte 0x40E00000
-    .global lbl_8051DE20
-    lbl_8051DE20:
-        .4byte 0x40600000
-        .4byte 0x00000000
-*/
-
 namespace og {
 namespace newScreen {
 
@@ -223,51 +23,20 @@ ObjVs::ObjVs(char const* name)
 	mDisp      = nullptr;
 	mBloGroup  = nullptr;
 
-	mPane_bedama1P[0]    = nullptr;
-	mPane_nodama1P[0]    = nullptr;
-	mPane_bedama2P[0]    = nullptr;
-	mPane_nodama2P[0]    = nullptr;
-	mScaleMgrP1_1[0]     = nullptr;
-	mScaleMgrP2_1[0]     = nullptr;
-	mScaleMgrP1_2[0]     = nullptr;
-	mScaleMgrP2_2[0]     = nullptr;
-	mBedamaGotFlagsP1[0] = false;
-	mBedamaGotFlagsP2[0] = false;
+	for (int i = 0; i < 4; i++) {
+		mPane_bedama1P[i]    = nullptr;
+		mPane_nodama1P[i]    = nullptr;
+		mPane_bedama2P[i]    = nullptr;
+		mPane_nodama2P[i]    = nullptr;
+		mScaleMgrP1_1[i]     = nullptr;
+		mScaleMgrP2_1[i]     = nullptr;
+		mScaleMgrP1_2[i]     = nullptr;
+		mScaleMgrP2_2[i]     = nullptr;
+		mBedamaGotFlagsP1[i] = false;
+		mBedamaGotFlagsP2[i] = false;
+	}
 
-	mPane_bedama1P[1]    = nullptr;
-	mPane_nodama1P[1]    = nullptr;
-	mPane_bedama2P[1]    = nullptr;
-	mPane_nodama2P[1]    = nullptr;
-	mScaleMgrP1_1[1]     = nullptr;
-	mScaleMgrP2_1[1]     = nullptr;
-	mScaleMgrP1_2[1]     = nullptr;
-	mScaleMgrP2_2[1]     = nullptr;
-	mBedamaGotFlagsP1[1] = false;
-	mBedamaGotFlagsP2[1] = false;
-
-	mPane_bedama1P[2]    = nullptr;
-	mPane_nodama1P[2]    = nullptr;
-	mPane_bedama2P[2]    = nullptr;
-	mPane_nodama2P[2]    = nullptr;
-	mScaleMgrP1_1[2]     = nullptr;
-	mScaleMgrP2_1[2]     = nullptr;
-	mScaleMgrP1_2[2]     = nullptr;
-	mScaleMgrP2_2[2]     = nullptr;
-	mBedamaGotFlagsP1[2] = false;
-	mBedamaGotFlagsP2[2] = false;
-
-	mPane_bedama1P[3]    = nullptr;
-	mPane_nodama1P[3]    = nullptr;
-	mPane_bedama2P[3]    = nullptr;
-	mPane_nodama2P[3]    = nullptr;
-	mScaleMgrP1_1[3]     = nullptr;
-	mScaleMgrP2_1[3]     = nullptr;
-	mScaleMgrP1_2[3]     = nullptr;
-	mScaleMgrP2_2[3]     = nullptr;
-	mBedamaGotFlagsP1[3] = false;
-	mBedamaGotFlagsP2[3] = false;
-
-	mFinishTimer      = 4.01667f;
+	mFinishTimer      = 4.016667f;
 	mDoneState        = 0;
 	mHasAllBedamaP1   = false;
 	mHasAllBedamaP2   = false;
@@ -284,96 +53,6 @@ ObjVs::ObjVs(char const* name)
 	mObakeEnabledP2   = false;
 	mObakeMovePos     = 0.0f;
 	mPlayWinSound     = false;
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q26Screen7ObjBaseFv
-	lis      r3, __vt__Q32og9newScreen5ObjVs@ha
-	lfs      f2, lbl_8051DD98@sda21(r2)
-	addi     r3, r3, __vt__Q32og9newScreen5ObjVs@l
-	li       r4, 0
-	stw      r3, 0(r30)
-	addi     r3, r3, 0x10
-	lfs      f1, lbl_8051DD9C@sda21(r2)
-	li       r0, 1
-	stw      r3, 0x18(r30)
-	mr       r3, r30
-	lfs      f0, lbl_8051DDA0@sda21(r2)
-	stfs     f2, 0x4c(r30)
-	stfs     f2, 0x50(r30)
-	stw      r31, 0x14(r30)
-	stw      r4, 0x38(r30)
-	stw      r4, 0x3c(r30)
-	stw      r4, 0x54(r30)
-	stw      r4, 0x64(r30)
-	stw      r4, 0x84(r30)
-	stw      r4, 0x94(r30)
-	stw      r4, 0xb4(r30)
-	stw      r4, 0xc4(r30)
-	stw      r4, 0xd4(r30)
-	stw      r4, 0xe4(r30)
-	stb      r4, 0xf4(r30)
-	stb      r4, 0xf8(r30)
-	stw      r4, 0x58(r30)
-	stw      r4, 0x68(r30)
-	stw      r4, 0x88(r30)
-	stw      r4, 0x98(r30)
-	stw      r4, 0xb8(r30)
-	stw      r4, 0xc8(r30)
-	stw      r4, 0xd8(r30)
-	stw      r4, 0xe8(r30)
-	stb      r4, 0xf5(r30)
-	stb      r4, 0xf9(r30)
-	stw      r4, 0x5c(r30)
-	stw      r4, 0x6c(r30)
-	stw      r4, 0x8c(r30)
-	stw      r4, 0x9c(r30)
-	stw      r4, 0xbc(r30)
-	stw      r4, 0xcc(r30)
-	stw      r4, 0xdc(r30)
-	stw      r4, 0xec(r30)
-	stb      r4, 0xf6(r30)
-	stb      r4, 0xfa(r30)
-	stw      r4, 0x60(r30)
-	stw      r4, 0x70(r30)
-	stw      r4, 0x90(r30)
-	stw      r4, 0xa0(r30)
-	stw      r4, 0xc0(r30)
-	stw      r4, 0xd0(r30)
-	stw      r4, 0xe0(r30)
-	stw      r4, 0xf0(r30)
-	stb      r4, 0xf7(r30)
-	stb      r4, 0xfb(r30)
-	stfs     f1, 0xfc(r30)
-	stw      r4, 0x100(r30)
-	stb      r4, 0x104(r30)
-	stb      r4, 0x105(r30)
-	stb      r4, 0x10c(r30)
-	stb      r4, 0x10d(r30)
-	stfs     f0, 0x108(r30)
-	stw      r4, 0x40(r30)
-	stb      r0, 0x10e(r30)
-	stw      r4, 0x110(r30)
-	stw      r4, 0x114(r30)
-	stfs     f2, 0x118(r30)
-	stfs     f2, 0x11c(r30)
-	stb      r4, 0x120(r30)
-	stb      r4, 0x121(r30)
-	stfs     f2, 0x124(r30)
-	stb      r4, 0x128(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -381,58 +60,7 @@ ObjVs::ObjVs(char const* name)
  * Address:	80325B9C
  * Size:	0000AC
  */
-ObjVs::~ObjVs()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80325C2C
-	lis      r4, __vt__Q32og9newScreen5ObjVs@ha
-	addi     r4, r4, __vt__Q32og9newScreen5ObjVs@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_80325C1C
-	lis      r4, __vt__Q26Screen7ObjBase@ha
-	addi     r4, r4, __vt__Q26Screen7ObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_80325C1C
-	lis      r4, __vt__Q26Screen8IObjBase@ha
-	addi     r4, r4, __vt__Q26Screen8IObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	bl       del__5CNodeFv
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_80325C1C:
-	extsh.   r0, r31
-	ble      lbl_80325C2C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80325C2C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ObjVs::~ObjVs() { }
 
 /*
  * --INFO--
@@ -451,7 +79,7 @@ void ObjVs::doCreate(JKRArchive* arc)
 		if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
 			mDisp = new og::Screen::DispMemberVs;
 		} else {
-			JUT_PANICLINE(246, "ERR! in ObjVS Createé∏îsÅI\n");
+			JUT_PANICLINE(246, "ERR! in ObjVs Createé∏îsÅI\n");
 		}
 	}
 
@@ -473,7 +101,7 @@ void ObjVs::doCreate(JKRArchive* arc)
 	J2DPictureEx* panePcup   = static_cast<J2DPictureEx*>(bdamaScreen->search('Pcup'));
 
 	J2DPane* root = scrn1->search('ROOT');
-	u32 xoffs     = 0;
+	int xoffs     = 0;
 	for (int i = 0; i < 4; i++) {
 		mPane_bedama1P[i]
 		    = og::Screen::CopyPictureToPane(paneBdamaY, root, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP1YOffs, 'bd1P_000' + i);
@@ -495,7 +123,7 @@ void ObjVs::doCreate(JKRArchive* arc)
 		mPane_nodama2P[i]
 		    = og::Screen::CopyPictureToPane(panePcup, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'nd2P_000' + i);
 		mPane_windama2P[i]
-		    = og::Screen::CopyPictureToPane(paneBdamaB, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'wd2P_000' + i);
+		    = og::Screen::CopyPictureToPane(paneBdamaR, root2, msVal.mMarbleBaseXOffs + xoffs, msVal.mMarbleP2YOffs, 'wd2P_000' + i);
 		mScaleMgrP2_1[i] = new og::Screen::ScaleMgr;
 		mScaleMgrP2_2[i] = new og::Screen::ScaleMgr;
 		xoffs += 40;
@@ -1144,7 +772,9 @@ void ObjVs::setOnOffBdama(bool doEfx)
 						Vector2f pos;
 						og::Screen::calcGlbCenter(mPane_windama1P[i], &pos);
 
-						efx2d::ArgScaleColorColor arg(&pos, 1.0f, 0x2020ffff, 0x5787ffff);
+						JUtility::TColor colorA(0x20, 0x20, 255, 255);
+						JUtility::TColor colorB(0x57, 0x87, 255, 255);
+						efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
 						efx2d::T2DSprayset_forVS efx;
 						efx.create(&arg);
 						ogSound->setBdamaGet();
@@ -1166,7 +796,9 @@ void ObjVs::setOnOffBdama(bool doEfx)
 						Vector2f pos;
 						og::Screen::calcGlbCenter(mPane_windama2P[i], &pos);
 
-						efx2d::ArgScaleColorColor arg(&pos, 1.0f, 0xff0000ff, 0xff8787ff);
+						JUtility::TColor colorA(255, 0, 0, 255);
+						JUtility::TColor colorB(255, 0x87, 0x87, 255);
+						efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
 						efx2d::T2DSprayset_forVS efx;
 						efx.create(&arg);
 						ogSound->setBdamaGet();
@@ -1184,17 +816,20 @@ void ObjVs::setOnOffBdama(bool doEfx)
 				mPane_bedama1P[i]->show();
 				mPane_bedama1P[i]->updateScale(scale1);
 				if (!mBedamaGotFlagsP1[i]) {
+					mHasAllBedamaP1 = false;
 					if (i == 3) {
-						mDoneState = 1;
+						mDoneState      = 1;
+						mHasAllBedamaP1 = true;
 					}
-					mHasAllBedamaP1 = (i == 3);
 					if (doEfx) {
 						if (mDoneState != 1) {
 							ogSound->setBdamaGet();
 							Vector2f pos;
 							og::Screen::calcGlbCenter(mPane_bedama1P[i], &pos);
 
-							efx2d::ArgScaleColorColor arg(&pos, 1.0f, 0xcfcf00ff, 0xe7e757ff);
+							JUtility::TColor colorA(0xcf, 0xcf, 0, 255);
+							JUtility::TColor colorB(0xe7, 0xe7, 0x57, 255);
+							efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
 							efx2d::T2DSprayset_forVS efx;
 							efx.create(&arg);
 						}
@@ -1214,17 +849,20 @@ void ObjVs::setOnOffBdama(bool doEfx)
 				mPane_bedama2P[i]->show();
 				mPane_bedama2P[i]->updateScale(scale1);
 				if (!mBedamaGotFlagsP2[i]) {
+					mHasAllBedamaP2 = false;
 					if (i == 3) {
-						mDoneState = 1;
+						mDoneState      = 1;
+						mHasAllBedamaP2 = true;
 					}
-					mHasAllBedamaP2 = (i == 3);
 					if (doEfx) {
 						if (mDoneState != 1) {
 							ogSound->setBdamaGet();
 							Vector2f pos;
 							og::Screen::calcGlbCenter(mPane_bedama2P[i], &pos);
 
-							efx2d::ArgScaleColorColor arg(&pos, 1.0f, 0xcfcf00ff, 0xe7e757ff);
+							JUtility::TColor colorA(0xcf, 0xcf, 0, 255);
+							JUtility::TColor colorB(0xe7, 0xe7, 0x57, 255);
+							efx2d::ArgScaleColorColor arg(pos, 1.0f, colorA, colorB);
 							efx2d::T2DSprayset_forVS efx;
 							efx.create(&arg);
 						}
@@ -1243,7 +881,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 
 	if (mHasAllBedamaP1 && mBedamaGetTimer > 0.0f) {
 		mBedamaGetTimer -= sys->mDeltaTime;
-		if (mBedamaGetTimer < 0.0f && doEfx) {
+		if (mBedamaGetTimer <= 0.0f && doEfx) {
 			ogSound->setBdamaGet();
 			f32 scale = 0.6f;
 			for (int i = 0; i < 4; i++) {
@@ -1251,7 +889,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 				Vector2f pos;
 				og::Screen::calcGlbCenter(mPane_bedama1P[i], &pos);
 
-				efx2d::ArgScale arg(&pos, scale);
+				efx2d::ArgScale arg(pos, scale);
 				efx2d::T2DSensorGet_forVS efx;
 				efx.create(&arg);
 				p1win = true;
@@ -1261,7 +899,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 
 	if (mHasAllBedamaP2 && mBedamaGetTimer > 0.0f) {
 		mBedamaGetTimer -= sys->mDeltaTime;
-		if (mBedamaGetTimer < 0.0f && doEfx) {
+		if (mBedamaGetTimer <= 0.0f && doEfx) {
 			ogSound->setBdamaGet();
 			f32 scale = 0.6f;
 			for (int i = 0; i < 4; i++) {
@@ -1269,7 +907,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 				Vector2f pos;
 				og::Screen::calcGlbCenter(mPane_bedama2P[i], &pos);
 
-				efx2d::ArgScale arg(&pos, scale);
+				efx2d::ArgScale arg(pos, scale);
 				efx2d::T2DSensorGet_forVS efx;
 				efx.create(&arg);
 				p2win = true;
@@ -1279,14 +917,14 @@ void ObjVs::setOnOffBdama(bool doEfx)
 
 	if (!mPlayWinSound) {
 		if (p1win && p2win) {
-			mPlayWinSound = true;
 			ogSound->setVsDraw();
+			mPlayWinSound = true;
 		} else if (p1win) {
-			mPlayWinSound = true;
 			ogSound->setVsWin1P();
-		} else if (p2win) {
 			mPlayWinSound = true;
+		} else if (p2win) {
 			ogSound->setVsWin2P();
+			mPlayWinSound = true;
 		}
 	}
 	/*
@@ -2270,26 +1908,26 @@ void ObjVs::checkObake()
 	f32 mod1 = 1.0f;
 	f32 mod2 = 1.0f;
 	f32 angle1, angle2;
-	if (!mObakeEnabledP1) {
-		angle1 = 0.0f;
-	} else {
+	if (mObakeEnabledP1) {
 		f32 temp = mDisp->mGhostIconTimerP1;
 		angle1   = 1.0f;
-		if (temp < 10.0f) {
+		if (temp <= 10.0f) {
 			angle1 = temp / 10.0f;
 			mod1   = calc * 0.6f + 0.4f;
 		}
+	} else {
+		angle1 = 0.0f;
 	}
 
-	if (!mObakeEnabledP2) {
-		angle2 = 0.0f;
-	} else {
+	if (mObakeEnabledP2) {
 		f32 temp = mDisp->mGhostIconTimerP2;
 		angle2   = 1.0f;
-		if (temp < 10.0f) {
+		if (temp <= 10.0f) {
 			angle2 = temp / 10.0f;
 			mod2   = calc * 0.6f + 0.4f;
 		}
+	} else {
+		angle2 = 0.0f;
 	}
 
 	mPaneObake1P->setAlpha(mAlphaObakeP1 * 255.0f * mod1);
@@ -2300,14 +1938,13 @@ void ObjVs::checkObake()
 		mObakeMovePos -= TAU;
 	}
 	f32 sin = sinf(mObakeMovePos);
-	f32 cos = cosf(mObakeMovePos);
+	f32 cos = -sinf(mObakeMovePos);
 	mPaneObake1P->rotate(angle1 * sin * 20.0f);
 	mPaneObake2P->rotate(angle2 * cos * 20.0f);
 
-	mPaneObake1P->setOffset(msVal.mRouletteXOffs + (sinf(mObakeMovePos) * angle1) * msVal._2C,
-	                        msVal.mRouletteP1YOffs + (cosf(mObakeMovePos) * angle1) * msVal._30);
-	mPaneObake2P->setOffset(msVal.mRouletteXOffs + (sinf(mObakeMovePos) * angle2) * msVal._2C,
-	                        msVal.mRouletteP2YOffs + (cosf(mObakeMovePos) * angle2) * msVal._30);
+	cos = cosf(mObakeMovePos);
+	mPaneObake1P->setOffset(msVal.mRouletteXOffs + (sin * angle1) * msVal._2C, msVal.mRouletteP1YOffs + (cos * angle1) * msVal._30);
+	mPaneObake2P->setOffset(msVal.mRouletteXOffs + (sin * angle2) * msVal._2C, msVal.mRouletteP2YOffs + (cos * angle2) * msVal._30);
 
 	mPaneObake1P->updateScale(msVal.mRouletteScale);
 	mPaneObake2P->updateScale(msVal.mRouletteScale);
@@ -2714,18 +2351,19 @@ lbl_803275A4:
  */
 void ObjVs::doUpdateCommon()
 {
-	f32 scale = mScale * PI;
-	if (scale < 0.0f)
-		scale = -scale;
-
-	scale = sinf(scale);
-	setOnOffBdama(mSetBedamaFlag);
+	f32 scale = (cosf(mScale * PI) + 1.0f) * 0.5f;
+	setOnOffBdama(mSetBedamaFlag == false);
 	checkObake();
-	if (mDoneState == 1) {
-		if (mFinishTimer <= 0.0f)
-			mDoneState = 2;
-		else
+	switch (mDoneState) {
+	case 0:
+		break;
+	case 1:
+		if (mFinishTimer > 0.0f) {
 			mFinishTimer -= sys->mDeltaTime;
+		} else {
+			mDoneState = 2;
+		}
+		break;
 	}
 	mDisp->mDoneState = mDoneState;
 	mScreenP1->update(mDisp->mOlimarData);
@@ -2938,27 +2576,6 @@ bool ObjVs::doUpdate()
 		mSetBedamaFlag = false;
 	}
 	return false;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doUpdateCommon__Q32og9newScreen5ObjVsFv
-	lbz      r0, 0x10e(r31)
-	cmplwi   r0, 0
-	beq      lbl_8032796C
-	li       r0, 0
-	stb      r0, 0x10e(r31)
-
-lbl_8032796C:
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2976,93 +2593,12 @@ void ObjVs::doDraw(Graphics& gfx)
 	color1.a                = test;
 	graf->setColor(color1);
 
-	JGeometry::TBox2f box;
-	box.i   = JGeometry::TVec2f(ObjChallenge2P::msVal._08, ObjChallenge2P::msVal._0C);
-	box.f.x = box.i.x + ObjChallenge2P::msVal._10;
-	box.f.y = box.i.y + ObjChallenge2P::msVal._14;
+	f32 baseY = (f32)ObjChallenge2P::msVal._0C;
+	JGeometry::TBox2f box(0.0f, baseY, 640.0f, baseY + (f32)ObjChallenge2P::msVal._14);
 
 	graf->fillBox(box);
 
 	mBloGroup->draw(graf);
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	addi     r31, r4, 0x190
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, msVal__Q32og9newScreen14ObjChallenge2P@ha
-	lis      r0, 0x4330
-	addi     r3, r3, msVal__Q32og9newScreen14ObjChallenge2P@l
-	stw      r0, 0x30(r1)
-	lwz      r0, 0x20(r3)
-	mr       r3, r31
-	lfd      f2, lbl_8051DDF0@sda21(r2)
-	addi     r4, r1, 0xc
-	stw      r0, 0x1c(r1)
-	addi     r5, r1, 0x10
-	lfs      f0, 0x50(r30)
-	addi     r6, r1, 0x14
-	lbz      r0, 0x1f(r1)
-	addi     r7, r1, 0x18
-	stw      r0, 0x34(r1)
-	lfd      f1, 0x30(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	stb      r0, 0x1f(r1)
-	lwz      r0, 0x1c(r1)
-	stw      r0, 8(r1)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0xc(r1)
-	bl
-	setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-	lis      r3, msVal__Q32og9newScreen14ObjChallenge2P@ha
-	lis      r5, 0x4330
-	addi     r4, r3, msVal__Q32og9newScreen14ObjChallenge2P@l
-	lfs      f2, lbl_8051DD98@sda21(r2)
-	lwz      r6, 0xc(r4)
-	mr       r3, r31
-	lwz      r0, 0x14(r4)
-	addi     r4, r1, 0x20
-	xoris    r6, r6, 0x8000
-	lfs      f1, lbl_8051DDE8@sda21(r2)
-	xoris    r0, r0, 0x8000
-	stw      r6, 0x44(r1)
-	lfd      f3, lbl_8051DDB0@sda21(r2)
-	stw      r5, 0x40(r1)
-	lfd      f0, 0x40(r1)
-	stw      r0, 0x4c(r1)
-	fsubs    f4, f0, f3
-	stw      r5, 0x48(r1)
-	lfd      f0, 0x48(r1)
-	stfs     f2, 0x20(r1)
-	fsubs    f0, f0, f3
-	stfs     f4, 0x24(r1)
-	fadds    f0, f4, f0
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-	lwz      r3, 0x3c(r30)
-	mr       r4, r31
-	bl       draw__Q32og6Screen8BloGroupFP13J2DPerspGraph
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /*
@@ -3075,13 +2611,6 @@ bool ObjVs::doStart(::Screen::StartSceneArg const*)
 	mFadeLevel = 0.0f;
 	mScale     = 0.0f;
 	return true;
-	/*
-	lfs      f0, lbl_8051DD98@sda21(r2)
-	stfs     f0, 0x4c(r3)
-	stfs     f0, 0x50(r3)
-	li       r3, 1
-	blr
-	*/
 }
 
 /*
@@ -3093,12 +2622,6 @@ bool ObjVs::doEnd(::Screen::EndSceneArg const*)
 {
 	mFadeLevel = 0.0f;
 	return true;
-	/*
-	lfs      f0, lbl_8051DD98@sda21(r2)
-	stfs     f0, 0x4c(r3)
-	li       r3, 1
-	blr
-	*/
 }
 
 /*
@@ -3113,15 +2636,7 @@ void ObjVs::doUpdateFadeinFinish() { }
  * Address:	80327ADC
  * Size:	00000C
  */
-void ObjVs::doUpdateFinish()
-{
-	mFadeLevel = 0.0f;
-	/*
-	lfs      f0, lbl_8051DD98@sda21(r2)
-	stfs     f0, 0x4c(r3)
-	blr
-	*/
-}
+void ObjVs::doUpdateFinish() { mFadeLevel = 0.0f; }
 
 /*
  * --INFO--
@@ -3147,39 +2662,6 @@ bool ObjVs::doUpdateFadein()
 	mScale = mFadeLevel / msVal.mFadeInRate;
 	doUpdateCommon();
 	return check;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, msVal__Q32og9newScreen5ObjVs@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x4c(r3)
-	lfs      f0, 0x54(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 0x4c(r3)
-	lfs      f0, 0x4c(r3)
-	lfs      f1, msVal__Q32og9newScreen5ObjVs@l(r4)
-	fcmpo    cr0, f0, f1
-	ble      lbl_80327B30
-	stfs     f1, 0x4c(r3)
-	li       r31, 1
-
-lbl_80327B30:
-	lis      r4, msVal__Q32og9newScreen5ObjVs@ha
-	lfs      f1, 0x4c(r3)
-	lfs      f0, msVal__Q32og9newScreen5ObjVs@l(r4)
-	fdivs    f0, f1, f0
-	stfs     f0, 0x50(r3)
-	bl       doUpdateCommon__Q32og9newScreen5ObjVsFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3198,108 +2680,9 @@ bool ObjVs::doUpdateFadeout()
 	mScale = 1.0f - mFadeLevel / msVal.mFadeOutRate;
 	doUpdateCommon();
 	return check;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, msVal__Q32og9newScreen5ObjVs@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, msVal__Q32og9newScreen5ObjVs@l
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x4c(r3)
-	lfs      f0, 0x54(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 0x4c(r3)
-	lfs      f0, 0x4c(r3)
-	lfs      f1, 4(r4)
-	fcmpo    cr0, f0, f1
-	ble      lbl_80327BA8
-	stfs     f1, 0x4c(r3)
-	li       r31, 1
-
-lbl_80327BA8:
-	lfs      f1, 0x4c(r3)
-	lfs      f0, 4(r4)
-	lfs      f2, lbl_8051DDA4@sda21(r2)
-	fdivs    f0, f1, f0
-	fsubs    f0, f2, f0
-	stfs     f0, 0x50(r3)
-	bl       doUpdateCommon__Q32og9newScreen5ObjVsFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
+
+ObjVs::StaticValues ObjVs::msVal;
 
 } // namespace newScreen
 } // namespace og
-
-/*
- * --INFO--
- * Address:	80327BDC
- * Size:	00000C
- */
-
-// const char* efx2d::ArgScale::getName()
-//{
-/*
-lis      r3, lbl_8048F3D4@ha
-addi     r3, r3, lbl_8048F3D4@l
-blr
-*/
-//}
-
-/*
- * --INFO--
- * Address:	80327BE8
- * Size:	00006C
- */
-void __sinit_ogObjVs_cpp()
-{
-	/*
-	lfs      f11, lbl_8051DDB8@sda21(r2)
-	lis      r3, msVal__Q32og9newScreen5ObjVs@ha
-	lfs      f9, lbl_8051DDFC@sda21(r2)
-	stfsu    f11, msVal__Q32og9newScreen5ObjVs@l(r3)
-	lfs      f10, lbl_8051DDF8@sda21(r2)
-	lfs      f8, lbl_8051DE00@sda21(r2)
-	lfs      f7, lbl_8051DE04@sda21(r2)
-	lfs      f6, lbl_8051DE08@sda21(r2)
-	lfs      f5, lbl_8051DE0C@sda21(r2)
-	lfs      f4, lbl_8051DE10@sda21(r2)
-	lfs      f3, lbl_8051DE14@sda21(r2)
-	lfs      f2, lbl_8051DE18@sda21(r2)
-	lfs      f1, lbl_8051DE1C@sda21(r2)
-	lfs      f0, lbl_8051DE20@sda21(r2)
-	stfs     f10, 4(r3)
-	stfs     f9, 8(r3)
-	stfs     f9, 0xc(r3)
-	stfs     f8, 0x10(r3)
-	stfs     f7, 0x14(r3)
-	stfs     f6, 0x18(r3)
-	stfs     f5, 0x1c(r3)
-	stfs     f4, 0x20(r3)
-	stfs     f3, 0x24(r3)
-	stfs     f2, 0x28(r3)
-	stfs     f1, 0x2c(r3)
-	stfs     f0, 0x30(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80327C54
- * Size:	000008
- */
-//@24 @og::newScreen::ObjVs::~ObjVs()
-//{
-/*
-addi     r3, r3, -24
-b        __dt__Q32og9newScreen5ObjVsFv
-*/
-//}

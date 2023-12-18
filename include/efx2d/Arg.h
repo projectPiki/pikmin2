@@ -62,12 +62,12 @@ struct ArgScale : public Arg {
 
 struct ArgScaleColorColor : public Arg {
 
-	inline ArgScaleColorColor(Vector2f* pos, f32 scale, JUtility::TColor col1, JUtility::TColor col2)
-	    : Arg(pos->x, pos->y)
+	inline ArgScaleColorColor(Vector2f& pos, f32 scale, JUtility::TColor& col1, JUtility::TColor& col2)
+	    : Arg(pos.x, pos.y)
+	    , mScale(scale)
+	    , mColor1(col1)
+	    , mColor2(col2)
 	{
-		mScale = scale;
-		mColor1.set(col1);
-		mColor2.set(col2);
 	}
 
 	virtual const char* getName() // _08 (weak)

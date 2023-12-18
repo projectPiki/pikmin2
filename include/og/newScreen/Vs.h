@@ -120,9 +120,9 @@ struct ObjVs : public ::Screen::ObjBase {
 	f32 mAlphaObakeP1;                      // _118
 	f32 mAlphaObakeP2;                      // _11C
 	bool mObakeEnabledP1;                   // _120
-	bool mObakeEnabledP2;
-	f32 mObakeMovePos;
-	u8 mPlayWinSound; // _128
+	bool mObakeEnabledP2;                   // _121
+	f32 mObakeMovePos;                      // _124
+	u8 mPlayWinSound;                       // _128
 
 	static struct StaticValues {
 		inline StaticValues()
