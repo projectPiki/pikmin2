@@ -15,31 +15,28 @@ This repository builds the following DOLs:
 3730939092688902af4866be66d4a8404ae752c7  build/pikmin2.usa.demo/main.dol
 ```
 
-> **Note**  
+> **Note**
 > The ROM this repository builds can be shifted. You are able to add
 > and remove code as you see fit, for modding or research purposes.
 
 ## Building
 
 ### Required Tools
-* [devkitPro](https://devkitpro.org/wiki/Getting_Started)
-* python 
+* python
 
 ### Instructions
-
-* WINDOWS ONLY STEP:
-	- Launch msys2 (provided by devkitPro) and run the following command: 
-	
-	```
-	pacman -S msys2-keyring
-	```
 
 1. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
 
 2. Download [GC_WII_COMPILERS.zip](https://files.decomp.dev/compilers_20230715.zip) and extract the contents of the GC folder to `tools/mwcc_compiler/`. For example, your directory structure should look like `pikmin2/tools/mwcc_compiler/2.6/` (along with the other versions).
 
-3. Run `make -j` in a command prompt or terminal.
+3. Run `configure.py`.
+	- Automatically downloads any other necessary files for the project.
+	- If using `ninja`, will prepare all relevant scripts.
+
+4. Run `make -j` or `ninja` in a command prompt or terminal.
 	- -j Allows `make` to use multiple threads, speeding up the process.
+	- `ninja` already implicitly uses the max amount of cores available, only use `-j` to *decrease* the thread count.
 	- If just `-j` gives errors on your setup, try specifying a set number of threads, e.g. `make -j 4`.
 
 * OPTIONAL STEPS:
@@ -48,7 +45,7 @@ This repository builds the following DOLs:
 	- The project uses clang-format for a consistent style. Download the [correct version](https://cdn.discordapp.com/attachments/933849922418126918/1031358615300345856/clang-format.exe) and place in the main repo directory (e.g. `pikmin2/clang-format.exe`).
 
 * See [this video](https://youtu.be/CZXNQagqpkw) for a walkthrough of the steps on Windows (thanks Altafen for making this!).
-	
+
 ### Decompilation workflow
 
 - The project is compatible with [objdiff](https://github.com/encounter/objdiff), which is highly recommended for local decompilation testing. Objdiff can be built from source, or the latest stable build obtained from GitHub actions (recommended).
