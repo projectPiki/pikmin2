@@ -439,7 +439,7 @@ LIBS = [
             ["Dolphin/TRK_MINNOW_DOLPHIN/targimpl", False],
             [
                 "Dolphin/TRK_MINNOW_DOLPHIN/targsupp",
-                True, 
+                True,
                 {"cflags": "$cflags_base -inline deferred -func_align 32"},
             ],
             ["Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e", True],
@@ -1471,10 +1471,10 @@ LIBS = [
             ["plugProjectEbisawaU/efxEnemyGeneral", True],
             ["plugProjectEbisawaU/ebi3DGraph", True],
             ["plugProjectEbisawaU/ebiGeometry", True],
-            ["plugProjectEbisawaU/ebi2DGraph", False], 
+            ["plugProjectEbisawaU/ebi2DGraph", False],
             ["plugProjectEbisawaU/ebiScreenOption", True],
             ["plugProjectEbisawaU/ebiScreenProgre", True],
-            ["plugProjectEbisawaU/ebiOptionMgr", True], 
+            ["plugProjectEbisawaU/ebiOptionMgr", True],
             ["plugProjectEbisawaU/ebi2DCallBack", False],
             ["plugProjectEbisawaU/ebiCardMgr", True],
             ["plugProjectEbisawaU/ebiScreenFramework", True],
@@ -1770,10 +1770,11 @@ if __name__ == "__main__":
         dkp_path = args.devkitppc
     elif "DEVKITPPC" in os.environ:
         dkp_path = Path(os.environ["DEVKITPPC"])
-    elif os.name == "nt":
-        dkp_path = Path("C:\devkitPro\devkitPPC")
     else:
-        dkp_path = Path("/opt/devkitpro/devkitPPC")
+        dkp_path = Path("tools/devkitPPC")
+        if not dkp_path.exists():
+            import tools.download_ppc
+            tools.download_ppc.main()
 
     cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse,readonly -nosyspath -use_lmw_stmw on -sdata 8 -sdata2 8 -DVERNUM={version_num} -i include -i include/stl"
     if args.debug:
