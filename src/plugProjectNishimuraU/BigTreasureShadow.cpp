@@ -42,9 +42,9 @@ BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
 		}
 	}
 
-	for (int i = 0; i < 4; i++) {
-		_100[i] = new SphereShadowNode;
-		mRootNode->add(_100[i]);
+	for (int i = 0; i < BIGATTACK_AttackCount; i++) {
+		mTreasureShadowNodes[i] = new SphereShadowNode;
+		mRootNode->add(mTreasureShadowNodes[i]);
 	}
 
 	for (int i = 0; i < 2; i++) {
@@ -144,8 +144,8 @@ void BigTreasureShadowMgr::update()
 {
 	JointShadowParm parm;
 	parm.mPosition = mObj->getTraceCentrePosition();
-	parm._0C       = Vector3f(0.5f, 3.0f, 0.5f);
-	parm._0C.normalise();
+	parm.mRotation = Vector3f(0.5f, 3.0f, 0.5f);
+	parm.mRotation.normalise();
 	*mKosiPosition = mBodyMatrix->getBasis(3);
 	mKosiPosition->y += -20.0f;
 
@@ -589,78 +589,23 @@ updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointS
  */
 void BigTreasureShadowMgr::updateTreasureShadow(JointShadowParm& parm)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lfs       f3, -0x1760(r2)
-	  stw       r0, 0x34(r1)
-	  lfs       f1, -0x1798(r2)
-	  stw       r31, 0x2C(r1)
-	  lfs       f0, -0x175C(r2)
-	  stw       r30, 0x28(r1)
-	  li        r30, 0
-	  stw       r29, 0x24(r1)
-	  mr        r29, r4
-	  stw       r28, 0x20(r1)
-	  mr        r28, r3
-	  mr        r31, r28
-	  lwz       r3, 0x3C(r3)
-	  lfs       f2, 0x2D8(r3)
-	  fmuls     f2, f3, f2
-	  stfs      f2, 0x20(r4)
-	  stfs      f1, 0x18(r4)
-	  stfs      f1, 0x1C(r4)
-	  stfs      f0, 0x24(r4)
+	parm.mShadowScale = 30.0f * mObj->mShadowScale;
+	parm._18          = 0.0f;
+	parm._1C          = 0.0f;
+	parm._24          = -35.0f;
+	for (int i = 0; i < BIGATTACK_AttackCount; i++) {
+		if (mObj->isCapturedTreasure(i)) {
+			if (!mTreasureShadowNodes[i]->mParent) {
+				mRootNode->add(mTreasureShadowNodes[i]);
+			}
 
-	.loc_0x54:
-	  lwz       r3, 0x3C(r28)
-	  mr        r4, r30
-	  bl        0x2614
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xB0
-	  lwz       r4, 0x100(r31)
-	  lwz       r0, 0xC(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x80
-	  lwz       r3, 0x84(r28)
-	  bl        0x1361C8
+			Vector3f treasurePos = getTreasureMatrix(i)->getBasis(3);
+			mTreasureShadowNodes[i]->makeShadowSRT(parm, treasurePos);
 
-	.loc_0x80:
-	  lwz       r3, 0x4(r31)
-	  mr        r4, r29
-	  addi      r5, r1, 0x8
-	  lfs       f2, 0x2C(r3)
-	  lfs       f1, 0x1C(r3)
-	  lfs       f0, 0xC(r3)
-	  stfs      f0, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f2, 0x10(r1)
-	  lwz       r3, 0x100(r31)
-	  bl        0x17470
-	  b         .loc_0xC4
-
-	.loc_0xB0:
-	  lwz       r3, 0x100(r31)
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC4
-	  bl        0x13634C
-
-	.loc_0xC4:
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x4
-	  cmpwi     r30, 0x4
-	  blt+      .loc_0x54
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+		} else if (mTreasureShadowNodes[i]->mParent) {
+			mTreasureShadowNodes[i]->del();
+		}
+	}
 }
 
 /*
@@ -670,6 +615,27 @@ void BigTreasureShadowMgr::updateTreasureShadow(JointShadowParm& parm)
  */
 void BigTreasureShadowMgr::updateHandShadow(JointShadowParm& parm)
 {
+	parm._18 = 0.0f;
+	parm._1C = 0.0f;
+	parm._24 = -10.0f;
+
+	for (int i = 0; i < 2; i++) {
+		parm.mShadowScale = 4.0f * mObj->mShadowScale;
+		Vector3f pos1     = mLeftArmMatrix[0]->getBasis(3);
+		Vector3f pos2     = mLeftArmMatrix[1]->getBasis(3);
+		Vector3f pos3     = mLeftArmMatrix[2]->getBasis(3);
+		Vector3f pos4     = pos3;
+		Vector3f pos5     = pos3;
+
+		_110[i][0]->makeShadowSRT(parm, pos1, pos2);
+		_110[i][1]->makeShadowSRT(parm, pos2, pos3);
+
+		_110[i][2]->makeShadowSRT(parm, pos3, pos4);
+		_110[i][3]->makeShadowSRT(parm, pos4, pos5);
+
+		_130[i][0]->makeShadowSRT(parm, pos2);
+		_130[i][1]->makeShadowSRT(parm, pos3);
+	}
 	/*
 	stwu     r1, -0x140(r1)
 	mflr     r0

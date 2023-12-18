@@ -530,33 +530,35 @@ struct BigTreasureShadowMgr {
 	void updateHandShadow(JointShadowParm& settings);
 	void updateAntennaShadow(JointShadowParm& settings);
 
-	Matrixf* mBodyMatrix;            // _00
-	Matrixf* mElecMatrix;            // _04
-	Matrixf* mFireMatrix;            // _08
-	Matrixf* mGasMatrix;             // _0C
-	Matrixf* mWaterMatrix;           // _10
-	Matrixf* mLeftArmMatrix[3];      // _14
-	Matrixf* mRightArmMatrix[3];     // _20
-	Matrixf* mLeftAntennaMatrix[2];  // _2C
-	Matrixf* mRightAntennaMatrix[2]; // _34
-	Obj* mObj;                       // _3C
-	Vector3f* mKosiPosition;         // _40
-	Vector3f* mJointPositions[4][4]; // _44
-	JointShadowRootNode* mRootNode;  // _84
-	SphereShadowNode* _88;           // _88
-	SphereShadowNode* _8C;           // _8C
-	TubeShadowSetNode* _90[4];       // _90
-	TubeShadowSetNode* _A0[4];       // _A0
-	TubeShadowSetNode* _B0[4];       // _B0
-	TubeShadowSetNode* _C0[4];       // _C0
-	SphereShadowNode* _D0[4];        // _D0
-	SphereShadowNode* _E0[4];        // _E0
-	SphereShadowNode* _F0[4];        // _F0
-	SphereShadowNode* _100[4];       // _100
-	TubeShadowPosNode* _110[2][4];   // _110
-	SphereShadowNode* _130[2][2];    // _130
-	TubeShadowPosNode* _140[2][5];   // _140
-	SphereShadowNode* _168[2];       // _168
+	inline Matrixf* getTreasureMatrix(int i) { return (&mElecMatrix)[i]; }
+
+	Matrixf* mBodyMatrix;                                          // _00
+	Matrixf* mElecMatrix;                                          // _04
+	Matrixf* mFireMatrix;                                          // _08
+	Matrixf* mGasMatrix;                                           // _0C
+	Matrixf* mWaterMatrix;                                         // _10
+	Matrixf* mLeftArmMatrix[3];                                    // _14
+	Matrixf* mRightArmMatrix[3];                                   // _20
+	Matrixf* mLeftAntennaMatrix[2];                                // _2C
+	Matrixf* mRightAntennaMatrix[2];                               // _34
+	Obj* mObj;                                                     // _3C
+	Vector3f* mKosiPosition;                                       // _40
+	Vector3f* mJointPositions[4][4];                               // _44
+	JointShadowRootNode* mRootNode;                                // _84
+	SphereShadowNode* _88;                                         // _88
+	SphereShadowNode* _8C;                                         // _8C
+	TubeShadowSetNode* _90[4];                                     // _90
+	TubeShadowSetNode* _A0[4];                                     // _A0
+	TubeShadowSetNode* _B0[4];                                     // _B0
+	TubeShadowSetNode* _C0[4];                                     // _C0
+	SphereShadowNode* _D0[4];                                      // _D0
+	SphereShadowNode* _E0[4];                                      // _E0
+	SphereShadowNode* _F0[4];                                      // _F0
+	SphereShadowNode* mTreasureShadowNodes[BIGATTACK_AttackCount]; // _100
+	TubeShadowPosNode* _110[2][4];                                 // _110
+	SphereShadowNode* _130[2][2];                                  // _130
+	TubeShadowPosNode* _140[2][5];                                 // _140
+	SphereShadowNode* _168[2];                                     // _168
 };
 
 struct BigTreasureGroundCallBack : public JointGroundCallBack {
