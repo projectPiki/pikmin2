@@ -17,7 +17,7 @@ struct JointGroundCallBack {
 
 struct JointShadowParm {
 	Vector3f mPosition; // _00
-	Vector3f _0C;       // _0C
+	Vector3f mRotation; // _0C
 	f32 _18;            // _18
 	f32 _1C;            // _1C
 	f32 mShadowScale;   // _20

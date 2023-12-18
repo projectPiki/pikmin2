@@ -19,7 +19,12 @@
 
 namespace Game {
 struct SnakeCrowSphereShadowNode : public JointShadowNode {
-	virtual ~SnakeCrowSphereShadowNode(); // _08 (weak)
+	inline SnakeCrowSphereShadowNode()
+	    : JointShadowNode(2)
+	{
+	}
+
+	virtual ~SnakeCrowSphereShadowNode() { } // _08 (weak)
 
 	void makeShadowSRT(JointShadowParm&, Vector3f&);
 
@@ -28,7 +33,12 @@ struct SnakeCrowSphereShadowNode : public JointShadowNode {
 };
 
 struct SnakeCrowTubeShadowNode : public JointShadowNode {
-	virtual ~SnakeCrowTubeShadowNode(); // _08 (weak)
+	inline SnakeCrowTubeShadowNode()
+	    : JointShadowNode(2)
+	{
+	}
+
+	virtual ~SnakeCrowTubeShadowNode() { } // _08 (weak)
 
 	void makeShadowSRT(JointShadowParm&, Vector3f&, Vector3f&);
 

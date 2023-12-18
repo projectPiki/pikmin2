@@ -83,8 +83,8 @@ void BigFootShadowMgr::update()
 	Vector3f pos = mObj->getTraceCentrePosition();
 	JointShadowParm shadowParm;
 	shadowParm.mPosition = pos;
-	shadowParm._0C       = Vector3f(0.5f, 3.0f, 0.5f);
-	shadowParm._0C.normalise();
+	shadowParm.mRotation = Vector3f(0.5f, 3.0f, 0.5f);
+	shadowParm.mRotation.normalise();
 
 	Vector3f translation = mMatrix->getBasis(3);
 	translation.y += -75.0f;

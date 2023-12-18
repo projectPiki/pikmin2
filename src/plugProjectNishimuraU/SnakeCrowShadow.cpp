@@ -1,4 +1,5 @@
 #include "Game/Entities/SnakeCrow.h"
+#include "Game/MapMgr.h"
 
 namespace Game {
 namespace SnakeCrow {
@@ -13,8 +14,35 @@ const f32 cTubeShadowRadius[8]   = { 17.5f, 16.5f, 13.5f, 11.0f, 9.0f, 7.0f, 6.0
  * Address:	802F8090
  * Size:	00022C
  */
-void SnakeCrowTubeShadowNode::makeShadowSRT(JointShadowParm&, Vector3f&, Vector3f&)
+void SnakeCrowTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos1, Vector3f& pos2)
 {
+	Vector3f mtx[4];
+	mtx[0].x = (pos2.x - pos1.x) * 0.5f;
+	mtx[0].y = 0.0f;
+	mtx[0].z = (pos2.z - pos1.z) * 0.5f;
+	mtx[2]   = cross(mtx[0], parm.mRotation);
+	mtx[2].normalise();
+
+	mtx[2].x *= parm.mShadowScale;
+	mtx[2].y *= parm.mShadowScale;
+	mtx[2].z *= parm.mShadowScale;
+	mtx[3].x = (pos2.x + pos1.x) * 0.5f;
+	mtx[3].y = 0.0f;
+	mtx[3].z = (pos2.z + pos1.z) * 0.5f;
+
+	mtx[3].y = mapMgr->getMinY(mtx[3]) + 2.5f;
+	mtx[1]   = Vector3f(0.0f, 50.0f, 0.0f);
+	if (mtx[3].y < parm.mPosition.y) {
+		f32 diff = parm.mPosition.y - mtx[3].y;
+		mtx[3].y = parm.mPosition.y;
+		mtx[1].y += diff;
+	}
+
+	mMainMtx->setBasis(0, mtx[0]);
+	mMainMtx->setBasis(1, mtx[1]);
+	mMainMtx->setBasis(2, mtx[2]);
+	mMainMtx->setBasis(3, mtx[3]);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -172,166 +200,50 @@ void SnakeCrowTubeShadowNode::makeShadowSRT(JointShadowParm&, Vector3f&, Vector3
  * Address:	802F82BC
  * Size:	00012C
  */
-void SnakeCrowSphereShadowNode::makeShadowSRT(JointShadowParm&, Vector3f&)
+void SnakeCrowSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Vector3f& pos)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lfs       f1, -0x109C(r2)
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  lfs       f0, 0x20(r4)
-	  addi      r4, r1, 0x2C
-	  lwz       r3, -0x6CF8(r13)
-	  stfs      f0, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  stfs      f1, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x0(r5)
-	  stfs      f0, 0x2C(r1)
-	  stfs      f1, 0x30(r1)
-	  lfs       f0, 0x8(r5)
-	  stfs      f0, 0x34(r1)
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, -0x1094(r2)
-	  lfs       f0, -0x109C(r2)
-	  fadds     f2, f2, f1
-	  lfs       f1, -0x1090(r2)
-	  stfs      f0, 0x14(r1)
-	  stfs      f2, 0x30(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f3, 0x4(r31)
-	  fcmpo     cr0, f2, f3
-	  bge-      .loc_0xA4
-	  fsubs     f0, f3, f2
-	  stfs      f3, 0x30(r1)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x18(r1)
+	Vector3f mtx[4];
+	mtx[0] = Vector3f(parm.mShadowScale, 0.0f, 0.0f);
+	mtx[2] = Vector3f(0.0f, 0.0f, parm.mShadowScale);
 
-	.loc_0xA4:
-	  lwz       r3, 0x1C(r30)
-	  lfs       f0, 0x8(r1)
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x10(r3)
-	  lfs       f0, 0x10(r1)
-	  stfs      f0, 0x20(r3)
-	  lwz       r3, 0x1C(r30)
-	  lfs       f0, 0x14(r1)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x18(r1)
-	  stfs      f0, 0x14(r3)
-	  lfs       f0, 0x1C(r1)
-	  stfs      f0, 0x24(r3)
-	  lwz       r3, 0x1C(r30)
-	  lfs       f0, 0x20(r1)
-	  stfs      f0, 0x8(r3)
-	  lfs       f0, 0x24(r1)
-	  stfs      f0, 0x18(r3)
-	  lfs       f0, 0x28(r1)
-	  stfs      f0, 0x28(r3)
-	  lwz       r3, 0x1C(r30)
-	  lfs       f0, 0x2C(r1)
-	  stfs      f0, 0xC(r3)
-	  lfs       f0, 0x30(r1)
-	  stfs      f0, 0x1C(r3)
-	  lfs       f0, 0x34(r1)
-	  stfs      f0, 0x2C(r3)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	mtx[3].x = pos.x;
+	mtx[3].y = 0.0f;
+	mtx[3].z = pos.z;
+
+	mtx[3].y = mapMgr->getMinY(mtx[3]) + 2.5f;
+
+	mtx[1] = Vector3f(0.0f, 50.0f, 0.0f);
+
+	if (mtx[3].y < parm.mPosition.y) {
+		f32 diff = parm.mPosition.y - mtx[3].y;
+		mtx[3].y = parm.mPosition.y;
+		mtx[1].y += diff;
+	}
+
+	mMainMtx->setBasis(0, mtx[0]);
+	mMainMtx->setBasis(1, mtx[1]);
+	mMainMtx->setBasis(2, mtx[2]);
+	mMainMtx->setBasis(3, mtx[3]);
 }
 
+namespace SnakeCrow {
 /*
  * --INFO--
  * Address:	802F83E8
  * Size:	0000EC
  */
-SnakeCrow::SnakeCrowShadowMgr::SnakeCrowShadowMgr(Game::SnakeCrow::Obj*)
+SnakeCrowShadowMgr::SnakeCrowShadowMgr(Obj* owner)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	stw      r29, 0x20(r3)
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_802F842C
-	mr       r4, r29
-	bl       __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
-	mr       r0, r3
+	mOwner    = owner;
+	mRootNode = new JointShadowRootNode(owner);
 
-lbl_802F842C:
-	stw      r0, 0x24(r28)
-	mr       r30, r28
-	li       r29, 0
+	for (int i = 0; i < 8; i++) {
+		mTubeNodes[i] = new SnakeCrowTubeShadowNode;
+		mRootNode->add(mTubeNodes[i]);
 
-lbl_802F8438:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_802F845C
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game23SnakeCrowTubeShadowNode@ha
-	addi     r0, r3, __vt__Q24Game23SnakeCrowTubeShadowNode@l
-	stw      r0, 0(r31)
-
-lbl_802F845C:
-	stw      r31, 0x28(r30)
-	lwz      r3, 0x24(r28)
-	lwz      r4, 0x28(r30)
-	bl       add__5CNodeFP5CNode
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_802F8490
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game25SnakeCrowSphereShadowNode@ha
-	addi     r0, r3, __vt__Q24Game25SnakeCrowSphereShadowNode@l
-	stw      r0, 0(r31)
-
-lbl_802F8490:
-	stw      r31, 0x48(r30)
-	lwz      r3, 0x24(r28)
-	lwz      r4, 0x48(r30)
-	bl       add__5CNodeFP5CNode
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 8
-	blt      lbl_802F8438
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		mSphereNodes[i] = new SnakeCrowSphereShadowNode;
+		mRootNode->add(mSphereNodes[i]);
+	}
 }
 
 /*
@@ -339,60 +251,14 @@ lbl_802F8490:
  * Address:	802F84D4
  * Size:	0000C0
  */
-void SnakeCrow::SnakeCrowShadowMgr::init()
+void SnakeCrowShadowMgr::init()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, lbl_8048D2E0@ha
-	stw      r0, 0x44(r1)
-	addi     r10, r4, lbl_8048D2E0@l
-	stw      r31, 0x3c(r1)
-	addi     r31, r1, 8
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	stw      r29, 0x34(r1)
-	stw      r28, 0x30(r1)
-	li       r28, 0
-	lwz      r11, 0x20(r3)
-	lwz      r9, 0(r10)
-	lwz      r8, 4(r10)
-	lwz      r7, 8(r10)
-	lwz      r6, 0xc(r10)
-	lwz      r5, 0x10(r10)
-	lwz      r4, 0x14(r10)
-	lwz      r3, 0x18(r10)
-	lwz      r0, 0x1c(r10)
-	stw      r9, 8(r1)
-	lwz      r29, 0x174(r11)
-	stw      r8, 0xc(r1)
-	stw      r7, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r5, 0x18(r1)
-	stw      r4, 0x1c(r1)
-	stw      r3, 0x20(r1)
-	stw      r0, 0x24(r1)
+	SysShape::Model* model = mOwner->mModel;
+	char* jointNames[8]    = { "bodyjnt2", "bodyjnt3", "bodyjnt4", "bodyjnt5", "bodyjnt6", "bodyjnt7", "bodyjnt8", "kutijnt1" };
 
-lbl_802F854C:
-	lwz      r4, 0(r31)
-	mr       r3, r29
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	addi     r28, r28, 1
-	stw      r3, 0(r30)
-	cmpwi    r28, 8
-	addi     r31, r31, 4
-	addi     r30, r30, 4
-	blt      lbl_802F854C
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r28, 0x30(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		mMatrices[i] = model->getJoint(jointNames[i])->getWorldMatrix();
+	}
 }
 
 /*
@@ -400,44 +266,14 @@ lbl_802F854C:
  * Address:	802F8594
  * Size:	000078
  */
-void SnakeCrow::SnakeCrowShadowMgr::startJointShadow()
+void SnakeCrowShadowMgr::startJointShadow()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x24(r3)
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_802F85F0
-	li       r30, 0
-	mr       r31, r29
-
-lbl_802F85C8:
-	lwz      r3, 0x24(r29)
-	lwz      r4, 0x28(r31)
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x24(r29)
-	lwz      r4, 0x48(r31)
-	bl       add__5CNodeFP5CNode
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 8
-	blt      lbl_802F85C8
-
-lbl_802F85F0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (!mRootNode->mChild) {
+		for (int i = 0; i < 8; i++) {
+			mRootNode->add(mTubeNodes[i]);
+			mRootNode->add(mSphereNodes[i]);
+		}
+	}
 }
 
 /*
@@ -445,39 +281,14 @@ lbl_802F85F0:
  * Address:	802F860C
  * Size:	000064
  */
-void SnakeCrow::SnakeCrowShadowMgr::finishJointShadow()
+void SnakeCrowShadowMgr::finishJointShadow()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lwz      r4, 0x24(r3)
-	lwz      r0, 0x10(r4)
-	cmplwi   r0, 0
-	beq      lbl_802F8658
-	li       r30, 0
-	mr       r31, r3
-
-lbl_802F8638:
-	lwz      r3, 0x28(r31)
-	bl       del__5CNodeFv
-	lwz      r3, 0x48(r31)
-	bl       del__5CNodeFv
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 8
-	blt      lbl_802F8638
-
-lbl_802F8658:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mRootNode->mChild) {
+		for (int i = 0; i < 8; i++) {
+			mTubeNodes[i]->del();
+			mSphereNodes[i]->del();
+		}
+	}
 }
 
 /*
@@ -485,8 +296,43 @@ lbl_802F8658:
  * Address:	802F8670
  * Size:	00025C
  */
-void SnakeCrow::SnakeCrowShadowMgr::update()
+void SnakeCrowShadowMgr::update()
 {
+	if (mOwner->isUnderground()) {
+		return;
+	}
+
+	JointShadowParm parm;
+	parm.mPosition = mOwner->getPosition();
+	parm.mRotation = Vector3f(0.0f, 1.0f, 0.0f);
+	parm._18       = 0.0f;
+	parm._1C       = 0.0f;
+
+	Vector3f positions[8];
+
+	for (int i = 0; i < 8; i++) {
+		positions[i] = mMatrices[i]->getBasis(3);
+	}
+
+	for (int i = 0; i < 8; i++) {
+		parm.mShadowScale = cTubeShadowRadius[i];
+		if (i < 7) {
+			mTubeNodes[i]->makeShadowSRT(parm, positions[i], positions[i + 1]);
+		} else {
+			Vector3f kutiPos1;
+			Vector3f kutiPos2;
+			mMatrices[i]->getBasis(0, kutiPos1);
+			mMatrices[i]->getBasis(0, kutiPos2);
+			kutiPos1 *= 80.0f;
+			kutiPos1 += positions[i];
+			kutiPos2 += positions[i];
+			mTubeNodes[i]->makeShadowSRT(parm, kutiPos1, kutiPos2);
+		}
+
+		parm.mShadowScale  = cSphereShadowRadius[i];
+		Vector3f spherePos = mMatrices[i]->getBasis(3);
+		mSphereNodes[i]->makeShadowSRT(parm, spherePos);
+	}
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -655,90 +501,5 @@ lbl_802F88B8:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	802F88CC
- * Size:	000070
- */
-SnakeCrowSphereShadowNode::~SnakeCrowSphereShadowNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F8920
-	lis      r4, __vt__Q24Game25SnakeCrowSphereShadowNode@ha
-	addi     r0, r4, __vt__Q24Game25SnakeCrowSphereShadowNode@l
-	stw      r0, 0(r30)
-	beq      lbl_802F8910
-	lis      r5, __vt__Q24Game15JointShadowNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_802F8910:
-	extsh.   r0, r31
-	ble      lbl_802F8920
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802F8920:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802F893C
- * Size:	000070
- */
-SnakeCrowTubeShadowNode::~SnakeCrowTubeShadowNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F8990
-	lis      r4, __vt__Q24Game23SnakeCrowTubeShadowNode@ha
-	addi     r0, r4, __vt__Q24Game23SnakeCrowTubeShadowNode@l
-	stw      r0, 0(r30)
-	beq      lbl_802F8980
-	lis      r5, __vt__Q24Game15JointShadowNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_802F8980:
-	extsh.   r0, r31
-	ble      lbl_802F8990
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802F8990:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+} // namespace SnakeCrow
 } // namespace Game
