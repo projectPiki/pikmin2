@@ -81,6 +81,7 @@ MWCC_VERSION := 2.6
 MWLD_VERSION := 2.6
 
 # Programs
+DEVKITPPC ?= tools/devkitPPC
 ifeq ($(WINDOWS),1)
   WINE :=
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as.exe
@@ -95,8 +96,6 @@ else
   endif
   # Disable wine debug output for cleanliness
   export WINEDEBUG ?= -all
-  # Default devkitPPC path
-  DEVKITPPC ?= /opt/devkitpro/devkitPPC
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
   PYTHON  := python3
@@ -224,7 +223,7 @@ $(BUILD_DIR)/%.h: %.c
 $(BUILD_DIR)/%.h: %.cp
 	@echo "Compiling and generating context for " $<
 	$(QUIET) $(CC) $(CFLAGS) -E -c -o $@ $<
-	
+
 $(BUILD_DIR)/%.h: %.cpp
 	@echo "Compiling and generating context for " $<
 	$(QUIET) $(CC) $(CFLAGS) -E -c -o $@ $<
