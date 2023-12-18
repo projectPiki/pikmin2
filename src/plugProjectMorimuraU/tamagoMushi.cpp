@@ -181,10 +181,10 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
  * Address:	8036F338
  * Size:	0000BC
  */
-bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 p1)
+bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 {
 	if (getStateID() != TAMAGOMUSHI_Dead) {
-		if (EnemyBase::bombCallBack(creature, vec, p1)) {
+		if (EnemyBase::bombCallBack(creature, direction, damage)) {
 			mFsm->transit(this, TAMAGOMUSHI_Dead, nullptr);
 			enableEvent(0, EB_LifegaugeVisible);
 			mHealth = 0.0f;

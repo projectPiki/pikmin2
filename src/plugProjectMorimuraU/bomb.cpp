@@ -347,7 +347,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
  * Address:	8034AE54
  * Size:	000160
  */
-bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
+bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 {
 	if (!mCaptureMatrix && !isEvent(0, EB_Bittered) && creature->isTeki()) {
 		if (static_cast<EnemyBase*>(creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Bomb) {

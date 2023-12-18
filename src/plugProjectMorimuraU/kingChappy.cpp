@@ -922,7 +922,10 @@ void Obj::wallCallback(MoveInfo const& moveInfo)
  * Address:	8035EBE8
  * Size:	000028
  */
-bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage) { return EnemyBase::bombCallBack(creature, vec, 0.25f * damage); }
+bool Obj::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
+{
+	return EnemyBase::bombCallBack(creature, direction, 0.25f * damage);
+}
 
 /*
  * --INFO--

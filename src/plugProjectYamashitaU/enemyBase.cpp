@@ -2242,14 +2242,6 @@ void EnemyBase::doSimulation(f32 frameRate) { mLifecycleFSM->simulation(this, fr
  * Address:	80104A8C
  * Size:	0000D8
  */
-/**
- * Performs simulation constraint for the EnemyBase object.
- * This function checks if the EnemyBase is hard constrained and enables collision checking if it is moving.
- * If the EnemyBase has just bounced off a triangle, collision checking is disabled.
- * Finally, it updates the spheres and the water box.
- *
- * @param frameRate The frame rate of the simulation.
- */
 void EnemyBase::doSimulationConstraint(f32 frameRate)
 {
 	if (!(isEvent(0, EB_HardConstrained))) {
@@ -2425,13 +2417,7 @@ void EnemyBase::endBlend()
  * Address:	80105004
  * Size:	000224
  */
-/**
- * Starts the motion of the EnemyBase object.
- *
- * @param p1 The parameter for starting the animation.
- * @param inputListener The motion listener for the animation.
- */
-void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
+void EnemyBase::startMotion(int id, SysShape::MotionListener* inputListener)
 {
 	SysShape::MotionListener* listener;
 	if (!(listener = inputListener)) {
@@ -2442,7 +2428,7 @@ void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
 	animator->mFlags.unset(EANIM_FLAG_STOPPED | EANIM_FLAG_FINISHED);
 	animator->mNormalizedTime = 1.0f;
 
-	animator->getAnimator(0).startAnim(p1, inputListener);
+	animator->getAnimator(0).startAnim(id, inputListener);
 
 	disableEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
 	enableEvent(0, EB_PS1);
@@ -2652,15 +2638,6 @@ void EnemyBase::finishScaleDamageAnim()
  * Address:	80105720
  * Size:	0000F8
  */
-/**
- * Performs the death procedure for the EnemyBase object.
- * Disables the damage animation, sets the object as not alive,
- * throws up an item if the object is bittered, otherwise throws up
- * an item in the death procedure, starts the motion, creates a dead
- * bomb effect and plays the enemy fatal hit sound if the death effect
- * is enabled. Additionally, if the sound object is of type EnemyMidBoss
- * or EnemyBigBoss, it triggers the onDeathMotionTop function.
- */
 void EnemyBase::deathProcedure()
 {
 	disableEvent(0, EB_DamageAnimEnabled);
@@ -2726,13 +2703,6 @@ void EnemyBase::getThrowupItemVelocity(Vector3f* throwupItemVelocity) { *throwup
  * --INFO--
  * Address:	801059B8
  * Size:	0004B0
- */
-/**
- * Throws up an item from the enemy base.
- * The item is created and thrown with a specific velocity and position.
- * If the enemy is a boss in the final floor of a cave in story mode, the carry weight of the thrown item
- * is adapted to the squads amount, allowing annihilated squads to recover treasures.
- * @return void
  */
 void EnemyBase::throwupItem()
 {
@@ -3082,7 +3052,7 @@ bool EnemyBase::farmCallBack(Creature*, f32 power) { return false; }
  * Address:	801065C8
  * Size:	000048
  */
-bool EnemyBase::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
+bool EnemyBase::bombCallBack(Creature* creature, Vector3f& direction, f32 damage)
 {
 	if (!(isEvent(0, EB_Invulnerable))) {
 		mInstantDamage += damage;
