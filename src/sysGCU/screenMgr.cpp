@@ -1,6 +1,7 @@
 #include "Screen/Game2DMgr.h"
 #include "Screen/SceneInfoList.h"
 #include "og/Screen/ogScreen.h"
+#include "og/Screen/DispMember.h"
 #include "Game/MoviePlayer.h"
 #include "nans.h"
 
@@ -236,9 +237,9 @@ void SceneInfoList::set(long, og::Screen::DispMemberBase*)
 MgrCommand::MgrCommand()
     : CNode("")
 {
-	_18     = -1;
-	_1C     = 0;
-	_20[16] = 0; // no idea
+	_18             = -1;
+	mPreviousArg    = 0;
+	mCurrentArg[16] = 0; // no idea
 	OSInitMutex(&mMutex);
 	OSLockMutex(&mMutex);
 	OSUnlockMutex(&mMutex);
@@ -416,19 +417,53 @@ void Mgr::create()
  */
 bool Mgr::startScene(StartSceneArg* arg)
 {
-	bool ret = false;
 	if (mBackupScene && mBackupScene->confirmStartScene(arg)) {
-		ret = true;
+		if (mAvailableCommands.mChild) {
+			return true;
+		}
+
+		// WTF going on?
+		if (mBackupScene && !mBackupScene->start(arg)) {
+			return true;
+		}
+
+		Screen::MgrCommand* cmd = getNewCommand();
+		if (!cmd) {
+			return false;
+		}
+
+		OSLockMutex(&cmd->mMutex);
+		cmd->mName = "StartScene";
+		cmd->_18   = 1;
+		OSLockMutex(&cmd->mMutex);
+		if (arg) {
+			P2ASSERTLINE(258, arg->getClassSize() <= 0x40);
+
+			cmd->mPreviousArg = cmd->mCurrentArg;
+			memcpy(&cmd->mCurrentArg, arg, arg->getClassSize());
+		} else {
+			if (cmd->mPreviousArg) {
+				OSLockMutex(&cmd->mMutex);
+				memset(&cmd->mCurrentArg, 205, 64);
+				OSUnlockMutex(&cmd->mMutex);
+			}
+
+			cmd->mPreviousArg = nullptr;
+		}
+
+		OSUnlockMutex(&cmd->mMutex);
+		OSUnlockMutex(&cmd->mMutex);
 	} else {
-		u32 owner = mBackupScene->getOwnerID();
-		char buf[12];
-		og::Screen::TagToName(owner, buf);
-		ScreenMemberID member = mBackupScene->getMemberID();
-		char buf2[12];
-		og::Screen::TagToName(member, buf2);
-		JUT_PANICLINE(427, "can\'t startScene.\n owner[%s] member[%s]\n", buf, buf2);
+		char ownerStr[12];
+		og::Screen::TagToName((u32)mBackupScene->getOwnerID(), ownerStr);
+
+		char memberIdStr[12];
+		og::Screen::TagToName(mBackupScene->getMemberID(), memberIdStr);
+
+		JUT_PANICLINE(427, "can\'t startScene.\n owner[%s] member[%s]\n", ownerStr, memberIdStr);
 	}
-	return ret;
+
+	return false;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -447,7 +482,7 @@ bool Mgr::startScene(StartSceneArg* arg)
 	clrlwi.  r0, r3, 0x18
 	beq      lbl_8045285C
 
-lbl_8045272C:
+	lbl_8045272C:
 	lwz      r0, 0x3c(r27)
 	li       r31, 0
 	cmplwi   r0, 0
@@ -455,7 +490,7 @@ lbl_8045272C:
 	li       r31, 1
 	b        lbl_8045276C
 
-lbl_80452744:
+	lbl_80452744:
 	lwz      r3, 0x1c(r27)
 	cmplwi   r3, 0
 	beq      lbl_80452768
@@ -466,10 +501,10 @@ lbl_80452744:
 	li       r31, 1
 	b        lbl_8045276C
 
-lbl_80452768:
+	lbl_80452768:
 	li       r29, 0
 
-lbl_8045276C:
+	lbl_8045276C:
 	clrlwi.  r0, r31, 0x18
 	beq      lbl_804528BC
 	mr       r3, r27
@@ -479,7 +514,7 @@ lbl_8045276C:
 	li       r29, 0
 	b        lbl_804528BC
 
-lbl_8045278C:
+	lbl_8045278C:
 	addi     r3, r31, 0x464
 	bl       OSLockMutex
 	addi     r3, r30, 0x5c
@@ -503,7 +538,7 @@ lbl_8045278C:
 	crclr    6
 	bl       panic_f__12JUTExceptionFPCciPCce
 
-lbl_804527E4:
+	lbl_804527E4:
 	addi     r0, r31, 0x20
 	mr       r3, r28
 	stw      r0, 0x1c(r31)
@@ -517,7 +552,7 @@ lbl_804527E4:
 	bl       memcpy
 	b        lbl_80452848
 
-lbl_80452814:
+	lbl_80452814:
 	lwz      r0, 0x1c(r31)
 	cmplwi   r0, 0
 	beq      lbl_80452840
@@ -530,18 +565,18 @@ lbl_80452814:
 	addi     r3, r31, 0x464
 	bl       OSUnlockMutex
 
-lbl_80452840:
+	lbl_80452840:
 	li       r0, 0
 	stw      r0, 0x1c(r31)
 
-lbl_80452848:
+	lbl_80452848:
 	addi     r3, r31, 0x464
 	bl       OSUnlockMutex
 	addi     r3, r31, 0x464
 	bl       OSUnlockMutex
 	b        lbl_804528BC
 
-lbl_8045285C:
+	lbl_8045285C:
 	lwz      r3, 0x1c(r27)
 	lwz      r12, 0(r3)
 	lwz      r12, 0xc(r12)
@@ -567,7 +602,7 @@ lbl_8045285C:
 	bl       panic_f__12JUTExceptionFPCciPCce
 	li       r29, 0
 
-lbl_804528BC:
+	lbl_804528BC:
 	mr       r3, r29
 	lmw      r27, 0x2c(r1)
 	lwz      r0, 0x44(r1)
@@ -1329,8 +1364,21 @@ lbl_804531B0:
  * Address:	804531C4
  * Size:	000598
  */
-bool Mgr::setScene(SetSceneArg&)
+bool Mgr::setScene(SetSceneArg& param_1)
 {
+	if (param_1._08 == 0) {
+		if (mBackupScene && !mBackupScene->confirmSetScene(param_1)) {
+			return false;
+		}
+	}
+
+	Screen::MgrCommand* command = (Screen::MgrCommand*)mCommandList.mChild;
+	JUT_ASSERTLINE(615, command != nullptr, "screen command buffer is empty.\n");
+
+	if (!command) {
+		JUT_PANICLINE(626, "【エラー】コマンドバッファが足りません\n");
+	}
+
 	getNewCommand();
 	/*
 	stwu     r1, -0x40(r1)
@@ -1763,128 +1811,40 @@ lbl_80453744:
  * Address:	8045375C
  * Size:	000024
  */
-bool Mgr::isCurrentSceneLoading()
-{
-	if (!mBackupScene || mBackupScene->mStateID != 1) {
-		return false;
-	}
-	return true;
-	/*
-	lwz      r4, 0x1c(r3)
-	li       r3, 0
-	cmplwi   r4, 0
-	beqlr
-	lwz      r0, 0x120(r4)
-	cmpwi    r0, 1
-	bnelr
-	li       r3, 1
-	blr
-	*/
-}
+bool Mgr::isCurrentSceneLoading() { return mBackupScene && mBackupScene->mStateID == 1; }
 
 /*
  * --INFO--
  * Address:	80453780
  * Size:	000160
  */
-void Mgr::copyDispMember(u8*, u8*)
+void Mgr::copyDispMember(u8* destAddress, u8* sourceAddress)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stmw     r27, 0x3c(r1)
-	mr       r27, r3
-	mr       r31, r4
-	mr       r30, r5
-	lwz      r3, 0x1c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	lwz      r3, 0x1c(r27)
-	mr       r29, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	mr       r27, r4
-	mr       r28, r0
-	mr       r3, r30
-	mr       r4, r29
-	mr       r6, r27
-	mr       r5, r28
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80453810
-	mr       r3, r30
-	mr       r4, r29
-	mr       r6, r27
-	mr       r5, r28
-	bl       getSubMember__Q32og6Screen14DispMemberBaseFUlUx
-	cmplwi   r3, 0
-	beq      lbl_80453840
+	og::Screen::DispMemberBase* destMember = reinterpret_cast<og::Screen::DispMemberBase*>(destAddress);
+	og::Screen::DispMemberBase* srcMember  = reinterpret_cast<og::Screen::DispMemberBase*>(sourceAddress);
 
-lbl_80453810:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r3
-	mr       r3, r31
-	mr       r4, r30
-	bl       memcpy
-	mr       r3, r31
-	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
-	b        lbl_804538CC
+	ScreenOwnerID backupOwnerID   = mBackupScene->getOwnerID();
+	ScreenMemberID backupMemberID = mBackupScene->getMemberID();
 
-lbl_80453840:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r5, r1, 0x14
-	li       r3, 0
-	bl       TagToName__Q22og6ScreenFUxPc
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r5, r1, 8
-	bl       TagToName__Q22og6ScreenFUxPc
-	mr       r4, r29
-	addi     r5, r1, 0x2c
-	li       r3, 0
-	bl       TagToName__Q22og6ScreenFUxPc
-	mr       r4, r27
-	mr       r3, r28
-	addi     r5, r1, 0x20
-	bl       TagToName__Q22og6ScreenFUxPc
-	lis      r3, lbl_8049B8D4@ha
-	lis      r4, lbl_8049BA38@ha
-	addi     r5, r4, lbl_8049BA38@l
-	addi     r6, r1, 0x2c
-	addi     r3, r3, lbl_8049B8D4@l
-	addi     r7, r1, 0x20
-	addi     r8, r1, 0x14
-	addi     r9, r1, 8
-	li       r4, 0x44a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (srcMember->isID(backupOwnerID, backupMemberID) || srcMember->getSubMember(backupOwnerID, backupMemberID)) {
+		memcpy(destAddress, sourceAddress, srcMember->getSize());
+		destMember->setSubMemberAll();
+		return;
+	}
 
-lbl_804538CC:
-	lmw      r27, 0x3c(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	char ownerStr[12];
+	char memberStr[12];
+
+	char srcOwnerStr[12];
+	char srcMemberStr[12];
+
+	og::Screen::TagToName((u64)srcMember->getOwnerID(), srcOwnerStr);
+	og::Screen::TagToName((u64)srcMember->getMemberID(), srcMemberStr);
+
+	og::Screen::TagToName((u32)backupOwnerID, ownerStr);
+	og::Screen::TagToName(backupMemberID, memberStr);
+
+	JUT_PANICLINE(1098, "to   [%s] [%s]\nfrom [%s] [%s]\n", ownerStr, memberStr, srcOwnerStr, srcMemberStr);
 }
 
 /*
@@ -1897,6 +1857,7 @@ bool Mgr::setDispMember(og::Screen::DispMemberBase* disp)
 	if (mBackupScene) {
 		return mBackupScene->setDispMember(disp);
 	}
+
 	return nullptr;
 }
 
@@ -1910,6 +1871,7 @@ og::Screen::DispMemberBase* Mgr::getDispMember()
 	if (mBackupScene) {
 		return mBackupScene->mDispMember;
 	}
+
 	return nullptr;
 }
 
@@ -1923,6 +1885,7 @@ SceneType Mgr::getSceneType()
 	if (mBackupScene) {
 		return mBackupScene->getSceneType();
 	}
+
 	return SCENE_DUMMY;
 }
 
@@ -1936,6 +1899,7 @@ bool Mgr::isSceneFinish()
 	if (mBackupScene) {
 		return mBackupScene->mStateID == 4;
 	}
+
 	return true;
 }
 
@@ -1978,6 +1942,7 @@ bool Mgr::setBackupScene()
 	if (mBackupScene) {
 		return mBackupScene->setBackupScene();
 	}
+
 	return false;
 }
 
@@ -1988,30 +1953,14 @@ bool Mgr::setBackupScene()
  */
 bool Mgr::isAnyReservation() const
 {
-	/*
-	lwz      r3, 0x3c(r3)
-	b        lbl_80453A48
+	FOREACH_NODE(MgrCommand, mAvailableCommands.mChild, i)
+	{
+		if (i->_18 == 0 || i->_18 == 1) {
+			return true;
+		}
+	}
 
-lbl_80453A28:
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	beq      lbl_80453A3C
-	cmpwi    r0, 1
-	bne      lbl_80453A44
-
-lbl_80453A3C:
-	li       r3, 1
-	blr
-
-lbl_80453A44:
-	lwz      r3, 4(r3)
-
-lbl_80453A48:
-	cmplwi   r3, 0
-	bne      lbl_80453A28
-	li       r3, 0
-	blr
-	*/
+	return false;
 }
 
 } // namespace Screen

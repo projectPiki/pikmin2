@@ -50,10 +50,11 @@ struct MgrCommand : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	int _18;        // _18
-	int _1C;        // _1C
-	int _20[0x111]; // _20 ???
-	OSMutex mMutex; // _464
+	int _18;                // _18
+	char* mPreviousArg;     // _1C
+	char mCurrentArg[0x64]; // _20
+	char _84[0x464 - 0x84]; // _84
+	OSMutex mMutex;         // _464
 };
 
 struct SceneArgBase {
