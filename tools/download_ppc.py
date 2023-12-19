@@ -7,6 +7,13 @@ import tempfile
 import tarfile
 import zstandard
 
+if sys.platform == "cygwin":
+    sys.exit(
+        f"Cygwin/MSYS2 is not supported."
+        f"\nPlease use native Windows Python instead."
+        f"\nPlease run pacman -R python in msys2."
+        f"\n(Current path: {sys.executable})"
+    )
 
 # TODO: Less hardcoded elements
 REPO = "https://wii.leseratte10.de/devkitPro/devkitPPC/r44%20%282023-08-07%29/"
