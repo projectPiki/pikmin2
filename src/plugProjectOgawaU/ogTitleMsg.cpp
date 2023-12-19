@@ -464,7 +464,7 @@ lbl_8032ECE8:
  * Size:	00028C
  */
 TitleMsg::TitleMsg(J2DScreen* screen, J2DPane* root, char* str)
-    : mAnalyzer(og::gLib2D->mMessage->mProcessor->_04)
+    : mAnalyzer(og::gLib2D->mMessage->mProcessor->mReference)
 {
 	mAnalyzer.mCurrCharIndex = 0;
 
