@@ -214,22 +214,25 @@ void GXSetTevColor(GXTevRegID reg, GXColor color)
  */
 void GXSetTevColorS10(GXTevRegID reg, GXColorS10 color)
 {
-	s16 r = color.r;
-	s16 a = color.a;
-	s16 b = color.b;
-	s16 g = color.g;
+	s16 r, a, b, g;
+	u32 ra;
+	r = color.r;
+	a = color.a;
+	b = color.b;
+	g = color.g;
 
-	u32 ra = 0;
+	ra = 0;
+	reg *= 2;
 
 	GX_SET_REG(ra, r, 21, 31);
 	GX_SET_REG(ra, a, 9, 19);
-	GX_SET_REG(ra, GX_BP_REG_TEVREG0LO + reg * 2, 0, 7);
+	GX_SET_REG(ra, GX_BP_REG_TEVREG0LO + reg, 0, 7);
 
 	GX_BP_LOAD_REG(ra);
 
 	GX_SET_REG(ra, b, 21, 31);
 	GX_SET_REG(ra, g, 9, 19);
-	GX_SET_REG(ra, GX_BP_REG_TEVREG0HI + reg * 2, 0, 7);
+	GX_SET_REG(ra, GX_BP_REG_TEVREG0HI + reg, 0, 7);
 
 	GX_BP_LOAD_REG(ra);
 	GX_BP_LOAD_REG(ra);
