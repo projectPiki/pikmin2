@@ -22,26 +22,26 @@ This repository builds the following DOLs:
 ## Building
 
 ### Required Tools
-* python
+[Python 3.8+](https://www.python.org/downloads/)
 
 ### Instructions
 
 1. Clone the repo using `git clone https://github.com/projectPiki/pikmin2/`
 
-2. Download [GC_WII_COMPILERS.zip](https://files.decomp.dev/compilers_20230715.zip) and extract the contents of the GC folder to `tools/mwcc_compiler/`. For example, your directory structure should look like `pikmin2/tools/mwcc_compiler/2.6/` (along with the other versions).
+2. Install required python modules with `pip install -r requirements.txt`.
 
-3. Run `configure.py`.
-	- Automatically downloads any other necessary files for the project.
-	- If using `ninja`, will prepare all relevant scripts.
+3. Download [GC_WII_COMPILERS.zip](https://files.decomp.dev/compilers_20230715.zip) and extract the contents of the GC folder to `tools/mwcc_compiler/`. For example, your directory structure should look like `pikmin2/tools/mwcc_compiler/2.6/` (along with the other versions).
 
-4. Run `make -j` or `ninja` in a command prompt or terminal.
-	- -j Allows `make` to use multiple threads, speeding up the process.
+4. Run `python configure.py` to automatically download/build any other necessary files for the project.
+
+5. Run `ninja` (recommended) or `make -j` in a command prompt or terminal.
+	- `-j` Allows `make` to use multiple threads, speeding up the process.
 	- `ninja` already implicitly uses the max amount of cores available, only use `-j` to *decrease* the thread count.
 	- If just `-j` gives errors on your setup, try specifying a set number of threads, e.g. `make -j 4`.
 
 * OPTIONAL STEPS:
 	- Obtain a clean DOL of Pikmin 2 USA 1.0 and place it in the base working directory and rename it to `baserom.dol`.
-	- To generate a linker map (takes a considerable amount of time), run `make MAPGENFLAG=1 -j`.
+	- To generate a linker map (takes a considerable amount of time), run `ninja -m` or  `make MAPGENFLAG=1 -j`.
 	- The project uses clang-format for a consistent style. Download the [correct version](https://cdn.discordapp.com/attachments/933849922418126918/1031358615300345856/clang-format.exe) and place in the main repo directory (e.g. `pikmin2/clang-format.exe`).
 
 * See [this video](https://youtu.be/CZXNQagqpkw) for a walkthrough of the steps on Windows (thanks Altafen for making this!).
@@ -69,12 +69,11 @@ This repository builds the following DOLs:
 	4. Decomp it!
 
 ### Generating Context for decomp.me Scratches
-(NB: The generator requires **Python 3** to run)
 
 - [decomp.me](https://decomp.me/) is an online decompilation sharing hub, allowing 'scratches' of functions to be generated and collaborated on.
 - Stand-alone decompilation packages and tools such as decomp.me require information on the functions and structures of the project in order to parse extracted blocks correctly. The easiest way to do this is to pass the tool just the necessary 'context' for the file, i.e. a set of all the headers used by the file that's being worked on.
 - A recursive context processing script is included in the repo (<a href="https://github.com/projectPiki/pikmin2/tree/main/tools/decompctx.py">tools/decompctx.py</a>), which generates a `ctx.c` file in the root directory.
 	- The contents of this can then be copied and pasted into the 'Context' section of a decomp.me scratch or similar.
 - To use, call the generator via the terminal/command line from the root directory (replacing DIRECTORY and FILE as required):
-    ```python3 tools/decompctx.py src/DIRECTORY/FILE.cpp```
+	```python tools/decompctx.py src/DIRECTORY/FILE.cpp```
 - Credit to encounter and the [Metroid Prime decomp project](https://github.com/PrimeDecomp/prime) for the script!

@@ -5,20 +5,8 @@ import platform
 import shutil
 import tempfile
 import tarfile
-from typing import Optional
+import zstandard
 
-
-try:
-    import zstandard
-except:
-    print("zstandard module not found, downloading...")
-    import subprocess
-    import sys
-
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "zstandard"], stdout=subprocess.DEVNULL)
-    import zstandard
-
-    print("zstandard module successfully downloaded!")
 
 # TODO: Less hardcoded elements
 REPO = "https://wii.leseratte10.de/devkitPro/devkitPPC/r44%20%282023-08-07%29/"

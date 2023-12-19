@@ -1,0 +1,2 @@
+# Extract devkitPPC archive
+zstandard>=0.22.0
