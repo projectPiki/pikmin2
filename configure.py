@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 LIBS = [
     {
         "lib": "JStudio_JParticle",
@@ -1670,15 +1671,20 @@ if __name__ == "__main__":
     from shutil import which
     from tools import ninja_syntax
 
+    if sys.version_info < (3, 8):
+        sys.exit("Python 3.8 or later required.")
+
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--version",
+        "-v",
         dest="version",
         default="usa",
         help="version to build (usa, usa.demo)",
     )
     parser.add_argument(
         "--map",
+        "-m",
         dest="map",
         action="store_true",
         help="generate map file",
@@ -1716,6 +1722,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--debug",
+        "-d",
         dest="debug",
         action="store_true",
         help="build with debug info (non-matching)",
