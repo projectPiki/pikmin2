@@ -43,6 +43,9 @@ struct IKSystemParms {
 		_44                  = -1.5f;
 	}
 
+	inline f32 getViewAngle() const { return _34; } // this is a guess, don't at me
+	inline f32 getMaxTurnAngle() const { return mMaxTurnAngle; }
+
 	int _00;                  // _00
 	f32 _04;                  // _04
 	f32 _08;                  // _08

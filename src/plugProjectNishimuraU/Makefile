@@ -140,7 +140,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Damagumo.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/IKSystemMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/IKSystemMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/IKSystemBase.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoShadow.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KurageState.o\
